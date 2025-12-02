@@ -1,649 +1,567 @@
-Return-Path: <devicetree+bounces-243698-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243699-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73BCCC9B529
-	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 12:31:49 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82AB0C9B5A1
+	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 12:48:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id E312A34880D
-	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 11:31:48 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 041C9344F8A
+	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 11:48:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0472310774;
-	Tue,  2 Dec 2025 11:31:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D133D28BAB1;
+	Tue,  2 Dec 2025 11:48:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="nDOrzWc9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TYPPR03CU001.outbound.protection.outlook.com (mail-japaneastazon11022110.outbound.protection.outlook.com [52.101.126.110])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com [209.85.215.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 370C628727B;
-	Tue,  2 Dec 2025 11:31:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.126.110
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764675102; cv=fail; b=HGYOi8hk92vTaknlAyf1IfH1qyU0zVSkq/g/Q2phgNqDVuHuPPioYKa+TC7XsayUbqINKD9tv/ApYbbebkzPNbOW+bhepHU5v/Us5oINHfr3HVOURxuHN4drnO0xJhVqtykiB1lLJ1QHD8fhAJc++6qMgKoBL9FgSruigCZ/wag=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764675102; c=relaxed/simple;
-	bh=QdYFzYKiLqwSpEP3ES1Dn1p/flDP68qdHkfj4yQdgpo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ke8eKGI9RaRYTMAfWoyltKvP7ArVHyRa15mOVu1jZ5BLUCK2u4iqgFrmrq9yJ1usEyXVeV5yca6dOHskPq+vCn8Ke5E4ofrs9X3eRJd2/Jl0tF8yk00mM8S+sCG0zZNAzMOgqtfxeeKiHHaHsmxqfKW22EGwzkSMi5cvN1Bs4m8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.126.110
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=cGuRck0r9UYFPp/X729HunvzLrCVOtDILLGJHVYR/ZAwPxgoF1l4b1F8+A2Pm6ONQFBCV8nH5qIVhc49TKrceYtuvCFqLQ7e6ZItLR6uXdRSj4XdcrAoFuy/xC8Iia/atXsEN2aVU3iOSRjs6qeZX5LP3ITbAL4Y9LKpZyG5eJam/T7GTCu7h0PJNynoOp2T6qBN97nd+iBv1NNWUpLWE0sd1U3KZFanY1D01qecyV6LhMZrNzL06AWSzlNkSIK3sjrqwuY7Upm6m8RNgeUZ4d1e087UaAHqdLetahIRqmDJvSm62nPVgerbXvnnbS6rOWx6m9HBQpi06ckcHGcJjw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vR1dpsCWigqejW7CwehG3I/qYkvp8KPZ+RtFrpL1UtE=;
- b=MB0TbVzD+P8RD0VwyVe2JSTVqZFiS9VxHzSg+DfRevkIqwydbeMDxu+Owe+WnwjcyBG5JQKsDL++k9Cl1j1mcAwoyjK4G+RW3baenMJCFtgekFANv076yw4OrdIS5Hw0P21DPMd+EdqiXXViVAwB86boUVNWq4tfrUn81CVvdi4pSClDiKvyP9wd0ZhO8MteEU1TaeSVzR6vKpCGG96L2pLT5h3meQiYJIazYmEVODkD2vLOgA3EjOSOo8fvHdZSZtNO6PCN+YrUHc1aZQ55Si9aQF61d36GWXwukLsuyT5Dy+M/yeV7HYzI8z1zjwkfsGwut7g2m66pN1EAzBQkjQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 222.71.101.198) smtp.rcpttodomain=cixtech.com smtp.mailfrom=cixtech.com;
- dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
- not signed); arc=none (0)
-Received: from SGBP274CA0003.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:b0::15) by
- KL1PR06MB6908.apcprd06.prod.outlook.com (2603:1096:820:127::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.17; Tue, 2 Dec
- 2025 11:31:36 +0000
-Received: from SG2PEPF000B66CF.apcprd03.prod.outlook.com
- (2603:1096:4:b0:cafe::c6) by SGBP274CA0003.outlook.office365.com
- (2603:1096:4:b0::15) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9366.17 via Frontend Transport; Tue,
- 2 Dec 2025 11:31:41 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
- smtp.mailfrom=cixtech.com; dkim=none (message not signed)
- header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
-Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
- 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
-Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- SG2PEPF000B66CF.mail.protection.outlook.com (10.167.240.23) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9388.8 via Frontend Transport; Tue, 2 Dec 2025 11:31:35 +0000
-Received: from localhost.localdomain (unknown [172.18.64.15])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id D8D3C4143A8D;
-	Tue,  2 Dec 2025 19:31:34 +0800 (CST)
-From: joakim.zhang@cixtech.com
-To: lgirdwood@gmail.com,
-	broonie@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	perex@perex.cz,
-	tiwai@suse.com,
-	linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: cix-kernel-upstream@cixtech.com,
-	Joakim Zhang <joakim.zhang@cixtech.com>
-Subject: [PATCH v4 3/3] ALSA: hda: add CIX IPBLOQ HDA controller support
-Date: Tue,  2 Dec 2025 19:31:31 +0800
-Message-ID: <20251202113132.1094291-4-joakim.zhang@cixtech.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20251202113132.1094291-1-joakim.zhang@cixtech.com>
-References: <20251202113132.1094291-1-joakim.zhang@cixtech.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B83361CD2C
+	for <devicetree@vger.kernel.org>; Tue,  2 Dec 2025 11:48:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.172
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764676088; cv=none; b=sW3Q4PB1qVuSFRGcWSXYe9lWxVBTz4V7Ce8wXUw2oI2sXOv8Xo3lzPEgful9h8UXp45VGEDNQPajeq1NOvSNFv/kNhqVPLYbA/uagAh2rRnjrnlIBROp2fqS9vQIeDePYNltZxZb3lnt4cg9dXAER7fxJNK7iLYGQ21eN5MJxV8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764676088; c=relaxed/simple;
+	bh=xgIcbUe7iRmyC9VWDRwDeMz1KPEGxNgJocdoJJtmQQA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=VwRsM2XBJ65BG/K0RCSmFycWfWqa4LGJ3D3v1Irz/z8MS8I3OMWpEBMx56rA4pE4IRPNQt8ET22JieOeTmWcwD1UH/u7H/bUx9VFi2/9aZM6fbE6yMqZbkJgSrc93ZAJV9eWBbW+s10MdVn7YH7fDNVrC36oA4qcnGe6Y1ALNlU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=nDOrzWc9; arc=none smtp.client-ip=209.85.215.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-pg1-f172.google.com with SMTP id 41be03b00d2f7-b553412a19bso4603133a12.1
+        for <devicetree@vger.kernel.org>; Tue, 02 Dec 2025 03:48:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1764676086; x=1765280886; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=r1nSvtdcW42kUTG/wzEhKzXOp4xqTaPJgXnRyGebc+k=;
+        b=nDOrzWc9n+8SvjZHVMsZisCvTEdmX3j6ctCHd6YvMRuA4XapzR0ITMfwJUMWMQ3lIm
+         zzaVsnoSFxgxVNoD//ErwruEbz9UD9WEM8AO9qHWc5OGj3+vHVB5OgIC6RVCUQJRTFbF
+         TXZvXEq3FftYpcVCFFSZ5u+MjuPirxFyrPuavLY8yR7taZvPDmxD6u0HgSLeTIRuJ4sZ
+         2uA0ucPpBwqDf7Nq0g4A4y20ykaXwztpngCBT3Ge8Z3Oj8AobQ6aM+wMwcYiMlLJnldp
+         iogxSyn7U2TSJDSUV2w6tJ8ZsAHJtsLT9hJ5OEflySdn/tLvYZMD+3PXpshkZ6RdKqDe
+         oo+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764676086; x=1765280886;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=r1nSvtdcW42kUTG/wzEhKzXOp4xqTaPJgXnRyGebc+k=;
+        b=XMUOR3dPJJOQkCsPWgPq7/4Ejd9HS5eDYu2+VFmBulBHO1GjQw2yqYy5C892nFZRGI
+         BVY0JTyTHF8wq4wQetzY0au8f1afI6UXP95ifWURKi+HuD8v522GjNEizr2gHYIEpRS4
+         RznMfJDP+FDbpEsqMF6iSDlxsldQlI9W4YCqsW5hiVg+r5wxvdMjgVeRlwrVQz9Oc4YQ
+         Y/PmkTEIXD266hqyn0OIiQC/zKRFnXYB16pFN9xuCygY1RwwL8qHy2E2buXvU2xC1dRw
+         hYPTCe+jO2LXYK24RV9edLNts256jT+Q/DiL0MVUaLVNChzHqV8/85jdc5p/rySL0g6r
+         Oyig==
+X-Forwarded-Encrypted: i=1; AJvYcCWahBdrH54psy8gB9BU7ltwW6H9bY7Mt0zyP0VszbheFuTGN/GYIWJG/THokn/fXQ1c4CqDnYJiJVcI@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz5E2yEozcHnKej6doXWltb1/tJCIGVeU+RYvUyK8pvO2vCdkac
+	1aGquAUmeA+dSkm37qXNVB6GPw3IILWnP4fsXP9HdGtdTlLMP1agGz8/6ATp/q5Rco6RUVSourl
+	UXDos824pJlSng7mlOBHEtbxQfU5pNvyFc3JUpAh9mg==
+X-Gm-Gg: ASbGncuxfevdZRdolOe5yumLyx9jrrlj5vWSXxZzZm/4sd7vt+9m2kmMeCdzqQC8v1j
+	ONwK1GIJZHSPkayDFUussE9TP2QWV4ZQp4UdaGuJk6Toc77xiK9Dw7dv2rFRQICNhfTlnhVnLaj
+	kacDe0jQlU4B0zCRZW3cFK/s/AQ2rUh2kiRdqibXc2frZdUAMGkFhYxxdyDSIVdeCXq3EhuDBL0
+	IMVkWdgg/bqIYWaZrxannZveO2a0OTzCzoZdvsPBnv/wF44+d16pPxmpeccqeXdI3F+/MnD
+X-Google-Smtp-Source: AGHT+IFnVc1t1G14Kt7Zal75rURx0ORTxmHSm4bbbP2tF+nmp38zJ1I10rfoez6FbRsszNw1cFaEwx4d9IsqUXLU55A=
+X-Received: by 2002:a05:7300:4793:b0:2a6:d0bd:4a07 with SMTP id
+ 5a478bee46e88-2a71929771cmr29880591eec.18.1764676085641; Tue, 02 Dec 2025
+ 03:48:05 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SG2PEPF000B66CF:EE_|KL1PR06MB6908:EE_
-Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: 6de27bf3-3ddf-44b2-bc33-08de31965a26
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|36860700013|376014|82310400026;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?bhpSPUO+9A9GVdhlKV8k1+TzHtmpFdnhz+SKh+K9x3pOy0B2gls7ELOzrESF?=
- =?us-ascii?Q?neecSbe6sqWGjetHmKwPoGPK+bBjgVkhkDqxueHBFJblAbQAbdZu8L2CTkuy?=
- =?us-ascii?Q?ynUrHaPUZfewa8t2enibSxlNnJpTS30t3ZVwxrze008y7IcbFL0nus85C2xT?=
- =?us-ascii?Q?pUZ/zinVtS87ZQS2hD8mn4l+yzkez1f++LUa1cnwDvI5nJ1GOwlshteMt/ot?=
- =?us-ascii?Q?Gu1QJ1ZDv3F7zLm9tC2Oh1DhJciw7Ajbe+J0JFQ33M7j4UyMN0RXY6XAr3cK?=
- =?us-ascii?Q?hZDculDzGrQNZLbzZ2vmss6xjbSdfOsQfcYpSQvGFssiy5NeskgHXGbfcv+7?=
- =?us-ascii?Q?3kWa4XEqSHmFzpEqqSpAIPGkx1S43nh/ShxHnDJZvr+AYFaCvkiJttutniA/?=
- =?us-ascii?Q?/gSm8Uc4o0ss6DuD2/0/OHJK5En8oTzlkotvK7PDoNh89u9jLVWXxHwMZB8F?=
- =?us-ascii?Q?84PxfEQm3mg8Sx9SGgaiI8ve11Eo+r2UaHveo/8axPd3UOqqRw+fBSN8tvEi?=
- =?us-ascii?Q?5wZrXyBnFusUdZzGonF/Mk9t+c2JPGOl724QUNqeRqxnW5J33o/VU1mYBxAx?=
- =?us-ascii?Q?PJ3gkgok40HUhXnosA645jFdkjkZxGZj778FqyVitOqKC9BnDro2mdPCqtkw?=
- =?us-ascii?Q?etwl40jL4phJrSQGym8f/T0JmgG9/haYItBdDMMm5YQ6UplkqYjlwLyEeDxV?=
- =?us-ascii?Q?eaMwCr2JmRzyp+wI5oZcm7n4i5wyYohbHwuVOqOyWfkEgZ/8/ZjQ2k2wNTwt?=
- =?us-ascii?Q?zfjUMMSvqq+EKcz1G0P+BJfjRfwAHvfI76yneUpNIHeFC2+C+9bYgRI2fR4Q?=
- =?us-ascii?Q?8pPvvHCu0ycEfZemSpiegPUIFjbxezREmDfv+Gkol4GG/KWXJVGvSbx5Cs2r?=
- =?us-ascii?Q?EzzycVfIyJ8G5YQG5EWLmq3Sbh4ZCH90eXfP9bhZrJeBQIwHNn5wnMce8vcu?=
- =?us-ascii?Q?W5rWORQTlaVSeN4tRfI7oPUHG2bAES1b5QYVy6Sacj4Z/AAqa3XOUQ4fcKnt?=
- =?us-ascii?Q?iSL9bc4446m/9thd/aoJuE/18/Y2bIXf/ZlLYWNFSB3SSLd8JT3iIDG62rEh?=
- =?us-ascii?Q?mygFu3kKUlQHzaj59Kt2IjPGlYUKweeh0znxem4mgcsJTXTHfHUVj1uSRNwM?=
- =?us-ascii?Q?T6ltRf8cH/uxrm2vXiOEPRC5rhk7M/WXTzP6i04EmqmffhowuHPeBFRsVFyM?=
- =?us-ascii?Q?5NGu3pDkKejbHMTaG38vNq+2h2bTpEMVY+dc+okl1O7b/xP3A5wtfB0VMcyv?=
- =?us-ascii?Q?1cd/iPz4tErIjntCibZizmYnrxvFzGJjzNqngZ31xFZ6CBBqc7YWoO0sECWo?=
- =?us-ascii?Q?q8b8aU9ZyMHBbMb8LF0D6Rncy/pVsppNsTZpiwK3i63djKscF3V8v/r93V/K?=
- =?us-ascii?Q?ClHIzdPc+irbKTbjf5PCjbWdroyxLzWpa56SUS9trlHJiHcCy8zEuVH3VQiL?=
- =?us-ascii?Q?KOWIuuVuIGrtAYpwM9kNlCbDgL/yiIw/93kWyYy/Z5r6nlF8ChFwUO8S64uZ?=
- =?us-ascii?Q?IVWnPISbgXyf8XuRlfvPgAmV3/xf1+trNQi55Kytyb6Uod5OXN6RTnW/1EmN?=
- =?us-ascii?Q?ftxllXMy2xw3ABejSao=3D?=
-X-Forefront-Antispam-Report:
-	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(36860700013)(376014)(82310400026);DIR:OUT;SFP:1102;
-X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Dec 2025 11:31:35.6902
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6de27bf3-3ddf-44b2-bc33-08de31965a26
-X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SG2PEPF000B66CF.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR06MB6908
+References: <20251101154245.162492-1-apatel@ventanamicro.com>
+ <20251101154245.162492-8-apatel@ventanamicro.com> <26475221-f852-4d76-80dd-43f04f9e7ec4@gmail.com>
+In-Reply-To: <26475221-f852-4d76-80dd-43f04f9e7ec4@gmail.com>
+From: Mayuresh Chitale <mchitale@ventanamicro.com>
+Date: Tue, 2 Dec 2025 17:17:29 +0530
+X-Gm-Features: AWmQ_bmrz0puAsCfEKr58UFIOo7lGm68BJYozYF9PdsfaKrUsAeKySjyxFqbFes
+Message-ID: <CAN37VV4BSsy5C6+PT0s+8KQgisF7M60=JPnM2oAdjYYYC-LNrA@mail.gmail.com>
+Subject: Re: [PATCH v2 07/12] rvtrace: Add trace ramsink driver
+To: Bo Gan <ganboing@gmail.com>, Anup Patel <apatel@ventanamicro.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Greg KH <gregkh@linuxfoundation.org>, 
+	Alexander Shishkin <alexander.shishkin@linux.intel.com>, Ian Rogers <irogers@google.com>, 
+	Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org, 
+	Alexandre Ghiti <alex@ghiti.fr>, Atish Patra <atish.patra@linux.dev>, 
+	Peter Zijlstra <peterz@infradead.org>, Anup Patel <anup@brainfault.org>, 
+	Adrian Hunter <adrian.hunter@intel.com>, linux-kernel@vger.kernel.org, 
+	Ingo Molnar <mingo@redhat.com>, Jiri Olsa <jolsa@kernel.org>, 
+	Mayuresh Chitale <mchitale@gmail.com>, Namhyung Kim <namhyung@kernel.org>, 
+	linux-riscv@lists.infradead.org, Andrew Jones <ajones@ventanamicro.com>, 
+	Liang Kan <kan.liang@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Joakim Zhang <joakim.zhang@cixtech.com>
+Hi Bo,
 
-Add CIX IPBLOQ HDA controller support, which is integrated into
-CIX SKY1 audio subsystem. HDA controller supports 64bit, but the
-audio subsystem can only 32bit transaction. Use jack polling mode
-as there is a hardware issue, lead to interrupt strom if the RIRB
-interrupt enabled. Host and hdac has different view of memory, so
-need do dma address translation.
+On Sun, Nov 30, 2025 at 1:17=E2=80=AFPM Bo Gan <ganboing@gmail.com> wrote:
+>
+> Hi Anup,
+>
+> My comments below:
+>
+> On 11/1/25 08:42, Anup Patel wrote:
+> > From: Mayuresh Chitale <mchitale@ventanamicro.com>
+> >
+> > Add initial implementation of RISC-V trace ramsink driver. The ramsink
+> > is defined in the RISC-V Trace Control Interface specification.
+> >
+> > Co-developed-by: Anup Patel <apatel@ventanamicro.com>
+> > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+> > Signed-off-by: Mayuresh Chitale <mchitale@ventanamicro.com>
+> > ---
+> >   drivers/hwtracing/rvtrace/Kconfig           |   9 +
+> >   drivers/hwtracing/rvtrace/Makefile          |   1 +
+> >   drivers/hwtracing/rvtrace/rvtrace-ramsink.c | 262 +++++++++++++++++++=
++
+> >   3 files changed, 272 insertions(+)
+> >   create mode 100644 drivers/hwtracing/rvtrace/rvtrace-ramsink.c
+> >
+> > diff --git a/drivers/hwtracing/rvtrace/Kconfig b/drivers/hwtracing/rvtr=
+ace/Kconfig
+> > index ba35c05f3f54..0577f9acb858 100644
+> > --- a/drivers/hwtracing/rvtrace/Kconfig
+> > +++ b/drivers/hwtracing/rvtrace/Kconfig
+> > @@ -21,3 +21,12 @@ config RVTRACE_ENCODER
+> >       default y
+> >       help
+> >         This driver provides support for RISC-V Trace Encoder component=
+.
+> > +
+> > +config RVTRACE_RAMSINK
+> > +     tristate "RISC-V Trace Ramsink driver"
+> > +     depends on RVTRACE
+> > +     select DMA_SHARED_BUFFER
+> > +     default y
+> > +     help
+> > +       This driver provides support for Risc-V E-Trace Ramsink
+> > +       component.
+> > diff --git a/drivers/hwtracing/rvtrace/Makefile b/drivers/hwtracing/rvt=
+race/Makefile
+> > index f320693a1fc5..122e575da9fb 100644
+> > --- a/drivers/hwtracing/rvtrace/Makefile
+> > +++ b/drivers/hwtracing/rvtrace/Makefile
+> > @@ -3,3 +3,4 @@
+> >   obj-$(CONFIG_RVTRACE) +=3D rvtrace.o
+> >   rvtrace-y :=3D rvtrace-core.o rvtrace-platform.o
+> >   obj-$(CONFIG_RVTRACE_ENCODER) +=3D rvtrace-encoder.o
+> > +obj-$(CONFIG_RVTRACE_RAMSINK) +=3D rvtrace-ramsink.o
+> > diff --git a/drivers/hwtracing/rvtrace/rvtrace-ramsink.c b/drivers/hwtr=
+acing/rvtrace/rvtrace-ramsink.c
+> > new file mode 100644
+> > index 000000000000..676344c9387c
+> > --- /dev/null
+> > +++ b/drivers/hwtracing/rvtrace/rvtrace-ramsink.c
+> > @@ -0,0 +1,262 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * Copyright (c) 2025 Ventana Micro Systems Inc.
+> > + */
+> > +
+> > +#include <linux/device.h>
+> > +#include <linux/platform_device.h>
+> > +#include <linux/property.h>
+> > +#include <linux/dma-mapping.h>
+> > +#include <linux/rvtrace.h>
+> > +#include <linux/types.h>
+> > +#include <linux/sizes.h>
+> > +
+> > +#define RVTRACE_RAMSINK_STARTLOW_OFF         0x010
+> > +#define RVTRACE_RAMSINK_STARTHIGH_OFF                0x014
+> > +#define RVTRACE_RAMSINK_LIMITLOW_OFF         0x018
+> > +#define RVTRACE_RAMSINK_LIMITHIGH_OFF                0x01c
+> > +#define RVTRACE_RAMSINK_WPLOW_OFF            0x020
+> > +#define   RVTRACE_RAMSINK_WPLOW_WRAP         0x1
+>
+> nit: wrong spacing
+>
+> > +#define RVTRACE_RAMSINK_WPHIGH_OFF           0x024
+> > +#define RVTRACE_RAMSINK_RPLOW_OFF            0x028
+> > +#define RVTRACE_RAMSINK_RPHIGH_OFF           0x02c
+> > +
+> > +struct rvtrace_ramsink_priv {
+> > +     size_t size;
+> > +     void *va;
+> > +     dma_addr_t start;
+> > +     dma_addr_t end;
+> > +     /* WP from prev iteration */
+> > +     dma_addr_t prev_head;
+> > +};
+> > +
+> > +struct trace_buf {
+> > +     void *base;
+> > +     size_t size;
+> > +     long cur;
+> > +     size_t len;
+> > +};
+> > +
+> > +static int rvtrace_ramsink_stop(struct rvtrace_component *comp)
+> > +{
+> > +     return rvtrace_comp_is_empty(comp);
+> > +}
+> > +
+>
+> We should first set trRamEnable to 0, poll it, then poll trRamEmpty. It's
+> essentially the same as encoder, so perhaps move it to core.c. Here we're
+> just checking whether it's empty, which is wrong. We're also doing simila=
+r
+> things in encoder.c Should fix that as well.
+This code is called to just stop all components in a path which means:
+- for encoders the driver clears the trTeInstTracing bit and then
+polls for empty bit to be cleared
+- for ramsinks the driver just polls for the empty bit to be cleared
+More on this below.
+>
+> > +static void tbuf_to_pbuf_copy(struct trace_buf *src, struct trace_buf =
+*dst)
+> > +{
+> > +     int bytes_dst, bytes_src, bytes;
+> > +     void *dst_addr, *src_addr;
+> > +
+> > +     while (src->size) {
+> > +             src_addr =3D src->base + src->cur;
+> > +             dst_addr =3D dst->base + dst->cur;
+> > +
+> > +             if (dst->len - dst->cur < src->size)
+> > +                     bytes_dst =3D dst->len - dst->cur;
+> > +             else
+> > +                     bytes_dst =3D src->size;
+> > +             if (src->len - src->cur < src->size)
+> > +                     bytes_src =3D src->len - src->cur;
+> > +             else
+> > +                     bytes_src =3D src->size;
+> > +             bytes =3D bytes_dst < bytes_src ? bytes_dst : bytes_src;
+> > +             memcpy(dst_addr, src_addr, bytes);
+> > +             dst->cur =3D (dst->cur + bytes) % dst->len;
+> > +             src->cur =3D (src->cur + bytes) % src->len;
+> > +             src->size -=3D bytes;
+> > +     }
+> > +}
+> > +
+> > +static size_t rvtrace_ramsink_copyto_auxbuf(struct rvtrace_component *=
+comp,
+> > +                                         struct rvtrace_perf_auxbuf *b=
+uf)
+> > +{
+> > +     struct rvtrace_ramsink_priv *priv =3D dev_get_drvdata(&comp->dev)=
+;
+> > +     struct trace_buf src, dst;
+> > +     u32 wp_low, wp_high;
+> > +     u64 buf_cur_head;
+> > +     size_t size;
+> > +
+> > +     wp_low =3D rvtrace_read32(comp->pdata, RVTRACE_RAMSINK_WPLOW_OFF)=
+;
+> > +     wp_high =3D rvtrace_read32(comp->pdata, RVTRACE_RAMSINK_WPHIGH_OF=
+F);
+> > +     buf_cur_head =3D (u64)(wp_high) << 32 | (wp_low & ~RVTRACE_RAMSIN=
+K_WPLOW_WRAP);
+> > +
+> > +     if (buf_cur_head =3D=3D priv->prev_head)
+> > +             return 0;
+>
+> cur_head =3D=3D prev_head could mean that we've wrapped around and stoppe=
+d at
+> the exact position. Thus, we need to check for the wrapped around bit. If
+> set, then this case can be merged into buf_cur_head <=3D priv->prev_head
+> below.
+cur_head is the current value in the wp registers whereas prev_head is
+the value in wp registers from the previous iteration which is saved
+explicitly by software. So prev_head can't change dynamically.
 
-Signed-off-by: Joakim Zhang <joakim.zhang@cixtech.com>
----
- sound/hda/controllers/Kconfig      |  14 +
- sound/hda/controllers/Makefile     |   2 +
- sound/hda/controllers/cix-ipbloq.c | 438 +++++++++++++++++++++++++++++
- 3 files changed, 454 insertions(+)
- create mode 100644 sound/hda/controllers/cix-ipbloq.c
+>
+> For cur_head > prev_head case, we also need to check for wrap-around. If
+> wrapped-around, we actually filled the entire buffer, not just cur - prev
+> We also should consider the possibility that the buffer has been wrapped
+> around multiple times. In all cases, maintaining a prev_head seems to
+> complicate things, so why don't we just reset the WP to priv->start each
+> time we start the ramsink component and get rid of prev_head? This way,
+> we'll always have cur >=3D start, and depending on wrapped bit, we either
+> get the whole buffer, or cur - start.
+Currently the software never clears trRamWrap bit because as per the spec:
+- It is only set to 0 if trRamWPLow is written
+- After trace is enabled and active , the trace tool should NOT write
+any of trRamStart/Limit/WP?? registers.
+Let me test this change to disable all the components (instead of just
+stopping trace) every time we want to copy data to perf buffer. This
+should let us use the trRamWrap bit as expected. Multiple wraparounds
+can't be avoided unless StopOnWrap was set. I will update the ramsink
+driver to set StopOnWrap based on the implementation id.
+>
 
-diff --git a/sound/hda/controllers/Kconfig b/sound/hda/controllers/Kconfig
-index 34721f50b055..72855f2df451 100644
---- a/sound/hda/controllers/Kconfig
-+++ b/sound/hda/controllers/Kconfig
-@@ -30,6 +30,20 @@ config SND_HDA_TEGRA
- 	  To compile this driver as a module, choose M here: the module
- 	  will be called snd-hda-tegra.
- 
-+config SND_HDA_CIX_IPBLOQ
-+	tristate "CIX IPBLOQ HD Audio"
-+	depends on ARCH_CIX || COMPILE_TEST
-+	select SND_HDA
-+	select SND_HDA_ALIGNED_MMIO
-+	help
-+	  Say Y here to support the HDA controller present in CIX SoCs
-+
-+	  This options enables support for the HD Audio controller
-+	  present in some CIX SoCs.
-+
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called snd-hda-cix-ipbloq.
-+
- config SND_HDA_ACPI
- 	tristate "HD Audio ACPI"
- 	depends on ACPI
-diff --git a/sound/hda/controllers/Makefile b/sound/hda/controllers/Makefile
-index a4bcd055e9ae..8967b6771d90 100644
---- a/sound/hda/controllers/Makefile
-+++ b/sound/hda/controllers/Makefile
-@@ -1,6 +1,7 @@
- # SPDX-License-Identifier: GPL-2.0
- snd-hda-intel-y := intel.o
- snd-hda-tegra-y := tegra.o
-+snd-hda-cix-ipbloq-y := cix-ipbloq.o
- snd-hda-acpi-y := acpi.o
- 
- subdir-ccflags-y += -I$(src)/../common
-@@ -10,4 +11,5 @@ CFLAGS_intel.o := -I$(src)
- 
- obj-$(CONFIG_SND_HDA_INTEL) += snd-hda-intel.o
- obj-$(CONFIG_SND_HDA_TEGRA) += snd-hda-tegra.o
-+obj-$(CONFIG_SND_HDA_CIX_IPBLOQ) += snd-hda-cix-ipbloq.o
- obj-$(CONFIG_SND_HDA_ACPI) += snd-hda-acpi.o
-diff --git a/sound/hda/controllers/cix-ipbloq.c b/sound/hda/controllers/cix-ipbloq.c
-new file mode 100644
-index 000000000000..28158e5f0e16
---- /dev/null
-+++ b/sound/hda/controllers/cix-ipbloq.c
-@@ -0,0 +1,438 @@
-+// SPDX-License-Identifier: GPL-2.0
-+// Copyright 2025 Cix Technology Group Co., Ltd.
-+
-+#include <linux/clk.h>
-+#include <linux/interrupt.h>
-+#include <linux/io.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/mutex.h>
-+#include <linux/of.h>
-+#include <linux/of_reserved_mem.h>
-+#include <linux/platform_device.h>
-+#include <linux/pm_runtime.h>
-+#include <linux/reset.h>
-+#include <linux/string.h>
-+
-+#include <sound/hda_codec.h>
-+#include "hda_controller.h"
-+
-+#define CIX_IPBLOQ_JACKPOLL_DEFAULT_TIME_MS		1000
-+#define CIX_IPBLOQ_POWER_SAVE_DEFAULT_TIME_MS		100
-+
-+#define CIX_IPBLOQ_SKY1_ADDR_HOST_TO_HDAC_OFFSET	(-0x90000000ULL)
-+
-+struct cix_ipbloq_hda {
-+	struct azx chip;
-+	struct device *dev;
-+	void __iomem *regs;
-+
-+	struct reset_control_bulk_data resets[1];
-+	struct clk_bulk_data clocks[2];
-+	unsigned int nresets;
-+	unsigned int nclocks;
-+};
-+
-+static const struct hda_controller_ops cix_ipbloq_hda_ops;
-+
-+static int cix_ipbloq_hda_dev_disconnect(struct snd_device *device)
-+{
-+	struct azx *chip = device->device_data;
-+
-+	chip->bus.shutdown = 1;
-+
-+	return 0;
-+}
-+
-+static int cix_ipbloq_hda_dev_free(struct snd_device *device)
-+{
-+	struct azx *chip = device->device_data;
-+
-+	if (azx_bus(chip)->chip_init) {
-+		azx_stop_all_streams(chip);
-+		azx_stop_chip(chip);
-+	}
-+
-+	azx_free_stream_pages(chip);
-+	azx_free_streams(chip);
-+	snd_hdac_bus_exit(azx_bus(chip));
-+
-+	return 0;
-+}
-+
-+static int cix_ipbloq_hda_probe_codec(struct cix_ipbloq_hda *hda)
-+{
-+	struct azx *chip = &hda->chip;
-+	struct hdac_bus *bus = azx_bus(chip);
-+	int err;
-+
-+	to_hda_bus(bus)->bus_probing = 1;
-+
-+	/* create codec instances */
-+	err = azx_probe_codecs(chip, 8);
-+	if (err < 0) {
-+		dev_err(hda->dev, "probe codecs failed: %d\n", err);
-+		return err;
-+	}
-+
-+	err = azx_codec_configure(chip);
-+	if (err < 0) {
-+		dev_err(hda->dev, "codec configure failed: %d\n", err);
-+		return err;
-+	}
-+
-+	err = snd_card_register(chip->card);
-+	if (err < 0) {
-+		dev_err(hda->dev, "card register failed: %d\n", err);
-+		return err;
-+	}
-+
-+	chip->running = 1;
-+
-+	to_hda_bus(bus)->bus_probing = 0;
-+
-+	snd_hda_set_power_save(&chip->bus, CIX_IPBLOQ_POWER_SAVE_DEFAULT_TIME_MS);
-+
-+	return 0;
-+}
-+
-+static int cix_ipbloq_hda_init(struct cix_ipbloq_hda *hda,
-+			       struct azx *chip,
-+			       struct platform_device *pdev)
-+{
-+	const char *sname = NULL, *drv_name = "cix-ipbloq-hda";
-+	struct hdac_bus *bus = azx_bus(chip);
-+	struct snd_card *card = chip->card;
-+	struct resource *res;
-+	unsigned short gcap;
-+	int irq_id, err;
-+
-+	hda->regs = devm_platform_get_and_ioremap_resource(pdev, 0, &res);
-+	if (IS_ERR(hda->regs)) {
-+		dev_err(hda->dev, "failed to get and ioremap resource\n");
-+		return PTR_ERR(hda->regs);
-+	}
-+	bus->remap_addr = hda->regs;
-+	bus->addr = res->start;
-+
-+	irq_id = platform_get_irq(pdev, 0);
-+	if (irq_id < 0) {
-+		dev_err(hda->dev, "failed to get the irq, err = %d\n", irq_id);
-+		return irq_id;
-+	}
-+
-+	err = devm_request_irq(hda->dev, irq_id, azx_interrupt,
-+			       0, KBUILD_MODNAME, chip);
-+	if (err < 0)
-+		return dev_err_probe(hda->dev, err,
-+				     "unable to request IRQ %d : err = %d\n", irq_id, err);
-+	bus->irq = irq_id;
-+	card->sync_irq = bus->irq;
-+
-+	gcap = azx_readw(chip, GCAP);
-+	chip->capture_streams = (gcap >> 8) & 0x0f;
-+	chip->playback_streams = (gcap >> 12) & 0x0f;
-+	chip->capture_index_offset = 0;
-+	chip->playback_index_offset = chip->capture_streams;
-+	chip->num_streams = chip->playback_streams + chip->capture_streams;
-+
-+	/* initialize streams */
-+	err = azx_init_streams(chip);
-+	if (err < 0) {
-+		dev_err(hda->dev, "failed to initialize streams: %d\n", err);
-+		return err;
-+	}
-+
-+	err = azx_alloc_stream_pages(chip);
-+	if (err < 0) {
-+		dev_err(hda->dev, "failed to allocate stream pages: %d\n", err);
-+		return err;
-+	}
-+
-+	/* initialize chip */
-+	azx_init_chip(chip, 1);
-+
-+	/* codec detection */
-+	if (!bus->codec_mask) {
-+		dev_err(hda->dev, "no codecs found\n");
-+		return -ENODEV;
-+	}
-+	dev_dbg(card->dev, "codec detection mask = 0x%lx\n", bus->codec_mask);
-+
-+	/* driver name */
-+	strscpy(card->driver, drv_name, sizeof(card->driver));
-+
-+	/* shortname for card */
-+	sname = of_get_property(pdev->dev.of_node, "model", NULL);
-+	if (!sname)
-+		sname = drv_name;
-+	if (strlen(sname) > sizeof(card->shortname))
-+		dev_dbg(card->dev, "truncating shortname for card\n");
-+	strscpy(card->shortname, sname, sizeof(card->shortname));
-+
-+	/* longname for card */
-+	snprintf(card->longname, sizeof(card->longname),
-+		 "%s at 0x%lx irq %i",
-+		 card->shortname, bus->addr, bus->irq);
-+
-+	return 0;
-+}
-+
-+static int cix_ipbloq_hda_create(struct cix_ipbloq_hda *hda,
-+				 struct snd_card *card,
-+				 unsigned int driver_caps)
-+{
-+	static const struct snd_device_ops ops = {
-+		.dev_disconnect = cix_ipbloq_hda_dev_disconnect,
-+		.dev_free = cix_ipbloq_hda_dev_free,
-+	};
-+	struct azx *chip;
-+	int err;
-+
-+	chip = &hda->chip;
-+	chip->card = card;
-+	chip->ops = &cix_ipbloq_hda_ops;
-+	chip->driver_caps = driver_caps;
-+	chip->driver_type = driver_caps & 0xff;
-+	chip->dev_index = 0;
-+	chip->single_cmd = 0;
-+	chip->codec_probe_mask = -1;
-+	chip->align_buffer_size = 1;
-+	chip->jackpoll_interval = msecs_to_jiffies(CIX_IPBLOQ_JACKPOLL_DEFAULT_TIME_MS);
-+	mutex_init(&chip->open_mutex);
-+	INIT_LIST_HEAD(&chip->pcm_list);
-+
-+	/*
-+	 * HD-audio controllers appear pretty inaccurate about the update-IRQ timing.
-+	 * The IRQ is issued before actually the data is processed. So use stream
-+	 * link position by default instead of dma position buffer.
-+	 */
-+	chip->get_position[0] = chip->get_position[1] = azx_get_pos_lpib;
-+
-+	err = azx_bus_init(chip, NULL);
-+	if (err < 0) {
-+		dev_err(hda->dev, "failed to init bus, err = %d\n", err);
-+		return err;
-+	}
-+
-+	/* RIRBSTS.RINTFL cannot be cleared, cause interrupt storm */
-+	chip->bus.core.polling_mode = 1;
-+	chip->bus.core.not_use_interrupts = 1;
-+
-+	chip->bus.core.aligned_mmio = 1;
-+	chip->bus.core.dma_stop_delay = 100;
-+	chip->bus.core.addr_offset = (dma_addr_t)CIX_IPBLOQ_SKY1_ADDR_HOST_TO_HDAC_OFFSET;
-+
-+	chip->bus.jackpoll_in_suspend = 1;
-+
-+	err = snd_device_new(card, SNDRV_DEV_LOWLEVEL, chip, &ops);
-+	if (err < 0) {
-+		dev_err(card->dev, "failed to create device, err = %d\n", err);
-+		return err;
-+	}
-+
-+	return 0;
-+}
-+
-+static int cix_ipbloq_hda_probe(struct platform_device *pdev)
-+{
-+	const unsigned int driver_flags = AZX_DCAPS_PM_RUNTIME;
-+	struct cix_ipbloq_hda *hda;
-+	struct snd_card *card;
-+	struct azx *chip;
-+	int err;
-+
-+	hda = devm_kzalloc(&pdev->dev, sizeof(*hda), GFP_KERNEL);
-+	if (!hda)
-+		return -ENOMEM;
-+	hda->dev = &pdev->dev;
-+
-+	hda->resets[hda->nresets++].id = "hda";
-+	err = devm_reset_control_bulk_get_exclusive(hda->dev, hda->nresets,
-+						    hda->resets);
-+	if (err < 0)
-+		return dev_err_probe(hda->dev, err, "failed to get reset, err = %d\n", err);
-+
-+	hda->clocks[hda->nclocks++].id = "sysclk";
-+	hda->clocks[hda->nclocks++].id = "clk48m";
-+	err = devm_clk_bulk_get(hda->dev, hda->nclocks, hda->clocks);
-+	if (err < 0)
-+		return dev_err_probe(hda->dev, err, "failed to get clk, err = %d\n", err);
-+
-+	dma_set_mask_and_coherent(hda->dev, DMA_BIT_MASK(32));
-+
-+	err = of_reserved_mem_device_init(hda->dev);
-+	if (err < 0 && err != -ENODEV) {
-+		dev_err(hda->dev,
-+			"failed to init reserved mem for DMA, err = %d\n", err);
-+		return err;
-+	}
-+
-+	err = snd_card_new(hda->dev, SNDRV_DEFAULT_IDX1, SNDRV_DEFAULT_STR1,
-+			   THIS_MODULE, 0, &card);
-+	if (err < 0)
-+		return dev_err_probe(hda->dev, err, "failed to crate card, err = %d\n", err);
-+
-+	err = cix_ipbloq_hda_create(hda, card, driver_flags);
-+	if (err < 0)
-+		goto out_free_card;
-+
-+	chip = &hda->chip;
-+	card->private_data = chip;
-+	dev_set_drvdata(hda->dev, card);
-+
-+	pm_runtime_enable(hda->dev);
-+	if (!azx_has_pm_runtime(chip))
-+		pm_runtime_forbid(hda->dev);
-+
-+	err = pm_runtime_resume_and_get(hda->dev);
-+	if (err < 0) {
-+		dev_err(hda->dev, "runtime resume and get failed, err = %d\n", err);
-+		goto out_free_device;
-+	}
-+
-+	err = cix_ipbloq_hda_init(hda, chip, pdev);
-+	if (err < 0)
-+		goto out_free_device;
-+
-+	err = cix_ipbloq_hda_probe_codec(hda);
-+	if (err < 0)
-+		goto out_free_device;
-+
-+	pm_runtime_put(hda->dev);
-+
-+	return 0;
-+
-+out_free_device:
-+	snd_device_free(card, chip);
-+out_free_card:
-+	snd_card_free(card);
-+
-+	return err;
-+}
-+
-+static void cix_ipbloq_hda_remove(struct platform_device *pdev)
-+{
-+	struct snd_card *card = dev_get_drvdata(&pdev->dev);
-+	struct azx *chip = card->private_data;
-+
-+	snd_device_free(card, chip);
-+	snd_card_free(card);
-+
-+	pm_runtime_disable(&pdev->dev);
-+}
-+
-+static void cix_ipbloq_hda_shutdown(struct platform_device *pdev)
-+{
-+	struct snd_card *card = dev_get_drvdata(&pdev->dev);
-+	struct azx *chip;
-+
-+	if (!card)
-+		return;
-+
-+	chip = card->private_data;
-+	if (chip && chip->running)
-+		azx_stop_chip(chip);
-+}
-+
-+static int cix_ipbloq_hda_suspend(struct device *dev)
-+{
-+	struct snd_card *card = dev_get_drvdata(dev);
-+	int rc;
-+
-+	rc = pm_runtime_force_suspend(dev);
-+	if (rc < 0)
-+		return rc;
-+	snd_power_change_state(card, SNDRV_CTL_POWER_D3cold);
-+
-+	return 0;
-+}
-+
-+static int cix_ipbloq_hda_resume(struct device *dev)
-+{
-+	struct snd_card *card = dev_get_drvdata(dev);
-+	int rc;
-+
-+	rc = pm_runtime_force_resume(dev);
-+	if (rc < 0)
-+		return rc;
-+	snd_power_change_state(card, SNDRV_CTL_POWER_D0);
-+
-+	return 0;
-+}
-+
-+static int cix_ipbloq_hda_runtime_suspend(struct device *dev)
-+{
-+	struct snd_card *card = dev_get_drvdata(dev);
-+	struct azx *chip = card->private_data;
-+	struct cix_ipbloq_hda *hda = container_of(chip, struct cix_ipbloq_hda, chip);
-+
-+	if (chip && chip->running) {
-+		azx_stop_chip(chip);
-+		azx_enter_link_reset(chip);
-+	}
-+
-+	clk_bulk_disable_unprepare(hda->nclocks, hda->clocks);
-+
-+	return 0;
-+}
-+
-+static int cix_ipbloq_hda_runtime_resume(struct device *dev)
-+{
-+	struct snd_card *card = dev_get_drvdata(dev);
-+	struct azx *chip = card->private_data;
-+	struct cix_ipbloq_hda *hda = container_of(chip, struct cix_ipbloq_hda, chip);
-+	int rc;
-+
-+	rc = clk_bulk_prepare_enable(hda->nclocks, hda->clocks);
-+	if (rc) {
-+		dev_err(dev, "failed to enable clk bulk, rc: %d\n", rc);
-+		return rc;
-+	}
-+
-+	rc = reset_control_bulk_assert(hda->nresets, hda->resets);
-+	if (rc) {
-+		dev_err(dev, "failed to assert reset bulk, rc: %d\n", rc);
-+		return rc;
-+	}
-+
-+	rc = reset_control_bulk_deassert(hda->nresets, hda->resets);
-+	if (rc) {
-+		dev_err(dev, "failed to deassert reset bulk, rc: %d\n", rc);
-+		return rc;
-+	}
-+
-+	if (chip && chip->running)
-+		azx_init_chip(chip, 1);
-+
-+	return 0;
-+}
-+
-+static const struct dev_pm_ops cix_ipbloq_hda_pm = {
-+	SET_SYSTEM_SLEEP_PM_OPS(cix_ipbloq_hda_suspend,
-+				cix_ipbloq_hda_resume)
-+	SET_RUNTIME_PM_OPS(cix_ipbloq_hda_runtime_suspend,
-+			   cix_ipbloq_hda_runtime_resume, NULL)
-+};
-+
-+static const struct of_device_id cix_ipbloq_hda_match[] = {
-+	{ .compatible = "cix,sky1-ipbloq-hda" },
-+	{ /* sentinel */ },
-+};
-+MODULE_DEVICE_TABLE(of, cix_ipbloq_hda_match);
-+
-+static struct platform_driver cix_ipbloq_hda_driver = {
-+	.driver = {
-+		.name = "cix-ipbloq-hda",
-+		.pm = &cix_ipbloq_hda_pm,
-+		.of_match_table = cix_ipbloq_hda_match,
-+	},
-+	.probe = cix_ipbloq_hda_probe,
-+	.remove = cix_ipbloq_hda_remove,
-+	.shutdown = cix_ipbloq_hda_shutdown,
-+};
-+module_platform_driver(cix_ipbloq_hda_driver);
-+
-+MODULE_LICENSE("GPL");
-+MODULE_DESCRIPTION("CIX IPBLOQ HDA bus driver");
-+MODULE_AUTHOR("Joakim Zhang <joakim.zhang@cixtech.com>");
--- 
-2.49.0
+> > +
+> > +     dst.base =3D buf->base;
+> > +     dst.len =3D buf->length;
+> > +     dst.cur =3D buf->pos;
+> > +
+> > +     src.base =3D priv->va;
+> > +     src.len =3D priv->end - priv->start;
+> > +     if (buf_cur_head > priv->prev_head) {
+> > +             src.size =3D buf_cur_head - priv->prev_head;
+> > +     } else {
+> > +             src.size =3D priv->end - priv->prev_head;
+> > +             src.size +=3D buf_cur_head - priv->start;
+> > +     }
+> > +
+> > +     src.cur =3D buf_cur_head - priv->start;
+> > +     size =3D src.size;
+> > +     tbuf_to_pbuf_copy(&src, &dst);
+> > +     buf->pos =3D dst.cur;
+> > +     priv->prev_head =3D buf_cur_head;
+> > +
+> > +     return size;
+> > +}
+> > +
+> > +static int rvtrace_ramsink_setup_buf(struct rvtrace_component *comp)
+> > +{
+> > +     struct rvtrace_ramsink_priv *priv =3D dev_get_drvdata(&comp->dev)=
+;
+> > +     u64 start_min, limit_max, end;
+> > +     u32 low, high;
+> > +
+> > +     /* Probe min and max values for start and limit registers */
+> > +     rvtrace_write32(comp->pdata, 0, RVTRACE_RAMSINK_STARTLOW_OFF);
+> > +     rvtrace_write32(comp->pdata, 0, RVTRACE_RAMSINK_STARTHIGH_OFF);
+> > +     low =3D rvtrace_read32(comp->pdata, RVTRACE_RAMSINK_STARTLOW_OFF)=
+;
+> > +     high =3D rvtrace_read32(comp->pdata, RVTRACE_RAMSINK_STARTHIGH_OF=
+F);
+> > +     start_min =3D (u64)(high) << 32 | low;
+> > +
+> > +     rvtrace_write32(comp->pdata, 0xffffffff, RVTRACE_RAMSINK_LIMITLOW=
+_OFF);
+> > +     rvtrace_write32(comp->pdata, 0xffffffff, RVTRACE_RAMSINK_LIMITHIG=
+H_OFF);
+> > +     low =3D rvtrace_read32(comp->pdata, RVTRACE_RAMSINK_LIMITLOW_OFF)=
+;
+> > +     high =3D rvtrace_read32(comp->pdata, RVTRACE_RAMSINK_LIMITHIGH_OF=
+F);
+> > +     limit_max =3D (u64)(high) << 32 | low;
+> > +
+> > +     if (priv->end < start_min) {
+>
+> Where was priv->end initialized before this check?
+I will move it before the check.
+>
+> > +             dev_err(&comp->dev, "DMA memory not addressable by device=
+\n");
+> > +             return -EINVAL;
+> > +     }
+> > +
+> > +     /* Setup ram sink start addresses */
+> > +     if (priv->start < start_min) {
+>
+> No checks for start_min >=3D priv->end?
+>
+> > +             dev_warn(&comp->dev, "Ramsink start address updated from =
+%llx to %llx\n",
+> > +                      priv->start, start_min);
+> > +             priv->va +=3D start_min - priv->start;
+> > +             priv->start =3D start_min;
+> > +     }
+> > +
+> > +     priv->prev_head =3D priv->start;
+> > +     priv->end =3D priv->start + priv->size;
+> > +     rvtrace_write32(comp->pdata, lower_32_bits(priv->start), RVTRACE_=
+RAMSINK_STARTLOW_OFF);
+> > +     rvtrace_write32(comp->pdata, upper_32_bits(priv->start), RVTRACE_=
+RAMSINK_STARTHIGH_OFF);
+> > +     rvtrace_write32(comp->pdata, lower_32_bits(priv->start), RVTRACE_=
+RAMSINK_WPLOW_OFF);
+> > +     rvtrace_write32(comp->pdata, upper_32_bits(priv->start), RVTRACE_=
+RAMSINK_WPHIGH_OFF);
+> > +     /* Setup ram sink limit addresses */
+> > +     if (priv->end > limit_max) {
+> > +             dev_warn(&comp->dev, "Ramsink limit address updated from =
+%llx to %llx\n", priv->end,
+> > +                      limit_max);
+> > +             priv->end =3D limit_max;
+> > +             priv->size =3D priv->end - priv->start;
+> > +     }
+> > +
+> > +     /* Limit address needs to be set to end - 4 to avoid overflow */
+> > +     end =3D priv->end - 4;
+>
+> Should not hard-code 4, instead, do write32(0xfffffff, RamLimit), then
+> ffs(RamLimit) to probe for the the write width, aka, "A" value in Table
+> 47. Typical Trace RAM Sink Configuration in the Spec.
+I dont think 'A' can be probed that way because as per section 7.1:
+"Not every value may be settable in trRamStart/Limit registers. Value
+written may be trimmed (for example aligned on a particular 2^N
+boundary)". So writing 0xffffffff to limit register will reveal the
+boundary alignment but not 'A'. I think 'A' needs to be specified by
+an implementation with default as 4. I will change it accordingly.
 
+>
+> > +     rvtrace_write32(comp->pdata, lower_32_bits(end), RVTRACE_RAMSINK_=
+LIMITLOW_OFF);
+> > +     rvtrace_write32(comp->pdata, upper_32_bits(end), RVTRACE_RAMSINK_=
+LIMITHIGH_OFF);
+> > +     low =3D rvtrace_read32(comp->pdata, RVTRACE_RAMSINK_LIMITLOW_OFF)=
+;
+> > +     high =3D rvtrace_read32(comp->pdata, RVTRACE_RAMSINK_LIMITHIGH_OF=
+F);
+> > +     end =3D (u64)(high) << 32 | low;
+> > +     if (end !=3D (priv->end - 4)) {
+> > +             dev_warn(&comp->dev, "Ramsink limit address updated from =
+%llx to %llx\n", priv->end,
+> > +                      end);
+> > +             priv->end =3D end;
+> > +             priv->size =3D priv->end - priv->start;
+>
+> Actually the RamLimit read is not the real limit. It's Limit - "A" (the
+> write width).
+>
+> > +     }
+> > +
+> > +     return 0;
+> > +}
+>
+> I think overall we should simplify this setup_buf function. For RamStart
+> alone, there're alignment + min_addr requirement, which is very unlikely
+> that the lowest valid address happens to be within the range that dma-
+> allocated in the caller (when you need to adjust priv->start). Thus, to
+> do it properly, we first need to detect the min_addr + alignment *before*
+> dma-alloc, and pass such requirements into dma-alloc, then depending on
+> what dma-alloc returns, detect the "M" value by interrogating RamLimit.
+> I'm not sure if dma-alloc can be passed a hint address that whatever
+> returned must be higher, and whether it can enforce random alignment, so
+> may be we can just program RamStart/Limit based on what dma-alloc gives
+> and error out if value is not retained. We do however need to probe for
+> write width ("A" value). It's usually 4 or 8, but it does vary per-impl,
+> and remember, the total buffer size is still 1MB, not 1MB - 4 or -8.
+
+I think the issue is that the physical memory region returned by
+dma_alloc* might not be addressable by the hw and so the start / end
+addresses are already trimmed in the code accordingly but I agree this
+can be handled differently. For e.g
+- probe max RamLimit value .
+- set the dma_mask to the probed value
+- dma_alloc*
+- further address checks
+
+>
+> > +
+> > +static int rvtrace_ramsink_setup(struct rvtrace_component *comp)
+> > +{
+> > +     struct device *pdev =3D comp->pdata->dev;
+> > +     struct rvtrace_ramsink_priv *priv;
+> > +
+> > +     priv =3D devm_kzalloc(&comp->dev, sizeof(*priv), GFP_KERNEL);
+> > +     if (!priv)
+> > +             return -ENOMEM;
+> > +
+> > +     dev_set_drvdata(&comp->dev, priv);
+> > +
+> > +     /* Derive RAM sink memory size based on component implementation =
+ID */
+> > +     switch (comp->pdata->impid) {
+> > +     default:
+> > +             priv->size =3D SZ_1M;
+> > +             break;
+> > +     }
+> > +
+> > +     priv->va =3D dma_alloc_coherent(pdev, priv->size, &priv->start, G=
+FP_KERNEL);
+> > +     if (!priv->va)
+> > +             return -ENOMEM;
+> > +
+> > +     return rvtrace_ramsink_setup_buf(comp);
+> > +}
+> > +
+> > +static void rvtrace_ramsink_cleanup(struct rvtrace_component *comp)
+> > +{
+> > +     struct rvtrace_ramsink_priv *priv =3D dev_get_drvdata(&comp->dev)=
+;
+> > +
+> > +     dma_free_coherent(&comp->dev, priv->size, priv->va, priv->start);
+> > +}
+> > +
+> > +static int rvtrace_ramsink_probe(struct rvtrace_component *comp)
+> > +{
+> > +     int ret;
+> > +
+> > +     ret =3D rvtrace_ramsink_setup(comp);
+> > +     if (ret)
+> > +             return dev_err_probe(&comp->dev, ret, "failed to setup ra=
+msink.\n");
+> > +
+> > +     ret =3D rvtrace_enable_component(comp);
+> > +     if (ret)
+> > +             return dev_err_probe(&comp->dev, ret, "failed to enable r=
+amsink.\n");
+> > +
+> > +     return ret;
+> > +}
+>
+> In probe, we should detect and set it to SMEM mode. The default is SRAM
+> mode.
+Actually the default is not set but I agree this needs to be handled
+differently. We can make this an implementation defined parameter and
+then cross check with trRamImpl register during probe.
+>
+> > +
+> > +static void rvtrace_ramsink_remove(struct rvtrace_component *comp)
+> > +{
+> > +     int ret;
+> > +
+> > +     ret =3D rvtrace_disable_component(comp);
+> > +     if (ret)
+> > +             dev_err(&comp->dev, "failed to disable ramsink.\n");
+> > +
+> > +     rvtrace_ramsink_cleanup(comp);
+> > +}
+> > +
+> > +static struct rvtrace_component_id rvtrace_ramsink_ids[] =3D {
+> > +     { .type =3D RVTRACE_COMPONENT_TYPE_RAMSINK,
+> > +       .version =3D rvtrace_component_mkversion(1, 0), },
+> > +     {},
+> > +};
+> > +
+> > +static struct rvtrace_driver rvtrace_ramsink_driver =3D {
+> > +     .id_table =3D rvtrace_ramsink_ids,
+> > +     .copyto_auxbuf =3D rvtrace_ramsink_copyto_auxbuf,
+>
+> Should have a .start function like the encoder (setting trRamEnable),
+> and reset the WP to priv->start, as suggested above.
+The active and enable bits for all components are handled via generic
+rvtrace_enable_component/rvtrace_disable_component functions. When all
+components are disabled before copying data to perf then WP would be
+reset to priv->start as a part of copy_to_auxbuf callback.
+>
+> > +     .stop =3D rvtrace_ramsink_stop,
+> > +     .probe =3D rvtrace_ramsink_probe,
+> > +     .remove =3D rvtrace_ramsink_remove,
+> > +     .driver =3D {
+> > +             .name =3D "rvtrace-ramsink",
+> > +     },
+> > +};
+> > +
+> > +static int __init rvtrace_ramsink_init(void)
+> > +{
+> > +     return rvtrace_register_driver(&rvtrace_ramsink_driver);
+> > +}
+> > +
+> > +static void __exit rvtrace_ramsink_exit(void)
+> > +{
+> > +     rvtrace_unregister_driver(&rvtrace_ramsink_driver);
+> > +}
+> > +
+> > +module_init(rvtrace_ramsink_init);
+> > +module_exit(rvtrace_ramsink_exit);
+> > +
+> > +/* Module information */
+> > +MODULE_AUTHOR("Mayuresh Chitale <mchitale@ventanamicro.com>");
+> > +MODULE_DESCRIPTION("RISC-V Trace Ramsink Driver");
+> > +MODULE_LICENSE("GPL");
+>
+> Bo
+>
 
