@@ -1,198 +1,507 @@
-Return-Path: <devicetree+bounces-243586-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243587-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5D34C9A335
-	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 07:13:03 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C790C9A573
+	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 07:37:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 884B63A4109
-	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 06:13:02 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 8BBF9342832
+	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 06:37:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BABD2FF170;
-	Tue,  2 Dec 2025 06:13:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3920E2FDC24;
+	Tue,  2 Dec 2025 06:37:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="NMCSlsQq"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="OlBu4dLG";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="byAiEDTD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013018.outbound.protection.outlook.com [40.107.162.18])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E7462FD7B1;
-	Tue,  2 Dec 2025 06:12:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.18
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764655980; cv=fail; b=ftIRVSxObXkZMoYlKatzshFt59Ddh2kW8sNuloMsFI7fKjgmuSmJy6nKdJy9dy1QUge/cIvH7sQqAS0vd3xw/cdhmmmFqO1weBggAt/e4cDXXYllVATg6wp7R+bm/SmxWYW+4nD09oMcFcg2Y+oBBFMIjVZnwLQRaP1uii18PkQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764655980; c=relaxed/simple;
-	bh=XcbIqwkzBJhyVBdbLsGUJfH/q0qIxGM7M9FDfwTspP0=;
-	h=From:To:Subject:Date:Message-Id:Content-Type:MIME-Version; b=NWJU5QWdlEo5N7YojOajXC3yLcu3RNjz4CwddxvjlqOBw9I1Z79jJHzMJyLHX7VEIwDN6jKSPbvssyWnDhkTKmKTOyVVaYXwar6261A9id17DgpnY260VpxjG/hFO7quXn32IviWfyIXNjvNLwcwzJMJSdLa11WAQSOCAD1xaAk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=NMCSlsQq; arc=fail smtp.client-ip=40.107.162.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=TW0Vxt7Tpw4h4OnVVfvx8ySrf9wuJUOWWqqkV2u+n6kR9wUNC5Qexs0MSvyC+ofnb+TYto95FL6PkUkLAcrLVmWMg+8lpYurBMlyaU2pXujLuiUuxCzP1JhdGdl0VGDKBgAvxABnBOef7n5BdM+EoJMOH9bLAIONao/fRHUJO46uMyA8T1oF8HXcyvAX/qWpy/9I/d1ZpNv7jpg3rqS6eweHdFLD5XUfUoqNloENNCYryWGVLRyZGIPjHF+1bc9EfLYsp2X1SG4GfKxmNgmRRePDuXrolUsM32QYM/QSzH0326yXSrVD6oZl0G/HFDoP0Ca+rA8pGlnAOAly3pwXUw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mCuZmW4H/dD7myojmAgwwfAk8XLC14hXd322qDBVJlQ=;
- b=KWfHQb+IbAxFM/gV/pBTe4tsEFI4u5bMsqAp56FsHhhCiwEMdG6wUIchza8cSNgQqCfcdhIFtssAlholLUJVEjbo4CfxDfNO9MiWxqqFRDAF044rRCe6qhFFz/ewu0/SAqMLl61FDqfk0+ZH0d1dM7oqMKxM1CnRvuj8zMUQFC4nGTMVsHtKR0mGI86o5cqHbqN7oLi6d9/IRZY4AsgQd+0HEP6gnqLYwtrtz4S1+O4dTGgFHoQVv/9TXWTMY0E8TECh8Umjqd+yo2D23GMc62YuYVqTIMmpGFNfTG0szeCvoWczST5H5WCkmy4vkoH4kvOjP4sbZWz7jebmeVeylA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mCuZmW4H/dD7myojmAgwwfAk8XLC14hXd322qDBVJlQ=;
- b=NMCSlsQqtlep5uRidGG1Sh4fOFtq9VmUsJ7yioSPyJ5VBZdIXZsO7cUGJckLM4vH+/GRogn+h5OGM/VTwSEC+9++DrTceWiS8OhKQHDSKXgtBkAPXn/V0pIHbVLJn1fbo2LRv7F4hfJLjBJd1Wdv7FlDeRBOeTBL2JjbAtWBDpfCFR93KvmqbAZIAhN2XQc2Y6F2HUCo0fdokegdE9/NArfpnd+Ki56HDtD3Qk0li4kcV545bfdxYo5AkdTym2Aa2CmhtW3aB54xSGhHf8d1eqia69LSXX2iJvkHEphhwr4v3Bisb4etMzw8v4EQIoVXd5gZbLmfg96+WVL9xvFx3w==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM0PR04MB7044.eurprd04.prod.outlook.com (2603:10a6:208:191::20)
- by PA1PR04MB10321.eurprd04.prod.outlook.com (2603:10a6:102:44f::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.17; Tue, 2 Dec
- 2025 06:12:55 +0000
-Received: from AM0PR04MB7044.eurprd04.prod.outlook.com
- ([fe80::bab2:d15c:fcf8:ef2b]) by AM0PR04MB7044.eurprd04.prod.outlook.com
- ([fe80::bab2:d15c:fcf8:ef2b%7]) with mapi id 15.20.9366.012; Tue, 2 Dec 2025
- 06:12:55 +0000
-From: Shengjiu Wang <shengjiu.wang@nxp.com>
-To: david.rhodes@cirrus.com,
-	rf@opensource.cirrus.com,
-	lgirdwood@gmail.com,
-	broonie@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	patches@opensource.cirrus.com,
-	linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	shengjiu.wang@gmail.com
-Subject: [PATCH] ASoC: dt-bindings: cirrus,cs42xx8: Reference common DAI properties
-Date: Tue,  2 Dec 2025 14:11:57 +0800
-Message-Id: <20251202061157.1710163-1-shengjiu.wang@nxp.com>
-X-Mailer: git-send-email 2.37.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SI2PR02CA0004.apcprd02.prod.outlook.com
- (2603:1096:4:194::14) To AM0PR04MB7044.eurprd04.prod.outlook.com
- (2603:10a6:208:191::20)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 489F924E4C4
+	for <devicetree@vger.kernel.org>; Tue,  2 Dec 2025 06:37:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764657433; cv=none; b=VXYDMwPTy5C5mzdO3yH0natS+Mwp/ySkVS6uNBTH7jBQYIsD9PNeqBGLUlpIgwXJ4LmEZIAJTtX6cpGD49X1KOv2ec35UVwydgP0mHXg9JUI3IK45DYUJp06nQAQ/gdYZIQQvnEZ5pEa6RwY+Y4g3KyZTWJ+1yala33JwOrjugA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764657433; c=relaxed/simple;
+	bh=3/qYgFvpwp6XiCiYlcvFgN3nu1CC+sJCWge2+da7nVU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=gHrqFkVjHRhhDwV0ZBXlsmUw/uAoSbkH4VWQrwhhjunjartJFapAhINl4pVw84SOPJ193a2cf4v0zXeRrtJNFg741LU4o4wNuUuWdzOYy4kjDRAR4oTWZ5dPvaeogBvuANFadSI/geOtObp86Q4LclegwjQALg8CekP7BdSiFBs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=OlBu4dLG; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=byAiEDTD; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5B24DcvJ1593282
+	for <devicetree@vger.kernel.org>; Tue, 2 Dec 2025 06:37:09 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	l+sPSNI4Tu7z7BRbSfD4/ZuFbrKNIUWwvy3EBtu7nHg=; b=OlBu4dLGSEe+D+V2
+	nDd/2ID8yuQdGae9/vm2kTdN1SXdmYG4avtL53KuTaL6oaByLAclj9S/Zi0CY/BA
+	AaAOv7tfLz4zItjF4gX/nIyKG4eXd/lcarpaR9iovi5opRz3z+b05beGXllaJpw0
+	XKcXdFv/8GBFZJN6hnlA6jpUxGEca0uVXZvTCCxwyWa3Y5SbwNxYkbx3cvry/BMD
+	iEMRg2C7Km8auvTQx85mLvkWInWI0+jSeUHRyOCscOqo4zukqCGpZD9e6jT3vxp8
+	x+xOk5XKLfL74AOEKOLq8u6hnuhVkw9BX95F9NlhzSLrQd3vaYayqTyby256ioME
+	/cIqqQ==
+Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4asrvr8cbr-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 02 Dec 2025 06:37:09 +0000 (GMT)
+Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-7aa148105a2so4590652b3a.1
+        for <devicetree@vger.kernel.org>; Mon, 01 Dec 2025 22:37:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1764657428; x=1765262228; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=l+sPSNI4Tu7z7BRbSfD4/ZuFbrKNIUWwvy3EBtu7nHg=;
+        b=byAiEDTDnHB6yJKjz2z5SpGh2vr2e6AMDeIvtK8Ny7N7oWh6qQq2DnVfvtXMUG99uU
+         WwMqnTREtkDlgXlcM3ANFySdk12YPrpdtxvghNdmQhLeMFbxyN/gyhz7rNKZrnbe04qd
+         3vyQQyMC0bI+uqF6CUbBofQKARGOydmyzTKdcxw6HMR750cY43xMxcqozetR190E/ZX6
+         t6drrXQRk1f139kdDtY68TvfxHiDrJEajQu0f+Pzo4LGzAnZvJsNJkvhC/sFWIzQW9Zw
+         g0n4QiMnZrAasXMTqNG4jhj6FSfE0AlyxOBXfAywKyg0n8nrrk0J5bELNKvVTtK26QOO
+         9a6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764657428; x=1765262228;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=l+sPSNI4Tu7z7BRbSfD4/ZuFbrKNIUWwvy3EBtu7nHg=;
+        b=Rpk66BTyCZgnfusgtIAXUgNghfrfpnhYIja4TI1a+4dXrvWzh2kMZUeCQzztzio+En
+         cqvmU6DxTKv0naU/DOQSYm9KKOAUvlAijfW83Ytn6IUYawEZaWVfD8NEiV9lvH3lEq+7
+         upOQH3Gixm8NJIsFNcJ4upF5u/XZD+DlkiBwVaFNOw1qoTCik+ipOE6jSsevXKBYMxKw
+         DnGLC9LUb1gayKSohDllYEc8Z2fhb60AUC/ghNRIc6a5kPWHj907lfamXXzDcod+w3N9
+         XjHvX9o4tTYpzTsIIMQkiWA2Va4iEKrNTIdLYjr+xyCFvvG4UgFjCDD49wrOjVFIFvJH
+         Ib4Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWlBo9wgEcxvMncNqUjtba+G/Wut+alsl0QZRxQU7rkNAwyVSTeRIotPdyKx9kFHhajwcTUVgKDrfar@vger.kernel.org
+X-Gm-Message-State: AOJu0YxMVoS9MohHbfwYEVAPKNYNh9IpjiHfp3EE/TrCq0V6GF9bieLP
+	XaQmk7ys8Y2JEZRTB+jxRSCOj6Jc9aznAV7lv1cmOLZBP3KSWNWreQbOvm0nHRUNeXj0v7OlXKj
+	CbjYgXTzY/H+DxvxKPkoj3XNv0w+ygm1GLXLuTwpk6vIl8XGZf//SAX6FL0N1ViBQLonjcXH7
+X-Gm-Gg: ASbGncvk9vOg2Z4R5ARhEDcMKBJb9SFDSlkmgQSVkuFNip6Dakqvydpn+z21YryOpOq
+	cV2GBbrjX/qmiNx4LF3sVKWSUnK2oYhU6pB9CBZtWRlp+PrRTbrzehgvvXykrtKaQpO3wLeTV4D
+	q5Pk2YlKm0kmgAzZmF+cKeEIzgOr+IAd4nrb1NkLjIUgKeCqCK+rkXeb0IIVpO9eD/37cAbYSf+
+	ywOWIfNgTzY9ADxuJesYkVn+MP6RIq4pkWbC471l3wzwIVvUASxvS3q7kdLP7RSRvW79XBDj7sW
+	5kLXrfWaFX+PeOIu0RVj2bNL8+wWteChOjH7p+fc97RWhkAj9Oni0g4jIA/BccDLbzOL4fQotgz
+	R2PkQGtqyoir8rQOIPz90Fl29THFl3OaNbUvk+A==
+X-Received: by 2002:a05:6a00:b50:b0:7ab:39a2:919b with SMTP id d2e1a72fcca58-7ca8aaf099fmr26592741b3a.20.1764657428438;
+        Mon, 01 Dec 2025 22:37:08 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IF6HM7OOW4Ce2nRZijRpqN4MJ6Fl5YIYv+wFew3/HV2L6/5p/RMpcs2gZutMvcfBC/F5ZW45Q==
+X-Received: by 2002:a05:6a00:b50:b0:7ab:39a2:919b with SMTP id d2e1a72fcca58-7ca8aaf099fmr26592703b3a.20.1764657427795;
+        Mon, 01 Dec 2025 22:37:07 -0800 (PST)
+Received: from [10.218.43.241] ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7d15e9c3f23sm15839067b3a.36.2025.12.01.22.37.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 01 Dec 2025 22:37:07 -0800 (PST)
+Message-ID: <f32bdc06-d76b-44f7-8738-2032669e793c@oss.qualcomm.com>
+Date: Tue, 2 Dec 2025 12:07:01 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM0PR04MB7044:EE_|PA1PR04MB10321:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6a494ee3-039e-4587-b81b-08de3169d556
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|19092799006|366016|1800799024|52116014|7416014|376014|921020|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?iCAizYmbkFnDBomzI8eSqxNbo+dXSWq1ppC4QBoP/pojxPbzF1Q8IwcEEEQB?=
- =?us-ascii?Q?ULcrglLHbB64pOlGOrPXcuH0K3NhYHg8Y+v3Tu0OPywM+nN88e/Yk+xTeTqL?=
- =?us-ascii?Q?06pofE2fdWwHRSZ/7C2yP6WZ8LlDAUdPpXMsv7FJJtbjg0Cly5Cg8PargmlD?=
- =?us-ascii?Q?gRJr3pPkhoMIS/467m9yA8giBhOr8LSuKwghiRDciHubXX7JVDPVEnQsuFqP?=
- =?us-ascii?Q?Sn05YhdnngdADizIbKyqWfyAlmLnfhadIa4a5y0Dvyl7rCHRrXeHYfsMtBfP?=
- =?us-ascii?Q?NisLjELVNxYWfXxKAXdJ+0NcSMXX3J/6vrwYAoTCkQ/fm45GKHPC8BuBew7Y?=
- =?us-ascii?Q?b9r9Yd7m0nC/6PEccT22XRy4odFZGD2QjeZBlnBeZk/3UzoFgMMeE9/Ky2EG?=
- =?us-ascii?Q?Kc//E/H3u+SXeQr/l6pQb9TCCBVqxpNsWqchwnlc4xgnKYQY+0ewj1Abe66J?=
- =?us-ascii?Q?P0+1HGsw1mt+Bgz711zldI4H51mk/a62s3OOkTsLPOFwC5AG8HovKmiFFB13?=
- =?us-ascii?Q?kgnHFoRiTJ6Jf/F45AlxloNCHphixwOmms9ZFaiEpRFWtQUuDTcQBenpItuS?=
- =?us-ascii?Q?mbQjDYsZL+bwUKc+eKNRA1gAVuQnntlVm0EgWH7G13qckF9b1bm9q4Gi3CXA?=
- =?us-ascii?Q?yxKYHtv5Q6Kpw7IBn9WhqzE8ObsKZF7kivzhJudk5Y0F/3pfjXFGkiGt80t+?=
- =?us-ascii?Q?tnA+smUVjymT24/UHtSMN+8QM+diTY35IH2nf7/UdMsggQv2wb1A4SmhyQof?=
- =?us-ascii?Q?Jk5BFdp6hDRuYGlJZy9fJKP5bXERyn8Wpz6+99MtcI8gj8VyVZd+dpCIDRkI?=
- =?us-ascii?Q?Th/8J9v14Q5uFfua541fQGGJLRhZo+LthuJ5rOji87/6bQFvAcL+RS3NHpXO?=
- =?us-ascii?Q?fYmh7lAcynJGG6uuvfuvunGBgWRU/A2tF8xSNCsqOjQdYChNWEH/7zOKh13t?=
- =?us-ascii?Q?8rNvyXnvzMQhYCspQ5iLKUzTknud5eN4UU2ZPT5STZ2qpzmCOcWuQCyy4sAN?=
- =?us-ascii?Q?3FQVygXBdwIt+FJvVAcVa/hsdwN1qqP+6p+RquPtLpJa+dKiDpftuArGEOHm?=
- =?us-ascii?Q?GxLPV83JPrV/P5akbQkAthRq3XkbrABmRAgn/o7fWCjQ6M5bTwWTfJc+LtX0?=
- =?us-ascii?Q?o8StXNLcf9rmFen/OkHoVu1+ItoEbt1JH1jXWn9BbTkG9dGpGIZdemgV2I7r?=
- =?us-ascii?Q?z4lbEHTqOzvprSFRHSb6DvWzRpRLs7nuMCiu7wjarZr/WvVC23CHowXyG6Jy?=
- =?us-ascii?Q?JdSleespesavHzKCEa2D3isDH4BQBL3UYCQf2n/GYDuuzrp1WIZYsKq/dFBG?=
- =?us-ascii?Q?weYP0tsdqe04PUGx3Uxj3i2zJmVP/K+u6y8YHdDGqKQGwJ/pTfSL6ACbpu0/?=
- =?us-ascii?Q?OaKke+IVe8ig5Qo2sEAzvfTsypjPKXPpRZcpKA+mhD7/ohLYvhoiDGSnIQD5?=
- =?us-ascii?Q?wxH9fzOmRYbH1Gdpsi3QdNXJic6Crq4DGrm/VVaO7D8RGJAPZltnF51LpVLK?=
- =?us-ascii?Q?7zdA+2fRaQGFOoQG7S2vP9P3ZZ2htklZQgzO+YYZ5yZ1PnYdNgPLFiDaWg?=
- =?us-ascii?Q?=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR04MB7044.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(366016)(1800799024)(52116014)(7416014)(376014)(921020)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?e8W3TCLqwODJyN+Bg6W28DYJGIsvYockFTVMrM5bT8OwXDjOQexPfPzPRiQv?=
- =?us-ascii?Q?8xgt/bXiXGBsZXd354InNadxc6FdT9fJFC2zKtcfrW/i5b2zCnTzvlR1Hg3L?=
- =?us-ascii?Q?k1sAr5YL7AZT/MyyBdHe7ei86aIOO1en1vSHptWhTjHEn7a5ECIuywDzZPQK?=
- =?us-ascii?Q?9EmwGshcKa9gUEZBHh9PyyljuZajzS8HWrp1Vlh/NHNxD3fvzaFMl5sRE2En?=
- =?us-ascii?Q?g7ZJ15d7u3BgEeIZwj8vooEkkMdSUYIsmBC4YHhrVGlfH14if92GFe+O2rzi?=
- =?us-ascii?Q?/74HfgkswYO3cDumJQvEU/NwkzdxX3Aj9qBAyFSeHmFIfquFb97b9hnuzBFz?=
- =?us-ascii?Q?AuSO5t3VFebk9nubjaF8PhLkaeBc61hFTUNcoiUAtqpLVaurtvyNCJTDMgDd?=
- =?us-ascii?Q?mmASWQu3i903GwrE0VVJWptFW1fkvSdMtKKA6La/LGzgwciom/aLad4BAvsl?=
- =?us-ascii?Q?DorYBvyiigRaPLOBsv9uMTOdo/qgyq0rPhJakCI13ktK5aiP4cbDND4hsjfa?=
- =?us-ascii?Q?y3OKiMw5fwwS6Luo4QPFtXzBNE/w/FArK04bcCEHcrGSGqN6xiPaVZcK5fXq?=
- =?us-ascii?Q?MwpxPUEu/jGkgmqpsEh7eczCesM7KureMjxMYHC9gMuALAUSkQqxG3v5oW2o?=
- =?us-ascii?Q?KYV8FiVxsCKizjBEfQenSG8Zh5StB1IXRxwV2nidHR2V7EaP/8WT9jhonoM+?=
- =?us-ascii?Q?JjzeVidymT4e19GwUGKE/Fgbf6U3V7ITdMTIXrxD6TJXAuVVkU+bgSdPh/ou?=
- =?us-ascii?Q?NFCY/NTIc0/FKar1E3Woeiw5rPnUXzjAUFm5n3gL1rj7Z0iDpXk8q3FIfUDG?=
- =?us-ascii?Q?6w9yVkRooXB+FrmEYiZF7xtnuG2GUzSvb0TRBXsDerHNPfX0DP6usCZRaTjW?=
- =?us-ascii?Q?rLXQBWLHigK3f7lzRkaT1vWwA1+hdwM5GAxFJJVNTYVPvbmzAd+5YCceBw/+?=
- =?us-ascii?Q?7OnL/MXI1yUasMNbhntXvYIT2P0eXdCXaO08+L5ABO6a1PLjHf4LqKvcxmEJ?=
- =?us-ascii?Q?lBj8UlgDZYTNjhDnWsFL0/1Lzx9jjoiptnCVycFsn+0gkGZc1+F+UdNYyieN?=
- =?us-ascii?Q?2wx6vPh0I8hMY9CpmsZKgzygd7w2RO2UPKX9khYbepKsNntrDVYltnHDmdGO?=
- =?us-ascii?Q?xcWwfNwrwTBvBtIixRBuSIR63st2PyD0PVzPX53PxJApitSLePkVb1D8TBfK?=
- =?us-ascii?Q?OawJ4FLeBhijE7yIk7RY1uRjvvGCfF5jeI5D+bO32gLkbFRJSyyO2ks2j4TU?=
- =?us-ascii?Q?CiFF6J7OUm7iei/UGNFqAaTWepPLfBU6RqPptWWxhGYUnVCGnNiRvsePbvKK?=
- =?us-ascii?Q?EYC05q4sjcFagda2Sv6WJMSi/Ujf+KFj+3fmS0AIgmZ9gv+oOG8eX5ddmp/9?=
- =?us-ascii?Q?CeRojPf9a3aaGoEqAqpJeRRRhPLHsrM7XdRoxJsukJYx3LpbY7Eb21p4sDlG?=
- =?us-ascii?Q?hP8nR/sefD4bHXedjZhvUVTlEHGP1dk1A85HusDJFbm0KCa3Ug6YPP4xIXC2?=
- =?us-ascii?Q?/+yAxgpy3ebui0rnP7Y9EvM5EOCha5E5y8tIw5zAWrGMaAsMXFB8uoL83fhf?=
- =?us-ascii?Q?mqNJlm0E2FJm6yBTikVgwnMSy4Uv/f3wm2flzGNO?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6a494ee3-039e-4587-b81b-08de3169d556
-X-MS-Exchange-CrossTenant-AuthSource: AM0PR04MB7044.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Dec 2025 06:12:55.8281
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: NllkiRc3pXgI+BtugLyA2f9BmDN+cG7h0FXyLjNA+XTd9RfGgj1t2tH80RsmJfTS+pYkPS2GmF/vw2f2Rf/R9g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA1PR04MB10321
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] usb: dwc3: qcom: Support firmware-managed resource
+ states for power management
+To: Bjorn Andersson <andersson@kernel.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>,
+        Thinh Nguyen <Thinh.Nguyen@synopsys.com>, jack.pham@oss.qualcomm.com,
+        faisal.hassan@oss.qualcomm.com, krishna.kurapati@oss.qualcomm.com,
+        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Shazad Hussain <shazad.hussain@oss.qualcomm.com>
+References: <20251127-controller_scmi_upstream-v1-0-38bcca513c28@oss.qualcomm.com>
+ <20251127-controller_scmi_upstream-v1-2-38bcca513c28@oss.qualcomm.com>
+ <cwtbvgoljjqfvuktwlnnsnroa4jj7m6l63yq6t34hccs4wa6xp@mggosrleq7vl>
+Content-Language: en-US
+From: Sriram Dash <sriram.dash@oss.qualcomm.com>
+In-Reply-To: <cwtbvgoljjqfvuktwlnnsnroa4jj7m6l63yq6t34hccs4wa6xp@mggosrleq7vl>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Authority-Analysis: v=2.4 cv=D5VK6/Rj c=1 sm=1 tr=0 ts=692e8915 cx=c_pps
+ a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=-tAHDEQtArZHiQS8Mg0A:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=OpyuDcXvxspvyRM73sMx:22
+X-Proofpoint-ORIG-GUID: 1K72QBcK9kGoP75Ndqf4jZWPrq93LIp7
+X-Proofpoint-GUID: 1K72QBcK9kGoP75Ndqf4jZWPrq93LIp7
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjAyMDA1MSBTYWx0ZWRfX5VGxd60vRgBS
+ dJuWBMIwgK43JMWcSzMGtDErJfP3FA3rzl7CilJvRwp4cyGfXgPcrScTrA9ldBnJlAPVUDwUAgx
+ sa+YC8vQuwrdn9qTNxwSJc3JFhnzjDCMiAGJM7o66RnoUkKxPSYdLEj6C4uKSMDQS6LFwjdCVTa
+ 3+bRBZXXsXJUrnSAzDLI9IObYNm6VyI9FA0ZQnvCMXzNE5W1sAXw/ISfqXPePPi4OkwrF6Q/cIg
+ PKTM3p86TvDoXD4POAcqYvMA+5OHLtMe3UQMLivlD1MJkQgUcmcX7Kfwuxo7KmY/8SuQYS8AD0t
+ O8vcJ7XyPokP+67jA7TufBwHYKa0oygijsyYR7czZ+e/Sz2EQpjEpAhUVZ38ZXuZit7gIPaJmHG
+ FD7+Y3qIXToFYrcHwkIzmYDpPTScAg==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-28_08,2025-11-27_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 phishscore=0 suspectscore=0 malwarescore=0 spamscore=0
+ adultscore=0 clxscore=1015 lowpriorityscore=0 priorityscore=1501
+ impostorscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
+ definitions=main-2512020051
 
-Reference the dai-common.yaml schema to allow '#sound-dai-cells' and
-"sound-name-prefix' to be used.
+On 12/2/2025 10:51 AM, Bjorn Andersson wrote:
+> On Thu, Nov 27, 2025 at 04:01:45PM +0530, Sriram Dash wrote:
+>> Add support for firmware-managed resource states in the
+>> Qualcomm DWC3 USB controller driver. On platforms
+>> like sa8255p, where controller resources are abstracted
+>> and managed collectively by firmware, the driver communicates
+>> power management transitions using dedicated resource state
+>> levels via dev_pm_opp_set_level().
+>>
+>> Macros are introduced to represent key lifecycle events:
+>> initialization, system and runtime suspend/resume, and exit.
+>> The driver sets the appropriate resource state during probe,
+>> remove, suspend, and resume operations, enabling bulk ON/OFF
+>> transitions of grouped resources according to the
+>> controller's operational state.
+>>
+>> Signed-off-by: Sriram Dash <sriram.dash@oss.qualcomm.com>
+>> Co-developed-by: Shazad Hussain <shazad.hussain@oss.qualcomm.com>
+>> Signed-off-by: Shazad Hussain <shazad.hussain@oss.qualcomm.com>
+>> ---
+>>  drivers/usb/dwc3/dwc3-qcom.c | 97 ++++++++++++++++++++++++++++++++++++++++----
+>>  1 file changed, 88 insertions(+), 9 deletions(-)
+>>
+>> diff --git a/drivers/usb/dwc3/dwc3-qcom.c b/drivers/usb/dwc3/dwc3-qcom.c
+>> index 9ac75547820d..9615ca6cfcae 100644
+>> --- a/drivers/usb/dwc3/dwc3-qcom.c
+>> +++ b/drivers/usb/dwc3/dwc3-qcom.c
+>> @@ -13,6 +13,8 @@
+>>  #include <linux/kernel.h>
+>>  #include <linux/interconnect.h>
+>>  #include <linux/platform_device.h>
+>> +#include <linux/pm_domain.h>
+>> +#include <linux/pm_opp.h>
+>>  #include <linux/phy/phy.h>
+>>  #include <linux/usb/of.h>
+>>  #include <linux/reset.h>
+>> @@ -85,10 +87,48 @@ struct dwc3_qcom {
+>>  	struct icc_path		*icc_path_apps;
+>>  
+>>  	enum usb_role		current_role;
+>> +	bool			fw_managed;
+>>  };
+>>  
+>>  #define to_dwc3_qcom(d) container_of((d), struct dwc3_qcom, dwc)
+>>  
+>> +/*
+>> + * QCOM DWC3 USB Controller: Firmware-Managed Resource State Levels
+>> + *
+>> + * On select Qualcomm platforms, the USB controller’s power-related
+>> + * resources including GDSC, reset lines, clocks, and interconnects
+>> + * are managed collectively by system firmware via SCMI. The driver
+>> + * signals the controller’s operational state to firmware using these
+>> + * levels, each mapped to a specific power management transition or
+>> + * lifecycle event:
+>> + *
+>> + * DWC3_QCOM_FW_MANAGED_INIT
+> Both power and performance states are typically...states...
+> But these are actions/transitions between states.
+>
+>
+> The purpose of doing firmware assisted resource management (like done in
+> ACPI) is that it abstracts away the power management aspects from the OS
+> implementation, here we instead seems to complicate the OS
+> implementation.
+>
+>> + *	Enable GDSC, Assert and Deassert Resets, and turn ON all clocks
+>> + *	and interconnects.
+>> + *
+>> + * DWC3_QCOM_FW_MANAGED_SYSTEM_RESUME
+>> + *	Enable GDSC and turn ON all clocks and interconnects.
+>> + *
+>> + * DWC3_QCOM_FW_MANAGED_RUNTIME_RESUME
+>> + *	Turn ON all clocks and interconnects.
+>> + *
+>> + * DWC3_QCOM_FW_MANAGED_EXIT
+>> + *	Turn OFF all clocks and interconnects, Assert reset and disable GDSC.
+>> + *
+>> + * DWC3_QCOM_FW_MANAGED_SYSTEM_SUSPEND
+>> + *	Turn OFF all clocks and interconnects and disable GDSC.
+>> + *
+>> + * DWC3_QCOM_FW_MANAGED_RUNTIME_SUSPEND
+>> + *	Turn OFF clocks and interconnects.
+>> + */
+>> +
+>> +#define DWC3_QCOM_FW_MANAGED_INIT			1
+>> +#define DWC3_QCOM_FW_MANAGED_SYSTEM_RESUME		2
+>> +#define DWC3_QCOM_FW_MANAGED_RUNTIME_RESUME		3
+> Given that dwc3_core_probe() calls pm_runtime_forbid(), do we actually
+> hit these states, or are you in practice only hitting some "D0" and "D3"
+> states?
+>
+> Could this be simplified to match what we would need here for an ACPI
+> system?
 
-Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
----
- Documentation/devicetree/bindings/sound/cirrus,cs42xx8.yaml | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/sound/cirrus,cs42xx8.yaml b/Documentation/devicetree/bindings/sound/cirrus,cs42xx8.yaml
-index cd47905eb20a..7ae72bd901f4 100644
---- a/Documentation/devicetree/bindings/sound/cirrus,cs42xx8.yaml
-+++ b/Documentation/devicetree/bindings/sound/cirrus,cs42xx8.yaml
-@@ -9,6 +9,9 @@ title: Cirrus Logic CS42448/CS42888 audio CODEC
- maintainers:
-   - patches@opensource.cirrus.com
- 
-+allOf:
-+  - $ref: dai-common.yaml#
-+
- properties:
-   compatible:
-     enum:
-@@ -63,7 +66,7 @@ then:
-     - VLC-supply
-     - VLS-supply
- 
--additionalProperties: false
-+unevaluatedProperties: false
- 
- examples:
-   - |
--- 
-2.34.1
+Hi Bjorn,
 
+thanks for the comments.
+
+You’re right that the wording in the comment makes these look like
+explicit “do X/Y/Z now” transitions rather than passive states. The
+intention is not to expose an imperative sequence to firmware, but to
+advertise a small set of abstract “resource configurations” that
+correspond to specific OS power‑management contexts in the driver.
+
+On sa8255p, the USB controller and its associated resources (GDSC,
+clocks, interconnects, resets) are grouped behind a single
+firmware‑managed perf domain. From the driver’s perspective we only have
+a few meaningful configurations:
+
+initial bring‑up during probe,
+system suspend / system resume,
+runtime suspend / runtime resume (planned once runtime PM is enabled), and
+final shutdown on remove.
+
+The levels are meant to encode which phase of the lifecycle we are in,
+so that firmware can choose an internal representation that matches its
+own notion of “D0‑like”, “temporarily suspended” or “off / removed”,
+including any differences in how aggressively it can drop power, assert
+resets, or preserve context.
+
+You are correct that INIT and the various RESUME levels are all “on” in
+the sense that the controller ends up operational, and similarly EXIT /
+SUSPEND variants are “off / not actively used”. Today the driver does
+not try to model these as strict D0/D3/D3hot/D3cold equivalents, because:
+
+INIT may require a more complete bring‑up after boot, where firmware
+might need to perform extra initialization compared to a resume from a
+prior suspended state.
+SYSTEM_* vs RUNTIME_* are tied to the OS‑level PM entry points
+(dwc3_qcom_suspend() is used for both system and runtime suspend;
+runtime is currently forbidden but it is planned later). The distinction
+gives firmware the option to use different policies for system sleep vs
+runtime idle, including wake‑capability and context‑retention.
+That said, I agree that the current comment over‑specifies the concrete
+actions (“Enable GDSC, Assert and Deassert Resets…”) and makes the
+interface look more complicated than it actually is.
+
+We can reword it to describe the effective resource state, without
+prescribing exactly how the firmware should sequence GDSC, resets and
+clocks. However, I’d still like to keep the separation between system
+and runtime paths so that we don’t have to extend the protocol again
+when runtime PM is enabled.
+
+/*
+ * QCOM DWC3 USB Controller: Firmware-Managed Resource State Levels
+ *
+ * On select Qualcomm platforms, the USB controller’s power-related
+ * resources (such as GDSC, reset lines, clocks, and interconnects)
+ * are managed collectively by system firmware. The driver reports
+ * the controller’s lifecycle and power-management context using the
+ * following abstract resource state levels. The exact sequencing and
+ * choice of underlying resources for each level is left to firmware.
+ *
+ * DWC3_QCOM_FW_MANAGED_INIT
+ *    Controller is initialized after probe and brought into a fully
+ *    operational state suitable for normal use.
+ *
+ * DWC3_QCOM_FW_MANAGED_SYSTEM_RESUME
+ *    Controller returns from system suspend to a fully operational
+ *    state suitable for normal use.
+ *
+ * DWC3_QCOM_FW_MANAGED_RUNTIME_RESUME
+ *    Controller returns from runtime suspend to an operational state
+ *    sufficient for runtime activity.
+ *
+ * DWC3_QCOM_FW_MANAGED_EXIT
+ *    Controller is shut down as part of driver removal and may be put
+ *    into a fully powered-off state with no requirement for retention.
+ *
+ * DWC3_QCOM_FW_MANAGED_SYSTEM_SUSPEND
+ *    Controller is quiesced for system suspend; resources may be
+ *    reduced or powered down according to platform policy.
+ *
+ * DWC3_QCOM_FW_MANAGED_RUNTIME_SUSPEND
+ *    Controller is quiesced for runtime suspend; a lower-power state
+ *    is entered while allowing a later runtime resume.
+ */
+#define DWC3_QCOM_FW_MANAGED_INIT            1
+#define DWC3_QCOM_FW_MANAGED_SYSTEM_RESUME        2
+#define DWC3_QCOM_FW_MANAGED_RUNTIME_RESUME        3
+#define DWC3_QCOM_FW_MANAGED_EXIT            8
+#define DWC3_QCOM_FW_MANAGED_SYSTEM_SUSPEND        9
+#define DWC3_QCOM_FW_MANAGED_RUNTIME_SUSPEND        10
+
+
+Let me know if this is OK.
+
+
+
+> Regards,
+> Bjorn
+>
+>> +#define DWC3_QCOM_FW_MANAGED_EXIT			8
+>> +#define DWC3_QCOM_FW_MANAGED_SYSTEM_SUSPEND		9
+>> +#define DWC3_QCOM_FW_MANAGED_RUNTIME_SUSPEND		10
+>> +
+>>  static inline void dwc3_qcom_setbits(void __iomem *base, u32 offset, u32 val)
+>>  {
+>>  	u32 reg;
+>> @@ -335,7 +375,7 @@ static void dwc3_qcom_enable_interrupts(struct dwc3_qcom *qcom)
+>>  		dwc3_qcom_enable_port_interrupts(&qcom->ports[i]);
+>>  }
+>>  
+>> -static int dwc3_qcom_suspend(struct dwc3_qcom *qcom, bool wakeup)
+>> +static int dwc3_qcom_suspend(struct dwc3_qcom *qcom, bool wakeup, pm_message_t msg)
+>>  {
+>>  	u32 val;
+>>  	int i, ret;
+>> @@ -348,6 +388,13 @@ static int dwc3_qcom_suspend(struct dwc3_qcom *qcom, bool wakeup)
+>>  		if (!(val & PWR_EVNT_LPM_IN_L2_MASK))
+>>  			dev_err(qcom->dev, "port-%d HS-PHY not in L2\n", i + 1);
+>>  	}
+>> +	if (qcom->fw_managed) {
+>> +		if (PMSG_IS_AUTO(msg))
+>> +			dev_pm_opp_set_level(qcom->dev, DWC3_QCOM_FW_MANAGED_RUNTIME_SUSPEND);
+>> +		else
+>> +			dev_pm_opp_set_level(qcom->dev, DWC3_QCOM_FW_MANAGED_SYSTEM_SUSPEND);
+>> +	}
+>> +
+>>  	clk_bulk_disable_unprepare(qcom->num_clocks, qcom->clks);
+>>  
+>>  	ret = dwc3_qcom_interconnect_disable(qcom);
+>> @@ -369,7 +416,7 @@ static int dwc3_qcom_suspend(struct dwc3_qcom *qcom, bool wakeup)
+>>  	return 0;
+>>  }
+>>  
+>> -static int dwc3_qcom_resume(struct dwc3_qcom *qcom, bool wakeup)
+>> +static int dwc3_qcom_resume(struct dwc3_qcom *qcom, bool wakeup, pm_message_t msg)
+>>  {
+>>  	int ret;
+>>  	int i;
+>> @@ -380,6 +427,18 @@ static int dwc3_qcom_resume(struct dwc3_qcom *qcom, bool wakeup)
+>>  	if (dwc3_qcom_is_host(qcom) && wakeup)
+>>  		dwc3_qcom_disable_interrupts(qcom);
+>>  
+>> +	if (qcom->fw_managed) {
+>> +		if (PMSG_IS_AUTO(msg))
+>> +			ret = dev_pm_opp_set_level(qcom->dev, DWC3_QCOM_FW_MANAGED_RUNTIME_RESUME);
+>> +		else
+>> +			ret = dev_pm_opp_set_level(qcom->dev, DWC3_QCOM_FW_MANAGED_SYSTEM_RESUME);
+>> +
+>> +		if (ret < 0) {
+>> +			dev_err(qcom->dev, "Failed to Resume fw managed device\n");
+>> +			return ret;
+>> +		}
+>> +	}
+>> +
+>>  	ret = clk_bulk_prepare_enable(qcom->num_clocks, qcom->clks);
+>>  	if (ret < 0)
+>>  		return ret;
+>> @@ -624,10 +683,18 @@ static int dwc3_qcom_probe(struct platform_device *pdev)
+>>  
+>>  	qcom->dev = &pdev->dev;
+>>  
+>> +	qcom->fw_managed = device_get_match_data(dev);
+>> +	if (qcom->fw_managed) {
+>> +		ret = dev_pm_opp_set_level(qcom->dev, DWC3_QCOM_FW_MANAGED_INIT);
+>> +		if (ret < 0)
+>> +			return ret;
+>> +	}
+>> +
+>>  	qcom->resets = devm_reset_control_array_get_optional_exclusive(dev);
+>>  	if (IS_ERR(qcom->resets)) {
+>> -		return dev_err_probe(&pdev->dev, PTR_ERR(qcom->resets),
+>> -				     "failed to get resets\n");
+>> +		dev_err_probe(&pdev->dev, PTR_ERR(qcom->resets),
+>> +			      "failed to get resets\n");
+>> +		goto resources_off;
+>>  	}
+>>  
+>>  	ret = devm_clk_bulk_get_all(&pdev->dev, &qcom->clks);
+>> @@ -638,7 +705,7 @@ static int dwc3_qcom_probe(struct platform_device *pdev)
+>>  	ret = reset_control_assert(qcom->resets);
+>>  	if (ret) {
+>>  		dev_err(&pdev->dev, "failed to assert resets, err=%d\n", ret);
+>> -		return ret;
+>> +		goto resources_off;
+>>  	}
+>>  
+>>  	usleep_range(10, 1000);
+>> @@ -727,6 +794,10 @@ static int dwc3_qcom_probe(struct platform_device *pdev)
+>>  clk_disable:
+>>  	clk_bulk_disable_unprepare(qcom->num_clocks, qcom->clks);
+>>  
+>> +resources_off:
+>> +	if (qcom->fw_managed)
+>> +		dev_pm_opp_set_level(qcom->dev, DWC3_QCOM_FW_MANAGED_EXIT);
+>> +
+>>  	return ret;
+>>  }
+>>  
+>> @@ -739,6 +810,10 @@ static void dwc3_qcom_remove(struct platform_device *pdev)
+>>  		return;
+>>  
+>>  	dwc3_core_remove(&qcom->dwc);
+>> +
+>> +	if (qcom->fw_managed)
+>> +		dev_pm_opp_set_level(qcom->dev, DWC3_QCOM_FW_MANAGED_EXIT);
+>> +
+>>  	clk_bulk_disable_unprepare(qcom->num_clocks, qcom->clks);
+>>  	dwc3_qcom_interconnect_exit(qcom);
+>>  
+>> @@ -756,7 +831,7 @@ static int dwc3_qcom_pm_suspend(struct device *dev)
+>>  	if (ret)
+>>  		return ret;
+>>  
+>> -	ret = dwc3_qcom_suspend(qcom, wakeup);
+>> +	ret = dwc3_qcom_suspend(qcom, wakeup, PMSG_SUSPEND);
+>>  	if (ret)
+>>  		return ret;
+>>  
+>> @@ -772,7 +847,7 @@ static int dwc3_qcom_pm_resume(struct device *dev)
+>>  	bool wakeup = device_may_wakeup(dev);
+>>  	int ret;
+>>  
+>> -	ret = dwc3_qcom_resume(qcom, wakeup);
+>> +	ret = dwc3_qcom_resume(qcom, wakeup, PMSG_RESUME);
+>>  	if (ret)
+>>  		return ret;
+>>  
+>> @@ -809,7 +884,7 @@ static int dwc3_qcom_runtime_suspend(struct device *dev)
+>>  	if (ret)
+>>  		return ret;
+>>  
+>> -	return dwc3_qcom_suspend(qcom, true);
+>> +	return dwc3_qcom_suspend(qcom, true, PMSG_AUTO_SUSPEND);
+>>  }
+>>  
+>>  static int dwc3_qcom_runtime_resume(struct device *dev)
+>> @@ -818,7 +893,7 @@ static int dwc3_qcom_runtime_resume(struct device *dev)
+>>  	struct dwc3_qcom *qcom = to_dwc3_qcom(dwc);
+>>  	int ret;
+>>  
+>> -	ret = dwc3_qcom_resume(qcom, true);
+>> +	ret = dwc3_qcom_resume(qcom, true, PMSG_AUTO_RESUME);
+>>  	if (ret)
+>>  		return ret;
+>>  
+>> @@ -839,6 +914,10 @@ static const struct dev_pm_ops dwc3_qcom_dev_pm_ops = {
+>>  };
+>>  
+>>  static const struct of_device_id dwc3_qcom_of_match[] = {
+>> +	{
+>> +		.compatible	= "qcom,snps-dwc3-fw-managed",
+>> +		.data		= (void *)true,
+>> +	},
+>>  	{ .compatible = "qcom,snps-dwc3" },
+>>  	{ }
+>>  };
+>>
+>> -- 
+>> 2.34.1
+>>
 
