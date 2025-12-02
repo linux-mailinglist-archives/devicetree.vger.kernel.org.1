@@ -1,120 +1,136 @@
-Return-Path: <devicetree+bounces-243764-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243765-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6394EC9C3B0
-	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 17:37:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A70AC9C3C5
+	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 17:37:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B0EBC4E3627
-	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 16:37:10 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 013F84E438B
+	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 16:37:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1715E2989A2;
-	Tue,  2 Dec 2025 16:36:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C80629A30A;
+	Tue,  2 Dec 2025 16:37:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dAoFrGeV"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="TD/7tCNK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D76EA293C4E;
-	Tue,  2 Dec 2025 16:36:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4339C289378;
+	Tue,  2 Dec 2025 16:37:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764693413; cv=none; b=Qenrw5+ivwwK0PpEgMylUyMzJc8pV4/9/GVFEaL5Mmu/gdOQ+LXFf6FIlZzx0W9TGyTUR97wOoB828uVxlEIghuCP48b4TmegYuYEwkvKF/fKrSqJvRV8ENPpnOBAiGC8r5QRTVyf8e2LiorNDpWjh97CIlHNS9sXKoezASxjUU=
+	t=1764693421; cv=none; b=A9ZndY4vaGwrUUwW6Ceb3Pjb/ZSzQja3j5xvF++zkppJNrxsnKWO4lhFoMoNeRMXyWu6+pdqmS/iwqpPBmQr6yEUTW3iqCySgqVUQqW7mBfgOxfImcxae4JPpz9r0OWEKjxKzvb3g8y9XLkSnEYzBpygykuIR1Reb+MN7a8FqgE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764693413; c=relaxed/simple;
-	bh=83GFMtXEDYJO/Zm4n1Zxl4KGegW2MOstk7NxnWv3J1I=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=t/HMEerR0j3AeZTE9nF/o7nqe3/EaGzLHSKY2aSO8ttoCvHC1g2jfAJi+t/3O6tRRR86JCMI7pTZmV9LiJxt5zivB077YD2sLRoT6/ygNq6qVF8FF1LtZ7eyoBT6pLc+09Xm4atqIKeXLc4eQjlKz08SVoJhIajQ9TI+zWftBTs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dAoFrGeV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0D1BC116B1;
-	Tue,  2 Dec 2025 16:36:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764693412;
-	bh=83GFMtXEDYJO/Zm4n1Zxl4KGegW2MOstk7NxnWv3J1I=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dAoFrGeVtYJbHrr+45DEpeJsjpFtcRh3hpTT8UcGAld18NrWGF/hf8Xu2/mZY6RgJ
-	 LgSBATGoq+e4307aEGN6nI2PWs3SLKf++NKSTjbHHZPVW6PtE/0ipYCaNkMG605+Fm
-	 VP/mxmYMH6MfbtRtVWHeob/8UOEdvK7eo4hVBAtGkw6wfa46U4RZeX0vkdfa0B4otf
-	 6mxpfxST+FSEOcjO56Ei2tX9ox0Ru+A6ApIvvJqb6OACPOp22SYAd9AAAz/v7gVdR1
-	 ifGjLPEkp2HIgzqrm0ygv3Ldgs1cwwmLRmgVNsdewWYwNW5NmsTDfq/ILRxDdzJe5d
-	 Ham+e9XH3lxoA==
-Date: Tue, 2 Dec 2025 16:36:47 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: David Lechner <dlechner@baylibre.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Marcelo Schmitt <marcelo.schmitt@analog.com>,
-	Michael Hennerich <michael.hennerich@analog.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Andy Shevchenko <andy@kernel.org>,
-	Sean Anderson <sean.anderson@linux.dev>, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org
-Subject: Re: [PATCH v3 4/7] spi: axi-spi-engine: support
- SPI_MULTI_LANE_MODE_STRIPE
-Message-ID: <eb36242b-ac82-412c-b14b-648d541dcec1@sirena.org.uk>
-References: <20251201-spi-add-multi-bus-support-v3-0-34e05791de83@baylibre.com>
- <20251201-spi-add-multi-bus-support-v3-4-34e05791de83@baylibre.com>
- <aS79ex5Konr_EeMA@smile.fi.intel.com>
+	s=arc-20240116; t=1764693421; c=relaxed/simple;
+	bh=2KDgS7tYAgFLjq0GgUSJJ7WRNioD+CIep2YyfepMI2Q=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=d3v8Bvip2yXXXj5P9ozQ2nra/TbdaB6lsyeCiGjMcarcc6w5q5SwpOlnn5oD69tSY6rMDZyO8DQBvxP84JRvLpTGrNFXr/jEZTgEFZ7M+Lit+mPvvmfAUGrY2Ky5y1Hhf8kdB2xyNlq/tpwGUdhAkocvyYkApkKNl13QknaYCls=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=TD/7tCNK; arc=none smtp.client-ip=80.241.56.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4dLRHr3bFbz9tPF;
+	Tue,  2 Dec 2025 17:36:56 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1764693416;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=ouQXuzIraPB2D4kvwgqomW1JSJU+R5g72qD/eXUPvvw=;
+	b=TD/7tCNK7xPkEzXu1K6i6i0oJ+JPL0/9upqdLYIRjNpUCk8SgRS2tjNyFrrXxH24BUd5Ml
+	TJdUSoMSllooOJK6PRPLDIKfQZ+RpEd/anVN+Si6BRF8leyiV1TjGOJf8a5JJHGiz6qTH6
+	Sck77NrE4BvZNZ6PC9Lc0nO19XQmcMO54916VDnVvauCsAyXPKfrbY07dqLfwZ5VZGtlus
+	edEmHw51yrLEDVd3bkDxq3GfZUaIDOK3uKIpQgoOxJTc4ED4i7HaX7E+G028VKtzIblbK2
+	NRYZuKHUCmjdbMR9p/HYOHSPvZWKBQw4HrO9CSi3cLQ5HxBN8L7YxXQ3gJSeCA==
+Message-ID: <66257fcf-9024-454f-b776-4ba584963ebe@mailbox.org>
+Date: Tue, 2 Dec 2025 17:36:53 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="FPtsYwuTnMFr+BO8"
-Content-Disposition: inline
-In-Reply-To: <aS79ex5Konr_EeMA@smile.fi.intel.com>
-X-Cookie: Beware the new TTY code!
+Subject: Re: [PATCH 1/2] dt-bindings: firmware: arm,scmi: Document
+ arm,poll-transport property
+To: Sudeep Holla <sudeep.holla@arm.com>,
+ Cristian Marussi <cristian.marussi@arm.com>
+Cc: arm-scmi@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-renesas-soc@vger.kernel.org
+References: <20251023123644.8730-1-marek.vasut+renesas@mailbox.org>
+ <aPoxfH_TLrsMxMVQ@pluto> <70554674-7020-4582-a4e7-dbee34907096@mailbox.org>
+ <5ae0a793-d3e7-45d1-bf5c-3c46593d1824@mailbox.org> <aRW7BZimWdpq4TyX@pluto>
+ <20251202-evasive-neon-rhino-d2745e@sudeepholla>
+Content-Language: en-US
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <20251202-evasive-neon-rhino-d2745e@sudeepholla>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-MBO-RS-ID: ef09950386f662b3642
+X-MBO-RS-META: xnxgf58ioag4dimis9zusdeen8x8huea
 
+On 12/2/25 3:52 PM, Sudeep Holla wrote:
 
---FPtsYwuTnMFr+BO8
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hello Sudeep,
 
-On Tue, Dec 02, 2025 at 04:53:47PM +0200, Andy Shevchenko wrote:
-> On Mon, Dec 01, 2025 at 08:20:42PM -0600, David Lechner wrote:
-> > Add support for SPI_MULTI_LANE_MODE_STRIPE to the AXI SPI engine driver.
+>>> While I was going through the SCMI spec, DEN0056F , page 209 , section "4.1
+>>> Shared memory based transport" , bullet • Completion interrupts, I found it
+>>> explicitly states:
+>>>
+>>> "
+>>> This transport supports polling or interrupt driven modes of communication.
+>>> In interrupt mode, when the callee completes processing a message, it raises
+>>> an interrupt to the caller. Hardware support for completion interrupts is
+>>> optional.
+>>> "
+>>
+>> Oh, yes...I knew that...it is just that till now, no systems were really
+>> ever developed that lacked the completion IRQ as a whole, it was, till now,
+>> more of a case of having the capability NOT to use it selectively at runtime
+>> and instead use polling when wanted (like for clock ops in ISR context)
+>>
+> 
+> Indeed.
+> 
+>> I am not sure what is the reason why this only-polling scenario was never
+>> supported in the HW description, this indeed pre-dates my work on SCMI....
+>> ...I would/will check with Sudeep, when he's back, what are the reasons for
+>> this (if any)...
+>>
+> 
+> As you mentioned earlier, no platform has required this before. I’m fine with
+> adding it, but we need to be more explicit about what it implies for SCMI. The
+> transport may be shared with other system components, and enforcing polling
+> for SCMI while the same transport generates interrupts for another user could
+> lead to issues.
 
-> > +static u8 spi_engine_all_lane_flags(struct spi_device *spi)
-> > +{
-> > +	u8 flags =3D 0;
+How do you imagine this -- a transport shared with other components, one 
+which does generate IRQs and one which does not -- would look like ? Can 
+you think of an example ?
 
-> > +	int i;
+> Clearly defining these constraints would be helpful. It may also be useful to
+> note that this is primarily intended for mailbox transports, if that’s
+> accurate. Alternatively, we could keep the DT binding definition broader but
+> emit warnings when a transport other than mailbox is used. That approach might
+> make it easier to move forward.
 
-> Why signed?
->=20
-> > +	for (i =3D 0; i < spi->num_data_lanes; i++)
-> > +		flags |=3D BIT(spi->data_lanes[i]);
-> > +
-> > +	return flags;
+DEN0056F refers to this polling mode in Shared memory based transports, 
+that can be other than mailbox transports, it includes e.g. SMC or OPTEE 
+transports.
 
-Variables called i used for iteration are typically declared signed even
-if they never cover negative values; IIRC there used to be some
-compiler interaction reasons to do so although I expect those aren't so
-relevant any more.  Using a signed type here is perfectly normal.
+I don't think a warning is justified, if the behavior follows the 
+specification. But I do agree the behavior is ... suboptimal.
 
---FPtsYwuTnMFr+BO8
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmkvFZ4ACgkQJNaLcl1U
-h9CGMAf/Z9tgkpoIquZVmlc/mWB7nE71/dWFqZPhVZukwXHsaH6elH+9y4X02z7r
-i8YUfkohYtoIB8wVJwb2B1zgWGV2eHz408B1ukimCf1mw2DFiBgig8E9XmWbIOIj
-RZqc3+I/6YLq4C4ElD/XRDiv5irAiErRKkJdCH7Ffl8eFzUx3Lb2TZHG2RFY7N04
-GQKeByyB2+99v7Xmq+tUyZBR3v6fG7E6ajqkvM488VUx3Bbx75OXWmMvCSZBeiyZ
-vnenKsxUD+Q8BBGMfA/iuAenIQsRjJRVgxY8dTegmOWUkHgmujipLk2y6ePGnqY3
-mxAz2/OS4jfcQl+YEJeksBq44m/HKw==
-=DHFJ
------END PGP SIGNATURE-----
-
---FPtsYwuTnMFr+BO8--
+-- 
+Best regards,
+Marek Vasut
 
