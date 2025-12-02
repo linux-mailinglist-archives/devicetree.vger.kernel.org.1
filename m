@@ -1,175 +1,205 @@
-Return-Path: <devicetree+bounces-243701-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243702-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E013C9B5B3
-	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 12:49:17 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49737C9B5E7
+	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 12:52:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id C10B4342171
-	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 11:49:16 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id B8438342644
+	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 11:52:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0AB43101B6;
-	Tue,  2 Dec 2025 11:49:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EAFE280309;
+	Tue,  2 Dec 2025 11:52:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="EFg1BuQq"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="pew/nz/9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx-relay90-hz2.antispameurope.com (mx-relay90-hz2.antispameurope.com [94.100.136.190])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7B95247289
-	for <devicetree@vger.kernel.org>; Tue,  2 Dec 2025 11:49:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=94.100.136.190
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764676147; cv=pass; b=W4s8XQFzb1AEx7Xtph3crIkX/CzjgVJT8egR0IFDxV33zeT+YSgq1GuQxVxR/FiE+eYMJM5zYgveTJJ3QBuN6kw3gDWp9te1ZFgO2D3RNoFU/kXrh+xLMOnvVPaNup69CIlGLfwT08BBSHte5nu6URnpkEEBAw4wb0k1iLJKLtQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764676147; c=relaxed/simple;
-	bh=rOAoEjyVa1jEQA2BYDgvgv+WUqVYhkDMhJXVPZnWjU8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=K//MKLjETjzfieOs3XeRjt/qGwvk/+pGrbn+5aeBJBFaRpgSTtyhXDdXPTz8j3wwkODMSF5ToHAVZfiZnrlw7L9xgC35cPesfdxoEuOl8xfpcBDJbAHtHZGtpuHmY9UxG/HJB612/i2oHyTC9jnbvaQEwbRIRN7kPSEXb/N8xhk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=EFg1BuQq; arc=pass smtp.client-ip=94.100.136.190
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-ARC-Authentication-Results: i=1; mx-gate90-hz2.hornetsecurity.com 1; spf=pass
- reason=mailfrom (ip=94.100.132.6, headerfrom=ew.tq-group.com)
- smtp.mailfrom=ew.tq-group.com smtp.helo=smtp-out01-hz1.hornetsecurity.com;
- dmarc=pass header.from=ew.tq-group.com orig.disposition=pass
-ARC-Message-Signature: a=rsa-sha256;
- bh=cPzBCQ/cVroc4yKwXafobMdff4xUZ/bh1Bgq00vprqk=; c=relaxed/relaxed;
- d=hornetsecurity.com; h=from:to:date:subject:mime-version:; i=1; s=hse1;
- t=1764676101;
- b=EjA/EcZ9lkB9MhOWczZac4RSttEq43NzS/6YX7+tBQ3k/JoDRTLNw6gCAJkfFGfUNfCyxmKS
- FTUK0DC8KhOtf/JWJQwV32uTBwueYYc4BULTHzPEH0vgXWOCpnHO+7CVwqPxSNLUNEY29hFhsnF
- QbIACn0GmJCj4Q8Kk+04rBsG4CbpVQ5253vUN5ZZnR638GSsjglDO8pv3csBf2OVgetn83P1aZY
- ASl4A3Wvq09RPp6OAXTb2w0uZVF0oVEwSl7UVdvkTHto1yhosECtpQKU4Gm2QrnpDFanK0AToKb
- q+N1YrdB3LiXt9c1GDRHgvrFLCMAb9s0oBuGa+KdvF8zg==
-ARC-Seal: a=rsa-sha256; cv=none; d=hornetsecurity.com; i=1; s=hse1;
- t=1764676101;
- b=KeCrQIjPV0ROcGdgjoPhX/RF+zcF6FDC/VfddE+lrRI/bT+LZ9zcnyeccyuUAScZ0lH1FU0+
- hYCfSGjHzLS6TblXNNheQTSj15cuafHvt5wSowLv3UP9H35YKbYJfk3fRdc2nohRDnsHcr8vTjY
- Yp5Y0DIx5IGS+hx8oCi9yz7njZEoB6B/5lIc2SmRk0Wh7EfxdFzLe0n2fOKmQw02J32815S6Hdg
- ud3Fh1E/QMmHRSIvonRoWOfLUq+XUBggUcJ3ZGH9E/9UqyjCIETSoHdssrZHA71fF9xTiJ5zCKo
- n1LJbn16yMeB1LNzJoOll4BxATTjTLk0NvU8SCWG+wf8Q==
-Received: from he-nlb01-hz1.hornetsecurity.com ([94.100.132.6]) by mx-relay90-hz2.antispameurope.com;
- Tue, 02 Dec 2025 12:48:21 +0100
-Received: from steina-w.localnet (host-82-135-125-110.customer.m-online.net [82.135.125.110])
-	(Authenticated sender: alexander.stein@ew.tq-group.com)
-	by smtp-out01-hz1.hornetsecurity.com (Postfix) with ESMTPSA id BAAF7A4128F;
-	Tue,  2 Dec 2025 12:48:15 +0100 (CET)
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
- frank.li@nxp.com, Sherry Sun <sherry.sun@nxp.com>
-Cc: devicetree@vger.kernel.org, kernel@pengutronix.de,
- linux-kernel@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org
-Subject:
- Re: [PATCH] arm64: dts: imx8qm-ss-dma: correct the dma channels of lpuart
-Date: Tue, 02 Dec 2025 12:48:15 +0100
-Message-ID: <2395053.ElGaqSPkdT@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20251202111638.3553-1-sherry.sun@nxp.com>
-References: <20251202111638.3553-1-sherry.sun@nxp.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C73E272813;
+	Tue,  2 Dec 2025 11:52:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764676331; cv=none; b=ECq6iTMoKnfekyPxv40SQIBnR4nEa4z0qr5YXxLp+1ZHXyqNyqox6mA2XPldtruiRRerPkcH6tScfZPZzT3YeCBf9JvWfEiT49HJnaV6RjnsDMrhrQCCLlduS30MZlIB+iMP8wcZO2UFYif8TDCSOsRaTDSeI2W856rjAo6fZSk=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764676331; c=relaxed/simple;
+	bh=vcpCTg0wpMBBIdr8xrC7o97iEYNz6S+U+iHa72fxOsQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=dzaTITH4A9kCcy8v5CO+VaaNCOXYydW43NJzCcJQqz0SYjMztDKKv/cCvmWSCCnBrQb9I0xhljFixqfqno9LP9gLKe/qtdt58LUebE0TTDGIoRs3T4ho0JzAk+rclXJ4ZV5EXDyGRBqRf0SFNBKb3sPzI/zB3eT/uAD2h4cMpYI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=pew/nz/9; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi [91.158.153.178])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 442AE16A;
+	Tue,  2 Dec 2025 12:49:49 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1764676190;
+	bh=vcpCTg0wpMBBIdr8xrC7o97iEYNz6S+U+iHa72fxOsQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=pew/nz/9erz0jniUczc0Vo5JzbSbEzuA456Dp6BUQ4YldSqYW75EjlBKtmyrE+seB
+	 Rv+h8iinBEAyGcBtcmnBhhTA8ie6TTkE1OSIN+GkNywoKvhsB/l4RhHyNX/1yDunZu
+	 97b6Zjp3h4YGPLRBEb11/oei56Uy2Z7Ija+hsV5Y=
+Message-ID: <1d9a9269-bfda-4d43-938b-2df6b82b9369@ideasonboard.com>
+Date: Tue, 2 Dec 2025 13:51:59 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-cloud-security-sender:alexander.stein@ew.tq-group.com
-X-cloud-security-recipient:devicetree@vger.kernel.org
-X-cloud-security-crypt: load encryption module
-X-cloud-security-Mailarchiv: E-Mail archived for: alexander.stein@ew.tq-group.com
-X-cloud-security-Mailarchivtype:outbound
-X-cloud-security-Virusscan:CLEAN
-X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on mx-relay90-hz2.antispameurope.com with 4dLJtm3MJzzWycw
-X-cloud-security-connect: he-nlb01-hz1.hornetsecurity.com[94.100.132.6], TLS=1, IP=94.100.132.6
-X-cloud-security-Digest:199991314bca0e7504113f70cfa02bc4
-X-cloud-security:scantime:1.766
-DKIM-Signature: a=rsa-sha256;
- bh=cPzBCQ/cVroc4yKwXafobMdff4xUZ/bh1Bgq00vprqk=; c=relaxed/relaxed;
- d=ew.tq-group.com;
- h=content-type:mime-version:subject:from:to:message-id:date; s=hse1;
- t=1764676101; v=1;
- b=EFg1BuQqAdGkuzbE/qO1LKisuO5q2Zi1JrYMr7DYOQ6bhIIb+MC3NqKf3CT86q837iUJIpqo
- auAEb2/BB/SLosg5SLm7JsUi7GvxoTRXwFhKZ+F7K414SVtpdf8JGCLIjH8rbDuGgAswXax1uQG
- /CMnWou5jb9G0z+kuwwjK2dX5tg7aWxvXZ/Z5loDs7VUF+sE6H61LCz8tr8xuaRCYxBI6CIFVb5
- 0CXyekHmlUPoQjtzPYRuU7V3Z/95vlPCXGVsCNQPj4waiiCPADB0RTB61FZwNrNK5/bMSZIYtnn
- 8DN1inQ66Y4Gc1rPZAj6FqA9OKw/filPEVgr87qjhSPzQ==
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 05/21] ARM: dts: omap: Bind panel to panel-dpi instead of
+ ti,tilcdc,panel driver
+To: Kory Maincent <kory.maincent@bootlin.com>,
+ Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Markus Schneider-Pargmann <msp@baylibre.com>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Louis Chauvet <louis.chauvet@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ Miguel Gazquez <miguel.gazquez@bootlin.com>,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-omap@vger.kernel.org, Jyri Sarha <jyri.sarha@iki.fi>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Russell King <linux@armlinux.org.uk>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, Tony Lindgren <tony@atomide.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>
+References: <20251126-feature_tilcdc-v1-0-49b9ef2e3aa0@bootlin.com>
+ <20251126-feature_tilcdc-v1-5-49b9ef2e3aa0@bootlin.com>
+ <96b1b7bf-ddbe-4213-a201-dc89cf2998dd@ideasonboard.com>
+ <3bc5bf92-05c3-4841-ab28-9bab2bb31cd5@kernel.org>
+ <20251202104244.59a9e83d@kmaincent-XPS-13-7390>
+ <d7515cd3-5488-4d15-82dc-d2b98cfa2bed@kernel.org>
+ <20251202114416.09624a4b@kmaincent-XPS-13-7390>
+ <94e254fa-289d-41ed-909f-1742cfbb2690@kernel.org>
+ <20251202121856.0da62885@kmaincent-XPS-13-7390>
+From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Content-Language: en-US
+Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
+ 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
+In-Reply-To: <20251202121856.0da62885@kmaincent-XPS-13-7390>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi,
+Hi Kory,
 
-Am Dienstag, 2. Dezember 2025, 12:16:38 CET schrieb Sherry Sun:
-> The commit 616effc0272b5 ("arm64: dts: imx8: Fix lpuart DMA channel
-> order") swap uart rx and tx channel at common imx8-ss-dma.dtsi. But miss
-> update imx8qm-ss-dma.dtsi.
->=20
-> The commit 5a8e9b022e569 ("arm64: dts: imx8qm-ss-dma: Pass lpuart
-> dma-names") just simple add dma-names as binding doc requirement.
->=20
-> Correct lpuart0 - lpuart3 dma rx and tx channels, and use defines for
-> the FSL_EDMA_RX flag.
->=20
-> Fixes: 616effc0272b5 ("arm64: dts: imx8: Fix lpuart DMA channel order")
+On 02/12/2025 13:18, Kory Maincent wrote:
+> On Tue, 2 Dec 2025 11:47:40 +0100
+> Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> 
+>> On 02/12/2025 11:44, Kory Maincent wrote:
+>>> On Tue, 2 Dec 2025 11:28:55 +0100
+>>> Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>>   
+>>>> On 02/12/2025 10:42, Kory Maincent wrote:  
+>>>>>      
+>>>>>> Stuffing DTS change in the middle of the driver change tries to hide
+>>>>>> impact, which is not nice on its own.    
+>>>>>
+>>>>> As it needs driver change before the removal for not breaking things it
+>>>>> can't be done at the beginning of the series.    
+>>>>
+>>>> And that is the problem which should stop you there and rethink how to
+>>>> organize it without impacting users. DTS cannot go via DRM. If that was
+>>>> your intention, that's my:
+>>>>
+>>>> NAK  
+>>>
+>>> My intention was to raise discussion over the ugly and legacy tilcdc-panel
+>>> binding and what to do with it. But it seems you don't want to, that's a
+>>> shame.  
+>>
+>> I don't see how you get to these conclusions. I comment that putting
+>> here DTS in the middle without any explanation of the impact is not
+>> correct and this one alone I disagree with.
+> 
+> Because you didn't replied to the first line of my answer:
+> "Yes, I know this but I still wanted to try and begin a discussion on this, as I
+> really thought it is not a good idea to add and maintain an new non-standard
+> panel driver solely for this tilcdc panel binding."
+> 
+> But indeed you are right, I should have put more explanation on why there is DTS
+> and binding change in the middle of the series. Sorry for that.
+>  
+>> From that you claim I don't want to fix things...
+>>
+>> DTS cannot go to drm, which means you either need to separate the change
+>> and make entire work bisectable and backwards compatible for some time
+>> OR at least document clearly the impact as we always ask.
+> 
+> The thing is, if I split it, it has to be in 3. One for the of DRM bus flags
+> support, a second for the the devicetree and binding change and a third for the
+> whole tilcdc and tda998x cleaning stuff. I think I will go for one series, with
+> better documentation.
+> 
+> Now, what is your point of view on my question. Will you nak any binding
+> removal even if the binding is ugly and legacy and imply maintaining an
+> non-standard tilcdc panel driver? I know it breaks DTB compatibility but there
+> is several argument to not keep it. See patch 6.
+The binding being ugly and having to maintain non-standard tilcdc panel
+driver may be nice things for us, the users don't care. The users care
+if their board no longer works.
 
-I'm wondering if this is actually a fix for 5a8e9b022e569 ("arm64: dts:
-imx8qm-ss-dma: Pass lpuart dma-names") instead. 616effc0272b5 just
-focuses on the common parts. But I don't have a strong opinion here.
+And how does this sync with u-boot? It also has code for at least for a
+few of these boards.
 
-Thanks and best regards,
-Alexander
+Are there even users for these boards? If not, maybe they can be just
+removed? I'm personally not familiar with these boards, so I have no
+idea of their age or distribution.
 
-> Signed-off-by: Sherry Sun <sherry.sun@nxp.com>
-> ---
->  arch/arm64/boot/dts/freescale/imx8qm-ss-dma.dtsi | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
->=20
-> diff --git a/arch/arm64/boot/dts/freescale/imx8qm-ss-dma.dtsi b/arch/arm6=
-4/boot/dts/freescale/imx8qm-ss-dma.dtsi
-> index 5f24850bf322..974e193f8dcb 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8qm-ss-dma.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8qm-ss-dma.dtsi
-> @@ -172,25 +172,25 @@ &flexcan3 {
-> =20
->  &lpuart0 {
->  	compatible =3D "fsl,imx8qm-lpuart", "fsl,imx8qxp-lpuart";
-> -	dmas =3D <&edma2 13 0 0>, <&edma2 12 0 1>;
-> +	dmas =3D <&edma2 12 0 FSL_EDMA_RX>, <&edma2 13 0 0>;
->  	dma-names =3D "rx","tx";
->  };
-> =20
->  &lpuart1 {
->  	compatible =3D "fsl,imx8qm-lpuart", "fsl,imx8qxp-lpuart";
-> -	dmas =3D <&edma2 15 0 0>, <&edma2 14 0 1>;
-> +	dmas =3D <&edma2 14 0 FSL_EDMA_RX>, <&edma2 15 0 0>;
->  	dma-names =3D "rx","tx";
->  };
-> =20
->  &lpuart2 {
->  	compatible =3D "fsl,imx8qm-lpuart", "fsl,imx8qxp-lpuart";
-> -	dmas =3D <&edma2 17 0 0>, <&edma2 16 0 1>;
-> +	dmas =3D <&edma2 16 0 FSL_EDMA_RX>, <&edma2 17 0 0>;
->  	dma-names =3D "rx","tx";
->  };
-> =20
->  &lpuart3 {
->  	compatible =3D "fsl,imx8qm-lpuart", "fsl,imx8qxp-lpuart";
-> -	dmas =3D <&edma2 19 0 0>, <&edma2 18 0 1>;
-> +	dmas =3D <&edma2 18 0 FSL_EDMA_RX>, <&edma2 19 0 0>;
->  	dma-names =3D "rx","tx";
->  };
-> =20
->=20
+One trick that can be done is to modify the loaded DTB at boot time,
+detecting the old format, converting it to the new one, so that when the
+drivers are probed they only see the new DTB.
 
-
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
-
+ Tomi
 
 
