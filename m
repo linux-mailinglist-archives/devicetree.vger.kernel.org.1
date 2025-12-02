@@ -1,394 +1,191 @@
-Return-Path: <devicetree+bounces-243664-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243629-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFFF5C9B0D3
-	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 11:16:36 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9AECC9AC59
+	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 10:02:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 786913A45CF
-	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 10:16:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 74AC73A2D35
+	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 09:02:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE20E277C86;
-	Tue,  2 Dec 2025 10:16:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DAA8307AC3;
+	Tue,  2 Dec 2025 09:02:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="Ur6jIKnG"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="Qh4/SewR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m19731103.qiye.163.com (mail-m19731103.qiye.163.com [220.197.31.103])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DBDE273D6F
-	for <devicetree@vger.kernel.org>; Tue,  2 Dec 2025 10:16:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.103
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6F513064A6
+	for <devicetree@vger.kernel.org>; Tue,  2 Dec 2025 09:01:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764670593; cv=none; b=Z4ZXha3WkvF0YKhftY3I3G1CXdi+k/6R/+bxuss4tu02Cbn0R5FOowN0G7i5Hd8n7yPDnRRev3IbNRGSJVKiW3j/EdCqgTFUCuhURXNKMBH28wqnFAgfoNy7lcYHd39xlaDlV1dFRWJkhDaq/EpJTMPms6Ah9eOUGDLE/GEJnBw=
+	t=1764666122; cv=none; b=afk8eq9l+rTf7Xr/Tsu0xYbAqLvtCqyn1tAxRpwoWF/YHq64hYA3wz70S7oyl4/nbUKHI4CFJKoFHGZ79L5DmmIM7/Zae/SEd5AIboErZ9BbDo7O3DpDUZyzv7a/2eOPbXPWi+4ptBI8WGr5C06tlkNniYczkuLYXAC+AmCiSbY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764670593; c=relaxed/simple;
-	bh=O6LDN5wocrgRZzPeOT/dQO7UO9sYlVUnIzwbjhvqbLE=;
-	h=Message-ID:Date:MIME-Version:Cc:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=ltH8exSpy+k/fMWrbOZtqPPTD36Itrp1yHmvodcBBLcGyUZcp+SKhMdgw4IlklKiE1b14U8lHXpip62RSeDZ0D9kls1TrhdYI9DddLF97PPenGGot1olE4YXUe2VsrEM21g3+LLEum/eP1s1t3uYEXQD+oqREZ4ZspE72CK8RAs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=Ur6jIKnG; arc=none smtp.client-ip=220.197.31.103
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.14] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 2bab20bb6;
-	Tue, 2 Dec 2025 17:00:45 +0800 (GMT+08:00)
-Message-ID: <69a3de19-2aa2-48a7-8d8d-abc6efa3f2ce@rock-chips.com>
-Date: Tue, 2 Dec 2025 17:00:44 +0800
+	s=arc-20240116; t=1764666122; c=relaxed/simple;
+	bh=i1w1KgmggzJXL98eGvitaCcA9E6kmwV4ViMaGE9iZ0E=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=hcvXxNpOuQwbZqEImbPGATg8iM0hOF7TGm4IG3NGeVxv/A91C8bdcd5rIUMCiQEWSMxDbIBQTjTkL8HQVQUTQR5NPfIxVxOWyhrIcu8cBOWKAqQ7E8VapnxvlZ6oh8pkquLQzO3ExAvPif0bueNqCw4GTRtxFalMLKQLqShb98E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=Qh4/SewR; arc=none smtp.client-ip=209.85.210.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-7bc248dc16aso4172623b3a.0
+        for <devicetree@vger.kernel.org>; Tue, 02 Dec 2025 01:01:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1764666119; x=1765270919; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3XHkkGY2cNGbvvZiNneWk2OoD80gfsi3EfjvphamSbE=;
+        b=Qh4/SewRydkj8nvWpCR7cwOLwVs2Tm9coswXkBwsf+L+AFENzK2zJ+VMh/7QGYm6jp
+         TVx1lB4tGz5PRygjNma1tzZeI5wLUPKlQ31Y0FU8Coq06OI+X7XueUK8lV0ybR15rvqT
+         jgB//mYeWAzZOOYUHkEwe3XDStKIVt0u0C5pDNA8S2xxhmtrRtPYVVO445gt0C8FFcxL
+         EPywAnko1C5jQS1+IF6qyYasBKds5nSRQE53VdVemChpErFJq2Tg2d5DyiEFlBChJfOS
+         yrB/qEbxWhw5Cv1HqpTUsvCZHGvKguOVT90Lr8TETxNief89lhK9VtX6NtK+MvWvxEgz
+         FSkA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764666119; x=1765270919;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=3XHkkGY2cNGbvvZiNneWk2OoD80gfsi3EfjvphamSbE=;
+        b=eI3LMx5HeJMYEA08j+ab8vf5Q+GwqPdgebZr4vj1AhxbmC6Di7LuLIOfkgC75pCqWB
+         hKWDdCKtMA2zs9hwI/f4z/QMxntU4mxIAMvmAdyLxodKiO9Vn04c+Hz7CVCL7fdN9+Zx
+         Jr6fStuug78eFb2sH8qMqUikxWllHI+pZi/pIKl9y85yh8JztLhjKAqxTkRv8a6MAlWj
+         mNJmwbBFLkZxRa6ZJwPmT5O5HOoJXD/D08sdtBMlBE2LpXXO6oy1MAOqZnSRh+ZeYdcl
+         AVvAh/or75RCFj6rdNUD7ma19fb365JDLP/N9gkxRIfiWN73MX7hGujGUIYffY3qOAGM
+         tnXQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV+jN/eoumhg+6rjmrQ5x/uEORp2UCk5tGvAs3si3cN7OtjdI+Y1Zztvly2ZXHPq9C6Xa5VHNH6ElB4@vger.kernel.org
+X-Gm-Message-State: AOJu0YyZMyWlIyh3INl9FUMj2VGRYVc3Nu2kpXPgnNvhE07vfQJQ1Rqa
+	tgazbeB0SYzi/3ImRgCXYl/7r2MsvJze7T+wKJM0o0DSXkQL1EFNK/h+8FUCuU6xjkqPk2Yz/bT
+	mKLZameLiQ9IpQodqCJmBMeZk0JJgbvi52feCbLe1
+X-Gm-Gg: ASbGncv4zBhMjWQ4JDXKZLxb4/sviuLARPTNcDVMUI++SQDVp+Py4lM6wOIWBsoFv17
+	cca74i7okCIafxbhPFAwv1wTneRKtB/K1TNG512nHrE1p+aYkFV0bfFUzE5UFKQAw2RlgBw/Cvc
+	MbqkL1q2/o6htaC+Ogm0VOROmmauuso4pXwgTxlTbcJ+6mmIpCWhsVsXqZe8hK4hnF13/NaPK/I
+	S8oGicNf8wG3OCCgFQilNO1DrpC76GFVTkplJPp7NU2FDZEcnE0AvSqOLeiXNZ8Qu9HxFw=
+X-Google-Smtp-Source: AGHT+IGiBzRHl7TPtYwtQi06ZiaJhnVzUcHhh5xBVlcMIML+l0+f6MQo/KbqNIpZ30wUru3qydCRc5k9yej1kRpZNRQ=
+X-Received: by 2002:a05:7022:1111:b0:11b:9386:826c with SMTP id
+ a92af1059eb24-11cbba5508fmr13693558c88.41.1764666110328; Tue, 02 Dec 2025
+ 01:01:50 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Cc: shawn.lin@rock-chips.com, joseph.kogut@gmail.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, quentin.schulz@cherry.de,
- jonas@kwiboo.se, kever.yang@rock-chips.com, i@next.chainsx.cn,
- honyuenkwun@gmail.com, inindev@gmail.com, michael.opdenacker@rootcommit.com,
- dsimic@manjaro.org, pbrobinson@gmail.com, devicetree@vger.kernel.org,
- linux-rockchip@lists.infradead.org, heiko@sntech.de
-Subject: Re: [RESEND2 PATCH v5 3/3] arm64: dts: rockchip: Add support for CM5
- IO carrier
-To: FUKAUMI Naoki <naoki@radxa.com>
-References: <20251202084052.1517-1-naoki@radxa.com>
- <20251202084052.1517-4-naoki@radxa.com>
-From: Shawn Lin <shawn.lin@rock-chips.com>
-In-Reply-To: <20251202084052.1517-4-naoki@radxa.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9ade4af3de09cckunm5fb5af4dde417
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGUNLSlYdQ09ITB5OSxlJGR5WFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
-	hVSktLVUpCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=Ur6jIKnGwNYQvQc2Y5N/bD3LjLR28BSbx5tAbwvkl6yjCbptAAaToMwqROvJuIWJN+g1phqNHN82fohmV0bRbjh8e7+1z3/wf9VUnbVhY0Eiw7Ce9wkY/NYmV9TpbUZ97JlrDMxjQAxlAZK5yey90r2LhssY/q1txJ3QDRqoho8=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=RgIxXPjK0U7hr4J+W/CQgt75rLi4nOWKEnxS0nvGRw4=;
-	h=date:mime-version:subject:message-id:from;
+References: <20251122-controller-v8-0-e7562e0df658@google.com>
+ <20251122-controller-v8-2-e7562e0df658@google.com> <2025112226-heave-refrain-53e6@gregkh>
+In-Reply-To: <2025112226-heave-refrain-53e6@gregkh>
+From: Roy Luo <royluo@google.com>
+Date: Tue, 2 Dec 2025 03:01:13 -0600
+X-Gm-Features: AWmQ_bnlSStXeZAFzAhajdXf-6yqBRh8xzoWnHdfQbF_eyEVNWCr_wtC1nkDZig
+Message-ID: <CA+zupgwzQ5r=-_L79D74=9VRqRO94N0yTApHChM+Nu0cn1ss3w@mail.gmail.com>
+Subject: Re: [PATCH v8 2/2] usb: dwc3: Add Google Tensor SoC DWC3 glue driver
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Peter Griffin <peter.griffin@linaro.org>, 
+	=?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+	Tudor Ambarus <tudor.ambarus@linaro.org>, Thinh Nguyen <Thinh.Nguyen@synopsys.com>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Badhri Jagan Sridharan <badhri@google.com>, 
+	Doug Anderson <dianders@google.com>, linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-samsung-soc@vger.kernel.org, Joy Chakraborty <joychakr@google.com>, 
+	Naveen Kumar <mnkumar@google.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Fukaumi
+On Sat, Nov 22, 2025 at 8:59=E2=80=AFPM Greg Kroah-Hartman
+<gregkh@linuxfoundation.org> wrote:
+>
+> On Sat, Nov 22, 2025 at 09:32:06AM +0000, Roy Luo wrote:
+> > Add support for the DWC3 USB controller found on Google Tensor G5
+> > (codename: laguna). The controller features dual-role functionality
+> > and hibernation.
+> >
+> > The primary focus is implementing hibernation support in host mode,
+> > enabling the controller to enter a low-power state (D3). This is
+> > particularly relevant during system power state transition and
+> > runtime power management for power efficiency.
+> > Highlights:
+> > - Align suspend callback with dwc3_suspend_common() for deciding
+> >   between a full teardown and hibernation in host mode.
+> > - Integration with `psw` (power switchable) and `top` power domains,
+> >   managing their states and device links to support hibernation.
+> > - A notifier callback dwc3_google_usb_psw_pd_notifier() for
+> >   `psw` power domain events to manage controller state
+> >   transitions to/from D3.
+> > - Coordination of the `non_sticky` reset during power state
+> >   transitions, asserting it on D3 entry and deasserting on D0 entry
+> >   in hibernation scenario.
+> > - Handling of high-speed and super-speed PME interrupts
+> >   that are generated by remote wakeup during hibernation.
+> >
+> > Co-developed-by: Joy Chakraborty <joychakr@google.com>
+> > Signed-off-by: Joy Chakraborty <joychakr@google.com>
+> > Co-developed-by: Naveen Kumar <mnkumar@google.com>
+> > Signed-off-by: Naveen Kumar <mnkumar@google.com>
+> > Signed-off-by: Roy Luo <royluo@google.com>
+> > ---
+> >  drivers/usb/dwc3/Kconfig       |  13 +
+> >  drivers/usb/dwc3/Makefile      |   1 +
+> >  drivers/usb/dwc3/dwc3-google.c | 628 +++++++++++++++++++++++++++++++++=
+++++++++
+> >  3 files changed, 642 insertions(+)
+> >
+> > diff --git a/drivers/usb/dwc3/Kconfig b/drivers/usb/dwc3/Kconfig
+> > index 4925d15084f816d3ff92059b476ebcc799b56b51..f58c70dabf108878cbefe0a=
+bea88572d9ae81e26 100644
+> > --- a/drivers/usb/dwc3/Kconfig
+> > +++ b/drivers/usb/dwc3/Kconfig
+> > @@ -200,4 +200,17 @@ config USB_DWC3_GENERIC_PLAT
+> >         the dwc3 child node in the device tree.
+> >         Say 'Y' or 'M' here if your platform integrates DWC3 in a simil=
+ar way.
+> >
+> > +config USB_DWC3_GOOGLE
+> > +     tristate "Google Platform"
+> > +     depends on COMPILE_TEST
+> > +     depends on OF && COMMON_CLK && RESET_CONTROLLER
+>
+> Shouldn't this be:
+>         depends on (OF && COMMON_CLK && RESET_CONTROLLER) || COMPILE_TEST
+>
+> I shouldn't have to enable those options to just get a build test here,
+> the apis should be properly stubbed out if those options are not
+> enabled, right?
+>
+> thanks,
+>
+> greg k-h
 
-在 2025/12/02 星期二 16:40, FUKAUMI Naoki 写道:
-> From: Joseph Kogut <joseph.kogut@gmail.com>
-> 
-> Specification:
-> - 1x HDMI
-> - 2x MIPI DSI
-> - 2x MIPI CSI
-> - 1x eDP
-> - 1x M.2 E key
-> - 1x USB 3.0 Host
-> - 1x USB 3.0 OTG
-> - 2x USB 2.0 Host
-> - Headphone jack w/ microphone
-> - Gigabit Ethernet w/ PoE
-> - microSD slot
-> - 40-pin expansion header
-> - 12V DC
-> 
-> Signed-off-by: Joseph Kogut <joseph.kogut@gmail.com>
-> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
-> ---
-> Rebased on linux-next 20251201, no change.
-> ---
->   arch/arm64/boot/dts/rockchip/Makefile         |   1 +
->   .../dts/rockchip/rk3588s-radxa-cm5-io.dts     | 486 ++++++++++++++++++
->   2 files changed, 487 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-radxa-cm5-io.dts
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-> index dbdda9783e93..699ed38235fe 100644
-> --- a/arch/arm64/boot/dts/rockchip/Makefile
+Hi Greg,
 
-...
+I agree with your interpretation of COMPILE_TEST but it doesn't
+seem to align with upstream convention. I found the following pattern
+in several device driver Kconfig files (including but not limited to usb,
+pinctrl and phy).
 
-> +		regulator-max-microvolt = <5000000>;
-> +		vin-supply = <&vcc5v0_sys>;
-> +	};
-> +
-> +	vcc3v3_pcie: regulator-3v3-vcc-pcie {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vcc3v3_pcie2x1l0";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		enable-active-high;
-> +		regulator-boot-on;
-> +		regulator-always-on;
+    depends on COMPILE_TEST || ARCH_XXX
+    depends on CONFIG_A && CONFIG_B...
 
-Don't set pcie slot power as boot-on/always-on unless
-you have special reasons. Because the power/PERST#/clock
-is controlled by pcie host driver to make sure the timing
-fit PCIe CEM spec for better compatibility.
+For this patch, the APIs exposed by OF, COMMON_CLK
+and RESET_CONTROLLER are properly stubbed out so
+I'm all good to go with your suggestion, but I'd like to make
+sure this approach is conventional.
 
-> +		gpios = <&gpio1 RK_PD3 GPIO_ACTIVE_HIGH>;
-> +		startup-delay-us = <50000>;
-> +		vin-supply = <&vcc5v0_sys>;
-> +	};
-> +
-> +	vcc_3v3_s0: pldo-reg4 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vcc_3v3_s0";
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
+I plan to add ARCH_GOOGLE as a dependency in the next
+version per [1], so the "depends on" would probably look like
+the following per your suggestion:
 
-...
+    depends on (OF && COMMON_CLK && RESET_CONTROLLER && ARCH_GOOGLE)
+|| COMPILE_TEST
 
-> +};
-> +
-> +&sdmmc {
-> +	bus-width = <4>;
-> +	cap-mmc-highspeed;
-> +	cap-sd-highspeed;
-> +	disable-wp;
-> +	max-frequency = <200000000>;
+Please let me know your thoughts.
+[1] https://lore.kernel.org/linux-phy/1a53d473-fc13-4ac5-ba52-4701d95e3073@=
+kernel.org/
 
-Could be removed from board's dts unless you want to lower it.
-
-> +	no-sdio;
-> +	no-mmc;
-> +	sd-uhs-sdr104;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&sdmmc_bus4 &sdmmc_clk &sdmmc_cmd &sdmmc_det>;
-> +	vmmc-supply = <&vcc_3v3_s3>;
-> +	vqmmc-supply = <&vccio_sd_s0>;
-> +	status = "okay";
-> +};
-> +
-> +&spi2 {
-> +	assigned-clocks = <&cru CLK_SPI2>;
-> +	assigned-clock-rates = <200000000>;
-> +	num-cs = <1>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&spi2m2_cs0 &spi2m2_pins>;
-> +	status = "okay";
-> +
-> +	pmic@0 {
-> +		compatible = "rockchip,rk806";
-> +		reg = <0x0>;
-> +		interrupt-parent = <&gpio0>;
-> +		interrupts = <7 IRQ_TYPE_LEVEL_LOW>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pmic_pins>, <&rk806_dvs1_null>,
-> +			    <&rk806_dvs2_null>, <&rk806_dvs3_null>;
-> +		spi-max-frequency = <1000000>;
-> +		system-power-controller;
-> +
-> +		vcc1-supply = <&vcc5v0_sys>;
-> +		vcc2-supply = <&vcc5v0_sys>;
-> +		vcc3-supply = <&vcc5v0_sys>;
-> +		vcc4-supply = <&vcc5v0_sys>;
-> +		vcc5-supply = <&vcc5v0_sys>;
-> +		vcc6-supply = <&vcc5v0_sys>;
-> +		vcc7-supply = <&vcc5v0_sys>;
-> +		vcc8-supply = <&vcc5v0_sys>;
-> +		vcc9-supply = <&vcc5v0_sys>;
-> +		vcc10-supply = <&vcc5v0_sys>;
-> +		vcc11-supply = <&vcc_2v0_pldo_s3>;
-> +		vcc12-supply = <&vcc5v0_sys>;
-> +		vcc13-supply = <&vdd2_ddr_s3>;
-> +		vcc14-supply = <&vdd2_ddr_s3>;
-> +		vcca-supply = <&vcc5v0_sys>;
-> +
-> +		gpio-controller;
-> +		#gpio-cells = <2>;
-> +
-> +		rk806_dvs1_null: dvs1-null-pins {
-> +			pins = "gpio_pwrctrl1";
-> +			function = "pin_fun0";
-> +		};
-> +
-> +		rk806_dvs2_null: dvs2-null-pins {
-> +			pins = "gpio_pwrctrl2";
-> +			function = "pin_fun0";
-> +		};
-> +
-> +		rk806_dvs3_null: dvs3-null-pins {
-> +			pins = "gpio_pwrctrl3";
-> +			function = "pin_fun0";
-> +		};
-> +
-> +		regulators {
-> +			vdd_gpu_s0: dcdc-reg1 {
-> +				regulator-name = "vdd_gpu_s0";
-> +				regulator-boot-on;
-> +				regulator-enable-ramp-delay = <400>;
-> +				regulator-min-microvolt = <550000>;
-> +				regulator-max-microvolt = <950000>;
-> +				regulator-ramp-delay = <12500>;
-> +
-> +				regulator-state-mem {
-> +					regulator-off-in-suspend;
-> +				};
-> +			};
-> +
-> +			vdd_cpu_lit_s0: dcdc-reg2 {
-> +				regulator-name = "vdd_cpu_lit_s0";
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-min-microvolt = <550000>;
-> +				regulator-max-microvolt = <950000>;
-> +				regulator-ramp-delay = <12500>;
-> +
-> +				regulator-state-mem {
-> +					regulator-off-in-suspend;
-> +				};
-> +			};
-> +
-> +			vccio_sd_s0: pldo-reg5 {
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-name = "vccio_sd_s0";
-> +
-> +				regulator-state-mem {
-> +					regulator-off-in-suspend;
-> +				};
-> +			};
-> +
-> +			vdd2_ddr_s3: dcdc-reg6 {
-> +				regulator-name = "vdd2_ddr_s3";
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +
-> +				regulator-state-mem {
-> +					regulator-on-in-suspend;
-> +				};
-> +			};
-> +
-> +			vcc_2v0_pldo_s3: dcdc-reg7 {
-> +				regulator-name = "vdd_2v0_pldo_s3";
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-min-microvolt = <2000000>;
-> +				regulator-max-microvolt = <2000000>;
-> +				regulator-ramp-delay = <12500>;
-> +
-> +				regulator-state-mem {
-> +					regulator-on-in-suspend;
-> +					regulator-suspend-microvolt = <2000000>;
-> +				};
-> +			};
-> +
-> +			vcc_3v3_s3: dcdc-reg8 {
-> +				regulator-name = "vcc_3v3_s3";
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-min-microvolt = <3300000>;
-> +				regulator-max-microvolt = <3300000>;
-> +
-> +				regulator-state-mem {
-> +					regulator-on-in-suspend;
-> +					regulator-suspend-microvolt = <3300000>;
-> +				};
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&u2phy0 {
-> +	status = "okay";
-> +};
-> +
-> +&u2phy0_otg {
-> +	status = "okay";
-> +};
-> +
-> +&u2phy2 {
-> +	status = "okay";
-> +};
-> +
-> +&u2phy2_host {
-> +	status = "okay";
-> +};
-> +
-> +&u2phy3 {
-> +	status = "okay";
-> +};
-> +
-> +&u2phy3_host {
-> +	status = "okay";
-> +};
-> +
-> +&uart2 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&uart2m0_xfer>;
-> +	status = "okay";
-> +};
-> +
-> +&usb_host0_ehci {
-> +	status = "okay";
-> +};
-> +
-> +&usb_host0_ohci {
-> +	status = "okay";
-> +};
-> +
-> +&usb_host0_xhci {
-> +	dr_mode = "otg";
-> +	usb-role-switch;
-> +	status = "okay";
-> +
-> +	port {
-> +		usb_host0_xhci_role_switch: endpoint {
-> +			remote-endpoint = <&usbc0_role_switch>;
-> +		};
-> +	};
-> +};
-> +
-> +&usb_host1_ehci {
-> +	status = "okay";
-> +};
-> +
-> +&usb_host1_ohci {
-> +	status = "okay";
-> +};
-> +
-> +&usb_host2_xhci {
-> +	status = "okay";
-> +};
-> +
-> +&usbdp_phy0 {
-> +	mode-switch;
-> +	orientation-switch;
-> +	sbu1-dc-gpios = <&gpio3 RK_PC4 GPIO_ACTIVE_HIGH>;
-> +	sbu2-dc-gpios = <&gpio3 RK_PD4 GPIO_ACTIVE_HIGH>;
-> +	status = "okay";
-> +
-> +	port {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		usbdp_phy0_orientation_switch: endpoint@0 {
-> +			reg = <0>;
-> +			remote-endpoint = <&usbc0_orientation_switch>;
-> +		};
-> +
-> +		usbdp_phy0_dp_altmode_mux: endpoint@1 {
-> +			reg = <1>;
-> +			remote-endpoint = <&usbc0_dp_altmode_mux>;
-> +		};
-> +	};
-> +};
-> +
-> +&vop {
-> +	status = "okay";
-> +};
-> +
-> +&vop_mmu {
-> +	status = "okay";
-> +};
-> +
-> +&vp0 {
-> +	vp0_out_hdmi0: endpoint@ROCKCHIP_VOP2_EP_HDMI0 {
-> +		reg = <ROCKCHIP_VOP2_EP_HDMI0>;
-> +		remote-endpoint = <&hdmi0_in_vp0>;
-> +	};
-> +};
-
+Thanks,
+Roy Luo
 
