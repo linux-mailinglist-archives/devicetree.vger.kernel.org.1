@@ -1,141 +1,206 @@
-Return-Path: <devicetree+bounces-243643-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243644-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1677C9AEB6
-	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 10:45:08 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF013C9AEC8
+	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 10:46:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 68FC0342233
-	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 09:44:19 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B81664E31E2
+	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 09:46:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A05A430DEB1;
-	Tue,  2 Dec 2025 09:43:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="luL3/4bR"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E68230EF83;
+	Tue,  2 Dec 2025 09:46:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from TYPPR03CU001.outbound.protection.outlook.com (mail-japaneastazon11022110.outbound.protection.outlook.com [52.101.126.110])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6926E309F01;
-	Tue,  2 Dec 2025 09:43:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764668585; cv=none; b=YvVIwKbJMv8lAxl1fxyeKtZW1tug86zcLtVRw93AtqrszmCWHynBUneQSZ412q1T9OO11ydGMScb1ipvGjRMf6AprFA9jQAZCQgHlrtvbjK2qHlkLCBlyVKxu4E/6yx0LJixFDFqGmKznDK/ySRGQIGIH6S5gTWNF2A6vYvGvaI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764668585; c=relaxed/simple;
-	bh=9VMtElwae+gvb7FRLkWkwNTHWFoiYVQbGclquUJ28xQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=UdCV1vX//iopmEnBQ1ivoZeuL0GTau6262iRNZp71eMnlg5o/Bzlceb/r57y/Z9TpVVJwQJZaxxtimY1fFF1B86X3z7jsVoRQ1JN3yMAt9cHCGuDq+7gjp4a+L4g286Dbkr7rUJsMoDiNspTq1XuIXp1/UKBVHvGtWByEWp3EOk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=luL3/4bR; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id DA7311A1EC0;
-	Tue,  2 Dec 2025 09:42:55 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id AB700606D3;
-	Tue,  2 Dec 2025 09:42:55 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 4D1331191926E;
-	Tue,  2 Dec 2025 10:42:47 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1764668574; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=/nc88QLJ8slhOZGqyb1L1tn4ejxMI+zK58HeNRPD/E8=;
-	b=luL3/4bRTXFIbWvIwBfEed7pUNN7/ssl5FuJjKODqCSo0tPivEZGF1V67Il+A3Yd++cPeJ
-	Jg5//gi3Ff8QjsPmqcFnotj76TblUPueFxRUHphX9oUzyKB9ZZUrZZGbT1e1nFtP0xekaW
-	AFgZ38nzpFtzQAkeV1fXucv8UCauxYzWUU7su/NPjHnJ+8roc8d5sgNU1PFSfsjqo3rh7x
-	SXYFaEH2FuArbM3b7RLuJEth00k8dflo6mbYRHtWTxTjcmoMJsTk3YP3kJKz3eGJYj2xb0
-	x4UxIxtk4gMViAXbvOLITkaZveVuMCf8XG/yPhAsbtC9Gk6tWmkpwLUYBaOBCg==
-Date: Tue, 2 Dec 2025 10:42:44 +0100
-From: Kory Maincent <kory.maincent@bootlin.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, Markus
- Schneider-Pargmann <msp@baylibre.com>, Luca Ceresoli
- <luca.ceresoli@bootlin.com>, Louis Chauvet <louis.chauvet@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Miguel Gazquez
- <miguel.gazquez@bootlin.com>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-omap@vger.kernel.org, Jyri
- Sarha <jyri.sarha@iki.fi>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Russell
- King <linux@armlinux.org.uk>, Bartosz Golaszewski <brgl@bgdev.pl>, Tony
- Lindgren <tony@atomide.com>, Andrzej Hajda <andrzej.hajda@intel.com>, Neil
- Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman
- <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>
-Subject: Re: [PATCH 05/21] ARM: dts: omap: Bind panel to panel-dpi instead
- of ti,tilcdc,panel driver
-Message-ID: <20251202104244.59a9e83d@kmaincent-XPS-13-7390>
-In-Reply-To: <3bc5bf92-05c3-4841-ab28-9bab2bb31cd5@kernel.org>
-References: <20251126-feature_tilcdc-v1-0-49b9ef2e3aa0@bootlin.com>
-	<20251126-feature_tilcdc-v1-5-49b9ef2e3aa0@bootlin.com>
-	<96b1b7bf-ddbe-4213-a201-dc89cf2998dd@ideasonboard.com>
-	<3bc5bf92-05c3-4841-ab28-9bab2bb31cd5@kernel.org>
-Organization: bootlin
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 796E6283FEF;
+	Tue,  2 Dec 2025 09:45:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.126.110
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764668760; cv=fail; b=sOp8+JiOY6Q/BCeHhm3lL2wXjh35KIy7nS/stDZBL5G7b6/OGlKwHKWQWgzfwTBjxmtTTZfUvNXqUmisA+MgT2BtqEbDuIbQDqC8wjVPe0m7kX43PFJOrfX3DHpE0B+25GY9E/k1ykKdcrGbjOG1QEj04zR0NrpeOjubAkgkZGc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764668760; c=relaxed/simple;
+	bh=BoVJhujiKXPeDENPiMeR7AsGaEAv4FgbE7SFyqYYZek=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=d6rtfMxS/rqsHxNTONhVnwpBWaobNnXFHcb/m0PRDDD1YKuzahWTbqbkK3hx9/I+P7WHGZAVBCKfQty1Wx0SNOkOjpf45gCjpVAy/jPd6ZJw94Ul/cUodX2MAwUuaQ9hbSRW83yA0STcx/ANkNyOe1uUqBBNzjVH2urD+St7imQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.126.110
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Mmg/fnTigX0EHjGwtkT0YlOslSfqk4924BdewzGQCYBJrWudRpTpCidSY1Ngn5HtnyTreDDo3aecjGvNGNqZAuUb7UiwI5jZeAdkZ46i1KmhUntxcXsd7IkiFCSj9MNORbSE2NWG2zMWsPe7pdke03kXjvFrSBLs38a/zPP5BTrJxcr6HYqA9Mm2wUZ9Und1FAV5nbgEQcQiC+ZvQ80q74Txd43QChakLDNLJBNFIY+0e+oV2M5M+YU8TveOCIZK9TS14keFIus0dSlSrE5JMnCtQ4TmpAFmqEAgiiCjvFPhWWlVwLQNvC0iXNI+n34DRLAc5zCwf+NUTJZZtkcOTg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=BoVJhujiKXPeDENPiMeR7AsGaEAv4FgbE7SFyqYYZek=;
+ b=EEBiRowHdtoZGVyIQlT6Z8XOKaXtBzMgpMc0BwkLkSG2Ej9J3r52kDUNA0z/8U/1YCRpAN5csmfFpkaovN0bhd54AoYFF/Lmk6+04OHBM3aF1Wa1LDj2Twuct7SzVxCHrWI8YYTL6fwYLU5O5ClcyDgTC0Ipr2pYNguwkUVqPY159NeLgz1oY18KjhetIT1Wux5b8z3GK1g9OMIltcbw4SnB4pkDSEabcWevGOisUB4ElXFzN/ylEduDKREBD984GEpAhquSrlC+NfOkob2I+m5ZmKyj+8ucYT5Aya2XB3gMYKLDcKr8PAoXPYMKL5GmsgrZN+FkN3t+Oe3r4uH02Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=cixtech.com; dmarc=pass action=none header.from=cixtech.com;
+ dkim=pass header.d=cixtech.com; arc=none
+Received: from SEYPR06MB6226.apcprd06.prod.outlook.com (2603:1096:101:df::13)
+ by SEZPR06MB7004.apcprd06.prod.outlook.com (2603:1096:101:1f2::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.17; Tue, 2 Dec
+ 2025 09:45:53 +0000
+Received: from SEYPR06MB6226.apcprd06.prod.outlook.com
+ ([fe80::56e8:777c:d80e:d364]) by SEYPR06MB6226.apcprd06.prod.outlook.com
+ ([fe80::56e8:777c:d80e:d364%5]) with mapi id 15.20.9366.012; Tue, 2 Dec 2025
+ 09:45:52 +0000
+From: "Joakim  Zhang" <joakim.zhang@cixtech.com>
+To: Takashi Iwai <tiwai@suse.de>
+CC: "lgirdwood@gmail.com" <lgirdwood@gmail.com>, "broonie@kernel.org"
+	<broonie@kernel.org>, "robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org"
+	<conor+dt@kernel.org>, "perex@perex.cz" <perex@perex.cz>, "tiwai@suse.com"
+	<tiwai@suse.com>, "linux-sound@vger.kernel.org"
+	<linux-sound@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, cix-kernel-upstream
+	<cix-kernel-upstream@cixtech.com>
+Subject: RE: [PATCH v3 3/3] ALSA: hda: add CIX IPBLOQ HDA controller support
+Thread-Topic: [PATCH v3 3/3] ALSA: hda: add CIX IPBLOQ HDA controller support
+Thread-Index: AQHcYrE8SyNQRYmPEEiZzVTFHQiBDLUMvZaAgAFW6mA=
+Date: Tue, 2 Dec 2025 09:45:51 +0000
+Message-ID:
+ <SEYPR06MB6226B3E1A33A299E1D94EE1F82D8A@SEYPR06MB6226.apcprd06.prod.outlook.com>
+References: <20251201105700.832715-1-joakim.zhang@cixtech.com>
+	<20251201105700.832715-4-joakim.zhang@cixtech.com>
+ <87zf82bby0.wl-tiwai@suse.de>
+In-Reply-To: <87zf82bby0.wl-tiwai@suse.de>
+Accept-Language: zh-CN, en-US
+Content-Language: zh-CN
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=cixtech.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SEYPR06MB6226:EE_|SEZPR06MB7004:EE_
+x-ms-office365-filtering-correlation-id: 3d90cf79-f296-44c0-0536-08de318794c6
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|376014|366016|1800799024|7053199007|38070700021;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?mNKx12kBjbCXN14Q8F6AFaAe9eQIisKeVo4HWjuYPFT3ai0eMLhisai5PSj+?=
+ =?us-ascii?Q?WwPM6gQmLxY9a75PxopQFZ+50Nw+k6LgDvbOcUc8YBiVuQlPStzV2/q/MW4c?=
+ =?us-ascii?Q?rUVzqYuKJ+TdmT/N5vDn9xuySYWUdleOeQEi4TR+zLvruMvSxiRBMcpiGWpi?=
+ =?us-ascii?Q?RJIx+LmyP5N+sxpYBEY6OxfW1NtrYiu29+Hk0OyG35714HUgDOozL4nbEw6x?=
+ =?us-ascii?Q?CfSSI3VGdFdKkR1Hm1jDstPht7NLPT5EYacMUPIfodlKdK+/X53AK90ijHxD?=
+ =?us-ascii?Q?5fGWkt0VJP/NgEKSn1Q28tn9gYjlRLbKtaUy80QbQiBY7zVIzvwp3U8dGSiw?=
+ =?us-ascii?Q?S8YEB6fRaorBC6NcUtI7/OJk1ZZwPX+/AjY6Or0ltH7qcVtEkd+V6FJHb3p+?=
+ =?us-ascii?Q?A1aEXOO5LR8IJF6O6BDZK+SuiGPadkT7ulKr57Nobev70Ecbi3bSxkjsxP5d?=
+ =?us-ascii?Q?C3Ie9LGVL5jH0lv/3k/4fzduV6eT2mX1VA90PYeeesuzSNKJPH/T6A9L5FaJ?=
+ =?us-ascii?Q?Uu/etBqcbONHYUKzf34kYFtvxgrm1ZBUNmfn4JDnWwTMngrEw+DxTnlyRXxN?=
+ =?us-ascii?Q?vv2h1Gkm57HWyIhOaMjwPbBFhdgXhq11QgASUL2jcFXallr6hyVA/GAeb+Z7?=
+ =?us-ascii?Q?R9Np/Ih6IgR9N9H3+pSXpZ8PqkTe0ErLNcqmD3/G2YYb4+FFnpr7uhTXwQFu?=
+ =?us-ascii?Q?CNxWAh+8rpeGdzVQyA3XfAaRPzg+R4JKXhAwoj0NqybDCGMxfltJPja5185k?=
+ =?us-ascii?Q?SIM1Guf9RtR58N0YYg6ZJhAJYL9hhpwhlJ68OHSPKeaykC/xuY7gKpnQaIEH?=
+ =?us-ascii?Q?2n+mxUQr6SstKVkibfs9nIQ0AtFQGmeyrjeYGrNdku0QYHkLp+alhxg+5OE0?=
+ =?us-ascii?Q?dVpY+bgHzoMLpSfogXm0aI++qsx1B3g/B1aorGnNulG/Or6zSdQVQSaP1LuC?=
+ =?us-ascii?Q?w5jYinmCqTer+S0p55Rgni69QkkKJest5srWdpwPtvFn6SQ/7b61JEkem1Le?=
+ =?us-ascii?Q?8niO7IQCoQpt1f+hO+sI6dTbMHcytA3jMiFnuwDDUlbS5ubSVUUZ48OBH2+S?=
+ =?us-ascii?Q?KA1vctSRqC/7Ab53/qYfgyoaIpQ9SHyK3gs0/bc7lzXJkbsORaWXvWVlWIh1?=
+ =?us-ascii?Q?x373zfyMT6DuKyjZv96nkxvMMunhT/L9m9xucmMyUMyph6wI4qrnV8xMZjyU?=
+ =?us-ascii?Q?F2A01ALz161OLjJfbQ87oZ+LP7xqYxmq7TChM2v+Sbt8kUIJ6+K0G3ZGLVz0?=
+ =?us-ascii?Q?Bhs0kv1kwcGmYwsSD7I7Fer5uZpBIDvbKqp1T3j/HrZoB3yvjxbYtAYzB3SI?=
+ =?us-ascii?Q?LyjKZYKhmJvSDxB+BxJ5Q8ls72Z/KzQGhQjKc6ldWkK9O2PW51+/ukQZQJOK?=
+ =?us-ascii?Q?zRhYHy7kn0ljr6JPNw/YiZERV7bndeB9dvcvuXWyNVJqLZaGWDoeSPYDqX+6?=
+ =?us-ascii?Q?MoJUsLPfofXt+FDHnkWjwrRBoU/OIf46nqvrh9G6Y8i8ZdyDPttVL6zFiYMp?=
+ =?us-ascii?Q?QgYCjwT+inTXAAkd3YTHByC8raclA0DRDHQu?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SEYPR06MB6226.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(1800799024)(7053199007)(38070700021);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?pxvA+Sh/irAQLROwc4uMGg+4X4701itbKXZTJ8jxMkbhEH8hSbV3fun7U+jn?=
+ =?us-ascii?Q?tV6mZZVl1AYGqPM+brmNCrtOzEMkH2g1DQDJzJb1Gydmzy8KP2UBrIbESOAM?=
+ =?us-ascii?Q?vdqTXTcr1LFwp8/khrb+I06OPCaYEcsks7mGyVKVtoEYOk1ge3OEUe255UdD?=
+ =?us-ascii?Q?uP6TSTqgzCT2aUt3ilxu6yPjREELuVnkewsgEkG4S8RjTaxrUx9Zt6SvtbBB?=
+ =?us-ascii?Q?9Hen6Sg9qMVFbTjdSRsh5Kn6mgH0sJDoEzVpYpfLMgIVPZa8RwqVZsqK8RuN?=
+ =?us-ascii?Q?VeU0VA9JvYAHZYhHhjMTxF4IBJ2Fk0Y+JQ4uhWkZtvK7HAKEHQm5tNQ5c3pB?=
+ =?us-ascii?Q?CAsOvW6ka+c8R0IXRrHxOPbd8TPfOn6kQV5X9xDpyQObXnK+yapOvkOzYd94?=
+ =?us-ascii?Q?RzTdBO0507sShNvkozISZqJXMFnJjYHAXucENELm3Pk7M3M5y3FlOyPVVe1f?=
+ =?us-ascii?Q?IZX/vKOgeDuJPr1GcnkAFmTZkCagBU93/F5Up8LeyyxjUzv2pe8UX2S042Dk?=
+ =?us-ascii?Q?bTsmJx0Ifv+tQ2TquLS4TvR9k3EvGnNgf0cEBQolqyI8d54sGGiNV27RMhVX?=
+ =?us-ascii?Q?l08o4FKt9Gs7PEXPJjTBZe2kV3AIQMYxEAIthSK4fBJW0kF+U+nrXnikyERQ?=
+ =?us-ascii?Q?citn60MUNdAwsgmMjx3r6q7UWn+ek+IoCwJ7m1Mh6e3Xifq2VsS9ss74bsCa?=
+ =?us-ascii?Q?zvMi45R/68AbHxoY2EMV2pJeqXi69/xguymWo/SfS9taa8l2KAY+0H9GSNBM?=
+ =?us-ascii?Q?NQj1BDfoPj7TcCCD85EuJpzUhc0FJBf+vxh5KaPuuuXhT7yPVYYxNfT0wwuB?=
+ =?us-ascii?Q?SkCE23fH8NxIWPIkxd7eo6aTJJFbU4U5gdkiIjVsPQ/rs8K7otz5kV0d24UC?=
+ =?us-ascii?Q?5Srd1U+fEJ7vJz5LpL/lRrBieiRViNub235AvEMSSPRN0id3wkp6bElFHWhA?=
+ =?us-ascii?Q?6E6ssGld6rx3/w11PALmMYhmZCU8ApZ+5WVVV/+dlNe0YAJ2cc/NAGYRdMBp?=
+ =?us-ascii?Q?JQozgALMMw5G+6tgFOYTjHyT6HkLMGvC6a8L0qnlhj3MQ9Zhw5/7Wj5NahR0?=
+ =?us-ascii?Q?t/KdRD8t4KIQMVcM5GVfF1tNxdnGe/+APQCbi2h7mC3YZ9kmrJzussQ1uuaj?=
+ =?us-ascii?Q?aMTo1X0//KytYTElxwgkREgGdP0ePtYcz3YKz+m8nNksR+lKwd7NcEH4lYG7?=
+ =?us-ascii?Q?iFQWi8CS1FD+QHGfClngi9/k8pauQwFhu6AF601UDifbYXSN/RXfOmAv9/Zx?=
+ =?us-ascii?Q?SfPHTVj9i1yxMKfz/eCEqJOBV4YR+a5SLB1NqpIdRGn0q3Q1uUz1xSSwdkCT?=
+ =?us-ascii?Q?ZyD5iof/fi/aR4XN0ScjXwrtuVA/uG0dMBpCCrPl95N2EIMl6uP9j1zbsoDi?=
+ =?us-ascii?Q?lwIt9NRoXZ22HkwHx4yHOfNWtwORiinqswYVrs0ZEGbNA1l2tkPbV+jyXCoi?=
+ =?us-ascii?Q?qXeZXho2a2fcYcqOjfyHk9kg9c5kM89DUIlogOcXYNhBqi51ZNxBHyptvUJ9?=
+ =?us-ascii?Q?kLY0tbaf9K08ayfuRtibmtUcbkbm0oAJ0nf8OLDaIgejsuWNovatomUajDV5?=
+ =?us-ascii?Q?jkGy7kSRK2jTUoTReUgwn9sMwsCcui3rqSDo8/gq?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: TLSv1.3
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SEYPR06MB6226.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3d90cf79-f296-44c0-0536-08de318794c6
+X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Dec 2025 09:45:51.8990
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: xxHg9t+Hw95g2Ox4ZFvIkiyEGWYL6zCl1BqLef8k8g5DNwKgP/KeDCO3UKTPvloRkx97YYxkRq16H7oKQ7vACpld7NZ0LPfMdjqY4sQ7vX0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR06MB7004
 
-On Mon, 1 Dec 2025 22:46:01 +0100
-Krzysztof Kozlowski <krzk@kernel.org> wrote:
 
-> On 01/12/2025 15:13, Tomi Valkeinen wrote:
-> > Hi Kory,
-> >=20
-> > On 26/11/2025 19:35, Kory Maincent (TI.com) wrote: =20
-> >> Use panel-dpi driver instead of the deprecated tilcdc-panel driver in
-> >> preparation for removing the tilcdc-panel driver and binding.
-> >>
-> >> Signed-off-by: Kory Maincent (TI.com) <kory.maincent@bootlin.com>
-> >> ---
-> >>
-> >> This patch is not tested. It would be nice if someone with one of this
-> >> board could test and validate it.
-> >> ---
-> >>  arch/arm/boot/dts/ti/davinci/da850-evm.dts    | 26
-> >> +++++++++++++------------- arch/arm/boot/dts/ti/omap/am335x-guardian.d=
-ts |
-> >> 25 +++++++++---------------- arch/arm/boot/dts/ti/omap/am335x-pdu001.d=
-ts
-> >> | 21 ++++++++++----------- arch/arm/boot/dts/ti/omap/am335x-pepper.dts=
-   |
-> >> 22 +++++++++++----------- arch/arm/boot/dts/ti/omap/am335x-sbc-t335.dt=
-s |
-> >> 25 +++++++++++++------------ arch/arm/boot/dts/ti/omap/am335x-sl50.dts
-> >> | 25 ++++++++++++------------- 6 files changed, 68 insertions(+), 76
-> >> deletions(-)=20
-> >=20
-> > Doesn't this, or rather the following patches, break DTB compatibility
-> > with all the above boards? =20
+Hello, Takashi
 
-Yes, I know this but I still wanted to try and begin a discussion on this, =
-as I
-really thought it is not a good idea to add and maintain an new non-standard
-panel driver solely for this tilcdc panel binding.
-I have gathered more arguments on this topic on next patch.=20
-=20
-> Stuffing DTS change in the middle of the driver change tries to hide
-> impact, which is not nice on its own.
+> -----Original Message-----
+> From: Takashi Iwai <tiwai@suse.de>
+> Sent: Monday, December 1, 2025 8:53 PM
+> To: Joakim Zhang <joakim.zhang@cixtech.com>
+> Cc: lgirdwood@gmail.com; broonie@kernel.org; robh@kernel.org;
+> krzk+dt@kernel.org; conor+dt@kernel.org; perex@perex.cz;
+> tiwai@suse.com; linux-sound@vger.kernel.org; devicetree@vger.kernel.org;
+> cix-kernel-upstream <cix-kernel-upstream@cixtech.com>
+> Subject: Re: [PATCH v3 3/3] ALSA: hda: add CIX IPBLOQ HDA controller
+> support
+>=20
+> EXTERNAL EMAIL
+>=20
+> CAUTION: Suspicious Email from unusual domain.
+>=20
+> On Mon, 01 Dec 2025 11:57:00 +0100,
+> joakim.zhang@cixtech.com wrote:
+> >
+> > From: Joakim Zhang <joakim.zhang@cixtech.com>
+> >
+> > Add CIX IPBLOQ HDA controller support, which integrated in CIX SKY1
+> > SoC.
+>=20
+> It'd be more helpful to describe the characteristics about this chip.
+> e.g. this chip requires special handling for jack polling, and it needs t=
+he
+> address offset, etc.
+>=20
 
-As it needs driver change before the removal for not breaking things it can=
-'t
-be done at the beginning of the series.
+Fine.
 
-Regards,
---=20
-K=C3=B6ry Maincent, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
+> > +static int __maybe_unused cix_ipbloq_hda_suspend(struct device *dev)
+>=20
+> Those __maybe_unused are superfluous when you use
+> SYSTEM_SLEEP_PM_OPS() or RUNTIME_PM_OPS() in dev_pm_ops
+> definition.
+>=20
+
+OK
+
+Joakim
 
