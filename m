@@ -1,173 +1,229 @@
-Return-Path: <devicetree+bounces-243709-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243710-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77D5CC9B87E
-	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 13:56:27 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D77CC9B8AF
+	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 14:00:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id EC40634464D
-	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 12:56:26 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 98E373468AD
+	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 13:00:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D0D030E829;
-	Tue,  2 Dec 2025 12:56:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 340B9310774;
+	Tue,  2 Dec 2025 13:00:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ffvFEagv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VfxAjIPv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E121F27E7EC;
-	Tue,  2 Dec 2025 12:56:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F25201548C;
+	Tue,  2 Dec 2025 13:00:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764680182; cv=none; b=eLfFu3uQG5y6fnabEtb75JDMCX7YrUDfTw1Q2grtsLBUnfCIru7q2GgNtQ2wGX9an4S9Wj8SA171CuzxVKLyN5UAq14q6aHmZKvsTXf8Mg7vA4/LmCS8R5dJhbGJDZ2vNvkPLDcTOceAhE2hkrQraDwg+qVmt9I2cS7eA9WhI6Y=
+	t=1764680446; cv=none; b=Cb+bXN3NaDN8+OC3S+sPpJMCEWwXabFvAluEQoxtPsvVQMu+vp6wmG/FLKMwjooZBA5ryn3tMhMQk8p7pJGtx2wWS/hxCg08Uy8XCTxPEavCw/RRRp16XiFSPctl6fzHJBi4MMHr3kw2jcZR4xpp+tuU170g1vTwjOAOT0UFj2s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764680182; c=relaxed/simple;
-	bh=QFgcSxDwjQGmQohC290QGXRTuVmXVyuOEalaNkjC4ws=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=UEMwG8LjW1tqIBhLFv2tuSe2ZTfgjOqsOoY8N5zl8wtkBzBa13YxHqTr3Fh1zK44zxGoFg4er9F7jE4uVyhgRY9jv0Hd1KW6sP2YPLydEexfmf37/TTCp51ws0vq92VZKbPqFJzRGAiohFPbV67eZCONiCvEE8EQP74bCpuKLxY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ffvFEagv; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 28A3B1A1EC8;
-	Tue,  2 Dec 2025 12:56:18 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id E0331606D3;
-	Tue,  2 Dec 2025 12:56:17 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id BDFCC119197A7;
-	Tue,  2 Dec 2025 13:56:07 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1764680176; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=QFgcSxDwjQGmQohC290QGXRTuVmXVyuOEalaNkjC4ws=;
-	b=ffvFEagvHMxcxYiWtdroyPQNdvLv1ifz3VFkmfX4Ma1/lCwCnkcQ1z5TloYCThJtsNEbVR
-	Tl/HXf05ZSSsQobwVSpvnrzOwTaoF2ngm/scJqKUw4cv0uYRkdxjpM1gD8kqvNzOsB7587
-	mJ0C7A89FtwW3hcIYb3WEx0KSbOMoDe2FjigWHBimIoYM7Y08gzh8unAKgbBlc/8Y2Ts11
-	Apq5W3jhmeRmm2svhWKmIIw4sHHpyUfjA7BCBRKtOdMPEnAR6VoYOa4zbh4TFL1Dd15DKi
-	1nAQwvVkD6UErGkIJJIuJwWxon9Z21z/34FWPZaLONeELfD6Cis5CRYWNdejRw==
-Date: Tue, 2 Dec 2025 13:56:05 +0100
-From: Kory Maincent <kory.maincent@bootlin.com>
-To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Markus Schneider-Pargmann
- <msp@baylibre.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, Louis
- Chauvet <louis.chauvet@bootlin.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, Miguel Gazquez
- <miguel.gazquez@bootlin.com>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-omap@vger.kernel.org, Jyri
- Sarha <jyri.sarha@iki.fi>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Russell
- King <linux@armlinux.org.uk>, Bartosz Golaszewski <brgl@bgdev.pl>, Tony
- Lindgren <tony@atomide.com>, Andrzej Hajda <andrzej.hajda@intel.com>, Neil
- Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman
- <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>
-Subject: Re: [PATCH 05/21] ARM: dts: omap: Bind panel to panel-dpi instead
- of ti,tilcdc,panel driver
-Message-ID: <20251202135605.053ada96@kmaincent-XPS-13-7390>
-In-Reply-To: <1d9a9269-bfda-4d43-938b-2df6b82b9369@ideasonboard.com>
-References: <20251126-feature_tilcdc-v1-0-49b9ef2e3aa0@bootlin.com>
-	<20251126-feature_tilcdc-v1-5-49b9ef2e3aa0@bootlin.com>
-	<96b1b7bf-ddbe-4213-a201-dc89cf2998dd@ideasonboard.com>
-	<3bc5bf92-05c3-4841-ab28-9bab2bb31cd5@kernel.org>
-	<20251202104244.59a9e83d@kmaincent-XPS-13-7390>
-	<d7515cd3-5488-4d15-82dc-d2b98cfa2bed@kernel.org>
-	<20251202114416.09624a4b@kmaincent-XPS-13-7390>
-	<94e254fa-289d-41ed-909f-1742cfbb2690@kernel.org>
-	<20251202121856.0da62885@kmaincent-XPS-13-7390>
-	<1d9a9269-bfda-4d43-938b-2df6b82b9369@ideasonboard.com>
-Organization: bootlin
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1764680446; c=relaxed/simple;
+	bh=O5dADBbz0/9mG0iK1bzqcE79NAjPo9jdhr65mtDfkmM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CDU+kMq+xhJHR1z2VhOggwScFzAYqhW70lmqEV6svnL/z6hPsxLsE/5x8dqvsE91mkx0Z33oS3JUgYqu3Ro5TsDyAa+mCkO9ztR3F59tGWZE570iLUhmBP+m1FrryrLMnJvqMAoaswnBHdfNMJ0B48HBTRq3agic5nLWc6l5vZE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VfxAjIPv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 385DCC4CEF1;
+	Tue,  2 Dec 2025 13:00:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764680445;
+	bh=O5dADBbz0/9mG0iK1bzqcE79NAjPo9jdhr65mtDfkmM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=VfxAjIPvFyqYqC/XRJRci+Dzk6nWVaa57bdk0arWM2/FfysAB/JJx5zWj+YyHVSYJ
+	 STZMh2WsDXmOHEY7/QeaL7yrf+8I0KZedS6d34BlyXtBx+FtNETtX4G14Isn0FuOxC
+	 yrnM2NLMXGcqRlG7Pb5HGwxB/J3Ji7ECy30uoHhgsLZ5CTvssuNHlsdZ/jSPCmE9aL
+	 YasY9N0op+CMjMDfMgWqIWHBZ99Fkp4sREf024I4MxwQ1r05rLQpZWg6gFMikLg5Y1
+	 EEBjfQ1/vX62DQdxy1/lHym/FLuc4uzih65BOSW1ygX04BK4iQ4eVJ9Th08euKrwOn
+	 AdsLHcR8J823A==
+Message-ID: <076777c3-b238-4d1d-a11b-602027348ee4@kernel.org>
+Date: Tue, 2 Dec 2025 14:00:39 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/6] dt-bindings: power: supply: Add Maxim MAX77759
+ charger
+To: Amit Sunil Dhamne <amitsd@google.com>
+Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, =?UTF-8?Q?Andr=C3=A9_Draszik?=
+ <andre.draszik@linaro.org>, Lee Jones <lee@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Badhri Jagan Sridharan <badhri@google.com>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Peter Griffin <peter.griffin@linaro.org>,
+ Tudor Ambarus <tudor.ambarus@linaro.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, RD Babiera <rdbabiera@google.com>,
+ Kyle Tso <kyletso@google.com>
+References: <20251123-max77759-charger-v1-0-6b2e4b8f7f54@google.com>
+ <20251123-max77759-charger-v1-1-6b2e4b8f7f54@google.com>
+ <d4455f4b-2a0f-4bc0-b897-14f2e27af3ea@kernel.org>
+ <c9b059f8-9219-4219-95c8-23a3733fea58@google.com>
+ <20251125-amorphous-bobcat-of-whirlwind-afdab1@kuoka>
+ <7ad91325-e881-461d-b39e-6ff15d98b3c5@google.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <7ad91325-e881-461d-b39e-6ff15d98b3c5@google.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Transfer-Encoding: 7bit
 
-On Tue, 2 Dec 2025 13:51:59 +0200
-Tomi Valkeinen <tomi.valkeinen@ideasonboard.com> wrote:
+On 26/11/2025 00:48, Amit Sunil Dhamne wrote:
+> 
+> On 11/25/25 1:56 AM, Krzysztof Kozlowski wrote:
+>> On Sun, Nov 23, 2025 at 06:34:05PM -0800, Amit Sunil Dhamne wrote:
+>>> Hi Krzysztof,
+>>>
+>>> On 11/23/25 1:28 AM, Krzysztof Kozlowski wrote:
+>>>> On 23/11/2025 09:35, Amit Sunil Dhamne via B4 Relay wrote:
+>>>>> From: Amit Sunil Dhamne <amitsd@google.com>
+>>>>>
+>>>>> Add bindings for Maxim max77759 charger device.
+>>>>>
+>>>>> Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
+>>>>> ---
+>>>>>   .../power/supply/maxim,max77759-charger.yaml       | 36 ++++++++++++++++++++++
+>>>>>   1 file changed, 36 insertions(+)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/power/supply/maxim,max77759-charger.yaml b/Documentation/devicetree/bindings/power/supply/maxim,max77759-charger.yaml
+>>>>> new file mode 100644
+>>>>> index 000000000000..71f866419774
+>>>>> --- /dev/null
+>>>>> +++ b/Documentation/devicetree/bindings/power/supply/maxim,max77759-charger.yaml
+>>>>> @@ -0,0 +1,36 @@
+>>>>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>>>>> +%YAML 1.2
+>>>>> +---
+>>>>> +$id: http://devicetree.org/schemas/power/supply/maxim,max77759-charger.yaml#
+>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>>> +
+>>>>> +title: Maxim Integrated MAX77759 Battery charger
+>>>>> +
+>>>>> +maintainers:
+>>>>> +  - Amit Sunil Dhamne <amitsd@google.com>
+>>>>> +
+>>>>> +description: |
+>>>>> +  This module is part of the MAX77759 PMIC. For additional information, see
+>>>>> +  Documentation/devicetree/bindings/mfd/maxim,max77759.yaml.
+>>>>> +
+>>>>> +  The Maxim MAX77759 is a dual input switch mode battery charger for portable
+>>>>> +  applications. It supports wired and wireless charging and can operate in buck
+>>>>> +  and boost mode.
+>>>>> +
+>>>>> +allOf:
+>>>>> +  - $ref: power-supply.yaml#
+>>>>> +
+>>>>> +properties:
+>>>>> +  compatible:
+>>>>> +    const: maxim,max77759-charger
+>>>>> +
+>>>> This should be just folded into parent node, no need for separate
+>>>> charger device or is just incomplete.
+>>> Thanks for the review! You are right, the binding is incomplete. This
+>>> charger block actually listens on its own I2C address, distinct from the
+>>> main PMIC.
+>>>
+>>> I will update v2 to include the reg property. I will also add the
+>> AFAIK, the main (parent) device schema does not reference children via
+>> any sort of addressing, so reg here would not be suitable.
+> 
+> I agree that currently nvmem and gpio devices (which are children of 
+> PMIC device) are not referenced using any address. But I was guessing 
+> that's because they share the i2c client id with the PMIC and sharing 
+> its address space (implied).
+> 
+> The charger device while being part of the MAX77759 PMIC package has 
+> it's own i2c client id and address space that's why I proposed "reg". 
+> The underlying assumption I made was separate client id implies that a 
+> "reg" property required. But maybe that's incorrect.
+> 
+> I can understand the argument against having a "reg" property. As the 
+> i2c client id will remain same for a max77759 charger device (as it's a 
+> chip property and not a board property) it will always remain a 
+> constant. I will drop the "reg" proposal.
+> 
+> 
+>>
+>>> standard properties `constant-charge-current-max-microamp` and
+>>> `constant-charge-voltage-max-microvolt` to configure the hardware
+>>> limits, as this charger device does not manage the battery profile
+>>> directly (that is handled by a separate fuel gauge).
+>> Well, still, what's the benefit for the bindings to have it as a
+>> separate child? Kind of depends on your example, which is quite small -
+>> one regulator and supply. Grow the example with battery and other
+>> independent resources (if they are) to justify it. Or show arguments why
+>> this is re-usable.
+> 
+> The primary reasons for keeping the charger as a distinct child node are 
+> to model the hardware topology for the power supply subsystem and to 
 
-> Hi Kory,
->=20
-> On 02/12/2025 13:18, Kory Maincent wrote:
-> > On Tue, 2 Dec 2025 11:47:40 +0100
-> > Krzysztof Kozlowski <krzk@kernel.org> wrote:
+You do not need children for that at all.
 
-> I will not NAK, removing bindings and breaking users is under some
-> conditions acceptable. You just need to come with the reasons and impact.
->=20
-> Reason "is ugly" is usually not good enough. Especially if things were
-> working.
+> house the OTG regulator provided by the charger block.
+> The charger needs to be referenced by the Fuel Gauge (which handles the 
+> battery profile) via power-supplies. Additionally, the charger block 
+> provides a regulator for USB OTG VBUS, which is cleaner to represent as 
+> a child node of the charger rather than mixing it into the top-level 
+> PMIC node.
 
-Thanks for you reply.
+Sorry but argument that you need a child device to be able to construct
+a phandle is just wrong. You can create phandles on every other way as well.
 
-> >>
-> >> DTS cannot go to drm, which means you either need to separate the chan=
-ge
-> >> and make entire work bisectable and backwards compatible for some time
-> >> OR at least document clearly the impact as we always ask. =20
-> >=20
-> > The thing is, if I split it, it has to be in 3. One for the of DRM bus =
-flags
-> > support, a second for the the devicetree and binding change and a third=
- for
-> > the whole tilcdc and tda998x cleaning stuff. I think I will go for one
-> > series, with better documentation.
-> >=20
-> > Now, what is your point of view on my question. Will you nak any binding
-> > removal even if the binding is ugly and legacy and imply maintaining an
-> > non-standard tilcdc panel driver? I know it breaks DTB compatibility but
-> > there is several argument to not keep it. See patch 6. =20
-> The binding being ugly and having to maintain non-standard tilcdc panel
-> driver may be nice things for us, the users don't care. The users care
-> if their board no longer works.
 
-Yes I understand but then I have another question. At what cost should we
-continue to support legacy binding?
-
-Just figured out this case already happened, ti,tilcdc,slave binding was
-removed from the tilcdc driver:
-739acd85ffdb7 ("drm/tilcdc: Remove obsolete "ti,tilcdc,slave" dts binding
-support")
-
-Even if there is still one mainline device tree that uses it:
-am335x-base0033.dts. :/
-
-> And how does this sync with u-boot? It also has code for at least for a
-> few of these boards.
-
-U-boot has indeed a driver for the ti,tilcdc,panel binding.
-Changing this devicetree would beak display for these board in U-boot as it
-currently does not support the "panel-dpi" binding.
-
-> Are there even users for these boards? If not, maybe they can be just
-> removed? I'm personally not familiar with these boards, so I have no
-> idea of their age or distribution.
-
-These boards are quite old (>10 years) but I don't know if they are still u=
-sed
-by people. After a quick look they seem not available on the market.
-
-> One trick that can be done is to modify the loaded DTB at boot time,
-> detecting the old format, converting it to the new one, so that when the
-> drivers are probed they only see the new DTB.
-
-Yes, indeed that could do the trick. The things is, I don't have one of
-theses board to test it. I will try to look for an other way to test it.
-
-Regards,
---=20
-K=C3=B6ry Maincent, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
+Best regards,
+Krzysztof
 
