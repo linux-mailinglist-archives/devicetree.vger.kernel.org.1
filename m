@@ -1,256 +1,118 @@
-Return-Path: <devicetree+bounces-243741-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243742-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FE38C9BD70
-	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 15:46:46 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E0C5C9BD79
+	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 15:47:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id E46F53477F1
-	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 14:46:45 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 01D954E268C
+	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 14:47:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30C411A0BF3;
-	Tue,  2 Dec 2025 14:46:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E1DE1DF258;
+	Tue,  2 Dec 2025 14:47:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hJjtyn7i"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="W7MBCM8H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f54.google.com (mail-vs1-f54.google.com [209.85.217.54])
+Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75926158DA3
-	for <devicetree@vger.kernel.org>; Tue,  2 Dec 2025 14:46:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2865518C933
+	for <devicetree@vger.kernel.org>; Tue,  2 Dec 2025 14:47:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764686803; cv=none; b=N+dS3qyarFX2Kw/wrRN2qDB2Hx1ivAFImLjohM6NCYZJkp35Ei3rD68mNwo2yhK+ISkYnhMSOxMZ/54F3ytyiQEscuu96GrDEivHuFAOj1Ww9/ayfvbHWdUJC1PONxkxz7joQ8SIjjIbiYLWKN80hTsPtxpp5bG3BwuLw4rr+BE=
+	t=1764686864; cv=none; b=n2f7d8jV57oxrpRC5xopDqrSi5pQD4axPQ2UUbh93sfcdp8QZayvlbt8lXoulIpYBQGJghYt0cjANCJ7rPs16Lyr//A4ooborOKKeN3X20SqVHr1/Bk2+UyOxZbAWQkIPfX6CuxkawyCF9ae4Ti/Rruet59MLZQxsCKmoHax41I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764686803; c=relaxed/simple;
-	bh=MoS7F23fetzjMdg5mb8OfGPgJPbLAfpu6CaMEvPxbyw=;
-	h=Mime-Version:Content-Type:Date:Message-Id:To:Cc:Subject:From:
-	 References:In-Reply-To; b=eVhnTcWven8zuzFRfWXuWE5Y3dMj4+uKh5/zoySMSaGO5YtacuX00ei0h+Yn5DyoAWZI+O3XiTze9GEOov2AyQKv7xdbZA2dg2ReNIWVRQ0P6t9ccZFzDCdKmw3Up8R0/DW/exr92ekVP1Y+3EK1EM/fodLGZUy62kbaNWQu4h0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hJjtyn7i; arc=none smtp.client-ip=209.85.217.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f54.google.com with SMTP id ada2fe7eead31-5dd6fbe50c0so2292336137.2
-        for <devicetree@vger.kernel.org>; Tue, 02 Dec 2025 06:46:41 -0800 (PST)
+	s=arc-20240116; t=1764686864; c=relaxed/simple;
+	bh=j/hJMqTXwhzzvBjqIRxoO6jbaLMP06mK7nDDmR4iv0c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=eqb/vDSUV5glFzU8wbWho9HPbiKHwJFXiTGNUaPeLZ0ehlexwzRp7vainnIV+r5djjqsCvSptqDjv5L65xqrzkLxMnYZYkEtHkb9KVUMK7IZtCfLVnIR+Xmfb1kerfFah3qOPXAjStSqFLryMH80hX9CAUUEY0qda4yyRrTHghw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=W7MBCM8H; arc=none smtp.client-ip=209.85.160.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-3f0ec55ce57so3456509fac.2
+        for <devicetree@vger.kernel.org>; Tue, 02 Dec 2025 06:47:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1764686800; x=1765291600; darn=vger.kernel.org;
-        h=in-reply-to:references:from:subject:cc:to:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7DY7E3WB0ICOl9V1+gQL7qAH+nekudiHdVslHe/Z11Y=;
-        b=hJjtyn7ibgr/tPL4uemKfTtNOgaKZyzYDpQk8XlaNNTI9VYl3yvr6YGsuRKMWXyGCO
-         3cboKCZr9ZpYyMvdPUsFVREMHnCCV9JXkIJwcLcKdhRyyjx9Nu/k09Sk93aRQ0OR0cz3
-         DKkN7efd4+C4kP7rCrjz24dTerBY0rtmMYoqnxAj1zJ1wBwzK6yv5hgvs0xSjywuQWlt
-         Q69j2qDKLiaipIBUMMZvFOvgGX26BB9b4q9qsFWxgwlMKw32hrB3QPl/U0O+TzVJtz/L
-         Bed+CegQaPHPWs4Xe8T7Vmmaljgt+AA0x6Jj9qB1BBGhnevVSp3xZ0aJWKLRXEzUum2W
-         CRJg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764686800; x=1765291600;
-        h=in-reply-to:references:from:subject:cc:to:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-gg:x-gm-message-state
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1764686861; x=1765291661; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=7DY7E3WB0ICOl9V1+gQL7qAH+nekudiHdVslHe/Z11Y=;
-        b=rIQmDg3o2JaD+YlGDW/C57anU7591AET6HECVMIvzK0M1DMdcf8quFgyJ7O8H2Llvs
-         mkkFjniY9AQSYIkHoU0Xnl9yFTXlsUk0Zp30WSBulWciH7OP61CVImOqGrNpvcyVGsWC
-         gB5hO7obilC1dNNzbAIqIUp+vcm8ap3WogjG/1Kj7InWJhl5C6uM7SjWDJIViLdzvU+r
-         /WjP58kD2OnQ8Odw/mEKoCSTqmRS0moKr/Gc+qwLBzckK597276dose9QiZvGD/84qbq
-         2tQBSsj93HIxt6p8jR3PZDrGVWRhhhcOpCTNCxRVV0/E0bWlpGhFXcdEL9VzHxXaBnl2
-         e+eQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXBh0EFMjCYQeqyKwlsPqMIQVImPc0Ysv00yhuVBoPbbFzVkHG59Dx3jxQCbRVmyeanCzc5TCN3j230@vger.kernel.org
-X-Gm-Message-State: AOJu0YzjoKaBvVGBzzbTSAKeXsBtm0Npm6q7QZfxtMrDNxcBfUxrfYTu
-	xaRjnlR4OZDymHbzTjw9mH97i8wprtvysNq0W/qNsGf82m2cTP5jiGrZ
-X-Gm-Gg: ASbGncuKMcRUOtZRMWiL5Zm4BalRoKMyZLBivSOA2Rz3BZ2pWAmTas3T/c49MDaf+gp
-	wmzoWegb4zBE+GkqfREapz09ymHewQP6Gvv+8UWqRJk/2LIASklUGH7pro5Zpn9NtfGlUgbzsaw
-	rrsvE5oAl/INBhmqz5ujWZh9Tp03lu0JPRx0nQu2CxdOEj98sydNj+nWhKOWEc/rZhYmw3rUkAw
-	7T+WWLRJuxI+WHEUdR7nW06bTAnF5tvPq4g/LD/g0zCf/lt1ELygT451aTRg2QIDGf2Qmy4brlQ
-	/aUeq7xNdQnG4HSH1Eda+RoUCjl1W6okBrBrY7Gd5oWubqdTh4Pu3PmW0OanjUm6aHjQ47zXoYH
-	9vujlJp4OMp+n4KzP+mXjgip7uvIEzw9dd9C9sL81tjdpsxVskIzIMCJ8KOnOo9uTjM8npPNRgq
-	ZFJlY=
-X-Google-Smtp-Source: AGHT+IEzulod+TcRd82XYq5299hF3YYW0eriJP67UXNInTYJ+ZnrHWKSPy0cJtoLv0clmyFSXlS9Ew==
-X-Received: by 2002:a05:6102:4a94:b0:5db:d60a:6b24 with SMTP id ada2fe7eead31-5e1de342e84mr15526327137.22.1764686800032;
-        Tue, 02 Dec 2025 06:46:40 -0800 (PST)
-Received: from localhost ([2800:bf0:82:3d2:875c:6c76:e06b:3095])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-93cd7661ae8sm6582676241.12.2025.12.02.06.46.38
+        bh=+tEzflJd04qeyR/h8UHFGgrO3/py5YXCxp0B1Oxmgik=;
+        b=W7MBCM8HskoJBTOULvYQ7+A9nypewqtelbYCDg0f8RXTkhROdZNr53MhlIjRRfxcEy
+         Nevya92JE0TePI1W8Ha45FqaSYA6ICOimIX9TmkJ5b+7Ss7NHDBZ1CYn7TMD0shlMulS
+         Dc6J/QJsGVev2KHugDAkPllqPzK9rZbSvcRHH5a8zok/clCkOUd73LKxi0kfMjuCv3AF
+         dMlJtXGkCViKj+cFVh3np5hmSdA2lcCJxZbuIlK0kreTmOyqX0BJes66D9cG7lbAd6Ky
+         TsoSzY888Z1wpsRqljJAULHUcxKyYqz47VBg/d0zdbs43mAml6fg16GRJgXpaSYDe59m
+         m6iw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764686861; x=1765291661;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+tEzflJd04qeyR/h8UHFGgrO3/py5YXCxp0B1Oxmgik=;
+        b=A8u9ch8XEybt4ihPv4Ndjwp0/YkWInw6T4b+HGFKEWqXmci3e1FsscE6EiqZK9dE33
+         o9660PwVi4lbNsJlVJk1qg9m6oVNaNYGc8MvEo4FyDlPRSaUy3v7j5XAep6bgNKFEZU8
+         JR8Ej28Ru9mirm/97cMXWJl2OCkM5i/XDhanEEEmfniPBtH3i6XWf2i0/IXJRi2NOHt3
+         vcrFgl+cIIn30oVC3sMoYpvhKUfS2BwGZSyfsgXr4k/EosAX87fT3Gf7Zs6anfuUQgc7
+         P5YT4W40C8l1f0nS9jgChfsf0EzR+OkhMgDTUSNKc+N9OEdPA0QY81gwwDf3CTgJWnRs
+         GDMA==
+X-Forwarded-Encrypted: i=1; AJvYcCVFAked3T/lDVX3DvmgGLuqQvJ4H+FGMMIWNu+o6a1MYh8gVOzlaIW6+M7pBeFt7YtO3WLxaGD8lXvO@vger.kernel.org
+X-Gm-Message-State: AOJu0YxUQ7kJl/Kogq5r0ft5mL4G8Ynb8tqyz7JSNieJZIn9UQpS70Ms
+	bPI7al02juRSkhewWAZlk5zSnbftt15/N1pPhxzch/Sm0CdXW8obxY/dRv4wFG539c8=
+X-Gm-Gg: ASbGnct0RY08VskOU54qTtyOfEZoFKvn4LaICV6wM9fZ0gSB6fDhYW9GZ501fisGEf9
+	aqWR74bE+3we0uT0OzruuHCkom8bM8ai3Gf0dkdNI6KiYNxpQIG9D73sb0Yhvi6iGtYSavFdE+b
+	biQedrDVJHituLeHgxdNizPd/80RwspqsDGWB6XlrEA4qbzXvJy8hp4QDTh1qA8O3xmrb+8+c6a
+	dSYAKsGVIxkcFijFBUvjv7ja0x6BmU0IFm8dyunFyG7h///rULOj27XaODAAT36J8yCB60LpvkQ
+	niD5jSSwCwyBlX6dDFC3PENmnLMmMDUnXbBeZvTBzWSFIdHLw58aAjRXyYYV8sL/crIKtcjPnt6
+	Gelp4l3fMwV1E2DdhvwM2X7QMqnRx10DiUWnkkXLZrOF/Q9ZVaYSSabEM0VLKBpmfr07ybZqJu+
+	mPg20WraF6rlvP76wdp5RXM77zCyF/Ii4stYaEIQMqXQz5QV6tC6ras+PqbNCw
+X-Google-Smtp-Source: AGHT+IFgYmrHE78K2ff5Q5D4WQZpVhHqerF4eN/B5q1CnMh5N4a8DwGM9R9To+9W7QSfdd4c5rIlbQ==
+X-Received: by 2002:a05:6808:2f15:b0:44d:ae60:6606 with SMTP id 5614622812f47-451159c7a46mr20381289b6e.13.1764686861256;
+        Tue, 02 Dec 2025 06:47:41 -0800 (PST)
+Received: from ?IPV6:2600:8803:e7e4:500:8f05:e265:a988:1b22? ([2600:8803:e7e4:500:8f05:e265:a988:1b22])
+        by smtp.gmail.com with ESMTPSA id 006d021491bc7-659332cf153sm4138532eaf.1.2025.12.02.06.47.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Dec 2025 06:46:39 -0800 (PST)
+        Tue, 02 Dec 2025 06:47:40 -0800 (PST)
+Message-ID: <f6f66056-f508-497f-a1a3-f4d933754859@baylibre.com>
+Date: Tue, 2 Dec 2025 08:47:39 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/7] spi: Support controllers with multiple data lanes
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Marcelo Schmitt <marcelo.schmitt@analog.com>,
+ Michael Hennerich <michael.hennerich@analog.com>,
+ =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, Andy Shevchenko <andy@kernel.org>,
+ Sean Anderson <sean.anderson@linux.dev>, linux-spi@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org
+References: <20251201-spi-add-multi-bus-support-v3-0-34e05791de83@baylibre.com>
+ <20251201-spi-add-multi-bus-support-v3-2-34e05791de83@baylibre.com>
+ <aS77X7T50D8x6yZR@smile.fi.intel.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <aS77X7T50D8x6yZR@smile.fi.intel.com>
 Content-Type: text/plain; charset=UTF-8
-Date: Tue, 02 Dec 2025 09:46:37 -0500
-Message-Id: <DENT9F7BM1O3.1XA58W93TC6AQ@gmail.com>
-To: "David Lechner" <dlechner@baylibre.com>, "Kurt Borja"
- <kuurtb@gmail.com>, "Andy Shevchenko" <andriy.shevchenko@intel.com>
-Cc: "Jonathan Cameron" <jic23@kernel.org>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
- <conor+dt@kernel.org>, "Tobias Sperling" <tobias.sperling@softing.com>,
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, "Andy Shevchenko"
- <andy@kernel.org>, <linux-iio@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, "Jonathan
- Cameron" <Jonathan.Cameron@huawei.com>
-Subject: Re: [PATCH v3 2/2] iio: adc: Add ti-ads1018 driver
-From: "Kurt Borja" <kuurtb@gmail.com>
-X-Mailer: aerc 0.21.0-0-g5549850facc2
-References: <20251128-ads1x18-v3-0-a6ebab815b2d@gmail.com>
- <20251128-ads1x18-v3-2-a6ebab815b2d@gmail.com>
- <aSsBdJZDWcadxEHC@smile.fi.intel.com>
- <DELPNLNPGQSM.1YDTB81AG0RAY@gmail.com>
- <18fbf486-c1cc-4cd2-af12-ffa093fa9ce7@baylibre.com>
- <DEN50VFOIB5O.1ENBKI6JQ0ZC@gmail.com>
- <248b009e-0401-4531-b9f0-56771e16bdef@baylibre.com>
-In-Reply-To: <248b009e-0401-4531-b9f0-56771e16bdef@baylibre.com>
+Content-Transfer-Encoding: 7bit
 
-On Mon Dec 1, 2025 at 4:53 PM -05, David Lechner wrote:
-> On 12/1/25 1:47 PM, Kurt Borja wrote:
->> On Mon Dec 1, 2025 at 11:07 AM -05, David Lechner wrote:
->>=20
->> ...
->>=20
->>>>>> +	if (iio_device_claim_buffer_mode(indio_dev))
->>>>>> +		goto out_notify_done;
->>>>>> +
->>>>>> +	if (iio_trigger_using_own(indio_dev)) {
->>>>>> +		disable_irq(ads1018->drdy_irq);
->>>>>> +		ret =3D ads1018_read_unlocked(ads1018, &scan.conv, true);
->>>>>> +		enable_irq(ads1018->drdy_irq);
->>>>>> +	} else {
->>>>>> +		ret =3D spi_read(ads1018->spi, ads1018->rx_buf, sizeof(ads1018->r=
-x_buf));
->>>>>> +		scan.conv =3D ads1018->rx_buf[0];
->>>>>> +	}
->>>>>> +
->>>>>> +	iio_device_release_buffer_mode(indio_dev);
->>>>>> +
->>>>>> +	if (ret)
->>>>>> +		goto out_notify_done;
->>>>>> +
->>>>>> +	iio_push_to_buffers_with_ts(indio_dev, &scan, sizeof(scan), pf->ti=
-mestamp);
->>>>>> +
->>>>>> +out_notify_done:
->>>>>> +	iio_trigger_notify_done(ads1018->indio_trig);
->>>>>
->>>>> Jonathan et al., maybe we need an ACQUIRE() class for this? It will s=
-olve
->>>>> the conditional scoped guard case, no?
->>>
->>> No, ACQUIRE() is not scoped, just conditional. I don't think it
->>> will improve anything here.
->>=20
->> Maybe I'm not understanding the problem fully?
->>=20
->> I interpreted "ACQUIRE() class" as a general GUARD class, i.e.
->> =09
->> 	guard(iio_trigger_notify)(indio_dev->trig);
->>=20
->> This way drivers may use other cleanup.h helpers cleaner, because of the
->> goto problem?
->>=20
->> I do think it's a good idea, like a `defer` keyword. But it is a bit
->> unorthodox using guard for non locks.
->>=20
->>=20
->
-> To take a simple example first:
->
-> static int
-> ads1018_read_raw(struct iio_dev *indio_dev, struct iio_chan_spec const *c=
-han,
-> 		 int *val, int *val2, long mask)
-> {
-> 	int ret;
->
-> 	if (!iio_device_claim_direct(indio_dev))
-> 		return -EBUSY;
->
-> 	ret =3D ads1018_read_raw_unlocked(indio_dev, chan, val, val2, mask);
->
-> 	iio_device_release_direct(indio_dev);
->
-> 	return ret;
-> }
->
-> using ACQUIRE would look like:
->
-> static int
-> ads1018_read_raw(struct iio_dev *indio_dev, struct iio_chan_spec const *c=
-han,
-> 		 int *val, int *val2, long mask)
-> {
-> 	int ret;
->
-> 	ACQUIRE(iio_device_claim_direct_mode, claim)(indio_dev);
-> 	if ((ret =3D ACQUIRE_ERR(iio_device_claim_direct_mode, &claim)))
-> 		return ret;
->
-> 	return ads1018_read_raw_unlocked(indio_dev, chan, val, val2, mask);
-> }
->
-> It makes it quite more verbose IMHO with little benefit (the direct
-> return is nice, but comes at at an expense of the rest being less
-> readable).
-
-This is verbose yes, but we could avoid having two functions in the
-first place and implement everything inside ads1018_read_raw() with
-ACQUIRE(...) on top.
-
->
->
->
-> And when we need it to be scoped, it adds indent and we have to do
-> some unusual things still to avoid using goto.
->
-> static irqreturn_t ads1018_trigger_handler(int irq, void *p)
-> {
-> 	struct iio_poll_func *pf =3D p;
-> 	struct iio_dev *indio_dev =3D pf->indio_dev;
-> 	struct ads1018 *ads1018 =3D iio_priv(indio_dev);
-> 	struct {
-> 		__be16 conv;
-> 		aligned_s64 ts;
-> 	} scan =3D {};
-> 	int ret;
->
-> 	do {
-> 		ACQUIRE(iio_device_claim_direct_mode, claim)(indio_dev);
-> 		if ((ret =3D ACQUIRE_ERR(iio_device_claim_direct_mode, &claim)))
-> 			break;
->
-> 		if (iio_trigger_using_own(indio_dev)) {
-> 			disable_irq(ads1018->drdy_irq);
-> 			ret =3D ads1018_read_unlocked(ads1018, &scan.conv, true);
-> 			enable_irq(ads1018->drdy_irq);
-> 		} else {
-> 			ret =3D spi_read(ads1018->spi, ads1018->rx_buf, sizeof(ads1018->rx_buf=
-));
-> 			scan.conv =3D ads1018->rx_buf[0];
-> 		}
-> 	} while (0);
-
-Here we could use scoped_cond_guard() instead, no?
-
->
-> 	if (!ret)
-> 		iio_push_to_buffers_with_ts(indio_dev, &scan, sizeof(scan), pf->timesta=
-mp);
->
-> 	iio_trigger_notify_done(ads1018->indio_trig);
->
-> 	return IRQ_HANDLED;
-> }
->
-> So unless Jonathan says this is what he wants, I would avoid it.
-
-I will submit this as a separate RFC patch. We can continue the
-discussion there to avoid delaying this series.
-
-
---=20
- ~ Kurt
-
+On 12/2/25 8:44 AM, Andy Shevchenko wrote:
+> On Mon, Dec 01, 2025 at 08:20:40PM -0600, David Lechner wrote:
+>> Add support for SPI controllers with multiple physical SPI data lanes.
+>> (A data lane in this context means lines connected to a serializer, so a
+>> controller with two data lanes would have two serializers in a single
+>> controller).
+> 
+> I'm a bit confused. Does it mean the three data lanes require three
+> serializers?
+> 
+Correct.
 
