@@ -1,164 +1,182 @@
-Return-Path: <devicetree+bounces-243639-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243640-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 130A3C9AD72
-	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 10:26:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 788D5C9AD90
+	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 10:27:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 8841734678B
-	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 09:26:48 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id EDD3D346718
+	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 09:27:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F42330BBA6;
-	Tue,  2 Dec 2025 09:26:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D04830BB9E;
+	Tue,  2 Dec 2025 09:27:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="MfTUlGhn"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="ZW0i6t4Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B41A43081B1
-	for <devicetree@vger.kernel.org>; Tue,  2 Dec 2025 09:26:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D2822F5332;
+	Tue,  2 Dec 2025 09:27:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764667605; cv=none; b=u+yg5kgcjaeAYoSRo3ZT6YFSHwHjPX/RoXD0FkJyqZsFn8fjL3XK2K7p6tY83sSxARD8p6Jr5ehulX5jE3qOWHiJuKhMR33my+Hrugv9hNIQrK/9BchM3fXp8NRehByHpeloQ/CZUCYPFKnic1vNJTP9FEiP6S343meIsFUqdag=
+	t=1764667662; cv=none; b=riBphGpYsCug6GaOdu4DI7btwqv9tanb52oYM8PfimzLOOrpNKw13p9vr85oSj+kEK49avWE1NBgQ4DkplT51svNyYOqdOn6p4kzBy8Vjveq8RqWiDfbQ/7i2lFK2P3FSk3QjkYKrvVuF0vJKCbeIfKwoKI4NrJRl+2MRObtfxc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764667605; c=relaxed/simple;
-	bh=e4ADKf5KnBtmyNx7K3nhN5sMxYdX8FSZtoZA9jdJSmQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=rYb13LwasbFo+4b+uuCuwcoJgb/g4Z4dom9mPyUoB+HjXMtuzOMIuytIq3IBbp8VfQWTT8hRP6XG92Z6DjKjXBRTjNYmncCm/E961O8iWccti9QEhhPlDHY11+x58UFmh83KwnVoZIVYQBYAFe8gchv6CbZSAl5iOKlcRSAMq1w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=MfTUlGhn; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 970D8C17B73;
-	Tue,  2 Dec 2025 09:26:17 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id BFCAD606D3;
-	Tue,  2 Dec 2025 09:26:40 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 3DD6211918D13;
-	Tue,  2 Dec 2025 10:26:21 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1764667597; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=0QhNzQsm8Oj1GGB/bH80Qc9yOMbCIo84NGjawpRGa0U=;
-	b=MfTUlGhnnw/aVreeaATbhw0gwkpem3K9EKovmRrLAuPocP4mtIEFaUBJAllgvpXiOFVYVs
-	/+wYe6BWiOjXN0TQXfqEbI4kTBiForiN43QgIRFG1Tif71C+pWFPguQb30OO5GR384TVLH
-	FZYaHMZgblFJnDTIPRv3nxFL2X7+IteBlMRlRxUIW82bL9nD/zWvqmrNnYX95WKYHUolBR
-	aWzmo2dED90Ls+6evrTylVevWGCfFb+t5/b4hRTOr5NOspn3gp8X2yP/8vpWUgnmn8SNQp
-	t2T7sfHrwl492i35smJdL2e7LttoyWu75OyA4aNg7/ydqIjfu3dWfVR//psj2w==
-Date: Tue, 2 Dec 2025 10:26:19 +0100
-From: Herve Codina <herve.codina@bootlin.com>
-To: Kalle Niemi <kaleposti@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Matti Vaittinen
- <mazziesaccount@gmail.com>, Andrew Lunn <andrew@lunn.ch>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Greg
- Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
- <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>, Shawn Guo
- <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix
- Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Andi Shyti <andi.shyti@kernel.org>, Wolfram Sang
- <wsa+renesas@sang-engineering.com>, Peter Rosin <peda@axentia.se>, Arnd
- Bergmann <arnd@arndb.de>, Saravana Kannan <saravanak@google.com>, Bjorn
- Helgaas <bhelgaas@google.com>, Charles Keepax
- <ckeepax@opensource.cirrus.com>, Richard Fitzgerald
- <rf@opensource.cirrus.com>, David Rhodes <david.rhodes@cirrus.com>, Linus
- Walleij <linus.walleij@linaro.org>, Ulf Hansson <ulf.hansson@linaro.org>,
- Mark Brown <broonie@kernel.org>, Andy Shevchenko
- <andriy.shevchenko@linux.intel.com>, Daniel Scally <djrscally@gmail.com>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>, Sakari Ailus
- <sakari.ailus@linux.intel.com>, Len Brown <lenb@kernel.org>, Davidlohr
- Bueso <dave@stgolabs.net>, Jonathan Cameron <jonathan.cameron@huawei.com>,
- Dave Jiang <dave.jiang@intel.com>, Alison Schofield
- <alison.schofield@intel.com>, Vishal Verma <vishal.l.verma@intel.com>, Ira
- Weiny <ira.weiny@intel.com>, Dan Williams <dan.j.williams@intel.com>, Geert
- Uytterhoeven <geert+renesas@glider.be>, Wolfram Sang <wsa@kernel.org>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-clk@vger.kernel.org, linux-i2c@vger.kernel.org,
- linux-pci@vger.kernel.org, linux-sound@vger.kernel.org,
- patches@opensource.cirrus.com, linux-gpio@vger.kernel.org,
- linux-pm@vger.kernel.org, linux-spi@vger.kernel.org,
- linux-acpi@vger.kernel.org, linux-cxl@vger.kernel.org, Allan Nielsen
- <allan.nielsen@microchip.com>, Horatiu Vultur
- <horatiu.vultur@microchip.com>, Steen Hegelund
- <steen.hegelund@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v4 01/29] Revert "treewide: Fix probing of devices in DT
- overlays"
-Message-ID: <20251202102619.5cd971cc@bootlin.com>
-In-Reply-To: <55076f4b-d523-4f8c-8bd4-0645b790737e@gmail.com>
-References: <20251015071420.1173068-1-herve.codina@bootlin.com>
-	<20251015071420.1173068-2-herve.codina@bootlin.com>
-	<f74ab0a2-b74b-4b96-8469-a716c850e230@gmail.com>
-	<CAL_JsqJDOYuzutMHMeFAogd5a_OX6Hwi8Gwz1Vy7HpXgNeYKsg@mail.gmail.com>
-	<5cf2a12a-7c66-4622-b4a9-14896c6df005@gmail.com>
-	<CAL_JsqJjm12LxpDg6LmpY=Ro_keHwnrWiYMLVnG=s_pSP4X2WQ@mail.gmail.com>
-	<072dde7c-a53c-4525-83ac-57ea38edc0b5@gmail.com>
-	<CAL_JsqKyG98pXGKpL=gxSc92izpzN7YCdq62ZJByhE6aFYs1fw@mail.gmail.com>
-	<55076f4b-d523-4f8c-8bd4-0645b790737e@gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1764667662; c=relaxed/simple;
+	bh=BALjdQsLcT14uiuNhmlNyxPxxPDYE/UJ0M1HcNCiBZE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OvyR+6Jes26cGJeDZFFchSVxd55MIDhuFz/T+h0LpjgHhThUA0iV266gMF8Z4S+4xJnNdvuK+rjlAQ2ecHtLV2N8oOjHKsYgIZ++KetVZ5bfa87bi1QLbymD3VDCQa9FeyNc7+ryDJDPg3O6XXtldXisHHT1q+vsFG8tkMpFQdE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=ZW0i6t4Y; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D8ADC116D0;
+	Tue,  2 Dec 2025 09:27:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1764667661;
+	bh=BALjdQsLcT14uiuNhmlNyxPxxPDYE/UJ0M1HcNCiBZE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ZW0i6t4YkdwaPTFOUPcOLpx713GubMhd+yoZyRnQkuRX82QMOCrxHlYE3m67DeoRD
+	 kVEaOmMu2zml4N6j29oeXnopijGZMxKZmEAl11c/nHt/0Xtk6kEjLngdONdaWDv8z2
+	 jusJMDgTusxSXykS1DTy71q/lw6AOSzQAxP4Sphw=
+Date: Tue, 2 Dec 2025 10:27:38 +0100
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Roy Luo <royluo@google.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Peter Griffin <peter.griffin@linaro.org>,
+	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
+	Tudor Ambarus <tudor.ambarus@linaro.org>,
+	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Badhri Jagan Sridharan <badhri@google.com>,
+	Doug Anderson <dianders@google.com>, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
+	Joy Chakraborty <joychakr@google.com>,
+	Naveen Kumar <mnkumar@google.com>
+Subject: Re: [PATCH v8 2/2] usb: dwc3: Add Google Tensor SoC DWC3 glue driver
+Message-ID: <2025120209-unstylish-john-2a6c@gregkh>
+References: <20251122-controller-v8-0-e7562e0df658@google.com>
+ <20251122-controller-v8-2-e7562e0df658@google.com>
+ <2025112226-heave-refrain-53e6@gregkh>
+ <CA+zupgwzQ5r=-_L79D74=9VRqRO94N0yTApHChM+Nu0cn1ss3w@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+In-Reply-To: <CA+zupgwzQ5r=-_L79D74=9VRqRO94N0yTApHChM+Nu0cn1ss3w@mail.gmail.com>
 
-Hi Kalle,
+On Tue, Dec 02, 2025 at 03:01:13AM -0600, Roy Luo wrote:
+> On Sat, Nov 22, 2025 at 8:59 PM Greg Kroah-Hartman
+> <gregkh@linuxfoundation.org> wrote:
+> >
+> > On Sat, Nov 22, 2025 at 09:32:06AM +0000, Roy Luo wrote:
+> > > Add support for the DWC3 USB controller found on Google Tensor G5
+> > > (codename: laguna). The controller features dual-role functionality
+> > > and hibernation.
+> > >
+> > > The primary focus is implementing hibernation support in host mode,
+> > > enabling the controller to enter a low-power state (D3). This is
+> > > particularly relevant during system power state transition and
+> > > runtime power management for power efficiency.
+> > > Highlights:
+> > > - Align suspend callback with dwc3_suspend_common() for deciding
+> > >   between a full teardown and hibernation in host mode.
+> > > - Integration with `psw` (power switchable) and `top` power domains,
+> > >   managing their states and device links to support hibernation.
+> > > - A notifier callback dwc3_google_usb_psw_pd_notifier() for
+> > >   `psw` power domain events to manage controller state
+> > >   transitions to/from D3.
+> > > - Coordination of the `non_sticky` reset during power state
+> > >   transitions, asserting it on D3 entry and deasserting on D0 entry
+> > >   in hibernation scenario.
+> > > - Handling of high-speed and super-speed PME interrupts
+> > >   that are generated by remote wakeup during hibernation.
+> > >
+> > > Co-developed-by: Joy Chakraborty <joychakr@google.com>
+> > > Signed-off-by: Joy Chakraborty <joychakr@google.com>
+> > > Co-developed-by: Naveen Kumar <mnkumar@google.com>
+> > > Signed-off-by: Naveen Kumar <mnkumar@google.com>
+> > > Signed-off-by: Roy Luo <royluo@google.com>
+> > > ---
+> > >  drivers/usb/dwc3/Kconfig       |  13 +
+> > >  drivers/usb/dwc3/Makefile      |   1 +
+> > >  drivers/usb/dwc3/dwc3-google.c | 628 +++++++++++++++++++++++++++++++++++++++++
+> > >  3 files changed, 642 insertions(+)
+> > >
+> > > diff --git a/drivers/usb/dwc3/Kconfig b/drivers/usb/dwc3/Kconfig
+> > > index 4925d15084f816d3ff92059b476ebcc799b56b51..f58c70dabf108878cbefe0abea88572d9ae81e26 100644
+> > > --- a/drivers/usb/dwc3/Kconfig
+> > > +++ b/drivers/usb/dwc3/Kconfig
+> > > @@ -200,4 +200,17 @@ config USB_DWC3_GENERIC_PLAT
+> > >         the dwc3 child node in the device tree.
+> > >         Say 'Y' or 'M' here if your platform integrates DWC3 in a similar way.
+> > >
+> > > +config USB_DWC3_GOOGLE
+> > > +     tristate "Google Platform"
+> > > +     depends on COMPILE_TEST
+> > > +     depends on OF && COMMON_CLK && RESET_CONTROLLER
+> >
+> > Shouldn't this be:
+> >         depends on (OF && COMMON_CLK && RESET_CONTROLLER) || COMPILE_TEST
+> >
+> > I shouldn't have to enable those options to just get a build test here,
+> > the apis should be properly stubbed out if those options are not
+> > enabled, right?
+> >
+> > thanks,
+> >
+> > greg k-h
+> 
+> Hi Greg,
+> 
+> I agree with your interpretation of COMPILE_TEST but it doesn't
+> seem to align with upstream convention. I found the following pattern
+> in several device driver Kconfig files (including but not limited to usb,
+> pinctrl and phy).
+> 
+>     depends on COMPILE_TEST || ARCH_XXX
+>     depends on CONFIG_A && CONFIG_B...
+> 
+> For this patch, the APIs exposed by OF, COMMON_CLK
+> and RESET_CONTROLLER are properly stubbed out so
+> I'm all good to go with your suggestion, but I'd like to make
+> sure this approach is conventional.
 
-On Fri, 28 Nov 2025 10:34:57 +0200
-Kalle Niemi <kaleposti@gmail.com> wrote:
+Whatever works for building properly, as-is, what you have in this patch
+didn't work for my systems at all.
 
-...
-> >>>>>>
-> >>>>>> Hello,
-> >>>>>>
-> >>>>>> Test system testing drivers for ROHM ICs bisected this commit to cause
-> >>>>>> BD71847 drivers probe to not be called.  
-> >>>>> This driver (and overlay support) is in linux-next or something out of
-> >>>>> tree on top of linux-next?
-> >>>>>
-> >>>>> Rob  
-> >>>> Yes the driver is in mainline linux: /drivers/mfd/rohm-bd718x7.c  
-> >>> I don't see any support to apply overlays in that driver.  
-> >> Ah. Sorry for the confusion peeps. I asked Kalle to report this without
-> >> proper consideration. 100% my bad.
-> >>
-> >> While the bd718x7 drive indeed is mainline (and tested), the actual
-> >> 'glue-code' doing the overlay is part of the downstream test
-> >> infrastructure. So yes, this is not a bug in upstream kernel - this
-> >> falls in the category of an upstream change causing downstream things to
-> >> break. So, feel free to say: "Go fix your code" :)
-> >>
-> >> Now that this is sorted, if someone is still interested in helping us to
-> >> get our upstream drivers tested - the downstream piece is just taking
-> >> the compiled device-tree overlay at runtime (via bin-attribute file),
-> >> and applying it using the of_overlay_fdt_apply(). The approach is
-> >> working for our testing purposes when the device is added to I2C/SPI
-> >> node which is already enabled. However, in case where we have the I2C
-> >> disabled, and enable it in the same overlay where we add the new device
-> >> - then the new device does not get probed.
-> >>
-> >> I would be really grateful if someone had a pointer for us.  
-> > Seems to be fw_devlink related. I suppose if you turn it off it works?
-> > There's info about the dependencies in sysfs or maybe debugfs. I don't
-> > remember the details, but that should help to tell you why things
-> > aren't probing.
+> I plan to add ARCH_GOOGLE as a dependency in the next
+> version per [1], so the "depends on" would probably look like
+> the following per your suggestion:
 
-Rob reverted patches but I plan to continue my work on it.
-On my side, I need the reverted patches but I fully understand that, on
-your side, you need a working system.
+But "Google" is not an arch :(
 
-In order to move forward and find a solution for my next iteration, can you
-send your overlay (dtso) used in your working and non working cases?
+And really, the whole "only have a sub-arch symbol" is something that
+personally, I think is totally wrong and prevents kernel images from
+being built for more than one "arch".  As an example, the Android GKI
+kernel has to support more than one of these, so what does putting this
+behind a symbol that no one will actually use mean anything?  Android
+will never be only building a ARCH_GOOGLE kernel.
 
-Best regards,
-Hervé
+>     depends on (OF && COMMON_CLK && RESET_CONTROLLER && ARCH_GOOGLE)
+> || COMPILE_TEST
+> 
+> Please let me know your thoughts.
+> [1] https://lore.kernel.org/linux-phy/1a53d473-fc13-4ac5-ba52-4701d95e3073@kernel.org/
+
+Again, I hate the ARCH_ stuff, but Krzysztof does seem to like it for
+some reason, so I'll defer to others here.  But note, as someone who
+helps maintain a "generic" ARM64 kernel, these ARCH_* usages for
+different platforms do nothing at all to help anyone out.
+
+thanks,
+
+greg k-h
 
