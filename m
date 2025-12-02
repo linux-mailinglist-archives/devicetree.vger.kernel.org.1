@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-243602-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243603-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4876C9A8A3
-	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 08:47:03 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 949BBC9A888
+	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 08:45:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 105BD3A7A7D
-	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 07:44:28 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 86A114E20B0
+	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 07:45:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 870CB302177;
-	Tue,  2 Dec 2025 07:44:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C3EC303A0C;
+	Tue,  2 Dec 2025 07:45:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c4j/rUvJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m+v20OiO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54042302168;
-	Tue,  2 Dec 2025 07:44:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D23712BE642
+	for <devicetree@vger.kernel.org>; Tue,  2 Dec 2025 07:45:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764661464; cv=none; b=IRgrWLL2ikYr1SgcULMsm1/hcDvFDzQWsYoaP1ErIpy4LcP45qS9R5rdHNtS2xf7uMCviL0tFQaKWqeMr7G5nw/R1Vl/BQOdMbTmMyvp7qkj22Qg1als2F+DuKPHL6jFSYWoCzXOACTVc2BJok9W5R7bVpIAosKU3QjDpBL+rX0=
+	t=1764661518; cv=none; b=nV/fb7HcqO4gYypH4E67EydBYTj/I6x5bKhynfEYihRxC/24QFM2M5ufLjL95UNKeVixSdNYuRHZTkj/SZ7Y48mLnLqWgiwUK8S3sauFjp9FhmzYQj0+lO4cV5oV7TD9Z8xJtwduuaZ3M711AnvubfTPCpqQDTdAEFp6ax542Bg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764661464; c=relaxed/simple;
-	bh=/hjV7aqFolXgiChCI+abaRPgnYBT6FMpi4NBFF/1/w4=;
+	s=arc-20240116; t=1764661518; c=relaxed/simple;
+	bh=SzUYpsU+5BjJ2RMouSPJmNPE0fS3/Qtymkq5l21p+rI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=vDo6rSG0tXELJkPiW6utLFmNfrwWyXo1HsIqTg9uS5rd4xAPV6FMrEjKF9AaPysotfNSX0cT9TJInccKDZioFgrjVbHDNeFMC2qe8B69+kaIOI/1OC+3yrYZGNT4TJJQNLM7uslWnzmAKRS26w3QlRXw5k6xHQDHfOHlUOsGupo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c4j/rUvJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8ACC0C116B1;
-	Tue,  2 Dec 2025 07:44:20 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=mMA2nMg7jiT2KjejpLGxu7N9VfFg9KpLHg6UBolx4gOp7i2HKDet98B5cv4O64b1h2iF+WZJeVTrvHnNXZ65zRpTRstN1iR55mVYlxER9qLTamq2TUaz6PSIFpwCayAvyU+XuHy0UtlMvuMP3AWYK5O7/7mews9Vr+bk7uHGb7I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m+v20OiO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94839C4CEF1;
+	Tue,  2 Dec 2025 07:45:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764661463;
-	bh=/hjV7aqFolXgiChCI+abaRPgnYBT6FMpi4NBFF/1/w4=;
+	s=k20201202; t=1764661518;
+	bh=SzUYpsU+5BjJ2RMouSPJmNPE0fS3/Qtymkq5l21p+rI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=c4j/rUvJrqtiXnpwr/AY9K9GNxVEwzYBh91c9zOh3jfZ2CNkpRSYkOZX/xhH4KfNe
-	 2A8ZsNe61EmclAdh2o4Og6YKIDXcY4Qwle4S6AGoH+ObO6AOskY0owD35gu5m6Ovmu
-	 hdsL9zLBGvGELYBnQxTY6tYTytYNagKgDq53gGBVCA6eJtjRRmWyrD+YTLdoYCW+eg
-	 gR3nVNFf1ri9DkVSkhqxHSrCaST/fInFQdab5v7WVdPs2noL8rY7FWLlRubzKf8bSX
-	 AnS+O0T4mKRfJybf/V73LVPb9UtgGHl32jlRXrTY11gb2MD9xTbkI4xznerqVifXOH
-	 0aXkK8jcnRWdw==
-Message-ID: <cbf9b0db-d1e4-4934-9961-0deb5e4fd001@kernel.org>
-Date: Tue, 2 Dec 2025 08:44:18 +0100
+	b=m+v20OiObPAWY8xw3ACYJHEfPTo1rjqIk6sW4r2jzJkCOJLidmV//wUled19bMRMP
+	 Mm2MSYPqMajkgy1lqaCGts6lgwtx78vGBY7QDMom2r80ea3D1uf2UR4wpD2RACT/ba
+	 V3hH3vRFWVKV727l8V/7D+yvd6JarjyCCsKWeeL4XkCP0HG0uCSNFtcU+hkulXGt9u
+	 isBehVDCJ3CZK79oR/8AZnJlhCoVrz5e82/dCrqn0Ff0zA0u6Luuumw4fJ406j8s02
+	 Io7L3PEP4rv8y5lQRBtG3upvvOUfvbIWDzTWUcJPWRQTbPnaYakASt5K/xwbMSoDAu
+	 2e9SnwaLJux9w==
+Message-ID: <468640ef-58a4-415c-9785-8a902cbf4370@kernel.org>
+Date: Tue, 2 Dec 2025 08:45:12 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] dt-bindings: eeprom: at24: Add compatible for Belling
- BL24C16F
+Subject: Re: [RESEND PATCH v5 1/3] dt-bindings: arm: rockchip: Add Radxa CM5
+ IO board
 To: FUKAUMI Naoki <naoki@radxa.com>, heiko@sntech.de
-Cc: brgl@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, dsimic@manjaro.org, didi.debian@cknow.org,
- wens@kernel.org, nicolas.frattaroli@collabora.com,
- detlev.casanova@collabora.com, stephen@radxa.com,
- sebastian.reichel@collabora.com, linux-i2c@vger.kernel.org,
- devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
-References: <20251202045655.154543-1-naoki@radxa.com>
- <20251202045655.154543-3-naoki@radxa.com>
+Cc: joseph.kogut@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, quentin.schulz@cherry.de, jonas@kwiboo.se,
+ kever.yang@rock-chips.com, i@next.chainsx.cn, honyuenkwun@gmail.com,
+ inindev@gmail.com, michael.opdenacker@rootcommit.com, dsimic@manjaro.org,
+ pbrobinson@gmail.com, devicetree@vger.kernel.org,
+ linux-rockchip@lists.infradead.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20251202052702.155523-1-naoki@radxa.com>
+ <20251202052702.155523-2-naoki@radxa.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,18 +107,18 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251202045655.154543-3-naoki@radxa.com>
+In-Reply-To: <20251202052702.155523-2-naoki@radxa.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 02/12/2025 05:56, FUKAUMI Naoki wrote:
-> Add the compatible for Belling BL24C16F 16Kb EEPROM.
+On 02/12/2025 06:27, FUKAUMI Naoki wrote:
+> From: Joseph Kogut <joseph.kogut@gmail.com>
 > 
-> Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
-> ---
+> From: Joseph Kogut <joseph.kogut@gmail.com>
 
-That's just one patch. No need for two one liners, just unneeded effort
-in acking.
+Your patch got corrupted. Look at your git, it should not have any
+"From" parts.
+
 
 Best regards,
 Krzysztof
