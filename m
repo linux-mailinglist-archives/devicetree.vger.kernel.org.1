@@ -1,237 +1,247 @@
-Return-Path: <devicetree+bounces-243588-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243589-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40A28C9A5F7
-	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 07:53:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BE60C9A603
+	for <lists+devicetree@lfdr.de>; Tue, 02 Dec 2025 07:55:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ED7F23A23A1
-	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 06:53:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B94103A3113
+	for <lists+devicetree@lfdr.de>; Tue,  2 Dec 2025 06:54:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47D972FFDE0;
-	Tue,  2 Dec 2025 06:53:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 547FF2FFDFC;
+	Tue,  2 Dec 2025 06:54:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b="kKeXA9P3"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="bLNh7lhO";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="fHAwoCuX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from SEYPR02CU001.outbound.protection.outlook.com (mail-koreacentralazon11023137.outbound.protection.outlook.com [40.107.44.137])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E003A245019;
-	Tue,  2 Dec 2025 06:53:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.44.137
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764658411; cv=fail; b=Lgl/b8LT/BqRv0vwQ7o4cyYEVfGw9Pla6TUnl/K7NdkkbMzw5ks0zcOgbsfKjuPhSQMaGnkTIc6791bjdmD7qSVnrNOn6FrCvMnK+vAHv1V48COELN802tNIToa23uvhf1UPTw6gCKO29j73htnGnULvZa/xYO3tKqDze1GgOSk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764658411; c=relaxed/simple;
-	bh=CvFX6YbeEDDFiRlaBNCXxXgo8mxZEvj0XfakdTKDICU=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=PFrRlOYxb60ApBlL5DVRHOFRg4a1gzJKxGBz3ilLaVd2jLxNI8yjf0z91QSQs08ZUZDnkL+AWj7itPyTWNM52nhhjt5m2kYrVlMbVL8nJtxeTEGtUPfT+OI897880VsavlDPwSH9ExiOTVMsFGlRLzFEsQL8zbJQ4I5XMVaFnlk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b=kKeXA9P3; arc=fail smtp.client-ip=40.107.44.137
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=BI8YR3JE0q7aOvKIOcEIpoQDpbI7d3UqIbl4xTH5QtBsy5c2I99Cr5KI6JWC7G/OKL/ok+pMSTm+oR8viBhQ5XhH6YzBts3dCXK6hQplnO/uxIfcvQlBc89dvr1CkmolQLvrhgDu1V59jg6vJhe3qaMc+QsdF/2x7TYBRQCRhSCbeOMQKP+zr6BchwgSFNaS7KeTp6b2IDmQlX2kWay/Kxi5Mn9BgATw78RQfwaVgD0sBQl22X2y1vwCRVZVtPZcJrD4sS4rg6X5eu2Mhy1GC30VLBHPTKQ75nbkNwotQFWpReoD4mMfbg3s0JcWQpNM3J9idgg7Nz49x+7Ticsj0A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=CvFX6YbeEDDFiRlaBNCXxXgo8mxZEvj0XfakdTKDICU=;
- b=LArqmupIPTCMVgcLgF9GdLYtMDCVl1Nq+vlr6YQTVUQtiR1W55+OVf5en0gEjgp2muaOvCxrPDw1WikqgpyFfH78Yk/wwGb+2FroGVif2BltycL7APN4pnzjeBeimLZgDbIup+GPbE9SVLK1ZEBnfGyKTyxjsOBxK4BdiaM4Et+LGO5VwVjfssZ5vjmmXY1JR7Pt2OpDHF9xDZspzf04e3+b+8kBDrjlETH//X6QSoWtdoUtvDafLWAzxCXLHxZ69ADtJEGMSSMabfrGQ5QA+MeOC3bXagmJO+0+1Tlk+JALyNrH4yARAcFlxGs7WXbaKKWPdqVlZZL/RJb2/I0wUw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
- header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CvFX6YbeEDDFiRlaBNCXxXgo8mxZEvj0XfakdTKDICU=;
- b=kKeXA9P3vP5CR6B2QbZ8cio7RHv/+KXbRj1NL8k6xetzFBKnIRsf4V2gNed+mqHhnNNhBhzVkBi0K300arNe4m464Xep2BoeRPPXAjxSx1qY3oyjUPaL4BCWuFGTyKkdA0dFkdCZBzj48rKUk1cKnNDgHs8HMDMlNXu/SvL2Med5hOo2nenmxD6qBmrnw0qCY6c09Qr+mYnwIUY8f8PZs0zKBOcauY7eT/cwtenqPzaVTNEn/twtrM7oSx1k/BfuTenJXGph1GSCiICaMUs729BWl2poWW545ShjdMZ6NdUYRWRM6HIeHfSdcb0Cj/dqiiQvjU2IukX7scHsJSev+A==
-Received: from SEYPR06MB5134.apcprd06.prod.outlook.com (2603:1096:101:5a::12)
- by KL1PR06MB6276.apcprd06.prod.outlook.com (2603:1096:820:e1::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.17; Tue, 2 Dec
- 2025 06:53:22 +0000
-Received: from SEYPR06MB5134.apcprd06.prod.outlook.com
- ([fe80::6b58:6014:be6e:2f28]) by SEYPR06MB5134.apcprd06.prod.outlook.com
- ([fe80::6b58:6014:be6e:2f28%6]) with mapi id 15.20.9366.012; Tue, 2 Dec 2025
- 06:53:22 +0000
-From: Jacky Chou <jacky_chou@aspeedtech.com>
-To: Jacky Chou <jacky_chou@aspeedtech.com>, Tao Ren <rentao.bupt@gmail.com>,
-	Andrew Lunn <andrew@lunn.ch>
-CC: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
-	<davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski
-	<kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Po-Yu Chuang <ratbert@faraday-tech.com>, Joel Stanley
-	<joel@jms.id.au>, Andrew Jeffery <andrew@codeconstruct.com.au>,
-	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-aspeed@lists.ozlabs.org"
-	<linux-aspeed@lists.ozlabs.org>, "taoren@meta.com" <taoren@meta.com>
-Subject: [PATCH net-next v4 4/4] net: ftgmac100: Add RGMII delay support for
- AST2600
-Thread-Topic: [PATCH net-next v4 4/4] net: ftgmac100: Add RGMII delay support
- for AST2600
-Thread-Index:
- AQHcUjKRp/5wUPPeG0Wo2Pz9fS4A+7TsCtCAgAJeVpCAAKBqgIABWbLAgAPq3QCADnQYkIABZcyAgACY8gCAAYfhoIAHwL3A
-Date: Tue, 2 Dec 2025 06:53:21 +0000
-Message-ID:
- <SEYPR06MB5134A5D1603F39E6025629A19DD8A@SEYPR06MB5134.apcprd06.prod.outlook.com>
-References: <20251110-rgmii_delay_2600-v4-0-5cad32c766f7@aspeedtech.com>
- <20251110-rgmii_delay_2600-v4-4-5cad32c766f7@aspeedtech.com>
- <68f10ee1-d4c8-4498-88b0-90c26d606466@lunn.ch>
- <SEYPR06MB5134EBA2235B3D4BE39B19359DCCA@SEYPR06MB5134.apcprd06.prod.outlook.com>
- <3af52caa-88a7-4b88-bd92-fd47421cc81a@lunn.ch>
- <SEYPR06MB51342977EC2246163D14BDC19DCDA@SEYPR06MB5134.apcprd06.prod.outlook.com>
- <041e23a2-67e6-4ebb-aee5-14400491f99c@lunn.ch>
- <SEYPR06MB5134BC17E80DB66DD385024D9DD1A@SEYPR06MB5134.apcprd06.prod.outlook.com>
- <1c2ace4e-f3bb-4efa-a621-53c3711f46cb@lunn.ch> <aSbA8i5S36GeryXc@fedora>
- <SEYPR06MB513424DDB2D32ADB9C30B5119DDFA@SEYPR06MB5134.apcprd06.prod.outlook.com>
-In-Reply-To:
- <SEYPR06MB513424DDB2D32ADB9C30B5119DDFA@SEYPR06MB5134.apcprd06.prod.outlook.com>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=aspeedtech.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SEYPR06MB5134:EE_|KL1PR06MB6276:EE_
-x-ms-office365-filtering-correlation-id: 78ff7197-e3fa-4921-615a-08de316f7bba
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|1800799024|366016|376014|7416014|38070700021;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?HI3hvD8JPlTD/ymTCaRm43/PFkoSzsSJr6oNKlM+elhsSRgzjAeQ9EItNfvo?=
- =?us-ascii?Q?rUvlUGr+a2cqYQPhF789JyGIGTSQqpDFfvWKlJs1PgOOpN3fkQUJvHHqwJVu?=
- =?us-ascii?Q?ZZ0hFZBRqCnCiUEGAkQLJc251mgkt7QLXB8yd2kth9psntTa55vJEBi+TvMj?=
- =?us-ascii?Q?SzX86H+ZOZdIuqJGotZWyUBJ2NWnsPqeY8dojVrGoc4QRsDBgEPsXj2fbN7N?=
- =?us-ascii?Q?rAkgjUnS7viQNwmyuOCv+uGxClTRYoeKAUfRoouA1z4vodj+vEbvVw9MRgMx?=
- =?us-ascii?Q?s3SrXRFYpkkkXFP9hPBm6buVbzj7joDOzAZ0w2EIxjwVQmsX4Va8DMORCEra?=
- =?us-ascii?Q?g+5HPnNVXXybySM0957VpcYsXR1njjpkCd9wK1bLxHa3yXgYwpXEip722ng8?=
- =?us-ascii?Q?gve9lXi93YPd/n6LiYGNk+zWxlNrdRC4iHgPVVdsFZnNVhg4nyX4lsi9NLTv?=
- =?us-ascii?Q?1Lzzy4X8HaQOEZnXLKYOI7KcxHAgb/PBnohQbmhYW8RReI4FY9IrqlmeJk/A?=
- =?us-ascii?Q?W6GU6PJmMdX/X3f6DmtSyA1kces71o+YFPdhB0dHkU4wxkAQzKr/xrA9uvG5?=
- =?us-ascii?Q?HKAX1EcE3Bw6rFNR6cqQyA16nZYDwLNUe6D1MP3gSHYT3aLWDS36556BdYKu?=
- =?us-ascii?Q?idX7Adapdrm5A21M8/iGY1MmKmJoutotpUCWoBHVyjNZ02KuHdZc9Ed0BLyf?=
- =?us-ascii?Q?nycGBXkbrKP6xBQEwAbh4jCqQ72kmTsAdwFwUy9u66V7P+SJZXsHp5/zgrRf?=
- =?us-ascii?Q?j+fRKmEm4ZwY9vQcY+FVzHs8KJwX0cTEeZaMw+JZaClipKMeJyq3lddppYvw?=
- =?us-ascii?Q?8ieskp9AJPLh1ntTF9mMhYReWOi0lwvCOGSeZybgk6B/vEdt2x5PoDEgOKbi?=
- =?us-ascii?Q?aona6VLICJNA25unndRdXjXd1HQGSRX3S8gMfN4KtGPKMkdKNizc+fZ7nzaU?=
- =?us-ascii?Q?rcX/7M3BNczENjhe6h14HFYCufBb8hNGfyJf8cMEg8F7NW/Rbe8wlXToYu1Z?=
- =?us-ascii?Q?s1QRBMJaG4R0zF7KMfLjXngB2PNHjA7Pw4BqZD47LKe3R4Uold9y0blcTWVj?=
- =?us-ascii?Q?3BMbCzt5lt1ok+zCPV5UVn8CxgoyNcIzNhLezpWAnZGrdzKq1YrVkDL1x/Fl?=
- =?us-ascii?Q?yzKpHM3BC0gIRvbk+uu371nE8LrAAdsqZUSMCT2y+8Um2kKkgU+5/HBSYlsW?=
- =?us-ascii?Q?OM8q9XVcy2PHtMlGu9jUpy5Zim4AJ7WCMgjhpOgGP+pYVaU137pwKSgrQuBb?=
- =?us-ascii?Q?yyLdGKS1uZS1Bbo7pbtR9HV8RgEXDaV61F3vSdXgy+T8Zk4GrtCFReSXO11U?=
- =?us-ascii?Q?Q+HI0S5m5BpbWlXqeMgMU+DsmBHKAPnlfS27dIZtJOsiJBwm0uAm5lKzFmZ6?=
- =?us-ascii?Q?EB6ZRn6+vO1lNMuVoOY8f+ajoCl6nm3t08XXcFp4YlLfIv0QgamGl7zpSiTY?=
- =?us-ascii?Q?jAeh6avOMJ29yyyjvjD0eIjNenhPWO8mRqFfUMwh1j6dgXDZbvy0WQuskJJA?=
- =?us-ascii?Q?0cLSqnrLBoKa9jcFJaf5WcnQ+HOnN4Donp+s?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SEYPR06MB5134.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014)(38070700021);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?bOxmoO6rmFqjZwhs4HT9hM5mxvZnec1F0JJLD+tmp36dO0KW6M1NbfD5uTLN?=
- =?us-ascii?Q?Ud8MGOrmqTzu8/01QZPSZCN9q2Ry33sg0hmwldzEt2xoIE+Vhw8oaxsPMclP?=
- =?us-ascii?Q?W1/4chmD3RKyNd5+6sX4wD9q8Oh/hMDFXOqWZD7ih9coXqzhDliufPlQ400S?=
- =?us-ascii?Q?pG7HV96cQgKT3fXjdhrgmYCy7fX/4xi0Mvo7pgAd5l8HHTNMNlkX4FZ/9iec?=
- =?us-ascii?Q?T9PGvwsrCNl1+6mchxdpDC3fGXFElxzFeLj4TPnSJJFylIdtIQt3O4KIQuq+?=
- =?us-ascii?Q?FKNaeptZGrfY9HYRcb2y23pparNTGQNsPLVUddDozVVJfmNeCvDbIkyDRdwO?=
- =?us-ascii?Q?rdpu9YXkLLbmXyx/9zp+fA6TSbPRNbvqockag7gFlpJajnMNATOWdhFu+lNg?=
- =?us-ascii?Q?KZJKhkRuySM7Z71FqsHtHdJezHJbwcmxg3LvcmLtNzWMND3UOEbwiELpAtsO?=
- =?us-ascii?Q?87Y9aOplxhs3QzEhl4q9ryRMXQZ9zTsGFfFhPndjkZWY/AKc4K1Szamx/geu?=
- =?us-ascii?Q?RiW7V+uEqXuH5S0tNGdyUy8kcmTkAeoLUoWDerf0/Y+1zEDSZ5wkkrtdO/AQ?=
- =?us-ascii?Q?f986sIU3DJXsFA8+KW2R8OY1AKIDIdbEafi0VlvFiqVv2tF1tUcKJrmDekXj?=
- =?us-ascii?Q?GGvbW3HnepQ5+vrMZoDYiAsJFfC7MByKQOtShhflHrpXcXsHmwK4Xkxylo3e?=
- =?us-ascii?Q?C40YV1CzBsYXKyougm6d3lyeuZdqvHmrOh7WCXCQoBoFvGl+CbBr3Apb/1ER?=
- =?us-ascii?Q?woe9ITtk4C7GUtrgLIEa5uD0J3Ri6gHzMRTS3bVRPCFVrsRwSV/dC3oLei9H?=
- =?us-ascii?Q?Sr4tQELa379A7AUy+w3WOzviZhX1+pYwDW6MOU21FMxeKMPV4XUUjbKxTwaA?=
- =?us-ascii?Q?tNF+NMfD6rZXQG0UhedNiy9fNmYkCEfuFq5fjtoyuAxAxga1aJW3OqekkQOR?=
- =?us-ascii?Q?KprmcTr+FOB6iJCKMQNsGGU03UOM7BemYL2/K5FiccwYS+f3UcGkpDZ/VC51?=
- =?us-ascii?Q?VMTwxA6jzHuSi6X2hMSqVkID1awDjVL/yTKms0erDXfyliL8F6p/kQu8uJax?=
- =?us-ascii?Q?kfJYS5pdBLwlD537XOptehYZluFULiXJ4g6bpytMbQD/+RKM0j7+tttp0J62?=
- =?us-ascii?Q?Mwjq77XvJyTl8glzLOUfws2fK4yBKpewgwfjlxs+QzLTCbzTW8gQuUHQ5DJe?=
- =?us-ascii?Q?vjk6l9w6NJ4vir4pDc9A6QUYO3hZp2iUT/oDMWl0NoxOsS/vJeHizywMQUgt?=
- =?us-ascii?Q?vHXqd6kla36jzduoYVKFU4H1cUdcVjnHsqu704HhIfa4jwpO20TA4znc26Dg?=
- =?us-ascii?Q?PQ0pdsf/5Cs7SHJMv1o7ZGwWsK8+k11ibceWsYhQ3P0BtiRAqXUzbGRtK0BM?=
- =?us-ascii?Q?y9gFKbuzO1aVIyfdBf41pWwYjh+7gKFeqVjHBTltUhPSuBK726Dsf0q0zU/x?=
- =?us-ascii?Q?vjfCCjvlZr/ZWqNM5fzJjyCIA9ddbH10K7qkjD51tPbWhgOtzR/QuJJip8mJ?=
- =?us-ascii?Q?Fszyid2JJ526daOFjwjQLeQ6j9yAdvn932rgLvqnqQU7AyNaoXVkxUYTSnnh?=
- =?us-ascii?Q?PDq9lO+huTpjrq/biF1fihg659tKlw0O21YD2eYR?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B520A2FFDD8
+	for <devicetree@vger.kernel.org>; Tue,  2 Dec 2025 06:54:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764658497; cv=none; b=Tr86rvsbmf82hwYGBuAOJqO7v6cxadt6aMCYPEAUiK48U0RGTBaZKKvfu+tz4po2YYytTrJ4/Hb0jO2JwkO7W2rIgKddI8DeKhdf2LJ2Vb1icImaiKiIEFjTovwlDuJQTS49X+S4jfm5Yxjec8zhj5Ih6dbnUWLZYJBXQDFSZNY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764658497; c=relaxed/simple;
+	bh=MFtxmIFFIX/mIzJYmrdf6PNdSBetj/enrg8nGxDBprc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=UfPfReLTFnctiYaXk0d78yB5EdjoVqmUd/xdK1X8nC1JrNuI1HhmUkbtDS7LcvcxT3ejmSGzgsacGIE2EfhcTrhbCMpxUzvDcp1lzMTb9ZO6oJb8ooN6cjVpNr6Z7kP/BLw7vy0K8aY2KqPBQssEF7c+iUEc8HJ3mQujn745C/4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=bLNh7lhO; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=fHAwoCuX; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5B1LsFxO1492350
+	for <devicetree@vger.kernel.org>; Tue, 2 Dec 2025 06:54:55 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	foSQ4s+N0Lrk9DxVWQCN2BFZwRi8jbvinMpgh1jOiG0=; b=bLNh7lhOX1lDxv61
+	nhWO1KrLqleF9siuA/XzbfNdg7TNT9zWizgL2yTlUxy8wPW2OZLrJ+c9sFYXLLgG
+	DeIPwVICvWqQML/WZNWi4X+gfrC4T0YwaTL4s1TJI1Zui7ey/U0urvHwSSe32Kpi
+	lOYqXbZcFhOVGmBzjizCjo6k3KRD9ImsMAQmJyUyQXbc662TtFuVYEdoEWUQs3rF
+	XNXcqeo+B0Z40NICrCfVwdlPaUrT0w/xDTpvRNa2eb0GXh2KCLmd5pNgafu68NGb
+	1IfB1WfKWDGc0PEkyAdBmlrzoW1/1QUPmpK+5lTsyYsLDUQpknINbhT9hfssse3p
+	dlBdXQ==
+Received: from mail-dy1-f198.google.com (mail-dy1-f198.google.com [74.125.82.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4askbd1adu-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 02 Dec 2025 06:54:54 +0000 (GMT)
+Received: by mail-dy1-f198.google.com with SMTP id 5a478bee46e88-2a467c4e74bso7081021eec.1
+        for <devicetree@vger.kernel.org>; Mon, 01 Dec 2025 22:54:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1764658494; x=1765263294; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=foSQ4s+N0Lrk9DxVWQCN2BFZwRi8jbvinMpgh1jOiG0=;
+        b=fHAwoCuXI8xzoquc1r/qVs4mXmhhvXhgnETwxQriXP+BzYZfym6o9UIFp+aMCqCx/y
+         JRM5q7kdWz1uNzUbDU7srwXKZLWsrrSmOMVkPkphgDr3UsTPMJMUpMmlHFx1AmrARzz9
+         fQPEDNyWf3FeeJ8k/GCY1J2BOz/i/u+hkpqbGQuySNWlaXSwRTZXgQqWGcsMq0SaA4mK
+         J9DUzBXR+9aZEGCCDwcmtyEDGp6WL6LqZtMEi1hqxbVH3PTQ8YZsrZ8/65pUJxWj/xNA
+         Nu/szI8D7IT28W4Ov11nhqBXtAwUYbnxP9jJzlD8JzPbdPCU+Sdd3DNa0rUA6bc9l5ES
+         a16g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764658494; x=1765263294;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=foSQ4s+N0Lrk9DxVWQCN2BFZwRi8jbvinMpgh1jOiG0=;
+        b=lvUwRsmvESsiBDwUulqRSqlcdlJEbICUsP8E10cD6zOPtrwPMguOctRSImfaC8At1M
+         Hd2xBhYMksQtSu88WcOxwiA4HZ/+klwq28Upr/7onT+yN3vZ+4c3yyOMqx3T6lWGn4ci
+         LWnlvHN4Bl5f4MoQm6g1kYGU/cGLSmKbgRKElc9AfPrjZQOyUCMDDA6JG0Dm7CWC+Iy5
+         uaS1w8X/bcEHFJ8ytz22Ngg7Y7bAWEntU6GIUlE5V2iA65CuC7vCiXDYJcyCdp7tapUv
+         BpeKboEFvxufrFPepQMc6+kDVuckSDf+SBMLwMpbCBNKBhYBl0PJBJOOv6yret0d2jxl
+         gqqw==
+X-Forwarded-Encrypted: i=1; AJvYcCUk/nMpk1VkFuSQ398/JWqulR9Or/uz75MmsOGO3Gt4qgoTJCPBPdqIUYmYGbzWl1qVPLulIQB3XTfj@vger.kernel.org
+X-Gm-Message-State: AOJu0YxsoN5DMuo/bQLDVP+mo5kTfOKVq3Om9xlf5+JomsIBolegNy2C
+	KVJJ8ftLnBsYccSNvdodTbzW8QedjavLE1/QHaMhtPb1s7Rc8VuBXKBx5Ln2Z8u7XgHF86UakBU
+	vfmI1KKXLU5Y8oZqDi0SOf0yFhDScVhn1LVLJiiJNC1f8Dk/zcJ9grlTlYBfvHsRI
+X-Gm-Gg: ASbGncvzfedTZOkhEbjELQ7MeoIk16UIHghumnke9mUF+Uh3dE7cVEDyW0QPdWjPSFi
+	47zaCki/QhRN3C3EAMY/N9DEeqNqvQ2FoDS1DipWNbVuv3lu3hze0rINtxIosD2vBGIL1z+tonT
+	iH/HnGCP+A2yXsWFhTyGty1IPcWqv90NBqnsdgRG/WW1uys4fJIFnIfpbZfiSU+w9LIjgFeyYJ8
+	fY/vT6GuehTfrrl1lAKbz70XOSaJDftgvdTGr3dpclly4qW6fT3L/ax+jzqyrQ5i64JbpPxwT8O
+	jT8HuuVMi4KjyT+f5j0bbchS+C71ghMGJJuCoJUpuswJTO1JLB7tqAoC5TVz0XmXFZS4vSt6F6O
+	YulXR7G2OshNxZcwqWddp8z5bqu1H73YQf6OUfYVWf2qSVu4=
+X-Received: by 2002:a05:7300:df48:b0:2a4:626d:5c38 with SMTP id 5a478bee46e88-2ab7e7c42aemr952887eec.17.1764658494076;
+        Mon, 01 Dec 2025 22:54:54 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFwtS+5CXK9Uchenjq5V8PVop7wPp/br98GZF8Rgn7RGu2+Zlt5rF78efpYSo8wSviNZatOtQ==
+X-Received: by 2002:a05:7300:df48:b0:2a4:626d:5c38 with SMTP id 5a478bee46e88-2ab7e7c42aemr952869eec.17.1764658493452;
+        Mon, 01 Dec 2025 22:54:53 -0800 (PST)
+Received: from [192.168.1.12] ([70.95.198.110])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2a9655ceb04sm51337998eec.1.2025.12.01.22.54.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 01 Dec 2025 22:54:52 -0800 (PST)
+Message-ID: <ae7e7a10-5aa4-4381-a878-101af19714b3@oss.qualcomm.com>
+Date: Mon, 1 Dec 2025 22:54:51 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: aspeedtech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SEYPR06MB5134.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 78ff7197-e3fa-4921-615a-08de316f7bba
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Dec 2025 06:53:21.9905
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: oqfOVe+yq43C2LhODRLjiNmz48NH0UyNYoGND861f2587Olzho7wmupQWhHAab+v2DhMsM4sHk2kIIjEriNs4G+EWZwji8OpzOmEzFO2atw=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR06MB6276
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4] of: reserved_mem: Restructure call site for
+ dma_contiguous_early_fixup()
+To: Marek Szyprowski <m.szyprowski@samsung.com>, Ye Li <ye.li@oss.nxp.com>,
+        robh@kernel.org, robin.murphy@arm.com
+Cc: saravanak@google.com, quic_obabatun@quicinc.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        iommu@lists.linux.dev, william.zhang@broadcom.com,
+        kernel@oss.qualcomm.com, will@kernel.org, djakov@kernel.org,
+        aisheng.dong@nxp.com, joy.zou@nxp.com, frank.li@nxp.com,
+        jason.hui.liu@nxp.com
+References: <CGME20250806172503eucas1p264d6731c73592fcc380b0dcc21cdeadf@eucas1p2.samsung.com>
+ <20250806172421.2748302-1-oreoluwa.babatunde@oss.qualcomm.com>
+ <416dbaed-a68f-4edb-a20c-94cb4c53c748@samsung.com>
+ <cef8f9eb-88aa-4771-b25b-2cfd1ac2c387@oss.nxp.com>
+ <3b0cc36d-0f7e-4d07-949f-fce670170247@samsung.com>
+ <306596c4-cc91-4500-b705-50e619e9f38e@oss.qualcomm.com>
+ <be70bdc4-bddd-4afe-8574-7e0889fd381c@samsung.com>
+Content-Language: en-US
+From: Oreoluwa Babatunde <oreoluwa.babatunde@oss.qualcomm.com>
+In-Reply-To: <be70bdc4-bddd-4afe-8574-7e0889fd381c@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-ORIG-GUID: _QUKPl44yDJfAvunylQlH0Zx3DvBS7Ul
+X-Proofpoint-GUID: _QUKPl44yDJfAvunylQlH0Zx3DvBS7Ul
+X-Authority-Analysis: v=2.4 cv=fLg0HJae c=1 sm=1 tr=0 ts=692e8d3e cx=c_pps
+ a=wEP8DlPgTf/vqF+yE6f9lg==:117 a=46YzWcEg/N/3maUrm97V4A==:17
+ a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8
+ a=Q-fNiiVtAAAA:8 a=1SuC3FrLUNVSS-YJPQIA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=bBxd6f-gb0O0v-kibOvt:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjAyMDA1MyBTYWx0ZWRfXwEuSP87L8kHm
+ HR7nuVA5jLeMJ/C4yOVtCDFyDt1NMjU6c3pSIOomjQjKO2BzleHgLVfbCQW4+dKl4TcDCSLTjUf
+ JetOnjPzk12P4AnR/w6WOB7FL7zTn3UmwPtnqswVY2XeAot0GIYoyjZQ4xytRNhdBxZ+/P2tMG7
+ zHy/l8oy53owTL44waczbk9/eXnIqk+BV7ovTCzXsw1MiHygqEZv+JmAQvt7zljG6gn+4ZFYgZ3
+ 38yT7rzdOm/Z0wcZjCHhFvhLG0HSDXZoNSxFbS5KQOhaYPJrS9aF5qx0Y8XSuEtHlwpcE40Gt34
+ B/6yk828zKnYM7fNjNSAVwnOew8/luC9YdVZwgvXkvXLe7z6ghtw5EZpXPOKPmW6puneSEyOu8o
+ SFliLbK7icMyeq48A1dSomIuA4NeHw==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-11-28_08,2025-11-27_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 clxscore=1015 phishscore=0 adultscore=0 malwarescore=0
+ suspectscore=0 lowpriorityscore=0 impostorscore=0 bulkscore=0
+ priorityscore=1501 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
+ definitions=main-2512020053
 
-> > > How many different boards do you have you can test with? Do you only
-> > > have access to RDKs? Or do you have a test farm of customer boards
-> > > for regression testing. I would throw the patchset at as many boards
-> > > as you can to make sure there are no regressions.
-> >
-> > I synced with Jacky offline a few times, and I'm happy to test the
-> > patches on my Facebook Network OpenBMC platforms.
-> >
-> > Hi Jacky,
-> >
-> > Looking forward to your v5, and please don't hesitate to ping me
-> > offline if you need more info about my test hardware.
-> >
-> >
->=20
-> Hi Andrew,
->=20
-> Thank you for your suggestions and feedback.
-> I will update the patches based on our discussion in the next version.
->=20
-> Hi Tao,
->=20
-> Thank you for your support.
-> Once I have version 5 ready, I will reach out to you. I appreciate your h=
-elp in
-> verifying the patches on your hardware.
->=20
 
-Hi Andrew,
 
-I miss one condition is using fixed-link property.
-In ftgmac100, there are RGMII, NC-SI and fixed-link property.
-On RGMII, we have solution on dedicated PHY, but there is an issue on fixed=
--link
-property.
+On 11/30/2025 11:51 PM, Marek Szyprowski wrote:
+> On 01.12.2025 07:31, Oreoluwa Babatunde wrote:
+>> On 11/28/2025 4:43 AM, Marek Szyprowski wrote:
+>>> On 26.11.2025 02:37, Ye Li wrote:
+>>>> On 8/11/2025 7:07 PM, Marek Szyprowski wrote:
+>>>>> On 06.08.2025 19:24, Oreoluwa Babatunde wrote:
+>>>>>> Restructure the call site for dma_contiguous_early_fixup() to
+>>>>>> where the reserved_mem nodes are being parsed from the DT so that
+>>>>>> dma_mmu_remap[] is populated before dma_contiguous_remap() is called.
+>>>>>>
+>>>>>> Fixes: 8a6e02d0c00e ("of: reserved_mem: Restructure how the reserved
+>>>>>> memory regions are processed")
+>>>>>> Signed-off-by: Oreoluwa Babatunde <oreoluwa.babatunde@oss.qualcomm.com>
+>>>>>> Tested-by: William Zhang <william.zhang@broadcom.com>
+>>>>> Thanks, applied to dma-mapping-fixes branch.
+>>>>>
+>>>>> Best regards
+>>>> Hi Oreoluwa,
+>>>>
+>>>> We observed this patch causing kernel boot hang on iMX6 (armv7)
+>>>> platforms if using "cma=" kernel parameter. It only happens when the
+>>>> size assigned in
+>>>> "cma=" parameter is smaller than cma default size in dts.
+>>>>
+>>>> For example, we use "cma=96M" in command line and below reserved
+>>>> memory node (160M) in dts.
+>>>>
+>>>>          reserved-memory {
+>>>>                  #address-cells = <1>;
+>>>>                  #size-cells = <1>;
+>>>>                  ranges;
+>>>>
+>>>>                  linux,cma {
+>>>>                          compatible = "shared-dma-pool";
+>>>>                          reusable;
+>>>>                          size = <0xa000000>;
+>>>>                          linux,cma-default;
+>>>>                  };
+>>>>          };
+>>>>
+>>>> The root cause is this patch moving the dma_contiguous_early_fixup
+>>>> from rmem_cma_setup to __reserved_mem_alloc_size. rmem_cma_setup can
+>>>> skip the cma reserved memory if command line has cma parameter.
+>>>> However, the __reserved_mem_alloc_size won't do it. So this leads to
+>>>> have two cma regions added to dma_mmu_remap, one from dts, the other
+>>>> from command line. But the reserved memory of memblock that only
+>>>> records the cma from command line is inconsistent with dma_mmu_remap.
+>>>> The dma_contiguous_remap clears the MMU paging for the region of
+>>>> dma_mmu_remap firstly, then create a new mapping by iotable_init. For
+>>>> the cma from dts, this causes incorrect memory mapping cleared. Then
+>>>> any allocation from memblock in iotable_init hitting to the area will
+>>>> meet MMU mapping issue.
+>>>>
+>> Hi Ye Li,
+>>
+>> Thanks for pointing this out. From what I see in the code, if "cma="
+>> kernel parameter is being used to configure the default cma region, then we
+>> should skip adding the DT defined region to dma_mmu_remap array.
+>>
+>> I will work on a fix which does this and share here when it is done.
+> 
+> I wonder how to avoid adding more such checks to 
+> drivers/of/of_reserved_mem.c and making this code even more tangled and 
+> spaghetti-like... I've briefly scanned that code and it is already quite 
+> hard to follow, especially after commits 8a6e02d0c00e ("of: 
+> reserved_mem: Restructure how the reserved memory regions are 
+> processed") and 2c223f7239f3 ("of: reserved_mem: Restructure call site 
+> for dma_contiguous_early_fixup()")... I wonder how many reserved memory 
+> regions are used on real machines? Maybe instead of complicating this 
+> code even more it is enough to make this configurable via Kconfig and 
+> restore pre-8a6e02d0c00e version?
 
-Example on dedicated PHY.
-The driver can pass the "rgmii-id" to tell PHY driver to enable the interna=
-l delay on
-PHY side. Therefore, we can force to disable RGMII delay on MAC side.
-But there is not any driver when using fixed-link property, which means
-no body can tell the outside device, like switch or MAC-to-MAC, to enable t=
-he internal
-delay on them. Also mean the phy-mode in fixed-link case is not used.
+Hi Marek,
 
-Therefore, could we ignore the RGMII delay on MAC side when the ftgmac100 d=
-river gets
-the fixed-link property? Just keep the original delay value?
+There was a change which attempted a simpler approach of increasing the
+size of the static array:
+https://lore.kernel.org/all/1650488954-26662-1-git-send-email-quic_pdaly@quicinc.com/
 
-Thanks,
-Jacky
+The comment from Rob at the time was to revive another thread which attempted
+to dynamically allocate the reserved_mem array like we are doing now.
+Dynamic allocation gives more flexibility because we only use the exact
+amount of memory that is needed. This can save some memory if that ends
+up being smaller than what is specified in MAX_RESERVED_REGIONS.
+
+I do agree that adding another check in of_reserved_mem.c might not be the best
+in terms of code complexity, so I'm exploring other options on how to keep things
+simpler.
+
+Regards,
+Oreoluwa
 
 
