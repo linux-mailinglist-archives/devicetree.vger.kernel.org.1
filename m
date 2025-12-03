@@ -1,1391 +1,288 @@
-Return-Path: <devicetree+bounces-244010-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244011-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABF5BC9EFB0
-	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 13:24:51 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFA9AC9EFE3
+	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 13:30:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 77911349350
-	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 12:24:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 02C063A7B1F
+	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 12:30:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30E8A2F6922;
-	Wed,  3 Dec 2025 12:23:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22AEA2E22AA;
+	Wed,  3 Dec 2025 12:30:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sartura.hr header.i=@sartura.hr header.b="Mx50FFYF"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="aHgaUk/C";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="A6tmHSbj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DDEC2F691E
-	for <devicetree@vger.kernel.org>; Wed,  3 Dec 2025 12:23:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C3D82F5A03
+	for <devicetree@vger.kernel.org>; Wed,  3 Dec 2025 12:30:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764764623; cv=none; b=V6oRt71ZJ49nNFqiDIcgvoOA0U+DLhbG63nFFtOtu9+5okctaU9dCiJO1kaM8l2qO3+lJBoTpXJK1WmnLEmTYTrPZjwKpe0yomYm0oic5Q6N6HiQ4XzCE+aiil/Zp1sSA0cgl1+jp6ih0gfcb8q4lqqyScxNdsxEclcIgF9ilX8=
+	t=1764765015; cv=none; b=TLKfpbS2D4PYXZ0HL7w6+xmGXR5YUvbBu4ALJgQ1vrHsC+mTrXlCB+AKNRTIN4k0pTslVfTa5ANFNiNMzqyMHnZQzmj0c5tN3UyMDzFhnxXCa7t37pmbFsdVbRrTszQoAFI204RDYerSghTUiRkDqwldr1pO3YX4jTG9zrYzuq0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764764623; c=relaxed/simple;
-	bh=KfPwS+0Lzj+mUjkny9okK5O6acOtQa/dTGJv7W6ijSc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=HvAKj68RoYHEPdRVlXczPw6iD8zX2TPilGpn7zdSjbJcEYpSNDEcMr/XRQT+xx295YyU2u1DdkB7/CuyTzjzYmUXlz7kIaA/fdB3v9+MxyXqEIswnOllwKmfHtkhUliGqKTjcsFARoXnu4Dx10rQe/XVogg+e1T3VA4XkPVCiF8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sartura.hr; spf=pass smtp.mailfrom=sartura.hr; dkim=pass (2048-bit key) header.d=sartura.hr header.i=@sartura.hr header.b=Mx50FFYF; arc=none smtp.client-ip=209.85.222.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sartura.hr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sartura.hr
-Received: by mail-qk1-f170.google.com with SMTP id af79cd13be357-8b25dd7ab33so417261185a.1
-        for <devicetree@vger.kernel.org>; Wed, 03 Dec 2025 04:23:39 -0800 (PST)
+	s=arc-20240116; t=1764765015; c=relaxed/simple;
+	bh=57y2PMcZtQpat863EjZRPmyOnIiP+0dqb1YuhpvrzEU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=qb85ZZGyMR2hnEdUtAxuAdNGJmqJh79m1gbxDlN7hk0mKVhQyILmbS4iyAReXL8dVNxxo/su0Jyipjk8IuPTi3hyq0UyA3dmH3VhwaaXlH2gKsvW32EZ7tiG788lP9SUOxxQ7zEwnU6rEGh47zt1R1e9KEHp77Y6QHN3UqCOJpk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=aHgaUk/C; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=A6tmHSbj; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5B3BkDmx2436499
+	for <devicetree@vger.kernel.org>; Wed, 3 Dec 2025 12:30:11 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	3fYex6fpcn/B1nlgT3oL2QgMlu3CZUz/VwJR0bhgoqE=; b=aHgaUk/C0Cf0iAM+
+	P2cEI46fknVlFZLKSgr5FeaF+P+vdR4ILAF+TSQFP6hWuZdVNn5yIAItYFAqbVPf
+	kQfPAgRdO4MLoP0CsyDqIFFB6iVFnoahqDofkP6eN9NUS4bf+bkRnTtGACvndBYi
+	hBX67SZR3VgryPz/pgUtNyfMsrxBzaFlVKb4h9ihVguGaqP7YMGay431UQCXTfYq
+	sYkN+5U3iDs/8Sv2sNNcdd2bqEIBXDzM4ElLJpnByDpUjtNumiVWI/8QssheHNmn
+	yvdgRn5j0ky1p6PifAFzm4B5W5JthvbKV5LUgp2vFbQmx41cLPIvcVULz5zx0o4s
+	pK6JoA==
+Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4atmmd83e3-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 03 Dec 2025 12:30:11 +0000 (GMT)
+Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-29be4d2ef78so81196525ad.2
+        for <devicetree@vger.kernel.org>; Wed, 03 Dec 2025 04:30:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura.hr; s=sartura; t=1764764618; x=1765369418; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tb7UFzmIkU/Nrr5ircYlbDOMo0utP9ezOeURil9uzgw=;
-        b=Mx50FFYFyZ9CS/aeop78+Q44gojdqSSsnSpCPfUzZmp1qgDZRyPFt9+cZwC250aMaA
-         IiNrnX8glW7T4TaSFrixhBZpZ4HOVrFauPaoe4947yq0N3cioRi3fAWBtsWAtnQiOFB7
-         VKUgWXm/crnFVIuIBXRt4Ci6M2gngSr6EOct+2GnDatFVPG2UVk2cmSUz3bMipR4NtN3
-         kgSAEqwLc/Ifjv+j0wH7zZ+CzAlemdrDcUqn6Xc989dvYVIYvXS/czCNyr6jReaEh3Km
-         BxZvdhrlQWZB+Y7nhvtfQnxNCCUWt6GMDyXAwetGCP0kxiEkrDfPTH6bCxWx6tFJDyYc
-         VMWQ==
+        d=oss.qualcomm.com; s=google; t=1764765011; x=1765369811; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=3fYex6fpcn/B1nlgT3oL2QgMlu3CZUz/VwJR0bhgoqE=;
+        b=A6tmHSbj2mYB2yNNd46XBW60dqwvgXRvJUNhG1XO6lpC7JvFJEHqr4sZ+hPavANuhl
+         vmAAZELy0HPDS3NCiCyGWeym0VOjFfsOrSx1/jZc9X7bRbucfDvvPo2D7R4NaTA0sfJm
+         eeN+GEDRMtLJm8mcRsFmTekYVjbVF4tb7zGmG19DXQVplgKbjn6AnUEPHMzOQ2XnIMvq
+         4d0LkM6OpM2tLdZvrbZZ3zpJgj51WqLwaDIxSegFt3QNTSWmUkjbZuQ6m+YXqLS2gJxj
+         UIxoAg2R/xbjbo1lVeyZ9ps8JZ5m+sBfd6KoC62rZews2AaMdptmEAsCcUGN09WWycQq
+         aJ2A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764764618; x=1765369418;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=tb7UFzmIkU/Nrr5ircYlbDOMo0utP9ezOeURil9uzgw=;
-        b=MugDLOOearS7+K01vpruJleHV3U1KFSsWU9lCgk6wTpLDUElyF8pUPrRYm7th+WXQz
-         JMWE8FzOskp5Hh+ock6bM2+AL/4+a2edClzu11ITjgfN3cZj2Ou8g+odsd82dG9JgMiR
-         X971VcJwqP5rxCQpM06PI5uWjKBPNrPIRr3tGkMZd2kSuJEfsVXSS/U3aL1G+Z+B0i2o
-         TMoKrDoUm03MqRN6rhPYqnto1EVRA1N7f6SGGkKJPh4KuRvZdhFuEJN6rMmDsoCL+0h/
-         PiNTQ+14y+Rd9LcloDletHBZQ2IXM0ZvWOrL9Vuw6xuFpnTtu13DldS4nT+CShrW7cjE
-         k88Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVTJc3vjxRXGsKaF6claMEVQVotJ6TtUtAA4ZzzI2wIkJOCmTGq0xwmRuUcF9Z7Y/gyi5DiV25ibbcb@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz84Jpaj/b1HtDNrzdPFYMqmtgB4WmaJlyIfEBBXcLS57k1TgSW
-	PkEOE42OhR4uUCSAQb7UU9QeT8okU/Bsy4iV9MdcUlQVJw9Dhc/wDVpj+vio91MJ9kM=
-X-Gm-Gg: ASbGncuWuHgRHn2twxcrk0Ry12+RES2NiLKo84fVWQaxJ7cq4dA37nfg5IEg4GHU0a+
-	VnJvM+XTmqs7fCcc3O6I8Bgv3YmLkTB7T8c9M8L9Kz/dEtseQs2t8isrtzh5ZUhj+p33bM3aWIH
-	5JQ0QLg+11avTRUw7Za4176qXZteM3Kp5J6GUCGJc9ZIoVU5DrghASk/51FHT0iV6pAeuMbjiAh
-	XsHK1qZDE4hvra14ZYygmOs2MWzkATymd8IgE5pSd2SDk/A9yOjlqgkuUsYzOCpmhT4m5LX94rb
-	PMc4KN5TlRJHpEtbXX3m8RAYu99qS5TzWx2FdzqSp8B64SahhOURVoAkktZ+Fau7IxkOkw+0Lzt
-	bPivqMgDSSo4obrWH3AU348SnvSPf2WB6R52h91lNruQ8IAe06D3MewPPwmu2T+y4k0CZ56ErSo
-	Hn4TNXKlSN0tpyRLnrpHP5NsKAv59azAXzhrGV/qSEgVdm
-X-Google-Smtp-Source: AGHT+IEgyY2OaqM53jtNdv4PAXMAKZiowGQCxPIBp9Qz4US9vRxf92zjxmvMcEz1beU9ZhcOM12Ffg==
-X-Received: by 2002:ac8:594a:0:b0:4ee:2e6e:a0f9 with SMTP id d75a77b69052e-4f0175c3855mr26855381cf.35.1764764618240;
-        Wed, 03 Dec 2025 04:23:38 -0800 (PST)
-Received: from fedora (cpezg-94-253-146-247-cbl.xnet.hr. [94.253.146.247])
-        by smtp.googlemail.com with ESMTPSA id d75a77b69052e-4efd2f9a755sm115214351cf.3.2025.12.03.04.23.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Dec 2025 04:23:36 -0800 (PST)
-From: Robert Marko <robert.marko@sartura.hr>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	gregkh@linuxfoundation.org,
-	nicolas.ferre@microchip.com,
-	claudiu.beznea@tuxon.dev,
-	mturquette@baylibre.com,
-	sboyd@kernel.org,
-	richardcochran@gmail.com,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-usb@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-clk@vger.kernel.org,
-	daniel.machon@microchip.com,
-	UNGLinuxDriver@microchip.com
-Cc: luka.perkov@sartura.hr,
-	Robert Marko <robert.marko@sartura.hr>
-Subject: [PATCH 4/4] arm64: dts: microchip: add LAN969x support
-Date: Wed,  3 Dec 2025 13:21:32 +0100
-Message-ID: <20251203122313.1287950-4-robert.marko@sartura.hr>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20251203122313.1287950-1-robert.marko@sartura.hr>
-References: <20251203122313.1287950-1-robert.marko@sartura.hr>
+        d=1e100.net; s=20230601; t=1764765011; x=1765369811;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3fYex6fpcn/B1nlgT3oL2QgMlu3CZUz/VwJR0bhgoqE=;
+        b=Lt990zEIRGsBTDK7pAjOsrmKRbnq4Q5N2heAe27m1WO5ighJLWv+OEBKC2wsO2MENe
+         Ay9riZrGRemOnhjGrf3WDa8FvfUwmVo/CFVCjzd3MklXB6K4POlueFZEZnbmKpkMTUBd
+         +mTrHdXqFcA0/kjNQcvkfCBRHidgPwF3iS0ae7aDkwwoAZdbWbXkAZkkSuM18MXsyrTn
+         RQRRdtMTa+5qNDG3naCCSzQUppCdqRmrgqCA97GO2RlEybPL+hg3Xoin20k5Xauxc+FE
+         r481lKdnLeoHNhg0yp/eXA9NY9Hg25GSzRG/OZVM+ceEskiN6fF/UVuDk63PiH76wfcs
+         zNxg==
+X-Forwarded-Encrypted: i=1; AJvYcCU1mD2gP4Do0qJhkhYNeCWQv8oFBLghxv5pODffpd2VW3lRqY7hbjsKTmnfiE4gPIHVTjeRtjMcEfno@vger.kernel.org
+X-Gm-Message-State: AOJu0YyxpcYEeTV47eRFQBFnSWKCxYpSapt7/UAwZndRjpbHEswdbH1K
+	K0CIep8YEuELFDTNqWcxZDcLJFr1aA3JNmun+uSie8oSo2rcA6Yepo7i8wZWsnDZ0ie0uuyFO2L
+	8oWbX1wjlU+hrkGuSTQfu1r/vxM2K0QH3DviehwBB0vIA4kzUhlMRgCYjDYX+GAq5
+X-Gm-Gg: ASbGncvxTvR2Cm3u5/4FAe1GI9lXjZIyRDQ0NaJkXMDToxsRVLEpIPJR0GVpf3sQtc2
+	rlOyIZ0uGJqDag/gCR+S0biAXkm38+39PF1ZchiiOjeB2CtETcx6lDfJYBRTpbqVAG35KfzyYZr
+	PHgEed3/SQ7mihuCZ85LNXIybVikYSICQxM5EjPx8xsQHZmrltMt6+xGWzfpFMik30Djz3fQ15P
+	wRvz7jk98l3/4H6Xby6F49DHCgqXMnZHF4aGRhPJ6SDD2M4XNf/POr6px7zWKyWxuY6SyAf+NkW
+	DPJyGvC7SWwR5ggnkakjfc4TqR5woL37nZpHOsZifwySLj5KLfag9atbi4IB8EGjlM8ZyzWufpr
+	jFRDtJ6gBMcEChbhHJ2t0JcCtF8XrbefAiXWf2P33BHg2aePpAaIBrz76i0ljsYpAf0gIbIxAK2
+	E=
+X-Received: by 2002:a17:903:1b50:b0:295:2276:6704 with SMTP id d9443c01a7336-29d683d8d2emr22768105ad.51.1764765010688;
+        Wed, 03 Dec 2025 04:30:10 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFi514MvoLWPQ+mY3QhTw3sJim5M/u4DvZfebZxJa2M+8ysnveo0HmfWywoFhk2Q0m5oo41QQ==
+X-Received: by 2002:a17:903:1b50:b0:295:2276:6704 with SMTP id d9443c01a7336-29d683d8d2emr22767635ad.51.1764765010040;
+        Wed, 03 Dec 2025 04:30:10 -0800 (PST)
+Received: from [10.133.33.113] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29d8f4075cfsm880765ad.50.2025.12.03.04.30.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 03 Dec 2025 04:30:09 -0800 (PST)
+Message-ID: <3e069b0b-c73c-4a42-9d39-9fc5072a2710@oss.qualcomm.com>
+Date: Wed, 3 Dec 2025 20:29:59 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 0/9] coresight: ctcu: Enable byte-cntr function for TMC
+ ETR
+To: Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mike Leach <mike.leach@linaro.org>,
+        James Clark <james.clark@linaro.org>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Tingwei Zhang <tingwei.zhang@oss.qualcomm.com>,
+        Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>,
+        Mao Jinlong <jinlong.mao@oss.qualcomm.com>,
+        Jie Gan
+ <quic_jiegan@quicinc.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+References: <20251013-enable-byte-cntr-for-ctcu-v7-0-e1e8f41e15dd@oss.qualcomm.com>
+Content-Language: en-US
+From: Jie Gan <jie.gan@oss.qualcomm.com>
+In-Reply-To: <20251013-enable-byte-cntr-for-ctcu-v7-0-e1e8f41e15dd@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: oNNUeIeCxpp4R3Mo1qVGxW7Lt7kyMIAi
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjAzMDA5OSBTYWx0ZWRfX0c2OzI+y5ZfS
+ yAJpjnocCKMe2sPNmnYF+5Vb09ds8kFHY7Vtg7mvUyl2dyF6WXjdgkww2RDKIlME78cDwVQJa05
+ kjNhw7PqU6yru8vb6wc2OVRRQ1H6eZtSBvu6ugXNYLXkmaApSHisDqGTJ2Q2TfASJnxQOHLFm84
+ f6lYl3R4ElVLTZXg+2YahGjqbZvhYdxdzNK7gwFN+czzxpZ1iE5Urs/6WyHIbliEMIYs57Eg2Ck
+ kqLb+1lKmpzDwQAOuYwotDZR3DD9TEdLQklHMQpDwhxwJ3cPTJVY1u5ex2EcnN7Vq9nokAt1yqf
+ WQlRJEqlFl+JQLaemDxX5ccbh5fGFxqTE/V8MUmAvLZ4pUz6ohKubLlGqY0QKlbzGoPUIz171LM
+ YJrAO0vboNyQNDUpDDK8IYlYioiY/g==
+X-Proofpoint-ORIG-GUID: oNNUeIeCxpp4R3Mo1qVGxW7Lt7kyMIAi
+X-Authority-Analysis: v=2.4 cv=Ctays34D c=1 sm=1 tr=0 ts=69302d53 cx=c_pps
+ a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8
+ a=BaEammc9KrtT-KL9giMA:9 a=QEXdDO2ut3YA:10 a=GvdueXVYPmCkWapjIL-Q:22
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-03_01,2025-11-27_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 impostorscore=0 bulkscore=0 spamscore=0 lowpriorityscore=0
+ clxscore=1015 priorityscore=1501 adultscore=0 phishscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512030099
 
-Add support for Microchip LAN969x switch SoC, including the EV23X71A
-EVB board.
 
-Signed-off-by: Robert Marko <robert.marko@sartura.hr>
----
- arch/arm64/boot/dts/microchip/Makefile        |   2 +
- .../boot/dts/microchip/lan9696-ev23x71a.dts   | 761 ++++++++++++++++++
- arch/arm64/boot/dts/microchip/lan969x.dtsi    | 482 +++++++++++
- 3 files changed, 1245 insertions(+)
- create mode 100644 arch/arm64/boot/dts/microchip/lan9696-ev23x71a.dts
- create mode 100644 arch/arm64/boot/dts/microchip/lan969x.dtsi
 
-diff --git a/arch/arm64/boot/dts/microchip/Makefile b/arch/arm64/boot/dts/microchip/Makefile
-index c6e0313eea0f..d02ac50aae79 100644
---- a/arch/arm64/boot/dts/microchip/Makefile
-+++ b/arch/arm64/boot/dts/microchip/Makefile
-@@ -2,3 +2,5 @@
- dtb-$(CONFIG_ARCH_SPARX5) += sparx5_pcb125.dtb
- dtb-$(CONFIG_ARCH_SPARX5) += sparx5_pcb134.dtb sparx5_pcb134_emmc.dtb
- dtb-$(CONFIG_ARCH_SPARX5) += sparx5_pcb135.dtb sparx5_pcb135_emmc.dtb
-+
-+dtb-$(CONFIG_ARCH_LAN969X) += lan9696-ev23x71a.dtb
-\ No newline at end of file
-diff --git a/arch/arm64/boot/dts/microchip/lan9696-ev23x71a.dts b/arch/arm64/boot/dts/microchip/lan9696-ev23x71a.dts
-new file mode 100644
-index 000000000000..6bbddad2a0b9
---- /dev/null
-+++ b/arch/arm64/boot/dts/microchip/lan9696-ev23x71a.dts
-@@ -0,0 +1,761 @@
-+// SPDX-License-Identifier: (GPL-2.0-or-later OR MIT)
-+/*
-+ * Copyright (c) 2025 Microchip Technology Inc. and its subsidiaries.
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/leds/common.h>
-+#include "lan969x.dtsi"
-+
-+/ {
-+	model = "Microchip EV23X71A";
-+	compatible = "microchip,ev23x71a", "microchip,lan969x";
-+
-+	aliases {
-+		serial0 = &usart0;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	gpio-restart {
-+		compatible = "gpio-restart";
-+		gpios = <&gpio 60 GPIO_ACTIVE_LOW>;
-+		open-source;
-+		priority = <200>;
-+	};
-+
-+	i2c-mux {
-+		compatible = "i2c-mux-gpio";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		i2c-parent = <&i2c3>;
-+
-+		mux-gpios = <&sgpio_out 0 1 GPIO_ACTIVE_HIGH
-+			     &sgpio_out 0 2 GPIO_ACTIVE_HIGH
-+			     &sgpio_out 0 3 GPIO_ACTIVE_HIGH>;
-+		idle-state = <0x8>;
-+
-+		i2c_sfp0: i2c@0 {
-+			reg = <0x0>;
-+		};
-+
-+		i2c_sfp1: i2c@1 {
-+			reg = <0x1>;
-+		};
-+
-+		i2c_sfp2: i2c@2 {
-+			reg = <0x2>;
-+		};
-+
-+		i2c_sfp3: i2c@3 {
-+			reg = <0x3>;
-+		};
-+
-+		i2c_poe: i2c@7 {
-+			reg = <0x7>;
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-status {
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_STATUS;
-+			gpios = <&gpio 61 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		led-sfp1-green {
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_LAN;
-+			function-enumerator = <0>;
-+			gpios = <&sgpio_out 6 0 GPIO_ACTIVE_LOW>;
-+			default-state = "off";
-+		};
-+
-+		led-sfp1-yellow {
-+			color = <LED_COLOR_ID_YELLOW>;
-+			function = LED_FUNCTION_LAN;
-+			function-enumerator = <0>;
-+			gpios = <&sgpio_out 6 1 GPIO_ACTIVE_LOW>;
-+			default-state = "off";
-+		};
-+
-+		led-sfp2-green {
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_LAN;
-+			function-enumerator = <1>;
-+			gpios = <&sgpio_out 7 0 GPIO_ACTIVE_LOW>;
-+			default-state = "off";
-+		};
-+
-+		led-sfp2-yellow {
-+			color = <LED_COLOR_ID_YELLOW>;
-+			function = LED_FUNCTION_LAN;
-+			function-enumerator = <1>;
-+			gpios = <&sgpio_out 7 1 GPIO_ACTIVE_LOW>;
-+			default-state = "off";
-+		};
-+
-+		led-sfp3-green {
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_LAN;
-+			function-enumerator = <2>;
-+			gpios = <&sgpio_out 8 0 GPIO_ACTIVE_LOW>;
-+			default-state = "off";
-+		};
-+
-+		led-sfp3-yellow {
-+			color = <LED_COLOR_ID_YELLOW>;
-+			function = LED_FUNCTION_LAN;
-+			function-enumerator = <2>;
-+			gpios = <&sgpio_out 8 1 GPIO_ACTIVE_LOW>;
-+			default-state = "off";
-+		};
-+
-+		led-sfp4-green {
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_LAN;
-+			function-enumerator = <3>;
-+			gpios = <&sgpio_out 9 0 GPIO_ACTIVE_LOW>;
-+			default-state = "off";
-+		};
-+
-+		led-sfp4-yellow {
-+			color = <LED_COLOR_ID_YELLOW>;
-+			function = LED_FUNCTION_LAN;
-+			function-enumerator = <3>;
-+			gpios = <&sgpio_out 9 1 GPIO_ACTIVE_LOW>;
-+			default-state = "off";
-+		};
-+	};
-+
-+	mux-controller {
-+		compatible = "gpio-mux";
-+		#mux-control-cells = <0>;
-+
-+		mux-gpios = <&sgpio_out 1 2 GPIO_ACTIVE_LOW>,
-+			    <&sgpio_out 1 3 GPIO_ACTIVE_LOW>;
-+	};
-+
-+	sfp0: sfp0 {
-+		compatible = "sff,sfp";
-+		i2c-bus = <&i2c_sfp0>;
-+		tx-disable-gpios = <&sgpio_out 6 2 GPIO_ACTIVE_HIGH>;
-+		los-gpios = <&sgpio_in 6 0 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios = <&sgpio_in 6 1 GPIO_ACTIVE_LOW>;
-+		tx-fault-gpios = <&sgpio_in 6 2 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	sfp1: sfp1 {
-+		compatible = "sff,sfp";
-+		i2c-bus = <&i2c_sfp1>;
-+		tx-disable-gpios = <&sgpio_out 7 2 GPIO_ACTIVE_HIGH>;
-+		los-gpios = <&sgpio_in 7 0 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios = <&sgpio_in 7 1 GPIO_ACTIVE_LOW>;
-+		tx-fault-gpios = <&sgpio_in 7 2 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	sfp2: sfp2 {
-+		compatible = "sff,sfp";
-+		i2c-bus = <&i2c_sfp2>;
-+		tx-disable-gpios = <&sgpio_out 8 2 GPIO_ACTIVE_HIGH>;
-+		los-gpios = <&sgpio_in 8 0 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios = <&sgpio_in 8 1 GPIO_ACTIVE_LOW>;
-+		tx-fault-gpios = <&sgpio_in 8 2 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	sfp3: sfp3 {
-+		compatible = "sff,sfp";
-+		i2c-bus = <&i2c_sfp3>;
-+		tx-disable-gpios = <&sgpio_out 9 2 GPIO_ACTIVE_HIGH>;
-+		los-gpios = <&sgpio_in 9 0 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpios = <&sgpio_in 9 1 GPIO_ACTIVE_LOW>;
-+		tx-fault-gpios = <&sgpio_in 9 2 GPIO_ACTIVE_HIGH>;
-+	};
-+};
-+
-+&flx0 {
-+	atmel,flexcom-mode = <ATMEL_FLEXCOM_MODE_USART>;
-+	status = "okay";
-+};
-+
-+&usart0 {
-+	pinctrl-0 = <&fc0_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
-+&flx2 {
-+	atmel,flexcom-mode = <ATMEL_FLEXCOM_MODE_SPI>;
-+	status = "okay";
-+};
-+
-+&spi2 {
-+	pinctrl-0 = <&fc2_pins>;
-+	pinctrl-names = "default";
-+	cs-gpios = <&gpio 63 GPIO_ACTIVE_LOW>;
-+	status = "okay";
-+};
-+
-+&flx3 {
-+	atmel,flexcom-mode = <ATMEL_FLEXCOM_MODE_TWI>;
-+	status = "okay";
-+};
-+
-+&i2c3 {
-+	pinctrl-0 = <&fc3_pins>;
-+	pinctrl-names = "default";
-+	i2c-analog-filter;
-+	i2c-digital-filter;
-+	i2c-digital-filter-width-ns = <35>;
-+	i2c-sda-hold-time-ns = <1500>;
-+	status = "okay";
-+};
-+
-+&gpio {
-+	emmc_sd_pins: emmc-sd-pins {
-+		/* eMMC_SD - CMD, CLK, D0, D1, D2, D3, D4, D5, D6, D7, RSTN */
-+		pins = "GPIO_14", "GPIO_15", "GPIO_16", "GPIO_17",
-+		       "GPIO_18", "GPIO_19", "GPIO_20", "GPIO_21",
-+		       "GPIO_22", "GPIO_23", "GPIO_24";
-+		function = "emmc_sd";
-+	};
-+
-+	fan_pins: fan-pins {
-+		pins = "GPIO_25", "GPIO_26";
-+		function = "fan";
-+	};
-+
-+	fc0_pins: fc0-pins {
-+		pins = "GPIO_3", "GPIO_4";
-+		function = "fc";
-+	};
-+
-+	fc2_pins: fc2-pins {
-+		pins = "GPIO_64", "GPIO_65", "GPIO_66";
-+		function = "fc";
-+	};
-+
-+	fc3_pins: fc3-pins {
-+		pins = "GPIO_55", "GPIO_56";
-+		function = "fc";
-+	};
-+
-+	mdio_pins: mdio-pins {
-+		pins = "GPIO_9", "GPIO_10";
-+		function = "miim";
-+	};
-+
-+	mdio_irq_pins: mdio-irq-pins {
-+		pins = "GPIO_11";
-+		function = "miim_irq";
-+	};
-+
-+	sgpio_pins: sgpio-pins {
-+		/* SCK, D0, D1, LD */
-+		pins = "GPIO_5", "GPIO_6", "GPIO_7", "GPIO_8";
-+		function = "sgpio_a";
-+	};
-+
-+	usb_ulpi_pins: usb-ulpi-pins {
-+		pins = "GPIO_30", "GPIO_31", "GPIO_32", "GPIO_33",
-+		"GPIO_34", "GPIO_35", "GPIO_36", "GPIO_37",
-+		"GPIO_38", "GPIO_39", "GPIO_40", "GPIO_41";
-+		function = "usb_ulpi";
-+	};
-+
-+	usb_rst_pins: usb-rst-pins {
-+		pins = "GPIO_12";
-+		function = "usb2phy_rst";
-+	};
-+
-+	usb_over_pins: usb-over-pins {
-+		pins = "GPIO_13";
-+		function = "usb_over_detect";
-+	};
-+
-+	usb_power_pins: usb-power-pins {
-+		pins = "GPIO_1";
-+		function = "usb_power";
-+	};
-+
-+	ptp_out_pins: ptp-out-pins {
-+		pins = "GPIO_58";
-+		function = "ptpsync_4";
-+	};
-+
-+	ptp_ext_pins: ptp-ext-pins {
-+		pins = "GPIO_59";
-+		function = "ptpsync_5";
-+	};
-+};
-+
-+&tmon {
-+	pinctrl-0 = <&fan_pins>;
-+	pinctrl-names = "default";
-+};
-+
-+&mdio0 {
-+	pinctrl-0 = <&mdio_pins>, <&mdio_irq_pins>;
-+	pinctrl-names = "default";
-+	reset-gpios = <&gpio 62 GPIO_ACTIVE_LOW>;
-+	status = "okay";
-+
-+	phy3: phy@3 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <3>;
-+		interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-parent = <&gpio>;
-+	};
-+
-+	phy4: phy@4 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <4>;
-+		interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-parent = <&gpio>;
-+	};
-+
-+	phy5: phy@5 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <5>;
-+		interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-parent = <&gpio>;
-+	};
-+
-+	phy6: phy@6 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <6>;
-+		interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-parent = <&gpio>;
-+	};
-+
-+	phy7: phy@7 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <7>;
-+		interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-parent = <&gpio>;
-+	};
-+
-+	phy8: phy@8 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <8>;
-+		interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-parent = <&gpio>;
-+	};
-+
-+	phy9: phy@9 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <9>;
-+		interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-parent = <&gpio>;
-+	};
-+
-+	phy10: phy@10 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <10>;
-+		interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-parent = <&gpio>;
-+	};
-+
-+	phy11: phy@11 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <11>;
-+		interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-parent = <&gpio>;
-+	};
-+
-+	phy12: phy@12 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <12>;
-+		interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-parent = <&gpio>;
-+	};
-+
-+	phy13: phy@13 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <13>;
-+		interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-parent = <&gpio>;
-+	};
-+
-+	phy14: phy@14 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <14>;
-+		interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-parent = <&gpio>;
-+	};
-+
-+	phy15: phy@15 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <15>;
-+		interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-parent = <&gpio>;
-+	};
-+
-+	phy16: phy@16 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <16>;
-+		interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-parent = <&gpio>;
-+	};
-+
-+	phy17: phy@17 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <17>;
-+		interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-parent = <&gpio>;
-+	};
-+
-+	phy18: phy@18 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <18>;
-+		interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-parent = <&gpio>;
-+	};
-+
-+	phy19: phy@19 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <19>;
-+		interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-parent = <&gpio>;
-+	};
-+
-+	phy20: phy@20 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <20>;
-+		interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-parent = <&gpio>;
-+	};
-+
-+	phy21: phy@21 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <21>;
-+		interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-parent = <&gpio>;
-+	};
-+
-+	phy22: phy@22 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <22>;
-+		interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-parent = <&gpio>;
-+	};
-+
-+	phy23: phy@23 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <23>;
-+		interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-parent = <&gpio>;
-+	};
-+
-+	phy24: phy@24 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <24>;
-+		interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-parent = <&gpio>;
-+	};
-+
-+	phy25: phy@25 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <25>;
-+		interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-parent = <&gpio>;
-+	};
-+
-+	phy26: phy@26 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <26>;
-+		interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-parent = <&gpio>;
-+	};
-+
-+	phy27: phy@27 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <27>;
-+		interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-parent = <&gpio>;
-+	};
-+};
-+
-+&serdes {
-+	status = "okay";
-+};
-+
-+&sgpio {
-+	pinctrl-0 = <&sgpio_pins>;
-+	pinctrl-names = "default";
-+
-+	microchip,sgpio-port-ranges = <0 1>, <6 9>;
-+	status = "okay";
-+
-+	gpio@0 {
-+		ngpios = <128>;
-+	};
-+	gpio@1 {
-+		ngpios = <128>;
-+	};
-+};
-+
-+&switch {
-+	pinctrl-0 = <&ptp_out_pins>, <&ptp_ext_pins>;
-+	pinctrl-names = "default";
-+
-+	status = "okay";
-+	ethernet-ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port0: port@0 {
-+			reg = <0>;
-+			microchip,bandwidth = <1000>;
-+			phy-handle = <&phy4>;
-+			phy-mode = "qsgmii";
-+			phys = <&serdes 0>;
-+		};
-+
-+		port1: port@1 {
-+			reg = <1>;
-+			microchip,bandwidth = <1000>;
-+			phy-handle = <&phy5>;
-+			phy-mode = "qsgmii";
-+			phys = <&serdes 0>;
-+		};
-+
-+		port2: port@2 {
-+			reg = <2>;
-+			microchip,bandwidth = <1000>;
-+			phy-handle = <&phy6>;
-+			phy-mode = "qsgmii";
-+			phys = <&serdes 0>;
-+		};
-+
-+		port3: port@3 {
-+			reg = <3>;
-+			microchip,bandwidth = <1000>;
-+			phy-handle = <&phy7>;
-+			phy-mode = "qsgmii";
-+			phys = <&serdes 0>;
-+		};
-+
-+		port4: port@4 {
-+			reg = <4>;
-+			microchip,bandwidth = <1000>;
-+			phy-handle = <&phy8>;
-+			phy-mode = "qsgmii";
-+			phys = <&serdes 1>;
-+		};
-+
-+		port5: port@5 {
-+			reg = <5>;
-+			microchip,bandwidth = <1000>;
-+			phy-handle = <&phy9>;
-+			phy-mode = "qsgmii";
-+			phys = <&serdes 1>;
-+		};
-+
-+		port6: port@6 {
-+			reg = <6>;
-+			microchip,bandwidth = <1000>;
-+			phy-handle = <&phy10>;
-+			phy-mode = "qsgmii";
-+			phys = <&serdes 1>;
-+		};
-+
-+		port7: port@7 {
-+			reg = <7>;
-+			microchip,bandwidth = <1000>;
-+			phy-handle = <&phy11>;
-+			phy-mode = "qsgmii";
-+			phys = <&serdes 1>;
-+		};
-+
-+		port8: port@8 {
-+			reg = <8>;
-+			microchip,bandwidth = <1000>;
-+			phy-handle = <&phy12>;
-+			phy-mode = "qsgmii";
-+			phys = <&serdes 2>;
-+		};
-+
-+		port9: port@9 {
-+			reg = <9>;
-+			microchip,bandwidth = <1000>;
-+			phy-handle = <&phy13>;
-+			phy-mode = "qsgmii";
-+			phys = <&serdes 2>;
-+		};
-+
-+		port10: port@10 {
-+			reg = <10>;
-+			microchip,bandwidth = <1000>;
-+			phy-handle = <&phy14>;
-+			phy-mode = "qsgmii";
-+			phys = <&serdes 2>;
-+		};
-+
-+		port11: port@11 {
-+			reg = <11>;
-+			microchip,bandwidth = <1000>;
-+			phy-handle = <&phy15>;
-+			phy-mode = "qsgmii";
-+			phys = <&serdes 2>;
-+		};
-+
-+		port12: port@12 {
-+			reg = <12>;
-+			microchip,bandwidth = <1000>;
-+			phy-handle = <&phy16>;
-+			phy-mode = "qsgmii";
-+			phys = <&serdes 3>;
-+		};
-+
-+		port13: port@13 {
-+			reg = <13>;
-+			microchip,bandwidth = <1000>;
-+			phy-handle = <&phy17>;
-+			phy-mode = "qsgmii";
-+			phys = <&serdes 3>;
-+		};
-+
-+		port14: port@14 {
-+			reg = <14>;
-+			microchip,bandwidth = <1000>;
-+			phy-handle = <&phy18>;
-+			phy-mode = "qsgmii";
-+			phys = <&serdes 3>;
-+		};
-+
-+		port15: port@15 {
-+			reg = <15>;
-+			microchip,bandwidth = <1000>;
-+			phy-handle = <&phy19>;
-+			phy-mode = "qsgmii";
-+			phys = <&serdes 3>;
-+		};
-+
-+		port16: port@16 {
-+			reg = <16>;
-+			microchip,bandwidth = <1000>;
-+			phy-handle = <&phy20>;
-+			phy-mode = "qsgmii";
-+			phys = <&serdes 4>;
-+		};
-+
-+		port17: port@17 {
-+			reg = <17>;
-+			microchip,bandwidth = <1000>;
-+			phy-handle = <&phy21>;
-+			phy-mode = "qsgmii";
-+			phys = <&serdes 4>;
-+		};
-+
-+		port18: port@18 {
-+			reg = <18>;
-+			microchip,bandwidth = <1000>;
-+			phy-handle = <&phy22>;
-+			phy-mode = "qsgmii";
-+			phys = <&serdes 4>;
-+		};
-+
-+		port19: port@19 {
-+			reg = <19>;
-+			microchip,bandwidth = <1000>;
-+			phy-handle = <&phy23>;
-+			phy-mode = "qsgmii";
-+			phys = <&serdes 4>;
-+		};
-+
-+		port20: port@20 {
-+			reg = <20>;
-+			microchip,bandwidth = <1000>;
-+			phy-handle = <&phy24>;
-+			phy-mode = "qsgmii";
-+			phys = <&serdes 5>;
-+		};
-+
-+		port21: port@21 {
-+			reg = <21>;
-+			microchip,bandwidth = <1000>;
-+			phy-handle = <&phy25>;
-+			phy-mode = "qsgmii";
-+			phys = <&serdes 5>;
-+		};
-+
-+		port22: port@22 {
-+			reg = <22>;
-+			microchip,bandwidth = <1000>;
-+			phy-handle = <&phy26>;
-+			phy-mode = "qsgmii";
-+			phys = <&serdes 5>;
-+		};
-+
-+		port23: port@23 {
-+			reg = <23>;
-+			microchip,bandwidth = <1000>;
-+			phy-handle = <&phy27>;
-+			phy-mode = "qsgmii";
-+			phys = <&serdes 5>;
-+		};
-+
-+		port24: port@24 {
-+			reg = <24>;
-+			microchip,bandwidth = <10000>;
-+			phys = <&serdes 6>;
-+			phy-mode = "10gbase-r";
-+			sfp = <&sfp0>;
-+			microchip,sd-sgpio = <24>;
-+			managed = "in-band-status";
-+		};
-+
-+		port25: port@25 {
-+			reg = <25>;
-+			microchip,bandwidth = <10000>;
-+			phys = <&serdes 7>;
-+			phy-mode = "10gbase-r";
-+			sfp = <&sfp1>;
-+			microchip,sd-sgpio = <28>;
-+			managed = "in-band-status";
-+		};
-+
-+		port26: port@26 {
-+			reg = <26>;
-+			microchip,bandwidth = <10000>;
-+			phys = <&serdes 8>;
-+			phy-mode = "10gbase-r";
-+			sfp = <&sfp2>;
-+			microchip,sd-sgpio = <32>;
-+			managed = "in-band-status";
-+		};
-+
-+		port27: port@27 {
-+			reg = <27>;
-+			microchip,bandwidth = <10000>;
-+			phys = <&serdes 9>;
-+			phy-mode = "10gbase-r";
-+			sfp = <&sfp3>;
-+			microchip,sd-sgpio = <36>;
-+			managed = "in-band-status";
-+		};
-+
-+		port29: port@29 {
-+			reg = <29>;
-+			microchip,bandwidth = <1000>;
-+			phys = <&serdes 11>;
-+			phy-handle = <&phy3>;
-+			phy-mode = "rgmii";
-+			rx-internal-delay-ps = <1000>;
-+			tx-internal-delay-ps = <1000>;
-+		};
-+	};
-+};
-+
-+&usb {
-+	status = "okay";
-+	pinctrl-0 = <&usb_ulpi_pins>, <&usb_rst_pins>, <&usb_over_pins>, <&usb_power_pins>;
-+	pinctrl-names = "default";
-+};
-diff --git a/arch/arm64/boot/dts/microchip/lan969x.dtsi b/arch/arm64/boot/dts/microchip/lan969x.dtsi
-new file mode 100644
-index 000000000000..39ea1999c801
---- /dev/null
-+++ b/arch/arm64/boot/dts/microchip/lan969x.dtsi
-@@ -0,0 +1,482 @@
-+// SPDX-License-Identifier: (GPL-2.0-or-later OR MIT)
-+/*
-+ * Copyright (c) 2025 Microchip Technology Inc. and its subsidiaries.
-+ */
-+
-+#include <dt-bindings/clock/microchip,lan969x.h>
-+#include <dt-bindings/dma/at91.h>
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/mfd/at91-usart.h>
-+#include <dt-bindings/mfd/atmel-flexcom.h>
-+
-+/ {
-+	#address-cells = <1>;
-+	#size-cells = <1>;
-+
-+	model = "Microchip LAN969x";
-+	compatible = "microchip,lan969x";
-+	interrupt-parent = <&gic>;
-+
-+	psci {
-+		compatible = "arm,psci-1.0";
-+		method = "smc";
-+	};
-+
-+	clocks {
-+		fx100_clk: fx100-clk {
-+			compatible = "fixed-clock";
-+			#clock-cells = <0>;
-+			clock-frequency = <320000000>;
-+		};
-+
-+		cpu_clk: cpu-clk {
-+			compatible = "fixed-clock";
-+			#clock-cells = <0>;
-+			clock-frequency = <1000000000>;
-+		};
-+
-+		ddr_clk: ddr-clk {
-+			compatible = "fixed-clock";
-+			#clock-cells = <0>;
-+			clock-frequency = <600000000>;
-+		};
-+
-+		fabric_clk: fabric-clk {
-+			compatible = "fixed-clock";
-+			#clock-cells = <0>;
-+			clock-frequency = <250000000>;
-+		};
-+	};
-+
-+	cpus {
-+		#address-cells = <2>;
-+		#size-cells = <0>;
-+
-+		cpu0: cpu@0 {
-+			compatible = "arm,cortex-a53";
-+			device_type = "cpu";
-+			reg = <0x0 0x0>;
-+			next-level-cache = <&l2_0>;
-+		};
-+
-+		l2_0: l2-cache {
-+			compatible = "cache";
-+			cache-level = <2>;
-+			cache-unified;
-+		};
-+	};
-+
-+	pmu {
-+		compatible = "arm,cortex-a53-pmu";
-+		interrupts = <GIC_SPI 77 IRQ_TYPE_LEVEL_HIGH>;
-+	};
-+
-+	timer {
-+		compatible = "arm,armv8-timer";
-+		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>, /* Secure Phys IRQ */
-+			     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>, /* Non-secure Phys IRQ */
-+			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>, /* Virt IRQ */
-+			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>; /* Hyp IRQ */
-+	};
-+
-+	axi: axi {
-+		compatible = "simple-bus";
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges;
-+
-+		usb: usb@300000 {
-+			compatible = "microchip,lan9691-dwc3", "snps,dwc3";
-+			reg = <0x300000 0x80000>;
-+			interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clks GCK_GATE_USB_DRD>,
-+				 <&clks GCK_ID_USB_REFCLK>;
-+			clock-names = "bus_early", "ref";
-+			assigned-clocks = <&clks GCK_ID_USB_REFCLK>;
-+			assigned-clock-rates = <60000000>;
-+			maximum-speed = "high-speed";
-+			dr_mode = "host";
-+			status = "disabled";
-+		};
-+
-+		flx0: flexcom@e0040000 {
-+			compatible = "atmel,sama5d2-flexcom";
-+			reg = <0xe0040000 0x100>;
-+			clocks = <&clks GCK_ID_FLEXCOM0>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0x0 0xe0040000 0x800>;
-+			status = "disabled";
-+
-+			usart0: serial@200 {
-+				compatible = "atmel,at91sam9260-usart";
-+				reg = <0x200 0x200>;
-+				atmel,usart-mode = <AT91_USART_MODE_SERIAL>;
-+				interrupts = <GIC_SPI 46 IRQ_TYPE_LEVEL_HIGH>;
-+				dmas = <&dma AT91_XDMAC_DT_PERID(3)>,
-+				       <&dma AT91_XDMAC_DT_PERID(2)>;
-+				dma-names = "tx", "rx";
-+				clocks = <&fabric_clk>;
-+				clock-names = "usart";
-+				atmel,fifo-size = <32>;
-+				status = "disabled";
-+			};
-+
-+			spi0: spi@400 {
-+				compatible = "atmel,at91rm9200-spi";
-+				reg = <0x400 0x200>;
-+				interrupts = <GIC_SPI 46 IRQ_TYPE_LEVEL_HIGH>;
-+				dmas = <&dma AT91_XDMAC_DT_PERID(3)>,
-+				       <&dma AT91_XDMAC_DT_PERID(2)>;
-+				dma-names = "tx", "rx";
-+				clocks = <&fabric_clk>;
-+				clock-names = "spi_clk";
-+				atmel,fifo-size = <32>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				status = "disabled";
-+			};
-+
-+			i2c0: i2c@600 {
-+				compatible = "microchip,sam9x60-i2c";
-+				reg = <0x600 0x200>;
-+				interrupts = <GIC_SPI 46 IRQ_TYPE_LEVEL_HIGH>;
-+				dmas = <&dma AT91_XDMAC_DT_PERID(3)>,
-+				       <&dma AT91_XDMAC_DT_PERID(2)>;
-+				dma-names = "tx", "rx";
-+				clocks = <&fabric_clk>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				status = "disabled";
-+			};
-+		};
-+
-+		flx1: flexcom@e0044000 {
-+			compatible = "atmel,sama5d2-flexcom";
-+			reg = <0xe0044000 0x100>;
-+			clocks = <&clks GCK_ID_FLEXCOM1>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0x0 0xe0044000 0x800>;
-+			status = "disabled";
-+
-+			usart1: serial@200 {
-+				compatible = "atmel,at91sam9260-usart";
-+				reg = <0x200 0x200>;
-+				atmel,usart-mode = <AT91_USART_MODE_SERIAL>;
-+				interrupts = <GIC_SPI 47 IRQ_TYPE_LEVEL_HIGH>;
-+				dmas = <&dma AT91_XDMAC_DT_PERID(3)>,
-+				       <&dma AT91_XDMAC_DT_PERID(2)>;
-+				dma-names = "tx", "rx";
-+				clocks = <&fabric_clk>;
-+				clock-names = "usart";
-+				atmel,fifo-size = <32>;
-+				status = "disabled";
-+			};
-+
-+			spi1: spi@400 {
-+				compatible = "atmel,at91rm9200-spi";
-+				reg = <0x400 0x200>;
-+				interrupts = <GIC_SPI 47 IRQ_TYPE_LEVEL_HIGH>;
-+				dmas = <&dma AT91_XDMAC_DT_PERID(3)>,
-+				       <&dma AT91_XDMAC_DT_PERID(2)>;
-+				dma-names = "tx", "rx";
-+				clocks = <&fabric_clk>;
-+				clock-names = "spi_clk";
-+				atmel,fifo-size = <32>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				status = "disabled";
-+			};
-+
-+			i2c1: i2c@600 {
-+				compatible = "microchip,sam9x60-i2c";
-+				reg = <0x600 0x200>;
-+				interrupts = <GIC_SPI 47 IRQ_TYPE_LEVEL_HIGH>;
-+				dmas = <&dma AT91_XDMAC_DT_PERID(3)>,
-+				       <&dma AT91_XDMAC_DT_PERID(2)>;
-+				dma-names = "tx", "rx";
-+				clocks = <&fabric_clk>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				status = "disabled";
-+			};
-+		};
-+
-+		trng: rng@e0048000 {
-+			compatible = "atmel,at91sam9g45-trng";
-+			reg = <0xe0048000 0x100>;
-+			clocks = <&fabric_clk>;
-+			status = "disabled";
-+		};
-+
-+		aes: crypto@e004c000 {
-+			compatible = "atmel,at91sam9g46-aes";
-+			reg = <0xe004c000 0x100>;
-+			interrupts = <GIC_SPI 51 IRQ_TYPE_LEVEL_HIGH>;
-+			dmas = <&dma AT91_XDMAC_DT_PERID(12)>,
-+			       <&dma AT91_XDMAC_DT_PERID(13)>;
-+			dma-names = "tx", "rx";
-+			clocks = <&fabric_clk>;
-+			clock-names = "aes_clk";
-+			status = "disabled";
-+		};
-+
-+		flx2: flexcom@e0060000 {
-+			compatible = "atmel,sama5d2-flexcom";
-+			reg = <0xe0060000 0x100>;
-+			clocks = <&clks GCK_ID_FLEXCOM2>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0x0 0xe0060000 0x800>;
-+			status = "disabled";
-+
-+			usart2: serial@200 {
-+				compatible = "atmel,at91sam9260-usart";
-+				reg = <0x200 0x200>;
-+				atmel,usart-mode = <AT91_USART_MODE_SERIAL>;
-+				interrupts = <GIC_SPI 48 IRQ_TYPE_LEVEL_HIGH>;
-+				dmas = <&dma AT91_XDMAC_DT_PERID(7)>,
-+				       <&dma AT91_XDMAC_DT_PERID(6)>;
-+				dma-names = "tx", "rx";
-+				clocks = <&fabric_clk>;
-+				clock-names = "usart";
-+				atmel,fifo-size = <32>;
-+				status = "disabled";
-+			};
-+
-+			spi2: spi@400 {
-+				compatible = "atmel,at91rm9200-spi";
-+				reg = <0x400 0x200>;
-+				interrupts = <GIC_SPI 48 IRQ_TYPE_LEVEL_HIGH>;
-+				dmas = <&dma AT91_XDMAC_DT_PERID(7)>,
-+				       <&dma AT91_XDMAC_DT_PERID(6)>;
-+				dma-names = "tx", "rx";
-+				clocks = <&fabric_clk>;
-+				clock-names = "spi_clk";
-+				atmel,fifo-size = <32>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				status = "disabled";
-+			};
-+
-+			i2c2: i2c@600 {
-+				compatible = "microchip,sam9x60-i2c";
-+				reg = <0x600 0x200>;
-+				interrupts = <GIC_SPI 48 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&fabric_clk>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				status = "disabled";
-+			};
-+		};
-+
-+		flx3: flexcom@e0064000 {
-+			compatible = "atmel,sama5d2-flexcom";
-+			reg = <0xe0064000 0x100>;
-+			clocks = <&clks GCK_ID_FLEXCOM3>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0x0 0xe0064000 0x800>;
-+			status = "disabled";
-+
-+			usart3: serial@200 {
-+				compatible = "atmel,at91sam9260-usart";
-+				reg = <0x200 0x200>;
-+				atmel,usart-mode = <AT91_USART_MODE_SERIAL>;
-+				interrupts = <GIC_SPI 49 IRQ_TYPE_LEVEL_HIGH>;
-+				dmas = <&dma AT91_XDMAC_DT_PERID(9)>,
-+				       <&dma AT91_XDMAC_DT_PERID(8)>;
-+				dma-names = "tx", "rx";
-+				clocks = <&fabric_clk>;
-+				clock-names = "usart";
-+				atmel,fifo-size = <32>;
-+				status = "disabled";
-+			};
-+
-+			spi3: spi@400 {
-+				compatible = "atmel,at91rm9200-spi";
-+				reg = <0x400 0x200>;
-+				interrupts = <GIC_SPI 49 IRQ_TYPE_LEVEL_HIGH>;
-+				dmas = <&dma AT91_XDMAC_DT_PERID(9)>,
-+				       <&dma AT91_XDMAC_DT_PERID(8)>;
-+				dma-names = "tx", "rx";
-+				clocks = <&fabric_clk>;
-+				clock-names = "spi_clk";
-+				atmel,fifo-size = <32>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				status = "disabled";
-+			};
-+
-+			i2c3: i2c@600 {
-+				compatible = "microchip,sam9x60-i2c";
-+				reg = <0x600 0x200>;
-+				interrupts = <GIC_SPI 49 IRQ_TYPE_LEVEL_HIGH>;
-+				dmas = <&dma AT91_XDMAC_DT_PERID(9)>,
-+				       <&dma AT91_XDMAC_DT_PERID(8)>;
-+				dma-names = "tx", "rx";
-+				clocks = <&fabric_clk>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				status = "disabled";
-+			};
-+		};
-+
-+		dma: dma-controller@e0068000 {
-+			compatible = "microchip,sama7g5-dma";
-+			reg = <0xe0068000 0x1000>;
-+			interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>;
-+			dma-channels = <16>;
-+			#dma-cells = <1>;
-+			clocks = <&fabric_clk>;
-+			clock-names = "dma_clk";
-+		};
-+
-+		sha: crypto@e006c000 {
-+			compatible = "atmel,at91sam9g46-sha";
-+			reg = <0xe006c000 0xec>;
-+			interrupts = <GIC_SPI 55 IRQ_TYPE_LEVEL_HIGH>;
-+			dmas = <&dma AT91_XDMAC_DT_PERID(14)>;
-+			dma-names = "tx";
-+			clocks = <&fabric_clk>;
-+			clock-names = "sha_clk";
-+			status = "disabled";
-+		};
-+
-+		timer: timer@e008c000 {
-+			compatible = "snps,dw-apb-timer";
-+			reg = <0xe008c000 0x400>;
-+			clocks = <&fabric_clk>;
-+			clock-names = "timer";
-+			interrupts = <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>;
-+			status = "disabled";
-+		};
-+
-+		watchdog: watchdog@e0090000 {
-+			compatible = "snps,dw-wdt";
-+			reg = <0xe0090000 0x1000>;
-+			interrupts = <GIC_SPI 36 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&fabric_clk>;
-+		};
-+
-+		cpu_ctrl: syscon@e00c0000 {
-+			compatible = "microchip,lan966x-cpu-syscon", "syscon";
-+			reg = <0xe00c0000 0x350>;
-+		};
-+
-+		switch: switch@e00c0000 {
-+			compatible = "microchip,lan9691-switch";
-+			reg = <0xe00c0000 0x0010000>,
-+			      <0xe2010000 0x1410000>;
-+			reg-names = "cpu", "devices";
-+			interrupt-names = "xtr", "fdma", "ptp";
-+			interrupts = <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 88 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI  9 IRQ_TYPE_LEVEL_HIGH>;
-+			resets = <&reset 0>;
-+			reset-names = "switch";
-+			status = "disabled";
-+		};
-+
-+		clks: clock-controller@e00c00b4 {
-+			compatible = "microchip,lan9691-gck";
-+			#clock-cells = <1>;
-+			clocks = <&cpu_clk>, <&ddr_clk>, <&fx100_clk>;
-+			clock-names = "cpu", "ddr", "sys";
-+			reg = <0xe00c00b4 0x30>, <0xe00c0308 0x4>;
-+		};
-+
-+		reset: reset-controller@e201000c {
-+			compatible = "microchip,lan9691-switch-reset",
-+				     "microchip,lan966x-switch-reset";
-+			reg = <0xe201000c 0x4>;
-+			reg-names = "gcb";
-+			#reset-cells = <1>;
-+			cpu-syscon = <&cpu_ctrl>;
-+		};
-+
-+		gpio: pinctrl@e20100d4 {
-+			compatible = "microchip,lan9691-pinctrl";
-+			reg = <0xe20100d4 0xd4>,
-+			      <0xe2010370 0xa8>;
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			gpio-ranges = <&gpio 0 0 66>;
-+			interrupt-controller;
-+			interrupts = <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>;
-+			#interrupt-cells = <2>;
-+		};
-+
-+		mdio0: mdio@e20101a8 {
-+			compatible = "mscc,ocelot-miim";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0xe20101a8 0x24>;
-+			clocks = <&fx100_clk>;
-+			status = "disabled";
-+		};
-+
-+		mdio1: mdio@e20101cc {
-+			compatible = "mscc,ocelot-miim";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0xe20101cc 0x24>;
-+			clocks = <&fx100_clk>;
-+			status = "disabled";
-+		};
-+
-+		sgpio: gpio@e2010230 {
-+			compatible = "microchip,sparx5-sgpio";
-+			reg = <0xe2010230 0x118>;
-+			clocks = <&fx100_clk>;
-+			resets = <&reset 0>;
-+			reset-names = "switch";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+
-+			sgpio_in: gpio@0 {
-+				compatible = "microchip,sparx5-sgpio-bank";
-+				reg = <0>;
-+				gpio-controller;
-+				#gpio-cells = <3>;
-+				interrupts = <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>;
-+				interrupt-controller;
-+				#interrupt-cells = <3>;
-+			};
-+
-+			sgpio_out: gpio@1 {
-+				compatible = "microchip,sparx5-sgpio-bank";
-+				reg = <1>;
-+				gpio-controller;
-+				#gpio-cells = <3>;
-+			};
-+		};
-+
-+		tmon: hwmon@e2020100 {
-+			compatible = "microchip,sparx5-temp";
-+			reg = <0xe2020100 0xc>;
-+			clocks = <&fx100_clk>;
-+			#thermal-sensor-cells = <0>;
-+		};
-+
-+		serdes: serdes@e3410000 {
-+			compatible = "microchip,lan9691-serdes";
-+			#phy-cells = <1>;
-+			clocks = <&fabric_clk>;
-+			reg = <0xe3410000 0x150000>;
-+		};
-+
-+		gic: interrupt-controller@e8c11000 {
-+			compatible = "arm,gic-400";
-+			#interrupt-cells = <3>;
-+			interrupt-controller;
-+			reg = <0xe8c11000 0x1000>, /* Distributor GICD_ */
-+			      <0xe8c12000 0x2000>, /* CPU interface GICC_ */
-+			      <0xe8c14000 0x2000>, /* Virt interface control */
-+			      <0xe8c16000 0x2000>; /* Virt CPU interface */
-+			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
-+		};
-+	};
-+};
--- 
-2.52.0
+On 10/13/2025 1:49 PM, Jie Gan wrote:
+> The byte-cntr function provided by the CTCU device is used to count the
+> trace data entering the ETR. An interrupt is triggered if the data size
+> exceeds the threshold set in the BYTECNTRVAL register. The interrupt
+> handler counts the number of triggered interruptions.
+> 
+
+Gentle reminder.
+
+> Based on this concept, the irq_cnt can be used to determine whether
+> the etr_buf is full. The ETR device will be disabled when the active
+> etr_buf is nearly full or a timeout occurs. The nearly full buffer will
+> be switched to background after synced. A new buffer will be picked from
+> the etr_buf_list, then restart the ETR device.
+> 
+> The byte-cntr reading functions can access data from the synced and
+> deactivated buffer, transferring trace data from the etr_buf to userspace
+> without stopping the ETR device.
+> 
+> The byte-cntr read operation has integrated with the file node tmc_etr,
+> for example:
+> /dev/tmc_etr0
+> /dev/tmc_etr1
+> 
+> There are two scenarios for the tmc_etr file node with byte-cntr function:
+> 1. BYTECNTRVAL register is configured and byte-cntr is enabled -> byte-cntr read
+> 2. BYTECNTRVAL register is reset or byte-cntr is disabled -> original behavior
+> 
+> Shell commands to enable byte-cntr reading for etr0:
+> echo 0x10000 > /sys/bus/coresight/devices/ctcu0/irq_threshold
+> echo 1 > /sys/bus/coresight/devices/tmc_etr0/enable_sink
+> echo 1 > /sys/bus/coresight/devices/etm0/enable_source
+> cat /dev/tmc_etr0
+> 
+> Enable both ETR0 and ETR1:
+> echo 0x10000 0x10000 > /sys/bus/coresight/devices/ctcu0/irq_threshold
+> 
+> Reset the BYTECNTR register for etr0:
+> echo 0 > /sys/bus/coresight/devices/ctcu0/irq_threshold
+> 
+> Changes in V7:
+> 1. rebased on tag next-20251010
+> 2. updated info for sysfs node document
+> Link to V6 - https://lore.kernel.org/all/20250908-enable-byte-cntr-for-tmc-v6-0-1db9e621441a@oss.qualcomm.com/
+> 
+> Changes in V6:
+> 1. rebased on next-20250905.
+> 2. fixed the issue that the dtsi file has re-named from sa8775p.dtsi to
+>     lemans.dtsi.
+> 3. fixed some minor issues about comments.
+> Link to V5 - https://lore.kernel.org/all/20250812083731.549-1-jie.gan@oss.qualcomm.com/
+> 
+> Changes in V5:
+> 1. Add Mike's reviewed-by tag for patchset 1,2,5.
+> 2. Remove the function pointer added to helper_ops according to Mike's
+>     comment, it also results the patchset has been removed.
+> 3. Optimizing the paired create/clean functions for etr_buf_list.
+> 4. Remove the unneeded parameter "reading" from the etr_buf_node.
+> Link to V4 - https://lore.kernel.org/all/20250725100806.1157-1-jie.gan@oss.qualcomm.com/
+> 
+> Changes in V4:
+> 1. Rename the function to coresight_get_in_port_dest regarding to Mike's
+> comment (patch 1/10).
+> 2. Add lock to protect the connections regarding to Mike's comment
+> (patch 2/10).
+> 3. Move all byte-cntr functions to coresight-ctcu-byte-cntr file.
+> 4. Add tmc_read_ops to wrap all read operations for TMC device.
+> 5. Add a function in helper_ops to check whether the byte-cntr is
+> enabkled.
+> 6. Call byte-cntr's read_ops if byte-cntr is enabled when reading data
+> from the sysfs node.
+> Link to V3 resend - https://lore.kernel.org/all/20250714063109.591-1-jie.gan@oss.qualcomm.com/
+> 
+> Changes in V3 resend:
+> 1. rebased on next-20250711.
+> Link to V3 - https://lore.kernel.org/all/20250624060438.7469-1-jie.gan@oss.qualcomm.com/
+> 
+> Changes in V3:
+> 1. The previous solution has been deprecated.
+> 2. Add a etr_buf_list to manage allcated etr buffers.
+> 3. Add a logic to switch buffer for ETR.
+> 4. Add read functions to read trace data from synced etr buffer.
+> Link to V2 - https://lore.kernel.org/all/20250410013330.3609482-1-jie.gan@oss.qualcomm.com/
+> 
+> Changes in V2:
+> 1. Removed the independent file node /dev/byte_cntr.
+> 2. Integrated the byte-cntr's file operations with current ETR file
+>     node.
+> 3. Optimized the driver code of the CTCU that associated with byte-cntr.
+> 4. Add kernel document for the export API tmc_etr_get_rwp_offset.
+> 5. Optimized the way to read the rwp_offset according to Mike's
+>     suggestion.
+> 6. Removed the dependency of the dts patch.
+> Link to V1 - https://lore.kernel.org/all/20250310090407.2069489-1-quic_jiegan@quicinc.com/
+> 
+> Signed-off-by: Jie Gan <jie.gan@oss.qualcomm.com>
+> ---
+> Jie Gan (9):
+>        coresight: core: Refactoring ctcu_get_active_port and make it generic
+>        coresight: core: add a new API to retrieve the helper device
+>        coresight: tmc: add etr_buf_list to store allocated etr_buf
+>        coresight: tmc: add create/clean functions for etr_buf_list
+>        coresight: tmc: Introduce sysfs_read_ops to wrap sysfs read operations
+>        dt-bindings: arm: add an interrupt property for Coresight CTCU
+>        coresight: ctcu: enable byte-cntr for TMC ETR devices
+>        coresight: tmc: integrate byte-cntr's read_ops with sysfs file_ops
+>        arm64: dts: qcom: lemans: Add interrupts to CTCU device
+> 
+>   .../ABI/testing/sysfs-bus-coresight-devices-ctcu   |   6 +
+>   .../bindings/arm/qcom,coresight-ctcu.yaml          |  17 +
+>   arch/arm64/boot/dts/qcom/lemans.dtsi               |   5 +
+>   drivers/hwtracing/coresight/Makefile               |   2 +-
+>   drivers/hwtracing/coresight/coresight-core.c       |  59 ++++
+>   .../hwtracing/coresight/coresight-ctcu-byte-cntr.c | 368 +++++++++++++++++++++
+>   drivers/hwtracing/coresight/coresight-ctcu-core.c  | 108 ++++--
+>   drivers/hwtracing/coresight/coresight-ctcu.h       |  62 +++-
+>   drivers/hwtracing/coresight/coresight-priv.h       |   4 +
+>   drivers/hwtracing/coresight/coresight-tmc-core.c   | 104 ++++--
+>   drivers/hwtracing/coresight/coresight-tmc-etr.c    | 112 +++++++
+>   drivers/hwtracing/coresight/coresight-tmc.h        |  37 +++
+>   12 files changed, 825 insertions(+), 59 deletions(-)
+> ---
+> base-commit: 2b763d4652393c90eaa771a5164502ec9dd965ae
+> change-id: 20251013-enable-byte-cntr-for-ctcu-6199b791b77a
+> 
+> Best regards,
 
 
