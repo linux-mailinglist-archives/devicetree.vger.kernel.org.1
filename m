@@ -1,46 +1,80 @@
-Return-Path: <devicetree+bounces-244125-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244126-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14A4CCA18AA
-	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 21:23:15 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA485CA18B6
+	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 21:23:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B73FB3008F84
-	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 20:23:13 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id CF30C3005681
+	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 20:23:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B9722FD1A1;
-	Wed,  3 Dec 2025 20:23:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F9472FF657;
+	Wed,  3 Dec 2025 20:23:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t1Gdf+iX"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nLWE2uSs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B8F728DB54;
-	Wed,  3 Dec 2025 20:23:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35A61312810
+	for <devicetree@vger.kernel.org>; Wed,  3 Dec 2025 20:23:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764793391; cv=none; b=L8ccd3iwCvQirAHfuHXiL8ReTFEfPYA1jRasRKmAOOL1ld5scX6rW46cY3hgiM22iCe5lv6dQ13Y1+T8dteWiJd75R/h2tioal2THZorovXCOV6uLlXnM4Q4/cs6/mAnVpE11HMc37vqyhYPEOK2Y+6m8Pkg2vZkZBz66fshMzE=
+	t=1764793395; cv=none; b=MGd13U9BnWlB0Junkzu0PbgDyuUlTRxbmgFr+/b39QEGxi0JV43TZKOTpNxkf0SQYkAe/EHG/eCXQPEee/sO+EmHKDj0030Jfhc3BeiFHBIK/vf++3AP0S47I3CHcjFvSTEhOrqvti5ChF+F+WvVCuF0Fme4DZHJKQZPelzSafc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764793391; c=relaxed/simple;
-	bh=XgIWvn45Ol59YX7A4N6l+xNIXT/v+a5H6neu07duj+o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HKQmkgiYr4+kb0CnGzoxq3gr/mdMuwsnkyhN6C3I5qFZmfZFAHHSfTkZo+CmYnAMk6QGy7TDI5bMkVGCVM48DmGnz/2R+2RpWn3Q4FUWw4KENwKvja+1N4ILSMgMtliL9ov6BhdAIBsV4s4I6kHyV+5+RedsXNes8lzPkzKR0hE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t1Gdf+iX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8565C4CEF5;
-	Wed,  3 Dec 2025 20:23:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764793391;
-	bh=XgIWvn45Ol59YX7A4N6l+xNIXT/v+a5H6neu07duj+o=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=t1Gdf+iXwLN9LMuloorNGQYaolXRWMFPzt0jbqaLTUFnEmtunSgfVXBeC/a5xvR3i
-	 vxgHZqtI4xfMya49R/5myR08ZXyJLyrGJ5em7E7Fvzy6boEtidU2v243mzuClt3/BQ
-	 hUb1R8qs+P66mcLkEL/XJ8OryYjByuZHzS/yhq0rEajkTQspmOvY6yf70SneQKoPn6
-	 2hkBFwNRk0QbmVRv6WFcYdU9cpr8hSu3AIpqqNVgQu14/xokeLCn+0ft9iy90NTSVI
-	 xg8ltZTbniR7/H2KGuSuhgXTHbL86nSBQ932jP8Ne14bt/byttuHxZL7pwmn4DsXOX
-	 K3ieeeqHgUnCg==
-Message-ID: <1d516e97-5bfd-4bba-8496-65b00c26f76a@kernel.org>
-Date: Wed, 3 Dec 2025 21:23:06 +0100
+	s=arc-20240116; t=1764793395; c=relaxed/simple;
+	bh=io2SxxGF8RuQGVJttfCZrQUaiyFjgniVx2tyjXRcN1w=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=ldtQni1HXWe6a29nxU92/LfTtrbkI2q4VQGuyRjdveFBJwPYGzeFjrjxD/dZVKqYxr02k3TSBDvPAZ7iiyTRLWi8LryvhR9hSW6KnIaJO4n4idCIXYdDvGXcX/WtCRpHyZ1t9OYoO9mQ7f8qhF0vf9AzlAQ5+wBn+LpCMXvSqfk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nLWE2uSs; arc=none smtp.client-ip=209.85.128.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-477a2ab455fso2240445e9.3
+        for <devicetree@vger.kernel.org>; Wed, 03 Dec 2025 12:23:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1764793391; x=1765398191; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=la5DY+nye5Y4WsEMXBxzYTG6S0M/hvXAkvJ3L0NdBQ8=;
+        b=nLWE2uSshFXL6ovI9cd5G4crvnsigqxpDExkT7wiPxgAZpAh4whP2+KhyTGX0S0UbA
+         k+5So+F1qIIUOMRfcJwdTjjwTFzY2d2D9HcV0s11Kew96ofwx/E1cipODsstbQrHg1xm
+         3Wbk7cwiRThF92rLUUcWG0zk4BDqraTBQwVttBQ3jEGluu9SNIzGdWg9Gs/QzL6Lbspd
+         q1sqcj/mnbeTw/579/WxELAmiWRn8dzdRL37BKuy5OeA/IWxwxG40YgrIfKGHEeXWDo5
+         +gqsCt8CrWKyXjVsccg+kJSfqv2E6KiNVx+iwKVwHi88nA1BJoAw6RqaxH5VCIxCQp5A
+         taIQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764793391; x=1765398191;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=la5DY+nye5Y4WsEMXBxzYTG6S0M/hvXAkvJ3L0NdBQ8=;
+        b=tK9ZBKJmjUk2wUTC7M9qO6DVnDV3iqctgd+arbolkh40h3Z0MRNyp9mL1chv04oqXP
+         W4k7rdqHJ1RnYGgyY9g5y4BvsMMZS4iSFDne9tu3nlOZCvcHxNzkNxGYHLETpXIpFKnZ
+         XbSJ5VsRA5RWsOezrEQ//fDTZccNCVaijHh5wMRcmiZHTxaErmKoTprX5mzG6tnNzNcI
+         WXW7dW5kQcn4lLpoAcsTDoEWD06XHji+tjtw/TfT5sLWDNZSRIwpxCDDPsKbZVhxUaEI
+         Rb1RfzfEyAo3rCVlKEB4dgBi0HKM7KL9G8gPnIa14W1SrCjXfJElEqtaj7Aa8xXBXZ6d
+         QauQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWy50Ncs0LveCqPX0iw10Wy2uU1o15iNVZsO0xDVWbHSUM3jDImOBjyKLN0WPnosAGnH+OMx19r7msZ@vger.kernel.org
+X-Gm-Message-State: AOJu0YyiKPvAlYbvVvEcIqs5ySE4o0q5rgjt5TFv3xOSgdMRFga6pLUI
+	dYkB565LsfUWiYryHMy5yzRIQal8XbhedYieXcYAQJy8G9hcuYqK1tw=
+X-Gm-Gg: ASbGncsNTjQeyKCPVvnJh+MqsLeUQ3fndmB5iaC5Tb3be7i4foKjcoygVOU7TQY8Giy
+	p+cL/QPwNZ/FKzLNXnKT9SLMGn7NzSfqwfd+EFkqN3vuG+BHNyaOwW09akb0a5+sgnq3iZRt/Zx
+	UmwYnhhxWWYhHxy9U9oG8nrHFe+5eRC6JQVJGD/rd7N9hk6RUqtSAf9iFok3xcp/eK5Yoz6PMhV
+	V8jxMBUzwgi3XYRn6HgRCl2JHmIXbfdQJ67vBdNmWG+daLvXlLiHAPFvskegIgGwQMprmeCFQUH
+	84fb8HJ5iJ4StWDK+DSiLr6SgKUNoH6bdM7KqB5El8/yAqVkfE4xPoRZSTGX4u3O3UjcLhdPdDc
+	E7G5GEGOqErQjmd3RBJm6V7Nf/a6L/qrUZg8NsRAjCUDS4l2ZGgIigYWT49TKMmxqRsqjm0mWJH
+	u8WGYtUAXvLIFBvUMW+NmBEkr7OM8ERYuR5E+sTvXioyJlrz36ti5HdQuAzu9yiclZTCU=
+X-Google-Smtp-Source: AGHT+IEpGSW/EFraUJRRr3A4U1L8grZ6drN7sy7XuL6+qwvpsW1qlvzAiO5Upxd981TrT5V2Ub2FOw==
+X-Received: by 2002:a05:600c:4443:b0:477:9b35:3e36 with SMTP id 5b1f17b1804b1-4792aedfbf4mr38189915e9.2.1764793391265;
+        Wed, 03 Dec 2025 12:23:11 -0800 (PST)
+Received: from ?IPV6:2a02:810b:f13:8500:3079:1d24:47d4:553a? ([2a02:810b:f13:8500:3079:1d24:47d4:553a])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4792a7971c7sm68875275e9.2.2025.12.03.12.23.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 03 Dec 2025 12:23:10 -0800 (PST)
+Message-ID: <f0df035f-3c3d-4649-9f48-3e8e2e69d17b@gmail.com>
+Date: Wed, 3 Dec 2025 21:23:12 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,81 +82,88 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] dt-bindings: arm: mediatek: add compatibles for
- Mediatek Genio 520/720-EVK boards
-To: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Sean Wang <sean.wang@mediatek.com>
-Cc: kernel@collabora.com, linux-kernel@vger.kernel.org,
- linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-References: <20251203-add-mediatek-genio-520-720-evk-v1-0-df794b2a30ae@collabora.com>
- <20251203-add-mediatek-genio-520-720-evk-v1-2-df794b2a30ae@collabora.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH] arm64: dts: rockchip: add SPDIF audio to Beelink A1
+To: Robin Murphy <robin.murphy@arm.com>,
+ Christian Hewitt <christianshewitt@gmail.com>,
+ Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20250828164300.3829488-1-christianshewitt@gmail.com>
+ <66ae20b3-3316-4ec2-9c51-8414c053dc32@arm.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251203-add-mediatek-genio-520-720-evk-v1-2-df794b2a30ae@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+From: Alex Bee <knaerzche@gmail.com>
+In-Reply-To: <66ae20b3-3316-4ec2-9c51-8414c053dc32@arm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 03/12/2025 14:59, Louis-Alexis Eyraud wrote:
-> Add compatible strings for the Mediatek Genio 520-EVK (based on
-> MT8371 SoC) and Mediatek Genio 720-EVK (based on MT8391 SoC) boards.
-> MT8391 and MT8371 SoC are less powerful variants of MT8189 SoC,
-> with identical hardware register maps.
+Hi Robin,
 
-BTW, subject length is precious, so you can skip redundant parts like
-"compatibles for" and just have it "add Mediatek foobar boards". That's
-also expressed in submitting patches in DT. No need to resend for this.
+Am 03.12.25 um 17:21 schrieb Robin Murphy:
+> [ Just noticed this... ]
+>
+> On 2025-08-28 5:43 pm, Christian Hewitt wrote:
+>> From: Alex Bee <knaerzche@gmail.com>
+>>
+>> Add the required nodes to enable SPDIF audio output on
+>> the Beelink A1 set-top-box.
+>
+> But the A1 doesn't have S/PDIF? Only HDMI plus a 3.5mm jack connected 
+> to the analog audio codec (and possibly the composite TV out) :/
+>
+Yeah, sorry - this patch wasn't supposed to be submitted upstream.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Regards,
 
-Best regards,
-Krzysztof
+Alex
+
+> Thanks,
+> Robin.
+>
+>> Signed-off-by: Alex Bee <knaerzche@gmail.com>
+>> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+>> ---
+>>   arch/arm64/boot/dts/rockchip/rk3328-a1.dts | 23 ++++++++++++++++++++++
+>>   1 file changed, 23 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk3328-a1.dts 
+>> b/arch/arm64/boot/dts/rockchip/rk3328-a1.dts
+>> index f7c4578865c5..b276a29bdd85 100644
+>> --- a/arch/arm64/boot/dts/rockchip/rk3328-a1.dts
+>> +++ b/arch/arm64/boot/dts/rockchip/rk3328-a1.dts
+>> @@ -58,6 +58,24 @@ ir-receiver {
+>>           gpios = <&gpio2 RK_PA2 GPIO_ACTIVE_LOW>;
+>>           linux,rc-map-name = "rc-beelink-gs1";
+>>       };
+>> +
+>> +    spdif_sound: spdif-sound {
+>> +        compatible = "simple-audio-card";
+>> +        simple-audio-card,name = "SPDIF";
+>> +
+>> +        simple-audio-card,cpu {
+>> +            sound-dai = <&spdif>;
+>> +        };
+>> +
+>> +        simple-audio-card,codec {
+>> +            sound-dai = <&spdif_dit>;
+>> +        };
+>> +    };
+>> +
+>> +    spdif_dit: spdif-dit {
+>> +        compatible = "linux,spdif-dit";
+>> +        #sound-dai-cells = <0>;
+>> +    };
+>>   };
+>>     &analog_sound {
+>> @@ -325,6 +343,11 @@ &sdmmc {
+>>       status = "okay";
+>>   };
+>>   +&spdif {
+>> +    pinctrl-0 = <&spdifm0_tx>;
+>> +    status = "okay";
+>> +};
+>> +
+>>   &tsadc {
+>>       rockchip,hw-tshut-mode = <0>;
+>>       rockchip,hw-tshut-polarity = <0>;
 
