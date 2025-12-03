@@ -1,161 +1,140 @@
-Return-Path: <devicetree+bounces-243895-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243905-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88D85C9E377
-	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 09:30:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BAFABC9E4A0
+	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 09:45:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 472083A2E2A
-	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 08:30:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7605A3A4444
+	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 08:45:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51A5D2D47EF;
-	Wed,  3 Dec 2025 08:30:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD7082D6605;
+	Wed,  3 Dec 2025 08:45:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rI6h+xJT"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=norik.com header.i=@norik.com header.b="CoIXvQcM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from cp2.siel.si (cp2.siel.si [46.19.12.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 244B724DD09;
-	Wed,  3 Dec 2025 08:30:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D120F2D5A14;
+	Wed,  3 Dec 2025 08:45:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.19.12.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764750650; cv=none; b=Ux2cUXs7gf19vnS91uXFDNQA++r4cgG+NCZTjfyrDvuP8C7Cs5T+6lWpBwMwIN7Dy0DUW5DD9FRt+2OAHju/1yItlX2jc5B/uZdZY7FCAj/SbbbHRNE2XR0uH3Ya2wAhtU0W/WNsSh84qfiUgucUgKl4x2OELhiZINSppyTdWQI=
+	t=1764751506; cv=none; b=VIR3VvikiUMoFUjET1oEytfXRupi4+bImW7dpUwGZbTGpfSpyoGw1CAUtrz6FlAyRN3P3SkWBj2aU6JeqrhPyiXzHXHe5RL+vpWAhJou1MaS3eGkO5i2dIMqdQDxUf2PjPdrjTtFANcZpmnHPF+fGuq2T4gatZtBIDKEqxW+yqo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764750650; c=relaxed/simple;
-	bh=zyF/r0fjZEG5Zc5d3W/4Gh2VeH+el4jv7LMS1PSNlk0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=h6GaE7S/GvVczqt/+09XZIObUBzAufNHDgwbaz49MoRGpJpcPZ5WYFzeqss05QrKXa0YWPGnl60JPPxkfSSAg+cC+lNjUBykQggQa7Rgf0aSAtn6yPaNWzo1h2/cxx+M5HpHm2JP14hR8j3nOt41W3KpGHbEMkXS/9SfUZeYNaI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rI6h+xJT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A3A9C4CEFB;
-	Wed,  3 Dec 2025 08:30:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764750649;
-	bh=zyF/r0fjZEG5Zc5d3W/4Gh2VeH+el4jv7LMS1PSNlk0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rI6h+xJTutYGBiCMHFSC/CvZ/aY8wz+s4/Zl+p2h9DrLvfIzTqd/+d1iR4lErm5FB
-	 mKQKFs37QSydLBwjhKPPZwTcCewwu9vwRaOKnDWzWiD0YAwKFCKAInPN20z5mmD7fn
-	 tl8JtUqV3tiQsXc5zFT8Hi5EDUYl36G54aqvYte5xk6qTXQFkpq65iRsQ3o4WGXNtN
-	 NCklPbkMxcfeLXearae5GTpSabNxYuf8ZOvHtVMKnxs1TQBgmIVeiWSG0BEA1a5KDf
-	 abjPoyZNTSRel49GIShJu3LoR1+/e6jpovfKAlDCHifWa8lAhlupOrLbemnC5nh4e/
-	 TGmHTfIEDA8gw==
-Date: Wed, 3 Dec 2025 09:30:47 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Kory Maincent <kory.maincent@bootlin.com>
-Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
-	Markus Schneider-Pargmann <msp@baylibre.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
-	Louis Chauvet <louis.chauvet@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
-	Miguel Gazquez <miguel.gazquez@bootlin.com>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-omap@vger.kernel.org, 
-	Jyri Sarha <jyri.sarha@iki.fi>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Russell King <linux@armlinux.org.uk>, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	Tony Lindgren <tony@atomide.com>, Andrzej Hajda <andrzej.hajda@intel.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>
-Subject: Re: [PATCH 05/21] ARM: dts: omap: Bind panel to panel-dpi instead of
- ti,tilcdc,panel driver
-Message-ID: <20251203-aromatic-heavy-loon-0cbd14@quoll>
-References: <20251126-feature_tilcdc-v1-5-49b9ef2e3aa0@bootlin.com>
- <96b1b7bf-ddbe-4213-a201-dc89cf2998dd@ideasonboard.com>
- <3bc5bf92-05c3-4841-ab28-9bab2bb31cd5@kernel.org>
- <20251202104244.59a9e83d@kmaincent-XPS-13-7390>
- <d7515cd3-5488-4d15-82dc-d2b98cfa2bed@kernel.org>
- <20251202114416.09624a4b@kmaincent-XPS-13-7390>
- <94e254fa-289d-41ed-909f-1742cfbb2690@kernel.org>
- <20251202121856.0da62885@kmaincent-XPS-13-7390>
- <1d9a9269-bfda-4d43-938b-2df6b82b9369@ideasonboard.com>
- <20251202135605.053ada96@kmaincent-XPS-13-7390>
+	s=arc-20240116; t=1764751506; c=relaxed/simple;
+	bh=eY788H2GxaX/0dZ4ewNaRPDe3n7sY7pMPdmz+2V68uw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=rqIzEj/TF5JjrhvSV8CBsdNRuliBIVpj1HC6i2TUyR5fkOr0VsSbY70tGOHTQjedHM0PwYRjv1EZp/OTGvrHKaMaoekCZI8E4JqB42bjER+rmC2HTOTISxK5wcjc9bZPAPBd837b12yzTsBMA+fHZ3NhBT/GOLfjDcnqjduSoG8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com; spf=pass smtp.mailfrom=norik.com; dkim=pass (2048-bit key) header.d=norik.com header.i=@norik.com header.b=CoIXvQcM; arc=none smtp.client-ip=46.19.12.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=norik.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
+	s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+	References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=jHkz3sXS4xRmbb1n3DFi1LDwAUWzmiQpx7m6JbKmtvo=; b=CoIXvQcMRkDNGCsctbpohlDp4F
+	+U6Tbx3RfNFLbpcEOydCHRRJjLnZzeLL3udR/kPvCw8rnHwoqeCNjLrv4PEsBX13+LAh7p6JtXp0g
+	uI73XgyUP5WdIKYk29gQfhVApE8wmkGyzO9puw9yUT62TXHvHmlSbxmIP9PQntj72KmU1SKWDwxkt
+	OTD2qQADd93dlMqS4zlftwCU816lId2dflBn/JM/cauX7W3ebBphDcYtDAPYkkwPj1mg6WbMbij1o
+	ayn9luvmXm8RMdzVryYpEtNv8CU2b/mYpJaMTVKRyPP+npGTZt8/PZa/TpGUCWBlQWGzgYPeBvpSL
+	IbrsFREA==;
+Received: from 89-212-21-243.static.t-2.net ([89.212.21.243]:45380 helo=[192.168.69.116])
+	by cp2.siel.si with esmtpsa  (TLS1.3) tls TLS_AES_128_GCM_SHA256
+	(Exim 4.98.2)
+	(envelope-from <primoz.fiser@norik.com>)
+	id 1vQiGZ-00000002WWi-1Mau;
+	Wed, 03 Dec 2025 09:31:12 +0100
+Message-ID: <304467a9-4c7a-4722-9e70-4d178113c33b@norik.com>
+Date: Wed, 3 Dec 2025 09:31:10 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20251202135605.053ada96@kmaincent-XPS-13-7390>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] clk: imx: fracn-gppll: Add 332.60 MHz Support
+To: Marco Felsch <m.felsch@pengutronix.de>, Abel Vesa <abelvesa@kernel.org>,
+ Peng Fan <peng.fan@nxp.com>, Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, andrej.picej@norik.com, c.hemp@phytec.de,
+ s.mueller-klieser@phytec.de, n.wesp@phytec.de, c.stoidner@phytec.de
+Cc: linux-clk@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20251202-v6-18-topic-imx93-phyboard-segin-av-02-display-v1-0-9c14be6c7478@pengutronix.de>
+ <20251202-v6-18-topic-imx93-phyboard-segin-av-02-display-v1-1-9c14be6c7478@pengutronix.de>
+Content-Language: en-US
+From: Primoz Fiser <primoz.fiser@norik.com>
+Autocrypt: addr=primoz.fiser@norik.com; keydata=
+ xjMEZrROOxYJKwYBBAHaRw8BAQdAADVOb5tiLVTUAC9nu/FUl4gj/+4fDLqbc3mk0Vz8riTN
+ JVByaW1veiBGaXNlciA8cHJpbW96LmZpc2VyQG5vcmlrLmNvbT7CiQQTFggAMRYhBK2YFSAH
+ ExsBZLCwJGoLbQEHbnBPBQJmtE47AhsDBAsJCAcFFQgJCgsFFgIDAQAACgkQagttAQducE+T
+ gAD+K4fKlIuvH75fAFwGYG/HT3F9mN64majvqJqvp3gTB9YBAL12gu+cm11m9JMyOyN0l6Os
+ jStsQFghPkzBSDWSDN0NzjgEZrROPBIKKwYBBAGXVQEFAQEHQP2xtEOhbgA+rfzvvcFkV1zK
+ 6ym3/c/OUQObCp50BocdAwEIB8J4BBgWCAAgFiEErZgVIAcTGwFksLAkagttAQducE8FAma0
+ TjwCGwwACgkQagttAQducE8ucAD9F1sXtQD4iA7Qu+SwNUAp/9x7Cqr37CSb2p6hbRmPJP8B
+ AMYR91JYlFmOJ+ScPhQ8/MgFO+V6pa7K2ebk5xYqsCgA
+Organization: Norik systems d.o.o.
+In-Reply-To: <20251202-v6-18-topic-imx93-phyboard-segin-av-02-display-v1-1-9c14be6c7478@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cp2.siel.si
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - norik.com
+X-Get-Message-Sender-Via: cp2.siel.si: authenticated_id: primoz.fiser@norik.com
+X-Authenticated-Sender: cp2.siel.si: primoz.fiser@norik.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 
-On Tue, Dec 02, 2025 at 01:56:05PM +0100, Kory Maincent wrote:
-> On Tue, 2 Dec 2025 13:51:59 +0200
-> Tomi Valkeinen <tomi.valkeinen@ideasonboard.com> wrote:
+Hi Marco,
+
+On 2. 12. 25 14:44, Marco Felsch wrote:
+> Some parallel panels have a pixelclk of 33.260 MHz. Add support for
+> 332.60 MHz so a by 10 divider can be used to derive the exact pixelclk.
+
+Reviewed-by: Primoz Fiser <primoz.fiser@norik.com>
 > 
-> > Hi Kory,
-> > 
-> > On 02/12/2025 13:18, Kory Maincent wrote:
-> > > On Tue, 2 Dec 2025 11:47:40 +0100
-> > > Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> ---
+>  drivers/clk/imx/clk-fracn-gppll.c | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> > I will not NAK, removing bindings and breaking users is under some
-> > conditions acceptable. You just need to come with the reasons and impact.
-> > 
-> > Reason "is ugly" is usually not good enough. Especially if things were
-> > working.
+> diff --git a/drivers/clk/imx/clk-fracn-gppll.c b/drivers/clk/imx/clk-fracn-gppll.c
+> index 090d608672508a8819dc68eedec5b8d4a2c140c8..579f76494eb041dfba58b8cd10eb2453a0ec4178 100644
+> --- a/drivers/clk/imx/clk-fracn-gppll.c
+> +++ b/drivers/clk/imx/clk-fracn-gppll.c
+> @@ -88,6 +88,7 @@ static const struct imx_fracn_gppll_rate_table fracn_tbl[] = {
+>  	PLL_FRACN_GP(445333333U, 167, 0, 1, 0, 9),
+>  	PLL_FRACN_GP(400000000U, 200, 0, 1, 0, 12),
+>  	PLL_FRACN_GP(393216000U, 163, 84, 100, 0, 10),
+> +	PLL_FRACN_GP(332600000U, 138, 584, 1000, 0, 10),
+>  	PLL_FRACN_GP(300000000U, 150, 0, 1, 0, 12)
+>  };
+>  
 > 
-> Thanks for you reply.
-> 
-> > >>
-> > >> DTS cannot go to drm, which means you either need to separate the change
-> > >> and make entire work bisectable and backwards compatible for some time
-> > >> OR at least document clearly the impact as we always ask.  
-> > > 
-> > > The thing is, if I split it, it has to be in 3. One for the of DRM bus flags
-> > > support, a second for the the devicetree and binding change and a third for
-> > > the whole tilcdc and tda998x cleaning stuff. I think I will go for one
-> > > series, with better documentation.
-> > > 
-> > > Now, what is your point of view on my question. Will you nak any binding
-> > > removal even if the binding is ugly and legacy and imply maintaining an
-> > > non-standard tilcdc panel driver? I know it breaks DTB compatibility but
-> > > there is several argument to not keep it. See patch 6.  
-> > The binding being ugly and having to maintain non-standard tilcdc panel
-> > driver may be nice things for us, the users don't care. The users care
-> > if their board no longer works.
-> 
-> Yes I understand but then I have another question. At what cost should we
-> continue to support legacy binding?
 
-That's mostly question to platform maintainers and users. Extrapolating
-kernel rule - we never break the user-space - we never break the users,
-thus we take significant cost.
-
-And that significant cost can be the cost of making the transition
-smooth or smoother.
-
-> 
-> Just figured out this case already happened, ti,tilcdc,slave binding was
-> removed from the tilcdc driver:
-> 739acd85ffdb7 ("drm/tilcdc: Remove obsolete "ti,tilcdc,slave" dts binding
-> support")
-> 
-> Even if there is still one mainline device tree that uses it:
-> am335x-base0033.dts. :/
-
-If that commit broke existing users, it is a good argument for your
-changes, but you need to explicitly use that argument in commit msg.
-
-> 
-> > And how does this sync with u-boot? It also has code for at least for a
-> > few of these boards.
-> 
-> U-boot has indeed a driver for the ti,tilcdc,panel binding.
-> Changing this devicetree would beak display for these board in U-boot as it
-> currently does not support the "panel-dpi" binding.
-
-Thanks for checking, regardless of decision this also should be in
-commit msg.
-
-Maybe things were not working correctly for long time, so there is a
-choice of fixing Linux side while breaking U-boot and not fixing, but
-keeping bootloader working.
-
-
-Best regards,
-Krzysztof
+-- 
+Primoz Fiser
+phone: +386-41-390-545
+email: primoz.fiser@norik.com
+--
+Norik systems d.o.o.
+Your embedded software partner
+Slovenia, EU
+phone: +386-41-540-545
+email: info@norik.com
 
 
