@@ -1,242 +1,271 @@
-Return-Path: <devicetree+bounces-243829-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243830-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB677C9D851
-	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 02:47:21 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2CADC9D863
+	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 02:48:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 82B8E4E4B54
-	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 01:47:19 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E577F4E141E
+	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 01:48:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6995B23D7E6;
-	Wed,  3 Dec 2025 01:47:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11A6822CBC0;
+	Wed,  3 Dec 2025 01:48:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZLpulbdH"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="JBHHu0U1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f41.google.com (mail-qv1-f41.google.com [209.85.219.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from AM0PR02CU008.outbound.protection.outlook.com (mail-westeuropeazon11013031.outbound.protection.outlook.com [52.101.72.31])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B4EA14AD20
-	for <devicetree@vger.kernel.org>; Wed,  3 Dec 2025 01:47:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.41
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764726430; cv=none; b=AM9RjDxkc6ulDe6zbOih8t1tGux5uFzBBcB+LVism5xdcEaqFWo5KHpAUTQ6l0uHnsRSYVwKvQqs62pC4+SoyNeKOSon/6u9ifevWDO3/fvJSV7eJIi0XPO189iFfX208lIpL6MS/L389W/SmQql8L05Dc7ICsRQKWhNwJIjdpk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764726430; c=relaxed/simple;
-	bh=3nO+YcV9+oE4XpniiLIyxdEaMIE8lYstD85AACwuLDo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rC926p+GupvtH1+3fgF0ty+3qAcRUxfWxVLOEBzlU2wvbCjYuiqgV4zqNee2dXXtp1vvoRVoMvVQt4UxTKNP6kaffT6S9oaN36tBIO7yHl6gNcab7PORWWXzjVlKxpgB3isBuitUWNm3l6S0BoNzgFI5QWDT8mQUV4nbkCOPQ4U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZLpulbdH; arc=none smtp.client-ip=209.85.219.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f41.google.com with SMTP id 6a1803df08f44-8823dfa84c5so64539656d6.3
-        for <devicetree@vger.kernel.org>; Tue, 02 Dec 2025 17:47:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1764726426; x=1765331226; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:feedback-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OtH1a85NzPXIElQyhEPKVrfDvnNRb+rvBUgIUrut7Kw=;
-        b=ZLpulbdHFBuz7J52MuyOIQ1Y3U8SB9lTC6264JsyNnqSRuJj7m0PZ8y7eKvMPM3Sol
-         rLVKMu1G7YfuxL5shNUWpOdxFn47imeoQ6KUY0AX9rlMudYEQsYNJo0X760eiWPXsFmp
-         jXbJuWOc+QKgkXBDBPJKuAHezVJEyIL0mC/AgQ/1SXp5PTfThL8Dvh8S/GiBYGibeUZy
-         KQJczWyAAovaz4St/568241YXbC56ygndDWzni8BqfwZZkY1JRsUwgNXrj9AtGdF1m1v
-         JAbaR73Joqe1miRLsL0NbyzJl/zgU1deueDJNhf4b5XJ2+AziBjqymuQhQuZcXHN/GE0
-         aoZg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764726426; x=1765331226;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:feedback-id:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=OtH1a85NzPXIElQyhEPKVrfDvnNRb+rvBUgIUrut7Kw=;
-        b=YpzPacy9YRv6rslm+hAtKGcy3svSOq4VjUOHSOBfx39qFVgtVMH0xNCIRKDPcrwJyT
-         C9TeIsSVlNjsybg7DUhbcH20Jn+FCPq8olMl0z5kiYic9sg2VomviXq9E4nEcULyzCpl
-         MhipHvVM/JMrlK3r33Tba7oIN8lMe5bf/PWwL3cFBsAGsfSATLOGFkJ2Vub2VEd0h35X
-         VFUrgCzH65fPcr2BQrs/vSbFwkPdJ9WHiVV4nSPP0ftpi4asBv//Bd8bZG7kDnzF4jKo
-         ZZVf8y5q66yLT6lfwsDd11mnV4tvNNcrknGtVSXFC6oDp77umjXstiT8Y7liyVcnXsoM
-         DSEg==
-X-Forwarded-Encrypted: i=1; AJvYcCWdhXrDmlDIR5ii8FxSF6XPEecSlb9OHjNO7vvAWbtQgTD1krp10DUcWmveZYIXcbwWDJ5mAF2FN5KS@vger.kernel.org
-X-Gm-Message-State: AOJu0YxH32LTc/rxerSspwxGRe6jgcxggq+PQVlvwkNZsHGI4L8nlEAl
-	B3/QvVOo4Dm7NXpUITGZgi9s9SSIFeQGE2TgKWSU5EWRLvWhyGQ67XHI
-X-Gm-Gg: ASbGnctIZgrmyysSWxbafZOCpAHKwpkwPRjfpZWekQA+XZ8wLgxHHaNyPe54lWiKOET
-	m6n7SHlbdu6+Rn24f3r1yYrQqECVoDCvCIZxYAk4wqta5g/E8OcjVJnIndjtOdPzyoOgRVdmzXG
-	UbEmPgaZguWSTg6fnXCVDt5+Zc6t3fsD0XrCE1IAuCljKkKvHqTVLZIWjw/el9RSukDY9J7b6lT
-	1n8c0E9CI3NlBfz8Mk5x002YoUbTaDeId4yFVRkob/ualu+6+dcbk8z+mq2+8NH0dUg5AzMH57Y
-	GqFTnrfc5BsTZaMO2ksMjzAky/afcYOjbVeK1l6snvnEITpgBVxMdSZHQ1DNF3/cabCvMCYIOoe
-	OjMH8cQij0pmTX95Z1fGg28qkFboMn7D5nPfEF4URYmD/JRLdZsNtZ7ExsvFBTRT8MFhNOUUFsI
-	KIoTBiUkwrJtL3yhGk+3MSCzThSNUZQ11ITb8ejwD1imQG1GmK8C8272M+t39fdEbA6tDpe9hWA
-	QXf/pOPRsPWIqS4Q0D93WVsMg==
-X-Google-Smtp-Source: AGHT+IFeMR+oSVn09EJ3IDZOwhh2uiS4UVZ0hp1HU+YMpxzfU9ogbzDHH3W62a3tJUAdySWBH37uAw==
-X-Received: by 2002:a05:620a:2805:b0:8b2:d56a:f2f1 with SMTP id af79cd13be357-8b5e47cfdaamr99382185a.12.1764726426099;
-        Tue, 02 Dec 2025 17:47:06 -0800 (PST)
-Received: from fauth-a2-smtp.messagingengine.com (fauth-a2-smtp.messagingengine.com. [103.168.172.201])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-886524b1aa6sm119441246d6.8.2025.12.02.17.47.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Dec 2025 17:47:05 -0800 (PST)
-Received: from phl-compute-02.internal (phl-compute-02.internal [10.202.2.42])
-	by mailfauth.phl.internal (Postfix) with ESMTP id ACD9EF40079;
-	Tue,  2 Dec 2025 20:47:04 -0500 (EST)
-Received: from phl-mailfrontend-01 ([10.202.2.162])
-  by phl-compute-02.internal (MEProxy); Tue, 02 Dec 2025 20:47:04 -0500
-X-ME-Sender: <xms:mJYvaaDmnK-eQoA_EF5dIKBTmJFKJG6JnnoegiOnZKVT8CNUG_YZFg>
-    <xme:mJYvadSJ45vWYeQ9F5mL5h1nMVY-8bU-OaEP6MA5NELkAMhxMnC3oTCpPE77lCBHK
-    7T7DCcgyxDTJotNCxAXaXhpptJ3QWP-MaGb6ZrIeVNqxosuK0JF82c>
-X-ME-Received: <xmr:mJYvafxcm6YlRM-vftTxYa0HsgC9YSewKe3-7hU6gkHJFIR9j-dqDET8mDz9W_yI4jfLTFLmfy4EJaHEsee2Ieq8FtBpB-e8>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgdduheelucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceurghi
-    lhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurh
-    epfffhvfevuffkfhggtggujgesthdtredttddtvdenucfhrhhomhepuehoqhhunhcuhfgv
-    nhhguceosghoqhhunhdrfhgvnhhgsehgmhgrihhlrdgtohhmqeenucggtffrrghtthgvrh
-    hnpeehudfgudffffetuedtvdehueevledvhfelleeivedtgeeuhfegueevieduffeivden
-    ucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegsohhquh
-    hnodhmvghsmhhtphgruhhthhhpvghrshhonhgrlhhithihqdeiledvgeehtdeigedqudej
-    jeekheehhedvqdgsohhquhhnrdhfvghngheppehgmhgrihhlrdgtohhmsehfihigmhgvrd
-    hnrghmvgdpnhgspghrtghpthhtohepkedupdhmohguvgepshhmthhpohhuthdprhgtphht
-    thhopegrlhhitggvrhihhhhlsehgohhoghhlvgdrtghomhdprhgtphhtthhopehruhhsth
-    dqfhhorhdqlhhinhhugiesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehl
-    ihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhope
-    hgrhgvghhkhheslhhinhhugihfohhunhgurghtihhonhdrohhrghdprhgtphhtthhopegu
-    rghvihgurdhmrdgvrhhtmhgrnhesihhnthgvlhdrtghomhdprhgtphhtthhopehirhgrrd
-    ifvghinhihsehinhhtvghlrdgtohhmpdhrtghpthhtoheplhgvohhnsehkvghrnhgvlhdr
-    ohhrghdprhgtphhtthhopehpvghtvghriiesihhnfhhrrgguvggrugdrohhrghdprhgtph
-    htthhopegvlhhlvgesfigvrghthhgvrhgvugdqshhtvggvlhdruggvvh
-X-ME-Proxy: <xmx:mJYvafm1w4VDhZtfL-vbtABRjhTNIcFLz8_RoOmFJXiaSOHOJFRUsA>
-    <xmx:mJYvaTW4xPwqaL8AsLZ0eWuclQx3vE9Zqhyto1-mcNhBpI554zsuvg>
-    <xmx:mJYvaXX2hT3SDveYJ-poTdQsJ8M2nsxtzyvAAaEGn-Ah6ycumKDy0w>
-    <xmx:mJYvaS9D9MkMxArS_FuKXUpeU0lMFKOAD8JwuBHAD4qUAR-XYoc_nw>
-    <xmx:mJYvaaBq2FcntQ00GFur5OcCdB2TqHkbOovvZlruCm-nWJGwWixyD_zx>
-Feedback-ID: iad51458e:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 2 Dec 2025 20:47:03 -0500 (EST)
-Date: Tue, 2 Dec 2025 17:47:03 -0800
-From: Boqun Feng <boqun.feng@gmail.com>
-To: Alice Ryhl <aliceryhl@google.com>
-Cc: rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Dave Ertman <david.m.ertman@intel.com>,	Ira Weiny <ira.weiny@intel.com>,
- Leon Romanovsky <leon@kernel.org>,	Peter Zijlstra <peterz@infradead.org>,
-	Elle Rhumsaa <elle@weathered-steel.dev>,
-	Carlos Llamas <cmllamas@google.com>,	Yury Norov <yury.norov@gmail.com>,
-	Andreas Hindborg <a.hindborg@kernel.org>,	linux-block@vger.kernel.org,
-	FUJITA Tomonori <fujita.tomonori@gmail.com>,
-	Miguel Ojeda <ojeda@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
-	Benno Lossin <lossin@kernel.org>,	Danilo Krummrich <dakr@kernel.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Viresh Kumar <viresh.kumar@linaro.org>, linux-pm@vger.kernel.org,
-	Paul Moore <paul@paul-moore.com>, Serge Hallyn <sergeh@kernel.org>,
-	linux-security-module@vger.kernel.org,
-	Daniel Almeida <daniel.almeida@collabora.com>,
-	Abdiel Janulgue <abdiel.janulgue@gmail.com>,
-	Robin Murphy <robin.murphy@arm.com>, Lyude Paul <lyude@redhat.com>,
-	Alexander Viro <viro@zeniv.linux.org.uk>,
-	Christian Brauner <brauner@kernel.org>, Jan Kara <jack@suse.cz>,
-	linux-fsdevel@vger.kernel.org, Josh Poimboeuf <jpoimboe@kernel.org>,
-	Jason Baron <jbaron@akamai.com>,	Steven Rostedt <rostedt@goodmis.org>,
-	Ard Biesheuvel <ardb@kernel.org>,
-	Brendan Higgins <brendan.higgins@linux.dev>,
-	David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>,
-	linux-kselftest@vger.kernel.org,
-	Andrew Morton <akpm@linux-foundation.org>,
-	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
-	Andrew Ballance <andrewjballance@gmail.com>,
-	maple-tree@lists.infradead.org, linux-mm@kvack.org,
-	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
-	Uladzislau Rezki <urezki@gmail.com>,
-	Vitaly Wool <vitaly.wool@konsulko.se>,	Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Krzysztof =?iso-8859-1?Q?Wilczy=B4nski?= <kwilczynski@kernel.org>,
-	linux-pci@vger.kernel.org, Remo Senekowitsch <remo@buenzli.dev>,
-	"Paul E. McKenney" <paulmck@kernel.org>, rcu@vger.kernel.org,
-	Will Deacon <will@kernel.org>, Fiona Behrens <me@kloenk.dev>,
-	Gary Guo <gary@garyguo.net>, Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,	Alexandre Courbot <acourbot@nvidia.com>,
-	Vlastimil Babka <vbabka@suse.cz>, Christoph Lameter <cl@gentwo.org>,
-	David Rientjes <rientjes@google.com>,	Ingo Molnar <mingo@redhat.com>,
- Waiman Long <longman@redhat.com>,
-	Mitchell Levy <levymitchell0@gmail.com>,
-	Frederic Weisbecker <frederic@kernel.org>,
-	Anna-Maria Behnsen <anna-maria@linutronix.de>,
-	John Stultz <jstultz@google.com>, linux-usb@vger.kernel.org,
-	Tejun Heo <tj@kernel.org>, Lai Jiangshan <jiangshanlai@gmail.com>,
-	Matthew Wilcox <willy@infradead.org>,
-	Tamir Duberstein <tamird@gmail.com>
-Subject: Re: [PATCH 00/46] Allow inlining C helpers into Rust when using LTO
-Message-ID: <aS-WlwsvGrbGYIYs@tardis.local>
-References: <20251202-define-rust-helper-v1-0-a2e13cbc17a6@google.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0CAA226541;
+	Wed,  3 Dec 2025 01:48:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.72.31
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764726492; cv=fail; b=g/yt/B2/gO2UoU4kIZ5/4XZer4sAzjsM7n04ITEife3c6hMIWJvlVWH1t6KYKWIg8780+Qjzv6r+kE1RD3DOzMOpkfRamRSTvMvJmgT9ACWbETb/hOnS/n+StcmBd7wCCilNDd0dPGaWsyPiezGUSqD/wFTX0P9oANu6tJSplx8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764726492; c=relaxed/simple;
+	bh=JwLI6K3aOUmHXmuAYHFRt0FBClJK2KlOBcVeFvVezeQ=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=SxITs7eoHTlIMI1WR+01aoXeyclB6VWAMykHnx7/FF5PIt4t94JMa+0CDFD/HFEh+f1GIk5LTGuuC9Itdh+2yn/S8yWrcGFyM8/30yt0FBKwZywKpnKvNZ/PTW4zPA/P5zKJ/viSU6Z6GVwkSLNstOKNhNHEuX6/h5JeKC7oUYY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=JBHHu0U1; arc=fail smtp.client-ip=52.101.72.31
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=hPtGzbOqMrt2pWVr5DA6B4XAJN3Pw2GXc+Qk6DhjKqIBOE7Tf7zV7Vh7nWDT0LTyFOq4Vv6HcaPx1dUXxBlYgWLLBw7MJloxDXTS/9aXtnR+PjMUqoKMXGG0OEFmTmaF4b1y7bUzaUfkvv16yn63pVBe1Ml6/m1oMvlmPDHZYYTYzzQWlQ0iEvdk+dHJ78hEXrESNmOA5a4ZyZRTAACfzeaHsJ2vEKyBtb4wQLp4IFqxux3bd8rvJwwUl2OAC3741wdJymvABEqbMIyfKJ6wGqd2TG0tOnz1owKtVoSjNX3SYVW+wRzNAmeWmqdoLRJeD4eCCKLH1mwbAvPwQfy0cQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ycIoHANqAWc6reNSkKjt04uPrxEmcz2MrJYvCtA3EN4=;
+ b=SO0qmuTH1DmBKlFc7sbWxYe4cCvrUcKUd43tah5roGZAgTqTUZVk0T0OQ1RJzIag1dLpeFtTw0HeAS/u/GpN+TT4DK3/D78JKC/aepVnv8VcH2kEe+H1jhZcsoGpyQiS4GdDcIwvKFuD6GX4eniC3ReZdPs0uaJ75DgmQTN5XjuXALfxoht0o7E20YTqAEuFgz2egIOlfCqnhkb/HAcNCt23CbYhzc3WAngo5L9jysajfodCQYnQw7CkoSB0FYJjXik0nc20CTIUiCcSovYkRmNJA0m/AZ/6ovJ/JlIbHuEHLYtYZINC2HjKED5qt3UHRy//A0ltFvtv9GjlVumz5g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ycIoHANqAWc6reNSkKjt04uPrxEmcz2MrJYvCtA3EN4=;
+ b=JBHHu0U1rm19+cDKJJucZaciQh/L2ibQ9/Wy6bhdeFweuKcGhtslw6bBfc90GP4BDnxeULDI5uJOD6KUYu91NPANC2JDUmmB22khCjTi0zzuGJKCDcA/He+NgiuYshLJ756Dc0D6SUk5oTy3nk0N9TLrmxu4YMxW446sL9tWDx4TcAbVYyCvii+9DrauwOX1J5+z0UKo1TjF33HuUwcqbbPuo9hfWMpDAE8rUUH0RElRN5DLH2NPSB8JMf73/GAXfbRVgBAZmFG+34wrNVxDdwuykitO1GMRFx2EWeK4Ku/bsbZsHKjeJGfjp8iAq7NPcXHmqucZKMArZPO2Gkp8IA==
+Received: from VI0PR04MB12114.eurprd04.prod.outlook.com
+ (2603:10a6:800:315::13) by AM9PR04MB8381.eurprd04.prod.outlook.com
+ (2603:10a6:20b:3b5::17) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.17; Wed, 3 Dec
+ 2025 01:48:07 +0000
+Received: from VI0PR04MB12114.eurprd04.prod.outlook.com
+ ([fe80::2943:c36f:6a8c:81f7]) by VI0PR04MB12114.eurprd04.prod.outlook.com
+ ([fe80::2943:c36f:6a8c:81f7%3]) with mapi id 15.20.9388.003; Wed, 3 Dec 2025
+ 01:48:06 +0000
+From: Sherry Sun <sherry.sun@nxp.com>
+To: Frank Li <frank.li@nxp.com>, Alexander Stein
+	<alexander.stein@ew.tq-group.com>
+CC: "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"shawnguo@kernel.org" <shawnguo@kernel.org>, "s.hauer@pengutronix.de"
+	<s.hauer@pengutronix.de>, "festevam@gmail.com" <festevam@gmail.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"kernel@pengutronix.de" <kernel@pengutronix.de>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+Subject: RE: [PATCH] arm64: dts: imx8qm-ss-dma: correct the dma channels of
+ lpuart
+Thread-Topic: [PATCH] arm64: dts: imx8qm-ss-dma: correct the dma channels of
+ lpuart
+Thread-Index: AQHcY30pDC9u9LkrLUePkA/s772XarUOPBuAgAAyZACAALgf4A==
+Date: Wed, 3 Dec 2025 01:48:06 +0000
+Message-ID:
+ <VI0PR04MB12114DF96354253F961BAD66D92D9A@VI0PR04MB12114.eurprd04.prod.outlook.com>
+References: <20251202111638.3553-1-sherry.sun@nxp.com>
+ <2395053.ElGaqSPkdT@steina-w> <aS78RJQAJDf6iU6X@lizhi-Precision-Tower-5810>
+In-Reply-To: <aS78RJQAJDf6iU6X@lizhi-Precision-Tower-5810>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: VI0PR04MB12114:EE_|AM9PR04MB8381:EE_
+x-ms-office365-filtering-correlation-id: 29135c9c-d83a-41b1-a896-08de320e014c
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|376014|7416014|1800799024|366016|19092799006|38070700021;
+x-microsoft-antispam-message-info:
+ =?iso-8859-1?Q?qsej0OlDS8SAAlA6OuaruZa4YM3UfR4WBpvACYZnE+PIcwA9bZbyw6rnFU?=
+ =?iso-8859-1?Q?RNAgwGXChpw7qPdJ5TAz12119oSZ/o61ytQqx0SuPS9kFrbjum+RP280if?=
+ =?iso-8859-1?Q?Xpt7glM4QqGm9qSJmcYth0Cg0O061lHhZ6GV1Eu+U7Qk/MzgNsaUHScQk/?=
+ =?iso-8859-1?Q?vGa6GTYpl18puQFy9Rebmsig/fzUPiRqFZ7lX1ll2V7CYTW9XyaTVhTn5D?=
+ =?iso-8859-1?Q?S96xyESlOLJxJfVdZkOr2pBB0tcZ5cO5w1MlAPl1n7TlaOjkNA4XNoVdqb?=
+ =?iso-8859-1?Q?VG6Kx7xN06CEeHaXBY1qTBDMquNVephlo/LlzCScEyg8Z/fKmSe6EIgAes?=
+ =?iso-8859-1?Q?FjAD/1V0eSQoyEbYUWJ1oOTyK/UIAptJF7vfIEH9TDuEKggItvo2NExnDo?=
+ =?iso-8859-1?Q?Kh3XKUmdGXmzhgVPJ1Cct1xgdYHU46KxANoqSey74uimr+E+UxT5W97Sfq?=
+ =?iso-8859-1?Q?qC6Ug5FHgA32pOXP3FoaRj2kgwbnTUD7UCNN527kC4mI/KlPKG5s6zutaG?=
+ =?iso-8859-1?Q?HsxfBbdckLjpIUzrLtRALt1qApCI1KZTbTSDTCRmWhiNP10fcFBLbM/hkz?=
+ =?iso-8859-1?Q?Q9dmDec2Amn2HbIctC7pZQznkILqwhPGM7l0wxqmkKjx33OsVSOR/Uksu7?=
+ =?iso-8859-1?Q?xHgVSx9t+qIJLlNJv7d+5VOQWq8bOM5obERMlO5ly7BkM5uDwqNwaZmECU?=
+ =?iso-8859-1?Q?QuLWSb5a7mVrdUMXXl4TRgCAn5t08FYEn2SjvZMisUir2O6aPHsoDUyQhp?=
+ =?iso-8859-1?Q?xB0+fe+1hNDmXMaqOCTZChOtJVcIwjBAVlA50F0opvWpevj1scI72jloJQ?=
+ =?iso-8859-1?Q?7IlWc9QkW80JthHM8ux3+dyELiGxKDPT9tUSjw5d/qujZUvLpfTTc7Mctd?=
+ =?iso-8859-1?Q?OWUsoUZw4IxL+RtMfJHnXGFIKBk0y9BJp7IcQPhY7j3MpC6REt26viyLzi?=
+ =?iso-8859-1?Q?SvPaOhOwGlR6iZL15JrU3DaUDXnrtztHGVh34jCkBS4hHpK4pKvCgu/goa?=
+ =?iso-8859-1?Q?UDVD+dUNsv0w/K0kmD53Jd3uqlUOgnfQpfwIx7Wg73h2F7nrGTTvcSkjB/?=
+ =?iso-8859-1?Q?/Bqm4Z8qx+/lHVZjQbewzp/kNtvYOWlpZH7qiT3JcxdSoBH1Jt+cOH0hO2?=
+ =?iso-8859-1?Q?34IkxtLFmmCqSpyiuYWvPvwHXECudbcdlA60S2/3bgKCE+0XHKYQlduOXK?=
+ =?iso-8859-1?Q?18N9El9QZyMNPrFXJe9K2b41UbVChX1aI+9137la4r5qrCxE/K4TeZy9mz?=
+ =?iso-8859-1?Q?9rH7ymGJrxpZ1QWapkNZGkPBeXfROnpOzPMjbtHK/JnId5ThOV8AXJhA8F?=
+ =?iso-8859-1?Q?Q2j+1CiMzxyi8SjDr28LiPjA7B6924uyFLuPH1MGTWFFiiLrn2CDgItKTo?=
+ =?iso-8859-1?Q?H+6NL2/b/UXi5zZuGqAMRzFC3Y5DbRWZA/RdSmBoCRRsCUP0sLGsKO6aJ3?=
+ =?iso-8859-1?Q?CL67Zr9ylIL3mkkhDu06bKzq3vJvRWO7eEbM89ujGwbDlkSwrPKC6X8HP+?=
+ =?iso-8859-1?Q?2+B8in9t5MlrYttpQwO1Ef?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI0PR04MB12114.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(366016)(19092799006)(38070700021);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?iso-8859-1?Q?3EZuGloHzmWZhSFIqMmM4C7cPJV34ur6VUTZljKLyD+yzE1MuQFlumkMES?=
+ =?iso-8859-1?Q?7j5QYbNphC9XXdCevRTnSrwaK72qqGcQWorMKz1zaMwIfLIaKuVYRXKHG5?=
+ =?iso-8859-1?Q?2eurmw6taufQDf6TQSQESZoMCMh1tEd6hLINVLkElTfNxIfkqksahHAC2V?=
+ =?iso-8859-1?Q?AvuA64BuuNdK3u+tJsHviemtH+giC5RwyLbBUAED8NTFxMlw/+ffJcAoBZ?=
+ =?iso-8859-1?Q?uz8GbQMMMLWr33yCjMTEt8N8TpWgJkrTzs9Tn5ymVttaMlY/wGvaMU/FZQ?=
+ =?iso-8859-1?Q?xpVeO1RKhCl5WBfKbHkg9W0e4Z/GWALK4UkTQ89uajEaPks3T1lOw7ZnKS?=
+ =?iso-8859-1?Q?OLwK6Pa/C005SXuF52dywC99z2KuJBk8LJm4gZFZFcJd/d9DkQZ/SOIGq1?=
+ =?iso-8859-1?Q?uu9sxnb0QACjdvDwfyujzYVPSBbb3nqDsdKYydgB62v8j3t+44U/+cg6Jo?=
+ =?iso-8859-1?Q?RkVvIpMBhEznZVYEl5ana0zeE8/1GQRHvjqi8IjFi32jEtrePxWv9b12v6?=
+ =?iso-8859-1?Q?1y6ahL/gh7o95gzkYFMKxkSV3a/kQht3rN6vPwvYZzYajKOd2e1T82/K2j?=
+ =?iso-8859-1?Q?9RTG3+uRBUi6K/bVmnFKFpWZ6lAkVpVx8jcKFk4SaQw6QC8CNRRD9pO5px?=
+ =?iso-8859-1?Q?LFslGSUq6JvbeGGlOieQrU/s/CSjTCq5SRSF2iUDHoVrETESS7QSxXcOLo?=
+ =?iso-8859-1?Q?SL3ca9HJ9vsB3oGo/KN4sOJ5Q3R2pg1BTKwQNEEOFlBOVzbipvtUlSp4np?=
+ =?iso-8859-1?Q?cBB0k+VNYIqc22o4P+36KMfTt/By1XUOI7eCqm3pqBcCkeyuY34NDSLEUQ?=
+ =?iso-8859-1?Q?u/FtI0ZAgEXAB+DgW20ID3uyOCa3V6/DuqvGrBLjLcseR12+rDHXMLiMaG?=
+ =?iso-8859-1?Q?Q5jQSiXSa9pMMUoyBPfczqxvYcrU1ziCdf3W5YFlYIfhfQebc8O/CVjurj?=
+ =?iso-8859-1?Q?IHwelimAemHTRoOf64wKfdbaCAt+/LamUb33ovGPATF4cfCxDt23nzN8df?=
+ =?iso-8859-1?Q?VEjmZnLhjLzaLvJQIZp7FK2GMS6gjz8KIi22IlAYijT2QwwdSfd4Fd+1fK?=
+ =?iso-8859-1?Q?9JFDzH8a+uaFThnJsiOyXJ0kxOs0hdMrPYr9dzH4Wjk0+suOdT5PL+A6R4?=
+ =?iso-8859-1?Q?XbDWAy9ZRl+/jZHGdeTjKlrQTPKQOHXe6wF7mOun20Hy5n6qCmpQakxx4q?=
+ =?iso-8859-1?Q?kmBcVPNUZk3GgmwFiMFQmDMykDVVdlKI37JzrbwHXB80IPN0XZrNm+r0we?=
+ =?iso-8859-1?Q?LchXhP1QHKRVYI+4AgWK5J1HDxl2hzU9yNYB6fmKnjiMeosvSz/48ZNu7i?=
+ =?iso-8859-1?Q?0/zKcyLcSHsTnRH3BberNyt4J7h9AJWXxFmyBr4aXGmvmiAeX5Tha7EX9Z?=
+ =?iso-8859-1?Q?x4KLQl9DHfhkt6B7QCSausy0E/CjJ9C4hbSSgVcUmVsgmPBzYNQqlcfzDU?=
+ =?iso-8859-1?Q?yKifZyJOwE/9gyFSO7daUvitv0ebk0SUaox+Uf5Z7vZdqLYh/I6SUGuJtG?=
+ =?iso-8859-1?Q?jiybI5/s6c2XiLSD8JUiLoqoBmAuYMbYBPRhbmrstmogevxV/mU0ENSDo1?=
+ =?iso-8859-1?Q?eAh9VEr/hy+nmT/FTxkNULiASJMxoW892K4M1SXsMlaFQ0+aW/U7hiozEW?=
+ =?iso-8859-1?Q?kCowDUJu/4rUw=3D?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251202-define-rust-helper-v1-0-a2e13cbc17a6@google.com>
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: VI0PR04MB12114.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 29135c9c-d83a-41b1-a896-08de320e014c
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Dec 2025 01:48:06.5722
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 9DyIt1inJ4kebkHVlI5EehLTXOXuNZWCa8Vkw4Eb5DljoSiJRkeYnXU1GCSIGaQ/VX/KNGSzlpJde17aL6O7BQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8381
 
-On Tue, Dec 02, 2025 at 07:37:24PM +0000, Alice Ryhl wrote:
-> This patch series adds __rust_helper to every single rust helper. The
-> patches do not depend on each other, so maintainers please go ahead and
-> pick up any patches relevant to your subsystem! Or provide your Acked-by
-> so that Miguel can pick them up.
-> 
-> These changes were generated by adding __rust_helper and running
-> ClangFormat. Unrelated formatting changes were removed manually.
-> 
-> Why is __rust_helper needed?
-> ============================
-> 
-> Currently, C helpers cannot be inlined into Rust even when using LTO
-> because LLVM detects slightly different options on the codegen units.
-> 
-> * LLVM doesn't want to inline functions compiled with
->   `-fno-delete-null-pointer-checks` with code compiled without. The C
->   CGUs all have this enabled and Rust CGUs don't. Inlining is okay since
->   this is one of the hardening features that does not change the ABI,
->   and we shouldn't have null pointer dereferences in these helpers.
-> 
-> * LLVM doesn't want to inline functions with different list of builtins. C
->   side has `-fno-builtin-wcslen`; `wcslen` is not a Rust builtin, so
->   they should be compatible, but LLVM does not perform inlining due to
->   attributes mismatch.
-> 
-> * clang and Rust doesn't have the exact target string. Clang generates
->   `+cmov,+cx8,+fxsr` but Rust doesn't enable them (in fact, Rust will
->   complain if `-Ctarget-feature=+cmov,+cx8,+fxsr` is used). x86-64
->   always enable these features, so they are in fact the same target
->   string, but LLVM doesn't understand this and so inlining is inhibited.
->   This can be bypassed with `--ignore-tti-inline-compatible`, but this
->   is a hidden option.
-> 
-> (This analysis was written by Gary Guo.)
-> 
-> How is this fixed?
-> ==================
-> 
-> To fix this we need to add __always_inline to all helpers when compiling
-> with LTO. However, it should not be added when running bindgen as
-> bindgen will ignore functions marked inline. To achieve this, we are
-> using a #define called __rust_helper that is defined differently
-> depending on whether bindgen is running or not.
-> 
-> Note that __rust_helper is currently always #defined to nothing.
-> Changing it to __always_inline will happen separately in another patch
-> series.
-> 
-> Signed-off-by: Alice Ryhl <aliceryhl@google.com>
 
-For the whole series:
 
-Reviewed-by: Boqun Feng <boqun.feng@gmail.com>
+> -----Original Message-----
+> From: Frank Li <frank.li@nxp.com>
+> Sent: Tuesday, December 2, 2025 10:49 PM
+> To: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Cc: robh@kernel.org; krzk+dt@kernel.org; conor+dt@kernel.org;
+> shawnguo@kernel.org; s.hauer@pengutronix.de; festevam@gmail.com;
+> Sherry Sun <sherry.sun@nxp.com>; devicetree@vger.kernel.org;
+> kernel@pengutronix.de; linux-kernel@vger.kernel.org; imx@lists.linux.dev;
+> linux-arm-kernel@lists.infradead.org
+> Subject: Re: [PATCH] arm64: dts: imx8qm-ss-dma: correct the dma channels
+> of lpuart
+>=20
+> On Tue, Dec 02, 2025 at 12:48:15PM +0100, Alexander Stein wrote:
+> > Hi,
+> >
+> > Am Dienstag, 2. Dezember 2025, 12:16:38 CET schrieb Sherry Sun:
+> > > The commit 616effc0272b5 ("arm64: dts: imx8: Fix lpuart DMA channel
+> > > order") swap uart rx and tx channel at common imx8-ss-dma.dtsi. But
+> > > miss update imx8qm-ss-dma.dtsi.
+> > >
+> > > The commit 5a8e9b022e569 ("arm64: dts: imx8qm-ss-dma: Pass lpuart
+> > > dma-names") just simple add dma-names as binding doc requirement.
+> > >
+> > > Correct lpuart0 - lpuart3 dma rx and tx channels, and use defines
+> > > for the FSL_EDMA_RX flag.
+> > >
+> > > Fixes: 616effc0272b5 ("arm64: dts: imx8: Fix lpuart DMA channel
+> > > order")
+> >
+> > I'm wondering if this is actually a fix for 5a8e9b022e569 ("arm64: dts:
+> > imx8qm-ss-dma: Pass lpuart dma-names") instead. 616effc0272b5 just
+> > focuses on the common parts. But I don't have a strong opinion here.
+>=20
+> Yes, it should be 5a8e9b022e569.
 
-Regards,
-Boqun
+Sure, will update this in V2.
 
-> ---
-[...]
+Best Regards
+Sherry
+>=20
+> Frank
+> >
+> > Thanks and best regards,
+> > Alexander
+> >
+> > > Signed-off-by: Sherry Sun <sherry.sun@nxp.com>
+> > > ---
+> > >  arch/arm64/boot/dts/freescale/imx8qm-ss-dma.dtsi | 8 ++++----
+> > >  1 file changed, 4 insertions(+), 4 deletions(-)
+> > >
+> > > diff --git a/arch/arm64/boot/dts/freescale/imx8qm-ss-dma.dtsi
+> > > b/arch/arm64/boot/dts/freescale/imx8qm-ss-dma.dtsi
+> > > index 5f24850bf322..974e193f8dcb 100644
+> > > --- a/arch/arm64/boot/dts/freescale/imx8qm-ss-dma.dtsi
+> > > +++ b/arch/arm64/boot/dts/freescale/imx8qm-ss-dma.dtsi
+> > > @@ -172,25 +172,25 @@ &flexcan3 {
+> > >
+> > >  &lpuart0 {
+> > >  	compatible =3D "fsl,imx8qm-lpuart", "fsl,imx8qxp-lpuart";
+> > > -	dmas =3D <&edma2 13 0 0>, <&edma2 12 0 1>;
+> > > +	dmas =3D <&edma2 12 0 FSL_EDMA_RX>, <&edma2 13 0 0>;
+> > >  	dma-names =3D "rx","tx";
+> > >  };
+> > >
+> > >  &lpuart1 {
+> > >  	compatible =3D "fsl,imx8qm-lpuart", "fsl,imx8qxp-lpuart";
+> > > -	dmas =3D <&edma2 15 0 0>, <&edma2 14 0 1>;
+> > > +	dmas =3D <&edma2 14 0 FSL_EDMA_RX>, <&edma2 15 0 0>;
+> > >  	dma-names =3D "rx","tx";
+> > >  };
+> > >
+> > >  &lpuart2 {
+> > >  	compatible =3D "fsl,imx8qm-lpuart", "fsl,imx8qxp-lpuart";
+> > > -	dmas =3D <&edma2 17 0 0>, <&edma2 16 0 1>;
+> > > +	dmas =3D <&edma2 16 0 FSL_EDMA_RX>, <&edma2 17 0 0>;
+> > >  	dma-names =3D "rx","tx";
+> > >  };
+> > >
+> > >  &lpuart3 {
+> > >  	compatible =3D "fsl,imx8qm-lpuart", "fsl,imx8qxp-lpuart";
+> > > -	dmas =3D <&edma2 19 0 0>, <&edma2 18 0 1>;
+> > > +	dmas =3D <&edma2 18 0 FSL_EDMA_RX>, <&edma2 19 0 0>;
+> > >  	dma-names =3D "rx","tx";
+> > >  };
+> > >
+> > >
+> >
+> >
+> > --
+> > TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, German=
+y
+> > Amtsgericht M=FCnchen, HRB 105018
+> > Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneide=
+r
+> > http://www.tq-group.com/
+> >
+> >
 
