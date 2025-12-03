@@ -1,126 +1,126 @@
-Return-Path: <devicetree+bounces-243836-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243837-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82A29C9DA27
-	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 04:22:01 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1470C9DADB
+	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 04:50:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 68FAF3A14AC
-	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 03:21:59 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 48BDE349934
+	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 03:50:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 300D622CBC0;
-	Wed,  3 Dec 2025 03:21:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84B5D247295;
+	Wed,  3 Dec 2025 03:50:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="ismz0VN6"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="CQB0p/y/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.4])
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8ADA2DDAB;
-	Wed,  3 Dec 2025 03:21:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E3342550D4
+	for <devicetree@vger.kernel.org>; Wed,  3 Dec 2025 03:50:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764732117; cv=none; b=Lubjv3BvHFsKvyQmTowoYg8r3lXWC5VayZ1Ugci8vNGv+7IBUQXVHB4s2tmws5bt+KPbu8dYeSVB17hPc/vDsyiTzGrxun+PJyL2vTmEMwZfeh10T9mbGwGNqxbl38ih4abpT27sGSjWlYoosBSHgIoTvr7RF9jKFO/EGe45DrY=
+	t=1764733853; cv=none; b=bCGq0PzBr7GpBGzcJaxmrbnI0SwbEwB9JmDTiUd7+uCQqdLZxR4kVahQgelqrD6QYiZJ1FDWoepZj7PXeEXG4bBpSWUJf0zg2rDJqZ8Ym1OChL6ajjMztEmJ5hH6RcOGI3wccqir2Eoh7Uq6vH8Yf6o9ht6iFvCPWwtWuHj+6gw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764732117; c=relaxed/simple;
-	bh=h2hCNpT7qiWp0u63vW4WUvUTM/pS6vEO989A3Y3P+5M=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=nx703X9zf5AVfh14RDouNIyjbbj5bgzBXZXmvhhWAH2BP8IgBItj2U0eCWY/z17VBKaHJkKtNTTSQ5Xc8t3Y4R5qh3Da3tIY2+7VgFhaOh4D96sz865mmbJi9kmZb/MeRsCdg3VAeVtWyo1hxiWGtDl5b7JB3QNAjjl6aulhybc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=ismz0VN6; arc=none smtp.client-ip=117.135.210.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=zG
-	BGq2OtLr/Tw+dOoyB+U8Aa2Y5bi5NGEkZsJSUoqR4=; b=ismz0VN6S1IQx6cpWG
-	yq39uCK6PiH/Df++6voqJqSpfCJbjEi25Clh2mpgJYwelfS1p6qkbPz+e0eCMfsr
-	SygSHyIiCXskBbnyMGcsT2aAI6pnenkvymcG/MuBdfQasmsE7N7DrAel9WToB79x
-	6pi+zAwN4/4FZcDvmolp+mIos=
-Received: from duge-virtual-machine (unknown [])
-	by gzga-smtp-mtada-g0-2 (Coremail) with SMTP id _____wDnR4amrC9pKWlQDg--.349S2;
-	Wed, 03 Dec 2025 11:21:14 +0800 (CST)
-From: q691800735@163.com
-To: Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Alexandre Ghiti <alex@ghiti.fr>,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	jybruceupup <q691800735@163.com>
-Subject: [PATCH] dt-bindings: soc: canaan: Add K230 power domain bindings
-Date: Wed,  3 Dec 2025 11:21:07 +0800
-Message-ID: <20251203032107.31388-1-q691800735@163.com>
-X-Mailer: git-send-email 2.52.0
+	s=arc-20240116; t=1764733853; c=relaxed/simple;
+	bh=Q3ZToy5EEuu+A9zI9VCSqcmwzIdt+2p1mXaZvONgPFI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=s7J5VySDbkQBcfYJ+kyzOlkOgXwuyFaVw2R2SbbDWuwhuZXlX/PAyuFaTHrVViW8Y0bde+bHhyS7Kfab5WLnwGv89q1MBDqDPcwgIfsp6btpJKXLc6HdWfrhTnDftI/kxx0zryuTfJHs5nOLsk+qK8GhDUyAibWTH66tJW0+pVQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=CQB0p/y/; arc=none smtp.client-ip=80.241.56.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [IPv6:2001:67c:2050:b231:465::2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4dLkFL3gd7z9tTX;
+	Wed,  3 Dec 2025 04:50:46 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1764733846;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=i6mxjAhqN52fQLJBVjoKMe25fLU7L+nNfg1TFd0Xx6k=;
+	b=CQB0p/y/26lKNS6WXnrwX5QZ/QKv8bOAU7fnPVorPqGzkrNkDcw+dT5G55q7MnKUrC109l
+	R+8+EBAYf9iq+4fE/he/smzs7UTEHV67WU/IgDcHVji5wtxQjEBf3iFjdRLFYXRapimyey
+	uTWTC8iPhM9UgR5B6lwxNFseODyrK17OPNn9zLoVHn7kh/5FMy/iQd1wXCaBEskq/tsM8n
+	XHr69HUKoe2dLsfuc13mIRpDr83Do9kScbON7nPQsnzAQ77AzlBjk6wG1kCXaLA5KcVa2B
+	lmi3URiVQ3mfGkTuJqvMqEdO1V+py4vcXIWdKYvBvBddXEMeJuwgPx62WGvWTQ==
+Message-ID: <c6e0e55a-06da-4665-972e-e9b5b8c08bf7@mailbox.org>
+Date: Wed, 3 Dec 2025 04:38:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wDnR4amrC9pKWlQDg--.349S2
-X-Coremail-Antispam: 1Uf129KBjvJXoW7uF1fJr47WFWDWrW8Zw47Jwb_yoW8Cw4kpF
-	yrCr95Gr4UJr1Skw4Sga4Y9343u3ykCr12y3sxWr1qyF4DWr1jqwnagF9Fvr9rArsa9r4I
-	vF9IkFnI93y7ZaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0pRHv3UUUUUU=
-X-CM-SenderInfo: jtwzimyqqxjki6rwjhhfrp/1tbiFA4ZMGkvpbKuvQAAsx
+Subject: Re: [PATCH] arm64: dts: imx95: Use GPU_CGC as core clock for GPU
+To: Rain Yang <jiyu.yang@oss.nxp.com>
+Cc: Frank.li@nxp.com, conor+dt@kernel.org, devicetree@vger.kernel.org,
+ festevam@gmail.com, imx@lists.linux.dev, kernel@pengutronix.de,
+ krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org, peng.fan@nxp.com,
+ robh@kernel.org, s.hauer@pengutronix.de, shawnguo@kernel.org
+References: <20251129143220.14834-1-marek.vasut@mailbox.org>
+ <aS-lEibp3zTsaR6T@oss.nxp.com>
+Content-Language: en-US
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <aS-lEibp3zTsaR6T@oss.nxp.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-MBO-RS-ID: 52256cf8b3a3eab14fc
+X-MBO-RS-META: z5ckj1br1pp63h1rmuzx38dn6pe8qedj
 
-From: jybruceupup <q691800735@163.com>
+On 12/3/25 3:48 AM, Rain Yang wrote:
 
-Add device tree bindings for the Kendryte K230 power management domains
-(PM domains), which control power gating of core peripherals (I2C, SPI,
-MMC, AI2D).
+Hello Rain,
 
-Key properties:
-- compatible: "canaan,k230-pm-domains"
+>> diff --git a/arch/arm64/boot/dts/freescale/imx95-clock.h b/arch/arm64/boot/dts/freescale/imx95-clock.h
+>> index e1f91203e7947..22311612e4403 100644
+>> --- a/arch/arm64/boot/dts/freescale/imx95-clock.h
+>> +++ b/arch/arm64/boot/dts/freescale/imx95-clock.h
+>> @@ -183,5 +183,6 @@
+>> #define IMX95_CLK_SEL_A55P                 (IMX95_CCM_NUM_CLK_SRC + 123 + 7)
+>> #define IMX95_CLK_SEL_DRAM                 (IMX95_CCM_NUM_CLK_SRC + 123 + 8)
+>> #define IMX95_CLK_SEL_TEMPSENSE            (IMX95_CCM_NUM_CLK_SRC + 123 + 9)
+>> +#define IMX95_CLK_GPU_CGC                  (IMX95_CCM_NUM_CLK_SRC + 123 + 10)
+>>
+>> #endif	/* __CLOCK_IMX95_H */
+>> diff --git a/arch/arm64/boot/dts/freescale/imx95.dtsi b/arch/arm64/boot/dts/freescale/imx95.dtsi
+>> index 6091c2713fa48..47f20e501315f 100644
+>> --- a/arch/arm64/boot/dts/freescale/imx95.dtsi
+>> +++ b/arch/arm64/boot/dts/freescale/imx95.dtsi
+>> @@ -2874,7 +2874,7 @@ netc_emdio: mdio@0,0 {
+>> 		gpu: gpu@4d900000 {
+>> 			compatible = "nxp,imx95-mali", "arm,mali-valhall-csf";
+>> 			reg = <0 0x4d900000 0 0x480000>;
+>> -			clocks = <&scmi_clk IMX95_CLK_GPU>, <&scmi_clk IMX95_CLK_GPUAPB>;
+>> +			clocks = <&scmi_clk IMX95_CLK_GPU_CGC>, <&scmi_clk IMX95_CLK_GPUAPB>;
+>> 			clock-names = "core", "coregroup";
+>> 			interrupts = <GIC_SPI 289 IRQ_TYPE_LEVEL_HIGH>,
+>> 				     <GIC_SPI 290 IRQ_TYPE_LEVEL_HIGH>,
+>> -- 
+>> 2.51.0
+>>
+> Hi Marek,
+> 
+> Thanks for integrating this downstream patch.
 
-This binding follows the Devicetree Specification v0.4 and upstream
-PM domain framework requirements. It is a prerequisite for peripheral
-drivers requiring power gating control.
+Which downstream patch do you refer to ?
 
-Signed-off-by: jybruceupup <q691800735@163.com>
----
- MAINTAINERS                                      |  1 +
- include/dt-bindings/soc/canaan,k230_pm_domains.h | 13 +++++++++++++
- 2 files changed, 14 insertions(+)
- create mode 100644 include/dt-bindings/soc/canaan,k230_pm_domains.h
+> Please note that CLK_GPUAPB and CLK_GPU are
+> always-on, so the commit message should be amended accordingly.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 4d456982a..13cdbf647 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -22106,6 +22106,7 @@ P:	Documentation/arch/riscv/patch-acceptance.rst
- T:	git git://git.kernel.org/pub/scm/linux/kernel/git/riscv/linux.git
- F:	arch/riscv/
- F:	arch/riscv/configs/k230_defconfig
-+F:	include/dt-bindings/soc/canaan,k230_pm_domains.h
- N:	riscv
- K:	riscv
- 
-diff --git a/include/dt-bindings/soc/canaan,k230_pm_domains.h b/include/dt-bindings/soc/canaan,k230_pm_domains.h
-new file mode 100644
-index 000000000..e212126e4
---- /dev/null
-+++ b/include/dt-bindings/soc/canaan,k230_pm_domains.h
-@@ -0,0 +1,13 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
-+
-+#ifndef _DT_BINDINGS_SOC_K230_PM_DOMAINS_H
-+#define _DT_BINDINGS_SOC_K230_PM_DOMAINS_H
-+
-+#define K230_PM_DOMAIN_CPU1       0       /* CPU1 subsystem */
-+#define K230_PM_DOMAIN_AI         1       /* AI Subsystem */
-+#define K230_PM_DOMAIN_DISP       2       /* Display, 2.5D Engine */
-+#define K230_PM_DOMAIN_VPU        3       /* Video subsystem */
-+#define K230_PM_DOMAIN_DPU        4       /* 3D-struct Engine */
-+#define K230_PM_DOMAIN_MAX        5
-+
-+#endif /* _DT_BINDINGS_SOC_K230_PM_DOMAINS_H */
--- 
-2.52.0
+The GPU clock do not seem to be always-on, neither do the GPUAPB . It 
+seems the SM can turn those clock off perfectly well.
 
+> Additionally, the IMX95_CLK_GPUAPB handle shall be removed, as there is no valid OPP entry
+> in the frequency table, this also helps minimize differences between downstream and upstream,
+> reducing maintenance effort.
+
+Downstream kernel forks are not relevant to this discussion, upstream 
+your content and then you won't have to spend maintenance effort on 
+downstream stuff.
 
