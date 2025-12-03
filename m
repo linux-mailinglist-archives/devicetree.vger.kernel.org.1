@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-243882-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243883-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42105C9E0AA
-	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 08:27:24 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8170C9E0BC
+	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 08:30:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F1CEA3A8A93
-	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 07:27:22 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 801494E0507
+	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 07:30:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CFCB29B217;
-	Wed,  3 Dec 2025 07:27:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7992299AA3;
+	Wed,  3 Dec 2025 07:30:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Nl/5Mo/G"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Fape61ID"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D65C8405C;
-	Wed,  3 Dec 2025 07:27:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CD4028BAB9;
+	Wed,  3 Dec 2025 07:30:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764746840; cv=none; b=tYP+pXJ1EnJ0/cYdKeRRH12P/za+CWiDH+jVhcmofu9l0btH2PhnNcP5OCtBPtOU9tmEVke6FIxNKP75tPBU5+zKXpGYhkQbsNhi8leyzWVMW3Pk3/xuylZwACYRWdbAB0yPnoLb6/Habmaod5cUkSb0Wqt5i2CMvjF7cvz9Qdc=
+	t=1764747032; cv=none; b=Wn6yxThYLeHo0U/HrVHB/P0XXLB78micBT6FszaKuFq1rJ6vClpKxK7zq1ZlDtQzlLijxZWxvRxMz/pv0t7zOIgkDchf2Zu1NYln+wqnaydQ1IK2U/QayC1dILLj1VHf35Ff+ntus3hEQFr45MS7mw+41UDYOq9IhcQkSLPeeio=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764746840; c=relaxed/simple;
-	bh=cVBcXNIunmwT9KEg46GU3XRctoljhsrnC+A5dtKR6Es=;
+	s=arc-20240116; t=1764747032; c=relaxed/simple;
+	bh=pv6q00YaSFpFrZeUj2emgD6eb67X85Dw29g2lgwIGWU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=enuHwf/Oz5+vv/CPqltmTLaaVJUoGoDn7ekoz1zFRv8gS8RL5sYIw6MtfqG4wS4vrRsd3mBXkTAuVZh5y47RV/IhjshQUoJ1zrIlGOjqd2smwyoviBdawhGSlJolAIBdv4snOZLLuxmNjQpnS+7apuNkXbiIWAc/+ipozygzd0M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Nl/5Mo/G; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69545C4CEFB;
-	Wed,  3 Dec 2025 07:27:17 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=tlQm3QDHCzKnNr7J5mUxWtcj5m4QtQUBOqoVWN9jC1UzeHI2n0+M0mA1vKtA6cmD8qpuKwP/HRBUpWusG/MQU5Fml1KSjk9dUfzaK7B9s/5gXzHSYIShsxlkr7LSC374r0woTRQLKMzlI4/O/lyWIFxZMv861zKIwPLwOv5cn6s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Fape61ID; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8226C4CEFB;
+	Wed,  3 Dec 2025 07:30:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764746840;
-	bh=cVBcXNIunmwT9KEg46GU3XRctoljhsrnC+A5dtKR6Es=;
+	s=k20201202; t=1764747032;
+	bh=pv6q00YaSFpFrZeUj2emgD6eb67X85Dw29g2lgwIGWU=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Nl/5Mo/GOaZKBBpqGqEFTp2ucshoU3G3k9ba/n8pq39ufx5CD0AcCmKYttZ7fQ7gI
-	 LALvnh+fYc6cCYzZrMKl9ACPvdPHM3aL9q2uS6VW/MPL6gpGu8NG7xUqte93uKiRNP
-	 D6c+TJR2z3KV08+I2d2jBNm8gN/vqYOR0juLpbLeYHYPCSWVt3NwZgHEXGrJTtujr2
-	 EyLC8yx0YEi7aIvq3HZyrWmrGpXb5nSuaV48mQlGSLY150Hkye1cfnTyKDlCeEZu4V
-	 NtX2GMu4wlhuSSjoxMgqGiw6LhbqHyP9a0RlSl46p6y8UYIbBUyOq7znziY1fqyRLM
-	 k12vRaGfba2bw==
-Message-ID: <9df069c1-3cce-4eff-b9a5-9f422eba1c8e@kernel.org>
-Date: Wed, 3 Dec 2025 08:27:15 +0100
+	b=Fape61IDMTOfqKbe8C3rN4Vx/9jyoSyxk10t7rb1z0CCi+yZmMWdQE3P4GAhOMOhc
+	 IJucEBOY42kldk3Os5xLVB7gxGXnVg8i70B0bGcczNByoqB8jOyDUKbE0vZm5K22NQ
+	 oQ4QpaTkwe/+HpDZPgLvLh2B/1Km7Auut8jrI+vIOA7U3BMKx3Au1N9tYVdzuFQMg6
+	 jG4hPpd4jQ5mYzBB07PUbqdEm+HN9r2qG/G/lvPTSggl5UGEaW5ge/qY1s1KYiKN6k
+	 OFXl6j4pCBB5zlAxNWoT9NWsh2Cjxw6xSxN1sI0Ln1R1EyjNlNgdFYTgJwtH85yj3y
+	 95kSGrOcSfEDg==
+Message-ID: <9a28308b-2ca6-4206-a22d-9615cd1dfabb@kernel.org>
+Date: Wed, 3 Dec 2025 08:30:28 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ASoC: dt-bindings: cirrus,cs42xx8: Reference common DAI
- properties
-To: Shengjiu Wang <shengjiu.wang@gmail.com>
-Cc: Shengjiu Wang <shengjiu.wang@nxp.com>, david.rhodes@cirrus.com,
- rf@opensource.cirrus.com, lgirdwood@gmail.com, broonie@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- patches@opensource.cirrus.com, linux-sound@vger.kernel.org,
+Subject: Re: [RESEND PATCH 1/2] dt-bindings: soc: altera: Move altera.yaml
+ from arm to soc
+To: Dinh Nguyen <dinguyen@kernel.org>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20251202061157.1710163-1-shengjiu.wang@nxp.com>
- <47e32ef5-cfcb-44aa-9045-52d84f7686d5@kernel.org>
- <CAA+D8ANHFOi5ksBEyZSvFhmp21XbBD1Lgyg+TJgjRX2xBcc_4A@mail.gmail.com>
+References: <20251125134004.261165-1-dinguyen@kernel.org>
+ <20251126-flat-fennec-of-charisma-ba8dc1@kuoka>
+ <054158a2-eb47-48a4-ba4c-0bcf7703e0e3@kernel.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,22 +103,43 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <CAA+D8ANHFOi5ksBEyZSvFhmp21XbBD1Lgyg+TJgjRX2xBcc_4A@mail.gmail.com>
+In-Reply-To: <054158a2-eb47-48a4-ba4c-0bcf7703e0e3@kernel.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 03/12/2025 06:54, Shengjiu Wang wrote:
-> On Tue, Dec 2, 2025 at 4:06 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>
->> On 02/12/2025 07:11, Shengjiu Wang wrote:
->>> Reference the dai-common.yaml schema to allow '#sound-dai-cells' and
->>> "sound-name-prefix' to be used.
->>
->> ... because CS-foo-bar device is a DAI?
+On 02/12/2025 22:04, Dinh Nguyen wrote:
 > 
-> Yes. cirrus,cs42xx8 is codec DAI.
+> 
+> On 11/26/25 03:46, Krzysztof Kozlowski wrote:
+>> On Tue, Nov 25, 2025 at 07:40:02AM -0600, Dinh Nguyen wrote:
+>>> All Altera boards can hosts soft core CPUs like NIOS V or a RISC V, so
+>>
+>> Please send it with the user of this change, so with DTS for RISC-V or
+>> NIOS-V.
+>>
+>> This alone is not really correct, if all compatibles here are for ARM
+>> and nothing in commit msg said that any compatible is not for ARM...
+>> unless you claim that each of these SoCs are multi-arch?
+>>
+> 
+> The SoCFPGA devices can house both the hardened ARM cluster running 
 
-So fix the commit msg.
+But "can" does not mean "does". None of the boards here do host. If they
+do, it must be clearly expressed that you documented RISC-V under ARM.
+
+> simultaneously with a number of soft Nios V cores in the FPGA fabric. 
+> They may be running independently or working together through shared 
+> memory or shared peripheral IO. I think that would be a qualify as a 
+> multi-arch device.
+
+Again, we speak ONLY about these few, very specific boards. Not SoCs.
+
+> 
+>  From what we've seen of multi-arch use cases, there are separate DTS 
+> files for the soft-core CPU unit. Can you elaborate by what DTS you'd 
+> like to see to accomodate this change?
+
+We do not discuss DTS at all here.
 
 Best regards,
 Krzysztof
