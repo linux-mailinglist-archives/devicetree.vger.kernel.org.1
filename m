@@ -1,46 +1,80 @@
-Return-Path: <devicetree+bounces-244106-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244107-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E480ACA1128
-	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 19:41:07 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66EB9CA122A
+	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 19:46:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 42DBA3196309
-	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 17:42:17 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3E29631AD964
+	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 17:48:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 192B533AD99;
-	Wed,  3 Dec 2025 17:42:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 730DB317706;
+	Wed,  3 Dec 2025 17:47:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="miD/O73f"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="H11iJcM9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D96EF33A6FB;
-	Wed,  3 Dec 2025 17:42:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 110D8302175
+	for <devicetree@vger.kernel.org>; Wed,  3 Dec 2025 17:47:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764783737; cv=none; b=QCAab0w72gd6svAYL6nBwXjyb2gAdp1COkt+HLnVmd7aWm2aBO8No/M2qT6qWNcj84znrJo5JrEpe8paeFVVH3+YbvIWZuPsPg4qpYjAfsSCJyakBwEfShy5mHYlbo+YiNgyvPuZk5V1unnT4sCZLO5Kf6zq+GEe7uYqURODgpI=
+	t=1764784079; cv=none; b=XiEcXF9IpBy6JHkZ6qQ0gc3wwDVrr5b/UplqvIm61st7z44y9YaMiZrGV0IKhGQ31QTeFzNqtKyyGngdpcWtE+Eof0kwFeARWDwdl7S7iB/3xoNyDu6Eq8HFUj0Y7hh7vDWXWBy8eJonw5UMrgRoHuZ0jHEd4SK03loKz9rdC00=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764783737; c=relaxed/simple;
-	bh=0PFD8diImxz9iIbuzHPx6vv4/igLNrwgU6UG5S0Ue64=;
+	s=arc-20240116; t=1764784079; c=relaxed/simple;
+	bh=Phw0q0twGxbuE9D7QLZ8DkAenjCRLiKcNqFCJZDP0NM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=f0bLBKYTwIkGJhCtE3MXCwQqbIP/mX1t15rCzv7JsUwC+7Lm7etHGjHw6XFz9mXxInHShr2uBBWwBgJCCwNQiWDdDtilwr8VLRBPi86YTW6/UZGxNNvQwidsClFf9fAa5KqlDHPx3XFdkfrxHH8/OaHJqhHde1tuDgZMGjP8TrA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=miD/O73f; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83A14C4CEF5;
-	Wed,  3 Dec 2025 17:42:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764783736;
-	bh=0PFD8diImxz9iIbuzHPx6vv4/igLNrwgU6UG5S0Ue64=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=miD/O73fflM78imiiO7BcAz2xqJOUDcwGHSbdkxoM0weNUQAXdN9kDoG3FWGarMJr
-	 oMoarFhsAsrDZGZVZBofKu/vz4iMH+Pa6QJLFU9WzO0js6PzzErSnaYgGFxTGhDLD/
-	 HlZ+VER72MkNKb9bm+YhBSL7S3oH5vUKrDCPaCvvxfbjjNABRSb59iS7czt4I2OCWC
-	 lJdX69w7JWqtLJzCzfdpAhXAWj5XvH3jlRU3QAQeuLpXqaDPln8WcHn+l89bV2MvvT
-	 ytHFu7Axt6YIfW+9e3wWcY2kAVayX1GS8doiyTBKmu95QabXoCT9UC8ZYwmFilr2Ed
-	 UeBILDnFqvCog==
-Message-ID: <48d5895d-fde0-4795-8049-788fa3171fde@kernel.org>
-Date: Wed, 3 Dec 2025 18:42:11 +0100
+	 In-Reply-To:Content-Type; b=AHPLrUl318Hg0DO+YXUYQPQ7hIndJDpw7odiKDSzN8S2b9S0C3NnJ8hfRoJUWw6twQGm9dpqsMHPNC+h3LlhWIma1AB7jdQNcOi5cOe51PYAz/T1vjCWxTeCyE20j00BanV4KW5ST/kfxvnvPeu+zvocq30tnspYQFYlzLVwSRc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=H11iJcM9; arc=none smtp.client-ip=209.85.210.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-7bb3092e4d7so7182885b3a.0
+        for <devicetree@vger.kernel.org>; Wed, 03 Dec 2025 09:47:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1764784077; x=1765388877; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=qBzdnOPhODqt/3CBHXHo5pklFGjbEbTbq6nvpEEv6+0=;
+        b=H11iJcM9dcTqHe7UrwGAJ+kXEzI7UscccdNXfNgbH5fG2okYD956IXxeeW2pWsR0ET
+         Pt1hU8lp1R8LKMK+7Kyw1OHLTKoeJEUYLRJei9R2gKl9K46yQSiv697jkf6bRPZcO1lR
+         KArs3OM9kSNeigw3J8uEs4G4SSbMM9DI8phsnHE+RL8XTXqUlSl7haihCkmYn434hkDM
+         qCHfYBTPxPbFjbGAe+0GrqUQm7atKNh7NR9sk/3OQlsEoy+Q9J9XKW8Jb6LxZsM5emmt
+         +hXQknxLJZcpWqqhRpXsbMZi+C/S0m3tbMGL7KPFpYk98lYR+ruimAScF5J/xc1i7XQ5
+         NkRA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764784077; x=1765388877;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qBzdnOPhODqt/3CBHXHo5pklFGjbEbTbq6nvpEEv6+0=;
+        b=a226t7EgWDwWc/mrnXVtRNCO1Z5No7zFW/A7csEVfitG67hdesyfhHg8jtOEOYQsjv
+         T6ivScc0NCzi2thFA9w9A5jyKfSBSCUFZYWSqe3VRK0yZkk5Mmh5XGtNxxZw3bcN4QaV
+         fFsJdQPQOvzI3cibnqtBCjNVP6D0bsrii0UtgFTsb3UzGVRtSb3a4U2pN4Gil6cVxt/c
+         ZROIoHFXR5Suq9X0ZIjMv4Y0f7GGn9kYbk47uli2xiyl+G0Tlj5bFYuB0EiSxUbK9VqU
+         u23Pv10123RPtAmsm1LW+p7a1Z91Mkl8Lbe8tgfXciSf90T5itGV9bjVY1mTszoab3uQ
+         z1lA==
+X-Forwarded-Encrypted: i=1; AJvYcCXF/0B1KVitiWLqgWa8kkS9Mwo+S9IeydzbE9aVliwMm93rG2t42cIZAOIz4VI0kg5jnSCc3SgQN2b9@vger.kernel.org
+X-Gm-Message-State: AOJu0YwXASH5gtA4Wvr5TZ8BkczKPnVQYxEM4Dj+Gm5jwNayinUNjm2T
+	XUv+95bYM7QcYhhwVi/5ltv30itK5f2V53LJEWthwtpYGNa3MC9CK4db
+X-Gm-Gg: ASbGncudHcah4Nf1U1P/C4uSZZOH5TjrbYayqSPPaQ15oCFgqKscqlOh0I7VGMAWTs1
+	eQpqOeajXxIYIC7u3rU0k56/H3F+JzFhjOPCKLf658U73/TtBY/PK+8ixhFI1vT1ja9HA0WIENm
+	nQIHa+XvERIp28WP8J+H6yvusB3Oticw9QoWO0spImVnY4Pn3QQBp2P8AdlB0YE0x8VmR/vhts9
+	A7CZ68pe93YskdzY1JBZtNx1xmqa/Wbfol5g01JfLCSCDXj6/OgJq06DaebajFwumN0xRhcncuL
+	5J+smt5b644Kgo77hl44ig2G+Cp+v/MNaPgcGJZB41I1Og1NSxixx3reXh73rQLm1J93tNVqP+V
+	jEWIs8OxiHL8NaAwIub6x1nMfYJyw1Ty9GydS9DZnziJ01eO2bRam9mxrIp+AZ02hJO5tc18RGk
+	4KGz/R89AV94IRapnjxPnFt/7H2X9qwQ==
+X-Google-Smtp-Source: AGHT+IFwpP/3+4ac2SEDcubLgdKIyeiFbIP3ZQbgFHHqgjtz4rW82S5SSXuTgFw2d61EF8uH5ImmAQ==
+X-Received: by 2002:a05:6a20:e291:b0:361:2fe5:51a3 with SMTP id adf61e73a8af0-363f5e25412mr4193674637.39.1764784077159;
+        Wed, 03 Dec 2025 09:47:57 -0800 (PST)
+Received: from [192.168.7.10] ([103.182.158.107])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7d1520a48b2sm20835782b3a.28.2025.12.03.09.47.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 03 Dec 2025 09:47:56 -0800 (PST)
+Message-ID: <91b0a95d-f4eb-4d68-b41d-d46abcfbe714@gmail.com>
+Date: Wed, 3 Dec 2025 23:17:51 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,174 +82,60 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v20 3/7] firmware: imx: add driver for NXP EdgeLock
- Enclave
-To: Frank Li <Frank.li@nxp.com>
-Cc: Pankaj Gupta <pankaj.gupta@nxp.com>, Jonathan Corbet <corbet@lwn.net>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, linux-doc@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-References: <20251203-imx-se-if-v20-0-a04a25c4255f@nxp.com>
- <20251203-imx-se-if-v20-3-a04a25c4255f@nxp.com>
- <1ee383c7-ccbc-4c90-adf3-bfbe87fb6765@kernel.org>
- <aTBsdW0lpZSCVsgp@lizhi-Precision-Tower-5810>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH] Documentation: remoteproc: fix deadlink
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ linux-kernel-mentees@lists.linuxfoundation.org
+Cc: shuah@kernel.org, skhan@linuxfoundation.org,
+ linux-kernel@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-remoteproc@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20251203170702.42769-1-sohammetha01@gmail.com>
+ <a0ae7bfa-9924-45b0-9d10-96b91eb17d0c@kernel.org>
+ <a04e7622-e9a3-4088-89d4-285157321080@kernel.org>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <aTBsdW0lpZSCVsgp@lizhi-Precision-Tower-5810>
+From: Soham Metha <sohammetha01@gmail.com>
+In-Reply-To: <a04e7622-e9a3-4088-89d4-285157321080@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 03/12/2025 17:59, Frank Li wrote:
-> On Wed, Dec 03, 2025 at 08:20:50AM +0100, Krzysztof Kozlowski wrote:
->> On 03/12/2025 07:48, Pankaj Gupta wrote:
->>> Add driver for enabling MU based communication interface to secure-enclave.
+On 03/12/25 22:51, Krzysztof Kozlowski wrote:
+> On 03/12/2025 18:21, Krzysztof Kozlowski wrote:
+>> On 03/12/2025 18:07, Soham Metha wrote:
+>>> The binding file 'gpio-dsp-keystone.txt' has been converted to a DT schema.
+>>> The current binding is located at:
 >>>
->>> NXP hardware IP(s) for secure-enclaves like Edgelock Enclave(ELE), are
->>> embedded in the SoC to support the features like HSM, SHE & V2X, using
->>> message based communication interface.
+>>>     Documentation/devicetree/bindings/gpio/ti,keystone-dsp-gpio.yaml
 >>>
->>> The secure enclave FW communicates with Linux over single or multiple
->>> dedicated messaging unit(MU) based interface(s).
->>> Exists on i.MX SoC(s) like i.MX8ULP, i.MX93, i.MX95 etc.
+>>> This change was made in https://lore.kernel.org/all/20250714202850.3011952-1-robh@kernel.org/
+>>> and merged in aff0a1701b020c8e6b172f28828fd4f3e6eed41a
+>>
+>> Drop this sentence and instead please use 'commit sha' syntax, see
+>> checkpatch and submitting patches docs for details.
+>>
 >>>
->>> For i.MX9x SoC(s) there is at least one dedicated ELE MU(s) for each
->>> world - Linux(one or more) and OPTEE-OS (one or more).
->>>
->>> Other dependent kernel drivers will be:
->>> - NVMEM: that supports non-volatile devices like EFUSES,
->>>          managed by NXP's secure-enclave.
->>>
->>> Signed-off-by: Pankaj Gupta <pankaj.gupta@nxp.com>
->>> Reviewed-by: Frank Li <Frank.Li@nxp.com>
+>>> Signed-off-by: Soham Metha <sohammetha01@gmail.com>
 >>> ---
->>>  drivers/firmware/imx/Kconfig        |  13 ++
->>>  drivers/firmware/imx/Makefile       |   2 +
->>>  drivers/firmware/imx/ele_base_msg.c | 269 ++++++++++++++++++++++++
->>>  drivers/firmware/imx/ele_base_msg.h |  95 +++++++++
->>>  drivers/firmware/imx/ele_common.c   | 333 ++++++++++++++++++++++++++++++
->>>  drivers/firmware/imx/ele_common.h   |  45 ++++
->>>  drivers/firmware/imx/se_ctrl.c      | 401 ++++++++++++++++++++++++++++++++++++
->>>  drivers/firmware/imx/se_ctrl.h      |  86 ++++++++
->>>  include/linux/firmware/imx/se_api.h |  14 ++
->>>  9 files changed, 1258 insertions(+)
->>>
->>> diff --git a/drivers/firmware/imx/Kconfig b/drivers/firmware/imx/Kconfig
->>> index 127ad752acf8..5fe96299b704 100644
->>> --- a/drivers/firmware/imx/Kconfig
->>> +++ b/drivers/firmware/imx/Kconfig
->>> @@ -55,3 +55,16 @@ config IMX_SCMI_MISC_DRV
->>>  	  core that could provide misc functions such as board control.
->>>
->>>  	  This driver can also be built as a module.
->>> +
->>> +config IMX_SEC_ENCLAVE
->>> +	tristate "i.MX Embedded Secure Enclave - EdgeLock Enclave Firmware driver."
->>> +	depends on IMX_MBOX && ARCH_MXC && ARM64
->>> +	select FW_LOADER
->>> +	default m if ARCH_MXC
->>> +
->>> +	help
->>> +	  Exposes APIs supported by the iMX Secure Enclave HW IP called:
->>> +	  - EdgeLock Enclave Firmware (for i.MX8ULP, i.MX93),
->>> +	    like base, HSM, V2X & SHE using the SAB protocol via the shared Messaging
->>> +	    Unit. This driver exposes these interfaces via a set of file descriptors
->>> +	    allowing to configure shared memory, send and receive messages.
->>> diff --git a/drivers/firmware/imx/Makefile b/drivers/firmware/imx/Makefile
->>> index 3bbaffa6e347..4412b15846b1 100644
->>> --- a/drivers/firmware/imx/Makefile
->>> +++ b/drivers/firmware/imx/Makefile
->>> @@ -4,3 +4,5 @@ obj-$(CONFIG_IMX_SCU)		+= imx-scu.o misc.o imx-scu-irq.o rm.o imx-scu-soc.o
->>>  obj-${CONFIG_IMX_SCMI_CPU_DRV}	+= sm-cpu.o
->>>  obj-${CONFIG_IMX_SCMI_MISC_DRV}	+= sm-misc.o
->>>  obj-${CONFIG_IMX_SCMI_LMM_DRV}	+= sm-lmm.o
->>> +sec_enclave-objs		= se_ctrl.o ele_common.o ele_base_msg.o
->>> +obj-${CONFIG_IMX_SEC_ENCLAVE}	+= sec_enclave.o
->>> diff --git a/drivers/firmware/imx/ele_base_msg.c b/drivers/firmware/imx/ele_base_msg.c
->>> new file mode 100644
->>> index 000000000000..a070acbd895c
->>> --- /dev/null
->>> +++ b/drivers/firmware/imx/ele_base_msg.c
->>> @@ -0,0 +1,269 @@
->>> +// SPDX-License-Identifier: GPL-2.0+
->>> +/*
->>> + * Copyright 2025 NXP
->>> + */
->>> +
->>> +#include <linux/types.h>
->>> +
->>> +#include <linux/completion.h>
->>> +#include <linux/dma-mapping.h>
->>> +#include <linux/genalloc.h>
->>> +
->>> +#include "ele_base_msg.h"
->>> +#include "ele_common.h"
->>> +
->>> +#define FW_DBG_DUMP_FIXED_STR		"ELE"
->>> +
->>> +int ele_get_info(struct se_if_priv *priv, struct ele_dev_info *s_info)
->>> +{
->>> +	struct se_api_msg *tx_msg __free(kfree) = NULL;
->>> +	struct se_api_msg *rx_msg __free(kfree) = NULL;
->>
->> No, don't use this syntax. This is explicitly discouraged.
->>
->> NAK
+>>>  .../devicetree/bindings/remoteproc/ti,keystone-rproc.txt        | 2 +-
 > 
-> Add link for reference.
+> And:
 > 
-> https://lore.kernel.org/all/CAHk-=whPZoi03ZwphxiW6cuWPtC3nyKYS8_BThgztCdgPWP1WA@mail.gmail.com/
+> Please use subject prefixes matching the subsystem. You can get them for
+> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+> your patch is touching. For bindings, the preferred subjects are
+> explained here:
+> https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
+> 
+> 
+> Best regards,
+> Krzysztof
 
-This is since beginning documented in kernel, so contributor could read
-cleanup docs before using them. Above Linus remark is nothing new, he
-already wrote it ~2 years ago.
 
-Best regards,
-Krzysztof
+Thanks for the review.
+I'll switch to the proper syntax and resend the patch.
+
+--
+Soham Metha
+
 
