@@ -1,131 +1,161 @@
-Return-Path: <devicetree+bounces-243899-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243900-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EDEDC9E3C8
-	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 09:36:37 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B380C9E3DA
+	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 09:37:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id A6C7534A82E
-	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 08:36:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 293C23A94E9
+	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 08:36:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07E6C2D5936;
-	Wed,  3 Dec 2025 08:36:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D90342D5C9B;
+	Wed,  3 Dec 2025 08:36:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="FjDw492t"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Q7lFsHS5";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="gyXUGkc2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D6AA2D5922;
-	Wed,  3 Dec 2025 08:36:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 635992D5922
+	for <devicetree@vger.kernel.org>; Wed,  3 Dec 2025 08:36:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764750991; cv=none; b=sltUf+gPaSql6YOpq7gRTTjT5HbyRP2yy2C4L/I/IrhU4wbqFBlxYHGr69CAsG7/koKUUJN6hvZwmtM0wP2LbhmBYru2Qlq8Jts8uBuqGyu9Gb9gwTRwzoPH2cjwSIdKJ+bNWUrSMTJaE8f6Td8CaeUXsDBLsikLVtpFCl+mKQ4=
+	t=1764751009; cv=none; b=hdCDYU/k/LWp33r9DYWyI2z9O59OY65fNsAM5TTs//EaiPN+IF9lw28lHIJBusgOAk9pdPd1QfdVIq14Cp97ckyeGN8aqD8/WtlwBvWHdjHj6zKNwZrpLKvH/4WwLrmIAhRRzGsQJQ0Szil+RNoUM85FcWEMHdQkkwjlUstkETI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764750991; c=relaxed/simple;
-	bh=GEUohRqpfGWfGxxAeDp85DOIF/6IRcyN4akhZA/M6lI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=T/jqkQakoZWC69IinaP0XU0a6dF1geXZuhXCKLuqvdG/C+oFwnonxwHWBiNlWSdro6JhblrlM/mKXNJI6Jslw/2p5OJCgQwlq9gAJ33+c7NBFdugw4R3bw5yepJrjX02tRSpyAMm/SYXnpWhBf9bUfqjnwmuklM9sct/qOAHZLQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=FjDw492t; arc=none smtp.client-ip=198.175.65.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1764750990; x=1796286990;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=GEUohRqpfGWfGxxAeDp85DOIF/6IRcyN4akhZA/M6lI=;
-  b=FjDw492tru62tPGtHECejdbnoBobT4ini61//MfXXNf1SEoGzbdHSwQ0
-   GiGSi8Sc/UpArChkmBU8UuENX7qcqZAbzqGYu66zNHlL2jpUG5EvVYhzP
-   GfC5Ojs3Cxhf5zVZ67fJBrixBkrPLIbcuYebdtyKJr83RI8kje4P9hmI2
-   XLRxdZoYhWRx0p9ULEdLsUilSmLAALgUV8Inh9a6yRvp2s1sncrBfD1lE
-   8eBDBXnZmuS0+ob5qfXgDb9jVw1EzyeLJ3crGMTQoO4Kr71rcVeLSerws
-   0gHfQFo8hqGszvNIVJs+/QjTcDl0blmh21chX0NO0bzZhg5TSeu1b5F9c
-   Q==;
-X-CSE-ConnectionGUID: Qil8nEh1RveSMDxaO4lPtQ==
-X-CSE-MsgGUID: 8dip9gccRFWlfdT/uVC6mA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11631"; a="77056835"
-X-IronPort-AV: E=Sophos;i="6.20,245,1758610800"; 
-   d="scan'208";a="77056835"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
-  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Dec 2025 00:36:30 -0800
-X-CSE-ConnectionGUID: AZFrEOdTRSat84/xefRi/w==
-X-CSE-MsgGUID: EtfrlZziTHCvXPaiXay1RQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,245,1758610800"; 
-   d="scan'208";a="194842233"
-Received: from lkp-server01.sh.intel.com (HELO 4664bbef4914) ([10.239.97.150])
-  by fmviesa008.fm.intel.com with ESMTP; 03 Dec 2025 00:36:25 -0800
-Received: from kbuild by 4664bbef4914 with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vQiLW-00000000AlR-3fn0;
-	Wed, 03 Dec 2025 08:36:22 +0000
-Date: Wed, 3 Dec 2025 16:35:36 +0800
-From: kernel test robot <lkp@intel.com>
-To: Ashish Mhetre <amhetre@nvidia.com>, will@kernel.org,
-	robin.murphy@arm.com, joro@8bytes.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, nicolinc@nvidia.com
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	thierry.reding@gmail.com, jonathanh@nvidia.com, vdumpa@nvidia.com,
-	jgg@ziepe.ca, linux-arm-kernel@lists.infradead.org,
-	iommu@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
-	Ashish Mhetre <amhetre@nvidia.com>
-Subject: Re: [PATCH V3 1/3] iommu/arm-smmu-v3: Add device-tree support for
- CMDQV driver
-Message-ID: <202512031601.IpliwbHW-lkp@intel.com>
-References: <20251201163219.3237266-2-amhetre@nvidia.com>
+	s=arc-20240116; t=1764751009; c=relaxed/simple;
+	bh=XzeutB6SQqbBrm8weCmxvKn8QPjcaVMvoEVU8C+tDiQ=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=bfz4PQfyi0Up19PBbYn04uXOArpLkMMdovcvGSUT7iQLf6hj3vSK6P87mRRPVOaHn04fgF2rOCbN3qKir0qKNxLIfU9FayMTVvDNDiArceGYhorTldyHRtTaFtOyXZZTsvnSVkhPValyWF87XeXVCF4D9Vw2LvatBNApf847SR8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Q7lFsHS5; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=gyXUGkc2; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5B34E4f31427756
+	for <devicetree@vger.kernel.org>; Wed, 3 Dec 2025 08:36:46 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=pXtm/w82FCaBm1by84KgFLixNlH2Fu75EuM
+	S2Juh5DQ=; b=Q7lFsHS5Aw+czgBukkh6/BvpjJFvLAHPJLJ6TKGE9V3Gm7rf13N
+	d+uM0/DWDrc1ZgUKJM+3u5cnZ/kd6MCDC/hVmzo34liSZWbpIp7he49WymJzj0tz
+	ZnWrOmD5Uz7F4/P/521+mFWB98D3ev5W4ts+FrMFKccENgGU4/Znkv3l7VUIlGMw
+	cUJ9MRBAEvxhgTHQNaszc2HKAdlLxLqoS98a2cCNm8C+dyMY5wmn0DECbl1TY6Wc
+	cguYyJlOSHWW8cYxeZiN9GcSmmXuahB4lmeWe9DnoDVYzPWLHvEueyLTYdO9G2nN
+	3L8iP/7q8dyxRkGC4KxICUQqXWTFdlU9Zng==
+Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ate0jrr1e-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 03 Dec 2025 08:36:46 +0000 (GMT)
+Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-2958a134514so86814295ad.2
+        for <devicetree@vger.kernel.org>; Wed, 03 Dec 2025 00:36:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1764751005; x=1765355805; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=pXtm/w82FCaBm1by84KgFLixNlH2Fu75EuMS2Juh5DQ=;
+        b=gyXUGkc2AQUf2E0X0L/UaBoPVqU8JaH1afnZ0uX805Bbomu/JUGGkImPA+Lpt1A4Zy
+         FOwNGX+Fz7qh7a2dMMVxPKSKOf35P6uT18nmlescM9a2EQ3+mM1r4gbcwyvqScs4+KiS
+         7GftHDaEBx/iNTq5EIO3yAut0sD6D/OkBmCOK8cyTzPEDpUw1G5iQco01u/W+mHhykuJ
+         2G8s7UJf/RDW0nivrXRUSkstP5YDVdprLUHK6+/YfKoyo0fGLoy3y5apGwQt3IcTdQzB
+         lkbv4iQnYiUd210p/KLFWXz1WwCN8p54tWvVkJ0URr12/czGFhPNU/xCC6/rkQiX7Efh
+         PJ1w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764751005; x=1765355805;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=pXtm/w82FCaBm1by84KgFLixNlH2Fu75EuMS2Juh5DQ=;
+        b=v2n5apgJQ/JsUeXfxULRCwLU2BJCyamxSaOtA4oB90XvmgVuG2GSbzLVx8AOFpdyTH
+         jcJcrO8284VajKHaWRoFsLD6jX0sXR5K0nk9wEm03nSFYmeb1JVxPDnCiU7noMadSLwD
+         tZ2c+1DrJn/D0HdyJM73yVMXsoPBiFC+HPow8s+AUWkJup2SIp2CnGXedkZDECQeSSoJ
+         9BpfiN+YZz7RsRRBwSepOG7x17HPOTvi/RUb2sZqAkIEQLq8f7xcPAmaK5MVTsPUYzUo
+         34GIFsJJDxPG5IBsPUUpWi9UpsjQFMc7s9mIWX7opTwuGVvsH/USeRvM2Gozg95KTSnD
+         6Y2A==
+X-Forwarded-Encrypted: i=1; AJvYcCU592Gif9kCDmBwD9iIkVbllYzZb1sNWX6I31fsUhDNOQe0zxGI8tSyvgd6xVwWe3HPgH7xuCMFX+bZ@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywle7BJ2RXjP7TECONQd7/AoZCoS+a2LpS+J21sGWYjUUX78oVe
+	gCD5e45z6/sVP5vqGDShidRNHQeTh51OCQlsQh9eDeCd/ohJdKmAINHpLaF5in+1BdGKTwsY8dx
+	Jmw1iDAfep0Pp8ynC8k8YVgpNFprFzwIHaQ8ja7LizYDtm32eCB6xV4bEgvYuahMK
+X-Gm-Gg: ASbGncvHRtSIQiQMgOHgxguiEWmjW3aeo2zAnrgOTJgZAjjbBZ8QsVDeCSh4ws1SxbC
+	WsZ6Ve5A1Yc8LVAsqKh5qX+0toQ7q8PqFT7ptkuh//VgO+p2GvITK4cxGXDT2rHBa+cSS36vYP3
+	uj6Yc1BPcekeqGilNiHNPsgZNt6XRBt4FVjcIg4kNC4f9K+0DN873y5NG0yY2mVvPJbspgg1K2p
+	Kl51cq7Bi7RQND4uCU0HtQvp+SvXbktyZMqs7/Pwrxs9wEZUYlJxgaeRzmsyx8HWX24RN8A8dkF
+	qkifDYyn58L2eU8TArJ3Aixos0zNg9/91fy2ezWWed+1R7NHM9yTphpVrhQqU1Ujcti7PrTtFv+
+	ULlA/wDhMcxIcRTIxE762P1QhQqcUufc2mzlTNqF4xzcuSJA=
+X-Received: by 2002:a17:903:fa5:b0:295:1a63:57b0 with SMTP id d9443c01a7336-29d6838352amr17021205ad.23.1764751004984;
+        Wed, 03 Dec 2025 00:36:44 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGD1wqNYFIl7/73ihJ4E6qcXulLO0vk7dODBkZ2L9T9AUjr0FfC2yXCyeWxKbKWoj9RugOWzw==
+X-Received: by 2002:a17:903:fa5:b0:295:1a63:57b0 with SMTP id d9443c01a7336-29d6838352amr17020915ad.23.1764751004442;
+        Wed, 03 Dec 2025 00:36:44 -0800 (PST)
+Received: from hu-kriskura-hyd.qualcomm.com ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29bce41785bsm175707985ad.20.2025.12.03.00.36.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 03 Dec 2025 00:36:43 -0800 (PST)
+From: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
+To: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Luca Weiss <luca.weiss@fairphone.com>,
+        Abel Vesa <abel.vesa@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Pengyu Luo <mitltlatltl@gmail.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
+Subject: [PATCH 0/3] Add eusb2 repeater squelch detect parameter override
+Date: Wed,  3 Dec 2025 14:06:26 +0530
+Message-Id: <20251203083629.2395451-1-krishna.kurapati@oss.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251201163219.3237266-2-amhetre@nvidia.com>
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjAzMDA2NyBTYWx0ZWRfX8lYCmw2Kynjs
+ Qe1mG9itisx+ItqeFQ1t+7zHVTDP242W4XGA9gZ83/YxBDIPLVqFtHbnlFmuplVVGT1RDvbB/l3
+ y/msVdcQVXEaUk6fx3xxgA/rX3VuCcDNztkjS7JoV/V8uYItUUMIvDW4OIKs9za6D7pyY54t47k
+ OVWiMOhBI0duo5qgNOWInsTQovV6Kdz9YN0or6zdHPjCtCdWAMBHX0ZTiaTYzx4vnXq3+lbp1pk
+ iYDX5301V9/JdP1SheDq1ElSVJtr3LQAAPCkLxUVgu8BPGVRTTMd/StTKCFgMNknbDwvWMF4sTP
+ gFIqJ6zMA4XVDvNweA07Mczh+7C4Dw0Zf5PDJfEl6Lv6DRLsTb1jLwo4ebjRoCwUoFEPMEz39hJ
+ NWaDSRjFdfzL4AEaBP2VxC0JPjcR4A==
+X-Proofpoint-GUID: Hjo-Z_1GVT4vEIr9xWxkK0TDmu3j5s3W
+X-Authority-Analysis: v=2.4 cv=cOHtc1eN c=1 sm=1 tr=0 ts=692ff69e cx=c_pps
+ a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=fJu4ZNkWQRc-xYxwqNwA:9 a=GvdueXVYPmCkWapjIL-Q:22
+X-Proofpoint-ORIG-GUID: Hjo-Z_1GVT4vEIr9xWxkK0TDmu3j5s3W
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-02_01,2025-11-27_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 priorityscore=1501 suspectscore=0 adultscore=0 phishscore=0
+ clxscore=1015 spamscore=0 impostorscore=0 bulkscore=0 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512030067
 
-Hi Ashish,
+Add support for eusb2 repeater squelch detect parameter override via DT.
 
-kernel test robot noticed the following build errors:
+Squelch detect parameter adjusts the voltage level for the threshold used
+to detect valid high-speed data.
 
-[auto build test ERROR on next-20251201]
-[also build test ERROR on v6.18]
-[cannot apply to robh/for-next linus/master v6.18 v6.18-rc7 v6.18-rc6]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Krishna Kurapati (3):
+  dt-bindings: phy: qcom,snps-eusb2-repeater: Add squelch param update
+  phy: qualcomm: phy-qcom-eusb2-repeater: Add squelch detect param
+    update
+  arm64: dts: qcom: sm8750-mtp: Add eusb2 repeater tuning parameters
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Ashish-Mhetre/iommu-arm-smmu-v3-Add-device-tree-support-for-CMDQV-driver/20251202-003517
-base:   next-20251201
-patch link:    https://lore.kernel.org/r/20251201163219.3237266-2-amhetre%40nvidia.com
-patch subject: [PATCH V3 1/3] iommu/arm-smmu-v3: Add device-tree support for CMDQV driver
-config: arm64-allmodconfig (https://download.01.org/0day-ci/archive/20251203/202512031601.IpliwbHW-lkp@intel.com/config)
-compiler: clang version 19.1.7 (https://github.com/llvm/llvm-project cd708029e0b2869e80abe31ddb175f7c35361f90)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251203/202512031601.IpliwbHW-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202512031601.IpliwbHW-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> ld.lld: error: duplicate symbol: init_module
-   >>> defined at arm-smmu-v3.c
-   >>>            drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.o:(init_module)
-   >>> defined at tegra241-cmdqv.c
-   >>>            drivers/iommu/arm/arm-smmu-v3/tegra241-cmdqv.o:(.init.text+0x4)
---
->> ld.lld: error: duplicate symbol: cleanup_module
-   >>> defined at arm-smmu-v3.c
-   >>>            drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.o:(cleanup_module)
-   >>> defined at tegra241-cmdqv.c
-   >>>            drivers/iommu/arm/arm-smmu-v3/tegra241-cmdqv.o:(.exit.text+0x4)
+ .../phy/qcom,snps-eusb2-repeater.yaml         |  7 +++++++
+ arch/arm64/boot/dts/qcom/sm8750-mtp.dts       |  4 ++++
+ .../phy/qualcomm/phy-qcom-eusb2-repeater.c    | 21 +++++++++++++++++++
+ 3 files changed, 32 insertions(+)
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.34.1
+
 
