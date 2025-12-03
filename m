@@ -1,138 +1,141 @@
-Return-Path: <devicetree+bounces-244152-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244153-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6E5CCA1BCD
-	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 22:55:24 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E24ECA1BF7
+	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 22:59:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 072F53064BCA
-	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 21:51:02 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id DB7113003846
+	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 21:59:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D6D02DBF5B;
-	Wed,  3 Dec 2025 21:50:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7226E2D6E4D;
+	Wed,  3 Dec 2025 21:59:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="TpsGPBE5"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="b4OCNr8T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dy1-f181.google.com (mail-dy1-f181.google.com [74.125.82.181])
+Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A4EA29B239
-	for <devicetree@vger.kernel.org>; Wed,  3 Dec 2025 21:50:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C11352D9797
+	for <devicetree@vger.kernel.org>; Wed,  3 Dec 2025 21:59:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764798658; cv=none; b=cfF0wYtXqul6xTGca8s+CQOFlxrWRfaYesPwhUb+L/8zv8+OZSG9d2hGJ7AHzrxC5wXSV6zxUV7nrgyssxFUDZWn0Su+38MrMMFSfwhmtiy3iehSnly8sVHHTiYalXZTyzncH8bqEQjY7qLpXLY3/NzVVd3wLoi53jWOgpLKM1Q=
+	t=1764799153; cv=none; b=rWdWSXvS/yBFJOhhZq5vxij8NRBUnLFOPJgEQk5tPXL9s4n21yIOulMDndqSwLVaQaMgqlElwknHNgEdtYGCdrdDELxy2HyO+qZSeEel7tk+GcAkEGNyDbi7GMxZKCT4xoxvMpZV8XgXGqyv1iADu140fmH1fbC1uM0YYjBdjnQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764798658; c=relaxed/simple;
-	bh=PZj3jANR6/nSU6UkeOQuWgGLC3q5F/VtSyt7tbEpauE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KKRsqmuZOPkAEf7QkklJa7Cqyw933ePLY0IXICNPxjxXjoPqgv4boslrqVaMYY+QrzTN4GIS+jPrl7xad04otde/3hGvtAOqJxIBw+Qu8HRS8K8vhXSN2hPggTRE0dPKvvYaiUaOxz7jQQTMdkwV7bVGaLBk7K8X9xy8WmnQ24s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=TpsGPBE5; arc=none smtp.client-ip=74.125.82.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-dy1-f181.google.com with SMTP id 5a478bee46e88-2a484a0b7cfso1708927eec.1
-        for <devicetree@vger.kernel.org>; Wed, 03 Dec 2025 13:50:55 -0800 (PST)
+	s=arc-20240116; t=1764799153; c=relaxed/simple;
+	bh=lEvJr/atOEKDVFkUTOAuD1BGg60pDSo1DOfPqpy6WWY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=imKAAz91q6nNBv3mrnvGkLkbdEWtzogBwnKWBFwaH6FQaxRI26GrAf/xbTPBtPlbCfVjD/vja4YS47nYKfTjTmLzWM5js0s6v+hi73RpmMF+QKV5ZwbLoQVa/Pw5jku27isALz47Hr2kgkM3dat3JsNHX5+KuNtfqkUTDD4ruic=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=b4OCNr8T; arc=none smtp.client-ip=209.85.160.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qt1-f177.google.com with SMTP id d75a77b69052e-4ee14ba3d9cso2495521cf.1
+        for <devicetree@vger.kernel.org>; Wed, 03 Dec 2025 13:59:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1764798655; x=1765403455; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=o6chODghEB4z80xHdOkemzEluE/IBI6XrITBvqfM7dE=;
-        b=TpsGPBE58rbo5KCTYqgujRkIIMkBKqs4f7u/+pa25FqLzR0iQEdN6Ey5UXF7eF/LAf
-         P0mYb4NZguqkp5XJDbG3yufvHhEewGXSKauLxZXmScxmytiaKSAKQTfce2RRpSrfvYYH
-         7yrLIw7FDmVwlDdo0eXJRDB+0RkQVbDVYKS5Y=
+        d=gmail.com; s=20230601; t=1764799149; x=1765403949; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2Yqt1MR+hsWWq29mUarfKjlWGd/wXfWxY3AdiETvuP8=;
+        b=b4OCNr8Tt7omkIDI4tSMSH5QGzzBioieU58IEvfMcI283UyaBt6aTJghHMTAmP3AGX
+         OUNhniNrsFrRxFLbzHU1ZBQ/njPXPlsIq+Fofz2mPwX6a5mThVK04WhxzJBooEQt6hYh
+         LKIbVq40jEANqPMmFdnH0a+5lZZgQBjcbobJapw+YDFyf9OIm5MbbbLBQKirZapIpko5
+         VXup+1GFHwRMR9LxWdWWOd7pY0ub7Wf5xrb3zUwsKHxnSiblEGbod9vpvYjIiiHJQsVv
+         nU2FWQXCF79okIe8PttMUJ3YBg4b3sZ4rIvUelSshPZtY08RgI1YDrj4Vnnvz5ehjqEy
+         zG1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764798655; x=1765403455;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=o6chODghEB4z80xHdOkemzEluE/IBI6XrITBvqfM7dE=;
-        b=qpln+cXqhhpBl8V4KdvykhdMu9MUVHChyB2LddYhYQTRfWB4RYGM1jPewbSOUm/9cz
-         Xu6aVnJGALFp3RZFWHEIkyH59WfPqmRS2HPrSFSr5Ne6hLu5OJdTLSaHXdT/ipFa3bp+
-         j6/v/gHmY9OtAKVrI0VL8C1SsA17YgyCaMc7mpZNvh5KfJs37P+oajIWSkeB9ldMcQLg
-         8HK5fgEwl804U1G62kKV3wkbSlUcAjjcBwGOnxHFguzWwT4vTtr6wJyxjv/uHMkkBnm9
-         5DONKjurwyX7jkhXMuuWNO1/q2pYpquezcncnJF7GB8BiA/6CHzeB2KnP+SyvCqEAdjc
-         MY0w==
-X-Forwarded-Encrypted: i=1; AJvYcCXO5JcsWExAx3lX8UdcFJ0bHRQN4Gw8tvpdIYoDq9e9jVmcf5zWr5eYjojc3zk4Ss46TjP/xZkNtPnt@vger.kernel.org
-X-Gm-Message-State: AOJu0YwE4vACI6T4Qgpo3mh+xA+dX479k+WaIEyWYtU7Vm8M4Fv6yauz
-	+WNz04sJSyJGGd3pdGDPY8/gQchkzKcLF9pOGzztHbg7Om03YFeWbuwcZIdZHgHSRQ==
-X-Gm-Gg: ASbGncu+ExII5l0Xes1hltbVTRlbePSqEnagW6lstCQ4+w5Rzv8lk9RGUyiHa48DQ4/
-	kLI2g5WItLCd1D05j8P0oMvmo/L+vyPvnUKpOCktI7C18JCxGVgm1wCnNs8NttrvUlNEVJpoLOi
-	tJ72XBZ2RMAgigjwNK1ghW6faXAapKBwqzjz3FVGVChRtjhflDuQ6wKSx0KONMRzQnBMkCjPTik
-	GJSlYYMwaINUDTbNiqNvvauWnom/X78/s7ssY8MdEWYNeEP/Nz7VmVTgA1tvDSOG9a1Trq4Sy0f
-	i01qGZJmn9nplKjc1+4F+yQBoAOCw0RnYVYNkJG3VLeFTMguep5m8KIvADNX4mdBE1Qw4tD8BzS
-	qfh/vk3OAsEfCrP/GY7a3lfOnV1PiOLBEHfqETDHGDoOdZacjiyo4FNNydkLuZ7wl84Qc6FUeaN
-	5zVXcD4Y6CuuMnctc2yqHc/J43ulfI/WFkOTvNikhUe2eaalZfAg==
-X-Google-Smtp-Source: AGHT+IEIEIBW08OkV8WK/jMyO0yClG6Glkh0kZ5O3uJlxkndo5BOSqM+ZQ1/IXiO+9a7SW6sezHK1A==
-X-Received: by 2002:a05:7301:60e:b0:2a4:3593:cca7 with SMTP id 5a478bee46e88-2aba3394a44mr820588eec.4.1764798655218;
-        Wed, 03 Dec 2025 13:50:55 -0800 (PST)
-Received: from localhost ([2a00:79e0:2e7c:8:e953:f750:77d0:7f01])
-        by smtp.gmail.com with UTF8SMTPSA id 5a478bee46e88-2a965ae9d06sm69699431eec.4.2025.12.03.13.50.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Dec 2025 13:50:54 -0800 (PST)
-Date: Wed, 3 Dec 2025 13:50:52 -0800
-From: Brian Norris <briannorris@chromium.org>
-To: Karel Balej <balejk@matfyz.cz>
-Cc: Johannes Berg <johannes@sipsolutions.net>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Duje =?utf-8?Q?Mihanovi=C4=87?= <duje@dujemihanovic.xyz>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Gregory Clement <gregory.clement@bootlin.com>,
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-	Francesco Dolcini <francesco@dolcini.it>,
-	Ulf Hansson <ulf.hansson@linaro.org>, Frank Li <Frank.Li@nxp.com>,
-	linux-wireless@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mmc@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-	phone-devel@vger.kernel.org, Jeff Chen <jeff.chen_1@nxp.com>,
-	Peng Fan <peng.fan@nxp.com>
-Subject: Re: [DONOTAPPLY RFC PATCH v2 1/4] dt-bindings: mwifiex: document use
- with the SD8777 chipset
-Message-ID: <aTCwvFBE6IF6WT1d@google.com>
-References: <20251026182602.26464-1-balejk@matfyz.cz>
- <20251026182602.26464-2-balejk@matfyz.cz>
+        d=1e100.net; s=20230601; t=1764799149; x=1765403949;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=2Yqt1MR+hsWWq29mUarfKjlWGd/wXfWxY3AdiETvuP8=;
+        b=pIqhsybeAdsrZ/CI4cAK6CuLDrjsFHZCJipmJyRm6QTHx3tEfea+xx5YomCuNJDede
+         jVnkZTICkJ85t68ZqlHiGkm1PQ6hexgDpJktGCBoh3uyhGbXEaiVxxFEIO/yWW8OtMYp
+         rm492dtcirHFyAItebgCtLCrDx5bqar/06rY1ty2cdW6Jmme0hN0SQ3aK3irYWMrfHA8
+         ksIxc9vp89yPevHe/GL4VDU3PrOpCKv+7iyVQYApXRE+qRJLmVoCfUMIi6JCTF/qP995
+         lsiMjI5CwNGKCmw/8gmun+kkA8FJEH9LvkB06PCN3ytmyO/UF+nEvXkLvItLt7Moq2X+
+         hClQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXcT+ZFiTGPPwRCzaXiDfmOobUm0028iFqLHsgFcVRrvX0bZhBmqD4JTh2QfGjLbuY/q6nuNeg13sRd@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywaem18PKXxkhdoEC7tPkZSE+lUTdYqwtx0PlTMayiOySnC6E8i
+	olkKbzCnvVKO+swuu60vqszcXvcwGteDSVQBlLexPN+DRFuzcKf72j45KQ5nnryt2T9fo1hsxI4
+	Cfhitb23IUB9X8i1peZrtZiqFSfNYvg==
+X-Gm-Gg: ASbGncvFlR1O9N98gViq938mT2zo3Fh+DuWuYPfgYyote/1n9QxF/REHmxxH+lr0Fql
+	+wp+j83I9uW5gKBwi1yWsRBB9/Ml2gn255yeMjQBj/1K32P4Ggoqjr4Qvc2iBXM9WMtLPV2kZ6W
+	Mx4fWlErE5iK1WXemFfO3LSpRn3UtBibMN0ynKkY/GLYYmgQWwFpqpaTzsjVRPTKfOUZ9zQI218
+	NuiZJoyHP7T3l0atYv+VUBVK1fDtgmN2ILjsN9TI8NZABbHy5caBm7TLggI
+X-Google-Smtp-Source: AGHT+IHlMO3En7Qx9p1zVPD2eUUUEVRjdwVMCOHEi+vOdOy+15IoVicHVs7AO7akLj8Z87aJQKISlv9SfCTY/9yu5bE=
+X-Received: by 2002:a05:622a:14:b0:4ed:142:ed5d with SMTP id
+ d75a77b69052e-4f0175fc826mr53423741cf.50.1764799149405; Wed, 03 Dec 2025
+ 13:59:09 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251026182602.26464-2-balejk@matfyz.cz>
+References: <20251201011457.17422-1-daleyo@gmail.com> <20251201011457.17422-5-daleyo@gmail.com>
+ <ae91cad5-5a0b-4c83-9eb0-6e7baf6a33d0@oss.qualcomm.com> <CA+kEDGHyx7C7PNxQ8votwABiQpKhAAh126os3OLu-W0kDo2ySQ@mail.gmail.com>
+ <aad15cca-bd3e-48d2-a70f-f1a66726b50d@oss.qualcomm.com>
+In-Reply-To: <aad15cca-bd3e-48d2-a70f-f1a66726b50d@oss.qualcomm.com>
+From: =?UTF-8?B?SsOpcsO0bWUgZGUgQnJldGFnbmU=?= <jerome.debretagne@gmail.com>
+Date: Wed, 3 Dec 2025 22:58:33 +0100
+X-Gm-Features: AWmQ_bmQzqb9krRxDEjipGV6yz4et5aL93ytuyONXvLiXaRzeNqjiBvW1yQcohs
+Message-ID: <CA+kEDGGN0074JdhzSoHvihBKCg4ngx3gtGxgUQt+KWRp=PX68w@mail.gmail.com>
+Subject: Re: [PATCH v2 4/8] arm64: dts: qcom: Add support for Surface Pro 11
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Dale Whinham <daleyo@gmail.com>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Sun, Oct 26, 2025 at 07:20:38PM +0100, Karel Balej wrote:
-> Document the corresponding compatible string for the use of this driver
-> with the Marvell SD8777 wireless chipset.
+Le mer. 3 d=C3=A9c. 2025 =C3=A0 11:56, Konrad Dybcio
+<konrad.dybcio@oss.qualcomm.com> a =C3=A9crit :
+>
+> On 12/2/25 7:50 PM, J=C3=A9r=C3=B4me de Bretagne wrote:
+> > Hello,
+> >
+> > As discussed with Dale, I will take over the v3 submission since we've
+> > worked on this patchset together until now. Here is my feedback below.
+> >
+> > Le lun. 1 d=C3=A9c. 2025 =C3=A0 16:35, Konrad Dybcio
+> > <konrad.dybcio@oss.qualcomm.com> a =C3=A9crit :
+> >>
+> >> On 12/1/25 2:14 AM, Dale Whinham wrote:
+> >>> Add device trees for the Qualcomm X1E and X1P-based Microsoft Surface
+> >>> Pro 11 machines (codenamed 'Denali').
+> >>>
+> >>> This device is very similar to the Surface Laptop 7 ('Romulus').
+> >>>
+> >>> Use a similar strategy to x1-asus-zenbook-a14.dtsi so that we can cre=
+ate
+> >>> x1e and x1p-specific flavors of the device tree without too much code
+> >>> duplication.
+> >>
+> >> [...]
+> >>
+> >>> +             pinctrl-0 =3D <&hall_int_n_default>;
+> >>> +             pinctrl-names =3D "default";in v3
+> >>> +
+> >>> +             switch-lid {
+> >>> +                     gpios =3D <&tlmm 2 GPIO_ACTIVE_LOW>;
+> >>> +                     linux,input-type =3D <EV_SW>;
+> >>> +                     linux,code =3D <SW_LID>;
+> >>
+> >> I.. don't think this device has a lid - what triggers this GPIO?
+> >
+> > When a Surface tablet is connected to a Surface keyboard, opening/closi=
+ng
+> > the keyboard triggers a wakeup/suspend event. I will double-check if th=
+is
+> > entry is involved and will remove/keep it in v3 based on this check.
+>
+> If you have a magnet handy, you can run `evtest` as root and try waving i=
+t
+> around the screen frame - it's presumably just a hall sensor
 
-Device tree bindings aren't supposed to be about "drivers". This can
-just be:
+After testing tonight, I can confirm that the switch-lid entry is required.
 
-  Document the compatible string for the Marvell SD8777 wireless chipset.
-
-On the bright side, it's totally legit to describe HW bindings even if
-there isn't driver support yet. So:
-
-Acked-by: Brian Norris <briannorris@chromium.org>
-
-> Signed-off-by: Karel Balej <balejk@matfyz.cz>
-> ---
->  .../devicetree/bindings/net/wireless/marvell,sd8787.yaml         | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/wireless/marvell,sd8787.yaml b/Documentation/devicetree/bindings/net/wireless/marvell,sd8787.yaml
-> index 930b700b73d0..d31ff38f57d1 100644
-> --- a/Documentation/devicetree/bindings/net/wireless/marvell,sd8787.yaml
-> +++ b/Documentation/devicetree/bindings/net/wireless/marvell,sd8787.yaml
-> @@ -18,6 +18,7 @@ description:
->  properties:
->    compatible:
->      enum:
-> +      - marvell,sd8777
->        - marvell,sd8787
->        - marvell,sd8897
->        - marvell,sd8978
-> -- 
-> 2.51.1
-> 
+J=C3=A9r=C3=B4me
 
