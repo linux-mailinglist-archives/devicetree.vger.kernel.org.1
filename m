@@ -1,196 +1,1070 @@
-Return-Path: <devicetree+bounces-243968-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243969-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C129AC9EC20
-	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 11:45:21 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B9B2C9EC2F
+	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 11:48:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 714543A7851
-	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 10:45:20 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A8C424E074A
+	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 10:48:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E9C82F0C6E;
-	Wed,  3 Dec 2025 10:45:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B91BA2F12B1;
+	Wed,  3 Dec 2025 10:48:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="gvsGqrq4"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BM5llhDb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ixit.cz (ip-94-112-25-9.bb.vodafone.cz [94.112.25.9])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE79B2F0690;
-	Wed,  3 Dec 2025 10:45:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.112.25.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBD7F2EFD9C
+	for <devicetree@vger.kernel.org>; Wed,  3 Dec 2025 10:48:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764758712; cv=none; b=HLGv/TmjI8SeWZRWzgjKra+URpofA2x4AAogmK1DjclfPGpi4NKotxdnS/ocNR7Gm9uDIxB7F3m2X9XtE8Yu4GPVn5DdxT+kvPGMTVRsHPFDV+1jma2BUF7GAhnP8+d+Bhof8sHyo9v0YJ8RnM58p4nhsMhN2gkmpDP7Ndr9MXY=
+	t=1764758909; cv=none; b=OWtZO2FLrvSY0nNNLPYsVY0BryxbGeVsZsIPTbURgQpXjImLNrboA4D1VFgwvH7pzhXhYxZJPP1XPbAkFYgvjCNWj0yIYWFUPHDBIil4pvJaTZeBCkZoTx7csmmiezkhLG+WjfScWpypeJEZmMNeO6IXbmxCLU2FvSKfkEUQ0kA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764758712; c=relaxed/simple;
-	bh=6s+pcjrE0NotfBkJGQXYpCHD8GxTYctqoLsgNuvkf1E=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=owMdPFWcG1Aaqigur9I2YUS9wXrIS7XKZCUSluqojfCbWyrh7hv252zPhis0PpzTdr+vDaWV6tAsOojpOpTEjyON2pRSOD1SK8Dl26Kjn7xfVZMba0p6xMIgMGP9NquvSKddpvs/TD6cDDTPKQf5J8oNQdTA3qrKwof5XX4kSck=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=gvsGqrq4; arc=none smtp.client-ip=94.112.25.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
-Received: from [10.0.0.200] (unknown [10.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange x25519)
-	(No client certificate requested)
-	by ixit.cz (Postfix) with ESMTPSA id 997865340E0C;
-	Wed, 03 Dec 2025 11:45:06 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-	t=1764758706;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=CepgQPOvMfMw1D/IUCNpJz0Sal8k62OPjmjZqkX1G5g=;
-	b=gvsGqrq46mv6u2Juop5Z0349xvzSaNBemhqLPmVzgEB9yxC4i3Igdeh/S7JlWA04h2vaed
-	eH8/kguPmSqGBen7dkiu0bbv047C3o+1CPYRT0DBWwBhHiKOQMOdBjW8nn3vITh7DVWHG4
-	au8Ump2eGjFEHTJIY0Ky48o7wpLGlEs=
-Message-ID: <88d96898-3c83-438d-89e9-4bb2bd0dd98b@ixit.cz>
-Date: Wed, 3 Dec 2025 11:45:06 +0100
+	s=arc-20240116; t=1764758909; c=relaxed/simple;
+	bh=+m2vpLlYo6lZX9WyJLb+6Qf9vZ9AEo/1EWlY3WpGLco=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=B2IqGeiXgTpQhCCV/chV8i3QWvZdnf6dwlZQ0cY2s6tR7ua6AcYrACiE0MAoESgIrTXmbTcgkGij2wfTFyuwwT9/1a+iWY0rmksPgikal7p6iHFroNxrNVFUKbXhqDjV4p5wx0nM3yrDOaKRocXawfKG7xUY7OE5q+ho1/CHYLM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BM5llhDb; arc=none smtp.client-ip=209.85.221.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-42e2ce8681eso2987969f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 03 Dec 2025 02:48:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1764758905; x=1765363705; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Pqzcwy0aG8j3v2uib4LvNWbMTBU5XU/UWKj8WABA/Yc=;
+        b=BM5llhDb1tiTZy9k+q83wQg/GMJ0Xlo0NDDU4gyXWFLtQyig2uyna8NXGYqIkk3+Ov
+         8Yiz+NVZXz12PD+4GqLQ4oIjitoeSoPxDVVpTovCRwpR8GPKBbZ5Jyh6rxnVOxr1W5Wl
+         LWgwwKIMhE6Gnkzym9h8QzlB+n2Bh1zi4vTfvQqOswgahWx3pK0b9BzpSInWnGbPGKjr
+         zGCmSdTu5mPxQ1nC8EMlRXnceV9WqB5CUyhZd1tDOzIBCua7nktAVyJ0hHcX6RdKt5pf
+         yxosTzZ68vvTTGoFR4DhVh/+fK29Cxs7WDh3D6Zsc0ay5GIGay0yEndTN8tK61vkPTC7
+         vqVA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764758905; x=1765363705;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Pqzcwy0aG8j3v2uib4LvNWbMTBU5XU/UWKj8WABA/Yc=;
+        b=Qe/zMVLLo9c+tQyspgQhDkPMclniesO3cnVlaGs176gYOFlum1Comnw1KVGSnwHoPM
+         vbog3FMFj6TAbxgg2hxE4MGrl1TM+EvX7qW8GOjfwoWLa5HdDa9UZrA9dWDys6J1v+MZ
+         o6yyd+QkK0i0d0cXZdL9JdufYO0AHMfsmBDK9J41WDtOLg8cdtHjk7Vsd36SfZW/oPer
+         8vaYzK7TGxvB2wkBaIZ/aG+xJmDAibrDTJNN4VsNPA7/8AaDfO0s/fBvvxDn/8dMO/7s
+         uoeOFfE66Zt0w7D8IP7tzNF4InmWLyQDr1YCC3od/JYlWvTQblAGp5dKcjWE2M/C6AeJ
+         6//Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVM3GHpGietjVWv0yuIdTbTqnAtEmONb/X845zyKxE1biMITx/1NG9OOhzmiDfw4vBt06dcQvy6qDs5@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy8UoHpwJ6U+3pnb6niN1wtM1E/+rhROCdEaQaFPi42e36KkMTm
+	3iECVy3EHqKDaA3iYBY4osy24xAx3ECh5nGeQXMdeCgrnMpqmKYIOYdl
+X-Gm-Gg: ASbGnctlzS6/o3/NP2XPIk5mA0jSuAZPP5VZ3yLhoZo8PKw1NfM49vtsgzfBFVDv3Z6
+	UqVH1tQ0PgEVgPySuFG1AJ+Mfwn/S1r2C8Zwcow1f8LjWe7e+u93gEBNLYNA96fYGD2fok1wbpO
+	QlDh1yAGU8rHnM6yXBi8hqmbiWpMb68pZ70pbjcd5k5swT6wUCGCTIzEw+DjMHyfjUNRHLm1cMr
+	8ab72zcSEn8mgXSZbiY5WBnHf02t7C4xScv3YsM9aFH8Ze9nq53SGsI3zfHmqaqVOEuSFdczjHS
+	5b5cT70WKI3RujnAYT07RcckdWY1c9qq4U6UTzDlAX+eP95RHMjhxnxJz1fjOAsTWH3AB8mrw8F
+	oo/fqmImR384+kB0TZxcBrD96YDu/qE24lXYKMVaBMmPWmsHB1J0a/4lW8maY3v9ArXIxVgCAGd
+	MnXQBpI2q38RyJuJOB
+X-Google-Smtp-Source: AGHT+IGU+zTWxb7oJWKF6SgoxvEbG8MC6Zs0ybOgfpb5deisxlDFrb0fyykgbfmWUBQODvUaKcyUfw==
+X-Received: by 2002:a05:6000:4203:b0:427:526:16aa with SMTP id ffacd0b85a97d-42f731cf22emr1651680f8f.58.1764758905050;
+        Wed, 03 Dec 2025 02:48:25 -0800 (PST)
+Received: from owl5 ([2001:861:3201:3d10:5de7:b6f0:41df:be6e])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42e1caa86d0sm36929364f8f.39.2025.12.03.02.48.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 03 Dec 2025 02:48:24 -0800 (PST)
+Date: Wed, 3 Dec 2025 11:48:23 +0100
+From: Gary Bisson <bisson.gary@gmail.com>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v4 3/4] arm64: dts: mediatek: add device tree for
+ Tungsten 510 board
+Message-ID: <aTAVd6wJYheV7M4p@owl5>
+References: <20251202-review-v4-0-93f5cd2a0d4a@gmail.com>
+ <20251202-review-v4-3-93f5cd2a0d4a@gmail.com>
+ <e9edd5f2-c0ff-48fa-baf9-659dd0073e3d@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 12/12] arm64: dts: qcom: sdm845-lg-common: remove
- framebuffer reserved-mem
-From: David Heidelberg <david@ixit.cz>
-To: Paul Sajna <sajattack@postmarketos.org>,
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
- Amir Dahan <system64fumo@protonmail.com>,
- Christopher Brown <crispybrown@gmail.com>
-References: <20251125-judyln-dts-v4-0-a5a60500b267@postmarketos.org>
- <20251125-judyln-dts-v4-12-a5a60500b267@postmarketos.org>
- <adcac270-3668-4b17-b430-d67ef311dd7c@oss.qualcomm.com>
- <803c48742755394d6eabc34ac73a42b36615cc01@postmarketos.org>
- <1d56eccf-1978-43c2-afcf-03ca88acc0e2@oss.qualcomm.com>
- <164f88c182ff8e17a0d544effc7d64cdd73cd4eb@postmarketos.org>
- <de30bfad-a28f-4cc0-9099-11877428070e@ixit.cz>
-Content-Language: en-US
-Autocrypt: addr=david@ixit.cz; keydata=
- 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
-In-Reply-To: <de30bfad-a28f-4cc0-9099-11877428070e@ixit.cz>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e9edd5f2-c0ff-48fa-baf9-659dd0073e3d@collabora.com>
 
-On 03/12/2025 11:37, David Heidelberg wrote:
-> On 03/12/2025 09:42, Paul Sajna wrote:
->> December 2, 2025 at 10:34 AM, "Konrad Dybcio" 
->> <konrad.dybcio@oss.qualcomm.com mailto:konrad.dybcio@oss.qualcomm.com? 
->> to=%22Konrad%20Dybcio%22%20%3Ckonrad.dybcio%40oss.qualcomm.com%3E > 
->> wrote:
->>
->>
->>>
->>> On 12/2/25 5:41 AM, Paul Sajna wrote:
->>>
->>>>
->>>> December 1, 2025 at 12:41 PM, "Konrad Dybcio" 
->>>> <konrad.dybcio@oss.qualcomm.com 
->>>> mailto:konrad.dybcio@oss.qualcomm.com? 
->>>> to=%22Konrad%20Dybcio%22%20%3Ckonrad.dybcio%40oss.qualcomm.com%3E > 
->>>> wrote:
->>>>
->>>>>
->>>>> On 11/25/25 9:12 AM, Paul Sajna wrote:
->>>>>
->>>>   It causes this warning
->>>>   [ 0.000000] OF: reserved mem: OVERLAP DETECTED!
->>>>   framebuffer@9d400000 mailto:framebuffer@9d400000
->>>>   (0x000000009d400000--0x000000009f800000) overlaps with
->>>>   memory@9d400000 mailto:memory@9d400000 
->>>> (0x000000009d400000--0x000000009f800000)
->>>>   Signed-off-by: Paul Sajna <sajattack@postmarketos.org>
->>>>   ---
->>>>
->>>>>
->>>>> It's defined for both devices that include this dtsi.. perhaps you
->>>>>   could remove it from there
->>>>>
->>>>>   Konrad
->>>>>
->>>>   I don't have a judyp to test with and prefer to limit scope.
->>>>
->>> This is a mechanical change
->>>
->>> Konrad
->>>
->>
->> Sorry, I tried to have a look at what you meant but didn't quite 
->> understand. In this patch I changed the dtsi that is included by both 
->> already. I don't see any other reserved-mem nodes in judyp. Do you 
->> mean I should remove the framebuffer from judyp? I don't think that's 
->> wise since a panel driver isn't added as far as I know.
+Hi Angelo,
+
+On Wed, Dec 03, 2025 at 07:50:29AM +0100, AngeloGioacchino Del Regno wrote:
+> Il 02/12/25 23:08, Gary Bisson ha scritto:
+> > Add device tree to support Ezurio Tungsten 510 (MT8370) SMARC SOM [1] +
+> > Universal SMARC carrier board [2].
+> > It includes support for the MIPI-DSI BD070LIC3 display which uses the
+> > Tianma TM070JDHG30 panel + TI SN65DSI84 MIPI-DSI to LVDS bridge [3].
+> > 
+> > [1] https://www.ezurio.com/product/tungsten510-smarc
+> > [2] https://www.ezurio.com/system-on-module/accessories/universal-smarc-carrier
+> > [3] https://www.ezurio.com/product/bd070lic3-7-touchscreen-display
+> > 
+> > Signed-off-by: Gary Bisson <bisson.gary@gmail.com>
+> > 
 > 
-> I think this warning likely comes from sdm845-mainline repo, as it has 
-> extra patches, which trying to abstract framebuffer into sdm845.dtsi, 
-> where it likely conflicts, have you tried against clean 6.18-rcX or next?
-
-... or sdm845-next repo [1]?
-
-I sent the patches moving framebuffer from sdm845-mainline repository as 
-RFC [2], but so far it's not clear to me if these should go in or not.
-
-David
-
-[1] https://gitlab.com/sdm845/sdm845-next/-/commits/sdm845-next
-[2] 
-https://lore.kernel.org/all/20251117-commonize-framebuffer-v1-1-e4c099b383c9@ixit.cz/
-
+> Hello!
 > 
-> David
+> Thanks for the patch, that's mostly good. Though, there are a few comments, please
+> check below.
 
--- 
-David Heidelberg
+Thanks for the quick response, some comments inline below.
 
+> > ---
+> > Changes in v2:
+> > - Updated nodes to be generic (pmic, i2c, usb-typec)
+> > Changed in v3:
+> > - None
+> > Changed in v4:
+> > - Fixed remaining DTB warnings
+> > ---
+> >   arch/arm64/boot/dts/mediatek/Makefile              |    1 +
+> >   .../boot/dts/mediatek/mt8370-tungsten-smarc.dts    |   14 +
+> >   .../boot/dts/mediatek/mt83x0-tungsten-smarc.dtsi   | 1510 ++++++++++++++++++++
+> >   3 files changed, 1525 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
+> > index a4df4c21399e..30d169a31b10 100644
+> > --- a/arch/arm64/boot/dts/mediatek/Makefile
+> > +++ b/arch/arm64/boot/dts/mediatek/Makefile
+> > @@ -99,6 +99,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8195-demo.dtb
+> >   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8195-evb.dtb
+> >   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8365-evk.dtb
+> >   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8370-genio-510-evk.dtb
+> > +dtb-$(CONFIG_ARCH_MEDIATEK) += mt8370-tungsten-smarc.dtb
+> >   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8395-genio-1200-evk.dtb
+> >   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8390-genio-700-evk.dtb
+> >   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8395-kontron-3-5-sbc-i1200.dtb
+> > diff --git a/arch/arm64/boot/dts/mediatek/mt8370-tungsten-smarc.dts b/arch/arm64/boot/dts/mediatek/mt8370-tungsten-smarc.dts
+> > new file mode 100644
+> > index 000000000000..d713ef77df3a
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/mediatek/mt8370-tungsten-smarc.dts
+> > @@ -0,0 +1,14 @@
+> > +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> > +/*
+> > + * Copyright (C) 2025 Ezurio LLC
+> > + * Author: Gary Bisson <bisson.gary@gmail.com>
+> > + */
+> > +/dts-v1/;
+> > +#include "mt8370.dtsi"
+> > +#include "mt83x0-tungsten-smarc.dtsi"
+> > +
+> > +/ {
+> > +	model = "Ezurio Tungsten510 SMARC (MT8370)";
+> > +	compatible = "ezurio,mt8370-tungsten-smarc", "mediatek,mt8370",
+> > +		     "mediatek,mt8188";
+> > +};
+> > diff --git a/arch/arm64/boot/dts/mediatek/mt83x0-tungsten-smarc.dtsi b/arch/arm64/boot/dts/mediatek/mt83x0-tungsten-smarc.dtsi
+> > new file mode 100644
+> > index 000000000000..d71148d78781
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/mediatek/mt83x0-tungsten-smarc.dtsi
+> > @@ -0,0 +1,1510 @@
+> > +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> > +/*
+> > + * Copyright (C) 2025 Ezurio LLC
+> > + * Author: Gary Bisson <bisson.gary@gmail.com>
+> > + */
+> > +
+> 
+> ..snip..
+> 
+> > +
+> > +&disp_dsi0 {
+> > +	#address-cells = <1>;
+> > +	#size-cells = <0>;
+> > +	status = "okay";
+> > +
+> > +	ports {
+> > +		#address-cells = <1>;
+> > +		#size-cells = <0>;
+> > +
+> > +		port@0 {
+> > +			reg = <0>;
+> > +			dsi0_in: endpoint {
+> > +				remote-endpoint = <&dither0_out>;
+> > +			};
+> > +		};
+> > +
+> > +		port@1 {
+> > +			reg = <1>;
+> > +			dsi0_out: endpoint {
+> > +				remote-endpoint = <&sn65dsi84_bridge_in>;
+> > +			};
+> > +		};
+> > +	};
+> > +};
+> > +
+> > +&dither0_in {
+> > +	remote-endpoint = <&postmask0_out>;
+> > +};
+> > +
+> > +&dither0_out {
+> > +	remote-endpoint = <&dsi0_in>;
+> > +};
+> > +
+> > +&eth {
+> > +	phy-mode ="rgmii-id";
+> > +	phy-handle = <&ethernet_phy0>;
+> > +	pinctrl-names = "default", "sleep";
+> > +	pinctrl-0 = <&eth_default_pins>;
+> > +	pinctrl-1 = <&eth_sleep_pins>;
+> > +	mediatek,mac-wol;
+> > +	snps,reset-gpio = <&pio 27 GPIO_ACTIVE_LOW>;
+> > +	snps,reset-active-low;
+> > +	snps,reset-delays-us = <0 11000 1000>;
+> > +	status = "okay";
+> > +};
+> > +
+> > +&eth_mdio {
+> > +	ethernet_phy0: ethernet-phy@7 {
+> > +		compatible = "ethernet-phy-ieee802.3-c22";
+> > +		reg = <0x7>;
+> > +		interrupts-extended = <&pio 148 IRQ_TYPE_LEVEL_LOW>;
+> > +	};
+> > +};
+> > +
+> > +&gamma0_out {
+> > +	remote-endpoint = <&postmask0_in>;
+> > +};
+> > +
+> > +&gpu {
+> > +	mali-supply = <&mt6359_vproc2_buck_reg>;
+> > +	status = "okay";
+> > +};
+> > +
+> > +&i2c0 {
+> > +	pinctrl-names = "default";
+> > +	pinctrl-0 = <&i2c0_pins>;
+> > +	clock-frequency = <100000>;
+> > +	status = "okay";
+> > +
+> > +	i2c-mux@73 {
+> > +		compatible = "nxp,pca9546";
+> > +		reg = <0x73>;
+> > +		pinctrl-names = "default";
+> > +		pinctrl-0 = <&i2c0_mux_pins>;
+> > +		reset-gpios = <&pio 6 GPIO_ACTIVE_LOW>;
+> > +		#address-cells = <1>;
+> > +		#size-cells = <0>;
+> > +
+> > +		i2c_mux_gp_0: i2c@0 {
+> > +			clock-frequency = <100000>;
+> > +			reg = <0>;
+> 
+> reg = <0>;
+> clock-frequency = ...
+> 
+> > +			#address-cells = <1>;
+> > +			#size-cells = <0>;
+> > +		};
+> > +
+> > +		i2c_mux_gp_1: i2c@1 {
+> > +			clock-frequency = <100000>;
+> > +			reg = <1>;
+> > +			#address-cells = <1>;
+> > +			#size-cells = <0>;
+> > +		};
+> > +
+> > +		i2c_mux_gp_2: i2c@2 {
+> > +			clock-frequency = <100000>;
+> > +			reg = <2>;
+> > +			#address-cells = <1>;
+> > +			#size-cells = <0>;
+> > +		};
+> > +
+> > +		i2c_mux_gp_3: i2c@3 {
+> > +			clock-frequency = <100000>;
+> > +			reg = <3>;
+> > +			#address-cells = <1>;
+> > +			#size-cells = <0>;
+> > +		};
+> > +	};
+> > +};
+> > +
+> > +&i2c1 {
+> > +	pinctrl-names = "default";
+> > +	pinctrl-0 = <&i2c1_pins>;
+> > +	clock-frequency = <400000>;
+> > +	status = "okay";
+> > +};
+> > +
+> > +&i2c2 {
+> > +	pinctrl-names = "default";
+> > +	pinctrl-0 = <&i2c2_pins>;
+> > +	clock-frequency = <400000>;
+> > +	status = "okay";
+> > +
+> > +	i2c-mux@73 {
+> > +		compatible = "nxp,pca9546";
+> > +		pinctrl-names = "default";
+> > +		pinctrl-0 = <&i2c_mux_smarc_lcd_pins>;
+> > +		reg = <0x73>;
+> > +		reset-gpios = <&pio 5 GPIO_ACTIVE_LOW>;
+> > +		#address-cells = <1>;
+> > +		#size-cells = <0>;
+> > +
+> > +		i2c_mux_lcd_0: i2c@0 {
+> > +			clock-frequency = <100000>;
+> > +			reg = <0>;
+> > +			#address-cells = <1>;
+> > +			#size-cells = <0>;
+> > +		};
+> > +
+> > +		i2c_mux_lcd_1: i2c@1 {
+> > +			clock-frequency = <100000>;
+> > +			reg = <1>;
+> > +			#address-cells = <1>;
+> > +			#size-cells = <0>;
+> > +		};
+> > +
+> > +		i2c_mux_lcd_2: i2c@2 {
+> > +			clock-frequency = <100000>;
+> > +			reg = <2>;
+> > +			#address-cells = <1>;
+> > +			#size-cells = <0>;
+> > +		};
+> > +
+> > +		i2c_mux_lcd_3: i2c@3 {
+> > +			clock-frequency = <100000>;
+> > +			reg = <3>;
+> > +			#address-cells = <1>;
+> > +			#size-cells = <0>;
+> > +		};
+> > +	};
+> > +};
+> > +
+> > +&i2c3 {
+> > +	pinctrl-names = "default";
+> > +	pinctrl-0 = <&i2c3_pins>;
+> > +	clock-frequency = <400000>;
+> > +	status = "okay";
+> > +};
+> > +
+> > +&i2c4 {
+> > +	pinctrl-names = "default";
+> > +	pinctrl-0 = <&i2c4_pins>;
+> > +	clock-frequency = <400000>;
+> > +	status = "okay";
+> > +};
+> > +
+> > +&i2c_mux_gp_0 {
+> > +	rv3028: rtc@52 {
+> > +		compatible = "microcrystal,rv3028";
+> > +		reg = <0x52>;
+> > +		interrupts-extended = <&pio 42 IRQ_TYPE_LEVEL_LOW>;
+> > +		pinctrl-names = "default";
+> > +		pinctrl-0 = <&rv3028_pins>;
+> > +		#clock-cells = <0>;
+> > +		wakeup-source;
+> > +	};
+> > +};
+> > +
+> > +&i2c_mux_gp_1 {
+> > +	usb-typec@60 {
+> > +		compatible = "ti,hd3ss3220";
+> 
+> reg always goes after compatible.
+> 
+> > +		interrupts-extended = <&pio 45 IRQ_TYPE_LEVEL_LOW>;
+> > +		pinctrl-names = "default";
+> > +		pinctrl-0 = <&hd3ss3220_pins>;
+> > +		reg = <0x60>;
+> > +
+> > +		ports {
+> > +			#address-cells = <1>;
+> > +			#size-cells = <0>;
+> > +
+> > +			port@0 {
+> > +				reg = <0>;
+> > +				hd3ss3220_in_ep: endpoint {
+> > +					remote-endpoint = <&ss_ep>;
+> > +				};
+> > +			};
+> > +
+> > +			port@1 {
+> > +				reg = <1>;
+> > +				hd3ss3220_out_ep: endpoint {
+> > +					remote-endpoint = <&usb_role_switch>;
+> > +				};
+> > +			};
+> > +		};
+> > +	};
+> > +};
+> > +
+> > +&i2c_mux_gp_2 {
+> > +	codec@1a {
+> 
+> compatible
+> reg
+> clocks
+> gpio-cfg
+> 
+> supplies
+> 
+> P.S.: Please read
+> https://docs.kernel.org/devicetree/bindings/dts-coding-style.html
+
+Noted, thanks. However for the wm8962 the gpio-cfg is recommended at the
+per its doc, hope that's ok
+("Documentation/devicetree/bindings/sound/wlf,wm8962.yaml).
+
+> > +		#sound-dai-cells = <0>;
+> > +		AVDD-supply = <&reg_1v8>;
+> > +		CPVDD-supply = <&reg_1v8>;
+> > +		DBVDD-supply = <&reg_3v3>;
+> > +		DCVDD-supply = <&reg_1v8>;
+> > +		MICVDD-supply = <&reg_3v3>;
+> > +		PLLVDD-supply = <&reg_1v8>;
+> > +		SPKVDD1-supply = <&reg_5v>;
+> > +		SPKVDD2-supply = <&reg_5v>;
+> > +		clocks = <&topckgen CLK_TOP_I2SO1>;
+> > +		compatible = "wlf,wm8962";
+> > +		gpio-cfg = <
+> > +			0x0000 /* n/c */
+> > +			0x0000 /* gpio2: */
+> > +			0x0000 /* gpio3: */
+> > +			0x0000 /* n/c */
+> > +			0x8081 /* gpio5:HP detect */
+> > +			0x8095 /* gpio6:Mic detect */
+> > +		>;
+> > +		reg = <0x1a>;
+> > +	};
+> > +};
+> > +
+> > +&i2c_mux_lcd_2 {
+> > +	#address-cells = <1>;
+> > +	#size-cells = <0>;
+> > +
+> > +	bridge@2c {
+> > +		compatible = "ti,sn65dsi84";
+> > +		reg = <0x2c>;
+> > +		enable-gpios = <&pio 25 GPIO_ACTIVE_HIGH>;
+> > +		pinctrl-names = "default";
+> > +		pinctrl-0 = <&dsi0_sn65dsi84_pins>;
+> > +
+> > +		ports {
+> > +			#address-cells = <1>;
+> > +			#size-cells = <0>;
+> > +
+> > +			port@0 {
+> > +				reg = <0>;
+> > +
+> > +				sn65dsi84_bridge_in: endpoint {
+> > +					remote-endpoint = <&dsi0_out>;
+> > +					data-lanes = <1 2 3 4>;
+> > +				};
+> > +			};
+> > +
+> > +			port@2 {
+> > +				reg = <2>;
+> > +
+> > +				sn65dsi84_bridge_out: endpoint {
+> > +					remote-endpoint = <&dsi0_panel_in>;
+> > +				};
+> > +			};
+> > +		};
+> > +	};
+> > +
+> > +	touchscren@5d {
+> > +		compatible = "goodix,gt911";
+> > +		reg = <0x5d>;
+> > +		pinctrl-names = "default";
+> > +		pinctrl-0 = <&ts_dsi0_goodix_pins>;
+> > +		interrupts-extended = <&pio 146 IRQ_TYPE_LEVEL_HIGH>;
+> > +		irq-gpios = <&pio 146 GPIO_ACTIVE_HIGH>;
+> > +		reset-gpios = <&pio 7 GPIO_ACTIVE_HIGH>;
+> > +	};
+> > +};
+> > +
+> > +&mfg0 {
+> > +	domain-supply = <&mt6359_vproc2_buck_reg>;
+> > +};
+> > +
+> > +&mfg1 {
+> > +	domain-supply = <&mt6359_vsram_others_ldo_reg>;
+> > +};
+> > +
+> > +&mmc0 {
+> > +	status = "okay";
+> > +	pinctrl-names = "default", "state_uhs";
+> > +	pinctrl-0 = <&mmc0_default_pins>;
+> > +	pinctrl-1 = <&mmc0_uhs_pins>;
+> > +	bus-width = <8>;
+> > +	max-frequency = <200000000>;
+> > +	cap-mmc-highspeed;
+> > +	cap-mmc-hw-reset;
+> > +	mmc-hs200-1_8v;
+> > +	mmc-hs400-1_8v;
+> > +	supports-cqe;
+> > +	cap-mmc-hw-reset;
+> 
+> You added cap-mmc-hw-reset twice.
+> 
+> > +	no-sdio;
+> > +	no-sd;
+> > +	hs400-ds-delay = <0x1481b>;
+> > +	vmmc-supply = <&mt6359_vemc_1_ldo_reg>;
+> > +	vqmmc-supply = <&mt6359_vufs_ldo_reg>;
+> > +	non-removable;
+> 
+> Also, please reorder by name:
+> 
+> bus-width ...
+> cap-mmc-highspeed;
+> cap-mmc-hw-reset;
+> hs400-ds-delay....
+> max-frequency ....
+> mmc-hs200-1_8v;
+> mmc-hs400-1_8v;
+> no-sd;
+> no-sdio;
+> non-removable;
+> supports-cqe;
+> 
+> pinctrl properties
+> 
+> power supplies
+> 
+> status
+
+Will do, note that this is a copy/paste of the already-upstream
+mt8390-genio-common.dtsi.
+
+> > +};
+> > +
+> > +&mmc1 {
+> > +	status = "okay";
+> > +	pinctrl-names = "default", "state_uhs";
+> > +	pinctrl-0 = <&mmc1_default_pins>;
+> > +	pinctrl-1 = <&mmc1_uhs_pins>;
+> > +	bus-width = <4>;
+> > +	max-frequency = <200000000>;
+> > +	cap-sd-highspeed;
+> > +	sd-uhs-sdr50;
+> > +	sd-uhs-sdr104;
+> > +	cd-gpios = <&pio 2 GPIO_ACTIVE_LOW>;
+> > +	vqmmc-supply = <&mt6359_vsim1_ldo_reg>;
+> > +	vmmc-supply = <&sdcard_en_3v3>;
+> > +};
+> > +
+> > +&mmc2 {
+> > +	status = "okay";
+> 
+> status at the end please
+> 
+> > +	pinctrl-names = "default", "state_uhs", "state_eint";
+> > +	pinctrl-0 = <&mmc2_default_pins>;
+> > +	pinctrl-1 = <&mmc2_uhs_pins>;
+> > +	pinctrl-2 = <&mmc2_eint_pins>;
+> 
+> Sorry, but I truly hate /delete-property/.
+> 
+> > +	/delete-property/ interrupts;
+> > +	interrupt-names = "msdc", "sdio_wakeup";
+> > +	interrupts-extended = <&gic GIC_SPI 136 IRQ_TYPE_LEVEL_HIGH 0>,
+> > +			      <&pio 172 IRQ_TYPE_LEVEL_LOW>;
+> 
+> You're lucky in this case, though, because you're the first user of MMC2! :-)
+> 
+> The solution here is:
+>  - Change the interrupts property in mt8188.dtsi on mmc@1125000 to
+>    `interrupts-extended = <&gic GIC_SPI 136 IRQ_TYPE_LEVEL_HIGH 0>;`
+>  - Override it here without `/delete-property/ interrupts;`
+
+Ok, will do a mt8188 patch then, I'll modify all mmc nodes that way to
+be consistent.
+
+> > +	bus-width = <4>;
+> 
+> Please order the properties by name (bar X-supply, Y-pwrseq, status that go at
+> the end).
+> 
+> > +	max-frequency = <200000000>;
+> > +	cap-sd-highspeed;
+> > +	sd-uhs-sdr104;
+> > +	keep-power-in-suspend;
+> > +	wakeup-source;
+> > +	cap-sdio-irq;
+> > +	no-mmc;
+> > +	no-sd;
+> > +	non-removable;
+> > +	vmmc-supply = <&mt6359_vcn33_2_bt_ldo_reg>;
+> > +	vqmmc-supply = <&mt6359_vcn18_ldo_reg>;
+> > +	mmc-pwrseq = <&wifi_pwrseq>;
+> > +};
+> > +
+> > +&mipi_tx_config0 {
+> > +	status = "okay";
+> > +};
+> > +
+> > +&mt6359codec {
+> > +	mediatek,mic-type-0 = <1>;
+> > +	mediatek,mic-type-1 = <3>;
+> 
+> You can drop mic-type-2 and dmic-mode, as the defaults for these are already zero.
+> 
+> > +	mediatek,mic-type-2 = <0>;
+> > +	mediatek,dmic-mode = <0>;
+> > +};
+> > +
+> 
+> ..snip..
+> 
+> > +
+> > +&mt6359_vproc2_buck_reg {
+> > +	/* The name "vgpu" is required by mtk-regulator-coupler */
+> > +	regulator-name = "vgpu";
+> > +	regulator-min-microvolt = <550000>;
+> > +	regulator-max-microvolt = <800000>;
+> > +	regulator-coupled-with = <&mt6359_vsram_others_ldo_reg>;
+> > +	regulator-coupled-max-spread = <225000>;
+> > +	regulator-always-on;
+> 
+> You don't need regulator-always-on here.
+> 
+> > +};
+> > +
+> > +&mt6359_vs2_buck_reg {
+> > +	regulator-min-microvolt = <1600000>;
+> > +	regulator-boot-on;
+> > +};
+> > +
+> > +&mt6359_vpu_buck_reg {
+> > +	regulator-name = "dvdd_adsp";
+> 
+> Is that for the MediaTek Audio DSP?
+
+Yes and no, this design matches the EVK one from MTK on that rail, which
+means the same rail is used as:
+- DVDD_ADSP
+- DVDD_SRAM_CORE
+- DVDD_SRAM_MM
+- AVDD075_DRV_DSI
+
+> Thought Genio 500/700 were kind of "special" in having one just for that.
+> 
+> If so, you have to do this properly and add this to the ADSP power domain as a
+> domain-supply, if this effectively enables basic power to the ADSP itself.
+> 
+> To do so, you must also change drivers/pmdomain/mediatek/mt8188-pm-domains.h and in
+> MT8188_POWER_DOMAIN_ADSP you want to change `.caps` to
+> 
+> .caps = MTK_SCPD_KEEP_DEFAULT_OFF | MTK_SCPD_SRAM_ISO | MTK_SCPD_ACTIVE_WAKEUP |
+> 	MTK_SCPD_DOMAIN_SUPPLY,
+> 
+> ...so that you can remove the regulator-always-on property here, and benefit from a
+> nice bump in power efficiency (as you stop power leakages like so).
+
+Considering the comment above, is it ok to leave it as-is (like it is
+done in the mt8390-genio-common.dtsi)? Or would you like to change the
+reg name to make it more obvious it's not only for adsp?
+
+> > +	regulator-always-on;
+> > +};
+> > +
+> > +&mt6359_vrf12_ldo_reg {
+> > +	regulator-name = "va12_abb2_pmu";
+> > +	regulator-always-on;
+> > +};
+> > +
+> > +&mt6359_vsram_md_ldo_reg {
+> > +	regulator-always-on;
+> > +};
+> > +
+> > +&mt6359_vsram_others_ldo_reg {
+> > +	/* The name "vsram_gpu" is required by mtk-regulator-coupler */
+> > +	regulator-name = "vsram_gpu";
+> > +	regulator-min-microvolt = <750000>;
+> > +	regulator-max-microvolt = <800000>;
+> > +	regulator-coupled-with = <&mt6359_vproc2_buck_reg>;
+> > +	regulator-coupled-max-spread = <225000>;
+> > +	regulator-always-on;
+> 
+> You don't need regulator-always-on here.
+> 
+> > +};
+> > +
+> > +&mt6359_vsim1_ldo_reg {
+> > +	regulator-name = "vsim1_pmu";
+> > +	regulator-max-microvolt = <1800000>;
+> > +	regulator-enable-ramp-delay = <480>;
+> > +};
+> > +
+> > +&mt6359_vufs_ldo_reg {
+> > +	regulator-name = "vufs18_pmu";
+> > +	regulator-always-on;
+> > +};
+> > +
+> > +&ovl0_in {
+> > +	remote-endpoint = <&vdosys0_ep_main>;
+> > +};
+> > +
+> > +&pcie {
+> > +	pinctrl-names = "default";
+> > +	pinctrl-0 = <&pcie_default_pins>;
+> > +	status = "okay";
+> > +};
+> > +
+> > +&pciephy {
+> > +	status = "okay";
+> > +};
+> > +
+> > +&pmic {
+> > +	interrupt-parent = <&pio>;
+> > +	interrupts = <222 IRQ_TYPE_LEVEL_HIGH>;
+> 
+> Instead of interrupt-parent and interrupts, you can do:
+> 
+> interrupts-extended = <&pio 222 IRQ_TYPE_LEVEL_HIGH>;
+> 
+> > +
+> > +	keys {
+> > +		compatible = "mediatek,mt6359-keys";
+> > +		mediatek,long-press-mode = <1>;
+> > +		power-off-time-sec = <0>;
+> > +
+> > +		power-key {
+> > +			linux,keycodes = <116>;
+> 
+> At the top of the file, properly ordered:
+> #include <dt-bindings/input/linux-event-codes.h>
+> 
+> ...then, here:
+> linux,keycodes = <KEY_POWER>;
+> 
+> > +			wakeup-source;
+> > +		};
+> > +	};
+> > +};
+> > +
+> > +&postmask0_in {
+> > +	remote-endpoint = <&gamma0_out>;
+> > +};
+> > +
+> > +&postmask0_out {
+> > +	remote-endpoint = <&dither0_in>;
+> > +};
+> > +
+> > +&scp_cluster {
+> > +	status = "okay";
+> > +};
+> > +
+> > +&scp_c0 {
+> > +	firmware-name = "mediatek/mt8188/scp.img";
+> 
+> You don't need (and can't have) firmware-name upstream: drop it.
+
+Oops, that's a copy/paste from the collabora tree ;)
+
+> > +	memory-region = <&scp_mem>;
+> > +	status = "okay";
+> > +};
+> > +
+> > +&spi0 {
+> > +	pinctrl-0 = <&spi0_pins>;
+> > +	pinctrl-names = "default";
+> > +	mediatek,pad-select = <0>;
+> 
+> vendor properties always at the end, before status = "okay";
+> 
+> > +	#address-cells = <1>;
+> > +	#size-cells = <0>;
+> 
+> ...but anyway, #address-cells, #size-cells are already declared in mt8188.dtsi and
+> they even have the same values that you're assigning here. Drop those.
+> 
+> > +	status = "okay";
+> > +};
+> > +
+> > +&spi1 {
+> > +	pinctrl-0 = <&spi1_pins>;
+> > +	pinctrl-names = "default";
+> > +	mediatek,pad-select = <0>;
+> 
+> same comments apply here as well.
+> 
+> > +	#address-cells = <1>;
+> > +	#size-cells = <0>;
+> > +	status = "okay";
+> > +};
+> > +
+> 
+> ..snip..
+> 
+> > +&uart0 {
+> > +	pinctrl-0 = <&uart0_pins>;
+> > +	pinctrl-names = "default";
+> > +	status = "okay";
+> > +};
+> > +
+> > +&uart1 {
+> > +	pinctrl-0 = <&uart1_pins>;
+> > +	pinctrl-names = "default";
+> > +	status = "okay";
+> > +};
+> > +
+> > +&uart2 {
+> > +	pinctrl-0 = <&uart2_pins>;
+> > +	pinctrl-names = "default";
+> > +	status = "okay";
+> > +};
+> > +
+> > +&ssusb0 {
+> 
+> Please reorder:
+> 
+> dr_mode
+> maximum-speed
+> usb-role-switch;
+> wakeup-source;
+> pinctrl-0
+> pinctrl-names
+> vusb33-supply
+> status
+
+Ok, will rework all ports.
+
+> > +	pinctrl-names = "default";
+> > +	pinctrl-0 = <&usbotg_pins>;
+> > +	maximum-speed = "high-speed";
+> > +	usb-role-switch;
+> > +	dr_mode = "otg";
+> > +	vusb33-supply = <&mt6359_vusb_ldo_reg>;
+> > +	wakeup-source;
+> > +	status = "okay";
+> > +
+> > +	connector {
+> > +		compatible = "usb-c-connector";
+> > +		label = "USB-C";
+> > +		data-role = "dual";
+> > +
+> > +		ports {
+> > +			#address-cells = <1>;
+> > +			#size-cells = <0>;
+> > +
+> > +			port@0 {
+> > +				reg = <0>;
+> > +				hs_ep: endpoint {
+> > +					remote-endpoint = <&usb_hs_ep>;
+> > +				};
+> > +			};
+> > +
+> > +			port@1 {
+> > +				reg = <1>;
+> > +				ss_ep: endpoint {
+> > +					remote-endpoint = <&hd3ss3220_in_ep>;
+> > +				};
+> > +			};
+> > +		};
+> > +	};
+> > +
+> > +	ports {
+> > +		#address-cells = <1>;
+> > +		#size-cells = <0>;
+> > +
+> > +		port@0 {
+> > +			reg = <0>;
+> > +			usb_hs_ep: endpoint {
+> > +				remote-endpoint = <&hs_ep>;
+> > +			};
+> > +		};
+> > +
+> > +		port@1 {
+> > +			reg = <1>;
+> > +			usb_role_switch: endpoint {
+> > +				remote-endpoint = <&hd3ss3220_out_ep>;
+> > +			};
+> > +		};
+> > +	};
+> > +};
+> > +
+> > +&u2port0 {
+> > +	status = "okay";
+> > +};
+> > +
+> > +&u3phy0 {
+> > +	status = "okay";
+> > +};
+> > +
+> > +&xhci0 {
+> > +	vbus-supply = <&usb_p0_vbus>;
+> > +	vusb33-supply = <&mt6359_vusb_ldo_reg>;
+> > +	status = "okay";
+> > +};
+> > +
+> > +&ssusb1 {
+> 
+> Please reorder:
+> 
+> dr_mode
+> maximum-speed
+> wakeup-source
+> pinctrl-0
+> pinctrl-names
+> vusb33-supply
+> status
+> 
+> > +	pinctrl-0 = <&usb1_pins>;
+> > +	pinctrl-names = "default";
+> > +	vusb33-supply = <&mt6359_vusb_ldo_reg>;
+> > +	dr_mode = "host";
+> > +	wakeup-source;
+> > +	status = "okay";
+> > +};
+> > +
+> > +&u2port1 {
+> > +	status = "okay";
+> > +};
+> > +
+> > +&u3port1 {
+> > +	status = "okay";
+> > +};
+> > +
+> > +&u3phy1 {
+> > +	status = "okay";
+> > +};
+> > +
+> > +&xhci1 {
+> > +	vbus-supply = <&usb_p1_vbus>;
+> > +	vusb33-supply = <&mt6359_vusb_ldo_reg>;
+> > +	status = "okay";
+> > +};
+> > +
+> > +&ssusb2 {
+> 
+> Please reorder:
+> 
+> dr_mode
+> maximum-speed
+> wakeup-source
+> vusb33-supply
+> status
+> 
+> > +	maximum-speed = "high-speed";
+> > +	dr_mode = "host";
+> > +	vusb33-supply = <&mt6359_vusb_ldo_reg>;
+> > +	status = "okay";
+> > +	wakeup-source;
+> > +};
+> > +
+> ..snip..
+> 
+> > +&vdosys0 {
+> > +	port {
+> > +		#address-cells = <1>;
+> > +		#size-cells = <0>;
+> > +
+> > +		vdosys0_ep_main: endpoint@0 {
+> > +			reg = <0>;
+> > +			remote-endpoint = <&ovl0_in>;
+> > +		};
+> > +	};
+> > +};
+> > +
+> > +&watchdog {
+> > +	pinctrl-names = "default";
+> > +	pinctrl-0 = <&watchdog_pins>;
+> > +};
+> > +
+> > +&pio {
+> > +	audio_pins: audio-pins {
+> > +		pins-aud-pmic {
+> > +			pinmux = <
+> > +				PINMUX_GPIO101__FUNC_O_AUD_CLK_MOSI
+> > +				PINMUX_GPIO102__FUNC_O_AUD_SYNC_MOSI
+> > +				PINMUX_GPIO103__FUNC_O_AUD_DAT_MOSI0
+> > +				PINMUX_GPIO104__FUNC_O_AUD_DAT_MOSI1
+> > +				PINMUX_GPIO105__FUNC_I0_AUD_DAT_MISO0
+> > +				PINMUX_GPIO106__FUNC_I0_AUD_DAT_MISO1
+> > +			>;
+> 
+> You don't need the extra lines...
+> 
+> 			pinmux = <PINMUX_GPIO101__FUNC_O_AUD_CLK_MOSI
+> 				  PINMUX_GPIO102__FUNC_O_AUD_SYNC_MOSI
+> 				  PINMUX_GPIO103__FUNC_O_AUD_DAT_MOSI0
+> 				  PINMUX_GPIO104__FUNC_O_AUD_DAT_MOSI1
+> 				  PINMUX_GPIO105__FUNC_I0_AUD_DAT_MISO0
+> 				  PINMUX_GPIO106__FUNC_I0_AUD_DAT_MISO1>;
+> 
+> here and everywhere else please :-)
+> 		
+> > +		};
+> > +
+> > +		pins-pcm-wifi {
+> > +			pinmux = <
+> > +				PINMUX_GPIO121__FUNC_B0_PCM_CLK
+> > +				PINMUX_GPIO122__FUNC_B0_PCM_SYNC
+> > +				PINMUX_GPIO123__FUNC_O_PCM_DO
+> > +				PINMUX_GPIO124__FUNC_I0_PCM_DI
+> > +			>;
+> > +		};
+> > +
+> > +		pins-i2s {
+> > +			pinmux = <
+> > +				PINMUX_GPIO119__FUNC_O_I2SO1_MCK
+> > +				PINMUX_GPIO112__FUNC_O_I2SO1_WS
+> > +				PINMUX_GPIO120__FUNC_O_I2SO1_BCK
+> > +				PINMUX_GPIO113__FUNC_O_I2SO1_D0
+> > +				PINMUX_GPIO110__FUNC_I0_I2SIN_D0
+> > +			>;
+> > +		};
+> > +	};
+> > +
+> > +	disp_pwm0_pins: disp-pwm0-pins {
+> > +		pins {
+> > +			pinmux = <PINMUX_GPIO29__FUNC_O_DISP_PWM0>;
+> > +			bias-pull-down;
+> > +		};
+> > +	};
+> > +
+> > +	dsi0_sn65dsi84_pins: dsi0-sn65dsi84-pins {
+> > +		pins-irq {
+> > +			pinmux = <PINMUX_GPIO128__FUNC_B_GPIO128>;
+> > +			bias-pull-down;
+> > +			input-enable;
+> > +		};
+> > +
+> > +		pins-enable {
+> > +			pinmux = <PINMUX_GPIO25__FUNC_B_GPIO25>;
+> > +			bias-pull-down;
+> > +		};
+> > +	};
+> > +
+> > +	eth_default_pins: eth-default-pins {
+> > +		pins-txd {
+> > +			pinmux = <PINMUX_GPIO131__FUNC_O_GBE_TXD3>,
+> > +				 <PINMUX_GPIO132__FUNC_O_GBE_TXD2>,
+> > +				 <PINMUX_GPIO133__FUNC_O_GBE_TXD1>,
+> > +				 <PINMUX_GPIO134__FUNC_O_GBE_TXD0>;
+> > +			drive-strength = <MTK_DRIVE_8mA>;
+> 
+> Please don't use the MTK_DRIVE_x macros, we are in the process of removing them.
+> 
+> All those macros are defining the .. same number that you can read in the macro
+> itself; as in:
+> 
+> MTK_DRIVE_(n)mA = n -> MTK_DRIVE_8mA = 8
+> 
+> So, remove all of them and use numbers directly.
+> In this specific case it is `drive-strength = <8>;` - please do this here and
+> everywhere else.
+
+Ok. Should be able to offer a new revision later today.
+
+Thanks,
+Gary
 
