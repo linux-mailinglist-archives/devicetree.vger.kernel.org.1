@@ -1,91 +1,161 @@
-Return-Path: <devicetree+bounces-244115-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244116-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7A2BCA11C4
-	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 19:44:21 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AEA3CA1591
+	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 20:21:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 5A8BA3009F3C
-	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 18:44:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8FF3A3073A18
+	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 18:48:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0311531A807;
-	Wed,  3 Dec 2025 18:36:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22F7C3254B1;
+	Wed,  3 Dec 2025 18:40:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SukCD8qk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ycfvd84m"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6026E3164C5;
-	Wed,  3 Dec 2025 18:36:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF2D231B108;
+	Wed,  3 Dec 2025 18:40:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764786968; cv=none; b=DSBVY1+/bTxGuj9YjPy2W1xEw97XgQUwAqPSkbhTD6xMcSibRDxMP/ltPI2r4BQDTr8iNpzHJeGVrK+ENNH4fTR8tOuMiS+knxQ/TXDhM5fRXujC4wfHj4qoQV8hPzIrnOSd89qwYmZtsT+E3PQWYTMZnvfp73JIHrrXsfJf7ts=
+	t=1764787227; cv=none; b=LrMLKkBScWOyjP9treQsN8raE9CwDtHk5yyOivvjBN++QoGRLf3cijeXfmG0AX1twMBy+0uXyLVmYioflaRcJ+UA5neyEEgzNdQpnHQk8Yevrk3uIP8CSW8jMO7J3aQYggdy5XH1tV5CaQ+3wxdHfqSU0Pu5A1dIeFDMmxUlcd4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764786968; c=relaxed/simple;
-	bh=uzEiQvOsPun3ukZciPE2wzH2mwUBVgVmO8Yc1elU7RQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Y8qhBLdCEQOUtFp9CaMNwgi9kdeEddPT/rCXDueZuiyZkgLadZgPGjbnKmh8X1uMm2KMwKbzQZ0aPnbzE03hCj28Ggchfo9/+R7n3W3CrgeUAMzXbrTz7mtFRzp2yNcmhQcqJjaDbWkzmWlxJ4IxPTSAk3FeI5o1rELAZGAAsaM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SukCD8qk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A01BC4CEF5;
-	Wed,  3 Dec 2025 18:36:07 +0000 (UTC)
+	s=arc-20240116; t=1764787227; c=relaxed/simple;
+	bh=mzUQN2VDRuA84vGfbFKTK41mYyYn5eHlebq9rSDWsq4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ZhsUq+ypipamHrMrG4gFeDE5MfgEdxT+VSLIjs8y+186ViVMZWHyhJPYoxgyJYZLn1kVwnI89AQdZS+hb3U2KLxlLXdwNc4E+3AUntCGZaPUtyVdLbgQQl05Oxlt9+NLhZEIyFUIxThvSy8lDvZRxW3Lz9izO7xPe0oXDkFmbYQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ycfvd84m; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 950E9C4CEF5;
+	Wed,  3 Dec 2025 18:40:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764786967;
-	bh=uzEiQvOsPun3ukZciPE2wzH2mwUBVgVmO8Yc1elU7RQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SukCD8qkpXI1R+Bx8Ol38ztsmsPbAFBwQPOzUQWDBIBVFul0j3LOn4Ni89870ChCW
-	 jbY8aKX1nQGkFibTCdXijo6pywd/v1nDTK7YdcdORer2c2pOqhpU7qGzC3InoNXREY
-	 5Fj3/OqN7TW1F3S0ZVZWOIfSFXrnofILtt1WDodR0xN2TPvBXXaQVt2935JRw9vFaA
-	 suWQdfUzkQbzG9+CN84mMF0+9EhG352atekGn7bkI1WqhoEU9GotqUTampgrMYEbwO
-	 GaQPjyiLhbxZjLxCE+2RK3p4eCR9RBJfZE8j5UFv3bhiysjsgC3R+OF+X3IpsGwDYa
-	 jFGbSkBXJqRow==
-Date: Wed, 3 Dec 2025 19:36:04 +0100
-From: Andi Shyti <andi.shyti@kernel.org>
-To: =?utf-8?Q?Beno=C3=AEt?= Monin <benoit.monin@bootlin.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jarkko Nikula <jarkko.nikula@linux.intel.com>, Mika Westerberg <mika.westerberg@linux.intel.com>, 
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Jan Dabros <jsd@semihalf.com>, 
-	Sebastian Andrzej Siewior <bigeasy@linutronix.de>, Clark Williams <clrkwllms@kernel.org>, 
-	Steven Rostedt <rostedt@goodmis.org>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
-	Gregory CLEMENT <gregory.clement@bootlin.com>, =?utf-8?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>, 
-	Tawfik Bayouk <tawfik.bayouk@mobileye.com>, Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
-	Dmitry Guzman <dmitry.guzman@mobileye.com>, linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-rt-devel@lists.linux.dev, 
-	Krzysztof Kozlowski <krzk@kernel.org>
-Subject: Re: [PATCH v4 0/7] i2c: designware: Improve support of
- multi-messages transfer
-Message-ID: <gbuthxg24mqk3ofvnyqabwfxhwjwemrdtdowluvwub7odsm36u@jutqnsrthvv2>
-References: <20251126-i2c-dw-v4-0-b0654598e7c5@bootlin.com>
+	s=k20201202; t=1764787227;
+	bh=mzUQN2VDRuA84vGfbFKTK41mYyYn5eHlebq9rSDWsq4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Ycfvd84mCzOIGu86wWlgDMU38k1KvYgdBvzyD4PANjHFl2Au5HRsX99mse0oj3NyI
+	 Td58ZvweV3GjnxFlISaTfILhbVqE/vJeIGuTSobOdt1vvbV5Pjpb4j7Ns8BU95hPDZ
+	 7q6EOnnflv9KNVH7RSt6qqbHevxOmIB8pLMWq8JKYCd/xTeW/HR6xr1o99AhD+M6XW
+	 9gJZxZi+/0yeI9RIozCkmUsShQkrh3v/U+cwORbR3xb+XeGYK/6VNSdnT7i6XA/i1+
+	 NFL9drIKMJCtikVtncmCGlktRBYhP8ovoK0lzFyyR7emo/5xRXq4qB3FNqHtDu9mOv
+	 gGWrvzqMEyKKQ==
+Message-ID: <c1b24759-762f-4b97-8d3f-8a44a66b646b@kernel.org>
+Date: Wed, 3 Dec 2025 19:40:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-15
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251126-i2c-dw-v4-0-b0654598e7c5@bootlin.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 00/20] arm64: dts: qcom: Introduce Kaanapali platform
+ device tree
+To: Pavel Machek <pavel@ucw.cz>
+Cc: Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
+ trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com,
+ Tengfei Fan <tengfei.fan@oss.qualcomm.com>,
+ Qiang Yu <qiang.yu@oss.qualcomm.com>,
+ Manish Pandey <manish.pandey@oss.qualcomm.com>,
+ Ronak Raheja <ronak.raheja@oss.qualcomm.com>,
+ Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>,
+ Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>,
+ Jyothi Kumar Seerapu <jyothi.seerapu@oss.qualcomm.com>,
+ Prasad Kumpatla <prasad.kumpatla@oss.qualcomm.com>,
+ Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>,
+ Vikash Garodia <vikash.garodia@oss.qualcomm.com>
+References: <20250924-knp-dts-v1-0-3fdbc4b9e1b1@oss.qualcomm.com>
+ <aS8uJCnb0xOd6uby@duo.ucw.cz>
+ <081a2038-e798-4cc0-96ff-b7f11e346831@kernel.org>
+ <aTB8++UtSrhwtqdY@duo.ucw.cz>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <aTB8++UtSrhwtqdY@duo.ucw.cz>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Benoît,
+On 03/12/2025 19:10, Pavel Machek wrote:
+> On Wed 2025-12-03 18:31:11, Krzysztof Kozlowski wrote:
+>> On 02/12/2025 19:21, Pavel Machek wrote:
+>>> Hi!
+>>>
+>>>> Introduce the Device Tree for the recently announced Snapdragon SoC from Qualcomm:
+>>>> https://www.qualcomm.com/products/mobile/snapdragon/smartphones/snapdragon-8-series-mobile-platforms/snapdragon-8-elite-gen-5
+>>>>
+>>>> Bindings and base Device Tree for the Kaanapali SoC, MTP (Mobile Test Platform)
+>>>> and QRD (Qualcommm Reference Device) are splited in three:
+>>>>
+>>>> - 1-3: MTP board boot-to-shell with basic function.
+>>>> - 4-16: More feature including PCIE, sdcard, usb, DSPs, PMIC related, tsense, bus, crypto etc. Add QRD board support.
+>>>> - 17-20: Multimedia features including audio, video and camss.
+>>>
+>>> Thanks for doing this. I assume there devices available with this are
+>>> quite expensive/hard to get at this point?
+>>>
+>>> Please cc phone-devel@vger.kernel.org with phone related patches.
+>>
+>> That's not even a phone, anyway contributors should not cc lists which
+>> are not relevant to the posting and not pointed out by maintainers. You
+> 
+> People should Cc relevant lists, and yes, if it is called "Mobile Test
+> Platform", it is relevant to phone development.
 
->       dt-bindings: i2c: dw: Add Mobileye I2C controllers
->       i2c: designware: Optimize flag reading in i2c_dw_read()
->       i2c: designware: Sort compatible strings in alphabetical order
->       i2c: designware: Add dedicated algorithm for AMD NAVI
 
-I merged to i2c/i2c-host until here.
+Almost everything in ARM64 is then relevant for "phone development".
+People should use tools, not invent or try to guess whom to Cc. It's
+impossible to btw keep guessing them - you will request phone-devel,
+someone else will request desktop-devel, laptop-devel or
+new-hardware-devel or whatever. No. People should use tools, not guess
+the cc lists. Fix the tools if you miss any Cc.
 
->       i2c: designware: Implement I2C_M_STOP support
-
-I'd like to check this a little better.
-
->       i2c: designware: Use runtime PM macro for auto-cleanup
->       i2c: designware: Support of controller with IC_EMPTYFIFO_HOLD_MASTER disabled
-
-I will shift the last three patches for the next release. Is it
-OK with you?
-
-Andi
+Best regards,
+Krzysztof
 
