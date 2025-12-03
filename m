@@ -1,136 +1,139 @@
-Return-Path: <devicetree+bounces-244122-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244123-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C033CCA1618
-	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 20:28:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 78BC4CA1849
+	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 21:07:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 92A5D3002526
-	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 19:28:42 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 894DF3001C25
+	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 20:07:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C28A7334C11;
-	Wed,  3 Dec 2025 19:22:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4AF2257423;
+	Wed,  3 Dec 2025 20:07:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z0SgB89e"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rSBdGVYQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93B81308F1A;
-	Wed,  3 Dec 2025 19:22:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4EE921CC5B;
+	Wed,  3 Dec 2025 20:07:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764789761; cv=none; b=UKc0qcaVPG4ahLAxNy7fo4TxScNSdZLC9KBPTIAHWP9rxoe6AOIyaU1N0cDFiFxbMUb3pUTzathNCOj0pT/8C/BxM6+NsB24T1c21IpcsG/ME5LhvR7DCplT9xX+YCl5hfP+h9e8Gmw7TdAJexLwXZDILcuSwJxk9V4Mepc9Fbs=
+	t=1764792434; cv=none; b=LHOLISScZmsFYaJeMsxM317cIu+eiRomRoo4r8kpuOiAQXBRIT5+nGFTcXwSYvtWZOCGvfxBUaTOHPBGTORezsc2LMZIjTjiGczvTSSZXxGatfrDgnJkUt1iqqiXanns32bqyD3p4ZmwYKvnp3tTbaS40jk48ayPrGwsP76Gt1U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764789761; c=relaxed/simple;
-	bh=WkqCGLI3whoa9doVwjsZqIAqwqaUeZG5Ox8nsycbuMs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gbmO8qOJ1vqcYcP/lHdmMDKcsDRkS1t4NhYGZ5mJ7oLCVlZDmseQNWjY25uTeukKQqKKXD/BpZ9ofPymTu2clPVZFKwN0ZsFuhJNBVKcI5QDQrOJ1Qj0iNwgwzShgO6vKrHy6Bmg3oyYpVBSn903TIaKpdUO35McUbqkeEyyMJk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z0SgB89e; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD4B1C4CEF5;
-	Wed,  3 Dec 2025 19:22:37 +0000 (UTC)
+	s=arc-20240116; t=1764792434; c=relaxed/simple;
+	bh=CKSxJ5PzACcUCfZJ6BNrzyEmQ6cqGSgT/DPPtgS6CYI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=j1JGdWkPjlNAHoIkMtWp4ATpRAFAniSFYqwfXOQBnaQoKBqpdhPFstWjJEscT6TCSD3ejYt78DApSXf8TobZyghK3TeviEkEHvrqnSkuiUKIvqyycKXWB5mqukR1FyunhNhvk4m34QeZfUxG2Cz4nJe4h2d83YGc+6Nh2OZwlNY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rSBdGVYQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95AEFC4CEF5;
+	Wed,  3 Dec 2025 20:07:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764789761;
-	bh=WkqCGLI3whoa9doVwjsZqIAqwqaUeZG5Ox8nsycbuMs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Z0SgB89euj89qgZhucbSoprGcTBlzjyQjzEq+e5HaU4B4ow/8pqfkziM5CBkQCysy
-	 SsEvFYJPS8JKNtP80C2jkFTsSi0WnEtpCiywGrI12PsrUGEy0bfc1pCgEl/rPfpTJD
-	 qNsMImVo2MsiHQgAMu5nJC7qVqrkOh8ph52sDQU3GdjidI79cDcZsqvNKHyjIs2Wba
-	 0WGFrYhc7vO7LlevbyFV0M1TP5LmnQSEZaXjO0MapA/NDihpJm3s674FH9Qrg2waQi
-	 HZUVJ0zsgjFLiL5bxTbRwrrlY6BGbdQAV5N4OR9ukYchqg6VCR83RCJX063sznVgb4
-	 B+hDFHjMxvYrA==
-Date: Wed, 3 Dec 2025 19:22:35 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Robert Marko <robert.marko@sartura.hr>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	gregkh@linuxfoundation.org, nicolas.ferre@microchip.com,
-	claudiu.beznea@tuxon.dev, mturquette@baylibre.com, sboyd@kernel.org,
-	richardcochran@gmail.com, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-	daniel.machon@microchip.com, UNGLinuxDriver@microchip.com,
-	luka.perkov@sartura.hr
-Subject: Re: [PATCH 3/4] include: dt-bindings: add LAN969x clock bindings
-Message-ID: <20251203-flatten-spotty-69f16d3460f0@spud>
-References: <20251203122313.1287950-1-robert.marko@sartura.hr>
- <20251203122313.1287950-3-robert.marko@sartura.hr>
+	s=k20201202; t=1764792433;
+	bh=CKSxJ5PzACcUCfZJ6BNrzyEmQ6cqGSgT/DPPtgS6CYI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=rSBdGVYQJaPPhr7deQew1tXcBeCXZhF8C6ESyscZSkNRlPXU11LsB2TAPp/jDr4i+
+	 YTXFZQFg+chYPruYNY1Kv7gjhK1O1S/yUVxODQm9tYcPNp3ITYOFWVc7wQRk9iw9LB
+	 QByMIiKa68VzfmHNaksSCsjjUjbha1TxGJmQ0rEdSKuhiBea949dtwqFyq4wkVRU9t
+	 5kNtrpJdkUjemjVX6FD83XTWdPHlnsNEjmq/rPeoc1iIpjsRggAwlYMXsJU5oslpSM
+	 xR6+nCpEsgNH059oK/VRmrRANKzocPtyJUZHnV4wdPlEfs6d1Bhi39INCdWByjGz4y
+	 /HcKoARdQxVtA==
+Message-ID: <8f789104-f521-41ee-812b-34607f36a7da@kernel.org>
+Date: Wed, 3 Dec 2025 21:07:08 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="kdqp/vLO78ga2zHb"
-Content-Disposition: inline
-In-Reply-To: <20251203122313.1287950-3-robert.marko@sartura.hr>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] dt-bindings: remoteproc: Fix dead link to Keystone DSP
+ GPIO binding
+To: Soham Metha <sohammetha01@gmail.com>,
+ linux-kernel-mentees@lists.linuxfoundation.org
+Cc: shuah@kernel.org, skhan@linuxfoundation.org,
+ linux-kernel@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-remoteproc@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20251203180337.50831-1-sohammetha01@gmail.com>
+ <aab83a61-9d22-443c-92bc-d7caf1c8afac@kernel.org>
+ <d2dfa83a-80e3-4a89-b853-a88589ef0092@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <d2dfa83a-80e3-4a89-b853-a88589ef0092@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
+On 03/12/2025 19:56, Soham Metha wrote:
+> Thank you for the feedback.
+> 
+> On 04/12/25 00:05, Krzysztof Kozlowski wrote:
+>> On 03/12/2025 19:03, Soham Metha wrote:
+>>> The old text binding 'gpio-dsp-keystone.txt' was replaced by a DT schema in
+>>> commit aff0a1701b020c8e6b172f28828fd4f3e6eed41a
+>>
+>> Did you actually read what I asked? I think you just sent it too fast to
+>> be able to read entire multi-page document. If you read it, you would
+>> see that abbrev is 12 characters/digits.
+>>
+> 
+> I did see the documentation mention that the abbreviation should use 
+> at least 12 characters, but I didn’t notice any upper limit mentioned 
+> in the text. Because of this wording, I assumed longer values were 
+> acceptable.
+> 
+> Should I send a v3 with a 12-character abbreviation?
 
---kdqp/vLO78ga2zHb
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+No need, this is just a nit.
 
-On Wed, Dec 03, 2025 at 01:21:31PM +0100, Robert Marko wrote:
-> Add the required LAN969x clock bindings.
->=20
-> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
-> ---
->  include/dt-bindings/clock/microchip,lan969x.h | 24 +++++++++++++++++++
->  1 file changed, 24 insertions(+)
->  create mode 100644 include/dt-bindings/clock/microchip,lan969x.h
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
-Same thing here, this should be specific. Probably 9691, because that's
-what you're using the compatible of in your dts.
-
-pw-bot: changes-requested
-
->=20
-> diff --git a/include/dt-bindings/clock/microchip,lan969x.h b/include/dt-b=
-indings/clock/microchip,lan969x.h
-> new file mode 100644
-> index 000000000000..5a9c8bf7824a
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/microchip,lan969x.h
-> @@ -0,0 +1,24 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> +
-> +#ifndef _DT_BINDINGS_CLK_LAN969X_H
-> +#define _DT_BINDINGS_CLK_LAN969X_H
-> +
-> +#define GCK_ID_QSPI0		0
-> +#define GCK_ID_QSPI2		1
-> +#define GCK_ID_SDMMC0		2
-> +#define GCK_ID_SDMMC1		3
-> +#define GCK_ID_MCAN0		4
-> +#define GCK_ID_MCAN1		5
-> +#define GCK_ID_FLEXCOM0		6
-> +#define GCK_ID_FLEXCOM1		7
-> +#define GCK_ID_FLEXCOM2		8
-> +#define GCK_ID_FLEXCOM3		9
-> +#define GCK_ID_TIMER		10
-> +#define GCK_ID_USB_REFCLK	11
-> +
-> +/* Gate clocks */
-> +#define GCK_GATE_USB_DRD	12
-> +#define GCK_GATE_MCRAMC		13
-> +#define GCK_GATE_HMATRIX	14
-> +
-> +#endif
-> --=20
-> 2.52.0
->=20
-
---kdqp/vLO78ga2zHb
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaTCN+wAKCRB4tDGHoIJi
-0o53AQCDZtek8NKV0Xw9fXMT0+zQW1HLixWl5IaUrtwLtVkOmgEA8CT3i0Rp/7MV
-1UDq9stZ0CrzfrbDdsDdOOPWU/2PUQg=
-=9aIN
------END PGP SIGNATURE-----
-
---kdqp/vLO78ga2zHb--
+Best regards,
+Krzysztof
 
