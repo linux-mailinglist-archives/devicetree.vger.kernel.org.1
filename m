@@ -1,115 +1,92 @@
-Return-Path: <devicetree+bounces-243854-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243855-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0ABAC9DD34
-	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 06:55:11 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6548C9DD40
+	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 06:55:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A15914E0358
-	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 05:55:10 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 611E734A5EC
+	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 05:55:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9ED442874FE;
-	Wed,  3 Dec 2025 05:55:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71FE1288C2C;
+	Wed,  3 Dec 2025 05:55:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gzMtvuKG"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="Wuy1YbS0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 339B6224B04
-	for <devicetree@vger.kernel.org>; Wed,  3 Dec 2025 05:55:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24FFC274B44;
+	Wed,  3 Dec 2025 05:55:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764741307; cv=none; b=huooFaOYhw7ZgqpRT2kL21JxOnC4rJJQD4JMcxCI+oMcHEdotQJ9rOkhvG9iCrqkyN5vH/JlLAqXuBq4qJmywRjlg0MOKVigxxCnPjBIt0mDohXwjgSqhDOULRq8Q64mJI1Ylx/DA2v0oGU8Hn+PUNQqJy0pnkSHVcGOmmP8aUM=
+	t=1764741342; cv=none; b=AYuIOkqb//VLl4Vyp2V+/YDhy9HlTaZgwMAzHwMn5Dnya6WNrmz3XqF2/YIEna94Hfd+d3JmxON0Do9agioYvbP/N/9l1riqx4fD+Yk75kxYBKsjbBSZtdfhE/uZDTNs8Q1+Q4P/vBVy8fMgVTGszvxuXKDnqvbyISb84guCNPI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764741307; c=relaxed/simple;
-	bh=0X0DDNFH3Ev9aVYRbKGBfspeldcgABI3ElaelHXqkTw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=S5JNA98t3ommD5dQ7aNyLb4f1xlyPKj3pa7x4amMtt5R1UaB1XOA4SsboEh7jZjx9udlLQxXfmwF2H68dCOMvrWGuHm8dIOe0/XExyiJu/I4zH+nWihJPteVGy/wgBls5jacTWPVEv8JyuxZM/QUFnz169VUYKTQg1AxPQYHVSY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gzMtvuKG; arc=none smtp.client-ip=209.85.214.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-297dd95ffe4so55845265ad.3
-        for <devicetree@vger.kernel.org>; Tue, 02 Dec 2025 21:55:05 -0800 (PST)
+	s=arc-20240116; t=1764741342; c=relaxed/simple;
+	bh=Zt1X1IcZPRAdEgh00iL8e6/dAz/J6p6qgR5VZMG7S4w=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=L2Uv0jHrG6jPAOiRGvpsaaMaZZEI8P9blbK13sETobbDk2MBXnrblomSKT00ZSzMm3a6up4sL7fP7b0j3WK03SqlirFZe49niOQecUn1w8jnqtB1Myg8xH6w8pSI7W0dPiaJS1NCKKp+FI2inEPGNOAfM41btROt6BZmufwMCr4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=Wuy1YbS0; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1764741305; x=1765346105; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0X0DDNFH3Ev9aVYRbKGBfspeldcgABI3ElaelHXqkTw=;
-        b=gzMtvuKGws1eSWGAuq+PAOrpjYnXSEWR1923QSHVzqc/szvr9Xr2kJJ020AVaowwZM
-         A5HtM5Jc+zPImXspecbkpBgDgiN61pjkxspzYcw6etxTedWcqJ6RtXoiqWPJFh37wVG6
-         l1RyGtpJ5HzY1Sxm+l+va3oqS9HBtRI9cGJYgMocvjFO8i+zu8Gm7ZbwdEXS/hDfrEag
-         eLOYthrEKrQ6r18vpIRQGIPOo7pHLgIjMwHqKPGXMeWIw0ba2NTS0aoY4ib611+lqy4w
-         KAFNToYwgneiXrpNHTEGmf5BgOaYjIamv6Kir8mFD74YlYaFAzjId5O1VIvJGU1xJE71
-         +jwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764741305; x=1765346105;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=0X0DDNFH3Ev9aVYRbKGBfspeldcgABI3ElaelHXqkTw=;
-        b=uLuIv1pIqfxAppuWs1L1GpNL+fYNtmepu4j13zE0Y8YwcnO5i4si061SY4qvG9NHxH
-         r3tL45Nxu0CSTq/C7oGYSCyvr5V/rk6In2C5WPu44UsJhXfQWPhSRmQu2avcFqCK1iLK
-         0Ht1c8VDzBRuoN02T/9tzYy4tHYIDD2KvGoc4TfiT3uGW5o84pyuD/GbFxQbpgq47XIF
-         S3CyJopUEcVnG+6vO7rnb+fUInbcEfntyS1UAOcckPQOmnO6U1vdwlUBtkfQ9u107xzH
-         RjIHVYE6KOimlKlomi+d4wQhtkE5l+X+GM56PLE9gV7s9dUEpO2GAX9Iq4wuop3b7RjT
-         UVYQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXrDZ3QnZjNm0Z+vny8w//3Pb3VB7wTZQp0NH/9N9rGvGVsO3Daiq4eaL9SjympsLAGI9stheSkimoO@vger.kernel.org
-X-Gm-Message-State: AOJu0YyPD1oRTdpY339LOE2k6VB7NWS9QT+q66iqhV8g/c9z9Jx7LIGI
-	iC/mRMfudYjcYrD0dTQdyRKbxe2FC98ma5fZQiAcJdMBg2FzOVp+EJ8MYyv4mnJIudgYL4IdmJ0
-	Xv40dgDfdcRCEjyFe9rG8tYethQybAh8=
-X-Gm-Gg: ASbGncv1xuJrokk6BadwwtKqrH9C2C7Nm0eh5Tx8YXNsRoscQnwnc0fGN3M4ySpsT/K
-	ckbSjUqsVv3VwaGtZX9WoccoxyruyHCz5RLg2q5+xC+VHAbwQGx+2uf5uXlMh22yRNv1iDqJRkp
-	idBKK8ZQhM9mOjLbKjKrQb+1CFpvHFg4nnlLkbhhysbpMnVU+TmK9R8lDyJYlZGogUqouylbfwO
-	upVJ+oy5ga1ZHvHTVN0gYeF9IsuSeB7X8i/XZ7ixjkJoeGr3VNKHh3bsp6+suIal6ZtMuOv8DBk
-	J757qA==
-X-Google-Smtp-Source: AGHT+IGlBCnAtK53Fk8wZM5iFBeVBzZOXmCrnKhJ1FO8Z5h+6EI5r7eB09cypqHALV0pwNkVTP+iK5FPn5ouvpjv7Mc=
-X-Received: by 2002:a17:902:ebc8:b0:295:f508:9d32 with SMTP id
- d9443c01a7336-29d683bb11cmr16122865ad.37.1764741305338; Tue, 02 Dec 2025
- 21:55:05 -0800 (PST)
+	d=codeconstruct.com.au; s=2022a; t=1764741331;
+	bh=Zt1X1IcZPRAdEgh00iL8e6/dAz/J6p6qgR5VZMG7S4w=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=Wuy1YbS0Wa5ljm3DHFmlc6wSh1Mw9H59CYdGUMrhUfSqSXtQ26sbz9vuECfFgBW5g
+	 qFXss1OOAQc4nKjr2VuU1G5KaLodBe2J5Rk7POyVMXMmjDRrl/BGJCw40eitHomkmz
+	 tEQsvAVWA8WC36VVzCfWBTDBCLI2iJqw5wlKrPCPMKpEeCOrD80K0G3LPbyT14QfXV
+	 mWFv3LBwDF0MF6JSNtctvhWKaB8C3QTbQuTvnocx1aPsNBs6IDae2AUnEKgYjjS22u
+	 /irKXOvwFVkwP9inl2tyqZmRaZV3omq4Ou5AEo22mmOLbdI/51ofTykz30jxSDDy4X
+	 Z5ja2MpHpnKIg==
+Received: from [192.168.68.115] (unknown [180.150.112.216])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id F03137B6A2;
+	Wed,  3 Dec 2025 13:55:30 +0800 (AWST)
+Message-ID: <64349026443d6178487db34233d24478821a1ca1.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v2] dt: aspeed: clemente: move hdd_led to its own
+ gpio-leds group
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: alex.ts.wang@fii-foxconn.com, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Joel
+ Stanley <joel@jms.id.au>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
+	george.kw.lee@fii-foxconn.com
+Date: Wed, 03 Dec 2025 16:25:29 +1030
+In-Reply-To: <20251127-leo-dts-add-shunt-resistor-v2-1-c77dfbfb826c@fii-foxconn.com>
+References: 
+	<20251127-leo-dts-add-shunt-resistor-v2-1-c77dfbfb826c@fii-foxconn.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-0+deb13u1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251202061157.1710163-1-shengjiu.wang@nxp.com> <47e32ef5-cfcb-44aa-9045-52d84f7686d5@kernel.org>
-In-Reply-To: <47e32ef5-cfcb-44aa-9045-52d84f7686d5@kernel.org>
-From: Shengjiu Wang <shengjiu.wang@gmail.com>
-Date: Wed, 3 Dec 2025 13:54:53 +0800
-X-Gm-Features: AWmQ_bl9yg-cNfOsr1ZElVdBAxzvXXRK42GyUZlfUtv0M-hIMz1ZXcfuqHhfSek
-Message-ID: <CAA+D8ANHFOi5ksBEyZSvFhmp21XbBD1Lgyg+TJgjRX2xBcc_4A@mail.gmail.com>
-Subject: Re: [PATCH] ASoC: dt-bindings: cirrus,cs42xx8: Reference common DAI properties
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Shengjiu Wang <shengjiu.wang@nxp.com>, david.rhodes@cirrus.com, 
-	rf@opensource.cirrus.com, lgirdwood@gmail.com, broonie@kernel.org, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	patches@opensource.cirrus.com, linux-sound@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Tue, Dec 2, 2025 at 4:06=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.org=
-> wrote:
->
-> On 02/12/2025 07:11, Shengjiu Wang wrote:
-> > Reference the dai-common.yaml schema to allow '#sound-dai-cells' and
-> > "sound-name-prefix' to be used.
->
-> ... because CS-foo-bar device is a DAI?
+On Thu, 2025-11-27 at 17:44 +0800, Alex Wang via B4 Relay wrote:
+> From: Alex Wang <alex.ts.wang@fii-foxconn.com>
+>=20
+> The gpio-leds driver requires all GPIOs in a group to be available;
+> if any GPIO in the group is not available the whole group will not be
+> created. The hdd_led GPIO is only present after standby power is
+> enabled, which can prevent other LEDs in the same group from being
+> created and blocks properly setting 'bmc_ready_noled'.
+>=20
+> Move the 'hdd_led' node into a separate gpio-leds group so that other
+> LEDs are not blocked and the 'bmc_ready_noled' flag can be set
+> correctly.
+>=20
+> Signed-off-by: Alex Wang <alex.ts.wang@fii-foxconn.com>
 
-Yes. cirrus,cs42xx8 is codec DAI.
+I've applied this, however, I fixed the subject so it has the usual
+'ARM: dts: aspeed:' prefix, and added the following Fixes tag:
 
-Best regards
-Shengjiu Wang
+Fixes: b5dd16228216 ("ARM: dts: aspeed: clemente: Add HDD LED GPIO")
 
->
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
->
->
-> Best regards,
-> Krzysztof
+Andrew
 
