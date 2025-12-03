@@ -1,139 +1,121 @@
-Return-Path: <devicetree+bounces-244123-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244132-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78BC4CA1849
-	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 21:07:19 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80565CA19DD
+	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 22:07:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 894DF3001C25
-	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 20:07:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2894D30198F2
+	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 21:07:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4AF2257423;
-	Wed,  3 Dec 2025 20:07:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 830DC2C1593;
+	Wed,  3 Dec 2025 21:07:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rSBdGVYQ"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="gFTF6Sgp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4EE921CC5B;
-	Wed,  3 Dec 2025 20:07:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F768482EB;
+	Wed,  3 Dec 2025 21:07:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.161
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764792434; cv=none; b=LHOLISScZmsFYaJeMsxM317cIu+eiRomRoo4r8kpuOiAQXBRIT5+nGFTcXwSYvtWZOCGvfxBUaTOHPBGTORezsc2LMZIjTjiGczvTSSZXxGatfrDgnJkUt1iqqiXanns32bqyD3p4ZmwYKvnp3tTbaS40jk48ayPrGwsP76Gt1U=
+	t=1764796031; cv=none; b=WHYM8lTQ5bAe5aEjTrThoh8QyiFyhvuUTX8G6X6m4A7+qPR0oVacBX06mG3yAjiiSG7/nxu8+sWZwUsIFy/5kmzKnL9auubEe7n+9D/LZTaMqGkutpnWjcWVfeT02mDozVE0tsAoPkychAMvBnglY+65hL3IeXwywM4zPgBwbzo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764792434; c=relaxed/simple;
-	bh=CKSxJ5PzACcUCfZJ6BNrzyEmQ6cqGSgT/DPPtgS6CYI=;
+	s=arc-20240116; t=1764796031; c=relaxed/simple;
+	bh=FHr/8rEkE0/9LGy3++0mrMsHjoBIwdrl7vb54gvell0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=j1JGdWkPjlNAHoIkMtWp4ATpRAFAniSFYqwfXOQBnaQoKBqpdhPFstWjJEscT6TCSD3ejYt78DApSXf8TobZyghK3TeviEkEHvrqnSkuiUKIvqyycKXWB5mqukR1FyunhNhvk4m34QeZfUxG2Cz4nJe4h2d83YGc+6Nh2OZwlNY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rSBdGVYQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95AEFC4CEF5;
-	Wed,  3 Dec 2025 20:07:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764792433;
-	bh=CKSxJ5PzACcUCfZJ6BNrzyEmQ6cqGSgT/DPPtgS6CYI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=rSBdGVYQJaPPhr7deQew1tXcBeCXZhF8C6ESyscZSkNRlPXU11LsB2TAPp/jDr4i+
-	 YTXFZQFg+chYPruYNY1Kv7gjhK1O1S/yUVxODQm9tYcPNp3ITYOFWVc7wQRk9iw9LB
-	 QByMIiKa68VzfmHNaksSCsjjUjbha1TxGJmQ0rEdSKuhiBea949dtwqFyq4wkVRU9t
-	 5kNtrpJdkUjemjVX6FD83XTWdPHlnsNEjmq/rPeoc1iIpjsRggAwlYMXsJU5oslpSM
-	 xR6+nCpEsgNH059oK/VRmrRANKzocPtyJUZHnV4wdPlEfs6d1Bhi39INCdWByjGz4y
-	 /HcKoARdQxVtA==
-Message-ID: <8f789104-f521-41ee-812b-34607f36a7da@kernel.org>
-Date: Wed, 3 Dec 2025 21:07:08 +0100
+	 In-Reply-To:Content-Type; b=B4O7LfqROE5vA7UwE6T3lfS0F4Skqe9s0SyAfeMH/17svtM7kiFsLVcOlpSFSufwvp/Ii0/5S3ORRJWn9PkdifNm9m6q05O1RQqlUASvJU1N6azMDmnGSOB6mHwIxbbhari9orkbfdFLQ29AoY2Oy4DpsSLy64L8/KhdSzqCl0w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=gFTF6Sgp; arc=none smtp.client-ip=80.241.56.161
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [IPv6:2001:67c:2050:b231:465::2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4dM9F55Fk4z9tjp;
+	Wed,  3 Dec 2025 22:07:05 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1764796025;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=yJO4QFCGFgBLcxSYA3azxaNJyI+4wMLsFkxHrpPR0Fs=;
+	b=gFTF6SgpByU/LyApdiThEtzPkr0azSt39iR1JNK7MIsYLuf3YHAUrPbbUMT4FSJ2i+JvpU
+	jX/fGXDejP2tXo1CwUFZ2Okv464gGLgOkhDAeb5Hxjsadz0f3oARPRbHMalRZrf9oaTMf8
+	GwmABGZRIHzx446zCIuUPu2CHym4TXaQ3DGyEWQeTDG7ThGkCxAbLkOXVijAL6vMeczDl4
+	xSe1TTVGDjCohmG9Ik6EpAVGSFCZL5OW0w8kFSAQcUzRbxakSm8fCAgQziGS3/q0eacFXF
+	MXvSGJhWX4o7AFm4pfU5dOLx7SQFR5RGfRtyN8R+UCctUa7TY8BxLD66Rfo5aQ==
+Message-ID: <f0ecb69c-9163-49fd-b74c-0893d9b95593@mailbox.org>
+Date: Wed, 3 Dec 2025 21:16:13 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] dt-bindings: remoteproc: Fix dead link to Keystone DSP
- GPIO binding
-To: Soham Metha <sohammetha01@gmail.com>,
- linux-kernel-mentees@lists.linuxfoundation.org
-Cc: shuah@kernel.org, skhan@linuxfoundation.org,
- linux-kernel@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
- Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-remoteproc@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20251203180337.50831-1-sohammetha01@gmail.com>
- <aab83a61-9d22-443c-92bc-d7caf1c8afac@kernel.org>
- <d2dfa83a-80e3-4a89-b853-a88589ef0092@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [net-next,PATCH 2/3] dt-bindings: net: realtek,rtl82xx: Document
+ realtek,ssc-enable property
+To: Krzysztof Kozlowski <krzk@kernel.org>, netdev@vger.kernel.org
+Cc: "David S. Miller" <davem@davemloft.net>,
+ Aleksander Jan Bajkowski <olek2@wp.pl>, Andrew Lunn <andrew@lunn.ch>,
+ Conor Dooley <conor+dt@kernel.org>, Eric Dumazet <edumazet@google.com>,
+ Florian Fainelli <f.fainelli@gmail.com>,
+ Heiner Kallweit <hkallweit1@gmail.com>, Jakub Kicinski <kuba@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Michael Klein <michael@fossekall.de>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Russell King <linux@armlinux.org.uk>,
+ Vladimir Oltean <vladimir.oltean@nxp.com>, devicetree@vger.kernel.org
+References: <20251130005843.234656-1-marek.vasut@mailbox.org>
+ <20251130005843.234656-2-marek.vasut@mailbox.org>
+ <f3046826-a44c-4aa9-8a94-351e7fe83f06@kernel.org>
+ <a861aa24-e350-4955-be5a-f6d2f4bc058f@mailbox.org>
+ <043053ec-0f57-45e9-9767-be9b518dea4d@kernel.org>
+ <4aaa73b4-3a2a-44f6-ad81-74c30be13431@mailbox.org>
+ <67b5f5b5-caf9-4dcc-b84d-a7ce338fc25d@kernel.org>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <d2dfa83a-80e3-4a89-b853-a88589ef0092@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <67b5f5b5-caf9-4dcc-b84d-a7ce338fc25d@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-MBO-RS-ID: cb227c3bb80474b9cae
+X-MBO-RS-META: 36kjr4f8q3yoth5wffbqci1todbhw1z4
 
-On 03/12/2025 19:56, Soham Metha wrote:
-> Thank you for the feedback.
-> 
-> On 04/12/25 00:05, Krzysztof Kozlowski wrote:
->> On 03/12/2025 19:03, Soham Metha wrote:
->>> The old text binding 'gpio-dsp-keystone.txt' was replaced by a DT schema in
->>> commit aff0a1701b020c8e6b172f28828fd4f3e6eed41a
+On 12/3/25 8:56 AM, Krzysztof Kozlowski wrote:
+
+>>> I don't know, please look at existing work around SSC from Peng. If
+>>> nothing is applicable, this should be explained somewhere.
 >>
->> Did you actually read what I asked? I think you just sent it too fast to
->> be able to read entire multi-page document. If you read it, you would
->> see that abbrev is 12 characters/digits.
+>> The work from Peng you refer to (I guess) is this "assigned-clock-sscs"
+>> property ? This is not applicable, because this is a boolean property of
+>> the PHY here, the clock does not expose those clock via the clock API.
+> 
+> OK, please mention this in the commit msg - that assigned-clock-sscs is
+> not applicable, because these are clocks not exposed outside.
+
+OK
+
+> I saw already brcm,enable-ssc property, so use rather "realtek,enable-ssc".
+
+The realtek PHY bindings use realtek,<feature>-{enable,disable} already, 
+so I would like to be at least consistent here ?
+
+>> However, I can call the property "ssc-enable" without the realtek,
+>> vendor prefix ?
+> 
+> I think no, I am not so sure how generic it would be to cover all
+> existing cases. Some devices, e.g. cdns, defines the mode of SSC, so
+> uses an enum.
+> 
 >>
+>> The remaining question is, should I have one property "ssc-enable" to
+>> control all SSC in the PHY or one for each bit "realtek,ssc-enable-rxc"
+>> / "realtek,ssc-enable-clkout" ?
 > 
-> I did see the documentation mention that the abbreviation should use 
-> at least 12 characters, but I didn’t notice any upper limit mentioned 
-> in the text. Because of this wording, I assumed longer values were 
-> acceptable.
-> 
-> Should I send a v3 with a 12-character abbreviation?
-
-No need, this is just a nit.
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-
-Best regards,
-Krzysztof
+> I don't know. Can they be enabled independently? Does it make sense for
+> the hardware to have different choices?
+The hardware can turn SSC on separate on either signal, and the netdev 
+discussion seem to be veering in that direction, so I will split them 
+and create two properties.
 
