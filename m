@@ -1,310 +1,306 @@
-Return-Path: <devicetree+bounces-243856-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243857-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA5EFC9DD46
-	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 06:56:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45596C9DECD
+	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 07:29:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 666644E0332
-	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 05:56:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F25393A69B1
+	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 06:29:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 045D92882CE;
-	Wed,  3 Dec 2025 05:56:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 403F228750B;
+	Wed,  3 Dec 2025 06:29:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b="hd6ljuc+"
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="oDc/g3t6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TYDPR03CU002.outbound.protection.outlook.com (mail-japaneastazon11023127.outbound.protection.outlook.com [52.101.127.127])
+Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013051.outbound.protection.outlook.com [40.107.162.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C354B274B44;
-	Wed,  3 Dec 2025 05:56:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.127.127
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8843B2980A8;
+	Wed,  3 Dec 2025 06:29:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.51
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764741385; cv=fail; b=eQmLUeMlJJoCvBFBqkjbPuHk4Anjgs3gEfocLQg1REh6sQ475wcjaSjaGK9I2N3bjZPOTxGZzwe2q7OqvI7yKhNwu/9Ne8vJhUGs+igFDIIRSEG1wsLvzwm2lnoQzSX4xDGa/fy29LwTxFqT+4kwX2h/7OnVdg4l0TW08mzWayA=
+	t=1764743363; cv=fail; b=S0QOpOb54P7ssFEEf1E0ep8ATr9+Gj98wQ6ig+ONtPei7tnE4YgoU0T4eeCB5DuGn4MACuB6pWZA/17u2kUB0o6Qa+o7bTPWOTVqZmxaVbpYY0IqDxEU3HAQY3twADAhMJWMMNwctYlMZpqgUHaglPLtECqX2jfAqd25z/z+P8U=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764741385; c=relaxed/simple;
-	bh=38Z3NkYtikyZeK0g51AFi00WGsnz3ZZa54e6Wr0FjCk=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=EQ9ez59GTaBMp2SS1nR4NioRjmcyI/9t/cAcF8p2okWq3ecP/NfKEbAzHmiQt3BRZcA/P6eASV8z+Oc5ToUGkNWYhe2bCFdzzUyBvSuOtBf6KdCI8FA8hxOEMA+np7Wjv8aeDJTZW3wNt9PzLQXb/CYitsh5ENwmT8aO6ljpYcU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amlogic.com; spf=pass smtp.mailfrom=amlogic.com; dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b=hd6ljuc+; arc=fail smtp.client-ip=52.101.127.127
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amlogic.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amlogic.com
+	s=arc-20240116; t=1764743363; c=relaxed/simple;
+	bh=QUMS3dnrJMLEHXfaJ9rNMqIcVZb79HT0GP2ANb4v7yU=;
+	h=From:Subject:Date:Message-Id:Content-Type:To:Cc:MIME-Version; b=jZt+ljxgrXC2ged53kciXzqAxN0qLqS77O4HvjVIZeGx5um3gZgy3ilNX8MwQwDZ6Z9XOz+Zt2i5qarKpuj1HEVcE5VyX64AFjNfhkKwXUrkL0PjKSbpieU1spLmXbt9R/svihBzQJA5WRntaJ/f2gUYn1qc/Oylf4inHIN8j/E=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=oDc/g3t6; arc=fail smtp.client-ip=40.107.162.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=qZPY1TFVvd+axomoSNG6MANdglc6eshL4V42ORsalwVrNfj4dgTKunm8aAxaW1y8SJXGsk5og7v4n6/okEBgvYamCWW3SSiaG/+8mRDDSQV/YOXitYApLPlD27XU2TdhStLM3S6EAUa23+kTsNeQpV4t5+WZbMMsZ8od1C+lkxovgKLB6siCjUnZtCvULohAfNK5eGa49rbjApjF4PPDHLkjsjK/CXN7gPLcnbr1sLuaIcLbuS7xV0M2xuM2vhVT9Y62oKMdMgtfNx5cvn3INKQSjcljVfPtT5jlkJKWzNhes1fPPxfEbwEQQRLQS69W+7AF6w8E8GV9SJ3MEGz/QQ==
+ b=BuhTeD7uepCVs+0CIMrHcGYEYUlCg39z7djlea580JApoa8zp6bPPTQ+BVRFkFpMYoX6hRUedky4kyXrYqDyCCjlJB3d6qmbp5mlMVdAAtkpCVr2lm24zYXwo+LdSkTEYE+N2OWfGdUzB7cTDpYtRIdkuDC/NMQC2900dSVPchmYLYMSyC8YKxOs2PWwN9FHaETb6cF+29PH/OuW9z8Iey+jl2stefrffIDGaAC490IYEqm1+XzdnbE5cbaAyndZmvesdkc4ylPR4Ug4H/up/xOwFEZCYc4zXSekhf4EAa2fCjv1TWSXgdOXI//AfobnPIhrLAEi5CIpj8a7lAYHEw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=CRn4zCETQm4Rb/oWWWFg/WTlFsdLaejUaA04/aetPus=;
- b=gjbHLFQRpWHCLC+zPHsOe0VOKUxjNrTqQSTU2e7CLnnJMj8y1xeS/wXo8XzRfNiFCJK7nP4ezXBDAnBSeO4YC2/+mgnMFS4WdzTVCNqhCujU8dLEbo9zDFw6EoGBfvkc+6vzPuB9fbJrDwPHjHOevu9ThzH/YkgoVG+tqP+YsYCL3ytxTOVVfmCktRXsbh8q8+5HRHrByTILipMm4NwRInPV4TGxFW1hWTKs6nROKCKSZnfuNh9+ens4sI/zANOfmkzJ5/uEs6oXB1xFVsRWOFe1rr9wc3FjoUtK6UBCVizXtwMYKvslQlaaKf2diCyg41d7QsYY1hPqNecIWiRsMw==
+ bh=YbSFecq4huNqK8dpwzZR303eBCBPF595HxtbJUn+mlU=;
+ b=EuGCrTvrm0gDpCYKP/vOxEQvzmc7i9NZr5GAG6b9GwfmH2OURbLVptZcW/WudkZ2Y58UN6hpbu7GH0zME/rT841je0BWx3eUEQVk0PyqUjKUXeJmM1gXJcin+0bFh1fNBI+C4Htxful5rhIqTXFM3/9NmGzpPKbzLl7iH1Zy+81HEwAgoleZMPv7Nr8CmYQCo4x0+tvsc8sViya+R2wwDNnJRuSiK9j+ZQEWhzvCUpW1exaP6GEQtbUaRSWGKFZ4zhNFW/xpNvyxWk8F5sySs+hgeBdsLwYjdORDLESpOK3uPZ+gw4pcYbjRfJy5e2XiCZ5+FQem1Wi7zK8O3YCAXA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
- s=selector1;
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CRn4zCETQm4Rb/oWWWFg/WTlFsdLaejUaA04/aetPus=;
- b=hd6ljuc+V2qGhNy8X0NHGKLxv/P9yf5x9RMe1ymdKkjJGontgXdP+fkDEIcSBtS+qyTbF1QqqxGFeVD1BH7Q4pFQi/Uc54/ixOYKoAkQHp9QJ5l8DQZwffKCP6tJiQa6WeXRflM5AgEpslwr8vAPHoppHVVpvhj3RXHi01vjSlmmWVn/DIaY+qrF22ij8G1SjBdJinj9xzzLywiigJiwraLwwZ19rHd/i03wKHEewNgVZ2mM8AMA6kmxkUeMdObqvNngpAklW2PnoqtqMHjb3f+l5ao1GX1rRYtN+VE8vy+Xn0tuaYC5H6VJBn/JWiMMr42HoUOmWtAJB8Jonlwj0Q==
+ bh=YbSFecq4huNqK8dpwzZR303eBCBPF595HxtbJUn+mlU=;
+ b=oDc/g3t6fCLYNbN3gXn5ut/9kj5vDqToPiVUxmWER4runpnm8w9uMjLrA72wXy2ZwJpOMLt36FFT1XahvoCD0+IiFUnmvCKXsPTzeoKlYRR29MasRgLI49yrEDkuuk9TJ2cKKRh/XXKwEk8NQpoCXx5XQpkyPlMYtIJ2a4+v6YAGQW0DAdiHk6qNvydbGnrd73s0+o/XaaO76JRbFRt2CJckjoOSTRZtFF1gpMz1zNzzwYnf8Cq6nxhejkpP6IONofW1CVjVhyjQIpug4u9O7UncsxYlpG6suxiKJzTQeZkT6r0Jgcj4ZoekC+/J6EwgyX5268e9HIqZ2cLp7iu6Qg==
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amlogic.com;
-Received: from TYZPR03MB7155.apcprd03.prod.outlook.com (2603:1096:400:33e::5)
- by TYSPR03MB8446.apcprd03.prod.outlook.com (2603:1096:405:60::14) with
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from AS8PR04MB9080.eurprd04.prod.outlook.com (2603:10a6:20b:447::16)
+ by PR3PR04MB7451.eurprd04.prod.outlook.com (2603:10a6:102:93::12) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.17; Wed, 3 Dec
- 2025 05:56:20 +0000
-Received: from TYZPR03MB7155.apcprd03.prod.outlook.com
- ([fe80::8d2f:b8cd:fdec:5724]) by TYZPR03MB7155.apcprd03.prod.outlook.com
- ([fe80::8d2f:b8cd:fdec:5724%4]) with mapi id 15.20.9343.011; Wed, 3 Dec 2025
- 05:56:20 +0000
-Message-ID: <070eb0a3-2f6e-41ef-8310-0c592a2816dc@amlogic.com>
-Date: Wed, 3 Dec 2025 13:56:16 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 01/11] dt-bindings: display: meson-dw-hdmi: Add compatible
- for S4 HDMI controller
-To: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
-Cc: Chuan Liu <chuan.liu@amlogic.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20250110-drm-s4-v1-0-cbc2d5edaae8@amlogic.com>
- <20250110-drm-s4-v1-1-cbc2d5edaae8@amlogic.com>
- <3AC316FA-A633-4B6C-81BA-CCCA290E7F03@gmail.com>
- <8c3b9fa4-326e-4791-8154-07b268faa132@amlogic.com>
- <7703796D-35D4-4AD2-B7F8-B75D2BE0F7AD@gmail.com>
- <a71f24c9-1f40-45a1-8fdb-6075bbf89930@amlogic.com>
- <F04DC684-AD64-447F-87EC-F503D411F25D@gmail.com>
-From: Ao Xu <ao.xu@amlogic.com>
-In-Reply-To: <F04DC684-AD64-447F-87EC-F503D411F25D@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: TYCP286CA0025.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:400:263::16) To TYZPR03MB7155.apcprd03.prod.outlook.com
- (2603:1096:400:33e::5)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9388.9; Wed, 3 Dec
+ 2025 06:29:16 +0000
+Received: from AS8PR04MB9080.eurprd04.prod.outlook.com
+ ([fe80::92c2:2e03:bf99:68eb]) by AS8PR04MB9080.eurprd04.prod.outlook.com
+ ([fe80::92c2:2e03:bf99:68eb%6]) with mapi id 15.20.9366.012; Wed, 3 Dec 2025
+ 06:29:16 +0000
+From: Guoniu Zhou <guoniu.zhou@oss.nxp.com>
+Subject: [PATCH 0/2] media: nxp: Add CSI Pixel Formatter support
+Date: Wed, 03 Dec 2025 14:30:01 +0800
+Message-Id: <20251203-csi_formatter-v1-0-eb9e1147b49e@nxp.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOnYL2kC/x3MQQqAIBBA0avErBPSUKirRIToWLNIY5QIpLsnL
+ d/i/woZmTDD3FVgvClTig2y78AdNu4oyDeDGpSWUmnhMm0h8WlLQRZovJpGabxDA625GAM9/29
+ Z3/cDVhTjC18AAAA=
+X-Change-ID: 20251125-csi_formatter-e6d29316dce6
+To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, 
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+ Frank Li <frank.li@nxp.com>
+Cc: imx@lists.linux.dev, linux-media@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Guoniu Zhou <guoniu.zhou@nxp.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1764743424; l=3906;
+ i=guoniu.zhou@nxp.com; s=20250815; h=from:subject:message-id;
+ bh=QUMS3dnrJMLEHXfaJ9rNMqIcVZb79HT0GP2ANb4v7yU=;
+ b=9sInCqiJSfAB1P+Poi+pYL73XRaLVDaLZNteGG2IIHI5wlzV/pMlRIdMWeFSIT1s8x6zB7hVA
+ vJOO4VOu4+2BXFDo6NHpSuFU1GqDNR3kUC3efU2aWXHzf8pknDahIvC
+X-Developer-Key: i=guoniu.zhou@nxp.com; a=ed25519;
+ pk=MM+/XICg5S78/gs+f9wtGP6yIvkyjTdZwfaxXeu5rlo=
+X-ClientProxiedBy: SI1PR02CA0041.apcprd02.prod.outlook.com
+ (2603:1096:4:1f6::18) To AS8PR04MB9080.eurprd04.prod.outlook.com
+ (2603:10a6:20b:447::16)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYZPR03MB7155:EE_|TYSPR03MB8446:EE_
-X-MS-Office365-Filtering-Correlation-Id: db2a618c-6a3e-43e0-f5a3-08de3230ae8b
+X-MS-TrafficTypeDiagnostic: AS8PR04MB9080:EE_|PR3PR04MB7451:EE_
+X-MS-Office365-Filtering-Correlation-Id: f4d9e22c-5faa-4749-472d-08de3235482f
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|42112799006|366016|1800799024|376014|7416014|7053199007|13003099007;
+ BCL:0;ARA:13230040|1800799024|7416014|52116014|376014|19092799006|366016|921020|38350700014;
 X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?SnRGenVXL3VFUXhYaFU0ZHBzaE1VWW1GUlVvY2hCZ1NHQ01IMkpZV1k4bm9n?=
- =?utf-8?B?ZTB4cHRCTFJBL0NocndvbEhvVmxGVU1nc29WcFJJUC82MlBKSVRzZ0tQdzZY?=
- =?utf-8?B?YTIxanZWV0gyOGRWN0tyWWgvc0VMUTlaOEhrc29peVV6RlRscnhmL1I5cTFy?=
- =?utf-8?B?dXFrNW1QQUhLSW8waWswSWRmWXNjZmgySUgzTnFpVndwZDIzSjBUT05XVFU0?=
- =?utf-8?B?SmRKUElRaWFQWmg0RjNZTW02UEVFSEJVSVpQL0w5NlJLaUU5eFFIbStEOHVJ?=
- =?utf-8?B?N3E4cUxuQ2psMjZsWC9qQzRaamIwWmhSUC9UdTZmQWxuM09BQ3Z0SWZ0ZVEv?=
- =?utf-8?B?c09lcFVCTEt3QzBQN2UxWENOVldhWUFkN3gzUFF2NGF0WmZ1WDJFb1YrUmZm?=
- =?utf-8?B?YW82OVpJT1pZODJDa1NwRXl1N1QwQjY3Tnk3b25xQXNoaTFWQURLZmhDTzhs?=
- =?utf-8?B?cEtPOG5iQi8zYWxmUlRhcHJzeUhyMlg3MXFiaEduRERjZko0UnJRa2tmTnYv?=
- =?utf-8?B?V3pEWGtCMEYyMFVjYk1icEF3Y0pwRFhxMnhsWGppY2lod2JBMWJSMlFYYUZW?=
- =?utf-8?B?eXdhTFNnZlV4OGpTbjJvcG9mQmlnM3NlenhFM0lHTlJTYUxmNCtFNGcrZ25D?=
- =?utf-8?B?RXgyRXJxMnlDaDdkNWpCeDA1cGEvZkxQb0kreE9aMStjZFg5dTA1Zk5DTkQ1?=
- =?utf-8?B?R09IZzduUk45M3pyRzM0RjRZSC9nOFVFbzFDMVczMUthbi80SG1ZbTRreTVX?=
- =?utf-8?B?T1FnZUhPUVlXWkh6d0h3Z0NGeEdhbklKcXgyUE51bUhNNFFUKzVod0NheGNo?=
- =?utf-8?B?b0lFZDJUYTg4ZWRKUzM5Wmd4VTZ1aWxQR3lMNmZEWmJjc2pXUFhVSjV5SjFh?=
- =?utf-8?B?YWVVcHNPSU5uZ3ZjTzBWRVUyNGg3K2ZPdk4xYjgyaTRPTW9KSEUrQWQ1bUVK?=
- =?utf-8?B?Vm9NaytEMDFXUndsT01VRTJvd3BwU25YZmVveUtZR2JhbkVpMFZaeEEwODhj?=
- =?utf-8?B?RWs3UGRqWmgxS0lZMGsyenhZdjFydnQzakttR3p6QlcrMVg4Q0ZFZTlsVWhz?=
- =?utf-8?B?d0JROWszeGo5a3R0dHYxZVFhWlNBaTJsQmFjYlE5SlUzYzJQanUxVTNoR09D?=
- =?utf-8?B?dDNnUUluSUZraTREajN2dHJJTmd4UmpjZDc1RzJKcnN4b016Ykl2dStsODJI?=
- =?utf-8?B?ODMrZFE5MlRNRjA4WGUzVDg4WGhxQk9aQ21ZYytSangxZWZ2MVM4bDlnNnJE?=
- =?utf-8?B?bEEzOThBZmxFSlA2bFMyeG9qcEVyN3ZlTTI0UHM2dU5wTEtSd0hBUnNReFNY?=
- =?utf-8?B?TXNuM2NjanZGVWtkem5zdXVkNlVlSHV4aGZvdWRaWFFGa0lXalZqeUVRQndG?=
- =?utf-8?B?YUpKNlpONUowTWU0eDNTQ3BjeTdSd082WUJuOVQ2VDdkSHEzQzhkTkV1Rk00?=
- =?utf-8?B?aW1VUEhOSTloR2F5VEpkZ2Via01rLzMvZlAzSE5ROGVnMXhlcG9oWkllOHBt?=
- =?utf-8?B?YUtKd2l2MjVuS3ZjVDV3d3V6K1RUTmNzZ3c2YTMrdzVmNVI2ZDY4bERWYXp3?=
- =?utf-8?B?N0RETGFlZlFGNld2RVc5akhJMGJuWXFaNndYaVZQelBQb0RwUFp4WFVlbUdu?=
- =?utf-8?B?ZThYTlRhUzdWVlU4TS9wWmRNQ08wa1R1Z0VHWVpTME1FYnJVMjlxWHEvTllU?=
- =?utf-8?B?WExoYmh1eGpaT0VucHFyTk1jV2JHRk9jNEExYWx1V1BXbHJzSko1dnhiU0Yx?=
- =?utf-8?B?NXFuMERqQk52dzE5ZFZnR3VzQ05RdnorUVlRR1dzZUN4N2p3em1KN0U5d015?=
- =?utf-8?B?Rm5oTXlwSzFVTHB5Z280MThURTgrSURuSVRjZjhKbFYzOHN0MjVNUnhPUVpx?=
- =?utf-8?B?WXpxZ2thTU5MSGhhWm4vOGgzWkhXRWdqZVRNWkVtYW5aaFE9PQ==?=
+ =?utf-8?B?TEFka0ZTcUVBZ0Q2V3Y2MFc0eW9lYTFKL3BodnU0MVpkNnhidVAxMHZFUjNl?=
+ =?utf-8?B?WWo3ek84M29ZTGpFU1JHcWZ5YnRYR0xJK2MvTWFVdG02QXMrSFZTK0phdUpK?=
+ =?utf-8?B?U0tuNC85czc0OEJMRXU1MlBUcUFIaWk4bjFpZ1UzQTlSUU1DUHdqNnpJaTJy?=
+ =?utf-8?B?T2d2V3VjSGEzVW9VUlZ1S0lUbjJkTHVQQ3FKNkR5YzlyM1BpdmpLdGhTTDJi?=
+ =?utf-8?B?RXBZUUZDajd4eEMyTlRtdGt5VmNkUndoK1RBV2JSazd3OGpYQlplV2hBY1pq?=
+ =?utf-8?B?UmNHcmg5RGhlSHgxTEE3dTkwZ1VNb1BBSDFWMHJqSENLcGlEUkNEKzF2M3N5?=
+ =?utf-8?B?ZDY3LzlrQ1kwVUltOTc1b3duYkdjUHFucEp4Y3J2L2VIMDRNVWtZZEZuTjEy?=
+ =?utf-8?B?ZXk4WU52T0lleGF0c1c5QnhuMGJqcmJFUDRTYVRRVGdBOFJjS1l1U3RWdUFw?=
+ =?utf-8?B?Wk9GQm92eGVXTkpwQ2ZqM0pBcUZMUTdKQmdRWmNQeSt3Smd4aG04eU1IY0pB?=
+ =?utf-8?B?cDN4Ylg2c3ZTS2pIRllZdlVYQWFFUTNlcERPbGtoSUVpcEpmQWljbzcyYzZQ?=
+ =?utf-8?B?cTVWSnc2WHZMRDdxNitzb1p2RzVFYWh5d1lNVWtLcUV2R3dadi96Y00ybXZk?=
+ =?utf-8?B?NEZ0S3FKdEQzY1Z1Qi9IQzEvMDlFYnhSODkwaFJRQjRlais2eEY3R3VEVUFD?=
+ =?utf-8?B?OHYrWWxwMWxNbG5UV0hQK0NEZ3RpSFc5bTF3RTJOYUd3OG5hNFlrQk9WOE5E?=
+ =?utf-8?B?dTA1TUlGdWlxWHRzcS9tMzhib1VHZG1vWXRmUSs1S3FuUDNoZkJZWTJhSCtP?=
+ =?utf-8?B?NzBVQWFVTmR4c2cyb2xNbnNXTlRGWkc5VlFEZlBETjhzcWZnREdLQTgzV1BS?=
+ =?utf-8?B?Z2haOW9lN1BldUU0LzEycHRnRk9RQml2M1NiRXhOSnFicWxSYnpPK2FFQXZn?=
+ =?utf-8?B?U0tXVld5UWsvNkVQd3BXNnAxRFIyMHdPS3pFYStGVEgyRFRtVWxONVIwOWNN?=
+ =?utf-8?B?cW02a0dhWnFSQWNBNE9yczFTclFiOG9nN3BIZGtPcXl0Q2orVnpPZkVlTFhE?=
+ =?utf-8?B?OVlNRUJpOUN5NmpNZGgyRVQ2bDFLUWdTZmhJSXdkbU9SeHpaY3J4Y1hKaExt?=
+ =?utf-8?B?Z0VBYlI2VytkK1J0UFZnOGQ4c2hUUWp0ZHFBTEx5dWJ5Vnl3OWRoeW94WEho?=
+ =?utf-8?B?emlNMDBndEEvYmhyYU05U2srUUNkNmdmZDF2bXYrNk0rUmt5Z3Vha1hIaWZM?=
+ =?utf-8?B?Rjh4S0t0czlZU2RFWjZ1Y2ZvbkZFVDZrQmZmS1AyTFRaZlYwTFA0N2p1dTZl?=
+ =?utf-8?B?aGV1Q1VUZnh0cEUzYWFydmdqWjhGN201cDhDSmFqSzJRUDMyQmZzdWlLNGM3?=
+ =?utf-8?B?ZGVVTUErRklCdXd5d2JpQzAxSjYyeUNqREE2YlVtTWNUWFVPdkVuaWdjaEQ3?=
+ =?utf-8?B?VHk3ekE4ZXdhTXlLc2gyV3VnKzVvbEFsNmV6aDlOWlFvMFo4WWJTbVU3SnZp?=
+ =?utf-8?B?Q1llM3NlVmRQQ0JDOUR3SWRWMGJ4aG1KL2dGaFNuY0Q1bFNVZ3NCWVR2Mytt?=
+ =?utf-8?B?K0hQaVpvVVo3ZkgxRngvL0JaMW9iZmlOdVVuWlZJcEtsQmYwaHVnUlpMOFg1?=
+ =?utf-8?B?bllkRjhZZzRFSnVLUy9XSHZCaGVFaGRVemgxRktaeDQ0L0lkUU5oTUR1OHZh?=
+ =?utf-8?B?cC9QalhoSmFpdTIvQ3BYZHZLbGFILzE4S1hiSlpNNHRvVG0zSUtJYWRqRE5v?=
+ =?utf-8?B?Z3p6UFZYR1NaVkVmUitDdHozRG5SSmoxMHBjL0JKSk1ua21JaFJDbnBPeEFB?=
+ =?utf-8?B?Z21oZHlTTkliV3YwK0N3SkZybFFvak1MUzBmNFhPRFFSRVdBRzJxNElHT2t0?=
+ =?utf-8?B?dUordFVvZ1dQaFd0QVA5R1p4RnYwR0tSeWdLaHR1L0haR0NaZ01NeUFscTFT?=
+ =?utf-8?B?c2I5bmxtN3lvb01oNUU1Ulpiam5ic0l5dkhkbDROZVBobVRvemNFMHZnMEoy?=
+ =?utf-8?B?NUNRbFJycXJhamEyMTV1dWVwcXNDVmpQZFh5QmVxYmtCQVZFTnJLRk1NdSs1?=
+ =?utf-8?B?Vkw3SWRmZytXVXZodnp6SjZPcmlvQk14NDFiQT09?=
 X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB7155.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(42112799006)(366016)(1800799024)(376014)(7416014)(7053199007)(13003099007);DIR:OUT;SFP:1102;
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB9080.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(52116014)(376014)(19092799006)(366016)(921020)(38350700014);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?YkZTcnNBeVQ1bDRrUU5GeHBEUnlRZHlsNFZmd3dkbGVkbVZMRnh2cmVTS0dT?=
- =?utf-8?B?bEc1cmgyc2pnV2w2NkI4YVphczVTY1F3Z1JqcXg4VjIrUHF4T0krR0JweHND?=
- =?utf-8?B?eVA1VDdtZmEwWHBZM3pOYWJ2ZkloK1VGdGhjSXpwTm80c2E2SVZ2Q0pKd2Q1?=
- =?utf-8?B?V2xQa2pUR3F3K0x1UDdHRVdHbEN4eHkrN0sweWhPVjNzclExK0dWZWRtbncy?=
- =?utf-8?B?dHJxR2pGS2Nwcjd3THE5YWIxQWtjTmgySmhTTE54Z0lydGo2SHlHQkxEUkE5?=
- =?utf-8?B?NU5PSGZPWld1U09tY3BXREw2MGlMRmZyRWV6UFZwaWljZjRLN201UGovd213?=
- =?utf-8?B?Sk55QW9EUXNERzdmVHIxWHRUY2hkUk5Wbk5zdW5GTW1kaHBKb25ZKzB0bTc3?=
- =?utf-8?B?VkhoSzZzTmxkTnNteERUWStodHl1dEpxUTZJcm5Cc1N2Ri8vNCtBanBpUmZp?=
- =?utf-8?B?eEVkYWFJVUgwNi9wUHpUZjNGMmtOTzIxRjZwYUczZHRQcEQ5L1pld1VRd1pV?=
- =?utf-8?B?bzc0aTJiTkM3bFNSZlpPVUlSdTArVUxyWk9SSjBLYlcxTGRhalFOb051SmJD?=
- =?utf-8?B?ZExXUG95ekN3bVVPb0h2RVdnbVd2dnVkNkZ5bWZSUXhNRzVpTGljKzBYbmJP?=
- =?utf-8?B?ODRyMTg0NGxNM3JwUUNnU3BjdzVuL3NJRlJmL2Iwc09EZm9yQWEwd3RlZFht?=
- =?utf-8?B?bWMxa3p2WVZEa3gyT3hpVDlwMUtqd0ltRjd5UEFRU1hQeitwVEZ0eFhydjZG?=
- =?utf-8?B?OTl4dHp1QlVzT04yb3JLQUVSY2RuVlc4YThWUkJkSDVFU2NUQlF3MWNsQ0RG?=
- =?utf-8?B?aWpIRGtEK01yV0N2bER6KytOZzB0OVByTXQ4ZXRxNTEzMVkwdkhWdjhqUFc4?=
- =?utf-8?B?SnRFVXFFVEFDWEdrRktBbzJCOU81TFM0QnRvTThUT1k0aGszcy9HQytoTGZN?=
- =?utf-8?B?V0drSTYwUkpLVEFXTzU2TTAvT0R1c0hzSVBTSStsM0F3aVVhUjBDQ1NlSHh5?=
- =?utf-8?B?NzVKSG5jVTVtV0hxRVl1VzAyOE9MclcycHBiZUlPdUV6MlZ6ZTdzMW5Dd1Zj?=
- =?utf-8?B?NDlGbGxIcW9udXBQN1ZScGljbC9BZHI1NkZidGl6b1JPN0xYWUo1YTZ5bTRU?=
- =?utf-8?B?V1VzbUFNV2hWcWZiNE1IV1FJY1JyQzVKdEQ1RFF4Q2dxd3k0K3NaVmV3OHYx?=
- =?utf-8?B?bDVXMWxEdzR6K1o1UGpmZzFhRU44THAvZTd4YU8wbWlDWU1RdU1TZGVzUFRs?=
- =?utf-8?B?TUw1elZRUHpYb0IyLzJ3NDdyT1BWalhaYktIaUxhcHFaL2s4M2hUQ2hEQTlT?=
- =?utf-8?B?OWtobis4UllOTnFKYnlPZXNYc29mNG1OMGpMM2hLUm91RjU4bGlvZUJqR3h6?=
- =?utf-8?B?bVlUN2svQzBMbVZqRFpzcjkxZysyNUdlc2VWQ2p5MjlOM2dJMnZic1EzRFJz?=
- =?utf-8?B?OVBjbE1MWXlPOGVBWGtLK2drWTlzZ3Q4WUp5ZlZoYWdDdTV2YjZReHMxUmpE?=
- =?utf-8?B?UkpaVWQrWkcwQzNmK1FLMkQ2U2ZrWWwzN0ROa1JRSUJsUW4rV2VTKzRyVktU?=
- =?utf-8?B?eWdIN2R2SXRBRTlVeXhRZE45VVNGMHE1S2k1SWpwVmZMZ1FBRDBEMFpBK0dF?=
- =?utf-8?B?ajNtc2Z4eGx1YVVteUdhSHlGQTJFb3F4VkZ1RExoYjRXVFJMZURnTVpLd29Z?=
- =?utf-8?B?WWNtc2ljWnJ2U045SkhoN1YvcWNGZ081aHNHaG04cGJqeEhhK2l3bDI4OGdO?=
- =?utf-8?B?cTJ5aXFxeTVpYURrUUt3ZFl1VnBHMjdZbnpicGdpUzhUYzRvc2tnTm0ybXBn?=
- =?utf-8?B?TWNaeTduNFk3RmpNb1FMRzVMTTBRZ0xJR0tuZi9QbE50Zk04ZVYxOHFyUWdw?=
- =?utf-8?B?b1pkWmsxUXRwQTNtVWE3UTFXakxweG1BL09wK2pJSkdIb0puSmN5dVljNTVj?=
- =?utf-8?B?LzROR3FwakJPdk1PZzk4T2U2RVVpNmVFQVhpTWM3TDVSME5SamJ0VjNQQkl6?=
- =?utf-8?B?NGFKc1VSTFh2Q0VGS2JyTkVqcUZJYnRBbHdHdS9SQWpRbTFFZ2xuZnVKaHhs?=
- =?utf-8?B?ZkJKTmIySEJKeXZMbng4WHJ0eUFhb2pCd0M2YjJVQzJYdEJ5enB0emM2Vitp?=
- =?utf-8?Q?uV59gNFeEt7csP6m7ytQ/KaKY?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: db2a618c-6a3e-43e0-f5a3-08de3230ae8b
-X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB7155.apcprd03.prod.outlook.com
+ =?utf-8?B?Ty9na3BEMHNWY3ZNUjhwSmJrTEJOYkE1d2JzT2hReUM0cW1oSm0yMnhXck90?=
+ =?utf-8?B?ZEZFWkxVWWxES3NzUkJaa1JhZjFkYUpJb0EwbjM2MW5aRldvRTZWa3VMR2hS?=
+ =?utf-8?B?QjVqd3ZFdkh6NXN4aXB1aFlwRUxIS0NGWWR2TlpQcnB4Wi96dGNiUzQ5UXRZ?=
+ =?utf-8?B?bHNzcngyREJHYW1QU2J2Q3RDK0V3UGM3TmNqTEJ0ZWVmMzNmZzNPVlJXQmhU?=
+ =?utf-8?B?WEtXNnd5bkt0d1N3cnV6Wk9NejhKSG9uUkFsbG5kN2poSXZ6SlUrTEdobmhO?=
+ =?utf-8?B?WEVSMHczN1VGY1hXVGJPcUl0ZkE4UnZxK1Z2dmhLeUNQQm45VTZ2dGZMMjZM?=
+ =?utf-8?B?VVVJTDhPR2laVGxMUFBBMTN3aWRoNk9rL1JPK0p5clQ2T0NyNThqcy85a3lO?=
+ =?utf-8?B?cXB0T2JUUlVieEY1em00UHptcGtnV1hjWVhEdHJiZ0lzOFVlR2o3YjF3ZUtt?=
+ =?utf-8?B?RUpWRkFkQVpLbWZvcElzY3NqVEJPMFdWMmszTEpUV0JCNUsrMWxNdmFvN1Vy?=
+ =?utf-8?B?djNFeXl3TXJjbmVuME00Yk5DbVJGYmJnUVpSVFN6M1BJK0lCTy9OM1oxRWdM?=
+ =?utf-8?B?eWd1YkJ2YlJDOE91Vm92KzNKT1J0ZmtvNVZHaGpxeE5oOTEyOC9xUW1nOGlh?=
+ =?utf-8?B?UkZ1Z3k2YTkzRDc3aEh0SzcrU20yQnBYMER2WHZtNUVNaSsvS1I0dVJITGlH?=
+ =?utf-8?B?eXp4RXFVVngvOVRKbDRwUzUrZ1BzK3VSTU9xcGtGaVV0bGZMcFZHS3NOdXl4?=
+ =?utf-8?B?c3JXaDV2MnlPUStMZnVEc29pSVh4WWNCQnBtNTcrbFc1Ukt2UzNlSEpKek9L?=
+ =?utf-8?B?VUFzVHNHWW55UUZGcWF6K1RTMUFxNGFmeFVucEZrSDYzVVVZR3hsZmF0MlRW?=
+ =?utf-8?B?cmYreVJmVnpVY2hQdHFFTnRMV0tKUHcrSVlJNEF5VTV3NnhQT1haenZVRWF3?=
+ =?utf-8?B?NHpubmFSTTVIblNuVjl3RVFWV1hUV0xYTnRCQm03T0plK2VqZy9CQ1UrM1Uy?=
+ =?utf-8?B?VlFaQ2dnTTB0UlNJb3pjOGMwMUZkMnBuSUNhSFBvUmVJZndEVDNzTGk0OUtl?=
+ =?utf-8?B?K3hSK01JRVJ2clRJUDU4Z05nelZpdUlwRm9nUTQzaEVzNmxQRTgzMTlBMnVD?=
+ =?utf-8?B?UTg0ekRZVzczMkt3Ly9lQnExaThEamw1UkprYWtKVVd6dEZYVDNDS1BDTmtQ?=
+ =?utf-8?B?Y0M2YkI2aHRWNTdrMHlROVNNNjRqY0ZPbHBCT0t6dUN0eW1NVmM3L2Z1UDFa?=
+ =?utf-8?B?M0h4L0JhWFVkNmdBazgremRzTkxrS0Y5RjN2NDRhYmVMQzl1dmkwWHFiL09B?=
+ =?utf-8?B?S1NhcWFHN0dMODI4Q2kwS1d0eWMxY3MxbjEzTWZHNFkzckdxMXBpOWJKcDBU?=
+ =?utf-8?B?aDhkOHBPK3NVZFVqOGVJbkFLUEwycFdMV1g0RFpxeTR3UlYxYmZiOXh4a1lY?=
+ =?utf-8?B?TW1BL21kRjNVbHVrRlBWczY0cGpSUHc0akpJV1VIY3IranVydkFiYThPWkxZ?=
+ =?utf-8?B?WDE2RitpazArek1VTTRnU0lrcGZmRXJweVlIOVowb2VpcktGL3hQanZkUzlh?=
+ =?utf-8?B?WDd5b29tUDhxcFltcXdSK1kzYmRNVU1kd0VKRnpaVS9vUHc0N2tGZkV3dmR1?=
+ =?utf-8?B?UEdOSlMzUGR6cGVvdG0wK3cwMDJXb3pMeWpQclFCZDM0Q3RrVVRFaTF6c0g5?=
+ =?utf-8?B?WHBYLzlZVHdMQkxvQngrTWFja0ZOaTR4TzMrNU9HSTZ3bitqYXRaVmZWNXYx?=
+ =?utf-8?B?K002UVdyNmFnbzZYbnNDbHVlRmwvRU5aekszZWNlNDBSSUQwMkFrZkZNRlJR?=
+ =?utf-8?B?SmRJNUVTcEF3ZWNsTVhXVCt5OGtaOXlpM0Naa3RkOHJPMHhYOTRMTno0VHY1?=
+ =?utf-8?B?UTdkRGF6aDhYTFVER2dpSENqakxXU3hDT2FtYm1oYVhZQWlteSt0a2l3aXY2?=
+ =?utf-8?B?NldhWUhqR3BNQjJ0SzJ2RGs3YjNHeVRETVVFYVQ3VzV0YjVrZHdHcTkxR2p6?=
+ =?utf-8?B?Z2x3SDBrdVVOUE1IMkR4bSt2RnVEeW00MmVaRHlxa2JuNDN0cS9zY0FKTDk5?=
+ =?utf-8?B?NVA0TjFRRlMwNzljVjUvUEl2VFJjUVZydW10ZmFDNkZtanFSOW9NNHM5VXFE?=
+ =?utf-8?Q?kW0W0YhjcwQ179WhCDSI5W/AK?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f4d9e22c-5faa-4749-472d-08de3235482f
+X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB9080.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Dec 2025 05:56:20.4635
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Dec 2025 06:29:16.1850
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 8NZODBmQlp8VJ1H4xFWl3x+kHB8FQIcQAdMK/G9vlEGIx89XNAZfdJ3cKpFseh/X+2+Ciim0vBGvLTdhKG91hg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYSPR03MB8446
+X-MS-Exchange-CrossTenant-UserPrincipalName: vh+vR8cn5GHnxH4iZfW35fh1RbAF8gtCh0X4v/OvEPp+mpf0Sp/UueVMnOWx7PCmZhwPwVPLFtrKU55VYFyLdA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PR3PR04MB7451
 
-Hi Piotr，
+CSI Pixel Formatter is a module found on i.MX95. It could unpack the
+pixels received by the formatter and reformat them to meet the pixel
+link format requirement.
 
-     I will need about two more days to look into it. I will follow up with you ASAP.
+This patch series adds a new v4l2 driver for CSI Pixel Formatter.
 
+v4l2-compliance 1.28.1-5233, 64 bits, 64-bit time_t
+v4l2-compliance SHA: fc15e229d9d3 2024-07-23 19:22:15
 
-在 2025/12/2 16:29, Piotr Oniszczuk 写道:
-> [You don't often get email from piotr.oniszczuk@gmail.com. Learn why this is important at https://aka.ms/LearnAboutSenderIdentification ]
->
-> [ EXTERNAL EMAIL ]
->
-> Ao,
-> Any chance for updated s4 hdmi series for 6.18?
->
->
->> Wiadomość napisana przez Ao Xu <ao.xu@amlogic.com> w dniu 21 lis 2025, o godz. 03:55:
->>
->> Hi Piotr，
->>
->>      I will check this issue
->>
->> 在 2025/11/19 18:27, Piotr Oniszczuk 写道:
->>> [You don't often get email from piotr.oniszczuk@gmail.com. Learn why this is important at https://aka.ms/LearnAboutSenderIdentification ]
->>>
->>> [ EXTERNAL EMAIL ]
->>>
->>> Pls see inline
->>>
->>>> Wiadomość napisana przez Chuan Liu <chuan.liu@amlogic.com> w dniu 19 lis 2025, o godz. 03:57:
->>>>
->>>> Hi Piotr,
->>>>
->>>>
->>>> On 11/18/2025 10:50 PM, Piotr Oniszczuk wrote:
->>>>> [You don't often get email from piotr.oniszczuk@gmail.com. Learn why this is important at https://aka.ms/LearnAboutSenderIdentification ]
->>>>> [ EXTERNAL EMAIL ]
->>>>> Ao,
->>>>> Is there any chance to get this s4 drm hdmi series for current 6.18?
->>>>> (i tried backport this series to 6.18 but have some issues with reparent vpu_0_sel to sysclk_b_sel)
->>>> Why do we need to reparent vpu_0_sel to sysclk_b_sel? is there any
->>>> background here?
->>> Well - it looks it is because bug....
->>> Martin Blumenstingl had perfect eye and catch typo in patch https://lore.kernel.org/all/20250110-drm-s4-v1-11-cbc2d5edaae8@amlogic.com/:
->>>
->>> By replacing:
->>> assigned-clock-parents = <&clkc_periphs CLKID_FCLK_DIV3>,
->>> <0>, /* Do Nothing */
->>> <&clkc_periphs CLKID_VPU_0>,
->>> <&clkc_periphs CLKID_FCLK_DIV4>,
->>> <0>, /* Do Nothing */
->>> <&clkc_periphs CLKID_VAPB_0>;
->>>
->>> with:
->>> assigned-clock-parents = <&clkc_pll CLKID_FCLK_DIV3>,
->>> <0>, /* Do Nothing */
->>> <&clkc_periphs CLKID_VPU_0>,
->>> <&clkc_pll CLKID_FCLK_DIV4>,
->>> <0>, /* Do Nothing */
->>> <&clkc_periphs CLKID_VAPB_0>;
->>>
->>> dmesg is like this https://termbin.com/6020
->>>
->>> So i'm getting hdmi working - but only when device boots _without_ connected hdmi at boot (and connected later)
->>> If hdmi is connected at boot - boot hangs at:
->>>
->>>      0.341676] meson-dw-hdmi fe300000.hdmi-tx: Detected HDMI TX controller v2.01a with HDCP (meson_dw_hdmi_phy)
->>> [    0.342750] meson-dw-hdmi fe300000.hdmi-tx: registered DesignWare HDMI I2C bus driver
->>> [    0.343660] meson-drm ff000000.vpu: bound fe300000.hdmi-tx (ops meson_dw_hdmi_ops)
->>> [    0.344832] [drm] Initialized meson 1.0.0 for ff000000.vpu on minor 0
->>>
->>> FYI: It is after applying https://patchwork.kernel.org/project/linux-amlogic/cover/20250110-drm-s4-v1-0-cbc2d5edaae8@amlogic.com/ on mainline 6.18 (with some my adjustments on this series required by changes in 6.18).
->>> For VPU clk changes see https://github.com/warpme/minimyth2/blob/master/script/kernel/linux-6.18/files/0312-drm-meson-add-vpu-clk-setting-for-S4.patch
->>> It is 6.18 adaptation of https://patchwork.kernel.org/project/linux-amlogic/patch/20250110-drm-s4-v1-9-cbc2d5edaae8@amlogic.com/
->>>
->>> As kernel hangs - i have limited caps to drill where root cause is.
->>>
->>> Maybe above hang is reason of my backports or missing any pre-req required to get s4 drm working?
->>> Anyway - it will be good to test with updated to 6.18 series of Add DRM support for Amlogic S4 (plus info about any pre-req required to get s4 drm working)
->>>
->>>
->>>> The vpu_clk on S4 doesn't support sysclk_b_sel as one of its
->>>> selectable clock sources, so this reparent operation will definitely
->>>> fail. This has nothing to do with the kernel version.
->>>>
->>>>>> Wiadomość napisana przez Ao Xu via B4 Relay <devnull+ao.xu.amlogic.com@kernel.org> w dniu 10 sty 2025, o godz. 06:39:
->>>>>>
->>>>>> From: Ao Xu <ao.xu@amlogic.com>
->>>>>>
->>>>>> Add devicetree document for S4 HDMI controller
->>>>>>
->>>>>> Signed-off-by: Ao Xu <ao.xu@amlogic.com>
->>>>>> ---
->>>>>> Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml | 1 +
->>>>>> 1 file changed, 1 insertion(+)
->>>>>>
->>>>>> diff --git a/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml b/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml
->>>>>> index 84d68b8cfccc86fd87a6a0fd2b70af12e51eb8a4..6e0a8369eee915fab55af24d450a6c40e08def38 100644
->>>>>> --- a/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml
->>>>>> +++ b/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml
->>>>>> @@ -55,6 +55,7 @@ properties:
->>>>>>            - const: amlogic,meson-gx-dw-hdmi
->>>>>>        - enum:
->>>>>>            - amlogic,meson-g12a-dw-hdmi # G12A (S905X2, S905Y2, S905D2)
->>>>>> +          - amlogic,meson-s4-dw-hdmi # S4 (S905Y4)
->>>>>>
->>>>>>    reg:
->>>>>>      maxItems: 1
->>>>>>
->>>>>> --
->>>>>> 2.43.0
->>>>>>
->>>>>>
->>>>>>
->>>>>> _______________________________________________
->>>>>> linux-amlogic mailing list
->>>>>> linux-amlogic@lists.infradead.org
->>>>>> http://lists.infradead.org/mailman/listinfo/linux-amlogic
->>>>> _______________________________________________
->>>>> linux-amlogic mailing list
->>>>> linux-amlogic@lists.infradead.org
->>>>> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+Compliance test for device /dev/v4l-subdev9:
+
+Driver Info:
+	Driver version   : 6.18.0
+	Capabilities     : 0x00000002
+		Streams Support
+	Client Capabilities: 0x0000000000000003
+streams interval-uses-which
+Required ioctls:
+	test VIDIOC_SUDBEV_QUERYCAP: OK
+	test invalid ioctls: OK
+
+Allow for multiple opens:
+	test second /dev/v4l-subdev9 open: OK
+	test VIDIOC_SUBDEV_QUERYCAP: OK
+	test for unlimited opens: OK
+
+Debug ioctls:
+	test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+	Inputs: 0 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+	Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+	test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Sub-Device routing ioctls:
+	test Try VIDIOC_SUBDEV_G_ROUTING/VIDIOC_SUBDEV_S_ROUTING: OK
+	test Active VIDIOC_SUBDEV_G_ROUTING/VIDIOC_SUBDEV_S_ROUTING: OK
+
+Control ioctls:
+	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK (Not Supported)
+	test VIDIOC_QUERYCTRL: OK (Not Supported)
+	test VIDIOC_G/S_CTRL: OK (Not Supported)
+	test VIDIOC_G/S/TRY_EXT_CTRLS: OK (Not Supported)
+	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK (Not Supported)
+	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+	Standard Controls: 0 Private Controls: 0
+
+Format ioctls:
+	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK (Not Supported)
+	test VIDIOC_G/S_PARM: OK (Not Supported)
+	test VIDIOC_G_FBUF: OK (Not Supported)
+	test VIDIOC_G_FMT: OK (Not Supported)
+	test VIDIOC_TRY_FMT: OK (Not Supported)
+	test VIDIOC_S_FMT: OK (Not Supported)
+	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+	test Cropping: OK (Not Supported)
+	test Composing: OK (Not Supported)
+	test Scaling: OK (Not Supported)
+
+Codec ioctls:
+	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+
+Buffer ioctls:
+	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK (Not Supported)
+	test CREATE_BUFS maximum buffers: OK
+	test VIDIOC_REMOVE_BUFS: OK
+	test VIDIOC_EXPBUF: OK (Not Supported)
+	test Requests: OK (Not Supported)
+
+Total for device /dev/v4l-subdev9: 47, Succeeded: 47, Failed: 0, Warnings: 0
+
+Signed-off-by: Guoniu Zhou <guoniu.zhou@nxp.com>
+---
+Guoniu Zhou (2):
+      media: dt-bindings: Add CSI Pixel Formatter DT bindings
+      media: nxp: Add i.MX9 CSI pixel formatter v4l2 driver
+
+ .../bindings/media/nxp,imx9-csi-formatter.yaml     |  96 +++
+ MAINTAINERS                                        |   8 +
+ drivers/media/platform/nxp/Kconfig                 |  14 +
+ drivers/media/platform/nxp/Makefile                |   1 +
+ drivers/media/platform/nxp/imx9-csi-formatter.c    | 894 +++++++++++++++++++++
+ 5 files changed, 1013 insertions(+)
+---
+base-commit: 1f2353f5a1af995efbf7bea44341aa0d03460b28
+change-id: 20251125-csi_formatter-e6d29316dce6
+
+Best regards,
+-- 
+Guoniu Zhou <guoniu.zhou@nxp.com>
+
 
