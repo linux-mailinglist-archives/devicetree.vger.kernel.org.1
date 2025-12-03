@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-244100-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244101-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86554CA100B
-	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 19:32:44 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id DBDA0CA0C0B
+	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 19:05:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0AE9B30989E6
-	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 17:31:47 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 11EAE300501F
+	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 18:04:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D0B330275E;
-	Wed,  3 Dec 2025 17:21:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FEA132E13E;
+	Wed,  3 Dec 2025 17:31:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W/Nqr3Cl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BEJ/p0u8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FC75398F8E;
-	Wed,  3 Dec 2025 17:21:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D64932C317;
+	Wed,  3 Dec 2025 17:31:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764782513; cv=none; b=d2uiQ3Xxil7DHkHji1CAwVuHo90k0xPYYQfFSEqZziPfWko8/X+NzH4SbJ0Im0GjkgbhfW5VSlLoU6TYCpY5P44tg9w5O9aEpgyv0Yqp0RFWe6R7lU5HJevxwL44M95QKwKyhq/VejM4d1GORTPgcOFXY2L7bZcSuu1kf72xS20=
+	t=1764783079; cv=none; b=frWHMAxsxs3hnmPvZMul6byiB/PfGgoOmjCZLwZC4dzHGtdkddo7bCnCQkDf7dswKL+xz7HNU3rqkt8zqWYbKYRIR2tdlhF160ooIlq1qD/9ATgIrMXAdv0AgOULpkHlbEeJctZ6Zn4VyZ3jWkOS1Voww+cbmn+vyd7FSQCyi30=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764782513; c=relaxed/simple;
-	bh=pg6AgbK+WXKqk6ICGUlF6ZoMbP2l9IhcXljfRVKs6Jo=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=HMUvgYcrUNIXczTddsiQgpLJHJArCmfci7yp93PRquF15p7/RA7Q21JhKpjyUHAew07mAy8g1B3Zjf18Sf6UpCagO7/5AhrRrOyJ/QVnPpu/eN91MwARWiuXjcYH7RIXUj0cF9xPQufvVJzGPq+hl0wz9+wm9UYFtxemzDq/kg8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W/Nqr3Cl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C779C4CEF5;
-	Wed,  3 Dec 2025 17:21:50 +0000 (UTC)
+	s=arc-20240116; t=1764783079; c=relaxed/simple;
+	bh=Ibd7rUnepKLPpEkPNAHbIbgut2XMz2+0Lk8V8an6UWM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fsDOhAkxcMsDyVyeDifthT/L834qZW9sIYCyZWPkS8RlcSZs3zA5zN01wjWShi2Ltulz1B09OViL8au1CearZO2UiSGAhjbvwVWB0JZXwXG34EdcagSiIJd6rUvjalR8P96UzfbMXGlz/6ec5jI1SvwkWxGbtrYeJt4IVefIlwA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BEJ/p0u8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C72DBC4CEF5;
+	Wed,  3 Dec 2025 17:31:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764782513;
-	bh=pg6AgbK+WXKqk6ICGUlF6ZoMbP2l9IhcXljfRVKs6Jo=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=W/Nqr3ClPlgfGjJDfgCJmSNv8TBoB6Y0vWFHcIDFQfvQUrpVkkwINLCcOhsHqH8mJ
-	 WbjxAZepuBPGbjtYDY1UDq6vBimod87lrX9DLKgw+II+b+kmCXvXBRFz5PEp7Zr0su
-	 QBhdILCueSCPeZcY4MiATyF2blVG60v/5L0dElZhbJUfYpUVsWQJpUQKvnP9NQkjFj
-	 0sBUHytxw4loNG53nj6yLLGi2HHt7i7JViYBXWx764byCjok28ToYz4eOExAPw/I7J
-	 CO+T12oI28nwiGzxlwpZjugVaEB6yImRUi6zLikD69KOODVE6Req1QmBuafxjVYe4y
-	 qqdgiojkfKloQ==
-Message-ID: <a04e7622-e9a3-4088-89d4-285157321080@kernel.org>
-Date: Wed, 3 Dec 2025 18:21:48 +0100
+	s=k20201202; t=1764783078;
+	bh=Ibd7rUnepKLPpEkPNAHbIbgut2XMz2+0Lk8V8an6UWM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=BEJ/p0u8HGiIHcb1bGNF2Tkn01m0REe5NdeEqnMl77yklJC8Quwh2Nq82YAS/hzEr
+	 ADCmXJ7STXzi2MPkokO6UlyY8++KHisCduMIqez20i6n5VkOentsGZ9yEsZ4EjuQ0d
+	 CRf8WvE03W08O046MNVv7qXGZRmOlKVHYqqYBHMpFbswbSZXYniQU1THvBxKapvoC0
+	 woCaWEjBPPnoXUzmeFFyDK8miCpA4Ty+q7RadbJJzyEBT3c46IDUxxgm9OnCXqT+cI
+	 J47eWYZC3dLK+fSWdvjr9Eibyqf/W+3D1q3Wo5450uCzwQ4D77aPlJblolcWvutuQt
+	 0zqTKsYGEx1aQ==
+Message-ID: <081a2038-e798-4cc0-96ff-b7f11e346831@kernel.org>
+Date: Wed, 3 Dec 2025 18:31:11 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,18 +48,29 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] Documentation: remoteproc: fix deadlink
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Soham Metha <sohammetha01@gmail.com>,
- linux-kernel-mentees@lists.linuxfoundation.org
-Cc: shuah@kernel.org, skhan@linuxfoundation.org,
- linux-kernel@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
- Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH 00/20] arm64: dts: qcom: Introduce Kaanapali platform
+ device tree
+To: Pavel Machek <pavel@ucw.cz>, Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-remoteproc@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20251203170702.42769-1-sohammetha01@gmail.com>
- <a0ae7bfa-9924-45b0-9d10-96b91eb17d0c@kernel.org>
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
+ trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com,
+ Tengfei Fan <tengfei.fan@oss.qualcomm.com>,
+ Qiang Yu <qiang.yu@oss.qualcomm.com>,
+ Manish Pandey <manish.pandey@oss.qualcomm.com>,
+ Ronak Raheja <ronak.raheja@oss.qualcomm.com>,
+ Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>,
+ Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>,
+ Jyothi Kumar Seerapu <jyothi.seerapu@oss.qualcomm.com>,
+ Prasad Kumpatla <prasad.kumpatla@oss.qualcomm.com>,
+ Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>,
+ Vikash Garodia <vikash.garodia@oss.qualcomm.com>
+References: <20250924-knp-dts-v1-0-3fdbc4b9e1b1@oss.qualcomm.com>
+ <aS8uJCnb0xOd6uby@duo.ucw.cz>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -104,36 +115,32 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <a0ae7bfa-9924-45b0-9d10-96b91eb17d0c@kernel.org>
+In-Reply-To: <aS8uJCnb0xOd6uby@duo.ucw.cz>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 03/12/2025 18:21, Krzysztof Kozlowski wrote:
-> On 03/12/2025 18:07, Soham Metha wrote:
->> The binding file 'gpio-dsp-keystone.txt' has been converted to a DT schema.
->> The current binding is located at:
->>
->>     Documentation/devicetree/bindings/gpio/ti,keystone-dsp-gpio.yaml
->>
->> This change was made in https://lore.kernel.org/all/20250714202850.3011952-1-robh@kernel.org/
->> and merged in aff0a1701b020c8e6b172f28828fd4f3e6eed41a
+On 02/12/2025 19:21, Pavel Machek wrote:
+> Hi!
 > 
-> Drop this sentence and instead please use 'commit sha' syntax, see
-> checkpatch and submitting patches docs for details.
-> 
+>> Introduce the Device Tree for the recently announced Snapdragon SoC from Qualcomm:
+>> https://www.qualcomm.com/products/mobile/snapdragon/smartphones/snapdragon-8-series-mobile-platforms/snapdragon-8-elite-gen-5
 >>
->> Signed-off-by: Soham Metha <sohammetha01@gmail.com>
->> ---
->>  .../devicetree/bindings/remoteproc/ti,keystone-rproc.txt        | 2 +-
+>> Bindings and base Device Tree for the Kaanapali SoC, MTP (Mobile Test Platform)
+>> and QRD (Qualcommm Reference Device) are splited in three:
+>>
+>> - 1-3: MTP board boot-to-shell with basic function.
+>> - 4-16: More feature including PCIE, sdcard, usb, DSPs, PMIC related, tsense, bus, crypto etc. Add QRD board support.
+>> - 17-20: Multimedia features including audio, video and camss.
+> 
+> Thanks for doing this. I assume there devices available with this are
+> quite expensive/hard to get at this point?
+> 
+> Please cc phone-devel@vger.kernel.org with phone related patches.
 
-And:
-
-Please use subject prefixes matching the subsystem. You can get them for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching. For bindings, the preferred subjects are
-explained here:
-https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
-
+That's not even a phone, anyway contributors should not cc lists which
+are not relevant to the posting and not pointed out by maintainers. You
+cannot just ask people to keep posting before you wish to look at it.
+Please use lei for own filters or adjust maintainers file.
 
 Best regards,
 Krzysztof
