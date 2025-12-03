@@ -1,282 +1,268 @@
-Return-Path: <devicetree+bounces-244002-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244003-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB1E5C9EF21
-	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 13:14:07 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 305B4C9EF56
+	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 13:19:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 854973A3D09
-	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 12:14:06 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 864CE3488D6
+	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 12:19:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43CA52EA174;
-	Wed,  3 Dec 2025 12:14:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFED62D63F8;
+	Wed,  3 Dec 2025 12:19:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="DPET5RQi"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="b0eeT/le"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DM1PR04CU001.outbound.protection.outlook.com (mail-centralusazon11010062.outbound.protection.outlook.com [52.101.61.62])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9658F28313D;
-	Wed,  3 Dec 2025 12:14:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.61.62
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764764044; cv=fail; b=rF8Lq84FhrFY4EPUrldAgUQXUkicFXyBUOU6ryNh/IhOHBmgrR+xyal2ughZQb7CG/q5xgNEjKJvIO4swQWRJ6YOvdP40BQ3cR4fVAGzJZ39T4RG0b7lwSKgo4LinNNeyJBD61IhgmorxFWpLYS+rYjRVY/Txhy6BtG5zJeB0Uk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764764044; c=relaxed/simple;
-	bh=jrMYXcEvm/95Rcq5KhEhxTaM5sGaF8trva6tp7NVstc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=HQx32tXlavX0BpR4nsVlytkxTRaswnBxWmmCqLllYwGPWhBOszza/o3h1emWft2IGPNsbloyGhdkUrY7xKgf27jnlgb+W/+9xfXF+3XdMi77I1qRllGbXk/CG30VX6Lyu4ajw2L43uxMiO9HtNOC4aR6uXKscsIkb3FUVG9UXa8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=DPET5RQi; arc=fail smtp.client-ip=52.101.61.62
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=qFVZc4uiOLn9FwQ/YVSv9wO0+vJMe33dMrNjBJkLzQU6Ozr5iortp8aCZo+DgugSxlpkt45udZuelwJlACBSzN+0OGCsxjph/5WHfsRonqPhwfRe5s5RuPPtB6v6oCAv+CevgFB4wkWtBvKIzbzOQ5W4q6pPTl6jvr8s/ghjRCS1v2HSe3+jPWm9+ob/iI/AqxKoSY22rJ956Igaj757TiHuaKbwYYvLJeHgZoKksAnuvkCiBoDfhI2MLJ5jd7kphncIzREX36ciM899unyemeoFEmOEMmKvntVTJfQgTvNLMHfrDjgWL13gXDh25+pT7sID0oMEvpKPut5ATZyt5g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6FItVlMrRvYSm/z5YIX5F8uem2kZe0Wd8fwcWbKXfT0=;
- b=dlaqPU76ALTAtR/9RS6lyC6s7KMnd6IQlDOV0A+5auKlYmFrOplBAyVGbqVhw7r2oMKgWxju4tdJiRxGGYoOJn2ljHy+nhnokuxQbr3OrlCqWKxtsgCxZvoY+fYKTluGP+Kjp74lFGDwZ7LqCm/TV/LVx1b0SuXZpPDhrJDksK0I9KLIaHQ2Ck1R5hhf3azuMwDtnm7z7KWYUTOFd2EhK/xoQIcREtbNsYthfcsK2xMEKNSwffILdSmw7HDsuJDOiwXhkISPV682xB+bDjwMVWl+VDLViPltQvMWYPWZE59o8Ue2Z/+dS6e5TPXpTrgr4z5Il1fXdru+KXn5IJ5TUw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.194) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6FItVlMrRvYSm/z5YIX5F8uem2kZe0Wd8fwcWbKXfT0=;
- b=DPET5RQiInC2S0YlnsqIfXVR2fpCqvEF2SwlijrlRdqdsDvd6MZaL2bZ981BELgq2llii1om5ZMiFCWoqSz4++kBAQ8jAGfhb23AAOUeUNiGVhrrF6PXIWXyKJl8iDj+ItbpUYSQVmSXURaCTbe+0G5F9+x+5cBQZ6KS86jbhpQ=
-Received: from BYAPR01CA0065.prod.exchangelabs.com (2603:10b6:a03:94::42) by
- CH3PR10MB7416.namprd10.prod.outlook.com (2603:10b6:610:156::6) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9388.9; Wed, 3 Dec 2025 12:13:57 +0000
-Received: from CO1PEPF000042A7.namprd03.prod.outlook.com
- (2603:10b6:a03:94:cafe::d0) by BYAPR01CA0065.outlook.office365.com
- (2603:10b6:a03:94::42) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9388.9 via Frontend Transport; Wed, 3
- Dec 2025 12:13:29 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
-Received: from flwvzet200.ext.ti.com (198.47.21.194) by
- CO1PEPF000042A7.mail.protection.outlook.com (10.167.243.36) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9388.8 via Frontend Transport; Wed, 3 Dec 2025 12:13:55 +0000
-Received: from DFLE209.ent.ti.com (10.64.6.67) by flwvzet200.ext.ti.com
- (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 3 Dec
- 2025 06:13:49 -0600
-Received: from DFLE207.ent.ti.com (10.64.6.65) by DFLE209.ent.ti.com
- (10.64.6.67) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 3 Dec
- 2025 06:13:49 -0600
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE207.ent.ti.com
- (10.64.6.65) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Wed, 3 Dec 2025 06:13:49 -0600
-Received: from [172.24.233.20] (a0512632.dhcp.ti.com [172.24.233.20])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5B3CDdJN3987980;
-	Wed, 3 Dec 2025 06:13:40 -0600
-Message-ID: <3ebd23db-8ebb-4b04-88a6-415ce92da131@ti.com>
-Date: Wed, 3 Dec 2025 17:43:38 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E9B129D287
+	for <devicetree@vger.kernel.org>; Wed,  3 Dec 2025 12:19:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764764350; cv=none; b=PcNmGd5sd6St6Z1efygifxL8JhJK7EhbJ0ON69Wx9BTjll0uVkd0lehMKidjGXQAaa9F+PGgCQmkeMSg9c5+GG31jmLukuGSpHsybRaC6xIBxKnmmipYqxLz59XJtyEgi6e07Ddq80sIw6h/JevMkM7zFWKd1VZx2fPKlKUV2sI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764764350; c=relaxed/simple;
+	bh=c9qCQV2MwwHxy/d1vZt7uuMhVnvFVbsT7lephxyOpRo=;
+	h=From:Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:To:
+	 References:In-Reply-To; b=kJQlVsL3YCD76xr2tdMd7DuhJkOkbdyYJ5aPaEyTP+62scTeOTDxFNRIa65wRhfjDTshvE0RtZrjWBstrvt9JqGbRmJT8lS09OdJyVB14HONCex8Pr19REf+bqzi52UYogD0hXVr/T9g6uoi3b5C04sp0iiz/O6uDEfs+SQ/TfI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=b0eeT/le; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-4779aa4f928so58181115e9.1
+        for <devicetree@vger.kernel.org>; Wed, 03 Dec 2025 04:19:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1764764346; x=1765369146; darn=vger.kernel.org;
+        h=in-reply-to:references:to:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=U1cAxsmEpFJXSScw6H8R77cdefHfZunUBKjjqkWhIJ4=;
+        b=b0eeT/le7tEPrDsbrHfYWOs0xABzacNVFb5uii3cg5Ih0Jny+92yktQIzCq/X8RO47
+         sZGy4QeDHrKbrbiiEky4rQql9LNcPKosWWJZjRLUrQPu6R+EHHseDZ9Yzul7b2T0SPUY
+         L1nOOSTkcyV/DqO9X7ql06gSXbFZj1s+Q1NRat4UG5zyfcuoRoEBa2Qz9jptWcAxPqmc
+         Mj3mg0SeztXSl4kxT4z2Ltloj4Cy3c9flsCc9oVIhFKDDJEhUdPy6DThOaHeit814nms
+         e3UfaA6TB1w8hiy2fEbhU9iijx03Vee4cDKD0e+HhIozW2hi4I8qGPX8XBdtN8aCkIno
+         tQ9g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764764346; x=1765369146;
+        h=in-reply-to:references:to:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=U1cAxsmEpFJXSScw6H8R77cdefHfZunUBKjjqkWhIJ4=;
+        b=OWcJz5DxfY3HXrVK4sYYcS1EgTU2ngN7BOUyVx/9i2e7xh1cK2AP1uIONaF2eBGmLm
+         HVMHjdabPW8Iqu6n/sKl7IgQfg87+qFUby8k4Yh2jn2KpSnHT/g2XVefj21TziIBt849
+         TJHMm71dCCofVJqhWR4cwlOdy7Lsch1XbauK3CY8vq5lkcq/tLwEVaeLqXba1Tjmzwh6
+         WNUrTwBnW8Rr+aZ+9B2BN6EtHoMpPWKd7wRd3pkTFz9rbRvgI3ljT5xM8+tzRKM5JsyK
+         ti5RwobuNfxu/xFSLRBd8ZPiUfUKs1LXWEjByP2fcVhDrb7RW99WHyXhsV4IcrCPKN1z
+         oK0w==
+X-Forwarded-Encrypted: i=1; AJvYcCXT0slOv68iTjXoVOEEK9QvJx2gkmR5Dv/q3gA2+tNkP4oJjJEchvNMY5nDwdER6hK3IUqqmAvd5imI@vger.kernel.org
+X-Gm-Message-State: AOJu0YxdLTSXf5XbSHdqxQXGtPpGOHdZqp+4JX7adOudnw5/jKDWe2Cd
+	8FijgVfQuI7g16QmH9Edm1lPgE38xvSRIfUdfH3q1Xtj8T+EP1rB+NsvKLx/VGcz2Os=
+X-Gm-Gg: ASbGncsDCJBB7EqSGM9h4wsEk4oWwmnSe0EMyLvm34lEFpNaB12upGY3FelpKW/rdB8
+	eKke/bgTE5XrpbX8agZpnm5WzxwJbkwKMTdxtfEiQvRg+grA+UQvI0z2ynn5Lm5O1fOypT2Vfjw
+	Ht8F37rfXPiKmQgvECaal14pkT5fJtM3xKXHepPefiBIQtIgtCaYPWtqX/TY5BytU6dc9gZ9u9X
+	NspahkmCJdsgAZnwiid9acKQBZkXLHCykcHlNkeJVw10m5KhQmzEGxfY5e3bP9QqOmo+Ee9m3uO
+	V4n5u1IRAdghLK/v30ryRvCkds4E6I9QjF4T1xGA5phmnge6nzCei3XAQvJzQqUpT8zM8PTI8kw
+	x9/90sWZptZU9zomzFVoHFcVf3SIU2PnB1PG+nu6k6FOHFiZ9LCNLbO4XCKHnAHL9t35hq40IRL
+	t4h2BjA0paqk+ZiBwpd1Q9y1r4soWG3d8wNesmW9NSmTOhrWDERfEj
+X-Google-Smtp-Source: AGHT+IHHTbJIcnGQCc0utWINMQd+ZLj+OqfQUAbKCEsDG7jK0rWei2cfpyaMVepvuB3KAsYLzf4COg==
+X-Received: by 2002:a05:600c:45ca:b0:46e:4a30:2b0f with SMTP id 5b1f17b1804b1-4792af486d7mr23114625e9.29.1764764345668;
+        Wed, 03 Dec 2025 04:19:05 -0800 (PST)
+Received: from localhost (a109-48-201-233.cpe.netcabo.pt. [109.48.201.233])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4792a8ccdfbsm47268455e9.14.2025.12.03.04.19.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 03 Dec 2025 04:19:05 -0800 (PST)
+From: Rui Miguel Silva <rui.silva@linaro.org>
+X-Google-Original-From: "Rui Miguel Silva" <rui.silva@linaro.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 00/21] Clean and update tilcdc driver to support
- DRM_BRIDGE_ATTACH_NO_CONNECTOR
-To: Kory Maincent <kory.maincent@bootlin.com>
-CC: Jyri Sarha <jyri.sarha@iki.fi>, Tomi Valkeinen
-	<tomi.valkeinen@ideasonboard.com>, Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, "Russell
- King" <linux@armlinux.org.uk>, Bartosz Golaszewski <brgl@bgdev.pl>, "Tony
- Lindgren" <tony@atomide.com>, Andrzej Hajda <andrzej.hajda@intel.com>, "Neil
- Armstrong" <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman
-	<jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, "Markus
- Schneider-Pargmann" <msp@baylibre.com>, Luca Ceresoli
-	<luca.ceresoli@bootlin.com>, Louis Chauvet <louis.chauvet@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Miguel Gazquez
-	<miguel.gazquez@bootlin.com>, <dri-devel@lists.freedesktop.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-omap@vger.kernel.org>
-References: <20251126-feature_tilcdc-v1-0-49b9ef2e3aa0@bootlin.com>
- <7b8e22d1-a872-4ea0-8fce-4323d2bf81ff@ti.com>
- <20251203114941.1fafd9dd@kmaincent-XPS-13-7390>
-Content-Language: en-US
-From: Swamil Jain <s-jain1@ti.com>
-In-Reply-To: <20251203114941.1fafd9dd@kmaincent-XPS-13-7390>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PEPF000042A7:EE_|CH3PR10MB7416:EE_
-X-MS-Office365-Filtering-Correlation-Id: 68b2731b-44af-434e-464d-08de32656e54
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|7416014|36860700013|376014|82310400026|1800799024|13003099007;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?d0FSTnVLUDd1bVJ2T3Nma3BBaHk5RXJxcVB1L0hyUXBrVDErZlptZmhqa2p4?=
- =?utf-8?B?R1ZseXhMRVErcmZmYUlBdVRlV3A4cDVNcFR0QnZ4VlRRQkg5QzNiMXI4TTdy?=
- =?utf-8?B?MmF6OFpMalJYdnRmekcrSGFJU0JLU0o2dm1HRjVlbmpOZTA1MzRSU1QyRG0x?=
- =?utf-8?B?OXhPSlI2dSs1Z0t5eHRCVXhlNFRTQVFjRjk0K0dCNjVSTjNNNzYzcUpVQUpP?=
- =?utf-8?B?b3NGd1hkNE84S3A5R1lwYll6dlNiY0p3MWtQcnpNZkNDeDkwTUJ0MVl6em1n?=
- =?utf-8?B?TTNadHYyYzJTRWJlWWxBWGFSdlpGZnNjMFpsNHpZQjhXVUlYMzVoNVVENFE2?=
- =?utf-8?B?azMzblp6VTEzNVZUdFY5T2xzaCsrTDI2QUx4QmU0SU1QNUlSUDB5Sm55cW5k?=
- =?utf-8?B?UE5mNlBpb2kzVGNBTVNzUTJNQjVOVVZiNVQrdmlqRzh3alNEc0Y1YkFKTEZm?=
- =?utf-8?B?QWE3NEQwSCs3VGxyM290REdyNFh3K3FqOHF1UVgzOHN6cGhoelVSV2pQS2NC?=
- =?utf-8?B?a05GZ1Z2dXVYSnlINWt1R2hCTUo4ek52K0QrcHN6dWxCcDVqdzZQMkd0MktP?=
- =?utf-8?B?cnFZSWo5U1hhMERhNGtzaDd1WjkrSzZlMGJ3RWhLanpheThSc3BwVDBVYnAx?=
- =?utf-8?B?K2E0cnJUYlpCQ2xGVCtLYUFFWTN1UmVUL2N4M3pVNkJtSzV6dkpWWW1aNkFR?=
- =?utf-8?B?TnZ3cS9rd29ibGljSWRlQy9nT0d1OGR5cExYc2ZuaFhJenpQNmtCR0lVMkM1?=
- =?utf-8?B?ZGRUeno5VGpna1plOHlXSkJYemVJdE1HT3JWK0VibjkrVUNJZDZZTExQOEto?=
- =?utf-8?B?QUVKY254dDhoTFlFVGs1OE9JVUFDZEFENGF0Y3FMWDNMWnhTck1rVERxa2tx?=
- =?utf-8?B?ZFpFTHpyd0s5bFFyQTNZdnQ5cmZxV1g3bnBDUnRyNkVmdzc4Wk5SWHNQMEJS?=
- =?utf-8?B?ZC83SjhLMVlzLzQ3U3ZvYldsbEJFUHZKM0tXazY2QnJVcWsxTWg3bUx5NDEw?=
- =?utf-8?B?ZDlNajRuT3ZudUp0aFp3U3BaWmUzL1lucjdySnhsZU8rdHlFVXRBZ2c3S09w?=
- =?utf-8?B?RnpJYXpuVHl4MGdldzkrbVZINWFpREFaSzdZZFVjdXQrU2p3dU42TXpyWjhN?=
- =?utf-8?B?VkltNFR3b1ZPdHdwSzhnY1FNWWYvZDdZWkVlWXNQZDhVY29mR3VtVnhkZTU3?=
- =?utf-8?B?YWh3amY5Z3UzZjgvRUNHSXR2T2I2aS9Kb3Q3Y3NHeU9NeG82Y2k1cmhYeEJN?=
- =?utf-8?B?VFVBZlpUcm9FM25SanJTdGJJWk53OUFteDljWjZRQW8vMkpmZ2F0aStRNy8r?=
- =?utf-8?B?WUM3ZGpoQjdZdTBxRnR3SWRnNWc5MzkwTHYwelZEaGMxYnFaR25DYkxnS3hv?=
- =?utf-8?B?ZjFOK1ZtS25BSFIrZU5zaENGUzNSUkU4NElxeFlwWnpwWTBnaUVyVm1YVWFY?=
- =?utf-8?B?d1NmdjJOQk9zYXM5THBxWHFrUmJoODhuekVqeTdiY1pjOXFVYk5sT1FucmRN?=
- =?utf-8?B?aHhUVmFRSmU3OEFYSWVuRDVJU05nM21zeSsya0U5Q29VZi9XY3U3OHhETVRH?=
- =?utf-8?B?eml6d0R1M0NjMGpEZVlISTN4SS9MejVCT2VZaVRzM3BiTVhDWU5Yd1RYenRm?=
- =?utf-8?B?YUdXVWxjdGtGbE1xM0FqN1ozeXYxN2E0TXRCN2Z6eDh4Q1MycXZyR0hodTlN?=
- =?utf-8?B?NXR4b3NZL0c3STRFNzVkTi9Ia2V2WHJUZnR0VW5ob3AvMnRFcWo3WFZjenFE?=
- =?utf-8?B?Qnp6WG16R1hmUFdLNG9Cc3FBQVpDenRBK1NNVW92NG13czh1VXpoT3BWQm8x?=
- =?utf-8?B?WU1JT3h3TlY5SzRSN1A2UHNqU3ZaTzBxb3hVK0cyMGg0U1pXVmp0ZVhqR2hY?=
- =?utf-8?B?dGdFNkFWTVhMbnBjRHVsSWI2VHdqRnNRclVteVZTci9DT2wya1NyNTVWV21P?=
- =?utf-8?B?Z1B0RUN1Y3RGMVk4cFY1NDRSTmgzTFNzb29xNllCRFNWRDhCSGNRSC9KODhZ?=
- =?utf-8?B?RTNNVHpwVW5ndGE0V1B0L09rT1J5bWNERHlGbmdwYm4vd2sxcWVVMTlWak9P?=
- =?utf-8?B?ZXQxZVpsZFpUZ0pwa1JFMmFmRnQxeERrUlNtNFhITlZWTUFzRVlYSG92STRK?=
- =?utf-8?Q?NS4A=3D?=
-X-Forefront-Antispam-Report:
-	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(7416014)(36860700013)(376014)(82310400026)(1800799024)(13003099007);DIR:OUT;SFP:1101;
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Dec 2025 12:13:55.6336
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 68b2731b-44af-434e-464d-08de32656e54
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	CO1PEPF000042A7.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR10MB7416
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 03 Dec 2025 12:19:04 +0000
+Message-Id: <DEOKQZMPDTLY.3H4NBUEC3LNHE@linaro.com>
+Cc: "Laurent Pinchart" <laurent.pinchart@ideasonboard.com>, "Mauro Carvalho
+ Chehab" <mchehab@kernel.org>, "Hans Verkuil" <hverkuil+cisco@kernel.org>,
+ "Shawn Guo" <shawnguo@kernel.org>, "Sascha Hauer" <s.hauer@pengutronix.de>,
+ "Pengutronix Kernel Team" <kernel@pengutronix.de>, "Fabio Estevam"
+ <festevam@gmail.com>, "Martin Kepplinger" <martink@posteo.de>, "Purism
+ Kernel Team" <kernel@puri.sm>, "Rob Herring" <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Philipp Zabel" <p.zabel@pengutronix.de>, <linux-media@vger.kernel.org>,
+ <imx@lists.linux.dev>, <linux-arm-kernel@lists.infradead.org>,
+ <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>, "Alice Yuan"
+ <alice.yuan@nxp.com>, "Krzysztof Kozlowski"
+ <krzysztof.kozlowski@linaro.org>, "Robert Chiras" <robert.chiras@nxp.com>,
+ "Zhipeng Wang" <zhipeng.wang_1@nxp.com>, "Hans Verkuil"
+ <hans@jjverkuil.nl>, "Sakari Ailus" <sakari.ailus@iki.fi>, "Kieran Bingham"
+ <kieran.bingham@ideasonboard.com>
+Subject: Re: [PATCH v4 0/5] media: imx8qxp: add parallel camera support
+To: "Frank Li" <Frank.li@nxp.com>, "Rui Miguel Silva" <rmfrfs@gmail.com>
+References: <20250729-imx8qxp_pcam-v4-0-4dfca4ed2f87@nxp.com>
+ <20250805010822.GC24627@pendragon.ideasonboard.com>
+ <aLbcpEZXm5G1Onq7@lizhi-Precision-Tower-5810>
+ <20250902123920.GM13448@pendragon.ideasonboard.com>
+ <aLhJDXnz9HPGrWcp@lizhi-Precision-Tower-5810>
+ <aQuDSROHLGHIhtlh@lizhi-Precision-Tower-5810>
+ <20251105171928.GB6046@pendragon.ideasonboard.com>
+ <aQul/VGG8e3MJxhx@lizhi-Precision-Tower-5810>
+ <DE1JMG95RZME.2YSV10RI9AME4@gmail.com>
+ <aQzFiEOQvtZjHIsr@lizhi-Precision-Tower-5810>
+ <aS9NvkAWTa42j7KW@lizhi-Precision-Tower-5810>
+In-Reply-To: <aS9NvkAWTa42j7KW@lizhi-Precision-Tower-5810>
 
+Hey Frank,
+On Tue Dec 2, 2025 at 8:36 PM WET, Frank Li wrote:
 
-
-On 12/3/25 16:19, Kory Maincent wrote:
-> On Tue, 2 Dec 2025 17:55:15 +0530
-> Swamil Jain <s-jain1@ti.com> wrote:
-> 
->> Hi Kory,
->> Thanks for the series.
+> On Thu, Nov 06, 2025 at 10:58:00AM -0500, Frank Li wrote:
+>> On Thu, Nov 06, 2025 at 10:34:48AM +0000, Rui Miguel Silva wrote:
+>> > On Wed Nov 5, 2025 at 7:31 PM WET, Frank Li wrote:
+>> >
+>> > > On Wed, Nov 05, 2025 at 07:19:28PM +0200, Laurent Pinchart wrote:
+>> > >> Hi Frank,
+>> > >>
+>> > >> On Wed, Nov 05, 2025 at 12:03:05PM -0500, Frank Li wrote:
+>> > >> > On Wed, Sep 03, 2025 at 09:56:29AM -0400, Frank Li wrote:
+>> > >> > > On Tue, Sep 02, 2025 at 02:39:20PM +0200, Laurent Pinchart wrot=
+e:
+>> > >> > > > On Tue, Sep 02, 2025 at 08:01:40AM -0400, Frank Li wrote:
+>> > >> > > > > On Tue, Aug 05, 2025 at 04:08:22AM +0300, Laurent Pinchart =
+wrote:
+>> > >> > > > > > Hi Frank,
+>> > >> > > > > >
+>> > >> > > > > > Thank you for the patches.
+>> > >> > > > > >
+>> > >> > > > > > I've quite busy these days, and I don't believe I will ha=
+ve time to
+>> > >> > > > > > review this series before coming back from OSS Europe at =
+the beginning
+>> > >> > > > > > of September. Let's see if anyone on CC could volunteer.
+>> > >> > > > >
+>> > >> > > > > Laurent Pincha
+>> > >> > > > > 	I hope you have good time at OSS.
+>> > >> > > > >
+>> > >> > > > > 	Do you have chance to review this patch?
+>> > >> > > >
+>> > >> > > > I'm going through my mail backlog, which is really big at the=
+ moment.
+>> > >> > >
+>> > >> > > Understand.
+>> > >> > >
+>> > >> > > > I'd like someone else to volunteer to review this series. It =
+won't scale
+>> > >> > > > if I have to review all NXP media patches in my spare time :-=
+/
+>> > >> > >
+>> > >> > > Yes, but none volunteer review this in passed months. Expeciall=
+y key
+>> > >> > > reviewer. I am reviewing i3c patches. but Not familiar v4l syst=
+em yet. It
+>> > >> > > need scalable solution. I can help filter some common and simpl=
+e problem
+>> > >> > > from beginning.
+>> > >> >
+>> > >> > Laurent Pinchart:
+>> > >> >
+>> > >> > 	Do you have chance to check this serise? this one should be rela=
+ted simple.
+>> > >> > 	This one sent at 7/29. Still not any volunteer to review it.
+>> > >>
+>> > >> I'm afraid I won't have time to review this for the time being. My =
+spare
+>> > >> time is already exhausted by all the other drivers I maintain upstr=
+eam.
+>> > >>
+>> > >> > 	How do we move forward?
+>> > >>
+>> > >> I think this is a question for the subsystem maintainers. Hans, Mau=
+ro ?
+>> > >
+>> > > Mauro Carvalho Chehab and Hans Verkuil:
+>> > >
+>> > > 	Laurent provided great help about review and land i.MX related
+>> > > patches in past, who are quite famillar with i.MX chips. But he is q=
+uite
+>> > > busy. So the whole reviews cycles takes quite long time and offten c=
+ross
+>> > > some merge windows.
+>> > >
+>> > > 	In pull requests for 6.19:
+>> > > https://lore.kernel.org/all/4989c563-47f4-478c-80c4-41f7e98597e4@ker=
+nel.org/
+>> > > only 10 patches, and 4 patches is trivial clean up.
+>> > >
+>> > > 	In reviewing patch queue, there are
+>> > > 	1: media: nxp: imx8-isi: Add ISI support for i.MX95
+>> > > 	   https://lore.kernel.org/imx/20251105-isi_imx95-v3-0-3987533cca1c=
+@nxp.com/T/#t
+>> > > 	   This one already review, but I am not sure if it capture 6.19 cy=
+cle because
+>> > > PULL-request already sent.
+>> > >
+>> > > 	2: Add MIPI CSI-2 support for i.MX8ULP
+>> > > 	   https://lore.kernel.org/imx/20251023-csi2_imx8ulp-v7-0-5ecb081ce=
+79b@nxp.com/
+>> > >
+>> > > 	3: media: add imx93 mipi/controller csi support
+>> > > 	   https://lore.kernel.org/imx/20250821-95_cam-v3-0-c9286fbb34b9@nx=
+p.com/
+>> > > 	   This one is quite big, but first 10 patches is simple trivial cl=
+eanup patches.
+>> > > 	   I post at 8/27, but get first feedback around 10/27, I am not
+>> > > 	   sure if missing somethings.
+>> > >
+>> > > 	4: This series, laurent already said no time review it.
+>> > >
+>> > > 	5: ap1302 sensor patches
+>> > >            https://lore.kernel.org/imx/20250811-ap1302-v4-0-80cc41b9=
+1662@nxp.com/
+>> > >            binding already ACK, most maintainer want to pick binding=
+ with
+>> > > 	   driver together, but not an feedback since 8/11.
+>> > >
+>> > > 	I jump into and help do some review.
+>> > >
+>> > > 	The questions is how to move forward pending patches, like [3], [4]=
+,
+>> > > [5]. How to keep good community channel to avoid long time pending?
+>> >
+>> > Sorry, but like Laurent I am really without spare cycles to go over th=
+e
+>> > patch series that have arrived in media (also I do not have any hw any=
+more).
+>> > So, Frank or maybe Laurent knows someone that would like to be add als=
+o as
+>> > maintainer of this drivers for me would be great, that would also help=
+ to
+>> > avoid such bottlenecks.
 >>
->> On 11/26/25 23:05, Kory Maincent (TI.com) wrote:
->>> The starting point for this work was adding support for the HDMI cape:
->>> https://www.seeedstudio.com/Seeed-Studio-BeagleBone-Green-HDMI-Cape.html
->>> This will be sent in a later series.
->>>
->>> Initially, Miguel proposed modifying the ite-it66121 bridge to support
->>> the legacy behavior without the DRM_BRIDGE_ATTACH_NO_CONNECTOR flag:
->>> https://lore.kernel.org/lkml/20250909-it66121-fix-v1-1-bc79ca83df17@bootlin.com/
->>> This patch was NAK'd as we don't want to add more legacy code. Maxime
->>> requested that the tilcdc driver be updated to use
->>> DRM_BRIDGE_ATTACH_NO_CONNECTOR instead.
->>>
->>> While working on this update, I discovered that the tilcdc driver
->>> contained significant amounts of legacy code that needed cleaning.
->>> Since this driver was developed alongside the tda998x driver for
->>> several AM335x boards, the tda998x driver also required cleanup and
->>> support for the DRM_BRIDGE_ATTACH_NO_CONNECTOR flag.
->>>
->>> This series is based on the tilcdc fix sent to mainline:
->>> https://lore.kernel.org/lkml/20251125090546.137193-1-kory.maincent@bootlin.com/
->>>
->>> Patch 1-7: Convert tilcdc binding to YAML and remove the ti,tilcdc,panel
->>> 	   sub-binding and driver
->>> Patch 8-16: Clean up tilcdc driver
->>> Patch 17-19: Clean up tda998x driver
->>> Patch 20: Add DRM_BRIDGE_ATTACH_NO_CONNECTOR support to tda998x
->>> Patch 21: Add DRM_BRIDGE_ATTACH_NO_CONNECTOR support to tilcdc
->>>
->>> Signed-off-by: Kory Maincent (TI.com) <kory.maincent@bootlin.com>
->>> ---
->>> Kory Maincent (TI.com) (21):
->>>         dt-bindings: display: tilcdc: Convert to DT schema
->>>         dt-bindings: display: tilcdc: Add fifo-threshold property
->>>         drm/tilcdc: Remove simulate_vesa_sync flag
->>>         drm/tilcdc: Add support for DRM bus flags and simplify panel config
->>>         ARM: dts: omap: Bind panel to panel-dpi instead of ti,tilcdc,panel
->>> driver dt-bindings: display: tilcdc: Remove panel binding
->>>         drm/tilcdc: Remove tilcdc panel driver
->>>         drm/tilcdc: Remove component framework support
->>>         drm/tilcdc: Remove tilcdc_panel_info structure
->>>         drm/tilcdc: Remove redundant #endif/#ifdef in debugfs code
->>>         drm/tilcdc: Remove unused encoder and connector tracking arrays
->>>         drm/tilcdc: Rename external_encoder and external_connector to
->>> encoder and connector drm/tilcdc: Rename tilcdc_external to tilcdc_encoder
->>>         drm/tilcdc: Remove the useless module list support
->>>         drm/tilcdc: Modernize driver initialization and cleanup paths
->>>         drm/tilcdc: Remove the use of drm_device private_data
->>>         drm/bridge: tda998x: Remove component support
->>>         drm/bridge: tda998x: Move tda998x_create/destroy into probe and
->>> remove drm/bridge: tda998x: Remove useless tda998x_connector_destroy wrapper
->>>         drm/bridge: tda998x: Add support for DRM_BRIDGE_ATTACH_NO_CONNECTOR
->>>         drm/tilcdc: Add support for DRM_BRIDGE_ATTACH_NO_CONNECTOR
->>>
->>>    .../devicetree/bindings/display/tilcdc/panel.txt   |  66 ---
->>>    .../devicetree/bindings/display/tilcdc/tilcdc.txt  |  82 ----
->>>    .../devicetree/bindings/display/tilcdc/tilcdc.yaml | 103 +++++
->>>    arch/arm/boot/dts/ti/davinci/da850-evm.dts         |  26 +-
->>>    arch/arm/boot/dts/ti/omap/am335x-guardian.dts      |  25 +-
->>>    arch/arm/boot/dts/ti/omap/am335x-pdu001.dts        |  21 +-
->>>    arch/arm/boot/dts/ti/omap/am335x-pepper.dts        |  22 +-
->>>    arch/arm/boot/dts/ti/omap/am335x-sbc-t335.dts      |  25 +-
->>>    arch/arm/boot/dts/ti/omap/am335x-sl50.dts          |  25 +-
->>>    drivers/gpu/drm/bridge/tda998x_drv.c               | 251 ++++++------
->>>    drivers/gpu/drm/tilcdc/Makefile                    |   3 +-
->>>    drivers/gpu/drm/tilcdc/tilcdc_crtc.c               | 117 ++----
->>>    drivers/gpu/drm/tilcdc/tilcdc_drv.c                | 456
->>> +++++++-------------- drivers/gpu/drm/tilcdc/tilcdc_drv.h                |
->>> 88 +--- drivers/gpu/drm/tilcdc/tilcdc_encoder.c            |  93 +++++
->>>    .../tilcdc/{tilcdc_external.h => tilcdc_encoder.h} |   5 +-
->>>    drivers/gpu/drm/tilcdc/tilcdc_external.c           | 179 --------
->>>    drivers/gpu/drm/tilcdc/tilcdc_panel.c              | 408
->>> ------------------ drivers/gpu/drm/tilcdc/tilcdc_panel.h              |  15
->>> - drivers/gpu/drm/tilcdc/tilcdc_plane.c              |   2 +-
->>>    drivers/gpu/drm/tilcdc/tilcdc_regs.h               |   8 +-
->>>    21 files changed, 589 insertions(+), 1431 deletions(-)
->>> ---
->>> base-commit: 670bacfc7579bdd79a3069cfb5ab60a6a7923003
->>
->> I was trying to test the patches, unable to find the base-commit, are
->> you using drm-misc-next?
-> 
-> It is based on the tilcdc fix as explained in the cover letter.
-> https://lore.kernel.org/lkml/20251125090546.137193-1-kory.maincent@bootlin.com/
-> Therefore you won't be able to find this base commit hash.
+>> If there are not other candidate, I can help maintain it although I am m=
+ore
+>> familar with dt binding, i3c and dmaengine. I can start from simple patc=
+hes
+>> and we have test team to help cover testing on the real hardware.
+>
+> Rui:
+> 	Any update? How to move forward? It was already passed more than 3
+> month!
 
-Sorry I missed it. Thanks for pointing.
+Sorry, I did not realise something was blocked because of me, specially imx=
+8
+related. I thought you have sent the update to MAINTAINERS.
 
-Regards,
-Swamil.
+For me it is fine, it makes perfect sense since you have access to hardware
+and documentation, for you to be the maintainer and steer the features and=
+=20
+improvements in the imx media. you can move me to Reviewer, since there are
+already other 2 persons (and Laurent already handle the pulls, thanks for t=
+hat)
+much more active in the IMX media subsystem.
 
-> 
-> Regards,
-
+Thanks again and Cheers,
+    Rui
 
