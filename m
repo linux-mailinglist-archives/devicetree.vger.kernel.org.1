@@ -1,127 +1,238 @@
-Return-Path: <devicetree+bounces-243847-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243848-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BB57C9DB6E
-	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 05:06:02 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E261C9DC5F
+	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 05:56:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 49E853A1139
-	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 04:06:01 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 1051634B4C9
+	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 04:56:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2A7D26FDA8;
-	Wed,  3 Dec 2025 04:06:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB2AA27FB25;
+	Wed,  3 Dec 2025 04:56:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YcOM/WNv"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iTOd+2W7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
+Received: from mail-ua1-f51.google.com (mail-ua1-f51.google.com [209.85.222.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CAC227381E
-	for <devicetree@vger.kernel.org>; Wed,  3 Dec 2025 04:05:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18160277C81
+	for <devicetree@vger.kernel.org>; Wed,  3 Dec 2025 04:56:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764734760; cv=none; b=G8la4UoUtCfXe2nO/lmBSAnPoa+kzLwwNWQ1BuORdkuQaL62gWzRX2OYoRUiU6jGGFDsktKKnZPv1B2vCIV3Sc0SNUZlOXdkA1iPMFJr63sbbLyuAns52Ago80hLZNOZ2xmPBopqAp7OulGYOD4D0eXOuU/EcCPKB5sdx0tOKF0=
+	t=1764737800; cv=none; b=THqQEfFo47KeXM+22h4LydZJoor0VAsfRlZioGyIRuIRvC+aS28hYfFh6OZG4B9IBmRpatwrBJ5iCJJedf3QAi3ro6DQN8y6lunZbBkH1+0xZW0odOTP88GQKTlD+sEiuc77nTiyzlx37LtTEewngptyVZnslKSf17KylFI5czM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764734760; c=relaxed/simple;
-	bh=2xaGFWIsUm0cfKA6LAaLgYTTnY+9WHjhg5Sq/qWOVps=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=NcWJO1NCllA+JBvSzYp503PK/YQ6VidO46drHFcJEtqzIHsWVeE751Wfst0WyMVBod/kY1TJ39uhAZkzV6+Jfejuvf+yDrAh5HrM38GPykNfIng9H090eZSyoW3ALIqGoWN+Mx3FifL4jmunbYeYfosjb7F1SgYS9WvtRkzLuxk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YcOM/WNv; arc=none smtp.client-ip=209.85.208.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-37baf2d159bso8748231fa.3
-        for <devicetree@vger.kernel.org>; Tue, 02 Dec 2025 20:05:58 -0800 (PST)
+	s=arc-20240116; t=1764737800; c=relaxed/simple;
+	bh=ejR7K3N1RTwwITTakASWOCJgJVrgW3hwfx6+5WfBvTc=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=WECAfxOYK4rrL/Ybr92TwOON69Jyw3pmidXAITauhS3ZVy6Stwn17+oGJPDGxFeagJZGHkY978gF0LEtSoEOD8ocXqk+lYjtVm/BwXJrCxbuZbKRDDnRdYpycSyVfCvfmqPzP3zovxwkoKUJDn0xmAM34ngEvrHaCZB4FVqhBJA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iTOd+2W7; arc=none smtp.client-ip=209.85.222.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f51.google.com with SMTP id a1e0cc1a2514c-93720298f86so3178729241.2
+        for <devicetree@vger.kernel.org>; Tue, 02 Dec 2025 20:56:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1764734757; x=1765339557; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=y7juq+nFojneUyWGV1iiTe0acnQ5/jJnXPDq3Sa5NV0=;
-        b=YcOM/WNvSKFlF2NLK9CqpDg1L/E0kmiEnm30PiAj48aQBLBanaQe61hO5DqWZ2fo9R
-         fcsgzDcn5u46uIROcjHuWgDtLFjhCJ+5z7YRx/+Jp/djz3ogqpxKMomZdmmsQgVUlOtF
-         YPKrTQOMuyItI7+0GH8xH1BQ6u8oiMXqDa2qa6lx4cz6codnNSnxj5yvnyJluLOm36gY
-         DBEALMvbUSD0SlRQtqdW2ggGfWHQ+4vt55Azdp1PLUdh54hCQlTrNsxSEoCkrAsgoFOO
-         s1L+vypDRFmdAfAVu7QFOCtw3MR0e5ixvC0UEHS2dYRITeGWKUMlKy4fflSEtMY6xa6W
-         AQ8A==
+        d=gmail.com; s=20230601; t=1764737798; x=1765342598; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=xBQRiOIIR7pjLiXFMMQ02CyVzIOFN7EEY8M6gcxBZKw=;
+        b=iTOd+2W7kLmorSR0fcn7gOar1GDVrq8wzq/Oy8E6p1c5E/Q5oHxl2mlyq09bWnkrH+
+         t4M3k9NICEFvh2JJYHMs5wP3ScdZW3qafL/ma4LusDCkp490rc6Z1mvThrqtkqLHTt5Z
+         RwXhdFsw68yxXyB0nTD7olYCgTRlvEhGYArDseL6VWJUHK4NcxeQcekG7ClDdZtqcFeU
+         uGBOkY5LeHwAx7T+X0Ep0v952gF+fGWNKIUlv1wP18dtz6Fg0gapt8Zwz0Gf04jQQbkp
+         PW55D0Bkt3c70COP7ksjX8Ua9RWzmlpzNqJo8yFjXHsiar7U3yGdxMw2DDu9hj2gMdca
+         fj5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764734757; x=1765339557;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=y7juq+nFojneUyWGV1iiTe0acnQ5/jJnXPDq3Sa5NV0=;
-        b=YFCTD9+WFZvAIXx/BPTx+xo6kmkyeZ+HbFxgQkQGU7cUj1XZeTYFyYOC+m5lDcPosz
-         hjjL04o8fWK7AbWr+c1ULuupyqhbaeN8QhtxvZkPd9xbsouaRxIDF2LzUFqUkUegveW4
-         Mw4Ix/rNoR0dWrzZkbXKkvBVMZ2fB0PvCodyJwQjtTr+LgLpSqTusxMk+TztIL7iIWY7
-         mWKzRtuxEO8FRjwVKbfcQOiWQnOlaM2+T5hZbokRp0OjbqYvZhjCb5+CmGaZY1Py1KnC
-         S6lX1ivcWtwkjhYDrmKszHfs8JyBQO1gCkpXOltNp/DBCeJTB4OF8YyA1CO9oOONkpPz
-         UUQA==
-X-Forwarded-Encrypted: i=1; AJvYcCXSVmjvXDHLc5koTZpXvLtNv3B/7Gn3DfU/G5KaU/Sy0bGK/2vBQs3j5mKopHAMHl79Qvtvbkn2xUyp@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw5rc9l1y+3K2DevdyXIgBavStw266N09BUldHQBwcxB59+WzAP
-	E+qyQqXN3kS78ka/NflerJ6HOoMwoWpIjeoLITNr9ZE6r+vFxyyjbP2SV5RktekfXJE=
-X-Gm-Gg: ASbGnctCdaOYZ305twxpxP2jCqy5Uz15PQ7l89Sif9UdQ8Bo1QSW57KmIoxwKy8+c9Z
-	8O9gdv7bGR2D5ALYPtdqj4KS6bVQn7+6MFZpWYDgLyNV8C4Ubm/lrzf4KEtVLZjoELnQQfdZitb
-	3D1SK7ctqej6hCcU5G2hIfcXz+hOEkDAuAarO2J6w+o/wSDRBfNMOJdOlFqzey4OJGAKOJ0vghd
-	yfU8Lf+sk3GEF/HtxnrJlfBwMfLjxry+jWS/XUwg7OXXBHI73jeu570Xf/4QpA55heydnf/KwyE
-	s8fvPfrkmrwQ0dySa9saBYKTASm8MUwEdLzqLIBuN39Cl1WOGNsHDP1oRkQgUP5ctCqrxG6snDN
-	bRsCFWKtD7E6Jd9O7AAQ4+3FCRDJxSjiopLpzzmwv1Ali+7yXyVd2viGBQyQaJm3/kPoLrM3+Yi
-	cm7NDDiyKcJ7nSpnw3I0OZteSbOVS09KSeXxhUbgVx6KVy2nJfMR3cjQ==
-X-Google-Smtp-Source: AGHT+IHez6UxKEeGqshs+KN8jSKMIEH6G2gfFkdcufoIAuKX6Xj8dObhL1rRLTptedzYzL85xpm1lQ==
-X-Received: by 2002:a05:651c:41c8:b0:37a:407d:632f with SMTP id 38308e7fff4ca-37e66d588b5mr169791fa.4.1764734757271;
-        Tue, 02 Dec 2025 20:05:57 -0800 (PST)
-Received: from thyme.. (91-159-24-186.elisa-laajakaista.fi. [91.159.24.186])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-37d240981cbsm39505631fa.24.2025.12.02.20.05.55
+        d=1e100.net; s=20230601; t=1764737798; x=1765342598;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=xBQRiOIIR7pjLiXFMMQ02CyVzIOFN7EEY8M6gcxBZKw=;
+        b=Q98Zk879YmdtrWavmWkVK65S0ws8AWBPtZqh0UlvR2aKffIRUJFazd29qdVbOAaj1E
+         13lGKAdWKbxdcNFNM6p5rUvk/UDhGgRJY3AsBiCEIoMtPSdVqFScfVaT+sXyKptUiO7C
+         Nz0CCzXQZmVi9Wxxk6EUQi2NTOxV3QsL/8jxzvCDwjlU10/lzwaI3dQtacPjeWe6ZaIZ
+         4pJNiq3aWLMBxVAs1kSyVjE8T6nCBLN3/ljJx2zhB/UjM1MpP03BVWNv8SeujCtnK1KF
+         351/mn1E1cVv9GZBXLhJPi0EVmno3bwjb006P90ESVDSleCPIdSdc6EMNCDg+8TxaX3A
+         8uiw==
+X-Forwarded-Encrypted: i=1; AJvYcCXDYqVXCBdKxmMt+tXL/mOMFi3ccYHDIDBpVR4+onl0/54+I/hRSAg17Z8gAHEJbFSyWApwyiA72dQf@vger.kernel.org
+X-Gm-Message-State: AOJu0YwUPqZFfizzUY3+UuHhTzm9b8IS/FZGrKmeUyGxLLajhjC95MuE
+	nO5eCLS78GKtt61nd/8jM+vxc781YT0JdiHw6xfsc8M6f37Xc9B+shTi
+X-Gm-Gg: ASbGncsHeLR8bHkLPfxS0zX6SwibKStkzM7PEvOUuxayOD/0B0+/Y0JB+NDKWLOmgZf
+	P7/0aoSPTSW9EcF82VSHeCODeX9j77vbaijb7hArdmA5kS0KRQHBa6RRHBesdpRAHaXn9ccn69n
+	8ynz4qh/pL1dICM29JRCp8KTVK9N5zN74lL1DbH7dYfwi40OZgmhIO6a3xLGQgPpm7mlNrFqofZ
+	bMWHmyuTLGX1OPKZQSmTFQY49HUiyi0VyGIFRQ33bdsZBOiD9BXVb5j8JhjelMqfzeFCZ1B0qW+
+	mRgXAe0DMmUmRpIlU0R/vHVElMGVC8lW/6Io6Nsb1yEJsHqDSa/qXWMSNpRdUI1CPigD/iwr30y
+	2zCTVgy32FroYJRncrkArASzWBfgnaepK4l2V1wzQwxZ9URAEyr8jL+jErA4enNg4+rNWWQQx4d
+	E/Wk2eCDTAqJ9W
+X-Google-Smtp-Source: AGHT+IEe3yqUkhx/+vB4VGHX1JLrPuf0sljxym5HbzX5wIRzoVCqVeftHfjQTIC2hBwwr/LuitKNiw==
+X-Received: by 2002:a05:6102:5795:b0:5de:93bb:c56a with SMTP id ada2fe7eead31-5e48e37b346mr318671137.34.1764737797959;
+        Tue, 02 Dec 2025 20:56:37 -0800 (PST)
+Received: from [192.168.100.70] ([2800:bf0:82:3d2:875c:6c76:e06b:3095])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-93cd6c6802asm7535496241.3.2025.12.02.20.56.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Dec 2025 20:05:55 -0800 (PST)
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH 6/6] arm64: dts: qcom: sm8550-hdk-rear-camera-card: move camss status property
-Date: Wed,  3 Dec 2025 06:05:38 +0200
-Message-ID: <20251203040538.71119-7-vladimir.zapolskiy@linaro.org>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20251203040538.71119-1-vladimir.zapolskiy@linaro.org>
-References: <20251203040538.71119-1-vladimir.zapolskiy@linaro.org>
+        Tue, 02 Dec 2025 20:56:37 -0800 (PST)
+From: Kurt Borja <kuurtb@gmail.com>
+Subject: [PATCH v4 0/2] iio: Add support for TI ADS1X18 ADCs
+Date: Tue, 02 Dec 2025 23:56:17 -0500
+Message-Id: <20251202-ads1x18-v4-0-8c3580bc273f@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAPHCL2kC/13MQQ6DIBCF4asY1qWZAQXsqvdougBBJanaQGNsj
+ Hcv2qSaLt9kvn8m0QXvIrlkMwlu9NEPfRr5KSNVq/vGUW/TJgxYgYCMahtxQkXBgpSlBSFKIOn
+ 7GVztp610u6fd+vgawnsLj7hevw1k+GuMSIEqYQ0oqKtS59em0/5xroaOrI2RHZ3cHUuOOVNbq
+ cAIzv8dPzq1O56cFs5oo7AwzB7dsiwf28/djw4BAAA=
+X-Change-ID: 20251012-ads1x18-0d0779d06690
+To: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Tobias Sperling <tobias.sperling@softing.com>
+Cc: David Lechner <dlechner@baylibre.com>, 
+ =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
+ Andy Shevchenko <andy@kernel.org>, linux-iio@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Jonathan Cameron <Jonathan.Cameron@huawei.com>, 
+ Kurt Borja <kuurtb@gmail.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4807; i=kuurtb@gmail.com;
+ h=from:subject:message-id; bh=ejR7K3N1RTwwITTakASWOCJgJVrgW3hwfx6+5WfBvTc=;
+ b=owGbwMvMwCUmluBs8WX+lTTG02pJDJn6hxn7PdPjnP/cPuFs77Pt/srl9+puXP3/Vaf5nVzWn
+ KbQwoULO0pZGMS4GGTFFFnaExZ9exSV99bvQOh9mDmsTCBDGLg4BWAilScY/nApfJijf6p/ropa
+ X2e+e1P1eqUWxiPHDrHYch/8dT3T8z/D/4TAfW6GPH07mu1KJ+XvWZRQvkQh+N6xz4+efF94JuX
+ cT34A
+X-Developer-Key: i=kuurtb@gmail.com; a=openpgp;
+ fpr=54D3BE170AEF777983C3C63B57E3B6585920A69A
 
-Conventionally status property of device tree nodes is the last one in
-the list, move it there.
+Hi,
 
-Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+This series adds a new driver for TI ADS1X18 SPI devices.
+
+This is my first time contributing to the IIO subsystem and making
+dt-bindings documentation, so (don't) go easy on me :p.
+
+As explained in Patch 2 changelog, the DRDY interrupt line is shared
+with the MOSI pin. This awkward quirk is also found on some Analog
+Devices sigma-delta SPI ADCs, so the interrupt and trigger design is
+inspired by those.
+
+@ David:
+
+I didn't move enable_irq() and spi_bus_lock() out of .set_trigger_state.
+I explained some of my reasoning in v1 and I expanded patch 2 changelog
+on that. If you disagree with this, let me know!
+
+Thank you in advance for your reviews.
+
+Signed-off-by: Kurt Borja <kuurtb@gmail.com>
 ---
- arch/arm64/boot/dts/qcom/sm8550-hdk-rear-camera-card.dtso | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+v2:
+  - [Patch 1]:
+    - Move MAINTAINERS change here
+    - Use generic node names: ads1118@0 -> adc@0
+    - Rename file to ti,ads1118.yaml -> ti,ads1018.yaml
+    - Drop ti,gain and ti,datarate
+    - Add spi-cpha and spi-max-frecuency properties as they are fixed in
+      all models
+    - Add vdd-supply
+    - Make interrupts and drdy-gpios optional properties
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8550-hdk-rear-camera-card.dtso b/arch/arm64/boot/dts/qcom/sm8550-hdk-rear-camera-card.dtso
-index 21bfba6a1182..544cec93353a 100644
---- a/arch/arm64/boot/dts/qcom/sm8550-hdk-rear-camera-card.dtso
-+++ b/arch/arm64/boot/dts/qcom/sm8550-hdk-rear-camera-card.dtso
-@@ -13,10 +13,9 @@
- /plugin/;
- 
- &camss {
--	status = "okay";
--
- 	vdda-phy-supply = <&vreg_l1e_0p88>;
- 	vdda-pll-supply = <&vreg_l3e_1p2>;
-+	status = "okay";
- 
- 	ports {
- 		#address-cells = <1>;
+  - [Patch 2]:
+    - Update probe based on dt-bindings changes
+    - Rename file to ti-ads1x18.c -> ti-ads1018.c
+    - Rework ads1018_oneshot(), instead of waiting for IRQ wait an
+      appropriate delay before reading again
+    - Only alloc and register a trigger if we have an IRQ line
+    - Drop ads1x18->msg_lock in favor of IIO API locks
+    - Read conver before enabling and after disabling IRQ to ensure CS
+      state is correct
+    - Add ads1018_read_locked() which takes an additional argument
+      `hold_cs` to explicitly control CS state in trigger and buffer
+    - Fix ADS1X18_CHANNELS_MAX limit 9 -> 10
+    - Call iio_trigger_notify_done() in all IRQ handler paths
+    - Drop unused includes
+    - Drop BIT_U16 and GENMASK_U16 macros
+    - Drop unnecessary named defines
+    - Use u8 types in ads1018_chan_data
+    - Rename some struct members for clarity
+    - Move tx_buf and rx_buf to the end of struct ads1018
+    - Rework channel handling to just make everything visible and add
+      ADS1018_VOLT_DIFF_CHAN
+    - Use .scan_index instead of .address in IIO channels
+    
+  - v1: https://lore.kernel.org/r/20251121-ads1x18-v1-0-86db080fc9a4@gmail.com
+
+---
+v3:
+  - [Patch 1]:
+    - Use unevaluatedProperties: false
+    - Drop #address-cells and #size-cells
+
+  - [Patch 2]:
+    - Add kernel-doc to internal API
+    - Drop bits.h and bitops.h includes
+    - Add types.h include
+    - Use unsigned type for data_rate_mode_to_hz
+    - Rename __ads1018_read_raw() -> ads1018_read_raw_unlocked()
+    - Rename __ads1018_write_raw() -> ads1018_write_raw_unlocked()
+    - Rename ads1018_read_locked -> ads1018_read_unlocked() for
+      consistency
+    - Let ads1018_read_unlocked() take NULL cnv pointers
+    - Add ads1018_set_trigger_{enable,disable}()
+    - Refactor ads1018_write_raw_unlocked() loop matching
+    - Invert ads1018_trigger_handler() logic to follow traditional error
+      handling pattern
+    - Refactor ads1018_trigger_setup() cleaner
+    - Make ADS1018_FSR_TO_SCALE() calculation be 32-bit compatible
+    - Some additionall minor cleanups
+
+  - Link to v2: https://lore.kernel.org/r/20251127-ads1x18-v2-0-2ebfd780b633@gmail.com
+
+---
+v4:
+  - [Patch 2]:
+    - Replaced <linux/byteorder/generic.h> -> <asm/byteorder.h>
+    - Dropped ADS1018_CFG_DEFAULT
+    - Fixed long lines
+    - Added Andy's remark on ADS1018_FSR_TO_SCALE() kernel-doc
+      description.
+    - Fixed wrong argument on iio_trigger_notify_done():
+      ads1018->indio_trig -> indio_dev->trig
+    - Renamed argument in channel macros _addr -> _index
+    - Changed return type of ads1018_calc_delay() to u32
+    - Mention @cnv is optional in ads1018_read_unlocked()
+    - Use 16-bit transmission cycle in ads1018_oneshot()
+    - Dropped spi_set_drvdata()
+    - Use full resolution in ADS1018_FSR_TO_SCALE() and subtract 1
+      inside macro
+    - Rename ads1018_read_locked() -> ads1018_spi_read_exclusive() for
+      clarity
+    - Minor style changes
+
+  - Link to v3: https://lore.kernel.org/r/20251128-ads1x18-v3-0-a6ebab815b2d@gmail.com
+
+---
+Kurt Borja (2):
+      dt-bindings: iio: adc: Add TI ADS1018/ADS1118
+      iio: adc: Add ti-ads1018 driver
+
+ .../devicetree/bindings/iio/adc/ti,ads1018.yaml    |  82 ++
+ MAINTAINERS                                        |   7 +
+ drivers/iio/adc/Kconfig                            |  12 +
+ drivers/iio/adc/Makefile                           |   1 +
+ drivers/iio/adc/ti-ads1018.c                       | 826 +++++++++++++++++++++
+ 5 files changed, 928 insertions(+)
+---
+base-commit: f9e05791642810a0cf6237d39fafd6fec5e0b4bb
+change-id: 20251012-ads1x18-0d0779d06690
+
 -- 
-2.49.0
+ ~ Kurt
 
 
