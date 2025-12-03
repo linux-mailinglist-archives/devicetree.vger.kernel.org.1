@@ -1,126 +1,214 @@
-Return-Path: <devicetree+bounces-243837-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243838-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1470C9DADB
-	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 04:50:56 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB40AC9DB2F
+	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 05:03:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 48BDE349934
-	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 03:50:56 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9F5D64E4217
+	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 04:03:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84B5D247295;
-	Wed,  3 Dec 2025 03:50:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 138FA26F478;
+	Wed,  3 Dec 2025 04:03:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="CQB0p/y/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RxwtyGir"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E3342550D4
-	for <devicetree@vger.kernel.org>; Wed,  3 Dec 2025 03:50:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FD95218AAD
+	for <devicetree@vger.kernel.org>; Wed,  3 Dec 2025 04:02:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764733853; cv=none; b=bCGq0PzBr7GpBGzcJaxmrbnI0SwbEwB9JmDTiUd7+uCQqdLZxR4kVahQgelqrD6QYiZJ1FDWoepZj7PXeEXG4bBpSWUJf0zg2rDJqZ8Ym1OChL6ajjMztEmJ5hH6RcOGI3wccqir2Eoh7Uq6vH8Yf6o9ht6iFvCPWwtWuHj+6gw=
+	t=1764734584; cv=none; b=nhRZhb+n1VeVcfv82jEWr6Ei6vVYnITnVrHhFBRV+2oWZvxzjmPtjZLbzIkfebDOCVP85JKLgWaOyD7A3uwD9Hbt6mi8z6Fr1xxjurDjH/lmqt4ArYRyoHKIBXmjwBOmybM6dbjWJk+qItf7ZHlhnTt4y/MAqaRrxe8aEHBcLKA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764733853; c=relaxed/simple;
-	bh=Q3ZToy5EEuu+A9zI9VCSqcmwzIdt+2p1mXaZvONgPFI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=s7J5VySDbkQBcfYJ+kyzOlkOgXwuyFaVw2R2SbbDWuwhuZXlX/PAyuFaTHrVViW8Y0bde+bHhyS7Kfab5WLnwGv89q1MBDqDPcwgIfsp6btpJKXLc6HdWfrhTnDftI/kxx0zryuTfJHs5nOLsk+qK8GhDUyAibWTH66tJW0+pVQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=CQB0p/y/; arc=none smtp.client-ip=80.241.56.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp2.mailbox.org (smtp2.mailbox.org [IPv6:2001:67c:2050:b231:465::2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4dLkFL3gd7z9tTX;
-	Wed,  3 Dec 2025 04:50:46 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1764733846;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=i6mxjAhqN52fQLJBVjoKMe25fLU7L+nNfg1TFd0Xx6k=;
-	b=CQB0p/y/26lKNS6WXnrwX5QZ/QKv8bOAU7fnPVorPqGzkrNkDcw+dT5G55q7MnKUrC109l
-	R+8+EBAYf9iq+4fE/he/smzs7UTEHV67WU/IgDcHVji5wtxQjEBf3iFjdRLFYXRapimyey
-	uTWTC8iPhM9UgR5B6lwxNFseODyrK17OPNn9zLoVHn7kh/5FMy/iQd1wXCaBEskq/tsM8n
-	XHr69HUKoe2dLsfuc13mIRpDr83Do9kScbON7nPQsnzAQ77AzlBjk6wG1kCXaLA5KcVa2B
-	lmi3URiVQ3mfGkTuJqvMqEdO1V+py4vcXIWdKYvBvBddXEMeJuwgPx62WGvWTQ==
-Message-ID: <c6e0e55a-06da-4665-972e-e9b5b8c08bf7@mailbox.org>
-Date: Wed, 3 Dec 2025 04:38:19 +0100
+	s=arc-20240116; t=1764734584; c=relaxed/simple;
+	bh=R6Cr8ocb0oEl2uodBSv6KebYw4TmgNZ0DrKfzvEkPs0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=CU76s08BEULKHtnnYQgPJuGeqRtwIgn98wpNC8uG/+HrwS2vzKjZA7reTHnvKKAA6dY6V6g/TI4N/SrO4QylqVbo6ZS36DIGb8hzVBag6ahwmPb0Z6/QPktYx9jB5wSllsRRswgoEYDPQ5rdXmKEWbXPxxlGQfPy3lE8Hywkwdg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RxwtyGir; arc=none smtp.client-ip=209.85.167.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-597d319e0acso78342e87.3
+        for <devicetree@vger.kernel.org>; Tue, 02 Dec 2025 20:02:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1764734578; x=1765339378; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=dhshrMAQHNXfy+sz4qwei88JokhQtbQdlKMxj/ILfBU=;
+        b=RxwtyGirZkzdbzBVze/HmSLmJAcOVe9udRfiSVKwIA55C4A9x++YxFhsMA1OQrUM96
+         ZCVjASfHHP+QA+MfxsN3u5ym7+wxTX+oCEGKQ4/2ilMt461RzFk01xEfc6Ty+jSU78oB
+         Eau4CsT4wwMfP0rSQpbUcxRV2Gy5nqKbI8MAe7LeDFThghhOb/8xPlD4EZYSONIasgQZ
+         J//uspvTSYsuOBfHUyVN5GqQUh04neQiQ1cdheSQQ2iFyjObGNvZmooyfnWW/JovXpJd
+         1I0uo5S9+VM/zLIvid66IFiRDUZgGO8e7aVksHAhzGMHjFIFadqClvlFmbBFdctJZ++J
+         MHNg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764734578; x=1765339378;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=dhshrMAQHNXfy+sz4qwei88JokhQtbQdlKMxj/ILfBU=;
+        b=glldzZVBuMyOtEUVSjO9F7JexGuLCvtFBTI6J0yJ4oLMm7zoMh23gl0vP7ZyfPI+M9
+         fAqAnOIxf327GPXCdpcsxQ9ixLgd9mbNtV5b8C0UYJ3c5hGtMugX99Chl0PdLezT3UAT
+         1xunXxNKSu+9Uu6lQ+pnVacs0mePLuOUtIjd0T9sRHuw1j7ohOr3RA1Fc4FZUEkeWGJr
+         luzw40XItguKtJ4gabjjeoqk2+q1ll3SFwuvNVzTLThwIJTV8XUpXZb1YUNPSatQWeLU
+         RCQIxm0dixtByN0xIaabDrn0wL4M3SXovunIY0nJ0TJNyJVRrYHYQEhs0PSRDhI3bFLj
+         +kiA==
+X-Forwarded-Encrypted: i=1; AJvYcCWFAPNlTdCHbYCPbd46Rn/A0JluAUN07J4niLouyChTwbjshWOs3FjyR9NhsrkzyBpXa1QmBhENaMxX@vger.kernel.org
+X-Gm-Message-State: AOJu0YzaVmNINNd11Imr3bJSTNUrWIXHthjlXetzjiq3oGgtBN0eK6ha
+	q7u/ZpMTwx7gOIXmMvLJxoILKZ0KBrT3ii4IIGviAsxFGvGzwqJVzdsA6YmfBwM8Zi4=
+X-Gm-Gg: ASbGncutaDk8EtzUehTr2uMQtpDX59F7PI29KAg5p1vev96Md8an5FN3wUwHLpaB33R
+	sFVUUr9spyxtv8pJSnyVYy7Cl7n+0u77Alm4d6r68+rf8ZZ4Yqc5QpMZKeomsADD2AYMrgLFzL/
+	sbVQTFK37CDeCcc+FU9q+fx2eFCmNJysFblhakj70VYbXyq9N9DAL87NiGi2jZfX57ZgWZzryk2
+	0xNyPaBz5hQN5Kjfgvgx6/9aRC5YESD0eAW21tyTQpWs0PDlaRy8UG2UxLwOgOeQeD4KkLmaWjQ
+	1zBb9we4M3NX/u9PNrm3ZctkPgj6CIxObQD87aKwCzeXna449KLbCl8TQ2x0hmQ+7RgXqGn5362
+	g/72hXITJjmMH68f6FRR+x8e9B27Dyn4WgjCVmvD9D/appa5lfZP/vGHVwyj4y1CCvHM6sNVL3/
+	m4M7LC5FeenNXy1x2ozQvnlLRB9It53t+Sr4IMw7XpIqJSbpqcZ4nbl1AY/68ePFkM
+X-Google-Smtp-Source: AGHT+IFEYAvgAL87C4nbXwzIlruIun8/JDmoS0wwNVH8z5rBpHTQmugtqTwD/DfgXo+9EANlBG6JSA==
+X-Received: by 2002:ac2:4e16:0:b0:57e:ed2d:190f with SMTP id 2adb3069b0e04-597d3f9e010mr145270e87.7.1764734577889;
+        Tue, 02 Dec 2025 20:02:57 -0800 (PST)
+Received: from thyme.. (91-159-24-186.elisa-laajakaista.fi. [91.159.24.186])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-596bf8b1082sm5210181e87.29.2025.12.02.20.02.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Dec 2025 20:02:56 -0800 (PST)
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: Conor Dooley <conor+dt@kernel.org>,
+	Hans Verkuil <hverkuil@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	devicetree@vger.kernel.org,
+	linux-media@vger.kernel.org
+Subject: [PATCH v2 0/2] media: i2c: Add Samsung S5K3M5 13MP camera sensor driver
+Date: Wed,  3 Dec 2025 06:02:38 +0200
+Message-ID: <20251203040241.71018-1-vladimir.zapolskiy@linaro.org>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH] arm64: dts: imx95: Use GPU_CGC as core clock for GPU
-To: Rain Yang <jiyu.yang@oss.nxp.com>
-Cc: Frank.li@nxp.com, conor+dt@kernel.org, devicetree@vger.kernel.org,
- festevam@gmail.com, imx@lists.linux.dev, kernel@pengutronix.de,
- krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org, peng.fan@nxp.com,
- robh@kernel.org, s.hauer@pengutronix.de, shawnguo@kernel.org
-References: <20251129143220.14834-1-marek.vasut@mailbox.org>
- <aS-lEibp3zTsaR6T@oss.nxp.com>
-Content-Language: en-US
-From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <aS-lEibp3zTsaR6T@oss.nxp.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-MBO-RS-ID: 52256cf8b3a3eab14fc
-X-MBO-RS-META: z5ckj1br1pp63h1rmuzx38dn6pe8qedj
+Content-Transfer-Encoding: 8bit
 
-On 12/3/25 3:48 AM, Rain Yang wrote:
+Samsung S5K3M5 (ISOCELL 3M5) is a 13MP image sensor, it produces
+Bayer GRBG (2x2) frames in RAW10 output format, the maximum supported
+output resolution is 4208x3120 at 30 frames per second rate.
 
-Hello Rain,
+The changeset supports two output resolutions 4208x3120@30 and 2104x1184@60,
+PLL configuration is done for 24MHz external clock, in future it would be
+possible to add a setup for 19.2MHz external clock also.
 
->> diff --git a/arch/arm64/boot/dts/freescale/imx95-clock.h b/arch/arm64/boot/dts/freescale/imx95-clock.h
->> index e1f91203e7947..22311612e4403 100644
->> --- a/arch/arm64/boot/dts/freescale/imx95-clock.h
->> +++ b/arch/arm64/boot/dts/freescale/imx95-clock.h
->> @@ -183,5 +183,6 @@
->> #define IMX95_CLK_SEL_A55P                 (IMX95_CCM_NUM_CLK_SRC + 123 + 7)
->> #define IMX95_CLK_SEL_DRAM                 (IMX95_CCM_NUM_CLK_SRC + 123 + 8)
->> #define IMX95_CLK_SEL_TEMPSENSE            (IMX95_CCM_NUM_CLK_SRC + 123 + 9)
->> +#define IMX95_CLK_GPU_CGC                  (IMX95_CCM_NUM_CLK_SRC + 123 + 10)
->>
->> #endif	/* __CLOCK_IMX95_H */
->> diff --git a/arch/arm64/boot/dts/freescale/imx95.dtsi b/arch/arm64/boot/dts/freescale/imx95.dtsi
->> index 6091c2713fa48..47f20e501315f 100644
->> --- a/arch/arm64/boot/dts/freescale/imx95.dtsi
->> +++ b/arch/arm64/boot/dts/freescale/imx95.dtsi
->> @@ -2874,7 +2874,7 @@ netc_emdio: mdio@0,0 {
->> 		gpu: gpu@4d900000 {
->> 			compatible = "nxp,imx95-mali", "arm,mali-valhall-csf";
->> 			reg = <0 0x4d900000 0 0x480000>;
->> -			clocks = <&scmi_clk IMX95_CLK_GPU>, <&scmi_clk IMX95_CLK_GPUAPB>;
->> +			clocks = <&scmi_clk IMX95_CLK_GPU_CGC>, <&scmi_clk IMX95_CLK_GPUAPB>;
->> 			clock-names = "core", "coregroup";
->> 			interrupts = <GIC_SPI 289 IRQ_TYPE_LEVEL_HIGH>,
->> 				     <GIC_SPI 290 IRQ_TYPE_LEVEL_HIGH>,
->> -- 
->> 2.51.0
->>
-> Hi Marek,
-> 
-> Thanks for integrating this downstream patch.
+The next V4L2 controls are supported by the driver: vertical/horizontal flip,
+exposure, analogue gain, vertical/horizontal blanking and test pattern.
 
-Which downstream patch do you refer to ?
+The sensor is present and tested on SM8550-QRD and on SM8550-HDK board with
+a Rear Camera Card.
 
-> Please note that CLK_GPUAPB and CLK_GPU are
-> always-on, so the commit message should be amended accordingly.
+Changes from v1 to v2:
+1) added Tested-by and Reviewed-by tags from Neil and Krzysztof respectively,
+2) specified optional data-lanes property (Sakari),
+3) renamed voltage supply properties to match pad names by Samsung (Luca),
+4) added minor requested updates to s5k3m5_probe() (Sakari),
+5) added minor requested updated s5k3m5_init_controls() (Sakari),
+6) added a simple .get_selection to support the basic crop controls (Sakari),
+7) set default number of CSI lanes (Sakari),
+8) changed a helper function to calculate pixel rate to get frequency parameter,
+9) removed .link_freq_index since there is only one supported option.
 
-The GPU clock do not seem to be always-on, neither do the GPUAPB . It 
-seems the SM can turn those clock off perfectly well.
+Link to v1:
+- https://lore.kernel.org/linux-media/20251012231102.1797408-1-vladimir.zapolskiy@linaro.org/
 
-> Additionally, the IMX95_CLK_GPUAPB handle shall be removed, as there is no valid OPP entry
-> in the frequency table, this also helps minimize differences between downstream and upstream,
-> reducing maintenance effort.
+----8<----8<----8<----8<----8<----8<----
 
-Downstream kernel forks are not relevant to this discussion, upstream 
-your content and then you won't have to spend maintenance effort on 
-downstream stuff.
+% v4l2-compliance -d /dev/v4l-subdev30
+v4l2-compliance SHA: not available, 64 bits, 64-bit time_t
+
+Compliance test for device /dev/v4l-subdev30:
+
+Required ioctls:
+
+Allow for multiple opens:
+        test second /dev/v4l-subdev30 open: OK
+        test for unlimited opens: OK
+
+        test invalid ioctls: OK
+Debug ioctls:
+        test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+        test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+        test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+        test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+        test VIDIOC_ENUMAUDIO: OK (Not Supported)
+        test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+        test VIDIOC_G/S_AUDIO: OK (Not Supported)
+        Inputs: 0 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+        test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+        test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+        test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+        test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+        test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+        Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+        test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+        test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+        test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+        test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Control ioctls:
+        test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
+        test VIDIOC_QUERYCTRL: OK
+        test VIDIOC_G/S_CTRL: OK
+        test VIDIOC_G/S/TRY_EXT_CTRLS: OK
+        test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
+        test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+        Standard Controls: 12 Private Controls: 0
+
+Format ioctls:
+        test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK (Not Supported)
+        test VIDIOC_G/S_PARM: OK (Not Supported)
+        test VIDIOC_G_FBUF: OK (Not Supported)
+        test VIDIOC_G_FMT: OK (Not Supported)
+        test VIDIOC_TRY_FMT: OK (Not Supported)
+        test VIDIOC_S_FMT: OK (Not Supported)
+        test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+        test Cropping: OK (Not Supported)
+        test Composing: OK (Not Supported)
+        test Scaling: OK (Not Supported)
+
+Codec ioctls:
+        test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+        test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+        test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+
+Buffer ioctls:
+        test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK (Not Supported)
+        test VIDIOC_EXPBUF: OK (Not Supported)
+        test Requests: OK (Not Supported)
+
+Total for device /dev/v4l-subdev30: 41, Succeeded: 41, Failed: 0, Warnings: 0
+
+Vladimir Zapolskiy (2):
+  dt-bindings: media: i2c: Add Samsung S5K3M5 image sensor
+  media: i2c: Add Samsung S5K3M5 13MP camera sensor driver
+
+ .../bindings/media/i2c/samsung,s5k3m5.yaml    |  103 ++
+ MAINTAINERS                                   |    8 +
+ drivers/media/i2c/Kconfig                     |   10 +
+ drivers/media/i2c/Makefile                    |    1 +
+ drivers/media/i2c/s5k3m5.c                    | 1377 +++++++++++++++++
+ 5 files changed, 1499 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/samsung,s5k3m5.yaml
+ create mode 100644 drivers/media/i2c/s5k3m5.c
+
+-- 
+2.49.0
+
 
