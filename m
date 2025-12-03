@@ -1,88 +1,176 @@
-Return-Path: <devicetree+bounces-243886-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243887-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BF6FC9E18B
-	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 08:53:19 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A4B4C9E1A6
+	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 08:56:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 0087B4E0397
-	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 07:53:18 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id A077534942F
+	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 07:56:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A14F629BD81;
-	Wed,  3 Dec 2025 07:53:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 379DC29CB4D;
+	Wed,  3 Dec 2025 07:56:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gua63jB4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k+pGfifV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 705F62877CB;
-	Wed,  3 Dec 2025 07:53:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EEE722068F;
+	Wed,  3 Dec 2025 07:56:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764748394; cv=none; b=BzzVPvpx9e/6Q03aoCRZyHUfD00lTm5hDvQ1fSWu4R/gIR0AifcuthKDsqm4siku9sff0+9ijxkv4kbN92pdAMwHlAMwhTZpVeM5L7fV1pw8umVIjsgmoknaOLXXmxeehDFj50kGLSu2ttonO5QMhLrD/0TgUqZK3LNoheg+LAI=
+	t=1764748590; cv=none; b=nKlp5I9OCB2vCby+85MDdQChV4qFbvLm0b7heWbsf0unjKl6fvhN1NPurttnpqH6VvQaQWkqDcKONPN156c70KNRKCWGAr5nQeS3PP5qYQu9m3ZQo8YJSjREp9Ku5IJ58JtkoeKDwRCOXYSfRSOd4lJXOeFCqVNrCQhN60fr7Ws=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764748394; c=relaxed/simple;
-	bh=GIt1O1sdOnAcu1gdxb3neSe5Nxyh0jnePFmYRYssJk0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=s/CrNeOJPcMCtzwhl5Wv+vI5LTiCFaIuSllaCheLY2Fty+UiugF1D5HweGtxleAYnlySpurJ9VvhdX4a2j0DxXhJ05V5cmTsk968Fz1tDAjTJmyX1KT9X1czfYyurgKZ9o9ED397alQ9VbdguTg3Mbx/i0YMxxw41Ew3XlJ+7xQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gua63jB4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF4CCC4CEFB;
-	Wed,  3 Dec 2025 07:53:12 +0000 (UTC)
+	s=arc-20240116; t=1764748590; c=relaxed/simple;
+	bh=VJdnQfDNDVosrLdDdBeVnItHnR+dRDpWyFzZzviDJW4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=VCuShxRTMiF2ZeRVprUMNKAHvtCBbXey3c56+/CWvhG9STP7U1Dut9umFNwbZfom3VVEY3gxBGzZy16G8mPrKomJPE4TNO3Q3hfJaxSgOlSCu5hOhIv26UCABZq0yfNe5j538qrjyhoVUNm0cU8n29vpIG/9XYeby5AmBlHyDxY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k+pGfifV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E554AC4CEFB;
+	Wed,  3 Dec 2025 07:56:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764748393;
-	bh=GIt1O1sdOnAcu1gdxb3neSe5Nxyh0jnePFmYRYssJk0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gua63jB4vHJw+M/hLkKznQgJLnzHdioq6jffMYqiIOtHSaiBm+AGZaEL8IMEFjDoi
-	 Ie2GnlO5x1MvcBSgpB6tollJPd4QAGQI3RHnBd92PH7iUAk9/+HSQ/cwKBmM+cajJU
-	 PvSy0mDzHv2t8ZTUljlmCu6GOUvb/T1oN3NtnJ7O7DtABGHjNTX97g3dh813NQ4XhN
-	 E+DWXNlTA4h79r6GJQkvoypbE2anbIj7r/jq1NjrQOK6O3lXOiV98PmLZQicpd/BAO
-	 cPKNa1AnU8HRDZPMlCUOUclvhK1H/A02SewUL8/81zuhh+9BECozf73R+uhtK6x6+/
-	 fRp48NM63vBgA==
-Date: Wed, 3 Dec 2025 08:53:10 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: David Heidelberg <david@ixit.cz>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Sumit Semwal <sumit.semwal@linaro.org>, Casey Connolly <casey.connolly@linaro.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <jesszhan0024@gmail.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Marijn Suijten <marijn.suijten@somainline.org>, 
-	Dmitry Baryshkov <lumag@kernel.org>, Vinod Koul <vkoul@kernel.org>, phodina@protonmail.com, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	phone-devel@vger.kernel.org, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v4 2/8] dt-bindings: panel: sw43408: adjust to reflect
- the DDIC and panel used
-Message-ID: <20251203-faithful-steadfast-leech-5fbf14@quoll>
-References: <20251125-pixel-3-v4-0-3b706f8dcc96@ixit.cz>
- <20251125-pixel-3-v4-2-3b706f8dcc96@ixit.cz>
+	s=k20201202; t=1764748589;
+	bh=VJdnQfDNDVosrLdDdBeVnItHnR+dRDpWyFzZzviDJW4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=k+pGfifVHSwq9a5eVsCtjZc+gHYJhfF8cmc3WEBRi5wlYcSAs5Y4rxTVPbcm8tIXj
+	 GugL9oApKpYamgHyNiqBKICaCJuqjUbnyCAI/HuN6l+Jia04DAdlg4vY77uySlf91F
+	 nQmJOpGCNuDMUxdUpZ5wT6NL33tYTH2Kb8f3Sobl3SvNyKeSWREP2kZK2LB660/o6I
+	 XQZIAiCCtHtCaWK3fWAPaq/6OgGLdJADUxv67SK7hwfYVqQsvO968SjSPUtZlt8Jpi
+	 mHZxVwVLP2IUqqw+ZVka815kKWs8daoANCho9npw7XnqpaTKGwB3jMAtxR2/Dc4+1M
+	 xXSvlXpxa2cjg==
+Message-ID: <67b5f5b5-caf9-4dcc-b84d-a7ce338fc25d@kernel.org>
+Date: Wed, 3 Dec 2025 08:56:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20251125-pixel-3-v4-2-3b706f8dcc96@ixit.cz>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [net-next,PATCH 2/3] dt-bindings: net: realtek,rtl82xx: Document
+ realtek,ssc-enable property
+To: Marek Vasut <marek.vasut@mailbox.org>, netdev@vger.kernel.org
+Cc: "David S. Miller" <davem@davemloft.net>,
+ Aleksander Jan Bajkowski <olek2@wp.pl>, Andrew Lunn <andrew@lunn.ch>,
+ Conor Dooley <conor+dt@kernel.org>, Eric Dumazet <edumazet@google.com>,
+ Florian Fainelli <f.fainelli@gmail.com>,
+ Heiner Kallweit <hkallweit1@gmail.com>, Jakub Kicinski <kuba@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Michael Klein <michael@fossekall.de>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Russell King <linux@armlinux.org.uk>,
+ Vladimir Oltean <vladimir.oltean@nxp.com>, devicetree@vger.kernel.org
+References: <20251130005843.234656-1-marek.vasut@mailbox.org>
+ <20251130005843.234656-2-marek.vasut@mailbox.org>
+ <f3046826-a44c-4aa9-8a94-351e7fe83f06@kernel.org>
+ <a861aa24-e350-4955-be5a-f6d2f4bc058f@mailbox.org>
+ <043053ec-0f57-45e9-9767-be9b518dea4d@kernel.org>
+ <4aaa73b4-3a2a-44f6-ad81-74c30be13431@mailbox.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <4aaa73b4-3a2a-44f6-ad81-74c30be13431@mailbox.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, Nov 25, 2025 at 09:29:37PM +0100, David Heidelberg wrote:
-> Add compatible for used LG panel.
-> SW43408 is not panel, but DDIC. The panel itself is the
-> LG LH546WF1-ED01, so introduce combined compatible for it.
+On 03/12/2025 02:30, Marek Vasut wrote:
+> On 12/1/25 8:20 AM, Krzysztof Kozlowski wrote:
+>> On 30/11/2025 14:41, Marek Vasut wrote:
+>>> On 11/30/25 9:20 AM, Krzysztof Kozlowski wrote:
+>>>
+>>> Hello Krzysztof,
+>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/net/realtek,rtl82xx.yaml b/Documentation/devicetree/bindings/net/realtek,rtl82xx.yaml
+>>>>> index eafcc2f3e3d66..f1bd0095026be 100644
+>>>>> --- a/Documentation/devicetree/bindings/net/realtek,rtl82xx.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/net/realtek,rtl82xx.yaml
+>>>>> @@ -50,6 +50,11 @@ properties:
+>>>>>        description:
+>>>>>          Disable CLKOUT clock, CLKOUT clock default is enabled after hardware reset.
+>>>>>    
+>>>>> +  realtek,ssc-enable:
+>>>>> +    type: boolean
+>>>>> +    description:
+>>>>> +      Enable SSC mode, SSC mode default is disabled after hardware reset.
+>>>>
+>>>> I don't want more SSC properties. We already had a big discussions about
+>>>> it - one person pushing vendor property and only shortly after we learnt
+>>>> that more vendors want it and they are actually working on this.
+>>> What kind of a property would you propose I use for this ?
+>>
+>> I don't know, please look at existing work around SSC from Peng. If
+>> nothing is applicable, this should be explained somewhere.
 > 
-> Signed-off-by: David Heidelberg <david@ixit.cz>
-> ---
->  .../devicetree/bindings/display/panel/lg,sw43408.yaml       | 13 +++++++++----
->  1 file changed, 9 insertions(+), 4 deletions(-)
+> The work from Peng you refer to (I guess) is this "assigned-clock-sscs" 
+> property ? This is not applicable, because this is a boolean property of 
+> the PHY here, the clock does not expose those clock via the clock API.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+OK, please mention this in the commit msg - that assigned-clock-sscs is
+not applicable, because these are clocks not exposed outside.
+
+I saw already brcm,enable-ssc property, so use rather "realtek,enable-ssc".
+
+> 
+> However, I can call the property "ssc-enable" without the realtek, 
+> vendor prefix ?
+
+I think no, I am not so sure how generic it would be to cover all
+existing cases. Some devices, e.g. cdns, defines the mode of SSC, so
+uses an enum.
+
+> 
+> The remaining question is, should I have one property "ssc-enable" to 
+> control all SSC in the PHY or one for each bit "realtek,ssc-enable-rxc" 
+> / "realtek,ssc-enable-clkout" ?
+
+I don't know. Can they be enabled independently? Does it make sense for
+the hardware to have different choices?
+
 
 Best regards,
 Krzysztof
-
 
