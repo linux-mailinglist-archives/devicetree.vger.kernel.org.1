@@ -1,146 +1,260 @@
-Return-Path: <devicetree+bounces-243883-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243884-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8170C9E0BC
-	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 08:30:39 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2872C9E0F8
+	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 08:34:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 801494E0507
-	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 07:30:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AC3EB3A7A4D
+	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 07:34:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7992299AA3;
-	Wed,  3 Dec 2025 07:30:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA2F129D28F;
+	Wed,  3 Dec 2025 07:34:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Fape61ID"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="NBrHTZL9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CD4028BAB9;
-	Wed,  3 Dec 2025 07:30:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EFCF245005
+	for <devicetree@vger.kernel.org>; Wed,  3 Dec 2025 07:34:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764747032; cv=none; b=Wn6yxThYLeHo0U/HrVHB/P0XXLB78micBT6FszaKuFq1rJ6vClpKxK7zq1ZlDtQzlLijxZWxvRxMz/pv0t7zOIgkDchf2Zu1NYln+wqnaydQ1IK2U/QayC1dILLj1VHf35Ff+ntus3hEQFr45MS7mw+41UDYOq9IhcQkSLPeeio=
+	t=1764747280; cv=none; b=BZabwbI3aohWRFkIZGv5UPMFthp6g8l3a02F0ojaGVYupgKtknS8FyAbWR194CEWgucyqkUzgZAw7UANm6ao+sthNxiH2NAOrFPEV0Vo2I2vyvOMGSje+/wjxIDh3hio66o8rZKcdOMyrZFizqU4Mlg5A9lRQ7FUhqu9KEkZa70=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764747032; c=relaxed/simple;
-	bh=pv6q00YaSFpFrZeUj2emgD6eb67X85Dw29g2lgwIGWU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tlQm3QDHCzKnNr7J5mUxWtcj5m4QtQUBOqoVWN9jC1UzeHI2n0+M0mA1vKtA6cmD8qpuKwP/HRBUpWusG/MQU5Fml1KSjk9dUfzaK7B9s/5gXzHSYIShsxlkr7LSC374r0woTRQLKMzlI4/O/lyWIFxZMv861zKIwPLwOv5cn6s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Fape61ID; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8226C4CEFB;
-	Wed,  3 Dec 2025 07:30:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764747032;
-	bh=pv6q00YaSFpFrZeUj2emgD6eb67X85Dw29g2lgwIGWU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Fape61IDMTOfqKbe8C3rN4Vx/9jyoSyxk10t7rb1z0CCi+yZmMWdQE3P4GAhOMOhc
-	 IJucEBOY42kldk3Os5xLVB7gxGXnVg8i70B0bGcczNByoqB8jOyDUKbE0vZm5K22NQ
-	 oQ4QpaTkwe/+HpDZPgLvLh2B/1Km7Auut8jrI+vIOA7U3BMKx3Au1N9tYVdzuFQMg6
-	 jG4hPpd4jQ5mYzBB07PUbqdEm+HN9r2qG/G/lvPTSggl5UGEaW5ge/qY1s1KYiKN6k
-	 OFXl6j4pCBB5zlAxNWoT9NWsh2Cjxw6xSxN1sI0Ln1R1EyjNlNgdFYTgJwtH85yj3y
-	 95kSGrOcSfEDg==
-Message-ID: <9a28308b-2ca6-4206-a22d-9615cd1dfabb@kernel.org>
-Date: Wed, 3 Dec 2025 08:30:28 +0100
+	s=arc-20240116; t=1764747280; c=relaxed/simple;
+	bh=vvsuP8cPec6tsdqpBusdQ5elvq0pr23aNk5vQBxpX2A=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=m9aOTD8XR+i8jCryjqcuDTQEF+vCU2yZl1og/wZL4XAFiJvlNQ2kN9xeANFVHghBZQ4oR8q9nGIrGLff/Cez+BWRmPhZzjdNdDkNmpxX6qZUW86Wv/K3YvgEibygA/BfghnWt6s2xgxaJhYCOR7UebMnS9vnML4DJIsgQ0pPKnY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=NBrHTZL9; arc=none smtp.client-ip=209.85.167.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-5969c5af23bso6535687e87.3
+        for <devicetree@vger.kernel.org>; Tue, 02 Dec 2025 23:34:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1764747277; x=1765352077; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=hjpB6RpfP8oIRkf/hrTHm/IemCWsvs4k4JM+142Rzwk=;
+        b=NBrHTZL914h6RqL5b7qjLYJYtr4MOpZBPm9QGsYf6rP3lZsK6yJHLYanRTCdjSXO0g
+         zqj0c4HkkAEa/XezlBAVpi1CAxmnsG6PlPkvzJKTflC9rXJfgV2TI7flwbePVZNSKkIW
+         2zeET46EdppdSTjfHe0d221KXxwK16mhIQe6I=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764747277; x=1765352077;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=hjpB6RpfP8oIRkf/hrTHm/IemCWsvs4k4JM+142Rzwk=;
+        b=stp8XLkDWuwdX4pizCI1fZ7/P4NNW2BcTjQimvQv6EVNW0/LVdHEpTGj+oV0akODqf
+         FAh4ty26OfCfuJfRHnv+MbLjpNAVsIM0rXrPsU38wXCX40+dSI5lDowtBRKv41yDwZZq
+         BDv3llhYZ0NNuQybMNQ8BgcMOuPDIjTzkyhC4ojU23ckTVevMspqP3xGXbnfcz9u47L8
+         w6rSo+b75KWcTnowd5oLXjehZb9xqoBCVR0RgSBGdDt+9nJRPqyVVGUYb1uyrQI81LS9
+         oBQUI/aMYDdp2KwMDbYqk4GGT0SOICjBZI5D/Xqn08YUR9/vGDTIR7KjIGWO2A4QAowT
+         AUCg==
+X-Forwarded-Encrypted: i=1; AJvYcCXKvFTiyANGQHBhwkcUetV54SeRC2oVYnMHg3bcAdPlqteSXudgGWDKAnoXTHpUUbgrOx6TOn0Y5Oje@vger.kernel.org
+X-Gm-Message-State: AOJu0YxnHpRIFEaOlFRLOyafrezOl+u2j2Ibe20jG9hKtO1ZjdMV7MDR
+	yQLj+FJWRmVGZJNvwLxbeJVldSzJqrVNZp4aQ0rgxWy1ARRKUtKf78ph+HdIl+OvDraqyon8jjy
+	I/upt/vdW6Y8z7VZOmoAmBzmzw3PX+s9o5ECkG9Bb
+X-Gm-Gg: ASbGnctoFcRJxagJc2MTNA9HXK8oyXnlwhtShcPL/K6PyRdkiX4VYC3kUt6ICuXpeMu
+	ilzxV7SrECfMfOWykbrKoxYfag+/G5f0BWiS7RrqQhNPdaYrsRBkUxi2dO9BsRwIXplA/ZeBcZA
+	X/ZnKUfsb+DPLVYzgfyUi3/Lup5DVql+BeZ0LKBQKS9Q5TNMe3Qk1oYpKVM4WMwOP9qyoMAtEYp
+	m3qPnmK66MPdNY+e5VMrCYtkJoPxHw4zEoAjkBQIVquvtiubHnSxkR2U+svxRma4Rzgzk7syUwB
+	CUzlS8G4lybSzfyejEVM7NWUhBhv9RnLmdaF
+X-Google-Smtp-Source: AGHT+IE8tidS1JbkFRNGe7CxrnOH2PGG15xmYSSlwG5R9iDK9wPsq27o+Cjidr3gLbydcJISmJWRUQmP7QDNztVpiLw=
+X-Received: by 2002:a05:6512:3b0a:b0:594:490b:4498 with SMTP id
+ 2adb3069b0e04-597d3f144bcmr525202e87.11.1764747276661; Tue, 02 Dec 2025
+ 23:34:36 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RESEND PATCH 1/2] dt-bindings: soc: altera: Move altera.yaml
- from arm to soc
-To: Dinh Nguyen <dinguyen@kernel.org>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20251125134004.261165-1-dinguyen@kernel.org>
- <20251126-flat-fennec-of-charisma-ba8dc1@kuoka>
- <054158a2-eb47-48a4-ba4c-0bcf7703e0e3@kernel.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
- QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
- +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
- ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
- 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
- hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
- tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
- 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
- naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
- hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
- whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
- qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
- RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
- Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
- H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
- dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
- AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
- jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
- zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
- XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <054158a2-eb47-48a4-ba4c-0bcf7703e0e3@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <CAD=FV=Ux7nGFnYEyX0cUL-9__BKnTYc+kAJjkF458ZnFS7zoJA@mail.gmail.com>
+ <CAD++jLkuRQKoiEN928GtAj7wUts5PxH905bLp6ZhKsJ3NnenEA@mail.gmail.com>
+ <CAD=FV=X5=AK4XMANv+fatn3d9Y5vo9AXsHWb_47HmNaMWUtMwA@mail.gmail.com>
+ <CAGXv+5HyMYgKmLc+jmkj-gytm9SNVg9dS7Vn3dQ-dsH8Wo+4sg@mail.gmail.com> <CAD=FV=Uq9yfUkLUgg116G+2AvEKkEPmdRgUJ5f1bj229j=LxUg@mail.gmail.com>
+In-Reply-To: <CAD=FV=Uq9yfUkLUgg116G+2AvEKkEPmdRgUJ5f1bj229j=LxUg@mail.gmail.com>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Wed, 3 Dec 2025 15:34:25 +0800
+X-Gm-Features: AWmQ_bkxzVXkZCUfjtFP-mSp_oll7xVq_mrcGN89ZTQuKJKFTIYUF1_pwB0pj4Q
+Message-ID: <CAGXv+5HU2y-8AZhXDjneaTdD1yr2h06OXbkozcQJj2mBcR1HmQ@mail.gmail.com>
+Subject: Re: Proposal: Officially allow "incomplete" trees as a base
+To: Doug Anderson <dianders@chromium.org>
+Cc: Linus Walleij <linusw@kernel.org>, devicetree-spec@vger.kernel.org, 
+	boot-architecture@lists.linaro.org, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk@kernel.org>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>, 
+	Linux ARM <linux-arm-kernel@lists.infradead.org>, 
+	William McVicker <willmcvicker@google.com>, Julius Werner <jwerner@chromium.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Peter Griffin <peter.griffin@linaro.org>, 
+	Tudor Ambarus <tudor.ambarus@linaro.org>, =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+	Simon Glass <sjg@chromium.org>, Yu-Ping Wu <yupingso@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 02/12/2025 22:04, Dinh Nguyen wrote:
-> 
-> 
-> On 11/26/25 03:46, Krzysztof Kozlowski wrote:
->> On Tue, Nov 25, 2025 at 07:40:02AM -0600, Dinh Nguyen wrote:
->>> All Altera boards can hosts soft core CPUs like NIOS V or a RISC V, so
->>
->> Please send it with the user of this change, so with DTS for RISC-V or
->> NIOS-V.
->>
->> This alone is not really correct, if all compatibles here are for ARM
->> and nothing in commit msg said that any compatible is not for ARM...
->> unless you claim that each of these SoCs are multi-arch?
->>
-> 
-> The SoCFPGA devices can house both the hardened ARM cluster running 
+On Wed, Dec 3, 2025 at 6:11=E2=80=AFAM Doug Anderson <dianders@chromium.org=
+> wrote:
+>
+> Hi,
+>
+> On Mon, Dec 1, 2025 at 7:31=E2=80=AFPM Chen-Yu Tsai <wenst@chromium.org> =
+wrote:
+> >
+> > > Separately, it can be noted that we always _wanted_ a similar solutio=
+n
+> > > for ChromeOS, but we never quite got there... ;-)
+> >
+> > FTR ChromeOS is moving in that direction: splitting SKU differences
+> > based on components into overlays that get applied to the base by the
+> > bootloader.
+> >
+> > In the simplest example we could have one base dts and two overlays
+> > for two different DSI panel models:
+> >
+> >   - base.dtb
+> >     - panel-model-a.dtbo
+> >     - panel-model-b.dtbo
+> >
+> > The problem we then run into is that the base.dtb will only have the
+> > generic model compatible "google,foo", not the sku and revision
+> > specific ones like "google,foo-sku1-rev2".
+> >
+> > And we'd really like to avoid having _more_ overlays just to add the
+> > final specific compatible string, as that kind of defeats the purpose
+> > of using overlays to reduce the number of dts files.
+>
+> I think you may have simplified the above a little too much to the
+> point where it's confusing. At least I'm a bit confused. I _think_ the
+> problems you're talking about are the kinds of things we run into when
+> we take overlays above just two levels. I'm imagining:
+>
+> - base.dtb
+> - board1-rev1.dtbo
+> - board2-rev1.dtbo
+> - board1-rev2.dtbo
+> - board2-rev2.dtbo
+> - panel-a.dtbo
+> - panel-b.dtbo
+>
+> So I think you're saying that you'd start with the "base.dtb" and then
+> extend it with exactly one of the "board" overlays and then exactly
+> one of the "panel" overlays. Is that right?
 
-But "can" does not mean "does". None of the boards here do host. If they
-do, it must be clearly expressed that you documented RISC-V under ARM.
+For now I think we just experiment with having one end "model" or
+"product" as the base.dtb. The panel-*.dtbo selected describe the
+optional components, while the board-rev??.dtbo just provides the
+top level compatible and model.
 
-> simultaneously with a number of soft Nios V cores in the FPGA fabric. 
-> They may be running independently or working together through shared 
-> memory or shared peripheral IO. I think that would be a qualify as a 
-> multi-arch device.
+In an example that I plan to send out this week, I would rework:
 
-Again, we speak ONLY about these few, very specific boards. Not SoCs.
+  - arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri.dtsi
+    - arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku0.dts
+    - arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku1.dts
+    - arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku2.dts
+    - arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku3.dts
+    - arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku4.dts
+    - arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku5.dts
+    - arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku6.dts
+    - arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku7.dts
 
-> 
->  From what we've seen of multi-arch use cases, there are separate DTS 
-> files for the soft-core CPU unit. Can you elaborate by what DTS you'd 
-> like to see to accomodate this change?
+into:
 
-We do not discuss DTS at all here.
+  - arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri.dts
+    - arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-audio-max98390-es8326=
+.dtso
+    - arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-audio-max98390-rt5682=
+s.dtso
+    - arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-audio-tas2563-es8326.=
+dtso
+    - arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-audio-tas2563-rt5682s=
+.dtso
+    - arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-panel-boe.dtso
+    - arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-panel-ivo.dtso
+    - arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku0.dtso
+    - arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku1.dtso
+    - arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku2.dtso
+    - arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku3.dtso
+    - arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku4.dtso
+    - arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku5.dtso
+    - arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku6.dtso
+    - arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku7.dtso
 
-Best regards,
-Krzysztof
+The "mt8188-geralt-ciri-sku?.dtso" files only contain the following
+boilerplate:
+
+    /dts-v1/;
+    /plugin/;
+
+    &{/} {
+        model =3D "Google Ciri sku? board (rev4)";
+        compatible =3D "google,ciri-sku?", "google,ciri", "mediatek,mt8188"=
+;
+    };
+
+The base "mt8188-geralt-ciri.dts" would already have a generic board-
+specific compatible:
+
+    model =3D "Google Ciri board";
+    compatible =3D "google,ciri", "mediatek,mt8188";
+
+> So I'd imagine that each of the "board" overlays could have "full"
+> compatible strings. For instance, I'd imagine "board2-rev2" could
+> have:
+>
+> compatible =3D "google,booard2-rev2", "socVendor,soc"
+>
+>
+> The problem you're struggling with (I think) is that the panel
+> overlays won't be represented in the compatible string (and "model")
+> even though (historically) we always did in ChromeOS (they were
+> included in the "sku" part of the compatible string).
+>
+> Did I get that right?
+
+In a sense you've generalized the problem I was describing.
+
+In my example, the top level compatible gets fixed up by the final
+SKU-specific overlay. But that's 8 extra files to do one bit of
+fixup that supposedly the bootloader could be taught to do, and
+could do even better. The bootloader knows exactly which SKU and
+revision it's running on and can insert the information appropriately.
+We could get rid of those awkwardly long compatible string sequences:
+
+  compatible =3D "google,tentacruel-sku262147", "google,tentacruel-sku26214=
+6",
+               "google,tentacruel-sku262145", "google,tentacruel-sku262144"=
+,
+               "google,tentacruel", "mediatek,mt8186";
+
+Going back to what I think you're describing, is that instead of one
+base board DTB for each product, we could have one base DTB for the
+reference design (in place of the .dtsi file we currently have), and
+make products and component selection all use overlays.
+
+If we do that, then inserting the correct top level compatible and model
+becomes more important, since we do have things such as the ChromeOS OF
+component prober working based on top level compatible. Also, the model
+is present in logs, and would be very misleading to say one device name
+while in reality it is a different one.
+
+> > I proposed internally maybe having the bootloader fix up the final
+> > compatible string, but I think we need some rough consensus upstream
+> > whether this is acceptable or not.
+>
+> Maybe we need to come to some agreement about when the top-level
+> compatible string needs to be changed. In the above, I'd perhaps argue
+> that the panel isn't a major enough change that it needs to change the
+> top-level compatible string. That would solve the problem, right? What
+> do others think? Certainly for "probe-able" components we don't change
+> the top-level compatible string. Can anyone point to any official
+> documentation about the top-level compatible string?
+
+I'd certainly like more documentation as well.
+
+
+ChenYu
 
