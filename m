@@ -1,59 +1,60 @@
-Return-Path: <devicetree+bounces-243888-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243889-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C1B2C9E1AC
-	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 08:57:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A09F4C9E1EB
+	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 09:03:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id B86673496C5
-	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 07:57:33 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 4AA67348D27
+	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 08:03:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6435C29D28F;
-	Wed,  3 Dec 2025 07:57:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 805EA29C326;
+	Wed,  3 Dec 2025 08:03:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QcvW4/s2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b4quYip7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C15F22068F;
-	Wed,  3 Dec 2025 07:57:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46971221555;
+	Wed,  3 Dec 2025 08:03:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764748649; cv=none; b=fWpcLqneXxuWIJi/mFz0CsC1Yb/3DdoRkxjM/EbVx5KvsLRNV+05SefDp/pIUgNHlOOqoQTLgCTMqow3Eo0jrtX8bEZhkkRWVcoRC0GO5HSrXFwNjjJEVYfgmZdpfjS7gLy5/BFT6uxEoCrcgujvalv1qyxeo6ci9Wm5rxa8E8w=
+	t=1764749033; cv=none; b=ER6RYqFa28+u7EWSSNF3dk0oIqC+UldTC0GTYsxNK3WuX6ZgUL08G+ICTMK7iecRABmUxU7bMJ6getXryJ1PQklvF3oeMeipVhe/AP8K50Irm0B+GR/OLO3pgN7gsyDTyjfbT6ms8AhLvNsjgupU8ZlsNwKthBJxJeqHTyvqaYw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764748649; c=relaxed/simple;
-	bh=DmpitrsvxyJChA97MD5POh03xguTAl1o4n/K+C0KV1w=;
+	s=arc-20240116; t=1764749033; c=relaxed/simple;
+	bh=S/bIgXbztD6yIqM/o6ZEvMgPPfTEua622q9ir/yW0yQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VbBn4LoCJJxanVxIDmimbkhnvMhjs10q/7lN0jDgeoCwxLf6EMj02PqNSku6VSF+stMVng99zwOv1LQi9Rba/SFXFg4FToDE6g2ZelgVSJaDPyCxZfrcSRplDzUmn9SpAmeq4466ITrrVS+f7oUsJ1OmC4Q9CsW7cx6njYjyyAE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QcvW4/s2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 172B0C4CEFB;
-	Wed,  3 Dec 2025 07:57:27 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=A5KWxsD6dl3jkkSm1venu0UY5/PxWodGLY/ykXBzVNYvv7Bsaw2iTu8O6Bg8YkA/NwyjzaOrlHWVe87q+TGfQ9SWlUBroXvphmxwPybkf6M/Zo/qaZd90M7Nhdqxgg4UjYHzNyBQCO5EHp0F59/rXYOIqf1mmdqYSZt8iI66gYM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b4quYip7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F70AC19422;
+	Wed,  3 Dec 2025 08:03:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764748648;
-	bh=DmpitrsvxyJChA97MD5POh03xguTAl1o4n/K+C0KV1w=;
+	s=k20201202; t=1764749031;
+	bh=S/bIgXbztD6yIqM/o6ZEvMgPPfTEua622q9ir/yW0yQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QcvW4/s22ujatGNYSRD/n80r8gZyk8IjqoFHbEDKhdt5YkO8JB2lw+eXCNKmJ1ANK
-	 Z1v6qnf8/q2C3TH8oAjoHVgWeY1cLyiAU6slFi/i5AenvGPrBNZxFuEw1c5cvn1XRa
-	 8VferID0XV20LeHH1I2jqD0u3HhpDLZFHshabw6MTPfQJLkJJWjfNEXlerzwZ+Vra1
-	 S37rnqTGRw14azCPr9oRSiz/faLVq4Lbvo61cheL5IaJxBMww9zQ2ch7PPS5yG13Qj
-	 A1QRqZ9bjXoHtgL3sRw2Y/P/xe8PXNfmXdFRYvNzbM4XqBnswgMBs794GLT5fLmo56
-	 cQNEkS4qA19qQ==
-Date: Wed, 3 Dec 2025 08:57:26 +0100
+	b=b4quYip7av0fIaZtuWpIYDEOtdJN+jeXK2LpAvOU5X2FzU9uSbd+zZYCebDMCdTwe
+	 tYZMaW67jOsvR0WUoqWSypvMsbAwP3HBvsXlx0xi/VPLIRzd0VdVID4nUwLHEzJmPM
+	 6sTyaRpdsVeYEEVKAFfhT4851oxYFPThGeDghV9fUFGjhuVUOD3xYV8CM07fUSTp3R
+	 qcJgG13JTOVqj57SWeYWnEnxfW1AqHaMBAj5N5e6s3s2ISPE9nh5vtTFP1BL5jcUGg
+	 b7V9o4jlJxCUUnFu9ELcGeL6t5Sc05fPEZCyXPZuGmUKY6MvKup+vCM3ZcClhw9k9O
+	 laPaoOXaOCW+g==
+Date: Wed, 3 Dec 2025 09:03:49 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Harikrishna Shenoy <h-shenoy@ti.com>
-Cc: robh@kernel.org, Laurent.pinchart@ideasonboard.com, airlied@gmail.com, 
-	andrzej.hajda@intel.com, conor+dt@kernel.org, devarsht@ti.com, devicetree@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, jernej.skrabec@gmail.com, jonas@kwiboo.se, krzk+dt@kernel.org, 
-	linux-kernel@vger.kernel.org, maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
-	neil.armstrong@linaro.org, rfoss@kernel.org, s-jain1@ti.com, simona@ffwll.ch, 
-	sjakhade@cadence.com, tzimmermann@suse.de, u-kumar1@ti.com, yamonkar@cadence.com, 
-	pthombar@cadence.com, nm@ti.com
-Subject: Re: [PATCH v4] dt-bindings: drm/bridge: Update reg-name and reg
-Message-ID: <20251203-caped-bullmastiff-from-jupiter-3dcaf3@quoll>
-References: <20251126092949.298530-1-h-shenoy@ti.com>
+To: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
+	linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/8] dt-bindings: pinctrl: renesas,r9a09g077-pinctrl:
+ Document GPIO IRQ
+Message-ID: <20251203-furry-amigurumi-ocelot-dda208@quoll>
+References: <20251121112626.1395565-1-cosmin-gabriel.tanislav.xa@renesas.com>
+ <20251121112626.1395565-4-cosmin-gabriel.tanislav.xa@renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,26 +63,57 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251126092949.298530-1-h-shenoy@ti.com>
+In-Reply-To: <20251121112626.1395565-4-cosmin-gabriel.tanislav.xa@renesas.com>
 
-On Wed, Nov 26, 2025 at 02:59:49PM +0530, Harikrishna Shenoy wrote:
-> Move register name constraints and reg description lists to appropriate
-> compatibility sections to ensure correct register names are used with each
-> compatible value. The j721e-integ registers are specific to TI SoCs and not
-> required for other compatibles.
+On Fri, Nov 21, 2025 at 01:26:21PM +0200, Cosmin Tanislav wrote:
+> The Renesas RZ/T2H (R9A09G077) and Renesas RZ/N2H (R9A09G087) SoCs have
+> IRQ-capable pins handled by the ICU, which forwards them to the GIC.
 > 
-> Add DSC register descriptions to align bindings with hardware capabilities.
-> Structure the reg and reg-names constraints as lists according to
-> compatibles using oneOf schema construct.
+> The ICU supports 16 IRQ lines, the pins map to these lines arbitrarily,
+> and the mapping is not configurable.
 > 
-> Fixes: 7169d082e7e6 ("dt-bindings: drm/bridge: MHDP8546 bridge binding changes for HDCP")
-> Signed-off-by: Harikrishna Shenoy <h-shenoy@ti.com>
+> Document the required properties to handle GPIO IRQ.
+> 
+> Signed-off-by: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
 > ---
->
+>  .../pinctrl/renesas,r9a09g077-pinctrl.yaml        | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/pinctrl/renesas,r9a09g077-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/renesas,r9a09g077-pinctrl.yaml
+> index 36d665971484..1e171b443da1 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/renesas,r9a09g077-pinctrl.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/renesas,r9a09g077-pinctrl.yaml
+> @@ -49,6 +49,17 @@ properties:
+>    gpio-ranges:
+>      maxItems: 1
+>  
+> +  interrupt-controller: true
+> +
+> +  '#interrupt-cells':
+> +    const: 2
+> +    description:
+> +      The first cell contains the global GPIO port index, constructed using the
+> +      RZT2H_GPIO() helper macro from <dt-bindings/pinctrl/renesas,r9a09g077-pinctrl.h>
+> +      and the second cell is used to specify the flag.
+> +      E.g. "interrupts = <RZT2H_GPIO(8, 6) IRQ_TYPE_EDGE_FALLING>;" if P08_6 is
+> +      being used as an interrupt.
+> +
+>    clocks:
+>      maxItems: 1
+>  
+> @@ -119,6 +130,8 @@ required:
+>    - gpio-controller
+>    - '#gpio-cells'
+>    - gpio-ranges
+> +  - interrupt-controller
+> +  - '#interrupt-cells'
 
-Thanks, looks good now!
+This is technically an ABI break thus commit msg must explain WHY
+breaking ABI is necessary and what is the impact on users.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+If your driver keeps things backwards compatible, then briefly mention
+it in the commit msg that you require it only for complete hardware
+picture. Or for whatever other reason.
 
 Best regards,
 Krzysztof
