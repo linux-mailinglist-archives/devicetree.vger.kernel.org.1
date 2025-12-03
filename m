@@ -1,86 +1,179 @@
-Return-Path: <devicetree+bounces-243874-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243875-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DEEBC9DFC9
-	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 07:56:14 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA79EC9E030
+	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 08:06:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AE5F93A8DBA
-	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 06:56:08 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 91B334E0102
+	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 07:06:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD14229B793;
-	Wed,  3 Dec 2025 06:55:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AF6C28980F;
+	Wed,  3 Dec 2025 07:06:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="NaO9rnjT"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="CtYp/Fad"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013057.outbound.protection.outlook.com [40.107.159.57])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F128C299948;
-	Wed,  3 Dec 2025 06:55:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764744957; cv=none; b=KeCZIrgs8JPlUsJ6oCeQTOrlWC+QDrIwzVsNUzYo6Y1j1giKWpdPKjWNOGxzlrKGa6nqa/t0z8ZPoTAP2LADbwxfYc61ovHmb5LzzwihgZK0qu+DZ2yi5+LlqkOxhd/fInnSJZ4R7Ol0gcBEFigy0Y/GrHL/s8NTozwGoaWTB+A=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764744957; c=relaxed/simple;
-	bh=Jr3cLN07BBBACpo2PlbpyKSvyKJvAvyoTJy/BiaPrWw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Jpo/Q1Jkd3me9qK5/3p8caKzFqGgGhLfUA3899FxQCuuvNIB+yMISKFCNZ9I29/fYhYpV9K6KxdgrR4iSuTtDct0QRi0V9QZxVnWsDL9NCVtB067pzdUfqlqRnJZ0QGVtg2riMI74HL+Ri9aBnE6jzyLj4Sosf0HBjXOGiJhF3A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=NaO9rnjT; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1764744954;
-	bh=Jr3cLN07BBBACpo2PlbpyKSvyKJvAvyoTJy/BiaPrWw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=NaO9rnjTYoJeEBZ+ro4jHNYOVm1U6K1E5lujJy7HHDQJk+hmfxL/wbu2J4sXNzI5M
-	 umTA8mPn91ULLAi5MhVgUY46aq8OaHMIz+51r6ImtHDAb0N54q4i03Rjc6CLrfAUy7
-	 UahC+DjeKR6ZehQlf5Ssz4IIGbsG9sKyfdJTjISqDUQ/rP+joyT7OBKaFkahr5GLwZ
-	 RxKKtQ2n8gJtYHPm/jtywhrYhqa+MJ4D9EGU16B0887Y7BaygUAQbcpNOwk9MVKiYQ
-	 /18I8NSPM6CeZ+nK5saSYYYEtpi/ROHtso+2Rhen4D5QP0KIrx0QTEpKS8WAkl3NMP
-	 keG00c9V3X7qA==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id C1B3717E0610;
-	Wed,  3 Dec 2025 07:55:53 +0100 (CET)
-Message-ID: <81ea7372-9172-4ee5-9a90-66cf06c40062@collabora.com>
-Date: Wed, 3 Dec 2025 07:55:53 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 800AD1F91D6;
+	Wed,  3 Dec 2025 07:06:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.57
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764745606; cv=fail; b=i4yN8x6zeOkzkWIsN7cmQGfc2F/IUDQKxibtgH5DpNIyEz6m3i/vFN1GO9d+TKbQjhcTSuZ4eQsyFyo4LkX3dCF8HgMKTpJ/e74WACmmyj1q5yXzJ9JwQiv7tl+gHt52UCEuEd3MBV4kM4xrB7jXLIXjRhFarfZO7Zswm+1CdHY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764745606; c=relaxed/simple;
+	bh=jULIU7wuyzIGzeO6KP8fdFV8gOAjRRfLRkQWWxIMHh0=;
+	h=From:To:Subject:Date:Message-ID:Content-Type:MIME-Version; b=qSUtKIdLbZQMBXzdC2JPSt9WSSmluIodPNHyUHRtrh+VVdR361E9pNO37xbIvL8wMhytIEjwvjvtgr0f9mYsSvIafGajrktcUbaDl9I9OOdbZrTEdma23ifPVgYF/PdaEKc6c4yDu3D1UlOF7WC/T+HmOlxYE5DSgpKu4pWt/7I=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=CtYp/Fad; arc=fail smtp.client-ip=40.107.159.57
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Sovs+JM+f8aXeNh5979aS6c2WvO6eGBTEEKwI7pEaLIHTViAztSw6PXwW4wp/JivA38qTJzp6t5LQKv4oaTdr4aGjSNHXQ0Ey/3O8nAJgX38jRzXaNAnuwzR3e/qT8qHfZ85SpG5NuxSkD8ISF13G3i44f4SJZgI5i0mlSj7KDnGOSSWxkrwXrMS3ChNHzt/46tq00IVQNtlHUA1C+Kr3Ug0aUTo1s47GPlnu2WMGBSBd5jd4lLGzxif0BpxlMlGglPVz2F9buz1ABdYlK3LNtoxYrES1L2X4kzu/2H27oNvlS4iqxQgDNeS5nvH0rjYwlxHXG8y8p9VMKh/kV97FA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=vCkwVOXNSTtWL3H2l2QYaPPlFTIyqM4GGZNFUx6Kzmc=;
+ b=uR7tiU6Be3yIJaazCS6GYPIfRZUCXAa+4Lv/x3hK11jp1hCD7gTH6E5eKJO+Zy/tHROybPNvgMgkXtSx27Ghb3nw3TbWCZCdBJYljZpwRqoqAu7A5fHnXBs0i/8+bgRS5GkS0ZaVoa1WDVn3Ix477GszJijcUwbBk0I01PmLOyDOXThMC3zIQW8vI0Sx5yak1qmA1GAY3HK4GjTCLr5TJIDW29HiL8hC8B8VIqJzOV5y6BTZzhJdDHHX2J0nJJFnLEajzjwBUkC90fzmj4sTpPVUxaXm1L/If5dcdhZkbEsoioQMjILayzrnAupfvUkDVnKQ4D6xSbP3B8k83wuKbQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=vCkwVOXNSTtWL3H2l2QYaPPlFTIyqM4GGZNFUx6Kzmc=;
+ b=CtYp/FadwgooIqbXYmZatzdOLFkDzULQQrLrx0YQLGZr2W7LlD8am9AWtief5PMJ5QZS2uI9LEPBtLbQS4ZC2OtCbsShTPnSr1Z7gSSdQOhP8zmWgzfDdjMq9Gl6cdaJ5y9csVueutVU343KybeBC8EaFPDiwHjXJJC9yHbdBmFZpgiFl47wJU9a+3fz/MVz6tUTC3VISnTpdG7VCtRtsoT3ycjFwGpFeo+ijsB/6y6rLuAXegTztjG4yMN8NHHRM9gPv3p+X9GRo25tSi/gyEpBtq6hAE9jXsFwfve3vUblxOn6qyozIFOQurwhGGJjPvYTizzn6Hw7uyKLSgtJuw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM9PR04MB8353.eurprd04.prod.outlook.com (2603:10a6:20b:3ef::22)
+ by AS8PR04MB9174.eurprd04.prod.outlook.com (2603:10a6:20b:449::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.17; Wed, 3 Dec
+ 2025 07:06:41 +0000
+Received: from AM9PR04MB8353.eurprd04.prod.outlook.com
+ ([fe80::46ae:f774:f04c:a1bc]) by AM9PR04MB8353.eurprd04.prod.outlook.com
+ ([fe80::46ae:f774:f04c:a1bc%2]) with mapi id 15.20.9366.012; Wed, 3 Dec 2025
+ 07:06:41 +0000
+From: Chancel Liu <chancel.liu@nxp.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de,
+	kernel@pengutronix.de,
+	festevam@gmail.com,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 0/5] arm64: dts: imx91-11x11-evk: Add audio sound cards support
+Date: Wed,  3 Dec 2025 16:06:00 +0900
+Message-ID: <20251203070605.1868821-1-chancel.liu@nxp.com>
+X-Mailer: git-send-email 2.50.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SE2P216CA0156.KORP216.PROD.OUTLOOK.COM
+ (2603:1096:101:2c1::16) To AM9PR04MB8353.eurprd04.prod.outlook.com
+ (2603:10a6:20b:3ef::22)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/4] dt-bindings: vendor-prefixes: Add Ezurio LLC
-To: Gary Bisson <bisson.gary@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- Sean Wang <sean.wang@mediatek.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-References: <20251202-review-v4-0-93f5cd2a0d4a@gmail.com>
- <20251202-review-v4-1-93f5cd2a0d4a@gmail.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20251202-review-v4-1-93f5cd2a0d4a@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM9PR04MB8353:EE_|AS8PR04MB9174:EE_
+X-MS-Office365-Filtering-Correlation-Id: 178a0d7e-dae5-43e1-31bd-08de323a8279
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|376014|7416014|1800799024|19092799006|52116014|38350700014|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?0u6XBme5ooQGgdnK/z/K/DAMV2yxpT/BtWwv/C4jq+P67AlMT568POkrNa9b?=
+ =?us-ascii?Q?P6ezFjfHmsBUyk3foYMQzYBe8fWDQSfQgcT3GJT4bAWD3vUHezEtmy2LUrAs?=
+ =?us-ascii?Q?1nFKwPNIbqRx0vyzqOBbDaWkr/Rus2DKNWiu36R6JMZlYRlC+o0gsVpzOgDL?=
+ =?us-ascii?Q?JOq7bGXz2iFDR44xALQ5hY9nT55HQUz7Xu5m8vccmu8pK/n0lc95umFjMwmB?=
+ =?us-ascii?Q?oZdUQRhW6Q1ZYlOZdl9BL/rv98gghCgmudF+1cH8qyWPH6q/kqAXaqh0O2/J?=
+ =?us-ascii?Q?1oikFdRC+IyQ+H05fGNriRAjVpWRhYH41m9hfJFxVV3CDxWP0bn0x9ucqk4I?=
+ =?us-ascii?Q?U201LveSYYx+JLozJmS9Eatdg7oH+EpWmQ8ZWDJJX+ZaHeavWKOOqG2ay0ej?=
+ =?us-ascii?Q?MuiVx1cMm2vEVv7yC8iFgKlfxr5Hx99KTEmznRPAGZij+jOhCNfC+N4STxa6?=
+ =?us-ascii?Q?Ppy2SVF95cPrNsV9B84T0R1r1Q2cps4N0cmZyKvcKyuicZUNssc4WDMrTThM?=
+ =?us-ascii?Q?03LyaVlQ6eo48PgPLWUUyXvyCmPrRxD1DzlQ+puEHWLOXKmSi9448CadNt2k?=
+ =?us-ascii?Q?wRdi42Weoh7uMggeEI8ZlK35v943mi4hmbEX3W2dfYdzcD6u5agS7EezT4r/?=
+ =?us-ascii?Q?hA3XjFKsN/niV2zc6ChtPngFYVEtvgzvgWSSPzTVMQyuk2lZuu+J4SUwQ5Tu?=
+ =?us-ascii?Q?fvCN8mjD2u+o+ls/oNbdOea7L2TFyafG+yAnd9NkNoVBwwcpv2nc/qOLPYL5?=
+ =?us-ascii?Q?GP4tmYMeU/tmdqnx9gqbaQHyGsKjZT9NjZmjX8+xYgH0vn8pVYRrQYu6ROdx?=
+ =?us-ascii?Q?5LbWA+ZLWqgEdc3olEylNodEBXuAOgggHXbtitc+lQgEeAdAaNvp6daZsvWJ?=
+ =?us-ascii?Q?mYNTRQKHJAZ6dHTTNPzfaJdzo74EQgXxzGOu+uW02zYK+mnexqkB+LusPy8a?=
+ =?us-ascii?Q?UevvzT8Spln8AqxQR2bGOIRgm6buU2WPjtJ0uzy0V9HUmNYUn4dh6ijA86TP?=
+ =?us-ascii?Q?B2DnNaK+nkx3pzSaTCKGtVtrilqXgBo7wKViDyu41IX6H3IlI93X7IIB69dl?=
+ =?us-ascii?Q?hP/zeLgNhg0YWejRl+Hwj3MFmDdOmKER4waz8noEblFkziIEcrdNoD4oV4OG?=
+ =?us-ascii?Q?iLCnF0jIaydYWz/NcUxJ6xibSVjQhm4IIhw8SvWIR8eUOlKAsiBVlwurjZSp?=
+ =?us-ascii?Q?gAhf85GIV6OlUfJx2NbyTihMo2w9jwEA/8g9cFp4Z15jZEicJdk3S2HjNnRP?=
+ =?us-ascii?Q?0Rom1TUsStnxkh9H1B4A04o06oUAEtXn+KNfRwM4hg3sJtXrQoa82+5dgOsB?=
+ =?us-ascii?Q?338b67CHo6Sx248uggreDlX0G8IEkls0KZ/oCKVEbAwdu+1tbOTBc+8ovwJZ?=
+ =?us-ascii?Q?fngqX6r6rFb4LVWb2HHgl4rHoIV58qjMHAiR4ZIg8KabYF9UeMeAZkeJvJtn?=
+ =?us-ascii?Q?romKeOSgl3+Nvh4tz8ozepI2OnLYWaTHY2ZvXZAgw3gLhbksHBexOX0uphXS?=
+ =?us-ascii?Q?qsyabIR53LS++Ln52+F0Q6FhkQT8rjBakkQxwHawJwTO4Ib62vbC5aXHPQ?=
+ =?us-ascii?Q?=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB8353.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(1800799024)(19092799006)(52116014)(38350700014)(921020);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?WnyCzw6rcA7ZWQinwRLxDPuvfx4VphT3fowK97b1h5bsc3QjrbtByveqKriB?=
+ =?us-ascii?Q?WLcX+ZqVypWIESxAzybEJr0MRcgyKjrotsjHZO18xhH0wu5MJtPsRu5lRzxR?=
+ =?us-ascii?Q?rDwVdV3T4DcuNdEiMisaLoNy0e5y5kCKvIzIN9nlHSFZiW4QY7nW09m9GaoV?=
+ =?us-ascii?Q?fFISmrTcbOjWmqloPYpCh6Q6iP2gXt482W11EhUiNuQcSMYJqrDk644wTj7Y?=
+ =?us-ascii?Q?bCyhCyw+x4w0y9zDicgD0VOOk28TocjNmrZcqHr8IDQNrESnzhClP1X8A+J6?=
+ =?us-ascii?Q?cr3ouNoe0BaXXXVfVSksp3ITGctW36XAd2V8sGdXXr9sG7YEdLeaeJHoITFr?=
+ =?us-ascii?Q?CfxDrBIUSPJc76xsdZdIjZF+04wUr2pHcrpY9sS0bVlzrE2r+JdES99atiIK?=
+ =?us-ascii?Q?hYHbwkmlWASfROE9yLEnZfXAGq6fHxV0CMkEoU7GiunaDOtl1qDvCrDx6nZO?=
+ =?us-ascii?Q?+vfml7Rg17OermxMmClK3pjFB7MFKzT1UZwhaA8DyevvJaeE4UbmNzUm2tCl?=
+ =?us-ascii?Q?MLc2fHvw41coWwMwZppuBony4JGMu5gUSLWUOBWUoOQmw//h3vHW++Bdzunu?=
+ =?us-ascii?Q?8E7h/6devWQAop05IwLDPU0Cm64ESsCsQtGbC1db+xZ7fclg+5mSfWtrUyZk?=
+ =?us-ascii?Q?JqoZR8jOlhW00A4hJyCXIl6bLmz0FA4oYtOmh50XTckGOzGp9kf4HNavTvg6?=
+ =?us-ascii?Q?8yAPehOzFgUFaL1p4BDtGgwRHJyi6sdN0vFnSpdjdEeImworJcifV+R1gWt3?=
+ =?us-ascii?Q?KTrBY9Dy2v+HGPtBkJMFbT/dzjMn1q1F8NhsdW+rHad+Jk2OLCZq/D/DD6AF?=
+ =?us-ascii?Q?X7+NYzMXFmnwBPoYsrDygV6aXSZSErG8b963xhjbWEG58hByXHc65G2vGb0s?=
+ =?us-ascii?Q?W7e04Fhv3+Bexf9KJJ32Myj3VbpTXelFg44O14PLTF4eX+GU0rhs2tnDU6AX?=
+ =?us-ascii?Q?kMQg/2QzHCNVFVYCOwk44fK0XB2TA6gd4Z/wN5WZ1J3AIxKvzCitRP/bmnVi?=
+ =?us-ascii?Q?tuF9VFvrtMxvzWEFel4jo5blmWJ1CKKhPeqnN7MKo6dtWaep3U76IKoeHZKW?=
+ =?us-ascii?Q?ZBIcf1RWvQBY8bBP8iEX7VFVz4+In2Sp881V/QuyneoNB08L37MhxuxMy6C8?=
+ =?us-ascii?Q?f+EqDSAlwSHzheati6k6i+LVJZi7JcmPYsNfobjIP6EQ+tldqj+gvqaZ0HLV?=
+ =?us-ascii?Q?pBdhYotMrWkVTjk9hJzl7u2Kj89blFJOeHhm6JquIHTUpS+kH0RN+ayCeZBg?=
+ =?us-ascii?Q?XL9zaCeZXfbyyr/2ZC7+GcRhYjZVKTqJCfB//Zp1Z+ECv1hVCH9ggZ3Vs6SE?=
+ =?us-ascii?Q?WRaipYPPJ326KGdbxBaEtYO1nf++OkatHugkg47peWgR6fzWERDeJuMHoxRs?=
+ =?us-ascii?Q?Wyg/Hple7PPXXHaz3FijoogbtE2ZZyhA+LcSMQuo7h3lbwmWqrItJ9I/k9Sy?=
+ =?us-ascii?Q?XKBUm9FGHTwcS61YwkmFy2FTnHvEAgcFTmyftiv+XkLdciEfa9WGGBWO+uNu?=
+ =?us-ascii?Q?YoSaaBFYNkE6oGwHsRwUgrFDL6b+RxoGNiOsOntvayrGRGwcZ4z8HUM2oAX/?=
+ =?us-ascii?Q?hYliAdTBATbqTBWNkPA7Kp5eSZNeGYeO66yOaZgM?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 178a0d7e-dae5-43e1-31bd-08de323a8279
+X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB8353.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Dec 2025 07:06:41.5159
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: U478dAR2hHXKTa+I18WGE6evjpdMtUKEMbIvC7pIhTYyzV/xDt2Q9MGcUy6L1vDmSLIWm9115srmnn05u7bjeQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB9174
 
-Il 02/12/25 23:08, Gary Bisson ha scritto:
-> Ezurio is the new name of Laird Connectivity after it acquired Boundary
-> Devices.
-> 
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-> Signed-off-by: Gary Bisson <bisson.gary@gmail.com>
+Add audio sound cards support including bt-sco, WM8962, PDM microphone,
+and audio XCVR sound cards.
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Chancel Liu (5):
+  arm64: dts: imx91-11x11-evk: Refine label and node name of WM8962
+  arm64: dts: imx91-11x11-evk: Add bt-sco sound card support
+  arm64: dts: imx91-11x11-evk: Add WM8962 sound card support
+  arm64: dts: imx91-11x11-evk: Add PDM microphone sound card support
+  arm64: dts: imx91-11x11-evk: Add audio XCVR sound card support
 
+ .../boot/dts/freescale/imx91-11x11-evk.dts    | 181 +++++++++++++++++-
+ 1 file changed, 180 insertions(+), 1 deletion(-)
+
+-- 
+2.50.1
 
 
