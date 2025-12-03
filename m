@@ -1,118 +1,125 @@
-Return-Path: <devicetree+bounces-244045-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244046-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65F33C9F4BF
-	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 15:33:25 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF6F3C9F544
+	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 15:41:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by tor.lore.kernel.org (Postfix) with ESMTPS id CA8DB30000AC
-	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 14:33:23 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTPS id A0E0B3000779
+	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 14:41:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46B362FD677;
-	Wed,  3 Dec 2025 14:33:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCFC22FFF83;
+	Wed,  3 Dec 2025 14:41:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=garyguo.net header.i=@garyguo.net header.b="Tyn55U87"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="V8t/EnVb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from LO2P265CU024.outbound.protection.outlook.com (mail-uksouthazon11021134.outbound.protection.outlook.com [52.101.95.134])
+Received: from DM1PR04CU001.outbound.protection.outlook.com (mail-centralusazon11010061.outbound.protection.outlook.com [52.101.61.61])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A38471B4138;
-	Wed,  3 Dec 2025 14:33:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.95.134
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06D682FF15A;
+	Wed,  3 Dec 2025 14:41:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.61.61
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764772399; cv=fail; b=IlKXHpYVJdTlUWUu2aNASkS+Yn69cXspKm2DNkZTZwtTXUurdzfyNk9ASNtZofhr6j0ycuvrJdSTB2OZjzM8GRdQJ5VFMARtFRuJhmdmIqPAn9Qp0ZYvWaOQh+CwQ4EifzZdA7v0q9cNl7Ol9XYj/c5rCX6nCa5lDkKNgdHfAA4=
+	t=1764772906; cv=fail; b=PDrszlPMnY0/xTeZ4CXbjC5PJok1dxRbN0xUmkhxMxKvK3PBOExkstMRlMLyaLamNjllyzdAB94kCFp6efxY1PsBhkiv85+6UQtJJW7y7tzJhZOCg0nlXx434PyEX4tLH/cdNLeML+Qwsrlrnjwg4Y0xQCR/3zrm5XQrPxL2sik=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764772399; c=relaxed/simple;
-	bh=Wm8MElo016nhSo3mUSKUKVFY2V+ylObZq3Ju+Xr9jps=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=bC12zsRnphuSwMYh05PQyQuDbkhjKJOh3O1UXPi7xStG4s1vv4898WOcJALYMfXBnOE8J6NGF1AaGxCPvc+33wj0rHeYAyh/LikEBgCRzt3BxJ0Elj8SpA7KLfFPLnIRPounm90aRLqFkC9Qz2tWqGrt+Frvxn6sPwZPKmKcdQU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=garyguo.net; spf=pass smtp.mailfrom=garyguo.net; dkim=pass (1024-bit key) header.d=garyguo.net header.i=@garyguo.net header.b=Tyn55U87; arc=fail smtp.client-ip=52.101.95.134
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=garyguo.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=garyguo.net
+	s=arc-20240116; t=1764772906; c=relaxed/simple;
+	bh=m7AhALe2UYpl8Wvcw1L7RmKOkuRDanjk2y2LO+GmOSo=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=s2f8X/f0hzVI81iDzKDW73oqkIVugTeyVZA2GQBQdMBxWVFUkdpmA/9Qong2gm+ttCshH3ujyqF9gf1DFHSOKAz0FZpHIbdSQ+86ZFT7NBgjDc4Pzjj8NiPVvUL9wGeiUM9ZjvN5kRaE3+6prMLXCtTWpkOmGQKNmmLG3EXr+eg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=V8t/EnVb; arc=fail smtp.client-ip=52.101.61.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=d0NRSwTvEeKriBepoRDW0oZuBWNjB3DjmrWZxWY8u/WPCAy534KeVfvRM/hc0g1UJTz2Id5c6WgXF5611vSThi0pmsUBXRBDccmB8GMkjgOF+yqz3artUAGHIA8SL7mSDgoJixQ7eDKt1z0dlFvmD0giLkko3Y8N28+6VU9PwrdSJm2HsPjxPgDucnnrZyaes7PXlncNa+zV6JF82hRHl2XhH9ixfE6playjXvNL9ufF63OeX6IuBdd/f8mRKqYkrngdDUUp1e/2dUCADEmJduE575v8/mt8AuaZhVPfclANeTgG4lbk6TH3O0zwpCqfVWAnNrqdT3Ywow57T3njWg==
+ b=J/Ioju+Vy+n5OlGisXXLfODdQd+BcCvNMjp0ey+1mdPVv4HZF4t/xwshyKHfGPvuV4ahS/tzCQoXlupoCLiFew97cteg3C6rbwu/d9cGySbPqttPexrs55jEP8XPmYq0HXR2Df0menu4gTektWs7Hmbyav4IzXsSPfZ0zOTIpMnq4wtvfrxF6s1Cogp0zSuPawEut/LHJHNRszs2GMj5gM2kUzWldCcLK8i13oTplwAdkNfrRSdba1MTDineUhtVvBdJqjkjfg+q/ATaLGJFFl2unG47e/H1p7OFuUl5oVQWeGx/oE0U/wxuNYFKRKAUpVZH60AQ2UP3a3bJ+jLWqQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2RNJy5g75k/yH+/lmInzQToBBwILHLfxTZooVLuZbII=;
- b=RKM7MqlXOaAbuXGzcON7Qdzp7Yn7BDimSRmSiJO3rYK1U0UpyVAMUsxM88AymboiA0DOzr545g5s+pdvBaouspH7yovRD6ucqhOzj/dByxJ3wmZl8/hbbXOAy2/eGX/ZAsiiCCLVPQruEhl+nEJoAFo/LXy8h3eXpWiI8z8ngo/FVXvqH2d7krKVsMHF79mevKhs2gavGf92DTL3Ejx/c1YY5H6UHMW2erSJQG5BhUFyKOpOd84n+SxzwuVciHwHJRL57/TLQhS5a4Oyup974jMYKTEeQ0e1WTEJYTfanQLv4aGV+BtbovEceHZWJ8ivFgKgvCSX+L0XN+yEXsOagw==
+ bh=BxSByKyr5ZxILTKwzeAT4ruDNbccrpZqap4vAL1yTnM=;
+ b=aGIr5cFcRYAf/wPvK/1UcZTuigT1jGMQT+oS1TRxFt+bQg8VuHOYjZw8qjwg47+93/OMakMyFYxUsZWxctQVBKkaB95Srv/R1lJFebLCLkjFT5/PCv21rKZZom/MOHjeUPoAe6lGR7LWD/LiC9CNhZqMDxLnUUZA0PK9FGegbqZBcGE9pcvPLQR0tifNJqwuIAhnc/ZQ0+DHRyvT5VEbhgFTCdx7JqMrHYBJJ3N3xJH0DzxRT+Aq644nbofQR2VUHjiarVwwag9iW7EmS6ewgqSuQe9YscwgM6IkdpS6S3BKTNHoF9KqsEhLZUecdJSK7qeANPphTdpq4FWQybmbrw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=garyguo.net; dmarc=pass action=none header.from=garyguo.net;
- dkim=pass header.d=garyguo.net; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=garyguo.net;
- s=selector1;
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2RNJy5g75k/yH+/lmInzQToBBwILHLfxTZooVLuZbII=;
- b=Tyn55U87HhpyiSZD1z91h3YYk7GKFDNY7KVMgjq7DKAsXfs0MgFTTuZ6ZpGLI2W0MHkeXHaoSHsfhOulphpVNH8RyOW3LwfeL3T6JtFj68s+nkWDe8wEsX8wl/gHGDIwUTB7LWohZB5HnGKhzHOze/HTBh0/7fshmFgQCyCUoMU=
+ bh=BxSByKyr5ZxILTKwzeAT4ruDNbccrpZqap4vAL1yTnM=;
+ b=V8t/EnVb/uT/9BKa6HApF2HfP7KwSglj31ezGt7odSfRj4U8UxfObIKQujSPrmZfaVIm4Qf7/sW5Ap56XEPt4CnvRHAN/cNKcQLS2pyBXyccbjD7OaQS/q/KvnALT4TaAprWGSGf4gkhxYracjxVWXLdfQ95nkUwGdBZblgUOdA=
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=garyguo.net;
-Received: from LO2P265MB5183.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:253::10)
- by LOYP265MB1840.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:e2::15) with
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from SJ2PR12MB8109.namprd12.prod.outlook.com (2603:10b6:a03:4f5::8)
+ by LV3PR12MB9165.namprd12.prod.outlook.com (2603:10b6:408:19f::10) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.17; Wed, 3 Dec
- 2025 14:33:12 +0000
-Received: from LO2P265MB5183.GBRP265.PROD.OUTLOOK.COM
- ([fe80::1818:a2bf:38a7:a1e7]) by LO2P265MB5183.GBRP265.PROD.OUTLOOK.COM
- ([fe80::1818:a2bf:38a7:a1e7%6]) with mapi id 15.20.9388.003; Wed, 3 Dec 2025
- 14:33:12 +0000
-Date: Wed, 3 Dec 2025 14:33:05 +0000
-From: Gary Guo <gary@garyguo.net>
-To: Alice Ryhl <aliceryhl@google.com>
-Cc: rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org, Greg
- Kroah-Hartman <gregkh@linuxfoundation.org>, Dave Ertman
- <david.m.ertman@intel.com>, Ira Weiny <ira.weiny@intel.com>, Leon
- Romanovsky <leon@kernel.org>, Peter Zijlstra <peterz@infradead.org>, Boqun
- Feng <boqun.feng@gmail.com>, Elle Rhumsaa <elle@weathered-steel.dev>,
- Carlos Llamas <cmllamas@google.com>, Yury Norov <yury.norov@gmail.com>,
- Andreas Hindborg <a.hindborg@kernel.org>, linux-block@vger.kernel.org,
- FUJITA Tomonori <fujita.tomonori@gmail.com>, Miguel Ojeda
- <ojeda@kernel.org>, Michael Turquette <mturquette@baylibre.com>, Stephen
- Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org, Benno Lossin
- <lossin@kernel.org>, Danilo Krummrich <dakr@kernel.org>, Thomas Gleixner
- <tglx@linutronix.de>, "Rafael J. Wysocki" <rafael@kernel.org>, Viresh Kumar
- <viresh.kumar@linaro.org>, linux-pm@vger.kernel.org, Paul Moore
- <paul@paul-moore.com>, Serge Hallyn <sergeh@kernel.org>,
- linux-security-module@vger.kernel.org, Daniel Almeida
- <daniel.almeida@collabora.com>, Abdiel Janulgue
- <abdiel.janulgue@gmail.com>, Robin Murphy <robin.murphy@arm.com>, Lyude
- Paul <lyude@redhat.com>, Alexander Viro <viro@zeniv.linux.org.uk>,
- Christian Brauner <brauner@kernel.org>, Jan Kara <jack@suse.cz>,
- linux-fsdevel@vger.kernel.org, Josh Poimboeuf <jpoimboe@kernel.org>, Jason
- Baron <jbaron@akamai.com>, Steven Rostedt <rostedt@goodmis.org>, Ard
- Biesheuvel <ardb@kernel.org>, Brendan Higgins <brendan.higgins@linux.dev>,
- David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>,
- linux-kselftest@vger.kernel.org, Andrew Morton <akpm@linux-foundation.org>,
- "Liam R. Howlett" <Liam.Howlett@oracle.com>, Andrew Ballance
- <andrewjballance@gmail.com>, maple-tree@lists.infradead.org,
- linux-mm@kvack.org, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- Uladzislau Rezki <urezki@gmail.com>, Vitaly Wool <vitaly.wool@konsulko.se>,
- Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
- devicetree@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>, "Krzysztof
- =?UTF-8?B?V2lsY3p5xYRza2k=?=" <kwilczynski@kernel.org>,
- linux-pci@vger.kernel.org, Remo Senekowitsch <remo@buenzli.dev>, "Paul E.
- McKenney" <paulmck@kernel.org>, rcu@vger.kernel.org, Will Deacon
- <will@kernel.org>, Fiona Behrens <me@kloenk.dev>, Liam Girdwood
- <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Alexandre Courbot
- <acourbot@nvidia.com>, Vlastimil Babka <vbabka@suse.cz>, Christoph Lameter
- <cl@gentwo.org>, David Rientjes <rientjes@google.com>, Ingo Molnar
- <mingo@redhat.com>, Waiman Long <longman@redhat.com>, Mitchell Levy
- <levymitchell0@gmail.com>, Frederic Weisbecker <frederic@kernel.org>,
- Anna-Maria Behnsen <anna-maria@linutronix.de>, John Stultz
- <jstultz@google.com>, linux-usb@vger.kernel.org, Tejun Heo <tj@kernel.org>,
- Lai Jiangshan <jiangshanlai@gmail.com>, Matthew Wilcox
- <willy@infradead.org>, Tamir Duberstein <tamird@gmail.com>
-Subject: Re: [PATCH 00/46] Allow inlining C helpers into Rust when using LTO
-Message-ID: <20251203143305.591cd0da.gary@garyguo.net>
-In-Reply-To: <20251202-define-rust-helper-v1-0-a2e13cbc17a6@google.com>
-References: <20251202-define-rust-helper-v1-0-a2e13cbc17a6@google.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: LO4P265CA0061.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:600:2af::7) To LO2P265MB5183.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:600:253::10)
+ 2025 14:41:42 +0000
+Received: from SJ2PR12MB8109.namprd12.prod.outlook.com
+ ([fe80::7f35:efe7:5e82:5e30]) by SJ2PR12MB8109.namprd12.prod.outlook.com
+ ([fe80::7f35:efe7:5e82:5e30%4]) with mapi id 15.20.9388.003; Wed, 3 Dec 2025
+ 14:41:42 +0000
+Message-ID: <87a5fa3a-4242-4755-913d-b87cf8873039@amd.com>
+Date: Wed, 3 Dec 2025 15:41:31 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3] docs: devicetree: overlay-notes: recommend top-level
+ compatible in DTSO
+To: Rob Herring <robh@kernel.org>, Raymond Mao <raymond.mao@linaro.org>
+Cc: linux-doc@vger.kernel.org, devicetree-spec@vger.kernel.org,
+ devicetree@vger.kernel.org, ilias.apalodimas@linaro.org,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-kernel@vger.kernel.org
+References: <20250911151436.2467758-1-raymond.mao@linaro.org>
+ <CAL_Jsq+apXxvngU9enNw9yzD1YAAOyamwkTBvqdrc2M955Q38g@mail.gmail.com>
+Content-Language: en-US
+From: Michal Simek <michal.simek@amd.com>
+Autocrypt: addr=michal.simek@amd.com; keydata=
+ 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
+ mpwx1d8=
+In-Reply-To: <CAL_Jsq+apXxvngU9enNw9yzD1YAAOyamwkTBvqdrc2M955Q38g@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: VI1PR07CA0302.eurprd07.prod.outlook.com
+ (2603:10a6:800:130::30) To SJ2PR12MB8109.namprd12.prod.outlook.com
+ (2603:10b6:a03:4f5::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -120,251 +127,234 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LO2P265MB5183:EE_|LOYP265MB1840:EE_
-X-MS-Office365-Filtering-Correlation-Id: acbf5439-7581-44f6-714b-08de3278e331
+X-MS-TrafficTypeDiagnostic: SJ2PR12MB8109:EE_|LV3PR12MB9165:EE_
+X-MS-Office365-Filtering-Correlation-Id: 62d9d0f5-4ba4-4adc-54cd-08de327a130f
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|10070799003|1800799024|366016|7416014|7053199007;
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
 X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?UJrfARac/ujsBb15GuVEoZR5AGfjo7H+g4EF39E9aORarwyuQssx/c5Vdw5p?=
- =?us-ascii?Q?fKve5noEhpOOBMp7d7JqUdZ6jDTY8lM/9hZ5iDZDBk87t3l2P6O1knClbiYX?=
- =?us-ascii?Q?x4AKfn1ZQcD0EF3Sl8zWmhs6s/Oleq062DbkKOHjwCeafOOMBTPDXVfzdMWN?=
- =?us-ascii?Q?N2UQUuoWNj+ll9MypGDWtSWckNq9ioOgx9YCVcrkyW81xGa3RKgrhuvmgWN6?=
- =?us-ascii?Q?dx5NkaviRcAbkhir5pbztXiBRdRtlOYNoqnKzSAozz7T0r142W++KjuVbjUf?=
- =?us-ascii?Q?zyRaHLHgb+Vg/VVtRc1e6+Qimsl9z19727igH8Ae3NJlnyTUQ86Bk/uKC6Aj?=
- =?us-ascii?Q?2bf/sWYZKBMACJDWD+o/mHwnbaOSOvRoOc8PZzwerxo9ESVsuCsjwtowFi32?=
- =?us-ascii?Q?Tg9gjs2tuSkdI2FphxopmKuSSTBg6QhYqUlE7bFWK4A9x1S6ak0oS8W2bm0Y?=
- =?us-ascii?Q?2AfXo7egN6WQ0Wh0tvZ+hAVadsLN+AubY1Litp9sMWmVOUsmApBk28P6YED0?=
- =?us-ascii?Q?6RbSIFzVwslTnPo6uYeAAGJzCMIrmUo/kv8D6waH1C/ACNPKXQPTin/p8Fio?=
- =?us-ascii?Q?1/EJixEv1oE6q0/mefPk+4BATdi4OZkjFHPiDv+gyGZoMNwiJ85lW8hTyVNy?=
- =?us-ascii?Q?+gScMEzHzzKG2PLyfoXbwf2dSQLdI6lDU4Vu6+5oFL5D9n7KdJTp/044esCb?=
- =?us-ascii?Q?ZHJZ/MoYX9DvdJFv8QBplLBZidivOGvhN2eujFY/cD+/7euWh62eTxbls+hb?=
- =?us-ascii?Q?8QI76//QRSnGShpH3itFaRvoJiSN4bJ+TAyth7N/fWPLRofamQZiaJOmYF06?=
- =?us-ascii?Q?4JxkMQ4N43mnFwGGNfqU1DbpqvWYveX70jeHOsYeeTfTPP8szfO8i5rJX0/B?=
- =?us-ascii?Q?Mz9gty5w0avCcsB2ymksw7qa4GsI0LHK10gVTSXiP3J1LsX1JfQ38hjwACcX?=
- =?us-ascii?Q?Cgmv7kykfc8xaKkpNndqiSbiUDk73fkXWAQjmZJnhiwnQmGHwKtJhQjVNT2B?=
- =?us-ascii?Q?/gK2GwO81H4WT3pz7nZeuMd87fbbgxfHDa9lxvpTCAI0dTab553n4ByY4Puw?=
- =?us-ascii?Q?hPvIf3cbTEVx+C9QT3vRRps65l18rJ1hhW1ADKK2MWUn5Wb9AxRZ7gel5I3I?=
- =?us-ascii?Q?qrj5gcDJEUq8es6wmxfX8+nmxAn3zu0hv14PEO6QtJPwcOIQd1+GhDk8+7fo?=
- =?us-ascii?Q?GTVOUMBIxxxH1lV9NkaxJ+Oqo8esZcLO50H/mUCZ9+NkcTSssNwbN49LI1xu?=
- =?us-ascii?Q?J2+GGMIwIfC7YCNCtKNLKUdAU9cTLzdYyJd0cfLeui6SJG1DeUSrIMjQvW3J?=
- =?us-ascii?Q?kvD1g/PIT8X8cvOV62qZ9Uc5GGRLY59M3NBF6NozC4kme9qwg4PvfmeFtUHY?=
- =?us-ascii?Q?/u7vKQOBSqweg2EdL20aezhS7uaW/jWiJyQbsc3JrqQ/1h6U7zCHAJ7uzFb2?=
- =?us-ascii?Q?yJf6N14z5Cs6Hq2ZNwOVLFk7ilJ/zzED?=
+	=?utf-8?B?OWlkRGVPRGJnKzIveWFmOXdOendsMEZJRXREWXVKR0RsZE9pc3dOZmcxQUZy?=
+ =?utf-8?B?UjZaQnBrN1hQZnJqQkxBY2lkWFBWRVFTclRGc0RjR1ZIUWFyY3dvTEI2bmw4?=
+ =?utf-8?B?YWs4dWRKTjJpVGY4eVNKUStlRWYwWFB6TEV5MUFmZnFFRTU2SGIzRmhEbFBQ?=
+ =?utf-8?B?MnB6NXEyL3NSemdYWVVRSHg2V0NUZ0MvT0p1NEJQZ0NhbGFwd2hsZis0R3N5?=
+ =?utf-8?B?UnpvZHoxN0RqUHJIR0dNUWtvSitocDhuVWdYMEFYZE9wVHpDZFNnTktqakJ2?=
+ =?utf-8?B?dnNmYmRiV3BRSkJtN1JpUWhLWmNZN2Y0SjE4MnVFcjNlbm43TUdWQkNRWHVp?=
+ =?utf-8?B?bG5WQ1JRZmpPVG53eGpiUEsvc2orK2lUay8yS3pIMmZLRG94ejZUNGNZRXZh?=
+ =?utf-8?B?TGxzQng4LzJlRTFLWHo1LzI5Uk5GY3RDRzlyTjY1WG5kTVpxZnBOVHFvUGI1?=
+ =?utf-8?B?MzdPRE1DNjVwYisxY1k0ZjNOOGkzL2kvalhaV3VhOGdkVzZjNCtCMzJMV3I4?=
+ =?utf-8?B?TXplTnl4SjVVVElJeWRGbXJ2M2ZpdFFQV2src1QraWd4QklyR0kwSGxMcThG?=
+ =?utf-8?B?V2RaNWZmdS96M2d0eXo2RjEyMFdyZzJFM2hUSk5teHBJeklFYTVkTWZqS1V5?=
+ =?utf-8?B?c3h1bk5nMHU2Y2xWTVlmaXNKaU02MlZGdjZLZis1V0l6a1FJSGdheWhTb3Vm?=
+ =?utf-8?B?b0t0M2U0Y2tDbjFxSmt3c0lyNGdJYlZUR01QcjJIVGUxdk8zNDVYLzFkRkxE?=
+ =?utf-8?B?eGE5MzNkM1BwZGczYjB4T1puVWNndWprTVNVM0o4MjFjNlRxN3VTMVZZUmpq?=
+ =?utf-8?B?NEo1TEVYa0RXYldoOThERnAwdDhyMFlqWi95c0tpTCt2ekNSQ3RDVHE4Ny81?=
+ =?utf-8?B?bVk0NlhYZFdiMDllbXNqcnZHVFM5ajR3bWxUMXFZNDBVQzVYcXRqdGh5aVpy?=
+ =?utf-8?B?cHFRTG9kMkR3ZS85Z1NDa1BPbkhwbHlsbUxUdU10ZERvS2pSNVNOeUtHOWRT?=
+ =?utf-8?B?ejBzSkFQZkZMZStJd3RzWFZoSlVmMXFsb3pMTGhzSlQyMGlnand5VGV0UytB?=
+ =?utf-8?B?WG8vSXhxK015WEFxbTE0T2JKZE8zd1luSUc4c1h1S0xPelZ2TlAvdzJNeHJt?=
+ =?utf-8?B?TUlZVkJCR1BTNnZ0dmFUckl5YS9kSk9tbHM0S044RDMxTUk1cFZnNlNrU3JB?=
+ =?utf-8?B?ZkdNSG5URVpmVkdBYlRkaHQ5NHQvV2FzTmpjTkVPejdWUTZEMGI3akNMZDg4?=
+ =?utf-8?B?M2Vzc3ZqQnR6cWVXcGI2cGpaVXFoR2hDUHUxMDJSWmVjSStUa3k2bHdsYVhR?=
+ =?utf-8?B?N3paNUFCdFRHc2t3OVB4bFZSR3FYS3RnNW4wV3lPSFoxVVJRN3BEdVdGalI0?=
+ =?utf-8?B?UU9kdGtRcHNmcXZLWFh3VkdQc2JPS3F1aEVPZzN6eVo2MDNpMGFvRnR6ZWxW?=
+ =?utf-8?B?YzFsL3dWOE1YNjJvb0xWTjlLQlVwc2ljdUtvbDAyMEk3b21zWTFEajJuWVlY?=
+ =?utf-8?B?TytsK3pZUzhlVkY3SUx5WVJ4ajhrUE1NVFRmU2NDMDJzR3Z6alpFN1lDZkp1?=
+ =?utf-8?B?VmJaMDBqOHhyK3FISFljam0rbHRrYVE2U2dFQ09FNlh3UFpFUStNeWxVMkh3?=
+ =?utf-8?B?ZWRHSFRidE0weXhhUmpwS2pGUnZlTTVPb05OTllYVWtJcXBvckxjZFZPUHJU?=
+ =?utf-8?B?akQvaXFLTHFSdHFkUzRPS0d5d3p1ZWk5RDRzMUp0R2NKakpnU29RUEx3eUJD?=
+ =?utf-8?B?NVhGcUV1d2NiUTdRcHVMeUJZb1Q0YzJXcXRRUnE2Z3Nud1BiMmF4U3kxMkRJ?=
+ =?utf-8?B?Zyt3em9lYlc3czVmaDNNdHpxSkM1QTBmbEdlLzJYU2FmZldoQjA5a1BDeE94?=
+ =?utf-8?B?OFZhWjBBc0lZOGJLbEExNEVJUUR0UFRYd283aUVuSWl3aGc9PQ==?=
 X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LO2P265MB5183.GBRP265.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(376014)(10070799003)(1800799024)(366016)(7416014)(7053199007);DIR:OUT;SFP:1102;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ2PR12MB8109.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(1800799024);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?aSDALWRyH6rBkXxsbpB4Y/5XOm/Bce5/DXVBbWJ1n6Di3wnox2Ngvn9vQCAI?=
- =?us-ascii?Q?Y5A/5vENvJ8dX4qzav8O/ktGU6eMGd7Qqy/lcczgT3Z7awwxz1K8KNrGzY/O?=
- =?us-ascii?Q?5rDSyN7Eg1OeQ71nEL2zwTHEIBySAxYpeubVrfL87ampUcDzdbCvjSPMBN5i?=
- =?us-ascii?Q?m6IT2Snr7COf6DDaS0U8dBOI3jzYi262nJRmAZagEheMDb0//hONUIkgJll0?=
- =?us-ascii?Q?S3GYzqydR1DmgQ7QrkzfTOXhS9qrBylxJzETHgrOiHBHi2K0IHlPAI6kFcEU?=
- =?us-ascii?Q?0AkeoLqnIEot8pHEsdJzul3hdEBY0XYcw0uFpfHIqdW0QvOhkXVO1znF2DuN?=
- =?us-ascii?Q?stnxBj68oP7UrXprCATa8v9x831lUCLaAWfNTPzBdzlfMsxXnjg3zqis06V3?=
- =?us-ascii?Q?rLTkqzG1d6uEdj7Cq2TsFKm2rHji1B1dMSO0+c5Bdw9uG73cawkyenwW52PN?=
- =?us-ascii?Q?iYaXyEe5QItQ2rTjSung3fkLhAl5STLqDZrpYcQSO7ZCBzgtsk57Bs6AWpNj?=
- =?us-ascii?Q?Jlm+srnD05VHUMvTbE6bMxoAIHzoYBW9XQ1NHYl9uwtZv9Nc+/l72qlDz73E?=
- =?us-ascii?Q?21znhRhYmszGDJjMw+5SmMzXFEga7X3OvVrBBAT90vH5M6rC4B4L94LBCtYb?=
- =?us-ascii?Q?ff5hJxMRPN6LmYFgSiHBPcH54/Lq+aAmcVPFtQVa9wXeVz64u1q99G4tOzjF?=
- =?us-ascii?Q?YF+LY1Bu8mxizc2MeS+/VSLBVuJ2ur60t2FTe3p8QCJB8+anw/F8y9D8wZDZ?=
- =?us-ascii?Q?AlaU1dO6xsM+d0OKTzH1g5i+LRc7fu/WguQbCIMuPxwIpk3hsq2L/etVDTYG?=
- =?us-ascii?Q?j1DRe9RM+1m0B6rGCojtvH0Z/y88WYKsrVrNcU0b5VbIW4mIr7eHyOy/RaG9?=
- =?us-ascii?Q?+5VTE/7wBNSFfAGU/+HDhIWJeW4lsV0z7X+hgsaD53VpCSqfbb2FFF23WGra?=
- =?us-ascii?Q?bksKZt8s2Q1O5WlSDPH1v5qGLp4OwXgW6rGx8Hv3L+xAW5g70fUoehS56HXk?=
- =?us-ascii?Q?sVRpSY47BDZAKaABAjA0qaNhzf0o4yM0PF0Dx2jemfUAqiN/PApQij0Ah6U5?=
- =?us-ascii?Q?kq8T6+ERfhm6cw+Aob4ejY0jLb8R7SSvueKnag4yKWLUlQVtrnRCexkmtUsz?=
- =?us-ascii?Q?uLvS6ZUCjALqmIvz+L17dairZPqR58MltO7vXZMEbd0N6rHfSbn5Pgy5JBVX?=
- =?us-ascii?Q?kvGj9IUdOIEya7I2GVfhvQMe05cU+yzRODk3egh+zDRKzagX6f0KuMom8/wP?=
- =?us-ascii?Q?v5e9UV0Li3Y9eYNpC7qyqlUuRI35WBswUafowEy6uWtR9FYoKAyZPiimcFRe?=
- =?us-ascii?Q?lArz2tswt3FM0SGVQ9LK6cBndm5G8jxF7CNhPjBoj7gCy+6rt6ULJQj2gvVt?=
- =?us-ascii?Q?FfZHOcO7d6ha2EX0n+WxDDTwt/ojJ0TgYb40zc/y/nq0+RJwqGsG6DXu/ovO?=
- =?us-ascii?Q?wLv5pIa3cyRweBtIgRQ42ZQcuM/NLPGU0aeyeXqMaQfNDZGDJHQJV/nl77V5?=
- =?us-ascii?Q?NIfeoheuxVKaUpvGliJ16RymPhfb1NfGyl+TBpRSoy8kGaRIUSWU/OONleH+?=
- =?us-ascii?Q?2zN0NHddUbOPyZpFzVRSjrwrn5ENJIm9SE/0OKpV?=
-X-OriginatorOrg: garyguo.net
-X-MS-Exchange-CrossTenant-Network-Message-Id: acbf5439-7581-44f6-714b-08de3278e331
-X-MS-Exchange-CrossTenant-AuthSource: LO2P265MB5183.GBRP265.PROD.OUTLOOK.COM
+	=?utf-8?B?N3V4Z3VLUHBDMlhRQVlTUTRRd1JiZk5kUWFyaXlVQ2t0aE1RS1pvS0JNU0dn?=
+ =?utf-8?B?bUYyYy9qYXgwTlR2M3JMVHkxUldJSTg5cFIzbjRwR0V1OEhCWDlIY0t0VEp4?=
+ =?utf-8?B?UDcvVkd1RUlwUFlqM2NlZUZzeWgvbjIvVHk0WW4rK3dtRU42RkdHSnIyRm9N?=
+ =?utf-8?B?RlNOMmFTOFJ6V1FFT3ZxWjF3cm1pNCs2RVllcnZTcHZ1SklFeW15Zi96b044?=
+ =?utf-8?B?dVQ0Q3I0NXJqdExXTER6TGhxUThzU0Z5bER5bk55OVV0QnNuSzZZcEs0SmVo?=
+ =?utf-8?B?UXVyY25JK1FPSmNvMHIyL3I2NW1rQzF5ZnlvRnd3eW1LWlVHRGZPZW4rUm4v?=
+ =?utf-8?B?dkhESkdmWkxsV1IyRmhFeUFWazdvaTV5UVJISGFQc2JBbHVuWSt6dDNmNEtL?=
+ =?utf-8?B?QW1uR0xxTWVwbGpUYnJHTTg5KzhBcXIrL05tM0VReitJbnVzaDVZSW5XMmlV?=
+ =?utf-8?B?SExLUEVUamlGSzU0ZDdENC9ZalRLZXYvSWVvR0swY2tkeVZmN0JnNjMvQTRY?=
+ =?utf-8?B?elZJNk1wM2JUdDdsTWFNaFYvdnZDQWZGT0VpTFpJNUZzQVFwam01NXV3bVhI?=
+ =?utf-8?B?TzBHcFVtcVZ6RHB0VC9YanV4MkVZVWUxcmhxU3hhZS8rTEJxb3B0THpuY21Y?=
+ =?utf-8?B?ZmdWMnp0d0RBd0tuMHQvL0RPUzZNa2c2M3RVRVIyclZzb05IZHNvdEhxVXVL?=
+ =?utf-8?B?aXBwOW5HRkt3dUN2VCsxU3Y3MDFtb29kZXF2Q3pXeDltdUd6MGVWZTVTZDJ0?=
+ =?utf-8?B?c3IzS3U0blhSeVA4Uit1Vm1zb20vTk5XLzBXRG12UjNCNXEyaDc1dDNybGZJ?=
+ =?utf-8?B?bVdyL21sUUZyNnFTL0xNODhxY3crNWg5dFhobjFkcGlJS2R6SVB3S01zZjN1?=
+ =?utf-8?B?akk1eVpZUUl0azNlNitxTTF4eWdtRE1mTlhKMjZGMnVSTEtpZ085QW0vU3gv?=
+ =?utf-8?B?ZkhlaUE3VnAvNWlBUEZjczQ0cnpVNnNWR2JKSE5KWEFJSURJYUZYRm8zc011?=
+ =?utf-8?B?eXZ0TDVzaDlhWnZjQzZFdVg3R2hKbU5qUm5TWU5DSnlNT3F6emtxcDltU0Vp?=
+ =?utf-8?B?amZYU3V4LzBwcllXZVQ4WEExdGxEdGJUem9GQ2t1VHV4THJBdVZsODFnUzNV?=
+ =?utf-8?B?ZlgwcDBBQ0RMUStCeUVMTEVtQUpmVXpBVmEwdGFVTGpYZ0Qzb2ZzR2JlVzdG?=
+ =?utf-8?B?ZVVlcTh4ZzNjTWt2UzI4cWErTWVnSzc5akNkQTBPUmR3QVNOdmMwWTJDTG5G?=
+ =?utf-8?B?MjRNUDIwdERMQ3V3VlQvbnRCZ0cxaW1INm5zK3ZrdlpaT0hueHkyZWh1cXp5?=
+ =?utf-8?B?ZDd2eDJ4ZytQMUh6V1ZwWDJuWHRYQXpDT0JUbm9QZzh2Y3FGQjE2VFRydUNo?=
+ =?utf-8?B?WVZmZkYxaVN1NWZCZEVvSmJqZmdnaW5oSUUwa2F6ZFVvR292bTRHR3h2WDgy?=
+ =?utf-8?B?QVNPckUvVGpmV1BmNmtiTXZQczA2clFWZlQ5cXJybzJ4NS9HYjI1Z205VllZ?=
+ =?utf-8?B?MnRTckkxcTdJd1R6NTFtWitYdm13QXhDTlZ5OUNhbkt4eWJSSVRwSjhFQ3Q4?=
+ =?utf-8?B?Z2pyZTlYa3dvT0NsSjh2YnAyaFRGSjFnRzgxc0FIbWthb0Jvc3pRUDUwbWlu?=
+ =?utf-8?B?bTFVQytVbm9JcjZIcCtDQUQrOWFOTnJHZFBiMktySjF1ODN0L2ZSS1JUOWE3?=
+ =?utf-8?B?Z2xUbTBDTDhYWE13K3d4eGhCSFNiRVhZNHNrajk0Y0lFS1RFdTlteE5CSSsz?=
+ =?utf-8?B?enhpT2ZvSEFNOWc2NGMvU2JTZlRaclZUbVRWUmpHS2lVQ3o5bjM4SEpwMFdL?=
+ =?utf-8?B?bnNrc0xwWW84VkZ2Ri9lUFFmUm5CaWhaYUNpY3dBWjgwSEZEd2duZ2ZPUVZm?=
+ =?utf-8?B?TWJRdDZ6OHg0M0hnQVZ3ajlsbVhCY3l0ejl4aDNEeUdUd2hPTVBUNG4rWXlU?=
+ =?utf-8?B?TVdmVW1PODZiWHpORkRhSkdnNm1TR1RpUHdORW5VV3MvK2ZGTS9iTnNOaHRi?=
+ =?utf-8?B?WnRIaWVLM1R3UWFvVXVJekRpRkdTYXF5UTJjenpYT2tTbkVpZHBBL1lxeU9t?=
+ =?utf-8?B?Y3E5SHNBaFBwbG9MejNnVkVnSVpUV3NMRi92QVIwK05lK3lnQXBtK2xBNjN5?=
+ =?utf-8?Q?ztpVOP6HLOQj+BNE0sqDF+jOc?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 62d9d0f5-4ba4-4adc-54cd-08de327a130f
+X-MS-Exchange-CrossTenant-AuthSource: SJ2PR12MB8109.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Dec 2025 14:33:12.4245
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Dec 2025 14:41:42.3359
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: bbc898ad-b10f-4e10-8552-d9377b823d45
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: JRn8asrDjyKwtwsik1jzQleEnuEzRZTwLmfWOvRYRylEJIyTWkKHLwjoHQRbbwXGtved8UjQZlzwVCNooUFMmQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LOYP265MB1840
+X-MS-Exchange-CrossTenant-UserPrincipalName: ydURp3dmOuFzcsqP/Hj5gDH7I58DO3CMP7KyGymWSFg2nFi1UTqQMstWFPDPYrBW
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV3PR12MB9165
 
-On Tue, 02 Dec 2025 19:37:24 +0000
-Alice Ryhl <aliceryhl@google.com> wrote:
+Hi,
 
-> This patch series adds __rust_helper to every single rust helper. The
-> patches do not depend on each other, so maintainers please go ahead and
-> pick up any patches relevant to your subsystem! Or provide your Acked-by
-> so that Miguel can pick them up.
+On 11/14/25 14:08, Rob Herring wrote:
+> On Thu, Sep 11, 2025 at 10:14 AM Raymond Mao <raymond.mao@linaro.org> wrote:
+>>
+>> When managing multiple base device trees and overlays in a structured
+>> way (e.g. bundled in firmware or tools), it is helpful to identify the
+>> intended target base DT for each overlay, which can be done via a
+>> top-level compatible string in the overlay.
+>>
+>> This provides a way to identify which overlays should be applied once the
+>> DT is selected for the case when a device have a common firmware binary
+>> which only differs on the DT and overlays.
+>>
+>> This patch updates the document with a note and example for this
+>> practice.
+>> For more information on this firmware requirement, please see [1].
+>>
+>> [1] https://github.com/FirmwareHandoff/firmware_handoff/pull/74
+>>
+>> Suggested-by: Ilias Apalodimas <ilias.apalodimas@linaro.org>
+>> Signed-off-by: Raymond Mao <raymond.mao@linaro.org>
+>> ---
+>> Changes in v2:
+>> - Updated commit message.
+>> Changes in v3
+>> - Rename to 'overlay-compatible' and rephrase the description accordingly.
+>>
+>>   Documentation/devicetree/overlay-notes.rst | 32 ++++++++++++++++++++++
+>>   1 file changed, 32 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/overlay-notes.rst b/Documentation/devicetree/overlay-notes.rst
+>> index 35e79242af9a..77284afba9a4 100644
+>> --- a/Documentation/devicetree/overlay-notes.rst
+>> +++ b/Documentation/devicetree/overlay-notes.rst
+>> @@ -103,6 +103,38 @@ The above bar.dtso example modified to use target path syntax is::
+>>       ---- bar.dtso --------------------------------------------------------------
+>>
+>>
+>> +Overlay identification
+>> +----------------------
+>> +
+>> +When managing device tree overlays dynamically - such as bundling multiple base
+>> +device trees and overlays within firmware, initramfs, or user-space tools - it
+>> +is important to associate each overlay with its corresponding base device tree.
+>> +
+>> +To support this association, each overlay should define a top-level compatible
+>> +string (referred to as the 'overlay-compatible' string). This string is
+>> +intended to match the top-level compatible property of the target base device
+>> +tree.
 > 
-> These changes were generated by adding __rust_helper and running
-> ClangFormat. Unrelated formatting changes were removed manually.
+> This property needs to be defined in dtschema at a minimum. Really we
+> need to check the values are documented. We already have all the
+> possible compatibles, so we'd need to generate a schema from them. But
+> that part can wait as we don't actually validate overlays on their
+> own.
+>> +
+>> +By including this identifier, higher-level software or firmware can determine
+>> +which base device tree an overlay is compatible with, and apply it accordingly.
+>> +
+>> +Example usage::
+>> +
+>> +    ---- bar.dtso - overlay with top-level compatible string -------------------
+>> +       /dts-v1/;
+>> +       /plugin/;
+>> +       / {
+>> +               overlay-compatible = "corp,foo";
+>> +
+>> +               ...
+>> +       };
+>> +    ---- bar.dtso --------------------------------------------------------------
+>> +
+>> +This top-level compatible string is not required by the kernel overlay
+>> +mechanism itself, but it is strongly recommended for managing overlays in
+>> +scalable systems.
 > 
-> Why is __rust_helper needed?
-> ============================
+> Please define exactly how the matching works. I assume it is the 1
+> overlay-compatible string has to match any one of the entries in the
+> base root compatible property. I don't like to assume though.
 > 
-> Currently, C helpers cannot be inlined into Rust even when using LTO
-> because LLVM detects slightly different options on the codegen units.
-> 
-> * LLVM doesn't want to inline functions compiled with
->   `-fno-delete-null-pointer-checks` with code compiled without. The C
->   CGUs all have this enabled and Rust CGUs don't. Inlining is okay since
->   this is one of the hardening features that does not change the ABI,
->   and we shouldn't have null pointer dereferences in these helpers.
-> 
-> * LLVM doesn't want to inline functions with different list of builtins. C
->   side has `-fno-builtin-wcslen`; `wcslen` is not a Rust builtin, so
->   they should be compatible, but LLVM does not perform inlining due to
->   attributes mismatch.
-> 
-> * clang and Rust doesn't have the exact target string. Clang generates
->   `+cmov,+cx8,+fxsr` but Rust doesn't enable them (in fact, Rust will
->   complain if `-Ctarget-feature=+cmov,+cx8,+fxsr` is used). x86-64
->   always enable these features, so they are in fact the same target
->   string, but LLVM doesn't understand this and so inlining is inhibited.
->   This can be bypassed with `--ignore-tti-inline-compatible`, but this
->   is a hidden option.
-> 
-> (This analysis was written by Gary Guo.)
-> 
-> How is this fixed?
-> ==================
-> 
-> To fix this we need to add __always_inline to all helpers when compiling
-> with LTO. However, it should not be added when running bindgen as
-> bindgen will ignore functions marked inline. To achieve this, we are
-> using a #define called __rust_helper that is defined differently
-> depending on whether bindgen is running or not.
-> 
-> Note that __rust_helper is currently always #defined to nothing.
-> Changing it to __always_inline will happen separately in another patch
-> series.
-> 
-> Signed-off-by: Alice Ryhl <aliceryhl@google.com>
-> ---
-> Alice Ryhl (46):
->       rust: auxiliary: add __rust_helper to helpers
->       rust: barrier: add __rust_helper to helpers
->       rust: binder: add __rust_helper to helpers
->       rust: bitmap: add __rust_helper to helpers
->       rust: bitops: add __rust_helper to helpers
->       rust: blk: add __rust_helper to helpers
->       rust: bug: add __rust_helper to helpers
->       rust: clk: add __rust_helper to helpers
->       rust: completion: add __rust_helper to helpers
->       rust: cpu: add __rust_helper to helpers
->       rust: cpufreq: add __rust_helper to helpers
->       rust: cpumask: add __rust_helper to helpers
->       rust: cred: add __rust_helper to helpers
->       rust: device: add __rust_helper to helpers
->       rust: dma: add __rust_helper to helpers
->       rust: drm: add __rust_helper to helpers
->       rust: err: add __rust_helper to helpers
->       rust: fs: add __rust_helper to helpers
->       rust: io: add __rust_helper to helpers
->       rust: irq: add __rust_helper to helpers
->       rust: jump_label: add __rust_helper to helpers
->       rust: kunit: add __rust_helper to helpers
->       rust: maple_tree: add __rust_helper to helpers
->       rust: mm: add __rust_helper to helpers
->       rust: of: add __rust_helper to helpers
->       rust: pci: add __rust_helper to helpers
->       rust: pid_namespace: add __rust_helper to helpers
->       rust: platform: add __rust_helper to helpers
->       rust: poll: add __rust_helper to helpers
->       rust: processor: add __rust_helper to helpers
->       rust: property: add __rust_helper to helpers
->       rust: rbtree: add __rust_helper to helpers
->       rust: rcu: add __rust_helper to helpers
->       rust: refcount: add __rust_helper to helpers
->       rust: regulator: add __rust_helper to helpers
->       rust: scatterlist: add __rust_helper to helpers
->       rust: security: add __rust_helper to helpers
->       rust: slab: add __rust_helper to helpers
->       rust: sync: add __rust_helper to helpers
->       rust: task: add __rust_helper to helpers
->       rust: time: add __rust_helper to helpers
->       rust: uaccess: add __rust_helper to helpers
->       rust: usb: add __rust_helper to helpers
->       rust: wait: add __rust_helper to helpers
->       rust: workqueue: add __rust_helper to helpers
->       rust: xarray: add __rust_helper to helpers
+> How would you handle a case where you have 2 similar SoCs which don't
+> share a common compatible string and the overlay applies to both of
+> them?
 
-Thansk for sending this Alice! With this series in first, my series for
-inlining helpers should be much easier to apply.
+Let me describe what we are doing in this space today.
 
-For the whole series:
+We are applying overlay in u-boot for SOM + CC (Carrier Card) and you can see 
+DTs in the Linux kernel tree.
 
-Reviewed-by: Gary Guo <gary@garyguo.net>
+SOM itself is using
 
-Best,
-Gary
+	compatible = "xlnx,zynqmp-sm-k24-rev1", "xlnx,zynqmp-sm-k24-revB",
+		     "xlnx,zynqmp-sm-k24-revA", "xlnx,zynqmp-sm-k24",
+		     "xlnx,zynqmp";
 
+CC are using
 
-> 
->  rust/helpers/auxiliary.c     |  6 +++--
->  rust/helpers/barrier.c       |  6 ++---
->  rust/helpers/binder.c        | 13 ++++-----
->  rust/helpers/bitmap.c        |  6 +++--
->  rust/helpers/bitops.c        | 11 +++++---
->  rust/helpers/blk.c           |  4 +--
->  rust/helpers/bug.c           |  4 +--
->  rust/helpers/build_bug.c     |  2 +-
->  rust/helpers/clk.c           | 24 +++++++++--------
->  rust/helpers/completion.c    |  2 +-
->  rust/helpers/cpu.c           |  2 +-
->  rust/helpers/cpufreq.c       |  3 ++-
->  rust/helpers/cpumask.c       | 32 +++++++++++++---------
->  rust/helpers/cred.c          |  4 +--
->  rust/helpers/device.c        | 16 +++++------
->  rust/helpers/dma.c           | 15 ++++++-----
->  rust/helpers/drm.c           |  7 ++---
->  rust/helpers/err.c           |  6 ++---
->  rust/helpers/fs.c            |  2 +-
->  rust/helpers/io.c            | 64 +++++++++++++++++++++++---------------------
->  rust/helpers/irq.c           |  6 +++--
->  rust/helpers/jump_label.c    |  2 +-
->  rust/helpers/kunit.c         |  2 +-
->  rust/helpers/maple_tree.c    |  3 ++-
->  rust/helpers/mm.c            | 20 +++++++-------
->  rust/helpers/mutex.c         | 13 ++++-----
->  rust/helpers/of.c            |  2 +-
->  rust/helpers/page.c          |  9 ++++---
->  rust/helpers/pci.c           | 13 +++++----
->  rust/helpers/pid_namespace.c |  8 +++---
->  rust/helpers/platform.c      |  2 +-
->  rust/helpers/poll.c          |  5 ++--
->  rust/helpers/processor.c     |  2 +-
->  rust/helpers/property.c      |  2 +-
->  rust/helpers/rbtree.c        |  5 ++--
->  rust/helpers/rcu.c           |  4 +--
->  rust/helpers/refcount.c      | 10 +++----
->  rust/helpers/regulator.c     | 24 ++++++++++-------
->  rust/helpers/scatterlist.c   | 12 +++++----
->  rust/helpers/security.c      | 26 ++++++++++--------
->  rust/helpers/signal.c        |  2 +-
->  rust/helpers/slab.c          | 14 +++++-----
->  rust/helpers/spinlock.c      | 13 ++++-----
->  rust/helpers/sync.c          |  4 +--
->  rust/helpers/task.c          | 24 ++++++++---------
->  rust/helpers/time.c          | 12 ++++-----
->  rust/helpers/uaccess.c       |  8 +++---
->  rust/helpers/usb.c           |  3 ++-
->  rust/helpers/vmalloc.c       |  7 ++---
->  rust/helpers/wait.c          |  2 +-
->  rust/helpers/workqueue.c     |  8 +++---
->  rust/helpers/xarray.c        | 10 +++----
->  52 files changed, 280 insertions(+), 226 deletions(-)
-> ---
-> base-commit: 54e3eae855629702c566bd2e130d9f40e7f35bde
-> change-id: 20251202-define-rust-helper-f7b531813007
-> 
-> Best regards,
+	compatible = "xlnx,zynqmp-sk-kd240-rev1",
+		     "xlnx,zynqmp-sk-kd240-revB",
+		     "xlnx,zynqmp-sk-kd240-revA",
+		     "xlnx,zynqmp-sk-kd240", "xlnx,zynqmp";
+
+The reason is that we have to run SW on SOM to detect SC. We have SOM+CC 
+combinations for all revisions and based on autodetection we are choosing 
+combination which matches it (multiple full DTs in FIT image).
+
+Feel free to look at
+https://source.denx.de/u-boot/u-boot/-/blob/master/arch/arm/dts/zynqmp-binman-som.dts
+where combinations are described.
+
+Today FIT image have full DTBs and not overlays. Overlays are just helping us to 
+build different combinations in a simpler way.
+
+https://source.denx.de/u-boot/u-boot/-/blob/master/arch/arm/dts/Makefile#L351
+
+We would use a mechanism which can connect CC overlay with SOM.
+SOM can run on 4 different CCs
+And some CCs can be populated by different SOMs (with the same SOC family).
+
+All of these combinations should be working when run time DT overlay applying 
+mechanism is in place.
+
+Above is pretty much describing how to connect overlay with base DT and likely 
+it should have more then one compatible string.
+
+It should be also described if base DT will accept DT overlay compatible string 
+or remain on existing one.
+
+Another mechanism which we are exploring is to use transfer list where SW 
+components start to inject DT overlays to it (for example description from 
+OP-TEE) which is then passed to U-Boot which should merge them together.
+For it overlay-compatible = "xlnx,zynqmp"; in overlay could be used and will be 
+connected to actual silicon.
+
+Based on above description I can't see any issue to cover our existing use cases 
+if overlay-compatible can contains multiple compatible strings not just one.
+
+Thanks,
+Michal
 
 
