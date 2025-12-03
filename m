@@ -1,1015 +1,266 @@
-Return-Path: <devicetree+bounces-243850-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243851-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1723EC9DC71
-	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 05:57:04 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA522C9DCA3
+	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 06:18:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 2A85A34B4FD
-	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 04:57:03 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 8FF0C4E0274
+	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 05:18:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94672286D57;
-	Wed,  3 Dec 2025 04:56:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBC35275AFF;
+	Wed,  3 Dec 2025 05:18:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dq2wcBqL"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="cmDV85Jm";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="HHAZ77bp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f43.google.com (mail-vs1-f43.google.com [209.85.217.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3E8A283159
-	for <devicetree@vger.kernel.org>; Wed,  3 Dec 2025 04:56:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 137C726B755
+	for <devicetree@vger.kernel.org>; Wed,  3 Dec 2025 05:18:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764737805; cv=none; b=daonQmFt4Qg5O4LFhDTPvo49cSw+mRt3f2YbJWlWtmH6JQAlXC3q7ns0hHNX1pI2l0XFJtDvLFOwbKt2OC7S1bESbmIbO15Gcjh14IECJPQltKKMWUbOBS3EelZaxkDxipmm9GpOMKEr+yFxmmeUJVGmA6c+bk6AyyzHYp2fe1g=
+	t=1764739104; cv=none; b=UOlLC6BrD68VRjErotualop8+pu93R7wfl0up0QEBA54vTjuLW+H0FlgEPKkKkU568IMKrPsHEcEr4BhU9R6aG8uAIbly35zCrWZOvqJJNg2pZ3dczKHxqtTyaAybU+vM8pAAJAplXg7XJPPPZzG+jH2cqDnHTJ5gRJJ7BlZ/J4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764737805; c=relaxed/simple;
-	bh=jF54Nbfiey3JRWMYm78ZyQSX9TqcX1MX5At9Bd69ACU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=WystKzYlBTLnIhDt8DkmnR3+lqzaf4OItEpEEk+PtuI8fYH3vjzTmRIiYtKyu5Y+ge7jTW3n5sLizD/OqyoHoBt58J8lxs48o6RW1ZjZjFQF7e9amZ1k+7KHxE/aQj5LOn12y7XnfcgO66zXBqph/AT9BhHD9nOaGyFRu13CIWs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dq2wcBqL; arc=none smtp.client-ip=209.85.217.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f43.google.com with SMTP id ada2fe7eead31-5dbd8bb36fcso486460137.1
-        for <devicetree@vger.kernel.org>; Tue, 02 Dec 2025 20:56:42 -0800 (PST)
+	s=arc-20240116; t=1764739104; c=relaxed/simple;
+	bh=62uw9xQPaBAhojob+3L4BHIADnVLvsg5vzaBGegjqxE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=KVykMEGLg8td9iC6Ge0bXT/kAHjh85Heqo5kk7cSOsuRjg/M8OTXclO7kfoRDgLpiYgE3JT9M007WZGmGp//9fjwqkohRYdmG12kYzhicNXkytCzzcdNdIfNF/0D8fXVlEIfiXDR63fkYglfrtUNUIFZHyo37Vyt07YMtoQZbBc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=cmDV85Jm; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=HHAZ77bp; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5B33fiBX3714700
+	for <devicetree@vger.kernel.org>; Wed, 3 Dec 2025 05:18:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	MH+8YJ6UjfWQ0lWGbrnx86pqNABPbah03d60J0p42WY=; b=cmDV85JmKcriq2lH
+	QNCTJlHTytWd5/hS/ujbAvVm3lKvOoQH0KaW6gfxKyT8//dSDvFtjaaTG15/7Qge
+	HzIFMVa8wfTdQB9nOUolVGEBCXgw3p5+XTR1gqiPFMq+bHCsPw8Y4TaAJ2s6JS8U
+	Id8lRuUVcUSpALMev1KOGo2PzoFPW/ZtubFA8+SEOWHoOj0FMLyw+drWIs+OC2RD
+	F0lnWRB9YyA8dRcwT7mC3uoAvo6vKOOnKblbGUEgsszyfwgOuEbDcDwDBs9ff8FQ
+	sJwuemR6qfMWwve7JfZjHcnd+PFuYADNaGHyxrFumpMnS8veRaqnIeokaaPWqGhz
+	D7aU7w==
+Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4at3r2201w-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 03 Dec 2025 05:18:22 +0000 (GMT)
+Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-295fbc7d4abso77382765ad.1
+        for <devicetree@vger.kernel.org>; Tue, 02 Dec 2025 21:18:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1764737802; x=1765342602; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=h/zWzpIKpuDO3iPAxggYRiDk8vFcf3HrY+KlmEjcyBw=;
-        b=dq2wcBqLddhZqaNsUL8ZJwgip2NdzLWG7QzZSbkHv+Hdl1eyAaBeIHpsxsa9g22JZY
-         W1gXPpyAvRMeshmji6edTd6wkprUkk3AsoHjC7u331QETWR/GbiBXQM8w32WJrwe+990
-         GeieqjQLNAjhmC/jmSOMpqNbTG2xJ94o1eSQ+Tsz307e10azVb8FfB9SfruRbe2LkKcU
-         v00zKq8lIBpq71eOwJXUUjkatmlPk3nIMTprY+v6Ifet3/yvhpn56oUjffu+5oIPtn4T
-         PTnIRZI7RYcfp1cY3EqD9LRA4Hg66UhNiRqqsJmuMWRzlsm5//gPr7gZ/ecu35Uqaibj
-         6PLg==
+        d=oss.qualcomm.com; s=google; t=1764739101; x=1765343901; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=MH+8YJ6UjfWQ0lWGbrnx86pqNABPbah03d60J0p42WY=;
+        b=HHAZ77bpkD2VPQD/We0oPc5P95hUb9sKLFsvnBJnjlpLnfUvAgqZ0/BgONvT9YBCCN
+         FMa1EG/67tb80+2kE3GBFIAfVxNPqLKmmAsGbtEy0gTVG4010lZuKJNGkI4vCIRpN0TI
+         kczsCpX3e8Dk072oDmHqwsR9TCCGe7DQsQrzFvV7YwxEi8N+CansSlZDzKTyI0Ypr62i
+         kk3DUEtDHq40jpP5/5FMA2RYO6nCA+TPCy8TJCqdkOfhE6eRQCAwxZzcjkidmiQAuoiJ
+         EFIezV+My7lF5x0WIHHPgKo4y6wznXZydGigMtPdifDLOubWhapyivd9q/e9PKoU6OL9
+         6ZgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764737802; x=1765342602;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=h/zWzpIKpuDO3iPAxggYRiDk8vFcf3HrY+KlmEjcyBw=;
-        b=Hx2IG8leVk3uEnvxnnFR8MyIR7qLcwJKlLioxFVWIcgLyspS+IGlyPclS8rOcEReDX
-         G47CM5mgcCIjtdAu52YL+GGlBOFM936Wgdz1MT3FXlTnlpZZniT94yWzzeN+BkmQKnkU
-         S1DP/oGapyiKoxjgZG8YrcHfdV7bGWrJ08Ebg0XE7FtOj01+4llF29pnMRbhqnCRt2Tv
-         xf+WZwXSUA/+t0SZxonK3VccxrRPXpP0VwMa0Dox6IUeIniPUmMEW/imqWhCoEGhs4d6
-         lDsBS5MAsTbPzYb1zkgT9+5aCo93XWJMYXnwL+xgnKjLTp27h71Sy0kb8neFUMcr9XE/
-         FGRg==
-X-Forwarded-Encrypted: i=1; AJvYcCU6gvm1l+wM2ohWhY9SLLTKZps357kisSJyb7zkJLDvUw1SQ3NlIu+XaXAi9ROQm9zjfhnd3T3QlqEL@vger.kernel.org
-X-Gm-Message-State: AOJu0YyLRI3nXNKO5CgQUkIAdTUyFABbWM+T6JUnvdVj6ED5wPw9iJb6
-	zeFcEupkEaMPBBtTyMraiOybrCyUoCUuzTNzzgPGkAYbGrHEsCdK6gUc
-X-Gm-Gg: ASbGncsm6XmgwX54BmXpLRC7C9hP9ccYc2YST4Wfgy04Io7jOakIvGJEEJ9uLjNpuOw
-	lhDA7AuZrdBrTT4ZswJIKBsODU8dGmDIi2FtdjhnwOJ8aa4uAfpJ//S0RkNuc/ca8b1SUGeT4Uo
-	G6m7tyrxzLW88x/UTrhXyPrU0T6rsW3TqW44a6/sjChVk5bUC8srO/OYnrHLx+mEPRApzS3stXm
-	ytpdrYkKkaQjNSXPGfpYbS6si9kRkpN42M0TbeJmLv2sr/8lYj8tp52C4MzYUqRUCATzkxF24xl
-	/hh4Gb4d9VoGCYtUVFWGLe90FjUNv+qjz28pc+z4Jose4eSQMBkRg0fELtn3OHX3ylfvTBZxcX4
-	sWVKR892UmGtXq1gABlWaNh/+5mbBpwuay5lDnfIe7geKOvgT/sbh6ioVoOvQsud8GHwozHPLfF
-	RGunxPZCQUqgI4A4w9wVPqAek=
-X-Google-Smtp-Source: AGHT+IGzlqfymq8+g+FtrYV2Jz7Gd93ERQPuY8RJxUWzkutfV8qS51JTIKTJC4hGguPh0khOkX0I/Q==
-X-Received: by 2002:a05:6102:6c4:b0:5e0:d009:e4d7 with SMTP id ada2fe7eead31-5e40c733185mr3020369137.1.1764737801518;
-        Tue, 02 Dec 2025 20:56:41 -0800 (PST)
-Received: from [192.168.100.70] ([2800:bf0:82:3d2:875c:6c76:e06b:3095])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-93cd6c6802asm7535496241.3.2025.12.02.20.56.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Dec 2025 20:56:41 -0800 (PST)
-From: Kurt Borja <kuurtb@gmail.com>
-Date: Tue, 02 Dec 2025 23:56:19 -0500
-Subject: [PATCH v4 2/2] iio: adc: Add ti-ads1018 driver
+        d=1e100.net; s=20230601; t=1764739101; x=1765343901;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MH+8YJ6UjfWQ0lWGbrnx86pqNABPbah03d60J0p42WY=;
+        b=AfgPNuf5dzkx/+k0Jk3QW6FtKpUU//IYgk8uwMlLutJy23RqcXw1BsXmhzAic1zROk
+         zgH4visYnVMj5xvdGZ0zBOiV6rR7/o3EguomPTtC4ft7Re1w9eH39J+IWpcIyuwSLIiV
+         gdgmep3t/l8jSh0ramIB3ABHJC9CABs3Knm+9+nz0dTqxUg9BkdNRZIGyr0Oo3KMHxIk
+         0OboCBfQSxinGlICgESP5OL6ExiMnv2bgn8Rl0gnmEBs+18bMwKNkx/4CPxpLT65Yr2i
+         6HeLshS6kWWhj6dVidcsIivkch4yRKR8jJGVJZekuUBH5w5k4WJJ+q+udg/1DyLlJztL
+         6k8g==
+X-Forwarded-Encrypted: i=1; AJvYcCV7NQYuh230ugZckMIEz6+Sx3YE2WRl97aeuWxzoQYnpoy4nsUumKKC/p/1qFOBDptRxwEj8HWtjNWx@vger.kernel.org
+X-Gm-Message-State: AOJu0YwALG/9nqD3IrmZ6Gj0NKhEGlJs66QVWN+wiQiJNL3H51yBXZbR
+	q3pkNDVKtyusTSPkfNrHbWTtn54ogvI5eEJlbmFBfcHjoZZIsQOVCn0YplnRUEgEUC6whUKOPOw
+	xIdTmEot/8/Iaq6HiC2TO0UvfFRc7eko8kqSD8Y9zlYnostMBFlOcjN8hnmpSTWtz
+X-Gm-Gg: ASbGncsQOV67d9B0B9g+/LGZu1ikKnQXriIOk9VBCcXJSWNqh3xtm4YrGnKuAcijooK
+	wp9eUVc+/EK/Lz3+F2KHCQtf+27ZHOwZ1/tn9g3PHdOLbWzoGR4DKgERKPlvQt8VBZPYl8glUVB
+	UMBSz0FFPEe+LVpEIsM6hJZADG+yZEbOWMuvG5D62sMzaKsh7DocFBBYXVm0Wpn4xbEllQr4pHL
+	3ER/kt1hGFJZpe+qYRmE/edFgFhN66mfaFIinmppWaljS6ofdjEuQnb4EB1WkixZPvt+brcSpH7
+	BHmkYMuYy2Do0w3LpXCBw8SgK1w5XzDPRmAebbtznFNY66bgm3T0nvT9Asl3CK2EV/U8LkZ43cL
+	EkDCalOVZ/xlbxYKGa+zmsX097ArIP26FjXU0N00vZQGA
+X-Received: by 2002:a17:903:384f:b0:269:8f0c:4d86 with SMTP id d9443c01a7336-29d683e1661mr14152245ad.53.1764739101469;
+        Tue, 02 Dec 2025 21:18:21 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEQdVExq1PEZYnRLG/KsslWcIb4lne6uC9XORnSf8c9nPEUYZW23KLRKhEqufaoglxWn20B7w==
+X-Received: by 2002:a17:903:384f:b0:269:8f0c:4d86 with SMTP id d9443c01a7336-29d683e1661mr14151995ad.53.1764739100975;
+        Tue, 02 Dec 2025 21:18:20 -0800 (PST)
+Received: from [192.168.0.171] ([49.205.248.117])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29bce442744sm170246895ad.23.2025.12.02.21.18.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 02 Dec 2025 21:18:20 -0800 (PST)
+Message-ID: <64dbe824-a94c-4394-8cbe-ebdb7a3c42fd@oss.qualcomm.com>
+Date: Wed, 3 Dec 2025 10:48:14 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251202-ads1x18-v4-2-8c3580bc273f@gmail.com>
-References: <20251202-ads1x18-v4-0-8c3580bc273f@gmail.com>
-In-Reply-To: <20251202-ads1x18-v4-0-8c3580bc273f@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Tobias Sperling <tobias.sperling@softing.com>
-Cc: David Lechner <dlechner@baylibre.com>, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- Andy Shevchenko <andy@kernel.org>, linux-iio@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Jonathan Cameron <Jonathan.Cameron@huawei.com>, 
- Kurt Borja <kuurtb@gmail.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=27010; i=kuurtb@gmail.com;
- h=from:subject:message-id; bh=jF54Nbfiey3JRWMYm78ZyQSX9TqcX1MX5At9Bd69ACU=;
- b=owGbwMvMwCUmluBs8WX+lTTG02pJDJn6h1kueJivEP+dzbCivop13+zoczlz71pxxmcsqZnpE
- 7k77+OHjlIWBjEuBlkxRZb2hEXfHkXlvfU7EHofZg4rE8gQBi5OAZiI7z6GPzwbOJfE9WbOWKok
- f3vz0UerPdcmRN8yXJBXmMBr8/fJ6dsMv5jUU57s+1nwaGfMkXtPomvm9W7eWslxRu1R9hub+5s
- 99JgA
-X-Developer-Key: i=kuurtb@gmail.com; a=openpgp;
- fpr=54D3BE170AEF777983C3C63B57E3B6585920A69A
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 00/14] Peripheral Image Loader support for Qualcomm
+ SoCs running Linux host at EL2
+To: Bjorn Andersson <andersson@kernel.org>
+Cc: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
+        Bryan O'Donoghue <bod@kernel.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Konrad Dybcio
+ <konrad.dybcio@oss.qualcomm.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+References: <20251121-kvm_rproc_v8-v8-0-8e8e9fb0eca0@oss.qualcomm.com>
+ <0156c327-b867-481e-af24-679f037bfa56@linaro.org>
+ <Ux4KioDAyhqgZYleT-eeeFKzuT_qadCIpP3RgyB40apZPX4I9_JwcfY9mebop4gmFcyh4LPw0KQvFzL4zzysJQ==@protonmail.internalid>
+ <20251121113751.tnqw5abm5sd2rgr7@hu-mojha-hyd.qualcomm.com>
+ <9dfe5343-824d-42c2-aab8-8389602601e9@kernel.org>
+ <20251202083650.luk2jpcquq2pcf2r@hu-mojha-hyd.qualcomm.com>
+ <623225c2-166a-49a1-9856-d02ed55f1e47@oss.qualcomm.com>
+ <bds552pvggsf6jgfyghyigp2fb6zb6hucwqirwye5puctnrhdi@tqw4b2nc3mkg>
+Content-Language: en-US
+From: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
+In-Reply-To: <bds552pvggsf6jgfyghyigp2fb6zb6hucwqirwye5puctnrhdi@tqw4b2nc3mkg>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-ORIG-GUID: J0Wfy9CDufAabBW351lhZY1dMPp7FdMg
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjAzMDAzOSBTYWx0ZWRfXzvNGbUZRGdRT
+ XorVlC9T0MbegslPHKJnS2JaWax80Rglg1ZDe2AFTRcYImCKcZzgUvy5qGBJhfzvV3xJQRQrWUa
+ Fs9y9sL7FGtGa87eWeOhERlNngJ62XPNkrpC9xH848Qu+jpH3ScVEPDI33ohsLezWKBXdRB5pKO
+ DXUGLn4yTDm80E23ccpfvKX0WpB1uB7BoCI+WcV3KHsvgNU7eL6NR+x9EYKN8S5yIbBM9FvET9O
+ jV+DNpUPCGIQsH/FhOIQHsYfAJHak2JXhF6f5Tz8T7alC2h+XSF0M8YLs70cbYxaA77OnZk37mm
+ O4v1ZS/zjy5nlkx5zum/JbTMK4d8fHKcSGwB8jbH0cVWJTOvDHQDrTE8oQMOc0dgSwCrLHa620/
+ JYcrEMAplw7dCC4xfdvVSPDuaT/fTw==
+X-Proofpoint-GUID: J0Wfy9CDufAabBW351lhZY1dMPp7FdMg
+X-Authority-Analysis: v=2.4 cv=c+WmgB9l c=1 sm=1 tr=0 ts=692fc81e cx=c_pps
+ a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=pLmqbgbNwPlZRhRGoa80dQ==:17
+ a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=COk6AnOGAAAA:8
+ a=EUspDBNiAAAA:8 a=7mi0SIUTFu-qshqJEZQA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=GvdueXVYPmCkWapjIL-Q:22 a=cvBusfyB2V15izCimMoJ:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-01_01,2025-11-27_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 adultscore=0 phishscore=0 bulkscore=0 impostorscore=0
+ malwarescore=0 suspectscore=0 spamscore=0 clxscore=1015 priorityscore=1501
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512030039
 
-Add ti-ads1018 driver for Texas Instruments ADS1018 and ADS1118 SPI
-analog-to-digital converters.
 
-These chips' MOSI pin is shared with a data-ready interrupt. Defining
-this interrupt in devicetree is optional, therefore we only create an
-IIO trigger if one is found.
+On 12/3/2025 2:54 AM, Bjorn Andersson wrote:
+> On Tue, Dec 02, 2025 at 03:43:17PM +0530, Vikash Garodia wrote:
+>>
+>> On 12/2/2025 2:06 PM, Mukesh Ojha wrote:
+>>> On Thu, Nov 27, 2025 at 10:25:23AM +0000, Bryan O'Donoghue wrote:
+>>>> On 21/11/2025 11:37, Mukesh Ojha wrote:
+>>>>>> Sorry.
+>>>>>>
+>>>>>> Did we actually come up with a cogent reason to omit the video firmware
+>>>>>> loading here ?
+>>>>>>
+>>>>>> AFAIU it is required for Lemans and Glymur - leaving it out is blocking
+>>>>>> getting video stuff done and storing up trouble.
+>>>>>>
+>>>>>> What exactly is the blockage - is it something you want help with ?
+>>>>> I replied to you here[1] and given my reason..till something concluded on
+>>>>> "multi-cell IOMMU[2]", I can not add video and block what is working
+>>>>> already.
+>>>>>
+>>>>> [1]
+>>>>> https://lore.kernel.org/lkml/20251105081421.f6j7ks5bd4dfgr67@hu-mojha-
+>>>>> hyd.qualcomm.com/
+>>>>
+>>>> Why though ?
+>>>>
+>>>> You are mixing together the issue of multiple SIDs and the original loading
+>>>> of firmware which could easily reuse the venus method of
+>>>>
+>>>> &iris {
+>>>> 	video-firmware {
+>>>> 		iommus = <&apss_smmu hex>;
+>>>> 	};
+>>>> };
+>>>
+>>> I completely understand what you are saying, and it would be very easy
+>>> for me to do that if it gets accepted. However, I doubt that the people
+>>> who raised this concern would agree with the approach.
+>>>
+>>> I’m not sure if the video team would like to pursue pixel/non-pixel/firmware context
+>>> banks separately. I’ll leave this to @Vikas to answer.
+>>
+>> Not exactly as a separate sub-node, but i do like the idea of introducing a
+>> simple iommu property, something like this, which Stephan proposed earlier
+>> in the discussion [1]
+>>
+>> firmware-iommus = <&apps_smmu ...>;
+>>
+>> I understand that we are doing the iommu-map thing, but a property
+>> exclusively for firmware like above look much simpler to me.
+>>
+> 
+> "We know we need to find a generic solution to this very problem, but
+> while we work on that let's add this quick hack to the ABI"?
 
-Handling this interrupt requires some considerations. When enabling the
-trigger the CS line is tied low (active), thus we need to hold
-spi_bus_lock() too, to avoid state corruption. This is done inside the
-set_trigger_state() callback, to let users use other triggers without
-wasting a bus lock.
+I would not call that as hack, rather a simpler solution instead of 
+packing everything into the generic iommu-map.
 
-Signed-off-by: Kurt Borja <kuurtb@gmail.com>
----
- MAINTAINERS                  |   1 +
- drivers/iio/adc/Kconfig      |  12 +
- drivers/iio/adc/Makefile     |   1 +
- drivers/iio/adc/ti-ads1018.c | 826 +++++++++++++++++++++++++++++++++++++++++++
- 4 files changed, 840 insertions(+)
+"firmware-iommus" is much more readable to interpret something running 
+in el2 mode, than digging into function ids inside iommu-map and then 
+matching it up with specific SIDs to confirm.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 3d5295b5d6eb..b3822cbff2c6 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -25651,6 +25651,7 @@ M:	Kurt Borja <kuurtb@gmail.com>
- L:	linux-iio@vger.kernel.org
- S:	Maintained
- F:	Documentation/devicetree/bindings/iio/adc/ti,ads1018.yaml
-+F:	drivers/iio/adc/ti-ads1018.c
- 
- TI ADS7924 ADC DRIVER
- M:	Hugo Villeneuve <hvilleneuve@dimonoff.com>
-diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
-index 58da8255525e..aa3f7023c64b 100644
---- a/drivers/iio/adc/Kconfig
-+++ b/drivers/iio/adc/Kconfig
-@@ -1664,6 +1664,18 @@ config TI_ADS1015
- 	  This driver can also be built as a module. If so, the module will be
- 	  called ti-ads1015.
- 
-+config TI_ADS1018
-+       tristate "Texas Instruments ADS1018 ADC"
-+       depends on SPI
-+       select IIO_BUFFER
-+       select IIO_TRIGGERED_BUFFER
-+       help
-+         If you say yes here you get support for Texas Instruments ADS1018 and
-+         ADS1118 ADC chips.
-+
-+         This driver can also be built as a module. If so, the module will be
-+         called ti-ads1018.
-+
- config TI_ADS1100
- 	tristate "Texas Instruments ADS1100 and ADS1000 ADC"
- 	depends on I2C
-diff --git a/drivers/iio/adc/Makefile b/drivers/iio/adc/Makefile
-index 7cc8f9a12f76..72ef79becdec 100644
---- a/drivers/iio/adc/Makefile
-+++ b/drivers/iio/adc/Makefile
-@@ -145,6 +145,7 @@ obj-$(CONFIG_TI_ADC12138) += ti-adc12138.o
- obj-$(CONFIG_TI_ADC128S052) += ti-adc128s052.o
- obj-$(CONFIG_TI_ADC161S626) += ti-adc161s626.o
- obj-$(CONFIG_TI_ADS1015) += ti-ads1015.o
-+obj-$(CONFIG_TI_ADS1018) += ti-ads1018.o
- obj-$(CONFIG_TI_ADS1100) += ti-ads1100.o
- obj-$(CONFIG_TI_ADS1119) += ti-ads1119.o
- obj-$(CONFIG_TI_ADS124S08) += ti-ads124s08.o
-diff --git a/drivers/iio/adc/ti-ads1018.c b/drivers/iio/adc/ti-ads1018.c
-new file mode 100644
-index 000000000000..8ee1ea9d9463
---- /dev/null
-+++ b/drivers/iio/adc/ti-ads1018.c
-@@ -0,0 +1,826 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Texas Instruments ADS1018 ADC driver
-+ *
-+ * Copyright (C) 2025 Kurt Borja <kuurtb@gmail.com>
-+ */
-+
-+#include <linux/array_size.h>
-+#include <linux/bitfield.h>
-+#include <linux/bitmap.h>
-+#include <linux/dev_printk.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/interrupt.h>
-+#include <linux/math.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/spi/spi.h>
-+#include <linux/types.h>
-+#include <linux/units.h>
-+
-+#include <asm/byteorder.h>
-+
-+#include <linux/iio/buffer.h>
-+#include <linux/iio/iio.h>
-+#include <linux/iio/trigger.h>
-+#include <linux/iio/trigger_consumer.h>
-+#include <linux/iio/triggered_buffer.h>
-+
-+#define ADS1018_CFG_OS_TRIG		BIT(15)
-+#define ADS1018_CFG_TS_MODE_EN		BIT(4)
-+#define ADS1018_CFG_PULL_UP		BIT(3)
-+#define ADS1018_CFG_NOP			BIT(1)
-+#define ADS1018_CFG_VALID		(ADS1018_CFG_PULL_UP | ADS1018_CFG_NOP)
-+
-+#define ADS1018_CFG_MUX_MASK		GENMASK(14, 12)
-+
-+#define ADS1018_CFG_PGA_MASK		GENMASK(11, 9)
-+#define ADS1018_PGA_DEFAULT		2
-+
-+#define ADS1018_CFG_MODE_MASK		BIT(8)
-+#define ADS1018_MODE_CONTINUOUS		0
-+#define ADS1018_MODE_ONESHOT		1
-+
-+#define ADS1018_CFG_DRATE_MASK		GENMASK(7, 5)
-+#define ADS1018_DRATE_DEFAULT		4
-+
-+#define ADS1018_CHANNELS_MAX		10
-+
-+struct ads1018_chan_data {
-+	u8 pga_mode;
-+	u8 data_rate_mode;
-+};
-+
-+struct ads1018_chip_info {
-+	const char *name;
-+
-+	const struct iio_chan_spec *channels;
-+	unsigned long num_channels;
-+
-+	/* IIO_VAL_INT */
-+	const unsigned int *data_rate_mode_to_hz;
-+	unsigned long num_data_rate_mode_to_hz;
-+
-+	/* IIO_VAL_INT_PLUS_NANO */
-+	const unsigned int (*pga_mode_to_gain)[2];
-+	unsigned long num_pga_mode_to_gain;
-+
-+	/* IIO_VAL_INT_PLUS_MICRO */
-+	const int temp_scale[2];
-+};
-+
-+struct ads1018 {
-+	struct spi_device *spi;
-+	struct iio_trigger *indio_trig;
-+
-+	struct gpio_desc *drdy_gpiod;
-+	int drdy_irq;
-+
-+	bool restore_mode;
-+
-+	struct ads1018_chan_data chan_data[ADS1018_CHANNELS_MAX];
-+	const struct ads1018_chip_info *chip_info;
-+
-+	struct spi_message msg_read;
-+	struct spi_transfer xfer;
-+	__be16 tx_buf[2] __aligned(IIO_DMA_MINALIGN);
-+	__be16 rx_buf[2];
-+};
-+
-+#define ADS1018_VOLT_DIFF_CHAN(_index, _chan, _chan2, _realbits) {		\
-+	.type = IIO_VOLTAGE,							\
-+	.channel = _chan,							\
-+	.channel2 = _chan2,							\
-+	.scan_index = _index,							\
-+	.scan_type = {								\
-+		.sign = 's',							\
-+		.realbits = _realbits,						\
-+		.storagebits = 16,						\
-+		.shift = 16 - _realbits,					\
-+		.endianness = IIO_BE,						\
-+	},									\
-+	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |				\
-+			      BIT(IIO_CHAN_INFO_SCALE) |			\
-+			      BIT(IIO_CHAN_INFO_SAMP_FREQ),			\
-+	.info_mask_shared_by_type_available = BIT(IIO_CHAN_INFO_SCALE),		\
-+	.info_mask_shared_by_all_available = BIT(IIO_CHAN_INFO_SAMP_FREQ),	\
-+	.indexed = true,							\
-+	.differential = true,							\
-+}
-+
-+#define ADS1018_VOLT_CHAN(_index, _chan, _realbits) {				\
-+	.type = IIO_VOLTAGE,							\
-+	.channel = _chan,							\
-+	.scan_index = _index,							\
-+	.scan_type = {								\
-+		.sign = 's',							\
-+		.realbits = _realbits,						\
-+		.storagebits = 16,						\
-+		.shift = 16 - _realbits,					\
-+		.endianness = IIO_BE,						\
-+	},									\
-+	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |				\
-+			      BIT(IIO_CHAN_INFO_SCALE) |			\
-+			      BIT(IIO_CHAN_INFO_SAMP_FREQ),			\
-+	.info_mask_shared_by_type_available = BIT(IIO_CHAN_INFO_SCALE),		\
-+	.info_mask_shared_by_all_available = BIT(IIO_CHAN_INFO_SAMP_FREQ),	\
-+	.indexed = true,							\
-+}
-+
-+#define ADS1018_TEMP_CHAN(_index, _realbits) {					\
-+	.type = IIO_TEMP,							\
-+	.scan_index = _index,							\
-+	.scan_type = {								\
-+		.sign = 's',							\
-+		.realbits = _realbits,						\
-+		.storagebits = 16,						\
-+		.shift = 16 - _realbits,					\
-+		.endianness = IIO_BE,						\
-+	},									\
-+	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |				\
-+			      BIT(IIO_CHAN_INFO_SCALE) |			\
-+			      BIT(IIO_CHAN_INFO_SAMP_FREQ),			\
-+	.info_mask_shared_by_all_available = BIT(IIO_CHAN_INFO_SAMP_FREQ),	\
-+}
-+
-+static const struct iio_chan_spec ads1118_iio_channels[] = {
-+	ADS1018_VOLT_DIFF_CHAN(0, 0, 1, 16),
-+	ADS1018_VOLT_DIFF_CHAN(1, 0, 3, 16),
-+	ADS1018_VOLT_DIFF_CHAN(2, 1, 3, 16),
-+	ADS1018_VOLT_DIFF_CHAN(3, 2, 3, 16),
-+	ADS1018_VOLT_CHAN(4, 0, 16),
-+	ADS1018_VOLT_CHAN(5, 1, 16),
-+	ADS1018_VOLT_CHAN(6, 2, 16),
-+	ADS1018_VOLT_CHAN(7, 3, 16),
-+	ADS1018_TEMP_CHAN(8, 14),
-+	IIO_CHAN_SOFT_TIMESTAMP(9),
-+};
-+
-+static const struct iio_chan_spec ads1018_iio_channels[] = {
-+	ADS1018_VOLT_DIFF_CHAN(0, 0, 1, 12),
-+	ADS1018_VOLT_DIFF_CHAN(1, 0, 3, 12),
-+	ADS1018_VOLT_DIFF_CHAN(2, 1, 3, 12),
-+	ADS1018_VOLT_DIFF_CHAN(3, 2, 3, 12),
-+	ADS1018_VOLT_CHAN(4, 0, 12),
-+	ADS1018_VOLT_CHAN(5, 1, 12),
-+	ADS1018_VOLT_CHAN(6, 2, 12),
-+	ADS1018_VOLT_CHAN(7, 3, 12),
-+	ADS1018_TEMP_CHAN(8, 12),
-+	IIO_CHAN_SOFT_TIMESTAMP(9),
-+};
-+
-+/**
-+ * ads1018_get_data_rate_mode - Get current data-rate mode for a channel.
-+ * @ads1018: Device data
-+ * @address: Channel address
-+ *
-+ * Context: Expects iio_device_claim_direct() is held.
-+ *
-+ * Return: Current data-rate mode for the channel at @address.
-+ */
-+static u8 ads1018_get_data_rate_mode(struct ads1018 *ads1018, unsigned int address)
-+{
-+	return ads1018->chan_data[address].data_rate_mode;
-+}
-+
-+/**
-+ * ads1018_get_pga_mode - Get current PGA mode for a channel.
-+ * @ads1018: Device data
-+ * @address: Channel address
-+ *
-+ * Context: Expects iio_device_claim_direct() is held.
-+ *
-+ * Return: Current PGA mode for the channel at @address.
-+ */
-+static u8 ads1018_get_pga_mode(struct ads1018 *ads1018, unsigned int address)
-+{
-+	return ads1018->chan_data[address].pga_mode;
-+}
-+
-+/**
-+ * ads1018_set_data_rate_mode - Set a data-rate mode for a channel.
-+ * @ads1018: Device data
-+ * @address: Channel address
-+ * @val: New data-rate mode for channel at @address.
-+ *
-+ * Context: Expects iio_device_claim_direct() is held.
-+ *
-+ * Lazily set a new data-rate mode for a channel.
-+ */
-+static void ads1018_set_data_rate_mode(struct ads1018 *ads1018,
-+				       unsigned int address, u8 val)
-+{
-+	ads1018->chan_data[address].data_rate_mode = val;
-+}
-+
-+/**
-+ * ads1018_set_pga_mode - Set a PGA mode for a channel.
-+ * @ads1018: Device data
-+ * @address: Channel address
-+ * @val: New PGA mode for channel at @address.
-+ *
-+ * Context: Expects iio_device_claim_direct() is held.
-+ *
-+ * Lazily set a new PGA mode for a channel.
-+ */
-+static void ads1018_set_pga_mode(struct ads1018 *ads1018,
-+				 unsigned int address, u8 val)
-+{
-+	ads1018->chan_data[address].pga_mode = val;
-+}
-+
-+/**
-+ * ads1018_calc_delay - Calculates a suitable delay for a single-shot reading
-+ * @ads1018: Device data
-+ *
-+ * Calculates an appropriate delay for a single shot reading, assuming the
-+ * device's maximum data-rate is used.
-+ *
-+ * Context: Expects iio_device_claim_direct() is held.
-+ *
-+ * Return: Delay in microseconds (Always greater than 0).
-+ */
-+static u32 ads1018_calc_delay(struct ads1018 *ads1018)
-+{
-+	const struct ads1018_chip_info *chip_info = ads1018->chip_info;
-+	unsigned long max_drate_mode = chip_info->num_data_rate_mode_to_hz - 1;
-+	unsigned int hz = chip_info->data_rate_mode_to_hz[max_drate_mode];
-+
-+	/*
-+	 * Calculate the worst-case sampling rate on the maximum data-rate
-+	 * mode by subtracting 10% error specified in the datasheet.
-+	 */
-+	hz -= DIV_ROUND_UP(hz, 10);
-+
-+	/*
-+	 * Then calculate time per sample in microseconds.
-+	 */
-+	return DIV_ROUND_UP(MICROHZ_PER_HZ, hz);
-+}
-+
-+/**
-+ * ads1018_spi_read_exclusive - Reads a conversion value from the device
-+ * @ads1018: Device data
-+ * @cnv: ADC Conversion value (optional)
-+ * @hold_cs: Keep CS line asserted after the SPI transfer
-+ *
-+ * Reads the most recent ADC conversion value, without updating the
-+ * device's configuration.
-+ *
-+ * Context: Expects iio_device_claim_buffer_mode() is held and SPI bus
-+ *	    *exclusive* use.
-+ *
-+ * Return: 0 on success, negative errno on error.
-+ */
-+static int ads1018_spi_read_exclusive(struct ads1018 *ads1018, __be16 *cnv,
-+				      bool hold_cs)
-+{
-+	int ret;
-+
-+	ads1018->xfer.cs_change = hold_cs;
-+
-+	ret = spi_sync_locked(ads1018->spi, &ads1018->msg_read);
-+	if (ret)
-+		return ret;
-+
-+	if (cnv)
-+		*cnv = ads1018->rx_buf[0];
-+
-+	return 0;
-+}
-+
-+/**
-+ * ads1018_single_shot - Performs a one-shot reading sequence
-+ * @ads1018: Device data
-+ * @cfg: New configuration for the device
-+ * @cnv: Conversion value
-+ *
-+ * Writes a new configuration, waits an appropriate delay (assuming the new
-+ * configuration uses the maximum data-rate) and then reads the most recent
-+ * conversion.
-+ *
-+ * Context: Expects iio_device_claim_direct() is held.
-+ *
-+ * Return: 0 on success, negative errno on error.
-+ */
-+static int ads1018_single_shot(struct ads1018 *ads1018, u16 cfg, u16 *cnv)
-+{
-+	struct spi_transfer xfer[2] = {
-+		{
-+			.tx_buf = ads1018->tx_buf,
-+			.len = sizeof(ads1018->tx_buf[0]),
-+			.delay = {
-+				.value = ads1018_calc_delay(ads1018),
-+				.unit = SPI_DELAY_UNIT_USECS,
-+			},
-+			.cs_change = 1, /* 16-bit mode requires CS de-assert */
-+		},
-+		{
-+			.rx_buf = ads1018->rx_buf,
-+			.len = sizeof(ads1018->rx_buf[0]),
-+		},
-+	};
-+	int ret;
-+
-+	ads1018->tx_buf[0] = cpu_to_be16(cfg);
-+
-+	ret = spi_sync_transfer(ads1018->spi, xfer, ARRAY_SIZE(xfer));
-+	if (ret)
-+		return ret;
-+
-+	*cnv = be16_to_cpu(ads1018->rx_buf[0]);
-+
-+	return 0;
-+}
-+
-+static int
-+ads1018_read_raw_unlocked(struct iio_dev *indio_dev,
-+			  struct iio_chan_spec const *chan, int *val, int *val2,
-+			  long mask)
-+{
-+	struct ads1018 *ads1018 = iio_priv(indio_dev);
-+	const struct ads1018_chip_info *chip_info = ads1018->chip_info;
-+	u8 drate_mode = ads1018_get_data_rate_mode(ads1018, chan->scan_index);
-+	u8 pga_mode = ads1018_get_pga_mode(ads1018, chan->scan_index);
-+	u8 max_drate_mode = chip_info->num_data_rate_mode_to_hz - 1;
-+	u16 cnv, cfg;
-+	int ret;
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_RAW:
-+		cfg = ADS1018_CFG_VALID | ADS1018_CFG_OS_TRIG;
-+		cfg |= FIELD_PREP(ADS1018_CFG_MUX_MASK, chan->scan_index);
-+		cfg |= FIELD_PREP(ADS1018_CFG_PGA_MASK, pga_mode);
-+		cfg |= FIELD_PREP(ADS1018_CFG_MODE_MASK, ADS1018_MODE_ONESHOT);
-+		cfg |= FIELD_PREP(ADS1018_CFG_DRATE_MASK, max_drate_mode);
-+
-+		if (chan->type == IIO_TEMP)
-+			cfg |= ADS1018_CFG_TS_MODE_EN;
-+
-+		ret = ads1018_single_shot(ads1018, cfg, &cnv);
-+		if (ret)
-+			return ret;
-+
-+		cnv >>= chan->scan_type.shift;
-+		*val = sign_extend32(cnv, chan->scan_type.realbits - 1);
-+
-+		return IIO_VAL_INT;
-+
-+	case IIO_CHAN_INFO_SCALE:
-+		switch (chan->type) {
-+		case IIO_VOLTAGE:
-+			*val = chip_info->pga_mode_to_gain[pga_mode][0];
-+			*val2 = chip_info->pga_mode_to_gain[pga_mode][1];
-+			return IIO_VAL_INT_PLUS_NANO;
-+
-+		case IIO_TEMP:
-+			*val = chip_info->temp_scale[0];
-+			*val2 = chip_info->temp_scale[1];
-+			return IIO_VAL_INT_PLUS_MICRO;
-+
-+		default:
-+			return -EOPNOTSUPP;
-+		}
-+
-+	case IIO_CHAN_INFO_SAMP_FREQ:
-+		*val = chip_info->data_rate_mode_to_hz[drate_mode];
-+		return IIO_VAL_INT;
-+
-+	default:
-+		return -EOPNOTSUPP;
-+	}
-+}
-+
-+static int
-+ads1018_read_raw(struct iio_dev *indio_dev, struct iio_chan_spec const *chan,
-+		 int *val, int *val2, long mask)
-+{
-+	int ret;
-+
-+	if (!iio_device_claim_direct(indio_dev))
-+		return -EBUSY;
-+	ret = ads1018_read_raw_unlocked(indio_dev, chan, val, val2, mask);
-+	iio_device_release_direct(indio_dev);
-+
-+	return ret;
-+}
-+
-+static int
-+ads1018_read_avail(struct iio_dev *indio_dev, struct iio_chan_spec const *chan,
-+		   const int **vals, int *type, int *length, long mask)
-+{
-+	struct ads1018 *ads1018 = iio_priv(indio_dev);
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_SCALE:
-+		*type = IIO_VAL_INT_PLUS_NANO;
-+		*vals = (const int *)ads1018->chip_info->pga_mode_to_gain;
-+		*length = ads1018->chip_info->num_pga_mode_to_gain * 2;
-+		return IIO_AVAIL_LIST;
-+
-+	case IIO_CHAN_INFO_SAMP_FREQ:
-+		*type = IIO_VAL_INT;
-+		*vals = ads1018->chip_info->data_rate_mode_to_hz;
-+		*length = ads1018->chip_info->num_data_rate_mode_to_hz;
-+		return IIO_AVAIL_LIST;
-+
-+	default:
-+		return -EOPNOTSUPP;
-+	}
-+}
-+
-+static int
-+ads1018_write_raw_unlocked(struct iio_dev *indio_dev,
-+			   struct iio_chan_spec const *chan, int val, int val2,
-+			   long mask)
-+{
-+	struct ads1018 *ads1018 = iio_priv(indio_dev);
-+	const struct ads1018_chip_info *info = ads1018->chip_info;
-+	unsigned int i;
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_SCALE:
-+		for (i = 0; i < info->num_pga_mode_to_gain; i++) {
-+			if (val == info->pga_mode_to_gain[i][0] &&
-+			    val2 == info->pga_mode_to_gain[i][1])
-+				break;
-+		}
-+		if (i == info->num_pga_mode_to_gain)
-+			return -EINVAL;
-+
-+		ads1018_set_pga_mode(ads1018, chan->scan_index, i);
-+		return 0;
-+
-+	case IIO_CHAN_INFO_SAMP_FREQ:
-+		for (i = 0; i < info->num_data_rate_mode_to_hz; i++) {
-+			if (val == info->data_rate_mode_to_hz[i])
-+				break;
-+		}
-+		if (i == info->num_data_rate_mode_to_hz)
-+			return -EINVAL;
-+
-+		ads1018_set_data_rate_mode(ads1018, chan->scan_index, i);
-+		return 0;
-+
-+	default:
-+		return -EOPNOTSUPP;
-+	}
-+}
-+
-+static int
-+ads1018_write_raw(struct iio_dev *indio_dev, struct iio_chan_spec const *chan,
-+		  int val, int val2, long mask)
-+{
-+	int ret;
-+
-+	if (!iio_device_claim_direct(indio_dev))
-+		return -EBUSY;
-+	ret = ads1018_write_raw_unlocked(indio_dev, chan, val, val2, mask);
-+	iio_device_release_direct(indio_dev);
-+
-+	return ret;
-+}
-+
-+static int
-+ads1018_write_raw_get_fmt(struct iio_dev *indio_dev,
-+			  struct iio_chan_spec const *chan, long mask)
-+{
-+	switch (mask) {
-+	case IIO_CHAN_INFO_SCALE:
-+		return IIO_VAL_INT_PLUS_NANO;
-+	default:
-+		return IIO_VAL_INT_PLUS_MICRO;
-+	}
-+}
-+
-+static const struct iio_info ads1018_iio_info = {
-+	.read_raw = ads1018_read_raw,
-+	.read_avail = ads1018_read_avail,
-+	.write_raw = ads1018_write_raw,
-+	.write_raw_get_fmt = ads1018_write_raw_get_fmt,
-+};
-+
-+static void ads1018_set_trigger_enable(struct ads1018 *ads1018)
-+{
-+	spi_bus_lock(ads1018->spi->controller);
-+	ads1018_spi_read_exclusive(ads1018, NULL, true);
-+	enable_irq(ads1018->drdy_irq);
-+}
-+
-+static void ads1018_set_trigger_disable(struct ads1018 *ads1018)
-+{
-+	disable_irq(ads1018->drdy_irq);
-+	ads1018_spi_read_exclusive(ads1018, NULL, false);
-+	spi_bus_unlock(ads1018->spi->controller);
-+}
-+
-+static int ads1018_set_trigger_state(struct iio_trigger *trig, bool state)
-+{
-+	struct ads1018 *ads1018 = iio_trigger_get_drvdata(trig);
-+
-+	/*
-+	 * We need to lock the SPI bus and tie CS low (hold_cs) to catch
-+	 * data-ready interrupts, otherwise the MISO line enters a Hi-Z state.
-+	 */
-+
-+	if (state)
-+		ads1018_set_trigger_enable(ads1018);
-+	else
-+		ads1018_set_trigger_disable(ads1018);
-+
-+	return 0;
-+}
-+
-+static const struct iio_trigger_ops ads1018_trigger_ops = {
-+	.set_trigger_state = ads1018_set_trigger_state,
-+	.validate_device = iio_trigger_validate_own_device,
-+};
-+
-+static int ads1018_buffer_preenable(struct iio_dev *indio_dev)
-+{
-+	struct ads1018 *ads1018 = iio_priv(indio_dev);
-+	const struct ads1018_chip_info *chip_info = ads1018->chip_info;
-+	unsigned int pga, drate, addr;
-+	u16 cfg;
-+
-+	addr = find_first_bit(indio_dev->active_scan_mask, iio_get_masklength(indio_dev));
-+	pga = ads1018_get_pga_mode(ads1018, addr);
-+	drate = ads1018_get_data_rate_mode(ads1018, addr);
-+
-+	cfg = ADS1018_CFG_VALID;
-+	cfg |= FIELD_PREP(ADS1018_CFG_MUX_MASK, addr);
-+	cfg |= FIELD_PREP(ADS1018_CFG_PGA_MASK, pga);
-+	cfg |= FIELD_PREP(ADS1018_CFG_MODE_MASK, ADS1018_MODE_CONTINUOUS);
-+	cfg |= FIELD_PREP(ADS1018_CFG_DRATE_MASK, drate);
-+
-+	if (chip_info->channels[addr].type == IIO_TEMP)
-+		cfg |= ADS1018_CFG_TS_MODE_EN;
-+
-+	ads1018->tx_buf[0] = cpu_to_be16(cfg);
-+	ads1018->tx_buf[1] = 0;
-+
-+	return spi_write(ads1018->spi, ads1018->tx_buf, sizeof(ads1018->tx_buf));
-+}
-+
-+static int ads1018_buffer_postdisable(struct iio_dev *indio_dev)
-+{
-+	struct ads1018 *ads1018 = iio_priv(indio_dev);
-+	u16 cfg;
-+
-+	cfg = ADS1018_CFG_VALID;
-+	cfg |= FIELD_PREP(ADS1018_CFG_MODE_MASK, ADS1018_MODE_ONESHOT);
-+
-+	ads1018->tx_buf[0] = cpu_to_be16(cfg);
-+	ads1018->tx_buf[1] = 0;
-+
-+	return spi_write(ads1018->spi, ads1018->tx_buf, sizeof(ads1018->tx_buf));
-+}
-+
-+static const struct iio_buffer_setup_ops ads1018_buffer_ops = {
-+	.preenable = ads1018_buffer_preenable,
-+	.postdisable = ads1018_buffer_postdisable,
-+	.validate_scan_mask = iio_validate_scan_mask_onehot,
-+};
-+
-+static irqreturn_t ads1018_irq_handler(int irq, void *dev_id)
-+{
-+	struct ads1018 *ads1018 = dev_id;
-+
-+	/*
-+	 * We need to check if the "drdy" pin is actually active or if it's a
-+	 * pending interrupt triggered by the SPI transfer.
-+	 */
-+	if (!gpiod_get_value(ads1018->drdy_gpiod))
-+		return IRQ_HANDLED;
-+
-+	iio_trigger_poll(ads1018->indio_trig);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static irqreturn_t ads1018_trigger_handler(int irq, void *p)
-+{
-+	struct iio_poll_func *pf = p;
-+	struct iio_dev *indio_dev = pf->indio_dev;
-+	struct ads1018 *ads1018 = iio_priv(indio_dev);
-+	struct {
-+		__be16 conv;
-+		aligned_s64 ts;
-+	} scan = {};
-+	int ret;
-+
-+	if (iio_device_claim_buffer_mode(indio_dev))
-+		goto out_notify_done;
-+
-+	if (iio_trigger_using_own(indio_dev)) {
-+		disable_irq(ads1018->drdy_irq);
-+		ret = ads1018_spi_read_exclusive(ads1018, &scan.conv, true);
-+		enable_irq(ads1018->drdy_irq);
-+	} else {
-+		ret = spi_read(ads1018->spi, ads1018->rx_buf, sizeof(ads1018->rx_buf));
-+		scan.conv = ads1018->rx_buf[0];
-+	}
-+	if (ret)
-+		goto out_release_buffer;
-+
-+	iio_push_to_buffers_with_ts(indio_dev, &scan, sizeof(scan), pf->timestamp);
-+
-+out_release_buffer:
-+	iio_device_release_buffer_mode(indio_dev);
-+out_notify_done:
-+	iio_trigger_notify_done(indio_dev->trig);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static int ads1018_trigger_setup(struct iio_dev *indio_dev)
-+{
-+	struct ads1018 *ads1018 = iio_priv(indio_dev);
-+	struct spi_device *spi = ads1018->spi;
-+	struct device *dev = &spi->dev;
-+	const char *con_id = "drdy";
-+	int ret;
-+
-+	ads1018->drdy_gpiod = devm_gpiod_get_optional(dev, con_id, GPIOD_IN);
-+	if (IS_ERR(ads1018->drdy_gpiod))
-+		return dev_err_probe(dev, PTR_ERR(ads1018->drdy_gpiod),
-+				     "Failed to get %s GPIO.\n", con_id);
-+
-+	/* First try to get IRQ from SPI core, then from GPIO */
-+	if (spi->irq > 0)
-+		ads1018->drdy_irq = spi->irq;
-+	else if (ads1018->drdy_gpiod)
-+		ads1018->drdy_irq = gpiod_to_irq(ads1018->drdy_gpiod);
-+	if (ads1018->drdy_irq < 0)
-+		return dev_err_probe(dev, ads1018->drdy_irq,
-+				     "Failed to get IRQ from %s GPIO.\n", con_id);
-+
-+	/* An IRQ line is only an optional requirement for the IIO trigger */
-+	if (ads1018->drdy_irq == 0)
-+		return 0;
-+
-+	ads1018->indio_trig = devm_iio_trigger_alloc(dev, "%s-dev%d-%s",
-+						     indio_dev->name,
-+						     iio_device_id(indio_dev),
-+						     con_id);
-+	if (!ads1018->indio_trig)
-+		return -ENOMEM;
-+
-+	iio_trigger_set_drvdata(ads1018->indio_trig, ads1018);
-+	ads1018->indio_trig->ops = &ads1018_trigger_ops;
-+
-+	ret = devm_iio_trigger_register(dev, ads1018->indio_trig);
-+	if (ret)
-+		return ret;
-+
-+	/*
-+	 * The "data-ready" IRQ line is shared with the MOSI pin, thus we need
-+	 * to keep it disabled until we actually request data.
-+	 */
-+	return devm_request_irq(dev, ads1018->drdy_irq, ads1018_irq_handler,
-+				IRQF_NO_AUTOEN, ads1018->chip_info->name, ads1018);
-+}
-+
-+static int ads1018_spi_probe(struct spi_device *spi)
-+{
-+	const struct ads1018_chip_info *info = spi_get_device_match_data(spi);
-+	struct device *dev = &spi->dev;
-+	struct iio_dev *indio_dev;
-+	struct ads1018 *ads1018;
-+	int ret;
-+
-+	indio_dev = devm_iio_device_alloc(dev, sizeof(*ads1018));
-+	if (!indio_dev)
-+		return -ENOMEM;
-+
-+	ads1018 = iio_priv(indio_dev);
-+	ads1018->spi = spi;
-+	ads1018->chip_info = info;
-+
-+	indio_dev->modes = INDIO_DIRECT_MODE;
-+	indio_dev->name = info->name;
-+	indio_dev->info = &ads1018_iio_info;
-+	indio_dev->channels = info->channels;
-+	indio_dev->num_channels = info->num_channels;
-+
-+	for (unsigned int i = 0; i < ADS1018_CHANNELS_MAX; i++) {
-+		ads1018->chan_data[i].data_rate_mode = ADS1018_DRATE_DEFAULT;
-+		ads1018->chan_data[i].pga_mode = ADS1018_PGA_DEFAULT;
-+	}
-+
-+	ads1018->xfer.rx_buf = ads1018->rx_buf;
-+	ads1018->xfer.len = sizeof(ads1018->rx_buf);
-+	spi_message_init_with_transfers(&ads1018->msg_read, &ads1018->xfer, 1);
-+
-+	ret = ads1018_trigger_setup(indio_dev);
-+	if (ret)
-+		return ret;
-+
-+	ret = devm_iio_triggered_buffer_setup(dev, indio_dev,
-+					      iio_pollfunc_store_time,
-+					      ads1018_trigger_handler,
-+					      &ads1018_buffer_ops);
-+	if (ret)
-+		return ret;
-+
-+	return devm_iio_device_register(&spi->dev, indio_dev);
-+}
-+
-+/**
-+ * ADS1018_FSR_TO_SCALE - Converts FSR into scale
-+ * @_fsr: Full-scale range in millivolts
-+ * @_res: ADC resolution
-+ *
-+ * The macro is crafted to avoid potential overflows on 32-bit machines. This
-+ * imposes restrictions on the possible values for @_fsr (less than 274878),
-+ * and @_res (greater than or equal to 6 bits).
-+ *
-+ * Return: Scale in IIO_VAL_INT_PLUS_NANO format
-+ */
-+#define ADS1018_FSR_TO_SCALE(_fsr, _res) \
-+	{ 0, ((_fsr) * (MICRO >> 6)) / (BIT((_res) - 1) >> 6) }
-+
-+static const unsigned int ads1018_gain_table[][2] = {
-+	ADS1018_FSR_TO_SCALE(6144, 12),
-+	ADS1018_FSR_TO_SCALE(4096, 12),
-+	ADS1018_FSR_TO_SCALE(2048, 12),
-+	ADS1018_FSR_TO_SCALE(1024, 12),
-+	ADS1018_FSR_TO_SCALE(512, 12),
-+	ADS1018_FSR_TO_SCALE(256, 12),
-+};
-+
-+static const unsigned int ads1118_gain_table[][2] = {
-+	ADS1018_FSR_TO_SCALE(6144, 16),
-+	ADS1018_FSR_TO_SCALE(4096, 16),
-+	ADS1018_FSR_TO_SCALE(2048, 16),
-+	ADS1018_FSR_TO_SCALE(1024, 16),
-+	ADS1018_FSR_TO_SCALE(512, 16),
-+	ADS1018_FSR_TO_SCALE(256, 16),
-+};
-+
-+static const unsigned int ads1018_data_rate_table[] = {
-+	128, 250, 490, 920, 1600, 2400, 3300,
-+};
-+
-+static const unsigned int ads1118_data_rate_table[] = {
-+	8, 16, 32, 64, 128, 250, 475, 860,
-+};
-+
-+static const struct ads1018_chip_info ads1018_chip_info = {
-+	.name = "ads1018",
-+
-+	.channels = ads1018_iio_channels,
-+	.num_channels = ARRAY_SIZE(ads1018_iio_channels),
-+
-+	.pga_mode_to_gain = ads1018_gain_table,
-+	.num_pga_mode_to_gain = ARRAY_SIZE(ads1018_gain_table),
-+
-+	.data_rate_mode_to_hz = ads1018_data_rate_table,
-+	.num_data_rate_mode_to_hz = ARRAY_SIZE(ads1018_data_rate_table),
-+
-+	.temp_scale = { 0, 125000 },
-+};
-+
-+static const struct ads1018_chip_info ads1118_chip_info = {
-+	.name = "ads1118",
-+
-+	.channels = ads1118_iio_channels,
-+	.num_channels = ARRAY_SIZE(ads1118_iio_channels),
-+
-+	.pga_mode_to_gain = ads1118_gain_table,
-+	.num_pga_mode_to_gain = ARRAY_SIZE(ads1118_gain_table),
-+
-+	.data_rate_mode_to_hz = ads1118_data_rate_table,
-+	.num_data_rate_mode_to_hz = ARRAY_SIZE(ads1118_data_rate_table),
-+
-+	.temp_scale = { 0, 31250 },
-+};
-+
-+static const struct of_device_id ads1018_of_match[] = {
-+	{ .compatible = "ti,ads1018", .data = &ads1018_chip_info },
-+	{ .compatible = "ti,ads1118", .data = &ads1118_chip_info },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, ads1018_of_match);
-+
-+static const struct spi_device_id ads1018_spi_match[] = {
-+	{ "ads1018", (kernel_ulong_t)&ads1018_chip_info },
-+	{ "ads1118", (kernel_ulong_t)&ads1118_chip_info },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(spi, ads1018_spi_match);
-+
-+static struct spi_driver ads1018_spi_driver = {
-+	.driver = {
-+		.name = "ads1018",
-+		.of_match_table = ads1018_of_match,
-+	},
-+	.probe = ads1018_spi_probe,
-+	.id_table = ads1018_spi_match,
-+};
-+
-+module_spi_driver(ads1018_spi_driver);
-+
-+MODULE_DESCRIPTION("Texas Instruments ADS1018 ADC Driver");
-+MODULE_LICENSE("GPL");
-+MODULE_AUTHOR("Kurt Borja <kuurtb@gmail.com>");
+>> Dmitry/ Bryan/ Krzysztof if you are good with this, we can bring back video
+>> in this series. Please share your thoughts on this.
+>>
+> 
+> Please let's keep these concerns separate, so that we don't hold this
+> series up further. Even if we choose to go by the subnode approach, in
+> the same time frame, it's better to discuss it separately.
+> 
 
--- 
-2.52.0
+ACK.
+
+> Regards,
+> Bjorn
+> 
+>> Regards,
+>> Vikash
+>>
+>> [1] https://lore.kernel.org/lkml/aKooCFoV3ZYwOMRx@linaro.org/
+>>
+>>>
+>>> Also, I do not want the video PIL discussion to be part of this series, as it could
+>>> unnecessarily give the impression that this series depends on it.
+>>>
+>>>>
+>>>> That binding got dropped because it was unused in Iris.
+>>>>
+>>>> https://lore.kernel.org/lkml/05d40a3b-cc13-b704-cac7-0ecbeea0e59d@quicinc.com/
+>>>>
+>>>> I still fail to see why we are waiting for multi-cell IOMMU to land, when it
+>>>> is expected to and what the VPU enablement story is upstream in the
+>>>> meantime.
+>>>>
+>>>> Blocked it seems.
+>>>
+>>> No, it is ongoing, there will be next version coming.
+>>>
+>>>>
+>>>> ---
+>>>> bod
+>>>
+>>
 
 
