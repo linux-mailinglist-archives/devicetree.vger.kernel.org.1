@@ -1,58 +1,58 @@
-Return-Path: <devicetree+bounces-244051-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244052-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5313CC9F5EE
-	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 15:54:29 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39A9CC9F621
+	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 15:57:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sto.lore.kernel.org (Postfix) with ESMTPS id 4BC8930000B2
-	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 14:54:25 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTPS id F2D4A3004A9F
+	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 14:55:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 179FD3043A1;
-	Wed,  3 Dec 2025 14:54:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8795B3081C5;
+	Wed,  3 Dec 2025 14:54:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="loUd/rkC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O0eCiZgt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDE3E30277D;
-	Wed,  3 Dec 2025 14:54:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58A52306B05;
+	Wed,  3 Dec 2025 14:54:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764773649; cv=none; b=cc8HLqUncjHm7fw4oujfMhUYfkrOmw+6sEnxpXo7RSITVJVJH9NruTrkCO2CJIuJCpWZsG1AOJqsdwMBRJnRo6A9lWg7ZQoOgMWBiNsl0goSM3aRlPbYkoXe4RWovyTKLyhlXSfzgsTgeMriNrLxcwnP9HCtf4ZSJLIcgAzQ2Zs=
+	t=1764773660; cv=none; b=ZHG2uWmE96AxK/Z3u1ZS7t0BLZXt+TvQo9+ABkJ9aapuqq6uFT4k+q24MduJJkMbIriAI/Ap0aWXdDgAgA+S5P0q8JRTta0SKoWLARLX7LjMr3rXNjk5pyivaeJYla4lU+E1GHfdun8Tfkx15UXBtEluti9UnPbQmQo7Y3FkjyY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764773649; c=relaxed/simple;
-	bh=5GnN9L847Pyh6WcSddNZjT9sAT5kCNdOyxSq0MLr8dM=;
+	s=arc-20240116; t=1764773660; c=relaxed/simple;
+	bh=HeybgVLMsvtOtNd13l6lDN8nCio/yFx9Gd97GBGfuqA=;
 	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=HUbj5MSBro+1Ac2A/UG1VlD4z1YsH+ClITONi2+BTLYDb27NNCD3VsQg+kmT1Yrea/6BEgHfi+3m/EL7qJuGSKIHuWWfR7p6LUufZsk+OK/YfLAF49dX5Kjr1dRkZsSfwPVBH6t6Cd5drJa/H8Nds4vK7UBh7MEWs2AO8BdLLHs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=loUd/rkC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB4B8C4CEF5;
-	Wed,  3 Dec 2025 14:54:05 +0000 (UTC)
+	 MIME-Version:Content-Type; b=Xuf/qRxVpBAXvvVi1WsbtY+ivdR3zRzTXpqDbsSAAPNrfi/VqOPY4sMq8ZyjMhTAMWNKDYzVj0DrWyVdDYMJpqfNkrBKMxCsiYnpzhzl9It1Rq8XMvKOKdvtvGl/q5VrEzwS6kHphFZZ6Nlr5dDfpLvlbdOyHSpLFU4+o/G3WcI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O0eCiZgt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46C31C19422;
+	Wed,  3 Dec 2025 14:54:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764773648;
-	bh=5GnN9L847Pyh6WcSddNZjT9sAT5kCNdOyxSq0MLr8dM=;
+	s=k20201202; t=1764773659;
+	bh=HeybgVLMsvtOtNd13l6lDN8nCio/yFx9Gd97GBGfuqA=;
 	h=From:To:In-Reply-To:References:Subject:Date:From;
-	b=loUd/rkCWw6Lln/zRrXjY3918Vh47V04p9hgf1GqpSf8BaRhYFttiAFfGyXz6UvjX
-	 a9J8q40rqLR4064GmO93VNiND45GUnet8X52cckTLe7qZ1DNeJelV1eh/G5s/IdSj1
-	 PP0AU1Hsco5v9XkSd7zCu4hlds6RW/7E3FjlWZx9izuhWoHtDXyrvuP2ZIEQPo+J/j
-	 e5jgXIg0fBKhGkhHNIo7WNHV75gg1/864nu3ipkgFeK564Lo6Qo2D3k7XeVvV2K/sz
-	 c1Q6yqutLNW/V2/0xgJXfjXLObz04ren55lnHBXh7xJFS1n8G6oPp637HR3opCaSRV
-	 talFQfgFDkk/w==
+	b=O0eCiZgtAvvbs5FM6bzZvhaEBoG5oFjEROawUke8S2T6uopus6PJs7XKruG5dusqp
+	 oIWX65RMICgGVIyhqdmif04qUsIkDPyVT5WGitUQaYX17QBYf4bCF+84aJrVd72PHt
+	 cjlkR/zpjnm70Mx0Yx0GqCimAIXFhr7brOsiLlN43+JlypT4YoatGlOX5Y7iksQTW3
+	 jppgfK0N+Azd/xzdaNbYgK0PLA1mr6hupPmSJaBKPGWPopMV+xmuMsmHIbKHPEOYT2
+	 EMU5qGCstCoPGMHgXxLubcUFkUpuCRksJo4gqAN0khBG0mMX0QqF9xxUfABCbs7DKe
+	 0a6Dnk0ozY9ng==
 From: Mark Brown <broonie@kernel.org>
 To: david.rhodes@cirrus.com, rf@opensource.cirrus.com, lgirdwood@gmail.com, 
  robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
  patches@opensource.cirrus.com, linux-sound@vger.kernel.org, 
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  shengjiu.wang@gmail.com, Shengjiu Wang <shengjiu.wang@nxp.com>
-In-Reply-To: <20251202061157.1710163-1-shengjiu.wang@nxp.com>
-References: <20251202061157.1710163-1-shengjiu.wang@nxp.com>
-Subject: Re: [PATCH] ASoC: dt-bindings: cirrus,cs42xx8: Reference common
+In-Reply-To: <20251203102836.3856471-1-shengjiu.wang@nxp.com>
+References: <20251203102836.3856471-1-shengjiu.wang@nxp.com>
+Subject: Re: [PATCH v2] ASoC: dt-bindings: cirrus,cs42xx8: Reference common
  DAI properties
-Message-Id: <176477364558.48347.15671556194399881845.b4-ty@kernel.org>
-Date: Wed, 03 Dec 2025 14:54:05 +0000
+Message-Id: <176477365699.48347.12992645251061713925.b4-ty@kernel.org>
+Date: Wed, 03 Dec 2025 14:54:17 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,9 +63,9 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.15-dev-88d78
 
-On Tue, 02 Dec 2025 14:11:57 +0800, Shengjiu Wang wrote:
+On Wed, 03 Dec 2025 18:28:36 +0800, Shengjiu Wang wrote:
 > Reference the dai-common.yaml schema to allow '#sound-dai-cells' and
-> "sound-name-prefix' to be used.
+> "sound-name-prefix' to be used because cirrus,cs42xx8 is codec DAI.
 > 
 > 
 
