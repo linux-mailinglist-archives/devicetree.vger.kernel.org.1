@@ -1,125 +1,133 @@
-Return-Path: <devicetree+bounces-244110-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244111-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C541CA12EC
-	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 19:55:14 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B84ECA12D5
+	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 19:54:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 72968318727B
-	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 18:14:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id F3C86310248D
+	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 18:10:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9376E2BE7B2;
-	Wed,  3 Dec 2025 18:05:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E09E30B525;
+	Wed,  3 Dec 2025 18:10:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="N7FNjJuk"
+	dkim=pass (1024-bit key) header.d=ucw.cz header.i=@ucw.cz header.b="jEM+kmjZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EC7831A805
-	for <devicetree@vger.kernel.org>; Wed,  3 Dec 2025 18:05:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34E0DEACD;
+	Wed,  3 Dec 2025 18:10:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.255.230.98
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764785112; cv=none; b=a8MB/EfB08hDZjF2WyN5rAuAs+IzkcH/9tNSvPzvBZGh3mY18x26TTzIfi0wm65xKoSR2TpNnv7BuPLdx8lW1lwbQDK7MIP4/qHzJ7AOCIzt4/BL2XBfgiSnE0U+1JPHgIVOwoy+cKeDzbo4vZiOisSCYy2nR1hOH3YgUl6gAOU=
+	t=1764785409; cv=none; b=hLewZRH79/u2Ca5lrAkgpOaVCyBY/pTKsDHVVqrh43iYkKNCdPA2Q+0/CvjH6AhlYtey8JuR2pCVoo3pS7Bg9EylC96gsdLiwdLQwjVQrjKds6zRJ5HJ+0uwsWlDv4gZaQGBbpxOIpGd2JZpD30E5RYFSAB7PfA9aBpG6piCjaQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764785112; c=relaxed/simple;
-	bh=EjjfiB9cBHAXSvDlgStQBwBw5SyzbG3m02xMWWjm2PU=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=IQiUcXEITTtpFtr0KolFBlsiJ1/MJu+lzb5Sg9AP/9KwwebLykiyR51w7BALkdh4sjblE/GwN/E6SrKM1YiW36cwk1334fMDYHKKTPtFoJPBp2km9TcSF6wT0Un8IUrSoP1fBkGlmWcZOqY+popTEIdkQZb8L7m03XuOMGSVrQg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=N7FNjJuk; arc=none smtp.client-ip=209.85.210.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-7e1651ae0d5so397365b3a.1
-        for <devicetree@vger.kernel.org>; Wed, 03 Dec 2025 10:05:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1764785104; x=1765389904; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=r8aUKLL0U4HpZQYQ2ev6PbF/etF9iGnebdLww9uoN2Q=;
-        b=N7FNjJukA26CTj6MzDyUQowrglB4TIXAIBwLViVds8jxgzoGX4HHPv/uR35AnA+I3v
-         WzPf8D/rWGf8ZGoCSQ5KpBEm5pCfEOViOF3HEMVcxiTBNwdvCy1/wkMg5UoggFdHcshX
-         srPErQLGgdZylEPo6QT8esjWoSCg3XY4wUyT2EntCIb2Fj4M+7gQAL8Jbeg821+VLGl8
-         QNSgEQo7mSYIETyki45C+LFFGnvREpRXLGTCGprWs5Oelb0LMm24VWfJ0bv8QM/QJWk2
-         NE7FPBmMphe2JhUSHl2+7WYWgFYO7PxLfXTxSFxd4Q/Up/EtsVE+GzRYeCtbz7QBTmDm
-         6/3A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764785104; x=1765389904;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=r8aUKLL0U4HpZQYQ2ev6PbF/etF9iGnebdLww9uoN2Q=;
-        b=qn0ARDqvn6ByBm9LAFOtAeTVFDnpQDsrxH6Y8W+exqTP511u6+DgwJdOV6rGV8oDYZ
-         u4SgnacdCms7V5wgtWkHGDOPNo0T/2j0coHevDwk55wxgHGBQToTbqVXYlhSl7YwAxsA
-         V2wxs4ECemPg+6Og/YsFVk+Q7ByiQUwZMmSB/de+mVdURdYlE8Srdha3vgVJqGKboYnh
-         TwN0bIUSvuYmt1MtY6orHsRbTkv5SF6ArrnvfhA1xaNPEv1rzi6iTe6GVf7otd17sRd4
-         1iWerZiUF3UPK6D6niRvdecyaExxX8sGRMLyh0wawvFb/TsQLomtCHZ+uEPTNppQIxAU
-         B+zw==
-X-Forwarded-Encrypted: i=1; AJvYcCU3/hMudqrzkL4DXeT5XFgTKHDT9ngZCp6l+ZsZ2w9ylxKvDZY2/iosCyv3LJQB7BlDu6SQhbaNVQ+L@vger.kernel.org
-X-Gm-Message-State: AOJu0YxuU7NtvZtGK5b97j6A1EU5ZnD3J+zS93nXKpsA639pjduPG95x
-	SSL+L6XFxG4BWHUynWkfh7Ya29BJCJxDcLF/rWdbZuXFc3CbRhLMF5/cRbvpXsqU
-X-Gm-Gg: ASbGncvz+WRtk2CDQxYOf5RuOUTrg0XAegD5TxxA8fZb5ig3mTGlugnVHAlZzh2sYw5
-	tH7r8jgfq4hbtwygvPtShBmcW6eon7n/OEKAcZKFoe9jnQNh1OOqknSYoTwY+Rv+WqPuplZcNJU
-	Vi9z+FRK/eTvlOJdePT9aOMNGnHdm7emgDWbKMK3HZm9B2/Odc6M6g/9CVi11ReiDaQ0vOd5fjM
-	0MtsUvQcleHtCsJRhIEO5XMmTG3cs/0Dl06C9lYzR4yWxr2JEHZq2al+4Qh/wnbEsWePc+eqyLQ
-	JIyptHlGTN+2C/yqUpIF5avrbIH0sv3dy8RhVRt8L7Z/qeNF1HbUvVIwi2pi9Yju+W595QDW5fQ
-	si8JBVi61oL9DpwhSMN8k1pmHWxRGVInoSaENz2tmpgNmnl/xFQ4SsfbGlIKHUkzjnqi9+ZkF7J
-	adeZlVkz21QZaD3WaUA7WPx2Y7iccFvA==
-X-Google-Smtp-Source: AGHT+IFEixLGV3A8+6jlL7a/8Uv2OMwWRqulw8eWOs24wopjQE6qdYvBYZM9hQQi+wS8cPkdVKqjPA==
-X-Received: by 2002:a05:6a20:3944:b0:342:1265:158f with SMTP id adf61e73a8af0-3640387a27bmr191416637.51.1764785103491;
-        Wed, 03 Dec 2025 10:05:03 -0800 (PST)
-Received: from soham-laptop.. ([103.182.158.110])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7d150b68367sm21135011b3a.12.2025.12.03.10.04.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Dec 2025 10:05:03 -0800 (PST)
-From: Soham Metha <sohammetha01@gmail.com>
-To: linux-kernel-mentees@lists.linuxfoundation.org
-Cc: shuah@kernel.org,
-	skhan@linuxfoundation.org,
-	linux-kernel@vger.kernel.org,
-	Soham Metha <sohammetha01@gmail.com>,
+	s=arc-20240116; t=1764785409; c=relaxed/simple;
+	bh=vgv5xORL3p4GT1gXvTzzfTTjN2daLtNW/vnk70muwrs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LpfPGahlm85aKSY08GhsXR7I81bNoJL+GfHlL6+BqO/e0fyxPaFUZA9Q6DpNDkJOeCvMJclNTPT/NLXMKpYIJLrFdDZolGBmFaN1/41dC7PHME02pBG55i+6FvDCMa3WHBGesWBDzujg8quOJhvzkkDEbNhRnO/E8f+EhyJJzpU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ucw.cz; spf=pass smtp.mailfrom=ucw.cz; dkim=pass (1024-bit key) header.d=ucw.cz header.i=@ucw.cz header.b=jEM+kmjZ; arc=none smtp.client-ip=46.255.230.98
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ucw.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ucw.cz
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+	id 0857C1C008F; Wed,  3 Dec 2025 19:10:04 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucw.cz; s=gen1;
+	t=1764785404;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=3sdTIGdSoayx9dZnp52z/h/u54VkPko1AY65aYWoYdk=;
+	b=jEM+kmjZzT9PM5UqOPaz/v1ieK1zXtJ6orv797Vgrjso0attg8FzJtB1xi7FZgB2efwtCm
+	3JojK0wfeFE/02I06FazoHc3Re7NjxATRjfaNaU/YkQz7Ns0UYo4V37rXG/JXdkHDCZlzP
+	YMpVGFVWKMprwBq6LvnwpA0hMlbOwsM=
+Date: Wed, 3 Dec 2025 19:10:03 +0100
+From: Pavel Machek <pavel@ucw.cz>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
 	Bjorn Andersson <andersson@kernel.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-remoteproc@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH v2] dt-bindings: remoteproc: Fix dead link to Keystone DSP GPIO binding
-Date: Wed,  3 Dec 2025 23:33:37 +0530
-Message-Id: <20251203180337.50831-1-sohammetha01@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
+	trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com,
+	Tengfei Fan <tengfei.fan@oss.qualcomm.com>,
+	Qiang Yu <qiang.yu@oss.qualcomm.com>,
+	Manish Pandey <manish.pandey@oss.qualcomm.com>,
+	Ronak Raheja <ronak.raheja@oss.qualcomm.com>,
+	Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>,
+	Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>,
+	Jyothi Kumar Seerapu <jyothi.seerapu@oss.qualcomm.com>,
+	Prasad Kumpatla <prasad.kumpatla@oss.qualcomm.com>,
+	Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>,
+	Vikash Garodia <vikash.garodia@oss.qualcomm.com>
+Subject: Re: [PATCH 00/20] arm64: dts: qcom: Introduce Kaanapali platform
+ device tree
+Message-ID: <aTB8++UtSrhwtqdY@duo.ucw.cz>
+References: <20250924-knp-dts-v1-0-3fdbc4b9e1b1@oss.qualcomm.com>
+ <aS8uJCnb0xOd6uby@duo.ucw.cz>
+ <081a2038-e798-4cc0-96ff-b7f11e346831@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="Ic9XkOl4csXwnGrR"
+Content-Disposition: inline
+In-Reply-To: <081a2038-e798-4cc0-96ff-b7f11e346831@kernel.org>
 
-The old text binding 'gpio-dsp-keystone.txt' was replaced by a DT schema in
-commit aff0a1701b020c8e6b172f28828fd4f3e6eed41a
-("dt-bindings: gpio: Convert ti,keystone-dsp-gpio to DT schema").
 
-Update the reference to point to the new file.
+--Ic9XkOl4csXwnGrR
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Soham Metha <sohammetha01@gmail.com>
----
- .../devicetree/bindings/remoteproc/ti,keystone-rproc.txt        | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On Wed 2025-12-03 18:31:11, Krzysztof Kozlowski wrote:
+> On 02/12/2025 19:21, Pavel Machek wrote:
+> > Hi!
+> >=20
+> >> Introduce the Device Tree for the recently announced Snapdragon SoC fr=
+om Qualcomm:
+> >> https://www.qualcomm.com/products/mobile/snapdragon/smartphones/snapdr=
+agon-8-series-mobile-platforms/snapdragon-8-elite-gen-5
+> >>
+> >> Bindings and base Device Tree for the Kaanapali SoC, MTP (Mobile Test =
+Platform)
+> >> and QRD (Qualcommm Reference Device) are splited in three:
+> >>
+> >> - 1-3: MTP board boot-to-shell with basic function.
+> >> - 4-16: More feature including PCIE, sdcard, usb, DSPs, PMIC related, =
+tsense, bus, crypto etc. Add QRD board support.
+> >> - 17-20: Multimedia features including audio, video and camss.
+> >=20
+> > Thanks for doing this. I assume there devices available with this are
+> > quite expensive/hard to get at this point?
+> >=20
+> > Please cc phone-devel@vger.kernel.org with phone related patches.
+>=20
+> That's not even a phone, anyway contributors should not cc lists which
+> are not relevant to the posting and not pointed out by maintainers. You
 
-diff --git a/Documentation/devicetree/bindings/remoteproc/ti,keystone-rproc.txt b/Documentation/devicetree/bindings/remoteproc/ti,keystone-rproc.txt
-index 463a97c11eff..91f0a3b0c0b2 100644
---- a/Documentation/devicetree/bindings/remoteproc/ti,keystone-rproc.txt
-+++ b/Documentation/devicetree/bindings/remoteproc/ti,keystone-rproc.txt
-@@ -66,7 +66,7 @@ The following are the mandatory properties:
- - kick-gpios: 		Should specify the gpio device needed for the virtio IPC
- 			stack. This will be used to interrupt the remote processor.
- 			The gpio device to be used is as per the bindings in,
--			Documentation/devicetree/bindings/gpio/gpio-dsp-keystone.txt
-+			Documentation/devicetree/bindings/gpio/ti,keystone-dsp-gpio.yaml
- 
- SoC-specific Required properties:
- ---------------------------------
--- 
-2.34.1
+People should Cc relevant lists, and yes, if it is called "Mobile Test
+Platform", it is relevant to phone development.
 
+								Pavel
+--=20
+I don't work for Nazis and criminals, and neither should you.
+Boycott Putin, Trump, Netanyahu and Musk!
+
+--Ic9XkOl4csXwnGrR
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCaTB8+wAKCRAw5/Bqldv6
+8pGoAJ4vwaWKRFCUjrjQkeIc4JPjOPjcgQCfbix0XbejMS7k0FwcfOPuWnmy6NY=
+=1WIj
+-----END PGP SIGNATURE-----
+
+--Ic9XkOl4csXwnGrR--
 
