@@ -1,56 +1,48 @@
-Return-Path: <devicetree+bounces-243905-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243896-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAFABC9E4A0
-	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 09:45:09 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E57CC9E3A1
+	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 09:32:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7605A3A4444
-	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 08:45:08 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id C3F2D34A57B
+	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 08:32:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD7082D6605;
-	Wed,  3 Dec 2025 08:45:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6ABF32D46D9;
+	Wed,  3 Dec 2025 08:32:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=norik.com header.i=@norik.com header.b="CoIXvQcM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L79DqlIZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cp2.siel.si (cp2.siel.si [46.19.12.180])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D120F2D5A14;
-	Wed,  3 Dec 2025 08:45:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.19.12.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F5A824DD09;
+	Wed,  3 Dec 2025 08:32:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764751506; cv=none; b=VIR3VvikiUMoFUjET1oEytfXRupi4+bImW7dpUwGZbTGpfSpyoGw1CAUtrz6FlAyRN3P3SkWBj2aU6JeqrhPyiXzHXHe5RL+vpWAhJou1MaS3eGkO5i2dIMqdQDxUf2PjPdrjTtFANcZpmnHPF+fGuq2T4gatZtBIDKEqxW+yqo=
+	t=1764750728; cv=none; b=Wln+kIdhc32iLoujPA2pyfdhCpWapEHuSvAZpACmHFHT3EGWbDPF1sbtWxUt/ciXatrSbG4/41a4Uu591mh7fzwCHHtEh9kbN6eZf5kuMfu6kQaLnwAiR+1cW4xi7RSTrSC6oKCEoZDJSdzJTwzFpqYnO0Rf2bGhNYuqVQGj9d0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764751506; c=relaxed/simple;
-	bh=eY788H2GxaX/0dZ4ewNaRPDe3n7sY7pMPdmz+2V68uw=;
+	s=arc-20240116; t=1764750728; c=relaxed/simple;
+	bh=x3wRsMheoBQItNQS1rXnwJ/O8kGwx+VQhjT1EnnHT5Y=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rqIzEj/TF5JjrhvSV8CBsdNRuliBIVpj1HC6i2TUyR5fkOr0VsSbY70tGOHTQjedHM0PwYRjv1EZp/OTGvrHKaMaoekCZI8E4JqB42bjER+rmC2HTOTISxK5wcjc9bZPAPBd837b12yzTsBMA+fHZ3NhBT/GOLfjDcnqjduSoG8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com; spf=pass smtp.mailfrom=norik.com; dkim=pass (2048-bit key) header.d=norik.com header.i=@norik.com header.b=CoIXvQcM; arc=none smtp.client-ip=46.19.12.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=norik.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
-	s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-	References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=jHkz3sXS4xRmbb1n3DFi1LDwAUWzmiQpx7m6JbKmtvo=; b=CoIXvQcMRkDNGCsctbpohlDp4F
-	+U6Tbx3RfNFLbpcEOydCHRRJjLnZzeLL3udR/kPvCw8rnHwoqeCNjLrv4PEsBX13+LAh7p6JtXp0g
-	uI73XgyUP5WdIKYk29gQfhVApE8wmkGyzO9puw9yUT62TXHvHmlSbxmIP9PQntj72KmU1SKWDwxkt
-	OTD2qQADd93dlMqS4zlftwCU816lId2dflBn/JM/cauX7W3ebBphDcYtDAPYkkwPj1mg6WbMbij1o
-	ayn9luvmXm8RMdzVryYpEtNv8CU2b/mYpJaMTVKRyPP+npGTZt8/PZa/TpGUCWBlQWGzgYPeBvpSL
-	IbrsFREA==;
-Received: from 89-212-21-243.static.t-2.net ([89.212.21.243]:45380 helo=[192.168.69.116])
-	by cp2.siel.si with esmtpsa  (TLS1.3) tls TLS_AES_128_GCM_SHA256
-	(Exim 4.98.2)
-	(envelope-from <primoz.fiser@norik.com>)
-	id 1vQiGZ-00000002WWi-1Mau;
-	Wed, 03 Dec 2025 09:31:12 +0100
-Message-ID: <304467a9-4c7a-4722-9e70-4d178113c33b@norik.com>
-Date: Wed, 3 Dec 2025 09:31:10 +0100
+	 In-Reply-To:Content-Type; b=AEic716LejUBzsmoxgJsLyy2KpiOzd1dhowl59f8g2p1ivVbdrKXN2LqMIQpuQ7AGJ5MoW8jp0MZlOHFUIMstTUy6LewtIC36zpCUovTVE2p/fLP3zQ2o5Y9EEDEcsAzMfXagN7eJXk/xvj5xm32VP7Szw3aLOqwpzXjYQXEYfQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L79DqlIZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD340C4CEFB;
+	Wed,  3 Dec 2025 08:32:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764750727;
+	bh=x3wRsMheoBQItNQS1rXnwJ/O8kGwx+VQhjT1EnnHT5Y=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=L79DqlIZ5J31TUeWWlrcxlBjkBRu9Db5w6GqgF7drHOk6xn1n+5G4ZUmo0F3GUsHB
+	 F8HiY+JKi6/8B5tRFtwaMTm8qne6012ythogpDv6p8rRefMNRZeD1nTGbuXp71xklh
+	 44jtp5Q4twDdjC+WzoqUDEwmEod7+OeD+JK9B50PeZpS9qYCszXu7oTd0T27QMMuVv
+	 rFVu6AajFgQTQE3Ul946Mqlh/3dG0+3MAw7vgxUWgbe4NtikJmVdFEqynzvLuarBRA
+	 kg0fjLcheQE3sqVMNMQwnLoCiSUeyFc8xfhJXJE4npuoi51xxBMZkS50js8YmlQ3hE
+	 PyBZeKsLcMY/g==
+Message-ID: <3f8e8e3d-fb38-4e17-8a55-a22ed9329a9a@kernel.org>
+Date: Wed, 3 Dec 2025 09:32:03 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,83 +50,92 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] clk: imx: fracn-gppll: Add 332.60 MHz Support
-To: Marco Felsch <m.felsch@pengutronix.de>, Abel Vesa <abelvesa@kernel.org>,
- Peng Fan <peng.fan@nxp.com>, Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, andrej.picej@norik.com, c.hemp@phytec.de,
- s.mueller-klieser@phytec.de, n.wesp@phytec.de, c.stoidner@phytec.de
-Cc: linux-clk@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+Subject: Re: [PATCH 3/6] arm64: dts: qcom: sm8550-qrd: move camss status
+ property to the end
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>, linux-arm-msm@vger.kernel.org,
  devicetree@vger.kernel.org
-References: <20251202-v6-18-topic-imx93-phyboard-segin-av-02-display-v1-0-9c14be6c7478@pengutronix.de>
- <20251202-v6-18-topic-imx93-phyboard-segin-av-02-display-v1-1-9c14be6c7478@pengutronix.de>
+References: <20251203040538.71119-1-vladimir.zapolskiy@linaro.org>
+ <20251203040538.71119-4-vladimir.zapolskiy@linaro.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Primoz Fiser <primoz.fiser@norik.com>
-Autocrypt: addr=primoz.fiser@norik.com; keydata=
- xjMEZrROOxYJKwYBBAHaRw8BAQdAADVOb5tiLVTUAC9nu/FUl4gj/+4fDLqbc3mk0Vz8riTN
- JVByaW1veiBGaXNlciA8cHJpbW96LmZpc2VyQG5vcmlrLmNvbT7CiQQTFggAMRYhBK2YFSAH
- ExsBZLCwJGoLbQEHbnBPBQJmtE47AhsDBAsJCAcFFQgJCgsFFgIDAQAACgkQagttAQducE+T
- gAD+K4fKlIuvH75fAFwGYG/HT3F9mN64majvqJqvp3gTB9YBAL12gu+cm11m9JMyOyN0l6Os
- jStsQFghPkzBSDWSDN0NzjgEZrROPBIKKwYBBAGXVQEFAQEHQP2xtEOhbgA+rfzvvcFkV1zK
- 6ym3/c/OUQObCp50BocdAwEIB8J4BBgWCAAgFiEErZgVIAcTGwFksLAkagttAQducE8FAma0
- TjwCGwwACgkQagttAQducE8ucAD9F1sXtQD4iA7Qu+SwNUAp/9x7Cqr37CSb2p6hbRmPJP8B
- AMYR91JYlFmOJ+ScPhQ8/MgFO+V6pa7K2ebk5xYqsCgA
-Organization: Norik systems d.o.o.
-In-Reply-To: <20251202-v6-18-topic-imx93-phyboard-segin-av-02-display-v1-1-9c14be6c7478@pengutronix.de>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20251203040538.71119-4-vladimir.zapolskiy@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cp2.siel.si
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - norik.com
-X-Get-Message-Sender-Via: cp2.siel.si: authenticated_id: primoz.fiser@norik.com
-X-Authenticated-Sender: cp2.siel.si: primoz.fiser@norik.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
 
-Hi Marco,
-
-On 2. 12. 25 14:44, Marco Felsch wrote:
-> Some parallel panels have a pixelclk of 33.260 MHz. Add support for
-> 332.60 MHz so a by 10 divider can be used to derive the exact pixelclk.
-
-Reviewed-by: Primoz Fiser <primoz.fiser@norik.com>
+On 03/12/2025 05:05, Vladimir Zapolskiy wrote:
+> Conventionally status property is the last one in the list, move it there.
 > 
-> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
 > ---
->  drivers/clk/imx/clk-fracn-gppll.c | 1 +
->  1 file changed, 1 insertion(+)
+>  arch/arm64/boot/dts/qcom/sm8550-qrd.dts | 3 +--
+>  1 file changed, 1 insertion(+), 2 deletions(-)
 > 
-> diff --git a/drivers/clk/imx/clk-fracn-gppll.c b/drivers/clk/imx/clk-fracn-gppll.c
-> index 090d608672508a8819dc68eedec5b8d4a2c140c8..579f76494eb041dfba58b8cd10eb2453a0ec4178 100644
-> --- a/drivers/clk/imx/clk-fracn-gppll.c
-> +++ b/drivers/clk/imx/clk-fracn-gppll.c
-> @@ -88,6 +88,7 @@ static const struct imx_fracn_gppll_rate_table fracn_tbl[] = {
->  	PLL_FRACN_GP(445333333U, 167, 0, 1, 0, 9),
->  	PLL_FRACN_GP(400000000U, 200, 0, 1, 0, 12),
->  	PLL_FRACN_GP(393216000U, 163, 84, 100, 0, 10),
-> +	PLL_FRACN_GP(332600000U, 138, 584, 1000, 0, 10),
->  	PLL_FRACN_GP(300000000U, 150, 0, 1, 0, 12)
+> diff --git a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
+> index 48af6d114161..b3eb0836c408 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
+> @@ -717,10 +717,9 @@ vreg_l7n_2p96: ldo7 {
 >  };
 >  
-> 
+>  &camss {
+> -	status = "okay";
+> -
+>  	vdda-phy-supply = <&vreg_l1e_0p88>;
+>  	vdda-pll-supply = <&vreg_l3e_1p2>;
+> +	status = "okay";
 
--- 
-Primoz Fiser
-phone: +386-41-390-545
-email: primoz.fiser@norik.com
---
-Norik systems d.o.o.
-Your embedded software partner
-Slovenia, EU
-phone: +386-41-540-545
-email: info@norik.com
+Please do not do such changes node by node. Fix many or all devices here
+or none. But actually even fixing all should be postponed - we discussed
+this many times, first proper linter is needed.
 
+Best regards,
+Krzysztof
 
