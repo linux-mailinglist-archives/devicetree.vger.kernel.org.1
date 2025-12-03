@@ -1,53 +1,53 @@
-Return-Path: <devicetree+bounces-243927-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243929-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67107C9E89A
-	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 10:43:05 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06D1CC9E8AC
+	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 10:43:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 94A984E0751
-	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 09:43:03 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9962F4E0FF4
+	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 09:43:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC8D62E427C;
-	Wed,  3 Dec 2025 09:42:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 039EE2E6CB8;
+	Wed,  3 Dec 2025 09:42:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="pX+aKNnU"
+	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="a8Q6cpgK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-177.mta0.migadu.com (out-177.mta0.migadu.com [91.218.175.177])
+Received: from out-178.mta0.migadu.com (out-178.mta0.migadu.com [91.218.175.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58D7B2E22BF
-	for <devicetree@vger.kernel.org>; Wed,  3 Dec 2025 09:42:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9926F2E1722
+	for <devicetree@vger.kernel.org>; Wed,  3 Dec 2025 09:42:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764754939; cv=none; b=o3S5aUnQ8ad7zCa5yiVoB/OB24Bibvc+wbnsPtTgYAugoVgeREVR5sGPiHFJaI9CwvuF6/T7p20hq8t12hcDBEov+QXBWDrnYmgvgsnpIjqTciSWwlJfBp+kOFofp2jol2MvY0hm9ZSwEZGgdH6Vu8pZayJhxrUMSlViL6g5+nk=
+	t=1764754942; cv=none; b=LK4SlY9+9kLfy5bSXA5TbX5kWMQV65UIgLOR7AVrRJL6HlBE89fO8x32pR6XZNCTnII9keJdzB0B5J23r7bnLtHpP3NZDUb10e8JnCeqWZWgJpiOFJa1nPswQ/SWFRGqFuWqm6SmI21DWiCZcTW+6JIFPwO+qQxKSIRLK3Jia+Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764754939; c=relaxed/simple;
-	bh=Bq58Ib5by9mVeEI0tNfI5tq/1v40vKDcrJk7dh7Xku4=;
+	s=arc-20240116; t=1764754942; c=relaxed/simple;
+	bh=+sat0IOyv7dYibuZzWaDTfnS78SGXYiAHyot4raeY3s=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=jOOVd3Xu/29Hh9yhYhr1cgdX1npAuoOJjnmiPYo/+ytEfXHFskFyOQa0kd7TMQK0b/DgvlQBoY4BdVhsQZJieff2j6DXt4nCN7hDBfIn8gKCP4cEVHaNNL6csN32HqnO1ktJgTEvUnzUX/o4WC+3LnF3LcUyt6ocdyPv6VUc6wY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=pX+aKNnU; arc=none smtp.client-ip=91.218.175.177
+	 In-Reply-To:To:Cc; b=IXbKzSqlqiJwWvQHqyQo+TjKMRHlYrJcu0p98kv1rsvsZkFK+tgnRdQA09SsXHnm7LbLby/30OGa1CP4y469XqpF0wLK260DR/D8y5Eq+uezVjJ3cS5QRYI33wCNmbbiX5B2O4LcOCyYEPm0scWaSl5zQSIE+egMUEyNSwIgUFg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=a8Q6cpgK; arc=none smtp.client-ip=91.218.175.178
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=postmarketos.org
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
-	s=key1; t=1764754935;
+	s=key1; t=1764754938;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=GyRxK95eChOXunVlInniVr3+/iwX9+VqXFotKAyLfE8=;
-	b=pX+aKNnU0b//hUNoJLRvVnmzjZu6quKwl6DRN7mFOcR+9T9PWMU+dB0SuhN/uaSp9Mse/3
-	QLsCOPwU6z2E1Jafm0+aXdJafW9Bar2uWnehP33T9o4bL6ywIbVC2K9mC2f/O4BICWxKq+
-	9TlpZU6W1IXkAsc48RNpy9YrlXOMf2VtCoFWNpoeQ9zGlLwbBDWJ8XLr41K4UvDAp2yypa
-	2hy/eXu+j0a8RlwXmgE/q2Pbf+SEKVAXL3QgP+ylk5jkXAY9JfATNOCA2qrlhw7bm3Lj+D
-	2gFzl7bOZxkDyFwtXq1pxpspjtEbVzy4dEzFCBBgl0aYUC3pW13klXrdH2B/cw==
+	bh=AR/mQ+VHrTE4fKWsWqOutsuZW/BoYfxy/HGFAzx2pPQ=;
+	b=a8Q6cpgKepQbcBt3kktHcakXZTz9Pv9HD+BPFWS68j+LoKgVksfT1tjbFNyCONqy2YuYhD
+	rGnca0vPrXvEHYZHQx+iiDqjT0oAzx1jsS1XMHPUYV1yJwOj7IfbmKs+UFsirWwvuF9btg
+	v4YHAm4PkHa8Qvr0FYeh8JARUhnrU0y2W7QZIAzNUrV9P+b41iLs2ZP5R88tadeFBQyWZu
+	v2D3CtcqBvUpSZwofv+qt0j3GNhxuouIkdgO98jECsBNhvi75oxQ7Nsk61gGuqBb45LR0X
+	GXNOA5p1yDTkaAa2KcxZxZ0bOIG4Zd/9YGXLcz/hNClLtxwQUG0G6AHWktTfyA==
 From: Paul Sajna <sajattack@postmarketos.org>
-Date: Wed, 03 Dec 2025 01:40:51 -0800
-Subject: [PATCH v5 02/12] arm64: dts: qcom: sdm845-lg-common: Add uarts and
- Bluetooth
+Date: Wed, 03 Dec 2025 01:40:52 -0800
+Subject: [PATCH v5 03/12] arm64: dts: qcom: sdm845-lg-judyln: Add battery
+ and charger
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,7 +56,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251203-judyln-dts-v5-2-80c1ffca8487@postmarketos.org>
+Message-Id: <20251203-judyln-dts-v5-3-80c1ffca8487@postmarketos.org>
 References: <20251203-judyln-dts-v5-0-80c1ffca8487@postmarketos.org>
 In-Reply-To: <20251203-judyln-dts-v5-0-80c1ffca8487@postmarketos.org>
 To: Bjorn Andersson <andersson@kernel.org>, 
@@ -68,127 +68,61 @@ Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  ~postmarketos/upstreaming@lists.sr.ht, Amir Dahan <system64fumo@tuta.io>, 
  Christopher Brown <crispybrown@gmail.com>, 
  Paul Sajna <sajattack@postmarketos.org>, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1764754921; l=2853;
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1764754921; l=1341;
  i=sajattack@postmarketos.org; s=20250422; h=from:subject:message-id;
- bh=Bq58Ib5by9mVeEI0tNfI5tq/1v40vKDcrJk7dh7Xku4=;
- b=L9/QvZYX9up0gLt4+70iOEex3ZtKNyf0ieNz9/QZXpiQZKRcwU808oAqIdks5ceyCIWE1ArQL
- cseai1jWnfSADix35je+HgwU43TB4GbSxM7gEmajCqpZvEgXkk8p99m
+ bh=/TDsTUZwCmIaaywK/fEl2z5Hc9nDVuyFYpoIyMntrUE=;
+ b=ITT/ys7inb4wVplB0QY+fs8/V+XdQvxM991A6MvHDQPzW6Sv3UGTHAeYWkmK9XMY/DqSebINQ
+ 9XZFZ5ypkMxDeCzGTWeAIFJqwGaaAG011wrr5pWKbWls3PxtHaS6pOG
 X-Developer-Key: i=sajattack@postmarketos.org; a=ed25519;
  pk=TwacvEOiRJ2P2oAdEqIDrtQTL18QS4FfcHfP/zNsxkQ=
 X-Migadu-Flow: FLOW_OUT
 
-uart9 is debug serial on USB SBU1/2
+From: Christopher Brown <crispybrown@gmail.com>
 
-UART RX is SBU1 and UART TX is SBU2 of the USB-C port).
-1.8V Logic Level
-Tested using pololu usb07a https://www.pololu.com/product/2585
-and CH340 USB-UART
+Values based on lineageos kernel
 
-uart6 is bluetooth
+https://github.com/LineageOS/android_kernel_lge_sdm845/blob/lineage-22.2/arch/arm64/boot/dts/lge/sdm845-battery/LGE_BLT39_LGC_3000mAh.dtsi
 
-Bluetooth: hci0: setting up wcn399x
-Bluetooth: hci0: QCA Product ID   :0x0000000a
-Bluetooth: hci0: QCA SOC Version  :0x40010214
-Bluetooth: hci0: QCA ROM Version  :0x00000201
-Bluetooth: hci0: QCA Patch Version:0x00000001
-Bluetooth: hci0: QCA controller version 0x02140201
-Bluetooth: hci0: QCA Downloading qca/crbtfw21.tlv
-Bluetooth: hci0: QCA Downloading qca/judyln/crnv21.bin
-Bluetooth: hci0: QCA setup on UART is completed
-
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Signed-off-by: Christopher Brown <crispybrown@gmail.com>
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 Signed-off-by: Paul Sajna <sajattack@postmarketos.org>
 ---
- arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi | 39 ++++++++++++++++++++++++--
- arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts  |  8 ++++++
- 2 files changed, 45 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
-index b8ab64a8de1c..cbd57eee6ffc 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
-@@ -27,10 +27,17 @@
- /delete-node/ &wlan_msa_mem;
- 
- / {
-+	aliases {
-+		serial0 = &uart9;
-+		serial1 = &uart6;
-+	};
-+
- 	chosen {
- 		#address-cells = <2>;
- 		#size-cells = <2>;
- 		ranges;
-+
-+		stdout-path = "serial0:115200n8";
- 	};
- 
- 	reserved-memory {
-@@ -540,6 +547,36 @@ &qupv3_id_1 {
- 	status = "okay";
- };
- 
-+&qup_uart9_rx {
-+	drive-strength = <2>;
-+	bias-pull-up;
-+};
-+
-+&qup_uart9_tx {
-+	drive-strength = <2>;
-+	bias-disable;
-+};
-+
-+&uart6 {
-+	pinctrl-0 = <&qup_uart6_4pin>;
-+
-+	status = "okay";
-+
-+	bluetooth: bluetooth {
-+		compatible = "qcom,wcn3990-bt";
-+
-+		vddio-supply = <&vreg_s4a_1p8>;
-+		vddxo-supply = <&vreg_l7a_1p8>;
-+		vddrf-supply = <&vreg_l17a_1p3>;
-+		vddch0-supply = <&vreg_l25a_3p3>;
-+		max-speed = <3200000>;
-+	};
-+};
-+
-+&uart9 {
-+	status = "okay";
-+};
-+
- &ufs_mem_hc {
- 	reset-gpios = <&tlmm 150 GPIO_ACTIVE_LOW>;
- 
-@@ -597,6 +634,4 @@ &wifi {
- 	vdd-3.3-ch1-supply = <&vreg_l23a_3p3>;
- 
- 	qcom,snoc-host-cap-skip-quirk;
--
--	status = "okay";
- };
 diff --git a/arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts b/arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts
-index 09bfcef42402..e530a08f5e27 100644
+index e530a08f5e27..55bfddab3afd 100644
 --- a/arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts
 +++ b/arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts
-@@ -43,6 +43,14 @@ &adsp_pas {
- 	firmware-name = "qcom/sdm845/judyln/adsp.mbn";
+@@ -37,6 +37,14 @@ key-thinq {
+ 			interrupts = <89 IRQ_TYPE_LEVEL_LOW>;
+ 		};
+ 	};
++
++	battery: battery {
++		compatible = "simple-battery";
++
++		charge-full-design-microamp-hours = <3000000>;
++		voltage-min-design-microvolt = <3200000>;
++		voltage-max-design-microvolt = <4400000>;
++	};
  };
  
-+&bluetooth {
-+	/*
-+	 * This path is relative to the qca/
-+	 * subdir under lib/firmware.
-+	 */
-+	firmware-name = "judyln/crnv21.bin";
+ &adsp_pas {
+@@ -63,6 +71,12 @@ &mss_pil {
+ 	firmware-name = "qcom/sdm845/judyln/mba.mbn", "qcom/sdm845/judyln/modem.mbn";
+ };
+ 
++&pmi8998_charger {
++	monitored-battery = <&battery>;
++
++	status = "okay";
 +};
 +
- &cdsp_pas {
- 	firmware-name = "qcom/sdm845/judyln/cdsp.mbn";
- };
+ &tlmm {
+ 	thinq_key_default: thinq-key-default-state {
+ 		pins = "gpio89";
 
 -- 
 2.52.0
