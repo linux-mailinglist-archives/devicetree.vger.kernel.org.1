@@ -1,79 +1,135 @@
-Return-Path: <devicetree+bounces-244130-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244137-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1989ACA1986
-	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 21:52:20 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 407BACA19E9
+	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 22:07:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5E0903009836
-	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 20:52:18 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 4F82C3004461
+	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 21:07:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4F7A2BF3DB;
-	Wed,  3 Dec 2025 20:52:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D888D2D29D1;
+	Wed,  3 Dec 2025 21:07:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P5FzEliY"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="R4qHAUnw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B853255E43;
-	Wed,  3 Dec 2025 20:52:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0106E2C237F;
+	Wed,  3 Dec 2025 21:07:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.161
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764795136; cv=none; b=s8jIz2t+uyhK/9k7qhEZQ/WN30xGxPChLSA2HDwnbLjVP5MXugehAbUSuLmAtOmUo9E0S07MyM3LLL1URBR5x/AJI2qfz/iU18bv90RvcipBUTY77+qmRYTYSau6ynql4iw2mBrtfYbgNmjjSkRkTX9Iumoq//XZAB9j/bkkuYk=
+	t=1764796043; cv=none; b=TdGpcjYfVa9EiMXnWJ4Qis14P3i7L5aYcJX3YsTCJcU+5K03HfOlR+PNpbybxJEplJofOawmv+FoDBlfEpZTwprZahxljakolEBPxm6aLWe27QeFAdSwj3Fvmq2+03VaByBWYXNAJAMupZDKxhcPhyen5iCW4bp9hnaJzfgLsFA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764795136; c=relaxed/simple;
-	bh=LnTu2ji+l83YsTdTn49ZGpJGygUyH5/D5vXQPwCH8cY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EckgjJrARqG7T8OUjns6PRty5iczXS4AgVOiqUhdKiyi+6WanrqJhdIH5qzBbLgnpM3X0WXxpWOYmFT9EmufMA3BuhH35bcGIJY5y4auqv3GEsUk75pTDoNABXfl8DShm0iq3W3jjxV6CYjpCDbuOzz/Rx6fOIuLZOVli3+4M5Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P5FzEliY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10D13C4CEF5;
-	Wed,  3 Dec 2025 20:52:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764795136;
-	bh=LnTu2ji+l83YsTdTn49ZGpJGygUyH5/D5vXQPwCH8cY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=P5FzEliYaQeTKpmHr7tPUkJeMGKnfEhFYJVfZmjTjejQfbmuNemHtZbhwaxvTNAMv
-	 8HvV1MS5yc/YRoBWDdKMcSxGw2+1rDP7NamYpTXND6dXZBmFIPim5No2cfcDGxXER7
-	 mQppJMmI6XKE04E09v0h8yW/mSOWTivdnGxVZe9XBzzS5oudNTTWajzMCiiSW0VDwP
-	 /Bl6hSAX2ezXMiK/TqmlN71YAA48znyZi9L5byg1GQdCnyZ+RsicQgZET/mlGRCHFP
-	 d8pnY3M0Q23OPjs8y6SKEJCP3OAXJ3znUVI8AXpkmifBYOSpy5CkHvC50nh+qcEs+6
-	 EndF4EFb4Zi/Q==
-Date: Wed, 3 Dec 2025 21:52:11 +0100
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>
-Cc: Loic Poulain <loic.poulain@oss.qualcomm.com>, 
-	Robert Foss <rfoss@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Todor Tomov <todor.too@gmail.com>, Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
-	linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
-	jeyaprakash.soundrapandian@oss.qualcomm.com, Vijay Kumar Tumati <vijay.tumati@oss.qualcomm.com>
-Subject: Re: [PATCH 1/7] dt-bindings: i2c: qcom-cci: Document SM8750
- compatible
-Message-ID: <saeejuf7gglmjgphx6ugw2a2f2he3rkypf52makk6r7z6lxnok@25cxdnw2kctl>
-References: <20251126-add-support-for-camss-on-sm8750-v1-0-646fee2eb720@oss.qualcomm.com>
- <20251126-add-support-for-camss-on-sm8750-v1-1-646fee2eb720@oss.qualcomm.com>
+	s=arc-20240116; t=1764796043; c=relaxed/simple;
+	bh=9BmTXWiZ1udHlq5DwURTvetbWMe+t3AVUOLj8EXf90s=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=SY/lJjSD//hHAjk1e48TFezQhc03tDdpUdAYtUA161zXjfFjs+ShU1jebbeWjN59mDnEVrmawPY7Aye+WCkxWMjBAqCtBOYQJzq1Q6XxNabgqxmUJfnCBdt1yr08Aq0w24IJncxk1V8Ubkk1545wNqSf10+xnC2eg0um1MxM0fo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=R4qHAUnw; arc=none smtp.client-ip=80.241.56.161
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [IPv6:2001:67c:2050:b231:465::2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4dM9FL3bsvz9t9P;
+	Wed,  3 Dec 2025 22:07:18 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1764796038;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=nfOtELLqqxmDgjFZ9XKy3M43MP9qpjtLAwMQiXCOFGw=;
+	b=R4qHAUnwkxNVHJm7HKjsCbKqzMyyQgwTZHlEFBS0dHpuhvvP8WzyMgs3rbqVtUmT5mI8f6
+	1o1cununJ4sTsTSrJ38Wd4SbBNicUDDCbfPPwKI7qAX8p/pI8WFNRfx2Tj3EmS7fnbZH2L
+	laE3yHcUcfwA/w0Wc88PH0g4FkQb7pQbu3eoE+AnkYzvZpH3bmxQb1Qvm/FlEB4zuQZPbg
+	jBi5q7uCBQEactkF/RRiHb4SMusUd7GNljta2GHH8ZtiAqCu2LQAAMUA7K15CyroVgB2Lt
+	sItKxigKHvmkU/6U4Uz8q6agEUAbrukeKOzkzEcRo5fZ70uZhT4zGANnHLyAKw==
+Message-ID: <75fb955d-ef53-4e59-8a9c-d9792f6e6466@mailbox.org>
+Date: Wed, 3 Dec 2025 21:56:40 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251126-add-support-for-camss-on-sm8750-v1-1-646fee2eb720@oss.qualcomm.com>
+Subject: Re: [net-next,PATCH 3/3] net: phy: realtek: Add property to enable
+ SSC
+To: Ivan Galkin <Ivan.Galkin@axis.com>,
+ "vladimir.oltean@nxp.com" <vladimir.oltean@nxp.com>
+Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "andrew@lunn.ch" <andrew@lunn.ch>, "davem@davemloft.net"
+ <davem@davemloft.net>, "hkallweit1@gmail.com" <hkallweit1@gmail.com>,
+ "michael@fossekall.de" <michael@fossekall.de>,
+ "pabeni@redhat.com" <pabeni@redhat.com>, "robh@kernel.org"
+ <robh@kernel.org>, "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
+ "olek2@wp.pl" <olek2@wp.pl>, "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
+ "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ "edumazet@google.com" <edumazet@google.com>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>, "kuba@kernel.org"
+ <kuba@kernel.org>
+References: <20251130005843.234656-1-marek.vasut@mailbox.org>
+ <20251130005843.234656-3-marek.vasut@mailbox.org>
+ <20251203094224.jelvaizfq7h6jzke@skbuf>
+ <43bfe44a0c10af86548d8080d0f83fdbf8070808.camel@axis.com>
+Content-Language: en-US
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <43bfe44a0c10af86548d8080d0f83fdbf8070808.camel@axis.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-MBO-RS-META: onzktd4bbsuxspeiyknt9m5khdpd7o18
+X-MBO-RS-ID: 9433dfc616d90f1025a
 
-Hi Hangxiang,
+On 12/3/25 3:18 PM, Ivan Galkin wrote:
 
-On Wed, Nov 26, 2025 at 01:38:34AM -0800, Hangxiang Ma wrote:
-> Add SM8750 compatible consistent with CAMSS CCI interfaces.
+> - Regarding RTL8211F(D)(I)-VD-CG
 > 
-> Signed-off-by: Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>
+> As I mentioned before, saying that PHYCR2 doesn't exist is incorrect.
+> However, the SSC settings have indeed been moved away from PHYCR2 as
+> well.
+> 
+> The procedure for enabling of RXC SSC and CLKOUT SSC is described in
+> EMI Improvement Application Note v1.0 for RTL8211F(D)(I)-VD-CG.
 
-Just this patch merged to i2c/i2c-host.
+I have EMI improvement application note v1.2 for RTL8211F(D)(I)-CG .
 
-Thanks,
-Andi
+> Enable RXC SSC: Page 0x0d15, register 0x16, Bit 13.
+> '1' enables default Main Tone Degrade option (aka "middle").
+
+Page 0xc44 register 0x13 = 0x5f00
+
+> Enable CLK_OUT SSC: This depends on the CLKOUT frequency and the Main
+> Tone Degrade option.
+> The sequence is complicated and involves several pages and registers.
+> The application suggests setting those registers to predefined 16-bit
+> values, which I struggle to interpret.
+> I would redirect you to the application note instead. All I can say is
+> that PHYCR2 (page 0xa43, address 0x19) is not involved.
+
+Page 0xd09 register 0x10 = 0xcf00
+Page 0xa43 register 0x19 = 0x38c3
+... and, I also suspect this needs to be done, but is missing in the 
+appnote ...
+PHYCR2 |= BIT(7) // and maybe also bits 13:12 ?
+
+> - Regarding other RTL8211F PHYs.
+> I compared datasheets for RTL8211F(I)/RTL8211FD(I) and RTL8211FS(I)(-
+> VS). They both use the following bits:
+> 
+> PHYCR2 (page 0xa43, address 0x19)
+> bit 3: enables SSC on RXC clock output
+> bit 7: enables SSC on CLKOUT output clock
+> 
+> Both SSCs are controlled over PHYCR2, which, as far as I can see,
+> contradicts this patch.
+
+The bit 7 part is missing from the EMI appnote for RTL8211F(D)(I)-CG , I 
+will add it in V2.
+
+-- 
+Best regards,
+Marek Vasut
 
