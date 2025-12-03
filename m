@@ -1,110 +1,150 @@
-Return-Path: <devicetree+bounces-244147-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244148-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19D68CA1AA7
-	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 22:22:28 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19665CA1AC8
+	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 22:25:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id F2E09301410F
-	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 21:21:37 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 32D2B301A1D3
+	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 21:24:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F6732D2490;
-	Wed,  3 Dec 2025 21:21:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D1432D47ED;
+	Wed,  3 Dec 2025 21:24:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="JvFqfl35"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA1A02C11C5
-	for <devicetree@vger.kernel.org>; Wed,  3 Dec 2025 21:21:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 116D72D3731;
+	Wed,  3 Dec 2025 21:24:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764796896; cv=none; b=ItPCRAY/h5lNa8BRYG03E63x4qCq9iAaLIydITb+XEC1Tnq0yzchzegqRnanvjkZGLOKA9H8EXDxdepXViJV6yLOIYLYRfImMoXwELTXwn4EGy5PfPWWX/PmdXNcM/zXMdNXU3y/icr8Nve9m+qVkwWqPo9F3NDdlxo4DMypLKs=
+	t=1764797089; cv=none; b=ZSHQwQQ107gKCiN921gNtdngoH5N4wohuPnx3s5yG3vMa7OTQoP/XPLtw5mqTNgPdH7YlBw1bmAiE1liu+IlfudPCOs9xf6O+nEs6EgXcNScA4ridgop9ILjQTbGhTkXdLjVd/1hUzgl0B5XiZ5C7OtY3TuPpr7qw9RJLgaCAWY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764796896; c=relaxed/simple;
-	bh=lCMzX+vCKFrM/8xi4mlSpRFVNyJfBt7ARlHnJJGsAIE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TWY7TQRcPszupFv5XeWH8EglanBc/BUc0S/Yi+NrJQ4LRtiGQY8nkcizORZwVJe8dneVtJFT1h31N0IRGqoAkVx7IdKKJy4WfiiF1M0+I529GL1YKTAwmVT3yFNYA6qlsAy2EjiiH1GEjVLW0wcuNWhxo6RMtetZDzgXsz90atQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <s.pueschel@pengutronix.de>)
-	id 1vQuHg-0000gJ-5X; Wed, 03 Dec 2025 22:21:12 +0100
-Message-ID: <1db3a9ee-ae09-431f-93ac-680bac088f79@pengutronix.de>
-Date: Wed, 3 Dec 2025 22:21:07 +0100
+	s=arc-20240116; t=1764797089; c=relaxed/simple;
+	bh=0TehpwgFZ2L8M4iWs7xHgPxQr72Xb7Q3ZhPC0FXXTEo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lc75R2fcTzn4StODhIujysaSpt/SSNjJUCF0Q9bMYFL5mAijskusXLltpTVM2tPj8qfTA/zDoC08V5tRHbp245esyZY6nBZ/FHYsnv06rdUSn7zYHgUkfmtT6EZHvZ0/iRlF2g3ZA7YgGvr1dUCCcWaSUKRWuP4MWx/1XUWs2hg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=JvFqfl35; arc=none smtp.client-ip=192.198.163.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1764797078; x=1796333078;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=0TehpwgFZ2L8M4iWs7xHgPxQr72Xb7Q3ZhPC0FXXTEo=;
+  b=JvFqfl35xRQz+oAYNwQGW9OwMlU9OIzPoXWinRHee99TLl2m5sSf65eo
+   CQrswNyzTQWlGkPFx7BXtV7OJlztoAIplF59ci4nsXJnWJn6CgKiZ8jgz
+   taZ8iXYxIcrOwTIw/I2VD3gk5JzN4LJXZlY4mSKLmEzSd6x19Uf3pJv5U
+   Rm1YlHnpXsPsN0L1lQqT7dJLL9RbsOfD1kHnd0xPBoOdIvDp39u9G95d+
+   dSDu8Klorby4p1OT20WQi47hwg2LSwuHzlt354q5HFmb9GzUQqR5laNZT
+   qFdGzLji8RpawTNMwD4Gii7d041j0N4pOwcWDmFI9g1FuKU4ezGFKlv9h
+   A==;
+X-CSE-ConnectionGUID: NPTd90CtTSeqEMfsqwexxA==
+X-CSE-MsgGUID: lX2lgfj6QrC/9HRxcG7o7Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11631"; a="65806347"
+X-IronPort-AV: E=Sophos;i="6.20,247,1758610800"; 
+   d="scan'208";a="65806347"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Dec 2025 13:24:37 -0800
+X-CSE-ConnectionGUID: uz3TUeTUSdeOiDsdaabYbA==
+X-CSE-MsgGUID: Zf8w5r/eR8+XlNXN/lfV6w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,247,1758610800"; 
+   d="scan'208";a="194716772"
+Received: from lkp-server01.sh.intel.com (HELO 4664bbef4914) ([10.239.97.150])
+  by fmviesa006.fm.intel.com with ESMTP; 03 Dec 2025 13:24:34 -0800
+Received: from kbuild by 4664bbef4914 with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1vQuKt-00000000DAL-1ZRz;
+	Wed, 03 Dec 2025 21:24:31 +0000
+Date: Thu, 4 Dec 2025 05:24:24 +0800
+From: kernel test robot <lkp@intel.com>
+To: Guoniu Zhou <guoniu.zhou@oss.nxp.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Frank Li <frank.li@nxp.com>
+Cc: oe-kbuild-all@lists.linux.dev, linux-media@vger.kernel.org,
+	imx@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Guoniu Zhou <guoniu.zhou@nxp.com>
+Subject: Re: [PATCH 2/2] media: nxp: Add i.MX9 CSI pixel formatter v4l2 driver
+Message-ID: <202512040546.yLIh1wBH-lkp@intel.com>
+References: <20251203-csi_formatter-v1-2-eb9e1147b49e@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 01/22] media: dt-bindings: media: rockchip-rga: add
- rockchip,rk3588-rga3
-To: Krzysztof Kozlowski <krzk@kernel.org>, Jacob Chen
- <jacob-chen@iotwrt.com>, Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Heiko Stuebner
- <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, kernel@pengutronix.de
-References: <20251203-spu-rga3-v2-0-989a67947f71@pengutronix.de>
- <20251203-spu-rga3-v2-1-989a67947f71@pengutronix.de>
- <81593c42-fcc2-47ad-8d0f-69a2d17664a6@kernel.org>
-Content-Language: en-US
-From: =?UTF-8?Q?Sven_P=C3=BCschel?= <s.pueschel@pengutronix.de>
-In-Reply-To: <81593c42-fcc2-47ad-8d0f-69a2d17664a6@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: s.pueschel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251203-csi_formatter-v1-2-eb9e1147b49e@nxp.com>
 
-Hi Krzysztof,
+Hi Guoniu,
 
-On 12/3/25 9:28 PM, Krzysztof Kozlowski wrote:
-> On 03/12/2025 16:52, Sven Püschel wrote:
->> Add a new compatible for the RGA3 (Raster Graphic Acceleration 3)
->> peripheral found on the RK3588 SoC.
->>
->> The existing rga node refers to the RGA2 peripheral. The RK3588
-> What is "existing rga node"? There is no node here. This is a patch for
-> bindings, so you say which hardware existing binding describes and what
-> are the differences against that older hardware.
-Yeah that is misleading. I refer to the existing binding/compatible 
-values of rockchip-rk3xxx-rga which describe the hardware named RGA2 in 
-the rk3588 TRM.
->
->> contains one RGA2 core and two RGA3 cores. Both feature a similar
->> functionality of scaling, cropping and rotating of up to two input
->> images into one output image. Key differences of the RGA3 are:
->>
->> - supports 10bit YUV output formats
->> - supports 8x8 tiles and FBCD as inputs and outputs
->> - supports BT2020 color space conversion
->> - max output resolution of (8192-64)x(8192-64)
->> - MMU can map up to 32G DDR RAM
->> - fully planar formats (3 planes) are not supported
->> - max scale up/down factor of 8
-> "differences" in meaning nothing above is supported by RGA2?
+kernel test robot noticed the following build warnings:
 
-except the last two points yes. The RGA2 supports fully planar formats 
-with 3 planes and can scale up to a factor of 16. For the scaling I can 
-add a note to make it more obvious that the RGA3 is worse in this regard.
+[auto build test WARNING on 1f2353f5a1af995efbf7bea44341aa0d03460b28]
 
-Sincerely
-     Sven
+url:    https://github.com/intel-lab-lkp/linux/commits/Guoniu-Zhou/media-dt-bindings-Add-CSI-Pixel-Formatter-DT-bindings/20251203-143208
+base:   1f2353f5a1af995efbf7bea44341aa0d03460b28
+patch link:    https://lore.kernel.org/r/20251203-csi_formatter-v1-2-eb9e1147b49e%40nxp.com
+patch subject: [PATCH 2/2] media: nxp: Add i.MX9 CSI pixel formatter v4l2 driver
+config: sh-allyesconfig (https://download.01.org/0day-ci/archive/20251204/202512040546.yLIh1wBH-lkp@intel.com/config)
+compiler: sh4-linux-gcc (GCC) 15.1.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251204/202512040546.yLIh1wBH-lkp@intel.com/reproduce)
 
->
->> Signed-off-by: Sven Püschel <s.pueschel@pengutronix.de>
->> ---
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
->
->
-> Best regards,
-> Krzysztof
->
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202512040546.yLIh1wBH-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/media/platform/nxp/imx9-csi-formatter.c:763:12: warning: 'csi_formatter_system_resume' defined but not used [-Wunused-function]
+     763 | static int csi_formatter_system_resume(struct device *dev)
+         |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+>> drivers/media/platform/nxp/imx9-csi-formatter.c:758:12: warning: 'csi_formatter_system_suspend' defined but not used [-Wunused-function]
+     758 | static int csi_formatter_system_suspend(struct device *dev)
+         |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+vim +/csi_formatter_system_resume +763 drivers/media/platform/nxp/imx9-csi-formatter.c
+
+   753	
+   754	/* -----------------------------------------------------------------------------
+   755	 * Suspend/resume
+   756	 */
+   757	
+ > 758	static int csi_formatter_system_suspend(struct device *dev)
+   759	{
+   760		return pm_runtime_force_suspend(dev);
+   761	}
+   762	
+ > 763	static int csi_formatter_system_resume(struct device *dev)
+   764	{
+   765		int ret;
+   766	
+   767		ret = pm_runtime_force_resume(dev);
+   768		if (ret < 0) {
+   769			dev_err(dev, "force resume %s failed!\n", dev_name(dev));
+   770			return ret;
+   771		}
+   772	
+   773		return 0;
+   774	}
+   775	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
