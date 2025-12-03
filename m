@@ -1,146 +1,146 @@
-Return-Path: <devicetree+bounces-244082-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244084-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0C85C9FB36
-	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 16:54:15 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D02C2C9FE5F
+	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 17:20:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 5F56E3002A5C
-	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 15:54:06 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 4B26C303E395
+	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 16:17:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4B28337100;
-	Wed,  3 Dec 2025 15:53:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B847D355036;
+	Wed,  3 Dec 2025 16:15:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE8BE31C56F
-	for <devicetree@vger.kernel.org>; Wed,  3 Dec 2025 15:53:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91B77355034;
+	Wed,  3 Dec 2025 16:15:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764777236; cv=none; b=hnfNNnUq2NGKwcuwVeKwNHoU3/7jYhM1vb7uKSdVgShkZ3pfTKLyUwQK57/EDMabhNmvjqx5WW+MpM8mWc4fI+j7vxyciGuatVk9KSN5l7HBgPrC9CtOybiGUK2Yk70h+1UEAQYsQzZcNqCHrUfLHiZ9NKBs3rSNIFr72qGMgRo=
+	t=1764778554; cv=none; b=fTQmxJwE9GpONNEc0NaXzhrbeOtoR8Tn3iWKcRTq3kzxe9boqOw5Uz79+zJzkpBpe+tOSG5Io6C4TCdXPYFFViCmNLqU6M35tTN65ziFA6cIoczP9EQ2FgGkBvdq8AsmZXANC3zEvxub3xmHikWR9lvMBK5tUtcAsLPUmpfxy8Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764777236; c=relaxed/simple;
-	bh=/JWmeTmO5hiwoa9aiMgEtTQMM3FwFfPwkO3+4OKaRK4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=N4eqISZF9VJ3jmcORtPVgZ7pMgBdE5ZHaLqHPbPAiQM1ghi4fCCosUjbZ7UYh6bol54YKfs0I/2k3x78DlW/C4Xd1mg2q2WvZm5iY5XaPj8F5GfYkHnBHnATaahGhKhROKmV8ebcXjTI8FANJfqFGDM0b6S2LoUlik1F7wrDmBk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=peter.mobile.pengutronix.de)
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <s.pueschel@pengutronix.de>)
-	id 1vQpAf-0007dW-4Q; Wed, 03 Dec 2025 16:53:37 +0100
-From: =?utf-8?q?Sven_P=C3=BCschel?= <s.pueschel@pengutronix.de>
-Date: Wed, 03 Dec 2025 16:52:44 +0100
-Subject: [PATCH v2 22/22] arm64: dts: rockchip: add rga3 dt nodes
+	s=arc-20240116; t=1764778554; c=relaxed/simple;
+	bh=gfBEnT/gQCqHLgvqEDf3r3jpQLYOLEEG4QTY8NUW4Rs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=aatOK93WHV9P9qTVF6pgPqSad1tOou44HdhJqwDcEAq2OHBqdXPEQRyKV1cRYYM1mkNpt1JOiiwK/26uks4Ef7NfxweY+gbF9ykItNinZ+rC8QDasD4odENDXkox07xX/1xM330N09UvZJRz+2CW/hmyKNZCPmHeC5hBtOv7bUI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 60832339;
+	Wed,  3 Dec 2025 08:15:44 -0800 (PST)
+Received: from [10.1.197.1] (ewhatever.cambridge.arm.com [10.1.197.1])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E40523F66E;
+	Wed,  3 Dec 2025 08:15:49 -0800 (PST)
+Message-ID: <d8c6111f-28ba-4046-bcd5-67233e8ed4ca@arm.com>
+Date: Wed, 3 Dec 2025 16:15:48 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20251203-spu-rga3-v2-22-989a67947f71@pengutronix.de>
-References: <20251203-spu-rga3-v2-0-989a67947f71@pengutronix.de>
-In-Reply-To: <20251203-spu-rga3-v2-0-989a67947f71@pengutronix.de>
-To: Jacob Chen <jacob-chen@iotwrt.com>, 
- Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, kernel@pengutronix.de, 
- =?utf-8?q?Sven_P=C3=BCschel?= <s.pueschel@pengutronix.de>
-X-Mailer: b4 0.14.3
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: s.pueschel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 2/9] coresight: core: add a new API to retrieve the
+ helper device
+To: Jie Gan <jie.gan@oss.qualcomm.com>, Mike Leach <mike.leach@linaro.org>,
+ James Clark <james.clark@linaro.org>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Tingwei Zhang <tingwei.zhang@oss.qualcomm.com>,
+ Jinlong Mao <jinlong.mao@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20250908-enable-byte-cntr-for-tmc-v6-0-1db9e621441a@oss.qualcomm.com>
+ <20250908-enable-byte-cntr-for-tmc-v6-2-1db9e621441a@oss.qualcomm.com>
+Content-Language: en-US
+From: Suzuki K Poulose <suzuki.poulose@arm.com>
+In-Reply-To: <20250908-enable-byte-cntr-for-tmc-v6-2-1db9e621441a@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Add devicetree nodes for the RGA3 (Raster Graphics Acceleration 3)
-peripheral in the RK3588.
+On 08/09/2025 03:01, Jie Gan wrote:
+> Retrieving the helper device of the specific coresight device based on
+> its helper_subtype because a single coresight device may has multiple types
+> of the helper devices.
+> 
+> Reviewed-by: Mike Leach <mike.leach@linaro.org>
+> Signed-off-by: Jie Gan <jie.gan@oss.qualcomm.com>
+> ---
+>   drivers/hwtracing/coresight/coresight-core.c | 35 ++++++++++++++++++++++++++++
+>   drivers/hwtracing/coresight/coresight-priv.h |  2 ++
+>   2 files changed, 37 insertions(+)
+> 
+> diff --git a/drivers/hwtracing/coresight/coresight-core.c b/drivers/hwtracing/coresight/coresight-core.c
+> index 042c4fa39e55..018b1119c48a 100644
+> --- a/drivers/hwtracing/coresight/coresight-core.c
+> +++ b/drivers/hwtracing/coresight/coresight-core.c
+> @@ -580,6 +580,41 @@ struct coresight_device *coresight_get_sink(struct coresight_path *path)
+>   }
+>   EXPORT_SYMBOL_GPL(coresight_get_sink);
+>   
+> +/**
+> + * coresight_get_helper: find the helper device of the assigned csdev.
+> + *
+> + * @csdev: The csdev the helper device is conntected to.
+> + * @type:  helper_subtype of the expected helper device.
+> + *
+> + * Retrieve the helper device for the specific csdev based on its
+> + * helper_subtype.
+> + *
+> + * Return: the helper's csdev upon success or NULL for fail.
+> + */
+> +struct coresight_device *coresight_get_helper(struct coresight_device *csdev,
 
-The existing rga node refers to the RGA2 peripheral. The RK3588
-contains one RGA2 core and two RGA3 cores. Both feature a similar
-functionality of scaling, cropping and rotating of up to two input
-images into one output image. Key differences of the RGA3 are:
+> +					      int type)
 
-- supports 10bit YUV output formats
-- supports 8x8 tiles and FBCD as inputs and outputs
-- supports BT2020 color space conversion
-- max output resolution of (8192-64)x(8192-64)
-- MMU can map up to 32G DDR RAM
-- fully planar formats (3 planes) are not supported
-- max scale up/down factor of 8
+nit: enum coresight_dev_subtype_helper subtype
 
-Signed-off-by: Sven Püschel <s.pueschel@pengutronix.de>
----
- arch/arm64/boot/dts/rockchip/rk3588-base.dtsi | 46 +++++++++++++++++++++++++++
- 1 file changed, 46 insertions(+)
+Otherwise looks good to me
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-index e2500e31c434a..11bad1f41a864 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-@@ -1273,6 +1273,52 @@ rga: rga@fdb80000 {
- 		power-domains = <&power RK3588_PD_VDPU>;
- 	};
- 
-+	rga3_core0: rga@fdb60000 {
-+		compatible = "rockchip,rk3588-rga3";
-+		reg = <0x0 0xfdb60000 0x0 0x200>;
-+		interrupts = <GIC_SPI 114 IRQ_TYPE_LEVEL_HIGH 0>;
-+		interrupt-names = "rga3_core0_irq";
-+		clocks = <&cru ACLK_RGA3_0>, <&cru HCLK_RGA3_0>, <&cru CLK_RGA3_0_CORE>;
-+		clock-names = "aclk", "hclk", "sclk";
-+		resets = <&cru SRST_RGA3_0_CORE>, <&cru SRST_A_RGA3_0>, <&cru SRST_H_RGA3_0>;
-+		reset-names = "core", "axi", "ahb";
-+		power-domains = <&power RK3588_PD_RGA30>;
-+		iommus = <&rga3_0_mmu>;
-+	};
-+
-+	rga3_0_mmu: iommu@fdb60f00 {
-+		compatible = "rockchip,rk3588-iommu", "rockchip,rk3568-iommu";
-+		reg = <0x0 0xfdb60f00 0x0 0x100>;
-+		interrupts = <GIC_SPI 114 IRQ_TYPE_LEVEL_HIGH 0>;
-+		clocks = <&cru ACLK_RGA3_0>, <&cru HCLK_RGA3_0>;
-+		clock-names = "aclk", "iface";
-+		#iommu-cells = <0>;
-+		power-domains = <&power RK3588_PD_RGA30>;
-+	};
-+
-+	rga3_core1: rga@fdb70000 {
-+		compatible = "rockchip,rk3588-rga3";
-+		reg = <0x0 0xfdb70000 0x0 0x200>;
-+		interrupts = <GIC_SPI 115 IRQ_TYPE_LEVEL_HIGH 0>;
-+		interrupt-names = "rga3_core1_irq";
-+		clocks = <&cru ACLK_RGA3_1>, <&cru HCLK_RGA3_1>, <&cru CLK_RGA3_1_CORE>;
-+		clock-names = "aclk", "hclk", "sclk";
-+		resets = <&cru SRST_RGA3_1_CORE>, <&cru SRST_A_RGA3_1>, <&cru SRST_H_RGA3_1>;
-+		reset-names = "core", "axi", "ahb";
-+		power-domains = <&power RK3588_PD_RGA31>;
-+		iommus = <&rga3_1_mmu>;
-+	};
-+
-+	rga3_1_mmu: iommu@fdb70f00 {
-+		compatible = "rockchip,rk3588-iommu", "rockchip,rk3568-iommu";
-+		reg = <0x0 0xfdb70f00 0x0 0x100>;
-+		interrupts = <GIC_SPI 115 IRQ_TYPE_LEVEL_HIGH 0>;
-+		clocks = <&cru ACLK_RGA3_1>, <&cru HCLK_RGA3_1>;
-+		clock-names = "aclk", "iface";
-+		#iommu-cells = <0>;
-+		power-domains = <&power RK3588_PD_RGA31>;
-+	};
-+
- 	vepu121_0: video-codec@fdba0000 {
- 		compatible = "rockchip,rk3588-vepu121";
- 		reg = <0x0 0xfdba0000 0x0 0x800>;
+Suzuki
 
--- 
-2.52.0
+> +{
+> +	int i;
+> +	struct coresight_device *helper;
+> +
+> +	/* protect the connections */
+> +	mutex_lock(&coresight_mutex);
+> +	for (i = 0; i < csdev->pdata->nr_outconns; ++i) {
+> +		helper = csdev->pdata->out_conns[i]->dest_dev;
+> +		if (!helper || !coresight_is_helper(helper))
+> +			continue;
+> +
+> +		if (helper->subtype.helper_subtype == type) {
+> +			mutex_unlock(&coresight_mutex);
+> +			return helper;
+> +		}
+> +	}
+> +	mutex_unlock(&coresight_mutex);
+> +
+> +	return NULL;
+> +}
+> +EXPORT_SYMBOL_GPL(coresight_get_helper);
+> +
+>   /**
+>    * coresight_get_in_port_dest: get the in-port number of the dest device
+>    * that is connected to the src device.
+> diff --git a/drivers/hwtracing/coresight/coresight-priv.h b/drivers/hwtracing/coresight/coresight-priv.h
+> index e51b22b8ebde..f80122827934 100644
+> --- a/drivers/hwtracing/coresight/coresight-priv.h
+> +++ b/drivers/hwtracing/coresight/coresight-priv.h
+> @@ -158,6 +158,8 @@ void coresight_path_assign_trace_id(struct coresight_path *path,
+>   				   enum cs_mode mode);
+>   int coresight_get_in_port_dest(struct coresight_device *src,
+>   			       struct coresight_device *dest);
+> +struct coresight_device *coresight_get_helper(struct coresight_device *csdev,
+> +					      int type);
+>   
+>   #if IS_ENABLED(CONFIG_CORESIGHT_SOURCE_ETM3X)
+>   int etm_readl_cp14(u32 off, unsigned int *val);
+> 
 
 
