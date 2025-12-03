@@ -1,40 +1,40 @@
-Return-Path: <devicetree+bounces-243986-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243987-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E67AC9ED9C
-	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 12:35:00 +0100 (CET)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4C44C9EDA5
+	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 12:37:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5DF283A61A7
-	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 11:34:59 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id EFB75346B34
+	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 11:37:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 193552F2619;
-	Wed,  3 Dec 2025 11:34:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C7B72F5335;
+	Wed,  3 Dec 2025 11:37:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C3D224E4A1
-	for <devicetree@vger.kernel.org>; Wed,  3 Dec 2025 11:34:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82C7A278161
+	for <devicetree@vger.kernel.org>; Wed,  3 Dec 2025 11:37:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764761698; cv=none; b=CcQptRJiLO9ujul0+JWyQ9jOMyfaz7J/BbGccCXsbb/4CsqLJm/Oi9ugFyxcVWZAzHYT39XGhm6RXuy9wOAqNrOWRRfyI8y5aVct2lbi5Qkqn2ToYjde3myXe8IFVvE81XMLns3CDf+3wcb9b6d/iokwX7yjZ0JwuWltZVK21G4=
+	t=1764761873; cv=none; b=inK6hJ8kbOeCLRD73SPsjzXpwnpi612N5bkf1bC1HpfX1YzuyTRe3Og0gceL9//N3rpP0kwa8jsuSh2kajUoJlCBt/MPxFOITway8LiEkt/JG/nXyogLEP0VtSDkkcqgtnvMsPpaygC1MJQXllSa/RC9Wcsu0fwFUcN/irG/iK8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764761698; c=relaxed/simple;
-	bh=2CDpfurWhZKfXtEZ54dirUQfDB5GZUe89QM6AihBRDg=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=WVxw0AwpuPI44Cj/SUpU6QOQT4YtoyD+xBdt0Y8tVRgpIWMAy/GjJsH8HtjHMnXdhTHoZm/ZyuuMbSqPBp54i0Op2aJdi3KYIjKkVFQW9+1mRgIgP0Fi4QDmyR33+mxW6UEO6ZIxW7xBAIRdiXN7KqLZscBdkiDo9j8T8JWfSfk=
+	s=arc-20240116; t=1764761873; c=relaxed/simple;
+	bh=WF9OW4DKxzIYp/SEK6epgpBmZpu91jorWdMeLXPC3Lc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=SQ5NzP2nxsbqboxU4ETtjmU66XTFL01oxHzbLQ2npKGgpKQ0nia/lTGl5GNFsl/5t5QLQrIu7d0hqYOgJYDP55sDPEoinr2PeylM1yCYYsCKHI1exrjf11yH0tOXPhdd+WCrEvkeUE1loAVfDdKy73eKr+MWwqyj7b+QacsfIsI=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
 Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
 	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
 	(envelope-from <a.fatoum@pengutronix.de>)
-	id 1vQl8B-0005vO-2V; Wed, 03 Dec 2025 12:34:47 +0100
-Message-ID: <ddc6fa7b-7840-4340-be41-8f28aad1c80e@pengutronix.de>
-Date: Wed, 3 Dec 2025 12:34:45 +0100
+	id 1vQlB4-0006Dd-DS; Wed, 03 Dec 2025 12:37:46 +0100
+Message-ID: <47903a88-8de9-4ac6-9111-c85ed1428ff0@pengutronix.de>
+Date: Wed, 3 Dec 2025 12:37:45 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -42,15 +42,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Ahmad Fatoum <a.fatoum@pengutronix.de>
 Subject: Re: SoC-specific device tree aliases?
-To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
 Cc: Sascha Hauer <s.hauer@pengutronix.de>,
  "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
  Conor Dooley <conor+dt@kernel.org>, devicetree-spec@vger.kernel.org,
  quentin.schulz@cherry.de, Marc Kleine-Budde <mkl@pengutronix.de>,
  "kernel@pengutronix.de" <kernel@pengutronix.de>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>
 References: <ebc08400-c16d-4ed0-b487-9aabe13bbf0f@pengutronix.de>
  <58816b68-3b09-4320-9a4e-09f2c2b2d0fa@kernel.org>
  <aRrcRZvdrbAmsCm_@pengutronix.de>
@@ -67,8 +67,11 @@ References: <ebc08400-c16d-4ed0-b487-9aabe13bbf0f@pengutronix.de>
  <07ee3540-d0c1-436e-9e1d-db1952f609a6@kernel.org>
  <bcb359cf-0e8a-46ec-9f69-51c4c9e8874e@pengutronix.de>
  <6638e499-2320-41c9-b720-faf4f976e476@kernel.org>
+ <34bd1a0d8e579aba0a6a88039006500fe822ef3d.camel@ew.tq-group.com>
+ <dd589476-56df-4565-b4cb-e34f0d7d5559@kernel.org>
 Content-Language: en-US, de-DE, de-BE
-In-Reply-To: <6638e499-2320-41c9-b720-faf4f976e476@kernel.org>
+From: Ahmad Fatoum <a.fatoum@pengutronix.de>
+In-Reply-To: <dd589476-56df-4565-b4cb-e34f0d7d5559@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
@@ -76,70 +79,73 @@ X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
 X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Hello Krzysztof,
+Hi,
 
-On 12/3/25 11:25 AM, Krzysztof Kozlowski wrote:
-> On 03/12/2025 11:16, Ahmad Fatoum wrote:
->>> Just because ufs/mmc/spi can be used that way, does not mean we should
->>> accept any possible alias into soc.dtsi.
+On 12/3/25 12:08 PM, Krzysztof Kozlowski wrote:
+> On 03/12/2025 11:36, Matthias Schiffer wrote:
+>> On Wed, 2025-12-03 at 11:25 +0100, Krzysztof Kozlowski wrote:
+>>> On 03/12/2025 11:16, Ahmad Fatoum wrote:
+>>>> Hello Krzysztof,
+>>>>
+>>>> On 11/17/25 5:29 PM, Krzysztof Kozlowski wrote:
+>>>>> On 17/11/2025 17:06, Rob Herring wrote:
+>>>>>>> So you want it to be an ABI for barebox, sure, just make it a binding.
+>>>>>>
+>>>>>> What do you have in mind? Other than standard names for the aliases,
+>>>>>> what can we check here? That a specific alias points to a specific
+>>>>>> path? That would be a bit too much IMO. That would be equivalent to
+>>>>>> specifying possible values in 'reg' for all devices.
+>>>>>
+>>>>> Binding with pattern or list of needed alias names, referenced by given
+>>>>> soc-platform top-level schema.
+>>>>>
+>>>>> One of the points is to make it explicit and obvious (e.g. to Arnd or to
+>>>>> me if I forget, because I follow the same logic of aliases per board)
+>>>>> that these aliases are used outside of kernel.
+>>>>>
+>>>>> Just because ufs/mmc/spi can be used that way, does not mean we should
+>>>>> accept any possible alias into soc.dtsi.
+>>>>
+>>>> I can't see how this could work. A number of boards renumber MMC devices
+>>>> in a different manner than the SoC reference manual:
+>>>>
+>>>> - Changing the alias numbering is an ABI break, because Linux derives
+>>>> its /dev/mmcblkX numbering from it
+>>>
+>>> First, why the alias would change? Isn't the board following the SoC
+>>> numbering in 99.9% cases?
 >>
->> I can't see how this could work. A number of boards renumber MMC devices
->> in a different manner than the SoC reference manual:
->>
->> - Changing the alias numbering is an ABI break, because Linux derives
->> its /dev/mmcblkX numbering from it
+>> At least for our TQ-Systems boards, we have a convention based on usage (mmc0:
+>> eMMC, mmc1: SD card; serial0 is often the console) rather than following the SoC
+>> numbering; that is, we're using the aliases as a form of hardware abstraction
+>> rather than hardware description.
 > 
-> First, why the alias would change? Isn't the board following the SoC
-> numbering in 99.9% cases?
+> Huh, does it even match numbering on the schematics / board / user-guides?
+> 
+> I would prefer not to create bindings purely because some existing DTS
+> code is not matching our expectations. However there could be a case
+> where board numbering is different than soc number and we want to keep
+> aliases configured for board.
+> 
+> Basically what you propose here is the discouraged instance ID disguised
+> under one more 'alias' which is not really alias. It's just an instance
+> ID. There is no other use of soc-aliases beside instance ID.
+> 
+> I see the problem you want to solve, I agree it is worth solving and I
+> agree that DT is the place for this mapping between register value and
+> device node. However solution of discouraged instance ID is just...
+> well, discouraged, so not optimal. I don't have particular advice expect
+> a dedicated property for each device in such case.
 
-For 32-bit i.MX, the figure is more like 80% with 20% of the boards
-going out of their way to override the numbering in the SoC dtsi.
+How do we move forward here? I don't think we can change the nature of
+/aliases being board-specific now without breaking users.
 
-I can only assume the figure may be higher for other platforms, where
-there is no numbering in the DTSI. See below[1] for calculation.
-
-> Second, I don't think it is an ABI. We had it ~5 or ~8 years ago where
-> the mmcblkX was changing based on probe ordering. Many people setups got
-> broken, many people complained and the consensus reply was: please start
-> finally using UUID/PARTUIID/LABEL for rootfs.
-
-On the other hand, I have seen people flashing the same image to both an
-eMMC and a SD-Card and wondering why the bootloader picks a different
-rootfs than the kernel.
-
-> Eventually we got back to
-> mmcblkX stability but rule is there - if your cmdline has /dev/mmcblkX,
-> then it is your problem.
-
-Device tree aliases are the only way to identify the same MMC device
-in bootloader and kernel over different boots and for my part, I can
-only encourage their use.
-
-[1]: I checked out Linux v6.18, used imx_v6_v7_defconfig and built the
-dtb target.
-
-arch/arm/boot/dts/nxp/imx/.*.dtb.dts.tmp in the build directory are the
-preprocessed device tree source files.
-
-I deleted arch/arm/boot/dts/nxp/imx/.imx7ulp*.dtb.dts.tmp, because
-it's the only SoC apparently that numbers MMC peripherals stating with 0.
-
-Now let's find all instances of mmcX = somethingY, where X is not Y - 1:
-
-perl -ne '/mmc(\d+)\s*=\s*&\w+?(\d+)/ && $1 != $2 - 1 and \
-	print($ARGV, $_) && close ARGV' \
-		arch/arm/boot/dts/nxp/imx/.*.dtb.dts.tmp
-
-This returns 76 matches out of a total 381, so that's 19.95% of all i.MX
-device trees that went out of their way to override the numbering in the
-SoC dtsi.
+Does this make the addition of /soc-aliases (or /soc/aliases?) more
+palatable?
 
 Cheers,
 Ahmad
 
-> 
-> 
-> 
 > 
 > Best regards,
 > Krzysztof
