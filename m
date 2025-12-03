@@ -1,46 +1,80 @@
-Return-Path: <devicetree+bounces-244117-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244118-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10EE4CA1477
-	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 20:09:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 68C86CA15BE
+	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 20:25:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 093DA32BC919
-	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 18:42:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A5D6D3095E58
+	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 18:57:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94CDD330330;
-	Wed,  3 Dec 2025 18:42:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B33C13112B2;
+	Wed,  3 Dec 2025 18:56:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h8XtIFXD"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hYeFjZlS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63C7933032B;
-	Wed,  3 Dec 2025 18:42:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E1C230C61E
+	for <devicetree@vger.kernel.org>; Wed,  3 Dec 2025 18:56:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764787327; cv=none; b=NYy+m4o5O3IsSzhUAIDF0MdtfII01RdAOS4YRh1GKDro31a2ZWq+HSUOHKB6Nlc/RHPzT2dxGr9fMbqnGJWTmgxYuZ4IKBvkod0c0nP0ZLe8i9uQez8NCY2uccajH9E5hmn63n43D0D6xJAkIF8bpzlzgReXIrW3KiB/GUivc+k=
+	t=1764788219; cv=none; b=PNG3VDUtzMbqKATTt/JF5zW6vKbAcLJbX1+DeKTaB9kQvZlSeEGHkxA2UT6Qz4/QIZVzwG/9bYGOHDrKY0pPx/FILAxB4+WlR84t7z6RnYXJ1TPS1OeYWq0gVPENLKvkWlaRanQhLJNexYMvC5ZcsCo7IvTVod1U3eiLPa2vzTg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764787327; c=relaxed/simple;
-	bh=v2GDB0s3s0cZVuTWsSuGY7ixvDjcgjZf/hlVbhPsXPY=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=DfB3TZc095rcYuPAtXhLE3c0aoK4qPL6aIK2w/8QbXRAeBnMjs1nX0MmAQyCmL2AWt/Jvj6zdIimQ685y9/l6TaiwDfP7IHU73v+LtxL5z5aY1tTgs8EXG1f0RNcpCeIwSz7D5q908sE/nbySrFFPXGA9Djl9Cw4494XL37xib0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h8XtIFXD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24795C4CEF5;
-	Wed,  3 Dec 2025 18:42:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764787325;
-	bh=v2GDB0s3s0cZVuTWsSuGY7ixvDjcgjZf/hlVbhPsXPY=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=h8XtIFXDC8r652iTh1goBpdm8tyLscuIZUJFTZHlNFwR5BW3iheA845wfSbQteMua
-	 7LLVeN3HCxuVZuCWV89RBkuGKhsKrnQw1j+SyULIZX81WHh4NyHHYLx1EAQ4l5KQPr
-	 eVbSHre+g4MsLBYrCOrzF2KXDMzLTIKr1Bsj2M+KFGmwTv7SsqQgKau9/db2vhQIJv
-	 kWJ5Xla40QIXKbR72Q5eJb2oZ5YdEpsjmYYuoo0ZKfTNocX9rIJibIUKrFZPTVGnJb
-	 Z3oHlSZk1xvf27hhIzIxaPghrmXF8EFADCGL39B33sRGmU7rNKaqt1ZYJ2fp/1f+RD
-	 XMDG6eTHc0XsA==
-Message-ID: <db113021-f5be-4559-8ea5-719f8d7ec3ee@kernel.org>
-Date: Wed, 3 Dec 2025 19:41:59 +0100
+	s=arc-20240116; t=1764788219; c=relaxed/simple;
+	bh=451eezjKzgyOtVuH33TiHjo9Apd1b2ad46/RYOa3TK4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CT3pDtnMKSxVACgXlgwnYwGLmHuVrPHbBlN5Z5RV5RRNUKlIly3jxebhxvkNaDXpoVqIfuUKWl6bZ1PTjASjs32lr+SqOD+yIaVsohLQtnLlzQ1gCtTo/1F34u3X39ggVKIxclgGverTZF0o8OlWCC9jRdu/b5bzJBTTOdxmvwQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hYeFjZlS; arc=none smtp.client-ip=209.85.210.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-7acd9a03ba9so56876b3a.1
+        for <devicetree@vger.kernel.org>; Wed, 03 Dec 2025 10:56:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1764788217; x=1765393017; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=71E/ilkLBTqKwG0Dx6ylFmlxqv3BqJ7EmKi1/R6JSno=;
+        b=hYeFjZlSEhLpTl4tmq3AJznXp3ToWUH1OG0LTriGJc3T529t2159MfDArLErQWIMjJ
+         rj26DWpcg3ILZluKsD8a83nG9PO5AOANe1ZRUro8aJ9yE0/27Z5XGeWXTfm3nRE9xBkL
+         sRvwstoO17vAYSwMpHKnCGp506/oPEqHJRkEW8BWnZagyPscLDIFXsrOir+q5DyJrgE8
+         WEljobbOjpWwqQtL6rsdUkaIPmjqcnc1Z6O6GaW3WUFwIR/qxz214LeMWcaaHoQUB1FG
+         6909tPCHLaKDht/bNCFkwxSefCH+P6RRoeqqps934xQ+4p8SbSDO37tYQULAD84leVLF
+         2Vow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764788217; x=1765393017;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=71E/ilkLBTqKwG0Dx6ylFmlxqv3BqJ7EmKi1/R6JSno=;
+        b=EWFSWkNAi1Yb85ltpH43JVEeb7wQWbkrlC9Dq2pAKCzfJvhQa7m5dag5+V25qNAADn
+         +f5itsHwAhe+WjzzCZtRC7vqO+9nAxKiQRdCddI6hxyICbSjhjBVM3oiDfGsqxgcrDIF
+         Xjc3LRaKdAJk3DlwvEWWTSzicKP59P4YkQkyed82bs1NC4egRckNztMcLTC7AWIaZdZw
+         pC+mcP6O7bwteoby1HEKCjz1d7bAb3aFwMstEKQcAAo0fIC5jjz0CdtqhNJOxVFuROwA
+         gj7lJko/T6cggIZCxTh1Mv/VFD7p6P0ylRAZ44b0gypst+4zQwmIqwqe7NAjokK/j1n4
+         YJYw==
+X-Forwarded-Encrypted: i=1; AJvYcCXpSlV4k77lFSB+q96Ghb+VJeZ77jArkLWe5sPZCIINqWdqTCU55Eri/5Afls9fDgGSDHCUTT8jChcy@vger.kernel.org
+X-Gm-Message-State: AOJu0YwI8UnFWsIkdsEsUEjeQFkzT2CqLy5YeczfJ5DSkq9VTgGcgUQg
+	TL9HQPiMyBLnpjka9EoosIPw/3eMWkGY0yvxiGovHbaS8XczSnlyDMKA
+X-Gm-Gg: ASbGncvQ5j7zK69sqocr1WIZJtV8XGitQXjtEIJvM5kZ0nv23tqWzZhO/3lCh/UbAbk
+	Xf4JYg7aGZ318oaDQSWSY+i/p8r3i+wdqRvD6BbrY4n0Bpwxx9aKRjtSdnHfOWZdAf+cWrukoMn
+	bjACmc27xu+3Mp8uJI24DJDpJt4D0jmuGi2k2uOxd27f6DFcPVgqdMxF8MhftE9Z0M47gazdxZT
+	JETOFG/ygZUcUylq6bHwxxB1sKc5eCOAC9A4+a3oTi+tLC+i8xZ2kQ0dadAYhLOwtVIcVE+L3xO
+	y+cn5Uhk4DTixSRpqKR+43Oq5kOgY0/0mhoQTDnGM+N4cM74CD8YUPuF9ZBS5fXiW1LK6+AOBus
+	DR2njAv0h/LKdfDv/D85PBgihELB5MebyzSB09TCB6Qg+jTJ5ZdVEJJO5SrkCuwsjh6VD0at7sw
+	Dmril/o5Y/BljIJrYXovC0LmKZ8tl4PQ==
+X-Google-Smtp-Source: AGHT+IFT6Akj8U+/fFusx2rop6IZ68mcqncMokm0DZX3RkEiNJb7fAdqG7Sl0CHQ1h6bv2pXck96VA==
+X-Received: by 2002:a05:6a00:a464:b0:7e1:730a:613b with SMTP id d2e1a72fcca58-7e1730a6f68mr1325466b3a.31.1764788217442;
+        Wed, 03 Dec 2025 10:56:57 -0800 (PST)
+Received: from [192.168.7.10] ([103.182.158.110])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7d1518e5dacsm21036833b3a.23.2025.12.03.10.56.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 03 Dec 2025 10:56:56 -0800 (PST)
+Message-ID: <d2dfa83a-80e3-4a89-b853-a88589ef0092@gmail.com>
+Date: Thu, 4 Dec 2025 00:26:50 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,125 +82,52 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 00/20] arm64: dts: qcom: Introduce Kaanapali platform
- device tree
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Pavel Machek <pavel@ucw.cz>
-Cc: Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v2] dt-bindings: remoteproc: Fix dead link to Keystone DSP
+ GPIO binding
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ linux-kernel-mentees@lists.linuxfoundation.org
+Cc: shuah@kernel.org, skhan@linuxfoundation.org,
+ linux-kernel@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
- trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com,
- Tengfei Fan <tengfei.fan@oss.qualcomm.com>,
- Qiang Yu <qiang.yu@oss.qualcomm.com>,
- Manish Pandey <manish.pandey@oss.qualcomm.com>,
- Ronak Raheja <ronak.raheja@oss.qualcomm.com>,
- Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>,
- Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>,
- Jyothi Kumar Seerapu <jyothi.seerapu@oss.qualcomm.com>,
- Prasad Kumpatla <prasad.kumpatla@oss.qualcomm.com>,
- Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>,
- Vikash Garodia <vikash.garodia@oss.qualcomm.com>
-References: <20250924-knp-dts-v1-0-3fdbc4b9e1b1@oss.qualcomm.com>
- <aS8uJCnb0xOd6uby@duo.ucw.cz>
- <081a2038-e798-4cc0-96ff-b7f11e346831@kernel.org>
- <aTB8++UtSrhwtqdY@duo.ucw.cz>
- <c1b24759-762f-4b97-8d3f-8a44a66b646b@kernel.org>
+ <conor+dt@kernel.org>, linux-remoteproc@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20251203180337.50831-1-sohammetha01@gmail.com>
+ <aab83a61-9d22-443c-92bc-d7caf1c8afac@kernel.org>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <c1b24759-762f-4b97-8d3f-8a44a66b646b@kernel.org>
+From: Soham Metha <sohammetha01@gmail.com>
+In-Reply-To: <aab83a61-9d22-443c-92bc-d7caf1c8afac@kernel.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 03/12/2025 19:40, Krzysztof Kozlowski wrote:
-> On 03/12/2025 19:10, Pavel Machek wrote:
->> On Wed 2025-12-03 18:31:11, Krzysztof Kozlowski wrote:
->>> On 02/12/2025 19:21, Pavel Machek wrote:
->>>> Hi!
->>>>
->>>>> Introduce the Device Tree for the recently announced Snapdragon SoC from Qualcomm:
->>>>> https://www.qualcomm.com/products/mobile/snapdragon/smartphones/snapdragon-8-series-mobile-platforms/snapdragon-8-elite-gen-5
->>>>>
->>>>> Bindings and base Device Tree for the Kaanapali SoC, MTP (Mobile Test Platform)
->>>>> and QRD (Qualcommm Reference Device) are splited in three:
->>>>>
->>>>> - 1-3: MTP board boot-to-shell with basic function.
->>>>> - 4-16: More feature including PCIE, sdcard, usb, DSPs, PMIC related, tsense, bus, crypto etc. Add QRD board support.
->>>>> - 17-20: Multimedia features including audio, video and camss.
->>>>
->>>> Thanks for doing this. I assume there devices available with this are
->>>> quite expensive/hard to get at this point?
->>>>
->>>> Please cc phone-devel@vger.kernel.org with phone related patches.
->>>
->>> That's not even a phone, anyway contributors should not cc lists which
->>> are not relevant to the posting and not pointed out by maintainers. You
+Thank you for the feedback.
+
+On 04/12/25 00:05, Krzysztof Kozlowski wrote:
+> On 03/12/2025 19:03, Soham Metha wrote:
+>> The old text binding 'gpio-dsp-keystone.txt' was replaced by a DT schema in
+>> commit aff0a1701b020c8e6b172f28828fd4f3e6eed41a
+> 
+> Did you actually read what I asked? I think you just sent it too fast to
+> be able to read entire multi-page document. If you read it, you would
+> see that abbrev is 12 characters/digits.
+> 
+
+I did see the documentation mention that the abbreviation should use 
+at least 12 characters, but I didn’t notice any upper limit mentioned 
+in the text. Because of this wording, I assumed longer values were 
+acceptable.
+
+Should I send a v3 with a 12-character abbreviation?
+
+>> ("dt-bindings: gpio: Convert ti,keystone-dsp-gpio to DT schema").
 >>
->> People should Cc relevant lists, and yes, if it is called "Mobile Test
->> Platform", it is relevant to phone development.
-
-... and btw, I know what MTP and QRD is and MTP IS NOT A PHONE. I work
-on this, I upstream this and it is not a phone, regardless how you call
-it. Just because we call our evalkit like that, does not make it a phone.
-
+>> Update the reference to point to the new file.
 > 
-> 
-> Almost everything in ARM64 is then relevant for "phone development".
-> People should use tools, not invent or try to guess whom to Cc. It's
-> impossible to btw keep guessing them - you will request phone-devel,
-> someone else will request desktop-devel, laptop-devel or
-> new-hardware-devel or whatever. No. People should use tools, not guess
-> the cc lists. Fix the tools if you miss any Cc.
+> This wasn't here before, no need to add obvious statements.
 > 
 > Best regards,
 > Krzysztof
 
-
-Best regards,
-Krzysztof
+--
+Soham
 
