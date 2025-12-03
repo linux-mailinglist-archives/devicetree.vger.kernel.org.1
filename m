@@ -1,265 +1,140 @@
-Return-Path: <devicetree+bounces-244017-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244019-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E137C9F017
-	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 13:37:19 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD97DC9F04B
+	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 13:48:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id F29F54E407F
-	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 12:36:59 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B05A84E05C5
+	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 12:48:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79F6E2F658E;
-	Wed,  3 Dec 2025 12:36:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34D3E17A300;
+	Wed,  3 Dec 2025 12:48:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Fje1H/Ov";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="XWmV9HOo"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="BbqyF9Z6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D9FB2F5A34
-	for <devicetree@vger.kernel.org>; Wed,  3 Dec 2025 12:36:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EA2C381C4;
+	Wed,  3 Dec 2025 12:48:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764765399; cv=none; b=imHa9sE8k7dphb6tbNtjS3LEdEiZa+q2+HJHUhyPUws9DvoZeTWg92ZHSH0S0MJ3uRgD4hiwH6XbsWLPyp7nunUIg8Ru0lgRHJLBs3JL9gnsAeEyA4g7blcBPOqR+w5Zdd2g/5/uGWAhTqeBOVr4Wn4m8b3uTL8fyVxCe0YiVAI=
+	t=1764766124; cv=none; b=tEhq1RHYF69OnuPJr+3FWvrFLylI0OXWWvz656+kLwQ9n++oeixERJ38YbQZcO6178rT8pBISXIDmtUkoUuIuEs/XUem7TqLCDYaTc8ssc+SSYTK1YwCfLlIdCmrDjGCpBE1vv06f6e5740Y4FXqH2VukxkwFs2M2iFdpvg9vnk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764765399; c=relaxed/simple;
-	bh=133zDIChdD60IUS6JZm2ZJGsM91OrEgjoeRRjXh18zc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XT19cy54zGa7lZMc+vZ2HHCgUetRPlaeoxR8KTVeERt9Zfjpm4c9G/SkqnjAiguI7CSCIUCZGJg6nLD85NNDrjzc/qmU35T20DCEXOVS5Drb9B9tLDz6UuivSSz1oep4j8GBdRjwCuCJaON/wlu98HiMm2EtNMs9Ugt+gF1EX7E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Fje1H/Ov; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=XWmV9HOo; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5B391g0o806006
-	for <devicetree@vger.kernel.org>; Wed, 3 Dec 2025 12:36:36 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ECdp/n5IfO3x2LfiEzdXETlp4AG0BzfMJTkuSdywFLk=; b=Fje1H/Ov3ZZtY/HH
-	hJQtSmWleqciRpglbAms3u7r1TAc/2FJwlhNzPqu6FP8h8T+VrE3hVzhTNbESAk9
-	2n/YbqIkz+qeHkB3Rlrmpf+PgC/xQDijkIxX4Ov7Byt0wKIG+M26Yt5nm3zEuIq4
-	zILyGFTCBq3OqFEitnKGMzaBxgtvmjBPb0APfu04uNh8uBZHDMT5j5iUMCxmBizH
-	OkqVEV/dlI5675cpRWxXomyRjpUVndTBZ2iUvKgV1Pd90P5KPvQepjybPzNTvSXU
-	MReIvUI5h2Jn7yg/RcEy9yybKLpvKyzKWgen1sHaZ/fFbCkRHdfHNUikl3eCUyll
-	saWNug==
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4atbmmhxxg-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 03 Dec 2025 12:36:36 +0000 (GMT)
-Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4ee0440a771so5065151cf.0
-        for <devicetree@vger.kernel.org>; Wed, 03 Dec 2025 04:36:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1764765395; x=1765370195; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ECdp/n5IfO3x2LfiEzdXETlp4AG0BzfMJTkuSdywFLk=;
-        b=XWmV9HOoABMfPjeJNIvV6KIPrTD06o5GbtRqC1jxSnDUZxYuoxwm798ewVguBSXRU+
-         ujv7A9dYdJDvPToaylEH6n1GV8SG+tivHVaHve3dhogUK/lm8D/ZslpOzrqDWcpiL3LQ
-         2rLePKFs1Xvs/+3g8oWGIDEhYe57RaPB/Qe8rq6JQEI3v3RdOChUBKZS9zpNyac0+M4s
-         NTLgS8e1JGKzffRle1wdwxPjIIbMLX/beLSc/Cpr8UrBIfaKvboWVXaqzChwbo3bB9/9
-         kir8n6vBMLsFJhsIpKQdx4pEswqLvICJG6QDtH7GljxLmhLuMs7sH5rsiMZ1XT5w8y0I
-         jmtw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764765395; x=1765370195;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ECdp/n5IfO3x2LfiEzdXETlp4AG0BzfMJTkuSdywFLk=;
-        b=GcrMf6WuDBz55RUJM44M3aCBBx1KxyETG4L5p+Nsye1CJh8/jnExluLhfQYCbIL+vl
-         b91vDsG5eAcIXhbJHO1vntmgs/6dxDaHTuLesTZwEl9s+05IMgv/fQ9Sqi7bZYh1kIv/
-         6YwMR5ck4BbYOvm3iFMNtQ2dgcDu6Pr6Rip3R6VNR4RzCJXFXCN8aGY8IxOFJ8Op4QgK
-         mXNdJbWdCoJiK+QZikJ3MaYFiYg5eeK5yrtn+nLdvIFKZRxZv9X8Lx9Vc4KK3LVZhJPS
-         jNxmkRGbWl4DxU3jfJidMJE8f4Et10Fj09NmM6z0/zmxquuW1aGmJ+tslER30ofulUGt
-         Z69g==
-X-Forwarded-Encrypted: i=1; AJvYcCWwD596j4o66nA5+V9W7k926a01ihfea072ItmJr7rh0qrk20bUC7RQmyONrVwvPS9n06kZaaZzLAJO@vger.kernel.org
-X-Gm-Message-State: AOJu0YyNnKwqR8No/wDSjpzI3TTovtXi3wKfT0/qXS8W6qzPrCJ9Hofk
-	hre3iW13TnnulS71w5/kWF5IrPHuwoZyMRKJ1zTtZTzPROTBXFtZxjxG/pllTfw9bBi1tZlASZB
-	KjXNSExl2gScmY+so9Vj6xlnXyYPN3uSDWtFlx6c9XSAVIyBbQQWZQVUeWsv4cncx
-X-Gm-Gg: ASbGnctQBpC6lI17c6yt/eHeCdwn3jfwZB8tBV8ZQpZtLHeg3dvKXQUWgoikw1DaU1t
-	nNQaLr2aYXSN1WQwEL0aFnQWktI8WLhpxGuFkLVeX6R9BLVBm79GUjlZ7nt5Ej7MTYW+aKch94K
-	mamiv7u0dcmEe15amv3xVjBGmGz3i+JoaHvJCsg4TFXRHNoRezWacF6EV6k/ZJaGkdHGx8kFrhq
-	pgRARcWf52kOhasMifyl+h++yz5Kn/kpzIV44Kpz/FGkvMTuXMhhFtIzKzMchBqZHM6j6TfPVt2
-	Tse7thL43RgVY643Zx+kWResnTVqHm5jXFxuzHGrHjQloT/hTYh6g4w65DBN85YTqC9U834xHAw
-	UM5a1Q2kE0zlxnL1bNJTQHEs+psjmAh/vT3zUcMV5cR1tj35dvmxmbs0CYVNhf1nt1A==
-X-Received: by 2002:ac8:5715:0:b0:4e6:eaff:3a4b with SMTP id d75a77b69052e-4f01752fdd6mr19881641cf.4.1764765395477;
-        Wed, 03 Dec 2025 04:36:35 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHgZNV2JmzxRkxvlZWlNQ34zmRdp6HoWlpB99+fd6sdr5WUTZMu9AQXTQ2JTGHrRS8I+lCTIg==
-X-Received: by 2002:ac8:5715:0:b0:4e6:eaff:3a4b with SMTP id d75a77b69052e-4f01752fdd6mr19881311cf.4.1764765394876;
-        Wed, 03 Dec 2025 04:36:34 -0800 (PST)
-Received: from [192.168.119.72] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b76f5a4b762sm1798644866b.67.2025.12.03.04.36.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Dec 2025 04:36:34 -0800 (PST)
-Message-ID: <4376b7cf-7088-412b-8596-bdec5bdc273d@oss.qualcomm.com>
-Date: Wed, 3 Dec 2025 13:36:32 +0100
+	s=arc-20240116; t=1764766124; c=relaxed/simple;
+	bh=syewof47MsH2g49Of75yxcWAs8YQcZprEM1Gcxb2X18=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lTzuBtFUOr3q+qfwRmY5iVqKdS/FTg9Mnwb4P59rqCDo04aYNW1GaG9/g8P4+lIQ2DHl7zWjrqrERwjtHyw88whbOz/HAPUjDaaJBD85LtpZTtFh/+/qRdrKVUoWbxNtEE9RXfuSvrdDJQZDXq7LFsc2no9liNwHPxvHX9cCO7M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=BbqyF9Z6; arc=none smtp.client-ip=192.198.163.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1764766122; x=1796302122;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=syewof47MsH2g49Of75yxcWAs8YQcZprEM1Gcxb2X18=;
+  b=BbqyF9Z6EspMsjl9Cr4B04tt4o3eFFwITk2pn5e5Tv6t2SVaKjOg/a+6
+   WkDKoNWdBA8d0HYeBnUKZEfleKNMQnsLJpOquK7fl/SjTZkVhyoEE1SXa
+   cQdd/vWXnay+HMQYLxDUo3JNpPLJzJf4ahPy22IrHO3ye2X/QfxD9c1X5
+   WqB79qLZONwX7H+ofPljJ8ivwH2kCOttryJtRz/6jt3s8c7RxVpGFLjFd
+   0yg4lPf6PeFr40ZKek1KKZ1HS0WGGmvpzinBiB284fQ7Cjwx133M0GcW6
+   HSdBEYMvp/Z5G95UW/UBLfnqWrQ+wWRFAEZU7VsuHnAyhU4RVRaN/eFf5
+   Q==;
+X-CSE-ConnectionGUID: LiTmk1NsSsqm6ItXCFCSXw==
+X-CSE-MsgGUID: IOQwLklOTqOr8OxuNE1Fsw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11631"; a="70607500"
+X-IronPort-AV: E=Sophos;i="6.20,245,1758610800"; 
+   d="scan'208";a="70607500"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Dec 2025 04:48:41 -0800
+X-CSE-ConnectionGUID: wxBNESYQS1auwqG/ZV2apw==
+X-CSE-MsgGUID: 9kK+3tSdSy6UipPHpcKUyw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,245,1758610800"; 
+   d="scan'208";a="194482640"
+Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost) ([10.245.245.81])
+  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Dec 2025 04:48:38 -0800
+Date: Wed, 3 Dec 2025 14:48:35 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Tomas Melin <tomas.melin@vaisala.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Nuno Sa <nuno.sa@analog.com>, Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] iio: adc: ad9467: add support for ad9211
+Message-ID: <aTAxo5sM90vwgxTT@smile.fi.intel.com>
+References: <20251203-add-ad9211-v1-0-170e97e6df11@vaisala.com>
+ <20251203-add-ad9211-v1-2-170e97e6df11@vaisala.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 11/14] firmware: qcom_scm: Add
- qcom_scm_pas_get_rsc_table() to get resource table
-To: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20251121-kvm_rproc_v8-v8-0-8e8e9fb0eca0@oss.qualcomm.com>
- <20251121-kvm_rproc_v8-v8-11-8e8e9fb0eca0@oss.qualcomm.com>
- <86f3cb9f-e42d-40f9-9103-1a4953c66c71@oss.qualcomm.com>
- <20251124152538.wt3kzztqmpr76hsx@hu-mojha-hyd.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20251124152538.wt3kzztqmpr76hsx@hu-mojha-hyd.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: nMOW3MTibe2UNePnkoAo1pMXgxt6GF9q
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjAzMDEwMCBTYWx0ZWRfX3G8Bw20dTU1E
- WApbmFhW6Kf0qt/rcinKK7JCdqQs/cGgnn57g9sHCB7nNCSTkBL3jWevIldE2PaF7DGifmB3xaY
- S5egNm/KPJabM69+E1YIfp574VFv93/8xGy80ExV4QfF8kVyr5lMdhzLdmlMj0HKVWZXnybM4PE
- 3njWyVyh9qnTkcdvyMLE9QzSWcM+21KE0Vlug/6fwkBC+W2kTnP6HhVICN8DbP1lNF9zj9187NW
- KXqxWOnHuhuSoFAtZsR2rz+ilYm4N3jdcRaTLMk1AntdqYVpRwUrhOZ6iQIG4Ueb37hYa4Nr31E
- dDB4qdW2efx+7Kr5zwJctpjPU7vKoylEz7q/mSbhKMMrnmMGLohhQXoQYqqSvugT+g6B8rjKOQI
- Qek9PGT0ST6jQxh5hx0VxZtGGR1taQ==
-X-Proofpoint-ORIG-GUID: nMOW3MTibe2UNePnkoAo1pMXgxt6GF9q
-X-Authority-Analysis: v=2.4 cv=ApjjHe9P c=1 sm=1 tr=0 ts=69302ed4 cx=c_pps
- a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
- a=G1CHwEGKOm80qSXAIBcA:9 a=QEXdDO2ut3YA:10 a=a_PwQJl-kcHnX1M80qC6:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-03_01,2025-11-27_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 lowpriorityscore=0 priorityscore=1501 impostorscore=0
- adultscore=0 bulkscore=0 phishscore=0 spamscore=0 clxscore=1015
- malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
- definitions=main-2512030100
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251203-add-ad9211-v1-2-170e97e6df11@vaisala.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-On 11/24/25 4:25 PM, Mukesh Ojha wrote:
-> On Mon, Nov 24, 2025 at 12:48:31PM +0100, Konrad Dybcio wrote:
->> On 11/21/25 12:01 PM, Mukesh Ojha wrote:
->>> Qualcomm remote processor may rely on Static and Dynamic resources for
->>> it to be functional. Static resources are fixed like for example,
->>> memory-mapped addresses required by the subsystem and dynamic
->>> resources, such as shared memory in DDR etc., are determined at
->>> runtime during the boot process.
->>>
->>> For most of the Qualcomm SoCs, when run with Gunyah or older QHEE
->>> hypervisor, all the resources whether it is static or dynamic, is
->>> managed by the hypervisor. Dynamic resources if it is present for a
->>> remote processor will always be coming from secure world via SMC call
->>> while static resources may be present in remote processor firmware
->>> binary or it may be coming qcom_scm_pas_get_rsc_table() SMC call along
->>> with dynamic resources.
->>>
->>> Some of the remote processor drivers, such as video, GPU, IPA, etc., do
->>> not check whether resources are present in their remote processor
->>> firmware binary. In such cases, the caller of this function should set
->>> input_rt and input_rt_size as NULL and zero respectively. Remoteproc
->>> framework has method to check whether firmware binary contain resources
->>> or not and they should be pass resource table pointer to input_rt and
->>> resource table size to input_rt_size and this will be forwarded to
->>> TrustZone for authentication. TrustZone will then append the dynamic
->>> resources and return the complete resource table in output_rt
->>>
->>> More about documentation on resource table format can be found in
->>> include/linux/remoteproc.h
->>>
->>> Signed-off-by: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
->>> ---
->>
->> [...]
->>
->>> +int qcom_scm_pas_get_rsc_table(struct qcom_scm_pas_context *ctx, void *input_rt,
->>> +			       size_t input_rt_size, void **output_rt,
->>> +			       size_t *output_rt_size)
->>> +{
->>> +	unsigned int retry_num = 5;
->>> +	int ret;
->>> +
->>> +	do {
->>> +		*output_rt = kzalloc(*output_rt_size, GFP_KERNEL);
->>> +		if (!*output_rt)
->>> +			return -ENOMEM;
->>> +
->>> +		ret = __qcom_scm_pas_get_rsc_table(ctx->pas_id, input_rt,
->>> +						   input_rt_size, output_rt,
->>> +						   output_rt_size);
->>> +		if (ret)
->>> +			kfree(*output_rt);
->>> +
->>> +	} while (ret == -EAGAIN && --retry_num);
->>
->> Will firmware return -EAGAIN as a result, or is this to handle the
->> "buffer too small case"?
+On Wed, Dec 03, 2025 at 12:20:34PM +0000, Tomas Melin wrote:
+> The AD9211 is a 10-bit monolithic sampling analog-to-digital
+> converter optimized for high performance, low power, and ease
+> of use. The product operates at up to a 300 MSPS conversion
+> rate and is optimized for outstanding dynamic performance
+> in wideband carrier and broadband systems.
 > 
-> The latter one where a re-attempt could pass..
-> 
->>
->> I think the latter should use a different errno (EOVERFLOW?) and print
->> a message since we decided that it's the caller that suggests a suitable
->> output buffer size
-> 
-> Agree with error code..
-> 
-> This is kept on the caller side keeping future in mind. where we can have
-> resource table coming from the client and it needs to go to TZ for
-> authentication.
-> 
-> Are you suggesting to move this retry on the caller side ?
+> The scale table implemented here is not an exact match with the
+> datasheet as the table presented there is missing some information.
+> The reference presents these values as being linear,
+> but that does not add up. There is information missing in the table.
+> Implemented scale table matches values at the middle and at the ends,
+> smoothing the curve towards middle and end.
+> Impact on end result from deviation in scale factor affects only software
+> using it for scaling. All the possible hw-settings are also available with
+> this implementation.
 
-I think we got confused in the review of the previous iterations and made
-qcom_scm_pas_get_rsc_table() retry 5 times (on the basis that "some" error
-could happen in firmware), but if it's specifically "buf too small", we should
-only need to call it utmost twice - once to get the required larger size (or
-succeed and exit) and another one with a now-correctly sized buffer.
+> Link: https://www.analog.com/media/en/technical-documentation/data-sheets/AD9211.pdf
 
-Looking at it again, do we really need to be so stringent about the maximum
-resource table size? Can we just push the currently defined SZ_16K inside
-qcom_scm_pas_get_rsc_table() as a constant and bump it up as necessary in
-the future?
+Datasheet: https://www.analog.com/media/en/technical-documentation/data-sheets/AD9211.pdf
 
-> Just for information, once video patches becomes ready, we may bring this
-> qcom_mdt_pas_map_devmem_rscs()[1] helper for video or any other client
-> should be do this here as well ?
-> 
-> I wanted to optimize this path, where caller is making a guess and
-> gets the updated output size in return.
+> Signed-off-by: Tomas Melin <tomas.melin@vaisala.com>
 
-We always end up allocating in __qcom_scm_pas_get_rsc_table() so I think
-guessing a number like SZ_16K which is plenty for a effectively small u64[]
-in this file is ok too. Perhaps we could even shrink it down a bit..
+...
 
-> [1]
-> https://lore.kernel.org/lkml/20250819165447.4149674-9-mukesh.ojha@oss.qualcomm.com/#t
-> 
->>
->> In case it doesn't make sense for the caller to share their expectations,
->> the buffer could be allocated (and perhaps resized if necessary) internally
->> with some validation (i.e. a rsctable likely won't be 5 GiB)
-> 
-> Are you saying output_size as well should be checked and it should not be
-> greater than something like UINT_MAX or something.. ?
-> 
-> +	*output_rt_size = res.result[2];
+> +static const struct ad9467_chip_info ad9211_chip_tbl = {
+> +	.name = "ad9211",
+> +	.id = CHIPID_AD9211,
+> +	.max_rate = 300000000UL,
 
-Yeah we should probably make sure this doesn't exceed a large-but-not-
-entirely-unreasonable value
+It's too many 0:s. Less error prone is to write it as
 
-Konrad
+	300 * HZ_PER_MHZ
+
+> +	.scale_table = ad9211_scale_table,
+> +	.num_scales = ARRAY_SIZE(ad9211_scale_table),
+> +	.channels = ad9211_channels,
+> +	.num_channels = ARRAY_SIZE(ad9211_channels),
+> +	.test_points = AD9647_MAX_TEST_POINTS,
+> +	.test_mask = GENMASK(AN877_ADC_TESTMODE_ONE_ZERO_TOGGLE,
+> +			     AN877_ADC_TESTMODE_OFF),
+> +	.test_mask_len = AN877_ADC_TESTMODE_ONE_ZERO_TOGGLE + 1,
+> +	.default_output_mode = AD9211_DEF_OUTPUT_MODE,
+> +	.vref_mask = AD9211_REG_VREF_MASK,
+> +	.has_dco = true,
+> +};
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
