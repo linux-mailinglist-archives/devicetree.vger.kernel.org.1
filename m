@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-243881-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243882-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE3D6C9E079
-	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 08:21:00 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42105C9E0AA
+	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 08:27:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 951254E04E1
-	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 07:20:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F1CEA3A8A93
+	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 07:27:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 910F528C00C;
-	Wed,  3 Dec 2025 07:20:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CFCB29B217;
+	Wed,  3 Dec 2025 07:27:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JQbLP0/z"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Nl/5Mo/G"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C65F1E1A17;
-	Wed,  3 Dec 2025 07:20:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D65C8405C;
+	Wed,  3 Dec 2025 07:27:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764746456; cv=none; b=RwiuyMpRgN0wGuEcSg5RymC9x4iBuG7O27iX1Ue3/e583y+2WElQHXgDH2XeLhsFDGpuPr7t0kJ1+u6JsuHFMdgPJiYuRynzc7abZt9kuQcSCheeWiLtYV/HhaQfhPYZ90KnmAaxFNk9PLFIk5golOrzdXpz3DatyLXelYwjPso=
+	t=1764746840; cv=none; b=tYP+pXJ1EnJ0/cYdKeRRH12P/za+CWiDH+jVhcmofu9l0btH2PhnNcP5OCtBPtOU9tmEVke6FIxNKP75tPBU5+zKXpGYhkQbsNhi8leyzWVMW3Pk3/xuylZwACYRWdbAB0yPnoLb6/Habmaod5cUkSb0Wqt5i2CMvjF7cvz9Qdc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764746456; c=relaxed/simple;
-	bh=n2EyRpFeVYxE7vm8PuEZf1jmg9XZDoeUxffl4a+3DT4=;
+	s=arc-20240116; t=1764746840; c=relaxed/simple;
+	bh=cVBcXNIunmwT9KEg46GU3XRctoljhsrnC+A5dtKR6Es=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=W6+g4g0lgEqbFy1ToOJTsBtTiPCEYkU/WUrhcSPiT6aW0VMLqlqEgOLH5aN9d++GJZ6oVAfU5Fu4y0qHJh+kmwmGEsv19kZlvSDi3x5IbSnwU8v0zav3v2Jc8fT0kbFdOURRC1iCjvcCahBapoCW7yERgM/VTf9zQhWVuTbBdSQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JQbLP0/z; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9FF3C4CEFB;
-	Wed,  3 Dec 2025 07:20:52 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=enuHwf/Oz5+vv/CPqltmTLaaVJUoGoDn7ekoz1zFRv8gS8RL5sYIw6MtfqG4wS4vrRsd3mBXkTAuVZh5y47RV/IhjshQUoJ1zrIlGOjqd2smwyoviBdawhGSlJolAIBdv4snOZLLuxmNjQpnS+7apuNkXbiIWAc/+ipozygzd0M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Nl/5Mo/G; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69545C4CEFB;
+	Wed,  3 Dec 2025 07:27:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764746455;
-	bh=n2EyRpFeVYxE7vm8PuEZf1jmg9XZDoeUxffl4a+3DT4=;
+	s=k20201202; t=1764746840;
+	bh=cVBcXNIunmwT9KEg46GU3XRctoljhsrnC+A5dtKR6Es=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=JQbLP0/zsLkqeTNv/0Gv8wh4GM70+sEjyTZ2U6a1Xo8vhlb4xymxjFPTsChqWmVEY
-	 yu6AKQ2j7FRC1VtU6Jjp3wsYCblzE9dyDwBjV+gwD5/brnBtOOABIMQ2kJ9XRj5yRC
-	 4mUoGp6bnu0guhrDoHe5DfLiDji0otKK8V5B3ggiiBzisE4SJ58YrbzoR8PkFkFDzG
-	 qRQTIKXH9TSNy8jFykBM9FHFOWz/cLbFpalS/WInMIcoHIKRunSPjL/OVlyHckRoUH
-	 /6CjaTtN2xqS10+iGHYzYQdE42LbCUAqPXu9cyn4QS7UweD3u6AHWqppbvCDh8yq7T
-	 jNK7+moarRyHw==
-Message-ID: <1ee383c7-ccbc-4c90-adf3-bfbe87fb6765@kernel.org>
-Date: Wed, 3 Dec 2025 08:20:50 +0100
+	b=Nl/5Mo/GOaZKBBpqGqEFTp2ucshoU3G3k9ba/n8pq39ufx5CD0AcCmKYttZ7fQ7gI
+	 LALvnh+fYc6cCYzZrMKl9ACPvdPHM3aL9q2uS6VW/MPL6gpGu8NG7xUqte93uKiRNP
+	 D6c+TJR2z3KV08+I2d2jBNm8gN/vqYOR0juLpbLeYHYPCSWVt3NwZgHEXGrJTtujr2
+	 EyLC8yx0YEi7aIvq3HZyrWmrGpXb5nSuaV48mQlGSLY150Hkye1cfnTyKDlCeEZu4V
+	 NtX2GMu4wlhuSSjoxMgqGiw6LhbqHyP9a0RlSl46p6y8UYIbBUyOq7znziY1fqyRLM
+	 k12vRaGfba2bw==
+Message-ID: <9df069c1-3cce-4eff-b9a5-9f422eba1c8e@kernel.org>
+Date: Wed, 3 Dec 2025 08:27:15 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v20 3/7] firmware: imx: add driver for NXP EdgeLock
- Enclave
-To: Pankaj Gupta <pankaj.gupta@nxp.com>, Jonathan Corbet <corbet@lwn.net>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>
-Cc: linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, Frank Li <Frank.Li@nxp.com>
-References: <20251203-imx-se-if-v20-0-a04a25c4255f@nxp.com>
- <20251203-imx-se-if-v20-3-a04a25c4255f@nxp.com>
+Subject: Re: [PATCH] ASoC: dt-bindings: cirrus,cs42xx8: Reference common DAI
+ properties
+To: Shengjiu Wang <shengjiu.wang@gmail.com>
+Cc: Shengjiu Wang <shengjiu.wang@nxp.com>, david.rhodes@cirrus.com,
+ rf@opensource.cirrus.com, lgirdwood@gmail.com, broonie@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ patches@opensource.cirrus.com, linux-sound@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20251202061157.1710163-1-shengjiu.wang@nxp.com>
+ <47e32ef5-cfcb-44aa-9045-52d84f7686d5@kernel.org>
+ <CAA+D8ANHFOi5ksBEyZSvFhmp21XbBD1Lgyg+TJgjRX2xBcc_4A@mail.gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,103 +106,22 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251203-imx-se-if-v20-3-a04a25c4255f@nxp.com>
+In-Reply-To: <CAA+D8ANHFOi5ksBEyZSvFhmp21XbBD1Lgyg+TJgjRX2xBcc_4A@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 03/12/2025 07:48, Pankaj Gupta wrote:
-> Add driver for enabling MU based communication interface to secure-enclave.
+On 03/12/2025 06:54, Shengjiu Wang wrote:
+> On Tue, Dec 2, 2025 at 4:06 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>
+>> On 02/12/2025 07:11, Shengjiu Wang wrote:
+>>> Reference the dai-common.yaml schema to allow '#sound-dai-cells' and
+>>> "sound-name-prefix' to be used.
+>>
+>> ... because CS-foo-bar device is a DAI?
 > 
-> NXP hardware IP(s) for secure-enclaves like Edgelock Enclave(ELE), are
-> embedded in the SoC to support the features like HSM, SHE & V2X, using
-> message based communication interface.
-> 
-> The secure enclave FW communicates with Linux over single or multiple
-> dedicated messaging unit(MU) based interface(s).
-> Exists on i.MX SoC(s) like i.MX8ULP, i.MX93, i.MX95 etc.
-> 
-> For i.MX9x SoC(s) there is at least one dedicated ELE MU(s) for each
-> world - Linux(one or more) and OPTEE-OS (one or more).
-> 
-> Other dependent kernel drivers will be:
-> - NVMEM: that supports non-volatile devices like EFUSES,
->          managed by NXP's secure-enclave.
-> 
-> Signed-off-by: Pankaj Gupta <pankaj.gupta@nxp.com>
-> Reviewed-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  drivers/firmware/imx/Kconfig        |  13 ++
->  drivers/firmware/imx/Makefile       |   2 +
->  drivers/firmware/imx/ele_base_msg.c | 269 ++++++++++++++++++++++++
->  drivers/firmware/imx/ele_base_msg.h |  95 +++++++++
->  drivers/firmware/imx/ele_common.c   | 333 ++++++++++++++++++++++++++++++
->  drivers/firmware/imx/ele_common.h   |  45 ++++
->  drivers/firmware/imx/se_ctrl.c      | 401 ++++++++++++++++++++++++++++++++++++
->  drivers/firmware/imx/se_ctrl.h      |  86 ++++++++
->  include/linux/firmware/imx/se_api.h |  14 ++
->  9 files changed, 1258 insertions(+)
-> 
-> diff --git a/drivers/firmware/imx/Kconfig b/drivers/firmware/imx/Kconfig
-> index 127ad752acf8..5fe96299b704 100644
-> --- a/drivers/firmware/imx/Kconfig
-> +++ b/drivers/firmware/imx/Kconfig
-> @@ -55,3 +55,16 @@ config IMX_SCMI_MISC_DRV
->  	  core that could provide misc functions such as board control.
->  
->  	  This driver can also be built as a module.
-> +
-> +config IMX_SEC_ENCLAVE
-> +	tristate "i.MX Embedded Secure Enclave - EdgeLock Enclave Firmware driver."
-> +	depends on IMX_MBOX && ARCH_MXC && ARM64
-> +	select FW_LOADER
-> +	default m if ARCH_MXC
-> +
-> +	help
-> +	  Exposes APIs supported by the iMX Secure Enclave HW IP called:
-> +	  - EdgeLock Enclave Firmware (for i.MX8ULP, i.MX93),
-> +	    like base, HSM, V2X & SHE using the SAB protocol via the shared Messaging
-> +	    Unit. This driver exposes these interfaces via a set of file descriptors
-> +	    allowing to configure shared memory, send and receive messages.
-> diff --git a/drivers/firmware/imx/Makefile b/drivers/firmware/imx/Makefile
-> index 3bbaffa6e347..4412b15846b1 100644
-> --- a/drivers/firmware/imx/Makefile
-> +++ b/drivers/firmware/imx/Makefile
-> @@ -4,3 +4,5 @@ obj-$(CONFIG_IMX_SCU)		+= imx-scu.o misc.o imx-scu-irq.o rm.o imx-scu-soc.o
->  obj-${CONFIG_IMX_SCMI_CPU_DRV}	+= sm-cpu.o
->  obj-${CONFIG_IMX_SCMI_MISC_DRV}	+= sm-misc.o
->  obj-${CONFIG_IMX_SCMI_LMM_DRV}	+= sm-lmm.o
-> +sec_enclave-objs		= se_ctrl.o ele_common.o ele_base_msg.o
-> +obj-${CONFIG_IMX_SEC_ENCLAVE}	+= sec_enclave.o
-> diff --git a/drivers/firmware/imx/ele_base_msg.c b/drivers/firmware/imx/ele_base_msg.c
-> new file mode 100644
-> index 000000000000..a070acbd895c
-> --- /dev/null
-> +++ b/drivers/firmware/imx/ele_base_msg.c
-> @@ -0,0 +1,269 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Copyright 2025 NXP
-> + */
-> +
-> +#include <linux/types.h>
-> +
-> +#include <linux/completion.h>
-> +#include <linux/dma-mapping.h>
-> +#include <linux/genalloc.h>
-> +
-> +#include "ele_base_msg.h"
-> +#include "ele_common.h"
-> +
-> +#define FW_DBG_DUMP_FIXED_STR		"ELE"
-> +
-> +int ele_get_info(struct se_if_priv *priv, struct ele_dev_info *s_info)
-> +{
-> +	struct se_api_msg *tx_msg __free(kfree) = NULL;
-> +	struct se_api_msg *rx_msg __free(kfree) = NULL;
+> Yes. cirrus,cs42xx8 is codec DAI.
 
-No, don't use this syntax. This is explicitly discouraged.
-
-NAK
+So fix the commit msg.
 
 Best regards,
 Krzysztof
