@@ -1,38 +1,38 @@
-Return-Path: <devicetree+bounces-244087-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244088-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 695D1C9FF97
-	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 17:33:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4593ACA018B
+	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 17:47:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6F22D30145B8
-	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 16:32:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 16DF1301586C
+	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 16:44:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99B20358D07;
-	Wed,  3 Dec 2025 16:20:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 414D0359713;
+	Wed,  3 Dec 2025 16:21:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 235F03587A1;
-	Wed,  3 Dec 2025 16:20:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1D0D359709;
+	Wed,  3 Dec 2025 16:21:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764778855; cv=none; b=jetfBdc+tNg1c3opsTAUT3QSMeI2IOgVqFXdVrB8oV6Lyontouoh9Cmq1L12W6NFLpy6cKrHyEsJ4wkPgsYrWYrHwSxqAIzeCjlkDiCO5xV8a1zIkpskyh+LygGo/RfKOaGG/o1vMPXdzHl4BPyVc3HlbqweHJizEhZrxn76ZAU=
+	t=1764778894; cv=none; b=AAc17mHZmevMkJ3O0TKHBB3Gd2Yl3TJkyqzEfn2QTSNJBYwTfdTP96OleOHNsamDbMMzx12TWUGFMjDdy2SvptvXxbSQLOtBra7/wul4GZmwUaKlEJrMXkBSzh3zLRYFhRcF3JbcmPC6mdr68CN8ZGnEr0XCRfFfMveujq++lXM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764778855; c=relaxed/simple;
-	bh=fZMwO4ZImiY5AYgAI7ScUieP1N0kV9afO6GzczmTTZk=;
+	s=arc-20240116; t=1764778894; c=relaxed/simple;
+	bh=0Eeq3RFb6k22dsSQIqo1bKkrUZeUGljVBzPXtpwb8rY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uDEZrozY6TIz1OoLhNwCHA25fwycRZvuiaX4tcKSdNxlZAEoCK12/kUoW4h0HaHAdX14J5ZhxAaZepc6cziCkQZ5ExSdCp4//oVxoXv6he4hy0YJqFV6iZ2dmmTYp6beXg19IVtfHEEujvqSW/aRR8atMkp7VxoXCmgyp+CQusI=
+	 In-Reply-To:Content-Type; b=sERHOE5A+mWnUawNzpqunexKE1B9zkrE/OVf7mw7/jFVvQdobyz+FKAHIsXRLsms5ahJ+YMZio6OrpCqcv5gcpxX1Z1ArEsyp1X64U5E6ty0TpYM4XllUmBiiYuY+W4rePsZsQMM185JACRSGK5wE63n/7XNUEkcBMK2JyyOJRo=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8FA33339;
-	Wed,  3 Dec 2025 08:20:43 -0800 (PST)
-Received: from [10.1.197.1] (ewhatever.cambridge.arm.com [10.1.197.1])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 09AB03F66E;
-	Wed,  3 Dec 2025 08:20:48 -0800 (PST)
-Message-ID: <9d163813-068b-4921-87fe-8e229692ba2b@arm.com>
-Date: Wed, 3 Dec 2025 16:20:47 +0000
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 76FBF339;
+	Wed,  3 Dec 2025 08:21:24 -0800 (PST)
+Received: from [10.57.45.67] (unknown [10.57.45.67])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E5CB43F66E;
+	Wed,  3 Dec 2025 08:21:29 -0800 (PST)
+Message-ID: <66ae20b3-3316-4ec2-9c51-8414c053dc32@arm.com>
+Date: Wed, 3 Dec 2025 16:21:25 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -40,105 +40,79 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 3/9] coresight: tmc: add etr_buf_list to store
- allocated etr_buf
-To: Jie Gan <jie.gan@oss.qualcomm.com>, Mike Leach <mike.leach@linaro.org>,
- James Clark <james.clark@linaro.org>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Tingwei Zhang <tingwei.zhang@oss.qualcomm.com>,
- Jinlong Mao <jinlong.mao@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20250908-enable-byte-cntr-for-tmc-v6-0-1db9e621441a@oss.qualcomm.com>
- <20250908-enable-byte-cntr-for-tmc-v6-3-1db9e621441a@oss.qualcomm.com>
-Content-Language: en-US
-From: Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <20250908-enable-byte-cntr-for-tmc-v6-3-1db9e621441a@oss.qualcomm.com>
+Subject: Re: [PATCH] arm64: dts: rockchip: add SPDIF audio to Beelink A1
+To: Christian Hewitt <christianshewitt@gmail.com>,
+ Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc: Alex Bee <knaerzche@gmail.com>
+References: <20250828164300.3829488-1-christianshewitt@gmail.com>
+From: Robin Murphy <robin.murphy@arm.com>
+Content-Language: en-GB
+In-Reply-To: <20250828164300.3829488-1-christianshewitt@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 08/09/2025 03:01, Jie Gan wrote:
-> Add a list to store allocated etr_buf.
+[ Just noticed this... ]
+
+On 2025-08-28 5:43 pm, Christian Hewitt wrote:
+> From: Alex Bee <knaerzche@gmail.com>
 > 
-> The byte-cntr functionality requires two etr_buf to receive trace data.
-> The active etr_buf collects the trace data from source device, while the
-> byte-cntr reading function accesses the deactivated etr_buf after is
-> has been filled and synced, transferring data to the userspace.
-> 
-> Signed-off-by: Jie Gan <jie.gan@oss.qualcomm.com>
+> Add the required nodes to enable SPDIF audio output on
+> the Beelink A1 set-top-box.
 
-This patch alone doesn't make any sense. Please fold it with a proper 
-user (i.e. later patches). I can't make any sense of how this will be
-used TBH without the following patches and on its own, it doesn't do
-much anyways.
+But the A1 doesn't have S/PDIF? Only HDMI plus a 3.5mm jack connected to 
+the analog audio codec (and possibly the composite TV out) :/
 
-Suzuki
+Thanks,
+Robin.
 
-
+> Signed-off-by: Alex Bee <knaerzche@gmail.com>
+> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 > ---
->   drivers/hwtracing/coresight/coresight-tmc-core.c |  1 +
->   drivers/hwtracing/coresight/coresight-tmc.h      | 17 +++++++++++++++++
->   2 files changed, 18 insertions(+)
+>   arch/arm64/boot/dts/rockchip/rk3328-a1.dts | 23 ++++++++++++++++++++++
+>   1 file changed, 23 insertions(+)
 > 
-> diff --git a/drivers/hwtracing/coresight/coresight-tmc-core.c b/drivers/hwtracing/coresight/coresight-tmc-core.c
-> index be964656be93..4d249af93097 100644
-> --- a/drivers/hwtracing/coresight/coresight-tmc-core.c
-> +++ b/drivers/hwtracing/coresight/coresight-tmc-core.c
-> @@ -830,6 +830,7 @@ static int __tmc_probe(struct device *dev, struct resource *res)
->   		idr_init(&drvdata->idr);
->   		mutex_init(&drvdata->idr_mutex);
->   		dev_list = &etr_devs;
-> +		INIT_LIST_HEAD(&drvdata->etr_buf_list);
->   		break;
->   	case TMC_CONFIG_TYPE_ETF:
->   		desc.groups = coresight_etf_groups;
-> diff --git a/drivers/hwtracing/coresight/coresight-tmc.h b/drivers/hwtracing/coresight/coresight-tmc.h
-> index 6541a27a018e..292e25d82b62 100644
-> --- a/drivers/hwtracing/coresight/coresight-tmc.h
-> +++ b/drivers/hwtracing/coresight/coresight-tmc.h
-> @@ -208,6 +208,19 @@ struct tmc_resrv_buf {
->   	s64		len;
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3328-a1.dts b/arch/arm64/boot/dts/rockchip/rk3328-a1.dts
+> index f7c4578865c5..b276a29bdd85 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3328-a1.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3328-a1.dts
+> @@ -58,6 +58,24 @@ ir-receiver {
+>   		gpios = <&gpio2 RK_PA2 GPIO_ACTIVE_LOW>;
+>   		linux,rc-map-name = "rc-beelink-gs1";
+>   	};
+> +
+> +	spdif_sound: spdif-sound {
+> +		compatible = "simple-audio-card";
+> +		simple-audio-card,name = "SPDIF";
+> +
+> +		simple-audio-card,cpu {
+> +			sound-dai = <&spdif>;
+> +		};
+> +
+> +		simple-audio-card,codec {
+> +			sound-dai = <&spdif_dit>;
+> +		};
+> +	};
+> +
+> +	spdif_dit: spdif-dit {
+> +		compatible = "linux,spdif-dit";
+> +		#sound-dai-cells = <0>;
+> +	};
 >   };
 >   
-> +/**
-> + * @sysfs_buf:	Allocated sysfs_buf.
-> + * @is_free:	Indicates whether the buffer is free to choose.
-> + * @pos:	Position of the buffer.
-> + * @node:	Node in etr_buf_list.
-> + */
-> +struct etr_buf_node {
-> +	struct etr_buf		*sysfs_buf;
-> +	bool			is_free;
-> +	loff_t			pos;
-> +	struct list_head	node;
+>   &analog_sound {
+> @@ -325,6 +343,11 @@ &sdmmc {
+>   	status = "okay";
+>   };
+>   
+> +&spdif {
+> +	pinctrl-0 = <&spdifm0_tx>;
+> +	status = "okay";
 > +};
 > +
->   /**
->    * struct tmc_drvdata - specifics associated to an TMC component
->    * @pclk:	APB clock if present, otherwise NULL
-> @@ -242,6 +255,8 @@ struct tmc_resrv_buf {
->    *		(after crash) by default.
->    * @crash_mdata: Reserved memory for storing tmc crash metadata.
->    *		 Used by ETR/ETF.
-> + * @etr_buf_list: List that is used to manage allocated etr_buf.
-> + * @reading_node: Available buffer for byte-cntr reading.
->    */
->   struct tmc_drvdata {
->   	struct clk		*pclk;
-> @@ -271,6 +286,8 @@ struct tmc_drvdata {
->   	struct etr_buf		*perf_buf;
->   	struct tmc_resrv_buf	resrv_buf;
->   	struct tmc_resrv_buf	crash_mdata;
-> +	struct list_head        etr_buf_list;
-> +	struct etr_buf_node     *reading_node;
->   };
->   
->   struct etr_buf_operations {
-> 
-
+>   &tsadc {
+>   	rockchip,hw-tshut-mode = <0>;
+>   	rockchip,hw-tshut-polarity = <0>;
 
