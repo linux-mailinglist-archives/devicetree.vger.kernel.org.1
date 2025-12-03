@@ -1,142 +1,169 @@
-Return-Path: <devicetree+bounces-243997-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243998-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2611C9EE74
-	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 12:53:41 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A26E5C9EE80
+	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 12:54:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 846F83A6C34
-	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 11:53:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5E3E53A6CF1
+	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 11:54:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD0262F531C;
-	Wed,  3 Dec 2025 11:53:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B2D62F60DA;
+	Wed,  3 Dec 2025 11:54:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rzTUaD/x"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fU9DCvKv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+Received: from mail-vk1-f180.google.com (mail-vk1-f180.google.com [209.85.221.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D555729DB64
-	for <devicetree@vger.kernel.org>; Wed,  3 Dec 2025 11:53:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA5A52F5496
+	for <devicetree@vger.kernel.org>; Wed,  3 Dec 2025 11:54:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764762817; cv=none; b=QIv4wkp/yZSFn7ox0nECB5gZF+0s7Mecyg9iXwWG0xZRKiHp1VA+b8CiAicGYPni3X0l8e5Stw6XuK10yFN05CWi7pbqZ9t1lCE+yKBa8ohxVkhdvsJq5Jr7JWYb/3fGiIiRnBN4YHaARFt7LP/osM+AUq2xOUDFACGn4VYKKes=
+	t=1764762892; cv=none; b=c/SlPAqPSQw4RqDAOC4np8h2SOSscQM5ZB5Yo+9hCrX23CpbWJrTyVkgIki6yL4eHBXTARQEFFAteHUFUTsIT+CDJ1Lc7O+HSin67pd/kFQ+oRUaQX9dzlLynvrKYfbdaAo+/qs1/pdi8FvS/p2iMYuYNN104tjcWf0f9ccuHFE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764762817; c=relaxed/simple;
-	bh=507B+B9WXoYANTS0ahrX+Qe14RdOpDY2weWI1yop9EQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BkTMUCE8dRmR3O3PwRukAEj9w9wUfUFyfXmAl54mXsrEBqg1KHHeXQMThCnerdIqZ9M+HIX36IRnMtkB3LuWrvB7dNDuAu1GdF6saK1SJ8evCtgOETbG1fKnwVa42N4IgquyZD9RuVGaqipwN6M1bAKjbkXi3siV2TNNrWDJ6lo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rzTUaD/x; arc=none smtp.client-ip=209.85.167.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-59426dc96f2so553438e87.2
-        for <devicetree@vger.kernel.org>; Wed, 03 Dec 2025 03:53:35 -0800 (PST)
+	s=arc-20240116; t=1764762892; c=relaxed/simple;
+	bh=ELQVVr6X3DQ5vkoskTSwAR07IuJDLZA6brxp2H71SIU=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=i5xcBjHK8/vS6CK03ZB9z8H/gYeAynYgYiA6K61WxEa6jH/UzDMQd+Mg8w8PLOmUseGot4I45y0bWnoJn9SwWAh9GQNptAhytjSOzKH1B8xZnFwGTCSoVl7IYLRHnzBt6+dc7z91VZi9k5TnTAcjoWqtzZaQco4vOR+Rmwn+c80=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fU9DCvKv; arc=none smtp.client-ip=209.85.221.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f180.google.com with SMTP id 71dfb90a1353d-559748bcf99so5197866e0c.3
+        for <devicetree@vger.kernel.org>; Wed, 03 Dec 2025 03:54:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1764762814; x=1765367614; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1764762889; x=1765367689; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=bLSfduDvIMtxBr/FllCfWDI20xqIyxuL49iYC6vyl1E=;
-        b=rzTUaD/xl82gayHcOIOStzde9uoQHYlaj3F0qeQiQJLVNNd5MJTRaaXVJFIDmdiacG
-         RTzoY/xy3IHjz1m4A1nkNsjxdq3l+lopqEm8q7k/VUnL9jGGJJFo+T9t7k1RREFVdRga
-         DqS2ig+xiV5gAgdjfAgSx6xTU/+5odhQNzWDIg0rRhh30PjNlP37xdLMO8dHOT54CMu0
-         Zn3cJFv4THQpwbBQVaEd2XXsLWHn7wMnGSM5HQRJiaU0R1rJ2Etg+vmJiC9zEvtZP683
-         p2xLdatpTu7DGK/YA1cvesK13T+L5rgXakDx36X/X8FxayELbObORHYDgEAi8LVL3umy
-         +mtQ==
+        bh=vxMEbZ5hVBOhGVLtG70nLqghsEUEtF9xMuE9bTIExzk=;
+        b=fU9DCvKvWejP9dlcWcrzPcrAe6j+wRZuP2k7t9xKlSzBLZUomz96V5aIroB37wp2qD
+         DBDJV9L9UasOmfcaiXR/wVI4KJZML9fYvXYW2IqpRQmnPV+07WoZGVuNCaVb/S1KiMB+
+         hHHm31TC3sBg9ssQwpV5cMclERiDGug5Pd9aWL19/E6DChCoznJXdSb3DEb8thzXC23n
+         FlILNfb9LGlbS7jlASYX9gfd7Rhh/Fu9B6fjwmePnSy035L0FOhDb76bMWAT2LuOkprP
+         6Z2A/tvAaXyK/hgQ5NJ2ehnMhzI2LUAkFXfTf/hJGWnwbThuFW4kNT5t175VdZaY2O6a
+         vqFQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764762814; x=1765367614;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-gg:x-gm-message-state
+        d=1e100.net; s=20230601; t=1764762889; x=1765367689;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-gg:x-gm-message-state
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=bLSfduDvIMtxBr/FllCfWDI20xqIyxuL49iYC6vyl1E=;
-        b=kTiKUwb/ZwtLvi8GIenx6au3eeX2J64dDo4d4YSG8rI96ehDiBup2s8BZOAJGMy4WW
-         O5Dc67ZEFdC6BOAtNr8BqDqgjBbeY1F9WuhvrlHgHYqLr19oTggcf3LQlt2yi+KqhoIM
-         XGDUdJQwIMeYCnL8MCHv9d7OY3p9lfYU4sqThOENGrCM/GwiWCgpCrmm+nsIdhSK7SJ/
-         SA5NnOU3DY2Q+CB9RvCAkxRplq7ltzEnFahfHRsgPv1irSE8mYV3QPMOWsYK3OCgPJOn
-         FI/yzgDtNX6KjwefXjtaBLbh+GrbJ5+qkoUzwlAuM6rr7Nx78SWHOKZysp7KFkpU5YNT
-         qUMw==
-X-Forwarded-Encrypted: i=1; AJvYcCWV6nFf23cL+oC19LniH4CKuaWvJs37wbEySTJi/hcwdvq8WL+wwaaPQtZvODj9kdVb7oDYGI878kIx@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw6zGkwIK6+y1L5gsrCQDsrj7J9swU72HDnpnDSiVaIGq4vUfty
-	ogVnm5SoISoT+aO8wr/YVDn94FFcpjC0BMWIStsK3JPZWMueKX5bcCQRqFPyyEQ3dd8=
-X-Gm-Gg: ASbGncttdu/977PbrODBjqxkj8YKa5ijfn76DHl64WUe/HHA2Fy+a9DEtsPATWvtznz
-	/JV5nDaJbZ24/yEekiqbmSFiBtTper91XCrAjhyWBZtoqSJ+JcBZAD/loX/VxL5MHyyfobo3xVt
-	KnGYJLc8kFRr17dChcY3IFAQ6+3u+71mp7teUtZeX7O2N70Si6TdFsltav4M5XYEYvSjowdhXoe
-	PMoiO5m9dGsLgyW6ZW0+NV1UXd0N9e0czaV76hcpYRrpT0Ye38myhtOhoPwpEjInCgPFh58CpEW
-	oWOh9BBFbbbZDohoawMZVbu6ChB9HMsoPG3yWguRvwVYGRbdzJXVXzE73bOdpeL/uq89Rz+9Ig+
-	OfKVVWnaq7Lqz9KshHpqofirHnEXJd7qs4xKhiyo2Nxdpj0e2vqEgfdbiG8Youp7tYqgTLkw1hS
-	THXzEeXIZBZI2vfrbe/1T16P5aZ2e9bRcnlzyUBT+3Ad9VriY2dLcBl2r8FoX5laMcKg==
-X-Google-Smtp-Source: AGHT+IF+BxD58dug8k9kIEX+VDZ8eK8yGZDoOi3c682xLhrZRW5uMS2yoSke44pZijRRO5+w07eqaA==
-X-Received: by 2002:a05:6512:3d18:b0:592:f7b4:e5fb with SMTP id 2adb3069b0e04-597d4b40ff7mr305526e87.3.1764762813737;
-        Wed, 03 Dec 2025 03:53:33 -0800 (PST)
-Received: from [192.168.1.100] (91-159-24-186.elisa-laajakaista.fi. [91.159.24.186])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-37d24099022sm41772011fa.27.2025.12.03.03.53.32
+        bh=vxMEbZ5hVBOhGVLtG70nLqghsEUEtF9xMuE9bTIExzk=;
+        b=nnaUAkJ0qdZiYsTBz2txXYtRRTIIhkpLLVi3BSwp0//4tn7/aGzV7n7LoOSUwfqgHV
+         SAt7f1ONXwGOu7P9x3M88pmgH1SMZGqSlRI/AaG4vI0X+X2KDqoZoB8MvtQF+i/V9pSb
+         eDovW5Z3vJnGaMMEOBXyfxGIuIGLuBTY53YHh1m6jyNuhezXPwu01XN/gZNPRF+U6AkP
+         evOPOkWgjGRtwuNkNbM5PTejb1wehY9Cz5S1KCQ2dQiIIL/Dv97pmAKK2gwuS9IaPlsB
+         DdzUce2l4sMQTnoiDsC1U1R24WuKZUXUp7n8g7VVlke68kDNG03CYIbejnqwRHQd69gW
+         QyWw==
+X-Forwarded-Encrypted: i=1; AJvYcCVb6LmV1ErKoaHTBI3/2OMUjPKmgNZry4Mr7W4MCfvpmigIyR54TorAg8Xlo/LDjR41c4TaAVI0qUZs@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywx40TwseQB7yArs6SCoWK3/z2zLaUZRa2HTWc+TxmFBO8XLyql
+	RpIlgx/9nd1UybqkTQcd+Hwu65YRbCgKKz7TYkCVqkkyG1+GUX53zS67
+X-Gm-Gg: ASbGncvHCYv7GU0O7l/BcKLyutnUHL9u86ltr9J4w8YVqCx8sCUlDk6RGuP4r4cG+rZ
+	sXqZpbOM2wiC5QD/Cl5JoeqUQRfjtaprVknbY97uE67RM9BCGhA7dzpxifuvfjqDYj0E31P914b
+	vefA/uWVKMD9yQ3MZOCFxpInL3jJ1KGBlg1mNQNwrwooTrYv+tsgBIxUbaho3p1RaHxokrxFpKg
+	f59toRRJqrBl3Eufxg8LGerGp2AZP+l8QUeoliy4MshaOMoLcu0//LsG45W53RqX09cXi0OBloe
+	+Xw6S5JpZlz84ngKJTII2bcMfTsaFFTBY+quBji2wSHgCY6u4MA+4wmuLioXonaz9WTl/13mdHv
+	b3//VCBAvUF6pGhn1XBHKXdNT5tWHR3hcL57iTdpliywXLVugWmW4euhGG7Xk6ASgK/mq8Uq5Uz
+	mzmeg=
+X-Google-Smtp-Source: AGHT+IHC/URL7zOZS7seUyXI3W5yB2QrrgxRdVCPZB28hcnqrADnibVC36noIpOW2CZp1hdbsnLA1A==
+X-Received: by 2002:a05:6122:3d01:b0:559:3d59:1fdc with SMTP id 71dfb90a1353d-55e5bf914a7mr499897e0c.14.1764762889632;
+        Wed, 03 Dec 2025 03:54:49 -0800 (PST)
+Received: from localhost ([2800:bf0:82:3d2:875c:6c76:e06b:3095])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-55e5c2850e7sm644701e0c.3.2025.12.03.03.54.47
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Dec 2025 03:53:33 -0800 (PST)
-Message-ID: <828b0012-f9c1-49af-a3ae-2797a6256a6b@linaro.org>
-Date: Wed, 3 Dec 2025 13:53:32 +0200
+        Wed, 03 Dec 2025 03:54:49 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/6] arm64: dts: qcom: sm8550-qrd: move camss status
- property to the end
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20251203040538.71119-1-vladimir.zapolskiy@linaro.org>
- <20251203040538.71119-4-vladimir.zapolskiy@linaro.org>
- <3f8e8e3d-fb38-4e17-8a55-a22ed9329a9a@kernel.org>
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <3f8e8e3d-fb38-4e17-8a55-a22ed9329a9a@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 03 Dec 2025 06:54:46 -0500
+Message-Id: <DEOK8E55YR0L.3ST80EKZ08QE8@gmail.com>
+Cc: "Jonathan Cameron" <jic23@kernel.org>, "Rob Herring" <robh@kernel.org>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
+ <conor+dt@kernel.org>, "Tobias Sperling" <tobias.sperling@softing.com>,
+ "David Lechner" <dlechner@baylibre.com>, =?utf-8?q?Nuno_S=C3=A1?=
+ <nuno.sa@analog.com>, "Andy Shevchenko" <andy@kernel.org>,
+ <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, "Jonathan Cameron"
+ <Jonathan.Cameron@huawei.com>
+Subject: Re: [PATCH v4 2/2] iio: adc: Add ti-ads1018 driver
+From: "Kurt Borja" <kuurtb@gmail.com>
+To: "Andy Shevchenko" <andriy.shevchenko@intel.com>, "Kurt Borja"
+ <kuurtb@gmail.com>
+X-Mailer: aerc 0.21.0-0-g5549850facc2
+References: <20251202-ads1x18-v4-0-8c3580bc273f@gmail.com>
+ <20251202-ads1x18-v4-2-8c3580bc273f@gmail.com>
+ <aS_7xrMwW42qolG4@smile.fi.intel.com>
+In-Reply-To: <aS_7xrMwW42qolG4@smile.fi.intel.com>
 
-On 12/3/25 10:32, Krzysztof Kozlowski wrote:
-> On 03/12/2025 05:05, Vladimir Zapolskiy wrote:
->> Conventionally status property is the last one in the list, move it there.
->>
->> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
->> ---
->>   arch/arm64/boot/dts/qcom/sm8550-qrd.dts | 3 +--
->>   1 file changed, 1 insertion(+), 2 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
->> index 48af6d114161..b3eb0836c408 100644
->> --- a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
->> +++ b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
->> @@ -717,10 +717,9 @@ vreg_l7n_2p96: ldo7 {
->>   };
->>   
->>   &camss {
->> -	status = "okay";
->> -
->>   	vdda-phy-supply = <&vreg_l1e_0p88>;
->>   	vdda-pll-supply = <&vreg_l3e_1p2>;
->> +	status = "okay";
-> 
-> Please do not do such changes node by node. Fix many or all devices here
-> or none. But actually even fixing all should be postponed - we discussed
-> this many times, first proper linter is needed.
+On Wed Dec 3, 2025 at 3:58 AM -05, Andy Shevchenko wrote:
+> On Tue, Dec 02, 2025 at 11:56:19PM -0500, Kurt Borja wrote:
+>> Add ti-ads1018 driver for Texas Instruments ADS1018 and ADS1118 SPI
+>> analog-to-digital converters.
+>>=20
+>> These chips' MOSI pin is shared with a data-ready interrupt. Defining
+>> this interrupt in devicetree is optional, therefore we only create an
+>> IIO trigger if one is found.
+>>=20
+>> Handling this interrupt requires some considerations. When enabling the
+>> trigger the CS line is tied low (active), thus we need to hold
+>> spi_bus_lock() too, to avoid state corruption. This is done inside the
+>> set_trigger_state() callback, to let users use other triggers without
+>> wasting a bus lock.
+>
+> ...
+>
+>> +/**
+>> + * ADS1018_FSR_TO_SCALE - Converts FSR into scale
+>> + * @_fsr: Full-scale range in millivolts
+>> + * @_res: ADC resolution
+>> + *
+>> + * The macro is crafted to avoid potential overflows on 32-bit machines=
+. This
+>> + * imposes restrictions on the possible values for @_fsr (less than 274=
+878),
+>
+>> + * and @_res (greater than or equal to 6 bits).
+>
+> This is actually incorrect. See below.
 
-For historical reference the corrected here issue has been spotted by Konrad,
-and since the requested improvement could be done instantly I added these
-changes to the series:
+I'll fix this!
 
-https://lore.kernel.org/linux-arm-msm/21430004-b186-4f28-be59-bcb3851237b8@oss.qualcomm.com/
+>
+>> + * Return: Scale in IIO_VAL_INT_PLUS_NANO format
+>> + */
+>> +#define ADS1018_FSR_TO_SCALE(_fsr, _res) \
+>> +	{ 0, ((_fsr) * (MICRO >> 6)) / (BIT((_res) - 1) >> 6) }
+>
+> This is different from what I suggested. But I think I was mistaken with
+> the parentheses and thought that you are dividing on the mask-like value.
+>
+> If the current version correct by the result, first of all, the limitatio=
+n for
 
-Patches 3/6 and 6/6 can be dropped now while waiting for the linter or
-be squashed together, or just included as is, whatever is preferred here.
+The calculation is correct because I sum one in all cases bellow
+(advertised resolution).
 
--- 
-Best wishes,
-Vladimir
+> @_res is 7 and not 6. And second, it can be rewritten in a simpler form.
+>
+> 	{ 0, ((_fsr) * (MICRO >> 6)) >> ((_res) - 6 - 1) }
+
+I wanted to use (>> 6) in the numerator and denominator to make it clear
+it cancels out. But that (- 6) is equivalent so I can change it.
+
+>
+> Please, check it again.
+
+Thanks!
+
+
+--=20
+ ~ Kurt
+
 
