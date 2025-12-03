@@ -1,158 +1,237 @@
-Return-Path: <devicetree+bounces-244031-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244032-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03242C9F2E9
-	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 14:48:08 +0100 (CET)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07F57C9F358
+	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 14:59:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AE70D3A4891
-	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 13:48:06 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id DD7D94E1436
+	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 13:59:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D074D2F0C7D;
-	Wed,  3 Dec 2025 13:48:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4C592FB0B4;
+	Wed,  3 Dec 2025 13:59:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="SNxjUbhE"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="lWatP1Ft"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ixit.cz (ip-94-112-25-9.bb.vodafone.cz [94.112.25.9])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 348E02EDD7A;
-	Wed,  3 Dec 2025 13:48:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.112.25.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C8E5DF6C;
+	Wed,  3 Dec 2025 13:59:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764769683; cv=none; b=h+PKq/1ZICa3Da6ovz2eWIJZGctabVUdbUps7hzbPval8ltkt1fsnCar7gDGZhSqMIz90J2fPl2r925kpD4Yg/vXp7yUj8ZZteE84r5BM7jLOwlC3ELJLBmAgAZ5c1qXfJBis9+lDulcFyje11CW9Z1ydeGbn1WjzgjtZ4AxCUM=
+	t=1764770381; cv=none; b=ROTZZzJelEVqa1lrdJVRYFVPfVxpg6PXgag/JAgGIStXOy92HPOunloFLp9R4q8JgxNkd66c1QOeFmGzQ6rvRze14Cab2hos6KMeJmja9FSFvYonLJbt5k92l8cSSYrEb7m4fM83tebko2DZbk/ZyWiyNO7Wsaqy4UuAoPnntp8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764769683; c=relaxed/simple;
-	bh=Z6A2oGoEdf6X5p1kJWjdo4i1kmb95AUeoFMWsppUO7E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uXmhx18QE/9WYftB01VGzFZtko/uLyk1KbvmBKHJbCmKg5fyy4DaG/hcTQdggm5yrMHVnmFs/E7ra8vK3h/1E4rtfxupZtdBh4zOeMvhgCYXm9mW89L4TeKjNz0vS7G9QXr/IrFAC7V03dGWY0vgSkISLwhA6vF7fhgY/pk0UEA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=SNxjUbhE; arc=none smtp.client-ip=94.112.25.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
-Received: from [192.168.198.28] (89-24-57-208.nat.epc.tmcz.cz [89.24.57.208])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange x25519)
+	s=arc-20240116; t=1764770381; c=relaxed/simple;
+	bh=7rdCs97YBrArOUGWG2Izgfsf1uq95fUzJXwZjjk8CAU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ZIyaZ+iCmPsGF12EqloEpr5S0VLFAh9FkAs+yjA3YSynYItdmqsiUOSJBl8w4eFP3fOxcq7juGPjKWVmO2uo0XkiH6v9uOD8a9+OamNaJyENpNh9z5+ZSb2HRVZO0X8y/De1nbeloZxm9nUoNT3bZz9ORYrygENibXdAm3xuvfk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=lWatP1Ft; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1764770377;
+	bh=7rdCs97YBrArOUGWG2Izgfsf1uq95fUzJXwZjjk8CAU=;
+	h=From:Subject:Date:To:Cc:From;
+	b=lWatP1FtrOynHRXcB8k9cdCtkJrYIlvRZhwtN3vRhz15auBx9FfHi9pWgmbb7Efkf
+	 1KctHMwbhzJNauPI/RXdRWGuqpux28GRe6acMiAGw4qRaMa3sW0i/k8t5pl/DCDe8Q
+	 J1lno8UzqnGJ+4+5gtzn3FIDn7f290Vvh+HKKiQ/+BaH2s4Ldy0OXITYoK5YDUavKi
+	 cg4jcD07wsGzJQdEmH8Hs45hc9LWdA2VhwNXwUVOqFqaxkOEQrlUj1ZWIQrl88QxCO
+	 bac5BTWglrW81mZj538/s+KVhsJyIUTBrJp24buDWjJufcLigXPUXpWB5oT7iTq637
+	 GomKpELWEWh1w==
+Received: from yukiji.home (amontpellier-657-1-116-247.w83-113.abo.wanadoo.fr [83.113.51.247])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
-	by ixit.cz (Postfix) with ESMTPSA id 9A8565340D20;
-	Wed, 03 Dec 2025 14:47:57 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-	t=1764769678;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=pZ/twsoKZsAyt3RQQYDWTYhHtCC8Om19340nx1x7gKQ=;
-	b=SNxjUbhE0KTTdEHB/lH4HHh6O8jXl6ODsNCOTTjykHtYYsdMYH+PgNpl9boOcYvWWNxf68
-	mPVk/2W9mgvpIgze2AdBTBEQn/IdxPNFWjyHVZvQI3LOxpg2dKQB+TrQBwFf2f7g62cwd2
-	vH84Ktyq7qS5eC6nxYuHFdmUi9YJAS0=
-Message-ID: <a9ba1f0a-bc98-4bcb-9062-026f604bc44e@ixit.cz>
-Date: Wed, 3 Dec 2025 14:47:57 +0100
+	(Authenticated sender: laeyraud)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 0EF0317E0117;
+	Wed,  3 Dec 2025 14:59:37 +0100 (CET)
+From: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+Subject: [PATCH 0/4] Add support for the Mediatek Genio 520-EVK and 720-EVK
+ boards
+Date: Wed, 03 Dec 2025 14:59:25 +0100
+Message-Id: <20251203-add-mediatek-genio-520-720-evk-v1-0-df794b2a30ae@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 06/12] arm64: dts: qcom: sdm845-lg-judyln: Add firmware
- nodes, change path
-To: Paul Sajna <sajattack@postmarketos.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
- ~postmarketos/upstreaming@lists.sr.ht, Amir Dahan <system64fumo@tuta.io>,
- Christopher Brown <crispybrown@gmail.com>
-References: <20251203-judyln-dts-v5-0-80c1ffca8487@postmarketos.org>
- <20251203-judyln-dts-v5-6-80c1ffca8487@postmarketos.org>
-Content-Language: en-US
-From: David Heidelberg <david@ixit.cz>
-Autocrypt: addr=david@ixit.cz; keydata=
- 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
-In-Reply-To: <20251203-judyln-dts-v5-6-80c1ffca8487@postmarketos.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/42RyWrDMBCGX8X43DGjzbZCKXmPEoosjR2ReKmlm
+ LQh717FoZfSlhzmMBL6/kWXPNDsKeSb7JLPtPjgxyEt7CnL7d4MHYF3ac85csUYr8E4Bz05byI
+ doKPBj6A4QpWGlgNgyUouqkpX0uUJMs3U+vMq8Lq77zO9n5JOvB/mjQkEdux7HzfZQOcIqxZHc
+ XvfUwhmdbHJntcLFAh9rFmtwUVo/OD80AXw3MLCgIFqStRM2lIqsbXj8WiacTZFUnj5A8j1b8A
+ w9f5ObBsyjBtJTtEjRKzTCMFEWVQVqkT4TFXepuho+13eP45YapFLIbBgTKoSMSH8vCRbYPfF0
+ Q+PQFKB37HWP+sthNM0jXO8pUJolSUpOOMt6YdSaaaRo+KqqDTKZGmMb9bE/UdxPv0wtLtevwA
+ z+nfsWgIAAA==
+X-Change-ID: 20251128-add-mediatek-genio-520-720-evk-06162377974d
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Sean Wang <sean.wang@mediatek.com>
+Cc: kernel@collabora.com, linux-kernel@vger.kernel.org, 
+ linux-serial@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1764770376; l=7049;
+ i=louisalexis.eyraud@collabora.com; s=20250113; h=from:subject:message-id;
+ bh=7rdCs97YBrArOUGWG2Izgfsf1uq95fUzJXwZjjk8CAU=;
+ b=7JHZiNf2mB0ojn1S4yGXzfOXq+DMc74QOfpKZVxN5Mgk2Pabloe373q+OTpu518rNZfXWXfTW
+ NvQoT/eGDm2DTwKFzjVXC9XRrvpzWpAKR3GHzsG0B5GD5pIe70NaycJ
+X-Developer-Key: i=louisalexis.eyraud@collabora.com; a=ed25519;
+ pk=CHFBDB2Kqh4EHc6JIqFn69GhxJJAzc0Zr4e8QxtumuM=
 
-On 03/12/2025 10:40, Paul Sajna wrote:
-> Add paths for Qualcomm firmware, including:
-> ipa, modem, bluetooth, venus, gpu
-> 
-> Enable adsp and cdsp nodes since their firmware is present
-> 
-> GPU and bluetooth are confirmed working, others may need more
-> testing/fixes
-> 
-> But regardless they will need the firmware paths specified here
-> and firmware added upstream before they will work, so might as well
-> get started on it now.
-> 
-> Signed-off-by: Paul Sajna <sajattack@postmarketos.org>
-> ---
->   arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi | 10 ++++++++++
->   arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts  | 20 +++++++++++++++-----
->   2 files changed, 25 insertions(+), 5 deletions(-)
-> 
+This patch series adds the support for the Mediatek Genio 520-EVK (based
+on MT8371 SoC) and Mediatek Genio 720-EVK (based on MT8391 SoC).
 
-[...]
+MT8371 and MT8391 SoC are less powerful variants of MT8189 SoC
+with the following differences:
+  - Arm Cortex-A78 CPU core maximum frequency (2.2 Ghz for MT8371, 2.6
+    Ghz for MT8391, 3 Ghz for MT8189).
+  - Arm Mali G57 MC2 GPU core maximum frequency (880 Mhz for MT8371,
+    1.1 Ghz for MT8189 and MT8391)
+  - ISP engine number (1 for MT8371, 2 for MT8189 and MT8391)
+MT8371 and MT8391 SoC hardware register maps are identical to MT8189.
 
->   &adsp_pas {
-> -	firmware-name = "qcom/sdm845/judyln/adsp.mbn";
-> +	firmware-name = "qcom/sdm845/lg/judyln/adsp.mbn";
->   };
->   
+The Genio 520/720-EVK boards have following features:
+  - MT8371 (or MT8391) SoC
+  - MT6365 PMIC
+  - MT6319 Buck IC
+  - MT6375 Charger IC
+  - 8GB LPDDR5 RAM
+  - 64GB eMMC 5.1
+  - 128GB UFS
+  - 20V DC Jack
+  - USB Type-C Power Adapter
+  - Micro SD card slot
+  - Push Button x 4 (Power, Reset, Download and Home Key)
+  - LED x 3 (System Power, Reset, DC-IN Power)
+  - USB Type-C Connector (USB 3.2) x 2
+  - USB Type-C Connector (USB 2.0) x 1
+  - 3.5mm Earphone Jack x 1 (with Microphone Input)
+  - 3.5mm Line Out Audio Jack x 1
+  - Analog Microphone x 1
+  - Digital Microphone x 2
+  - Gigabit Ethernet with RJ45 connector
+  - DP x 1 (Mode over USB Type-C)
+  - LVDS port x 1
+  - eDP port x 1
+  - UART x2 with serial-to-usb converters and USB Type-C connectors
+  - UART Port x 2 on Pin Header
+  - M.2 Slot x 2
+  - I2C Capacitive Touch Pad
+  - 4-Lane DSI x 1
+  - 4-Data Lane CSI x 2
+  - I2S Pin header
+  - 40-Pin 2.54mm Pin Header x 1
+  - CAN Bus x 1 (RS232 Connector)
 
-Since you'll be rebasing again anyway, the current recommendation is using
+The series adds two include files for mt8189 (mt8189.dtsi) and common
+board definitions (mt8391-genio-common.dtsi) and a devicetree file for
+each board. In regard to the current MT8189 SoC upstream support and in
+order to limit the number of prerequisite patches, this series provides
+the following basic hardware enablement for:
+  - cpu
+  - clocks
+  - spmi and regulators
+  - UART 0/1/2/3
+  - eMMC and SD card
+  - watchdog
+  - timer
+  - efuse and socinfo
+  - auxadc
 
-sdm845/Vendor/codename, thus in case of LG being whole in uppercase I 
-would say it should look like:
+The series is based on linux-next next-20251203 tag, and the
+following patch series are currently required:
+- I2C dt-bindings [1]
+- SPMI dt-bindings [2]
+- timer dt-bindings [3]
+- Add support for MT8189 clock/power controller [4]
+- Add SD/MMC Card driver support for Mediatek MT8189 SoC [5]
+- mt8189: Add pinmux macro header file [6]
 
-sdm845/LG/judyln/...
+Note:
+The v3 revision of [4] patch series is causing the following `make dtbs_check`
+issue for both board devicetrees:
+```
+arch/arm64/boot/dts/mediatek/mt8391-genio-720-evk.dtb: /soc/clock-controller@1c000800: 
+  failed to match any schema with compatible: ['mediatek,mt8189-vlp-ao', 'syscon']
+```
+The mismatch between compatible string in driver and dt-bindings has
+already been reported during the series review ([7]) and hopefully will be
+fixed in its future revision.
 
-David
+[1] https://lore.kernel.org/linux-mediatek/20251030-mt8189-dt-bindings-i2c-v1-1-5b60914c6453@collabora.com/
+[2] https://lore.kernel.org/linux-mediatek/20251029-mt8189-dt-bindings-spmi-v1-1-fbea12a4ed5e@collabora.com/
+[3] https://lore.kernel.org/linux-mediatek/20250825033136.7705-1-zhanzhan.ge@mediatek.com/
+[4] https://lore.kernel.org/linux-mediatek/20251106124330.1145600-1-irving-ch.lin@mediatek.com/
+[5] https://lore.kernel.org/linux-mediatek/20251203-mt8189-add-mmc-support-v1-0-f5ce43212fe9@collabora.com/
+[6] https://lore.kernel.org/linux-mediatek/20250919020525.7904-1-ot_cathy.xu@mediatek.com/
+[7] https://lore.kernel.org/linux-mediatek/a50e6d433afcf8b08a47694bc5a52acc28871ee5.camel@collabora.com/
 
-[...]
+Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+---
+Louis-Alexis Eyraud (4):
+      dt-bindings: serial: mediatek,uart: Add compatible for MT8189 SoC
+      dt-bindings: arm: mediatek: add compatibles for Mediatek Genio 520/720-EVK boards
+      arm64: dts: mediatek: add device-tree for Genio 720-EVK board
+      arm64: dts: mediatek: add device-tree for Genio 520-EVK board
+
+ .../devicetree/bindings/arm/mediatek.yaml          |  10 +
+ .../devicetree/bindings/serial/mediatek,uart.yaml  |   1 +
+ arch/arm64/boot/dts/mediatek/Makefile              |   2 +
+ arch/arm64/boot/dts/mediatek/mt8189.dtsi           | 860 +++++++++++++++++++++
+ .../boot/dts/mediatek/mt8371-genio-520-evk.dts     |  19 +
+ .../boot/dts/mediatek/mt8391-genio-720-evk.dts     |  15 +
+ .../boot/dts/mediatek/mt8391-genio-common.dtsi     | 555 +++++++++++++
+ 7 files changed, 1462 insertions(+)
+---
+base-commit: e47d97576181b31291cf58e77d737d21def0e160
+change-id: 20251128-add-mediatek-genio-520-720-evk-06162377974d
+prerequisite-message-id: <20251030-mt8189-dt-bindings-i2c-v1-1-5b60914c6453@collabora.com>
+prerequisite-patch-id: af92e103b9f50af16560a11d4eabc644bd724b07
+prerequisite-message-id: <20251029-mt8189-dt-bindings-spmi-v1-1-fbea12a4ed5e@collabora.com>
+prerequisite-patch-id: c82ad0d3145322fea43aed2e1d830ebc8eae8180
+prerequisite-message-id: <20250825033136.7705-1-zhanzhan.ge@mediatek.com>
+prerequisite-patch-id: 7aeee7d452186b3bc1c11722b7ddb7dfbae7d396
+prerequisite-message-id: <20251106124330.1145600-1-irving-ch.lin@mediatek.com>
+prerequisite-patch-id: ea3e5cf891c9753a77f126ad1ddad455a0752883
+prerequisite-patch-id: ae9a4cb1daadb56cc298b87142b29b749dc11835
+prerequisite-patch-id: 3df47b0207d75102032975e6811f71a5e7909e43
+prerequisite-patch-id: 1c25a1327d50152cef227f58c08076072d65cee3
+prerequisite-patch-id: f2cd301aea79253adb85bd3f62c012dd3850e1a7
+prerequisite-patch-id: 81dc09321182c48f6928582e8b9d22f35a757515
+prerequisite-patch-id: e0a251231fd14fa582800db8f3bb77011f6836f9
+prerequisite-patch-id: da7c54c83cb8566df39beac753c80615523479e5
+prerequisite-patch-id: 2f3d41e32b230ddc016fd75ace5b286cd11b2127
+prerequisite-patch-id: 309f350ed5c942b640b5c3434737fee28d6825b0
+prerequisite-patch-id: 7579b6db7ec7a31e28db616c73b4c1b0eb4ee106
+prerequisite-patch-id: 0cdea5380c8d35cfd89e01bf843ef7fdafbc7830
+prerequisite-patch-id: 3dc3e377981d3c894fc39122200a0f0d46f5d71b
+prerequisite-patch-id: b57bf39e50a5316d2f9264e1eb89071d3e8e8b0a
+prerequisite-patch-id: 56fd80d33667839823794173064860c613f911cd
+prerequisite-patch-id: 963a3ed54fb5fd9fd518f28254eaf93a70b2f603
+prerequisite-patch-id: 3c9cbc33093f754d867ca324cc7e689fbbaae8af
+prerequisite-patch-id: 336ba35d1924706d1d21c6e46718d973277f207a
+prerequisite-patch-id: f3322d6494603585fc4728074484055d07484dd6
+prerequisite-patch-id: f5a70e41fe9df7df0ab29538701bdfdb401a9d01
+prerequisite-patch-id: b46a91afc38bea2ee6a8440f59e71e39728df6ad
+prerequisite-message-id: <20251203-mt8189-add-mmc-support-v1-0-f5ce43212fe9@collabora.com>
+prerequisite-patch-id: feab935ed7d0d7234dcc1980185300782c61620e
+prerequisite-patch-id: efbd41a9926397f9b3ffd19235a04791b61f35c7
+prerequisite-patch-id: 5b12a1056dfe87e4d39af584d8b16c31a1a00a04
+prerequisite-message-id: <20250919020525.7904-1-ot_cathy.xu@mediatek.com>
+prerequisite-patch-id: 7f2d960cde2f0e0a307721150e83b7b05b9a60d7
+
+Best regards,
+-- 
+Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+
 
