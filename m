@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-243944-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243945-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21B59C9E966
-	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 10:50:30 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62337C9E975
+	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 10:51:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A1D554E357D
-	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 09:50:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E26F13A8D8E
+	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 09:51:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE2EA2E03E4;
-	Wed,  3 Dec 2025 09:50:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DC552DE6F4;
+	Wed,  3 Dec 2025 09:51:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SjrfD6b8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="teUcCu/n"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 955872DFA5B;
-	Wed,  3 Dec 2025 09:50:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7753E2D7DE2;
+	Wed,  3 Dec 2025 09:51:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764755422; cv=none; b=Dz84UdoCzy4pTReTwYvu8kRlc6AUN2HrLpBaPnD13IGT2FPYMqgPjotBl9/GIF3XU91EeTT4gg+HqHJnU2wfeh2t1SPwLnynWkTSuhJK/PwKuqD7jrgUVL0/aoKBX1YUX7B/EzrbJYYE+3oCqR7HzdSH3geAihpoOCXOytVPsVU=
+	t=1764755471; cv=none; b=hGbeVAlesYF7OoXCoTZMUy/ZbUQhNMTFKLM05HX3HKip75SuS/suIV9Pe5o71mMDt4smd62MtEm5KHuA061bX2BdDt68SRuRBWXdjyB6+tWbPpu5bBvtRWXm1K9ebcjUdSAEvuHCOrQvlYjkibN2xzq6Fg4hKh4UTih+TnbjQn4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764755422; c=relaxed/simple;
-	bh=ypAa1rLSkfeBsNSGctvSt8bFB36bS7lgItPXaVr3bnE=;
+	s=arc-20240116; t=1764755471; c=relaxed/simple;
+	bh=GDmIEK5sOsHTbOAIfEMkXpjT/NcHXehWLeN/cxxV6oA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CWMlA5dtDEpN6Ekpr+cVWs+vUOovvKbCeom3RZd4dRXQ3Uz+Jnf/AXXtvQKdk/kDVAfL5umWOvbUjFaSGNwCJj7/f6FLtLx0XrvGqXp4N/kIWDleCQv5IhcmFW8iCBTgyyxNpbLoVpMnTAa/+eSU4pqNhih8FjrnbiPRgPHwXeA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SjrfD6b8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2AFCC4CEFB;
-	Wed,  3 Dec 2025 09:50:19 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Kf+/BcQVwfJgXWMS15pp87a7e9KwKRHTnniY7gukLoY+BKZHy7hVZIgHCJ9FtnxDWIAmDKvjxrBxvzp3W8Y3ZTFQn8+i/6gI3Jeuuxvtw6wSaIerEUVEgvgvSYp9npKWbyqrPlQWShpH34syPp4iSFBYqKYJ1YX70DLS7PV36k8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=teUcCu/n; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1B95C4CEFB;
+	Wed,  3 Dec 2025 09:51:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764755422;
-	bh=ypAa1rLSkfeBsNSGctvSt8bFB36bS7lgItPXaVr3bnE=;
+	s=k20201202; t=1764755471;
+	bh=GDmIEK5sOsHTbOAIfEMkXpjT/NcHXehWLeN/cxxV6oA=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=SjrfD6b8JryIU1opyvRMaivc5+bKpRbtnUgLpfRrepvlmagb6sLaRqabQJcj6iikl
-	 NJzRQ3CbYguKwRGMjkBnEjN6r4TFH4SkbjtrjAei62OK3yFks/8SHlrFr1atHmitRj
-	 rRxqfGdX+VPIq+A9KM0jlTrHSn641tSGX4xEeJzc6v7eccn0mxn5rC9YF54uHdMCGY
-	 8wim0mFuWr7eBeU+M2iGO3dDiMF04q5mktXMb3lb1oa9pCnaP6ay73f2t5k1dOO3JV
-	 OCplpJ2y2D5mFmlxtmo0BCMKbNihULDGFXDVaDcAiIcHfy9WkH23yQZmWv+Zuf31j/
-	 LYIzXXhrVA3Bg==
-Message-ID: <935ab772-fc9d-443b-8c8d-f2d17f9259aa@kernel.org>
-Date: Wed, 3 Dec 2025 10:50:18 +0100
+	b=teUcCu/nIhe7NpCqb3rSN+uIFNY0EOBdk0WCj65VQhVA7uqlbZ3eAvhhM+8pdrtz9
+	 0nk+qQygZkta7kzG+wKzbFkkvuSVE6ZokQ0t0a8f1RHZ7Y5oKb9wNymmm1l/qWLyVM
+	 CmK6h0k/pWl7pbs42xfK01NJUIt0OkKSJkWc+HxDbZNLg546L6AQmJ3X3G+nmUmzFy
+	 pfq3lXj8WtqhvcAdizPBiFxq8O+8P290DVTgC0Nac+qwHw/cselXPm/bRy1ESGCuhS
+	 Z6zxfEIoXAGJdOQe9Ghq/k7sqjDSk3Rrquspq/njm4PoK+nTr3MeDmXRmAW7lNIcp5
+	 lrYavuUeBs1kA==
+Message-ID: <e1e3c625-b735-4245-acbb-3492468abc0c@kernel.org>
+Date: Wed, 3 Dec 2025 10:51:07 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,13 +50,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] riscv: dts: canaan: Add K230 clock provider DTSI
-To: q691800735@163.com, linux-riscv@lists.infradead.org,
- devicetree@vger.kernel.org
-Cc: conor@kernel.org, robh@kernel.org, krzk+dt@kernel.org, pjw@kernel.org,
- palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
- linux-kernel@vger.kernel.org
-References: <20251203092643.219600-1-q691800735@163.com>
+Subject: Re: [PATCH] dt-bindings: soc: canaan: Add K230 power domain bindings
+To: q691800735@163.com, Paul Walmsley <pjw@kernel.org>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Alexandre Ghiti <alex@ghiti.fr>, linux-kernel@vger.kernel.org,
+ linux-riscv@lists.infradead.org, devicetree@vger.kernel.org
+References: <20251203032107.31388-1-q691800735@163.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -102,57 +103,28 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251203092643.219600-1-q691800735@163.com>
+In-Reply-To: <20251203032107.31388-1-q691800735@163.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 03/12/2025 10:26, q691800735@163.com wrote:
+On 03/12/2025 04:21, q691800735@163.com wrote:
 > From: jybruceupup <q691800735@163.com>
 > 
-> Add clock provider DTSI for Kendryte K230 SoC, required for subsystem
-> clock management and boot.
+> Add device tree bindings for the Kendryte K230 power management domains
+> (PM domains), which control power gating of core peripherals (I2C, SPI,
+> MMC, AI2D).
+> 
+> Key properties:
+> - compatible: "canaan,k230-pm-domains"
+> 
+> This binding follows the Devicetree Specification v0.4 and upstream
+> PM domain framework requirements. It is a prerequisite for peripheral
+> drivers requiring power gating control.
 > 
 > Signed-off-by: jybruceupup <q691800735@163.com>
-> ---
->  .../boot/dts/canaan/k230_clock_provider.dtsi  | 2724 +++++++++++++++++
->  1 file changed, 2724 insertions(+)
->  create mode 100644 arch/riscv/boot/dts/canaan/k230_clock_provider.dtsi
-> 
-> diff --git a/arch/riscv/boot/dts/canaan/k230_clock_provider.dtsi b/arch/riscv/boot/dts/canaan/k230_clock_provider.dtsi
-> new file mode 100644
-> index 000000000..9d193ca22
-> --- /dev/null
-> +++ b/arch/riscv/boot/dts/canaan/k230_clock_provider.dtsi
-> @@ -0,0 +1,2724 @@
-> +// SPDX-License-Identifier: GPL-2.0 OR MIT
-> +/*
-> + * Copyright (c) 2023, Canaan Bright Sight Co., Ltd
-> + * Copyright (c) 2025 jybruceupup <q691800735@163.com>
-> + *
-> + * This program is free software; you can redistribute it and/or modify
-> + * it under the terms of the GNU General Public License version 2 as
-> + * published by the Free Software Foundation.
-> + */
-> +
-> +&sysctl_boot {
-> +/* osc24m clock */
-> +	osc24m: osc24m {
-> +		#clock-cells		= <0>;	/* only one clock output */
-> +		compatible		= "fixed-clock";/* It's clock source, no parent */
-> +		clock-frequency		= <24000000>;	/* clock freqence is 24MHz */
-> +		clock-accuracy		= <0>;	/* software assume clock no jitter/wander.*/
-> +		status				= "okay";
-> +		read-only			= <0>;
-> +	};
-> +
-> +	/* pll clock */
-> +	pll0: pll0 {
 
-
-NAK.
-
-Not at all Linux style (actually DTS coding style), not used, no benefit
-of any of this.
+Don't send duplicates. You already sent this patch, so which are we
+suppose to review? Why aren't you versioning your patchsets?
 
 Best regards,
 Krzysztof
