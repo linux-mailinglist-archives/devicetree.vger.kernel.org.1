@@ -1,120 +1,164 @@
-Return-Path: <devicetree+bounces-244158-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244159-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A44FCA1ED5
-	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 00:23:38 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1F1BCA1F52
+	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 00:34:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 8B826300CA2F
-	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 23:23:37 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5B32D3007680
+	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 23:34:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE0902DEA77;
-	Wed,  3 Dec 2025 23:23:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98B962E8B81;
+	Wed,  3 Dec 2025 23:34:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hTGqR2Rc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60E582E8B9D;
-	Wed,  3 Dec 2025 23:23:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72B022367D5
+	for <devicetree@vger.kernel.org>; Wed,  3 Dec 2025 23:34:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764804214; cv=none; b=n067qL4t+FThaox4kFqr1ncP7U5qNpLYehteNPtRjFk0uNEKO8P1k0JFTQntH5W+JzUcxXuhHpxlVBjO8lJGjU3lG9mGzpZRhoCWxuKSFO4pQbGDsDRMbLMFwc2JJbUufVm3/NIfbrZvmf9ajk5onF9uzfWKNmpd8dBWxqbJBxQ=
+	t=1764804854; cv=none; b=pNMlmtajywzRMmFJj/jXEW+G/d/Xqck0H2qrnO78u2WSB6RGvGJDDCC7W/Bc2Z71ybQtN6IFjbzf6IuBiEOM1S9ov0BJ7RJ92sCUPHdRSdG82wQNZWJF1ISR/mcupM4Pu/8983GD5aktCTRQ/yoDROYkj9G6QJG1J8Tr0ztXIfU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764804214; c=relaxed/simple;
-	bh=Q6GH1DVCaOxzLLUrc7SKqX0H6OYZH68ewF4tDfSel5k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aX4skpoW/CzddN+pGkWS1llIejb4+epOSvfAiBIMoKHlvOIKUHf+qhDVhhEfrASMQbQGw8DcO7Y/uGkeNT2cWDD/7zzlLsok53UP0Cxw6us+r4KIGbf2yLB2S4pOVmVF99dTFVopMd4SRhG40JTvU1212uNHJYN2/RDnbH3DAMM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
-Received: from local
-	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-	 (Exim 4.98.2)
-	(envelope-from <daniel@makrotopia.org>)
-	id 1vQwBn-000000003mf-1iSP;
-	Wed, 03 Dec 2025 23:23:15 +0000
-Date: Wed, 3 Dec 2025 23:23:11 +0000
-From: Daniel Golle <daniel@makrotopia.org>
-To: Vladimir Oltean <olteanv@gmail.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
-	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Frank Wunderlich <frankwu@gmx.de>,
-	Avinash Jayaraman <ajayaraman@maxlinear.com>,
-	Bing tao Xu <bxu@maxlinear.com>, Liang Xu <lxu@maxlinear.com>,
-	Juraj Povazanec <jpovazanec@maxlinear.com>,
-	"Fanni (Fang-Yi) Chan" <fchan@maxlinear.com>,
-	"Benny (Ying-Tsan) Weng" <yweng@maxlinear.com>,
-	"Livia M. Rosu" <lrosu@maxlinear.com>,
-	John Crispin <john@phrozen.org>
-Subject: Re: [PATCH RFC net-next 0/3] net: dsa: initial support for MaxLinear
- MxL862xx switches
-Message-ID: <aTDGX5sUjaXzqRRn@makrotopia.org>
-References: <cover.1764717476.git.daniel@makrotopia.org>
- <20251203202605.t4bwihwscc4vkdzz@skbuf>
+	s=arc-20240116; t=1764804854; c=relaxed/simple;
+	bh=u+LWk+ysyom9mJaM2PkwZ2eIKREM/Y9c6qmJUKpC5Bk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=e8K9a0eVmZR4a/PDCUHhADSS5UqVHvNiKd4E60UoZ/MGHhExlHz5eRKEtM5MV2xkx1VsUmrqQSr7sMlhVvcjwu43D80TM4og7s85l4LZmQ3UxjuUSTe9qrbockHn+FajwaJVcs/w7aLkuCgyNYyZjGEELfgGl8VyvGtBfjJFCXY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hTGqR2Rc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48235C19421
+	for <devicetree@vger.kernel.org>; Wed,  3 Dec 2025 23:34:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764804854;
+	bh=u+LWk+ysyom9mJaM2PkwZ2eIKREM/Y9c6qmJUKpC5Bk=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=hTGqR2RccQDGAEcZkHeKq72FKFgtrO96PzRkz4csy2AxATGlW34Ne/cOre5CYpsx6
+	 mNPN5wRXtvWfjQkViUFANQ6m828joZ1GnjxAQBL6oiE77DRjvfPKTQ+lFwmsoJCCGq
+	 Bp3Ky205iti0V6CW0YAoRTxkQ9I14ABjmeC7dxcJRbmeQXKEs12TQwKIU4yLhSuWfv
+	 zyLjraEcsG32IzuihTonYl9i2LHHbT/3aza+W4KV8uZS8Qz9Jgj6NgoHRPp4Q2gihk
+	 hB+WLJZJyLrgEiulDNn5GcEkN7cGMixNNktkwbAZt8k+OktjMyVg4Mw9jHeGdnEBVu
+	 Zi4Cq4m86EvcA==
+Received: by mail-yx1-f43.google.com with SMTP id 956f58d0204a3-6443bc360bdso247877d50.0
+        for <devicetree@vger.kernel.org>; Wed, 03 Dec 2025 15:34:14 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWLk4TxTOGgH+BQR94/1VHAhEDt1O/9rxw5kha/ZcEDQK9U+TCJqYJWzuVbL6TvG78hQXasrbUH8zRb@vger.kernel.org
+X-Gm-Message-State: AOJu0YyRpaqlD8bIj1a9krcVT44Tqqrh2xyDxwYt+DtkyQexrm5GR/EN
+	ULRXnLQZjrXe4DF9lhxARhejIsxiTr49ArCi20CvnegI+5PMF+xr6ZrheYnnkjMEr/dE8YlShMU
+	UrUPMr7jZTTOug2WaGZ1M/+9IYTRy5MI=
+X-Google-Smtp-Source: AGHT+IEcHfvaOb5S969V+TGgkAT9i54KHFx1CR/gCX/hEJeFvl1jabhvHplkUWRwEt3mIqu2dyLHnOM9O1u8pDT2cgo=
+X-Received: by 2002:a05:690c:308a:b0:788:e1b:5ee6 with SMTP id
+ 00721157ae682-78c1894c129mr14570627b3.70.1764804853630; Wed, 03 Dec 2025
+ 15:34:13 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251203202605.t4bwihwscc4vkdzz@skbuf>
+References: <20251121112626.1395565-1-cosmin-gabriel.tanislav.xa@renesas.com> <20251121112626.1395565-5-cosmin-gabriel.tanislav.xa@renesas.com>
+In-Reply-To: <20251121112626.1395565-5-cosmin-gabriel.tanislav.xa@renesas.com>
+From: Linus Walleij <linusw@kernel.org>
+Date: Thu, 4 Dec 2025 00:34:02 +0100
+X-Gmail-Original-Message-ID: <CAD++jLk9Ft3oRGUTyqgbs55Vii0HVVnO7mnaHfCJivwT1Yv=4g@mail.gmail.com>
+X-Gm-Features: AWmQ_bleOJb8iDoFuFxkogfUlyPOtvU4DcbHlwWafHSyLBZKTuzXCFI7OtWruEI
+Message-ID: <CAD++jLk9Ft3oRGUTyqgbs55Vii0HVVnO7mnaHfCJivwT1Yv=4g@mail.gmail.com>
+Subject: Re: [PATCH 4/8] pinctrl: renesas: rzt2h: add GPIO IRQ chip to handle interrupts
+To: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>, Linus Walleij <linus.walleij@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, linux-renesas-soc@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Dec 03, 2025 at 10:26:05PM +0200, Vladimir Oltean wrote:
-> Hi Daniel,
-> 
-> On Tue, Dec 02, 2025 at 11:37:13PM +0000, Daniel Golle wrote:
-> > Hi,
-> > 
-> > This series adds very basic DSA support for the MaxLinear MxL86252
-> > (5 PHY ports) and MxL86282 (8 PHY ports) switches. The intent is to
-> > validate and get feedback on the overall approach and driver structure,
-> > especially the firmware-mediated host interface.
-> > 
-> > MxL862xx integrates a firmware running on an embedded processor (Zephyr
-> > RTOS). Host interaction uses a simple API transported over MDIO/MMD.
-> > This series includes only what's needed to pass traffic between user
-> > ports and the CPU port: relayed MDIO to internal PHYs, basic port
-> > enable/disable, and CPU-port special tagging.
-> > 
-> > Thanks for taking a look.
-> 
-> I see no phylink_mac_ops in your patches.
+Hi Cosmin,
 
+thanks for your patch!
 
-> 
-> How does this switch architecture deal with SFP cages? I see the I2C
-> controllers aren't accessible through the MDIO relay protocol
-> implemented by the microcontroller. So I guess using the sfp-bus code
-> isn't going to be possible. The firmware manages the SFP cage and you
-> "just" have to read the USXGMII Status Register (reg 30.19) from the
-> host? How does that work out in practice?
+On Fri, Nov 21, 2025 at 12:27=E2=80=AFPM Cosmin Tanislav
+<cosmin-gabriel.tanislav.xa@renesas.com> wrote:
 
-In practise the I2C bus provided by the switch IC isn't used to connect
-an SFP cage when using the chip with DSA. Vendors (Adtran,
-BananaPi/Sinovoip) rather use an I2C bus of the SoC for that.
-I suppose it is useful when using the chip as standalone switch.
+> The Renesas RZ/T2H (R9A09G077) and Renesas RZ/N2H (R9A09G087) SoCs have
+> IRQ-capable pins handled by the ICU, which forwards them to the GIC.
+>
+> The ICU supports 16 IRQ lines, the pins map to these lines arbitrarily,
+> and the mapping is not configurable.
+>
+> Add a GPIO IRQ chip that can be used to configure these pins as IRQ
+> lines.
+>
+> Signed-off-by: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
 
-The firmware does provide some kind of limited access to the PCS, ie.
-status can be polled, interface mode can be set, autonegotiation can be
-enabled or disabled, and so on (but not as nice as we would like it to
-be). In that way, most SFP modules and external PHYs can be supported.
+Mention in the commit that this is achieved with a
+hierarchical IRQ domain please. (I really like how this
+was done!) Also mention that wakeup capability is
+also implemented as part of the patch.
 
-See
+You probably need a:
 
-https://github.com/frank-w/BPI-Router-Linux/commit/c5f7a68e82fe20b9b37a60afd033b2364a8763d8
+select IRQ_DOMAIN_HIERARCHY
 
-In general I don't get why all those layers of abstraction are actually
-needed when using a full-featured OS on the host -- it'd be much better
-to just have direct access to the register space of the switch than
-having to deal with that firmware API (the firmware can also provide a
-full web UI, SNMP, a CLI interface, ... -- imho more of an obstacle than
-a desirable feature when using this thing with DSA).
+In the rzt2h Kconfig entry?
+
+> +static int rzt2h_gpio_irq_set_wake(struct irq_data *d, unsigned int on)
+> +{
+> +       struct gpio_chip *gc =3D irq_data_get_irq_chip_data(d);
+> +       struct rzt2h_pinctrl *pctrl =3D container_of(gc, struct rzt2h_pin=
+ctrl, gpio_chip);
+> +       int ret;
+> +
+> +       ret =3D irq_chip_set_wake_parent(d, on);
+> +       if (ret)
+> +               return ret;
+> +
+
+Add a comment here:
+
+/*
+ * If any of the IRQs are in use, then put the entire pin controller
+ * on the device wakeup path.
+ */
+
+> +       if (on)
+> +               atomic_inc(&pctrl->wakeup_path);
+> +       else
+> +               atomic_dec(&pctrl->wakeup_path);
+
+BTW this is an elegant piece of code I think a lot of other drivers
+need...
+
+> +static int rzt2h_gpio_child_to_parent_hwirq(struct gpio_chip *gc,
+> +                                           unsigned int child,
+> +                                           unsigned int child_type,
+> +                                           unsigned int *parent,
+> +                                           unsigned int *parent_type)
+> +{
+> +       struct rzt2h_pinctrl *pctrl =3D gpiochip_get_data(gc);
+> +       u8 port =3D RZT2H_PIN_ID_TO_PORT(child);
+> +       u8 pin =3D RZT2H_PIN_ID_TO_PIN(child);
+> +       u8 parent_irq;
+> +
+> +       parent_irq =3D rzt2h_gpio_irq_map[child];
+> +       if (parent_irq < RZT2H_INTERRUPTS_START)
+> +               return -EINVAL;
+> +
+> +       if (test_and_set_bit(parent_irq - RZT2H_INTERRUPTS_START,
+> +                            pctrl->used_irqs))
+> +               return -EBUSY;
+> +
+> +       rzt2h_pinctrl_set_pfc_mode(pctrl, port, pin, PFC_FUNC_INTERRUPT);
+> +
+> +       *parent =3D parent_irq;
+> +       *parent_type =3D child_type;
+> +
+> +       return 0;
+> +}
+
+Complex, but easy to follow, understand and debug.
+Good job here!
+
+Yours,
+Linus Walleij
 
