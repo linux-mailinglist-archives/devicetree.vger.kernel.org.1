@@ -1,146 +1,134 @@
-Return-Path: <devicetree+bounces-244129-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244135-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD8C9CA18E3
-	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 21:28:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 92239CA19E3
+	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 22:07:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 85AA030021C8
-	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 20:28:36 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 1170730021E3
+	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 21:07:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03A282882D7;
-	Wed,  3 Dec 2025 20:28:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A175E2D0636;
+	Wed,  3 Dec 2025 21:07:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L/ExZlrX"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="iLBQU1Gv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C660A27707;
-	Wed,  3 Dec 2025 20:28:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3967F2C15B8;
+	Wed,  3 Dec 2025 21:07:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.152
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764793714; cv=none; b=MGxVXc0hL6eFxdBI+9Gfpwd4HiQMCnhCcrgM0rgw541jA24kNrlIE+nE0lcJni2PWvrP5GVxByRbSNXHLfZx1GJl65IyDFO6dHZtTXFzxuh870fiQIQxKcb0MIcLeLb3IbuuC5aP4httSXZru99hxp15lQ1zB6e0Ia8npDxa5I8=
+	t=1764796038; cv=none; b=lIRULxIX3AM/yhd6RNWco0skvUZq5EZ20vwzxQhAOXBrNThPcvS8tHAkGkYvfivxArUmQK0wSigOVC1TefGmOAJ5FAWrsB0gdHjKO6mANF8bHjdqeAc67pgYG4tMZnmlpms6Lhd2GpsmZlmAxIC4B3/6n1baWXqiZu+hfKNfhG0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764793714; c=relaxed/simple;
-	bh=/Pw/ZfkaD7UiOYHsr9Mmwf+U3Hy4ekwK9M9qWlsLp0s=;
+	s=arc-20240116; t=1764796038; c=relaxed/simple;
+	bh=L/KwpKfetHVAKb2bucO4m2g5XMw3lWzNapYxHsLa+XU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HsJ5nHRSClCLw6HiAehcku+fZoTbN2sbqQ28MrK+tc0pBK7rRtLOz7J8WhpPFd5s1Ho6FJ8v/m2LplsIkMarMgVP0+wXM2hMtLzYVd6t6JL9MeDRd3oa6CIzZmMNXDO3ctEz5MJTEXdyYnytHaDS4KGKbyQxZGHG519WtenD5AU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L/ExZlrX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67828C4CEFB;
-	Wed,  3 Dec 2025 20:28:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764793714;
-	bh=/Pw/ZfkaD7UiOYHsr9Mmwf+U3Hy4ekwK9M9qWlsLp0s=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=L/ExZlrXem22UeCby8d+SUnAjg3PCzyD1pU5n1N6IHVT8ut1QDlNPRtVTaICnrZyz
-	 FYIeLnJiwo+yt1q77bjnq9AJFilG9uYJcgyl08b1Ri8jnfEOPnLNBcL+YYixiyB0Mh
-	 SyHE/JabBacji5ty9QMdpXfFt1zih664IKrmvq3ulkKL9IA03HCiyCa+Td9BxB8XyN
-	 gaFlFLHlwmOC0xsy7b1XDr9/HWWY4VaURM4vbrLLThXFDr2r5W2pp7QxlWPeUaBDvw
-	 yIDedCYlbSWpjEqTvbJWhhQ4a1qEN0YBMJ+z9MhHCSEUgfowEu7q9fxrKdWVemohGn
-	 6Fxq5ybPqUJAA==
-Message-ID: <81593c42-fcc2-47ad-8d0f-69a2d17664a6@kernel.org>
-Date: Wed, 3 Dec 2025 21:28:28 +0100
+	 In-Reply-To:Content-Type; b=uF9dJdaSmunwfL6f0bNPCUcfZN/pwuEiOxUI253HbEbW5Uh1Fu3q03T9KQYheXrkUyl0teGpcmHgF5vklnQKPFtxKf/fCYeNDfBdHIwV3e+x+OL/XHd2psalDtrBPeuSLT/p5YDR6Q+GpCv3PYPkkKqhH2KEFCQMx9mt0PK2NvE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=iLBQU1Gv; arc=none smtp.client-ip=80.241.56.152
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4dM9FD4VdTz9sjn;
+	Wed,  3 Dec 2025 22:07:12 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1764796032;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=+7vdX3foJCovPIDuNWvdkmUlaoRsPiNhWMj+vm0lHGk=;
+	b=iLBQU1Gvu38mHyjwDxuhCe6THSKQ3j5YrMFBvirzHUzCOoMOBelZr0qGiGwKwVuFrlzlT9
+	PXHoWWPf212b26oTY6fR4Z9iwCoZO+JeMogQQ5BebyT7ddffrH8yInmM6E0hgV0HEsdAMk
+	3mq2Nd2JIZ8WD9duaCft/RWJHv2UYDhw2/iynGzFZ5tA+QXKcQO8WQd8VhDzgINWh0+c3i
+	H2MJ2BFwvsN6G5/Y9Jyt6XvW3aQtmH0SZyW+s7pE/ePVSUHp/NgF3bkqXFFvBSk05wLVn1
+	Y0WZ3jC0cebxIp5zfCyhlZUD7A3zfmHgQ2BKPFKuua5fecRbW7sxeOSPEmJxaw==
+Message-ID: <ddefca55-0f5f-4ba9-ac13-06bcfd59ee95@mailbox.org>
+Date: Wed, 3 Dec 2025 21:46:38 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 01/22] media: dt-bindings: media: rockchip-rga: add
- rockchip,rk3588-rga3
-To: =?UTF-8?Q?Sven_P=C3=BCschel?= <s.pueschel@pengutronix.de>,
- Jacob Chen <jacob-chen@iotwrt.com>,
- Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Heiko Stuebner
- <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, kernel@pengutronix.de
-References: <20251203-spu-rga3-v2-0-989a67947f71@pengutronix.de>
- <20251203-spu-rga3-v2-1-989a67947f71@pengutronix.de>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [net-next,PATCH 3/3] net: phy: realtek: Add property to enable
+ SSC
+To: "Russell King (Oracle)" <linux@armlinux.org.uk>,
+ Vladimir Oltean <vladimir.oltean@nxp.com>
+Cc: Ivan Galkin <ivan.galkin@axis.com>, netdev@vger.kernel.org,
+ "David S. Miller" <davem@davemloft.net>,
+ Aleksander Jan Bajkowski <olek2@wp.pl>, Andrew Lunn <andrew@lunn.ch>,
+ Conor Dooley <conor+dt@kernel.org>, Eric Dumazet <edumazet@google.com>,
+ Florian Fainelli <f.fainelli@gmail.com>,
+ Heiner Kallweit <hkallweit1@gmail.com>, Jakub Kicinski <kuba@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Michael Klein <michael@fossekall.de>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
+References: <20251130005843.234656-1-marek.vasut@mailbox.org>
+ <20251130005843.234656-3-marek.vasut@mailbox.org>
+ <20251203094224.jelvaizfq7h6jzke@skbuf>
+ <aTAN5lX_OgwQh7E8@shell.armlinux.org.uk>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251203-spu-rga3-v2-1-989a67947f71@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <aTAN5lX_OgwQh7E8@shell.armlinux.org.uk>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-MBO-RS-ID: 4c30b459ba8ffe44b93
+X-MBO-RS-META: m6rgzpyqkniqtbwd7i61gjqfo56hmtr4
 
-On 03/12/2025 16:52, Sven Püschel wrote:
-> Add a new compatible for the RGA3 (Raster Graphic Acceleration 3)
-> peripheral found on the RK3588 SoC.
+On 12/3/25 11:16 AM, Russell King (Oracle) wrote:
+> On Wed, Dec 03, 2025 at 11:42:24AM +0200, Vladimir Oltean wrote:
+>>> +
+>>> +       ret = phy_write_paged(phydev, RTL8211F_SSC_PAGE, RTL8211F_SSC_RXC, 0x5f00);
+>>> +       if (ret < 0) {
+>>> +               dev_err(dev, "RXC SCC configuration failed: %pe\n", ERR_PTR(ret));
+>>> +               return ret;
+>>> +       }
+>>
+>> I'm going to show a bit of lack of knowledge, but I'm thinking in the context
+>> of stmmac (user of phylink_config :: mac_requires_rxc), which I don't exactly
+>> know what it requires it for.
 > 
-> The existing rga node refers to the RGA2 peripheral. The RK3588
-
-What is "existing rga node"? There is no node here. This is a patch for
-bindings, so you say which hardware existing binding describes and what
-are the differences against that older hardware.
-
-> contains one RGA2 core and two RGA3 cores. Both feature a similar
-> functionality of scaling, cropping and rotating of up to two input
-> images into one output image. Key differences of the RGA3 are:
+> stmmac requires _all_ clocks to be running in order to complete reset,
+> as the core is made up of multiple modules, all of which are
+> synchronously clocked by their respective clocks. So, e.g. for the
+> receive sections to complete their reset activity, clk_rx_i must be
+> running. In RGMII mode, this means that the RGMII RXC from the PHY must
+> be running when either the stmmac core is subject to hardware or
+> software reset.
 > 
-> - supports 10bit YUV output formats
-> - supports 8x8 tiles and FBCD as inputs and outputs
-> - supports BT2020 color space conversion
-> - max output resolution of (8192-64)x(8192-64)
-> - MMU can map up to 32G DDR RAM
-> - fully planar formats (3 planes) are not supported
-> - max scale up/down factor of 8
-
-"differences" in meaning nothing above is supported by RGA2?
-
+>> Does it use the RGMII RXC as a system clock?
+>> If so, I guess intentionally introducing jitter (via the spread spectrum
+>> feature) would be disastrous for it. In that case we should seriously consider
+>> separating the "spread spectrum for CLKOUT" and "spread spectrum for RGMII"
+>> device tree control properties.
 > 
-> Signed-off-by: Sven Püschel <s.pueschel@pengutronix.de>
-> ---
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-
-
-Best regards,
-Krzysztof
+> I don't think it will affect stmmac - as long as the clock is toggling
+> so that the synchronous components in stmmac can change state, that's
+> all that the stmmac reset issue cares about.
+> 
+> However, looking at the RTL8211FS(I)(-VS) datasheet, CLKOUT and RXC
+> are two different clocks.
+> 
+> CLKOUT can be:
+> - reference clock generated from internal PLL.
+> - UTP recovery receive clock (for SyncE)
+> - Fibre recovery receive clock (for SyncE)
+> - PTP synchronised clock output
+> 
+> This can't be used for clocking the RGMII data, because it won't be
+> guaranteed to have the clock edges at the correct point, nor does it
+> switch clock speed according to the negotiated data rate. In SyncE
+> modes, the recovered clock is either 125MHz or 25MHz, whereas RXC
+> is 125, 25 or 2.5MHz.
+> 
+> There is a separate bit for enabling SSC on RXC - PHYCR2 bit 3 vs
+> CLKOUT SSC in bit 7.
+Uh ... and sadly, the "EMI improvement parameters application note 1.2 
+fails to mention this big when enabling CLK_OUT SSC. Also, there is 
+PHYCR2 CLKOUT SSC capability bits 13:12 , which does who knows what ?
 
