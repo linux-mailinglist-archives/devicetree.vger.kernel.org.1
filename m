@@ -1,125 +1,234 @@
-Return-Path: <devicetree+bounces-244042-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244043-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D45AC9F47D
-	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 15:24:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B219EC9F48C
+	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 15:27:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 607B24E1094
-	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 14:24:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6B81D3A2E73
+	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 14:27:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F0C52FC005;
-	Wed,  3 Dec 2025 14:24:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFDFC2FB99A;
+	Wed,  3 Dec 2025 14:27:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ncQaxL0k"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hCG6Mu1l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com [209.85.222.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6C7622DF9E;
-	Wed,  3 Dec 2025 14:24:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24D49231A30
+	for <devicetree@vger.kernel.org>; Wed,  3 Dec 2025 14:27:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764771874; cv=none; b=N/61RJJHdSukIbLZogA7sit+ufIl4QaFkW2yjS+bVoVQSMyMpkqPfYO645eaQMBQkRQ56qhTB28WOi9m8qQWXypOTSg8/MGJVVPVR8Zxw1yqbz8ZW5gmNldOZ/yVxhrw1QYhaoJmd1122JvHc/0NJqWOxLO/QzkCj1zCMAL3g2c=
+	t=1764772032; cv=none; b=IetEVyPyEwlIt8b8roSQ1jeHEKN8MxcKvU9hRcCcSmW+CwdbSSWyj+mmtOy4w0KfJJl6yWUAwQulSSALQ24v2g9TNpdg9xop6BIxTloTTnNOsc1BKQOKgwNcJTmUznAE6zOFm3O00YKrzDZgVgvdMC5NZPyTrMAozYCsIiVe85A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764771874; c=relaxed/simple;
-	bh=cZ0KlLwbxEY8MgqhrLJP4JtNKtGttFep6mfEB4G2plE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TFvrqxuvrpchMM0bV2GhYwrFNYcnzYVKQ7aZs+aYWTDblhDNWTbVFVHmDQaDP5C8vcSo5Fj2K45rYTD23NkGR0zWYq9I8Ea5aIKnpsysyLlcWZ5T0bPbUBwh6/qr0F6wTlVNzxBewHVzbUL5ImsY2FQUxHp+fnJm1fPyQYUUOik=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ncQaxL0k; arc=none smtp.client-ip=198.175.65.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1764771873; x=1796307873;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=cZ0KlLwbxEY8MgqhrLJP4JtNKtGttFep6mfEB4G2plE=;
-  b=ncQaxL0kjAFOJXHAAMgfFnJR0Uv1oBEEOtojslcdOM1WgMLjcs8hBtYe
-   CcXcGjC38jbuaeCHiLaCCZeqMe8P+Rb2fPfqvWH+CCYRK7L5qeZkbBEJg
-   A1a678NxqoquYroClYQjAyqW4si+ZAr/5WGqYatLf9BhocdIF4vAbFtfQ
-   MgUxwTG2k4AXACp6NDRY74J5W+3XfoaoN0VdshYEQtOrKAX8q5vAv0Oze
-   zhXhAK0MqU+qSb/shO4VDE/VqLbFjClYf8VxdHErWIM0BqJhDTVsIHqMm
-   ZKsVQoxgwvzIp7hRaoR+pWSdtcH7ELt8NRdbYazyv2GGklnz4ldxKvIXw
-   Q==;
-X-CSE-ConnectionGUID: 85oDyfdATmmvwoXCZWeBWg==
-X-CSE-MsgGUID: fGXW+EfxQTicOhiRY8p/GA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11631"; a="66705416"
-X-IronPort-AV: E=Sophos;i="6.20,246,1758610800"; 
-   d="scan'208";a="66705416"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Dec 2025 06:24:33 -0800
-X-CSE-ConnectionGUID: 911XSHwHRMSda2PljviQ6g==
-X-CSE-MsgGUID: cKKXRpRlRmOWN44S0dEGXg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,246,1758610800"; 
-   d="scan'208";a="193777793"
-Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost) ([10.245.245.81])
-  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Dec 2025 06:24:29 -0800
-Date: Wed, 3 Dec 2025 16:24:26 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Tomas Melin <tomas.melin@vaisala.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Nuno Sa <nuno.sa@analog.com>, Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] iio: adc: ad9467: add support for ad9211
-Message-ID: <aTBIGnetgq_NiuqS@smile.fi.intel.com>
-References: <20251203-add-ad9211-v1-0-170e97e6df11@vaisala.com>
- <20251203-add-ad9211-v1-2-170e97e6df11@vaisala.com>
- <aTAxo5sM90vwgxTT@smile.fi.intel.com>
- <d9651903-6b3b-4d9f-aafa-6377e14879a8@vaisala.com>
+	s=arc-20240116; t=1764772032; c=relaxed/simple;
+	bh=VfsI+OoResaz3tI9AL8kS4ShzuhL5tmXxgVPVzB7lZU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ENJErEuBSkbIdotJq/9wWbngZqD2eAKEOF5FIFfnbS2jab4ImF6d2RHBp25xy/CfTcpSyfmNJZlYElBHDetKpkOxk9c8CUjRU4j/LzclVvV6seaiTf6h2yapYlRtCErrW/o7ma0Dhxc+Ak3cQdqByMqPYdV5Xdl3oMBMrbu7PLU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hCG6Mu1l; arc=none smtp.client-ip=209.85.222.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-qk1-f175.google.com with SMTP id af79cd13be357-8b22b1d3e7fso634908385a.3
+        for <devicetree@vger.kernel.org>; Wed, 03 Dec 2025 06:27:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1764772030; x=1765376830; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=AOWnkIRJZlMYfvBdntLM8OIUOPXbDKElPfu2JoYWbfk=;
+        b=hCG6Mu1l5jucqjW5z/HGYOlDkZ3gRWLK1RI467zzc3w2068PPcjxIF7hJJpMDmR6vy
+         cJowm4MRXpMcQ6XGIQ7tr9dlzMHu1qcvuO2ppVA/9vA94V2iHxrdKSC25o4MD3Uwjlr+
+         /9EN0/5pYA5plMWTsmNYa11YBTMa84NdmdvRvxVvbO8KCk6EMqKSMbBOY+epbclOE3mz
+         fJsvO5AovpOFARvRwsQCG1Arrc0VxzvgL92HYceApSH1EgPLiFwOcxsBIYo2nz6fYtUc
+         2pPe+IRQwf/qP/BpbhCEeg6X2oJR7Amt32qsWA9ACpZAm3w05mn7jerR6rMqDNI3kDjM
+         h1gg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764772030; x=1765376830;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=AOWnkIRJZlMYfvBdntLM8OIUOPXbDKElPfu2JoYWbfk=;
+        b=dWzhmWVf9gW9Y5TPTvWh8gFTr13LKyLj+MwFPsE/pfVEeu8AHjm5UwEZKMdCWmrzFG
+         5nyZzzH7yvsN+6IF4Qr+5x6WCbJjJjpVImhA0Pand9a+NWMXWJYt+WV/ey2jKpV/2iE5
+         2HcJVhD5NzygefPHMImJ0EAWoyYM/jT1UVC3TKisAvTJA6AZ2DBPORStO+34faaVNbhN
+         Z3xZ3hz9HzjaU2k3YjJY5XGXURv8FjEQf6654qBMVIx7mvgQxZgZFPyUCbLey2zWbxFl
+         /FXwzo9lynKQ6ri+JzJop5ZRged53/CECn0kRw7A5d6Wvou30VOr2TaEdEblWubRc2tf
+         y/jg==
+X-Forwarded-Encrypted: i=1; AJvYcCXh6lRcmIE0mxWmgjMVQHpsaUj4Zau1Vr5cTxBUxtgBUTpXcULHh42DIG2sLWNkGxoQnATlQw+6jnJx@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy2zV5lzDqocjwH8DAN3uUBV4Q3zteSMka1GJE4ZI6XA1wQufQb
+	bFl9muv5FpRTm/guGhvqqQMDAYtNu2zlVJnYR0dchtM92b3aLntZ5C1xIXhGdP/WCEsMAwCi9BB
+	NtZy9wIThhzcEcSYzI2q/mI/wlNQiCcp+LXTS6Fj8Gw==
+X-Gm-Gg: ASbGncu0eO94jNHd0nc9NgYAlbPih2hJlleAhSXZxm/di3h4x8yZnpZTfuf60yclats
+	BTb2QioKRlB+iCaoWDJs+z09Q0VXxd2/FzX8vNTqvUyYwd/ZTYeUVVqXJi4KNwX9UNIml32DFJ0
+	hvO1mW9b4bOQ3E3SW7vdgBcSwO6KfDiJrzbTMKmMyhFizbpyrdP7i0MX+HhGnpIsqIgnxOKaEEn
+	lL+81cWDZnVBsErbQ9Iw0VBKROrNouTPiJ55dITDbvyT4SWP9Fmbmbzq63wIh+SxU0pTFG7KHnh
+	tvEyMjiN9hCMj22Bi+agM0UJcHIyUEuKxmhVLU4=
+X-Google-Smtp-Source: AGHT+IFNGJk4s9lPW6fY+k5+AVtO9FAylsbP6PpdkIIKavRVY5uJxDEvlJAXv4kVASM3j7tYT1/H9qLCpTrzGdArpA0=
+X-Received: by 2002:a05:620a:448e:b0:8b2:eb66:c64 with SMTP id
+ af79cd13be357-8b5e5646192mr333305285a.29.1764772029729; Wed, 03 Dec 2025
+ 06:27:09 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <d9651903-6b3b-4d9f-aafa-6377e14879a8@vaisala.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+References: <20250908-enable-byte-cntr-for-tmc-v6-0-1db9e621441a@oss.qualcomm.com>
+ <20250908-enable-byte-cntr-for-tmc-v6-4-1db9e621441a@oss.qualcomm.com>
+In-Reply-To: <20250908-enable-byte-cntr-for-tmc-v6-4-1db9e621441a@oss.qualcomm.com>
+From: Mike Leach <mike.leach@linaro.org>
+Date: Wed, 3 Dec 2025 14:26:58 +0000
+X-Gm-Features: AWmQ_bnOyt0zjYPZlE9hvMXqjUVxenScrOKMJzaNlCT6V8A1ZVtEm0eyoMNIGlk
+Message-ID: <CAJ9a7Vg93PZzgxao6NjmGW2rJrZnnMj6+Lz3tdJ2P5AP-JS7ow@mail.gmail.com>
+Subject: Re: [PATCH v6 4/9] coresight: tmc: add create/clean functions for etr_buf_list
+To: Jie Gan <jie.gan@oss.qualcomm.com>
+Cc: Suzuki K Poulose <suzuki.poulose@arm.com>, James Clark <james.clark@linaro.org>, 
+	Alexander Shishkin <alexander.shishkin@linux.intel.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Tingwei Zhang <tingwei.zhang@oss.qualcomm.com>, Jinlong Mao <jinlong.mao@oss.qualcomm.com>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Wed, Dec 03, 2025 at 03:33:15PM +0200, Tomas Melin wrote:
-> On 03/12/2025 14:48, Andy Shevchenko wrote:
-> > On Wed, Dec 03, 2025 at 12:20:34PM +0000, Tomas Melin wrote:
+On Mon, 8 Sept 2025 at 03:02, Jie Gan <jie.gan@oss.qualcomm.com> wrote:
+>
+> Create and insert or remove the etr_buf_node to/from the etr_buf_list.
+>
+> Signed-off-by: Jie Gan <jie.gan@oss.qualcomm.com>
+> ---
+>  drivers/hwtracing/coresight/coresight-tmc-etr.c | 94 +++++++++++++++++++++++++
+>  drivers/hwtracing/coresight/coresight-tmc.h     |  2 +
+>  2 files changed, 96 insertions(+)
+>
+> diff --git a/drivers/hwtracing/coresight/coresight-tmc-etr.c b/drivers/hwtracing/coresight/coresight-tmc-etr.c
+> index b07fcdb3fe1a..ed15991b3217 100644
+> --- a/drivers/hwtracing/coresight/coresight-tmc-etr.c
+> +++ b/drivers/hwtracing/coresight/coresight-tmc-etr.c
+> @@ -1909,6 +1909,100 @@ const struct coresight_ops tmc_etr_cs_ops = {
+>         .panic_ops      = &tmc_etr_sync_ops,
+>  };
+>
+> +/**
+> + * tmc_clean_etr_buf_list - clean the etr_buf_list.
+> + * @drvdata:   driver data of the TMC device.
+> + *
+> + * Remove the allocated node from the list and free the extra buffer.
+> + */
+> +void tmc_clean_etr_buf_list(struct tmc_drvdata *drvdata)
+> +{
+> +       struct etr_buf_node *nd, *next;
+> +
+> +       list_for_each_entry_safe(nd, next, &drvdata->etr_buf_list, node) {
+> +               if (nd->sysfs_buf == drvdata->sysfs_buf) {
+> +                       if (coresight_get_mode(drvdata->csdev) == CS_MODE_DISABLED) {
+> +                               drvdata->sysfs_buf = NULL;
+> +                               tmc_free_etr_buf(nd->sysfs_buf);
+> +                               nd->sysfs_buf = NULL;
+> +                       }
+> +                       list_del(&nd->node);
+> +                       kfree(nd);
+> +               } else {
+> +                       /* Free allocated buffers which are not utilized by ETR */
+> +                       list_del(&nd->node);
+> +                       tmc_free_etr_buf(nd->sysfs_buf);
+> +                       nd->sysfs_buf = NULL;
+> +                       kfree(nd);
+> +               }
+> +       }
+> +}
+> +EXPORT_SYMBOL_GPL(tmc_clean_etr_buf_list);
+> +
+> +/**
+> + * tmc_create_etr_buf_list - create a list to manage the etr_buf_node.
+> + * @drvdata:   driver data of the TMC device.
+> + * @num_nodes: number of nodes want to create with the list.
+> + *
+> + * Return 0 upon success and return the error number if fail.
+> + */
+> +int tmc_create_etr_buf_list(struct tmc_drvdata *drvdata, int num_nodes)
+> +{
+> +       struct etr_buf_node *new_node;
+> +       struct etr_buf *sysfs_buf;
+> +       int i = 0, ret = 0;
+> +
+> +       /* We dont need a list if there is only one node */
+> +       if (num_nodes < 2)
+> +               return -EINVAL;
+> +
+> +       /* We expect that sysfs_buf in drvdata has already been allocated. */
+> +       if (drvdata->sysfs_buf) {
+> +               /* Directly insert the allocated sysfs_buf into the list first */
+> +               new_node = kzalloc(sizeof(struct etr_buf_node), GFP_KERNEL);
+> +               if (IS_ERR(new_node))
+> +                       return PTR_ERR(new_node);
+> +
+> +               new_node->sysfs_buf = drvdata->sysfs_buf;
+> +               new_node->is_free = false;
+> +               list_add(&new_node->node, &drvdata->etr_buf_list);
+> +               i++;
+> +       }
+> +
+> +       while (i < num_nodes) {
+> +               new_node = kzalloc(sizeof(struct etr_buf_node), GFP_KERNEL);
+> +               if (IS_ERR(new_node)) {
+> +                       ret = PTR_ERR(new_node);
+> +                       break;
+> +               }
+> +
+> +               sysfs_buf = tmc_alloc_etr_buf(drvdata, drvdata->size, 0, cpu_to_node(0), NULL);
+> +               if (IS_ERR(sysfs_buf)) {
+> +                       kfree(new_node);
+> +                       ret = PTR_ERR(new_node);
+> +                       break;
+> +               }
+> +
+> +               /* We dont have a available sysfs_buf in drvdata, setup one */
+> +               if (!drvdata->sysfs_buf) {
+> +                       drvdata->sysfs_buf = sysfs_buf;
+> +                       new_node->is_free = false;
+> +               } else
+> +                       new_node->is_free = true;
+> +
+> +               new_node->sysfs_buf = sysfs_buf;
+> +               list_add(&new_node->node, &drvdata->etr_buf_list);
+> +               i++;
+> +       }
+> +
+> +       /* Clean the list if there is an error */
+> +       if (ret)
+> +               tmc_clean_etr_buf_list(drvdata);
+> +
+> +       return ret;
+> +}
+> +EXPORT_SYMBOL_GPL(tmc_create_etr_buf_list);
+> +
+>  int tmc_read_prepare_etr(struct tmc_drvdata *drvdata)
+>  {
+>         int ret = 0;
+> diff --git a/drivers/hwtracing/coresight/coresight-tmc.h b/drivers/hwtracing/coresight/coresight-tmc.h
+> index 292e25d82b62..ca0cba860d5f 100644
+> --- a/drivers/hwtracing/coresight/coresight-tmc.h
+> +++ b/drivers/hwtracing/coresight/coresight-tmc.h
+> @@ -459,5 +459,7 @@ void tmc_etr_remove_catu_ops(void);
+>  struct etr_buf *tmc_etr_get_buffer(struct coresight_device *csdev,
+>                                    enum cs_mode mode, void *data);
+>  extern const struct attribute_group coresight_etr_group;
+> +void tmc_clean_etr_buf_list(struct tmc_drvdata *drvdata);
+> +int tmc_create_etr_buf_list(struct tmc_drvdata *drvdata, int num_nodes);
+>
+>  #endif
+>
+> --
+> 2.34.1
+>
 
-...
-
-> >> Link: https://www.analog.com/media/en/technical-documentation/data-sheets/AD9211.pdf
-> > 
-> > Datasheet: https://www.analog.com/media/en/technical-documentation/data-sheets/AD9211.pdf
-> 
-> That will give
-> 
-> WARNING: Unknown link reference 'Datasheet:', use 'Link:' or
-> 'Closes:' instead
-> #22:
-> Datasheet:
-> https://www.analog.com/media/en/technical-documentation/data-sheets/AD9211.pdf
-> 
-> So I would like to keep it as is. Or then please convince checkpatch it
-> should be accepted as a valid tag ;)
-
-checkpatch is full of false-positives. It's a recommendation tool, don't stick
-to it too much.
-
-	git log --oneline --no-merges --grep ^Datasheet:
-
-will give you list of examples existing in the Git history, 163 and counting.
-
-The first one appeared in 2009 and started being used widely ca. 2015.
-
+Reviewed-by: Mike Leach <mike.leach@linaro.org>
 -- 
-With Best Regards,
-Andy Shevchenko
-
-
+Mike Leach
+Principal Engineer, ARM Ltd.
+Manchester Design Centre. UK
 
