@@ -1,191 +1,126 @@
-Return-Path: <devicetree+bounces-243835-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-243836-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F387C9D9B4
-	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 04:05:39 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82A29C9DA27
+	for <lists+devicetree@lfdr.de>; Wed, 03 Dec 2025 04:22:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3BAB14E037C
-	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 03:05:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 68FAF3A14AC
+	for <lists+devicetree@lfdr.de>; Wed,  3 Dec 2025 03:21:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A17A82417C6;
-	Wed,  3 Dec 2025 03:05:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 300D622CBC0;
+	Wed,  3 Dec 2025 03:21:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="srPfPMyp"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="ismz0VN6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.4])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04C202222D1
-	for <devicetree@vger.kernel.org>; Wed,  3 Dec 2025 03:05:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8ADA2DDAB;
+	Wed,  3 Dec 2025 03:21:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764731136; cv=none; b=PnpyC7TEvSZdjagTbrYPqLDb7E0usH/NIJ9IPt7d3oPq1FHSLPcnN8L6yYFwkCUxLpBNaDz0zstTgF0T95kgqDMOWNzSXcTxAgrCUY+3ASehPel5hKheBr7JUWGNsB5odgR3TZpmaLXTqJ9nGVk7qGYymXnD411FyH7jOfVnPog=
+	t=1764732117; cv=none; b=Lubjv3BvHFsKvyQmTowoYg8r3lXWC5VayZ1Ugci8vNGv+7IBUQXVHB4s2tmws5bt+KPbu8dYeSVB17hPc/vDsyiTzGrxun+PJyL2vTmEMwZfeh10T9mbGwGNqxbl38ih4abpT27sGSjWlYoosBSHgIoTvr7RF9jKFO/EGe45DrY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764731136; c=relaxed/simple;
-	bh=meSucs6aX2A4XVy1F+K5x4iZpmFlAAKDNrrl/ysjrUk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=HrkluWbtJoMBuUa7dDcRlBURCyhwWWH/8SfjliXu6524iP22qs/1ynz1M3xmm4aMgxGWTXo1eNKufwz8lt60dr+oNFHy7dCB/eCyQ16dlIKhjoNVsBYahBhrrAmq8ATEJ1NoyMuHUhfWCDJPzUmMDSBrntaaoSJTCgJ1y9y1xE8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=srPfPMyp; arc=none smtp.client-ip=209.85.214.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-295548467c7so72067755ad.2
-        for <devicetree@vger.kernel.org>; Tue, 02 Dec 2025 19:05:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1764731134; x=1765335934; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2SUCSRcAh5wfvR1Ga9HOQmp+DboJkGyQoezHpnT4C/w=;
-        b=srPfPMypRXCwgorf23xZa8c9/teEl76WXXtxLaE7aOwS4eq98l3mX6EFsPzf/vXuBo
-         d8W/ttOZ3EIX7rN6kkv769aXksjhwBtIGUoYBquOP85o61wciDBptGjjSQSrSIgnYP0L
-         QNamnoX4u1oBMRNxaSXXfcZFL4ea5cza15venFMqQENMn3btFTeF4jDWshHwPHj87TYI
-         aQt2E/uZ/hFsJ/pG5KxiOEH2hgY3YYS4wVfBs+gpF7xa7IQYmi547d8kXWvzKPJZ8pKI
-         +QJ0fonWDgbUE6/nNPhpq2I2LxebKR18SL7nTbCu6EC2/ICP7TYKxe0mpwvOMdGYS8j0
-         6RLg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764731134; x=1765335934;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=2SUCSRcAh5wfvR1Ga9HOQmp+DboJkGyQoezHpnT4C/w=;
-        b=B7h3AnKjByJHwKxNP0qG5EPsF7fr1yCjdFUyRoK0k39FBaA+tR1Blg7fJNxWlYIVMP
-         TeTUex5lVNi4sR/ChjpVf5znPdfD4y3LVKiAdQASfcbKNqrIepFcpRoMSu7csErGGFIL
-         K0ccV0YqXOqhciiekW5vY/V31bRgO+88r5+7/h5DbGS/uZXeDtB466ZC2TxoIkkUbMMG
-         6vXVZlV/gskaAe0z3itJY4OjZxC3LeyiT9TPBjZixjPMtxiCBwMWh5+Ecaf+FaDzf/I8
-         oN4zgyZ3BsoeyevT/IXIPzCS2Q6ZaCz9CATtQhnAMQrVN1oL0zMPjhQq0ljaEO4kH94e
-         BYtQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW+23Edf5H6Psp1q+gr0gnq4+UJpIMggDtSxA/dPclqRZo9GGfQoPCCayOHthX1mnYrTAR9Rre5tmz5@vger.kernel.org
-X-Gm-Message-State: AOJu0YzeiqEofHQncsUHiTFWeOL+9+0ucID0fKoJwvqYClgBF69rZXy+
-	28rcqmOm8QyTxsGai4jCVm0RpL5av1iu0PKgHYAeZosZZxaP3RUnergCkU8fOafnXEZwSs9Fb4q
-	ZC6MNMMXo8u8wMQRkH5/LoX61DxC5U6xeY9GDbxoO
-X-Gm-Gg: ASbGnctqH+wjj77BwKGV1+1ihsY0CWTFsOW+0j/PIjW0aWdoN0ULjlghAGoUHRGzQMo
-	REgAOxJoe1PRDoiX4KvMxW/IZD9ihxfowu7PPyZl01YDVfdrrRnXR6qVsAnoSW8jy8jk66pjDjR
-	/vFDESYNH++PGMZ5Y7LGc1J7SuhqdYl8e1pUQIlJbm8uEnHZeJrLlkAb2L7CObS3467doS35upF
-	Kb1xUorpnLRXg/EZYbstZl0J5/HvTOVU+0F2aYUuTF6fFbeM520qfBf9qLB+2UOjUWYzy25L45n
-	JUSesg==
-X-Google-Smtp-Source: AGHT+IEaw/KAaB9NQPn92QcJbyFAkEiHxEvdc+JFEc5o3oBuUZIzccLg55YH3cTE7CxVtrjUj9n7SYHTGXfIZWZDfhI=
-X-Received: by 2002:a05:7022:1b0f:b0:119:e569:fba0 with SMTP id
- a92af1059eb24-11df0bee281mr624917c88.15.1764731133682; Tue, 02 Dec 2025
- 19:05:33 -0800 (PST)
+	s=arc-20240116; t=1764732117; c=relaxed/simple;
+	bh=h2hCNpT7qiWp0u63vW4WUvUTM/pS6vEO989A3Y3P+5M=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=nx703X9zf5AVfh14RDouNIyjbbj5bgzBXZXmvhhWAH2BP8IgBItj2U0eCWY/z17VBKaHJkKtNTTSQ5Xc8t3Y4R5qh3Da3tIY2+7VgFhaOh4D96sz865mmbJi9kmZb/MeRsCdg3VAeVtWyo1hxiWGtDl5b7JB3QNAjjl6aulhybc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=ismz0VN6; arc=none smtp.client-ip=117.135.210.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=zG
+	BGq2OtLr/Tw+dOoyB+U8Aa2Y5bi5NGEkZsJSUoqR4=; b=ismz0VN6S1IQx6cpWG
+	yq39uCK6PiH/Df++6voqJqSpfCJbjEi25Clh2mpgJYwelfS1p6qkbPz+e0eCMfsr
+	SygSHyIiCXskBbnyMGcsT2aAI6pnenkvymcG/MuBdfQasmsE7N7DrAel9WToB79x
+	6pi+zAwN4/4FZcDvmolp+mIos=
+Received: from duge-virtual-machine (unknown [])
+	by gzga-smtp-mtada-g0-2 (Coremail) with SMTP id _____wDnR4amrC9pKWlQDg--.349S2;
+	Wed, 03 Dec 2025 11:21:14 +0800 (CST)
+From: q691800735@163.com
+To: Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Alexandre Ghiti <alex@ghiti.fr>,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	jybruceupup <q691800735@163.com>
+Subject: [PATCH] dt-bindings: soc: canaan: Add K230 power domain bindings
+Date: Wed,  3 Dec 2025 11:21:07 +0800
+Message-ID: <20251203032107.31388-1-q691800735@163.com>
+X-Mailer: git-send-email 2.52.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251122-controller-v8-0-e7562e0df658@google.com>
- <20251122-controller-v8-2-e7562e0df658@google.com> <2025112226-heave-refrain-53e6@gregkh>
- <CA+zupgwzQ5r=-_L79D74=9VRqRO94N0yTApHChM+Nu0cn1ss3w@mail.gmail.com>
- <2025120209-unstylish-john-2a6c@gregkh> <00d75fd3-a796-402a-a1a3-2172862fcf91@kernel.org>
- <CAD=FV=VLOLiGDfQOWXOL0H+M4EnSj1kouYK37WHV=8OVEwt+qg@mail.gmail.com>
-In-Reply-To: <CAD=FV=VLOLiGDfQOWXOL0H+M4EnSj1kouYK37WHV=8OVEwt+qg@mail.gmail.com>
-From: Roy Luo <royluo@google.com>
-Date: Wed, 3 Dec 2025 11:04:56 +0800
-X-Gm-Features: AWmQ_bnH8zw5DfDwDs1QuKD2A0QWVUVTK2D542APdmuEtTsd_99YivSDqmKY8X8
-Message-ID: <CA+zupgwiJmS9+MFt8F02HrPkRYPDidjg9dxNUJxd8d_0RM6cww@mail.gmail.com>
-Subject: Re: [PATCH v8 2/2] usb: dwc3: Add Google Tensor SoC DWC3 glue driver
-To: Doug Anderson <dianders@google.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Peter Griffin <peter.griffin@linaro.org>, =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
-	Tudor Ambarus <tudor.ambarus@linaro.org>, Thinh Nguyen <Thinh.Nguyen@synopsys.com>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Badhri Jagan Sridharan <badhri@google.com>, linux-usb@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
-	Joy Chakraborty <joychakr@google.com>, Naveen Kumar <mnkumar@google.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:_____wDnR4amrC9pKWlQDg--.349S2
+X-Coremail-Antispam: 1Uf129KBjvJXoW7uF1fJr47WFWDWrW8Zw47Jwb_yoW8Cw4kpF
+	yrCr95Gr4UJr1Skw4Sga4Y9343u3ykCr12y3sxWr1qyF4DWr1jqwnagF9Fvr9rArsa9r4I
+	vF9IkFnI93y7ZaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0pRHv3UUUUUU=
+X-CM-SenderInfo: jtwzimyqqxjki6rwjhhfrp/1tbiFA4ZMGkvpbKuvQAAsx
 
-On Wed, Dec 3, 2025 at 12:25=E2=80=AFAM Doug Anderson <dianders@google.com>=
- wrote:
->
-> Hi,
->
-> On Tue, Dec 2, 2025 at 1:42=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.o=
-rg> wrote:
-> >
-> > >> I plan to add ARCH_GOOGLE as a dependency in the next
-> > >> version per [1], so the "depends on" would probably look like
-> > >> the following per your suggestion:
-> > >
-> > > But "Google" is not an arch :(
-> > >
-> > > And really, the whole "only have a sub-arch symbol" is something that
-> > > personally, I think is totally wrong and prevents kernel images from
-> > > being built for more than one "arch".  As an example, the Android GKI
-> >
-> > Probably you think ARCH_FOO as arch/FOO/ directory, but this is not the
-> > case. ARCH_FOO in this context is SoC platform, so e.g.
-> > arch/arm64/boot/dts/FOO/.
-> >
-> > All of ARCH_FOO build into one image and that's recommended way to limi=
-t
-> > unnecessary drivers.
-> >
-> > It's just confusing naming for whatever reason.
-> >
-> > > kernel has to support more than one of these, so what does putting th=
-is
-> > > behind a symbol that no one will actually use mean anything?  Android
-> > > will never be only building a ARCH_GOOGLE kernel.
-> >
-> > But distros will be, people will be. OK, maybe not for ARCH_GOOGLE, but
-> > ARCH_QCOM we do for Qualcomm-based laptops and embedded folks even more=
-.
-> >
-> > We had this talk in the past. The point is that these drivers here are
-> > unusable outside of that hardware platform, so only when you choose
-> > hardware platform (ARCH_EXYNOS, ARCH_GOOGLE, ARCH_QCOM) you will be abl=
-e
-> > to choose these drivers.
-> >
-> > You can also look at ARCH_FOO a bit orthogonal to actual kernel
-> > architecture, because ARCH_EXYNOS is for both arm (arm32) and arm64. Th=
-e
-> > drivers should be available for all Exynos-platforms, regardless whethe=
-r
-> > this is arm32 or arm64.
->
-> FWIW I don't feel strongly about the ARCH_XYZ Kconfig settings, but
-> I'd tend to agree with Krzysztof that I personally find them useful.
-> Sure, it's fine to just turn all of the ARCH_XYZ values on and they
-> shouldn't conflict with each other, but it provides an easy way for
-> someone to know that certain drivers are only useful if the kernel
-> you're building supports a given arch. If I'm building a kernel that
-> doesn't need to support any Qualcomm boards, for instance, I can just
-> turn that arch off and I don't even need to think about all of the
-> Qualcomm-related config options.
->
-> FWIW, if you do add a "depend" on ARCH_GOOGLE you should mention
-> somewhere (maybe "after the cut" in your patch) that ARCH_GOOGLE
-> doesn't exist yet. It should eventually exist when some version of
-> this patch lands:
->
-> https://lore.kernel.org/r/20251111112158.3.I35b9e835ac49ab408e5ca3e098393=
-0a1f1395814@changeid/
->
-> ...but it's not there yet. ;-)
->
-> -Doug
+From: jybruceupup <q691800735@163.com>
 
-Hi all,
+Add device tree bindings for the Kendryte K230 power management domains
+(PM domains), which control power gating of core peripherals (I2C, SPI,
+MMC, AI2D).
 
-I appreciate the detailed discussion regarding Kconfig dependencies.
-Based on all the feedback, I'll make the following adjustments:
-- I will update the Kconfig dependency to depends on
-  ARCH_GOOGLE || COMPILE_TEST and drop the other
-  dependencies on OF && COMMON_CLK && RESET_CONTROLLER
-  as suggested by Krzysztof. This should also address the build
-  coverage concern from Greg.
-- As Doug pointed out, the ARCH_GOOGLE Kconfig option does
-  not exist... yet. I will add a note about this in the next version.
+Key properties:
+- compatible: "canaan,k230-pm-domains"
 
-Thank you all again for helping me improve this patch.
-I will send out a new version with these changes soon.
+This binding follows the Devicetree Specification v0.4 and upstream
+PM domain framework requirements. It is a prerequisite for peripheral
+drivers requiring power gating control.
 
-Regards,
-Roy Luo
+Signed-off-by: jybruceupup <q691800735@163.com>
+---
+ MAINTAINERS                                      |  1 +
+ include/dt-bindings/soc/canaan,k230_pm_domains.h | 13 +++++++++++++
+ 2 files changed, 14 insertions(+)
+ create mode 100644 include/dt-bindings/soc/canaan,k230_pm_domains.h
+
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 4d456982a..13cdbf647 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -22106,6 +22106,7 @@ P:	Documentation/arch/riscv/patch-acceptance.rst
+ T:	git git://git.kernel.org/pub/scm/linux/kernel/git/riscv/linux.git
+ F:	arch/riscv/
+ F:	arch/riscv/configs/k230_defconfig
++F:	include/dt-bindings/soc/canaan,k230_pm_domains.h
+ N:	riscv
+ K:	riscv
+ 
+diff --git a/include/dt-bindings/soc/canaan,k230_pm_domains.h b/include/dt-bindings/soc/canaan,k230_pm_domains.h
+new file mode 100644
+index 000000000..e212126e4
+--- /dev/null
++++ b/include/dt-bindings/soc/canaan,k230_pm_domains.h
+@@ -0,0 +1,13 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++
++#ifndef _DT_BINDINGS_SOC_K230_PM_DOMAINS_H
++#define _DT_BINDINGS_SOC_K230_PM_DOMAINS_H
++
++#define K230_PM_DOMAIN_CPU1       0       /* CPU1 subsystem */
++#define K230_PM_DOMAIN_AI         1       /* AI Subsystem */
++#define K230_PM_DOMAIN_DISP       2       /* Display, 2.5D Engine */
++#define K230_PM_DOMAIN_VPU        3       /* Video subsystem */
++#define K230_PM_DOMAIN_DPU        4       /* 3D-struct Engine */
++#define K230_PM_DOMAIN_MAX        5
++
++#endif /* _DT_BINDINGS_SOC_K230_PM_DOMAINS_H */
+-- 
+2.52.0
+
 
