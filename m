@@ -1,149 +1,137 @@
-Return-Path: <devicetree+bounces-244423-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244424-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 987D1CA4A91
-	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 18:05:24 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C0ECCA4B51
+	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 18:14:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id DED6330049B7
-	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 17:05:23 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2B7C13087D4A
+	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 17:07:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C7BB2F49F0;
-	Thu,  4 Dec 2025 17:05:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 871932D73B5;
+	Thu,  4 Dec 2025 17:07:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iE5sujLC"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="a27VijN9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54441309F14
-	for <devicetree@vger.kernel.org>; Thu,  4 Dec 2025 17:05:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B247326C384;
+	Thu,  4 Dec 2025 17:07:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764867923; cv=none; b=Vynv4so4bF6eTE3Gpujbn7u1mMq84om74QQj4Tqxf3r7ZEJJDIkDaAXYsSTdQAv3BvJH32ac7++oYUlZuzanLUSRNed5RCvXfWxKzCqRiovrVy+XQLDU6T6G5gQzXugKU0wmVMs/kHUdT33JNFuJ0CDMYr9TCSNCYBCYDOgjJHA=
+	t=1764868037; cv=none; b=uZdUVF7zW+rkvf5pO901DAczfzlCQLOYkZU4q59Akbq8BAyRSyW1Ujui4MMKpXJKP7Xczc74QXRtW/4wkS5QLdZ2KXKvK5PqD4Fqr7QgXF2GZUtEMaRKBa1IAvruI8nw4pVW3pnWalTqYXfj+T5pCUT3265pxT641IRCYdaZb98=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764867923; c=relaxed/simple;
-	bh=+BQAo96K6gYDK9rIJ5sZBTh5/2wgpYrHzmz36YZ0h9A=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=UNldr+t65KdK5IqfusMtfmyRBUqpRMd+FTV8H1+JcKDCaDALbO7TJF60UQCuF+OAn3Abws6J978GEt1HWUTJVL6zjZGd0GxsyGk96tCbLNYWH3tvHXsWlQZIukuZgkcLCgYaLhuPUtdk2Dntd0H5pU7UhQwOUU1jkMaCjxR62UM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iE5sujLC; arc=none smtp.client-ip=209.85.208.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-640b06fa959so1979206a12.3
-        for <devicetree@vger.kernel.org>; Thu, 04 Dec 2025 09:05:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1764867919; x=1765472719; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=kg3+GXQJrSRCIpl+szpU9K94sF3dPzVaXSDtfFd90yg=;
-        b=iE5sujLCVX5hL6lLbgjGLRPacr7aySzPjaushkueJsEdM2dhnA3z2ZzvDRm3IRT45n
-         18qxlJV/txY1YAMk4F8sLQc1ObxLUbMwjJb/pNG7jw+j7XRSb1hRwZL2Y8/4WXFfBJ/X
-         ojk7Z8w0ZB3oJwwk9QnVFGhg+4W2kd+VXuaplmDRz3XNa0datV3QfvyC/jKY8UEx/mXL
-         4zbnxE299VhS119NdnvPK/+fROF0bgsqphRiVT+5r7tfNLIJgX30Z+AIpEzJiERCBQto
-         AIVLGx2hv+XPvDzgC4IJKJjQKChFXU05XfmpUlyCNSxX0Y57D5kRjLw3OAznmLDJlTpi
-         8VWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764867919; x=1765472719;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kg3+GXQJrSRCIpl+szpU9K94sF3dPzVaXSDtfFd90yg=;
-        b=CBzcNRdFVAvCFu5T88pWx410SfawPUO2+Qx8ePpboGyUD2XbwsNEybqG7Q8hz2WPE4
-         9JoCbnAaSTdV8dqbENY62na3ZSqZuVAtBKQ9jb664UTPOU3SGRgKCr08E06vcaPqTeKe
-         TLzGisucKsm6Gw8rz0C+DQFPX2pAdYG+UIsI/Xp/spe3YcD+bm+DyKRfhnmOxXo5TZj9
-         IZXP+4+ldqKM/R2k2yAJDsgtxR31zQPIG2giEI/t4gROhVV1c0CTVmE776ruuelgu6C4
-         RwSAUm664LYZby9kIcAmUVmgwIlPfQqCuxc0e7CSIy8PMsJBhp/Pnc61flDS8x9+C84M
-         T6FA==
-X-Forwarded-Encrypted: i=1; AJvYcCViyFPOo0a/EcLoaMgtaNVOvXJ56Qg2OgX181cjouf5HEKsSPeF+PkJkWOTD4CURgkQCEP5Fz88jqqJ@vger.kernel.org
-X-Gm-Message-State: AOJu0YzPXwYFr30PX69X5NKBgOv1JHWbTNh88bIE2meuJsaCzY9v0ZQ/
-	rCq5KXoVraq/tCAEX1oy2JMoQ4PhKZQt0UibJaej94j54923AlbYm/Xubrzv54bRXlaoPWuGYrX
-	MjU1WjdV+EeGyZW6diKYnlC+zwEvuu9U=
-X-Gm-Gg: ASbGncskYxkDM7HX/wA2AO2g+L1rwvwb6oji7Kp3KsCvyk4vqq3S/LvF1BMitmrn0+j
-	jzrQJthfSbFpO60u2RxJSFc2aYb739BUN+0b3j57kQ0Pen+WxpUWFlZjYduO200b/np5Gk953PS
-	TNeew1gAic7xw5aB1EdqxuNOIVl/3WRMSl+DghvjXnMeoUbt3BX+423G5zO/h5b4ZSS/K61KoeG
-	IcWpqOqzl1BGn3bwigd3wASNzIfN3JW+pwrgfVJd0LDIAz4ZvLTFo/Wj4RiZvD4DB26pw==
-X-Google-Smtp-Source: AGHT+IG9AKS27UcSx07KoYOWwja6RVplBXqyc0tOREa2QICJ8kkCeFjeLh3AGbZxmPxO+LrN0uh7FoxQp64DfkzF090=
-X-Received: by 2002:a05:6402:d0e:b0:640:ff5f:47a8 with SMTP id
- 4fb4d7f45d1cf-6479c3f6532mr5947624a12.8.1764867919153; Thu, 04 Dec 2025
- 09:05:19 -0800 (PST)
+	s=arc-20240116; t=1764868037; c=relaxed/simple;
+	bh=5bx90WoBo03a+iP1LHikx+WKE6go9Zlhxll3VSP5OHA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MFhlbhzStlWPpk5VdoiUNQNl5XNyGXMFfBiX7mcUG078qd0+2eGqcqU4TwUimfc8kfvzOf9yPmqkXv/W4G2urljwS1HEol3kGYISJEp842pvJ+Waya1Y1aLEmeVL5hg2bXV0Vhd5XD2371RcoJrjA2t09w77kE+gZUKDy27HUnQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=a27VijN9; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=x+DA9DqJYTMgGbBAG3F0o3MGMgQLdHjVX9AFF5VQTZk=; b=a27VijN9KnOnVEkF6RjBg5/Imx
+	wrEJK3aMu4X2qzQOARvATbb0w5eEhSiz5D8wWox/pVK2oobePxNuaSzTvXA3jgTYAxD+nveOuQmup
+	E1CDtZshcmuQR0WOnzYhK9eXcsheatg3DA6qwUr2NQfRcsbMxr4BXUKFWbvskEWBosbJbpoZVz3HV
+	Zpml8pY2hFmiRnuRgaP43UmJiF1WhdvNfTmPg5Ab9+6DIFyNTdnr+f2qvIHH7GAcRhwT7K4u99UdP
+	BkwRvyORTPFFIA9d54d1ozLxpHo5EjULS86E+1o09abCz4a2MZfgBt0CUkfluMUx0iR5veJ8xF19f
+	c7knF9ig==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:56126)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1vRCnG-000000003nl-31Ph;
+	Thu, 04 Dec 2025 17:07:02 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1vRCnE-000000001AO-2WM4;
+	Thu, 04 Dec 2025 17:07:00 +0000
+Date: Thu, 4 Dec 2025 17:07:00 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: John Madieu <john.madieu.xa@bp.renesas.com>
+Cc: prabhakar.mahadev-lad.rj@bp.renesas.com, andrew+netdev@lunn.ch,
+	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, geert+renesas@glider.be,
+	biju.das.jz@bp.renesas.com, claudiu.beznea@tuxon.dev,
+	magnus.damm@gmail.com, mcoquelin.stm32@gmail.com,
+	alexandre.torgue@foss.st.com, netdev@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 0/3]  net: stmmac: add physical port
+ identification support
+Message-ID: <aTG_tJGs7-p5kJzD@shell.armlinux.org.uk>
+References: <20251204163729.3036329-1-john.madieu.xa@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251125075604.69370-1-hal.feng@starfivetech.com> <20251125075604.69370-5-hal.feng@starfivetech.com>
-In-Reply-To: <20251125075604.69370-5-hal.feng@starfivetech.com>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Thu, 4 Dec 2025 22:35:01 +0530
-X-Gm-Features: AWmQ_blo07jkPZn5svQ8GwL_vHDmoWP8GFySAR6LM46D7PTJjpA9bu9AWt48b7g
-Message-ID: <CANAwSgQSBB_yTw5rDz2w6utvjUueWJi9tWUY9oZcpNAT8Wm8iA@mail.gmail.com>
-Subject: Re: [PATCH v4 4/6] riscv: dts: starfive: Add common board dtsi for
- VisionFive 2 Lite variants
-To: Hal Feng <hal.feng@starfivetech.com>
-Cc: Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <pjw@kernel.org>, 
-	Albert Ou <aou@eecs.berkeley.edu>, "Rafael J . Wysocki" <rafael@kernel.org>, 
-	Viresh Kumar <viresh.kumar@linaro.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
-	Manivannan Sadhasivam <mani@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>, 
-	Heinrich Schuchardt <heinrich.schuchardt@canonical.com>, E Shattow <e@freeshell.de>, 
-	devicetree@vger.kernel.org, linux-pci@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251204163729.3036329-1-john.madieu.xa@bp.renesas.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-Hi Hal,
+See comments on the previous posting of this patch series (why it was
+reposted in as little as six minutes apart...)
 
-On Tue, 25 Nov 2025 at 13:27, Hal Feng <hal.feng@starfivetech.com> wrote:
->
-> Add a common board dtsi for use by VisionFive 2 Lite and
-> VisionFive 2 Lite eMMC.
->
-> Acked-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-> Tested-by: Matthias Brugger <mbrugger@suse.com>
-> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
-> ---
->  .../jh7110-starfive-visionfive-2-lite.dtsi    | 161 ++++++++++++++++++
->  1 file changed, 161 insertions(+)
->  create mode 100644 arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-lite.dtsi
->
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-lite.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-lite.dtsi
-> new file mode 100644
-> index 000000000000..f8797a666dbf
-> --- /dev/null
-> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-lite.dtsi
-> @@ -0,0 +1,161 @@
-> +// SPDX-License-Identifier: GPL-2.0 OR MIT
-> +/*
-> + * Copyright (C) 2025 StarFive Technology Co., Ltd.
-> + * Copyright (C) 2025 Hal Feng <hal.feng@starfivetech.com>
-> + */
-> +
-> +/dts-v1/;
-> +#include "jh7110-common.dtsi"
-> +
-> +/ {
-> +       vcc_3v3_pcie: regulator-vcc-3v3-pcie {
-> +               compatible = "regulator-fixed";
-> +               enable-active-high;
-> +               gpio = <&sysgpio 27 GPIO_ACTIVE_HIGH>;
-> +               regulator-name = "vcc_3v3_pcie";
-> +               regulator-min-microvolt = <3300000>;
-> +               regulator-max-microvolt = <3300000>;
-> +       };
-> +};
+netdev has a rule: allow 24 hours between re-posts.
 
-The vcc_3v3_pcie regulator node is common to all JH7110 development boards.
-and it is enabled through the PWREN_H signal (PCIE0_PWREN_H_GPIO32).
+netdev has another rule: don't post new material, except for bug fixes
+for the net tree, while netdev is closed (in other words, while the
+merge window is open.) If you wish to post new material, mark it RFC.
 
-VisionFive 2 Product Design Schematics below
-[1] https://doc-en.rvspace.org/VisionFive2/PDF/SCH_RV002_V1.2A_20221216.pdf
+Thanks.
 
-Mars_Hardware_Schematics
-[2] https://github.com/milkv-mars/mars-files/blob/main/Mars_Hardware_Schematics/Milk-V_Mars_SCH_V1.21_2024-0510.pdf
+On Thu, Dec 04, 2025 at 04:37:26PM +0000, John Madieu wrote:
+> This series adds physical port identification support to the stmmac driver,
+> enabling userspace to query hardware-stable identifiers for network interfaces
+> via ndo_get_phys_port_id() and ndo_get_phys_port_name().
+> 
+> On systems with multiple ethernet controllers sharing the same driver,
+> physical port identification provides stable identifiers that persist
+> across reboots and are independent of interface enumeration order.
+> This is particularly useful for predictable network interface naming
+> and for correlating interfaces with physical connectors.
+> 
+> The implementation follows a two-tier approach:
+> 
+> 1. Generic stmmac support: Default implementations use the permanent MAC
+>    address as port ID and bus_id for port naming. This provides immediate
+>    benefit for all stmmac-based platforms.
+> 
+> 2. Glue driver override: Platform drivers can provide custom callbacks
+>    for hardware-specific identification schemes. The Renesas GBETH driver
+>    implements this to support device tree-based port identification,
+>    addressing cases where hardware lacks unique identification registers.
+> 
+> The Renesas implementation constructs an 8-byte port identifier from:
+> - Permanent MAC address (if available) or Renesas OUI (74:90:50) as fallback
+> - Port index from device tree property or ethernet alias
+> 
+> 
+> John Madieu (3):
+>   net: stmmac: add physical port identification support
+>   dt-bindings: net: renesas-gbeth: Add port-id property
+>   net: stmmac: dwmac-renesas-gbeth: add physical port identification
+> 
+>  .../bindings/net/renesas,rzv2h-gbeth.yaml     | 19 +++++++
+>  .../stmicro/stmmac/dwmac-renesas-gbeth.c      | 56 +++++++++++++++++++
+>  .../net/ethernet/stmicro/stmmac/stmmac_main.c | 54 ++++++++++++++++++
+>  include/linux/stmmac.h                        |  5 ++
+>  4 files changed, 134 insertions(+)
+> 
+> -- 
+> 2.25.1
+> 
+> 
 
-Thanks
--Anand
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
