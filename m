@@ -1,190 +1,150 @@
-Return-Path: <devicetree+bounces-244356-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244357-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8954DCA4036
-	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 15:29:02 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04470CA40CC
+	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 15:38:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 64366302218A
-	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 14:28:53 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C1E743045F55
+	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 14:33:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 486C4343200;
-	Thu,  4 Dec 2025 14:28:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a9GptvhQ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F5E63446B7;
+	Thu,  4 Dec 2025 14:33:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EC8F3054F2;
-	Thu,  4 Dec 2025 14:28:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FA91329377;
+	Thu,  4 Dec 2025 14:33:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764858529; cv=none; b=DYxPZ8v3oO6R3rga+bNDBqF7P5XRngXgl2Ljtr/0Dsx0j97lT9ouY1g/mfhQk/EI16Kuw/xiKp8Gv20L82vEPYGecyOtgBJaA+fPM24U0pb13Ar3aXcJ2ZNZX+f0A2yg0LpxLBOqDJC/Bxcbbjl6X8UAvVwFCYLBtWTyERgXeLE=
+	t=1764858822; cv=none; b=HyJ0Up2cxAn84gBOqqDKvRO7cWPo+PsYnN+tCsoYVEkkdDDHbwRZVkXKBA0SkzdFa/i1HMpWJ8V7tvQL9z9fbXKQxCih566AY6Sro7Xf4Fo/alIQIoFTibgvyPVeHidA8xwZNLdv3U1LI1dglil6NvN9wmUn8yKFF7tzA76JfqQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764858529; c=relaxed/simple;
-	bh=A7S0aqhNRp49+kPkpgOvDyswMTwDTAIZeVEntaKMiNQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bMZZF4nunW2mJSt10bEZaypS5GrBNLKK1zrx1ZNvoX+BrCNa56dJrRiZq125APyIofC9JDF+E+oUYynRmlkKLFsFLn/rHOJn4FKWJ8n8GogZL4Uy5zHferaKbt24CTdobTdu4YGBfH8BKdK8aCbRWLPTanNjk7aGEiGfAdbnJGQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a9GptvhQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79BA4C4CEFB;
-	Thu,  4 Dec 2025 14:28:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764858528;
-	bh=A7S0aqhNRp49+kPkpgOvDyswMTwDTAIZeVEntaKMiNQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=a9GptvhQzmrjIUAqXiGQVaXFPMJNpIA4Qs32xCzl131Ra7qCHiyRdEQsozNMtl1Ld
-	 NUQCKuQH+qKMmEk2IfpmR2tNKt5MdF77GT8GUOaJO5EPx2ZpOnJBAt8o21q9C9p1yi
-	 nP6zSys2/qtwTh/vrJ+6ncCJw2FEux1vriv+ePMLn68vWQTF3Q1IZpkRSLo9Sr55UY
-	 Ufs5Cc1zW8i6EVQa520w3g+9VIDoSQsSLQdmGsS//oju94/ju9Xz9DxNBDHPu+TX/1
-	 T5833m7y33jm87qabnz8O7cALxpnmAk++SUOJM8lg6i7EVU0xABXsYyCt9ki8LbOUF
-	 /yEgbRVcPHnTQ==
-Date: Thu, 4 Dec 2025 08:28:45 -0600
-From: Rob Herring <robh@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Mark Brown <broonie@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Marcelo Schmitt <marcelo.schmitt@analog.com>,
-	Michael Hennerich <michael.hennerich@analog.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Andy Shevchenko <andy@kernel.org>,
-	Sean Anderson <sean.anderson@linux.dev>, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org
-Subject: Re: [PATCH v2 5/6] dt-bindings: iio: adc: adi,ad7380: add spi-buses
- property
-Message-ID: <20251204142845.GA1303976-robh@kernel.org>
-References: <20251107-spi-add-multi-bus-support-v2-0-8a92693314d9@baylibre.com>
- <20251107-spi-add-multi-bus-support-v2-5-8a92693314d9@baylibre.com>
- <20251118155905.GB3236324-robh@kernel.org>
- <97c6b55d-9505-4091-8f0b-317dcbd70838@baylibre.com>
- <CAL_Jsq+ZZE0g424jE75xeCt2KY1ThPLqmbmOs0o_ddaJ8fOf3w@mail.gmail.com>
- <f2ac13fc-8f47-465e-8cef-e2e34bf41818@baylibre.com>
+	s=arc-20240116; t=1764858822; c=relaxed/simple;
+	bh=HFjqmrBsZWqpT07SPvdzAXMwMI8aOxaW+Stzf0rdERA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ZkLg8v3jtSXqBWSRavos3+OoZfErwww7dBJakHFcqz6m0QlhJ/3S3wjOLokf7DH5FpfuicwcI+P9vWSehTuYfXayu/5F3ClpJrI+gYe5vxIY1LeCESsw4zd2kR1HFt7MuTRZTobYWrG97fC6yKK6jpPcEhTehlfq8sioKtQaXTU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5303A339;
+	Thu,  4 Dec 2025 06:33:32 -0800 (PST)
+Received: from [10.1.28.112] (010265703453.cambridge.arm.com [10.1.28.112])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3B9F93F66E;
+	Thu,  4 Dec 2025 06:33:38 -0800 (PST)
+Message-ID: <43f9753d-2e63-4b52-a4af-ca8d22f0b351@arm.com>
+Date: Thu, 4 Dec 2025 14:33:36 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: rockchip: add SPDIF audio to Beelink A1
+To: Christian Hewitt <christianshewitt@gmail.com>,
+ Alex Bee <knaerzche@gmail.com>, Heiko Stuebner <heiko@sntech.de>
+Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20250828164300.3829488-1-christianshewitt@gmail.com>
+ <66ae20b3-3316-4ec2-9c51-8414c053dc32@arm.com>
+ <f0df035f-3c3d-4649-9f48-3e8e2e69d17b@gmail.com>
+ <5557C31E-3B1D-426C-BF9F-C417FF29E97C@gmail.com>
+From: Robin Murphy <robin.murphy@arm.com>
+Content-Language: en-GB
+In-Reply-To: <5557C31E-3B1D-426C-BF9F-C417FF29E97C@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <f2ac13fc-8f47-465e-8cef-e2e34bf41818@baylibre.com>
 
-On Wed, Nov 19, 2025 at 08:45:42AM -0600, David Lechner wrote:
-> On 11/19/25 7:18 AM, Rob Herring wrote:
-> > On Tue, Nov 18, 2025 at 11:46 AM David Lechner <dlechner@baylibre.com> wrote:
-> >>
-> >> On 11/18/25 9:59 AM, Rob Herring wrote:
-> >>> On Fri, Nov 07, 2025 at 02:52:51PM -0600, David Lechner wrote:
-> >>>> Add spi-buses property to describe how many SDO lines are wired up on
-> >>>> the ADC. These chips are simultaneous sampling ADCs and have one SDO
-> >>>> line per channel, either 2 or 4 total depending on the part number.
-> >>>>
-> >>>> Signed-off-by: David Lechner <dlechner@baylibre.com>
-> >>>> ---
-> >>>>  .../devicetree/bindings/iio/adc/adi,ad7380.yaml    | 22 ++++++++++++++++++++++
-> >>>>  1 file changed, 22 insertions(+)
-> >>>>
-> >>>> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7380.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7380.yaml
-> >>>> index b91bfb16ed6bc6c605880f81050250d1ed9c307a..9ef46cdb047d45d088e0fbc345f58c5b09083385 100644
-> >>>> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7380.yaml
-> >>>> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7380.yaml
-> >>>> @@ -62,6 +62,10 @@ properties:
-> >>>>    spi-cpol: true
-> >>>>    spi-cpha: true
-> >>>>
-> >>>> +  spi-data-buses:
-> >>>> +    minItems: 1
-> >>>> +    maxItems: 4
-> >>>> +
-> >>>
-> >>> As the property is not required, what's the default?
-> >>
-> >> spi-perepheral-props.yaml defines:
-> >>
-> >>         default: [0]
-> >>
-> >> Do I need to repeat that here?
-> > 
-> > No. So that means you only use one channel and the others are not connected?
+On 2025-12-04 2:13 pm, Christian Hewitt wrote:
+>> On 4 Dec 2025, at 12:23 am, Alex Bee <knaerzche@gmail.com> wrote:
+>>
+>> Hi Robin,
+>>
+>> Am 03.12.25 um 17:21 schrieb Robin Murphy:
+>>> [ Just noticed this... ]
+>>>
+>>> On 2025-08-28 5:43 pm, Christian Hewitt wrote:
+>>>> From: Alex Bee <knaerzche@gmail.com>
+>>>>
+>>>> Add the required nodes to enable SPDIF audio output on
+>>>> the Beelink A1 set-top-box.
+>>>
+>>> But the A1 doesn't have S/PDIF? Only HDMI plus a 3.5mm jack connected to the analog audio codec (and possibly the composite TV out) :/
+>>>
+>> Yeah, sorry - this patch wasn't supposed to be submitted upstream.
 > 
-> Correct.
+> Apologies, this is my enthusiasm for trying to clear out the patch
+> collection LibreELEC has been hoarding by sending things upstream
+> on behalf of the original authors (and hoarders).
+
+No worries :)
+
+> Would you like me to send a revert patch?
+
+Since I'm the only one complaining, and I'm liable to have a couple more 
+Rockchip DT patches to send soon anyway, feel free to leave it with me 
+unless you're particularly keen.
+
+Cheers,
+Robin.
+
 > 
-> > 
-> >>
-> >>>
-> >>>>    vcc-supply:
-> >>>>      description: A 3V to 3.6V supply that powers the chip.
-> >>>>
-> >>>> @@ -245,6 +249,22 @@ allOf:
-> >>>>        patternProperties:
-> >>>>          "^channel@[0-3]$": false
-> >>>>
-> >>>> +  # 2-channel chip can only have up to 2 buses
-> >>>> +  - if:
-> >>>> +      properties:
-> >>>> +        compatible:
-> >>>> +          enum:
-> >>>> +            - adi,ad7380
-> >>>> +            - adi,ad7381
-> >>>> +            - adi,ad7386
-> >>>> +            - adi,ad7387
-> >>>> +            - adi,ad7388
-> >>>> +            - adi,ad7389
-> >>>> +    then:
-> >>>> +      properties:
-> >>>> +        spi-data-buses:
-> >>>> +          maxItems: 2
-> >>>> +
-> >>>>  examples:
-> >>>>    - |
-> >>>>      #include <dt-bindings/interrupt-controller/irq.h>
-> >>>> @@ -260,6 +280,7 @@ examples:
-> >>>>              spi-cpol;
-> >>>>              spi-cpha;
-> >>>>              spi-max-frequency = <80000000>;
-> >>>> +            spi-data-buses = <0>, <1>;
-> >>>>
-> >>>>              interrupts = <27 IRQ_TYPE_EDGE_FALLING>;
-> >>>>              interrupt-parent = <&gpio0>;
-> >>>> @@ -284,6 +305,7 @@ examples:
-> >>>>              spi-cpol;
-> >>>>              spi-cpha;
-> >>>>              spi-max-frequency = <80000000>;
-> >>>> +            spi-data-buses = <0>, <1>, <2>, <3>;
-> >>>
-> >>> An example that doesn't look like a 1 to 1 mapping would be better.
-> >>> Otherwise, it still looks to me like you could just define the bus
-> >>> width.
-> >>
-> >> I'm not sure we could do that on this chip since it doesn't have
-> >> the possibility of more than one line per channel.
-> > 
-> > That's a property of the SPI controller though, right?
-> > 
-> > If the above controller had 4 lines per channel/serializer, then you could have:
-> > 
-> > spi-data-buses = <0>, <4>, <8>, <12>;
+> Christian
 > 
-> Ah, I get what you mean now. The intention here though was that the
-> index numbers correspond to the data lane (channel/serializer), not
-> to individual lines. So the example you gave would mean that the chip
-> has at least 13 data lanes (rather than what I think your intention was
-> of saying it has at least 16 data wires). I did it that way because all
-> of the hardware I looked at didn't allow assigning arbitrary data lines
-> to arbitrary lanes/channels so it keeps things simpler and easier to match
-> to the actual hardware docs.
+>> Regards,
+>>
+>> Alex
+>>
+>>> Thanks,
+>>> Robin.
+>>>
+>>>> Signed-off-by: Alex Bee <knaerzche@gmail.com>
+>>>> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+>>>> ---
+>>>>    arch/arm64/boot/dts/rockchip/rk3328-a1.dts | 23 ++++++++++++++++++++++
+>>>>    1 file changed, 23 insertions(+)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3328-a1.dts b/arch/arm64/boot/dts/rockchip/rk3328-a1.dts
+>>>> index f7c4578865c5..b276a29bdd85 100644
+>>>> --- a/arch/arm64/boot/dts/rockchip/rk3328-a1.dts
+>>>> +++ b/arch/arm64/boot/dts/rockchip/rk3328-a1.dts
+>>>> @@ -58,6 +58,24 @@ ir-receiver {
+>>>>            gpios = <&gpio2 RK_PA2 GPIO_ACTIVE_LOW>;
+>>>>            linux,rc-map-name = "rc-beelink-gs1";
+>>>>        };
+>>>> +
+>>>> +    spdif_sound: spdif-sound {
+>>>> +        compatible = "simple-audio-card";
+>>>> +        simple-audio-card,name = "SPDIF";
+>>>> +
+>>>> +        simple-audio-card,cpu {
+>>>> +            sound-dai = <&spdif>;
+>>>> +        };
+>>>> +
+>>>> +        simple-audio-card,codec {
+>>>> +            sound-dai = <&spdif_dit>;
+>>>> +        };
+>>>> +    };
+>>>> +
+>>>> +    spdif_dit: spdif-dit {
+>>>> +        compatible = "linux,spdif-dit";
+>>>> +        #sound-dai-cells = <0>;
+>>>> +    };
+>>>>    };
+>>>>      &analog_sound {
+>>>> @@ -325,6 +343,11 @@ &sdmmc {
+>>>>        status = "okay";
+>>>>    };
+>>>>    +&spdif {
+>>>> +    pinctrl-0 = <&spdifm0_tx>;
+>>>> +    status = "okay";
+>>>> +};
+>>>> +
+>>>>    &tsadc {
+>>>>        rockchip,hw-tshut-mode = <0>;
+>>>>        rockchip,hw-tshut-polarity = <0>;
+> 
 
-But what happens if there is such h/w? Better to design things for 
-something we can visualize and not have to revisit this. Of course there 
-will be things we don't anticipate. (Who thought we'd have parallel 
-SPI...)
-
-I suppose if that's rare enough we can just have another property to map 
-pins to channels.
-
-Rob
 
