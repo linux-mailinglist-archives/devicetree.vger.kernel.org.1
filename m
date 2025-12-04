@@ -1,205 +1,145 @@
-Return-Path: <devicetree+bounces-244160-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244161-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A5D3CA2069
-	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 01:18:09 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D692CA207E
+	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 01:20:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 86006300BBA1
-	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 00:18:07 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7BF7F300F9C4
+	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 00:20:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E5625FDA7;
-	Thu,  4 Dec 2025 00:18:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 154AE17BB21;
+	Thu,  4 Dec 2025 00:20:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="Zx/SlHSg"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="StwBcJGL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E267398FB3;
-	Thu,  4 Dec 2025 00:18:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F76312FF69
+	for <devicetree@vger.kernel.org>; Thu,  4 Dec 2025 00:20:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764807487; cv=none; b=NFLcYd9mgkhB/8iXRjUNu9vqx0bcC7/sXbTQWCBUcWjb8lpk5uIKH+OqGji1bmY3ds65i12QRgg/NuIjV3MvZQ+SoJ9ShLCI9AzsEpEFMA6Mw9sOLCVZ30ITnuBDWye3JWxu6AypLk+woivpPjJVitomNfo7X188/uJ3NNPgJyE=
+	t=1764807603; cv=none; b=nUw9zGmAdbibeu9e6xIX899RoH3sr1Rv4p5IN6tHfGH5rusxbvKxcxy68Nk+tlZX2f8uAjSrJsitQ7zKr6Qcm+KweHJtqm48l6o3xeews27DLLdKDw/7Au8+z1TWUMyKGOiukjQTQUCLsutml55xRNmz2XEwkneUU/AvrshfrSo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764807487; c=relaxed/simple;
-	bh=Fbh3Fa9yoPoJ/6NTYsDU1H5iGd6Y63WPGr7HHZCcnjo=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=DLJpTCMbYf/DyEWtb7MKGOJfK+78Qrirq9j4IDGbhpyamelwIYLWnxBvqDlpX2D5czmqLOR7G0CkKHsOPaCii/fDs2lPqgeZINP/+IIrZwzFR11OeealL5VhtEAR98savnKGR2PLyg4dumbWBw0WvMjUrAokOxEqnPS1yEVc77o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=Zx/SlHSg; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+	s=arc-20240116; t=1764807603; c=relaxed/simple;
+	bh=W8JDpJ0cszJ31H/pDOqCniqWJfMlgyzvY+vNNyzFof0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=UOLA/aTK1bjtR8j+sivy2750PnmaLbQ+yP/m6KZ5jSiEqKq0ZYf/bjMr9aQK9iwLBcI7aXxsnM7Fj79R96otEN4q4uYbGoYxX7fOQq2vojIbktzV7VqtvNxSFeiX5C0ZgZjiW3QXhVikux+V4sDNWkzvngh2Gji473fQD5XeIy8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=StwBcJGL; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-4779cb0a33fso4469725e9.0
+        for <devicetree@vger.kernel.org>; Wed, 03 Dec 2025 16:20:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1764807481;
-	bh=DiKjyODImd+3MTY2CNHyrF9IEQSIMhmYQ/J9yfDpGKk=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=Zx/SlHSgLsakbqP/0cgTNfxLGYmuJYFStBJPlFs3ocQEgwyuNPep8M73z3EOkjAFR
-	 AiX6fGe0mhbgoBI/puIFEX//t47++cXSjH3yBamd85DZB0E3j9ByBvq+MQeKL8ncwd
-	 2mrPw5/6wGY0W9lZY8a9FJQJLaGPWI8ieEzVnuGEcr5oj3G6NY9XB2KstX/Q3+Z3tC
-	 5FudiuzpXx0ExteuH4UdTqivAvO+JQNGP7Zmz9Soy5Ad9CZmoyExUayQMeNE12ZGLT
-	 qtNuH7IZzh1AX3D9lRs/d7AQovrv2tOAfYp0ReIOJwT89EN7H9JfIyBFv6rh46lDPO
-	 eeh4YPy4S+AaQ==
-Received: from [192.168.68.115] (unknown [180.150.112.216])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 53C44706D2;
-	Thu,  4 Dec 2025 08:17:58 +0800 (AWST)
-Message-ID: <16428df229c494c807ddc75009feffe219f11a22.camel@codeconstruct.com.au>
-Subject: Re: [PATCH v11 1/6] i3c: Add HDR API support
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Frank Li <Frank.Li@nxp.com>, Alexandre Belloni	
- <alexandre.belloni@bootlin.com>, Miquel Raynal <miquel.raynal@bootlin.com>,
-  Jonathan Cameron	 <jic23@kernel.org>, David Lechner
- <dlechner@baylibre.com>, Nuno =?ISO-8859-1?Q?S=E1?=	 <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>, Rob Herring	 <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley	
- <conor+dt@kernel.org>
-Cc: linux-i3c@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	imx@lists.linux.dev, linux-iio@vger.kernel.org,
- joshua.yeong@starfivetech.com, 	devicetree@vger.kernel.org,
- linux@roeck-us.net
-Date: Thu, 04 Dec 2025 10:47:57 +1030
-In-Reply-To: <20251106-i3c_ddr-v11-1-33a6a66ed095@nxp.com>
-References: <20251106-i3c_ddr-v11-0-33a6a66ed095@nxp.com>
-	 <20251106-i3c_ddr-v11-1-33a6a66ed095@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-0+deb13u1 
+        d=linaro.org; s=google; t=1764807598; x=1765412398; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Sy/9CGo8NUcxokw+wp92Xk3pkZwIb1w5SdSGUoemftk=;
+        b=StwBcJGLcJfxTssaWb8uykX/xbNE8K89oLTIURWcXQswGIujc+q9L7GDbTeunhGmq/
+         LBF/LmqaIkHhSQKSUPUVxe4cKnbs2EZvPYKikUjehxJoKYxZHim0cofRSvIc8NHMcu/s
+         UhLlYJ6IN3zRbWIOw2vMiX21NULxRNnUiKkzTYFurXir/b9WoiXv1Q9Vyr2mpG8zaBeL
+         FrwoCw72h2ucp/cBrLQJf7KBekH32J1IwAVFuYjc32hxOWQoSf2ojQ0L1YS0L6iUosPW
+         5wXk0/BvsO1CjGWAI1StK6IuJWJOJk2jR0t/HMHUNJNDpxO13bodEXI5BR0Q1QayNblD
+         +QWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764807598; x=1765412398;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Sy/9CGo8NUcxokw+wp92Xk3pkZwIb1w5SdSGUoemftk=;
+        b=Di5EldEFIgIRY1BUzTLgNS24P+8WCZwByNrCvsewW6f5ImmEJJE6AbQf5onNfvKFRx
+         jkpHkkkQGK20JQtKU8Myp2xi/pBs089/65vWnONG+yPDWPggOcgnCNxBn+M6Jm30k1BF
+         5kr3l3dNesKIXWH6FuD6GqWGXxRIAUf2W2qHj2jEPHBy1Ezle5C4Ffj4tRgw4FM5Vrxq
+         8JQ8+CXjL8v2+aJVuiPm/KLXU+ElpXns9iUcGlIfkGrpBb6nVsPUIG+47PYaTdxmWSt2
+         yY1GdF5oJycfmQkMq59Hg8lmxzdCf3SGm2L0W7+pZ8Bwo1ju+rA92HvsS3dPqW/8/fiV
+         VCtg==
+X-Forwarded-Encrypted: i=1; AJvYcCWNamnWuxiI5kYgqo5BfqIOX0xrgCmpvOmLwkWB+CqM6og0VKiLXvDH6RojJIYqpTXEwjdLHMhV/S4A@vger.kernel.org
+X-Gm-Message-State: AOJu0YwTUkzK+VFmr1pkQsw+MuweOn7i3dNaQBDN/vmUbYSYhxDKNdBH
+	itt8jqJrnJ9ZvScLMJxCyK7m0/CqCaVRevYp86aBHdiS4gFL7bBrU6pdV5br/ohm2CE=
+X-Gm-Gg: ASbGncuINSmUbSxFi4dcQHqHS5ProeCR3aZZtkra83o6pNLPNC0ZQjNt55b5IgjlxP4
+	e9BJ7PXXDAux7t//uokfp8rbqoAatzQP1e2EzZNJWO0wwVFC0odZJ6heNPH0el21NqJ/R4c36WR
+	+++UojsrPFnQTpFL2geTbI665C5Y1DuoqId2c/OrFO5WwvWx6M1I0k1UE7h+B36b1jT4LXdsE5a
+	T9ENmqk1nJqZqJPgCwiZlAzrP2UTu/sB9E5P426ZcrqeecCDrGZ9PLAYU9DMsxKg2AynvxIctW3
+	wEao/ZhhQuGkxX8R8z3utP8oLMN2ovx9P2m1RhzTExSlRUJwS3K7ZbfJzHWwF+b6j7sw8tPdaNm
+	zrzrSP4i+XHcpyy3bVPGp7ZkiGttrVzeNpBMoZBEJJCzfAdh7FgWAVxMvSLhz1aF4PNT4VA1739
+	uzUcyDnyqIvOeNZ5RxWZrJw7tO62S00YpY4lFIeoBt2tO49WD3MccK
+X-Google-Smtp-Source: AGHT+IGctIUBDJ4B++ZPZwfzieuoC6rE0jEla7NQRIEMiwCpYVYx+DGWozaw5tUyDHsHwHr4Gj1ARQ==
+X-Received: by 2002:a05:600c:190d:b0:477:af07:dd1c with SMTP id 5b1f17b1804b1-4792af43c8amr45511535e9.35.1764807598460;
+        Wed, 03 Dec 2025 16:19:58 -0800 (PST)
+Received: from [192.168.0.27] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47930d70806sm2382045e9.13.2025.12.03.16.19.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 03 Dec 2025 16:19:57 -0800 (PST)
+Message-ID: <65414d04-3db9-4dc2-bf1c-1e260713b818@linaro.org>
+Date: Thu, 4 Dec 2025 00:19:55 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RESEND] media: camss: csiphy: Make CSIPHY status macro
+ cross-platform
+To: Andi Shyti <andi.shyti@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Vijay Kumar Tumati <vijay.tumati@oss.qualcomm.com>,
+ Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>,
+ Loic Poulain <loic.poulain@oss.qualcomm.com>, Robert Foss
+ <rfoss@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, linux-i2c@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-media@vger.kernel.org
+References: <20251130-make-csiphy-status-macro-cross-platform-v1-1-334664c6cf70@oss.qualcomm.com>
+ <ae056a82-e5d4-4a73-b478-37533ce2e0ed@oss.qualcomm.com>
+ <b9150026-cd87-4bed-8ba1-800e92203a30@oss.qualcomm.com>
+ <577ece85-adf1-41c9-b7a4-ca65e27e6c75@oss.qualcomm.com>
+ <n3w3lvw2tnqjcu74eesuo7sr7nbe5tqlufii5zsvvpwtapxd2p@6pbrr46cc26j>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Content-Language: en-US
+In-Reply-To: <n3w3lvw2tnqjcu74eesuo7sr7nbe5tqlufii5zsvvpwtapxd2p@6pbrr46cc26j>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Frank,
+On 03/12/2025 16:57, Andi Shyti wrote:
+> Hi,
+> 
+> On Mon, Dec 01, 2025 at 06:18:51PM +0100, Konrad Dybcio wrote:
+>> On 12/1/25 3:48 PM, Vijay Kumar Tumati wrote:
+>>>
+>>> On 12/1/2025 4:20 AM, Konrad Dybcio wrote:
+>>>> On 12/1/25 7:25 AM, Hangxiang Ma wrote:
+>>>>> The current value of '0xb0' that represents the offset to the status
+>>>>> registers within the common registers of the CSIPHY has been changed on
+>>>>> the newer SOCs and it requires generalizing the macro using a new
+>>>>> variable 'common_status_offset'. This variable is initialized in the
+>>>>> csiphy_init() function.
+>>>> "offset" + "common_status_offset" is confusing
+>>>>
+>>>> Let's maybe add some platform data where we store the actual offset of
+>>>> the registers in question and pass a csiphy ptr as an argument
+>>>>
+>>>> Konrad
+>>> Hi Konrad, may be I didn't follow correctly. This is consistent with the way we maintain the other SOC specific reg offsets / data in the CSIPHY driver, in csiphy_device_regs, isn't it? I seem to think it's clearer this way for the reader to see all the offsets at one place. No? Thanks.
+>>
+>> I thought this driver was a little more complex.. anyway, big
+>> changes that will make this prettier are coming so this works too in
+>> the meantime
+> 
+> After this short discussion, in order to get it in, can someone
+> from Qualcomm ack/r-b it?
+> 
+> Thanks,
+> Andi
 
-On Thu, 2025-11-06 at 12:36 -0500, Frank Li wrote:
-> Rename struct i3c_priv_xfer to struct i3c_xfer, since private xfer in the
-> I3C spec refers only to SDR transfers. Ref: i3c spec ver1.2, section 3,
-> Technical Overview.
->=20
-> i3c_xfer will be used for both SDR and HDR.
->=20
-> Rename enum i3c_hdr_mode to i3c_xfer_mode. Previous definition need match
-> CCC GET_CAP1 bit position. Use 31 as SDR transfer mode.
->=20
-> Add i3c_device_do_xfers() with an xfer mode argument, while keeping
-> i3c_device_do_priv_xfers() as a wrapper that calls i3c_device_do_xfers()
-> with I3C_SDR for backward compatibility.
->=20
-> Introduce a 'cmd' field in struct i3c_xfer as an anonymous union with
-> 'rnw', since HDR mode uses read/write commands instead of the SDR address
-> bit.
->=20
-> Add .i3c_xfers() callback for master controllers. If not implemented, fal=
-l
-> back to SDR with .priv_xfers(). The .priv_xfers() API can be removed once
-> all controllers switch to .i3c_xfers().
->=20
-> Add 'mode_mask' bitmask to advertise controller capability.
->=20
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
-> Why not add hdr mode in struct i3c_priv_xfer because mode can't be mixed =
-in
-> one i3c transfer. for example, can't send a HDR follow one SDR between
-> START and STOP.
->=20
-> i3c_priv_xfer should be treat as whole i3c transactions. If user want sen=
-d
-> HDR follow SDR, should be call i3c_device_do_priv_xfers_mode() twice,
-> instead put into a big i3c_priv_xfer[n].
->=20
-> change in v9
-> - fix typo Deprecated
-> - remove reduntant master->ops->priv_xfers check.
->=20
-> change in v8
-> - new API use i3c_xfer instead of i3c_priv_xfer.
->=20
-> change in v7
-> - explicit set enum I3C_HDR_* to value, which spec required.
-> - add comments about check priv_xfers and i3c_xfers
->=20
-> change in v5-v6
-> - none
->=20
-> change in v4
-> - Rename enum i3c_hdr_mode to i3c_xfer_mode.
->=20
-> change in v3
-> - Add Deprecated comment for priv_xfers.
->=20
-> change in v2
-> - don't use 'priv_' since it is refer to sdr mode transfer in spec.
-> - add 'mode_mask' indicate controller's capibility.
-> - add helper function to check master's supported transfer mode.
-> ---
-> =C2=A0drivers/i3c/device.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 27 +++++=
-+++++++++++++++-------
-> =C2=A0drivers/i3c/internals.h=C2=A0=C2=A0=C2=A0 |=C2=A0 6 +++---
-> =C2=A0drivers/i3c/master.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 19 +++++=
-+++++++++-----
-> =C2=A0include/linux/i3c/device.h | 40 +++++++++++++++++++++++++++++------=
------
-> =C2=A0include/linux/i3c/master.h |=C2=A0 4 ++++
-> =C2=A05 files changed, 70 insertions(+), 26 deletions(-)
->=20
+I'll pick it up per nomal.
 
-*snip*
-
-> =C2=A0
-> diff --git a/include/linux/i3c/device.h b/include/linux/i3c/device.h
-> index 7f136de4b73ef839fb4a1837a87b1aebbddbfe93..7f7738041f3809e538816e94f=
-90b99e58eb806f9 100644
-> --- a/include/linux/i3c/device.h
-> +++ b/include/linux/i3c/device.h
-> @@ -39,20 +39,25 @@ enum i3c_error_code {
-> =C2=A0};
-> =C2=A0
-> =C2=A0/**
-> - * enum i3c_hdr_mode - HDR mode ids
-> + * enum i3c_xfer_mode - I3C xfer mode ids
-> =C2=A0 * @I3C_HDR_DDR: DDR mode
-> =C2=A0 * @I3C_HDR_TSP: TSP mode
-> =C2=A0 * @I3C_HDR_TSL: TSL mode
-> + * @I3C_SDR: SDR mode (NOT HDR mode)
-> =C2=A0 */
-> -enum i3c_hdr_mode {
-> -	I3C_HDR_DDR,
-> -	I3C_HDR_TSP,
-> -	I3C_HDR_TSL,
-> +enum i3c_xfer_mode {
-> +	/* The below 3 value (I3C_HDR*) must match GETCAP1 Byte bit position */
-> +	I3C_HDR_DDR =3D 0,
-> +	I3C_HDR_TSP =3D 1,
-> +	I3C_HDR_TSL =3D 2,
-> +	/* Use for default SDR transfer mode */
-> +	I3C_SDR =3D 0x31,
-
-0x31 is 49 - is that really what you intend here? For instance,
-building this patch for ARM32 produces:
-
-   In file included from ../include/linux/bits.h:5,
-                    from ../include/linux/ratelimit_types.h:5,
-                    from ../include/linux/printk.h:9,
-                    from ../include/asm-generic/bug.h:31,
-                    from ../arch/arm/include/asm/bug.h:60,
-                    from ../include/linux/bug.h:5,
-                    from ../drivers/i3c/device.c:9:
-   ../drivers/i3c/device.c: In function =E2=80=98i3c_device_get_supported_x=
-fer_mode=E2=80=99:
-   ../include/vdso/bits.h:7:40: warning: left shift count >=3D width of typ=
-e [-Wshift-count-overflow]
-       7 | #define BIT(nr)                 (UL(1) << (nr))
-         |                                        ^~
-   ../drivers/i3c/device.c:272:68: note: in expansion of macro =E2=80=98BIT=
-=E2=80=99
-     272 |         return i3c_dev_get_master(dev->desc)->this->info.hdr_cap=
- | BIT(I3C_SDR);
-         |                                                                 =
-   ^~~
-
-Should this be decimal 31, rather than hex 31?
-
-Andrew
+---
+bod
 
