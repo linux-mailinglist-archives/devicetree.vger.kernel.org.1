@@ -1,62 +1,96 @@
-Return-Path: <devicetree+bounces-244502-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244509-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73D51CA581D
-	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 22:39:07 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADDF9CA584D
+	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 22:40:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AA5CE3082369
-	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 21:36:55 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E95CE30CE263
+	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 21:38:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A19C726059D;
-	Thu,  4 Dec 2025 21:36:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43C59320CBE;
+	Thu,  4 Dec 2025 21:37:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Cab9U9dZ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VwRTeMzq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 779C9398FB5;
-	Thu,  4 Dec 2025 21:36:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B4AD280329
+	for <devicetree@vger.kernel.org>; Thu,  4 Dec 2025 21:37:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764884213; cv=none; b=dt6NS+bzHYPd5if2HdmccrbccGbSHB4yt2X2YM3vF4ey409nRU5d63OhpORsnx6p6TsILzvsJeXEwNl/Bcz+VjeZAiCfWu1nltflqBh/FwkSTMr1wAXDQ4F6YwGL3f2zO9jXDSwEUB5DozLJoAc4PpG4vqw5MWI/2FL8IeniNOI=
+	t=1764884264; cv=none; b=h2HJFqSlqmPIJX7k8W56EGa7qaGSG4SWArTKeP4ukM/d+laHMo23Xcoa6JP/r7A0EDp7VecqST3Jmv+c2Ahipkcrf1F5NS1Q3/EOewFH6MjQ1BPlvczZFnkSnKYhdl4+QYtObkUI5jbsY1iSuIBNe//kHHMv0slNr1O8CuJVd1w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764884213; c=relaxed/simple;
-	bh=+4kEbHTDl/a+jM3AYdv1IGNG5rDWJIRvBYh0wo1LCrE=;
+	s=arc-20240116; t=1764884264; c=relaxed/simple;
+	bh=lYNQiNuadEYXpG72dttBVTjdVbn+hP/2DA42npo14Xs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WM0m/2ko7uuiKElMqejI6L+fMsphCbkA5kU4R0PtrcLXww6nxIU3dxn8g2t+2ipCrg9qGBtAxpLi2SLk96o/mJXN1k3888A9kYCAurTXc3s37Y9rbO62y8LOyn/h/F4IRT3ZFR1xFNK3zofjhDy/ohHyAF7K1bgXPhLf5FTbCaw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Cab9U9dZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1ACB7C4CEFB;
-	Thu,  4 Dec 2025 21:36:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764884213;
-	bh=+4kEbHTDl/a+jM3AYdv1IGNG5rDWJIRvBYh0wo1LCrE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Cab9U9dZqYBpk8WQf9DBBGQkLmo65iDOOtsc9lCNtaiUDMaB+Z8T0HHUcCfXLw+cL
-	 B3w3PwdS8wHo9UiiA02/zZBMbN+3+PoTfTczCigy/j2iik1W0XPr9WbWh2TWdtbpMA
-	 MnoZvlrgNBgiNgmgumKfBwbcrwpsQ4cLpp0rOc8ZmFVQvbOpentpdiBiPJsRewWwdx
-	 pQKvD3BSQn3eivZklZRo2M7F2fO/apZXGpreM6f3LBwTYMNjcG7xpaNGOdxJYO4uy/
-	 y/5joaeb57tT63X83cBP+tuizLz2JTkot+D9FXL2aANaBnvOmKjA23LeYwiI3QBy/K
-	 p0MasW8FSVTmg==
-Date: Thu, 4 Dec 2025 15:36:50 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Khairul Anuar Romli <khairul.anuar.romli@altera.com>
-Cc: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>,
-	Vinod Koul <vkoul@kernel.org>, linux-kernel@vger.kernel.org,
-	Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
-	devicetree@vger.kernel.org, Vignesh Raghavendra <vigneshr@ti.com>,
-	Dinh Nguyen <dinguyen@kernel.org>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	dmaengine@vger.kernel.org, Richard Weinberger <richard@nod.at>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-mtd@lists.infradead.org
-Subject: Re: [PATCH v2 2/3] dt-bindings: dma: snps,dw-axi-dmac: add
- dma-coherent property
-Message-ID: <176488420978.2206697.11201292177123636920.robh@kernel.org>
-References: <cover.1764717960.git.khairul.anuar.romli@altera.com>
- <025381792a014844a1e7121f11836ab1010cba89.1764717960.git.khairul.anuar.romli@altera.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=mVvs8eKS7sj318IQHM6WgrYki6YyOEllvaU/8eTaaMzOQZWqvs9E7KySYIQu3hyffkJRshIBycFLppxe+WaxnaIFxiET5hIn0mUnBbOJJDhKXEJ+IJbs97z4qO9cLX782c5QtFHx8E62zCpd/rFTUk10rtpyX36ey74+h6Owngw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VwRTeMzq; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-477b5e0323bso15145325e9.0
+        for <devicetree@vger.kernel.org>; Thu, 04 Dec 2025 13:37:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1764884260; x=1765489060; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=faohLWgI8UwyqQwv1dWb6IoMX/UJWOFG3EcvY/0BmD8=;
+        b=VwRTeMzqF5Jf8HBX4Yo6aIWmU8QpEc6zHgB4Q3E9yVYfNDa5JOs5FHunUD0OwlXkaM
+         K9rDpDIHiNN5b+WXDNte1tnvrghD7pv2qnbZ0Zpy1KdOyt3cXSyJm0y+zu5fNNn2P96Y
+         MQbZvHdTAfGtH3f3OC0W6r4NeSaJBR6Jqpeawyca277E2xlhtPq6MYfbz3wEwUmykBv9
+         b3q6R98xfyGRi92jGt5XgyVCLtMs/8V2gZw5/BfraHcR4AF1NAqZITwIIdxf5qHC1dQu
+         RalAtAZ4bTXUZyZ4DUgxhbFm6EPr7pTrQXXR6OZTQW41sHHrcomEhvxd1bhHeHEdptVm
+         jZOA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764884260; x=1765489060;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=faohLWgI8UwyqQwv1dWb6IoMX/UJWOFG3EcvY/0BmD8=;
+        b=L60eb93sGVxk9FuK4c0ezdy7IPkOfd6RUfOWSXc4dVB+aUO/uR/8Sm4FJjOqw71jbc
+         tN/mPSRPblxkEZh5oANpOQC6B2sXu8mwurEODq/HdbcgsqRCX1bDuLFVeQzPPwhh+fNF
+         KRvy2bOkFRI7WPESsm/44+nDcJ+WSLvPCVcDjm5BBYyv4VL0oksRkpro6SSpri2mwa9c
+         IstcqryLCMHif49m6SSYEAUpC1aghwbMCUa5gKMrC9BtpGLmoDgqehq+LD3uwrH2L2LQ
+         rd9tIu8HfZ0rB+TsteMuao8e+jdtP5+axCFbYPZSzzbu3lU8tELapmn+AiViZKQrV82e
+         L1SQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVX/KMEaj3NO+EZAUXQAbLamO2lof8k94OYkF0gL/JivijsPJ1qe0/tVTSw5lwxJPzEuOQlZMD9N/5l@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw00tkyuz65Hb9TD5u6Q550pPUjxcTt4UkGwm5Zbhzrrly8tXrF
+	XPdMeMYMHKqnVxbftEEKxH4Om8ZEd3Wnm/AjyMjGnvX0AGXzX1/X7409
+X-Gm-Gg: ASbGncuXyqi6/WqvhSgubM0B9m8SpDv5rP1PhnQcIdH+aiT7MXhNgxYdTFDmYsw8huY
+	tU6KsWVtRkNZE+VI+7/wEK0defgHVPkvYmyNQsOnhh+HccPyATeMvou2naQPFXcAGlR8/ilk4ey
+	QUugsSaknDrKYtF3WhOn32EWvRxaGalvRCj9sv8ET9ILDyxyWpq5g8LecrWv5qjwxwavFemOY2F
+	wWkBO9nbtLqY190Nh0pQa1swBO/lgoame5Bv2vG7fPUQAoWWa0uWZq20MWFRFmNBAhX73QKrKb7
+	WTh4tNMbjJOmUd2jFShApJ6X8WiyXVIXiaP9sS7vVPt6iSkPfuxrK7RRe6iVVYTTvDaj8NDU//P
+	xlSb4X5TbfPSxjzX13guu64mJEV91krVns03TGdReeVGXcv7fQ2YJyIcuhDVKcqxOArAMmquCmM
+	NH8E2LsKeknMlTC+0BIBogi6gqEz8ohmTvLHb/P1jeivtwrMnFG1uv1xG4I5JPrUwGAO4=
+X-Google-Smtp-Source: AGHT+IEkN4TPxcT2yhSxBgmIGuCvkZq6whVfpfvXJxHLVTgmdSpVE9imgTzvn+3e+lYgcpRI7M9hyg==
+X-Received: by 2002:a05:600c:3151:b0:479:255f:8805 with SMTP id 5b1f17b1804b1-4792eb10e97mr50091355e9.4.1764884260202;
+        Thu, 04 Dec 2025 13:37:40 -0800 (PST)
+Received: from HYB-DlYm71t3hSl.ad.analog.com ([2001:a61:123e:4501:9c51:c3b7:65d6:48d3])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-479310a6db3sm52802675e9.1.2025.12.04.13.37.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 04 Dec 2025 13:37:39 -0800 (PST)
+Date: Thu, 4 Dec 2025 22:37:38 +0100
+From: Jorge Marques <gastmaier@gmail.com>
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc: Jorge Marques <jorge.marques@analog.com>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
+	Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jonathan Corbet <corbet@lwn.net>, Linus Walleij <linus.walleij@linaro.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v2 3/9] iio: adc: Add support for ad4062
+Message-ID: <fue274bpfgsytm5z25rdsawbfa2s4vu4ypoqrrmrx5dfe2jgdq@ocjqribzo5mn>
+References: <20251124-staging-ad4062-v2-0-a375609afbb7@analog.com>
+ <20251124-staging-ad4062-v2-3-a375609afbb7@analog.com>
+ <aSQxiSoZcI_ol3S5@smile.fi.intel.com>
+ <aslj3klmv6heyyhgltzewkdze5p4c3hlkzfbxbfnzwwgd375gv@m6iqpst5sv6b>
+ <aSgSsGSUuBtMOuro@smile.fi.intel.com>
+ <zryqws2h2i4duejczo2rptwhlzhile7fa7brriqh2hmtarwjxn@cr2cyzymwpav>
+ <aSn3PthKIvFAhDS6@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,29 +99,144 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <025381792a014844a1e7121f11836ab1010cba89.1764717960.git.khairul.anuar.romli@altera.com>
+In-Reply-To: <aSn3PthKIvFAhDS6@smile.fi.intel.com>
 
+On Fri, Nov 28, 2025 at 09:25:50PM +0200, Andy Shevchenko wrote:
+Hi Andy,
 
-On Wed, 03 Dec 2025 07:47:34 +0800, Khairul Anuar Romli wrote:
-> The Synopsys DesignWare AXI DMA Controller on Agilex5, the controller
-> operates on a cache-coherent AXI interface, where DMA transactions are
-> automatically kept coherent with the CPU caches. In previous generations
-> SoC (Stratix10 and Agilex) the interconnect was non-coherent, hence there
-> is no need for dma-coherent property to be presence. In Agilex 5, the
-> architecture has changed. It  introduced a coherent interconnect that
-> supports cache-coherent DMA.
+> On Fri, Nov 28, 2025 at 07:50:02PM +0100, Jorge Marques wrote:
+> > On Thu, Nov 27, 2025 at 10:58:24AM +0200, Andy Shevchenko wrote:
+> > > On Wed, Nov 26, 2025 at 12:40:00PM +0100, Jorge Marques wrote:
+> > > > On Mon, Nov 24, 2025 at 12:20:57PM +0200, Andy Shevchenko wrote:
+> > > > > On Mon, Nov 24, 2025 at 10:18:02AM +0100, Jorge Marques wrote:
 > 
-> Signed-off-by: Khairul Anuar Romli <khairul.anuar.romli@altera.com>
-> ---
-> Changes in v2:
->         - Rephrase commit message to describe why the property is needed now
->           and was not needed previously.
->         - Remove redundant statement.
-> ---
->  Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+> >   static int ad4062_calc_sampling_frequency(int fosc, unsigned int oversamp_ratio)
 > 
+> Shouldn't fosc be unsigned?
+> 
+Yep
+> >   {
+> >   	/* See datasheet page 31 */
+> 
+> It's fine, but better to add a formula here or more information about
+> the calculations done in the function.
+> 
+> >   	u32 period = NSEC_PER_SEC / fosc;
+> 
+> period_ns ?
+> 
+> (We usually add units to this kind of variables for better understanding
+>  of the calculations)
+> 
+Ack.
+> > > >   static int ad4062_set_chan_calibscale(struct ad4062_state *st, int gain_int,
+> > > >   				      int gain_frac)
+> > > >   {
+> > > >   ...
+> > > >   
+> > > >   	if (gain > 1999970)
+> > > 
+> > > But this magic should be changed to what you explained to me
+> > > (as in 0xffff/0x8000 with the proper precision, and this
+> > >  can be done in 32-bit space).
+> > > 
+> > > Or even better
+> > > 
+> > > 	if (gain_int < 0 || gain_int > 1)
+> > > 		return -EINVAL;
+> > > 
+> > > 	if (gain_int == 1 && gain_frac > 0x7fff) // did I get this right?
+> > > 		return -EINVAL;
+> 
+> > gain_frac would be 999999 max, or 999970 for the limit that fits in the
+> > register after the math. I think > 1.999.970 is self explanatory.
+> 
+> On the place of unprepared reader this is a complete magic number without
+> scale, without understanding where it came from, etc.
+> 
+> So, can you define it as a derivative from the other constants and with
+> a comment perhaps?
+> 
+(my proposal is after all your comments below)
+> > > >   		return -EINVAL;
+> > > >   
+> > > >   	put_unaligned_be16(DIV_ROUND_CLOSEST_ULL((u64)gain * AD4062_MON_VAL_MIDDLE_POINT,
+> > > >   						 MICRO),
+> > > 
+> > > ...with temporary variable at minimum.
+> > > 
+> > > But again, I still don't see the need for 64-bit space.
+> > 
+> > Well, by dividing mon_val and micro values by a common divisor the
+> > operation fit in 32-bits:
+> > 
+> >   static int ad4062_set_chan_calibscale(struct ad4062_state *st, int gain_int,
+> >                                         int gain_frac)
+> >   {
+> 
+> 	/* Divide numerator and denumerator by known great common divider */
+> 
+> >           const u32 mon_val = AD4062_MON_VAL_MIDDLE_POINT / 64;
+> >           const u32 micro = MICRO / 64;
+> 
+> Yep, I suggested the same in another patch under review (not yours) for
+> the similar cases where we definitely may easily avoid overflow.
+> 
+> Alternatively you can use gcd().
+> 
+> >           put_unaligned_be16(DIV_ROUND_CLOSEST(gain * mon_val, micro), st->buf.bytes);
+> 
+> Btw, I think you can move this check up and save in a temporary variable which
+> might affect the binary size of the compiled object as accesses to the gain_int
+> and gain_frac will be grouped in the same place with potential of the reusing
+> the CPU register(s)..
+> 
+> >   }
+> 
+I believe this is clear and fits all points:
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+ 	/* Divide numerator and denumerator by known great common divider */
+	const u32 mon_val = AD4062_MON_VAL_MIDDLE_POINT / 64;
+	const u32 micro = MICRO / 64;
+	const u32 gain_fp = gain_int * MICRO + gain_frac;
+	const u32 reg_val = DIV_ROUND_CLOSEST(gain_fp * mon_val, micro);
+	int ret;
+
+	/* Checks if the gain is in range and the value fits the field */
+	if (gain_int < 0 || gain_int > 1 || reg_val > BIT(16) - 1)
+		return -EINVAL;
+
+	put_unaligned_be16(reg_val, st->buf.bytes);
+
+Explains 64 value. Checks if is in range [0, 2), then if fits the
+register field for corner case of range (1.999970, 2) (0x10000). Full
+formula is in the previous method ad4062_get_chan_calibscale.
+
+
+> > > >   			   st->buf.bytes);
+> > > >   
+> > > >   	ret = regmap_bulk_write(st->regmap, AD4062_REG_MON_VAL,
+> > > >   				&st->buf.be16, sizeof(st->buf.be16));
+> > > >   	if (ret)
+> > > >   		return ret;
+> > > >   
+> > > >   	/* Enable scale if gain is not equal to one */
+> > > >   	return regmap_update_bits(st->regmap, AD4062_REG_ADC_CONFIG,
+> > > >   				  AD4062_REG_ADC_CONFIG_SCALE_EN_MSK,
+> > > >   				  FIELD_PREP(AD4062_REG_ADC_CONFIG_SCALE_EN_MSK,
+> > > >   					     !(gain_int == 1 && gain_frac == 0)));
+> > > >   }
+> > > > 
+> > > > To provide the enough resolution to compute every step (e.g., 0xFFFF and
+> > > > 0xFFFE) with the arbitrary user input.
+> 
+> -- 
+> With Best Regards,
+> Andy Shevchenko
+> 
+> 
+Best Regards,
+Jorge
+
 
 
