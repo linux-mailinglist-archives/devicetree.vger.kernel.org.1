@@ -1,237 +1,138 @@
-Return-Path: <devicetree+bounces-244425-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244427-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D60C8CA4ADD
-	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 18:09:24 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5551ACA4B7E
+	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 18:16:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 4D27830057A2
-	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 17:09:24 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 28DC2304BDB3
+	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 17:09:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FB0E2E62DA;
-	Thu,  4 Dec 2025 17:09:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 104102F12B3;
+	Thu,  4 Dec 2025 17:09:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tvI0t3Pp"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="iWcApV5M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A7F82DC78F
-	for <devicetree@vger.kernel.org>; Thu,  4 Dec 2025 17:09:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6189E2ED85D;
+	Thu,  4 Dec 2025 17:09:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764868163; cv=none; b=A0rkIffomc9BdBUjNToDLvBUlBnlJqq1ezGwAFFv3ekSJ5ssE3pMojrC1S7PzNWuTTxmGJLEShCPLNq869bxyuAQnt2VIk3tTdEdyG8C2WN14s02ksBdvW0mVoYVYAgrXTDm3s1gghrAVGoc3LZk5TiYxZnCyp2Ko0e+8YviYOY=
+	t=1764868197; cv=none; b=JjCTQy2UJOJh/YrX3RrBQjCJznjZSslc4lQ74BAbI30lkWaldoE7cWHdxkaAIFeo5FgfUfEE/XxJSgE/0SJEafAePAPTcQW5xQjb6zL82ZmlPvRJOEDOJJaRidX4QWs3a0bStI1ka/fXGDYQ+ww+HeSNqArbh1bN01RZ69yXwTo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764868163; c=relaxed/simple;
-	bh=ozsg4eLgtauKgJ3H79DciPuHkymo9rMsTDj/oVDQG/Y=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ZLw/DvVAgSpZRF2V4vagnX+qhC4HDcQvDnc7dN1ytxHH9ERpAGDtCZczFJa33YVe+eyqdLAYBIAe+Ud1gUnn1Ga+NLtL8Kt7LOvhrKM7rcVHTU8Zh5gBI1Ui578w/z/fFhBftv5qOEaRcfQ5SfKbb9HX7T5BhgJOMGTbHzd1Qqg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tvI0t3Pp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D342C19424
-	for <devicetree@vger.kernel.org>; Thu,  4 Dec 2025 17:09:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764868162;
-	bh=ozsg4eLgtauKgJ3H79DciPuHkymo9rMsTDj/oVDQG/Y=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=tvI0t3PppjBwAgLlyJx1wWZC9indt/Tx10fEBb3gp9gJfIrtha8sE106jk5mNvVx/
-	 111V3vcH7rETlbaupvlcSyS81CV3AEeSQy+zV7ZibqlENbWAyniti+b0FQCnU5lqW7
-	 1G2QYLL9CsEPJLkOS7V+CdkajMD36mowAg9U7p7mfCpFl2degElYrc7JHl5Uul7sAB
-	 FRPga1InK+wMGkB1xkPuOaF6fpEw58vsCnifaRXZQjBvDoNVp7cpRdsfoQ3YBlWOXl
-	 tTV92sJ80l/pxFe90ycKaf6DIeRK6Vl+6Me6ig0y3jh9wO6bYrQb7R5gCE0O+/Q7hR
-	 0Js6MFCcTD4WA==
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-64320b9bb4bso2344873a12.0
-        for <devicetree@vger.kernel.org>; Thu, 04 Dec 2025 09:09:22 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCV9u7DSo59AOlcCQL6X2qvTFUlhDzPOc1PsrjtDg6VK5iaykdxt070P6bA4zkqBMVdfW8ysT2xeMU6/@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy020uYKdtA4K7P8iInvQY+YNJx9pL+YrA2+xaE3Krwk7w4XV+R
-	N8hW4+zVkm/xJJEItfnxyowgFchNlV+jRB2Jh7p6qYUcXFdwdDP1gjtaOLZ3BEMk8dTyZfB8KD0
-	7YbevwCDvqTg+E6fkpbRbQop2BNUiXQ==
-X-Google-Smtp-Source: AGHT+IE0h1OfhwPlHlU/zqfmmwyoK86/xLpsj/AoOe6qs54NDfjqeNrTcOPci/SfJTS7EyFSSYCViXJ4jSy9O3HUuCE=
-X-Received: by 2002:a05:6402:1a43:b0:640:aae6:adc5 with SMTP id
- 4fb4d7f45d1cf-647a69f6860mr2612946a12.4.1764868160633; Thu, 04 Dec 2025
- 09:09:20 -0800 (PST)
+	s=arc-20240116; t=1764868197; c=relaxed/simple;
+	bh=BNdqFoChM4Dg1gXgtTdOSxkekvylSf4HlVcI2srGEg8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pOd50GPZAkqoZZlyQ0j85OZyuvyRmGfQ+6PjIuGo5QwtouogIQwsqrFm73piGGqZadtawQWCu4X/baQ0NmJteyC0nO7HmZiYIVPSMapwLXDCFuUnmKxTe8ZSe4pWB8BX76+e62Thjrt1bu5EWKSWpypX9anY01Y+t9NIEU8BlYU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=iWcApV5M; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=UL1o65RZF394mtenVHi6rNznonj7OEHTfj3BoGUFlN8=; b=iWcApV5M0WBXsDuxeeItZNns/S
+	02v7uWaUbmSJyTk0DdMg6ODCLjJKb2P+feKaKXBVV9MO3smiOL5zqp2JAp+fgG1NC95mHjBn+uINr
+	6jk+2b3yJprhJiHhUMOOJ2bYbaAz3lelCdgE3n86agoiTN2e21fbMBNBj6zQqe/3h45d1F/gNXFtF
+	oEFvdiRVdnObly3IUpUfRAHfbau2PcoHZ+c4NnSgvz/rOkaDZBgjuJEeGd6uG3kOdaqBcLCDYepBJ
+	dEBAeAe3eo0e19kpZIfxEJEKRAVv/GXQsgBpEfFaeZA/sX+K9+A1AXf8VcPDTvWUFNBWC1HnuKVav
+	YG8aKJ5Q==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:44150)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1vRCpp-000000003oF-49tr;
+	Thu, 04 Dec 2025 17:09:42 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1vRCpn-000000001BO-2O36;
+	Thu, 04 Dec 2025 17:09:39 +0000
+Date: Thu, 4 Dec 2025 17:09:39 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: John Madieu <john.madieu.xa@bp.renesas.com>
+Cc: prabhakar.mahadev-lad.rj@bp.renesas.com, andrew+netdev@lunn.ch,
+	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, geert+renesas@glider.be,
+	biju.das.jz@bp.renesas.com, claudiu.beznea@tuxon.dev,
+	magnus.damm@gmail.com, mcoquelin.stm32@gmail.com,
+	alexandre.torgue@foss.st.com, netdev@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 0/3]  net: stmmac: add physical port
+ identification support
+Message-ID: <aTHAU2i4chYpQPSY@shell.armlinux.org.uk>
+References: <20251204164028.7321-1-john.madieu.xa@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250812085037.13517-1-andrea.porta@suse.com> <4fee3870-f9d5-48e3-a5be-6df581d3e296@kernel.org>
- <aKc5nMT1xXpY03ip@apocalypse> <e7875f70-2b79-48e0-a63b-caf6f1fd287b@kernel.org>
- <aLVePQRfU4IB1zK8@apocalypse>
-In-Reply-To: <aLVePQRfU4IB1zK8@apocalypse>
-From: Rob Herring <robh@kernel.org>
-Date: Thu, 4 Dec 2025 11:09:09 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJUzB71QdMcxJtNZ7raoPcK+SfTh7EVzGmk=syo8xLKQw@mail.gmail.com>
-X-Gm-Features: AWmQ_bk-kALt_k3I5clEjqRRUksBAOMX1BPr5dYQDHIANQpdcGuEg7qIa9ngHh0
-Message-ID: <CAL_JsqJUzB71QdMcxJtNZ7raoPcK+SfTh7EVzGmk=syo8xLKQw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: pci: brcmstb: Add rp1-nexus node to fix DTC warning
-To: Andrea della Porta <andrea.porta@suse.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Jim Quinlan <jim2101024@gmail.com>, 
-	Florian Fainelli <florian.fainelli@broadcom.com>, 
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, kwilczynski@kernel.org, 
-	Manivannan Sadhasivam <mani@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rpi-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, iivanov@suse.de, svarbanov@suse.de, 
-	mbrugger@suse.com, Jonathan Bell <jonathan@raspberrypi.com>, 
-	Phil Elwell <phil@raspberrypi.com>, kernel test robot <lkp@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251204164028.7321-1-john.madieu.xa@bp.renesas.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-On Mon, Sep 1, 2025 at 3:48=E2=80=AFAM Andrea della Porta <andrea.porta@sus=
-e.com> wrote:
->
-> Hi Krzysztof,
->
-> On 08:50 Fri 22 Aug     , Krzysztof Kozlowski wrote:
-> > On 21/08/2025 17:22, Andrea della Porta wrote:
-> > > Hi Krzysztof,
-> > >
-> > > On 10:55 Tue 12 Aug     , Krzysztof Kozlowski wrote:
-> > >> On 12/08/2025 10:50, Andrea della Porta wrote:
-> > >>> The devicetree compiler is complaining as follows:
-> > >>>
-> > >>> arch/arm64/boot/dts/broadcom/rp1-nexus.dtsi:3.11-14.3: Warning (uni=
-t_address_vs_reg): /axi/pcie@1000120000/rp1_nexus: node has a reg or ranges=
- property, but no unit name
-> > >>> /home/andrea/linux-torvalds/arch/arm64/boot/dts/broadcom/bcm2712-rp=
-i-5-b.dtb: pcie@1000120000: Unevaluated properties are not allowed ('rp1_ne=
-xus' was unexpected)
-> > >>
-> > >> Please trim the paths.
-> > >
-> > > Ack.
-> > >
-> > >>
-> > >>>
-> > >>> Add the optional node that fix this to the DT binding.
-> > >>>
-> > >>> Reported-by: kernel test robot <lkp@intel.com>
-> > >>> Closes: https://lore.kernel.org/oe-kbuild-all/202506041952.baJDYBT4=
--lkp@intel.com/
-> > >>> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
-> > >>> ---
-> > >>>  Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml | 9 +++++=
-++++
-> > >>>  1 file changed, 9 insertions(+)
-> > >>>
-> > >>> diff --git a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.ya=
-ml b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> > >>> index 812ef5957cfc..7d8ba920b652 100644
-> > >>> --- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> > >>> +++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> > >>> @@ -126,6 +126,15 @@ required:
-> > >>>  allOf:
-> > >>>    - $ref: /schemas/pci/pci-host-bridge.yaml#
-> > >>>    - $ref: /schemas/interrupt-controller/msi-controller.yaml#
-> > >>> +  - if:
-> > >>> +      properties:
-> > >>> +        compatible:
-> > >>> +          contains:
-> > >>> +            const: brcm,bcm2712-pcie
-> > >>> +    then:
-> > >>> +      properties:
-> > >>> +        rp1_nexus:
-> > >>
-> > >> No, you cannot document post-factum... This does not follow DTS codi=
-ng
-> > >> style.
-> > >
-> > > I think I didn't catch what you mean here: would that mean that
-> > > we cannot resolve that warning since we cannot add anything to the
-> > > binding?
-> >
-> > I meant, you cannot use a warning from the code you recently introduced
-> > as a reason to use incorrect style.
-> >
-> > Fixing warning is of course fine and correct, but for the code recently
-> > introduced and which bypassed ABI review it is basically like new revie=
-w
-> > of new ABI.
-> >
-> > This needs standard review practice, so you need to document WHY you
-> > need such node. Warning is not the reason here why you are doing. If
-> > this was part of original patchset, like it should have been, you would
-> > not use some imaginary warning as reason, right?
-> >
-> > So provide reason why you need here this dedicated child, what is that
-> > child representing.
->
-> Ack.
->
-> >
-> > Otherwise I can suggest: drop the child and DTSO, this also solves the
-> > warning...
->
-> This would not fix the issue: it's the non overlay that needs the specifi=
-c
-> node. But I got the point, and we have a solution for that (see below).
->
-> >
-> > >
-> > > Regarding rp1_nexus, you're right I guess it should be
-> > > rp1-nexus as per DTS coding style.
-> > >
-> > >>
-> > >> Also:
-> > >>
-> > >> Node names should be generic. See also an explanation and list of
-> > >> examples (not exhaustive) in DT specification:
-> > >> https://devicetree-specification.readthedocs.io/en/latest/chapter2-d=
-evicetree-basics.html#generic-names-recommendation
-> > >
-> > > In this case it could be difficult: we need to search for a DT node
-> >
-> > Search like in driver? That's wrong, you should be searching by compati=
-ble.
->
-> Thanks for the hint. Searching by compatble is the solution.
+Not another bloody posting of this.
 
-No, it is not.
+Stop it right now. Just stop.
 
-> >
-> > > starting from the DT root and using generic names like pci@0,0 or
-> > > dev@0,0 could possibly led to conflicts with other peripherals.
-> > > That's why I chose a specific name.
-> >
-> > Dunno, depends what can be there, but you do not get a specific
-> > (non-generic) device node name for a generic PCI device or endpoint.
->
-> I would use 'port' instead of rp1-nexus. Would it work for you?
+I've reviewed your first series. You are diluting the potential reviews
+of your code, making it harder for people to review and track what
+people have said.
 
-Do you still plan to fix this? This is broken far worse than just the node =
-name.
+So just stop this stupid behaviour right away. Do not re-post until
+after the merge window is over. Read the networking maintainence
+documentation. Documentation/process/maintainer-netdev.rst
 
-The 'rp1_nexus' node is applied to the PCI host bridge. That's wrong
-unless this is PCI rather than PCIe. There's the root port device in
-between.
+On Thu, Dec 04, 2025 at 05:40:25PM +0100, John Madieu wrote:
+> This series adds physical port identification support to the stmmac driver,
+> enabling userspace to query hardware-stable identifiers for network interfaces
+> via ndo_get_phys_port_id() and ndo_get_phys_port_name().
+> 
+> On systems with multiple ethernet controllers sharing the same driver,
+> physical port identification provides stable identifiers that persist
+> across reboots and are independent of interface enumeration order.
+> This is particularly useful for predictable network interface naming
+> and for correlating interfaces with physical connectors.
+> 
+> The implementation follows a two-tier approach:
+> 
+> 1. Generic stmmac support: Default implementations use the permanent MAC
+>    address as port ID and bus_id for port naming. This provides immediate
+>    benefit for all stmmac-based platforms.
+> 
+> 2. Glue driver override: Platform drivers can provide custom callbacks
+>    for hardware-specific identification schemes. The Renesas GBETH driver
+>    implements this to support device tree-based port identification,
+>    addressing cases where hardware lacks unique identification registers.
+> 
+> The Renesas implementation constructs an 8-byte port identifier from:
+> - Permanent MAC address (if available) or Renesas OUI (74:90:50) as fallback
+> - Port index from device tree property or ethernet alias
+> 
+> 
+> John Madieu (3):
+>   net: stmmac: add physical port identification support
+>   dt-bindings: net: renesas-gbeth: Add port-id property
+>   net: stmmac: dwmac-renesas-gbeth: add physical port identification
+> 
+>  .../bindings/net/renesas,rzv2h-gbeth.yaml     | 19 +++++++
+>  .../stmicro/stmmac/dwmac-renesas-gbeth.c      | 56 +++++++++++++++++++
+>  .../net/ethernet/stmicro/stmmac/stmmac_main.c | 54 ++++++++++++++++++
+>  include/linux/stmmac.h                        |  5 ++
+>  4 files changed, 134 insertions(+)
+> 
+> -- 
+> 2.25.1
+> 
+> 
 
-The clue that things are wrong are start in the driver here:
-
-rp1_node =3D of_find_node_by_name(NULL, "rp1_nexus");
-if (!rp1_node) {
-  rp1_node =3D dev_of_node(dev);
-  skip_ovl =3D false;
-}
-
-You should not need to do this nor care what the node name is. The PCI
-core should have populated pdev->dev.of_node for you. If not, your DT
-is wrong. Turn on CONFIG_PCI_DYNAMIC_OF_NODES and look at the
-resulting PCI nodes. They should also match what the hierarchy looks
-like with lspci. I don't recommend you rely on
-CONFIG_PCI_DYNAMIC_OF_NODES, but statically populate the nodes in the
-DT. First, CONFIG_PCI_DYNAMIC_OF_NODES is an under development thing
-and I hope to get rid of the config option. Second, your case is
-static (i.e. not a PCIe card in a slot) so there is no issue
-hardcoding the DT.
-
-As far as the node name, I don't care so much as long as the driver
-doesn't care and you don't use '_' or 'pcie?' (that's for PCI
-bridges).
-
-And why do we have drivers/misc/rp1/rp1-pci.dtso and a .dtso in
-arch/arm64? There should not be both.
-
-Rob
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
