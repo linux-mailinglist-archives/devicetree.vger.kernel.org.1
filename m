@@ -1,161 +1,125 @@
-Return-Path: <devicetree+bounces-244166-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244167-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57B5DCA21BD
-	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 02:32:07 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77BA0CA227C
+	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 03:19:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 11DA33028FDE
-	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 01:31:57 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E14F6300F1B6
+	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 02:19:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DDAE244186;
-	Thu,  4 Dec 2025 01:31:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1350D238C36;
+	Thu,  4 Dec 2025 02:19:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LriL6Syo"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="W1vHYVKy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 758DF1EA7DF
-	for <devicetree@vger.kernel.org>; Thu,  4 Dec 2025 01:31:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 805B3157487
+	for <devicetree@vger.kernel.org>; Thu,  4 Dec 2025 02:19:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764811916; cv=none; b=lwDJ1EElhnC2lDt6I9rD5z7o6IwwEPC2qbi2MkqYZgPZ0PvQ4JkIkp3vMn0dQxgL6nJrZhk9s3LzTipfIxMvj5830Lt4X7dVW5fxlFihoPa0URu+5ZgDJ+ko7MR9NdAzUlsv5fFwGw0VvPpYgh1CnipwvpV8x2waUlNQcn0hNlw=
+	t=1764814776; cv=none; b=NpVcGwKDQ37vC0eK4EoLSaX7WCQtQ/d9lAIZPtY6B2vAwvJFdrlQrP9FjUg0JI+vJS5fn/03Jni0n/B3P2FRI9xf/39ZG3nxiH3IjUbVBuReM9+C3BdE8OLi7VNc6IuSE3c0Xj6of0aJHZE5EJAAOAvwoGJPUwgV1tne2IPPmOY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764811916; c=relaxed/simple;
-	bh=yqRq0TAR6wsZWEznBHeDJMwCJbb1TMmKfjuiskaHz6I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Dyc8qMAP9CsVNn19f4TM/3yc/yfevkQb9KFCyOOd10rmwav52BA7Wk+MGROgEkUIlU2b63p/GNGdWIRpxcbP7XAEr9ZkIzaSU5hzlazl6nLt2AEQ3YFrPaO1MpPLMS4BK3MbgRcam7nYUzfQEgLSCPONtRR+st2NLnwy5xFymxM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LriL6Syo; arc=none smtp.client-ip=209.85.167.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-594285eed50so39744e87.0
-        for <devicetree@vger.kernel.org>; Wed, 03 Dec 2025 17:31:53 -0800 (PST)
+	s=arc-20240116; t=1764814776; c=relaxed/simple;
+	bh=gCeE1v5pCwA2FCR7GmE46SltFLYJHoN8J5dUprMsAnc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=kANIvZOjCeDrFfFXoAYQsyqIfJZaaYvU5uafjEOj4sT1jEAyXamPcos688Q/0yjiLqmR8WPxkYUA5bqb8FbPzCtVng5h6Jgo2Df9bLVCBRD95N6etNwuBi1/JaAAKeAuwr4EJ5gegcQucadR721AgRxMsrt/ht8Em26JLZpp3b4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=W1vHYVKy; arc=none smtp.client-ip=209.85.167.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oi1-f182.google.com with SMTP id 5614622812f47-450b2715b6cso241447b6e.0
+        for <devicetree@vger.kernel.org>; Wed, 03 Dec 2025 18:19:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1764811912; x=1765416712; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1764814773; x=1765419573; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=KO6gdye/RhzRaWkQiwbtb2L+tSAStzv+9WJjZmM1LrY=;
-        b=LriL6SyovnSF4euNsHzkv044RwDujCsilF1ynoxmvuVReyGZKwjmvcWq3LL8TmkKu5
-         McNBJ1QgKht6E19z0RdnGhLsSzFXzkxtOzgPOjrrj7suWQWeP9lxLbsAMz3Ke2bOiuee
-         0C0sNPZ3IJvtXXfQgeov3vfkiH5zdqmgPGVBDaH6sXL2eX+m0VYYZNtzKmd+S0YP12PQ
-         1f1JT0H0LYys7oGiiESWbj+KCbfAjS/s/f8g42lsYbE8SICr6GjVBbHWsASsY9CG7fek
-         iJBvi8BLMCaRTKimvkGDZlbSvLZGz2aX7/9cjJGHHPZp4Sct4l678jKyssTYCsxt1rLv
-         zi8w==
+        bh=uG7PaGlKRMu5bDo4p3yFYL9GqIngsADyTUqMK4j8Mb4=;
+        b=W1vHYVKyn06LOGKzI8dXJE7IscDNNTo/mDYFiTgsam2UCHzb3kQ2S4ls/tkc2LDYzt
+         GiWzPMbD7G2HgT6crDvHPNjKehqQvxmcD9tCAWNw0wTvmWdNgezYQczXYXYuPJ0F3Vl1
+         pxpg8bv36caY4Y9MVXvjZsIEoGlT6NtkIf8JU3qNucUU+FyQnM1YLLL5i/3iKJ8TizTv
+         bigelT8qLhBkZt5mGuHDt6pcWt7UUfHb+zyO/OYSHAqkFRypt6DGPSvxhCnKsy5WDdGz
+         TLglh0uR7JIegKw9/EphVauUidCeUJ+FDQPcwQapQGfVFhzYahXGFdXQLxkSgf61J+Bh
+         faFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764811912; x=1765416712;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-gg:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=KO6gdye/RhzRaWkQiwbtb2L+tSAStzv+9WJjZmM1LrY=;
-        b=ZYQJ541hJuHW/VlRhcm+rL74HiEMJMHINhN5Az8g6NVRuTh5a1NDcb2apvo81JWR/H
-         zjwVj4kXG7eO5VIFWZ5JsU+g7wP5ZxHyvRD/TpqQrzi9/FUWwvOpAbpO1TXiE1tWYs/B
-         ZpxeGINrtzwN8TpbPWjX2rfmwY1HycghJQBDpD8i9cuzyWGyyp+hjxI6/nHH0rdOHWZk
-         h5pQ8Po04CgFpKr5D4z22eHsx+aiCCEZP1oyy8D6t5jNgzVCcT9wO/WSmfLhUoEdfw1g
-         eQJxyIJRKFSAVwEGsSdSmXqwGZAwnIBRFYDxI612YQ4/upISJlirQ/zWvqwOB+w/8sLg
-         3H2w==
-X-Forwarded-Encrypted: i=1; AJvYcCX6gCaI1Io6o1FAoLV8NjMvac4UJ1KkGn/t+tZ5HK+wjo8IcIpg351Y8kWqKKrge24WgB0wMaKSasTa@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx/EvlJO980acbLJPxuXpyL/HVVnhgOXBgZGPAumks4A40MHM7E
-	HQ7sxzvRJmaTJc8GZxzxO8/cSjIa/RDBfeNWuoyMr1GXbIt74pcHbD6TTGDrRg3o6tc=
-X-Gm-Gg: ASbGnctw2m0p0qn/cuZtctvO1dfci+8ZequG+jJN98FOSKZFRdSYy1CIRqvb3TuYJ7I
-	VNac/tZV8dAB5QEKl5E7ksns34EbI3c0yX3tlW5786chpmm2+3JFY3v5fKghoOYUaqfxGyAn8a+
-	orDYD6p1v/wuyU8NDI2yVZVyt2pxVQfGtrLubMxE6ucUz9N0SloO1Vd+0s5oCz3LS6ww1bAVwLN
-	zbM7gAcLly9yy9flFz5/F32SLGaBTtFwCwF/4fUqfIz0adEnd9PKeYwG/iAe6w3Z21k7/or5/sR
-	8fnpq7y5KfQiXa+lYIA8ONL164Y3EQuK+y6vqm2gqlRo4n8kYm6uoljJtfv8qKqr9PxxodjkCO0
-	juW92V6oyPgc2IGhKZLLjL7GyTpoxKVBKdVm8AnsB5vQQ5kn32Qhrj2OQQa+Tlk0g4pHpVxGOkr
-	G2bk/tNooC9eVszN4uUripMu66jZxEdR9GZjC2b9eds4x0oJd0CeFHrh8ZxjmEJwHN7g==
-X-Google-Smtp-Source: AGHT+IHo7YgZeNSkYmmPqS3Gf1PHEGCQcMyGJaPj2KfZGUd/FbgacScdkjipGnwCUE2nldbH/0enXQ==
-X-Received: by 2002:a05:6512:b8e:b0:594:253c:20a5 with SMTP id 2adb3069b0e04-597d4b2e1b7mr722453e87.5.1764811911546;
-        Wed, 03 Dec 2025 17:31:51 -0800 (PST)
-Received: from [192.168.1.100] (91-159-24-186.elisa-laajakaista.fi. [91.159.24.186])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-596bf8b0668sm6344758e87.39.2025.12.03.17.31.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Dec 2025 17:31:51 -0800 (PST)
-Message-ID: <d2794210-dfbf-4c73-8158-c28595bd73d5@linaro.org>
-Date: Thu, 4 Dec 2025 03:31:50 +0200
+        d=1e100.net; s=20230601; t=1764814773; x=1765419573;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=uG7PaGlKRMu5bDo4p3yFYL9GqIngsADyTUqMK4j8Mb4=;
+        b=Y9IA0aQDemPSxGDyklrN/CJDdM2RUC9B/zQV5O5tXc6Y/KiMN3XbbERL3mx16OaMkS
+         Q0LKoL3nlndmQZOYpKsB/hXMxN6iURn5Be3517th/LCsqTZELqMADcFZOXyGEA6z1i3X
+         zArvjL9S793sBn6KQeBep18YLtId2sEwgUmvTr5hxqiYs0KheoqbRYKxxSHH+OKth7vu
+         cRe1Flmcw+cDGcs7lVjw+i1BCAinxyFs79XXydwm+FxxWv1fK1ZesxdGAvXtZL26TEei
+         CyFX+Zxakpvt2mHNoytKwmY+cN6k81++xnZNv9ZcwFItPPQY2GIAQMFRdsQy2Z/k5nzJ
+         KhQw==
+X-Forwarded-Encrypted: i=1; AJvYcCUtMbBSg9N95a4xxd8iast2XZNQg8wAwYD0tJhNE08gc6esKfE+DqWYTMTZp61sCPTx90YWoolZJLrq@vger.kernel.org
+X-Gm-Message-State: AOJu0YyTe1TyzhKJSVwyf5N/Uzl8B1wfcHPMjEFVMaXsRVNlEvyD5y/4
+	tmZRIvA66hJEzyN9h1LNj3zgeTjREeBFZzIyKXIkggYXcxIv2HUsRPhwbG9O9qkJplOJ35fmMII
+	cLYV+O50YBPrkrzVJaaW8pbEeykpBMp4=
+X-Gm-Gg: ASbGncs2e1nYsC5+T4ZNxpmP2sRxu800qY+mb4ezKOf87rIrx1BxGGQx8QrqRFFZqvK
+	i/4wWdkX7KqdmbWpurbXlDLM11jGh8F2P7tLo95lBOaPZ9ox581xIoK8FSnga+lZdfSAlAN7Jb5
+	M/UmQrLo0sbe/XmYbtbe0dux6/ul+n6/ofs6j+UwoIv+QKkwnQvn81uHdC3LFFxkV7Z76akLVy2
+	ax7UzrJjP+6u/vVY9ieP7n/ERttl8r7Au1Kw2TdTNAKVbWPm+OgZ8ODqn50nmCN5chf9aSX
+X-Google-Smtp-Source: AGHT+IEqB061cfOqCwBgL5GmPx2RSj4lzThZw1cWLyYykeKeoUInbmIZmdnj3e40MG0mT+uUQiKQyBPTmgsYn3oAUT4=
+X-Received: by 2002:a05:6808:1b8c:b0:450:89ee:923d with SMTP id
+ 5614622812f47-45379dac9b1mr796186b6e.31.1764814773581; Wed, 03 Dec 2025
+ 18:19:33 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/7] media: dt-bindings: Add CAMSS device for SM8750
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>
-Cc: Loic Poulain <loic.poulain@oss.qualcomm.com>,
- Robert Foss <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Todor Tomov <todor.too@gmail.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>, linux-i2c@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
- jeyaprakash.soundrapandian@oss.qualcomm.com,
- Vijay Kumar Tumati <vijay.tumati@oss.qualcomm.com>
-References: <20251126-add-support-for-camss-on-sm8750-v1-0-646fee2eb720@oss.qualcomm.com>
- <20251126-add-support-for-camss-on-sm8750-v1-2-646fee2eb720@oss.qualcomm.com>
- <20251127-smart-tuatara-of-downpour-88c16d@kuoka>
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <20251127-smart-tuatara-of-downpour-88c16d@kuoka>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <87o6prsl2z.wl-kuninori.morimoto.gx@renesas.com>
+ <87ldkvsl1k.wl-kuninori.morimoto.gx@renesas.com> <CABb+yY2C32cTwh=8pFGGZijwd1KbpAA5=FfFzp_u1OOo8XPn1w@mail.gmail.com>
+ <87h5v0xdfr.wl-kuninori.morimoto.gx@renesas.com>
+In-Reply-To: <87h5v0xdfr.wl-kuninori.morimoto.gx@renesas.com>
+From: Jassi Brar <jassisinghbrar@gmail.com>
+Date: Wed, 3 Dec 2025 20:19:22 -0600
+X-Gm-Features: AWmQ_blIhviETDC4lCQSXKa9EPrNMcjcSEfDZbmIhU2CpNMAnpufetADKUmSWyM
+Message-ID: <CABb+yY15RqOtCav_ug-7z8n59TPnm2axVCUeiw3RsAvgroLqbg@mail.gmail.com>
+Subject: Re: [PATCH v2 2/3] mailbox: renesas: Support MFIS mailbox driver
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc: Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 11/27/25 10:10, Krzysztof Kozlowski wrote:
-> On Wed, Nov 26, 2025 at 01:38:35AM -0800, Hangxiang Ma wrote:
->> Add the compatible string "qcom,sm8750-camss" to support the Camera
-> 
-> s/to support the/for the/
-> 
-> Bindings do not support hardware.
-> 
->> Subsystem (CAMSS) on the Qualcomm SM8750 platform.
->>
->> The SM8750 platform provides:
->> - 3 x VFE, 5 RDI per VFE
->> - 2 x VFE Lite, 4 RDI per VFE Lite
->> - 3 x CSID
->> - 2 x CSID Lite
->> - 6 x CSIPHY
->> - 2 x ICP
->> - 1 x IPE
->> - 2 x JPEG DMA & Downscaler
->> - 2 x JPEG Encoder
->> - 1 x OFE
->> - 5 x RT CDM
->> - 3 x TPG
->>
->> Signed-off-by: Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>
->> ---
->>   .../bindings/media/qcom,sm8750-camss.yaml          | 664 +++++++++++++++++++++
->>   1 file changed, 664 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/media/qcom,sm8750-camss.yaml b/Documentation/devicetree/bindings/media/qcom,sm8750-camss.yaml
+On Tue, Nov 11, 2025 at 7:11=E2=80=AFPM Kuninori Morimoto
+<kuninori.morimoto.gx@renesas.com> wrote:
+>
+>
+> Hi Jassi
+>
+> Thank you for your review.
+>
+> > > +       mbox->chans                     =3D priv->chan;
+> > > +       mbox->chans[TX].mbox            =3D
+> > > +       mbox->chans[RX].mbox            =3D mbox;
+> > > +       mbox->chans[TX].con_priv        =3D
+> > > +       mbox->chans[RX].con_priv        =3D priv;
+> > > +       mbox->txdone_poll               =3D true;
+> > > +       mbox->txdone_irq                =3D false;
+> > > +       mbox->txpoll_period             =3D 1;
+> > > +       mbox->num_chans                 =3D NUM_DIRECTION;
+> > > +       mbox->ops                       =3D &mfis_chan_ops;
+> > > +       mbox->dev                       =3D dev;
+> > > +
+> > Please fix whitespaces, here and elsewhere.
+>
+> This is for cosmetic, but not for technical.
+> I know many opinions exist to this kind of topics, but I like aligned cod=
+e
+> because it is easy to read, and is also easy to notice some issue if exis=
+t
+> in such code.
+>
+Cosmetics are usually for enhancing the beauty :)  If you want that
+please use spaces instead of tabs before '=3D'
 
-<snip>
-
->> +
->> +  vdd-csiphy0-0p88-supply:
-> 
-> 88->8, so: vdd-csiphy0-0p8-supply:
-
-I would make a minor correction here, it'd be rather 0p9.
-
-> Same in other places. This is how it is called for every binding.
-> 
->> +    description:
->> +      Phandle to a 0.88V regulator supply to CSIPHY0 core block.
->> +
->> +  vdd-csiphy0-1p2-supply:
->> +    description:
->> +      Phandle to a 1.2V regulator supply to CSIPHY0 pll block.
->> +
->> +  vdd-csiphy1-0p88-supply:
->> +    description:
->> +      Phandle to a 0.88V regulator supply to CSIPHY1 core block.
-
--- 
-Best wishes,
-Vladimir
+thanks
 
