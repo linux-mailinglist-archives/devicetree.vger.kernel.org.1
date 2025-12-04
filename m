@@ -1,218 +1,329 @@
-Return-Path: <devicetree+bounces-244235-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244236-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67924CA29D1
-	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 08:14:42 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1FE5CA29ED
+	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 08:23:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id ED5F7301FC11
-	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 07:14:28 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E4FC7301DE3A
+	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 07:23:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11B0029B8DD;
-	Thu,  4 Dec 2025 07:14:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B39092BD02A;
+	Thu,  4 Dec 2025 07:23:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="e+Phu7H9";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="SaFzdHfq"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="YuOhdV3X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8444D298CAF
-	for <devicetree@vger.kernel.org>; Thu,  4 Dec 2025 07:14:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A313E29346F
+	for <devicetree@vger.kernel.org>; Thu,  4 Dec 2025 07:23:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764832468; cv=none; b=KLVkbK3H8fpRK2Vmo4VmSgCCF45piQp/3mpJPYFd/HB6bUP2qRHZbMJq09byc6c5e2/zJb5I9dmf7cRW1YgLJ1HZ3qIAWMspIqeiGbDmYiC19a1Ghi/zEuL8eqJ1NOxEhQKHv/H0jmmII4zJ01XXPJK5BliO6pvqsojBCkTdADw=
+	t=1764832997; cv=none; b=frkJ9LEJD83JGuijBwdww0/2EVyeTEMuJmmc5ANnviPgvj6+zbwRy0JxIsiapK2hnewea5OTG0qcW0zqK1jGLvFDWjvMkShfyho3ARPMO1Y/mTPMHDOqPX+bVvHiazGtKdoegIKKSZ6T78Jwy4Ve34+F1DiYqDnii7AH738bZu4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764832468; c=relaxed/simple;
-	bh=5C7hKuLAvhvfZz+3GAuTKfQ3xGCGPj/4JPyHPx3D4KA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=q/D1uJFADKn2nmvsR9dPLs31+CN1speORw/5/yP8HFByMYz/OyyC8imC5adSRn04FGOr15Zc/PtJG1bX68KjUVezfPVZV/F6UtzBBTgOnbhGR1bn63+Y7b+AexiAA+zGkeEpKYBMLszmawSyIkUDIEz7fibTQ9BUxBVfH0wDJnE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=e+Phu7H9; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=SaFzdHfq; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5B468Y0j559857
-	for <devicetree@vger.kernel.org>; Thu, 4 Dec 2025 07:14:25 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	1nF7KRnXPuuP/bAwN9rvMlJ/NT7u6usEQMpt8zz2V+Y=; b=e+Phu7H9jZ2KiMcp
-	2fxKKyJw0GVqKQFfutfDfVrDZFBrQJvfC5nc1Gqf+CVQ1NPUWYmv3Fr7SsT580OS
-	nximFAtXy2KxXsoPv8q33pFrB6oX7i2waI+TWLjOqyKlg911DSJvvwr5A5EerBTD
-	OvhIykmJtN880CNL++d6gW51957oBCg+6aD1wQ7+se5ffU0nWV9FMpbnfavUw1XW
-	smZBVg3aPjX0ieU8ahJ0kIUKdg4Tj3c6NHnjekPcWRqu8B1ywR8vcAWo8k9JBcvD
-	gPChlFBJIgrFq+Tbwdtq1UIGKkQ2483s1oiA2VXFtaHtxQKPkLCwm7aFng0dxQqk
-	uvr2ng==
-Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com [209.85.216.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4attmh9vjr-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 04 Dec 2025 07:14:25 +0000 (GMT)
-Received: by mail-pj1-f70.google.com with SMTP id 98e67ed59e1d1-34943cc3221so1038519a91.2
-        for <devicetree@vger.kernel.org>; Wed, 03 Dec 2025 23:14:25 -0800 (PST)
+	s=arc-20240116; t=1764832997; c=relaxed/simple;
+	bh=zX9c7chYV7gXxEqwc4tFXZ6Sy0C+BBq2PqMRcTvKGFI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Content-Type; b=D/BQWowpXG1062msRdevoAB0P/kDdW+6KTgYgUAduZOGZh8C0oddLq+eY0KKGi0YiM0Cnj0fu/2rL2EaMltDwAGEVPGiKQPIkCCNv+NpFoLdU6g1TOPU1rW3UuTVCPJyw+XCUVuqEgbOwhIQFb/H+yC4igqFjaYFDGHLK9ifDZY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=YuOhdV3X; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-4775e891b5eso2547365e9.2
+        for <devicetree@vger.kernel.org>; Wed, 03 Dec 2025 23:23:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1764832464; x=1765437264; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=sifive.com; s=google; t=1764832994; x=1765437794; darn=vger.kernel.org;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=1nF7KRnXPuuP/bAwN9rvMlJ/NT7u6usEQMpt8zz2V+Y=;
-        b=SaFzdHfqP/+hoP8EgbOjJvK4op/neW6T+1iiArb5VcvFkIUZwuA57q3Np74x8maRgy
-         eVZr+a69PSHaThJBQJhsdAu1kyOSrmIDm4hNOD4hVv2YeMhz5tNeiJs13lhX5rqKg+51
-         /kvNE2pPmmvBIohxfE42gYyKoQSsaAh6Opb9eR1+4aTwCg+vNQU2fL1IyDZqoeLUkfIJ
-         bY0IN+kQZVFLExx3SivXTdJwxTcYHOV5k53QoXXrO4szt0fkxXzdTdCdE4JSU/LLSfCB
-         5E5ZRPWLNHaObfKtchapvhqtXtHAcuKq5+cY8+umOuhn04qq2bgcJgnXuEHf2Ihh9/KU
-         r8xA==
+        bh=okWEC/iPxwHapBCL3ZZGyYvTBzssGUbkrGoBgDrV58Y=;
+        b=YuOhdV3XhYeQLzGTeFG6NTPekh6PpI2Va1y9VOOTq8WXzzQRTM1kOajrxgsKF/VC+P
+         bYQWr1bTosjJ2w5oRmJOUxC7hnh8gp7q74HdqhNC2JoCrXXfc6zDTCC97iQdJuoL+YfI
+         C4tfgo2SLwponDTZaqwSc5DVLnXglAyoMLsCsJ3S3pULEZZgarfFbCMwHgUgupR+oq0P
+         saF5UNREWfg9HMaTKyVw8mQOKA5iYP8duo9+dtM4865gFVMs2bVzFQQzFuF2+0TehDyo
+         oZG+FAzfIwJt/np3LDEKrKtPbEBiMGRErMcDBr48wiVuF3/yG1aZ6wXD3Y3mLnua/GvU
+         nKUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764832464; x=1765437264;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1764832994; x=1765437794;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
          :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=1nF7KRnXPuuP/bAwN9rvMlJ/NT7u6usEQMpt8zz2V+Y=;
-        b=uVkwlAb4D6n5P3GmfLW7NUgN2lTVlFIZ86fK7d3dHiGJrOhcwzoJ22txuZ711IkkCs
-         ESmYLtMlYhfQcYBTu8bWBPfWg7B1mdqxiBO3sO4LAwlV7bLBz/EFPgRJ23vIDe5l/GBI
-         edlrYQnIolflRDZ3mPt6VQ8/j51e1xPYZDN4k9AnmJ2rYq9qW7YUsTDB7sPJr+ZoA12D
-         hcXo9Ausqhsd18p810yFvCXktx0BxfngLlHv2bvPkaW7GHPCB4oPoU2hKhf2S0aG+ivi
-         VMaygdCaVF5axTEEPKYvlWhvc3ib/R7XTXxJxFRQu6HGxVoQPD2667zYa2KYh1/ymF9M
-         dEZQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWi8yEheRkITCUCLG1Bh8QwWLlJvC6I0uu+BiUzCvHvk4mpXmgW96X+SfQ1XfPQ6yB4CBBEOYEQmbSW@vger.kernel.org
-X-Gm-Message-State: AOJu0YxwAQO47NK96fLKmK7raU5j7tFXP/zaGLF2KzKVMAW1g6t8dCaJ
-	7CLmNsp2fiWY9zostVkx6JEg/1x3qK4ZAcv2rBdPJAfoc36FfqNtswIgCzeEhJuljhKuWIIlhsw
-	vM0XyGC5trHVuJKE0i7vIEq3AXofFkkJHkL3RAinOMpMFUyjpfxA5QMcK8iswQWo1
-X-Gm-Gg: ASbGncvdg8v530dFtXzKLXsNEYkRh/vN3qToLAGBda3o5/WBo4tpB/XvM2oTjHB5FXP
-	0MolDoCZtwmOs5DKVlorsYzESEmlZ3+WQ2I2Xxt6hts+RTPHaDM+mA9/ABBdIz+6Ywbo41l/pQp
-	6Zs4cIe52f5604gAHBcZ5RMT4k2qqbj/Y3aBtx0dQymSZU8ePEyk8hNl5UDzRzF+32jiNkdnLyE
-	XdM3yVcmytb3r+RT2PHmNE1CSajtrAGQCAk4p7Eltoaiy92rddkH7uX5QT7C4xAWDod3xdsBZSZ
-	zvVSXiqtH6i2pyaCznZXnY2xckgdIuIowF8rJwjIVGb9bTkXhuxAKTWf8Rf+ADThBKjC2LbjRlC
-	WtYxJ4vXH1blpVUweUBk2RkC6vKcFfuoSSL6Ozg==
-X-Received: by 2002:a17:90b:534e:b0:32b:9750:10e4 with SMTP id 98e67ed59e1d1-349126f0736mr5893462a91.27.1764832464460;
-        Wed, 03 Dec 2025 23:14:24 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGMj8ey2LgMUls5vb/bDVMguHBOIr4pbhmoevWwLaJZ3BPPsbZLE6wlw8i1niGvDyiNmkNTEQ==
-X-Received: by 2002:a17:90b:534e:b0:32b:9750:10e4 with SMTP id 98e67ed59e1d1-349126f0736mr5893429a91.27.1764832463957;
-        Wed, 03 Dec 2025 23:14:23 -0800 (PST)
-Received: from [10.217.217.147] ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3494f398fa5sm889313a91.8.2025.12.03.23.14.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Dec 2025 23:14:23 -0800 (PST)
-Message-ID: <75e53a37-0fd2-41d6-92bc-fb4ad5856829@oss.qualcomm.com>
-Date: Thu, 4 Dec 2025 12:44:16 +0530
+        bh=okWEC/iPxwHapBCL3ZZGyYvTBzssGUbkrGoBgDrV58Y=;
+        b=UV/rT1zKtRWhtlST5U0hPXF8A8CQ85SYDFE00LGjzKC99GhQozqYweMNcPTTL8tpBP
+         dTmbW8UegFM9OP+CWGRJbGsvvDuZuHFYFNYAcY/GhBLt3n/qlWHaM0r+rmeQa7yr9Lb2
+         JGfOxYcJ4V/lOqV9Hb4of7DYpPZVqt78XhDFp2Aovx+LzGFZfz4SB2DNxqWEBuJcTq4c
+         bUOM3ZKprSWV82VDGvYzBmGaO3c7oXE/RB1lViz3iBLjaVOLJaCjCS+GNjkrEl1Vx4/P
+         /Q/M1qAD1mF088liGYoiEeaFjLvnKoNgM6sZ3N7W/zxqWzrdM5jJIzd803oHw9H6oD72
+         p0eg==
+X-Forwarded-Encrypted: i=1; AJvYcCVz3W7ctNAKLzLpx4rwF9cSsCrJyMGGBit/CPWbW6IEy/cE5J07lPJK8GBWDM7QnIdCPEfRlhSf5MNv@vger.kernel.org
+X-Gm-Message-State: AOJu0YzG4YTe3s2+LUjs6T3T3HW2DkStvbs7XuDwxFADvUS5dlMJi7yn
+	jFaNDE7exmTp/6ItR8S0ENxk3hVpe8v7xe7BbqYs0VtyWhNPSZaxNkWUPAztYMMhrsX732KzHm1
+	nG+GawiJaRZKXatbEuZ44lL9K3XFyzsrVADP3Qtg/xA==
+X-Gm-Gg: ASbGncs6AOWYxhi0fo312MRi+u1pyHb1r98GwdC54DrrTsLOFdfkCPnb9zHVbkvDSx5
+	3Yq1BeiaX9Ie0tmah6qx8u+yZNHMtE6R7hyOs5TwHwK+us5AwZ2yZnMTxV5Y1mh+onfZYwYzWlc
+	gF3RqE5W4qZfMaFvtad9tR+C7WFsScnnX7+XPX7ZYTYsJH93eNS6PTDyJ3cWNoPNuao+QXQ+NoX
+	OvBGEbgwD8v20/LAnh1nx2KCV5R7/8MVRP/hN+WsLwddlV3gqgiUAO7FVCNW2heOTtsWqA5hA==
+X-Google-Smtp-Source: AGHT+IFaKGk1a1cfaFCq3oEJHjtRMI9goTFpitEtb54cbEHZjPz6jL2+k2TkdRXspbNqqeM3uYcrqB70IssR3M+MU1k=
+X-Received: by 2002:a05:6000:4012:b0:42b:3701:c4c6 with SMTP id
+ ffacd0b85a97d-42f731eb4d1mr4801776f8f.38.1764832993790; Wed, 03 Dec 2025
+ 23:23:13 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 08/11] clk: qcom: dispcc: Add support for display clock
- controller Kaanapali
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Ajit Pandey <ajit.pandey@oss.qualcomm.com>,
-        Imran Shaik <imran.shaik@oss.qualcomm.com>,
-        Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org
-References: <20251125-kaanapali-mmcc-v2-v2-0-fb44e78f300b@oss.qualcomm.com>
- <20251125-kaanapali-mmcc-v2-v2-8-fb44e78f300b@oss.qualcomm.com>
- <w3ezxipjucswfswfg2z7b7uyu55bssqatdnbxa6jflii4j7nym@lxsnidrewepu>
- <8d0ec7fc-6eb0-4b71-8e0f-3deaf1f489d6@oss.qualcomm.com>
-Content-Language: en-US
-From: Taniya Das <taniya.das@oss.qualcomm.com>
-In-Reply-To: <8d0ec7fc-6eb0-4b71-8e0f-3deaf1f489d6@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: 5vBylpUjQsOqswjvsDBa7o8AwXVje9X_
-X-Authority-Analysis: v=2.4 cv=NcTrFmD4 c=1 sm=1 tr=0 ts=693134d1 cx=c_pps
- a=0uOsjrqzRL749jD1oC5vDA==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=JxPSEc7MvJ4Lh0wbHXUA:9
- a=QEXdDO2ut3YA:10 a=mQ_c8vxmzFEMiUWkPHU9:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjA0MDA1NyBTYWx0ZWRfX6AYFrQLrwXx0
- 9B7UDaVHEqqVh707ThaQ1ja4kqRZGLAwQXW0xThUt49EoZeqjNWwXbtSlvvg/DqSJjzMhfBFLXl
- Ll0t4GpkRe4N6FNC2cDRoYZHSMnox7i39LNEk8oHYVTlEboDokmm2Q688/7XvEXLeop03Em76TZ
- Ln3VCP4fXZL3JzXZNuEosEMv2p9Kb2VjtHcw17XOqV/4dYrtf1I9Iuc36/G7SNE0D400Ab92F3H
- fKe6oyKXpNLmJtAeOdKVycV5TiC4C0iRDXTWLFySmSxEQ5jkhO9ZnGfXVxKLIRe6hvrDxi4O6AC
- OSq4Dgrz3nEkDZIXVDmCblD5+LoPF4OEQjiV4o/dnFcteidS9GSxkHlhSD0YhNTDKHuWY3jC4Pt
- nitgyKu/AKwfpcbEGQ6ndwtCpsG0Ng==
-X-Proofpoint-ORIG-GUID: 5vBylpUjQsOqswjvsDBa7o8AwXVje9X_
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-04_02,2025-12-03_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 suspectscore=0 priorityscore=1501 impostorscore=0
- malwarescore=0 bulkscore=0 phishscore=0 adultscore=0 lowpriorityscore=0
- spamscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
- definitions=main-2512040057
+References: <20250523-b4-ctr_upstream_v3-v3-0-ad355304ba1c@rivosinc.com>
+ <20250523-b4-ctr_upstream_v3-v3-6-ad355304ba1c@rivosinc.com>
+ <CAPqJEFr=3Re=L0CmEpCRHxovB74MDB9C8neNMfouYvWWbR0hyw@mail.gmail.com> <CAJh9TSJk0nZvqJrvTe5ENMpAB=56--+CFai0tXQnYFakKxQxQw@mail.gmail.com>
+In-Reply-To: <CAJh9TSJk0nZvqJrvTe5ENMpAB=56--+CFai0tXQnYFakKxQxQw@mail.gmail.com>
+From: Jimmy Ho <jimmy.ho@sifive.com>
+Date: Thu, 4 Dec 2025 15:23:02 +0800
+X-Gm-Features: AWmQ_bmUiiW9pn488x-Fr8fuYuHfeGljg_pilmkGRtBxdEqZhbPqlS98C4-BBjg
+Message-ID: <CAJh9TS+MM+4ytsQ4tOhddNihvTrRMwV0rFRmMv1xRQTGcE18Dw@mail.gmail.com>
+Subject: Re: [PATCH v3 6/7] riscv: pmu: Integrate CTR Ext support in
+ riscv_pmu_dev driver
+To: Peter Zijlstra <peterz@infradead.org>, mingo@redhat.com, 
+	Arnaldo Carvalho de Melo <acme@kernel.org>, Namhyung Kim <namhyung@kernel.org>, mark.rutland@arm.com, 
+	alexander.shishkin@linux.intel.com, Jiri Olsa <jolsa@kernel.org>, 
+	Ian Rogers <irogers@google.com>, adrian.hunter@intel.com, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, aou@eecs.berkeley.edu, 
+	Alexandre Ghiti <alex@ghiti.fr>, Patra <atishp@rivosinc.com>, Anup Patel <anup@brainfault.org>, 
+	Deacon <will@kernel.org>, Rob Herring <robh@kernel.org>, Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Beeman Strong <beeman@rivosinc.com>, 
+	"Cc:" <linux-perf-users@vger.kernel.org>, linux-kernel@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+	palmer@sifive.com, Conor Dooley <conor@kernel.org>, devicetree@vger.kernel.org, 
+	Rajnesh Kanwal <rkanwal@rivosinc.com>
+Content-Type: text/plain; charset="UTF-8"
 
+Hi Rajnesh,
 
+> This integrates recently added CTR ext support in riscv_pmu_dev driver
+> to enable branch stack sampling using PMU events.
+>
+> This mainly adds CTR enable/disable callbacks in rvpmu_ctr_stop()
+> and rvpmu_ctr_start() function to start/stop branch recording along
+> with the event.
+>
+> PMU overflow handler rvpmu_ovf_handler() is also updated to sample
+> CTR entries in case of the overflow for the particular event programmed
+> to records branches. The recorded entries are fed to core perf for
+> further processing.
+>
+> Signed-off-by: Rajnesh Kanwal <rkanwal@rivosinc.com>
+> ---
+>  drivers/perf/riscv_pmu_common.c |  3 +-
+>  drivers/perf/riscv_pmu_dev.c    | 67 ++++++++++++++++++++++++++++++++++++++++-
+>  2 files changed, 67 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/perf/riscv_pmu_common.c b/drivers/perf/riscv_pmu_common.c
+> index b2dc78cbbb93926964f81f30be9ef4a1c02501df..0b032b8d8762e77d2b553643b0f9064e7c789cfe
+> 100644
+> --- a/drivers/perf/riscv_pmu_common.c
+> +++ b/drivers/perf/riscv_pmu_common.c
+> @@ -329,8 +329,7 @@ static int riscv_pmu_event_init(struct perf_event *event)
+>         u64 event_config = 0;
+>         uint64_t cmask;
+>
+> -       /* driver does not support branch stack sampling */
+> -       if (has_branch_stack(event))
+> +       if (needs_branch_stack(event) && !riscv_pmu_ctr_supported(rvpmu))
+>                 return -EOPNOTSUPP;
+>
+>         hwc->flags = 0;
+> diff --git a/drivers/perf/riscv_pmu_dev.c b/drivers/perf/riscv_pmu_dev.c
+> index 95e6dd272db69f53b679e5fc3450785e45d5e8b9..b0c616fb939fcc61f7493877a8801916069f16f7
+> 100644
+> --- a/drivers/perf/riscv_pmu_dev.c
+> +++ b/drivers/perf/riscv_pmu_dev.c
+> @@ -1038,7 +1038,7 @@ static void rvpmu_sbi_ctr_stop(struct perf_event
+> *event, unsigned long flag)
+>  static void pmu_sched_task(struct perf_event_pmu_context *pmu_ctx,
+>                            bool sched_in)
+>  {
+> -       /* Call CTR specific Sched hook. */
+> +       riscv_pmu_ctr_sched_task(pmu_ctx, sched_in);
+>  }
+>
+>  static int rvpmu_sbi_find_num_ctrs(void)
+> @@ -1370,6 +1370,13 @@ static irqreturn_t rvpmu_ovf_handler(int irq, void *dev)
+>                 hw_evt->state |= PERF_HES_UPTODATE;
+>                 perf_sample_data_init(&data, 0, hw_evt->last_period);
+>                 if (riscv_pmu_event_set_period(event)) {
+> +                       if (needs_branch_stack(event)) {
+> +                               riscv_pmu_ctr_consume(cpu_hw_evt, event);
+> +                               perf_sample_save_brstack(
+> +                                       &data, event,
+> +
+> &cpu_hw_evt->branches->branch_stack, NULL);
+> +                       }
+> +
+>                         /*
+>                          * Unlike other ISAs, RISC-V don't have to
+> disable interrupts
+>                          * to avoid throttling here. As per the
+> specification, the
+> @@ -1569,16 +1576,23 @@ static int rvpmu_deleg_ctr_get_idx(struct
+> perf_event *event)
+>
+>  static void rvpmu_ctr_add(struct perf_event *event, int flags)
+>  {
+> +       if (needs_branch_stack(event))
+> +               riscv_pmu_ctr_add(event);
+>  }
+>
+>  static void rvpmu_ctr_del(struct perf_event *event, int flags)
+>  {
+> +       if (needs_branch_stack(event))
+> +               riscv_pmu_ctr_del(event);
+>  }
+>
+>  static void rvpmu_ctr_start(struct perf_event *event, u64 ival)
+>  {
+>         struct hw_perf_event *hwc = &event->hw;
+>
+> +       if (needs_branch_stack(event))
+> +               riscv_pmu_ctr_enable(event);
+> +
+>         if (riscv_pmu_cdeleg_available() && !pmu_sbi_is_fw_event(event))
+>                 rvpmu_deleg_ctr_start(event, ival);
+>         else
+> @@ -1593,6 +1607,9 @@ static void rvpmu_ctr_stop(struct perf_event
+> *event, unsigned long flag)
+>  {
+>         struct hw_perf_event *hwc = &event->hw;
+>
+> +       if (needs_branch_stack(event) && flag != RISCV_PMU_STOP_FLAG_RESET)
+> +               riscv_pmu_ctr_disable(event);
+> +
+>         if ((hwc->flags & PERF_EVENT_FLAG_USER_ACCESS) &&
+>             (hwc->flags & PERF_EVENT_FLAG_USER_READ_CNT))
+>                 rvpmu_reset_scounteren((void *)event);
+> @@ -1650,6 +1667,9 @@ static u32 rvpmu_find_ctrs(void)
+>
+>  static int rvpmu_event_map(struct perf_event *event, u64 *econfig)
+>  {
+> +       if (needs_branch_stack(event) && !riscv_pmu_ctr_valid(event))
+> +               return -EOPNOTSUPP;
+> +
+>         if (riscv_pmu_cdeleg_available() && !pmu_sbi_is_fw_event(event))
+>                 return rvpmu_cdeleg_event_map(event, econfig);
+>         else
+> @@ -1696,6 +1716,8 @@ static int rvpmu_starting_cpu(unsigned int cpu,
+> struct hlist_node *node)
+>                 enable_percpu_irq(riscv_pmu_irq, IRQ_TYPE_NONE);
+>         }
+>
+> +       riscv_pmu_ctr_starting_cpu();
+> +
+>         if (sbi_pmu_snapshot_available())
+>                 return pmu_sbi_snapshot_setup(pmu, cpu);
+>
+> @@ -1710,6 +1732,7 @@ static int rvpmu_dying_cpu(unsigned int cpu,
+> struct hlist_node *node)
+>
+>         /* Disable all counters access for user mode now */
+>         csr_write(CSR_SCOUNTEREN, 0x0);
+> +       riscv_pmu_ctr_dying_cpu();
+>
+>         if (sbi_pmu_snapshot_available())
+>                 return pmu_sbi_snapshot_disable();
+> @@ -1833,6 +1856,29 @@ static void riscv_pmu_destroy(struct riscv_pmu *pmu)
+>         cpuhp_state_remove_instance(CPUHP_AP_PERF_RISCV_STARTING, &pmu->node);
+>  }
+>
+> +static int branch_records_alloc(struct riscv_pmu *pmu)
+> +{
+> +       struct branch_records __percpu *tmp_alloc_ptr;
+> +       struct branch_records *records;
+> +       struct cpu_hw_events *events;
+> +       int cpu;
+> +
+> +       if (!riscv_pmu_ctr_supported(pmu))
+> +               return 0;
+> +
+> +       tmp_alloc_ptr = alloc_percpu_gfp(struct branch_records, GFP_KERNEL);
+> +       if (!tmp_alloc_ptr)
+> +               return -ENOMEM;
+> +
+> +       for_each_possible_cpu(cpu) {
+> +               events = per_cpu_ptr(pmu->hw_events, cpu);
+> +               records = per_cpu_ptr(tmp_alloc_ptr, cpu);
+> +               events->branches = records;
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+>  static void rvpmu_event_init(struct perf_event *event)
+>  {
+>         /*
+> @@ -1845,6 +1891,9 @@ static void rvpmu_event_init(struct perf_event *event)
+>                 event->hw.flags |= PERF_EVENT_FLAG_USER_ACCESS;
+>         else
+>                 event->hw.flags |= PERF_EVENT_FLAG_LEGACY;
+> +
+> +       if (branch_sample_call_stack(event))
+> +               event->attach_state |= PERF_ATTACH_TASK_DATA;
+>  }
+>
+>  static void rvpmu_event_mapped(struct perf_event *event, struct mm_struct *mm)
+> @@ -1992,6 +2041,15 @@ static int rvpmu_device_probe(struct
+> platform_device *pdev)
+>                 pmu->pmu.attr_groups = riscv_cdeleg_pmu_attr_groups;
+>         else
+>                 pmu->pmu.attr_groups = riscv_sbi_pmu_attr_groups;
+> +
+> +       ret = riscv_pmu_ctr_init(pmu);
+> +       if (ret)
+> +               goto out_free;
+> +
+> +       ret = branch_records_alloc(pmu);
+> +       if (ret)
+> +               goto out_ctr_finish;
+> +
+>         pmu->cmask = cmask;
+>         pmu->ctr_add = rvpmu_ctr_add;
+>         pmu->ctr_del = rvpmu_ctr_del;
+> @@ -2008,6 +2066,10 @@ static int rvpmu_device_probe(struct
+> platform_device *pdev)
+>         pmu->csr_index = rvpmu_csr_index;
+>         pmu->sched_task = pmu_sched_task;
+>
+> +       ret = cpuhp_state_add_instance(CPUHP_AP_PERF_RISCV_STARTING,
+> &pmu->node);
+> +       if (ret)
+> +               goto out_ctr_finish;
 
-On 12/1/2025 6:50 PM, Konrad Dybcio wrote:
-> On 11/26/25 1:09 AM, Dmitry Baryshkov wrote:
->> On Tue, Nov 25, 2025 at 11:15:17PM +0530, Taniya Das wrote:
->>> Support the clock controller driver for Kaanapali to enable display SW to
->>> be able to control the clocks.
->>>
->>> Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
->>> ---
-> 
-> [...]
-> 
->>> +/* 257.142858 MHz Configuration */
->>
->> This is a bit strange frequency for the boot config.
+This hotplug registration should be removed, since there is already
+one in the original code.
+Otherwise, It will cause the CPU hotplug down to loop infinitely.
 
-The lowest PLL configuration is used as boot config based on the
-MDP_CLK_SRC clock requirement. The PLLs on Kaanapali can support these
-lower frequencies as well.
+Best regards,
+Jimmy Ho
 
-
-> The frequency map lists this odd cookie as the lowest predefined config,
-> perhaps it was pulled from there.
-> 
-
-Correct Konrad.
-
-> More interestingly, the only consumer of this PLL (MDP_CLK_SRC) makes no
-> effort to use the m/n/d registers, instead relying on the PLL to re-clock
-> for its ratesetting with a fixed divider of 3 (and div1 @ XO rate).
-> 
-
-The m/n is not preferred in the cases where the PLL needs to slew to
-derive a new VCO frequency. That is the reason to keep the divider
-constant as much as possible to derive a particular frequency.
-
-> 257.142858 * 3 = 771.428574 over-drives MDP_CLK_SRC, FWIW.
-> 
-
-The lowest frequency requirement is 85.7MHz and the frequency is derived
-using
-257.142858 (PLL VCO) / 3 (RCG Div) = 85.714286 MHz
-
-there is no over-drive at RCG of MDP.
-
-> Taniya, we've seen something like this in camera too. Is there a reason
-> the frequency is being set this way?
-> 
-
-We start with the lowest frequency to configure the PLL and frequency
-requirements are decided based on usecases.
-
--- 
-Thanks,
-Taniya Das
-
+> +
+>         ret = riscv_pm_pmu_register(pmu);
+>         if (ret)
+>                 goto out_unregister;
+> @@ -2057,6 +2119,9 @@ static int rvpmu_device_probe(struct
+> platform_device *pdev)
+>  out_unregister:
+>         riscv_pmu_destroy(pmu);
+>
+> +out_ctr_finish:
+> +       riscv_pmu_ctr_finish(pmu);
+> +
+>  out_free:
+>         kfree(pmu);
+>         return ret;
+>
+> --
+> 2.43.0
+>
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
