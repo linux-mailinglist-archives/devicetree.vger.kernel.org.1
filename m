@@ -1,81 +1,80 @@
-Return-Path: <devicetree+bounces-244314-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244316-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2E5BCA39A0
-	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 13:29:30 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BF71CA39A3
+	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 13:29:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 45FC33027E0B
-	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 12:29:20 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 986F8300F33C
+	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 12:29:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3B0E33FE12;
-	Thu,  4 Dec 2025 12:29:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EEB9340A6A;
+	Thu,  4 Dec 2025 12:29:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="1ZVr+/oZ"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="x9bgmvdL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B01022FFFBF
-	for <devicetree@vger.kernel.org>; Thu,  4 Dec 2025 12:29:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D63033F8D6
+	for <devicetree@vger.kernel.org>; Thu,  4 Dec 2025 12:29:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764851356; cv=none; b=YA2Exhh6czfXTngJ4H5BKIqIZfkglwcqBV0k3wqU4pyeXMbkJ7d+R7CIA4Ud73yyBGI19GMcIw4shmNtMxZNpRxtQsXxl0HI5LNzBMrDVNxKoFV/RVP9MTvie0qMzHr2JXrnbQ/i9dzD7QuLaaFwkvSbxaFgpIdCsl40fiFjhpQ=
+	t=1764851360; cv=none; b=L+0GaurVa5OIJz0HEQZwwdnbzng/I0JvZzUpn5JODQM1pu7zHWIOQPCCjLzRnJ/Q1v4yiTiIE6sI1ds9eQH3iQ27PV5vNKbx52l1GpEjKC4+HzlwXin/FzbAZ7spSlYNBS0Qh/dMz/8BFwuOiZLGpaXpe5iaWHkX3Fjd0cgLJes=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764851356; c=relaxed/simple;
-	bh=QYmrgdDXqT1aWWXJG0G1BjIqfjRA9W45tZLonXGa3jQ=;
+	s=arc-20240116; t=1764851360; c=relaxed/simple;
+	bh=g9caGip8nEOSZ45sBttRAv916t/vQHL6PXG7Jv3w3QU=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=dFnU40YoLsAOvRp5J82VO/rU+/uj2ySA8OERfCCuK76IyzqjIYFmMQzVDm2X68UW/CQ9p/IbLSeXFOBXf1+1Rn79kZiF4OX3QiL45uPcl+qpiJZ58RIvzbvCUSF7zg029rcNtpc90bRTXx4aF+V+7i0XeqtruWHEWA/FlgMJZEQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=1ZVr+/oZ; arc=none smtp.client-ip=209.85.218.50
+	 In-Reply-To:To:Cc; b=Cn8lv446GxykaUwUDE4AeFh/c5gjbiIQPoP87EKUg9JYP3102HpWbPVNqfrNW4HDaon1u5g8tN00GDIjlxKn+5NZXoLbzH0bf/+zEIqWLtQ+z6FnFxfiGRm+O0FV1dUrxFX9tRnhUShN+EMD4I0XPS/luV0QtA/cZnVo5lOHhWo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=x9bgmvdL; arc=none smtp.client-ip=209.85.208.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-b7636c96b9aso96366566b.2
-        for <devicetree@vger.kernel.org>; Thu, 04 Dec 2025 04:29:13 -0800 (PST)
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-64088c6b309so1574540a12.0
+        for <devicetree@vger.kernel.org>; Thu, 04 Dec 2025 04:29:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1764851352; x=1765456152; darn=vger.kernel.org;
+        d=fairphone.com; s=fair; t=1764851353; x=1765456153; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=+iuRvFxHsbSvTzobdKClKZ4UVAG0qRuCMrY56/R0rKA=;
-        b=1ZVr+/oZVfXtfyPUT5qh2tJQn6M6ZYlBC+Za2f/Z3YrIC+BrHEROnVTELqP67+Hqp6
-         WH6bhNguhy2MDp464F2Dmi9pWJ7rBan5PqPxfXSWPUzQzYQXBmAqtTMrEgjf9YlQotp+
-         VIWuqdIhN6Iz4berQcTXD8DjNGC9nvRZQjjdHWwGbPH3a9k62iYuiK2qjCIGBaxdKH1w
-         EYxA9SK6qiClO/q2CZWJ4aco2Xf5/7Uh8q6sJZJ7b5dJVqShRitkzVJVvzH75kz4K4/B
-         XoIYDUiwB5mizIXCGFmZuKPjp0DTb8KTQV/2MTZg5CDa1fgK37nNv1YLmecCVqSlzCQ/
-         d4JA==
+        bh=3cAKVhALDjpLZtr9Twp/5glRYwXvQmazP9DHiOTwRrM=;
+        b=x9bgmvdLp5bOq5DuyGU/DIzHR6KRYhMLmMrj538k3MQZ5kWQCnBuHvofWVGt3+xzFs
+         PKrirfANxwoVVVUlwEKpACG03saR7zM6zNNoei/DbYz7JNYTp/QHUqrZihgIEmpo4LU8
+         ICe+Y7BxbsvFMX9n/ZOb5No4qTlDkToWYyQNTAx73x4cNCpTUYyJz3GQvC/yjTKomT3d
+         EknPwx+KiUmQNx0+S4fxJ8mN7fvKoKbo8GL4ZFYBQ9Q/Wu368TFvPFvXra0kyPJayahq
+         e4IhmR4njHsPWtgneII8iQBXjsWcG/DWz9kTzT1cD/hqOrZNRRmAPIN6hq7IQCXYA8oY
+         0XaA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764851352; x=1765456152;
+        d=1e100.net; s=20230601; t=1764851353; x=1765456153;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=+iuRvFxHsbSvTzobdKClKZ4UVAG0qRuCMrY56/R0rKA=;
-        b=S4Ua6R8fRrSBGnZ99e1xVXDpAnCtIQJ/zhwLH/okYTdhdcbAozIQc1pqZ7I+/oh/y4
-         vQXz0gTMELx2JmgWImtARurPMFCImQ242PBMHokAKZ88An4idSBWrK4qC2DAgssGKqBf
-         37WcUQylLxyGBInyx9a8Niy7jWbLujMa83Mnxv2ObkmHzesrKvuXLZGtaFHuM0MePGKl
-         95eo4YPQBtXzLHQpeAczqlLXl6dX4/RZGMnJof3lQlyJEBNVD0WNk4re/VwO0qFEqoW5
-         mqJZRCOgJSQ4+NCLGF6mYHUIW6px0/C8/ulH7xGuk+6CMOzCmxA0xJFB0ck3fmWxvNyS
-         Z8wg==
-X-Forwarded-Encrypted: i=1; AJvYcCWG8FvV19PXTLLG6R0gJRi/0g5qOKzrmEMPyPNoQzMYKGxqCZtPVgyY0GCHONYSAInRwSxhdzD+wbAE@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx84+1/EoPrL147Gf4x+hx63JTuaw6kq8TSgRmybQY9CQkD4jDw
-	uIOp6lLAuHGlIewdzp6uCLTVSad7qsEamaMm5N1dsSucIZMust4gUuXdyJ51x0vwGbQ=
-X-Gm-Gg: ASbGncuCpgvmgAn3SGZqhj256PrtTHxSQ3GUGvCWoLYxCAwnIetN7O7bwsRq0TYSvfA
-	1XWTUxCZosDIdwo1fWkX9KNJQdJVWFBl3xAOF5Cb296CZhFrpwIMNfSfxg1iuVkDzavU2/6M+9A
-	SvD7q9H9iVQ23VsmqOeZYVrgqYOFdx+YLR6jRkKHgUkf1zgALB2QKhCK4TRl11BofZFeM1exmv8
-	bVe6xETwBYRH195DkQQ6me3hqHOADAcZEs15/rQFBy+kyS8/CMuVpJeWf04XL+i8AFc16Vv8R+y
-	TdIa3n1YaJzH9ZzYzvjpXaVhfiuZHfyUcKCWc0EaW/+NTIqOQFX8uZaWGhPazcd5NwiOFY23WlL
-	/IsK9PPs0O/gxr68Dqicw7U7a/KfYJLaZLRBUlrjhgvuO0WyV8+YHqiuxqFhr8AnUPK3CYQZUlw
-	ZKWxpelHyPrBEPneEOCk/bP1Fy5RwO1iBmpZrWUycLotDy6dW0WWc72bnuqtHCanmyPZfDQi794
-	cYYAMs=
-X-Google-Smtp-Source: AGHT+IEeLWVpcgpslRVn/NQp2VXf89zJAX9UXM8RzNCcJdJCNhZ/TlipgM2kHb8Q2HjLSF8XiPMNCQ==
-X-Received: by 2002:a17:907:9448:b0:b73:7158:d9cd with SMTP id a640c23a62f3a-b79dc77dffdmr685538066b.52.1764851351828;
-        Thu, 04 Dec 2025 04:29:11 -0800 (PST)
+        bh=3cAKVhALDjpLZtr9Twp/5glRYwXvQmazP9DHiOTwRrM=;
+        b=R+hyPKtIBuOJYz7fgrN+o+jIv+/HGpAX0lpx3YoY6JrEZPlNyk4nPcJP9IHIPGQX/j
+         7NSZ0oYGMeXIbHcHBJP202fJ27HNHJxJPO9qEfMPrQuZop69L4IBSnKhavM7+Mt0oXOy
+         001N19W1uor26sRuYcaVht4DDYZ1K0Bm2XYFH3kfImGchwvlc6gZka2UzRKlsqAdJGk1
+         F89WOGExnh68E1rP+WB/CJsYIvjHKBOxdNjaCbzEmJnwXNrZ3DmPWDuQ0tSqz36PHeVz
+         z5nXenO1pdknP4Mks9hF9On1Mfnkh0r3nqJeWYxIVX0Kcr+liJXa3ZKkFTXL1kBxAFDW
+         ffKQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV4CGv276EhdX5+/MkDFmHkSR9dgGhiBuX9mPRh5vy70r9VOPeEtbJFNsrBxqJqbQZcisTsEPGXtjb0@vger.kernel.org
+X-Gm-Message-State: AOJu0YxwEd4viBLNOgNii322vl+MICT4fCsg/7nhlcbOxxkdCRm1h9LD
+	YnhJgEwCZVs7ce7hTYNQusHEChUy4+BfZZJG6wQ7FppSEFG3NyAL2VlKMZqywjVYa5w=
+X-Gm-Gg: ASbGncvJdGYQ8JMQstliEwOkinbz0aji971fxsqfpgEI2VVsp/4vg8neWSoG3ua+n16
+	TAy9VoxG9uTU5R7o9BBubM9+2/j3ucNEISbI5f3NxjPP4ayyccSurZ2VNS+Ww0L6B27sDH+iV5M
+	Aks35CGKBfJU7UjqYfILk1+IHQQKC5ZwqcxJ1kmJkv1Y13NqI+7aTg/xDS8e3bnggP321LGxadA
+	tIeAIJjhYN2JCWdDxbU6Kyt3Zy8slNQDB53BFO39nlCO/2CLIdN9rLBcMoO3W3VP0v3mse5uJWO
+	NRDwFJqyHftEC55zbzvVMwQFuAz9rpIwzr8kXpcINxTKtsegDqQY5dPdX7mTMWDFXHWt/sQLaKF
+	vylSwV9nUWxzfuIhFwye8+Q9Qglw7LbXOBbxp0JWfagOYEs+Z4wwQgUXhFdK+Q82dIOLeuz5yUA
+	orflWKHRpm4d5gu5PX++HfkOfpBqHD/3p7yutMNIsVG+WX9LF84XtXWSrUcaQWQVVZ6aj5
+X-Google-Smtp-Source: AGHT+IG//OsOH2wLVDgIH2ZekMNRwF4VIMghhR7eDiuVEDJ9yrkn8agOLgvCyX6HmQUP+n2SwnyMSA==
+X-Received: by 2002:a17:907:97d0:b0:b71:29f7:47ef with SMTP id a640c23a62f3a-b79dc7826a6mr641436966b.61.1764851352486;
+        Thu, 04 Dec 2025 04:29:12 -0800 (PST)
 Received: from [172.16.220.227] (144-178-202-139.static.ef-service.nl. [144.178.202.139])
         by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b79f4a2f19dsm121351666b.64.2025.12.04.04.29.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 Dec 2025 04:29:11 -0800 (PST)
+        Thu, 04 Dec 2025 04:29:12 -0800 (PST)
 From: Griffin Kroah-Hartman <griffin.kroah@fairphone.com>
-Date: Thu, 04 Dec 2025 13:29:00 +0100
-Subject: [PATCH 1/3] dt-bindings: input: Add Awinic AW86938
+Date: Thu, 04 Dec 2025 13:29:01 +0100
+Subject: [PATCH 2/3] Input: aw86938 - add driver for Awinic AW86938
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,7 +83,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251204-aw86938-driver-v1-1-ebd71868df3a@fairphone.com>
+Message-Id: <20251204-aw86938-driver-v1-2-ebd71868df3a@fairphone.com>
 References: <20251204-aw86938-driver-v1-0-ebd71868df3a@fairphone.com>
 In-Reply-To: <20251204-aw86938-driver-v1-0-ebd71868df3a@fairphone.com>
 To: Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
@@ -96,37 +95,79 @@ Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
  Griffin Kroah-Hartman <griffin.kroah@fairphone.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1764851350; l=849;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1764851350; l=2259;
  i=griffin.kroah@fairphone.com; s=20250804; h=from:subject:message-id;
- bh=QYmrgdDXqT1aWWXJG0G1BjIqfjRA9W45tZLonXGa3jQ=;
- b=ZFDj37TSZ3tYnwNR4KtpLow3cMBXaX8FcWGKPELphN/73nUGxmYvtUT3R31yeUttW/CaJN06U
- gU22RcQC5IIAyYZxF8v3tBy2J1LUHme1xxDWwlW4MfssR/YrbyByhlf
+ bh=g9caGip8nEOSZ45sBttRAv916t/vQHL6PXG7Jv3w3QU=;
+ b=zsTQCONX5cSL63xwKbm1K0spvpjuxlEq0t96aBr4SHekj4HeOM2iTLGN9IgFBl39CcTFMrPOW
+ 0pgoEt63fTdDLvTpgZPpPFRu1on6/AB9AQOwZyXHp88Rk54vcUuldIF
 X-Developer-Key: i=griffin.kroah@fairphone.com; a=ed25519;
  pk=drSBvqKFiR+xucmLWONHSq/wGrW+YvcVtBXFYnYzn8U=
 
-Add bindings for the Awinic AW86938 haptic chip which can be found in
-smartphones.
+Add support for the I2C-connected Awinic AW86938 LRA haptic driver.
+
+This driver is functionally similar to the AW86927. but suffers from
+distortion with higher gain values.
+Its vendor driver sets this value to 0x45, which fixes the problem and
+does not noticeably effect the AW86927's playback.
 
 Signed-off-by: Griffin Kroah-Hartman <griffin.kroah@fairphone.com>
 ---
- Documentation/devicetree/bindings/input/awinic,aw86927.yaml | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ drivers/input/misc/aw86927.c | 14 ++++++++++++--
+ 1 file changed, 12 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/input/awinic,aw86927.yaml b/Documentation/devicetree/bindings/input/awinic,aw86927.yaml
-index b7252916bd727486c1a98913d4ec3ef12422e4bd..c3dee660422192720da3cf63851cea27db819742 100644
---- a/Documentation/devicetree/bindings/input/awinic,aw86927.yaml
-+++ b/Documentation/devicetree/bindings/input/awinic,aw86927.yaml
-@@ -11,7 +11,9 @@ maintainers:
+diff --git a/drivers/input/misc/aw86927.c b/drivers/input/misc/aw86927.c
+index abd117bb309478b3049f74e53582f06989f74e90..39e22dbdeeb7494ba1a8d4ca8fc40b5580c304f9 100644
+--- a/drivers/input/misc/aw86927.c
++++ b/drivers/input/misc/aw86927.c
+@@ -166,6 +166,7 @@
+ #define AW86927_BASEADDRH_VAL			0x08
+ #define AW86927_BASEADDRL_VAL			0x00
  
- properties:
-   compatible:
--    const: awinic,aw86927
-+    enum:
-+      - awinic,aw86927
-+      - awinic,aw86938
++#define AW86938_CHIPID				0x9380
+ enum aw86927_work_mode {
+ 	AW86927_STANDBY_MODE,
+ 	AW86927_RAM_MODE,
+@@ -372,7 +373,7 @@ static int aw86927_play_sine(struct aw86927_data *haptics)
+ 		return err;
  
-   reg:
-     maxItems: 1
+ 	/* set gain to value lower than 0x80 to avoid distorted playback */
+-	err = regmap_write(haptics->regmap, AW86927_PLAYCFG2_REG, 0x7c);
++	err = regmap_write(haptics->regmap, AW86927_PLAYCFG2_REG, 0x45);
+ 	if (err)
+ 		return err;
+ 
+@@ -602,6 +603,9 @@ static int aw86927_ram_init(struct aw86927_data *haptics)
+ 			FIELD_PREP(AW86927_SYSCTRL3_EN_RAMINIT_MASK,
+ 				   AW86927_SYSCTRL3_EN_RAMINIT_ON));
+ 
++	/* AW86938 wants a 1ms delay here */
++	usleep_range(1000, 1500);
++
+ 	/* Set base address for the start of the SRAM waveforms */
+ 	err = regmap_write(haptics->regmap,
+ 			   AW86927_BASEADDRH_REG,
+@@ -724,7 +728,12 @@ static int aw86927_detect(struct aw86927_data *haptics)
+ 
+ 	chip_id = be16_to_cpu(read_buf);
+ 
+-	if (chip_id != AW86927_CHIPID) {
++	switch (chip_id) {
++	case AW86927_CHIPID:
++		break;
++	case AW86938_CHIPID:
++		break;
++	default:
+ 		dev_err(haptics->dev, "Unexpected CHIPID value 0x%x\n", chip_id);
+ 		return -ENODEV;
+ 	}
+@@ -834,6 +843,7 @@ static int aw86927_probe(struct i2c_client *client)
+ 
+ static const struct of_device_id aw86927_of_id[] = {
+ 	{ .compatible = "awinic,aw86927" },
++	{ .compatible = "awinic,aw86938" },
+ 	{ /* sentinel */ }
+ };
+ 
 
 -- 
 2.43.0
