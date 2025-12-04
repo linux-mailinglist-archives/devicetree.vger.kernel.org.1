@@ -1,112 +1,149 @@
-Return-Path: <devicetree+bounces-244422-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244423-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF2E4CA4AE6
-	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 18:10:05 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 987D1CA4A91
+	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 18:05:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1239830517E7
-	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 17:05:17 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id DED6330049B7
+	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 17:05:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8231C30DEA5;
-	Thu,  4 Dec 2025 17:05:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C7BB2F49F0;
+	Thu,  4 Dec 2025 17:05:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="1e3ohZsM"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iE5sujLC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B245274FC1;
-	Thu,  4 Dec 2025 17:05:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54441309F14
+	for <devicetree@vger.kernel.org>; Thu,  4 Dec 2025 17:05:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764867916; cv=none; b=qOBMF0nrv1kcKq5d/9c3s4Dss9APjQCnvGJNJMcaq6h78c+AZYnBnLj959WydfgmpdyeaLqqcxyAwebxfh9DVxd5DEGbr6u95XJwaqBhpA/1jJnislfvTEweYnnrKRMzr+0xetPeLofHwbhjBQdT15HZ1WBnbpa+lWKvfztyWbg=
+	t=1764867923; cv=none; b=Vynv4so4bF6eTE3Gpujbn7u1mMq84om74QQj4Tqxf3r7ZEJJDIkDaAXYsSTdQAv3BvJH32ac7++oYUlZuzanLUSRNed5RCvXfWxKzCqRiovrVy+XQLDU6T6G5gQzXugKU0wmVMs/kHUdT33JNFuJ0CDMYr9TCSNCYBCYDOgjJHA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764867916; c=relaxed/simple;
-	bh=btE0EemxzOmWTXQzN6O41g5qzhtImddYS9EehFEYzdI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=plctvtbUGYZk0YqJHCiy6RpcVhiAfWOcisVONgBCplTOiD2HhG9oQu3WBJAg8Li8AkP5sKsca3lbBbRzdvjKjBWDcDHlYDXuFyiq2m3BmapLVL2USDqw4av+pifbIl4JD+T4vC5vUaUn/0dJgTn5oGEjb0yuoj0YWbmOcNdaD4A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=1e3ohZsM; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=6d6GxWjoCL+f16M3XdST5sRPrd8wqnlNTQ+6puSwSEg=; b=1e3ohZsMeUa0onJHJuMHzrb26o
-	nifll5imBe+0uWQMHJhRpSMji8SYQ+6Am2rxmhtfPe1s3gDtmGj9MgV3tpEvAlJziz/A63DCiABT2
-	M29EjSdzdzhgefgOwrViwHleaok68xwUtJ6f7x8i6B81z71aIa/K8Tj7rBDTLDhjRGffFHhf0OQVm
-	ST9meqK1tzGM4zGZ0EUDYgI7S3tQpGfQojBzktIJ/fDxfHTjbTP6TYUuSpYEv+DonGbXzzFFF2wo+
-	DHJCE6JkYJ35eMBFBglzTnEUcX2abSxrgoPDh/4unUXm37Uw3QOBPjGDlOsiKi1DpMddcOxGZDZuu
-	UpIgFzAg==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:46294)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1vRClI-000000003nQ-1rWg;
-	Thu, 04 Dec 2025 17:05:00 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1vRClF-000000001AG-44Ii;
-	Thu, 04 Dec 2025 17:04:57 +0000
-Date: Thu, 4 Dec 2025 17:04:57 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: John Madieu <john.madieu.xa@bp.renesas.com>
-Cc: prabhakar.mahadev-lad.rj@bp.renesas.com, andrew+netdev@lunn.ch,
-	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, geert+renesas@glider.be,
-	biju.das.jz@bp.renesas.com, claudiu.beznea@tuxon.dev,
-	magnus.damm@gmail.com, mcoquelin.stm32@gmail.com,
-	alexandre.torgue@foss.st.com, netdev@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 3/3] net: stmmac: dwmac-renesas-gbeth: add
- physical port identification
-Message-ID: <aTG_OVLXfvFXzs3i@shell.armlinux.org.uk>
-References: <20251204163122.3032995-1-john.madieu.xa@bp.renesas.com>
- <20251204163122.3032995-4-john.madieu.xa@bp.renesas.com>
+	s=arc-20240116; t=1764867923; c=relaxed/simple;
+	bh=+BQAo96K6gYDK9rIJ5sZBTh5/2wgpYrHzmz36YZ0h9A=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=UNldr+t65KdK5IqfusMtfmyRBUqpRMd+FTV8H1+JcKDCaDALbO7TJF60UQCuF+OAn3Abws6J978GEt1HWUTJVL6zjZGd0GxsyGk96tCbLNYWH3tvHXsWlQZIukuZgkcLCgYaLhuPUtdk2Dntd0H5pU7UhQwOUU1jkMaCjxR62UM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iE5sujLC; arc=none smtp.client-ip=209.85.208.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-640b06fa959so1979206a12.3
+        for <devicetree@vger.kernel.org>; Thu, 04 Dec 2025 09:05:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1764867919; x=1765472719; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=kg3+GXQJrSRCIpl+szpU9K94sF3dPzVaXSDtfFd90yg=;
+        b=iE5sujLCVX5hL6lLbgjGLRPacr7aySzPjaushkueJsEdM2dhnA3z2ZzvDRm3IRT45n
+         18qxlJV/txY1YAMk4F8sLQc1ObxLUbMwjJb/pNG7jw+j7XRSb1hRwZL2Y8/4WXFfBJ/X
+         ojk7Z8w0ZB3oJwwk9QnVFGhg+4W2kd+VXuaplmDRz3XNa0datV3QfvyC/jKY8UEx/mXL
+         4zbnxE299VhS119NdnvPK/+fROF0bgsqphRiVT+5r7tfNLIJgX30Z+AIpEzJiERCBQto
+         AIVLGx2hv+XPvDzgC4IJKJjQKChFXU05XfmpUlyCNSxX0Y57D5kRjLw3OAznmLDJlTpi
+         8VWQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764867919; x=1765472719;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=kg3+GXQJrSRCIpl+szpU9K94sF3dPzVaXSDtfFd90yg=;
+        b=CBzcNRdFVAvCFu5T88pWx410SfawPUO2+Qx8ePpboGyUD2XbwsNEybqG7Q8hz2WPE4
+         9JoCbnAaSTdV8dqbENY62na3ZSqZuVAtBKQ9jb664UTPOU3SGRgKCr08E06vcaPqTeKe
+         TLzGisucKsm6Gw8rz0C+DQFPX2pAdYG+UIsI/Xp/spe3YcD+bm+DyKRfhnmOxXo5TZj9
+         IZXP+4+ldqKM/R2k2yAJDsgtxR31zQPIG2giEI/t4gROhVV1c0CTVmE776ruuelgu6C4
+         RwSAUm664LYZby9kIcAmUVmgwIlPfQqCuxc0e7CSIy8PMsJBhp/Pnc61flDS8x9+C84M
+         T6FA==
+X-Forwarded-Encrypted: i=1; AJvYcCViyFPOo0a/EcLoaMgtaNVOvXJ56Qg2OgX181cjouf5HEKsSPeF+PkJkWOTD4CURgkQCEP5Fz88jqqJ@vger.kernel.org
+X-Gm-Message-State: AOJu0YzPXwYFr30PX69X5NKBgOv1JHWbTNh88bIE2meuJsaCzY9v0ZQ/
+	rCq5KXoVraq/tCAEX1oy2JMoQ4PhKZQt0UibJaej94j54923AlbYm/Xubrzv54bRXlaoPWuGYrX
+	MjU1WjdV+EeGyZW6diKYnlC+zwEvuu9U=
+X-Gm-Gg: ASbGncskYxkDM7HX/wA2AO2g+L1rwvwb6oji7Kp3KsCvyk4vqq3S/LvF1BMitmrn0+j
+	jzrQJthfSbFpO60u2RxJSFc2aYb739BUN+0b3j57kQ0Pen+WxpUWFlZjYduO200b/np5Gk953PS
+	TNeew1gAic7xw5aB1EdqxuNOIVl/3WRMSl+DghvjXnMeoUbt3BX+423G5zO/h5b4ZSS/K61KoeG
+	IcWpqOqzl1BGn3bwigd3wASNzIfN3JW+pwrgfVJd0LDIAz4ZvLTFo/Wj4RiZvD4DB26pw==
+X-Google-Smtp-Source: AGHT+IG9AKS27UcSx07KoYOWwja6RVplBXqyc0tOREa2QICJ8kkCeFjeLh3AGbZxmPxO+LrN0uh7FoxQp64DfkzF090=
+X-Received: by 2002:a05:6402:d0e:b0:640:ff5f:47a8 with SMTP id
+ 4fb4d7f45d1cf-6479c3f6532mr5947624a12.8.1764867919153; Thu, 04 Dec 2025
+ 09:05:19 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251204163122.3032995-4-john.madieu.xa@bp.renesas.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+References: <20251125075604.69370-1-hal.feng@starfivetech.com> <20251125075604.69370-5-hal.feng@starfivetech.com>
+In-Reply-To: <20251125075604.69370-5-hal.feng@starfivetech.com>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Thu, 4 Dec 2025 22:35:01 +0530
+X-Gm-Features: AWmQ_blo07jkPZn5svQ8GwL_vHDmoWP8GFySAR6LM46D7PTJjpA9bu9AWt48b7g
+Message-ID: <CANAwSgQSBB_yTw5rDz2w6utvjUueWJi9tWUY9oZcpNAT8Wm8iA@mail.gmail.com>
+Subject: Re: [PATCH v4 4/6] riscv: dts: starfive: Add common board dtsi for
+ VisionFive 2 Lite variants
+To: Hal Feng <hal.feng@starfivetech.com>
+Cc: Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <pjw@kernel.org>, 
+	Albert Ou <aou@eecs.berkeley.edu>, "Rafael J . Wysocki" <rafael@kernel.org>, 
+	Viresh Kumar <viresh.kumar@linaro.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+	Manivannan Sadhasivam <mani@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>, 
+	Heinrich Schuchardt <heinrich.schuchardt@canonical.com>, E Shattow <e@freeshell.de>, 
+	devicetree@vger.kernel.org, linux-pci@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Thu, Dec 04, 2025 at 04:31:22PM +0000, John Madieu wrote:
-> +static int renesas_gbeth_get_port_id(struct device *dev)
-> +{
-> +	int port_id;
+Hi Hal,
+
+On Tue, 25 Nov 2025 at 13:27, Hal Feng <hal.feng@starfivetech.com> wrote:
+>
+> Add a common board dtsi for use by VisionFive 2 Lite and
+> VisionFive 2 Lite eMMC.
+>
+> Acked-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+> Tested-by: Matthias Brugger <mbrugger@suse.com>
+> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
+> ---
+>  .../jh7110-starfive-visionfive-2-lite.dtsi    | 161 ++++++++++++++++++
+>  1 file changed, 161 insertions(+)
+>  create mode 100644 arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-lite.dtsi
+>
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-lite.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-lite.dtsi
+> new file mode 100644
+> index 000000000000..f8797a666dbf
+> --- /dev/null
+> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-lite.dtsi
+> @@ -0,0 +1,161 @@
+> +// SPDX-License-Identifier: GPL-2.0 OR MIT
+> +/*
+> + * Copyright (C) 2025 StarFive Technology Co., Ltd.
+> + * Copyright (C) 2025 Hal Feng <hal.feng@starfivetech.com>
+> + */
 > +
-> +	if (!device_property_read_u32(dev, "renesas,port-id", &port_id))
-> +		return port_id;
+> +/dts-v1/;
+> +#include "jh7110-common.dtsi"
 > +
-> +	port_id = of_alias_get_id(dev_of_node(dev), "ethernet");
-> +
-> +	return port_id < 0 ? 0 : port_id;
-> +}
+> +/ {
+> +       vcc_3v3_pcie: regulator-vcc-3v3-pcie {
+> +               compatible = "regulator-fixed";
+> +               enable-active-high;
+> +               gpio = <&sysgpio 27 GPIO_ACTIVE_HIGH>;
+> +               regulator-name = "vcc_3v3_pcie";
+> +               regulator-min-microvolt = <3300000>;
+> +               regulator-max-microvolt = <3300000>;
+> +       };
+> +};
 
-You fall back to the ethernet alias, which is essentially what
-devm_stmmac_probe_config_dt() will assign to plat->bus_id. So, is
-there any reason we can't just use plat->bus_id ? Why do we need a
-special property?
+The vcc_3v3_pcie regulator node is common to all JH7110 development boards.
+and it is enabled through the PWREN_H signal (PCIE0_PWREN_H_GPIO32).
 
-I really don't like the idea that, with the proposal here, we'll
-likely see the stmmac platform glue spawn more platform specific
-code. This doesn't scale.
+VisionFive 2 Product Design Schematics below
+[1] https://doc-en.rvspace.org/VisionFive2/PDF/SCH_RV002_V1.2A_20221216.pdf
 
-So, the next question: should there be a standard way to describe
-these attributes, rather than having lots of vendor specific
-properties describing the same information? Should this be part
-of the generic binding, iow
-Documentation/devicetree/bindings/net/ethernet-controller.yaml ?
+Mars_Hardware_Schematics
+[2] https://github.com/milkv-mars/mars-files/blob/main/Mars_Hardware_Schematics/Milk-V_Mars_SCH_V1.21_2024-0510.pdf
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+Thanks
+-Anand
 
