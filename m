@@ -1,70 +1,62 @@
-Return-Path: <devicetree+bounces-244245-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244246-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id E42D1CA2B8B
-	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 08:59:51 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0BBDCA2B9A
+	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 09:01:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 7A00B3006714
-	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 07:59:49 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E9968302A77E
+	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 08:00:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5BE33176E1;
-	Thu,  4 Dec 2025 07:59:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 651CA31ED75;
+	Thu,  4 Dec 2025 08:00:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AwMckvU1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B11E3313E3B
-	for <devicetree@vger.kernel.org>; Thu,  4 Dec 2025 07:59:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FEDC31B81C;
+	Thu,  4 Dec 2025 08:00:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764835187; cv=none; b=EEw/ynyvI8URnQ4WQC+WRjwUGvAbuahZH2vSSV+IWsyqVV75OEXIzLwdL/5+zeWvecSIT6jRXXQBt3SYmxyZCut0uE5Muc6Qg8gZZaLEHLAm81dPDvYB13R7cZ9hZwnueOJ62IsOD/Qq72TGEz9iMcW9230TYXG8kqpIFsiubaw=
+	t=1764835247; cv=none; b=mo6qVLRZvQWX315pFdY1KC/rhzvgYW6UaaBH6JVaG9TIATL/co5AbJmCBygLIP6RDTSE/akIP1KpImABG9Coi2Rc6y9lIXYXjOz8oAPrmU4VmfeehAI51PPH0exkKJOCnbt810l8q2zR+QycpUqROUkWz0GEUGa+44XgdeDYWMk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764835187; c=relaxed/simple;
-	bh=RCWfmqUC9tYTiEfiiaB6MU4TjRdoWbVCg8bm3KwKFC8=;
+	s=arc-20240116; t=1764835247; c=relaxed/simple;
+	bh=CFQx3rXkbEzKJUIuFYShbGvPaG+LRVxfOYcv/eN7ngQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VYlaANa6EV2aQdJKuv0bV2ydIseBRqgud7fT+X6EGp+RPUIeR9Mt93teu2zEt02gi/ZwsdleQPQKdU1xMjBqe7DK/CPxWrAYMAEWrXxZTLSS+89ZZTzC3htJNfCiCbrmquhnlsAcniUc5uGhG4pvBYhWyQHSSwHJF4QXyH5o0as=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <sha@pengutronix.de>)
-	id 1vR4FQ-00041e-8f; Thu, 04 Dec 2025 08:59:32 +0100
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <sha@pengutronix.de>)
-	id 1vR4FP-003uaL-30;
-	Thu, 04 Dec 2025 08:59:31 +0100
-Received: from sha by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <sha@pengutronix.de>)
-	id 1vR4FP-005UrI-2d;
-	Thu, 04 Dec 2025 08:59:31 +0100
-Date: Thu, 4 Dec 2025 08:59:31 +0100
-From: Sascha Hauer <s.hauer@pengutronix.de>
-To: Rob Herring <robh@kernel.org>
-Cc: Ahmad Fatoum <a.fatoum@pengutronix.de>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree-spec@vger.kernel.org,
-	quentin.schulz@cherry.de, Marc Kleine-Budde <mkl@pengutronix.de>,
-	"kernel@pengutronix.de" <kernel@pengutronix.de>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: Re: SoC-specific device tree aliases?
-Message-ID: <aTE_Y_JWs8kBuIE7@pengutronix.de>
-References: <aRs-DaayhtQTtFXj@pengutronix.de>
- <9e14fb8e-af84-4072-b0ac-9ead882782be@kernel.org>
- <CAL_Jsq+=v96eP6V+5Ehi9EQT3iKKU7=t7kvJ-WSA+1WCHDuHEA@mail.gmail.com>
- <07ee3540-d0c1-436e-9e1d-db1952f609a6@kernel.org>
- <bcb359cf-0e8a-46ec-9f69-51c4c9e8874e@pengutronix.de>
- <6638e499-2320-41c9-b720-faf4f976e476@kernel.org>
- <34bd1a0d8e579aba0a6a88039006500fe822ef3d.camel@ew.tq-group.com>
- <dd589476-56df-4565-b4cb-e34f0d7d5559@kernel.org>
- <47903a88-8de9-4ac6-9111-c85ed1428ff0@pengutronix.de>
- <CAL_Jsq+9s7UTXU8YLsX=_z1fnc2H4PmReb+2mHx=+uuonqM7xQ@mail.gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=JzYmWrntcQfOi5BIsBWK4v47BXZZTiW3ld/bMtlWkMyD2e5RbXIISZZgn5oZX+52umweixXEWq2TI4EZ0vHeP4vPA0/X0qsXU+5yEx/MY5i2e2lMX4yJQviuA/brQ8ByD+u3HG9H961GvVJlLd7SMC9H/pPbi8sBo4XbTBiPc3g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AwMckvU1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41CEAC4CEFB;
+	Thu,  4 Dec 2025 08:00:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764835245;
+	bh=CFQx3rXkbEzKJUIuFYShbGvPaG+LRVxfOYcv/eN7ngQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=AwMckvU1sONffoqSgHqR1UaZ44C3ikVgO5OUHM5KjWo9oAJLajhJtaHrJcThB4rJc
+	 AvuuoZUinIfbcrdfFZrCn/TnkZZdXoly5KI7Z56QDmumic5FPmxc2E0nYS9NUd9Sb0
+	 H2YB0yH6vZfFjQ02mb6E0Un+luRYxy1Db1UiE4mZXGQa8utipeR1PcXKcSdJ4L4mu3
+	 ayZDhjbmJ2bGbwHHBeskutG2APeF4kt5Czf3L2Gukkf1Es2/Apj8fe38le7Iq3k6RA
+	 hWO+GzHtTcU7WkkDlcURyofT+1y5kAeR8+rKQMWeu5bwkhiYwtcVlyk9/P4PkGl7jl
+	 rC3cEvINVUycg==
+Date: Thu, 4 Dec 2025 09:00:43 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: "Rob Herring (Arm)" <robh@kernel.org>, 
+	"biju.das.au" <biju.das.au@gmail.com>, "magnus.damm" <magnus.damm@gmail.com>, 
+	Jiri Slaby <jirislaby@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	wsa+renesas <wsa+renesas@sang-engineering.com>, "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH v5 01/17] dt-bindings: serial: renesas,rsci: Document
+ RZ/G3E support
+Message-ID: <20251204-lovely-cooperative-frog-28addf@quoll>
+References: <20251129164325.209213-1-biju.das.jz@bp.renesas.com>
+ <20251129164325.209213-2-biju.das.jz@bp.renesas.com>
+ <176443699313.11808.1467058497468917565.robh@kernel.org>
+ <TY3PR01MB11346C9A7B587AF03D533AC9E86D9A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,138 +65,88 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAL_Jsq+9s7UTXU8YLsX=_z1fnc2H4PmReb+2mHx=+uuonqM7xQ@mail.gmail.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <TY3PR01MB11346C9A7B587AF03D533AC9E86D9A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
 
-On Wed, Dec 03, 2025 at 11:51:28AM -0600, Rob Herring wrote:
-> On Wed, Dec 3, 2025 at 5:37 AM Ahmad Fatoum <a.fatoum@pengutronix.de> wrote:
-> >
-> > Hi,
-> >
-> > On 12/3/25 12:08 PM, Krzysztof Kozlowski wrote:
-> > > On 03/12/2025 11:36, Matthias Schiffer wrote:
-> > >> On Wed, 2025-12-03 at 11:25 +0100, Krzysztof Kozlowski wrote:
-> > >>> On 03/12/2025 11:16, Ahmad Fatoum wrote:
-> > >>>> Hello Krzysztof,
-> > >>>>
-> > >>>> On 11/17/25 5:29 PM, Krzysztof Kozlowski wrote:
-> > >>>>> On 17/11/2025 17:06, Rob Herring wrote:
-> > >>>>>>> So you want it to be an ABI for barebox, sure, just make it a binding.
-> > >>>>>>
-> > >>>>>> What do you have in mind? Other than standard names for the aliases,
-> > >>>>>> what can we check here? That a specific alias points to a specific
-> > >>>>>> path? That would be a bit too much IMO. That would be equivalent to
-> > >>>>>> specifying possible values in 'reg' for all devices.
-> > >>>>>
-> > >>>>> Binding with pattern or list of needed alias names, referenced by given
-> > >>>>> soc-platform top-level schema.
-> > >>>>>
-> > >>>>> One of the points is to make it explicit and obvious (e.g. to Arnd or to
-> > >>>>> me if I forget, because I follow the same logic of aliases per board)
-> > >>>>> that these aliases are used outside of kernel.
-> > >>>>>
-> > >>>>> Just because ufs/mmc/spi can be used that way, does not mean we should
-> > >>>>> accept any possible alias into soc.dtsi.
-> > >>>>
-> > >>>> I can't see how this could work. A number of boards renumber MMC devices
-> > >>>> in a different manner than the SoC reference manual:
-> > >>>>
-> > >>>> - Changing the alias numbering is an ABI break, because Linux derives
-> > >>>> its /dev/mmcblkX numbering from it
-> > >>>
-> > >>> First, why the alias would change? Isn't the board following the SoC
-> > >>> numbering in 99.9% cases?
-> > >>
-> > >> At least for our TQ-Systems boards, we have a convention based on usage (mmc0:
-> > >> eMMC, mmc1: SD card; serial0 is often the console) rather than following the SoC
-> > >> numbering; that is, we're using the aliases as a form of hardware abstraction
-> > >> rather than hardware description.
+On Wed, Dec 03, 2025 at 08:13:13AM +0000, Biju Das wrote:
+> Hi Rob,
+> 
+> > -----Original Message-----
+> > From: Rob Herring (Arm) <robh@kernel.org>
+> > Sent: 29 November 2025 17:23
+> > Subject: Re: [PATCH v5 01/17] dt-bindings: serial: renesas,rsci: Document RZ/G3E support
+> > 
+> > 
+> > On Sat, 29 Nov 2025 16:42:57 +0000, Biju wrote:
+> > > From: Biju Das <biju.das.jz@bp.renesas.com>
 > > >
-> > > Huh, does it even match numbering on the schematics / board / user-guides?
+> > > Add documentation for the serial communication interface (RSCI) found
+> > > on the Renesas RZ/G3E (R9A09G047) SoC. The RSCI IP on this SoC is
+> > > identical to that on the RZ/T2H (R9A09G077) SoC, but it has a 32-stage
+> > > FIFO compared to 16 on RZ/T2H. It supports both FIFO and non-FIFO mode
+> > > operation. RZ/G3E has 6 clocks(5 module clocks + 1 external clock)
+> > > compared to 3 clocks
+> > > (2 module clocks + 1 external clock) on RZ/T2H, and it has multiple resets.
+> > > It has 6 interrupts compared to 4 on RZ/T2H.
 > > >
-> > > I would prefer not to create bindings purely because some existing DTS
-> > > code is not matching our expectations. However there could be a case
-> > > where board numbering is different than soc number and we want to keep
-> > > aliases configured for board.
+> > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> > > ---
+> > > v4->v5:
+> > >  * Updated commit description related to IRQ difference
+> > >  * Added aed and bfd irqs for RZ/G3E.
+> > >  * Moved reset: false to RZ/T2H SoC and dropped the else part for RZ/G3E.
+> > >  * Updated conditional schema with interrupts and interrupts-names.
+> > >  * Dropped the tag as there are new changes.
+> > > v3->v4:
+> > >  * Dropped separate compatible for non-FIFO mode and instead using single
+> > >    compatible "renesas,r9a09g047-rsci" as non-FIFO mode can be achieved
+> > >    by software configuration.
+> > >  * Renamed clock-names bus->pclk
+> > >  * Rearranged clock-names tclk{4, 16, 64}
+> > >  * Retained the tag as the changes are trivial.
+> > > v2->v3:
+> > >  * Dropped 1st and 3rd items from clk-names and added minItems for the
+> > >    range.
+> > >  * Added minItems for clk and clk-names for RZ/T2H as the range is 2-3
+> > >  * Added maxItems for clk and clk-names for RZ/G3E as the range is 5-6
+> > >  * Retained the tag as it is trivial change.
+> > > v1->v2:
+> > >  * Updated commit message
+> > >  * Added resets:false for non RZ/G3E SoCs.
+> > > ---
+> > >  .../bindings/serial/renesas,rsci.yaml         | 99 ++++++++++++++++---
+> > >  1 file changed, 88 insertions(+), 11 deletions(-)
 > > >
-> > > Basically what you propose here is the discouraged instance ID disguised
-> > > under one more 'alias' which is not really alias. It's just an instance
-> > > ID. There is no other use of soc-aliases beside instance ID.
-> > >
-> > > I see the problem you want to solve, I agree it is worth solving and I
-> > > agree that DT is the place for this mapping between register value and
-> > > device node. However solution of discouraged instance ID is just...
-> > > well, discouraged, so not optimal. I don't have particular advice expect
-> > > a dedicated property for each device in such case.
-> >
-> > How do we move forward here? I don't think we can change the nature of
-> > /aliases being board-specific now without breaking users.
-> >
-> > Does this make the addition of /soc-aliases (or /soc/aliases?) more
-> > palatable?
+> > 
+> > My bot found errors running 'make dt_binding_check' on your patch:
+> > 
+> > yamllint warnings/errors:
+> > 
+> > dtschema/dtc warnings/errors:
+> > Documentation/devicetree/bindings/thermal/thermal-zones.example.dtb: /example-0/soc/thermal-
+> > sensor@c263000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
+> > Documentation/devicetree/bindings/thermal/thermal-zones.example.dtb: /example-0/soc/thermal-
+> > sensor@c263000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
+> > Documentation/devicetree/bindings/thermal/thermal-zones.example.dtb: /example-0/soc/thermal-
+> > sensor@c265000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
+> > Documentation/devicetree/bindings/thermal/thermal-zones.example.dtb: /example-0/soc/thermal-
+> > sensor@c265000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
+> > Documentation/devicetree/bindings/thermal/thermal-sensor.example.dtb: /example-0/soc/thermal-
+> > sensor@c263000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
+> > Documentation/devicetree/bindings/thermal/thermal-sensor.example.dtb: /example-0/soc/thermal-
+> > sensor@c263000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
+> > Documentation/devicetree/bindings/thermal/thermal-sensor.example.dtb: /example-0/soc/thermal-
+> > sensor@c265000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
+> > Documentation/devicetree/bindings/thermal/thermal-sensor.example.dtb: /example-0/soc/thermal-
+> > sensor@c265000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
+> > 
 > 
-> No.
-> 
-> Thinking about this some more, I'm not sure that something aliases
-> based is even the right approach. Let's back up to the original
-> problem instead of talking about a problem concerning a possible
-> solution.
-> 
-> You have a platform specific register with values (or from 1 or
-> multiple fields) that you need to map to devices in DT. That's it.
-> That could be solved like this:
-> 
-> bootsource-map =
->   <0x2 &mmc0>,
->   <0x3 &mmc1>,
->   <0x10 &spi0>,
->   ...;
-> 
-> Simple. The first value is platform specific. Maybe it is several
-> fields (e.g. device type, instance) merged together. Doesn't matter.
+> Can you please check, bot is showing unrelated errors?
 
-That's an interesting approach and I like it.
+Because the base was broken by thermal patch. Original issue was fixed by
+Rob, although of course the bot might need to pause when the base is
+broken :(
 
-I am not sure though how the platform specific value could be composed.
+Best regards,
+Krzysztof
 
-The easiest way would be if it maps to some register values. This works
-well when there's a bitfield with only a few bits which specifies the
-bootsource, but not so when there are many bits. On TI AM62x for example
-we have 4 bits specifying the primary bootsource, 3 bits specifying the
-backup bootsource and 1 bit specifying if we are booting from the
-primary or from the backup bootsource. This means we have an array with
-potentially 256 entries with many holes and many different values
-pointing to the same bootsource. We could reduce the number of array
-entries by specifying a mask for each value. I am worried also that the
-initial contributor might for example forget about the backup bootsource
-and only upstreams primary bootsource, so we would have to modify
-existing values for the primary bootsource when adding the backup
-bootsource.
-
-How about only adding the phandles to bootsource-map, like
-
-bootsource-map = <&mmc0>, <&mmc2>, <&spi0>, ...;
-
-New entries must then only be added at the end, existing entries must
-never be changed.
-
-But anyway, as with your approach the bootsource would become just
-another driver specific binding SoC contributors would be free to choose
-whatever suits best for them.
-
-Sascha
-
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
