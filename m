@@ -1,217 +1,197 @@
-Return-Path: <devicetree+bounces-244188-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244189-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8AD7CA2505
-	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 05:29:14 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA091CA254D
+	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 05:43:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AAAFF303D6A2
-	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 04:28:56 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id F362B3022818
+	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 04:43:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E93032D7D47;
-	Thu,  4 Dec 2025 04:28:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33D0F2FFDE8;
+	Thu,  4 Dec 2025 04:43:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="aNF5vYvL"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="BfmkRvPc";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="SBoXuF/J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EE5D23D7D8;
-	Thu,  4 Dec 2025 04:28:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95F5B2EB860
+	for <devicetree@vger.kernel.org>; Thu,  4 Dec 2025 04:43:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764822535; cv=none; b=BIunnWQQ+Eq13+RE7E0Y2JrdLErOLdmH+xZ7axZnDOEoVSqFSCavyhmwk1LZaQJdUe4UuxRkLogUmHVK+sfeuGYpwoxQU/z1aZHNDfdYZyiAqkwsW497L22iGYPenN3vNEnbRYx9wnpJO3naaAzs811ZAGl9HFLBtGJ/l75exLY=
+	t=1764823394; cv=none; b=DOAM2dix5dZfZ3gR6ulzcUJhx3RJq69BA3dAiU/CSOFMvhzX8YSUSEwaQqn9je49vQ0GmwoanTKlwjKeZs2AoLvAEnrAi4RjQJCQOEnkclhkcJPUgrGFNeMHSYPR99lvQILm+tc66atgvdLdsDYphL7oUiBpBiCV2TGMQQeMZNc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764822535; c=relaxed/simple;
-	bh=fu4Otl1HGi7uqxldCp6FC+mJwbMpk4YSIaDzkvRP9rU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CL+lcHawyl7lXpP2iO2U15fDEFVNgp4yn7ZGe2Cs/Sgz17EYmvSRPMUtcFsh4fEcmidbEe52hTw5s5BeGvmbwedhJ4wxwNC0qfAxESg7yqb3Ra04vnfyyGov10qTKZ0c+/cCm8ckFYlKp5SUhRl198zW/jq450Itb3v6WJApnu4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=aNF5vYvL; arc=none smtp.client-ip=198.175.65.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1764822534; x=1796358534;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=fu4Otl1HGi7uqxldCp6FC+mJwbMpk4YSIaDzkvRP9rU=;
-  b=aNF5vYvLDM4bQBNe9ff+Hr4F540rlGWo87OQXvyOuyPuR4N8fBsYCs95
-   +Kaa+o2Rr7dH/tkIPV4weABtw1IHgriW1+SxhCN4J+dMGCulRm1F0ES3E
-   HK8K+U2XU9KhCQDuwSDR9DjUiJNzzwSMyaT4dGgOQCeHq/UQAC5qQ2Bfm
-   GGoNX8Q/HQWameLMN72rdIR2+xeKkOXwLLXIWCpsDChTWhL3DCOHVE5zn
-   7t6anu96CK8KLl5X7U6jp+AKJ6hH/tAhCCgWJTzLFeovhXonQbmigOW+L
-   5pL2ANXRKeZQSUrW+A/YlOO/HxKkU+wxmekPqYQ2WM22w76+g4fqeD8EN
-   w==;
-X-CSE-ConnectionGUID: tgQ6TQ+2QUm+SI41xvHiXw==
-X-CSE-MsgGUID: afSvSFX7QsOrJh9g0Ry3Dw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11631"; a="77939819"
-X-IronPort-AV: E=Sophos;i="6.20,247,1758610800"; 
-   d="scan'208";a="77939819"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Dec 2025 20:28:53 -0800
-X-CSE-ConnectionGUID: emaq0chZQvCufN9+C+JBvA==
-X-CSE-MsgGUID: 5T152UeURjmuiR2QhfUVmg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,247,1758610800"; 
-   d="scan'208";a="199360138"
-Received: from lkp-server01.sh.intel.com (HELO 4664bbef4914) ([10.239.97.150])
-  by orviesa004.jf.intel.com with ESMTP; 03 Dec 2025 20:28:48 -0800
-Received: from kbuild by 4664bbef4914 with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vR0xR-00000000DRN-1pJI;
-	Thu, 04 Dec 2025 04:28:45 +0000
-Date: Thu, 4 Dec 2025 12:28:05 +0800
-From: kernel test robot <lkp@intel.com>
-To: Pankaj Gupta <pankaj.gupta@nxp.com>, Jonathan Corbet <corbet@lwn.net>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: oe-kbuild-all@lists.linux.dev, linux-doc@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	Frank Li <Frank.Li@nxp.com>
-Subject: Re: [PATCH v20 5/7] firmware: drivers: imx: adds miscdev
-Message-ID: <202512041241.yDXC2vpg-lkp@intel.com>
-References: <20251203-imx-se-if-v20-5-a04a25c4255f@nxp.com>
+	s=arc-20240116; t=1764823394; c=relaxed/simple;
+	bh=tBet7xd9Ix+7i7/6lFaf25DY48b+0wTDWRETSg/THcQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=CrcZ494GbvQ7tdK28pZfG45v2mjzdPCVEEmfxMDExXepMcO4f+blOfsWVuFYIBJHE2CGEUbmPDbKpW4eY7whgmFs5k1TFlV9pDrhLcK0qEOfYZuIQtFMv3XuFSgykkzuV6FIu8y4ECihzzfVFcLn/KDxJp5Cd9K/4qPB+Mehi34=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=BfmkRvPc; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=SBoXuF/J; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5B3H74Oa2844562
+	for <devicetree@vger.kernel.org>; Thu, 4 Dec 2025 04:43:11 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=I0tZsr+X9rb2BkuKPKohL8
+	wWGapUv709og7lMSnyxu8=; b=BfmkRvPc8agafeCKP/GA3XZ7lToaQn3EvMek90
+	5J1SqUfA+2dZKX+6dGWQ4cmfuxdFiAhAj97RG2Z2UEgZ9MhotKk/49bAksbRuHcC
+	nUi2ZypI5evAicniL7Xn98mndzzKLJ8ASAsBodggqJ1FRYf/uZnl+5B95uVlSg3M
+	sSSKDFYtZczFQuBF/qpR2qiJUc/IN/7lfaihzRZWREqRBprAKnzv3paJIg0bokZr
+	nnnwqcfA9lbp6gZv3WpD1L9V8AeWsNB8bQYSFshxKlwOBKuFVxj+R4FoYt9RAd9h
+	JtNslej7vhakGhcStnbKTgng1kLSyPRJHv1I3oiqeilblcJw==
+Received: from mail-ot1-f72.google.com (mail-ot1-f72.google.com [209.85.210.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4atsar1t9d-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 04 Dec 2025 04:43:11 +0000 (GMT)
+Received: by mail-ot1-f72.google.com with SMTP id 46e09a7af769-7c75b4d04acso1031904a34.2
+        for <devicetree@vger.kernel.org>; Wed, 03 Dec 2025 20:43:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1764823391; x=1765428191; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=I0tZsr+X9rb2BkuKPKohL8wWGapUv709og7lMSnyxu8=;
+        b=SBoXuF/JqXiNYpXuYnQP6T/Dtiz50XZE2EGWhdQbutkLyWv4fjVndYvWbQKSQI+0e7
+         eHtwh3Orz5mGIp3EW/FjXDkV1CEB2hf1JRajWhL7o5CwbS5XysHHao2JjgvpKGjTlNpM
+         tlIhXpS/vXqB5ys5eXAXGjwGA3X+LguhgfrC4rECL8Uk8VE17+Vy1y04EDBqUzq+QUxF
+         XiXbMYP1YGXwBwerrFfKk8+bHNYteQXwDMDXNDFMjTsRlS5rIfZKCy37329NCE4MpZl+
+         WPjEBAwdXnzDHo2qiZp4c2VPs9TLju1LRvN2Gqeu4mF5ZUcxJLLFK1ZPKSiSjeshbOCT
+         NN/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764823391; x=1765428191;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=I0tZsr+X9rb2BkuKPKohL8wWGapUv709og7lMSnyxu8=;
+        b=P2zXiA0GrEMgY0QC1QNkeS3gK4Yb070Lews+XrxLDt/h+7cziwgqq0hRyhMGi7maKK
+         nzLs1I2NjmdabN/A5ZjzVSSbjKIJJse8KJGgD3S47ftFyNff54jb5YtJdS4xRtXaoZxU
+         xV22pvzwSWgfGDphzdpNCofL4zc9UO4WKDXaYtOTuhplQ98XxQc36AitoeQKVFVqEJxn
+         a5gyyf7x/0Sftx1s+2B2e3Z2eWLsalhyLidF0HZ3kcexIDGHeLzawIN1KMhFV8VOQveD
+         Js09xEAUeVXVPQ6m9HqQSiFmTOPqWbvqs6rVUtqfwvkAumggMENH+JFSaWiCkz1TCSkz
+         UmJQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV5hMFzZWZIkT695ufAuRNoAoPaEZs5to2gOR2lOmzMEKc5vBIJ55Suys7L0yddQo+Jy4cizxjsTPqH@vger.kernel.org
+X-Gm-Message-State: AOJu0YwcI+E++3xaI/k39/lk7B50qQ0xdn/HOscUFrYuMu2v6hmU7eDE
+	rTJwbBZfhg/a3LCTe0OwyvuinlSW+vjgG4HUGWykg7+qnU/g8avfPyXbqaRJ9td00cdHbe114Hw
+	naQcCHvufvyXXhcsvWavxersg3TDaEpvV6b+qyL6fjsiv9m6LtVrdcsk3r+H+QJsU
+X-Gm-Gg: ASbGncs4QSiBS/7O1L2+JvgE2RtrGVw6LvMMFLQ7Y0CDmlUgqHYqrlDfpuX6uhsFAwF
+	mQNuj3nW0t6qM+fzzLd+vzOZl+DN4R+UIS7a7YJtmEY7OWEsAAJK4Qx4hHUz+bL+jzVOm54KCKB
+	Vv4PtiLjhcXM0g13vKje93yRgDTV1Dv9jgA7yWbEdUYXjyCdd1vZ7l+QTwJu/J4PlYAH/zLVJ89
+	o9mHcYW+5wLJcOKKX4/vTXTeAcNgc2RkP+eTu2aIrmdy8iBWQFl9OcX/aOtWV84ootqb4vL/Ip5
+	w1NG2bYJapsdOO/ARHpjYElwPQs9UBJVR3PgIfLxzwsgStirSq4bGDRyOePR8Ii6iCLHZLBaFfy
+	YIzuE5skvF62vaQPkxMXDESRLrWgXTQyfMOZo+iQpaSHUearTOW6bBU2ovrg45o1V6BI=
+X-Received: by 2002:a05:6830:82a8:b0:7c6:8bfe:f5e with SMTP id 46e09a7af769-7c94db3f05emr3514926a34.32.1764823390819;
+        Wed, 03 Dec 2025 20:43:10 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFW8gU9SGAOFqdeOOxiZRb+i9FiBVHJbuzeoo5KLUW+sLNoIN5YvCzAMAGiYHOOjWH5MA/qIQ==
+X-Received: by 2002:a05:6830:82a8:b0:7c6:8bfe:f5e with SMTP id 46e09a7af769-7c94db3f05emr3514904a34.32.1764823390412;
+        Wed, 03 Dec 2025 20:43:10 -0800 (PST)
+Received: from hu-yuanfang-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
+        by smtp.gmail.com with ESMTPSA id 006d021491bc7-6597ec5b35csm213766eaf.7.2025.12.03.20.43.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 03 Dec 2025 20:43:09 -0800 (PST)
+From: Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>
+Subject: [PATCH RESEND v5 0/3] coresight-tnoc: Add support for Interconnect
+ TNOC
+Date: Wed, 03 Dec 2025 20:43:06 -0800
+Message-Id: <20251203-itnoc-v5-0-5b97c63f2268@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251203-imx-se-if-v20-5-a04a25c4255f@nxp.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+To: Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mike Leach <mike.leach@linaro.org>,
+        James Clark <james.clark@linaro.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>
+Cc: kernel@oss.qualcomm.com, coresight@lists.linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>,
+        Leo Yan <leo.yan@arm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1764823388; l=2209;
+ i=yuanfang.zhang@oss.qualcomm.com; s=20250814; h=from:subject:message-id;
+ bh=tBet7xd9Ix+7i7/6lFaf25DY48b+0wTDWRETSg/THcQ=;
+ b=liS7F1EO49CTHomciNgURMU6I8L0j5wX8w9pGISUp+pHU8zh9jliKXP1i3Q/dIVu+LzYg63qF
+ fdsWJBaSSrTD9NJGIcf5f+naKhU3A72xiiuBMk9u1fhha9pKips0SdB
+X-Developer-Key: i=yuanfang.zhang@oss.qualcomm.com; a=ed25519;
+ pk=9oS/FoPW5k0CsqSDDrPlnV+kVIOUaAe0O5pr4M1wHgY=
+X-Proofpoint-ORIG-GUID: Ipgqx1_Lvp_KXnn7GmXwkE8MJjxf90ws
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjA0MDAzNSBTYWx0ZWRfX5t5R9fKdLtqi
+ Wt2YxyVqfPfKiirDTSOu+4inVtRJ7svEDoe3S0U7tDWTTsedmKe39duBxJ+xZ/lAb0kDsWehK6S
+ vPkV6K9C3Q4VBXKpdfxz1indBqq90SzW9ajADOH1/Cm99fALiacFuef5dHxRYMzynBXPXm3KUjV
+ TALwtQZCxKoF0/mbJo2PTpEw6yCfTh9ZadZCIjCnwGlifWFLqLLUbqyocMpKZ5/bZiQEnN0xkop
+ 8UR7yr+jhSBF4EIhlBo95TiQuNM51gt0clw45hw4HPcrzDH70cuq8vbJ0KlrFq0EIBkEHutujDg
+ IjnvWcameyvCg4EcXWS17+3UyT3n0ZuCvclJxAG9xAo2k6sbz4XF9Z9TpmyZ9ZCAsTAwD2+K3Gp
+ dbHMJxEacWxmZTZA3G0vZrDioEKFpg==
+X-Authority-Analysis: v=2.4 cv=dfONHHXe c=1 sm=1 tr=0 ts=6931115f cx=c_pps
+ a=+3WqYijBVYhDct2f5Fivkw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=G-CQVniXWX8y_UMPSkYA:9 a=QEXdDO2ut3YA:10 a=eYe2g0i6gJ5uXG_o6N4q:22
+X-Proofpoint-GUID: Ipgqx1_Lvp_KXnn7GmXwkE8MJjxf90ws
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-04_01,2025-12-03_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 malwarescore=0 lowpriorityscore=0 priorityscore=1501
+ bulkscore=0 impostorscore=0 phishscore=0 clxscore=1015 spamscore=0
+ adultscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
+ definitions=main-2512040035
 
-Hi Pankaj,
+This patch series adds support for the Qualcomm CoreSight Interconnect TNOC
+(Trace Network On Chip) block, which acts as a CoreSight graph link forwarding
+trace data from subsystems to the Aggregator TNOC. Unlike the Aggregator TNOC,
+this block does not support aggregation or ATID assignment.
 
-kernel test robot noticed the following build warnings:
+Signed-off-by: Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>
+---
+Changes in v5:
+- Add the missing review-by tag for patch 3.
+- Link to v4: https://lore.kernel.org/r/20250831-itnoc-v4-0-f0fb0ef822a5@oss.qualcomm.com
 
-[auto build test WARNING on 4a26e7032d7d57c998598c08a034872d6f0d3945]
+Changes in v4:
+- Fix unintended blank line removals in trace_noc_enable_hw.
+- Link to v3: https://lore.kernel.org/r/20250828-itnoc-v3-0-f1b55dea7a27@oss.qualcomm.com
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Pankaj-Gupta/Documentation-firmware-add-imx-se-to-other_interfaces/20251203-145202
-base:   4a26e7032d7d57c998598c08a034872d6f0d3945
-patch link:    https://lore.kernel.org/r/20251203-imx-se-if-v20-5-a04a25c4255f%40nxp.com
-patch subject: [PATCH v20 5/7] firmware: drivers: imx: adds miscdev
-config: arm64-randconfig-r132-20251204 (https://download.01.org/0day-ci/archive/20251204/202512041241.yDXC2vpg-lkp@intel.com/config)
-compiler: clang version 22.0.0git (https://github.com/llvm/llvm-project 734a912d0f025559fcf76bde9aaaeb0383c1625a)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251204/202512041241.yDXC2vpg-lkp@intel.com/reproduce)
+Changes in v3:
+- Add detail for changes in V2.
+- Remove '#address-cells' and '#size-cells' properties from in-ports field.
+- Fix comment indentation for packet description.
+- Link to v2: https://lore.kernel.org/r/20250819-itnoc-v2-0-2d0e6be44e2f@oss.qualcomm.com
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202512041241.yDXC2vpg-lkp@intel.com/
+Changes in v2:
+- Removed the trailing '|' after the description in qcom,coresight-itnoc.yaml.
+- Dropped the 'select' section from the YAML file.
+- Updated node name to use a more generic naming convention.
+- Removed the 'items' property from the compatible field.
+- Deleted the description for the reg property.
+- Dropped clock-names and adjusted the order of clock-names and clocks.
+- Moved additionalProperties to follow the $ref of out-ports.
+- Change "atid" type from u32 to int, set it as "-EOPNOTSUPP" for non-AMBA device.
+- Link to v1: https://lore.kernel.org/r/20250815-itnoc-v1-0-62c8e4f7ad32@oss.qualcomm.com
 
-sparse warnings: (new ones prefixed by >>)
->> drivers/firmware/imx/se_ctrl.c:517:40: sparse: sparse: cast removes address space '__user' of expression
-   drivers/firmware/imx/se_ctrl.c:745:48: sparse: sparse: cast removes address space '__user' of expression
+---
+Yuanfang Zhang (3):
+      dt-bindings: arm: qcom: Add Coresight Interconnect TNOC
+      coresight-tnoc: add platform driver to support Interconnect TNOC
+      coresight-tnoc: Add runtime PM support for Interconnect TNOC
 
-vim +/__user +517 drivers/firmware/imx/se_ctrl.c
+ .../bindings/arm/qcom,coresight-itnoc.yaml         |  90 ++++++++++++++
+ drivers/hwtracing/coresight/coresight-tnoc.c       | 136 +++++++++++++++++++--
+ 2 files changed, 215 insertions(+), 11 deletions(-)
+---
+base-commit: 2b52cf338d39d684a1c6af298e8204902c026aca
+change-id: 20250815-itnoc-460273d1b80c
 
-   491	
-   492	static int se_ioctl_cmd_snd_rcv_rsp_handler(struct se_if_device_ctx *dev_ctx,
-   493						    u64 arg)
-   494	{
-   495		struct se_ioctl_cmd_snd_rcv_rsp_info cmd_snd_rcv_rsp_info = {0};
-   496		struct se_api_msg *tx_msg __free(kfree) = NULL;
-   497		struct se_api_msg *rx_msg __free(kfree) = NULL;
-   498		struct se_if_priv *priv = dev_ctx->priv;
-   499		int err = 0;
-   500	
-   501		if (copy_from_user(&cmd_snd_rcv_rsp_info, (u8 __user *)arg,
-   502				   sizeof(cmd_snd_rcv_rsp_info))) {
-   503			dev_err(priv->dev,
-   504				"%s: Failed to copy cmd_snd_rcv_rsp_info from user.",
-   505				dev_ctx->devname);
-   506			err = -EFAULT;
-   507			goto exit;
-   508		}
-   509	
-   510		if (cmd_snd_rcv_rsp_info.tx_buf_sz < SE_MU_HDR_SZ) {
-   511			dev_err(priv->dev, "%s: User buffer too small(%d < %d)",
-   512				dev_ctx->devname, cmd_snd_rcv_rsp_info.tx_buf_sz, SE_MU_HDR_SZ);
-   513			err = -ENOSPC;
-   514			goto exit;
-   515		}
-   516	
- > 517		err = se_chk_tx_msg_hdr(priv, (struct se_msg_hdr *)cmd_snd_rcv_rsp_info.tx_buf);
-   518		if (err)
-   519			goto exit;
-   520	
-   521		rx_msg = kzalloc(cmd_snd_rcv_rsp_info.rx_buf_sz, GFP_KERNEL);
-   522		if (!rx_msg) {
-   523			err = -ENOMEM;
-   524			goto exit;
-   525		}
-   526	
-   527		tx_msg = memdup_user(cmd_snd_rcv_rsp_info.tx_buf,
-   528				     cmd_snd_rcv_rsp_info.tx_buf_sz);
-   529		if (IS_ERR(tx_msg)) {
-   530			err = PTR_ERR(tx_msg);
-   531			goto exit;
-   532		}
-   533	
-   534		if (tx_msg->header.tag != priv->if_defs->cmd_tag) {
-   535			err = -EINVAL;
-   536			goto exit;
-   537		}
-   538	
-   539		if (tx_msg->header.ver == priv->if_defs->fw_api_ver &&
-   540		    get_load_fw_instance(priv)->is_fw_tobe_loaded) {
-   541			err = se_load_firmware(priv);
-   542			if (err) {
-   543				dev_err(priv->dev, "Could not send msg as FW is not loaded.");
-   544				err = -EPERM;
-   545				goto exit;
-   546			}
-   547		}
-   548		set_se_rcv_msg_timeout(priv, SE_RCV_MSG_LONG_TIMEOUT);
-   549	
-   550		err = ele_msg_send_rcv(dev_ctx, tx_msg, cmd_snd_rcv_rsp_info.tx_buf_sz,
-   551				       rx_msg, cmd_snd_rcv_rsp_info.rx_buf_sz);
-   552		if (err < 0)
-   553			goto exit;
-   554	
-   555		dev_dbg(priv->dev, "%s: %s %s.", dev_ctx->devname, __func__,
-   556			"message received, start transmit to user");
-   557	
-   558		/* We may need to copy the output data to user before
-   559		 * delivering the completion message.
-   560		 */
-   561		err = se_dev_ctx_cpy_out_data(dev_ctx);
-   562		if (err < 0)
-   563			goto exit;
-   564	
-   565		/* Copy data from the buffer */
-   566		print_hex_dump_debug("to user ", DUMP_PREFIX_OFFSET, 4, 4, rx_msg,
-   567				     cmd_snd_rcv_rsp_info.rx_buf_sz, false);
-   568	
-   569		if (copy_to_user(cmd_snd_rcv_rsp_info.rx_buf, rx_msg,
-   570				 cmd_snd_rcv_rsp_info.rx_buf_sz)) {
-   571			dev_err(priv->dev, "%s: Failed to copy to user.", dev_ctx->devname);
-   572			err = -EFAULT;
-   573		}
-   574	
-   575	exit:
-   576	
-   577		/* shared memory is allocated before this IOCTL */
-   578		se_dev_ctx_shared_mem_cleanup(dev_ctx);
-   579	
-   580		if (copy_to_user((void __user *)arg, &cmd_snd_rcv_rsp_info,
-   581				 sizeof(cmd_snd_rcv_rsp_info))) {
-   582			dev_err(priv->dev, "%s: Failed to copy cmd_snd_rcv_rsp_info from user.",
-   583				dev_ctx->devname);
-   584			err = -EFAULT;
-   585		}
-   586	
-   587		return err;
-   588	}
-   589	
-
+Best regards,
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>
+
 
