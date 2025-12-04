@@ -1,74 +1,76 @@
-Return-Path: <devicetree+bounces-244213-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244214-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BC52CA27EF
-	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 07:17:32 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CCE3CA27E4
+	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 07:17:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BBBD630A77A5
-	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 06:17:16 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C1C89302D665
+	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 06:17:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC04F30B514;
-	Thu,  4 Dec 2025 06:17:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C3AD30DD31;
+	Thu,  4 Dec 2025 06:17:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kgxBRsKM"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PgfAGVmF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01D5E1A316E
-	for <devicetree@vger.kernel.org>; Thu,  4 Dec 2025 06:17:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 541612D29B7
+	for <devicetree@vger.kernel.org>; Thu,  4 Dec 2025 06:17:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764829035; cv=none; b=ci2e2uVlWBwCwOI8JoLEeH9RBoUcNWUOo1TDeze2JxOiMjQVCJCY2X3hlOa2BCOwom/rClhsX/GkHYIYdt2+GfAkjpUGGaThfiwofSCCntdj3fPtqsY98PGpqtIaEyB8IrgC4/wquAny3axsqjL0oqn56o+UwNN4V9wCS5/3Ncg=
+	t=1764829036; cv=none; b=HoMFBxCMn/OS/EK6hbJzv/RbZDCrYmhINJBTx78FXpf2f2JZ1+JxrN9Vi47U+yGML8f1iTTthezNH3iIM6wY2Z+r5urL0P/i5kAad3sZLa174k8FpIS9ai8eXevS5A1rg2CyIWq5qEmoCNGOVVu9zhxXHlvJzgx/RucYA/8OSOE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764829035; c=relaxed/simple;
-	bh=o9IcrFnimv7ibOLrNRYV7WuA4rm8uS1dfW5VR+qdcDs=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Hy+Gvh6QyCj2KtTqN58xXtdtXyx/xczVyz/NgfVGc3/m/oYhswPVHEY4euSLewkuvKjA4cKpLZK+nI/C3jI/G96cXwO/VxGwaqIKC5yDkSjdybF9z8TGfaSUlAI3FKfRHxxegvaGvViOfOmJEv88HApKhvxuZy11evhIsS+NtfE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kgxBRsKM; arc=none smtp.client-ip=209.85.208.53
+	s=arc-20240116; t=1764829036; c=relaxed/simple;
+	bh=uBzb5hn8RwRxDCS3Rfjd1ySeo8/NB82z2Y70tDhB9tc=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=qkjhO8NJzzb7inA6LcmiuPf7iRBJwdkwr0kG9Mv+MpWKjedu9h5Lu4g+iqMg12vOIijP/obwfrGi1FA3BvHQHrMQTu3bsJ+c/TqkQB9TLh38S3qyZzqwMFUsgQ0KQWvC9NP9MYqpV2jHknH9mp0S85Gl5Jqd4g1bqKF3XYCtjDA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PgfAGVmF; arc=none smtp.client-ip=209.85.208.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-64088c6b309so959755a12.0
-        for <devicetree@vger.kernel.org>; Wed, 03 Dec 2025 22:17:12 -0800 (PST)
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-64198771a9bso905772a12.2
+        for <devicetree@vger.kernel.org>; Wed, 03 Dec 2025 22:17:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1764829031; x=1765433831; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=o5cPONIgu6mzYa/WMF+RelFJ2K/lRyJPaqEbFSvDOqU=;
-        b=kgxBRsKMI227Ed/vvX/GnIK/qV3+r1/uu0E/k3N83xM0cicTTRcq0QQEMs2S3TKmgv
-         xVWBLKj+KSvKbgXqr7lwO7KsA7cLIPv48ieCTvq0V2oiGuXVR3VEVqU6FI+uxpsQlHqT
-         X8Gi3kGecz0+SHX1PkzVuT/ZCpkN5Z72g6LqvMq4MHdmQVnXWNox3AFyEPRogmL3W8Lx
-         v1Vjwov4tl7KdhNpJ/YdTFftvMn+lNN+YOiGLJ3nAaWr93CNGHHHGuxKsCzcotDzeo36
-         qPsDoLoFWfeQuReSS0HOg73+/umFn2VDRzo4zKQy2HIb3JCAsAG0X3Zd9vouqriF3y6+
-         d/6A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764829031; x=1765433831;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1764829032; x=1765433832; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=o5cPONIgu6mzYa/WMF+RelFJ2K/lRyJPaqEbFSvDOqU=;
-        b=O76g6ziR5Ae1sZzHSh96zLHzINB1Ih4BoZ3Un75R3knRNmBGzw+UO6m+OLGvWhtixC
-         dKsBhSIj2ADknWWP0dQcvVh2RwFRRqhsfi29ldR/VNlEB2AEBWEsfM5P17AuPMmUHEt9
-         FSBfaZ2RSHK1zUixjt+8bjh4OrRstcHaD9B1GR6yIn48IVY0sgK3H1PCZ8t3dhMsTr1N
-         iBVvcmx8+5dyK2i7zRWKLNv95993v7jJiKEkZuOM7aBaiVcKFeS6fNNhjBrp5buOmeJl
-         ET7Vtne9kCy8icM1N2dHdwwwnhcqAR7ToKUv7hxEvtobzx7Y7CSdSqhAO5oInO1/ru4D
-         5ZZw==
-X-Gm-Message-State: AOJu0YxwiwkZV2gic7cw7AKIgnXiskE5UvBdRHNpFOW2AOwFM0cyLgnp
-	X1ZUjdXGrmCFClHnCXgBYatOEQ6G57+Qxe/BHTZYxhu9wLjXBbzEHM57
-X-Gm-Gg: ASbGncs0N3Gr4I24fifTmOQvi+rEcWAkdNXt3oHW6Ku8edfpg6SSqBkbOnj83vB3ZpW
-	MDgazlksOe1SgFcgZfEyEtLa7cfxnEBJ8/3S/CzUQUGQHxgbNZ/PG7OpiYyAKkTn91sfRuCLEcx
-	3z4kmiNPN5yXtqjNcFOnSp1AddyULKRa7P9QVJksVKgNXOupb8nqNkYcN8ZRw9DLEYzS4sMp5MK
-	Y9bR6elgul9s+IZFUJpL9oMKHf53uG9IGswOOpMQgpbyn79mRkFy88LyP3t2zDUAI6q4+/HsLK3
-	XAgEiDQqKywP5mdSoOE+ZinchUKSHxXTTBuNu/x3WRDno2l2pxkB8AhHfzNRTgdog+NPRQiJsx1
-	VpQ+mx95eVDNA3Zru4AR+KFlmQq/Xi7b9gvDhcvbUcNqcBCZAh6iWh5TvNvyqzXmFnMFjqbrtNJ
+        bh=wDV4ueJ5OUHwsY4jMIVfrhYRT+0a4XHLxBIh9+KCo7E=;
+        b=PgfAGVmFCm2cl4ESqWNRWEBmC6sXHfsz21I/xPctdrFnA6kWasg+71OM4WlApeXBLa
+         Q2pQfsk/80lmgU8M5kBfSeOJe4CAi3wFSzQdmNnd+uNTsIX3TbhUW/GrJtc6bCdFdWyH
+         vDkTnq/rfF1B5Ya37nBoQMwZsA/ELtVgluq2A8CD6vnr1RpooVtV9ttFST1FYDADjj8E
+         fcy+IERsTceE37q6NCUXJvcEPlZhi1NGuUn4rmM84ogtay41NLMHwbwubKBIwO1080RL
+         GKEpmeFlmyHiiGnrXvHKNeY+mt3lptTvajnyn5yKvB/DJ90GfKizjYiqdpUcvwU1Ux2E
+         bH9g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764829032; x=1765433832;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=wDV4ueJ5OUHwsY4jMIVfrhYRT+0a4XHLxBIh9+KCo7E=;
+        b=ANg4apmtdryoWrbc5MYi6w2ulIHZZ751tR0uSXSbBq7ixplaM3BbzNmI4qOk+1Mgtz
+         7Ha5n3SLtfUCdZywfowQ60ACR/C/UD26ARteVHkPujaTpxpQM/WarNln4hdTQcNc6nRC
+         p1GbO2TSUk1lpdQe0XM0Go8HZoOdpmiRXNDOVeaKJaGkD2UQQHiQLSGwJK3NgQehqzId
+         6gp9GEk/hNurTNyAVv5nCXQaKMlrVWlGWqSiqiP5ShxYjtkHb+9cXtoqp1PA4myuuY/H
+         f9tQBYADs4HM5Ol8p23oabwxTvITM1ZQooSl5TKtpzBEBoXoSf9GTmWtYooMzCrUhbxF
+         iM2A==
+X-Gm-Message-State: AOJu0Yzv9yZvoSYuY4sIkbBOHEhQrRniKH9oo8a8WAXpnEcnS2IIwDnN
+	IxAOZcO8qMYBAEAj8SWN8o9T29L0AoB3ZpaNsz+9Z/zD+LmQHRrhXhJP
+X-Gm-Gg: ASbGncs8V16vINncQtpaULeoBrrggXHX9oqE+0hkPqwIplCjtgAcUAazrszWcTGX0I/
+	VyFhBHLlIBsR9gKxSvOnp3ecT9nBVVpyWZz8KJV7yiqEvxTHKHgXSw+F6jDrQSid1QT9UlERWk5
+	eggWOYTgGarGHX0S34+SuUtxNLimcS21O8nNFe557bsDoQw64rj0/YYTdSuvPasukWz/aQvB2s9
+	zLNd9PHrC5is5qr91w9qDQychTcwm7c1CheT9kLI/liN+lLAVIz+dFxj15WBqxTAlEfNmWoiSkV
+	Hn96G0qerTneFGxyx5MV6j8VP0vjemAikj5wN4EHogsMBV5gPJ+5wzLVg4ZnbL4z16nQdl0j2iZ
+	fRw0NKchw7Iwf4CuPquVVRV9cri3HK1L7HCL0j2pvcVvUciOyJTTsB9APLSULM9vsPUuwKw5ykQ
 	4=
-X-Google-Smtp-Source: AGHT+IE96b/uxsEEqrl87S6Pg6TRMB1JugG4AhVEQkgPU/uciaxk7pEZZBKrlSNBh92a+3pEa9CVUQ==
-X-Received: by 2002:a05:6402:1ecd:b0:647:57db:c997 with SMTP id 4fb4d7f45d1cf-6479c4f6d31mr4107684a12.21.1764829031175;
-        Wed, 03 Dec 2025 22:17:11 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHjjOps7OFhIOvLIknNQvKPCH2qAuahzZ5Rpu+KEg83rMQ1MpF/A+ajRn484dw3CkB2Jg5bjA==
+X-Received: by 2002:a05:6402:1eca:b0:640:cdad:d2c0 with SMTP id 4fb4d7f45d1cf-6479c49b919mr4308385a12.25.1764829032448;
+        Wed, 03 Dec 2025 22:17:12 -0800 (PST)
 Received: from xeon ([188.163.112.74])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-647b2ec2d8csm490159a12.5.2025.12.03.22.17.10
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-647b2ec2d8csm490159a12.5.2025.12.03.22.17.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Dec 2025 22:17:10 -0800 (PST)
+        Wed, 03 Dec 2025 22:17:12 -0800 (PST)
 From: Svyatoslav Ryhel <clamor95@gmail.com>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -90,10 +92,12 @@ Cc: devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	linux-clk@vger.kernel.org,
 	dri-devel@lists.freedesktop.org
-Subject: [PATCH v2 0/4 RESEND] gpu/drm: tegra: add DSI support for Tegra20/Tegra30
-Date: Thu,  4 Dec 2025 08:16:59 +0200
-Message-ID: <20251204061703.5579-1-clamor95@gmail.com>
+Subject: [PATCH v2 1/4 RESEND] clk: tegra20: reparent dsi clock to pll_d_out0
+Date: Thu,  4 Dec 2025 08:17:00 +0200
+Message-ID: <20251204061703.5579-2-clamor95@gmail.com>
 X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20251204061703.5579-1-clamor95@gmail.com>
+References: <20251204061703.5579-1-clamor95@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -102,38 +106,31 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Tegra20/Tegra30 DSI is quite similar to Tegra114+ apart MIPI calibration
-logic and clocks. With a few minor tweaks, existing tegra DSI driver
-should work on Tegra20/Tegra30 devices just fine. Tested on
-Motorola Atrix 4G (T20) and ASUS VivoTab RT TF600T (T30).
+Reparent DSI clock to PLLD_OUT0 instead of directly descend from PLLD.
 
-This patchset depends on Tegra20/Tegra30 CSI bringup since both share
-MIPI calibration logic. Ideally these patches should be picked after
-CSI bringup but they will not break anything even if picked before
-CSI patches.
-
+Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+Acked-by: Stephen Boyd <sboyd@kernel.org>
 ---
-Changes in v2:
-- removed all MIPI calibration, it is handled within CSI bringup
-- added per-soc structures into of_match
-- added fix for hang caused by register access with uninited hw
----
+ drivers/clk/tegra/clk-tegra20.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-Svyatoslav Ryhel (4):
-  clk: tegra20: reparent dsi clock to pll_d_out0
-  gpu/drm: tegra: dsi: move prepare function at the top of encoder
-    enable
-  gpu/drm: tegra: dsi: add support for Tegra20/Tegra30
-  ARM: tegra: adjust DSI nodes for Tegra20/Tegra30
-
- arch/arm/boot/dts/nvidia/tegra20.dtsi |   4 ++
- arch/arm/boot/dts/nvidia/tegra30.dtsi |   8 +++
- drivers/clk/tegra/clk-tegra20.c       |   6 +-
- drivers/gpu/drm/tegra/drm.c           |   2 +
- drivers/gpu/drm/tegra/dsi.c           | 100 ++++++++++++++++----------
- drivers/gpu/drm/tegra/dsi.h           |  15 ++++
- 6 files changed, 95 insertions(+), 40 deletions(-)
-
+diff --git a/drivers/clk/tegra/clk-tegra20.c b/drivers/clk/tegra/clk-tegra20.c
+index bf9a9f8ddf62..9160f27a6cf0 100644
+--- a/drivers/clk/tegra/clk-tegra20.c
++++ b/drivers/clk/tegra/clk-tegra20.c
+@@ -801,9 +801,9 @@ static void __init tegra20_periph_clk_init(void)
+ 	clks[TEGRA20_CLK_MC] = clk;
+ 
+ 	/* dsi */
+-	clk = tegra_clk_register_periph_gate("dsi", "pll_d", 0, clk_base, 0,
+-				    48, periph_clk_enb_refcnt);
+-	clk_register_clkdev(clk, NULL, "dsi");
++	clk = tegra_clk_register_periph_gate("dsi", "pll_d_out0", 0,
++					     clk_base, 0, TEGRA20_CLK_DSI,
++					     periph_clk_enb_refcnt);
+ 	clks[TEGRA20_CLK_DSI] = clk;
+ 
+ 	/* csus */
 -- 
 2.48.1
 
