@@ -1,192 +1,136 @@
-Return-Path: <devicetree+bounces-244350-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244351-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3E73CA3E10
-	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 14:48:22 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id B48A1CA3F30
+	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 15:11:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id BC6793016907
-	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 13:48:21 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id F16353079A32
+	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 14:06:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2BC022424E;
-	Thu,  4 Dec 2025 13:48:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A32B296159;
+	Thu,  4 Dec 2025 14:06:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="B7vHpEOh";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="F4P1SQoM"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="w2wWwbli"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38B6E221D87
-	for <devicetree@vger.kernel.org>; Thu,  4 Dec 2025 13:48:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3F3023EAA0;
+	Thu,  4 Dec 2025 14:05:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764856099; cv=none; b=Z8b9++SxIIGLC/NipMBHnf/+JpebLgaL8L+k6qaxS+ovO1b5X5tZKpmw8ev1G6oiXaDAZ8bCkuZS48l4bD91qJgc6oV1FR4OCwSa0n2FoPvuGBJBoBmBmLJX1voAclAK/TuwHT4wgekCgHCaUGZqC5Tg1Xm4PvIFKPNaRQUBlx4=
+	t=1764857163; cv=none; b=Q2jIMmYecqsdDcSydgJ8julhkVn/RSL8OoJ9GQVUohqubu7CwRWln3WNd1I/69/97mvu+sk17tCGK7D2IWmAlU1BIlVazoyJYHimUHMFqGEB/UGnYvIvKdEi6JfzGcutKd2SMkprNIynIj3+0mx6J7rs1X6/HuFAE1plTird5wY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764856099; c=relaxed/simple;
-	bh=ZufCtcgX/fo+fhRW+mLXVfopYYuOEGq5PQElXR6FVSw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HfrFp6tV08Fu/gSZgS0zeuNU8KlDjC4LmK8kW91O5tBcbtxlpYhkF2ujQEUQ+PSqUxtNShkE/gY/pcpbBd0wwiaU+8/I707yorBqzRU3PCRD1u9ZvrM9YAUAtUmYfRLU/J+uzwKqhIFWfLQeQpYRjggHi/FUVNQlCj8fyfJ6y2E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=B7vHpEOh; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=F4P1SQoM; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5B4AEugT1087119
-	for <devicetree@vger.kernel.org>; Thu, 4 Dec 2025 13:48:17 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	7Kfz6v4DovVmuVuVubrjJnyyd7HdrAE3tSK9e1ucook=; b=B7vHpEOhuO/uX17i
-	L7qJfA7WsWY3hovKEKrsKsUPPPypN8TcJVhjMyH7A9uyQolLIFXEF5TLskmOabnt
-	J7T7ixwJHVoq8dsDYW3iBUqtVitz635GdNjrXQ3nqoC/UYLlWZukaXbqLQ9drP4n
-	RUGPydSgxmRdUFvpL8qi0Yu5mE9kxp6esVCxXWgso6fTGVehsN3YKIzKoNKRad17
-	U5SM2BrCb0aOYeDCFREL9eWzPO6rQZAXq4iBWrx0ALrHjjbJPBdE/bECKeGpJoQe
-	xar1YVLETlgJz6xs1hEOW0+C+IayoJzD/GmDuoZh+2p/vHCknD3yrsqc0Kunh4kJ
-	rnbMJw==
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4atmmdc7nn-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 04 Dec 2025 13:48:16 +0000 (GMT)
-Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-8b25c5dc2c3so20182485a.3
-        for <devicetree@vger.kernel.org>; Thu, 04 Dec 2025 05:48:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1764856096; x=1765460896; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=7Kfz6v4DovVmuVuVubrjJnyyd7HdrAE3tSK9e1ucook=;
-        b=F4P1SQoMI4UntUmegLbqO393UYuIPHageXliksb/AcLEmdIHRhzexjhBMnd740N2uD
-         2RbIHPq1ONW6yPGfxvhfmLKdFlFu3B24uvRdK+3umdZM3RkGhPJtOVmcnd2lHKJhZiif
-         y4XKTdDARgRhmHw4/LMgAdusT6E7UfXkSYU8wvAoZfedIwm0mmHzR6+uURpZfJKG2AZ/
-         9DDLviHSppuBdNTVlGSp0pdv+QiWUWl858Pkj4WV8BXEM2niqt9a70HGT/grBOdrxRa3
-         ogaMM0/0IwOHddYTJ/OQo1kfdE1iXj4U03XGkAtlZRWPCyFr8eDVYKpwKVZiStUpSi+j
-         0g5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764856096; x=1765460896;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=7Kfz6v4DovVmuVuVubrjJnyyd7HdrAE3tSK9e1ucook=;
-        b=uSeToN7CPXPsv+6VPvelsyivDerE6arvsU69Azp2hIXrA1zX3IQ8HHbYr5ARBnkOId
-         Oo8rxabA1qI77bijVXkEnvCU3ZYaYUcMFGmdCMF8tjCOIWxBzqc7fekLiMfGC4kaiEfB
-         NnB1H9fc5Y4NnryMfyiSbANjvMRJnngBsO9b/1j5EJ8V1vmEcNOY8JI8MBP7N29V6k5I
-         dUfpLMutq5e/67dsYFTASQmJksJ9bStMi4foZbRn9x8L5rniA/N9PLmiGD/E8vh+nvP7
-         tBihBfabXw6VQLfT6wPSaT5cgKpuUkAFOOxX8SwvICBCZumoPHlsl0ZpWdi/FatpxC2k
-         cYQA==
-X-Forwarded-Encrypted: i=1; AJvYcCW1mg81a/aHrYsZKmZL40ZTEIkiFOh0vnBE2yClxbwMcT5hj5mwEvC28g6duDcIZScN+KfJULXJRDeH@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz8klEVupJ7s/I9mmwwKCDDWZ/kQaipRjko7KqRKxn3EDZT7t9H
-	4ZA1ZYHeN6PeQGAADQkkgtigIEL4bbXn18zrzpOfuYX6QR0gYdRHuMbvQmJ7/01V/4IgSPr1RQ8
-	7J0MMa2OiA7o1i1oZurQnsfBYZESWmEGEnFzeIbfTJ6ZwhDWbPdp8h7cLlqFrlFWu
-X-Gm-Gg: ASbGncsM82aYKQSXqAdg+t6hgg871lsKkeGMc7y8PHVpF0GC5Yy+r6KTpC4EqPt+HA8
-	5HBwsUq8djXfpSid6SG9y8wDF2v/vfpNL+KzFiNM0bPqjQ+5g54aVAQRukyRqC6bb0XuWLC50v8
-	bQqTqD0gEcZ6nOjUVdxnHXR4dxOO3kB0FSzO75aDNIP5qb1XJtlNdQ59YSdGZYrzWkMKWQNpbTm
-	5gAyVNvcQIKBX1z1Q+vN2bEHTjDyfJPHhcmIKTiuGVSA3k/t3dLzCtUYpdSgEq883u1JYMmyzA2
-	PbTZv33nDLXMLys4vE574BfXHWqsQh+W22zHhrFIO96PAyeJjL8718P8AP1UAS7BVERkJQXqHaB
-	cgzBfhHZhcgD+/OtgA2OtR3TTOVuo4eXiE+aO626dwu7p5CfAbWocOjgY+6jZXE+zbw==
-X-Received: by 2002:a05:620a:f04:b0:8b2:1f8d:f11d with SMTP id af79cd13be357-8b5e48d4966mr667013785a.2.1764856096305;
-        Thu, 04 Dec 2025 05:48:16 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGeR2kZUmDLhfH+QWFtgIgv5ITGcHpA+vqJET8rZzXBIvy8V0EVhKzdHKxr7P21AbP88CU+Ww==
-X-Received: by 2002:a05:620a:f04:b0:8b2:1f8d:f11d with SMTP id af79cd13be357-8b5e48d4966mr667011785a.2.1764856095818;
-        Thu, 04 Dec 2025 05:48:15 -0800 (PST)
-Received: from [192.168.119.72] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b79f44597c1sm135442866b.13.2025.12.04.05.48.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 Dec 2025 05:48:15 -0800 (PST)
-Message-ID: <898e5a54-3a79-4fdc-bb51-f1eb6a79dc0e@oss.qualcomm.com>
-Date: Thu, 4 Dec 2025 14:48:12 +0100
+	s=arc-20240116; t=1764857163; c=relaxed/simple;
+	bh=jhjgGxFnJJwCO/Dr1lqyMoCJYTGN5tgZCI2rZbeUzZA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=g6torNMeAK9RnN2+jBHge5X+PI/yeuP6+03iDrK+BGqXgCELEG4fgFWiQyPwfKMHYZho5csLUuryVK0uo5FQKR6bk3zbjobGXDOYnIB5ZeQAKYQY376edOU4ZXvxd2fy6O7x7skYpzPZ5uBbF6yc/rZzdaAB0hZAIduv5LKiSv0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=w2wWwbli; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=HfRgrNu+Jy0KHcUlZ1ki4mGV+ZPLuJ1KAJBIldaUU78=; b=w2wWwblirnBXOL8A5PVg2e2lBE
+	qLL6LTYCI2g+U8e+euP4o/sKm4/TNETuOzUl/XZXA4f/g4yKvzYPp6sbZQj34VhsNJabn+hmzGiAc
+	vkDVGXx63Kz7Hnlwkw127SM+FEqdqFen6EpmxlYMpKFGQJZv6RJRaAOjxhI0gvtEsbJUe+xEeJbMP
+	rDBE2bDwxRo4a7yvpqOumZL1n5uixP2zQv3jeaBaNLzR69xUupfzVd4TS8YAjtq5Z6P6tInbGp4jZ
+	1aWU9cpfd/FpVW7MxXL7RJ8gbnEBfprTGcy9JOpN5sPCzf3syPIvGRVYkEeCd16f49ItdhQNjRGny
+	SXkZdkAQ==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:52624)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1vR9xp-000000003c2-3a3E;
+	Thu, 04 Dec 2025 14:05:45 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1vR9xl-0000000013p-28B4;
+	Thu, 04 Dec 2025 14:05:41 +0000
+Date: Thu, 4 Dec 2025 14:05:41 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Daniel Golle <daniel@makrotopia.org>
+Cc: Vladimir Oltean <olteanv@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Frank Wunderlich <frankwu@gmx.de>,
+	Avinash Jayaraman <ajayaraman@maxlinear.com>,
+	Bing tao Xu <bxu@maxlinear.com>, Liang Xu <lxu@maxlinear.com>,
+	Juraj Povazanec <jpovazanec@maxlinear.com>,
+	"Fanni (Fang-Yi) Chan" <fchan@maxlinear.com>,
+	"Benny (Ying-Tsan) Weng" <yweng@maxlinear.com>,
+	"Livia M. Rosu" <lrosu@maxlinear.com>,
+	John Crispin <john@phrozen.org>
+Subject: Re: [PATCH RFC net-next 0/3] net: dsa: initial support for MaxLinear
+ MxL862xx switches
+Message-ID: <aTGVNfF618wssihg@shell.armlinux.org.uk>
+References: <cover.1764717476.git.daniel@makrotopia.org>
+ <20251203202605.t4bwihwscc4vkdzz@skbuf>
+ <aTDGX5sUjaXzqRRn@makrotopia.org>
+ <aTDdlibA99YLVSKV@shell.armlinux.org.uk>
+ <aTGHyIdWL86qPUif@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/5] clk: qcom: cmnpll: Add IPQ5332 SoC support
-To: Jie Luo <jie.luo@oss.qualcomm.com>,
-        Bjorn Andersson
- <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Luo Jie <quic_luoj@quicinc.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        quic_kkumarcs@quicinc.com, quic_linchen@quicinc.com,
-        quic_leiwei@quicinc.com, quic_pavir@quicinc.com,
-        quic_suruchia@quicinc.com
-References: <20251128-qcom_ipq5332_cmnpll-v1-0-55127ba85613@oss.qualcomm.com>
- <20251128-qcom_ipq5332_cmnpll-v1-3-55127ba85613@oss.qualcomm.com>
- <6e12f446-7792-44da-9e06-99729c3b066d@oss.qualcomm.com>
- <a3077c95-e6c3-420a-b65e-e4e584009c6c@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <a3077c95-e6c3-420a-b65e-e4e584009c6c@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: AlGuMth7jPEE3N5Zz_UrPiIVN6Brbel9
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjA0MDExMiBTYWx0ZWRfXyCnwEC2wvZkx
- /72xdCV9puscZColVGfgA7DNjCowcmszFMbaOJd4F8Py7F9qRvpGIfWqKizAoPsl4J4uIRGZATm
- 6tDuXw1vwfhhDacFado5ecXIFLR5meCEyGNJAmO2kd0OvCC9z5KwQDFaMLEywyV6m94CVdmBzOL
- PaxulY3JzlNOYS41kpgsBQ0II9jS7LellO1jCofoAOcCTpCBNRIifd8CnmviWsTdP7y+rpRtnqr
- RvIHtzUb5EAfilbMX38k6NwTNKaaZoMFPpe36IQ6kzyknJ6pUquvModkTDpNr89jQDcCUNLMm0Q
- t0qC9u9icxy9mKpxDX+/GziUUbvzDNZGiZ700Qa/Vvz/RWUoUnokSfiVcCDdaVlKDAtdSCJthse
- NdTU7BOa30ztBSbmlc5b0EL5MtQx+g==
-X-Proofpoint-ORIG-GUID: AlGuMth7jPEE3N5Zz_UrPiIVN6Brbel9
-X-Authority-Analysis: v=2.4 cv=Ctays34D c=1 sm=1 tr=0 ts=69319120 cx=c_pps
- a=qKBjSQ1v91RyAK45QCPf5w==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=en7o4u-K8g9yutxgwuQA:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=NFOGd7dJGGMPyQGDc5-O:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-04_03,2025-12-04_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 impostorscore=0 bulkscore=0 spamscore=0 lowpriorityscore=0
- clxscore=1015 priorityscore=1501 adultscore=0 phishscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512040112
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aTGHyIdWL86qPUif@makrotopia.org>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-On 12/4/25 9:09 AM, Jie Luo wrote:
+On Thu, Dec 04, 2025 at 01:08:24PM +0000, Daniel Golle wrote:
+> On Thu, Dec 04, 2025 at 01:02:14AM +0000, Russell King (Oracle) wrote:
+> > On Wed, Dec 03, 2025 at 11:23:11PM +0000, Daniel Golle wrote:
+> > > On Wed, Dec 03, 2025 at 10:26:05PM +0200, Vladimir Oltean wrote:
+> > > > Hi Daniel,
+> > > > 
+> > > > On Tue, Dec 02, 2025 at 11:37:13PM +0000, Daniel Golle wrote:
+> > > > > Hi,
+> > > > > 
+> > > > > This series adds very basic DSA support for the MaxLinear MxL86252
+> > > > > (5 PHY ports) and MxL86282 (8 PHY ports) switches. The intent is to
+> > > > > validate and get feedback on the overall approach and driver structure,
+> > > > > especially the firmware-mediated host interface.
+> > > > > 
+> > > > > MxL862xx integrates a firmware running on an embedded processor (Zephyr
+> > > > > RTOS). Host interaction uses a simple API transported over MDIO/MMD.
+> > > > > This series includes only what's needed to pass traffic between user
+> > > > > ports and the CPU port: relayed MDIO to internal PHYs, basic port
+> > > > > enable/disable, and CPU-port special tagging.
+> > > > > 
+> > > > > Thanks for taking a look.
+> > > > 
+> > > > I see no phylink_mac_ops in your patches.
+> > > 
+> > 
+> > As you didn't respond to Vladimir's statement here, I will also echo
+> > this. Why do you have no phylink_mac_ops ?
+> > 
+> > New DSA drivers are expected to always have phylink_mac_ops, and not
+> > rely on the legacy fallback in net/dsa/port.c
 > 
+> All three phylink_mac_ops functions are no-ops for the internal PHYs,
+> see also
 > 
-> On 12/1/2025 9:52 PM, Konrad Dybcio wrote:
->> On 11/28/25 9:40 AM, Luo Jie wrote:
->>> The CMN PLL in IPQ5332 SoC produces different output clocks when compared
->>> to IPQ9574. While most clock outputs match IPQ9574, the ethernet PHY/switch
->>> (50 Mhz) and PPE clocks (200 Mhz) in IPQ5332 are different.
->>>
->>> Add IPQ5332-specific clock definitions and of_device_id entry.
->>>
->>> Signed-off-by: Luo Jie <jie.luo@oss.qualcomm.com>
->>> ---
->>
->> [...]
->>
->>> +static const struct cmn_pll_fixed_output_clk ipq5332_output_clks[] = {
->>> +	CLK_PLL_OUTPUT(IPQ5332_XO_24MHZ_CLK, "xo-24mhz", 24000000UL),
->>> +	CLK_PLL_OUTPUT(IPQ5332_SLEEP_32KHZ_CLK, "sleep-32khz", 32000UL),
->>> +	CLK_PLL_OUTPUT(IPQ5332_PCS_31P25MHZ_CLK, "pcs-31p25mhz", 31250000UL),
->>> +	CLK_PLL_OUTPUT(IPQ5332_NSS_300MHZ_CLK, "nss-300mhz", 300000000UL),
->>> +	CLK_PLL_OUTPUT(IPQ5332_PPE_200MHZ_CLK, "ppe-200mhz", 200000000UL),
->>> +	CLK_PLL_OUTPUT(IPQ5332_ETH_50MHZ_CLK, "eth-50mhz", 50000000UL),
->>
->> I can't really find the source for most of these, but I see that there's both
->> a 200 and a 300 MHz output to NSS
->>
->> Konrad
-> 
-> Both IPQ5332_XO_24MHZ_CLK and IPQ5332_SLEEP_32KHZ_CLK are intended to be
-> used as the input clocks to the GCC block. IPQ5332_PCS_31P25MHZ_CLK
-> provides the reference clock for the Ethernet PCS, and
-> IPQ5332_ETH_50MHZ_CLK is the source clock for the PCS PLL on IPQ5332.
-> On this platform the Ethernet clocking path is:
-> CMN PLL ETH 50 MHz output → PCS PLL (divider + gate) → attached PHY or
-> switch.
+> https://github.com/frank-w/BPI-Router-Linux/blob/6.18-rc/drivers/net/dsa/mxl862xx/mxl862xx.c#L3242
 
-What about that 200 MHz NSS output? Is it just renamed to PPE?
+While you may end up with the same three methods remaining empty,
+please do not rely on the legacy fallback, even temporarily.
 
-Konrad
+Thanks.
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
