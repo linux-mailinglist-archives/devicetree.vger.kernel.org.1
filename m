@@ -1,147 +1,205 @@
-Return-Path: <devicetree+bounces-244446-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244454-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC3BBCA5067
-	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 19:59:12 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 254A8CA52F4
+	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 20:51:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C0DB43161975
-	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 18:56:52 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D2FBD30B2AD7
+	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 19:51:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0E8F347BA8;
-	Thu,  4 Dec 2025 18:51:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBFDF347BB9;
+	Thu,  4 Dec 2025 19:51:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=konsulko.com header.i=@konsulko.com header.b="Xe2AJr1z"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="xa5OYDPW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f41.google.com (mail-ot1-f41.google.com [209.85.210.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B1C6347BA3
-	for <devicetree@vger.kernel.org>; Thu,  4 Dec 2025 18:51:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAB41338934;
+	Thu,  4 Dec 2025 19:51:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764874272; cv=none; b=aCfyFndeYWyQWQBhk1bkFjReIqi24Dk/mPMY1BPleRtPyDBJw27ITfBIZ/Z4cgfHdI+nGgVH7tjCIxTpT55ijRnGK3jL0mpgSkXDe5n0AupQh5MGR6YzcMWT8wJQy3OSeIgdPwyhTJgoI5sDSqrLxkNty4Qp3V2kQmuElD8K/t4=
+	t=1764877901; cv=none; b=Ja9p/8P3XOKaa1K5SfPXG0M9PM06wJOTaji2bw6M/tXsdBOKaVWLr7hfOphaVqPnL2UMz7jlC0ANZCEgtBkgkWI7jdH5fBxy76WnlOBoj9G/APXIEsQNxNj9Y6DEebL/p5wbtQj3M4FkRg7w1T4i793kkHalduOqTjOjst4o09s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764874272; c=relaxed/simple;
-	bh=kDK9ciQB4/2Y+PeaNUIZ/XhpMtXFYN+DB/bleSHTeWE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Jn1Fs1VZK6apSDVdDFPhP4+wfoA7FHJFuI/qjlwGJNgh2wUNXd3/E51KQo0ile9z250zG80LQek7qptxQuBR1MseiR7DqNOSuWhrhQF4pErw5611XLBaSkK3A5BFf4+Ub80Jl1oQQ0u8pvynmJCZ1bpMbbq9lO5vrhhjc4nkMkw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=konsulko.com; spf=pass smtp.mailfrom=konsulko.com; dkim=pass (1024-bit key) header.d=konsulko.com header.i=@konsulko.com header.b=Xe2AJr1z; arc=none smtp.client-ip=209.85.210.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=konsulko.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=konsulko.com
-Received: by mail-ot1-f41.google.com with SMTP id 46e09a7af769-7c704bdd57aso750819a34.3
-        for <devicetree@vger.kernel.org>; Thu, 04 Dec 2025 10:51:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=konsulko.com; s=google; t=1764874269; x=1765479069; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=HuCxBLeeJ7Zz/twqp1A0Ys0p37qHP4PCEZ34hI84mRs=;
-        b=Xe2AJr1zCMwPmXG5T1Mi/jSrQLYAwKaxP1xLnsyD2qzQg0BcfA8e9FXHylXAVRFBRG
-         hj1htuq5JKeqqTHonZPGQobePHumY0iu8wVaEzi0oGyT9AiwJ1uttSQDdfvwd9nynnbM
-         yXWbi164okrXgs1Jl7aWUyfNAcGu2JITD9TYU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764874269; x=1765479069;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=HuCxBLeeJ7Zz/twqp1A0Ys0p37qHP4PCEZ34hI84mRs=;
-        b=av4w0votVODgTFviIWE7XbjSM+iXxbL8qYzMknt8Q9vwrZ8yTjgzVU4mDvcuSIwkWC
-         f0A+g99iJJMEMeRTTCLzn9XeGUV5q8A6UzGkjeaFocATYd35mCjYo3yIqHCk+Tzdx44F
-         inMsE7MqSigXntkk9sQWwNmALFfSyVTsaVmcXfavQ5inKpgkbs3z8H4B01j9uqvFJr/t
-         YWN2bDKZMDJ3pLTVDPAa3Yo5iuR5k7zEQ0twup1X2aGCl79G50lGmWEpRaiKnN3d29IG
-         IUCiB4HSbb3G3119QE/TpwHe04NMEgPXatd+fIkHecmtqz5nRCDc3ZDsTuPOYio6gLPC
-         bUIg==
-X-Forwarded-Encrypted: i=1; AJvYcCXmmAjIBKlXbywv7NSkxAxO1rnbDFKM6+Tywr8aa2qUVzMrt2UaK7kPjfNvEtxHhSEq8iNuw707e5z0@vger.kernel.org
-X-Gm-Message-State: AOJu0YzHqG6kY/uBT2KmpN5lo3Alz/nYWefmL4mtE+GKqbQ3hNJXdpxr
-	ZaBpUtHMUZ3dJpT9E7MI7iipU9eABE8iWmTrRaihvqPCWPPmQusnH+VjT9Ui3Xqb+ZU=
-X-Gm-Gg: ASbGncvfeFBgWC7mfZaY/y4WAPKhrD0TbY4eV4pqoJXibpwFyFl9TSGfDNmWL79x0OE
-	miadx5vGmGOVnz/GB140Q7xAO7twhdptUs4of9Xo8HN1LVLmGBJhXMSX0+6rMZ6fY9TTkms7fXR
-	M9n4xhFeT89XjrN77LrYFBgmm/i31BeEs4XB11hykWgVspWICzMaORPPY1kTRVYROou1HUFjE6e
-	hb7875lKHx+lyXpCar8Pm/vGzvbwWOAOToVgBCwsOQHPmtSAi8Eunp26KX2mtqu4CNdqp0fTL+s
-	saR2VDd2HATugCUpugRMimynJ68pDpx38+oa006rmR+co3+gJTXnNFtH54P7PlN3ZxNnqGyITSn
-	jveu7QVAuEfasLacjH0Z/iyFSzqa9E1budrK9Kya3yiou+UGbL9siYiG9f6Ca5Bqs9MMIU5bulF
-	Abr+UfmyDaiREio3bzSUcO/9aMFVIAA4EuFLrE26uTD7I2XrDJQw==
-X-Google-Smtp-Source: AGHT+IE+39z1Gqea5Hb0YCxcSsRFBXG+n3QidgZ6Z+ZmTTVak7sTfZsiBAPNyraUMJrs7/4CUYILlQ==
-X-Received: by 2002:a05:6830:6ee9:b0:799:bdea:34ba with SMTP id 46e09a7af769-7c958aedc48mr1955012a34.9.1764874269070;
-        Thu, 04 Dec 2025 10:51:09 -0800 (PST)
-Received: from bill-the-cat (fixed-189-203-103-235.totalplay.net. [189.203.103.235])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7c95acb3cf1sm1910214a34.20.2025.12.04.10.51.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 Dec 2025 10:51:08 -0800 (PST)
-Date: Thu, 4 Dec 2025 12:51:06 -0600
-From: Tom Rini <trini@konsulko.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Ahmad Fatoum <a.fatoum@pengutronix.de>, Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree-spec@vger.kernel.org,
-	quentin.schulz@cherry.de, Marc Kleine-Budde <mkl@pengutronix.de>,
-	"kernel@pengutronix.de" <kernel@pengutronix.de>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: Re: SoC-specific device tree aliases?
-Message-ID: <20251204185106.GC303283@bill-the-cat>
-References: <20251117-smooth-spiked-loon-52df28-mkl@pengutronix.de>
- <de1739a8-4677-4cc8-b501-2568b7513467@kernel.org>
- <aRs2y3w854vnHAzg@pengutronix.de>
- <576a9eae-7dba-47d0-ad66-0a81d1893271@kernel.org>
- <aRs-DaayhtQTtFXj@pengutronix.de>
- <9e14fb8e-af84-4072-b0ac-9ead882782be@kernel.org>
- <CAL_Jsq+=v96eP6V+5Ehi9EQT3iKKU7=t7kvJ-WSA+1WCHDuHEA@mail.gmail.com>
- <07ee3540-d0c1-436e-9e1d-db1952f609a6@kernel.org>
- <bcb359cf-0e8a-46ec-9f69-51c4c9e8874e@pengutronix.de>
- <6638e499-2320-41c9-b720-faf4f976e476@kernel.org>
+	s=arc-20240116; t=1764877901; c=relaxed/simple;
+	bh=CLcuYMiuh4/kEh/cceaKaoqI6PGLfizKj3zb0KH4qhw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=l7Ieg5OlH1mcQeUDtehYGfQmi2jvrHM/ufl9XU9lv6uXTwm5Re1he5ZfDtD4G7GBVMz+ucC6OewKGltEo8xYuK5jqvvhk/mAkLbAtTprpzmvj8q8PG2TvyvYaWlIET1WJTB5f6qMvinejs2AsaLKEkAZl7UsxlSPLseDgPLZuNk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=xa5OYDPW; arc=none smtp.client-ip=80.241.56.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4dMlWX1Mw1z9tk3;
+	Thu,  4 Dec 2025 20:51:36 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1764877896;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=qIJNFBhdSnffADZEOe9nQ4d4H4pvGzKjj8eclPnTyLE=;
+	b=xa5OYDPWg7TSWslcUL5t9YEKI6y1CzJ7cOiAAJLoJsnJlfPc9bVVNP+boKZzzKZSsgyzoT
+	20+jI4OIcatib0EBjKzSYGmYk52wYDVd/SA/hLbY6Z3zXWLLto/fbyZaTROmCOheV/yVGg
+	B5aXRF4JFTCKFeM0jGkoIVo2cupQ1YOaWPn8g7xC0SCLw19XedXx++xeIXIxPR/KjKjBsh
+	/TdUN/CNXsQ6Ow2CAKfzgI8vPUprDERO3ltztQQy7ezrhULGwJFjcnqVhJ+JuE3W3xbXm5
+	eM7lFkMZG1u1PHd5bCl6RE01PTstOI7CEDnTCFRxLSri7ckaNNiNCeKtf9CKSw==
+Message-ID: <e25c690c-e74d-4641-a97e-8eae81a59168@mailbox.org>
+Date: Thu, 4 Dec 2025 19:59:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <6638e499-2320-41c9-b720-faf4f976e476@kernel.org>
-X-Clacks-Overhead: GNU Terry Pratchett
+Subject: Re: [PATCH 1/2] dt-bindings: firmware: arm,scmi: Document
+ arm,poll-transport property
+To: Sudeep Holla <sudeep.holla@arm.com>
+Cc: Cristian Marussi <cristian.marussi@arm.com>, arm-scmi@vger.kernel.org,
+ Conor Dooley <conor+dt@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-renesas-soc@vger.kernel.org
+References: <aPoxfH_TLrsMxMVQ@pluto>
+ <70554674-7020-4582-a4e7-dbee34907096@mailbox.org>
+ <5ae0a793-d3e7-45d1-bf5c-3c46593d1824@mailbox.org> <aRW7BZimWdpq4TyX@pluto>
+ <20251202-evasive-neon-rhino-d2745e@sudeepholla>
+ <66257fcf-9024-454f-b776-4ba584963ebe@mailbox.org> <aS82GSN8c2SnRn4S@bogus>
+ <8d773671-5e2e-4e21-ade6-2bf9a3b75066@mailbox.org>
+ <20251203-thick-didactic-cockatoo-deaa1d@sudeepholla>
+ <4ccbcffd-bcc7-478b-a525-a4a11e3092ee@mailbox.org>
+ <20251204-calm-peacock-of-fantasy-6b8cbe@sudeepholla>
+Content-Language: en-US
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <20251204-calm-peacock-of-fantasy-6b8cbe@sudeepholla>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-MBO-RS-META: 4j81ge399yohgdmjy4u4eeezey8sorws
+X-MBO-RS-ID: c95005d4a3fbe1596a5
 
-On Wed, Dec 03, 2025 at 11:25:11AM +0100, Krzysztof Kozlowski wrote:
-> On 03/12/2025 11:16, Ahmad Fatoum wrote:
-> > Hello Krzysztof,
-> > 
-> > On 11/17/25 5:29 PM, Krzysztof Kozlowski wrote:
-> >> On 17/11/2025 17:06, Rob Herring wrote:
-> >>>> So you want it to be an ABI for barebox, sure, just make it a binding.
-> >>>
-> >>> What do you have in mind? Other than standard names for the aliases,
-> >>> what can we check here? That a specific alias points to a specific
-> >>> path? That would be a bit too much IMO. That would be equivalent to
-> >>> specifying possible values in 'reg' for all devices.
-> >>
-> >> Binding with pattern or list of needed alias names, referenced by given
-> >> soc-platform top-level schema.
-> >>
-> >> One of the points is to make it explicit and obvious (e.g. to Arnd or to
-> >> me if I forget, because I follow the same logic of aliases per board)
-> >> that these aliases are used outside of kernel.
-> >>
-> >> Just because ufs/mmc/spi can be used that way, does not mean we should
-> >> accept any possible alias into soc.dtsi.
-> > 
-> > I can't see how this could work. A number of boards renumber MMC devices
-> > in a different manner than the SoC reference manual:
-> > 
-> > - Changing the alias numbering is an ABI break, because Linux derives
-> > its /dev/mmcblkX numbering from it
+On 12/4/25 1:33 PM, Sudeep Holla wrote:
+
+Hello Sudeep,
+
+>> Wouldn't such a setup use separate mailbox channels, therefore even if
+>> mailbox driver calls mbox_chan_received_data(), it would be called for a
+>> specific mailbox channel , and it won't interfere with the SCMI mailbox
+>> channel.
+>>
 > 
-> First, why the alias would change? Isn't the board following the SoC
-> numbering in 99.9% cases?
+> Ideally yes. Because PCC uses shared interrupts and provides no mechanism to
+> identify the channel that raised the interrupt, we must run the handler for
+> every registered channel. This behaviour is specific to PCC; other controllers
+> that support interrupt source detection may not need to do this. But SCMI
+> must work with any mailbox or other transports.
 
-I swear historically and probably still today at least one major SoC
-vendor manuals/etc start numbering from 1 and not 0. And it's not just
-iMX where "which one was wired for an SD cage and which is wired for
-eMMC" vary from ref (or hobbyist) platform to ref platform. And then, oh
-goodness, custom designs. So no, there's no consistency and then "store
-UUID/etc in env during install" falls down on other cases starting with
-"is there an env to store them to?" and so a common case is "we know
-mmcX is ... so read the UUID, pass that to the kernel".
+It seems the pcc_mbox_irq() operates per-channel, so it seems even the 
+PCC can demux channels for each IRQ and does trigger 
+mbox_chan_received_data() for correct channel ?
 
--- 
-Tom
+What exactly happens on the PCC mailbox driver with this polling mode 
+enabled ?
+
+>>> Also IIUC, the irq request happens
+>>> as part of channel startup and there are no explicit APIs for the mbox client
+>>> driver to control that. SCMI is mbox client in this case.
+>>
+>> Sure, but the mailbox driver has to make sure it is correctly demuxing the
+>> IRQs it handles and correctly sends received_data notifications to the right
+>> channel(s) .
+>>
+> 
+> Agreed, but the concern is that if SCMI is forced to use polling when the
+> channel is opened, and IRQs are enabled by default with no way for SCMI to
+> disable them in polling mode, we could run into issues.
+
+This constellation seems odd -- if the channel can do IRQs, then this 
+property should not be present in DT.
+
+> I realise it’s a very
+> specific corner case, but every time I’ve assumed such scenarios wouldn’t
+> occur, we eventually ended up encountering them. So sorry if I am very
+> pedantic, but I prefer to start smaller and restrictive and expand if and
+> when necessary or required only.
+
+I don't think this case, where mailbox channel does IRQs and polling is 
+enabled, can/should even be considered valid. Either the channel does 
+not do IRQs and then it should do polling, or it does IRQs and then it 
+should use IRQs, but not both.
+
+>>>>> I am aware of systems that implement such sharing, which is why I prefer to be
+>>>>> explicit that this type of design is challenging to support within this
+>>>>> binding. The intent is to support only minimal, constrained cases - essentially
+>>>>> systems that are already somewhat broken. I do not see value in broadening the
+>>>>> binding to cover every conceivable scenario.
+>>>>>
+>>>>>>> Clearly defining these constraints would be helpful. It may also be useful to
+>>>>>>> note that this is primarily intended for mailbox transports, if that’s
+>>>>>>> accurate. Alternatively, we could keep the DT binding definition broader but
+>>>>>>> emit warnings when a transport other than mailbox is used. That approach might
+>>>>>>> make it easier to move forward.
+>>>>>>
+>>>>>> DEN0056F refers to this polling mode in Shared memory based transports, that
+>>>>>> can be other than mailbox transports, it includes e.g. SMC or OPTEE
+>>>>>> transports.
+>>>>>>
+>>>>>
+>>>>> However, polling does not make sense in the context of SMC. Once control
+>>>>> returns from an SMC call, the command has completed. What form of polling in
+>>>>> an SMC workflow do you have in mind?
+>>>>
+>>>> I think the polling happens on the SHMEM and the SMC transport is capable of
+>>>> that too, see :
+>>>>
+>>>> drivers/firmware/arm_scmi/transports/smc.c
+>>>>
+>>>> 175         /*
+>>>> 176          * If there is an interrupt named "a2p", then the service and
+>>>> 177          * completion of a message is signaled by an interrupt rather
+>>>> than by
+>>>> 178          * the return of the SMC call.
+>>>> 179          */
+>>>> 180         scmi_info->irq = of_irq_get_byname(cdev->of_node, "a2p");
+>>>>
+>>>
+>>> Ah this one, is actually implemented to avoid sort of implicit polling
+>>> mode we get with any SMC/HVC. I don't know how the platform deals with it
+>>> but SMC/HVC is synchronous and doesn't need this polling. The irq introduced
+>>> here is again a sort of workaround to get some sort of async/non-polling
+>>> mode with SMC/HVC. So, to repeat polling mode make absolutely no sense
+>>> whatsoever for SMC/OPTEE(based on pure SMC) transports.
+>>
+>> I can drop the SMC part from this patch if you think that's helpful ?
+>>
+> 
+> Yes, that’s essential, because polling in an SMC context is meaningless in my
+> opinion.
+
+Maybe the "a2p" IRQ is also used for notifications from longer running 
+operations ?
+
+[...]
+
+>>> Yes it can be minimalistic but not restrictive. As I already clearly mentioned
+>>> I don't see it makes any sense to enable this for SMC/OPTEE. Lets start with
+>>> just mailbox to start with and extend to other transports if and when needed.
+>>> It would be good to impose that restriction in the binding as well but that
+>>> is not a must IMO. I am fine if the bindings for whatever reasons(though I
+>>> don't see the need) to apply for any transport.
+>> So I should simply drop the smc.c changes , keep the rest, and send V2 ?
+> 
+> Not just that. Unless DT maintainers oppose, I just want to keep this
+> new property valid only for mailbox transport(i.e. "arm,scmi" compatible
+> not otherwise) so that we can catch any other use in binding checks and
+> interested parties must discuss on the list and expand that if they require.
+> 
+> Also we can explore if we can parse and scan this in mailbox transport for
+> now.
+I feel that this only adds more implementation complexity and makes the 
+solution less generic, while it does win us very little in the end ? The 
+generic solution implementation is actually easier to implement.
 
