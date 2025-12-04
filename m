@@ -1,170 +1,112 @@
-Return-Path: <devicetree+bounces-244321-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244322-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2329CA3B1B
-	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 14:00:54 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89FC4CA3B8D
+	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 14:08:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id C33623006FF3
-	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 13:00:36 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 89A9A3036E1A
+	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 13:08:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6359C342158;
-	Thu,  4 Dec 2025 13:00:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DkSoE2R3"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A51C6335089;
+	Thu,  4 Dec 2025 13:08:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B528341670
-	for <devicetree@vger.kernel.org>; Thu,  4 Dec 2025 13:00:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90728273D66;
+	Thu,  4 Dec 2025 13:08:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764853235; cv=none; b=fGpHlPPGe49IvehxyM14D07r4th/VX7AQqMGDRgG6z2DxV6iidP4puF8kDTB1ED1qNika2YIfW8KfsVmUCqjxA5Nse8/usj5NL2CvNnRrtA6S8186QkALD9X+AX5X9vVl3fmZhuh9FYLUmyBL7ei1iNLAmX49kzEhi95KTpFuIE=
+	t=1764853717; cv=none; b=niuxlD68p90d23SSA5EYUB8BKWzU3wNzmtsF82asmHAOOzU60mBVCIF2XSGT4fpxC1N9uvkoi5UvdJbeVLTPn2BUpKaLMa4ZiaYr95XHLXS+2/ueI4gwkaeeCVOAm0d2bhirP3urP8SJhFRO5j3nfKm6PiQMCy7hwD6vbTaYjGU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764853235; c=relaxed/simple;
-	bh=0fCvcFtNbN12UPsuHe7S4Q2jSch6DxCtM0IF1MpswKE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ejIHYMJeasRpcXeHRHSWF/bFpAJoZ+osTowQlQRbovYJsbaRIVqWK2oTTiVt45CRVr/rU2xSCXlTl1J3o171a5XpTdmpsRKkY6VAYNkZNNOLgFDVOjYfy5kwHt19LqXj2S4MMu6xtvUFLHBC1bGa6YkAAp4yaMySct3J9b2lLQA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DkSoE2R3; arc=none smtp.client-ip=209.85.218.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-b77030ffad9so139393666b.0
-        for <devicetree@vger.kernel.org>; Thu, 04 Dec 2025 05:00:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1764853232; x=1765458032; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=b5fx96rNiwtHfR6RsYA+itKvYo7drMccRUTM4rvN18g=;
-        b=DkSoE2R39PLVyzfGZeNw+1WvBpIMGLAUV5zcpc7f4OL6yFfNQFc4H/CxZFObS8Fqh+
-         M3qTLURBGl9czcBvPyGdejDXQ/kS9WpcynEpsIphAPexr9Z9AYNk2w+mJZAdcFt8+l2M
-         vvnPxMRY1tr84TkWX9em5dRIG12V/X1kN6RRX/AuYh6iDtuEm//2JJneeB63B/n4kr/I
-         OCG5v9f94y5dIEwXDzj00KIyIE0O+sQoEyZ7Wx/fRy/tZclBPEDV5qLF45MUYn4AEqtk
-         8rRMFJ9ACLUc1XOZOhmfrYM6hPrRREDjSkZMQcQdw1Ea+ZKqlc8kjzudUnoSi3TA2Tc8
-         Kksg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764853232; x=1765458032;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=b5fx96rNiwtHfR6RsYA+itKvYo7drMccRUTM4rvN18g=;
-        b=ePsFLwi2lO0JlnkTgHNIIWTN9XTSBUgFmiRmAgcOitU2Xsa8gsYg1451odRJrxiaYp
-         u6asCyxXq8hr7KaUnYYRd7QPMJig9ZqIUXn40dlxDiRCzeT2I/QI3275RxERNLGbEmIt
-         KhXsmhGZiGwY3eaVaAoPVmq4y+K+2J6z3iiDClExKti/FyuX9ROYBJvkzgOi0JkhLxdE
-         4yfoGAyhzhxR9J9JFxmU7s/9W9TqkCdoOSSnxulLQUD0LsuixYueZry5HVqlBFV+McEk
-         b3XwvUuPzEJb4IFoRrUCzRmDOqeyUZQPAI6ajJEMWjaC6QdgdeKbD/BJhJDHrXljTsbB
-         8Yvw==
-X-Forwarded-Encrypted: i=1; AJvYcCUKLyhpwIZyk+wfc9Zoej5GQ5NBWnJayxEuRj+LCHsHIccI6iZNvn1qHcGVnVJ37OwgMY7q08vBKUDq@vger.kernel.org
-X-Gm-Message-State: AOJu0YyDten/c3MDQ7/uzPyST9L4iCABlxff7GYYvWMmVPSe7xE4Q3Gr
-	xVUcCLfryHIgaQeEp0lF1mQNjqtjxzMAvDaRMai0fQq5X2XhKPUSOnuTg4emj78lEgYlvH2Die4
-	PMDbR9tyGeGcrQqElR90xeZmGfuQQWi0=
-X-Gm-Gg: ASbGncvZfajIi56dIC8QcEF+rHp3qjUqjx0aqA+wrxMp7IfLCygrHWzli6naj3XLzcy
-	jpN25N4K4vN1snu3+LelbWuLbslXozgIli5c4hPsAAPYcRpqR7T2rQiuZDrJgncxn/acByUwtxJ
-	Bn4CDFswnctMBkWuxmRJ2mP9PRt0o+tUeaa/lNr/i82nNoJaOAS8tpExVOy2KlXmLbDJfjWFfwH
-	nsv2qNt9upfZyhKnT02/v7h6ueDdqjekD8Z6R60/+jxN7HZ4KsEhUB/APcXWstb71kAF9rs7hWh
-	/Gtg7332g1C+NPLiUuwnONwMdYbNDweWK6Sk1j5j9cFyTcYc49ExWFr1cjfIbUmG3yO0t8o=
-X-Google-Smtp-Source: AGHT+IG5xtcD8WFGZMnNACJKi+kBaTgoB9p7pjnnPYqB+YYXV9ekB1xyt/sH8WrtPNJBi2lgQYyYRUtfGWfvaBc8by4=
-X-Received: by 2002:a17:907:3f26:b0:b76:2f40:a307 with SMTP id
- a640c23a62f3a-b79dc782b84mr586284666b.57.1764853231801; Thu, 04 Dec 2025
- 05:00:31 -0800 (PST)
+	s=arc-20240116; t=1764853717; c=relaxed/simple;
+	bh=JJSrGbb/D5N2qxg9oGgl9lB0p+ZB79Uuhwh6U//Ny14=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SAoV/ICNXvyuYpQUY+/LpJsrJ3ryf3hxzm/bixDyW2aEygUY5HIDdzoIWymUz0Vkq6h8mBjbnSj11lebLe4vGPQnNi8hi59DpKjGtfx5M+hgE+7DehgMRVRo6uvA/KBI8JrgFOyKf/MEW9ykD0xQTQX2WyBMVpwZUBYbEPEW3f0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.98.2)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1vR94N-00000000704-33CU;
+	Thu, 04 Dec 2025 13:08:27 +0000
+Date: Thu, 4 Dec 2025 13:08:24 +0000
+From: Daniel Golle <daniel@makrotopia.org>
+To: "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc: Vladimir Oltean <olteanv@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Frank Wunderlich <frankwu@gmx.de>,
+	Avinash Jayaraman <ajayaraman@maxlinear.com>,
+	Bing tao Xu <bxu@maxlinear.com>, Liang Xu <lxu@maxlinear.com>,
+	Juraj Povazanec <jpovazanec@maxlinear.com>,
+	"Fanni (Fang-Yi) Chan" <fchan@maxlinear.com>,
+	"Benny (Ying-Tsan) Weng" <yweng@maxlinear.com>,
+	"Livia M. Rosu" <lrosu@maxlinear.com>,
+	John Crispin <john@phrozen.org>
+Subject: Re: [PATCH RFC net-next 0/3] net: dsa: initial support for MaxLinear
+ MxL862xx switches
+Message-ID: <aTGHyIdWL86qPUif@makrotopia.org>
+References: <cover.1764717476.git.daniel@makrotopia.org>
+ <20251203202605.t4bwihwscc4vkdzz@skbuf>
+ <aTDGX5sUjaXzqRRn@makrotopia.org>
+ <aTDdlibA99YLVSKV@shell.armlinux.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251128144428.24450-1-antoniu.miclaus@analog.com>
- <20251128144428.24450-3-antoniu.miclaus@analog.com> <CAHp75VcxYGskVpQ5HKiFUUnNSj-9qpdXeBjz9-oEHc9eumE0fg@mail.gmail.com>
-In-Reply-To: <CAHp75VcxYGskVpQ5HKiFUUnNSj-9qpdXeBjz9-oEHc9eumE0fg@mail.gmail.com>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Thu, 4 Dec 2025 14:59:54 +0200
-X-Gm-Features: AWmQ_bkPfHtcezHN-g8WIkK6f_44B1vKCaXPHMsWVDP167l1dSvO2J9SbrsxjeE
-Message-ID: <CAHp75Vcrjpxcf7LAQwaZfH-Z5QXM0waf7HH2QrFHuWiNWdjiwA@mail.gmail.com>
-Subject: Re: [PATCH v5 2/2] iio: amplifiers: adl8113: add driver support
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
-	=?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aTDdlibA99YLVSKV@shell.armlinux.org.uk>
 
-On Thu, Dec 4, 2025 at 2:47=E2=80=AFPM Andy Shevchenko
-<andy.shevchenko@gmail.com> wrote:
-> On Fri, Nov 28, 2025 at 4:45=E2=80=AFPM Antoniu Miclaus
-> <antoniu.miclaus@analog.com> wrote:
+On Thu, Dec 04, 2025 at 01:02:14AM +0000, Russell King (Oracle) wrote:
+> On Wed, Dec 03, 2025 at 11:23:11PM +0000, Daniel Golle wrote:
+> > On Wed, Dec 03, 2025 at 10:26:05PM +0200, Vladimir Oltean wrote:
+> > > Hi Daniel,
+> > > 
+> > > On Tue, Dec 02, 2025 at 11:37:13PM +0000, Daniel Golle wrote:
+> > > > Hi,
+> > > > 
+> > > > This series adds very basic DSA support for the MaxLinear MxL86252
+> > > > (5 PHY ports) and MxL86282 (8 PHY ports) switches. The intent is to
+> > > > validate and get feedback on the overall approach and driver structure,
+> > > > especially the firmware-mediated host interface.
+> > > > 
+> > > > MxL862xx integrates a firmware running on an embedded processor (Zephyr
+> > > > RTOS). Host interaction uses a simple API transported over MDIO/MMD.
+> > > > This series includes only what's needed to pass traffic between user
+> > > > ports and the CPU port: relayed MDIO to internal PHYs, basic port
+> > > > enable/disable, and CPU-port special tagging.
+> > > > 
+> > > > Thanks for taking a look.
+> > > 
+> > > I see no phylink_mac_ops in your patches.
+> > 
+> 
+> As you didn't respond to Vladimir's statement here, I will also echo
+> this. Why do you have no phylink_mac_ops ?
+> 
+> New DSA drivers are expected to always have phylink_mac_ops, and not
+> rely on the legacy fallback in net/dsa/port.c
 
-...
+All three phylink_mac_ops functions are no-ops for the internal PHYs,
+see also
 
-> > +static int adl8113_set_path(struct adl8113_state *st,
-> > +                           enum adl8113_signal_path path)
-> > +{
-> > +       DECLARE_BITMAP(values, 2);
-> > +       int ret;
->
-> > +       bitmap_zero(values, 2);
->
-> Move this to the switch case...
->
-> > +       /* Determine GPIO values based on signal path */
+https://github.com/frank-w/BPI-Router-Linux/blob/6.18-rc/drivers/net/dsa/mxl862xx/mxl862xx.c#L3242
 
-Note, you may extend this comment to show the mapping, e.g.,
-
-       /*
-        * Determine GPIO values based on signal path.
-        * Va: bit 0, Vb: bit 1.
-        */
-
-> > +       switch (path) {
-> > +       case ADL8113_INTERNAL_AMP:
->
-> > +               /* va=3D0, vb=3D0 - already zero */
->
-> Unneeded comment here and below, just put a number to the bitmap
->
->   bitmap_write(..., 0x00);
->
-> > +               break;
-> > +       case ADL8113_INTERNAL_BYPASS:
-> > +               /* va=3D1, vb=3D1 */
-> > +               __set_bit(0, values);
-> > +               __set_bit(1, values);
->
->   bitmap_write(..., 0x03);
->
-> > +               break;
-> > +       case ADL8113_EXTERNAL_A:
-> > +               /* va=3D0, vb=3D1 */
-> > +               __set_bit(1, values);
->
->   bitmap_write(..., 0x02);
->
-> > +               break;
-> > +       case ADL8113_EXTERNAL_B:
-> > +               /* va=3D1, vb=3D0 */
-> > +               __set_bit(0, values);
->
->   bitmap_write(..., 0x01);
->
-> > +               break;
-> > +       default:
-> > +               return -EINVAL;
-> > +       }
-> > +
-> > +       ret =3D gpiod_set_array_value_cansleep(st->gpios->ndescs, st->g=
-pios->desc,
-> > +                                            st->gpios->info, values);
-> > +       if (ret)
-> > +               return ret;
-> > +
-> > +       st->current_path =3D path;
-> > +       return 0;
-> > +}
-
---=20
-With Best Regards,
-Andy Shevchenko
+The exception in the reference driver are the SerDes PCS ports, and for
+those I'd rather use .pcs_config than setting the interface mode in
+.phylink_mac_config.
+Hence I was planing to introduce phylink_mac_ops together with support
+for the SerDes ports, and it will only have a .mac_select_pcs op.
 
