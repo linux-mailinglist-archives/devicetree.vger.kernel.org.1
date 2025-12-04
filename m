@@ -1,77 +1,77 @@
-Return-Path: <devicetree+bounces-244186-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244187-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C4BDCA24E3
-	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 05:15:32 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AE25CA24DB
+	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 05:15:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B447630657A5
-	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 04:15:22 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 5D9BD300503A
+	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 04:15:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3153A2F9DB0;
-	Thu,  4 Dec 2025 04:15:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E0DD2F9DB0;
+	Thu,  4 Dec 2025 04:15:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="clZQtqFT"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YYLWFmi+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED14C23D7D8
-	for <devicetree@vger.kernel.org>; Thu,  4 Dec 2025 04:15:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20A4D2DF153
+	for <devicetree@vger.kernel.org>; Thu,  4 Dec 2025 04:15:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764821722; cv=none; b=ijbIbyQe6MUDeRxZnT4j+rfxoMbxyhqYgJW+YD6hxY9jNRi9hSnvji3QxpVoIF2s6xYO5A+CLz/PXiX3SDVMWFk4k3Cc8PW4McPOTAeF5udWH1+dHP3m25INUYrOK0fbmX4oodvaS4xCnBffWY84nxVaT/POT4i5ZOInurCbAWs=
+	t=1764821726; cv=none; b=m7ZGQyv4R+21QWjU3wbwFa7JKQ+EIWzXvi2BBP/Dwl8XRSEOSwZDSTnD0fkeGpKfiej38GG/nUZ3tYLoXdELpcQTG5WpfyV4NCEOvHAkY3HBoigJIWk3jYGE7ezNeyclCmT5hSkJv6JUQHDoVJ1HuCRpa5haR8QqRaA6t+Nqj6Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764821722; c=relaxed/simple;
-	bh=cCTa1Ub1pnaiU8UIjMhINECGJKAf/9IA+3VQdk4mCwU=;
+	s=arc-20240116; t=1764821726; c=relaxed/simple;
+	bh=TB0MBPr5fdXFRf8nAGZOfdvDlYolRPXfysDqnB+9WDA=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Wb7uSoAe79z4nGs18E/iyg+wCBEKD+dlcPAysE7qvxN0Ma9HjHxpJMU71NCMLR4eh+H90fjyFPc4elTn2lTtmJU4pApGlwN7vgEVuOtQac0WtqIAWjSViOQPMiBf6PqNtHKXL3yjAsZuQMy1K3h2+MpFAvUjkGFJB/MpvIrVaOI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=clZQtqFT; arc=none smtp.client-ip=209.85.167.47
+	 MIME-Version; b=ao+IviwznusG4vRZM9zHYA2trqKVO653nOZC2WDJ0iCYlT2uEXuVl3MJE4vugsKiSqt5tnvNjOQu3Iri+JhIkM5mn56BoAwF2HS6xbzF4k/XOpqB/SThkMeRe92m1iRiE2IZZ7EwOJRt8dtzOXSVjWEfbe5q9LVP8NDItcV1VF8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YYLWFmi+; arc=none smtp.client-ip=209.85.167.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-59584766a77so62475e87.1
-        for <devicetree@vger.kernel.org>; Wed, 03 Dec 2025 20:15:19 -0800 (PST)
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-5957befc880so78331e87.0
+        for <devicetree@vger.kernel.org>; Wed, 03 Dec 2025 20:15:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1764821718; x=1765426518; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1764821721; x=1765426521; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=d+XyKOinqpBtoj44ERUZULYsqn5yhNXioBZ9JsX/ED8=;
-        b=clZQtqFTQCDps2zVcdXxv8reaBKcc22VXo724cNnK7lP/c6YAkYE+2Tzd8qDArLVkA
-         kTzDiVdkqUHgj53uwsLc0t/jv8SJ3Qi9oSiu3GkE57vgsMybsboYR/vDQtROyuzX1L0l
-         /PRJ/ZVhcMC7o7a8HzLmCAhHnlNKZ0Qm6o4TwaP3E7L1PQiB+MM54VHLcm0lQkyLqD07
-         bM/y+plNlo892gLydjgvsvBmcVR+edhN+UOZO89Cs2m8SP4IhSZbarfeWYcok+YAkzZe
-         dI4D4SjVfXnhAoi+3soVztnR6LCmOcnqqh+tiiQelANyQPu7AEqFsdJfcWueskwUssf3
-         jVVA==
+        bh=0psW2YITj/BGz/R7G0e5/YUOTHhnc+iM0R98Ei9DYWo=;
+        b=YYLWFmi+uhxfYuyiM0HVcRbnjXpWQ2cctQeL+okq9qpJOI7x181S/+mTvQWjv+ODu0
+         Jrx0FlkakGM4m2jECl65+Deq5cMAO0YBJg03XVRh5M/l3SQuT99kPCa5BOEb8nVE5KMt
+         SXfzx1qj5Uv4wUUaljlbnxOyblfx3V9WRc0OEZrxI0fCaxFGyXvebVwLi6cz5U6UpAmq
+         pwOelCbDVzdzTt5djDLjvmdvMv3WEfeYzWYQ1JOVGg9HX/HoResqBdJCyRHQO1NLl7eZ
+         MdstCL6YPpeuRBnJXvbdkbfyeV3gIYAEM0gJDod6NoxMG/IZSakOdLIEC4cQanVc+l8d
+         KDVw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764821718; x=1765426518;
+        d=1e100.net; s=20230601; t=1764821721; x=1765426521;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=d+XyKOinqpBtoj44ERUZULYsqn5yhNXioBZ9JsX/ED8=;
-        b=FP3w/tLxW//nMwW7qhpd5LPKtebVidE38ysdUZlVrpHiMEtvaUhBmT+rcZe82chKU8
-         dlsO2f1NlWJhjyODeAHZUQuufY1BkIwrdnifa9o0YG4ILNIUpCt7DmaqwqucJYOXt4QD
-         Pud7CfFqVobTw30Su5cFVYJ0u9N3gEqI2wFAX1po6uz+T0LQbrrj9pkCFqYIJ2ZbQi8s
-         Bb8YGwBpqHAS2G/ssfNziiVsAyOx78WGqMe9utxjb5NSqgXp3//DH2/LdEBb5PON7KlX
-         nCXificDSdC5b6zJzyOggMPzLqy1dKzJuJZdcGx3QEU28tV3YNfbw0JkhTG59jbtQ8Pl
-         EDhg==
-X-Forwarded-Encrypted: i=1; AJvYcCVJcAAxF5VBdlRLtpDsAGIDYgWbQB2Go/cB46liStCmFZKnHkuTYeh0XaNA+rgDCys2Qe2Z5Vilhjaq@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy/v3TimL1W5Et/zl9anekeB4yKnkmlRVthhprEdm4YkueoGnsD
-	8O2NUhykzx/NZk5yuFrnbYl56ZUzdtkPgXLTsLpVCmqsJHB65GlGrrv1UVRWULlbsZ4=
-X-Gm-Gg: ASbGnctndA+1lNtGQyws4AXkZ+GyT6VG05FbiMrqXK0wpddU7Ck9d29yGUTH44LAyL0
-	GVU68CrDNp66tLx2DOYDQqRhAdLm69qlupq5xpjnadZrReFYS+OHyIpAJ1seTpAe6DdIwzMGT70
-	almit8g9nnvUTCP0HWBougCLIoq2gMeNMp/OoIQp6tESMtlvaVTFTYcDRdqGUjE98KC62J0RKK8
-	BtlReyofxLRdD4aePL4SVEM4V5VQUK3syW0BrxJJ8m3CKf3COinI3YW6kGEiolvsJzFd4iwLRoJ
-	UUG67mhwUAjzXrp9IBuhnMVg4Mzm5TBayvchv/nhzD57maw//eqxQm0epANmxY9zvFQNnvDDuEo
-	v1TVcKrJTRi9I+esZkNNfheHISvWmmPc/goYvDmRS0U7Ky7UGtiqr/o1RKNQ9s9K1zIplFS1pSP
-	05a+s5EgkrwRIUEMJdAxjtMFyjvCO1oAdXb0bFv9hfSB3H9OZUVQtJJQ==
-X-Google-Smtp-Source: AGHT+IGpRbDjOtO+1hBkY+99UNjMqgYZfk6I4/EiFhuPSCij79DgfDXpMMC5pQsNwnU1iTZ69qpbGg==
-X-Received: by 2002:a05:6512:238d:b0:594:493b:4249 with SMTP id 2adb3069b0e04-597d3eaa910mr868250e87.0.1764821717681;
-        Wed, 03 Dec 2025 20:15:17 -0800 (PST)
+        bh=0psW2YITj/BGz/R7G0e5/YUOTHhnc+iM0R98Ei9DYWo=;
+        b=RxsnyDNw5V2XSBDBHruqDXTIdbcjao+Qc3wExEBp89oPmHnbyyhBEWsd9j3ScqWpIw
+         QWhkFsWRNHWwMDLbKgqdHgea9icf7hGEEq3zktCOClTl8QsFs0f71ltr+tMIcaa47mmN
+         F7lZEYUnSkKaQuSmMQq8NUKxwlIav2rLL/aPfGQNTtA5QhoZVKZaovjP2XlApT4Dy8qA
+         rCkBlXGW4F3wKIywOzb71v1hEPBw4QhlHCVPR+y0yoHz4PlL3oSQ5wHEWG6hylBs6WBh
+         C0qUdgY3rzCca+JLTLUOr1wc4G0FA5oW78nCLzMyQdUIE+udWdfpxv1lRRvU/cRS3KM3
+         sWHw==
+X-Forwarded-Encrypted: i=1; AJvYcCV77jgTfvUBQcUN770CjhM8OeWm9k+Aciv3UCNw5mLsm/go4nk2AwjOnOuw5e3jA5CFxZ/kQd8jIfcB@vger.kernel.org
+X-Gm-Message-State: AOJu0YxMnkau3CzZkBCbbHhw9ZRkEKnecY/5HOyjd0zfu0ASMx4/8X6T
+	jsNLkpxjYoPu+nyLlCbUtuYiUnlEhxpZFza9iGI0NCjkQ0L0k04YBrFwy6S9BPyuiOk=
+X-Gm-Gg: ASbGncvVCa+0pggiExdRot8U3jtOGO0DTrjOCusge40W+B/vm2P1lVtXHe1ZWjFWziE
+	SXVOK/AwHBmwVqhiWtknUvSj/ZtN9EuQmcPohwdYwGZD8K8k0Hy28y0bXvCQzRDFgruavCU8UPZ
+	By8w7GukRYsO3MB5cKyBUvejUEJfYzKWBQuWFpASKV/aEqLYrFEqviOvblw98hYLyviucB2LYDl
+	uvyo5uHTlpUjzJSBjDoAip2JvP86+M3KZzzz2ri+9ZpDOvyZWo7rg28GpX8nE4x6iSsxQTDEiQY
+	QHFxvr/lmzxn4baAp8EEp/Foc95pTv+vjg5LBQ+UlvdMjy+iDJ+sWHnWs3vJnXM7iPXyek2bSBo
+	w9JxJcx82sHevYdRObgeIRH7hos2m/nNvlF5AVeNkmtJBlKienvXt023xEmL/oTyud/JlkzzsHY
+	R7q23YrSSHqAkuwHzGhIVUTKBBQX+zD0Dn1GNjgBW/OuAl7MkXMkK2Ww==
+X-Google-Smtp-Source: AGHT+IE2C36kK5XUmomK7mcLwCorAXmkpdRBp6f+4+t9Cgh48ryT3PjGZXSf475IzaSimfPGZpts+w==
+X-Received: by 2002:a05:6512:1329:b0:594:1992:3be with SMTP id 2adb3069b0e04-597d4afbd1emr715501e87.3.1764821720706;
+        Wed, 03 Dec 2025 20:15:20 -0800 (PST)
 Received: from thyme.. (91-159-24-186.elisa-laajakaista.fi. [91.159.24.186])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-597d7c1e2a1sm67649e87.64.2025.12.03.20.15.14
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-597d7c1e2a1sm67649e87.64.2025.12.03.20.15.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Dec 2025 20:15:16 -0800 (PST)
+        Wed, 03 Dec 2025 20:15:19 -0800 (PST)
 From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
 To: Bjorn Andersson <andersson@kernel.org>,
 	Konrad Dybcio <konradybcio@kernel.org>
@@ -83,9 +83,9 @@ Cc: Rob Herring <robh@kernel.org>,
 	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
 	linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org
-Subject: [PATCH v2 3/4] arm64: dts: qcom: sm8650-qrd: Enable CAMSS and Samsung S5KJN1 camera sensor
-Date: Thu,  4 Dec 2025 06:15:04 +0200
-Message-ID: <20251204041505.131891-4-vladimir.zapolskiy@linaro.org>
+Subject: [PATCH v2 4/4] arm64: dts: qcom: sm8650-hdk: Add support for the Rear Camera Card overlay
+Date: Thu,  4 Dec 2025 06:15:05 +0200
+Message-ID: <20251204041505.131891-5-vladimir.zapolskiy@linaro.org>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20251204041505.131891-1-vladimir.zapolskiy@linaro.org>
 References: <20251204041505.131891-1-vladimir.zapolskiy@linaro.org>
@@ -97,30 +97,72 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add support of Samsung S5KJN1 camera sensor connected to CSIPHY3 over
-MIPI D-PHY interface.
+To provide access to camera sensors a Rear Camera Card can be connected
+to SM8650-HDK board, the camera sensors are:
+* Samsung S5K33D ToF camera sensor, connected to CSI0 over MIPI D-PHY,
+* Sony IMX766 Wide camera sensor, connected to CSI1 over MIPI C-PHY,
+* Omnivision OV64B Ultrawide camera sensor, connected to CSI2 over MIPI C-PHY,
+* Samsung S5KJN1 Tele camera sensor, connected to CSI3 over MIPI D-PHY).
 
-Tested-by: Neil Armstrong <neil.armstrong@linaro.org> # on SM8650-QRD
+Get the initial support of Samsung S5KJN1 camera sensor and two flash leds
+on the Rear Camera Card board by adding a board overlay.
+
 Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm8650-qrd.dts | 43 +++++++++++++++++++++++++
- 1 file changed, 43 insertions(+)
+ arch/arm64/boot/dts/qcom/Makefile             |  4 +
+ .../dts/qcom/sm8650-hdk-rear-camera-card.dtso | 88 +++++++++++++++++++
+ 2 files changed, 92 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/sm8650-hdk-rear-camera-card.dtso
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8650-qrd.dts b/arch/arm64/boot/dts/qcom/sm8650-qrd.dts
-index b2feac61a89f..f990e68c7a87 100644
---- a/arch/arm64/boot/dts/qcom/sm8650-qrd.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8650-qrd.dts
-@@ -741,6 +741,49 @@ vreg_l7n_3p3: ldo7 {
- 	};
- };
+diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+index 6f34d5ed331c..35839b993bc4 100644
+--- a/arch/arm64/boot/dts/qcom/Makefile
++++ b/arch/arm64/boot/dts/qcom/Makefile
+@@ -315,8 +315,12 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sm8550-samsung-q5q.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sm8550-sony-xperia-yodo-pdx234.dtb
  
+ sm8650-hdk-display-card-dtbs	:= sm8650-hdk.dtb sm8650-hdk-display-card.dtbo
++sm8650-hdk-display-card-rear-camera-card-dtbs	:= sm8650-hdk.dtb sm8650-hdk-display-card.dtbo sm8650-hdk-rear-camera-card.dtbo
++sm8650-hdk-rear-camera-card-dtbs	:= sm8650-hdk.dtb sm8650-hdk-rear-camera-card.dtbo
+ 
++dtb-$(CONFIG_ARCH_QCOM)	+= sm8650-hdk-display-card-rear-camera-card.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sm8650-hdk-display-card.dtb
++dtb-$(CONFIG_ARCH_QCOM)	+= sm8650-hdk-rear-camera-card.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sm8650-hdk.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sm8650-mtp.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sm8650-qrd.dtb
+diff --git a/arch/arm64/boot/dts/qcom/sm8650-hdk-rear-camera-card.dtso b/arch/arm64/boot/dts/qcom/sm8650-hdk-rear-camera-card.dtso
+new file mode 100644
+index 000000000000..8a7c6d7634d3
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/sm8650-hdk-rear-camera-card.dtso
+@@ -0,0 +1,88 @@
++// SPDX-License-Identifier: BSD-3-Clause
++/*
++ * SM8650-HDK Rear Camera Card overlay
++ *
++ * Copyright (c) 2025, Linaro Limited
++ */
++
++#include <dt-bindings/clock/qcom,sm8650-camcc.h>
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/leds/common.h>
++
++/dts-v1/;
++/plugin/;
++
 +&camss {
 +	vdd-csiphy35-0p9-supply = <&vreg_l2i_0p88>;
 +	vdd-csiphy35-1p2-supply = <&vreg_l3i_1p2>;
 +	status = "okay";
 +
 +	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
 +		port@3 {
++			reg = <3>;
++
 +			csiphy3_ep: endpoint {
 +				data-lanes = <0 1 2 3>;
 +				remote-endpoint = <&cam_tele>;
@@ -134,6 +176,9 @@ index b2feac61a89f..f990e68c7a87 100644
 +};
 +
 +&cci1_i2c0 {
++	#address-cells = <1>;
++	#size-cells = <0>;
++
 +	sensor@56 {
 +		compatible = "samsung,s5kjn1";
 +		reg = <0x56>;
@@ -157,9 +202,29 @@ index b2feac61a89f..f990e68c7a87 100644
 +	};
 +};
 +
- &gpi_dma1 {
- 	status = "okay";
- };
++&pm8550_flash {
++	status = "okay";
++
++	led-0 {
++		function = LED_FUNCTION_FLASH;
++		color = <LED_COLOR_ID_YELLOW>;
++		led-sources = <1>, <4>;
++		led-max-microamp = <500000>;
++		flash-max-microamp = <2000000>;
++		flash-max-timeout-us = <1280000>;
++		function-enumerator = <0>;
++	};
++
++	led-1 {
++		function = LED_FUNCTION_FLASH;
++		color = <LED_COLOR_ID_WHITE>;
++		led-sources = <2>, <3>;
++		led-max-microamp = <500000>;
++		flash-max-microamp = <2000000>;
++		flash-max-timeout-us = <1280000>;
++		function-enumerator = <1>;
++	};
++};
 -- 
 2.49.0
 
