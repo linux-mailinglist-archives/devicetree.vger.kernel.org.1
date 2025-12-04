@@ -1,151 +1,161 @@
-Return-Path: <devicetree+bounces-244306-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244307-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC888CA38AC
-	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 13:08:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E7ADCA38C1
+	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 13:08:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3131A30840C1
-	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 12:07:04 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6836430625BA
+	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 12:07:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09C7433DED8;
-	Thu,  4 Dec 2025 12:07:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33AA833C1B6;
+	Thu,  4 Dec 2025 12:07:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="myUB8jID"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YSHS2TRC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B69D338F2F;
-	Thu,  4 Dec 2025 12:07:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 005E0337103;
+	Thu,  4 Dec 2025 12:07:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764850022; cv=none; b=o/sAasjcvCExFeQadeFdNwz44n/BG6yMXAsI9zgmEAqCh4dSAvvantBWA+DTuBzKqFtbcs2OZobkuQSCXLPjfvvy0en7asNdX9JYsyeYjyaFX784IcftcjNWuefDPBkv3GwHOR/txd6db0YnDgHZ1/NffOA9emvu6Ooq7xmFnhQ=
+	t=1764850053; cv=none; b=bgSzHQaITRXLSCoRcbmu4iXhaY81zgGQ/ZsKASYafDNMlD7N47raF62HBIlD9c5isNYFsj65Dd8ij93By9en5cFW5UDLMxTIeAAhfTgZgPjYWzb877xOJ6ufmqyKETHkwLin8m075wohovGH8BOSrR+NkSHaewohJLkVXA38gBM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764850022; c=relaxed/simple;
-	bh=AACMBGkOYNpC0wc7dBl/A97+VH5lB0jqIQofcJw+rV4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IRrOG2nNswGJOJaEYohaRkU+zDkHPl9BOQ1/VisnELKKRMp3NjphZzB8NkZ08m/SxWf2jFI6L2jFmxYI6QxCbw54oxy8FkBiArE0UN6QTOqEcAl3YzI3UsMgr795fAtk4XrbZ/FL9z7P9Y2ZfgNyUbTCUVm1VF+8kdGzbqYH4f8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=myUB8jID; arc=none smtp.client-ip=198.175.65.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1764850022; x=1796386022;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=AACMBGkOYNpC0wc7dBl/A97+VH5lB0jqIQofcJw+rV4=;
-  b=myUB8jIDTuWr5LLPyVT9Xwr5rRaMwCi+AafuBgaztdtGXHEqoi1+2Ist
-   yuTNIp/kCZ/XQEUMRyMzeY0MeSs5gxW7dtA1uk7Pi70oCfiHZ5zAN+3px
-   s6KA14IS3y+o/Xcprve+uB2glMPp3WmrnJHCGav3gPgqqFfPgLfcRKQoT
-   aBZmGb1tH5ehp52ROwUPBJUNhSZImWwCOLZS++uXI55HLz0TjE9fhKjb8
-   je3Sug5yNMWdOG4ciHJGhQSikqGjNak9U9DFUXDux3R11Fgvz3yg9Qzn7
-   vf9dHTqeMIFTwuZViFuqUcIumG3hLiRisIp7RuxLkAlTXQLq0qxAxeGwl
-   w==;
-X-CSE-ConnectionGUID: ujoGBIBbTQa4rMxZLNs3Xw==
-X-CSE-MsgGUID: z6PPv4ESQiKHyZ6rE1lvGQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11631"; a="66753252"
-X-IronPort-AV: E=Sophos;i="6.20,248,1758610800"; 
-   d="scan'208";a="66753252"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Dec 2025 04:06:58 -0800
-X-CSE-ConnectionGUID: cFBEIPl6S9m77mLooVMGkg==
-X-CSE-MsgGUID: zwed11zQRAih9YysX+gTQg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,248,1758610800"; 
-   d="scan'208";a="225924104"
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost) ([10.245.245.222])
-  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Dec 2025 04:06:46 -0800
-Date: Thu, 4 Dec 2025 14:06:44 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Herve Codina <herve.codina@bootlin.com>,
-	Kalle Niemi <kaleposti@gmail.com>, Rob Herring <robh@kernel.org>,
-	Matti Vaittinen <mazziesaccount@gmail.com>,
-	linux-arm-kernel@lists.infradead.org, Andrew Lunn <andrew@lunn.ch>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Peter Rosin <peda@axentia.se>, Arnd Bergmann <arnd@arndb.de>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Charles Keepax <ckeepax@opensource.cirrus.com>,
-	Richard Fitzgerald <rf@opensource.cirrus.com>,
-	David Rhodes <david.rhodes@cirrus.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	Mark Brown <broonie@kernel.org>,
-	Daniel Scally <djrscally@gmail.com>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Len Brown <lenb@kernel.org>, Davidlohr Bueso <dave@stgolabs.net>,
-	Jonathan Cameron <jonathan.cameron@huawei.com>,
-	Dave Jiang <dave.jiang@intel.com>,
-	Alison Schofield <alison.schofield@intel.com>,
-	Vishal Verma <vishal.l.verma@intel.com>,
-	Ira Weiny <ira.weiny@intel.com>,
-	Dan Williams <dan.j.williams@intel.com>,
-	Wolfram Sang <wsa@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
-	linux-clk@vger.kernel.org, linux-i2c@vger.kernel.org,
-	linux-pci@vger.kernel.org, linux-sound@vger.kernel.org,
-	patches@opensource.cirrus.com, linux-gpio@vger.kernel.org,
-	linux-pm@vger.kernel.org, linux-spi@vger.kernel.org,
-	linux-acpi@vger.kernel.org, linux-cxl@vger.kernel.org,
-	Allan Nielsen <allan.nielsen@microchip.com>,
-	Horatiu Vultur <horatiu.vultur@microchip.com>,
-	Steen Hegelund <steen.hegelund@microchip.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v4 01/29] Revert "treewide: Fix probing of devices in DT
- overlays"
-Message-ID: <aTF5VN2YSpj5uJsr@smile.fi.intel.com>
-References: <CAL_JsqJjm12LxpDg6LmpY=Ro_keHwnrWiYMLVnG=s_pSP4X2WQ@mail.gmail.com>
- <072dde7c-a53c-4525-83ac-57ea38edc0b5@gmail.com>
- <CAL_JsqKyG98pXGKpL=gxSc92izpzN7YCdq62ZJByhE6aFYs1fw@mail.gmail.com>
- <55076f4b-d523-4f8c-8bd4-0645b790737e@gmail.com>
- <20251202102619.5cd971cc@bootlin.com>
- <088af3ff-bd04-4bc9-b304-85f6ed555f2a@gmail.com>
- <20251202175836.747593c0@bootlin.com>
- <dc813fc2-28d2-4f2c-a2a3-08e33eec8ec7@gmail.com>
- <20251204083839.4fb8a4b1@bootlin.com>
- <CAMuHMdXdwf7La1EYBWTJadsTAJG3nKQVW6wtBn-bUqshA=XHRw@mail.gmail.com>
+	s=arc-20240116; t=1764850053; c=relaxed/simple;
+	bh=748HOGa8ve8TWGL1XTnPCWvbZBqViADKpM3/8r9uZ7c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Rfud1yriEo9ehr1O5CRMUXF7mcjqCWYZi5e5VgtHoyR0lWA6FgxxvhsowTP1xTYy38if5yptgXUesxiSrC+rmeiBb/JOsygWUCYszJ9wP0DaZkjNDDwBh49oGBIQe0guZg5CGsIl0y4XUG55KaACbjmrD7plIcFnmW+ms+8fmPw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YSHS2TRC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88601C4CEFB;
+	Thu,  4 Dec 2025 12:07:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764850052;
+	bh=748HOGa8ve8TWGL1XTnPCWvbZBqViADKpM3/8r9uZ7c=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=YSHS2TRCxm59+V0DSS28deSw5hnMaCY+lEniriYRpD/A0zjcTrL1ukKCx/6LZ/L4Q
+	 AnoN108QZM+b5S0deCO+2/XGBXGRHPTvQWeeOoD3pqXS+fZnTG6e+BWSDUu8PvLkpl
+	 ojESUBcI9VCH6z+hGdbveEs622fGFZ75sCWYXzBCCHdat+9LsaAZBiXKqIndl+UeKA
+	 xmy6JTmBj8a5JtYASfd6JLgAjBZYFuWsevfe8bAmIBI3mtxVJer/r8xAy+lJ/Wp3Oi
+	 6q7WmovBkUxSWo+pXtYwSHS1cZ+Yc7830IyVHyOk6FkUHIAFZTsjqy95qvjMKnBe2B
+	 UYglkeUPZr2Mg==
+Message-ID: <e9b5f1f1-b33e-4bc4-a040-6b42bb95b054@kernel.org>
+Date: Thu, 4 Dec 2025 13:07:25 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAMuHMdXdwf7La1EYBWTJadsTAJG3nKQVW6wtBn-bUqshA=XHRw@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 00/20] arm64: dts: qcom: Introduce Kaanapali platform
+ device tree
+To: Pavel Machek <pavel@ucw.cz>
+Cc: Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
+ trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com,
+ Tengfei Fan <tengfei.fan@oss.qualcomm.com>,
+ Qiang Yu <qiang.yu@oss.qualcomm.com>,
+ Manish Pandey <manish.pandey@oss.qualcomm.com>,
+ Ronak Raheja <ronak.raheja@oss.qualcomm.com>,
+ Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>,
+ Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>,
+ Jyothi Kumar Seerapu <jyothi.seerapu@oss.qualcomm.com>,
+ Prasad Kumpatla <prasad.kumpatla@oss.qualcomm.com>,
+ Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>,
+ Vikash Garodia <vikash.garodia@oss.qualcomm.com>
+References: <20250924-knp-dts-v1-0-3fdbc4b9e1b1@oss.qualcomm.com>
+ <aS8uJCnb0xOd6uby@duo.ucw.cz>
+ <081a2038-e798-4cc0-96ff-b7f11e346831@kernel.org>
+ <aTB8++UtSrhwtqdY@duo.ucw.cz>
+ <c1b24759-762f-4b97-8d3f-8a44a66b646b@kernel.org>
+ <aTFRCzVQfXyJQt/Q@duo.ucw.cz>
+ <785fb4be-22b2-4881-8900-e7001945f929@kernel.org>
+ <aTF0KKFq0Ibyymz+@duo.ucw.cz>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
+ QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
+ +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
+ ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
+ 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
+ hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
+ tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
+ 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
+ naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
+ hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
+ whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
+ qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
+ RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
+ Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
+ H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
+ dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
+ AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
+ jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
+ zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
+ XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
+In-Reply-To: <aTF0KKFq0Ibyymz+@duo.ucw.cz>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Dec 04, 2025 at 11:49:13AM +0100, Geert Uytterhoeven wrote:
-> On Thu, 4 Dec 2025 at 08:39, Herve Codina <herve.codina@bootlin.com> wrote:
-
-...
-
-> > Saravana's email (Saravana Kannan <saravanak@google.com>) seems incorrect.
-> > Got emails delivery failure with this email address.
+On 04/12/2025 12:44, Pavel Machek wrote:
+> Hi!
 > 
-> Yeah, he moved company.
-> He is still alive, I met him in the LPC Training Session yesterday ;-)
+>> No, there is no rule of Cc-ing phone-devel. No one has to do it and you
+>> need to stop coming with the impression that it is sanctioned rule by
+>> any platform or architecture maintainer.
+> 
+> Yes, people need to cc relevant mailing lists, that's why we have the
 
-Usually people update the MAINTAINERS and/or .mailcapain such a case.
-Can you ping him about this?
+And it was done here.
 
--- 
-With Best Regards,
-Andy Shevchenko
+> lists, and that's how kernel development works. You want relevant
+> developers, well, to review the patch.
+
+They can review the patch because all the necessary lists were Cc-ed here.
+
+> 
+> "You should also normally choose at least one mailing list to receive a copy
+> of your patch set.  linux-kernel@vger.kernel.org should be used by default
+> for all patches, but the volume on that list has caused a number of
+> developers to tune it out."
+
+And above was fulfilled. Nothing, no single rule says some
+"foo-devel-whatever" should be cc-ed. This patchset touches specific
+subsystems and concept, and all these were cc-ed.
+
+You really need to stop inventing own rules about undisclosed and hidden
+phone-devel (just git grep for phone-devel).
 
 
+Best regards,
+Krzysztof
 
