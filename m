@@ -1,141 +1,196 @@
-Return-Path: <devicetree+bounces-244414-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244415-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A25F5CA4978
-	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 17:52:21 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 620E3CA4A7C
+	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 18:03:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 854C43017854
-	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 16:52:20 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D7FF8312E29E
+	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 16:57:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66C572F360A;
-	Thu,  4 Dec 2025 16:42:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C865F34844D;
+	Thu,  4 Dec 2025 16:49:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fHmGPk0Q"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ftGKXrNe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C74472F3C18
-	for <devicetree@vger.kernel.org>; Thu,  4 Dec 2025 16:42:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99255347FEE;
+	Thu,  4 Dec 2025 16:49:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764866564; cv=none; b=gQJu6AGTVwbsGCiOMqj7jaFy26Cwc61IlDFPbxdMWsJlexLnqHZWKsUeOXGwKM7TeK7vASEIJEbCSnELWyzKlfjyMzEhLnnClgPuiYu2k2U4UHeBmSVcV+3xDdFDYBDpTp109aS27mO/Vvs9hZYneJiaXSJegC6PegtkGxk/BwI=
+	t=1764866946; cv=none; b=pB5Kb+FHQPYeTP4ChPAg/YeXKaP7BykVqHt5fd+rMiWTxsLJX3hJQZUy9n2ILBGBZo2t9InvnsmS8wxQc9Vk65iOlti82J/UqFO38eMkn3Ga0YiEdGmx0YPEw1htW+UG85VFxNI5/QR6YJtv8CIZImmGMzgWuNCZjTJJIUpjkI0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764866564; c=relaxed/simple;
-	bh=mjoIZaukGJd+mpRUFGZF5pSyWo7+ZsSHYXD7PA5LEiU=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=s2LQqrAAp/seiUL/Y4keNQVzXaSYznTDSeG6I7+96HI0OMWdEIqpuOlfU0xg6tUdalE1Tn8rRojb+reiOuFmVHBRL/sx8I/kBfewR2p5xik6JLQHXxsNWYDkThN1noDGmgfGiflMh2joXKTWZ0dtpKwetoniBzATDKNZyHpdgGM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fHmGPk0Q; arc=none smtp.client-ip=209.85.214.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-298250d7769so8894295ad.0
-        for <devicetree@vger.kernel.org>; Thu, 04 Dec 2025 08:42:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1764866562; x=1765471362; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=aqAQjayzKkiK+UyokaheK11TIpMBdBsbzUQ3poyNPt4=;
-        b=fHmGPk0QZbf1xwB798ITgYZLnT7rDbfvkeA8q9cszym/3rL7Ryc4kgBM38gcZrH7Ej
-         HA9uoITpLYiPNOwn646+Q9W/o4VamkPai88v2Y2/AnCOntsdY4CzB62tC3YsE2nbWJBY
-         AfoqWf/esfruYOTNXYzUr/uveg1QMDyJ5VZK5jdLuO4CwYAHI5b4EfkOMpkcXjm/HJDY
-         NQHP+dApAN4Pn+cmjGiZAqKVWfXUWTxdmbYwWgwK8aCO8nN+IPhIXYhZcCrNUL+Z562y
-         V/Vs6OVUm+9ucZmEiBnqdWfrw9QcJdyOfLPhFrLZRChf3MVKxfFmUaN1C3USCa3vEcSB
-         /+7Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764866562; x=1765471362;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=aqAQjayzKkiK+UyokaheK11TIpMBdBsbzUQ3poyNPt4=;
-        b=wDEL/RfLRAp6gAINBRFPwYdgQql91eAc0BjhzBZ+GH9+323niTbaOY/jcgqiWKyVbn
-         Xkl+lYJIIyiVY+ufs1JJPKus8Cb17zUEDcjPJDFuw3RkZmQmxXAyfvne62XCOhWRKOIw
-         isjbRmg80NcyBwiOubIRNoUHD8hs1WQrMmLLSCnhh2yscmudGur3EqrP9lFefPeRsH7G
-         2GxqczIbjh6BS7DwFqy4QtRf33ZXHGir/W/J9nuuUrAp8S2xZpikLQSQotNWdVGTYsFH
-         tOmylBQXlqfaHh+Lk2urv7I11/5KuTLnaFjPgQjvLac8k0uMOBURUOh1HKhlBD3mi2AJ
-         iqeQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWoobjuKXF76vriNwccStfouA9AmLoKOnPTkgtaBBl3H3SJvS6/wXtCjw4eKEXQgAz9magIez3EzM0g@vger.kernel.org
-X-Gm-Message-State: AOJu0YwouLijW69IC7WFFAOMgGE96AE4wnKQ15AY5v2daJSm+yi4jke/
-	SOubcOwfPkrWbpIdqLJ7134Q5iAiEIsxBnIax2FsdtQeUYUj0hl+9CN5
-X-Gm-Gg: ASbGncuoAqima6wA5eCK+675fz7rr0nYPIqlexnqowSoRETOmY40SiQfoIW6KSwtf9j
-	1lAHskSl21diuFNOtQvy/zfsSd6ngfUmXM3iautcvYVdEpfu8xYHvcF+fSqzg2a3aVuwf4Xp97e
-	gg4K+Fu3dawRIAMNRUpFrCR4v+gVrW2Oz9+6ybpRTLSJI+g6ReEv2U2oEwvCkmAwv/mlOpBU/N6
-	GexhqDX874/h9nDemgpvuYYovIpbyjYqaJnlHgSQLF4KA+SW+cDXpYytaXbazBIK1zfbS5FPvTG
-	UJt6aV/F6R4JP65qhcxFzXpePU00sCYhcyBLsVXlrxyhgZmIILUdknfPKDj9a9tGq5VMbc8Pj+2
-	OgHM8HeKYlDiKyrE2UZ7BexwtWsRyNYs2GmDF3nlOioeKbDPHe6bicB2/rXuvAiywcIb0D4Q1Xk
-	IOSCtOOTupArDnZ7S9KKwMO/4Tf9nOE24y+GhGaiANsxWhM+F+l2RbB/FgONavvSFhEDV0fDsXK
-	MSNfiXxeRkEhtAwL9KafG3MgbIHvBTjpKo=
-X-Google-Smtp-Source: AGHT+IHmL3NdODN0biOQSZv09OUmAKp6RXCeEtSR9fQ8w6iCx3oooNzpze9mqTtVMIc2Y+Z/hfgp4w==
-X-Received: by 2002:a17:902:e807:b0:299:d5a5:3f7b with SMTP id d9443c01a7336-29d684764b1mr84258175ad.53.1764866562008;
-        Thu, 04 Dec 2025 08:42:42 -0800 (PST)
-Received: from visitorckw-work01.c.googlers.com.com (14.250.194.35.bc.googleusercontent.com. [35.194.250.14])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29dae49c8absm25090275ad.16.2025.12.04.08.42.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 Dec 2025 08:42:41 -0800 (PST)
-From: Kuan-Wei Chiu <visitorckw@gmail.com>
-To: linus.walleij@linaro.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	arnd@arndb.de
-Cc: jserv@ccns.ncku.edu.tw,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Kuan-Wei Chiu <visitorckw@gmail.com>,
-	stable@vger.kernel.org
-Subject: [PATCH] ARM: dts: integrator: Fix DMA ranges mismatch warning on IM-PD1
-Date: Thu,  4 Dec 2025 16:42:28 +0000
-Message-ID: <20251204164228.113587-1-visitorckw@gmail.com>
-X-Mailer: git-send-email 2.52.0.177.g9f829587af-goog
+	s=arc-20240116; t=1764866946; c=relaxed/simple;
+	bh=s/jCJ2FpUP11SPYO8fzMlmRQfnOVawPPT6/iEbGbJgI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=BdqOzp1r1ERWJsxN4ibCQluhWirz63F1juoqzer1OM6bSEMZPW1V627/DrP3hHbSkBE3Cg18ZBfddQjT5S3MzWU/P99wb9VqZChG5gFeyLQo9fZdUbIod9WWuwmFJLveqMsQr3LcRTZnschThqbTZWLWdowjXjfezV4I9jmzSG8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ftGKXrNe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0A99C4CEFB;
+	Thu,  4 Dec 2025 16:48:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764866944;
+	bh=s/jCJ2FpUP11SPYO8fzMlmRQfnOVawPPT6/iEbGbJgI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ftGKXrNeYQ1po2piaPKUeDZLuQnVyRpTPq6K+3sZBQXbxanU6cohAuPxppl3YF6be
+	 74WjFWEFuqAf6m8ukmUuAKAUfjosXj1p/I/cL2DXvV4YpvZNnPnzoIxZMZ3F4iUpcR
+	 ZQ+w5Fc959ptz8BoYeoe7mM/t1ds4JR1/NfJhwMttDPIClXQtiAk76cr7GTn1HhZW+
+	 afDxEKUmf8Te0PUCMFK6NiIE9P9kbIYUCQZTpMbyMtlGN5muEV6SGlJ20GOnEESW2i
+	 bVtRWNuchIk6g3xwwpJ9XxoIjNEfsluUc+hk/HDi3v9GoaWCKPXyCIAmzj9bS3O843
+	 wjdy5KCVy6BEg==
+Message-ID: <c7cbdaaa-e786-4842-9346-e2fde998fde5@kernel.org>
+Date: Thu, 4 Dec 2025 17:48:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next 5/9] phy: add phy_get_rx_polarity() and
+ phy_get_tx_polarity()
+To: Vladimir Oltean <vladimir.oltean@nxp.com>, Vinod Koul <vkoul@kernel.org>,
+ Jakub Kicinski <kuba@kernel.org>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ Daniel Golle <daniel@makrotopia.org>,
+ Horatiu Vultur <horatiu.vultur@microchip.com>, Andrew Lunn <andrew@lunn.ch>,
+ Heiner Kallweit <hkallweit1@gmail.com>, Russell King
+ <linux@armlinux.org.uk>, "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Eric Woudstra <ericwouds@gmail.com>, =?UTF-8?B?TWFyZWsgQmVo4oia4oirbg==?=
+ <kabel@kernel.org>, Lee Jones <lee@kernel.org>,
+ Patrice Chotard <patrice.chotard@foss.st.com>
+References: <20251122193341.332324-1-vladimir.oltean@nxp.com>
+ <20251122193341.332324-6-vladimir.oltean@nxp.com>
+ <20251124200121.5b82f09e@kernel.org> <aS1T5i3pCHsNVql6@vaman>
+ <69ac21ea-eed2-449a-b231-c43e3cd0bdc0@kernel.org>
+ <20251204153401.tinrt57ifjthw55r@skbuf>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20251204153401.tinrt57ifjthw55r@skbuf>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-When compiling the device tree for the Integrator/AP with IM-PD1, the
-following warning is observed regarding the display controller node:
+On 04/12/2025 16:34, Vladimir Oltean wrote:
+> On Mon, Dec 01, 2025 at 09:41:21AM +0100, Krzysztof Kozlowski wrote:
+>> On 01/12/2025 09:37, Vinod Koul wrote:
+>>> On 24-11-25, 20:01, Jakub Kicinski wrote:
+>>>> On Sat, 22 Nov 2025 21:33:37 +0200 Vladimir Oltean wrote:
+>>>>> Add helpers in the generic PHY folder which can be used using 'select
+>>>>> GENERIC_PHY_COMMON_PROPS' from Kconfig, without otherwise needing to
+>>>>> enable GENERIC_PHY.
+>>>>>
+>>>>> These helpers need to deal with the slight messiness of the fact that
+>>>>> the polarity properties are arrays per protocol, and with the fact that
+>>>>> there is no default value mandated by the standard properties, all
+>>>>> default values depend on driver and protocol (PHY_POL_NORMAL may be a
+>>>>> good default for SGMII, whereas PHY_POL_AUTO may be a good default for
+>>>>> PCIe).
+>>>>>
+>>>>> Push the supported mask of polarities to these helpers, to simplify
+>>>>> drivers such that they don't need to validate what's in the device tree
+>>>>> (or other firmware description).
+>>>>>
+>>>>> The proposed maintainership model is joint custody between netdev and
+>>>>> linux-phy, because of the fact that these properties can be applied to
+>>>>> Ethernet PCS blocks just as well as Generic PHY devices. I've added as
+>>>>> maintainers those from "ETHERNET PHY LIBRARY", "NETWORKING DRIVERS" and
+>>>>> "GENERIC PHY FRAMEWORK".
+>>>>
+>>>> I dunno.. ain't no such thing as "joint custody" maintainership.
+>>>> We have to pick one tree. Given the set of Ms here, I suspect 
+>>>> the best course of action may be to bubble this up to its own tree.
+>>>> Ask Konstantin for a tree in k.org, then you can "co-post" the patches
+>>>> for review + PR link in the cover letter (e.g. how Tony from Intel
+>>>> submits their patches). This way not networking and PHY can pull
+>>>> the shared changes with stable commit IDs.
+>>>
+>>> How much is the volume of the changes that we are talking about, we can
+>>> always ack and pull into each other trees..?
+>>
+>> That's just one C file, isn't it? Having dedicated tree for one file
+>> feels like huge overhead.
+> 
+> I have to admit, no matter how we define what pertains to this presumed
+> new git tree, the fact is that the volume of patches will be quite low.
+> 
+> Since the API provider always sits in drivers/phy/ in every case that I
+> can think about, technically all situations can be resolved by linux-phy
+> providing these stable PR branches to netdev. In turn, to netdev it
+> makes no difference whether the branches are coming from linux-phy or a
+> third git tree. Whereas to linux-phy, things would even maybe a bit
+> simpler, due to already having the patches vs needing to pull them from
+> the 3rd tree.
+> 
+> From my perspective, if I'm perfectly honest, the idea was attractive
+> because of the phenomenal difference in turnaround times between netdev
+> and linux-phy review&merge processes (very fast in netdev, very slow and
+> patchy in linux-phy). If there's a set like this, where all API consumers
+> are in netdev for now but the API itself is in linux-phy, you'd have to
+> introduce 1000 NOP cycles just to wait for the PR branch.
+> 
+> In that sense, having more people into the mix would help just because
+> there's more people (i.e. fewer points of failure), even though overall
+> there's more overhead.
+> 
+> IDK, these are my 2 cents, I can resubmit this set in 2 weeks with the
+> maintainership of the PHY common properties exclusive to linux-phy.
 
-arch/arm/boot/dts/arm/integratorap-im-pd1.dts:251.3-14: Warning
-(dma_ranges_format):
-/bus@c0000000/bus@c0000000/display@1000000:dma-ranges: empty
-"dma-ranges" property but its #address-cells (2) differs from
-/bus@c0000000/bus@c0000000 (1)
 
-The display node specifies an empty "dma-ranges" property, intended to
-describe a 1:1 identity mapping. However, the node lacks explicit
-"#address-cells" and "#size-cells" properties. In this case, the device
-tree compiler defaults the address cells to 2 (64-bit), which conflicts
-with the parent bus configuration (32-bit, 1 cell).
+Jakub supported the idea, so I also do not oppose, and if that helps you
+folks, then go ahead.
 
-Fix this by explicitly defining "#address-cells" and "#size-cells" as
-1. This matches the 32-bit architecture of the Integrator platform and
-ensures the address translation range is correctly parsed by the
-compiler.
-
-Fixes: 7bea67a99430 ("ARM: dts: integrator: Fix DMA ranges")
-Cc: stable@vger.kernel.org
-Signed-off-by: Kuan-Wei Chiu <visitorckw@gmail.com>
----
- arch/arm/boot/dts/arm/integratorap-im-pd1.dts | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/arch/arm/boot/dts/arm/integratorap-im-pd1.dts b/arch/arm/boot/dts/arm/integratorap-im-pd1.dts
-index db13e09f2fab..6d90d9a42dc9 100644
---- a/arch/arm/boot/dts/arm/integratorap-im-pd1.dts
-+++ b/arch/arm/boot/dts/arm/integratorap-im-pd1.dts
-@@ -248,6 +248,8 @@ display@1000000 {
- 		/* 640x480 16bpp @ 25.175MHz is 36827428 bytes/s */
- 		max-memory-bandwidth = <40000000>;
- 		memory-region = <&impd1_ram>;
-+		#address-cells = <1>;
-+		#size-cells = <1>;
- 		dma-ranges;
- 
- 		port@0 {
--- 
-2.52.0.177.g9f829587af-goog
-
+Best regards,
+Krzysztof
 
