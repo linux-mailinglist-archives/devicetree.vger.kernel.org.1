@@ -1,82 +1,122 @@
-Return-Path: <devicetree+bounces-244253-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244254-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C3E5CA2C51
-	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 09:14:16 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE218CA2C5D
+	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 09:16:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2DD97301D58C
-	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 08:14:15 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id ED9853019B46
+	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 08:16:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDBEE32573D;
-	Thu,  4 Dec 2025 08:14:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83A122550D7;
+	Thu,  4 Dec 2025 08:16:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gc2LbE5w"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="BaVTv6rc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9277E2D321B;
-	Thu,  4 Dec 2025 08:14:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41CCD186284;
+	Thu,  4 Dec 2025 08:16:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764836053; cv=none; b=SkEyJBxU0zzPPCYF6Z5Y2SEPXRVhoosNSIUGhUJjpjlAtTXCMLg+4AUIPUEwLMkeAZpLJbM+6cEX7ke9zlxDHRb6XsO3BIMQWXAESEVX8frP48oy2BZ+8WLZxXXB3KblN+RilFe5fgwiN6talS74qXkF5iLIkEek6dUKfbc9y2c=
+	t=1764836216; cv=none; b=sZ3cQeqTTeg+U5vSosWn9dnWsexrgpxPjFswLw/lsUZ7WuxxaWfQj0QlJaVpoCKHQ535nOLwBYcVc+ytUn4pIZfWnH9iLANfDTHARHBAre+7lNbO4hs3fVd/EOWw9YT4ZqKtDZlm3P4zMN2MM5S/iHF6k9Ip1Ps0DhsMLlHe1C4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764836053; c=relaxed/simple;
-	bh=y/mE6Hsjf5+EvwNp5XMJCQOSPMIGQfBFF4HGEOlovCs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AgIz9Q8SehDncRSiSPvu2+vfFkubDdrxoPVCgMcKUM9DDkVkrWIwIw/7zq9Vkc9y94FM8mjpXYGOC6lAl6ykFT77XJ7UOSCT8+riZFLNAJN/KJHtkJUDjwoUErLdZn4eR8QGmqbX9d5kP5cQwTt0nEChWnWerFE4gLIvtGdng8Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gc2LbE5w; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C3B6C4CEFB;
-	Thu,  4 Dec 2025 08:14:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764836053;
-	bh=y/mE6Hsjf5+EvwNp5XMJCQOSPMIGQfBFF4HGEOlovCs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gc2LbE5wp+bdAJXe3DkdEKRDDLK0hCH5/SiZ2UGo21c8tqdc69/YhzHgw2OGsdTzi
-	 iDGDHDPuDORY+9+wuWKnlPTtZKTrVbj+rUNDY7qA2RVEnkE8S9AUpv3rhaK4C7gtfZ
-	 AJrDs3jRcwUMNu5TnxlTK3oxvRlQegGuaQrN6V/pLKr3rr53+XB1AL27klU+BMMDr2
-	 1ch2ImcCd4T8n3rvLxRLYItrqheGeoxMUjmPEyAGZhuoxAAPiOegc0PlfxGJ/Jvd1S
-	 0u4KNQPrMPsG/jI9dZMp1UaVGnqLBFRPI0cnAdKGm7vooboFAf5kmz2VbSn5DkOaKE
-	 wP3hOOhHCeFJA==
-Date: Thu, 4 Dec 2025 09:14:10 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Jonathan Santos <Jonathan.Santos@analog.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Michael.Hennerich@analog.com, jic23@kernel.org, 
-	dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, marcelo.schmitt@analog.com, 
-	jonath4nns@gmail.com
-Subject: Re: [PATCH v4 1/4] dt-bindings: iio: adc: ad7768-1: add new
- supported parts
-Message-ID: <20251204-rampant-indigo-kudu-cdb5de@quoll>
-References: <cover.1764101647.git.Jonathan.Santos@analog.com>
- <b2c005592b9788919fd32d4e8d7346e4be98d1a5.1764101647.git.Jonathan.Santos@analog.com>
+	s=arc-20240116; t=1764836216; c=relaxed/simple;
+	bh=PBqHVl89VO5kWueOyW8krV36UzqYbqbHnFu6R2WlmXM=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Qa3Nzh91JeW+1ecdOysvJvkYFnWMnvouqCaCN/EGwda1Z4/oA360lHyITIMmNzt6mjTZCLGeF1h5cqkd8b2S2b3ceGhgN6LxGTzQbGjCisOQu2yJoehiO7Xx734nhjFGsBM4brrZnD6VshZQ0ZvZKhJuQyTBBRsRqWOlXke/2Fw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=BaVTv6rc; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 1A285C17841;
+	Thu,  4 Dec 2025 08:16:29 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 655CF6068C;
+	Thu,  4 Dec 2025 08:16:52 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id E5E1211921FA4;
+	Thu,  4 Dec 2025 09:16:46 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1764836211; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=QO7KRtA5uIdpxLcOIs8l1kl0Fm67eo/lupIarBigM1I=;
+	b=BaVTv6rc3EtT0zdadVqYYAlViy6rZN0D2I0kymA6hAw9HegCchEyZjbk94U/i5Uq8wTctW
+	f9BPhKHLDSct0WDdX3Vjpw96fQylDD/dd0+gI3Xb0TBCEs4+6Om0dhmm4Pd7oUcueIfiVS
+	DSaaTPelYQ4uELRcGsAIQtGznzi8VDgDFhd09nTJZ95sHT2zzXsuoWRzkLPdDTLHGVZZqh
+	H1nmRGCEcxGTrybDt+1PB9QVQTEUyu/ZN9VXLBJjkhPrTI2ZYVQPUo1MYWFyhiffev19y3
+	yVgVU+aHp7e8LkbaQEJK3tYJhxv76f7X9pUVthUP9sSOmLgqNm48xbz/V2coJg==
+From: =?UTF-8?B?QmVub8OudA==?= Monin <benoit.monin@bootlin.com>
+To: Andi Shyti <andi.shyti@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Jarkko Nikula <jarkko.nikula@linux.intel.com>,
+ Mika Westerberg <mika.westerberg@linux.intel.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Jan Dabros <jsd@semihalf.com>,
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ Clark Williams <clrkwllms@kernel.org>, Steven Rostedt <rostedt@goodmis.org>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ Gregory CLEMENT <gregory.clement@bootlin.com>,
+ =?UTF-8?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>,
+ Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
+ Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+ Dmitry Guzman <dmitry.guzman@mobileye.com>, linux-i2c@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-rt-devel@lists.linux.dev, Krzysztof Kozlowski <krzk@kernel.org>
+Subject:
+ Re: [PATCH v4 0/7] i2c: designware: Improve support of multi-messages
+ transfer
+Date: Thu, 04 Dec 2025 09:16:46 +0100
+Message-ID: <4840417.vXUDI8C0e8@benoit.monin>
+In-Reply-To: <gbuthxg24mqk3ofvnyqabwfxhwjwemrdtdowluvwub7odsm36u@jutqnsrthvv2>
+References:
+ <20251126-i2c-dw-v4-0-b0654598e7c5@bootlin.com>
+ <gbuthxg24mqk3ofvnyqabwfxhwjwemrdtdowluvwub7odsm36u@jutqnsrthvv2>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <b2c005592b9788919fd32d4e8d7346e4be98d1a5.1764101647.git.Jonathan.Santos@analog.com>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Wed, Nov 26, 2025 at 06:56:02PM -0300, Jonathan Santos wrote:
-> Add compatibles for supported parts in the ad7768-1 family:
-> 	ADAQ7767-1, ADAQ7768-1 and ADAQ7769-1
-> 
-> Add property and checks for AFF gain, supported by ADAQ7767-1
-> and ADAQ7769-1, and for PGA gain, supported by ADAQ7768-1
-> and ADAQ7769-1:
-> 	adi,aaf-gain-bp
-> 	pga-gpios
-> 
-> Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
+Hi Andy,
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+On Wednesday, 3 December 2025 at 19:36:04 CET, Andi Shyti wrote:
+> Hi Beno=C3=AEt,
+>=20
+> >       dt-bindings: i2c: dw: Add Mobileye I2C controllers
+> >       i2c: designware: Optimize flag reading in i2c_dw_read()
+> >       i2c: designware: Sort compatible strings in alphabetical order
+> >       i2c: designware: Add dedicated algorithm for AMD NAVI
+>=20
+> I merged to i2c/i2c-host until here.
+>=20
+> >       i2c: designware: Implement I2C_M_STOP support
+>=20
+> I'd like to check this a little better.
+>=20
+> >       i2c: designware: Use runtime PM macro for auto-cleanup
+> >       i2c: designware: Support of controller with IC_EMPTYFIFO_HOLD_MAS=
+TER disabled
+>=20
+> I will shift the last three patches for the next release. Is it
+> OK with you?
+>=20
+Yes, no problem.
+
+> Andi
+>=20
 
 Best regards,
-Krzysztof
+=2D-=20
+Beno=C3=AEt Monin, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
+
 
 
