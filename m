@@ -1,173 +1,315 @@
-Return-Path: <devicetree+bounces-244285-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244286-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5371CA3284
-	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 11:10:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EACCCA32FC
+	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 11:17:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 792C93016351
-	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 10:06:03 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6A3A130BC97B
+	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 10:12:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75D3D333420;
-	Thu,  4 Dec 2025 10:06:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 288C629BDA5;
+	Thu,  4 Dec 2025 10:12:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Osh22c/g"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TZrb3UbZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A6A11A9FAF;
-	Thu,  4 Dec 2025 10:06:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59CB12D47E0
+	for <devicetree@vger.kernel.org>; Thu,  4 Dec 2025 10:12:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764842762; cv=none; b=H6dB8SmvBQer6o8lAwopJdD89PJ07qOeD2OT9Ht0OU8yJN0dia7pOyqU9x154aOUXWgTqHf8KszhNnWL6XZRIIkG4a5dKzojIE1z4pY/FvtSaT6NW9NZcq/tdXWu3i/0eybv/1ZMoScJCsuXGBB1Tz1WsBm1+WI4uDO2T+76x0s=
+	t=1764843153; cv=none; b=beWIRpBnm6k0S0a2tpr/l/Jtfw5/BOpVvfsbBRjuA05/R3i/BwUlV9ILt/bKsmzQ6tgKvitq4RV/UMGPKdIEJu0fjbIqTuRJEYuMt0tTSCaz0KtWbYr+vnOzuGU4rOntSeqHJWDL8i4hQP79zMTtq2DKUDVuTOCPhgJXnB2PJMY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764842762; c=relaxed/simple;
-	bh=HdxuyW48hjewxA37dD/zbSml/Oj0HqVBN0P1TbtJSfw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=hu1oU3fCB3QYOBT/z4oPmr8VBoHZZLin1tam1oVq0OgnxFonGxb/7ROpXEeNreG8I2zXxA190KbPIlTp5nEd7QYbUrlpR7oKiWmhAFWmLucaVQY3gKTHE52seiQ8wdWqhos80eSi16CVQI/Ki8Nr3wjhFGMoePFPBBHASr8D0z4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Osh22c/g; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C558BC4CEFB;
-	Thu,  4 Dec 2025 10:05:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764842761;
-	bh=HdxuyW48hjewxA37dD/zbSml/Oj0HqVBN0P1TbtJSfw=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=Osh22c/gHyR+VPM2kPcT0dPiD6K9BvVhe5Ewzn9HXTkYe8a046bP8uE4VgCP19aDi
-	 K7xBIYI24RyUjLFUPu8Jsurggk4oUE//29xVfPPkiZv362d67AnRunbs4b5rs1+Gjw
-	 YS2XQ/6kgerJ6XOyYneyYfkre1v2DNabxE2eCArlBtO1fZs0/9oUkgnRGacd11N388
-	 /GqZScuD1gNPgkWGXr8EGPBS8fC6oU43ADwQuKp3i8wBSNVTdMRqREmWXwUbXqmGUE
-	 ffmQYPQtEzvEiW/FXBg4sDYheO7g+t6NXrH78pesoPO/l7JrqMckbFuomSJrJhGli1
-	 QsAy+pTCZPGgA==
-From: Christian Brauner <brauner@kernel.org>
-To: Alice Ryhl <aliceryhl@google.com>
-Cc: Christian Brauner <brauner@kernel.org>,
-	linux-kernel@vger.kernel.org,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Dave Ertman <david.m.ertman@intel.com>,
-	Ira Weiny <ira.weiny@intel.com>,
-	Leon Romanovsky <leon@kernel.org>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Boqun Feng <boqun.feng@gmail.com>,
-	Elle Rhumsaa <elle@weathered-steel.dev>,
-	Carlos Llamas <cmllamas@google.com>,
-	Yury Norov <yury.norov@gmail.com>,
-	Andreas Hindborg <a.hindborg@kernel.org>,
-	linux-block@vger.kernel.org,
-	FUJITA Tomonori <fujita.tomonori@gmail.com>,
-	Miguel Ojeda <ojeda@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	linux-clk@vger.kernel.org,
-	Benno Lossin <lossin@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Viresh Kumar <viresh.kumar@linaro.org>,
-	linux-pm@vger.kernel.org,
-	Paul Moore <paul@paul-moore.com>,
-	Serge Hallyn <sergeh@kernel.org>,
-	linux-security-module@vger.kernel.org,
-	Daniel Almeida <daniel.almeida@collabora.com>,
-	Abdiel Janulgue <abdiel.janulgue@gmail.com>,
-	Robin Murphy <robin.murphy@arm.com>,
-	Lyude Paul <lyude@redhat.com>,
-	Alexander Viro <viro@zeniv.linux.org.uk>,
-	Jan Kara <jack@suse.cz>,
-	linux-fsdevel@vger.kernel.org,
-	Josh Poimboeuf <jpoimboe@kernel.org>,
-	Jason Baron <jbaron@akamai.com>,
-	Steven Rostedt <rostedt@goodmis.org>,
-	Ard Biesheuvel <ardb@kernel.org>,
-	Brendan Higgins <brendan.higgins@linux.dev>,
-	David Gow <davidgow@google.com>,
-	linux-kselftest@vger.kernel.org,
-	Andrew Morton <akpm@linux-foundation.org>,
-	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
-	Andrew Ballance <andrewjballance@gmail.com>,
-	maple-tree@lists.infradead.org,
-	linux-mm@kvack.org,
-	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
-	Uladzislau Rezki <urezki@gmail.com>,
-	Vitaly Wool <vitaly.wool@konsulko.se>,
-	Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	devicetree@vger.kernel.org,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	linux-pci@vger.kernel.org,
-	Remo Senekowitsch <remo@buenzli.dev>,
-	"Paul E. McKenney" <paulmck@kernel.org>,
-	rcu@vger.kernel.org,
-	Will Deacon <will@kernel.org>,
-	Fiona Behrens <me@kloenk.dev>,
-	Gary Guo <gary@garyguo.net>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Alexandre Courbot <acourbot@nvidia.com>,
-	Vlastimil Babka <vbabka@suse.cz>,
-	Christoph Lameter <cl@gentwo.org>,
-	David Rientjes <rientjes@google.com>,
-	Ingo Molnar <mingo@redhat.com>,
-	Waiman Long <longman@redhat.com>,
-	Mitchell Levy <levymitchell0@gmail.com>,
-	Frederic Weisbecker <frederic@kernel.org>,
-	Anna-Maria Behnsen <anna-maria@linutronix.de>,
-	John Stultz <jstultz@google.com>,
-	linux-usb@vger.kernel.org,
-	Tejun Heo <tj@kernel.org>,
-	Lai Jiangshan <jiangshanlai@gmail.com>,
-	Matthew Wilcox <willy@infradead.org>,
-	Tamir Duberstein <tamird@gmail.com>,
-	Rae Moar <raemoar63@gmail.com>,
-	rust-for-linux@vger.kernel.org
-Subject: Re: (subset) [PATCH 00/46] Allow inlining C helpers into Rust when using LTO
-Date: Thu,  4 Dec 2025 11:05:29 +0100
-Message-ID: <20251204-denkbar-stinktier-8a7c07650891@brauner>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20251202-define-rust-helper-v1-0-a2e13cbc17a6@google.com>
-References: <20251202-define-rust-helper-v1-0-a2e13cbc17a6@google.com>
+	s=arc-20240116; t=1764843153; c=relaxed/simple;
+	bh=YsOKJcsmtl9RFh7hYNKyNdZbOe0xkedmQInL8mbPRSs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=R949oPz1Flyp4eI/fwpmXjs3OYF4oZ9mOEmy1FlQjMoGk+yvvIFk1CqCaOGMZ4zl5+XYj9etnrHlLG86MO76RH+g1IqTJUmF8+Oa0vh4qhHVx0vZ2ZjdEUysoD0ndi9ktvAarzOM7gG6U/cVeVJlfVeDdJB7Jwp1W9L1YQvw4eA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TZrb3UbZ; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-477a2ab455fso9709275e9.3
+        for <devicetree@vger.kernel.org>; Thu, 04 Dec 2025 02:12:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1764843148; x=1765447948; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=h5IJKMOR/QpkrPjU/TSKi7iLz5hvF1VE+ImUpSffv78=;
+        b=TZrb3UbZWrzz5iGniI/tS1BgB8jCitA9TyHl3SqGJb/jjrZgEnCSAFYrWHujZP3mzo
+         HreHc7lw5qbRLazmzXsfJNHZcDrB88FVRg0y+ewpbYYIlMoFZMVXLWBRINF/yH01Adwx
+         ljdUW3VWlJr5aa5OuiYLPdxhaw3CdQWA23+Z9hXgIPGyZnAm+pEZ22vAtSOXQPST2WgR
+         vdELtUCKs7hJHo7cWX9lXNR02WgKaF318Vy3Vhn3eh81oevRlMfsBhYoPafqbOai6+UD
+         sqeiJm+vnu+gnmvUoguESMXx+OQSxNuTyFAC+6tuq/JgxhegBcnDFzduk7/iGgUgMTXf
+         LMRw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764843149; x=1765447949;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=h5IJKMOR/QpkrPjU/TSKi7iLz5hvF1VE+ImUpSffv78=;
+        b=IWDMJhVHpP3Nrq8jfLJh5f89Da0Iw+iXNVNcPF/D7D3xBaqYJAkv/Y8GxuJGUs0DAs
+         1RrCxPRQNO9VIWmbyFjs04awC/6kgyqECgZ/o4gY3Bgwc4jyVlm4X33pETuMHddd5J3i
+         QZvEnoIHr+dvFFhyq2wDm4Vv3B2rAIlBTeegfxABV8+H4xcnyZjheOHnb4A+GpC7OMJ3
+         zmXDb8jGQxGCD3WFQXKRSCIYQUKLrkFuUlPTD+QY4JaQwZ2NRTIEz1laAO/NN1n1Fn7U
+         zRMAT+9DUngyuAbYSm7FO7WfwIfln6m8nMbEfN7jtRO4U65atWqc/Z9U5VqWgzB/GOvi
+         D+pw==
+X-Forwarded-Encrypted: i=1; AJvYcCX+CVGaPLBck/AwuT1Age7lLzXem4v7L3tK72ZRTQ8mMcsiSOE1PaicuN8F25Bur5YCIGl+w7NqEg9c@vger.kernel.org
+X-Gm-Message-State: AOJu0YzcQ5LQ5a+jZ06EMitwbG2oa1cJ6JYZsjRzXkJvWRwt9gae37MQ
+	V29hbcSpooNG8R7QnBLoqb3ihXhrcL5CGpVn6sOmr5npLmfvk5LlM47y2bzwY/WeFPQ=
+X-Gm-Gg: ASbGncuX9yAoJfWCIEwJj7mbjin5EWQLN4Gh0J6tpDcmxPvCjUwgNJPb3xtkx8IWWWg
+	wT1lF//yB+gO7EwIH6frHHMKRJqmz9JEKazz4dGscmBL12VaumkapFbptTqH6yk3zVvvX4HjI06
+	W/wZB62rBqNahZBxhvqNYgqcLHpYaSvwmOjC+zT92KEt18srYHsYMNL+RgvQVAhJDAIQxqTMkue
+	Ium8qvcbrqit4NJCm5yqmdOUHKmkDK7+mVaEl2nEEht/q2EGqr7uEKIFnud/336rlrJISpXT5oZ
+	C96ufrSQPx0KdEIVd5YDWiaHDC2a1Au3S4E8FutYPzx4JYysSqTk1YhIGeJb6pRaab0rIzzK4PA
+	AFqscUppQOcU8N8ORqfl4pwqJNh9WBY019Wp1Q37VPMCdRiD3hZ8wrUbheXdWBLZcHm0WUbpMMo
+	ovc4f1tBJZkJ/7CG5veplGGEgz8wDKd959tPAPak3DBo9E/aoZDpYF
+X-Google-Smtp-Source: AGHT+IEYlkjvwsiRNqlnYZUSP+QZGuJw0WkwmdY/ol3N/6L9iHDLDTn3zlJTS3O0Rq6p/OPfBU737A==
+X-Received: by 2002:a05:600c:198d:b0:477:7b30:a6fe with SMTP id 5b1f17b1804b1-4792af32715mr48073775e9.18.1764843148458;
+        Thu, 04 Dec 2025 02:12:28 -0800 (PST)
+Received: from [192.168.0.27] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47930c7473bsm37420405e9.10.2025.12.04.02.12.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 04 Dec 2025 02:12:27 -0800 (PST)
+Message-ID: <0910c813-a6fb-4f9a-b5a0-72c9b005f836@linaro.org>
+Date: Thu, 4 Dec 2025 10:12:25 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1456; i=brauner@kernel.org; h=from:subject:message-id; bh=HdxuyW48hjewxA37dD/zbSml/Oj0HqVBN0P1TbtJSfw=; b=owGbwMvMwCU28Zj0gdSKO4sYT6slMWQaxnzoC5KPC9BQ6Xq2IqjgffnvpRpvskU9368/659bp HtRXnNJRykLgxgXg6yYIotDu0m43HKeis1GmRowc1iZQIYwcHEKwESuWjAyXDA8eVezNuVTq5R5 o8gOmf3FN+71+Ire2yjd+7GFVzhvPyPDbR6JQvt2uT/tr3YuKJvw1D1B7vuZ55NmCNlPeyuwRvU UKwA=
-X-Developer-Key: i=brauner@kernel.org; a=openpgp; fpr=4880B8C9BD0E5106FC070F4F7B3C391EFEA93624
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/4] arm64: dts: qcom: sm8650: Add CAMSS device tree
+ node
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Luca Weiss <luca.weiss@fairphone.com>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20251204041505.131891-1-vladimir.zapolskiy@linaro.org>
+ <20251204041505.131891-2-vladimir.zapolskiy@linaro.org>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Content-Language: en-US
+In-Reply-To: <20251204041505.131891-2-vladimir.zapolskiy@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Tue, 02 Dec 2025 19:37:24 +0000, Alice Ryhl wrote:
-> This patch series adds __rust_helper to every single rust helper. The
-> patches do not depend on each other, so maintainers please go ahead and
-> pick up any patches relevant to your subsystem! Or provide your Acked-by
-> so that Miguel can pick them up.
+On 04/12/2025 04:15, Vladimir Zapolskiy wrote:
+> Add Qualcomm SM8650 CAMSS device tree node to the platform dtsi file,
+> the SM8650 CAMSS IP contains
+> * 6 x CSIPHY,
+> * 3 x CSID, 2 x CSID Lite,
+> * 3 x IFE, 2 x IFE Lite.
 > 
-> These changes were generated by adding __rust_helper and running
-> ClangFormat. Unrelated formatting changes were removed manually.
+> Tested-by: Neil Armstrong <neil.armstrong@linaro.org> # on SM8650-QRD
+> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+> ---
+>   arch/arm64/boot/dts/qcom/sm8650.dtsi | 187 +++++++++++++++++++++++++++
+>   1 file changed, 187 insertions(+)
 > 
-> [...]
-
-Applied to the vfs-6.20.rust branch of the vfs/vfs.git tree.
-Patches in the vfs-6.20.rust branch should appear in linux-next soon.
-
-Please report any outstanding bugs that were missed during review in a
-new review to the original patch series allowing us to drop it.
-
-It's encouraged to provide Acked-bys and Reviewed-bys even though the
-patch has now been applied. If possible patch trailers will be updated.
-
-Note that commit hashes shown below are subject to change due to rebase,
-trailer updates or similar. If in doubt, please check the listed branch.
-
-tree:   https://git.kernel.org/pub/scm/linux/kernel/git/vfs/vfs.git
-branch: vfs-6.20.rust
-
-[18/46] rust: fs: add __rust_helper to helpers
-        https://git.kernel.org/vfs/vfs/c/02c444cc60e5
-[27/46] rust: pid_namespace: add __rust_helper to helpers
-        https://git.kernel.org/vfs/vfs/c/f28a178408e4
-[29/46] rust: poll: add __rust_helper to helpers
-        https://git.kernel.org/vfs/vfs/c/de98ed59d678
+> diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+> index 07ae74851621..06eedd2cd782 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+> @@ -5380,6 +5380,193 @@ cci2_i2c1: i2c-bus@1 {
+>   			};
+>   		};
+>   
+> +		camss: isp@acb6000 {
+> +			compatible = "qcom,sm8650-camss";
+> +
+> +			reg = <0 0x0acb6000 0 0x1000>,
+> +			      <0 0x0acb8000 0 0x1000>,
+> +			      <0 0x0acba000 0 0x1000>,
+> +			      <0 0x0acbc000 0 0x1000>,
+> +			      <0 0x0accb000 0 0x1000>,
+> +			      <0 0x0acd0000 0 0x1000>,
+> +			      <0 0x0ace4000 0 0x2000>,
+> +			      <0 0x0ace6000 0 0x2000>,
+> +			      <0 0x0ace8000 0 0x2000>,
+> +			      <0 0x0acea000 0 0x2000>,
+> +			      <0 0x0acec000 0 0x2000>,
+> +			      <0 0x0acee000 0 0x2000>,
+> +			      <0 0x0ac62000 0 0xf000>,
+> +			      <0 0x0ac71000 0 0xf000>,
+> +			      <0 0x0ac80000 0 0xf000>,
+> +			      <0 0x0accc000 0 0x2000>,
+> +			      <0 0x0acd1000 0 0x2000>;
+> +			reg-names = "csid_wrapper",
+> +				    "csid0",
+> +				    "csid1",
+> +				    "csid2",
+> +				    "csid_lite0",
+> +				    "csid_lite1",
+> +				    "csiphy0",
+> +				    "csiphy1",
+> +				    "csiphy2",
+> +				    "csiphy3",
+> +				    "csiphy4",
+> +				    "csiphy5",
+> +				    "vfe0",
+> +				    "vfe1",
+> +				    "vfe2",
+> +				    "vfe_lite0",
+> +				    "vfe_lite1";
+> +
+> +			clocks = <&camcc CAM_CC_CAMNOC_AXI_RT_CLK>,
+> +				 <&camcc CAM_CC_CPAS_AHB_CLK>,
+> +				 <&camcc CAM_CC_CPAS_FAST_AHB_CLK>,
+> +				 <&camcc CAM_CC_CPAS_IFE_0_CLK>,
+> +				 <&camcc CAM_CC_CPAS_IFE_1_CLK>,
+> +				 <&camcc CAM_CC_CPAS_IFE_2_CLK>,
+> +				 <&camcc CAM_CC_CPAS_IFE_LITE_CLK>,
+> +				 <&camcc CAM_CC_CSID_CLK>,
+> +				 <&camcc CAM_CC_CSIPHY0_CLK>,
+> +				 <&camcc CAM_CC_CSI0PHYTIMER_CLK>,
+> +				 <&camcc CAM_CC_CSI1PHYTIMER_CLK>,
+> +				 <&camcc CAM_CC_CSIPHY1_CLK>,
+> +				 <&camcc CAM_CC_CSI2PHYTIMER_CLK>,
+> +				 <&camcc CAM_CC_CSIPHY2_CLK>,
+> +				 <&camcc CAM_CC_CSI3PHYTIMER_CLK>,
+> +				 <&camcc CAM_CC_CSIPHY3_CLK>,
+> +				 <&camcc CAM_CC_CSI4PHYTIMER_CLK>,
+> +				 <&camcc CAM_CC_CSIPHY4_CLK>,
+> +				 <&camcc CAM_CC_CSI5PHYTIMER_CLK>,
+> +				 <&camcc CAM_CC_CSIPHY5_CLK>,
+> +				 <&camcc CAM_CC_CSID_CSIPHY_RX_CLK>,
+> +				 <&gcc GCC_CAMERA_HF_AXI_CLK>,
+> +				 <&camcc CAM_CC_QDSS_DEBUG_XO_CLK>,
+> +				 <&camcc CAM_CC_IFE_0_CLK>,
+> +				 <&camcc CAM_CC_IFE_0_FAST_AHB_CLK>,
+> +				 <&camcc CAM_CC_IFE_1_CLK>,
+> +				 <&camcc CAM_CC_IFE_1_FAST_AHB_CLK>,
+> +				 <&camcc CAM_CC_IFE_2_CLK>,
+> +				 <&camcc CAM_CC_IFE_2_FAST_AHB_CLK>,
+> +				 <&camcc CAM_CC_IFE_LITE_CLK>,
+> +				 <&camcc CAM_CC_IFE_LITE_AHB_CLK>,
+> +				 <&camcc CAM_CC_IFE_LITE_CPHY_RX_CLK>,
+> +				 <&camcc CAM_CC_IFE_LITE_CSID_CLK>;
+> +			clock-names = "camnoc_axi",
+> +				      "cpas_ahb",
+> +				      "cpas_fast_ahb",
+> +				      "cpas_vfe0",
+> +				      "cpas_vfe1",
+> +				      "cpas_vfe2",
+> +				      "cpas_vfe_lite",
+> +				      "csid",
+> +				      "csiphy0",
+> +				      "csiphy0_timer",
+> +				      "csiphy1",
+> +				      "csiphy1_timer",
+> +				      "csiphy2",
+> +				      "csiphy2_timer",
+> +				      "csiphy3",
+> +				      "csiphy3_timer",
+> +				      "csiphy4",
+> +				      "csiphy4_timer",
+> +				      "csiphy5",
+> +				      "csiphy5_timer",
+> +				      "csiphy_rx",
+> +				      "gcc_axi_hf",
+> +				      "qdss_debug_xo",
+> +				      "vfe0",
+> +				      "vfe0_fast_ahb",
+> +				      "vfe1",
+> +				      "vfe1_fast_ahb",
+> +				      "vfe2",
+> +				      "vfe2_fast_ahb",
+> +				      "vfe_lite",
+> +				      "vfe_lite_ahb",
+> +				      "vfe_lite_cphy_rx",
+> +				      "vfe_lite_csid";
+> +
+> +			interrupts = <GIC_SPI 601 IRQ_TYPE_EDGE_RISING 0>,
+> +				     <GIC_SPI 603 IRQ_TYPE_EDGE_RISING 0>,
+> +				     <GIC_SPI 431 IRQ_TYPE_EDGE_RISING 0>,
+> +				     <GIC_SPI 605 IRQ_TYPE_EDGE_RISING 0>,
+> +				     <GIC_SPI 376 IRQ_TYPE_EDGE_RISING 0>,
+> +				     <GIC_SPI 477 IRQ_TYPE_EDGE_RISING 0>,
+> +				     <GIC_SPI 478 IRQ_TYPE_EDGE_RISING 0>,
+> +				     <GIC_SPI 479 IRQ_TYPE_EDGE_RISING 0>,
+> +				     <GIC_SPI 448 IRQ_TYPE_EDGE_RISING 0>,
+> +				     <GIC_SPI 122 IRQ_TYPE_EDGE_RISING 0>,
+> +				     <GIC_SPI 89 IRQ_TYPE_EDGE_RISING 0>,
+> +				     <GIC_SPI 602 IRQ_TYPE_EDGE_RISING 0>,
+> +				     <GIC_SPI 604 IRQ_TYPE_EDGE_RISING 0>,
+> +				     <GIC_SPI 688 IRQ_TYPE_EDGE_RISING 0>,
+> +				     <GIC_SPI 606 IRQ_TYPE_EDGE_RISING 0>,
+> +				     <GIC_SPI 377 IRQ_TYPE_EDGE_RISING 0>;
+> +			interrupt-names = "csid0",
+> +					  "csid1",
+> +					  "csid2",
+> +					  "csid_lite0",
+> +					  "csid_lite1",
+> +					  "csiphy0",
+> +					  "csiphy1",
+> +					  "csiphy2",
+> +					  "csiphy3",
+> +					  "csiphy4",
+> +					  "csiphy5",
+> +					  "vfe0",
+> +					  "vfe1",
+> +					  "vfe2",
+> +					  "vfe_lite0",
+> +					  "vfe_lite1";
+> +
+> +			interconnects = <&gem_noc MASTER_APPSS_PROC 0
+> +					 &config_noc SLAVE_CAMERA_CFG 0>,
+> +					<&mmss_noc MASTER_CAMNOC_HF 0
+> +					 &mc_virt SLAVE_EBI1 0>;
+> +			interconnect-names = "ahb",
+> +					     "hf_mnoc";
+> +
+> +			iommus = <&apps_smmu 0x800 0x20>,
+> +				 <&apps_smmu 0x18a0 0x40>,
+> +				 <&apps_smmu 0x1860 0x00>;
+> +
+> +			power-domains = <&camcc CAM_CC_IFE_0_GDSC>,
+> +					<&camcc CAM_CC_IFE_1_GDSC>,
+> +					<&camcc CAM_CC_IFE_2_GDSC>,
+> +					<&camcc CAM_CC_TITAN_TOP_GDSC>;
+> +			power-domain-names = "ife0", "ife1", "ife2", "top";
+> +
+> +			status = "disabled";
+> +
+> +			ports {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+> +				port@0 {
+> +					reg = <0>;
+> +				};
+> +
+> +				port@1 {
+> +					reg = <1>;
+> +				};
+> +
+> +				port@2 {
+> +					reg = <2>;
+> +				};
+> +
+> +				port@3 {
+> +					reg = <3>;
+> +				};
+> +
+> +				port@4 {
+> +					reg = <4>;
+> +				};
+> +
+> +				port@5 {
+> +					reg = <5>;
+> +				};
+> +			};
+> +		};
+> +
+>   		camcc: clock-controller@ade0000 {
+>   			compatible = "qcom,sm8650-camcc";
+>   			reg = <0 0x0ade0000 0 0x20000>;
+Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 
