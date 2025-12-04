@@ -1,85 +1,111 @@
-Return-Path: <devicetree+bounces-244162-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244163-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52AAACA20A8
-	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 01:30:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 67B11CA2133
+	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 02:00:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id F3202301E16D
-	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 00:30:02 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 167FE301E5AE
+	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 01:00:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 332B01A0BD0;
-	Thu,  4 Dec 2025 00:30:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E42F71A9FA4;
+	Thu,  4 Dec 2025 01:00:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="doUBzLPz"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="ywEKReCN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DBE519D89E;
-	Thu,  4 Dec 2025 00:30:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42C38142E83;
+	Thu,  4 Dec 2025 01:00:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764808202; cv=none; b=XTle5aVtGrYXtfH+SRcWVhfLVHvF+G/go9myT3SvvaYfhPhb8Oc3b+XAG99rXhg+5ZUXKrStiuZTt8zfzYcWyPPU9wYVgMhoLbATBZ7JHRBSdXT4p9S+S24ZyQAF6jATr8kKw03ySeXbYkVeVAn+pu/Exnkpy6VRY60PXgKg27A=
+	t=1764810026; cv=none; b=FgRw/eniQXS8abKNvBWNHt4x8YMuLJX2Bz98lqqszG5AZStT0FLZc9hNgzdESDYS1NKfVr5zEtno0XTjnZXcNRvu+7HpDlt9OfEfKfGN7xA1FGzXLVwNhQx1LJRSwVsa87su0b3u2k0u0GEyJ8B51DLPqbgutKvQHi/tndlddFA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764808202; c=relaxed/simple;
-	bh=u0fjnXmCWxm5IxgvFvChMpcsqXGVNOXrhsSGvXxtjUw=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=DsT6JGCSkpAVlBQ8Kzt3Dk3LZ0cW1zQi/Vih7KCKKq9jDVdO+ZUBsE1rR+2CvNLLwy6j5jPL7aJ3E5gEI/NXAG33RcO8TPtYVIDALSn/Fx56tB6XVEMVyuwvcD/05fkZNKTGajoWjkdTuSSFOB4CklnjiV5PLpcPRLdpTxTVmYY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=doUBzLPz; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1764808198;
-	bh=vWBsNUAQJIiGx0STKoYuLr8WVpYlwo8t8SdzJPcQFDQ=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date;
-	b=doUBzLPza/HGmbXlMjkGYgJH9J3XGP0tOvNLFlG+2hodaoSzhigj/6guKQWwq5h0K
-	 QGcU9DaIIuGaix4BL40TQpecxf0jLfcNpltp6Oqi5S344wKqq1RTlXE517s0zyTfWo
-	 BQKjnmitUEpkumV4dZmPOPHRomMJmVyBrSTozxK5L+hDnGq0FWvO2TfGy+kSraiPmN
-	 nVJwwU3jeYMMGihBl6l2QkaZ9SrMZJ07I91cPlldkzhz/gyrnWXGu7W/jjwXdLjmnP
-	 mERV0shEXTBP8l8IH7VCmXiHCexozLwRJDmnG3jg1sDrU0zngz/kmW3ERo6B7WHtZK
-	 mTZ5ht8aTUVHw==
-Received: from [127.0.1.1] (unknown [180.150.112.216])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id AAAD0706D2;
-	Thu,  4 Dec 2025 08:29:56 +0800 (AWST)
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
- Marc Olberding <molberding@nvidia.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
- Conor Dooley <conor.dooley@microchip.com>
-In-Reply-To: <20251126-msx1_devicetree-v5-0-e508d13e2dda@nvidia.com>
-References: <20251126-msx1_devicetree-v5-0-e508d13e2dda@nvidia.com>
-Subject: Re: [PATCH v5 0/2] Add device tree for NVIDIA BMC MSX4 CX8
- switchboard
-Message-Id: <176480819607.976941.8757303196020007882.b4-ty@codeconstruct.com.au>
-Date: Thu, 04 Dec 2025 10:59:56 +1030
+	s=arc-20240116; t=1764810026; c=relaxed/simple;
+	bh=bGZk8WqfEg/McbsI3aL0aGdK/lxrVujdq53rnuD2qy0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kw8nPgF6/W4tW0jmWeoCRRIrAYZNIrDru+ncOyQlim871QcUu/V0dSIL1qMeRWFhAdMdtrVRdN9Dp7d5twdk13uVv6ZXYXL+NysR0kubUjFb7yLKkGE5yRUjtpBcHUk+0FsmNNFP25nbtD0U4xjUyIfXwrIm9iY61v3x7/Ub+Xo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=ywEKReCN; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=Oqc4S5MNoJlL1SElB8hnjLgSsglPrGJqJNIMuDSndMI=; b=ywEKReCN2DEzV1HIh7wCnN30AP
+	4nT4ywEfNpDmMOhyYPsu6zFZ4bqHerByz3zuRBA+RUoqXNplp8fC75s64XMSDaDh5658h5Sh8B+kt
+	OJMLqRyPY6CFzkbtJsQP7+EV9tjrTTmzX/84o6jmXfd3UBbsXMMP6hYuu+oS5WP0JuIxMmxSFf1S9
+	fRXCWF+m4Ynnd7B+2vSsjp1jHOnEA/zUuq74ibgPWRJifVKq+/8PFQjsOgPskfNYl1zBl8qZl4TK6
+	fhrgl3EhfURMFJCLSA2/rB5Wbk+qKqka9IHIah2inomF9WKa83sVF12cebANKD+9PiR4etpAsugO6
+	yNsxuMWQ==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:33434)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1vQxhQ-0000000031S-2EdE;
+	Thu, 04 Dec 2025 01:00:00 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1vQxhM-000000000Vy-2NL0;
+	Thu, 04 Dec 2025 00:59:56 +0000
+Date: Thu, 4 Dec 2025 00:59:56 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Daniel Golle <daniel@makrotopia.org>
+Cc: Andrew Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Frank Wunderlich <frankwu@gmx.de>,
+	Avinash Jayaraman <ajayaraman@maxlinear.com>,
+	Bing tao Xu <bxu@maxlinear.com>, Liang Xu <lxu@maxlinear.com>,
+	Juraj Povazanec <jpovazanec@maxlinear.com>,
+	"Fanni (Fang-Yi) Chan" <fchan@maxlinear.com>,
+	"Benny (Ying-Tsan) Weng" <yweng@maxlinear.com>,
+	"Livia M. Rosu" <lrosu@maxlinear.com>,
+	John Crispin <john@phrozen.org>
+Subject: Re: [PATCH RFC net-next 3/3] net: dsa: add basic initial driver for
+ MxL862xx switches
+Message-ID: <aTDdDOCNgSX8PGfu@shell.armlinux.org.uk>
+References: <cover.1764717476.git.daniel@makrotopia.org>
+ <d92766bc84e409e6fafdc5e3505573662dc19d08.1764717476.git.daniel@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <d92766bc84e409e6fafdc5e3505573662dc19d08.1764717476.git.daniel@makrotopia.org>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-On Wed, 26 Nov 2025 16:43:05 -0800, Marc Olberding wrote:
-> Patch 1 Adds the binding for the MSX4 CX8 switchboard
-> Patch 2 Adds the device tree for the MSX4 CX8 switchboard reference implementation.
-> 
-> This is an Aspeed AST2600 based reference implementation for a BMC
-> managing the NVIDIA MGX CX8 switchboard.
-> 
-> Reference to Ast2600 Soc [1].
-> Reference to host architecture [2].
-> 
-> [...]
+On Tue, Dec 02, 2025 at 11:38:05PM +0000, Daniel Golle wrote:
+> +/* Phylink integration */
+> +static void mxl862xx_phylink_get_caps(struct dsa_switch *ds, int port,
+> +				      struct phylink_config *config)
+> +{
+> +	struct mxl862xx_priv *priv = ds->priv;
+> +
+> +	config->mac_capabilities = MAC_ASYM_PAUSE | MAC_SYM_PAUSE | MAC_10 |
+> +				   MAC_100 | MAC_1000 | MAC_2500FD;
+> +
+> +	if (port < priv->hw_info->phy_ports)
+> +		__set_bit(PHY_INTERFACE_MODE_INTERNAL,
+> +			  config->supported_interfaces);
+> +	else
+> +		__set_bit(PHY_INTERFACE_MODE_NA,
+> +			  config->supported_interfaces);
 
-Thanks, I've applied this to the BMC tree.
+What's the purpose of PHY_INTERFACE_MODE_NA here?
 
 -- 
-Andrew Jeffery <andrew@codeconstruct.com.au>
-
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
