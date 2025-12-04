@@ -1,212 +1,258 @@
-Return-Path: <devicetree+bounces-244376-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244328-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D7D2CA4341
-	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 16:17:59 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 691E4CA3CD5
+	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 14:27:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E795E3064BF8
-	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 15:05:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E244C30E22CB
+	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 13:22:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A2282D3731;
-	Thu,  4 Dec 2025 15:05:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EFC7342C8E;
+	Thu,  4 Dec 2025 13:22:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="jktIV0ql";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="OlTIQFC6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CHN02-BJS-obe.outbound.protection.partner.outlook.cn (mail-bjschn02on2099.outbound.protection.partner.outlook.cn [139.219.17.99])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BDC02D0C99;
-	Thu,  4 Dec 2025 15:05:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.17.99
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764860721; cv=fail; b=qwQJ3580W+/UP1OLqBp092FR+2tLoO+Fb+eIhwFpRgPdhT1rPZIZ/5+eAopVnGbnDqvjQFTaVQpgoy3+0GMFZ2MXFT1ZwffE/hyVbYnQgEjtJ/XrdR939MwyXEwTs3X+xE/VJvu0yqRvizFQDTDKQJKAeLaWEsJuWwgpdECnEM4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764860721; c=relaxed/simple;
-	bh=PF+49HlI3kQqiHbLn8cNX2VAUx7gzusgARq3dq01/Bk=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=NqFTd40/t+tSJYgCpbSpjpCjwr1D3jmPQy4hKto/+5BePRwTVc6Q0l4Vq1T90oOBCzkVhY6HF0Nzn8g1vnPXDNRK5KVdL5QpKTprHEd9AjVhTk6JxJdBHtJtrtZED6Yw7OH4ofa1eDAsp33vlZ3WwEYCja2+wkfC4kDyytd4oFw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.17.99
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=starfivetech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
-Received: from ZQ2PR01MB1146.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c550:11::10) by ZQ0PR01MB1142.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c550:1b::11) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9388.11; Thu, 4 Dec
- 2025 14:50:44 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TsJIlV3LFX4YIuBcuIMoj/e2pE3r188zkvw0V0lXpxON+5cHhwUcS25+Xs9V8XSmudkq2ZUaO2wK4/NZbiNa4Pcyg7NfNx/MZifhlkxlXTb8v/NfwUEtgA102qlyJe4iBHgYNAUGU9UvXnroGHEtiL8tAyjBtMDpg6/4hMZDfS7SSdLLqn1E0N93SB5xCGqqOJy9Wg+XESi8A5YqvrVAoBr6G17MRLGT0jRX+guN+DMwnuGQNbox3wskjsLSV3ZBzoJG4v7wskc4aqjcADigIadyIIe8ABNxDJcgDbkZEinYiScyxmwA67XGMmzKga9PCEWg0wWugn9yeWemeYxVLw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=eUZkoO7Bs4QaiscVoESsOSi3d4yEvOR4YrK1LaEQuD8=;
- b=f5rhDKYHOcIVl/HEJ5cJvnHgpmDFxLBzU8ZwPOOlgsZzr4GNcyX3rD9xxNAKi5EDJY1bItN221LfPRuAbcl73gV7iFgkkH0UPE8LilRKjCkGlbrQTsEtdpzR949wkn/H3BpO9tdObClLQf6BnNnBcOHuakZnhenmtUyNCOuYIVEzXjU6TeB5xnvEEBlgGm2mrAPXP1/ehQeufiWrqP3KJvgZkfF5e56AgqhUHEsCFjFmowynfRpAdk+dyVQJwphvpl/mBuJJdFebeI1npClnebYByHAUElDPcs7G+POjt0dgEol2JZah5n1LcL5cigIPBmCwrrr1q6KplJFTRb7/9Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=starfivetech.com; dmarc=pass action=none
- header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
-Received: from ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c550:7::14) by ZQ2PR01MB1146.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c550:11::10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.17; Thu, 4 Dec
- 2025 13:19:53 +0000
-Received: from ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
- ([fe80::2595:ef4d:fae:37d7]) by ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
- ([fe80::2595:ef4d:fae:37d7%4]) with mapi id 15.20.9388.009; Thu, 4 Dec 2025
- 13:19:53 +0000
-From: Hal Feng <hal.feng@starfivetech.com>
-To: Bjorn Helgaas <helgaas@kernel.org>, Kevin Xie <kevin.xie@starfivetech.com>
-CC: Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Palmer Dabbelt
-	<palmer@dabbelt.com>, Paul Walmsley <pjw@kernel.org>, Albert Ou
-	<aou@eecs.berkeley.edu>, "Rafael J . Wysocki" <rafael@kernel.org>, Viresh
- Kumar <viresh.kumar@linaro.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	=?iso-8859-2?Q?Krzysztof_Wilczy=F1ski?= <kwilczynski@kernel.org>, Manivannan
- Sadhasivam <mani@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, Liam
- Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Emil Renner
- Berthing <emil.renner.berthing@canonical.com>, Heinrich Schuchardt
-	<heinrich.schuchardt@canonical.com>, E Shattow <e@freeshell.de>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH v4 1/6] PCI: starfive: Use regulator APIs instead of GPIO
- APIs to enable the 3V3 power supply of PCIe slots
-Thread-Topic: [PATCH v4 1/6] PCI: starfive: Use regulator APIs instead of GPIO
- APIs to enable the 3V3 power supply of PCIe slots
-Thread-Index: AQHcXeD4WDMn2zfogkuoU7yPusoik7UNTRYAgABR2wCAABWUAIAA4d8AgAEvWPA=
-Date: Thu, 4 Dec 2025 13:19:53 +0000
-Message-ID:
- <ZQ2PR01MB1307A6D1E4B93A716EFFDC25E6A62@ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn>
-References:
- <ZQ0PR01MB09816DBC8A88CEC939C8968482D82@ZQ0PR01MB0981.CHNPR01.prod.partner.outlook.cn>
- <20251202163114.GA3075889@bhelgaas>
-In-Reply-To: <20251202163114.GA3075889@bhelgaas>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=starfivetech.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic:
-	ZQ2PR01MB1307:EE_|ZQ2PR01MB1146:EE_|ZQ0PR01MB1142:EE_
-x-ms-office365-filtering-correlation-id: bc961581-2834-4d15-5ad4-08de3337cfaf
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam:
- BCL:0;ARA:13230040|41320700013|1800799024|366016|7416014|38070700021;
-x-microsoft-antispam-message-info:
- XBteslkwDAJjEzkRjSLegtF+yZe08DkiWODSxA92QMFcztQ+2cjW6Vitv3i2+9QBL+RmndgTFs+TyL4exmcBsLm7XLWA9UDXxlV3D4lGgIbpScLdKgk+Dl8f9KVdiXvFhXVGstrY2v2h9wd2nBjIYhigiXKuEJZ0Bs6qE5vz1QBG9/3BzAJw/Xq1Q1tmAQC9776xUzScqAPXGKRBYEDg8m0afcfznBqrKdcDxDR3TUAEcrXHYAh+ICV86MCQoTsxOlKcSNFmO8MI89xRk3QvAcZSRiywY6FhoY4CtNf/sdr0huqmvX3knghmFHLrtC4st0x5Yfblm5kSJipnEJqFImZPcJVIxLy7d19hD5G+iums+6MjhV9QkJ4l5xFbDywHL9Qb/pMFS2BKkdd5i9wkgXVFT/0E5kX9BWIGZIkQ6GC0ExlB4PT2Bfaf4w1ZYAu1ZO2BxOCz34vgNjVTrDm6PN9hGhiISQAlrZbS8R2J1XB0mh6JTW27hHiGOWsbFk7bZ6IiZpfK8mvsOsmDCO+5fZ16QQUj4IElZ9vH3PWbJpKHiP4u1Ed6l5dNfU0ttjMVpyL3xNQcIYUdIMn02kgc7j8JVxPvElrU/gVeJKyaaJM=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230040)(41320700013)(1800799024)(366016)(7416014)(38070700021);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?iso-8859-2?Q?NgQ/M5ArXGFUAgkEWRFB/vsED3+xGkqlpi9Z3kmYuyvRt5NimPixXpIyuU?=
- =?iso-8859-2?Q?iWRvl7KpmUzqizPqSIV25E+/FIhpXDVLsqUXuUDeHBix7Ljh9yWTD5ResT?=
- =?iso-8859-2?Q?T+uVW2UniHwtZgYrjL6caJSvjNJ46oxVRh2LYXx8xiHvzOXhT31k6bvSUR?=
- =?iso-8859-2?Q?r+XVSyOv4b+Hmk4vmgVNYXYrEhhox8/Lhe7PJFmzeW8XOu5h4loXCzGMhr?=
- =?iso-8859-2?Q?kw/hpyHTebvtIrrHodFC5+1gjSOxD2vX5d08jkfXv9RUhs3TjI7dxP/YUE?=
- =?iso-8859-2?Q?x2x8ADB//VyDgUyXNfFH4x5uUaLOuN0gRSE2JZvPLFnx0Y9ruXMFbg4Pag?=
- =?iso-8859-2?Q?ynb2db6pBKetFQpxQESad48m2RxCXy1ERIWzAI2YUpoyAYqdoVk16Hz8bO?=
- =?iso-8859-2?Q?vcGXvfpKCuNHKfTsMNiQ/2Cd1wRLeufUagCjoYFzfa8oRE3xZQDRd5rVK5?=
- =?iso-8859-2?Q?lKiYr+jGATcaeGjxPnYa4KaROmkK7HN/VJKL+qZimvIBjb/WTo7l0ygIdK?=
- =?iso-8859-2?Q?qbtcqu4ci77ROv/Zy3d8/P49kguQNPlaXKZL4CxtZ4oeyWBKO+VHIzjDiG?=
- =?iso-8859-2?Q?fuPBNn8jEcIAfdn/M5/7O1erXpWvTxOwy2wQH1W46sgzk6QvZM7n/5bPoQ?=
- =?iso-8859-2?Q?u+0dfH2E9/70Kg8O9GdLdXjwM0EBFmaa+FFpVfUbXPbalQ71eM6o0d11Rd?=
- =?iso-8859-2?Q?P8C+M1FYCwvBoIvdmm6VnveaC0g35sX/NUA8cBwT7vXarVOTSxZUQaRmdF?=
- =?iso-8859-2?Q?4B2XUBHcV5MBxABj+kKiuRdR1CwZtotCtbMmV5byp991ownR2pld4p4KcB?=
- =?iso-8859-2?Q?0niazg5r6Vvb3xhgnZ3ft9lS3s6eY1Up5/sg3V75nQ/Lc0NNv5bzfZ0sMP?=
- =?iso-8859-2?Q?JSgYI2pwAKnDnShWNqXAGqpCkPNG+EqlNjcPve0VABzb5hNM2Ar38zwFqU?=
- =?iso-8859-2?Q?lT5aDA3ruDWVevvBFU3So5G3a4VOOBrmZ6711Vuv9/w/DKAyo/ZuOEO/1q?=
- =?iso-8859-2?Q?2wHpj63ZXnjkIoiNVafkB/JdgMD9AeGMO+wJo/f6PUvgnmgfwu1nbF6/HX?=
- =?iso-8859-2?Q?eG/ykWeaaCdFWW/lEJGupJ4AdN7T1y3xvu+KHkP//PQ0hDiqJhPCU4J1tu?=
- =?iso-8859-2?Q?4WXyIaaqt5CMHTSR0iyfVS3ClHmtzNfGYsBj0drMfqxx+gv5QXrm1gQQ3e?=
- =?iso-8859-2?Q?9CIiqFkwnzYwi6MD9QSMKYIvRu0Y3sFU1T4s7hekpHyC7vm7gIE95R3C1S?=
- =?iso-8859-2?Q?ogQ2bVHv6QKfTQGlkyUhEoDNcvhmNrhXLT/1wulPjdRxy59zsJ6UFOaXmC?=
- =?iso-8859-2?Q?0VLUaB+vmtf0KwhwxDkRgf/cZk29FuZLjJUZc9sWaEHNuXTM1t+DLhq7BL?=
- =?iso-8859-2?Q?H5gwayWEwHVmkgFWS0K4mnA6I7NOEpCIAXoyvtfD4JzTMTax4++wD+V07q?=
- =?iso-8859-2?Q?ioDQYWPZ06YBA+L9GD2TVfSxWPPKi5IbOI67vFMZHWszXvK1njOHq5MdKn?=
- =?iso-8859-2?Q?aWt3U5sJjfjz4Z3BMvyoKaIKP+zbUz9/ljaUYcl2xtOIb/CE6dAW1ClYcL?=
- =?iso-8859-2?Q?GmZQOGeDkoc8dZlQC9uDTqqbNF2rhU9U7qeRW7dSUqlWnYrSPvouu7AIT6?=
- =?iso-8859-2?Q?tS+1u90qx/DVTGEtHL5uE0kRiMTDOnPZvD?=
-Content-Type: text/plain; charset="iso-8859-2"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86CB7343D9D
+	for <devicetree@vger.kernel.org>; Thu,  4 Dec 2025 13:22:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764854546; cv=none; b=FB4Mlmukge8ADnRaCcBA3WtEbm/d2M9y0uadrDrbBN3pE9IaBo5NxPTb6bhHkXMS6dlLok6Bf5ocLTwTMNsDDhaFphnRtkmuISXeKMSUloUDpUsB7DsuVm1Ms7zNoRBJbHEDPFip82ek9Q4QLQB+5qVsrw8jIf8jExDnpMC/LOk=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764854546; c=relaxed/simple;
+	bh=uOlMr4qsBLKCoyb4NO+v6kph6XJZa/vsIoUACNtE+ZI=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=neLFhRp7UM9vgfb89p0kdNcq38DT8zFtLN6qABVoNGoi7ASAdzu4vb+XSGLfWd3Y6xsPvo23p6oH/lokOM+aShjTygX5vTaa4YpmYyxsvTHu18+O9KSBMY1jLlDuBolBdFx5I55fDxl8L0yx9GzakSYFh5ziL0KpkqWfmLXulrA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=jktIV0ql; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=OlTIQFC6; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5B4AErUX1275616
+	for <devicetree@vger.kernel.org>; Thu, 4 Dec 2025 13:22:20 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=LS/IUkAfEAArbuQs7HfBsR
+	lg6GO13UrdrNS/RdL/NJM=; b=jktIV0qlIFRDH1MWVpwbVRTvremKbbUkOKbRpL
+	UbRqTu82DG4VuLUjPClMG+axccpSuYZ77MTlSVTrkJPu1U1YCFVFe87zwn3DgYPu
+	mtR3vLvL1K659xRC5LXlYUipvFY7+Qr3Ip7E3ItXX5TE5vKDpD/l8AhiBW3JmYan
+	Og+whoCI5GwSK9BnPvBLBig3a1SaYTFcpyNqKLsRXrKMbht0HMVOdnwvTkckxYpG
+	Gz6PX0WzOUyxoF44UH5mAFHUQlyNyjo9bYNRNfXnmEIEYIYoRdUoCb1cIZPyzuYa
+	HYI9cjCW8J0e31mHQQb26ra0eKUCnxKu88aZebgKlwnlPpBw==
+Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com [209.85.216.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4au6uvrvhu-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 04 Dec 2025 13:22:19 +0000 (GMT)
+Received: by mail-pj1-f70.google.com with SMTP id 98e67ed59e1d1-3436e9e3569so1560728a91.2
+        for <devicetree@vger.kernel.org>; Thu, 04 Dec 2025 05:22:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1764854538; x=1765459338; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=LS/IUkAfEAArbuQs7HfBsRlg6GO13UrdrNS/RdL/NJM=;
+        b=OlTIQFC69ItmurRzZeYF/8AMEail3FNNNTMol+2/TBCspvJLTtw07A3ejmA8zni21d
+         E4KNURtAcvRkUfVVcRiX4VQqQkgu/caeqCw5fH6KgD/LH/pqqGyYNXhEIfM29X5Viwwd
+         Ae12zO1qIDnTnYOe2bQQX2/zyb3r1MLUEAs6f5C0q990mm5x4Rhe2W79AmlOKqFQmWTF
+         tlGHzklygCuWK43ZpytcjxiJqj2m9kCO5Saesaf+fv32H3cEFS3l+Ma/vBvftG7OG3jm
+         5TfjBlYSmEEMCTYwN645I++U50IGtviaZ8AaXruP5Kh9h1imDpkbkoAeFEs/xuurQrh/
+         ex5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764854538; x=1765459338;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=LS/IUkAfEAArbuQs7HfBsRlg6GO13UrdrNS/RdL/NJM=;
+        b=DieMJf6nYZDUKBiwOYorSZnzcDP7T6tNOxCYOGrTNWKtm7cT42V2NtRp8emEBWRHY9
+         yv/DAhLWSgX/qqu+qN9d6u1zFNQTP+FuQXOeK8bt2c1eRy47mN8ZlGYE3cS0hFQsmflR
+         iKrMpv55dxO15AJe2vuUixosO4hAa0MoHt1fI8lRLeIS5Ohb8ntpvhNgUDu6S516XCXV
+         hmdFnJD5HMCKJctLkYXSwR2GBVqmov8mFvWV5czxRPlSioINB07B3PMPEqIgv3cJRbW4
+         ttblewISGw0cSyzg/1kR5rHXKlY2ZzY1tYjClv9ktnWYdwuFNNYCfVLgwdTcZEEn+GUV
+         voeA==
+X-Forwarded-Encrypted: i=1; AJvYcCV7wIaxIO4FB5OV1UtqiPX+t8cyt8+LUpSR6OuXFeKsb/o/HznSJXu5YR1b0JBR/x1MYwwOx/xpcve/@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx6zhJ3afxhxS5S2TKRiuRjqVDsUOqOQfx+bKHtVAceiUxRFPGh
+	4IWXyn5+iHa8yMrQTGr0KUlgAGJbZsy80vKRu6Fp2vwfvAY6KDKBNjk4vd1DgLDDpUuRg69BV6s
+	HC8zCilR5vJiJ9QrDekczval7kkYeClRsSGIXGKvKrLU/bMbu7Jqg8iAMgpC4dTZ1
+X-Gm-Gg: ASbGncswNGVf3OMow+ZL4LGSlQ8lGEb9b9X9JARjhJIxJwBfDGKvcQAqEuxmHd8HRU+
+	jopdVtR6wps11RTR1opzRc5R/MrlQWJtMgTuiy+8q+gprTPI7mARaeFozr7HZlAKnk6tZNAt5Gc
+	MBtxBeLZ/C/xro9X3hwdLUTNhRwDVdrVZ1CFyEylDA+LD5P0B7L18SApUkBtFadoV5ZTssOCwkN
+	nKNlN5NztHJzN0FDoF+8R/s8QriK5yvcs1o0e2grs73y9XUWI34cChdDp4/YAMkTWvU4IDQYJ9y
+	9ZJDV35nb62hzGYwCkv6apnzYrNcs6R1Qz3fkJoaHgNdauxs6rq1EgTFShzqop4QF0eyE3I/Zjc
+	JJtHYDL83uSWWtvJQ/eH4BqyZwu8Hr9D01Q==
+X-Received: by 2002:a17:90b:4d92:b0:32e:38b0:15f4 with SMTP id 98e67ed59e1d1-349125be8ecmr7920376a91.7.1764854538311;
+        Thu, 04 Dec 2025 05:22:18 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGW1rjgANzwkBwo6WdaWtJrjXlAYMk6lSCrHRo9Z0EfqefF0ytJitWZ54wk59aBQ7IpfswFjA==
+X-Received: by 2002:a17:90b:4d92:b0:32e:38b0:15f4 with SMTP id 98e67ed59e1d1-349125be8ecmr7920342a91.7.1764854537771;
+        Thu, 04 Dec 2025 05:22:17 -0800 (PST)
+Received: from hu-akhilpo-hyd.qualcomm.com ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3494f38a18csm1914740a91.1.2025.12.04.05.22.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 04 Dec 2025 05:22:17 -0800 (PST)
+From: Akhil P Oommen <akhilpo@oss.qualcomm.com>
+Subject: [PATCH v4 0/8] Support for Adreno 612 GPU - Respin
+Date: Thu, 04 Dec 2025 18:51:52 +0530
+Message-Id: <20251204-qcs615-spin-2-v4-0-f5a00c5b663f@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
-X-MS-Exchange-CrossTenant-Network-Message-Id: bc961581-2834-4d15-5ad4-08de3337cfaf
-X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Dec 2025 13:19:53.3723
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: cKncWoJwdlm7Tg8NGUHcg2R9SIFkYQTua6JV5pdgxdhmnL0FEbEU4dpSypTNPGa08EyoGqDLZcOO+h+UGzEQe3CYCN7B7Mdqn7K9F7jS2rE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZQ2PR01MB1146
-X-OriginatorOrg: starfivetech.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAPCKMWkC/3XOy27CMBAF0F+JvK7R2Nh5sOp/VCz8GIOlkhBPi
+ EAo/44xSK2g3Yx1Ld0zc2WEKSKxTXVlCedIcehzUB8Vc3vT75BHnzOTILUAofnoqM4PHWPPJUe
+ vtAWPtutaljvHhCGei/e1feSE4ymz0+OTWUPI3XA4xGlT9XieeKElKHYv7CNNQ7qUe2ZRGs/Vz
+ cvqWXDgYI1RKrTQgf4ciFbjyXzf9VUeBZzlDyLgDZEZMdI3TgUbaqz/Qda/EClfkXVGuqC8cm0
+ TtPB/IMuy3ABcJFCVbAEAAA==
+X-Change-ID: 20251015-qcs615-spin-2-ed45b0deb998
+To: Rob Clark <robin.clark@oss.qualcomm.com>, Sean Paul <sean@poorly.run>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Dmitry Baryshkov <lumag@kernel.org>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Jessica Zhang <jesszhan0024@gmail.com>,
+        Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
+Cc: Dan Carpenter <dan.carpenter@linaro.org>, linux-arm-msm@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Jie Zhang <jie.zhang@oss.qualcomm.com>,
+        Akhil P Oommen <akhilpo@oss.qualcomm.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Qingqing Zhou <quic_qqzhou@quicinc.com>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Jie Zhang <quic_jiezh@quicinc.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1764854530; l=4216;
+ i=akhilpo@oss.qualcomm.com; s=20240726; h=from:subject:message-id;
+ bh=uOlMr4qsBLKCoyb4NO+v6kph6XJZa/vsIoUACNtE+ZI=;
+ b=YI+hPZcQUl69FvrgLdsNeM8FfPYO0EXDqe89Kr4cv4yvEbR+t3dlQCJGWaKVbfPFYypyJiPVh
+ KmzCc1GJUYeCKGQoyBiZ7kM82bOlamN8C3rEapdTy9P7gf8HTDNqy2K
+X-Developer-Key: i=akhilpo@oss.qualcomm.com; a=ed25519;
+ pk=lmVtttSHmAUYFnJsQHX80IIRmYmXA4+CzpGcWOOsfKA=
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjA0MDEwOCBTYWx0ZWRfX3hpNtiMoWQj6
+ YfeTsul3/gfAWHBHC6X2O4ovWpeIyCiovz3xjREtzyKuk6jB0unEI53B8SE2tCic/ngTM0ZOZd0
+ 4C0LNYTqcvpzdyrOLzdy6WG3jn9K9PuZwxmOEUeGJaehpm6GIkppSUe1C05L0dntIkbh1YIKq+L
+ Q8I6chTs1lyOAKg6qmrFWofuUNTR15hyGd5LNBESpC1fIala8/xmUXsIYqwAlwtTv/iZU31uMHm
+ iBxrkOpDmDJAUc5nbdgzbJ3wdtOhXcryT/7pjw7Yz0ZEAVMdhay4InC3klXegPWOONqmmJn67pC
+ 03CYFxOYgTpTeHKW+BqktDW4jhlVa7cM5llwdX4Ty6VOTXEHngRGh8v+3jJiZoljaDq7bmCQljq
+ 6ocQQm7r95qA8QH7LeuwwPT/+6JbWQ==
+X-Authority-Analysis: v=2.4 cv=d7n4CBjE c=1 sm=1 tr=0 ts=69318b0b cx=c_pps
+ a=0uOsjrqzRL749jD1oC5vDA==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8
+ a=nlYtN0jpdUqXxw8MpYQA:9 a=QEXdDO2ut3YA:10 a=mQ_c8vxmzFEMiUWkPHU9:22
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: Oc_PinABShuC6cO82FMPY6UqmrwcWLO0
+X-Proofpoint-GUID: Oc_PinABShuC6cO82FMPY6UqmrwcWLO0
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-04_03,2025-12-03_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 suspectscore=0 adultscore=0 lowpriorityscore=0 priorityscore=1501
+ phishscore=0 clxscore=1015 impostorscore=0 malwarescore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512040108
 
-> On 03.12.25 00:31, Bjorn Helgaas wrote:
-> On Tue, Dec 02, 2025 at 03:02:48AM +0000, Kevin Xie wrote:
-> > ...
->=20
-> > > > On Tue, Nov 25, 2025 at 03:55:59PM +0800, Hal Feng wrote:
-> > > > > The "enable-gpio" property is not documented in the dt-bindings
-> > > > > and using GPIO APIs is not a standard method to enable or
-> > > > > disable PCIe slot power, so use regulator APIs to replace them.
-> > > >
-> > > > I can't tell from this whether existing DTs will continue to work
-> > > > after this change.  It looks like previously we looked for an
-> > > > "enable-gpios" or "enable-gpio" property and now we'll look for a
-> > > > "vpcie3v3-supply" regulator property.
-> > > >
-> > > > I don't see "enable-gpios" or "enable-gpio" mentioned in any of
-> > > > the DT patches in this series, so maybe that property was never
-> > > > actually used before, and the code for pcie->power_gpio was actuall=
-y
-> dead?
-> > >
-> > > pcie->power_gpio is used in the our JH7110 EVB, it share the same
-> > > pcie pcie->controller driver with VisionFive2 board. Although
-> > > JH7110 was not upstreamed, we still hope to maintain the
-> > > compatibility of the driver.
-> >
-> > Sorry, I missed the background information regarding replacing
-> > enable_gpio with regulator APIs. I agree with this change.
->=20
-> OK, thanks.  I would still like to have something added to the commit log=
- to the
-> effect that this change will break any DTs that use "enable-gpios" or "en=
-able-
-> gpio", but that's not a problem because such DTs were only internal to St=
-arFive
-> and we are OK with updating them and dealing with the fact that the DT is=
- rev-
-> locked with the kernel version (old kernels would require an old DT with
-> "enable-gpio" and new kernels require an updated DT with "vpcie3v3-
-> supply").  Or DTs using "enable-gpio" never existed in the first place.
->=20
-> Or whatever.  I just want the commit log to be clear that "enable-gpio" i=
-s no
-> longer supported and "vpcie3v3-supply" must be included instead, AND that
-> you are aware of the breaking nature of the change and here is why that's=
- not
-> an issue.
+This is a respin of an old series [1] that aimed to add support for
+Adreno 612 GPU found in SM6150/QCS615 chipsets. In this version, we
+have consolidated the previously separate series for DT and driver
+support, along with some significant rework.
 
-OK. I send another patch [1] today and add the some description to the comm=
-it
-log accordingly. Please check it. Thanks for your review.
+Regarding A612 GPU, it falls under ADRENO_6XX_GEN1 family and is a cut
+down version of A615 GPU. A612 has a new IP called Reduced Graphics
+Management Unit or RGMU, a small state machine which helps to toggle
+GX GDSC (connected to CX rail) to implement the IFPC feature. Unlike a
+full-fledged GMU, the RGMU does not support features such as clock
+control, resource voting via RPMh, HFI etc. Therefore, we require linux
+clock driver support similar to gmu-wrapper implementations to control
+gpu core clock and GX GDSC.
 
-[1] https://lore.kernel.org/all/20251204064956.118747-1-hal.feng@starfivete=
-ch.com/
+In this series, the description of RGMU hardware in devicetree is more
+complete than in previous version. However, the RGMU core is not
+initialized from the driver as there is currently no need for it. We do
+perform a dummy load of RGMU firmware (now available in linux-firmware)
+to ensure that enabling RGMU core in the future won't break backward
+compatibility for users.
+
+Due to significant changes compared to the old series, all R-b tags have
+been dropped. Please review with fresh eyes.
+
+Last 3 patches are for Bjorn and the rest are for Rob Clark for pick up.
+
+[1] Driver: https://lore.kernel.org/lkml/20241213-a612-gpu-support-v3-1-0e9b25570a69@quicinc.com/
+    Devicetree: https://lore.kernel.org/lkml/fu4rayftf3i4arf6l6bzqyzsctomglhpiniljkeuj74ftvzlpo@vklca2giwjlw/
+
+Signed-off-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
+---
+Changes in v4:
+- Rebased on top of next-20251204 tag
+- Added a new patch to simplify gpu dt schema (Krzysztof)
+- Added a new patch for GPU cooling support (Gaurav)
+- Updated the gpu/gmu register range in DT to be more accurate
+- Remove 290Mhz corner for GPU as that is not present in downstream
+- Link to v3: https://lore.kernel.org/r/20251122-qcs615-spin-2-v3-0-9f4d4c87f51d@oss.qualcomm.com
+
+Changes in v3:
+- Rebased on top of next-20251121 tag
+- Drop a612 driver support patch as it got picked up
+- Rename rgmu.yaml -> qcom,adreno-rgmu.yaml (Krzysztof)
+- Remove reg-names property for rgmu node (Krzysztof)
+- Use 'gmu' instead of 'rgmu' as node name (Krzysztof)
+- Describe cx_mem and cx_dgc register ranges (Krzysztof)
+- A new patch to retrieve gmu core reg resource by id
+- Link to v2: https://lore.kernel.org/r/20251107-qcs615-spin-2-v2-0-a2d7c4fbf6e6@oss.qualcomm.com
+
+Changes in v2:
+- Rebased on next-20251105
+- Fix hwcg configuration (Dan)
+- Reuse a few gmu-wrapper routines (Konrad)
+- Split out rgmu dt schema (Krzysztof/Dmitry)
+- Fixes for GPU dt binding doc (Krzysztof)
+- Removed VDD_CX from rgmu dt node. Will post a separate series to
+address the gpucc changes (Konrad)
+- Fix the reg range size for adreno smmu node and reorder the properties (Konrad)
+- Link to v1: https://lore.kernel.org/r/20251017-qcs615-spin-2-v1-0-0baa44f80905@oss.qualcomm.com
+
+---
+Akhil P Oommen (3):
+      drm/msm/a6xx: Retrieve gmu core range by index
+      dt-bindings: display/msm: gpu: Simplify conditional schema logic
+      dt-bindings: display/msm: gpu: Document A612 GPU
+
+Gaurav Kohli (1):
+      arm64: dts: qcom: talos: Add GPU cooling
+
+Jie Zhang (3):
+      dt-bindings: display/msm/rgmu: Document A612 RGMU
+      arm64: dts: qcom: talos: Add gpu and rgmu nodes
+      arm64: dts: qcom: qcs615-ride: Enable Adreno 612 GPU
+
+Qingqing Zhou (1):
+      arm64: dts: qcom: talos: add the GPU SMMU node
+
+ .../devicetree/bindings/display/msm/gpu.yaml       |  86 +++++++++---
+ .../bindings/display/msm/qcom,adreno-rgmu.yaml     | 126 +++++++++++++++++
+ MAINTAINERS                                        |   1 +
+ arch/arm64/boot/dts/qcom/qcs615-ride.dts           |   8 ++
+ arch/arm64/boot/dts/qcom/talos.dtsi                | 149 +++++++++++++++++++++
+ drivers/gpu/drm/msm/adreno/a6xx_gmu.c              |  14 +-
+ 6 files changed, 354 insertions(+), 30 deletions(-)
+---
+base-commit: 2bd3691a4219f5610afefaef1016c2ff95ca2ec9
+change-id: 20251015-qcs615-spin-2-ed45b0deb998
 
 Best regards,
-Hal
+-- 
+Akhil P Oommen <akhilpo@oss.qualcomm.com>
 
->=20
-> We can't make kernel changes that require end users to upgrade the DT whe=
-n
-> they update the kernel or downgrade the DT when rolling back.
->=20
-> Bjorn
 
