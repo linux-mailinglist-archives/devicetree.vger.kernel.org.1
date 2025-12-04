@@ -1,317 +1,224 @@
-Return-Path: <devicetree+bounces-244488-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244489-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25F8FCA573F
-	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 22:24:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F8EBCA56AC
+	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 22:09:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4F7D431AC38E
-	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 21:22:03 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6DFCB3172A34
+	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 21:06:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3164A3563EF;
-	Thu,  4 Dec 2025 21:03:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36525357734;
+	Thu,  4 Dec 2025 21:06:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bsdio.com header.i=@bsdio.com header.b="vqA3Apic";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="xSSmmQPu"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="djqu+2Vm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout-b2-smtp.messagingengine.com (fout-b2-smtp.messagingengine.com [202.12.124.145])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55A4E3563DE;
-	Thu,  4 Dec 2025 21:03:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.145
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87E49357727
+	for <devicetree@vger.kernel.org>; Thu,  4 Dec 2025 21:06:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764882191; cv=none; b=r9HmMuHFSlJaLU04xkU4oTC0HwkAQCWhtLE0d2RxqETLC4R7X3Whp+6YifbnyknpK1nsPsWRSdIl1fPGXm7MQfBgNKHRKL5ybvftiCynhSMLuuaNtaG8C6WV4WXg4xJVnyF6mq7tvBhdAqOYZeCWu7xHUMsn6Yw9TfF9HpGR9ME=
+	t=1764882404; cv=none; b=eBeDvP/Iew/Y68ch6sNwzytxFg1+mRgyMrhj6CRoYxlTs37okQuOxsFGDbcxMw1GgVpPsZhhdTCrsERRXJkphobVklVyYUt00nK/tgIC9lEAvl352/m4ONo9tn15UvNtDMF1atBawDAebdGpXo7vSKq8GJh8SmTIuAYMoY9cz6o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764882191; c=relaxed/simple;
-	bh=OuTri008ITxnQrm+fjT4tpwQWpTtUQmZUXfz6eakOkI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ZOU41Xuqh2Jpe6k9Ew4DIntSohtl3CrkjT8TA6EUm5j5OR2Bc6YB5UN4q4FdYfJbAjMQBZvV564jDwmApIxhTvrRSVCA+F/n02+BcdcU6OYaC6tzpE04qYQZBQs/09M51aoYdU53jyuBrdmS1OlLn0OIX7Xp/rF4DOE3EGkQAVA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bsdio.com; spf=fail smtp.mailfrom=bsdio.com; dkim=pass (2048-bit key) header.d=bsdio.com header.i=@bsdio.com header.b=vqA3Apic; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=xSSmmQPu; arc=none smtp.client-ip=202.12.124.145
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bsdio.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=bsdio.com
-Received: from phl-compute-04.internal (phl-compute-04.internal [10.202.2.44])
-	by mailfout.stl.internal (Postfix) with ESMTP id 52F111D00106;
-	Thu,  4 Dec 2025 16:03:08 -0500 (EST)
-Received: from phl-mailfrontend-01 ([10.202.2.162])
-  by phl-compute-04.internal (MEProxy); Thu, 04 Dec 2025 16:03:08 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bsdio.com; h=cc
-	:cc:content-transfer-encoding:content-type:date:date:from:from
-	:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to; s=fm2; t=1764882188; x=
-	1764968588; bh=l1N6mpnuv4jT9RxjXTIrytWINoWTUYc1DLbaGh34myE=; b=v
-	qA3ApicXD3sptxLCPbApJNIKXbl0djgjb5oHYWXDg1QaOa9gAhCM9/8c/mLy6F2i
-	e/O1aFkLqZ+BxCyQwhS2xBGaouLBktBTAfidC1J6WZs/XzGPBZJIiqPoP8cNdHWV
-	iqs3Wbh7dXBS/J9r1313i8gUNYkKMZNArScHA1awR1EKT1bRuM9aHQj4zMqLJd/9
-	TPFCBDO7nCVF3DuLIlnPx+F5uosmd+AgVgMYF2HTqMcc+luJl9tlFvpBnbIxWRHI
-	+lwhwrUbhPAUZg1ZSb8L39axX7/4dJPe8YHYqHUdCUpqq8xnax2kYsGKxI9yua2a
-	+3NtaTTp/qwBxCt9mRasw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:date:date:feedback-id:feedback-id:from:from
-	:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to:x-me-proxy:x-me-sender
-	:x-me-sender:x-sasl-enc; s=fm1; t=1764882188; x=1764968588; bh=l
-	1N6mpnuv4jT9RxjXTIrytWINoWTUYc1DLbaGh34myE=; b=xSSmmQPu5TsLWiffQ
-	daUJbtEUGdwxthMzdYoVsm5SnRF79SqB7MXZBq7FaGrYJTL5iOpr22ijF8o59UwD
-	FvJpPd0FgLlfBVCf7V6pI9oCXyXU3ZFdrpigRd8m1Smvh0aMo+/NhMRFyhCG+n/p
-	+MHFrG7TARxztvS6nWKPlXD6FiJ34C93ruZsXtWIY/yIo2lrIxjMo7YrE0i6P2MG
-	JkqPp+GheAWeVvB5VVpAVwD4hDDuVEwIjq7mPGwrEpHxnl2MpTJcmx8CId7Vp/VN
-	ID0/oSgMsY8lTeQu0j2xBPRgo6PEMeL3kEFQkdZkRb6uVu5cnxIOmJ3//5syyflh
-	JeVCQ==
-X-ME-Sender: <xms:C_cxaT-uT95DfiBUP_3ItJN3U5SIAOHN2U2FrtJyITQqREDcuy9Smw>
-    <xme:C_cxaX2cjK1-OhyiLPde76zHUfuYKi7JqHeKns43d72eRwsKeS70EUvNSFlxt0Ifw
-    -9ZOZXeI_Z-RRp200wU7Dp9aaAI-8XCbhFb4s092k1i0fegwYqyYrQ>
-X-ME-Received: <xmr:C_cxaQj9S6xKpPnOJ8Pi1eehOWIzj8XTJ4SUaLAA6UkA_K1apYqu1kcYFpgC03r_KDpKTYpXKmij77BM>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgdeiiedtucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceurghi
-    lhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurh
-    ephffvvefufffkofgjfhgggfestdekredtredttdenucfhrhhomheptfgvsggvtggtrgcu
-    vehrrghnuceorhgvsggvtggtrgessghsughiohdrtghomheqnecuggftrfgrthhtvghrnh
-    epheelhfetiedvvdffgfdttdduudejiefhgfefjeevffeuhffgudehheegjeevtdejnecu
-    ffhomhgrihhnpeguvghvihgtvghtrhgvvgdrohhrghenucevlhhushhtvghrufhiiigvpe
-    dtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehrvggsvggttggrsegsshguihhordgtohhm
-    pdhnsggprhgtphhtthhopeduuddpmhhouggvpehsmhhtphhouhhtpdhrtghpthhtoheprh
-    hosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgv
-    lhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtg
-    hpthhtohepjhhovghlsehjmhhsrdhiugdrrghupdhrtghpthhtoheprghnughrvgifsegt
-    ohguvggtohhnshhtrhhutghtrdgtohhmrdgruhdprhgtphhtthhopeguvghvihgtvghtrh
-    gvvgesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdgrrhhm
-    qdhkvghrnhgvlheslhhishhtshdrihhnfhhrrgguvggrugdrohhrghdprhgtphhtthhope
-    hlihhnuhigqdgrshhpvggvugeslhhishhtshdrohiilhgrsghsrdhorhhgpdhrtghpthht
-    oheplhhinhhugidqkhgvrhhnvghlsehvghgvrhdrkhgvrhhnvghlrdhorhhg
-X-ME-Proxy: <xmx:C_cxafZqeic20YghDPmoQbDUL_gZopWebpGiUsIP404RpNxJRRcGOQ>
-    <xmx:C_cxaUWw8DaQOCYeoGwrUvmWoal-NobPuTykg7yfzqMY-gyiRcSKVQ>
-    <xmx:C_cxafGq4l2BJO23umWWhXzXWNtfv7LxZbTaiU1o3GmHec7SdxJeGQ>
-    <xmx:C_cxaWZZLcwkzX64e6z0kKSi9_eDerJ0lfNDaUYKaECMAfJh2n9P2Q>
-    <xmx:DPcxaZPzVRajnjvf9d3z1vKj-lZEH-jUjwYoHIDB1-uAuYKdwnEne9SW>
-Feedback-ID: i5b994698:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 4 Dec 2025 16:03:06 -0500 (EST)
-From: Rebecca Cran <rebecca@bsdio.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org
-Cc: Rebecca Cran <rebecca@bsdio.com>,
-	Billy Tsai <billy_tsai@aspeedtech.com>
-Subject: [PATCH v3 3/3] dt-bindings: hwmon: (aspeed,g5-pwm-tacho) Move info from txt to yaml
-Date: Thu,  4 Dec 2025 14:02:36 -0700
-Message-ID: <20251204210238.40742-4-rebecca@bsdio.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20251204210238.40742-1-rebecca@bsdio.com>
-References: <20251204210238.40742-1-rebecca@bsdio.com>
+	s=arc-20240116; t=1764882404; c=relaxed/simple;
+	bh=4gvVbQE7D0PuHRtcnXsG0f97rNAS/tXWI1ikykCyHu8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=V9bGvjJx2dCqdHHRPADgIgWPaCm2ZjyUJPYUfkVyrPfaT4FJIdolbt5Cn4/Ma4tVQz2rG15qBLcba8proGB0U3oAibJ0V1mf4hQlJGzo9SrcQRpN2T2ly4BVRAw7H0hTRBFkCfNF7k7L+wXqz91yLwCJyZgw+n20KdreGXfWcFw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=djqu+2Vm; arc=none smtp.client-ip=209.85.210.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-7bf0ad0cb87so1627069b3a.2
+        for <devicetree@vger.kernel.org>; Thu, 04 Dec 2025 13:06:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1764882402; x=1765487202; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=cEywpXmQqNwB/TS6CB+654YlLSBuSDJ8XZY6ihxAXlI=;
+        b=djqu+2VmnFSX1eNkLgMcZSC76MyQqZJwykltkAiEH9TEDyBHxUj+wsPz+0imNjTNFh
+         tArfYbDVmjQ0qhybhEQ/SvjVa0g/j+CO2nIOiMU+FM2a/a/51FRvgonQvVNoKxI2XB5b
+         mjnfZeXwZLpra7NH/B9wtV2kPmMPVPvnhL6+bXNHGYUxGtsphW+Y6soTDEd13ESvp3+D
+         ewgdb0+iGv5wQZwyWbRHD5Ninq8frMBqqGE8xM6Jki7K2SouOq5nTrzMTMYZJZUI7lh9
+         56yvp1OJbSw6olQLmwzqwax6W94vovgJUIXIO3amNxs/L0VjFypqsbQy/FgLh5WRTHCT
+         rjAA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764882402; x=1765487202;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=cEywpXmQqNwB/TS6CB+654YlLSBuSDJ8XZY6ihxAXlI=;
+        b=dr15QvqfH9VtqFOs2nWeMHjWaEFU46Hb4VAN6doX3ccRI/kFgB+kYz3zJdotEWx9Z1
+         hmhPeg/cEuQSG16I+ai7r6SZNtYPS71F03ED+sd1cJ2k+PaTGuMq4sp5ztf4HwLc3tBe
+         sL3REIL2FxBiMnCQtbldygd8pX2DatD5rvRd9rmraylLeb9Dv2L+do8w3iDhMvYIC86h
+         TBvlp8RpFh3TrxjCX7Ma6QbvHdTWB0BIaOfyQEvuTZZ/nQiEt+KZJ+KZBScVG0cFPqgu
+         tpwJpLP0zSkIjet+jVz8weQemXxxfWgJ9KbJki9sIyJV2u5LqdotByrih5VTD75dUYzI
+         PkGA==
+X-Forwarded-Encrypted: i=1; AJvYcCUJcv8wDCPHhiEs/ZggfROh1drpyr3UhqQB/kLgGzXZ7/1xV/wgQstNeWsNmSknKyTXdcJ/6dDmwAyy@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyhl3rd5/frByzqD3mERIkUunsCizC+5m2yYf4SSGUEGJ5mjRNV
+	GfgrrTXtUr42h434GQ53ZQ29ZDSmLDzomYPj8aHklnPLFjQcMXEHZZzvGYX5v2QI9g==
+X-Gm-Gg: ASbGnctbA+D16qSP9JBuzx8qXcxs5pgRm7WZHNCsQSqxaxuJGoT/CcWFVRJxN+l1c1X
+	D3xeFRoz+T+GQZNYhWXcKkt20Mm1dV2oo87guFeggEZDZ3871QvkyjFAA5hBVo3YSbSon7m7XKo
+	ZpStuU6lN9fNCD/HUI5yVgDyrd6vuK/+drwyAR/sGSWJs7nvzjaV5sEJ6JgXZQYqcRbaGsKd7tM
+	jCsy6JQm/H2+GEkXXImN1pu2toLDQzxL39/sOQINTKJ9EbIBub3G3590JOULQujw9mPFWyJdNkq
+	5XUIfoRXFgWdInhujxJRYHaMFytGyvsWKdCAF02GuVwE/TjFDoI85xC0rFJz3Z2jHXIoUDNzkGJ
+	z4cOzKWVjfFixXQhFVW3msX9h0HKSvDlPLBy7HMAj1JuH7kkImHWgwgJQOyPi+7TpPQELLJ6x4K
+	MbL0Xg7BzfB1dFS5R5CNRC2z9jbuRCDlt2wk6WBazRbj/HKGryDBzRnM45pXgmqwz3gIxDvdnQO
+	1msxkfvLbDHqw==
+X-Google-Smtp-Source: AGHT+IHnjdg9J5Dv3DjKTAgPlUY1x6NH1Rmw5oo9i+e3bENd1vNzyqMp5aLbF57/RFRsp96OPvtSGQ==
+X-Received: by 2002:a05:6a20:12ca:b0:347:9ae1:cffb with SMTP id adf61e73a8af0-363f5db7158mr9697293637.24.1764882401346;
+        Thu, 04 Dec 2025 13:06:41 -0800 (PST)
+Received: from ?IPV6:2a00:79e0:2e7c:8:d11d:bcc2:2743:bf88? ([2a00:79e0:2e7c:8:d11d:bcc2:2743:bf88])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-bf817c3e6c3sm1857768a12.17.2025.12.04.13.06.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 04 Dec 2025 13:06:40 -0800 (PST)
+Message-ID: <19e501f4-da1b-4a91-8681-da78922bc302@google.com>
+Date: Thu, 4 Dec 2025 13:06:39 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/6] dt-bindings: power: supply: Add Maxim MAX77759
+ charger
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, =?UTF-8?Q?Andr=C3=A9_Draszik?=
+ <andre.draszik@linaro.org>, Lee Jones <lee@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Badhri Jagan Sridharan <badhri@google.com>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Peter Griffin <peter.griffin@linaro.org>,
+ Tudor Ambarus <tudor.ambarus@linaro.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, RD Babiera <rdbabiera@google.com>,
+ Kyle Tso <kyletso@google.com>
+References: <20251123-max77759-charger-v1-0-6b2e4b8f7f54@google.com>
+ <20251123-max77759-charger-v1-1-6b2e4b8f7f54@google.com>
+ <d4455f4b-2a0f-4bc0-b897-14f2e27af3ea@kernel.org>
+ <c9b059f8-9219-4219-95c8-23a3733fea58@google.com>
+ <20251125-amorphous-bobcat-of-whirlwind-afdab1@kuoka>
+ <7ad91325-e881-461d-b39e-6ff15d98b3c5@google.com>
+ <076777c3-b238-4d1d-a11b-602027348ee4@kernel.org>
+Content-Language: en-US
+From: Amit Sunil Dhamne <amitsd@google.com>
+In-Reply-To: <076777c3-b238-4d1d-a11b-602027348ee4@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Move the documentation for the aspeed,ast2400-pwm-tacho and
-aspeed,ast2500-pwm-tacho devices from a text file to yaml file.
 
-This allows for dts files containing these devices to be validated.
+On 12/2/25 5:00 AM, Krzysztof Kozlowski wrote:
+> On 26/11/2025 00:48, Amit Sunil Dhamne wrote:
+>> On 11/25/25 1:56 AM, Krzysztof Kozlowski wrote:
+>>> On Sun, Nov 23, 2025 at 06:34:05PM -0800, Amit Sunil Dhamne wrote:
+>>>> Hi Krzysztof,
+>>>>
+>>>> On 11/23/25 1:28 AM, Krzysztof Kozlowski wrote:
+>>>>> On 23/11/2025 09:35, Amit Sunil Dhamne via B4 Relay wrote:
+>>>>>> From: Amit Sunil Dhamne <amitsd@google.com>
+>>>>>>
+>>>>>> Add bindings for Maxim max77759 charger device.
+>>>>>>
+>>>>>> Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
+>>>>>> ---
+>>>>>>    .../power/supply/maxim,max77759-charger.yaml       | 36 ++++++++++++++++++++++
+>>>>>>    1 file changed, 36 insertions(+)
+>>>>>>
+>>>>>> diff --git a/Documentation/devicetree/bindings/power/supply/maxim,max77759-charger.yaml b/Documentation/devicetree/bindings/power/supply/maxim,max77759-charger.yaml
+>>>>>> new file mode 100644
+>>>>>> index 000000000000..71f866419774
+>>>>>> --- /dev/null
+>>>>>> +++ b/Documentation/devicetree/bindings/power/supply/maxim,max77759-charger.yaml
+>>>>>> @@ -0,0 +1,36 @@
+>>>>>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>>>>>> +%YAML 1.2
+>>>>>> +---
+>>>>>> +$id: http://devicetree.org/schemas/power/supply/maxim,max77759-charger.yaml#
+>>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>>>> +
+>>>>>> +title: Maxim Integrated MAX77759 Battery charger
+>>>>>> +
+>>>>>> +maintainers:
+>>>>>> +  - Amit Sunil Dhamne <amitsd@google.com>
+>>>>>> +
+>>>>>> +description: |
+>>>>>> +  This module is part of the MAX77759 PMIC. For additional information, see
+>>>>>> +  Documentation/devicetree/bindings/mfd/maxim,max77759.yaml.
+>>>>>> +
+>>>>>> +  The Maxim MAX77759 is a dual input switch mode battery charger for portable
+>>>>>> +  applications. It supports wired and wireless charging and can operate in buck
+>>>>>> +  and boost mode.
+>>>>>> +
+>>>>>> +allOf:
+>>>>>> +  - $ref: power-supply.yaml#
+>>>>>> +
+>>>>>> +properties:
+>>>>>> +  compatible:
+>>>>>> +    const: maxim,max77759-charger
+>>>>>> +
+>>>>> This should be just folded into parent node, no need for separate
+>>>>> charger device or is just incomplete.
+>>>> Thanks for the review! You are right, the binding is incomplete. This
+>>>> charger block actually listens on its own I2C address, distinct from the
+>>>> main PMIC.
+>>>>
+>>>> I will update v2 to include the reg property. I will also add the
+>>> AFAIK, the main (parent) device schema does not reference children via
+>>> any sort of addressing, so reg here would not be suitable.
+>> I agree that currently nvmem and gpio devices (which are children of
+>> PMIC device) are not referenced using any address. But I was guessing
+>> that's because they share the i2c client id with the PMIC and sharing
+>> its address space (implied).
+>>
+>> The charger device while being part of the MAX77759 PMIC package has
+>> it's own i2c client id and address space that's why I proposed "reg".
+>> The underlying assumption I made was separate client id implies that a
+>> "reg" property required. But maybe that's incorrect.
+>>
+>> I can understand the argument against having a "reg" property. As the
+>> i2c client id will remain same for a max77759 charger device (as it's a
+>> chip property and not a board property) it will always remain a
+>> constant. I will drop the "reg" proposal.
+>>
+>>
+>>>> standard properties `constant-charge-current-max-microamp` and
+>>>> `constant-charge-voltage-max-microvolt` to configure the hardware
+>>>> limits, as this charger device does not manage the battery profile
+>>>> directly (that is handled by a separate fuel gauge).
+>>> Well, still, what's the benefit for the bindings to have it as a
+>>> separate child? Kind of depends on your example, which is quite small -
+>>> one regulator and supply. Grow the example with battery and other
+>>> independent resources (if they are) to justify it. Or show arguments why
+>>> this is re-usable.
+>> The primary reasons for keeping the charger as a distinct child node are
+>> to model the hardware topology for the power supply subsystem and to
+> You do not need children for that at all.
 
-Where the text file documenation of required properties differ from the
-implementation, prefer the implementation and update the schema to
-match.
+Actually what you said makes sense. I will fold the charger's schema 
+into mfd/maxim,max77759's schema.
 
-"#size-cells" was 1 but implementation is 0.
-"#cooling-cells" was marked as required but appears optional.
 
-In the fan subnode, "cooling-levels" is optional according to the code
-in drivers/hwmon/aspeed-pwm-tacho.c.
+Thanks,
 
-Signed-off-by: Rebecca Cran <rebecca@bsdio.com>
----
- Documentation/devicetree/bindings/hwmon/aspeed,pwm-tacho.yaml | 91 ++++++++++++++++++++
- Documentation/devicetree/bindings/hwmon/aspeed-pwm-tacho.txt  | 73 ----------------
- 2 files changed, 91 insertions(+), 73 deletions(-)
+Amit
 
-diff --git a/Documentation/devicetree/bindings/hwmon/aspeed,pwm-tacho.yaml b/Documentation/devicetree/bindings/hwmon/aspeed,pwm-tacho.yaml
-new file mode 100644
-index 000000000000..b23c3519604b
---- /dev/null
-+++ b/Documentation/devicetree/bindings/hwmon/aspeed,pwm-tacho.yaml
-@@ -0,0 +1,91 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+# Copyright (C) 2023 Aspeed, Inc.
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/hwmon/aspeed,g5-pwm-tacho.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ASPEED AST2400/AST2500 PWM and Fan Tacho controller
-+
-+maintainers:
-+  - Billy Tsai <billy_tsai@aspeedtech.com>
-+
-+description: |
-+  The ASPEED PWM controller can support up to 8 PWM outputs. The ASPEED Fan
-+  Tacho controller can support up to 16 Fan tachometer inputs.
-+
-+  There can be up to 8 fans supported. Each fan can have one PWM output and
-+  one/two Fan tach inputs.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - aspeed,ast2400-pwm-tacho
-+      - aspeed,ast2500-pwm-tacho
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 0
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+patternProperties:
-+  "^fan@[0-9]+$":
-+    $ref: fan-common.yaml#
-+    unevaluatedProperties: false
-+    properties:
-+      aspeed,fan-tach-ch:
-+        description:
-+          The tach channel used for the fan.
-+        $ref: /schemas/types.yaml#/definitions/uint8-array
-+
-+    required:
-+      - reg
-+      - aspeed,fan-tach-ch
-+
-+required:
-+  - compatible
-+  - "#address-cells"
-+  - "#size-cells"
-+  - reg
-+  - pinctrl-names
-+  - pinctrl-0
-+  - clocks
-+  - resets
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/aspeed-clock.h>
-+    pwm_tacho: pwmtachocontroller@1e786000 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        #cooling-cells = <2>;
-+        reg = <0x1E786000 0x1000>;
-+        compatible = "aspeed,ast2500-pwm-tacho";
-+        clocks = <&syscon ASPEED_CLK_APB>;
-+        resets = <&syscon ASPEED_RESET_PWM>;
-+        pinctrl-names = "default";
-+        pinctrl-0 = <&pinctrl_pwm0_default &pinctrl_pwm1_default>;
-+
-+        fan@0 {
-+                reg = <0x00>;
-+                cooling-levels = /bits/ 8 <125 151 177 203 229 255>;
-+                aspeed,fan-tach-ch = /bits/ 8 <0x00>;
-+        };
-+
-+        fan@1 {
-+                reg = <0x01>;
-+                aspeed,fan-tach-ch = /bits/ 8 <0x01 0x02>;
-+        };
-+    };
-diff --git a/Documentation/devicetree/bindings/hwmon/aspeed-pwm-tacho.txt b/Documentation/devicetree/bindings/hwmon/aspeed-pwm-tacho.txt
-deleted file mode 100644
-index 8645cd3b867a..000000000000
---- a/Documentation/devicetree/bindings/hwmon/aspeed-pwm-tacho.txt
-+++ /dev/null
-@@ -1,73 +0,0 @@
--ASPEED AST2400/AST2500 PWM and Fan Tacho controller device driver
--
--The ASPEED PWM controller can support upto 8 PWM outputs. The ASPEED Fan Tacho
--controller can support upto 16 Fan tachometer inputs.
--
--There can be upto 8 fans supported. Each fan can have one PWM output and
--one/two Fan tach inputs.
--
--Required properties for pwm-tacho node:
--- #address-cells : should be 1.
--
--- #size-cells : should be 1.
--
--- #cooling-cells: should be 2.
--
--- reg : address and length of the register set for the device.
--
--- pinctrl-names : a pinctrl state named "default" must be defined.
--
--- pinctrl-0 : phandle referencing pin configuration of the PWM ports.
--
--- compatible : should be "aspeed,ast2400-pwm-tacho" for AST2400 and
--	       "aspeed,ast2500-pwm-tacho" for AST2500.
--
--- clocks : phandle to clock provider with the clock number in the second cell
--
--- resets : phandle to reset controller with the reset number in the second cell
--
--fan subnode format:
--===================
--Under fan subnode there can upto 8 child nodes, with each child node
--representing a fan. If there are 8 fans each fan can have one PWM port and
--one/two Fan tach inputs.
--For PWM port can be configured cooling-levels to create cooling device.
--Cooling device could be bound to a thermal zone for the thermal control.
--
--Required properties for each child node:
--- reg : should specify PWM source port.
--	integer value in the range 0 to 7 with 0 indicating PWM port A and
--	7 indicating PWM port H.
--
--- cooling-levels: PWM duty cycle values in a range from 0 to 255
--                  which correspond to thermal cooling states.
--
--- aspeed,fan-tach-ch : should specify the Fan tach input channel.
--                integer value in the range 0 through 15, with 0 indicating
--		Fan tach channel 0 and 15 indicating Fan tach channel 15.
--		At least one Fan tach input channel is required.
--
--Examples:
--
--pwm_tacho: pwmtachocontroller@1e786000 {
--	#address-cells = <1>;
--	#size-cells = <1>;
--	#cooling-cells = <2>;
--	reg = <0x1E786000 0x1000>;
--	compatible = "aspeed,ast2500-pwm-tacho";
--	clocks = <&syscon ASPEED_CLK_APB>;
--	resets = <&syscon ASPEED_RESET_PWM>;
--	pinctrl-names = "default";
--	pinctrl-0 = <&pinctrl_pwm0_default &pinctrl_pwm1_default>;
--
--	fan@0 {
--		reg = <0x00>;
--		cooling-levels = /bits/ 8 <125 151 177 203 229 255>;
--		aspeed,fan-tach-ch = /bits/ 8 <0x00>;
--	};
--
--	fan@1 {
--		reg = <0x01>;
--		aspeed,fan-tach-ch = /bits/ 8 <0x01 0x02>;
--	};
--};
--- 
-2.47.3
-
+>> house the OTG regulator provided by the charger block.
+>> The charger needs to be referenced by the Fuel Gauge (which handles the
+>> battery profile) via power-supplies. Additionally, the charger block
+>> provides a regulator for USB OTG VBUS, which is cleaner to represent as
+>> a child node of the charger rather than mixing it into the top-level
+>> PMIC node.
+> Sorry but argument that you need a child device to be able to construct
+> a phandle is just wrong. You can create phandles on every other way as well.
+>
+>
+> Best regards,
+> Krzysztof
 
