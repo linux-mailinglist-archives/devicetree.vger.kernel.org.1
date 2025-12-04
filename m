@@ -1,133 +1,159 @@
-Return-Path: <devicetree+bounces-244310-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244311-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD166CA393C
-	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 13:16:55 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43B37CA3970
+	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 13:26:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 54D6A3007B60
-	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 12:16:53 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2B736302DB4D
+	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 12:26:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB5B52C0275;
-	Thu,  4 Dec 2025 12:16:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0A8A337BBD;
+	Thu,  4 Dec 2025 12:26:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="KorREY45"
+	dkim=pass (1024-bit key) header.d=ucw.cz header.i=@ucw.cz header.b="QOnhxcyj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4750E14B08A;
-	Thu,  4 Dec 2025 12:16:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AFC2398FB6;
+	Thu,  4 Dec 2025 12:26:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.255.230.98
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764850610; cv=none; b=N8gQP/Ncgcpxrq2CiKIw7wccBQFRrw82ChLcgayqvSat6Pk2CSWkRMG0FTWK8J8Tv9Jnqv/it+qkC5rtZqSRo1Kwf/vo7cENxFlGJFnrpLIgeObzhZI3fJuR1VV+aCnIIu03aXXQPX2hakW+QqHhGnBkwPNyD2PWqNUTuE83M8k=
+	t=1764851175; cv=none; b=UsyUf2LcX+09N76AKkzkWdUE/L0BredfMbFF99h8CYhjVLwESetXRzQNFIFnxktEnR58O4xYfU9PqlZBCVUcv1aUzBUymN0Mrfxu4/PQ59l9XV6biyllUxDERvuaOET7tmjrWNUmUuEWV74YXA9bpbxlilitE31BZkHnmAynqWo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764850610; c=relaxed/simple;
-	bh=6inq0e2FmKKkP3KPdRjhc30FMHV2FgnbAtWIjjVg8q0=;
+	s=arc-20240116; t=1764851175; c=relaxed/simple;
+	bh=I0obHLer8DGqhfP+Jz8M0rv2nrUWrNdeaQDFSV0i6Nk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GZxE0D/a13MLBn+ssHwGpMdZE03oAI2FRO1E+3TXgXjXkn6BKhqicbKji8e1XWu4UQC5quRmiiBHLg6mlSNxKcx8hCNHUZIFYhMpZMkYuRRsKBi/D66RZD/D7mcbXhxJZi4SEHNGQebUZH7PCkDylOZa0Fm9ICfR/OQ8MkfCUBI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=KorREY45; arc=none smtp.client-ip=192.198.163.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1764850609; x=1796386609;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=6inq0e2FmKKkP3KPdRjhc30FMHV2FgnbAtWIjjVg8q0=;
-  b=KorREY45TIX4YfsR1p0P+ieHjId/QP3k0PNIGVhFLf1E1sAFMYt4DANo
-   har0EQRJnUEq87JnJSDjGNPq3iVevlNSFT/OlDEM6J0aBrdgCbZPynQ0U
-   r6C2EGml9B8HlrWmvQY/PZvHvT47pv7eVcOtKQPHn2iUbYKMeH42Hox8b
-   OKDc6MH7RGGdceTBs2C+J4aab830rAaMZ+9U2xRm1O1xg+MdfgBflMquJ
-   1Qg08Cm+H5GdN22YBcCajS7yV7Ks+rT4z+uuMbN0p9VXljnIA2NBULOpt
-   ld6nN/Kn/aUz0esV7O8gHqGfBEboFey2bp2lptrEhh7ZDdSwL29kZ5i7J
-   A==;
-X-CSE-ConnectionGUID: SJZUlX1GTr+jIQCgOVVORw==
-X-CSE-MsgGUID: XoVC0nTiQHKhoHlyXJDoDw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11631"; a="66905053"
-X-IronPort-AV: E=Sophos;i="6.20,248,1758610800"; 
-   d="scan'208";a="66905053"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Dec 2025 04:16:48 -0800
-X-CSE-ConnectionGUID: T5lJqA2bQ9iHQ2mu6lBXog==
-X-CSE-MsgGUID: g9V6bSamQB6zwT2cQ7wQ/A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,248,1758610800"; 
-   d="scan'208";a="225642441"
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost) ([10.245.245.222])
-  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Dec 2025 04:16:44 -0800
-Date: Thu, 4 Dec 2025 14:16:41 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Tomas Melin <tomas.melin@vaisala.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Nuno Sa <nuno.sa@analog.com>, Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=D7uVd2rgS+0tMtBwTdKfdy+uJKiR8qj8JHT0AS+4FmjZ4dco1m/Ce7nWVQYuPCttdI90u6Sk7nnijRy2Ax+qd4eUf8azy8Y1YrR2f2q/Iop+YTbCyqz6ow6UVboerlRmSwbChkINEsHgspEjQY+60wsmhWGdwVb8GN5iXPb1d5c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ucw.cz; spf=pass smtp.mailfrom=ucw.cz; dkim=pass (1024-bit key) header.d=ucw.cz header.i=@ucw.cz header.b=QOnhxcyj; arc=none smtp.client-ip=46.255.230.98
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ucw.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ucw.cz
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+	id 81FF51C008F; Thu,  4 Dec 2025 13:26:10 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucw.cz; s=gen1;
+	t=1764851170;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=C4gKYecV5j+q0y/UOby/NlMGGrlawumSOrnnyOto9GI=;
+	b=QOnhxcyjbjuDJxGn9hNDbOS2xefZ33OgBtd2n45WbX5931LRwBnj2aKj/LDZ5QvRMwzUiO
+	VtVbsUZulh0h7s0B5COMJCqZRLKIngc4lqagSd7+kd1vbXfpt98pw751A3qScUP26UdNv3
+	HP4TCIG6yTQsipYZocwa130n2Wpwlvs=
+Date: Thu, 4 Dec 2025 13:26:10 +0100
+From: Pavel Machek <pavel@ucw.cz>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] iio: adc: ad9467: add support for ad9211
-Message-ID: <aTF7qbjbtYqZCR95@smile.fi.intel.com>
-References: <20251204-add-ad9211-v2-0-a1561f977ee5@vaisala.com>
- <20251204-add-ad9211-v2-2-a1561f977ee5@vaisala.com>
- <aTF7M7NAFJM1OpWl@smile.fi.intel.com>
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
+	trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com,
+	Tengfei Fan <tengfei.fan@oss.qualcomm.com>,
+	Qiang Yu <qiang.yu@oss.qualcomm.com>,
+	Manish Pandey <manish.pandey@oss.qualcomm.com>,
+	Ronak Raheja <ronak.raheja@oss.qualcomm.com>,
+	Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>,
+	Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>,
+	Jyothi Kumar Seerapu <jyothi.seerapu@oss.qualcomm.com>,
+	Prasad Kumpatla <prasad.kumpatla@oss.qualcomm.com>,
+	Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>,
+	Vikash Garodia <vikash.garodia@oss.qualcomm.com>
+Subject: Re: [PATCH 00/20] arm64: dts: qcom: Introduce Kaanapali platform
+ device tree
+Message-ID: <aTF94rM3/7ChMs5L@duo.ucw.cz>
+References: <20250924-knp-dts-v1-0-3fdbc4b9e1b1@oss.qualcomm.com>
+ <aS8uJCnb0xOd6uby@duo.ucw.cz>
+ <081a2038-e798-4cc0-96ff-b7f11e346831@kernel.org>
+ <aTB8++UtSrhwtqdY@duo.ucw.cz>
+ <c1b24759-762f-4b97-8d3f-8a44a66b646b@kernel.org>
+ <db113021-f5be-4559-8ea5-719f8d7ec3ee@kernel.org>
+ <aTFP1w48bWgto7wr@duo.ucw.cz>
+ <2fa188c3-f5c3-4145-9cae-3587f3bb23cc@kernel.org>
+ <aTFzmm3fyxC1MAzk@duo.ucw.cz>
+ <d9220bda-6704-4e37-9243-d7a4529afdf8@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="mg2Znaa5HtGTKNpz"
+Content-Disposition: inline
+In-Reply-To: <d9220bda-6704-4e37-9243-d7a4529afdf8@kernel.org>
+
+
+--mg2Znaa5HtGTKNpz
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <aTF7M7NAFJM1OpWl@smile.fi.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Dec 04, 2025 at 02:14:49PM +0200, Andy Shevchenko wrote:
-> On Thu, Dec 04, 2025 at 08:01:04AM +0000, Tomas Melin wrote:
-> > The AD9211 is a 10-bit monolithic sampling analog-to-digital
-> > converter optimized for high performance, low power, and ease
+On Thu 2025-12-04 13:10:12, Krzysztof Kozlowski wrote:
+> On 04/12/2025 12:42, Pavel Machek wrote:
+> >=20
+> >>>>>>>>> Introduce the Device Tree for the recently announced Snapdragon=
+ SoC from Qualcomm:
+> >>>>>>>>> https://www.qualcomm.com/products/mobile/snapdragon/smartphones=
+/snapdragon-8-series-mobile-platforms/snapdragon-8-elite-gen-5
+> >=20
+> >>>>>>>>> Bindings and base Device Tree for the Kaanapali SoC, MTP (Mobil=
+e Test Platform)
+> >>>>>>>>> and QRD (Qualcommm Reference Device) are splited in three:
+> >=20
+> >>>> ... and btw, I know what MTP and QRD is and MTP IS NOT A PHONE. I wo=
+rk
+> >>>> on this, I upstream this and it is not a phone, regardless how you c=
+all
+> >>>> it. Just because we call our evalkit like that, does not make it a
+> >>> phone.
+> >>>
+> >>> So what is it?
+> >>
+> >> evalkit for SoC. Just like every other NXP evalkit board is.
+> >=20
+> > ...products/mobile/snapdragon/smartphones/snapdragon-8-series-mobile-pl=
+atforms...
+> > ...Mobile Test Platform...
+> >=20
+> > Clearly not phone related.
+>=20
+> so you never had it in your hands, never heard about it before, know
+> nothing about it, but you correct people and you claim it is "phone
+> related" thus some fake new rule should be followed on cc-ing
+> non-documented address (just git grep for it...).
 
-Also just noticed that this paragraph is visible shorter than the last one,
-can you make them approximately the same line length?
+I have not heard of it, and that's why I want people to cc the list,
+so I don't have to pick it up from lkml. There are other people on the
+list, maybe not following lkml, and likely interested in chipset
+OnePlus 15 is based on.=20
 
-> > of use. The product operates at up to a 300 MSPS conversion
+We do have guidance about cc-ing the lists, and somehow I don't see "git
+grep" in those rules, nor it says "if get_maintainers does not know
+about it, it does not exist". In fact, it says:
 
-Is it megasamples? Then MSps?
+"Many kernel-related lists are hosted on vger.kernel.org; you can find a
+list of them at http://vger.kernel.org/vger-lists.html.  There are
+kernel-related lists hosted elsewhere as well, though."
 
-> > rate and is optimized for outstanding dynamic performance
-> > in wideband carrier and broadband systems.
+Why don't you click on the link?
+								Pavel
+--=20
+I don't work for Nazis and criminals, and neither should you.
+Boycott Putin, Trump, Netanyahu and Musk!
 
-> > The scale table implemented here is not an exact match with the
-> > datasheet as the table presented there is missing some information.
-> > The reference presents these values as being linear,
-> > but that does not add up. There is information missing in the table.
-> > Implemented scale table matches values at the middle and at the ends,
-> > smoothing the curve towards middle and end.
-> > Impact on end result from deviation in scale factor affects only software
-> > using it for scaling. All the possible hw-settings are also available with
-> > this implementation.
-> 
-> 
-> Some amendment in the headers would be nice to have,
-> Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
+--mg2Znaa5HtGTKNpz
+Content-Type: application/pgp-signature; name="signature.asc"
 
-...
+-----BEGIN PGP SIGNATURE-----
 
-> + array_size.h
-> 
-> >  #include <linux/delay.h>
-> >  #include <linux/gpio/consumer.h>
-> >  #include <linux/of.h>
-> > +#include <linux/units.h>
-> >  
-> 
-> You can drop one blank line here.
+iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCaTF94gAKCRAw5/Bqldv6
+8r/IAJ0QQK/2Z0TjNu8K2b010IuW+1UUGwCdEgVCbpw8FGrvwR5Pe28lrsTLZ84=
+=cGA2
+-----END PGP SIGNATURE-----
 
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+--mg2Znaa5HtGTKNpz--
 
