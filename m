@@ -1,90 +1,93 @@
-Return-Path: <devicetree+bounces-244485-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244486-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id A427BCA5763
-	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 22:26:53 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FCA3CA5721
+	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 22:22:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 1B1F1300B938
-	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 21:26:51 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AD45E3141EA8
+	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 21:21:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35A733559CC;
-	Thu,  4 Dec 2025 21:03:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3F7F3559F1;
+	Thu,  4 Dec 2025 21:03:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bsdio.com header.i=@bsdio.com header.b="rK0RJANI";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="lsIfHw/c"
+	dkim=pass (2048-bit key) header.d=bsdio.com header.i=@bsdio.com header.b="sSt7vwb9";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="PJuTbZbN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout-b2-smtp.messagingengine.com (fout-b2-smtp.messagingengine.com [202.12.124.145])
+Received: from fhigh-b2-smtp.messagingengine.com (fhigh-b2-smtp.messagingengine.com [202.12.124.153])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00AC63559C9;
-	Thu,  4 Dec 2025 21:02:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.145
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2769D3559E0;
+	Thu,  4 Dec 2025 21:03:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.153
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764882181; cv=none; b=l/skf0o7ez1pHTyjYI2QHeGEdT/sUUzyfd21MP0nTJrT7TQYiS75BMeKyT+FiaS8K2vuD8SWDWgl/bYwaA1FGpAatPLpYa/ecPTXiFs16QpnwSGpWAMU4FS+tWvDtj33inVIalQkBGZHKTUjDOxZI5X21QRQUjCpZaKCwl/vuxY=
+	t=1764882184; cv=none; b=GCbY/fyjLDeLQtc3kCmXCIckcx98/pKs6I19MTPlQM7pdTi39ZetJOAgNlxqSQx+EyCWU+xkM3PKQF6q4jQg2dIN5nlIbltaaJiy9QnDV1gRUFQ/orp83z0EV1OZeIyrd9ukKP5ihGNhtUgTJCXZsuvNLLOn1Cb12NvsS2WdKr8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764882181; c=relaxed/simple;
-	bh=BJRv0nnBqrtn+d7PBEb4ldzd8nzot0R5C5Ec9SpEge0=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=oTM3PuscBxbVmBBQnlYkMXTwpbXrBlE0aKlmwWOtVKovb03IpUvHeHfZW90WTPv8FHbsp1xfCSPR3D+oOSewl/Z2CsnritZT4EI8xD8Oov9IzKCalWf33CY41kacJ/9+BjFpdqg6KO8fXGMizUVxtEjrDi6Qx7UbrF12M7OM9P4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bsdio.com; spf=fail smtp.mailfrom=bsdio.com; dkim=pass (2048-bit key) header.d=bsdio.com header.i=@bsdio.com header.b=rK0RJANI; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=lsIfHw/c; arc=none smtp.client-ip=202.12.124.145
+	s=arc-20240116; t=1764882184; c=relaxed/simple;
+	bh=rlsY2oIMuf/rcF4uaRkr5dWOufpP73kaP6qL8lh72s0=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=GVlrVKjIYc+U1ia8XtHijq0lAPjaM7tiOKEQRz1q1yK2Mzrl6IhEhHddzmb3xgdHpKr5Yz22SRGNpYgocv4PjQFGD97O6jOlU77oEBw/mkTfc4YMuJI0H90tFta+3p/DdhoyUi3ZAv3xzQw8+MkKq47eoGl/8mXfq04HmltE/6g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bsdio.com; spf=fail smtp.mailfrom=bsdio.com; dkim=pass (2048-bit key) header.d=bsdio.com header.i=@bsdio.com header.b=sSt7vwb9; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=PJuTbZbN; arc=none smtp.client-ip=202.12.124.153
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bsdio.com
 Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=bsdio.com
-Received: from phl-compute-04.internal (phl-compute-04.internal [10.202.2.44])
-	by mailfout.stl.internal (Postfix) with ESMTP id E2B151D0014C;
-	Thu,  4 Dec 2025 16:02:57 -0500 (EST)
+Received: from phl-compute-02.internal (phl-compute-02.internal [10.202.2.42])
+	by mailfhigh.stl.internal (Postfix) with ESMTP id 243407A001F;
+	Thu,  4 Dec 2025 16:03:02 -0500 (EST)
 Received: from phl-mailfrontend-01 ([10.202.2.162])
-  by phl-compute-04.internal (MEProxy); Thu, 04 Dec 2025 16:02:58 -0500
+  by phl-compute-02.internal (MEProxy); Thu, 04 Dec 2025 16:03:02 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bsdio.com; h=cc
 	:cc:content-transfer-encoding:content-type:date:date:from:from
-	:in-reply-to:message-id:mime-version:reply-to:subject:subject:to
-	:to; s=fm2; t=1764882177; x=1764968577; bh=I3JyN6uQ6yNFenjv47EfS
-	d7nrikiNFLfs5LjBOSqI2o=; b=rK0RJANIOIsD0uqvPoJBbyRWEGXwXsHapTZb5
-	n910WWWjTmj3QftdJ57Uy2jJ1bLH3XvnZaTnxZjtAZipXKfP01+Pf8sQA/eAY2nl
-	8nEgTcWFLTYay0wbQ9kB0y+xl5DaoeAZW0K/gxVBHfZQm0BlRfzRJDP7OgrrSSEJ
-	VQ2ujhPG1D8yGYe26lCnZwN24GBzfokVgyvhUEBNqUa8Hwu6ydzPGCew61oYJdPk
-	VzC9wAxRW+PP7Pq1W5JO75EiVwdNPwkNiA5W/0l8ShAdvMQQ+CAia3QKlrhJLWkO
-	GYDkapB3RLwWKHW1lYvpe5ue1+u3WOZuzKqyTtG8BN1OKPg9w==
+	:in-reply-to:in-reply-to:message-id:mime-version:references
+	:reply-to:subject:subject:to:to; s=fm2; t=1764882182; x=
+	1764968582; bh=HHTHfsItrpNksp7sM3LM7hcMpvoJLCi8sr+Lllv2wBU=; b=s
+	St7vwb9LF+3aNcEGVg0EOHJZ73MaDi+clYBmAuc6rJ2wZ8D7TRFIBJk0CYzhW0nI
+	1/yZkIYbFPHOTZXxG3aGaTlFq1tQ97tPiLlJZ+yNJblMSKNPoL3R7Rn/FLW+De27
+	AZT1w7Uztgio99hO3990Mnlca9TSsGKMKde1f5gHrlTbB+2d3t/xT/+kJdGFkVv8
+	LETWPekGYW4Esmk0NVu2P0y0CTWipqWqD3ETXrBZnwGTt/KfgG85/lPK62knnKEP
+	Ix57LoUxcP4B5+5Z3Ql56jr1jCHWwJflgRa88jeXzokYszVv/EHBY1LPRXjT4bmv
+	UrUCFjBujhGvXlw+Wn0yA==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
 	messagingengine.com; h=cc:cc:content-transfer-encoding
 	:content-type:date:date:feedback-id:feedback-id:from:from
-	:in-reply-to:message-id:mime-version:reply-to:subject:subject:to
-	:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=
-	1764882177; x=1764968577; bh=I3JyN6uQ6yNFenjv47EfSd7nrikiNFLfs5L
-	jBOSqI2o=; b=lsIfHw/c0wyswHBUCEHZAR99I2ZVJs6H2rJDnl81RqGfBhSLjYB
-	Tu/f6Uwm+mqu/EcRsG51Ooxg91cgYM4R3NrmMq79o5H+31b9eaIxdepdb8824Kdq
-	AEaDepttW5X/iQHrQpXLFl0PP1TzwAFwe70DXszs+9KVHkYaF2fQtfKBy+HRI4if
-	0x1/of4E3T4Hm/MdRoQHKpQeQsUh1/8AKWPmIv+aBWtLDEMWEL1PUduARWQw2pHz
-	GKsCBiMhKqR1gcaKcwjDD828xOZihlixayfHZJ2XSLHW796HlkKiFyvJ0nxclpEj
-	7K1kNURCHN3EyC9kyRTfovxoW3Rl0F8WFKw==
-X-ME-Sender: <xms:APcxabIWzF6Epg04HgGAHowvaBtGMYLtGpCLXciMydnv3j90imAGIA>
-    <xme:APcxaXRnYCxHfoc-W5TNwh98HH9KjvcTYoRp0_9_nBrYwHwry3A2ScQKamZEXlbDW
-    9dE8YmFRRCKheAmpPRw2j7l92JPheGdGUz1QKa0UGo58jPxaVyyhCI>
-X-ME-Received: <xmr:APcxaTNSh0LbfLUx28dXIGEYvo1-Ch_PtTuVHOme3xKMJI4yUVZUm_4vuBqcQXdSMuUqSKcmPE87YtZB>
+	:in-reply-to:in-reply-to:message-id:mime-version:references
+	:reply-to:subject:subject:to:to:x-me-proxy:x-me-sender
+	:x-me-sender:x-sasl-enc; s=fm1; t=1764882182; x=1764968582; bh=H
+	HTHfsItrpNksp7sM3LM7hcMpvoJLCi8sr+Lllv2wBU=; b=PJuTbZbNazvEmeYEf
+	UGPlKTK5WsFdNysMJeGOO7QlTGrEb+FDy1aQKYbsY/rZK6rIml2TO1oGqCmlJV22
+	omhkJlNWlwt+GY8oO4YTpvEQM426VSpzaiwQ4ofAeVvA7xtiJfReDH/PQZRLOvoK
+	NTm7Bvt34j6LFLB/UsJ5hWNsF8PhKA34WY3BMsbHtwG5ZROLcHd86mW6xzLSROzc
+	KGCrGeari36JM+N8BSsPeOzzUjxtaW/s5G2uhlOCZ1oWGLMo8A8mXCmaGe4Ud6lL
+	pM/WWfmugncvvPlL+Z5FThjh/k/l3qZDcNHcwGSS6nqti5BywwOdQTHvKpV7z3NO
+	KRXIg==
+X-ME-Sender: <xms:BfcxaQ7gsO7gde4l4MIaHB7QuKNVSkHFLYf5cjR1HMbWreUEeKPqGw>
+    <xme:BfcxaelFLkliPo8d5pXhT8TSM4irncgOUo5LPVC8JObGqpn28dG8Us3AGrxa06eHc
+    XJFt9_jbPm9i1yV5gU4zA-dZgL8rD_5d7GmRkh1uEPrcMh8IcLSXwbH>
+X-ME-Received: <xmr:BfcxaTX9PLaOOsRZKmtvCptngj8NJnDw03uFKrty1nBxPbL3Kf8_HvfKMIKiddvty84evRVle_jaPxwj>
 X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgdeiiedtucetufdoteggodetrfdotf
     fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceurghi
     lhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurh
-    ephffvvefufffkofgggfestdekredtredttdenucfhrhhomheptfgvsggvtggtrgcuvehr
-    rghnuceorhgvsggvtggtrgessghsughiohdrtghomheqnecuggftrfgrthhtvghrnhepue
-    dvkedtleekueekgfejjeettefftdduiefffeehveefgfevueelgffhleelgfdvnecuvehl
-    uhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprhgvsggvtggtrg
-    essghsughiohdrtghomhdpnhgspghrtghpthhtohepuddupdhmohguvgepshhmthhpohhu
-    thdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhrii
-    hkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghr
-    nhgvlhdrohhrghdprhgtphhtthhopehjohgvlhesjhhmshdrihgurdgruhdprhgtphhtth
-    hopegrnhgurhgvfiestghouggvtghonhhsthhruhgtthdrtghomhdrrghupdhrtghpthht
-    ohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtoh
-    eplhhinhhugidqrghrmhdqkhgvrhhnvghlsehlihhsthhsrdhinhhfrhgruggvrggurdho
-    rhhgpdhrtghpthhtoheplhhinhhugidqrghsphgvvggusehlihhsthhsrdhoiihlrggssh
-    drohhrghdprhgtphhtthhopehlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnhgv
-    lhdrohhrgh
-X-ME-Proxy: <xmx:APcxaUVQ5jpOmrPV83ebfhCrLGhZwxMpIb2Y_Olwzz0zGm1EsZ1BAA>
-    <xmx:APcxaehMulI1aS0ZlQkrTqWdpiGetmW75epFd08Bi8_QfuHTafGGiw>
-    <xmx:APcxaVjOuBW8RmnoyjVWzpgnVtUfMPTXrbhT393U0IwqwuWJlwEwug>
-    <xmx:APcxaUH2HGs_Rv84w7jNn5Pyd_9JU5gxH8CnuagzpKHpLdYgN4JT5Q>
-    <xmx:AfcxacqgAeFqijyrJL-ZmIPnX4vTi-qw3svllPXxjXco1azWn1FLzmgi>
+    ephffvvefufffkofgjfhgggfestdekredtredttdenucfhrhhomheptfgvsggvtggtrgcu
+    vehrrghnuceorhgvsggvtggtrgessghsughiohdrtghomheqnecuggftrfgrthhtvghrnh
+    epgeffueeuledvgefgvddvgfetvdduhfefkedukeeikedtudekfeetteeifedvleefnecu
+    vehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprhgvsggvtg
+    gtrgessghsughiohdrtghomhdpnhgspghrtghpthhtohepuddvpdhmohguvgepshhmthhp
+    ohhuthdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkh
+    hriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehk
+    vghrnhgvlhdrohhrghdprhgtphhtthhopehjohgvlhesjhhmshdrihgurdgruhdprhgtph
+    htthhopegrnhgurhgvfiestghouggvtghonhhsthhruhgtthdrtghomhdrrghupdhrtghp
+    thhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpth
+    htoheplhhinhhugidqrghrmhdqkhgvrhhnvghlsehlihhsthhsrdhinhhfrhgruggvrggu
+    rdhorhhgpdhrtghpthhtoheplhhinhhugidqrghsphgvvggusehlihhsthhsrdhoiihlrg
+    gsshdrohhrghdprhgtphhtthhopehlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghr
+    nhgvlhdrohhrgh
+X-ME-Proxy: <xmx:BfcxafRgF2TZHU41D4KdWNt030T7DIFfZX66Cn66WlUyDbTKFPhCBQ>
+    <xmx:BfcxaYDNdl-GOtwHUoY5PtXxlCqrFb-2HoN98HzWDog5jw3ZE2wnGg>
+    <xmx:BfcxafvGtgQw1o0J5K013V8cAaQvZyz0Ma2HuBL6mXZSLnhjraZnnA>
+    <xmx:Bfcxae_CZnFtAfafIM6lZIiQGvvyN5iGck0UzPFveHyqtWbDHeymMA>
+    <xmx:BfcxaW_j0aazlwQIEDezxxLxo6C2razwGEW1vvrwxbnK56og5pUCGCIk>
 Feedback-ID: i5b994698:Fastmail
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 4 Dec 2025 16:02:55 -0500 (EST)
+ 4 Dec 2025 16:03:00 -0500 (EST)
 From: Rebecca Cran <rebecca@bsdio.com>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -96,11 +99,14 @@ To: Rob Herring <robh@kernel.org>,
 	linux-aspeed@lists.ozlabs.org,
 	linux-kernel@vger.kernel.org
 Cc: Rebecca Cran <rebecca@bsdio.com>,
-	Billy Tsai <billy_tsai@aspeedtech.com>
-Subject: [PATCH v3 0/3] Add device tree for ASRock Rack ALTRAD8 BMC
-Date: Thu,  4 Dec 2025 14:02:33 -0700
-Message-ID: <20251204210238.40742-1-rebecca@bsdio.com>
+	Billy Tsai <billy_tsai@aspeedtech.com>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH v3 1/3] dt-bindings: arm: aspeed: add ASRock Rack ALTRAD8 board
+Date: Thu,  4 Dec 2025 14:02:34 -0700
+Message-ID: <20251204210238.40742-2-rebecca@bsdio.com>
 X-Mailer: git-send-email 2.47.3
+In-Reply-To: <20251204210238.40742-1-rebecca@bsdio.com>
+References: <20251204210238.40742-1-rebecca@bsdio.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -109,53 +115,27 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Apologies for the long delay between v2 and v3 patches.
+Document ASRock Rack ALTRAD8 (ALTRAD8UD-1L2T and ALTRAD8UD2-1L2Q)
+compatibles.
 
-cc Billy Tsai for the move of ast2500 pwm-tacho docs from
-aspeed-pwm-tacho.txt to aspeed,g5-pwm-tacho.yaml.
+Signed-off-by: Rebecca Cran <rebecca@bsdio.com>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+---
+ Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-The ASRock Rack ALTRAD8 BMC is an Aspeed AST2500-based BMC for the
-ALTRAD8UD-1L2T and ALTRAD8UD2-1L2Q boards with an Ampere Altra
-processor. The BMC runs OpenBMC.
-
-These patches add a device tree and binding for the BMC.
-
-**Changes between v2 and v3**
-
-- Removed system fault and enclosure identify LEDs; added heartbeat.
-- Removed the code partition from the BIOS/UEFI flash.
-- Renoved bus-frequency from i2c nodes.
-- Renamed hardware-monitor to temperature-sensor.
-- Fixed indentation of nct7802 subnodes.
-- Swapped eth0_macaddress and eth1_macaddress.
-- Removed pca9557 subnodes.
-- Reworked GPIO names to be more consistent.
-- Moved documentation of aspeed-pwm-tacho from txt to yaml file.
-
-**Testing**
-
-Ran `make ARCH=arm CHECK_DTBS=y aspeed/aspeed-bmc-asrock-altrad8.dtb` and
-verified the messages about the aspeed,pwm-tacho device are no longer present.
-The remaining messages are:
-
-arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-altrad8.dtb: /ahb/apb/lpc@1e789000/lhc@a0: failed to match any schema with compatible: ['aspeed,ast2500-lhc']
-arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-altrad8.dtb: /ahb/apb/lpc@1e789000/ibt@140: failed to match any schema with compatible: ['aspeed,ast2500-ibt-bmc']
-
-Rebecca Cran (3):
-  dt-bindings: arm: aspeed: add ASRock Rack ALTRAD8 board
-  ARM: dts: aspeed: add device tree for ASRock Rack ALTRAD8 BMC
-  dt-bindings: hwmon: (aspeed,g5-pwm-tacho) Move info from txt to yaml
-
- Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml      |   1 +
- Documentation/devicetree/bindings/hwmon/aspeed,pwm-tacho.yaml |  91 +++
- Documentation/devicetree/bindings/hwmon/aspeed-pwm-tacho.txt  |  73 ---
- arch/arm/boot/dts/aspeed/Makefile                             |   1 +
- arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-altrad8.dts        | 612 ++++++++++++++++++++
- 5 files changed, 705 insertions(+), 73 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/hwmon/aspeed,pwm-tacho.yaml
- delete mode 100644 Documentation/devicetree/bindings/hwmon/aspeed-pwm-tacho.txt
- create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-altrad8.dts
-
+diff --git a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+index aedefca7cf4a..049e86107c50 100644
+--- a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
++++ b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+@@ -34,6 +34,7 @@ properties:
+               - amd,ethanolx-bmc
+               - ampere,mtjade-bmc
+               - aspeed,ast2500-evb
++              - asrock,altrad8-bmc
+               - asrock,e3c246d4i-bmc
+               - asrock,e3c256d4i-bmc
+               - asrock,romed8hm3-bmc
 -- 
 2.47.3
 
