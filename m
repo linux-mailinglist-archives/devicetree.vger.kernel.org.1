@@ -1,158 +1,195 @@
-Return-Path: <devicetree+bounces-244280-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244281-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id AECDDCA30B2
-	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 10:40:14 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8906CA31E9
+	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 10:59:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 4C1C730039BF
-	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 09:40:12 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DA3A630EF555
+	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 09:55:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDE86331A41;
-	Thu,  4 Dec 2025 09:40:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64B7832FA3F;
+	Thu,  4 Dec 2025 09:55:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="FAd4rC37";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="ImmArLeS"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="YUwsmk0g";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="H1cwkRqT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FE5B3074A7
-	for <devicetree@vger.kernel.org>; Thu,  4 Dec 2025 09:40:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F7B12C0F7C
+	for <devicetree@vger.kernel.org>; Thu,  4 Dec 2025 09:55:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764841210; cv=none; b=He5Ez9s9OG69fhMjwlR6BwHj5E+e3vLemH9CbmTTXP55g1QI2p9QSaZq8FlVofcbTFVvUN4lD5plkPEpJrYLpHa2uQOvdJPCLNWORaup+6ez3Ks+UL06pi97D4mG77ueXGl+ijNyXVKk5vgL+WSVd+uW9LvHjt1dNs+I3wkVrQc=
+	t=1764842144; cv=none; b=Fbzp5JYVps3zQVZg8X35Tqt/JtUUbVu0yO1z3RNBhyocbS91Pe5mxiHOdncozaifeFjSLVXzKa6Vzshh7pRpMp//EC351DrDxkqry5oHDM2rbPgxR8nnct0OwnrNovYBh2pAgnqTEmx6K2IVBcSMWX6QRrHa7/IYiCmyAEsDVl4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764841210; c=relaxed/simple;
-	bh=/KjdDTjFPMuq3AlNpVCnxeT4H1s+plorv3pbBcLOZYI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=j8kVUM0eFcapzUjPcYWvD8GdSDrJoj9GjGnHIaccyC9o48myWZGZvOJZ9JAMPuUtscXKUDa4on8gWiE3QG+CU2DSwvlfoQi+WqfAwBi92LcZ08lJJ0ujtGwH6+udwTbtlomEcrx/dqGJHp1FklGkAtU0aeWms5kNB+cmrVMl9FE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=FAd4rC37; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=ImmArLeS; arc=none smtp.client-ip=205.220.180.131
+	s=arc-20240116; t=1764842144; c=relaxed/simple;
+	bh=dYNYUjY6ikxZh56WSHbxDgmXCaZcm2S1pqIcbri6RjE=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=N8rYQ2Po3Dd2G+R26ONag3YmbLO7cXZu9sGnKZi30Ybb6zXdgTTQSMNwnT/AjxAkkY6OwSiiQ6pL6hQvBimMppDq4aKZyYJ2bictcpBk5ZXud+kyJFz9TluWPXC9rPOyFQtDmGA4gS/yZcCWGxbL4F8x4NqUOXoghWrxsMkG3pI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=YUwsmk0g; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=H1cwkRqT; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
 Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5B468ija551544
-	for <devicetree@vger.kernel.org>; Thu, 4 Dec 2025 09:40:08 GMT
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5B468cVP551467
+	for <devicetree@vger.kernel.org>; Thu, 4 Dec 2025 09:55:41 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=JikH6CuvxtFtynNDua121q67
-	xU7F/+XQYBioxN2DrD8=; b=FAd4rC37sQdoDlQoxQJFJmEK9rfP6kdfZ1ifzXY7
-	KxV0pN/JnffjQVYov9XRFzPfsj3MWnTosK+aE1hG07RfayKcmk0alpoom9LXhPzU
-	XkzIV0xdaK+5yKraBSEBO3CD7hQvkXoYfIC4jOTPQ/ZEfLIu+lejb4sQLPN+7B1Z
-	rpB2FiEC82Xi0QC0qvyoWcLP4OAyMyEt4XEkgkXN1tStg9kDZzRBbOPKqm98FXrU
-	Vgi44LMqEsIgUKpoet/SxMjyWSOE1jWpYqooW9UW5w7LSkdTrppTr9ROpgS0wX8z
-	TFtpG20i8KKqs0wWe/CZw5NU8Jj+ZLgOCOBuw2Xrz7IIqg==
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4atmmdbjcv-1
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=0CBS82JE97HEdddV9MujHpiyCYF+cW+4cfC
+	P0rgquHo=; b=YUwsmk0gWpQr+TJQl2/ZVERUCk6QvjLsFnEx3aLHrg36h1gvhDW
+	MKamww0EP/5CgwaH9KR+UgUkSBLBMR/rPCl7PeGJ4AXfDHdzJ0JAWrLzjR9APvUt
+	dlZdy5UCYRtCp9Bf7Mtd/J64k9k7TM4WsmbFkHuuGAqGBc596c3/V3xCfoc0Ajyj
+	7aVS5LTe5aMktgx2mZFYv3ez8bYvbmZMWVJjysOo9WHChveiAsjry2K0lzDTlBMo
+	m2ZMgt++Uq/nN21kIVYFOcGrqyupsI3xXWkMxg5UulEGq8DWj0lYiGq4A572pkTS
+	6vUhkWy0sWGbc/ybbt03nBsSN8ZmKffz/RA==
+Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4atmmdbmnc-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 04 Dec 2025 09:40:07 +0000 (GMT)
-Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-8b26bc4984bso271185785a.1
-        for <devicetree@vger.kernel.org>; Thu, 04 Dec 2025 01:40:07 -0800 (PST)
+	for <devicetree@vger.kernel.org>; Thu, 04 Dec 2025 09:55:41 +0000 (GMT)
+Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-2982b47ce35so11086095ad.2
+        for <devicetree@vger.kernel.org>; Thu, 04 Dec 2025 01:55:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1764841207; x=1765446007; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=JikH6CuvxtFtynNDua121q67xU7F/+XQYBioxN2DrD8=;
-        b=ImmArLeS3HZZ17wYQJUnPdKOJMU/Ir7sBf4ai71yQdm8fM52sFUlVEVkprHLHG8R2+
-         YN+pDbJCkihbV4DJxnZKfE7YYzSvwv4F/TmuNSg6kr2xTn+b+8vXcCiL2yN+GEIPXCiY
-         TQD/y4iKbeObaqUX2RjCLDLLOBfXqf68ASMXnKLtaSOlYmaE4oWthYQWcP02WAEmFot9
-         Hp7jj/CGNJzPqD89YkTzRMEd4Xs0dAPPw/mdezSGtK7UxmY2RyjC2rbn3w+MqF44GbC8
-         fZ4tEsgZzXDeuS1r1yzg8XfKsipaoeWXMqLvYsYxTIllodm27/4Q34crATx0y0a9Orck
-         K9oQ==
+        d=oss.qualcomm.com; s=google; t=1764842140; x=1765446940; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=0CBS82JE97HEdddV9MujHpiyCYF+cW+4cfCP0rgquHo=;
+        b=H1cwkRqTlccEvQgy07TIAE2jXjokF+1OKywZKxP/XwOp1WgKS++VoD4rYlmmOhjxDu
+         8yOyW9xLciTWWZisS58Ys93E0ZHjyWwBUM1HsxthcIEkVHBYdnSAKfG8wWsm60VOZhha
+         ukBfMcD5abtM/73RmO1Ln4sqyOnzb8N2mmAW8T57FftAQsfQ6PqSJiiWoGXxEUJQfu4F
+         0RcBYBtzhlohgadmJvZ25MsKbqU/0HcBJ2izfBAVBbL3kTLveTSD7+3DtAr1774FsCKC
+         ijIc9DnTCujmfk/ZSz7zyuxUO1FrXUzNxvVrKc3GmmeII2I0bsyT1+/GAuR5JibWW9ar
+         eNsg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764841207; x=1765446007;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=JikH6CuvxtFtynNDua121q67xU7F/+XQYBioxN2DrD8=;
-        b=CFFxCVSMrRwwTYWOIGY5lqnUnD4TrC7vjZrMWYsgh2rvruuxc4/SrdsA9fENYxMBNY
-         a/o1i/XBLo3ZDpCvfYBSHximNXJFjRr7yp7pCdPlO07SLBIisyjb8Mv9Hx0elNmuEXvy
-         w5/BM9afmaEDb1JeXZNlqaJPTRYfqxQo0E7MUQESIkrwssXqI6QDsbh2yqmvU3pzirry
-         X9CFQe7uqhnkIdU0Y+z/j1frfDZEC20ECf4xx46ih4oaFPua/AvrdAXnXryXWTsz2VoI
-         7vAUaEk5vxiOh5Af3k3Q4tllIHL14bAohZN3sf2fLYLDjqMPh2m/poE7YtDw7LFBoYqh
-         H48g==
-X-Forwarded-Encrypted: i=1; AJvYcCXYHAMopQtqS/YOUfeM6n1p5u5Cl/20bNK5hiL0GRr77sIwwraLbfaOxO0rkgNsJi4pqMVNEZRqAztV@vger.kernel.org
-X-Gm-Message-State: AOJu0YwkrY4WUAcSV+kEJ5r7wnb7hyGAkASbaqri/zuPm34gwYWuT4YB
-	mHl+9apFVYl0Tf1zKQk59ak+rDhx4caHkHH8es9OgpcLSPwH56FAkIssNS+FWy85UPaD4yp6AX6
-	QQx3ijlM4RCuzQPylNKa5UD4PPhJZsD+FLfV9ZNpjozTxWk4r8qH5EtffHBgEgBZa
-X-Gm-Gg: ASbGncvW4VdCJVyJ7jQBsZbTMbTfROMcyFRrVG0XM6METZ++4Fr+bgbcJuPl+owGDE0
-	ybGx0fb2uk+n8rM9ODfR7uzkk1RvQHJnIjEbNbAIzpa4SIuOyiin7lTt6mgFln0a8T26kYnnykD
-	PW/kA3Q0LJsmzOxTzrOmXCfYxOn1/LAvWcU8mQXFqiLISfp/9cLWCz+gy4EVYitxkLh2jo2UoA9
-	zyHER4y9Y1d/EvQhTfMtCvsH5ETI9VOXtqXKQtAVTS1wIjgGsKBrcW9F+MHkxDrHrHHfmTyamTa
-	hLb61S7hXR8Rphcs67uW/PWhQ4fPHNw7cPfyioIbo+rk18iYdOYJdrcFAqqDzW6Ibx2XoxZHG8h
-	926xMYqSTJBzA50wfzFS5edTLkY0xGEKyXqfW2detzOQt3K+m/H8yTjz8Uwe1H/pMOWWLFch+ab
-	Vir8H1fUil0JA2Hv2BoyItNDU=
-X-Received: by 2002:a05:620a:1714:b0:8b2:e402:20b4 with SMTP id af79cd13be357-8b5e47cefdfmr802776285a.10.1764841207217;
-        Thu, 04 Dec 2025 01:40:07 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IG+EK/19r4BhqMPSVWj+wnOQxZraqrA1MNMVHJYeWrjREIFYX8mvGwTkUZkRliMkpHdTiDxdw==
-X-Received: by 2002:a05:620a:1714:b0:8b2:e402:20b4 with SMTP id af79cd13be357-8b5e47cefdfmr802772485a.10.1764841206584;
-        Thu, 04 Dec 2025 01:40:06 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-597d7c2e949sm328954e87.98.2025.12.04.01.40.04
+        d=1e100.net; s=20230601; t=1764842140; x=1765446940;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0CBS82JE97HEdddV9MujHpiyCYF+cW+4cfCP0rgquHo=;
+        b=LsJnpZBTmaxLPKSsJzUvA+8WG9ULuXMdxMbe/G1irHsjkdRVttBEOfvQcEObonDXb5
+         0IaqlUdhvaAXkFOsPdP9HolqtVY8TDUlLKWDmL0+8s85MbvEosBQu6cUlyFBZ9dycymK
+         FsQSAd2TFSdpdsmDVIMBLyGKEy6S7S4KdFdqIMl7hiX/iCM55RLFrsWliaORLqW4UK43
+         6i/xbDWxLd5Xu9J8j9E0DjfEvOpCaOzEa4euiaDEv3uavcDK+Hj2Rn0G8/hwCorIhY+I
+         PwX4D+es75duxzI/2+IQyhRj3NHXQNHjMoQE0APPGRFVnQBUCqW/aSq5pg2nFduon9m4
+         8Dbg==
+X-Forwarded-Encrypted: i=1; AJvYcCXdYUHd4MyXfUe2JTZzvInM9m86Lg35IoSiZZbIaC72jhFQpD7hZPHTZf0FAcGHS6BrJE6L7663IiPa@vger.kernel.org
+X-Gm-Message-State: AOJu0YwEthlCreBL4umsDOrjp6bb/Ee0ZyWi8fPPQ7mijDiAx40wXVid
+	O5OeennoYlofWBX5PSkKnN2nWGFxFipUeu3JSE9l6jo3Nxm/o06yRJlkO/f4TNHWrMrDsBlezeU
+	if3+6gapUovg9b5BsVQaB2JA8Dne3hIHmE2ZGYM1vZ7GXddzqL+Oar/2Y3vwJcLPm
+X-Gm-Gg: ASbGncs0jLAyU0JTPVIO85HafIwoYhdy10Ivx3XeS+3cZwnIcWUODXPChyKS/eth+y4
+	YUCKNHWiSLCeNeudyH5fdmFNeibCogbLa7bDMZfTYbIgXV2XgBhC9Al+WshfxAGxm0Zi7SMJ49c
+	VMj8VEp5HdvUvJDiEdX3fiKkR17rXHct8ilMcDeRhOTQ0TWqPlFwZG0VjNE2HYORD3Wh5qPS3i5
+	3gOSJCVIzkJugzXym0kd+UEb5qd93yTwtw86KjK5rcJtQGp3/v0KyCMyDgGixZY4i1U8EbqkQSA
+	238gpv/Q9uu6nxh2E6/be+Z+qK2QLQPoqPC2/m2rtX3lIfVhZC+0YbxwquNnKVnSjsJa5lp7Tr5
+	W1GGp+8CO6rEL/t365zRf2YCuzR8pVQWujUToRc7Skorj
+X-Received: by 2002:a17:903:3c2b:b0:29d:9f5a:e0d1 with SMTP id d9443c01a7336-29d9f5ae5b9mr29352225ad.27.1764842140529;
+        Thu, 04 Dec 2025 01:55:40 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHLmJJ1IqVAbpRWJYWX68AfdveHt+0MbsRDYek5+9K27SHrhh0a6ba8/TJ2nGMVM8HpcloKvQ==
+X-Received: by 2002:a17:903:3c2b:b0:29d:9f5a:e0d1 with SMTP id d9443c01a7336-29d9f5ae5b9mr29351895ad.27.1764842140016;
+        Thu, 04 Dec 2025 01:55:40 -0800 (PST)
+Received: from hu-vjitta-hyd.qualcomm.com ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-bf6817389fdsm1380436a12.1.2025.12.04.01.55.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 Dec 2025 01:40:04 -0800 (PST)
-Date: Thu, 4 Dec 2025 11:40:03 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Le Qi <le.qi@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        kernel@oss.qualcomm.com
-Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: talos-evk: Add sound card
- support with DA7212 codec
-Message-ID: <3j6quxg5wd3uipy4azfz2i3vmkhlq33tb3fgjidihdpjzx7lnl@22d6evqemjtw>
-References: <20251204083225.1190017-1-le.qi@oss.qualcomm.com>
- <20251204083225.1190017-3-le.qi@oss.qualcomm.com>
+        Thu, 04 Dec 2025 01:55:39 -0800 (PST)
+From: Vijayanand Jitta <vijayanand.jitta@oss.qualcomm.com>
+To: robin.murphy@arm.com, will@kernel.org, joro@8bytes.org, robh@kernel.org,
+        dmitry.baryshkov@oss.qualcomm.com, konrad.dybcio@oss.qualcomm.com,
+        bjorn.andersson@oss.qualcomm.com, bod@kernel.org, conor+dt@kernel.org,
+        krzk+dt@kernel.org, charan.kalla@oss.qualcomm.com,
+        prakash.gupta@oss.qualcomm.com, vikash.garodia@oss.qualcomm.com
+Cc: iommu@lists.linux.dev, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, vijayanand.jitta@oss.qualcomm.com
+Subject: [PATCH v2 0/3] of: parsing of multi #{iommu,msi}-cells in maps
+Date: Thu,  4 Dec 2025 15:25:27 +0530
+Message-Id: <20251204095530.8627-1-vijayanand.jitta@oss.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251204083225.1190017-3-le.qi@oss.qualcomm.com>
-X-Proofpoint-GUID: x9TRg01FjYGtw6Rux6GCFzVYkcLF0YYl
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjA0MDA3OCBTYWx0ZWRfX5w9NZ1pzKRUx
- p8WLumaSwH5yIZBHGIvmyvOrkNqtHfAJben+pSIne41LXrp1JPZxL3uNCMMFCJuvpe+lAL6rcuk
- /XO/g5o3JXP8NmF8yxOWnWU1MGlEaM7nPtKOhvEUU6XjYRFzZtpgll+AIORpbJYsOkX0mHdyxOI
- yzftgXTXJmXf3UlcY5K3IscJ/u65bWDhrk1pgKHCwDIpZ5Yr6lPCRCTq7AHh4KeivDxn+jrlKCN
- mcRuJbq6milRkIfHE42E3LJxRW5gKpqnotJkL2+Cq0Yb5tWhVzqdO8CP+NKM6yQKJYyL5HTxYDI
- FLPM6JZh/qn19QFhQkaIY/zqx1w/TZreRqLe9ZRLrFagZwynJSY0HZ1Q/6Po1zUiD1x6H6PbrS7
- VdurqxAZ3reXQMBlBpyud6bch8O7XQ==
-X-Proofpoint-ORIG-GUID: x9TRg01FjYGtw6Rux6GCFzVYkcLF0YYl
-X-Authority-Analysis: v=2.4 cv=Ctays34D c=1 sm=1 tr=0 ts=693156f7 cx=c_pps
- a=50t2pK5VMbmlHzFWWp8p/g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: QXDHYv28eSN03tJaJQ3OT0ij3QC0V8Im
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjA0MDA4MSBTYWx0ZWRfX++1WXGVj+cmE
+ UnBfgiJWAbDVtQkJKWZlN84VZwvcjWnchlNv6cQQwylcy7Q/zz8Cg40sTLLJVhNAOziaWqLP4Nm
+ 7WdDwnjh45aBOdTiHzUWU2h53CJgF4m6+UuAhNhDTPTOGRI1DF/Ab20/yFRGkwfHwO+eZozImCs
+ quJDB9fFxMcL3HovzjhtHHOZN8M5xBeGZ2Z5bIBSv4HdKOo8uUesqiYUXCOjTZ6nJH3a2mjApwi
+ vxE8u+EtgIG0DcGHv4PmuPbCgIr/ccFUwV/qXnExf7EpDgW+O5VjkCy8U4Psbl0v2tj6Y6j5uNZ
+ hdCeSSeKArNsaSsean0BsRcmqqLp0DAmhAecqKqOIPXVAZGU0aJypNOX4clZcuvfxxtQY8Tk2rc
+ rVRwhd0X5EuJk4ACUg1Wq7AkjHfuSA==
+X-Proofpoint-ORIG-GUID: QXDHYv28eSN03tJaJQ3OT0ij3QC0V8Im
+X-Authority-Analysis: v=2.4 cv=Ctays34D c=1 sm=1 tr=0 ts=69315a9d cx=c_pps
+ a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
  a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=eyE2PYJumBGUyiyYskoA:9 a=CjuIK1q_8ugA:10 a=zgiPjhLxNE0A:10
- a=IoWCM6iH3mJn3m4BftBB:22
+ a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=eQMVBvNRXY1Htgy04vAA:9
+ a=GvdueXVYPmCkWapjIL-Q:22 a=TjNXssC_j7lpFel5tvFf:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
  definitions=2025-12-04_02,2025-12-03_02,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
  suspectscore=0 impostorscore=0 bulkscore=0 spamscore=0 lowpriorityscore=0
- clxscore=1015 priorityscore=1501 adultscore=0 phishscore=0 malwarescore=0
+ clxscore=1011 priorityscore=1501 adultscore=0 phishscore=0 malwarescore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512040078
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512040081
 
-On Thu, Dec 04, 2025 at 04:32:25PM +0800, Le Qi wrote:
-> Add the sound card node for QCS615 Talos EVK with DA7212 codec
-> connected over the Primary MI2S interface. The configuration enables
-> headphone playback and headset microphone capture, both of which have
-> been tested to work.
-> 
-> Signed-off-by: Le Qi <le.qi@oss.qualcomm.com>
-> ---
->  arch/arm64/boot/dts/qcom/talos-evk.dts | 54 ++++++++++++++++++++++++++
->  1 file changed, 54 insertions(+)
-> 
+So far our parsing of {iommu,msi}-map properites has always blindly
+assumed that the output specifiers will always have exactly 1 cell.
+This typically does happen to be the case, but is not actually enforced
+(and the PCI msi-map binding even explicitly states support for 0 or 1
+cells) - as a result we've now ended up with dodgy DTs out in the field
+which depend on this behaviour to map a 1-cell specifier for a 2-cell
+provider, despite that being bogus per the bindings themselves.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Since there is some potential use[1] in being able to map at least
+single input IDs to multi-cell output specifiers (and properly support
+0-cell outputs as well), add support for properly parsing and using the
+target nodes' #cells values, albeit with the unfortunate complication of
+still having to work around expectations of the old behaviour too.
+							-- Robin.
 
+Unlike single #{}-cell, it is complex to establish a linear relation
+between input 'id' and output specifier for multi-cell properties, thus
+it is always expected that len never going to be > 1. 
+
+The motivation for this patchset originates from the multi-map use case
+described in V1, which will be addressed in a subsequent series once the
+current fixes for iommu-cell handling are concluded.
+
+These changes have been tested on QEMU for the arm64 architecture. We
+plan to perform more extensive testing based on community feedback and
+are sending this series out early to gather review comments.
+
+[1] https://lore.kernel.org/all/20250627-video_cb-v3-0-51e18c0ffbce@quicinc.com/
+
+V2:
+  1) Incorporated the patches from Robin that does the clean implementation.
+  2) Dropped the patches the were adding multi-map support from this series
+  as suggested.
+
+V1:
+ https://lore.kernel.org/all/cover.1762235099.git.charan.kalla@oss.qualcomm.com/
+
+RFC:
+ https://lore.kernel.org/all/20250928171718.436440-1-charan.kalla@oss.qualcomm.com/#r
+
+Charan Teja Kalla (1):
+  of: factor arguments passed to of_map_id() into a struct
+
+Robin Murphy (2):
+  of: Add convenience wrappers for of_map_id()
+  of: Respect #{iommu,msi}-cells in maps
+
+ drivers/cdx/cdx_msi.c                    |   3 +-
+ drivers/iommu/of_iommu.c                 |  11 +-
+ drivers/irqchip/irq-gic-its-msi-parent.c |   4 +-
+ drivers/of/base.c                        | 132 ++++++++++++++++-------
+ drivers/of/irq.c                         |   3 +-
+ drivers/pci/controller/dwc/pci-imx6.c    |  10 +-
+ drivers/pci/controller/pcie-apple.c      |   6 +-
+ drivers/xen/grant-dma-ops.c              |   6 +-
+ include/linux/of.h                       |  36 +++++--
+ 9 files changed, 151 insertions(+), 60 deletions(-)
 
 -- 
-With best wishes
-Dmitry
+2.34.1
+
 
