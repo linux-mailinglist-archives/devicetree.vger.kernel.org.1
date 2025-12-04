@@ -1,151 +1,143 @@
-Return-Path: <devicetree+bounces-244389-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244397-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CFEBCA45C2
-	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 16:55:43 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 232A9CA462E
+	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 17:02:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B89EB3128258
-	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 15:52:25 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BE2213028F69
+	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 16:00:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4CB42ECD14;
-	Thu,  4 Dec 2025 15:52:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D349F2F12CC;
+	Thu,  4 Dec 2025 16:00:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Pg0bWHfT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d6q474H4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93DDA2EC559;
-	Thu,  4 Dec 2025 15:52:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D1FC2E0B5C;
+	Thu,  4 Dec 2025 16:00:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764863543; cv=none; b=R5pSTzhxk0M12EftxhcI2h5ihVrpBcJnDqRQbCxX66aZBM5t4ejGbefsNn4Bwyvc2EKrD+Yv2ntfC2IO1EH0a3leheAYzicQN5AB1I5VnwLFz6kmlNhEihLxTlzzcXbZeKaFyEtKWoa9jUOqWK8+OMkidgE1oU9CVIRWT8BrnvE=
+	t=1764864009; cv=none; b=qgc1MsbgCHbz8cCcvMvLhQgXelvvO9DFYB8Hp8LQR9J7OE/R74ZL0FhWmkPN0fEzV5EniQNEOcbLHZWfUAJ5lKaglhLWzErjblXZPrFoYmEnEfjP3FowXvjrvRGBqbmXhua7xmlEM+sY4oes30cRdfvw2Ied3NaCX05+62CYC+g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764863543; c=relaxed/simple;
-	bh=gx0KCllM9ErS+DGIJRYM6/W4bjQJj3kqWBhKLjr1UiU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SVjZZKptpiqlveb/uisXlCxV1tLgbPalQUL52/alBx2HtK7VwnaUZmQR0jV+m6c0UjS5fLkepLgTe+VNhOIlCRixI3UOZK/5m5Ggamp5RDr1mqQgzBUidpIzPDBKIabnmM/T473nKhgVvO4J1qF2QwFKBVM9CLBrNY9expo8ZEc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Pg0bWHfT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86CC3C116B1;
-	Thu,  4 Dec 2025 15:52:22 +0000 (UTC)
+	s=arc-20240116; t=1764864009; c=relaxed/simple;
+	bh=/j1e7Lba7ZvxAKqO1APAhvYT2QREm3iPz8NSqH/SgSw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=N/KiqMRydFVa/khqkJLTSVtfquekmx8TBOua1cObEH+mTeo7z3RL18dLF4CSFf/65XxQjl1S0huZLe1NMsk6RzhBJ4wfNdmlGRz0HWyU5chlKy3cpq9RGHK0qmQAlhq/kCOn+zhGyDmcbBK5FxVugdwZEUfzmAtUmtGfPYWEYew=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d6q474H4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2BA9DC4CEFB;
+	Thu,  4 Dec 2025 16:00:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764863543;
-	bh=gx0KCllM9ErS+DGIJRYM6/W4bjQJj3kqWBhKLjr1UiU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Pg0bWHfT+vnpAFNxfwug+IPFq3ujzrQQrYpfkTaS3FonIi5FMu78d2lTK/UKD7QcW
-	 ToRRj1eimPm5gCrHIg/crnJnFJLSoxWi+xFof3gDd61UALe+SdpaSva/wmsNHuj2NA
-	 gogMqrb90UOV1WVz0UgkFd5GK7LTBlRbdm7dF97mJzTAPKmPbWwBOVBNWO2GLSYMe5
-	 4Hv/UoAoNt2IP55W5uSQWQz1w71o6R+YsYvhDkGcQTG3Z2v0/KHQxxM2IHDOgOXFRt
-	 cHNVS9DrtbBXmR03dXTIoab+ImcJIpyzNDIcMh5ak72Ce6BswZgf0FjAK1aZZSCsPK
-	 5Ynr68VeIVy+A==
-Date: Thu, 4 Dec 2025 09:52:19 -0600
-From: Rob Herring <robh@kernel.org>
-To: Vladimir Oltean <vladimir.oltean@nxp.com>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	Daniel Golle <daniel@makrotopia.org>,
-	Horatiu Vultur <horatiu.vultur@microchip.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Eric Woudstra <ericwouds@gmail.com>,
-	Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
-	Lee Jones <lee@kernel.org>,
-	Patrice Chotard <patrice.chotard@foss.st.com>
-Subject: Re: [PATCH net-next 2/9] dt-bindings: phy-common-props: create a
- reusable "protocol-names" definition
-Message-ID: <20251204155219.GA1533839-robh@kernel.org>
-References: <20251122193341.332324-1-vladimir.oltean@nxp.com>
- <20251122193341.332324-3-vladimir.oltean@nxp.com>
+	s=k20201202; t=1764864008;
+	bh=/j1e7Lba7ZvxAKqO1APAhvYT2QREm3iPz8NSqH/SgSw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=d6q474H43G55MtS4DsgHh5Ty7DCADkCWQPF2IRMFHW3fkuq6MZj1uvKklgXduSawJ
+	 9GGlrEqg2VZ2hAApaxN9lcc4VHsyKrD23u0obAlJTUYe3Eeq2QXcH8feM3LMftVK1m
+	 NQLX7gpJD5BXDJyZS8Cq2uO7+MHL18JbITxH4THf+3vDFnXLW13YMjH8eiSazyjZIf
+	 DslXILq1JgqIFNqj9zS/erBr8yTAe5f+5zUcbwLJNmYoYpODKrRUSivsScK0ymTGO4
+	 za2NvXAYZdWJg6wlI0U3xbIFBbSxBxULkxCOhueh8qL2TQJbwl++6tHdRgzwBEp2Ag
+	 7fdWvvirhxnVA==
+Message-ID: <6dbd12c9-08c3-4be5-b29c-c2dc29987015@kernel.org>
+Date: Thu, 4 Dec 2025 17:00:03 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251122193341.332324-3-vladimir.oltean@nxp.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/8] dt-bindings: pinctrl: renesas,r9a09g077-pinctrl:
+ Document GPIO IRQ
+To: Cosmin-Gabriel Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
+ Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, "magnus.damm" <magnus.damm@gmail.com>,
+ Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+ "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+ "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20251121112626.1395565-1-cosmin-gabriel.tanislav.xa@renesas.com>
+ <20251121112626.1395565-4-cosmin-gabriel.tanislav.xa@renesas.com>
+ <20251203-furry-amigurumi-ocelot-dda208@quoll>
+ <TYYPR01MB1395515F6CBA3E3FBBAA4297085A6A@TYYPR01MB13955.jpnprd01.prod.outlook.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <TYYPR01MB1395515F6CBA3E3FBBAA4297085A6A@TYYPR01MB13955.jpnprd01.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Sat, Nov 22, 2025 at 09:33:34PM +0200, Vladimir Oltean wrote:
-> Other properties also need to be defined per protocol than just
-> tx-p2p-microvolt-names. Create a common definition to avoid copying a 55
-> line property.
+On 04/12/2025 10:30, Cosmin-Gabriel Tanislav wrote:
+>>> @@ -119,6 +130,8 @@ required:
+>>>    - gpio-controller
+>>>    - '#gpio-cells'
+>>>    - gpio-ranges
+>>> +  - interrupt-controller
+>>> +  - '#interrupt-cells'
+>>
+>> This is technically an ABI break thus commit msg must explain WHY
+>> breaking ABI is necessary and what is the impact on users.
+>>
+>> If your driver keeps things backwards compatible, then briefly mention
+>> it in the commit msg that you require it only for complete hardware
+>> picture. Or for whatever other reason.
+>>
 > 
-> Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
-> ---
->  .../bindings/phy/phy-common-props.yaml        | 34 +++++++++++--------
->  1 file changed, 19 insertions(+), 15 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/phy/phy-common-props.yaml b/Documentation/devicetree/bindings/phy/phy-common-props.yaml
-> index 255205ac09cd..775f4dfe3cc3 100644
-> --- a/Documentation/devicetree/bindings/phy/phy-common-props.yaml
-> +++ b/Documentation/devicetree/bindings/phy/phy-common-props.yaml
-> @@ -13,22 +13,12 @@ description:
->  maintainers:
->    - Marek Behún <kabel@kernel.org>
->  
-> -properties:
-> -  tx-p2p-microvolt:
-> +$defs:
-> +  protocol-names:
->      description:
-> -      Transmit amplitude voltages in microvolts, peak-to-peak. If this property
-> -      contains multiple values for various PHY modes, the
-> -      'tx-p2p-microvolt-names' property must be provided and contain
-> -      corresponding mode names.
-> -
-> -  tx-p2p-microvolt-names:
-> -    description: |
-> -      Names of the modes corresponding to voltages in the 'tx-p2p-microvolt'
-> -      property. Required only if multiple voltages are provided.
-> -
-> -      If a value of 'default' is provided, the system should use it for any PHY
-> -      mode that is otherwise not defined here. If 'default' is not provided, the
-> -      system should use manufacturer default value.
-> +      Names of the PHY modes. If a value of 'default' is provided, the system
-> +      should use it for any PHY mode that is otherwise not defined here. If
-> +      'default' is not provided, the system should use manufacturer default value.
->      minItems: 1
->      maxItems: 16
->      items:
-> @@ -89,6 +79,20 @@ properties:
->          - mipi-dphy-univ
->          - mipi-dphy-v2.5-univ
->  
-> +properties:
-> +  tx-p2p-microvolt:
-> +    description:
-> +      Transmit amplitude voltages in microvolts, peak-to-peak. If this property
-> +      contains multiple values for various PHY modes, the
-> +      'tx-p2p-microvolt-names' property must be provided and contain
-> +      corresponding mode names.
-> +
-> +  tx-p2p-microvolt-names:
-> +    description:
-> +      Names of the modes corresponding to voltages in the 'tx-p2p-microvolt'
-> +      property. Required only if multiple voltages are provided.
-> +    $ref: "#/$defs/protocol-names"
+> It's not exactly required for the pinctrl to be defined as an interrupt
+> controller, only if you use the interrupt functionality of the pins...
+> I can remove them from required, that should keep compatibility.
+> 
+> Would that be fine?
 
-The default for .*-names is the entries don't have to be unique. That's 
-for the exception, but unfortunately everyone else has to define the 
-type (type.yaml#/definitons/string).
+Yes.
 
-Each user needs to define the names of the entries which will enforce 
-the length. So defining the length 1-16 here doesn't do much. So I think 
-you can drop that and then the $defs is not needed either.
-
-Rob
+Best regards,
+Krzysztof
 
