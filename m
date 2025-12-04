@@ -1,184 +1,212 @@
-Return-Path: <devicetree+bounces-244292-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244293-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4370CA3450
-	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 11:44:33 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC9F6CA3536
+	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 11:56:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 17ABD3025328
-	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 10:42:59 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id D5311300EBF8
+	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 10:56:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32BFD332900;
-	Thu,  4 Dec 2025 10:42:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fOs/mA7O"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6319733890D;
+	Thu,  4 Dec 2025 10:55:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC99F330B18;
-	Thu,  4 Dec 2025 10:42:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D9743358D1
+	for <devicetree@vger.kernel.org>; Thu,  4 Dec 2025 10:55:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764844978; cv=none; b=rmWOuXQyVb8pDNIRJSwi/SopxfyZiRb/cGDpiMInhoaE0l9t+hF+jW90FMv4mRdqLB26rtn4GPTCQ21kn0d7Hi8Etms3CbvS2eZTN9w+4L7NfRKydq65JIb8JaDfMKkmv/3EaCnT6m8Y3jjyrxsvJFwf+G6aw0xOH0PJmJHq8T8=
+	t=1764845758; cv=none; b=Ko1KOqEVpHSAd1J1eU7WLoghK/lJOFwfseC0yxyPjBFWBqeCKHK06ddqapPJ3Gr/2wT511bx/T9yN3NMmiO9sA3yTWnJ3f/aUm7X4OR51aANf7rlGtG/mce3pBfvzxZy3CWIQo3D7YbKOmxDCuIstDCSfwSPi2Pi2mTakTbjM2Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764844978; c=relaxed/simple;
-	bh=NaSyS4V9SU9EMGzY5safugaNRuSH2YVPB+enxb3FlB0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=K05e0WtKLrvlsJ9Sk5m9okk7nyKgzbKmVAOZkB2Q2g+CzAhh0ewIktp1+0vnictNf8+seVP4piVMjdLuMPw8cnRQUbkczDiVU+tm5UQGckczp8KVUje7HDr9cWh1XjPDZL6wpFs0urAniH6VRwUAy/rs6lMFPKJ96S6SfaVrETw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fOs/mA7O; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1FE43C4CEFB;
-	Thu,  4 Dec 2025 10:42:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764844977;
-	bh=NaSyS4V9SU9EMGzY5safugaNRuSH2YVPB+enxb3FlB0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=fOs/mA7O/kughxzTttWsUd8ztcZPozi2KVkgb9bhoQxRmtYCuzMCGvRZaP5A+etXR
-	 QG93zEAeQ0tZb4kvbMN8tCGUma+jvpeje8Zm/wC/KSktVl4glBzooSCshAQ9EF/FhW
-	 LPQX1u5y6PdcgnvhbW9zQ5nELNDBMhqDvFTfQCRn6RYT1O2/iui0+JU3esX1dxv1j+
-	 V9rgbpty3o0ZyP/1qBj/GicUQ3zmpxEWc50TNf1psOadvwxtqS6CtgRzha0wzzxV4W
-	 tWTC4vQV+NE91GmSOE4Xqy/BvFX9UaVvrK0VUVoCuF0oJmoO/5G1c0tzcJXQcErRM7
-	 fgcQm8HuA9zjg==
-Message-ID: <785fb4be-22b2-4881-8900-e7001945f929@kernel.org>
-Date: Thu, 4 Dec 2025 11:42:51 +0100
+	s=arc-20240116; t=1764845758; c=relaxed/simple;
+	bh=6slcK3EQrAXupPVJr9jM3Pcmh+QTUwh+iVFWsaKxXWo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=gLBq1/HiswNfwOtjrg/9NZmahoMlSgvo3fkkU9Ljxls11VurBhb3pvM4w1aqKpSToGz4mO4flg2rDVdVbSwFceET98Eh8Dofntefm5PqMsbiclWB+5/7rvFuldXFUPqsqN1kTJW/wY+rYeJAdTkVfodo3YB7OX9ynGwrPlSCKSo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.210.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-7d26a7e5639so967121b3a.1
+        for <devicetree@vger.kernel.org>; Thu, 04 Dec 2025 02:55:54 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764845751; x=1765450551;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=gfnzYJnOAkS7SHNqKKzIeFzoFbDZmoEYIAPmuyxm7j4=;
+        b=P1MCpYJuEIwlG/e/iUL3Z37YUK92fVkmDLCKUurzAsIcJNhmkTLGgxHeBJbG9pTPJp
+         ELpfcnanvKOy4Gc+TnzlK+apzSTvCndaXILSQTQxIBl3aiydrKtCK+1LqERZUIvBfwLM
+         34MNh1g8lGY38wP7XKqY0znsrXUxN+woP2uIJh0rf6djjvTBuSukHHoC/dVOBVKHQI4Q
+         D+0z3m4cbrW9rYe7SH23IqI0c+fjlSOTRrE2z+Iyj7OJSnGAWSFWZVFHs3tSCQKg1qvx
+         Mqp4Gpx1lzF3vOKYdQhIEi2AIjh9w2l21ijQYd+JNV+dzZQl1XZb4YBrawEBHcKF0KXX
+         GwGQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVfxM/xj6Ae7S6ZqpUQALwtWGJreHe+ys/tNy74lCS3peDjWzg+BBfrvlzS1BcC7BA3QrE0Hc7cWuEa@vger.kernel.org
+X-Gm-Message-State: AOJu0YwONbDtv4Z6ftHfD7ZBwa8OSZTw1DokKHJPivOB9ezPy/rieNxI
+	tP6aFcNdFmY4i4owLUsJGOez9NtehSQjQrCvDng/9hYGIc7j+6oVEQrirZ7K0MD2
+X-Gm-Gg: ASbGnctLgs42lmVXrLZU3+vvhLwnz8CfFwWaOvg8+73dEqLdkQoY/+8Uxf4gpeFrVT9
+	au2NbZ/+Wl+BMm6TeoKvO19YaAeMxIbDEbi/5u3jBWCpP2s0AV5axmaVsqdMEm/sDXmoq9LQpb8
+	W1X44nLl5itOiJ7fTVpyjBlsF0GRcWpGZ6ECGdJWnz3FUyz8GiBtfvQ/uJioUFf+/PNXisW3Nh5
+	lnZNts5hNVmXXmQjeqW2n8YRonPdT5ilUHVJiFiIq5YW1y/md72yD8pge1nFoBAh2F/N0GIhdpN
+	oUMvPSdQ/vXyTont08Xd9C7U5x6seenFmznadKGj1Z6S5upOE9Zcg3hQNGSUgFsgtBpAeusCSfU
+	xahGglo6QG7Jgg9waFZMohMHHlgzjej1lRQfb82g4zf8+OtS8V/E9XdVBXnPpV4WEqmxT+PwpuM
+	t4Pteu0d6r2NFoR1IXSr5Olooyi+EY+vuzpUi2+THbAhgPLJ5nwlpX
+X-Google-Smtp-Source: AGHT+IE/mCN+gxc2frR73SjOiY8fkCh98uELZHj5GpA7NnieRR78yFuaJLBbfNaYBLt8+rdrH7UDtg==
+X-Received: by 2002:a05:6a00:14d2:b0:781:c54:4d12 with SMTP id d2e1a72fcca58-7e00d2335bcmr6529276b3a.13.1764845750846;
+        Thu, 04 Dec 2025 02:55:50 -0800 (PST)
+Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com. [209.85.210.171])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7e2af18dbc0sm1806371b3a.59.2025.12.04.02.55.50
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 04 Dec 2025 02:55:50 -0800 (PST)
+Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-7bb3092e4d7so797903b3a.0
+        for <devicetree@vger.kernel.org>; Thu, 04 Dec 2025 02:55:50 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCU7+vjjnQQQeQXUuDOoAIEg1vfC5TR/wNKlfsvl5QpUsP6d7BZpAFfPb2F0XOmRDAsKO61jEGTSPw1T@vger.kernel.org
+X-Received: by 2002:a05:6102:6889:b0:5dd:b69a:cdce with SMTP id
+ ada2fe7eead31-5e48e28ea62mr1665640137.1.1764845364523; Thu, 04 Dec 2025
+ 02:49:24 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 00/20] arm64: dts: qcom: Introduce Kaanapali platform
- device tree
-To: Pavel Machek <pavel@ucw.cz>
-Cc: Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
- trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com,
- Tengfei Fan <tengfei.fan@oss.qualcomm.com>,
- Qiang Yu <qiang.yu@oss.qualcomm.com>,
- Manish Pandey <manish.pandey@oss.qualcomm.com>,
- Ronak Raheja <ronak.raheja@oss.qualcomm.com>,
- Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>,
- Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>,
- Jyothi Kumar Seerapu <jyothi.seerapu@oss.qualcomm.com>,
- Prasad Kumpatla <prasad.kumpatla@oss.qualcomm.com>,
- Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>,
- Vikash Garodia <vikash.garodia@oss.qualcomm.com>
-References: <20250924-knp-dts-v1-0-3fdbc4b9e1b1@oss.qualcomm.com>
- <aS8uJCnb0xOd6uby@duo.ucw.cz>
- <081a2038-e798-4cc0-96ff-b7f11e346831@kernel.org>
- <aTB8++UtSrhwtqdY@duo.ucw.cz>
- <c1b24759-762f-4b97-8d3f-8a44a66b646b@kernel.org>
- <aTFRCzVQfXyJQt/Q@duo.ucw.cz>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <aTFRCzVQfXyJQt/Q@duo.ucw.cz>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20251015071420.1173068-1-herve.codina@bootlin.com>
+ <20251015071420.1173068-2-herve.codina@bootlin.com> <f74ab0a2-b74b-4b96-8469-a716c850e230@gmail.com>
+ <CAL_JsqJDOYuzutMHMeFAogd5a_OX6Hwi8Gwz1Vy7HpXgNeYKsg@mail.gmail.com>
+ <5cf2a12a-7c66-4622-b4a9-14896c6df005@gmail.com> <CAL_JsqJjm12LxpDg6LmpY=Ro_keHwnrWiYMLVnG=s_pSP4X2WQ@mail.gmail.com>
+ <072dde7c-a53c-4525-83ac-57ea38edc0b5@gmail.com> <CAL_JsqKyG98pXGKpL=gxSc92izpzN7YCdq62ZJByhE6aFYs1fw@mail.gmail.com>
+ <55076f4b-d523-4f8c-8bd4-0645b790737e@gmail.com> <20251202102619.5cd971cc@bootlin.com>
+ <088af3ff-bd04-4bc9-b304-85f6ed555f2a@gmail.com> <20251202175836.747593c0@bootlin.com>
+ <dc813fc2-28d2-4f2c-a2a3-08e33eec8ec7@gmail.com> <20251204083839.4fb8a4b1@bootlin.com>
+In-Reply-To: <20251204083839.4fb8a4b1@bootlin.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 4 Dec 2025 11:49:13 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXdwf7La1EYBWTJadsTAJG3nKQVW6wtBn-bUqshA=XHRw@mail.gmail.com>
+X-Gm-Features: AWmQ_blMXTXWTKLb__jRgM2vj510G0Mh23mSqsI1Cojt34ffki3w4wmdXTg_pQg
+Message-ID: <CAMuHMdXdwf7La1EYBWTJadsTAJG3nKQVW6wtBn-bUqshA=XHRw@mail.gmail.com>
+Subject: Re: [PATCH v4 01/29] Revert "treewide: Fix probing of devices in DT overlays"
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Kalle Niemi <kaleposti@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Matti Vaittinen <mazziesaccount@gmail.com>, linux-arm-kernel@lists.infradead.org, 
+	Andrew Lunn <andrew@lunn.ch>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Danilo Krummrich <dakr@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Andi Shyti <andi.shyti@kernel.org>, 
+	Wolfram Sang <wsa+renesas@sang-engineering.com>, Peter Rosin <peda@axentia.se>, 
+	Arnd Bergmann <arnd@arndb.de>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Charles Keepax <ckeepax@opensource.cirrus.com>, 
+	Richard Fitzgerald <rf@opensource.cirrus.com>, David Rhodes <david.rhodes@cirrus.com>, 
+	Linus Walleij <linus.walleij@linaro.org>, Ulf Hansson <ulf.hansson@linaro.org>, 
+	Mark Brown <broonie@kernel.org>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+	Daniel Scally <djrscally@gmail.com>, Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
+	Sakari Ailus <sakari.ailus@linux.intel.com>, Len Brown <lenb@kernel.org>, 
+	Davidlohr Bueso <dave@stgolabs.net>, Jonathan Cameron <jonathan.cameron@huawei.com>, 
+	Dave Jiang <dave.jiang@intel.com>, Alison Schofield <alison.schofield@intel.com>, 
+	Vishal Verma <vishal.l.verma@intel.com>, Ira Weiny <ira.weiny@intel.com>, 
+	Dan Williams <dan.j.williams@intel.com>, Wolfram Sang <wsa@kernel.org>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev, linux-clk@vger.kernel.org, 
+	linux-i2c@vger.kernel.org, linux-pci@vger.kernel.org, 
+	linux-sound@vger.kernel.org, patches@opensource.cirrus.com, 
+	linux-gpio@vger.kernel.org, linux-pm@vger.kernel.org, 
+	linux-spi@vger.kernel.org, linux-acpi@vger.kernel.org, 
+	linux-cxl@vger.kernel.org, Allan Nielsen <allan.nielsen@microchip.com>, 
+	Horatiu Vultur <horatiu.vultur@microchip.com>, 
+	Steen Hegelund <steen.hegelund@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 04/12/2025 10:14, Pavel Machek wrote:
-> On Wed 2025-12-03 19:40:20, Krzysztof Kozlowski wrote:
->> On 03/12/2025 19:10, Pavel Machek wrote:
->>> On Wed 2025-12-03 18:31:11, Krzysztof Kozlowski wrote:
->>>> On 02/12/2025 19:21, Pavel Machek wrote:
->>>>> Hi!
->>>>>
->>>>>> Introduce the Device Tree for the recently announced Snapdragon SoC from Qualcomm:
->>>>>> https://www.qualcomm.com/products/mobile/snapdragon/smartphones/snapdragon-8-series-mobile-platforms/snapdragon-8-elite-gen-5
->>>>>>
->>>>>> Bindings and base Device Tree for the Kaanapali SoC, MTP (Mobile Test Platform)
->>>>>> and QRD (Qualcommm Reference Device) are splited in three:
->>>>>>
->>>>>> - 1-3: MTP board boot-to-shell with basic function.
->>>>>> - 4-16: More feature including PCIE, sdcard, usb, DSPs, PMIC related, tsense, bus, crypto etc. Add QRD board support.
->>>>>> - 17-20: Multimedia features including audio, video and camss.
->>>>>
->>>>> Thanks for doing this. I assume there devices available with this are
->>>>> quite expensive/hard to get at this point?
->>>>>
->>>>> Please cc phone-devel@vger.kernel.org with phone related patches.
->>>>
->>>> That's not even a phone, anyway contributors should not cc lists which
->>>> are not relevant to the posting and not pointed out by maintainers. You
->>>
->>> People should Cc relevant lists, and yes, if it is called "Mobile Test
->>> Platform", it is relevant to phone development.
->>
->>
->> Almost everything in ARM64 is then relevant for "phone development".
-> 
-> No.
-> 
->> People should use tools, not invent or try to guess whom to Cc. It's
-> 
-> No. People should cc relevant people / lists. Tools are tools,
-> submitter is responsible for getting the cc right. I believe you
-> should be capable of reading our patch submission guidelines yourself,
-> but I can find it for you if you are not.
-> 
->> impossible to btw keep guessing them - you will request phone-devel,
->> someone else will request desktop-devel, laptop-devel or
-> 
-> Desktop-devel is not kernel-related list. But yes, if
-> cat-picture-devel was somehow relevant because now interface to
-> cat-pictures changeed, it would be your responsibility to cc it.
+Hi Herv=C3=A9,
 
-Maintainers decide what is relevant, not you. Just because you wanted
-phone-devel list does not grant you ability to impose such rule and
-claim it is relevant and people should Cc it.
+On Thu, 4 Dec 2025 at 08:39, Herve Codina <herve.codina@bootlin.com> wrote:
+> Indeed, Kalle, Geert, I don't have your hardware, your related overlay or
+> a similar one that could be used for test and also I don't have your out =
+of
+> tree code used to handle this overlay.
+>
+> I know overlays and fw_devlink have issues. Links created by fw_devlink
+> when an overlay is applied were not correct on my side.
+>
+> Can you check your <supplier>--<consumer> links with 'ls /sys/class/devli=
+nks'
+>
+> On my side, without my patches some links were not correct.
+> They linked to the parent of the supplier instead of the supplier itself.
+> The consequence is a kernel crash, use after free, refcounting failure, .=
+..
+> when the supplier device is removed.
+>
+> Indeed, with wrong links consumers were not removed before suppliers they
+> used.
+>
+> Looking at Geert traces:
+> --- 8< ---
+> rcar_sound ec500000.sound: Failed to create device link (0x180) with
+> supplier soc for /soc/sound@ec500000/rcar_sound,src/src-0
+> rcar_sound ec500000.sound: Failed to create device link (0x180) with
+> supplier soc for /soc/sound@ec500000/rcar_sound,src/src-1
+> [...]
+> --- 8< ---
+>
+> Even if it is not correct, why the soc device cannot be a provider?
+> I don't have the answer to this question yet.
 
-No, there is no rule of Cc-ing phone-devel. No one has to do it and you
-need to stop coming with the impression that it is sanctioned rule by
-any platform or architecture maintainer.
+I have no idea. These failures (sound) are also not related to the
+device I am adding through the overlay (SPI EEPROM).
+Note that these failures appear only with your suggested fix, and are
+not seen with just the patch in the subject of this email thread.
 
-Best regards,
-Krzysztof
+> Without having the exact tree structure of the base device-tree, the over=
+lay
+> and the way it is applied, and so without been able to reproduce the issu=
+e
+> on my side, investigating the issue is going to be difficult.
+>
+> I hope to find some help to move forward and fix the issue.
+
+Base DTS is [1], overlay DTS is [2].
+Applying and removing the overlay is done using OF_CONFIGFS[3],
+and "overlay [add|rm] 25lc040"[4].
+
+I assume you can reproduce the issue on any board that has an SPI
+EEPROM, after moving the SPI bus enablement and SPI EEPROM node to an
+overlay. Probably even with an I2C EEPROM instead.  Or even without
+an actual EEPROM connected, as even the SPI bus fails to appear.
+
+> Saravana's email (Saravana Kannan <saravanak@google.com>) seems incorrect=
+.
+> Got emails delivery failure with this email address.
+
+Yeah, he moved company.
+He is still alive, I met him in the LPC Training Session yesterday ;-)
+
+Thanks!
+
+[1] https://web.git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-drive=
+rs.git/tree/arch/arm64/boot/dts/renesas/r8a77990-ebisu.dts
+[2] https://web.git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-drive=
+rs.git/tree/arch/arm64/boot/dts/renesas/r8a77990-ebisu-cn41-msiof0-25lc040.=
+dtso?h=3Dtopic/renesas-overlays-v6.17-rc1
+[3] https://web.git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-drive=
+rs.git/log/?h=3Dtopic/overlays-v6.17-rc1
+[4] https://elinux.org/R-Car/DT-Overlays#Helper_Script
+[5] https://lore.kernel.org/CAMuHMdXEnSD4rRJ-o90x4OprUacN_rJgyo8x6=3D9F9rZ+=
+-KzjOg@mail.gmail.com/
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
