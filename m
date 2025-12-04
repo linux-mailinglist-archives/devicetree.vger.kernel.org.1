@@ -1,113 +1,126 @@
-Return-Path: <devicetree+bounces-244444-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244445-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B493DCA508C
-	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 20:00:11 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53F1FCA507F
+	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 19:59:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 291403194AE7
-	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 18:56:57 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 727E03189274
+	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 18:56:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CA9130E0FA;
-	Thu,  4 Dec 2025 18:47:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21444345CAE;
+	Thu,  4 Dec 2025 18:49:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="SeeJ3ZNp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="micvC0PH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-178.mta0.migadu.com (out-178.mta0.migadu.com [91.218.175.178])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 975AE2E092E
-	for <devicetree@vger.kernel.org>; Thu,  4 Dec 2025 18:47:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28EC3344050;
+	Thu,  4 Dec 2025 18:49:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764874069; cv=none; b=p2sDJ94IZLGhuCQUaSGJ1Q8U05UCxpx/NRV2a77sSMLr57RgjLVn/PuuDhaMOr2204aQUwGJmWNQX7xqDG/KNwwbHw+HYsYWFDcFn2zbUQnfgehYz5fwGZP5eFUkowBXgVcQPKw6+xbg+Oy3C2ojmoBkKFheGD8GEioc5roBxoA=
+	t=1764874187; cv=none; b=jys8mw9JZBZ6/iq9skKoHY7NN9XGoZ/Mr8d6FXXm2IvBAxrFzyzpaOvdgZhINy6PfYDahnsY958kyEC08AMFSgnsMeiio/bDyhrYAwOhVyZwCGmkz+9wYseiC9YocnpbIAHciR1qPrkmgSrZxyCbB3Upvq0Ndq5oT4UE60PxX4o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764874069; c=relaxed/simple;
-	bh=noPUV3bu79z3qlWu5jYSIMg//1Eh+wIJG9XWK6Aw/tc=;
-	h=MIME-Version:Date:Content-Type:From:Message-ID:Subject:To:Cc:
-	 In-Reply-To:References; b=JWEJxE4Iq9fHBPzQCmCok8X+M7LIETYCznMZ6KikzXfRcNluRTy1ekMu20oCOGW9pYs4ASMSHxQqnBKCJB+ioh3zLZMdQdlqfXfAOZKToGZnumRV3gF5ItbXNlkID7eNp9xIYn9MlrnEciJrrQ+lPPx3wdkoWBpIDRRtlAkGN9s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=SeeJ3ZNp; arc=none smtp.client-ip=91.218.175.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=postmarketos.org
+	s=arc-20240116; t=1764874187; c=relaxed/simple;
+	bh=6AiEXx+Vx3in9BLvgOkOE4t47CVyX/TX/0nCAs8EZqs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=p7ahji6Dg0dtrlXuTRuO4nXuGfn7Ccv77oXEiEY1hMciOHrye12Oo4qn3R5tAi7SezCKbJ29JuHReyXYZmza34l1mHvlRD00Z6Olab3LiBMk9y1OeOEvGJn2RsGDFd+TDxYvZvN7WN65JL2of0GPUM/Kkm2nc1GZvdRXzYlv0T8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=micvC0PH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7547DC4CEFB;
+	Thu,  4 Dec 2025 18:49:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764874186;
+	bh=6AiEXx+Vx3in9BLvgOkOE4t47CVyX/TX/0nCAs8EZqs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=micvC0PH980DdDnGAQilzIbnqgiOy6spHYMbbs03d/51MPGSrmHq9ThIrkswKLpjQ
+	 6Lgx0XzJk0FMr0JxajDmKaKIgDhfcWEZRPQVbkKQPGH0kDggTkPkd3lBM/GPnI1FPx
+	 oRjEX00HoZXnznqsc5/aStVDPIiYxbcm4LLibDh3LNFBT4FzEQVnm/3WLUsbmF5NIO
+	 wGA1Wz4F1d98KI5pHoUWL9tvLoMvGUNtNj1OV6S2j3c8EMuUp99MZAD0UsxxmbEErv
+	 R6wBCdZhDTgabPzenuYlpJnlfmOuV2gtz06jvaeuhhQJBROnT0ZASEN9bA0Jsq0Keg
+	 aSzyHdihQVZ3w==
+Date: Thu, 4 Dec 2025 12:49:44 -0600
+From: Rob Herring <robh@kernel.org>
+To: Nam Tran <trannamatk@gmail.com>
+Cc: lee@kernel.org, gregkh@linuxfoundation.org, pavel@kernel.org,
+	rdunlap@infradead.org, christophe.jaillet@wanadoo.fr,
+	krzk+dt@kernel.org, conor+dt@kernel.org, corbet@lwn.net,
+	linux-leds@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-doc@vger.kernel.org
+Subject: Re: [PATCH v19 1/3] dt-bindings: leds: add TI/National Semiconductor
+ LP5812 LED Driver
+Message-ID: <20251204184944.GA1972172-robh@kernel.org>
+References: <176451936212.1126615.11381616288774387236.robh@kernel.org>
+ <20251203164033.363984-1-trannamatk@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
-	s=key1; t=1764874055;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=fFIyOFl4s3TiXZ1x3OnNe6v2Uon+vzAZW3MjiFsYDiE=;
-	b=SeeJ3ZNp2b8pbXmzpfThcPq5PTYnsTv8k9S8yTUQOt4q8rHTliKWqREOM56S7QxuGcjiAo
-	F1gEnszIWzKS6UDNlouJxoGpDWEwRGmtZBq2jVUtZ8dDRVf4+/D0XczFDr7KWmSGRbyEOH
-	aaUtPKuwBXv9vOHfq/hgSQN+jDKzPbZs5648IoWimVLxgBCM7Gl/F2WnhsAr+Jy+B79j7l
-	KrWAjWAqo27Gjlk5KpMISQQm0UtOYeCepD6tFEWhxVtO3lrBIhYev3RSlJt4ESfEBtY1DB
-	mLm28zBLE52yOOnH/vLO04l3jU7lLv+35RCupGVc7mZQHatjp/qM0iABgX8FnA==
-Date: Thu, 04 Dec 2025 18:47:32 +0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: "Paul Sajna" <sajattack@postmarketos.org>
-Message-ID: <7909626f3116fcb9feb25b77820a98da56e1283a@postmarketos.org>
-TLS-Required: No
-Subject: Re: [PATCH v5 10/12] arm64: dts: qcom: sdm845-lg-judyln: Add lab/ibb
-To: "Konrad Dybcio" <konrad.dybcio@oss.qualcomm.com>, "Bjorn Andersson"
- <andersson@kernel.org>, "Konrad Dybcio" <konradybcio@kernel.org>, "Rob
- Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>, "David Heidelberg" <david@ixit.cz>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
- ~postmarketos/upstreaming@lists.sr.ht, "Amir Dahan"
- <system64fumo@tuta.io>, "Christopher Brown" <crispybrown@gmail.com>
-In-Reply-To: <84a17875-0542-47cf-ac4b-5af7bbdc5edf@oss.qualcomm.com>
-References: <20251203-judyln-dts-v5-0-80c1ffca8487@postmarketos.org>
- <20251203-judyln-dts-v5-10-80c1ffca8487@postmarketos.org>
- <84a17875-0542-47cf-ac4b-5af7bbdc5edf@oss.qualcomm.com>
-X-Migadu-Flow: FLOW_OUT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251203164033.363984-1-trannamatk@gmail.com>
 
-December 4, 2025 at 12:50 PM, "Konrad Dybcio" <konrad.dybcio@oss.qualcomm=
-.com mailto:konrad.dybcio@oss.qualcomm.com?to=3D%22Konrad%20Dybcio%22%20%=
-3Ckonrad.dybcio%40oss.qualcomm.com%3E > wrote:
+On Wed, Dec 03, 2025 at 11:40:33PM +0700, Nam Tran wrote:
+> On Sun, 30 Nov 2025, Rob Herring (Arm) wrote:
+> 
+> > On Sun, 30 Nov 2025 22:39:54 +0700, Nam Tran wrote:
+> > > The LP5812 is a 4x3 RGB LED driver with an autonomous animation
+> > > engine and time-cross-multiplexing (TCM) support for up to 12 LEDs
+> > > or 4 RGB LEDs. It supports both analog (256 levels) and PWM (8-bit)
+> > > dimming, including exponential PWM for smooth brightness control.
+> > > 
+> > > Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+> > > Signed-off-by: Nam Tran <trannamatk@gmail.com>
+> > > ---
+> > >  .../devicetree/bindings/leds/ti,lp5812.yaml   | 246 ++++++++++++++++++
+> > >  MAINTAINERS                                   |   6 +
+> > >  2 files changed, 252 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/leds/ti,lp5812.yaml
+> > > 
+> > 
+> > My bot found errors running 'make dt_binding_check' on your patch:
+> > 
+> > yamllint warnings/errors:
+> > 
+> > dtschema/dtc warnings/errors:
+> > Documentation/devicetree/bindings/thermal/thermal-zones.example.dtb: /example-0/soc/thermal-sensor@c263000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
+> > Documentation/devicetree/bindings/thermal/thermal-zones.example.dtb: /example-0/soc/thermal-sensor@c263000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
+> > Documentation/devicetree/bindings/thermal/thermal-zones.example.dtb: /example-0/soc/thermal-sensor@c265000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
+> > Documentation/devicetree/bindings/thermal/thermal-zones.example.dtb: /example-0/soc/thermal-sensor@c265000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
+> > Documentation/devicetree/bindings/thermal/thermal-sensor.example.dtb: /example-0/soc/thermal-sensor@c263000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
+> > Documentation/devicetree/bindings/thermal/thermal-sensor.example.dtb: /example-0/soc/thermal-sensor@c263000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
+> > Documentation/devicetree/bindings/thermal/thermal-sensor.example.dtb: /example-0/soc/thermal-sensor@c265000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
+> > Documentation/devicetree/bindings/thermal/thermal-sensor.example.dtb: /example-0/soc/thermal-sensor@c265000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
+> > 
+> > doc reference errors (make refcheckdocs):
+> > 
+> > See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20251130153956.241375-2-trannamatk@gmail.com
+> 
+> Accessing the link results in a 404 error on my side, is it expected?
+
+That's patchwork.kernel.org now.
 
 
->=20
->=20On 12/3/25 10:40 AM, Paul Sajna wrote:
->=20
->=20>=20
->=20> These regulators are required for the LCD
-> >=20=20
->=20>  Signed-off-by: Paul Sajna <sajattack@postmarketos.org>
-> >  ---
-> >  arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts | 17 +++++++++++++++++
-> >  1 file changed, 17 insertions(+)
-> >=20=20
->=20>  diff --git a/arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts b/arch/=
-arm64/boot/dts/qcom/sdm845-lg-judyln.dts
-> >  index 8b88f75b36af..cdaf84de5e6c 100644
-> >  --- a/arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts
-> >  +++ b/arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts
-> >  @@ -56,10 +56,27 @@ zap-shader {
-> >  };
-> >  };
-> >=20=20
->=20>  +&ibb {
-> >  + regulator-min-microvolt =3D <5500000>;
-> >  + regulator-max-microvolt =3D <5700000>;
-> >=20
->=20These ranges seem much more reasonable, although I would still
-> expect there's a single operational voltage - unless the panel driver
-> is supposed to call regulator_set_voltage() in some different power
-> modes?
->=20
->=20Konrad
->
+> > The base for the series is generally the latest rc1. A different dependency
+> > should be noted in *this* patch.
+> > 
+> > If you already ran 'make dt_binding_check' and didn't see the above
+> > error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> > date:
+> > 
+> > pip3 install dtschema --upgrade
+> > 
+> > Please check and re-submit after running the above command yourself. Note
+> > that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+> > your schema. However, it must be unset to test all examples with your schema.
+> 
+> The LP5812 binding validates correctly. The errors reported by the bot come
+> from the unrelated thermal bindings. Is it normal for the bot to report these
+> unrelated errors?
 
-So min/max both 55? Or is there another property I should use?
-I wasn't sure if that would be physically hard for the regulator to maint=
-ain such precision, so I cross-referenced some other DTs in the qcom fold=
-er and found this 200mv allowance in one of the sony devices.
+You can ignore the bot report, linux-next broke it over the holidays.
+
+Rob
 
