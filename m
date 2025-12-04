@@ -1,231 +1,217 @@
-Return-Path: <devicetree+bounces-244187-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244188-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AE25CA24DB
-	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 05:15:30 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8AD7CA2505
+	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 05:29:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 5D9BD300503A
-	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 04:15:27 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AAAFF303D6A2
+	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 04:28:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E0DD2F9DB0;
-	Thu,  4 Dec 2025 04:15:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E93032D7D47;
+	Thu,  4 Dec 2025 04:28:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YYLWFmi+"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="aNF5vYvL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20A4D2DF153
-	for <devicetree@vger.kernel.org>; Thu,  4 Dec 2025 04:15:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EE5D23D7D8;
+	Thu,  4 Dec 2025 04:28:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764821726; cv=none; b=m7ZGQyv4R+21QWjU3wbwFa7JKQ+EIWzXvi2BBP/Dwl8XRSEOSwZDSTnD0fkeGpKfiej38GG/nUZ3tYLoXdELpcQTG5WpfyV4NCEOvHAkY3HBoigJIWk3jYGE7ezNeyclCmT5hSkJv6JUQHDoVJ1HuCRpa5haR8QqRaA6t+Nqj6Q=
+	t=1764822535; cv=none; b=BIunnWQQ+Eq13+RE7E0Y2JrdLErOLdmH+xZ7axZnDOEoVSqFSCavyhmwk1LZaQJdUe4UuxRkLogUmHVK+sfeuGYpwoxQU/z1aZHNDfdYZyiAqkwsW497L22iGYPenN3vNEnbRYx9wnpJO3naaAzs811ZAGl9HFLBtGJ/l75exLY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764821726; c=relaxed/simple;
-	bh=TB0MBPr5fdXFRf8nAGZOfdvDlYolRPXfysDqnB+9WDA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ao+IviwznusG4vRZM9zHYA2trqKVO653nOZC2WDJ0iCYlT2uEXuVl3MJE4vugsKiSqt5tnvNjOQu3Iri+JhIkM5mn56BoAwF2HS6xbzF4k/XOpqB/SThkMeRe92m1iRiE2IZZ7EwOJRt8dtzOXSVjWEfbe5q9LVP8NDItcV1VF8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YYLWFmi+; arc=none smtp.client-ip=209.85.167.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-5957befc880so78331e87.0
-        for <devicetree@vger.kernel.org>; Wed, 03 Dec 2025 20:15:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1764821721; x=1765426521; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0psW2YITj/BGz/R7G0e5/YUOTHhnc+iM0R98Ei9DYWo=;
-        b=YYLWFmi+uhxfYuyiM0HVcRbnjXpWQ2cctQeL+okq9qpJOI7x181S/+mTvQWjv+ODu0
-         Jrx0FlkakGM4m2jECl65+Deq5cMAO0YBJg03XVRh5M/l3SQuT99kPCa5BOEb8nVE5KMt
-         SXfzx1qj5Uv4wUUaljlbnxOyblfx3V9WRc0OEZrxI0fCaxFGyXvebVwLi6cz5U6UpAmq
-         pwOelCbDVzdzTt5djDLjvmdvMv3WEfeYzWYQ1JOVGg9HX/HoResqBdJCyRHQO1NLl7eZ
-         MdstCL6YPpeuRBnJXvbdkbfyeV3gIYAEM0gJDod6NoxMG/IZSakOdLIEC4cQanVc+l8d
-         KDVw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764821721; x=1765426521;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=0psW2YITj/BGz/R7G0e5/YUOTHhnc+iM0R98Ei9DYWo=;
-        b=RxsnyDNw5V2XSBDBHruqDXTIdbcjao+Qc3wExEBp89oPmHnbyyhBEWsd9j3ScqWpIw
-         QWhkFsWRNHWwMDLbKgqdHgea9icf7hGEEq3zktCOClTl8QsFs0f71ltr+tMIcaa47mmN
-         F7lZEYUnSkKaQuSmMQq8NUKxwlIav2rLL/aPfGQNTtA5QhoZVKZaovjP2XlApT4Dy8qA
-         rCkBlXGW4F3wKIywOzb71v1hEPBw4QhlHCVPR+y0yoHz4PlL3oSQ5wHEWG6hylBs6WBh
-         C0qUdgY3rzCca+JLTLUOr1wc4G0FA5oW78nCLzMyQdUIE+udWdfpxv1lRRvU/cRS3KM3
-         sWHw==
-X-Forwarded-Encrypted: i=1; AJvYcCV77jgTfvUBQcUN770CjhM8OeWm9k+Aciv3UCNw5mLsm/go4nk2AwjOnOuw5e3jA5CFxZ/kQd8jIfcB@vger.kernel.org
-X-Gm-Message-State: AOJu0YxMnkau3CzZkBCbbHhw9ZRkEKnecY/5HOyjd0zfu0ASMx4/8X6T
-	jsNLkpxjYoPu+nyLlCbUtuYiUnlEhxpZFza9iGI0NCjkQ0L0k04YBrFwy6S9BPyuiOk=
-X-Gm-Gg: ASbGncvVCa+0pggiExdRot8U3jtOGO0DTrjOCusge40W+B/vm2P1lVtXHe1ZWjFWziE
-	SXVOK/AwHBmwVqhiWtknUvSj/ZtN9EuQmcPohwdYwGZD8K8k0Hy28y0bXvCQzRDFgruavCU8UPZ
-	By8w7GukRYsO3MB5cKyBUvejUEJfYzKWBQuWFpASKV/aEqLYrFEqviOvblw98hYLyviucB2LYDl
-	uvyo5uHTlpUjzJSBjDoAip2JvP86+M3KZzzz2ri+9ZpDOvyZWo7rg28GpX8nE4x6iSsxQTDEiQY
-	QHFxvr/lmzxn4baAp8EEp/Foc95pTv+vjg5LBQ+UlvdMjy+iDJ+sWHnWs3vJnXM7iPXyek2bSBo
-	w9JxJcx82sHevYdRObgeIRH7hos2m/nNvlF5AVeNkmtJBlKienvXt023xEmL/oTyud/JlkzzsHY
-	R7q23YrSSHqAkuwHzGhIVUTKBBQX+zD0Dn1GNjgBW/OuAl7MkXMkK2Ww==
-X-Google-Smtp-Source: AGHT+IE2C36kK5XUmomK7mcLwCorAXmkpdRBp6f+4+t9Cgh48ryT3PjGZXSf475IzaSimfPGZpts+w==
-X-Received: by 2002:a05:6512:1329:b0:594:1992:3be with SMTP id 2adb3069b0e04-597d4afbd1emr715501e87.3.1764821720706;
-        Wed, 03 Dec 2025 20:15:20 -0800 (PST)
-Received: from thyme.. (91-159-24-186.elisa-laajakaista.fi. [91.159.24.186])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-597d7c1e2a1sm67649e87.64.2025.12.03.20.15.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Dec 2025 20:15:19 -0800 (PST)
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Luca Weiss <luca.weiss@fairphone.com>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH v2 4/4] arm64: dts: qcom: sm8650-hdk: Add support for the Rear Camera Card overlay
-Date: Thu,  4 Dec 2025 06:15:05 +0200
-Message-ID: <20251204041505.131891-5-vladimir.zapolskiy@linaro.org>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20251204041505.131891-1-vladimir.zapolskiy@linaro.org>
-References: <20251204041505.131891-1-vladimir.zapolskiy@linaro.org>
+	s=arc-20240116; t=1764822535; c=relaxed/simple;
+	bh=fu4Otl1HGi7uqxldCp6FC+mJwbMpk4YSIaDzkvRP9rU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CL+lcHawyl7lXpP2iO2U15fDEFVNgp4yn7ZGe2Cs/Sgz17EYmvSRPMUtcFsh4fEcmidbEe52hTw5s5BeGvmbwedhJ4wxwNC0qfAxESg7yqb3Ra04vnfyyGov10qTKZ0c+/cCm8ckFYlKp5SUhRl198zW/jq450Itb3v6WJApnu4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=aNF5vYvL; arc=none smtp.client-ip=198.175.65.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1764822534; x=1796358534;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=fu4Otl1HGi7uqxldCp6FC+mJwbMpk4YSIaDzkvRP9rU=;
+  b=aNF5vYvLDM4bQBNe9ff+Hr4F540rlGWo87OQXvyOuyPuR4N8fBsYCs95
+   +Kaa+o2Rr7dH/tkIPV4weABtw1IHgriW1+SxhCN4J+dMGCulRm1F0ES3E
+   HK8K+U2XU9KhCQDuwSDR9DjUiJNzzwSMyaT4dGgOQCeHq/UQAC5qQ2Bfm
+   GGoNX8Q/HQWameLMN72rdIR2+xeKkOXwLLXIWCpsDChTWhL3DCOHVE5zn
+   7t6anu96CK8KLl5X7U6jp+AKJ6hH/tAhCCgWJTzLFeovhXonQbmigOW+L
+   5pL2ANXRKeZQSUrW+A/YlOO/HxKkU+wxmekPqYQ2WM22w76+g4fqeD8EN
+   w==;
+X-CSE-ConnectionGUID: tgQ6TQ+2QUm+SI41xvHiXw==
+X-CSE-MsgGUID: afSvSFX7QsOrJh9g0Ry3Dw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11631"; a="77939819"
+X-IronPort-AV: E=Sophos;i="6.20,247,1758610800"; 
+   d="scan'208";a="77939819"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Dec 2025 20:28:53 -0800
+X-CSE-ConnectionGUID: emaq0chZQvCufN9+C+JBvA==
+X-CSE-MsgGUID: 5T152UeURjmuiR2QhfUVmg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,247,1758610800"; 
+   d="scan'208";a="199360138"
+Received: from lkp-server01.sh.intel.com (HELO 4664bbef4914) ([10.239.97.150])
+  by orviesa004.jf.intel.com with ESMTP; 03 Dec 2025 20:28:48 -0800
+Received: from kbuild by 4664bbef4914 with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1vR0xR-00000000DRN-1pJI;
+	Thu, 04 Dec 2025 04:28:45 +0000
+Date: Thu, 4 Dec 2025 12:28:05 +0800
+From: kernel test robot <lkp@intel.com>
+To: Pankaj Gupta <pankaj.gupta@nxp.com>, Jonathan Corbet <corbet@lwn.net>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>
+Cc: oe-kbuild-all@lists.linux.dev, linux-doc@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	Frank Li <Frank.Li@nxp.com>
+Subject: Re: [PATCH v20 5/7] firmware: drivers: imx: adds miscdev
+Message-ID: <202512041241.yDXC2vpg-lkp@intel.com>
+References: <20251203-imx-se-if-v20-5-a04a25c4255f@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251203-imx-se-if-v20-5-a04a25c4255f@nxp.com>
 
-To provide access to camera sensors a Rear Camera Card can be connected
-to SM8650-HDK board, the camera sensors are:
-* Samsung S5K33D ToF camera sensor, connected to CSI0 over MIPI D-PHY,
-* Sony IMX766 Wide camera sensor, connected to CSI1 over MIPI C-PHY,
-* Omnivision OV64B Ultrawide camera sensor, connected to CSI2 over MIPI C-PHY,
-* Samsung S5KJN1 Tele camera sensor, connected to CSI3 over MIPI D-PHY).
+Hi Pankaj,
 
-Get the initial support of Samsung S5KJN1 camera sensor and two flash leds
-on the Rear Camera Card board by adding a board overlay.
+kernel test robot noticed the following build warnings:
 
-Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
----
- arch/arm64/boot/dts/qcom/Makefile             |  4 +
- .../dts/qcom/sm8650-hdk-rear-camera-card.dtso | 88 +++++++++++++++++++
- 2 files changed, 92 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/sm8650-hdk-rear-camera-card.dtso
+[auto build test WARNING on 4a26e7032d7d57c998598c08a034872d6f0d3945]
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 6f34d5ed331c..35839b993bc4 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -315,8 +315,12 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sm8550-samsung-q5q.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm8550-sony-xperia-yodo-pdx234.dtb
- 
- sm8650-hdk-display-card-dtbs	:= sm8650-hdk.dtb sm8650-hdk-display-card.dtbo
-+sm8650-hdk-display-card-rear-camera-card-dtbs	:= sm8650-hdk.dtb sm8650-hdk-display-card.dtbo sm8650-hdk-rear-camera-card.dtbo
-+sm8650-hdk-rear-camera-card-dtbs	:= sm8650-hdk.dtb sm8650-hdk-rear-camera-card.dtbo
- 
-+dtb-$(CONFIG_ARCH_QCOM)	+= sm8650-hdk-display-card-rear-camera-card.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm8650-hdk-display-card.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sm8650-hdk-rear-camera-card.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm8650-hdk.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm8650-mtp.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sm8650-qrd.dtb
-diff --git a/arch/arm64/boot/dts/qcom/sm8650-hdk-rear-camera-card.dtso b/arch/arm64/boot/dts/qcom/sm8650-hdk-rear-camera-card.dtso
-new file mode 100644
-index 000000000000..8a7c6d7634d3
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sm8650-hdk-rear-camera-card.dtso
-@@ -0,0 +1,88 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * SM8650-HDK Rear Camera Card overlay
-+ *
-+ * Copyright (c) 2025, Linaro Limited
-+ */
-+
-+#include <dt-bindings/clock/qcom,sm8650-camcc.h>
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/leds/common.h>
-+
-+/dts-v1/;
-+/plugin/;
-+
-+&camss {
-+	vdd-csiphy35-0p9-supply = <&vreg_l2i_0p88>;
-+	vdd-csiphy35-1p2-supply = <&vreg_l3i_1p2>;
-+	status = "okay";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@3 {
-+			reg = <3>;
-+
-+			csiphy3_ep: endpoint {
-+				data-lanes = <0 1 2 3>;
-+				remote-endpoint = <&cam_tele>;
-+			};
-+		};
-+	};
-+};
-+
-+&cci1 {
-+	status = "okay";
-+};
-+
-+&cci1_i2c0 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	sensor@56 {
-+		compatible = "samsung,s5kjn1";
-+		reg = <0x56>;
-+		clocks = <&camcc CAM_CC_MCLK3_CLK>;
-+		assigned-clocks = <&camcc CAM_CC_MCLK3_CLK>;
-+		assigned-clock-rates = <24000000>;
-+		reset-gpios = <&tlmm 109 GPIO_ACTIVE_LOW>;
-+		pinctrl-0 = <&cam3_default>;
-+		pinctrl-names = "default";
-+		afvdd-supply = <&vreg_l7m_2p96>;
-+		vdda-supply = <&vreg_l4m_2p8>;
-+		vddd-supply = <&vreg_l2m_1p056>;
-+		vddio-supply = <&vreg_l3n_1p8>;
-+
-+		port {
-+			cam_tele: endpoint {
-+				link-frequencies = /bits/ 64 <700000000>;
-+				remote-endpoint = <&csiphy3_ep>;
-+			};
-+		};
-+	};
-+};
-+
-+&pm8550_flash {
-+	status = "okay";
-+
-+	led-0 {
-+		function = LED_FUNCTION_FLASH;
-+		color = <LED_COLOR_ID_YELLOW>;
-+		led-sources = <1>, <4>;
-+		led-max-microamp = <500000>;
-+		flash-max-microamp = <2000000>;
-+		flash-max-timeout-us = <1280000>;
-+		function-enumerator = <0>;
-+	};
-+
-+	led-1 {
-+		function = LED_FUNCTION_FLASH;
-+		color = <LED_COLOR_ID_WHITE>;
-+		led-sources = <2>, <3>;
-+		led-max-microamp = <500000>;
-+		flash-max-microamp = <2000000>;
-+		flash-max-timeout-us = <1280000>;
-+		function-enumerator = <1>;
-+	};
-+};
+url:    https://github.com/intel-lab-lkp/linux/commits/Pankaj-Gupta/Documentation-firmware-add-imx-se-to-other_interfaces/20251203-145202
+base:   4a26e7032d7d57c998598c08a034872d6f0d3945
+patch link:    https://lore.kernel.org/r/20251203-imx-se-if-v20-5-a04a25c4255f%40nxp.com
+patch subject: [PATCH v20 5/7] firmware: drivers: imx: adds miscdev
+config: arm64-randconfig-r132-20251204 (https://download.01.org/0day-ci/archive/20251204/202512041241.yDXC2vpg-lkp@intel.com/config)
+compiler: clang version 22.0.0git (https://github.com/llvm/llvm-project 734a912d0f025559fcf76bde9aaaeb0383c1625a)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251204/202512041241.yDXC2vpg-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202512041241.yDXC2vpg-lkp@intel.com/
+
+sparse warnings: (new ones prefixed by >>)
+>> drivers/firmware/imx/se_ctrl.c:517:40: sparse: sparse: cast removes address space '__user' of expression
+   drivers/firmware/imx/se_ctrl.c:745:48: sparse: sparse: cast removes address space '__user' of expression
+
+vim +/__user +517 drivers/firmware/imx/se_ctrl.c
+
+   491	
+   492	static int se_ioctl_cmd_snd_rcv_rsp_handler(struct se_if_device_ctx *dev_ctx,
+   493						    u64 arg)
+   494	{
+   495		struct se_ioctl_cmd_snd_rcv_rsp_info cmd_snd_rcv_rsp_info = {0};
+   496		struct se_api_msg *tx_msg __free(kfree) = NULL;
+   497		struct se_api_msg *rx_msg __free(kfree) = NULL;
+   498		struct se_if_priv *priv = dev_ctx->priv;
+   499		int err = 0;
+   500	
+   501		if (copy_from_user(&cmd_snd_rcv_rsp_info, (u8 __user *)arg,
+   502				   sizeof(cmd_snd_rcv_rsp_info))) {
+   503			dev_err(priv->dev,
+   504				"%s: Failed to copy cmd_snd_rcv_rsp_info from user.",
+   505				dev_ctx->devname);
+   506			err = -EFAULT;
+   507			goto exit;
+   508		}
+   509	
+   510		if (cmd_snd_rcv_rsp_info.tx_buf_sz < SE_MU_HDR_SZ) {
+   511			dev_err(priv->dev, "%s: User buffer too small(%d < %d)",
+   512				dev_ctx->devname, cmd_snd_rcv_rsp_info.tx_buf_sz, SE_MU_HDR_SZ);
+   513			err = -ENOSPC;
+   514			goto exit;
+   515		}
+   516	
+ > 517		err = se_chk_tx_msg_hdr(priv, (struct se_msg_hdr *)cmd_snd_rcv_rsp_info.tx_buf);
+   518		if (err)
+   519			goto exit;
+   520	
+   521		rx_msg = kzalloc(cmd_snd_rcv_rsp_info.rx_buf_sz, GFP_KERNEL);
+   522		if (!rx_msg) {
+   523			err = -ENOMEM;
+   524			goto exit;
+   525		}
+   526	
+   527		tx_msg = memdup_user(cmd_snd_rcv_rsp_info.tx_buf,
+   528				     cmd_snd_rcv_rsp_info.tx_buf_sz);
+   529		if (IS_ERR(tx_msg)) {
+   530			err = PTR_ERR(tx_msg);
+   531			goto exit;
+   532		}
+   533	
+   534		if (tx_msg->header.tag != priv->if_defs->cmd_tag) {
+   535			err = -EINVAL;
+   536			goto exit;
+   537		}
+   538	
+   539		if (tx_msg->header.ver == priv->if_defs->fw_api_ver &&
+   540		    get_load_fw_instance(priv)->is_fw_tobe_loaded) {
+   541			err = se_load_firmware(priv);
+   542			if (err) {
+   543				dev_err(priv->dev, "Could not send msg as FW is not loaded.");
+   544				err = -EPERM;
+   545				goto exit;
+   546			}
+   547		}
+   548		set_se_rcv_msg_timeout(priv, SE_RCV_MSG_LONG_TIMEOUT);
+   549	
+   550		err = ele_msg_send_rcv(dev_ctx, tx_msg, cmd_snd_rcv_rsp_info.tx_buf_sz,
+   551				       rx_msg, cmd_snd_rcv_rsp_info.rx_buf_sz);
+   552		if (err < 0)
+   553			goto exit;
+   554	
+   555		dev_dbg(priv->dev, "%s: %s %s.", dev_ctx->devname, __func__,
+   556			"message received, start transmit to user");
+   557	
+   558		/* We may need to copy the output data to user before
+   559		 * delivering the completion message.
+   560		 */
+   561		err = se_dev_ctx_cpy_out_data(dev_ctx);
+   562		if (err < 0)
+   563			goto exit;
+   564	
+   565		/* Copy data from the buffer */
+   566		print_hex_dump_debug("to user ", DUMP_PREFIX_OFFSET, 4, 4, rx_msg,
+   567				     cmd_snd_rcv_rsp_info.rx_buf_sz, false);
+   568	
+   569		if (copy_to_user(cmd_snd_rcv_rsp_info.rx_buf, rx_msg,
+   570				 cmd_snd_rcv_rsp_info.rx_buf_sz)) {
+   571			dev_err(priv->dev, "%s: Failed to copy to user.", dev_ctx->devname);
+   572			err = -EFAULT;
+   573		}
+   574	
+   575	exit:
+   576	
+   577		/* shared memory is allocated before this IOCTL */
+   578		se_dev_ctx_shared_mem_cleanup(dev_ctx);
+   579	
+   580		if (copy_to_user((void __user *)arg, &cmd_snd_rcv_rsp_info,
+   581				 sizeof(cmd_snd_rcv_rsp_info))) {
+   582			dev_err(priv->dev, "%s: Failed to copy cmd_snd_rcv_rsp_info from user.",
+   583				dev_ctx->devname);
+   584			err = -EFAULT;
+   585		}
+   586	
+   587		return err;
+   588	}
+   589	
+
 -- 
-2.49.0
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
