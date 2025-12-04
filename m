@@ -1,153 +1,220 @@
-Return-Path: <devicetree+bounces-244315-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244317-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id D82E9CA39AC
-	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 13:29:49 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95EB0CA39F1
+	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 13:33:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 166FD3039932
-	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 12:29:29 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 0A5FA300EF08
+	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 12:33:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F36A340A47;
-	Thu,  4 Dec 2025 12:29:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="n1/ziDpP"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CF1D78F2E;
+	Thu,  4 Dec 2025 12:33:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B60AD33F8B9
-	for <devicetree@vger.kernel.org>; Thu,  4 Dec 2025 12:29:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D43833E35D;
+	Thu,  4 Dec 2025 12:33:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764851359; cv=none; b=kmgPa5Dcb9YXw31iLNbIetdyqlK6I8RL1QgowV/GsuZPLjQSKFeau376gdkspqtlzhd5UItaI3KxXeCHlFEWKKy643fv4LV2VZA0wn8+oHIFmweCjkl1KoaCkoy8fpLf8+hX5u7kXYkLsuNSkW6B8y07xQHoP/10dE+wJknH5+A=
+	t=1764851635; cv=none; b=q1dq25ZmdRHu/gd7gNvHUEU2fMHXq2U0WGUTjAc3o+EftKCigiF9rmydXyyZaKGQU4PCYFumJo26SuWK90TAkIFzlcC8vj+KBziiguZ+2pzUdgc4awwwP8sTervHaNq7pyQI4WrXlj4ad6kZ9TIEf78ReqFAimVPg0Zn+m2UUCw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764851359; c=relaxed/simple;
-	bh=l/XBAG4CUGdCd8uvlOy4ZQBjC1QnfFNVrAFe5tQ3xuo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=bvAiDm6IvIUVrJ7A0JczRg6ManRyRNe0OPRwlFA5mXDbHvtW+SMxQlSypOSwRepmnAnbAMkHTmOuMGUwyl0is3sVXunsrPC8SG0SMuT1ocz9wR1rEopQzqGiTk0JOQNIKRSlVGJzKUNTebux/3FRup1nSbBFFfKnwmym6mIowys=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=n1/ziDpP; arc=none smtp.client-ip=209.85.218.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-b79e7112398so156222266b.3
-        for <devicetree@vger.kernel.org>; Thu, 04 Dec 2025 04:29:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1764851353; x=1765456153; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ezLwF9vcaQPh2qIuGSQT4jtvv+rSMrrNcQfR67LnXW8=;
-        b=n1/ziDpPURE6ByEKefRnDKBtnf0GmLjl9ORBvvPWQiVshsDYSoA/leCDxLCUWmnBUp
-         9l4B0Pj4FFnTX4c8pLbCy0cazgHFbL+pRIRdoFRsmmEdIrqycgvjspaM1E0IPdaHT/Vm
-         MDmxW5BMF9a1DCeti7T7Zqn9v5z3phREuMzY1pZhfPEGtkc0qUSgz5a4zU6+2aZGlohY
-         bvCp+IqEqC6qDWfxEC4hkVoSUL1DK7jd/QDJvNlc7lQyOPKvpH/c7TFQ2kdifWDAy97t
-         ToqknvPvNl9SXp5TdMFrXYXpIJbL2sC28QIUz4YPVTxpZq/Jyt6pYsWDVtxkwNfxhbKy
-         Td5w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764851353; x=1765456153;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=ezLwF9vcaQPh2qIuGSQT4jtvv+rSMrrNcQfR67LnXW8=;
-        b=mGRWOtZda69zU1OGsRiZOv+NWE7RGoGUTwvuZlCGP201Xj2RYNqoVa0bz6Ku5yUzQz
-         tl3nttcBtg9K/n00tM7AeEC4ATnnAtrk8dY3t7hEm8U2Zp+4hHCi/jvL61whGAwLk3vZ
-         zlYmZGEL4/rvbDLuhBiklpwj+nqXOSQQiSNN/Zaw5Zhar6K31OxdxnpV/2GytokkJIQr
-         BvoX0RZ8RTaYKMwBtedBfr3CF5V3PZ0lV5tXsDriQDN9ZfnxIjBlo8YBtwvFUghP2haX
-         RiBDP15e+bO9OU3EHdR7z1NJ0SOjP9COKNcjB8fQhQXRkpS21SV5NdALvTa6hlojH9IH
-         BcKw==
-X-Forwarded-Encrypted: i=1; AJvYcCU7VW+mLNHC5BryJ2bAjR2ee21GxcZShKNFH+Blr/bINWrYmgzZTW7J3PaH39QxCB+IAGdbrGDM0RCo@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy2JdCzsKHokqTJ3z6u2jinBsZM/A15YA+GIPFO1ePjCw2dufho
-	rjbhF496ic7cpXpbUToVkdQtaZS40hvff/A9b42u3LRVKZ7XbxPDG8EiF7gP+Ao+1XE=
-X-Gm-Gg: ASbGncvn0bXocoKJLVOnZLDbT+1Fw1zeQA64yoJBMsquqIJyQmbcLgLOaQMkwiLcdEr
-	ptW0R/TR1KPYvcoL7UM283pNzpfxrBPSZbCMtKGNH0/DktUVOpb9ooHz6H7mwhZwPvauVehcVfN
-	20BoK9ksM5GIDlek7Nvn9YFd2KUW+IMtdsypTuKK031iTY8qTA/Ud3gS+gick++P4HFoypJMheQ
-	r+nwyl2hvSSNGWLtuzLuwUjR7nijDpNNM37NLsm4e9IbONCp4TGNjxLFX5U9D26ThbD4EgH33Ue
-	sIqpV/dEiMC2rRovseT94/fUB40iYSRvkGh4Xh2MjNVHdplq2ZF/E9wZMDs1if4v9025vX8kyY7
-	NyKo6178Y7cAc0dF9NNsGR6y4TCFmHpV6xxzs3ttxUAN4LFIOeJ2YiK1ZmRU2epaxLLnC4ngiFQ
-	iWjEotneBLDfeQRK98YPa8LER/XDXDneYIshgooVAn5xPjnN0jx24gK+U7mXjc1yhj3/gt
-X-Google-Smtp-Source: AGHT+IE3vTw9W8q4bFu/XYete6yOngVJe+jHbROTOV0J3HiQ6WjaS2FHPZPK9m9x4/GTh06qLnayww==
-X-Received: by 2002:a17:907:a08a:b0:b5c:753a:e022 with SMTP id a640c23a62f3a-b79dc51af60mr653042966b.29.1764851353085;
-        Thu, 04 Dec 2025 04:29:13 -0800 (PST)
-Received: from [172.16.220.227] (144-178-202-139.static.ef-service.nl. [144.178.202.139])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b79f4a2f19dsm121351666b.64.2025.12.04.04.29.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 Dec 2025 04:29:12 -0800 (PST)
-From: Griffin Kroah-Hartman <griffin.kroah@fairphone.com>
-Date: Thu, 04 Dec 2025 13:29:02 +0100
-Subject: [PATCH 3/3] arm64: dts: qcom: milos-fairphone-fp6: Add vibrator
- support
+	s=arc-20240116; t=1764851635; c=relaxed/simple;
+	bh=w/nTwQVLgm8603xohnjqzJRPvlG1BG66FNTHyzsPD1E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=EdPk1Hx89RR+7KrIpnKDrP1KoH6k684lzG4NGsSYW2U+gxgzUBdhkjB6eNDSVd7Hdmb9nh4bJ6AV67XmE40SYo6ZhPB/YncoTkb7VvBDcidmWC0JNJPFydGOuGX8Y7Mf2L1WfYWyMrLEnNvo9Uu38kjXdEqvtq1SmK2sctGWlZI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=arm.com; spf=none smtp.mailfrom=foss.arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=foss.arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id BBB6A339;
+	Thu,  4 Dec 2025 04:33:41 -0800 (PST)
+Received: from bogus (e133711.arm.com [10.1.196.55])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5828B3F73B;
+	Thu,  4 Dec 2025 04:33:47 -0800 (PST)
+Date: Thu, 4 Dec 2025 12:33:44 +0000
+From: Sudeep Holla <sudeep.holla@arm.com>
+To: Marek Vasut <marek.vasut@mailbox.org>
+Cc: Cristian Marussi <cristian.marussi@arm.com>, arm-scmi@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: firmware: arm,scmi: Document
+ arm,poll-transport property
+Message-ID: <20251204-calm-peacock-of-fantasy-6b8cbe@sudeepholla>
+References: <aPoxfH_TLrsMxMVQ@pluto>
+ <70554674-7020-4582-a4e7-dbee34907096@mailbox.org>
+ <5ae0a793-d3e7-45d1-bf5c-3c46593d1824@mailbox.org>
+ <aRW7BZimWdpq4TyX@pluto>
+ <20251202-evasive-neon-rhino-d2745e@sudeepholla>
+ <66257fcf-9024-454f-b776-4ba584963ebe@mailbox.org>
+ <aS82GSN8c2SnRn4S@bogus>
+ <8d773671-5e2e-4e21-ade6-2bf9a3b75066@mailbox.org>
+ <20251203-thick-didactic-cockatoo-deaa1d@sudeepholla>
+ <4ccbcffd-bcc7-478b-a525-a4a11e3092ee@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251204-aw86938-driver-v1-3-ebd71868df3a@fairphone.com>
-References: <20251204-aw86938-driver-v1-0-ebd71868df3a@fairphone.com>
-In-Reply-To: <20251204-aw86938-driver-v1-0-ebd71868df3a@fairphone.com>
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, 
- Luca Weiss <luca.weiss@fairphone.com>
-Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
- Griffin Kroah-Hartman <griffin.kroah@fairphone.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1764851350; l=1297;
- i=griffin.kroah@fairphone.com; s=20250804; h=from:subject:message-id;
- bh=l/XBAG4CUGdCd8uvlOy4ZQBjC1QnfFNVrAFe5tQ3xuo=;
- b=oUDOHk9OFhVELfWu4ySXOPeJM7FZNIQTDt1McgBSEATP1sZtX65Mo0qcnp/4gU21oQEh8Lwcg
- 8DFYoi9AaQyB27J41F2T06/ZnrZKcCDteu0doYUSUO1371sZs8eXuol
-X-Developer-Key: i=griffin.kroah@fairphone.com; a=ed25519;
- pk=drSBvqKFiR+xucmLWONHSq/wGrW+YvcVtBXFYnYzn8U=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <4ccbcffd-bcc7-478b-a525-a4a11e3092ee@mailbox.org>
 
-Add the required node for haptic playback (Awinic AW86938)
+On Wed, Dec 03, 2025 at 11:53:41PM +0100, Marek Vasut wrote:
+> On 12/3/25 12:41 PM, Sudeep Holla wrote:
+> 
+> Hello Sudeep,
+> 
+> > > > Consider a system where a mailbox controller is present and one channel is
+> > > > used for SCMI communication, while another channel is used for an unrelated
+> > > > purpose. If both channels share the same interrupt line, and the other use
+> > > > case enables interrupt mode on its channel, what would be the impact on the
+> > > > SCMI-specific channel?
+> > > 
+> > > None, SCMI kernel driver and SCMI server side would still do polling on
+> > > their respective SHMEM areas, while whatever kernel driver needs to receive
+> > > the interrupt notifications would subscribe to them using request_irq(),
+> > > right ?
+> > > 
+> > 
+> > Fair enough. I was thinking if the controller manages to not call
+> > mbox_chan_received_data() in that case.
+> 
+> Wouldn't such a setup use separate mailbox channels, therefore even if
+> mailbox driver calls mbox_chan_received_data(), it would be called for a
+> specific mailbox channel , and it won't interfere with the SCMI mailbox
+> channel.
+> 
 
-Signed-off-by: Griffin Kroah-Hartman <griffin.kroah@fairphone.com>
----
- arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+Ideally yes. Because PCC uses shared interrupts and provides no mechanism to
+identify the channel that raised the interrupt, we must run the handler for
+every registered channel. This behaviour is specific to PCC; other controllers
+that support interrupt source detection may not need to do this. But SCMI
+must work with any mailbox or other transports.
 
-diff --git a/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts b/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts
-index 0a758fb7f4d413a84cdae695c38616fc6075db67..8c43bc9c1d8312f22ad0aeed84b23d52910e0ca6 100644
---- a/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts
-+++ b/arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts
-@@ -717,6 +717,16 @@ vreg_l7p: ldo7 {
- 
- 	/* VL53L3 ToF @ 0x29 */
- 	/* AW86938FCR vibrator @ 0x5a */
-+	vibrator@5a {
-+		compatible = "awinic,aw86938";
-+		reg = <0x5a>;
-+
-+		interrupts-extended = <&tlmm 80 IRQ_TYPE_EDGE_FALLING>;
-+		reset-gpios = <&tlmm 78 GPIO_ACTIVE_LOW>;
-+
-+		pinctrl-0 = <&aw86938_int_default>;
-+		pinctrl-names = "default";
-+	};
- };
- 
- &ipa {
-@@ -907,6 +917,13 @@ sdc2_card_det_n: sdc2-card-det-state {
- 		bias-pull-up;
- 	};
- 
-+	aw86938_int_default: aw86938-int-default-state {
-+		pins = "gpio80";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-up;
-+	};
-+
- 	pm8008_int_default: pm8008-int-default-state {
- 		pins = "gpio125";
- 		function = "gpio";
+> > Also IIUC, the irq request happens
+> > as part of channel startup and there are no explicit APIs for the mbox client
+> > driver to control that. SCMI is mbox client in this case.
+> 
+> Sure, but the mailbox driver has to make sure it is correctly demuxing the
+> IRQs it handles and correctly sends received_data notifications to the right
+> channel(s) .
+> 
+
+Agreed, but the concern is that if SCMI is forced to use polling when the
+channel is opened, and IRQs are enabled by default with no way for SCMI to
+disable them in polling mode, we could run into issues. I realise it’s a very
+specific corner case, but every time I’ve assumed such scenarios wouldn’t
+occur, we eventually ended up encountering them. So sorry if I am very
+pedantic, but I prefer to start smaller and restrictive and expand if and
+when necessary or required only.
+
+> > > > I am aware of systems that implement such sharing, which is why I prefer to be
+> > > > explicit that this type of design is challenging to support within this
+> > > > binding. The intent is to support only minimal, constrained cases - essentially
+> > > > systems that are already somewhat broken. I do not see value in broadening the
+> > > > binding to cover every conceivable scenario.
+> > > > 
+> > > > > > Clearly defining these constraints would be helpful. It may also be useful to
+> > > > > > note that this is primarily intended for mailbox transports, if that’s
+> > > > > > accurate. Alternatively, we could keep the DT binding definition broader but
+> > > > > > emit warnings when a transport other than mailbox is used. That approach might
+> > > > > > make it easier to move forward.
+> > > > > 
+> > > > > DEN0056F refers to this polling mode in Shared memory based transports, that
+> > > > > can be other than mailbox transports, it includes e.g. SMC or OPTEE
+> > > > > transports.
+> > > > > 
+> > > > 
+> > > > However, polling does not make sense in the context of SMC. Once control
+> > > > returns from an SMC call, the command has completed. What form of polling in
+> > > > an SMC workflow do you have in mind?
+> > > 
+> > > I think the polling happens on the SHMEM and the SMC transport is capable of
+> > > that too, see :
+> > > 
+> > > drivers/firmware/arm_scmi/transports/smc.c
+> > > 
+> > > 175         /*
+> > > 176          * If there is an interrupt named "a2p", then the service and
+> > > 177          * completion of a message is signaled by an interrupt rather
+> > > than by
+> > > 178          * the return of the SMC call.
+> > > 179          */
+> > > 180         scmi_info->irq = of_irq_get_byname(cdev->of_node, "a2p");
+> > > 
+> > 
+> > Ah this one, is actually implemented to avoid sort of implicit polling
+> > mode we get with any SMC/HVC. I don't know how the platform deals with it
+> > but SMC/HVC is synchronous and doesn't need this polling. The irq introduced
+> > here is again a sort of workaround to get some sort of async/non-polling
+> > mode with SMC/HVC. So, to repeat polling mode make absolutely no sense
+> > whatsoever for SMC/OPTEE(based on pure SMC) transports.
+> 
+> I can drop the SMC part from this patch if you think that's helpful ?
+> 
+
+Yes, that’s essential, because polling in an SMC context is meaningless in my
+opinion.
+
+> > > > I believe the same applies to OP-TEE.
+> > > > While OP-TEE now provides a notification mechanism that could, in theory,
+> > > > allow synchronous commands to be treated in a quasi-asynchronous manner, I
+> > > > strongly doubt that the current SCMI-over-OP-TEE implementation behaves this
+> > > > way, given that it ultimately reaches the secure side via an SMC call.
+> > > > 
+> > > > > I don't think a warning is justified, if the behavior follows the
+> > > > > specification. But I do agree the behavior is ... suboptimal.
+> > > > > 
+> > > > 
+> > > > The specification does not address SMC or OP-TEE transports, placing them
+> > > > outside its scope and likewise these DT bindings.
+> > > 
+> > > I believe the shmem transport includes the SMC and OPTEE ones, right ?
+> > > 
+> > 
+> > Yes, but the expectation when the SMC completes is to have the shmem to be
+> > owned by the OS(except that irq workaround case). Again the OPTEE/SMC is
+> > completely out of spec, but I agree the SHMEM behaviour must conform to the
+> > specification.
+> 
+> OK
+> 
+> > > > Consequently, what we
+> > > > decide here in this discussion effectively defines the expected behavior in
+> > > > this context, in my view. So I would like to start with minimal possible
+> > > > coverage, why do you think that is not a good idea here ?
+> > > 
+> > > I would argue the current implementation covers pretty much every transport
+> > > which could ever need to do polling on shmem, so the implementation is
+> > > generic and inline with the specification. Also, the current implementation
+> > > is some 20 lines, so I think it is minimalistic?
+> > > 
+> > > What would you propose we do here ?
+> > > 
+> > 
+> > Yes it can be minimalistic but not restrictive. As I already clearly mentioned
+> > I don't see it makes any sense to enable this for SMC/OPTEE. Lets start with
+> > just mailbox to start with and extend to other transports if and when needed.
+> > It would be good to impose that restriction in the binding as well but that
+> > is not a must IMO. I am fine if the bindings for whatever reasons(though I
+> > don't see the need) to apply for any transport.
+> So I should simply drop the smc.c changes , keep the rest, and send V2 ?
+
+Not just that. Unless DT maintainers oppose, I just want to keep this
+new property valid only for mailbox transport(i.e. "arm,scmi" compatible
+not otherwise) so that we can catch any other use in binding checks and
+interested parties must discuss on the list and expand that if they require.
+
+Also we can explore if we can parse and scan this in mailbox transport for
+now.
 
 -- 
-2.43.0
-
+Regards,
+Sudeep
 
