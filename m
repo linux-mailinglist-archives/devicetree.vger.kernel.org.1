@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-244266-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244267-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2F0ECA2E95
-	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 10:08:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CAE0CA2F20
+	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 10:20:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 608B2305B7FC
-	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 09:06:54 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5CAC730D3D93
+	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 09:16:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C7943321D0;
-	Thu,  4 Dec 2025 09:06:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9AEB334C2F;
+	Thu,  4 Dec 2025 09:09:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ucw.cz header.i=@ucw.cz header.b="AaxY2cnG"
+	dkim=pass (1024-bit key) header.d=ucw.cz header.i=@ucw.cz header.b="npPhcb+a"
 X-Original-To: devicetree@vger.kernel.org
 Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EF9632BF32;
-	Thu,  4 Dec 2025 09:06:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60D2D326D48;
+	Thu,  4 Dec 2025 09:09:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.255.230.98
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764839213; cv=none; b=pxOnLK3lEvjUOkU59jawIwGml18b+lkecx/w0S/HhG3yWFOPIpmm1xwZgITir/7JacLSYVB4VqSfO1n4uFY/4I9Lb+diKCA9pjsLNnqapEWHJKThXIjFM1tOdenujigpEZ+DWjSFRkI91IMPd3bcP0g4ifDf5iLkuJbUZ4mEmeM=
+	t=1764839388; cv=none; b=Acs0bE5nCdW/5aAsux3mi9AWx+s/o7UCMvrpTYDBBSa+wnJMo0GGYmvlteDJd21lAv6mqoql3muzHTqJ4J6bgBA0TTd7yMOS/AAX1V0tyK13RvFyUI9Zg9iGacQa3iX0wH4yauB4wYyyPx/PzaeGDbbpW8eZU86ylZaRgIVSOpQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764839213; c=relaxed/simple;
-	bh=S3+q/tBEe8Ll2UfBBB3HhhMBP9uTsaAqYwLyXsHlw5I=;
+	s=arc-20240116; t=1764839388; c=relaxed/simple;
+	bh=KvrjI1Gdfo3YODYxJNIJpZqLchqT2iZZFJnoWpx9sDA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qsOw5Yn2dT4gtsy6GHzWVf50qK2U7UJFgDuZ9pVJdEJVLGZRGN3rDHW7PWzDGqQi2p2ESQ41nMwDhoNBrKJIstq7e8m7clFQlbo9aJ0wS8ayvamwxlX+JBXYM33Q2aELXoYvtZC5ZZLebX6xlNNTOEfkuBRMou+pQ3Q2GqfaXek=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ucw.cz; spf=pass smtp.mailfrom=ucw.cz; dkim=pass (1024-bit key) header.d=ucw.cz header.i=@ucw.cz header.b=AaxY2cnG; arc=none smtp.client-ip=46.255.230.98
+	 Content-Type:Content-Disposition:In-Reply-To; b=ahY3RJpbkpbzixWj5MojBP0Iamk672drr76vRyG+SV1QrihniQzzUAsScuFLBhnH4sfJbPsPfc4TMBG3qUOjz+ez4bsiyjvDzRp/ONUmqVnIvDXgkz2jchQv04dpicZIij2Ogxzi0uXQ4KbBTzbscgzDMWWrzgXSA9VzbZgI6I4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ucw.cz; spf=pass smtp.mailfrom=ucw.cz; dkim=pass (1024-bit key) header.d=ucw.cz header.i=@ucw.cz header.b=npPhcb+a; arc=none smtp.client-ip=46.255.230.98
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ucw.cz
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ucw.cz
 Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-	id 4BF471C008F; Thu,  4 Dec 2025 10:06:48 +0100 (CET)
+	id 552DE1C008F; Thu,  4 Dec 2025 10:09:44 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucw.cz; s=gen1;
-	t=1764839208;
+	t=1764839384;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 in-reply-to:in-reply-to:references:references;
-	bh=w8qDafzfVudJKLIeCoHIajl5T7DcrBMZzoSgIWOc/HY=;
-	b=AaxY2cnGfASD/4UNB9XNWNwRQt2kfy6QR1g/4XvJnipUqDpLBR0rCvu344Z01c0z/yDp6r
-	GnlgsaKXGcOrXk4JAeZxuJgOMrUqFr0WckX4EbWhrkbE2RR5f9Vx/npMFl8eja/FIQsmCV
-	4IcJqCJUW9dRRhzEyphMGh+D1odmTW8=
-Date: Thu, 4 Dec 2025 10:06:47 +0100
+	bh=WskgVGYt9c7Tl1nWoCo4XnhAFz4hEtBZCwJrVlrhyMI=;
+	b=npPhcb+a8Kfz9e0IT8rjvdJnswt2Th3+kwrjEgBI+XfLNQbHP/SfKLcq/gBFYX9Zlb5pp9
+	hewSXXrKspjaBV7IVuYoxwyrmHYDiqlJS7jJTeSLqPuK2JZrA2CQ6GUuzFDO5C601ZDJNA
+	+rhGhpT6o81BCJIwHdAiW4BmOYNyYCg=
+Date: Thu, 4 Dec 2025 10:09:43 +0100
 From: Pavel Machek <pavel@ucw.cz>
 To: Krzysztof Kozlowski <krzk@kernel.org>
 Cc: Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
@@ -64,12 +64,13 @@ Cc: Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
 	Vikash Garodia <vikash.garodia@oss.qualcomm.com>
 Subject: Re: [PATCH 00/20] arm64: dts: qcom: Introduce Kaanapali platform
  device tree
-Message-ID: <aTFPJwBq91r7o9Y2@duo.ucw.cz>
+Message-ID: <aTFP1w48bWgto7wr@duo.ucw.cz>
 References: <20250924-knp-dts-v1-0-3fdbc4b9e1b1@oss.qualcomm.com>
  <aS8uJCnb0xOd6uby@duo.ucw.cz>
- <3a6fc312-ceb0-4258-981e-e6017c1c9b20@oss.qualcomm.com>
- <aTFMu1BZCPkXMGQe@duo.ucw.cz>
- <c07215b9-0953-48bb-8fb2-d158a9a5dac4@kernel.org>
+ <081a2038-e798-4cc0-96ff-b7f11e346831@kernel.org>
+ <aTB8++UtSrhwtqdY@duo.ucw.cz>
+ <c1b24759-762f-4b97-8d3f-8a44a66b646b@kernel.org>
+ <db113021-f5be-4559-8ea5-719f8d7ec3ee@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,56 +78,75 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="oGw0Yrf8r8IQxC7s"
+	protocol="application/pgp-signature"; boundary="MP9cCdXPUQCFYAsS"
 Content-Disposition: inline
-In-Reply-To: <c07215b9-0953-48bb-8fb2-d158a9a5dac4@kernel.org>
+In-Reply-To: <db113021-f5be-4559-8ea5-719f8d7ec3ee@kernel.org>
 
 
---oGw0Yrf8r8IQxC7s
+--MP9cCdXPUQCFYAsS
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi!
-
-> >>> Please cc phone-devel@vger.kernel.org with phone related patches.
+On Wed 2025-12-03 19:41:59, Krzysztof Kozlowski wrote:
+> On 03/12/2025 19:40, Krzysztof Kozlowski wrote:
+> > On 03/12/2025 19:10, Pavel Machek wrote:
+> >> On Wed 2025-12-03 18:31:11, Krzysztof Kozlowski wrote:
+> >>> On 02/12/2025 19:21, Pavel Machek wrote:
+> >>>> Hi!
+> >>>>
+> >>>>> Introduce the Device Tree for the recently announced Snapdragon SoC=
+ from Qualcomm:
+> >>>>> https://www.qualcomm.com/products/mobile/snapdragon/smartphones/sna=
+pdragon-8-series-mobile-platforms/snapdragon-8-elite-gen-5
+> >>>>>
+> >>>>> Bindings and base Device Tree for the Kaanapali SoC, MTP (Mobile Te=
+st Platform)
+> >>>>> and QRD (Qualcommm Reference Device) are splited in three:
+> >>>>>
+> >>>>> - 1-3: MTP board boot-to-shell with basic function.
+> >>>>> - 4-16: More feature including PCIE, sdcard, usb, DSPs, PMIC relate=
+d, tsense, bus, crypto etc. Add QRD board support.
+> >>>>> - 17-20: Multimedia features including audio, video and camss.
+> >>>>
+> >>>> Thanks for doing this. I assume there devices available with this are
+> >>>> quite expensive/hard to get at this point?
+> >>>>
+> >>>> Please cc phone-devel@vger.kernel.org with phone related patches.
+> >>>
+> >>> That's not even a phone, anyway contributors should not cc lists which
+> >>> are not relevant to the posting and not pointed out by maintainers. Y=
+ou
 > >>
-> >> The cc list is generated by tools following the list in MAINTAINERS, y=
-ou can get
-> >> this series from devicetree@vger.kernel.org or linux-arm-msm@vger.kern=
-el.org
-> >=20
-> > Well, tools are not smart enough to generate good Cc list in this
-> > case, so please do the cc manually. (I don't think they can be
-> > improved easily, as it is not clear when code is phone-related from
-> > the filename).
+> >> People should Cc relevant lists, and yes, if it is called "Mobile Test
+> >> Platform", it is relevant to phone development.
 >=20
-> You cannot impose additional manual rules, just because you want
+> ... and btw, I know what MTP and QRD is and MTP IS NOT A PHONE. I work
+> on this, I upstream this and it is not a phone, regardless how you call
+> it. Just because we call our evalkit like that, does not make it a
+phone.
 
-"You have to cc relevant list" is the rule that predates
-automation. Just because automation does not work well in this case
-does not mean you are exempt.
+So what is it?
 
-> Contributors for every standard patchset (there are only known 2
-> exceptions for arm soc development and foo-devel is not one of them)
-> must only use the tools and not cc phone-devel manually.
+> > new-hardware-devel or whatever. No. People should use tools, not guess
+> > the cc lists. Fix the tools if you miss any Cc.
 
-Untrue.
-								Pavel
+No.
+									Pavel
 
 --=20
 I don't work for Nazis and criminals, and neither should you.
 Boycott Putin, Trump, Netanyahu and Musk!
 
---oGw0Yrf8r8IQxC7s
+--MP9cCdXPUQCFYAsS
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCaTFPJwAKCRAw5/Bqldv6
-8vRYAJ9/U5rIuOIGberVjgwLCbtJzRdrkgCgrfoVkbChO95ctknBXWye96CcUbc=
-=OdDu
+iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCaTFP1wAKCRAw5/Bqldv6
+8s00AJ9WAjNW9NAZgyFttJrn0pWaVSlSrwCeL5t/91zEdmCh7YVvH02CjkILQbk=
+=2IGL
 -----END PGP SIGNATURE-----
 
---oGw0Yrf8r8IQxC7s--
+--MP9cCdXPUQCFYAsS--
 
