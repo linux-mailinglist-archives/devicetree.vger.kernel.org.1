@@ -1,190 +1,125 @@
-Return-Path: <devicetree+bounces-244511-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244512-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27D8FCA5868
-	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 22:41:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CED0CCA5976
+	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 23:14:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 2E07330EFD27
-	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 21:38:46 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 8819E308D084
+	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 22:14:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 992C5328618;
-	Thu,  4 Dec 2025 21:38:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88A872F5308;
+	Thu,  4 Dec 2025 22:14:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VU5E5+uB"
+	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="CMRJdK+Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3F83327200
-	for <devicetree@vger.kernel.org>; Thu,  4 Dec 2025 21:38:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15F1027FD75;
+	Thu,  4 Dec 2025 22:14:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.137.202.133
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764884295; cv=none; b=S0V9Qc+Eb/e9nHRJVLwTTl5KrnWasTuLhEZjnxGX6dLkJ7r2Ip/l97iFeSoxzGfNaUN/ccuRp+Fitm9osyl9f4IvzyIAlI4JKftnBhLfkU1oOt/9CATepFa0Ijc00rGj1mYZnF3dsz6vXPOP56u7qIE+TdeDlQJlLoHrLakM6bM=
+	t=1764886455; cv=none; b=n0Ghik6G9PBOB/OW5d3c5ORxWdZQMz90WRWicOT3+jMJiAVbyiGwZrd931PnZcd82EKc57rsrem0cwSEePLxZy2vA2j4dKcMJGvu67YZzYoP6lXlH6BamhOPI+k52JKnyAbQZiWKNf5JMaC98pLD1nb2KBexZBGSSvwYp0PsVBA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764884295; c=relaxed/simple;
-	bh=L4eVou4mnYQUG/UzsPI7gS+5ep+GikN3qodkQgoZhBM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hjb0FwlGLp+qqER1j9TBKiSlQ4mBG9JlTTE52DfLpnCqtqTHOYs+9GMWdvzcgRgZJX/MMvGLmihmSsGGjW6Y8FJfWgORl5B+R32KHJSuj3rvNgLlSdXGv1f7vosqtqCJy0cOnc099kjdzv8s7ajeFxIN8VL8RgoIHn+e7C2/6dg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VU5E5+uB; arc=none smtp.client-ip=209.85.128.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-4777771ed1aso11633555e9.2
-        for <devicetree@vger.kernel.org>; Thu, 04 Dec 2025 13:38:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1764884292; x=1765489092; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=mm6l97ck6f+cFwXpsqrIp6tyKZ6pKb6s4YtI3pshjeU=;
-        b=VU5E5+uBEpBZ6qid/v//cuPtqdQpbm4zDId/C2Uk8RTbGwMsIJ4vNEBIz3E4VsqH+T
-         SQVFBR7wHSfk4/c2d3tjFQIbku4IZ9BKG7XWCl/ZVXbEMxNpnMW9Pd/hczAGM7sylQJ2
-         rOXLjcOfJnHC5lB7WTAkF5oOyT31cpcZRuRk3pG5NoxuPTNAH5Rk7s5KSrVx8kbTGV7+
-         06yMYHuAd76o7RSIrwKbTg3EoYxznAvZYfQj/LOAVYNE1DLQQ2lU0kCsce0L9Wj0zhhy
-         Q4xWLzFkGrtFgHSDv0LliJVtEWwGbfQ/IJaq669LJ5Ihtp9FZWxQ6G4/2gAkecpPJRLg
-         WlXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764884292; x=1765489092;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=mm6l97ck6f+cFwXpsqrIp6tyKZ6pKb6s4YtI3pshjeU=;
-        b=VbB2GPYI41YGmagW4fxcHixqzuUuNj5p+lbKTARTF7x1rQQZgM4QVWpW5SlpkHobUV
-         VFbxYJdsS08fVisTtqVCgfCnyD8xaEbt0MgJo6ltGTzrHcEx8EAyk762dUiNqVAN/D8Q
-         hnuqkMmGRYO3vYAP40wagqWrbuHVNl0OAWYWZxJZzyjrhY4q2NTzu9gf2tGWi108Xpcz
-         P+/un7UZfIrwJBe9MloXjrlWn0G7fvT4vKaeISEx5lUtWLvvCHNtY9sQpSQAojPANnYk
-         cjdPWShs/3I9w4yESoHRXHnwswWMv1D+H4qveMpAXCSXUlK340P14AuAouu+eKdAPqGn
-         5dJQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUjnr7/RiPx3j9yonQcgltCzVNSglbeeCcHf5/8qkr8+XNuTYmJ4aPofjBtdVJCN1R5mqQjAhrnVRW8@vger.kernel.org
-X-Gm-Message-State: AOJu0YwNRVWXdFgjU99jo7IDBeY9UB6CcWgdI9jBg5NZOGtjRRVxRrNF
-	SOFgpZsySw8Cim6Qn0IfUAYMWDP6slTI70ag33kRemq2MLAxLwHiYELw
-X-Gm-Gg: ASbGncv5nMZd5n02PFdekiTO2lJvS5hNGOyMQf2Ts/X7fcJwNxM/pI+14sr90owa33Y
-	fIKm1iUjPvdIYR1zHMgrmwM1PpwkF4KOO4QAQnvTBR/cWy4qd7y/rGgKI8FVr4sb7Pi46j9XSav
-	pjvuHiPx3T0xlIMB1DjWTaTOrUjLNuDYW72QUf0u1WglEIZ2oQekHH6Y/1ySvtfwvlgTMUl20dz
-	YJLEbgcBwT9KkWvd9ujbnSDJICXBCnYFG+QVQmkxYoZk3Torf7q2CmsqxNfJ2NWFujyLN1ryZxj
-	iY2LwsfSO5E7NCZM6qAYGYFTBw+oRE7nj+k+0Z+uYhZbmfF8joJ4rsUGdZNpyP1mc5Nxjsgaqwe
-	JQ3qPQX+yy5yCLllYJY0/2niQvxKfkGVHdCIICnFLjehCDLtf7EwAxvRuL8kSCA0RlGuUfNNGjM
-	GtPWWKlMzztOEQE9hTXG96ouGw/Q5xdPQ8ceRnXGQyLWfh/AGGi/Vtnf9YZWlnUb6wbiS8QMY15
-	QmMCQ==
-X-Google-Smtp-Source: AGHT+IH8ugyBgLjQicx0MP6NuWuCkhdVxkxU6CJstaiV1Q1kNTrPrj9Ah5wqiygJFcZLBbyBfbjuwA==
-X-Received: by 2002:a05:600c:a0b:b0:456:1a69:94fa with SMTP id 5b1f17b1804b1-4792aef23dfmr77036955e9.13.1764884291757;
-        Thu, 04 Dec 2025 13:38:11 -0800 (PST)
-Received: from HYB-DlYm71t3hSl.ad.analog.com ([2001:a61:123e:4501:9c51:c3b7:65d6:48d3])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42f7d222484sm5276484f8f.24.2025.12.04.13.38.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 Dec 2025 13:38:11 -0800 (PST)
-Date: Thu, 4 Dec 2025 22:38:09 +0100
-From: Jorge Marques <gastmaier@gmail.com>
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: Jorge Marques <jorge.marques@analog.com>, 
-	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
-	Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jonathan Corbet <corbet@lwn.net>, Linus Walleij <linus.walleij@linaro.org>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v2 9/9] iio: adc: ad4062: Add GPIO Controller support
-Message-ID: <3izg5lyxjye24pvzoibk4tmnxbdfokr53abkpbjo5epqjoz55j@6wc7i4wsgwkt>
-References: <20251124-staging-ad4062-v2-0-a375609afbb7@analog.com>
- <20251124-staging-ad4062-v2-9-a375609afbb7@analog.com>
- <aSQ2JUN05vmMQC1I@smile.fi.intel.com>
- <rk4hmupbrb5ugxft6upj7ru43x3z7ybrobax45rorpwbcwleh6@vzxrr3m7r6ep>
- <aSgX9nMBwBtAlSyj@smile.fi.intel.com>
+	s=arc-20240116; t=1764886455; c=relaxed/simple;
+	bh=68UC/IyVsq69i1+OhDAGB4vLxZ2LdUjORIUKMRnrbng=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=RlsrdkUCWer1xA+5DRXysn84vMAj63z4IZim/AM5Qfsy7BXjp/Ib44VAKgTrYDyexXT1KvK20EklGG2V1PyC5Xk9tRN42uEXV69h/piWFUdiLPDDeEVp68beJGzRP7euKlzQbAMAIrnfleyvr9NZLMhdW4AsGQ97d460PG0lPNU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=CMRJdK+Z; arc=none smtp.client-ip=198.137.202.133
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=infradead.org
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=infradead.org
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Sender:Reply-To:Content-ID:Content-Description;
+	bh=n2/i6tqDCIVXBXVD8CTjzLJznCHaAsCezf47hvRHxGY=; b=CMRJdK+ZbcmgHBQ2EDY6oHHSbY
+	Vcxx1NBq/NHUPSj3amS4gy/mnNqsVjAVAiP2Xo+/+PRhk5oesoF+8pe1dAxtPtmyHO0kn1L8zIX0Q
+	zCZGdTwC0ahwCBkezecb2Q4vJFW1PT1teeDqzoRFRwAd3I9XasOn7nQNnRRBJlQuC4kGO2Ei0bd6O
+	0sWlChNbHYSiVtAXkCcN5LMsw9sWnhBNXRaEcsQVGXi3+o1Qb+oPZ+AZHeiTSqI7UQ3oh/T9J96VY
+	HxWneyPkoyeYCPWDWNUkV+5IatmZV6+3reL8rjpoIIcV5isbAd8MxmHPCYN6exczwum+SsfqSzavk
+	ukhmiAjg==;
+Received: from [50.53.43.113] (helo=[192.168.254.34])
+	by bombadil.infradead.org with esmtpsa (Exim 4.98.2 #2 (Red Hat Linux))
+	id 1vRHaB-00000008iId-3UjH;
+	Thu, 04 Dec 2025 22:13:51 +0000
+Message-ID: <20273cd5-afbc-4208-aa2a-11ac04256c38@infradead.org>
+Date: Thu, 4 Dec 2025 14:13:49 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aSgX9nMBwBtAlSyj@smile.fi.intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v24 21/28] riscv: kernel command line option to opt out of
+ user cfi
+To: Deepak Gupta <debug@rivosinc.com>, Thomas Gleixner <tglx@linutronix.de>,
+ Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+ Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
+ "H. Peter Anvin" <hpa@zytor.com>, Andrew Morton <akpm@linux-foundation.org>,
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>, Vlastimil Babka
+ <vbabka@suse.cz>, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+ Christian Brauner <brauner@kernel.org>, Peter Zijlstra
+ <peterz@infradead.org>, Oleg Nesterov <oleg@redhat.com>,
+ Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>,
+ Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
+ Jann Horn <jannh@google.com>, Conor Dooley <conor+dt@kernel.org>,
+ Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+ =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
+ Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
+ Trevor Gross <tmgross@umich.edu>, Benno Lossin <lossin@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org,
+ linux-mm@kvack.org, linux-riscv@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
+ linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org,
+ alistair.francis@wdc.com, richard.henderson@linaro.org, jim.shu@sifive.com,
+ andybnac@gmail.com, kito.cheng@sifive.com, charlie@rivosinc.com,
+ atishp@rivosinc.com, evan@rivosinc.com, cleger@rivosinc.com,
+ alexghiti@rivosinc.com, samitolvanen@google.com, broonie@kernel.org,
+ rick.p.edgecombe@intel.com, rust-for-linux@vger.kernel.org,
+ Paul Walmsley <pjw@kernel.org>,
+ Valentin Haudiquet <valentin.haudiquet@canonical.com>
+References: <20251204-v5_user_cfi_series-v24-0-ada7a3ba14dc@rivosinc.com>
+ <20251204-v5_user_cfi_series-v24-21-ada7a3ba14dc@rivosinc.com>
+Content-Language: en-US
+From: Randy Dunlap <rdunlap@infradead.org>
+In-Reply-To: <20251204-v5_user_cfi_series-v24-21-ada7a3ba14dc@rivosinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Nov 27, 2025 at 11:20:54AM +0200, Andy Shevchenko wrote:
-Hi Andy,
-> On Wed, Nov 26, 2025 at 04:55:41PM +0100, Jorge Marques wrote:
-> > On Mon, Nov 24, 2025 at 12:40:37PM +0200, Andy Shevchenko wrote:
-> > > On Mon, Nov 24, 2025 at 10:18:08AM +0100, Jorge Marques wrote:
-> 
-> ...
-> 
-> > > > +	return reg_val == AD4062_GP_STATIC_HIGH ? 1 : 0;
-> > > 
-> > > 	return !!(reg_val == AD4062_GP_STATIC_HIGH);
-> > > 
-> > > also will work.
-> > >
-> >  	return reg_val == AD4062_GP_STATIC_HIGH;
-> 
-> Hmm... This will include implicit bool->int. The !! guarantees values 0 or 1,
-> but I don't remember about implicit bool->int case.
-> 
-> ...
-I don't think the implicit bool->int is an issue, grepping `return .* == .*;`
-matches a few methods that return int.
-Experimenting with the _Bool type (gcc 15, clang 19, any std version),
 
-	int main()
-	{
-	    int a = 1;
-	    int b = 2;
-	
-	    return (_Bool)(a == b);
-	}
 
-with
-gcc -Wall -W -pedantic -std=c23 -c test.c
-clang -Wall -Wextra -Wbool-conversion -std=c11 -O2 test.c
+On 12/4/25 12:04 PM, Deepak Gupta wrote:
+> diff --git a/Documentation/admin-guide/kernel-parameters.txt b/Documentation/admin-guide/kernel-parameters.txt
+> index 6c42061ca20e..453127ef8746 100644
+> --- a/Documentation/admin-guide/kernel-parameters.txt
+> +++ b/Documentation/admin-guide/kernel-parameters.txt
+> @@ -6453,6 +6453,14 @@
+>  			replacement properties are not found. See the Kconfig
+>  			entry for RISCV_ISA_FALLBACK.
+>  
+> +	riscv_nousercfi=
+> +		all	Disable user cfi ABI to userspace even if cpu extension
 
-also doesn't raise warnings.
+			                                              extensions
 
-> 
-> > > > +static int ad4062_gpio_init_valid_mask(struct gpio_chip *gc,
-> > > > +				       unsigned long *valid_mask,
-> > > > +				       unsigned int ngpios)
-> > > > +{
-> > > > +	struct ad4062_state *st = gpiochip_get_data(gc);
-> > > > +
-> > > > +	bitmap_zero(valid_mask, ngpios);
-> > > > +
-> > > > +	if (!st->gpo_irq[0])
-> > > > +		set_bit(0, valid_mask);
-> > > > +	if (!st->gpo_irq[1])
-> > > > +		set_bit(1, valid_mask);
-> > > 
-> > > Why atomic bit set:s?
-> > > 
-> > Not needed, will use
-> 
-> Note, bitops are xxx_bit() -- atomic, __xxx_bit() -- non-atomic,
-> that's what I had in mind.
-> 
-> > 	if (!st->gpo_irq[0])
-> > 		*valid_mask |= BIT(0);
-> > 	if (!st->gpo_irq[1])
-> > 		*valid_mask |= BIT(1);
-> 
-> Can't it be rather something like
-> 
-> 	for (unsigned int i = 0; i < ...; i++)
-> 		__assign_bit(i, valid_mask, st->gpo_irq[i]);
-> 
-> ?
-> This shorter and does the same independently on the length of the bitmask
-> (and effectively the array size of gpo_irq)
-> 
-Sure, just
- 		__assign_bit(i, valid_mask, !st->gpo_irq[i]);
+> +			are available.
+> +		bcfi	Disable user backward cfi ABI to userspace even if
+> +			shadow stack extension is available.
+> +		fcfi	Disable user forward cfi ABI to userspace even if landing
+> +			pad extension is available.
+> +
+>  	ro		[KNL] Mount root device read-only on boot
+>  
+>  	rodata=		[KNL,EARLY]
 
-"Set as valid gpo if not used as irq"
-> > > > +	return 0;
-> > > > +}
-> 
-> -- 
-> With Best Regards,
-> Andy Shevchenko
-> 
-> 
-Best Regards,
-Jorge
+-- 
+~Randy
+
 
