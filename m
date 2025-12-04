@@ -1,80 +1,113 @@
-Return-Path: <devicetree+bounces-244443-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244444-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9E87CA4F6B
-	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 19:40:55 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B493DCA508C
+	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 20:00:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 368033072845
-	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 18:39:19 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 291403194AE7
+	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 18:56:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E45C35770B;
-	Thu,  4 Dec 2025 18:39:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CA9130E0FA;
+	Thu,  4 Dec 2025 18:47:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZWjkMzI1"
+	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="SeeJ3ZNp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out-178.mta0.migadu.com (out-178.mta0.migadu.com [91.218.175.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E54033570CB;
-	Thu,  4 Dec 2025 18:39:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 975AE2E092E
+	for <devicetree@vger.kernel.org>; Thu,  4 Dec 2025 18:47:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764873558; cv=none; b=eOXlvaeWC4uBlyDKlUN0a7ZUnjsTH3enF6ab5+ymGdR/Ni0iEDoaCOp56T3Gub8mVj1SLmEMBirYUlTIvPEX7r+fG5zB7zE4qWqzwvu9wDHgJz+mgmgU0qjFYP3J94PLCi0bn5bQJDyQ+5KIHTOxDEtlWYa9NoYDiW+A9IK9u/Q=
+	t=1764874069; cv=none; b=p2sDJ94IZLGhuCQUaSGJ1Q8U05UCxpx/NRV2a77sSMLr57RgjLVn/PuuDhaMOr2204aQUwGJmWNQX7xqDG/KNwwbHw+HYsYWFDcFn2zbUQnfgehYz5fwGZP5eFUkowBXgVcQPKw6+xbg+Oy3C2ojmoBkKFheGD8GEioc5roBxoA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764873558; c=relaxed/simple;
-	bh=nT+HTh6DNWj8DJoPrDsJZO/bEIzIqgqUXwO2UF73cEE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HW4nCwNow1FR7AmpXoey7S9onD80hufMhQP/pBoqEbzEEvgGJ0KzJKkKjtD48/1DHNWOBnqMtok1dIkheMdmnuDFYJFsXqahsHK1aMW8g4jwJE3MJw7V8gLaAgcgxHKiTnvrYRTQXlxdhpv4Jg45YHY1mMcYIFlUJsTH7j8h6D8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZWjkMzI1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87D30C4CEFB;
-	Thu,  4 Dec 2025 18:39:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764873557;
-	bh=nT+HTh6DNWj8DJoPrDsJZO/bEIzIqgqUXwO2UF73cEE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ZWjkMzI1HP598AKSHkkRNU/2C+PGshF6WIq8cffoNuR9IRR5FpNSpKXZ7pVBGXyGb
-	 XOF/nrnR8R4JWq5SquuJo8jnFGKW48W6AsRuKNk1DMSz6FHpPFYgxF9Xwu7gEV0Bzw
-	 6heYraNbqXir8S9zZeDtZkUoGciDW+DmR/atOhk5IgEqrsWK6H1xCsmldYHUFNKWWn
-	 urKFLI/ynYq/LAMVHVQ/FK+lCiPH7szTxm7hM+dCux2v7U47xJyk9+iAx59gSxvhwK
-	 ZT5PGCa9eoD171C04JbbCL76ZkS1SFJ+dy0ycL0tWk7Lgjfy6w7/W6wuIKGjYAReDg
-	 NziTlg7i3ftmg==
-Date: Thu, 4 Dec 2025 12:39:14 -0600
-From: Rob Herring <robh@kernel.org>
-To: Renjun Wang <renjunw0@foxmail.com>
-Cc: neil.armstrong@linaro.org, jessica.zhang@oss.qualcomm.com,
-	airlied@gmail.com, simona@ffwll.ch,
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org,
-	tzimmermann@suse.de, krzk+dt@kernel.org, conor+dt@kernel.org,
-	thierry.reding@gmail.com, sam@ravnborg.org,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: display: simple: Add HannStar HSD156JUW2
-Message-ID: <20251204183914.GA1955620-robh@kernel.org>
-References: <tencent_FD75580BB3BF35F44985E237E7DE56BE2407@qq.com>
+	s=arc-20240116; t=1764874069; c=relaxed/simple;
+	bh=noPUV3bu79z3qlWu5jYSIMg//1Eh+wIJG9XWK6Aw/tc=;
+	h=MIME-Version:Date:Content-Type:From:Message-ID:Subject:To:Cc:
+	 In-Reply-To:References; b=JWEJxE4Iq9fHBPzQCmCok8X+M7LIETYCznMZ6KikzXfRcNluRTy1ekMu20oCOGW9pYs4ASMSHxQqnBKCJB+ioh3zLZMdQdlqfXfAOZKToGZnumRV3gF5ItbXNlkID7eNp9xIYn9MlrnEciJrrQ+lPPx3wdkoWBpIDRRtlAkGN9s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=SeeJ3ZNp; arc=none smtp.client-ip=91.218.175.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=postmarketos.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <tencent_FD75580BB3BF35F44985E237E7DE56BE2407@qq.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
+	s=key1; t=1764874055;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=fFIyOFl4s3TiXZ1x3OnNe6v2Uon+vzAZW3MjiFsYDiE=;
+	b=SeeJ3ZNp2b8pbXmzpfThcPq5PTYnsTv8k9S8yTUQOt4q8rHTliKWqREOM56S7QxuGcjiAo
+	F1gEnszIWzKS6UDNlouJxoGpDWEwRGmtZBq2jVUtZ8dDRVf4+/D0XczFDr7KWmSGRbyEOH
+	aaUtPKuwBXv9vOHfq/hgSQN+jDKzPbZs5648IoWimVLxgBCM7Gl/F2WnhsAr+Jy+B79j7l
+	KrWAjWAqo27Gjlk5KpMISQQm0UtOYeCepD6tFEWhxVtO3lrBIhYev3RSlJt4ESfEBtY1DB
+	mLm28zBLE52yOOnH/vLO04l3jU7lLv+35RCupGVc7mZQHatjp/qM0iABgX8FnA==
+Date: Thu, 04 Dec 2025 18:47:32 +0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: "Paul Sajna" <sajattack@postmarketos.org>
+Message-ID: <7909626f3116fcb9feb25b77820a98da56e1283a@postmarketos.org>
+TLS-Required: No
+Subject: Re: [PATCH v5 10/12] arm64: dts: qcom: sdm845-lg-judyln: Add lab/ibb
+To: "Konrad Dybcio" <konrad.dybcio@oss.qualcomm.com>, "Bjorn Andersson"
+ <andersson@kernel.org>, "Konrad Dybcio" <konradybcio@kernel.org>, "Rob
+ Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>, "David Heidelberg" <david@ixit.cz>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
+ ~postmarketos/upstreaming@lists.sr.ht, "Amir Dahan"
+ <system64fumo@tuta.io>, "Christopher Brown" <crispybrown@gmail.com>
+In-Reply-To: <84a17875-0542-47cf-ac4b-5af7bbdc5edf@oss.qualcomm.com>
+References: <20251203-judyln-dts-v5-0-80c1ffca8487@postmarketos.org>
+ <20251203-judyln-dts-v5-10-80c1ffca8487@postmarketos.org>
+ <84a17875-0542-47cf-ac4b-5af7bbdc5edf@oss.qualcomm.com>
+X-Migadu-Flow: FLOW_OUT
 
-On Sun, Nov 30, 2025 at 10:35:27PM +0800, Renjun Wang wrote:
-> Add the HannStar HSD156JUW2 15.6" FHD (1920x1080) TFT LCD panel to
-> the panel-simple compatible list.
+December 4, 2025 at 12:50 PM, "Konrad Dybcio" <konrad.dybcio@oss.qualcomm=
+.com mailto:konrad.dybcio@oss.qualcomm.com?to=3D%22Konrad%20Dybcio%22%20%=
+3Ckonrad.dybcio%40oss.qualcomm.com%3E > wrote:
 
-Where's patch 2? Your email threading is broken.
 
-> 
-> Signed-off-by: Renjun Wang <renjunw0@foxmail.com>
-> ---
->  .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 ++
->  1 file changed, 2 insertions(+)
+>=20
+>=20On 12/3/25 10:40 AM, Paul Sajna wrote:
+>=20
+>=20>=20
+>=20> These regulators are required for the LCD
+> >=20=20
+>=20>  Signed-off-by: Paul Sajna <sajattack@postmarketos.org>
+> >  ---
+> >  arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts | 17 +++++++++++++++++
+> >  1 file changed, 17 insertions(+)
+> >=20=20
+>=20>  diff --git a/arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts b/arch/=
+arm64/boot/dts/qcom/sdm845-lg-judyln.dts
+> >  index 8b88f75b36af..cdaf84de5e6c 100644
+> >  --- a/arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts
+> >  +++ b/arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts
+> >  @@ -56,10 +56,27 @@ zap-shader {
+> >  };
+> >  };
+> >=20=20
+>=20>  +&ibb {
+> >  + regulator-min-microvolt =3D <5500000>;
+> >  + regulator-max-microvolt =3D <5700000>;
+> >=20
+>=20These ranges seem much more reasonable, although I would still
+> expect there's a single operational voltage - unless the panel driver
+> is supposed to call regulator_set_voltage() in some different power
+> modes?
+>=20
+>=20Konrad
+>
 
-You can ignore the bot report, linux-next broke it over the holidays.
-
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+So min/max both 55? Or is there another property I should use?
+I wasn't sure if that would be physically hard for the regulator to maint=
+ain such precision, so I cross-referenced some other DTs in the qcom fold=
+er and found this 200mv allowance in one of the sony devices.
 
