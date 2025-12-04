@@ -1,139 +1,426 @@
-Return-Path: <devicetree+bounces-244318-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244319-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92FEBCA3A0C
-	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 13:38:14 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1704FCA3AC9
+	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 13:53:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 90919301CD1E
-	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 12:38:13 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 108A0311FBD8
+	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 12:48:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA77D33C1AA;
-	Thu,  4 Dec 2025 12:38:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98680340D9A;
+	Thu,  4 Dec 2025 12:48:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ucw.cz header.i=@ucw.cz header.b="Qy81Kbu3"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="H47xjB+h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DEFA32C317;
-	Thu,  4 Dec 2025 12:38:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.255.230.98
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D198E341059
+	for <devicetree@vger.kernel.org>; Thu,  4 Dec 2025 12:48:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764851891; cv=none; b=fY+sIx5VK4qe14HxdaUb2CkwceX4NpzruO8bAwfjr7+yIPRPH78x1LXB5/RSVd4t/L7MOew3byVcJXLBcV241KYH+fXJ7UkBbwOwUW8LS1ZDGuKJM6imtMeWo4tdQDEdNFdXqFzwHae0mV/Oz8A5iey1H6LU3KMYh0ESQ5fnB9o=
+	t=1764852513; cv=none; b=WwnDPvSuNkZ9SltmyrQah4Ylja1Psz1vHplIpYQZ1frJR+uvflMFXZu4QIE/tTtXUjdNeeF3Nz2UqVKx4BQULNH1lPBLKYoFzl+de20TdcrCaTMpjnt8cczbSHjXbmRvhiW0IvO+IL1eXihaafEP59vg4kX5px2c3ChIRey/1qA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764851891; c=relaxed/simple;
-	bh=aXa9bs/fgQva0i/5IoMKbRBiOVII1CFWztcx920Dkf0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=L/NVJ3m7YP64obkCnVbRH2jrt9FpQLb207XPNizixl62aA0Cy3YtxS66Buc+e8mYsZhkONUteSApPB8TJ2oAizPEpcGI+IF+8mu1GicNZ0q8JkHA5kvQ54OH/AlxSVVxEQguF5UzcKBv1jJcl0CBbBTzyjLPCIt9NYtNhYEKpkw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ucw.cz; spf=pass smtp.mailfrom=ucw.cz; dkim=pass (1024-bit key) header.d=ucw.cz header.i=@ucw.cz header.b=Qy81Kbu3; arc=none smtp.client-ip=46.255.230.98
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ucw.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ucw.cz
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-	id 2C1761C008F; Thu,  4 Dec 2025 13:38:07 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucw.cz; s=gen1;
-	t=1764851887;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=9WGtrfu3GuTI9Wqc1fIfjBwAoYn0B6GSnlgu0ZqZYFA=;
-	b=Qy81Kbu3tlE7YgdGOaWZdYNsKPtKfmyIoX1OZ95HzWM5MYfloBrBmxjGPk/9tnKceBBVco
-	BArlNXNMk0A/p0kiD4s6CYci1Cjtm33TJdfFTNTFwmpqA+lE0jTQkP2h55ttnxMmv3iQmV
-	aKiUn5rwVV7pZT4190yRUzDoOFHgTzc=
-Date: Thu, 4 Dec 2025 13:38:06 +0100
-From: Pavel Machek <pavel@ucw.cz>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Lukas Timmermann <linux@timmermann.space>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Russell King <linux@armlinux.org.uk>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Alexandre Marquet <tb@a-marquet.fr>
-Subject: Re: [PATCH v2 3/3] ARM: samsung: exynos5250: Allow CPU1 to boot
-Message-ID: <aTGAruX7N/7ZT0ur@duo.ucw.cz>
-References: <20251125-google-manta-v2-0-0f097cfff39c@timmermann.space>
- <20251125-google-manta-v2-3-0f097cfff39c@timmermann.space>
- <aTFvBwjms8msxIae@duo.ucw.cz>
- <73efeaeb-0cde-45af-af92-4fd7b5d4589c@kernel.org>
- <aTF2H0f9TJiwCLe5@duo.ucw.cz>
- <a68ee81f-1d2c-47f4-b86f-e0e803c1cfd3@kernel.org>
- <aTF2z5HbvmEuu9Iy@duo.ucw.cz>
- <39ac918c-0394-495b-b717-dfa0fd35d7dc@kernel.org>
+	s=arc-20240116; t=1764852513; c=relaxed/simple;
+	bh=EF/ZE+XVVwNteVh/X9JBALU62U0eV0fb45mT3KKsBW0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=n6Xfvu2gOhWU2j36B/ezDB6NX2dHw2Os7AzeNaYJeW8+bDCoj9aXBk/GlbTPHjwEuDxg+vTuPjQ+uoY9lIybTFDxPzBoJxywOtKnipB90nM4aFCZNL6O9bZbY+LwlhWTTyjOMpRQe+1iTXmyNmxmX3948SNY4SjO4w3L8VKNexs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=H47xjB+h; arc=none smtp.client-ip=209.85.218.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-b737502f77bso121236366b.2
+        for <devicetree@vger.kernel.org>; Thu, 04 Dec 2025 04:48:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1764852508; x=1765457308; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2iMlmEnZbUHewWGtOlOpHNRr261tcZuz9+wmB1gsqKw=;
+        b=H47xjB+hmI2yPr6ftppvjjgkGvLGNGtt3/TPQZwv4wb0fmn3URZ+8WnDVfsiQ32yre
+         INE+l0cYSNQ7fYBfUMggoDhomaQ2DXLK3MPQ/FpDyrPxe9O9LYaAq/IuA2wasrWJ3ji4
+         KIW/9E8/1P0MiH7M40R7YBBneOCCam77In2bhJPxL1oOp8o+wdKMro/VLJxnz/Cm2cr7
+         kdKGDjLpbkWlASsNdipNDzedjw1nEtMlE7++9WsjuRLOcOQLbugKvAUmtaNr/fRKv2hv
+         AR6m1+CXsDbwWoItV6dKOE7Uabgmo8o5+Hx560b6tdtYtGic/1DFETFE6KLKbVm9EYKF
+         UoDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764852508; x=1765457308;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=2iMlmEnZbUHewWGtOlOpHNRr261tcZuz9+wmB1gsqKw=;
+        b=FKBDSbCGfe4DkYLCqeFOvZ74ETFnWCA0fTZBChjhfUMT32bMmKhyjlQG+osZVyhorU
+         ZZthPjhcxRQCDaC1Vl42XtZN1dmw4qFdBfPjz8ecDySjZnhBlAG7bEMfW17le5w6ybT9
+         uqhV3oUG7jogrjMeq6i0Hcfw7Ek1hFK+DkrKAeyvPHUM//qPQsHfp5vbWKV3Igl0V07T
+         ZHTeDrjxpSQ+QXaAVrDZORd9slGZbGi3a+igerX8DWsnVNWzO08r47clsXTmoEYj8osf
+         T266+qJZpSOBIr1SG+nigl+GTwkt1CmYKOsxGa8YSkBMs8T6h1rCNrd2vGb5TOKvZ0PZ
+         pRWQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXUfcjgzOCE8lRm/QUWJxjO9OWkF8gozdjiV8YeUlCcB2OfhitJB8gTD3hyiJ171Qkp3NRRldVWYteh@vger.kernel.org
+X-Gm-Message-State: AOJu0YxuDk68Yh5bBsD9+a/5CQIhscDRwc4lDqYCKa3SgSWHTVwmrGr+
+	cY65HfvclWW2q8jY2ajiGd0orJ197ueb+GWJLgZ9gaaxU4e2BSg+47IqJHBym/AZd81oLQMvxDN
+	2Xdx2cwkvENiURdsopVSfdirFh0hvTwM=
+X-Gm-Gg: ASbGncsMkTxxt4EtU5qPs8+/aA7Ily/qirGanKqmwBe/ZiiiqzvAkiZzeqa2SvJh9u7
+	TTapYBzGjeMsqH8nzR8TqGsKK5PnExnmYahUjMwLSY3BMtjBmvv+0T19pnglOliJzDUXdHhWChi
+	grn1pXAVUjGq6DYA82Fzxo8IojNISF8TgJ0MAHfVRb5iwWaC1a9k0ZdzwH4uS7tGWTYtiW8mIOo
+	lQTEY4uAW+WOIbguSVMCN3XtpdkK1JcsbxmLbMmOU9JzRRSMReNz1tt+KF9jqgSC7UkqWQibCmh
+	PDLoet6upUusO62dqEe3/KlkrFVvkBH4IJRJT5CKnRj/3i8CPx5VivXJkimTaxQgTwXT8j4=
+X-Google-Smtp-Source: AGHT+IHxXXlScA3QP/B2QfMo4xnLROwd1JIxWdG8x8qG6z64K/dZu/VZxhDRyPQ8JxEnYNU3HXvbJCcG9Csp14GfSUI=
+X-Received: by 2002:a17:907:3d8c:b0:b73:6dbc:39fc with SMTP id
+ a640c23a62f3a-b79ec67cb74mr257554366b.30.1764852508212; Thu, 04 Dec 2025
+ 04:48:28 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="IZAWxPHhTjLaLg0o"
-Content-Disposition: inline
-In-Reply-To: <39ac918c-0394-495b-b717-dfa0fd35d7dc@kernel.org>
-
-
---IZAWxPHhTjLaLg0o
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <20251128144428.24450-1-antoniu.miclaus@analog.com> <20251128144428.24450-3-antoniu.miclaus@analog.com>
+In-Reply-To: <20251128144428.24450-3-antoniu.miclaus@analog.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Thu, 4 Dec 2025 14:47:51 +0200
+X-Gm-Features: AWmQ_blTzO-KfSkXQpkf5TzX35AHqsS6sD5cdEJm8oDVAm7paC_oB7WvX1az-n8
+Message-ID: <CAHp75VcxYGskVpQ5HKiFUUnNSj-9qpdXeBjz9-oEHc9eumE0fg@mail.gmail.com>
+Subject: Re: [PATCH v5 2/2] iio: amplifiers: adl8113: add driver support
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
+	=?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Thu 2025-12-04 13:02:00, Krzysztof Kozlowski wrote:
-> On 04/12/2025 12:55, Pavel Machek wrote:
-> > On Thu 2025-12-04 12:54:03, Krzysztof Kozlowski wrote:
-> >> On 04/12/2025 12:53, Pavel Machek wrote:
-> >>> On Thu 2025-12-04 12:51:36, Krzysztof Kozlowski wrote:
-> >>>> On 04/12/2025 12:22, Pavel Machek wrote:
-> >>>>> Also please cc: phone-devel mailing list with phone related patches.
-> >>>>
-> >>>> You don't have to. This list is not part of any upstream Linux kernel
-> >>>> process (see `git grep`), it's not relevant to upstream kernel devel=
-opment.
-> >>>
-> >>> Yes, you should. Its a relevant mailing list.
-> >>
-> >> git grep for it. Stop inventing rules.
-> >=20
-> > Who is inventing rules here? Stop sabotaging review process.
->=20
-> You invented rule that some specific list of your interest has to be
-> CCed, even though no one knows about that list and it is nowhere document=
-ed.
+On Fri, Nov 28, 2025 at 4:45=E2=80=AFPM Antoniu Miclaus
+<antoniu.miclaus@analog.com> wrote:
+>
+> Add support for adl8113 10MHz to 12GHz Low Noise Amplifier with
+> 10MHz to 14GHz bypass switches.
 
-No. I'm asking people to please cc the mailing list so that interested
-people can see the patches. It is you blabbering nonsense about "git
-grep" and "get_maintainer" as if those were rules.
+Almost there, it's the 5th version and looks good (no major issues),
+so if you address my comments below in v6, I'll give a tag.
 
-> > "Many kernel-related lists are hosted on vger.kernel.org; you can find a
-> > list of them at http://vger.kernel.org/vger-lists.html.  There are
-> > kernel-related lists hosted elsewhere as well, though."
->=20
-> This proves nothing. There are just some lists there. No one has to cc
-> whatever list there just because Pavel Machek asks them. Kernel process
-> defines it or not. Not you.
+...
 
-And not you.
+> +#include <linux/array_size.h>
 
-Kernel process is to cc relevant people, and relevant mailing lists,
-SubmittingPatches points you to http://vger.kernel.org/vger-lists.html
-=2E If people are interested in the patch (for example because they
-reacted to previous version), you should cc them. People in
-phone-devel expressed interest in phone-related kernel development, so
-you should cc them.
++ bitmap.h // bitmap_*(), BIT(), GENMASK(), etc.
 
-								Pavel
+> +#include <linux/device.h>
+
+Is it really used? I found
+
++ dev_printk.h // dev_err_probe() et al.
++ device/devres.h // devm_k*alloc*()
+
+> +#include <linux/err.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/iio/iio.h>
+
++ limits.h // INT_MIN
+
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/module.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/property.h>
+> +#include <linux/regulator/consumer.h>
+
+> +#include <linux/slab.h>
+> +#include <linux/sysfs.h>
+
+Are those two being used? (device/devres.h should provide what
+devm_k*alloc*() needs)
+
++ types.h // DECLARE_BITMAP()
+
+...
+
+> +struct adl8113_state {
+> +       struct gpio_descs *gpios;
+> +       struct adl8113_gain_config *gain_configs;
+> +       int num_gain_configs;
+
+Do you need this to be signed?
+
+> +       enum adl8113_signal_path current_path;
+> +};
+
+...
+
+> +static const char * const adl8113_supply_names[] =3D {
+> +       "vdd1",
+> +       "vss2",
+> +       "vdd2"
+
+Please, keep the trailing comma.
+
+> +};
+
+...
+
+> +static int adl8113_set_path(struct adl8113_state *st,
+> +                           enum adl8113_signal_path path)
+> +{
+> +       DECLARE_BITMAP(values, 2);
+> +       int ret;
+
+> +       bitmap_zero(values, 2);
+
+Move this to the switch case...
+
+> +       /* Determine GPIO values based on signal path */
+> +       switch (path) {
+> +       case ADL8113_INTERNAL_AMP:
+
+> +               /* va=3D0, vb=3D0 - already zero */
+
+Unneeded comment here and below, just put a number to the bitmap
+
+  bitmap_write(..., 0x00);
+
+> +               break;
+> +       case ADL8113_INTERNAL_BYPASS:
+> +               /* va=3D1, vb=3D1 */
+> +               __set_bit(0, values);
+> +               __set_bit(1, values);
+
+  bitmap_write(..., 0x03);
+
+> +               break;
+> +       case ADL8113_EXTERNAL_A:
+> +               /* va=3D0, vb=3D1 */
+> +               __set_bit(1, values);
+
+  bitmap_write(..., 0x02);
+
+> +               break;
+> +       case ADL8113_EXTERNAL_B:
+> +               /* va=3D1, vb=3D0 */
+> +               __set_bit(0, values);
+
+  bitmap_write(..., 0x01);
+
+> +               break;
+> +       default:
+> +               return -EINVAL;
+> +       }
+> +
+> +       ret =3D gpiod_set_array_value_cansleep(st->gpios->ndescs, st->gpi=
+os->desc,
+> +                                            st->gpios->info, values);
+> +       if (ret)
+> +               return ret;
+> +
+> +       st->current_path =3D path;
+> +       return 0;
+> +}
+
+...
+
+> +static int adl8113_find_gain_config(struct adl8113_state *st, int gain_d=
+b)
+> +{
+> +       int i;
+
+Does it need to be signed?
+
+> +       for (i =3D 0; i < st->num_gain_configs; i++) {
+> +               if (st->gain_configs[i].gain_db =3D=3D gain_db)
+> +                       return i;
+> +       }
+> +       return -EINVAL;
+> +}
+
+...
+
+> +static int adl8113_read_raw(struct iio_dev *indio_dev,
+> +                           struct iio_chan_spec const *chan,
+> +                           int *val, int *val2, long mask)
+> +{
+> +       struct adl8113_state *st =3D iio_priv(indio_dev);
+> +       int i;
+
+  unsigned int i;
+
+> +       switch (mask) {
+> +       case IIO_CHAN_INFO_HARDWAREGAIN:
+> +               /* Find current gain configuration */
+> +               for (i =3D 0; i < st->num_gain_configs; i++) {
+> +                       if (st->gain_configs[i].path =3D=3D st->current_p=
+ath) {
+> +                               *val =3D st->gain_configs[i].gain_db;
+> +                               *val2 =3D 0;
+> +                               return IIO_VAL_INT_PLUS_MICRO_DB;
+> +                       }
+> +               }
+> +               return -EINVAL;
+> +       default:
+> +               return -EINVAL;
+> +       }
+> +}
+
+...
+
+> +static int adl8113_init_gain_configs(struct device *dev, struct adl8113_=
+state *st)
+> +{
+> +       int external_a_gain, external_b_gain, i =3D 0, j;
+
+  unsigned int i, j;
+
+And it's better to decouple assignment
+
+> +       /*
+> +        * Allocate for all 4 possible paths:
+> +        * - Internal amp and bypass (always present)
+> +        * - External bypass A and B (optional, or INT_MIN for testing)
+> +        */
+> +       st->gain_configs =3D devm_kcalloc(dev, 4,
+> +                                       sizeof(*st->gain_configs), GFP_KE=
+RNEL);
+> +       if (!st->gain_configs)
+> +               return -ENOMEM;
+
+  /* Start filling the gain configurations with  data */
+  i =3D 0;
+
+> +       /* Always include internal amplifier (14dB) */
+> +       st->gain_configs[i].path =3D ADL8113_INTERNAL_AMP;
+> +       st->gain_configs[i].gain_db =3D 14;
+> +       i++;
+> +
+> +       /* Always include internal bypass (-2dB insertion loss) */
+> +       st->gain_configs[i].path =3D ADL8113_INTERNAL_BYPASS;
+> +       st->gain_configs[i].gain_db =3D -2;
+> +       i++;
+> +
+> +       /* Add external bypass A if configured */
+> +       if (!device_property_read_u32(dev, "adi,external-bypass-a-gain-db=
+",
+> +                                     &external_a_gain)) {
+> +               st->gain_configs[i].path =3D ADL8113_EXTERNAL_A;
+> +               st->gain_configs[i].gain_db =3D external_a_gain;
+> +               i++;
+> +       }
+> +
+> +       /* Add external bypass B if configured */
+> +       if (!device_property_read_u32(dev, "adi,external-bypass-b-gain-db=
+",
+> +                                     &external_b_gain)) {
+> +               st->gain_configs[i].path =3D ADL8113_EXTERNAL_B;
+> +               st->gain_configs[i].gain_db =3D external_b_gain;
+> +               i++;
+> +       }
+> +
+> +       /*
+> +        * If there's a free external bypass path, add one with INT_MIN g=
+ain
+> +        * to represent "nothing connected" for testing purposes
+
+Missing period at the end.
+
+> +        */
+> +       if (!device_property_present(dev, "adi,external-bypass-a-gain-db"=
+)) {
+> +               st->gain_configs[i].path =3D ADL8113_EXTERNAL_A;
+> +               st->gain_configs[i].gain_db =3D INT_MIN;
+> +               i++;
+> +       } else if (!device_property_present(dev, "adi,external-bypass-b-g=
+ain-db")) {
+> +               st->gain_configs[i].path =3D ADL8113_EXTERNAL_B;
+> +               st->gain_configs[i].gain_db =3D INT_MIN;
+> +               i++;
+> +       }
+> +
+> +       st->num_gain_configs =3D i;
+> +
+> +       /* Check for duplicate gain values */
+> +       for (i =3D 0; i < st->num_gain_configs - 1; i++) {
+> +               for (j =3D i + 1; j < st->num_gain_configs; j++) {
+> +                       if (st->gain_configs[i].gain_db =3D=3D st->gain_c=
+onfigs[j].gain_db)
+> +                               return dev_err_probe(dev, -EINVAL,
+> +                                                    "Duplicate gain valu=
+es not allowed: %d dB\n",
+> +                                                    st->gain_configs[i].=
+gain_db);
+> +               }
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+> +static int adl8113_probe(struct platform_device *pdev)
+> +{
+> +       struct device *dev =3D &pdev->dev;
+> +       struct adl8113_state *st;
+> +       struct iio_dev *indio_dev;
+> +       int ret;
+> +
+> +       indio_dev =3D devm_iio_device_alloc(dev, sizeof(*st));
+> +       if (!indio_dev)
+> +               return -ENOMEM;
+> +
+> +       st =3D iio_priv(indio_dev);
+> +
+> +       st->gpios =3D devm_gpiod_get_array(dev, "ctrl", GPIOD_OUT_LOW);
+> +       if (IS_ERR(st->gpios))
+> +               return dev_err_probe(dev, PTR_ERR(st->gpios),
+> +                                    "failed to get control GPIOs\n");
+> +
+> +       if (st->gpios->ndescs !=3D 2)
+> +               return dev_err_probe(dev, -EINVAL,
+> +                                    "expected 2 control GPIOs, got %d\n"=
+,
+
+%u
+
+> +                                    st->gpios->ndescs);
+> +
+> +       ret =3D devm_regulator_bulk_get_enable(dev,
+> +                                            ARRAY_SIZE(adl8113_supply_na=
+mes),
+> +                                            adl8113_supply_names);
+> +       if (ret)
+> +               return dev_err_probe(dev, ret,
+> +                                    "failed to get and enable supplies\n=
+");
+> +
+> +       /* Initialize gain configurations from devicetree */
+> +       ret =3D adl8113_init_gain_configs(dev, st);
+> +       if (ret)
+> +               return ret;
+> +
+> +       /* Initialize to internal amplifier path (14dB) */
+> +       ret =3D adl8113_set_path(st, ADL8113_INTERNAL_AMP);
+> +       if (ret)
+> +               return ret;
+> +
+> +       indio_dev->info =3D &adl8113_info;
+> +       indio_dev->name =3D "adl8113";
+> +       indio_dev->channels =3D adl8113_channels;
+> +       indio_dev->num_channels =3D ARRAY_SIZE(adl8113_channels);
+> +
+> +       return devm_iio_device_register(dev, indio_dev);
+> +}
+
+...
+
+> +static struct platform_driver adl8113_driver =3D {
+> +       .driver =3D {
+> +               .name =3D "adl8113",
+> +               .of_match_table =3D adl8113_of_match,
+> +       },
+> +       .probe =3D adl8113_probe,
+> +};
+
+> +
+
+Redundant blank line.
+
+> +module_platform_driver(adl8113_driver);
+
 --=20
-I don't work for Nazis and criminals, and neither should you.
-Boycott Putin, Trump, Netanyahu and Musk!
-
---IZAWxPHhTjLaLg0o
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCaTGArgAKCRAw5/Bqldv6
-8lfNAJ432b08VuCapDRQakftJA9JEIYhzQCfScFdiAFfVXRbIz9O1NPJ+TJ09hE=
-=qAGG
------END PGP SIGNATURE-----
-
---IZAWxPHhTjLaLg0o--
+With Best Regards,
+Andy Shevchenko
 
