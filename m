@@ -1,112 +1,139 @@
-Return-Path: <devicetree+bounces-244322-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244323-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89FC4CA3B8D
-	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 14:08:39 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 727B4CA3BC5
+	for <lists+devicetree@lfdr.de>; Thu, 04 Dec 2025 14:12:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 89A9A3036E1A
-	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 13:08:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 39B4330CEABD
+	for <lists+devicetree@lfdr.de>; Thu,  4 Dec 2025 13:09:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A51C6335089;
-	Thu,  4 Dec 2025 13:08:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C056335089;
+	Thu,  4 Dec 2025 13:09:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dlz44Z6s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90728273D66;
-	Thu,  4 Dec 2025 13:08:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9CF92E8B8A;
+	Thu,  4 Dec 2025 13:09:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764853717; cv=none; b=niuxlD68p90d23SSA5EYUB8BKWzU3wNzmtsF82asmHAOOzU60mBVCIF2XSGT4fpxC1N9uvkoi5UvdJbeVLTPn2BUpKaLMa4ZiaYr95XHLXS+2/ueI4gwkaeeCVOAm0d2bhirP3urP8SJhFRO5j3nfKm6PiQMCy7hwD6vbTaYjGU=
+	t=1764853745; cv=none; b=T6vZLORuDSvqTBCTYcl4bCyhGaLQL9imHPZzHU1XMlM0NATdtmzOEtga0oRe8zIy8OeDCCDmBTSaePm+PKh1xXyTVYAxDDvtbsgorRHX5SFo3nuimnF0e8F4Z5L5qIta99eF5O7nKUzb0T+zfuDKEwjgAL0QlV/tefqHwRzqUVg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764853717; c=relaxed/simple;
-	bh=JJSrGbb/D5N2qxg9oGgl9lB0p+ZB79Uuhwh6U//Ny14=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SAoV/ICNXvyuYpQUY+/LpJsrJ3ryf3hxzm/bixDyW2aEygUY5HIDdzoIWymUz0Vkq6h8mBjbnSj11lebLe4vGPQnNi8hi59DpKjGtfx5M+hgE+7DehgMRVRo6uvA/KBI8JrgFOyKf/MEW9ykD0xQTQX2WyBMVpwZUBYbEPEW3f0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
-Received: from local
-	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-	 (Exim 4.98.2)
-	(envelope-from <daniel@makrotopia.org>)
-	id 1vR94N-00000000704-33CU;
-	Thu, 04 Dec 2025 13:08:27 +0000
-Date: Thu, 4 Dec 2025 13:08:24 +0000
-From: Daniel Golle <daniel@makrotopia.org>
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc: Vladimir Oltean <olteanv@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Frank Wunderlich <frankwu@gmx.de>,
-	Avinash Jayaraman <ajayaraman@maxlinear.com>,
-	Bing tao Xu <bxu@maxlinear.com>, Liang Xu <lxu@maxlinear.com>,
-	Juraj Povazanec <jpovazanec@maxlinear.com>,
-	"Fanni (Fang-Yi) Chan" <fchan@maxlinear.com>,
-	"Benny (Ying-Tsan) Weng" <yweng@maxlinear.com>,
-	"Livia M. Rosu" <lrosu@maxlinear.com>,
-	John Crispin <john@phrozen.org>
-Subject: Re: [PATCH RFC net-next 0/3] net: dsa: initial support for MaxLinear
- MxL862xx switches
-Message-ID: <aTGHyIdWL86qPUif@makrotopia.org>
-References: <cover.1764717476.git.daniel@makrotopia.org>
- <20251203202605.t4bwihwscc4vkdzz@skbuf>
- <aTDGX5sUjaXzqRRn@makrotopia.org>
- <aTDdlibA99YLVSKV@shell.armlinux.org.uk>
+	s=arc-20240116; t=1764853745; c=relaxed/simple;
+	bh=r+6PbvOAlWHb/KEl+VEcP1a3KOUVK/8vH5QiDzA19wM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Fr/Y9PflzbChmyDx4XTmTJp/pJ6yaHInlxOyne9APRVRERDFRNmDxXLmNSqQ/GixEkUpnCutCLf7t01W9pGmSsNrQuqQPJSKThNXSND3HEPT4mS0qsEGvuigqq6ktQP70Qpi/iSWz+R7USqtnsPm9aQdnEkApO9AFjCp9yPJ8sQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dlz44Z6s; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30254C4CEFB;
+	Thu,  4 Dec 2025 13:09:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764853744;
+	bh=r+6PbvOAlWHb/KEl+VEcP1a3KOUVK/8vH5QiDzA19wM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=dlz44Z6sUzz4BJvUNkoOnq4XpqaPpGxkvqA6pIK2PQPEsTFSP5rr+FREodCqR9EIs
+	 de9Zov2Z5OwHrm0oMx17uDPdruzugz/X9mfsD4GXYlwQ8KJRKGtzla96bNl1OH70aY
+	 mfoASP6a/2JsOSIV1CgGahXQksn+BDVYVMuv0GqhqpG5xBZbtADOm9XhVrSx52nbgS
+	 /S52g6p3bHlKNliMN/pELdoh3cE8DoNRbOqYuiva9WvOL0mHBA8TxU4c5X94Itxi1V
+	 Ou8/JORU2C953xbbi9RcuRfqFyVPp7pQX5oKMk7UlJfCPgbgzk+jDGC3YjRy1uNN3m
+	 A0NvRpMmN3M+A==
+Message-ID: <04534c03-a1fd-4f2b-aed7-600a2efe2da5@kernel.org>
+Date: Thu, 4 Dec 2025 14:09:00 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aTDdlibA99YLVSKV@shell.armlinux.org.uk>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: input: Add Awinic AW86938
+To: Griffin Kroah-Hartman <griffin.kroah@fairphone.com>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Luca Weiss <luca.weiss@fairphone.com>
+Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+References: <20251204-aw86938-driver-v1-0-ebd71868df3a@fairphone.com>
+ <20251204-aw86938-driver-v1-1-ebd71868df3a@fairphone.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20251204-aw86938-driver-v1-1-ebd71868df3a@fairphone.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Dec 04, 2025 at 01:02:14AM +0000, Russell King (Oracle) wrote:
-> On Wed, Dec 03, 2025 at 11:23:11PM +0000, Daniel Golle wrote:
-> > On Wed, Dec 03, 2025 at 10:26:05PM +0200, Vladimir Oltean wrote:
-> > > Hi Daniel,
-> > > 
-> > > On Tue, Dec 02, 2025 at 11:37:13PM +0000, Daniel Golle wrote:
-> > > > Hi,
-> > > > 
-> > > > This series adds very basic DSA support for the MaxLinear MxL86252
-> > > > (5 PHY ports) and MxL86282 (8 PHY ports) switches. The intent is to
-> > > > validate and get feedback on the overall approach and driver structure,
-> > > > especially the firmware-mediated host interface.
-> > > > 
-> > > > MxL862xx integrates a firmware running on an embedded processor (Zephyr
-> > > > RTOS). Host interaction uses a simple API transported over MDIO/MMD.
-> > > > This series includes only what's needed to pass traffic between user
-> > > > ports and the CPU port: relayed MDIO to internal PHYs, basic port
-> > > > enable/disable, and CPU-port special tagging.
-> > > > 
-> > > > Thanks for taking a look.
-> > > 
-> > > I see no phylink_mac_ops in your patches.
-> > 
+On 04/12/2025 13:29, Griffin Kroah-Hartman wrote:
+> Add bindings for the Awinic AW86938 haptic chip which can be found in
+> smartphones.
 > 
-> As you didn't respond to Vladimir's statement here, I will also echo
-> this. Why do you have no phylink_mac_ops ?
+> Signed-off-by: Griffin Kroah-Hartman <griffin.kroah@fairphone.com>
+> ---
+>  Documentation/devicetree/bindings/input/awinic,aw86927.yaml | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
 > 
-> New DSA drivers are expected to always have phylink_mac_ops, and not
-> rely on the legacy fallback in net/dsa/port.c
+> diff --git a/Documentation/devicetree/bindings/input/awinic,aw86927.yaml b/Documentation/devicetree/bindings/input/awinic,aw86927.yaml
+> index b7252916bd727486c1a98913d4ec3ef12422e4bd..c3dee660422192720da3cf63851cea27db819742 100644
+> --- a/Documentation/devicetree/bindings/input/awinic,aw86927.yaml
+> +++ b/Documentation/devicetree/bindings/input/awinic,aw86927.yaml
+> @@ -11,7 +11,9 @@ maintainers:
+>  
+>  properties:
+>    compatible:
+> -    const: awinic,aw86927
+> +    enum:
+> +      - awinic,aw86927
+> +      - awinic,aw86938
 
-All three phylink_mac_ops functions are no-ops for the internal PHYs,
-see also
 
-https://github.com/frank-w/BPI-Router-Linux/blob/6.18-rc/drivers/net/dsa/mxl862xx/mxl862xx.c#L3242
+Your driver change suggests these are compatible, so please express it
+here with compatibility and fallback (see exampe-schema or most of other
+bindings) or explain in commit msg why devices are not compatible.
 
-The exception in the reference driver are the SerDes PCS ports, and for
-those I'd rather use .pcs_config than setting the interface mode in
-.phylink_mac_config.
-Hence I was planing to introduce phylink_mac_ops together with support
-for the SerDes ports, and it will only have a .mac_select_pcs op.
+Best regards,
+Krzysztof
 
