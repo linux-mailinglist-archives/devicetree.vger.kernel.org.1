@@ -1,189 +1,145 @@
-Return-Path: <devicetree+bounces-244702-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244703-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB80CCA80E3
-	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 16:00:28 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00EB2CA7FC2
+	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 15:39:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 82E1C30EE8C8
-	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 14:38:31 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 569AF302D2D1
+	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 14:39:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BF7B2F3C31;
-	Fri,  5 Dec 2025 14:30:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D1F43164D3;
+	Fri,  5 Dec 2025 14:39:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="QyAI1mT5";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="XRBxKcAd";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="NEtgfcdE";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="u8ko77i6"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="qqjLchFr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EAD13314C5
-	for <devicetree@vger.kernel.org>; Fri,  5 Dec 2025 14:30:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 485891DBB3A;
+	Fri,  5 Dec 2025 14:39:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764945017; cv=none; b=FP+BvzYZSP49wnWRaCJcmBqA10/Ti+wuRcf6+Qh5Y0EReaFSanKwvbT/3ysFiW0mCitzJuNcf8RXPBFkC4J51fjCCoFWc1p5/dK5fuG7wIdUR56gsgioP/nBYeBAX0CdGyvqHEOQBbOw1Fjrabt1Il0FjkB6pPpfMosNAURmeZs=
+	t=1764945590; cv=none; b=eXJNIw+q2uKJGOvhs9pTpkbtltj6seOQ7VsUYzuhJg9abulABNVlWXOU8R52dK3q94RqIRnLV5fKpcrs7fX9vR2HG7XVrfZvm4Sv284qDiBFxwgpTzPbeUS5Jwkl/pf88If9k6e0oZoh/F7hXThAoeX11TIYfCSv8BgTktXN36c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764945017; c=relaxed/simple;
-	bh=WLu8aHLj67frTcC1JuZMoLwhjW+5Rb3WGfEAe8xwj4U=;
-	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=JTDmVe9uotJCSZfk05lPh7a4kaxVCKdG/mJpMMcr5q9FJyZ8KzasW3S9TiPAgUHu5xNY8FNhHuXinZazAD80Hei1aX16mEbey2uh+tXp65ZC69wlF5kI1MF8cWOYA+MlnpqGOl9M89DzK2rfTUFRG1hExWyNuy7K3rhhXf2C5Zk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=QyAI1mT5; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=XRBxKcAd; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=NEtgfcdE; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=u8ko77i6; arc=none smtp.client-ip=195.135.223.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [IPv6:2a07:de40:b281:104:10:150:64:97])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-out1.suse.de (Postfix) with ESMTPS id 7A45A336EE;
-	Fri,  5 Dec 2025 14:30:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1764945006; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=kIMGm7W1pFpTNSSNGJ7DEEHJGepKahZAM6R04sU85Zw=;
-	b=QyAI1mT58V1cT5RWxzErYqCKuWTN7sMxiUSkHbi3rgGguOriu8X4cALVdlomaj63QJPm6h
-	GSlQKkGHnNvetIBk/6O6AvkEoQ9pTOfS9VP13RXjS4hhFFP3qsUWBYkk8MCdimTXAYvjhz
-	3VO9FaXNGqkMH4fbSm/EeuBwPPbkHoE=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1764945006;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=kIMGm7W1pFpTNSSNGJ7DEEHJGepKahZAM6R04sU85Zw=;
-	b=XRBxKcAdh/d2K4WM2g3Mi2nKaGatwEMkLENOmz23Rl3AY/8ElKgDGmMaibtKbDckDgUxK0
-	Ui1FLmKpoJADpGAw==
-Authentication-Results: smtp-out1.suse.de;
-	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=NEtgfcdE;
-	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=u8ko77i6
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1764945004; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=kIMGm7W1pFpTNSSNGJ7DEEHJGepKahZAM6R04sU85Zw=;
-	b=NEtgfcdEjOPL5kv/0LIyTby1c4NxJpiSEpvUh4r6aep/a9uox+g0l+98Z2zZ0TJ9S1BVUK
-	Y+P0nJUhl2nh9l0vcQ8+kn6JwtejQUg1HmN9yp9o9A/fkJzF1k3XjS5jYH4DKq+WMVCMSj
-	DT2QkYF5UHiYsyQBKg8SNPKjGqN8EHo=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1764945004;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=kIMGm7W1pFpTNSSNGJ7DEEHJGepKahZAM6R04sU85Zw=;
-	b=u8ko77i6P/L1pKfN+s8ewKUWna14sUOMxHTGHpsFH940CQapDr0KACzGwxfuG5DOpW1ORn
-	rCu73ild5NHYXKAQ==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 239013EA63;
-	Fri,  5 Dec 2025 14:30:04 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id MapkB2zsMmlSBwAAD6G6ig
-	(envelope-from <tiwai@suse.de>); Fri, 05 Dec 2025 14:30:04 +0000
-Date: Fri, 05 Dec 2025 15:30:03 +0100
-Message-ID: <87o6odvw5w.wl-tiwai@suse.de>
-From: Takashi Iwai <tiwai@suse.de>
-To: joakim.zhang@cixtech.com
-Cc: lgirdwood@gmail.com,
-	broonie@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	perex@perex.cz,
-	tiwai@suse.com,
-	linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	cix-kernel-upstream@cixtech.com
-Subject: Re: [PATCH v5 0/3] ALSA: hda: add CIX IPBLOQ HDA controller support
-In-Reply-To: <20251205111634.3004576-1-joakim.zhang@cixtech.com>
-References: <20251205111634.3004576-1-joakim.zhang@cixtech.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) Emacs/30.1 Mule/6.0
+	s=arc-20240116; t=1764945590; c=relaxed/simple;
+	bh=oUmMnc8xejYGbc2lGoFWiVeGVU9QA8ZrQPDfsp53xew=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=TRmXFivU2B7ANsOJu/PEu7ADUM4yNPRiUrxiSqdRuUtxiuJIvq5zbXken9bGd6UFTKECG+Den1PHirYULfuVCL3hbkGbmUEw2h1KGPkP5DYJ04to1mG4bi0J/ZWGBxNCx2h28QGw1rrvw9jLNMULTpI9YVIu/70dPZ3U9ZhMWqs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=qqjLchFr; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5B59R33E172678;
+	Fri, 5 Dec 2025 09:39:18 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=
+	content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=8x93ym73UQhgTalxOGTeQlRsQEx
+	TkCbFm/bOlHOQ22E=; b=qqjLchFr9VlN4pinlexcef0uXc5Q0nclBpnJxgABAaK
+	n3sNv6bNmXZEv542u8uHiddPDOSK2zVFfPN0TIckOUFxCZrBRt2yqUyWOj2B1J8E
+	tnXF9tWWwYGkBfegjLD2BMqRO5b9SpREzmmU+D56XyiexPFg0DBCnigsyslWHb9E
+	L6feQ/DbuLP1StrgR9HeQvb4lqYN5mBFG3SErrblqto9XIAuNBFCAC4bamcAvFTs
+	654aodlnwfEw0/fz4BdCLeU409408Gpqeu4WrArO1NWCtHFoHerDdaPHaLM7V1L5
+	BI0tzS2Xa8hubqX42zId010TKsQDQcdsjqceQXSVAdw==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 4aufyscg1b-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 05 Dec 2025 09:39:18 -0500 (EST)
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 5B5EdGdT029269
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 5 Dec 2025 09:39:16 -0500
+Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
+ ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.37; Fri, 5 Dec 2025 09:39:16 -0500
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
+ ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.37; Fri, 5 Dec 2025 09:39:16 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
+ Transport; Fri, 5 Dec 2025 09:39:16 -0500
+Received: from HYB-b1tGeUj4GP1.ad.analog.com ([10.32.13.98])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 5B5Ed1pr027828;
+	Fri, 5 Dec 2025 09:39:04 -0500
+From: Antoniu Miclaus <antoniu.miclaus@analog.com>
+To: Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich
+	<Michael.Hennerich@analog.com>,
+        Antoniu Miclaus <antoniu.miclaus@analog.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        David Lechner <dlechner@baylibre.com>,
+        =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
+        Andy Shevchenko
+	<andy@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Michael Turquette
+	<mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Dragos Bogdan
+	<dragos.bogdan@analog.com>, <linux-iio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>
+Subject: [PATCH v4 0/2] This series adds clock provider functionality to the ADF4377 frequency
+Date: Fri, 5 Dec 2025 16:38:44 +0200
+Message-ID: <20251205143848.989-1-antoniu.miclaus@analog.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-Spamd-Result: default: False [-3.01 / 50.00];
-	BAYES_HAM(-3.00)[100.00%];
-	SUSPICIOUS_RECIPS(1.50)[];
-	NEURAL_HAM_LONG(-1.00)[-1.000];
-	DWL_DNSWL_LOW(-1.00)[suse.de:dkim];
-	MID_CONTAINS_FROM(1.00)[];
-	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	NEURAL_HAM_SHORT(-0.20)[-1.000];
-	MIME_GOOD(-0.10)[text/plain];
-	MX_GOOD(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	TO_MATCH_ENVRCPT_ALL(0.00)[];
-	FUZZY_RATELIMITED(0.00)[rspamd.com];
-	ARC_NA(0.00)[];
-	FREEMAIL_ENVRCPT(0.00)[gmail.com];
-	RCVD_TLS_ALL(0.00)[];
-	SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:97:from];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_EQ_ENVFROM(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,perex.cz,suse.com,vger.kernel.org,cixtech.com];
-	TO_DN_NONE(0.00)[];
-	TAGGED_RCPT(0.00)[dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	DKIM_TRACE(0.00)[suse.de:+];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:dkim,suse.de:mid,imap1.dmz-prg2.suse.org:helo,imap1.dmz-prg2.suse.org:rdns]
-X-Rspamd-Action: no action
-X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
-X-Spam-Level: 
-X-Rspamd-Queue-Id: 7A45A336EE
-X-Spam-Flag: NO
-X-Spam-Score: -3.01
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Authority-Analysis: v=2.4 cv=G4cR0tk5 c=1 sm=1 tr=0 ts=6932ee96 cx=c_pps
+ a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
+ a=wP3pNCr1ah4A:10 a=VkNPw1HP01LnGYTKEx00:22 a=NEAV23lmAAAA:8
+ a=TbiDcMNEsNnl46sf-WwA:9
+X-Proofpoint-GUID: cCNnU-62KSAz94YmDGuXVuFCNsMvHPr5
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjA1MDEwNSBTYWx0ZWRfX1kSf3rRw3U/1
+ yatwm9lelO5M1g6Eu/5lIokNiFJO7XXRQT+/OXU+KJmUDJByXrwDfoaFbC4dj5v0D8pshRk6pHp
+ v3vmn7JzPxpCOhLVIlQmYaas0gW01Uom/oLzve6SrEWEeRZjmdZDhVKUA5e5fN4pMvkX+dVMng6
+ qSJ5OU1Rl2D5U6YR6HYRml1NKT7Kaw4OKKNmtB9KNNzGRnhld1eYT7Zu/g2Af9hcFWowlGZZB1M
+ gLYmux9CIc2GOvGxJ6BOAGqUv/WScl1uL2zLlF5CkjcNvnKrvIV+wN2B6d2GohEUIZD4oYc9S4F
+ jXcoEx3M7FQ8jgUCIRXdMdchi4NUrHB49bLAzz0crdDdq61kbW5kQKefaTHGYCS5JZUWRTcL89j
+ +xkbClDjm2+Esopd43sszMKimZAvqw==
+X-Proofpoint-ORIG-GUID: cCNnU-62KSAz94YmDGuXVuFCNsMvHPr5
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-05_05,2025-12-04_04,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 lowpriorityscore=0 priorityscore=1501 suspectscore=0
+ spamscore=0 clxscore=1015 phishscore=0 malwarescore=0 adultscore=0
+ bulkscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
+ definitions=main-2512050105
 
-On Fri, 05 Dec 2025 12:16:31 +0100,
-joakim.zhang@cixtech.com wrote:
-> 
-> From: Joakim Zhang <joakim.zhang@cixtech.com>
-> 
-> Add CIX IPBLOQ HDA controller support.
-> 
-> ---
-> ChangeLogs:
-> v1->v2:
->   - fix dt-binding issues
->   - remove delayed work for probing
->   - refine dma address traslation
-> v2->v3:
->   - update dt-binding commit title and message
->     - ASoC: dt-bindings: -> ALSA: hda: dt-bindings
->     - use full sentences for commit message
->   - rename cix,ipbloq-hda.yaml to cix,sky1-ipbloq-hda.yaml
->   - update compatible cix,ipbloq-hda to cix,sky1-ipbloq-hda
->   - "cix,model" to generic "model"
->   - change the addr_host_to_hdac bus callback to addr_offset field
-> v3->v4:
->   - describe more for both dt-binding and driver commit message
->   - remove __maybe_unused for pm ops
->   - fix robot compile warning for 32bit system
->     - Forced type conversion for CIX_IPBLOQ_SKY1_ADDR_HOST_TO_HDAC_OFFSET
-> v4->v5:
->   - rename "clock-names", "sysclk" "clk48m" -> "ipg" "per"
->   - remove "reset-names" property
->   - remove "model" property
->   - additionalProperties: false -> unevaluatedProperties: false
->   - update the dirver since "reset-names" removed
->     - mostly is devm_reset_control_bulk_get_exclusive to devm_reset_control_get
->  
-> Joakim Zhang (3):
->   ALSA: hda: dt-bindings: add CIX IPBLOQ HDA controller support
->   ALSA: hda/core: add addr_offset field for bus address translation
->   ALSA: hda: add CIX IPBLOQ HDA controller support
+While implemented as an IIO driver, the ADF4377 is commonly used as a
+clock source. This patch series enables it to function as either:
+- A traditional IIO device (when #clock-cells is not specified)
+- A clock provider (when #clock-cells is present in device tree)
 
-Applied all three patches now.  Thanks.
+The implementation provides standard clock framework integration with
+rate control, enable/disable support, and maintains backward
+compatibility with existing IIO configurations.
 
+The current approach follows the recently accepted version of adding
+clock provider for adf4350 device:
+https://github.com/torvalds/linux/commit/a1a09713b40dfc1c0b7d1f9233a7698c93a9af05
 
-Takashi
+Antoniu Miclaus (2):
+  dt-bindings: iio: frequency: adf4377: add clk provider
+  iio: frequency: adf4377: add clk provider support
+
+ .../bindings/iio/frequency/adi,adf4377.yaml   |   8 ++
+ drivers/iio/frequency/adf4377.c               | 121 +++++++++++++++++-
+ 2 files changed, 127 insertions(+), 2 deletions(-)
+
+-- 
+2.43.0
+
 
