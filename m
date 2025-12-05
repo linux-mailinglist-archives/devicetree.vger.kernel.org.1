@@ -1,310 +1,391 @@
-Return-Path: <devicetree+bounces-244552-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244554-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D9B4CA6533
-	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 08:10:06 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC633CA656D
+	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 08:13:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A336B3093D46
-	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 07:07:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 820B5303848A
+	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 07:09:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 912C12FFFAE;
-	Fri,  5 Dec 2025 06:59:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C95E2F7ABB;
+	Fri,  5 Dec 2025 07:09:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="L6Hmd3zd"
+	dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b="ItDK33zM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CH1PR05CU001.outbound.protection.outlook.com (mail-northcentralusazon11010021.outbound.protection.outlook.com [52.101.193.21])
+Received: from TYDPR03CU002.outbound.protection.outlook.com (mail-japaneastazon11023102.outbound.protection.outlook.com [52.101.127.102])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76BBC2FFDC9;
-	Fri,  5 Dec 2025 06:59:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.193.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0324F4D8CE;
+	Fri,  5 Dec 2025 07:09:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.127.102
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764917957; cv=fail; b=MG/4VGJAuLQPIuGgrvxnUR/x0HvnkEpk9D0Q3OWtWq3wTyFmS3UCN3sVw9XKPjpq/SlZTrqb+z67+iwyW9mL7GrlpGNQFJ/Rl7LTMUor9PfHrnHiqHdXVt0rril5x4Kvs6XjjCyvcFMEDKTDCekYdOt8O3pq+erIZATUC+gKzIk=
+	t=1764918599; cv=fail; b=kHrztpbJjdV088Oq6wPN0rJkRh+AIv7PIJNHn4nbptYtaNpH6/RChO5JG6jWTsXmyI7fXU9YoOcgJ96LdSi9QPqBJFV4fJdH2hWL9MiKykvIQ+RXPI8fb1lTJScThzKY464e4aHSS18GzOBlZCClevrjArPwraiVJwG8lz4ZhqA=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764917957; c=relaxed/simple;
-	bh=mySVPBxEVT9zPWTS/gxmd+V75XGfQq2Pe2MufrRpQMA=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=AsjZlQJ+UPizJdE3s2DFOJebxPdxnPDawJ447BglLb+Fu9inon237Fat8Z9UEn7tODjDKYbUCLn0R6m32tf9ZpxfHyepl1GB/7GLe1GDAoGyZruQDvUMIzIDdu4BlcsPsVG914bvo5In+rYV1+3JVbpL5j882XGl/5KjWfn75KM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=L6Hmd3zd; arc=fail smtp.client-ip=52.101.193.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+	s=arc-20240116; t=1764918599; c=relaxed/simple;
+	bh=eDj0JeTDfuofh8RDItp691NWmFKC7yqOttRYvr4mC2w=;
+	h=Content-Type:Message-ID:Date:Subject:From:To:Cc:References:
+	 In-Reply-To:MIME-Version; b=uNDfQULRCGqwPX5ai8Ix5Z9tzRiyK+qSco4zj+fzjjptcwSAtiCm5RdX04R/PZdkQBRGA1AucMFxAMwDyRycG2UC6OWn5KxMaqmjQGLXGCs4d1JyAgPh9XFEi5+F6MTljj+MGnU9qwhdcCGJpbIH79lJ/cVvzbxtNYRdDkzHqQg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amlogic.com; spf=pass smtp.mailfrom=amlogic.com; dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b=ItDK33zM; arc=fail smtp.client-ip=52.101.127.102
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amlogic.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amlogic.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=YBa5zvU2GBKgUvbUr7e2xEw24JJQ4wgHKEbO8X0JDZJD7PjJAF01FQGdLuc6jUuTfpd6hehvoCiMbZlBSrBAaQ8ffw0PsmMwwDnvWK73bhxzsALsIJ/L2LitvQTv+juIvFSW2zH9Z8r7J1IsJYJJOZNklcVI7RaPucmpq+HnrvyEMBFz9ato/0J8nBx8X9ZRnGCN/9ObJy2bS5H3/kXVlViZSteMbgtZlkUQMq91KjONgpqU7zcGNUavxFJ8f0/yqoITBuBlUYp2H55yBXI8BC7JV9v0d4vc4/XWQm9e5uXOPMGmNE5CmvTqkIJlhIgT4Jo+LGZENyqFuboXHGKCFA==
+ b=RvfTbNhFfJ7LL7mVVgWI/ffGS+xNwFx3YVm29dz3+Szgyyj7FuYVI/pWg2wFjRHpylkkMrK0wYxAB9D2utpSU9PtZpE0PGUhp4dXj2mbpa6MBJHdKvYbREJcQOOD3TjC19vIKEscGlzc12t5pB5qXWKiCWZZQIu7HnNEaFrW3R0hRz1dwEGhcJntcZx4ao2hRRijwPqenc+65tOb2LT7T1GTrVnWUG8xDb6B0iw7VNeQ4C1h+Yo2nWPsjl8LZkjLFAAk3lWG1Pbtf4Sj0EUKSsdkh3/6dabZ9AhPSrqPdS+aAFgb3HrzRa8eVGoX/V9bUJVwEGw9pzTDGTLNyRb7QA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=C5C7BbNbxkCycrp6WS3b6f8CAENtqWpmuc1Dj+Qmq5A=;
- b=F3I7CbyjiLw9C0HxHoD0jhQ6JzL4eDfLICPBGZ1IPWiicnAY1oO8Gt9YZp+19vvC6c5uDAkFo8lY4EZwFNdqQVxk38XNU2L4pRnnrBmn1CVwtet+EbzbSe18ZWCcDi3DKr+3KXP52LvRk/6NyMRp+RzVhtg0TM/0Wf2w23fXuaoMZe9kiMVxhpQH6YYHaqiMI5v0zCrZqDw7Burr0r60QZH3iML0kW5dn1azixGV8GTuhvehQgCGXbvGvmnYsdS9VLnJLZV6Q62hzXMpm0GfAK/4oCSYxBQOEm9eJV+GD2O8eUwtQRLjMtwjzdmlE0rY5PX49GEgls2nAyZhgGsErw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.160) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
+ bh=C6X/xJE6G9okbIO/fZVWocnELBI7xMgAiAXIwIsSuZI=;
+ b=D8+l8E1xpvMzxxLnhYarVd/5DLglhGrB89h/Pb89bPVtvScpsfg2gYN/Acubw9wQHwW2FDxvBgERFoPIGFpDQUG4x3ZS9kHw4jAYq+CziGeI6PapcPDUD5XAFFXR/dN70J6maUMnoTyjo7PCoeoxzZWM/G2GLx/XkK+kM3FstiyLHbPyP0AFTTzZR2tsIemL+nd47ZKkUdf/qpSLkUI5tjBvZELQLzTIHYD4BlMwSmaVFy5A/kP7tHOFn6FciUUUk8mes4X4JZ0uNyRJaLNKqSu0/kBMzMVcMtLxqjkb2vnCfZk2lT3wwngF9G2t6cnXbtpT+OIOMVQsOyRHMnsY4Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
+ dkim=pass header.d=amlogic.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
+ s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=C5C7BbNbxkCycrp6WS3b6f8CAENtqWpmuc1Dj+Qmq5A=;
- b=L6Hmd3zdLBe8oKTAExrIb/PQBNR7d2AEuOz1TQaCso5tDkJcnxYdWvxxGSKN/fmVw72a/x5XFx/8sGPxyQeisOPTnimyiyMjZCPciaayFucXmabCyIL9hyBj08CMzxDJ/EL0ayG1QcHLmJCuVPy3/cBK+YG6h88CGD6eHjMaQvc/aJ9t+KLMtPI00q172NV3+nSHBIX/IPPRbong3FSR3h42dRqo1i3rGzYBgsRnR0kRzMrSftjrhAU/sefmiSKaQ/MuzT/YMYxI/Hx8syNPlD4oIpTH2ZOntzSBS7z2rapw67RmKR48feCO6Es7kzOQPR23qvNkd7Ms2/U8YXipWQ==
-Received: from DM6PR07CA0045.namprd07.prod.outlook.com (2603:10b6:5:74::22) by
- LV8PR12MB9358.namprd12.prod.outlook.com (2603:10b6:408:201::12) with
+ bh=C6X/xJE6G9okbIO/fZVWocnELBI7xMgAiAXIwIsSuZI=;
+ b=ItDK33zMVw6sEDpAcvzZtM9E1/hW2Ns9lzz2yFPmV/t2qLYV8WuaBCXbSTyAwTc6avcNkeTiobgCzEM1ktgCsEMUWFgPXjgcguKjsxp2h+zl80bcAaZ8wMVWQ39xsqjfcGm8wWbULrXsjvBsfiPMO1HnGNq9Rhhvx/2lwGVhZniRWwK6BCZJvzGelcWqL78xizKNSMUcKrEBsOZy7WXczkultVNbmiS3m5oBZpNOgxH8p6rri/KasWg2nqoDU4U52698yC7rgYdTJv2KkXyNjlSjue6Dl+m1ETLbmF+qnDHj29B9vfZTJJaWzbOWwrXtS51VjZIvZPyqIRezCdggpw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amlogic.com;
+Received: from KL1PR03MB7150.apcprd03.prod.outlook.com (2603:1096:820:cb::7)
+ by PUZPR03MB7013.apcprd03.prod.outlook.com (2603:1096:301:f2::14) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.17; Fri, 5 Dec
- 2025 06:59:09 +0000
-Received: from DS1PEPF00017096.namprd05.prod.outlook.com
- (2603:10b6:5:74:cafe::48) by DM6PR07CA0045.outlook.office365.com
- (2603:10b6:5:74::22) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9388.11 via Frontend Transport; Fri,
- 5 Dec 2025 06:59:10 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.160) by
- DS1PEPF00017096.mail.protection.outlook.com (10.167.18.100) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9388.8 via Frontend Transport; Fri, 5 Dec 2025 06:59:08 +0000
-Received: from rnnvmail204.nvidia.com (10.129.68.6) by mail.nvidia.com
- (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 4 Dec
- 2025 22:58:59 -0800
-Received: from rnnvmail202.nvidia.com (10.129.68.7) by rnnvmail204.nvidia.com
- (10.129.68.6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 4 Dec
- 2025 22:58:58 -0800
-Received: from build-amhetre-focal-20250825.internal (10.127.8.10) by
- mail.nvidia.com (10.129.68.7) with Microsoft SMTP Server id 15.2.2562.20 via
- Frontend Transport; Thu, 4 Dec 2025 22:58:58 -0800
-From: Ashish Mhetre <amhetre@nvidia.com>
-To: <will@kernel.org>, <robin.murphy@arm.com>, <joro@8bytes.org>,
-	<robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-	<nicolinc@nvidia.com>
-CC: <thierry.reding@gmail.com>, <jonathanh@nvidia.com>, <vdumpa@nvidia.com>,
-	<jgg@ziepe.ca>, <linux-arm-kernel@lists.infradead.org>,
-	<iommu@lists.linux.dev>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-tegra@vger.kernel.org>, Ashish Mhetre
-	<amhetre@nvidia.com>
-Subject: [PATCH V4 3/3] arm64: dts: nvidia: Add nodes for CMDQV
-Date: Fri, 5 Dec 2025 06:58:50 +0000
-Message-ID: <20251205065850.3841834-4-amhetre@nvidia.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20251205065850.3841834-1-amhetre@nvidia.com>
-References: <20251205065850.3841834-1-amhetre@nvidia.com>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9388.11; Fri, 5 Dec
+ 2025 07:09:53 +0000
+Received: from KL1PR03MB7150.apcprd03.prod.outlook.com
+ ([fe80::5852:e46a:3516:de2b]) by KL1PR03MB7150.apcprd03.prod.outlook.com
+ ([fe80::5852:e46a:3516:de2b%6]) with mapi id 15.20.9366.012; Fri, 5 Dec 2025
+ 07:09:53 +0000
+Content-Type: multipart/mixed; boundary="------------o0aZcQ0HMxcBDqAugnnPLsZf"
+Message-ID: <b6b8203d-2a51-428f-8124-fa65d2c073a0@amlogic.com>
+Date: Fri, 5 Dec 2025 15:09:47 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 01/11] dt-bindings: display: meson-dw-hdmi: Add compatible
+ for S4 HDMI controller
+From: Ao Xu <ao.xu@amlogic.com>
+To: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
+Cc: Chuan Liu <chuan.liu@amlogic.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20250110-drm-s4-v1-0-cbc2d5edaae8@amlogic.com>
+ <20250110-drm-s4-v1-1-cbc2d5edaae8@amlogic.com>
+ <3AC316FA-A633-4B6C-81BA-CCCA290E7F03@gmail.com>
+ <8c3b9fa4-326e-4791-8154-07b268faa132@amlogic.com>
+ <7703796D-35D4-4AD2-B7F8-B75D2BE0F7AD@gmail.com>
+ <a71f24c9-1f40-45a1-8fdb-6075bbf89930@amlogic.com>
+ <F04DC684-AD64-447F-87EC-F503D411F25D@gmail.com>
+ <070eb0a3-2f6e-41ef-8310-0c592a2816dc@amlogic.com>
+In-Reply-To: <070eb0a3-2f6e-41ef-8310-0c592a2816dc@amlogic.com>
+X-ClientProxiedBy: TYCP301CA0066.JPNP301.PROD.OUTLOOK.COM
+ (2603:1096:405:7d::7) To KL1PR03MB7150.apcprd03.prod.outlook.com
+ (2603:1096:820:cb::7)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-NVConfidentiality: public
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-NV-OnPremToCloud: ExternallySecured
-X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS1PEPF00017096:EE_|LV8PR12MB9358:EE_
-X-MS-Office365-Filtering-Correlation-Id: fc696293-022d-4261-3617-08de33cbc9d7
+X-MS-TrafficTypeDiagnostic: KL1PR03MB7150:EE_|PUZPR03MB7013:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1aca9e46-3f06-41a0-1a07-08de33cd49b4
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|7416014|376014|82310400026|36860700013|1800799024;
+	BCL:0;ARA:13230040|1800799024|42112799006|366016|376014|7416014|7053199007|4013099003|13003099007|4053099003;
 X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?ChBeLkJHJdhwHYQG+jDso+sWiomXwqV94jTOh9Z0N6iwHKCJIz3TgrEW7uiv?=
- =?us-ascii?Q?rzYFGcHEapJWtBa635797U2615RGsKaO97ZGQk0xOxgxE91giU7FKkyghuuB?=
- =?us-ascii?Q?ph6uQadEmazROdbZW6jGcJguqigpmIeJRB++euN9JSJPrCrrJqd6B5UUNLL0?=
- =?us-ascii?Q?TWJC4HW/qJ2sV+d0wm7RhLethlfBSqwZUIZOUEhTcXraIx+5Vs97QFsH/mxK?=
- =?us-ascii?Q?UbxoF46gf5uxTF3z5nGlzcE0o1uZEtB2sSAB+UOjDTs/6uOTEMEvYvinY1mq?=
- =?us-ascii?Q?kJM70soqVtoKXlvjDiIgu/Aa38tKArPUAb5ZdvbgMzMsQb5An2cpf03b1P0K?=
- =?us-ascii?Q?fNpMS6Am1LSRcNd+T+F4OLH7ELlPQE+MOGAANj1cXr049arzGK63AE+ZsBWm?=
- =?us-ascii?Q?fgXev5x6H1ftEjGnKph3bxbSsiot2qkNIdlw3YcTT9ZmWyccnEJs5h1v6exg?=
- =?us-ascii?Q?6xeScyNN0dKiCrTi4hx+FURy7uQhQ/r9TEnBDW8V6meYZCU06NFqjAytORQy?=
- =?us-ascii?Q?VoQKbc2gTzaV0u6IwuybYmpdhFbh9WJILe8voxM/pAR48w5uvSD+dhWDyo40?=
- =?us-ascii?Q?DkGhsgcmDKdt8TZ/7XK71BqtgbK7t1elTnq2qj5QCvhLylNceWu90ykiwVgy?=
- =?us-ascii?Q?5Q+8cspAjkpxW/uz5MnsHudtvfevYvquehsl/oQTwN8W5ckxjY3VZcoJA3gj?=
- =?us-ascii?Q?p1CkACqKAEyedkcswpp3Xd0yOFfrlWn1DA0/FxpxVtqolI/ahMUHQexAXx7C?=
- =?us-ascii?Q?NFqfR50XcANy5xLEJgYbcnv/XrrnsCvz7PuMsBXBkmN/tmTgYYwhVX0kQGNC?=
- =?us-ascii?Q?6FO6ayWyEaUuOCvUr0N9Xm6u/ADBdBc2j7f1ZZRA47vNOyDVsigBl87Okd1b?=
- =?us-ascii?Q?7TU56UpUrdkN3BhHrueKQgM9enYzoMmCb/gDpK1Q1AwnnJHN6DtH7Qv8BZlk?=
- =?us-ascii?Q?n3fBFi06skJ+SNPzgReGBf85orcMS760dln/U2h0Rzm4IF99f7JlzQ7qVnbk?=
- =?us-ascii?Q?NfPL1kvnTqQdH6W+nRbdry0t/musl7evaqekVr/sPddGQAPnq1ayxhn5usYc?=
- =?us-ascii?Q?drwlHy2xQ/r61VRd+v68t/qn73XPNTuXES4gT3ONSqjwqZ0uOjHTB/ewUt3F?=
- =?us-ascii?Q?Hd5sBhlZIRua/ugfpvzk5PdcfUubAcTZ6+2dYPAmbybg55kt00Wxsi05Qkq5?=
- =?us-ascii?Q?VdeUTrC3Ht9USDjF1cLu39UG/Xl2zNsZBH3NCBOrDlQORaZ/Mo/esjltKCkw?=
- =?us-ascii?Q?ATBRiaeSfsh3lWaVgj/2+eN5dTYLdSiXZobJRLfoqWEuTA1NR2lm06bMnypi?=
- =?us-ascii?Q?vCCpCiDzvIQKsVujVkLgHezbzKuUBdQCGsrx185nUf2ujBh8sp937qgxEYjB?=
- =?us-ascii?Q?Fua9b7W0758Q0/hTEopDtpgFoIoPbMC95mAsIogdQEkTOnVY/xgNKfQ+jQo2?=
- =?us-ascii?Q?01BPBU63UBzY/qGLQYZNaGSdViiiYKIgl43wgZs893bBEMBJNhKd2x+5yhWn?=
- =?us-ascii?Q?udV5+KECi0fOfUBK7i3U8Vbizi5b7EBWXnObZnInubCxz56xtyg7CX2fU2yj?=
- =?us-ascii?Q?ZGudvaKz7/6i3w2vMHg=3D?=
+	=?utf-8?B?WUNhTjF0emw5WENXbWh3bXRiK1A4VlQ1S2puY1hrUGdCKzNTdkE1Q2lBU2x6?=
+ =?utf-8?B?bGQwVUxkZE1GMFQyVUc0a0tMTzhaVWltYjZ1UWxKR1NBQ3loc2JVUlZGY0hW?=
+ =?utf-8?B?bk5pTVJ3clovalRUR2FIRVNkUEs0bExiSWZ2eFh6L29QSVViRWZoSmpRRDhn?=
+ =?utf-8?B?WGtwZXIxU3NYciswWmczSy9mTWFzU05pK0ZScnhhdEFpdCtkZFE4aVJXK2l3?=
+ =?utf-8?B?V1FIVmtjZFVEenJ4L3g3S2RvWFBOYkRGdTMzYXhsdU1aWlFjKytNaHlqcUV6?=
+ =?utf-8?B?dWFReDhoNHRNSWs5TklpWnAwSVBsREh4WGl2MFhKclRza2dDWDNJRTlNeHdI?=
+ =?utf-8?B?dVJTckpQSFIwRTlBK1NuYnEvV2pIRW52TXAwNjZkY1Z2allmcUV1V0RXbzhy?=
+ =?utf-8?B?U3Q3cDZ5eU9tbTlSd2ZNemJJNFE1OXlsdG02WEovY1ZlekhpeWNnT1lPNTU1?=
+ =?utf-8?B?Q2FrazZlT0FPdi82T2llYXlaZVVZZm5vZjZuMUNCeUZ3NkpQWlBDUzhoRzZV?=
+ =?utf-8?B?VVBqSFZDVVBkcnM0ZXFzbTFnUDhNQ0MwSjZoczNpWnNSTHhYckN2QjQ1d1RX?=
+ =?utf-8?B?OHhML3lRN053c3ZGQXE1Wi9HemNNVWwvWG1GOVAxRDE2Vmw1dER6ZVNrMU9D?=
+ =?utf-8?B?QzFweEQ5UEFEWlozbnkrQ1labEVqSkdGMXZXVjVEeUpXeW9kNThhUXRKTDZU?=
+ =?utf-8?B?VVg0YTJpWnd2S3Z4aWtxcVJUcXVKclZHZFlWOEZZS2xuSk1zNDVUcTdmZzg4?=
+ =?utf-8?B?YWorMkswYzlBV2ZpSzZYQkt6c29HTkw3YU5RUzdkUjhZWWNhdDBJeEV5UlMy?=
+ =?utf-8?B?Lzh0dG9FRGZRaUl3L0U1b1cxQWEyVmxtbzZPQXdwdWJ6VUcyY0x1Y0dwVVE0?=
+ =?utf-8?B?ODhqZEpGeFBQdlBWQkpoalZOQ2N3bU1ZTW9Ld3FZYUwvWHpzZHQzUjY1UWhQ?=
+ =?utf-8?B?UXFrb2ErLzNhQlZKcmxOdkNybHVrZTZGZ1pVUFJMVWxoMTFWMTZIbHQ0Y0NQ?=
+ =?utf-8?B?eXZXbnVyczdKQndvL1RmWDkzQWlqUGpuWkp2R1ZqMzZma051NW9CVncyWGxH?=
+ =?utf-8?B?UVFJUkpWN29wZE9SQkNjdE11NVpHOWlYazFaUWloSWw1NnZBQ0dMNGFJQ2oz?=
+ =?utf-8?B?WlhjRTE1TVJscDFpOWNQWFkwNWhvN3ZFZ095VTIxclN5VmlxUUY4cDRFd1I2?=
+ =?utf-8?B?SCtteG5hZm8xWEticlFJeXRVTURxM1UyNUhlOEpvaFp3R3JRYVVoNUlOVlF5?=
+ =?utf-8?B?VUQ2aEdFSHp3TkRxblJUbitVeEJiNGJFMTlSY2FTdll0UlRoT0dhS3Era2ZX?=
+ =?utf-8?B?amZXTmJCRSs0cEx4bTZOYlJhcnZPeXNwOEc2cERMSUZLc1crYm1ZVFlERnBG?=
+ =?utf-8?B?anZwT3N2ZlphaHZERHpRaWVjZkloMXNaRitRdWMwK1NuMTJTWVpnV2RMNFFw?=
+ =?utf-8?B?K21iSjBQdG5lajVGRzFMK0tKYjFFZVd2R28yZ2xDbDFlY3I2cy81U3dZUTZY?=
+ =?utf-8?B?bmRuOE9CdW5zaEE2NTdrM0FaODVSaWk4c0ltQW9EWTZPYWExM216NVBqZjRC?=
+ =?utf-8?B?OGR3U2paenlVT05yOGhTYUtKK3pYTCtSU3o5OCtKZXMzSGJCWStYcEw3VHdV?=
+ =?utf-8?B?YysxTkhDWFgxM0d2Unl2WFlLVDdVbERGZkVlUXZZL2FFL2R4YTlZVXN3RTk0?=
+ =?utf-8?B?MStJOWEwMExEeVQxbnloM0RDN0VJeVFGUWYxTUlQS0FpcnVRbjlBb1ZaRjlW?=
+ =?utf-8?B?blFCM1J1QTFGQU8rTjh2U0s5ZWZCdlpJaXJUeUcweldsTUM2UEtvampFWVVq?=
+ =?utf-8?B?R282am5hZlk3am9XYjdsOFczNGhuNmh3dEJCR3RoUnhBTTduV2trWGhnMkJm?=
+ =?utf-8?B?anBQZWF2cy82TWVFTlA3OVFIY3lCOUEwaTBJOGtnK1Rqb0E9PQ==?=
 X-Forefront-Antispam-Report:
-	CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230040)(7416014)(376014)(82310400026)(36860700013)(1800799024);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Dec 2025 06:59:08.9394
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:KL1PR03MB7150.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(42112799006)(366016)(376014)(7416014)(7053199007)(4013099003)(13003099007)(4053099003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?aHN6VkxEcFZEVmpNckt6WEpzVUo1L1Z1c1pESGlRaUJVL0RCSFVHMEpKTTk5?=
+ =?utf-8?B?eDdwTmhvV05HWW9PaHRNcWtPUEdLMFN1dHAra0hsSElYTkk1S1h3V24yUTBX?=
+ =?utf-8?B?U2pQc01LeFVZSzBHYnJ3OU04Z0U5OE1oUTZhcVZGNEpxdkJoSi9idGkzS2ps?=
+ =?utf-8?B?S2JHTVk1bFRVMVpGeEVQM05TOENmbWljN3psUC9Pd0hTNHluRGtHMHloU2hM?=
+ =?utf-8?B?MlBubklKMy80cVcrekRxd2E2T2tjaDhNRXYrdTBmY2QvT3pMNWFzUk55Y2Jx?=
+ =?utf-8?B?cWYxUUl1cEQvMjAvT3d3RUJsZlFSZ2VmVFU1MXBtSDZ5MjhISUx1eTNEUmpy?=
+ =?utf-8?B?cnJ3d1JwaTRQQlVNR3lnMzFHbXZvZmxtZkZxRkh3VnlPV0VUMzlCZ2poODVI?=
+ =?utf-8?B?RklFZjdtTTNncGVldE1LNEZBd25zNExkVC9sdWluQytXaUhqTllFUHNsaFhL?=
+ =?utf-8?B?SnBlb096VHhLYVQyeE9reXlwUm5BaFQ5ejdWenNKSnN5K3RIUUoxNkVHYnBY?=
+ =?utf-8?B?UjhlWVNtYWhCRThWSHptbW9CeDYrdi9aYjZVcndwQ25NTCtqVU5pRFRncCt3?=
+ =?utf-8?B?dzVUTWRQSm9wQU81NVQrU2tMMDRpU3UvbTNNY2lpUFI5TXhyRzJQOHFDb1pR?=
+ =?utf-8?B?NWdta1FtbXljd0hPeGppTHdyR0FBWWNrYnNIZVc4OEZCNEtzZUxGVFljb1c5?=
+ =?utf-8?B?NDFRK0pKdy9jVHp6THlZRHFHVkdkb2VvaU54TVVTaVlTWkZGMkQzc3lLWjJY?=
+ =?utf-8?B?K3l1dkliVGFwYVg2T3ZmVEJCc0I0TGIxRnA1aUJrWXpZbEE3R3BkOVZVU09h?=
+ =?utf-8?B?eWVrejh6TFU4VWQwcCtjTE16ZWJFVGxmK3JlR2V0Zlh3MkhBREdBYzRYWlNu?=
+ =?utf-8?B?MFNGV3daR01NNFkvS0toNmhoN0ltUGMrSXM5alJ3OVhpWVpXRE91Umd3T01V?=
+ =?utf-8?B?RVpJU3BIcG9Ib3dJZ1VndE83TTlIN003Y25CUkcxdnFlMGNQVEZDVU14eHZE?=
+ =?utf-8?B?Qk4zVVZYV1o0cUhnY0JxTmd4VStjMFRFanhiUnVIOHhQSkNpS0FjaFNpcU4x?=
+ =?utf-8?B?bk9rNHVMK3djYVJDU3JCeEhlN0dhR1d5WjFXVTRnc0NNbE5LUFYzZDljdTJT?=
+ =?utf-8?B?K0cvMW9nc1orTStNdWFuQUppQ1AwR29BN1RycTNvcHhqV0VYRFRpSWN0MTUr?=
+ =?utf-8?B?NHpONnZESVZoYlNzbVlxYUIzSC9tZGVmRlNmZmdHUUJCdmxBQktvZ1ZRaDBK?=
+ =?utf-8?B?b1lSZ2hsbmxjYTI0Zk43VmFCRU90cVNXa1VVcnkyNFB2TUQvQU1DV0ZBUWgw?=
+ =?utf-8?B?am5qd3hYWk1KUWtTdVNvTlc1ckN1U3VhNllEbzRFSG5qT2ZUM2ZFU3Z6U0Rq?=
+ =?utf-8?B?NUtOekxZSmcxd21yWGRGcTBZK0VldDRiTmwzRm1kVWdzSnVvQ2NDUEo0VkYw?=
+ =?utf-8?B?OFpYSkh3bGg5Z0kvWHFZNEUrNVllZWp2V2ZaUGpSbjRUbGFQWGpzZHU3UTRZ?=
+ =?utf-8?B?UjFmNS9abXVmZGdvTDB0Tmt1TkFiVW5rQ3Y5Q2lzb0VVTVA0Z3A0NVVNeVI5?=
+ =?utf-8?B?RmFCd3B0NXBSM3VmVVEyUGE4cHlHaGVRN0R0eDNweXduTkNVdjI0bEhPQWlG?=
+ =?utf-8?B?TmNqWGYvaE5SZEJESTNqb3h4cG9PdzVpMWM4QUxIQk1wWHRaQUVxbzlRb1FN?=
+ =?utf-8?B?RUViVlZqdk9GK3hrOE8vS0ZIUkwwSWVxdksxckJMTlNVQllzYkNYL2txbW9V?=
+ =?utf-8?B?VlcrMjNRa0wxbzVPVnRKZml4czJ2Ymh4a1dvcTlKSmJvMS96cjlseEp4eUR3?=
+ =?utf-8?B?OVAzbzFLK3NPdDNSajV6M1VHdWMrTDFPamcwakEwQS8zaEV2LzVNR0hLcFFS?=
+ =?utf-8?B?RHE2ZHdRR1cwUWpXSWhwNnJQbE1nTXIybFUzWTIyYWZoT3didTQ2bHRYU2Vh?=
+ =?utf-8?B?bkVwVUtmcTJFbnlyREowTFBRT21WK3JySHV6dTRmN1pBQWJRRkhtdXA5TC9l?=
+ =?utf-8?B?MGwxd3RibE9ySXlWRXZEY3Zrd2VjZUlIVUU1WFovanJ0QXJFV0x5dkNBeVhY?=
+ =?utf-8?B?WXZHcDZSU1U3ZG9LSnBVdGJSQ3hNSlJCRW0yZWJ2V2QzUXhXQTlKeHdHdkpj?=
+ =?utf-8?Q?S+Iw/HklCZj/OufUq8MyTENHq?=
+X-OriginatorOrg: amlogic.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1aca9e46-3f06-41a0-1a07-08de33cd49b4
+X-MS-Exchange-CrossTenant-AuthSource: KL1PR03MB7150.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Dec 2025 07:09:53.3588
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: fc696293-022d-4261-3617-08de33cbc9d7
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.160];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	DS1PEPF00017096.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR12MB9358
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 73r4LtkPyuLOMUkc7Zqv2B35DlxO63rVHuo3kq9gP+AMTV/zh3D7dkTyiVrA3MLpwAt6tROZDIAcW0jL/EYj4g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PUZPR03MB7013
 
-The Command Queue Virtualization (CMDQV) hardware is part of the
-SMMUv3 implementation on NVIDIA Tegra SoCs. It assists in
-virtualizing the command queue for the SMMU.
+--------------o0aZcQ0HMxcBDqAugnnPLsZf
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Update SMMU compatible strings to use nvidia,tegra264-smmu to enable
-CMDQV support. Add device tree nodes for the CMDQV hardware and enable
-them on the tegra264-p3834 platform where SMMUs are enabled. Each SMMU
-instance is paired with its corresponding CMDQV instance via the
-nvidia,cmdqv property.
+Hi Piotr，
 
-Signed-off-by: Ashish Mhetre <amhetre@nvidia.com>
----
- .../arm64/boot/dts/nvidia/tegra264-p3834.dtsi |  8 +++
- arch/arm64/boot/dts/nvidia/tegra264.dtsi      | 50 +++++++++++++++++--
- 2 files changed, 53 insertions(+), 5 deletions(-)
+     I applied this 
+patch: https://github.com/warpme/minimyth2/blob/master/script/kernel/linux-6.18/files/0312-drm-meson-add-vpu-clk-setting-for-S4.patch, and 
+ran it on the board.
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra264-p3834.dtsi b/arch/arm64/boot/dts/nvidia/tegra264-p3834.dtsi
-index 06795c82427a..7e2c3e66c2ab 100644
---- a/arch/arm64/boot/dts/nvidia/tegra264-p3834.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra264-p3834.dtsi
-@@ -23,8 +23,16 @@ iommu@5000000 {
- 			status = "okay";
- 		};
- 
-+		cmdqv@5200000 {
-+			status = "okay";
-+		};
-+
- 		iommu@6000000 {
- 			status = "okay";
- 		};
-+
-+		cmdqv@6200000 {
-+			status = "okay";
-+		};
- 	};
- };
-diff --git a/arch/arm64/boot/dts/nvidia/tegra264.dtsi b/arch/arm64/boot/dts/nvidia/tegra264.dtsi
-index f137565da804..9eb7058e3149 100644
---- a/arch/arm64/boot/dts/nvidia/tegra264.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra264.dtsi
-@@ -3361,7 +3361,7 @@ bus@8100000000 {
- 			 <0x02 0x00000000 0xd0 0x00000000 0x08 0x80000000>; /* ECAM, prefetchable memory, I/O */
- 
- 		smmu1: iommu@5000000 {
--			compatible = "arm,smmu-v3";
-+			compatible = "nvidia,tegra264-smmu", "arm,smmu-v3";
- 			reg = <0x00 0x5000000 0x0 0x200000>;
- 			interrupts = <GIC_SPI 12 IRQ_TYPE_EDGE_RISING>,
- 				     <GIC_SPI 13 IRQ_TYPE_EDGE_RISING>;
-@@ -3370,10 +3370,18 @@ smmu1: iommu@5000000 {
- 
- 			#iommu-cells = <1>;
- 			dma-coherent;
-+			nvidia,cmdqv = <&cmdqv1>;
-+		};
-+
-+		cmdqv1: cmdqv@5200000 {
-+			compatible = "nvidia,tegra264-cmdqv";
-+			reg = <0x00 0x5200000 0x0 0x830000>;
-+			interrupts = <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>;
-+			status = "disabled";
- 		};
- 
- 		smmu2: iommu@6000000 {
--			compatible = "arm,smmu-v3";
-+			compatible = "nvidia,tegra264-smmu", "arm,smmu-v3";
- 			reg = <0x00 0x6000000 0x0 0x200000>;
- 			interrupts = <GIC_SPI 1 IRQ_TYPE_EDGE_RISING>,
- 				     <GIC_SPI 2 IRQ_TYPE_EDGE_RISING>;
-@@ -3382,6 +3390,14 @@ smmu2: iommu@6000000 {
- 
- 			#iommu-cells = <1>;
- 			dma-coherent;
-+			nvidia,cmdqv = <&cmdqv2>;
-+		};
-+
-+		cmdqv2: cmdqv@6200000 {
-+			compatible = "nvidia,tegra264-cmdqv";
-+			reg = <0x00 0x6200000 0x0 0x830000>;
-+			interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
-+			status = "disabled";
- 		};
- 
- 		mc: memory-controller@8020000 {
-@@ -3437,7 +3453,7 @@ emc: external-memory-controller@8800000 {
- 		};
- 
- 		smmu0: iommu@a000000 {
--			compatible = "arm,smmu-v3";
-+			compatible = "nvidia,tegra264-smmu", "arm,smmu-v3";
- 			reg = <0x00 0xa000000 0x0 0x200000>;
- 			interrupts = <GIC_SPI 21 IRQ_TYPE_EDGE_RISING>,
- 				     <GIC_SPI 22 IRQ_TYPE_EDGE_RISING>;
-@@ -3446,10 +3462,18 @@ smmu0: iommu@a000000 {
- 
- 			#iommu-cells = <1>;
- 			dma-coherent;
-+			nvidia,cmdqv = <&cmdqv0>;
-+		};
-+
-+		cmdqv0: cmdqv@a200000 {
-+			compatible = "nvidia,tegra264-cmdqv";
-+			reg = <0x00 0xa200000 0x0 0x830000>;
-+			interrupts = <GIC_SPI 28 IRQ_TYPE_LEVEL_HIGH>;
-+			status = "disabled";
- 		};
- 
- 		smmu4: iommu@b000000 {
--			compatible = "arm,smmu-v3";
-+			compatible = "nvidia,tegra264-smmu", "arm,smmu-v3";
- 			reg = <0x00 0xb000000 0x0 0x200000>;
- 			interrupts = <GIC_SPI 30 IRQ_TYPE_EDGE_RISING>,
- 				     <GIC_SPI 31 IRQ_TYPE_EDGE_RISING>;
-@@ -3458,6 +3482,14 @@ smmu4: iommu@b000000 {
- 
- 			#iommu-cells = <1>;
- 			dma-coherent;
-+			nvidia,cmdqv = <&cmdqv4>;
-+		};
-+
-+		cmdqv4: cmdqv@b200000 {
-+			compatible = "nvidia,tegra264-cmdqv";
-+			reg = <0x00 0xb200000 0x0 0x830000>;
-+			interrupts = <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>;
-+			status = "disabled";
- 		};
- 
- 		i2c14: i2c@c410000 {
-@@ -3690,7 +3722,7 @@ bus@8800000000 {
- 		ranges = <0x00 0x00000000 0x88 0x00000000 0x01 0x00000000>;
- 
- 		smmu3: iommu@6000000 {
--			compatible = "arm,smmu-v3";
-+			compatible = "nvidia,tegra264-smmu", "arm,smmu-v3";
- 			reg = <0x00 0x6000000 0x0 0x200000>;
- 			interrupts = <GIC_SPI 225 IRQ_TYPE_EDGE_RISING>,
- 				     <GIC_SPI 226 IRQ_TYPE_EDGE_RISING>;
-@@ -3699,6 +3731,14 @@ smmu3: iommu@6000000 {
- 
- 			#iommu-cells = <1>;
- 			dma-coherent;
-+			nvidia,cmdqv = <&cmdqv3>;
-+		};
-+
-+		cmdqv3: cmdqv@6200000 {
-+			compatible = "nvidia,tegra264-cmdqv";
-+			reg = <0x00 0x6200000 0x0 0x830000>;
-+			interrupts = <GIC_SPI 232 IRQ_TYPE_LEVEL_HIGH>;
-+			status = "disabled";
- 		};
- 
- 		hda@90b0000 {
--- 
-2.25.1
+     I encountered the same issue—the system froze.
 
+     I found that the patch has a few minor problems. After fixing them, 
+the system runs normally. Could you try the following patch?
+
+
+在 2025/12/3 13:56, Ao Xu 写道:
+> Hi Piotr，
+>
+>     I will need about two more days to look into it. I will follow up 
+> with you ASAP.
+>
+>
+> 在 2025/12/2 16:29, Piotr Oniszczuk 写道:
+>> [You don't often get email from piotr.oniszczuk@gmail.com. Learn why 
+>> this is important at https://aka.ms/LearnAboutSenderIdentification ]
+>>
+>> [ EXTERNAL EMAIL ]
+>>
+>> Ao,
+>> Any chance for updated s4 hdmi series for 6.18?
+>>
+>>
+>>> Wiadomość napisana przez Ao Xu <ao.xu@amlogic.com> w dniu 21 lis 
+>>> 2025, o godz. 03:55:
+>>>
+>>> Hi Piotr，
+>>>
+>>>      I will check this issue
+>>>
+>>> 在 2025/11/19 18:27, Piotr Oniszczuk 写道:
+>>>> [You don't often get email from piotr.oniszczuk@gmail.com. Learn 
+>>>> why this is important at 
+>>>> https://aka.ms/LearnAboutSenderIdentification ]
+>>>>
+>>>> [ EXTERNAL EMAIL ]
+>>>>
+>>>> Pls see inline
+>>>>
+>>>>> Wiadomość napisana przez Chuan Liu <chuan.liu@amlogic.com> w dniu 
+>>>>> 19 lis 2025, o godz. 03:57:
+>>>>>
+>>>>> Hi Piotr,
+>>>>>
+>>>>>
+>>>>> On 11/18/2025 10:50 PM, Piotr Oniszczuk wrote:
+>>>>>> [You don't often get email from piotr.oniszczuk@gmail.com. Learn 
+>>>>>> why this is important at 
+>>>>>> https://aka.ms/LearnAboutSenderIdentification ]
+>>>>>> [ EXTERNAL EMAIL ]
+>>>>>> Ao,
+>>>>>> Is there any chance to get this s4 drm hdmi series for current 6.18?
+>>>>>> (i tried backport this series to 6.18 but have some issues with 
+>>>>>> reparent vpu_0_sel to sysclk_b_sel)
+>>>>> Why do we need to reparent vpu_0_sel to sysclk_b_sel? is there any
+>>>>> background here?
+>>>> Well - it looks it is because bug....
+>>>> Martin Blumenstingl had perfect eye and catch typo in patch 
+>>>> https://lore.kernel.org/all/20250110-drm-s4-v1-11-cbc2d5edaae8@amlogic.com/: 
+>>>>
+>>>>
+>>>> By replacing:
+>>>> assigned-clock-parents = <&clkc_periphs CLKID_FCLK_DIV3>,
+>>>> <0>, /* Do Nothing */
+>>>> <&clkc_periphs CLKID_VPU_0>,
+>>>> <&clkc_periphs CLKID_FCLK_DIV4>,
+>>>> <0>, /* Do Nothing */
+>>>> <&clkc_periphs CLKID_VAPB_0>;
+>>>>
+>>>> with:
+>>>> assigned-clock-parents = <&clkc_pll CLKID_FCLK_DIV3>,
+>>>> <0>, /* Do Nothing */
+>>>> <&clkc_periphs CLKID_VPU_0>,
+>>>> <&clkc_pll CLKID_FCLK_DIV4>,
+>>>> <0>, /* Do Nothing */
+>>>> <&clkc_periphs CLKID_VAPB_0>;
+>>>>
+>>>> dmesg is like this https://termbin.com/6020
+>>>>
+>>>> So i'm getting hdmi working - but only when device boots _without_ 
+>>>> connected hdmi at boot (and connected later)
+>>>> If hdmi is connected at boot - boot hangs at:
+>>>>
+>>>>      0.341676] meson-dw-hdmi fe300000.hdmi-tx: Detected HDMI TX 
+>>>> controller v2.01a with HDCP (meson_dw_hdmi_phy)
+>>>> [    0.342750] meson-dw-hdmi fe300000.hdmi-tx: registered 
+>>>> DesignWare HDMI I2C bus driver
+>>>> [    0.343660] meson-drm ff000000.vpu: bound fe300000.hdmi-tx (ops 
+>>>> meson_dw_hdmi_ops)
+>>>> [    0.344832] [drm] Initialized meson 1.0.0 for ff000000.vpu on 
+>>>> minor 0
+>>>>
+>>>> FYI: It is after applying 
+>>>> https://patchwork.kernel.org/project/linux-amlogic/cover/20250110-drm-s4-v1-0-cbc2d5edaae8@amlogic.com/ 
+>>>> on mainline 6.18 (with some my adjustments on this series required 
+>>>> by changes in 6.18).
+>>>> For VPU clk changes see 
+>>>> https://github.com/warpme/minimyth2/blob/master/script/kernel/linux-6.18/files/0312-drm-meson-add-vpu-clk-setting-for-S4.patch
+>>>> It is 6.18 adaptation of 
+>>>> https://patchwork.kernel.org/project/linux-amlogic/patch/20250110-drm-s4-v1-9-cbc2d5edaae8@amlogic.com/
+>>>>
+>>>> As kernel hangs - i have limited caps to drill where root cause is.
+>>>>
+>>>> Maybe above hang is reason of my backports or missing any pre-req 
+>>>> required to get s4 drm working?
+>>>> Anyway - it will be good to test with updated to 6.18 series of Add 
+>>>> DRM support for Amlogic S4 (plus info about any pre-req required to 
+>>>> get s4 drm working)
+>>>>
+>>>>
+>>>>> The vpu_clk on S4 doesn't support sysclk_b_sel as one of its
+>>>>> selectable clock sources, so this reparent operation will definitely
+>>>>> fail. This has nothing to do with the kernel version.
+>>>>>
+>>>>>>> Wiadomość napisana przez Ao Xu via B4 Relay 
+>>>>>>> <devnull+ao.xu.amlogic.com@kernel.org> w dniu 10 sty 2025, o 
+>>>>>>> godz. 06:39:
+>>>>>>>
+>>>>>>> From: Ao Xu <ao.xu@amlogic.com>
+>>>>>>>
+>>>>>>> Add devicetree document for S4 HDMI controller
+>>>>>>>
+>>>>>>> Signed-off-by: Ao Xu <ao.xu@amlogic.com>
+>>>>>>> ---
+>>>>>>> Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml 
+>>>>>>> | 1 +
+>>>>>>> 1 file changed, 1 insertion(+)
+>>>>>>>
+>>>>>>> diff --git 
+>>>>>>> a/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml 
+>>>>>>> b/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml 
+>>>>>>>
+>>>>>>> index 
+>>>>>>> 84d68b8cfccc86fd87a6a0fd2b70af12e51eb8a4..6e0a8369eee915fab55af24d450a6c40e08def38 
+>>>>>>> 100644
+>>>>>>> --- 
+>>>>>>> a/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml 
+>>>>>>>
+>>>>>>> +++ 
+>>>>>>> b/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml 
+>>>>>>>
+>>>>>>> @@ -55,6 +55,7 @@ properties:
+>>>>>>>            - const: amlogic,meson-gx-dw-hdmi
+>>>>>>>        - enum:
+>>>>>>>            - amlogic,meson-g12a-dw-hdmi # G12A (S905X2, S905Y2, 
+>>>>>>> S905D2)
+>>>>>>> +          - amlogic,meson-s4-dw-hdmi # S4 (S905Y4)
+>>>>>>>
+>>>>>>>    reg:
+>>>>>>>      maxItems: 1
+>>>>>>>
+>>>>>>> -- 
+>>>>>>> 2.43.0
+>>>>>>>
+>>>>>>>
+>>>>>>>
+>>>>>>> _______________________________________________
+>>>>>>> linux-amlogic mailing list
+>>>>>>> linux-amlogic@lists.infradead.org
+>>>>>>> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+>>>>>> _______________________________________________
+>>>>>> linux-amlogic mailing list
+>>>>>> linux-amlogic@lists.infradead.org
+>>>>>> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+--------------o0aZcQ0HMxcBDqAugnnPLsZf
+Content-Type: text/plain; charset=UTF-8;
+ name="fix-vpu-clk-setting-for-s4.patch"
+Content-Disposition: attachment; filename="fix-vpu-clk-setting-for-s4.patch"
+Content-Transfer-Encoding: base64
+
+SW5kZXg6IGxpbnV4LW5leHQvbWVzb25fdmNsay5jCj09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KLS0tIGxpbnV4LW5leHQu
+b3JpZy9tZXNvbl92Y2xrLmMJMjAyNS0xMi0wNSAxNDo1ODoyOS4wMzE0NTQxNzQgKzA4MDAKKysr
+IGxpbnV4LW5leHQvbWVzb25fdmNsay5jCTIwMjUtMTItMDUgMTU6MDA6MzQuOTM1MjA0MjE5ICsw
+ODAwCkBAIC01OTcsMTEgKzU5NywxMSBAQAogCQkudmNsa19kaXYgPSAxLAogCX0sCiAJW01FU09O
+X1ZDTEtfSERNSV8yNzAwMF0gPSB7Ci0JCS5wbGxfZnJlcSA9IDQzMjAwMDAsCi0JCS5waHlfZnJl
+cSA9IDI3MDAwMCwKLQkJLnZjbGtfZnJlcSA9IDU0MDAwLAotCQkudmVuY19mcmVxID0gMjcwMDAs
+Ci0JCS5waXhlbF9mcmVxID0gMjcwMDAsCisJCS5wbGxfZnJlcSA9IDQzMjAwMDAwMDAsCisJCS5w
+aHlfZnJlcSA9IDI3MDAwMDAwMCwKKwkJLnZjbGtfZnJlcSA9IDU0MDAwMDAwLAorCQkudmVuY19m
+cmVxID0gMjcwMDAwMDAsCisJCS5waXhlbF9mcmVxID0gMjcwMDAwMDAsCiAJCS5wbGxfb2QxID0g
+NCwKIAkJLnBsbF9vZDIgPSA0LAogCQkucGxsX29kMyA9IDEsCkBAIC0xMTQ4LDE1ICsxMTQ4LDE1
+IEBACiAJCW1lc29uX2hkbWlfcGxsX3NldF9wYXJhbXMocHJpdiwgbSwgZnJhYywgb2QxLCBvZDIs
+IG9kMyk7CiAJfSBlbHNlIGlmIChtZXNvbl92cHVfaXNfY29tcGF0aWJsZShwcml2LCBWUFVfQ09N
+UEFUSUJMRV9TNCkpIHsKIAkJc3dpdGNoIChwbGxfYmFzZV9mcmVxKSB7Ci0JCWNhc2UgMjk3MDAw
+MDoKKwkJY2FzZSAyOTcwMDAwMDAwOgogCQkJbSA9IDB4N2I7CiAJCQlmcmFjID0gdmljX2FsdGVy
+bmF0ZV9jbG9jayA/IDB4MTQwYjQgOiAweDE4MDAwOwogCQkJYnJlYWs7Ci0JCWNhc2UgNDMyMDAw
+MDoKKwkJY2FzZSA0MzIwMDAwMDAwOgogCQkJbSA9IHZpY19hbHRlcm5hdGVfY2xvY2sgPyAweGIz
+IDogMHhiNDsKIAkJCWZyYWMgPSB2aWNfYWx0ZXJuYXRlX2Nsb2NrID8gMHgxYTNlZSA6IDA7CiAJ
+CQlicmVhazsKLQkJY2FzZSA1OTQwMDAwOgorCQljYXNlIDU5NDAwMDAwMDA6CiAJCQltID0gMHhm
+NzsKIAkJCWZyYWMgPSB2aWNfYWx0ZXJuYXRlX2Nsb2NrID8gMHg4MTQ4IDogMHgxMDAwMDsKIAkJ
+CWJyZWFrOwo=
+
+--------------o0aZcQ0HMxcBDqAugnnPLsZf--
 
