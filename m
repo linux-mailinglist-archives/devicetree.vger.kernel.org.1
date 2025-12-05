@@ -1,319 +1,282 @@
-Return-Path: <devicetree+bounces-244735-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244728-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88881CA8327
-	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 16:31:36 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5A33CA8465
+	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 16:57:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A45773055FFE
-	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 15:31:34 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 919633345BB2
+	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 15:46:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E10E158857;
-	Fri,  5 Dec 2025 15:13:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3047F34EF14;
+	Fri,  5 Dec 2025 15:13:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="daJifsFO"
+	dkim=pass (2048-bit key) header.d=gocontrollcom.onmicrosoft.com header.i=@gocontrollcom.onmicrosoft.com header.b="Y6bMTCe8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11020080.outbound.protection.outlook.com [52.101.69.80])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D14A32720C;
-	Fri,  5 Dec 2025 15:13:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764947600; cv=none; b=Vv8/Xyo7Ey4S5hThb2Ppx62hqwULcxdYGNIGg5jNE7oMKOwcTojANcYBUCQpUs6CKTNZWuHy5L2A+UA4n1R2BP5x4mbJ2Vz8vQBQ0cA0NvRH7Z4pw9Lc2j8Ey4GObBE/uS8au0QqGl3jqWZLJ3DjhGLV2nY2ZeQGEYrY9FzZ7Rc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764947600; c=relaxed/simple;
-	bh=uq609zIRAOVsAf4uucshpjyCAMyR9HyUFzZbfYrcEe0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=mz8e2M6pIK6qzPGurHnSK1jbI9lMVBjzlY/1ABkaSYaNPqvFf7QUqzhqYX+zs/1O77t6GgxPCwe+kxI7mRiBu8nyPT2IvTll06LG321j8+TKmStAJoH4CaItgc/AWqaKSonS+ctUbtTvBBbxsF2D1F0A4aLXSEzPrfJWjGhyB9c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=daJifsFO; arc=none smtp.client-ip=148.163.135.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-	by mx0a-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5B5EjxBO172678;
-	Fri, 5 Dec 2025 10:12:52 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=DKIM; bh=Vbtuk
-	usOXD7WxI062sEQzo5CcWBmHPyhF4OcVREbmS4=; b=daJifsFO6FCttOwbkBURF
-	SteXBzUgTQ5Jrdn7ealJSJvJZMi26pVIMgCj3GBACQVRkC8zZwu+U97sAs1kn2Kz
-	pjEXvZeyI6e/JqKeJWIVhP40+vdmCPKq0P2JyW/QyahXh/vyAPn2x3CoopHDUZ1G
-	7ReEGgjjwex1MQ110cylCHvwCm78uFjRLfyQbulYVkBuHAKh9E4ADfoNkMJmmJqC
-	ol18lYE7uWX9ef1PoncVppEaodmhGbFlWSVfZCZiVlweizbowX6kZcMyKum94wpG
-	M1N3n2E15pFwjKuXHCzBFhto3KSgNk8F+H4PO25ldTwO5iVJ5krPk6RbG4juhgDj
-	g==
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 4aufyscn6p-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 05 Dec 2025 10:12:51 -0500 (EST)
-Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
-	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 5B5FCoXq033585
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 5 Dec 2025 10:12:50 -0500
-Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
- ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.37; Fri, 5 Dec 2025 10:12:50 -0500
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
- ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.37; Fri, 5 Dec 2025 10:12:50 -0500
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
- Transport; Fri, 5 Dec 2025 10:12:50 -0500
-Received: from HYB-DlYm71t3hSl.ad.analog.com ([10.66.6.192])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 5B5FC8SJ029946;
-	Fri, 5 Dec 2025 10:12:43 -0500
-From: Jorge Marques <jorge.marques@analog.com>
-Date: Fri, 5 Dec 2025 16:12:10 +0100
-Subject: [PATCH v3 9/9] iio: adc: ad4062: Add GPIO Controller support
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F121232ED2E;
+	Fri,  5 Dec 2025 15:12:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.80
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764947583; cv=fail; b=iMvmBcNcDpnquw3+O6ce77QtNuRKW8pQbFbZynbMHUrrh1UN2+zKAJn1KsdZwXxD/zSDU8F9hAM5j9hlCA2LjCtNTyfCIJWdZZa+Yl/zknFojMHV/+BKU0wnAF2zza1FQD1y7W/5ef9qoQpS+7nNiLSKr78c0yMR2McsKInStPc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764947583; c=relaxed/simple;
+	bh=nHA5pfIHOY+3peTkfX8n8AhYOJqQXcCYUn6j0fa5JQI=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=mh1AXoMctEV2mVeRmYq+zkEgm/gfA1g6HJ2OYAK47NPZJSvPINYFZIP9ryPE9zBJZMukulYueWrBDqCJ+mQ9XSeLAoRAFPPtnil4jkK/ovWO2vvsm/bsB6dySTjo14lNdQooYsTpkMizDmMPFpmI73drOAQTj+foZAaSor78xzo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gocontroll.com; spf=pass smtp.mailfrom=gocontroll.com; dkim=pass (2048-bit key) header.d=gocontrollcom.onmicrosoft.com header.i=@gocontrollcom.onmicrosoft.com header.b=Y6bMTCe8; arc=fail smtp.client-ip=52.101.69.80
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gocontroll.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gocontroll.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ClW/unFJW8sAEJcus1CBoc09w6VpOaNV8Lmv/vA/S3HhkuHgUTU1dFJtR3ESmfW6kKF96WqWHQfqaBPRMwAcVcwU2sw1Ur6pBGnelDPBL69HhnC6lSUAcEvGL9xdEWKlUXkqk2dQXnbmRMZrMiW5QoqLruKpMI/zjtXGFRvgN8Vi4FIP75W/JfLf8xW/RovijfKPW7Bm9YRzMxpr6kfvPa/NNm0P3sYmLLvrY6SrPLknC0aXNx7L49b5O/JW0fRkR4sLuLDYvVhTYhNlAGA0BVgoZx6DO5VtNp438gkOkaYzmHRWKWpZAdMOCQdkhw3g6mor5tDnIsbCktGjAK/Pcw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=zRq80T7+swUHBqMQ7sQd/Ybo5IDtiHbn/8dMMvocLoM=;
+ b=LU5xMiPoPjEDDabXF1IB6heVcyq93vJkSG6oqKDof7dkupuOKApJHqg1FzIL0mo+a2MiJrBFStRsADtNeeOTIqh+OWVmIAKz+lbvgXAt65unVukKByLx1QjM9/ZWfD0y4QjEIz7pGl6DF2UG8f3WjiONpLC6PpLvGyJKCujkgNGwcY7g5Udp3y1g/BC/3zBqyJvzpzUFDDgPt5++xh/Z4QFvGDczeKRXzfDZlE+poGRMCbIaZOkTHMbRwBfJmOqX/DtZHDYuQv/oS/DdPl1AbJXOenvKdBYsqdrE4XduIDB79T2OByeOvnOwZW64WVSnnVe81kWoe2C+Pq37QmS3YQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=gocontroll.com; dmarc=pass action=none
+ header.from=gocontroll.com; dkim=pass header.d=gocontroll.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gocontrollcom.onmicrosoft.com; s=selector1-gocontrollcom-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zRq80T7+swUHBqMQ7sQd/Ybo5IDtiHbn/8dMMvocLoM=;
+ b=Y6bMTCe8yTRg1IAWV6YGMIx2g7tzDJfoI9Yu+0KSYKsUEZWPb1wKPNnl2b6L4Xf7QQ8Z8eZ+bWPWYesx4DVnz3W24R554qolxIqDTT2SIWTHX85xNXAxcmTSAdC5n7UsWLH+AjIXomPBhjuiR4oxAUH9yIfOmwUVdgAwran4JSASPUdZVtM47RdeF6Foo1SflITTvjc1ZCR1rjVb19SIvPR8N4hJlhGgt5lkOoWZ+66Y+wJNX7Mi1oBUwI+8P+Rh1AeT/1cO1Dd0b1h/+6R0cQtiVh5J/ikPrNnWZS63I3WBAEKE5lvvrVtZ9YD4eAo5sy8u9aveyAkRqZwpk6Ch8A==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=gocontroll.com;
+Received: from AMBPR04MB11741.eurprd04.prod.outlook.com (2603:10a6:20b:6f3::7)
+ by PA2PR04MB10374.eurprd04.prod.outlook.com (2603:10a6:102:41e::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9388.12; Fri, 5 Dec
+ 2025 15:12:47 +0000
+Received: from AMBPR04MB11741.eurprd04.prod.outlook.com
+ ([fe80::c39b:dab3:ae88:c5ba]) by AMBPR04MB11741.eurprd04.prod.outlook.com
+ ([fe80::c39b:dab3:ae88:c5ba%4]) with mapi id 15.20.9388.011; Fri, 5 Dec 2025
+ 15:12:47 +0000
+Message-ID: <a290ab5f-c6e7-49df-98f4-6e809c58c625@gocontroll.com>
+Date: Fri, 5 Dec 2025 16:12:42 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 1/4] dt-bindings: backlight: Add max25014 support
+To: Rob Herring <robh@kernel.org>
+Cc: Lee Jones <lee@kernel.org>, Daniel Thompson <danielt@kernel.org>,
+ Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Helge Deller <deller@gmx.de>,
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, dri-devel@lists.freedesktop.org,
+ linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-fbdev@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+References: <20251201-max25014-v6-0-88e3ac8112ff@gocontroll.com>
+ <20251201-max25014-v6-1-88e3ac8112ff@gocontroll.com>
+ <20251205150751.GA124954-robh@kernel.org>
+Content-Language: en-US
+From: Maud Spierings <maudspierings@gocontroll.com>
+In-Reply-To: <20251205150751.GA124954-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: AS4P192CA0027.EURP192.PROD.OUTLOOK.COM
+ (2603:10a6:20b:5e1::17) To AMBPR04MB11741.eurprd04.prod.outlook.com
+ (2603:10a6:20b:6f3::7)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20251205-staging-ad4062-v3-9-8761355f9c66@analog.com>
-References: <20251205-staging-ad4062-v3-0-8761355f9c66@analog.com>
-In-Reply-To: <20251205-staging-ad4062-v3-0-8761355f9c66@analog.com>
-To: Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich
-	<Michael.Hennerich@analog.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        "David
- Lechner" <dlechner@baylibre.com>,
-        =?utf-8?q?Nuno_S=C3=A1?=
-	<nuno.sa@analog.com>,
-        Andy Shevchenko <andy@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
-        Linus Walleij
-	<linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>
-CC: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>, Jorge Marques <jorge.marques@analog.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1764947528; l=5635;
- i=jorge.marques@analog.com; s=20250303; h=from:subject:message-id;
- bh=uq609zIRAOVsAf4uucshpjyCAMyR9HyUFzZbfYrcEe0=;
- b=EMgSPj6+FkEhY8ozHtLL8QCCDWIiDiJ+ZLQQNK6psLbPjKfBfcCF3vhhMacHzNqrcvLbhpu5B
- j4a9vCJkBCMBgOBJlrx2bPR4FjAvt8Ew5wy7djjF7tKqsDUEkpBrV3S
-X-Developer-Key: i=jorge.marques@analog.com; a=ed25519;
- pk=NUR1IZZMH0Da3QbJ2tBSznSPVfRpuoWdhBzKGSpAdbg=
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Authority-Analysis: v=2.4 cv=G4cR0tk5 c=1 sm=1 tr=0 ts=6932f674 cx=c_pps
- a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
- a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=VkNPw1HP01LnGYTKEx00:22
- a=gAnH3GRIAAAA:8 a=xMyuZJbwAj7bCYiyej4A:9 a=QEXdDO2ut3YA:10
-X-Proofpoint-GUID: iyXUigWsP5l9yKJZiyOEghs_Dm0xCzOe
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjA1MDExMCBTYWx0ZWRfXxPSX+6dzbUCR
- EHKTFjcIQHappZv2EtWoE+R1IfxOvEH1kmUJ2WvVzBtBNY7JPag+Hbh+jgUBlcM6ZkGsnOXnc5U
- sC3WQYON55GEM6vObZ7uqTSHm0d5H2neuN7KhgsM0dEIWZfDjj2CjwqmFWILCf0bttkO0yxr+iV
- BEIb3eFaEEtsOVilVtB1MkXBN3TklXYo/J+6L4vTnlTeXRGcHLm9xmbzbu2YQUv6liz5rR8jn3q
- J/DyArDogOCou99k4oc2xXZjSMOYMnIUXwXbZGXiqSegB7P3Q1joKRk2RGqhAfKf053p1m3dwv6
- AiA1Q2Y3ekfw15cwh9F/nDR7ZGe5ofOyBHQukIfKZDFfXetc6DNpXrogCU6kSiKdcW2Ee+hXLmX
- 8k8kI3x/ZkSAHXVgKLZe04OtG4Mlng==
-X-Proofpoint-ORIG-GUID: iyXUigWsP5l9yKJZiyOEghs_Dm0xCzOe
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-05_05,2025-12-04_04,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 lowpriorityscore=0 priorityscore=1501 suspectscore=0
- spamscore=0 clxscore=1015 phishscore=0 malwarescore=0 adultscore=0
- bulkscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
- definitions=main-2512050110
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AMBPR04MB11741:EE_|PA2PR04MB10374:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0c3aa908-9f49-4c0b-b2b7-08de3410bf00
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|10070799003|1800799024|376014|7416014|366016;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?bmZweXVCRTN6NDlNRzhTNHZBQkdNRUtwR0t0OWJnNEZ4b1BNb1pyZU5Za3h1?=
+ =?utf-8?B?WFdvZ1JBWmFVajM1aGlRd3lZY1ZzajhFdWQvSy9YUjZ2YU5WcjZzMzdZdDZP?=
+ =?utf-8?B?SG5keFlpbW0rL0tNZ1NzRlJnb1JhT1VRZDloeldFOWlGekdRdkxOcVBVRDVk?=
+ =?utf-8?B?N01JSnZwNlJjbnQ3LzkvelFuL2lLdzd6U2QyUEIybFpqSUE5U1h3OGZOWmN4?=
+ =?utf-8?B?K2NTMW5aOUJYcjUwWEdrbVd1aXhsRW5RR3o5SXB1dzVuNWl0VDZvWDhGekc1?=
+ =?utf-8?B?TzV1WDhtZ1h3b25nVTJNQjBWTk5vWkhUZ3Q4SVg1bFd1eXdjc3hGTk5xREFl?=
+ =?utf-8?B?OWNWUXdWSnV5bUplQmVqY0xUaDd5Z25uUEdOdFFyTWVUZDNsSUQ2b2E0T20w?=
+ =?utf-8?B?cHdmVlZKL1RqdjdlRTBBc1ZVcVpHWTkvM2huYWdCNDE1dktacVNISlgvc2kz?=
+ =?utf-8?B?TXNhR2c4U1UvakIzRVl2eHVETDFMbFhiZFdtL1FYd01tcWRneFJsLzdmZFhn?=
+ =?utf-8?B?YXVtUFpaVVhYVmR0Z1NYTHBwTjVsTEZldmpIaktwZm5sbHBZTEw1NzVYZkRx?=
+ =?utf-8?B?alYxclFnSU0rTFpZTzltZnFNQkJyU1JhM1JOd1FqMWFQbWJxMWMvWm5FMkJU?=
+ =?utf-8?B?Z1pyUUpCNnRDaGZsMWlFMG9CUW9kMmNJcjd3aEVwRDRUQjZNLzhwQ3hiOTBN?=
+ =?utf-8?B?bHlGUGszSEhCYk1Nb2tIR2JrWDhwbHNaMTV0WjVRSmsvMFpSV29Icno1eFR1?=
+ =?utf-8?B?b052ekllVklKNmp2YURMTmpQc3pyMzc3NE1KRTMreXB6MmVKQ2ZhTlJoMTBS?=
+ =?utf-8?B?V2RYd1pkWE5PUEx4ZkNLcW5iWVBkeDk5NTlyYnpnWjdVNnFRcDdwYzJ3RzU1?=
+ =?utf-8?B?aG4rUkZYZ3o3KzV6RmdpSDBkV0lGZ3NGWjVsdC9mUkxmSGJDY2grRVptNldw?=
+ =?utf-8?B?SU8yOEZQMXlZUlBZbGVXVzIxVWhnRHFwY0dhZFVnZEgzRjhEYlJjZURGYUJW?=
+ =?utf-8?B?L29pTGhBY1N1UEduSDhONU1tVzhPK01na2FucW1DL0pVNmJwSVRlYjdjbVJl?=
+ =?utf-8?B?R2tOL2x0RnA0RFllZjlnOTdlU0Q2S21PNGlqMTJabGxmY212bVVBTHQvbUhx?=
+ =?utf-8?B?L2RObTRHNCswQVU2OXo5ZTRIY3VQY3ZvazBjVDQ3RWVsbjFBOEZnbWhuSUhJ?=
+ =?utf-8?B?UHpSblg3VDgzWUhYT3RTUkt6Wjg0Y3h1c2Y3VTNpakdUZjBzbEl4WUl1akFI?=
+ =?utf-8?B?d3BUQmFsMmVMTGFaOEI4M0VRUGtwc2gwaGVhOExTK2JlRzEyQVdOTkVuL3I3?=
+ =?utf-8?B?bTU4aHNUc3dVQXREZUhaQW4vK3UrM1RlKy9haVh6SlM1YzBIYTdYamRwa1JQ?=
+ =?utf-8?B?d29YK2ZUbm9kOWdCcE81aHlOQmlzZ2QvbExwTkwrcG1aNlVSZ1RlY3I3SHEr?=
+ =?utf-8?B?eHhlVzVyalhJOUFCS2xZYTBSWEROQitsNG80ckI0T2tQaGUrNmxLMkMrVkFj?=
+ =?utf-8?B?UTNOSFloOWRPdnBMWkIzRlB5SzFBd3FiRHhkWk1lMmF4YmVUcXdDS3pyaDZ5?=
+ =?utf-8?B?K21rdXRlZ1NES2ppVThrLzdudDF3aVhTY2VWWXl6Z1liMFNadmt3dEFHcEpD?=
+ =?utf-8?B?ZXhnck10dXQvNEkyQ3h1SVVicUQ2Z09uc29qdGlrY0diTHVVeEd1MEtiVkVR?=
+ =?utf-8?B?dXNVazYzTDRpVEg1aklXMWVaNzZscmxSaXNQMloyeXFtZG8wVEFzZnVrclpz?=
+ =?utf-8?B?Z2UxV2hkR3FpZVMyZitOQjRwSENtYlN0OGxhMUNrcGp0a1RuaUo1NWNhTFNP?=
+ =?utf-8?B?RGo1eThXVkFUVjdrVUszdkhyK1QxaHRxMG9XMmNxVkNuV0FWcU1WWUFwQzdu?=
+ =?utf-8?B?V3grcHRtRHZkQncycHRyZXZhd1FMQ2tJZW4wczZXbis2b0E9PQ==?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AMBPR04MB11741.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(10070799003)(1800799024)(376014)(7416014)(366016);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?UG9RN3crMUhzY1JnN2tUSFFnMFlJUEd0QWV5OWFQelhuTW5MbzlORkY4SGZv?=
+ =?utf-8?B?MFZ0YkRhL3pkRHN0VzdGdTRia1FRWUhrTm5IeGZ5SjhsMHlGSkNUUW1RWEJZ?=
+ =?utf-8?B?YUlLUnVGUGJtU3BEM1A2eTB3a0JKY0hPKzRuUkVTMkREaGhHVEZqejBKbFY1?=
+ =?utf-8?B?bW9ISUZ0WlJwbVgrUzdRK0JrL3dWTHVRRndCajI3VzRNaVhKTGw2TmFCdS94?=
+ =?utf-8?B?MDNGaDFJY0JyWC9UV2JhUCtEVjZibnFrM05XSHBOM1gxV0ZKem9uUU9FSGcy?=
+ =?utf-8?B?b0tIejVFK0w2NVM2VDRxRTRhaU5zZzgxSUZidytSTi9nQkNMRmtnK05QZkFL?=
+ =?utf-8?B?cTB1U0k4Uk5EYXBzbkhDMEVSanJITzl5Y0ZhdTNQVk44UU9nc2tKYXNYOG5k?=
+ =?utf-8?B?K0RLWmwxYnVqakM5K28rclBHelhrTHpUamN6NU9SQkpqZ1ZDT0FacnB6USsr?=
+ =?utf-8?B?U3QwbjQ5NWM4U3Y0Mld5K1VBVHBqYWlTaUNrWVF4WG54a085b1Nmb2hHKzNN?=
+ =?utf-8?B?RDJpZkt1VkMwdTV1R1gyWUo1T1EzRnpMTy92ajBYa3VBQ1lnQzZyYTcrT1FW?=
+ =?utf-8?B?ZXJzQ1l0WkpQdzdKMXJIMWNxZDUraWV5eks4TzVBTHhvK1lPNWN0cjNLMXVj?=
+ =?utf-8?B?dktocUVOSXhOWVRxd1JRSFlnNEpoQ0tWTzRZZ3R3U0FWUEYySVM3bFVxeTQ3?=
+ =?utf-8?B?Y3VZNDRPbjAvbzQ2QlRzQytXOFpSL2k0SUZZa0xuemlWSXYvM1VyU05ENFFp?=
+ =?utf-8?B?S0pIYXJ1c3E3MGFlNlZpYVdVbnp5Nnh5aHV3OTRDdEVOdUpVeTNIc3lkWDVl?=
+ =?utf-8?B?cEpya05rYXBiR3MzcUpadVZyVjlDbmh4YzZjVXlHeit2UWRvMEJtOEdQNHBl?=
+ =?utf-8?B?dzJwc2gwYmc2VzAreUNReHI4bmNCUEIyeDk5VG9UQkE2MHhuNElsZVZrS3Yv?=
+ =?utf-8?B?ZVBnczlJa3pKZzlXTlduNmlzaUxWdFUxd1c2c3hDNHdkcnc2aGxKVTlrbC9V?=
+ =?utf-8?B?TFpKUEp2UWNWVEQ1VkQxTkxacmRBeVVtZkQrdTNnbUpZTUo3d3I3Q2k0OXYy?=
+ =?utf-8?B?N25EK3ZveDNlbC85ckpGSGJJZTE1dmMyRFpsNFJCNE1VbXpwL2kzUysvdFRa?=
+ =?utf-8?B?QnRZVHBpRlVkMjYyTmhlYVVFVUJJaGRLZjJqRjVNVWl4YVR5WGUzR0FMMmZ1?=
+ =?utf-8?B?YUN0b1o1dGwzN3JRMEY3MWN2Zjh2WmovSE04VDlqVGo5QjVEZ2NWeGdVRlk0?=
+ =?utf-8?B?OGQwSHJZMHNaYm44QVpiaFM0ajFYb3NmWkdYVytQcVYxc0t5eDEvSVFQTVhr?=
+ =?utf-8?B?SmNOQlJCUi8yRm1vT3p6T3FQVThUUVJETm5CMXFQN21oSEZHbGh4YzRveno1?=
+ =?utf-8?B?V2hGVVd3TzkvSXI5eS82V0l0SEVPQmFkWkpRNUwrUVpsNm1GNjMvenBvLzF4?=
+ =?utf-8?B?TkV1VmttOFBrQVZSS25xbjZVaXdOdTJ1SXFqMFRRRDRKVlp4OHkyeHFxYUly?=
+ =?utf-8?B?MWZSSzgyenRucVVScHpPRnZxZFYzaEwzeVFzK0dZV3Y5SVVOM1RNTkdJOHpR?=
+ =?utf-8?B?a3dQbm4xUjdXQ2dBeHVqQnVIVTJISmJzQnYzYTJjS0ZGYmhqdWhrbGpvaHJn?=
+ =?utf-8?B?Y3ZLcTRraktQMFpKMzd6bGk4STZCbHl2cjkwU2NCalA3VTkrK2E5RER0THpa?=
+ =?utf-8?B?N1NHZ0x2NmN0dHRNWWgxTmdOZFdYclBmS243TzZFSFljUWd4SXIwYVkyU2FQ?=
+ =?utf-8?B?RVBCLzRDaHZzOVVzYVdka0hOeExxZDZVV3o0MVVQTDJ1bnZQY2hGeFRrNEIz?=
+ =?utf-8?B?MCs0c0R6Y09ISEsxc2V1QnRuVGdad01RZ0hQOFZ0OVgzRUNZdG1GT0w3azBw?=
+ =?utf-8?B?Q1J0dWdyME00bXZhazZWa2JvUDVDalF1WEJhajJwNDUrdWlRdlEzSWZIaFlu?=
+ =?utf-8?B?S2UvaExDN0ZDWEpYOUNCMUZsRFI1bkhhSW9ZUHpNQ1Z2Q1dIKy8wVnNRR2JL?=
+ =?utf-8?B?Nk1aajN6WDF6cWo3dVBQaW1XbVg5b1RHUWl5QkJqWGZYSVRMYjRMVkFwRTJ4?=
+ =?utf-8?B?U1orWUVMMlRQTWo3dWNQMG8xNVNHcTZaVFFiMk5sbDZZS2c3aXVoSlBvRDUx?=
+ =?utf-8?B?ZTRFRVJ5bTNsdU45MkllYVY5amtWR1k0NFBVU3ZEK3M0Z296NU1hK0xIWElq?=
+ =?utf-8?B?M2M5a2tRdUlrRkpkOHZWektxUGNSYUJ4TUt4eHZ3NUc3UUU2NjQxeWR6ditJ?=
+ =?utf-8?B?Uzh6dkxPMGI3WUhWbXpzeThkU2ZBPT0=?=
+X-OriginatorOrg: gocontroll.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0c3aa908-9f49-4c0b-b2b7-08de3410bf00
+X-MS-Exchange-CrossTenant-AuthSource: AMBPR04MB11741.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Dec 2025 15:12:47.4912
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 4c8512ff-bac0-4d26-919a-ee6a4cecfc9d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: VqStxux3deJtnFrcUa4cOz5nZGUDTviErXDVWJlARkWrAFEiED27iEjlcsBnYWDRxjF5TB5TcrenI5xHpK6x3RklXR9Fl2MxRh3kffXNyag=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA2PR04MB10374
 
-When gp0 or gp1 is not taken as an interrupt, expose them as GPO if
-gpio-contoller is set in the devicetree. gpio-regmap is not used
-because the GPO static low is 'b101 and static high is 0b110; low state
-requires setting bit 0, not fitting the abstraction of low=0 and
-high=mask.
+Thanks for the review.
 
-Signed-off-by: Jorge Marques <jorge.marques@analog.com>
----
- drivers/iio/adc/ad4062.c | 125 +++++++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 125 insertions(+)
+On 12/5/25 16:07, Rob Herring wrote:
+> On Mon, Dec 01, 2025 at 12:53:20PM +0100, Maud Spierings wrote:
+>> The Maxim MAX25014 is a 4-channel automotive grade backlight driver IC
+>> with integrated boost controller.
+>>
+>> Signed-off-by: Maud Spierings <maudspierings@gocontroll.com>
+>>
+>> ---
+>>
+>> In the current implementation the control registers for channel 1,
+>> control all channels. So only one led subnode with led-sources is
+>> supported right now. If at some point the driver functionality is
+>> expanded the bindings can be easily extended with it.
+> 
+> What's the relationship between the LEDs and backlight? It's a backlight
+> plus LEDs or just 4 identical channels.
 
-diff --git a/drivers/iio/adc/ad4062.c b/drivers/iio/adc/ad4062.c
-index e432aa60a224e..e52894ed757f7 100644
---- a/drivers/iio/adc/ad4062.c
-+++ b/drivers/iio/adc/ad4062.c
-@@ -11,6 +11,7 @@
- #include <linux/delay.h>
- #include <linux/devm-helpers.h>
- #include <linux/err.h>
-+#include <linux/gpio/driver.h>
- #include <linux/i3c/device.h>
- #include <linux/i3c/master.h>
- #include <linux/iio/buffer.h>
-@@ -87,8 +88,11 @@
- #define AD4060_MAX_AVG		0x7
- #define AD4062_MAX_AVG		0xB
- 
-+#define AD4062_GP_DISABLED	0x0
- #define AD4062_GP_INTR		0x1
- #define AD4062_GP_DRDY		0x2
-+#define AD4062_GP_STATIC_LOW	0x5
-+#define AD4062_GP_STATIC_HIGH	0x6
- 
- #define AD4062_LIMIT_BITS	11
- 
-@@ -652,12 +656,14 @@ static int ad4062_request_irq(struct iio_dev *indio_dev)
- 	if (ret == -EPROBE_DEFER) {
- 		return ret;
- 	} else if (ret < 0) {
-+		st->gpo_irq[0] = false;
- 		ret = regmap_update_bits(st->regmap, AD4062_REG_ADC_IBI_EN,
- 					 AD4062_REG_ADC_IBI_EN_MAX | AD4062_REG_ADC_IBI_EN_MIN,
- 					 AD4062_REG_ADC_IBI_EN_MAX | AD4062_REG_ADC_IBI_EN_MIN);
- 		if (ret)
- 			return ret;
- 	} else {
-+		st->gpo_irq[0] = true;
- 		ret = devm_request_threaded_irq(dev, ret, NULL,
- 						ad4062_irq_handler_thresh,
- 						IRQF_ONESHOT, indio_dev->name,
-@@ -1268,6 +1274,121 @@ static int ad4062_regulators_get(struct ad4062_state *st, bool *ref_sel)
- 	return 0;
- }
- 
-+static int ad4062_gpio_get_direction(struct gpio_chip *gc, unsigned int offset)
-+{
-+	return GPIO_LINE_DIRECTION_OUT;
-+}
-+
-+static int ad4062_gpio_set(struct gpio_chip *gc, unsigned int offset, int value)
-+{
-+	struct ad4062_state *st = gpiochip_get_data(gc);
-+	unsigned int reg_val = value ? AD4062_GP_STATIC_HIGH : AD4062_GP_STATIC_LOW;
-+
-+	if (offset)
-+		return regmap_update_bits(st->regmap, AD4062_REG_GP_CONF,
-+					  AD4062_REG_GP_CONF_MODE_MSK_1,
-+					  FIELD_PREP(AD4062_REG_GP_CONF_MODE_MSK_1, reg_val));
-+	else
-+		return regmap_update_bits(st->regmap, AD4062_REG_GP_CONF,
-+					  AD4062_REG_GP_CONF_MODE_MSK_0,
-+					  FIELD_PREP(AD4062_REG_GP_CONF_MODE_MSK_0, reg_val));
-+}
-+
-+static int ad4062_gpio_get(struct gpio_chip *gc, unsigned int offset)
-+{
-+	struct ad4062_state *st = gpiochip_get_data(gc);
-+	unsigned int reg_val;
-+	int ret;
-+
-+	ret = regmap_read(st->regmap, AD4062_REG_GP_CONF, &reg_val);
-+	if (ret)
-+		return ret;
-+
-+	if (offset)
-+		reg_val = FIELD_GET(AD4062_REG_GP_CONF_MODE_MSK_1, reg_val);
-+	else
-+		reg_val = FIELD_GET(AD4062_REG_GP_CONF_MODE_MSK_0, reg_val);
-+
-+	return reg_val == AD4062_GP_STATIC_HIGH;
-+}
-+
-+static void ad4062_gpio_disable(void *data)
-+{
-+	struct ad4062_state *st = data;
-+	u8 val = FIELD_PREP(AD4062_REG_GP_CONF_MODE_MSK_0, AD4062_GP_DISABLED) |
-+		 FIELD_PREP(AD4062_REG_GP_CONF_MODE_MSK_1, AD4062_GP_DISABLED);
-+
-+	regmap_update_bits(st->regmap, AD4062_REG_GP_CONF,
-+			   AD4062_REG_GP_CONF_MODE_MSK_1 | AD4062_REG_GP_CONF_MODE_MSK_0,
-+			   val);
-+}
-+
-+static int ad4062_gpio_init_valid_mask(struct gpio_chip *gc,
-+				       unsigned long *valid_mask,
-+				       unsigned int ngpios)
-+{
-+	struct ad4062_state *st = gpiochip_get_data(gc);
-+
-+	bitmap_zero(valid_mask, ngpios);
-+
-+	for (unsigned int i = 0; i < ARRAY_SIZE(st->gpo_irq); i++)
-+		__assign_bit(i, valid_mask, !st->gpo_irq[i]);
-+
-+	return 0;
-+}
-+
-+static int ad4062_gpio_init(struct ad4062_state *st)
-+{
-+	struct device *dev = &st->i3cdev->dev;
-+	struct gpio_chip *gc;
-+	u8 val, mask;
-+	int ret;
-+
-+	if (!device_property_read_bool(dev, "gpio-controller"))
-+		return 0;
-+
-+	gc = devm_kzalloc(dev, sizeof(*gc), GFP_KERNEL);
-+	if (!gc)
-+		return -ENOMEM;
-+
-+	val = 0;
-+	mask = 0;
-+	if (!st->gpo_irq[0]) {
-+		mask |= AD4062_REG_GP_CONF_MODE_MSK_0;
-+		val |= FIELD_PREP(AD4062_REG_GP_CONF_MODE_MSK_0, AD4062_GP_STATIC_LOW);
-+	}
-+	if (!st->gpo_irq[1]) {
-+		mask |= AD4062_REG_GP_CONF_MODE_MSK_1;
-+		val |= FIELD_PREP(AD4062_REG_GP_CONF_MODE_MSK_1, AD4062_GP_STATIC_LOW);
-+	}
-+
-+	ret = regmap_update_bits(st->regmap, AD4062_REG_GP_CONF,
-+				 mask, val);
-+	if (ret)
-+		return ret;
-+
-+	ret = devm_add_action_or_reset(dev, ad4062_gpio_disable, st);
-+	if (ret)
-+		return ret;
-+
-+	gc->parent = dev;
-+	gc->label = st->chip->name;
-+	gc->owner = THIS_MODULE;
-+	gc->base = -1;
-+	gc->ngpio = 2;
-+	gc->init_valid_mask = ad4062_gpio_init_valid_mask;
-+	gc->get_direction = ad4062_gpio_get_direction;
-+	gc->set = ad4062_gpio_set;
-+	gc->get = ad4062_gpio_get;
-+	gc->can_sleep = true;
-+
-+	ret = devm_gpiochip_add_data(dev, gc, st);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Unable to register GPIO chip\n");
-+
-+	return 0;
-+}
-+
- static const struct i3c_device_id ad4062_id_table[] = {
- 	I3C_DEVICE(AD4062_I3C_VENDOR, ad4060_chip_info.prod_id, &ad4060_chip_info),
- 	I3C_DEVICE(AD4062_I3C_VENDOR, ad4062_chip_info.prod_id, &ad4062_chip_info),
-@@ -1356,6 +1477,10 @@ static int ad4062_probe(struct i3c_device *i3cdev)
- 	if (ret)
- 		return dev_err_probe(dev, ret, "Failed to request i3c ibi\n");
- 
-+	ret = ad4062_gpio_init(st);
-+	if (ret)
-+		return ret;
-+
- 	ret = devm_work_autocancel(dev, &st->trig_conv, ad4062_trigger_work);
- 	if (ret)
- 		return ret;
+it is just 4 identical channels, represented as leds, or in this case 1 
+led. I still feel a bit weird about this representation when there is 
+also led-backlight. But it was requested to map it in this way.
 
--- 
-2.51.1
+>>
+>> ---
+>>   .../bindings/leds/backlight/maxim,max25014.yaml    | 107 +++++++++++++++++++++
+>>   MAINTAINERS                                        |   5 +
+>>   2 files changed, 112 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/leds/backlight/maxim,max25014.yaml b/Documentation/devicetree/bindings/leds/backlight/maxim,max25014.yaml
+>> new file mode 100644
+>> index 000000000000..e83723224b07
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/leds/backlight/maxim,max25014.yaml
+>> @@ -0,0 +1,107 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/leds/backlight/maxim,max25014.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Maxim max25014 backlight controller
+>> +
+>> +maintainers:
+>> +  - Maud Spierings <maudspierings@gocontroll.com>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - maxim,max25014
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  "#address-cells":
+>> +    const: 1
+>> +
+>> +  "#size-cells":
+>> +    const: 0
+>> +
+>> +  enable-gpios:
+>> +    maxItems: 1
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +  power-supply:
+>> +    description: Regulator which controls the boost converter input rail.
+>> +
+>> +  pwms:
+>> +    maxItems: 1
+>> +
+>> +  maxim,iset:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    maximum: 15
+>> +    default: 11
+>> +    description:
+>> +      Value of the ISET field in the ISET register. This controls the current
+>> +      scale of the outputs, a higher number means more current.
+> 
+> We have properties for setting the current (in uA). That can't work
+> here?
+
+please refer to [1] and [2].
+
+Link: 
+https://lore.kernel.org/all/5c5cf363-db5c-4d0b-902f-97c6ef06c08f@gocontroll.com/ 
+[1]
+
+Link: 
+https://lore.kernel.org/all/20251009-overjoyed-unpopular-54f69e9bd82c@spud/ 
+[2]
+
+kind regards,
+Maud
+
 
 
