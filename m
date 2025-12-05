@@ -1,57 +1,59 @@
-Return-Path: <devicetree+bounces-244584-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244585-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC7CECA7721
-	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 12:42:33 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76A8CCA6CB9
+	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 10:03:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id AD396333ADFA
-	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 09:02:05 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5C85331031D7
+	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 09:03:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E0292F361A;
-	Fri,  5 Dec 2025 09:02:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4D3B313552;
+	Fri,  5 Dec 2025 09:03:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jeHTx1nf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kWsdHqIu"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28A8221FF2E;
-	Fri,  5 Dec 2025 09:01:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92160311972;
+	Fri,  5 Dec 2025 09:03:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764925322; cv=none; b=eYVNVwm8TLCKXVpCWZpxyISQiJ3LblmJNhSAn0GESP7Dwsy8VAaTWPdk4t1XGt+g9igE/cuDQHJKRybgjTioM/12uNTLoyKTlfdS2a1IDxuNwF07ZuiA0LZnFTWBO+pg5ipfhIx8mpyOfbYLJANcB5xOBTKvJjsjyA2pVHMe0eY=
+	t=1764925405; cv=none; b=g8pG5+Q7MI4E2k2uZm3T7Z0mzryFlVOLP0QJGpxs20fSPeaFEo2tdDdaagnxa4wiXp/i/q6JYv1XnADotcAizFmrdk+sVWFG0XI53Jag8R6KLReMAhxjUovB/uo6Ec3vHgc6BseU3CORx5OK3SkE2wJjZ4qvha/yXutkBZ/rZ0M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764925322; c=relaxed/simple;
-	bh=1tNBZQtY3oCs5M0ltVoHhKs1cSn4IkbJYPNY1Q0/F2g=;
+	s=arc-20240116; t=1764925405; c=relaxed/simple;
+	bh=cUJbSdYsszENJE/XwOV+fw3KjDANMjWcyos4YuUBrLg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JhDUbq/s/KrjW6hisxfn/9FT6sbdXLmpxw3jsXiiYQNieCiiCYLH4rSIqEXrNPAeOJ7QnKU0ZFyyDECAuDhgTNJU5K6xtdNc79NnHnX1PWnVssH4aY8F6g32sG4ZpN8evLxIKlaagJ/bRGTNmtWpZUcbggIeYpxp+n4dJGmokVE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jeHTx1nf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 181ABC113D0;
-	Fri,  5 Dec 2025 09:01:57 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ongf6cJvsa5AsqZToDWTauYD1rxWmv2bo1KEOcTlgbhWeDqwBsuS2AWVss/Bu7fqdAUa4og4TPszJDCUZIPRWEP3Mr4HPB+7o86qBC1fVZeueEiEbFil4uDZQGiiUFQd30WPGGjStLQKp1Pvw+GGf4IhmzmDpXDlav2ULGppOgs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kWsdHqIu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6B64C4CEF1;
+	Fri,  5 Dec 2025 09:03:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764925318;
-	bh=1tNBZQtY3oCs5M0ltVoHhKs1cSn4IkbJYPNY1Q0/F2g=;
+	s=k20201202; t=1764925404;
+	bh=cUJbSdYsszENJE/XwOV+fw3KjDANMjWcyos4YuUBrLg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jeHTx1nfGok3GKapofmisslKWGkE4kDJzlJ0mq9SxLuktKDWaEDCG55iGLELlQ1wQ
-	 dIMb6XK1k8D207aPXt5gIZ29CEi1/RfrR3GE9v14U0Vf38j5D1Z0gEzL5Yj17b3zrk
-	 H8FmaM9gmvOwMXrFxPwxL/hwGe6kyT0G2hQmKZnlSg69QC/WSQIhqbSmHm6/AnanQr
-	 cLcm5iOf46dWdLMydLbaFIFYZWGy5eVIDjYHSIEYXwRJYIDt3IQc6S83L4uz++5kV+
-	 yixtbdsm+bQ2z2651RZcOanIZpXIWjUJywRFVP2yA19B4gNpsAE7yb4JNNAW6HPpkJ
-	 dSAJ6o1KB42og==
-Date: Fri, 5 Dec 2025 10:01:56 +0100
+	b=kWsdHqIugmVmPY+VbnfkbCXhop8js9VWsxJwwWB4MQ5fTnU+PcQXjGP7JyX6yu2an
+	 2bDKT+COhRAJEPcODRdr5qZhs2D8xfr2A1o+BLqqDN+1PI07jHrEwodRDumwMa2f9b
+	 a8HoIfHrVwTamm+CUrGfZtP5/G+1ac1i8Uujf0nTIF4vnQC0TSB9VGeMF9CUantARF
+	 0fYsOjtWg1tZuh4XI7ydKo1F8rE8CZs0DpplogNMIg3tx1Bn7dWqwZuPvlyeTaJU8N
+	 0VayU26AKuZr53w2fU52KkjkjXTKMgQQmrM043LwH3+NChwWUf1NtRAQTRbz3JPjtZ
+	 tgW1VkC9x4zIA==
+Date: Fri, 5 Dec 2025 10:03:21 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Maud Spierings <maudspierings@gocontroll.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: arm: fsl: moduline-display: fix
- compatible
-Message-ID: <20251205-futuristic-hysterical-salamander-dce94c@quoll>
-References: <20251201-disp_fix-v2-0-9b03026311b6@gocontroll.com>
- <20251201-disp_fix-v2-1-9b03026311b6@gocontroll.com>
+To: Marek Vasut <marek.vasut@mailbox.org>
+Cc: netdev@vger.kernel.org, "David S. Miller" <davem@davemloft.net>, 
+	Aleksander Jan Bajkowski <olek2@wp.pl>, Andrew Lunn <andrew@lunn.ch>, Conor Dooley <conor+dt@kernel.org>, 
+	Eric Dumazet <edumazet@google.com>, Florian Fainelli <f.fainelli@gmail.com>, 
+	Heiner Kallweit <hkallweit1@gmail.com>, Ivan Galkin <ivan.galkin@axis.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Michael Klein <michael@fossekall.de>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Russell King <linux@armlinux.org.uk>, Vladimir Oltean <vladimir.oltean@nxp.com>, 
+	devicetree@vger.kernel.org
+Subject: Re: [net-next,PATCH v2 1/3] dt-bindings: net: realtek,rtl82xx: Keep
+ property list sorted
+Message-ID: <20251205-adamant-unselfish-cormorant-aa5acb@quoll>
+References: <20251203210857.113328-1-marek.vasut@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,26 +62,12 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251201-disp_fix-v2-1-9b03026311b6@gocontroll.com>
+In-Reply-To: <20251203210857.113328-1-marek.vasut@mailbox.org>
 
-On Mon, Dec 01, 2025 at 12:56:50PM +0100, Maud Spierings wrote:
-> The compatibles should include the SoM compatible, this board is based
-> on the Ka-Ro TX8P-ML81 SoM, so add it to allow using shared code in the
-> bootloader which uses upstream Linux devicetrees as a base.
-> 
-> Also add the hardware revision to the board compatible to handle
-> revision specific quirks in the bootloader/userspace.
-> 
-> This is a breaking change, but it is early enough that it can be
-> corrected without causing any issues.
-> 
-> Fixes: 24e67d28ef95 ("dt-bindings: arm: fsl: Add GOcontroll Moduline Display")
-> Signed-off-by: Maud Spierings <maudspierings@gocontroll.com>
-> ---
->  Documentation/devicetree/bindings/arm/fsl.yaml | 9 ++++++++-
->  1 file changed, 8 insertions(+), 1 deletion(-)
+On Wed, Dec 03, 2025 at 10:08:04PM +0100, Marek Vasut wrote:
+> Sort the documented properties alphabetically, no functional change.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+That's just churn, we don't do this for bindings.
 
 Best regards,
 Krzysztof
