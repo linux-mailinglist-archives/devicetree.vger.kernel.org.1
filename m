@@ -1,184 +1,242 @@
-Return-Path: <devicetree+bounces-244742-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244743-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BD91CA8354
-	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 16:34:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 55A6ECA8387
+	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 16:36:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D6504323230C
-	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 15:29:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2CE3332576EC
+	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 15:31:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFFBF341052;
-	Fri,  5 Dec 2025 15:14:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0163D3570BB;
+	Fri,  5 Dec 2025 15:17:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dGthqBKv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E75912882B8;
-	Fri,  5 Dec 2025 15:14:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 943EE3563FE;
+	Fri,  5 Dec 2025 15:17:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764947669; cv=none; b=LAED3zmV8HGfpFProsAltklYTkRVkqKWmnGxvqrFiQS3zUduWiBxqFFyJAQIJGhPU9gk7YaR4WkrY4oXpBSqjBsVlpNLOdQbUUgW02l4FBRq07faTEc7suTcPHS1G5HDdBpVgWedIOAYHis3sGuTyN90kT9jsV1bxpI3qeMeaaI=
+	t=1764947861; cv=none; b=GX/jTfNvUVGdcOa8b4eDD9B6To22QydEu9AgWiJWp3QsrIAriNpT8rdPl8XxMeiUf2bu1gpoGt/FTSdEFa2N3Q3lEiY7RVWQPVIn1kDawqh7x5u7GgRWN98BQodR4Jz0XlhCXSfbQ8/QBga++aXI48JQ+GVw1q8SkBe0N6upWc8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764947669; c=relaxed/simple;
-	bh=LGNDITOGN56nKw/+waZVvVH6x24rIrz1jsoZ3YGgqOg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=poNS3pYVe+IhX0qmWQ+3FnoaZ80qCBc702zYIdBUIB0aLMcl22tqfA9Hh5rzk4UDJxv8IWEP/I+O3rcn2XFc1YVzF/W02g1YfXMUmMQ34gq/iddaO7ueWAic6XuJZqX1AMsuvjihALhh73YYDfrRR4oZJO/8EYIaKgSM8W9w+3E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; arc=none smtp.client-ip=210.160.252.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
-X-CSE-ConnectionGUID: DlSGkFb+TgGXA5Q0hTaMYw==
-X-CSE-MsgGUID: 7V/iATJSTC6j9AqIryBf8Q==
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 06 Dec 2025 00:14:21 +0900
-Received: from demon-pc.localdomain (unknown [10.226.93.202])
-	by relmlir5.idc.renesas.com (Postfix) with ESMTP id D5AEB4005E29;
-	Sat,  6 Dec 2025 00:14:16 +0900 (JST)
-From: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
-To: Vinod Koul <vkoul@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Johan Hovold <johan@kernel.org>,
-	Biju Das <biju.das.jz@bp.renesas.com>
-Cc: dmaengine@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: [PATCH v3 6/6] arm64: dts: renesas: r9a09g087: add DMAC support
-Date: Fri,  5 Dec 2025 17:12:54 +0200
-Message-ID: <20251205151254.2970669-7-cosmin-gabriel.tanislav.xa@renesas.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20251205151254.2970669-1-cosmin-gabriel.tanislav.xa@renesas.com>
-References: <20251205151254.2970669-1-cosmin-gabriel.tanislav.xa@renesas.com>
+	s=arc-20240116; t=1764947861; c=relaxed/simple;
+	bh=BB4eaQ8PpoTK9UBJHV2LcFmZVSlKkOLrpVcshPmDQ2g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VpfKB/UUs/FTKqko4d3dZ2IgN5WLpOy/S60PqPiX3KqtxDaaCkf59xKZedYU/NmMHpiibIUI4axOTXDg7qWjIFokCd/aKTXf/MsZEr5EEx1e0F9PwZ/V8ynvuNCIhmmw5aQb8m1xg60KBNT7vKZEtO17dpLeHVympcB/bU+kuGI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dGthqBKv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0B35C4CEF1;
+	Fri,  5 Dec 2025 15:17:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764947860;
+	bh=BB4eaQ8PpoTK9UBJHV2LcFmZVSlKkOLrpVcshPmDQ2g=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=dGthqBKvXwFcemONhO/g8xC1MSndvl1zaLLgCBYoX2z5jfzwtliM/CkMtstixDxKu
+	 +7bVqrj7d1iwOv+cJEmAWkuoEnF82Xzze9a7i0tJSB/VEoVvNM8OHzRFMP6zTcInic
+	 lqzMo+f2q9JKv1ZgQIA4LgAzPtOlEbCLFHTewb+HqFu/DJ8zSTMaerTF2aOafhZc2h
+	 hmekByae6EE9ZhfmGVyRoeLcUxpJ5P7BhVsLCgB672nwnT5V5JQFL7kBBarXV2Cgi8
+	 01Hl8ZwE1ow9A5wtl/FPomNFhi1tWbFQMnUHUbZ3X4oFbYSQ+VbZt1NqKs7wt4ZC/o
+	 4gojgBY2Q2Kew==
+Date: Fri, 5 Dec 2025 09:17:37 -0600
+From: Rob Herring <robh@kernel.org>
+To: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+Cc: tomi.valkeinen@ideasonboard.com, mchehab@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, hverkuil@xs4all.nl,
+	sakari.ailus@linux.intel.com, laurent.pinchart@ideasonboard.com,
+	hansg@kernel.org, mehdi.djait@linux.intel.com, ribalda@chromium.org,
+	git@apitzsch.eu, vladimir.zapolskiy@linaro.org,
+	benjamin.mugnier@foss.st.com, dongcheng.yan@intel.com,
+	u-kumar1@ti.com, jai.luthra@linux.dev, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V2 3/4] media: dt-bindings: ti,ds90ub960: Add support for
+ DS90UB954-Q1
+Message-ID: <20251205151737.GB158904-robh@kernel.org>
+References: <20251202102208.80713-1-y-abhilashchandra@ti.com>
+ <20251202102208.80713-4-y-abhilashchandra@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251202102208.80713-4-y-abhilashchandra@ti.com>
 
-The Renesas RZ/N2H (R9A09G087) SoC has three instances of the DMAC IP.
+On Tue, Dec 02, 2025 at 03:52:07PM +0530, Yemike Abhilash Chandra wrote:
+> DS90UB954-Q1 is an FPDLink-III deserializer that is mostly register
+> compatible with DS90UB960-Q1. The main difference is that it supports
+> half of the RX and TX ports, i.e. 2x FPDLink RX ports and 1x CSI TX
+> port. Therefore, add support for DS90UB954 within the existing bindings.
+> 
+> Link: https://www.ti.com/lit/gpn/ds90ub954-q1
+> Signed-off-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+> ---
+>  .../bindings/media/i2c/ti,ds90ub960.yaml      | 300 +++++++++++++++---
+>  1 file changed, 264 insertions(+), 36 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml b/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
+> index 6a78288aebaa..1ef977c2e479 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
+> @@ -13,12 +13,10 @@ description:
+>    The TI DS90UB9XX devices are FPD-Link video deserializers with I2C and GPIO
+>    forwarding.
+>  
+> -allOf:
+> -  - $ref: /schemas/i2c/i2c-atr.yaml#
+> -
+>  properties:
+>    compatible:
+>      enum:
+> +      - ti,ds90ub954-q1
+>        - ti,ds90ub960-q1
+>        - ti,ds90ub9702-q1
+>  
+> @@ -129,39 +127,6 @@ properties:
+>        Ports represent FPD-Link inputs to the deserializer and CSI TX outputs from the deserializer.
+>        Their number is model-dependent.
+>  
+> -    properties:
+> -      port@0:
+> -        $ref: '#/$defs/FPDLink-input-port'
+> -        description: FPD-Link input 0
+> -
+> -      port@1:
+> -        $ref: '#/$defs/FPDLink-input-port'
+> -        description: FPD-Link input 1
+> -
+> -      port@2:
+> -        $ref: '#/$defs/FPDLink-input-port'
+> -        description: FPD-Link input 2
+> -
+> -      port@3:
+> -        $ref: '#/$defs/FPDLink-input-port'
+> -        description: FPD-Link input 3
+> -
+> -      port@4:
+> -        $ref: '#/$defs/CSI2-output-port'
+> -        description: CSI-2 Output 0
+> -
+> -      port@5:
+> -        $ref: '#/$defs/CSI2-output-port'
+> -        description: CSI-2 Output 1
+> -
+> -    required:
+> -      - port@0
+> -      - port@1
+> -      - port@2
+> -      - port@3
+> -      - port@4
+> -      - port@5
+> -
+>  required:
+>    - compatible
+>    - reg
+> @@ -204,9 +169,86 @@ $defs:
+>            - data-lanes
+>            - link-frequencies
+>  
+> +allOf:
+> +  - $ref: /schemas/i2c/i2c-atr.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - ti,ds90ub960-q1
+> +              - ti,ds90ub9702-q1
+> +    then:
+> +      properties:
+> +        ports:
+> +          properties:
+> +            port@0:
+> +              $ref: '#/$defs/FPDLink-input-port'
+> +              description: FPD-Link input 0
+> +
+> +            port@1:
+> +              $ref: '#/$defs/FPDLink-input-port'
+> +              description: FPD-Link input 1
+> +
+> +            port@2:
+> +              $ref: '#/$defs/FPDLink-input-port'
+> +              description: FPD-Link input 2
+> +
+> +            port@3:
+> +              $ref: '#/$defs/FPDLink-input-port'
+> +              description: FPD-Link input 3
+> +
+> +            port@4:
+> +              $ref: '#/$defs/CSI2-output-port'
+> +              description: CSI-2 Output 0
+> +
+> +            port@5:
+> +              $ref: '#/$defs/CSI2-output-port'
+> +              description: CSI-2 Output 1
+> +
+> +          required:
+> +            - port@0
+> +            - port@1
+> +            - port@2
+> +            - port@3
+> +            - port@4
+> +            - port@5
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: ti,ds90ub954-q1
+> +    then:
+> +      properties:
+> +        ports:
+> +          properties:
+> +            port@0:
+> +              $ref: '#/$defs/FPDLink-input-port'
+> +              description: FPD-Link input 0
+> +
+> +            port@1:
+> +              $ref: '#/$defs/FPDLink-input-port'
+> +              description: FPD-Link input 1
+> +
+> +            port@2:
+> +              $ref: '#/$defs/CSI2-output-port'
+> +              description: CSI-2 Output 0
 
-Add support for them.
+Wouldn't making this port@4 be more compatible?
 
-Signed-off-by: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
----
+> +
+> +          required:
+> +            - port@0
+> +            - port@1
+> +            - port@2
+> +
+> +        links:
+> +          properties:
+> +            link@2: false
+> +            link@3: false
+> +
+>  unevaluatedProperties: false
+>  
+>  examples:
+> +  # Example with ds90ub960 Deserializer
+>    - |
+>      #include <dt-bindings/gpio/gpio.h>
+>  
+> @@ -406,4 +448,190 @@ examples:
+>          };
+>        };
+>      };
+> +
+> +  # Example with ds90ub954 Deserializer
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
 
-V3:
- * no changes
+I don't think we really need a whole other example for something 
+that's a subset.
 
-V2:
- * remove notes
+Rob
 
- arch/arm64/boot/dts/renesas/r9a09g087.dtsi | 90 ++++++++++++++++++++++
- 1 file changed, 90 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g087.dtsi b/arch/arm64/boot/dts/renesas/r9a09g087.dtsi
-index 19475c72017f..7b1f2c1c9e85 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g087.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a09g087.dtsi
-@@ -376,6 +376,96 @@ i2c2: i2c@81008000 {
- 			status = "disabled";
- 		};
- 
-+		dmac0: dma-controller@800c0000 {
-+			compatible = "renesas,r9a09g087-dmac", "renesas,r9a09g077-dmac";
-+			reg = <0 0x800c0000 0 0x1000>;
-+			interrupts = <GIC_SPI 32 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 33 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 34 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 35 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 36 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 37 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 38 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 39 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 40 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 41 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 42 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 43 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 44 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 45 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 46 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 47 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "ch0", "ch1", "ch2", "ch3",
-+					  "ch4", "ch5", "ch6", "ch7",
-+					  "ch8", "ch9", "ch10", "ch11",
-+					  "ch12", "ch13", "ch14", "ch15";
-+			clocks = <&cpg CPG_CORE R9A09G087_CLK_PCLKH>;
-+			power-domains = <&cpg>;
-+			#dma-cells = <1>;
-+			dma-channels = <16>;
-+			renesas,icu = <&icu 0>;
-+		};
-+
-+		dmac1: dma-controller@800c1000 {
-+			compatible = "renesas,r9a09g087-dmac", "renesas,r9a09g077-dmac";
-+			reg = <0 0x800c1000 0 0x1000>;
-+			interrupts = <GIC_SPI 48 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 49 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 50 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 51 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 52 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 53 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 54 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 55 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 56 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 57 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 58 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 59 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 60 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 61 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 62 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 63 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "ch0", "ch1", "ch2", "ch3",
-+					  "ch4", "ch5", "ch6", "ch7",
-+					  "ch8", "ch9", "ch10", "ch11",
-+					  "ch12", "ch13", "ch14", "ch15";
-+			clocks = <&cpg CPG_CORE R9A09G087_CLK_PCLKH>;
-+			power-domains = <&cpg>;
-+			#dma-cells = <1>;
-+			dma-channels = <16>;
-+			renesas,icu = <&icu 1>;
-+		};
-+
-+		dmac2: dma-controller@800c2000 {
-+			compatible = "renesas,r9a09g087-dmac", "renesas,r9a09g077-dmac";
-+			reg = <0 0x800c2000 0 0x1000>;
-+			interrupts = <GIC_SPI 64 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 65 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 66 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 67 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 68 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 69 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 70 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 71 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 72 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 73 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 74 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 75 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 76 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 77 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 78 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 79 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "ch0", "ch1", "ch2", "ch3",
-+					  "ch4", "ch5", "ch6", "ch7",
-+					  "ch8", "ch9", "ch10", "ch11",
-+					  "ch12", "ch13", "ch14", "ch15";
-+			clocks = <&cpg CPG_CORE R9A09G087_CLK_PCLKH>;
-+			power-domains = <&cpg>;
-+			#dma-cells = <1>;
-+			dma-channels = <16>;
-+			renesas,icu = <&icu 2>;
-+		};
-+
- 		gmac0: ethernet@80100000 {
- 			compatible = "renesas,r9a09g087-gbeth", "renesas,r9a09g077-gbeth",
- 				     "snps,dwmac-5.20";
--- 
-2.52.0
 
