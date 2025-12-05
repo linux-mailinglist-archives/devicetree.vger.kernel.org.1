@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-244559-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244561-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5EE9CA6B28
-	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 09:25:57 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EEA0CA6F1B
+	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 10:37:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 37F91300C298
-	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 08:25:57 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id EE44E305AA00
+	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 08:27:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6458C338F52;
-	Fri,  5 Dec 2025 07:52:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61481340A7D;
+	Fri,  5 Dec 2025 07:56:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gU//m4xH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eqNDmLbc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 229E62F1FE9;
-	Fri,  5 Dec 2025 07:52:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32E39303A1B;
+	Fri,  5 Dec 2025 07:56:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764921164; cv=none; b=kEo3G9k4N7t6fgPhDYseCbeKyH0My5EcEY0LETz4zvUJo+DVPNsYFTdHVhT4wpM5eMyMTVn32h6jiS/Dap2K+T+98fgtTsLkPF4MLJ0BSRlKZIb/5cSlMcWsKFsoiqES5hf8hnRgUbaYXHzZA75X6xkHePW6X4giNa4BHg0D71M=
+	t=1764921392; cv=none; b=e8QypJ6lBp8bHlO1X6RgTRd4dYkPS9jDdmpYKga2OynkSokoeEX19U/xbkRRNg2ZfMssWqQYGb1edXe0YnW2d35FR7QD8YFiLq0aIiRJHO/U2X9O+aqIkKK4g1ltarnyJYv0L9v21QbI4wEdXVP6oehEk0xjuq2mjz8K0q+LITg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764921164; c=relaxed/simple;
-	bh=1cSB66IsKrmLtirARPADJZoLqLbJXBwBYItgNVKMUgs=;
+	s=arc-20240116; t=1764921392; c=relaxed/simple;
+	bh=9GBplQZ/57134UI/B19clZsAtbriogT/ZgPFurtrGcs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HKPGmepbK6q2Ez0PDu2EPHtvCAEbF+UuxjZr4nzYVLQ2mu54VFcXv04bnvDSE6X2NMJo1m7s2LRUux+7F3x/iqzUVR7V9njkDk1s5L23k7PUe+PcAGQ26jkwZPw4SXAw2xireMQsJNQNfdQRO0RZjwD/L59oNGtMcv7qj7C4ZWs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gU//m4xH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 850EEC4CEF1;
-	Fri,  5 Dec 2025 07:52:40 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=EmyhZsVndqOmhFcx4u/5g1njwsN8lLBj+GeyKwS7aS41R2fuaXx2y0ZRqBM62IgHmv5sQ38rI1Ykw4RfHZ6e1e2x4JvMPqVHOcLy1SIm700OvLCp0RALxt4yqhdjjYvAlShPebczHLSMqTkoSRpEo9ppncYPeVwMCsD/isQZXn4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eqNDmLbc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 467C3C4CEF1;
+	Fri,  5 Dec 2025 07:56:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764921162;
-	bh=1cSB66IsKrmLtirARPADJZoLqLbJXBwBYItgNVKMUgs=;
+	s=k20201202; t=1764921391;
+	bh=9GBplQZ/57134UI/B19clZsAtbriogT/ZgPFurtrGcs=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=gU//m4xHX1yPtqNgViTGYe4AyAupdVUeETYQbPzBzJhmcsfNvPPxI9E72ZxLBVqS6
-	 g0LCIZKzPj/XqaQsUzpsyWPKuqYeDdtViBD6hkxpzLCMxu9am1iE+7rR7EozQw+PbS
-	 HlNXpa956mSWzmwk3Xopw5cQ2E/+HiaKKojV5+gdS1wJDif82ygjgtwHw/BvEaEu79
-	 N5YJqHKFpkBb/M47PunbOly5G66ovdFAT2MjxXbNinXlLgiDRxzBJKYVN4DiEDNzUf
-	 vEYuRDVzTx6GIHTYBfT4zM8PPKFMTzhAfWHmw2YrdRqSo7Dyy28SXI4W03X86asHGV
-	 8LgQehfucRiwg==
-Message-ID: <2559bbc4-290b-456b-80d1-1b188d98b046@kernel.org>
-Date: Fri, 5 Dec 2025 08:52:39 +0100
+	b=eqNDmLbcNNG8NLYTAk0aTUViPkcRmxUAN5vA5ewvY9o7V28NIwmurWmR2mjbTAXam
+	 Dc58InG+/fdDnGaTOzxpi5vRnRO/bW0HpfUhy1xZhI3Es0XDBlr3lmCP8/iuOjuxb9
+	 AAwnUGGIlDMnPD+DiJMmk13XfLnnjbZ11W9LS0OvCr/3vRbfi6HfkHxuyHkSvOKnmS
+	 PLFck4xfMn6+YeBT+P/jBGXetAbdhgMgLKnMoy0sHN49ClG6Ut3DdEcphBAgSqAwPG
+	 Tzm+aCTc0dkFVmZ1qz90SNnlKUtEigvQH6hl4+JqGiu41oBnyQ4AsSNTzkdK5otMNF
+	 PdFa6Jkpo5USw==
+Message-ID: <6f19b980-5e8d-4674-809c-49321c54d834@kernel.org>
+Date: Fri, 5 Dec 2025 08:56:26 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,15 +48,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 2/2] regulator: max77675: Add MAX77675 regulator driver
-To: Joan-Na-adi <joan.na.devcode@gmail.com>,
- Liam Girdwood <lgirdwood@gmail.com>
-Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, Joan Na <joan.na@analog.com>
-References: <20251205045648.3725-1-joan.na@analog.com>
- <20251205045648.3725-3-joan.na@analog.com>
+Subject: Re: [PATCH v2 1/5] dt-bindings: arm: qcom: Document Kaanapali SoC and
+ its reference boards
+To: Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
+ trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org
+References: <20251204-knp-dts-v2-0-596d8398c6d3@oss.qualcomm.com>
+ <20251204-knp-dts-v2-1-596d8398c6d3@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -102,31 +105,19 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251205045648.3725-3-joan.na@analog.com>
+In-Reply-To: <20251204-knp-dts-v2-1-596d8398c6d3@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 05/12/2025 05:56, Joan-Na-adi wrote:
-> +
-> +	if (int_glbl & MAX77675_INT_EN_R_BIT)
-> +		dev_dbg(maxreg->dev, "nEN Rising Edge Interrupt occurred\n");
-> +
-> +	if (int_glbl & MAX77675_INT_EN_F_BIT)
-> +		dev_dbg(maxreg->dev, "nEN Falling Edge Interrupt occurred\n");
-> +
-> +	return 0;
-> +}
-> +
-> +static int max77675_regulator_probe(struct i2c_client *client)
-> +{
-> +	struct max77675_regulator *maxreg;
-> +	struct regulator_config config = {};
-> +	struct device_node *regulators_np __free(device_node) = NULL;
+On 05/12/2025 07:31, Jingyi Wang wrote:
+> Document the Kaanapali SoC binding and the boards which use it.
+> 
+> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+> ---
+>  Documentation/devicetree/bindings/arm/qcom.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
 
-This is an undesired syntax explicitly documented as one to avoid. You
-need here proper assignment, not NULL. Please don't use cleanup.h if you
-do not intend to follow it because it does not make the code simpler.
-
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
