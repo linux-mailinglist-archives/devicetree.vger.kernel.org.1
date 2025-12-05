@@ -1,84 +1,91 @@
-Return-Path: <devicetree+bounces-244586-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244587-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03EB1CA6CC5
-	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 10:04:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 29724CA6CC8
+	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 10:04:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A98323107761
-	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 09:04:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 038283119109
+	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 09:04:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBF063148C3;
-	Fri,  5 Dec 2025 09:04:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48305315D40;
+	Fri,  5 Dec 2025 09:04:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QIMB1onV"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="gmrugcFr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13A143148C7;
-	Fri,  5 Dec 2025 09:04:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CC3C314D2A;
+	Fri,  5 Dec 2025 09:04:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764925450; cv=none; b=lNuHw1wJ679oFLwXG+lEjRVWtadoGWRbnadhsW/wgYHTFh+LBYujjUj8l1NJCDYOpgCdOe6jwyY/ZI74hc0yO9wuuETgtAh1TClN+uK7cSFlMKy3AAOCLw4Ek3ldpWRip3iXzy1n/accMkP4Yuo78C9YN6ddc6cMC//huzzNHBA=
+	t=1764925465; cv=none; b=bz3HrBK4F8FnNkGiSoqlWsVtxViY2rAb5tnuVNIC+7C9A9w76MnJXwsRTwRAfCwddfkc6R8nXwk1X1kPf6eVQ91jxogxw5L4396xmkyJj+amGjzu2pWKBr9HkiRThtekbOxsMYQaDhfddQu6zG53lrhq6JGBby3gGyhPgR1AXN8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764925450; c=relaxed/simple;
-	bh=BxE0e+caw3Snb3Rg48meeXbs3obscY/tAU3AAvuIk6I=;
+	s=arc-20240116; t=1764925465; c=relaxed/simple;
+	bh=Qqq3+/PFRTXnW823ID0pM8I6DnBIiphNfjmnmXa5d6I=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VVG0jwm16Cr/X4WmboiQP4x1ItsJryvXEhbxtuItUikI0IV0bKOeJzMC+BmG+hSDNUK7vmpK04cgbMhkerz9KmIDqQqCkfYabNGqxOMaPmeYC5udMXiALwMEqV0tLLVxFB/fiKQpuohKbQRkAtWWjX15TuxmdqIhJbYN+WFRurQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QIMB1onV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF881C4CEF1;
-	Fri,  5 Dec 2025 09:04:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764925449;
-	bh=BxE0e+caw3Snb3Rg48meeXbs3obscY/tAU3AAvuIk6I=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QIMB1onVT6FJYzJrxtTgU+gSwTRoz6PSYiwUgh0JQjvXDFoS4u+moLhnpYdW8kgON
-	 Gomu+aPCpkhgCPVI8x0EiV77csrfM6b4TwBnmRdqoKQbhVdF8A3/JAuDgxfppTBmf3
-	 urU79klX3twc6jPskpt8nVIfVFcAueXOFQDpF69NXQYyTiGEyXHnSw5JDgNPuQGRA1
-	 lMA1wikmop7h+leZup4df3tJc422z4HXBLrT+5FgUSEescUCavmRe6NVX1qAAwtdQl
-	 Fb5PKbU+WkiTEJeJO+pZl44j4S6IuNQ7JhEbMpsw+7N5Q6XSIi5GBPdtG6Vs3odvqn
-	 t6XpEw+8T4FjQ==
-Date: Fri, 5 Dec 2025 10:04:06 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Marek Vasut <marek.vasut@mailbox.org>
-Cc: netdev@vger.kernel.org, "David S. Miller" <davem@davemloft.net>, 
-	Aleksander Jan Bajkowski <olek2@wp.pl>, Andrew Lunn <andrew@lunn.ch>, Conor Dooley <conor+dt@kernel.org>, 
-	Eric Dumazet <edumazet@google.com>, Florian Fainelli <f.fainelli@gmail.com>, 
-	Heiner Kallweit <hkallweit1@gmail.com>, Ivan Galkin <ivan.galkin@axis.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Michael Klein <michael@fossekall.de>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Russell King <linux@armlinux.org.uk>, Vladimir Oltean <vladimir.oltean@nxp.com>, 
-	devicetree@vger.kernel.org
-Subject: Re: [net-next,PATCH v2 2/3] dt-bindings: net: realtek,rtl82xx:
- Document realtek,ssc-enable property
-Message-ID: <20251205-sly-nano-barnacle-ca25fe@quoll>
-References: <20251203210857.113328-1-marek.vasut@mailbox.org>
- <20251203210857.113328-2-marek.vasut@mailbox.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=mK8sIpvaivcBkOvhH4txgPE+nlKrejlMiLqR83mxrZelYmfz56VATRbrfZThfKIf0t5+CubcOl1OOjjBKdUe0NMfwq5PDLn7BcEdz+YK/Tl5EjHUBruQFNwMkKjtAQvMR6RyUm/9NONT/ov3rTsTfQNBrisNbqcvrnmoujAWfVc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=gmrugcFr; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from francesco-nb (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+	by mail11.truemail.it (Postfix) with ESMTPA id 3AB291FACE;
+	Fri,  5 Dec 2025 10:04:12 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1764925452;
+	bh=OWVCttJ3N0wzxtgjbf0mm45mtDVeyRhL6tZGZtc79+8=; h=From:To:Subject;
+	b=gmrugcFr6zF9vLqczcZo25Vq5XjHo9gZ2tCRVk0g2oXJxDfZudHRt7NCum17i+Rit
+	 OuajVABdsLS86g6GBxtTZS0YSC9us2b9MDCJbSsYLPdfgDMcmsJbhxXAx88xy0Xfq3
+	 kt9aX+ysptYL0mWQx3Yx+ztZsNp7Wh+8WmhJXUthlI1eqUiCPedxj+J9OxGr0/S7ru
+	 GVBQvuLHwkFsXv9q3BcAvxvlZE91Gv2frgPW8lTjTTfcRtCt07yQMpz8cjNMCm10kS
+	 JzEs6KrklCzudeK/OtAuknZvbCaeYaPVngIlmb+i1g45wjr1wS0EQEtMqJicKjgGvH
+	 YCQxeShMu95/w==
+Date: Fri, 5 Dec 2025 10:04:08 +0100
+From: Francesco Dolcini <francesco@dolcini.it>
+To: "Yanan.Yang" <yanan.yang@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, qijian.guo@nxp.com,
+	justin.jiang@nxp.com, Lei Xu <lei.xu@nxp.com>,
+	Xiaofeng Wei <xiaofeng.wei@nxp.com>
+Subject: Re: [PATCH 2/2] arm64: dts: freescale: add NXP FRDM-IMX91S board
+ support
+Message-ID: <20251205090408.GA48399@francesco-nb>
+References: <20251205-imx91s-frdm-v1-0-afd6cd01c299@nxp.com>
+ <20251205-imx91s-frdm-v1-2-afd6cd01c299@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251203210857.113328-2-marek.vasut@mailbox.org>
+In-Reply-To: <20251205-imx91s-frdm-v1-2-afd6cd01c299@nxp.com>
 
-On Wed, Dec 03, 2025 at 10:08:05PM +0100, Marek Vasut wrote:
-> Document support for spread spectrum clocking (SSC) on RTL8211F(D)(I)-CG,
-> RTL8211FS(I)(-VS)-CG, RTL8211FG(I)(-VS)-CG PHYs. Introduce DT properties
-> 'realtek,clkout-ssc-enable', 'realtek,rxc-ssc-enable' and
-> 'realtek,sysclk-ssc-enable' which control CLKOUT, RXC and SYSCLK
-> SSC spread spectrum clocking enablement on these signals. These
-> clock are not exposed via the clock API, therefore assigned-clock-sscs
-> property does not apply.
+On Fri, Dec 05, 2025 at 05:03:59PM +0900, Yanan.Yang wrote:
+> Add DeviceTree support for the NXP FRDM-IMX91S development board based
+> on the i.MX91 SoC. FRDM-IMX91S is a cost-optimized variant of FRDM-IMX91
+> and differs in memory, storage, Ethernet, and PMIC configuration:
 > 
-> Signed-off-by: Marek Vasut <marek.vasut@mailbox.org>
+> - 512MB LPDDR4 (FRDM-IMX91 uses 1GB)
+> - 256MB FlexSPI-NAND (FRDM-IMX91 uses 8GB eMMC)
+> - Single GbE port (FRDM-IMX91 has dual GbE)
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+...
 
-Best regards,
-Krzysztof
+> +
+> +	aliases {
+> +		ethernet0 = &fec;
+> +		ethernet1 = &eqos;
+
+Single ethernet port, and 2 ethernet aliases. Please fix
+
+Francesco
 
 
