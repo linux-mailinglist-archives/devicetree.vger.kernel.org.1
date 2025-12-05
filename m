@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-244825-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244826-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCA77CA9144
-	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 20:31:46 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA748CA9147
+	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 20:32:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0F26C304B011
-	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 19:26:49 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 93302301C3C5
+	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 19:32:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AFEF261388;
-	Fri,  5 Dec 2025 19:26:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75389308F36;
+	Fri,  5 Dec 2025 19:32:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="g25bwwFH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gk0SMWPx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D8AD15E97;
-	Fri,  5 Dec 2025 19:26:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29235261388;
+	Fri,  5 Dec 2025 19:32:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764962807; cv=none; b=S6bbDKK0hYKdb/sQ3HLvTgquKsbRMtC2vNyEkvo7pHmef8Of8itW9Plb+GakeScTnn8aptH86u/W8x3gKOsob3ne48kurNl5Y5T7peHjB4L25RCKcQALiy0TTQ13fmzcG0ABL5wd11MUPd2nprERZ+oTlF5YLQuZnOz8SJcfYQE=
+	t=1764963171; cv=none; b=pXPOdTrOX3U1BXbRvP391y2Z4YG8o4rHr7gxfTVxnzBkPAcLgxmmfqEyViy1Ak7NARyZyvCmaaxJmQK3tFUh5UwglBpTiG9ACkj9naXgF9JmhRv31QJCFD/BoyMHN467uoylzRFrn+ybzSYmYYCtcaOOAzXqjOc8km2q8uSIYGE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764962807; c=relaxed/simple;
-	bh=IawpuH3pGSbbbYOSr3lCOXZQ+MybbjSUI01idbhIkx0=;
+	s=arc-20240116; t=1764963171; c=relaxed/simple;
+	bh=7WuHACCrLw7Ij9mjNNDsCgnUG5pnSjF69HKLgKQcvB4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dUJoqlXhUxev2Z1yNnc5jXAs52NPZ3+IG8u/ct+zkIZvjicQxLL3eUVywVuvHMTkVBTDEfKrQLZn6SWSQCr/4+E/zZdAxZODBTS1tA5Tu8XOnOxuMAC9LKeSTMRE0A20pQXhPEICs28XNoRabCddDdB1u9xPNRnbGTXq1fyqQe0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=g25bwwFH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10CF6C4CEF1;
-	Fri,  5 Dec 2025 19:26:42 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=PiPo2OhV2gyByNb8X7vvH79XVczhUdgd2rIUgsONn5q9ogMzC2f+fpkhAjdcI+ISmTrJD6FLSgIqpVTNWO9vNk/DUVOSqbg1VMvZ0PwNfYgxKNVLfcs31cgVYgLyn2Ahqse1rkwwn2RbRzW4T6WiI9HkCTOZqRYEnGpApCid1eI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gk0SMWPx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45914C4CEF1;
+	Fri,  5 Dec 2025 19:32:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764962806;
-	bh=IawpuH3pGSbbbYOSr3lCOXZQ+MybbjSUI01idbhIkx0=;
+	s=k20201202; t=1764963170;
+	bh=7WuHACCrLw7Ij9mjNNDsCgnUG5pnSjF69HKLgKQcvB4=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=g25bwwFHJWM9maXsbhvmqXnpj8+oVUxS7ZPRpaqHPC9dIv6A0V1UHv3g2wEEnMLky
-	 m7OihGCwDAIytalk9cDxif2KXsQosyunNvf3tGf/TalKCfL/khrK9ohXUibg2vv82r
-	 DY+mu4YxtW51BVjtYmTVdambsPiFBNw824yc3GQJOijnr6KaR6nJMKzdhJDJo6lIRB
-	 lQ8dUdrLQCdSBg+GZukNA8akPsLPWAJlhC/++Ej1PmQk5v0oANSBw2HMotWVeGc4dw
-	 XXKInEnqE4kH8DhMyeNm2z+bf9janoEiufNLr+nQHPOHX0IHDZYDdEhp00Zg3y2U/D
-	 GUdjY7e86FzpQ==
-Message-ID: <988b3fcb-44db-45ca-823b-5ab13206bd04@kernel.org>
-Date: Fri, 5 Dec 2025 20:26:41 +0100
+	b=Gk0SMWPxxBv2FrPBRU84wE7AZD0o4+fLvrhaoJgHozSBhDl3a7ZZAvU9uVo2ll6Zg
+	 I+v/7ZSqOmAzBlyIpRiLTsjvztfKvUeaC4UWnvrKk9IWjfJc40MsZj9+LQHQebDWPF
+	 sSpRgnXIC0/UBkff5oHzznigldGYOqThG1E7o1oa9jeIH+AtZHK7htHr9jwyY92VpR
+	 tSaUoLTf7BLZiffzZHG4Cjxbinl7e4hk50lIpx+Amp3yCc4BA1mmqkZ+pNvt8sDyUl
+	 WIgsEtRnWYHOk4PhkXXn70A0c48E67OX4QVUByXh9m3dI1GeQUfYISbM3ZlcjTT3Hb
+	 z2JmYnkslxiZw==
+Message-ID: <d45808b5-44c3-42c6-a54c-3a13606ee39d@kernel.org>
+Date: Fri, 5 Dec 2025 20:32:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,27 +48,41 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 1/2] dt-bindings: phy: google: Add Google Tensor G5 USB
- PHY
-To: Roy Luo <royluo@google.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
- <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Peter Griffin <peter.griffin@linaro.org>,
- =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
- Tudor Ambarus <tudor.ambarus@linaro.org>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Badhri Jagan Sridharan <badhri@google.com>,
- Doug Anderson <dianders@google.com>, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- Joy Chakraborty <joychakr@google.com>, Naveen Kumar <mnkumar@google.com>
-References: <20251205-phyb4-v8-0-c59ea80a4458@google.com>
- <20251205-phyb4-v8-1-c59ea80a4458@google.com>
- <18eeb1c5-d21b-4505-b6a4-472f6e191864@kernel.org>
- <CA+zupgwa+m8Pa=+8shORaOA1OO6zoo6zYEojFS2UDuP0doBq7A@mail.gmail.com>
- <f32e0810-56f9-417e-abf6-0cc7b361bd15@kernel.org>
- <CA+zupgyxQisYBnLj9_3DtcN3R1Ugfv+-p-wimFp-hnqkhrrgyA@mail.gmail.com>
+Subject: Re: [PATCH v25 00/28] riscv control-flow integrity for usermode
+To: debug@rivosinc.com, Thomas Gleixner <tglx@linutronix.de>,
+ Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+ Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
+ "H. Peter Anvin" <hpa@zytor.com>, Andrew Morton <akpm@linux-foundation.org>,
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>, Vlastimil Babka
+ <vbabka@suse.cz>, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+ Christian Brauner <brauner@kernel.org>, Peter Zijlstra
+ <peterz@infradead.org>, Oleg Nesterov <oleg@redhat.com>,
+ Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>,
+ Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
+ Jann Horn <jannh@google.com>, Conor Dooley <conor+dt@kernel.org>,
+ Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+ =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
+ Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
+ Trevor Gross <tmgross@umich.edu>, Benno Lossin <lossin@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org,
+ linux-mm@kvack.org, linux-riscv@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
+ linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org,
+ alistair.francis@wdc.com, richard.henderson@linaro.org, jim.shu@sifive.com,
+ andybnac@gmail.com, kito.cheng@sifive.com, charlie@rivosinc.com,
+ atishp@rivosinc.com, evan@rivosinc.com, cleger@rivosinc.com,
+ alexghiti@rivosinc.com, samitolvanen@google.com, broonie@kernel.org,
+ rick.p.edgecombe@intel.com, rust-for-linux@vger.kernel.org,
+ Zong Li <zong.li@sifive.com>, David Hildenbrand <david@redhat.com>,
+ Andreas Korb <andreas.korb@aisec.fraunhofer.de>,
+ Valentin Haudiquet <valentin.haudiquet@canonical.com>,
+ Paul Walmsley <pjw@kernel.org>, Charles Mirabile <cmirabil@redhat.com>
+References: <20251205-v5_user_cfi_series-v25-0-1a07c0127361@rivosinc.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -114,99 +128,21 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <CA+zupgyxQisYBnLj9_3DtcN3R1Ugfv+-p-wimFp-hnqkhrrgyA@mail.gmail.com>
+In-Reply-To: <20251205-v5_user_cfi_series-v25-0-1a07c0127361@rivosinc.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 05/12/2025 20:11, Roy Luo wrote:
-> On Fri, Dec 5, 2025 at 10:52 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>
->> On 05/12/2025 19:47, Roy Luo wrote:
->>> On Fri, Dec 5, 2025 at 9:13 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>>>
->>>> On 05/12/2025 04:54, Roy Luo wrote:
->>>>> Document the device tree bindings for the USB PHY interfaces integrated
->>>>> with the DWC3 controller on Google Tensor SoCs, starting with G5
->>>>> generation (Laguna). The USB PHY on Tensor G5 includes two integrated
->>>>> Synopsys PHY IPs: the eUSB 2.0 PHY IP and the USB 3.2/DisplayPort combo
->>>>> PHY IP.
->>>>>
->>>>> Due to a complete architectural overhaul in the Google Tensor G5, the
->>>>> existing Samsung/Exynos USB PHY binding for older generations of Google
->>>>> silicons such as gs101 are no longer compatible, necessitating this new
->>>>> device tree binding.
->>>>>
->>>>> Signed-off-by: Roy Luo <royluo@google.com>
->>>>
->>>> Why intentionally dropping the tag? How are you handling this patchset?
->>>> Rewrite every time from scratch?
->>>
->>> Hi Krzysztof,
->>>
->>> I dropped the tag because a new file is being modified in this version,
->>> Although it's just MAINTAINER file but I thought you might also want
->>> to take a look. I wasn't sure if modifying a new file qualifies as
->>> "substantial" so I erred on the side of caution. I should've called it
->>> out specifically in the change log. Sorry for the inconvenience.
->>
->> 1. so just squeeze that change into second patch and no need to ask for
->> re-review
-> 
-> That's a fair point. I will be more mindful of the review overhead
-> going forward.
-> 
->> 2. You did not read my complain fully, look:
->>
->>>
->>> Regards,
->>> Roy Luo
->>>
->>>>
->>>> <form letter>
->>>> This is a friendly reminder during the review process.
->>>>
->>>> It looks like you received a tag and forgot to add it.
->>>>
->>>> If you do not know the process, here is a short explanation:
->>>> Please add Acked-by/Reviewed-by/Tested-by tags when posting new versions
->>>> of patchset, under or above your Signed-off-by tag, unless patch changed
->>>> significantly (e.g. new properties added to the DT bindings). Tag is
->>>> "received", when provided in a message replied to you on the mailing
->>>> list. Tools like b4 can help here. However, there's no need to repost
->>>> patches *only* to add the tags. The upstream maintainer will do that for
->>>> tags received on the version they apply.
->>>>
->>>> Please read:
->>>> https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
->>>>
->>>> If a tag was not added on purpose, please state why and what changed.
->>
->> Where did you address this? You dropped the tag silently.
-> 
-> Why: a new file is being modified.
-> What changed: MAINTAINER
-> What's not changed:
-> Documentation/devicetree/bindings/phy/google,lga-usb-phy.yaml
+On 05/12/2025 19:41, Deepak Gupta via B4 Relay wrote:
+> v25: Removal of `riscv_nousercfi` from `cpufeature.c` and instead placing
+> it as extern in `usercfi.h` was leading to build error whene cfi config
+> is not selected. Placed `riscv_nousercfi` outside cfi config ifdef block
+> in `usercfi.h`
 
-I don't know if you still did not get the problem or you think that I
-really need that clear answer. So no, I do not need that clear answer, I
-understood with first reply, but you kept explaining instead of
-admitting that your changelog needs fixes. So I still do not believe you
-understood the problem here and you might repeat the mistake.
 
-I think you need someone in Google to coach in this process, because I
-even gave you the exact link describing the process and what was
-expected. I even pointed specific paragraph, so you don't need to read
-entire file!
-
-I assume you understood what should be done instead in this patchset.
-Anyway, my previous tag applies if there were no bindings changes, but I
-wasted too much time here to care anymore. The expectation from big
-companies is they do not ask community to coach on basic submission
-process. It's quite unfair to my spare, personal time after work,
-considering how much big company is making. Big company should invest in
-this coaching.
-
+Please stop. You sent this 28-patch-bomb TWICE to 50 or 60 addresses.
+It's actually merge window so it should wait in the first place, but for
+sure sending it multiple times does not help. Please observe the Linux
+development process.
 
 Best regards,
 Krzysztof
