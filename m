@@ -1,173 +1,138 @@
-Return-Path: <devicetree+bounces-244828-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244829-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C10C9CA93B4
-	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 21:15:46 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F8C4CA93F4
+	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 21:20:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EC9A530A6014
-	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 20:14:50 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 342C230DE5E8
+	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 20:19:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6E3E249EB;
-	Fri,  5 Dec 2025 20:14:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86F2B25CC40;
+	Fri,  5 Dec 2025 20:19:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="H5gk96Sh";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="MQKcYSod"
+	dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b="bxqGkefi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mail.alien8.de (mail.alien8.de [65.109.113.108])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F86848CFC
-	for <devicetree@vger.kernel.org>; Fri,  5 Dec 2025 20:14:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCDFEDDAB;
+	Fri,  5 Dec 2025 20:19:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.109.113.108
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764965689; cv=none; b=QB8S5ooxvZ8g+z5JfwSibew/P1k667lGk2LX9AXNxduaFbcn56wmARMufFyRCIPspUcK0ERmi61fgj+DzdJuzoswNXDPtcrdKDpC0s3+F0kQsg3Sdxca9sWAC7D0gUpKTmmLNXNvPbdYBaUQ/5Ehs0yYuLihUj+IfDw45mwfxgs=
+	t=1764965957; cv=none; b=CWOyrqezopashJQJx5gAkbD0rHSa6sWF995MeWJtxBMHU9yHy8EmMGh/ty8ffX1WRcG4OJg+g+O2syStP8ctENxkWtFHzvpvDBO+31bzklBomF+/SwVhWgGLDRJi3IS0irf5IENfOpzjl3M1lNUD/HKNjEOVcTP8YKlR4pcqiNY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764965689; c=relaxed/simple;
-	bh=ep2f5RoGRxlO8M+rfkBhHzh9iGU2chO6SQ7Ua1mgXv0=;
+	s=arc-20240116; t=1764965957; c=relaxed/simple;
+	bh=EkPLPYCr/PB32DrsOWZdyhfi1YrR/svWL/n/QcZZ1TU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Er/G1LUeQXY68fvVwWfyOOYW+p4Tli1bJBAz1u0dgnvJGZsf15OPDB48Mnf7pvc8RWQY2K6LzmvtihVlbXwYGYVHMCirS/DAWBUCQtaclk9iC1G1Gmgl0doSlP0i8+nfFPCYXG/CqWmrj3fVl0/6LbaaOEMWi35/nZ96mhEQj9Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=H5gk96Sh; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=MQKcYSod; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5B5FBJDQ4177145
-	for <devicetree@vger.kernel.org>; Fri, 5 Dec 2025 20:14:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=Q3EvGHgRlbS5shVZ0VVN2NQJ
-	T7zGIo2BEsdcpNjZsfA=; b=H5gk96Sho6QY26Gl1RPKz7oAxb3ks/PfPdSAgS1M
-	QAleZS9lvw45AdkuUuk/nh0i6w9DwG10fovjO6MFKw23SVhSTTTE8XjdbjSjQszk
-	dheGJUTL+OeejhEjDGAhHuv9nXclBjVbx9DWJS/3WCJ3QgK0OqxX3CMC2VKSVv+1
-	jIiyoVXCdOBc5nLmCR7W/sBT+NsnL8RCbiDKth5+R6T76Tt6yXVkJqAjy4vSy3EP
-	lFs179lWnw12EtDYWFCxC/TWtq/exuD9rRRacORDxPtLbfSRtzz5zRlRvQa3eZZ2
-	gGOxVa+y6ouLsolTsN6mBPd1dwATSVZX+BEu5ZrfyDwPqw==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4auwm59kf0-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 05 Dec 2025 20:14:47 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-8b2657cfcdaso330176985a.3
-        for <devicetree@vger.kernel.org>; Fri, 05 Dec 2025 12:14:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1764965686; x=1765570486; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Q3EvGHgRlbS5shVZ0VVN2NQJT7zGIo2BEsdcpNjZsfA=;
-        b=MQKcYSodrzIZshDdrPi1/8ATVQz3r6NwaIjQ4asZU6jb+Ms+zDVXP1rmSUvfmYtrT8
-         JEeSUlxS9qw73RQDsdyh0ln7wmwh6l6dwJX6fuPJtz1AIlC3c/FhNMHnBVMm0VztuZBe
-         BmjV1yJdMtrX5XYOsNH/0bND4olOSJ/7p5FtbCTF0z19vRWalhSSlFWqf9yotQzmKqdI
-         tfBeCmIETp7Gnz7EIqVGXilUkiuZLd2MvkmqKhkrKLEG1OB9+blNeX3s1OypHw/6jO+s
-         cRf0ieU+m+LTxWzFWrQ71FM2RDkZQLhiVRAJmCxRWA/638RDmAt3ec0xOxpv6ph8eC6G
-         gDqQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764965686; x=1765570486;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Q3EvGHgRlbS5shVZ0VVN2NQJT7zGIo2BEsdcpNjZsfA=;
-        b=uOSK8wcRZLe14YpZR2Yt3Bod5PPSu5LHgjjVcY3K2v7WurGs9K7SIDae/bOMZUiOl4
-         mXMOrbXq3/D5WMFViyPjsnj+RA2nTEnUb7QoCcpKwtnpqKXStYADiQrTKYe3/OPV3HyH
-         OC9CFRDlakOWdENRW8VKSbZht9rf+nzciIJd9Gqb59eTdloQFiGOlHqLaZClz9JcMV2m
-         zCbsLFYWud9+QH6G3qVRFjNkF6O0N7BEdH/475/c60XkP/Ic8TynFXjSe3m9jdqs0Juc
-         xsPYhH9n+GMLwsCyD/5an3bbV5utsoJe9gFUDJhcwhZr/uoCNlLJy+fh67RVKQ0BcN4C
-         SDPQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW7Zlm7RYB1g08jiuzI6eOKP7kjnj2RTKryakdVBh1gaiX3cE0pf6VLt4vWxo2Iv+DLyVu5MyHV1j/V@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy+y2z/qrWv1tTs9Ed5il3m0EjQApj2tIKLu26ccT0LefYPn5/V
-	y47VBTu1AHiEZjvcG4JlI0TvqGCjLPD9pAJ5bAsqNmCjGzMSfPKNZVDVb+YxUPXH+i3Vg4PyVc4
-	lt/OnXjH8vhu1izKIrgF78MT1cZYbEMAhUx2OciMGSXXfDTbuDVeImQeDSJbSqJ1b
-X-Gm-Gg: ASbGncuSpgBSqlJ4EvCno0uzz424hOmbbu2tn3QqLte0EpEWCTEWOyJPEZfY1/ScF6K
-	7aQR2u5HXBepaXsPfozg4zS1jofH7U7X2ZDK1UsbgJnJwayKq5e5ElwTTy5AdirzWmKFxtc40PU
-	oeNVFj5mPpoOAMtcj8oHYuQFNwVqDnYEu0RNo+VPtmwriq4IeB9SrAKQfSpQvVigx+yUzJOq/Fd
-	Txbc5VREKS0ZtCsYf5KDInbBxLDBbd2bShg0ce9Zuxe+vqk0ptaEIdEvST9udpp1s4jVWGkoNly
-	cbimsXB596urTh52fAi2jINIcvcqWxfMGHY3xR8UHvrmjdGUT9JqDgu+RKZxaazSSlVjo07NmOp
-	yCSh+Dr9isnzbEtywYxwm1AM6EfVd6HY8cjNntXF+H8RJxX/yrxKPyMINHOFtnF8H5qudERLskY
-	TRimPllerWTjHg/GXaoO118uI=
-X-Received: by 2002:a05:620a:1917:b0:8b2:e179:febd with SMTP id af79cd13be357-8b6a2331561mr50401485a.10.1764965686260;
-        Fri, 05 Dec 2025 12:14:46 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGEGqQ3m6FnpqaR5Hve3u+4mkL2wdR32OB01TZ2bFeJ424hCezkIZXj4dF9QZqciSP1ZXEItw==
-X-Received: by 2002:a05:620a:1917:b0:8b2:e179:febd with SMTP id af79cd13be357-8b6a2331561mr50397685a.10.1764965685765;
-        Fri, 05 Dec 2025 12:14:45 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-597d7b1a416sm1815344e87.17.2025.12.05.12.14.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Dec 2025 12:14:44 -0800 (PST)
-Date: Fri, 5 Dec 2025 22:14:43 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Abel Vesa <abel.vesa@oss.qualcomm.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Dmitry Baryshkov <lumag@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Abel Vesa <abel.vesa@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH v5 2/4] phy: qcom: edp: Fix the DP_PHY_AUX_CFG registers
- count
-Message-ID: <xvkh657hkoztrvyjrepmq3bvhmjfw6evwl27vski3547mgbnrq@wzok7ld4wmh6>
-References: <20251205-phy-qcom-edp-add-glymur-support-v5-0-201773966f1f@oss.qualcomm.com>
- <20251205-phy-qcom-edp-add-glymur-support-v5-2-201773966f1f@oss.qualcomm.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Q8woaSsn//jDrv1dLL12R2XZTSHbhR5v3d+i49xHLF4K6IoI31K28jhlBv2I/9WOAxjIWUXJejMBQWUXIqCEHf8kP6mJo1QPF9F8/w89llQO/ksK9GgNaF3AQaPYjCUpVxa0j+a7/I2xmiYr5h7epygV7pI9CD820aq3KoKLgSk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de; spf=pass smtp.mailfrom=alien8.de; dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b=bxqGkefi; arc=none smtp.client-ip=65.109.113.108
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alien8.de
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTP id 67E3C40E015B;
+	Fri,  5 Dec 2025 20:19:06 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at mail.alien8.de
+Received: from mail.alien8.de ([127.0.0.1])
+	by localhost (mail.alien8.de [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id 1E4TMqj0voQt; Fri,  5 Dec 2025 20:19:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
+	t=1764965939; bh=+k+j5zpiOXPUaOMclkmVjKztohgymIQPYnO7V/a+C/w=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=bxqGkefiEe2JFBIhARr9tXH5BeezbVW/58uxKq/Tfdv1Y3tcJ64dJ1cdY5nzgOcDx
+	 Me/EwWk+UXXs5J5ilfhEsv4wRvMy6BoVgrjCQn7zbTZT2qYHO7fKRxALp2n6Qt5htI
+	 gTAQ7c8xibH7fPZ24PWS1/mprjgWrwEhVK5CwZ82QcZ5336mD6SqPK/onz+yTMAXLP
+	 Uo4I7c8WqByXwRacksIdRkqnh8YO6p8CMsqM/PCHezHIYa9d4lP93ibGWI3ZNiVxAM
+	 mPb8gsmuEss401Wbz/xAbQNSUOuwu1r41oOvGUaV5kZBIn4MHLDAY7CJYqZBL9W3ap
+	 laFZ7I+Zcr/T9Q/3ukCSfpG9cZXEK5vOti5wbd4vPFVuUFGTZ5MyID5VShadi3zIRl
+	 xGQjT6zxjvwEqh0co2EFJhK3Wd2fCAbzZ0qQWgj1uBN8lkhIN9EAp7ruVUbMpryNy7
+	 Jki+8RlqBEddLzRCQhp0Rdzku+HsxukwOUwD/gyU69z3FlEw5ppsXfaJyz+G7RLJzh
+	 93hDC8gTmjSc4rYF7NhWhumcNWaQKLgqxtOxNJQCwIdPBsVUgVBY9zZpFZ/dqOCZNB
+	 Er3+sydfYNzFkSoqjM9orlD665WhWzJ3uGh+eWKn7Ik+dRECEpFAfI3O1YBJgdo385
+	 7MzW5WnEhsH8ZS8oz2Pgz8H4=
+Received: from zn.tnic (pd953023b.dip0.t-ipconnect.de [217.83.2.59])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest SHA256)
+	(No client certificate requested)
+	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with UTF8SMTPSA id D6DE840E0173;
+	Fri,  5 Dec 2025 20:17:54 +0000 (UTC)
+Date: Fri, 5 Dec 2025 21:17:47 +0100
+From: Borislav Petkov <bp@alien8.de>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: debug@rivosinc.com, Thomas Gleixner <tglx@linutronix.de>,
+	Ingo Molnar <mingo@redhat.com>,
+	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
+	"H. Peter Anvin" <hpa@zytor.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
+	Vlastimil Babka <vbabka@suse.cz>,
+	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Christian Brauner <brauner@kernel.org>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Oleg Nesterov <oleg@redhat.com>,
+	Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
+	Jann Horn <jannh@google.com>, Conor Dooley <conor+dt@kernel.org>,
+	Miguel Ojeda <ojeda@kernel.org>,
+	Alex Gaynor <alex.gaynor@gmail.com>,
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+	=?utf-8?B?QmrDtnJu?= Roy Baron <bjorn3_gh@protonmail.com>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+	Benno Lossin <lossin@kernel.org>, linux-kernel@vger.kernel.org,
+	linux-fsdevel@vger.kernel.org, linux-mm@kvack.org,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-arch@vger.kernel.org, linux-doc@vger.kernel.org,
+	linux-kselftest@vger.kernel.org, alistair.francis@wdc.com,
+	richard.henderson@linaro.org, jim.shu@sifive.com,
+	andybnac@gmail.com, kito.cheng@sifive.com, charlie@rivosinc.com,
+	atishp@rivosinc.com, evan@rivosinc.com, cleger@rivosinc.com,
+	alexghiti@rivosinc.com, samitolvanen@google.com, broonie@kernel.org,
+	rick.p.edgecombe@intel.com, rust-for-linux@vger.kernel.org,
+	Zong Li <zong.li@sifive.com>, David Hildenbrand <david@redhat.com>,
+	Andreas Korb <andreas.korb@aisec.fraunhofer.de>,
+	Valentin Haudiquet <valentin.haudiquet@canonical.com>,
+	Paul Walmsley <pjw@kernel.org>,
+	Charles Mirabile <cmirabil@redhat.com>
+Subject: Re: [PATCH v25 00/28] riscv control-flow integrity for usermode
+Message-ID: <20251205201747.GAaTM963Zy4gr820KV@fat_crate.local>
+References: <20251205-v5_user_cfi_series-v25-0-1a07c0127361@rivosinc.com>
+ <d45808b5-44c3-42c6-a54c-3a13606ee39d@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251205-phy-qcom-edp-add-glymur-support-v5-2-201773966f1f@oss.qualcomm.com>
-X-Proofpoint-GUID: 69ijDT7XxNRO7AGZqXfei362ogGuiziN
-X-Proofpoint-ORIG-GUID: 69ijDT7XxNRO7AGZqXfei362ogGuiziN
-X-Authority-Analysis: v=2.4 cv=XeOEDY55 c=1 sm=1 tr=0 ts=69333d37 cx=c_pps
- a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8 a=c4sUNlcVcd6a9V-9oyAA:9 a=CjuIK1q_8ugA:10
- a=bTQJ7kPSJx9SKPbeHEYW:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjA1MDE1MCBTYWx0ZWRfX7kmBLTkIHxPF
- PUvb0j62FPOgtq0yPTUkVCaqNWzOFj3cEjK0bRD05Fqyrh78zXwo6hez6YSUkcytrJy7yiQaCRm
- E/QL+ptEDIzF8eQurlqEm2XX6KnXtv1hDCmTa2PIvXxldulvCcj8IQgRpNi3TQSOFpxYI81mI/k
- MLp9NLUZppYUNNiMcxpFm2VhqvtnPGc0rLs4nJ1pbjIXxyMvTtBVkZAxL/0IsZfDErYouNJlvf7
- rFQjYaIxaolfP/qvmWjboRrULVypalVvfLCa/tUonVWU1zRl4Qkx/oLEocrMbXfPJQjFnFLBDGZ
- Z2LuU1j7P0AB79AXEmyPcwlugEAoTM0B0vajefkrx83OIFSlaeYdru/MSRkMHonEwq//Cn0+mld
- SLaZoRyHs7hGnxWpTnhOsPhxw72mnQ==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-05_07,2025-12-04_04,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 lowpriorityscore=0 adultscore=0 suspectscore=0
- priorityscore=1501 malwarescore=0 bulkscore=0 clxscore=1015 spamscore=0
- impostorscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
- definitions=main-2512050150
+In-Reply-To: <d45808b5-44c3-42c6-a54c-3a13606ee39d@kernel.org>
 
-On Fri, Dec 05, 2025 at 04:23:21PM +0200, Abel Vesa wrote:
-> From: Abel Vesa <abel.vesa@linaro.org>
+On Fri, Dec 05, 2025 at 08:32:32PM +0100, Krzysztof Kozlowski wrote:
+> On 05/12/2025 19:41, Deepak Gupta via B4 Relay wrote:
+> > v25: Removal of `riscv_nousercfi` from `cpufeature.c` and instead placing
+> > it as extern in `usercfi.h` was leading to build error whene cfi config
+> > is not selected. Placed `riscv_nousercfi` outside cfi config ifdef block
+> > in `usercfi.h`
 > 
-> On all platforms supported by this driver, there are 13 DP_PHY_AUX_CFGx
-> registers. This hasn't been an issue so far on currently supported
-> platforms, because the init sequence never spanned beyond DP_PHY_AUX_CFG9.
 > 
-> However, on the new upcoming Glymur platform, these are updated along
-> with the rest of the init sequence.
-> 
-> So update the size of the array holding the config to 13.
-> 
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
-> ---
->  drivers/phy/qualcomm/phy-qcom-edp.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
+> Please stop. You sent this 28-patch-bomb TWICE to 50 or 60 addresses.
+> It's actually merge window so it should wait in the first place, but for
+> sure sending it multiple times does not help. Please observe the Linux
+> development process.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-
+You can just delete them. I don't know about you but riscv shadow stack is not
+something I even pretend to know so it all goes to /dev/null
 
 -- 
-With best wishes
-Dmitry
+Regards/Gruss,
+    Boris.
+
+https://people.kernel.org/tglx/notes-about-netiquette
 
