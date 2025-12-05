@@ -1,63 +1,57 @@
-Return-Path: <devicetree+bounces-244583-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244584-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E613FCA6C85
-	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 09:57:20 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC7CECA7721
+	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 12:42:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1232231022F2
-	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 08:57:15 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id AD396333ADFA
+	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 09:02:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD2C430E0D6;
-	Fri,  5 Dec 2025 08:57:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E0292F361A;
+	Fri,  5 Dec 2025 09:02:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NDxUs0et"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jeHTx1nf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BF6B28695;
-	Fri,  5 Dec 2025 08:57:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28A8221FF2E;
+	Fri,  5 Dec 2025 09:01:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764925030; cv=none; b=XDQ9V0lBk4IWR3xM6wqQiGHf7ZUlpMbhsyT9VXU+k/jFKEVMIOWYiw72JOHqJ+Uccl5zQqn7SlwXrUR8UlPZY6mZzGPoXP42XrK6HDBcu2SRyUmTPynDK2c71D+HZR6ONvjsTcOfL1DqUewH3NoIOM+hjCxJrfokBP+DVCnzWN4=
+	t=1764925322; cv=none; b=eYVNVwm8TLCKXVpCWZpxyISQiJ3LblmJNhSAn0GESP7Dwsy8VAaTWPdk4t1XGt+g9igE/cuDQHJKRybgjTioM/12uNTLoyKTlfdS2a1IDxuNwF07ZuiA0LZnFTWBO+pg5ipfhIx8mpyOfbYLJANcB5xOBTKvJjsjyA2pVHMe0eY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764925030; c=relaxed/simple;
-	bh=lpKjmPXsQUzMI0XuJPHsR3L6oiyQDFc+I3FpnEdPT1w=;
+	s=arc-20240116; t=1764925322; c=relaxed/simple;
+	bh=1tNBZQtY3oCs5M0ltVoHhKs1cSn4IkbJYPNY1Q0/F2g=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pkUZPsMLEuS4lBCvsqEgv85bPS18Qk5Y0csnlDoQ4Qgq/h5jpF8sMfntR4OPZaYZqaxXQ8sgOfV/nOuDZs/xrqi22umTI8jZPwQ+EeQHjwolqn6V+xxZZ4b7qOqNL7w6ys/K/VYsmvrenaWVLvObPa2ZYWH/a+/EMGd2qBJI8Jw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NDxUs0et; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14FADC4CEF1;
-	Fri,  5 Dec 2025 08:57:08 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=JhDUbq/s/KrjW6hisxfn/9FT6sbdXLmpxw3jsXiiYQNieCiiCYLH4rSIqEXrNPAeOJ7QnKU0ZFyyDECAuDhgTNJU5K6xtdNc79NnHnX1PWnVssH4aY8F6g32sG4ZpN8evLxIKlaagJ/bRGTNmtWpZUcbggIeYpxp+n4dJGmokVE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jeHTx1nf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 181ABC113D0;
+	Fri,  5 Dec 2025 09:01:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764925028;
-	bh=lpKjmPXsQUzMI0XuJPHsR3L6oiyQDFc+I3FpnEdPT1w=;
+	s=k20201202; t=1764925318;
+	bh=1tNBZQtY3oCs5M0ltVoHhKs1cSn4IkbJYPNY1Q0/F2g=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NDxUs0etU8IbVRvDA6aOScBeSCgpwgo4oT6E6DP6lXnCBzOnffiA8MeDNO43RzgQr
-	 sTJRawv80B2CsPkRXMi9/LelqzOkaS9PDauJ8vyX9iGWvDsL+iGo2swCxp7z+fUWhM
-	 JsdMCNbsuxxvFc45rtPknRU/YUnCCsl+pPQsj7euTkm2V6FeVx6S/u04s/qheTIidD
-	 6eYoxlZ+6DckRflmFoN+uCHVmU84uccZgaGWBQ9XzXLPzqURqAFmmrsyXpBEZJZLXG
-	 7TUU9QiLNT7zNA55gRQcHLcRJz9siyCoW/J78P77UfwSJzvITuKHKVD1HnFfuIsVNq
-	 j2TgtSpairqDw==
-Date: Fri, 5 Dec 2025 09:57:06 +0100
+	b=jeHTx1nfGok3GKapofmisslKWGkE4kDJzlJ0mq9SxLuktKDWaEDCG55iGLELlQ1wQ
+	 dIMb6XK1k8D207aPXt5gIZ29CEi1/RfrR3GE9v14U0Vf38j5D1Z0gEzL5Yj17b3zrk
+	 H8FmaM9gmvOwMXrFxPwxL/hwGe6kyT0G2hQmKZnlSg69QC/WSQIhqbSmHm6/AnanQr
+	 cLcm5iOf46dWdLMydLbaFIFYZWGy5eVIDjYHSIEYXwRJYIDt3IQc6S83L4uz++5kV+
+	 yixtbdsm+bQ2z2651RZcOanIZpXIWjUJywRFVP2yA19B4gNpsAE7yb4JNNAW6HPpkJ
+	 dSAJ6o1KB42og==
+Date: Fri, 5 Dec 2025 10:01:56 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
-Cc: jic23@kernel.org, robh@kernel.org, krzysztof.kozlowski@linaro.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, agross@kernel.org, andersson@kernel.org, 
-	lumag@kernel.org, dmitry.baryshkov@oss.qualcomm.com, konradybcio@kernel.org, 
-	daniel.lezcano@linaro.org, sboyd@kernel.org, amitk@kernel.org, thara.gopinath@gmail.com, 
-	lee@kernel.org, rafael@kernel.org, subbaraman.narayanamurthy@oss.qualcomm.com, 
-	david.collins@oss.qualcomm.com, anjelique.melendez@oss.qualcomm.com, 
-	kamal.wadhwa@oss.qualcomm.com, rui.zhang@intel.com, lukasz.luba@arm.com, 
-	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, linux-iio@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, cros-qcom-dts-watchers@chromium.org, 
-	quic_kotarake@quicinc.com, neil.armstrong@linaro.org, stephan.gerhold@linaro.org, 
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Subject: Re: [PATCH V8 2/4] dt-bindings: iio: adc: Add support for QCOM PMIC5
- Gen3 ADC
-Message-ID: <20251205-savvy-festive-lyrebird-96bfa0@quoll>
-References: <20251127134036.209905-1-jishnu.prakash@oss.qualcomm.com>
- <20251127134036.209905-3-jishnu.prakash@oss.qualcomm.com>
+To: Maud Spierings <maudspierings@gocontroll.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: arm: fsl: moduline-display: fix
+ compatible
+Message-ID: <20251205-futuristic-hysterical-salamander-dce94c@quoll>
+References: <20251201-disp_fix-v2-0-9b03026311b6@gocontroll.com>
+ <20251201-disp_fix-v2-1-9b03026311b6@gocontroll.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,24 +60,24 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251127134036.209905-3-jishnu.prakash@oss.qualcomm.com>
+In-Reply-To: <20251201-disp_fix-v2-1-9b03026311b6@gocontroll.com>
 
-On Thu, Nov 27, 2025 at 07:10:34PM +0530, Jishnu Prakash wrote:
-> For the PMIC5-Gen3 type PMICs, ADC peripheral is present in HW for the
-> following PMICs: PMK8550, PM8550, PM8550B and PM8550VX PMICs.
+On Mon, Dec 01, 2025 at 12:56:50PM +0100, Maud Spierings wrote:
+> The compatibles should include the SoM compatible, this board is based
+> on the Ka-Ro TX8P-ML81 SoM, so add it to allow using shared code in the
+> bootloader which uses upstream Linux devicetrees as a base.
 > 
-> It is similar to PMIC5-Gen2, with SW communication to ADCs on all PMICs
-> going through PBS(Programmable Boot Sequence) firmware through a single
-> register interface. This interface is implemented on SDAM (Shared
-> Direct Access Memory) peripherals on the master PMIC PMK8550 rather
-> than a dedicated ADC peripheral.
+> Also add the hardware revision to the board compatible to handle
+> revision specific quirks in the bootloader/userspace.
 > 
-> Add documentation for PMIC5 Gen3 ADC and update SPMI PMIC bindings to
-> allow ADC5 Gen3 as adc@ subnode.
+> This is a breaking change, but it is early enough that it can be
+> corrected without causing any issues.
 > 
-> Acked-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> Signed-off-by: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
+> Fixes: 24e67d28ef95 ("dt-bindings: arm: fsl: Add GOcontroll Moduline Display")
+> Signed-off-by: Maud Spierings <maudspierings@gocontroll.com>
 > ---
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 9 ++++++++-
+>  1 file changed, 8 insertions(+), 1 deletion(-)
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
