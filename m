@@ -1,264 +1,129 @@
-Return-Path: <devicetree+bounces-244562-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244563-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43D7ECA6F2D
-	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 10:37:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C9C6BCA6F3C
+	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 10:39:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 4B34B32E94D2
-	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 08:28:03 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id A7B4838A6E0E
+	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 08:28:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 802D633DEFC;
-	Fri,  5 Dec 2025 07:57:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4F09342521;
+	Fri,  5 Dec 2025 07:58:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="mvDlx05F"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W4B1+xMg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 072F933D6D7
-	for <devicetree@vger.kernel.org>; Fri,  5 Dec 2025 07:57:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6E83339B4E;
+	Fri,  5 Dec 2025 07:58:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764921463; cv=none; b=Q/bh/6A4Buz1Pepn1eIwwZw8MKKXrAlq6xWjxalzkHHuHMYaN6CFGydGmb8vm8cm7Duo64J++Eq+PIBz94udSuguwtAxLLTDNmJG2fNMv7dnCFfi40cPMFLRjlHdqueYcN4zC0nedPql+HB5QO1Tt5u1bl+0EoyF475iLNo5evk=
+	t=1764921523; cv=none; b=KqDqnhJkrzUZulvbQML5v86HZP4yi80anxAWeVNtu3wkApWrEOUYTjpDnD4IAgMnXZD50q8aPrUffvb4RiI+/D1C9eDTUgTSjs4b/CSZ+DGlh0juKC/6yRD2JOaxPlTGEZZVMd6IyRYMEos6DKDyNk634z84BkWChiNQrKoUY7M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764921463; c=relaxed/simple;
-	bh=8Bbq3h8qXvgwEpBrqOdkCOFZCmMH/Uut3VH18UrXQ10=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=D5RNV8pI0BUQY3hIYZtH+reM2Jzf3wOXqVeNEp0Fv9LVQMtnJjPSGF1D4QiTxOQOEKWUFo0mehGoHAqNAaHQHDCXIzDG87ikpoCfffJzh+mtJpg/3j1aUUqd9eek/lpxfLt3/nWEqHa2SSw+BLCKNoLD3W2T/2NiTha4+XM6pdE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=mvDlx05F; arc=none smtp.client-ip=209.85.167.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-5957d7e0bf3so2743802e87.0
-        for <devicetree@vger.kernel.org>; Thu, 04 Dec 2025 23:57:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1764921443; x=1765526243; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SLD+VL6KxaJNpLbOdAPh6PBCjAs3r0xZd7BY2IsaVLQ=;
-        b=mvDlx05FNlfMk3c/yxF68MINU3ImxChsVhwWq+Z/UwP0R7u5VbyDDLadDbREJUEp+b
-         Hvf5XCExq4GcVP4htXOIbw/r+3QbyZKIHa4Ec69QhxFIo3OF+z3ADeXOEy6ENa/Ajcbg
-         WMtsq1QPXTVag54RTDbTkoVWY+7DEeCg+q6wQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764921443; x=1765526243;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=SLD+VL6KxaJNpLbOdAPh6PBCjAs3r0xZd7BY2IsaVLQ=;
-        b=XWApm6prgJNK6nhjZ0Vd5PkrWS7qFVWp056oq7+hlOu189ulAG6p3IPLrInH2ImcN/
-         C1plNZlbHjzMEqXsNeAYCgKHjGarTH+AOs1g6aHI9r7LVvNjbX6CuSwcBoUKmpaMAIaD
-         Z8ucRZU6m1Cgdd1JKyfntAOie7oi/8y+HY6PXuIjB6p4EhKybhRXzgnrh0nAbrNcz8Om
-         D9gu/Qo/hJy8YZurbA8GpHTXAIaz51+FW3TJBS1GuynFzK22Zf4GUKmGfGqovJShBVnG
-         MTi7JA0jrKD513gXoW4a/cxj8s7gM6hNWWPgMif8mtlzY7Pz1/Q08z3dP4bkoAa1i8nF
-         Rnzg==
-X-Forwarded-Encrypted: i=1; AJvYcCXKXLIZ3bjj62qnJpR4h4cweVwP7ZOjJsxrEqxwdGXmGtoRXlnGvwpokLf+6o3lOFukalePjejH2sI7@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxbnphwm/fcN7nlM03MfPzWzRfzhCkVCREtOmM7fG3uJuYGDKj8
-	XPFfUU0zJdwNgmK1sEasjKNNwPGiszdgypI3c/+8CGgnoEkC1QOgXm188D/IcX8T33sWu68VHSN
-	NixbIxCb1h7zYbQdxSk5UrsPzOUy0be8Ao9lp0FhQi8TZrJI9hME=
-X-Gm-Gg: ASbGncudtNC+b+oBZgcZ1TjTghUTnhnauYxtClrqboyewMSbbttlFtpYSiY5UUupBb0
-	btjAYsjkb4C5h6ChZeDWmRm1l1ENGYWchkuVGx5/E7B+crRgtluNFCR5zDk9diuP51ugGjaOmt2
-	GaCv0N6F5kEieAhaugtitGwmgX/wNMwHifnOga1dIrTRfhJupz/NBovNPVuTTpzNABtH5RQcQxX
-	7kMk+tKWdpO3lI9aGpPz0KbcOioFv6E6OLGW8SNEbFx8yEOoqwcAnw0ioTc+lOtR6Pf2322jmdH
-	MKqkqnlwru3TKX2yE5YsUC2y
-X-Google-Smtp-Source: AGHT+IEpuCs/7c2leWW5Fv2G0gCbsdyCo98UVmtlRB6eHIxhmqgN9otJElNisDv5KbMphc2+s2OcSCWG2ig6PuULtVM=
-X-Received: by 2002:a05:6512:3f1b:b0:596:b1bd:cbe4 with SMTP id
- 2adb3069b0e04-597d63eab9emr2191700e87.8.1764921442858; Thu, 04 Dec 2025
- 23:57:22 -0800 (PST)
+	s=arc-20240116; t=1764921523; c=relaxed/simple;
+	bh=B0CzrYRc+ZuUPPQfTJv6AcZHjlbfKuKmGgGvDdmGbrg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=eRayY5Z5O0Vw6GsfVxQ41QmLJEmNuWpQ2zhpkSKboI8cYndl3aPcEnWtCiCXV38+47k+1vQT5sJqqDb0Qpv0E0rSi3acCMZAfyPQy2zs/eTcM+NqqWIwOCCIJBbNRFMegZLo3HTBpWFAqGIskgLTeVeOUUeYIPcLnnF9eW1sHf4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W4B1+xMg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 491B9C4CEF1;
+	Fri,  5 Dec 2025 07:58:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764921521;
+	bh=B0CzrYRc+ZuUPPQfTJv6AcZHjlbfKuKmGgGvDdmGbrg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=W4B1+xMgLwwh230SEZBF17iuDQ5kMdLMNAjBic9MzXDOBrTwGhaRXCvhffty7hfmQ
+	 CEEki1yWQZWqNaJBVtgLTMqf9M3ioSA8zrMDtNn0H0xhkuANBR682dxIwhIpW+khQs
+	 X5KJkhbtvJG2bfHnTkWbvQjO5TGBIgHDXTPOTo30gLO98pdnrG2W1K5iKQhmUaWPDE
+	 S6E/kL5xnooeQDFmSHsvwdXXpQudybF92XGxlFkv7EM5bB9270DhwTYEQZWeij1mqW
+	 EnYzTH1D15re8CwOs9rO41rJnLpthegxw89cCPSrolStlBOVhYFyLPPUYT6j7B/3Fz
+	 wc85dBBGHZCzQ==
+Message-ID: <4785aa56-2911-4a85-bcdd-a581b8bc9c9c@kernel.org>
+Date: Fri, 5 Dec 2025 08:58:36 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <CAD=FV=Ux7nGFnYEyX0cUL-9__BKnTYc+kAJjkF458ZnFS7zoJA@mail.gmail.com>
- <CAD++jLkuRQKoiEN928GtAj7wUts5PxH905bLp6ZhKsJ3NnenEA@mail.gmail.com>
- <CAD=FV=X5=AK4XMANv+fatn3d9Y5vo9AXsHWb_47HmNaMWUtMwA@mail.gmail.com>
- <CAGXv+5HyMYgKmLc+jmkj-gytm9SNVg9dS7Vn3dQ-dsH8Wo+4sg@mail.gmail.com>
- <CAD=FV=Uq9yfUkLUgg116G+2AvEKkEPmdRgUJ5f1bj229j=LxUg@mail.gmail.com>
- <CAGXv+5HU2y-8AZhXDjneaTdD1yr2h06OXbkozcQJj2mBcR1HmQ@mail.gmail.com> <CAD=FV=U54Uwny=kHY+VjG5DGCSHeRUCcWMG=hG88ov8hC6Ynew@mail.gmail.com>
-In-Reply-To: <CAD=FV=U54Uwny=kHY+VjG5DGCSHeRUCcWMG=hG88ov8hC6Ynew@mail.gmail.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Fri, 5 Dec 2025 15:57:09 +0800
-X-Gm-Features: AWmQ_bnyMAQiZOYBBfvhrL-p7NWwcYHWTn73VcRsGKhm3OKMH_INaVMR_dcDzI4
-Message-ID: <CAGXv+5EXBimfLyK7bmyyHmNcPBNQ=wN+i1_siaMUcibiB7BCPQ@mail.gmail.com>
-Subject: Re: Proposal: Officially allow "incomplete" trees as a base
-To: Doug Anderson <dianders@chromium.org>
-Cc: Linus Walleij <linusw@kernel.org>, devicetree-spec@vger.kernel.org, 
-	boot-architecture@lists.linaro.org, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk@kernel.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>, 
-	Linux ARM <linux-arm-kernel@lists.infradead.org>, 
-	William McVicker <willmcvicker@google.com>, Julius Werner <jwerner@chromium.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Peter Griffin <peter.griffin@linaro.org>, 
-	Tudor Ambarus <tudor.ambarus@linaro.org>, =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
-	Simon Glass <sjg@chromium.org>, Yu-Ping Wu <yupingso@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/5] arm64: defconfig: enable clocks, interconnect and
+ pinctrl for Qualcomm Kaanapali
+To: Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
+ trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org
+References: <20251204-knp-dts-v2-0-596d8398c6d3@oss.qualcomm.com>
+ <20251204-knp-dts-v2-2-596d8398c6d3@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
+ QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
+ +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
+ ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
+ 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
+ hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
+ tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
+ 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
+ naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
+ hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
+ whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
+ qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
+ RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
+ Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
+ H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
+ dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
+ AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
+ jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
+ zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
+ XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
+In-Reply-To: <20251204-knp-dts-v2-2-596d8398c6d3@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Dec 4, 2025 at 12:32=E2=80=AFAM Doug Anderson <dianders@chromium.or=
-g> wrote:
->
-> Hi,
->
-> On Tue, Dec 2, 2025 at 11:34=E2=80=AFPM Chen-Yu Tsai <wenst@chromium.org>=
- wrote:
-> >
-> > On Wed, Dec 3, 2025 at 6:11=E2=80=AFAM Doug Anderson <dianders@chromium=
-.org> wrote:
-> > >
-> > > > In the simplest example we could have one base dts and two overlays
-> > > > for two different DSI panel models:
-> > > >
-> > > >   - base.dtb
-> > > >     - panel-model-a.dtbo
-> > > >     - panel-model-b.dtbo
-> > > >
-> > > > The problem we then run into is that the base.dtb will only have th=
-e
-> > > > generic model compatible "google,foo", not the sku and revision
-> > > > specific ones like "google,foo-sku1-rev2".
-> > > >
-> > > > And we'd really like to avoid having _more_ overlays just to add th=
-e
-> > > > final specific compatible string, as that kind of defeats the purpo=
-se
-> > > > of using overlays to reduce the number of dts files.
-> > >
-> > > I think you may have simplified the above a little too much to the
-> > > point where it's confusing. At least I'm a bit confused. I _think_ th=
-e
-> > > problems you're talking about are the kinds of things we run into whe=
-n
-> > > we take overlays above just two levels. I'm imagining:
-> > >
-> > > - base.dtb
-> > > - board1-rev1.dtbo
-> > > - board2-rev1.dtbo
-> > > - board1-rev2.dtbo
-> > > - board2-rev2.dtbo
-> > > - panel-a.dtbo
-> > > - panel-b.dtbo
-> > >
-> > > So I think you're saying that you'd start with the "base.dtb" and the=
-n
-> > > extend it with exactly one of the "board" overlays and then exactly
-> > > one of the "panel" overlays. Is that right?
-> >
-> > For now I think we just experiment with having one end "model" or
-> > "product" as the base.dtb. The panel-*.dtbo selected describe the
-> > optional components, while the board-rev??.dtbo just provides the
-> > top level compatible and model.
-> >
-> > In an example that I plan to send out this week, I would rework:
-> >
-> >   - arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri.dtsi
-> >     - arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku0.dts
-> >     - arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku1.dts
-> >     - arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku2.dts
-> >     - arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku3.dts
-> >     - arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku4.dts
-> >     - arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku5.dts
-> >     - arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku6.dts
-> >     - arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku7.dts
-> >
-> > into:
-> >
-> >   - arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri.dts
-> >     - arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-audio-max98390-es=
-8326.dtso
-> >     - arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-audio-max98390-rt=
-5682s.dtso
-> >     - arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-audio-tas2563-es8=
-326.dtso
-> >     - arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-audio-tas2563-rt5=
-682s.dtso
-> >     - arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-panel-boe.dtso
-> >     - arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-panel-ivo.dtso
-> >     - arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku0.dtso
-> >     - arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku1.dtso
-> >     - arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku2.dtso
-> >     - arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku3.dtso
-> >     - arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku4.dtso
-> >     - arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku5.dtso
-> >     - arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku6.dtso
-> >     - arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku7.dtso
-> >
-> > The "mt8188-geralt-ciri-sku?.dtso" files only contain the following
-> > boilerplate:
-> >
-> >     /dts-v1/;
-> >     /plugin/;
-> >
-> >     &{/} {
-> >         model =3D "Google Ciri sku? board (rev4)";
-> >         compatible =3D "google,ciri-sku?", "google,ciri", "mediatek,mt8=
-188";
-> >     };
-> >
-> > The base "mt8188-geralt-ciri.dts" would already have a generic board-
-> > specific compatible:
-> >
-> >     model =3D "Google Ciri board";
-> >     compatible =3D "google,ciri", "mediatek,mt8188";
-> >
-> > > So I'd imagine that each of the "board" overlays could have "full"
-> > > compatible strings. For instance, I'd imagine "board2-rev2" could
-> > > have:
-> > >
-> > > compatible =3D "google,booard2-rev2", "socVendor,soc"
-> > >
-> > >
-> > > The problem you're struggling with (I think) is that the panel
-> > > overlays won't be represented in the compatible string (and "model")
-> > > even though (historically) we always did in ChromeOS (they were
-> > > included in the "sku" part of the compatible string).
-> > >
-> > > Did I get that right?
-> >
-> > In a sense you've generalized the problem I was describing.
-> >
-> > In my example, the top level compatible gets fixed up by the final
-> > SKU-specific overlay. But that's 8 extra files to do one bit of
-> > fixup that supposedly the bootloader could be taught to do, and
-> > could do even better. The bootloader knows exactly which SKU and
-> > revision it's running on and can insert the information appropriately.
-> > We could get rid of those awkwardly long compatible string sequences:
-> >
-> >   compatible =3D "google,tentacruel-sku262147", "google,tentacruel-sku2=
-62146",
-> >                "google,tentacruel-sku262145", "google,tentacruel-sku262=
-144",
-> >                "google,tentacruel", "mediatek,mt8186";
-> >
-> > Going back to what I think you're describing, is that instead of one
-> > base board DTB for each product, we could have one base DTB for the
-> > reference design (in place of the .dtsi file we currently have), and
-> > make products and component selection all use overlays.
-> >
-> > If we do that, then inserting the correct top level compatible and mode=
-l
-> > becomes more important, since we do have things such as the ChromeOS OF
-> > component prober working based on top level compatible. Also, the model
-> > is present in logs, and would be very misleading to say one device name
-> > while in reality it is a different one.
->
-> I wasn't saying that you'd just have the same "compatible" for every
-> derivative of a reference board. That seems over the top. I was
-> thinking that you'd even have a unique "compatible" for each revision
-> of each board instance. I'm simply suggesting that you don't need a
-> per-SKU "compatible". Those don't add any real benefit, do they?
->
-> In your Ciri example above, you could get rid of all of the "sku"
-> overlay files since you've said that all they're doing is updating the
-> "compatible". Since (I think) you're only trying to support "rev4"
-> based on your model string, that would leave you just one file for
-> Ciri. If you had more than one revision then you'd have more than one,
-> but it doesn't need to be multiplied by the SKUs, right?
+On 05/12/2025 07:31, Jingyi Wang wrote:
+> Enable necessary drivers for booting Qualcomm Kaanapali QRD and MTP
+> boards. The serial engine must be properly setup before kernel reach
+> "init", so UART driver and its dependencies needs to be built in, enable
+> its dependency GCC, interconnect and pinctrl as built-in meanwhile enable
+> TCSRCC as module.
+> 
+> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+> ---
+>  arch/arm64/configs/defconfig | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
 
-That's right. What I was saying was that the final device tree only has
-a simplified compatible, but maybe someone would want a proper one inserted=
-.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
-ChenYu
+Best regards,
+Krzysztof
 
