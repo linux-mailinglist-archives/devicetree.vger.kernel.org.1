@@ -1,461 +1,272 @@
-Return-Path: <devicetree+bounces-244708-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244709-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A893CA8022
-	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 15:46:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A0179CA8052
+	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 15:49:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D31E93084A3E
-	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 14:46:22 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5D3013083102
+	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 14:49:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDD8C330318;
-	Fri,  5 Dec 2025 14:46:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CE8D327C0D;
+	Fri,  5 Dec 2025 14:49:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="L9PDiLwg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ceyFAXvx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2C3D2EE612;
-	Fri,  5 Dec 2025 14:46:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4768028642D;
+	Fri,  5 Dec 2025 14:49:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764945979; cv=none; b=nGD30Dw0rs+Ez0U02IxPt1YDNGi+A6nTXudGkdHOP4ecFMrSLCSds5ikDbUEnywBVWYN70QSGzNvJjW32zPqDXCjTWMW/rwthcrTs7IL6s30//6nf0GMeLoRmkZw5fBMN//545HnePrYUZEZVkwykKMsRbhCpqg+a5PGYtGMmsY=
+	t=1764946177; cv=none; b=XVgfmpK4D4dgV0EsqaGZV06Z7U1wW1a7ATXN3/a7PVBUHFH56LsCXLNg7nhLXBr2k8I4CxxU4vdJ9Rsu1lfDZMcoNx1QhPYdt2rJXQllIugTPZjVE6UBSWGCud5TiNIXqoE0xBBY6JYe3iTAmyXLF7z486Mr80QirasjrAD/29g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764945979; c=relaxed/simple;
-	bh=JKXb85u4cNpTeHEG9tETKKZfZA1kbFK9jYzy0rJKJmE=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=uCuqvG4hMXL3vwoF1MdfClBj3uaikFrj3HdQ3rMszVf+HJN6dpbtk027RANfWHEhXmu4xzob4oidhMtVqAeLYpwY/CqPhYZACMSOeuADx0qa+l3avg1BHiCP51jQ8SIoK5QKVvCeXQ9iqOdBLVlC/wj919IUSuWLyHbVCqAa+ZM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=L9PDiLwg; arc=none smtp.client-ip=148.163.135.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
-Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
-	by mx0a-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5B5Bei1A626481;
-	Fri, 5 Dec 2025 09:45:59 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=
-	content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=DKIM; bh=ETAW3
-	V6hj1FWVF02ap0R+GL9znK5gYM4f1ORPkNLE80=; b=L9PDiLwgs3ZgI4LWCgCdz
-	ygWlvUhILr+bCLbNR5pnojtC/tWgNCnBjhWU4NbYl48QDQ/3uLykvfGCwSBDg9I9
-	RhKtvKeNv8nxM47gzXsGklQpUbEYvb8qrJehopiobsvdQ2YPLNnZiIh2vGn6IVha
-	j9Nv6VCFhHh9Fk4SmvFd35k3zt62QvxgD0ED0uxuckvm3eyUABDjCb7I48+6AGC6
-	DZMKElCPgAlyYoKixNzFRVGeC6SvJfq9fOiUFUDOLdRlf8SzjtAV9oyUVtZUrIKP
-	Z7JiyfH3Cq7wcD5mAz7kC818fpNARloXp/T6RIR/5snPufxiyI2AzAJOq4S/21aX
-	g==
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 4auhwwm1mb-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 05 Dec 2025 09:45:59 -0500 (EST)
-Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
-	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 5B5Ejv4o029937
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 5 Dec 2025 09:45:57 -0500
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.37; Fri, 5 Dec
- 2025 09:45:57 -0500
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
- Transport; Fri, 5 Dec 2025 09:45:57 -0500
-Received: from HYB-b1tGeUj4GP1.ad.analog.com ([10.32.13.98])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 5B5EjRaa028130;
-	Fri, 5 Dec 2025 09:45:52 -0500
-From: Antoniu Miclaus <antoniu.miclaus@analog.com>
-To: Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich
-	<Michael.Hennerich@analog.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        David
- Lechner <dlechner@baylibre.com>,
-        =?UTF-8?q?Nuno=20S=C3=A1?=
-	<nuno.sa@analog.com>,
-        Andy Shevchenko <andy@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Antoniu Miclaus <antoniu.miclaus@analog.com>,
-        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v6 2/2] iio: amplifiers: adl8113: add driver support
-Date: Fri, 5 Dec 2025 16:40:41 +0200
-Message-ID: <20251205144058.1918-3-antoniu.miclaus@analog.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251205144058.1918-1-antoniu.miclaus@analog.com>
-References: <20251205144058.1918-1-antoniu.miclaus@analog.com>
+	s=arc-20240116; t=1764946177; c=relaxed/simple;
+	bh=y46lOh3uiDJdon0wY2+qojpA7h8dJLDS70+GF62iHwo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RoQ0OL3XVxPxbRva2zAhENUR5FkAtczD0NLagS+A0VF7g87fvWo/13nPV39IqxFTRBA7jLU4VTZRxYNvpGvSkEVUwBlOLvGlFqMoamG9VbFYMYR135JVWZRrKIRBguEGlar7M4S8KkWcOwPH72jbeibe66yrQ1N0Mv21Cnp+XsQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ceyFAXvx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49447C4CEF1;
+	Fri,  5 Dec 2025 14:49:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764946176;
+	bh=y46lOh3uiDJdon0wY2+qojpA7h8dJLDS70+GF62iHwo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ceyFAXvxphL0FT5av2Xs7vcxFoSccfTGt/iVLs9wP/iXQUsfJccu6awsubBHZ46Zz
+	 oftzNfAjw+rTQfd4d2Hj1S0DzVRt2bLZ3mFgwyuTBHgsnQBn2QvotZct+5eTAmHrhR
+	 lsRZm8CXbm4oRZwCKjmQDMsBYu9nd5M5XsfX/fDgMn4KrBc7+bFxCwbBJoowEyuRDg
+	 bVwUMixp7XwNJ3+1Ne46bXzmmWkfBEgwpJHpOZVuZk9FpTWUwYlC9QXA8YCPEJIadx
+	 9AXqkt7DygY7c+Wh3L9WfG/WnHy6VtkBGNj9uXQyDuafH4j8vWvvOhAdyGfwzy2wAA
+	 o0GuaxsFmrOGA==
+Date: Fri, 5 Dec 2025 08:49:29 -0600
+From: Rob Herring <robh@kernel.org>
+To: Rebecca Cran <rebecca@bsdio.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+	Billy Tsai <billy_tsai@aspeedtech.com>
+Subject: Re: [PATCH v3 3/3] dt-bindings: hwmon: (aspeed,g5-pwm-tacho) Move
+ info from txt to yaml
+Message-ID: <20251205144929.GA76422-robh@kernel.org>
+References: <20251204210238.40742-1-rebecca@bsdio.com>
+ <20251204210238.40742-4-rebecca@bsdio.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Authority-Analysis: v=2.4 cv=Y531cxeN c=1 sm=1 tr=0 ts=6932f027 cx=c_pps
- a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
- a=wP3pNCr1ah4A:10 a=VkNPw1HP01LnGYTKEx00:22 a=gAnH3GRIAAAA:8
- a=hAzo1ZWYCqDvnDRTSZMA:9
-X-Proofpoint-GUID: Z3S5qkdUHojIbWMJ2YNTAeT7nGqTbcG4
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjA1MDEwNiBTYWx0ZWRfX7VwM2mOMsE6Z
- 5IalJTQDERRbrJRHhguwjPRvqgWMcNgtma32VCa96135HuZO9XUGQbfAOyLceluVr9Stz+7HDCa
- UfZvBo8gr2zA3Wz0E98IzUhuUWoXctK3CyJQYY4AbwZhDJfQhbwwZW/8Qf43arxAIVbacAM2rvR
- 4AG+JXlkRENix8Fue29xmtPpSD/2xUhMF39oMs8Y/7IPIpebqDh0I6da0lTCpuToK9m7QNDwP/+
- OzllG/t2Tq/l+lH/RdXwcoQ8n1LzNcVqzu9jl6oHeKb5R7cYh85SpoNcny5AHeyZF3xTP5FrlHg
- y6xbj5LJorX92HwKWwr772WxhpEV7ZS5Gi6zjjFfejXJINPfKvLKtNyiiXp2TbPakvmMz+a6Va+
- 237NMoKd+qSULGOZK5got8VHHa49oA==
-X-Proofpoint-ORIG-GUID: Z3S5qkdUHojIbWMJ2YNTAeT7nGqTbcG4
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-05_05,2025-12-04_04,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 bulkscore=0 malwarescore=0 impostorscore=0 adultscore=0
- phishscore=0 lowpriorityscore=0 spamscore=0 suspectscore=0 clxscore=1015
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512050106
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251204210238.40742-4-rebecca@bsdio.com>
 
-Add support for adl8113 10MHz to 12GHz Low Noise Amplifier with
-10MHz to 14GHz bypass switches.
+On Thu, Dec 04, 2025 at 02:02:36PM -0700, Rebecca Cran wrote:
+> Move the documentation for the aspeed,ast2400-pwm-tacho and
+> aspeed,ast2500-pwm-tacho devices from a text file to yaml file.
+> 
+> This allows for dts files containing these devices to be validated.
+> 
+> Where the text file documenation of required properties differ from the
+> implementation, prefer the implementation and update the schema to
+> match.
+> 
+> "#size-cells" was 1 but implementation is 0.
+> "#cooling-cells" was marked as required but appears optional.
+> 
+> In the fan subnode, "cooling-levels" is optional according to the code
+> in drivers/hwmon/aspeed-pwm-tacho.c.
 
-Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
----
-no changes in v6.
- drivers/iio/amplifiers/Kconfig   |  12 ++
- drivers/iio/amplifiers/Makefile  |   1 +
- drivers/iio/amplifiers/adl8113.c | 290 +++++++++++++++++++++++++++++++
- 3 files changed, 303 insertions(+)
- create mode 100644 drivers/iio/amplifiers/adl8113.c
+Please see this one:
 
-diff --git a/drivers/iio/amplifiers/Kconfig b/drivers/iio/amplifiers/Kconfig
-index 55eb16b32f6c..a8a604863eed 100644
---- a/drivers/iio/amplifiers/Kconfig
-+++ b/drivers/iio/amplifiers/Kconfig
-@@ -36,6 +36,18 @@ config ADA4250
- 	  To compile this driver as a module, choose M here: the
- 	  module will be called ada4250.
- 
-+config ADL8113
-+	tristate "Analog Devices ADL8113 Low Noise Amplifier"
-+	depends on GPIOLIB
-+	help
-+	  Say yes here to build support for Analog Devices ADL8113 Low Noise
-+	  Amplifier with integrated bypass switches. The device supports four
-+	  operation modes controlled by GPIO pins: internal amplifier,
-+	  internal bypass, and two external bypass modes.
-+
-+	  To compile this driver as a module, choose M here: the
-+	  module will be called adl8113.
-+
- config HMC425
- 	tristate "Analog Devices HMC425A and similar GPIO Gain Amplifiers"
- 	depends on GPIOLIB
-diff --git a/drivers/iio/amplifiers/Makefile b/drivers/iio/amplifiers/Makefile
-index 2126331129cf..0a76443be1aa 100644
---- a/drivers/iio/amplifiers/Makefile
-+++ b/drivers/iio/amplifiers/Makefile
-@@ -6,4 +6,5 @@
- # When adding new entries keep the list in alphabetical order
- obj-$(CONFIG_AD8366) += ad8366.o
- obj-$(CONFIG_ADA4250) += ada4250.o
-+obj-$(CONFIG_ADL8113) += adl8113.o
- obj-$(CONFIG_HMC425) += hmc425a.o
-diff --git a/drivers/iio/amplifiers/adl8113.c b/drivers/iio/amplifiers/adl8113.c
-new file mode 100644
-index 000000000000..eed5fe69280b
---- /dev/null
-+++ b/drivers/iio/amplifiers/adl8113.c
-@@ -0,0 +1,290 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * ADL8113 Low Noise Amplifier with integrated bypass switches
-+ *
-+ * Copyright 2025 Analog Devices Inc.
-+ */
-+
-+#include <linux/array_size.h>
-+#include <linux/device.h>
-+#include <linux/err.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/iio/iio.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+#include <linux/property.h>
-+#include <linux/regulator/consumer.h>
-+#include <linux/slab.h>
-+#include <linux/sysfs.h>
-+
-+enum adl8113_signal_path {
-+	ADL8113_INTERNAL_AMP,
-+	ADL8113_INTERNAL_BYPASS,
-+	ADL8113_EXTERNAL_A,
-+	ADL8113_EXTERNAL_B,
-+};
-+
-+struct adl8113_gain_config {
-+	enum adl8113_signal_path path;
-+	int gain_db;
-+	int va;
-+	int vb;
-+};
-+
-+struct adl8113_state {
-+	struct gpio_descs *gpios;
-+	struct adl8113_gain_config *gain_configs;
-+	int num_gain_configs;
-+	enum adl8113_signal_path current_path;
-+};
-+
-+static const char * const adl8113_supply_names[] = {
-+	"vdd1",
-+	"vss2",
-+	"vdd2"
-+};
-+
-+static int adl8113_set_path(struct adl8113_state *st,
-+			    enum adl8113_signal_path path)
-+{
-+	DECLARE_BITMAP(values, 2);
-+	int ret;
-+
-+	bitmap_zero(values, 2);
-+
-+	/* Determine GPIO values based on signal path */
-+	switch (path) {
-+	case ADL8113_INTERNAL_AMP:
-+		/* va=0, vb=0 - already zero */
-+		break;
-+	case ADL8113_INTERNAL_BYPASS:
-+		/* va=1, vb=1 */
-+		__set_bit(0, values);
-+		__set_bit(1, values);
-+		break;
-+	case ADL8113_EXTERNAL_A:
-+		/* va=0, vb=1 */
-+		__set_bit(1, values);
-+		break;
-+	case ADL8113_EXTERNAL_B:
-+		/* va=1, vb=0 */
-+		__set_bit(0, values);
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	ret = gpiod_set_array_value_cansleep(st->gpios->ndescs, st->gpios->desc,
-+					     st->gpios->info, values);
-+	if (ret)
-+		return ret;
-+
-+	st->current_path = path;
-+	return 0;
-+}
-+
-+static int adl8113_find_gain_config(struct adl8113_state *st, int gain_db)
-+{
-+	int i;
-+
-+	for (i = 0; i < st->num_gain_configs; i++) {
-+		if (st->gain_configs[i].gain_db == gain_db)
-+			return i;
-+	}
-+	return -EINVAL;
-+}
-+
-+static const struct iio_chan_spec adl8113_channels[] = {
-+	{
-+		.type = IIO_VOLTAGE,
-+		.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_HARDWAREGAIN),
-+	},
-+};
-+
-+static int adl8113_read_raw(struct iio_dev *indio_dev,
-+			    struct iio_chan_spec const *chan,
-+			    int *val, int *val2, long mask)
-+{
-+	struct adl8113_state *st = iio_priv(indio_dev);
-+	int i;
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_HARDWAREGAIN:
-+		/* Find current gain configuration */
-+		for (i = 0; i < st->num_gain_configs; i++) {
-+			if (st->gain_configs[i].path == st->current_path) {
-+				*val = st->gain_configs[i].gain_db;
-+				*val2 = 0;
-+				return IIO_VAL_INT_PLUS_MICRO_DB;
-+			}
-+		}
-+		return -EINVAL;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int adl8113_write_raw(struct iio_dev *indio_dev,
-+			     struct iio_chan_spec const *chan,
-+			     int val, int val2, long mask)
-+{
-+	struct adl8113_state *st = iio_priv(indio_dev);
-+	int config_idx;
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_HARDWAREGAIN:
-+		if (val2 != 0)
-+			return -EINVAL;
-+
-+		config_idx = adl8113_find_gain_config(st, val);
-+		if (config_idx < 0)
-+			return config_idx;
-+
-+		return adl8113_set_path(st, st->gain_configs[config_idx].path);
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static const struct iio_info adl8113_info = {
-+	.read_raw = adl8113_read_raw,
-+	.write_raw = adl8113_write_raw,
-+};
-+
-+static int adl8113_init_gain_configs(struct device *dev, struct adl8113_state *st)
-+{
-+	int external_a_gain, external_b_gain, i = 0, j;
-+
-+	/*
-+	 * Allocate for all 4 possible paths:
-+	 * - Internal amp and bypass (always present)
-+	 * - External bypass A and B (optional, or INT_MIN for testing)
-+	 */
-+	st->gain_configs = devm_kcalloc(dev, 4,
-+					sizeof(*st->gain_configs), GFP_KERNEL);
-+	if (!st->gain_configs)
-+		return -ENOMEM;
-+
-+	/* Always include internal amplifier (14dB) */
-+	st->gain_configs[i].path = ADL8113_INTERNAL_AMP;
-+	st->gain_configs[i].gain_db = 14;
-+	i++;
-+
-+	/* Always include internal bypass (-2dB insertion loss) */
-+	st->gain_configs[i].path = ADL8113_INTERNAL_BYPASS;
-+	st->gain_configs[i].gain_db = -2;
-+	i++;
-+
-+	/* Add external bypass A if configured */
-+	if (!device_property_read_u32(dev, "adi,external-bypass-a-gain-db",
-+				      &external_a_gain)) {
-+		st->gain_configs[i].path = ADL8113_EXTERNAL_A;
-+		st->gain_configs[i].gain_db = external_a_gain;
-+		i++;
-+	}
-+
-+	/* Add external bypass B if configured */
-+	if (!device_property_read_u32(dev, "adi,external-bypass-b-gain-db",
-+				      &external_b_gain)) {
-+		st->gain_configs[i].path = ADL8113_EXTERNAL_B;
-+		st->gain_configs[i].gain_db = external_b_gain;
-+		i++;
-+	}
-+
-+	/*
-+	 * If there's a free external bypass path, add one with INT_MIN gain
-+	 * to represent "nothing connected" for testing purposes
-+	 */
-+	if (!device_property_present(dev, "adi,external-bypass-a-gain-db")) {
-+		st->gain_configs[i].path = ADL8113_EXTERNAL_A;
-+		st->gain_configs[i].gain_db = INT_MIN;
-+		i++;
-+	} else if (!device_property_present(dev, "adi,external-bypass-b-gain-db")) {
-+		st->gain_configs[i].path = ADL8113_EXTERNAL_B;
-+		st->gain_configs[i].gain_db = INT_MIN;
-+		i++;
-+	}
-+
-+	st->num_gain_configs = i;
-+
-+	/* Check for duplicate gain values */
-+	for (i = 0; i < st->num_gain_configs - 1; i++) {
-+		for (j = i + 1; j < st->num_gain_configs; j++) {
-+			if (st->gain_configs[i].gain_db == st->gain_configs[j].gain_db)
-+				return dev_err_probe(dev, -EINVAL,
-+						     "Duplicate gain values not allowed: %d dB\n",
-+						     st->gain_configs[i].gain_db);
-+		}
-+	}
-+
-+	return 0;
-+}
-+
-+static int adl8113_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct adl8113_state *st;
-+	struct iio_dev *indio_dev;
-+	int ret;
-+
-+	indio_dev = devm_iio_device_alloc(dev, sizeof(*st));
-+	if (!indio_dev)
-+		return -ENOMEM;
-+
-+	st = iio_priv(indio_dev);
-+
-+	st->gpios = devm_gpiod_get_array(dev, "ctrl", GPIOD_OUT_LOW);
-+	if (IS_ERR(st->gpios))
-+		return dev_err_probe(dev, PTR_ERR(st->gpios),
-+				     "failed to get control GPIOs\n");
-+
-+	if (st->gpios->ndescs != 2)
-+		return dev_err_probe(dev, -EINVAL,
-+				     "expected 2 control GPIOs, got %d\n",
-+				     st->gpios->ndescs);
-+
-+	ret = devm_regulator_bulk_get_enable(dev,
-+					     ARRAY_SIZE(adl8113_supply_names),
-+					     adl8113_supply_names);
-+	if (ret)
-+		return dev_err_probe(dev, ret,
-+				     "failed to get and enable supplies\n");
-+
-+	/* Initialize gain configurations from devicetree */
-+	ret = adl8113_init_gain_configs(dev, st);
-+	if (ret)
-+		return ret;
-+
-+	/* Initialize to internal amplifier path (14dB) */
-+	ret = adl8113_set_path(st, ADL8113_INTERNAL_AMP);
-+	if (ret)
-+		return ret;
-+
-+	indio_dev->info = &adl8113_info;
-+	indio_dev->name = "adl8113";
-+	indio_dev->channels = adl8113_channels;
-+	indio_dev->num_channels = ARRAY_SIZE(adl8113_channels);
-+
-+	return devm_iio_device_register(dev, indio_dev);
-+}
-+
-+static const struct of_device_id adl8113_of_match[] = {
-+	{ .compatible = "adi,adl8113" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, adl8113_of_match);
-+
-+static struct platform_driver adl8113_driver = {
-+	.driver = {
-+		.name = "adl8113",
-+		.of_match_table = adl8113_of_match,
-+	},
-+	.probe = adl8113_probe,
-+};
-+
-+module_platform_driver(adl8113_driver);
-+
-+MODULE_AUTHOR("Antoniu Miclaus <antoniu.miclaus@analog.com>");
-+MODULE_DESCRIPTION("Analog Devices ADL8113 Low Noise Amplifier");
-+MODULE_LICENSE("GPL");
--- 
-2.43.0
+https://lore.kernel.org/all/20251029185448.2121857-1-robh@kernel.org/
 
+> 
+> Signed-off-by: Rebecca Cran <rebecca@bsdio.com>
+> ---
+>  Documentation/devicetree/bindings/hwmon/aspeed,pwm-tacho.yaml | 91 ++++++++++++++++++++
+>  Documentation/devicetree/bindings/hwmon/aspeed-pwm-tacho.txt  | 73 ----------------
+>  2 files changed, 91 insertions(+), 73 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/hwmon/aspeed,pwm-tacho.yaml b/Documentation/devicetree/bindings/hwmon/aspeed,pwm-tacho.yaml
+> new file mode 100644
+> index 000000000000..b23c3519604b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/aspeed,pwm-tacho.yaml
+> @@ -0,0 +1,91 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (C) 2023 Aspeed, Inc.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/hwmon/aspeed,g5-pwm-tacho.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ASPEED AST2400/AST2500 PWM and Fan Tacho controller
+> +
+> +maintainers:
+> +  - Billy Tsai <billy_tsai@aspeedtech.com>
+> +
+> +description: |
+> +  The ASPEED PWM controller can support up to 8 PWM outputs. The ASPEED Fan
+> +  Tacho controller can support up to 16 Fan tachometer inputs.
+> +
+> +  There can be up to 8 fans supported. Each fan can have one PWM output and
+> +  one/two Fan tach inputs.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - aspeed,ast2400-pwm-tacho
+> +      - aspeed,ast2500-pwm-tacho
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +patternProperties:
+> +  "^fan@[0-9]+$":
+> +    $ref: fan-common.yaml#
+> +    unevaluatedProperties: false
+> +    properties:
+> +      aspeed,fan-tach-ch:
+> +        description:
+> +          The tach channel used for the fan.
+> +        $ref: /schemas/types.yaml#/definitions/uint8-array
+> +
+> +    required:
+> +      - reg
+> +      - aspeed,fan-tach-ch
+> +
+> +required:
+> +  - compatible
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +  - reg
+> +  - pinctrl-names
+> +  - pinctrl-0
+> +  - clocks
+> +  - resets
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/aspeed-clock.h>
+> +    pwm_tacho: pwmtachocontroller@1e786000 {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +        #cooling-cells = <2>;
+> +        reg = <0x1E786000 0x1000>;
+> +        compatible = "aspeed,ast2500-pwm-tacho";
+> +        clocks = <&syscon ASPEED_CLK_APB>;
+> +        resets = <&syscon ASPEED_RESET_PWM>;
+> +        pinctrl-names = "default";
+> +        pinctrl-0 = <&pinctrl_pwm0_default &pinctrl_pwm1_default>;
+> +
+> +        fan@0 {
+> +                reg = <0x00>;
+> +                cooling-levels = /bits/ 8 <125 151 177 203 229 255>;
+> +                aspeed,fan-tach-ch = /bits/ 8 <0x00>;
+> +        };
+> +
+> +        fan@1 {
+> +                reg = <0x01>;
+> +                aspeed,fan-tach-ch = /bits/ 8 <0x01 0x02>;
+> +        };
+> +    };
+> diff --git a/Documentation/devicetree/bindings/hwmon/aspeed-pwm-tacho.txt b/Documentation/devicetree/bindings/hwmon/aspeed-pwm-tacho.txt
+> deleted file mode 100644
+> index 8645cd3b867a..000000000000
+> --- a/Documentation/devicetree/bindings/hwmon/aspeed-pwm-tacho.txt
+> +++ /dev/null
+> @@ -1,73 +0,0 @@
+> -ASPEED AST2400/AST2500 PWM and Fan Tacho controller device driver
+> -
+> -The ASPEED PWM controller can support upto 8 PWM outputs. The ASPEED Fan Tacho
+> -controller can support upto 16 Fan tachometer inputs.
+> -
+> -There can be upto 8 fans supported. Each fan can have one PWM output and
+> -one/two Fan tach inputs.
+> -
+> -Required properties for pwm-tacho node:
+> -- #address-cells : should be 1.
+> -
+> -- #size-cells : should be 1.
+> -
+> -- #cooling-cells: should be 2.
+> -
+> -- reg : address and length of the register set for the device.
+> -
+> -- pinctrl-names : a pinctrl state named "default" must be defined.
+> -
+> -- pinctrl-0 : phandle referencing pin configuration of the PWM ports.
+> -
+> -- compatible : should be "aspeed,ast2400-pwm-tacho" for AST2400 and
+> -	       "aspeed,ast2500-pwm-tacho" for AST2500.
+> -
+> -- clocks : phandle to clock provider with the clock number in the second cell
+> -
+> -- resets : phandle to reset controller with the reset number in the second cell
+> -
+> -fan subnode format:
+> -===================
+> -Under fan subnode there can upto 8 child nodes, with each child node
+> -representing a fan. If there are 8 fans each fan can have one PWM port and
+> -one/two Fan tach inputs.
+> -For PWM port can be configured cooling-levels to create cooling device.
+> -Cooling device could be bound to a thermal zone for the thermal control.
+> -
+> -Required properties for each child node:
+> -- reg : should specify PWM source port.
+> -	integer value in the range 0 to 7 with 0 indicating PWM port A and
+> -	7 indicating PWM port H.
+> -
+> -- cooling-levels: PWM duty cycle values in a range from 0 to 255
+> -                  which correspond to thermal cooling states.
+> -
+> -- aspeed,fan-tach-ch : should specify the Fan tach input channel.
+> -                integer value in the range 0 through 15, with 0 indicating
+> -		Fan tach channel 0 and 15 indicating Fan tach channel 15.
+> -		At least one Fan tach input channel is required.
+> -
+> -Examples:
+> -
+> -pwm_tacho: pwmtachocontroller@1e786000 {
+> -	#address-cells = <1>;
+> -	#size-cells = <1>;
+> -	#cooling-cells = <2>;
+> -	reg = <0x1E786000 0x1000>;
+> -	compatible = "aspeed,ast2500-pwm-tacho";
+> -	clocks = <&syscon ASPEED_CLK_APB>;
+> -	resets = <&syscon ASPEED_RESET_PWM>;
+> -	pinctrl-names = "default";
+> -	pinctrl-0 = <&pinctrl_pwm0_default &pinctrl_pwm1_default>;
+> -
+> -	fan@0 {
+> -		reg = <0x00>;
+> -		cooling-levels = /bits/ 8 <125 151 177 203 229 255>;
+> -		aspeed,fan-tach-ch = /bits/ 8 <0x00>;
+> -	};
+> -
+> -	fan@1 {
+> -		reg = <0x01>;
+> -		aspeed,fan-tach-ch = /bits/ 8 <0x01 0x02>;
+> -	};
+> -};
+> -- 
+> 2.47.3
+> 
 
