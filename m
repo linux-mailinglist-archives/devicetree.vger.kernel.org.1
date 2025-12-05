@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-244573-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244574-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62BB9CA6BEC
-	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 09:44:24 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8CBFCA70CB
+	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 11:02:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0D56430D596C
-	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 08:43:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 429873036A2E
+	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 09:58:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0E6531C595;
-	Fri,  5 Dec 2025 08:23:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56DEE335557;
+	Fri,  5 Dec 2025 08:24:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t/QsIlBh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Xer64MyI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49B4C2E8B81;
-	Fri,  5 Dec 2025 08:23:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A4032F5311;
+	Fri,  5 Dec 2025 08:24:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764923011; cv=none; b=DlPu1zCqeb1ng6Oq/8vPDVEWo9ElyrM7EYFz1P9Qavg75epH9jn61CqJiYs3loaFMvAoTf8TsopamU1ufu6mH9HDswBMi3YZ97rmc0+q9AuvqJhmMuOGPygHhvgLPGncKXM6up8TQlgFUKsJrb3bak+D2mJsZftfjwYi4nAe2QE=
+	t=1764923088; cv=none; b=RnTTSEX5KFIiUbt7rWQ8eiDzhgjoA3CgbcX1PHilgeYBK7GjbFjYtwu8qXqrCV2JzK0bjiA2a/1EIZM5AcYpE+Sr59ShnzXjdimaiyJiIJvd3GKVTKfvGvpvyk164ETwxb0+H0scO5MO0pIphWGOgD1ueMrZJZM8esXPVo8yDwc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764923011; c=relaxed/simple;
-	bh=2RuxdcJ34ThoIzXMtGNMOSyw5lKrWrJDIcySDhaERK8=;
+	s=arc-20240116; t=1764923088; c=relaxed/simple;
+	bh=6eB+pELnaXO/EFgvQYRmO1RVoCyEWCWMqcvN6CQY5Hw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gXU1R0H7tO9YpXi/QYTCU4vEg657OtH7iN4jPryDzAve/tQslje3K4ZT02OG3b0xdl5tvsIjMRIamzuEpLb4i1d7wfjxPmIJyJfiihazkF+VWkS2DpPe1luDikcRifRmr9l175m1t50wtbtCwTxK2f0GgprYK9anbVaGn+GEnR4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t/QsIlBh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 248D6C4CEF1;
-	Fri,  5 Dec 2025 08:23:26 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=eLPFeGbLBeU9srHKKrpZe8u0kJYmx6zekSX/nu80kGHPd5KCBeRkBR8TkYqIWx5j6poIGUFeJ+YOlgpWtvxCAwBEMieBlRHlLXF7IouUdjFQmKfChj1VL43aOTgXD29pd8YH6ULmavNuaRznUcRJoHY2P+hibRUEmbM1GWNL+3o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Xer64MyI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B09FC4CEF1;
+	Fri,  5 Dec 2025 08:24:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764923010;
-	bh=2RuxdcJ34ThoIzXMtGNMOSyw5lKrWrJDIcySDhaERK8=;
+	s=k20201202; t=1764923085;
+	bh=6eB+pELnaXO/EFgvQYRmO1RVoCyEWCWMqcvN6CQY5Hw=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=t/QsIlBhlyDcClYsjuIwHlMAT2Nx5yKzUiSBeSs6hsBj9mFDbDsWIt0+L+4Ql/XMV
-	 0h6eEWiN2tPgZB+e5hH68LwU6U00wQEOvQk4/Y20fW1UW/OK0jVX2Mfhx6223ohxCN
-	 R2fxCiSpStTuXlp9VfQSfresNW/GGzvIfLzpYvSltztfhI07IB08k7wJw6omyCXEHP
-	 fO9IaDCWVmBDI31MNvzb+l0YYeNhzpOF2cF8UY1UZ28f/+PP5v7bB9QoBYu7hK76LB
-	 QV0XaYY2o6rSEYd3W1BHPgQu6gzFIvZ+TA31RevoLMvIGbQ1jlpM6OYjbLf/ao40hO
-	 aiwgsbCvXypGA==
-Message-ID: <4ce9756d-fd5a-4678-811d-be19eea1f626@kernel.org>
-Date: Fri, 5 Dec 2025 09:23:25 +0100
+	b=Xer64MyIVOGGi4OuAStLPFTcA6czqESMxsd7vidWUJg6l58WmADrOm3pUg6kPCUxm
+	 rgEFBOMc2x78QEkWEtDD7/4339QXlfwUJJxNl/OupMvM6Z1Y7CBroCsNHP8ayEmUXo
+	 ZxCl2JgU7Ia797yREqxX4Up0iJ5fBL85TXXeVWxOO+5uE+IDQnigFcozn1YBLov327
+	 hN4lnvmZ2yWohYnDM6X1dFOzsShjwamylJUoYELRqYhg3Y15npNDNlVhhADAdTBDlJ
+	 x58krwzHb1HMpYWtGvdfyoAy75K5MfV3zUJrXNY5eVrl7fw+j9l0uPg6X/KXkGPsy9
+	 ZplLbbQGwilEg==
+Message-ID: <ea71abc9-a661-4a78-8503-bac9d34bf8a4@kernel.org>
+Date: Fri, 5 Dec 2025 09:24:40 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,20 +48,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: freescale: add NXP FRDM-IMX91S board
- support
-To: "Yanan.Yang" <yanan.yang@nxp.com>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v2] arm64: dts: mediatek: mt8189: Add pinmux macro header
+ file
+To: Cathy Xu <ot_cathy.xu@mediatek.com>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- qijian.guo@nxp.com, justin.jiang@nxp.com, Lei Xu <lei.xu@nxp.com>,
- Xiaofeng Wei <xiaofeng.wei@nxp.com>
-References: <20251205-imx91s-frdm-v1-0-afd6cd01c299@nxp.com>
- <20251205-imx91s-frdm-v1-2-afd6cd01c299@nxp.com>
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ Yong Mao <yong.mao@mediatek.com>, Wenbin Mei <Wenbin.Mei@mediatek.com>,
+ Lei Xue <Lei.Xue@mediatek.com>
+References: <20251205064357.13591-1-ot_cathy.xu@mediatek.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,219 +104,14 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251205-imx91s-frdm-v1-2-afd6cd01c299@nxp.com>
+In-Reply-To: <20251205064357.13591-1-ot_cathy.xu@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 05/12/2025 09:03, Yanan.Yang wrote:
-> Add DeviceTree support for the NXP FRDM-IMX91S development board based
-> on the i.MX91 SoC. FRDM-IMX91S is a cost-optimized variant of FRDM-IMX91
-> and differs in memory, storage, Ethernet, and PMIC configuration:
-> 
-> - 512MB LPDDR4 (FRDM-IMX91 uses 1GB)
-> - 256MB FlexSPI-NAND (FRDM-IMX91 uses 8GB eMMC)
-> - Single GbE port (FRDM-IMX91 has dual GbE)
-> - PMIC PF9453 (FRDM-IMX91 uses PCA9451A)
-> 
-> This DT enables:
-> - ADC1
-> - UART1 and UART5
-> - I2C bus and children nodes
-> - USB and related nodes
-> - uSDHC1 and uSDHC2
-> - FlexSPI NAND flash
-> - Watchdog3
-> - Ethernet (eqos)
-> - FlexCAN
-> - MQS
-> 
-> Link: https://www.nxp.com/design/design-center/development-boards-and-designs/FRDM-IMX91S
-> (FRDM-IMX91S board page)
-> Link: https://www.nxp.com/design/design-center/development-boards-and-designs/FRDM-IMX91
-> (FRDM-IMX91 board page)
-> 
-> Co-developed-by: Lei Xu <lei.xu@nxp.com>
-> Signed-off-by: Lei Xu <lei.xu@nxp.com>
-> Co-developed-by: Xiaofeng Wei <xiaofeng.wei@nxp.com>
-> Signed-off-by: Xiaofeng Wei <xiaofeng.wei@nxp.com>
-> Signed-off-by: Yanan.Yang <yanan.yang@nxp.com>
-> ---
->  arch/arm64/boot/dts/freescale/Makefile             |   1 +
->  .../boot/dts/freescale/imx91-11x11-frdm-s.dts      | 692 +++++++++++++++++++++
->  2 files changed, 693 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-> index f30d3fd724d0..927bf76a05f3 100644
-> --- a/arch/arm64/boot/dts/freescale/Makefile
-> +++ b/arch/arm64/boot/dts/freescale/Makefile
-> @@ -368,6 +368,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8qxp-tqma8xqps-mb-smarc-2.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8ulp-9x9-evk.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8ulp-evk.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx91-11x11-evk.dtb
-> +dtb-$(CONFIG_ARCH_MXC) += imx91-11x11-frdm-s.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx91-phyboard-segin.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx91-tqma9131-mba91xxca.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx93-9x9-qsb.dtb
-> diff --git a/arch/arm64/boot/dts/freescale/imx91-11x11-frdm-s.dts b/arch/arm64/boot/dts/freescale/imx91-11x11-frdm-s.dts
-> new file mode 100644
-> index 000000000000..0952a685c3f5
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx91-11x11-frdm-s.dts
-> @@ -0,0 +1,692 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright 2025 NXP
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include <dt-bindings/usb/pd.h>
-> +#include "imx91.dtsi"
-> +
-> +/ {
-> +	compatible = "fsl,imx91-11x11-frdm-s", "fsl,imx91";
-> +	model = "NXP FRDM-IMX91S board";
-> +
-> +	aliases {
-> +		ethernet0 = &fec;
-> +		ethernet1 = &eqos;
-> +		gpio0 = &gpio1;
-> +		gpio1 = &gpio2;
-> +		gpio2 = &gpio3;
-> +		gpio3 = &gpio4;
-> +		i2c0 = &lpi2c1;
-> +		i2c1 = &lpi2c2;
-> +		i2c2 = &lpi2c3;
-> +		i2c3 = &lpi2c4;
-> +		i2c4 = &lpi2c5;
-> +		i2c5 = &lpi2c6;
-> +		i2c6 = &lpi2c7;
-> +		i2c7 = &lpi2c8;
-> +		mmc0 = &usdhc1;
-> +		mmc1 = &usdhc2;
-> +		mmc2 = &usdhc3;
-> +		rtc0 = &bbnsm_rtc;
-> +		serial0 = &lpuart1;
-> +		serial1 = &lpuart2;
-> +		serial2 = &lpuart3;
-> +		serial3 = &lpuart4;
-> +		serial4 = &lpuart5;
-> +		serial5 = &lpuart6;
-> +		serial6 = &lpuart7;
-> +		serial7 = &lpuart8;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = &lpuart1;
-> +	};
-> +
-> +	gpio-keys {
-> +		compatible = "gpio-keys";
-> +		pinctrl-0 = <&pinctrl_gpio_key>;
-> +		pinctrl-names = "default";
-> +
-> +		button {
-> +			interrupt-parent = <&gpio3>;
-> +			interrupts = <26 IRQ_TYPE_EDGE_FALLING>;
-> +			gpios = <&gpio3 26 GPIO_PULL_UP>;
-> +			label = "User Button";
-> +			linux,code = <BTN_1>;
-> +		};
-> +	};
-> +
-> +	gpio-leds {
-> +		compatible = "gpio-leds";
-> +
-> +		status {
+On 05/12/2025 07:43, Cathy Xu wrote:
+> Add the pinctrl header file on MediaTek mt8189.
 
-It does not look like you tested the DTS against bindings. Please run
-`make dtbs_check W=1` (see
-Documentation/devicetree/bindings/writing-schema.rst or
-https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
-for instructions).
-Maybe you need to update your dtschema and yamllint. Don't rely on
-distro packages for dtschema and be sure you are using the latest
-released dtschema.
-
-
-> +			default-state = "on";
-> +			gpios = <&pcal6524 7 GPIO_ACTIVE_LOW>;
-> +			label = "green:status";
-> +		};
-> +	};
-> +
-> +	reg_vref_1v8: regulator-adc-vref {
-> +		compatible = "regulator-fixed";
-> +		regulator-max-microvolt = <1800000>;
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-name = "vref_1v8";
-> +	};
-> +
-> +	reg_can_stby: regulator-can-stby {
-> +		compatible = "regulator-fixed";
-> +		regulator-max-microvolt = <3300000>;
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-name = "can-stby";
-> +		gpio = <&gpio1 10 GPIO_ACTIVE_LOW>;
-> +	};
-> +
-> +	reg_usdhc1_vmmc: regulator-usdhc1 {
-> +		compatible = "regulator-fixed";
-> +		regulator-max-microvolt = <3300000>;
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-name = "WLAN_EN";
-> +		startup-delay-us = <20000>;
-> +		gpio = <&pcal6524 3 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +	};
-> +
-> +	reg_usdhc2_vmmc: regulator-usdhc2 {
-> +		compatible = "regulator-fixed";
-> +		off-on-delay-us = <12000>;
-> +		pinctrl-0 = <&pinctrl_reg_usdhc2_vmmc>;
-> +		pinctrl-names = "default";
-> +		regulator-max-microvolt = <3300000>;
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-name = "VSD_3V3";
-> +		gpio = <&gpio3 7 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +	};
-> +
-> +	reg_usb_vbus: regulator-vbus {
-> +		compatible = "regulator-fixed";
-> +		regulator-max-microvolt = <5000000>;
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-name = "USB_VBUS";
-> +		gpio = <&pcal6524 15 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +	};
-> +
-> +	reserved-memory {
-> +		ranges;
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +
-> +		linux,cma {
-> +			compatible = "shared-dma-pool";
-> +			alloc-ranges = <0 0x80000000 0 0x20000000>;
-> +			reusable;
-> +			size = <0 0x2000000>;
-> +			linux,cma-default;
-> +		};
-> +	};
-> +
-> +	sound-mqs {
-> +		compatible = "fsl,imx6sx-sdb-mqs", "fsl,imx-audio-mqs";
-> +		audio-codec = <&mqs1>;
-> +		audio-cpu = <&sai1>;
-> +		model = "mqs-audio";
-> +	};
-> +
-> +	usdhc1_pwrseq: usdhc1_pwrseq {
-
-No, NAK. Don't send us downstream code ever. I am not reviewing the
-rest. Please start working with mainline code, not downstream. Take
-MAINLINE DTS as your starting point, not downstream.
+Why? There is no user of this. Why do we dead code in unused heders?
 
 Best regards,
 Krzysztof
