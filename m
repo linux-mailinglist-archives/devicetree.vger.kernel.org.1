@@ -1,226 +1,205 @@
-Return-Path: <devicetree+bounces-244766-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244767-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73F40CA8CA0
-	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 19:28:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9340BCA8CAF
+	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 19:28:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 38EDA317A4B6
-	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 18:23:17 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AFD6B3029C76
+	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 18:24:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0444F346776;
-	Fri,  5 Dec 2025 18:23:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C632E344041;
+	Fri,  5 Dec 2025 18:24:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=variscite.com header.i=@variscite.com header.b="QvRlOWSY"
+	dkim=pass (2048-bit key) header.d=rivosinc.com header.i=@rivosinc.com header.b="N4VXFbW5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from GVXPR05CU001.outbound.protection.outlook.com (mail-swedencentralazon11023130.outbound.protection.outlook.com [52.101.83.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D77F345CC9;
-	Fri,  5 Dec 2025 18:23:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.83.130
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764958993; cv=fail; b=bYRNxhUoT0EOaQMglVdmZbpNStlenTIvFkUrWOaLQvxAeCq/qnnATQCsrZjqf7QD8R3pVLfrWCHEMQYd1rTpiBO0E5/WOYQUXmojaqZY52+c1BESKlGK6cll5KqvipKQXKetV1c04pQ/49D9fgmOmEVm8a0BoH6LKixgTWV3vJA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764958993; c=relaxed/simple;
-	bh=rSEIZBLy53bgJePsdgxChfVS69XNVba95lJM72pSXg0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=qqjKxndombNRvOM5w/QVg5XjiPMLn2vYyfD7Otbs5E97NhF9zkE3OXtZdMnlHz3R+vafCskf4ejwWLTIxyq11wEtVBS/XG3sdfHEIFQDsmeVMCCSq8efxOl+kDkVzeKxbWN5pAkWN6txOH2w1KXK+wIfDqNNSoVQcTJFuhLXGMU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=variscite.com; spf=pass smtp.mailfrom=variscite.com; dkim=pass (2048-bit key) header.d=variscite.com header.i=@variscite.com header.b=QvRlOWSY; arc=fail smtp.client-ip=52.101.83.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=variscite.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=variscite.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=dxcTC0KJofejA9b+H4xFBoOXRzKzRhtYS7zKA3tG3UrA1P4UF6+aIL747/NYrVOQfXY9CZaGe2NC058rNnDpHtqpX5jMRGlSRBYnQ/jJGVeul6FxaM3vYL7nPmMe5IVqZFJiwfjSZ1V5DzLmdlajvgs66X1lADCCPCSG/y4AfxvO1v7NyhbY9N782gc9J3GkPcqKLtF9PisSCyyn2cY+cB/YPwSsb2kpjQNcGQoebPl7Wouss02/c+A6Cn1+qUHxnxy+h3c0OT0mQhesa4acqnwCo0WO0bmmo7N9HfteEWL5r7dMkB2RT71BIM/ea4pGKfHHco7LCq4IFRN092Ql6g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ARL/SP3fo3lBHn242AboyITGOaAOXFiLEL8L9R8QUck=;
- b=mNfB9PTuZljoTCDePb5xsNLogw3Q/kq1b++c2qDyKBfVGRuBXfoqZ15xpUDEyVbDeiH7U0AwVvT8tIeNA5k/e2yMqM0ln2Sz64eWpleKFl+vE5H1B9g95lqwg8ovLFneU3KazpM7Kbr5O3Q2QnjmXKIjLigUNoFHIO5isS4In23hIxXtZj8IjWxo96fj9ymArTRrc/xRJGfsO0XcuqGUPj7gNk5Rg49y0ckJjxz2h8vqHU4mYM1UQbamPXBgSqqb9wgAicP/E4DDZ8yMs88EivU1EoY1E0BxJoM3haOFsrNeDM5P/7YMQ+ry4aX1785E6SmwEeaamlwWAxVmE46qYQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=variscite.com; dmarc=pass action=none
- header.from=variscite.com; dkim=pass header.d=variscite.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=variscite.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ARL/SP3fo3lBHn242AboyITGOaAOXFiLEL8L9R8QUck=;
- b=QvRlOWSYJ1p+sxVTwGzwXCjqC0HfA80dxkRM+0lE/YICgg4FWxm0QhVv2YZTpICs8rIjZVBznt97xpVYkuhoL0Iwdt5ylYYvcbLT6Tp4ViEo1xNO0TkbLZQS7xfuM7XH78x8BHXwlhGWFYQPiHXjBgsXB/2fwgp4+C/dUjQLc5x3kea7eO/7WldmIgD5SQDgYMdyN8GjBjBxZPjBlO+U6c4Sw2O2jQ6bsWnJWcsWw0zk0xQvLR4anDvB3Zp0GChEQFCzbgdagRIP8cQWHJ1PjxwGaLut/wEIjcfltW6eBDb/9cpvOxi76H5OTZgn60081TpoWr/sZJgcICJME96ikA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=variscite.com;
-Received: from DB4PR08MB10341.eurprd08.prod.outlook.com (2603:10a6:10:3ff::18)
- by AS8PR08MB6712.eurprd08.prod.outlook.com (2603:10a6:20b:393::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9388.9; Fri, 5 Dec
- 2025 18:23:05 +0000
-Received: from DB4PR08MB10341.eurprd08.prod.outlook.com
- ([fe80::24bb:a230:6690:f824]) by DB4PR08MB10341.eurprd08.prod.outlook.com
- ([fe80::24bb:a230:6690:f824%6]) with mapi id 15.20.9388.009; Fri, 5 Dec 2025
- 18:23:05 +0000
-From: Stefano Radaelli <stefano.r@variscite.com>
-To: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Stefano Radaelli <stefano.r@variscite.com>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAADA341060
+	for <devicetree@vger.kernel.org>; Fri,  5 Dec 2025 18:24:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1764959057; cv=none; b=tdNclGc+zuPpBOLJhKV54ItGy19izMxDDD+VEwyzQ52DhTa1ts8uHoABtLh421LMLaxeDpwH3RKdN2JQLUbiRzMG1QwOujKJNKMYNQm/hi1CikcXTIPDrHqxs1CVw9aZP01st6lr8TFwRVAQu0jFXyz2Aw3+AXngCTTGKDnW8d0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1764959057; c=relaxed/simple;
+	bh=NVR+U3jG2tQbxbWsFur6YJo3TCvjT6tp/C+uJQCGLEE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=A/T2EL7vbXgIHt6PIuudKs029lz2s3mPO3CJcyCDPkRtvRQ/AyUUoVtxWVCN/bgLk2UC/OeEN9CpF1UJepZoK5RXQu3Cdntd71kWBSs2qDbfhC6bsKa2PnuDLOQvsEsJOB1FDf2fvXy3LeEn0oOOLTbhZpa1tABJH2HQBWeFmYY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc.com header.i=@rivosinc.com header.b=N4VXFbW5; arc=none smtp.client-ip=209.85.214.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-29ba9249e9dso34066175ad.3
+        for <devicetree@vger.kernel.org>; Fri, 05 Dec 2025 10:24:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc.com; s=google; t=1764959055; x=1765563855; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=R8W7GJchcQ4zk/poJ1GR6L1BtfcBrmnZJJRAQLqexSM=;
+        b=N4VXFbW52VVrQmp8Uuu7vQuE1a3Et5buPSLuzNdHCCAyg7nc/qiIyWzT8/SreCHd5S
+         m8VQNza1Guld4QsxgE3GrczagDJcSuWWeQ/2mWhbjmn7++weUnqqNo1n8CIPoNy1Qif6
+         4L3ziOogGMN9AGdDD/RYVMmXac8LKMIteAt1x+OMzUjs8gPaR3BFeL8IThAdRuNWstj3
+         /rLT1VOsaqQSz1ShQ95wQqfwHOxvvfHHzQoUx+sWJ6mPNChCC3203ZiSATfR0xVX7FoA
+         hXPF8SUy7ib/7ttMhHa3XBA9PP+00NUiIQqPm3gIR5mtdm1EWNKPmjUW2PK3S42VtL5I
+         Uo4w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764959055; x=1765563855;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=R8W7GJchcQ4zk/poJ1GR6L1BtfcBrmnZJJRAQLqexSM=;
+        b=SnkDiOAkc0ge6UHmioJ8QMu/8Liu+2BzDlC23tYISkbs1bDZE7blksXPy3V4qhd4Qt
+         rE69FoEKSreiubLhXzsiSR7FxGBzF//P3UFVxLCJKtKXCRx6xau78bnuezarNWo6+bcI
+         v7PI5UTtXg8NHcmr29L2cbwtGzUTA4n2fgK4I2CUi1+FGj2IKkRQm9Lo3cGBhOSs0ICE
+         WawUznI/YWv/BMzjs1Wuf4Q3f/+Q46kHalBfhLEBlwPPMtqjKbZeABQ5bXzJTWNom+pC
+         z2k+cnKbTJshRGS7YI8+G1zyHQP1PPCfwJnujk++HoyaPQlW9A3rCeDVUDp7g8OVFOH2
+         9oxg==
+X-Forwarded-Encrypted: i=1; AJvYcCXBsXYjRbBkAk9KYlQHfiCflaSS7YgSfiXqYxGPwJsMk2C60jgcw0KXOAwFCqxQkbJWDsPAtF75Ge3l@vger.kernel.org
+X-Gm-Message-State: AOJu0YxSm83aq+ai5aF/gRh3V6X198klaBJNOmJli2Y00R9DvsUR7xC2
+	hhym2eFt0DkMehJtAu49A3cHGYlV1QLuyxokk/Rs/fQz1SpJJwgfJiSsWpShTPVQhjk=
+X-Gm-Gg: ASbGncuoCcv4xHkcWi4Td6Z3Q5GZ4ixlc7b+FmdX0FMacjc4l33uAL5NvKZILy9Chce
+	S/KmzG7IqpCbMj+az3/ILDWpXSXGm1QKPnRXGbOpo/3AMwDjgO0s79D8VDKtV6CXqralqqnMGFQ
+	8CHI8Q0Dh1SR3MTLXrDmkPE6zVIXvCQMylmOkNCvcMx5gD9YRbrbPy79zgdHcbtO4kuVsnH0sm9
+	YRkCAKzo/hfH1tyevnSbs/vOCnViBq2aERMDANcTT311IbW1oI3v0WQH54urKa5F7KCSXV4MdiP
+	XInbGdQyzVxsFiu+M1ltojm9RkhY7zHpki1Bpp5YPUgEch9S9TcLfBa+0be6zPKUyA5YTL8wImV
+	tjCdFPI1m3g/ifxXcydQHfM71C35hSOH8/2xxdZE8pRMsB6Q3TpOO/klYlvC5aP4BGtbrWSTKjS
+	VGzjXEEC6zFQHo3YsBO7y8
+X-Google-Smtp-Source: AGHT+IHZMCsXUTCjOVQ3AFVu8onlvt7po3LO4OEVVdk3jTNgtLDl44M+FmDz1C3tnLg32Vfv9eEpZQ==
+X-Received: by 2002:a17:903:11c8:b0:269:4759:904b with SMTP id d9443c01a7336-29d6848df81mr135161565ad.58.1764959054851;
+        Fri, 05 Dec 2025 10:24:14 -0800 (PST)
+Received: from debug.ba.rivosinc.com ([64.71.180.162])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29dae4a13d2sm54863235ad.9.2025.12.05.10.24.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 05 Dec 2025 10:24:14 -0800 (PST)
+Date: Fri, 5 Dec 2025 10:24:11 -0800
+From: Deepak Gupta <debug@rivosinc.com>
+To: Randy Dunlap <rdunlap@infradead.org>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
+	Borislav Petkov <bp@alien8.de>,
+	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
+	"H. Peter Anvin" <hpa@zytor.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
+	Vlastimil Babka <vbabka@suse.cz>,
+	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v1 4/4] arm64: dts: imx93-var-som-symphony: Enable LPSPI6 controller
-Date: Fri,  5 Dec 2025 19:22:57 +0100
-Message-ID: <20251205182258.50397-5-stefano.r@variscite.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20251205182258.50397-1-stefano.r@variscite.com>
-References: <20251205182258.50397-1-stefano.r@variscite.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: ZR2P278CA0076.CHEP278.PROD.OUTLOOK.COM
- (2603:10a6:910:65::15) To DB4PR08MB10341.eurprd08.prod.outlook.com
- (2603:10a6:10:3ff::18)
+	Arnd Bergmann <arnd@arndb.de>,
+	Christian Brauner <brauner@kernel.org>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Oleg Nesterov <oleg@redhat.com>,
+	Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
+	Jann Horn <jannh@google.com>, Conor Dooley <conor+dt@kernel.org>,
+	Miguel Ojeda <ojeda@kernel.org>,
+	Alex Gaynor <alex.gaynor@gmail.com>,
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+	Benno Lossin <lossin@kernel.org>, linux-kernel@vger.kernel.org,
+	linux-fsdevel@vger.kernel.org, linux-mm@kvack.org,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-arch@vger.kernel.org, linux-doc@vger.kernel.org,
+	linux-kselftest@vger.kernel.org, alistair.francis@wdc.com,
+	richard.henderson@linaro.org, jim.shu@sifive.com,
+	andybnac@gmail.com, kito.cheng@sifive.com, charlie@rivosinc.com,
+	atishp@rivosinc.com, evan@rivosinc.com, cleger@rivosinc.com,
+	alexghiti@rivosinc.com, samitolvanen@google.com, broonie@kernel.org,
+	rick.p.edgecombe@intel.com, rust-for-linux@vger.kernel.org,
+	Zong Li <zong.li@sifive.com>,
+	Andreas Korb <andreas.korb@aisec.fraunhofer.de>,
+	Valentin Haudiquet <valentin.haudiquet@canonical.com>
+Subject: Re: [PATCH v24 25/28] riscv: create a config for shadow stack and
+ landing pad instr support
+Message-ID: <aTMjS-Ok-DrJJjQY@debug.ba.rivosinc.com>
+References: <20251204-v5_user_cfi_series-v24-0-ada7a3ba14dc@rivosinc.com>
+ <20251204-v5_user_cfi_series-v24-25-ada7a3ba14dc@rivosinc.com>
+ <b5feba48-7e7c-4ab9-a193-072f3980f525@infradead.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB4PR08MB10341:EE_|AS8PR08MB6712:EE_
-X-MS-Office365-Filtering-Correlation-Id: a4353d29-8029-46be-c45b-08de342b5564
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|7416014|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?M25VREtlbjh2eUhERGd6VThpd2VjUU82dFZBcVpkeW9pL203T0R0M3BLemZt?=
- =?utf-8?B?R2NGQjdqeHpQdWpTRUMreHlSL3JBYTNKaDFLZjhyWjZ3NkNKNXlBell3ZjhW?=
- =?utf-8?B?Z1FhV0RyTnVBWWtMMldERlh4QldDbU4zRUJsUGw3cjZDNDBYeUZpOENZU0lw?=
- =?utf-8?B?eWgvOVBnN21SeVBxVzlQME9CTkhWVEpDQmpyZEVHbDkvNnh6QkFSd2d1L0p6?=
- =?utf-8?B?VTJCL1Q4RUtEQTczVy9UZFRZdUs0QVBwaDB2RHh5aFhZK3JtZ01SYnBKMytr?=
- =?utf-8?B?by8yb2g4dTZYT0pUQ0NMRVBGZmhCcTdEY3FTRnF3NmdMa0RyL1dCNmhqUkFO?=
- =?utf-8?B?VHdXSE5aUitlS1FUekxNam5ERWhnYTRzVGpJZWE3Zy9HQ3dEMm15YUJzL0Mv?=
- =?utf-8?B?OFltdTMrTkN2RGFPK0E2Vi9UZjZoL3Rqbm03UFZTdnE5cDRuNnBqL2pzNW5y?=
- =?utf-8?B?ajZwYjE0NFlWbUtWM1ExTFhKWForOVg2S0dFUVU2K2d3S1lJNWthQkcrMDZa?=
- =?utf-8?B?c0RIdlhPVUxHclEzNStsQnhvWGpEb0FNamhydlF0TkpNaGtVUCtOOE4vcURE?=
- =?utf-8?B?WmVqbWZkN1J1Q2JJbnpaYjloQmFjZnFhQW16MjlCeUhjWWtjVWlrSE5GWnJN?=
- =?utf-8?B?ZTd3b05CajRSWHRHWmtROTlTUm5qSWYyYldxdmt0WmJBNkkyRFJMM1c2WGVq?=
- =?utf-8?B?Q1MzcC9kMWo4b2pKaFlMYXdlaCtjTEVwdndhZUhGblNCMkF0NjFjNVUvd3hx?=
- =?utf-8?B?NkJIb0lKWmRWajE2OSt0aytDQ2dJcWVhQ1Jub0pEV2w5VFVJZ1dENVlCNm5o?=
- =?utf-8?B?aGQ4ajFhT0VNR2twTWJ1T25DaVR6T3BlZmZGNWEvMnBETlNhQ1lHTGpSVlor?=
- =?utf-8?B?YmlGMjNWdE9ZTEhPL1FzRytqWnBlWTY0Qm9zQ3ovbzRiaDBVYkVXZnN4U3F1?=
- =?utf-8?B?OW5ZblRyK0dhcUx6SzBtcmRqTlpXM24zQTRrSWdIZ3V2YkxJaWk5QnRqcFR3?=
- =?utf-8?B?VWJjV3luV3BJcDZRbktYRDk0Y0NCSVZNQzMzeFhsZWpWMHB0b3AyVE1ld1Jn?=
- =?utf-8?B?SFFLVEsxT2dkL3N3SDJwWTc0V29CUXRNOGt5dnAxWmtzRURncXB1U0ZQQ2Mw?=
- =?utf-8?B?bURLM0ZJMzRGRkVvWlZqZ05jTnJVbFJKQ2xWc0xmMVBKUXIvbk5NdVNxUkJT?=
- =?utf-8?B?dkNid3I1LzE1c3YxM05CazNKRVVNbFhsMG1mU0xpL3gyS1paRjQ3UEJ2YmFF?=
- =?utf-8?B?UHZjbTNtRlRncUVRVkg3VlFzWFUxT21vRkR6NGNBQU9uOHJMNndJZnlJMk9C?=
- =?utf-8?B?c1NVWkhaZjFJMklVZ3AvNzNDdlllUHp6bG1hVm1SRXY2OW9zSVdDaEVQd0tE?=
- =?utf-8?B?bWl6VjlWZ1ptRVpWZkdYZWZmQkE2RHdFRGhHQmZ6UWVONG5Zd0RCUXBZOHhV?=
- =?utf-8?B?UXJ3VWpnUGMxUGlCLzZZL3YwYmRYY1RMZUNlSTZOMHczOW1qK2pHcnJRR1NX?=
- =?utf-8?B?TStSMk1rbGdjdFZDRFRZdmE3ZXF1NFVuUDg2ZVZobWkxMFJ1NjhYZG9PUkdz?=
- =?utf-8?B?VytxWURsZVF2V2hrSG9JZFgxSHhJYU1hQmdQVEJsNzhLU1FwYTVDK1luUmF5?=
- =?utf-8?B?TTJyWXR5b25hRkplUWp6SzQ5bmJWclFvZldPS2p4QlJYLzBOMjdSenJ5YTJF?=
- =?utf-8?B?M2U4QkJmRG45eWZMQVlGRkVuT1RmQjh1eklzbGFtaFJFN21BbE1oQm9US0Nx?=
- =?utf-8?B?a1ZlSjlubTR5UDZvY3Z4aldia3dEQUc0cFpNVlhyZGxYVG1uOG1GWGZHZ1Bi?=
- =?utf-8?B?S21wejllOGVMdlpXbXBSeVR2NVR2Q1dXVm5DckJJQjE1MWprUzcwZ0xNUElI?=
- =?utf-8?B?Y2xTYzE0Q1VvNE8vdDdWUDB4bWZnb2dPY3MxVkFTOWtwbStOT3pyd2ZwdzQ3?=
- =?utf-8?Q?G0lbvqwHgBap1KAxmiuRHVikCyRzCmgP?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB4PR08MB10341.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(1800799024);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?UkxnWmN3TG9XOURydFpyTjFGOTRMNzlPN2ZXK01HY1hmMUFDb2FyR2tBNXVF?=
- =?utf-8?B?SWRuSll5K3pPRlY4TER2ZjFJcVhBcVA4NDd5cUpyUVVxQytSMCtWTGxSM2hJ?=
- =?utf-8?B?aVpXZy9zNElpT21KMzhZMytnRlQyMytvVkxwZjBvalJpZi9XejdpVnc0dWRB?=
- =?utf-8?B?OWd4aVlzOXpKajgySGk5Z01ad2MxVUdNSW5xMnJjSzRzTExlTzNkaGh2c0o5?=
- =?utf-8?B?TFpvR3N1TitRYzRJSnVvMEQ2RitOVWpScnFENWM4WHVGSStuQnhMdjVaL0hU?=
- =?utf-8?B?dkJIMHZEZEVFMk1DOG5nSnZSR1Uzc3E5TWVjMWZWZmoyaVpkMmxmYjRxT2hi?=
- =?utf-8?B?UDJUelBKV2ZGbjJzWXFQWkQ5NzFhdWRJWHJsRlFLUUZIV1VJY21FQWRpSXRP?=
- =?utf-8?B?d0pDcXhETUc2UXZTcHNNbVJSZHR4UHRjWXBpZTNVZFpPbXl0cFgzS2krT0kx?=
- =?utf-8?B?ZmtCVkR0ZXpOenV2R25MWFB1VldPQTd4OUpqdU9xSGtSdHJiYmVDWVIxVS9x?=
- =?utf-8?B?NjhEWmFQNk1mRDNYd3FMQVh0Z0Q4blArMjU4TnJwK25nelQ1WWlvV1NkOE9r?=
- =?utf-8?B?MVA5d2ptVGFWN3I2YjdjVjJaOG9HWjFyS3VVY3lGQzAxR21sZy93U1BrSjlv?=
- =?utf-8?B?VTV3ZElraTRaQmNISU9Za1NTNllmQW9YVzE5dFVrMnVtMDNtV3Vyd2xud3FI?=
- =?utf-8?B?VlA1bVJQK0dWZDdxQjlRSFI2dXp1OEt2MmZjZXVvelBIMFBpK0Q0WGJVUjBZ?=
- =?utf-8?B?cVBRZDNJd2R1RTE2ZE5RNmZsTVhrK0dsUnViQzlyWlpldHBmazUyM201UkNv?=
- =?utf-8?B?L0UydFhoUU0wLzF1VVJUcDhFL1FzUmZQVEFPVG9UZ0hYWk8xSmZoNmdtN0Jp?=
- =?utf-8?B?WFBQYkdWakFTQ3JBV3NZSWlQSjUwYm12VFpYV29CMmhYWGRIKzNHQUc3SVlT?=
- =?utf-8?B?RkwyclFHdkJpUzl1QTZzV3hLM1lwbERJYW1JL0Y5LzRjV2tEOVRRNUJBcisz?=
- =?utf-8?B?MXdzSWwvQzlKaWFFa2did3dJSTFCUlMvb00rQkxCbFpiQ202QzZSRzlWNUp6?=
- =?utf-8?B?dXJwajhleEhOUE85TkdNRy9JWjNRbEM1eXBRenR3OGFWUHI2UXM5OW1JNXR6?=
- =?utf-8?B?ZHJxU1doZjJuUFRjWUthM3A1NTV1Nkg4RXgyN2VFeUE0bkhXeTNxOEcwWHc3?=
- =?utf-8?B?QmxjNldxRXBXZ215WlozWWQ2YzJOTHRPdmJ6Z3Mzelp5aGZaVUdSRXBFaWxr?=
- =?utf-8?B?QVd3UTYvRDBYa0d3bEFVaFBsdlJBbWNQOWtrUG5SMUFEQ3dSdFNSS1M0S3oz?=
- =?utf-8?B?cmZFSVA4L0xqaW5DN0ZPNklLU1Y0RlJjcVhnNUJDRlljMWsvdWgwLzBzaFIw?=
- =?utf-8?B?bkg1akx6bDdoZDF2SnBhNE10ZEtKaDUwbXFnU0Z1SkR6NmtmZVl2NnQ1U1ZY?=
- =?utf-8?B?SEZMdnNLb1RjUVhuYkJHNnJ1UmdlVnBEek9FRy9ycTBVTlBCbXBKbVdENmFS?=
- =?utf-8?B?RmFXQ2s3QUtJZ3hBT0FGRmdmOTl1aFExUUNXVE1RNGVIODVjUGUxLzFMNitv?=
- =?utf-8?B?K2lYTG5Qc0FteEErVVJBTDBuTUlRNk9qMUw2Z3g1aUtPN2k1cnF6RzZaRDdw?=
- =?utf-8?B?ZVpPdHMrUmFJU05kcmFWNkZxVjNuN24xMDhlNVdBQlBQZDJWdklPV0NKOGZJ?=
- =?utf-8?B?UnJDa2FVQlZES3BVUjQ2VkxaejIySWEvYUtUcUkwRytFV0lSUjFzcW42MWxN?=
- =?utf-8?B?cFZuUkxsd0FYWVpDZXZaM2Q0bFFTRFV1UkMwUUg1cFg1VGpIRGs0cVVqUURO?=
- =?utf-8?B?SjVrQkJDUHVDclVyY0VMNHlqNmNHNGJYNVBlSGoxR1hFM0FjZGJnMUx5L3FO?=
- =?utf-8?B?aklwbnQvR0dhVENpcGM5OE1hMXhCZzgyVFNHQjdZSi9ESHNJWVdySzhsSndL?=
- =?utf-8?B?TE1ZVWpjSG91YnpuZkdydW5jV00zRlR4K1J3ck5ZMWxxZytrdU9lSmpzY09w?=
- =?utf-8?B?endjNVB4bDFKZE9RSS8xV1dwM0kzc0lzRHZyaTdtdjlnSXNXbWZxMmlvcWpn?=
- =?utf-8?B?TGREMzNabUNjOVJrdzFKc0E4KzJWUEduUERIRWFhNk8rS1o3ZlJlY0xwdGtD?=
- =?utf-8?B?Yk1RUkREU1gwVjl2cTVYOHFxRGg1Q3ltMXQ2K1VPczI2UzFFMU5uQVduOUdy?=
- =?utf-8?B?Zmc9PQ==?=
-X-OriginatorOrg: variscite.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a4353d29-8029-46be-c45b-08de342b5564
-X-MS-Exchange-CrossTenant-AuthSource: DB4PR08MB10341.eurprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Dec 2025 18:23:05.4670
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 399ae6ac-38f4-4ef0-94a8-440b0ad581de
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 7Yhpwqmx6POp4oZi8+EdnQ/dpWTo+1HobVb9dDtg94YaybB4jQK/Kq9W0x8gLKUTL/vWy3Pf6HtrgQcFNvJUaQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR08MB6712
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+In-Reply-To: <b5feba48-7e7c-4ab9-a193-072f3980f525@infradead.org>
 
-Enable the LPSPI6 controller so it can be used by user applications
-through the board’s expansion connector.
+On Thu, Dec 04, 2025 at 02:17:27PM -0800, Randy Dunlap wrote:
+>
+>
+>On 12/4/25 12:04 PM, Deepak Gupta wrote:
+>> This patch creates a config for shadow stack support and landing pad instr
+>> support. Shadow stack support and landing instr support can be enabled by
+>> selecting `CONFIG_RISCV_USER_CFI`. Selecting `CONFIG_RISCV_USER_CFI` wires
+>> up path to enumerate CPU support and if cpu support exists, kernel will
+>> support cpu assisted user mode cfi.
+>>
+>> If CONFIG_RISCV_USER_CFI is selected, select `ARCH_USES_HIGH_VMA_FLAGS`,
+>> `ARCH_HAS_USER_SHADOW_STACK` and DYNAMIC_SIGFRAME for riscv.
+>>
+>> Reviewed-by: Zong Li <zong.li@sifive.com>
+>> Tested-by: Andreas Korb <andreas.korb@aisec.fraunhofer.de>
+>> Tested-by: Valentin Haudiquet <valentin.haudiquet@canonical.com>
+>> Signed-off-by: Deepak Gupta <debug@rivosinc.com>
+>> ---
+>>  arch/riscv/Kconfig                  | 22 ++++++++++++++++++++++
+>>  arch/riscv/configs/hardening.config |  4 ++++
+>>  2 files changed, 26 insertions(+)
+>>
+>> diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
+>> index 0c6038dc5dfd..f5574c6f66d8 100644
+>> --- a/arch/riscv/Kconfig
+>> +++ b/arch/riscv/Kconfig
+>> @@ -1146,6 +1146,28 @@ config RANDOMIZE_BASE
+>>
+>>            If unsure, say N.
+>>
+>> +config RISCV_USER_CFI
+>> +	def_bool y
+>> +	bool "riscv userspace control flow integrity"
+>> +	depends on 64BIT && \
+>> +		$(cc-option,-mabi=lp64 -march=rv64ima_zicfiss_zicfilp -fcf-protection=full)
+>> +	depends on RISCV_ALTERNATIVE
+>> +	select RISCV_SBI
+>> +	select ARCH_HAS_USER_SHADOW_STACK
+>> +	select ARCH_USES_HIGH_VMA_FLAGS
+>> +	select DYNAMIC_SIGFRAME
+>> +	help
+>> +	  Provides CPU assisted control flow integrity to userspace tasks.
+>
+>	           CPU-assisted
+>
+>> +	  Control flow integrity is provided by implementing shadow stack for
+>> +	  backward edge and indirect branch tracking for forward edge in program.
+>> +	  Shadow stack protection is a hardware feature that detects function
+>> +	  return address corruption. This helps mitigate ROP attacks.
+>> +	  Indirect branch tracking enforces that all indirect branches must land
+>> +	  on a landing pad instruction else CPU will fault. This mitigates against
+>> +	  JOP / COP attacks. Applications must be enabled to use it, and old user-
+>> +	  space does not get protection "for free".
+>> +	  default y.
+>
+>	  Default is y if hardware supports it.
+>?
 
-Signed-off-by: Stefano Radaelli <stefano.r@variscite.com>
----
- .../dts/freescale/imx93-var-som-symphony.dts     | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+No default Y means support is built in the kernel for cfi.
+If hardware doesn't support CFI instructions, then kernel will do following
 
-diff --git a/arch/arm64/boot/dts/freescale/imx93-var-som-symphony.dts b/arch/arm64/boot/dts/freescale/imx93-var-som-symphony.dts
-index ee69d6b268a4..c0842fb3cfa3 100644
---- a/arch/arm64/boot/dts/freescale/imx93-var-som-symphony.dts
-+++ b/arch/arm64/boot/dts/freescale/imx93-var-som-symphony.dts
-@@ -276,6 +276,13 @@ &lpuart1 {
- 	status = "okay";
- };
- 
-+&lpspi6 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_lpspi6>;
-+	cs-gpios = <&gpio2 0 GPIO_ACTIVE_LOW>;
-+	status = "okay";
-+};
-+
- /* J18.7, J18.9 */
- &lpuart6 {
- 	pinctrl-names = "default";
-@@ -384,6 +391,15 @@ MX93_PAD_GPIO_IO22__GPIO2_IO22			0x31e
- 		>;
- 	};
- 
-+	 pinctrl_lpspi6: lpspi6grp {
-+		fsl,pins = <
-+			MX93_PAD_GPIO_IO00__GPIO2_IO00                  0x31e
-+			MX93_PAD_GPIO_IO01__LPSPI6_SIN                  0x31e
-+			MX93_PAD_GPIO_IO02__LPSPI6_SOUT                 0x31e
-+			MX93_PAD_GPIO_IO03__LPSPI6_SCK                  0x31e
-+		>;
-+	};
-+
- 	pinctrl_pca9534: pca9534grp {
- 		fsl,pins = <
- 			MX93_PAD_CCM_CLKO1__GPIO3_IO26		0x31e
--- 
-2.47.3
+- prctls to manage shadow stack/landing pad enable/disable will fail.
+- vDSO will not have shadow stack instructions in it.
 
+
+>
+>> +
+>>  endmenu # "Kernel features"
+>
+>
+>-- 
+>~Randy
+>
 
