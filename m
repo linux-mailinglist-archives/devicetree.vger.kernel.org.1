@@ -1,181 +1,124 @@
-Return-Path: <devicetree+bounces-244844-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244845-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B69ECA95C9
-	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 22:11:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2126BCA95D8
+	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 22:16:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A66BC30577EF
-	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 21:11:13 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D0F02301E16B
+	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 21:16:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7DEE2D9493;
-	Fri,  5 Dec 2025 21:11:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9E0D1F2BA4;
+	Fri,  5 Dec 2025 21:16:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ceybAcf1"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NAS4QhMw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2088E213254
-	for <devicetree@vger.kernel.org>; Fri,  5 Dec 2025 21:11:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27C6540855
+	for <devicetree@vger.kernel.org>; Fri,  5 Dec 2025 21:16:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764969071; cv=none; b=b7d6kvFUBZi58ICMEmsUrrskYwydTGB603eMEzZGPPyDhav87fTpnUAiFKrWqtdIZEPqv/GME22IHvv1Qs/r0KBWCW0DFyklUwkotaiYDfOgY6eMFcWpDQvdUWCQe1kB7WAX8ryTsgmpf70S2c2zUrTvvr50canmFYdNje1DLYU=
+	t=1764969408; cv=none; b=ZcwmiT5NlcqrFacwrnZyjVyysWC2lYpng0X1vsZrTdoQwd+JoQ+t71UnO6oJR1StihYcneFJ/fCygSex8EJrKBXOJARF6IFYEeMKJ1eNSkUDccJ2Vhq6UbTn5W9P3EjOpcVG9n+Rp6YjfDNqrvXGlNOYMc677qnuBCn274leXtQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764969071; c=relaxed/simple;
-	bh=c7c1J1vIUl2RUCCAw3PryaNjjaYVzuxa0pvkJ9f40DI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uFUDJzZB349V6pRbNdBZXN82E8pJgzHy7I6XCNPKGUTP34ziWYSqMwJKZGPiZpDmaD9TCmxi7XdKPrvQBXkMvPHOnNpebxRAQhGrF12mLJ9bFtAP1FGTa6Zu7s2C0FbvEIkGG+RkUGHHxXCGqLow9e2ztKWFd556/Vln24nwa6w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ceybAcf1; arc=none smtp.client-ip=209.85.210.171
+	s=arc-20240116; t=1764969408; c=relaxed/simple;
+	bh=tcwMF1u7d3ohgpmS2mxHfc4wRFvpiyjj0O/l4GKooTY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Ibyw+sAfyMkCy5+1cxQruTDuQ9uRshvCCdUS89qxnQcKhfcrKQQJXx12+APsrjfSykJ5eFzgaDpJxXhIvnZxH8OgIHU3SpDyXW1c1J23ISsyuIX6FcK+oYGWrEn3de3QVrKAAvBrt928uWK/QLHH0k1Cvl7MPtMMQVYoYJcmivw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NAS4QhMw; arc=none smtp.client-ip=209.85.128.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-7b852bb31d9so3086177b3a.0
-        for <devicetree@vger.kernel.org>; Fri, 05 Dec 2025 13:11:09 -0800 (PST)
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-477563e28a3so19255645e9.1
+        for <devicetree@vger.kernel.org>; Fri, 05 Dec 2025 13:16:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1764969069; x=1765573869; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=9dp9/mKBjgaa+hOS/JhmxBoz56rQ07ceIHhKFiTPWfA=;
-        b=ceybAcf1xwMEFuJCZDVlTScA7kKEa5jiuiR57JEe8KGzDgCc32QHQ5xWIKXxl5Cagj
-         kkpD+s90WFuP1HKGoV8SK66n6aqhMtmDvUzlydMjRHzIOUpbjjy2KK1IML8Q6sEhtlmm
-         9BvL1Xs7GTyT3RWnfKtoaHUHsFrNz3SS10SaeNFzJj4kCKdsoYhlwEMED2KYi/PxYgej
-         ZqqqXtCEUSjiY8XBgirtFEL/X/mh0CXx5iQ/kypz9IpUOjRhpL4xoSE1A21rLWdoDXUj
-         Fpn/MjU4JISXEdebcB68AY90/MSvE5K6OYBMxiq7U0JAEL0kg0Eyqb1e02gNT6DsY5OZ
-         XWxg==
+        d=gmail.com; s=20230601; t=1764969405; x=1765574205; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6Nxf+UbxVML8lqm9dUwCL46TJXN3lpM/MynhhK+ht9M=;
+        b=NAS4QhMwzen90LiRI6lX/N6fRfB3dyCpOZ1dpTw19Ngw5VbLV4WzhPxCToPzpgVP/Q
+         swDRV5W4epy0JrsnkBr3XPitt4+aL3nn6nYy8ixG0OB0Yq+rv3JO/OF5E9tEP0AMnOO+
+         vT6KIq2XG6Z4oGWG8Q3WyikgHP/ooSUhCKFx+XHybYXHQPo3yg/qr7Un6/9kj1mWORZ2
+         8qU2cu33U1ipSJ8KECmAl/RZw+JWrx8H0Ex+ODVXRhc9G0fGR169U5JyaJ9umxM8s0h/
+         o/HAvwgpimLI9phexHWOAO2ESvmoQzarQegt4sbc7YHOj+rz+x66Fp8ovc/MtAmR5DHO
+         vuNw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764969069; x=1765573869;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9dp9/mKBjgaa+hOS/JhmxBoz56rQ07ceIHhKFiTPWfA=;
-        b=g8xz+qyL2YxkcoTs6eX443M2F7xcyvZDk9mF1lqw1gPw8wyCDtF3Ei7Htu+amkofUM
-         X6lobHB1QteOR1EaP+nuMENsH8r2xrtJmeoaW4MWdNaarGRBzEHwDZb+PRkIZmG6fKfj
-         oZiHKZqRlnNCwRH1/xtkQVjZPX8delfFhJodTowS3sEh/hvzQMccHTFWDkLCrSKJuhDv
-         yzo4XxElkOUH3l/Ol3phjpynvqr7iNMsxhDvYhpzdlWHihfsX7RsGdVhfP+NcMxx/I/m
-         FX1C/K2xDVWreQgsX0Kgt+KuuoWwbfsZBDsqVpPveeP61uMrhEbgCOBFsm1DwaF4qE4w
-         bKeQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWdvS0QcgD4mOCukPtcX2nnyrx+Dwsjc8NnD9tcLhLcpkL5yQh1tvJ3bbTRFfl76UXsISsJJ+kgbzMo@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx/V9ZXX4jeVHeJx10HGyUQOsWsRSU5hmC/9sqJeRsJZaB0IQRb
-	OQ09ONspU6ubjMrYtD3D4OZHRy3J73so78QepJPeSv8qZ7WiCHY9JFyF
-X-Gm-Gg: ASbGncuqOvQw0q51akGLGG/GFUfSXAxW792J5xA+5fJzw/c94fJD7ZDcILa9QGb6DCS
-	S4RlXPUZ60G9T5lC7S1xCkSWaBJjRfHGcN9fhwbtvKRbp3nlW0VrSo6wFbWz2pZ8GmQrzZNLnM8
-	hHj0Y8XVBRRWMKf50Doof0sVXk3opt+BKU7Ew6wRpR8M6eSiYjqT/Ghw/lnthxRlHMlYWD59Dbm
-	f1O+2oOUiCKhwRB4yWFk2QsPg/5R3pgtnmjM1aokhxXD1JnfHACMq/rs+goIDdlJiCXG+15HWRP
-	nyxniWX6kejq3LEwyJS8+95Hy+/RBnfVAqH9Tn82xoflgAAjXXwRRWMAqnS7HD4p2t7rAMCbr3f
-	vVLjPEuVTiZ6EY/HqwYv7DAdllw+IEGIGRpydEZbCBPUdzNGg7dcicCqL0L9PrcckxJwlfFhlfz
-	mIPwbLGfoWVzwZaBDZUx7J
-X-Google-Smtp-Source: AGHT+IHcEY0Q1FA1vKURG7RgwRQex46GLvAineu1VoXOdKRh8PgkrSImSe/zY+sC4iAx07qvMIjyjw==
-X-Received: by 2002:a05:7022:4404:b0:119:e569:f60a with SMTP id a92af1059eb24-11e03162d6amr481897c88.3.1764969069289;
-        Fri, 05 Dec 2025 13:11:09 -0800 (PST)
-Received: from localhost ([2804:30c:2712:fd00:9579:9ff6:e506:6147])
-        by smtp.gmail.com with UTF8SMTPSA id a92af1059eb24-11df7552211sm21303509c88.1.2025.12.05.13.11.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Dec 2025 13:11:08 -0800 (PST)
-Date: Fri, 5 Dec 2025 18:12:41 -0300
-From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-To: Rob Herring <robh@kernel.org>
-Cc: David Lechner <dlechner@baylibre.com>, Mark Brown <broonie@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Marcelo Schmitt <marcelo.schmitt@analog.com>,
-	Michael Hennerich <michael.hennerich@analog.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Andy Shevchenko <andy@kernel.org>,
-	Sean Anderson <sean.anderson@linux.dev>, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org
-Subject: Re: [PATCH v3 7/7] dt-bindings: iio: adc: adi,ad4030: add data-lanes
- property
-Message-ID: <aTNKyaWAEjVJixMI@debian-BULLSEYE-live-builder-AMD64>
-References: <20251201-spi-add-multi-bus-support-v3-0-34e05791de83@baylibre.com>
- <20251201-spi-add-multi-bus-support-v3-7-34e05791de83@baylibre.com>
- <20251204213348.GA2198382-robh@kernel.org>
+        d=1e100.net; s=20230601; t=1764969405; x=1765574205;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6Nxf+UbxVML8lqm9dUwCL46TJXN3lpM/MynhhK+ht9M=;
+        b=iPvWOec7g2qMH8mUI72EuGpKgX7JRj9d/AxbMGRbsvQeJ5JzH8iaP2hOQKy3wNPTfA
+         Kuc6nEvssgo274OziXArDTWIxSExaq8AqJIW9Sj0bsYvq3/kPf17MRdOF6ZSL/0hWGf5
+         jk4qs5kqmXKs8h51SPR9ngNtFfowJO9rZzK9vk6Urm/rtQSzn6zXyVIIARNAHjyLSDib
+         8JW2kJsxDokgArRc9aQydM4qNLwVyXgz0LeHDAUU+0PJwV9HQ5D390gPn1fzri4JRjKT
+         yPZCRZexiHqjtrW56yClBvbVVNpPvx0HDlmj42xkb9k0tpUTcljiHCP5IABxkz+yO0E5
+         6QiA==
+X-Forwarded-Encrypted: i=1; AJvYcCWkclbSw4GuDWxq8atzXnR1iKoltsK63Gvi1YLB0vFdHQPIX0HDel88uaMh2zlga2143Z3jAqYs7+sV@vger.kernel.org
+X-Gm-Message-State: AOJu0YyhNzYJhmBq7VQ7CF3mmvE7f4xOLD07snkyiKBtbM5K5hLB/fCc
+	xARXBBYtDYPCUaH50KCqKHOEaioDJCix5bLLT9RdOrD5R41dw0ZjCncd
+X-Gm-Gg: ASbGncs6FATJgrg9zugpiEJNTNUpo8lJI1ldNdxSOd/YLila4hcstgLtx2axElQ3fQ8
+	Cl+qFI8QoAoFeg2Ou9AHiIfSSSOnuUhOBnfGDq2G6HIioK209O+g5ymttcIy8+6TzOA+Ap7YiJ/
+	vlADVL9hLdHkjsdB5i+oGdU54ut8we+PbaBjnvrB3f96pmf7wL0JiHTLnjseSa24+7+b5iOILDD
+	XOoksB4iTEKYIcjO6SzD7vJ0dKemVqyzOZqm3sw0eIl54YDhcLWV0voalmMLfXSyhD88jwV8tVb
+	PV78+LRF/aabKIr5hg4/tBApnZQ3AOwALc7nwL6IdecWZV/lCpwZYDOCr5XlYyQ7PIHIXAUkV3f
+	uhNHwTxvz7LO7zoNXasw8/EKn9RHv2TqdKYL9j7ikumPyHdvhYKS/Rxvq23LbIxNPE+wt2D6oHf
+	RvzZzFCSz5Pj/uEZu//wwgMqDuW3zP046TyccRwQ0lQcZbSIExZZq3W96UYM8pocqvtT3FIHKiX
+	rOu833PM8eusq0/4KEtv3gijjWCpY1fjm+8VDIvRtWqD/KiRrcM1w==
+X-Google-Smtp-Source: AGHT+IFZChau8OMeC1OLCqeCPNebVKaNk3vumCCd23Bu0iJLrPIjbfoD1uBKQKJb6ckkVpzXZJNNzw==
+X-Received: by 2002:a05:600c:5306:b0:46e:59bd:f7e2 with SMTP id 5b1f17b1804b1-47939e22a9emr7139775e9.11.1764969405296;
+        Fri, 05 Dec 2025 13:16:45 -0800 (PST)
+Received: from ?IPV6:2003:ea:8f47:b600:41b3:37ed:a502:9002? (p200300ea8f47b60041b337eda5029002.dip0.t-ipconnect.de. [2003:ea:8f47:b600:41b3:37ed:a502:9002])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42f7d222506sm11795875f8f.28.2025.12.05.13.16.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 05 Dec 2025 13:16:44 -0800 (PST)
+Message-ID: <10441fbd-8022-402e-8551-e0f8ec0449f0@gmail.com>
+Date: Fri, 5 Dec 2025 22:16:42 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251204213348.GA2198382-robh@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC] powerpc: switch two fixed phy links to full duplex
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Madhavan Srinivasan
+ <maddy@linux.ibm.com>, Michael Ellerman <mpe@ellerman.id.au>,
+ Nicholas Piggin <npiggin@gmail.com>,
+ Christophe Leroy <christophe.leroy@csgroup.eu>,
+ Pantelis Antoniou <pantelis.antoniou@gmail.com>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
+ "netdev@vger.kernel.org" <netdev@vger.kernel.org>
+References: <64533952-1299-4ae2-860d-b34b97a24d98@gmail.com>
+ <5d302153-c7f6-48dc-95cc-0dc4f25045c6@lunn.ch>
+Content-Language: en-US
+From: Heiner Kallweit <hkallweit1@gmail.com>
+In-Reply-To: <5d302153-c7f6-48dc-95cc-0dc4f25045c6@lunn.ch>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 12/04, Rob Herring wrote:
-> On Mon, Dec 01, 2025 at 08:20:45PM -0600, David Lechner wrote:
-> > Add data-lanes property to specify the number of data lanes used on the
-> > ad463x chips that support reading two samples at the same time using
-> > two data lanes with a capable SPI controller.
-> > 
-> > Signed-off-by: David Lechner <dlechner@baylibre.com>
-> > ---
-> > v3 changes: new patch
-> > 
-> > I added this one to give a real-world use case where spi-rx-bus-width
-> > was not sufficient to fully describe the hardware configuration.
-> > 
-> > spi-rx-bus-width = <4>; alone could be be interpreted as either:
-> > 
-> > +--------------+    +----------+
-> > | SPI          |    | AD4630   |
-> > | Controller   |    | ADC      |
-> > |              |    |          |
-> > |        SDIA0 |<---| SDOA0    |
-> > |        SDIA1 |<---| SDOA1    |
-> > |        SDIA2 |<---| SDOA2    |
-> > |        SDIA3 |<---| SDOA3    |
-> > |              |    |          |
-> > |        SDIB0 |x   | SDOB0    |
-> > |        SDIB1 |x   | SDOB1    |
-> > |        SDIB2 |x   | SDOB2    |
-> > |        SDIB3 |x   | SDOB3    |
-> > |              |    |          |
-> > +--------------+     +---------+
-> > 
-> > or
-> > 
-> > +--------------+    +----------+
-> > | SPI          |    | AD4630   |
-> > | Controller   |    | ADC      |
-> > |              |    |          |
-> > |        SDIA0 |<---| SDOA0    |
-> > |        SDIA1 |<---| SDOA1    |
-> > |        SDIA2 |x   | SDOA2    |
-> > |        SDIA3 |x   | SDOA3    |
-> > |              |    |          |
-> > |        SDIB0 |<---| SDOB0    |
-> > |        SDIB1 |<---| SDOB1    |
-> > |        SDIB2 |x   | SDOB2    |
-> > |        SDIB3 |x   | SDOB3    |
-> > |              |    |          |
-> > +--------------+     +---------+
-> > 
-> > Now, with data-lanes having a default value of [0] (inherited from
-> > spi-peripheral-props.yaml), specifying:
-> > 
-> >     spi-rx-bus-width = <4>;
-> > 
-> > is unambiguously the first case and the example given in the binding
-> > documentation is the second case:
-> > 
-> >     spi-rx-bus-width = <2>;
-> >     data-lanes = <0>, <1>;
+On 12/5/2025 6:50 PM, Andrew Lunn wrote:
+> On Fri, Dec 05, 2025 at 06:21:50PM +0100, Heiner Kallweit wrote:
+>> These two fixed links are the only ones in-kernel specifying half duplex.
+>> If these could be switched to full duplex, then half duplex handling
+>> could be removed from phylib fixed phy, phylink, swphy.
+>>
+>> The SoC MAC's are capable of full duplex, fs_enet MAC driver is as well.
+>> Anything that would keep us from switching to full duplex?
 > 
-> I just reviewed this and all, but what if you just did:
+> What do we know about the device on the other end of the link? Maybe
+> that is what is limiting it to 10Half?
 > 
-> spi-rx-bus-width = <2>, <2>;
-> 
-> So *-bus-width becomes equal to the number of serializers/channels.
+I found no hint that anything is connected to this ethernet port on
+the two boards. Hard to find any information because the boards are
+>15yrs old. Seems this are dummy entries, just to let fs_enet load.
 
-Unless I'm missing something, I think that would also describe the currently
-possible use cases as well. To me, it actually seems even more accurate than
-data-lanes. The data-lanes property only describes the SPI controller input
-lines/lanes, no info is given about the output lanes. Well yeah, that would only
-be a problem for a device with multiple input serializers and multiple output
-serializers. Still, the *-bus-width = <N>, <N>, ... <N>; notation looks clearer,
-IMHO.
+> 	Andrew
 
-> 
-> Rob
-> 
+Heiner
 
