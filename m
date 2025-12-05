@@ -1,239 +1,223 @@
-Return-Path: <devicetree+bounces-244830-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244831-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3625CA940F
-	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 21:21:36 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D70ACA9424
+	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 21:27:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 698E9314C295
-	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 20:19:41 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B83733047640
+	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 20:26:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4350D2BF011;
-	Fri,  5 Dec 2025 20:19:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99F7D2BE7A7;
+	Fri,  5 Dec 2025 20:26:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="DjbUlgjX"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="aFvJjX1K";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="g25i4o4v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35742284894
-	for <devicetree@vger.kernel.org>; Fri,  5 Dec 2025 20:19:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E53F1DE4E0
+	for <devicetree@vger.kernel.org>; Fri,  5 Dec 2025 20:26:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764965979; cv=none; b=S31XOEZQh1nhGPmf9ZJwNNzX+DHBRaYtGODu1kGYxX1b4P12yCZplm7Xy1lRSS7JOauRyKZT7zJ6yNiX3W+DwLYsU1+NcwhmgXco/D0xOYk53rHFWrRnKZntElTg1+jDHfSDb/td+i90n8GoxvBY3Ihn5wgBAmSKZHGzMWyrbj0=
+	t=1764966402; cv=none; b=q4IhAPDw4ot4uhAlU1xyEgHRNWdUBzcGos0J4QrQkRUWj8dk75/u7i1a9EJ8twzj/LevHxuQQxY6YC9f/UZZSLSkdpuYNvZSiSQcMUiXOQ+bq1UWOuwLHRtyneO09GOrPy+5te+S3Oj2SkVcBRANWoUAMsVSQCuS8eeisSJZhts=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764965979; c=relaxed/simple;
-	bh=QvV5ac3UPAUOpNjnIM4GRf8TjdDG2xguqUsq832Ab1Q=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=UN+LPM5ZxylPkMesoD04WX0LiW7o0x1xHsOl0oZsYyWVNq8WLaCL9sW57/G+nZaZKsX6Uj/qasLjZLGk7iHeDnaDUNwYpXqG6W4HMtJ76db1wAGJPMGDiZkvsIBdPJ/+tPFAC9M5LgMvosHqz5kULY5HfiiFUQdvABhbq8jWCho=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=DjbUlgjX; arc=none smtp.client-ip=209.85.210.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-7bb710d1d1dso3986107b3a.1
-        for <devicetree@vger.kernel.org>; Fri, 05 Dec 2025 12:19:36 -0800 (PST)
+	s=arc-20240116; t=1764966402; c=relaxed/simple;
+	bh=iWhkpfDSSg6IvTqBOhnDgMTl4gC8DA1wYFBb9RFRAfk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=UlA6+9c5PrlJ6qtpJ0C/XmER8cIN5zMFIHeNbqJewYSW/HokJlEhyYqo1lPiCWNUqSbvhn1Mqs1RPGZ2GUMYGrzMHGHBQUFdbSJm392bqg7oURagJef8GF7Vb36ajp2PSffEujzLNpn838GDP50l9kUKbHFz3qFwfKvAF9BEqwo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=aFvJjX1K; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=g25i4o4v; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5B5FBLUf673070
+	for <devicetree@vger.kernel.org>; Fri, 5 Dec 2025 20:26:40 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=Ou5OTe6ItK50Xmy1KzAFGVvq
+	CH5BTqwqPAu2c0Wd1Dw=; b=aFvJjX1KQ959FsseXfoL9ADfYv1LLhNAvbVHKYm9
+	Aa3jwV/MZ2OD/AncIgIpgiulcsqvkJeFA2XDSBwjcMOhBaWcvK2toCXd2ABDywIG
+	mkWOm6L+PoA1d04zh/Fr+lFnsKYOWz9jdMipEcxph6eUh5WP1ksfm3gZWYMarwon
+	pOvPMrJM83+AwGnQf7/+UjP+SPFs2fwC1At2TlQxGZoVLRxY2jgYys9d0DmlDWm6
+	BUSU4jfz03DAj5b/8LiuZbZzLuhs4hZ5T3Dbo4sOf/XIGec306TPms+hoEIIuHv/
+	DSV/U5ng6m9olj7xN4/Pz+e3kOjhs3nuaRtwA4Tr1qh24Q==
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4auwm4hm3f-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 05 Dec 2025 20:26:40 +0000 (GMT)
+Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-8b4f267ba01so775848985a.1
+        for <devicetree@vger.kernel.org>; Fri, 05 Dec 2025 12:26:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1764965976; x=1765570776; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QvV5ac3UPAUOpNjnIM4GRf8TjdDG2xguqUsq832Ab1Q=;
-        b=DjbUlgjXYXJj4lHFUdRr0YqPIWG4dB0mWJEF8W4TmQGSJDq8ox+rqq3fpN2VfuwNpY
-         2gY//vvDyCP01xsqROTifzAbCW3p+xh0tV+Q3m9D7nZogxCVOVPS82UHGy7Fc0WD+R5m
-         cxAKjF1jo5ivIkvgttn6qRHsKVsR9hx4idmOhCd3jiNWjjjU1Ph3MxDt+hF4waWozMzn
-         XeW0svASfeSAV9uhI/JC+4ijgaPwsnChyb7AU08wXeg+H6jDfYytfIcfPe3B4pzkAVsd
-         Zrlc2+gos+TI5pGvP+z1plZNLAnvOvTKlx+GaMVjWGE4xXDrLVgRSNmS6phSYF2sa9D8
-         qkUA==
+        d=oss.qualcomm.com; s=google; t=1764966399; x=1765571199; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ou5OTe6ItK50Xmy1KzAFGVvqCH5BTqwqPAu2c0Wd1Dw=;
+        b=g25i4o4vuIEHTDu0/mj4dPSB8t+uyAHTnquKEUmqODHJ2yHoEgA7nQZA5OjRV20+J5
+         g5QXqviEO1wxRXKYpZSnt7lXvFyYA0iaZA8WJTQurs8uDkPhTBN5iVKLk1uiuHmzok4J
+         JewCyx5MlL1CTu6tsWzQ2BAsnn9Lhsaw36YdcPEMLIb0Hf1MVI7jGyJbWyVXnAhgM45w
+         tWhfiIhSs2OefyqvfJP3Tvc9cB3DJ+L+pgje8WkAe9qtpda6XoRE+v/m9wMtFlNeg0XO
+         Yvx01DqzCIMbZo/I06e7C4cKQnenMfa0gOJ2G0dvcRGxWw1lvZfieALMu0PjQ3Ll3e7d
+         nAYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764965976; x=1765570776;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=QvV5ac3UPAUOpNjnIM4GRf8TjdDG2xguqUsq832Ab1Q=;
-        b=sRTONzyYq12bCLY32X8+/LV/WrPIJfZfc1fYSKwDDrSxpLe00eTZk8i6ga1pcLAfUD
-         GJ8ZidHWbSudaT23ZoBCgthV4lVnvJ1Lu8nw9zjeOeVcsp2Hj0HHwIOPSJfL1HxXRDCS
-         WLjwZD9xAPXY9vO1xSonfRPAONANSf4MQLP1mkIQ3AArzmJG4JydSa2hqFZW3oZeeXv/
-         SDUR51WMn6A+u1yyUDdO8yRkVIL7inQTAQCeerp5MaTOhf4lZ3N0dDB8KHuHPjRb5BAA
-         YEZihE7UsFfZnyaoB3sXnugVOXstPjebBQueuooxiDsPa1f57Ld6hrAJ28c/ImYMTf8a
-         OOgw==
-X-Forwarded-Encrypted: i=1; AJvYcCX90+zcUQs/RY1/23bVwH+iIyvv/sx0VSaq4AaiYY0M7kJwuYR6ZCqkppSNSfMWaLHe4TFtDl+F96fq@vger.kernel.org
-X-Gm-Message-State: AOJu0YwqODvCw+DPga3o+UKwatv6J2wxPvORFuDgvg8B+CpL+VcAFwvR
-	ahr2ikz0Foa6RSdtETEpMAwH69tE4NI2q+ACpwiapxh97Md08QYcz6yr3TLocYG1cMLl6eZmDTu
-	RgQnZNu5N/QqSsUti3IWZLcCMIlv73/JZ1Lku+Ja/
-X-Gm-Gg: ASbGncuMJ1+Giz8jNxrAlgg66rYsbkXOVcoWp5VU/vMD758+xq3Jz9J2oUboZU31Y8T
-	EcsWqOyJ+QnpwnR76Hbds5bD5PThMHDxlAas95B0mBnpndqqITOMd/9z3QJSXdtdXUhcpxE9aQb
-	cL7PXLH3jfI9v03zV7zVqMroheEEmHBYIvLBqdsiHKRoPIsGrIYL7h45+vvn7AQlt4NaM/ia0qh
-	8ukwYkhMp2tnChTUuVHpB7q1wFY0MneG8UQA7FGt2c3cgWhRPPl9a5S5ITZMmY8kYFbKVOxUNlc
-	S4Va6ZfPFUlq+RtDVw+fVrLiLk4=
-X-Google-Smtp-Source: AGHT+IGbi66b69isMZCCE2vWfm2l3aWjIU/6Jm7GoDCB7TYGbRrZY7LzGOWLW8ndmCQQy2C2xov9C9hN/n0jZy26kcQ=
-X-Received: by 2002:a05:7022:b95:b0:119:e56b:c74a with SMTP id
- a92af1059eb24-11e0315aa31mr278198c88.15.1764965975826; Fri, 05 Dec 2025
- 12:19:35 -0800 (PST)
+        d=1e100.net; s=20230601; t=1764966399; x=1765571199;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Ou5OTe6ItK50Xmy1KzAFGVvqCH5BTqwqPAu2c0Wd1Dw=;
+        b=OKVgGorWfx2XP3LCNCcOTQI5sw5JSQ6cKwfiBhB5N2O16kxACSBpT+zGg+JdkuiMyk
+         fehRsnbmWkuVyCV7deVqFxOxwipoQJBV4wuyL++Uu6tCziDSjFFMd/xsWYjry2v/Q//F
+         Hv4nj6DGzVSDXG+xJzreQ1+6OtlUf8EjUCDY8ZLEkZhz9aKMTSMjfCOmXaLEF4WsUa7q
+         2BSkkJfdrJrqz66A/HVDnT/kCgPDAWdlTHcTrL3HVtfuIV5W03lrC3gMdBAriKQbOU/4
+         3WshbN3PWCBTd4giLf0K8hFRUkRibv1jYbePM13ZFX/R0jHjv1XbS/2lVuTGK/J0lZz1
+         i+tw==
+X-Forwarded-Encrypted: i=1; AJvYcCWyEy1rGY/MldizvadRHTZeGRbIF5y3WyEG6us2BE4YVga8XXPepLF0lGiUTX9kkv8xJl/yTyBup8ZW@vger.kernel.org
+X-Gm-Message-State: AOJu0YwkoYDT5XiOtLvZQSNGA0iUfJDH6VCHPZFu6QF9HN1gsQpi9CKi
+	PGWXEhNzFMHNCe6OO5TLLrFe/ZEiby5VY2coOV2TliZKAH17Ho3dKcCHJr77MnYu7aDBiaWG40P
+	BSy6JyNNte3l+6Xx6k/TVJH0Y/unhRHbFNscnxhwm0Yi34A8movngU1oiyCDl3XX9
+X-Gm-Gg: ASbGnct1UuwB4H77na+UpH+rPmOW0CSqoyIbHkfxN5/PohQ1ST+Pujnz8diir3gBYyk
+	Tp4/Q+E1qjWaMA9EQo/w6mHdCCUeH+SCiFlFzwvLZduDO6ZzBF06Xrde0XzMD4bi4fGQ297fsbZ
+	Uge3/hv/ApxvGsyNusyl6UTl7rqB5NlNJPRGDUVWkCxO8K6a3HjSnOWtaP6hkUSKoYlb9DSmdnc
+	yMO4jUBnTliaCPsJcdxNuW6kMprrcRIg/ahcpzJprwfzmP1PcKjOA4bwekaFKMEtYvWq1qfxGj6
+	N6ZHHyEVRi/XV0UdvXpXqSYYcR/Gs9o68n/WBMoMnB81V6AJmkoB0SADtYHfRrlAC8sZ9qdmB7K
+	ZaFh8TxVcgxf22a0l+KbPtLDTbFnidBl2Vh5wt7pEJLpoPW+RyWdt1sRRfB9yajdGP6AhMMvcXk
+	wtRS31VMtxLMxHD8M523bflPk=
+X-Received: by 2002:a05:620a:31a6:b0:88e:1be9:cf65 with SMTP id af79cd13be357-8b61608be49mr1221982885a.39.1764966399287;
+        Fri, 05 Dec 2025 12:26:39 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IF0jvyEJFspuJp301SRTQ4mBO8YxuNpLtruUmwrp/86yZNMUr3AiwHs6JfRoIZ4TBzKziqO7A==
+X-Received: by 2002:a05:620a:31a6:b0:88e:1be9:cf65 with SMTP id af79cd13be357-8b61608be49mr1221979085a.39.1764966398801;
+        Fri, 05 Dec 2025 12:26:38 -0800 (PST)
+Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-597d7c27fc8sm1769634e87.77.2025.12.05.12.26.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 05 Dec 2025 12:26:36 -0800 (PST)
+Date: Fri, 5 Dec 2025 22:26:35 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Abel Vesa <abel.vesa@oss.qualcomm.com>
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Dmitry Baryshkov <lumag@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Abel Vesa <abel.vesa@linaro.org>
+Subject: Re: [PATCH v5 4/4] phy: qcom: edp: Add Glymur platform support
+Message-ID: <q7iguwi6uxkzl3ogk2jidfncc3guuaqzszvemvqita6t3mlnvz@6e2vxnu4li46>
+References: <20251205-phy-qcom-edp-add-glymur-support-v5-0-201773966f1f@oss.qualcomm.com>
+ <20251205-phy-qcom-edp-add-glymur-support-v5-4-201773966f1f@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251205-phyb4-v8-0-c59ea80a4458@google.com> <20251205-phyb4-v8-1-c59ea80a4458@google.com>
- <18eeb1c5-d21b-4505-b6a4-472f6e191864@kernel.org> <CA+zupgwa+m8Pa=+8shORaOA1OO6zoo6zYEojFS2UDuP0doBq7A@mail.gmail.com>
- <f32e0810-56f9-417e-abf6-0cc7b361bd15@kernel.org> <CA+zupgyxQisYBnLj9_3DtcN3R1Ugfv+-p-wimFp-hnqkhrrgyA@mail.gmail.com>
- <988b3fcb-44db-45ca-823b-5ab13206bd04@kernel.org>
-In-Reply-To: <988b3fcb-44db-45ca-823b-5ab13206bd04@kernel.org>
-From: Roy Luo <royluo@google.com>
-Date: Fri, 5 Dec 2025 12:18:59 -0800
-X-Gm-Features: AWmQ_bkSdeahcfk9MTu5RJ__-7yt4YnGMQ_a-ehzxXaIp_XrZSBLGUDbWDooSxE
-Message-ID: <CA+zupgzi55svWK4gHsFtdQSD9jFKbxHx_0GE2R1R5DafmYyGNA@mail.gmail.com>
-Subject: Re: [PATCH v8 1/2] dt-bindings: phy: google: Add Google Tensor G5 USB PHY
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Peter Griffin <peter.griffin@linaro.org>, =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
-	Tudor Ambarus <tudor.ambarus@linaro.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Badhri Jagan Sridharan <badhri@google.com>, Doug Anderson <dianders@google.com>, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
-	Joy Chakraborty <joychakr@google.com>, Naveen Kumar <mnkumar@google.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251205-phy-qcom-edp-add-glymur-support-v5-4-201773966f1f@oss.qualcomm.com>
+X-Authority-Analysis: v=2.4 cv=T92BjvKQ c=1 sm=1 tr=0 ts=69334000 cx=c_pps
+ a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8 a=rYCfnyAUmxxiaWWey-cA:9 a=CjuIK1q_8ugA:10
+ a=PEH46H7Ffwr30OY-TuGO:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-GUID: dzuWtQr1qQ5WobU_5uQm35Cj5laA9H_g
+X-Proofpoint-ORIG-GUID: dzuWtQr1qQ5WobU_5uQm35Cj5laA9H_g
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjA1MDE1MiBTYWx0ZWRfXyyQrK9Q7b/hu
+ pQdbHkL/G3VJnW8w0JWLfUrVHuXB59eISvgKSRltcO5lJGy6k18Wn7aw7yQvAMxQ+rcUHMK5PFB
+ y7DFHxIJKu77h/aVoedyCIqanKOCVG7HLO/CigQZ23arLdapZaxwbufzHd8XXIIdIWyvCDbjRdL
+ xGbw/VV3FsCtEkIB/VhGMyVN9CMVLBSceYiErcCvOxKdxGI+EiJRWQy+Pn1uRx83CEcxJrgFKxp
+ eW60uVRio6vZ9XicZgC2JqAmJSWdVs5yvf2XBRaWlRXXDCN6juf/bhNXCqB0E+B0dR9/e/E/hKi
+ ajfjJia9mZ25m1UMf0ft+VK0L2wEM6z8V/RWoLTmcDHjSh/5DeS9fDMmv0zFJ22ysQwxIM06k6V
+ qel6O1ax0qdqiBDoDdLBqr/c7g3apQ==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-05_07,2025-12-04_04,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 lowpriorityscore=0 priorityscore=1501 spamscore=0 bulkscore=0
+ impostorscore=0 suspectscore=0 malwarescore=0 phishscore=0 adultscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512050152
 
-On Fri, Dec 5, 2025 at 11:26=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
->
-> On 05/12/2025 20:11, Roy Luo wrote:
-> > On Fri, Dec 5, 2025 at 10:52=E2=80=AFAM Krzysztof Kozlowski <krzk@kerne=
-l.org> wrote:
-> >>
-> >> On 05/12/2025 19:47, Roy Luo wrote:
-> >>> On Fri, Dec 5, 2025 at 9:13=E2=80=AFAM Krzysztof Kozlowski <krzk@kern=
-el.org> wrote:
-> >>>>
-> >>>> On 05/12/2025 04:54, Roy Luo wrote:
-> >>>>> Document the device tree bindings for the USB PHY interfaces integr=
-ated
-> >>>>> with the DWC3 controller on Google Tensor SoCs, starting with G5
-> >>>>> generation (Laguna). The USB PHY on Tensor G5 includes two integrat=
-ed
-> >>>>> Synopsys PHY IPs: the eUSB 2.0 PHY IP and the USB 3.2/DisplayPort c=
-ombo
-> >>>>> PHY IP.
-> >>>>>
-> >>>>> Due to a complete architectural overhaul in the Google Tensor G5, t=
-he
-> >>>>> existing Samsung/Exynos USB PHY binding for older generations of Go=
-ogle
-> >>>>> silicons such as gs101 are no longer compatible, necessitating this=
- new
-> >>>>> device tree binding.
-> >>>>>
-> >>>>> Signed-off-by: Roy Luo <royluo@google.com>
-> >>>>
-> >>>> Why intentionally dropping the tag? How are you handling this patchs=
-et?
-> >>>> Rewrite every time from scratch?
-> >>>
-> >>> Hi Krzysztof,
-> >>>
-> >>> I dropped the tag because a new file is being modified in this versio=
-n,
-> >>> Although it's just MAINTAINER file but I thought you might also want
-> >>> to take a look. I wasn't sure if modifying a new file qualifies as
-> >>> "substantial" so I erred on the side of caution. I should've called i=
-t
-> >>> out specifically in the change log. Sorry for the inconvenience.
-> >>
-> >> 1. so just squeeze that change into second patch and no need to ask fo=
-r
-> >> re-review
-> >
-> > That's a fair point. I will be more mindful of the review overhead
-> > going forward.
-> >
-> >> 2. You did not read my complain fully, look:
-> >>
-> >>>
-> >>> Regards,
-> >>> Roy Luo
-> >>>
-> >>>>
-> >>>> <form letter>
-> >>>> This is a friendly reminder during the review process.
-> >>>>
-> >>>> It looks like you received a tag and forgot to add it.
-> >>>>
-> >>>> If you do not know the process, here is a short explanation:
-> >>>> Please add Acked-by/Reviewed-by/Tested-by tags when posting new vers=
-ions
-> >>>> of patchset, under or above your Signed-off-by tag, unless patch cha=
-nged
-> >>>> significantly (e.g. new properties added to the DT bindings). Tag is
-> >>>> "received", when provided in a message replied to you on the mailing
-> >>>> list. Tools like b4 can help here. However, there's no need to repos=
-t
-> >>>> patches *only* to add the tags. The upstream maintainer will do that=
- for
-> >>>> tags received on the version they apply.
-> >>>>
-> >>>> Please read:
-> >>>> https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/proc=
-ess/submitting-patches.rst#L577
-> >>>>
-> >>>> If a tag was not added on purpose, please state why and what changed=
-.
-> >>
-> >> Where did you address this? You dropped the tag silently.
-> >
-> > Why: a new file is being modified.
-> > What changed: MAINTAINER
-> > What's not changed:
-> > Documentation/devicetree/bindings/phy/google,lga-usb-phy.yaml
->
-> I don't know if you still did not get the problem or you think that I
-> really need that clear answer. So no, I do not need that clear answer, I
-> understood with first reply, but you kept explaining instead of
-> admitting that your changelog needs fixes. So I still do not believe you
-> understood the problem here and you might repeat the mistake.
+On Fri, Dec 05, 2025 at 04:23:23PM +0200, Abel Vesa wrote:
+> From: Abel Vesa <abel.vesa@linaro.org>
+> 
+> The Qualcomm Glymur platform has the new v8 version
+> of the eDP/DP PHY. So rework the driver to support this
+> new version and add the platform specific configuration data.
+> 
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
+> ---
+>  drivers/phy/qualcomm/phy-qcom-edp.c | 230 +++++++++++++++++++++++++++++++++++-
+>  1 file changed, 224 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/phy/qualcomm/phy-qcom-edp.c b/drivers/phy/qualcomm/phy-qcom-edp.c
+> index f98fe83de42e..052b7782b3d4 100644
+> --- a/drivers/phy/qualcomm/phy-qcom-edp.c
+> +++ b/drivers/phy/qualcomm/phy-qcom-edp.c
+> @@ -26,6 +26,8 @@
+>  #include "phy-qcom-qmp-qserdes-com-v4.h"
+>  #include "phy-qcom-qmp-qserdes-com-v6.h"
+>  
+> +#include "phy-qcom-qmp-qserdes-dp-com-v8.h"
+> +
+>  /* EDP_PHY registers */
+>  #define DP_PHY_CFG                              0x0010
+>  #define DP_PHY_CFG_1                            0x0014
+> @@ -76,6 +78,7 @@ struct phy_ver_ops {
+>  	int (*com_power_on)(const struct qcom_edp *edp);
+>  	int (*com_resetsm_cntrl)(const struct qcom_edp *edp);
+>  	int (*com_bias_en_clkbuflr)(const struct qcom_edp *edp);
+> +	int (*com_clk_fwd_cfg)(const struct qcom_edp *edp);
+>  	int (*com_configure_pll)(const struct qcom_edp *edp);
+>  	int (*com_configure_ssc)(const struct qcom_edp *edp);
+>  };
+> @@ -83,6 +86,8 @@ struct phy_ver_ops {
+>  struct qcom_edp_phy_cfg {
+>  	bool is_edp;
+>  	const u8 *aux_cfg;
+> +	int aux_cfg_size;
 
-I admitted that my changelog needs fixes in my first reply.
-"I should've called it out specifically in the change log. Sorry for the
-inconvenience.".
-Maybe you think I didn't read through because my reply was placed
-before the <form letter> section, but that's a misunderstanding.
-I did read through the paragraph, that's why I mentioned the
-changelog in my first reply.
+Can we always write DP_AUX_CFG_SIZE values?
 
-I also misunderstood your question of "Where did you address
-this?". If you were asking where this should have been addressed,
-obviously the answer is to address it in the changelog,
-but I thought that was already made clear in the first reply and
-you might be asking for a clear answer.
+> +	const u8 *vco_div_cfg;
+>  	const struct qcom_edp_swing_pre_emph_cfg *swing_pre_emph_cfg;
+>  	const struct phy_ver_ops *ver_ops;
+>  };
+> @@ -185,6 +190,10 @@ static const u8 edp_phy_aux_cfg_v4[10] = {
+>  	0x00, 0x13, 0x24, 0x00, 0x0a, 0x26, 0x0a, 0x03, 0x37, 0x03
+>  };
+>  
+> +static const u8 edp_phy_vco_div_cfg_v4[4] = {
+> +	0x1, 0x1, 0x2, 0x0,
+> +};
+> +
+>  static const u8 edp_pre_emp_hbr_rbr_v5[4][4] = {
+>  	{ 0x05, 0x11, 0x17, 0x1d },
+>  	{ 0x05, 0x11, 0x18, 0xff },
+> @@ -210,6 +219,14 @@ static const u8 edp_phy_aux_cfg_v5[10] = {
+>  	0x00, 0x13, 0xa4, 0x00, 0x0a, 0x26, 0x0a, 0x03, 0x37, 0x03
+>  };
+>  
+> +static const u8 edp_phy_aux_cfg_v8[13] = {
+> +	0x00, 0x00, 0xa0, 0x00, 0x0a, 0x26, 0x0a, 0x03, 0x37, 0x03, 0x02, 0x02, 0x4,
+> +};
+> +
+> +static const u8 edp_phy_vco_div_cfg_v8[4] = {
+> +	0x1, 0x1, 0x1, 0x1,
+> +};
 
->
-> I think you need someone in Google to coach in this process, because I
-> even gave you the exact link describing the process and what was
-> expected. I even pointed specific paragraph, so you don't need to read
-> entire file!
+If it's always 0x01, where do handle the divisor?
 
-I appreciate you pointing out the specific paragraph, I understand
-you're going above and beyond here. I did read and understand
-what should've been done instead for this patch.
+> +
+>  static int qcom_edp_phy_init(struct phy *phy)
+>  {
+>  	struct qcom_edp *edp = phy_get_drvdata(phy);
 
->
-> I assume you understood what should be done instead in this patchset.
-> Anyway, my previous tag applies if there were no bindings changes, but I
-> wasted too much time here to care anymore. The expectation from big
-> companies is they do not ask community to coach on basic submission
-> process. It's quite unfair to my spare, personal time after work,
-> considering how much big company is making. Big company should invest in
-> this coaching.
->
->
-> Best regards,
-> Krzysztof
-
-Thank you for the feedback. I understand your frustration, and I
-apologize for taking up your time. I will be sure to be more thorough
-in the future.
-
-Thanks,
-Roy Luo
+-- 
+With best wishes
+Dmitry
 
