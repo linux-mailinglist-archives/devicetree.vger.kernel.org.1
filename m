@@ -1,118 +1,262 @@
-Return-Path: <devicetree+bounces-244574-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244575-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8CBFCA70CB
-	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 11:02:52 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80BECCA7125
+	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 11:06:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 429873036A2E
-	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 09:58:22 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E5FA5326A49F
+	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 08:47:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56DEE335557;
-	Fri,  5 Dec 2025 08:24:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8E8131BCA7;
+	Fri,  5 Dec 2025 08:30:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Xer64MyI"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ULIEZAXo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A4032F5311;
-	Fri,  5 Dec 2025 08:24:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE24331DD86
+	for <devicetree@vger.kernel.org>; Fri,  5 Dec 2025 08:30:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764923088; cv=none; b=RnTTSEX5KFIiUbt7rWQ8eiDzhgjoA3CgbcX1PHilgeYBK7GjbFjYtwu8qXqrCV2JzK0bjiA2a/1EIZM5AcYpE+Sr59ShnzXjdimaiyJiIJvd3GKVTKfvGvpvyk164ETwxb0+H0scO5MO0pIphWGOgD1ueMrZJZM8esXPVo8yDwc=
+	t=1764923413; cv=none; b=Fj4XAAntZ2a1qyUJ1bVkSVM4ucfJ4o+/1iqov6m1YTDIYanbZQjb+VxITQBDpyltPbRw/rm8xBogOanPTRUNGOk8J1i+ax39pf2DPCEmN10g7vE+qFIZw5Bnqt87UJh1xulGvPQ9r+olLS1jJhNyXDe+KE4H2q+lehrNseCie54=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764923088; c=relaxed/simple;
-	bh=6eB+pELnaXO/EFgvQYRmO1RVoCyEWCWMqcvN6CQY5Hw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=eLPFeGbLBeU9srHKKrpZe8u0kJYmx6zekSX/nu80kGHPd5KCBeRkBR8TkYqIWx5j6poIGUFeJ+YOlgpWtvxCAwBEMieBlRHlLXF7IouUdjFQmKfChj1VL43aOTgXD29pd8YH6ULmavNuaRznUcRJoHY2P+hibRUEmbM1GWNL+3o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Xer64MyI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B09FC4CEF1;
-	Fri,  5 Dec 2025 08:24:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764923085;
-	bh=6eB+pELnaXO/EFgvQYRmO1RVoCyEWCWMqcvN6CQY5Hw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Xer64MyIVOGGi4OuAStLPFTcA6czqESMxsd7vidWUJg6l58WmADrOm3pUg6kPCUxm
-	 rgEFBOMc2x78QEkWEtDD7/4339QXlfwUJJxNl/OupMvM6Z1Y7CBroCsNHP8ayEmUXo
-	 ZxCl2JgU7Ia797yREqxX4Up0iJ5fBL85TXXeVWxOO+5uE+IDQnigFcozn1YBLov327
-	 hN4lnvmZ2yWohYnDM6X1dFOzsShjwamylJUoYELRqYhg3Y15npNDNlVhhADAdTBDlJ
-	 x58krwzHb1HMpYWtGvdfyoAy75K5MfV3zUJrXNY5eVrl7fw+j9l0uPg6X/KXkGPsy9
-	 ZplLbbQGwilEg==
-Message-ID: <ea71abc9-a661-4a78-8503-bac9d34bf8a4@kernel.org>
-Date: Fri, 5 Dec 2025 09:24:40 +0100
+	s=arc-20240116; t=1764923413; c=relaxed/simple;
+	bh=gmAPxxjTKlooONPipEsmZlRzsvPSIO91zWWh9LwA/2E=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=lP9Sq3ppoTWBuFunQ3y5VT/k1Sigf76obRngqpwV8rfRiu3XjZX3i19X7b5FxDrrGTYMxV8tGfPT84nkBOJqvCh8+nI7DpHsL9KInu6LgysFpgDctdm13XTKzz6ON1KNjR2aZ0B5rdCjsSfuRg4hoGGWQeH8zwatvdrfs9854Q8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ULIEZAXo; arc=none smtp.client-ip=209.85.218.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-b72bf7e703fso304735866b.2
+        for <devicetree@vger.kernel.org>; Fri, 05 Dec 2025 00:30:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1764923403; x=1765528203; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zv9vpa6wctqmK3IhLoN91ZYlNtr4GKsApfMqJPja8ac=;
+        b=ULIEZAXoaDxEOxRQn5dqhmmW1AD6sz/G1GXqJ7V03MhMk+4M1mglORJNZggTPzJYNQ
+         YDGSI5ZFJfQjy8/B+F8f4EimkyoZKiCQ/5+KA7JonrFncyRUn9uHb0vbbaDm9n16X1k5
+         vU4s3vfo4TNpbL6iLYOUJ3E1BbIBtyB6JEmCeuGjhv1z74L89zTNuosw+edwg2xT35Vt
+         uAJeMH3VRMimEa3q2zCGRDoGRJZRNkO/6yqit/aP6Pq3V4Pw87xfRO0t6Nr3RSWSbGOo
+         6Ek+CsVJU5GaLMe5Iqws+d4A/ebGuEvAP4LdterZkfxLe9di7G1fZlmMwjJA4EKsr3I4
+         BIMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764923403; x=1765528203;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=zv9vpa6wctqmK3IhLoN91ZYlNtr4GKsApfMqJPja8ac=;
+        b=BNR4OqcndYt+cjLAdb/96RNwon/FiBPc41d8G1psTtIRgrq0CbCjSFH/ioloq4q5W8
+         +hxNiKQK8FIK0TlvpqvrYfEaANcy9+HC9THWH1z58V06rPr+ya5bVC9SpLHqA1VFDaiJ
+         5XVrr40EMuWq2LU/OqtObhwe+yGYqbkSUFWNCqyoYEeLgEuHiS9UVMwoxIUGzs7KDW/A
+         Mg+ETX8GdZrGWkgz5EDHf1GTO7Kw3NsdzudzX5WfVKCTK5Df3QpPgYcaLSR4aXHlrDlW
+         VfwGrWskd6m/xVpIiY61K6cDvHHBWymAIAJ5JstIX5boDT52TZPZZbtHiEKKBmMFAcof
+         qFQA==
+X-Forwarded-Encrypted: i=1; AJvYcCUsfYBy2ClXJikbyUYCIP1zvESeMy2MNLeulBA9pC3q0Sjzx7//SRAMBnNMHKN8f5g5T+8Kdv/5iqba@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywf6HRifyCcv3iWRhiVddd490OrFyhT740DOToIvzeBe/b3nb8J
+	C6c4F58TOpRhzlDTvY6bvQl26rxDu3AJnXJwy9OuJFUBOgwoXFaplXzP9ZWyKzWq1IcpLSOuAIR
+	UtSLx//BDxy0F0k4+eJDfELjELso+WNw=
+X-Gm-Gg: ASbGncsXOhM8E7AAElTEhM7XZqiPGHE/WpmpprUVPRVlhtnabms3zNJs+TaVw5EevVO
+	ZcPe4E8UZJD6pGXkxj7y3e/OaTc48kl7sEXudOSs/yK3qmDSR3S5omyNKmfK6WGYhkgkqRbGvME
+	aYmYUPkTg4lYVMS+Yz42jWQ7gU3mR9yJMGIfJQPXLUDGbD1f2KzJ9+1sVQiLeSgtpERB5UVou7h
+	Lzh1EeUXYph95wp1omckBJEa0WlYl9QdaAdkAWr7QZq8+S7JjoV3Pk4b8L2bmKINKH/cA==
+X-Google-Smtp-Source: AGHT+IEoOFM1WzeqtiD/9WP1tZdp9AYcDEMhMdyuHmP+OE7FfFFESbCyBeckBwNIyYLRh20LnNqS00FXqnUMiQY20sQ=
+X-Received: by 2002:a17:907:1c1a:b0:b76:d880:e70b with SMTP id
+ a640c23a62f3a-b79dc78257amr998854266b.55.1764923403192; Fri, 05 Dec 2025
+ 00:30:03 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: mediatek: mt8189: Add pinmux macro header
- file
-To: Cathy Xu <ot_cathy.xu@mediatek.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- Yong Mao <yong.mao@mediatek.com>, Wenbin Mei <Wenbin.Mei@mediatek.com>,
- Lei Xue <Lei.Xue@mediatek.com>
-References: <20251205064357.13591-1-ot_cathy.xu@mediatek.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251205064357.13591-1-ot_cathy.xu@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20251027005220.22298-1-naoki@radxa.com> <acfc2185-0cb9-4620-abdb-ee25028e8374@cherry.de>
+ <a93ace02-a952-4727-957b-0ed790b47676@cherry.de> <20486653DCCA80ED+7f87a03c-519e-4d6a-a47c-7670e5ae502c@radxa.com>
+ <ffe5e4d1-49d8-4075-a5c4-6f27dda7f35a@cherry.de> <acbbef49-02ad-47e9-9874-68d058b95f21@gmail.com>
+ <60D749559660CD94+62b923bb-f852-4e83-b9fb-a2a25030ef73@radxa.com> <980092DD85519275+a4dd9cbd-12ad-4aec-b1a1-1b15f9932b8d@radxa.com>
+In-Reply-To: <980092DD85519275+a4dd9cbd-12ad-4aec-b1a1-1b15f9932b8d@radxa.com>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Fri, 5 Dec 2025 13:59:46 +0530
+X-Gm-Features: AWmQ_bn5ut5JK8KXRUIXSSDaNNc8gGtMY2sH0blDthYicM0yZTa3NxjE9zbjERk
+Message-ID: <CANAwSgRW+vokpNUH1U34LDZx7=f0fUoipzDjLR7O85mS-ZM2mQ@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: rockchip: Fix audio-supply for ROCK Pi 4
+To: FUKAUMI Naoki <naoki@radxa.com>
+Cc: Alex Bee <knaerzche@gmail.com>, Quentin Schulz <quentin.schulz@cherry.de>, heiko@sntech.de, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+	Heinrich Schuchardt <xypron.glpk@gmx.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 05/12/2025 07:43, Cathy Xu wrote:
-> Add the pinctrl header file on MediaTek mt8189.
+Hi FUKAUMI,
 
-Why? There is no user of this. Why do we dead code in unused heders?
 
-Best regards,
-Krzysztof
+On Sat, 29 Nov 2025 at 09:34, FUKAUMI Naoki <naoki@radxa.com> wrote:
+>
+> I forgot to mention this:
+>   https://forum.radxa.com/t/problem-using-i2s-and-spi-on-the-gpio-header-=
+of-the-rock-pi-4b/25390/14
+>
+It seems that SPI5 is associated with the audio power domain in the
+RK3399, though
+I=E2=80=99m not entirely certain.
+
+[1] https://github.com/torvalds/linux/blob/master/arch/arm64/boot/dts/rockc=
+hip/rk3399-base.dtsi#L904-L918
+
+> Best regards,
+>
+> --
+> FUKAUMI Naoki
+> Radxa Computer (Shenzhen) Co., Ltd.
+>
+Thanks
+-Anand
+
+> On 11/29/25 12:40, FUKAUMI Naoki wrote:
+> > Hi Alex,
+> >
+> > On 11/29/25 10:36, Alex Bee wrote:
+> >> Hi,
+> >>
+> >> Am 28.11.25 um 13:33 schrieb Quentin Schulz:
+> >>> Hi Naoki,
+> >>>
+> >>> On 11/28/25 1:09 PM, FUKAUMI Naoki wrote:
+> >>>> Hi Quentin,
+> >>>>
+> >>>> On 11/28/25 19:24, Quentin Schulz wrote:
+> >>>>> Hi Naoki,
+> >>>>>
+> >>>>> On 11/27/25 4:20 PM, Quentin Schulz wrote:
+> >>>>>> Hi Naoki,
+> >>>>>>
+> >>>>>> On 10/27/25 1:52 AM, FUKAUMI Naoki wrote:
+> >>>>>>> This reverts commit 8240e87f16d17 ("arm64: dts: rockchip: fix
+> >>>>>>> audio-supply for Rock Pi 4").
+> >>>>>>>
+> >>>>>>> Fix the APIO5_VDD power supply to vcc_3v0 as per the
+> >>>>>>> schematics[1][2]
+> >>>>>>> [3][4][5].
+> >>>>>>>
+> >>>>>>> This fixes the SPI-NOR flash probe failure when the blue LED is
+> >>>>>>> on[6],
+> >>>>>>> and the garbled serial console output on Linux.
+> >>>>>>>
+> >>>>>>> The ES8316 headphone and microphone are confirmed to work correct=
+ly
+> >>>>>>> after this fix.
+> >>>>>>>
+> >>>>>
+> >>>>> Please test the ES8316 works when booting Linux from a U-Boot where
+> >>>>> ROCKCHIP_IODOMAIN and SPL_ROCKCHIP_IODOMAIN is *disabled*.
+> >>>>
+> >>>> I tried below, and confirmed that ES8316 is still working.
+> >>>>
+> >>>> diff --git a/configs/rock-pi-4-rk3399_defconfig b/configs/rock-pi-4-
+> >>>> rk3399_defconfig
+> >>>> index 219f42bc7d4..276ca961c10 100644
+> >>>> --- a/configs/rock-pi-4-rk3399_defconfig
+> >>>> +++ b/configs/rock-pi-4-rk3399_defconfig
+> >>>> @@ -53,6 +53,7 @@ CONFIG_ROCKCHIP_GPIO=3Dy
+> >>>>   CONFIG_SYS_I2C_ROCKCHIP=3Dy
+> >>>>   CONFIG_LED=3Dy
+> >>>>   CONFIG_LED_GPIO=3Dy
+> >>>> +# CONFIG_ROCKCHIP_IODOMAIN is not set
+> >>>>   CONFIG_MMC_DW=3Dy
+> >>>>   CONFIG_MMC_DW_ROCKCHIP=3Dy
+> >>>>   CONFIG_MMC_SDHCI=3Dy
+> >>>> diff --git a/dts/upstream/src/arm64/rockchip/rk3399-rock-pi-4.dtsi
+> >>>> b/ dts/upstream/src/arm64/rockchip/rk3399-rock-pi-4.dtsi
+> >>>> index 046dbe32901..c734f7824c0 100644
+> >>>> --- a/dts/upstream/src/arm64/rockchip/rk3399-rock-pi-4.dtsi
+> >>>> +++ b/dts/upstream/src/arm64/rockchip/rk3399-rock-pi-4.dtsi
+> >>>> @@ -51,7 +51,7 @@
+> >>>>
+> >>>>          sound: sound {
+> >>>>                  compatible =3D "audio-graph-card";
+> >>>> -               label =3D "Analog";
+> >>>> +               label =3D "rk3588-es8316";
+> >>>>                  dais =3D <&i2s0_p0>;
+> >>>>          };
+> >>>>
+> >>>> @@ -516,7 +516,7 @@
+> >>>>   };
+> >>>>
+> >>>>   &io_domains {
+> >>>> -       audio-supply =3D <&vcca1v8_codec>;
+> >>>> +       audio-supply =3D <&vcc_3v0>;
+> >>>>          bt656-supply =3D <&vcc_3v0>;
+> >>>>          gpio1830-supply =3D <&vcc_3v0>;
+> >>>>          sdmmc-supply =3D <&vcc_sdio>;
+> >>>>
+> >>>> Notes:
+> >>>> - SPL_ROCKCHIP_IODOMAIN is not set by default
+> >>>> - I don't understand alsa ucm2 ;) so I modified /sound/label
+> >>>>
+> >>>
+> >>> Thanks for testing. Let's hope the original issue doesn't appear for
+> >>> *some* boots (depending on probe order or some timing for example).
+> >>> For now I guess this will do. Adding Alex in Cc maybe they are able
+> >>> to reproduce the issue they had 4 years ago with their board?
+> >>>
+> >>> Cheers,
+> >>> Quentin
+> >>
+> >>
+> >> I can confirm that with this change analog audio is _broken_ for me
+> >> again.
+> >>
+> >> I never had any issues with uart2 or spi - neither in kernel nor in u-
+> >> boot
+> >> (also not after io-domain driver has been added to u-boot for RK3399).
+> >> Given this commit is now ~4 years in tree  I'd guess that someone else
+> >> would have reported that issue earlier. It's correct that this
+> >> information
+> >> came from a "Power Domain Map"  which you call "non schematic" and the
+> >> "schematic part"  says something else -  it would have been indeed be
+> >> better to have clearer information.
+> >
+> > We can confirm that "schematic part" is correct.
+> >
+> >> Anyway: I can't neither see how this change should relate to uart2 or =
+spi
+> >> which are both in different io-domain, nor why it would happen only in
+> >> u-boot. My strongest guess is, that radxa changed something along the
+> >> way.
+> >
+> > I'm sorry, I can't explain the relationship between UART2/SPI and APIO5=
+.
+> >
+> > However, I had been seeing "the garbled serial console output on Linux"
+> > for a long time, and couldn't figure out how to fix it.
+> >
+> > What version of your ROCK Pi 4 board do you have?
+> >
+> > Best regards,
+> >
+> > --
+> > FUKAUMI Naoki
+> > Radxa Computer (Shenzhen) Co., Ltd.
+> >
+> >> Or maybe it would be worth to double-check the io-domain driver in u-
+> >> boot.
+> >>
+> >>
+> >> Regards,
+> >> Alex
+> >>
+> >>
+> >>
+> >
+> >
+>
+>
+> _______________________________________________
+> Linux-rockchip mailing list
+> Linux-rockchip@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-rockchip
 
