@@ -1,263 +1,150 @@
-Return-Path: <devicetree+bounces-244863-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244864-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8ABC5CA9A22
-	for <lists+devicetree@lfdr.de>; Sat, 06 Dec 2025 00:29:15 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A295CA9A28
+	for <lists+devicetree@lfdr.de>; Sat, 06 Dec 2025 00:29:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 59A9F304C291
-	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 23:28:30 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 3B4D83033706
+	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 23:29:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0034230100E;
-	Fri,  5 Dec 2025 23:22:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A61D2DECA1;
+	Fri,  5 Dec 2025 23:29:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="kNMmNd4g";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="IjnDopn+"
+	dkim=pass (2048-bit key) header.d=rivosinc.com header.i=@rivosinc.com header.b="BH205gXZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C7AD2FFDC9
-	for <devicetree@vger.kernel.org>; Fri,  5 Dec 2025 23:21:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62884273D73
+	for <devicetree@vger.kernel.org>; Fri,  5 Dec 2025 23:29:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764976921; cv=none; b=QvqX518v2HzKNsIOiQqReYCZklUum402yypUAR/kJp0QeDfvezCbw1cPpq8orIYSTtrzWGBzStefwKqt0RMDMFm7pqslSKAZZWQXjGPP0f2eDtMHrMBSuCxvye1q/1vupRSabO3qOzx0IvbqSWOSIfML+RmEkdhh+ZAka4ZQD44=
+	t=1764977359; cv=none; b=hPQZnG71fOfDuIFa9nT+37It+GoDbuGlysmXPZx2qZLqHZ2QQhggsexUAJEG5W4aJuYWhYZZZb45+7EjgxEzE3jNEAfU6N4Cjc/bU03vPmRMj3IyJ5neRajKsgIO1bJ+bTWoTEhiq5By6EtE0dajqonOU5S1I/v7dplD1F7xI/c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764976921; c=relaxed/simple;
-	bh=fxF4LT7povdUWy7AiM9pmjK1lFqnzQfOVBrXF1Iacm8=;
+	s=arc-20240116; t=1764977359; c=relaxed/simple;
+	bh=m859Pz85Fe3NafYsTdo+q5V0iu/zXgcB/nZgW0VxOeI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Zfs4FMToEKiGy/bRKtNJKkrEjpWjYAAq71qornXdVlRK7nChNjXxhHEcF1+Ga5GB567BzGpyFyGg9Cg2jFUrXRguH4zDcp52IuRZggEYtEWACZf9E27HqtkzTSYAMxJY2IcbHsynldj/UGpPAJLpjNjvfvHygBOU3afSAY2apaI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=kNMmNd4g; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=IjnDopn+; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5B5HrA47866069
-	for <devicetree@vger.kernel.org>; Fri, 5 Dec 2025 23:21:58 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=m0UsgMm+T+nyKTxHDccgY7aD
-	S1jgJ7lqRr6xFjYRgRg=; b=kNMmNd4g7i2UfUCMUw78PawwSwRQI5G0jGk7NbuB
-	nglnGe98fPFQ+jBDkoJ/0CauXdMgapWT0hhgFecee2h/Ko/MJp8cbbSqrKhn4yie
-	WVkPGXUZhoHPicPMCgr/OrY8pngjgL/d0OpAIDByo9uSmA8lWCQ+GTf5CTTo3KjB
-	RhJuRmm/5BXI45l7hGmUA+Xuvvgax87C7dHXYNSa3VwHvAH4qyHdSb7F9fcRDJ8Q
-	n4bI1I/cb/vJf89ZEO4Z5qFOwwm9N2DFMuYfdI5yaaCO6xRWssOE2vp/9annfNO2
-	xMzXtUFoODVQT6aBlG8AOCjrDSCOjUuVg7DdNok382I0SQ==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4av46f8qx7-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 05 Dec 2025 23:21:58 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-8b51db8ebd9so812008485a.2
-        for <devicetree@vger.kernel.org>; Fri, 05 Dec 2025 15:21:58 -0800 (PST)
+	 Content-Type:Content-Disposition:In-Reply-To; b=leMM4proTekKiaBi0YS/rJ9bui4Q5eVpIm7mtsa02vDcCcy47pXAojOKflTHwmY7cvQ6kzk7DrXVJCPgSUGvzRFJLiyDJ78cXq2PBKR+Ql3hjx6P7fPsKoVIcrtw0d8csAnQ5KS8JUH9LFX48rvVXypXt1Hxd25fw/oadqtoSKE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc.com header.i=@rivosinc.com header.b=BH205gXZ; arc=none smtp.client-ip=209.85.210.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-7bb3092e4d7so2898659b3a.0
+        for <devicetree@vger.kernel.org>; Fri, 05 Dec 2025 15:29:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1764976917; x=1765581717; darn=vger.kernel.org;
+        d=rivosinc.com; s=google; t=1764977357; x=1765582157; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=m0UsgMm+T+nyKTxHDccgY7aDS1jgJ7lqRr6xFjYRgRg=;
-        b=IjnDopn+F+wgC0lCXjDvmLJ4vrMNIG5K+ryUOJ7uznEqouyadB5DjonYs1wlPWG3hL
-         +sK4ln3+3xNXwvt9Pj2mr5MmmOiW+HI/L4xQvOCDpqGqmN4unHrXl4MoB2EbF7J47EnA
-         ez87CLNptOIUYrflmke6cUlEFNDPVMfndWRU+DAw1zXjGuraeT5JAb+ec9kaSD5YPBmt
-         a93BOADVcBfNr4A0JGS/Q72mZNygE58wHd/Sibsek+jpYPFDTt7XoxbMAk3bbcEbE7PO
-         skuGRQxc+B67M75JvENyg2Vn4KEhcdbys7iWAVPWYRfXZLZZN9yFXAFPuQyYscy8hohi
-         cwlg==
+        bh=m859Pz85Fe3NafYsTdo+q5V0iu/zXgcB/nZgW0VxOeI=;
+        b=BH205gXZYJ5a0fn8CWHNqlDnZYH3sOYrd0JGKZQfaknmTs2AXYO68EsIaYIHLj38Ia
+         /jSLtXTsSqSES39s7WRNzd8XlHdlWlpz3QdgfPIDCI2dGIsb8T1rCiSbdAjp2wCJWY4r
+         sbpJ1DG29iDLWe9wBWVAEzjDfrlpmae2g4jf+zaeJO7jY/bAZBLEJcyYtowiZSbovGhA
+         QH31lsWZLEW5gMgMNZGDC3fFCU4H/ioziPF7RjEZ6crCmfVK3g3SImH3Rv/PQ3RtUg+3
+         RqOgiy78eW/7GCbAo8dW/2ODfUE9L7H4gSdaG6GY/3tKsI5BAx2hSbnuIzA5u+ymd9+w
+         Zzqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764976917; x=1765581717;
+        d=1e100.net; s=20230601; t=1764977357; x=1765582157;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=m0UsgMm+T+nyKTxHDccgY7aDS1jgJ7lqRr6xFjYRgRg=;
-        b=f2aE/x5X/kvC9NYHboE5KgMeSrJ0U/IFUcgLGmZMn07oZim6XN04hI4UL/yWUj4gJp
-         G4nAN5QA5ChecJzfQqgz5RbaRUrsriK5Dxnq5A6JwG6XF8BdDbs0L0kv3KzQds26lmf0
-         HF6mEwlD2LQbV+RPKbJWSGr4fafPBsXEKhA/6afMitnEPaPfDb+XoTDS1vBLVovkbjbI
-         BxOBSjmigQTd/Zi/7MP+GP8JiD4F2JnuktX9Sl0h8uCEqPH39QdtYM19zXxziiGP4tT6
-         QJxYPD2wjkDtoL9CO1DhgmialhGdmppQg0lSTIiOdWx4osYVOc3fRYRsMn23iMDxbWvj
-         w+7A==
-X-Forwarded-Encrypted: i=1; AJvYcCVfheQIfVFAao99T/zrk5iP1h8htbIuG+n1gWSoxc5tRoupNeZw6Cf6k+7tbbA4NmGGL7YQAHWiMjir@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy3zL21k2zt2dw0731h9sfJ6TKEnT4QqRlchZWTaQ+bxEx0mqOY
-	oFTecWBmfdfHf9ZOcYhx3odNw6VoNXlYx64Bj/+zRQmd3bM42OPiKJGE4Y70sNcC/BlTlcdXePl
-	AkaRE3RkxgLIQD0S24BkbugT/EsIy7N2ovMxPanh6YORVp1blhpcLWgHT6U1TIPPi
-X-Gm-Gg: ASbGncsSyc7zgNhND4redOAyc/Edre+f+H2WWx0tQNqeOzqViCeocTD+vTPrICYk4Wv
-	AwTGAzBJlWd8UWybPzulqr4VR8R3GLia0kw7cdRkjjMCmKcXpZd8EhkkXKOvV6+tfuUzLNyIBtX
-	Tc6jB91701QJVEWBxS1XI6OBhKqEPVq7xaSN8WeoTccWYPe6UZedxMduP6ghQPGvs15egCSDAou
-	UmKKwUcpr1hmHlS6CzB6uVCbe94SjKNLUVTUwCIeMvP3M2JgPgueHWaDGoZitwbvPSfc7Okp+tH
-	DD28ysVE/nz5RCO2RWRXtQPyF1z/A3FPWiAnjsy3SNJec/QwQE2yPLGm3j1/BQY5Z+QEpIEHBdH
-	IInSoUK4AlKjNDiu24wci80L8yDN5HgITEwlZz7J0AKkFgeqb9TLveNMcb1qfvN1weYTfPummwq
-	lJoLMjzqVq8kKfAxuPfHEFrAE=
-X-Received: by 2002:a05:620a:318c:b0:8b3:aa:f61d with SMTP id af79cd13be357-8b6a256a53emr123737285a.49.1764976917196;
-        Fri, 05 Dec 2025 15:21:57 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEMqOeexM/myZ1qAWlSYGoxWNCb6fWZLj8B6NOPrklR7Z33k8wZzxmb95gkeV3tIp0hcJ2vkg==
-X-Received: by 2002:a05:620a:318c:b0:8b3:aa:f61d with SMTP id af79cd13be357-8b6a256a53emr123734385a.49.1764976916664;
-        Fri, 05 Dec 2025 15:21:56 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-597d7c2703bsm1890182e87.70.2025.12.05.15.21.54
+        bh=m859Pz85Fe3NafYsTdo+q5V0iu/zXgcB/nZgW0VxOeI=;
+        b=uiTvHqR13I4IxsaV2LeQ40WTB12E75b0x+dshHBLiJA4pDcwSohgQvuGnQ28APRUF9
+         45tzKwae/4n+HUnIWW/wOsBrxFwmSjC0KIspDrSMbIBCmRX6FJ4nPp9rIEX/44+5YXPX
+         yKYDcQ5ck5dTsLZujpkDXR3KD9eJZDmlRFaCK2QSt6Y/f8tbkNhhme1ZGCyGmcBSrDJ3
+         67e5dj8tEOenHB6zSh452jPgdtgDVme3CCMqWCYVEsIiSS2pu/Sc2ZLwGPy5ahctPho2
+         SJFf2+L4pLotAJNr6OPPCONYMzmZac0IQ8xx1YiAYMG487crkEydbltpCSAS00DrG/7X
+         wemg==
+X-Forwarded-Encrypted: i=1; AJvYcCWgGMMtk6pgrYK0wUHHuKOQGBFiY6//9VKRBShfEhE5aG59JbrctJrDtXudercTZBIWnEXkJ+7MLPjc@vger.kernel.org
+X-Gm-Message-State: AOJu0YwQpuvGVsR8gjMNZF2Qf+XerqfBxpFSAEDJ1BGi4ROAfHwf0LHe
+	EbYYg+MeNGxLpV/GM/E3g4YBvkNkklYJSU4yvWxbhkto6VuY3OJU5EUg/4byAwOTdYg=
+X-Gm-Gg: ASbGncsIgRx/5j2+ESF5fBGogiR2r7uGA7pVfYc+ntToWSr5rVfPcZdaYoyioWHR4GI
+	EIA+fBwSTVF3OTDn9Q/hHLWt7vXV5S07Dromdk5jN3TRIr93K7dfBKkJwqgvz9ZrPmtcP2qApsm
+	D1eFG3TWQnFTMyUPOGQVaQK/xWYpL1vumUAcyOsCGNm/NUEXT2KtlfWBmiRuJ7d21qpNjOHyXWq
+	G45FpgpLUM6Tpb59NELv6d1QP8ZNynGkjT6HqLWKkgJ//syQqifjqS0i3xziYvKNLX33ZnCi3KH
+	Rlo2u5Byf76819inH50V15OhzoR2yOpNfFSmFgh4pjvDRdm+4/3YVCbZGpQ37NEsnC8B8snmM3n
+	h6tAaHocMZ4hKKsm+jkS6m3d+nPJ00sIlZvmLh4JWyRZueCHW8spvPbGdXXBFmLjrrWqAgxkCB1
+	VR7KDvOP8RCQEatAbPvPLX93N5LII95sY=
+X-Google-Smtp-Source: AGHT+IG0PS99KFFmyGmoZ4EZkx7PjzgoWxSynADwEB0PMGoZ1tOJUc0gMelNMUgjpR2OcW1nhmhbdw==
+X-Received: by 2002:a05:7022:24a4:b0:119:e569:fb9b with SMTP id a92af1059eb24-11e031662c8mr594295c88.10.1764977356505;
+        Fri, 05 Dec 2025 15:29:16 -0800 (PST)
+Received: from debug.ba.rivosinc.com ([64.71.180.162])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-11df76ff44asm23779652c88.9.2025.12.05.15.29.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Dec 2025 15:21:55 -0800 (PST)
-Date: Sat, 6 Dec 2025 01:21:53 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Sudarshan Shetty <tessolveupstream@gmail.com>
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v9 2/2] arm64: dts: qcom: talos-evk: Add support for
- QCS615 talos evk board
-Message-ID: <q63bdon55app4gb2il5e7skyc6z2amcnaiqbqlhen7arkxphtb@3jejbelji2ti>
-References: <20251201172222.3764933-1-tessolveupstream@gmail.com>
- <20251201172222.3764933-3-tessolveupstream@gmail.com>
+        Fri, 05 Dec 2025 15:29:15 -0800 (PST)
+Date: Fri, 5 Dec 2025 15:29:13 -0800
+From: Deepak Gupta <debug@rivosinc.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
+	Borislav Petkov <bp@alien8.de>,
+	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
+	"H. Peter Anvin" <hpa@zytor.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
+	Vlastimil Babka <vbabka@suse.cz>,
+	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Christian Brauner <brauner@kernel.org>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Oleg Nesterov <oleg@redhat.com>,
+	Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
+	Jann Horn <jannh@google.com>, Conor Dooley <conor+dt@kernel.org>,
+	Miguel Ojeda <ojeda@kernel.org>,
+	Alex Gaynor <alex.gaynor@gmail.com>,
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+	Benno Lossin <lossin@kernel.org>, linux-kernel@vger.kernel.org,
+	linux-fsdevel@vger.kernel.org, linux-mm@kvack.org,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-arch@vger.kernel.org, linux-doc@vger.kernel.org,
+	linux-kselftest@vger.kernel.org, alistair.francis@wdc.com,
+	richard.henderson@linaro.org, jim.shu@sifive.com,
+	andybnac@gmail.com, kito.cheng@sifive.com, charlie@rivosinc.com,
+	atishp@rivosinc.com, evan@rivosinc.com, cleger@rivosinc.com,
+	alexghiti@rivosinc.com, samitolvanen@google.com, broonie@kernel.org,
+	rick.p.edgecombe@intel.com, rust-for-linux@vger.kernel.org,
+	Zong Li <zong.li@sifive.com>, David Hildenbrand <david@redhat.com>,
+	Andreas Korb <andreas.korb@aisec.fraunhofer.de>,
+	Valentin Haudiquet <valentin.haudiquet@canonical.com>,
+	Paul Walmsley <pjw@kernel.org>,
+	Charles Mirabile <cmirabil@redhat.com>
+Subject: Re: [PATCH v25 00/28] riscv control-flow integrity for usermode
+Message-ID: <aTNqyVVGy9_XjFGt@debug.ba.rivosinc.com>
+References: <20251205-v5_user_cfi_series-v25-0-1a07c0127361@rivosinc.com>
+ <d45808b5-44c3-42c6-a54c-3a13606ee39d@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=us-ascii; format=flowed
 Content-Disposition: inline
-In-Reply-To: <20251201172222.3764933-3-tessolveupstream@gmail.com>
-X-Authority-Analysis: v=2.4 cv=Wvom8Nfv c=1 sm=1 tr=0 ts=69336916 cx=c_pps
- a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=pGLkceISAAAA:8 a=YrivFFqYjvNrT_tbTFIA:9 a=CjuIK1q_8ugA:10
- a=PEH46H7Ffwr30OY-TuGO:22
-X-Proofpoint-ORIG-GUID: f9SGfOmJ0k2X7Kemyt4Pq1QkuO7X1I_Z
-X-Proofpoint-GUID: f9SGfOmJ0k2X7Kemyt4Pq1QkuO7X1I_Z
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjA1MDE3NiBTYWx0ZWRfX/2v46NAEa5az
- PCmH1gunOcxFJY+vloQtnTxwAd2tP6Ki965yOeXUatPd3S/Kj2hZ93XNKfh38+zCQCBKY2+KpZ+
- 9PNRDGfY3or/OMz5UlUmF976QpFFzQB6KPaJAv1neK8UmEO3QD2mHf0ryJNNTMDTVPHKpSc7daV
- GRGEST1zE9zoXXrL0vXoYCUj3t1A39WoksoNfN54MuF5CXXv89clI5wTRwlDgfSq0zlSDEFm5NS
- hGV93OWCzQaZAlIP0ZybSQ6hq41pfSlRx3xICbVneLJ1jBCalZ6PyqbLGTWmaccA5n03f5hnrBn
- 5YKn9g76xw5twhAJcLGUZa0Ez5HOOkCkJJfcEkVjzpUllf8t15SnxP4iMn3y5gG4Nz4JtlYCJpN
- xo17mEg12x3d9CU4CBupqA7aHqBmuw==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-05_08,2025-12-04_04,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 lowpriorityscore=0 impostorscore=0 bulkscore=0 phishscore=0
- priorityscore=1501 spamscore=0 suspectscore=0 clxscore=1015 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512050176
+In-Reply-To: <d45808b5-44c3-42c6-a54c-3a13606ee39d@kernel.org>
 
-On Mon, Dec 01, 2025 at 10:52:22PM +0530, Sudarshan Shetty wrote:
-> Add the device tree for the QCS615-based Talos EVK platform. The
-> platform is composed of a System-on-Module following the SMARC
-> standard, and a Carrier Board.
-> 
-> The Carrier Board supports several display configurations, HDMI and
-> LVDS. Both configurations use the same base hardware, with the display
-> selection controlled by a DIP switch.
-> 
-> Use a DTBO file, talos-evk-lvds-auo,g133han01.dtso, which defines an
-> overlay that disables HDMI and adds LVDS. The DTs file talos-evk
-> can describe the HDMI display configurations.
-> 
-> The initial device tree includes support for:
-> - CPU and memory
-> - UART
-> - GPIOs
-> - Regulators
-> - PMIC
-> - Early console
-> - AT24MAC602 EEPROM
-> - MCP2515 SPI to CAN
-> - ADV7535 DSI-to-HDMI bridge
-> - DisplayPort interface
-> 
-> Signed-off-by: Sudarshan Shetty <tessolveupstream@gmail.com>
-> ---
->  arch/arm64/boot/dts/qcom/Makefile             |   3 +
->  .../qcom/talos-evk-lvds-auo,g133han01.dtso    | 131 +++++
->  arch/arm64/boot/dts/qcom/talos-evk-som.dtsi   | 447 ++++++++++++++++++
->  arch/arm64/boot/dts/qcom/talos-evk.dts        | 137 ++++++
->  4 files changed, 718 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/talos-evk-lvds-auo,g133han01.dtso
->  create mode 100644 arch/arm64/boot/dts/qcom/talos-evk-som.dtsi
->  create mode 100644 arch/arm64/boot/dts/qcom/talos-evk.dts
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index 5b52f9e4e5f3..94c20074397c 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -305,6 +305,9 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sm8650-mtp.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm8650-qrd.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm8750-mtp.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm8750-qrd.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= talos-evk.dtb
-> +talos-evk-lvds-auo,g133han01-dtbs	:= talos-evk.dtb talos-evk-lvds-auo,g133han01.dtbo
-> +dtb-$(CONFIG_ARCH_QCOM)	+= talos-evk-lvds-auo,g133han01.dtb
->  x1e001de-devkit-el2-dtbs	:= x1e001de-devkit.dtb x1-el2.dtbo
->  dtb-$(CONFIG_ARCH_QCOM)	+= x1e001de-devkit.dtb x1e001de-devkit-el2.dtb
->  x1e78100-lenovo-thinkpad-t14s-el2-dtbs	:= x1e78100-lenovo-thinkpad-t14s.dtb x1-el2.dtbo
-> diff --git a/arch/arm64/boot/dts/qcom/talos-evk-lvds-auo,g133han01.dtso b/arch/arm64/boot/dts/qcom/talos-evk-lvds-auo,g133han01.dtso
-> new file mode 100644
-> index 000000000000..2a90d61892e7
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/talos-evk-lvds-auo,g133han01.dtso
-> @@ -0,0 +1,131 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
-> + */
-> +/dts-v1/;
-> +/plugin/;
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +
-> +&{/} {
-> +	backlight: backlight {
-> +		compatible = "gpio-backlight";
-> +		gpios = <&tlmm 115 GPIO_ACTIVE_HIGH>;
-> +		default-on;
-> +	};
-> +
-> +	hdmi-out {
-> +		status = "disabled";
-> +	};
-> +
-> +	lcd-pwm-en {
-> +		compatible = "gpio-backlight";
-> +		gpios = <&tlmm 59 GPIO_ACTIVE_HIGH>;
-> +		default-on;
-> +	};
+On Fri, Dec 05, 2025 at 08:32:32PM +0100, Krzysztof Kozlowski wrote:
+>On 05/12/2025 19:41, Deepak Gupta via B4 Relay wrote:
+>> v25: Removal of `riscv_nousercfi` from `cpufeature.c` and instead placing
+>> it as extern in `usercfi.h` was leading to build error whene cfi config
+>> is not selected. Placed `riscv_nousercfi` outside cfi config ifdef block
+>> in `usercfi.h`
+>
+>
+>Please stop. You sent this 28-patch-bomb TWICE to 50 or 60 addresses.
+>It's actually merge window so it should wait in the first place, but for
+>sure sending it multiple times does not help. Please observe the Linux
+>development process.
 
-I really don't like the idea of describing two separate backlight
-devices here. We have a single backlight on the panel, controlled by two
-GPIOs. I think, using GPIO instead of a PWM is a sensible enough usecase
-to let DT use two GPIOs in gpio-backlight (with corresponding changes to
-the bindings and the driver).
+Sorry about that. I'll be careful next time.
 
-> +
-> +	panel-lvds {
-> +		compatible = "auo,g133han01";
-
-backlight = <&backlight>;
-
-> +
-> +		ports {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			/* LVDS A (Odd pixels) */
-> +			port@0 {
-> +				reg = <0>;
-> +				dual-lvds-odd-pixels;
-> +
-> +				lvds_panel_out_a: endpoint {
-> +					remote-endpoint = <&sn65dsi84_out_a>;
-> +				};
-> +			};
-> +
-> +			/* LVDS B (Even pixels) */
-> +			port@1 {
-> +				reg = <1>;
-> +				dual-lvds-even-pixels;
-> +
-> +				lvds_panel_out_b: endpoint {
-> +					remote-endpoint = <&sn65dsi84_out_b>;
-> +				};
-> +			};
-> +		};
-> +	};
-> +};
-> +
-
--- 
-With best wishes
-Dmitry
+>
+>Best regards,
+>Krzysztof
 
