@@ -1,229 +1,106 @@
-Return-Path: <devicetree+bounces-244753-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244754-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69CEECA85B6
-	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 17:22:18 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85D9DCA8622
+	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 17:30:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CDDB130900A6
-	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 15:56:32 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id A1F723026CD0
+	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 16:30:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 817ED329397;
-	Fri,  5 Dec 2025 15:56:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E65532FA20;
+	Fri,  5 Dec 2025 16:30:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="LvpHbkXB";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="MD3kZPz2";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="ndssFIVM";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="d6qYs4zB"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="STVK9w5c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A355227F736
-	for <devicetree@vger.kernel.org>; Fri,  5 Dec 2025 15:56:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B6A4312810
+	for <devicetree@vger.kernel.org>; Fri,  5 Dec 2025 16:30:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764950189; cv=none; b=lgGuwV1WoWB1ImexDmj97U720o9ifl4o+6IAk6hzyiPZj9ldNXgLx0PFkHyCYXJ+9g2Hzjs+Lru+39BqkvQnFD+I9cZVelWvFQ6gyvTNyY6ysa+aDksuiSHE5m8CzSdpWEbjXB3EF8/UTKoGNLpQdZZPncHMY/zAI6++sLjwvlU=
+	t=1764952228; cv=none; b=btp0qgoHX+GAEBT4VSjsjOrpCTtmXtS8Zy55fbmw0FIxT7+nWWNvEydxGDJutYOdY8fR7aPAQnrzjDNWqWtWkvzZ5c/qSytlWnsqR7EHvFOvGCPLpoFXYQeTScXZ1khZeQMLM0TLHrPCs7Id50JNSh8GbOQAveFMRp9RLA9wYIs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764950189; c=relaxed/simple;
-	bh=UdHmO4BUeK1cVvqORC0uGrWI2qyEZd4KibGuaXZkvzM=;
-	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=mS43M5aFJOG/cDn3TiqKKRR0asYSM3cDX8ayuZUyRH8prQhsKPcdZ9YN8tbxXcWEufRbmQEedUdy4QW7Rh39iY/hXUYBd/OI6CP/v8aFgX1dZ7H+IzBho+cKvsUZCl2iI6t9H+9tjISD4Iz9fOuDFbHEfRhP/7gUn9wMEtPPF3k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=LvpHbkXB; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=MD3kZPz2; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=ndssFIVM; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=d6qYs4zB; arc=none smtp.client-ip=195.135.223.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [IPv6:2a07:de40:b281:104:10:150:64:97])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-out1.suse.de (Postfix) with ESMTPS id 7BE9733704;
-	Fri,  5 Dec 2025 15:56:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1764950180; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=CUgMUp0lcd1WpeV/swW7GnVF2mQbnTDoAk8W//8qkaI=;
-	b=LvpHbkXB7LM3bM/ThRB5CJ2+e0qSYbFsphTErGGCPr/qhG2El2MTjgzThzvBTWNOoaJMEh
-	iBTtWaCcNfC756sMlzUW9ZTtIRN10O6BsGsQ8IiHgCgIq1xMvlVxOdJWUZHXcdFFBS22sI
-	G0717dmlFe2rSw3LURowKHclW0DjOLE=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1764950180;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=CUgMUp0lcd1WpeV/swW7GnVF2mQbnTDoAk8W//8qkaI=;
-	b=MD3kZPz266Ef52ZY8iT6bFNc2bEl9EfIbHndbFsofZQehgIFi+YNO3P4g5fyRGzJFnNJ3i
-	etwPTZuHW9WXzKBQ==
-Authentication-Results: smtp-out1.suse.de;
-	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=ndssFIVM;
-	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=d6qYs4zB
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1764950179; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=CUgMUp0lcd1WpeV/swW7GnVF2mQbnTDoAk8W//8qkaI=;
-	b=ndssFIVMOStssc/LKJyakRODgYSDncZExVTVEqCn+AQnwus/7+djTnDK13ZqWqjGyhCttz
-	WCf93aaJif0zq/duO3v2+cKaH1IVShjNh69z1zlcvbvNGen8jIF0KntLCI2f08Pj/lhlUH
-	L+6KARyGrysmUSUydSQZI+tIeI+xc5Y=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1764950179;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=CUgMUp0lcd1WpeV/swW7GnVF2mQbnTDoAk8W//8qkaI=;
-	b=d6qYs4zB9bMqGh8pUfByBFD2G+k3D8k4hw4f3WYCqlx2hV0fHXvtLmioxa18n45NTunlxW
-	NzcyEjExhH98dmCA==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 2B51D3EA63;
-	Fri,  5 Dec 2025 15:56:19 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id nPTOCKMAM2mDVQAAD6G6ig
-	(envelope-from <tiwai@suse.de>); Fri, 05 Dec 2025 15:56:19 +0000
-Date: Fri, 05 Dec 2025 16:56:18 +0100
-Message-ID: <87fr9ox6ql.wl-tiwai@suse.de>
-From: Takashi Iwai <tiwai@suse.de>
-To: "Joakim  Zhang" <joakim.zhang@cixtech.com>
-Cc: Takashi Iwai <tiwai@suse.de>,
-	"lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-	"broonie@kernel.org"
-	<broonie@kernel.org>,
-	"robh@kernel.org" <robh@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor+dt@kernel.org"
-	<conor+dt@kernel.org>,
-	"perex@perex.cz" <perex@perex.cz>,
-	"tiwai@suse.com"
-	<tiwai@suse.com>,
-	"linux-sound@vger.kernel.org"
-	<linux-sound@vger.kernel.org>,
-	"devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>,
-	cix-kernel-upstream
-	<cix-kernel-upstream@cixtech.com>
-Subject: Re: [PATCH v5 0/3] ALSA: hda: add CIX IPBLOQ HDA controller support
-In-Reply-To: <SEYPR06MB6226C1FD56A14F4B0E23FD4A82A7A@SEYPR06MB6226.apcprd06.prod.outlook.com>
-References: <20251205111634.3004576-1-joakim.zhang@cixtech.com>
-	<87o6odvw5w.wl-tiwai@suse.de>
-	<SEYPR06MB6226C1FD56A14F4B0E23FD4A82A7A@SEYPR06MB6226.apcprd06.prod.outlook.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) Emacs/30.1 Mule/6.0
+	s=arc-20240116; t=1764952228; c=relaxed/simple;
+	bh=AyEqQ22oQW2AxaUzXlKSXJWBg5IK4qyI3qo453YylAc=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=gLveE9H0U/D7mioW0HeqXbWGYr04De5S/ljPR8jmmBJTsHH68mRgRscE7e9NE4CgKgKlN+ssOXPumOgCPEi7mns15XoHRVIy0ooNtOV0HOb0Yn+jbZ7CYl/cSNtSOMETJHWlHXrc+lkyYXhL5rCXNiYs7uVgeWicK84XpZVcNvs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=STVK9w5c; arc=none smtp.client-ip=209.85.208.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-6431b0a1948so4000890a12.3
+        for <devicetree@vger.kernel.org>; Fri, 05 Dec 2025 08:30:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1764952220; x=1765557020; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=AyEqQ22oQW2AxaUzXlKSXJWBg5IK4qyI3qo453YylAc=;
+        b=STVK9w5cLpyk0wvAtDA6mFq57i+C7ObStvMny7iv4jPHL6Kge9U+ymwMm4P1+faNVs
+         Dey8a+G0a5miSlnbZeQHKYB6fZrKSRENd0iPKbxpeNvJiUjpAbCF1+zDSqwyDtDjH/bX
+         aLajfs/FKihef98u1E3msIO9iz3Uxj1YWvVDQwOBFqAuPZUPDBdS5nImmaoeN8Y4brpr
+         UhWDggb/wOHM0tmIwaJgMaaV7G00EUK23VveW43LIUL0G0U/yI3UP/JPcjRZqGeh0cu0
+         xpoAhAy5LV63rzdCyEUb4k/HTg/f19o82gtxvf0wg1pasJZWV3G33o3P3Ol0wLJUZgxw
+         zKRQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764952220; x=1765557020;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=AyEqQ22oQW2AxaUzXlKSXJWBg5IK4qyI3qo453YylAc=;
+        b=ZqP3lybzmYTZmNg6vTUiSIxib0U+J3Qz3PhQfJxG2fUE5UJUOeAtPLEnJAzf3vgpXT
+         Qv2xYGc2ipU49WxxkiP0c+puZb6c0cIUrWEoMypiyGEEuXwoBj0XjIx2JtHU11Rp7viU
+         u6NzlBTHww9arHn4X41iFUSrKqhxZ3Q4VTYLe9QIGOe7rDQMPvhe1w7V25JB9/2p8TJQ
+         jKYTxxt339uivUxvvjx1mNCfcddYtsqXRdYyyh7guspEhwQsSfkomzvOBj7kT5qERItL
+         WjHpJyG7mZt+zW8NZmylIKUcPk+sKOZzxe/hrrDn+SKiZnCesdr/m1Pu+5lUuh7LoUhN
+         UErQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVRFtUsbvwJmPS1dnuMGVULkkOBS5XSbKrHlFX9VWOCY0kV9EeWOV++GxNb4P1o9PC8r/RSnN15pELr@vger.kernel.org
+X-Gm-Message-State: AOJu0YxI9npro+Xp1LMW2XKrIfaifEdKb4N3xhIcMimq2Rqc4D9W5Zfi
+	tcnIi5Fgd7th2FFC7+12XeFkNy+TO+bJkMjIMyH+UFlvt0n3I3Nef6MA
+X-Gm-Gg: ASbGncuSMXD37gSvriK7pSZrKZLBih+ZwCy8iCpQr6Ehj/SJslHNUqtlpo1K6pIaGWK
+	Pldg+cdGCF8cfxZntFtsVy4ZOSAhwjL4WPElS5u6kNMU15p80KnVkFmcqkamTo08UoLUp32+21I
+	CdbNHx2hDES5Z3rhPNEiyT15s4twVJv9Fn80o5zvhnOTRGDXFbucnLBMIWg7iEEcl6mOMnU9uo8
+	8UUY7Mx7+zhkm924DarOEKl9eosQGJOX0pzx2ACitvHn3F4fnq7NVu6XcJIZTF9nv1EoBWspU6L
+	cGeoxJXrbw3iPTQV4t7ugB47Xv5L9xN4UB/jIoh6DwrIGsBaPLIdgIBMWu/4BYO7qIQsoOCfGRs
+	6SuUI4P1BRE/94iyVpr0epGKWArIZjSYqTUF+3sxeej+nXT+pSab7WGx7kUP/Eby0n0vwBXWo/6
+	y5kBFeEybz9Hs98S42pIk=
+X-Google-Smtp-Source: AGHT+IEeDHPpfUgYJWf2ll0+1AfsrzSpWoZY5OWeKfS4OoSjSHurxojt3+dBMiMCGkDmWisqS+lV+g==
+X-Received: by 2002:a17:907:9625:b0:b76:d882:5aaa with SMTP id a640c23a62f3a-b79ec3f0908mr670737566b.3.1764952219257;
+        Fri, 05 Dec 2025 08:30:19 -0800 (PST)
+Received: from crusty-box ([79.133.247.80])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b79f449c375sm419408266b.24.2025.12.05.08.30.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 05 Dec 2025 08:30:18 -0800 (PST)
+From: Erikas Bitovtas <xerikasxx@gmail.com>
+To: konrad.dybcio@oss.qualcomm.com
+Cc: andersson@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	konradybcio@kernel.org,
+	krzk+dt@kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	phone-devel@vger.kernel.org,
+	robh@kernel.org,
+	xerikasxx@gmail.com,
+	~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH v2 1/2] arm64: dts: qcom: msm8939-asus-z00t: add battery
+Date: Fri,  5 Dec 2025 18:30:14 +0200
+Message-ID: <20251205163014.51395-1-xerikasxx@gmail.com>
+X-Mailer: git-send-email 2.52.0
+In-Reply-To: <509d5d7d-b7a3-4dc9-b3e6-c3e52abe040c@oss.qualcomm.com>
+References: <509d5d7d-b7a3-4dc9-b3e6-c3e52abe040c@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-Spamd-Result: default: False [-2.01 / 50.00];
-	BAYES_HAM(-3.00)[100.00%];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
-	NEURAL_HAM_LONG(-1.00)[-1.000];
-	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	NEURAL_HAM_SHORT(-0.20)[-1.000];
-	MIME_GOOD(-0.10)[text/plain];
-	MX_GOOD(-0.01)[];
-	ARC_NA(0.00)[];
-	TO_MATCH_ENVRCPT_ALL(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FUZZY_RATELIMITED(0.00)[rspamd.com];
-	URIBL_BLOCKED(0.00)[suse.de:email,suse.de:dkim,suse.de:mid,suse.com:email];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	FREEMAIL_ENVRCPT(0.00)[gmail.com];
-	FREEMAIL_CC(0.00)[suse.de,gmail.com,kernel.org,perex.cz,suse.com,vger.kernel.org,cixtech.com];
-	RCVD_TLS_ALL(0.00)[];
-	RCVD_COUNT_TWO(0.00)[2];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[cixtech.com:email,perex.cz:email,imap1.dmz-prg2.suse.org:helo,imap1.dmz-prg2.suse.org:rdns,suse.de:email,suse.de:dkim,suse.de:mid,suse.com:email];
-	FROM_EQ_ENVFROM(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DNSWL_BLOCKED(0.00)[2a07:de40:b281:106:10:150:64:167:received];
-	TAGGED_RCPT(0.00)[dt];
-	DWL_DNSWL_BLOCKED(0.00)[suse.de:dkim];
-	DKIM_TRACE(0.00)[suse.de:+];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:97:from]
-X-Rspamd-Action: no action
-X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
-X-Spam-Level: 
-X-Rspamd-Queue-Id: 7BE9733704
-X-Spam-Flag: NO
-X-Spam-Score: -2.01
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-On Fri, 05 Dec 2025 16:45:50 +0100,
-Joakim  Zhang wrote:
-> 
-> 
-> Hi Takashi,
-> 
-> > -----Original Message-----
-> > From: Takashi Iwai <tiwai@suse.de>
-> > Sent: Friday, December 5, 2025 10:30 PM
-> > To: Joakim Zhang <joakim.zhang@cixtech.com>
-> > Cc: lgirdwood@gmail.com; broonie@kernel.org; robh@kernel.org;
-> > krzk+dt@kernel.org; conor+dt@kernel.org; perex@perex.cz;
-> > tiwai@suse.com; linux-sound@vger.kernel.org; devicetree@vger.kernel.org;
-> > cix-kernel-upstream <cix-kernel-upstream@cixtech.com>
-> > Subject: Re: [PATCH v5 0/3] ALSA: hda: add CIX IPBLOQ HDA controller
-> > support
-> >
-> > EXTERNAL EMAIL
-> >
-> > CAUTION: Suspicious Email from unusual domain.
-> >
-> > On Fri, 05 Dec 2025 12:16:31 +0100,
-> > joakim.zhang@cixtech.com wrote:
-> > >
-> > > From: Joakim Zhang <joakim.zhang@cixtech.com>
-> > >
-> > > Add CIX IPBLOQ HDA controller support.
-> > >
-> > > ---
-> > > ChangeLogs:
-> > > v1->v2:
-> > >   - fix dt-binding issues
-> > >   - remove delayed work for probing
-> > >   - refine dma address traslation
-> > > v2->v3:
-> > >   - update dt-binding commit title and message
-> > >     - ASoC: dt-bindings: -> ALSA: hda: dt-bindings
-> > >     - use full sentences for commit message
-> > >   - rename cix,ipbloq-hda.yaml to cix,sky1-ipbloq-hda.yaml
-> > >   - update compatible cix,ipbloq-hda to cix,sky1-ipbloq-hda
-> > >   - "cix,model" to generic "model"
-> > >   - change the addr_host_to_hdac bus callback to addr_offset field
-> > > v3->v4:
-> > >   - describe more for both dt-binding and driver commit message
-> > >   - remove __maybe_unused for pm ops
-> > >   - fix robot compile warning for 32bit system
-> > >     - Forced type conversion for
-> > CIX_IPBLOQ_SKY1_ADDR_HOST_TO_HDAC_OFFSET
-> > > v4->v5:
-> > >   - rename "clock-names", "sysclk" "clk48m" -> "ipg" "per"
-> > >   - remove "reset-names" property
-> > >   - remove "model" property
-> > >   - additionalProperties: false -> unevaluatedProperties: false
-> > >   - update the dirver since "reset-names" removed
-> > >     - mostly is devm_reset_control_bulk_get_exclusive to
-> > devm_reset_control_get
-> > >
-> > > Joakim Zhang (3):
-> > >   ALSA: hda: dt-bindings: add CIX IPBLOQ HDA controller support
-> > >   ALSA: hda/core: add addr_offset field for bus address translation
-> > >   ALSA: hda: add CIX IPBLOQ HDA controller support
-> >
-> > Applied all three patches now.  Thanks.
-> >
-> 
-> Please wait a moment. I am so sorry that I just noticed I made an elementary mistake when update from v4 to v5, an error return was missed when copying and pasting, sending the v6.
+I assumed only data for 25C is necessary.
+I'll add the rest of the tables.
 
-OK, now rolled back.
-
-
-Takashi
+Erikas
 
