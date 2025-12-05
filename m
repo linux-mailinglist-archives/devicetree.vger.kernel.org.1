@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-244857-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244858-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70C8CCA984D
-	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 23:39:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DF085CA9850
+	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 23:39:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CB70631F0998
+	by sea.lore.kernel.org (Postfix) with ESMTP id F3AAA31F1FB0
 	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 22:36:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 360A42F2605;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4ED172F28F1;
 	Fri,  5 Dec 2025 22:36:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M4zQviDM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qQ06qna4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE5A32ED871;
-	Fri,  5 Dec 2025 22:36:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FFF4283FDF;
+	Fri,  5 Dec 2025 22:36:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764974210; cv=none; b=ORRRsLxJNm6ndcrtnfI0FFkAwzBElGrKMphMvHxfWNOkqeKaVj/ZNhuPE6mJPfN3mS3qpkD9VAm1z0ObfKsT0TT1MrKcPlQ7CEcHNvIil4KOWYlhHFqHOJDaqdVDqmjwzilIXv7DFd3ycXcgFlCSv5WCqR83LknsoxIWOGJeqwE=
+	t=1764974210; cv=none; b=R1l/gQOIYAQwMJ3qRuq5a4BComWlNkatGXv0c9OjUV6K2ZmR99WLGXOFx0SCFTUmObLrHFaL6Tx9ZF+X3YrBQtHCZQ42LWXL/KYedw8RXPSjFA2UGExomqf7rBwgnxw/LPMjjblJHXhrzxai/01br3SaIPeqVO1V8YUFXenspSA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1764974210; c=relaxed/simple;
-	bh=a+i6OuMIceb2KmmLexgRXeIiGsHIMcZGP0HUwSar5+U=;
+	bh=fozoT2mIHoqlaC/dIcUWXWiqeKFS54g8S0cfQ4C96mc=;
 	h=From:Date:Content-Type:MIME-Version:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=sBWxOwKJGswWJfri/luCG/FC7mwAcuZ0W+5gAEzikC5RuJ9Mtv8pP2DwO5FTiBa2SZBaUqtQHpEiA191uM84RILJKJ1gTu5RB7UOCHZtNnAcQC6V9VnoB8ptvejaJ+3knD7vpb9DgeRoY64k+FZstMakSJWsczAA2KqKnLab5Ck=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M4zQviDM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 352C8C4CEF1;
-	Fri,  5 Dec 2025 22:36:47 +0000 (UTC)
+	 Message-Id:Subject; b=nzBnbrgb23T745gOkfgCVcbjh5ltuSKOYUfgHymX/DRveK9JpAP8rsrZSxMN7qBUUkod5sgF+EfHowTmvlkPKSY0iOHJbz7rPG93HB8oWfAqoVbIubqqGF+VocP1/LjM0bF0AZc5Tr2dDtlhEMY6nwe6m+hSi+LlIcTRu18vmR0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qQ06qna4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B729C19422;
+	Fri,  5 Dec 2025 22:36:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764974207;
-	bh=a+i6OuMIceb2KmmLexgRXeIiGsHIMcZGP0HUwSar5+U=;
+	s=k20201202; t=1764974209;
+	bh=fozoT2mIHoqlaC/dIcUWXWiqeKFS54g8S0cfQ4C96mc=;
 	h=From:Date:Cc:To:In-Reply-To:References:Subject:From;
-	b=M4zQviDM94cwfYTDIH84VqYAmVj0dqH0Tk/7q54eVs17XLFKBu0T7B5q5YuhobEmB
-	 hK1PEvvEroUi5XELMncX3pmEso7mVWTfkJBrQT2EYpkYwuUvhYmsz9WK294W1rGCuf
-	 EYWznZ7HduZdpML6Q9dCylQGrRGYRNxSESl0qxi/aipNWSoGfdC29HlZXiEUXost5Y
-	 /swkuERMh3CQO4L3iwT+ZV55vBa9OjS6/JozBH7oM7r4+oMJSBBNbJnZXeCgZppeJr
-	 wUpOdRAWO5GQWlr0jUn1zISlX3L6Ba73qmGpV0s23INhHhLNuhXxWnw5vEJPBgG0uM
-	 Z+MyP2N8q9IyA==
+	b=qQ06qna44Yx7eukWkJ5er0z168gA9PNBFZ9s0IewUszxj7u+iap3qm3VxGwydyei6
+	 SDlHlwMeQZguV/AjhbmqOIRiHqHjrhSA5mAI3W2RkUPw+P2CeK9QqkVlZGm2PeQ86T
+	 HStDYp0ioSaWzKHhqrEqU8740sr03W9527l0lVv3NVNBgl13g7/HXlyY//3PqrK/c+
+	 Tdh4arNZt2fBtLtA41+PowHDAt7bziXnsp7OP3+yPH3g0UxGqGAO135jj/Ny+pICaK
+	 G3MuvxnJhYGlbmeykaMDGXQ0ayeYj5hWBIsTnbXarbZBqI8RVFdZrybkHCqNWcrdMo
+	 nVXJfuY7XHr8A==
 From: Rob Herring <robh@kernel.org>
-Date: Fri, 05 Dec 2025 16:36:46 -0600
+Date: Fri, 05 Dec 2025 16:36:47 -0600
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -49,45 +49,79 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Cc: linus.walleij@linaro.org, conor+dt@kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- arnd@arndb.de, devicetree@vger.kernel.org, stable@vger.kernel.org, 
- krzk+dt@kernel.org, jserv@ccns.ncku.edu.tw
-To: Kuan-Wei Chiu <visitorckw@gmail.com>
-In-Reply-To: <20251204164228.113587-1-visitorckw@gmail.com>
-References: <20251204164228.113587-1-visitorckw@gmail.com>
-Message-Id: <176497381720.863571.13455719382013086980.robh@kernel.org>
-Subject: Re: [PATCH] ARM: dts: integrator: Fix DMA ranges mismatch warning
- on IM-PD1
+Cc: Thierry Reding <thierry.reding@gmail.com>, linux-tegra@vger.kernel.org, 
+ JC Kuo <jckuo@nvidia.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+ Mathias Nyman <mathias.nyman@intel.com>, Conor Dooley <conor+dt@kernel.org>, 
+ devicetree@vger.kernel.org, linux-usb@vger.kernel.org, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, 
+ linux-phy@lists.infradead.org
+To: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+In-Reply-To: <20251204-diogo-tegra_phy-v1-0-51a2016d0be8@tecnico.ulisboa.pt>
+References: <20251204-diogo-tegra_phy-v1-0-51a2016d0be8@tecnico.ulisboa.pt>
+Message-Id: <176497381829.863612.7431013132555369131.robh@kernel.org>
+Subject: Re: [PATCH 0/5] Fixes to Tegra USB role switching and Smaug USB
+ role switching enablement
 
 
-On Thu, 04 Dec 2025 16:42:28 +0000, Kuan-Wei Chiu wrote:
-> When compiling the device tree for the Integrator/AP with IM-PD1, the
-> following warning is observed regarding the display controller node:
+On Thu, 04 Dec 2025 21:27:16 +0000, Diogo Ivo wrote:
+> Hello,
 > 
-> arch/arm/boot/dts/arm/integratorap-im-pd1.dts:251.3-14: Warning
-> (dma_ranges_format):
-> /bus@c0000000/bus@c0000000/display@1000000:dma-ranges: empty
-> "dma-ranges" property but its #address-cells (2) differs from
-> /bus@c0000000/bus@c0000000 (1)
+> This patch series contains two fixes for USB role switching on the
+> Tegra210 SoC, as well as enabling this feature on the Pixel C.
 > 
-> The display node specifies an empty "dma-ranges" property, intended to
-> describe a 1:1 identity mapping. However, the node lacks explicit
-> "#address-cells" and "#size-cells" properties. In this case, the device
-> tree compiler defaults the address cells to 2 (64-bit), which conflicts
-> with the parent bus configuration (32-bit, 1 cell).
+> The first patch addresses a wrong check on the logic that disables the
+> VBUS regulator.
 > 
-> Fix this by explicitly defining "#address-cells" and "#size-cells" as
-> 1. This matches the 32-bit architecture of the Integrator platform and
-> ensures the address translation range is correctly parsed by the
-> compiler.
+> The second patch guarantees proper ordering of events when switching PHY
+> roles.
 > 
-> Fixes: 7bea67a99430 ("ARM: dts: integrator: Fix DMA ranges")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Kuan-Wei Chiu <visitorckw@gmail.com>
+> The third and fourth patches then add the necessary nodes and properties
+> in the Smaug DT in order for role switching to work. Currently with this
+> patch series this feature can only be controlled from userspace by writing
+> the desired role to sysfs as
+> 
+> echo "role" > /sys/class/usb_role/usb2-0-role-switch/role
+> 
+> with role being one of {device, host, none}.
+> 
+> Further patches will enable automatic role switching via the 'cros_ec_typec'
+> driver which is currently broken on Smaug.
+> 
+> N.B: This series does not add a 'connector' node under the 'usb-role-switch'
+> property added on patch 04/04 because for Smaug the connector should instead
+> be under the node for 'cros_ec_typec' node and as stated above this
+> driver is currently broken for this device. If it is deemed better to
+> describe it but explicitly disable the node let me know and I will send
+> out a v2.
+> 
+> Signed-off-by: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
 > ---
->  arch/arm/boot/dts/arm/integratorap-im-pd1.dts | 2 ++
->  1 file changed, 2 insertions(+)
+> Diogo Ivo (5):
+>       usb: host: tegra: Remove redundant pm_runtime_mark_last_busy() call
+>       phy: tegra: xusb: Fix USB2 port regulator disable logic
+>       phy: tegra: xusb: Fix ordering issue when switching roles on USB2 ports
+>       arm64: tegra: smaug: Complete and enable tegra-udc node
+>       arm64: tegra: smaug: Add usb-role-switch support
+> 
+>  arch/arm64/boot/dts/nvidia/tegra210-smaug.dts | 13 +++++++++++++
+>  drivers/phy/tegra/xusb-tegra210.c             |  5 +++--
+>  drivers/phy/tegra/xusb.c                      | 23 +++++++++++++++++++++++
+>  drivers/phy/tegra/xusb.h                      |  1 +
+>  drivers/usb/gadget/udc/tegra-xudc.c           |  4 ++++
+>  drivers/usb/host/xhci-tegra.c                 | 17 ++++++++++-------
+>  include/linux/phy/tegra/xusb.h                |  1 +
+>  7 files changed, 55 insertions(+), 9 deletions(-)
+> ---
+> base-commit: a8817ff3b5cd99b0a5af57a92d1a3a7980612550
+> change-id: 20251201-diogo-tegra_phy-86c89cab7377
+> 
+> Best regards,
+> --
+> Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+> 
+> 
 > 
 
 
@@ -106,17 +140,20 @@ make sure dt-schema is up to date:
 
 
 This patch series was applied (using b4) to base:
+ Base: base-commit a8817ff3b5cd99b0a5af57a92d1a3a7980612550 not known, ignoring
  Base: attempting to guess base-commit...
- Base: tags/v6.18-rc6-2004-g29bce9c8b41d (exact match)
- Base: tags/v6.18-rc6-2004-g29bce9c8b41d (use --merge-base to override)
+ Base: tags/v6.18-rc7-8-gf402ecd7a8b6 (exact match)
+ Base: tags/v6.18-rc7-8-gf402ecd7a8b6 (use --merge-base to override)
 
 If this is not the correct base, please add 'base-commit' tag
 (or use b4 which does this automatically)
 
-New warnings running 'make CHECK_DTBS=y for arch/arm/boot/dts/arm/' for 20251204164228.113587-1-visitorckw@gmail.com:
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/nvidia/' for 20251204-diogo-tegra_phy-v1-0-51a2016d0be8@tecnico.ulisboa.pt:
 
-arch/arm/boot/dts/arm/integratorap-im-pd1.dtb: display@1000000 (arm,pl110): '#address-cells', '#size-cells', 'dma-ranges', 'port@0' do not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/display/arm,pl11x.yaml
+arch/arm64/boot/dts/nvidia/tegra210-smaug.dtb: padctl@7009f000 (nvidia,tegra210-xusb-padctl): ports:usb2-0: 'role-switch-default-mode' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/phy/nvidia,tegra210-xusb-padctl.yaml
+arch/arm64/boot/dts/nvidia/tegra210-smaug.dtb: padctl@7009f000 (nvidia,tegra210-xusb-padctl): ports:usb2-0: 'connector' is a dependency of 'usb-role-switch'
+	from schema $id: http://devicetree.org/schemas/phy/nvidia,tegra210-xusb-padctl.yaml
 
 
 
