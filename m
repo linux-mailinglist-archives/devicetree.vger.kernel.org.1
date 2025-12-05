@@ -1,62 +1,96 @@
-Return-Path: <devicetree+bounces-244843-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244844-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAAF5CA950E
-	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 21:57:38 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B69ECA95C9
+	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 22:11:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 1C5FD301964C
-	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 20:57:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A66BC30577EF
+	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 21:11:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A29F32D94A9;
-	Fri,  5 Dec 2025 20:57:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7DEE2D9493;
+	Fri,  5 Dec 2025 21:11:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bP3edzYU"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ceybAcf1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F9B1227B8E;
-	Fri,  5 Dec 2025 20:57:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2088E213254
+	for <devicetree@vger.kernel.org>; Fri,  5 Dec 2025 21:11:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764968256; cv=none; b=bvGqj393ZW7+qMYKns2xx1ZTxyoV70qQDa9ytLtq6onulKnoBtKin2Sb9ql/GEPG/fVFjJRvWC/7Jdzgr8hJKmVTc15eE7+Hq1LaPRnx3MIj9VaMzoBryfisjjNvDVuaTHPVP80w0F2qMc6RLAp1tUMgZv7DuQsELJ8Eqiycdmc=
+	t=1764969071; cv=none; b=b7d6kvFUBZi58ICMEmsUrrskYwydTGB603eMEzZGPPyDhav87fTpnUAiFKrWqtdIZEPqv/GME22IHvv1Qs/r0KBWCW0DFyklUwkotaiYDfOgY6eMFcWpDQvdUWCQe1kB7WAX8ryTsgmpf70S2c2zUrTvvr50canmFYdNje1DLYU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764968256; c=relaxed/simple;
-	bh=bx2JTShoFLV64IMikUYvle59aqV9I4K4iIXUVq0wCiQ=;
+	s=arc-20240116; t=1764969071; c=relaxed/simple;
+	bh=c7c1J1vIUl2RUCCAw3PryaNjjaYVzuxa0pvkJ9f40DI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UvbHiqCEhDEICuPdiLRMeSnL22kRHZVfWNwRDunN3qI2EYWaSXchW2G2NhasjbXipchjo6QfItu+STaWAVzMPFG8jmHxdfHCjbXDgl4pJdbBfLd0UgdI+6ttdHh+FVJVwbfaBxYMxSXzUMMo8xCKgThdrCleWQfnJ+O2GvIrnPk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bP3edzYU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D2F6C4CEF1;
-	Fri,  5 Dec 2025 20:57:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764968256;
-	bh=bx2JTShoFLV64IMikUYvle59aqV9I4K4iIXUVq0wCiQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bP3edzYUtah8OuV+Bp4GunSNWLr+MfM/ERdCwXFyftgxW7TNRwtDsXAmPtVF91Jv8
-	 ixT0ottkt7E1wIlMAsj6rOz2BYx+uyofbY9L4v71fBGKeKNnssomzzjzCz1nhga2V5
-	 ok12wOweu0ewB5Gy4QPxETeNiC3W95Zau08NvJ1ENdZ27WhhSbnv5XAmr/A9qNR73U
-	 qtY4wpoQiW3L3Dn7uHaAdNtAn7zK/bhaWq0SQMQHZEELOt2HB00+Nq/9Y4RV818NOM
-	 jK0L/KDYmCzQe6KL0eAKLkmvnv4JclgssYEXRXuqG1kgagmISqltrUeNP6s7pMmdu2
-	 Sb40VZpNg7lQA==
-Date: Fri, 5 Dec 2025 15:03:53 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: Mrinmay Sarkar <mrinmay.sarkar@oss.qualcomm.com>
-Cc: Bjorn Helgaas <bhelgaas@google.com>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
-	Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, kernel@oss.qualcomm.com, 
-	Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>, Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>, 
-	quic_vbadigan@quicinc.com, quic_shazhuss@quicinc.com, konrad.dybcio@oss.qualcomm.com, 
-	Rama Krishna <quic_ramkri@quicinc.com>, Ayiluri Naga Rashmi <quic_nayiluri@quicinc.com>, 
-	Nitesh Gupta <quic_nitegupt@quicinc.com>
-Subject: Re: [PATCH 2/2] PCI: qcom-ep: Add support for firmware-managed PCIe
- Endpoint
-Message-ID: <gpheliezabdbqpip2d4opfsu7zdfvltifrovtf3dz5bri4vefu@cuklytg4t6if>
-References: <20251203-firmware_managed_ep-v1-0-295977600fa5@oss.qualcomm.com>
- <20251203-firmware_managed_ep-v1-2-295977600fa5@oss.qualcomm.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=uFUDJzZB349V6pRbNdBZXN82E8pJgzHy7I6XCNPKGUTP34ziWYSqMwJKZGPiZpDmaD9TCmxi7XdKPrvQBXkMvPHOnNpebxRAQhGrF12mLJ9bFtAP1FGTa6Zu7s2C0FbvEIkGG+RkUGHHxXCGqLow9e2ztKWFd556/Vln24nwa6w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ceybAcf1; arc=none smtp.client-ip=209.85.210.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-7b852bb31d9so3086177b3a.0
+        for <devicetree@vger.kernel.org>; Fri, 05 Dec 2025 13:11:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1764969069; x=1765573869; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=9dp9/mKBjgaa+hOS/JhmxBoz56rQ07ceIHhKFiTPWfA=;
+        b=ceybAcf1xwMEFuJCZDVlTScA7kKEa5jiuiR57JEe8KGzDgCc32QHQ5xWIKXxl5Cagj
+         kkpD+s90WFuP1HKGoV8SK66n6aqhMtmDvUzlydMjRHzIOUpbjjy2KK1IML8Q6sEhtlmm
+         9BvL1Xs7GTyT3RWnfKtoaHUHsFrNz3SS10SaeNFzJj4kCKdsoYhlwEMED2KYi/PxYgej
+         ZqqqXtCEUSjiY8XBgirtFEL/X/mh0CXx5iQ/kypz9IpUOjRhpL4xoSE1A21rLWdoDXUj
+         Fpn/MjU4JISXEdebcB68AY90/MSvE5K6OYBMxiq7U0JAEL0kg0Eyqb1e02gNT6DsY5OZ
+         XWxg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764969069; x=1765573869;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=9dp9/mKBjgaa+hOS/JhmxBoz56rQ07ceIHhKFiTPWfA=;
+        b=g8xz+qyL2YxkcoTs6eX443M2F7xcyvZDk9mF1lqw1gPw8wyCDtF3Ei7Htu+amkofUM
+         X6lobHB1QteOR1EaP+nuMENsH8r2xrtJmeoaW4MWdNaarGRBzEHwDZb+PRkIZmG6fKfj
+         oZiHKZqRlnNCwRH1/xtkQVjZPX8delfFhJodTowS3sEh/hvzQMccHTFWDkLCrSKJuhDv
+         yzo4XxElkOUH3l/Ol3phjpynvqr7iNMsxhDvYhpzdlWHihfsX7RsGdVhfP+NcMxx/I/m
+         FX1C/K2xDVWreQgsX0Kgt+KuuoWwbfsZBDsqVpPveeP61uMrhEbgCOBFsm1DwaF4qE4w
+         bKeQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWdvS0QcgD4mOCukPtcX2nnyrx+Dwsjc8NnD9tcLhLcpkL5yQh1tvJ3bbTRFfl76UXsISsJJ+kgbzMo@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx/V9ZXX4jeVHeJx10HGyUQOsWsRSU5hmC/9sqJeRsJZaB0IQRb
+	OQ09ONspU6ubjMrYtD3D4OZHRy3J73so78QepJPeSv8qZ7WiCHY9JFyF
+X-Gm-Gg: ASbGncuqOvQw0q51akGLGG/GFUfSXAxW792J5xA+5fJzw/c94fJD7ZDcILa9QGb6DCS
+	S4RlXPUZ60G9T5lC7S1xCkSWaBJjRfHGcN9fhwbtvKRbp3nlW0VrSo6wFbWz2pZ8GmQrzZNLnM8
+	hHj0Y8XVBRRWMKf50Doof0sVXk3opt+BKU7Ew6wRpR8M6eSiYjqT/Ghw/lnthxRlHMlYWD59Dbm
+	f1O+2oOUiCKhwRB4yWFk2QsPg/5R3pgtnmjM1aokhxXD1JnfHACMq/rs+goIDdlJiCXG+15HWRP
+	nyxniWX6kejq3LEwyJS8+95Hy+/RBnfVAqH9Tn82xoflgAAjXXwRRWMAqnS7HD4p2t7rAMCbr3f
+	vVLjPEuVTiZ6EY/HqwYv7DAdllw+IEGIGRpydEZbCBPUdzNGg7dcicCqL0L9PrcckxJwlfFhlfz
+	mIPwbLGfoWVzwZaBDZUx7J
+X-Google-Smtp-Source: AGHT+IHcEY0Q1FA1vKURG7RgwRQex46GLvAineu1VoXOdKRh8PgkrSImSe/zY+sC4iAx07qvMIjyjw==
+X-Received: by 2002:a05:7022:4404:b0:119:e569:f60a with SMTP id a92af1059eb24-11e03162d6amr481897c88.3.1764969069289;
+        Fri, 05 Dec 2025 13:11:09 -0800 (PST)
+Received: from localhost ([2804:30c:2712:fd00:9579:9ff6:e506:6147])
+        by smtp.gmail.com with UTF8SMTPSA id a92af1059eb24-11df7552211sm21303509c88.1.2025.12.05.13.11.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 05 Dec 2025 13:11:08 -0800 (PST)
+Date: Fri, 5 Dec 2025 18:12:41 -0300
+From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
+To: Rob Herring <robh@kernel.org>
+Cc: David Lechner <dlechner@baylibre.com>, Mark Brown <broonie@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Marcelo Schmitt <marcelo.schmitt@analog.com>,
+	Michael Hennerich <michael.hennerich@analog.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Andy Shevchenko <andy@kernel.org>,
+	Sean Anderson <sean.anderson@linux.dev>, linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org
+Subject: Re: [PATCH v3 7/7] dt-bindings: iio: adc: adi,ad4030: add data-lanes
+ property
+Message-ID: <aTNKyaWAEjVJixMI@debian-BULLSEYE-live-builder-AMD64>
+References: <20251201-spi-add-multi-bus-support-v3-0-34e05791de83@baylibre.com>
+ <20251201-spi-add-multi-bus-support-v3-7-34e05791de83@baylibre.com>
+ <20251204213348.GA2198382-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,223 +99,83 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251203-firmware_managed_ep-v1-2-295977600fa5@oss.qualcomm.com>
+In-Reply-To: <20251204213348.GA2198382-robh@kernel.org>
 
-On Wed, Dec 03, 2025 at 06:56:48PM +0530, Mrinmay Sarkar wrote:
-> Some Qualcomm platforms use firmware to manage PCIe resources such as
-> clocks, resets, and PHY through the SCMI interface. In these cases,
-> the Linux driver should not perform resource enable or disable
-> operations directly. Additionally, runtime PM support has been enabled
-> to ensure proper power state transitions.
+On 12/04, Rob Herring wrote:
+> On Mon, Dec 01, 2025 at 08:20:45PM -0600, David Lechner wrote:
+> > Add data-lanes property to specify the number of data lanes used on the
+> > ad463x chips that support reading two samples at the same time using
+> > two data lanes with a capable SPI controller.
+> > 
+> > Signed-off-by: David Lechner <dlechner@baylibre.com>
+> > ---
+> > v3 changes: new patch
+> > 
+> > I added this one to give a real-world use case where spi-rx-bus-width
+> > was not sufficient to fully describe the hardware configuration.
+> > 
+> > spi-rx-bus-width = <4>; alone could be be interpreted as either:
+> > 
+> > +--------------+    +----------+
+> > | SPI          |    | AD4630   |
+> > | Controller   |    | ADC      |
+> > |              |    |          |
+> > |        SDIA0 |<---| SDOA0    |
+> > |        SDIA1 |<---| SDOA1    |
+> > |        SDIA2 |<---| SDOA2    |
+> > |        SDIA3 |<---| SDOA3    |
+> > |              |    |          |
+> > |        SDIB0 |x   | SDOB0    |
+> > |        SDIB1 |x   | SDOB1    |
+> > |        SDIB2 |x   | SDOB2    |
+> > |        SDIB3 |x   | SDOB3    |
+> > |              |    |          |
+> > +--------------+     +---------+
+> > 
+> > or
+> > 
+> > +--------------+    +----------+
+> > | SPI          |    | AD4630   |
+> > | Controller   |    | ADC      |
+> > |              |    |          |
+> > |        SDIA0 |<---| SDOA0    |
+> > |        SDIA1 |<---| SDOA1    |
+> > |        SDIA2 |x   | SDOA2    |
+> > |        SDIA3 |x   | SDOA3    |
+> > |              |    |          |
+> > |        SDIB0 |<---| SDOB0    |
+> > |        SDIB1 |<---| SDOB1    |
+> > |        SDIB2 |x   | SDOB2    |
+> > |        SDIB3 |x   | SDOB3    |
+> > |              |    |          |
+> > +--------------+     +---------+
+> > 
+> > Now, with data-lanes having a default value of [0] (inherited from
+> > spi-peripheral-props.yaml), specifying:
+> > 
+> >     spi-rx-bus-width = <4>;
+> > 
+> > is unambiguously the first case and the example given in the binding
+> > documentation is the second case:
+> > 
+> >     spi-rx-bus-width = <2>;
+> >     data-lanes = <0>, <1>;
 > 
-> This commit introduces a `firmware_managed` flag in the Endpoint
-> configuration structure. When set, the driver skips resource handling
-> and uses generic runtime PM calls to let firmware do resource management.
+> I just reviewed this and all, but what if you just did:
 > 
-> A new compatible string is added for SA8255P platforms where firmware
-> manages resources.
+> spi-rx-bus-width = <2>, <2>;
 > 
-> Signed-off-by: Mrinmay Sarkar <mrinmay.sarkar@oss.qualcomm.com>
-> ---
->  drivers/pci/controller/dwc/pcie-qcom-ep.c | 80 ++++++++++++++++++++++++-------
->  1 file changed, 64 insertions(+), 16 deletions(-)
+> So *-bus-width becomes equal to the number of serializers/channels.
+
+Unless I'm missing something, I think that would also describe the currently
+possible use cases as well. To me, it actually seems even more accurate than
+data-lanes. The data-lanes property only describes the SPI controller input
+lines/lanes, no info is given about the output lanes. Well yeah, that would only
+be a problem for a device with multiple input serializers and multiple output
+serializers. Still, the *-bus-width = <N>, <N>, ... <N>; notation looks clearer,
+IMHO.
+
 > 
-> diff --git a/drivers/pci/controller/dwc/pcie-qcom-ep.c b/drivers/pci/controller/dwc/pcie-qcom-ep.c
-> index f1bc0ac81a928b928ab3f8cc7bf82558fc430474..38358c9fa7ab32fd36efcea0a42c52f1f86a523a 100644
-> --- a/drivers/pci/controller/dwc/pcie-qcom-ep.c
-> +++ b/drivers/pci/controller/dwc/pcie-qcom-ep.c
-> @@ -168,11 +168,13 @@ enum qcom_pcie_ep_link_status {
->   * @hdma_support: HDMA support on this SoC
->   * @override_no_snoop: Override NO_SNOOP attribute in TLP to enable cache snooping
->   * @disable_mhi_ram_parity_check: Disable MHI RAM data parity error check
-> + * @firmware_managed: Set if the Endpoint controller is firmware managed
->   */
->  struct qcom_pcie_ep_cfg {
->  	bool hdma_support;
->  	bool override_no_snoop;
->  	bool disable_mhi_ram_parity_check;
-> +	bool firmware_managed;
->  };
->  
->  /**
-> @@ -377,6 +379,15 @@ static int qcom_pcie_enable_resources(struct qcom_pcie_ep *pcie_ep)
->  
->  static void qcom_pcie_disable_resources(struct qcom_pcie_ep *pcie_ep)
->  {
-> +	struct device *dev = pcie_ep->pci.dev;
-> +	int ret;
-> +
-> +	ret = pm_runtime_put_sync(dev);
-
-What's the benefit of waiting for the put to finish? (i.e. why _sync)
-
-> +	if (ret < 0) {
-> +		dev_err(dev, "Failed to disable endpoint device: %d\n", ret);
-> +		return;
-
-For some reason the pm_runtime_put_sync() failed, so the device's state
-is going to remain active. But you prevented the resources below from
-being disabled - without returning an error, so nobody knows.
-
-So now the phy refcount etc will be wrong.
-
-> +	}
-> +
->  	icc_set_bw(pcie_ep->icc_mem, 0, 0);
->  	phy_power_off(pcie_ep->phy);
->  	phy_exit(pcie_ep->phy);
-> @@ -390,12 +401,22 @@ static int qcom_pcie_perst_deassert(struct dw_pcie *pci)
->  	u32 val, offset;
->  	int ret;
->  
-> -	ret = qcom_pcie_enable_resources(pcie_ep);
-> -	if (ret) {
-> -		dev_err(dev, "Failed to enable resources: %d\n", ret);
-> +	ret = pm_runtime_get_sync(dev);
-
-You're missing necessary error handling for pm_runtime_get_sync(), use
-pm_runtime_resume_and_get() instead.
-
-> +	if (ret < 0) {
-> +		dev_err(dev, "Failed to enable endpoint device: %d\n", ret);
->  		return ret;
->  	}
->  
-> +	/* Enable resources if Endpoint controller is not firmware-managed */
-> +	if (!(pcie_ep->cfg && pcie_ep->cfg->firmware_managed)) {
-> +		ret = qcom_pcie_enable_resources(pcie_ep);
-
-Now that you're moving the driver to adequately get and put the RPM
-state, can't you move the explicit resource management to pm_ops as
-well?
-
-> +		if (ret) {
-> +			dev_err(dev, "Failed to enable resources: %d\n", ret);
-> +			pm_runtime_put_sync(dev);
-> +			return ret;
-> +		}
-> +	}
-> +
->  	/* Perform cleanup that requires refclk */
->  	pci_epc_deinit_notify(pci->ep.epc);
->  	dw_pcie_ep_cleanup(&pci->ep);
-> @@ -630,16 +651,6 @@ static int qcom_pcie_ep_get_resources(struct platform_device *pdev,
->  		return ret;
->  	}
->  
-> -	pcie_ep->num_clks = devm_clk_bulk_get_all(dev, &pcie_ep->clks);
-> -	if (pcie_ep->num_clks < 0) {
-> -		dev_err(dev, "Failed to get clocks\n");
-> -		return pcie_ep->num_clks;
-> -	}
-> -
-> -	pcie_ep->core_reset = devm_reset_control_get_exclusive(dev, "core");
-> -	if (IS_ERR(pcie_ep->core_reset))
-> -		return PTR_ERR(pcie_ep->core_reset);
-> -
->  	pcie_ep->reset = devm_gpiod_get(dev, "reset", GPIOD_IN);
->  	if (IS_ERR(pcie_ep->reset))
->  		return PTR_ERR(pcie_ep->reset);
-> @@ -652,9 +663,22 @@ static int qcom_pcie_ep_get_resources(struct platform_device *pdev,
->  	if (IS_ERR(pcie_ep->phy))
->  		ret = PTR_ERR(pcie_ep->phy);
->  
-> -	pcie_ep->icc_mem = devm_of_icc_get(dev, "pcie-mem");
-> -	if (IS_ERR(pcie_ep->icc_mem))
-> -		ret = PTR_ERR(pcie_ep->icc_mem);
-> +	/* Populate resources if Endpoint controller is not firmware-managed */
-> +	if (!(pcie_ep->cfg && pcie_ep->cfg->firmware_managed)) {
-> +		pcie_ep->num_clks = devm_clk_bulk_get_all(dev, &pcie_ep->clks);
-> +		if (pcie_ep->num_clks < 0) {
-> +			dev_err(dev, "Failed to get clocks\n");
-> +			return pcie_ep->num_clks;
-> +		}
-> +
-> +		pcie_ep->core_reset = devm_reset_control_get_exclusive(dev, "core");
-> +		if (IS_ERR(pcie_ep->core_reset))
-> +			return PTR_ERR(pcie_ep->core_reset);
-> +
-> +		pcie_ep->icc_mem = devm_of_icc_get(dev, "pcie-mem");
-> +		if (IS_ERR(pcie_ep->icc_mem))
-> +			ret = PTR_ERR(pcie_ep->icc_mem);
-> +	}
->  
->  	return ret;
->  }
-> @@ -874,6 +898,16 @@ static int qcom_pcie_ep_probe(struct platform_device *pdev)
->  
->  	platform_set_drvdata(pdev, pcie_ep);
->  
-> +	pm_runtime_set_active(dev);
-> +	ret = devm_pm_runtime_enable(dev);
-> +	if (ret)
-> +		return ret;
-> +	ret = pm_runtime_get_sync(dev);
-
-As the device is already active, this will just bump the reference count
-and return. I think the correct way to write this is:
-
-pm_runtime_get_noresume(dev);
-pm_runtime_set_active(dev);
-pm_runtime_enable(dev);
-
-
-But to handle the non-fw-managed case, you probably want to just remove
-the pm_runtime_set_active() and keep the get_sync(), to allow the
-resources to be turned on, thus would though have to happen after you
-acquire the resources below.
-
-> +	if (ret < 0) {
-> +		dev_err(dev, "Failed to enable endpoint device: %d\n", ret);
-> +		return ret;
-> +	}
-> +
->  	ret = qcom_pcie_ep_get_resources(pdev, pcie_ep);
->  	if (ret)
->  		return ret;
-> @@ -897,6 +931,12 @@ static int qcom_pcie_ep_probe(struct platform_device *pdev)
->  	pcie_ep->debugfs = debugfs_create_dir(name, NULL);
->  	qcom_pcie_ep_init_debugfs(pcie_ep);
-
-This was last, because we don't care about failures. But now that you're
-adding a source of errors below, you need to remove these entries again
-if below fails (or keep the debugfs creation last).
-
->  
-> +	ret = pm_runtime_put_sync(dev);
-> +	if (ret < 0) {
-
-I don't think this is adequately error handled.
-
-Regards,
-Bjorn
-
-> +		dev_err(dev, "Failed to disable endpoint device: %d\n", ret);
-> +		goto err_disable_irqs;
-> +	}
-> +
->  	return 0;
->  
->  err_disable_irqs:
-> @@ -930,7 +970,15 @@ static const struct qcom_pcie_ep_cfg cfg_1_34_0 = {
->  	.disable_mhi_ram_parity_check = true,
->  };
->  
-> +static const struct qcom_pcie_ep_cfg cfg_1_34_0_fw_managed = {
-> +	.hdma_support = true,
-> +	.override_no_snoop = true,
-> +	.disable_mhi_ram_parity_check = true,
-> +	.firmware_managed = true,
-> +};
-> +
->  static const struct of_device_id qcom_pcie_ep_match[] = {
-> +	{ .compatible = "qcom,sa8255p-pcie-ep", .data = &cfg_1_34_0_fw_managed},
->  	{ .compatible = "qcom,sa8775p-pcie-ep", .data = &cfg_1_34_0},
->  	{ .compatible = "qcom,sdx55-pcie-ep", },
->  	{ .compatible = "qcom,sm8450-pcie-ep", },
-> 
-> -- 
-> 2.25.1
-> 
+> Rob
 > 
 
