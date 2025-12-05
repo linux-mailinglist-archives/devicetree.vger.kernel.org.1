@@ -1,108 +1,82 @@
-Return-Path: <devicetree+bounces-244588-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244589-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0798FCA6CDC
-	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 10:05:14 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E94DCA6CD4
+	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 10:04:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BD5E5310BA90
-	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 09:04:51 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id E4DDF3036C1D
+	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 09:04:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8176C311C2A;
-	Fri,  5 Dec 2025 09:04:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07E3E313E0A;
+	Fri,  5 Dec 2025 09:04:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jky425Lq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [52.229.205.26])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95E12309EFA;
-	Fri,  5 Dec 2025 09:04:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=52.229.205.26
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EC0E3161A7;
+	Fri,  5 Dec 2025 09:04:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764925487; cv=none; b=SUOlkA1FNZ6i+cEmHGTogFQzynOBVEJjxn0bpFWp4Kx3q5fhf1q8rT9eZi3sen0LJdcodZEaVQA/Kwt2RNgjtIZk/Tatwlv8lTkRaRtZLvD8jzpzMejjvZxuWr3IecCGuqDVNhcubo0Jjioh5hhtxuTwXIrW8vcEQ2jFmLAa7DU=
+	t=1764925492; cv=none; b=rhEUQg8/OMDo1BH22SAJl+AHKjT4HivugXdEarpLGU7es9ZW11fg1tnCO9SYFUOuAHaVDnfbIyx+gNYkiKLBqjsUtrhUd+SHyyNtm7qVoTtRPlbfN89l9XAmyEg4GG1DFSTb+bc5z2SaYKhvtXIU/hlqgdYfFdI7OFnx4Se6SG0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764925487; c=relaxed/simple;
-	bh=oE8GoZP04K680ASQk1ozGiSx1k2fBPmgcNZwSMjytWk=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=o6oRQTaKBt1aqaY3kz8zdysUWfzbjj6xmk74R7Il7MtXX3s3R51lSK1+7CkOdh/mGN2V0sLRwZctBpni3kBrS5q2RhvEABBXuRYljP9r4x9J1Bxl41mZzs9gbzGUaoAwonoNM0oRiWFEyUtw2KMvb/i1t51Kb7b99kisHzCoupI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=52.229.205.26
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
-Received: from E0005152DT.eswin.cn (unknown [10.12.96.41])
-	by app1 (Coremail) with SMTP id TAJkCgCXkGgOoDJpadmBAA--.39523S2;
-	Fri, 05 Dec 2025 17:04:15 +0800 (CST)
-From: dongxuyang@eswincomputing.com
-To: ukleinek@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	p.zabel@pengutronix.de,
-	linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: ningyu@eswincomputing.com,
-	linmin@eswincomputing.com,
-	xuxiang@eswincomputing.com,
-	wangguosheng@eswincomputing.com,
-	pinkesh.vaghela@einfochips.com,
-	Xuyang Dong <dongxuyang@eswincomputing.com>
-Subject: [PATCH 0/2] Add driver support for ESWIN EIC7700 PWM controller
-Date: Fri,  5 Dec 2025 17:04:11 +0800
-Message-Id: <20251205090411.1388-1-dongxuyang@eswincomputing.com>
-X-Mailer: git-send-email 2.31.1.windows.1
+	s=arc-20240116; t=1764925492; c=relaxed/simple;
+	bh=J2ovb+88K42mXDaoJYvkfnX2So3Ncf927h6EI32oRIQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Uy8EcHvxojFHXoBUM4WK0uFjbDN7ehIaxCEWJ3o2tY88+866YwyjoyaRCDfAhCp2WnXKhuqg07grOMf7uWurv5wyuACk6V4KfxV3HqYz3PAnsT2LUAv7NmEf/4pmczrZOio/1LdAkhJcAXOL15NW1YMo6EYQQwJuVshNbuRNrGY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jky425Lq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6CB43C4CEF1;
+	Fri,  5 Dec 2025 09:04:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764925489;
+	bh=J2ovb+88K42mXDaoJYvkfnX2So3Ncf927h6EI32oRIQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=jky425Lq+xqdqknZN+dBqk+kDT1IP2zLRG1WHnvVFHtQsYWzTVG7rqrx0nMG/+IjM
+	 cY4Diq4aZ3SvYp2nDTCwnHbwDh0YeWlvClkW3q7ZpoZRf8USSi2H/jaKM86uXnpe8H
+	 ayDWr7Okza/mSssjih2k+367tAEGP6AUE7/xD7nAvB0ieSdrzcQnENr3ycmI+rJkuL
+	 3eRPBZIjVZ4omPixobm0eE55Ls181cwwd5R1iHtGdvmkRre9DErDQhKl0RNhBj9AVn
+	 0c5KUpuYw049LUaHjhAOD2jDs9hDnPN/lQAtGfOZlLBEA0MVCkvYyESKNuM3RApyoX
+	 iTcPgrcMaqMvQ==
+Date: Fri, 5 Dec 2025 10:04:47 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+Cc: Chaotian Jing <chaotian.jing@mediatek.com>, 
+	Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Wenbin Mei <wenbin.mei@mediatek.com>, kernel@collabora.com, 
+	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH 1/3] dt-bindings: mmc: mtk-sd: Add support for MT8189 SoC
+Message-ID: <20251205-funky-coucal-from-eldorado-7f8bea@quoll>
+References: <20251203-mt8189-add-mmc-support-v1-0-f5ce43212fe9@collabora.com>
+ <20251203-mt8189-add-mmc-support-v1-1-f5ce43212fe9@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:TAJkCgCXkGgOoDJpadmBAA--.39523S2
-X-Coremail-Antispam: 1UD129KBjvdXoWruF4UGFyDXFy7Cw1fJr1xAFb_yoWDGFbEkw
-	4furZ7Xw4ruF95AayYyrZ3ZFyqyF45Wr1vkFZ0k34Y9wnrur15KrykZ34UZ3WIyF45AF1D
-	AryIyF1Skr17XjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUIcSsGvfJTRUUUbhxFF20E14v26r4j6ryUM7CY07I20VC2zVCF04k26cxKx2IYs7xG
-	6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8w
-	A2z4x0Y4vE2Ix0cI8IcVAFwI0_tr0E3s1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Gr1j
-	6F4UJwA2z4x0Y4vEx4A2jsIE14v26rxl6s0DM28EF7xvwVC2z280aVCY1x0267AKxVW0oV
-	Cq3wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0
-	I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r
-	4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02628v
-	n2kIc2xKxwAKzVCY07xG64k0F24lc7CjxVAaw2AFwI0_Jw0_GFylc2xSY4AK6svPMxAIw2
-	8IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4l
-	x2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrw
-	CI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI
-	42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z2
-	80aVCY1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7VUbknY7UUUUU==
-X-CM-SenderInfo: pgrqw5xx1d0w46hv4xpqfrz1xxwl0woofrz/
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20251203-mt8189-add-mmc-support-v1-1-f5ce43212fe9@collabora.com>
 
-From: Xuyang Dong <dongxuyang@eswincomputing.com>
+On Wed, Dec 03, 2025 at 12:45:34PM +0100, Louis-Alexis Eyraud wrote:
+> Add a new compatible for MMC IP in MT8189 SoC.
+> Even though this is partially compatible with the one found in MT8196
+> SoC, the MT8189 SoC register layout has some slight differences and
+> additional features.
+> 
+> Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+> ---
+>  Documentation/devicetree/bindings/mmc/mtk-sd.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
 
-Add support for the ESWIN EIC7700 PWM (Pulse Width Modulation) based on
-Synopsys DWC PWM.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
-Features:
-The EIC7700 PWM driver supports a duty cycle range from 0% to 100%, with
-explicit support added for both 0% and 100% duty cycles.
-
-Supported chips:
-ESWIN EIC7700 series SoC.
-
-Test:
-Tested this patch on the Sifive HiFive Premier P550 (which used the EIC7700
-SoC).
-
-Xuyang Dong (2):
-  dt-bindings: pwm: eswin: Add EIC7700 pwm controller
-  pwm: eswin: Add EIC7700 pwm driver
-
- .../bindings/pwm/eswin,eic7700-pwm.yaml       |  73 ++++++
- drivers/pwm/Kconfig                           |  12 +
- drivers/pwm/Makefile                          |   1 +
- drivers/pwm/pwm-dwc-core.c                    |  76 ++++--
- drivers/pwm/pwm-dwc-eic7700.c                 | 231 ++++++++++++++++++
- drivers/pwm/pwm-dwc.h                         |  16 +-
- 6 files changed, 384 insertions(+), 25 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/pwm/eswin,eic7700-pwm.yaml
- create mode 100644 drivers/pwm/pwm-dwc-eic7700.c
-
---
-2.34.1
+Best regards,
+Krzysztof
 
 
