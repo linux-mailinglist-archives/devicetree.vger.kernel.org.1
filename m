@@ -1,126 +1,238 @@
-Return-Path: <devicetree+bounces-244621-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244622-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC05ECA7E17
-	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 15:04:34 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F9F1CA7204
+	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 11:19:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 5BE2D32A9799
-	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 10:12:30 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8F720304EFF7
+	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 10:16:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B13772F692F;
-	Fri,  5 Dec 2025 10:12:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78B162DC76A;
+	Fri,  5 Dec 2025 10:16:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b="TXv64Bke"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="etK+P1+c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mxout4.routing.net (mxout4.routing.net [134.0.28.9])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF88F313535;
-	Fri,  5 Dec 2025 10:12:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=134.0.28.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 470112836BE;
+	Fri,  5 Dec 2025 10:16:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764929548; cv=none; b=lyetMgHpathVjcimx4Hlk7Wj52u4bDdWkF0x8XQ2xedO8ijVl2glbZzDGLV8r/9vWLfNNiTpq8Q+pEwjbVIHH7Gbzqk0Eo7Mkm0GUl0xU7zfJSv0Cq5MYwk0sn8tZuMlCP0bJaFCrDD4e0rrLFVaxXEgWZbG+Crckqin18MQr+I=
+	t=1764929806; cv=none; b=D4kSne+y1DzFbE8tJjDsUqN7CQFgantaCc1lAdExObt7yiUn53BEAFe+zjyyRVs6x9dz+e/JZwbCeyfDj4Ka6O5/frg5BtDyrWQeENkdlzDWiETvqmdJZoZnR3qCXNTSr8eO8ooYmydPqpOtE7XNaz8hmISl8DJtF5QUWhF/Q3A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764929548; c=relaxed/simple;
-	bh=ZhwxMeDGKdQ+jfpoFrHVDU2YXGVjjQTF6kKa77ubcKg=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=E1pyEba6FJ1HGdSjeV5NffnJQE6nRNhGjK47MfDkHvT4To8ls45DU9clkklL5pgKG/ICGeNwGAEQ6nKH5HIUNW1RKaZX4eGl97g+F2NkGOHvmkutNr4d17QcOLy56vgGY54qeUeTb8c2TxdYd+3RzzbClyHWzUxt0byYsaZsrOg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de; spf=pass smtp.mailfrom=fw-web.de; dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b=TXv64Bke; arc=none smtp.client-ip=134.0.28.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fw-web.de
-Received: from mxbox2.masterlogin.de (unknown [192.168.10.89])
-	by mxout4.routing.net (Postfix) with ESMTP id F40571003CD;
-	Fri,  5 Dec 2025 10:12:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
-	s=routing; t=1764929539;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=PeQ5w9JI2U+u93WcNx+OHZKvHgY1tekXmNamojx/WOM=;
-	b=TXv64BkeLki+uCVapB3Qw9iYC0d1w3GX22KoNiqmVfI8RN3PqITLubCD12mQWDudWXgnRO
-	ipsHTfXEYchZhwhYfx8SU5BcB4JsIt0vHRLBMm6ynVpFOzKXq4taCuAPHUZxSGK3aJqROX
-	OghncKRLnPfraPEkjfHp4KdOAMWZDPY=
-Received: from webmail.hosting.de (unknown [134.0.26.148])
-	by mxbox2.masterlogin.de (Postfix) with ESMTPSA id 4B772100681;
-	Fri,  5 Dec 2025 10:12:18 +0000 (UTC)
+	s=arc-20240116; t=1764929806; c=relaxed/simple;
+	bh=MaI8IZsaB50roRDHgSsWkLNVdEW09lgAOc08QCyiKfo=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=pu5bQtCkq4Kb3txx1iURT/5IwuSZC2oRdVEpU5hr2oszXEYtR4MSsriIBQgmbz6nZbYAoDfB6IN7PNz7d8SHAnZQ0WjAPye7TFZxY5fpkd2W5+Q8Y7GcHnKphZ8L6et1Sq6R8uF3rZ6nDTuqMV9MxrDVtPsmlwSfXJCE3y8tivg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=etK+P1+c; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 69BC0C4CEF1;
+	Fri,  5 Dec 2025 10:16:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764929805;
+	bh=MaI8IZsaB50roRDHgSsWkLNVdEW09lgAOc08QCyiKfo=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=etK+P1+cWGP3K0/B3fDDI4m0zBha9nhnPjfN/GS2c2jPgs9oOANTKRbkZE8NeQyNF
+	 Y/eYNsGVrrNrUOq9ceqdr9yOmqZWKAfcBMLTCPUycaIwegBoKvRSPOQKJKiR9ibbMl
+	 p7ANoLkCoqh6MOHMvVHv2utr+EV3SOEKWPdAqLtSqDA4DOGPt5I99lVnnPfy8vF5RM
+	 a94fvFlUxmFpDqTIxudRgVcHHktSWoHwIXGQSR2rNWoULVlxlo0Y90o4IylybvY2Lt
+	 EfCWsCni5P5XHdQTZnUS0ayLNvzCRl+EybMir3CLeqYTYJ3HNCTgim7Ckp8479hc2T
+	 cvsVMZekOVeew==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5C4A8D216B3;
+	Fri,  5 Dec 2025 10:16:45 +0000 (UTC)
+From: Rudraksha Gupta via B4 Relay <devnull+guptarud.gmail.com@kernel.org>
+Date: Fri, 05 Dec 2025 02:16:45 -0800
+Subject: [PATCH] ARM: dts: qcom: msm8960: expressatt: Add
+ coreriver,tc360-touchkey
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Fri, 05 Dec 2025 11:12:18 +0100
-From: "Frank Wunderlich (linux)" <linux@fw-web.de>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
- <angelogioacchino.delregno@collabora.com>, Conor Dooley
- <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Frank
- Wunderlich <frank-w@public-files.de>, Rob Herring <robh@kernel.org>,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, Rob Herring
- <robh+dt@kernel.org>
-Subject: Re: [PATCH v1 1/2] arm64: dts: mediatek: mt7986: add dtbs with
- applied overlays for bpi-r3
-In-Reply-To: <fc5c9829-96fa-4028-a642-0792699e92a5@kernel.org>
-References: <20251119175124.48947-1-linux@fw-web.de>
- <20251119175124.48947-2-linux@fw-web.de>
- <fc5c9829-96fa-4028-a642-0792699e92a5@kernel.org>
-Message-ID: <942df0f5995a2929eecd38e4066865c0@fw-web.de>
-X-Sender: linux@fw-web.de
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Mail-ID: 58a40c37-ab18-4aa8-b309-90bca7573869
+Message-Id: <20251205-expressatt-touchkey-v1-1-1444b927c9f3@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAAyxMmkC/03MQQ6DIBCF4auYWZcEUIp6lcYQQgcltdgCGhvj3
+ Ut00S7/ybxvg4jBYYS22CDg4qKbfA52KcAM2vdI3D03cMoF41QQXF8BY9QpkTTNZnjghzBZSSN
+ oqbktIS/zh3Xrod66swO+54yn8/iz2+KQGWv+ZOWtUdoYHNVT916Nrh8SsbJGyutGsvraLhV0+
+ /4F2xSEIr8AAAA=
+X-Change-ID: 20251205-expressatt-touchkey-1747c503a2f3
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Rudraksha Gupta <guptarud@gmail.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1764929805; l=5243;
+ i=guptarud@gmail.com; s=20240916; h=from:subject:message-id;
+ bh=bVqnx5maQ2+0asrPWYudZakdqnY0csCZUYY5fznTxHc=;
+ b=vV9FXcHwDs8xcyZwCAhkS1lDBXWwNWso6YRMP8HJC1ShPXQo+PQr2Cm/OUqbLQZVwNDiRQKoe
+ /c0OqzGawwqDjPvq3UBmBYchzbEnMfM4tAIJk4jvMAr9Iuey168raXz
+X-Developer-Key: i=guptarud@gmail.com; a=ed25519;
+ pk=ETrudRugWAtOpr0OhRiheQ1lXM4Kk4KGFnBySlKDi2I=
+X-Endpoint-Received: by B4 Relay for guptarud@gmail.com/20240916 with
+ auth_id=211
+X-Original-From: Rudraksha Gupta <guptarud@gmail.com>
+Reply-To: guptarud@gmail.com
 
-Hi
+From: Rudraksha Gupta <guptarud@gmail.com>
 
-Am 2025-12-05 09:10, schrieb Krzysztof Kozlowski:
-> On 19/11/2025 18:51, Frank Wunderlich wrote:
->> From: Frank Wunderlich <frank-w@public-files.de>
->> 
->> Build devicetree binaries for testing overlays and providing users
->> full dtb without using overlays.
->> 
->> Suggested-by: Rob Herring <robh+dt@kernel.org>
->> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
->> ---
->> resend of
->> https://patchwork.kernel.org/project/linux-mediatek/patch/20240608080530.9436-2-linux@fw-web.de/
->> due to discussions here:
->> https://patchwork.kernel.org/project/linux-mediatek/patch/20251117211306.725678-1-robh@kernel.org/
->> 
->> changes:
->> - updated sd-nand with sata-overlay
->> ---
->>  arch/arm64/boot/dts/mediatek/Makefile | 21 +++++++++++++++++++++
->>  1 file changed, 21 insertions(+)
-> 
-> 
-> This looks like still not being applied and now it is a warning in
-> Linus' tree.
-> 
-> Can this be applied and sent as fixes?
+Add the tc360 touchkey. It's unknown if this is the actual model of the
+touchkey, as downstream doesn't mention a variant, but this works.
 
-afair the series was sent after the pull-request from angelo and maybe 
-he waited
-for an ack from you/rob before applying ;)
+Link:
+https://github.com/LineageOS/android_kernel_samsung_d2/blob/stable/cm-12.0-YNG4N/drivers/input/keyboard/cypress_touchkey_236/Makefile#L5
 
-if it helps i collected the commits for (possibly) sending as fix
+Signed-off-by: Rudraksha Gupta <guptarud@gmail.com>
+---
+Add the tc360 touchkey. It's unknown if this is the actual model of the
+touchkey, as downstream doesn't mention a variant, but this works.
 
-Fixes: a58c36806741 ("arm64: dts: mediatek: mt7988a-bpi-r4pro: Add mmc 
-overlays")
-Fixes: dec929e61a42 ("arm64: dts: mediatek: mt7988a-bpi-r4-pro: Add PCIe 
-overlays")
-Fixes: 714a80ced07a ("arm64: dts: mediatek: mt7988a-bpi-r4: Add dt 
-overlays for sd + emmc")
-Fixes: 312189ebb802 ("arm64: dts: mt7986: add overlay for SATA power 
-socket on BPI-R3")
-Fixes: 8e01fb15b815 ("arm64: dts: mt7986: add Bananapi R3")
+Link:
+https://github.com/LineageOS/android_kernel_samsung_d2/blob/stable/cm-12.0-YNG4N/drivers/input/keyboard/cypress_touchkey_236/Makefile#L5
 
-> Best regards,
-> Krzysztof
+Test:
+=============
+- LEDs:
+samsung-expressatt:/sys/class/leds/tm2-touchkey$ echo heartbeat > trigger
+// Flashes LEDs :)
 
-regards Frank
+- Touching buttons:
+samsung-expressatt:/sys/class/leds/tm2-touchkey$ evtest
+No device specified, trying to scan all of /dev/input/event*
+Not running as root, no devices may be available.
+Available devices:
+/dev/input/event0:      pmic8xxx_pwrkey
+/dev/input/event1:      gpio-keys
+/dev/input/event2:      tm2-touchkey
+/dev/input/event3:      Atmel maXTouch Touchscreen
+Select the device event number [0-3]: 2
+Input driver version is 1.0.1
+Input device ID: bus 0x18 vendor 0x0 product 0x0 version 0x0
+Input device name: "tm2-touchkey"
+Supported events:
+  Event type 0 (EV_SYN)
+  Event type 1 (EV_KEY)
+    Event code 139 (KEY_MENU)
+    Event code 158 (KEY_BACK)
+  Event type 4 (EV_MSC)
+    Event code 4 (MSC_SCAN)
+Properties:
+Testing ... (interrupt to exit)
+Event: time 1761059686.899755, type 4 (EV_MSC), code 4 (MSC_SCAN), value 00
+Event: time 1761059686.899755, type 1 (EV_KEY), code 139 (KEY_MENU), value 1
+Event: time 1761059686.899755, -------------- SYN_REPORT ------------
+Event: time 1761059687.113489, type 4 (EV_MSC), code 4 (MSC_SCAN), value 00
+Event: time 1761059687.113489, type 1 (EV_KEY), code 139 (KEY_MENU), value 0
+Event: time 1761059687.113489, -------------- SYN_REPORT ------------
+Event: time 1761059688.764757, type 4 (EV_MSC), code 4 (MSC_SCAN), value 01
+Event: time 1761059688.764757, type 1 (EV_KEY), code 158 (KEY_BACK), value 1
+Event: time 1761059688.764757, -------------- SYN_REPORT ------------
+Event: time 1761059688.817516, type 4 (EV_MSC), code 4 (MSC_SCAN), value 01
+Event: time 1761059688.817516, type 1 (EV_KEY), code 158 (KEY_BACK), value 0
+Event: time 1761059688.817516, -------------- SYN_REPORT ------------
+---
+ .../dts/qcom/qcom-msm8960-samsung-expressatt.dts   | 55 ++++++++++++++++++++++
+ 1 file changed, 55 insertions(+)
+
+diff --git a/arch/arm/boot/dts/qcom/qcom-msm8960-samsung-expressatt.dts b/arch/arm/boot/dts/qcom/qcom-msm8960-samsung-expressatt.dts
+index 5a39abd6f3ce..c4b98af6955d 100644
+--- a/arch/arm/boot/dts/qcom/qcom-msm8960-samsung-expressatt.dts
++++ b/arch/arm/boot/dts/qcom/qcom-msm8960-samsung-expressatt.dts
+@@ -52,6 +52,41 @@ key-volume-down {
+ 			linux,code = <KEY_VOLUMEDOWN>;
+ 		};
+ 	};
++
++	touchkey_enable: touchkey-enable {
++		compatible = "regulator-fixed";
++		regulator-name = "touchkey_enable";
++		gpio = <&tlmm 51 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++		regulator-boot-on;
++	};
++
++	i2c-gpio-touchkey {
++		compatible = "i2c-gpio";
++		#address-cells = <1>;
++		#size-cells = <0>;
++		sda-gpios = <&tlmm 71 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
++		scl-gpios = <&tlmm 72 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&touchkey_i2c_pins>;
++		status = "okay";
++		i2c-gpio,delay-us = <2>;
++
++		touchkey@20 {
++			compatible = "coreriver,tc360-touchkey";
++			reg = <0x20>;
++
++			interrupts-extended = <&tlmm 52 IRQ_TYPE_EDGE_FALLING>;
++			pinctrl-names = "default";
++			pinctrl-0 = <&touchkey_irq_pin>;
++
++			vddio-supply = <&touchkey_enable>;
++			vdd-supply = <&pm8921_l29>;
++			vcc-supply = <&pm8921_l29>;
++
++			linux,keycodes = <KEY_MENU KEY_BACK>;
++		};
++	};
+ };
+ 
+ &gsbi2 {
+@@ -198,6 +233,20 @@ firmware-pins {
+ 			bias-disable;
+ 		};
+ 	};
++
++	touchkey_i2c_pins: touchkey-i2c-state {
++		pins = "gpio71", "gpio72";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-disable;
++	};
++
++	touchkey_irq_pin: touchkey-irq-state {
++		pins = "gpio52";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-disable;
++	};
+ };
+ 
+ &pm8921 {
+@@ -420,6 +469,12 @@ pm8921_l25: l25 {
+ 			bias-pull-down;
+ 		};
+ 
++		pm8921_l29: l29 {
++			regulator-min-microvolt = <1800000>;
++			regulator-max-microvolt = <3300000>;
++			bias-pull-down;
++		};
++
+ 		/* Low Voltage Switch */
+ 		pm8921_lvs1: lvs1 {
+ 			bias-pull-down;
+
+---
+base-commit: 0ccd3ddf45c93ab06c9b1a9d266dcab1e52bf3d2
+change-id: 20251205-expressatt-touchkey-1747c503a2f3
+prerequisite-change-id: 20251119-expressatt_nfc_accel_magn_light-f78e02897186:v4
+prerequisite-patch-id: 6fdd0efa5eda512b442b885df80774d1a7037df7
+prerequisite-patch-id: 12d296f83ccb1bdfb8d06a72e476bf51ae5f4e6c
+prerequisite-patch-id: a970acf2080143f41ae0935dd2c57bb71f5bf338
+prerequisite-patch-id: fd25fef58503c5e5cf742e79b124948c7f6b98d9
+prerequisite-patch-id: 966ae746687ebf8eb29c6185a8909b047e70dbb1
+prerequisite-patch-id: 68603a680b24921759425fc289e61fc4435e5ccd
+
+Best regards,
+-- 
+Rudraksha Gupta <guptarud@gmail.com>
+
+
 
