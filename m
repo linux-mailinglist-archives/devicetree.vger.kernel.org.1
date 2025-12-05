@@ -1,191 +1,178 @@
-Return-Path: <devicetree+bounces-244642-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244643-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F13ACA7749
-	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 12:52:04 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1D0CCA778C
+	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 12:54:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 342EF3015289
-	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 11:52:01 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 382013029276
+	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 11:54:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0127305957;
-	Fri,  5 Dec 2025 11:51:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3696333033C;
+	Fri,  5 Dec 2025 11:53:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="b0DTEAv7";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="gtCPNC8Q"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Q6DPTGCS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52B5631353C
-	for <devicetree@vger.kernel.org>; Fri,  5 Dec 2025 11:51:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD06D2FF679
+	for <devicetree@vger.kernel.org>; Fri,  5 Dec 2025 11:53:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764935516; cv=none; b=QJ2QSnZN0rtAGxSxKY8Wc4f8ooPOzLy5f/t1DMChgLNjBcZIumscwgHVZjJ3jan688IYmSx6MZojv+VdrYFZTi0SZ/ufekzVhBtEHshTsj1zHQNN+GUASFIK+cBcEpJUMJ4CjsDvwuKSuVyhzn3ITkulvfZiheV8CHuYDFBh8BA=
+	t=1764935613; cv=none; b=H5rvWvLEHu/0EPEayaxDD0F0ypMJf+yt5lzD/b6RSgO8S/Omcis7qOCTorPJUmPnt+xrrX0+3tF6zqs5a8y3+ttTGmZwmZUncbor+bwrGJ4CCJx/a9+Xw5oGpFFJ7dhb2RO8PKErROAbIch9oQ1VqLRtcdkohKbEysprGUjpDsY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764935516; c=relaxed/simple;
-	bh=4FEPkcmPQydsXKd3bDt+V/OwWf+GUJUg2bHRhHFd5JM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=syensAjvkxtdmG8ei8SOJ2NIZFB3wlzkeMQZh3jFTbws8419jp7VEWZUjrjDomRgHX8B0YbAjP3uXH/OcaPdSXk127ZPjW3IBu3nX9hiLunFhTafzavY/jp/10Z6tbGEt3PwSz/Qm7zM6/z+rOjzCWeaayN4yYhxuJF3wDtV5Oo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=b0DTEAv7; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=gtCPNC8Q; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5B58nkcf2896793
-	for <devicetree@vger.kernel.org>; Fri, 5 Dec 2025 11:51:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	LZ3MnpeLSn5m9T5UfL7r6oeLnx6zH4HXGLQHnpAL93s=; b=b0DTEAv7S5bKt3pD
-	9HLKjFgX1/R2PR4BzPITB+QLzNfXc3GHO5u1xDuD03ICJ7pD2TtVOFaxUl8hYd6s
-	LIFcUdKmZ51Kv5q2tL4lx+AatgdC1pM9prSbp8Hdit2bnh7BiJIYD5RmSyUC0VJC
-	vWf5qH5UF2SZOTxTDUON1faVKk79pXvsMf9YPvZIHq/4Z7RiadaWHRQT8V7z3Myj
-	UKF3gxJvJfNi6ORYlxsBAO6Wrxbh2x2ZxtyYT6KbapLSbi3rJCshd7v/u+aRkS1L
-	wWiIhlFyESnNpbFw4CkQyT56jbNJ51PGFvWOTN4gRDiG/yexity+1kcVEG+YUVEA
-	OyY6Wg==
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4aukmj1v8a-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 05 Dec 2025 11:51:50 +0000 (GMT)
-Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4ed83a05863so5648311cf.2
-        for <devicetree@vger.kernel.org>; Fri, 05 Dec 2025 03:51:49 -0800 (PST)
+	s=arc-20240116; t=1764935613; c=relaxed/simple;
+	bh=YJCejSSlp5BLiFi26SWpMkczGtydRQ5mSdIigPCD7qc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=S416EuTJYOBa4ZZ1+Q7KBJMjwMU7nkLx4+O9Y8uhq+YbAjnXvImqPRMuv6StJ38BS/2feXraOeCvfqSf+KiTTQDWChunXBLPBM5updwMam86xzlKjUHQ1yCekfiaMxpdodeIk2ZiCHCgoDKffAWqvKVJopIdu6cMgPEyeXHpbLc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Q6DPTGCS; arc=none smtp.client-ip=209.85.221.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-42b47f662a0so1590521f8f.0
+        for <devicetree@vger.kernel.org>; Fri, 05 Dec 2025 03:53:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1764935509; x=1765540309; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=LZ3MnpeLSn5m9T5UfL7r6oeLnx6zH4HXGLQHnpAL93s=;
-        b=gtCPNC8QmkxyLCAfa6P3SzXP3vIIoSEUfuX7e9HXX5x/z3n80MVnDXQqqaSj00aKJK
-         kn1ZZ0tE2DDKLhl1EENY2UHdkyYaDFE9WW2N/Xg+VhIx/mL7KrBfjjNiZatZdk/ykfpj
-         j0xmn0rlWQ7YcpFa2W4kCZeNd7QvSaYs883vDP90faTgfQxxRoF9EEod5Iwz9JnAFEze
-         zHvcKSNRkIffW2ZYx8mxMLZAcBBY1HgjuUn0aQCXz7tshxPV9d40PW69lhuv7eJwKAEE
-         hi+By2C7Ks9MwsA7d+u8R+vJu8VA4ZV8uzo45rZHKiMwalnBXqELEQTzyXb1MPLK0tsn
-         knjg==
+        d=gmail.com; s=20230601; t=1764935606; x=1765540406; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=4oMXK/FjVegirY5SREBrXWKVrn6jX7f3cdMgqorSo9w=;
+        b=Q6DPTGCS4Zi/CzaXKQrAHwKxVk0602h0hfMKHe/1NSlNq6gytywKufe/H/uXoSrIfh
+         aZvKm84E94W6dBli9z2ZWSbBrH0sg/vKK0YVK2GwxIujtUjYRoJtZ+5p9gBmoVgAvEaT
+         Nac5bZee27h+nuzQaRnhytc2sRDnKp4b/gCgA4pFatogtDtQDqaX9wDBXuSHczxc3wyx
+         VoEStj3d2RehfqpLtMQdjXcPj+XhY0LQpJFOKLb6C6vbtaZaY+s3dVCcwkhpWJT8qixf
+         Po3CgZt2VnYEHBLGpzmISzC38yZwxwYhXF03bN6fT3h0lZr4i8VuTdAIrqL8RnnT0cx8
+         Iobw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764935509; x=1765540309;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=LZ3MnpeLSn5m9T5UfL7r6oeLnx6zH4HXGLQHnpAL93s=;
-        b=sznN5iVnHxoPKFS9JR1eC3XHidQorC6Aq4BB/lQ4UppUD8lL957kovW6JuTxuP67QP
-         IFG1OoXGzxzQh62DYenxdNAFiUP5pnek9TCReVey5ejjemOXU6uCHo8pu/mS7QfyfRw9
-         PCGyD0C4XjwQ65kmVYjz8XO/TQXVRV5p9pen0qjpYWzFnm+QjfoT4AuMs7J7Xz9sBHkj
-         52TS+4KXyYagZcyC4PT28e6xidejWEmSpo3H21DoCfJft7mcOUDo8rIccZIA3NfwP8Oh
-         EGaXTAi5YVK5mohu1v7dL7YazZkmqfi09Jl/VCETqiudCdkcrRXXxARDQwYB28f0Sdke
-         NeLQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW9Z1AWe+zaoNuENfSA56JVZg9oozYE42seUU3E4oT45l7QYZhD1xw/Pb0g1XmlbdZc1WZIzFPMl0nN@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx5s9KxD0TfeAjAoq26/tNf/7ctpeQrlg0HwKHtuKrVWAlc11bb
-	PceSTmOC4kDsJP6yuImqzvOAVtrnR9GputUSfkX0oh4v/+B08DWyQmiokRoJ0ManF+sc5ZLasMN
-	BTAunp4X8kVy0QQv4/0NM2B0MxPIsq4awpFbBF5oWY8QmkZSl60B1uuHBHqwe5zyM
-X-Gm-Gg: ASbGnctSAQFzjgAtdcYsvDtapjD9JMkCVzP8m5pBZXa3egTn0ExGWWThj2TWD5CmMnx
-	/B3Ufs1ngpAOF1A46GgpZaBPlM/qQoRSDm7nZipWHojEoVzcSd2oft09j55BE+2kGS0EEP3ku9N
-	/zFGAqib7e3tGePux2u6BVotojIJ7VTCq/vAwFeLiSz6+lVOsBQPCLbetnylCB1DJS07YWopvDk
-	BBF8eGdK33IFgpvZsw8gz0gkkJYEP492/OBhJHFt1VbP7eeus5/vwKgy8caEj5tnx9M1MxHDXq5
-	VdTm8Ms0rch/fDWWmm6WM/DbFjas8CFirIYBB8AGTrpEmUOIigIXXz/Ku0ezcYy8GMzy0dZg2VE
-	6jecV+M9AjtE5IMm3DYTjViGCG/Ql/xPhaCBAE4CHW0ktP1WDpgjHRXZ1yrlSbZEjCA==
-X-Received: by 2002:a05:622a:8603:b0:4ee:87e:dedf with SMTP id d75a77b69052e-4f01f47c206mr58946461cf.8.1764935509388;
-        Fri, 05 Dec 2025 03:51:49 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEYijUVYYzQtkzHyt+odEkZ8dzACllEwFv8T03QtxlHJQATGGl85vBbzl0MqQcf2F48ONcYRA==
-X-Received: by 2002:a05:622a:8603:b0:4ee:87e:dedf with SMTP id d75a77b69052e-4f01f47c206mr58946321cf.8.1764935508847;
-        Fri, 05 Dec 2025 03:51:48 -0800 (PST)
-Received: from [192.168.119.72] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b79f445982dsm362646966b.1.2025.12.05.03.51.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 05 Dec 2025 03:51:48 -0800 (PST)
-Message-ID: <509d5d7d-b7a3-4dc9-b3e6-c3e52abe040c@oss.qualcomm.com>
-Date: Fri, 5 Dec 2025 12:51:46 +0100
+        d=1e100.net; s=20230601; t=1764935606; x=1765540406;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=4oMXK/FjVegirY5SREBrXWKVrn6jX7f3cdMgqorSo9w=;
+        b=BVfL0VLC5Kudxhjsz8HAWPUqf3467PpgrvtL5u+nw7ImUbQfvgcKyznV9dFhL3VuaF
+         zuyZow1Jkynj/idGtDszwLHI3nJvm36M2sOFD0lSpKfMNiWnnl9ABzEwSycd1jGkVhWX
+         vlstNDupw0GkoXZc8G9lL9qsz2ajI+O84YdFggU/fzMX8KjpNg/40PCWnVu6MaBCO1bl
+         F1MoljWSAdbLdmv1Fi+SqzF74kvfQkvEf+lkSdE/Tf5qkPm7NtEv0/TQhxTx6ZxKXgWL
+         L0MKWOc0VhG0nlyT3hJU1pUXXoqwU0FDkn2Od3cUJLoo/uQpmwd7ewOHiCcyozAyomNY
+         Frwg==
+X-Forwarded-Encrypted: i=1; AJvYcCUYsBcklk15JWqCRBl3aFf0KGJb20I6m0wh1q9DkpEQxeZ9pNHpWga2HsfY6CjjzY7x3MK8e8qXSXM1@vger.kernel.org
+X-Gm-Message-State: AOJu0YzERNYABVy9Stb38G8O5R1V0oeyWohQe8m3rBvzwuJHOEYeoMs4
+	EA4CrJyUzr7eVuGtq0jiUFGVMjZl12pd55P+kxsrK6H7sWJp6lHDpvRA
+X-Gm-Gg: ASbGncutX9ttN6jkm6woPWnES6Rj4s5sgcQ8Fr2FudBaHusgBUIteBtF7OSui8nfwDa
+	35rLtpHZHygzfGn5sMoaq7tj5iTzDDr0GQysbz6CMvV5irpF7ymS05Mws00UbQmLrbvvTyYy8sE
+	u0MRTX5jImmp58aOMInZGX5QpoPN3mIS2ky/VCvsSCmPTnTNt6uDDmvoMIXjvh8Jm+SjcjW6wL1
+	BHP44qFirv1gIpawcQtVw+IEK8sWN+1plTd/NJPlKw1UaV2u403AMfiiNVJ/uLvZGqcSVvFi1Qr
+	gj1SPp4///U3reIAL3X6LlyWpmDBfJ4jI/1QJQPH0OmsIKUm3J0SkifFoEdvl1h1bpzniAHX0us
+	eg2CSqsG7G/TtwkmEd5yrREvquyuQDlaadCFPmctsmFjs31kvbRuAP5M2sfhLdZacQxAVjPe6sz
+	GfcDNFh61c24ipI8sQW38sTJspwEpz/lOBUJgOOvQNKvWVW2k0Jn4ONroS1gOlGPq81+E=
+X-Google-Smtp-Source: AGHT+IHyVq1TxDr3VEMt1d+mdj1M0HSV8r65o6SHKi+8hiPBA1XHe+HyzivannicYdrPR2vI4N8sHQ==
+X-Received: by 2002:adf:cf0f:0:b0:42f:84ed:ce5d with SMTP id ffacd0b85a97d-42f84ede0b9mr1636999f8f.28.1764935605767;
+        Fri, 05 Dec 2025 03:53:25 -0800 (PST)
+Received: from HYB-DlYm71t3hSl.ad.analog.com ([2001:a61:123e:4501:9c51:c3b7:65d6:48d3])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42f7cbfeadesm8509514f8f.10.2025.12.05.03.53.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 05 Dec 2025 03:53:25 -0800 (PST)
+Date: Fri, 5 Dec 2025 12:53:23 +0100
+From: Jorge Marques <gastmaier@gmail.com>
+To: Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc: Andy Shevchenko <andriy.shevchenko@intel.com>, 
+	Jorge Marques <jorge.marques@analog.com>, Lars-Peter Clausen <lars@metafoo.de>, 
+	Michael Hennerich <Michael.Hennerich@analog.com>, Jonathan Cameron <jic23@kernel.org>, 
+	David Lechner <dlechner@baylibre.com>, Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, 
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jonathan Corbet <corbet@lwn.net>, Linus Walleij <linus.walleij@linaro.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v2 9/9] iio: adc: ad4062: Add GPIO Controller support
+Message-ID: <egl65ctlz2umzcdzf7ke5c2hnd33ghudklmf4pdgnp64vnzjg3@rpqrludyv4p2>
+References: <20251124-staging-ad4062-v2-0-a375609afbb7@analog.com>
+ <20251124-staging-ad4062-v2-9-a375609afbb7@analog.com>
+ <aSQ2JUN05vmMQC1I@smile.fi.intel.com>
+ <rk4hmupbrb5ugxft6upj7ru43x3z7ybrobax45rorpwbcwleh6@vzxrr3m7r6ep>
+ <aSgX9nMBwBtAlSyj@smile.fi.intel.com>
+ <3izg5lyxjye24pvzoibk4tmnxbdfokr53abkpbjo5epqjoz55j@6wc7i4wsgwkt>
+ <CAHp75VfLd46xt_2W35gjoTCoh+PqExL-faZ8snhzfOx=65qXWw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] arm64: dts: qcom: msm8939-asus-z00t: add battery
-To: Erikas Bitovtas <xerikasxx@gmail.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        phone-devel@vger.kernel.org
-References: <20251121-battery-hall-v2-0-d29e0828f214@gmail.com>
- <20251121-battery-hall-v2-1-d29e0828f214@gmail.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20251121-battery-hall-v2-1-d29e0828f214@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=bYtmkePB c=1 sm=1 tr=0 ts=6932c756 cx=c_pps
- a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=69Il93vAAAAA:20 a=pGLkceISAAAA:8
- a=I6SptnUO25vYt0rnpQ0A:9 a=QEXdDO2ut3YA:10 a=a_PwQJl-kcHnX1M80qC6:22
- a=bA3UWDv6hWIuX7UZL3qL:22
-X-Proofpoint-ORIG-GUID: j4VfGui0XKzAdF1zqu7-MSC2L-izwDeA
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjA1MDA4NiBTYWx0ZWRfX6sDNvtoOrvMg
- wNWwrXnQmAWv6Oqho0MbcH0Nr6KiUHjzRPgngLU5M3O82xb9VbHulSMHrGKOiaogd9ZD+MnAYWW
- g3cTq/2a1tGxiaTaFAkczW8mMFrPLC82wsL0+DKZK5exIUOuXXupCyShFY9c5vbAwqnxAYcqeSN
- TJUax/NRCsxjIfGh9aa4ze315FINTT+0xiv20V0WhoNs2UqsNIJkwQcnaDRP0vQttw6tvezmrSe
- m6+kdrc8XMqbNKYr+y0yL1xaiHARuZ+eZK94tCgB2eRtB5CefzGy0ExoU4HQmAsWWmqQwGq+Oao
- oRcMlqbNlw20zCOr9cUJBoLfiH666XId6gyfP8lhX4R+h4Hp7zYLuhNcq+/sedz2bZLReoA2jPG
- MaO7MBImEFSYpLraWr1p9uzvic+KYQ==
-X-Proofpoint-GUID: j4VfGui0XKzAdF1zqu7-MSC2L-izwDeA
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-05_04,2025-12-04_04,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 spamscore=0 adultscore=0 suspectscore=0 priorityscore=1501
- bulkscore=0 impostorscore=0 lowpriorityscore=0 malwarescore=0 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512050086
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAHp75VfLd46xt_2W35gjoTCoh+PqExL-faZ8snhzfOx=65qXWw@mail.gmail.com>
 
-On 11/21/25 12:10 AM, Erikas Bitovtas wrote:
-> This device tracks remaining battery capacity percentage using voltage
-> mode BMS. This commit enables the pm8916_bms node and adds a battery
-> node to track its capacity. Battery properties were taken from the
-> information printed on the battery itself and downstream device tree
-> for a battery named "nvt+atl_3000mah" [1]
+On Fri, Dec 05, 2025 at 12:21:31AM +0200, Andy Shevchenko wrote:
+> On Thu, Dec 4, 2025 at 11:38 PM Jorge Marques <gastmaier@gmail.com> wrote:
+> > On Thu, Nov 27, 2025 at 11:20:54AM +0200, Andy Shevchenko wrote:
+> > > On Wed, Nov 26, 2025 at 04:55:41PM +0100, Jorge Marques wrote:
+> > > > On Mon, Nov 24, 2025 at 12:40:37PM +0200, Andy Shevchenko wrote:
+> > > > > On Mon, Nov 24, 2025 at 10:18:08AM +0100, Jorge Marques wrote:
 > 
-> [1] https://github.com/Asus-MSM8916/android_kernel_asus_msm8916/blob/10.x/arch/arm/boot/dts/qcom/ASUS_ZE550KL_1936167_3000mAh_3p4COV_VBMS_Final.dtsi
+> ...
 > 
-> Signed-off-by: Erikas Bitovtas <xerikasxx@gmail.com>
-> ---
->  arch/arm64/boot/dts/qcom/msm8939-asus-z00t.dts | 25 +++++++++++++++++++++++++
->  1 file changed, 25 insertions(+)
+> > > > > > +       return reg_val == AD4062_GP_STATIC_HIGH ? 1 : 0;
+> > > > >
+> > > > >   return !!(reg_val == AD4062_GP_STATIC_HIGH);
+> > > > >
+> > > > > also will work.
+> > > > >
+> > > >     return reg_val == AD4062_GP_STATIC_HIGH;
+> > >
+> > > Hmm... This will include implicit bool->int. The !! guarantees values 0 or 1,
+> > > but I don't remember about implicit bool->int case.
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8939-asus-z00t.dts b/arch/arm64/boot/dts/qcom/msm8939-asus-z00t.dts
-> index ebb548e62e02..b58f0a04abfd 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8939-asus-z00t.dts
-> +++ b/arch/arm64/boot/dts/qcom/msm8939-asus-z00t.dts
-> @@ -20,6 +20,25 @@ aliases {
->  		serial0 = &blsp_uart2;
->  	};
->  
-> +	battery: battery {
-> +		compatible = "simple-battery";
-> +		device-chemistry = "lithium-ion-polymer";
-> +		voltage-min-design-microvolt = <3400000>;
-> +		voltage-max-design-microvolt = <4400000>;
-> +		energy-full-design-microwatt-hours = <11500000>;
-> +		charge-full-design-microamp-hours = <3000000>;
-> +
-> +		ocv-capacity-celsius = <25>;
-> +		ocv-capacity-table-0 = <4372000 100>, <4306000 95>, <4247000 90>,
-> +			<4190000 85>, <4134000 80>, <4081000 75>, <4030000 70>,
-> +			<3984000 65>, <3930000 60>, <3884000 55>, <3850000 50>,
-> +			<3826000 45>, <3804000 40>, <3786000 35>, <3770000 30>,
-> +			<3753000 25>, <3734000 20>, <3712000 16>, <3693000 13>,
-> +			<3686000 11>, <3684000 10>, <3682000 9>, <3680000 8>,
-> +			<3676000 7>, <3668000 6>, <3643000 5>, <3600000 4>,
-> +			<3542000 3>, <3462000 2>, <3340000 1>, <3000000 0>;
+> > I don't think the implicit bool->int is an issue, grepping `return .* == .*;`
+> > matches a few methods that return int.
+> 
+> Yes, the Q here is the value of true _always_ be promoted to 1?
+> 
+Hi Andy,
 
-I was surprised to learn the binding allows you to specify the OCV table
-for multiple temperature points (your downstream provides -20/0/25/40/60)
+The relational operator result has type int (c99 6.5.9 Equality
+operators); and when any scalar value is converted to _Bool, the result
+is 0 if the value compares equal to 0; otherwise, the result is 1 (c99
+6.3.1.2).
+https://www.dii.uchile.cl/~daespino/files/Iso_C_1999_definition.pdf
 
-May I ask you to fill in that data?
+No conversion warnings even when forcing _Bool type.
+There are many usages like this, for example:
 
-Konrad
+drivers/iio/accel/adxl313_core.c @ int adxl313_is_act_inact_ac()
+drivers/iio/light/opt4060.c @ int opt4060_read_event_config()
+drivers/iio/light/tsl2772.c @ int tsl2772_device_id_verify()
+lib/zstd/compress/zstd_fast.c @ int ZSTD_match4Found_branch()
+
+I cannot find many legitimate usage of relational operator with the
+double negation.
+  git ls-files | xargs grep -s 'return !!' | grep '=='
+
+> > Experimenting with the _Bool type (gcc 15, clang 19, any std version),
+> >
+> >         int main()
+> >         {
+> >             int a = 1;
+> >             int b = 2;
+> >
+> >             return (_Bool)(a == b);
+> >         }
+> >
+> > with
+> > gcc -Wall -W -pedantic -std=c23 -c test.c
+> > clang -Wall -Wextra -Wbool-conversion -std=c11 -O2 test.c
+> >
+> > also doesn't raise warnings.
+> 
+> Of course, because before even looking into warnings the entire code
+> degrades to return 0. I.o.w., the test case is not correct. But don't
+> hurry up to fix it, you won't get warnings anyway, it's all about C
+> standard and not about (in)correctness of the code. See above.
+> 
+> -- 
+> With Best Regards,
+> Andy Shevchenko
+Best Regards,
+Jorge
 
