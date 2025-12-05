@@ -1,441 +1,119 @@
-Return-Path: <devicetree+bounces-244649-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244651-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0F77CA785A
-	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 13:09:03 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 988D7CA7F77
+	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 15:32:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D9D7930940C4
-	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 12:08:47 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 27D7F33A7D78
+	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 12:12:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0C64199230;
-	Fri,  5 Dec 2025 12:08:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D64362F5A13;
+	Fri,  5 Dec 2025 12:12:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.naobsd.org (sakura.naobsd.org [160.16.200.221])
+Received: from smtpbgbr1.qq.com (smtpbgbr1.qq.com [54.207.19.206])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B5C132D0D5
-	for <devicetree@vger.kernel.org>; Fri,  5 Dec 2025 12:08:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=160.16.200.221
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A64632F74A
+	for <devicetree@vger.kernel.org>; Fri,  5 Dec 2025 12:12:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.207.19.206
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764936525; cv=none; b=Xu18hd/zsKqAh3sICg7tYTzF5tnsV9Ydi/3Ptop07ffdb/2UdocAet7bTvjNUrolHz62enOSpGAut1TTkOSoqXYnf2JBquYSeCMgEucM7ZKn33Tse8YjOu2cmGXl2TzDj1PBOosFuDP5t++httFrhSdCRrjpCp4TTC8FMgdD8YQ=
+	t=1764936729; cv=none; b=a6bnzKUozUiSRX94zvu3vvm1anfTTMcWSp5/xAmYBZVk9k9NJsbqiwUDsTN+q6UTBl2YjMdQsPkRpyHiV51vewMVKWHIkWCSo7PXIg7MtMA0yyTA9ZKb3a2+Rna0ZcWwVa9lqFIU80oiyfI6WCfxQiXHg2DKgrJx7ZPFZQlYhAg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764936525; c=relaxed/simple;
-	bh=jULBwBlwPE9QPtdt23/8XJA/v4sO9NI239kEbLLInng=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=qF5yBFV9l9L54OrBEpTpdh5YLwQqiGIgliqevZ538JNPwwlkUbpjV87460F8nybFZSqEajQ9yk2JsFqYJqxzi2cPl2FmZjSudycSZ0ccXRywuK+NBrJxGO1hB0Qtwt9O850GJ/GsLRv2BpdWWIeLH4nj6CTWZ9VEH+1OW46GzHo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com; spf=fail smtp.mailfrom=radxa.com; arc=none smtp.client-ip=160.16.200.221
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=radxa.com
-Received: from secure.fukaumi.org ([10.0.0.2])
-	by mail.naobsd.org (8.14.4/8.14.4/Debian-4.1ubuntu1.1) with ESMTP id 5B5C7DSK023400;
-	Fri, 5 Dec 2025 21:07:18 +0900
-From: FUKAUMI Naoki <naoki@radxa.com>
-To: heiko@sntech.de
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-        quentin.schulz@cherry.de, jonas@kwiboo.se, kever.yang@rock-chips.com,
-        inindev@gmail.com, michael.opdenacker@rootcommit.com,
-        honyuenkwun@gmail.com, dsimic@manjaro.org, andrew@lunn.ch,
-        pbrobinson@gmail.com, joseph.kogut@gmail.com, dmitriy@filchenko.org,
-        shawn.lin@rock-chips.com, devicetree@vger.kernel.org,
-        linux-rockchip@lists.infradead.org, FUKAUMI Naoki <naoki@radxa.com>
-Subject: [PATCH v6 3/3] arm64: dts: rockchip: Add support for CM5 IO carrier
-Date: Fri,  5 Dec 2025 12:07:03 +0000
-Message-ID: <20251205120703.14721-4-naoki@radxa.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251205120703.14721-1-naoki@radxa.com>
-References: <20251205120703.14721-1-naoki@radxa.com>
+	s=arc-20240116; t=1764936729; c=relaxed/simple;
+	bh=6oF97LQFyC+d5DUt3Nqs40q90GFj6LHPrRU0wJzS1R4=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=eVVPdz5Vcg+3wZPUMKOqGbtV7WAh2KtTDC2NlgDrTQrVU8XrZ+86cjYM7Uguz2LeSzUWsS0ARXl3hEIOcgdJwQdszlYZY7Im4wbi4t/IILLkdXJl/lfBXiSwOYS2rChYl8ReiuCBGyzyCFmYm09s1ODe04w2mbStXgGPIQiVsOU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=54.207.19.206
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
+X-QQ-mid: zesmtpip3t1764936631td6d3ad0f
+X-QQ-Originating-IP: IuPkPR/GVZYSZMUt/AhHb+HEMP3OnTaGUzX2t+S9HLk=
+Received: from [IPV6:240f:10b:7440:1:17ae:8f83 ( [localhost])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Fri, 05 Dec 2025 20:10:28 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 2528925561383847697
+Message-ID: <2CE13C2293B6BD8E+94a46e0f-f6ad-4c41-a14f-880476f0744b@radxa.com>
+Date: Fri, 5 Dec 2025 21:10:28 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3] arm64: dts: rockchip: Make eeprom read-only for Radxa
+ ROCK 3C/5A/5C
+From: FUKAUMI Naoki <naoki@radxa.com>
+To: heiko@sntech.de, Chukun Pan <amadeus@jmu.edu.cn>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, dsimic@manjaro.org,
+ krzk+dt@kernel.org, linux-rockchip@lists.infradead.org
+References: <20251201144629.135570-1-naoki@radxa.com>
+ <20251202135008.513685-1-amadeus@jmu.edu.cn>
+ <A665FF5170FE9550+0e1d2609-454b-4a82-9e52-2d167e351187@radxa.com>
+Content-Language: en-US
+In-Reply-To: <A665FF5170FE9550+0e1d2609-454b-4a82-9e52-2d167e351187@radxa.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpip:radxa.com:qybglogicsvrsz:qybglogicsvrsz4b-0
+X-QQ-XMAILINFO: Nwz8Cs33/LprQ8POHVw2TfB018lSRJKn3f37Lg4LOymXb0wQH1mSiwpT
+	KxWrHUA4DMqOB4NqhcsjbqUjPqI1P4tMtylL7OBgIoe7LKPXYv66T29TeMf86LRuwbGluf+
+	lLIM2JROng1jVUVKZcuJUuj9QIVCXquqYXQJcYTkOyneA3SOeszlFs/WgyVElxlW5ERvg11
+	DjO5IruZuawr4QVifEcCRaPa6WwLv3KSfSRyhil1EeW+A+ZSsMQOCMO1+7bnCKDXvrxKys3
+	qfkgDUbIaQYiuEQhnS9YkjT3uObWqNXKVGFXjo1LEdRO8eyry+LysQ3LHv14mwDkPYSwkUF
+	ssaGgyCIdNre1p4oHaL8k3eAICI6Fj18l/eCadFdK842fSqlnlD+88POEHVSqsFx5qIPzz5
+	psvHI33tEvSlfNT/FMYR1zIyOI02WliDlfOFR2IXU9ZRVXlm5BM34XtM9z2ba1iRDHlx2Vy
+	s37U4hCkkaCdbW3AlGUqnwerOc9gAA9x/1p9ViZXviWSPaoIwkhhci8gWT1+e+9Q/BHVkxc
+	iPSFSbhvTsTbSGSFHMwA35yb538Vi+LdTPb4AZDpvSMWg2atHLMskCRBzo6Jk0Q0ScF57Y/
+	MjYWfFNK1+p3SldavDk33fL6xppV+juRwi8d8imqvtnhFmHqrBROsb3tVzOj57FV/Z/z+lr
+	yWsnpFvAHl+X7ONefrWA7hjhYxUZqOt23cHpMwQ2ExweA2eVdq9sxeGFofjjUxwJhVkeFVZ
+	DKcFrp7YHVQrkKHpe7QAuXR7eGiD2CMx+1MJgQAx/p7PNIQeFhXhGLVW1P+JVsRIPq1Weke
+	V+CX+gn/ET/TnA6rDivgK0YQZIHzpRcTys6J9oMlk10IxsJktlGaasDnJ+LwqyfEcVf/QbJ
+	vRJKP/ef/XkT6y7jWWSL3rFlDNjDyjXPMQmCyaM7a0sXbwgzc1iTWxbRYIoR6gof09Rq1Tz
+	Oi2pCRXN0YRsWdEqYUQ1PihyyK8YBsUjwqWc=
+X-QQ-XMRINFO: M/715EihBoGSf6IYSX1iLFg=
+X-QQ-RECHKSPAM: 0
 
-From: Joseph Kogut <joseph.kogut@gmail.com>
+Hi Heiko,
 
-Specification:
-- 1x HDMI
-- 2x MIPI DSI
-- 2x MIPI CSI
-- 1x eDP
-- 1x M.2 E key
-- 1x USB 3.0 Host
-- 1x USB 3.0 OTG
-- 2x USB 2.0 Host
-- Headphone jack w/ microphone
-- Gigabit Ethernet w/ PoE
-- microSD slot
-- 40-pin expansion header
-- 12V DC
+Should I send v4 just for removing Fixes tags?
 
-Signed-off-by: Joseph Kogut <joseph.kogut@gmail.com>
-Signed-off-by: FUKAUMI Naoki <naoki@radxa.com>
----
- arch/arm64/boot/dts/rockchip/Makefile         |   1 +
- .../dts/rockchip/rk3588s-radxa-cm5-io.dts     | 339 ++++++++++++++++++
- 2 files changed, 340 insertions(+)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-radxa-cm5-io.dts
+Best regards,
 
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index dbdda9783e93..699ed38235fe 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -209,6 +209,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-nanopi-r6c.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-odroid-m2.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-orangepi-5.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-orangepi-5b.dtb
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-radxa-cm5-io.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-roc-pc.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-rock-5a.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-rock-5c.dtb
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-radxa-cm5-io.dts b/arch/arm64/boot/dts/rockchip/rk3588s-radxa-cm5-io.dts
-new file mode 100644
-index 000000000000..f80d5a00a4bd
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3588s-radxa-cm5-io.dts
-@@ -0,0 +1,339 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2025 Joseph Kogut <joseph.kogut@gmail.com>
-+ */
-+
-+/*
-+ * CM5 IO board data sheet
-+ * https://dl.radxa.com/cm5/v2200/radxa_cm5_io_v2200_schematic.pdf
-+ */
-+
-+/dts-v1/;
-+#include "rk3588s.dtsi"
-+#include "rk3588s-radxa-cm5.dtsi"
-+
-+/ {
-+	model = "Radxa Compute Module 5 (CM5) IO Board";
-+	compatible = "radxa,cm5-io", "radxa,cm5", "rockchip,rk3588s";
-+
-+	aliases {
-+		ethernet0 = &gmac1;
-+		mmc1 = &sdmmc;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial2:1500000n8";
-+	};
-+
-+	hdmi-con {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi_con_in: endpoint {
-+				remote-endpoint = <&hdmi0_out_con>;
-+			};
-+		};
-+	};
-+
-+	vcc12v_dcin: regulator-12v0-vcc-dcin {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc12v_dcin";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <12000000>;
-+		regulator-max-microvolt = <12000000>;
-+	};
-+
-+	vcc5v0_host: vcc5v0-host-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc5v0_host";
-+		regulator-boot-on;
-+		regulator-always-on;
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		enable-active-high;
-+		gpio = <&gpio1 RK_PA0 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&vcc5v0_host_en>;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+
-+	vcc5v0_sys: regulator-5v0-sys {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc5v0_sys";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&vcc12v_dcin>;
-+	};
-+
-+	vbus5v0_typec: vbus5v0-typec {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vbus5v0_typec";
-+		gpio = <&gpio0 RK_PD5 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&vbus5v0_typec_en>;
-+		enable-active-high;
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+
-+	vcc3v3_pcie: regulator-3v3-vcc-pcie {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc3v3_pcie2x1l0";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		enable-active-high;
-+		gpios = <&gpio1 RK_PD3 GPIO_ACTIVE_HIGH>;
-+		startup-delay-us = <50000>;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+
-+	vcc_3v3_s0: pldo-reg4 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_3v3_s0";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-ramp-delay = <12500>;
-+
-+		regulator-state-mem {
-+			regulator-off-in-suspend;
-+		};
-+	};
-+};
-+
-+&combphy0_ps {
-+	status = "okay";
-+};
-+
-+&combphy2_psu {
-+	status = "okay";
-+};
-+
-+&gmac1 {
-+	status = "okay";
-+};
-+
-+&hdmi0 {
-+	status = "okay";
-+};
-+
-+&hdmi0_in {
-+	hdmi0_in_vp0: endpoint {
-+		remote-endpoint = <&vp0_out_hdmi0>;
-+	};
-+};
-+
-+&hdmi0_out {
-+	hdmi0_out_con: endpoint {
-+		remote-endpoint = <&hdmi_con_in>;
-+	};
-+};
-+
-+&hdmi0_sound {
-+	status = "okay";
-+};
-+
-+&hdptxphy0 {
-+	status = "okay";
-+};
-+
-+&i2c6 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c6m3_xfer>;
-+	status = "okay";
-+
-+	fusb302: usb-typec@22 {
-+		compatible = "fcs,fusb302";
-+		reg = <0x22>;
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <RK_PC4 IRQ_TYPE_LEVEL_LOW>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&usbc0_int>;
-+		vbus-supply = <&vbus5v0_typec>;
-+
-+		connector {
-+			compatible = "usb-c-connector";
-+			data-role = "dual";
-+			label = "USB-C";
-+			power-role = "dual";
-+			try-power-role = "sink";
-+			source-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
-+			sink-pdos = <PDO_FIXED(5000, 1000, PDO_FIXED_USB_COMM)>;
-+			op-sink-microwatt = <1000000>;
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+					usbc0_orientation_switch: endpoint {
-+						remote-endpoint = <&usbdp_phy0_orientation_switch>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+					usbc0_role_switch: endpoint {
-+						remote-endpoint = <&usb_host0_xhci_role_switch>;
-+					};
-+				};
-+
-+				port@2 {
-+					reg = <2>;
-+					usbc0_dp_altmode_mux: endpoint {
-+						remote-endpoint = <&usbdp_phy0_dp_altmode_mux>;
-+					};
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&i2s5_8ch {
-+	status = "okay";
-+};
-+
-+&pcie2x1l2 {
-+	reset-gpios = <&gpio3 RK_PD1 GPIO_ACTIVE_HIGH>;
-+	vpcie3v3-supply = <&vcc3v3_pcie>;
-+	status = "okay";
-+};
-+
-+&pinctrl {
-+	fusb302 {
-+		vbus5v0_typec_en: vbus5v0-typec-en {
-+			rockchip,pins = <0 RK_PD5 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
-+		usbc0_int: usbc0-int {
-+			rockchip,pins = <0 RK_PC4 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
-+	};
-+
-+	usb {
-+		vcc5v0_host_en: vcc5v0-host-en {
-+			rockchip,pins = <1 RK_PA0 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+};
-+
-+&sdmmc {
-+	bus-width = <4>;
-+	cap-mmc-highspeed;
-+	cap-sd-highspeed;
-+	disable-wp;
-+	no-sdio;
-+	sd-uhs-sdr104;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&sdmmc_bus4 &sdmmc_clk &sdmmc_cmd &sdmmc_det>;
-+	vmmc-supply = <&vcc_3v3_s3>;
-+	vqmmc-supply = <&vccio_sd_s0>;
-+	status = "okay";
-+};
-+
-+&u2phy0 {
-+	status = "okay";
-+};
-+
-+&u2phy0_otg {
-+	status = "okay";
-+};
-+
-+&u2phy2 {
-+	status = "okay";
-+};
-+
-+&u2phy2_host {
-+	status = "okay";
-+};
-+
-+&u2phy3 {
-+	status = "okay";
-+};
-+
-+&u2phy3_host {
-+	status = "okay";
-+};
-+
-+&uart2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart2m0_xfer>;
-+	status = "okay";
-+};
-+
-+&usb_host0_ehci {
-+	status = "okay";
-+};
-+
-+&usb_host0_ohci {
-+	status = "okay";
-+};
-+
-+&usb_host0_xhci {
-+	dr_mode = "otg";
-+	usb-role-switch;
-+	status = "okay";
-+
-+	port {
-+		usb_host0_xhci_role_switch: endpoint {
-+			remote-endpoint = <&usbc0_role_switch>;
-+		};
-+	};
-+};
-+
-+&usb_host1_ehci {
-+	status = "okay";
-+};
-+
-+&usb_host1_ohci {
-+	status = "okay";
-+};
-+
-+&usb_host2_xhci {
-+	status = "okay";
-+};
-+
-+&usbdp_phy0 {
-+	mode-switch;
-+	orientation-switch;
-+	sbu1-dc-gpios = <&gpio3 RK_PC4 GPIO_ACTIVE_HIGH>;
-+	sbu2-dc-gpios = <&gpio3 RK_PD4 GPIO_ACTIVE_HIGH>;
-+	status = "okay";
-+
-+	port {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		usbdp_phy0_orientation_switch: endpoint@0 {
-+			reg = <0>;
-+			remote-endpoint = <&usbc0_orientation_switch>;
-+		};
-+
-+		usbdp_phy0_dp_altmode_mux: endpoint@1 {
-+			reg = <1>;
-+			remote-endpoint = <&usbc0_dp_altmode_mux>;
-+		};
-+	};
-+};
-+
-+&vop {
-+	status = "okay";
-+};
-+
-+&vop_mmu {
-+	status = "okay";
-+};
-+
-+&vp0 {
-+	vp0_out_hdmi0: endpoint@ROCKCHIP_VOP2_EP_HDMI0 {
-+		reg = <ROCKCHIP_VOP2_EP_HDMI0>;
-+		remote-endpoint = <&hdmi0_in_vp0>;
-+	};
-+};
--- 
-2.43.0
+--
+FUKAUMI Naoki
+Radxa Computer (Shenzhen) Co., Ltd.
+
+On 12/2/25 22:53, FUKAUMI Naoki wrote:
+> Hi Chukun,
+> 
+> On 12/2/25 22:50, Chukun Pan wrote:
+>> Hi,
+>>
+>>> Fixes: ee219017ddb50 ("arm64: dts: rockchip: Add Radxa ROCK 3C")
+>>> Fixes: 89c880808cff8 ("arm64: dts: rockchip: add I2C EEPROM to rock-5a")
+>>> Fixes: 3ddf5cdb77e6e ("arm64: dts: rockchip: add Radxa ROCK 5C")
+>>
+>> Since the EEPROM on these boards are empty, this patch doesn't
+>> fix anything, so the Fixes tag is not needed here. If you want
+>> it to be backported, you can add "Cc: stable@vger.kernel.org"
+> 
+> Ah, sure, Fixes tags are not needed. Thank you for pointing that out.
+> 
+> Best regards,
+> 
+> -- 
+> FUKAUMI Naoki
+> Radxa Computer (Shenzhen) Co., Ltd.
+> 
+>> Thanks,
+>> Chukun
+>>
+> 
+> 
+
 
 
