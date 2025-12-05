@@ -1,150 +1,176 @@
-Return-Path: <devicetree+bounces-244521-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244522-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DF94CA5E14
-	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 03:07:26 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54AA3CA5E67
+	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 03:26:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 6D6D830BAEFD
-	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 02:07:06 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CD31D3134040
+	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 02:26:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06EB32DAFAC;
-	Fri,  5 Dec 2025 01:59:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 976F82DEA78;
+	Fri,  5 Dec 2025 02:26:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=windriver.com header.i=@windriver.com header.b="sm+MNBMl"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="dsPsGNd5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0064b401.pphosted.com (mx0a-0064b401.pphosted.com [205.220.166.238])
+Received: from mail-m49219.qiye.163.com (mail-m49219.qiye.163.com [45.254.49.219])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8D412F39A7;
-	Fri,  5 Dec 2025 01:59:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.166.238
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A879F1DE3DB;
+	Fri,  5 Dec 2025 02:26:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.219
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764899989; cv=none; b=lmiQDxUpwMYNm37rQduDn3lB+L/xFr59IYfAjrQkbijGQxPL2F/k7wNqgkR0LKNmKDO2eOb6/8cyj3YHBsBgtAG9MtY662TsvMjMTRNalK4juxT3pZlJ7wS1q9F1qqvtobmMVvePhTuApxfnrarQ5aZrHpe0Wuq340u0/b1pcNA=
+	t=1764901601; cv=none; b=ahXKBxWuZrj2Vl1OWpz17OAKbyVbsmGgiiF/SCVZ0e+Ydlp1kx6RQLD5Ir7IwuOKcqifnWKxTwUf4SN6OrcSW/GD802FYg5ZLNaTCnkS1k6ixF6BPEPwsyfnMUH7L0iETHU5Mweu3UjpJNLHOG5Vo90oOt4xlMSszdAXpdlAwbw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764899989; c=relaxed/simple;
-	bh=KyMvK9g65gCtdUUwHF0Q5gyLxiGwaQT6jfTZgJNyjxA=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Lz8sJQnjIOGkpdqbK3e6F8X9DAjOWF11jdJHDtcx4rLU3u/oPRAj0ycRsSWNbbYqKp0bQqDpSDS1iLVnZQGzIXV53u4IC22AF7Ok+nP00UxX3hrRxhbQl+hP2mFzlPyrZkHki4qsxLWKhV7Iw0V74vlujPUOR6QGskCtwFpBkwM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=windriver.com; spf=pass smtp.mailfrom=windriver.com; dkim=pass (2048-bit key) header.d=windriver.com header.i=@windriver.com header.b=sm+MNBMl; arc=none smtp.client-ip=205.220.166.238
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=windriver.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=windriver.com
-Received: from pps.filterd (m0250810.ppops.net [127.0.0.1])
-	by mx0a-0064b401.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5B4M8srk2002184;
-	Thu, 4 Dec 2025 17:59:37 -0800
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=windriver.com;
-	 h=cc:content-transfer-encoding:content-type:date:from
-	:message-id:mime-version:subject:to; s=PPS06212021; bh=a+uGpbsU7
-	YfqZb7NwBYOoUc/FPokXHcnikBy18ewopM=; b=sm+MNBMlxYVBclvWTMAvvxiTB
-	TSsvU+/Xv8Qujji2+Ya/k+GAWjPoIk23UYkcbHrUj0DHpGjXofxRtDce3VIs2mYQ
-	kEbTND8MTdoFPYzWS/gVXGvinaiQsDNMvLBWipw2zPVYFjYfSgBxLfzUoxaqRQkM
-	1nEaCNfUVG9WL1q7PlJptBH2MiWSfAUynxcB01CHS0PRH0ObtXQarLUjeBPp+oYn
-	6frGzQ8Hox/9D1s4mX51eYpzvSbRXUiCsFj4eh6Gok+28idHP/y646oPeIu6veJm
-	2vAzpdGvsohnwVc+OhdMMnLiRA6k+Vp8woq9SGlnKrgQcf083FS2XgePFBJHw==
-Received: from ala-exchng02.corp.ad.wrs.com ([128.224.246.37])
-	by mx0a-0064b401.pphosted.com (PPS) with ESMTPS id 4audserhsu-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-	Thu, 04 Dec 2025 17:59:37 -0800 (PST)
-Received: from ala-exchng01.corp.ad.wrs.com (10.11.224.121) by
- ALA-EXCHNG02.corp.ad.wrs.com (10.11.224.122) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.61; Thu, 4 Dec 2025 17:59:36 -0800
-Received: from pek-lpggp9.wrs.com (10.11.232.110) by
- ala-exchng01.corp.ad.wrs.com (10.11.224.121) with Microsoft SMTP Server id
- 15.1.2507.61 via Frontend Transport; Thu, 4 Dec 2025 17:59:35 -0800
-From: Jianpeng Chang <jianpeng.chang.cn@windriver.com>
-To: <robh@kernel.org>, <saravanak@google.com>, <quic_obabatun@quicinc.com>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        "Jianpeng
- Chang" <jianpeng.chang.cn@windriver.com>
-Subject: [PATCH] arm64: kdump: Fix elfcorehdr overlap caused by reserved memory processing reorder
-Date: Fri, 5 Dec 2025 09:59:34 +0800
-Message-ID: <20251205015934.700016-1-jianpeng.chang.cn@windriver.com>
-X-Mailer: git-send-email 2.52.0
+	s=arc-20240116; t=1764901601; c=relaxed/simple;
+	bh=9TrmCfGVyVnvI6XWZ8+IP7Hqve84kPzrKKpqjcF2JOc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hip4h4/Jw7xuwqihTfYI9bopedDrPRy8X/VuflhcAiTZxkdgjbvP5Iynjk6XuRBVdIBltTcFpiZwpETQKOl3nvTSyG4lNCnFmx9o6O8czetv575BSs/SKnClureghzyvd3W+mNmUJLWECHl8J7PtalGPSCZtpL4iUzsg4VHYnAE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=dsPsGNd5; arc=none smtp.client-ip=45.254.49.219
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [127.0.0.1] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 2c1095715;
+	Fri, 5 Dec 2025 10:26:26 +0800 (GMT+08:00)
+Message-ID: <84f06c0f-3ec7-4a43-bba2-1979c3a07127@rock-chips.com>
+Date: Fri, 5 Dec 2025 10:26:20 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Authority-Analysis: v=2.4 cv=W+Q1lBWk c=1 sm=1 tr=0 ts=69323c89 cx=c_pps
- a=Lg6ja3A245NiLSnFpY5YKQ==:117 a=Lg6ja3A245NiLSnFpY5YKQ==:17
- a=wP3pNCr1ah4A:10 a=VkNPw1HP01LnGYTKEx00:22 a=t7CeM3EgAAAA:8
- a=8E4iPrr8Qj8Yrt28hJ0A:9 a=FdTzh2GWekK77mhwV6Dw:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjA1MDAxNCBTYWx0ZWRfX0a6gSlLKlYIg
- diIdxQSn1gd5wZEs6RXj92LFLBvpfCqG1V1Jzu1OpSqyB4Hz0OfTJP4E/BWuNBQ2CRHNIGcLTSl
- iP/PqvgNJvnFdJI6gKsaiqdrca6eElGu+l95DBRZ5GplN30Y6ne+1lDmqkQNT5PITSOPzKi0F2v
- SHktOmVlaXAFey8291SMYsI3/7BIa8WtPHTlDrR9TUTHEl4pNLZXbB8GOeDdylMJTBoDYO5Pbmt
- hG79bN1A13NLhjkcfC0HPelMrB2mBxcT51cqG82NQl7sFWiQdGJbBraLaW3BGcelNGHL0ZGUVzc
- uk9BTv9ndq4Obanj08hwnmqhVXPVbIxHijAAuHpQiFwWh5N77bMvUvSUHWb7aHxksI1gvAP8NRi
- kcDK8i7wHGpDQXNqfLr4Pz+tauyQ3g==
-X-Proofpoint-GUID: vWrdIwsFAK-ERB8vbke6oZ4zNVskN3BG
-X-Proofpoint-ORIG-GUID: vWrdIwsFAK-ERB8vbke6oZ4zNVskN3BG
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-05_01,2025-12-04_04,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 adultscore=0 bulkscore=0 clxscore=1011 impostorscore=0
- phishscore=0 suspectscore=0 lowpriorityscore=0 spamscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512050014
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RESEND PATCH v11 03/11] drm/bridge: Implement generic USB Type-C
+ DP HPD bridge
+To: Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Chaoyi Chen <kernel@airkyi.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Peter Chen <hzpeterchen@gmail.com>, Luca Ceresoli
+ <luca.ceresoli@bootlin.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Heiko Stuebner
+ <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
+ Andy Yan <andy.yan@rock-chips.com>,
+ Yubing Zhang <yubing.zhang@rock-chips.com>,
+ Frank Wang <frank.wang@rock-chips.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Amit Sunil Dhamne <amitsd@google.com>, Dragan Simic <dsimic@manjaro.org>,
+ Johan Jonker <jbx6244@gmail.com>, Diederik de Haas <didi.debian@cknow.org>,
+ Peter Robinson <pbrobinson@gmail.com>, linux-usb@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, dri-devel@lists.freedesktop.org
+References: <20251204063109.104-1-kernel@airkyi.com>
+ <20251204063109.104-4-kernel@airkyi.com> <aTGPaJmwd7uHfrnV@kuha>
+Content-Language: en-US
+From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+In-Reply-To: <aTGPaJmwd7uHfrnV@kuha>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-HM-Tid: 0a9aec5504a403abkunm9ee3fce2af812e
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQk1NH1ZPHkhJTkMfTR5JSx9WFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSUJNS0
+	pVSktLVUtZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=dsPsGNd5e897H3fkHx9JCGvZRm2YiJCFhvaP+jw00pxK222QJL0XiP31/eVLZJlPrKbaJjN00u9w23Xj3Uw4IfNFQ/6SaZ4EwtVpGeZp74TgSbKhAJMmi/wQoPo9/wpRg3t9Rqmf/pKCfLKP+Rx212Jo9299la1sGPByNezAavk=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=VtwmAIo0SaGp/QXNcsjM3U1Vr4tjF0Aq/LuKxWtI5aQ=;
+	h=date:mime-version:subject:message-id:from;
 
-Commit 8a6e02d0c00e ("of: reserved_mem: Restructure how the reserved
-memory regions are processed") changed the processing order of reserved
-memory regions, causing elfcorehdr to overlap with dynamically allocated
-reserved memory regions during kdump kernel boot.
+Hi Heikki,
 
-The issue occurs because:
-1. kexec-tools allocates elfcorehdr in the last crashkernel reserved
-   memory region and passes it to the second kernel
-2. The problematic commit moved dynamic reserved memory allocation
-   (like bman-fbpr) to occur during fdt_scan_reserved_mem(), before
-   elfcorehdr reservation in fdt_reserve_elfcorehdr()
-3. bman-fbpr with 16MB alignment requirement can get allocated at
-   addresses that overlap with the elfcorehdr location
-4. When fdt_reserve_elfcorehdr() tries to reserve elfcorehdr memory,
-   overlap detection identifies the conflict and skips reservation
-5. kdump kernel fails with "Unable to handle kernel paging request"
-   because elfcorehdr memory is not properly reserved
+On 12/4/2025 9:40 PM, Heikki Krogerus wrote:
+> Hi,
+> 
+> I don't know what's going on here - this series is the 12th?
+> In any case, you need to fix this..
+> 
 
-The boot log:
-Before 8a6e02d0c00e:
-  OF: fdt: Reserving 1 KiB of memory at 0xf4fff000 for elfcorehdr
-  OF: reserved mem: 0xf3000000..0xf3ffffff bman-fbpr
+It is 11th. Patch 1 was missing the Signed-off-by line, so I've resent
+it. Sorry for the confusion.
 
-After 8a6e02d0c00e:
-  OF: reserved mem: 0xf4000000..0xf4ffffff bman-fbpr
-  OF: fdt: elfcorehdr is overlapped
+>> diff --git a/drivers/gpu/drm/bridge/aux-hpd-typec-dp-bridge.c b/drivers/gpu/drm/bridge/aux-hpd-typec-dp-bridge.c
+>> new file mode 100644
+>> index 000000000000..94be3d5f69e9
+>> --- /dev/null
+>> +++ b/drivers/gpu/drm/bridge/aux-hpd-typec-dp-bridge.c
+>> @@ -0,0 +1,51 @@
+>> +// SPDX-License-Identifier: GPL-2.0+
+>> +#include <linux/of.h>
+>> +#include <linux/usb/typec_altmode.h>
+>> +#include <linux/usb/typec_dp.h>
+>> +
+>> +#include <drm/bridge/aux-bridge.h>
+>> +
+>> +static int drm_typec_bus_event(struct notifier_block *nb,
+>> +			       unsigned long action, void *data)
+>> +{
+>> +	struct device *dev = (struct device *)data;
+>> +	struct typec_altmode *alt = to_typec_altmode(dev);
+>> +
+>> +	if (action != BUS_NOTIFY_ADD_DEVICE)
+>> +		goto done;
+>> +
+>> +	if (is_typec_partner_altmode(&alt->dev) || alt->svid != USB_TYPEC_DP_SID)
+>> +		goto done;
+> 
+> That's still not enough because of the plug altmodes. You need to
+> check that it's a port altmode:
+> 
+>         if (is_typec_port_altmode(&alt->dev) && alt->svid == USB_TYPEC_DP_SID)
+>         	drm_dp_hpd_bridge_register(alt->dev.parent->parent,
+>         				   to_of_node(alt->dev.parent->fwnode));
+>
 
-Fix this by ensuring elfcorehdr reservation occurs before dynamic
-reserved memory allocation.
+Oh, it is. Will fix in v12. Thank you.
 
-Fixes: 8a6e02d0c00e ("of: reserved_mem: Restructure how the reserved memory regions are processed")
-Signed-off-by: Jianpeng Chang <jianpeng.chang.cn@windriver.com>
----
-This BUG is manifested on NXP LS1043 platforms, while other
-platforms don't trigger this issue, it represents a general problem,
-and it's more safer to follow original reservation order.
+>> +	/*
+>> +	 * alt->dev.parent->parent : USB-C controller device
+>> +	 * alt->dev.parent         : USB-C connector device
+>> +	 */
+>> +	drm_dp_hpd_bridge_register(alt->dev.parent->parent,
+>> +				   to_of_node(alt->dev.parent->fwnode));
+>> +
+>> +done:
+>> +	return NOTIFY_OK;
+>> +}
+>> +
+>> +static struct notifier_block drm_typec_event_nb = {
+>> +	.notifier_call = drm_typec_bus_event,
+>> +};
+>> +
+>> +static void drm_aux_hpd_typec_dp_bridge_module_exit(void)
+>> +{
+>> +	bus_unregister_notifier(&typec_bus, &drm_typec_event_nb);
+>> +}
+>> +
+>> +static int __init drm_aux_hpd_typec_dp_bridge_module_init(void)
+>> +{
+>> +	bus_register_notifier(&typec_bus, &drm_typec_event_nb);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +module_init(drm_aux_hpd_typec_dp_bridge_module_init);
+>> +module_exit(drm_aux_hpd_typec_dp_bridge_module_exit);
+>> +
+>> +MODULE_DESCRIPTION("DRM TYPEC DP HPD BRIDGE");
+>> +MODULE_LICENSE("GPL");
+> 
+> thanks,
+> 
 
- drivers/of/fdt.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-index 0edd639898a6..158ae61c7882 100644
---- a/drivers/of/fdt.c
-+++ b/drivers/of/fdt.c
-@@ -503,8 +503,8 @@ void __init early_init_fdt_scan_reserved_mem(void)
- 	if (!initial_boot_params)
- 		return;
- 
--	fdt_scan_reserved_mem();
- 	fdt_reserve_elfcorehdr();
-+	fdt_scan_reserved_mem();
- 
- 	/* Process header /memreserve/ fields */
- 	for (n = 0; ; n++) {
 -- 
-2.52.0
-
+Best, 
+Chaoyi
 
