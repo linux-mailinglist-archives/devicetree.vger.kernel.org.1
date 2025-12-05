@@ -1,112 +1,137 @@
-Return-Path: <devicetree+bounces-244849-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244850-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59D0DCA9708
-	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 23:01:38 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A201CA9799
+	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 23:18:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 54E4D302CC28
-	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 22:00:36 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 11F533228505
+	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 22:11:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAD692DECA1;
-	Fri,  5 Dec 2025 22:00:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1052F2DFA2D;
+	Fri,  5 Dec 2025 22:11:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b="yJRRRkih"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MMH97vsg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mxout1.routing.net (mxout1.routing.net [134.0.28.11])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 620012E11BC;
-	Fri,  5 Dec 2025 22:00:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=134.0.28.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B580E2D3A75;
+	Fri,  5 Dec 2025 22:11:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764972015; cv=none; b=eRBD+jBWiuXpPsOECzb4rIilWM5fp3kJaE03oueMB4DTyC+1EcV1YoQjsPsvapMMqEN5d27LGniDtGZFt/k41LVt7RL72KAd13xW+870J+z0mQodhVN/7Se3QRw0o2u3tY2Z01vbCmc0knUOCk58y3jdYyBkuo5IfB4LTFMG7fg=
+	t=1764972698; cv=none; b=Pb07Xc0ptCKLWwf6B/uvoi8bHF5sccb+yZRLQ8jC19qqbqSyBl8SgRmtFFiaZkk2NnmFy+1oHkz8uBUEmXwEPUHytJR/6XbjAuE+Fa7a+ECNnDwupzEqzMihdjRyNt4l9GiXJFyQkAfPuTDac/hBrQdze4H8ZRqId5lm/jaRdkE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764972015; c=relaxed/simple;
-	bh=h3RIxJkW9rRmUV+QIwsHT+O1Z85Ipm+cyH8Ox6bnGOI=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=b9lBCNzkbt21vJVvVce/V7aTchTsCCv6JoB299thqD2QBay5M/bzZcARvsqwuNiw9CiEngzvlS9GZfA/yA7AcMlNhGBu3otCu0Dx4U9JFPbwUS/ypkdVNITTspNvWzoS/kyZwJopsCFDNmWsMVaJz3yMY0EOf1aY0ePlzwtKybE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de; spf=pass smtp.mailfrom=fw-web.de; dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b=yJRRRkih; arc=none smtp.client-ip=134.0.28.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fw-web.de
-Received: from mxbulk.masterlogin.de (unknown [192.168.10.85])
-	by mxout1.routing.net (Postfix) with ESMTP id 1BE7A3FD50;
-	Fri,  5 Dec 2025 22:00:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
-	s=routing; t=1764972005;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=Bsaeh+R85W3yqBXY0/3dvY5ZY1X6APknzRRJmY7imCA=;
-	b=yJRRRkihclJuRSI/DLO1f3PO8oASBGmyaBC+rF5SUnfv3zT3xsbKyKAU+KRrSq5t7crTf+
-	2Nx695LypGQojaYqtGjLjg/HcFW4QTJuJ1q8qn01KK8KLph2NxfimDi/actEOVldkm5z1Q
-	N108qUsFeV8T4xwo6l+ef9z+zSDJVZA=
-Received: from frank-u24.. (fttx-pool-157.180.225.155.bambit.de [157.180.225.155])
-	by mxbulk.masterlogin.de (Postfix) with ESMTPSA id E5F1F1226F1;
-	Fri,  5 Dec 2025 22:00:04 +0000 (UTC)
-From: Frank Wunderlich <linux@fw-web.de>
-To: Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	Frank Wunderlich <frank-w@public-files.de>
-Subject: [PATCH] arm64: dts: mediatek: Apply mt8395-radxa DT overlay at build time
-Date: Fri,  5 Dec 2025 22:59:38 +0100
-Message-ID: <20251205215940.19287-1-linux@fw-web.de>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1764972698; c=relaxed/simple;
+	bh=lHyqbDdgdcNYjY6N4964Cgh5lPOaTiSxWYqRzyPiSWA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZWpgocycTCmgaqfqS2cfoKQCKVD+F++6BvIFmDrD0QPiK0voqGZdPZVuIYzAKYfHZrepGR8/3aefzz3lqnTnjPkvI4L02DwR2G5AlDK5l8ihufTB1YhZ4UEaxztsfYD7Ts6GKv93JZ8WNRFhBPEmT8NqDBlKNlOnPNvbwZETb+M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MMH97vsg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A11FEC4CEF1;
+	Fri,  5 Dec 2025 22:11:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764972697;
+	bh=lHyqbDdgdcNYjY6N4964Cgh5lPOaTiSxWYqRzyPiSWA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=MMH97vsgdDkWsquQuik3Rb98UOubOHcaWCC1/9ysVMt7kU7dKbWifVt4diOgYIxhI
+	 jEPmm4HahM0lbmXFzB2+PUCWZzu17T34yOkk6gwbhG/O9Di0/g8Fn3uHcLNYQb//qv
+	 BHkw1mIGu6v5H45+ktrigfDbjzuXATl3n5MP70D8dt+wPSKTtBplawAVX+cJcBRwuE
+	 mKpX4+qYL9CFdLjNqXGGBY1Cv5QUSQAWn3XX0GC+Sx/wXJmumrsCEMWgAGdE8GJh55
+	 HSfyJPTwEOGrXXqGsPbBbNzt05pK4We2DWPFS2V3u1vrPZvrjRUbtM/9E60GcZz1Tr
+	 P3hidVSPV19eg==
+Date: Fri, 5 Dec 2025 16:17:56 -0600
+From: Bjorn Andersson <andersson@kernel.org>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>, 
+	Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Manivannan Sadhasivam <mani@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v8 11/14] firmware: qcom_scm: Add
+ qcom_scm_pas_get_rsc_table() to get resource table
+Message-ID: <sysdgcspvxhytyudknnyj4hu6lc47we5ijkrsssi6askysqyo2@bdzl5cvzc4be>
+References: <20251121-kvm_rproc_v8-v8-0-8e8e9fb0eca0@oss.qualcomm.com>
+ <20251121-kvm_rproc_v8-v8-11-8e8e9fb0eca0@oss.qualcomm.com>
+ <86f3cb9f-e42d-40f9-9103-1a4953c66c71@oss.qualcomm.com>
+ <20251124152538.wt3kzztqmpr76hsx@hu-mojha-hyd.qualcomm.com>
+ <4376b7cf-7088-412b-8596-bdec5bdc273d@oss.qualcomm.com>
+ <20251204122806.s7lnqffgcrd7usem@hu-mojha-hyd.qualcomm.com>
+ <e78feaff-0b48-42b6-a824-0f102a6ac9cc@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e78feaff-0b48-42b6-a824-0f102a6ac9cc@oss.qualcomm.com>
 
-From: "Rob Herring (Arm)" <robh@kernel.org>
+On Fri, Dec 05, 2025 at 02:15:00PM +0100, Konrad Dybcio wrote:
+> On 12/4/25 1:28 PM, Mukesh Ojha wrote:
+> > On Wed, Dec 03, 2025 at 01:36:32PM +0100, Konrad Dybcio wrote:
+> >> On 11/24/25 4:25 PM, Mukesh Ojha wrote:
+> >>> On Mon, Nov 24, 2025 at 12:48:31PM +0100, Konrad Dybcio wrote:
+> >>>> On 11/21/25 12:01 PM, Mukesh Ojha wrote:
+> >>>>> Qualcomm remote processor may rely on Static and Dynamic resources for
+> >>>>> it to be functional. Static resources are fixed like for example,
+> >>>>> memory-mapped addresses required by the subsystem and dynamic
+> >>>>> resources, such as shared memory in DDR etc., are determined at
+> >>>>> runtime during the boot process.
+> >>>>>
+> >>>>> For most of the Qualcomm SoCs, when run with Gunyah or older QHEE
+> >>>>> hypervisor, all the resources whether it is static or dynamic, is
+> >>>>> managed by the hypervisor. Dynamic resources if it is present for a
+> >>>>> remote processor will always be coming from secure world via SMC call
+> >>>>> while static resources may be present in remote processor firmware
+> >>>>> binary or it may be coming qcom_scm_pas_get_rsc_table() SMC call along
+> >>>>> with dynamic resources.
+> 
+> [...]
+> 
+> > Just to avoid iteration, are you suggesting that we can keep this
+> > guesswork as part of __qcom_scm_pas_get_rsc_table() and start with
+> > something smaller than SZ_16K?
+> > 
+> > I kind of agree with the first part, but SZ_16K was the recommended size
+> > from the firmware for Lemans to start with, in order to pass the SMC
+> > successfully on the first try. However, the same size was failing for
+> > Glymur, and it required a second attempt with the correct size.
+> 
+> It depends on the payload, which you're probably much more familiar with.
+> If 95% of them will be closer to e.g. 1K in size, it perhaps makes sense
+> to use up the additional few dozen cycles on our amazingly fast CPUs and
+> retry as necessary, instead of blindly reserving a whole bunch of memory.
+> 
 
-It's a requirement that DT overlays be applied at build time in order to
-validate them as overlays are not validated on their own.
+Those "few dozen cycles", is tasked with sending messages to RPMh for
+voting and unvoting the buses, then tzmem will hopefully hit the
+genpool, twice, and then radix updates, and then more genpool updated
+and more radix tree work. And then of course there's the one context
+switch to secure world.
 
-Add missing target for mt8395-radxa hd panel overlay.
+If we don't have space in the genpool, we're going to grow
+dma_alloc_coherent, extend the genpool, call secure world to register
+the new tzmem. And then for all those cases where the allocation wasn't
+enough, the retry (with updated size) will not fit in the
+PAGE_ALIGN(size) genpool that was created, so we'll do this twice.
 
-Fixes: 4c8ff61199a7 ("arm64: dts: mediatek: mt8395-radxa-nio-12l: Add Radxa 8 HD panel")
-Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
----
-This will show a warning [1] in upcoming 6.19.
+Fortunately the tzmem growing should only happen on first remoteproc
+boot, but I think it's a bit optimistic to say "a few dozen"...
 
-Note that if it is desired that the combined .dtb is not installed, then
-the combined .dtb should be added to 'dtb-' variable instead.
----
-extracted missing part from [2] with updated commit title/description
-after my bananapi series [3] to solve all warnings. Added Fixes-tag to
-make sure it lands in 6.19.
 
-[1] https://lore.kernel.org/all/20251114222759.4181152-1-robh@kernel.org/
-[2] https://patchwork.kernel.org/project/linux-mediatek/patch/20251117211306.725678-1-robh@kernel.org/
-[3] https://patchwork.kernel.org/project/linux-mediatek/cover/20251119175124.48947-1-linux@fw-web.de/
----
- arch/arm64/boot/dts/mediatek/Makefile | 2 ++
- 1 file changed, 2 insertions(+)
+The drawback with making it 16KB is that we're not going to test that
+error path very often. But the more idiomatic form of first calling with
+a size of 0, then allocate and pass the proper size, seems a bit
+wasteful to me as well - in particular if we do it anew each subsystem
+boot.
 
-diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
-index cac8f4c6d76f..3f76d9ce9879 100644
---- a/arch/arm64/boot/dts/mediatek/Makefile
-+++ b/arch/arm64/boot/dts/mediatek/Makefile
-@@ -166,6 +166,8 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8390-grinn-genio-700-sbc.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8395-kontron-3-5-sbc-i1200.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8395-radxa-nio-12l.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8395-radxa-nio-12l-8-hd-panel.dtbo
-+mt8395-radxa-nio-12l-8-hd-panel-dtbs := mt8395-radxa-nio-12l.dtb mt8395-radxa-nio-12l-8-hd-panel.dtbo
-+dtb-$(CONFIG_ARCH_MEDIATEK) += mt8395-radxa-nio-12l-8-hd-panel.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8516-pumpkin.dtb
- 
- # Device tree overlays support
--- 
-2.43.0
+PS. 16KB is 0.03% of the ADSP carveout (or 3% of the ADSP DeviceTree
+carveout...).
 
+Regards,
+Bjorn
+
+> Konrad
 
