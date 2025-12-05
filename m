@@ -1,46 +1,78 @@
-Return-Path: <devicetree+bounces-244759-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244760-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02889CA89B4
-	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 18:30:15 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF69BCA89C3
+	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 18:30:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 946C632502FF
-	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 17:15:58 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 1BA87302F03E
+	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 17:29:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98DF1349B19;
-	Fri,  5 Dec 2025 17:14:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECFD53590A4;
+	Fri,  5 Dec 2025 17:21:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="of9s4N0q"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="V/clH3w3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 041F7346786;
-	Fri,  5 Dec 2025 17:14:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 583982E0902
+	for <devicetree@vger.kernel.org>; Fri,  5 Dec 2025 17:21:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764954859; cv=none; b=SzT7N9sTocPezRIPmLGOqUTi5xrF63a9kFjucUxdQBSGrXSI5TMdLiCHOSi21WkI5I+OdQ4eIER9bv/Qhvzz7j627ibr5iGW6OXakfaLBZwnxKF1NDmfmiQhD1bCaQq18wICsEmPqHRWMFQFjz1MDHXXBlLZBk7X6ipWcjpBOoc=
+	t=1764955315; cv=none; b=sk2O0thMDHiVQTXdTXFNr0S82s+ussfLVhaz18LYYvrnon3aD7KKODTy2C0lCCOvnMbXZPMJgfMG5fXf8aJcJtTP6UT+/lxhs37lJghiVaxUA+GIVSrRb1PG4tFNaL+tt86y9icyV+N2usXZG5kENExcTRgQsnNdqLXslxgzASo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764954859; c=relaxed/simple;
-	bh=YJjyGQz0Nz3xraq+jlWUz8KnKNvRmuemEX+3ryqyk9k=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=T8NCbSnLEc2cQGS08eXRjPqOi6PIVV7YnDoUoxdSd6wJHxZoO0YvG7MYnp2bd2v+vrAkFG182WC4SAHV38mUetS6KnLolo5QRAqW+jHDsWDKoscatKkyco4f/GNxlqp6LAsJWTi6p0S1FKoB/UBzfD1ygYsQYyww4c8G0lgqwIA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=of9s4N0q; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77752C4CEF1;
-	Fri,  5 Dec 2025 17:14:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764954858;
-	bh=YJjyGQz0Nz3xraq+jlWUz8KnKNvRmuemEX+3ryqyk9k=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=of9s4N0q4VytYO41lvIyE2WraQ3oxI+GXU40ul5tiYhP20CAMdkewEDs+dKCRGyM/
-	 VFVtETNjewnbhj0q3K6hqtz4sue5cXClJ4EQrFWSVneBOvnZc9EHwVikHkNuFYi8TE
-	 tVafy5ACXQ0mYXsP3MKar0exwy/qT0aCwlC78em/csrQ3t4oy9YUc2Og/CT8jFG26y
-	 HUbnRh8uvr1x5RGGA9rNbeYjjR3LsYbijDjCzyzpHcHDkgjS1Ng4ga9WknaUn2DIkD
-	 WRuVM69sIF9WekMTHAT90qzs57m04CqvvfmBWWWGN9B1U4Sq/1jIh+NOLPy9ituuC6
-	 nQ5FZ5f8msYGw==
-Message-ID: <3b367841-326c-4697-9fe9-041a32001d94@kernel.org>
-Date: Fri, 5 Dec 2025 18:14:12 +0100
+	s=arc-20240116; t=1764955315; c=relaxed/simple;
+	bh=B8PSi9jHUdjPhrF+sm3gt+m9lDpiWvOtpnckqkhHugE=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:Content-Type; b=rUBhqUw0SJAKhN7Y325ZOqWHqRBhvYzsPrWkRLQbktv+8VoLEBavTUHNQkpihgHF0Fik5kdU8gqmq8EwMWQrhT+TOgZUkpA9K8tsOroaorfQvLVy0cvYunW+CrnGTQjbCHGC1/x/X0rM5OBg5MLZpps7bEfb5t6hAKrlMNoEoeQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=V/clH3w3; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-477aa218f20so17117525e9.0
+        for <devicetree@vger.kernel.org>; Fri, 05 Dec 2025 09:21:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1764955313; x=1765560113; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:from:content-language
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=UZCQZm4mibD//j04osocVMx/xPMdekYmVSEU/NvjAMg=;
+        b=V/clH3w3uIOTGYGkb7an3O4+cwMS075qK/1+f10rOjALptRySopfAxwcmWGgRVNE7g
+         x4ddAgKHGSQkkJGZM0vepxmZs7AUjCq/MQ5wZr11/HbovE4jjHlmloTa7ZzMYX+IpZJO
+         P+ZhLH8T/ToOrqd2cprNFVWE14y7uB3aEMx19rHFkrzUO2mJAvWjriRRZp+o2RB06j28
+         SWmXobJsm/iTSZrBuTogdjpxbIoyUPRpDD84HzTncN2Dt2w7oXpWlatzExRdU/1I9WRX
+         l8p5scPsugA6Ex5oj0f17roF1QYygJ3ZmSaQs8FfSgrTdqSTs6IZcdUE7YxJbo9bVdAv
+         D5tw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764955313; x=1765560113;
+        h=content-transfer-encoding:cc:to:subject:from:content-language
+         :user-agent:mime-version:date:message-id:x-gm-gg:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=UZCQZm4mibD//j04osocVMx/xPMdekYmVSEU/NvjAMg=;
+        b=mAUyVDXVnSpX860RbgXS6JcHcjuEOep1rHuHvjBalPAdHQq7mujgF2L69zmG0c3eA7
+         cEjSnHJedpByxlaORc2WyoodHYXX9peqH18r3dRY3wx4hV6LPAsHxSO/etCV5cSlRdzO
+         bG9Vyb8nRhi2A+o0mf1pBcNedYr5XSmhuZBTlkPrQ8WjrBtLdZexd6WYdbQd599CQCQS
+         wFUURMR3DjWLPLa0yR6oRUUx8qtnuTLqAi2gLEef+aqiICwNjvwABZ3Ae1JaW+WMmCKn
+         n0fVfaVV5cnbXqzoAbpMk9fT4RU/6JlISqJsBTKds6KADVP+CLaYCK1fRMvjZuFaN1GL
+         gTHQ==
+X-Gm-Message-State: AOJu0YyM7fgIFNsZr1H764Ie14CQt/u4g70hpNINC8PZIStNCOaKJ1KD
+	ox4IZ8DkpWSbeigYc3IyjkODksv8ChhS66I2q1MjIb828Yx5t2Z/vxkLLJtWSXM0+eM=
+X-Gm-Gg: ASbGncsaxyrMcpoQRexAZIppJZcCAI/GmX6RXrjsWn3gwZfmt7Tzr0uKB4k6pt/rZGJ
+	8f+jmyrkiznHIP0v5SdJTGlyAXHiIzcUzRYZ2HUPfe27coeBNdZk9ist9t9vH5ZOvn+8HROgqvE
+	SmeyE0aEf05firKF5UE/ONSfW3xBqXMUiwmlRBtXOUotF3N9SdRBAJzF8RcuKP5PYApZ/VIPhAH
+	WNiqk68IXOd0DwRcetS+4hIoKSoqZ62SWkhHuDiAJzoBkQopO2EVQdB/Am6rmVsXz8qqtBQyH8O
+	+/8GXinjbOpaWojWrMXNQiZAtx7EG1S5rZeEglQXJojtfbCDCdhyuNnitECFl0ZkIPwULrXxo/j
+	H/Z87DttNpfvxl67dGNIKD8qp6eFVq5DZsNoyl1fWloqjSyVhCSomShdd9jMNGKviZ47i6/it1A
+	QLvV2EBo5xOepgeNB0Uzx494P93k5oPUxME2QPK2uC6cK5f73M+SchEWRpSv24tJgBXXTQFV/iI
+	HDVvw4QJW4m1TB1hW1XbSpVitMovEv/p1fztj8hRamto3dpqClMOw==
+X-Google-Smtp-Source: AGHT+IEm4o0h8b1j4bpARx7YuKAwXXTAp9EAESCVyno/gJt9JehnaUTIUnUp8aaB5eTEW+OITqbHfQ==
+X-Received: by 2002:a05:600c:1e8f:b0:477:7af8:c88b with SMTP id 5b1f17b1804b1-47939dfa53cmr462435e9.11.1764955312576;
+        Fri, 05 Dec 2025 09:21:52 -0800 (PST)
+Received: from ?IPV6:2003:ea:8f47:b600:41b3:37ed:a502:9002? (p200300ea8f47b60041b337eda5029002.dip0.t-ipconnect.de. [2003:ea:8f47:b600:41b3:37ed:a502:9002])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4792b156604sm61127675e9.16.2025.12.05.09.21.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 05 Dec 2025 09:21:52 -0800 (PST)
+Message-ID: <64533952-1299-4ae2-860d-b34b97a24d98@gmail.com>
+Date: Fri, 5 Dec 2025 18:21:50 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,114 +80,71 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 1/2] dt-bindings: usb: dwc3: Add Google Tensor G5 DWC3
-To: Roy Luo <royluo@google.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Peter Griffin
- <peter.griffin@linaro.org>, =?UTF-8?Q?Andr=C3=A9_Draszik?=
- <andre.draszik@linaro.org>, Tudor Ambarus <tudor.ambarus@linaro.org>,
- Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
- Philipp Zabel <p.zabel@pengutronix.de>
-Cc: Badhri Jagan Sridharan <badhri@google.com>,
- Doug Anderson <dianders@google.com>, linux-usb@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- Joy Chakraborty <joychakr@google.com>, Naveen Kumar <mnkumar@google.com>
-References: <20251205-controller-v9-0-9f158b18f979@google.com>
- <20251205-controller-v9-1-9f158b18f979@google.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251205-controller-v9-1-9f158b18f979@google.com>
+From: Heiner Kallweit <hkallweit1@gmail.com>
+Subject: [PATCH RFC] powerpc: switch two fixed phy links to full duplex
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Madhavan Srinivasan
+ <maddy@linux.ibm.com>, Michael Ellerman <mpe@ellerman.id.au>,
+ Nicholas Piggin <npiggin@gmail.com>,
+ Christophe Leroy <christophe.leroy@csgroup.eu>,
+ Pantelis Antoniou <pantelis.antoniou@gmail.com>
+Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
+ "netdev@vger.kernel.org" <netdev@vger.kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 05/12/2025 03:26, Roy Luo wrote:
-> Document the device tree bindings for the DWC3 USB controller found in
-> Google Tensor SoCs, starting with the G5 generation (codename: laguna).
-> 
-> The Tensor G5 silicon represents a complete architectural departure from
-> previous generations (like gs101), including entirely new clock/reset
-> schemes, top-level wrapper and register interface. Consequently,
-> existing Samsung/Exynos DWC3 USB bindings are incompatible, necessitating
-> this new device tree binding.
-> 
-> The USB controller on Tensor G5 is based on Synopsys DWC3 IP and features
-> Dual-Role Device single port with hibernation support.
-> 
-> Signed-off-by: Roy Luo <royluo@google.com>
-> ---
->  .../devicetree/bindings/usb/google,lga-dwc3.yaml   | 140 +++++++++++++++++++++
->  MAINTAINERS                                        |   1 +
->  2 files changed, 141 insertions(+)
-> 
+These two fixed links are the only ones in-kernel specifying half duplex.
+If these could be switched to full duplex, then half duplex handling
+could be removed from phylib fixed phy, phylink, swphy.
 
-Nothing explains reason to ignore review. I am not doing same work
-twice, please respect maintainers' time.
+The SoC MAC's are capable of full duplex, fs_enet MAC driver is as well.
+Anything that would keep us from switching to full duplex?
 
-<form letter>
-This is a friendly reminder during the review process.
+Whilst at it, replace the deprecated old fixed-link binding.
 
-It looks like you received a tag and forgot to add it.
+Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+---
+ arch/powerpc/boot/dts/mgcoge.dts | 6 +++++-
+ arch/powerpc/boot/dts/tqm8xx.dts | 6 +++++-
+ 2 files changed, 10 insertions(+), 2 deletions(-)
 
-If you do not know the process, here is a short explanation:
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new versions
-of patchset, under or above your Signed-off-by tag, unless patch changed
-significantly (e.g. new properties added to the DT bindings). Tag is
-"received", when provided in a message replied to you on the mailing
-list. Tools like b4 can help here. However, there's no need to repost
-patches *only* to add the tags. The upstream maintainer will do that for
-tags received on the version they apply.
+diff --git a/arch/powerpc/boot/dts/mgcoge.dts b/arch/powerpc/boot/dts/mgcoge.dts
+index 9cefed20723..cea9bdc65dc 100644
+--- a/arch/powerpc/boot/dts/mgcoge.dts
++++ b/arch/powerpc/boot/dts/mgcoge.dts
+@@ -153,7 +153,11 @@ eth0: ethernet@11a60 {
+ 				interrupt-parent = <&PIC>;
+ 				linux,network-index = <0>;
+ 				fsl,cpm-command = <0xce00000>;
+-				fixed-link = <0 0 10 0 0>;
++
++				fixed-link {
++					speed = <10>;
++					full-duplex;
++				};
+ 			};
+ 
+ 			i2c@11860 {
+diff --git a/arch/powerpc/boot/dts/tqm8xx.dts b/arch/powerpc/boot/dts/tqm8xx.dts
+index d16cdfd8120..e582487d5a3 100644
+--- a/arch/powerpc/boot/dts/tqm8xx.dts
++++ b/arch/powerpc/boot/dts/tqm8xx.dts
+@@ -185,7 +185,11 @@ eth0: ethernet@a00 {
+ 				interrupt-parent = <&CPM_PIC>;
+ 				fsl,cpm-command = <0000>;
+ 				linux,network-index = <0>;
+-				fixed-link = <0 0 10 0 0>;
++
++				fixed-link {
++					speed = <10>;
++					full-duplex;
++				};
+ 			};
+ 		};
+ 	};
+-- 
+2.52.0
 
-Please read:
-https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
-
-If a tag was not added on purpose, please state why and what changed.
-</form letter>
-
-Best regards,
-Krzysztof
 
