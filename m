@@ -1,178 +1,220 @@
-Return-Path: <devicetree+bounces-244643-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244644-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1D0CCA778C
-	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 12:54:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2543CCA77B4
+	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 12:58:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 382013029276
-	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 11:54:39 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 77B90302AB9C
+	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 11:58:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3696333033C;
-	Fri,  5 Dec 2025 11:53:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A0F232F741;
+	Fri,  5 Dec 2025 11:58:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Q6DPTGCS"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="OY0HldBL";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="GR5IrdrH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD06D2FF679
-	for <devicetree@vger.kernel.org>; Fri,  5 Dec 2025 11:53:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7925F32C92E
+	for <devicetree@vger.kernel.org>; Fri,  5 Dec 2025 11:58:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764935613; cv=none; b=H5rvWvLEHu/0EPEayaxDD0F0ypMJf+yt5lzD/b6RSgO8S/Omcis7qOCTorPJUmPnt+xrrX0+3tF6zqs5a8y3+ttTGmZwmZUncbor+bwrGJ4CCJx/a9+Xw5oGpFFJ7dhb2RO8PKErROAbIch9oQ1VqLRtcdkohKbEysprGUjpDsY=
+	t=1764935918; cv=none; b=tXLI7zV6CtiVtJbMQxfRtmoI8Wq+cxA2yo2a4L4QSMX0HUbk+IHfaMh7jFu2OyA/00joSghH60Fv9KZsDBuFS3XY3KRt1eq6jeqOFHGAfJzBJntj2ymByWomr7Dpwbd5/AaLv8pPXmLmku0EzYNJDzWTVMmTNMYYYhEZjHj1GXQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764935613; c=relaxed/simple;
-	bh=YJCejSSlp5BLiFi26SWpMkczGtydRQ5mSdIigPCD7qc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=S416EuTJYOBa4ZZ1+Q7KBJMjwMU7nkLx4+O9Y8uhq+YbAjnXvImqPRMuv6StJ38BS/2feXraOeCvfqSf+KiTTQDWChunXBLPBM5updwMam86xzlKjUHQ1yCekfiaMxpdodeIk2ZiCHCgoDKffAWqvKVJopIdu6cMgPEyeXHpbLc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Q6DPTGCS; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-42b47f662a0so1590521f8f.0
-        for <devicetree@vger.kernel.org>; Fri, 05 Dec 2025 03:53:28 -0800 (PST)
+	s=arc-20240116; t=1764935918; c=relaxed/simple;
+	bh=JGlHPMycF08f9U3fXOOu9oKmAJFGhZOZi/jBlhBlvQA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fH4SRdjlDP9ulljgFS2rq+t9p8OOVsqRItLyzIwUaMOdXH6KfMyLVMCDKH3+IXJXY7gs2ZTu5tNQGEDK14vf0Lp1KbLQzxaJMbi0hmpO58vMIT8Z0LjkxakNX40Yfij2moGQl+n0Y/s23pxLlYqQC1M6Hlog92klCKIRjDp72NA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=OY0HldBL; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=GR5IrdrH; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5B5Axwmb3136605
+	for <devicetree@vger.kernel.org>; Fri, 5 Dec 2025 11:58:32 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	IIeEbHT2VcCtWz2n+Opyz7ieZwO0LhGLiuIEjFNJcYU=; b=OY0HldBLAoFsiGbO
+	ALG0eqbs0lRGfH/fyO8HQNG8A1l2w261sj94DZ5a7lp+DxajjjUgcEEZzf9xf2MV
+	rSMqPyvRce1oWlIGDFubE1leuznXerYPv0dcOFlGuB7W++75mQWp8wSDg6JvirkU
+	NuPeSZDhHC2xvkKYBpF7J7WALYPH9xZji3Aiiocs02caKS0LAf3/hxsC6yn3Nm6o
+	iI/0F3L3UsRfaQ0e0+3pELhvxo+L4R1liTI0V5oyXHbhMOuHk7+NzrPswrqjK/zd
+	tKfyUC3WkFLlratEp3RfjJal+UrDprVIxt4JhCM2bT3CyZmBRNaYiMPf0pUMra/V
+	vSruOA==
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4aupa8sh4q-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 05 Dec 2025 11:58:32 +0000 (GMT)
+Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-8b25c5dc2c3so41905185a.3
+        for <devicetree@vger.kernel.org>; Fri, 05 Dec 2025 03:58:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1764935606; x=1765540406; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=4oMXK/FjVegirY5SREBrXWKVrn6jX7f3cdMgqorSo9w=;
-        b=Q6DPTGCS4Zi/CzaXKQrAHwKxVk0602h0hfMKHe/1NSlNq6gytywKufe/H/uXoSrIfh
-         aZvKm84E94W6dBli9z2ZWSbBrH0sg/vKK0YVK2GwxIujtUjYRoJtZ+5p9gBmoVgAvEaT
-         Nac5bZee27h+nuzQaRnhytc2sRDnKp4b/gCgA4pFatogtDtQDqaX9wDBXuSHczxc3wyx
-         VoEStj3d2RehfqpLtMQdjXcPj+XhY0LQpJFOKLb6C6vbtaZaY+s3dVCcwkhpWJT8qixf
-         Po3CgZt2VnYEHBLGpzmISzC38yZwxwYhXF03bN6fT3h0lZr4i8VuTdAIrqL8RnnT0cx8
-         Iobw==
+        d=oss.qualcomm.com; s=google; t=1764935912; x=1765540712; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=IIeEbHT2VcCtWz2n+Opyz7ieZwO0LhGLiuIEjFNJcYU=;
+        b=GR5IrdrHJ7GXfsVtX/Z9IokYWsBWjeL32NAJl1EexUZpq8w7VLcSsSOYvHmyyp2d33
+         Q+FD2X9YAJJ5SaDz09bzGI34p2jJhnQXb3/yinDwNLVPWV6Ylt9kBEZjpwphU14sfoJC
+         i7wCkD9bkIIU9fcWvhDb12sk6/t0aL1Yg2gevQQe9IxrzeJNFcIOLYP8nLCw+2WDROdK
+         jYSnyLTQVqMBSvg8CqeWxLBcxID9UYw2kEMGvLJEwL51C/0UpVCU5ywX1euEKJ0qYxxO
+         LlCfqcvTHpe/Lsylelwi/TmsJs0O0Fx+5fsaQgdBJNZnwPv33TneoWftBS0cG3376odA
+         M6Ww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764935606; x=1765540406;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4oMXK/FjVegirY5SREBrXWKVrn6jX7f3cdMgqorSo9w=;
-        b=BVfL0VLC5Kudxhjsz8HAWPUqf3467PpgrvtL5u+nw7ImUbQfvgcKyznV9dFhL3VuaF
-         zuyZow1Jkynj/idGtDszwLHI3nJvm36M2sOFD0lSpKfMNiWnnl9ABzEwSycd1jGkVhWX
-         vlstNDupw0GkoXZc8G9lL9qsz2ajI+O84YdFggU/fzMX8KjpNg/40PCWnVu6MaBCO1bl
-         F1MoljWSAdbLdmv1Fi+SqzF74kvfQkvEf+lkSdE/Tf5qkPm7NtEv0/TQhxTx6ZxKXgWL
-         L0MKWOc0VhG0nlyT3hJU1pUXXoqwU0FDkn2Od3cUJLoo/uQpmwd7ewOHiCcyozAyomNY
-         Frwg==
-X-Forwarded-Encrypted: i=1; AJvYcCUYsBcklk15JWqCRBl3aFf0KGJb20I6m0wh1q9DkpEQxeZ9pNHpWga2HsfY6CjjzY7x3MK8e8qXSXM1@vger.kernel.org
-X-Gm-Message-State: AOJu0YzERNYABVy9Stb38G8O5R1V0oeyWohQe8m3rBvzwuJHOEYeoMs4
-	EA4CrJyUzr7eVuGtq0jiUFGVMjZl12pd55P+kxsrK6H7sWJp6lHDpvRA
-X-Gm-Gg: ASbGncutX9ttN6jkm6woPWnES6Rj4s5sgcQ8Fr2FudBaHusgBUIteBtF7OSui8nfwDa
-	35rLtpHZHygzfGn5sMoaq7tj5iTzDDr0GQysbz6CMvV5irpF7ymS05Mws00UbQmLrbvvTyYy8sE
-	u0MRTX5jImmp58aOMInZGX5QpoPN3mIS2ky/VCvsSCmPTnTNt6uDDmvoMIXjvh8Jm+SjcjW6wL1
-	BHP44qFirv1gIpawcQtVw+IEK8sWN+1plTd/NJPlKw1UaV2u403AMfiiNVJ/uLvZGqcSVvFi1Qr
-	gj1SPp4///U3reIAL3X6LlyWpmDBfJ4jI/1QJQPH0OmsIKUm3J0SkifFoEdvl1h1bpzniAHX0us
-	eg2CSqsG7G/TtwkmEd5yrREvquyuQDlaadCFPmctsmFjs31kvbRuAP5M2sfhLdZacQxAVjPe6sz
-	GfcDNFh61c24ipI8sQW38sTJspwEpz/lOBUJgOOvQNKvWVW2k0Jn4ONroS1gOlGPq81+E=
-X-Google-Smtp-Source: AGHT+IHyVq1TxDr3VEMt1d+mdj1M0HSV8r65o6SHKi+8hiPBA1XHe+HyzivannicYdrPR2vI4N8sHQ==
-X-Received: by 2002:adf:cf0f:0:b0:42f:84ed:ce5d with SMTP id ffacd0b85a97d-42f84ede0b9mr1636999f8f.28.1764935605767;
-        Fri, 05 Dec 2025 03:53:25 -0800 (PST)
-Received: from HYB-DlYm71t3hSl.ad.analog.com ([2001:a61:123e:4501:9c51:c3b7:65d6:48d3])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42f7cbfeadesm8509514f8f.10.2025.12.05.03.53.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Dec 2025 03:53:25 -0800 (PST)
-Date: Fri, 5 Dec 2025 12:53:23 +0100
-From: Jorge Marques <gastmaier@gmail.com>
-To: Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc: Andy Shevchenko <andriy.shevchenko@intel.com>, 
-	Jorge Marques <jorge.marques@analog.com>, Lars-Peter Clausen <lars@metafoo.de>, 
-	Michael Hennerich <Michael.Hennerich@analog.com>, Jonathan Cameron <jic23@kernel.org>, 
-	David Lechner <dlechner@baylibre.com>, Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, 
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jonathan Corbet <corbet@lwn.net>, Linus Walleij <linus.walleij@linaro.org>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v2 9/9] iio: adc: ad4062: Add GPIO Controller support
-Message-ID: <egl65ctlz2umzcdzf7ke5c2hnd33ghudklmf4pdgnp64vnzjg3@rpqrludyv4p2>
-References: <20251124-staging-ad4062-v2-0-a375609afbb7@analog.com>
- <20251124-staging-ad4062-v2-9-a375609afbb7@analog.com>
- <aSQ2JUN05vmMQC1I@smile.fi.intel.com>
- <rk4hmupbrb5ugxft6upj7ru43x3z7ybrobax45rorpwbcwleh6@vzxrr3m7r6ep>
- <aSgX9nMBwBtAlSyj@smile.fi.intel.com>
- <3izg5lyxjye24pvzoibk4tmnxbdfokr53abkpbjo5epqjoz55j@6wc7i4wsgwkt>
- <CAHp75VfLd46xt_2W35gjoTCoh+PqExL-faZ8snhzfOx=65qXWw@mail.gmail.com>
+        d=1e100.net; s=20230601; t=1764935912; x=1765540712;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=IIeEbHT2VcCtWz2n+Opyz7ieZwO0LhGLiuIEjFNJcYU=;
+        b=VcbLnVJV2GAKZGorfWD9NVYI/Lpeabkauk7mxY5EY2D3UbPmg143DPjt4EYpjFyhle
+         Iw/f9DMVv3oeBuBgV2flXGf+piqrLBjaHOzjrAl0hyDJaqKtsnkGP0VgcYWQlxLkZAmk
+         X2DHd32aYdJKjGKQk1CI2pcavQnKN6zSSJany0Mv5addZtkBWXoj6OxhzfWBEGCG7AwI
+         K72e+EJYoAMMifGFXZ4MB/FOK2q+/aHiNHnqjUxVD7TklZL0orfgQjAc8sHLJX22QHUz
+         LKun2GRs79+V+V5ErnYt0ysHPambMOuqGIMDS+RYO+cm0Ze9wJtW6T660SSXw6AGDEzY
+         2LiA==
+X-Forwarded-Encrypted: i=1; AJvYcCWF1NYGkUVJN48TIaJz0SZzdy1Np25BjfiLc43UeYtstIkeUdImt6l4rcMb5kIpLc47h/lGxbWjBAOQ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzo3z5waI83V+icLKV+ZU0Phkam19Z9RgtSkiSYOFrxbsB5LKs1
+	sb/OjADgyh530rHct1CkXKJht1qhfP3+saqdG0Y3tl7DUnruqrCRTYeulxrR8q0481c2IQVbWGY
+	8vQ5nUVMMBpwCrZXzgd8vbSow1SA8rwD/wRBEXlzo/ylJ2raCQDlXMB8oRkWyo7qm
+X-Gm-Gg: ASbGnctw9fgWSE32wIwNCWvoXVflQU6gzs06jkzhU5aPogXTViNDMMXcSPb+6pwxiyI
+	h+acwkWJyoRlvdzw/1urvrzhAkJVSKfVpT9XT7H/yxIBS+QRgvF7nvmriCWgt6fqim4o9aD8K5m
+	26jM8bvAjY4XxrNhdCR01TnYpryg7wxQ3suEQ6LJmtwxWEsCtuA8QhS9dVi33ITcDC0NCzxtvU3
+	9Jb9W2kXoqM1PYhu348MTIo7BedXM2s0KZU2UYlLdPgNZ13jad8DeImTstLbEuTX0V4D4E5O+N4
+	UgP0g0JeoAYolhhb4TSlMDXolxe1TlP0N6dqYJ9cwNTBnRlTElb/VtsGL+pnL3xHrAj4PG4GSng
+	x2fkXJWu7vHhR74IYeS7K4eQkxkKtpQKDqnTPaOc0FFMg9I0DkRG0nAvLajg5lt2MlA==
+X-Received: by 2002:ac8:7f54:0:b0:4ee:1588:6186 with SMTP id d75a77b69052e-4f0176844ddmr100707261cf.11.1764935911674;
+        Fri, 05 Dec 2025 03:58:31 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFov2I2X1RO4Ob8MYXyaeF8rMVGALAElCw7tm9Bp7+qYh3T528OfAwWshEwbYv5+VJc7P3dSA==
+X-Received: by 2002:ac8:7f54:0:b0:4ee:1588:6186 with SMTP id d75a77b69052e-4f0176844ddmr100706771cf.11.1764935911237;
+        Fri, 05 Dec 2025 03:58:31 -0800 (PST)
+Received: from [192.168.119.72] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b79f445967fsm349282966b.10.2025.12.05.03.58.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 05 Dec 2025 03:58:30 -0800 (PST)
+Message-ID: <6e6ecdbf-f3cb-4d7e-a679-4640d6603ac8@oss.qualcomm.com>
+Date: Fri, 5 Dec 2025 12:58:27 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 2/3] arm64: dts: qcom: qcs8300: Add CCI definitions
+To: Nihal Kumar Gupta <quic_nihalkum@quicinc.com>,
+        Vikram Sharma <quic_vikramsa@quicinc.com>
+Cc: bryan.odonoghue@linaro.org, mchehab@kernel.org, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org, andersson@kernel.org,
+        konradybcio@kernel.org, hverkuil-cisco@xs4all.nl,
+        cros-qcom-dts-watchers@chromium.org, catalin.marinas@arm.com,
+        will@kernel.org, linux-arm-kernel@lists.infradead.org,
+        quic_svankada@quicinc.com, linux-media@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Ravi Shankar <quic_rshankar@quicinc.com>,
+        Vishal Verma <quic_vishverm@quicinc.com>
+References: <DS0PR02MB11311CE33DFFE0739BE747590E3D8A@DS0PR02MB11311.namprd02.prod.outlook.com>
+ <d49920eb-0b4e-4042-b0c6-28d1ba348ddc@quicinc.com>
+ <3f1dbf91-f967-44dc-bb21-25fdcbbc8db2@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <3f1dbf91-f967-44dc-bb21-25fdcbbc8db2@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAHp75VfLd46xt_2W35gjoTCoh+PqExL-faZ8snhzfOx=65qXWw@mail.gmail.com>
+X-Authority-Analysis: v=2.4 cv=ZqDg6t7G c=1 sm=1 tr=0 ts=6932c8e8 cx=c_pps
+ a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=COk6AnOGAAAA:8 a=JE8FtNjG4eDj_IBO3V8A:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=PEH46H7Ffwr30OY-TuGO:22
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjA1MDA4NiBTYWx0ZWRfX76TMp601wgG9
+ /LmHwX7THHBVXLkuX01Yrmsg/PgEnhAgdBWAQBJOgWVLJulJp9k41MODx2lglrI2x2UnwKUqi81
+ iBC7Z+0fo4Wi4+TnBr9tUD69M7D0pygw0hMf/z30eEKpqnXCUwBODFjn6ajSn1Xfa8rG+nzDoDL
+ 3xd09MojSKdvnZviBkTE03XEpcoKjuX2ZMuS20RaMOSwjhIPUanW+ImbQ+iBL1eL/D0nIjqcx6y
+ pO28Hvb+Tj7Wrbks5iF92142OB8sBYmN9WTM9x9fhviMTel5+zp7TrSQdX+++8xmgExpBROHaej
+ ghL/c4WIukFUBlRVr4RYknnTiJXVxqBrif1+ctB6Y84rA7LUE8F0THCpErDtK/j5PXKJ9dyVBA0
+ LNTUU3UIiuDMk5B69CFKPEdfsSq9CQ==
+X-Proofpoint-ORIG-GUID: 1I0HP1_etxBMVDgvAATGIp9Vb0EV31Uz
+X-Proofpoint-GUID: 1I0HP1_etxBMVDgvAATGIp9Vb0EV31Uz
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-05_04,2025-12-04_04,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 priorityscore=1501 clxscore=1015 phishscore=0 spamscore=0
+ bulkscore=0 impostorscore=0 adultscore=0 malwarescore=0 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512050086
 
-On Fri, Dec 05, 2025 at 12:21:31AM +0200, Andy Shevchenko wrote:
-> On Thu, Dec 4, 2025 at 11:38 PM Jorge Marques <gastmaier@gmail.com> wrote:
-> > On Thu, Nov 27, 2025 at 11:20:54AM +0200, Andy Shevchenko wrote:
-> > > On Wed, Nov 26, 2025 at 04:55:41PM +0100, Jorge Marques wrote:
-> > > > On Mon, Nov 24, 2025 at 12:40:37PM +0200, Andy Shevchenko wrote:
-> > > > > On Mon, Nov 24, 2025 at 10:18:08AM +0100, Jorge Marques wrote:
+On 12/2/25 8:35 AM, Nihal Kumar Gupta wrote:
 > 
-> ...
 > 
-> > > > > > +       return reg_val == AD4062_GP_STATIC_HIGH ? 1 : 0;
-> > > > >
-> > > > >   return !!(reg_val == AD4062_GP_STATIC_HIGH);
-> > > > >
-> > > > > also will work.
-> > > > >
-> > > >     return reg_val == AD4062_GP_STATIC_HIGH;
-> > >
-> > > Hmm... This will include implicit bool->int. The !! guarantees values 0 or 1,
-> > > but I don't remember about implicit bool->int case.
+> On 11/26/25 9:10 AM, Vikram Sharma wrote:
+>>> From: Nihal Kumar Gupta <quic_nihalkum@quicinc.com>
+>>>
+>>> Qualcomm QCS8300 SoC contains three Camera Control Interface (CCI).
+>>> Compared to Lemans, the key difference is in SDA/SCL GPIO assignments
+>>> and number of CCIs.
+>> [...]
+>>
+>>> @@ -5071,6 +5182,240 @@ tlmm: pinctrl@f100000 {
+>>>                       #interrupt-cells = <2>;
+>>>                       wakeup-parent = <&pdc>;
+>>>
+>>> +                     cam0_avdd_2v8_en_default: cam0-avdd-2v8-en-state {
+>>> +                             pins = "gpio73";
+>>> +                             function = "gpio";
+>>> +                             drive-strength = <2>;
+>>> +                             bias-disable;
+>>> +                     };
+>> I'm not sure whether I was unclear, but my intention was to ask you to move the MCLK pin definitions to the SoC DTSI, because that comes from the design of the platform and doesn't vary between end products.
+>>
+>> GPIO_73 being related to a voltage regulator is strictly a property of the EVK.
 > 
-> > I don't think the implicit bool->int is an issue, grepping `return .* == .*;`
-> > matches a few methods that return int.
-> 
-> Yes, the Q here is the value of true _always_ be promoted to 1?
-> 
-Hi Andy,
+> MCLK pin definitions are already present under the tlmm block in SoC dtsi(monaco.dtsi) as required by the pinctrl subsystem(qcom,qcs8300-tlmm.yaml).
 
-The relational operator result has type int (c99 6.5.9 Equality
-operators); and when any scalar value is converted to _Bool, the result
-is 0 if the value compares equal to 0; otherwise, the result is 1 (c99
-6.3.1.2).
-https://www.dii.uchile.cl/~daespino/files/Iso_C_1999_definition.pdf
+The latter part of your sentence refers to the pin definition having to end
+up under TLMM in the final DT, which it will be regardless of where exactly
+in the source files it appears.
 
-No conversion warnings even when forcing _Bool type.
-There are many usages like this, for example:
+What I'm alluding to is that we organize some of these definitions in a
+specific source file to make logical sense and keep them within relevant
+scope (i.e. you shouldn't be able to refer to a board X-specific setting
+from board Y DT - that's unnecessary room for error, whereas pin definitions
+that are a result of the SoC design make sense to be shared)
 
-drivers/iio/accel/adxl313_core.c @ int adxl313_is_act_inact_ac()
-drivers/iio/light/opt4060.c @ int opt4060_read_event_config()
-drivers/iio/light/tsl2772.c @ int tsl2772_device_id_verify()
-lib/zstd/compress/zstd_fast.c @ int ZSTD_match4Found_branch()
+> Are you suggesting they shouldn’t be part of TLMM in the SoC DTSI? This doesn’t align with the YAML file.
 
-I cannot find many legitimate usage of relational operator with the
-double negation.
-  git ls-files | xargs grep -s 'return !!' | grep '=='
+That's not exactly true, the YAML file you're referencing only lists the
+allowed entries in the 'function' property of the pinmux subnodes.
 
-> > Experimenting with the _Bool type (gcc 15, clang 19, any std version),
-> >
-> >         int main()
-> >         {
-> >             int a = 1;
-> >             int b = 2;
-> >
-> >             return (_Bool)(a == b);
-> >         }
-> >
-> > with
-> > gcc -Wall -W -pedantic -std=c23 -c test.c
-> > clang -Wall -Wextra -Wbool-conversion -std=c11 -O2 test.c
-> >
-> > also doesn't raise warnings.
+The DT checker makes no effort to analyze your file structure, it only
+makes sure that you're not adding illegal properties (or lacking required
+ones) for a given device described by a binding.
+
+> Regarding GPIO_73: Noted. I will move it to monaco-evk.dts under the tlmm section.
 > 
-> Of course, because before even looking into warnings the entire code
-> degrades to return 0. I.o.w., the test case is not correct. But don't
-> hurry up to fix it, you won't get warnings anyway, it's all about C
-> standard and not about (in)correctness of the code. See above.
+> Below are the example snippets:
+> In monaco.dtsi (SoC level):
+> tlmm: pinctrl@... {
+>     cam_mclk0_default: cam-mclk0-default-state {
+>         pins = "gpio67"; 
+>         function = "cam_mclk";
+>         drive-strength = <2>;
+>     };
+>     ....
+> };
 > 
-> -- 
-> With Best Regards,
-> Andy Shevchenko
-Best Regards,
-Jorge
+> In monaco-evk.dts (Board level):
+> &tlmm {
+>     cam0_avdd_2v8_en_default: cam0-avdd-2v8-en-state {
+>         pins = "gpio73";
+>         function = "gpio";
+>         drive-strength = <2>;
+>         bias-disable;
+>     };
+
+That was my entire points, thanks
+
+Konrad
 
