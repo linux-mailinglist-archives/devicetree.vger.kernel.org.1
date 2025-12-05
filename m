@@ -1,121 +1,226 @@
-Return-Path: <devicetree+bounces-244685-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244686-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B3FBCA7D40
-	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 14:49:14 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1160DCA7D58
+	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 14:49:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id C8DDD3061AA6
-	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 13:48:04 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 85A863039F3B
+	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 13:48:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBD12332907;
-	Fri,  5 Dec 2025 13:47:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEC362E5439;
+	Fri,  5 Dec 2025 13:48:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V5mZW47g"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="hpm84jhi";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="WriCZaT4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 508EC330B1D
-	for <devicetree@vger.kernel.org>; Fri,  5 Dec 2025 13:47:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DEA732B9AE
+	for <devicetree@vger.kernel.org>; Fri,  5 Dec 2025 13:48:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764942421; cv=none; b=NMCupBh4rfgS+szTiBVTCs/CyUcKva3nfBNoA9WpwRlIz6MfIAB6nFRZquQT+XdbaX+fBi0nVvsEXI1KmpK6TFFUj6Y7UA0YwE4XUZx84hBuWo2Pm4a0mRiywso3cUI2cOBjtwzXyKFKZp/H4CNkdhDm3huNrgAW1j5kLAE0Y+U=
+	t=1764942522; cv=none; b=syRpQnqBXk2cdQ4htmKN8NHZRyX00++UpAidaTCdL5F0tkiJU3WwRzj84pl0JrPV3g1HT9WDWjYoKTXdmtLAt7Aya9Zl6l4aP1YJDm5dB8ag5cIz35UaJ3BkAQayuG1Xqx5KhzHo5t6i686N4Ab9w27a5/SgE14Ny2vTnFw6A/I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764942421; c=relaxed/simple;
-	bh=G1DKwO3QOoOSXazmt1Hz6axf9JJ+8JmRfw6we/+3fMk=;
+	s=arc-20240116; t=1764942522; c=relaxed/simple;
+	bh=TdsDIHramvOAs0qqLjdcDkHodXMcXYV/oLEbuXapvUw=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=mvMKqdnherAc3RDTBfx8OjHTrgblGMlQ/lOu+ElZCFn5rCc87y7j0IgmCTGAVA0uM1EYKDDE6un/dJAn+0Oi90l9do3okmePAklQrVeTc4dyjrqxSzw22ZGiQipgZwu0CGAIztCN08UEE1e8DWqtcRrKl2xx28N/5dz1iqRiKsI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V5mZW47g; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0447CC4CEF1
-	for <devicetree@vger.kernel.org>; Fri,  5 Dec 2025 13:46:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764942419;
-	bh=G1DKwO3QOoOSXazmt1Hz6axf9JJ+8JmRfw6we/+3fMk=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=V5mZW47gQS5wF6e3EaBjNjjRUsYMKA5vtJw93WQp8Yb3ErZUowS8tGrMrJ45GQxYQ
-	 AbLPrtq+M/80a5GkVgG4trzqo4ZS06PDiyqJL10XkzmszUyl82UICaM7tlvH3l9Uyl
-	 d0xkk90igghwQVETRaYIURkSlQPvPI1ZBBWyVrvrMnOXpgRRsQrz17hR5jryW0txIR
-	 llk7JIYWKm9l8V0VbRMsqVOie6XSQfvEh0NtI8kaP6WFrPxHcPr6/ZSNoCWW9rtHVk
-	 Z+hnLUnCmtNR78D4tNQw2Qhyv51Ht5Jjta3zjv/kSaYNY13nH4ZDVMFIJ9nyjdi43F
-	 EI2rrYf74UnNg==
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-64175dfc338so3463777a12.0
-        for <devicetree@vger.kernel.org>; Fri, 05 Dec 2025 05:46:58 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWCDN9m8JLM3+6rL016URwoHagVJPicmux/Ey5xhojW03AxTkvh7voyrMJ37rQjEYp3h0fzqqOJZJ0+@vger.kernel.org
-X-Gm-Message-State: AOJu0YyLA8VIW3wwLsg4DL49b0Kt9DdB8hfdMB/CN2eKHpz9d7H0e8ep
-	SB4uFVOTj3zO5ByeaBYuW5IgDIV3TdeOMRJkuTAradK3aRh7jYnvROUu+PZ7A80SlEqCVxCuc43
-	PpHheN22beazaBJU9GAj0Zj9Vunkv1g==
-X-Google-Smtp-Source: AGHT+IGnSnntD86eE9Z5w3JvKyrgl2TQ4p6Ck5tFuBzhXTViEp5pLzmxGFWb0Gp0bPBwpBev5udEHdS7Zgzngud/oYg=
-X-Received: by 2002:a05:6402:520a:b0:640:f2cd:831 with SMTP id
- 4fb4d7f45d1cf-6479c4076c1mr9111075a12.10.1764942417575; Fri, 05 Dec 2025
- 05:46:57 -0800 (PST)
+	 To:Cc:Content-Type; b=GIDoDKi0RjiTr3mIq0CbmiV8AHPx5CwtZySbwwoG+5HWOIHVTo+GpRyG+t1U0jWdeVqt+Yk0BUJl39wgcarwnH7AJvA2FlEBrq/VghOliJ5FeY8KNmgB2cd8WYneNy4Nkz8k8t2Jouubbu/wC8nhcifAJh+8QhwU7rkUdamEp9I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=hpm84jhi; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=WriCZaT4; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5B5CpjPx231161
+	for <devicetree@vger.kernel.org>; Fri, 5 Dec 2025 13:48:36 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	IiMsicvrr8diIe0M5OoR4hIKRYKTzc0ne3OgurpEA+s=; b=hpm84jhiFntJXaz7
+	BLEAz6UGYECRlZ4zNUKK4DGFFkjP/dktRO7c70NGICezQKYGeIKIzlGvp0Cvs6nY
+	+y4hJFxuS5Tg1Q1Zt9iMGan2s4wnZY18mtTrnaTvhrdUYY600SomQweHCeHHb0YM
+	rsnKrkXQmeiunh6nS+71CE3RLkZc8mA8nghlq22CD6HIyoGFVQAPf8Trhcj8JAUw
+	20Ds5VX63TrnT0OTpk4oAdUQVS0A31Bx734Y13q4mTIlz4eT7cm0SzO8yMsB3urG
+	1CH69Hcx+cNttN0++ACRDsrJkxXeGBLh0pgMpuOO60SeLG71o/hxeDbgwtPYdi05
+	egCI+A==
+Received: from mail-oi1-f200.google.com (mail-oi1-f200.google.com [209.85.167.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4auys7g3yw-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 05 Dec 2025 13:48:36 +0000 (GMT)
+Received: by mail-oi1-f200.google.com with SMTP id 5614622812f47-450da1dcd2dso4123509b6e.1
+        for <devicetree@vger.kernel.org>; Fri, 05 Dec 2025 05:48:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1764942516; x=1765547316; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=IiMsicvrr8diIe0M5OoR4hIKRYKTzc0ne3OgurpEA+s=;
+        b=WriCZaT4boBA6pa2RatEykyFnJYpokz03yFyO4yRigKmmcdpyn5YlWMm6bmKoQRJ+f
+         a8sJwNL5JTY3l55rn/pGE/C4DD5Eq7zjURpdLmjTyOKfrcqBqU3mIprgmORWeYixc2aE
+         BYJjSy3OxLxv/5wv1n5qtzHC9pscaD6n6tS1atJRU0vw5Qd5xC7FY93QF3KllgcySURP
+         JZaJe5ErWqiQmkZjStDdY0D+ELe8s5U7wdeC5o7jzrIobANg78ru2nJdSmBmGE4W2cGC
+         VVakKcmbddCBwF/L23sNyTVKLVKeGI4eSNyz2crJGGQZ1clDeFWKC6rAZX9p2FK+av55
+         AE6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764942516; x=1765547316;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=IiMsicvrr8diIe0M5OoR4hIKRYKTzc0ne3OgurpEA+s=;
+        b=Y7Yp6BMCQvTy3dRNY9Mbkp1De/OrfDA+aL8pkNPg3h1MQU1t0iUEZG4TLWZ1x2N8cB
+         lMCfoIY6ZoiR9MHgvB5NBmCDyQ3V3VOOizD6XwQ5zWcxHeTePPQb+oeFHyq7RuvyHOg5
+         222X9k5rPrBimw2mZn+ukOPF4dHDXhCx1k2QCyypNDRhdbzMnTFO4cn54LnCEL1/k75e
+         6PwJMJjzcLqWDm4VF6oP4GnF2Ev07oDnxuyUOnV+kXW7K4b8Az9mB0sAMFQlqQVxCIUk
+         1+Q5z05oW3Wdl6l/qJ/QanBXcQu6+vIiffDyrN95ivMT81mOku/C0Nq9ZCzhJ8BzBR54
+         OfWA==
+X-Forwarded-Encrypted: i=1; AJvYcCWsJsT6f+i6/uC6q6/pZGgk/TlwMsnEw5ruYeplEkgKhwGONEuQbx1ixtAf+hU9vh34Gf0f8mOQnjb/@vger.kernel.org
+X-Gm-Message-State: AOJu0YzH+VT8TW8pK+0sNWIpCEeyZH/2JE5U9CAOKo1h2MFahR7hU4s+
+	CmMqUFmg1sWZ+h+f16SWRD/4jaGAbBmNWOwCxKcYrgVD2wJPp6aEB43017E6enFAwW1OjUXKGtw
+	IN4vezbIf9LZcdwe+r5SXpAbEr6vX1KuX5n9yYX3ykv4dSWFxSPE8suKOPG42dX3ncIMRoU+7HB
+	83RCmc21oaXxR74knsi1SOuVv8VkCyBHvhCFTnGhA=
+X-Gm-Gg: ASbGnctPq1miyK9+to/TTrAXjwrmdsDzdW26hY3IkPp7kiAuhIeFXQHoltdQNmo1xNz
+	HRYEnBtrdIgvtwBx8Cp+xrXngv8sIJHsz3PmtTiuwcdOUoO/8hXl3ActGrTzibY5Kq+IK5fRCFr
+	L1hcxzfMJbj3zoQ2wnK9IAXa/y5JlV1mRmBwH1Ib1UiqxIyYdzFARIWs2Wzz7BnXU6SYKt
+X-Received: by 2002:a05:6808:3010:b0:450:b249:71bb with SMTP id 5614622812f47-45378f06f2fmr3805981b6e.19.1764942515862;
+        Fri, 05 Dec 2025 05:48:35 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IG766SJ1fSjtRDbZOh8Wb8u90yiVoRAIMUkghojiquxEfkbj3EbLyJWgVfhUp4VNaCcs+C8cydwXQQVzNsrpn4=
+X-Received: by 2002:a05:6808:3010:b0:450:b249:71bb with SMTP id
+ 5614622812f47-45378f06f2fmr3805957b6e.19.1764942515528; Fri, 05 Dec 2025
+ 05:48:35 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251119175124.48947-1-linux@fw-web.de> <20251119175124.48947-2-linux@fw-web.de>
- <fc5c9829-96fa-4028-a642-0792699e92a5@kernel.org> <ddad2f21-4853-41c9-acfb-1613f5000f0c@collabora.com>
-In-Reply-To: <ddad2f21-4853-41c9-acfb-1613f5000f0c@collabora.com>
-From: Rob Herring <robh@kernel.org>
-Date: Fri, 5 Dec 2025 07:46:45 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+Zu14ojvNNjgOFWA40iaqYrgGQsrHNWraooOML98fXyw@mail.gmail.com>
-X-Gm-Features: AQt7F2rRik37jIlkQlnszPiS-dbpLXF7k5YqaJSivvbMgbRGbC8B4kGSUMOvhpk
-Message-ID: <CAL_Jsq+Zu14ojvNNjgOFWA40iaqYrgGQsrHNWraooOML98fXyw@mail.gmail.com>
-Subject: Re: [PATCH v1 1/2] arm64: dts: mediatek: mt7986: add dtbs with
- applied overlays for bpi-r3
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	Frank Wunderlich <linux@fw-web.de>, Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Frank Wunderlich <frank-w@public-files.de>, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org
+References: <20251203-firmware_managed_ep-v1-0-295977600fa5@oss.qualcomm.com>
+ <20251203-firmware_managed_ep-v1-1-295977600fa5@oss.qualcomm.com>
+ <20251205-majestic-guillemot-of-criticism-80c18b@quoll> <CAMyL0qO2FPBe7N6Q=hW-ymeiGDhABsU+VCj25jzcoQRhBoWbDA@mail.gmail.com>
+ <8bb852ac-1736-49db-be94-f6be9e500f74@kernel.org>
+In-Reply-To: <8bb852ac-1736-49db-be94-f6be9e500f74@kernel.org>
+From: Mrinmay Sarkar <mrinmay.sarkar@oss.qualcomm.com>
+Date: Fri, 5 Dec 2025 19:18:23 +0530
+X-Gm-Features: AWmQ_bmuQdHWQvQj--3LmjNlkO7QoUm0_1jFk5YFWGBEAMX-x2uCNHN3HRIdyeU
+Message-ID: <CAMyL0qMyRzpum2xeQ6rFGE+KR7jnEfQfyOQHb+5766tkOcBDrA@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: PCI: qcom,pcie-ep-sa8255p: Document
+ firmware managed PCIe endpoint
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kernel@oss.qualcomm.com,
+        Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>,
+        Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
+        quic_vbadigan@quicinc.com, quic_shazhuss@quicinc.com,
+        konrad.dybcio@oss.qualcomm.com, Rama Krishna <quic_ramkri@quicinc.com>,
+        Ayiluri Naga Rashmi <quic_nayiluri@quicinc.com>,
+        Nitesh Gupta <quic_nitegupt@quicinc.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjA1MDA5OCBTYWx0ZWRfX+5HgQlt5jDiv
+ v+XoI7W3kqokZRbFvX7L+H2Jy1Y2HDUrVNcutLKyvEo90Cpe6wl2Qvx8PPLeD43L1pRPIyBGFns
+ 5W7fHOLQ6PSez5vlwQkUKE4jtTztevXGCvq2znpR/MiwfEEVOL/YxtsY8xGzKW4NsY8DngtWgv/
+ rb3v+BZL5heh1ETaJQMrpj/h+9s2vnoR/s1J5gnr1sm4aD+cz898FBXChBNURiCaxfWptzxrACu
+ hgAkJV15eeSZzIa2TRPjVTDAbYfH4UJ8lACCk5WqeFx7h6iV/3SmnO+6mQeqpyF9WXAl98LBpSi
+ 4pbgxhp2ypsHQsJC5S7LHALsccI8KknyOxB+mKABtmgI9XhMEEyQFgPrVsvWPAKsXto7FCyMEkd
+ gi+fwLHMCECfY6vFbmTFZNeN+GLG1A==
+X-Proofpoint-ORIG-GUID: xIVEl8llsEek7_YJOc3L0WQzHgywUOql
+X-Proofpoint-GUID: xIVEl8llsEek7_YJOc3L0WQzHgywUOql
+X-Authority-Analysis: v=2.4 cv=GtVPO01C c=1 sm=1 tr=0 ts=6932e2b4 cx=c_pps
+ a=AKZTfHrQPB8q3CcvmcIuDA==:117 a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10
+ a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22 a=gEfo2CItAAAA:8 a=VwQbUJbxAAAA:8
+ a=GzXPYxtLnhddMOALZxQA:9 a=QEXdDO2ut3YA:10 a=pF_qn-MSjDawc0seGVz6:22
+ a=sptkURWiP4Gy88Gu7hUp:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-05_04,2025-12-04_04,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 lowpriorityscore=0 priorityscore=1501 malwarescore=0 bulkscore=0
+ adultscore=0 suspectscore=0 impostorscore=0 clxscore=1015 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512050098
 
-On Fri, Dec 5, 2025 at 3:05=E2=80=AFAM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
+On Fri, Dec 5, 2025 at 6:44=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.org=
+> wrote:
 >
-> Il 05/12/25 09:10, Krzysztof Kozlowski ha scritto:
-> > On 19/11/2025 18:51, Frank Wunderlich wrote:
-> >> From: Frank Wunderlich <frank-w@public-files.de>
+> On 05/12/2025 13:58, Mrinmay Sarkar wrote:
+> >>>  1 file changed, 114 insertions(+)
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-ep-sa825=
+5p.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-ep-sa8255p.yaml
+> >>> new file mode 100644
+> >>> index 0000000000000000000000000000000000000000..970f65d46c8e2fa4c4466=
+5cb7a346dea1dc9e06a
+> >>> --- /dev/null
+> >>> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie-ep-sa8255p.yaml
+> >>> @@ -0,0 +1,114 @@
+> >>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >>> +%YAML 1.2
+> >>> +---
+> >>> +$id: http://devicetree.org/schemas/pci/qcom,pcie-ep-sa8255p.yaml#
+> >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >>> +
+> >>> +title: Qualcomm firmware managed PCIe Endpoint Controller
+> >>> +
+> >>> +description:
+> >>> +  Qualcomm SA8255p SoC PCIe endpoint controller is based on the Syno=
+psys
+> >>> +  DesignWare PCIe IP which is managed by firmware.
+> >>> +
+> >>> +maintainers:
+> >>> +  - Manivannan Sadhasivam <mani@kernel.org>
+> >>> +
+> >>> +properties:
+> >>> +  compatible:
+> >>> +    const: qcom,sa8255p-pcie-ep
+> >>> +
+> >>> +  reg:
+> >>> +    minItems: 6
 > >>
-> >> Build devicetree binaries for testing overlays and providing users
-> >> full dtb without using overlays.
+> >> Why is this flexible?
+> >
+> > The reason for `minItems: 6` is that the DMA register space can be
+> > skipped if DMA is not used.
+>
+> But the hardware has this anyway, so this must be here. You do not write
+> bindings depending how drivers use them in your use case.
+>
+> Either drop minItems (fixed size of array) or provide rationale in terms
+> of hardware in commit msg.
+>
+> ...
+
+Thanks Krzysztof for the feedback.
+
+ As per your suggestion, I will drop the `minItems` property for
+`reg`, `reg-names`, `interrupts`, and `interrupt-names` since the
+hardware always exposes all regions and interrupt lines.
+
+I will use a fixed-size array with `items` only.
+
+-Mrinmay
+>
+>
+> >>> +
+> >>> +  dma-coherent: true
+> >>> +
+> >>> +  num-lanes:
+> >>> +    default: 2
 > >>
-> >> Suggested-by: Rob Herring <robh+dt@kernel.org>
-> >> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
-> >> ---
-> >> resend of
-> >> https://patchwork.kernel.org/project/linux-mediatek/patch/202406080805=
-30.9436-2-linux@fw-web.de/
-> >> due to discussions here:
-> >> https://patchwork.kernel.org/project/linux-mediatek/patch/202511172113=
-06.725678-1-robh@kernel.org/
-> >>
-> >> changes:
-> >> - updated sd-nand with sata-overlay
-> >> ---
-> >>   arch/arm64/boot/dts/mediatek/Makefile | 21 +++++++++++++++++++++
-> >>   1 file changed, 21 insertions(+)
+> >> Isn't this deducible from the compatible? Do you have have different
+> >> PCIe controllers with different lanes?
 > >
-> >
-> > This looks like still not being applied and now it is a warning in
-> > Linus' tree.
-> >
-> > Can this be applied and sent as fixes?
-
-There's still one warning remaining after applying this series which I repo=
-rted:
-
-scripts/Makefile.dtbs:20: .dtbo is not applied to any base:
-mt8395-radxa-nio-12l-8-hd-panel.dtbo
-
-It's fixed in my original patch. Can you all take that and drop the bpi hun=
-ks.
-
-FWIW:
-
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+> > SA8255p has 2 pcie controllers(pcie0 and pcie1).
+> > pcie0 supports 2 lanes, and pcie1 supports 4 lanes.
+>
+> That's ok, thanks.
+>
+>
+> Best regards,
+> Krzysztof
 
