@@ -1,190 +1,130 @@
-Return-Path: <devicetree+bounces-244655-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244653-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D270CA7921
-	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 13:32:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 75CA9CA790C
+	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 13:30:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C53E630C6A4C
-	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 12:31:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E1FC3303E03D
+	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 12:30:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB1A432F770;
-	Fri,  5 Dec 2025 12:31:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6140A32720D;
+	Fri,  5 Dec 2025 12:30:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s2aF1Utt"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HDb7a5Nd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f175.google.com (mail-pg1-f175.google.com [209.85.215.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C0F42DF13A;
-	Fri,  5 Dec 2025 12:31:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C6FA1A256E
+	for <devicetree@vger.kernel.org>; Fri,  5 Dec 2025 12:30:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764937903; cv=none; b=TNA3w0QQ3pjyQI4dx/Staatv8nVrwEmaAPORemzscS22HSU3EtT03g1JQwG91NFzylDgTAzNRiSrpgOhIVyblg0rDjH9yEs7+q3NBepvJGAfXpmt8vMJJ07gmRfW7Wd2NQ0DuWcHEdpRtpfbArn5ypqg0l+ekceM/ioAYJCrFSQ=
+	t=1764937835; cv=none; b=ahf0to454hrrhHUo4PgB3wzqVR0KkDZ4wORe4Ov0w6cxLuIJCPI2gsLy1EY1AgHi6Z9jpHeoF2Sy0epVRiKD10q//Ok2u6b3P8dP/IzoiKiY2wWpv+TMrBXkZIQ22yOG6ZXY3YOsGVzJi1bGBSwdSHGH517ng0abgSX9/bA9EXQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764937903; c=relaxed/simple;
-	bh=QwV3QL0wFxzUc3jFA7W7pQywOAAELCvAXdlX0XxremQ=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=ja6UkgtEAYSKLh//Vt/s4/9tuayHAcM5txQ4OpeTY9miBbFEeWImpwTx6alPZqMrbwpA1uQwvITaclv20YHkgOXc/NsT3lExfjJORTQDV9AFZHZ4Qu8vy4efVZThemn/p0Y1hprPAfWjhfGEFFCPd/ZV7mrd6Q1LcnsEj1ruZGg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s2aF1Utt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1049C4CEF1;
-	Fri,  5 Dec 2025 12:31:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764937903;
-	bh=QwV3QL0wFxzUc3jFA7W7pQywOAAELCvAXdlX0XxremQ=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=s2aF1UttlGzfB0mRECA+J+4e4PLo/cecKeL9OaOEJA7PtPkG1z5W/0TPGJigJSAY2
-	 mkwEvC/Z/IogEca/y891jRxG+nnmfnF3W5DpV3ITM1ghqjPXN06xJRbhV9Nad+cwxz
-	 ftRpdb45NJQmyiAvW2YN5vbDoGyCkWqPqdvsh9VmgywBbWjyrhD51co6Ilap4x0319
-	 /jql3pzMY7WsHa1T26krw6eRDgeks1OpIdFtszlHs5z+YFD8eH9B4VGPIsK0zi0+R2
-	 EbDKaWDTnrXz2L13HCor0BYZACsMofllB1X+Os6YLA+ENSGyhCqUfjiC4HJc47MDz1
-	 6E53uhTmXuoPQ==
-Date: Fri, 05 Dec 2025 06:31:40 -0600
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+	s=arc-20240116; t=1764937835; c=relaxed/simple;
+	bh=4mbe29jPvHe5+nxFoC4URBIJzmlwrissieRk78dV2aQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=UAu2p1TrsiaFnFcLUb7DEDqMtOWGnFyYDrp45/LpgJflEU86iG1u6pXw+1j6G8az+0gyb5WvPHOAvD61oXYSudq8qGlg6ezpOMsS9tswK8Hb2MOFUCztyuKrbI9ICTLJkXA9i8fuyQJLvv+MIb3891g2c9qvC/BUG96hzS9qfVI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HDb7a5Nd; arc=none smtp.client-ip=209.85.215.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f175.google.com with SMTP id 41be03b00d2f7-bd1ce1b35e7so1389104a12.0
+        for <devicetree@vger.kernel.org>; Fri, 05 Dec 2025 04:30:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1764937831; x=1765542631; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=WvQc9yTuqlOjoJmvorMP2zm/sODzUXr4OMWqekW9i3c=;
+        b=HDb7a5NdQPrq7SBcHgaY7Ut/amnvBvFJVI9UMEcrrbHhEUQrh/G23Lv0bfcy96hZGJ
+         yU2hYbmwAUdZi+9HEOEkdN72ZX0lJ6jzayPfozh1kOaPL0Vtb+f63MRME4JD9s2cfCcl
+         mC+eWendet8nH0fQkoeXQAYglSnpsGJW9UHb5CmDS8GgOHCeTYtGMoaUjg/jC7OJEcAs
+         LYbmvt62fvKu0wck5+T6SG3GnYcabVMPF5nSBOxj7XT0pE8d0Ztj9wjtbn6O9lPqLumr
+         yJoP/yhc3kHw1BB2PmSaOh8PjWwhHxNauygRNFQ5FekSDIsji4dZzWUXeab85HuZ6ieE
+         4oGA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764937831; x=1765542631;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=WvQc9yTuqlOjoJmvorMP2zm/sODzUXr4OMWqekW9i3c=;
+        b=VpLmxXyP27EhW1eL2QF8x2q21LHxxEJpwzw+ZDpNx7AvYhduP9ALrtn5v++Dv8QB0o
+         hIHOb4XST+V8KyhdZGQCGbbkWUIhmu0My4BIIni/EY+EN7qfrH+fs0deHnAolpUdywiT
+         CLvPc/+iBQZOXAK1RnV96HiUkOq3/oFqEOUGYL/E42/CYS8wXwxictLqG9RDWw1LS9dW
+         pdYedzOge0E9o+cg1O8kNFxey/Y8iQ3XRQDo8iRSqAoUPH+eSzHOJIQp8RJtcZccf+kH
+         xU6js6uwjnCmnaRGbDikgACaC/vVZ9PiOHAw2JvDuORsMz6C7M7LBoneNNL2oG7yuAeN
+         VVNQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX1KZrvmMT4oYX/yhqaYMeOR0z/fTiPGREOrofRZUUAALR1ZsTXmzY6kTYHXeT5ybGYNk++7agQt5Ug@vger.kernel.org
+X-Gm-Message-State: AOJu0YyOIRPREvg/Te2RBnPB5v1p73aKBRMhaHRqiuxrpBYgC/8ACswQ
+	OZdyuU4nT5AK1u9md4NuFCFnZMb0FS1iwQFepBULa/a7Opb54pnxNT2y
+X-Gm-Gg: ASbGnctVo2qc6yt28J6cE0DfCiRwY8oakI2HuY9yH7OjRUjrSahhr0CO5RJdxyrdDOu
+	uzyOjacnwe4oS4GODdF8MylpW983+cPAmfgBUr5zWs/B2YQAyYFYCv0EFlIUbG74hjYN6Eq7ELg
+	TWSlCrZedEhPjNdgcjSTb0Igbt6tJ27vmPlYzGsySOm/UDmoe/ZivZ7RZguI3bAXAXnnKR+9d5m
+	k5PqIwGbNEd4TtVqsyblcOD+iNpVKLQqgnB+2gxY8SfZUfm32rWUq8QtZJKrGv7Fa8g1oQ8JRuS
+	6PF20oG7PHQ4iWjAVWts+uAHD1ecR+uxsdu8qFydU9Ls3H/4cgcKZb0+aRxmZHaMeQpnjwdr3vc
+	jyrm99jDX7NfrRzzJM23sI2AWdt7nil9bpPvmedm+CV9RElR3bS5UBun5iA7jow6VIjRJgiNbQ6
+	/FHyB89w6wexFaG3m+9yCB
+X-Google-Smtp-Source: AGHT+IG1w6AqAdjpiEW7wjkCwb9maP3V0YHpY8O2ibmOVgIoRsAmTpquVm5wmuPOFlElSwJ0pIUg/g==
+X-Received: by 2002:a05:693c:2c09:b0:2a4:3594:72d5 with SMTP id 5a478bee46e88-2ab92d545d2mr7178256eec.4.1764937830922;
+        Fri, 05 Dec 2025 04:30:30 -0800 (PST)
+Received: from localhost ([2804:30c:2712:fd00:9579:9ff6:e506:6147])
+        by smtp.gmail.com with UTF8SMTPSA id 5a478bee46e88-2aba8395d99sm20637786eec.1.2025.12.05.04.30.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 05 Dec 2025 04:30:30 -0800 (PST)
+Date: Fri, 5 Dec 2025 09:32:04 -0300
+From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
+To: Tomas Melin <tomas.melin@vaisala.com>
+Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+	linux-kernel@vger.kernel.org, jic23@kernel.org, nuno.sa@analog.com,
+	dlechner@baylibre.com, andy@kernel.org,
+	Michael.Hennerich@analog.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, corbet@lwn.net
+Subject: Re: [PATCH v3 3/3] Docs: iio: Add AD4134
+Message-ID: <aTLQxIGc5jMgQnnx@debian-BULLSEYE-live-builder-AMD64>
+References: <cover.1764708608.git.marcelo.schmitt@analog.com>
+ <69b230190abb4cd76ad9eb25e2bde51caaa23d9a.1764708608.git.marcelo.schmitt@analog.com>
+ <19d5c51d-41f3-446a-aced-5be2fe6ec0d2@vaisala.com>
+ <aTGpgEFew2vP1CTG@debian-BULLSEYE-live-builder-AMD64>
+ <49465e36-882c-41c2-a8bb-3c2e87bcdfd7@vaisala.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-kernel@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org, 
- Georgy.Yakovlev@sony.com, sanastasio@raptorengineering.com, lee@kernel.org, 
- conor+dt@kernel.org, robh+dt@kernel.org, devicetree@vger.kernel.org
-To: Timothy Pearson <tpearson@raptorengineering.com>
-In-Reply-To: <20251204185015.1364439-2-tpearson@raptorengineering.com>
-References: <20251204185015.1364439-1-tpearson@raptorengineering.com>
- <20251204185015.1364439-2-tpearson@raptorengineering.com>
-Message-Id: <176493761149.3641021.4564195459068416142.robh@kernel.org>
-Subject: Re: [PATCH v5 1/4] dt-bindings: mfd: Add sony,cronos-smc
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <49465e36-882c-41c2-a8bb-3c2e87bcdfd7@vaisala.com>
 
-
-On Thu, 04 Dec 2025 12:50:12 -0600, Timothy Pearson wrote:
-> From: Shawn Anastasio <sanastasio@raptorengineering.com>
+On 12/05, Tomas Melin wrote:
+> Hi,
 > 
-> The Sony Cronos Platform Controller is a multi-purpose platform controller
-> that provides both a watchdog timer and an LED controller for the Sony
-> Interactive Entertainment Cronos x86 server platform. As both functions
-> are provided by the same CPLD, a multi-function device is exposed as the
-> parent of both functions.
+> On 04/12/2025 17:32, Marcelo Schmitt wrote:
+> > On 12/03, Tomas Melin wrote:
+> >> Hi,
+> >>
+> >> On 02/12/2025 22:55, Marcelo Schmitt wrote:
+> >>> Add initial documentation for the ad4134 IIO driver.
+> >>
+> >> I wonder is there some information in here that is not readily available
+> >> in the device datasheet? After all, isn't idea with this file to
+> >> document peculiarities that are not easily found elsewhere?
+> > 
+> > You are correct, these docs are mostly from data sheet info.
+> > The main idea of having the doc is to make clear what peripheral connection
+> > schema is currently supported.
+> > Because AD4134 is both flexible and somewhat extensible in the way it can be
+> > connected to the host, we could have different wiring configurations, for
+> > example
 > 
-> Add a DT binding for this device.
-> 
-> Signed-off-by: Shawn Anastasio <sanastasio@raptorengineering.com>
-> Signed-off-by: Timothy Pearson <tpearson@raptorengineering.com>
-> ---
->  .../bindings/mfd/sony,cronos-smc.yaml         | 115 ++++++++++++++++++
->  1 file changed, 115 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/sony,cronos-smc.yaml
-> 
+> Thanks for your explanation. My humble opinion is that it would be
+> enough to mention in the commit message for the driver being added, or
+> in the device-tree bindings that basic I/O mode is only configuration
+> that is currently supported.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Okay, I'll drop the docs from v4.
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/mfd/sony,cronos-smc.yaml:115:7: [error] no new line character at the end of file (new-line-at-end-of-file)
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/sony,cronos-smc.yaml: Unresolvable reference: leds-class-multicolor.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/sony,cronos-smc.example.dtb: smc@3f (sony,cronos-smc): $nodename:0: 'smc@3f' does not match '^(pmic|timer|watchdog)(@.*|-([0-9]|[1-9][0-9]+))?$'
-	from schema $id: http://devicetree.org/schemas/mfd/sony,cronos-smc.yaml
-Traceback (most recent call last):
-  File "/usr/local/lib/python3.13/dist-packages/referencing/_core.py", line 428, in get_or_retrieve
-    resource = registry._retrieve(uri)
-  File "/usr/local/lib/python3.13/dist-packages/dtschema/validator.py", line 426, in retrieve
-    return DRAFT201909.create_resource(self.schemas[uri])
-                                       ~~~~~~~~~~~~^^^^^
-KeyError: 'http://devicetree.org/schemas/mfd/leds-class-multicolor.yaml'
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "/usr/local/lib/python3.13/dist-packages/referencing/_core.py", line 682, in lookup
-    retrieved = self._registry.get_or_retrieve(uri)
-  File "/usr/local/lib/python3.13/dist-packages/referencing/_core.py", line 435, in get_or_retrieve
-    raise exceptions.Unretrievable(ref=uri) from error
-referencing.exceptions.Unretrievable: 'http://devicetree.org/schemas/mfd/leds-class-multicolor.yaml'
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "/usr/local/lib/python3.13/dist-packages/jsonschema/validators.py", line 463, in _validate_reference
-    resolved = self._resolver.lookup(ref)
-  File "/usr/local/lib/python3.13/dist-packages/referencing/_core.py", line 686, in lookup
-    raise exceptions.Unresolvable(ref=ref) from error
-referencing.exceptions.Unresolvable: leds-class-multicolor.yaml#
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "/usr/local/bin/dt-validate", line 8, in <module>
-    sys.exit(main())
-             ~~~~^^
-  File "/usr/local/lib/python3.13/dist-packages/dtschema/dtb_validate.py", line 158, in main
-    sg.check_dtb(filename)
-    ~~~~~~~~~~~~^^^^^^^^^^
-  File "/usr/local/lib/python3.13/dist-packages/dtschema/dtb_validate.py", line 95, in check_dtb
-    self.check_subtree(dt, subtree, False, "/", "/", filename)
-    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.13/dist-packages/dtschema/dtb_validate.py", line 88, in check_subtree
-    self.check_subtree(tree, value, disabled, name, fullname + name, filename)
-    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.13/dist-packages/dtschema/dtb_validate.py", line 88, in check_subtree
-    self.check_subtree(tree, value, disabled, name, fullname + name, filename)
-    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.13/dist-packages/dtschema/dtb_validate.py", line 88, in check_subtree
-    self.check_subtree(tree, value, disabled, name, fullname + name, filename)
-    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.13/dist-packages/dtschema/dtb_validate.py", line 83, in check_subtree
-    self.check_node(tree, subtree, disabled, nodename, fullname, filename)
-    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.13/dist-packages/dtschema/dtb_validate.py", line 34, in check_node
-    for error in self.validator.iter_errors(node, filter=match_schema_file,
-                 ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-                                            compatible_match=compatible_match):
-                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.13/dist-packages/dtschema/validator.py", line 448, in iter_errors
-    for error in self.DtValidator(schema, registry=self.registry).iter_errors(instance):
-                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
-  File "/usr/local/lib/python3.13/dist-packages/jsonschema/validators.py", line 384, in iter_errors
-    for error in errors:
-                 ^^^^^^
-  File "/usr/local/lib/python3.13/dist-packages/jsonschema/_keywords.py", line 296, in properties
-    yield from validator.descend(
-    ...<4 lines>...
-    )
-  File "/usr/local/lib/python3.13/dist-packages/jsonschema/validators.py", line 432, in descend
-    for error in errors:
-                 ^^^^^^
-  File "/usr/local/lib/python3.13/dist-packages/jsonschema/_keywords.py", line 23, in patternProperties
-    yield from validator.descend(
-        v, subschema, path=k, schema_path=pattern,
-    )
-  File "/usr/local/lib/python3.13/dist-packages/jsonschema/validators.py", line 432, in descend
-    for error in errors:
-                 ^^^^^^
-  File "/usr/local/lib/python3.13/dist-packages/jsonschema/_keywords.py", line 275, in ref
-    yield from validator._validate_reference(ref=ref, instance=instance)
-               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.13/dist-packages/jsonschema/validators.py", line 465, in _validate_reference
-    raise exceptions._WrappedReferencingError(err) from err
-jsonschema.exceptions._WrappedReferencingError: Unresolvable: leds-class-multicolor.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.kernel.org/project/devicetree/patch/20251204185015.1364439-2-tpearson@raptorengineering.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Thanks,
+Marcelo
 
