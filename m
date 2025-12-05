@@ -1,181 +1,106 @@
-Return-Path: <devicetree+bounces-244565-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244568-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E94FDCA6F69
-	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 10:43:01 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CD56CA6B8F
+	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 09:37:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id AFFA435F7ECC
-	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 08:31:24 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id B9976302E117
+	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 08:37:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDB4D33A007;
-	Fri,  5 Dec 2025 08:02:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EhQbPuVn"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25BDC2FF65F;
+	Fri,  5 Dec 2025 08:12:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from inva020.nxp.com (inva020.nxp.com [92.121.34.13])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5952346770
-	for <devicetree@vger.kernel.org>; Fri,  5 Dec 2025 08:01:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93384303A35;
+	Fri,  5 Dec 2025 08:11:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764921724; cv=none; b=GsOt24McmT3NCqPS7ZmSr2Oyb85xp3dzmVxakyz9HQTvckJvwA/V3uodBvZeFEl0zxw5AkLlJ105ZHU2RMWSYradS+jffQCo2DpJIUaNCkDgpD+5P1fmLGDlPqWubjfiFc5NFBIsDLQuRKgXeH+ng74JvYdQiLnKpSv9a5n0uis=
+	t=1764922324; cv=none; b=cApN9ZYuHnrjmZZepf/vPRr8vC0jYeD/178NjaELRWA0s6Q0zNLeR7dt3SVYV8OJIUqtP4Bs2+QO43U9Mh4vvbDRMdNPWHHFcafpxWuq9MLAwDQ9nXRYrbP9tBtaF77k3j2qvrwhNx3jQycJcCsKJ21ADpMgNqMy3sAqG9EFiaE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764921724; c=relaxed/simple;
-	bh=n46m8YV1SPjqmDDDhBwIkPV1tptJLwOdSlnleFqOCts=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=m4PD8AMx0J2XUOnJMB/Szqj+hvUiMTqNl4Nc/za8GpGahJ2Aj8XT59Xcd2pXVWNGKT5u0gF6P2sgeX/n7MP8sHFn52EDNtJltQ+wOl52EOOexMcpTjijwkBZOnRV6x7yQl+zLVCsLiiEu3w6KYw+yrVKOUhRAnXy+3xWwZKYvP0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EhQbPuVn; arc=none smtp.client-ip=209.85.208.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-6418738efa0so3202573a12.1
-        for <devicetree@vger.kernel.org>; Fri, 05 Dec 2025 00:01:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1764921707; x=1765526507; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jZqjFJmgsvyAV8OLMiyLDL43e0L9PCAK+2slIeGx9Dk=;
-        b=EhQbPuVnNh9vj8+CtutnsmC08QiCfNWGB9D0ufGxvZpiAZajwB+NYgcB9zfWRh33kx
-         Eia6+RlF6MF3v4g9NnvZYu4wDbrfHZVSlRoORLCZc2a0XTwrvxPWLai4LNbGfNzWqIuo
-         1ZynycFQW/XXcq8cVzpygMV++fDpivSc6TEHWFzB5nUjOUSDK7fY5vfNAWvqaAZyPkOP
-         nx6K1avM6hb2BL1odIfm0Bh4Ud/w9FWBS4KXhYWJvzxrq5yBOD3O8qQBt7AIlzlZy7z2
-         3d/6hceM5c43MKNTUfRh7XxsvjucuT3/1ZAlG11tBBeSYBvScu7bKthya9sMU80CcotV
-         c5QA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764921707; x=1765526507;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=jZqjFJmgsvyAV8OLMiyLDL43e0L9PCAK+2slIeGx9Dk=;
-        b=USl9OKC41SsqP9sXpcAIonZYEmEEoq2k2T8p5mOb+iQGPGg6WyGDpVroeCcxSNfDCE
-         Uh3nSjQbMfyzntP4FUyrHrwwdrRuYMYpqdH+UF7kjgrNsS9W+n50HvFwXdaWDySBMLzY
-         LtQKSsYf0w4PLKo4JjEzAz8lOwO53FuyOQDP/8tuO4WOdsIKpuxvw5yj9WwnYc0TQAb1
-         H8MMDMATY5Trg7fy0KPeEZR9iU8wuKGjQ5uA5rdDCJeJpcu2BFWFWOz7gjva/VszvZO0
-         IFZJDLjLmUDUqDqapmTB51lkHvfFgLiwE0tW3wQP+iMk4dp6BoxqNFwX6H+PfuiLsCui
-         ODoA==
-X-Forwarded-Encrypted: i=1; AJvYcCVTdeG76YKOwblefMWr4zRgg7X8FxjgJJ6MH3OJg6oOufCKsaj79UCtbaNZSgM3lMHMDkcRP7UKi7N4@vger.kernel.org
-X-Gm-Message-State: AOJu0YzFCVABnXmI5Xya6I/su5AQH6VaYe4Ok0S4jIde9IQ+VGrZhoj1
-	/7IF0SVmka3ywjb3MP5TxLijM7DgGxoSj7QkLuHV6Tp4Ew9uNngk9KXsI8dOFQG4u/0k1k90dpm
-	doiwuDBx+jH2QCaPhh+2ZXj0CjN8jOcE=
-X-Gm-Gg: ASbGncuTPkSRl6NxM87anulVYV8kRI6wHvUaG/j2882vaO3zHvA0zmWgSNXXAZAG2Wx
-	6UqoeWWDxWV8nVPsiYihA6C9ZA3YqclMWRkKRQ7Tpa0JZyd8djTZdOl0KoJRhr81lw1kNZJNxRy
-	rX6Ja5aj+XZ7HpcP2rPDzFg/0o3919lNLbpvSvfDKoh4niDNOreT7Jqlf6s05eR8EsYjfe5yChN
-	46kOAz3xJFY0xWqQUBdEk1wlCdlK/8lDh+9jdCSg5X5cdYwNTnIjgdm1qbKaJyhNH9pPw==
-X-Google-Smtp-Source: AGHT+IFE6UJtYE9mIS1oruoEjp4qDr83WNERh/nzYDna+THuvhPLJ9HPxcLjvEK47v4D3XzW4tAm0F6Bv4lRC3CXaA8=
-X-Received: by 2002:a05:6402:518b:b0:641:66cc:9d91 with SMTP id
- 4fb4d7f45d1cf-6479c519e8bmr7371624a12.27.1764921707253; Fri, 05 Dec 2025
- 00:01:47 -0800 (PST)
+	s=arc-20240116; t=1764922324; c=relaxed/simple;
+	bh=d2zmFOf8MzVNNVznnj/CaVvJLkXTZi4n4HgehrscTF8=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=pY3z4QjovhKbG0/cMSM/RMDPqv7qBBkxX1bu2JaGXeIduQwPE2tVREvtVoQdW5VCA01/mwtljc/zUfkIMa91yLQZ2zNT56sb9w8VOMtQ5j8ZzuQ5urgsD2zsxGaedMHQg57QI8tWxSBh+8HALB6z5glMsne8rV6hmnNCeuN/EGY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 1BFE81A11D9;
+	Fri,  5 Dec 2025 09:04:21 +0100 (CET)
+Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
+	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id D66991A18E8;
+	Fri,  5 Dec 2025 09:04:20 +0100 (CET)
+Received: from lsvm11u0000554.swis.ap-northeast-2.aws.nxp.com (lsvm11u0000554.swis.ap-northeast-2.aws.nxp.com [10.52.9.11])
+	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 9F779180007D;
+	Fri,  5 Dec 2025 16:04:18 +0800 (+08)
+From: "Yanan.Yang" <yanan.yang@nxp.com>
+Subject: [PATCH 0/2] Add NXP FRDM-IMX91S board support
+Date: Fri, 05 Dec 2025 17:03:57 +0900
+Message-Id: <20251205-imx91s-frdm-v1-0-afd6cd01c299@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251125075604.69370-1-hal.feng@starfivetech.com>
- <20251125075604.69370-5-hal.feng@starfivetech.com> <CANAwSgQSBB_yTw5rDz2w6utvjUueWJi9tWUY9oZcpNAT8Wm8iA@mail.gmail.com>
- <ZQ2PR01MB13076311CBBFE5B948F394FCE6A72@ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn>
-In-Reply-To: <ZQ2PR01MB13076311CBBFE5B948F394FCE6A72@ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Fri, 5 Dec 2025 13:31:30 +0530
-X-Gm-Features: AQt7F2rB8dLMd_Fit7Ps6bUhIfDS-utXO0oh0y7DDayDYIxfnNEaF0b56EOtKqo
-Message-ID: <CANAwSgTUqGcwcy_VBgttmzRs+v9Tp2fET43gFb=SiiFLxm2-Fg@mail.gmail.com>
-Subject: Re: [PATCH v4 4/6] riscv: dts: starfive: Add common board dtsi for
- VisionFive 2 Lite variants
-To: Hal Feng <hal.feng@starfivetech.com>
-Cc: Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <pjw@kernel.org>, 
-	Albert Ou <aou@eecs.berkeley.edu>, "Rafael J . Wysocki" <rafael@kernel.org>, 
-	Viresh Kumar <viresh.kumar@linaro.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	=?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
-	Manivannan Sadhasivam <mani@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>, 
-	Heinrich Schuchardt <heinrich.schuchardt@canonical.com>, E Shattow <e@freeshell.de>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>, 
-	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAO2RMmkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1NDIwNT3czcCkvDYt20opRcXaNkY2PLpORkozSzNCWgjoKi1LTMCrBp0bG
+ 1tQCg7hvcXQAAAA==
+X-Change-ID: 20251205-imx91s-frdm-2c339bcc2f6f
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ yanan.yang@nxp.com, qijian.guo@nxp.com, justin.jiang@nxp.com, 
+ Lei Xu <lei.xu@nxp.com>, Xiaofeng Wei <xiaofeng.wei@nxp.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1764921858; l=1206;
+ i=yanan.yang@nxp.com; s=20251205; h=from:subject:message-id;
+ bh=d2zmFOf8MzVNNVznnj/CaVvJLkXTZi4n4HgehrscTF8=;
+ b=vuk4bfFnP6+HR62Yg+1qgGUEqd5b5P9cD1fSelSs5bwfmKBFyJN+tUsMn20Z1X0j2QaJKquF3
+ GZxnqhEuM14D77AuPnPiLkwAlKIjh1UIkOYVleflOInA4PiTRNzWJqR
+X-Developer-Key: i=yanan.yang@nxp.com; a=ed25519;
+ pk=d4hHTp5SW/PyyxexLEo/3c2RAaQDwym0zuYlifH95PI=
+X-Virus-Scanned: ClamAV using ClamSMTP
 
-Hi Hal,
+This patch set introduces DeviceTree support for the NXP FRDM-IMX91S
+development board based on the i.MX91 SoC. FRDM-IMX91S is a cost-optimized
+variant of FRDM-IMX91 and differs in several hardware aspects:
 
-On Fri, 5 Dec 2025 at 13:11, Hal Feng <hal.feng@starfivetech.com> wrote:
->
-> > On 05.12.25 01:05, Anand Moon wrote:
-> > Hi Hal,
-> >
-> > On Tue, 25 Nov 2025 at 13:27, Hal Feng <hal.feng@starfivetech.com> wrot=
-e:
-> > >
-> > > Add a common board dtsi for use by VisionFive 2 Lite and VisionFive 2
-> > > Lite eMMC.
-> > >
-> > > Acked-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-> > > Tested-by: Matthias Brugger <mbrugger@suse.com>
-> > > Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
-> > > ---
-> > >  .../jh7110-starfive-visionfive-2-lite.dtsi    | 161 ++++++++++++++++=
-++
-> > >  1 file changed, 161 insertions(+)
-> > >  create mode 100644
-> > > arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-lite.dtsi
-> > >
-> > > diff --git
-> > > a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-lite.dtsi
-> > > b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-lite.dtsi
-> > > new file mode 100644
-> > > index 000000000000..f8797a666dbf
-> > > --- /dev/null
-> > > +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-lite.=
-d
-> > > +++ tsi
-> > > @@ -0,0 +1,161 @@
-> > > +// SPDX-License-Identifier: GPL-2.0 OR MIT
-> > > +/*
-> > > + * Copyright (C) 2025 StarFive Technology Co., Ltd.
-> > > + * Copyright (C) 2025 Hal Feng <hal.feng@starfivetech.com>  */
-> > > +
-> > > +/dts-v1/;
-> > > +#include "jh7110-common.dtsi"
-> > > +
-> > > +/ {
-> > > +       vcc_3v3_pcie: regulator-vcc-3v3-pcie {
-> > > +               compatible =3D "regulator-fixed";
-> > > +               enable-active-high;
-> > > +               gpio =3D <&sysgpio 27 GPIO_ACTIVE_HIGH>;
-> > > +               regulator-name =3D "vcc_3v3_pcie";
-> > > +               regulator-min-microvolt =3D <3300000>;
-> > > +               regulator-max-microvolt =3D <3300000>;
-> > > +       };
-> > > +};
-> >
-> > The vcc_3v3_pcie regulator node is common to all JH7110 development
-> > boards.
-> > and it is enabled through the PWREN_H signal (PCIE0_PWREN_H_GPIO32).
-> >
-> > VisionFive 2 Product Design Schematics below [1] https://doc-
-> > en.rvspace.org/VisionFive2/PDF/SCH_RV002_V1.2A_20221216.pdf
-> >
-> > Mars_Hardware_Schematics
-> > [2] https://github.com/milkv-mars/mars-
-> > files/blob/main/Mars_Hardware_Schematics/Milk-
-> > V_Mars_SCH_V1.21_2024-0510.pdf
->
-> No, GPIO32 is connected to the WAKE pin, it is not used to control the PC=
-Ie slot power.
->
-Ok, GPIO32 is used for pcie0 (PCIE0_PWREN_H_GPIO32)
-Only PCIE0 supports power for the 4-port USB ports.
+- 512MB LPDDR4 (FRDM-IMX91 uses 1GB)
+- 256MB FlexSPI-NAND (FRDM-IMX91 uses 8GB eMMC)
+- Single GbE port (FRDM-IMX91 has dual GbE)
+- PMIC PF9453 (FRDM-IMX91 uses PCA9451A)
 
-As per VisionFive 2 Single Board Computer Quick Start Guide
-USB30 4 =C3=97 USB 3.0 ports (multiplexed with a PCIe 2.0 1x lane).
+This patch has been tested on FRDM-IMX91S board and verified for basic
+functionality.
 
-> Best regards,
-> Hal
+For more details about the FRDM-IMX91S board, see:
+https://www.nxp.com/design/design-center/development-boards-and-designs/FRDM-IMX91S
 
-Thanks
--Anand
+Signed-off-by: Yanan.Yang <yanan.yang@nxp.com>
+---
+Yanan.Yang (2):
+      dt-bindings: arm: fsl: Add FRDM-IMX91S board
+      arm64: dts: freescale: add NXP FRDM-IMX91S board support
+
+ Documentation/devicetree/bindings/arm/fsl.yaml     |   1 +
+ arch/arm64/boot/dts/freescale/Makefile             |   1 +
+ .../boot/dts/freescale/imx91-11x11-frdm-s.dts      | 692 +++++++++++++++++++++
+ 3 files changed, 694 insertions(+)
+---
+base-commit: bc04acf4aeca588496124a6cf54bfce3db327039
+change-id: 20251205-imx91s-frdm-2c339bcc2f6f
+
+Best regards,
+-- 
+Yanan.Yang <yanan.yang@nxp.com>
+
 
