@@ -1,81 +1,64 @@
-Return-Path: <devicetree+bounces-244721-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244720-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDEFDCA856B
-	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 17:17:43 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7840ACA83E4
+	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 16:45:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 237F3345E421
-	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 15:45:14 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id F0F7E305C322
+	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 15:45:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56B3B34B40C;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4434934BA4C;
 	Fri,  5 Dec 2025 15:07:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="A0PRu4aP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TAIrLK5l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D504F34A796;
-	Fri,  5 Dec 2025 15:07:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19B8E34B68C;
+	Fri,  5 Dec 2025 15:07:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764947275; cv=none; b=o4iMfEp4GwqqIQycqCzUheoHhxSdNtFTqxxjxqDYfx8rD0DMldf7HUMqdJUcMlThASFBmGJlt9RuEO8xZ7N1DWRs3eaPlZzan1INubRyh3/pZksXw6MJ2czJObPwhy+GgronWAyUlJzDJBkXZtXJ6aKAC6EWnNBt4dtds6TqNyU=
+	t=1764947275; cv=none; b=RtIVTOZn/6OQlHi1fOD82zyqjz8Hem5dNE/1TD9EI952lPJkoJAsieXbi+iRa/1LtiNtua01WKFRgXFUUqN9KPrSib8taJtmIefc32em8RWxf61UDXgN4t8vg/kwrnQphHrxVL+aFIW+VtL9787KIx4O0nQI+iPuS6xa37xUrL4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1764947275; c=relaxed/simple;
-	bh=+yu0wE0kaKy310FXiVjofPJXEiQOEMZpkUyP8EfatQs=;
+	bh=Btrf2pkJCWZijzZcvy/muKQ3+oGgoj6S6CYvcVWIQrk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QAohf6PAKIAzNdWEBbLE8rWFUD6+MrTjay8iHdDtT2mVyqZKFli1AtFxjB3nrOTEwcIdnWpyZD4z2WxtipiI/C7HLDyfPfHfD75rcRFG5A0MfaXVN5P4m1PPrvd5nq4FM7N+10dJ1hypUOKi1Q9IVr5oM55m5oMXyNIWpRiPfyc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=A0PRu4aP; arc=none smtp.client-ip=192.198.163.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1764947273; x=1796483273;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=+yu0wE0kaKy310FXiVjofPJXEiQOEMZpkUyP8EfatQs=;
-  b=A0PRu4aPqv8+EnU+IvbDpgxbJXe+X+uX5Ph0fSz3OTrPL4F1zZzMKZJL
-   8oResMF1KSjtRPxds407l81XDWqnwvU5tKhfVDFR76heX+O21raQK0ujT
-   lOmjpQ5iAAloyPYRLXXvd1Ghr0ylfByaNmXb2wWFuXW2dwNIVvIkEEwWr
-   W90Pw1O0QuULpE19TXI2pT4mKtFHxoCRvkjzUHzMkey6Y2rwwXqKFXkPc
-   meb502TehaCTPZkB2CJm2lXYbD113XzqPoDFurZeNdK6vQ76FbGKRETjM
-   Ap+MXGUmBS5thl6U2Gfd+fFGQ9FO91rOLLIlSXkq/DnIgMw5i4yLQoy+F
-   g==;
-X-CSE-ConnectionGUID: CIqAx9arS2+f4rUFdbOrCA==
-X-CSE-MsgGUID: RQ4qOYLMTQCa/rpfEooGiA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11633"; a="54528125"
-X-IronPort-AV: E=Sophos;i="6.20,252,1758610800"; 
-   d="scan'208";a="54528125"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
-  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Dec 2025 07:07:50 -0800
-X-CSE-ConnectionGUID: 0quxj2OgRs+SSE4yhb3xUA==
-X-CSE-MsgGUID: ZsZubdahQ5W0oVI4rzTv4Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,252,1758610800"; 
-   d="scan'208";a="218666949"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.244.83])
-  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Dec 2025 07:07:46 -0800
-Date: Fri, 5 Dec 2025 17:07:44 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=TwWKhPQu5VrjhSjLAM2tdgaO9BM+xqH+dMxZYh3EKJCKqCaejGbA2q+Zq2owk99cwzaMSiWB4TbXiUBUHsf2YwrTR4G8C7iiYzcpAn3JZMVypWyxxxntbhY/dGc93wT9RBazcoXXjBf7kkJxj+NNOHMeWiDbP38DUXaNcsM6VVc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TAIrLK5l; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1C3B9C4CEF1;
+	Fri,  5 Dec 2025 15:07:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764947274;
+	bh=Btrf2pkJCWZijzZcvy/muKQ3+oGgoj6S6CYvcVWIQrk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=TAIrLK5lY6tbIMZDXSaylFE0NQrndOHSyUGk0YaIxSZtnw/TdkoI3YjlqHA7OYtZO
+	 GTsnIpz2g1H6OBepN9YbTEtS/ML+DEM2HpHfCHI3so2uL+u4zE2MvbqhA/qGlsRNMo
+	 tyxAUxnmas8OwCUVJznh84YNC6ZGPLNfQV0APcvwtBvTqzt9VOiZnd8Wk5A9NW/VMJ
+	 qK+az0ifq91qYJ1iqtgRCctAtNyZdi1oh8lGPP8tPUqspCujiwkPu15TIpWEIzROf7
+	 YlJke5tJGKyHMX5s4V3BMX7Wb9HdMIHUa54sMBIYOf8dJC7FtIeKRzRAcNGna1gAsH
+	 Npiav9APMasgg==
+Date: Fri, 5 Dec 2025 09:07:51 -0600
+From: Rob Herring <robh@kernel.org>
+To: Maud Spierings <maudspierings@gocontroll.com>
+Cc: Lee Jones <lee@kernel.org>, Daniel Thompson <danielt@kernel.org>,
+	Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Dragos Bogdan <dragos.bogdan@analog.com>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org
-Subject: Re: [PATCH v4 2/2] iio: frequency: adf4377: add clk provider support
-Message-ID: <aTL1QB1hPOkU0MJG@smile.fi.intel.com>
-References: <20251205143848.989-1-antoniu.miclaus@analog.com>
- <20251205143848.989-3-antoniu.miclaus@analog.com>
+	Conor Dooley <conor+dt@kernel.org>, Helge Deller <deller@gmx.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, dri-devel@lists.freedesktop.org,
+	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-fbdev@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v6 1/4] dt-bindings: backlight: Add max25014 support
+Message-ID: <20251205150751.GA124954-robh@kernel.org>
+References: <20251201-max25014-v6-0-88e3ac8112ff@gocontroll.com>
+ <20251201-max25014-v6-1-88e3ac8112ff@gocontroll.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,38 +67,165 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251205143848.989-3-antoniu.miclaus@analog.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+In-Reply-To: <20251201-max25014-v6-1-88e3ac8112ff@gocontroll.com>
 
-On Fri, Dec 05, 2025 at 04:38:46PM +0200, Antoniu Miclaus wrote:
-> Add clk provider feature for the adf4377.
+On Mon, Dec 01, 2025 at 12:53:20PM +0100, Maud Spierings wrote:
+> The Maxim MAX25014 is a 4-channel automotive grade backlight driver IC
+> with integrated boost controller.
+>
+> Signed-off-by: Maud Spierings <maudspierings@gocontroll.com>
 > 
-> Even though the driver was sent as an IIO driver in most cases the
-> device is actually seen as a clock provider.
+> ---
 > 
-> This patch aims to cover actual usecases requested by users in order to
-> completely control the output frequencies from userspace.
+> In the current implementation the control registers for channel 1,
+> control all channels. So only one led subnode with led-sources is
+> supported right now. If at some point the driver functionality is
+> expanded the bindings can be easily extended with it.
 
-Now LGTM, thanks
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
+What's the relationship between the LEDs and backlight? It's a backlight 
+plus LEDs or just 4 identical channels.
 
-...
+> 
+> ---
+>  .../bindings/leds/backlight/maxim,max25014.yaml    | 107 +++++++++++++++++++++
+>  MAINTAINERS                                        |   5 +
+>  2 files changed, 112 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/leds/backlight/maxim,max25014.yaml b/Documentation/devicetree/bindings/leds/backlight/maxim,max25014.yaml
+> new file mode 100644
+> index 000000000000..e83723224b07
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/leds/backlight/maxim,max25014.yaml
+> @@ -0,0 +1,107 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/leds/backlight/maxim,max25014.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Maxim max25014 backlight controller
+> +
+> +maintainers:
+> +  - Maud Spierings <maudspierings@gocontroll.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - maxim,max25014
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +  enable-gpios:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  power-supply:
+> +    description: Regulator which controls the boost converter input rail.
+> +
+> +  pwms:
+> +    maxItems: 1
+> +
+> +  maxim,iset:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    maximum: 15
+> +    default: 11
+> +    description:
+> +      Value of the ISET field in the ISET register. This controls the current
+> +      scale of the outputs, a higher number means more current.
 
->  #include <linux/bitfield.h>
->  #include <linux/bits.h>
->  #include <linux/clk.h>
-> +#include <linux/clk-provider.h>
->  #include <linux/clkdev.h>
+We have properties for setting the current (in uA). That can't work 
+here?
 
-+ container_of.h
-
->  #include <linux/delay.h>
->  #include <linux/device.h>
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+> +
+> +  led@0:
+> +    type: object
+> +    description: Properties for a string of connected LEDs.
+> +    $ref: common.yaml#
+> +
+> +    properties:
+> +      reg:
+> +        const: 0
+> +
+> +      led-sources:
+> +        allOf:
+> +          - minItems: 1
+> +            maxItems: 4
+> +            items:
+> +              minimum: 0
+> +              maximum: 3
+> +            default: [0, 1, 2, 3]
+> +
+> +      default-brightness:
+> +        minimum: 0
+> +        maximum: 100
+> +        default: 50
+> +
+> +    required:
+> +      - reg
+> +
+> +    additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        backlight@6f {
+> +            compatible = "maxim,max25014";
+> +            reg = <0x6f>;
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +            enable-gpios = <&gpio1 4 GPIO_ACTIVE_HIGH>;
+> +            interrupt-parent = <&gpio1>;
+> +            interrupts = <2 IRQ_TYPE_EDGE_FALLING>;
+> +            power-supply = <&reg_backlight>;
+> +            pwms = <&pwm1>;
+> +            maxim,iset = <7>;
+> +
+> +            led@0 {
+> +                reg = <0>;
+> +                led-sources = <0 1 2 3>;
+> +                default-brightness = <50>;
+> +            };
+> +        };
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 58c7e3f678d8..606ce086f758 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -15261,6 +15261,11 @@ F:	Documentation/userspace-api/media/drivers/max2175.rst
+>  F:	drivers/media/i2c/max2175*
+>  F:	include/uapi/linux/max2175.h
+>  
+> +MAX25014 BACKLIGHT DRIVER
+> +M:	Maud Spierings <maudspierings@gocontroll.com>
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/leds/backlight/maxim,max25014.yaml
+> +
+>  MAX31335 RTC DRIVER
+>  M:	Antoniu Miclaus <antoniu.miclaus@analog.com>
+>  L:	linux-rtc@vger.kernel.org
+> 
+> -- 
+> 2.52.0
+> 
 
