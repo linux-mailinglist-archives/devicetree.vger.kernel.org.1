@@ -1,112 +1,57 @@
-Return-Path: <devicetree+bounces-244861-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244860-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 031D1CA988F
-	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 23:47:25 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BF8ECA987A
+	for <lists+devicetree@lfdr.de>; Fri, 05 Dec 2025 23:44:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D4138314E453
-	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 22:46:47 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 11C39308C7B6
+	for <lists+devicetree@lfdr.de>; Fri,  5 Dec 2025 22:44:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A84F2EFD9F;
-	Fri,  5 Dec 2025 22:46:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E6A92E091D;
+	Fri,  5 Dec 2025 22:44:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="VcP8K4hz";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="eViwMG95"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rpAgb+C3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5904A2F39AD
-	for <devicetree@vger.kernel.org>; Fri,  5 Dec 2025 22:46:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29F5339FCE;
+	Fri,  5 Dec 2025 22:44:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764974806; cv=none; b=NAx/+tVgjKGo7tHwuImX29aGwbq50wHCPyMaam69c8HopIU/g+p8zH7qxqZvK0Oa85uSSZWywohhsRxGkgMpOh/ZOUCBIM0JLmzXhMja+7gvEwrBsaBvBpPsdzjyoXDpn4xH5MZ5kwMauz2Wt9sHtP2ft+nNPh1KbZzdKizBm2s=
+	t=1764974654; cv=none; b=Uaj0jBte1KDeqf79nvxCHbrQemNG8aCvhse/9YkNBLIvCDN2myDZe9WRQoprM+IKvMS/b6lQwX5+JJ3KOx/ORN9aOLA/cGskFE+pbQZOLPlrHdCL+mNfyueUGUGESJEQoS2a/hKjmXaQb2IB8PPeXUj6zh1wTiaxBsBJe9x1W24=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764974806; c=relaxed/simple;
-	bh=s54DUBlniIfTQG5fm8lfKTLEUg7RzP8W4O4OTB+4wvk=;
+	s=arc-20240116; t=1764974654; c=relaxed/simple;
+	bh=SfMTlrnwvly/vkxH6ONkFIT0K1p6Gzas0t4LGNc9lRo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RONPgl8st97/7fqk6fOEePEZLZH8DoUiE/avrO5DoSD46Q9fexHykqRwZKctbpk4LWzIGn1SNl4VQSnj8evSzVy9FlhxiABCez0BPlBRObay1BpuETNNhs0jXFcm/fW+W/zgTnOPyO8bw1Rls2R1f1e64qugff4MOdTrhmKSwrc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=VcP8K4hz; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=eViwMG95; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5B5FBNOY1077689
-	for <devicetree@vger.kernel.org>; Fri, 5 Dec 2025 22:46:43 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=rexPS3uTR6hPe7Lt/DLK2HIm
-	WtH+Q7ntibhQQMWSHMg=; b=VcP8K4hzl5ZaBLvBo2eV+vf1GM+ELNhyvzfjAwKx
-	TpT2BAAM6B8La/8+/DVVm6OHWQbT5u4o314PnHMpk/xxd0Z5hqyxJgEl3pSGO32d
-	r4pC5Vb9tY+41oILEjwUhzvc3njvz08XocBRv9ihPqXFP7qgAQ6shL1IOvLimMkC
-	8OWZ2Fqi2uIG1MIhyaSp8GensJYF8a6+Q2KXKqH7bLRGLwrfWNGpgZA8pCBJZDBG
-	RShF8tJdBNGQS9r0pdggy8EtUWW6WeLHTY5nlHd9Pzv1h/QjHxQ4NR+4s1d3DbUu
-	SHZxjTHX6+hBbzPxgDedwjHd06NNRD6n8lf1CO1PjJSYMQ==
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4aupa8u77h-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 05 Dec 2025 22:46:42 +0000 (GMT)
-Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-8b2194e266aso513828185a.3
-        for <devicetree@vger.kernel.org>; Fri, 05 Dec 2025 14:46:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1764974801; x=1765579601; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=rexPS3uTR6hPe7Lt/DLK2HImWtH+Q7ntibhQQMWSHMg=;
-        b=eViwMG952HAso90u+ue3fHA2LodYAfdzlz4qpGPk7FgjEWtqy3Njxz4sD/RIYLi/uZ
-         ajRSDClAieiIg151gO2FybTEQKf89tBqa+frzA4KzDTAHooGT0rHlewNQEy/FZ07x6YQ
-         AkfTLypf5i3dmHW59dXWi43nPNTNOAXwA2lLiKxLr1+OH7TQ0swzCj5iJDjoqBGJ8lCE
-         yiZJA8Agq3rAFRgVyqhLooT83r6jfXEtiBsBlqhcy7dMTn8SwAJw4RzHwv1LlnrRYOi7
-         aWm1Fcyhur5MgPhus2IfpE02ML+CAnG9HxeQvoKkaJoLILKH3umIb1zI6MAjZKKLzmBW
-         e/kQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764974801; x=1765579601;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=rexPS3uTR6hPe7Lt/DLK2HImWtH+Q7ntibhQQMWSHMg=;
-        b=minKQkUhp+Yjf5y+lm0UyoMmRcE8F/y8mCizDmKo9Xa8mJPiAfdBM8gLzZq3bNAvrF
-         Ljht6EYz0I2n2fPaqBn/0dVi2NedUlO4f+f1woj6sxq9JWzbz4ulI4BimdqGaeRGHshm
-         wAdEcuzkuQ2JmsN1S3KTZ/EQeoC6Jt2f57nnRNGR1E0JsfpWs1nqG5o9yd7dXW9KXBi0
-         uYD6vl8PRX/xvKRHEq1m1cy8f6oBL0qcvAxQyWJdGCsnoXS4LSp9sa5/E4ZXKt6XDV/K
-         7IEVLh9hG3ru7bGEpm3MLdJ7G0bRvJqJnc76ZcM2T6bjr+OKeayO2CbTPeERbZJgEAUp
-         ZbWA==
-X-Forwarded-Encrypted: i=1; AJvYcCW6pyCMFMNPplhdTxj0t63MfsS7mk8T3net8TpbOAzxgG+c1quKt6PnKNgLNXaHvblFG/zUivEv6Ytu@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy/uVsDp+3YQVMg01C67l7vzVMvJ00SAuiyKEfLBdJqlPrWtCzS
-	qAZbRGPNZyT5Pul+/bIQvZjBNHkFMJ84kzznDM/x4S9fsvWOSykaj+uPnPjTFt7+9/zWO2uZK70
-	Z4SLuQbZ1aQaRrXYCIi1YdoJxbV/aSpi50EoethYj25Fa+fRwplf9pMP/PPrvMcG6
-X-Gm-Gg: ASbGncugkdiztqjRlD7ZKJCnd+vG5sfM96VGXyzltM81gj0FeonTsEnP2xUGDE2Wb7I
-	onNryjd+9WsWIgCu4veCbvuPclQcG7+GJrw0tL7jLt+rZXexi4J1cv4K43QNKT1EdDSWJ2HeGHA
-	1FznuIeZcVJ0NRsCHM0l9CTAazkkMmGjIdkU3mKoSd4ky8Z/3K6CepCIU5gqWc3wa/so6DI9PJa
-	Inst2F49py89h2vIl+2eAFhH7LOvJ0ha/XvnEqaXK4x6oVOkYqPCp5UWymHuCIEgATVqQ3kuwli
-	peE8fZUNVjf7pag8pXQ52peuQtP0PxbvtY/bO5TRFCo8dAThqyh+XNyNn3bRWI9oM0aYGnAZrLA
-	AjVhnOMH1PUjZA76HxV/Hg6sUyc3zZvHFh3JFKB1j+jlUp6t2axatmtMQVi15+Yw+pwyQ5pBI6E
-	GbJ8+UwtmrAjN39Li4pZjiY8Q=
-X-Received: by 2002:a05:620a:4694:b0:8b1:d8f5:6d08 with SMTP id af79cd13be357-8b6a1af0b23mr129434085a.0.1764974800749;
-        Fri, 05 Dec 2025 14:46:40 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGxKdNzETZwLBvey15b5qloAWZxhY1ri5X6GGhsrtXkWW6ZLsd4zqB6QOkgXRl4kx2Vy/2hEQ==
-X-Received: by 2002:a05:620a:4694:b0:8b1:d8f5:6d08 with SMTP id af79cd13be357-8b6a1af0b23mr129431585a.0.1764974800297;
-        Fri, 05 Dec 2025 14:46:40 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-597d7c283adsm1851768e87.85.2025.12.05.14.46.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Dec 2025 14:46:38 -0800 (PST)
-Date: Sat, 6 Dec 2025 00:46:35 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Georg Gottleuber <ggo@tuxedocomputers.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Ettore Chimenti <ettore.chimenti@linaro.org>,
-        Srinivas Kandagatla <srini@kernel.org>, stefan.schmidt@linaro.org,
-        stephan.gerhold@linaro.org, wse@tuxedocomputers.com, cs@tuxedo.de
-Subject: Re: [PATCH v2 6/6] firmware: qcom: scm: QSEECOM on Medion SPRCHRGD
- 14 S1
-Message-ID: <s36hhtayof5iyjmfglghblzwwzdjs5nltlc43ehp4oedw2kjz3@3o4oiocimpca>
-References: <20251204155212.230058-1-ggo@tuxedocomputers.com>
- <20251204155212.230058-7-ggo@tuxedocomputers.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=daUjwc1aD5XdRXAd8EzD2H4cm/HOu/FrRz8vlirEdgnxkugfAGsnelTU63cyhdWJOK+WFON2ve2+2BHuaqzjBblHLiX1tOvam9Tl35kKktNAaCpJduq7IQ3GytsLJ6UCgC6x0iJ8L53P7EO0zvotVEe+goIIbNDu9oDI0xrctxk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rpAgb+C3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9055C4CEF1;
+	Fri,  5 Dec 2025 22:44:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1764974654;
+	bh=SfMTlrnwvly/vkxH6ONkFIT0K1p6Gzas0t4LGNc9lRo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=rpAgb+C3vQq14dSFLrodznTb61jSWdjuZYuUIkwgdaQN4XN/Is/lh60MdSMlXVLZq
+	 j1GPgIl1W+yhe6+4QQ4/VOR9xmGcDTvo1p1FlqeQQzIy76HxK1Ry/lp+Z/VkHwqyJN
+	 uX8hg/ljxMmFQfX2j0ppJzqmC91oNMjCpV0a72vTFU36ZzcQB0qN248yr2TerwYV6U
+	 p99yphRoWvpgiPq+jeJIhRBvNIff+IjE6OLtN67Qr4hrggwnRapLgg3eoIMZLW8k0z
+	 SjDDsNB6xoWBWn/C8Cb5vy6AcsTVwdHava6sB2lWDENIhhY8B3Erh6IvkUC5qvqln/
+	 WS2LZhnl8EXFg==
+Date: Fri, 5 Dec 2025 16:50:32 -0600
+From: Bjorn Andersson <andersson@kernel.org>
+To: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
+Cc: Mathieu Poirier <mathieu.poirier@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v8 08/14] firmware: qcom_scm: Add a prep version of
+ auth_and_reset function
+Message-ID: <ghladclj5xqlw3gzrleclkxk6cn4vhosfillx3wfgbf2tbe4iy@kgjzgg7j5gzh>
+References: <20251121-kvm_rproc_v8-v8-0-8e8e9fb0eca0@oss.qualcomm.com>
+ <20251121-kvm_rproc_v8-v8-8-8e8e9fb0eca0@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -115,45 +60,129 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251204155212.230058-7-ggo@tuxedocomputers.com>
-X-Authority-Analysis: v=2.4 cv=ZqDg6t7G c=1 sm=1 tr=0 ts=693360d2 cx=c_pps
- a=qKBjSQ1v91RyAK45QCPf5w==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=KKAkSRfTAAAA:8 a=yDUiu3_GAAAA:8 a=EUspDBNiAAAA:8 a=6UEDtKjk7QVkTALdrA8A:9
- a=CjuIK1q_8ugA:10 a=zZCYzV9kfG8A:10 a=NFOGd7dJGGMPyQGDc5-O:22
- a=cvBusfyB2V15izCimMoJ:22 a=gafEeHOdjwYkg5oUpzAY:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjA1MDE3MiBTYWx0ZWRfXxMmni3LFlJ6K
- wo9654tuyyRjNWU2efzluTO/mA6YUYp79u9rQXm4XfTM4yZsxYpg5uuZTjUIIFDvEyZ0vV8K4M3
- UtsO6VEyM2lE4m14/buMNfopOQscXlMw2RjTCgOlbjCVWgRAdXBT/X4iybminaXkB04+HAuhPra
- DpSQK9fydszg8l3GVagfttfyuABYHgd1GU2c4+c+uLxz6UuMhQE2zUbpb0yLqTMFFvpNcO+UX6m
- PJX2CQUY+Ov6z2MG67lTs42vzWr7QBva7AsCn3Vpo5MerBtAd2F+dU0/zzKz2qJPh1dMY3a9wQe
- SG1XZU7VhEgoQiy5oLxZAYeZVkKXwQuiW+7a/WbQOui5/+pqVzMag1AhUS9F4jO3gNoErBF+XY9
- Y7c9E/n64eoGT6u6T2+KU+io8siRJA==
-X-Proofpoint-ORIG-GUID: l_0pNi690OtHzALOOAEyOwDTIaTMXqK6
-X-Proofpoint-GUID: l_0pNi690OtHzALOOAEyOwDTIaTMXqK6
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-05_08,2025-12-04_04,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 priorityscore=1501 clxscore=1015 phishscore=0 spamscore=0
- bulkscore=0 impostorscore=0 adultscore=0 malwarescore=0 lowpriorityscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512050172
+In-Reply-To: <20251121-kvm_rproc_v8-v8-8-8e8e9fb0eca0@oss.qualcomm.com>
 
-On Thu, Dec 04, 2025 at 04:52:08PM +0100, Georg Gottleuber wrote:
-> This is needed to access EFI variables from Linux.
+On Fri, Nov 21, 2025 at 04:31:10PM +0530, Mukesh Ojha wrote:
+> For memory passed to TrustZone (TZ), it must either be part of a pool
+> registered with TZ or explicitly registered via SHMbridge SMC calls.
+> When Gunyah hypervisor is present, PAS SMC calls from Linux running at
+> EL1 are trapped by Gunyah running @ EL2, which handles SHMbridge
+> creation for both metadata and remoteproc carveout memory before
+> invoking the calls to TZ.
 > 
-> Signed-off-by: Ettore Chimenti <ettore.chimenti@linaro.org>
-> Signed-off-by: Georg Gottleuber <ggo@tuxedocomputers.com>
+> On SoCs running with a non-Gunyah-based hypervisor, Linux must take
+> responsibility for creating the SHM bridge before invoking PAS SMC
+> calls. For the auth_and_reset() call, the remoteproc carveout memory
+> must first be registered with TZ via a SHMbridge SMC call and once
+> authentication and reset are complete, the SHMbridge memory can be
+> deregistered.
+> 
+> Introduce qcom_scm_pas_prepare_and_auth_reset(), which sets up the SHM
+> bridge over the remoteproc carveout memory when Linux operates at EL2.
+> This behavior is indicated by a new field added to the PAS context data
+> structure. The function then invokes the auth_and_reset SMC call.
+> 
+> Signed-off-by: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
 > ---
->  drivers/firmware/qcom/qcom_scm.c | 1 +
->  1 file changed, 1 insertion(+)
+>  drivers/firmware/qcom/qcom_scm.c       | 48 ++++++++++++++++++++++++++++++++++
+>  include/linux/firmware/qcom/qcom_scm.h |  2 ++
+>  2 files changed, 50 insertions(+)
 > 
+> diff --git a/drivers/firmware/qcom/qcom_scm.c b/drivers/firmware/qcom/qcom_scm.c
+> index 5fa974683ee0..fdb736d839db 100644
+> --- a/drivers/firmware/qcom/qcom_scm.c
+> +++ b/drivers/firmware/qcom/qcom_scm.c
+> @@ -765,6 +765,54 @@ int qcom_scm_pas_auth_and_reset(u32 pas_id)
+>  }
+>  EXPORT_SYMBOL_GPL(qcom_scm_pas_auth_and_reset);
+>  
+> +/**
+> + * qcom_scm_pas_prepare_and_auth_reset() - Prepare, authenticate, and reset the
+> + *					   remote processor
+> + *
+> + * @ctx:	Context saved during call to qcom_scm_pas_context_init()
+> + *
+> + * This function performs the necessary steps to prepare a PAS subsystem,
+> + * authenticate it using the provided metadata, and initiate a reset sequence.
+> + *
+> + * It should be used when Linux is in control setting up the IOMMU hardware
+> + * for remote subsystem during secure firmware loading processes. The preparation
+> + * step sets up a shmbridge over the firmware memory before TrustZone accesses the
+> + * firmware memory region for authentication. The authentication step verifies
+> + * the integrity and authenticity of the firmware or configuration using secure
+> + * metadata. Finally, the reset step ensures the subsystem starts in a clean and
+> + * sane state.
+> + *
+> + * Return: 0 on success, negative errno on failure.
+> + */
+> +int qcom_scm_pas_prepare_and_auth_reset(struct qcom_scm_pas_context *ctx)
+> +{
+> +	u64 handle;
+> +	int ret;
+> +
+> +	if (!ctx->has_iommu)
+> +		return qcom_scm_pas_auth_and_reset(ctx->pas_id);
+> +
+> +	/*
+> +	 * When Linux running @ EL1, Gunyah hypervisor running @ EL2 traps the
+> +	 * auth_and_reset call and create an shmbridge on the remote subsystem
+> +	 * memory region and then invokes a call to TrustZone to authenticate.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+The above three lines explain why we take the path above, and the next
+two lines explains why we didn't.
 
+So I think it would be better to move the above 3 lines above the
+!has_iommu, and just keep the two here.
 
--- 
-With best wishes
-Dmitry
+> +	 * When Linux runs @ EL2 Linux must create the shmbridge itself and then
+> +	 * subsequently call TrustZone for authenticate and reset.
+> +	 */
+> +	ret = qcom_tzmem_shm_bridge_create(ctx->mem_phys, ctx->mem_size, &handle);
+> +	if (ret) {
+> +		dev_err(__scm->dev, "Failed to create shmbridge for PAS ID (%u): %d\n",
+> +			ctx->pas_id, ret);
+
+We already print an error in qcom_tzmem_shm_bridge_create() and we print
+another one in qcom_pas_start(), so I think we can omit this one.
+
+Regards,
+Bjorn
+
+> +		return ret;
+> +	}
+> +
+> +	ret = qcom_scm_pas_auth_and_reset(ctx->pas_id);
+> +	qcom_tzmem_shm_bridge_delete(handle);
+> +
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL_GPL(qcom_scm_pas_prepare_and_auth_reset);
+> +
+>  /**
+>   * qcom_scm_pas_shutdown() - Shut down the remote processor
+>   * @pas_id:	peripheral authentication service id
+> diff --git a/include/linux/firmware/qcom/qcom_scm.h b/include/linux/firmware/qcom/qcom_scm.h
+> index b10b1aeb32c6..ccb8b2e42237 100644
+> --- a/include/linux/firmware/qcom/qcom_scm.h
+> +++ b/include/linux/firmware/qcom/qcom_scm.h
+> @@ -74,6 +74,7 @@ struct qcom_scm_pas_context {
+>  	void *ptr;
+>  	dma_addr_t phys;
+>  	ssize_t size;
+> +	bool has_iommu;
+>  };
+>  
+>  struct qcom_scm_pas_context *devm_qcom_scm_pas_context_init(struct device *dev,
+> @@ -87,6 +88,7 @@ int qcom_scm_pas_mem_setup(u32 pas_id, phys_addr_t addr, phys_addr_t size);
+>  int qcom_scm_pas_auth_and_reset(u32 pas_id);
+>  int qcom_scm_pas_shutdown(u32 pas_id);
+>  bool qcom_scm_pas_supported(u32 pas_id);
+> +int qcom_scm_pas_prepare_and_auth_reset(struct qcom_scm_pas_context *ctx);
+>  
+>  int qcom_scm_io_readl(phys_addr_t addr, unsigned int *val);
+>  int qcom_scm_io_writel(phys_addr_t addr, unsigned int val);
+> 
+> -- 
+> 2.50.1
+> 
 
