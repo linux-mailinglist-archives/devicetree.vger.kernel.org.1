@@ -1,87 +1,66 @@
-Return-Path: <devicetree+bounces-244982-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244983-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD84BCAABF6
-	for <lists+devicetree@lfdr.de>; Sat, 06 Dec 2025 19:13:06 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 579BECAAC27
+	for <lists+devicetree@lfdr.de>; Sat, 06 Dec 2025 19:31:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 944E330052DF
-	for <lists+devicetree@lfdr.de>; Sat,  6 Dec 2025 18:13:04 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id A035B3006451
+	for <lists+devicetree@lfdr.de>; Sat,  6 Dec 2025 18:31:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27E7E2C234A;
-	Sat,  6 Dec 2025 18:13:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 508502D63F6;
+	Sat,  6 Dec 2025 18:31:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="HCZmI1Xg"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="g2JY95hL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AF662C0277;
-	Sat,  6 Dec 2025 18:12:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D8052D5C74;
+	Sat,  6 Dec 2025 18:30:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765044782; cv=none; b=aF3989fBM6HEeieNIVVpEFQ2KZLkVeRKDWIvnsXy8j0v/g6j1y5jRhyIc4vdODexDH357PX3TePL0bMhlNRed+4cvjV6XA9HbXNDPuVRpxhZZVMXQ1dd2cHdJLW2q2tCAQ4QcH0s035Qt4XR5CpSQRLLj8DC2rJhP/bXjOG4D/I=
+	t=1765045862; cv=none; b=SUYGDxRKp2ppXGWeCDneA+iHMdItdCaRDulzsL+0e/ccvBg681jiHGMqNFLzlILRyj93dYgXeuVkIDFgR6NCBcqg9KNw2AQwcJb1rsK35P66QCx8f1EOP7tPkYtw3NNG/nOrk24OvXEGMdKiHwsDto4VnVIYW/ds+FAgLGEM9Dg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765044782; c=relaxed/simple;
-	bh=kCo7TwIyMLY2ilQAhmmpV3lTsDPNLDcGia+hEOeSTPo=;
+	s=arc-20240116; t=1765045862; c=relaxed/simple;
+	bh=6YFYBV5YPI3mKplLNxOUUXNwPPdTOdMInwKJddK0OaA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pb+8JuTJgM/ZHJcF7EFp5dNpV0KbbQBgiYfkv1Wnz0uvuy2MqPB4KhIymkgqMB5p9506Z7eb0ISe2GNIxnHkd0bmoVjtkjnxWVVgnxlXfqsR/uInUpaT/Fa95QLkA7vzq+7PE8msOKA1vrJlX5NcdZO8X6K4/GnxxKRRSBBmkzs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=HCZmI1Xg; arc=none smtp.client-ip=198.175.65.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1765044780; x=1796580780;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=kCo7TwIyMLY2ilQAhmmpV3lTsDPNLDcGia+hEOeSTPo=;
-  b=HCZmI1Xg2aWgz82kAfoRnwTDkM5b5yPzf73vgXKYf2I7bC8NiSEWH80N
-   qbYUzq60SdZdpS7IC2XW14i1dvfSUioGwXjnIu9dXzequBNVPlkPoUmCy
-   HO2iksN9x1pQF5oH40Lqi1wfB1HFtCuDDQhZo7FHtcceAnI8z52vffLCk
-   h1ipaF3rKFaeOxySjCqG5OXlbRYJ060HyTTlrTjRD9AtgapojxfTbEBW4
-   0hQ3D0YlZKQV0obU07xXSiUv1l0D7b/1s+qiAd1BPR3/ubLhod8/XHF/I
-   QZrWB0JrOORIvP42zDyb6osu2nx3Mr5ZOJB7dX8g227UHQ0vdIAmTgNnA
-   Q==;
-X-CSE-ConnectionGUID: +uPWy7b2RWGrqvleFgIPVg==
-X-CSE-MsgGUID: 3sAkXfKrRYi4mQygs735Ag==
-X-IronPort-AV: E=McAfee;i="6800,10657,11634"; a="89705080"
-X-IronPort-AV: E=Sophos;i="6.20,255,1758610800"; 
-   d="scan'208";a="89705080"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
-  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Dec 2025 10:12:59 -0800
-X-CSE-ConnectionGUID: siryojLKTiibF0Z05mjuMA==
-X-CSE-MsgGUID: YozxOX6RQjei05+UdbIPBA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,255,1758610800"; 
-   d="scan'208";a="200013896"
-Received: from lkp-server01.sh.intel.com (HELO 4664bbef4914) ([10.239.97.150])
-  by fmviesa005.fm.intel.com with ESMTP; 06 Dec 2025 10:12:55 -0800
-Received: from kbuild by 4664bbef4914 with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vRwm4-00000000Iev-1bop;
-	Sat, 06 Dec 2025 18:12:52 +0000
-Date: Sun, 7 Dec 2025 02:12:30 +0800
-From: kernel test robot <lkp@intel.com>
-To: Jorge Marques <jorge.marques@analog.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=TB/u2X/FsYKc3PSgMy9eAENddpsqUrS7cBrfP02/R2dOo4prp1pk12X0ru0sYYiAYAgCbLRtHOHVJBMSKhyNLwrPxdFB+RITPHrVgEbmSN1OmKJREOZeFJiGPMbDNDk3YAPMqZQeX0fsxG4DfbB0eOlLz9tNt+E3Ddq77qmcl8A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=g2JY95hL; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=eR0JCfMa1hihJEB4R5UGxkldICyGNBsZvCir+nP242w=; b=g2JY95hL/fpCt3IAxbHjjZze1g
+	NYe+DQdbIM+LqdtZJ6bhsSOOj1t9LK4k1orHdP9yjpElpPx0++/6dMKom7LZLW9UNbw4Rzh3NP6b7
+	A/QYdrmOsE3D0ZhKtsm1AoL0nyT+rWiR/cQDSMVRTBLQIz07X3f4Py/fvW6jYnGbtEHw=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1vRx38-00GDwx-L4; Sat, 06 Dec 2025 19:30:30 +0100
+Date: Sat, 6 Dec 2025 19:30:30 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Jacky Chou <jacky_chou@aspeedtech.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	Jorge Marques <jorge.marques@analog.com>
-Subject: Re: [PATCH v3 3/9] iio: adc: Add support for ad4062
-Message-ID: <202512070145.nkD9ROxx-lkp@intel.com>
-References: <20251205-staging-ad4062-v3-3-8761355f9c66@analog.com>
+	Po-Yu Chuang <ratbert@faraday-tech.com>,
+	Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org, taoren@meta.com
+Subject: Re: [PATCH net-next v5 3/4] net: ftgmac100: Add RGMII delay support
+ for AST2600
+Message-ID: <8a991b33-f653-4f0c-bbea-b5b3404cdfe6@lunn.ch>
+References: <20251205-rgmii_delay_2600-v5-0-bd2820ad3da7@aspeedtech.com>
+ <20251205-rgmii_delay_2600-v5-3-bd2820ad3da7@aspeedtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,50 +69,27 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251205-staging-ad4062-v3-3-8761355f9c66@analog.com>
+In-Reply-To: <20251205-rgmii_delay_2600-v5-3-bd2820ad3da7@aspeedtech.com>
 
-Hi Jorge,
+> @@ -1907,6 +2179,10 @@ static int ftgmac100_probe(struct platform_device *pdev)
+>  		priv->rxdes0_edorr_mask = BIT(30);
+>  		priv->txdes0_edotr_mask = BIT(30);
+>  		priv->is_aspeed = true;
+> +		/* Configure RGMII delay if there are the corresponding compatibles */
+> +		err = ftgmac100_set_internal_delay(priv, &phy_intf);
+> +		if (err)
+> +			goto err_phy_connect;
 
-kernel test robot noticed the following build errors:
+Thinking forward to when you add 2700 support, i really think you need
+to break the probe up into helpers for 2500 and before, 2600 and in
+the future 2700. You currently have a couple of tests on the
+compatible which you can reduce to one.
 
-[auto build test ERROR on f9e05791642810a0cf6237d39fafd6fec5e0b4bb]
+In fact, this driver has 10 calls to of_device_is_compatible(). I
+think you should first refactor the code to list each compatible in
+ftgmac100_of_match[], and add a data structure which contains an enum
+of the MAC type. You can then transfer this to priv, and replace all
+the of_device_is_compatible() tests to just look at the enum value.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Jorge-Marques/dt-bindings-iio-adc-Add-adi-ad4062/20251206-033708
-base:   f9e05791642810a0cf6237d39fafd6fec5e0b4bb
-patch link:    https://lore.kernel.org/r/20251205-staging-ad4062-v3-3-8761355f9c66%40analog.com
-patch subject: [PATCH v3 3/9] iio: adc: Add support for ad4062
-config: riscv-allyesconfig (https://download.01.org/0day-ci/archive/20251207/202512070145.nkD9ROxx-lkp@intel.com/config)
-compiler: clang version 16.0.6 (https://github.com/llvm/llvm-project 7cbf1a2591520c2491aa35339f227775f4d3adf6)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251207/202512070145.nkD9ROxx-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202512070145.nkD9ROxx-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> drivers/iio/adc/ad4062.c:762:49: error: initializer element is not a compile-time constant
-           I3C_DEVICE(AD4062_I3C_VENDOR, ad4060_chip_info.prod_id, &ad4060_chip_info),
-                                         ~~~~~~~~~~~~~~~~~^~~~~~~
-   include/linux/i3c/device.h:151:14: note: expanded from macro 'I3C_DEVICE'
-                   .part_id = _partid,                                     \
-                              ^~~~~~~
-   1 error generated.
-
-
-vim +762 drivers/iio/adc/ad4062.c
-
-   760	
-   761	static const struct i3c_device_id ad4062_id_table[] = {
- > 762		I3C_DEVICE(AD4062_I3C_VENDOR, ad4060_chip_info.prod_id, &ad4060_chip_info),
-   763		I3C_DEVICE(AD4062_I3C_VENDOR, ad4062_chip_info.prod_id, &ad4062_chip_info),
-   764		{ }
-   765	};
-   766	MODULE_DEVICE_TABLE(i3c, ad4062_id_table);
-   767	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+	Andrew
 
