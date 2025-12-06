@@ -1,68 +1,114 @@
-Return-Path: <devicetree+bounces-244867-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244868-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8464BCA9C87
-	for <lists+devicetree@lfdr.de>; Sat, 06 Dec 2025 01:57:26 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41853CA9E2D
+	for <lists+devicetree@lfdr.de>; Sat, 06 Dec 2025 03:14:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5989D32547B6
-	for <lists+devicetree@lfdr.de>; Sat,  6 Dec 2025 00:53:34 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 992813008F9C
+	for <lists+devicetree@lfdr.de>; Sat,  6 Dec 2025 02:09:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7743726E6E1;
-	Sat,  6 Dec 2025 00:48:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D41B21CC68;
+	Sat,  6 Dec 2025 02:09:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pBM3ZoKa"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="jvIysLLX";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="KrdCpjLg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 453BF17BA2;
-	Sat,  6 Dec 2025 00:47:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EE091E47A3
+	for <devicetree@vger.kernel.org>; Sat,  6 Dec 2025 02:09:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764982082; cv=none; b=XudphbTNFav09W69M91yFyT1f7Kd3DJuKmbZ0zttBbbhyRpmGbStQ6OQnOpmUJHer6JtK1yzWx0zFiIGQ/bmUOu+j9euZUO6E7kOiTDDmh7xFpo0SJKaLcCPbuEhVM+8aAIgCPcUPbccybPsG8QEfOL8oQxNLSfxIAsJexmPWvg=
+	t=1764986986; cv=none; b=DWZfjRo3J9BGWsogVfKVu9HxSkZkTicp+O5oN4vJyl6ktuShwIb5vBs5DF5CcGkaIDHLOED2u691rFgL3xVIRK0Jf5XEqIV3N1uyV9/rEW5pSKW6iA+FhcJqh+anTno1i6z1I5viznHNvyhccgqkzZeYrI2t6feeKDNJsvlRxtk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764982082; c=relaxed/simple;
-	bh=3r+/te3zSS54bBwDzvPEgNnCe8Q1KuObyX/Z1h+VAc8=;
+	s=arc-20240116; t=1764986986; c=relaxed/simple;
+	bh=X2AxqvaiKco3eVtL/7cd6xh4H+ydSodFgp97N1NLT8w=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IGUrPyCEIktykaA29YbkMS1O8pau6kL/CTIp5/0A1QJLz6gAxXW6A10KvgOJaMV8DnyeJOg4Hdgurc63VPkW5EflUr0ImaxzvzBETujxgQrxw0VrvjuvjucbMs2RY9QY5nJBSeuykrYN+0DciFvYA/wcbhOWP+8jOLV7MNZA8cA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pBM3ZoKa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9763EC4CEF1;
-	Sat,  6 Dec 2025 00:47:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1764982079;
-	bh=3r+/te3zSS54bBwDzvPEgNnCe8Q1KuObyX/Z1h+VAc8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pBM3ZoKapRQzNDKhiluRNsGLO9XMjo6IJk7ZyjS4dGXSFjccyWLfqRKlvUnrAKHtC
-	 Hw5CUQJaLnSH8fhzHoKV69Jk/xhi+WzTfXinlV9CYsPjcuDrugOivS1SOiJJYpEjhB
-	 1Th+I7g8JRA9Blsj2dPec4xpySarXaN2mfP5m31sImtRnLUNT/6fPd8XUKgpJfMEfv
-	 GJM432SADyG/M6vctTMhwFDYItqCKzHX5pWpArtaTRxRkc4Hhg+xb4fVR0Sagze1cv
-	 hg8xozF4cf+Blnm+tuyL6SAJpEX8BZBSNr7KYGGliyTG+w7DftTOxdGWtT2f7cwL8m
-	 gO4MsQVEQeINg==
-Date: Fri, 5 Dec 2025 18:47:57 -0600
-From: Rob Herring <robh@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Marcelo Schmitt <marcelo.schmitt@analog.com>,
-	Michael Hennerich <michael.hennerich@analog.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Andy Shevchenko <andy@kernel.org>,
-	Sean Anderson <sean.anderson@linux.dev>, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org
-Subject: Re: [PATCH v3 7/7] dt-bindings: iio: adc: adi,ad4030: add data-lanes
- property
-Message-ID: <20251206004757.GA980619-robh@kernel.org>
-References: <20251201-spi-add-multi-bus-support-v3-0-34e05791de83@baylibre.com>
- <20251201-spi-add-multi-bus-support-v3-7-34e05791de83@baylibre.com>
- <20251204213348.GA2198382-robh@kernel.org>
- <aTNKyaWAEjVJixMI@debian-BULLSEYE-live-builder-AMD64>
- <0cf78f84-01e7-4507-abf9-2f82f98206b2@baylibre.com>
- <221d5ed6-51da-4dce-b8a7-58b4d2423101@baylibre.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=nyddESHSAbm5RmqoFkLuZTk9n0qOluPyPTA8hQ/jzHHMDGvYFnnmviJZn/B9f+g3N3QWbbalKaqYE0lub8vBPIr+c/zrdLOIKdTLz2+s2Amo8YmaDPk3TKCXBpxDq51veOuhDM5Sjq5jvz9mOWXI0AVPxqrR9lUc/0fOLss4MJU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=jvIysLLX; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=KrdCpjLg; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5B5Hr5M7866039
+	for <devicetree@vger.kernel.org>; Sat, 6 Dec 2025 02:09:43 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=wBjDcRm8AWQxoXh1lQ0ooLMx
+	3oOAtlTuUPKtvzrTSOA=; b=jvIysLLX1crJJUEI4GCs93i+sMqMi9D1z3l7BL73
+	LAv0p/L0wIzzZ4abQheIG85K0a8EOMz8zlr3NPIEjhw1Z38K9A4dGSvK7TBElqqn
+	Bf/9LcO7DF1T5cuG27awNXUFbdiUp1h/IZ+pDW4O3mO/JBSWwWdb+I1qYMzF6CH/
+	od2F+jay1WeI4Ug0M/fVBPgZYSBNJ0Dk4OAXQXm7EDI79kpOzc42/mtPbjuN7B1J
+	WjIha3WWJACT3/eLD+Dy06hI/6cXKY94+z7AsoaWYd9/bbcmaY7gsS5Gd8NtPx6q
+	cP/rv0ZhgXXKleLLtsul3pzpOlPDVExgzllt71zz80LhMg==
+Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4av46f9219-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Sat, 06 Dec 2025 02:09:43 +0000 (GMT)
+Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-880441e0f93so74492716d6.1
+        for <devicetree@vger.kernel.org>; Fri, 05 Dec 2025 18:09:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1764986983; x=1765591783; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=wBjDcRm8AWQxoXh1lQ0ooLMx3oOAtlTuUPKtvzrTSOA=;
+        b=KrdCpjLg4h8mcjundANFU3gke3hmdszJyu+0N5rqPIo5pOHADpsSaEwuI/lyUCw0j7
+         pQbJnorg0BsO01NsxUIH4587QLXKgd2rbxySKeKzR3vU5A1WIF3u0tHLkGsnWub6ifS2
+         jrOrYbsrf2bUl6LGEfHogdanGy5ansVIc3t2O/mlUQeRnYJnJ/BTqJYqq6qXMwpu1NTZ
+         4vdrQQEI8MEhQufUvRGwFSMXCmaXzaKzgh6PrG1i3cA+yizD7NkJGjBx47HT8sF10IuU
+         6EJq0wEP++9RDJipbuyMLZvNe0vzP6SxUPf2kEq+di6niE2uUqqrl2s5PSKYU2JNEZ1A
+         6f2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764986983; x=1765591783;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=wBjDcRm8AWQxoXh1lQ0ooLMx3oOAtlTuUPKtvzrTSOA=;
+        b=gldcfdg4VdRVwSaF76OI9KOYN+WpmDPBXB9jdYJuwqhV89pUTT3nAgTHTGvgCljtNE
+         XKZkFk1u/0XP4bF2x+3WgYyMacctispVvoxx9+1B+/ytoCnSaRQXOc00cCACipwN+FeF
+         dm+xu9xbMVLSolvVQEqYEaiEkl6L91n/JoaAo234a4sANIgeW1l1n1qc+z1I7504hCO3
+         L09D7dMRLStpm04qc6gSrK9BR3LkqU4xYkt3McAVb8kNo0gHM/Aowud2w8gzYHJp/tKo
+         lzDQqdVfGzp3zREupeE9vj33uihBfE95W8/LTDACTopnr3QlsNOAcjWoQBHqq6y0c0IV
+         BZtg==
+X-Forwarded-Encrypted: i=1; AJvYcCUNJ8oT2qMePxhilCae0o8uCyarE/5HMTtnZX/wSpp1LdLDpmb8pVqXLSZ4Us2DsSkc5HLCDbvUGgpX@vger.kernel.org
+X-Gm-Message-State: AOJu0YzTtIhJmGtvL4j+2CjOIWNaGt7q+du5oswEJDc0xAcPXyjOR+0J
+	UTgcRZV4dz+quKOBi18YqMJrfdpwyy3+yqCbjw5AUd6GL/OkpB35v6EpyCP7H9K/3LMO+e2RMJ7
+	ILe+GHZtJh4MWcfj8N7K8nvH1jlucKbjpp6Gyn8FuxKG89ntV4ZCZNMOBQMgPLsbd
+X-Gm-Gg: ASbGncufgU77fEynj/tOWTHfTy8013ChaS3Wz4CS9W8werPZeF+Oto4vh4/FKtGC/2/
+	lplFEhS4ErUwZQP9oH6d3IL+zJTtv8wFAJMCfMzkdegbFOQ5vGNU6okqgWBYhDqjAHAGPEELrjz
+	wcJpsrsDDfDUhUgolUP0ShVDn0wUBg2jBupXCi+WBLPW0NTOXCR1EF/1os9wvkTM06GUPpPGW/J
+	njy+kkPDTGzNCbFnHMn5olS3B8VruFVYDDeJIFC8IdgegjGvFW3wyl2B99evK3HGu6H30NlPmbJ
+	qirBBgmLrn5fGgkFsP49+4GE+mofgAIfRIYqbx5qn//k6yq+KhpcGZTbFMJabgAEVsAev09qfVa
+	xzlWp1AptDDMOqQ1vdLo0gEGcaOOOhDPExfp4d4sXaoUwFz/bEJFnT32sEDz52riPdYhxsHF6hg
+	hsLuLgKTTbA5eLPbVXJ2TTpf4=
+X-Received: by 2002:a05:6214:dc6:b0:880:5883:4d24 with SMTP id 6a1803df08f44-8883ced9f16mr21832276d6.9.1764986982693;
+        Fri, 05 Dec 2025 18:09:42 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGnX5LHkP/rg2bYvj21olLIjxKJGEG5reSqObxwn9P80vOMoPc/ue0NZyAE02vyCjWEwdmhIg==
+X-Received: by 2002:a05:6214:dc6:b0:880:5883:4d24 with SMTP id 6a1803df08f44-8883ced9f16mr21831976d6.9.1764986982227;
+        Fri, 05 Dec 2025 18:09:42 -0800 (PST)
+Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-597dfc08b25sm425882e87.6.2025.12.05.18.09.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 05 Dec 2025 18:09:40 -0800 (PST)
+Date: Sat, 6 Dec 2025 04:09:37 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Paul Sajna <sajattack@postmarketos.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, David Heidelberg <david@ixit.cz>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Amir Dahan <system64fumo@tuta.io>,
+        Christopher Brown <crispybrown@gmail.com>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH v5 05/12] arm64: dts: qcom: sdm845-lg-judyln: Add display
+ panel
+Message-ID: <w2gtfgvbx5ujyfbilhyqblhlwo4ewybpmsrdl2gyafcx5etbnl@apze5qpd4okw>
+References: <20251203-judyln-dts-v5-0-80c1ffca8487@postmarketos.org>
+ <20251203-judyln-dts-v5-5-80c1ffca8487@postmarketos.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,272 +117,176 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <221d5ed6-51da-4dce-b8a7-58b4d2423101@baylibre.com>
+In-Reply-To: <20251203-judyln-dts-v5-5-80c1ffca8487@postmarketos.org>
+X-Authority-Analysis: v=2.4 cv=Wvom8Nfv c=1 sm=1 tr=0 ts=69339067 cx=c_pps
+ a=oc9J++0uMp73DTRD5QyR2A==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=EUspDBNiAAAA:8 a=Gbw9aFdXAAAA:8 a=uCEot8vDWxj3b5wlwVUA:9 a=CjuIK1q_8ugA:10
+ a=iYH6xdkBrDN1Jqds4HTS:22 a=9vIz8raoGPyDa4jBFAYH:22
+X-Proofpoint-ORIG-GUID: JA25d4ryMCoJENEUMJsgIs1F-_zOVN1s
+X-Proofpoint-GUID: JA25d4ryMCoJENEUMJsgIs1F-_zOVN1s
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjA2MDAxNCBTYWx0ZWRfX8pnXVGhlGmDe
+ zUbZ+v9Z/Y7IknVu7Rha2s1jPOghT2JRHDipwQ3OGccyWFul7jXYao5TvmqS7yM2f66uzsdrxg9
+ Z/MNt68nA29VDKHBzBMCW1txgHAoPcA+4lcAXD+71UmOI5374UVcSAs7Vgc8deO4sVmr3gIYSwU
+ gjTauxPx5cwzYfcJQSSEkNqjCZTXjB8H46LUTopnlBRyp1kFQSK29+juHSAsWCnBXkQanJh3Ngn
+ naDXsWMplt/bP+FkAqUUkedIpBOzGIEIx5VsRZpGMrydgfOx0vv5+MrvYAuHoXOiFDWga5PBlzR
+ sNiTgC6H0HPRWLv7tr0qe0345vjW9spGvUQlZWt9+9OUqoeIfiqMIvgPksar9esyaNgNUS4gGDI
+ t3bl+f0glHF7Sw+By0ZegaNZyfb1WA==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-05_09,2025-12-04_04,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 lowpriorityscore=0 impostorscore=0 bulkscore=0 phishscore=0
+ priorityscore=1501 spamscore=0 suspectscore=0 clxscore=1015 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512060014
 
-On Fri, Dec 05, 2025 at 05:43:31PM -0600, David Lechner wrote:
-> On 12/5/25 3:33 PM, David Lechner wrote:
-> > On 12/5/25 3:12 PM, Marcelo Schmitt wrote:
-> >> On 12/04, Rob Herring wrote:
-> >>> On Mon, Dec 01, 2025 at 08:20:45PM -0600, David Lechner wrote:
-> >>>> Add data-lanes property to specify the number of data lanes used on the
-> >>>> ad463x chips that support reading two samples at the same time using
-> >>>> two data lanes with a capable SPI controller.
-> >>>>
-> >>>> Signed-off-by: David Lechner <dlechner@baylibre.com>
-> >>>> ---
-> >>>> v3 changes: new patch
-> >>>>
-> >>>> I added this one to give a real-world use case where spi-rx-bus-width
-> >>>> was not sufficient to fully describe the hardware configuration.
-> >>>>
-> >>>> spi-rx-bus-width = <4>; alone could be be interpreted as either:
-> >>>>
-> >>>> +--------------+    +----------+
-> >>>> | SPI          |    | AD4630   |
-> >>>> | Controller   |    | ADC      |
-> >>>> |              |    |          |
-> >>>> |        SDIA0 |<---| SDOA0    |
-> >>>> |        SDIA1 |<---| SDOA1    |
-> >>>> |        SDIA2 |<---| SDOA2    |
-> >>>> |        SDIA3 |<---| SDOA3    |
-> >>>> |              |    |          |
-> >>>> |        SDIB0 |x   | SDOB0    |
-> >>>> |        SDIB1 |x   | SDOB1    |
-> >>>> |        SDIB2 |x   | SDOB2    |
-> >>>> |        SDIB3 |x   | SDOB3    |
-> >>>> |              |    |          |
-> >>>> +--------------+     +---------+
-> >>>>
-> >>>> or
-> >>>>
-> >>>> +--------------+    +----------+
-> >>>> | SPI          |    | AD4630   |
-> >>>> | Controller   |    | ADC      |
-> >>>> |              |    |          |
-> >>>> |        SDIA0 |<---| SDOA0    |
-> >>>> |        SDIA1 |<---| SDOA1    |
-> >>>> |        SDIA2 |x   | SDOA2    |
-> >>>> |        SDIA3 |x   | SDOA3    |
-> >>>> |              |    |          |
-> >>>> |        SDIB0 |<---| SDOB0    |
-> >>>> |        SDIB1 |<---| SDOB1    |
-> >>>> |        SDIB2 |x   | SDOB2    |
-> >>>> |        SDIB3 |x   | SDOB3    |
-> >>>> |              |    |          |
-> >>>> +--------------+     +---------+
-> >>>>
-> >>>> Now, with data-lanes having a default value of [0] (inherited from
-> >>>> spi-peripheral-props.yaml), specifying:
-> >>>>
-> >>>>     spi-rx-bus-width = <4>;
-> >>>>
-> >>>> is unambiguously the first case and the example given in the binding
-> >>>> documentation is the second case:
-> >>>>
-> >>>>     spi-rx-bus-width = <2>;
-> >>>>     data-lanes = <0>, <1>;
-> >>>
-> >>> I just reviewed this and all, but what if you just did:
-> >>>
-> >>> spi-rx-bus-width = <2>, <2>;
-> >>>
-> >>> So *-bus-width becomes equal to the number of serializers/channels.
-> >>
-> >> Unless I'm missing something, I think that would also describe the currently
-> >> possible use cases as well. To me, it actually seems even more accurate than
-> >> data-lanes. The data-lanes property only describes the SPI controller input
-> >> lines/lanes, no info is given about the output lanes.
-> > 
-> > It describes both directions.
-> > 
-> >> Well yeah, that would only> be a problem for a device with multiple input serializers and multiple output
-> >> serializers. Still, the *-bus-width = <N>, <N>, ... <N>; notation looks clearer,
-> >> IMHO.
-> >>
-> >>>
-> >>> Rob
-> >>>
-> > 
-> > It think it complicates Sean's use case though where such
-> > a controller is being used as basically two separate SPI
-> > buses.
-> > 
-> > For that case, we want to be able to do:
-> > 
-> > spi {
-> > 	...
-> > 
-> > 	thing@0 {
-> > 		compatible = ...;
-> > 		reg = <0>;
-> > 		/* (implicit) data-lanes = <0>; */
-> > 	};
-> > 
-> > 	thing@1 {
-> > 		compatible = ...;
-> > 		reg = <1>;
-> > 		data-lanes = <1>;
-> > 	};
-> > };
-> > 
-> > Meaning:
-> > 
-> > +--------------+    +----------+
-> > | SPI          |    | Thing 1  |
-> > | Controller   |    |          |
-> > |              |    |          |
-> > |          CS0 |--->| CS       |
-> > |         SDI0 |<---| SDO      |
-> > |         SDO0 |--->| SDI      |
-> > |        SCLK0 |--->| SCLK     |
-> > |              |    |          |
-> > |              |    +----------+
-> > |              |                
-> > |              |    +----------+
-> > |              |    | Thing 2  |
-> > |              |    |          |
-> > |          CS1 |--->| CS       |
-> > |         SDI1 |<---| SDO      |
-> > |         SDO1 |--->| SDI      |
-> > |        SCLK1 |--->| SCLK     |
-> > |              |    |          |
-> > +--------------+    +----------+
-> > 
-> > (I don't remember if SCLKs are shared or separate, but I don't
-> > think that is relevant anyway).
-> > 
-> > 
-> > I guess we could write it like this?
-> > 
-> > spi {
-> > 	...
-> > 
-> > 	thing@0 {
-> > 		compatible = ...;
-> > 		reg = <0>;
-> > 	};
-> > 
-> > 	thing@1 {
-> > 		compatible = ...;
-> > 		reg = <1>;
-> > 		spi-tx-bus-width = <0>, <1>;
-> > 		spi-rx-bus-width = <0>, <1>;
-> > 	};
-> > };
-
-I forget the details on that, but just looking at the above I think 
-something like that should have 2 SPI bus nodes under the controller. 
-Unless CS0 and CS1 can't be asserted at the same time and they aren't 
-really independent.
-
-But would be good to wait for Sean's comments here.
-
+On Wed, Dec 03, 2025 at 01:40:54AM -0800, Paul Sajna wrote:
+> Also include other supporting msm drm nodes, including backlight
 > 
-> I started down this road. Before I do the working of changing the
-> whole series, this is what it will probably look like. Is this really
-> what we want?
-> 
-> There is one issue I see with this. If we allow <0> to mean that a lane
-> isn't wired up on the controller, then we can't constrain the length of
-> the array in peripheral bindings. For example, the ad403x chips can only
-> have one lane and the ad463x chips can have one or two lanes. But I
-> don't see a way to express that in the binding if <0> at any index
-> doesn't count towards the number of lanes that are actually wired up.
-
-That's fine I think. How many entries is primarily a controller 
-property. We set the length in the controller binding. The device just 
-sets the maximum width per channel.
-
-> 
-> This is e.g. why the binding in sitronix,st7789v.yaml is
-> 
-> 	items:
-> 	  enum: [0, 1]
-> 
-> rather than
-> 
-> 	items:
-> 	  - enum: [0, 1]
-> 
+> Co-developed-by: Amir Dahan <system64fumo@tuta.io>
+> Signed-off-by: Amir Dahan <system64fumo@tuta.io>
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> Signed-off-by: Paul Sajna <sajattack@postmarketos.org>
 > ---
-> commit 049b9508b1b0190f87a4b35fe3ed8a9f3d0d3c50
-> Author: David Lechner <dlechner@baylibre.com>
-> Date:   Fri Dec 5 16:09:08 2025 -0600
+>  arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi |  8 +--
+>  arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts  | 75 +++++++++++++++++++++-----
+>  2 files changed, 66 insertions(+), 17 deletions(-)
 > 
->     spi: dt-bindings: change spi-{rx,tx}-bus-width to arrays
->     
->     Change spi-rx-bus-width and spi-tx-bus-width properties from single
->     uint32 values to arrays of uint32 values. This allows describing SPI
->     peripherals connected to controllers that have multiple data lanes for
->     receiving or transmitting two or more words at the same time.
->     
->     Bindings that make use of this property are updated in the same commit
->     to avoid validation errors. Bindings that used minimum/maximum are
->     changed to use enum instead to be consistent with the base property
->     definition.
->     
->     The adi,ad4030 binding has an example added now that we can fully
->     describe the peripheral's capabilities.
->     
->     Converting from single uint32 to array of uint32 does not break .dts/
->     .dtb files since there is no difference between specifying a single
->     uint32 value and an array with a single uint32 value in devicetree.
->     
->     Signed-off-by: David Lechner <dlechner@baylibre.com>
-> ---   
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
+> index 165523db4d49..50921af83a51 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
+> @@ -450,10 +450,6 @@ &cdsp_pas {
+>  	status = "okay";
+>  };
+>  
+> -&dispcc {
+> -	status = "disabled";
+> -};
+> -
+>  &gcc {
+>  	protected-clocks = <GCC_QSPI_CORE_CLK>,
+>  			   <GCC_QSPI_CORE_CLK_SRC>,
+> @@ -517,6 +513,10 @@ led@5 {
+>  	};
+>  };
+>  
+> +&pmi8998_wled {
+> +	status = "okay";
+> +};
+> +
+>  &sdhc_2 {
+>  	cd-gpios = <&tlmm 126 GPIO_ACTIVE_LOW>;
+>  
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts b/arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts
+> index 55bfddab3afd..506e6fe8e798 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts
+> +++ b/arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts
+> @@ -13,19 +13,6 @@ / {
+>  	model = "LG G7 ThinQ";
+>  	compatible = "lg,judyln", "qcom,sdm845";
+>  
+> -	chosen {
+> -		framebuffer@9d400000 {
+> -			compatible = "simple-framebuffer";
+> -			reg = <0x0 0x9d400000 0x0 (1440 * 3120 * 4)>;
+> -			width = <1440>;
+> -			height = <3120>;
+> -			stride = <(1440 * 4)>;
+> -			format = "a8r8g8b8";
+> -			lab-supply = <&lab>;
+> -			ibb-supply = <&ibb>;
+> -		};
+> -	};
+
+I think, you can leave simple-fb in place. MSM driver should be able to
+replace it once it is loaded.
+
+> -
+>  	/* Additional ThinQ key */
+>  	gpio-keys {
+>  		pinctrl-0 = <&vol_up_pin_a &thinq_key_default>;
+> @@ -67,6 +54,47 @@ &gpu_zap_shader {
+>  	firmware-name = "qcom/sdm845/judyln/a630_zap.mbn";
+>  };
+>  
+> +&mdss {
+> +	status = "okay";
+> +};
+> +
+> +&mdss_dsi0 {
+> +	vdda-supply = <&vdda_mipi_dsi0_1p2>;
+> +
+> +	status = "okay";
+> +
+> +	display_panel: panel@0 {
+> +		reg = <0>;
+> +		compatible = "lg,sw49410-lh609qh1", "lg,sw49410";
+> +
+> +		backlight = <&pmi8998_wled>;
+> +		reset-gpios = <&tlmm 6 GPIO_ACTIVE_LOW>;
+> +		width-mm = <65>;
+> +		height-mm = <140>;
+> +
+> +		pinctrl-0 = <&sde_dsi_active &sde_te_active_sleep>;
+> +		pinctrl-1 = <&sde_dsi_sleep &sde_te_active_sleep>;
+> +		pinctrl-names = "default", "sleep";
+> +
+> +		port {
+> +			panel_in: endpoint {
+> +				remote-endpoint = <&mdss_dsi0_out>;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&mdss_dsi0_phy {
+> +	vdds-supply = <&vdda_mipi_dsi0_pll>;
+> +
+> +	status = "okay";
+> +};
+> +
+> +&mdss_dsi0_out {
+> +	remote-endpoint = <&panel_in>;
+> +	data-lanes = <0 1 2 3>;
+> +};
+> +
+>  &mss_pil {
+>  	firmware-name = "qcom/sdm845/judyln/mba.mbn", "qcom/sdm845/judyln/modem.mbn";
+>  };
+> @@ -85,4 +113,25 @@ thinq_key_default: thinq-key-default-state {
+>  		drive-strength = <2>;
+>  		bias-pull-up;
+>  	};
+> +
+> +	sde_dsi_active: sde-dsi-active-state {
+> +		pins = "gpio6";
+> +		function = "gpio";
+> +		drive-strength = <8>;
+> +		bias-disable;
+> +	};
+> +
+> +	sde_dsi_sleep: sde-dsi-sleep-state {
+> +		pins = "gpio6";
+> +		function = "gpio";
+> +		drive-strength = <2>;
+> +		bias-pull-down;
+> +	};
+> +
+> +	sde_te_active_sleep: sde-te-active-sleep-state {
+> +		pins = "gpio10";
+> +		function = "mdp_vsync";
+> +		drive-strength = <2>;
+> +		bias-pull-down;
+> +	};
+>  };
 > 
-> diff --git a/Documentation/devicetree/bindings/display/panel/sitronix,st7789v.yaml b/Documentation/devicetree/bindings/display/panel/sitronix,st7789v.yaml
-> index 0ce2ea13583d..23b33dcd5ed4 100644
-> --- a/Documentation/devicetree/bindings/display/panel/sitronix,st7789v.yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/sitronix,st7789v.yaml
-> @@ -34,8 +34,8 @@ properties:
->    spi-cpol: true
->  
->    spi-rx-bus-width:
-> -    minimum: 0
-> -    maximum: 1
-> +    items:
-> +      enum: [0, 1]
->  
->    dc-gpios:
->      maxItems: 1
-> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad4030.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad4030.yaml
-> index 54e7349317b7..6052a44b04de 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad4030.yaml
-> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad4030.yaml
-> @@ -37,7 +37,8 @@ properties:
->      maximum: 102040816
->  
->    spi-rx-bus-width:
-> -    enum: [1, 2, 4]
-> +    items:
-> +      enum: [1, 2, 4]
+> -- 
+> 2.52.0
+> 
 
-We'd need to allow 0 here, right?
-
-What we really want to say is there is exactly 1 entry of 1, 2, or 4. I 
-can't think of a concise way to say that. The closest is something like 
-this:
-
-uniqueItems: true
-items:
-  enum: [0, 1, 2, 4]
-contains:
-  enum: [1, 2, 4]
-
-That implicitly limits the length to 4, but does allow [0, 1, 2, 4] and 
-other ordering. More generally, if the device supports fewer channels 
-than the host, then we can't constrain that. Oh well, we can't check 
-everything (we hardly check values within reg, interrupts, clocks, and 
-on and on). But most controllers are going to limit the length to 1 
-entry, so it should end up with the same constraints most of the time.
-
-Are these updates all of them or just a sampling. If the latter and 
-there's a lot more, then we may want to split spi-controller.yaml into 
-2 (3 really with a common part). Make spi-controller.yaml define single 
-channel SPI controllers which keeps the length of spi-[rt]x-bus-width at 
-1 entry and then define a spi-multi-chan-controller.yaml which doesn't 
-constrain it. 
-
-Rob
+-- 
+With best wishes
+Dmitry
 
