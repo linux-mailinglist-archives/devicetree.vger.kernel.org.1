@@ -1,52 +1,81 @@
-Return-Path: <devicetree+bounces-244940-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244941-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51A1BCAA630
-	for <lists+devicetree@lfdr.de>; Sat, 06 Dec 2025 13:37:54 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09A27CAA63F
+	for <lists+devicetree@lfdr.de>; Sat, 06 Dec 2025 13:38:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 10115309B74E
-	for <lists+devicetree@lfdr.de>; Sat,  6 Dec 2025 12:37:53 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4275B30B326B
+	for <lists+devicetree@lfdr.de>; Sat,  6 Dec 2025 12:38:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3ADA72F25F0;
-	Sat,  6 Dec 2025 12:37:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F271D2F5A1F;
+	Sat,  6 Dec 2025 12:38:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="ZbCTQkm2"
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="HBebihtm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ixit.cz (ip-94-112-25-9.bb.vodafone.cz [94.112.25.9])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09D7725C80D;
-	Sat,  6 Dec 2025 12:37:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.112.25.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69FB725C80D
+	for <devicetree@vger.kernel.org>; Sat,  6 Dec 2025 12:38:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765024672; cv=none; b=glx08B5OwCy0PYi5caaTFQXG0uJWMgdOXWEwRvDqaSIcCNSVNiBpjJukxJXXaIjYTeTOoZ3uISUzia9LSBxvftmju+DNvByJS1M50dZYV8M4F5V4OC/LL/r2Pqt28O4jrXZ1ujva/PCKsOku/PJUhT1dK86PkZuaTtytHv9q5TI=
+	t=1765024685; cv=none; b=PfLpewX1EReo0B7QcRM8DAiCMUUKc+pgclDahNoO/g2P7akKv1B5ZUuFMTwWfqRobWr2Bn1azY04kRXEnBDWCLpD9SDA8kNM/GiLOubiLT3F2DHoSgoJUXr0fatACVFSRpDdDlO20wrVYZcMUg1A4lvTrkGue3ojJxlBMUTPnJU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765024672; c=relaxed/simple;
-	bh=9maxv1acR/yryo1GRfYMSMJ/91xyurIpzPHN62q6LEc=;
+	s=arc-20240116; t=1765024685; c=relaxed/simple;
+	bh=dQnyqDL2E6KxQw5j/cho2jt9A1HkjdETEU5NRTOj/WQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Df5uUOtU6/KAtQElKRVS+BGkZqbbIlu6dmOTGLBwUCVOJQHXssVB6mKKqvdRKJ0NHSZNjjZU3vl4X6o+/ip8jlrPBk6OcmlNZrueNwWXSgIZysgKwV9iVnnoh44UJUF6jFSatX9wV1bkJAN2aTUqnbHFBsK1DHzsiJE+8fw0KUs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=ZbCTQkm2; arc=none smtp.client-ip=94.112.25.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
-Received: from [10.0.0.200] (unknown [10.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by ixit.cz (Postfix) with ESMTPSA id BE6A95341183;
-	Sat, 06 Dec 2025 13:37:43 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-	t=1765024663;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=eiB20EW9j/rll6ktjVsMZWMFIzICPofcEDG3mMeyo+c=;
-	b=ZbCTQkm2YTHLCnKogOT8QnaERO/CA3laLaoIQYVBZrthVDwGooAZAHKUCZ2kPUaWTpneNl
-	GhpSdrkEjhyhJ/rOqfi/5/Nuqeq0TeEkIS8C3oS8FoakL1VcdBeP7N72L2Giw7tDPwgYt8
-	kIka172HX5P4vCpOAEwknzkTZF1Ho+8=
-Message-ID: <a586680c-086d-4f4f-85f2-ab21d675c5a1@ixit.cz>
-Date: Sat, 6 Dec 2025 13:37:43 +0100
+	 In-Reply-To:Content-Type; b=YsC7zF7TEL8kFmKbnaSaceygO5PLDUfwGTShY00aNd3WBDc+xR+yPsZbtoHAHBYAnmT4LSBP3G9494HkzL9QisQuxRE2p8VWU/DjhUwcdPuWew106LZZBH7Sh2HEW1wrFHyheA25+4zwFRbb/7f4ULOe1hx6SwGRpYrTzOliby0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=HBebihtm; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-47789cd2083so18362295e9.2
+        for <devicetree@vger.kernel.org>; Sat, 06 Dec 2025 04:38:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=suse.com; s=google; t=1765024681; x=1765629481; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=OIhBd1LCJj7xifV0MwkBjxJ1HTu8zyeSnrj0t6qAKpo=;
+        b=HBebihtmh99pNLvZ02Bz44OY8b3o54Fq3S8BxE1+VoqBIpayrMv9z8OXvewl/Jo5Wb
+         jUqqRiItImsROBuKcU2d1JHpGnlRRuhPE/YV94tPqMeemVgPfihNXwdEI+/8OBHS8SUN
+         BCwk5BZ26mfmU8ThtAz/i1Eal9/G1yH5GVOnr5zC8ruK9KXVnb4CfYivWp78zKWet1ww
+         YZJoDOyOxROlgGpFLX31almNqeP2bR7OM09FpO6zl8GWlTupOHTMH57OUb+EDCrhDTyp
+         rGroJwxmt6aeHC/AQIE0Ty/KFjT0V6G7zoqLQdTOE6EDLslWXKMTUhhhDx5o6Dpegcn3
+         h/Aw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765024681; x=1765629481;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=OIhBd1LCJj7xifV0MwkBjxJ1HTu8zyeSnrj0t6qAKpo=;
+        b=sNbhiBZWnwSa2CzTPFm58Q/TWEs+OodTXubxS5X8AEYhMjGHt/q1QGHG4fk5pCFaZp
+         QjznmTUJa4l0VlF1qSRydNNWHEG9E8OMPuCUHdVORy8CaKmRe7yrTkLKNna7H+ssXqaV
+         Fx3iao4AAZ9uryZpYBCdnGadAvsPOiC1TRJW9IFM2lgFhUn+OPyDD3a3lL2lZWBtgeP7
+         h3WTRCIHs/itin2qdfuMKApxVf7l0wPWMJ+hf6S0rwpnuPb74fwom/3LdTSD0QzrWB5L
+         CdohznBqYZsn2yAp0C7H++z0NWAB8tXxr2gaS+dWO5xrmHlMfF78UZR7eggYyRpOnmPu
+         ivww==
+X-Forwarded-Encrypted: i=1; AJvYcCWMJmkrwtAgyf93Jw7XbjfVPnSt4Zk4El82HXtVVSevnvVeFceNNxdTzJUBMYP4bcbe49yq8ta+Sh3+@vger.kernel.org
+X-Gm-Message-State: AOJu0YyEfFVT3TpW5VxOoXCgmEw3tFtUjSe9kksdnmfGGQkqfbiS/dtZ
+	VSCkHe5NiakIfaTxuuGPNtx/gZqnuq3vF45Qc8iV5NPNkesVopHPUOCNqUfH4K+0AF8=
+X-Gm-Gg: ASbGncu3dnyWw4rtRn+0Z17cbXPzZ66085RTCTw6Y7zAmbjmIVxskJXCvVTNa7tnF3z
+	qQNa15MOmlV/dIBLIAfx0CMn7Z8MV2TbeO/trmBPiU1jFTHu2P8XMXComF8N71gXjCkMOPCWw6b
+	HeZ1VFwRbyZ4KweZSjUH0K/tyt16WBtnHNp2FeY/0Z23jI8rLecO3p9UekA4KQ8W2zhpTpZZJNS
+	FtzbFH2CMi1VqcHwgDR9yW5JNhttu/+lsBZsVNDmTssTRMyH+N4Tld+G2OKdlgkmLmFK3Wmy5Fv
+	222S/UmIRs0xuyMDlyBT995guv8ujjod5zfIeLS2Qi+9rR4lCSjB9S09TndgB2JpINlcYmm0LDA
+	mpGKUbahyl4CXHhKoVR+ToJ7O8yUZEo/f1pMhZE5RCiTCHZFdGBi3Hakm+JX79QWqQIzsZoS/G2
+	B8iV1VoZeiKfMciWIS2hciwND/jXpS7OwN3Pk0JeOCW5PGy2q2LlpmJkniorhtQ7BIAxOgglTMu
+	1Qw
+X-Google-Smtp-Source: AGHT+IFV+g5YZB4l+nX4K2VIKP4qPmTDVcLGCOU1922bmbKhf91LhPwj9RJnC4HZ2/LZ3K6Js5WD8w==
+X-Received: by 2002:a05:6000:2583:b0:42b:2fb5:73c9 with SMTP id ffacd0b85a97d-42f89f70894mr2310830f8f.58.1765024680716;
+        Sat, 06 Dec 2025 04:38:00 -0800 (PST)
+Received: from [192.168.1.138] (241.85-85-167.dynamic.clientes.euskaltel.es. [85.85.167.241])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42f7cbe90fdsm13756855f8f.3.2025.12.06.04.37.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 06 Dec 2025 04:38:00 -0800 (PST)
+Message-ID: <f9cc4a7e-c71a-439f-9e71-8cba4986ceb7@suse.com>
+Date: Sat, 6 Dec 2025 13:37:58 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -54,249 +83,50 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 05/12] arm64: dts: qcom: sdm845-lg-judyln: Add display
- panel
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Paul Sajna <sajattack@postmarketos.org>, Sam Day <me@samcday.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
- Amir Dahan <system64fumo@tuta.io>, Christopher Brown
- <crispybrown@gmail.com>, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-References: <20251203-judyln-dts-v5-0-80c1ffca8487@postmarketos.org>
- <20251203-judyln-dts-v5-5-80c1ffca8487@postmarketos.org>
- <w2gtfgvbx5ujyfbilhyqblhlwo4ewybpmsrdl2gyafcx5etbnl@apze5qpd4okw>
-Content-Language: en-US
-From: David Heidelberg <david@ixit.cz>
-Autocrypt: addr=david@ixit.cz; keydata=
- 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
-In-Reply-To: <w2gtfgvbx5ujyfbilhyqblhlwo4ewybpmsrdl2gyafcx5etbnl@apze5qpd4okw>
+Subject: Re: [PATCH v4 1/6] PCI: starfive: Use regulator APIs instead of GPIO
+ APIs to enable the 3V3 power supply of PCIe slots
+Content-Language: en-GB
+To: Conor Dooley <conor@kernel.org>, Hal Feng <hal.feng@starfivetech.com>
+Cc: Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Paul Walmsley <pjw@kernel.org>,
+ Albert Ou <aou@eecs.berkeley.edu>, "Rafael J . Wysocki" <rafael@kernel.org>,
+ Viresh Kumar <viresh.kumar@linaro.org>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+ Manivannan Sadhasivam <mani@kernel.org>, Bjorn Helgaas
+ <bhelgaas@google.com>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>,
+ Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+ Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
+ E Shattow <e@freeshell.de>, devicetree@vger.kernel.org,
+ linux-pci@vger.kernel.org, linux-riscv@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20251125075604.69370-1-hal.feng@starfivetech.com>
+ <20251125075604.69370-2-hal.feng@starfivetech.com>
+ <20251125-encourage-junkie-f80e6933b3af@spud>
+From: Matthias Brugger <mbrugger@suse.com>
+In-Reply-To: <20251125-encourage-junkie-f80e6933b3af@spud>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 06/12/2025 03:09, Dmitry Baryshkov wrote:
-> On Wed, Dec 03, 2025 at 01:40:54AM -0800, Paul Sajna wrote:
->> Also include other supporting msm drm nodes, including backlight
+On 25/11/25 21:00, Conor Dooley wrote:
+> On Tue, Nov 25, 2025 at 03:55:59PM +0800, Hal Feng wrote:
+>> The "enable-gpio" property is not documented in the dt-bindings and
+>> using GPIO APIs is not a standard method to enable or disable PCIe
+>> slot power, so use regulator APIs to replace them.
 >>
->> Co-developed-by: Amir Dahan <system64fumo@tuta.io>
->> Signed-off-by: Amir Dahan <system64fumo@tuta.io>
->> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
->> Signed-off-by: Paul Sajna <sajattack@postmarketos.org>
->> ---
->>   arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi |  8 +--
->>   arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts  | 75 +++++++++++++++++++++-----
->>   2 files changed, 66 insertions(+), 17 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
->> index 165523db4d49..50921af83a51 100644
->> --- a/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
->> @@ -450,10 +450,6 @@ &cdsp_pas {
->>   	status = "okay";
->>   };
->>   
->> -&dispcc {
->> -	status = "disabled";
->> -};
->> -
->>   &gcc {
->>   	protected-clocks = <GCC_QSPI_CORE_CLK>,
->>   			   <GCC_QSPI_CORE_CLK_SRC>,
->> @@ -517,6 +513,10 @@ led@5 {
->>   	};
->>   };
->>   
->> +&pmi8998_wled {
->> +	status = "okay";
->> +};
->> +
->>   &sdhc_2 {
->>   	cd-gpios = <&tlmm 126 GPIO_ACTIVE_LOW>;
->>   
->> diff --git a/arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts b/arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts
->> index 55bfddab3afd..506e6fe8e798 100644
->> --- a/arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts
->> +++ b/arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts
->> @@ -13,19 +13,6 @@ / {
->>   	model = "LG G7 ThinQ";
->>   	compatible = "lg,judyln", "qcom,sdm845";
->>   
->> -	chosen {
->> -		framebuffer@9d400000 {
->> -			compatible = "simple-framebuffer";
->> -			reg = <0x0 0x9d400000 0x0 (1440 * 3120 * 4)>;
->> -			width = <1440>;
->> -			height = <3120>;
->> -			stride = <(1440 * 4)>;
->> -			format = "a8r8g8b8";
->> -			lab-supply = <&lab>;
->> -			ibb-supply = <&ibb>;
->> -		};
->> -	};
+>> Tested-by: Matthias Brugger <mbrugger@suse.com>
 > 
-> I think, you can leave simple-fb in place. MSM driver should be able to
-> replace it once it is loaded.
-
-Any chance, do you know if the issue OnePlus had is then resolved?
-
-===
-/**
-  * HACK:
-  * Fake panel node for simple-framebuffer to calculate DPI from. Only
-  * needs width & height specified. This allows us to break device link
-  * from simplefb to mdss (implicitly via panel->mdp->mdss) to fix drm
-  * device probe ordering. Without this, simpledrm would probe second
-  * after msm-drm, and confuse userspace with 2 GPUs in /dev/dri.
-  * Alternative workaround is to boot with kernel parameter
-  * `fw_devlink=permissive`, which is worse, because it can hide other
-  * issues with device dependencies.
-  */
-panel = <&fb_panel>;
-
-fb_panel: fb-panel {
-         width-mm = <68>;
-         height-mm = <145>;
-};
-===
-
-Ref: 
-https://gitlab.com/sdm845/sdm845-next/-/commit/6a0a09c4dddc1b973209f5ffea086eb7a3fc24b9
-
-Add Sam into CC.
-
-David
-
-
-> 
->> -
->>   	/* Additional ThinQ key */
->>   	gpio-keys {
->>   		pinctrl-0 = <&vol_up_pin_a &thinq_key_default>;
->> @@ -67,6 +54,47 @@ &gpu_zap_shader {
->>   	firmware-name = "qcom/sdm845/judyln/a630_zap.mbn";
->>   };
->>   
->> +&mdss {
->> +	status = "okay";
->> +};
->> +
->> +&mdss_dsi0 {
->> +	vdda-supply = <&vdda_mipi_dsi0_1p2>;
->> +
->> +	status = "okay";
->> +
->> +	display_panel: panel@0 {
->> +		reg = <0>;
->> +		compatible = "lg,sw49410-lh609qh1", "lg,sw49410";
->> +
->> +		backlight = <&pmi8998_wled>;
->> +		reset-gpios = <&tlmm 6 GPIO_ACTIVE_LOW>;
->> +		width-mm = <65>;
->> +		height-mm = <140>;
->> +
->> +		pinctrl-0 = <&sde_dsi_active &sde_te_active_sleep>;
->> +		pinctrl-1 = <&sde_dsi_sleep &sde_te_active_sleep>;
->> +		pinctrl-names = "default", "sleep";
->> +
->> +		port {
->> +			panel_in: endpoint {
->> +				remote-endpoint = <&mdss_dsi0_out>;
->> +			};
->> +		};
->> +	};
->> +};
->> +
->> +&mdss_dsi0_phy {
->> +	vdds-supply = <&vdda_mipi_dsi0_pll>;
->> +
->> +	status = "okay";
->> +};
->> +
->> +&mdss_dsi0_out {
->> +	remote-endpoint = <&panel_in>;
->> +	data-lanes = <0 1 2 3>;
->> +};
->> +
->>   &mss_pil {
->>   	firmware-name = "qcom/sdm845/judyln/mba.mbn", "qcom/sdm845/judyln/modem.mbn";
->>   };
->> @@ -85,4 +113,25 @@ thinq_key_default: thinq-key-default-state {
->>   		drive-strength = <2>;
->>   		bias-pull-up;
->>   	};
->> +
->> +	sde_dsi_active: sde-dsi-active-state {
->> +		pins = "gpio6";
->> +		function = "gpio";
->> +		drive-strength = <8>;
->> +		bias-disable;
->> +	};
->> +
->> +	sde_dsi_sleep: sde-dsi-sleep-state {
->> +		pins = "gpio6";
->> +		function = "gpio";
->> +		drive-strength = <2>;
->> +		bias-pull-down;
->> +	};
->> +
->> +	sde_te_active_sleep: sde-te-active-sleep-state {
->> +		pins = "gpio10";
->> +		function = "mdp_vsync";
->> +		drive-strength = <2>;
->> +		bias-pull-down;
->> +	};
->>   };
->>
->> -- 
->> 2.52.0
->>
+> Is this actually a valid tag?
+> He provided one for the series on v3, which didn't include this patch.
 > 
 
--- 
-David Heidelberg
+No it is not. As I only tested v3. But I was able to test v4 as well, so 
+for the whole series:
 
+Tested-by: Matthias Brugger <mbrugger@suse.com>
+
+Regards,
+Matthias
 
