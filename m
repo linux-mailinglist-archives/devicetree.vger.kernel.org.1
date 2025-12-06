@@ -1,81 +1,54 @@
-Return-Path: <devicetree+bounces-244932-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244936-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5847CAA4E1
-	for <lists+devicetree@lfdr.de>; Sat, 06 Dec 2025 12:12:11 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6CD5CAA50C
+	for <lists+devicetree@lfdr.de>; Sat, 06 Dec 2025 12:27:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0C32730B8E76
-	for <lists+devicetree@lfdr.de>; Sat,  6 Dec 2025 11:11:54 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id A776B300B6AE
+	for <lists+devicetree@lfdr.de>; Sat,  6 Dec 2025 11:27:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 920F92F260E;
-	Sat,  6 Dec 2025 11:11:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B3662F1FD1;
+	Sat,  6 Dec 2025 11:27:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="QEpcormi"
+	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="Dv1cvYak"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.smtpout.orange.fr (smtp-71.smtpout.orange.fr [80.12.242.71])
+	(using TLSv1.2 with cipher AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2187A2046BA
-	for <devicetree@vger.kernel.org>; Sat,  6 Dec 2025 11:11:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A75681F875A;
+	Sat,  6 Dec 2025 11:27:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.71
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765019512; cv=none; b=GFsGBwYlulK9kBRhqKvoNW1zuNIO0WoX1/1ChNEyZFXVwF2++8M0u+LJbrD/CXhpGdo7cnYlMDjkAwqN6kyOKmzNyiQuTcNWKrunNBxEMA/EkMQFBG0eaQv1NAeB5UM4htxDgdt4kKHGPHBoQMYQs5kvFHyNVNJ8NEFA1jdWzyY=
+	t=1765020461; cv=none; b=k33Tt/XYSOJrlecwhiJkEvTLtNj3k05nOEqjnZ2kXILPr/u7yi4jIjOvBEG2HjcHCPsvDbRfFIE5F60jo1Wa1Wc31qJ1ft2ftTVrWMJFZ8fJeqjUH4x9VvgZEGISCkZPTzqNvtSH4Jyyglmo+z33QS/EYAkoNLbZFWjghTaxWwU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765019512; c=relaxed/simple;
-	bh=i6DFH1owewNhW67SaCjr52SMT9liSY8pPxcicJCPwkg=;
+	s=arc-20240116; t=1765020461; c=relaxed/simple;
+	bh=hii068F3KbgumOsAfO8xCUal0EPtE5ouidBwEDQtYaU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SbCbfDm8HF3MiDrX9vvPLtrqN2eMW+bHzK4NfQD4+ftftKop+4KIRcGBw1RJr5X0oQmX7Scg+QkwPoaM8+Rhy8LmCEu9pBrjWKW2DY5GiDbEFSgA93KrpyJC6mNkskj3pj9JQX1/25m77MiRwQ/9DQuIq+n76A60Y9WoSgPhozI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=QEpcormi; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-477aa218f20so20002035e9.0
-        for <devicetree@vger.kernel.org>; Sat, 06 Dec 2025 03:11:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1765019508; x=1765624308; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=kA4dYuB49zNcflG5vvLKKvtHOONzwthyiF/LnUsNAAo=;
-        b=QEpcormiRUQoWpOAd9BKXD8tVp1JKrmxelxLLiHPMmoMhrXelQfwXGLFzjkyb6L8JM
-         E7+AHRcMxNk9TCR9wE1usq5zOtI/zY+laCb5i1711Bq3nFSMht6PInpXVH2zu0/qX7Je
-         ADreAEEJBMv6n3sJtb2y19MAD4OHufDYP4jS+PXmmwk6Vytm9hVQoQf1/mk1dcA2GIBy
-         1wVoshSzXVFqE/S9TQ6uepyaRjcFZOotLPa2Ku/T7VRRwcFbSk2ZjGMRi9WeaJ8Bjf2m
-         f1VosxKI1ZlrwarYeaaXai3flwCv6QJLpgznhSvac/WvqQYD24xStPpTQ7ECG+y6BmRj
-         oW/w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765019508; x=1765624308;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=kA4dYuB49zNcflG5vvLKKvtHOONzwthyiF/LnUsNAAo=;
-        b=gDCOtbTVYGejMRDSUtHUIivyttT/3jHbzQbGPOw9+b1kZG9B09HV/n2KqHd9LWPSvk
-         DTQMSHStZ0C5/Uk7sQ2tDl0KDyNmmmOUxkyZcHHQauUn2PPRDrb6OajqHX62oqdxDufX
-         2JKAW5f4G3b5lgxScJyNJqCrhjhJF8vohcjCbdHf58eWedZYhuMAf3EWJBMFFpQSIWOp
-         C/IZWT9FEemoAnFZX3pNjH4TcceY4on7epi+cEwQi9PkpR63hL5hbnN753bcKEU0TY+D
-         Sm79eiSZwWE7jq1iVfs4Y9TFmb2CZJrqKIZo0uw33lIucx0/4QfZAFOpmuk4Ynam+V3I
-         oKyw==
-X-Forwarded-Encrypted: i=1; AJvYcCUtbh4wZRUFgjDhRcxS0xG8vt2sBlm4lhhUd6g5XBGugDR8xUeWR+OUJ3Jz2u2PSMmkkhMLFG1vxSQN@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywx5jqz9DhbUlpnHBdIyMl05wa3C5jcRc+YVurbws8cpHwUYK2X
-	OjMpRA9N+OXwRM1GpS7IwzimK1tetNkcjWnfotwwWqdspaAPC4ZJ+NWpZs0LLqzAQWvh4pMgAaq
-	mgeGq
-X-Gm-Gg: ASbGncudhDjgq0ENUDH2i0j/oc7FO0HOqYoPAn0KFloDlfhwdDH2LIyVII/VGoxWvM5
-	FOdf984duwbXAPD4rWa1eU5JTEdg5J7JbsCHaO6A4A8GcNlAye4s0a6RHpuWRbcKP7RMAishgNk
-	iZGlFDw+apsVQ24Moz91mNq5+adiC+W3ZpLN2RRQJtNzo+g22mfDkSON7mggnoY/BkBufNhG1zW
-	a2pS52gyqeZiIoe5PHQr6/KbJPtiBN79Ki0toQtDrDSUPHHGhBPahvu2aT3Q2JLd6oNS6QNMIAD
-	4Y0Llq7T0MeCa5fAxBEVsMbJqtZjlOlAau4gLRdC9BD2rILRuQ732zwB95fh8LJ1esmqhPUFszf
-	9Ti+7e61c9ncVDvb7vyLzXZrxv/Lz7P1Z1uzfl90jgK6e8vkeNoZuOvtQS9+1HM5StgdVemBmr6
-	naJv2rKT3SiMgsrMFcMMM=
-X-Google-Smtp-Source: AGHT+IEXAY0hNz2eOSoL0Hv03FAjM8+tLdCbApP/CpVTsWfXGDNXQB9mZEeEHfi46Teq/N/IO2sImA==
-X-Received: by 2002:a05:600c:621b:b0:477:55c9:c3ea with SMTP id 5b1f17b1804b1-47939e50ce2mr25774055e9.35.1765019508463;
-        Sat, 06 Dec 2025 03:11:48 -0800 (PST)
-Received: from [192.168.50.4] ([82.78.167.134])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-479311fbaf4sm124579745e9.15.2025.12.06.03.11.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 06 Dec 2025 03:11:47 -0800 (PST)
-Message-ID: <ae7dd616-f09f-4729-a15c-411d964461d6@tuxon.dev>
-Date: Sat, 6 Dec 2025 13:11:46 +0200
+	 In-Reply-To:Content-Type; b=iGwpUHMCJBIrL86mmiH5rL4De3dLyi/bZ1rC/+v3U3O4CfbggN4j02c7RAhOzr//ijtdeABcYMUpJLBrru0Z7lWWy72NPfLw0OLsMdZe/CsK3gPPgQ8LK91iaw0iMuFLgeLCQmL78eBiRI7lprEV0E8/t4t94IbEUQmic+k8GTc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=Dv1cvYak; arc=none smtp.client-ip=80.12.242.71
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
+Received: from [IPV6:2a01:cb10:785:b00:8347:f260:7456:7662]
+ ([IPv6:2a01:cb10:785:b00:8347:f260:7456:7662])
+	by smtp.orange.fr with ESMTPA
+	id RqIpvLNzzprvxRqIpvLnbb; Sat, 06 Dec 2025 12:18:17 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+	s=t20230301; t=1765019897;
+	bh=J6E/8F3q2cZsVYqLNny0ynAV2xtNiuPpv9dnjaTz57U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From;
+	b=Dv1cvYakGXmyjP1HKoAmh71ETXlbYxa7OF2sDk5coZ6q5DYgXd6AzsoZz6WzXGj0m
+	 8jnJLD2sfXo7AxMiLStMY0uGn/mbb2t33wDDpoyNOSAcsuUCfsSq1JMP95CVI5h9ZB
+	 nIx9RLbGZ9uhklAtjK7m11Zo6zbx/XnBSMiM2ScdEFjOur3ySVBhfK7YTw2ooSZ/OG
+	 agi3zNcm7v3cTfLBH1v/G4fZjU8slJ8sTgv90bqdfrjCGyVkR6kAygW4DIt7dQ+zoB
+	 f3q/o+aPRifWcWjUoqi4Lcz35lGF0qRkAt5g29QLWf0M6gPYc4usryGFDEbQv/hzdR
+	 WrSMdz15TP6FA==
+X-ME-Helo: [IPV6:2a01:cb10:785:b00:8347:f260:7456:7662]
+X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
+X-ME-Date: Sat, 06 Dec 2025 12:18:17 +0100
+X-ME-IP: 2a01:cb10:785:b00:8347:f260:7456:7662
+Message-ID: <f69062aa-e9e8-44c9-ad84-d9263747528c@wanadoo.fr>
+Date: Sat, 6 Dec 2025 12:18:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,57 +56,204 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/3] clk: microchip: drop POLARFIRE from
- ARCH_MICROCHIP_POLARFIRE
-To: Conor Dooley <conor@kernel.org>, linux-kernel@vger.kernel.org
-Cc: Conor Dooley <conor.dooley@microchip.com>,
- Daire McNamara <daire.mcnamara@microchip.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-riscv@lists.infradead.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org
-References: <20251117-shadow-police-56aba5d855a3@spud>
- <20251117-bulgur-wildfire-a8c5a2b417dc@spud>
-From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-Content-Language: en-US
-In-Reply-To: <20251117-bulgur-wildfire-a8c5a2b417dc@spud>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH v5 3/4] led: sony-cronos-smc: Add RGB LED driver for Sony
+ Cronos SMC
+To: tpearson@raptorengineering.com
+Cc: Georgy.Yakovlev@sony.com, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ lee@kernel.org, linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+ sanastasio@raptorengineering.com
+References: <20251204185015.1364439-1-tpearson@raptorengineering.com>
+ <20251204185015.1364439-4-tpearson@raptorengineering.com>
+Content-Language: en-US, fr-FR
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+In-Reply-To: <20251204185015.1364439-4-tpearson@raptorengineering.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi, Conor,
-
-On 11/17/25 17:35, Conor Dooley wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
+Le 04/12/2025 à 19:50, Timothy Pearson a écrit :
+> The Sony Cronos Platform Controller is a multi-purpose platform controller with
+> an integrated multi-channel RGB LED controller.  The LED controller is a
+> pseudo-RGB device with only two states for each of the RGB subcomponents of
+> each LED, but is exposed as a full RGB device for ease of integration with
+> userspace software.  Internal thresholding is used to convert the color values
+> to the required on/off RGB subcomponent controls.
 > 
-> This driver is used by non-polarfire devices now, and the ARCH_MICROCHIP
-> symbol has been defined for some time on RISCV so drop it without any
-> functional change.
-> 
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Timothy Pearson <tpearson-z0qzliK6Om0mgXJStvpl+vpXobYPEAuW@public.gmane.org>
 > ---
->  drivers/clk/microchip/Kconfig | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/clk/microchip/Kconfig b/drivers/clk/microchip/Kconfig
-> index cab9a909893b..a0ef14310417 100644
-> --- a/drivers/clk/microchip/Kconfig
-> +++ b/drivers/clk/microchip/Kconfig
-> @@ -5,8 +5,8 @@ config COMMON_CLK_PIC32
->  
->  config MCHP_CLK_MPFS
->  	bool "Clk driver for PolarFire SoC"
-> -	depends on ARCH_MICROCHIP_POLARFIRE || COMPILE_TEST
-> -	default ARCH_MICROCHIP_POLARFIRE
-> +	depends on ARCH_MICROCHIP || COMPILE_TEST
-> +	default y
->  	depends on MFD_SYSCON
->  	select AUXILIARY_BUS
->  	select COMMON_CLK_DIVIDER_REGMAP
+>   drivers/leds/Kconfig            |  19 ++
+>   drivers/leds/Makefile           |   1 +
+>   drivers/leds/leds-sony-cronos.c | 378 ++++++++++++++++++++++++++++++++
+>   3 files changed, 398 insertions(+)
+>   create mode 100644 drivers/leds/leds-sony-cronos.c
 
-This doesn't apply on top of the current at91-next. Maybe rebase it once
-6.19-rc1 is out.
+Hi,
 
-Thank you,
-Claudiu
+kernel test robot has complained, so it is still time to suggest some 
+small clean-ups, if of any interest.
 
+...
+
+> diff --git a/drivers/leds/Makefile b/drivers/leds/Makefile
+> index 9a0333ec1a86..6dbcf747cab6 100644
+> --- a/drivers/leds/Makefile
+> +++ b/drivers/leds/Makefile
+> @@ -84,6 +84,7 @@ obj-$(CONFIG_LEDS_POWERNV)		+= leds-powernv.o
+>   obj-$(CONFIG_LEDS_PWM)			+= leds-pwm.o
+>   obj-$(CONFIG_LEDS_QNAP_MCU)		+= leds-qnap-mcu.o
+>   obj-$(CONFIG_LEDS_REGULATOR)		+= leds-regulator.o
+> +obj-$(CONFIG_LEDS_SONY_CRONOS)		+= leds-sony-cronos.o
+
+Keep alphabetical order?
+
+>   obj-$(CONFIG_LEDS_SC27XX_BLTC)		+= leds-sc27xx-bltc.o
+>   obj-$(CONFIG_LEDS_ST1202)		+= leds-st1202.o
+>   obj-$(CONFIG_LEDS_SUN50I_A100)		+= leds-sun50i-a100.o
+> diff --git a/drivers/leds/leds-sony-cronos.c b/drivers/leds/leds-sony-cronos.c
+> new file mode 100644
+> index 000000000000..ce71a8b6ce94
+> --- /dev/null
+> +++ b/drivers/leds/leds-sony-cronos.c
+> @@ -0,0 +1,378 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * LED driver for Sony Cronos SMCs
+> + * Copyright (C) 2012 Dialog Semiconductor Ltd.
+> + * Copyright (C) 2023 Sony Interactive Entertainment
+> + * Copyright (C) 2025 Raptor Engineering, LLC
+> + */
+> +
+> +#include <linux/kernel.h>
+> +#include <linux/leds.h>
+> +#include <linux/module.h>
+> +#include <linux/led-class-multicolor.h>
+> +#include <linux/mfd/sony-cronos.h>
+> +#include <linux/of.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/regmap.h>
+
+Sometimes, it is preferred to keep #include in alphabetic order.
+
+> +
+> +/* Masks and Bit shifts */
+> +#define CRONOS_LEDS_STATUS_FLASHING_MASK	0x40
+> +#define CRONOS_LEDS_STATUS_FLASHING_SHIFT	6
+> +#define CRONOS_LEDS_STATUS_COLOR_MASK		0x07
+> +#define CRONOS_LEDS_STATUS_COLOR_SHIFT		0
+
+...
+
+> +enum sony_cronos_led_id {
+> +	LED_ID_CCM1_STATUS = 0x00,
+> +	LED_ID_CCM2_STATUS,
+> +	LED_ID_CCM3_STATUS,
+> +	LED_ID_CCM4_STATUS,
+> +	LED_ID_SWITCH_STATUS,
+> +	LED_ID_SMC_STATUS,
+> +
+> +	LED_ID_CCM1_LINK,
+> +	LED_ID_CCM2_LINK,
+> +	LED_ID_CCM3_LINK,
+> +	LED_ID_CCM4_LINK,
+> +	LED_ID_SWITCH_LINK,
+> +
+> +	LED_ID_CCM1_POWER,
+> +	LED_ID_CCM2_POWER,
+> +	LED_ID_CCM3_POWER,
+> +	LED_ID_CCM4_POWER,
+> +
+> +	LED_ID_COUNT,
+
+Unneeded trailing comma after a terminator.
+Moreover, LED_ID_COUNT looks unused. Is it needed?
+
+> +};
+> +
+> +enum sony_cronos_led_type {
+> +	LED_TYPE_STATUS,
+> +	LED_TYPE_LINK,
+> +	LED_TYPE_POWER,
+> +};
+
+...
+
+> +static int cronos_led_color_store(struct sony_cronos_smc *chip, struct sony_cronos_led *led)
+> +{
+> +	u8 byte;
+> +	u8 color_mask;
+> +	u8 color_shift;
+> +	u8 color_key_red;
+> +	u8 color_key_green;
+> +	u8 color_key_blue;
+> +	int ret;
+> +
+> +	if (led->led_type == LED_TYPE_STATUS) {
+> +		color_mask = CRONOS_LEDS_STATUS_COLOR_MASK;
+> +		color_shift = CRONOS_LEDS_STATUS_COLOR_SHIFT;
+> +	} else if (led->led_type == LED_TYPE_LINK) {
+> +		color_mask = CRONOS_LEDS_LINK_COLOR_MASK;
+> +		color_shift = CRONOS_LEDS_LINK_COLOR_SHIFT;
+> +	} else if (led->led_id == LED_ID_CCM1_POWER) {
+> +		color_mask = CRONOS_LEDS_CCM1_POWER_COLOR_MASK;
+> +		color_shift = CRONOS_LEDS_CCM1_POWER_COLOR_SHIFT;
+> +	} else if (led->led_id == LED_ID_CCM2_POWER) {
+> +		color_mask = CRONOS_LEDS_CCM2_POWER_COLOR_MASK;
+> +		color_shift = CRONOS_LEDS_CCM2_POWER_COLOR_SHIFT;
+> +	} else if (led->led_id == LED_ID_CCM3_POWER) {
+> +		color_mask = CRONOS_LEDS_CCM3_POWER_COLOR_MASK;
+> +		color_shift = CRONOS_LEDS_CCM3_POWER_COLOR_SHIFT;
+> +	} else if (led->led_id == LED_ID_CCM4_POWER) {
+> +		color_mask = CRONOS_LEDS_CCM4_POWER_COLOR_MASK;
+> +		color_shift = CRONOS_LEDS_CCM4_POWER_COLOR_SHIFT;
+> +	} else
+> +		return ret;
+> +
+> +	switch (led->led_type) {
+> +	case LED_TYPE_POWER:
+> +		color_key_red = LED_COLOR_POWER_RED;
+> +		color_key_green = LED_COLOR_POWER_GREEN;
+> +		/* Blue channel does not exist for CCM power LEDs */
+> +		color_key_blue = LED_COLOR_POWER_OFF;
+> +		break;
+> +	default:
+> +		color_key_red = LED_COLOR_RED;
+> +		color_key_green = LED_COLOR_GREEN;
+> +		color_key_blue = LED_COLOR_BLUE;
+> +	}
+> +
+> +	/* Assemble SMC color command code */
+> +	byte = LED_COLOR_POWER_OFF;
+> +	if (led->subled_info[0].brightness > 128)
+> +		byte |= color_key_red;
+> +	if (led->subled_info[1].brightness > 128)
+> +		byte |= color_key_green;
+> +	if (led->subled_info[2].brightness > 128)
+> +		byte |= color_key_blue;
+> +
+> +	ret = regmap_update_bits(chip->regmap, led->led_register, color_mask, byte << color_shift);
+> +	if (ret) {
+> +		dev_err(chip->dev, "Failed to set color value 0x%02x to LED register 0x%02x", byte,
+
+Missing \n at the end of the message.
+
+> +			led->led_register);
+> +		return ret;
+> +	}
+> +	return 0;
+> +}
+
+...
+
+> +static const struct of_device_id sony_cronos_led_of_id_table[] = {
+> +	{ .compatible = "sie,cronos-led", },
+> +	{},
+
+Unneeded trailing comma after a terminator.
+
+> +};
+> +MODULE_DEVICE_TABLE(of, sony_cronos_led_of_id_table);
+
+...
+
+CJ
 
