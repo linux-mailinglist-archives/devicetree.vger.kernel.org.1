@@ -1,164 +1,232 @@
-Return-Path: <devicetree+bounces-244958-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244959-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1265DCAA86D
-	for <lists+devicetree@lfdr.de>; Sat, 06 Dec 2025 15:25:06 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E573CAA9AA
+	for <lists+devicetree@lfdr.de>; Sat, 06 Dec 2025 17:09:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id BE10B300D32E
-	for <lists+devicetree@lfdr.de>; Sat,  6 Dec 2025 14:25:04 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 96D5030A5EA5
+	for <lists+devicetree@lfdr.de>; Sat,  6 Dec 2025 16:09:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBB552F9D94;
-	Sat,  6 Dec 2025 14:25:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A296F2ED17C;
+	Sat,  6 Dec 2025 16:09:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="MG0KP76J"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K2o7704E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0582E199FBA;
-	Sat,  6 Dec 2025 14:25:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70EC622A7E4;
+	Sat,  6 Dec 2025 16:09:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765031103; cv=none; b=QTNpnhJl/kF7rCewc1gvLng080Lu9pg+yccBSGknKyLxB4/jTcwwbY+ZxuqcYx9jTzCbkJIr3dLFZGVWOVS4T/OCZuQV1d9lfUe5R5xRu9EAk92GQ2NcXPOepI6vrCWflED3xu1bWZWyK9BJSb6QKX1pEYYkt0Wt4PTazd9sXXQ=
+	t=1765037384; cv=none; b=PHqKwUZ9MqdBqUgVFO9ui5hYyIaY++OxIB9oaAzQWA/u+7b2J0PPjUVMZDylhNmS4209XzndDg9lVBvZONeZCND6z8U6k7uAUtXbgECchfRqg4VlzJh+jlFzqqBUvrrBh98q+wgJgVvqTtlZoo/tkcp3iknTcSDnj68loLRjxZ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765031103; c=relaxed/simple;
-	bh=rhJy0MuZoX1IN0c3VNkXR9OgQWBNKyzexnJsWC4tqmk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jW+vcjcqtAXIMbEqMMPkzXkp/ycr5Gyvu1pCbQg3YmcK9BjoFQ8EKBfGQqc5+bVX5L67FI17Fy+yhtpJBnrl+qoBgERN8JGq6myKZa4/0qNd17TOsrk0ycC/blQTtcNGeQmC1i7NRp0/2kHmjSn3Z5w95JqfDWDV2l3L9ZgMaf4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=MG0KP76J; arc=none smtp.client-ip=192.198.163.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1765031102; x=1796567102;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=rhJy0MuZoX1IN0c3VNkXR9OgQWBNKyzexnJsWC4tqmk=;
-  b=MG0KP76JFA0fi4G+ZjZ9VYFvMTG2TsPPLJhpdavNfiUzHhPKDmz2y4UA
-   8pvk1eF46Nazr482y9pWioqxFJiiENSQaPfI9eJYjqrBJG01wvLgE6zg+
-   XmLy4RSFW5ONp3dNre1centzm2WoPdTxYT121/w9lK29ttITAM43XSF8R
-   62lvaYbZUSW24F/K33omMbF2MRLwHgXXGM9pmEsPn9BBQ0124VZloWetQ
-   Xhfh3NrQkaqpCxzpHd6I0dA9d21IeSl1h085gfau0dyAwatT1iC/req3n
-   jJ2NldcW5YPwEqyCz4sk4fjyQZszEm0rRqBsg+0SCAQIKz8j5NIzdzJgC
-   g==;
-X-CSE-ConnectionGUID: iNNEAcddSiOtbpZ4a9e3pQ==
-X-CSE-MsgGUID: Z1lwnMGDSvyVCb/MHYDReA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11634"; a="66041583"
-X-IronPort-AV: E=Sophos;i="6.20,255,1758610800"; 
-   d="scan'208";a="66041583"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
-  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Dec 2025 06:25:01 -0800
-X-CSE-ConnectionGUID: fBohExo1RaaxqdrSlmEprQ==
-X-CSE-MsgGUID: leGyjN9HS1KwkpMGCoe/dA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,255,1758610800"; 
-   d="scan'208";a="199982689"
-Received: from lkp-server01.sh.intel.com (HELO 4664bbef4914) ([10.239.97.150])
-  by fmviesa005.fm.intel.com with ESMTP; 06 Dec 2025 06:24:58 -0800
-Received: from kbuild by 4664bbef4914 with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vRtDT-00000000IEv-25PT;
-	Sat, 06 Dec 2025 14:24:55 +0000
-Date: Sat, 6 Dec 2025 22:24:34 +0800
-From: kernel test robot <lkp@intel.com>
-To: Richard Genoud <richard.genoud@bootlin.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>
-Cc: oe-kbuild-all@lists.linux.dev,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	Richard Genoud <richard.genoud@bootlin.com>
-Subject: Re: [PATCH 2/4] pwm: sun50i: Add H616 PWM support
-Message-ID: <202512062245.KFjCln1y-lkp@intel.com>
-References: <20251205100239.1563353-3-richard.genoud@bootlin.com>
+	s=arc-20240116; t=1765037384; c=relaxed/simple;
+	bh=pnyZeNSHl7AMoGcA2KWf0ofuoHL+QQHYkdXq/DsjagU=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Va0XDDP0o+uTfXFDdKdfYCSikooR4p2VOks3mbboKnV67IXCY6jHbfo4iV/cAbPhRoO0/5TXC23/8wiYQXDoQYA2iO4hP+d+QuQiUs9jOdHr9Ba3UAk8b08231p118+I2LWSHEC+bJ5rBcBcvPpBl7XI9yMspQ8p5K/Oo2kK668=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K2o7704E; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E61F0C4CEF5;
+	Sat,  6 Dec 2025 16:09:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1765037383;
+	bh=pnyZeNSHl7AMoGcA2KWf0ofuoHL+QQHYkdXq/DsjagU=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=K2o7704EWuZWDrW8SEtZkKIj8FdlxXtqD0WzNKaOezXKLqqXTYCOLBUFjPrQVgSox
+	 0UsPr72gHvAHxhWAzmVqa+P/DLSBjGPJpw6yYDeCeo/U3K2h0m6Tsgv6YY3dW6G/NL
+	 L11mmpXttCykeRaZzQ18f4BCW/BvqLb+mgCO8Q19AHD4ATVAQRjw3Ign13zczF9ymG
+	 ZrH9wG5WOTav2Ya124hBKBdI3anKdhd25LHGMKWdC+ycjfdE/QmPQcWiOl3rBtoR8j
+	 YMzln10+SFjQOXJbUG5abKCCWqGDMObpyx6d9aWvqndXii7nDPeedAxWRb01Rx+oYG
+	 PuCGAytfL6eMg==
+Date: Sat, 6 Dec 2025 16:09:33 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Tomas Borquez <tomasborquez13@gmail.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>, David Lechner
+ <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy
+ Shevchenko <andy@kernel.org>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-staging@lists.linux.dev
+Subject: Re: [RFC PATCH 0/3] ad9832: driver cleanup
+Message-ID: <20251206160933.46d45e5f@jic23-huawei>
+In-Reply-To: <20251205202743.10530-1-tomasborquez13@gmail.com>
+References: <20251205202743.10530-1-tomasborquez13@gmail.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251205100239.1563353-3-richard.genoud@bootlin.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Hi Richard,
+On Fri,  5 Dec 2025 17:27:40 -0300
+Tomas Borquez <tomasborquez13@gmail.com> wrote:
 
-kernel test robot noticed the following build errors:
+> This series is a general cleanup of ad9832, with the purpose of 
+> graduating it from staging. The main changes are removing legacy 
+> platform_data support, converting to IIO channels with read/write_raw 
+> callbacks, and adding devicetree support.
 
-[auto build test ERROR on 6987d58a9cbc5bd57c983baa514474a86c945d56]
+Opening question for a cleanup of a driver like this is how you plan
+to test it. Do you have the hardware, or are you emulating / stubbing
+functions to test it? It is very brave to take on major refactoring
+without a good way to test.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Richard-Genoud/dt-bindings-pwm-sunxi-add-PWM-controller-for-Allwinner-H616/20251205-214804
-base:   6987d58a9cbc5bd57c983baa514474a86c945d56
-patch link:    https://lore.kernel.org/r/20251205100239.1563353-3-richard.genoud%40bootlin.com
-patch subject: [PATCH 2/4] pwm: sun50i: Add H616 PWM support
-config: parisc-allyesconfig (https://download.01.org/0day-ci/archive/20251206/202512062245.KFjCln1y-lkp@intel.com/config)
-compiler: hppa-linux-gcc (GCC) 15.1.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251206/202512062245.KFjCln1y-lkp@intel.com/reproduce)
+I was kind of planning to drop this driver this cycle on basis of no
+interest in sorting it out, but clearly you are interested so great
+as long as we can be sure it works well after your work on it
+(or indeed that it works currently!)
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202512062245.KFjCln1y-lkp@intel.com/
+> 
+> I'm sending this as an RFC because I have some concerns about the ABI 
+> design and would appreciate guidance before putting more time into this.
 
-All errors (new ones prefixed by >>):
+Very sensible!
+ 
+> 
+> Patch 1 removes the legacy platform_data support as suggested by
+> Jonathan [1]. The driver now initializes to a safe state and lets
+> userspace configure frequencies/phases via sysfs.
+> 
+> Patch 2 converts frequency and phase configuration from custom sysfs
+> attributes to proper IIO channels using read_raw/write_raw callbacks
+> (This is the main area where I'd like feedback).
+> 
+> Patch 3 adds devicetree bindings documentation.
+> 
+> Design Concerns:
+> 1) Channel Organization and ABI Break
+> 
+>    The device has 2 frequency registers and 4 phase registers. Since both
+>    frequency and phase must use IIO_ALTVOLTAGE since there's no better fit
+>    (as far as I know), I've organized channels as:
+> 
+>      out_altvoltage0_frequency  (FREQ0)
+>      out_altvoltage1_frequency  (FREQ1)
+>      out_altvoltage2_phase      (PHASE0)
+>      out_altvoltage3_phase      (PHASE1)
+>      out_altvoltage4_phase      (PHASE2)
+>      out_altvoltage5_phase      (PHASE3)
+> 
+>    The old ABI used out_altvoltage0_frequency0, out_altvoltage0_frequency1,
+>    out_altvoltage0_phase0, etc. 
+> 
+>    The new approach felt cleaner but I'm open to alternatives and better 
+>    ways of mapping them. Is this channel mapping reasonable, or would a 
+>    different organization be preferred? And is the ABI break okay?
 
-   drivers/pwm/pwm-sun50i-h616.c: In function 'h616_pwm_get_state':
->> drivers/pwm/pwm-sun50i-h616.c:76:41: error: implicit declaration of function 'FIELD_GET' [-Wimplicit-function-declaration]
-      76 | #define PWM_REG_DUTY(reg)               FIELD_GET(PWM_DUTY_MASK, reg)
-         |                                         ^~~~~~~~~
-   drivers/pwm/pwm-sun50i-h616.c:452:30: note: in expansion of macro 'PWM_REG_DUTY'
-     452 |         tmp = NSEC_PER_SEC * PWM_REG_DUTY(val);
-         |                              ^~~~~~~~~~~~
-   drivers/pwm/pwm-sun50i-h616.c: In function 'h616_pwm_calc':
->> drivers/pwm/pwm-sun50i-h616.c:79:41: error: implicit declaration of function 'FIELD_MAX' [-Wimplicit-function-declaration]
-      79 | #define PWM_PERIOD_MAX                  FIELD_MAX(PWM_PERIOD_MASK)
-         |                                         ^~~~~~~~~
-   drivers/pwm/pwm-sun50i-h616.c:493:54: note: in expansion of macro 'PWM_PERIOD_MAX'
-     493 |                 freq = div64_u64(NSEC_PER_SEC * (u64)PWM_PERIOD_MAX, period);
-         |                                                      ^~~~~~~~~~~~~~
-   drivers/pwm/pwm-sun50i-h616.c: In function 'h616_pwm_apply':
->> drivers/pwm/pwm-sun50i-h616.c:78:41: error: implicit declaration of function 'FIELD_PREP' [-Wimplicit-function-declaration]
-      78 | #define PWM_DUTY(dty)                   FIELD_PREP(PWM_DUTY_MASK, dty)
-         |                                         ^~~~~~~~~~
-   drivers/pwm/pwm-sun50i-h616.c:577:23: note: in expansion of macro 'PWM_DUTY'
-     577 |                 val = PWM_DUTY(chan->active_cycles);
-         |                       ^~~~~~~~
-   drivers/pwm/pwm-sun50i-h616.c: In function 'h616_add_composite_clk':
-   drivers/pwm/pwm-sun50i-h616.c:666:28: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
-     666 |                 mux->reg = (u64)mux->reg + reg;
-         |                            ^
-   drivers/pwm/pwm-sun50i-h616.c:676:29: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
-     676 |                 gate->reg = (u64)gate->reg + reg;
-         |                             ^
-   drivers/pwm/pwm-sun50i-h616.c:686:29: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
-     686 |                 rate->reg = (u64)rate->reg + reg;
-         |                             ^
+When fixing up a non standard ABI, ABI breakage is fine, but...
+
+This device only has one output, so there is only one channel.  We are controlling
+aspects of that channel.  Hence it should not be split across multiple indexed
+channels like you outline. What the number in the attributes indicates here is
+the input symbol for phase or frequency modulation.  The applications information
+section of the datasheet talks about using this part ofr FSK, GMSK (I had to google that
+one ;), QPSK etc.
+
+Oddly I had it in my head that we had a standardised interface for PSK / FSK
+parameter control but I guess that discussion was probably for a driver that
+never merged.  There is similar stuff for DACs though - see
+out_currentY_symbol
+out_currentY_rawN 
+in sysfs-bus-iio-dac
+In those particular cases the thing being switched is of the channel type rather
+than modulation on top of that.  But similar approach applies.
+Note the symbol control may not be present if the control pins are wired
+not to GPIOs but to external circuitry.
+
+So more or less the currently ABI is the way to go, not the one you suggest.
 
 
-vim +/FIELD_GET +76 drivers/pwm/pwm-sun50i-h616.c
+> 2) Scale Attributes
+> 
+>    The frequency scale is 1 Hz and phase scale is 2*PI/4096 radians.
+>    I cannot use info_mask_shared_by_type for IIO_CHAN_INFO_SCALE because
+>    all channels share IIO_ALTVOLTAGE.
+> 
+>    So instead I'm using IIO_CONST_ATTR for the scales:
+> 
+>      out_altvoltage_frequency_scale = "1"
+>      out_altvoltage_phase_scale = "0.0015339808"
+> 
+>    Is there a better approach here? Or should I just document the units and
+>    skip scale attributes entirely?
 
-    70	
-    71	/* PWM Period Register */
-    72	#define PWM_PERIOD_REG(ch)		(0x64 + (ch) * 0x20)
-    73	#define PWM_PERIOD_MASK			GENMASK(31, 16)
-    74	#define PWM_DUTY_MASK			GENMASK(15, 0)
-    75	#define PWM_REG_PERIOD(reg)		(FIELD_GET(PWM_PERIOD_MASK, reg) + 1)
-  > 76	#define PWM_REG_DUTY(reg)		FIELD_GET(PWM_DUTY_MASK, reg)
-    77	#define PWM_PERIOD(prd)			FIELD_PREP(PWM_PERIOD_MASK, (prd) - 1)
-  > 78	#define PWM_DUTY(dty)			FIELD_PREP(PWM_DUTY_MASK, dty)
-  > 79	#define PWM_PERIOD_MAX			FIELD_MAX(PWM_PERIOD_MASK)
-    80	
-    81	
+Good question.  I think right option is to just do the maths in the driver and
+have out_altvoltage0_frequencyN take the scaled value rather than the register
+value.  Then do some fixed point maths to get to the required register value.
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> 
+> 3) Remaining Custom Attributes
+> 
+>    Other controls remain as custom sysfs attributes:
+> 
+>      - out_altvoltage_frequencysymbol: select active frequency register
+>      - out_altvoltage_phasesymbol: select active phase register  
+
+For those two the ADC symbol example above should generalize but we'll need
+to extend the ABI to
+	out_alvoltage0_phase_symbol / frequency_symbol I think.
+
+>      - out_altvoltage_pincontrol_en: hardware pin control enable
+
+I'm not sure this is something that userspace should control at all.
+To me it seems most likely to be wiring question.
+1) those pins are ground tied, and we are doing software control -
+   corresponds to no DT description of the pins.
+2) those pins are couple to GPIOs on the SoC.  Maybe we prefer those over
+   software because expectation is that they are quicker to set.
+3) Wired to something unknown - expectation is always use those pins
+   as we can't meet the documented recommendation to tie them to zero
+   when using software control.
+
+The tricky corner is we need firmware to tell us if they are 0 tied
+vs wired to something outside our control.  This comes back to a recent
+discussion about fake GPIOs that just allow you to read the state but
+not set it (that is probably still going on but I'm reading my rather long
+inbox backwards so haven't gotten to it yet).   If that isn't resolved
+well need a firmware property to distinguish 1 and 3.
+
+
+>      - out_altvoltage_out_enable: output enable
+
+out_altvoltage0_enable should be fine.  That's standard enough for DAC channels
+and this is kind of a fancy DAC.
+
+>    I'm not sure if these map cleanly to IIO interfaces. Should these be
+>    documented in ABI or is there a preferred way to handle them?
+
+So a few additions that need documenting but mostly aligns with standard
+ABI.
+
+> 
+> 4) Implementation Notes
+> 
+>    - read_raw uses explicit address switching rather than channel index
+>      arithmetic for clarity, though phase values could alternatively be
+>      accessed via st->phase[chan->channel - 2] and directly in freq with
+>      st->freq[chan->channel].
+>    - I'm unsure if mutex guards on cached reads are necessary.
+> 
+> Link: https://lore.kernel.org/linux-iio/20250628161040.3d21e2c4@jic23-huawei/ [1]
+> Signed-off-by: Tomas Borquez <tomasborquez13@gmail.com>
+> 
+> Tomas Borquez (3):
+>   staging: iio: ad9832: remove platform_data support
+>   staging: iio: ad9832: convert to iio channels
+>   dt-bindings: iio: add analog devices ad9832/ad9835
+> 
+>  .../bindings/iio/frequency/adi,ad9832.yaml    |  65 +++++
+>  drivers/staging/iio/frequency/ad9832.c        | 264 +++++++++++-------
+>  drivers/staging/iio/frequency/ad9832.h        |  33 ---
+>  3 files changed, 233 insertions(+), 129 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/iio/frequency/adi,ad9832.yaml
+>  delete mode 100644 drivers/staging/iio/frequency/ad9832.h
+> 
+
 
