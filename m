@@ -1,81 +1,52 @@
-Return-Path: <devicetree+bounces-244941-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244942-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09A27CAA63F
-	for <lists+devicetree@lfdr.de>; Sat, 06 Dec 2025 13:38:28 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80C0CCAA6C8
+	for <lists+devicetree@lfdr.de>; Sat, 06 Dec 2025 14:27:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4275B30B326B
-	for <lists+devicetree@lfdr.de>; Sat,  6 Dec 2025 12:38:06 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 3459A3010E0E
+	for <lists+devicetree@lfdr.de>; Sat,  6 Dec 2025 13:27:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F271D2F5A1F;
-	Sat,  6 Dec 2025 12:38:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDE632FC006;
+	Sat,  6 Dec 2025 13:27:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="HBebihtm"
+	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="M+fSDBQ4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from ixit.cz (ip-94-112-25-9.bb.vodafone.cz [94.112.25.9])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69FB725C80D
-	for <devicetree@vger.kernel.org>; Sat,  6 Dec 2025 12:38:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B3592F0685;
+	Sat,  6 Dec 2025 13:27:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.112.25.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765024685; cv=none; b=PfLpewX1EReo0B7QcRM8DAiCMUUKc+pgclDahNoO/g2P7akKv1B5ZUuFMTwWfqRobWr2Bn1azY04kRXEnBDWCLpD9SDA8kNM/GiLOubiLT3F2DHoSgoJUXr0fatACVFSRpDdDlO20wrVYZcMUg1A4lvTrkGue3ojJxlBMUTPnJU=
+	t=1765027667; cv=none; b=h22787bGH97pae5AHzCmC5begx+z4P6qCoOZXXGhChmUiypHkBXJYwy4m9kpV7r29bgHFbXwt06h7vSuc+zhb8TX4NNB1IqiAf4sbIZ8HKEgWM35sHwVmIrbcS0/jzdour5QRHTKq+GrhY2lcx3yC63FNn4Xcf8ia9b9uenYoEA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765024685; c=relaxed/simple;
-	bh=dQnyqDL2E6KxQw5j/cho2jt9A1HkjdETEU5NRTOj/WQ=;
+	s=arc-20240116; t=1765027667; c=relaxed/simple;
+	bh=L8C9IajdTO1rufS9q9mJyGzpe6Gqn9zrWft4O5UDepk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YsC7zF7TEL8kFmKbnaSaceygO5PLDUfwGTShY00aNd3WBDc+xR+yPsZbtoHAHBYAnmT4LSBP3G9494HkzL9QisQuxRE2p8VWU/DjhUwcdPuWew106LZZBH7Sh2HEW1wrFHyheA25+4zwFRbb/7f4ULOe1hx6SwGRpYrTzOliby0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=HBebihtm; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-47789cd2083so18362295e9.2
-        for <devicetree@vger.kernel.org>; Sat, 06 Dec 2025 04:38:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1765024681; x=1765629481; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=OIhBd1LCJj7xifV0MwkBjxJ1HTu8zyeSnrj0t6qAKpo=;
-        b=HBebihtmh99pNLvZ02Bz44OY8b3o54Fq3S8BxE1+VoqBIpayrMv9z8OXvewl/Jo5Wb
-         jUqqRiItImsROBuKcU2d1JHpGnlRRuhPE/YV94tPqMeemVgPfihNXwdEI+/8OBHS8SUN
-         BCwk5BZ26mfmU8ThtAz/i1Eal9/G1yH5GVOnr5zC8ruK9KXVnb4CfYivWp78zKWet1ww
-         YZJoDOyOxROlgGpFLX31almNqeP2bR7OM09FpO6zl8GWlTupOHTMH57OUb+EDCrhDTyp
-         rGroJwxmt6aeHC/AQIE0Ty/KFjT0V6G7zoqLQdTOE6EDLslWXKMTUhhhDx5o6Dpegcn3
-         h/Aw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765024681; x=1765629481;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=OIhBd1LCJj7xifV0MwkBjxJ1HTu8zyeSnrj0t6qAKpo=;
-        b=sNbhiBZWnwSa2CzTPFm58Q/TWEs+OodTXubxS5X8AEYhMjGHt/q1QGHG4fk5pCFaZp
-         QjznmTUJa4l0VlF1qSRydNNWHEG9E8OMPuCUHdVORy8CaKmRe7yrTkLKNna7H+ssXqaV
-         Fx3iao4AAZ9uryZpYBCdnGadAvsPOiC1TRJW9IFM2lgFhUn+OPyDD3a3lL2lZWBtgeP7
-         h3WTRCIHs/itin2qdfuMKApxVf7l0wPWMJ+hf6S0rwpnuPb74fwom/3LdTSD0QzrWB5L
-         CdohznBqYZsn2yAp0C7H++z0NWAB8tXxr2gaS+dWO5xrmHlMfF78UZR7eggYyRpOnmPu
-         ivww==
-X-Forwarded-Encrypted: i=1; AJvYcCWMJmkrwtAgyf93Jw7XbjfVPnSt4Zk4El82HXtVVSevnvVeFceNNxdTzJUBMYP4bcbe49yq8ta+Sh3+@vger.kernel.org
-X-Gm-Message-State: AOJu0YyEfFVT3TpW5VxOoXCgmEw3tFtUjSe9kksdnmfGGQkqfbiS/dtZ
-	VSCkHe5NiakIfaTxuuGPNtx/gZqnuq3vF45Qc8iV5NPNkesVopHPUOCNqUfH4K+0AF8=
-X-Gm-Gg: ASbGncu3dnyWw4rtRn+0Z17cbXPzZ66085RTCTw6Y7zAmbjmIVxskJXCvVTNa7tnF3z
-	qQNa15MOmlV/dIBLIAfx0CMn7Z8MV2TbeO/trmBPiU1jFTHu2P8XMXComF8N71gXjCkMOPCWw6b
-	HeZ1VFwRbyZ4KweZSjUH0K/tyt16WBtnHNp2FeY/0Z23jI8rLecO3p9UekA4KQ8W2zhpTpZZJNS
-	FtzbFH2CMi1VqcHwgDR9yW5JNhttu/+lsBZsVNDmTssTRMyH+N4Tld+G2OKdlgkmLmFK3Wmy5Fv
-	222S/UmIRs0xuyMDlyBT995guv8ujjod5zfIeLS2Qi+9rR4lCSjB9S09TndgB2JpINlcYmm0LDA
-	mpGKUbahyl4CXHhKoVR+ToJ7O8yUZEo/f1pMhZE5RCiTCHZFdGBi3Hakm+JX79QWqQIzsZoS/G2
-	B8iV1VoZeiKfMciWIS2hciwND/jXpS7OwN3Pk0JeOCW5PGy2q2LlpmJkniorhtQ7BIAxOgglTMu
-	1Qw
-X-Google-Smtp-Source: AGHT+IFV+g5YZB4l+nX4K2VIKP4qPmTDVcLGCOU1922bmbKhf91LhPwj9RJnC4HZ2/LZ3K6Js5WD8w==
-X-Received: by 2002:a05:6000:2583:b0:42b:2fb5:73c9 with SMTP id ffacd0b85a97d-42f89f70894mr2310830f8f.58.1765024680716;
-        Sat, 06 Dec 2025 04:38:00 -0800 (PST)
-Received: from [192.168.1.138] (241.85-85-167.dynamic.clientes.euskaltel.es. [85.85.167.241])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42f7cbe90fdsm13756855f8f.3.2025.12.06.04.37.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 06 Dec 2025 04:38:00 -0800 (PST)
-Message-ID: <f9cc4a7e-c71a-439f-9e71-8cba4986ceb7@suse.com>
-Date: Sat, 6 Dec 2025 13:37:58 +0100
+	 In-Reply-To:Content-Type; b=jdjhliCTZSk85rUysXFyH5C7zzIrds59B0hm7445E21AnFZ/L+QRjcBWEi1pBVeD/CxP3hLAYdeo1lDoFa35Z9l4kh94ZpaNgAVKcKn6CWSNGITqp8awONuip0WiukU/VYkYvwS92O1j6Zc3iKxQgW7W/JlHlBVzGyw7xUabd5k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=M+fSDBQ4; arc=none smtp.client-ip=94.112.25.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
+Received: from [10.0.0.200] (unknown [10.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by ixit.cz (Postfix) with ESMTPSA id B24C1534133B;
+	Sat, 06 Dec 2025 14:27:40 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+	t=1765027660;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=sZdq4gxaolsxBSx4iJmE12v6O/aktDjJEPRe00ipAWQ=;
+	b=M+fSDBQ4XWTbyMo0hYXXR9dZ86tw+1YKWlXB+++S1UeTIXbExH+lPuFmeNbDIVIB1ZB9yl
+	cz22NKZkmTKn98ESmFqpTA+Kynk/G//gKYWU+jVxzKnyLGeA+5aWLh89Y0cJ6Sp4afm20b
+	LSbOctrubSUUStekr1vythRlrq7LMgs=
+Message-ID: <c3022e57-1cc4-4805-94ba-d98e2016ee80@ixit.cz>
+Date: Sat, 6 Dec 2025 14:27:40 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,50 +54,99 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/6] PCI: starfive: Use regulator APIs instead of GPIO
- APIs to enable the 3V3 power supply of PCIe slots
-Content-Language: en-GB
-To: Conor Dooley <conor@kernel.org>, Hal Feng <hal.feng@starfivetech.com>
-Cc: Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Palmer Dabbelt
- <palmer@dabbelt.com>, Paul Walmsley <pjw@kernel.org>,
- Albert Ou <aou@eecs.berkeley.edu>, "Rafael J . Wysocki" <rafael@kernel.org>,
- Viresh Kumar <viresh.kumar@linaro.org>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
- Manivannan Sadhasivam <mani@kernel.org>, Bjorn Helgaas
- <bhelgaas@google.com>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>,
- Emil Renner Berthing <emil.renner.berthing@canonical.com>,
- Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
- E Shattow <e@freeshell.de>, devicetree@vger.kernel.org,
- linux-pci@vger.kernel.org, linux-riscv@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20251125075604.69370-1-hal.feng@starfivetech.com>
- <20251125075604.69370-2-hal.feng@starfivetech.com>
- <20251125-encourage-junkie-f80e6933b3af@spud>
-From: Matthias Brugger <mbrugger@suse.com>
-In-Reply-To: <20251125-encourage-junkie-f80e6933b3af@spud>
+Subject: Re: [PATCH v4 4/8] drm/panel: sw43408: Add enable/disable and reset
+ functions
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Sumit Semwal <sumit.semwal@linaro.org>,
+ Casey Connolly <casey.connolly@linaro.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Jessica Zhang <jesszhan0024@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Dmitry Baryshkov <lumag@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ phodina@protonmail.com, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ phone-devel@vger.kernel.org, dri-devel@lists.freedesktop.org
+References: <20251125-pixel-3-v4-0-3b706f8dcc96@ixit.cz>
+ <20251125-pixel-3-v4-4-3b706f8dcc96@ixit.cz>
+ <jqgwmjet2ncit5bqilvuqldxrtcapiozmpbk5klc5tybwbfezi@4muxgno7do45>
+Content-Language: en-US
+From: David Heidelberg <david@ixit.cz>
+Autocrypt: addr=david@ixit.cz; keydata=
+ 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
+In-Reply-To: <jqgwmjet2ncit5bqilvuqldxrtcapiozmpbk5klc5tybwbfezi@4muxgno7do45>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 25/11/25 21:00, Conor Dooley wrote:
-> On Tue, Nov 25, 2025 at 03:55:59PM +0800, Hal Feng wrote:
->> The "enable-gpio" property is not documented in the dt-bindings and
->> using GPIO APIs is not a standard method to enable or disable PCIe
->> slot power, so use regulator APIs to replace them.
+On 06/12/2025 05:25, Dmitry Baryshkov wrote:
+> On Tue, Nov 25, 2025 at 09:29:39PM +0100, David Heidelberg via B4 Relay wrote:
+>> From: David Heidelberg <david@ixit.cz>
 >>
->> Tested-by: Matthias Brugger <mbrugger@suse.com>
+>> Introduce enable(), disable() and reset() functions.
+>>
+>> The enable() and disable() callbacks keep the symmetry in the commands
+>> sent to the panel and also make a clearer distinction between panel
+>> initialization and configuration.
 > 
-> Is this actually a valid tag?
-> He provided one for the series on v3, which didn't include this patch.
+> This also makes those to to be executed after starting the DSI stream.
+> Is it fine?
 > 
 
-No it is not. As I only tested v3. But I was able to test v4 as well, so 
-for the whole series:
+Yes, the panel works same way as before without patchset.
+Still not recovering from panel off, we tried to debug, not there yet, 
+but the sequences are verified to work fine).
 
-Tested-by: Matthias Brugger <mbrugger@suse.com>
+Reset sequence or/and regulators may not be correct enough to recover.
 
-Regards,
-Matthias
+I'm sending another series with moved _enable function and all R-Bs.
+
+David
+
+[...]
 
