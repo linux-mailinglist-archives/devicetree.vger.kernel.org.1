@@ -1,121 +1,149 @@
-Return-Path: <devicetree+bounces-244996-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244997-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59A22CAADCA
-	for <lists+devicetree@lfdr.de>; Sat, 06 Dec 2025 21:58:27 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 456A4CAAE30
+	for <lists+devicetree@lfdr.de>; Sat, 06 Dec 2025 22:41:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6228530595A4
-	for <lists+devicetree@lfdr.de>; Sat,  6 Dec 2025 20:58:24 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 79BC33004D06
+	for <lists+devicetree@lfdr.de>; Sat,  6 Dec 2025 21:41:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A28352D876A;
-	Sat,  6 Dec 2025 20:58:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 360282E0939;
+	Sat,  6 Dec 2025 21:40:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u9qYzBgW"
+	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="2coYIfR1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from ixit.cz (ip-94-112-25-9.bb.vodafone.cz [94.112.25.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72E0EF9C0;
-	Sat,  6 Dec 2025 20:58:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA5CC2E06ED;
+	Sat,  6 Dec 2025 21:40:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.112.25.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765054703; cv=none; b=Ft3YDVjTUEJzWdrfI9/TySwl0S4Epvn6teAbVezYoIchhl0y7iZ1M//pEvELNqjc1wbAxQdk1rnq/a7YYYElZ1xskO23CkuL9ZHF8zzJhYaSbzy+zXkUhZU+6D7qlcHvBFyTqdJ9uc1nvxydqE0ci+C1v10u0vifn00EXIPGK/c=
+	t=1765057241; cv=none; b=J1SyOKTDsNWHF2TRpASHE6s1Pl7oBo4tV2CXcayR18Q8x/fqtE1hjg+Z1C4v42oWWqOVIPJ8jVGfANHCo4X4XGpXKEzVIvJD9MmIERWDXWaZ2Se+UlqiGQFypfBRV9m3aSgIzFxZCR8p/gDTe6/Ft3twem5dBqsC2wtOVh1wJ9M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765054703; c=relaxed/simple;
-	bh=M1fyzEM6lnvQik68yNYxE7O3IKlO46Axly+TrkvgKok=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=CgtGtI5xlEoC90f+l5wYHhvftjSTpv2+DIRuonajvarKaBhLvZLEUZTm6N0ROJFalBJdrCFRIGd60zBURsSs7sNr8b9c3eWtIqXVZmFfV8Sw2o8ZJJqLvgrP77XQwHISFZpsdsHFOPRux5sedNjWSpb8FRxWhja4O4A121mfGr0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=u9qYzBgW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0A5CC4CEF5;
-	Sat,  6 Dec 2025 20:58:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765054703;
-	bh=M1fyzEM6lnvQik68yNYxE7O3IKlO46Axly+TrkvgKok=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=u9qYzBgWP0bcaerck+QB5s0EdJfr3Zn4ya1XYuTWnWlKc4LDJF1kemKlf6Ew7C7/k
-	 n9aKMBcwwHOgkVpkpi/+xWu8OFXWnk2EjSeel1OTnLjbzajQLHJUbJ6LsZHbxYe8O6
-	 6qbwOAdDsNGGa6LyfeT2ApMR25w4+cWgJplVciFgHuRv69OUaHSsEEZGx8I724D3eE
-	 Iagf1o0XVmd4ZbJ/JLURY7zt+V3AqEg3rRmuY0aDZwNOcGtsClscOCwVNoeu8vB888
-	 dI25nFTRt1KMY3mQ84v332nsmiyMzSsbq8jCjvUPlfdvjEbi9+bOrTChssDmAHgcCl
-	 MEUnuVosTxXwQ==
-Date: Sat, 6 Dec 2025 20:58:13 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: Tomas Melin <tomas.melin@vaisala.com>, Lars-Peter Clausen
- <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, Nuno
- Sa <nuno.sa@analog.com>, David Lechner <dlechner@baylibre.com>, Andy
- Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] iio: adc: ad9467: add support for ad9211
-Message-ID: <20251206205813.08542093@jic23-huawei>
-In-Reply-To: <aTF7qbjbtYqZCR95@smile.fi.intel.com>
-References: <20251204-add-ad9211-v2-0-a1561f977ee5@vaisala.com>
-	<20251204-add-ad9211-v2-2-a1561f977ee5@vaisala.com>
-	<aTF7M7NAFJM1OpWl@smile.fi.intel.com>
-	<aTF7qbjbtYqZCR95@smile.fi.intel.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1765057241; c=relaxed/simple;
+	bh=Af0zgc8BIKI6I7T5xdbY7sib9frIy9q3JhmMeejhOII=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=dMpZc+XnRMMhdw0+GiJ159EVYTLw4t8718YIgqHNiRchiDsfieDCMm+aUG+tlZF69jgxpiM+G0SQzvPQ1oeuD0j8RDhaw7qhXHt0LkqCLh1TVck2peFlHAJj4qsYI7dyoHDJYyMARRvNMiUKzKPz005xOwp4RPHn4xdOAmaY6fg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=2coYIfR1; arc=none smtp.client-ip=94.112.25.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
+Received: from [10.0.0.200] (unknown [10.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by ixit.cz (Postfix) with ESMTPSA id B14DE53403EB;
+	Sat, 06 Dec 2025 22:40:34 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+	t=1765057234;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=leUazjwu2gj4bSt1rPD2NmuLoX1PNoJcrTr93zFzEpg=;
+	b=2coYIfR10nVz/n/eKFuyARxA9eU0Re4qcF5pj+1ILSMB2BxAh6bDaVsRGuv4dN/BsfbmSz
+	6weiIKrOboE1bdCqWgB5eZkJDvuJrlyQ2o0TO7fQT0d8Cqk6YkoryKnRCrG0PHUWGz00B5
+	tCmLZesMzXTVRKzUWz9kBSaKEUxdobg=
+Message-ID: <fc411783-d5fe-40e4-b6e4-b4ba79732af2@ixit.cz>
+Date: Sat, 6 Dec 2025 22:40:34 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 01/12] arm64: dts: qcom: sdm845-lg-common: Sort nodes
+ and properties
+To: Paul Sajna <sajattack@postmarketos.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
+ ~postmarketos/upstreaming@lists.sr.ht, Amir Dahan <system64fumo@tuta.io>,
+ Christopher Brown <crispybrown@gmail.com>,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+References: <20251203-judyln-dts-v5-0-80c1ffca8487@postmarketos.org>
+ <20251203-judyln-dts-v5-1-80c1ffca8487@postmarketos.org>
+Content-Language: en-US
+From: David Heidelberg <david@ixit.cz>
+Autocrypt: addr=david@ixit.cz; keydata=
+ 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
+In-Reply-To: <20251203-judyln-dts-v5-1-80c1ffca8487@postmarketos.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On Thu, 4 Dec 2025 14:16:41 +0200
-Andy Shevchenko <andriy.shevchenko@intel.com> wrote:
+On 03/12/2025 10:40, Paul Sajna wrote:
 
-> On Thu, Dec 04, 2025 at 02:14:49PM +0200, Andy Shevchenko wrote:
-> > On Thu, Dec 04, 2025 at 08:01:04AM +0000, Tomas Melin wrote:  
-> > > The AD9211 is a 10-bit monolithic sampling analog-to-digital
-> > > converter optimized for high performance, low power, and ease  
-> 
-> Also just noticed that this paragraph is visible shorter than the last one,
-> can you make them approximately the same line length?
-> 
-> > > of use. The product operates at up to a 300 MSPS conversion  
-> 
-> Is it megasamples? Then MSps?
-> 
-> > > rate and is optimized for outstanding dynamic performance
-> > > in wideband carrier and broadband systems.  
-> 
-> > > The scale table implemented here is not an exact match with the
-> > > datasheet as the table presented there is missing some information.
-> > > The reference presents these values as being linear,
-> > > but that does not add up. There is information missing in the table.
-> > > Implemented scale table matches values at the middle and at the ends,
-> > > smoothing the curve towards middle and end.
-> > > Impact on end result from deviation in scale factor affects only software
-> > > using it for scaling. All the possible hw-settings are also available with
-> > > this implementation.  
-> > 
-> > 
-> > Some amendment in the headers would be nice to have,
-> > Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>  
-> 
-> ...
-> 
-> > + array_size.h
-> >   
-> > >  #include <linux/delay.h>
-> > >  #include <linux/gpio/consumer.h>
-> > >  #include <linux/of.h>
-> > > +#include <linux/units.h>
-> > >    
-> > 
-> > You can drop one blank line here.  
-> 
+[...]
 
-I have nothing to add from a quick read.  I thought about fixing up Andy's
-comments and applying but meh, it's early in the cycle and beer o'clock,
-so please do a v3 tidying those up.
+> -		rmtfs_mem: rmtfs-region@f0800000 {
 
-Thanks,
+this is a correct region f0800000
 
-Jonathan
+> +		qseecom_mem: memory@b2000000 {
+> +			reg = <0 0xb2000000 0 0x1800000>;
+> +			no-map;
+> +		};
+> +
+> +		rmtfs_mem: memory@f0801000 {
+
+this is f0801000 (+1000) offset from old sdm845 downstream with boundaries.
+
+[...]
+
+I noticed this when I tried apply your changes on top of sdm845-next repo.
+
+If you need testing, this repo should help you (as all phone-related 
+patches should be applied on top of recent -next and work)
+
+David
+
+-- 
+David Heidelberg
+
 
