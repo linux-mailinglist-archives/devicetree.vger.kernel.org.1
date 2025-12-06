@@ -1,214 +1,565 @@
-Return-Path: <devicetree+bounces-244971-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244972-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 129D5CAAB09
-	for <lists+devicetree@lfdr.de>; Sat, 06 Dec 2025 18:20:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B82DCAAB35
+	for <lists+devicetree@lfdr.de>; Sat, 06 Dec 2025 18:35:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3D8513082A1D
-	for <lists+devicetree@lfdr.de>; Sat,  6 Dec 2025 17:20:48 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BA99D301D58C
+	for <lists+devicetree@lfdr.de>; Sat,  6 Dec 2025 17:35:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F36419ABD8;
-	Sat,  6 Dec 2025 17:20:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06957246BD2;
+	Sat,  6 Dec 2025 17:35:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="icEUVdY+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Hi4i11rr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ixit.cz (ip-94-112-25-9.bb.vodafone.cz [94.112.25.9])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A58728695;
-	Sat,  6 Dec 2025 17:20:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.112.25.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C63C51DF73C;
+	Sat,  6 Dec 2025 17:35:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765041647; cv=none; b=I7W3bcOia7jo7KuUTkW5KIxvEPeOHMOOsCfCkbJ4j//eaY2HdXjMcn1gDH8rXVoPJOsPgdBQbLByaEAEV9cC/tOQkV65Gn+n98D0pTT7xEyVtHulSR3DYPG22Oik/jtNyOUplphKRqfwm89XAYb0HU/3+8kQnB76cXrakwJPyJ4=
+	t=1765042511; cv=none; b=hb0a6zaa1HisjTQUr+fQ5sWqGDQcIefX+ki08Pf7S54M5DK4DeJ5VAdWIZl6TfyA1IsUPq4Ca2k3qSbwzgE0S8jm3hvvvMFOprt8/HMvPZHyO/xasG28IU6ob2u1VpXf1RI8FidM1ojmLNKJzTSvH9cXIVyz8cAft3Eg75u6JDk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765041647; c=relaxed/simple;
-	bh=EGo/v7W382KfVSCLHzD1MM7hxHiuR4Bevqu59jNGYwM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kVxvYXnjBZoyNwtqTYFNBS5WYZCr19QtLkAQODeyTFw5+HHNdXpNlJVuOjARY2Ybd2MbgXzG5zU6N+qG2SjpvcikBl7LcUSyurOLE2tftalIELlwv7ccJuJGxYNGsiKOIR2Pln7P/EqkxlnelMuba2GjfSy7CjoU80cT3apqStE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=icEUVdY+; arc=none smtp.client-ip=94.112.25.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
-Received: from [10.0.0.200] (unknown [10.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by ixit.cz (Postfix) with ESMTPSA id 373FE5340EBE;
-	Sat, 06 Dec 2025 18:20:35 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-	t=1765041635;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=WxSGLhUTyzYWcZS5r6yaEVq8VXG1wutgwgZvpnbYHHs=;
-	b=icEUVdY+2TERURlOOdeG7+5X8aPc2w56N9X9ITTsmpLx+HZEFTicnGO3Frb6xih2dPPm0Y
-	UyVs1vIQQxgnIkZxiITr4w0r0Xzft0qAyZPPBmgLLHk3/wMgFz8JAKqdXzVQiqnRfIfEWT
-	/CCW426ecWfhnoQh5JJeSP19nqPVrZg=
-Message-ID: <e0be618c-4224-45a4-9cd5-00001510fdec@ixit.cz>
-Date: Sat, 6 Dec 2025 18:20:35 +0100
+	s=arc-20240116; t=1765042511; c=relaxed/simple;
+	bh=MfNfHi+eD1nxLs9TPMaUYJq8ZjXXoAwrE8JjufcN7Qw=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=AHpYosJ9JBp8Jyk9fKx0BNpxbtknKmU6Ip12pUWdRCrB/YoZe+KyT1Dje+elfMmnNuGsLM/rYuzi6EuC43M3iyPcERsAujazR2UR6YRFNXDIbQbL/ldzUlwdRKQ7MryBDWHOLkChTyAJhzDplgdoF0EGdswQxkggj8kLV14uLlc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Hi4i11rr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A042C4CEF5;
+	Sat,  6 Dec 2025 17:35:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1765042511;
+	bh=MfNfHi+eD1nxLs9TPMaUYJq8ZjXXoAwrE8JjufcN7Qw=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=Hi4i11rryOlbi2SBIzZBFpxk8STag4t0Mc0kXEWxf7mL1VYogpyUq8nksigxHfr7o
+	 ddSu93lG1GN1B78AjJDTME+WE6olSCHeNWTyj6vq+9RjN1LKRdO4fDT/417bNAU9FZ
+	 ovBeak8gmoCmFiXM7qXQsp7XB+8GxySa/5eqChEJ0e3dOMQC5YVs++FEiX2Uqr7Rsl
+	 nTDOUgtlbDiKjFNL6GNPFk4HR7f9EM7FdJaEFUc2pOBcEDNJ/6KqgSbRvImfX0FsgX
+	 8D2TtyeK+zadyqLUGPEO5ZK3X/u7Y3vIjNeK9kiA65LIlgpxO1nyauy/LHj7Jv5P8w
+	 WCGXIhl4RNJyw==
+Date: Sat, 6 Dec 2025 17:34:59 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Jorge Marques <jorge.marques@analog.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, David Lechner <dlechner@baylibre.com>, Nuno
+ =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, Linus
+ Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
+ <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+ <linux-gpio@vger.kernel.org>
+Subject: Re: [PATCH v3 3/9] iio: adc: Add support for ad4062
+Message-ID: <20251206173459.727fb3f5@jic23-huawei>
+In-Reply-To: <20251205-staging-ad4062-v3-3-8761355f9c66@analog.com>
+References: <20251205-staging-ad4062-v3-0-8761355f9c66@analog.com>
+	<20251205-staging-ad4062-v3-3-8761355f9c66@analog.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 8/8] arm64: dts: qcom: Add support for Pixel 3 and
- Pixel 3 XL
-To: Bjorn Andersson <andersson@kernel.org>
-Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Sumit Semwal <sumit.semwal@linaro.org>,
- Casey Connolly <casey.connolly@linaro.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Jessica Zhang <jesszhan0024@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Dmitry Baryshkov <lumag@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- phodina@protonmail.com, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- phone-devel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Amit Pundir <amit.pundir@linaro.org>, Casey Connolly <casey@connolly.tech>,
- Joel Selvaraj <foss@joelselvaraj.com>
-References: <20251125-pixel-3-v4-0-3b706f8dcc96@ixit.cz>
- <20251125-pixel-3-v4-8-3b706f8dcc96@ixit.cz>
- <shhew6wy236saj52trqb2367tq7kgk3jks3cjcaqrvpgiysud4@wweya32qwtbb>
-Content-Language: en-US
-From: David Heidelberg <david@ixit.cz>
-Autocrypt: addr=david@ixit.cz; keydata=
- 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
-In-Reply-To: <shhew6wy236saj52trqb2367tq7kgk3jks3cjcaqrvpgiysud4@wweya32qwtbb>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+On Fri, 5 Dec 2025 16:12:04 +0100
+Jorge Marques <jorge.marques@analog.com> wrote:
+
+> The AD4060/AD4062 are versatile, 16-bit/12-bit, successive approximation
+> register (SAR) analog-to-digital converter (ADC) with low-power and
+> threshold monitoring modes.
+>=20
+> Signed-off-by: Jorge Marques <jorge.marques@analog.com>
+Hi Jorge,
+
+I replied late to some of the earlier review discussion as I've been
+away.  Make sure you check those as well as this review as I may have
+forgotten to repeat something here.
+
+Thanks,
+
+Jonathan
+
+> diff --git a/drivers/iio/adc/ad4062.c b/drivers/iio/adc/ad4062.c
+> new file mode 100644
+> index 0000000000000..54f7f69e40879
+> --- /dev/null
+> +++ b/drivers/iio/adc/ad4062.c
+> @@ -0,0 +1,879 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Analog Devices AD4062 I3C ADC driver
+> + *
+> + * Copyright 2025 Analog Devices Inc.
+> + */
+> +#include <linux/array_size.h>
+> +#include <linux/bitfield.h>
+> +#include <linux/bitops.h>
+> +#include <linux/completion.h>
+> +#include <linux/delay.h>
+> +#include <linux/err.h>
+> +#include <linux/i3c/device.h>
+> +#include <linux/i3c/master.h>
+> +#include <linux/iio/iio.h>
+> +#include <linux/iio/sysfs.h>
+
+What is this here for?  It is not needed in a typical modern IIO driver.
+(One day I hope to finish getting rid of the remaining users and drop this
+header!)
+
+> +#include <linux/interrupt.h>
+> +#include <linux/jiffies.h>
+> +#include <linux/math.h>
+> +#include <linux/minmax.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/property.h>
+> +#include <linux/regmap.h>
+> +#include <linux/regulator/consumer.h>
+> +#include <linux/string.h>
+> +#include <linux/types.h>
+> +#include <linux/units.h>
+> +#include <linux/unaligned.h>
+> +#include <linux/util_macros.h>
+
+> +static const struct iio_scan_type ad4062_scan_type_12_s[] =3D {
+> +	[AD4062_SCAN_TYPE_SAMPLE] =3D {
+> +		.sign =3D 's',
+> +		.realbits =3D 16,
+
+Not 12?
+
+> +		.storagebits =3D 32,
+Given we are doing data mangling anyway why not store in a 16 bit value.
+
+BTW it would have been easier to spot issues with this if you'd introduced
+the scan type stuff with the use of scans in the patch that adds buffered
+support.  So please move this stuff there.
+
+> +		.endianness =3D IIO_BE,
+> +	},
+> +	[AD4062_SCAN_TYPE_BURST_AVG] =3D {
+> +		.sign =3D 's',
+> +		.realbits =3D 16,
+> +		.storagebits =3D 32,
+> +		.endianness =3D IIO_BE,
+> +	},
+> +};
+
+> +struct ad4062_state {
+> +	const struct ad4062_chip_info *chip;
+> +	const struct ad4062_bus_ops *ops;
+> +	enum ad4062_operation_mode mode;
+> +	struct completion completion;
+> +	struct iio_trigger *trigger;
+> +	struct iio_dev *indio_dev;
+> +	struct i3c_device *i3cdev;
+> +	struct regmap *regmap;
+> +	int vref_uV;
+> +	unsigned int samp_freqs[ARRAY_SIZE(ad4062_conversion_freqs)];
+> +	union {
+> +		__be32 be32;
+> +		__be16 be16;
+> +		u8 bytes[4];
+> +	} buf __aligned(IIO_DMA_MINALIGN);
+> +	u16 sampling_frequency;
+
+See my response to the original thread about this.  This looks like
+it breaks the dance we do to ensure DMA buffers don't share a cacheline
+with anything else.
+
+> +	u8 oversamp_ratio;
+> +	u8 reg_addr_conv;
+> +};
+
+> +
+> +static const struct ad4062_chip_info ad4060_chip_info =3D {
+> +	.name =3D "ad4060",
+> +	.channels =3D { AD4062_CHAN(12) },
+> +	.prod_id =3D 0x7A,
+> +	.max_avg =3D AD4060_MAX_AVG,
+
+This is a little confusing. I guess it's the maximum register value, not the
+number of samples averaged.  Perhaps rename.
+
+> +};
+> +
+> +static const struct ad4062_chip_info ad4062_chip_info =3D {
+> +	.name =3D "ad4062",
+> +	.channels =3D { AD4062_CHAN(16) },
+> +	.prod_id =3D 0x7C,
+> +	.max_avg =3D AD4062_MAX_AVG,
+> +};
+> +
+> +static int ad4062_set_oversampling_ratio(struct ad4062_state *st, unsign=
+ed int val)
+> +{
+> +	const u32 _max =3D GENMASK(st->chip->max_avg, 0)  + 1;
+
+One too many spaces before +
 
 
+> +static int ad4062_check_ids(struct ad4062_state *st)
+> +{
+> +	struct device *dev =3D &st->i3cdev->dev;
+> +	int ret;
+> +	u16 val;
+> +
+> +	ret =3D regmap_bulk_read(st->regmap, AD4062_REG_PROD_ID_1,
+> +			       &st->buf.be16, sizeof(st->buf.be16));
+> +	if (ret)
+> +		return ret;
+> +
+> +	val =3D get_unaligned_be16(st->buf.bytes);
+As below. use buf.be16 and aligned=20
 
-On 06/12/2025 17:56, Bjorn Andersson wrote:
-> On Tue, Nov 25, 2025 at 09:29:43PM +0100, David Heidelberg via B4 Relay wrote:
->> From: David Heidelberg <david@ixit.cz>
->>
->> This adds initial device tree support for the following phones:
->>
->>   - Google Pixel 3 (blueline)
->>   - Google Pixel 3 XL (crosshatch)
->>
->> Both phone boards use the same identifiers and differ only slightly
->> in their connected peripherals.
->>
->> Supported functionality includes:
->>   - Debug UART
->>   - UFS
->>   - USB-C (peripheral mode)
->>   - Display (Pixel 3 only, and the driver needs improvements)
->>   - GPU
->>   - Bluetooth
->>   - Wi-Fi
->>
->> The rmtfs region is allocated using UIO, making it technically "dynamic."
->>
->> Its address and size can be read from sysfs:
->>
->> $ cat /sys/class/uio/uio0/name
->> /sys/class/uio/uio0/maps/map0/addr
->> 0x00000000f2701000
->>
->> $ cat /sys/class/uio/uio0/maps/map0/size
->> 0x0000000000200000
->>
->> Like the OnePlus 6, the Pixel 3 requires 1 kB of reserved memory on either
->> side of the rmtfs region to work around an XPU bug that would otherwise
->> cause erroneous violations when accessing the rmtfs_mem region.
->>
->> Co-developed-by: Amit Pundir <amit.pundir@linaro.org>
->> Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
->> Co-developed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
->> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> 
-> Did I really co-author this patch? Perhaps I contributed parts to it?
-> Perhaps I've just forgotten?
+> +	if (val !=3D st->chip->prod_id)
+> +		dev_warn(dev, "Production ID x%x does not match known values", val);
+> +
+> +	ret =3D regmap_bulk_read(st->regmap, AD4062_REG_VENDOR_H,
+> +			       &st->buf.be16, sizeof(st->buf.be16));
+> +	if (ret)
+> +		return ret;
+> +
+> +	val =3D get_unaligned_be16(st->buf.bytes);
 
-The patch and it's parts I used contained your S-off-by, so I added 
-Co-developed-by as I assumed parts of it was written by you.
+As elsewhere, use the aligned conversions functions and buf.be16
 
-That's hard about seeing patches downstream, as the history is not so clear.
+> +	if (val !=3D AD4062_I3C_VENDOR) {
+> +		dev_err(dev, "Vendor ID x%x does not match expected value\n", val);
+> +		return -ENODEV;
+> +	}
+> +
+> +	return 0;
+> +}
 
-> 
-> Either way, I don't think I can say that I certify origin of the whole
-> patch.
+...
 
-Should I drop your the Signed-off-by then (and eventually all people who 
-didn't worked on the series I sent to upstream)?
-> 
-> 
-> Any parts that I did contribute, would have met the criteria, so you're
-> free to use those.
+> +static int ad4062_setup(struct iio_dev *indio_dev, struct iio_chan_spec =
+const *chan,
+> +			const bool *ref_sel)
+> +{
+> +	struct ad4062_state *st =3D iio_priv(indio_dev);
+> +	const struct iio_scan_type *scan_type;
+> +	int ret;
+> +	u8 val;
+> +
+> +	scan_type =3D iio_get_current_scan_type(indio_dev, chan);
+> +	if (IS_ERR(scan_type))
+> +		return PTR_ERR(scan_type);
+> +
+> +	val =3D FIELD_PREP(AD4062_REG_GP_CONF_MODE_MSK_1, AD4062_GP_DRDY);
+Not clear to me why you need a local variable val here, but not in the next
+call. Wrapped similarly to that you'd have
+	ret =3D regmap_update_bits(st->regmap, AD4062_REG_GP_CONF,
+				 AD4062_REG_GP_CONF_MODE_MSK_1,
+				 FIELD_PREP(AD4062_REG_GP_CONF_MODE_MSK_1,
+					    AD4062_GP_DRDY));
+Looks fine to me.  What I really after here is consistent style.
+I slightly prefer inline and no local variable but I'd be happy with either
+approach for all of them.
+=09
+> +	ret =3D regmap_update_bits(st->regmap, AD4062_REG_GP_CONF,
+> +				 AD4062_REG_GP_CONF_MODE_MSK_1, val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret =3D regmap_update_bits(st->regmap, AD4062_REG_ADC_CONFIG,
+> +				 AD4062_REG_ADC_CONFIG_REF_EN_MSK,
+> +				 FIELD_PREP(AD4062_REG_ADC_CONFIG_REF_EN_MSK,
+> +					    *ref_sel));
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret =3D regmap_write(st->regmap, AD4062_REG_DEVICE_STATUS,
+> +			   AD4062_REG_DEVICE_STATUS_DEVICE_RESET);
+> +	if (ret)
+> +		return ret;
+> +
+> +	val =3D FIELD_PREP(AD4062_REG_INTR_CONF_EN_MSK_1, AD4062_INTR_EN_NEITHE=
+R);
+> +	ret =3D regmap_update_bits(st->regmap, AD4062_REG_INTR_CONF,
+> +				 AD4062_REG_INTR_CONF_EN_MSK_1, val);
 
-Thanks!
+As above, I don't really see val as adding value.
 
-David
+> +	if (ret)
+> +		return ret;
+> +
+> +	put_unaligned_be16(AD4062_MON_VAL_MIDDLE_POINT, st->buf.bytes);
 
-> 
-> Regards,
-> Bjorn
-> 
->> Co-developed-by: Casey Connolly <casey@connolly.tech>
->> Signed-off-by: Casey Connolly <casey@connolly.tech>
->> Co-developed-by: Joel Selvaraj <foss@joelselvaraj.com>
->> Signed-off-by: Joel Selvaraj <foss@joelselvaraj.com>
->> Co-developed-by: Sumit Semwal <sumit.semwal@linaro.org>
->> Signed-off-by: Sumit Semwal <sumit.semwal@linaro.org>
->> Co-developed-by: Vinod Koul <vkoul@kernel.org>
->> Signed-off-by: Vinod Koul <vkoul@kernel.org>
->> Signed-off-by: David Heidelberg <david@ixit.cz>
->> ---
->>   arch/arm64/boot/dts/qcom/Makefile                  |   2 +
->>   .../arm64/boot/dts/qcom/sdm845-google-blueline.dts |  77 +++
->>   arch/arm64/boot/dts/qcom/sdm845-google-common.dtsi | 528 +++++++++++++++++++++
->>   .../boot/dts/qcom/sdm845-google-crosshatch.dts     |  28 ++
->>   4 files changed, 635 insertions(+)
->>
+	st->buf.be16 =3D cpu_to_be16(AD4062_MON_VAL_MIDDLE_POINT);
+
+Don't need the unaligned dance as be16 will be aligned.
+
+> +	return regmap_bulk_write(st->regmap, AD4062_REG_MON_VAL,
+> +				 &st->buf.be16, sizeof(st->buf.be16));
+> +}
+
+...
+
+> +static void ad4062_remove_ibi(void *data)
+> +{
+> +	struct i3c_device *i3cdev =3D data;
+> +
+> +	i3c_device_disable_ibi(i3cdev);
+> +	i3c_device_free_ibi(i3cdev);
+> +}
+> +
+> +static int ad4062_request_ibi(struct i3c_device *i3cdev)
+> +{
+> +	const struct i3c_ibi_setup ibireq =3D {
+> +		.max_payload_len =3D 1,
+> +		.num_slots =3D 1,
+> +		.handler =3D ad4062_ibi_handler,
+> +	};
+> +	int ret;
+> +
+> +	ret =3D i3c_device_request_ibi(i3cdev, &ibireq);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret =3D i3c_device_enable_ibi(i3cdev);
+> +	if (ret)
+> +		goto err_enable_ibi;
+> +
+> +	return devm_add_action_or_reset(&i3cdev->dev, ad4062_remove_ibi, i3cdev=
+);
+It would probably be cleaner to just register two separate callbacks.  Some=
+thing like
+
+	ret =3D i3c_device_request_ibi(i3cdev, &ibireq);
+	if (ret)
+		return ret;
+
+	ret =3D devm_add_action_or_reset(&i3cdev->dev, ad4062_free_ibi, i3cdev);
+	if (ret)
+		return ret;
+
+	ret =3D i3c_device_enable_ibi(i3cdev);
+	if (ret)
+		return ret;
+
+	return devm_add_action_or_reset(&i3cdev->devm ad4062_unregister_ibi, i3cde=
+v);
+
+> +
+> +err_enable_ibi:
+> +	i3c_device_free_ibi(i3cdev);
+> +	return ret;
+> +}
+> +
+> +static int ad4062_request_irq(struct iio_dev *indio_dev)
+> +{
+> +	struct ad4062_state *st =3D iio_priv(indio_dev);
+> +	struct device *dev =3D &st->i3cdev->dev;
+> +	int ret;
+> +
+> +	ret =3D fwnode_irq_get_byname(dev_fwnode(&st->i3cdev->dev), "gp1");
+> +	if (ret =3D=3D -EPROBE_DEFER) {
+> +		return ret;
+
+you returned, no need to follow with else.
+	if (ret =3D=3D -EPROBE_DEFER)
+		return ret;
+
+	if (ret < 0)
+		return regmap_update_bits()
+(see discussion elsewhere about consistency around {} or not in these cases=
+.)
+
+
+> +	} else if (ret < 0) {
+> +		return regmap_update_bits(st->regmap, AD4062_REG_ADC_IBI_EN,
+> +					  AD4062_REG_ADC_IBI_EN_CONV_TRIGGER,
+> +					  AD4062_REG_ADC_IBI_EN_CONV_TRIGGER);
+> +	}
+> +	return devm_request_threaded_irq(dev, ret,
+> +					 ad4062_irq_handler_drdy,
+> +					 NULL, IRQF_ONESHOT, indio_dev->name,
+> +					 indio_dev);
+> +}
+
+
+> +static int ad4062_get_chan_calibscale(struct ad4062_state *st, int *val,=
+ int *val2)
+> +{
+> +	int ret;
+> +
+> +	ret =3D regmap_bulk_read(st->regmap, AD4062_REG_MON_VAL,
+> +			       &st->buf.be16, sizeof(st->buf.be16));
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* From datasheet: code out =3D code in =C3=97 mon_val/0x8000 */
+> +	*val =3D get_unaligned_be16(st->buf.bytes) * 2;
+
+As above, use st->buf.be16 which we know is aligned so be16_to_cpu()
+
+
+> +	*val2 =3D 16;
+> +
+> +	return IIO_VAL_FRACTIONAL_LOG2;
+> +}
+> +
+> +static int ad4062_set_chan_calibscale(struct ad4062_state *st, int gain_=
+int,
+> +				      int gain_frac)
+> +{
+> +	/* Divide numerator and denumerator by known great common divider */
+> +	const u32 mon_val =3D AD4062_MON_VAL_MIDDLE_POINT / 64;
+> +	const u32 micro =3D MICRO / 64;
+> +	const u32 gain_fp =3D gain_int * MICRO + gain_frac;
+> +	const u32 reg_val =3D DIV_ROUND_CLOSEST(gain_fp * mon_val, micro);
+> +	int ret;
+> +
+> +	/* Checks if the gain is in range and the value fits the field */
+> +	if (gain_int < 0 || gain_int > 1 || reg_val > BIT(16) - 1)
+> +		return -EINVAL;
+> +
+> +	put_unaligned_be16(reg_val, st->buf.bytes);
+
+Same as above on using be16
+
+> +	ret =3D regmap_bulk_write(st->regmap, AD4062_REG_MON_VAL,
+> +				&st->buf.be16, sizeof(st->buf.be16));
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Enable scale if gain is not equal to one */
+> +	return regmap_update_bits(st->regmap, AD4062_REG_ADC_CONFIG,
+> +				  AD4062_REG_ADC_CONFIG_SCALE_EN_MSK,
+> +				  FIELD_PREP(AD4062_REG_ADC_CONFIG_SCALE_EN_MSK,
+> +					     !(gain_int =3D=3D 1 && gain_frac =3D=3D 0)));
+> +}
+> +
+> +static int ad4062_read_chan_raw(struct ad4062_state *st, int *val)
+> +{
+> +	int ret;
+> +	struct i3c_device *i3cdev =3D st->i3cdev;
+> +	struct i3c_priv_xfer t0 =3D {
+
+Can we give these names for what they are doing rather than t0 and t1?
+
+> +		.data.out =3D &st->reg_addr_conv,
+> +		.len =3D sizeof(st->reg_addr_conv),
+> +		.rnw =3D false,
+> +	};
+> +	struct i3c_priv_xfer t1 =3D {
+> +		.data.in =3D &st->buf.be32,
+> +		.len =3D sizeof(st->buf.be32),
+> +		.rnw =3D true,
+> +	};
+> +
+> +	ACQUIRE(pm_runtime_active_try_enabled, pm)(&st->i3cdev->dev);
+
+Rafael did propose a cleaner way of doing this. I'm not sure if it went
+in during the merge window or not.  Take a look to see if it anything
+has been added in the PM pull request (IIRC Rafael converted all existing
+users to the new scheme in that patch set so should be easy to find.)
+
+> +	ret =3D ACQUIRE_ERR(pm_runtime_active_try_enabled, &pm);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret =3D ad4062_set_operation_mode(st, st->mode);
+> +	if (ret)
+> +		return ret;
+> +
+> +	reinit_completion(&st->completion);
+> +	/* Change address pointer to trigger conversion */
+> +	ret =3D i3c_device_do_priv_xfers(i3cdev, &t0, 1);
+> +	if (ret)
+> +		return ret;
+> +	/*
+> +	 * Single sample read should be used only for oversampling and
+> +	 * sampling frequency pairs that take less than 1 sec.
+> +	 */
+> +	ret =3D wait_for_completion_timeout(&st->completion,
+> +					  msecs_to_jiffies(1000));
+> +	if (!ret)
+> +		return -ETIMEDOUT;
+> +
+> +	ret =3D i3c_device_do_priv_xfers(i3cdev, &t1, 1);
+> +	if (ret)
+> +		return ret;
+> +	*val =3D get_unaligned_be32(st->buf.bytes);
+
+As with the be16 cases, we know the __be32 variable is aligned so can
+use the be32_to_cpu() to do the conversion.
+
+> +	return 0;
+> +}
+> +
+
+
+> +static int ad4062_write_raw_dispatch(struct ad4062_state *st, int val, i=
+nt val2,
+> +				     long info)
+> +{
+> +	switch (info) {
+> +	case IIO_CHAN_INFO_OVERSAMPLING_RATIO:
+> +		return ad4062_set_oversampling_ratio(st, val);
+
+Small thing but probably want to check if val2  =3D=3D 0 in cases where it's
+not used.
+
+> +
+> +	case IIO_CHAN_INFO_CALIBSCALE:
+> +		return ad4062_set_chan_calibscale(st, val, val2);
+> +
+> +	case IIO_CHAN_INFO_SAMP_FREQ:
+> +		return ad4062_set_sampling_frequency(st, val);
+> +
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +};
+
+
+> +static int ad4062_regulators_get(struct ad4062_state *st, bool *ref_sel)
+> +{
+> +	struct device *dev =3D &st->i3cdev->dev;
+> +	int ret;
+> +
+> +	ret =3D devm_regulator_get_enable(dev, "vio");
+> +	if (ret)
+> +		return dev_err_probe(dev, ret,
+> +				     "Failed to enable vio voltage\n");
+
+Fairly sure that's 80 chars on one line so no need to wrap.
+
+> +
+> +	st->vref_uV =3D devm_regulator_get_enable_read_voltage(dev, "ref");
+> +	*ref_sel =3D st->vref_uV =3D=3D -ENODEV;
+> +	if (st->vref_uV < 0 && !*ref_sel) {
+
+For consistency, no {} here or add them elsewhere for multiline statements
+due to line breaks rather than multiple real lines.
+
+
+> +		return dev_err_probe(dev, st->vref_uV,
+> +				     "Failed to enable and read ref voltage\n");
+> +	}
+> +
+> +	if (*ref_sel) {
+> +		st->vref_uV =3D devm_regulator_get_enable_read_voltage(dev, "vdd");
+> +		if (st->vref_uV < 0)
+> +			return dev_err_probe(dev, st->vref_uV,
+> +					     "Failed to enable and read vdd voltage\n");
+> +	} else {
+> +		ret =3D devm_regulator_get_enable(dev, "vdd");
+> +		if (ret)
+> +			return dev_err_probe(dev, ret,
+> +					     "Failed to enable vdd regulator\n");
+> +	}
+> +
+> +	return 0;
+> +}
+
+>
+
 
