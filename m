@@ -1,97 +1,97 @@
-Return-Path: <devicetree+bounces-244874-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244875-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id B39F3CA9EA1
-	for <lists+devicetree@lfdr.de>; Sat, 06 Dec 2025 03:26:18 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 660FACA9EE2
+	for <lists+devicetree@lfdr.de>; Sat, 06 Dec 2025 03:32:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 108AB302786A
-	for <lists+devicetree@lfdr.de>; Sat,  6 Dec 2025 02:26:11 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 85EC1300C5EB
+	for <lists+devicetree@lfdr.de>; Sat,  6 Dec 2025 02:30:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE2CB2690D5;
-	Sat,  6 Dec 2025 02:26:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8094C287518;
+	Sat,  6 Dec 2025 02:30:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Si7Qznv2";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Zt2b+6zW"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="U0gRS5Iq";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="XAGVNG5A"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C43E258EE9
-	for <devicetree@vger.kernel.org>; Sat,  6 Dec 2025 02:26:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE18E286408
+	for <devicetree@vger.kernel.org>; Sat,  6 Dec 2025 02:30:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764987969; cv=none; b=Y66lmyOVi5zu10i9+SKdU5RId/DwzNwUEiwh4fiRAoik+f3lec43DLohH2tL3gh1wSVQToSY/1T0LcsJZKezUGQSbI5zvCXz+UZB+MUE6AZVK8qP12k7maG0xt4tuUYCfFsEu7UiX2CXmgARgqS+WHEgiAJGZktjccHliCK9HQg=
+	t=1764988221; cv=none; b=Path1NS6GyUBkOJ81HcuIG3LJLj+VS1EBTOFX7Wzm66r6/IRMr/aUWKK3CkI6jpNA3zIKl3cbIvkCpg6p6p0zQK07+TEdSC4RCi1punnFGgZdUeKSoa4O7+NCzyGMdK0oweekJ2Ot36kZnlES1BOkXk1sFobGyMwTvhsRilMSQo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764987969; c=relaxed/simple;
-	bh=MqhGs1qxduKQSoiSkgcWKdSXZCg8mMlsDbdvtpgxxck=;
+	s=arc-20240116; t=1764988221; c=relaxed/simple;
+	bh=y95t5sbCpWE/qjf2W4Oq3AblvS3Nkj7jJw+vhDwxF1U=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=o+WYf8EqGatkfLh2t95cU1haAG0waWG+E0Hvog+alenKrYTTxJgZ6B5ZbJbU0vfsC0ggb+FqOeMMq3fxWJ05XyzZHubqcO4JiP/QKmr0BHn2+QA06J+5RQpyc/Yl2K4hsMel2+oQvlwNlifXSaSP+VJFpXCxWjoJCZXyBpmzGBw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Si7Qznv2; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Zt2b+6zW; arc=none smtp.client-ip=205.220.180.131
+	 Content-Type:Content-Disposition:In-Reply-To; b=n3PsLwCQgbmXo9rvR38fUOVsTAer2alf1cPVvB0yHcsQQD+RqWlyA11o5KZiNG/U+F2teCd5xT1U0enUAptibH5DGpaHqMIyKJdzeeQryGuh/Z5PSC+hdP/W3PGfRABVwjL8h+Wq1arddVdXPpRbcIXMqUGY+K2BCA/11QlERbY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=U0gRS5Iq; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=XAGVNG5A; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5B5K26tX1644614
-	for <devicetree@vger.kernel.org>; Sat, 6 Dec 2025 02:26:06 GMT
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5B5FBMQE887462
+	for <devicetree@vger.kernel.org>; Sat, 6 Dec 2025 02:30:18 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=kj+JkVLe4NHXA10M5x5aCfKh
-	3mIUou1FJnLXKG7p8Ek=; b=Si7Qznv2D7rfwREYtPQv3XE60atmLc6PGs3y/+HB
-	3IpCffcJjNqspgVQzHQ0SSxvMzecxqXYBsOSvnjiJCcg3meMk1olOTZrqWhJIM6N
-	FM4JUJAIn1B2RPZrsldwV7Zu2g7v4ePLyAK3m45E8xvoMqFhQD903mnbhfm8WADI
-	zNYAjYJhzbFumlUKeIVweSWpZGZMAalmd9l9psundBEzvrQttljmeT5EZWfv3PiT
-	ebLmk5AOBsk8v2WSZ3g9ewInZcE0K++DJOuLVuQup2EQTeJl6O7MvaRzEQc6/8f4
-	voO73guNq7vti0qgyV5lzmMd5r1EE9XBp79te/hJDXa1CA==
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4av62u0q8f-1
+	:references:subject:to; s=qcppdkim1; bh=e/d8kbaoJ3LT3xXOy/67lazS
+	UfWaZHogOBoRsULFs8s=; b=U0gRS5IqU9anCNVHl1AGrAnaK3DKXMgiILzynFwl
+	8EVfs4ZlkrfkjR/w+4D1mxReQJa1WZ4QH3L2JYcmfPJI5R5dZ9O/HOcMsQxTHHlq
+	4nQNvKqJWKJPeZRRANtQoVO+5D1NlhF1VK6koWrNUA7Oq/lQ2J2RrkC78OKD+Yf5
+	gxFVjpZo0MUIk8dc/bYe48WDJZNuIS9e4y43tHPfQmzxKj92C8UifRXeQDRsrKs1
+	+mlrVI9OtvHccOYgJdRTbLNnsuN4Bf8xZyCavw6rwRr35yMyNw8noSosfJ8dkuSZ
+	MTe/IvRm5Flb+s1U9/Mxhg/WXGB34guf7TVLSENPLVPnuw==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4aurwvk5q3-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sat, 06 Dec 2025 02:26:06 +0000 (GMT)
-Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-8b259f0da04so576689785a.0
-        for <devicetree@vger.kernel.org>; Fri, 05 Dec 2025 18:26:06 -0800 (PST)
+	for <devicetree@vger.kernel.org>; Sat, 06 Dec 2025 02:30:18 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-8b17194d321so320070285a.0
+        for <devicetree@vger.kernel.org>; Fri, 05 Dec 2025 18:30:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1764987965; x=1765592765; darn=vger.kernel.org;
+        d=oss.qualcomm.com; s=google; t=1764988218; x=1765593018; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=kj+JkVLe4NHXA10M5x5aCfKh3mIUou1FJnLXKG7p8Ek=;
-        b=Zt2b+6zWKQsNPx9xcg2D2/EFxvWBIzyVVmRHNUX+6droWzS9MnfU/k2Jwm5KDXMItv
-         p97YyxPocDrKh1XUmouI+5yzdr2ek5g8FNnzeDTYAQGbz/kyX3+f35RSerNveBbsTJwE
-         jODqqwFf1Ly7d/gq/Vj7UYjLtC0LSgOR4ckQCXM8YVEkXWK9cznTZrrczG3CWZz6wwR/
-         ai9Eev6gYgwuzAKxaTal91EbJ7d85s7/mU//Ebr801A14KjHtY0AZ2/1njtVYxVNHtui
-         UZ+88Ew6FkUCrBgHezIx8O0kTn3d3r8Y1J9U/8K6eB+L6rElCcYVl8HvR9/68Gzw48qv
-         yzDg==
+        bh=e/d8kbaoJ3LT3xXOy/67lazSUfWaZHogOBoRsULFs8s=;
+        b=XAGVNG5A3zils83PFmjtdzX0sIj0MTWMKcN+vpHDSdYrDqBeTbyqL5LapGhv3I8jLK
+         2XtpUKmwCguQXIBR47ty46Ec++IyhstIcRQAeWAEhEKdjv1rhDE4YT2f/Zo8G0qcSG02
+         uKxhMqf7N99ZajNhbuwpA+bM7/n9W5jZOlesJvD0HKJigSjS4YFVVcN5+kKZZ2K9x47n
+         s7uTesrjCRPNekZu2JGCazzlGGWFVBonJnIk2xcEGq9MWrWNjQt3Mh+Q9OWvJdIKMPqU
+         iULhfyE4GIKkih36OHv7GrasBO6ldNM7owhTuh286rrqnzEDzI8ub6YnO/6nJvscxV4v
+         xBTw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764987965; x=1765592765;
+        d=1e100.net; s=20230601; t=1764988218; x=1765593018;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=kj+JkVLe4NHXA10M5x5aCfKh3mIUou1FJnLXKG7p8Ek=;
-        b=ColRiJ4ExUNTJZAnUcCvbj3uM/8XsQ6kEVk/HVpYVHR+po1ffIwhuLMYrYyT4JTu7g
-         VEdPhW7NHRIVhwcdCCISvLhJq6WLZ6kf+bCZW4IfFPYcLiKP/eATYPCW3VcJ+wKGfK0r
-         5aQKy0eZRkQ3R/xTZ1e7FQp/KOBcnMttwKTLzUAsqLEAgiUts6jMfmieNNubmR0bJ339
-         eWtKe6vGYREl27oTqK5R6m10XN1L+A1Xf6UqdbeQfFsFc286d1XUOEAS6zdro4Xj2qNQ
-         iU2Nzcxpc+GUcm1ltD3mw1CFVHbvG6irSoePhUO6cJ+KF9uP7oEdMIF1LipBmot7E3vN
-         HemQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXiSRn+1OowbqZcKzhWBO30zvpY8uzHfmECuqEX4NQnJhYqsMBLbV3sY5HV16e8UBeAxS0sRxyVl3pD@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy4C0yDTLS+McTMD9CnOGBzaox3gzYvYen7zKiebNWyNekykA1C
-	bhGync3GC6pBlFQ4N9iOs1EiFb2bVsnhxzmLBgpBnutv/Bbj7M94X2PyE6yyhCOZpuVgZ3UJp26
-	hJ3tahTeeEVGDdAWVsm2ePziWHrIHUybZqJdOlcjkLlGKCN7tcNBMk3ZAz+Vsnhz3
-X-Gm-Gg: ASbGncvReYpkuwN8m1A/iLe4/ctoRvld3Vd5t40wygapUnPpyema3ApA8aOGnaCtJI8
-	1IyRsHyCx1W4zDdHUjCriMB9HYajbnzwCFhkyC/J3ffZkZUALEsvlhzsBoO98B4TxqSv4kov7ym
-	Hirb8SSFNljXE2FtVCDSUnzmXPRU/3809HkXr2s9Zb6vnfq1erCX84Ecb2atGrO0lSgE5xEvSjP
-	MmfdosKPDZFpKIPz9oflMX9mAQN+sfIfNhsvhzEmQO6epGZHFxeFtbrA52zvkzQfeTqampz1HR6
-	rcmuBTVuHJNCoV6s5u4Sczz9Q8GvraoahQi9BeJSSiE9QEyEDnAuqGtDUJwalAScYA7mt9K26Ne
-	a4D3T/XkCPWCbu4iJt3rHZnlsAkc7jLeIr/2bVODXYzKGa/b4nowxNoOkQ1oHG3ZjyVLcW1VF/p
-	soN6ArDrS+Fua2zlBMMZT4p+c=
-X-Received: by 2002:a05:620a:7107:b0:893:1c7:4b with SMTP id af79cd13be357-8b6a25369ebmr198284185a.31.1764987965364;
-        Fri, 05 Dec 2025 18:26:05 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEo47S/Ao1gsGym0DfLeSYhJEMj1JrY+A/SJJoulcUMV14qcvN7fbVZbhuq+l6aihmu+l/iMA==
-X-Received: by 2002:a05:620a:7107:b0:893:1c7:4b with SMTP id af79cd13be357-8b6a25369ebmr198281785a.31.1764987964838;
-        Fri, 05 Dec 2025 18:26:04 -0800 (PST)
+        bh=e/d8kbaoJ3LT3xXOy/67lazSUfWaZHogOBoRsULFs8s=;
+        b=BaFa+V5Z2d+1XbCi7CIpYQ+HKlihvoDuc7mcBgFurBd6fjDlE72hkkP7nqBBlf+pre
+         5BR7PCRBXA11/0Tx217bYbhNrLLyLioSLHPRrj8Hc2rG9mig/P40vOO5AUh92rIhhPRu
+         R1Rt+HdHoSK+8OKoY4Bi1+lJ1eIhr1/g52MU8fCIwbJnIi9J4irgifaB7Y+XFg35UAFj
+         DviDzJ2/LVeKTts6udgmSO0NMAJD8al1IJ7LF9Mr2Mvez9kCWepseJ/wyCq1NjxM/CeM
+         Yyt/4+pgWQPaULIq1Tz1H1tHLj77Os0ih7/677UqZHZAvebtoLbUhXt9OHHcXOGQnVXW
+         Rlaw==
+X-Forwarded-Encrypted: i=1; AJvYcCXdf9v8ctrZEOTWSGsuXIZoGA0ht5ZnPk7k1aaVSyUi4l1t1jag87C/wPXFYAxGqarAoiEJ8Pcg/G5u@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw9GDunWD8S+agOlGtzhuHtgjGq75UTQcJdCwevY/EcZAfCzcC7
+	qaFJ9FmsGMQLtr1UCw1DGCEvhEsODWlrveJT5y6UTE78tUZUACkSFKqd1+13pPq6m9I47gzDb7N
+	6sUm3Y2ciHEz5dZFahF7SCDAXrFsB9nDwVrTyixivpwHuq9iNAyMdnikqKMWmbno7
+X-Gm-Gg: ASbGncuvzanTBZA/D+DHc1wbjQn/d5uf45XY9n+xD6mMGdPvq40VbnbcjP4Zulfu499
+	dV+FvRtYSFkMTXM7VXrrhmrb2pyvGjmtHn9iFbl7p3+7E/3vh+6UEdl1sV2RAtKpBohyWsaf7VD
+	2jI1Faydg4qnBv5QV9NzilQeV4yM3e43Kk9bWRuKQteY72oSPYtOGWhpqcj7CQb7145CCiR1LVZ
+	e+rw8uz/jGjApqiKn6kWdLKXvBuwLV0c7YR+hm62tSvbHy1A4X5Hhz0rZga0D0+pNruT1GwWJWh
+	lUYxXqZI0pe1sVOD88cFx/xfLjWlFKZoUBfsGIBXDrPGEi9dVko3VUx3zqW/v0IMPaQ7BFgrM1G
+	rG/HddIbbvvUctx7OsjOAd8EvEa0DuYK0vCDlpSzqKqrjBDeAaPAeu0XIP5FbzR9M+BZzsmQbCU
+	i95NBczr5rWSe8oRkegqEb13Y=
+X-Received: by 2002:a05:620a:4620:b0:8b2:ea3f:2fa5 with SMTP id af79cd13be357-8b6a23e0558mr191000285a.69.1764988217518;
+        Fri, 05 Dec 2025 18:30:17 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEbFasjoPYgeV0zAyrFao6Ix4m/Qiro6WgeULAnmE2a4FYE4mruIM3gzGDMgLoYDTwXaP7xJA==
+X-Received: by 2002:a05:620a:4620:b0:8b2:ea3f:2fa5 with SMTP id af79cd13be357-8b6a23e0558mr190996385a.69.1764988216880;
+        Fri, 05 Dec 2025 18:30:16 -0800 (PST)
 Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-37e70595ff7sm18817431fa.30.2025.12.05.18.26.02
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-37e7067cbadsm18852901fa.50.2025.12.05.18.30.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Dec 2025 18:26:03 -0800 (PST)
-Date: Sat, 6 Dec 2025 04:26:01 +0200
+        Fri, 05 Dec 2025 18:30:16 -0800 (PST)
+Date: Sat, 6 Dec 2025 04:30:14 +0200
 From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 To: Kumari Pallavi <kumari.pallavi@oss.qualcomm.com>
 Cc: kpallavi@qti.qualcomm.com, srini@kernel.org, amahesh@qti.qualcomm.com,
@@ -102,10 +102,11 @@ Cc: kpallavi@qti.qualcomm.com, srini@kernel.org, amahesh@qti.qualcomm.com,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         jingyi.wang@oss.qualcomm.com, aiqun.yu@oss.qualcomm.com,
         ktadakam@qti.qualcomm.com
-Subject: Re: [PATCH v5 2/4] misc: fastrpc: Rename phys to dma_addr for clarity
-Message-ID: <xefaz7ljox5drnf7gl4aymwp3cygc4fhxb3mksarqpjxm3ozrh@co4e4okm6hzf>
+Subject: Re: [PATCH v5 3/4] misc: fastrpc: Add support for new DSP IOVA
+ formatting
+Message-ID: <mlyaklczl4ngeckk7nle2xwmmzmqlphi6d47octomc5tewohh7@ipc2ik3kqj6q>
 References: <20251202060628.1869967-1-kumari.pallavi@oss.qualcomm.com>
- <20251202060628.1869967-3-kumari.pallavi@oss.qualcomm.com>
+ <20251202060628.1869967-4-kumari.pallavi@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -114,44 +115,209 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251202060628.1869967-3-kumari.pallavi@oss.qualcomm.com>
-X-Proofpoint-ORIG-GUID: vQ8cbZf7drbTQdsKksvznJSGibjxJTBv
-X-Authority-Analysis: v=2.4 cv=VMPQXtPX c=1 sm=1 tr=0 ts=6933943e cx=c_pps
- a=qKBjSQ1v91RyAK45QCPf5w==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+In-Reply-To: <20251202060628.1869967-4-kumari.pallavi@oss.qualcomm.com>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjA2MDAxNyBTYWx0ZWRfX9PvZXcFkmuID
+ YHxqmpA2Utw23p8zzS24Pf6iNw1iJAlbi91s/Pc4gC5e3XvSl/0HTquI6e0lj7rvJIsTdoLMPEn
+ ynDKsM1vfVa0HVOFRu746kpVrZ3xmCnLQDcFxawW+78O+uv5B1lpVyn5Xv1l37IaUYQDqnuuQPR
+ TMCl2RMYU4yY4pEVZujWWKvMXuoTJ5Ov/hA7gYvt8IGyrsKOa2aoEPSA0Le62s8NIKhCkkr03eZ
+ gy5snEiv9jVMtLu6IKXBfYvghRQ7NcOqcK6Qp7/1pUTm6OntShDClzqGaprilRur6XbG0oO3qIT
+ xoxEBYjxIxYdSnOgTSSMWJWJHu3tVXX9dDNHJwr6dGz6YJs1sh9J5zthR+kMFR3tgeFtBJUB3lu
+ NrYCK8y+5gB6nzphJUyXDLNYdm3w4Q==
+X-Authority-Analysis: v=2.4 cv=Yd2wJgRf c=1 sm=1 tr=0 ts=6933953a cx=c_pps
+ a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
  a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=0jdaQYcEcLoElLJ8wKEA:9 a=CjuIK1q_8ugA:10
- a=NFOGd7dJGGMPyQGDc5-O:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjA2MDAxNyBTYWx0ZWRfX4svykYqQ+3S5
- +WRan9328YeKDu1JdsBZKa5dfhJbn3+bUnbjCBsdTMBerHSTejKglCa8+hVqITU9huSB3ZFKaFn
- TMJf8mvpRH+zdiZGZ2YzXL/cJOJv4qav4iOD9Rg66BZjymPDC4U18GCR2lczGZK/PhxHZDlLZoD
- YT9e5bLgvuRYFL9sO2uDO730inONuAOKmSwc2yVIaW2zwpgm1i1BW2kw3sEZ6xWAyvnvEaCeuxx
- 8DR9nM8LSELjDR2/+dnE47/jloJ+m0fI+Lmq+Jfccou2HrPEb1C3ECWO80Enur3c8egDs1vMyw5
- hgT/O5YIl4b8A4IiAqLkzV2KF3ZDgvljBxuojyC4KZynWpBxJoXOOub8o8BVIyrMvvcGZClXxeN
- j5XRpFHcgBHMHTp7FKgRM7na+lMtTw==
-X-Proofpoint-GUID: vQ8cbZf7drbTQdsKksvznJSGibjxJTBv
+ a=EUspDBNiAAAA:8 a=NQApBsomutaRK4veD-8A:9 a=CjuIK1q_8ugA:10
+ a=bTQJ7kPSJx9SKPbeHEYW:22
+X-Proofpoint-GUID: _c-HnYb6WW6jQX_2NA72EKVPXe1OFhwP
+X-Proofpoint-ORIG-GUID: _c-HnYb6WW6jQX_2NA72EKVPXe1OFhwP
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
  definitions=2025-12-05_09,2025-12-04_04,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 suspectscore=0 malwarescore=0 phishscore=0 impostorscore=0
- bulkscore=0 spamscore=0 adultscore=0 lowpriorityscore=0 clxscore=1015
+ clxscore=1015 phishscore=0 priorityscore=1501 adultscore=0 suspectscore=0
+ bulkscore=0 impostorscore=0 malwarescore=0 spamscore=0 lowpriorityscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512060017
 
-On Tue, Dec 02, 2025 at 11:36:26AM +0530, Kumari Pallavi wrote:
-> Update all references of buf->phys and map->phys to buf->dma_addr and
-> map->dma_addr to accurately represent that these fields store DMA
-> addresses, not physical addresses. This change improves code clarity
-> and aligns with kernel conventions for dma_addr_t usage.
-
-Please _start_ by describing the problem or the issue the patch is
-trying to solve.
-
+On Tue, Dec 02, 2025 at 11:36:27AM +0530, Kumari Pallavi wrote:
+> Implement the new IOVA formatting required by the DSP architecture change
+> on Kaanapali SoC. Place the SID for DSP DMA transactions at bit 56 in the
+> physical address. This placement is necessary for the DSPs to correctly
+> identify streams and operate as intended.
+> To address this, set SID position to bit 56 via OF matching on the fastrpc
+> node; otherwise, default to legacy 32-bit placement.
+> This change ensures consistent SID placement across DSPs.
 > 
 > Signed-off-by: Kumari Pallavi <kumari.pallavi@oss.qualcomm.com>
 > ---
->  drivers/misc/fastrpc.c | 77 ++++++++++++++++++++++--------------------
->  1 file changed, 41 insertions(+), 36 deletions(-)
+>  drivers/misc/fastrpc.c | 48 ++++++++++++++++++++++++++++++++++++------
+>  1 file changed, 41 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/misc/fastrpc.c b/drivers/misc/fastrpc.c
+> index eb9501fe79bc..6a67daafeaa1 100644
+> --- a/drivers/misc/fastrpc.c
+> +++ b/drivers/misc/fastrpc.c
+> @@ -33,7 +33,6 @@
+>  #define FASTRPC_ALIGN		128
+>  #define FASTRPC_MAX_FDLIST	16
+>  #define FASTRPC_MAX_CRCLIST	64
+> -#define FASTRPC_PHYS(p)	((p) & 0xffffffff)
+>  #define FASTRPC_CTX_MAX (256)
+>  #define FASTRPC_INIT_HANDLE	1
+>  #define FASTRPC_DSP_UTILITIES_HANDLE	2
+> @@ -105,6 +104,17 @@
+>  
+>  #define miscdev_to_fdevice(d) container_of(d, struct fastrpc_device, miscdev)
+>  
+> +/* Extract smmu pa from consolidated iova */
+
+Nit: SMMU, PA, IOVA
+
+> +#define IPA_TO_DMA_ADDR(iova, sid_pos) (iova & ((1ULL << sid_pos) - 1ULL))
+
+GENMASK?
+
+> +/*
+> + * Prepare the consolidated iova to send to dsp by prepending the sid
+
+Nit: DSP, SID, PA
+
+> + * to smmu pa at the appropriate position
+> + */
+> +static inline u64 fastrpc_compute_sid_offset(u64 sid, u32 sid_pos)
+> +{
+> +	return sid << sid_pos;
+> +}
+> +
+>  struct fastrpc_phy_page {
+>  	dma_addr_t addr;	/* dma address */
+>  	u64 size;		/* size of contiguous region */
+> @@ -257,6 +267,10 @@ struct fastrpc_session_ctx {
+>  	bool valid;
+>  };
+>  
+> +struct fastrpc_soc_data {
+> +	u32 sid_pos;
+> +};
+> +
+>  struct fastrpc_channel_ctx {
+>  	int domain_id;
+>  	int sesscount;
+> @@ -278,6 +292,7 @@ struct fastrpc_channel_ctx {
+>  	bool secure;
+>  	bool unsigned_support;
+>  	u64 dma_mask;
+> +	const struct fastrpc_soc_data *soc_data;
+>  };
+>  
+>  struct fastrpc_device {
+> @@ -390,7 +405,7 @@ static int fastrpc_map_lookup(struct fastrpc_user *fl, int fd,
+>  static void fastrpc_buf_free(struct fastrpc_buf *buf)
+>  {
+>  	dma_free_coherent(buf->dev, buf->size, buf->virt,
+> -			  FASTRPC_PHYS(buf->dma_addr));
+> +			  IPA_TO_DMA_ADDR(buf->dma_addr, buf->fl->cctx->soc_data->sid_pos));
+>  	kfree(buf);
+>  }
+>  
+> @@ -440,7 +455,8 @@ static int fastrpc_buf_alloc(struct fastrpc_user *fl, struct device *dev,
+>  	buf = *obuf;
+>  
+>  	if (fl->sctx && fl->sctx->sid)
+> -		buf->dma_addr += ((u64)fl->sctx->sid << 32);
+> +		buf->dma_addr += fastrpc_compute_sid_offset((u64)fl->sctx->sid,
+
+Drop type conversion
+
+> +				 fl->cctx->soc_data->sid_pos);
+>  
+>  	return 0;
+>  }
+> @@ -685,7 +701,8 @@ static int fastrpc_dma_buf_attach(struct dma_buf *dmabuf,
+>  		return -ENOMEM;
+>  
+>  	ret = dma_get_sgtable(buffer->dev, &a->sgt, buffer->virt,
+> -			      FASTRPC_PHYS(buffer->dma_addr), buffer->size);
+> +			      IPA_TO_DMA_ADDR(buffer->dma_addr,
+> +					      buffer->fl->cctx->soc_data->sid_pos), buffer->size);
+>  	if (ret < 0) {
+>  		dev_err(buffer->dev, "failed to get scatterlist from DMA API\n");
+>  		kfree(a);
+> @@ -734,7 +751,8 @@ static int fastrpc_mmap(struct dma_buf *dmabuf,
+>  	dma_resv_assert_held(dmabuf->resv);
+>  
+>  	return dma_mmap_coherent(buf->dev, vma, buf->virt,
+> -				 FASTRPC_PHYS(buf->dma_addr), size);
+> +				 IPA_TO_DMA_ADDR(buf->dma_addr,
+> +						 buf->fl->cctx->soc_data->sid_pos), size);
+>  }
+>  
+>  static const struct dma_buf_ops fastrpc_dma_buf_ops = {
+> @@ -789,7 +807,8 @@ static int fastrpc_map_attach(struct fastrpc_user *fl, int fd,
+>  		map->dma_addr = sg_phys(map->table->sgl);
+>  	} else {
+>  		map->dma_addr = sg_dma_address(map->table->sgl);
+> -		map->dma_addr += ((u64)fl->sctx->sid << 32);
+> +		map->dma_addr += fastrpc_compute_sid_offset((u64)fl->sctx->sid,
+
+Drop type conversion. Hmm. Looking at it, would it be better:
+
+map->dma_addr = fastrpc_compute_dma_addr(fl->sctx, sg_dma_address(map->table->sgl))
+
+> +				 fl->cctx->soc_data->sid_pos);
+>  	}
+>  	for_each_sg(map->table->sgl, sgl, map->table->nents,
+>  		sgl_index)
+> @@ -2290,6 +2309,14 @@ static int fastrpc_get_domain_id(const char *domain)
+>  	return -EINVAL;
+>  }
+>  
+> +static const struct fastrpc_soc_data kaanapali_soc_data = {
+> +	.sid_pos = 56,
+> +};
+> +
+> +static const struct fastrpc_soc_data default_soc_data = {
+> +	.sid_pos = 32,
+> +};
+> +
+>  static int fastrpc_rpmsg_probe(struct rpmsg_device *rpdev)
+>  {
+>  	struct device *rdev = &rpdev->dev;
+> @@ -2298,6 +2325,11 @@ static int fastrpc_rpmsg_probe(struct rpmsg_device *rpdev)
+>  	const char *domain;
+>  	bool secure_dsp;
+>  	unsigned int vmids[FASTRPC_MAX_VMIDS];
+> +	const struct fastrpc_soc_data *soc_data;
+> +
+> +	soc_data = device_get_match_data(rdev);
+> +	if (!soc_data)
+> +		soc_data = &default_soc_data;
+
+Define it for all the entries, drop if-check.
+
+>  
+>  	err = of_property_read_string(rdev->of_node, "label", &domain);
+>  	if (err) {
+> @@ -2350,6 +2382,7 @@ static int fastrpc_rpmsg_probe(struct rpmsg_device *rpdev)
+>  
+>  	secure_dsp = !(of_property_read_bool(rdev->of_node, "qcom,non-secure-domain"));
+>  	data->secure = secure_dsp;
+> +	data->soc_data = soc_data;
+>  
+>  	switch (domain_id) {
+>  	case ADSP_DOMAIN_ID:
+> @@ -2487,7 +2520,8 @@ static int fastrpc_rpmsg_callback(struct rpmsg_device *rpdev, void *data,
+>  }
+>  
+>  static const struct of_device_id fastrpc_rpmsg_of_match[] = {
+> -	{ .compatible = "qcom,fastrpc" },
+> +	{ .compatible = "qcom,kaanapali-fastrpc", .data = &kaanapali_soc_data },
+> +	{ .compatible = "qcom,fastrpc", .data = &default_soc_data },
+>  	{ },
+>  };
+>  MODULE_DEVICE_TABLE(of, fastrpc_rpmsg_of_match);
+> -- 
+> 2.34.1
 > 
 
 -- 
