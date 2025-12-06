@@ -1,96 +1,113 @@
-Return-Path: <devicetree+bounces-244930-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244931-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00A11CAA4CC
-	for <lists+devicetree@lfdr.de>; Sat, 06 Dec 2025 12:04:49 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16DE5CAA4D5
+	for <lists+devicetree@lfdr.de>; Sat, 06 Dec 2025 12:05:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A388F30FCAD1
-	for <lists+devicetree@lfdr.de>; Sat,  6 Dec 2025 11:04:02 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9E13A30A8B17
+	for <lists+devicetree@lfdr.de>; Sat,  6 Dec 2025 11:04:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C2012F360C;
-	Sat,  6 Dec 2025 11:04:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA3AE286405;
+	Sat,  6 Dec 2025 11:04:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="joLMwunP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RkVE+rKu"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF0A7286422;
-	Sat,  6 Dec 2025 11:04:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4EEB1E0E14
+	for <devicetree@vger.kernel.org>; Sat,  6 Dec 2025 11:04:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765019042; cv=none; b=k2l1WA5JwIWCqjFRHmjxZlHl5/43tu+sNWxD+xNkIeIR44XG3KZR1XeMZrHzZtw8rVk93wOAEu+mNm2Mx+O6mro0UJ0HqlSLjdDWugk/lT8bATiAutBjJ0mlol4SLunwY3Is/es+HbIj5klUh0SafONBdSEq/g1VIW/5dtwsd2A=
+	t=1765019071; cv=none; b=IEXRB2hYHcsS4qlg530piphjBwkSu+UW8Q6JKEvgzVisJ4Ps2I1NfpzfVoQWI/z9KGHpiJZJR2OVh4kyHdXpRcDIe9auxljiP14vH+u0in8R/juhDkyUW6gkT6go8feB3gef8byJZqzjYnH2m2Ipxlg2HQbG59B4/T53rMdeQ3c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765019042; c=relaxed/simple;
-	bh=S+gE0d70l6VsPaGwoSM79COySGokrUyXP9ilj98vBbM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=m+Q4bq3oD8jAkrQcCydRyDEmF4PxgKUDpng783rdhKNVMXwrNH2M1QYCLad9oT4rAtWhzh44+o9wT1NzoIV62H9mqYXOBmtW8D7+64cP5oDDNvl0Cdd1tXGZ0OwcVDAUu1tcHsmfLwGTIshEXmQZsoXHLDJe9vby7gW3rq6cosU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=joLMwunP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4DEDCC4CEF5;
-	Sat,  6 Dec 2025 11:04:01 +0000 (UTC)
+	s=arc-20240116; t=1765019071; c=relaxed/simple;
+	bh=LQa7x2Xqo1R3BU1iXV2K28BQPa/asQzgGrxZOPXc3Xk=;
+	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=rFEjHaNxbuxWl6paqMmSLt+ZYFV+IE7HcDlr4Fy+J4bBPP6HhFIpC9VmbYo2hRSrwgRWmRib6YvKT4WErnJ6XHJsxlvx1KUq/gQsbvO/WQeenqh3zVKADfp95ycSuoPmkhEHu3DAx8qKlj1QEO7fVkofeNBYWBnUddDy90X1ru8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RkVE+rKu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82912C4AF09
+	for <devicetree@vger.kernel.org>; Sat,  6 Dec 2025 11:04:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765019041;
-	bh=S+gE0d70l6VsPaGwoSM79COySGokrUyXP9ilj98vBbM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=joLMwunPCDGpLoz9EnrVnyySoS+eL2+FW2o6dS29/Uo6pd4FogUVfTk4KURxdZLF5
-	 2kouAM7ljUQa6pWd6aYLa4DsFPyFT7kqdx/3B97iovNNU8pFe/hoqlFSBMNhkjlxcc
-	 WL1R9quZG5XA9JY0YDBWP4IkqmCCTb+L37ONhhgY58zSowz4IxJDczBK9fA7mW/O98
-	 p1N3YMfo1zZnZyKPrH/wV/LbCiqAU+OZ4d4OTdT2A3hNWLWMTBX/gG4y8qBmHhhZ+k
-	 9ZjKJKBV+qdOpOWFrsIZX/A0aHH1GI0phC+92up6zBg7XT+WWafqaKCSC8+OmN6+wZ
-	 p2j1Rw3VX8wSg==
-Date: Sat, 6 Dec 2025 12:03:59 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Tomas Melin <tomas.melin@vaisala.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, 
-	Michael Hennerich <Michael.Hennerich@analog.com>, Nuno Sa <nuno.sa@analog.com>, 
-	Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: adc: ad9467: add support for ad9211
-Message-ID: <20251206-tangerine-wildebeest-of-weather-8f9211@quoll>
-References: <20251204-add-ad9211-v2-0-a1561f977ee5@vaisala.com>
- <20251204-add-ad9211-v2-1-a1561f977ee5@vaisala.com>
+	s=k20201202; t=1765019071;
+	bh=LQa7x2Xqo1R3BU1iXV2K28BQPa/asQzgGrxZOPXc3Xk=;
+	h=From:In-Reply-To:References:Date:Subject:To:Cc:From;
+	b=RkVE+rKuk6vqlW3wOjGewK6yLFURkkY7rICN6MN5rU4SJTIsmQoiC4q44ybmi+W/O
+	 8vof5AApEEZckXAaTSIJcYUA4p8LjKvFUv0eg9TbeQFektaikX5c8Rb/eqdgaX/TiH
+	 KD1SfaZT1/IfEDFSbgGQ2Psp+i/TBZ3oZzCXEy22LnLBg3LiA0ddhZsrL/zFC/mhDJ
+	 0oFKxVNkqNi85aLI8J4+iCDTQqx70VA8LQTkxUByU26b/DZSsF/9GjpQMoJSGT9zPX
+	 aW6suAvEjHbDaWcz0ikDiOpjYsuwtTnmtIjniizKq84SW/bCH5WG1AcPAbL4G4CaWc
+	 SuR4Q46lX32Bg==
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-59581e32163so3839338e87.1
+        for <devicetree@vger.kernel.org>; Sat, 06 Dec 2025 03:04:31 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCURBdqMfENtezPJHmE27NlyKtzpUbGU1J9N7oXzrD5ANwqZ09NL1vANEZ0wMmgDBq2KRZaNnKY3IhYf@vger.kernel.org
+X-Gm-Message-State: AOJu0YykIoJLYUg8F931g+k4ctLPaE4m6Hk/jgJ4IOc2HT9tFyd5SuKg
+	O70dTDAxQqcC/f+gvBRXB2LVsHpjPamEaDlF4GR7NxRlCHoLj5Vd+QlhE/147GNeGRdA2EJ5dHV
+	c90VBPYSN5VhYpPu0W5r8AZ5S/3Qyzg2iwhVhG6E1Nw==
+X-Google-Smtp-Source: AGHT+IGzVIVocC6EzRFxCGvPhOPXFCCvOsJH5zhVLbERuSaCGM4g0MgyH12GWd9f4cyL9Esvb2xyvVlzmOz3yFQy3CQ=
+X-Received: by 2002:a05:6512:2212:b0:594:2c51:f27b with SMTP id
+ 2adb3069b0e04-5987e88b210mr601668e87.18.1765019070175; Sat, 06 Dec 2025
+ 03:04:30 -0800 (PST)
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Sat, 6 Dec 2025 03:04:28 -0800
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Sat, 6 Dec 2025 03:04:28 -0800
+From: Bartosz Golaszewski <brgl@kernel.org>
+In-Reply-To: <20251206050844.402958-6-ye.zhang@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20251204-add-ad9211-v2-1-a1561f977ee5@vaisala.com>
+References: <20251206050844.402958-1-ye.zhang@rock-chips.com> <20251206050844.402958-6-ye.zhang@rock-chips.com>
+Date: Sat, 6 Dec 2025 03:04:28 -0800
+X-Gmail-Original-Message-ID: <CAMRc=MdNNkQpXiaK7J12QjsQiL-DjxGUarvveeYze19-1wqfxw@mail.gmail.com>
+X-Gm-Features: AQt7F2qQ1dE8DUY3pPJ8f0x-A-FdXwUF1S4eurzNXEEc-e8MOcdtpskXb3-4gCU
+Message-ID: <CAMRc=MdNNkQpXiaK7J12QjsQiL-DjxGUarvveeYze19-1wqfxw@mail.gmail.com>
+Subject: Re: [PATCH v2 5/8] gpio: rockchip: support new version GPIO
+To: Ye Zhang <ye.zhang@rock-chips.com>
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	tao.huang@rock-chips.com, Linus Walleij <linus.walleij@linaro.org>, 
+	Heiko Stuebner <heiko@sntech.de>
+Content-Type: text/plain; charset="UTF-8"
 
-On Thu, Dec 04, 2025 at 08:01:03AM +0000, Tomas Melin wrote:
-> Document ad9211 variant as supported by driver. This has e.g.
+On Sat, 6 Dec 2025 06:08:41 +0100, Ye Zhang <ye.zhang@rock-chips.com> said:
+> Support the next version GPIO controller on SoCs like rv1126b.
+>
+> Signed-off-by: Ye Zhang <ye.zhang@rock-chips.com>
+> ---
+>  drivers/gpio/gpio-rockchip.c | 2 ++
+>  1 file changed, 2 insertions(+)
+>
+> diff --git a/drivers/gpio/gpio-rockchip.c b/drivers/gpio/gpio-rockchip.c
+> index 47174eb3ba76..c3e831c6bcf1 100644
+> --- a/drivers/gpio/gpio-rockchip.c
+> +++ b/drivers/gpio/gpio-rockchip.c
+> @@ -36,6 +36,7 @@
+>  #define GPIO_TYPE_V2		(0x01000C2B)
+>  #define GPIO_TYPE_V2_1		(0x0101157C)
+>  #define GPIO_TYPE_V2_2		(0x010219C8)
+> +#define GPIO_TYPE_V2_6          (0x01063F6E)
+>
+>  static const struct rockchip_gpio_regs gpio_regs_v1 = {
+>  	.port_dr = 0x00,
+> @@ -674,6 +675,7 @@ static int rockchip_get_bank_data(struct rockchip_pin_bank *bank)
+>  	case GPIO_TYPE_V2:
+>  	case GPIO_TYPE_V2_1:
+>  	case GPIO_TYPE_V2_2:
+> +	case GPIO_TYPE_V2_6:
+>  		bank->gpio_regs = &gpio_regs_v2;
+>  		bank->gpio_type = GPIO_TYPE_V2;
+>  		bank->db_clk = of_clk_get(bank->of_node, 1);
+> --
+> 2.34.1
+>
+>
 
-Drop "as supported by driver", not relevant here. Just say that device
-is not compatible with existing because of different scaling ....
-
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-
-<form letter>
-This is an automated instruction, just in case, because many review
-tags are being ignored. If you know the process, just skip it entirely
-(please do not feel offended by me posting it here - no bad intentions
-intended, no patronizing, I just want to avoid wasted efforts). If you
-do not know the process, here is a short explanation:
-
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions of patchset, under or above your Signed-off-by tag, unless
-patch changed significantly (e.g. new properties added to the DT
-bindings). Tag is "received", when provided in a message replied to you
-on the mailing list. Tools like b4 can help here ('b4 trailers -u ...').
-However, there's no need to repost patches *only* to add the tags. The
-upstream maintainer will do that for tags received on the version they
-apply.
-
-https://elixir.bootlin.com/linux/v6.15/source/Documentation/process/submitting-patches.rst#L591
-</form letter>
-
-Best regards,
-Krzysztof
-
+Acked-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
 
