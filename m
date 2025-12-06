@@ -1,221 +1,145 @@
-Return-Path: <devicetree+bounces-244886-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244894-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDBE6CA9FF0
-	for <lists+devicetree@lfdr.de>; Sat, 06 Dec 2025 04:55:08 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0702CAA04A
+	for <lists+devicetree@lfdr.de>; Sat, 06 Dec 2025 05:03:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 856653006E26
-	for <lists+devicetree@lfdr.de>; Sat,  6 Dec 2025 03:55:00 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 0ADFB30096A1
+	for <lists+devicetree@lfdr.de>; Sat,  6 Dec 2025 04:03:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79E96253F13;
-	Sat,  6 Dec 2025 03:54:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5675623816C;
+	Sat,  6 Dec 2025 04:03:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Fvr3tZmN"
+	dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b="wa6j1NbB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
+Received: from ahti.lucaweiss.eu (ahti.lucaweiss.eu [128.199.32.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF83F2264AA
-	for <devicetree@vger.kernel.org>; Sat,  6 Dec 2025 03:54:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06FE4B640;
+	Sat,  6 Dec 2025 04:03:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=128.199.32.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764993299; cv=none; b=AD+HNIon2SLVy15bAg3vL0xOEJzuFr5OfJgq44zPLSIcr0eRdmHX7VPVV6HihAHzI1PireEsY5RuN3teN2hhcsQ3Ah0t5pSPbRCiGxKDMcM1ELefjGUgVgYYA2iOTNBDtkNru4BgEDmLgT8A9NL/i5MkQRZCZogtmjAsFuCjkBs=
+	t=1764993817; cv=none; b=PC+35jJZzCID78FErgsPLvp/7cEC1HweUMOwp41zL1tj8Bs0PmSFhelIIiFkKKP4NTKQZo4IpL0WM8G2DUwEJvMAJjOV0OaXfbQXj7VrbcUOiuupw1pd6QalZ7h4z6KKR3hOEr7V9hBms0bA1vIYrdxsS+TNuRsx2UUlkgQhhsY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764993299; c=relaxed/simple;
-	bh=J8uprbH8ZrtQtllNe0ANd6MXhGs3gViM8cbLJX7l2CQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=thA/a4sIGS2TKd0UgGw3ZbOMM2qz7dffMZKf0mpv/8gmpK/kyRcQ8Ktm9IMv4n+XDCg6oIKJGnSib4xrMr1cI3sb49gKOeWOa0VgOkNX74eSrhVck2R0UQE88dCj9D83A1NcFkPCXRK2jK+LdVFccyH8v9+a1WS6jxkk+oPrKgU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Fvr3tZmN; arc=none smtp.client-ip=209.85.214.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-298250d7769so22576635ad.0
-        for <devicetree@vger.kernel.org>; Fri, 05 Dec 2025 19:54:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1764993297; x=1765598097; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ng59e0pypFuKOiBmMzueIT3kCDd4YPpY7yGIqW1d8Wo=;
-        b=Fvr3tZmNcY75sCVDGmJt1MQGqjGZyverZQS+na2pljj4YMs7T+Vek+cn39H25HF8FG
-         XkL6+A/yKS+r77vZLwdBT+FQ7S9FznrjJH8cAOwpxaSeR7Mv/I9i7cRXNA0u4k8IiCc2
-         2NNELkAELaX3SseLC4bIoaMiiNbY6HfN1yxJwbBlkh0j4wmCKwfOa1mDiEIY9QRECOKA
-         XMpyoB4Degxv8c6CuR7QcYgyWiDeTUZ3+ByyAyn7YaMHAWC7uxTnM5ELM6BjzfU5P8HR
-         CK2ZtaFkHd2QjH/uFVzroHuhEQHgrG1XCalI2kRbi8EZMaM1uCF2gE7rWZOs+krKfEQN
-         Ozpw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764993297; x=1765598097;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ng59e0pypFuKOiBmMzueIT3kCDd4YPpY7yGIqW1d8Wo=;
-        b=wCX0peigPuXWv4KMklWx8VqGVTx5JjMYv3gvHFbtUjxa5+iFeYGa3zVlpfD8VgU1VY
-         k3G1YRovw2r3ft1QoPbqRC6tOS2+o2pnFWtpBEqIH2rRQKkU/iskTYQHzoC8UgpWOcTW
-         CXQY3LfETtt6vrihA5N7O9Hh4UXJISH6cVG7oJ0oOLkhTeUZGrI0b4Zg8bjgebmCDrVM
-         8qWU+p3FEeAFU1NUxXrsrG9s3cCyH/a7nvQ/Nq2VJAEBrQnmhpt0DC9+CGgP0l0baCtx
-         S7JpPvJfJE+yjR8Pppu3NDzFcBdj+3hNwrv1RtfSE5VGbZC/1OwasS9CL4+H899iyyoL
-         PIIg==
-X-Forwarded-Encrypted: i=1; AJvYcCVIs939RgIDeo3iZ57D8nsO2ILfq2GygSbbMxaNaeqJB0fYbjunO6jx8S1TUUdVT8lvOnHn9befzbUC@vger.kernel.org
-X-Gm-Message-State: AOJu0YwczIIKYklPxpObf4AB0ttzwaHrvyg8H7qPLUKXoz3arSLrQE6r
-	Orqaqd673KcjjNW60p8y9LMlWsNuVm3/hn661KKrSdsbCmccQu6xBrfh
-X-Gm-Gg: ASbGncv2B3ikwgaXPhduFRbupvFMs6UXJZ63lqEcnMHYZsIhouCEYTNjNexXJ5oR70v
-	RKonH6lJz9IzjdpG3ojiGSkmAA2bNc5apMX1Ev/RymKrbQBnEcP9d5SJihfj57wczR/rIQyCDs5
-	r00LMNAKKdrsLl+5U7p3Sz16H8hwsM+drgJxQ2/eREeWhpU2RpytRWc5wO+bLXQ+Xpia9iPrK4l
-	ktVpQZuG4uKgOSPRCHSy5Jmg6DOidxMFpFHCLWyoVSZzI4Bcn0byd3ybCjv/HnBWItKfzPV5hBY
-	oGzydCQlD1qL/01Xl8s02HruLZY+yBmg0jsQ2x6xuyWla4/RP4D81LXs+wFIdEDI7kG18vS4sSq
-	a+ElVMqDZ2vgEOYWx59qxOvh8Q3PNFO89xyUAMzAUXLiMKcw3I/ftI6pl8ZEsQQIiM1P8wOhjiv
-	IlfNqtQwrBwKOrsX4uVh+e4yzuyDA5h2a9zFpQPI7vqm2bFwrZRr/7wu+pZu+3PgnyAg==
-X-Google-Smtp-Source: AGHT+IFG/hzUjar5fFu8j9ERHWWpR9Pv5VwyPV0sXgp2FH3uasyw4TvbU/VvQYbRn3w2rYfGGhYing==
-X-Received: by 2002:a05:7022:a93:b0:119:e569:f277 with SMTP id a92af1059eb24-11e032b330emr1036342c88.32.1764993296945;
-        Fri, 05 Dec 2025 19:54:56 -0800 (PST)
-Received: from [192.168.68.63] (104-12-136-65.lightspeed.irvnca.sbcglobal.net. [104.12.136.65])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-11df76e2eefsm24165193c88.6.2025.12.05.19.54.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 05 Dec 2025 19:54:56 -0800 (PST)
-Message-ID: <7c54fd46-d17a-4ee8-ad9f-e98546958dd5@gmail.com>
-Date: Fri, 5 Dec 2025 19:54:55 -0800
+	s=arc-20240116; t=1764993817; c=relaxed/simple;
+	bh=gHbJOsWJv4ECxmbKRzwT4n89NR8zD1dKDRI+UsXdO1I=;
+	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
+	 MIME-Version:Content-Type; b=FGyBPgSgYaNASZXRpcnG5OpMotnDSTMtP8KBKB2bJz+pglPMwrs3Giz7n60Q8OgtGKuWwvmLAkV71NerxIo+EO4GCNESOWDBOlEottVUcSktGNhkO0RhiTJCizRCO6xB3HVGvg6U3Q1jrty0xSOn2Tf5wdGXCtqjjdsj8ZkFE1Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lucaweiss.eu; spf=pass smtp.mailfrom=lucaweiss.eu; dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b=wa6j1NbB; arc=none smtp.client-ip=128.199.32.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lucaweiss.eu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lucaweiss.eu
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lucaweiss.eu; s=s1;
+	t=1764993414; bh=gHbJOsWJv4ECxmbKRzwT4n89NR8zD1dKDRI+UsXdO1I=;
+	h=Date:From:To:CC:Subject:In-Reply-To:References;
+	b=wa6j1NbB9gEqqj4ugExH4UJtRbrtMv1EFxCImiCvyjB/IkNAumNikisIpKAQoY1HN
+	 GqGg0irhRGU0Vp6a3oxWIHs2+dkj5oyXoLN08ttz3tWtb6b4deliAxjAv48V+n84bz
+	 1oqJLXIwtwZHN5hLp6exB+GAQKqc8FVccsjMIAuk=
+Date: Sat, 06 Dec 2025 12:56:48 +0900
+From: Luca Weiss <luca@lucaweiss.eu>
+To: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+ Loic Poulain <loic.poulain@oss.qualcomm.com>, Robert Foss <rfoss@kernel.org>,
+ Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+CC: linux-arm-msm@vger.kernel.org, linux-i2c@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>
+Subject: Re: [PATCH v2 2/7] i2c: qcom-cci: Add msm8953 compatible
+In-Reply-To: <20251028-msm8953-cci-v2-2-b5f9f7135326@lucaweiss.eu>
+References: <20251028-msm8953-cci-v2-0-b5f9f7135326@lucaweiss.eu> <20251028-msm8953-cci-v2-2-b5f9f7135326@lucaweiss.eu>
+Message-ID: <EB0BBDE9-0B5D-49B2-866D-112B131C8C44@lucaweiss.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ARM: dts: qcom: msm8960: expressatt: Add
- coreriver,tc360-touchkey
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20251205-expressatt-touchkey-v1-1-1444b927c9f3@gmail.com>
- <arocrbzcwvyb2te3gcujeo7jaiaisgh3wuketqkif7xvkvmbct@r26gqpw6gb43>
-Content-Language: en-US
-From: Rudraksha Gupta <guptarud@gmail.com>
-In-Reply-To: <arocrbzcwvyb2te3gcujeo7jaiaisgh3wuketqkif7xvkvmbct@r26gqpw6gb43>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
->> +		sda-gpios = <&tlmm 71 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
->> +		scl-gpios = <&tlmm 72 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-> I don't have docs at hand, but it looks like these pins belong to
-> GSBI10. Have you tried using it directly?
+Hi,
 
-This is the log when I use GSBI10:
+Ping for someone to pick up this patch please!
 
-samsung-expressatt:~$ dmesg | grep tm2
-[   79.555802] input: tm2-touchkey as 
-/devices/platform/soc/1a200000.gsbi/1a280000.i2c/i2c-4/4-0020/input/input3
-[  110.242881] leds tm2-touchkey: Setting an LED's brightness failed (-110)
-[  167.074920] tm2-touchkey 4-0020: failed to read i2c data: -110
-[  182.435009] tm2-touchkey 4-0020: failed to read i2c data: -110
+Regards=20
+Luca
 
-I could be doing something wrong, so here are the changes I made on top 
-of this diff
 
-diff --git a/arch/arm/boot/dts/qcom/qcom-msm8960-samsung-expressatt.dts 
-b/arch/arm/boot/dts/qcom/qcom-msm8960-samsung-expressatt.dts
-index c4b98af6955d..fde5f739a314 100644
---- a/arch/arm/boot/dts/qcom/qcom-msm8960-samsung-expressatt.dts
-+++ b/arch/arm/boot/dts/qcom/qcom-msm8960-samsung-expressatt.dts
-@@ -60,33 +60,6 @@ touchkey_enable: touchkey-enable {
-          enable-active-high;
-          regulator-boot-on;
-      };
--
--    i2c-gpio-touchkey {
--        compatible = "i2c-gpio";
--        #address-cells = <1>;
--        #size-cells = <0>;
--        sda-gpios = <&tlmm 71 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
--        scl-gpios = <&tlmm 72 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
--        pinctrl-names = "default";
--        pinctrl-0 = <&touchkey_i2c_pins>;
--        status = "okay";
--        i2c-gpio,delay-us = <2>;
--
--        touchkey@20 {
--            compatible = "coreriver,tc360-touchkey";
--            reg = <0x20>;
--
--            interrupts-extended = <&tlmm 52 IRQ_TYPE_EDGE_FALLING>;
--            pinctrl-names = "default";
--            pinctrl-0 = <&touchkey_irq_pin>;
--
--            vddio-supply = <&touchkey_enable>;
--            vdd-supply = <&pm8921_l29>;
--            vcc-supply = <&pm8921_l29>;
--
--            linux,keycodes = <KEY_MENU KEY_BACK>;
--        };
--    };
-  };
-
-  &gsbi2 {
-@@ -572,3 +545,28 @@ magnetometer@2e {
-          /* TODO: Figure out Mount Matrix */
-      };
-  };
-+
-+&gsbi10 {
-+    qcom,mode = <GSBI_PROT_I2C>;
-+
-+    status = "okay";
-+};
-+
-+&gsbi10_i2c {
-+    status = "okay";
-+
-+    touchkey@20 {
-+        compatible = "coreriver,tc360-touchkey";
-+        reg = <0x20>;
-+
-+        interrupts-extended = <&tlmm 52 IRQ_TYPE_EDGE_FALLING>;
-+        pinctrl-names = "default";
-+        pinctrl-0 = <&touchkey_irq_pin>;
-+
-+        vddio-supply = <&touchkey_enable>;
-+        vdd-supply = <&pm8921_l29>;
-+        vcc-supply = <&pm8921_l29>;
-+
-+        linux,keycodes = <KEY_MENU KEY_BACK>;
-+    };
-+};
-diff --git a/arch/arm/boot/dts/qcom/qcom-msm8960.dtsi 
-b/arch/arm/boot/dts/qcom/qcom-msm8960.dtsi
-index fd28401cebb5..c598fb324e7d 100644
---- a/arch/arm/boot/dts/qcom/qcom-msm8960.dtsi
-+++ b/arch/arm/boot/dts/qcom/qcom-msm8960.dtsi
-@@ -223,7 +223,7 @@ i2c8-pins {
-
-              i2c10_default_state: i2c10-default-state {
-                  i2c10-pins {
--                    pins = "gpio73", "gpio74";
-+                    pins = "gpio71", "gpio72";
-                      function = "gsbi10";
-                      drive-strength = <8>;
-                      bias-disable;
-@@ -232,7 +232,7 @@ i2c10-pins {
-
-              i2c10_sleep_state: i2c10-sleep-state {
-                  i2c10-pins {
--                    pins = "gpio73", "gpio74";
-+                    pins = "gpio71", "gpio72";
-                      function = "gpio";
-                      drive-strength = <2>;
-                      bias-bus-hold;
-diff --git a/arch/arm/configs/qcom_defconfig 
-b/arch/arm/configs/qcom_defconfig
-index 29a1dea500f0..49baa91937ca 100644
---- a/arch/arm/configs/qcom_defconfig
-+++ b/arch/arm/configs/qcom_defconfig
-@@ -321,3 +321,4 @@ CONFIG_MAGIC_SYSRQ=y
-  CONFIG_DEBUG_FS=y
-  # CONFIG_SLUB_DEBUG is not set
-  # CONFIG_SCHED_DEBUG is not set
-+CONFIG_KEYBOARD_TM2_TOUCHKEY=m
-\ No newline at end of file
-
+Luca Weiss <luca@lucaweiss=2Eeu> schreef op 29 oktober 2025 01:40:47 GMT+0=
+9:00:
+>Add a config for the v1=2E2=2E5 CCI found on msm8953 which has different
+>values in =2Eparams compared to others already supported in the driver=2E
+>
+>Reviewed-by: Loic Poulain <loic=2Epoulain@oss=2Equalcomm=2Ecom>
+>Acked-by: Wolfram Sang <wsa+renesas@sang-engineering=2Ecom>
+>Signed-off-by: Luca Weiss <luca@lucaweiss=2Eeu>
+>---
+> drivers/i2c/busses/i2c-qcom-cci=2Ec | 46 +++++++++++++++++++++++++++++++=
+++++++++
+> 1 file changed, 46 insertions(+)
+>
+>diff --git a/drivers/i2c/busses/i2c-qcom-cci=2Ec b/drivers/i2c/busses/i2c=
+-qcom-cci=2Ec
+>index e631d79baf14=2E=2E884055df1560 100644
+>--- a/drivers/i2c/busses/i2c-qcom-cci=2Ec
+>+++ b/drivers/i2c/busses/i2c-qcom-cci=2Ec
+>@@ -783,8 +783,54 @@ static const struct cci_data cci_v2_data =3D {
+> 	},
+> };
+>=20
+>+static const struct cci_data cci_msm8953_data =3D {
+>+	=2Enum_masters =3D 2,
+>+	=2Equeue_size =3D { 64, 16 },
+>+	=2Equirks =3D {
+>+		=2Emax_write_len =3D 11,
+>+		=2Emax_read_len =3D 12,
+>+	},
+>+	=2Eparams[I2C_MODE_STANDARD] =3D {
+>+		=2Ethigh =3D 78,
+>+		=2Etlow =3D 114,
+>+		=2Etsu_sto =3D 28,
+>+		=2Etsu_sta =3D 28,
+>+		=2Ethd_dat =3D 10,
+>+		=2Ethd_sta =3D 77,
+>+		=2Etbuf =3D 118,
+>+		=2Escl_stretch_en =3D 0,
+>+		=2Etrdhld =3D 6,
+>+		=2Etsp =3D 1
+>+	},
+>+	=2Eparams[I2C_MODE_FAST] =3D {
+>+		=2Ethigh =3D 20,
+>+		=2Etlow =3D 28,
+>+		=2Etsu_sto =3D 21,
+>+		=2Etsu_sta =3D 21,
+>+		=2Ethd_dat =3D 13,
+>+		=2Ethd_sta =3D 18,
+>+		=2Etbuf =3D 32,
+>+		=2Escl_stretch_en =3D 0,
+>+		=2Etrdhld =3D 6,
+>+		=2Etsp =3D 3
+>+	},
+>+	=2Eparams[I2C_MODE_FAST_PLUS] =3D {
+>+		=2Ethigh =3D 16,
+>+		=2Etlow =3D 22,
+>+		=2Etsu_sto =3D 17,
+>+		=2Etsu_sta =3D 18,
+>+		=2Ethd_dat =3D 16,
+>+		=2Ethd_sta =3D 15,
+>+		=2Etbuf =3D 19,
+>+		=2Escl_stretch_en =3D 1,
+>+		=2Etrdhld =3D 3,
+>+		=2Etsp =3D 3
+>+	},
+>+};
+>+
+> static const struct of_device_id cci_dt_match[] =3D {
+> 	{ =2Ecompatible =3D "qcom,msm8226-cci", =2Edata =3D &cci_v1_data},
+>+	{ =2Ecompatible =3D "qcom,msm8953-cci", =2Edata =3D &cci_msm8953_data},
+> 	{ =2Ecompatible =3D "qcom,msm8974-cci", =2Edata =3D &cci_v1_5_data},
+> 	{ =2Ecompatible =3D "qcom,msm8996-cci", =2Edata =3D &cci_v2_data},
+>=20
+>
 
