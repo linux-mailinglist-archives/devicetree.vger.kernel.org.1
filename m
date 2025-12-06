@@ -1,810 +1,193 @@
-Return-Path: <devicetree+bounces-244968-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244969-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDAAACAAA8C
-	for <lists+devicetree@lfdr.de>; Sat, 06 Dec 2025 17:50:00 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 442D6CAAA98
+	for <lists+devicetree@lfdr.de>; Sat, 06 Dec 2025 17:58:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8589F3049B00
-	for <lists+devicetree@lfdr.de>; Sat,  6 Dec 2025 16:49:59 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A34EA306115D
+	for <lists+devicetree@lfdr.de>; Sat,  6 Dec 2025 16:58:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61DC525F995;
-	Sat,  6 Dec 2025 16:49:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A1FC1CD1E4;
+	Sat,  6 Dec 2025 16:58:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lruQhd5+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aXr0e7XE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EDEB1DFDE;
-	Sat,  6 Dec 2025 16:49:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8C0B2AD37;
+	Sat,  6 Dec 2025 16:58:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765039798; cv=none; b=ePu0AcOlwKI+GbUpwVYOB5V/apHduiztehaWnwPZ+ZeKqQQ1JEZNAmx2ScDSQ5MU0qyQu8KhnfKAQe81R+NobgB6VQDDnFvHkrmKZmFxAvCQFae2IGkFckiXY2CiXOvejOXuxjF4R4vMhRWfzzMZ4XBuv/VKL9d9TSwBHrNlr5U=
+	t=1765040308; cv=none; b=dsSntyLAvbJN1tXL0QeeiKslat1buKqK90L1aA2Pj3WgU6rXsIjrPJOcDFpXqyf2JBy9G/SRl6EoUZ+H+m+NBhyCbeN5eifv6qrDTQewSL2Ok/wmKc5SLc1mKg5mhzd8tzrDnUi4qGrtSUB89SMBahNQNuSoIL4MqUR0EGpk020=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765039798; c=relaxed/simple;
-	bh=PpBWWOz2SWTV6syo8grOBPLPvYw7v4I7hzYjG1o8l7Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Q+GZ3P9jZ27OW21lSeppyvHa4xqYNEhKn5BJrzu8GMUr6E44OhAs4MuE/FHarid9xJs0u3+coA3oNA0L5aV5McCc3tCnjrjfSOT/WC4nab1Wda8493OxKen5gpXwejjhIaqpiZ0U7322fepJxth+MTmYH/hqFDtQdNh/OSHuhhc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lruQhd5+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53874C4CEF5;
-	Sat,  6 Dec 2025 16:49:55 +0000 (UTC)
+	s=arc-20240116; t=1765040308; c=relaxed/simple;
+	bh=6Zhv27VdXpGMAcVcOTzB70FyIM3NnPAumRSIO9oiPpw=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=i01ZHVDSFXbLBiGvYEgqY7AW2lkOdIQQUcZqIytbOocXJ2FCJYj+0m9CWp6pbDFqQYobCaU4z8fbhf0auEA5rMGoiinBo7CNi/9zM7wI3/UbJsmt4pRupk7wWgoDrTLNdhLC838OYZvmwRByBLx686hctJ9jR69z7JmHU2GBUO0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aXr0e7XE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 372D4C4CEF5;
+	Sat,  6 Dec 2025 16:58:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765039797;
-	bh=PpBWWOz2SWTV6syo8grOBPLPvYw7v4I7hzYjG1o8l7Y=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lruQhd5+4CoWP/dceJee9D1gqz1ELkWv3RwczG73u3yG2Rvtw9fo5G0Om0FAfaG4C
-	 2FvJmawn2NXs9N/ite2ssybaUGJFpY2ObypiaAvl8LlV/pds7wombkzk7mVUltWVr3
-	 4TP/7HJe5R2Ewf72v5AYVYdm4/q5uCz1fHXBOsqGAgjptSClpOLRzGlQtw5xmuRAJK
-	 /c6fv7dsgoULqF72f2iH4Nf6UxYnllGBFEeZcJsZpsOE66VapmNllAP7APNvDG4oGH
-	 8L5rm8yokFieSgMMhjM9a7GjwZxuM2Jk3BmsnWq08QQgf76eacKl7SgOY18uQX37L8
-	 WD+J8DjoR8tDA==
-Date: Sat, 6 Dec 2025 10:56:18 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: david@ixit.cz
-Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Sumit Semwal <sumit.semwal@linaro.org>, Casey Connolly <casey.connolly@linaro.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <jesszhan0024@gmail.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Marijn Suijten <marijn.suijten@somainline.org>, 
-	Dmitry Baryshkov <lumag@kernel.org>, Vinod Koul <vkoul@kernel.org>, phodina@protonmail.com, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	phone-devel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	Amit Pundir <amit.pundir@linaro.org>, Casey Connolly <casey@connolly.tech>, 
-	Joel Selvaraj <foss@joelselvaraj.com>
-Subject: Re: [PATCH v4 8/8] arm64: dts: qcom: Add support for Pixel 3 and
- Pixel 3 XL
-Message-ID: <shhew6wy236saj52trqb2367tq7kgk3jks3cjcaqrvpgiysud4@wweya32qwtbb>
-References: <20251125-pixel-3-v4-0-3b706f8dcc96@ixit.cz>
- <20251125-pixel-3-v4-8-3b706f8dcc96@ixit.cz>
+	s=k20201202; t=1765040308;
+	bh=6Zhv27VdXpGMAcVcOTzB70FyIM3NnPAumRSIO9oiPpw=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=aXr0e7XEBzQvtH5E9l4XZwWEKnNVr+qZLuN6MXnJpgwTLktHGEE8S47kGI/P4arMN
+	 gOxLyek2A4UAl3V1WH4jZ/1Gp92zE088X9bUGsRTDFrBGUsdraQg5uVAVdr0bZFBgs
+	 LBxJRASHGZBj16A7R+U+axBgL7D4JObz9gPqjK20vK4CRIlvDPthKEWjbXygKl6nfZ
+	 adv5pM1lSlNTZdyRUmQhXYEEN6oSl05RxvNXhd8b/gNGK2Ep1PP4TUfWqNZ4OKSX4C
+	 ZTYzpiMgnWFdVCLl+wwYHafSGBAx/+diCWicp0T4gHnwUuM75oeuVUIJCiaTf53TWJ
+	 ZhapW1P2p4sVg==
+Date: Sat, 6 Dec 2025 16:58:22 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Jorge Marques <jorge.marques@analog.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, David Lechner <dlechner@baylibre.com>, Nuno
+ =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, Linus
+ Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
+ <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+ <linux-gpio@vger.kernel.org>
+Subject: Re: [PATCH v3 1/9] dt-bindings: iio: adc: Add adi,ad4062
+Message-ID: <20251206165822.778606e1@jic23-huawei>
+In-Reply-To: <20251205-staging-ad4062-v3-1-8761355f9c66@analog.com>
+References: <20251205-staging-ad4062-v3-0-8761355f9c66@analog.com>
+	<20251205-staging-ad4062-v3-1-8761355f9c66@analog.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251125-pixel-3-v4-8-3b706f8dcc96@ixit.cz>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Tue, Nov 25, 2025 at 09:29:43PM +0100, David Heidelberg via B4 Relay wrote:
-> From: David Heidelberg <david@ixit.cz>
-> 
-> This adds initial device tree support for the following phones:
-> 
->  - Google Pixel 3 (blueline)
->  - Google Pixel 3 XL (crosshatch)
-> 
-> Both phone boards use the same identifiers and differ only slightly
-> in their connected peripherals.
-> 
-> Supported functionality includes:
->  - Debug UART
->  - UFS
->  - USB-C (peripheral mode)
->  - Display (Pixel 3 only, and the driver needs improvements)
->  - GPU
->  - Bluetooth
->  - Wi-Fi
-> 
-> The rmtfs region is allocated using UIO, making it technically "dynamic."
-> 
-> Its address and size can be read from sysfs:
-> 
-> $ cat /sys/class/uio/uio0/name
-> /sys/class/uio/uio0/maps/map0/addr
-> 0x00000000f2701000
-> 
-> $ cat /sys/class/uio/uio0/maps/map0/size
-> 0x0000000000200000
-> 
-> Like the OnePlus 6, the Pixel 3 requires 1 kB of reserved memory on either
-> side of the rmtfs region to work around an XPU bug that would otherwise
-> cause erroneous violations when accessing the rmtfs_mem region.
-> 
-> Co-developed-by: Amit Pundir <amit.pundir@linaro.org>
-> Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
-> Co-developed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+On Fri, 5 Dec 2025 16:12:02 +0100
+Jorge Marques <jorge.marques@analog.com> wrote:
 
-Did I really co-author this patch? Perhaps I contributed parts to it?
-Perhaps I've just forgotten?
-
-Either way, I don't think I can say that I certify origin of the whole
-patch.
-
-
-Any parts that I did contribute, would have met the criteria, so you're
-free to use those.
-
-Regards,
-Bjorn
-
-> Co-developed-by: Casey Connolly <casey@connolly.tech>
-> Signed-off-by: Casey Connolly <casey@connolly.tech>
-> Co-developed-by: Joel Selvaraj <foss@joelselvaraj.com>
-> Signed-off-by: Joel Selvaraj <foss@joelselvaraj.com>
-> Co-developed-by: Sumit Semwal <sumit.semwal@linaro.org>
-> Signed-off-by: Sumit Semwal <sumit.semwal@linaro.org>
-> Co-developed-by: Vinod Koul <vkoul@kernel.org>
-> Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> Signed-off-by: David Heidelberg <david@ixit.cz>
+> Add dt-bindings for AD4062 family, devices AD4060/AD4062, low-power with
+> monitor capabilities SAR ADCs. Each variant of the family differs in
+> resolution. The device contains two outputs (gp0, gp1). The outputs can
+> be configured for range of options, such as threshold and data ready.
+> The device uses a 2-wire I3C interface.
+> 
+> Signed-off-by: Jorge Marques <jorge.marques@analog.com>
 > ---
->  arch/arm64/boot/dts/qcom/Makefile                  |   2 +
->  .../arm64/boot/dts/qcom/sdm845-google-blueline.dts |  77 +++
->  arch/arm64/boot/dts/qcom/sdm845-google-common.dtsi | 528 +++++++++++++++++++++
->  .../boot/dts/qcom/sdm845-google-crosshatch.dts     |  28 ++
->  4 files changed, 635 insertions(+)
+>  .../devicetree/bindings/iio/adc/adi,ad4062.yaml    | 124 +++++++++++++++++++++
+>  MAINTAINERS                                        |   6 +
+>  2 files changed, 130 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index 6f34d5ed331c4..c853b28b3b198 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -250,6 +250,8 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-db845c.dtb
->  sdm845-db845c-navigation-mezzanine-dtbs	:= sdm845-db845c.dtb sdm845-db845c-navigation-mezzanine.dtbo
->  
->  dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-db845c-navigation-mezzanine.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-google-crosshatch.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-google-blueline.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-lg-judyln.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-lg-judyp.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-mtp.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-google-blueline.dts b/arch/arm64/boot/dts/qcom/sdm845-google-blueline.dts
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad4062.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad4062.yaml
 > new file mode 100644
-> index 0000000000000..94252c3fcf638
+> index 0000000000000..a7a2ad761d1f0
 > --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-google-blueline.dts
-> @@ -0,0 +1,77 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +
-> +/dts-v1/;
-> +
-> +#include "sdm845-google-common.dtsi"
-> +
-> +/ {
-> +	model = "Google Pixel 3";
-> +	compatible = "google,blueline", "qcom,sdm845";
-> +};
-> +
-> +&battery {
-> +	charge-full-design-microamp-hours = <2970000>;
-> +	voltage-min-design-microvolt = <3600000>;
-> +	voltage-max-design-microvolt = <4400000>;
-> +};
-> +
-> +&framebuffer0 {
-> +	width = <1080>;
-> +	height = <2160>;
-> +	stride = <(1080 * 4)>;
-> +};
-> +
-> +&mdss_dsi0 {
-> +	vdda-supply = <&vdda_mipi_dsi0_1p2>;
-> +
-> +	status = "okay";
-> +
-> +	panel@0 {
-> +		compatible = "lg,sw43408-lh546wf1-ed01", "lg,sw43408";
-> +		reg = <0>;
-> +
-> +		vddi-supply = <&vreg_l14a_1p88>;
-> +		vpnl-supply = <&vreg_l28a_3p0>;
-> +
-> +		reset-gpios = <&tlmm 6 GPIO_ACTIVE_LOW>;
-> +
-> +		pinctrl-0 = <&panel_default>;
-> +		pinctrl-names = "default";
-> +
-> +		port {
-> +			panel_in: endpoint {
-> +				remote-endpoint = <&mdss_dsi0_out>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&mdss_dsi0_out {
-> +	data-lanes = <0 1 2 3>;
-> +	remote-endpoint = <&panel_in>;
-> +	qcom,te-source = "mdp_vsync_e";
-> +};
-> +
-> +&mdss_dsi0_phy {
-> +	vdds-supply = <&vdda_mipi_dsi0_pll>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&tlmm {
-> +	panel_default: panel-default-state {
-> +		reset-pins {
-> +			pins = "gpio6";
-> +			function = "gpio";
-> +			drive-strength = <8>;
-> +			bias-disable;
-> +		};
-> +
-> +		te-pins {
-> +			pins = "gpio12";
-> +			function = "mdp_vsync";
-> +			drive-strength = <2>;
-> +			bias-pull-down;
-> +		};
-> +	};
-> +};
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-google-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-google-common.dtsi
-> new file mode 100644
-> index 0000000000000..ad3bfc5b761f2
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-google-common.dtsi
-> @@ -0,0 +1,528 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +
-> +/dts-v1/;
-> +
-> +#include <dt-bindings/arm/qcom,ids.h>
-> +#include <dt-bindings/dma/qcom-gpi.h>
-> +#include <dt-bindings/input/linux-event-codes.h>
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-> +
-> +#include "sdm845.dtsi"
-> +#include "pm8998.dtsi"
-> +#include "pmi8998.dtsi"
-> +
-> +/delete-node/ &mpss_region;
-> +/delete-node/ &venus_mem;
-> +/delete-node/ &cdsp_mem;
-> +/delete-node/ &mba_region;
-> +/delete-node/ &slpi_mem;
-> +/delete-node/ &spss_mem;
-> +/delete-node/ &rmtfs_mem;
-> +
-> +/ {
-> +	chassis-type = "handset";
-> +	qcom,board-id = <0x00021505 0>;
-> +	qcom,msm-id = <QCOM_ID_SDM845 0x20001>;
-> +
-> +	aliases {
-> +		serial0 = &uart9;
-> +		serial1 = &uart6;
-> +	};
-> +
-> +	battery: battery {
-> +		compatible = "simple-battery";
-> +	};
-> +
-> +	chosen {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		stdout-path = "serial0:115200n8";
-> +
-> +		/* Use display framebuffer as setup by bootloader */
-> +		framebuffer0: framebuffer-0 {
-> +			compatible = "simple-framebuffer";
-> +			memory-region = <&cont_splash_mem>;
-> +
-> +			format = "a8r8g8b8";
-> +		};
-> +	};
-> +
-> +	reserved-memory {
-> +		cont_splash_mem: splash@9d400000 {
-> +			reg = <0 0x9d400000 0 0x02400000>;
-> +			no-map;
-> +		};
-> +
-> +		mpss_region: memory@8e000000 {
-> +			reg = <0 0x8e000000 0 0x9800000>;
-> +			no-map;
-> +		};
-> +
-> +		venus_mem: venus@97800000 {
-> +			reg = <0 0x97800000 0 0x500000>;
-> +			no-map;
-> +		};
-> +
-> +		cdsp_mem: cdsp-mem@97D00000 {
-> +			reg = <0 0x97D00000 0 0x800000>;
-> +			no-map;
-> +		};
-> +
-> +		mba_region: mba@98500000 {
-> +			reg = <0 0x98500000 0 0x200000>;
-> +			no-map;
-> +		};
-> +
-> +		slpi_mem: slpi@98700000 {
-> +			reg = <0 0x98700000 0 0x1400000>;
-> +			no-map;
-> +		};
-> +
-> +		spss_mem: spss@99B00000 {
-> +			reg = <0 0x99B00000 0 0x100000>;
-> +			no-map;
-> +		};
-> +
-> +		rmtfs_mem: rmtfs-region@f2700000 {
-> +			compatible = "qcom,rmtfs-mem";
-> +			reg = <0 0xf2700000 0 0x202000>;
-> +			qcom,use-guard-pages;
-> +			no-map;
-> +
-> +			qcom,client-id = <1>;
-> +			qcom,vmid = <QCOM_SCM_VMID_MSS_MSA>;
-> +		};
-> +	};
-> +
-> +	gpio-keys {
-> +		compatible = "gpio-keys";
-> +		label = "Volume keys";
-> +		autorepeat;
-> +
-> +		pinctrl-0 = <&volume_up_gpio>;
-> +		pinctrl-names = "default";
-> +
-> +		key-vol-up {
-> +			label = "Volume Up";
-> +			linux,code = <KEY_VOLUMEUP>;
-> +			gpios = <&pm8998_gpios 6 GPIO_ACTIVE_LOW>;
-> +			debounce-interval = <15>;
-> +		};
-> +	};
-> +
-> +	vph_pwr: regulator-vph-pwr {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vph_pwr";
-> +		regulator-min-microvolt = <3700000>;
-> +		regulator-max-microvolt = <3700000>;
-> +	};
-> +
-> +	vreg_s4a_1p8: regulator-vreg-s4a-1p8 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vreg_s4a_1p8";
-> +
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <1800000>;
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +
-> +		vin-supply = <&vph_pwr>;
-> +	};
-> +};
-> +
-> +&adsp_pas {
-> +	firmware-name = "qcom/sdm845/Google/blueline/adsp.mbn";
-> +
-> +	status = "okay";
-> +};
-> +
-> +&apps_rsc {
-> +	regulators-0 {
-> +		compatible = "qcom,pm8998-rpmh-regulators";
-> +		qcom,pmic-id = "a";
-> +
-> +		vdd-s1-supply = <&vph_pwr>;
-> +		vdd-s2-supply = <&vph_pwr>;
-> +		vdd-s3-supply = <&vph_pwr>;
-> +		vdd-s4-supply = <&vph_pwr>;
-> +		vdd-s5-supply = <&vph_pwr>;
-> +		vdd-s6-supply = <&vph_pwr>;
-> +		vdd-s7-supply = <&vph_pwr>;
-> +		vdd-s8-supply = <&vph_pwr>;
-> +		vdd-s9-supply = <&vph_pwr>;
-> +		vdd-s10-supply = <&vph_pwr>;
-> +		vdd-s11-supply = <&vph_pwr>;
-> +		vdd-s12-supply = <&vph_pwr>;
-> +		vdd-s13-supply = <&vph_pwr>;
-> +		vdd-l1-l27-supply = <&vreg_s7a_1p025>;
-> +		vdd-l2-l8-l17-supply = <&vreg_s3a_1p35>;
-> +		vdd-l3-l11-supply = <&vreg_s7a_1p025>;
-> +		vdd-l4-l5-supply = <&vreg_s7a_1p025>;
-> +		vdd-l6-supply = <&vph_pwr>;
-> +		vdd-l7-l12-l14-l15-supply = <&vreg_s5a_2p04>;
-> +		vdd-l9-supply = <&vreg_bob>;
-> +		vdd-l10-l23-l25-supply = <&vreg_bob>;
-> +		vdd-l13-l19-l21-supply = <&vreg_bob>;
-> +		vdd-l16-l28-supply = <&vreg_bob>;
-> +		vdd-l18-l22-supply = <&vreg_bob>;
-> +		vdd-l20-l24-supply = <&vreg_bob>;
-> +		vdd-l26-supply = <&vreg_s3a_1p35>;
-> +		vin-lvs-1-2-supply = <&vreg_s4a_1p8>;
-> +
-> +		vreg_s3a_1p35: smps3 {
-> +			regulator-min-microvolt = <1352000>;
-> +			regulator-max-microvolt = <1352000>;
-> +		};
-> +
-> +		vreg_s5a_2p04: smps5 {
-> +			regulator-min-microvolt = <1904000>;
-> +			regulator-max-microvolt = <2040000>;
-> +		};
-> +
-> +		vreg_s7a_1p025: smps7 {
-> +			regulator-min-microvolt = <900000>;
-> +			regulator-max-microvolt = <1028000>;
-> +		};
-> +
-> +		vdda_mipi_dsi0_pll:
-> +		vreg_l1a_0p875: ldo1 {
-> +			regulator-min-microvolt = <880000>;
-> +			regulator-max-microvolt = <880000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +			regulator-boot-on;
-> +		};
-> +
-> +		vreg_l5a_0p8: ldo5 {
-> +			regulator-min-microvolt = <800000>;
-> +			regulator-max-microvolt = <800000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l12a_1p8: ldo12 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1800000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l7a_1p8: ldo7 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1800000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l13a_2p95: ldo13 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <2960000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l14a_1p88: ldo14 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1800000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +			regulator-boot-on;
-> +			/*
-> +			 * We can't properly bring the panel back if it gets turned off
-> +			 * so keep it's regulators always on for now.
-> +			 */
-> +			regulator-always-on;
-> +		};
-> +
-> +		vreg_l17a_1p3: ldo17 {
-> +			regulator-min-microvolt = <1304000>;
-> +			regulator-max-microvolt = <1304000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l19a_3p3: ldo19 {
-> +			regulator-min-microvolt = <3300000>;
-> +			regulator-max-microvolt = <3312000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +			/*
-> +			 * The touchscreen needs this to be 3.3v, which is apparently
-> +			 * quite close to the hardware limit for this LDO (3.312v)
-> +			 * It must be kept in high power mode to prevent TS brownouts
-> +			 */
-> +			regulator-allowed-modes = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l20a_2p95: ldo20 {
-> +			regulator-min-microvolt = <2960000>;
-> +			regulator-max-microvolt = <2968000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l21a_2p95: ldo21 {
-> +			regulator-min-microvolt = <2960000>;
-> +			regulator-max-microvolt = <2968000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l24a_3p075: ldo24 {
-> +			regulator-min-microvolt = <3088000>;
-> +			regulator-max-microvolt = <3088000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vreg_l25a_3p3: ldo25 {
-> +			regulator-min-microvolt = <3300000>;
-> +			regulator-max-microvolt = <3312000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +		};
-> +
-> +		vdda_mipi_dsi0_1p2:
-> +		vreg_l26a_1p2: ldo26 {
-> +			regulator-min-microvolt = <1200000>;
-> +			regulator-max-microvolt = <1200000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +			regulator-boot-on;
-> +		};
-> +
-> +		vreg_l28a_3p0: ldo28 {
-> +			regulator-min-microvolt = <2856000>;
-> +			regulator-max-microvolt = <3008000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
-> +			regulator-boot-on;
-> +			/*
-> +			 * We can't properly bring the panel back if it gets turned off
-> +			 * so keep it's regulators always on for now.
-> +			 */
-> +			regulator-always-on;
-> +		};
-> +	};
-> +
-> +	regulators-1 {
-> +		compatible = "qcom,pmi8998-rpmh-regulators";
-> +		qcom,pmic-id = "b";
-> +
-> +		vdd-bob-supply = <&vph_pwr>;
-> +
-> +		vreg_bob: bob {
-> +			regulator-min-microvolt = <3312000>;
-> +			regulator-max-microvolt = <3600000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_AUTO>;
-> +			regulator-allow-bypass;
-> +		};
-> +	};
-> +
-> +	regulators-2 {
-> +		compatible = "qcom,pm8005-rpmh-regulators";
-> +		qcom,pmic-id = "c";
-> +
-> +		vdd-s1-supply = <&vph_pwr>;
-> +		vdd-s2-supply = <&vph_pwr>;
-> +		vdd-s3-supply = <&vph_pwr>;
-> +		vdd-s4-supply = <&vph_pwr>;
-> +
-> +		vreg_s3c_0p6: smps3 {
-> +			regulator-min-microvolt = <600000>;
-> +			regulator-max-microvolt = <600000>;
-> +		};
-> +	};
-> +};
-> +
-> +&cdsp_pas {
-> +	firmware-name = "qcom/sdm845/Google/blueline/cdsp.mbn";
-> +
-> +	status = "okay";
-> +};
-> +
-> +&gcc {
-> +	protected-clocks = <GCC_QSPI_CORE_CLK>,
-> +			   <GCC_QSPI_CORE_CLK_SRC>,
-> +			   <GCC_QSPI_CNOC_PERIPH_AHB_CLK>;
-> +};
-> +
-> +&gpi_dma0 {
-> +	status = "okay";
-> +};
-> +
-> +&gpi_dma1 {
-> +	status = "okay";
-> +};
-> +
-> +&gpu {
-> +	status = "okay";
-> +};
-> +
-> +&gpu_zap_shader {
-> +	firmware-name = "qcom/sdm845/Google/blueline/a630_zap.mbn";
-> +};
-> +
-> +&i2c2 {
-> +	/* ST,FTS @ 49 */
-> +};
-> +
-> +&i2c12 {
-> +	/* Bottom spkr (right) CS35L36 @ 40 */
-> +
-> +	/* Top spkr (left) CS35L36 @ 41 */
-> +};
-> +
-> +&ipa {
-> +	firmware-name = "qcom/sdm845/Google/blueline/ipa_fws.mbn";
-> +	memory-region = <&ipa_fw_mem>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&mdss {
-> +	status = "okay";
-> +};
-> +
-> +&mss_pil {
-> +	firmware-name = "qcom/sdm845/Google/blueline/mba.mbn",
-> +			"qcom/sdm845/Google/blueline/modem.mbn";
-> +
-> +	status = "okay";
-> +};
-> +
-> +&pm8998_gpios {
-> +	volume_up_gpio: vol-up-active-state {
-> +		pins = "gpio6";
-> +		function = "normal";
-> +		input-enable;
-> +		bias-pull-up;
-> +		qcom,drive-strength = <0>;
-> +	};
-> +};
-> +
-> +&pm8998_resin {
-> +	linux,code = <KEY_VOLUMEDOWN>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&pmi8998_charger {
-> +	monitored-battery = <&battery>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&qupv3_id_0 {
-> +	status = "okay";
-> +};
-> +
-> +&qupv3_id_1 {
-> +	status = "okay";
-> +};
-> +
-> +&qup_uart9_rx {
-> +	drive-strength = <2>;
-> +	bias-pull-up;
-> +};
-> +
-> +&qup_uart9_tx {
-> +	drive-strength = <2>;
-> +	bias-disable;
-> +};
-> +
-> +&tlmm {
-> +	gpio-reserved-ranges = < 0 4>, /* SPI (Intel MNH Pixel Visual Core) */
-> +			       <81 4>; /* SPI (most likely Fingerprint Cards FPC1075) */
-> +
-> +	touchscreen_reset: ts-reset-state {
-> +		pins = "gpio99";
-> +		function = "gpio";
-> +		drive-strength = <8>;
-> +		bias-pull-up;
-> +	};
-> +
-> +	touchscreen_pins: ts-pins-gpio-state {
-> +		pins = "gpio125";
-> +		function = "gpio";
-> +		drive-strength = <2>;
-> +		bias-disable;
-> +	};
-> +
-> +	touchscreen_i2c_pins: qup-i2c2-gpio-state {
-> +		pins = "gpio27", "gpio28";
-> +		function = "gpio";
-> +		drive-strength = <2>;
-> +		bias-disable;
-> +	};
-> +};
-> +
-> +&uart6 {
-> +	pinctrl-0 = <&qup_uart6_4pin>;
-> +
-> +	status = "okay";
-> +
-> +	bluetooth {
-> +		compatible = "qcom,wcn3990-bt";
-> +
-> +		vddio-supply = <&vreg_s4a_1p8>;
-> +		vddxo-supply = <&vreg_l7a_1p8>;
-> +		vddrf-supply = <&vreg_l17a_1p3>;
-> +		vddch0-supply = <&vreg_l25a_3p3>;
-> +		max-speed = <3200000>;
-> +	};
-> +};
-> +
-> +&uart9 {
-> +	status = "okay";
-> +};
-> +
-> +&ufs_mem_hc {
-> +	reset-gpios = <&tlmm 150 GPIO_ACTIVE_LOW>;
-> +
-> +	vcc-supply = <&vreg_l20a_2p95>;
-> +	vcc-max-microamp = <800000>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&ufs_mem_phy {
-> +	vdda-phy-supply = <&vreg_l1a_0p875>;
-> +	vdda-pll-supply = <&vreg_l26a_1p2>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&usb_1 {
-> +	status = "okay";
-> +};
-> +
-> +&usb_1_dwc3 {
-> +	dr_mode = "peripheral";
-> +};
-> +
-> +&usb_1_hsphy {
-> +	vdd-supply = <&vreg_l1a_0p875>;
-> +	vdda-pll-supply = <&vreg_l12a_1p8>;
-> +	vdda-phy-dpdm-supply = <&vreg_l24a_3p075>;
-> +
-> +	qcom,imp-res-offset-value = <8>;
-> +	qcom,hstx-trim-value = <QUSB2_V2_HSTX_TRIM_21_6_MA>;
-> +	qcom,preemphasis-level = <QUSB2_V2_PREEMPHASIS_5_PERCENT>;
-> +	qcom,preemphasis-width = <QUSB2_V2_PREEMPHASIS_WIDTH_HALF_BIT>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&usb_1_qmpphy {
-> +	vdda-phy-supply = <&vreg_l26a_1p2>;
-> +	vdda-pll-supply = <&vreg_l1a_0p875>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&venus {
-> +	firmware-name = "qcom/sdm845/Google/blueline/venus.mbn";
-> +
-> +	status = "okay";
-> +};
-> +
-> +&wifi {
-> +	vdd-0.8-cx-mx-supply = <&vreg_l5a_0p8>;
-> +	vdd-1.8-xo-supply = <&vreg_l7a_1p8>;
-> +	vdd-1.3-rfa-supply = <&vreg_l17a_1p3>;
-> +	vdd-3.3-ch0-supply = <&vreg_l25a_3p3>;
-> +
-> +	qcom,snoc-host-cap-8bit-quirk;
-> +
-> +	status = "okay";
-> +};
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-google-crosshatch.dts b/arch/arm64/boot/dts/qcom/sdm845-google-crosshatch.dts
-> new file mode 100644
-> index 0000000000000..5cb0aa8b37fda
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-google-crosshatch.dts
-> @@ -0,0 +1,28 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +
-> +/dts-v1/;
-> +
-> +#include "sdm845-google-common.dtsi"
-> +
-> +/ {
-> +	model = "Google Pixel 3 XL";
-> +	compatible = "google,crosshatch", "qcom,sdm845";
-> +};
-> +
-> +&battery {
-> +	charge-full-design-microamp-hours = <3480000>;
-> +	voltage-min-design-microvolt = <3600000>;
-> +	voltage-max-design-microvolt = <4400000>;
-> +};
-> +
-> +&framebuffer0 {
-> +	width = <1440>;
-> +	height = <2960>;
-> +	stride = <(1440 * 4)>;
-> +};
-> +
-> +&mdss {
-> +	/* until the panel is prepared */
-> +	status = "disabled";
-> +};
-> +
-> 
-> -- 
-> 2.51.0
-> 
-> 
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad4062.yaml
+> @@ -0,0 +1,124 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright 2024 Analog Devices Inc.
+
+It's changed enough in the versions posted that probably wants to at
+least include 2025.
+
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/adi,ad4062.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Analog Devices AD4062 ADC family device driver
+> +
+> +maintainers:
+> +  - Jorge Marques <jorge.marques@analog.com>
+> +
+> +description: |
+> +  Analog Devices AD4062 Single Channel Precision SAR ADC family
+> +
+> +  https://www.analog.com/media/en/technical-documentation/data-sheets/ad4060.pdf
+> +  https://www.analog.com/media/en/technical-documentation/data-sheets/ad4062.pdf
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,ad4060
+> +      - adi,ad4062
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    description:
+> +      The interrupt pins are digital outputs that can be configured at runtime
+> +      as multiple interrupt signals. Each can be configured as GP_INTR, RDY,
+> +      DEV_EN, logic low, logic high and DEV_RDY (GP1 only).
+This is a bit confused.  logic low / logic high aren't interrupt signals so I'd
+not mention them here.  Maybe something less detailed such as
+
+    Two pins are available that can be configured as either a general purpose
+    digital output, device enable signal (used to synchronise other parts of
+    the signal chain with ADC sampling), device ready (GP1 only) or various
+    interrupt signals. If intended for use as a GPIO or device enable, will not
+    present here.
+
+For the binding I'm not sure we care about which interrupts are possible.
+I guess even for device ready we might treat it as a onetime interrupt. Probably poll
+it though - which requires a GPIO not an interrupt binding.  If we don't need
+to use that mode (and can poll a register or something like that) then no need
+to mention that bit.
+
+> RDY is the
+> +      active-low data ready signal, indicates when new ADC data are ready to
+> +      read. DEV_EN synchronizes the enable and power-down states of signal
+> +      chain devices with the ADC sampling instant. DEV_RDY is an active-high
+> +      signal that indicates when the device is ready to accept serial interface
+> +      communications. In GP_INTR mode, the interrupt outputs one of the
+> +      threshold detection interrupt signals (MIN_INTR, MAX_INTR or either).
+> +    minItems: 1
+> +    items:
+> +      - description:
+> +          GP0 pin, cannot be configured as DEV_RDY.
+> +      - description:
+> +          GP1 pin, can be configured to any setting.
+> +
+> +  interrupt-names:
+> +    minItems: 1
+> +    items:
+> +      - const: gp0
+> +      - const: gp1
+> +
+> +  gpio-controller:
+> +    description:
+> +      Marks the device node as a GPIO controller. GPs not listed as interrupts
+> +      are exposed as a GPO.
+> +
+> +  '#gpio-cells':
+> +    const: 2
+> +    description:
+> +      The first cell is the GPIO number and the second cell specifies
+> +      GPIO flags, as defined in <dt-bindings/gpio/gpio.h>.
+> +
+> +  vdd-supply:
+> +    description: Analog power supply.
+> +
+> +  vio-supply:
+> +    description: Digital interface logic power supply.
+> +
+> +  ref-supply:
+> +    description:
+> +      Reference voltage to set the ADC full-scale range. If not present,
+> +      vdd-supply is used as the reference voltage.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - vdd-supply
+> +  - vio-supply
+> +
+> +allOf:
+> +  - $ref: /schemas/i3c/i3c.yaml#
+
+
 
