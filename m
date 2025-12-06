@@ -1,93 +1,96 @@
-Return-Path: <devicetree+bounces-244953-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244955-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84F16CAA76D
-	for <lists+devicetree@lfdr.de>; Sat, 06 Dec 2025 14:47:00 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26E19CAA767
+	for <lists+devicetree@lfdr.de>; Sat, 06 Dec 2025 14:46:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 769C13091918
-	for <lists+devicetree@lfdr.de>; Sat,  6 Dec 2025 13:45:49 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id E2DD33048D1C
+	for <lists+devicetree@lfdr.de>; Sat,  6 Dec 2025 13:45:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B4092FDC59;
-	Sat,  6 Dec 2025 13:45:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 611D02FDC59;
+	Sat,  6 Dec 2025 13:45:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="LHjI9vNd";
-	dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b="B91envaQ"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="TuR/Fmhl";
+	dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b="NN/3En+L"
 X-Original-To: devicetree@vger.kernel.org
 Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76C552FDC4E
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB5682FDC53
 	for <devicetree@vger.kernel.org>; Sat,  6 Dec 2025 13:45:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765028749; cv=none; b=T/nuSAwnE2z+N/Cn35PHJnCQt+nDyfgAM/gF/ETKZZXgQ733u29CcgfkovA4hqgPObJ1wbQZ1L/Ybgi9r8NlZifHm4fMRYbYnEJnFVGvrEMMYaqIct9V9SAD7+2cF+/mDespUPZvr3+xpVwGeOuJHk1ea5MQvI8GiIEaYqCN5y0=
+	t=1765028750; cv=none; b=BqH+6wEz07GadFjwyNO+qefyowVuKr1s7eA7gMKEJncBo98Nrap3Iagoli95zzVDjXm2GvEd8PMFxWyOOByVtod48qxuFDC1ve3VOTVtq+u6TcIPUpjjr4uJwmDft6aol0qpuEtEoGXOcy6P4XH+2qCMybs4N6i/XUBxEksiyQ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765028749; c=relaxed/simple;
-	bh=Ixfrv34AWUu9/W2tpUofqbMTjZBj1HVmvhbEeYoVzaM=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=TdQ8jRvg+6ggB+I9G9i4uKRAgiW9m9+hOYpRXfcd0e+HvqbiFaLF8D9WUJ2jKwDWEkmzHykk+ycfuFVqEGFaSGPCwZ36stAACzu1kNuhTyG40LtmII/ibmjL5n3jE3YLePIo/qmLgU/YJhuAk32LBGic1jio4vxb6yk8nzW+Mts=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=LHjI9vNd; dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b=B91envaQ; arc=none smtp.client-ip=170.10.133.124
+	s=arc-20240116; t=1765028750; c=relaxed/simple;
+	bh=7+AslydEz8tbIwfpmc4WKUHRvN7NmneaD5WL6Wnp0x0=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=XL9bD1xSVohM9UTcS+RZdZE/bzKJC2hdF2YieSqaoT4vEfWS7JfQGFCsFnody2bmZjZPwMlo5zyp9+GN786OelBTpN8Tq059gy7M6gvFoaclVCPfzcHm3s6IAy3ppRLQpGuI75E9qJe0K9TMaiqOWLaLIWrGdhGF2dAb51MEgQ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=TuR/Fmhl; dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b=NN/3En+L; arc=none smtp.client-ip=170.10.133.124
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1765028746;
+	s=mimecast20190719; t=1765028745;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=9piyTpQ6TT5OHkiv6/B5x9F9Sfk8WGsncGds5Tl6KD8=;
-	b=LHjI9vNdCduYdGL2EjvxP11QIg0x7mKDrRzfxbZqKkvWZg7tCKcFdOi7JwMOiSlfmTivke
-	8gtH//8FXmsT8EgTqt78DSKSihTO+2q19iAnzTGSQ1Feb8DM8Gqv3cwlcIaEzq1haZwpVb
-	oB84p8FcJF632lpP1Hjl0wokSbTTQIc=
-Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com
- [209.85.221.71]) by relay.mimecast.com with ESMTP with STARTTLS
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=SGJ/YBkwQ5juZyABcErVQlUL02+/JW8TWX/SMrvHfxQ=;
+	b=TuR/FmhlIiMIWVof350q9YhkjESGALOiwrZCyv+Ws/VDuxl04Cut0MkvNX+09ZSfK7SxSh
+	A7ddtC+sMGoIHKLiXHogShAShdUYUPcx2GkbyyNGUWWZRCfX8ckoWL8XrcxXfUjggKNriu
+	holN0bs89hKN6ykLJD92lEBAr+Vniz4=
+Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com
+ [209.85.221.70]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-180-0d_UBuPKPOSjC82RYwMS9w-1; Sat, 06 Dec 2025 08:45:40 -0500
-X-MC-Unique: 0d_UBuPKPOSjC82RYwMS9w-1
-X-Mimecast-MFC-AGG-ID: 0d_UBuPKPOSjC82RYwMS9w_1765028739
-Received: by mail-wr1-f71.google.com with SMTP id ffacd0b85a97d-42b2ffbba05so1466682f8f.0
-        for <devicetree@vger.kernel.org>; Sat, 06 Dec 2025 05:45:40 -0800 (PST)
+ us-mta-286-lj2VTz9wNUSzCJfXo3vncQ-1; Sat, 06 Dec 2025 08:45:43 -0500
+X-MC-Unique: lj2VTz9wNUSzCJfXo3vncQ-1
+X-Mimecast-MFC-AGG-ID: lj2VTz9wNUSzCJfXo3vncQ_1765028742
+Received: by mail-wr1-f70.google.com with SMTP id ffacd0b85a97d-42e2e50cfaeso2839810f8f.3
+        for <devicetree@vger.kernel.org>; Sat, 06 Dec 2025 05:45:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=redhat.com; s=google; t=1765028739; x=1765633539; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=9piyTpQ6TT5OHkiv6/B5x9F9Sfk8WGsncGds5Tl6KD8=;
-        b=B91envaQXiEfiIZc/FdxLVcvuf1WfcR/kI/SFxSstUYabtFGA17IYgZ2Nj5TTQqeJB
-         NFER9d+aXIplzZPeMpu5c5Lt0qoCQCFOgZ192lwybXsvyUIfFJA4dRMtFLwY0rk0z762
-         8Hvf4u9JeL4i1pBGBTzf3un06d8oGPOSN8FusMM05z3f54TDLWaxAs5RKTxVaQ1fTkNg
-         X8i7i5OeF5ajQo2+3k8knG+zF1k5FNSoigqUy3TH/EiVMi4X6hWtXxmKWtpGQ8Wv2OuO
-         mcCWy/2JB1FUaHEltelpDkz/XmcQW9xML27MrIeU2ROvKk5wwOe7MAtNltQLtxZZ2KNb
-         D+ng==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765028739; x=1765633539;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=redhat.com; s=google; t=1765028741; x=1765633541; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=9piyTpQ6TT5OHkiv6/B5x9F9Sfk8WGsncGds5Tl6KD8=;
-        b=Ny8n8FMmDa+BgiVwm2d9Cick79wxRsLTYnZ7iulUVORz9vRyTikbMuLjCRuqRGJFSt
-         o9l+1oVxdhxIdJXhNagSQoaYU6peuYE/Pg41/IVUckgiQ53jtEPs+Blx2kPD5y3YIgjJ
-         AJx9cSFt3VZRLqKsfUk7UcFbIv5AhBj3Xce6mlFED+XzqT+BNKszmUnOIMPyTX3azCE/
-         YgyL7M9oN/b6r7VJXO0K1D2TVJ10tgLY0HRmrivLb3ZC0GeeHhOKmDu+BTE7qMeFHUBN
-         H4YWRQvH6PQja9aXsnXZly+hgHoVvkYl9IDKXtR6K1nP58kFCRcA/O8JGVW6AYZtalcR
-         SiZA==
-X-Forwarded-Encrypted: i=1; AJvYcCWxODgBJKyNg6c8qwIgzI3sMC6nOV+zUefvaA24M7IUGUuHNs9ysQkYCcM8iRtnpzYHVYAEfT7CuqGI@vger.kernel.org
-X-Gm-Message-State: AOJu0YzdxNcZJnxq6Hy2u9NDMS+vPY7r7pqu8BBz5u18r+UVsLnoJVgz
-	Y1guK1dPvffFH/Res1jk0rqKGSa1ic0Hqv8Mpn0b3XXIKoQ9Jmb+qV9Lb6O5kcBnsMBMSetki1w
-	GtF5lxGmwbm5FQHYKdRc3pCLgsPC7/QkVQ4R72ZIysFilt3F+xV3o3NHmyyYIa3c=
-X-Gm-Gg: ASbGncv5leZKHstiiIeIbWLnKXhetjxwm6EmQnEIfraYEpklg8FY40dJHc+8xhAlLU9
-	tE8oe9hmoC+3dmMiDJ4PPDwrCiLknceugmcgze/A7b07I+wXOPJq/Hqyd2rWQ0kaAaaaNFoMBdM
-	wEyw659eDH6hCO1t1rWs2QQ+ae0nwFeeAIToDrqcc+AhMllVBpaxrWMmYIKi0kwjWSeG1Zq//ti
-	yFmVPtqbQ7TruXzl/DnXj+2Ku06Vg5qYj+ZPOkjH4XYQdnJK+MeRBQAOsGPZjqt9qDIapAiPoLk
-	4/UGVF9aj7Z2gjSF57e4PzXVzr5qDXh+NmDhuh3Af+gVKhkkk1MLOOrzAF0RsAYT1GrO2lMWxni
-	7uvWqFBRdqsRT92ekqhNovHGNv7slrRN7+0o=
-X-Received: by 2002:a05:600c:524a:b0:477:b734:8c22 with SMTP id 5b1f17b1804b1-47939dfb06cmr22732285e9.8.1765028738876;
-        Sat, 06 Dec 2025 05:45:38 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFRf68G+11uMBoOmMOztce9Dtg+7RUcAPRCNepMNXIDMmbVwb5H+ngp0wvK48xMgJehotiAqQ==
-X-Received: by 2002:a05:600c:524a:b0:477:b734:8c22 with SMTP id 5b1f17b1804b1-47939dfb06cmr22732135e9.8.1765028738491;
-        Sat, 06 Dec 2025 05:45:38 -0800 (PST)
+        bh=SGJ/YBkwQ5juZyABcErVQlUL02+/JW8TWX/SMrvHfxQ=;
+        b=NN/3En+L++X8siMlLZfdjAzTy8zKq3IIs1lfh1LuEfyV48qDsVXK5u+qo1lZJ4JPAr
+         YY3aM+fi1NXtmt2dSCcTGDJQI6qRqYSvXeTZ8aem0sBRjjZmpctr1wt4kLM5mwm2B72c
+         hJERN5avL/jz8UqldGR6cVuH/b11KU1eIK7G+bIFNSMLfYj7q/HtcA5O+zUvtTG0dBBM
+         BXxAIkScbqE8u828Q9p/QA/Z8hrFJf824//fv0AaQmx7DMLovZkBN9EPMqMFMLMQB46q
+         iFMTFXifWLzBdx5dkxQHYzPYNpghhM8gPZsPrPUIyrC5QGO8bsCzcNg+PMRKe0nxFhe1
+         qb0w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765028741; x=1765633541;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=SGJ/YBkwQ5juZyABcErVQlUL02+/JW8TWX/SMrvHfxQ=;
+        b=JSWGZCA+Hm+3ebzj5iTr7Gxv8XVl6FTKuDY92+1fZvjd81AJn/AOTnB+OOuDIFWYrG
+         cz6l7xQvwt1UHlXhiSD/N/5Yc8YGfMbTIIQwOA+8/oImP5obMpAk/xFEqDRvgnCShVio
+         YQwhmBhGBE0LR5kNCY1ccTg7f1BnEVpAcWQE7mvBoBcjW2MxSp0fQxxo4/HO/DNtxVOd
+         7KXKuXxhatxYytoAeZsAw/zjTmjlichf2I5NQSCUE5faqdpYZxly0IZEc9zF0juUT0kW
+         Wt/dKoT1Lggvrg5tzntSdau7sUEYlD1O6obKu4jpWuvakl088oWBA3f9pKwb4tl13FZg
+         HMgg==
+X-Forwarded-Encrypted: i=1; AJvYcCU/Ih6Kp5jOxyjcbfPHFtvKJZhAzTyqnwy59NUNZGDiHZKzWrk28C7Kxw37u/pi237pH0rTdwO4WrHO@vger.kernel.org
+X-Gm-Message-State: AOJu0YxStP98HldamiHnueGJkofQcn0+AfXTjut6szooxJ273gMVX9RZ
+	DSZu8F7w3RrSFkiroG7GJYf4SS4NIVshQ47P2umn4AOpCdGU8YuyIQ52GbwRxK5crh5EUMF13/2
+	593tszqrmCpWUDnd8E8rQqWjcFWO8yKc50r1MeahfMxyjEd8VHNK107TB9FCV498=
+X-Gm-Gg: ASbGncsXy8SzyoPOil0wUyTMn6PP5Zh+E68h7lxgQtmMqgOSSEHPKA+/BFKTgreExwy
+	zM6q0hzaljETvVL2AVvNUbi83Y6kYV+EJW8ZJtP+9uyIvSAhoMqfu53OuBUEoO0E4lIaKqDguYz
+	axyx+RY6oGGvfmcFHxskcjBmEgjZ4kc7GTOeiFmMTQFE07CkQHWroJs+X8Y1zraZPfsa9EulRH4
+	hnRcfbgKsbkMp/6+oo+uGqtikmixvFH19iT7G4uNEwWtUozjyAkW5NNRY5cUJvEThP2JNuwShb4
+	+kFsJRa2YUy1c5DxtwljmdP2rIn4c4yLBt5gZ1+oSbLKOOwUwNxKB5Spaeuk0sf8iZ5JCS9Qhw2
+	sLbHoWstd0eWfK2eKXhQxE9USmBuntTjNlSM=
+X-Received: by 2002:a05:6000:1863:b0:42b:39ae:d096 with SMTP id ffacd0b85a97d-42f89f093b8mr2876371f8f.10.1765028741665;
+        Sat, 06 Dec 2025 05:45:41 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IF8K8x9eGlvEeI5+9B89BZvFAXX9KzP07SGmLffrHPHT6uNDDPlREapDk1gOmKWFS75ycvHSQ==
+X-Received: by 2002:a05:6000:1863:b0:42b:39ae:d096 with SMTP id ffacd0b85a97d-42f89f093b8mr2876336f8f.10.1765028741201;
+        Sat, 06 Dec 2025 05:45:41 -0800 (PST)
 Received: from localhost (62-151-111-63.jazzfree.ya.com. [62.151.111.63])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42f7d330b20sm14457955f8f.29.2025.12.06.05.45.37
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42f7d331af5sm14206871f8f.31.2025.12.06.05.45.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 06 Dec 2025 05:45:37 -0800 (PST)
+        Sat, 06 Dec 2025 05:45:40 -0800 (PST)
 From: Javier Martinez Canillas <javierm@redhat.com>
 To: linux-kernel@vger.kernel.org
 Cc: Alex Elder <elder@riscstar.com>,
@@ -103,10 +106,12 @@ Cc: Alex Elder <elder@riscstar.com>,
 	devicetree@vger.kernel.org,
 	linux-riscv@lists.infradead.org,
 	spacemit@lists.linux.dev
-Subject: [PATCH 0/3] riscv: dts: spacemit: Add PMIC and regulators constraints for Milk-V Jupiter
-Date: Sat,  6 Dec 2025 14:44:52 +0100
-Message-ID: <20251206134532.1741648-1-javierm@redhat.com>
+Subject: [PATCH 1/3] riscv: dts: spacemit: Enable i2c8 adapter for Milk-V Jupiter
+Date: Sat,  6 Dec 2025 14:44:53 +0100
+Message-ID: <20251206134532.1741648-2-javierm@redhat.com>
 X-Mailer: git-send-email 2.52.0
+In-Reply-To: <20251206134532.1741648-1-javierm@redhat.com>
+References: <20251206134532.1741648-1-javierm@redhat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -115,58 +120,32 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Hello,
+The adapter is used to access the SpacemiT P1 PMIC present in this board.
 
-This patch series enables the i2c8 adapter, the PMIC, and voltage regulators
-for the Milk-V Jupiter board.
+Signed-off-by: Javier Martinez Canillas <javierm@redhat.com>
+---
 
-The power management hardware design on the Milk-V Jupiter is identical to the
-Banana Pi BPI-F3, so the DT Nodes were copied from the k1-bananapi-f3.dts file.
+ arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-I have verified the I2C address and regulator constraints against the vendor's
-downstream DTS to ensure accuracy. I have also dumped the regulator_summary
-debugfs entry to check that the regulators and constraints are registered:
-
-$ cat /sys/kernel/debug/regulator/regulator_summary
- regulator                      use open bypass  opmode voltage current     min     max
----------------------------------------------------------------------------------------
- regulator-dummy                  1    0      0 unknown     0mV     0mA     0mV     0mV
- dc_in_12v                        2    1      0 unknown 12000mV     0mA 12000mV 12000mV
-    vcc_4v                        7   10      0 unknown  4000mV     0mA  4000mV  4000mV
-       buck1                      1    0      0 unknown  1050mV     0mA   500mV  3425mV
-       buck2                      1    0      0 unknown   900mV     0mA   500mV  3425mV
-       buck3                      1    0      0 unknown  1800mV     0mA   500mV  1800mV
-       buck4                      1    0      0 unknown  3300mV     0mA   500mV  3300mV
-       buck5                      3    7      0 unknown  2100mV     0mA   500mV  3425mV
-          dldo1                   0    0      0 unknown  1200mV     0mA   500mV  3125mV
-          dldo2                   0    0      0 unknown   500mV     0mA   500mV  3125mV
-          dldo3                   0    0      0 unknown   500mV     0mA   500mV  3125mV
-          dldo4                   1    0      0 unknown  1800mV     0mA   500mV  3125mV
-          dldo5                   0    0      0 unknown   500mV     0mA   500mV  3125mV
-          dldo6                   1    0      0 unknown  1800mV     0mA   500mV  3125mV
-          dldo7                   0    0      0 unknown   500mV     0mA   500mV  3125mV
-       buck6                      1    0      0 unknown  1100mV     0mA   500mV  3425mV
-       aldo1                      0    0      0 unknown  1800mV     0mA   500mV  3125mV
-       aldo2                      0    0      0 unknown   500mV     0mA   500mV  3125mV
-       aldo3                      0    0      0 unknown   500mV     0mA   500mV  3125mV
-       aldo4                      0    0      0 unknown   500mV     0mA   500mV  3125mV
-
-Best regards,
-Javier
-
-
-Javier Martinez Canillas (3):
-  riscv: dts: spacemit: Enable i2c8 adapter for Milk-V Jupiter
-  riscv: dts: spacemit: Define fixed regulators for Milk-V Jupiter
-  riscv: dts: spacemit: Define the P1 PMIC regulators for Milk-V Jupiter
-
- .../boot/dts/spacemit/k1-milkv-jupiter.dts    | 135 ++++++++++++++++++
- 1 file changed, 135 insertions(+)
-
+diff --git a/arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts b/arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts
+index 28afd39b28da..aa425f02c1f4 100644
+--- a/arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts
++++ b/arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts
+@@ -72,6 +72,12 @@ &pdma {
+ 	status = "okay";
+ };
+ 
++&i2c8 {
++	pinctrl-0 = <&i2c8_cfg>;
++	pinctrl-names = "default";
++	status = "okay";
++};
++
+ &uart0 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&uart0_2_cfg>;
 -- 
 2.52.0
-
-base-commit: bb3a1f127972ea262f98eee55068de1e54ab8d57
-branch: milkv-jupiter-pmic
 
 
