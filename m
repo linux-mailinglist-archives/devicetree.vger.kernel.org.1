@@ -1,147 +1,172 @@
-Return-Path: <devicetree+bounces-244952-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244953-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E338CAA74C
-	for <lists+devicetree@lfdr.de>; Sat, 06 Dec 2025 14:42:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 84F16CAA76D
+	for <lists+devicetree@lfdr.de>; Sat, 06 Dec 2025 14:47:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5D57F306291E
-	for <lists+devicetree@lfdr.de>; Sat,  6 Dec 2025 13:38:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 769C13091918
+	for <lists+devicetree@lfdr.de>; Sat,  6 Dec 2025 13:45:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA8232FB99E;
-	Sat,  6 Dec 2025 13:38:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B4092FDC59;
+	Sat,  6 Dec 2025 13:45:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eW4ZX2xm"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="LHjI9vNd";
+	dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b="B91envaQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com [209.85.215.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81B352F7AA7
-	for <devicetree@vger.kernel.org>; Sat,  6 Dec 2025 13:38:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76C552FDC4E
+	for <devicetree@vger.kernel.org>; Sat,  6 Dec 2025 13:45:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765028309; cv=none; b=dD/CUca4WxO1p7TYkj3J9ZFX3ieqZ0m91swV7MrU6hAHlB35EvXm+ll4PLhlOXDwGk6VHr6m0aBvPA99uRVYZR4P6mezGmqOF7dvgWoTUF6Z51nHwYbgZ0Yh17dDSWt00ZCSHHNf4psvBSchBmMUO07H8N49tam19Ow8pXvquTA=
+	t=1765028749; cv=none; b=T/nuSAwnE2z+N/Cn35PHJnCQt+nDyfgAM/gF/ETKZZXgQ733u29CcgfkovA4hqgPObJ1wbQZ1L/Ybgi9r8NlZifHm4fMRYbYnEJnFVGvrEMMYaqIct9V9SAD7+2cF+/mDespUPZvr3+xpVwGeOuJHk1ea5MQvI8GiIEaYqCN5y0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765028309; c=relaxed/simple;
-	bh=ym2C2sVMhc+W20ObHTcDmFSRkzCbP8pObQd9rfJb+4c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=j9noBKo7eX3zBRxKHeZG9dqRN/1ms7OKoEQxgejfXjSCymryrj2Rp/H9nqHMAvOlhBdc5EEAJDhOV6vtb/9Vzjqq/hcGPzr727lss6Zjz+vFmv5FEOWG7rH6JH0NK5nuTcRo0xMIFlCILO3jVNSzpZuYM2kX+8YX4IxgIW0V3Wo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eW4ZX2xm; arc=none smtp.client-ip=209.85.215.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f177.google.com with SMTP id 41be03b00d2f7-b553412a19bso2643599a12.1
-        for <devicetree@vger.kernel.org>; Sat, 06 Dec 2025 05:38:28 -0800 (PST)
+	s=arc-20240116; t=1765028749; c=relaxed/simple;
+	bh=Ixfrv34AWUu9/W2tpUofqbMTjZBj1HVmvhbEeYoVzaM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=TdQ8jRvg+6ggB+I9G9i4uKRAgiW9m9+hOYpRXfcd0e+HvqbiFaLF8D9WUJ2jKwDWEkmzHykk+ycfuFVqEGFaSGPCwZ36stAACzu1kNuhTyG40LtmII/ibmjL5n3jE3YLePIo/qmLgU/YJhuAk32LBGic1jio4vxb6yk8nzW+Mts=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=LHjI9vNd; dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b=B91envaQ; arc=none smtp.client-ip=170.10.133.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1765028746;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=9piyTpQ6TT5OHkiv6/B5x9F9Sfk8WGsncGds5Tl6KD8=;
+	b=LHjI9vNdCduYdGL2EjvxP11QIg0x7mKDrRzfxbZqKkvWZg7tCKcFdOi7JwMOiSlfmTivke
+	8gtH//8FXmsT8EgTqt78DSKSihTO+2q19iAnzTGSQ1Feb8DM8Gqv3cwlcIaEzq1haZwpVb
+	oB84p8FcJF632lpP1Hjl0wokSbTTQIc=
+Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com
+ [209.85.221.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-180-0d_UBuPKPOSjC82RYwMS9w-1; Sat, 06 Dec 2025 08:45:40 -0500
+X-MC-Unique: 0d_UBuPKPOSjC82RYwMS9w-1
+X-Mimecast-MFC-AGG-ID: 0d_UBuPKPOSjC82RYwMS9w_1765028739
+Received: by mail-wr1-f71.google.com with SMTP id ffacd0b85a97d-42b2ffbba05so1466682f8f.0
+        for <devicetree@vger.kernel.org>; Sat, 06 Dec 2025 05:45:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1765028308; x=1765633108; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=r6ThddeExf5Und4u30qaitIGfC7qXYJM9H2MDxYn+/s=;
-        b=eW4ZX2xmM0ZFaJSsGwvK0AV5B1YYScuasf+DHJC8CT/AyEOKblA2t5XWUMcD9fr+pC
-         3boBpyRzE500xj/C/oDGAAFGzGAvhALxNcXqAKWISutxm41UKNPPCtG69znDjxSS8iGi
-         tyYkH8Nke1KtcZnUpxjdBnWGbGFF0agxHIoQdaqx+daGdHvSuesa14xFAT097IIVEjl6
-         g3L1M+Rh3YyccUaKok00EpN9abL1vic8N1inH99mo7G4Ikb03PKMwU2S3TkjNghjH7g5
-         jJIlzS519W6G4hcKLm1d0oB2mCSLkm5mNFj+BLiqQda336Ph6BjD9NLHvJA9Dr0plK/r
-         dAEw==
+        d=redhat.com; s=google; t=1765028739; x=1765633539; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=9piyTpQ6TT5OHkiv6/B5x9F9Sfk8WGsncGds5Tl6KD8=;
+        b=B91envaQXiEfiIZc/FdxLVcvuf1WfcR/kI/SFxSstUYabtFGA17IYgZ2Nj5TTQqeJB
+         NFER9d+aXIplzZPeMpu5c5Lt0qoCQCFOgZ192lwybXsvyUIfFJA4dRMtFLwY0rk0z762
+         8Hvf4u9JeL4i1pBGBTzf3un06d8oGPOSN8FusMM05z3f54TDLWaxAs5RKTxVaQ1fTkNg
+         X8i7i5OeF5ajQo2+3k8knG+zF1k5FNSoigqUy3TH/EiVMi4X6hWtXxmKWtpGQ8Wv2OuO
+         mcCWy/2JB1FUaHEltelpDkz/XmcQW9xML27MrIeU2ROvKk5wwOe7MAtNltQLtxZZ2KNb
+         D+ng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765028308; x=1765633108;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=r6ThddeExf5Und4u30qaitIGfC7qXYJM9H2MDxYn+/s=;
-        b=piYmihg0oJ5qNQY2HyOdiqJb8vVe3zH8lCyBJYcV94aJZE5jq5eVloyXezjTWcB/MR
-         wQhYBZXRAdDb77Fn4BNHxTlS/T0Edu6VQBzSwbOescV/cyrYf+J7ZJiTAWHZFZn/0xYw
-         7KmP+h6hYWqfUtFQX8B27UwNJjklIu42M4tTJyjJxM/+TtyjaCSxg2HasrGupabmu4nn
-         ezUHd0/9uPSg22T5yG4ngWqBmRQUkScb50iY1rGpZ3rno0wIsc3IPElmvQ4tICic7AS3
-         HhjQcO/mzPWVybF8seeItLjvqare6nX1W1PDFzXGR8dTZjRWe15eqVJhkWYkoOAQx79i
-         7BKw==
-X-Forwarded-Encrypted: i=1; AJvYcCV4e5BhF5QaUieog1TpIPOfsZp1TTheZBgzdXluIjs8Lc8T1sc4McvAIQ5V5njnhbISaEAvt06CvAxc@vger.kernel.org
-X-Gm-Message-State: AOJu0Yydit2iTf6VBTRTrfYsU9LGgRQNnq203seX8+4FE5wDo8PBKgMv
-	sQiCPBjRYb4KivOqmV8iGGHDwI1XX0CuJG9sCwGputI5XW8aMrpAvojz
-X-Gm-Gg: ASbGncv7n7M/bBIEQk+n0z6EjWBf6hcmzN+2aAD+DqKxNDMvZk8Uk+iAD0Rh47XrAEi
-	1f53ahUjnHWUay9kkhRq0qWhg+Zh9fFPnlqMjKXF1kjLudQSqzbds9kZF5zvtPo9yuOAOftZ9vY
-	n1YH31lxv61W8RVDTqoHl3z/weds4GtZCOvAnUMyn+qmoYQ0Bt2MIOdHJc5QKVp4ymQrhfwAzuk
-	WVk78Aqndp6/sQKeZrIKCBwCjlE+b1HQI81Geujwr06EzmbU0nXA0yKVci09se5RbbfI8Tq6G2x
-	vXq67ytpie/9kDsOzYsE0j6c0J80qWuoNs0WyuQnNsugkCXa0HsApYaOipv/zLatSyNti5u8ESx
-	LzA6N4F7DOfIbsvCUS7xIovLt/jKfR3M3OhVRP0NYPMKZ5Ivm+hQGu0wxiB+CtPXvYNCPhMXGrh
-	Z2oHSTe+qBEvnss1sTJ7xKdiQhRteni56zdIa082mBNpJS/jjAaDJQIRK4+MhN1Kf6VQ==
-X-Google-Smtp-Source: AGHT+IHudn4wc9Rw0jaM+dT7ajZ0xLPd+O8RxvshtGbYFKCr+YXAEgY1D8jUpwi2hZh1idoooj33ng==
-X-Received: by 2002:a05:7300:f3c6:b0:2a4:3593:6467 with SMTP id 5a478bee46e88-2abc71dc43bmr1174301eec.23.1765028307527;
-        Sat, 06 Dec 2025 05:38:27 -0800 (PST)
-Received: from ?IPV6:2804:14d:4c64:82a2:4ba7:7b91:594d:8d90? ([2804:14d:4c64:82a2:4ba7:7b91:594d:8d90])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-11df7576932sm30215436c88.4.2025.12.06.05.38.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 06 Dec 2025 05:38:26 -0800 (PST)
-Message-ID: <de0b9059-30c0-4704-b0b8-9f4f5abfaa04@gmail.com>
-Date: Sat, 6 Dec 2025 10:38:19 -0300
+        d=1e100.net; s=20230601; t=1765028739; x=1765633539;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9piyTpQ6TT5OHkiv6/B5x9F9Sfk8WGsncGds5Tl6KD8=;
+        b=Ny8n8FMmDa+BgiVwm2d9Cick79wxRsLTYnZ7iulUVORz9vRyTikbMuLjCRuqRGJFSt
+         o9l+1oVxdhxIdJXhNagSQoaYU6peuYE/Pg41/IVUckgiQ53jtEPs+Blx2kPD5y3YIgjJ
+         AJx9cSFt3VZRLqKsfUk7UcFbIv5AhBj3Xce6mlFED+XzqT+BNKszmUnOIMPyTX3azCE/
+         YgyL7M9oN/b6r7VJXO0K1D2TVJ10tgLY0HRmrivLb3ZC0GeeHhOKmDu+BTE7qMeFHUBN
+         H4YWRQvH6PQja9aXsnXZly+hgHoVvkYl9IDKXtR6K1nP58kFCRcA/O8JGVW6AYZtalcR
+         SiZA==
+X-Forwarded-Encrypted: i=1; AJvYcCWxODgBJKyNg6c8qwIgzI3sMC6nOV+zUefvaA24M7IUGUuHNs9ysQkYCcM8iRtnpzYHVYAEfT7CuqGI@vger.kernel.org
+X-Gm-Message-State: AOJu0YzdxNcZJnxq6Hy2u9NDMS+vPY7r7pqu8BBz5u18r+UVsLnoJVgz
+	Y1guK1dPvffFH/Res1jk0rqKGSa1ic0Hqv8Mpn0b3XXIKoQ9Jmb+qV9Lb6O5kcBnsMBMSetki1w
+	GtF5lxGmwbm5FQHYKdRc3pCLgsPC7/QkVQ4R72ZIysFilt3F+xV3o3NHmyyYIa3c=
+X-Gm-Gg: ASbGncv5leZKHstiiIeIbWLnKXhetjxwm6EmQnEIfraYEpklg8FY40dJHc+8xhAlLU9
+	tE8oe9hmoC+3dmMiDJ4PPDwrCiLknceugmcgze/A7b07I+wXOPJq/Hqyd2rWQ0kaAaaaNFoMBdM
+	wEyw659eDH6hCO1t1rWs2QQ+ae0nwFeeAIToDrqcc+AhMllVBpaxrWMmYIKi0kwjWSeG1Zq//ti
+	yFmVPtqbQ7TruXzl/DnXj+2Ku06Vg5qYj+ZPOkjH4XYQdnJK+MeRBQAOsGPZjqt9qDIapAiPoLk
+	4/UGVF9aj7Z2gjSF57e4PzXVzr5qDXh+NmDhuh3Af+gVKhkkk1MLOOrzAF0RsAYT1GrO2lMWxni
+	7uvWqFBRdqsRT92ekqhNovHGNv7slrRN7+0o=
+X-Received: by 2002:a05:600c:524a:b0:477:b734:8c22 with SMTP id 5b1f17b1804b1-47939dfb06cmr22732285e9.8.1765028738876;
+        Sat, 06 Dec 2025 05:45:38 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFRf68G+11uMBoOmMOztce9Dtg+7RUcAPRCNepMNXIDMmbVwb5H+ngp0wvK48xMgJehotiAqQ==
+X-Received: by 2002:a05:600c:524a:b0:477:b734:8c22 with SMTP id 5b1f17b1804b1-47939dfb06cmr22732135e9.8.1765028738491;
+        Sat, 06 Dec 2025 05:45:38 -0800 (PST)
+Received: from localhost (62-151-111-63.jazzfree.ya.com. [62.151.111.63])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42f7d330b20sm14457955f8f.29.2025.12.06.05.45.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 06 Dec 2025 05:45:37 -0800 (PST)
+From: Javier Martinez Canillas <javierm@redhat.com>
+To: linux-kernel@vger.kernel.org
+Cc: Alex Elder <elder@riscstar.com>,
+	Javier Martinez Canillas <javierm@redhat.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <pjw@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Yixun Lan <dlan@gentoo.org>,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev
+Subject: [PATCH 0/3] riscv: dts: spacemit: Add PMIC and regulators constraints for Milk-V Jupiter
+Date: Sat,  6 Dec 2025 14:44:52 +0100
+Message-ID: <20251206134532.1741648-1-javierm@redhat.com>
+X-Mailer: git-send-email 2.52.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] dt-bindings: usb: maxim,max3421: convert to DT schema
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: gregkh@linuxfoundation.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, davidm@egauge.net, ~lkcamp/patches@lists.sr.ht,
- linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20251107001812.10180-1-rodrigo.gobbi.7@gmail.com>
- <20251107-agile-alligator-of-philosophy-03d923@kuoka>
-Content-Language: en-US
-From: Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>
-In-Reply-To: <20251107-agile-alligator-of-philosophy-03d923@kuoka>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 11/7/25 05:03, Krzysztof Kozlowski wrote:
-> On Thu, Nov 06, 2025 at 09:06:22PM -0300, Rodrigo Gobbi wrote:
->> Convert legacy maxim,max3421.txt to proper format.
->> 
->> Signed-off-by: Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>
->> ---
->> Hi, all
->> 
->> At this v2, I`m reverting my previous idea about documenting new properties
->> because this is just a conversion from txt file. At v1, a question
->> was raised about that:
->> 
->> On 10/9/25 22:34, Krzysztof Kozlowski wrote:
->> > maxim,vbus-en-pin, maxim,gpx-pin, reset pin and supplies. Also add a
->> > Why new properties? You must explain not only the difference but WHY you
->> > are doing this.
->> In this case, I`ve kept the maxim,vbus-en-pin prop because it was already
->> described in the legacy file and the driver expects that property according
->> to [1] and [2].
-> 
-> This is not a commit msg. Apply this patch from the lists and look
-> whether the information is there.
-> 
-> So again:
-> 
-> You commit msg explain any unusual changes - like modifying binding
-> while ONLY converting it - and WHY you are doing the unusual changes.
-> 
-> Best regards,
-> Krzysztof
-> 
+Hello,
 
-Hi, Krzysztof,
-I was wondering about this again and I need to clarify the expectations here. 
-So my v2 patch is only doing the conversion from txt to yaml without any additional
-changes. That being said, at v2, there are no new properties and no unusual changes.
+This patch series enables the i2c8 adapter, the PMIC, and voltage regulators
+for the Milk-V Jupiter board.
 
-What happened was that under the ---, in order to save the lore and the previous discussion
-from v1, I`ve quoted the sentence about the "maxim,vbus-en-pin" prop from v1. Here, at v2,
-what I meant under the --- was that the "maxim,vbus-en-pin" was not new and it already existed
-in .txt file and the driver is already expecting that.
+The power management hardware design on the Milk-V Jupiter is identical to the
+Banana Pi BPI-F3, so the DT Nodes were copied from the k1-bananapi-f3.dts file.
 
-So, even if I send a v3, it will be exactly the same direct conversion with the same commit msg
-because nothing was changed from txt.
-Maybe my intention was not right, my idea was to just save the lore/"answer" a previous point
-raised inside ---. 
+I have verified the I2C address and regulator constraints against the vendor's
+downstream DTS to ensure accuracy. I have also dumped the regulator_summary
+debugfs entry to check that the regulators and constraints are registered:
 
-Tks and best regards.
+$ cat /sys/kernel/debug/regulator/regulator_summary
+ regulator                      use open bypass  opmode voltage current     min     max
+---------------------------------------------------------------------------------------
+ regulator-dummy                  1    0      0 unknown     0mV     0mA     0mV     0mV
+ dc_in_12v                        2    1      0 unknown 12000mV     0mA 12000mV 12000mV
+    vcc_4v                        7   10      0 unknown  4000mV     0mA  4000mV  4000mV
+       buck1                      1    0      0 unknown  1050mV     0mA   500mV  3425mV
+       buck2                      1    0      0 unknown   900mV     0mA   500mV  3425mV
+       buck3                      1    0      0 unknown  1800mV     0mA   500mV  1800mV
+       buck4                      1    0      0 unknown  3300mV     0mA   500mV  3300mV
+       buck5                      3    7      0 unknown  2100mV     0mA   500mV  3425mV
+          dldo1                   0    0      0 unknown  1200mV     0mA   500mV  3125mV
+          dldo2                   0    0      0 unknown   500mV     0mA   500mV  3125mV
+          dldo3                   0    0      0 unknown   500mV     0mA   500mV  3125mV
+          dldo4                   1    0      0 unknown  1800mV     0mA   500mV  3125mV
+          dldo5                   0    0      0 unknown   500mV     0mA   500mV  3125mV
+          dldo6                   1    0      0 unknown  1800mV     0mA   500mV  3125mV
+          dldo7                   0    0      0 unknown   500mV     0mA   500mV  3125mV
+       buck6                      1    0      0 unknown  1100mV     0mA   500mV  3425mV
+       aldo1                      0    0      0 unknown  1800mV     0mA   500mV  3125mV
+       aldo2                      0    0      0 unknown   500mV     0mA   500mV  3125mV
+       aldo3                      0    0      0 unknown   500mV     0mA   500mV  3125mV
+       aldo4                      0    0      0 unknown   500mV     0mA   500mV  3125mV
+
+Best regards,
+Javier
+
+
+Javier Martinez Canillas (3):
+  riscv: dts: spacemit: Enable i2c8 adapter for Milk-V Jupiter
+  riscv: dts: spacemit: Define fixed regulators for Milk-V Jupiter
+  riscv: dts: spacemit: Define the P1 PMIC regulators for Milk-V Jupiter
+
+ .../boot/dts/spacemit/k1-milkv-jupiter.dts    | 135 ++++++++++++++++++
+ 1 file changed, 135 insertions(+)
+
+-- 
+2.52.0
+
+base-commit: bb3a1f127972ea262f98eee55068de1e54ab8d57
+branch: milkv-jupiter-pmic
+
 
