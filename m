@@ -1,58 +1,66 @@
-Return-Path: <devicetree+bounces-244986-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244987-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6808CAAC90
-	for <lists+devicetree@lfdr.de>; Sat, 06 Dec 2025 20:03:46 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF1AFCAACE2
+	for <lists+devicetree@lfdr.de>; Sat, 06 Dec 2025 20:28:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id D55013009399
-	for <lists+devicetree@lfdr.de>; Sat,  6 Dec 2025 19:03:43 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 07A123046EF9
+	for <lists+devicetree@lfdr.de>; Sat,  6 Dec 2025 19:28:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FA2E23B60A;
-	Sat,  6 Dec 2025 19:03:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C283274B39;
+	Sat,  6 Dec 2025 19:28:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Musbaw/M"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ecxW/l2H"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 460413AC39;
-	Sat,  6 Dec 2025 19:03:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19D5C1EFFB4;
+	Sat,  6 Dec 2025 19:28:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765047822; cv=none; b=GUAD2nfucuiKMJe9rbb2x7oGQQiLmdZylOzTt4qOTHpJS3IvAMETEhHReA2kFHMR0c/f6nCkVjikDWP9fAF2dew9kepK/M1e5otsWtBx7w+Xp0fQSppDkiJ7se1tOX5QYA+b31veNmTeEDxBcQQDhZtxtjAdXiwof4wfBXEGFzk=
+	t=1765049281; cv=none; b=Z5IQ0FFYOiaxandaYzSLMcPjQpC6N5WMpgCSYgLb3UN0cXkRXh2QqgTKnPRamhC+eEDa1z/vwFR4AnhQl+o56gSJvgGpWrzMNMyzjiY/0jTBsFOxprP3/GDlQRrNQkHY41nDDJ9HhPNk214KvLGS1T0aLz6dQVq13ldVe4aqmeg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765047822; c=relaxed/simple;
-	bh=LwpCpejsF/BnoeaACK/QZOn+UqmeQX2sHgaXpZEhxUc=;
+	s=arc-20240116; t=1765049281; c=relaxed/simple;
+	bh=pOBV8eKHl5mixY5XtEgEjcNebw0gfBa1dach5jJPpYc=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=K1SA2DPeW4REvrxkCUcGVTj14jHu0PXOfMXrGOQZIilmlRWUZKPgwyC1e6mDu9ULHsyuKgtROEzNsqAO2aonieTT/SClSlo7XTxFpvOgFbSKN6xI3jDSfbEJpKFEaTAqYaRJyxZR08I3bTzOUQxvohnf0xfQDYKMQxfR1TGqtLU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Musbaw/M; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8D063C4CEF5;
-	Sat,  6 Dec 2025 19:03:37 +0000 (UTC)
+	 MIME-Version:Content-Type; b=n0RvWt+9FRFvbeRmL2Fvvw6aPTpo8bdVOo0hqiYudZkjhQq1ArwPQRLZ6K3u+V/2+e5LSX01LGDYRYTHQN8SGhzNta3GGjJ5OAB0jnWGFlUopVNXj6pWilbFknxERBvGpIrrnLb7/9LLG8woBRWVKnl42xtQ9MbIpkYPNyCdBKg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ecxW/l2H; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 835CFC4CEF5;
+	Sat,  6 Dec 2025 19:27:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765047821;
-	bh=LwpCpejsF/BnoeaACK/QZOn+UqmeQX2sHgaXpZEhxUc=;
+	s=k20201202; t=1765049280;
+	bh=pOBV8eKHl5mixY5XtEgEjcNebw0gfBa1dach5jJPpYc=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=Musbaw/MtdMBvcXuPMW1mBpnFMP6/6Aw60gc/fUaVf1/hLRrUvpdUHL9W0i8iNjEV
-	 QxhlWGKk+zvsyo09jRWZUci85lqGnR+nf/skbxaXazRMAQzp5e03Wq2ob29izaDrXE
-	 3nfdEiQyXYAIom8exDVjV3P+YAQYb8qg+t7qBnImSOm4bEnP/59nF3FRxVBK8IhPL3
-	 n1s+TUBobd1uKMvKMkCuG/S2pQBrRvQpTPwT+8fsW6jJadtRW2jYgwtRCYwexWGhFF
-	 xRAkgxwUh212pAn03lUTdHXIEF63f9yzWw4NvqVi9DXim0i88GlgNNvAi32DIrQnbs
-	 bYQffkltU990A==
-Date: Sat, 6 Dec 2025 19:03:32 +0000
+	b=ecxW/l2HvBRKsuAqxkglNmCJ2V2LhuKkgiTGnccTjJOv2sXEskfiPbnTkHltbDRK1
+	 swNngCOoVl7ob4eGxgttGJX4+6m8NlIDYtktpp9hwojjIpumErYCP2x1v6wIe2/40n
+	 OgYgCl+UsaOrtJGJfK1P2sQ+GvO6PkqJ6jnK4eRnaKQY8gvdZozsNttjAtw7gkgXAw
+	 5oKNBPiyOLeYxe9/8kecY4vaC9Kx8T+nP1Vl0I2a5/t8GUrIo661O1EKM/v1YW8heN
+	 kdrBTcsKYYtHv5E2/YGOsmrmybymuQQK4Y8pGDRA4+acRkV39K4ddP3VN46nTt2Hk2
+	 Nwdw0Dlo/JqZA==
+Date: Sat, 6 Dec 2025 19:27:50 +0000
 From: Jonathan Cameron <jic23@kernel.org>
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, David Lechner <dlechner@baylibre.com>, Nuno
- =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, <linux-iio@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v6 2/2] iio: amplifiers: adl8113: add driver support
-Message-ID: <20251206190332.53874d41@jic23-huawei>
-In-Reply-To: <20251205144058.1918-3-antoniu.miclaus@analog.com>
-References: <20251205144058.1918-1-antoniu.miclaus@analog.com>
-	<20251205144058.1918-3-antoniu.miclaus@analog.com>
+To: "Kurt Borja" <kuurtb@gmail.com>
+Cc: "David Lechner" <dlechner@baylibre.com>, "Andy Shevchenko"
+ <andriy.shevchenko@intel.com>, "Rob Herring" <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Tobias Sperling" <tobias.sperling@softing.com>, Nuno =?UTF-8?B?U8Oh?=
+ <nuno.sa@analog.com>, "Andy Shevchenko" <andy@kernel.org>,
+ <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, "Jonathan Cameron"
+ <Jonathan.Cameron@huawei.com>
+Subject: Re: [PATCH v3 2/2] iio: adc: Add ti-ads1018 driver
+Message-ID: <20251206192750.03469a87@jic23-huawei>
+In-Reply-To: <DENT9F7BM1O3.1XA58W93TC6AQ@gmail.com>
+References: <20251128-ads1x18-v3-0-a6ebab815b2d@gmail.com>
+	<20251128-ads1x18-v3-2-a6ebab815b2d@gmail.com>
+	<aSsBdJZDWcadxEHC@smile.fi.intel.com>
+	<DELPNLNPGQSM.1YDTB81AG0RAY@gmail.com>
+	<18fbf486-c1cc-4cd2-af12-ffa093fa9ce7@baylibre.com>
+	<DEN50VFOIB5O.1ENBKI6JQ0ZC@gmail.com>
+	<248b009e-0401-4531-b9f0-56771e16bdef@baylibre.com>
+	<DENT9F7BM1O3.1XA58W93TC6AQ@gmail.com>
 X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -63,148 +71,173 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On Fri, 5 Dec 2025 16:40:41 +0200
-Antoniu Miclaus <antoniu.miclaus@analog.com> wrote:
+On Tue, 02 Dec 2025 09:46:37 -0500
+"Kurt Borja" <kuurtb@gmail.com> wrote:
 
-> Add support for adl8113 10MHz to 12GHz Low Noise Amplifier with
-> 10MHz to 14GHz bypass switches.
+> On Mon Dec 1, 2025 at 4:53 PM -05, David Lechner wrote:
+> > On 12/1/25 1:47 PM, Kurt Borja wrote:  
+> >> On Mon Dec 1, 2025 at 11:07 AM -05, David Lechner wrote:
+> >> 
+> >> ...
+> >>   
+> >>>>>> +	if (iio_device_claim_buffer_mode(indio_dev))
+> >>>>>> +		goto out_notify_done;
+> >>>>>> +
+> >>>>>> +	if (iio_trigger_using_own(indio_dev)) {
+> >>>>>> +		disable_irq(ads1018->drdy_irq);
+> >>>>>> +		ret = ads1018_read_unlocked(ads1018, &scan.conv, true);
+> >>>>>> +		enable_irq(ads1018->drdy_irq);
+> >>>>>> +	} else {
+> >>>>>> +		ret = spi_read(ads1018->spi, ads1018->rx_buf, sizeof(ads1018->rx_buf));
+> >>>>>> +		scan.conv = ads1018->rx_buf[0];
+> >>>>>> +	}
+> >>>>>> +
+> >>>>>> +	iio_device_release_buffer_mode(indio_dev);
+> >>>>>> +
+> >>>>>> +	if (ret)
+> >>>>>> +		goto out_notify_done;
+> >>>>>> +
+> >>>>>> +	iio_push_to_buffers_with_ts(indio_dev, &scan, sizeof(scan), pf->timestamp);
+> >>>>>> +
+> >>>>>> +out_notify_done:
+> >>>>>> +	iio_trigger_notify_done(ads1018->indio_trig);  
+> >>>>>
+> >>>>> Jonathan et al., maybe we need an ACQUIRE() class for this? It will solve
+> >>>>> the conditional scoped guard case, no?  
+> >>>
+> >>> No, ACQUIRE() is not scoped, just conditional. I don't think it
+> >>> will improve anything here.  
+> >> 
+> >> Maybe I'm not understanding the problem fully?
+> >> 
+> >> I interpreted "ACQUIRE() class" as a general GUARD class, i.e.
+> >> 	
+> >> 	guard(iio_trigger_notify)(indio_dev->trig);
+> >> 
+> >> This way drivers may use other cleanup.h helpers cleaner, because of the
+> >> goto problem?
+> >> 
+> >> I do think it's a good idea, like a `defer` keyword. But it is a bit
+> >> unorthodox using guard for non locks.
+
+Agreed. This one is weird if called guard().
+
+I'd not be against a defer() if it existed, but my guess is Linus Torvalds
+will just say this is too weird and helper function for everything before
+the unconditional cleanup is the way to go.
+
+People did mess around with __free() for cases like this but that is very
+ugly given no 'constructor' occurred so mostly those got rejected I think.
+
+> >> 
+> >>   
+> >
+> > To take a simple example first:
+> >
+> > static int
+> > ads1018_read_raw(struct iio_dev *indio_dev, struct iio_chan_spec const *chan,
+> > 		 int *val, int *val2, long mask)
+> > {
+> > 	int ret;
+> >
+> > 	if (!iio_device_claim_direct(indio_dev))
+> > 		return -EBUSY;
+> >
+> > 	ret = ads1018_read_raw_unlocked(indio_dev, chan, val, val2, mask);
+> >
+> > 	iio_device_release_direct(indio_dev);
+> >
+> > 	return ret;
+> > }
+> >
+> > using ACQUIRE would look like:
+> >
+> > static int
+> > ads1018_read_raw(struct iio_dev *indio_dev, struct iio_chan_spec const *chan,
+> > 		 int *val, int *val2, long mask)
+> > {
+> > 	int ret;
+> >
+> > 	ACQUIRE(iio_device_claim_direct_mode, claim)(indio_dev);
+> > 	if ((ret = ACQUIRE_ERR(iio_device_claim_direct_mode, &claim)))
+> > 		return ret;
+> >
+> > 	return ads1018_read_raw_unlocked(indio_dev, chan, val, val2, mask);
+> > }
+> >
+> > It makes it quite more verbose IMHO with little benefit (the direct
+> > return is nice, but comes at at an expense of the rest being less
+> > readable).  
 > 
-> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-> ---
-Hi Antoniu,
+> This is verbose yes, but we could avoid having two functions in the
+> first place and implement everything inside ads1018_read_raw() with
+> ACQUIRE(...) on top.
 
-> no changes in v6.
-Given I assume you just missed Andy's prior review I'll take
-a look at this version with assumption both sets of comments will be
-sorted for v7.
+Agreed - there are places where this makes sense but I'm not keen
+on lots of churn to inject it in places where we already have
+the two function approach.
 
-A few things inline.
+> 
+> >
+> >
+> >
+> > And when we need it to be scoped, it adds indent and we have to do
+> > some unusual things still to avoid using goto.
+> >
+> > static irqreturn_t ads1018_trigger_handler(int irq, void *p)
+> > {
+> > 	struct iio_poll_func *pf = p;
+> > 	struct iio_dev *indio_dev = pf->indio_dev;
+> > 	struct ads1018 *ads1018 = iio_priv(indio_dev);
+> > 	struct {
+> > 		__be16 conv;
+> > 		aligned_s64 ts;
+> > 	} scan = {};
+> > 	int ret;
+> >
+> > 	do {
+> > 		ACQUIRE(iio_device_claim_direct_mode, claim)(indio_dev);
+> > 		if ((ret = ACQUIRE_ERR(iio_device_claim_direct_mode, &claim)))
+> > 			break;
+> >
+> > 		if (iio_trigger_using_own(indio_dev)) {
+> > 			disable_irq(ads1018->drdy_irq);
+> > 			ret = ads1018_read_unlocked(ads1018, &scan.conv, true);
+> > 			enable_irq(ads1018->drdy_irq);
+> > 		} else {
+> > 			ret = spi_read(ads1018->spi, ads1018->rx_buf, sizeof(ads1018->rx_buf));
+> > 			scan.conv = ads1018->rx_buf[0];
+> > 		}
+> > 	} while (0);  
+> 
+> Here we could use scoped_cond_guard() instead, no?
+Just in case this comes back. Please no!  
 
-> diff --git a/drivers/iio/amplifiers/adl8113.c b/drivers/iio/amplifiers/adl8113.c
-> new file mode 100644
-> index 000000000000..eed5fe69280b
-> --- /dev/null
-> +++ b/drivers/iio/amplifiers/adl8113.c
+scoped_cond_guard() manages to thoroughly confuse compilers.
+It got so bad when we tried that originally I went back and reverted
+all use of that in IIO.
 
-> +struct adl8113_gain_config {
-> +	enum adl8113_signal_path path;
-> +	int gain_db;
-> +	int va;
-> +	int vb;
+> 
+> >
+> > 	if (!ret)
+> > 		iio_push_to_buffers_with_ts(indio_dev, &scan, sizeof(scan), pf->timestamp);
+> >
+> > 	iio_trigger_notify_done(ads1018->indio_trig);
+> >
+> > 	return IRQ_HANDLED;
+> > }
+> >
+> > So unless Jonathan says this is what he wants, I would avoid it.  
+> 
+> I will submit this as a separate RFC patch. We can continue the
+> discussion there to avoid delaying this series.
 
-What are va and vb for?  Currently seem unused because you derive
-them from path at use point.
+Thanks and very wise to not yet use it in here as that discussion
+may take some time given there is naming involved ;)
 
-> +};
+Jonathan
 
+> 
+> 
 
-
-> +
-> +static const struct iio_info adl8113_info = {
-> +	.read_raw = adl8113_read_raw,
-> +	.write_raw = adl8113_write_raw,
-> +};
-> +
-> +static int adl8113_init_gain_configs(struct device *dev, struct adl8113_state *st)
-> +{
-> +	int external_a_gain, external_b_gain, i = 0, j;
-
-Preference for not hiding initializations in a list where only one is initialized.
-
-	int external_a_gain, external_b_gain, j;
-	int i = 0;
-
-makes it easier to spot.
-
-> +
-> +	/*
-> +	 * Allocate for all 4 possible paths:
-> +	 * - Internal amp and bypass (always present)
-> +	 * - External bypass A and B (optional, or INT_MIN for testing)
-> +	 */
-> +	st->gain_configs = devm_kcalloc(dev, 4,
-> +					sizeof(*st->gain_configs), GFP_KERNEL);
-
-Slightly odd wrap. I'd move the sizeof() up a line.
-
-> +	if (!st->gain_configs)
-> +		return -ENOMEM;
-> +
-> +	/* Always include internal amplifier (14dB) */
-> +	st->gain_configs[i].path = ADL8113_INTERNAL_AMP;
-> +	st->gain_configs[i].gain_db = 14;
-
-Could do this as something like:
-
-	st->gain_configs[i++] = (struct adl8113_gain_config) {
-		.path = ADL8113_INTERNAL_AMP,
-		.gain_db = 14,
-	};
-
-	st->gain_configs[i++] = (struct adl8113_gain_config) {
-		.path = ADL8113_INTERNAL_BYPASS,
-		.gain_db = -2,
-	};
-
-etc.
-
-> +	i++;
-> +
-> +	/* Always include internal bypass (-2dB insertion loss) */
-> +	st->gain_configs[i].path = ADL8113_INTERNAL_BYPASS;
-> +	st->gain_configs[i].gain_db = -2;
-> +	i++;
-> +
-> +	/* Add external bypass A if configured */
-> +	if (!device_property_read_u32(dev, "adi,external-bypass-a-gain-db",
-> +				      &external_a_gain)) {
-> +		st->gain_configs[i].path = ADL8113_EXTERNAL_A;
-> +		st->gain_configs[i].gain_db = external_a_gain;
-> +		i++;
-> +	}
-> +
-> +	/* Add external bypass B if configured */
-> +	if (!device_property_read_u32(dev, "adi,external-bypass-b-gain-db",
-> +				      &external_b_gain)) {
-> +		st->gain_configs[i].path = ADL8113_EXTERNAL_B;
-> +		st->gain_configs[i].gain_db = external_b_gain;
-> +		i++;
-> +	}
-> +
-> +	/*
-> +	 * If there's a free external bypass path, add one with INT_MIN gain
-> +	 * to represent "nothing connected" for testing purposes
-
-I don't follow this one.  What sort of testing purpose?  Something we want
-in a real system?
-
-> +	 */
-> +	if (!device_property_present(dev, "adi,external-bypass-a-gain-db")) {
-> +		st->gain_configs[i].path = ADL8113_EXTERNAL_A;
-> +		st->gain_configs[i].gain_db = INT_MIN;
-> +		i++;
-> +	} else if (!device_property_present(dev, "adi,external-bypass-b-gain-db")) {
-> +		st->gain_configs[i].path = ADL8113_EXTERNAL_B;
-> +		st->gain_configs[i].gain_db = INT_MIN;
-> +		i++;
-> +	}
-> +
-> +	st->num_gain_configs = i;
-> +
-> +	/* Check for duplicate gain values */
-> +	for (i = 0; i < st->num_gain_configs - 1; i++) {
-> +		for (j = i + 1; j < st->num_gain_configs; j++) {
-> +			if (st->gain_configs[i].gain_db == st->gain_configs[j].gain_db)
-> +				return dev_err_probe(dev, -EINVAL,
-> +						     "Duplicate gain values not allowed: %d dB\n",
-> +						     st->gain_configs[i].gain_db);
-
-What happens if we just don't bother enforcing this? I assume the second of the duplicates
-can't be selected?  Do we care beyond it being silly?
-
-> +		}
-> +	}
-> +
-> +	return 0;
-> +}
 
