@@ -1,80 +1,80 @@
-Return-Path: <devicetree+bounces-244933-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244934-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BF9DCAA4EB
-	for <lists+devicetree@lfdr.de>; Sat, 06 Dec 2025 12:18:51 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98B48CAA4F1
+	for <lists+devicetree@lfdr.de>; Sat, 06 Dec 2025 12:19:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 33784300A9E0
-	for <lists+devicetree@lfdr.de>; Sat,  6 Dec 2025 11:18:40 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4AB8430D9868
+	for <lists+devicetree@lfdr.de>; Sat,  6 Dec 2025 11:19:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A655E2E093B;
-	Sat,  6 Dec 2025 11:18:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE3EF2D6E74;
+	Sat,  6 Dec 2025 11:19:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="qKA7brgh"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="OJDgA6oj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EADA86331
-	for <devicetree@vger.kernel.org>; Sat,  6 Dec 2025 11:18:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B89323E35F
+	for <devicetree@vger.kernel.org>; Sat,  6 Dec 2025 11:19:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765019917; cv=none; b=jvkeaTvDWmK0wL2XTxU00fhewuyxBc74UmWeGTronCVSEsZc77YGn3lkjdvVhThF/NtCwNKTd577VWUR8iscDgZK1B/R2kZlw60L/oJ17nY5r7roVO9LxoJnH1AfKjWdaEU6dThOm95l7f61T09oIvpBw4cB4iatlU7NGJOAN/w=
+	t=1765019964; cv=none; b=BN0aJ6VsfBXNQ3QEUedQcImPzwgZ58Kmrj+NDq9CzPgQ5nZl8lWSvp8lenz7aDn4XvsvV4CsNJM4DGFJrSLqGPL8gGeR6HgDbDsjcSfg4ud+OS92GVx3XXcC0CdCAiWs3qpard9oWpaRO2VQK0pLJZcbrbe/B/sA7xl0PNeP9C8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765019917; c=relaxed/simple;
-	bh=2dSCRC+qUHWWpuBfMYiiFHMdNhNbKKMJp7pBFyy5x28=;
+	s=arc-20240116; t=1765019964; c=relaxed/simple;
+	bh=PbeuJZyFzzh09MahW+fNbQ6dbZBeTk2W/c8sGOLB4Mg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=sWbk6kCf/EvoX/go15q++WquCjYnp7r9QhyQI4nnlDbzWlekkeZVANXutNCGR9UiH9Vbg0e1Kc8Cpd1aGSZ6C0iBfnS9JL9lflyJeFsJ8ySzrC2JF4OyRGxg82WKdQRlLJ9bCU9/WftJDhh5Dm5bIelwbxnOx+HqJ1i/mlZQDZU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=qKA7brgh; arc=none smtp.client-ip=209.85.221.48
+	 In-Reply-To:Content-Type; b=IrE+LiDZLy83zRDWtoHg0zNSvs5grBsZqN4zEwEKIFSJWlU5+Sy3ggggp3CltPgtRUSMPw3V79hp7Gj6vLRctwOTZiXrsAHh80TmzYc1dtK9lRq2vHKH+54nRbZeXuJIyLgkhuxacmAyR2tetMFy5qRQB3vxW+vFTmtlhun5CQ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=OJDgA6oj; arc=none smtp.client-ip=209.85.128.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-42e2e08b27eso1279219f8f.1
-        for <devicetree@vger.kernel.org>; Sat, 06 Dec 2025 03:18:34 -0800 (PST)
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-47774d3536dso28620945e9.0
+        for <devicetree@vger.kernel.org>; Sat, 06 Dec 2025 03:19:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1765019913; x=1765624713; darn=vger.kernel.org;
+        d=tuxon.dev; s=google; t=1765019961; x=1765624761; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:content-language:from
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=SbIrykIurPy4cu/aMennF9ioW6dMGtNcboFPZcYKwp0=;
-        b=qKA7brghGFcrRsBuTZhu3wr05yoBi0XQPIFSvVEnpgMdY4X2hATi5XN2srytZxgO9O
-         /VyKb9JRK5UZY5HXnRE6LfQMSg8kx27LQQAi+ozFYR/TuKOLMz/SunoMv0ca3xlu5Hes
-         1PAB23x8l+uOi4FYu6691bHyktqPmI82V2IXWtaLzShxEVoHvrt3iSJnWYMcqbs6VREW
-         9SIdi2wBK6Z1AEv8oOLYPYufW5HZ1fVYWtu1x/6yBBIBbUXKcqY0s5nk0F6BnX7mKanc
-         WbANPnwycUzxfLvq16Va+lnf8Y/4rB48jxZHy8zsi1IQzOdvidZ5qj7yqUTSsqyGm1z0
-         HOOA==
+        bh=Y+tHfftO48W6nfjgJOb4B4hvebCxVDzsjtXa/TDx3TU=;
+        b=OJDgA6oj64sk4WwAVoYHHxwQoWPJeh7Eb0S37umP6d4GVM3rq/AMUPARJ1NISxWo5w
+         g/FJFn2SQ4YFO0HJKizWp8mpQeOfq02W3XrkXnehPJ/27WjA4Yutorz3jtgGu5G0oirS
+         cZTo/a4o7ohNgp9j8Getub8THRv7ILokVxyXDbfnib5Qm58rmp7SIWKGMI+XGaYcXadS
+         CLQZjSx6ZDv3V3Gd8eQ3ze0bebMW50y8L+7Gf1EdKtqnVi6UbBXvS6zApGJ0E2DjWKhJ
+         Ir6lYg1p/fUG8bZxhAzi6bCiUMvPpUFclRTv8Vj+w4tqNpntJE851XgaV6bL2KkWKLbm
+         ld7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765019913; x=1765624713;
+        d=1e100.net; s=20230601; t=1765019961; x=1765624761;
         h=content-transfer-encoding:in-reply-to:content-language:from
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=SbIrykIurPy4cu/aMennF9ioW6dMGtNcboFPZcYKwp0=;
-        b=t41drZl1wcgTrL+0jQk/hNNP9vIu4V1XR99+vFQTZQWJubd6gdrDqAFAGzy7rJ8U9C
-         AKvrtmZmZZCSi6Sk4zL6W5eVJqj3HsYUSJOa5mfrtPBzCs2WoP/nF2RKtWp14zqvg+NT
-         8tVa4cVogqai3Kv0LYpqIoMxmhcuB6XlzNutsEeHfHQ9QFTtojEQkfOoBAjfYzCq9wYo
-         kO7R/NPfI895/KPSf7ddbOhbS0CuULR46vM5ZEpEqUPWH3ZaV/I9dg8Q7Y64d0ow4eAq
-         wuV+AhANWawyimDqAuz+McFyszJE0U+5NwrYY38u3Has0WCAyBfBqsHu1DzY0bF6miF0
-         cofg==
-X-Forwarded-Encrypted: i=1; AJvYcCXRuc3x7/d15dUDLb7ihyHr2LzRFAjUfaxPisA6o9OyYFUXpvW6FUBRzw17RlsI7CJoLg6K8QFLfoRD@vger.kernel.org
-X-Gm-Message-State: AOJu0YyPIGEmap5KHyr97gcE5KiqoC3ELRDdSjLIUzT5abouR4Tw5V//
-	Ao1jrgDbGS/S/Dto1DXhbp/f/rnuGFXWgJbkrQBq1YB2z5d/XIsSys8/SiQHWHIOqZY=
-X-Gm-Gg: ASbGncsnGz30TpxUIxdLqXTT25gm1HKALsaqCU1yxF8hNHkazM0XjnkMiE7M3IFO/Ix
-	c0UuN7cXoXG3mzQ6VCDql44R9QEO2PJRrANN3RsMhiY27tWh3bv2MvO3Qfe2PwiD5MHjS4FCzx4
-	afGIw0DN6/6urp+ibqiLH1MG9zHgsNTFs+3L5G2vXzJLLn9HDjViPoLm9r3XsYO7D4maxx491+E
-	hGh0sEenoc1L7G2c9azV7psLVDfLEKwbdC6qUTK/c3LYJPey/yVdqLuZrDjv3VCJtMQU/qVoujk
-	xByMzh5ZnZ5qNPAajWCIDSbuQYgca4J89OcCIdshCJ/qQPpGqJRvdjIl7Ju+5gOENjCiVNASFBF
-	o1teCsY0aKQAO20ri/8TEyBclTFdaSCmhZy3eD/e+8dWWzK5rPpJKorLyb8mW721VJQIHy1BK26
-	Mhl9QayNwYHtAINccsGdg=
-X-Google-Smtp-Source: AGHT+IHr7mdkZZdTGhGHXhCyqOpNz/L+eCosT1VVgSOrplrijDQwbTIlvnGL9FzVzlG1uTFmo3H5MQ==
-X-Received: by 2002:a05:6000:290a:b0:429:d565:d7df with SMTP id ffacd0b85a97d-42f89f54886mr2311030f8f.42.1765019913538;
-        Sat, 06 Dec 2025 03:18:33 -0800 (PST)
+        bh=Y+tHfftO48W6nfjgJOb4B4hvebCxVDzsjtXa/TDx3TU=;
+        b=Al4nJZHNBh3+8iL/Zs2h4Zk8xjVnrY4VjYCdCnGP16rxFJdVu4iYwKEGF/bg4j2Q6H
+         iRT/PR+eMUBTgP6uDnSLrsH8goW2UDBdGki/k1f5I2/Ol74bgDCJPhmwWSZSwha3RMnW
+         zaEuBhsxO+IHIHlCW5S3EjkZLV/SMLdnD0uVjpCH1BpXuVX1dCqmJuWhjgERzWbj2se2
+         rHuiP7JXn1jPchVvoNJoDngdK3bK7C3tj45lyTjVBg4oyzteDDhPTTmgTUfSkQWpCEbg
+         krb0plKZwD8I0jczI9Vrq9fV1elx9R0bmqaE6UrzU89S9bxxCiQD82rPF3q4+WYPdPHh
+         S0rw==
+X-Forwarded-Encrypted: i=1; AJvYcCWRearCqnetZjnOZfTsELVe9kbMBXpKZumxNQP3vCTl/b4vlGAMGOfBA2Wp2dQWM4wjmqpIjmB6NvgT@vger.kernel.org
+X-Gm-Message-State: AOJu0YwkPVfpoIeJKIZ+MSiTqASYJLQtq6vhuAgUJtHsAN4ekWAYYAL8
+	uifOhkqsnhTW4VDmSKZH1xFKNEMF1aQ3Nfy9kPo57YjJSw+EzMKrbVPtt3IfdfD6xEM=
+X-Gm-Gg: ASbGncsJY2XAWKC1sQd4MlXrEg9MWIaHnBwS/4ftJ/RJmq0zQlcoqDS1QM9Ih12gpuj
+	I6Mid+weq6mpI0kYCY31qZca1hKXLZEpH5rFLIHV2b8xXfh4saIacU12mI3gSfolbz7WmFgLnwF
+	4uK0sXem1/Yb90mWgF8pnQbB83XK5vCH7+RS1MAnG8MtIMwPvfCA7+sSrH7J4gkfi6pxpnn43rd
+	Gzef47o4vEQrGyPVF7esp75hsV8vjgveh6QVa30M1UYPqcUYnBhU/LvmK/k48k4wqr4y66/gzd8
+	uXQams5nay9B0JSLShny2bHsEO26PDvUH5j2sMmSuMAPyUBx80hXW7fcsQUqPF11C5BtMBe3exy
+	4zHB8l7ShNbACMKZF79OJc4nGiSmbMahogvP/1k4NgBkF84t8xtNTaP1vzTHNlnra+XMoNklbm4
+	vQskYq9iT/3V0P7RiejHo=
+X-Google-Smtp-Source: AGHT+IFQhZEwtnesdZtzEMw60QGuto1Jk8aN5Q0uD1nL300gD8ap+hhiRTO0P76q1MY51cduyxt10w==
+X-Received: by 2002:a05:600c:a11b:b0:477:a71c:d200 with SMTP id 5b1f17b1804b1-4792eb5e5b9mr87841915e9.11.1765019961379;
+        Sat, 06 Dec 2025 03:19:21 -0800 (PST)
 Received: from [192.168.50.4] ([82.78.167.134])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42f7d353f75sm14403593f8f.42.2025.12.06.03.18.30
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47930c747b8sm133725725e9.9.2025.12.06.03.19.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 06 Dec 2025 03:18:32 -0800 (PST)
-Message-ID: <86bd75e7-1191-458d-b71e-c3cecb960700@tuxon.dev>
-Date: Sat, 6 Dec 2025 13:18:30 +0200
+        Sat, 06 Dec 2025 03:19:20 -0800 (PST)
+Message-ID: <5afbf96a-c87f-43cb-8cd1-d7c9970bfd07@tuxon.dev>
+Date: Sat, 6 Dec 2025 13:19:19 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,57 +82,58 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] clk: microchip: drop POLARFIRE from
- ARCH_MICROCHIP_POLARFIRE
+Subject: Re: [PATCH v2 2/3] dt-bindings: clock: mpfs-ccc: Add pic64gx
+ compatibility
 To: Conor Dooley <conor@kernel.org>, linux-kernel@vger.kernel.org
 Cc: Conor Dooley <conor.dooley@microchip.com>,
  Daire McNamara <daire.mcnamara@microchip.com>,
  Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
  <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-riscv@lists.infradead.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ Pierre-Henry Moussay <pierre-henry.moussay@microchip.com>
 References: <20251121-tartar-drew-ba31c5ec9192@spud>
- <20251121-prude-dilation-79d275fec296@spud>
+ <20251121-trade-slacked-5fc7c1139cb2@spud>
 From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
 Content-Language: en-US
-In-Reply-To: <20251121-prude-dilation-79d275fec296@spud>
+In-Reply-To: <20251121-trade-slacked-5fc7c1139cb2@spud>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 
 
 On 11/21/25 15:44, Conor Dooley wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
+> From: Pierre-Henry Moussay <pierre-henry.moussay@microchip.com>
 > 
-> This driver is used by non-polarfire devices now, and the ARCH_MICROCHIP
-> symbol has been defined for some time on RISCV so drop it without any
-> functional change.
+> pic64gx SoC Clock Conditioning Circuitry is compatibles
+> with the Polarfire SoC
 > 
+> Signed-off-by: Pierre-Henry Moussay <pierre-henry.moussay@microchip.com>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
 > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+
+Reviewed-by: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+
 > ---
->  drivers/clk/microchip/Kconfig | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+>  .../devicetree/bindings/clock/microchip,mpfs-ccc.yaml       | 6 +++++-
+>  1 file changed, 5 insertions(+), 1 deletion(-)
 > 
-> diff --git a/drivers/clk/microchip/Kconfig b/drivers/clk/microchip/Kconfig
-> index cab9a909893b..a0ef14310417 100644
-> --- a/drivers/clk/microchip/Kconfig
-> +++ b/drivers/clk/microchip/Kconfig
-> @@ -5,8 +5,8 @@ config COMMON_CLK_PIC32
+> diff --git a/Documentation/devicetree/bindings/clock/microchip,mpfs-ccc.yaml b/Documentation/devicetree/bindings/clock/microchip,mpfs-ccc.yaml
+> index f1770360798f..9a6b50527c42 100644
+> --- a/Documentation/devicetree/bindings/clock/microchip,mpfs-ccc.yaml
+> +++ b/Documentation/devicetree/bindings/clock/microchip,mpfs-ccc.yaml
+> @@ -17,7 +17,11 @@ description: |
 >  
->  config MCHP_CLK_MPFS
->  	bool "Clk driver for PolarFire SoC"
-> -	depends on ARCH_MICROCHIP_POLARFIRE || COMPILE_TEST
-> -	default ARCH_MICROCHIP_POLARFIRE
-> +	depends on ARCH_MICROCHIP || COMPILE_TEST
-> +	default y
->  	depends on MFD_SYSCON
->  	select AUXILIARY_BUS
->  	select COMMON_CLK_DIVIDER_REGMAP
-
-OK, I found v2 in my inbox. Same symptom here. It doesn't apply on top of
-the current at91-next either.
-
-Thank you,
-Claudiu
+>  properties:
+>    compatible:
+> -    const: microchip,mpfs-ccc
+> +    oneOf:
+> +      - items:
+> +          - const: microchip,pic64gx-ccc
+> +          - const: microchip,mpfs-ccc
+> +      - const: microchip,mpfs-ccc
+>  
+>    reg:
+>      items:
 
 
