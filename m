@@ -1,113 +1,139 @@
-Return-Path: <devicetree+bounces-244931-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244932-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16DE5CAA4D5
-	for <lists+devicetree@lfdr.de>; Sat, 06 Dec 2025 12:05:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C5847CAA4E1
+	for <lists+devicetree@lfdr.de>; Sat, 06 Dec 2025 12:12:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9E13A30A8B17
-	for <lists+devicetree@lfdr.de>; Sat,  6 Dec 2025 11:04:32 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0C32730B8E76
+	for <lists+devicetree@lfdr.de>; Sat,  6 Dec 2025 11:11:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA3AE286405;
-	Sat,  6 Dec 2025 11:04:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 920F92F260E;
+	Sat,  6 Dec 2025 11:11:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RkVE+rKu"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="QEpcormi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4EEB1E0E14
-	for <devicetree@vger.kernel.org>; Sat,  6 Dec 2025 11:04:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2187A2046BA
+	for <devicetree@vger.kernel.org>; Sat,  6 Dec 2025 11:11:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765019071; cv=none; b=IEXRB2hYHcsS4qlg530piphjBwkSu+UW8Q6JKEvgzVisJ4Ps2I1NfpzfVoQWI/z9KGHpiJZJR2OVh4kyHdXpRcDIe9auxljiP14vH+u0in8R/juhDkyUW6gkT6go8feB3gef8byJZqzjYnH2m2Ipxlg2HQbG59B4/T53rMdeQ3c=
+	t=1765019512; cv=none; b=GFsGBwYlulK9kBRhqKvoNW1zuNIO0WoX1/1ChNEyZFXVwF2++8M0u+LJbrD/CXhpGdo7cnYlMDjkAwqN6kyOKmzNyiQuTcNWKrunNBxEMA/EkMQFBG0eaQv1NAeB5UM4htxDgdt4kKHGPHBoQMYQs5kvFHyNVNJ8NEFA1jdWzyY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765019071; c=relaxed/simple;
-	bh=LQa7x2Xqo1R3BU1iXV2K28BQPa/asQzgGrxZOPXc3Xk=;
-	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=rFEjHaNxbuxWl6paqMmSLt+ZYFV+IE7HcDlr4Fy+J4bBPP6HhFIpC9VmbYo2hRSrwgRWmRib6YvKT4WErnJ6XHJsxlvx1KUq/gQsbvO/WQeenqh3zVKADfp95ycSuoPmkhEHu3DAx8qKlj1QEO7fVkofeNBYWBnUddDy90X1ru8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RkVE+rKu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82912C4AF09
-	for <devicetree@vger.kernel.org>; Sat,  6 Dec 2025 11:04:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765019071;
-	bh=LQa7x2Xqo1R3BU1iXV2K28BQPa/asQzgGrxZOPXc3Xk=;
-	h=From:In-Reply-To:References:Date:Subject:To:Cc:From;
-	b=RkVE+rKuk6vqlW3wOjGewK6yLFURkkY7rICN6MN5rU4SJTIsmQoiC4q44ybmi+W/O
-	 8vof5AApEEZckXAaTSIJcYUA4p8LjKvFUv0eg9TbeQFektaikX5c8Rb/eqdgaX/TiH
-	 KD1SfaZT1/IfEDFSbgGQ2Psp+i/TBZ3oZzCXEy22LnLBg3LiA0ddhZsrL/zFC/mhDJ
-	 0oFKxVNkqNi85aLI8J4+iCDTQqx70VA8LQTkxUByU26b/DZSsF/9GjpQMoJSGT9zPX
-	 aW6suAvEjHbDaWcz0ikDiOpjYsuwtTnmtIjniizKq84SW/bCH5WG1AcPAbL4G4CaWc
-	 SuR4Q46lX32Bg==
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-59581e32163so3839338e87.1
-        for <devicetree@vger.kernel.org>; Sat, 06 Dec 2025 03:04:31 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCURBdqMfENtezPJHmE27NlyKtzpUbGU1J9N7oXzrD5ANwqZ09NL1vANEZ0wMmgDBq2KRZaNnKY3IhYf@vger.kernel.org
-X-Gm-Message-State: AOJu0YykIoJLYUg8F931g+k4ctLPaE4m6Hk/jgJ4IOc2HT9tFyd5SuKg
-	O70dTDAxQqcC/f+gvBRXB2LVsHpjPamEaDlF4GR7NxRlCHoLj5Vd+QlhE/147GNeGRdA2EJ5dHV
-	c90VBPYSN5VhYpPu0W5r8AZ5S/3Qyzg2iwhVhG6E1Nw==
-X-Google-Smtp-Source: AGHT+IGzVIVocC6EzRFxCGvPhOPXFCCvOsJH5zhVLbERuSaCGM4g0MgyH12GWd9f4cyL9Esvb2xyvVlzmOz3yFQy3CQ=
-X-Received: by 2002:a05:6512:2212:b0:594:2c51:f27b with SMTP id
- 2adb3069b0e04-5987e88b210mr601668e87.18.1765019070175; Sat, 06 Dec 2025
- 03:04:30 -0800 (PST)
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Sat, 6 Dec 2025 03:04:28 -0800
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Sat, 6 Dec 2025 03:04:28 -0800
-From: Bartosz Golaszewski <brgl@kernel.org>
-In-Reply-To: <20251206050844.402958-6-ye.zhang@rock-chips.com>
+	s=arc-20240116; t=1765019512; c=relaxed/simple;
+	bh=i6DFH1owewNhW67SaCjr52SMT9liSY8pPxcicJCPwkg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=SbCbfDm8HF3MiDrX9vvPLtrqN2eMW+bHzK4NfQD4+ftftKop+4KIRcGBw1RJr5X0oQmX7Scg+QkwPoaM8+Rhy8LmCEu9pBrjWKW2DY5GiDbEFSgA93KrpyJC6mNkskj3pj9JQX1/25m77MiRwQ/9DQuIq+n76A60Y9WoSgPhozI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=QEpcormi; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-477aa218f20so20002035e9.0
+        for <devicetree@vger.kernel.org>; Sat, 06 Dec 2025 03:11:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1765019508; x=1765624308; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=kA4dYuB49zNcflG5vvLKKvtHOONzwthyiF/LnUsNAAo=;
+        b=QEpcormiRUQoWpOAd9BKXD8tVp1JKrmxelxLLiHPMmoMhrXelQfwXGLFzjkyb6L8JM
+         E7+AHRcMxNk9TCR9wE1usq5zOtI/zY+laCb5i1711Bq3nFSMht6PInpXVH2zu0/qX7Je
+         ADreAEEJBMv6n3sJtb2y19MAD4OHufDYP4jS+PXmmwk6Vytm9hVQoQf1/mk1dcA2GIBy
+         1wVoshSzXVFqE/S9TQ6uepyaRjcFZOotLPa2Ku/T7VRRwcFbSk2ZjGMRi9WeaJ8Bjf2m
+         f1VosxKI1ZlrwarYeaaXai3flwCv6QJLpgznhSvac/WvqQYD24xStPpTQ7ECG+y6BmRj
+         oW/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765019508; x=1765624308;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=kA4dYuB49zNcflG5vvLKKvtHOONzwthyiF/LnUsNAAo=;
+        b=gDCOtbTVYGejMRDSUtHUIivyttT/3jHbzQbGPOw9+b1kZG9B09HV/n2KqHd9LWPSvk
+         DTQMSHStZ0C5/Uk7sQ2tDl0KDyNmmmOUxkyZcHHQauUn2PPRDrb6OajqHX62oqdxDufX
+         2JKAW5f4G3b5lgxScJyNJqCrhjhJF8vohcjCbdHf58eWedZYhuMAf3EWJBMFFpQSIWOp
+         C/IZWT9FEemoAnFZX3pNjH4TcceY4on7epi+cEwQi9PkpR63hL5hbnN753bcKEU0TY+D
+         Sm79eiSZwWE7jq1iVfs4Y9TFmb2CZJrqKIZo0uw33lIucx0/4QfZAFOpmuk4Ynam+V3I
+         oKyw==
+X-Forwarded-Encrypted: i=1; AJvYcCUtbh4wZRUFgjDhRcxS0xG8vt2sBlm4lhhUd6g5XBGugDR8xUeWR+OUJ3Jz2u2PSMmkkhMLFG1vxSQN@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywx5jqz9DhbUlpnHBdIyMl05wa3C5jcRc+YVurbws8cpHwUYK2X
+	OjMpRA9N+OXwRM1GpS7IwzimK1tetNkcjWnfotwwWqdspaAPC4ZJ+NWpZs0LLqzAQWvh4pMgAaq
+	mgeGq
+X-Gm-Gg: ASbGncudhDjgq0ENUDH2i0j/oc7FO0HOqYoPAn0KFloDlfhwdDH2LIyVII/VGoxWvM5
+	FOdf984duwbXAPD4rWa1eU5JTEdg5J7JbsCHaO6A4A8GcNlAye4s0a6RHpuWRbcKP7RMAishgNk
+	iZGlFDw+apsVQ24Moz91mNq5+adiC+W3ZpLN2RRQJtNzo+g22mfDkSON7mggnoY/BkBufNhG1zW
+	a2pS52gyqeZiIoe5PHQr6/KbJPtiBN79Ki0toQtDrDSUPHHGhBPahvu2aT3Q2JLd6oNS6QNMIAD
+	4Y0Llq7T0MeCa5fAxBEVsMbJqtZjlOlAau4gLRdC9BD2rILRuQ732zwB95fh8LJ1esmqhPUFszf
+	9Ti+7e61c9ncVDvb7vyLzXZrxv/Lz7P1Z1uzfl90jgK6e8vkeNoZuOvtQS9+1HM5StgdVemBmr6
+	naJv2rKT3SiMgsrMFcMMM=
+X-Google-Smtp-Source: AGHT+IEXAY0hNz2eOSoL0Hv03FAjM8+tLdCbApP/CpVTsWfXGDNXQB9mZEeEHfi46Teq/N/IO2sImA==
+X-Received: by 2002:a05:600c:621b:b0:477:55c9:c3ea with SMTP id 5b1f17b1804b1-47939e50ce2mr25774055e9.35.1765019508463;
+        Sat, 06 Dec 2025 03:11:48 -0800 (PST)
+Received: from [192.168.50.4] ([82.78.167.134])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-479311fbaf4sm124579745e9.15.2025.12.06.03.11.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 06 Dec 2025 03:11:47 -0800 (PST)
+Message-ID: <ae7dd616-f09f-4729-a15c-411d964461d6@tuxon.dev>
+Date: Sat, 6 Dec 2025 13:11:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251206050844.402958-1-ye.zhang@rock-chips.com> <20251206050844.402958-6-ye.zhang@rock-chips.com>
-Date: Sat, 6 Dec 2025 03:04:28 -0800
-X-Gmail-Original-Message-ID: <CAMRc=MdNNkQpXiaK7J12QjsQiL-DjxGUarvveeYze19-1wqfxw@mail.gmail.com>
-X-Gm-Features: AQt7F2qQ1dE8DUY3pPJ8f0x-A-FdXwUF1S4eurzNXEEc-e8MOcdtpskXb3-4gCU
-Message-ID: <CAMRc=MdNNkQpXiaK7J12QjsQiL-DjxGUarvveeYze19-1wqfxw@mail.gmail.com>
-Subject: Re: [PATCH v2 5/8] gpio: rockchip: support new version GPIO
-To: Ye Zhang <ye.zhang@rock-chips.com>
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	tao.huang@rock-chips.com, Linus Walleij <linus.walleij@linaro.org>, 
-	Heiko Stuebner <heiko@sntech.de>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/3] clk: microchip: drop POLARFIRE from
+ ARCH_MICROCHIP_POLARFIRE
+To: Conor Dooley <conor@kernel.org>, linux-kernel@vger.kernel.org
+Cc: Conor Dooley <conor.dooley@microchip.com>,
+ Daire McNamara <daire.mcnamara@microchip.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-riscv@lists.infradead.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org
+References: <20251117-shadow-police-56aba5d855a3@spud>
+ <20251117-bulgur-wildfire-a8c5a2b417dc@spud>
+From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+Content-Language: en-US
+In-Reply-To: <20251117-bulgur-wildfire-a8c5a2b417dc@spud>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Sat, 6 Dec 2025 06:08:41 +0100, Ye Zhang <ye.zhang@rock-chips.com> said:
-> Support the next version GPIO controller on SoCs like rv1126b.
->
-> Signed-off-by: Ye Zhang <ye.zhang@rock-chips.com>
+Hi, Conor,
+
+On 11/17/25 17:35, Conor Dooley wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
+> 
+> This driver is used by non-polarfire devices now, and the ARCH_MICROCHIP
+> symbol has been defined for some time on RISCV so drop it without any
+> functional change.
+> 
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 > ---
->  drivers/gpio/gpio-rockchip.c | 2 ++
->  1 file changed, 2 insertions(+)
->
-> diff --git a/drivers/gpio/gpio-rockchip.c b/drivers/gpio/gpio-rockchip.c
-> index 47174eb3ba76..c3e831c6bcf1 100644
-> --- a/drivers/gpio/gpio-rockchip.c
-> +++ b/drivers/gpio/gpio-rockchip.c
-> @@ -36,6 +36,7 @@
->  #define GPIO_TYPE_V2		(0x01000C2B)
->  #define GPIO_TYPE_V2_1		(0x0101157C)
->  #define GPIO_TYPE_V2_2		(0x010219C8)
-> +#define GPIO_TYPE_V2_6          (0x01063F6E)
->
->  static const struct rockchip_gpio_regs gpio_regs_v1 = {
->  	.port_dr = 0x00,
-> @@ -674,6 +675,7 @@ static int rockchip_get_bank_data(struct rockchip_pin_bank *bank)
->  	case GPIO_TYPE_V2:
->  	case GPIO_TYPE_V2_1:
->  	case GPIO_TYPE_V2_2:
-> +	case GPIO_TYPE_V2_6:
->  		bank->gpio_regs = &gpio_regs_v2;
->  		bank->gpio_type = GPIO_TYPE_V2;
->  		bank->db_clk = of_clk_get(bank->of_node, 1);
-> --
-> 2.34.1
->
->
+>  drivers/clk/microchip/Kconfig | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/clk/microchip/Kconfig b/drivers/clk/microchip/Kconfig
+> index cab9a909893b..a0ef14310417 100644
+> --- a/drivers/clk/microchip/Kconfig
+> +++ b/drivers/clk/microchip/Kconfig
+> @@ -5,8 +5,8 @@ config COMMON_CLK_PIC32
+>  
+>  config MCHP_CLK_MPFS
+>  	bool "Clk driver for PolarFire SoC"
+> -	depends on ARCH_MICROCHIP_POLARFIRE || COMPILE_TEST
+> -	default ARCH_MICROCHIP_POLARFIRE
+> +	depends on ARCH_MICROCHIP || COMPILE_TEST
+> +	default y
+>  	depends on MFD_SYSCON
+>  	select AUXILIARY_BUS
+>  	select COMMON_CLK_DIVIDER_REGMAP
 
-Acked-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+This doesn't apply on top of the current at91-next. Maybe rebase it once
+6.19-rc1 is out.
+
+Thank you,
+Claudiu
+
 
