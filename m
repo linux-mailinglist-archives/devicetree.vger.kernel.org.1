@@ -1,149 +1,123 @@
-Return-Path: <devicetree+bounces-244997-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244998-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 456A4CAAE30
-	for <lists+devicetree@lfdr.de>; Sat, 06 Dec 2025 22:41:48 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66B5ACAAE69
+	for <lists+devicetree@lfdr.de>; Sat, 06 Dec 2025 22:50:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 79BC33004D06
-	for <lists+devicetree@lfdr.de>; Sat,  6 Dec 2025 21:41:47 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B6FA230088B5
+	for <lists+devicetree@lfdr.de>; Sat,  6 Dec 2025 21:50:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 360282E0939;
-	Sat,  6 Dec 2025 21:40:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF9A9267714;
+	Sat,  6 Dec 2025 21:50:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="2coYIfR1"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Ed8swZyx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ixit.cz (ip-94-112-25-9.bb.vodafone.cz [94.112.25.9])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA5CC2E06ED;
-	Sat,  6 Dec 2025 21:40:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.112.25.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C88D21F17E8;
+	Sat,  6 Dec 2025 21:50:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765057241; cv=none; b=J1SyOKTDsNWHF2TRpASHE6s1Pl7oBo4tV2CXcayR18Q8x/fqtE1hjg+Z1C4v42oWWqOVIPJ8jVGfANHCo4X4XGpXKEzVIvJD9MmIERWDXWaZ2Se+UlqiGQFypfBRV9m3aSgIzFxZCR8p/gDTe6/Ft3twem5dBqsC2wtOVh1wJ9M=
+	t=1765057814; cv=none; b=ROH2vv7gzzs89COR5LlILkj4AIU3pZmB2zB2Pwn5KKlI808XzF5lTnVj1v9u3ZxUc9KcTmfwx4prbgcsDNn1K3uq4Zl4PcCxhb5dwUlMqbYex0IV8mxKyejPJHYPNL8ImUMw5tgAB6dZe8iIPvyN+38czLkFaL1GCx07YsmO4lA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765057241; c=relaxed/simple;
-	bh=Af0zgc8BIKI6I7T5xdbY7sib9frIy9q3JhmMeejhOII=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dMpZc+XnRMMhdw0+GiJ159EVYTLw4t8718YIgqHNiRchiDsfieDCMm+aUG+tlZF69jgxpiM+G0SQzvPQ1oeuD0j8RDhaw7qhXHt0LkqCLh1TVck2peFlHAJj4qsYI7dyoHDJYyMARRvNMiUKzKPz005xOwp4RPHn4xdOAmaY6fg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=2coYIfR1; arc=none smtp.client-ip=94.112.25.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
-Received: from [10.0.0.200] (unknown [10.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by ixit.cz (Postfix) with ESMTPSA id B14DE53403EB;
-	Sat, 06 Dec 2025 22:40:34 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-	t=1765057234;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=leUazjwu2gj4bSt1rPD2NmuLoX1PNoJcrTr93zFzEpg=;
-	b=2coYIfR10nVz/n/eKFuyARxA9eU0Re4qcF5pj+1ILSMB2BxAh6bDaVsRGuv4dN/BsfbmSz
-	6weiIKrOboE1bdCqWgB5eZkJDvuJrlyQ2o0TO7fQT0d8Cqk6YkoryKnRCrG0PHUWGz00B5
-	tCmLZesMzXTVRKzUWz9kBSaKEUxdobg=
-Message-ID: <fc411783-d5fe-40e4-b6e4-b4ba79732af2@ixit.cz>
-Date: Sat, 6 Dec 2025 22:40:34 +0100
+	s=arc-20240116; t=1765057814; c=relaxed/simple;
+	bh=gNgPcVTa0ckHFERCqjtzt9Jz7wwU/BsZLDqoKp8khkY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HVOEZ0CZQ7m68T9boHvQO9Pa9fay4zGGb20SHz14McWHxc2vD5g56qFW+YVAZ5VgNpNpJGyeD4S1jhECuHanC14pM8vB1HK/ZJvZO7vpxvfSUMvGaIU0+DS3oWtOsxfgqEGqAHeChxIwrrr3Is6FIVjHgja6/rpbzrkxmdoddZ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Ed8swZyx; arc=none smtp.client-ip=192.198.163.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1765057813; x=1796593813;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=gNgPcVTa0ckHFERCqjtzt9Jz7wwU/BsZLDqoKp8khkY=;
+  b=Ed8swZyxW9+//guMTrsqUxKyqEdFrUV0YiNzV0AhWCXOQLQJ1BMb79dM
+   RhCxH9AC++3J2Sl5I4NpyeQ/vtPeMTwDHjNfKKt0Y3CmcXLJ2ZdPuL3Xi
+   P7vFmCCyyWVVOkSp4UV5f4t5c7qyxylpJ9FKV0dQiYJEuzKy4md0GqRdm
+   2ILT/hChD+ao9uiVhzdYFT6K25CxG6WQAOuJ+8FxZb224CQU+vGe5Nw1s
+   PrJyB3ru38q6MNypLxUoPxn8zJx6AtCD4r7xV7L8nqXYrMhtypAgqzYvL
+   4ASwjKbWiUIA9aunbja24uXAq+E1DaFtUxqC2touzpsdWMud8NjmbZXLj
+   Q==;
+X-CSE-ConnectionGUID: yG9r1EKZTd2tWDZnv20E/Q==
+X-CSE-MsgGUID: MJuwc4hETKyJdfQawc5U7g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11634"; a="67092496"
+X-IronPort-AV: E=Sophos;i="6.20,255,1758610800"; 
+   d="scan'208";a="67092496"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Dec 2025 13:50:12 -0800
+X-CSE-ConnectionGUID: 36vIdHZTRjqYskuaoE+I5w==
+X-CSE-MsgGUID: RovfcrTBQXajCqiTyTT5eA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,255,1758610800"; 
+   d="scan'208";a="218942530"
+Received: from dhhellew-desk2.ger.corp.intel.com (HELO localhost) ([10.245.244.204])
+  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Dec 2025 13:50:09 -0800
+Date: Sat, 6 Dec 2025 23:50:06 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Petre Rodan <petre.rodan@subdimension.ro>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] iio: pressure: add Honeywell ABP2 driver
+Message-ID: <aTSlDoXYarcrhEbE@smile.fi.intel.com>
+References: <20251204-honeywell_abp2_driver-v3-0-ad3275bad35e@subdimension.ro>
+ <20251204-honeywell_abp2_driver-v3-2-ad3275bad35e@subdimension.ro>
+ <20251206205407.6ba41d76@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 01/12] arm64: dts: qcom: sdm845-lg-common: Sort nodes
- and properties
-To: Paul Sajna <sajattack@postmarketos.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
- ~postmarketos/upstreaming@lists.sr.ht, Amir Dahan <system64fumo@tuta.io>,
- Christopher Brown <crispybrown@gmail.com>,
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-References: <20251203-judyln-dts-v5-0-80c1ffca8487@postmarketos.org>
- <20251203-judyln-dts-v5-1-80c1ffca8487@postmarketos.org>
-Content-Language: en-US
-From: David Heidelberg <david@ixit.cz>
-Autocrypt: addr=david@ixit.cz; keydata=
- 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
-In-Reply-To: <20251203-judyln-dts-v5-1-80c1ffca8487@postmarketos.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251206205407.6ba41d76@jic23-huawei>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-On 03/12/2025 10:40, Paul Sajna wrote:
+On Sat, Dec 06, 2025 at 08:54:07PM +0000, Jonathan Cameron wrote:
+> On Thu, 04 Dec 2025 17:12:56 +0200
+> Petre Rodan <petre.rodan@subdimension.ro> wrote:
 
-[...]
+...
 
-> -		rmtfs_mem: rmtfs-region@f0800000 {
+> > +#include <linux/array_size.h>
+> > +#include <linux/bits.h>
+> > +#include <linux/completion.h>
+> > +#include <linux/delay.h>
+> > +#include <linux/dev_printk.h>
+> > +#include <linux/device.h>
+> > +#include <linux/errno.h>
+> > +#include <linux/export.h>
+> > +#include <linux/gpio/consumer.h>
+> > +#include <linux/interrupt.h>
+> > +#include <linux/jiffies.h>
+> 
+> I'm not immediately spotting use of this but I might well be missing it!
 
-this is a correct region f0800000
+HZ ?
 
-> +		qseecom_mem: memory@b2000000 {
-> +			reg = <0 0xb2000000 0 0x1800000>;
-> +			no-map;
-> +		};
-> +
-> +		rmtfs_mem: memory@f0801000 {
-
-this is f0801000 (+1000) offset from old sdm845 downstream with boundaries.
-
-[...]
-
-I noticed this when I tried apply your changes on top of sdm845-next repo.
-
-If you need testing, this repo should help you (as all phone-related 
-patches should be applied on top of recent -next and work)
-
-David
+> > +#include <linux/math64.h>
+> > +#include <linux/module.h>
+> > +#include <linux/property.h>
+> > +#include <linux/regulator/consumer.h>
+> > +#include <linux/string.h>
+> > +#include <linux/time.h>
+> > +#include <linux/types.h>
+> > +#include <linux/unaligned.h>
+> > +#include <linux/units.h>
 
 -- 
-David Heidelberg
+With Best Regards,
+Andy Shevchenko
+
 
 
