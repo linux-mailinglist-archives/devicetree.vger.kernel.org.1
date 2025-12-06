@@ -1,200 +1,335 @@
-Return-Path: <devicetree+bounces-244962-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244963-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CB88CAA9D1
-	for <lists+devicetree@lfdr.de>; Sat, 06 Dec 2025 17:12:28 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 522A9CAAA0B
+	for <lists+devicetree@lfdr.de>; Sat, 06 Dec 2025 17:18:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id B89083009F05
-	for <lists+devicetree@lfdr.de>; Sat,  6 Dec 2025 16:12:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 06CF63053903
+	for <lists+devicetree@lfdr.de>; Sat,  6 Dec 2025 16:18:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C5DD2FFDE1;
-	Sat,  6 Dec 2025 16:12:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 457012FE06F;
+	Sat,  6 Dec 2025 16:18:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="SWXYd1bt";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Z4CL9zvQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ha4teg/E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FAAB2FFDC2
-	for <devicetree@vger.kernel.org>; Sat,  6 Dec 2025 16:12:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 153CB274B37;
+	Sat,  6 Dec 2025 16:18:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765037543; cv=none; b=onQ27hJUArk+wsCsvQcpZp8YmAzAMozXkwXz3ruf3gTbZbwoDEuegiFzYpNgVbZBNHZRhL+YncADH2fv2UzD/4Rz4gdWIIj3ir4tUZaBYiqqkZ/zGqHRJd8S5SCTPcSeKQ/kpHbM5Vjf6qWKwvWUXZrcsWgMXXOdCedydCIQahM=
+	t=1765037889; cv=none; b=Up53qXKCREycyqEHQNbTCWnf7edoTQ4A95B6SPle71inSo6iOxDfISSfz3nbzqKJ0HE0rmkumHVCOKSnq8Jbt3ICLl4F+sRvZuXCFmLpnWkpDE44oC8tOLtqo6NmtDSTfo3V7gqFaMWl3fzGpZxVGPPeio13ta36JIIIVdVVJdI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765037543; c=relaxed/simple;
-	bh=PSUb299D2dYUfFweRiNrtxHWpDEOy5t5wSnP8271FXg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=c17iI+kJW81OFlH45GjsdhKlHkDO7poHLpCOTatBv1XiTQuKHKWSqg3pyZqgrOqvobHBlsGQtgpOC/RJjWBiQNf6t2AdIbJ+bzPeuZuOpmzz5pSbTD/TF1pmHUq+gPMXnKBgXQHFrUAAl/7+i0p0VbG0ShA6wJ/gTDPWygaJ4BM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=SWXYd1bt; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Z4CL9zvQ; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5B69qrV33521786
-	for <devicetree@vger.kernel.org>; Sat, 6 Dec 2025 16:12:20 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	OcVXm5JIAcyGqoJflm6whI5XkmDpNUJ6dOT69v0sFpE=; b=SWXYd1btFwoRiND6
-	APXPBBWva/xapGbLe6jvCaQoqCg7rFIzguszDcjP5q/VXt+fryuAbBjZoXp/g9v2
-	5EPOvmdq8St19MJEzKJ0iQYQygljJBcW2/nI3R/7oa1FKRTSOfKTCZ3zv4n9vgH+
-	t3v06kbPSGqzWn2/hNgOmrfPffchqpORgTn2PlFxoiFqaUJKmToHQmiuhkyWffWz
-	NfTDkS7/xcmSnoRg+Hv+9BgPw9T1XUWT6BC50xZwZJwNkTFsedX04R2gzjHEGVfT
-	1Yrgv3iSVwPSYc3r0CLGlCqPy0C86nGsQGDVtDo2QNwr2kZcjSOupnxdu5x+4dGc
-	AUqpng==
-Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4avc2wh1rm-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sat, 06 Dec 2025 16:12:20 +0000 (GMT)
-Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-2958a134514so3969295ad.2
-        for <devicetree@vger.kernel.org>; Sat, 06 Dec 2025 08:12:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1765037539; x=1765642339; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=OcVXm5JIAcyGqoJflm6whI5XkmDpNUJ6dOT69v0sFpE=;
-        b=Z4CL9zvQL3TWViMItEjM+lSh+9ldKEQ33pi2ZqLw4XiyPWxEdaG/3X7F53wGykwzES
-         Sb4a/rkwT1PDT7RQ5OiHAzBDPew70NcaIBb3kbps6fU2m3bliAW24gBoJxOqQfySJUAs
-         40MsqRMoXY8UYVoWIkUJW9s+PXKzZ9kBBstYuGgLpgGUIA4EieNuJzuDL5X7V+LrMoF6
-         ml1sEpqYmTTFAcit42woRm56VLZuq/jEDcKlkM2GwW7Wtgm58rhEbVo3xbICE+7t/vpx
-         LnDwdMl2lmEiXTOuQDhSa2Ki1stI67ZFChqmfRigcg4iDLIiDYoX+SD3x79fVOZQBazu
-         HU3A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765037539; x=1765642339;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=OcVXm5JIAcyGqoJflm6whI5XkmDpNUJ6dOT69v0sFpE=;
-        b=LBJYG2oSFwJHs+1fZ8sj0BAI8aAU2FZi6TWMH6uYuny7AeGZPU4ul3QZAKt0EOSUCi
-         9UYa1r1jDQY4xoSXg8ACZ9xN5YZurYPf/OHyARNq3n2bdFd1jB2eWutYQkskooYFMB8l
-         58S1Lh+PcyOCCYuSzthd6p/VETGGpSOu2YHnXiCJmCVtwG4oh4FxDCATjtF6jIuHJN9n
-         iRodHggMyRuYpt/V27gRCpcUpCCv8QRlzwlCd0otTsJyfsSJ7kNKZnItqXxCGs4ANfYh
-         g9x/u38Y1PQs+QhYAYf1WoKFVQwzBbV/civw3YHiX2bG1nBmAmYHQIPSTnimHEkfvTIj
-         XD5Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUBKY1o8U1yd3QWxVnPBcBH7kjg5FhFGBp6BuQ0z+raIXSA4AXrySb3DIAa838LRVd7df5YjTnrEJM9@vger.kernel.org
-X-Gm-Message-State: AOJu0YxHjC3JRilfvQLgxSqHj+BWfllAyvcxdPmsFVOq4tP6u17Ufz9d
-	7o/RKeWaXO5jL86H+T9penXOwu7dOrNXv0JQ9V2mWNNYNAMc7FX9fCpPl1dWn4IHen7Uh0C4OW2
-	bBNsuiXkQouI8nNhvcJ6bT6aTJJ74Uk0bNfjBVcXy0Jg0J6TXBOI80mYy33RXtDu+
-X-Gm-Gg: ASbGncsspTQQwbIFI/VChL6HoIGBcGI0v1GhhafdFttOXQbjeE+djaxOPytEBt7qHhu
-	DlgsWZTprLnVAU9KD3fytfkFK28yf9gbPOgJZxk66sn0vg1NC19URpxFgncx1EzxL3vac90q3Mr
-	gNnBVydru68m44qAw9+dzJv0pUfkfxNMh8eIezUUpOc3ZjRFnj3yvzgVc24Ysrg/c0rzVAzgBpE
-	0o+6Qxvup2Vpvg9ZAy23t+GuDpMTaOvOacI3cASF6rX1CAkBtNQvY2MrM/WZeKuGcdd97JwdLBk
-	4EfuGtu1938MpK0chn+iHiUjdMVDv3R7fpi5/3tncqb+mG3TSJHmkLqC6RtV3KPmiw4vh2BLv7L
-	GPfz/NPypoYuXxQWRUicL1ZiTXCM4iiUB+bjBoAG50sS47A==
-X-Received: by 2002:a05:7022:f89:b0:119:e55a:9c04 with SMTP id a92af1059eb24-11e032ac37dmr2065782c88.32.1765037539112;
-        Sat, 06 Dec 2025 08:12:19 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IE6Q72hT1tfm6ehPxRu0e2geTtWEprk5QX5IDwHV/oq7L2zAoa9XsSYNu2EY3vjHRgUFdsabA==
-X-Received: by 2002:a05:7022:f89:b0:119:e55a:9c04 with SMTP id a92af1059eb24-11e032ac37dmr2065761c88.32.1765037538505;
-        Sat, 06 Dec 2025 08:12:18 -0800 (PST)
-Received: from [192.168.1.3] ([122.177.243.159])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-11df7552211sm31523490c88.1.2025.12.06.08.12.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 06 Dec 2025 08:12:18 -0800 (PST)
-Message-ID: <b772d61e-ba75-4f45-946d-211a0bb755d0@oss.qualcomm.com>
-Date: Sat, 6 Dec 2025 21:42:11 +0530
+	s=arc-20240116; t=1765037889; c=relaxed/simple;
+	bh=O0FZqJE+uW1VVVSpJm7IzkbqSLM2TC1BIsj+SjPsAoc=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=DklM34IHLhXlCvEmcoHw6Gpj0/XGfLiY/ZPLXEFY7Icbrnwl4UQKZx+hmHQ5cdTc5QpDZRfxycFnMu8yFx7ijN59/6cx8A9RgPO0LgDp5eRKpKQXq24FYyEmPvZ1kk3jSryJwJo8k5x8eosET19HlIJrHcA+C+RMK4l3EZggp8g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ha4teg/E; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59516C4CEF5;
+	Sat,  6 Dec 2025 16:18:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1765037887;
+	bh=O0FZqJE+uW1VVVSpJm7IzkbqSLM2TC1BIsj+SjPsAoc=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=Ha4teg/ElXEFid0aujVAkYp0qwxSPRsNzLFcuHEA9morf8Lzkkk2pfMxLDGXbPK4h
+	 5NLAb9v2k6nvLc6C+0f5e77aFe15P5CjHkvRyKXMkaocG7s6TVr2QbAAY7SwM+n8Ko
+	 5wHkLK0A3FYuSVJTkm0xTZWOQp35EmapsxyN5smkH2669mFKEXJvyJzl5BzubgoxT5
+	 LGzS39n/6GQ9MiS8PivbKekYowTu+oo3KgjS9+3jhv9Dabc8CmymQEFgjwIOgAczXN
+	 AU9oBuYX0XFliN1Tx8ZhTXBxl9uhIzAf09Nct4v2Cle4GrfBDEXbW1ZZGLu8vMKRif
+	 v1oivQ1h5qCJg==
+Date: Sat, 6 Dec 2025 16:17:57 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Tomas Borquez <tomasborquez13@gmail.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>, David Lechner
+ <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy
+ Shevchenko <andy@kernel.org>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-staging@lists.linux.dev
+Subject: Re: [RFC PATCH 2/3] staging: iio: ad9832: convert to iio channels
+Message-ID: <20251206161757.32e4cf0d@jic23-huawei>
+In-Reply-To: <20251205202743.10530-3-tomasborquez13@gmail.com>
+References: <20251205202743.10530-1-tomasborquez13@gmail.com>
+	<20251205202743.10530-3-tomasborquez13@gmail.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] phy: qualcomm: phy-qcom-eusb2-repeater: Add
- squelch detect param update
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Luca Weiss
- <luca.weiss@fairphone.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Johan Hovold <johan+linaro@kernel.org>,
-        Pengyu Luo <mitltlatltl@gmail.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20251204044644.3072086-1-krishna.kurapati@oss.qualcomm.com>
- <20251204044644.3072086-3-krishna.kurapati@oss.qualcomm.com>
- <755b7579-757f-4ced-b3c4-39c20e6b25a7@oss.qualcomm.com>
-Content-Language: en-US
-From: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
-In-Reply-To: <755b7579-757f-4ced-b3c4-39c20e6b25a7@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: HyK01XZvfVf6m1H0GOlEjp_JDJgCx7LK
-X-Proofpoint-ORIG-GUID: HyK01XZvfVf6m1H0GOlEjp_JDJgCx7LK
-X-Authority-Analysis: v=2.4 cv=d774CBjE c=1 sm=1 tr=0 ts=693455e4 cx=c_pps
- a=cmESyDAEBpBGqyK7t0alAg==:117 a=mGeNq4HQZpM0LKVKY7z1pw==:17
- a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=7OXqrvXZNe0mwyzepZkA:9
- a=QEXdDO2ut3YA:10 a=1OuFwYUASf3TG4hYMiVC:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjA2MDEzMiBTYWx0ZWRfX0R7CYfzLfsQg
- Pc5nNbiyYkvMs0VP+FmQiyxw67I/sMQiZNI9RDnl3coqybBgpV2YinnrTNji1xmZs4XNRHYFFHs
- ZrBCcbzG0/vTswhA57QTBzQxcQtGGJsyFRP2pMUmbRAr3MkNAetT/7m1JPW33pey7yfZSp716gR
- /gekD9gV884CqBySgOi5KhmfiY7BlC0RgQSvgZ2zAfz28SiHVeIHtiiuqdSxDAwtX/0XyzDiJXA
- Bqk1J1JX+6u31wiym4GO/88zIGDHJzOZ12I58YPBlrvkdJxCFXhTlOg85GAm9Da4b+PRo9yHRl6
- cb2rrd2RcVa3sSgPVEfSZeAHD92es1sHBRKzqZ38v3ZZoajNkNMDNp+db0gimsA0eqLI4cmBygs
- 0Xz/CFZrMXsAr7wcSgGV3ZjXr0wutg==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-06_02,2025-12-04_04,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 malwarescore=0 clxscore=1015 impostorscore=0 phishscore=0
- adultscore=0 lowpriorityscore=0 spamscore=0 suspectscore=0 bulkscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512060132
 
+On Fri,  5 Dec 2025 17:27:42 -0300
+Tomas Borquez <tomasborquez13@gmail.com> wrote:
 
-
-On 12/5/2025 7:01 PM, Konrad Dybcio wrote:
-> On 12/4/25 5:46 AM, Krishna Kurapati wrote:
->> Add support for overriding Squelch Detect parameter.
->>
->> Signed-off-by: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
->> ---
->>   .../phy/qualcomm/phy-qcom-eusb2-repeater.c    | 22 +++++++++++++++++++
->>   1 file changed, 22 insertions(+)
->>
->> diff --git a/drivers/phy/qualcomm/phy-qcom-eusb2-repeater.c b/drivers/phy/qualcomm/phy-qcom-eusb2-repeater.c
->> index 651a12b59bc8..a75b37d4e16d 100644
->> --- a/drivers/phy/qualcomm/phy-qcom-eusb2-repeater.c
->> +++ b/drivers/phy/qualcomm/phy-qcom-eusb2-repeater.c
->> @@ -37,6 +37,17 @@
->>   #define EUSB2_TUNE_EUSB_EQU		0x5A
->>   #define EUSB2_TUNE_EUSB_HS_COMP_CUR	0x5B
->>   
->> +static const int squelch_detector[] = {
->> +	[0] = -6000,
->> +	[1] = -5000,
->> +	[2] = -4000,
->> +	[3] = -3000,
->> +	[4] = -2000,
->> +	[5] = -1000,
->> +	[6] = 0,
->> +	[7] = 1000,
->> +};
+> Replace the custom frequency and phase sysfs attributes with IIO channels
+> using read_raw()/write_raw() callbacks, as well as removing the dds.h
+> header.
 > 
-> I forgot to ask, do these values apply to all of the supported repeaters?
+> Changes:
+> - Add iio_chan_spec definitions for 2 frequency and 4 phase channels.
+> - Implement read_raw/write_raw for IIO_CHAN_INFO_FREQUENCY/PHASE.
+> - Cache frequency and phase values in driver state for readback.
+> - Remove dependency on dds.h macros for sysfs.
+> - Use guard(mutex) for cleaner locking.
+> - Add input validation and consistent error messages.
 > 
+Hi Tomas,
 
-I checked smb2360/pmih010x_eusb2_repeater and pm8550b repeaters 
-(SM8{5/6/7}50/ Kaanapali/ Hamoa). For all of them, the above table is same.
+> NOTE: This changes the userspace ABI, see cover letter.
+Given I responded there on ABI, I'll just ignore that aspect for this review.
 
-Regards,
-Krishna,
+Code is pretty clean, but there are a few things that belong in other
+patches rather than being mixed in here.
+For kernel code we are pretty strict on one patch, one type of change.
 
-> i.e.
+> Signed-off-by: Tomas Borquez <tomasborquez13@gmail.com>
+> ---
+>  drivers/staging/iio/frequency/ad9832.c | 232 ++++++++++++++++++-------
+>  1 file changed, 168 insertions(+), 64 deletions(-)
 > 
-> PM8550B
-> PMIV0104
-> SMB2360
-> 
-> Konrad
+> diff --git a/drivers/staging/iio/frequency/ad9832.c b/drivers/staging/iio/frequency/ad9832.c
+> index e2ad3e5a7a..79d26009d1 100644
+> --- a/drivers/staging/iio/frequency/ad9832.c
+> +++ b/drivers/staging/iio/frequency/ad9832.c
+> @@ -9,6 +9,7 @@
+>  
+>  #include <linux/bitfield.h>
+>  #include <linux/bits.h>
+> +#include <linux/cleanup.h>
+>  #include <linux/clk.h>
+>  #include <linux/device.h>
+>  #include <linux/err.h>
+> @@ -23,10 +24,7 @@
+>  #include <linux/iio/iio.h>
+>  #include <linux/iio/sysfs.h>
+>  
+> -#include "dds.h"
+> -
+>  /* Registers */
+> -
+Trivial but don't make unrelated white space changes in a patch
+doing anything else - they add noise and hurt reviewer speed.
+Put them in a patch on their own.
+
+>  #define AD9832_FREQ0LL		0x0
+>  #define AD9832_FREQ0HL		0x1
+>  #define AD9832_FREQ0LM		0x2
+> @@ -50,7 +48,6 @@
+>  #define AD9832_OUTPUT_EN	0x13
+>  
+>  /* Command Control Bits */
+> -
+
+>  	} __aligned(IIO_DMA_MINALIGN);
+>  };
+>  
+> -static unsigned long ad9832_calc_freqreg(unsigned long mclk, unsigned long fout)
+> +static unsigned long ad9832_calc_freqreg(unsigned long mclk, u32 fout)
+>  {
+>  	unsigned long long freqreg = (u64)fout *
+>  				     (u64)((u64)1L << AD9832_FREQ_BITS);
+> @@ -124,12 +124,24 @@ static unsigned long ad9832_calc_freqreg(unsigned long mclk, unsigned long fout)
+>  }
+>  
+>  static int ad9832_write_frequency(struct ad9832_state *st,
+> -				  unsigned int addr, unsigned long fout)
+> +				  unsigned int addr, u32 fout)
+>  {
+>  	unsigned long clk_freq;
+>  	unsigned long regval;
+>  	u8 regval_bytes[4];
+>  	u16 freq_cmd;
+> +	int ret, idx;
+> +
+> +	switch (addr) {
+> +	case AD9832_FREQ0HM:
+> +		idx = 0;
+> +		break;
+> +	case AD9832_FREQ1HM:
+> +		idx = 1;
+> +		break;
+> +	default:
+> +		return -EINVAL;
+> +	}
+>  
+>  	clk_freq = clk_get_rate(st->mclk);
+>  
+> @@ -147,14 +159,37 @@ static int ad9832_write_frequency(struct ad9832_state *st,
+>  			FIELD_PREP(AD9832_DAT_MSK, regval_bytes[i]));
+>  	}
+>  
+> -	return spi_sync(st->spi, &st->freq_msg);
+> +	ret = spi_sync(st->spi, &st->freq_msg);
+> +	if (ret)
+> +		return ret;
+> +
+> +	st->freq[idx] = fout;
+
+I'd put a blank line here.  Generally slightly helps readability before
+simple return statements like this.
+
+> +	return 0;
+>  }
+>  
+>  static int ad9832_write_phase(struct ad9832_state *st,
+> -			      unsigned long addr, unsigned long phase)
+> +			      unsigned long addr, u32 phase)
+>  {
+>  	u8 phase_bytes[2];
+>  	u16 phase_cmd;
+> +	int ret, idx;
+> +
+> +	switch (addr) {
+> +	case AD9832_PHASE0H:
+> +		idx = 0;
+> +		break;
+> +	case AD9832_PHASE1H:
+> +		idx = 1;
+> +		break;
+> +	case AD9832_PHASE2H:
+> +		idx = 2;
+> +		break;
+> +	case AD9832_PHASE3H:
+> +		idx = 3;
+> +		break;
+> +	default:
+> +		return -EINVAL;
+> +	}
+>  
+>  	if (phase >= BIT(AD9832_PHASE_BITS))
+>  		return -EINVAL;
+> @@ -169,10 +204,77 @@ static int ad9832_write_phase(struct ad9832_state *st,
+>  			FIELD_PREP(AD9832_DAT_MSK, phase_bytes[i]));
+>  	}
+>  
+> -	return spi_sync(st->spi, &st->phase_msg);
+> +	ret = spi_sync(st->spi, &st->phase_msg);
+> +	if (ret)
+> +		return ret;
+> +
+> +	st->phase[idx] = phase;
+> +	return 0;
+>  }
+>  
+> -static ssize_t ad9832_write(struct device *dev, struct device_attribute *attr,
+> +static int ad9832_write_raw(struct iio_dev *indio_dev,
+> +			    struct iio_chan_spec const *chan,
+> +			    int val, int val2, long mask)
+> +{
+> +	struct ad9832_state *st = iio_priv(indio_dev);
+> +
+> +	if (val < 0)
+> +		return -EINVAL;
+
+Check val2 as well.  Should be zero.
+
+
+> +
+> +	guard(mutex)(&st->lock);
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_FREQUENCY:
+> +		return ad9832_write_frequency(st, chan->address, val);
+> +	case IIO_CHAN_INFO_PHASE:
+> +		return ad9832_write_phase(st, chan->address, val);
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+
+> +
+> +static ssize_t ad9832_store(struct device *dev,
+> +			    struct device_attribute *attr,
+>  			    const char *buf, size_t len)
+>  {
+>  	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
+> @@ -183,20 +285,10 @@ static ssize_t ad9832_write(struct device *dev, struct device_attribute *attr,
+>  
+>  	ret = kstrtoul(buf, 10, &val);
+>  	if (ret)
+> -		goto error_ret;
+> +		return ret;
+>  
+> -	mutex_lock(&st->lock);
+> -	switch ((u32)this_attr->address) {
+> -	case AD9832_FREQ0HM:
+> -	case AD9832_FREQ1HM:
+> -		ret = ad9832_write_frequency(st, this_attr->address, val);
+> -		break;
+> -	case AD9832_PHASE0H:
+> -	case AD9832_PHASE1H:
+> -	case AD9832_PHASE2H:
+> -	case AD9832_PHASE3H:
+> -		ret = ad9832_write_phase(st, this_attr->address, val);
+> -		break;
+> +	guard(mutex)(&st->lock);
+
+Ideally do guard() changes in a separate patch as seems unrelated to the
+other stuff going on here. I'd suggest making that change first.
+
+> +	switch (this_attr->address) {
+>  	case AD9832_PINCTRL_EN:
+>  		st->ctrl_ss &= ~AD9832_SELSRC;
+>  		st->ctrl_ss |= FIELD_PREP(AD9832_SELSRC, val ? 0 : 1);
+> @@ -206,13 +298,13 @@ static ssize_t ad9832_write(struct device *dev, struct device_attribute *attr,
+>  		ret = spi_sync(st->spi, &st->msg);
+>  		break;
+>  	case AD9832_FREQ_SYM:
+> -		if (val == 1 || val == 0) {
+> -			st->ctrl_fp &= ~AD9832_FREQ;
+> -			st->ctrl_fp |= FIELD_PREP(AD9832_FREQ, val ? 1 : 0);
+> -		} else {
+> +		if (val != 1 && val != 0) {
+>  			ret = -EINVAL;
+
+With guard, should be able to directly return in error cases
+simplifying the flow and helping code readability.  That's one of the
+nicest things guard() enables.
+
+>  			break;
+>  		}
+> +
+> +		st->ctrl_fp &= ~AD9832_FREQ;
+> +		st->ctrl_fp |= FIELD_PREP(AD9832_FREQ, val);
+>  		st->data = cpu_to_be16(FIELD_PREP(AD9832_CMD_MSK, AD9832_CMD_FPSELECT) |
+>  						  st->ctrl_fp);
+>  		ret = spi_sync(st->spi, &st->msg);
+> @@ -243,47 +335,56 @@ static ssize_t ad9832_write(struct device *dev, struct device_attribute *attr,
+>  	default:
+>  		ret = -ENODEV;
+>  	}
+> -	mutex_unlock(&st->lock);
+>  
+> -error_ret:
+>  	return ret ? ret : len;
+>  }
+
+>  
+> @@ -309,15 +412,15 @@ static int ad9832_probe(struct spi_device *spi)
+>  
+>  	ret = devm_regulator_get_enable(&spi->dev, "avdd");
+>  	if (ret)
+> -		return dev_err_probe(&spi->dev, ret, "failed to enable specified AVDD voltage\n");
+> +		return dev_err_probe(&spi->dev, ret, "failed to enable AVDD supply\n");
+>  
+>  	ret = devm_regulator_get_enable(&spi->dev, "dvdd");
+>  	if (ret)
+> -		return dev_err_probe(&spi->dev, ret, "Failed to enable specified DVDD supply\n");
+> +		return dev_err_probe(&spi->dev, ret, "failed to enable DVDD supply\n");
+>  
+>  	st->mclk = devm_clk_get_enabled(&spi->dev, "mclk");
+>  	if (IS_ERR(st->mclk))
+> -		return PTR_ERR(st->mclk);
+> +		return dev_err_probe(&spi->dev, PTR_ERR(st->mclk), "failed to enable MCLK\n");
+This is an unrelated change.  Do it in a separate patch for just the dev_err_probe()
+usage.
+
+>  
 
 
