@@ -1,84 +1,121 @@
-Return-Path: <devicetree+bounces-244898-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244899-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAFAFCAA099
-	for <lists+devicetree@lfdr.de>; Sat, 06 Dec 2025 05:22:58 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B43BECAA0AE
+	for <lists+devicetree@lfdr.de>; Sat, 06 Dec 2025 05:26:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 1B6123016F8F
-	for <lists+devicetree@lfdr.de>; Sat,  6 Dec 2025 04:22:46 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id F254F313B5F9
+	for <lists+devicetree@lfdr.de>; Sat,  6 Dec 2025 04:26:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 795A42652B0;
-	Sat,  6 Dec 2025 04:22:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1366925F7A4;
+	Sat,  6 Dec 2025 04:26:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="X+WiT8t8"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="H18/e4ux";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="f7SGrtF5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 116AB21767A;
-	Sat,  6 Dec 2025 04:22:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5665F2116F4
+	for <devicetree@vger.kernel.org>; Sat,  6 Dec 2025 04:26:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1764994964; cv=none; b=GS36SM1DoBLSNtEK1SktRHNvBG4Fbf19VSVwX8no+cyuvmj2P8UQLcWL9q55tnXqciMv5K0N/8XRh3cZXbNeWni9ILhcdU/PYFmdW8VE1rKfP4OxApI/UAPP5R1Hllw+XiKtbLh6Dcr6Xx4K3J1hcOvewWmIptU8EFG3euKquZA=
+	t=1764995163; cv=none; b=lU5WIsuSS6fVfiO9xMmQHGPJ8ZgVx526F3cbsbcDspNiFfgRt1WtBphVQTaHQ2Y7iOWDSQb8yzTvJzpxipCsmtoPezpzrLMG3LzmFKcyAPiVsiEq5hWcFAaMWqFTrp6wpqyUsWYAWeeTjSOeRNGYw3bXvq9zuqhJZvHBM9nhvSQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1764994964; c=relaxed/simple;
-	bh=KoHQ1YurYEAqQvA+3ldEYO+Mkmk1wGzucehdLddRfIE=;
+	s=arc-20240116; t=1764995163; c=relaxed/simple;
+	bh=NuWolUz2KhoGblIjnficgr+2t26ZDl/ZTs/yro3FSb0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iqXn6+zV4pL18vOXCaIjCVvJ1MzUNhwBlo+AUtdK+fREn6JFg9eLSUAz1z8eATiHZVcbOJIPEoUsCHLWSj4zyw+Gv3xDSz7Z4Jq1+5oG6b7ASuiZMDcGstGMv4qsTos7Jat4vQPllaZR9HzQ3nEEfyhPjmqScfC5hjET4cWzbxA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=X+WiT8t8; arc=none smtp.client-ip=192.198.163.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1764994962; x=1796530962;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=KoHQ1YurYEAqQvA+3ldEYO+Mkmk1wGzucehdLddRfIE=;
-  b=X+WiT8t86olYSX0HWMi8pxEu929nU+1YddTwBI+eSD4MWZ3mRruDHyCC
-   TInqZIMcpC4pJRDGYn23YY3t1w2Qve98Eb8HUuLHpxsgef9DQoLKemJHb
-   6dwC9YtM8xJfjAZthei38bGmfvkAtZvI181xD3tPdWe0E4haLl9AScmmz
-   XIBn/kYOIB8xgd2bLb+gsV60f5SbuIyF3YqJJIGSsn+5xhun2geOtYfHc
-   cegLqnMx9eeUPOipaDUqBxFe2zQb5YUyZGzkiDJo7dHcf/Gmh/WOifDSW
-   jAPdIGc4ab7JLYIbZ/HngXfR4UKhylJHY0i6KM8wmPL/pFYLreM3Tuv45
-   g==;
-X-CSE-ConnectionGUID: s38oVYUOSs+kmjGpceT6tw==
-X-CSE-MsgGUID: Um7P1DXuQTi06/ic3V0ZdQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11633"; a="78381000"
-X-IronPort-AV: E=Sophos;i="6.20,253,1758610800"; 
-   d="scan'208";a="78381000"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Dec 2025 20:22:41 -0800
-X-CSE-ConnectionGUID: 23Ol/a8aQaGKwXs3aouUqg==
-X-CSE-MsgGUID: Cm0ArHt/QdKN45YW4S2wNQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,253,1758610800"; 
-   d="scan'208";a="199901108"
-Received: from lkp-server01.sh.intel.com (HELO 4664bbef4914) ([10.239.97.150])
-  by fmviesa005.fm.intel.com with ESMTP; 05 Dec 2025 20:22:37 -0800
-Received: from kbuild by 4664bbef4914 with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vRjoZ-00000000FqH-1Wwd;
-	Sat, 06 Dec 2025 04:22:35 +0000
-Date: Sat, 6 Dec 2025 12:22:14 +0800
-From: kernel test robot <lkp@intel.com>
-To: Richard Genoud <richard.genoud@bootlin.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>
-Cc: oe-kbuild-all@lists.linux.dev,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	Richard Genoud <richard.genoud@bootlin.com>
-Subject: Re: [PATCH 2/4] pwm: sun50i: Add H616 PWM support
-Message-ID: <202512061109.UxaYeMZ9-lkp@intel.com>
-References: <20251205100239.1563353-3-richard.genoud@bootlin.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=iW4NcQoojYu5fLY3d2odSR8KxbJldp7POs1nBzBddPd4vEDngbgAk2Zj4PhYPLYR/sjHcfHeCuuCybHXojUmPlrg+wW0orJsOsW9AlDHJPOy1kWHh4SjrVN+5eGQVQEV2EO5PW/ok7Zrl3Fp4r+m+507GHzPg9pzxrrEmZK6Kk8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=H18/e4ux; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=f7SGrtF5; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5B63QA6a2574587
+	for <devicetree@vger.kernel.org>; Sat, 6 Dec 2025 04:26:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=ognPUSg0ypp1iSasBEkkG0+y
+	XPls6MuScMwxxjxW6Z8=; b=H18/e4uxN+1Z65eAK3Mv4WzVO9CmFRc5JVfOu2W6
+	3D3tV90s8K/5Ag29zrnXOnwFqLVX34d/re6Qp45j44MAc6g5FKp5mMWQ0SaiZn+Q
+	KEHFPOJe1CgIZcgRg14L2HgkeddYfrqyqYKrW/JjD0ZxZH1lGMsfcM0lNGEUFKXl
+	lFQqr/AYse3SDwlXl71+SyVocAxh1clXnOoIuqSk5XJCFe+5tEbzQNi/J+QvmdED
+	kXAyj+HQUAI1+sGkkN8VPZD6Up7gJhBwqJvDnKyIEqhlfBLXbqVLM2Ho5bHIQteJ
+	YCzmId2T+ZXHp10VVOR5dg/OIiKP96XQRLK+d9bsdZN16w==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4avcjv82rt-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Sat, 06 Dec 2025 04:26:00 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-8b6963d1624so53811985a.0
+        for <devicetree@vger.kernel.org>; Fri, 05 Dec 2025 20:26:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1764995159; x=1765599959; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=ognPUSg0ypp1iSasBEkkG0+yXPls6MuScMwxxjxW6Z8=;
+        b=f7SGrtF5mlRldrZ231NX7CLkUGc6HQkNB9bmiBiYp9qJ8GMavacpFR4t6CaMO98Gzp
+         5YLOtnO5Vdk2Ac0f/zgP+6dyMvVTQ7zcLTJ+YC2rfYeD9ukuJ+nWJII21LXmPq14I/LS
+         4eM7gSyTF3C1r2L8GxsW025o2RnEEVdpgziMTx3t3JEgaoPgc19TTWbE3+eYlCGwjTHQ
+         K7FOb56qZDa8PZ2rDG4RZdnG3ZMnG5nauga8iS/x9LEPPjktA7BLhL02SkGKTdO+jgy5
+         W+eGHcczZcvQZ6lS2LwZ1hc9kceCIsh9D7XasdJIuRl04tnBD0OIVid6VELetPj0DRU7
+         nN8A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764995159; x=1765599959;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ognPUSg0ypp1iSasBEkkG0+yXPls6MuScMwxxjxW6Z8=;
+        b=bqL7rLKiOzYwDzQyP7PkkoZULYewTqC4ogFLwMQb/zUabu8sK9J6AyvjLjSs/AZiLB
+         ZLpkaHvsMZkIzbFrkyKebm/evilBiiiVrkJHPVbedDVLS+Fkia7HecCsM3GY0cmr5rPz
+         2xGPxLV0tmY1/wP9alvRaMK3cbRtJN5yma1uzyaaOp3WeBR6Kxwiv5hbDTNkO1mpgRTy
+         1FmBonti4VOuW4YhOT7V3kHidkpwOAFBqpiFuW3IJgHfn6CY1Fsegk1QhFMXLYk4AIhd
+         HV3nXt3YhAGYTDF2IzIV97tc7178PBwr72rve27GuxqMDjWVMmZvWqtVyQIpp0fqG/vb
+         fG4Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXWu57n2jtNiVFeGHZm9untlBEhwxxllTlR2j0Sn2Wp+TI4CLQDvpQSeIaNUwzZEF16SN6mSzQ5Ub3M@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw3pcw9O+SVxY5xvZ0A1aIWzK6qHJlnGaZwqBZInnQM+X/pCvSE
+	eMMFnjpP5nMqnL6JhXZ8t0g1tFxWYmaZBd7hBOO1ytqwPDnTaSrXvEYIUHN7RdGtz3RdG3UubPB
+	8WoJMcHgxwL90mQvxnYQ/u78ELq3HHW+o+JxAranQzyywAJAnFymcOtLFP5yUZ/kX
+X-Gm-Gg: ASbGncu1NKLdjMzwfCaioUI07CBptTwiDGYxsMadfVecWd4bPtcbXSIHd/BhKq4TiWl
+	XdmEwMpEgAKvyralSaTd5BZXwJcdoZhqyc296a8v/Yv1y3EU/IgtI4dqdAVdq/JfdXC22mHLmaq
+	J6/4gfssKF3ATNujzKF3yJT2uVgbgVbuS/hqlTC0HEkQgpxD9RnmeL2VECqjik7RBuEsTFIOa+B
+	1pSDRFn+aQ298kCtm8adbGJ8Xy5xNWvOpVIDMMIV7scUF+rsHdvjMneFkSOiS/O9p5j2DzRDJ+6
+	fZ0iJtpo5omDBgH22N/3GHI1JnRHvr40+cZjYqIFI+AB4yS6gP9JaguaWzkU4uS89193s8DCfsL
+	fSBJUq6Tp6+vuPYckQGeP9ZAiExIOOsI24EtMBLlHtN7EBHHoux0RIDq0h9KqTypdVqj0sDVf9N
+	ePysYbXUanHACCY6g/OOg87QI=
+X-Received: by 2002:a05:620a:3181:b0:89f:27dc:6536 with SMTP id af79cd13be357-8b6a23d3ce7mr198628285a.54.1764995159384;
+        Fri, 05 Dec 2025 20:25:59 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGZLXHLgEMHcj/4gWSWWforl0+eBSPgONjDyYevRp8h1TrRuz9KnFaSPg9m3taHQ5GRofi9PQ==
+X-Received: by 2002:a05:620a:3181:b0:89f:27dc:6536 with SMTP id af79cd13be357-8b6a23d3ce7mr198625585a.54.1764995158921;
+        Fri, 05 Dec 2025 20:25:58 -0800 (PST)
+Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-597d7b1a7dbsm2067046e87.20.2025.12.05.20.25.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 05 Dec 2025 20:25:58 -0800 (PST)
+Date: Sat, 6 Dec 2025 06:25:56 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: david@ixit.cz
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        Casey Connolly <casey.connolly@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Jessica Zhang <jesszhan0024@gmail.com>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Dmitry Baryshkov <lumag@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        phodina@protonmail.com, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        phone-devel@vger.kernel.org, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v4 4/8] drm/panel: sw43408: Add enable/disable and reset
+ functions
+Message-ID: <jqgwmjet2ncit5bqilvuqldxrtcapiozmpbk5klc5tybwbfezi@4muxgno7do45>
+References: <20251125-pixel-3-v4-0-3b706f8dcc96@ixit.cz>
+ <20251125-pixel-3-v4-4-3b706f8dcc96@ixit.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,257 +124,200 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251205100239.1563353-3-richard.genoud@bootlin.com>
+In-Reply-To: <20251125-pixel-3-v4-4-3b706f8dcc96@ixit.cz>
+X-Authority-Analysis: v=2.4 cv=Dccaa/tW c=1 sm=1 tr=0 ts=6933b058 cx=c_pps
+ a=qKBjSQ1v91RyAK45QCPf5w==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=dyG3DeJWMbf1Z_p6H2UA:9 a=CjuIK1q_8ugA:10 a=NFOGd7dJGGMPyQGDc5-O:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjA2MDAzMyBTYWx0ZWRfX1EYNECuTcmDV
+ JWz07APvLvPzNbwR9+cjIHgO9n7BimYR39rs1gLxs5hvMo+cNK9JO4oq9ZIrxpJV5VDpi+YesmH
+ QWIwUV8ew5kIvBd5y2wnwSCR7Nu3MjtjgVDCCqh7xsAnYjnpni2Q6TShe5xdXkSFYgUDZiKua1S
+ UfDzl12iEws2TcOk6G4uGtMCqmCz6A96GcsHha3WMXqMoiCPiH2aF8UD/Pw3nWdQFlQ8k5/j9Ky
+ 9SbT+wiALqZ6hX2X4qTKvk3r/kIR3Zz6GiuD9pcP/dZZRIq2b/E7RYbhgsxg3TIri7V62i5vb4t
+ W3HzagypzIJ0WkWlE447E3r5tszsUKlZkMoXAFTpnljhYzR2u51WyWzFoUoOfERx0lZSJqnpwCV
+ NU7x7qvkXsg7gIQeQGvJRFTozSkveg==
+X-Proofpoint-ORIG-GUID: A579GVEV9Fp0VnNrGPbZsG8GqZ4ihh6R
+X-Proofpoint-GUID: A579GVEV9Fp0VnNrGPbZsG8GqZ4ihh6R
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-05_09,2025-12-04_04,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 impostorscore=0 suspectscore=0 clxscore=1015 malwarescore=0
+ lowpriorityscore=0 priorityscore=1501 adultscore=0 phishscore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512060033
 
-Hi Richard,
+On Tue, Nov 25, 2025 at 09:29:39PM +0100, David Heidelberg via B4 Relay wrote:
+> From: David Heidelberg <david@ixit.cz>
+> 
+> Introduce enable(), disable() and reset() functions.
+> 
+> The enable() and disable() callbacks keep the symmetry in the commands
+> sent to the panel and also make a clearer distinction between panel
+> initialization and configuration.
 
-kernel test robot noticed the following build errors:
+This also makes those to to be executed after starting the DSI stream.
+Is it fine?
 
-[auto build test ERROR on 6987d58a9cbc5bd57c983baa514474a86c945d56]
+> 
+> Splitting reset() from prepare() follows clean coding practices and lets
+> us potentially make reset optional in the future for flicker-less
+> takeover from a bootloader or framebuffer driver where the panel is
+> already configured.
+> 
+> Signed-off-by: David Heidelberg <david@ixit.cz>
+> ---
+>  drivers/gpu/drm/panel/panel-lg-sw43408.c | 83 ++++++++++++++++++++------------
+>  1 file changed, 53 insertions(+), 30 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/panel/panel-lg-sw43408.c b/drivers/gpu/drm/panel/panel-lg-sw43408.c
+> index dcca7873acf8e..20217877e107f 100644
+> --- a/drivers/gpu/drm/panel/panel-lg-sw43408.c
+> +++ b/drivers/gpu/drm/panel/panel-lg-sw43408.c
+> @@ -38,11 +38,10 @@ static inline struct sw43408_panel *to_panel_info(struct drm_panel *panel)
+>  	return container_of(panel, struct sw43408_panel, base);
+>  }
+>  
+> -static int sw43408_unprepare(struct drm_panel *panel)
+> +static int sw43408_disable(struct drm_panel *panel)
+>  {
+>  	struct sw43408_panel *sw43408 = to_panel_info(panel);
+>  	struct mipi_dsi_multi_context ctx = { .dsi = sw43408->link };
+> -	int ret;
+>  
+>  	mipi_dsi_dcs_set_display_off_multi(&ctx);
+>  
+> @@ -50,19 +49,55 @@ static int sw43408_unprepare(struct drm_panel *panel)
+>  
+>  	mipi_dsi_msleep(&ctx, 100);
+>  
+> +	return ctx.accum_err;
+> +}
+> +
+> +static int sw43408_unprepare(struct drm_panel *panel)
+> +{
+> +	struct sw43408_panel *sw43408 = to_panel_info(panel);
+> +	int ret;
+> +
+>  	gpiod_set_value(sw43408->reset_gpio, 1);
+>  
+>  	ret = regulator_bulk_disable(ARRAY_SIZE(sw43408->supplies), sw43408->supplies);
+>  
+> -	return ret ? : ctx.accum_err;
+> +	return ret;
+>  }
+>  
+> -static int sw43408_program(struct drm_panel *panel)
+> +static int sw43408_enable(struct drm_panel *panel)
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Richard-Genoud/dt-bindings-pwm-sunxi-add-PWM-controller-for-Allwinner-H616/20251205-214804
-base:   6987d58a9cbc5bd57c983baa514474a86c945d56
-patch link:    https://lore.kernel.org/r/20251205100239.1563353-3-richard.genoud%40bootlin.com
-patch subject: [PATCH 2/4] pwm: sun50i: Add H616 PWM support
-config: hexagon-randconfig-r073-20251206 (https://download.01.org/0day-ci/archive/20251206/202512061109.UxaYeMZ9-lkp@intel.com/config)
-compiler: clang version 22.0.0git (https://github.com/llvm/llvm-project 14bf95b06a18b9b59c89601cbc0e5a6f2176b118)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251206/202512061109.UxaYeMZ9-lkp@intel.com/reproduce)
+Please move it below sw43408_program() to ease code review.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202512061109.UxaYeMZ9-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> drivers/pwm/pwm-sun50i-h616.c:452:23: error: call to undeclared function 'FIELD_GET'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     452 |         tmp = NSEC_PER_SEC * PWM_REG_DUTY(val);
-         |                              ^
-   drivers/pwm/pwm-sun50i-h616.c:76:28: note: expanded from macro 'PWM_REG_DUTY'
-      76 | #define PWM_REG_DUTY(reg)               FIELD_GET(PWM_DUTY_MASK, reg)
-         |                                         ^
->> drivers/pwm/pwm-sun50i-h616.c:493:40: error: call to undeclared function 'FIELD_MAX'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     493 |                 freq = div64_u64(NSEC_PER_SEC * (u64)PWM_PERIOD_MAX, period);
-         |                                                      ^
-   drivers/pwm/pwm-sun50i-h616.c:79:26: note: expanded from macro 'PWM_PERIOD_MAX'
-      79 | #define PWM_PERIOD_MAX                  FIELD_MAX(PWM_PERIOD_MASK)
-         |                                         ^
-   drivers/pwm/pwm-sun50i-h616.c:508:27: error: call to undeclared function 'FIELD_MAX'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     508 |         if ((cnt == 0) || (cnt > PWM_PERIOD_MAX)) {
-         |                                  ^
-   drivers/pwm/pwm-sun50i-h616.c:79:26: note: expanded from macro 'PWM_PERIOD_MAX'
-      79 | #define PWM_PERIOD_MAX                  FIELD_MAX(PWM_PERIOD_MASK)
-         |                                         ^
->> drivers/pwm/pwm-sun50i-h616.c:577:9: error: call to undeclared function 'FIELD_PREP'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     577 |                 val = PWM_DUTY(chan->active_cycles);
-         |                       ^
-   drivers/pwm/pwm-sun50i-h616.c:78:25: note: expanded from macro 'PWM_DUTY'
-      78 | #define PWM_DUTY(dty)                   FIELD_PREP(PWM_DUTY_MASK, dty)
-         |                                         ^
-   4 errors generated.
-
-
-vim +/FIELD_GET +452 drivers/pwm/pwm-sun50i-h616.c
-
-   413	
-   414	static int h616_pwm_get_state(struct pwm_chip *chip,
-   415				      struct pwm_device *pwm,
-   416				      struct pwm_state *state)
-   417	{
-   418		struct h616_pwm_chip *h616chip = to_h616_pwm_chip(chip);
-   419		struct h616_pwm_channel *chan = &h616chip->channels[pwm->hwpwm];
-   420		u64 clk_rate, tmp;
-   421		u32 val;
-   422	
-   423		clk_rate = clk_get_rate(chan->pwm_clk);
-   424		if (!clk_rate)
-   425			return -EINVAL;
-   426	
-   427		val = h616_pwm_readl(h616chip, PWM_ENR);
-   428		state->enabled = !!(PWM_ENABLE(pwm->hwpwm) & val);
-   429	
-   430		val = h616_pwm_readl(h616chip, PWM_XY_CLK_CR(PWM_PAIR_IDX(pwm->hwpwm)));
-   431		if (val & BIT(PWM_XY_CLK_CR_BYPASS_BIT(pwm->hwpwm))) {
-   432			/*
-   433			 * When bypass is enabled, the PWM logic is inactive.
-   434			 * The PWM_clock_src_xy is directly routed to PWM_clock_x
-   435			 */
-   436			state->period = DIV_ROUND_UP_ULL(NSEC_PER_SEC, clk_rate);
-   437			state->duty_cycle = DIV_ROUND_UP_ULL(state->period, 2);
-   438			state->polarity = PWM_POLARITY_NORMAL;
-   439			return 0;
-   440		}
-   441	
-   442		state->enabled &= !!(BIT(PWM_XY_CLK_CR_GATE_BIT) & val);
-   443	
-   444		val = h616_pwm_readl(h616chip, PWM_CTRL_REG(pwm->hwpwm));
-   445		if (val & PWM_CTRL_ACTIVE_STATE)
-   446			state->polarity = PWM_POLARITY_NORMAL;
-   447		else
-   448			state->polarity = PWM_POLARITY_INVERSED;
-   449	
-   450		val = h616_pwm_readl(h616chip, PWM_PERIOD_REG(pwm->hwpwm));
-   451	
- > 452		tmp = NSEC_PER_SEC * PWM_REG_DUTY(val);
-   453		state->duty_cycle = DIV_ROUND_CLOSEST_ULL(tmp, clk_rate);
-   454	
-   455		tmp = NSEC_PER_SEC * PWM_REG_PERIOD(val);
-   456		state->period = DIV_ROUND_CLOSEST_ULL(tmp, clk_rate);
-   457	
-   458		return 0;
-   459	}
-   460	
-   461	static int h616_pwm_calc(struct pwm_chip *chip, unsigned int idx,
-   462				 const struct pwm_state *state)
-   463	{
-   464		struct h616_pwm_chip *h616chip = to_h616_pwm_chip(chip);
-   465		struct h616_pwm_channel *chan = &h616chip->channels[idx];
-   466		unsigned int cnt, duty_cnt;
-   467		unsigned long max_rate;
-   468		long calc_rate;
-   469		u64 duty, period, freq;
-   470	
-   471		duty = state->duty_cycle;
-   472		period = state->period;
-   473	
-   474		max_rate = clk_round_rate(chan->pwm_clk, UINT32_MAX);
-   475	
-   476		dev_dbg(pwmchip_parent(chip), "max_rate: %ld Hz\n", max_rate);
-   477	
-   478		if ((period * max_rate >= NSEC_PER_SEC) &&
-   479		    (period * max_rate < 2 * NSEC_PER_SEC) &&
-   480		    (duty * max_rate * 2 >= NSEC_PER_SEC)) {
-   481			/*
-   482			 * If the requested period is to small to be generated by the
-   483			 * PWM, we can just select the highest clock and bypass the
-   484			 * PWM logic
-   485			 */
-   486			dev_dbg(pwmchip_parent(chip), "Setting bypass (period=%lld)\n",
-   487				period);
-   488			freq = div64_u64(NSEC_PER_SEC, period);
-   489			chan->bypass = true;
-   490			duty = period / 2;
-   491		} else {
-   492			chan->bypass = false;
- > 493			freq = div64_u64(NSEC_PER_SEC * (u64)PWM_PERIOD_MAX, period);
-   494			if (freq > UINT32_MAX)
-   495				freq = UINT32_MAX;
-   496		}
-   497	
-   498		calc_rate = clk_round_rate(chan->pwm_clk, freq);
-   499		if (calc_rate <= 0) {
-   500			dev_err(pwmchip_parent(chip),
-   501				"Invalid source clock frequency %llu\n", freq);
-   502			return calc_rate ? calc_rate : -EINVAL;
-   503		}
-   504	
-   505		dev_dbg(pwmchip_parent(chip), "calc_rate: %ld Hz\n", calc_rate);
-   506	
-   507		cnt = mul_u64_u64_div_u64(calc_rate, period, NSEC_PER_SEC);
-   508		if ((cnt == 0) || (cnt > PWM_PERIOD_MAX)) {
-   509			dev_err(pwmchip_parent(chip), "Period out of range\n");
-   510			return -EINVAL;
-   511		}
-   512	
-   513		duty_cnt = mul_u64_u64_div_u64(calc_rate, duty, NSEC_PER_SEC);
-   514	
-   515		if (duty_cnt >= cnt)
-   516			duty_cnt = cnt - 1;
-   517	
-   518		dev_dbg(pwmchip_parent(chip), "period=%llu cnt=%u duty=%llu duty_cnt=%u\n",
-   519			period, cnt, duty, duty_cnt);
-   520	
-   521		chan->active_cycles = duty_cnt;
-   522		chan->entire_cycles = cnt;
-   523	
-   524		chan->rate = calc_rate;
-   525	
-   526		return 0;
-   527	}
-   528	
-   529	static int h616_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
-   530				  const struct pwm_state *state)
-   531	{
-   532		struct h616_pwm_chip *h616chip = to_h616_pwm_chip(chip);
-   533		struct h616_pwm_channel *chan = &h616chip->channels[pwm->hwpwm];
-   534		struct pwm_state cstate;
-   535		unsigned long flags;
-   536		u32 val;
-   537		int ret;
-   538	
-   539		ret = h616_pwm_calc(chip, pwm->hwpwm, state);
-   540		if (ret) {
-   541			dev_err(pwmchip_parent(chip), "period exceeds the maximum value\n");
-   542			return ret;
-   543		}
-   544	
-   545		pwm_get_state(pwm, &cstate);
-   546	
-   547		ret = clk_set_rate(chan->pwm_clk, chan->rate);
-   548		if (ret) {
-   549			dev_err(pwmchip_parent(chip), "failed to set PWM %d clock rate to %lu\n",
-   550				pwm->hwpwm, chan->rate);
-   551			return ret;
-   552		}
-   553	
-   554		h616_pwm_set_bypass(h616chip, pwm->hwpwm, chan->bypass);
-   555	
-   556		/*
-   557		 * If bypass is set, the PWM logic (polarity, duty) can't be applied
-   558		 */
-   559	
-   560		if (chan->bypass && (state->polarity == PWM_POLARITY_INVERSED)) {
-   561			dev_warn(pwmchip_parent(chip),
-   562				 "Can't set inversed polarity with bypass enabled\n");
-   563		} else {
-   564			val = h616_pwm_readl(h616chip, PWM_CTRL_REG(pwm->hwpwm));
-   565			val &= ~PWM_CTRL_ACTIVE_STATE;
-   566			if (state->polarity == PWM_POLARITY_NORMAL)
-   567				val |= PWM_CTRL_ACTIVE_STATE;
-   568			h616_pwm_writel(h616chip, val, PWM_CTRL_REG(pwm->hwpwm));
-   569		}
-   570	
-   571		if (chan->bypass && (state->duty_cycle * 2 != state->period)) {
-   572			dev_warn(pwmchip_parent(chip),
-   573				 "Can't set a duty cycle with bypass enabled\n");
-   574		}
-   575	
-   576		if (!chan->bypass) {
- > 577			val = PWM_DUTY(chan->active_cycles);
-   578			val |= PWM_PERIOD(chan->entire_cycles);
-   579			h616_pwm_writel(h616chip, val, PWM_PERIOD_REG(pwm->hwpwm));
-   580		}
-   581	
-   582		if (state->enabled == cstate.enabled)
-   583			return 0;
-   584	
-   585		if (cstate.enabled) {
-   586			unsigned long delay_us;
-   587	
-   588			/*
-   589			 * We need a full period to elapse before
-   590			 * disabling the channel.
-   591			 */
-   592			delay_us = DIV_ROUND_UP_ULL(cstate.period, NSEC_PER_USEC);
-   593			fsleep(delay_us);
-   594		}
-   595	
-   596		spin_lock_irqsave(&h616chip->clk_pdata->lock, flags);
-   597	
-   598		val = h616_pwm_readl(h616chip, PWM_ENR);
-   599		if (state->enabled)
-   600			val |= PWM_ENABLE(pwm->hwpwm);
-   601		else
-   602			val &= ~PWM_ENABLE(pwm->hwpwm);
-   603		h616_pwm_writel(h616chip, val, PWM_ENR);
-   604	
-   605		spin_unlock_irqrestore(&h616chip->clk_pdata->lock, flags);
-   606	
-   607		return 0;
-   608	}
-   609	
+>  {
+>  	struct sw43408_panel *sw43408 = to_panel_info(panel);
+>  	struct mipi_dsi_multi_context ctx = { .dsi = sw43408->link };
+>  	struct drm_dsc_picture_parameter_set pps;
+>  
+> +	mipi_dsi_dcs_set_display_on_multi(&ctx);
+> +
+> +	mipi_dsi_msleep(&ctx, 50);
+> +
+> +	sw43408->link->mode_flags &= ~MIPI_DSI_MODE_LPM;
+> +
+> +	drm_dsc_pps_payload_pack(&pps, sw43408->link->dsc);
+> +
+> +	mipi_dsi_picture_parameter_set_multi(&ctx, &pps);
+> +
+> +	sw43408->link->mode_flags |= MIPI_DSI_MODE_LPM;
+> +
+> +	/*
+> +	 * This panel uses PPS selectors with offset:
+> +	 * PPS 1 if pps_identifier is 0
+> +	 * PPS 2 if pps_identifier is 1
+> +	 */
+> +	mipi_dsi_compression_mode_ext_multi(&ctx, true,
+> +					    MIPI_DSI_COMPRESSION_DSC, 1);
+> +
+> +	return ctx.accum_err;
+> +}
+> +
+> +static int sw43408_program(struct drm_panel *panel)
+> +{
+> +	struct sw43408_panel *sw43408 = to_panel_info(panel);
+> +	struct mipi_dsi_multi_context ctx = { .dsi = sw43408->link };
+> +
+>  	mipi_dsi_dcs_write_seq_multi(&ctx, MIPI_DCS_SET_GAMMA_CURVE, 0x02);
+>  
+>  	mipi_dsi_dcs_set_tear_on_multi(&ctx, MIPI_DSI_DCS_TEAR_MODE_VBLANK);
+> @@ -97,26 +132,19 @@ static int sw43408_program(struct drm_panel *panel)
+>  	mipi_dsi_dcs_write_seq_multi(&ctx, 0x55, 0x04, 0x61, 0xdb, 0x04, 0x70, 0xdb);
+>  	mipi_dsi_dcs_write_seq_multi(&ctx, 0xb0, 0xca);
+>  
+> -	mipi_dsi_dcs_set_display_on_multi(&ctx);
+> -
+> -	mipi_dsi_msleep(&ctx, 50);
+> -
+> -	sw43408->link->mode_flags &= ~MIPI_DSI_MODE_LPM;
+> -
+> -	drm_dsc_pps_payload_pack(&pps, sw43408->link->dsc);
+> -
+> -	mipi_dsi_picture_parameter_set_multi(&ctx, &pps);
+> +	return ctx.accum_err;
+> +}
+>  
+> -	sw43408->link->mode_flags |= MIPI_DSI_MODE_LPM;
+> +static void sw43408_reset(struct sw43408_panel *ctx)
+> +{
+> +	usleep_range(5000, 6000);
+>  
+> -	/*
+> -	 * This panel uses PPS selectors with offset:
+> -	 * PPS 1 if pps_identifier is 0
+> -	 * PPS 2 if pps_identifier is 1
+> -	 */
+> -	mipi_dsi_compression_mode_ext_multi(&ctx, true,
+> -					    MIPI_DSI_COMPRESSION_DSC, 1);
+> -	return ctx.accum_err;
+> +	gpiod_set_value(ctx->reset_gpio, 0);
+> +	usleep_range(9000, 10000);
+> +	gpiod_set_value(ctx->reset_gpio, 1);
+> +	usleep_range(1000, 2000);
+> +	gpiod_set_value(ctx->reset_gpio, 0);
+> +	usleep_range(9000, 10000);
+>  }
+>  
+>  static int sw43408_prepare(struct drm_panel *panel)
+> @@ -128,14 +156,7 @@ static int sw43408_prepare(struct drm_panel *panel)
+>  	if (ret < 0)
+>  		return ret;
+>  
+> -	usleep_range(5000, 6000);
+> -
+> -	gpiod_set_value(ctx->reset_gpio, 0);
+> -	usleep_range(9000, 10000);
+> -	gpiod_set_value(ctx->reset_gpio, 1);
+> -	usleep_range(1000, 2000);
+> -	gpiod_set_value(ctx->reset_gpio, 0);
+> -	usleep_range(9000, 10000);
+> +	sw43408_reset(ctx);
+>  
+>  	ret = sw43408_program(panel);
+>  	if (ret)
+> @@ -208,6 +229,8 @@ static int sw43408_backlight_init(struct sw43408_panel *ctx)
+>  }
+>  
+>  static const struct drm_panel_funcs sw43408_funcs = {
+> +	.disable = sw43408_disable,
+> +	.enable = sw43408_enable,
+>  	.unprepare = sw43408_unprepare,
+>  	.prepare = sw43408_prepare,
+>  	.get_modes = sw43408_get_modes,
+> 
+> -- 
+> 2.51.0
+> 
+> 
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+With best wishes
+Dmitry
 
