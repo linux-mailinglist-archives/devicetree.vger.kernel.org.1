@@ -1,61 +1,66 @@
-Return-Path: <devicetree+bounces-244965-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244966-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9818CCAAA29
-	for <lists+devicetree@lfdr.de>; Sat, 06 Dec 2025 17:26:57 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id CBFC8CAAA50
+	for <lists+devicetree@lfdr.de>; Sat, 06 Dec 2025 17:32:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id E86453010E02
-	for <lists+devicetree@lfdr.de>; Sat,  6 Dec 2025 16:26:56 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 242DB303717D
+	for <lists+devicetree@lfdr.de>; Sat,  6 Dec 2025 16:31:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0148B28980F;
-	Sat,  6 Dec 2025 16:26:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84E74296BC4;
+	Sat,  6 Dec 2025 16:31:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k2+Goi7g"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CYFTxawB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4EA425CC40;
-	Sat,  6 Dec 2025 16:26:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 585268632B;
+	Sat,  6 Dec 2025 16:31:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765038413; cv=none; b=hieXIUWHFMYCbxFi+wRDy7R1MbX7WFppmv4q3mler/fykKv3fvsJnn9eZkAWW8l9LkhDu5zV13JuwmWnBnWf8fPo5fqSOu5yiXLEnX+PVwdKWWRdryCMTqijRtWUPDC6KkxFYf95lwu3dKEtG0SdLATxWe1BjcDLCZs4+PgZeqQ=
+	t=1765038675; cv=none; b=iFDAW4ZbQtbSMihHjQzxY5OwecIFZpmcko5K55/88oLrv6ZZnBSgVIY5mI13zk0a61fuq5W9AfXiAZ4RnCCwZwLLGUrtSk2yL4JZjSmNz/GuRgLZ/jiEO8ocyr7RCOskUdqivNyaAD6Fa4dBjfHBmDTpCPLob9uTz+p6uqxsGpg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765038413; c=relaxed/simple;
-	bh=zlh6R34eLvBCutMwxLhNz1D7zkl+YobUWg9d9oj9hjs=;
+	s=arc-20240116; t=1765038675; c=relaxed/simple;
+	bh=CFjhP+ZceOE1ys/wBO743XszSyWObLsmhtUQedKfNUQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=NKM5qjYMw2EOOQQx79cJZNTYw+fPMdeb4Jku8vew5NMixXJk86bGjdJ9tXSKLuVf7VyGBGcigA9nVMH7X1I6MZYKKL99Ce/2SFBQAKiGaZkW4y+kUYs0e69AoKmke1GSEpCesK60J57CUqpfp2vavaaw4+n+1Pu9neVknMUCDKs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k2+Goi7g; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2CD7C4CEF5;
-	Sat,  6 Dec 2025 16:26:47 +0000 (UTC)
+	 MIME-Version:Content-Type; b=sZ3/oowqnlTYEwhUNZcCDJe2CQarx7HCZnFjNQEgrx0hj/RImFFd3BCVabw3BQyaVlt1z6zZTq1RwFsQJ/1jYscsXLr3wTFvzbqoOBUgqq4/zES9YVnkqrpNDhhMeaO8ZXNMfZJ90Jolly+KKSCO0e6/CJ28IvCIVtyOiAavlEg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CYFTxawB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F35C2C4CEF5;
+	Sat,  6 Dec 2025 16:31:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765038413;
-	bh=zlh6R34eLvBCutMwxLhNz1D7zkl+YobUWg9d9oj9hjs=;
+	s=k20201202; t=1765038674;
+	bh=CFjhP+ZceOE1ys/wBO743XszSyWObLsmhtUQedKfNUQ=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=k2+Goi7gn14RM99gy+jqv0HDG+ILpo2xdjCfDDixJQBfHg//cv5K2c5owg0ledR3z
-	 3iVMTNt3dsjwl7atEmUmUSjzPkUupcqFS+bhdK89qKxxztywn50FUdiR8cDiRpYBwp
-	 S34NYniVTpYwU8plQLZoO9NC2VDBNGeSI3zf5qzofvHzNpjveiD5HylBUsFy/BhIrZ
-	 tlZzJWkoz+v54APkswRYFoGeKXZdKGZza8kUqLpM0SqpziOhQjN9PLdMS2p9mvU3JX
-	 biSVa5oDVurkKc4uZnKJFI7tJgl2Dhinu2yVoFXmT2iNkgl88NFt3v0pTaPGi93H5g
-	 nm6IXplEywZTA==
-Date: Sat, 6 Dec 2025 16:26:42 +0000
+	b=CYFTxawBBuBRjv1DRad+RmOw+68HM5xqPObRQFicJ3PzyEKcTh9aAJqofoG3Sa+C9
+	 4Bw2RAOAnqm/b5nz8j4jDBOSd1ElSK0bGSSIdIdG1f7iNHN+2SO4yh94NgQztaDOU/
+	 SAq0VUn5Kh3LyP9133qxGNOxRtY0cDH5aTLW0pbBAYBDV++FnS2//+Pze7vJ90md36
+	 ak+9qpH9Nco6xQcvvmqCcpAvUzh4KVDo3mZZ/GF+zO6PdpzTJOsKEOIHh4EVciot1l
+	 7A1OxPVGtU6tHdLwtV2MmEFCZlOQ6odGuQYCMvQsifkSDAjxo/vLIEv+L1+s7gzMTq
+	 D/1PWPDfyzrsA==
+Date: Sat, 6 Dec 2025 16:31:03 +0000
 From: Jonathan Cameron <jic23@kernel.org>
-To: Tomas Borquez <tomasborquez13@gmail.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Greg
- Kroah-Hartman <gregkh@linuxfoundation.org>, David Lechner
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc: Jorge Marques <gastmaier@gmail.com>, Jorge Marques
+ <jorge.marques@analog.com>, Lars-Peter Clausen <lars@metafoo.de>, Michael
+ Hennerich <Michael.Hennerich@analog.com>, David Lechner
  <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy
- Shevchenko <andy@kernel.org>, linux-iio@vger.kernel.org,
+ Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Jonathan Corbet <corbet@lwn.net>, linux-iio@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-staging@lists.linux.dev
-Subject: Re: [RFC PATCH 3/3] dt-bindings: iio: add analog devices
- ad9832/ad9835
-Message-ID: <20251206162642.5b4a3e9b@jic23-huawei>
-In-Reply-To: <20251205202743.10530-4-tomasborquez13@gmail.com>
-References: <20251205202743.10530-1-tomasborquez13@gmail.com>
-	<20251205202743.10530-4-tomasborquez13@gmail.com>
+ linux-doc@vger.kernel.org
+Subject: Re: [PATCH 3/7] iio: adc: Add support for ad4062
+Message-ID: <20251206163103.514c1aad@jic23-huawei>
+In-Reply-To: <aSQhCKBC36T9t-H1@smile.fi.intel.com>
+References: <20251013-staging-ad4062-v1-0-0f8ce7fef50c@analog.com>
+	<20251013-staging-ad4062-v1-3-0f8ce7fef50c@analog.com>
+	<20251018171032.144a126c@jic23-huawei>
+	<ou6qwayt4g7qaoe5dm7tdg6jl5dwquslpfbok6on5r2q2wytyl@wlqxj5y6ircj>
+	<aSQMjZbc75cQtFqJ@smile.fi.intel.com>
+	<o4kt2of4xql4azufjgiecm4jzuexgm6nkvr7aghbwfk6qd7yqd@r4plggehzces>
+	<aSQhCKBC36T9t-H1@smile.fi.intel.com>
 X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -66,113 +71,141 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On Fri,  5 Dec 2025 17:27:43 -0300
-Tomas Borquez <tomasborquez13@gmail.com> wrote:
+On Mon, 24 Nov 2025 11:10:32 +0200
+Andy Shevchenko <andriy.shevchenko@intel.com> wrote:
 
-> Add devicetree binding documentation for the AD9832 and AD9835
-> Digital Synthesizer chips.
+> On Mon, Nov 24, 2025 at 09:57:26AM +0100, Jorge Marques wrote:
+> > On Mon, Nov 24, 2025 at 09:43:09AM +0200, Andy Shevchenko wrote:  
+> > > On Sun, Nov 23, 2025 at 08:48:09PM +0100, Jorge Marques wrote:  
+> > > > On Sat, Oct 18, 2025 at 05:10:32PM +0100, Jonathan Cameron wrote:  
+> > > > > On Mon, 13 Oct 2025 09:28:01 +0200
+> > > > > Jorge Marques <jorge.marques@analog.com> wrote:  
 > 
-> Signed-off-by: Tomas Borquez <tomasborquez13@gmail.com>
+> > > > Mostly acknowledgements and explanations, except a comment on ACQUIRE usage.  
+> 
+> ...
+> 
+> > > > > > +static int ad4062_read_chan_raw(struct iio_dev *indio_dev, int *val)
+> > > > > > +{
+> > > > > > +	struct ad4062_state *st = iio_priv(indio_dev);
+> > > > > > +	int ret;
+> > > > > > +
+> > > > > > +	ret = pm_runtime_resume_and_get(&st->i3cdev->dev);  
+> > > > > There is a nice new
+> > > > > 	ACQUIRE()/ACQUIRE_ERR() related set of conditional guards defined that
+> > > > > let you do this using cleanup.h style.
+> > > > > 
+> > > > > https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=9a0abc39450a3123fd52533a662fbd37e0d1508c
+> > > > > 
+> > > > > This looks like a perfect example of where those help.
+> > > > > 
+> > > > > When I catch up with review backlog I plan to look for other
+> > > > > places to use that infrastructure in IIO.
+> > > > >   
+> > > > I tried implementing, here becomes
+> > > > 
+> > > >         ACQUIRE(pm_runtime_active_try_enabled, pm)(&st->i3cdev->dev);
+> > > >         ret = ACQUIRE_ERR(pm_runtime_active_try_enabled, &pm);
+> > > > 
+> > > > At buffer and monitor, since we put the device as active during the
+> > > > lifetime of the buffer and monitor mode, either I leave as is, or I bump
+> > > > the counter with pm_runtime_get_noresume, so when the method leaves, the
+> > > > counter drops to 1 and not 0, then on disable I drop the counter back to
+> > > > 0 and queue the autosuspend with pm_runtime_put_autosuspend.  
+> > > > >   
+> > > > > > +	if (ret)
+> > > > > > +		return ret;
+> > > > > > +
+> > > > > > +	ret = ad4062_set_operation_mode(st, st->mode);
+> > > > > > +	if (ret)
+> > > > > > +		goto out_error;
+> > > > > > +
+> > > > > > +	ret = __ad4062_read_chan_raw(st, val);
+> > > > > > +
+> > > > > > +out_error:
+> > > > > > +	pm_runtime_put_autosuspend(&st->i3cdev->dev);
+> > > > > > +	return ret;
+> > > > > > +}  
+> > > 
+> > > I read the above code, I read it again, I don't understand the reasoning.
+> > > The ACQUIRE() doesn't change the behaviour of the above code.
+> > > 
+> > > If you need to bump the reference counter, it should be done somewhere else
+> > > where it affects the flow, or this code has a bug.
+> > > 
+> > > If I miss something, please elaborate.  
+> > 
+> > The part highlighted does not require bumping the reference counter, but
+> > at the buffer acquisition and monitor mode, to not put the device back
+> > in low power mode during the lifetime of those operations.
+> > 
+> > Buffer more:
+> > 
+> >   static int ad4062_triggered_buffer_postenable(struct iio_dev *indio_dev)
+> >   {
+> >           struct ad4062_state *st = iio_priv(indio_dev);
+> >           int ret;
+> > 
+> > 	  // [ Some code ]
+> > 
+> >           ACQUIRE(pm_runtime_active_try_enabled, pm)(&st->i3cdev->dev);
+> >           ret = ACQUIRE_ERR(pm_runtime_active_try_enabled, &pm);
+> >           if (ret)
+> >                   return ret;
+> > 
+> > 	  // [ More code ]  
+> 
+> >           pm_runtime_get_noresume(&st->i3cdev->dev);  
+> 
+> 
+> Yes, this looks good if it makes the error paths cleaner.
+> Also consider adding
+> 
+> 	struct device *dev = &st->i3cdev->dev;
+> 
+> at the top of the functions that use it, it might make code better to read.
+> 
 
-Normally we only add a binding as part of the staging graduation
-which typically involves a full review of the whole driver (make sure
-to disable move detection in git if you send the code moving patch).
-
-Anyhow, we can still give early feedback on this!
-
-Whilst checking the pin mappings I finally noticed this a current source DAC
-not a voltage one so all the channel types should be out_altcurrent0_...
-
-Michael, I don't suppose you happen to remember why it is pretending to
-be a voltage DAC?  
+Sorry I'm late to respond to this.  If we do end up doing this
+Raphael has been posting some new macros to help and I'm rather dubious
+about using an acquire to grab a first reference then upgrading with with
+a second on the use paths.  I think ACQUIRE in this particular place may
+just not be appropriate.
 
 Jonathan
 
-> ---
->  .../bindings/iio/frequency/adi,ad9832.yaml    | 65 +++++++++++++++++++
->  1 file changed, 65 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/frequency/adi,ad9832.yaml
+> >           return 0;
+> >   }
+> > 
+> >   static int ad4062_triggered_buffer_predisable(struct iio_dev *indio_dev)
+> >   {
+> >           struct ad4062_state *st = iio_priv(indio_dev);
+> > 
+> >           pm_runtime_put_autosuspend(&st->i3cdev->dev);
+> >           return 0;
+> >   }
+> > 
+> > Monitor mode:
+> > 
+> >   static int ad4062_monitor_mode_enable(struct ad4062_state *st, bool enable)
+> >   {
+> >           int ret = 0;
+> > 
+> >           if (!enable) {
+> >                   pm_runtime_put_autosuspend(&st->i3cdev->dev);
+> >                   return 0;
+> >           }
+> > 
+> >           ACQUIRE(pm_runtime_active_try_enabled, pm)(&st->i3cdev->dev);
+> >           ret = ACQUIRE_ERR(pm_runtime_active_try_enabled, &pm);
+> >           if (ret)
+> >                   return ret;
+> > 
+> > 	  // [ Some code ]
+> > 
+> >           pm_runtime_get_noresume(&st->i3cdev->dev);
+> >           return 0;
+> >   }  
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/frequency/adi,ad9832.yaml b/Documentation/devicetree/bindings/iio/frequency/adi,ad9832.yaml
-> new file mode 100644
-> index 0000000000..f14e054ab2
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/frequency/adi,ad9832.yaml
-> @@ -0,0 +1,65 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/frequency/adi,ad9832.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Analog Devices AD9832/AD9835 Direct Digital Synthesizer
-> +
-> +maintainers:
-> +  - Michael Hennerich <michael.hennerich@analog.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - adi,ad9832
-> +      - adi,ad9835
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  spi-max-frequency:
-> +    maximum: 20000000
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    const: mclk
-> +
-> +  avdd-supply:
-> +    description: Analog power supply.
-> +
-> +  dvdd-supply:
-> +    description: Digital power supply.
-There looks to be a REFIN pin (and FS Adjust which is a bit of an oddity)
-We probably need to desribe any resistor connected to fs adjust a bit like
-a shunt resistor.
-
-
-See cover letter discussion for the ways the various
-inputs could be wired.  Some of the recent discussion on tied
-GPIOs is also relevant here. I'm not up to date with where that
-ended up yet though!
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - avdd-supply
-> +  - dvdd-supply
-> +
-> +allOf:
-> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    spi {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        dds@0 {
-> +            compatible = "adi,ad9832";
-> +            reg = <0>;
-> +            spi-max-frequency = <20000000>;
-> +            clocks = <&dds_clk>;
-> +            clock-names = "mclk";
-> +            avdd-supply = <&avdd_reg>;
-> +            dvdd-supply = <&dvdd_reg>;
-> +        };
-> +    };
-> +...
 
 
