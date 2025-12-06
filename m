@@ -1,262 +1,217 @@
-Return-Path: <devicetree+bounces-244939-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-244919-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E4E6CAA5BE
-	for <lists+devicetree@lfdr.de>; Sat, 06 Dec 2025 12:53:54 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00D75CAA3D3
+	for <lists+devicetree@lfdr.de>; Sat, 06 Dec 2025 11:12:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 7175130014D5
-	for <lists+devicetree@lfdr.de>; Sat,  6 Dec 2025 11:53:50 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 67F39316C80E
+	for <lists+devicetree@lfdr.de>; Sat,  6 Dec 2025 10:10:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18F85286422;
-	Sat,  6 Dec 2025 11:53:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9253C2F25E7;
+	Sat,  6 Dec 2025 10:10:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AULdaf+L"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="LLVUDwaa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B40F1F03D9
-	for <devicetree@vger.kernel.org>; Sat,  6 Dec 2025 11:53:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D85C72E229F;
+	Sat,  6 Dec 2025 10:10:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765022029; cv=none; b=Z6oD25sADBcZoR/A7ONskpdGO2JsFWxmVPgAPrSID5xFuC9q+3DarczHSlolds1p3h7Yoc5VrM1qbMA4dkNDiyiHzhrvB6WbtqoX2UIroe8EFTcSoewIcj/1vVE7eGiyNjKSgIyAWTzflDLPMIQS+KfFo8vbXjNq8RvfznFu98E=
+	t=1765015857; cv=none; b=tp6jz2I1K0z39TVDOHN+Uda3pJGYaDjTmjGmojWQlq+ZBsEOYAnn4BIUW43nsDuhYs3ujegMzsOpZZJ4QAR+p6DVCbxv8D8LnkiTUmCYUV614cw8BtBFL6MjRrQwQbcZqqF2gfjTOeqk4WdhNxJSu5gGFm+1KsBRuoAvyXOTMC8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765022029; c=relaxed/simple;
-	bh=m5XQ03NkmU7Dyvrl3uNqx25v8w2wEU616h/uh5i28kk=;
-	h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=TOBYU8dSfBivhAbDA1Z+UbzxjfK7Z+6rcd0H6K/S1eJHPwQyPJXuyXimzP2mWVqmQx5KNxCJ/K7t3FviGyqCzVGTQCwqQ3cfghk/0I3VEY71/0gp4g9LB8R7EGw+JoMr/xL0aackaEDIuwULffX3lKuVRwBB1Y3MA/iU1nmQwcY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AULdaf+L; arc=none smtp.client-ip=209.85.167.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-594270ec7f9so3387493e87.3
-        for <devicetree@vger.kernel.org>; Sat, 06 Dec 2025 03:53:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1765022025; x=1765626825; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=HePzOK2YwREM++8Zxr7PF7Xhi3Zuwv6TtIklSs2K0TA=;
-        b=AULdaf+Lb6RXP4k7hpaQDviERIiljT4cfThPQFpr840Rr1BORn/g6nab/Rripur9Z5
-         /xz9THn7EyyC1o30PXd9CbqOWrtsCrDTNHm8K8xG+HuEMUy47JmH7l5IQYjqEK6z9uWj
-         P9bCWJZ+N2bAkMbFbGsD/nvuMcXKGjS8B5CAZL4fgMp7AzgEIAuZ6lfZNVpNxVjy0eLN
-         oZ1Khrzk5DWiT6IfGXyUrzrxj0q1gXtY/VV+dsjzaKtEs25X7vX7YUy2A7X6h5SFyJNu
-         q/RxJjRP7vwQFjZ7AxRatKLOC9RrmbBTqYnk6xAhzx6mGbw5RkSLY1xm9X92VlBEXF04
-         rWfQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765022025; x=1765626825;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=HePzOK2YwREM++8Zxr7PF7Xhi3Zuwv6TtIklSs2K0TA=;
-        b=U5l1j4GmgtXEM/4nEl8XfMXyhVmzsZnkOCv0Twm8kCBrasVUJExRGDd2osvHRmQQ6H
-         xYfuzGMFgLC2BC9mfr2viBg78mftzDF6q6uMamtGfuyeuVrB36ZOWYnE3BLp7bMWIlLu
-         67KmBA/tgceKCn4MCVZtOeDGrcBIGiw/097wgprnsTwN5UVEazJnEPlFAkaAYxQp98PL
-         Dl396CMxjpOWDETF63cXaAInpQnJL4tL7FAqf4cD+rjUsSQRE/lF3LxRVzepLpqnZtL8
-         8tVm+A3mY3KOShQNzZ2peodm5PZkcsvzN2K908mK07k1Jt8IOWJvHzSb9xB5OLgqaXGM
-         +UsA==
-X-Forwarded-Encrypted: i=1; AJvYcCUOwTW00C61l1Jm8TPSeh8kkc49QjoaewNZQbPy/MLP3OJoHQ7wHYVUcIa0ojoPCuIXqzE0N0fEGlzp@vger.kernel.org
-X-Gm-Message-State: AOJu0YyIVCdHN83o7lYOAv3FBBGcZ74Wf/6purDhh70D/WJYEAerxzmV
-	zJJqAJX8eAbhX6l4kGi2VcL5ZSdVW1JQvDYoTHuC5w2rnv0uGK99qThH
-X-Gm-Gg: ASbGnctwjkjlOLEgIgRUFCkAnDQf420WJLBz4kBJHNWvAFkkIP/8lz2k6NiifQX1RCZ
-	ZiEum8//85ycYsKxG7PYHnYyRSuQA2fm7B9EgoILY6ug2h99urQs9QIBkk/GehhBEXMZd+tm+9n
-	hPd21AZ/4b8aYvdPlhbNGr8UQXStMBj0Rfk0A6W+hVMAvRvR3rY7ym0u/LVrj+5SfIh4vq4vZee
-	dCV3mMU4tE0yBvqhdllaV9K2r7l6Lt2gIsuHb4bFj+XbpPkJY8OPDtW1dmt5HU2ITBr/ZPwwn7l
-	zA+k/C8/r+RuzApsvEi7JpOgR4Nt5EjUkr+kN99CTfmmmSK98Kv6RMbBUBtXkthnCD9bHyH4tPU
-	EynVZ9R58Ofjxj8Zfeeh0jCWkqGexrgGiqh2beveNP2MyS5n97wWMT75MLPtPMp/froC4xoRasj
-	i84jzcQ99ikWmiMrA=
-X-Google-Smtp-Source: AGHT+IHLtSSBaH5vwkicDwq4VHYkBOA2QyJRB3rOh/XN2E2xH2ybmyHraxYc+LAfhlTKju/XpBChLA==
-X-Received: by 2002:a05:600c:828d:b0:477:7b16:5fb1 with SMTP id 5b1f17b1804b1-47939df0045mr23564235e9.7.1765015327245;
-        Sat, 06 Dec 2025 02:02:07 -0800 (PST)
-Received: from toolbox.. ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-479310c802bsm126055205e9.6.2025.12.06.02.02.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 06 Dec 2025 02:02:06 -0800 (PST)
-From: Christian Hewitt <christianshewitt@gmail.com>
-To: Detlev Casanova <detlev.casanova@collabora.com>,
-	=?UTF-8?q?Olivier=20Cr=C3=AAte?= <olivier.crete@collabora.com>,
-	Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Diederik de Haas <diederik@cknow-tech.com>,
-	Dmitry Osipenko <dmitry.osipenko@collabora.com>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Dragan Simic <dsimic@manjaro.org>,
-	Chukun Pan <amadeus@jmu.edu.cn>,
-	linux-media@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
+	s=arc-20240116; t=1765015857; c=relaxed/simple;
+	bh=x4LBu0tYO48O/Tw5dS2uZU4NXYDWzRICUMcCqyYY+Dk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=oszalntYYZF/mdw9ztN5YLjIiKFXFpOIygmjGQkhcJ4hHun5OJnRr+ysfk/9PcxxvuEW3Wc2sUmdtLpHXsJ7zNOsh2dBw9KbTDukDAVCCze4jMm3MwsBonGVig+24KLL5Pg9mtId0IbWfnBf22cWprXwi7+7t3V1z6nmvTPbfao=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=LLVUDwaa; arc=none smtp.client-ip=198.175.65.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1765015856; x=1796551856;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=x4LBu0tYO48O/Tw5dS2uZU4NXYDWzRICUMcCqyYY+Dk=;
+  b=LLVUDwaamvWwonIn+O4mbOsCA9QPPrT2ukskcwpw49tTnY6VntXQENJy
+   WN5dmybh+vddoM+iORQsKJkAT+YC2ch8v02uCrndqKpbZhgynezS+Kz6F
+   80yslJsKV1xuasxrRLkNQuqgHIJMS/1IvnmXCf3ZWBZs7Hw9q3TT+Zec+
+   hZpyV4gew2O7FNJ1cdssNgv8vSdKMOV1qFb6qiDTAqpNtMg8atYZD6Eul
+   gt1T2GCnKnGyBg0+CaXH9bf4JJGOm/mEd3ED95Zac/J6+5XKYF+YOi4Oa
+   j/e4j1e+4J3WyW4tSHejVPD7BZrCjniUrMQfyKDIqCuwyeFu1sAbEKAyX
+   Q==;
+X-CSE-ConnectionGUID: e/kTevxaTEaArDVZU+NnqQ==
+X-CSE-MsgGUID: ue91KKbTS1WYQeKYBUZSjA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11633"; a="89690827"
+X-IronPort-AV: E=Sophos;i="6.20,254,1758610800"; 
+   d="scan'208";a="89690827"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Dec 2025 02:10:56 -0800
+X-CSE-ConnectionGUID: woOwQDNxSwu5yms1MbLiDQ==
+X-CSE-MsgGUID: LdZ8STCOT5qh+3sZ5KA2RA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,254,1758610800"; 
+   d="scan'208";a="199947346"
+Received: from lkp-server01.sh.intel.com (HELO 4664bbef4914) ([10.239.97.150])
+  by fmviesa005.fm.intel.com with ESMTP; 06 Dec 2025 02:10:51 -0800
+Received: from kbuild by 4664bbef4914 with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1vRpFZ-00000000G49-0VtD;
+	Sat, 06 Dec 2025 10:10:49 +0000
+Date: Sat, 6 Dec 2025 18:09:52 +0800
+From: kernel test robot <lkp@intel.com>
+To: dongxuyang@eswincomputing.com, ukleinek@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, p.zabel@pengutronix.de,
+	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH 3/4] media: rkvdec: Add support for the VDPU346 variant
-Date: Sat,  6 Dec 2025 10:01:58 +0000
-Message-Id: <20251206100158.2041439-2-christianshewitt@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251206100158.2041439-1-christianshewitt@gmail.com>
-References: <20251206100158.2041439-1-christianshewitt@gmail.com>
+Cc: oe-kbuild-all@lists.linux.dev, ningyu@eswincomputing.com,
+	linmin@eswincomputing.com, xuxiang@eswincomputing.com,
+	wangguosheng@eswincomputing.com, pinkesh.vaghela@einfochips.com,
+	Xuyang Dong <dongxuyang@eswincomputing.com>
+Subject: Re: [PATCH 2/2] pwm: eswin: Add EIC7700 pwm driver
+Message-ID: <202512061720.j31AsgM7-lkp@intel.com>
+References: <20251205090509.1501-1-dongxuyang@eswincomputing.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251205090509.1501-1-dongxuyang@eswincomputing.com>
 
-VDPU346 is derived from VDPU381 but with a single core and limited
-to 4K60 media. It is also limited to H264 L5.1 and omits AV1 and
-AVS2 capabilities. It is used with RK3566 and RK3568.
+Hi,
 
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
----
- .../media/platform/rockchip/rkvdec/rkvdec.c   | 110 ++++++++++++++++++
- 1 file changed, 110 insertions(+)
+kernel test robot noticed the following build warnings:
 
-diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec.c b/drivers/media/platform/rockchip/rkvdec/rkvdec.c
-index a1c02ef3a97c..cf68454b2217 100644
---- a/drivers/media/platform/rockchip/rkvdec/rkvdec.c
-+++ b/drivers/media/platform/rockchip/rkvdec/rkvdec.c
-@@ -295,6 +295,62 @@ static const struct rkvdec_ctrls rkvdec_h264_ctrls = {
- 	.num_ctrls = ARRAY_SIZE(rkvdec_h264_ctrl_descs),
- };
- 
-+static const struct rkvdec_ctrl_desc vdpu346_hevc_ctrl_descs[] = {
-+	{
-+		.cfg.id = V4L2_CID_STATELESS_HEVC_DECODE_PARAMS,
-+	},
-+	{
-+		.cfg.id = V4L2_CID_STATELESS_HEVC_SPS,
-+		.cfg.ops = &rkvdec_ctrl_ops,
-+	},
-+	{
-+		.cfg.id = V4L2_CID_STATELESS_HEVC_PPS,
-+	},
-+	{
-+		.cfg.id = V4L2_CID_STATELESS_HEVC_SCALING_MATRIX,
-+	},
-+	{
-+		.cfg.id = V4L2_CID_STATELESS_HEVC_DECODE_MODE,
-+		.cfg.min = V4L2_STATELESS_HEVC_DECODE_MODE_FRAME_BASED,
-+		.cfg.max = V4L2_STATELESS_HEVC_DECODE_MODE_FRAME_BASED,
-+		.cfg.def = V4L2_STATELESS_HEVC_DECODE_MODE_FRAME_BASED,
-+	},
-+	{
-+		.cfg.id = V4L2_CID_STATELESS_HEVC_START_CODE,
-+		.cfg.min = V4L2_STATELESS_HEVC_START_CODE_ANNEX_B,
-+		.cfg.def = V4L2_STATELESS_HEVC_START_CODE_ANNEX_B,
-+		.cfg.max = V4L2_STATELESS_HEVC_START_CODE_ANNEX_B,
-+	},
-+	{
-+		.cfg.id = V4L2_CID_MPEG_VIDEO_HEVC_PROFILE,
-+		.cfg.min = V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN,
-+		.cfg.max = V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_10,
-+		.cfg.menu_skip_mask =
-+			BIT(V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN_STILL_PICTURE),
-+		.cfg.def = V4L2_MPEG_VIDEO_HEVC_PROFILE_MAIN,
-+	},
-+	{
-+		.cfg.id = V4L2_CID_MPEG_VIDEO_HEVC_LEVEL,
-+		.cfg.min = V4L2_MPEG_VIDEO_HEVC_LEVEL_1,
-+		.cfg.max = V4L2_MPEG_VIDEO_HEVC_LEVEL_5_1,
-+	},
-+	{
-+		.cfg.id = V4L2_CID_STATELESS_HEVC_EXT_SPS_ST_RPS,
-+		.cfg.ops = &rkvdec_ctrl_ops,
-+		.cfg.dims = { 65 },
-+	},
-+	{
-+		.cfg.id = V4L2_CID_STATELESS_HEVC_EXT_SPS_LT_RPS,
-+		.cfg.ops = &rkvdec_ctrl_ops,
-+		.cfg.dims = { 65 },
-+	},
-+};
-+
-+static const struct rkvdec_ctrls vdpu346_hevc_ctrls = {
-+	.ctrls = vdpu346_hevc_ctrl_descs,
-+	.num_ctrls = ARRAY_SIZE(vdpu346_hevc_ctrl_descs),
-+};
-+
- static const struct rkvdec_ctrl_desc vdpu38x_hevc_ctrl_descs[] = {
- 	{
- 		.cfg.id = V4L2_CID_STATELESS_HEVC_DECODE_PARAMS,
-@@ -449,6 +505,43 @@ static const struct rkvdec_coded_fmt_desc rkvdec_coded_fmts[] = {
- 	}
- };
- 
-+static const struct rkvdec_coded_fmt_desc vdpu346_coded_fmts[] = {
-+	{
-+		.fourcc = V4L2_PIX_FMT_H264_SLICE,
-+		.frmsize = {
-+			.min_width = 64,
-+			.max_width =  65520,
-+			.step_width = 64,
-+			.min_height = 64,
-+			.max_height =  65520,
-+			.step_height = 16,
-+		},
-+		.ctrls = &rkvdec_h264_ctrls,
-+		.ops = &rkvdec_vdpu381_h264_fmt_ops,
-+		.num_decoded_fmts = ARRAY_SIZE(rkvdec_h264_decoded_fmts),
-+		.decoded_fmts = rkvdec_h264_decoded_fmts,
-+		.subsystem_flags = VB2_V4L2_FL_SUPPORTS_M2M_HOLD_CAPTURE_BUF,
-+		.capability = RKVDEC_CAPABILITY_H264,
-+	},
-+	{
-+		.fourcc = V4L2_PIX_FMT_HEVC_SLICE,
-+		.frmsize = {
-+			.min_width = 64,
-+			.max_width = 65472,
-+			.step_width = 64,
-+			.min_height = 64,
-+			.max_height = 65472,
-+			.step_height = 16,
-+		},
-+		.ctrls = &vdpu346_hevc_ctrls,
-+		.ops = &rkvdec_vdpu381_hevc_fmt_ops,
-+		.num_decoded_fmts = ARRAY_SIZE(rkvdec_hevc_decoded_fmts),
-+		.decoded_fmts = rkvdec_hevc_decoded_fmts,
-+		.subsystem_flags = VB2_V4L2_FL_SUPPORTS_M2M_HOLD_CAPTURE_BUF,
-+		.capability = RKVDEC_CAPABILITY_HEVC,
-+	},
-+};
-+
- static const struct rkvdec_coded_fmt_desc vdpu381_coded_fmts[] = {
- 	{
- 		.fourcc = V4L2_PIX_FMT_H264_SLICE,
-@@ -1654,6 +1747,19 @@ static const struct rkvdec_variant rk3399_rkvdec_variant = {
- 			RKVDEC_CAPABILITY_VP9,
- };
- 
-+static const struct rkvdec_variant rk3568_vdpu346_variant = {
-+	.coded_fmts = vdpu346_coded_fmts,
-+	.num_coded_fmts = ARRAY_SIZE(vdpu346_coded_fmts),
-+	.rcb_sizes = vdpu381_rcb_sizes,
-+	.num_rcb_sizes = ARRAY_SIZE(vdpu381_rcb_sizes),
-+	.irq_handler = vdpu381_irq_handler,
-+	.colmv_size = rkvdec_colmv_size,
-+	.flatten_matrices = transpose_and_flatten_matrices,
-+	.named_regs = true,
-+	.capabilities = RKVDEC_CAPABILITY_H264 |
-+			RKVDEC_CAPABILITY_HEVC,
-+};
-+
- static const struct rkvdec_variant rk3588_vdpu381_variant = {
- 	.coded_fmts = vdpu381_coded_fmts,
- 	.num_coded_fmts = ARRAY_SIZE(vdpu381_coded_fmts),
-@@ -1693,6 +1799,10 @@ static const struct of_device_id of_rkvdec_match[] = {
- 		.compatible = "rockchip,rk3399-vdec",
- 		.data = &rk3399_rkvdec_variant,
- 	},
-+	{
-+		.compatible = "rockchip,rk3568-vdec",
-+		.data = &rk3568_vdpu346_variant,
-+	},
- 	{
- 		.compatible = "rockchip,rk3588-vdec",
- 		.data = &rk3588_vdpu381_variant,
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on linus/master v6.18 next-20251205]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/dongxuyang-eswincomputing-com/dt-bindings-pwm-eswin-Add-EIC7700-pwm-controller/20251205-171328
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20251205090509.1501-1-dongxuyang%40eswincomputing.com
+patch subject: [PATCH 2/2] pwm: eswin: Add EIC7700 pwm driver
+config: m68k-allmodconfig (https://download.01.org/0day-ci/archive/20251206/202512061720.j31AsgM7-lkp@intel.com/config)
+compiler: m68k-linux-gcc (GCC) 15.1.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251206/202512061720.j31AsgM7-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202512061720.j31AsgM7-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   drivers/pwm/pwm-dwc-core.c: In function '__dwc_pwm_configure_timer':
+>> drivers/pwm/pwm-dwc-core.c:54:43: warning: left shift count >= width of type [-Wshift-count-overflow]
+      54 |                 if (tmp < 0 || tmp > (1UL << 32))
+         |                                           ^~
+   drivers/pwm/pwm-dwc-core.c:64:43: warning: left shift count >= width of type [-Wshift-count-overflow]
+      64 |                 if (tmp < 0 || tmp > (1UL << 32))
+         |                                           ^~
+
+
+vim +54 drivers/pwm/pwm-dwc-core.c
+
+    37	
+    38	static int __dwc_pwm_configure_timer(struct dwc_pwm *dwc,
+    39					     struct pwm_device *pwm,
+    40					     const struct pwm_state *state)
+    41	{
+    42		u64 tmp;
+    43		u32 ctrl;
+    44		u32 high;
+    45		u32 low;
+    46	
+    47		if (dwc->pwm_0n100_enable) {
+    48			/*
+    49			 * Calculate width of low and high period in terms of input
+    50			 * clock periods and check are the result within HW limits
+    51			 * between 0 and 2^32 periods.
+    52			 */
+    53			tmp = DIV_ROUND_CLOSEST_ULL(state->duty_cycle, dwc->clk_ns);
+  > 54			if (tmp < 0 || tmp > (1UL << 32))
+    55				return -ERANGE;
+    56	
+    57			if (pwm->args.polarity == PWM_POLARITY_INVERSED)
+    58				high = tmp;
+    59			else
+    60				low = tmp;
+    61	
+    62			tmp = DIV_ROUND_CLOSEST_ULL(state->period - state->duty_cycle,
+    63						    dwc->clk_ns);
+    64			if (tmp < 0 || tmp > (1UL << 32))
+    65				return -ERANGE;
+    66	
+    67			if (pwm->args.polarity == PWM_POLARITY_INVERSED)
+    68				low = tmp;
+    69			else
+    70				high = tmp;
+    71		} else {
+    72			/*
+    73			 * Calculate width of low and high period in terms of input
+    74			 * clock periods and check are the result within HW limits
+    75			 * between 1 and 2^32 periods.
+    76			 */
+    77			tmp = DIV_ROUND_CLOSEST_ULL(state->duty_cycle, dwc->clk_ns);
+    78			if (tmp < 1 || tmp > (1ULL << 32))
+    79				return -ERANGE;
+    80			low = tmp - 1;
+    81	
+    82			tmp = DIV_ROUND_CLOSEST_ULL(state->period - state->duty_cycle,
+    83						    dwc->clk_ns);
+    84			if (tmp < 1 || tmp > (1ULL << 32))
+    85				return -ERANGE;
+    86			high = tmp - 1;
+    87		}
+    88	
+    89		/*
+    90		 * Specification says timer usage flow is to disable timer, then
+    91		 * program it followed by enable. It also says Load Count is loaded
+    92		 * into timer after it is enabled - either after a disable or
+    93		 * a reset. Based on measurements it happens also without disable
+    94		 * whenever Load Count is updated. But follow the specification.
+    95		 */
+    96		__dwc_pwm_set_enable(dwc, pwm->hwpwm, false);
+    97	
+    98		/*
+    99		 * Write Load Count and Load Count 2 registers. Former defines the
+   100		 * width of low period and latter the width of high period in terms
+   101		 * multiple of input clock periods:
+   102		 * Width = ((Count + 1) * input clock period) or
+   103		 * Width = (Count * input clock period) : supported 0% and 100%).
+   104		 */
+   105		dwc_pwm_writel(dwc, low, DWC_TIM_LD_CNT(pwm->hwpwm));
+   106		dwc_pwm_writel(dwc, high, DWC_TIM_LD_CNT2(pwm->hwpwm));
+   107	
+   108		/*
+   109		 * Set user-defined mode, timer reloads from Load Count registers
+   110		 * when it counts down to 0.
+   111		 * Set PWM mode, it makes output to toggle and width of low and high
+   112		 * periods are set by Load Count registers.
+   113		 */
+   114		ctrl = DWC_TIM_CTRL_MODE_USER | DWC_TIM_CTRL_PWM;
+   115		if (dwc->pwm_0n100_enable)
+   116			ctrl |= DWC_TIM_CTRL_0N100PWM_EN;
+   117	
+   118		dwc_pwm_writel(dwc, ctrl, DWC_TIM_CTRL(pwm->hwpwm));
+   119	
+   120		/*
+   121		 * Enable timer. Output starts from low period.
+   122		 */
+   123		__dwc_pwm_set_enable(dwc, pwm->hwpwm, state->enabled);
+   124	
+   125		return 0;
+   126	}
+   127	
+
 -- 
-2.34.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
