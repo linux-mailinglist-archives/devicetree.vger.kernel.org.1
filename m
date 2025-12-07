@@ -1,137 +1,170 @@
-Return-Path: <devicetree+bounces-245036-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245037-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFE02CAB985
-	for <lists+devicetree@lfdr.de>; Sun, 07 Dec 2025 20:56:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A885CABA36
+	for <lists+devicetree@lfdr.de>; Sun, 07 Dec 2025 22:49:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 708463003FAC
-	for <lists+devicetree@lfdr.de>; Sun,  7 Dec 2025 19:56:25 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 9363830038EF
+	for <lists+devicetree@lfdr.de>; Sun,  7 Dec 2025 21:49:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47FC52DF716;
-	Sun,  7 Dec 2025 19:56:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D9482D8362;
+	Sun,  7 Dec 2025 21:49:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W3I/R5pK"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="R7kikaI2";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="WdiNehUV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18E212D839C;
-	Sun,  7 Dec 2025 19:56:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52C4C72634
+	for <devicetree@vger.kernel.org>; Sun,  7 Dec 2025 21:49:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765137384; cv=none; b=gdC67Z4c9wEdI7jJZpsX/MFRM5lWt8yYyVM0wc6SMXrZykc4NwAnVmyGRAK5UlPpNerI4EAF1WlmmFB7SiKLKi5iWCsPvCgwWsOsQnKmbipow/DCNTA09G9pglidQn7eclb7XSDYg1xchPyxe8yiGxQFV4MwEv8TdQ0WYtpriTY=
+	t=1765144175; cv=none; b=Vj7DTyxu3yqmrlkDYl74y4cPqIxUfflV9S7kyYEwtviceNZrzQErptGuh3CKphGLRnynl0tKwep4T2rxbLOPhKMx3cfKHRxob4BtRxZaKKONpObE/4A6Q2OhjbkEol+zliIX0F82+6hvyOMjiYLCZEefgZPntm4Sfnb2l9ExV7Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765137384; c=relaxed/simple;
-	bh=0deVdN2tw0uwmwWzij6NAyvqEtFvxMegmN58/qDKTcU=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Ltr6fX9JCb/kOdecyJ/a/zn48H0uSzjDgUyh/E3rU6SteCvREmtYX4jJk3U1xbcTSKc0I2y5/lPFTCg+y+MKAgxyeorU2WX3WiHqrCYZaVL58mWXS7m+9L48KQGTuNjR8Jh/VFeJOrVmKz6DINfxZCKXy8T24GVYz5Sm+/Y5lsU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W3I/R5pK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF245C4CEFB;
-	Sun,  7 Dec 2025 19:56:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765137383;
-	bh=0deVdN2tw0uwmwWzij6NAyvqEtFvxMegmN58/qDKTcU=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=W3I/R5pKm+cUVwflUmf112xMi2EAa7z4mj2pt1iRFLe3H0P0kKCR7vWHWdZ2r2ARK
-	 J+qvaHnct958KqNm9LrCDor4IExjFvHx2Rcs6b/mnIPBp7Keth3LruSG5TmL0p6caR
-	 CaX3loUE2Frsi40EdVdxeaeYMBgJ/NaLjPydNLyW2DV/T/4U5M78mVMUia2bNoiaoY
-	 cTgQKngqIy2BhgK8cwGRQBDLxdGIfJ29tWc3ojPaCzxJhNZsoykms1NIMAS6BOfqui
-	 h8VHA+VQMOS4FJz895rZe0lHLpTzPCsuLwL+wSWV4yyuhzWFQcTBYWlFQFawkhRrtx
-	 fy1ONZc6CNl3Q==
-Date: Sun, 7 Dec 2025 19:56:13 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Kurt Borja <kuurtb@gmail.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Tobias
- Sperling <tobias.sperling@softing.com>, Nuno =?UTF-8?B?U8Oh?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Jonathan Cameron
- <Jonathan.Cameron@huawei.com>
-Subject: Re: [PATCH v6 2/2] iio: adc: Add ti-ads1018 driver
-Message-ID: <20251207195613.0e222b3a@jic23-huawei>
-In-Reply-To: <5b843df0-138e-4e2e-a70d-beb8a39ed85f@baylibre.com>
-References: <20251204-ads1x18-v6-0-2ae4a2f8e90c@gmail.com>
-	<20251204-ads1x18-v6-2-2ae4a2f8e90c@gmail.com>
-	<20251206200721.5e683a83@jic23-huawei>
-	<DES3ZWAKXXEB.2LQPMDZN4JFCB@gmail.com>
-	<5b843df0-138e-4e2e-a70d-beb8a39ed85f@baylibre.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1765144175; c=relaxed/simple;
+	bh=ADIUFF3NaF66VjOH+E4MOelUR2rRGzihe4N9ijxdzY4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cRFGrkJtJZll10eiUf0sHVpxyAX/kNHyoWufpyHXCo5XDIOlWDstevJuPsdnbDt55szLuAq44CtZ6uHyChY6QjFvIUqVMyC9+sM0XkcW7AEWlEAoGp8tScdQRMt8ZoOvb+iuSLRtkWQX9EOu141ldZiTeAWjlYghjRpERiQZ0oI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=R7kikaI2; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=WdiNehUV; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5B7KPrc32998741
+	for <devicetree@vger.kernel.org>; Sun, 7 Dec 2025 21:49:31 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=FNixEomyDSFdFEBjauMSbnu+
+	A9TeWfJ6DWWKq8tjyZE=; b=R7kikaI2zntv7Yt0DptXvIwTPgEbsEZAR0+6+hCR
+	X+AiPaIxZZnDwHJxMz16XF4PX0/n4i9uy1+QMnEasHfovg+nARp4tIo+nYoXXwTn
+	4OL0sDo6yQQnVmEG6NzvalZ3PzrEVBIAQuWWsYIXnc26F8Amfo3skdarr9jxplzh
+	aieLlypaJV5LGFEHDGcCMuWOIwC8CJLkYpL+Nk2Gd/9Vo4lwLz0DwNSTxKroasKm
+	/K0tIeQ8oryUOu5Edxj6D9R00dCYF+S3zMlmbWsWrxf+6zj4ZOue3b4kZdptf7MJ
+	9klvW4mT3WjL/eATSBeilD4crd/LKDcrZ8Tp377oBuYj/Q==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4avcndtyh6-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Sun, 07 Dec 2025 21:49:31 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4ed6855557aso100024611cf.1
+        for <devicetree@vger.kernel.org>; Sun, 07 Dec 2025 13:49:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1765144170; x=1765748970; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=FNixEomyDSFdFEBjauMSbnu+A9TeWfJ6DWWKq8tjyZE=;
+        b=WdiNehUVFUq5/eqOv+ZFtlfl27+ViDWssnIz6Lcmrq2D+LD2vjyj55KMbXLbiDnq0x
+         vRTPcENXnMoGbECaMGJkK+zlKRvr0Y9vu91mAEe2j/A8q+8UUwxonk/axNgpai9Z7d4w
+         lY/bIBEx193thfA/Eaoi/W9up+ji8i7cZf1bWiALIJ4k6zS7P3uUdrAdrE0qD3Z3MML2
+         aVMSXAnE/wIQx+jR8slIGfNc4+ZDoEkBhST+7U+sakF7+XVoNm/SYmlJ9apRnJUfrm5h
+         QtlSLtzViPgYlI9qR7CJm7bSPfAiDp3nAV+7k737eXeXLi/E3U7crKjNw8yOaI4CJiv0
+         FmGg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765144170; x=1765748970;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=FNixEomyDSFdFEBjauMSbnu+A9TeWfJ6DWWKq8tjyZE=;
+        b=D4ADfz91sw4vAxtHQ3HInTcUESqXd34JUEecugODthqN6FQa8uR9J6weh9Lv3Hhrj1
+         4PW19zmfMqWdzY3xlJA7TTIQnS9zN2F6FRLOL7bXseniKsmTnuYNeEdIvMkp8kXqYlFn
+         WAuJbOcV9hXkUuuM8j4GT3zoNtqSsEtNcuu610ku72U6AGdPejDdxXT6h/BlIPD8mSFn
+         /lbIP6sgd1iE6NZk4LbE2ZQKuBS7Egod49vigqTWElN5UH41LDL3Rl7HB0Bak+tHAvhk
+         ROuzZWsLFrm5eTBGzQB/ilRZbHPWB2mxpW3lpRTmPzc1QRDmOjuvda6iQZyiL3gCfU1m
+         v2GA==
+X-Forwarded-Encrypted: i=1; AJvYcCXytVKamxLoh+5oXTsFlyTrmNMRgIbmNxXeBK6iRGVwUk+hWM/BCuajygLakulMUll2cutZtIjP12cW@vger.kernel.org
+X-Gm-Message-State: AOJu0YzSoOHGH26hZ83UB/XPiDu8ziGDACespsFvFEhkagsDACrjgMWj
+	ou+Dg57F88nwwohJhKy/UemA6Eu8ybEXCUpUx9I6iEsaDWA15AYBoxj5lZGc7rtLPMej1Fd+TGd
+	RFPtkjFTxBGlZDrq2rpFTZMy5ZtV9ky2XPaaxxOKLSvwzKSNRHZ/MTGkZCnd+bhLd
+X-Gm-Gg: ASbGncu7enOd9su/rYRS5LcL4Yv5PUBKJUSKCqrFKK8w3zRX/uRod0bKSKeRZrT5BnT
+	2sG45p95RAHkwOdZhhOJ1Xt2EXTVA46rxFImm2zb6UkfTGkF+VxD7nGSNwD10hfMI5Z9u10KsMp
+	j+OeH9OLVVAmvruU0PYfha31YVy+Jr5aZH7VdvaGDfzxLhJ6zAvVNFHmJ6sAiy0XTj8cXDQu5KQ
+	klMV1UjG50YSvVytfbg5KrNedFoeYAFTm9lf2zGSidZ54HjSp6uxtzvYgWl0INAfrBloB0SfN/X
+	xU0Y/snOm5JMzDqJZD7Avvvhp3Y/aKq85M5Z/z21HSKKMC1S+r14zlC2n/ZsvQuMNLqYhiuJAMT
+	FA5KR8MeglKWShV/atdbtWA==
+X-Received: by 2002:ac8:7d12:0:b0:4ed:ae94:5f5b with SMTP id d75a77b69052e-4f0230627b0mr216341081cf.8.1765144170423;
+        Sun, 07 Dec 2025 13:49:30 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGuCrwgs4G7PoLCqx7vQwkWcAcli3TelJ0o0m6XK3NwpIKsq9rSS9HSbvJpuZLjZT0AH84kUg==
+X-Received: by 2002:ac8:7d12:0:b0:4ed:ae94:5f5b with SMTP id d75a77b69052e-4f0230627b0mr216340781cf.8.1765144169940;
+        Sun, 07 Dec 2025 13:49:29 -0800 (PST)
+Received: from oss.qualcomm.com ([86.121.7.169])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-647b2ec2d8csm9597809a12.5.2025.12.07.13.49.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 07 Dec 2025 13:49:27 -0800 (PST)
+Date: Sun, 7 Dec 2025 23:49:24 +0200
+From: Abel Vesa <abel.vesa@oss.qualcomm.com>
+To: Konrad Dybcio <konradybcio@kernel.org>
+Cc: Jeff Johnson <jeff.johnson@oss.qualcomm.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Marcel Holtmann <marcel@holtmann.org>,
+        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Balakrishna Godavarthi <quic_bgodavar@quicinc.com>,
+        Rocky Liao <quic_rjliao@quicinc.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Luiz Augusto von Dentz <luiz.von.dentz@intel.com>,
+        linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH 00/10] Fix up WCN6855 RFA power supply name
+Message-ID: <xykyhprdmcotntx6kaqhobupysvyhedfktningltk6knl7owtu@rlszij24zirg>
+References: <20251205-topic-wcn6855_pmu_dtbdings-v1-0-165611f687c8@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251205-topic-wcn6855_pmu_dtbdings-v1-0-165611f687c8@oss.qualcomm.com>
+X-Proofpoint-ORIG-GUID: dilyGIj6XwDHyyd8U1sOqhORWdmF_5Fv
+X-Authority-Analysis: v=2.4 cv=baJmkePB c=1 sm=1 tr=0 ts=6935f66b cx=c_pps
+ a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=DdBtMnqNxkYIvXj6ev4VzQ==:17
+ a=kj9zAlcOel0A:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=M7h3R06PahCMBt7vG34A:9
+ a=CjuIK1q_8ugA:10 a=a_PwQJl-kcHnX1M80qC6:22
+X-Proofpoint-GUID: dilyGIj6XwDHyyd8U1sOqhORWdmF_5Fv
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjA3MDE5MiBTYWx0ZWRfX0CEggkaOnmYh
+ ADLmBCGg4dwDqU7pGZ2FxTuWGcGWx4GqlDjwDfMKVAHWHFKeBqKPqdcFBXgYZVDIwFxCcrc3Zz0
+ OzuhDfvdPenoubWBlbFpARxIra//YO75FOVmg9ljvdjMtZB7inJED1+hCvbz3tiNWDKSqwoqP0M
+ O4s5lrA3iPn59dUNtAFjlBYp5oWbr4I/aSjY4izVfq+tzh33UbPinpUvV1VylGWk158rFc60Np7
+ rsQp9Mun5KwPOAmurMM33P2H+QuPxG6GOHAbgt+LgompDyd7EHln1rH7HkLjEHlsqdY7ice4dsc
+ NaMRNXtzosTpFNdiB3ZInCToEWlFAqeEp8khKdH2uDQDddZENY68Psu2yzGNJ6COh7wxIbLSpsQ
+ PqpJM7kPrKy3yAo+E4XKgK7+AzZ+uw==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-06_02,2025-12-04_04,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 phishscore=0 malwarescore=0 priorityscore=1501
+ impostorscore=0 spamscore=0 bulkscore=0 suspectscore=0 clxscore=1015
+ adultscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
+ definitions=main-2512070192
 
-On Sun, 7 Dec 2025 11:12:51 -0600
-David Lechner <dlechner@baylibre.com> wrote:
-
-> On 12/7/25 10:02 AM, Kurt Borja wrote:
-> > On Sat Dec 6, 2025 at 3:07 PM -05, Jonathan Cameron wrote:  
-> >> On Thu, 04 Dec 2025 13:01:28 -0500
-> >> Kurt Borja <kuurtb@gmail.com> wrote:
-> >>  
-> >>> Add ti-ads1018 driver for Texas Instruments ADS1018 and ADS1118 SPI
-> >>> analog-to-digital converters.
-> >>>
-> >>> These chips' MOSI pin is shared with a data-ready interrupt. Defining
-> >>> this interrupt in devicetree is optional, therefore we only create an
-> >>> IIO trigger if one is found.
-> >>>
-> >>> Handling this interrupt requires some considerations. When enabling the
-> >>> trigger the CS line is tied low (active), thus we need to hold
-> >>> spi_bus_lock() too, to avoid state corruption. This is done inside the
-> >>> set_trigger_state() callback, to let users use other triggers without
-> >>> wasting a bus lock.
-> >>>
-> >>> Signed-off-by: Kurt Borja <kuurtb@gmail.com>  
-> > 
-> > ...
-> >   
-> >>> +#define ADS1018_VOLT_CHAN(_index, _chan, _realbits) {				\
-> >>> +	.type = IIO_VOLTAGE,							\
-> >>> +	.channel = _chan,							\
-> >>> +	.scan_index = _index,							\
-> >>> +	.scan_type = {								\
-> >>> +		.sign = 's',							\
-> >>> +		.realbits = _realbits,						\
-> >>> +		.storagebits = 16,						\
-> >>> +		.shift = 16 - _realbits,					\
-> >>> +		.endianness = IIO_BE,						\
-> >>> +	},									\
-> >>> +	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |				\
-> >>> +			      BIT(IIO_CHAN_INFO_SCALE) |			\
-> >>> +			      BIT(IIO_CHAN_INFO_SAMP_FREQ),			\  
-> >>
-> >> What motivates per channel sampling frequency?
-> >>
-> >> Given you have to write it each time you configure I guess it doesn't matter much
-> >> either way.  
-> > 
-> > I guess making it shared by all is simpler too, so I'll go with that.
-> >   
-> Just keep in mind that if there is ever some use case we don't know
-> about that would require a different rate per channel, we can't change
-> it without breaking usespace. Once the decision is made, we are
-> locked in. Keeping it per-channel seems more future-proof to me.
-
-Only way I can think of that might cause that to matter would be
-if the complex dance to avoid the onehot buffer restriction is added.
-Given you gave this response I went looking and that might make
-sense as an enhancement as the SPI protocol would allow a crafted message
-sequence to do this efficiently.  Extension of figure 15 where first message
-sets config and after that they read out channel and set config for next one.
-
-Given that is sane, I agree with you that we should probably keep these separate.
-I doubt anyone will use different sampling frequencies even if possible but you
-never know.
-
-Jonathan
-
+On 25-12-05 13:47:19, Konrad Dybcio wrote:
+> Commit 5f4f954bba12 ("dt-bindings: bluetooth: bring the HW description
+> closer to reality for wcn6855") renamed the supply representing the
+> VDD17_PMU_RFA leg to mention "1p8" instead.
 > 
+> While the supply's voltage is normally 1.8 V, the bindings should
+> reflect the actual naming of the pin. Moreover, almost all DTs define
+> the output as 1p7, so that ends up looking a little odd..
+> 
+> Ultimately, this is a "fake" regulator that is consumed for the sake
+> of DT sanity and this series is meant to bring uniformity and squash
+> checker errors.
+> 
+> The last patch fixes up a less-trivial warning.
+> sc8280xp-microsoft-arcata is left out because I don't know whether the
+> mounting of the chip is on-board or as an M.2-y card (although I would
+> guesstimate the prior).
+> 
+> Depends on the long-ready-for-the-merge series by Krzysztof (per-chip
+> bindings split of qualcomm-bluetooth.yaml), mentioned below
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
+Reviewed-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
 
