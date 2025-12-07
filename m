@@ -1,105 +1,113 @@
-Return-Path: <devicetree+bounces-245010-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245011-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 719FDCAB387
-	for <lists+devicetree@lfdr.de>; Sun, 07 Dec 2025 11:35:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0645DCAB396
+	for <lists+devicetree@lfdr.de>; Sun, 07 Dec 2025 11:37:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3A66D303A09E
-	for <lists+devicetree@lfdr.de>; Sun,  7 Dec 2025 10:35:56 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0ABCF3052B00
+	for <lists+devicetree@lfdr.de>; Sun,  7 Dec 2025 10:37:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CF5128642B;
-	Sun,  7 Dec 2025 10:35:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 239FF2D23B8;
+	Sun,  7 Dec 2025 10:37:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b="bEa+QCu6"
+	dkim=pass (2048-bit key) header.d=tecnico.ulisboa.pt header.i=@tecnico.ulisboa.pt header.b="Txdp2IUY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ahti.lucaweiss.eu (ahti.lucaweiss.eu [128.199.32.197])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp1.tecnico.ulisboa.pt (smtp1.tecnico.ulisboa.pt [193.136.128.21])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A190E3B8D61;
-	Sun,  7 Dec 2025 10:35:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=128.199.32.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA78A221FCF;
+	Sun,  7 Dec 2025 10:37:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.136.128.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765103755; cv=none; b=TowJ7d7/KBJriXwoxaXYkEAj5hkQ3fdWQkHOoudSkMTbpClR4PwbLDOB7EQr9634ueMDdbH1ftLUzwjov28qdan1QKjZbKpcNaZc4e0wu0nNRKtIMy/QOOYzzCTwawH85sMGteLa1m30Dk4yjZ9RRJiWToi5CMmdN48BmbzkJ04=
+	t=1765103872; cv=none; b=Cj1hY/cAou1E4HpDqjrTEkiPXd8qkJa294cic84bx5SluHCu6MrRLoqct9Cud3Me0WjUvFz9LUTrZbkQJFT6zO9TJxMmrTe+b9pQTTYLOgS6gsSFLX2l4WL1dqe4bD8mMJ/D9Et5Va9e4qQl/Ef4vSdAw4hyKokFB6wfYQaD2OU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765103755; c=relaxed/simple;
-	bh=cdxgLhluKDpR93tBLWRmMFNEs4dqL66QD+PPzLUtjGQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=Tr1a01TjyAFqNRH8joBuSozeKS1NlHQPHGTi31ZB4d5rFTLaFAAPqf5BGfywqEDd99AY6dvyVigDbMjw72ISY8VmDGiC4heRP7JeZNltOeX46OgsgpSRymG6vrozzscVK697BWj1xWIkXRUYr9gnngGVFK1379k2WmnavYsjZM0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lucaweiss.eu; spf=pass smtp.mailfrom=lucaweiss.eu; dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b=bEa+QCu6; arc=none smtp.client-ip=128.199.32.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lucaweiss.eu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lucaweiss.eu
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lucaweiss.eu; s=s1;
-	t=1765103745; bh=cdxgLhluKDpR93tBLWRmMFNEs4dqL66QD+PPzLUtjGQ=;
-	h=From:Date:Subject:To:Cc;
-	b=bEa+QCu6YYXBn6wLwNYGqjP6N6oSU7HpHtfyX/D93R/0sKgdZoo0wG5Ib3LRC1fl5
-	 czQqQ4b2r9pDaVhRZYSCBzP6fetEmcLt99oE04BaM/Bf/o3OxWdKtAd0pSm/WhmtFr
-	 asmu8DVnKNUvWF3WLbw/notJXm1WH/4XhpcY6+zA=
-From: Luca Weiss <luca@lucaweiss.eu>
-Date: Sun, 07 Dec 2025 19:35:35 +0900
-Subject: [PATCH] dt-bindings: remoteproc: qcom,adsp: Re-add cx-supply
+	s=arc-20240116; t=1765103872; c=relaxed/simple;
+	bh=f58tmviWW8wB6CDXyLDjtKl6eAJO2Th8XtawvDxeRq0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=qZpfnU294/nqweY+4vjdFlZ4pfqFaR6DGRgoc/y5qLrxTYd7S7LDM2ukQxgQ/yYaNdas07lXlBNspoHS8Z+Xu3tPALKTzblVm0ZBFIRaTJxVOhkoaA7h94rl1VsRE5YuGNARm+uYteMEFx60IoFf98OD504GaSC76CGRqw1lRx8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tecnico.ulisboa.pt; spf=pass smtp.mailfrom=tecnico.ulisboa.pt; dkim=pass (2048-bit key) header.d=tecnico.ulisboa.pt header.i=@tecnico.ulisboa.pt header.b=Txdp2IUY; arc=none smtp.client-ip=193.136.128.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tecnico.ulisboa.pt
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tecnico.ulisboa.pt
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTP id 0BC766000860;
+	Sun,  7 Dec 2025 10:37:41 +0000 (WET)
+X-Virus-Scanned: by amavis-2.13.0 (20230106) (Debian) at tecnico.ulisboa.pt
+Received: from smtp1.tecnico.ulisboa.pt ([127.0.0.1])
+ by localhost (smtp1.tecnico.ulisboa.pt [127.0.0.1]) (amavis, port 10025)
+ with LMTP id 1B9Dpx7YnSAb; Sun,  7 Dec 2025 10:37:38 +0000 (WET)
+Received: from mail1.tecnico.ulisboa.pt (mail1.ist.utl.pt [193.136.128.10])
+	by smtp1.tecnico.ulisboa.pt (Postfix) with ESMTPS id 43A16600086B;
+	Sun,  7 Dec 2025 10:37:37 +0000 (WET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tecnico.ulisboa.pt;
+	s=mail2; t=1765103858;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=AJWxtI4gCfBR7mMObe5wer/KxRtyUAzfWw+A7UhxlwM=;
+	b=Txdp2IUYBZ08pj1l70+nHFNe697eFIh3dJ7NihA/rJ90d6Z/FKx0OrmByop4yJRGPz+4dW
+	fHOvLeg7pV6+bEumOJ9UoAOYyvTBUcFBt2iDJDz04MkrwWt1EprKQWK6bMymYc55KLrSNg
+	X1kyPaWDvJP6JcAiNbUtuKmuHynQ2eQV2om+6/jAEkIZz7a1wxrZWSFuoJnQgJsjM/Udw9
+	ldui40CscTkQu63KIi2IRaWlm1tPmj/MfuofutDUh2txBukCq59xl0bLfONfMUuH07iPUv
+	KfWGP20rwQgizWBBptMZKEGAqbxkB2K49q7SZd71eV0OpiteDFj2h4O4MqllDg==
+Received: from [IPV6:2001:8a0:57db:f00:3ee2:38aa:e2c9:7dde] (unknown [IPv6:2001:8a0:57db:f00:3ee2:38aa:e2c9:7dde])
+	(Authenticated sender: ist187313)
+	by mail1.tecnico.ulisboa.pt (Postfix) with ESMTPSA id C3D18360105;
+	Sun,  7 Dec 2025 10:37:35 +0000 (WET)
+Message-ID: <b03b9b3e-14b3-42e3-96e5-7ca48d91be94@tecnico.ulisboa.pt>
+Date: Sun, 7 Dec 2025 10:37:31 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/5] usb: host: tegra: Remove redundant
+ pm_runtime_mark_last_busy() call
+To: Mathias Nyman <mathias.nyman@intel.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Jonathan Hunter <jonathanh@nvidia.com>, JC Kuo <jckuo@nvidia.com>,
+ Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-usb@vger.kernel.org, linux-tegra@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org
+References: <20251204-diogo-tegra_phy-v1-0-51a2016d0be8@tecnico.ulisboa.pt>
+ <20251204-diogo-tegra_phy-v1-1-51a2016d0be8@tecnico.ulisboa.pt>
+Content-Language: en-US
+From: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+In-Reply-To: <20251204-diogo-tegra_phy-v1-1-51a2016d0be8@tecnico.ulisboa.pt>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251207-adsp-cx-fixup-v1-1-0471bf2c5f33@lucaweiss.eu>
-X-B4-Tracking: v=1; b=H4sIAHdYNWkC/x2MQQqAIBAAvyJ7bsEWK+kr0UF0q72UKIUg/T3pO
- AwzFTIn4QyzqpD4kSzX2aDvFPjDnTujhMZAmoae9IQu5Ii+4CbljmgMWUvGjuwHaE1M3MT/W9b
- 3/QDuSC2EXwAAAA==
-X-Change-ID: 20251207-adsp-cx-fixup-442882486ec5
-To: Bjorn Andersson <andersson@kernel.org>, 
- Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Luca Weiss <luca@lucaweiss.eu>
-X-Mailer: b4 0.14.3
 
-Some boards (e.g. sdm845-samsung-starqltechn) provide a cx-supply
-reference for the SLPI PAS.
+Please ignore this patch as this has already been addressed in a patch
+in this merge window; sorry for the extra noise.
 
-The Linux driver unconditionally tries getting "cx" and "px" supplies,
-so it actually is used.
-
-Fixes: 3d447dcdae53 ("dt-bindings: remoteproc: qcom,adsp: Make msm8974 use CX as power domain")
-Signed-off-by: Luca Weiss <luca@lucaweiss.eu>
----
-There's literally one board using this upstream, judging from that I'm
-not sure this is a misuse of cx-supply or what exactly. An alternative
-to this patch is of course removing the usage in
-sdm845-samsung-starqltechn, but as it stands right now the patch under
-"Fixes" introduces a dtbs_check warning.
----
- Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
-index 137f95028313..bde138716873 100644
---- a/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
-+++ b/Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml
-@@ -32,6 +32,9 @@ properties:
-   reg:
-     maxItems: 1
- 
-+  cx-supply:
-+    description: Phandle to the CX regulator
-+
-   px-supply:
-     description: Phandle to the PX regulator
- 
-
----
-base-commit: 37bb2e7217b01404e2abf9d90d8e5705a5603b52
-change-id: 20251207-adsp-cx-fixup-442882486ec5
-
-Best regards,
--- 
-Luca Weiss <luca@lucaweiss.eu>
-
+On 12/4/25 21:27, Diogo Ivo wrote:
+> As pm_runtime_put_autosuspend() called at the end of tegra_xhci_id_work()
+> already calls pm_runtime_mark_last_busy() remove the prior redundant call.
+> 
+> Signed-off-by: Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>
+> ---
+>   drivers/usb/host/xhci-tegra.c | 2 --
+>   1 file changed, 2 deletions(-)
+> 
+> diff --git a/drivers/usb/host/xhci-tegra.c b/drivers/usb/host/xhci-tegra.c
+> index 5255b1002893..9c69fccdc6e8 100644
+> --- a/drivers/usb/host/xhci-tegra.c
+> +++ b/drivers/usb/host/xhci-tegra.c
+> @@ -1399,8 +1399,6 @@ static void tegra_xhci_id_work(struct work_struct *work)
+>   		}
+>   
+>   		tegra_xhci_set_port_power(tegra, true, true);
+> -		pm_runtime_mark_last_busy(tegra->dev);
+> -
+>   	} else {
+>   		if (tegra->otg_usb3_port >= 0)
+>   			tegra_xhci_set_port_power(tegra, false, false);
+> 
 
