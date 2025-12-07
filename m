@@ -1,162 +1,98 @@
-Return-Path: <devicetree+bounces-245016-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245017-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BF44CAB548
-	for <lists+devicetree@lfdr.de>; Sun, 07 Dec 2025 14:22:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3132ACAB553
+	for <lists+devicetree@lfdr.de>; Sun, 07 Dec 2025 14:26:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6E5A830262B2
-	for <lists+devicetree@lfdr.de>; Sun,  7 Dec 2025 13:22:17 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6BED6302AE28
+	for <lists+devicetree@lfdr.de>; Sun,  7 Dec 2025 13:26:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D619212560;
-	Sun,  7 Dec 2025 13:22:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B3iNKyen"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 507E62D8DA4;
+	Sun,  7 Dec 2025 13:26:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from inva020.nxp.com (inva020.nxp.com [92.121.34.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BB983B8D62;
-	Sun,  7 Dec 2025 13:22:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A51DC3B8D62;
+	Sun,  7 Dec 2025 13:26:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765113736; cv=none; b=UemAM5Z46hMbWcUkiYI3JbE3skwS3bfzY1G8O74Eoa8SaSiQgAwWmSxthqmu5cXhu4a4qDa8nPMaHXoCM6OQSv8HkXldoRtJN6VMdcJ0P4zOR9l14QtrGRe01IYaPB4rq+HnViPgMfIuTCx7iJ/Zs6MFtmvh65eqsYWo5ogLKx0=
+	t=1765113977; cv=none; b=C1W+gDog9Hf/UHZE2udM7ZeopmjZRTzSO62MDdWb7LO89e/5SWtDljeitdGHEKAHiz2XPq2SSyoT42bmc7wczoMes4QQS9/4O9O3cPWTweSnadoVbAa/dkLsfbMX9y6P5pefX6jbP+7Y3lnxYpFo/Wjdjp/yachE9YpdTxsWuco=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765113736; c=relaxed/simple;
-	bh=NkUpwvew5RmRlPhVO+FeBrB1cGUjHqS5fDcZZMBa8fw=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=rLIfcnNZxHAQBAfFNf/7dx7f+pzu7N9DgclU9+WpTV3sU3ak4srPvp3FdsfRQKKc69cRPlRBw3JQ1XkTZmFMDeePAe5bidrFCt7wO7WfuTMuEu1D0AbiUiwj/nYrTjibgkxDsHo8LD9POx0Q0jDLodGX2mZ3T9zOTDiQfYgioLk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B3iNKyen; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 12053C4CEFB;
-	Sun,  7 Dec 2025 13:22:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765113735;
-	bh=NkUpwvew5RmRlPhVO+FeBrB1cGUjHqS5fDcZZMBa8fw=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=B3iNKyennniqYK24IQKg7n67vavntH2pNf/3+vNU+Pr8GVQXli7YFocgNQEA/B4Rj
-	 AGlp8gVmREblRcqris2P6Ncp9k+YZE66vPCx6kaP11t8I1PUhzkkasQPu0UK2APzCj
-	 ogS34JLRqeA9DZpCv3AYqF/XKcI3GnzuKy8MdSvv0QEoE/7KZvMyhSwYYz36kDbuCA
-	 vdT/VoDiv2Q0ng7VJb5DCDzrJK8K+rFblBXiWJNnfYdDiANxlFMeor2gx+v7cV/xPM
-	 kYqwIWiDqWDHGEm1b+pTQh2WZSoChhk0zSB1bcerzurETf2v/SCU4lfykH03ntZss6
-	 XfaamEqVx1MzQ==
-Date: Sun, 7 Dec 2025 13:22:05 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Marcelo Schmitt <marcelo.schmitt@analog.com>
-Cc: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-doc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <nuno.sa@analog.com>, <dlechner@baylibre.com>, <andy@kernel.org>,
- <Michael.Hennerich@analog.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
- <conor+dt@kernel.org>, <corbet@lwn.net>, <marcelo.schmitt1@gmail.com>,
- Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v3 1/3] dt-bindings: iio: adc: Add AD4134
-Message-ID: <20251207132205.402f36d4@jic23-huawei>
-In-Reply-To: <06d7be2af0f6520c23f612fa0249ff6a26655cb7.1764708608.git.marcelo.schmitt@analog.com>
-References: <cover.1764708608.git.marcelo.schmitt@analog.com>
-	<06d7be2af0f6520c23f612fa0249ff6a26655cb7.1764708608.git.marcelo.schmitt@analog.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1765113977; c=relaxed/simple;
+	bh=mAQMidlfAh7acQminBmYENG65UBBRhmk24mxnH67v8U=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=U7OJ2q1p2ZsbTObP2C/Dah6vTiSM+pRon8jutMvQ85uYg6dbkUBoq3/sPkB/itIrQwpkej8x16IhQwKtCaInR625FAATPH9L+W2sZcZLagUhiOyiwhpR5EcX2Yodeso5GW1IoEy8xI2ayqr87eqrkKRQUX6u5M4e1BQasmRIKWE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 7719A1A028C;
+	Sun,  7 Dec 2025 14:26:08 +0100 (CET)
+Received: from usswic1srsp001v.us-swic1.nxp.com (unknown [10.114.8.222])
+	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 471D21A02A5;
+	Sun,  7 Dec 2025 14:26:08 +0100 (CET)
+Received: from lsvm07u0000156.swis.us-west-2.aws.nxp.com (lsvm07u0000156.swis.us-west-2.aws.nxp.com [10.45.140.59])
+	by usswic1srsp001v.us-swic1.nxp.com (Postfix) with ESMTP id 345181800321;
+	Sun,  7 Dec 2025 05:26:07 -0800 (PST)
+From: Lei Xu <lei.xu@nxp.com>
+Subject: [PATCH 0/2] Add device tree support for NXP i.MX95 15x15 FRDM
+ board
+Date: Sun, 07 Dec 2025 05:26:04 -0800
+Message-Id: <20251207-127-v1-0-5a2eeb69f150@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGyANWkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1NDIwNzXUMjc12TVAtTU8NUi6SUxDQloMqCotS0zAqwKdGxtbUAtTz3FFU
+ AAAA=
+X-Change-ID: 20251207-127-4e8551e8bdaf
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ justin.jiang@nxp.com, qijian.guo@nxp.com, lei.xu@nxp.com
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1765113967; l=891;
+ i=lei.xu@nxp.com; s=20251205; h=from:subject:message-id;
+ bh=mAQMidlfAh7acQminBmYENG65UBBRhmk24mxnH67v8U=;
+ b=6gOCQeJM99J4LOUxJfK/WHWpuJgWl5KrEnrG8KG2ytJv+Vsnt9J6SZm5G3loir4nnEKSJ/sHe
+ DwEb19bhrZeDcxUzH6t09tdZ2cF9Q7sKnFt2S21bipXrhk2umNoVZD2
+X-Developer-Key: i=lei.xu@nxp.com; a=ed25519;
+ pk=faUN/3jfazJOPNYhE9pN+nzvk+lrEm64ZRf42Yeum6U=
+X-Virus-Scanned: ClamAV using ClamSMTP
 
-On Tue, 2 Dec 2025 17:55:03 -0300
-Marcelo Schmitt <marcelo.schmitt@analog.com> wrote:
+The NXP i.MX95 15x15 FRDM board is a compact and cost-effective
+development board based on the i.MX95 applications processor.
 
-> Add device tree documentation for AD4134 24-Bit, 4-channel simultaneous
-> sampling, precision ADC.
-> 
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
-A few comments inline. Not necessarily anything to change.
+This patch set adds device tree support for the board:
+ - Patch 1 introduces the DT compatible string.
+ - Patch 2 provides the complete device tree description.
 
-Thanks
+Signed-off-by: Lei Xu <lei.xu@nxp.com>
+---
+Lei Xu (2):
+      dt-bindings: arm: fsl: Add compatible for i.MX95 15x15 FRDM board
+      arm64: dts: freescale: imx95: Add support for i.MX95 15x15 FRDM board
 
-Jonathan
+ Documentation/devicetree/bindings/arm/fsl.yaml     |   1 +
+ arch/arm64/boot/dts/freescale/Makefile             |   1 +
+ arch/arm64/boot/dts/freescale/imx95-15x15-frdm.dts | 955 +++++++++++++++++++++
+ 3 files changed, 957 insertions(+)
+---
+base-commit: 6987d58a9cbc5bd57c983baa514474a86c945d56
+change-id: 20251207-127-4e8551e8bdaf
 
-> ---
-> Change log v2 -> v3:
-> - fixed typo in powerdown-gpios description.
-> - picked up Conor's review tag. 
-> 
->  .../bindings/iio/adc/adi,ad4134.yaml          | 198 ++++++++++++++++++
->  MAINTAINERS                                   |   7 +
->  2 files changed, 205 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad4134.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad4134.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad4134.yaml
-> new file mode 100644
-> index 000000000000..69a6ddf6ca92
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad4134.yaml
+Best regards,
+-- 
+Lei Xu <lei.xu@nxp.com>
 
->
-> +allOf:
-> +  - if:
-> +      not:
-> +        required:
-> +          - ldoin-supply
-> +    then:
-> +      required:
-> +        - avdd1v8-supply
-> +        - dvdd1v8-supply
-> +        - clkvdd-supply
-
-Conor gave a tag, so I'm sure this is fine, but could we do this as
-a oneOf given it's a pick between two options?
-
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    spi {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        adc@0 {
-> +            compatible = "adi,ad4134";
-> +            reg = <0>;
-> +
-> +            spi-max-frequency = <1000000>;
-> +
-> +            reset-gpios = <&gpio0 86 GPIO_ACTIVE_LOW>;
-> +            odr-gpios = <&gpio0 87 GPIO_ACTIVE_HIGH>;
-> +            powerdown-gpios = <&gpio0 88 GPIO_ACTIVE_LOW>;
-> +
-> +            clocks = <&sys_clk>;
-> +            clock-names = "clkin";
-> +
-> +            avdd5-supply = <&avdd5>;
-> +            dvdd5-supply = <&dvdd5>;
-> +            iovdd-supply = <&iovdd>;
-> +            refin-supply = <&refin>;
-> +            avdd1v8-supply = <&avdd1v8>;
-> +            dvdd1v8-supply = <&dvdd1v8>;
-> +            clkvdd-supply = <&clkvdd>;
-> +
-> +            adi,asrc-mode = "low";
-> +            adi,dclkio = "in";
-> +            adi,dclkmode = "gated";
-
-Interesting question on whether it is worth adding properties
-to examples if they are set to the defaults. Generally we wouldn't
-expect actual DT files to set them.  Meh, doesn't matter much to me
-either way!
-
-> +
-> +            regulators {
-> +                vcm_reg: vcm-output {
-> +                    regulator-name = "ad4134-vcm";
-> +                };
-> +            };
-> +
-> +        };
-> +    };
-> +...
 
