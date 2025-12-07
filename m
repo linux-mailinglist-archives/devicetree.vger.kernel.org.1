@@ -1,220 +1,181 @@
-Return-Path: <devicetree+bounces-245026-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245027-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8AA9CAB744
-	for <lists+devicetree@lfdr.de>; Sun, 07 Dec 2025 17:03:55 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id BAA45CAB7E8
+	for <lists+devicetree@lfdr.de>; Sun, 07 Dec 2025 17:54:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B094F301B4AD
-	for <lists+devicetree@lfdr.de>; Sun,  7 Dec 2025 16:02:09 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 3021D30006F0
+	for <lists+devicetree@lfdr.de>; Sun,  7 Dec 2025 16:54:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46FD82FB093;
-	Sun,  7 Dec 2025 16:02:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E4502C2372;
+	Sun,  7 Dec 2025 16:54:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="A5YkMuul"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YQzF94fl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f44.google.com (mail-vs1-f44.google.com [209.85.217.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A804C2F9DB1
-	for <devicetree@vger.kernel.org>; Sun,  7 Dec 2025 16:02:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48DE116DC28;
+	Sun,  7 Dec 2025 16:54:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765123329; cv=none; b=BpCMLeYe/5RMfUnReWPxf7WYQUv+vd+yp+FzCUfdsrleCbD+k2fIYQptq9MCIkGyn2NkvouXIWeoX5Z0XnaMk60uDs+vi/KD+pPoGbtEjKfAZ4lUG4XIS99gidKmARi94GVN44u3F0OFI+GQLXXdLiLBjbnXUsgmbNVuYNrkghE=
+	t=1765126448; cv=none; b=PgZtvnSandPjZCn336cmLD1NR93V400mIQwYZ5lWEN5WqnCNRx0AzXiAg4SwI1l/56dokywsuL4tfK5B77EV7CmN9abGazsj3b7hN9iSElYBdBOCq8ADBhxMd8x5s6l+lPWpq3Bg6s31ZI+57hdFntMFFJYFOls7b5RW53mG5UY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765123329; c=relaxed/simple;
-	bh=CFtfvPx1SPClm0CFDrtoxKRERrbvBMY5Uf16f9gT9/s=;
-	h=Content-Type:Date:Message-Id:To:Cc:Subject:From:Mime-Version:
-	 References:In-Reply-To; b=oOqbObDN+7S2ujOlzdIj3AKbQ7S1tWe7VcMqBKv/EYEb1jmIsEiudNbIQ3HnmCfiTpnlkiAzmif5e01CvxyXm6GT1NMJ3UFcsNsm1B/8xRGxp8Oq4DnceCV4+Crbq+gYLCPqiMoDcx+TaUDor91+gjTtp+BwSycZe5acQCmM4Io=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=A5YkMuul; arc=none smtp.client-ip=209.85.217.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f44.google.com with SMTP id ada2fe7eead31-5dbd8bb36fcso3350859137.1
-        for <devicetree@vger.kernel.org>; Sun, 07 Dec 2025 08:02:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1765123325; x=1765728125; darn=vger.kernel.org;
-        h=in-reply-to:references:content-transfer-encoding:mime-version:from
-         :subject:cc:to:message-id:date:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=zcxsIVo7erQ0Y1WCvNuIeF6EelT1hTEyFCi/Lj2sheg=;
-        b=A5YkMuulJnwHig5+eN+jJeFMPj78CCP7lC7WUIhqKARnsQzrUP9MlZqYQ8B/w4u5Hx
-         vg/VMNneJ65dqux99clbtxTR3Cvt6enZHqrefcqzull81HCkp6+IokBXuJ5FVjd9tDtf
-         rp4/a7DQigLbdcgNIYYD2NOezJhmqCbZllzaLgmubIjbYgi1NoqsZitEJ2qwPlxUfmB8
-         kiCqxYmrZpbdpU1BJ8FGpNtfpi4BPPHiFu2XpW9wTqx8LwpfPvZUfeaa+DYEqPmHeVVm
-         sbngr3z7ZuQje6HQLXmSOYgsZjqshziAYEmvFRqNqCukIxqCD6PHtveurOxdZ4P3OdzB
-         LifA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765123325; x=1765728125;
-        h=in-reply-to:references:content-transfer-encoding:mime-version:from
-         :subject:cc:to:message-id:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zcxsIVo7erQ0Y1WCvNuIeF6EelT1hTEyFCi/Lj2sheg=;
-        b=MzZpPHEcyND5mwE33jV3amLkwo3BZnr2ThpUXdtfxLEd4Rj1qsCIW3bjPZtrFTMYzp
-         qRQjSBFa68QspGqus6jEJs/bKbVAFUyIejCgznKelJZIm4/CI1ob37DnJQB1q32juX6M
-         Ku8IY9P8CHcFqk+Aj/LuauHtx2CxEBELpkxrR580XO3MMXcji/q8yTyuj8nEbMMnkeco
-         634bxtVNRfqVO5pMwpV5Vfuq35BpB+ZJApeSZLtUKaB8C5Fg0K+6+IFBwUlYV+/IPWD6
-         p4xqN5tQyNmeGohTd7Fv0ILCymeL2CFrpvZ92CHjtyPc4i6aw0pE0qOv3gS5lTPCGDnt
-         gEcw==
-X-Forwarded-Encrypted: i=1; AJvYcCWNQkrbN7HjfTbctTo5RlmePoM8aSkupiyyJfdEbkPrwoRWqG3NGnEy0o/MKxgrr4RyKct4NnnYTVEn@vger.kernel.org
-X-Gm-Message-State: AOJu0YwXQty2xUEuXGPnyRXRXuYcb4fFYTrt5f0gR3xZ4CQEvzAZqMy0
-	+YgC7K859aDGkVdcKVzw0xETu9B6j+pysf1q8iBB6FRAnh/JLo8pbjOr
-X-Gm-Gg: ASbGncuoQuZqLS++SihHN/t8rJxRtqo3GL51+OLTokAmI69fQrk9+1mUY/grsVmp0MX
-	beclD6ln0CQUn2neS2xfH3yC24cDuoHr8ueaLbMR49iREmTikwyrJa8LHP8OmwciX0cD3drUuQz
-	WYJ/4wPN8AfsL+EqRA+2BPBtXzTmfyQvpO4g6HL6pWVb90wZrjzA8W0aH8G2upjL813mbOo7rSd
-	xASYy32kpDzQTadZ3iijzvSXAsSOhHWcl+CJK95R4NYEiZjR+iEHRfQuCIENkCHRNmrU7SbPgtY
-	rW0JzEfP9RKmW/2U8/cp2XbKrsot9C9d5F0pAns6DhYeMbtCk65Vpp6VJyAqcJVUBOHuBLvvy2A
-	+LRmB5SQuwItAJwYR6JifpMmiO5zlrVafTO/UHb+kqS/orNe9CsyEog/WyRjQRz6ER1xO80Eapy
-	3CXYs=
-X-Google-Smtp-Source: AGHT+IFZVLlCsiIj+W7MkskoknZWOJWt1+uBz/VnH3qVP0gmNZDGK8PME93IILaywDsrkXs2+vBMrw==
-X-Received: by 2002:a05:6102:956:b0:5db:cf38:f4fd with SMTP id ada2fe7eead31-5e52cbfdf63mr1544082137.11.1765123325404;
-        Sun, 07 Dec 2025 08:02:05 -0800 (PST)
-Received: from localhost ([2800:bf0:82:3d2:875c:6c76:e06b:3095])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-93f01d022a4sm3059647241.3.2025.12.07.08.02.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 07 Dec 2025 08:02:05 -0800 (PST)
-Content-Type: text/plain; charset=UTF-8
-Date: Sun, 07 Dec 2025 11:02:03 -0500
-Message-Id: <DES3ZWAKXXEB.2LQPMDZN4JFCB@gmail.com>
-To: "Jonathan Cameron" <jic23@kernel.org>, "Kurt Borja" <kuurtb@gmail.com>
-Cc: "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
- <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Tobias
- Sperling" <tobias.sperling@softing.com>, "David Lechner"
- <dlechner@baylibre.com>, =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- "Andy Shevchenko" <andy@kernel.org>, <linux-iio@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, "Jonathan
- Cameron" <Jonathan.Cameron@huawei.com>
-Subject: Re: [PATCH v6 2/2] iio: adc: Add ti-ads1018 driver
-From: "Kurt Borja" <kuurtb@gmail.com>
+	s=arc-20240116; t=1765126448; c=relaxed/simple;
+	bh=C5sZX87PayaYSX4KfMWn5QhVbDjq7mIXp6DtwTMeVlE=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=SqrEYM4Tzx07l2QFyKC9J7qhnvcZC1uP/s2Ekh/YP5YJd0QSPnBZLCPMH4rqzEQfkf64nkRf5QpDV5B0IYkFqOq0htkpnRS1koFiXI6KqKAuQ4A83q3sxHDJlQ3PAuIwFADD9hTpauunKn/aLGMPwFPMv/1hlnj9DpwvskWdQVc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YQzF94fl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7A1EC4CEFB;
+	Sun,  7 Dec 2025 16:53:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1765126445;
+	bh=C5sZX87PayaYSX4KfMWn5QhVbDjq7mIXp6DtwTMeVlE=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=YQzF94flU5YhTWDez2epfvKC5EqjVvI+7is443ff5YfWy2/yt9djUUsn6PgYcOvsC
+	 HU8339fb5BHU7u9WDDaDROzxM+w5fu15J0e7xN1JamuDggwX4dcgDYB+ZoIl6FC+Q8
+	 d25Ckwd9ov3r8z9+1/5IQLV+Qp7xRL3Kj/ZzCfo4kg+aDf5P2IOb7hNIaLzuHbenDj
+	 QaSfBxpKKa7InHW3e5J/E2ngtAtQzGp8dBQNOQ4LGWDrlAuE2DdS74Gzdcyap4dits
+	 yuKzlA32Zgps8id9w1zY7HZntERbC72KU1phfiTiXOE/J/xFT9dzKHCGJmsPv6gx1W
+	 ZTBcBMWCwQAOQ==
+Date: Sun, 7 Dec 2025 16:53:49 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
+Cc: robh@kernel.org, krzysztof.kozlowski@linaro.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, agross@kernel.org, andersson@kernel.org,
+ lumag@kernel.org, dmitry.baryshkov@oss.qualcomm.com,
+ konradybcio@kernel.org, daniel.lezcano@linaro.org, sboyd@kernel.org,
+ amitk@kernel.org, thara.gopinath@gmail.com, lee@kernel.org,
+ rafael@kernel.org, subbaraman.narayanamurthy@oss.qualcomm.com,
+ david.collins@oss.qualcomm.com, anjelique.melendez@oss.qualcomm.com,
+ kamal.wadhwa@oss.qualcomm.com, rui.zhang@intel.com, lukasz.luba@arm.com,
+ devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org, cros-qcom-dts-watchers@chromium.org,
+ quic_kotarake@quicinc.com, neil.armstrong@linaro.org,
+ stephan.gerhold@linaro.org
+Subject: Re: [PATCH V8 3/4] iio: adc: Add support for QCOM PMIC5 Gen3 ADC
+Message-ID: <20251207165349.72f80659@jic23-huawei>
+In-Reply-To: <20251127134036.209905-4-jishnu.prakash@oss.qualcomm.com>
+References: <20251127134036.209905-1-jishnu.prakash@oss.qualcomm.com>
+	<20251127134036.209905-4-jishnu.prakash@oss.qualcomm.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: aerc 0.21.0-0-g5549850facc2
-References: <20251204-ads1x18-v6-0-2ae4a2f8e90c@gmail.com>
- <20251204-ads1x18-v6-2-2ae4a2f8e90c@gmail.com>
- <20251206200721.5e683a83@jic23-huawei>
-In-Reply-To: <20251206200721.5e683a83@jic23-huawei>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Sat Dec 6, 2025 at 3:07 PM -05, Jonathan Cameron wrote:
-> On Thu, 04 Dec 2025 13:01:28 -0500
-> Kurt Borja <kuurtb@gmail.com> wrote:
->
->> Add ti-ads1018 driver for Texas Instruments ADS1018 and ADS1118 SPI
->> analog-to-digital converters.
->>=20
->> These chips' MOSI pin is shared with a data-ready interrupt. Defining
->> this interrupt in devicetree is optional, therefore we only create an
->> IIO trigger if one is found.
->>=20
->> Handling this interrupt requires some considerations. When enabling the
->> trigger the CS line is tied low (active), thus we need to hold
->> spi_bus_lock() too, to avoid state corruption. This is done inside the
->> set_trigger_state() callback, to let users use other triggers without
->> wasting a bus lock.
->>=20
->> Signed-off-by: Kurt Borja <kuurtb@gmail.com>
+On Thu, 27 Nov 2025 19:10:35 +0530
+Jishnu Prakash <jishnu.prakash@oss.qualcomm.com> wrote:
 
-...
+> The ADC architecture on PMIC5 Gen3 is similar to that on PMIC5 Gen2,
+> with all SW communication to ADC going through PMK8550 which
+> communicates with other PMICs through PBS.
+> 
+> One major difference is that the register interface used here is that
+> of an SDAM (Shared Direct Access Memory) peripheral present on PMK8550.
+> There may be more than one SDAM used for ADC5 Gen3 and each has eight
+> channels, which may be used for either immediate reads (same functionality
+> as previous PMIC5 and PMIC5 Gen2 ADC peripherals) or recurring measurements
+> (same as ADC_TM functionality).
+> 
+> By convention, we reserve the first channel of the first SDAM for all
+> immediate reads and use the remaining channels across all SDAMs for
+> ADC_TM monitoring functionality.
+> 
+> Add support for PMIC5 Gen3 ADC driver for immediate read functionality.
+> ADC_TM is implemented as an auxiliary thermal driver under this ADC
+> driver.
+> 
+> Signed-off-by: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
+Hi Jishnu
 
->> +#define ADS1018_VOLT_CHAN(_index, _chan, _realbits) {				\
->> +	.type =3D IIO_VOLTAGE,							\
->> +	.channel =3D _chan,							\
->> +	.scan_index =3D _index,							\
->> +	.scan_type =3D {								\
->> +		.sign =3D 's',							\
->> +		.realbits =3D _realbits,						\
->> +		.storagebits =3D 16,						\
->> +		.shift =3D 16 - _realbits,					\
->> +		.endianness =3D IIO_BE,						\
->> +	},									\
->> +	.info_mask_separate =3D BIT(IIO_CHAN_INFO_RAW) |				\
->> +			      BIT(IIO_CHAN_INFO_SCALE) |			\
->> +			      BIT(IIO_CHAN_INFO_SAMP_FREQ),			\
->
-> What motivates per channel sampling frequency?
->
-> Given you have to write it each time you configure I guess it doesn't mat=
-ter much
-> either way.
+Biggest thing I noticed on a fresh review is that you include
+very few headers.  This only compiles (I think) because of lots
+of deeply nested includes.  General principle in kernel code is
+to follow IWYU approach with a few exceptions.  That makes code
+much less prone to changes deep in the header hierarchy.
 
-I guess making it shared by all is simpler too, so I'll go with that.
+You can even use the tooling that exists for clang to give you suggestions
+though search around for config files (I posted one a long time back)
+that reduce the noise somewhat.
 
-...
+Jonathan
 
->> +/**
->> + * ads1018_calc_delay - Calculates a suitable delay for a single-shot r=
-eading
->> + * @ads1018: Device data
->> + *
->> + * Calculates an appropriate delay for a single shot reading, assuming =
-the
->> + * device's maximum data-rate is used.
->> + *
->> + * Context: Expects iio_device_claim_direct() is held.
->
-> What in here changes if we are in buffered mode?
-> We have no reason to call it but why does that matter?
 
-Yep, I just pasted this mindlessly. I'll remove it.
+> diff --git a/drivers/iio/adc/qcom-adc5-gen3-common.c b/drivers/iio/adc/qcom-adc5-gen3-common.c
+> new file mode 100644
+> index 000000000000..46bb09424f22
+> --- /dev/null
+> +++ b/drivers/iio/adc/qcom-adc5-gen3-common.c
+> @@ -0,0 +1,107 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+> + *
+> + * Code shared between the main and auxiliary Qualcomm PMIC voltage ADCs
+> + * of type ADC5 Gen3.
+> + */
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/delay.h>
+> +#include <linux/iio/adc/qcom-adc5-gen3-common.h>
+> +#include <linux/regmap.h>
+This seems like very light set of includes.
+If nothing else should be seeing linux/types.h I think
 
-...
+In general try to follow include what you use principles (loosely as some
+conventions exit for not including particular headers). 
 
->> +/**
->> + * ads1018_single_shot - Performs a one-shot reading sequence
->> + * @ads1018: Device data
->> + * @cfg: New configuration for the device
->> + * @cnv: Conversion value
->> + *
->> + * Writes a new configuration, waits an appropriate delay (assuming the=
- new
->> + * configuration uses the maximum data-rate) and then reads the most re=
-cent
->
-> I'm lost on this.  Normally the longest delay is governed by the minimum =
-data rate.
-> I.e. Samples take longer when running few per second, so we wait longer.
+Sorry I didn't notice this in earlier reviews!
 
-We are using the minimum data rate on the maximum data-rate mode. I
-should have added "mode" there.
 
->
-> I think this is meant to mean the delay needed for a sample at the minimu=
-m expected
-> rate for this configuration.
+> diff --git a/drivers/iio/adc/qcom-spmi-adc5-gen3.c b/drivers/iio/adc/qcom-spmi-adc5-gen3.c
+> new file mode 100644
+> index 000000000000..effd4bd49989
+> --- /dev/null
+> +++ b/drivers/iio/adc/qcom-spmi-adc5-gen3.c
 
-Yes, I think this was too confusing.
+> +/**
+> + * struct adc5_chip - ADC private structure.
+> + * @dev: SPMI ADC5 Gen3 device.
+> + * @dev_data: Top-level ADC device data.
+> + * @nchannels: number of ADC channels.
+> + * @chan_props: array of ADC channel properties.
+> + * @iio_chans: array of IIO channels specification.
+> + * @complete: ADC result notification after interrupt is received.
+> + * @lock: ADC lock for access to the peripheral, to prevent concurrent
+> + * requests from multiple clients.
+> + * @data: software configuration data.
+> + * @n_tm_channels: number of ADC channels used for TM measurements.
+> + * @tm_aux: pointer to auxiliary TM device.
+> + */
+> +struct adc5_chip {
+> +	struct device *dev;
+> +	struct adc5_device_data dev_data;
+> +	unsigned int nchannels;
+> +	struct adc5_channel_prop *chan_props;
+> +	struct iio_chan_spec *iio_chans;
+> +	struct completion complete;
+> +	/*
+> +	 * lock for access to the peripheral, to prevent concurrent requests
+> +	 * from multiple clients.
+> +	 */
 
-I'll add a `hz` argument to ads1018_calc_delay() and pass the frequency
-of the maximum data-rate mode when preparing the config.
+Whilst checkpatch is dumb on this and complains if you don't have a comment
+here feel free to drop it as the one in the kernel-doc is enough.
 
-I think this will make the intent more explicit.
+> +	struct mutex lock;
+> +	const struct adc5_data *data;
+> +	unsigned int n_tm_channels;
+> +	struct auxiliary_device *tm_aux;
+> +};
 
-...
-
->> +static int
->> +ads1018_write_raw_unlocked(struct iio_dev *indio_dev,
->
-> Similar to the naming discussion on the ACQUIRE RFC I'm not sure
-> using locked here is really descriptive of more than an internal
-> detail of how we prevent mode switching. I'd prefer something like
-> ads1018_write_raw_direct_claimed() or ads1018_write_raw_direct_mode()
-> (the absence of any other write_raw_*** would indicate this is the only
-> valid one perhaps).
->
-> Also this isn't the unlocked version, it's the one that doesn't take
-> the lock.
-
-I'll go with ads1018_{read,write}_raw_direct_mode().
 
 >
-
-Ack to everything else, including bindings stuff. Thanks, Jonathan!
-
-
---=20
- ~ Kurt
-
 
