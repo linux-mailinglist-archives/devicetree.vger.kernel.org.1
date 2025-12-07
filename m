@@ -1,149 +1,110 @@
-Return-Path: <devicetree+bounces-245007-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245008-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5771CAB24C
-	for <lists+devicetree@lfdr.de>; Sun, 07 Dec 2025 07:58:52 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4012CAB317
+	for <lists+devicetree@lfdr.de>; Sun, 07 Dec 2025 10:22:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id C83BD300250E
-	for <lists+devicetree@lfdr.de>; Sun,  7 Dec 2025 06:58:45 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 673B23070174
+	for <lists+devicetree@lfdr.de>; Sun,  7 Dec 2025 09:22:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E25F2DC793;
-	Sun,  7 Dec 2025 06:58:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E0D9298CDE;
+	Sun,  7 Dec 2025 09:22:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=subdimension.ro header.i=@subdimension.ro header.b="05fuBmbY"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="Ze40ACPP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.subdimension.ro (nalicastle.subdimension.ro [172.105.74.154])
+Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A958C2D593E;
-	Sun,  7 Dec 2025 06:58:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=172.105.74.154
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AB8D24466C
+	for <devicetree@vger.kernel.org>; Sun,  7 Dec 2025 09:22:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.161
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765090724; cv=none; b=YKO0z29cTkdyBk28RuhdyNaNs9AJ307OVmX+DBsu7EtABxcwBFNbQXgzlShghDPcc3OPl7iyWyyq7kxatwD0flU+jrtQdY0zMgoCQ/btODX7i2h5GEaUcH0usRIscl3zpABYVvMCHGulV3BK2cYJoR341CsfxQYLoGBX+jF6cck=
+	t=1765099350; cv=none; b=DGSNIs00SflitH26CrJJTtzxqM/CCUNsX1zjE8OLTvFQvPMnx+8KBdos/Be+L6KEUmbxFT8qjerwj/oQKfvGXZJ0AHjkjuRwpiRdvfmiTnQg1ldBGnfVtSv0ZhV+S1f+Ad7r/hLDgR0xUD1kchBz7PxHqw/HHQB/1AMIm5QoN1A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765090724; c=relaxed/simple;
-	bh=Rj+cBQTuoFKUXNCiEWcTtFjgLfh7SzJNFYxeDYswCdA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AjnWfyPtOSs+QNDvX/WvLnqXzC3r2DNMLWjqD9OVYsY5R39hkIgKAvcIy/eltMPhQtV/bKeds/3xqKn70Iy24upZh0S5EV/ceT33AkZTRjHiNC7d9NbH+H80k8PXoFM5kzWD6zPsmgSNFaFs6PukWCQIg2Cytmy+IRhcJFHSyOk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=subdimension.ro; spf=pass smtp.mailfrom=subdimension.ro; dkim=pass (2048-bit key) header.d=subdimension.ro header.i=@subdimension.ro header.b=05fuBmbY; arc=none smtp.client-ip=172.105.74.154
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=subdimension.ro
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=subdimension.ro
-Received: from sunspire.home.arpa (unknown [IPv6:2a02:2f0e:3402:a400:e2d5:5eff:fed9:f1c4])
+	s=arc-20240116; t=1765099350; c=relaxed/simple;
+	bh=caZ5KAZ1kDrWMWY5eYrtBWpxbmSFRNxMEAFPjpuZFIA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=qfD8bi2vjINXrIL6eRPhzOz8Qecic1z3jCQVw6bR23ZX7Skkjko9RuIfw+8xOXTT3LrIqC4N/4dQ0mgEwD4MUcUGzmskrLv2eVNua2SFSH7aPpAPl3FlR7DiY8vyKNcqjUHZuG014MeyenotTt7UgzfyCBnZXLIK9ti+BYR7WB0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=Ze40ACPP; arc=none smtp.client-ip=80.241.56.161
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by mail.subdimension.ro (Postfix) with ESMTPSA id 999F9160209;
-	Sun, 07 Dec 2025 08:58:39 +0200 (EET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=subdimension.ro;
-	s=mail; t=1765090720;
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4dPKQ274qbz9spZ;
+	Sun,  7 Dec 2025 10:22:18 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1765099339;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=vNYqDFxmnHanesdjb9oic57DVhqZX916YNdOdPgzAk4=;
-	b=05fuBmbY6YumZH7ZyKlWrrmjbSb+ofzoOjB87HNiH+k5g+nJNwpuXM5SpQiK0iR22CwZvY
-	MBJwW8/Izpay2M3GTXYO/257md12gppz9r5DrIPzWAuLG6VLvPqoNlHEVI8PgjebLZDOTK
-	yvEQQMaM3XtpkITZm9Jn6PaHS2GoBpHmreoVqhYroncgNzB372F7hHsI8oku1bSKK7FLCq
-	1awUE9DiRdAdarUngApl6SbFaqShlsEdVTQ884FzQ84dc7CXD8JkZzApeACz4ACV7Wbpxp
-	nLXKbfiDb26sqOeZ/Qc3LwiLkiL8BwY24JZcMEEvMkAEjYEArzaFkqkU662oUA==
-Date: Sun, 7 Dec 2025 08:58:36 +0200
-From: Petre Rodan <petre.rodan@subdimension.ro>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: David Lechner <dlechner@baylibre.com>, Nuno S?? <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] iio: pressure: add Honeywell ABP2 driver
-Message-ID: <aTUlnJTuZwvoSUPh@sunspire.home.arpa>
-References: <20251204-honeywell_abp2_driver-v3-0-ad3275bad35e@subdimension.ro>
- <20251204-honeywell_abp2_driver-v3-2-ad3275bad35e@subdimension.ro>
- <20251206205407.6ba41d76@jic23-huawei>
+	bh=X9q+cDfMrg014EY9sJksn+6sdb8oD5faOWT5cDz9z5Y=;
+	b=Ze40ACPPG06G4xRRBlXqZELB2bWqEdDO6PqZOf7s7XPX8N/jeTpZOBEd6XeG4qbObyPEn0
+	wfDMOF4besSbqSSIp++twiB5bf+Hmn7h3wLcpMRhYpg/Ghyzr8mRukqINgFRXbyBLbl/LP
+	9i1qyUHA+AbaZt25olGR9lOPS5lQslyvLSjyuF8OEhGS/LqDNnnof+qrrB1Ffuhtt4U38P
+	12KTI2RNYyjDp3+9VzUu+bcRfc9Nf5WRAhOPlrEBANJMWwA5zayrw0pl5JA+ESPQNkY+vP
+	S1RiQOF2Yea+VUeprlQLqhRNPtcTapMgelIVS+6F6DADiGL4RtPLvpZX5wkkBw==
+Message-ID: <9b593731-898f-46a7-8ee5-68f8c170351c@mailbox.org>
+Date: Sun, 7 Dec 2025 10:01:06 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="k2oeZaQilhKo86D/"
-Content-Disposition: inline
-In-Reply-To: <20251206205407.6ba41d76@jic23-huawei>
+Subject: Re: [PATCH] arm64: dts: imx95: Use GPU_CGC as core clock for GPU
+To: Rain Yang <jiyu.yang@oss.nxp.com>
+Cc: Frank.li@nxp.com, conor+dt@kernel.org, devicetree@vger.kernel.org,
+ festevam@gmail.com, imx@lists.linux.dev, kernel@pengutronix.de,
+ krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org, peng.fan@nxp.com,
+ robh@kernel.org, s.hauer@pengutronix.de, shawnguo@kernel.org
+References: <20251129143220.14834-1-marek.vasut@mailbox.org>
+ <aS-lEibp3zTsaR6T@oss.nxp.com>
+ <c6e0e55a-06da-4665-972e-e9b5b8c08bf7@mailbox.org>
+ <aTACuRjC_Zpf8IOU@oss.nxp.com>
+ <de36091e-c890-4897-b3e3-2a7575029a5d@mailbox.org>
+ <aTD5np-HGaJqhzkD@oss.nxp.com>
+ <5944d872-01a3-47e9-977b-029f3be4fd83@mailbox.org>
+ <aTKVMAMQ6v_BwD6R@oss.nxp.com>
+Content-Language: en-US
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <aTKVMAMQ6v_BwD6R@oss.nxp.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-MBO-RS-ID: feb1c8f184211a18c7b
+X-MBO-RS-META: rqqhake851yp3bxp1345p13u66h15651
 
+On 12/5/25 9:17 AM, Rain Yang wrote:
+> On Thu, Dec 04, 2025 at 04:25:38AM +0100, Marek Vasut wrote:
+>> On 12/4/25 4:01 AM, Rain Yang wrote:
+>>
+>> [...]
+>>>>> For the Linux working environment,
+>>>>> CLK_GPU and CLK_GPUAPB are always-on, while CLK_GPU_CGC can be gated off.
+>>>>>
+>>>>> Regarding the IMX95_CLK_GPUAPB handle, my suggestion was based on the absence
+>>>>> of its frequency in any OPP entry within the frequency table. Removing it
+>>>>> could simplify the OPP handling logic and reduce unnecessary complexity.
+>>>>
+>>>> If the clock can be disabled by SM, Linux has to make sure they are NOT
+>>>> disabled, so they must be described in DT, right ?
+>>>>
+>>>>> [1] https://github.com/nxp-imx/linux-imx/commit/695f2bdc57b869ca5189313e4b5fa7eb5a12f622
+>>> Currently, only CLK_GPU_CGC shall be described in the Device Tree[1], as it can be gated.
+>>> The other clocks (CLK_GPU and CLK_GPUAPB) are always-on in the Linux environment,
+>>> so describing any of them in DT is not necessary and would not be proper in this context.
+>>
+>> Since this discussion is in fact unrelated to this bugfix, I would propose to
+>> fork the discussion into a separate patch. Can you please submit a patch for
+>> the GPUAPB clock ? Note that I believe GPUAPB clock have to be described in
+>> DT, if only because DT is a hardware description, and to make sure the GPUAPB
+>> clock are correctly enabled by the driver.
+> 
+> Okay, I’ll submit a patch later.
+> The commit message should reflect that only CLK_GPU_CGC is enabled.
 
---k2oeZaQilhKo86D/
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-
-Hello Jonathan,
-
-thank you for the review.
-
-I actually heard about structs who's elements are 64byte padded so they don=
-'t end up in the same cache update in another context but up until today I =
-did not make the connection with what is going on here.
-thank you for the detailed explanation.
-
-On Sat, Dec 06, 2025 at 08:54:07PM +0000, Jonathan Cameron wrote:
-> On Thu, 04 Dec 2025 17:12:56 +0200
-> Petre Rodan <petre.rodan@subdimension.ro> wrote:
->=20
-> > Adds driver for digital Honeywell ABP2 series of board mount
-> > pressure and temperature sensors.
-
-[..]
-
-> Nice clean driver.
-
-well, thank you. I will be sending in a few modifications to my other Honey=
-well
-drivers based on feedback received here.
-
-> > +#include <linux/jiffies.h>
->=20
-> I'm not immediately spotting use of this but I might well be missing it!
-
-it's an indirect include for the definition of 'HZ'. requested by Andy.
-
-> > +	data->scan.chan[0] =3D get_unaligned_be24(&data->rx_buf[1]);
-> > +	data->scan.chan[1] =3D get_unaligned_be24(&data->rx_buf[4]);
-> Turn on just the second channel and run the test in tools/iio/ for buffer=
-ed
-> reads.
->=20
-> You'll see data from the first channel not the one userspace asked for.
-> Set available_scan_masks =3D { 0x3, 0 };
-> allows the IIO core to know this is what is happening and shuffle the
-> data as necessary for you.
-
-nice catch. it was outputing pure garbage (not the first channel) but your =
-change
-fixed it.
-
-best regards,
-peter
-
---k2oeZaQilhKo86D/
-Content-Type: application/pgp-signature; name=signature.asc
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEGiKYHD4NvFCkTqJ3dCsnp2M6SWMFAmk1JZoACgkQdCsnp2M6
-SWO1Mw/8DExzhW+lthw18pyB6HG+RLUoGE+GQUDt1QkOM9ykprjPG/25ldzKiJ9X
-7wcOii2Q0uMwKotceS31Jq1WmVJiQyN5kOy31EEkBTo6hff2aYgbfdtznkHVAVgg
-Ekoz1vU/fxVeQfYct2356sWetcUBqew6zUbC1Fn7sqE9VXgzVXYiGWEhm/JbkzIG
-LNLwSRSYZf7LrAEN7fgfJCRwXxfDq6iV1Yv1H4GA2UOY7O+iscgukMaTUirEi9sq
-yYBZEo+IfTpRSCtBsnayxyEz2UhL7sJidvHJEYNXz1CBROGKAZTlXTPHVOnKSea1
-61WmRuvP6rc6MZ4nsrO/Wck232Ct3o8GoaYzh9/Oi0u5J53UoZ31I/dHXwBC9qre
-lOkJQrZuqVTy/qxPu1h+2mOXQSoJvFxcKi1T9WlrG+3VW0nnzK+Bobk0cU6Qt6sK
-PdTzhNhJ//gbRfRuyPpewlkmVrB7DX+6MxcJsVBMzAKkooR27LQuJKOn1wzAV3Sp
-8lNznPJjnOWLfFkbxfaA/vzQ51/BIw/WjBLgS8NxNosle2H/Oeh1yZ4la2yXsJus
-qZawLTA5epxTBEb8caCMpEjRhe6TRYZxb4W3RA0L9ExZ7lXwOhpri5J6W7WKd2bY
-oaERASmJAkL9+L5APLxnIOs1IFb8iEE3KZYuh3bwoZFtSAdvwFw=
-=XiKR
------END PGP SIGNATURE-----
-
---k2oeZaQilhKo86D/--
+The commit message , and this change , is unrelated to GPUAPB clock.
 
