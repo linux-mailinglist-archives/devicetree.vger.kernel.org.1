@@ -1,143 +1,143 @@
-Return-Path: <devicetree+bounces-245034-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245035-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07854CAB961
-	for <lists+devicetree@lfdr.de>; Sun, 07 Dec 2025 20:29:17 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9E3DCAB967
+	for <lists+devicetree@lfdr.de>; Sun, 07 Dec 2025 20:33:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E330A3013395
-	for <lists+devicetree@lfdr.de>; Sun,  7 Dec 2025 19:29:13 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 05C313015160
+	for <lists+devicetree@lfdr.de>; Sun,  7 Dec 2025 19:33:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B50C2DC76C;
-	Sun,  7 Dec 2025 19:29:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B79A22A4E8;
+	Sun,  7 Dec 2025 19:33:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="l9/nvL03"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m7lVxxx5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f47.google.com (mail-qv1-f47.google.com [209.85.219.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7F3229BD91
-	for <devicetree@vger.kernel.org>; Sun,  7 Dec 2025 19:29:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFE3B1D5147;
+	Sun,  7 Dec 2025 19:33:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765135752; cv=none; b=g3Apr/HVJWhIIF8Jd4PDPo/rTWP7wfaAeEB/kuAkDu7R45peLzCRibaKc/GnC2yRvwaHXnvkuVQhBiZg3jshIOM5SjLCG91hdnNrWIqHjdZGhq9/xdmu9qzkz+pcBT0a87czK0AuySE3LULqYB/0vAm1Q+bPV4RVJsK7CDYZ/0o=
+	t=1765136000; cv=none; b=gUej0RC1DQjvzEnbUM5fLecH8CcfmgoKESgTVsmz/b4bbhGFenLBonAWRK4PwgEuz2H6dY/CErSjgSiJcwf8TLeKMF0K2j/Q9/Aj0Xef6JAg1Tk65V1pMR8jE5mvZl9aEm8WhdjimTg1qDa5V6UGQKtufMPc7MzCaiZHkItm3lg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765135752; c=relaxed/simple;
-	bh=Opu2+OL/DwS9JbMvMpOEdTVE51EH8OVgiRsdsv9c8zI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=qp1aruB8rajJGtMG9ECTfktbAmFZeUxqZVoXbxQB+2xvEEUZSJnPTiyZQytT/0gisiE7DZAFjJE5GGvljHYiBY9tfBwvWZXUA+EZ/HiiFpJ3Gr6R8LwaqKSSKljYyGQ8jUvkiE/oAyax6I+aWRDpyhPId9Vx6tdL/C9X2PhkOlg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=l9/nvL03; arc=none smtp.client-ip=209.85.219.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f47.google.com with SMTP id 6a1803df08f44-88054872394so55131426d6.1
-        for <devicetree@vger.kernel.org>; Sun, 07 Dec 2025 11:29:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1765135750; x=1765740550; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Opu2+OL/DwS9JbMvMpOEdTVE51EH8OVgiRsdsv9c8zI=;
-        b=l9/nvL03OlUjc+W8pHAGIewQZ3hmxaw+QOPxfLip2V3rf8BJWOo34iNYq8+QBhWpke
-         TR9rjcbXvNtbeEixSuhR0a8gdbRPPg0TcOjdPxTfm/hsLZsC/IDfQxYwl+41LniKd/x/
-         d0OtEbhJ8HyqxJCZ1Bsi0pb0ow+dNyafzOqB0bU9edgmsnN22rEHvvCtt8q7AAzTiupD
-         ivZLmusT/n2iDiIfZhM5IJ4+nSRdVVQ2UrPsUkQ20HDw1dQljH61yT9pSMkaR8NGQyBU
-         TOPn4fSrjMfbyrsFehKCcudazqMYAWUurTrCR5OxwPA3pUwYJdWvITl/nWKJaAw/5mKr
-         UM1Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765135750; x=1765740550;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=Opu2+OL/DwS9JbMvMpOEdTVE51EH8OVgiRsdsv9c8zI=;
-        b=OVngULJyWX/ca8W1CZV5HI4JcneMX6RBnkgXth1qaG5rOgcQyWCbgDuHwgJKVtVaCw
-         ymABPlRNQU3XlhuPuNA7SkhBSBq7knZLHsZ9x+opkcxPuY29ng843o6uKizNheWIBFXI
-         s+pBZwDNurKqDsJUL8qMcXjl7e0hcXmJVI9Iuc473VAoDWJEdOfMRvnpA7BQSTw8zjfL
-         MXp2vnccnr5LalCemcSZejphZwLdgAAvri6B340D56TrIXtRZvKwfdv93dzP8BlC508P
-         A6uEplrjjkx7/3p2DtGFdkSHZLHHxl9HeDiaWuFuKI3vkRYPvXiA1sS8vFueeITuh7ih
-         BYAQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUpaQnCav+UkKAmz1MuG4Ry63EfFmvPVmlEtOOzuW6qbnpR14FM34rDnypmcQvf8T023rzM9QvfMKvD@vger.kernel.org
-X-Gm-Message-State: AOJu0YwRiuHulpKYVwScasynCSGMdkJXx8I1h5fLoWgpNLOhlMfDoNB3
-	nU5mvlyBkNWs/p84+Gah1h2M/162rlzI/Ej1pctvWt0ORweeJ+pW2Z3QyIL3tEdkGf1I+oD9vbs
-	9zTrmFal7wr3yWQuYObxkbPLW6aNURv27Lz00+g==
-X-Gm-Gg: ASbGncvJ/D4Dr0sSzOklUpUNYqy5wxG3/PSHFDM8weDx/3Kx9K92wSBH+aSic6nY75j
-	Q2vLcy5+SkTO90k4N9YHRp3QmYEFrf+3eDDTq364wA5GWLBFD0jGq0xlUK9AOSeo2tNUtIYEDgf
-	naEobyus1o4b6je5TFDXMMKNWcGMw6quUqIws/dU8cRjrhNxPcLVG9+G66wCOVYvDhrLeMbGwfD
-	fiw5nwyg69CABOoNu79Hheq/xwNEHMcODquMJ1HF4CD6ZdU1eX6pD5ldJD0bVk/1qdXilJWc8vf
-	HPZgG8vT8EbfSzGwsGYBOKvhtJc=
-X-Google-Smtp-Source: AGHT+IHjR3mLmPnj9fRaa7D59Q5OP/l7CbN+/RdhM+PjFVUL8+kj6fWBqmoyD4tFOMFEsNhTEVep7TjIbtGOzuXKODA=
-X-Received: by 2002:ad4:5ba5:0:b0:880:4ec0:417a with SMTP id
- 6a1803df08f44-8883dc4c363mr100694556d6.55.1765135749856; Sun, 07 Dec 2025
- 11:29:09 -0800 (PST)
+	s=arc-20240116; t=1765136000; c=relaxed/simple;
+	bh=Wew3Tkkd72lI0vJkrNIBhy/HAu3GIoiuVNyTvl8eY8A=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=U6x/tHzXJ5WlxXdaOyrmcuk2D4IleGbT3SYxzvDoF+M57f0MmK0DMpl7FWZOKdvhsg3WRQvTffalyj1HRq2d1CHSoa3+9GFi33RteJhPWYt6Q0Dp7qhJZb7b0iSbDlljUUyK4omOxwiKtSpO3UjT9r+N+v1IamBrC2CKII01dbk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m7lVxxx5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55259C4CEFB;
+	Sun,  7 Dec 2025 19:33:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1765135999;
+	bh=Wew3Tkkd72lI0vJkrNIBhy/HAu3GIoiuVNyTvl8eY8A=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=m7lVxxx5S21rqY0s8FYfoyy4/+dOZktvoeOO7axENeiBEJtzdcayRHqk0tn8ErC0l
+	 DKqxf3gKYyTuHgChHs/7eRh76p55skKpd5c4zacZWC/miAAqzZ1q9eEuoEKuG9OWj6
+	 +Eo0/xNWMs8k1V7bVmml0Uyely5ti+eZATZW3I8NMSC6lfCR7nm45U3HK9kmHaWteo
+	 Ee/wBaWTCgZakFah5cOqaDAtsyOhRDzYHYeihoPS5+AJJxDUupEpZBAWRYW8iHX/dQ
+	 43w0P1BErfLYzCMi/l7Xt0J/MkmbMnQhQkzcGPwjF76obsn2RYlE/IPYEgx+0F510i
+	 JO0pJzOYuykmg==
+Date: Sun, 7 Dec 2025 19:33:13 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Oleksij Rempel <o.rempel@pengutronix.de>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, David Jander <david@protonic.nl>,
+ kernel@pengutronix.de, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org, Andy Shevchenko
+ <andy@kernel.org>, David Lechner <dlechner@baylibre.com>, Nuno
+ =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>
+Subject: Re: [PATCH v4 2/2] iio: adc: Add TI ADS131M0x ADC driver
+Message-ID: <20251207193313.794ea339@jic23-huawei>
+In-Reply-To: <20251118141821.907364-3-o.rempel@pengutronix.de>
+References: <20251118141821.907364-1-o.rempel@pengutronix.de>
+	<20251118141821.907364-3-o.rempel@pengutronix.de>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251201011457.17422-1-daleyo@gmail.com> <20251201011457.17422-7-daleyo@gmail.com>
- <7ea43ef2-b453-46cf-a35e-ea11ca1dbe24@kernel.org>
-In-Reply-To: <7ea43ef2-b453-46cf-a35e-ea11ca1dbe24@kernel.org>
-From: =?UTF-8?B?SsOpcsO0bWUgZGUgQnJldGFnbmU=?= <jerome.debretagne@gmail.com>
-Date: Sun, 7 Dec 2025 20:28:33 +0100
-X-Gm-Features: AQt7F2oFhC8Mb-l4_CfaR4BEBfSn1QIKcrxVG9maohU2gcvVq5WClxflVEf0V1E
-Message-ID: <CA+kEDGEjR7cGA0zZfuKkYg37mJZs3Fn7eKbgkB6hdjDLtGxjRQ@mail.gmail.com>
-Subject: Re: [PATCH v2 6/8] dt-bindings: wireless: ath12k: Add disable-rfkill property
-To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: Dale Whinham <daleyo@gmail.com>, Johannes Berg <johannes@sipsolutions.net>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jeff Johnson <jjohnson@kernel.org>, Jeff Johnson <jeff.johnson@oss.qualcomm.com>, 
-	linux-wireless@vger.kernel.org, devicetree@vger.kernel.org, 
-	ath12k@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Le lun. 1 d=C3=A9c. 2025 =C3=A0 08:34, Krzysztof Kozlowski <krzk@kernel.org=
-> a =C3=A9crit :
->
-> On 01/12/2025 02:14, Dale Whinham wrote:
-> > From: J=C3=A9r=C3=B4me de Bretagne <jerome.debretagne@gmail.com>
-> >
-> > rfkill should be disabled according to the Surface Pro 11's DSDT.
-> >
-> > https://lore.kernel.org/all/20250113074810.29729-3-quic_lingbok@quicinc=
-.com/
-> > has added support to read the ACPI bitflag when ACPI is supported.
->
-> It wasn't merged. If it was, reference commits, not random emails.
+On Tue, 18 Nov 2025 15:18:21 +0100
+Oleksij Rempel <o.rempel@pengutronix.de> wrote:
 
-Good catch, It was merged in commit c6a7c0b09d5f, we will reference
-this commit instead.
+> From: David Jander <david@protonic.nl>
+> 
+> Add a new IIO ADC driver for Texas Instruments ADS131M0x devices
+> (ADS131M02/03/04/06/08). These are 24-bit, up to 64 kSPS, simultaneous-
+> sampling delta-sigma ADCs accessed via SPI.
+> 
+> Highlights:
+> - Supports 2/3/4/6/8-channel variants with per-channel RAW and SCALE.
+> - Implements device-required full-duplex fixed-frame transfers.
+> - Handles both input and output CRC
+> 
+> Note: Despite the almost identical name, this hardware is not
+> compatible with the ADS131E0x series handled by
+> drivers/iio/adc/ti-ads131e08.c.
+> 
+> Signed-off-by: David Jander <david@protonic.nl>
+> Co-developed-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+Hi Oleksij,
 
-> > Document the disable-rfkill property to expose one specific feature
-> > (DISABLE_RFKILL_BIT) for devices described with a DT, so that the
-> > feature can be disabled.
->
-> This is just a circular logic. Add property to have property in DT so
-> that you can use feature.
->
-> No, describe the hardware or actual problem instead.
+Series applied, but one comment inline on some code that surprised
+me. I'm curious whether anyone else agrees the devm_clk_get_enabled()
+stub returning NULL is an odd choice?
 
-Point taken. Would something like the following be better?
+For now applied to my local branch. I will push it out only as testing until
+I can rebase on rc1.
 
-"For some devices, Wi-Fi is entirely hard blocked by default making
-the Wi-Fi radio unusable, except if rfkill is disabled as described
-by an ACPI bitflag on those models. Add the disable-rfkill property
-to expose the DISABLE_RFKILL_BIT feature for devices described
-by a devicetree."
+> +/**
+> + * ads131m_parse_clock - enable clock and detect "xtal" selection
+> + * @priv: Device private data structure.
+> + * @is_xtal: result flag (true if "xtal", false if default "clkin")
+> + *
+> + * Return: 0 on success, or a negative error code.
+> + */
+> +static int ads131m_parse_clock(struct ads131m_priv *priv, bool *is_xtal)
+> +{
+> +	struct device *dev = &priv->spi->dev;
+> +	struct clk *clk;
+> +	int ret;
+> +
+> +	clk = devm_clk_get_enabled(dev, NULL);
 
-> You still need to answer Rob's questions.
+This surprised me, so I went digging.  Anyone know why
+the stub returns NULL?  Given that the normal function doesn't have
+that as an allowed return value that seems really odd.
 
-Indeed, we didn't answer another question, sorry. Here it is for
-reference:
+Still, it does, so this code is fine if odd.
 
-> [Rob] Assuming it belongs in DT, why is this ath12k specific? Could be
-> for any wireless chip...
-
-Agree, it could be applicable to any wireless chip, it should be moved
-somewhere else. Would ieee80211.yaml be the right target file for
-this property? Or any other file suggestion instead? Thank you.
-
-Best regards,
-J=C3=A9r=C3=B4me
+> +	if (IS_ERR_OR_NULL(clk)) {
+> +		if (IS_ERR(clk))
+> +			ret = PTR_ERR(clk);
+> +		else
+> +			ret = -ENODEV;
+> +
+> +		return dev_err_probe(dev, ret, "clk get enabled failed\n");
+> +	}
+> +
+> +	ret = device_property_match_string(dev, "clock-names", "xtal");
+> +	if (ret > 0)
+> +		return dev_err_probe(dev, -EINVAL,
+> +				     "'xtal' must be the only or first clock name");
+> +
+> +	if (ret < 0 && ret != -ENODATA)
+> +		return dev_err_probe(dev, ret,
+> +				     "failed to read 'clock-names' property");
+> +
+> +	if (ret == 0 && !priv->config->supports_xtal)
+> +		return dev_err_probe(dev, -EINVAL,
+> +				     "'xtal' clock not supported on this device");
+> +
+> +	*is_xtal = !ret;
+> +
+> +	return 0;
+> +}
 
