@@ -1,227 +1,213 @@
-Return-Path: <devicetree+bounces-245041-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245042-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 935DBCABB8B
-	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 02:28:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 47604CABBD3
+	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 02:45:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4500B3007FF5
-	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 01:28:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 40F8B301764E
+	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 01:45:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27344211499;
-	Mon,  8 Dec 2025 01:28:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D26A23F413;
+	Mon,  8 Dec 2025 01:45:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mxCO2s6s"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="j5K+B8Pu";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="QiP6k69k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF6C11C861A;
-	Mon,  8 Dec 2025 01:28:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A0F03B8D7E
+	for <devicetree@vger.kernel.org>; Mon,  8 Dec 2025 01:45:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765157310; cv=none; b=reCBcxdRzD5PQAowzgeCd2R7Dhn52AzG3GUPTNx3UqCuDHsCZmhonQv6corR6HCm+4zKJRfP0cGq6ylxE2Use+iBXQdLqCEHeGIOjxAzPve7sNupk+AAU47qaJHTtGlLcB6zUUkrjGGDwt+wXEmm9z7DdzhJn+iZ/SRc44LYluM=
+	t=1765158304; cv=none; b=r75JfoLq6iv1ZF/EpzGKyDGHT5dpC63EWNbtYwmdBmzKS3zj2/H5WN0BGs0Zn19ZTuln6rGQGUdhC5THQkgwRRSByytuMJmGeL06UXSyXKFEEN+39d9NxbFjiBqM0/ECxnkmQTY0FIGllU7iq9674jyL5dpAwchhOEDvVtjsnVw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765157310; c=relaxed/simple;
-	bh=EdG95QZ0thcwVxnSLXQVKWQuULwbEqcqlz9F/E2H+qY=;
+	s=arc-20240116; t=1765158304; c=relaxed/simple;
+	bh=wyUAR8rdo1VP/fVrBoh29x21Xg+ywxFyINBfBNEKrrw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=D6KJcPJ3I9FWB4ilgvBnJmGbNtcI2Z0rNpits6J33iL6qLIQ5GaF9Ulc1pIc7T6BkR7ReV5Eo0SobYAEaanHavC5fhCabR2h5cLBvh0io8I7VVwHBpROhPi6TAA3bo54Nf2XjM10rkUNEdmTRINiMm0RqkewdzNO+YKiz/+B0bc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mxCO2s6s; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34A2EC4CEFB;
-	Mon,  8 Dec 2025 01:28:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765157309;
-	bh=EdG95QZ0thcwVxnSLXQVKWQuULwbEqcqlz9F/E2H+qY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mxCO2s6scq9MCexy9brYAm+h5FqAHmgU/1NpJ1ZmA7T3ak9C9bmY7jMbOTNXvPjUM
-	 k6AddidjkTquiCgFjd25lwHE4z3GnLgtNJVeE0i9BowE8dFByy7MQCGhhwqiN3X4G2
-	 ZMdndUtqJrEDi59A2lnSZ5VEo4nEXM16V4l+ZZ86np5RDZLUt2EBDxNkbp9Xk1EICb
-	 YXAJE1WP3iYxw5U6yq6wXBQoBadokref0b/nWAEPzcKVm2g8D6qznyhkmlit0fMybd
-	 OQdjvbQflFlUM4FzXS+76JM9ca+jHqFT8zZZPLUCTfyLXAj+bxDTliLa8umsuxWeZ/
-	 3HsOQmZ4VWo+A==
-Date: Sun, 7 Dec 2025 19:28:26 -0600
-From: Rob Herring <robh@kernel.org>
-To: Marco Felsch <m.felsch@pengutronix.de>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>,
-	Liu Ying <victor.liu@nxp.com>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v7 1/3] dt-bindings: soc: imx93-media-blk-ctrl: Add PDFC
- subnode to schema and example
-Message-ID: <20251208012826.GA340359-robh@kernel.org>
-References: <20251202-v6-18-topic-imx93-parallel-display-v7-0-2cce31d64608@pengutronix.de>
- <20251202-v6-18-topic-imx93-parallel-display-v7-1-2cce31d64608@pengutronix.de>
+	 Content-Type:Content-Disposition:In-Reply-To; b=c7dsDQozXaxn5IGsc9Y9okymhtgsEj0UhBvvGTovembb9y5e8+bcEfEMWsi9jzWFCeDVXxndguhT3TTrFDPqfxYr6PPjPLnnsCZsaO0FksgtCAdinCmDYeYSy1wORUi46vN1LKE+AhWadyJqdrbyTbxwHY8cNha/Bqfy7u4JXgw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=j5K+B8Pu; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=QiP6k69k; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5B7LJDEK3583455
+	for <devicetree@vger.kernel.org>; Mon, 8 Dec 2025 01:45:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	s/5Td7nAdECmiMY6x3WUmyCCB0m8xAINpFEXzjXf/j0=; b=j5K+B8Pue9Wc5uWH
+	4+OlqfAzGrtYGYd1ubiEOs4qzyn2GcvnxZ2HAJH31t+mXHhW9cq4cNXlXUo8vM2M
+	4GhudBf1WasHagbOCOtrXUydFqgV/8+/ltF7vwcfDQi/UwX5qo9afGCrUt1UalMn
+	8ioxJuzAThrM2eKl4JYPk8arqbqL7ScWmRW36HSfxQpUMWEUc8zSwBG+s4mKLgkv
+	w7HUzdrMQYxnUIu6ypED7zXrHbXro5aC/aXktjKWkTANAPyyqsePEx2gJ9N/hKVQ
+	Kd3fZ3EYjU8MK7e0Hc5fPI5ys4bKp4Je6vcbkAAk1QpHmyytOkr422+86oCeb+s8
+	JgI6rw==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4avbga3axa-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 08 Dec 2025 01:45:00 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4ee1b7293e7so128718731cf.0
+        for <devicetree@vger.kernel.org>; Sun, 07 Dec 2025 17:45:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1765158299; x=1765763099; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=s/5Td7nAdECmiMY6x3WUmyCCB0m8xAINpFEXzjXf/j0=;
+        b=QiP6k69kwbEbjDPUR+OXnvPr2Jy0PSuBlfE+UmVJbpV5NxQISHrmD/LZlxYDqpkPzt
+         Jab6QutLXy9UMbH1Nv1qdLhzLEXBoU8Zm7u6p8K9d7SGyWuU3erM4RVlBN0Mer3rrkqR
+         zRP/lp8PtY9vsQOwkPmArt0XXmMueeg0UXiAY1vx6L9eff3YpoAQERGRof9187lmv2Dl
+         7BzdWYj5CKVpAPFc/hRkytjuok51EfdbTZe4TTpwRN8XVrsOoKz25vxewo/66/yEEO2B
+         a8YHaPT81r5tQvdMvG8G3/c4M8u4Bdc4IZGWCCQUWA6Lg0R+tW5SuAPnlH5uVQ6wvObw
+         sKlA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765158299; x=1765763099;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=s/5Td7nAdECmiMY6x3WUmyCCB0m8xAINpFEXzjXf/j0=;
+        b=if+6EJhdnGyfVL7uG6zhzZt9MMl7NSXWGCBtxk+f7JuJQGHzNUeUzGhGocjgBDykRl
+         s6yhLxkA6/T1poYHrFsMaTqD8ypwc0tieNGcvtCNL+muandtLHm1+/NEXBqJGDGri696
+         beHOkwafq+IBArmjQ28KKyBK4rrTKZn89PWHvAI95nY7WrApbYy8D4heoRmWqTDtllet
+         +nqxNsFGnk/AYsj0Of6Xb1fHZl/LaHyNsaLKr8dquPPYdXE55tPIz9j+1ngjSNWJFZg8
+         /P0NoU83XVPjmoLZjD8dMP+i2CX5mZp/330lUros8NBUqMgE9pmmD+OJ01yvcLxk+4bC
+         9nHg==
+X-Forwarded-Encrypted: i=1; AJvYcCUaEyZ0n+FBpHrGXIEBnBN/Y+5QGz1iPr4bFXkXoblV6bH/ljZVCy2ifGBzjtYzsMVd0Q7TBI2n7R9n@vger.kernel.org
+X-Gm-Message-State: AOJu0YyQt0SBdf3/64QOSjo657VBsGYXOYPKoBuFUCws+ZE5tRhYuSSH
+	AhWwaX0XhI2RRrc28Mn42IOdiWlordUF6Fe6ss86VZF+Ciu9d9S6YOC99P8zhtIuh0n8rGjD2qg
+	1p9FYSthlp8Pi8COipGURiZSxMMkxW4My9hjUNmZIcRdiK6QeVmsfBQbCVoCEZUJI
+X-Gm-Gg: ASbGncvUhwzu1I2/cGiF8tV3rkzzC+DJ75Y423mEEjTFvStdQ7H6KrDHTRct3SrBB1F
+	mNl/e9EqxmSthPh5YL+gtKTpVLxtcC484Oqx1aofRIu/0o/wghgHM01RQVXLN5mFh8iLi5+myxa
+	6NNWuVkh9yg9PWROWiiC36zl8glp/RwP0vNreKwk3bLSQSbCbJql3TMQUJDph7FGE8+RzP4WsdI
+	9efmgWv9yINPkFiuO3ziLhmJArmMr3/Z2iAcRcqmK0UhP6a1/Qprl8N32Em5vx7aMFiD+QOB0bW
+	DFqoQPX0tLytKxMNZ0RhfiLBnvdXzncN1PcSNpf/dvGcuAkTF1F+a9nGtJjzbi3oD0Odf6TPT6R
+	B82F8BCdzVOwiw5hM0WK90SED5hIhnSxPzx6Q5VxBkFtPPjcbCP8nKTvtnykWyR3vVXLguE8C8i
+	CnVi+8bK6D2IdpnrSXPKIFans=
+X-Received: by 2002:a05:622a:550f:b0:4ee:146d:771e with SMTP id d75a77b69052e-4f03fde5843mr110993891cf.29.1765158299606;
+        Sun, 07 Dec 2025 17:44:59 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFG5tMeMcoAMyr/D6y7kUXHS4WQHquHkfAyh9CnnpFda/YPztbmumK9vpF5MSdg5rUxQsDKwA==
+X-Received: by 2002:a05:622a:550f:b0:4ee:146d:771e with SMTP id d75a77b69052e-4f03fde5843mr110993631cf.29.1765158299212;
+        Sun, 07 Dec 2025 17:44:59 -0800 (PST)
+Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-597d7b24730sm3748827e87.33.2025.12.07.17.44.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 07 Dec 2025 17:44:57 -0800 (PST)
+Date: Mon, 8 Dec 2025 03:44:55 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>,
+        Loic Poulain <loic.poulain@oss.qualcomm.com>,
+        Robert Foss <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
+        trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com,
+        Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
+        Atiya Kailany <atiya.kailany@oss.qualcomm.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v8 1/5] media: dt-bindings: Add CAMSS device for Kaanapali
+Message-ID: <2tvkcuipfaa7cn7goynt6jfzlcxg2d7yvvjqizb6p7sf5oqwuj@drqiyr3khoyf>
+References: <20251130-add-support-for-camss-on-kaanapali-v8-0-143a8265e6e8@oss.qualcomm.com>
+ <20251130-add-support-for-camss-on-kaanapali-v8-1-143a8265e6e8@oss.qualcomm.com>
+ <f4d29f9b-98ce-4e57-9916-5a37927db2a7@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251202-v6-18-topic-imx93-parallel-display-v7-1-2cce31d64608@pengutronix.de>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <f4d29f9b-98ce-4e57-9916-5a37927db2a7@linaro.org>
+X-Authority-Analysis: v=2.4 cv=d4z4CBjE c=1 sm=1 tr=0 ts=69362d9c cx=c_pps
+ a=WeENfcodrlLV9YRTxbY/uA==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+ a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=xq3W2uTSAAAA:8 a=EUspDBNiAAAA:8 a=KKAkSRfTAAAA:8 a=VwQbUJbxAAAA:8
+ a=b7N2CkzV7mNB1x08AMEA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=kacYvNCVWA4VmyqE58fU:22 a=P5L7wpMTXyg1GfFA3Gwx:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-GUID: aLdehJe_1nREqrGUzu-6mK_LvKLE-LbU
+X-Proofpoint-ORIG-GUID: aLdehJe_1nREqrGUzu-6mK_LvKLE-LbU
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjA4MDAxMiBTYWx0ZWRfXxnBXdmu8usei
+ 4Wits3MNWvuIPR0n/+HlsZJinQQAcnYcnqxwjQzwOvLaaenFYXkZijxKCG9pDX8BGSRFeIzZkUa
+ j+Vikjuj2y0KtQ7pVFaDg7p2qWUkjeFKAdpw1TLH67j/gPdP8lfm2/s0XlOKpsSeHFmHNR8ux2j
+ oii4nf9LYxnyaR+DMGtx3x1lI0uZGDqD93ivtK5JpEL3qDTBMeUtLlPN4X9ZPOBJxpb6jq1k2PY
+ JHtLquM49aqzSJXURGTGvcFHP2FHGpbZUof6qpckG5mzLAW3OTJNFDZoFrEM+GKMAuFYC8Sms3X
+ K+w7Al/v6gzgqyujUcqqK5kPaukUnLqo5WFd0ytFj34y5fwdVU12l+HVW46CcX+ig+AobSue13n
+ Ci7f8mn/LAPo4zs3f346eHVXKk8H7w==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-06_02,2025-12-04_04,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 bulkscore=0 priorityscore=1501 malwarescore=0
+ lowpriorityscore=0 clxscore=1015 impostorscore=0 phishscore=0 adultscore=0
+ spamscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
+ definitions=main-2512080012
 
-On Tue, Dec 02, 2025 at 02:32:58PM +0100, Marco Felsch wrote:
-> From: Liu Ying <victor.liu@nxp.com>
+On Sat, Dec 06, 2025 at 10:11:20PM +0000, Bryan O'Donoghue wrote:
+> On 01/12/2025 06:30, Hangxiang Ma wrote:
+> > Add the compatible string "qcom,kaanapali-camss" to describe the Camera
+> > Subsystem (CAMSS) on the Qualcomm Kaanapali platform.
+> > 
+> > The Kaanapali platform provides:
+> > - 3 x VFE, 5 RDI per VFE
+> > - 2 x VFE Lite, 4 RDI per VFE Lite
+> > - 3 x CSID
+> > - 2 x CSID Lite
+> > - 6 x CSIPHY
+> > - 2 x ICP
+> > - 1 x IPE
+> > - 2 x JPEG DMA & Downscaler
+> > - 2 x JPEG Encoder
+> > - 1 x OFE
+> > - 5 x RT CDM
+> > - 3 x TPG
+> > 
+> > Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> > Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+> > Signed-off-by: Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>
+> > ---
+> >   .../bindings/media/qcom,kaanapali-camss.yaml       | 647 +++++++++++++++++++++
+> >   1 file changed, 647 insertions(+)
+> > 
+
+> > +      - const: gcc_hf_axi
 > 
-> i.MX93 SoC mediamix blk-ctrl contains one DISPLAY_MUX register which
-> configures parallel display format by using the "PARALLEL_DISP_FORMAT"
-> field. Document the Parallel Display Format Configuration(PDFC) subnode
-> and add the subnode to example.
+> https://patchwork.linuxtv.org/project/linux-media/patch/20251126-add-support-for-camss-on-sm8750-v1-2-646fee2eb720@oss.qualcomm.com/
 > 
-> Signed-off-by: Liu Ying <victor.liu@nxp.com>
-> [m.felsch@pengutronix.de: port to v6.18-rc1]
-> [m.felsch@pengutronix.de: add bus-width]
-> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> Pointed out by Krzysztof in the 8750 patches but the name of this clock is
+> gcc_axi_hf.
+> 
+> ~/Development/worktree/qcom-linux-next
+> ➞  grep gcc_axi_hf * -r | wc -l              [git:platform-qcom-next] ✖
+> 48
+> 
+> ~/Development/worktree/qcom-linux-next
+> ➞  grep gcc_hf_axi * -r | wc -l              [git:platform-qcom-next] ✖
+> 0
+
+My 2c: it should be none of those. gcc_axi_hf is the _source_ of the
+clock, while the bindings (in my opinion) should be describing the
+function of the clock on the consumer side (e.g. bus, iface, something
+else, etc).
+
+> 
+> Please resolve the other inconsitencies pointed out by Krzysztof in that
+> thread here also.
+> 
+> I will have to skip application of this series in the meantime.
+> 
 > ---
->  .../bindings/soc/imx/fsl,imx93-media-blk-ctrl.yaml | 92 ++++++++++++++++++++++
->  1 file changed, 92 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctrl.yaml b/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctrl.yaml
-> index 34aea58094e55365a2f9c86092f637e533f954ff..6e2d86d9341c75108b492bcbabc8a560d8e707cd 100644
-> --- a/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctrl.yaml
-> +++ b/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctrl.yaml
-> @@ -26,6 +26,12 @@ properties:
->    reg:
->      maxItems: 1
->  
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 1
-> +
+> bod
 
-And 'ranges' needed.
-
->    '#power-domain-cells':
->      const: 1
->  
-> @@ -40,6 +46,60 @@ properties:
->      minItems: 8
->      maxItems: 10
->  
-> +  bridge@60:
-> +    type: object
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      compatible:
-> +        const: nxp,imx93-pdfc
-> +
-> +      reg:
-> +        maxItems: 1
-> +
-> +      ports:
-> +        $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +        properties:
-> +          port@0:
-> +            $ref: /schemas/graph.yaml#/properties/port
-> +            description: Input port node to receive pixel data.
-> +
-> +          port@1:
-> +            $ref: /schemas/graph.yaml#/$defs/port-base
-> +            unevaluatedProperties: false
-> +            description: Output port node to downstream pixel data receivers.
-> +
-> +            properties:
-> +              endpoint:
-> +                $ref: /schemas/graph.yaml#/$defs/endpoint-base
-> +                unevaluatedProperties: false
-> +
-> +                properties:
-> +                  bus-width:
-> +                    enum: [ 16, 18, 24 ]
-> +                    description:
-> +                      Specify the physical parallel bus width.
-> +
-> +                      This property is optional if the display bus-width
-> +                      matches the SoC bus-width, e.g. a 18-bit RGB666 (display)
-> +                      is connected and all 18-bit data lanes are muxed to the
-> +                      parallel-output pads.
-> +
-> +                      This property must be set to 18 to cut only the LSBs
-> +                      instead of the MSBs in case a 24-bit RGB888 display is
-> +                      connected and only the lower 18-bit data lanes are muxed
-> +                      to the parallel-output pads.
-> +
-> +        required:
-> +          - port@0
-> +          - port@1
-> +
-> +    required:
-> +      - compatible
-> +      - reg
-> +      - ports
-> +
->  allOf:
->    - if:
->        properties:
-> @@ -81,9 +141,12 @@ allOf:
->              - const: isi
->              - const: csi
->              - const: dsi
-> +
->  required:
->    - compatible
->    - reg
-> +  - '#address-cells'
-> +  - '#size-cells'
->    - power-domains
->    - clocks
->    - clock-names
-> @@ -112,4 +175,33 @@ examples:
->                 clock-names = "apb", "axi", "nic", "disp", "cam",
->                               "pxp", "lcdif", "isi", "csi", "dsi";
->        #power-domain-cells = <1>;
-> +      #address-cells = <1>;
-> +      #size-cells = <1>;
-> +
-> +      bridge@60 {
-> +        compatible = "nxp,imx93-pdfc";
-> +        reg = <0x60 0x4>;
-> +
-> +        ports {
-> +          #address-cells = <1>;
-> +          #size-cells = <0>;
-> +
-> +          port@0 {
-> +            reg = <0>;
-> +
-> +            pdfc_from_lcdif: endpoint {
-> +              remote-endpoint = <&lcdif_to_pdfc>;
-> +            };
-> +          };
-> +
-> +          port@1 {
-> +            reg = <1>;
-> +
-> +            pdfc_to_panel: endpoint {
-> +              remote-endpoint = <&panel_from_pdfc>;
-> +              bus-width = <18>;
-> +            };
-> +          };
-> +        };
-> +      };
->      };
-> 
-> -- 
-> 2.47.3
-> 
+-- 
+With best wishes
+Dmitry
 
