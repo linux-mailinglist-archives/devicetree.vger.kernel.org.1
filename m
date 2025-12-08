@@ -1,150 +1,222 @@
-Return-Path: <devicetree+bounces-245158-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245159-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id A59F7CAD1C6
-	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 13:26:12 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id B30FDCAD1FF
+	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 13:26:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 6A2DE30161C4
-	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 12:26:11 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0E13E3028D97
+	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 12:26:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 066B62EC54D;
-	Mon,  8 Dec 2025 12:26:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F124F2F6160;
+	Mon,  8 Dec 2025 12:26:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QVxz2jbk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="djbVJc8r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com [209.85.128.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B97701F8BD6
-	for <devicetree@vger.kernel.org>; Mon,  8 Dec 2025 12:26:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C34552DEA86;
+	Mon,  8 Dec 2025 12:26:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765196768; cv=none; b=oUpAtqSb/KW9wYRck1rxlP9roQtBh4Oig5sD5PFs/Nh5wqvzeiYqXc9anJ8FhtHvXQTGdUwIDfoJUKrvd/VF2z3KUF65xMGLH7LtEo4N6INnXwvCbgJQxo9GgCrGtNxR3lxDfVXx1iqH0BHYcVf4pgzpqUDjLRrLmDiO4cSaZSU=
+	t=1765196775; cv=none; b=NqvLSi2VISuiV+QU8btatUpzUu3P+zA1u38pMphTzZT+zkjiW4n5cbpvHavSEzR39Qzb3KYZNhsbLGNm+wfV5oGXVV2hLXKtdUfWnPyNKxLaC4XLv9aQahLJiszRoTjx4EffPbfDEAAEuA1ZGYphbb2064AME95RPN3AS+4M38c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765196768; c=relaxed/simple;
-	bh=H4eRlFes40XZLasvmYWo0/7K4YgDUXXtPkHgEcOXS6U=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Fy8lHPecYfod1zlU7ridBXtPYDCj5fG8oB8zamCeiSRgnOQvy/JWvwCdk6fGEvJ7HlmUz/26miNZXwR/F+4mj0DoS7Efq7Rj+XzyBvpOSIfjz/pPUn8OvRvf/wlYt2ZkTGqO5vk417ikaVTE06m0/2rLVajlaufWq/+AQz151LY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QVxz2jbk; arc=none smtp.client-ip=209.85.128.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-78c329724a6so13462097b3.2
-        for <devicetree@vger.kernel.org>; Mon, 08 Dec 2025 04:26:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1765196766; x=1765801566; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=vZt3TabWTyFSBA7SZOawQNFxfo8ZjRuT909uZclWvj8=;
-        b=QVxz2jbkesCgPV+DPr/vF25FOEWX73CmKGqF5A5PVnwTDMIxSxUMfB8ovl2V9hr/Oj
-         8osKy+IHHiP2mC44KRNGQQfEayx9dbn3VF3r2tbJy4JuLARGDstnaaF3H+0sqQadUFpc
-         Z5VIo47t+8dQbbKNOUbKrQzMlWK8W8EgbUJU+efTzSgdTeajr2O6tbwaRY41ZzuLdPBP
-         XVuPiog1Ugmj6ghAU8LhY1K3VwYeuu5AweNXbyLgos4BAvOrrho1rOv0MW9Rd5giPsxX
-         UyHpS4etCnRJp+mhi1ZbtBkw3p3R+iSVIHW4rOhzbBAg3w0CgbCjj5gITfTvAETKOW1s
-         JiLg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765196766; x=1765801566;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vZt3TabWTyFSBA7SZOawQNFxfo8ZjRuT909uZclWvj8=;
-        b=IoMJfgp2yUsAEpV2MRpkOu8Vc3T2NFk7DIzStHiTgIaXxJBzpCrb6gnZf8w6e3msr/
-         B402HAQKug2UdDQlOQ+SOwMU52xM23XljY83BcXQ/SSzuHfzjDBMROakbHfKzBl0zJcq
-         cD/jSgEmRDIOc6pAImBBXa0SWgiTMipIODaNrrfKpQEKWJbsKP55H7bh/+xPdF0W6srR
-         /mw1YuLDxpdaqhbYfvIPXMuTiRum03m3APIFRKVnzFu5hgFus+uIgJtvw+ZwnmpxANfi
-         x8HJWQasG3rvgiwzhWv020AyRRa/e9TG0KGdpepk4A5iOSQqVHrWrmBxqT940zG6u5Ng
-         I+XA==
-X-Forwarded-Encrypted: i=1; AJvYcCXCkvMzwIf3ISnSFgggd/4C04/BQArWtWhn/qCdnHH4DPxsSqoEcbjC38Eb/pCW5bdk6e68p8xvQkYA@vger.kernel.org
-X-Gm-Message-State: AOJu0YyE7j7nkat1ZqfQPy1HZVksOHiW6aq1qmnsGudn/h+MPdl9vQpp
-	qL7JpszbJo2Ac6umkH4kFP2mhJYPx0D07vfq/bRai6ZGRAJFNb8Q8W7HTenAHd8dVwD4dvwvQ7L
-	IKXeOqGScofHBD2WB4HVQS51zuAsy5JawgGBEji0sUA==
-X-Gm-Gg: ASbGnctcjVO8BRWh5UYJUjlYPxqvagy2R3nelvNSv5fEhBckar62xq7n9F3tLUVDWs3
-	6NnGtx9au8CBct2Qffa+99lcHJLZBWc4MwkqTml5JBc/qQWdEXFxhU6JLgfl32R4JAQ772MALKX
-	S1tHpZ1dQ+7lgVc1t3RjcB6zxkrCQ3PVRlrnCbDy5+prwr36XjM2H2MkXIXYi7xxDntn1SO7Wv1
-	InLw968FD8DJjFkk1dE4rJeCP1t/XlfjYeFlLvyhtl2bKaurpEz0jYWfy5IRFQ05/qfWRf0
-X-Google-Smtp-Source: AGHT+IF6MqQA4bkmhAJPeVaQca00cmapujBX1CfRi0eGTrtCM9ILNfiWIU9u8UsYIv2GuQ7ieXOfeMLccw2NZ7Ci7AU=
-X-Received: by 2002:a05:690e:1244:b0:641:f5bc:698c with SMTP id
- 956f58d0204a3-6444e7efa27mr5658268d50.72.1765196765550; Mon, 08 Dec 2025
- 04:26:05 -0800 (PST)
+	s=arc-20240116; t=1765196775; c=relaxed/simple;
+	bh=9wKYefdnIBM7zpnERUFdSpv1Qo6rUFMb0+UKFQY7Pz0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=DlwaiRoxErj1+uyKTSBocE1EHbLmkfcyMXf225xfqPdzoQP/k+SbG2MHSsrc/Yawmh8rVe5AF4HL5ZjPc9MyTnDNM5If1s/jh7EGFQ7x1tX61WER+Z0cqKcINax+UUmZwGIWNBrOfEEz1pzIDIiiM4k5eEcMW/+vpJyTg2E9H9Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=djbVJc8r; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 52CB9C4CEF1;
+	Mon,  8 Dec 2025 12:26:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1765196775;
+	bh=9wKYefdnIBM7zpnERUFdSpv1Qo6rUFMb0+UKFQY7Pz0=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=djbVJc8r7X1agZWLQDDtDnxTFP8fZItRUsl5cJ+5QzRxleOf/ON45fCbOpmoqGkzl
+	 b+EgF8FtZyLacUooUdqcehyebU93eT0jvRcdgxM5HbLzPpYyMt6BwoEKtFR1hAhqz3
+	 GLV6W/XNEj4YzHc++Hlylz084RT1/P7HouXIe5uqy9MDfBEy53IrZuI3bAIn2rJlIJ
+	 zRgwnr/a4Xzgf3IkrPn7YBDdG8mbOTw+SnOo4Fjq1eyzce8la19P3aB6nE3DoREVAb
+	 wVoUwbqG5m+uWurPajppw5xXi4iFDTn4FP10LcvoP34gNw410pkblbLGsVbMGHJnE+
+	 pXkNbR6CKqolw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3BDE2D3B7E1;
+	Mon,  8 Dec 2025 12:26:15 +0000 (UTC)
+From: George Moussalem via B4 Relay <devnull+george.moussalem.outlook.com@kernel.org>
+Subject: [PATCH v6 0/8] Add new driver for WCSS secure PIL loading
+Date: Mon, 08 Dec 2025 16:25:32 +0400
+Message-Id: <20251208-ipq5018-wifi-v6-0-d0ce2facaa5f@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251119-pmdomain-hierarchy-onecell-v4-0-f25a1d5022f8@baylibre.com>
-In-Reply-To: <20251119-pmdomain-hierarchy-onecell-v4-0-f25a1d5022f8@baylibre.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Mon, 8 Dec 2025 13:25:29 +0100
-X-Gm-Features: AQt7F2qsC1ugYAKEuQ1qk2c6Z1cB6OEvu0GB4iPLjG4SxCgrMPQ_kWL48UjxFTI
-Message-ID: <CAPDyKFor41f=-vpaborhOziYu1RSnxL6-mezBQTHLPVM_TEAuA@mail.gmail.com>
-Subject: Re: [PATCH RFC v4 0/2] pmdomain: core: add support for domain
- hierarchies in DT
-To: "Kevin Hilman (TI.com)" <khilman@baylibre.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org, 
-	linux-pm@vger.kernel.org, arm-scmi@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAL3DNmkC/z3Myw6CMBCF4Vchs7ZNW7mvfA/josIUJlIKU1ETw
+ rvbuHBzkm9x/h0iMmGENtuB8UWRwpxQnjLoRjsPKKhPBqNMoZXRgpa1ULoWb3IkDGKD9t643lS
+ QLgujo88vd70lOw5ePEdG+4+oXFeq1CYvZN5UtToLLYbw2CYZmdh6uVxCjHLd7NQF72UaOI4v3
+ OSxt6gAAAA=
+X-Change-ID: 20251021-ipq5018-wifi-2ee9eab9fd27
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, 
+ Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Manikanta Mylavarapu <quic_mmanikan@quicinc.com>, 
+ Jassi Brar <jassisinghbrar@gmail.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+ Gokul Sriram Palanisamy <gokul.sriram.p@oss.qualcomm.com>, 
+ Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>, 
+ Vignesh Viswanathan <vignesh.viswanathan@oss.qualcomm.com>, 
+ George Moussalem <george.moussalem@outlook.com>, 
+ Krzysztof Kozlowski <krzk@kernel.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1765196772; l=5585;
+ i=george.moussalem@outlook.com; s=20250321; h=from:subject:message-id;
+ bh=9wKYefdnIBM7zpnERUFdSpv1Qo6rUFMb0+UKFQY7Pz0=;
+ b=3nN5xIbdZU2oWB9kE38RZ/F0kifHPXDGLwpJ/7Z3lljXb71F76ZJN42DRe4fT5WGvnbzVCHJ8
+ 7ZzxYSdoF0wD2Ign2B7g+P4lyqOKEHJSsHaECvFPgY277EfgE0HL1KG
+X-Developer-Key: i=george.moussalem@outlook.com; a=ed25519;
+ pk=/PuRTSI9iYiHwcc6Nrde8qF4ZDhJBlUgpHdhsIjnqIk=
+X-Endpoint-Received: by B4 Relay for george.moussalem@outlook.com/20250321
+ with auth_id=364
+X-Original-From: George Moussalem <george.moussalem@outlook.com>
+Reply-To: george.moussalem@outlook.com
 
-On Thu, 20 Nov 2025 at 01:58, Kevin Hilman (TI.com)
-<khilman@baylibre.com> wrote:
->
-> Currently, PM domains can only support hierarchy for simple
-> providers (e.g. ones with #power-domain-cells = 0).
->
-> Add more generic support by creating an of_genpd helper which can
-> parse a nexus node map, and create domain hierarchy.
->
-> described in section 2.5.1 of the DT spec.
+Imported from f20250417061245.497803-1-gokul.sriram.p@oss.qualcomm.com
+I've resumed Gokul's work as the last submission dates back April 2025.
 
-Even if that is generally described, shouldn't we update the generic
-DT doc for power-domains [1] to mention this too?
+This series depends on Sricharan's tmel-qmp mailbox driver series v4 [1].
 
-At least we should show some examples of how this can be used.
+- Secure PIL is signed, split firmware images which only TrustZone (TZ)
+  can authenticate and load. Linux kernel will send a request to TZ to
+  authenticate and load the PIL images.
 
->
-> Signed-off-by: Kevin Hilman <khilman@baylibre.com>
-> ---
-> Changes in v4:
-> - use new OF iterator for parsing map. See:
->   https://lore.kernel.org/r/20251119-topic-lpm-of-map-iterator-v6-18-v1-1-1f0075d771a3@baylibre.com
-> - instead of mapping on probe, create of_genpd helper to be called by providers
-> - Link to v3: https://lore.kernel.org/r/20250613-pmdomain-hierarchy-onecell-v3-0-5c770676fce7@baylibre.com
->
-> Changes in v3:
-> - use of_parse_phandle_with_args_map() instead of custom parsing
-> - probe when device is attatched to PM domain
-> - Link to v2: https://lore.kernel.org/r/20250528-pmdomain-hierarchy-onecell-v2-0-7885ae45e59c@baylibre.com
->
-> Changes in v2:
-> - Use nexus map instead of creating new property as suggested by Rob H.
-> - Link to v1: https://lore.kernel.org/r/20250528-pmdomain-hierarchy-onecell-v1-1-851780700c68@baylibre.com
->
-> ---
-> Kevin Hilman (TI.com) (2):
->       pmdomain: core: support domain hierarchy via power-domain-map
->       pmdomain: arm_scmi: add support for domain hierarchies
->
->  drivers/pmdomain/arm/scmi_pm_domain.c | 11 ++++--
->  drivers/pmdomain/core.c               | 64 ++++++++++++++++++++++++++++++++++
->  include/linux/pm_domain.h             |  9 +++++
->  3 files changed, 82 insertions(+), 2 deletions(-)
-> ---
-> base-commit: 3a8660878839faadb4f1a6dd72c3179c1df56787
-> change-id: 20250528-pmdomain-hierarchy-onecell-a46fad47d855
-> prerequisite-change-id: 20251119-topic-lpm-of-map-iterator-v6-18-a61447423adc:v1
-> prerequisite-patch-id: e2c4a8c727d0f172166cfa622e60d97048a97b26
->
-> Best regards,
-> --
-> Kevin Hilman (TI.com) <khilman@baylibre.com>
->
+- When secure PIL support was added to the existing wcss PIL driver
+  earlier in [2], Bjorn suggested not to overload the existing WCSS
+  rproc driver, instead post a new driver for PAS based IPQ WCSS driver.
+  This series adds a new secure PIL driver for the same.
 
-Thanks for continuing to work on this! I will look into the series asap.
-
-Kind regards
-Uffe
+- Also adds changes to scm to pass metadata size as required for IPQ5332,
+  reposted from [3].
 
 [1]
-Documentation/devicetree/bindings/power/power-domain.yaml
+https://patchwork.kernel.org/project/linux-arm-msm/cover/20250327181750.3733881-1-quic_srichara@quicinc.com/
+
+[2]
+https://patchwork.kernel.org/project/linux-arm-msm/patch/1611984013-10201-3-git-send-email-gokulsri@codeaurora.org/
+
+[3]
+https://patchwork.kernel.org/project/linux-arm-msm/patch/20240820055618.267554-6-quic_gokulsri@quicinc.com/
+
+changes in v6:
+	- added patch to fix IPC register offset for ipq5424
+	- changed phandle description for mboxes property in dt-bindings
+	- updated bindings to define the right clocks per SoC based on
+	  compatible. Ran make dt_binding_check for validation of all
+	  SoCs
+	- use of more descriptive match data property (use_tmelcom) and
+	  added a condition in wcss_start to not error out if tmelcom
+	  isn't used
+	- mitigated potential off-by-one
+	- adopted use of of_reserved_mem_region_to_resource to acquire
+	  memory-region resource
+	- added driver support for ipq5018 SoC
+	- corrected size of reg properties as per Konrad's comments
+	- added patch to bring up Q6 in ipq5018 dtsi
+
+changes in v5:
+	- retained all the patches as in v3 and addressed comments in
+	  v3.
+	- reverted changes to dt-bindings done in v4 and retained as in
+	  v3 and fixed firmware format from .mdt to .mbn and retained
+	  reviewed-by.
+	- dropped 2 patches in v4 that adds support for q6 dtb loading.
+	  Will post them as a new series.
+
+	Following tests were done:
+	- checkpatch
+	- dt_binding_check and dtbs_check
+
+changes in v4:
+        - changed q6 firmware image format from .mdt to .mbn
+        - corrected arrangement of variable assignemnts as per comments
+          in qcom_scm.c
+        - added scm call to get board machid
+        - added support for q6 dtb loading with support for additional
+          reserved memory for q6 dtb in .mbn format
+        - updated dt-bindings to include new dts entry qcom,q6-dtb-info
+          and additional item in memory-region for q6 dtb region.
+        - removed unnecessary dependency for QCOM_Q6V5_WCSS_SEC in
+          Kconfig
+        - removed unwanted header files in qcom_q6v5_wcss_sec.c
+        - removed repeated dtb parsing during runtime in qcom_q6v5_wcss_sec.c
+        - added required check for using tmelcom, if available. Enabled
+          fallback to scm based authentication, if tmelcom is unavailable.
+        - added necessary padding for 8digt hex address in dts
+
+	Following tests were done:
+	- checkpatch
+	- kernel-doc
+	- dt_binding_check and dtbs_check
+
+changes in v3:
+        - fixed copyright years and markings based on Jeff's comments.
+        - replaced devm_ioremap_wc() with ioremap_wc() in
+          wcss_sec_copy_segment().
+        - replaced rproc_alloc() and rproc_add() with their devres
+          counterparts.
+        - added mailbox call to tmelcom for secure image authentication
+          as required for IPQ5424. Added ipq5424 APCS comatible required.
+        - added changes to scm call to pass metadata size as required for
+          IPQ5332.
+
+changes in v2:
+        - Removed dependency of this series to q6 clock removal series
+          as recommended by Krzysztof
+--
+2.34.1
+
+---
+George Moussalem (2):
+      mailbox: qcom: fix IPC register offset for IPQ5424
+      arm64: dts: qcom: ipq5018: add nodes to bring up q6
+
+Gokul Sriram Palanisamy (1):
+      arm64: dts: qcom: ipq5424: add nodes to bring up q6
+
+Manikanta Mylavarapu (4):
+      firmware: qcom_scm: ipq5332: add support to pass metadata size
+      dt-bindings: remoteproc: qcom: document hexagon based WCSS secure PIL
+      arm64: dts: qcom: ipq5332: add nodes to bring up q6
+      arm64: dts: qcom: ipq9574: add nodes to bring up q6
+
+Vignesh Viswanathan (1):
+      remoteproc: qcom: add hexagon based WCSS secure PIL driver
+
+ .../bindings/remoteproc/qcom,wcss-sec-pil.yaml     | 176 +++++++++
+ arch/arm64/boot/dts/qcom/ipq5018.dtsi              |  64 ++++
+ arch/arm64/boot/dts/qcom/ipq5332.dtsi              |  64 +++-
+ arch/arm64/boot/dts/qcom/ipq5424.dtsi              |  68 ++++
+ arch/arm64/boot/dts/qcom/ipq9574.dtsi              |  60 +++-
+ drivers/firmware/qcom/qcom_scm.c                   |  17 +-
+ drivers/firmware/qcom/qcom_scm.h                   |   1 +
+ drivers/mailbox/qcom-apcs-ipc-mailbox.c            |   2 +-
+ drivers/remoteproc/Kconfig                         |  19 +
+ drivers/remoteproc/Makefile                        |   1 +
+ drivers/remoteproc/qcom_q6v5_wcss_sec.c            | 397 +++++++++++++++++++++
+ include/linux/remoteproc.h                         |   2 +
+ 12 files changed, 864 insertions(+), 7 deletions(-)
+---
+base-commit: 4482611a10931e3cf305e0d23194bbb0ff8829db
+change-id: 20251021-ipq5018-wifi-2ee9eab9fd27
+
+Best regards,
+-- 
+George Moussalem <george.moussalem@outlook.com>
+
+
 
