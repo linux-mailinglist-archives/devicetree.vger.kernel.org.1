@@ -1,221 +1,280 @@
-Return-Path: <devicetree+bounces-245060-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245061-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93E4ACABC9C
-	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 03:03:24 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D096CABD52
+	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 03:21:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 43171300292F
-	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 02:03:23 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1D57E305BFD2
+	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 02:17:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F15326E718;
-	Mon,  8 Dec 2025 02:03:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B83027E066;
+	Mon,  8 Dec 2025 02:08:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="MOTjvihG"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="R0Q3EgVS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from GVXPR05CU001.outbound.protection.outlook.com (mail-swedencentralazon11013045.outbound.protection.outlook.com [52.101.83.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A955271A7C
-	for <devicetree@vger.kernel.org>; Mon,  8 Dec 2025 02:03:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.83.45
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765159400; cv=fail; b=oB+4E3R04rulYelUn9j/5wzfCHrdr8JEWm+iBSJ00KoZ1om5XYfl5GDCqiekoHY8k/AND9JbIRAwZ7aumthTlzAJqLajHq5exlwbR5U/ONaTLv1FcEiyaD9KLaBDlOSYPFiAM4gRqpuG/fnJiSTVtXha1l4JD5gu708uIIEvuB8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765159400; c=relaxed/simple;
-	bh=/DX9bX/jbS7uIYa5zMvMiM7YAvj5jc5kdZxQ5DDrx7c=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=Qhd3rHzAGQmhGdcQL2xkP5i3QQ50XzoHmKZSw98eeZT0dvSuihZ9tZwOD6ZHepEP14kp7j7ZbLv94GdUUJj4p6RvMO/OTmLXvtTFI3qDicuvQEyBrWHl9Lg1smjaI7AqsXQXy8KgprprwQknsepDXxb6S8UGMDz/g2WN17r3sAc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=MOTjvihG; arc=fail smtp.client-ip=52.101.83.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=V39KeDX/xGQ6OwtfWnzs6OYaKn0RCnnu6AHBLL1o28QmwFnnbDHbQ9LpPzreS2UVbk65etNU36jlSiFPZGBzxyTGDJ789xE9YNCn8mEfM8kJ7fQhQJt67Y2OvWPwF8c3Zce+CyLaITlSFFJ/oCW0//DNj+aadHDKuMDToJviax57LGMUXevAf+QnIBx1Tl0xTwhVbIeYcB21oyaZ0ISbZlthGTy2JWci8ZNo2GgBytQ7QZ4q0+rHM9df88HtMKzyW16J9We8jaSpe/9khz7ITZY9nq6bRMXFO1ZxzI84Xsvhr8koQ4cfV/GMBSqUmxoTDgNKsqo+wtJduFk6Cygs5Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=NdiHpXPdAh35EuPKTy7kBStHZnqtS65K/I9Y0lpgqPE=;
- b=UVNXfZp5jwGmV0Ae8TTN2CyZIkKtSguue3BKHFJsEQRTQbn+B+UGVrMNGcWV9Py4VPtHECccjSg31GLm03SnrCMpUQSMYhKYJTYz7FOMKtgJ2jUb2rHJe/taj7Rb73i2eWlpIr2t+qoehmCAMVEzX6yqnfmXxLzuhUjLxP/yqbJOpjh6YPhdBwv+0xAm5lB7ZZEX8/s49yQX0uOBfkeSmQPskiBcEgxqdK8gYo3AbJSZ7XKz0rQl39ouq5ROCuy5roTlQrQiXsfaMkNod9pPINXJE+0RnYeafyv7nqPJr8Qs8IU5F6vfX62c+eNmf8bDhQoVpqVa2BexclZSJvhuVg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=NdiHpXPdAh35EuPKTy7kBStHZnqtS65K/I9Y0lpgqPE=;
- b=MOTjvihGIVgeABxKlw0gaDt3OkVsHqzFzSUfjvcfVGvK0ZU1kT40oDIiaEhxWG9oPY15wyMSRLOZrGaEUcC0h+zA9JKcftkp0AOUSuQ9/8bV1v1TOMfvIQ/OUs1Te21fvWmNFEhUc9cNo5iDYEaMddIVHqX/zRwAziLvvFbyyQWsGCRnFultC9e71kKAUeNaOePfxv6hSixwyYuBQf2ld2ivpezoWkMIONRu4kQ1V5rCa/qONMZ3UPH0tzSQY9mXmLcm2PM3hzx0hcUKYwhD17ACGYJ3AEv9eHMcrAl5sfj20/R3PWiE0glDMYXruNamrXrqT9OCs9AmzCdpvLSIGw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by PA4PR04MB7533.eurprd04.prod.outlook.com (2603:10a6:102:f1::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9388.14; Mon, 8 Dec
- 2025 02:03:13 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%6]) with mapi id 15.20.9388.011; Mon, 8 Dec 2025
- 02:03:13 +0000
-Date: Mon, 8 Dec 2025 10:02:03 +0800
-From: Rain Yang <jiyu.yang@oss.nxp.com>
-To: Marek Vasut <marek.vasut@mailbox.org>
-Cc: Frank.li@nxp.com, conor+dt@kernel.org, devicetree@vger.kernel.org,
-	festevam@gmail.com, imx@lists.linux.dev, jiyu.yang@oss.nxp.com,
-	kernel@pengutronix.de, krzk+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org, peng.fan@nxp.com,
-	robh@kernel.org, s.hauer@pengutronix.de, shawnguo@kernel.org
-Subject: Re: [PATCH] arm64: dts: imx95: Use GPU_CGC as core clock for GPU
-Message-ID: <aTYxm_dfMwF4H0_b@oss.nxp.com>
-References: <20251129143220.14834-1-marek.vasut@mailbox.org>
- <aS-lEibp3zTsaR6T@oss.nxp.com>
- <c6e0e55a-06da-4665-972e-e9b5b8c08bf7@mailbox.org>
- <aTACuRjC_Zpf8IOU@oss.nxp.com>
- <de36091e-c890-4897-b3e3-2a7575029a5d@mailbox.org>
- <aTD5np-HGaJqhzkD@oss.nxp.com>
- <5944d872-01a3-47e9-977b-029f3be4fd83@mailbox.org>
- <aTKVMAMQ6v_BwD6R@oss.nxp.com>
- <9b593731-898f-46a7-8ee5-68f8c170351c@mailbox.org>
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <9b593731-898f-46a7-8ee5-68f8c170351c@mailbox.org>
-X-ClientProxiedBy: SI2PR04CA0010.apcprd04.prod.outlook.com
- (2603:1096:4:197::11) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEE5327602F
+	for <devicetree@vger.kernel.org>; Mon,  8 Dec 2025 02:08:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1765159713; cv=none; b=avOV/xNO+94R/mX/qJ5LdgR7xCR6J1A3LNla8h0BK58S9Sjx5MeNlzyMuXD4lYYMA1f77SM21FYD6Evu4rwWw3jJktn/kWR2EVz6Q8grIh9gjrLq/EY3UaXUkc0bPEp6Hiu2rNSxFydCQ0VWlcIykRcfddm+75KXTo1aSzLjly4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1765159713; c=relaxed/simple;
+	bh=lDMZlyGpfKoNlcpX/KNXYEPBdphrdQ+AgXY2BAOf90k=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=jscfSJopOXtJ0KNz1bSMLvtzX07zZosyKriOuLdqS3l6qnukcMqR29iZerfxBLPplL9n5zj679irrlj0JGGmDpol/VOOPCitVzjlYw2HRg8NdQLCkWTxHsitaAUeVjj8W1eaUNWPrHBlcLxxtHZJOxSQh+W0XQdBuG6ijjaEUn4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=R0Q3EgVS; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-477b91680f8so43527515e9.0
+        for <devicetree@vger.kernel.org>; Sun, 07 Dec 2025 18:08:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1765159709; x=1765764509; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=rQVDsw5CFyLP82ZzGOYdPw8Cm9WDVlU4PGocuZAdxs4=;
+        b=R0Q3EgVSbjdOPzzASMRWS9FX9wo8x6jwtIsXiMeFbUjfQbAOfegC3GfQRGETbqz7/i
+         Ry0E9s8cpI2CTKSB2OzW6GmHekUj0RsWpJ9V22aPCPicd/WUn4QwHxICCumlTslRHZkN
+         5/zU7i+Qo/2FRe4Rw8mWsUg2g+DgHKbrG4YA32Qa9VxD6Qo2TfUqkRhRoMFLipcXwoUO
+         qB60vCMkEbGLLAwh7kE6Q5wGJdLsguOcPEJvP1XoYHs3aT7FUSlWk2RPS+w3rjr6uhqr
+         LPNtJ+ItH8jTtmym2B7f0egSor5W/M6SViCEI0NRbptX2ZMmpH46lQ+qzNGN7nVqeOSA
+         QCuQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765159709; x=1765764509;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rQVDsw5CFyLP82ZzGOYdPw8Cm9WDVlU4PGocuZAdxs4=;
+        b=HoXFxynIT+sKWPHZt6c599OeloGyqdORNu2pm+eYMu8pe2Axnh/gDASbiriLwWkyY4
+         u94C2GPpyvnNxQhvv9tEsaXRcLxxsXrvikQVgYpf6QqH6dCPBFbkkuRMW2sL9Vi6OYe2
+         tMHEbWd057rm/JSZaTsFawO0HmxeyVbsu/cgbdWIUVqCUU4yJo7Lbm4FbPFEUFW/BCxr
+         q8RQsAtlQaa1rm41r6ZWGOS+DAYuSS4p4eIIcUdoW/t+6ueEb7/XT2bKzB9bVzcN8k4f
+         7QlK1zWqT+iUv9f+kuJG8uIPGgPEe/WTsEwJWvoKiwr4h0r56jkysvVTZc9r7yJlNKgc
+         FjiA==
+X-Forwarded-Encrypted: i=1; AJvYcCX2TC1ZZOZQPiNb7Z38914pYcLUgXnvP20EUqJvRYK4376GH1pXKkx3zmAs7YuxIfm/XMi7/2fW9ol9@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy07saCCR64GuCawF/f9gcGQ1f7Vx28iCF/hyy/SbvgdgwpwYyP
+	UD9AbZQdVZaCcN9OMqkNXVS5RRzWzpl6pMZEro7mRd8MgNlzlZ+nz2lAgSxW0oeO1QQ=
+X-Gm-Gg: ASbGncvelqzwcOmIkAF0j8B4IAsVff7ksujTX/DtmzR5UkXnhtyT6sJAY/4OjgOAr/G
+	AaDkfntyuGwQ9/t5aUgJLi6FhsNJbkyTEPNelFPTVMhrv9OssgtGh8zDQsop+MbjC6NpO0CNbtK
+	lRSvzZX/dfroV5GKGguwpAEBxfqjO6FjyNWpS171nyNTjMGY8Al1+iwDOXZG9LO1Xsx/W1DE3wC
+	ruwYlXCzA4X971Js2UMhO51h7bhxQWAnvpqh8ilUQwzxzsFnc5Bo7EiaeQ9opdK38e2GmvJKoU7
+	rY39Qq9G2wBbN901sb5+321brrI3H2F3K4gmPf2KGG656I+FCnCEe2bxoxDNvTFDZST1XlFJRrZ
+	mxl1Bk4g0gdkndsN8c+qITxW2+7ZeLkSfgFw/MrmiOpVKOG2QCcMHKvMJfr2AutAgvliSMy8BYr
+	Xn2DBYF6UyK++Yj/rQ3nCfILyJAYveBvXOS4JxPnnRBg==
+X-Google-Smtp-Source: AGHT+IEEjQHIk3qlCN97fl7KvdS7yROUmdPOTP9Zl6kIHp4RtE3GVgVm+zJkfOdjk2ZrxrVBK+KoGQ==
+X-Received: by 2002:a05:600c:528a:b0:471:14f5:126f with SMTP id 5b1f17b1804b1-47939e49135mr65708325e9.33.1765159708465;
+        Sun, 07 Dec 2025 18:08:28 -0800 (PST)
+Received: from mai.box.freepro.com ([2a05:6e02:1041:c10:37e6:ed62:3c8b:2621])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42f7cbff352sm22647813f8f.17.2025.12.07.18.08.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 07 Dec 2025 18:08:27 -0800 (PST)
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+To: jic23@kernel.org,
+	dlechner@baylibre.com,
+	nuno.sa@analog.com,
+	andy@kernel.org,
+	robh@kernel.org,
+	conor+dt@kernel.org,
+	krzk+dt@kernel.org
+Cc: linux-iio@vger.kernel.org,
+	s32@nxp.com,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	chester62515@gmail.com,
+	mbrugger@suse.com,
+	ghennadi.procopciuc@oss.nxp.com,
+	vkoul@kernel.org
+Subject: [PATCH v9 0/2] NXP SAR ADC IIO driver for s32g2/3 platforms
+Date: Mon,  8 Dec 2025 03:08:17 +0100
+Message-ID: <20251208020819.3063506-1-daniel.lezcano@linaro.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|PA4PR04MB7533:EE_
-X-MS-Office365-Filtering-Correlation-Id: 82a1be5c-448c-45e1-c026-08de35fdf142
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|52116014|376014|7416014|19092799006|1800799024|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?TFBRd1NkREFRTEhEWm02VEVCdGsvUW1HSm1kSllzYURTbXFZOEx0RjZXVjcx?=
- =?utf-8?B?VWlVblgyaWZ6NnNWU3ZycGZnNnNOVXVaWlJ2UGNDMjkzak5jdHl6Qk1YNjN0?=
- =?utf-8?B?R2N0d2RtVFVNS1dESU5saENCOHhVNk1XU3JRZkM0YjF6MVhaa1ZvQyswRmM1?=
- =?utf-8?B?b0dKTTVPSngxUlpkZk1xSVM4aFllV0JYemlkYytmbS8reEdjb1FkS25iVVVu?=
- =?utf-8?B?K0RPSmRYRkV0SFhiK3l2KzdJODRIOTBGUlcxZjdyWGN2NzdETXRCVnBiY0lF?=
- =?utf-8?B?YjJ3THBBY2tkR0lyS0tVLzViRVpWT29Gb3FvNXpweDZEKzF4UkNQcWJYYnJZ?=
- =?utf-8?B?SE82WnZMUWV6S01HU1c4c3JnM29pUjA5REYrU0wxVWZ5eXZJSTgzc2RZdUt4?=
- =?utf-8?B?VGJVZ0taN0lCK3lEZWR6SHQxZWk0UlJ5a0RrRTNYS241c0toOTltcmIwYUtt?=
- =?utf-8?B?NVpzNW5JVXVaNHp6THFiZkVpc0R3U3JVOTYrRk5kZkFqd3MrSWJNQlJOcUFZ?=
- =?utf-8?B?TmlPL0JNT2FTZDZVV0liZXJDWDJkUUZHRnJiemZJb1dDTGpBcGdkWWJYblV3?=
- =?utf-8?B?NWVrY1pNbmVRbUFBeURpaS9Md2cwQm1ZT01XbzROUytHSEZmR3Z5QUowdGQw?=
- =?utf-8?B?SllhaG9nTE5aRlpqNEpRSlgyekR6QVEwRkovWVczdkl0QlU4MThRTXVNdUlh?=
- =?utf-8?B?OW9IeTlheGlndndJNCtnT0EvTFc4WFNuVURWaXU4OHhRc0pISjU1Z3BaVDN1?=
- =?utf-8?B?eFo1NkVuMUMxMFhIb2xTeGczOGZadmhLcU82QW1tYTFUTGtSMEliNUhZNlRE?=
- =?utf-8?B?dEZ3LzBvN3BuTktJT0VtOThScTQ1MjZoUHBHUXloMWVRc2FBK0hWVEJSVEdj?=
- =?utf-8?B?WlYyQmVtVkxyTnZqejVzb2Ntbk5qaC9iRFhkTnJyYWN6djZ2ZVoxVDAxSGpz?=
- =?utf-8?B?NmVjYzdwWHJ2elBDa2dUc1Q1Wkg5SGc4d21QTHNDazBSMDFucGhtY0NvNVVF?=
- =?utf-8?B?dmdPbzdsbjNqWGg0elRKTlYwK2VlZFd1UGdzREN6NklpZHJqWHh4dGlEdW91?=
- =?utf-8?B?YVFNVWZ3OUFnUEZCWkc1ZU9MS2xKd3BWOWVla05iVDBXd1c4bVE4M0FyazZH?=
- =?utf-8?B?WERPVENkbnZwdE1JTmJJbXE1akVrZG82RXNiT2F3azJnNW9ldzRkK21wbWpa?=
- =?utf-8?B?em4vYlVJd21qZlo1dmhoNit2YTNWUTM0NUw0VkpjVHB6eUwwR1JmRG1uR3Yw?=
- =?utf-8?B?cHpRRWFjUkZRMnZ2MHUyRkVDRFBOenRVR0kvRUh4RHJaaDhkSlZJRlFpNjNu?=
- =?utf-8?B?OS9CUHF1bzNRYzd3QndjekljQWxoMWNBNnRUdG9xNjhSTTZLYlJ3K3NVb0Uy?=
- =?utf-8?B?RUZkVEJxRExzaVJWdm5LL0RmdEMvajFZZVhNVDhRZk5ENHVNdmo4N3hab3c1?=
- =?utf-8?B?TDVBTEpoT2tCeXd6aUsyRDNpUDUyTHEwbjFiTVRSSGQ0R0FHMnZwYVU2N0hy?=
- =?utf-8?B?dktxYTdvdlRybGpKTXF0RWZTNnBFLzcvVWlyakFDbGNFdHRNT0V4aXMveFQ2?=
- =?utf-8?B?WnQ3RVhpU2hPWUtKYi82TnRkZkk2M0xhaUZkOXlEZEVkL2lBVHpMQTNFQkhP?=
- =?utf-8?B?RmFRK1dmN0RLSEhEanFQZzVpTXJYeWwxT05ERzZSbVpDR2RXQmxjT3dxbmh1?=
- =?utf-8?B?Z2FXdyt5UjBHTXp4TWVmMW9JMythRWxWT1VSdXRUSmxSSjVtMDdPYWtoRGc3?=
- =?utf-8?B?NjM4d1FnV1NZRXQzREg2ekZFUGpHUDl2dHd6MmJ5cUZZZVBRcC9aNzJQcUcy?=
- =?utf-8?B?N0lCWVB3TjJ3Q3NzQm1BUU5kUlhaOEp3cmpGQ1lEeGZqbWFSWEZodkxKSVhK?=
- =?utf-8?B?elkwTkxVaU5zOTlMQXV0LzdOUDRyWWpvTzJpYnZtRU5NRnl5UDROSXRuSGRy?=
- =?utf-8?B?YWJaY2RGUHRKZlYrcWR5NUFZVnEvRGdVT2x5Yk9mMGhIb2UrV0xBQU9iM0F1?=
- =?utf-8?B?T1BVcmhjY3ZpeHBLY2hKdUcvLy9PSFdkQlcyUTI1K2lvWXFoWGlxSnR2VFp5?=
- =?utf-8?Q?mP32ER?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(52116014)(376014)(7416014)(19092799006)(1800799024)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?LzJEbE51ZDFtYWpmdmxRUWF6RmZGQVYvSUFOQ2p6UjhzMm4ra3Vvb0Q5N1hs?=
- =?utf-8?B?dUswSm9vbEY3akc2aXVNcUVhSDlVTzBray9XOGhGbDA0S1g3VnZPYldtcVVL?=
- =?utf-8?B?U1FGcVhkRmUxcU1ZL3dyRVQzc0NsT2R4YjVzcCtkVW5samFKdEw1cHp5TDRL?=
- =?utf-8?B?TFlSZ1c5UDJ1K3czSFVRUkdQemVKTUtxekozMENYUFhORFdMUTVNSW0zeUNW?=
- =?utf-8?B?bk5RY2dFNHRjelp6N1RsRXlmYnZKbm1CcE5pcUh5ZXkxU1B2Mk5oQ1B6VDdz?=
- =?utf-8?B?RzZwUEVoMnFzZTVNMHU5L0RxenRpcDdJalJGMktmUWMzVFBOSUpnVzNVR3hu?=
- =?utf-8?B?MlhISTFNY1MzM1ppRjhHd0VlR3hiRG84VGtlRzZJeUp3Ulc5dkpQeWVEWnRm?=
- =?utf-8?B?U0VZUno0Z0NqN0crL0pyMEFMbkpZZU9RZTJtN1F1QTJKTGNWUFR5VVlPdDds?=
- =?utf-8?B?VE5YalZscXNjNHJEdGw1RGVoRmxsMzU1Vk5MNkdkTi9aWFlwMTQya2syWmQ0?=
- =?utf-8?B?ME13MDJINURXOHpnb0pFbk1MZzlUWE1qd3ZOeFZEV1YrR1NaVWJBd2VYd2M1?=
- =?utf-8?B?ZHYxVzc5NEVVTis3Z3d2aThnYyt6cFJlMVZKS2YwZzFITzlsMmU2cmdVVlhM?=
- =?utf-8?B?eEI4NzVJMG1Eei9EQlpJZmhnc1dJMFl6ZUYzRWtLeUtBcGNjNno3dFFuNzVG?=
- =?utf-8?B?OUxxMGJYdzZ5MlhFWWR4bGpPN1BDS2kvMFprZ29rc3hKV2dKTkJCUVF4RlEr?=
- =?utf-8?B?Q2dDdmUrZ0hYdHF5Qi8rYy9FZjh2VU5pRTI5a0puMmowRmlEYWV6dHpqQzNy?=
- =?utf-8?B?MFNKdlVNRUpPemtjUkxkSVpwSllLVnk2MXcvZTF5T3ZHUXB3eFpTME9DQ1h5?=
- =?utf-8?B?YWVRNkc1RjdDcVp4N0RXVTBlOEFDRUttSWRLVVE0ZDJrUi9OVlVBWm5MS3Br?=
- =?utf-8?B?M0tScUcxTGxrQlk2eDczRjA1SHNFMEdaamhVKzNmWGdZL3I5RWk3dnpPNnNY?=
- =?utf-8?B?eGpCeFJxUHkyQmNMajBJY3dnK3V1TGpJdmhvbGM4RDI2NHRmMDRPOTlaSWZN?=
- =?utf-8?B?aUpnOWZTYnkvVUd5UFhuM09remdFSTRJR0hNcHNKQUh5M1lXaG0wRU9renZr?=
- =?utf-8?B?YktpNkFYSTBKZ25KeDZHdjhuUEV1QTJLM2dvd2lFVGM3MmxCMmN3UlZwZlhI?=
- =?utf-8?B?YlVaMWY0U0VXZHRIMDFhR2NpaHNQR1dZWUhrSEExQ2VYVHBSOVNPL1EvU21L?=
- =?utf-8?B?UmRMUnNaTE1HRU1CM3Q4SVFzNWdrWHh2ZnBELzVXYXFjVlVXbCtXNS85dldB?=
- =?utf-8?B?eWpaT1dHaEQ1K1Y0UURKT20xSmE2aXgxakxXVTJGaXo2TXpKaHY5Tmo5VWQ5?=
- =?utf-8?B?ejQzd0tMemZWYjRCKzlHdjRGRUh5R3BuRFNDaStlMVRacDZVNjRId0NTMktY?=
- =?utf-8?B?aTV1QkNwUktQV1F5ajlYZzBnS01LSGllbmZKTExPQmlFbEhhMjY4ejhjWU9w?=
- =?utf-8?B?aU81dXdWdDc4WHhoUHM1bm54QlBWTTEwa0xYNTNvYmREbStBTVdoMEV3cjFR?=
- =?utf-8?B?ak5HU2Yvc253WFRjUWxJVEJGMHF6Y0d1YzlyOWxnOHh1OFBXV2cwRTRJMlda?=
- =?utf-8?B?eTdwUFZUaU1HbTBOcGRXUlNFemVWNzNkTHZna2dLdjhUaG9XcjNKQ3hwa0Rl?=
- =?utf-8?B?LzdxTDBSSm1XK3VEdDVxTSttdU5RNjlkb0ZPS2tVWCtuZ1NzUytWU1RWK3Vp?=
- =?utf-8?B?SFM2L29PT05udHJDYUhWNFVZb3k1aDBIc1ZwMkJRK2JDUVVneDdKbmlBUGJJ?=
- =?utf-8?B?VStzc0lVd25xMGk2WmxZT05SaVk4VEhsSSsyTVpQclh5eDVYM2FtM2FFc1NC?=
- =?utf-8?B?UTRhTGxSV2NkQUxrNnpRYnVTNy9jQysxV29kRzhLenNhL2ZKRk5GNW9VQzlE?=
- =?utf-8?B?eVp3SkFWdVVkYlgvUi8xUERHc0ZuODhKb29SRVhzR0NzNGp0VHBoR0MzczdB?=
- =?utf-8?B?a1I4M1FpTDhhSnYxb3ZiaUllRFN0Sk1za3hDYi96cEFqSkpTUnIzb2RuOCs2?=
- =?utf-8?B?QzBvZ2pzNVB3K25rbnBoQjRyMWJINHBXeGdheEVRSlE1QkpiTnp4Z2FaN3Qz?=
- =?utf-8?Q?abF/zqlRucOJ71go8JOVAhhaf?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 82a1be5c-448c-45e1-c026-08de35fdf142
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Dec 2025 02:03:12.8311
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: +9BnpmWjbn9/AyunM/c8Hbk72szE6S+aBX/ty1XEgbffsXC8Taue81ujR1Sx2cU0g1k2K48ohXg8Jis2SCFHxA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB7533
+Content-Transfer-Encoding: 8bit
 
-On Sun, Dec 07, 2025 at 10:01:06AM +0100, Marek Vasut wrote:
->On 12/5/25 9:17 AM, Rain Yang wrote:
->> On Thu, Dec 04, 2025 at 04:25:38AM +0100, Marek Vasut wrote:
->> > On 12/4/25 4:01 AM, Rain Yang wrote:
->> > 
->> > [...]
->> > > > > For the Linux working environment,
->> > > > > CLK_GPU and CLK_GPUAPB are always-on, while CLK_GPU_CGC can be gated off.
->> > > > > 
->> > > > > Regarding the IMX95_CLK_GPUAPB handle, my suggestion was based on the absence
->> > > > > of its frequency in any OPP entry within the frequency table. Removing it
->> > > > > could simplify the OPP handling logic and reduce unnecessary complexity.
->> > > > 
->> > > > If the clock can be disabled by SM, Linux has to make sure they are NOT
->> > > > disabled, so they must be described in DT, right ?
->> > > > 
->> > > > > [1] https://github.com/nxp-imx/linux-imx/commit/695f2bdc57b869ca5189313e4b5fa7eb5a12f622
->> > > Currently, only CLK_GPU_CGC shall be described in the Device Tree[1], as it can be gated.
->> > > The other clocks (CLK_GPU and CLK_GPUAPB) are always-on in the Linux environment,
->> > > so describing any of them in DT is not necessary and would not be proper in this context.
->> > 
->> > Since this discussion is in fact unrelated to this bugfix, I would propose to
->> > fork the discussion into a separate patch. Can you please submit a patch for
->> > the GPUAPB clock ? Note that I believe GPUAPB clock have to be described in
->> > DT, if only because DT is a hardware description, and to make sure the GPUAPB
->> > clock are correctly enabled by the driver.
->> 
->> Okay, I’ll submit a patch later.
->> The commit message should reflect that only CLK_GPU_CGC is enabled.
->
->The commit message , and this change , is unrelated to GPUAPB clock.
-The commit message is ambiguous. Could you clarify which parent clock
-you are referring to, and whether it can be enabled by CLK_GPU_CGC?
-If it was CLK_GPU, CLK_GPU_CGC can't be able to control it.     
+The S32G2 and S32G3 platforms have a couple of successive
+approximation register (SAR) ADCs with eight channels and 12-bit
+resolution. These changes provide the driver support for these ADCs
+and the bindings describing them.
+
+The driver is derived from the BSP driver version. It has been partly
+rewritten to conform to upstream criteria.
+
+https://github.com/nxp-auto-linux/linux/blob/release/bsp44.0-6.6.85-rt/drivers/iio/adc/s32cc_adc.c
+
+After the V1 posting there were some discussions around the DMA code
+to be converted to use the IIO DMA API [1]. Unfortunately this one is
+not yet fully implemented and merged in the framework to support the
+cyclic DMA. The current DMA code in the driver has been used in
+production since several years and even if I agree it can be improved
+with a dedicated IIO DMA API in the future, IMO, it sounds reasonable
+to keep it as is until the IIO DMA API supporting the cyclic DMA is
+merged. I'll be glad to convert the driver code if such an API exists
+and allows to remove code inside the driver.
+
+[1] https://lore.kernel.org/all/c30bb4b6328d15a9c213c0fa64b909035dc7bf40.camel@gmail.com/
+[2] https://lore.kernel.org/all/aRyBKH4KOQ1L8lA4@black.igk.intel.com/
+
+Changelog:
+	* V9:
+	  ** Jonathan Cameron **
+	  - Fixed comment to be close to the 80 chars length
+	  - Replaced goto statement with a block condition to comply with cleanup.h
+
+	* V8:
+	  ** Andy Shevchenko **
+	  - Fixed a sentence in the changelog
+	  - Moved dev_name() to the upper line for a better line length
+	  - Unified messages by starting with a capital letter everywhere
+	  - Changed 'dma' -> 'DMA'
+	  - Used DEFINE_SIMPLE_DEV_PM_OPS() instead of deprecated macros
+	  - Fixed pm_ptr() -> pm_sleep_ptr()
+
+	* V7:
+	  ** Andy Shevchenko **
+	  - Moved paragraph closer to the tags in the changelog
+	  - Used Originally-by which is more adequate
+	  - Removed unneeded modulo conversion in macro
+	  - Fixed the consistency of the style by lowercasing the hexa value
+	  - Rename a timeout macro and remove another one
+	  - Clarified a comment when getting the power state of the ADC
+	  - Added a comment to clarify the clock is fast and suitable in atomic context
+	  - Uppercased the 'adc' words
+	  - Added a TODO to use field_get() when available
+	  - Removed unneeded explicit casting
+	  - Replaced a more readable version with raw ? 0 : 1
+	  - Folded return value check with wait_for_completion_interruptible()
+	  - Fixed comment "8 bits" --> "8-bit"
+	  - Fixed typo in comment
+	  - Fixed comment "iio_push_to_buffers_with_ts()"
+	  - Clarified why not using a pointer to a mask
+	  - Removed unneeded blank line
+	  - Removed duplicate error code in message
+	  - Initialized the spin lock before requesting the interrupt
+	  - One lined declaration in suspend/resume callbacks
+	  - Added trailing comma in structure initialization
+
+	* V6:
+	  ** Vinod Koul **
+	  - Dynamically allocate/release the channel at enable/disable
+
+	  ** Jonathan Cameron **
+	  - Reached out Vinod to clarify the buffer life cycle
+	  - Inverted more intuitive variable initialization
+	  - Updated comment with "iio_push_to_buffers_with_ts"
+
+	  ** Andy Shevchenko **
+	  - Removed unused NXP_SAR_ADC_IIO_BUFF_SZ macro
+	  - Removed "<litteral>U" annotation
+	  - Checked the buffer is a byte buffer
+	  - Investigated callback routine vs residue and updated the changelog
+	    the conclusions [2]
+
+	* V5:
+	  - Rebased against v6.18-rc1
+
+	  ** Jonathan Cameron **
+	  - Replace DRIVER_NAME macro with its literal string
+	  - Used FIELD_MODIFY() wherever it is possible
+	  - Complied with the 80 chars convention
+	  - Combined two variables in a single line declaration
+	  - Removed the 'remove' function as it is useless
+	  - Changed s32g2_sar_adc_data structure indentation / format
+
+	* V4:
+	  ** Christophe Jaillet **
+	  - Used dmam_alloc_coherent() instead of dma_alloc_coherent()
+
+	* V3:
+	  ** Jonathan Cameron **
+	  - Removed specific IIO_SYSFS_TRIGGER dependency in Kconfig
+	  - Fixed headers
+	  - Avoided macro generic names
+	  - Used IIO_DECLARE_BUFFER_WITH_TS
+	  - Documented buffer and buffer_chan
+	  - Fixed single line comment
+	  - Commented why channel 32 is the timestamp
+	  - Renamed __<prefixed> functions
+	  - Factored out the raw read function to prevent nested goto in the switch
+	  - Returned -EINVAL instead of break
+	  - Removed explict pointer cast
+	  - Used iio_push_to_buffers_with_ts variant
+	  - Fixed ordering operations in postenable / predisable
+	  - Return IRQ_HANDLED even if there is an error in the isr
+	  - Fixed devm_add_action_or_reset() to return directly
+	  - Used sizeof(*var) instead of sizeof(struct myvar)
+	  - Used model name instead of dev_name()
+	  - Used dev_err_probe() in any case in the probe function
+	  - Fixed indentation
+
+	  ** David Lechner **
+	  - Kept alphabetical order in Makefile
+	  - Changed explicit GPL-2.0-only
+	  - Removed clock name in when calling devm_clk_get_enabled()
+
+	  ** Andriy Shevchenko **
+	  - Fixed headers ordering and added the missing ones
+	  - Fixed constant numeric format
+	  - Ran pahole and consolidated the nxp_sar_adc structure
+	  - Fixed semi-column in comments and typos
+	  - Fixed indentation
+	  - Moved data assignment before iio_dev allocation
+
+	* V2:
+	  - Massaged the cover letter changelog to explain the DMA
+	  ** Andriy Shevchenko **
+	  - Added missing headers and use proper header for of.h
+	  - Changed macro offset zero to be consistent
+	  - Remove macros REG_ADC_MCR_NRSMPL_* as they are unused
+	  - Changed delays macro under the form 100000 => 100 * USEC_PER_MSEC
+	  - Replaced PAGE_SIZE by a NXP_PAGE_SIZE = SZ_4K macro
+	  - Replaced read_poll_timeout() by readl_poll_timeout()
+	  - Changed error pattern "error first"
+	  - Replaced variable type 'int' to 'unsigned int'
+	  - Fixed bug right instead of left shift, use BIT(channel)
+	  - Returned directly from switch-case
+	  - Used guard(spinlock_irqsave)()
+	  - One liner function call
+	  - Remove redundant {}
+	  - Write default values litterals instead of temporary variables
+	  - Changed variable name vref -> vref_mV
+	  - Removed unneeded error message
+	  - Used dev_err_probe() consistently
+	  - Removed successful driver probe message
+	  - Removed redundant blank line
+
+	  ** Nuno Sa **
+	  - Replaced of_device_get_match_data() by device_get_match_data()
+	  - Removed iio_device_unregister() because devm_iio_device_register() is used
+	  - Removed "/* sentinel */" comment
+	  - Removed CONFIG_PM_SLEEP defiries
+
+	  ** Krzysztof Kozlowski / David Lechner **
+	  - Removed clock-names in DT bindings
+	  - Fixed minItems by maxItems
+
+	* V1:
+	  - Initial post
+
+Daniel Lezcano (2):
+  dt-bindings: iio: adc: Add the NXP SAR ADC for s32g2/3 platforms
+  iio: adc: Add the NXP SAR ADC support for the s32g2/3 platforms
+
+ .../bindings/iio/adc/nxp,s32g2-sar-adc.yaml   |   63 +
+ drivers/iio/adc/Kconfig                       |   12 +
+ drivers/iio/adc/Makefile                      |    1 +
+ drivers/iio/adc/nxp-sar-adc.c                 | 1016 +++++++++++++++++
+ 4 files changed, 1092 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/nxp,s32g2-sar-adc.yaml
+ create mode 100644 drivers/iio/adc/nxp-sar-adc.c
+
+-- 
+2.43.0
+
 
