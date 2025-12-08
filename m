@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-245112-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245113-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19E09CAC4EF
-	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 08:22:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A3D2ECAC522
+	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 08:26:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 86A90300B28A
-	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 07:21:54 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B3299300FE1F
+	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 07:23:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE1AB2DC762;
-	Mon,  8 Dec 2025 07:21:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAFAA22A7E4;
+	Mon,  8 Dec 2025 07:23:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t0Fsemg2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iom8K/40"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0FBE1DD9AD;
-	Mon,  8 Dec 2025 07:21:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B805E1F956;
+	Mon,  8 Dec 2025 07:23:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765178513; cv=none; b=PMal/pp2P+RzwBhrFKGOgSbPo6L39+dOTn5KVBouElj7foN3XnUEhGZxAdXY4II8EjbDx/WkMYDERd4pniPaLAzGCdLXX43lHssVUZE8esIlzHVpY9gFYHC1tQJf+tP5o7ibE2XhrzkiXMYNl003C8oeNR4f0wnDny4AqdJEgcM=
+	t=1765178621; cv=none; b=S03IjqJAoJ+up4AAy4b8Puhbp5VvhCK6sV9wdSy97ffJ5HiC+fd32DUbc3saRfyPbbktoEELKYwSGBDubWGsiIV5h1m7Ft1kGiCVf+vo2O/69ujoKkX7J86lHpJO1FEwtq/xoC6sGU+I9RFTkjnxD74P3nP+ZJt0JcxKf6kRn7k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765178513; c=relaxed/simple;
-	bh=meuj/Z8/33sYc5TphFbNdcAVhoVxM8DZOQMINCq4wjg=;
+	s=arc-20240116; t=1765178621; c=relaxed/simple;
+	bh=/J5494v9+sFimD+ZTaxH85bfOM3b1OUy+JuNut86h8c=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GL0LIdHj6Bk6YyY9GmRN8TnXy9G4sg/mrr5c/Asp1mqoWfXZWhzd6o+OWqHr9OjZUxLwpjE9tjOseHvvr5VYPWPKNOU1KQx7tLcSpZuDuVDHvj0Vfs7Wi/F6pVXYb4DBF1PF47uxDV3YsKr/+ZD8RH0FkJxgxtzwvHxy1t94kd0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t0Fsemg2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 954C7C4CEF1;
-	Mon,  8 Dec 2025 07:21:50 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=PmeAIEqtBJ6dj8aw68n6u90P0KFE+qWKymoY1NtnqbwR9YWOhe+b5jxIp7b97C3qOhg0w2/3W3SKM8D9U1ZzvuwhKgYXqbvHwVH+vljQYQmA/UGBsRmyVDlzTTLyZyIqT/PaQnb/YUWwenWnD3KxtB63JGXonPAM3iyaT0SfP1U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iom8K/40; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB3E3C4CEF1;
+	Mon,  8 Dec 2025 07:23:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765178513;
-	bh=meuj/Z8/33sYc5TphFbNdcAVhoVxM8DZOQMINCq4wjg=;
+	s=k20201202; t=1765178621;
+	bh=/J5494v9+sFimD+ZTaxH85bfOM3b1OUy+JuNut86h8c=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=t0Fsemg2j8Z7dZKkUo4Ql2nKSiznknbsA9yc107lrZR7yxEZ79UKnMfIF2OBxk4K3
-	 XY3glZ+ia9aw9SpxIKlnwtGj6UgemKKkBq9SZ6DsBwPBV9WwLUYGIjqCWX/g/qHoUy
-	 tl9vj4WBUBDOCF2by04O7EsxCLCjp4EOZst3sMXynWXdGWIXXin4bw1RvLSAZkyCSF
-	 iUi+6CiWCB1KS94Dx+EpHHSZC/DxHRt7+tnC3jWVQfGM0sFRhW7Z9KNWZnTWHRGJH3
-	 5Z0teYUtCBSgWFVv+XFnppEpfD7lzwtPeYr3ZzhoeWhTcH9z/CYgwkoR5gmx7qed+p
-	 YBnWSIOuGMtNw==
-Message-ID: <097fae2e-8a72-443b-8ed0-ffd6ecfc9e64@kernel.org>
-Date: Mon, 8 Dec 2025 08:21:49 +0100
+	b=iom8K/40TEUX3nggMjeKiROUXUUxGfIin8LL7a8V1qCkaKPXAPPxdjW0tMmj2+Arf
+	 wzHhZMqnDGufJIcrkPQ1os9thBTt8YjFDGho6kQA6qQa7VL7nTtpn3ftL0rdserSm1
+	 qVdMQ1+4lHpDvYNrQ4XYo/4IJd1qJvUWmMrcpfTQ7WNWBpcDrNLqDUZhZKPz7PHLHY
+	 qwMaDxMOe1oTyra/KbbrQwEZuCswqkqUtqzugRKoajSjZDDK2/PzItGfP4jXCgEY7i
+	 tvn233n9hdZcQMTYP0Ne3zBx/ebPjbRXaVhJg5et6fgPKCidgBPcC26lSgK1QbhK+R
+	 A3VZbhI6IZ1dg==
+Message-ID: <e5dd43dd-2d57-463d-b0ab-7e4df40c1914@kernel.org>
+Date: Mon, 8 Dec 2025 08:23:37 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,19 +48,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] dt-bindings: iio: pressure: add
- honeywell,abp2030pa
-To: Petre Rodan <petre.rodan@subdimension.ro>
-Cc: Jonathan Cameron <jic23@kernel.org>, David Lechner
- <dlechner@baylibre.com>, =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20251207-honeywell_abp2_driver-v4-0-b52a4b96bbf7@subdimension.ro>
- <20251207-honeywell_abp2_driver-v4-1-b52a4b96bbf7@subdimension.ro>
- <44adc9d6-2520-4282-8c6e-1fedf5319e77@kernel.org>
- <aTZ7G8M-FvmEuQ8X@lipo.home.arpa>
+Subject: Re: [PATCH 1/2] dt-bindings: hwmon: Add MPS mp5926
+To: Yuxi Wang <Yuxi.Wang@monolithicpower.com>, linux@roeck-us.net,
+ corbet@lwn.net, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: wyx137120466@gmail.com, linux-hwmon@vger.kernel.org,
+ linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20251208071659.1157-1-Yuxi.Wang@monolithicpower.com>
+ <20251208071659.1157-2-Yuxi.Wang@monolithicpower.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,60 +101,24 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <aTZ7G8M-FvmEuQ8X@lipo.home.arpa>
+In-Reply-To: <20251208071659.1157-2-Yuxi.Wang@monolithicpower.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 08/12/2025 08:15, Petre Rodan wrote:
-> 
-> hello Krzysztof, 
-> 
-> On Mon, Dec 08, 2025 at 06:01:46AM +0100, Krzysztof Kozlowski wrote:
->> On 07/12/2025 07:00, Petre Rodan wrote:
->>> Adds binding for digital Honeywell ABP2 series pressure and temperature
->>> sensors.
->>> The i2c address is hardcoded and depends on the part number.
->>> There is an optional interrupt that signals the end of conversion.
->>>
->>> Signed-off-by: Petre Rodan <petre.rodan@subdimension.ro>
->>
->> <form letter>
->> This is a friendly reminder during the review process.
->>
->> It looks like you received a tag and forgot to add it.
-> 
-> [..]
-> 
->> If a tag was not added on purpose, please state why and what changed.
->> </form letter>
-> 
-> I removed the tag on purpose since the yaml file was modified in v4 as per the
-> changelog that is below the commit message.
+On 08/12/2025 08:16, Yuxi Wang wrote:
+> Add support for MPS mp5926 controller.
 
-Please read my form letter and please read linked submitting patches
-doc. I pointed to a very specific paragraph, so you don't need to read
-everything...
+You should explain here why this is a trivial device (and it is not
+about driver, but your hardware).
 
-> 
->> I will not be doing work twice and, without explanation, forcing me to
->> do that is disrespectful to my time.
-> 
-> sorry about that. the single thing that changed was that
-> 
-> ---- 8< --------------------------------------------
-> @@ -76,8 +71,7 @@ properties:
->    spi-max-frequency:
->      maximum: 800000
->  
-> -  vdd-supply:
-> -    description: provide VDD power to the sensor.
-> +  vdd-supply: true
->  
+Also, missing blank line.
 
+Please look at `git log`.
 
-This is trivial and absolutely NOT a reason to drop the tag. Did you
-read submitting patches document? Please consider TIME of reviewers,
-even time spent on replying on this.
+> Signed-off-by: Yuxi Wang <Yuxi.Wang@monolithicpower.com>
+> ---
+>  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+
 
 Best regards,
 Krzysztof
