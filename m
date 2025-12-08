@@ -1,517 +1,282 @@
-Return-Path: <devicetree+bounces-245123-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245124-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF380CAC5FE
-	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 08:39:12 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26DC4CAC678
+	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 08:47:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A4A6E300D663
-	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 07:39:11 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2EF2C300C6E4
+	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 07:47:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D20E62C029D;
-	Mon,  8 Dec 2025 07:39:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 629742BD58A;
+	Mon,  8 Dec 2025 07:47:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NGkIc/4J"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="JrQeXTiE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f175.google.com (mail-pg1-f175.google.com [209.85.215.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4404B248896
-	for <devicetree@vger.kernel.org>; Mon,  8 Dec 2025 07:39:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7518E208994;
+	Mon,  8 Dec 2025 07:47:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765179548; cv=none; b=gji3wkeA3vdz+YxFCTXH/0QSLM9zNQ2tWYnC4Rp2rIOouKt4Nv/DDw5MjfMPu5GnD+/C9TMYiDrY6kcTGvP9qf1NhdcQJHCKrunE73wetgC1d3lDhm4xN4qZNbchsTyE8SbUYg5G4cA87F8PgziNyoaWzgSKpPYnUJy3s7NDXQU=
+	t=1765180052; cv=none; b=k1CK6Z9J6EKSYu0mn8z4dYtkQ7YHPpwCRoUDNnOCJADpDokoS0JyThdhN3/8VZsg7xdMTRY2ydQExUUjNFi19WTvKinpqoAT6E6obIqiaPca3TjMLID/u2j3b+0IzwQE2HIpURHnf+qBbi15oewm8fVwIVBKgvmwPNVOD00AMWM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765179548; c=relaxed/simple;
-	bh=zYh00H4ZXzq3PWkS/1ENfQH85iOSx8Rq3hrnOQ0fPwo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZLtrnDWjmh1VvolNNHtxZSfBY9LGC4kT2qk9PgBZD/1b3FpLzbLMmGW7UxzVwDK0hTnH096EJMQa6qJY9F1D5Ul1l2wl63lajKKJ7NpLZsUBoJ6WhBTWGZz/DYPFrDxfbhQMjZW8+6lpJsWIY3byq8xcv5Jj/mzhLb8czHwkzhI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NGkIc/4J; arc=none smtp.client-ip=209.85.215.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f175.google.com with SMTP id 41be03b00d2f7-bde0f62468cso4211276a12.2
-        for <devicetree@vger.kernel.org>; Sun, 07 Dec 2025 23:39:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1765179544; x=1765784344; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=yXDnfOTk0bKHOljlc8hqbi3cRVbO+lOwhLyhsOiAOaY=;
-        b=NGkIc/4J86vTLALv+Pxw4zkgJzElfSxY0Q2fdB1HXuqTMRBmwLDzDV1Qr/QdA2s2Eb
-         C+1hij8LgtfV840KYh+15oD7o9Lwp1uOItd45OdNxeyTICPpwY10hdm5DFlRF9C8stmx
-         eKYNInwHrosVRW7JHgu8lzUsEuOpChaLynutWGWHiqueHCFp3HXcbDZeSu4IGsquTv0g
-         jpNz+NmVDvrbqoBLvnkGVi15Rf7uYHiJBnlNkZSc2+Kx7UmDUmyMg90XAYSMtU6MtUHP
-         7b5n9cEEC5R1esaDivElVQIP8kXoc24cRuFipjo9yAfuWSLjBNL/Z3fcw/wvwSVw2TGl
-         JIXw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765179544; x=1765784344;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=yXDnfOTk0bKHOljlc8hqbi3cRVbO+lOwhLyhsOiAOaY=;
-        b=F2SKowb6rDygn5FQgHA88nqZdCA70IcpvwIpbeuSW/umuAw97T7rkDeV+JZy1awVQ2
-         4ezi8zLh1QcEYQ0xBHimknRM2VoFNQijobaP8BZ1PhZY113z5/dg3oNWF/dbMsSl59US
-         FNrOslsaMfYfmpwmtpaYek9EuZvUXhwNQqlUx0NX4ebpqSUvC9rev6poZxy0XNld7uon
-         sgHV5Tp3xacP2V0zCydcF0SoWlhZVswa91pTT/cdMub5XtREeR3J+oo+nQAhJ96f/OH0
-         49sJcsCLH/Y7/x5lrJNPlEyEtt0FlN3xxheyG1mmp6En5WNMnIwmGbJ/0XrhYB52SE6g
-         r2rA==
-X-Forwarded-Encrypted: i=1; AJvYcCU2Wss49J4RckeAq6Nd2fWrZtIubWFM0CJrcp3l974s57I1ObDpIahnRQzcr2h1dzHTVzgSExtcT87f@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz5MwGbKRB5iAVLUB4G5g3ZLDerSuPJDeJjJz5S4fpV8n3f1jz5
-	BmO+k83E2WJ8ni0NpBr9UaJocZsulI95ky1jOTwsvovFEWld+zRwkl3D
-X-Gm-Gg: ASbGnctYXESGOO+Raqx+2JrIQDEazfA/7gFXbyU17hWwvpQmHOfv3+3QzLm0fB/5GID
-	OczzH8ifqXH2pD88oTxaxugF7pe3/wNYCF5dNBEe/LVVXWaNzwYItLwxrkqkqEt7dD9oJVjzGqP
-	Q3ivT3ms93ml6Xf6v+bv1BN13z8QhqT0RWbpFbQjB3Bt9Np1e/646t/qCWSBuSDbJQcI1LRj6VL
-	csbWWM7Zx7pLIaaujXfZmvmHT6IA5TJHCWEuOL9yFXNxwINK1/PIadHniiGuAKpTSIFOihy3qFm
-	ycWDoesdHkLP42gB8CtWldldcDG8OifkkGI8cwRINbuCBtuXL1XzKjmq3tt/EXbzrpUcgHhrxoY
-	dlsd3HE2mJ1aoe7JuN5tcOmEohY+ZWy8ySuLg24TcRekkykxYx8s/MOBZxelE/tStcqSg3Ue1jw
-	j8jG5h/SiBxkZq6j1UTE8My67mMNQ3+5uiyA==
-X-Google-Smtp-Source: AGHT+IFgFOAKUJZOhYYNZpiFMZ8LUUma7b6IZuq74P5uVZsA19ajYX5KWm5sGaeJqtccZPJYMMSSLw==
-X-Received: by 2002:a05:7300:e8a5:b0:2a6:a306:eff5 with SMTP id 5a478bee46e88-2abc70f7acfmr3810082eec.5.1765179544282;
-        Sun, 07 Dec 2025 23:39:04 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-11df7573508sm38310688c88.3.2025.12.07.23.39.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 07 Dec 2025 23:39:03 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Sun, 7 Dec 2025 23:39:01 -0800
-From: Guenter Roeck <linux@roeck-us.net>
-To: Yuxi Wang <Yuxi.Wang@monolithicpower.com>
-Cc: corbet@lwn.net, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, wyx137120466@gmail.com,
-	linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/2] hwmon: add mp5926 driver
-Message-ID: <5f83f1f7-2ddd-4f4b-9c6f-f69aafcd8693@roeck-us.net>
-References: <20251208071659.1157-1-Yuxi.Wang@monolithicpower.com>
- <20251208071659.1157-3-Yuxi.Wang@monolithicpower.com>
+	s=arc-20240116; t=1765180052; c=relaxed/simple;
+	bh=bSs3lvW9GKXYTm9yQ7kchJrQyAulU1QWE0NdWgxDge4=;
+	h=Content-Type:MIME-Version:In-Reply-To:References:Subject:From:Cc:
+	 To:Date:Message-ID; b=maQGpSPm/gp3smp+VD7rhWe2Vi/svCbpnb1mUx0192pjjD2AUZ/83PTmXRE6TXEE1+FT5bVLTNG7jUWtflwVohe30QFWTm8UFyFvQKC1aVoEc9ep/isEU/4ThPt6AFyuf/nUH7Lhd5oTqp34i6/Ie58eyTdcFID0DXezGscSnaE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=JrQeXTiE; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from mail.ideasonboard.com (unknown [IPv6:2401:4900:be8a:6a58:2d26:4571:d85d:6729])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 84DE5AD0;
+	Mon,  8 Dec 2025 08:45:07 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1765179908;
+	bh=bSs3lvW9GKXYTm9yQ7kchJrQyAulU1QWE0NdWgxDge4=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=JrQeXTiEaY2P/vP0OjCVNAubzT5wRQ8lV02H+eob+Dl3So4G3ucrP/rjgvrVyyy4U
+	 KjsDSE445/vbGp4b3MHtbjPMjggMLcRMhLwPMRFL3UdQwITp+L3G4x8injDjOSjMMf
+	 eE0IRsRevbbyNVASziMG45k9Uj9zSiwdl5GT0O8M=
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251208071659.1157-3-Yuxi.Wang@monolithicpower.com>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <aR8UlHdBppncdlRD@kekkonen.localdomain>
+References: <20251112115459.2479225-1-r-donadkar@ti.com> <20251112115459.2479225-18-r-donadkar@ti.com> <aR8UlHdBppncdlRD@kekkonen.localdomain>
+Subject: Re: [PATCH v8 17/18] media: ti: j721e-csi2rx: Support runtime suspend
+From: Jai Luthra <jai.luthra@ideasonboard.com>
+Cc: jai.luthra@linux.dev, laurent.pinchart@ideasonboard.com, mripard@kernel.org, y-abhilashchandra@ti.com, devarsht@ti.com, s-jain1@ti.com, vigneshr@ti.com, mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org, p.zabel@pengutronix.de, conor+dt@kernel.org, hverkuil-cisco@xs4all.nl, tomi.valkeinen@ideasonboard.com, changhuang.liang@starfivetech.com, jack.zhu@starfivetech.com, sjoerd@collabora.com, dan.carpenter@linaro.org, hverkuil+cisco@kernel.org, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, devicetree@vger.kernel.org
+To: Rishikesh Donadkar <r-donadkar@ti.com>, Sakari Ailus <sakari.ailus@linux.intel.com>
+Date: Mon, 08 Dec 2025 13:17:21 +0530
+Message-ID: <176518004114.20066.3953707820070167261@freya>
+User-Agent: alot/0.12.dev62+gb9d6144a6
 
-On Mon, Dec 08, 2025 at 03:16:59PM +0800, Yuxi Wang wrote:
-> Add support for MPS mp5926.
-> Signed-off-by: Yuxi Wang <Yuxi.Wang@monolithicpower.com>
-> ---
->  Documentation/hwmon/index.rst  |   1 +
->  Documentation/hwmon/mp5926.rst |  92 ++++++++++++++++
->  MAINTAINERS                    |   7 ++
->  drivers/hwmon/pmbus/Kconfig    |   9 ++
->  drivers/hwmon/pmbus/Makefile   |   1 +
->  drivers/hwmon/pmbus/mp5926.c   | 192 +++++++++++++++++++++++++++++++++
->  6 files changed, 302 insertions(+)
->  create mode 100644 Documentation/hwmon/mp5926.rst
->  create mode 100644 drivers/hwmon/pmbus/mp5926.c
-> 
-> diff --git a/Documentation/hwmon/index.rst b/Documentation/hwmon/index.rst
-> index 85d7a686883e..6181c3f62177 100644
-> --- a/Documentation/hwmon/index.rst
-> +++ b/Documentation/hwmon/index.rst
-> @@ -185,6 +185,7 @@ Hardware Monitoring Kernel Drivers
->     mp2993
->     mp5023
->     mp5920
-> +   mp5926
->     mp5990
->     mp9941
->     mp9945
-> diff --git a/Documentation/hwmon/mp5926.rst b/Documentation/hwmon/mp5926.rst
-> new file mode 100644
-> index 000000000000..4b64a7e24ae6
-> --- /dev/null
-> +++ b/Documentation/hwmon/mp5926.rst
-> @@ -0,0 +1,92 @@
-> +.. SPDX-License-Identifier: GPL-2.0
-> +
-> +Kernel driver mp5926
-> +====================
-> +
-> +Supported chips:
-> +
-> +  * MPS mp5926
-> +
-> +    Prefix: 'mp5926'
-> +
-> +  * Datasheet
-> +    https://www.monolithicpower.com/en/
-> +
-> +Author:
-> +
-> +	Yuxi Wang <Yuxi.Wang@monolithicpower.com>
-> +
-> +Description
-> +-----------
-> +
-> +This driver implements support for Monolithic Power Systems, Inc. (MPS)
-> +MP5926 Hot-Swap Controller.
-> +
-> +Device compliant with:
-> +
-> +- PMBus rev 1.3 interface.
-> +
-> +The driver exports the following attributes via the 'sysfs' files
-> +for input voltage:
-> +
-> +**in1_input**
-> +
-> +**in1_label**
-> +
-> +**in1_crit**
-> +
-> +**in1_crit_alarm**
-> +
-> +The driver provides the following attributes for output voltage:
-> +
-> +**in2_input**
-> +
-> +**in2_label**
-> +
-> +**in2_lcrit**
-> +
-> +**in2_lcrit_alarm**
-> +
-> +**in2_rated_max**
-> +
-> +**in2_rated_min**
-> +
-> +The driver provides the following attributes for input current:
-> +
-> +**curr1_input**
-> +
-> +**curr1_label**
-> +
-> +**curr1_max**
-> +
-> +**curr1_max_alarm**
-> +
-> +The driver provides the following attributes for output current:
-> +
-> +**curr2_input**
-> +
-> +**curr2_label**
-> +
-> +The driver provides the following attributes for input power:
-> +
-> +**power1_input**
-> +
-> +**power1_label**
-> +
-> +The driver provides the following attributes for output power:
-> +
-> +**power2_input**
-> +
-> +**power2_label**
-> +
-> +The driver provides the following attributes for temperature:
-> +
-> +**temp1_input**
-> +
-> +**temp1_crit**
-> +
-> +**temp1_crit_alarm**
-> +
-> +**temp1_max**
-> +
-> +**temp1_max_alarm**
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index d701a4d5b00e..fea710aab535 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -17708,6 +17708,13 @@ S:	Maintained
->  F:	Documentation/hwmon/mp2993.rst
->  F:	drivers/hwmon/pmbus/mp2993.c
->  
-> +MPS MP5926 DRIVER
-> +M:	Yuxi Wang <Yuxi.Wang@monolithicpower.com>
-> +L:	linux-hwmon@vger.kernel.org
-> +S:	Maintained
-> +F:	Documentation/hwmon/mp5926.rst
-> +F:	drivers/hwmon/pmbus/mp5926.c
-> +
->  MPS MP9941 DRIVER
->  M:	Noah Wang <noahwang.wang@outlook.com>
->  L:	linux-hwmon@vger.kernel.org
-> diff --git a/drivers/hwmon/pmbus/Kconfig b/drivers/hwmon/pmbus/Kconfig
-> index f3fb94cebf1a..0a6699fa976a 100644
-> --- a/drivers/hwmon/pmbus/Kconfig
-> +++ b/drivers/hwmon/pmbus/Kconfig
-> @@ -472,6 +472,15 @@ config SENSORS_MP5920
->  	  This driver can also be built as a module. If so, the module will
->  	  be called mp5920.
->  
-> +config SENSORS_MP5926
-> +	tristate "MPS MP5926"
-> +	help
-> +	  If you say yes here you get hardware monitoring support for Monolithic
-> +	  MP5926.
-> +
-> +	  This driver can also be built as a module. If so, the module will
-> +	  be called MP5926.
-> +
->  config SENSORS_MP5990
->  	tristate "MPS MP5990"
->  	help
-> diff --git a/drivers/hwmon/pmbus/Makefile b/drivers/hwmon/pmbus/Makefile
-> index 349a89b6d92e..75ec4956ca8d 100644
-> --- a/drivers/hwmon/pmbus/Makefile
-> +++ b/drivers/hwmon/pmbus/Makefile
-> @@ -47,6 +47,7 @@ obj-$(CONFIG_SENSORS_MP2975)	+= mp2975.o
->  obj-$(CONFIG_SENSORS_MP2993)	+= mp2993.o
->  obj-$(CONFIG_SENSORS_MP5023)	+= mp5023.o
->  obj-$(CONFIG_SENSORS_MP5920)	+= mp5920.o
-> +obj-$(CONFIG_SENSORS_MP5926)	+= mp5926.o
->  obj-$(CONFIG_SENSORS_MP5990)	+= mp5990.o
->  obj-$(CONFIG_SENSORS_MP9941)	+= mp9941.o
->  obj-$(CONFIG_SENSORS_MP9945)	+= mp9945.o
-> diff --git a/drivers/hwmon/pmbus/mp5926.c b/drivers/hwmon/pmbus/mp5926.c
-> new file mode 100644
-> index 000000000000..e86ec1ec0584
-> --- /dev/null
-> +++ b/drivers/hwmon/pmbus/mp5926.c
-> @@ -0,0 +1,192 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +//
-> +// mp5926.c  - pmbus driver for mps mp5926
-> +//
-> +// Copyright 2025 Monolithic Power Systems, Inc
-> +//
-> +// Author: Yuxi Wang <Yuxi.Wang@monolithicpower.com>
-> +
-> +#include <linux/bitfield.h>
-> +#include <linux/bits.h>
-> +#include <linux/i2c.h>
-> +#include <linux/module.h>
-> +#include <linux/of_device.h>
-> +#include <linux/pmbus.h>
-> +#include "pmbus.h"
-> +
-> +/*Common Register*/
+Hi Sakari,
 
-Useless (and, in fact, misleading) comment
+Thanks for the review.
 
-> +#define PAGE	0x01
+Quoting Sakari Ailus (2025-11-20 18:46:14)
+> Hi Rishikesh,
+>=20
+> On Wed, Nov 12, 2025 at 05:24:58PM +0530, Rishikesh Donadkar wrote:
+> > From: Jai Luthra <jai.luthra@ideasonboard.com>
+> >=20
+> > Add support for runtime power-management to enable powering off the
+> > shared power domain between Cadence CSI2RX and TI CSI2RX wrapper when
+> > the device(s) are not in use.
+> >=20
+> > When powering off the IP, the PSI-L endpoint loses the paired DMA
+> > channels. Thus we have to release the DMA channels at runtime suspend
+> > and request them again at resume.
+> >=20
+> > Tested-by: Rishikesh Donadkar <r-donadkar@ti.com>
+> > Reviewed-by: Rishikesh Donadkar <r-donadkar@ti.com>
+> > Signed-off-by: Jai Luthra <jai.luthra@ideasonboard.com>
+> > Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
+> > ---
+> >  drivers/media/platform/ti/Kconfig             |  1 +
+> >  .../platform/ti/j721e-csi2rx/j721e-csi2rx.c   | 55 ++++++++++++++++++-
+> >  2 files changed, 54 insertions(+), 2 deletions(-)
+> >=20
+> > diff --git a/drivers/media/platform/ti/Kconfig b/drivers/media/platform=
+/ti/Kconfig
+> > index 3bc4aa35887e6..a808063e24779 100644
+> > --- a/drivers/media/platform/ti/Kconfig
+> > +++ b/drivers/media/platform/ti/Kconfig
+> > @@ -70,6 +70,7 @@ config VIDEO_TI_J721E_CSI2RX
+> >       depends on VIDEO_CADENCE_CSI2RX
+> >       depends on PHY_CADENCE_DPHY_RX || COMPILE_TEST
+> >       depends on ARCH_K3 || COMPILE_TEST
+> > +     depends on PM
+> >       select VIDEOBUF2_DMA_CONTIG
+> >       select V4L2_FWNODE
+> >       help
+> > diff --git a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c b/dr=
+ivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
+> > index 528041ee78cf3..21e032c64b901 100644
+> > --- a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
+> > +++ b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
+> > @@ -13,6 +13,7 @@
+> >  #include <linux/module.h>
+> >  #include <linux/of_platform.h>
+> >  #include <linux/platform_device.h>
+> > +#include <linux/pm_runtime.h>
+> >  #include <linux/property.h>
+> > =20
+> >  #include <media/cadence/cdns-csi2rx.h>
+> > @@ -963,12 +964,16 @@ static int ti_csi2rx_start_streaming(struct vb2_q=
+ueue *vq, unsigned int count)
+> >       unsigned long flags;
+> >       int ret =3D 0;
+> > =20
+> > +     ret =3D pm_runtime_resume_and_get(csi->dev);
+> > +     if (ret)
+> > +             return ret;
+> > +
+> >       spin_lock_irqsave(&dma->lock, flags);
+> >       if (list_empty(&dma->queue))
+> >               ret =3D -EIO;
+> >       spin_unlock_irqrestore(&dma->lock, flags);
+> >       if (ret)
+> > -             return ret;
+> > +             goto err;
+> > =20
+> >       ret =3D video_device_pipeline_start(&ctx->vdev, &csi->pipe);
+> >       if (ret)
+> > @@ -1024,6 +1029,8 @@ static int ti_csi2rx_start_streaming(struct vb2_q=
+ueue *vq, unsigned int count)
+> >       writel(0, csi->shim + SHIM_DMACNTX(ctx->idx));
+> >  err:
+> >       ti_csi2rx_cleanup_buffers(ctx, VB2_BUF_STATE_QUEUED);
+> > +     pm_runtime_put(csi->dev);
+> > +
+> >       return ret;
+> >  }
+> > =20
+> > @@ -1055,6 +1062,7 @@ static void ti_csi2rx_stop_streaming(struct vb2_q=
+ueue *vq)
+> > =20
+> >       ti_csi2rx_stop_dma(ctx);
+> >       ti_csi2rx_cleanup_buffers(ctx, VB2_BUF_STATE_ERROR);
+> > +     pm_runtime_put(csi->dev);
+> >  }
+> > =20
+> >  static const struct vb2_ops csi_vb2_qops =3D {
+> > @@ -1261,7 +1269,9 @@ static void ti_csi2rx_cleanup_notifier(struct ti_=
+csi2rx_dev *csi)
+> > =20
+> >  static void ti_csi2rx_cleanup_ctx(struct ti_csi2rx_ctx *ctx)
+> >  {
+> > -     dma_release_channel(ctx->dma.chan);
+> > +     if (!pm_runtime_status_suspended(ctx->csi->dev))
+>=20
+> What's the motivation for this change? Do the DMA channel need to be
+> released only if the device's RPM status isn't suspended?
+>=20
+> Is there a guarantee Runtime PM is disabled when the function is called?
+> Otherwise there's no guarantee state change couldn't occur.
+>=20
 
-That is not a register, it is used as the number of pages.
+The channels are released during PM runtime suspend, and re-paired in
+resume. I like Tomi's suggestion of removing the channel logic from
+init/cleanup_ctx altogether, which will also get rid of this change.
 
-> +#define EFUSE_CFG 0xCF
-> +#define I_SCALE_SEL 0xC6
+> > +             dma_release_channel(ctx->dma.chan);
+> > +
+> >       vb2_queue_release(&ctx->vidq);
+> > =20
+> >       video_unregister_device(&ctx->vdev);
+> > @@ -1512,6 +1522,39 @@ static int ti_csi2rx_init_ctx(struct ti_csi2rx_c=
+tx *ctx)
+> >       return ret;
+> >  }
+> > =20
+> > +static int ti_csi2rx_runtime_suspend(struct device *dev)
+> > +{
+> > +     struct ti_csi2rx_dev *csi =3D dev_get_drvdata(dev);
+> > +     int i;
+> > +
+> > +     if (csi->enable_count !=3D 0)
+> > +             return -EBUSY;
+> > +
+> > +     for (i =3D 0; i < csi->num_ctx; i++)
+> > +             dma_release_channel(csi->ctx[i].dma.chan);
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +static int ti_csi2rx_runtime_resume(struct device *dev)
+> > +{
+> > +     struct ti_csi2rx_dev *csi =3D dev_get_drvdata(dev);
+> > +     int ret, i;
+> > +
+> > +     for (i =3D 0; i < csi->num_ctx; i++) {
+>=20
+> You could declare i (as unsigned int) here.
+>=20
+> The same for ret actually.
+>=20
 
-Please align properly with tab after name.
+Will do.
 
-#define<space>NAME<tab>value
+> > +             ret =3D ti_csi2rx_init_dma(&csi->ctx[i]);
+> > +             if (ret)
+> > +                     return ret;
+> > +     }
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +static const struct dev_pm_ops ti_csi2rx_pm_ops =3D {
+> > +     RUNTIME_PM_OPS(ti_csi2rx_runtime_suspend, ti_csi2rx_runtime_resum=
+e,
+> > +                    NULL)
+> > +};
+> > +
+> >  static int ti_csi2rx_probe(struct platform_device *pdev)
+> >  {
+> >       struct device_node *np =3D pdev->dev.of_node;
+> > @@ -1579,6 +1622,10 @@ static int ti_csi2rx_probe(struct platform_devic=
+e *pdev)
+> >               goto err_notifier;
+> >       }
+> > =20
+> > +     pm_runtime_set_active(csi->dev);
+> > +     pm_runtime_enable(csi->dev);
+>=20
+> Note that the sub-device driver's UAPI may be already available to users
+> when the async sub-device is registered. Therefore you'll need enable
+> runtime PM before that.
+>=20
 
-> +#define MP5926_FUNC	(PMBUS_HAVE_VIN | PMBUS_HAVE_VOUT | \
-> +			PMBUS_HAVE_IIN | PMBUS_HAVE_PIN | \
-> +			PMBUS_HAVE_TEMP | PMBUS_HAVE_STATUS_INPUT | \
-> +			PMBUS_HAVE_STATUS_TEMP | PMBUS_HAVE_STATUS_VOUT)
+The only place where the driver actually writes registers to the hardware
+is in .start_streaming(), which I presume can only be called after the
+whole media pipeline is probed?
 
-Add empty line
+> > +     pm_request_idle(csi->dev);
+> > +
+> >       return 0;
+> > =20
+> >  err_notifier:
+> > @@ -1609,6 +1656,9 @@ static void ti_csi2rx_remove(struct platform_devi=
+ce *pdev)
+> >       mutex_destroy(&csi->mutex);
+> >       dma_free_coherent(csi->dev, csi->drain.len, csi->drain.vaddr,
+> >                         csi->drain.paddr);
+>=20
+> Is there a guarantee the device is in a particular runtime PM state here,
+> e.g. suspended?
+>=20
 
-> +static int mp5926_read_word_data(struct i2c_client *client, int page, int phase,
-> +				 int reg)
-> +{
-> +	int ret;
-> +	s16 exponent;
-> +	s32 mantissa;
-> +	s64 val;
-> +
-> +	switch (reg) {
-> +	case PMBUS_READ_VIN...PMBUS_READ_VCAP:
-> +	case PMBUS_READ_IOUT...PMBUS_READ_TEMPERATURE_1:
-> +	case PMBUS_READ_PIN:
-> +	case PMBUS_STATUS_WORD:
-> +		ret = -ENODATA;
-> +	break;
-> +	case PMBUS_READ_VOUT:
-> +	// The Vout format used by the chip is linear11 and not linear16.
-> +	// So we transform the value into the direct format defined by PMBus.
-> +	ret = i2c_smbus_read_word_data(client, EFUSE_CFG);
-> +	if (ret < 0)
-> +		return ret;
+I don't think so, userspace could attempt to remove the device while
+streaming. Good point, I haven't checked what all goes wrong in that case.
 
-Reading the value of EFUSE_CFG again and again is
-unnecessary. Just read it once in the probe function
-and store it in a local data structure.
+> > +     pm_runtime_disable(&pdev->dev);
+> > +     pm_runtime_set_suspended(&pdev->dev);
+> > +
+> >  }
+> > =20
+> >  static const struct of_device_id ti_csi2rx_of_match[] =3D {
+> > @@ -1623,6 +1673,7 @@ static struct platform_driver ti_csi2rx_pdrv =3D {
+> >       .driver =3D {
+> >               .name =3D TI_CSI2RX_MODULE_NAME,
+> >               .of_match_table =3D ti_csi2rx_of_match,
+> > +             .pm             =3D &ti_csi2rx_pm_ops,
+> >       },
+> >  };
+> > =20
+>=20
+> --=20
+> Kind regards,
+>=20
+> Sakari Ailus
 
-Also, it is not entirely clear to me why mp5926_read_word_data
-is even needed in direct mode. Please add a comment with an
-explanation.
-
-> +	if (ret & BIT(12)) {
-> +		ret = i2c_smbus_read_word_data(client, PMBUS_READ_VOUT);
-> +		if (ret < 0)
-> +			return ret;
-> +		exponent = ((s16)ret) >> 11;
-> +		mantissa = ((s16)((ret & 0x7ff) << 5)) >> 5;
-> +		val = mantissa * 1000;
-> +		if (exponent >= 0)
-> +			val <<= exponent;
-> +		else
-> +			val >>= -exponent;
-> +		val = div_s64(val * 10 + 313L, 625L);
-> +		return val;
-> +	}
-> +	ret = -ENODATA;
-> +	break;
-
-Alignment is off. Please fix.
-
-> +	default:
-> +		ret = -EINVAL;
-> +	break;
-> +	}
-> +
-> +	return ret;
-> +}
-> +
-> +static int mp5926_read_byte_data(struct i2c_client *client, int page,
-> +				 int reg)
-> +{
-> +	int ret;
-> +
-> +	switch (reg) {
-> +	case PMBUS_STATUS_BYTE:
-> +	case PMBUS_STATUS_VOUT:
-> +	case PMBUS_STATUS_INPUT:
-> +	case PMBUS_STATUS_TEMPERATURE:
-> +	case PMBUS_STATUS_CML:
-> +	case PMBUS_STATUS_MFR_SPECIFIC:
-> +	   ret = -ENODATA;
-> +	break;
-
-Alignment.
-
-> +	default:
-> +		ret = -EINVAL;
-
-Why is this needed ? This warrants an explanation.
-
-> +	break;
-
-Alignment
-
-> +	}
-> +	return ret;
-> +}
-> +
-> +static struct pmbus_driver_info mp5926_info_linear = {
-> +	.pages = PAGE,
-> +	.format[PSC_VOLTAGE_IN] = linear,
-> +	.format[PSC_CURRENT_IN] = linear,
-> +	.format[PSC_VOLTAGE_OUT] = direct,
-> +	.format[PSC_TEMPERATURE] = linear,
-> +	.format[PSC_POWER] = linear,
-> +
-> +	.m[PSC_VOLTAGE_OUT] = 16,
-> +	.b[PSC_VOLTAGE_OUT] = 0,
-> +	.R[PSC_VOLTAGE_OUT] = 0,
-> +
-> +	.read_word_data = mp5926_read_word_data,
-> +	.read_byte_data = mp5926_read_byte_data,
-> +	.func[0] = MP5926_FUNC,
-> +};
-> +
-> +static struct pmbus_driver_info mp5926_info_direct = {
-> +	.pages = PAGE,
-> +	.format[PSC_VOLTAGE_IN] = direct,
-> +	.format[PSC_CURRENT_IN] = direct,
-> +	.format[PSC_VOLTAGE_OUT] = direct,
-> +	.format[PSC_TEMPERATURE] = direct,
-> +	.format[PSC_POWER] = direct,
-> +
-> +	.m[PSC_VOLTAGE_IN] = 16,
-> +	.b[PSC_VOLTAGE_IN] = 0,
-> +	.R[PSC_VOLTAGE_IN] = 0,
-> +
-> +	.m[PSC_CURRENT_IN] = 16,
-> +	.b[PSC_CURRENT_IN] = 0,
-> +	.R[PSC_CURRENT_IN] = 0,
-> +
-> +	.m[PSC_VOLTAGE_OUT] = 16,
-> +	.b[PSC_VOLTAGE_OUT] = 0,
-> +	.R[PSC_VOLTAGE_OUT] = 0,
-> +
-> +	.m[PSC_TEMPERATURE] = 4,
-> +	.b[PSC_TEMPERATURE] = 0,
-> +	.R[PSC_TEMPERATURE] = 3,
-> +
-> +	.m[PSC_POWER] = 25,
-> +	.b[PSC_POWER] = 0,
-> +	.R[PSC_POWER] = -2,
-> +
-> +	.read_word_data = mp5926_read_word_data,
-> +	.read_byte_data = mp5926_read_byte_data,
-> +	.func[0] = MP5926_FUNC,
-> +};
-> +
-> +static int mp5926_probe(struct i2c_client *client)
-> +{
-> +	int ret;
-> +
-> +	if (!i2c_check_functionality(client->adapter,
-> +				     I2C_FUNC_SMBUS_READ_BYTE_DATA
-> +				     | I2C_FUNC_SMBUS_BLOCK_DATA))
-> +		return -ENODEV;
-
-That functionality check warrants an explanation. Why check
-if block data read is supported ? It is not used anywhere.
-But then i2c_smbus_read_word_data _is_ called below but its
-support is not checked. That does not really make sense.
-
-> +	ret = i2c_smbus_read_word_data(client, EFUSE_CFG);
-> +	if (ret < 0)
-> +		return ret;
-> +	if (ret & BIT(12)) {
-> +		ret = pmbus_do_probe(client, &mp5926_info_linear);
-> +	} else {
-> +		ret = i2c_smbus_read_word_data(client, I_SCALE_SEL);
-> +		if (ret < 0)
-> +			return ret;
-> +		if (ret & BIT(6))
-> +			mp5926_info_direct.m[PSC_CURRENT_IN] = 4;
-> +		ret = pmbus_do_probe(client, &mp5926_info_direct);
-
-Use a local variable for the pointer to the info structure,
-and call pmbus_do_probe() only once.
-
-> +	}
-> +	if (!ret)
-> +		dev_info(&client->dev, "%s chip found\n", client->name);
-
-Please drop this noise.
-
-> +	return ret;
-> +}
-> +
-> +static const struct i2c_device_id mp5926_id[] = {
-> +	{ "mp5926", 0 },
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(i2c, mp5926_id);
-> +
-> +static const struct of_device_id mp5926_of_match[] = {
-> +	{ .compatible = "mps,mp5926" },
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(of, mp5926_of_match);
-> +
-> +static struct i2c_driver mp5926_driver = {
-> +	.probe = mp5926_probe,
-> +	.driver = {
-> +		.name = "mp5926",
-> +		.of_match_table = mp5926_of_match,
-> +	},
-> +	.id_table = mp5926_id,
-> +};
-> +
-> +module_i2c_driver(mp5926_driver);
-> +MODULE_AUTHOR("Yuxi Wang <Yuxi.Wang@monolithicpower.com>");
-> +MODULE_DESCRIPTION("MPS MP5926 HWMON driver");
-> +MODULE_LICENSE("GPL");
-> +MODULE_IMPORT_NS("PMBUS");
+Thanks,
+Jai
 
