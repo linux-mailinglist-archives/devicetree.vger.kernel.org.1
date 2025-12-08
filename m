@@ -1,290 +1,222 @@
-Return-Path: <devicetree+bounces-245127-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245128-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id A91F6CAC71C
-	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 09:01:36 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E7A2CAC728
+	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 09:02:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id B75F5300BD95
-	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 08:01:34 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A7274301D580
+	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 08:01:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C33AF2D5C74;
-	Mon,  8 Dec 2025 08:01:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F4AE2D0C76;
+	Mon,  8 Dec 2025 08:01:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="pee4eEpG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j80OI97R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 688BA1F5435;
-	Mon,  8 Dec 2025 08:01:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59FD217E4;
+	Mon,  8 Dec 2025 08:01:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765180892; cv=none; b=Xz7HGtrHyHzFEDLNpfxIELcpBakT8DhsFFGmmh2yRI2Nop54gYdO0kGhNsoNmywiYvBMFTDwEfPbFuPaAzHa2j2ww8hashq0wylZ+AhqqTQOVMD+XPK9sERULfYnvdUjj6x3jVC/VcOYax80+V0qAhpsgvJ28/bVBk3MotF6gt8=
+	t=1765180911; cv=none; b=phSXBCekfOJoRx/RivaMaArgio8z+mDa/5PSm1TYGeDHvoEXxV9rIicwY1HdNkdWagfg89QNkMiah0oIV5P7VO5Zlp1IycbPINKDOkeWGTyh4c6r2JIB68/lvX1sFEtzlLeEAAZXkWOL9ihPeEGjgN2cpwfjHR+grhvtVbtad0I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765180892; c=relaxed/simple;
-	bh=+8HbFXxcyp4fLDBJULe+ij2ZK9Iolz0gw82N40AiZ48=;
-	h=Content-Type:MIME-Version:In-Reply-To:References:Subject:From:Cc:
-	 To:Date:Message-ID; b=j5znktjQq0ogRD+htp0ZWhEb2MVyAcxy2YrKpQoYFTFuEJ15ZqOcXSqBSp2mYFR1nx9zxE+Q0oaJZRohXDNL/HmN/+knazb1XaQGw6SBpqMEYIYUVPzjMrcudaly8/eNFRx4fr8fbRnJofBWqAHExuIL/B9Zb0Ve4i0D/qS1kPI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=pee4eEpG; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from mail.ideasonboard.com (unknown [IPv6:2401:4900:be8a:6a58:2d26:4571:d85d:6729])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 3E670766;
-	Mon,  8 Dec 2025 08:59:04 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1765180745;
-	bh=+8HbFXxcyp4fLDBJULe+ij2ZK9Iolz0gw82N40AiZ48=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=pee4eEpG2yqzFNJaeIoMskqfUumX9mDrBjFousSwbELoKJ8PLYQih5t7qemnCVYKI
-	 85wsW/fHqP21cXdtXnQ/RX5kMAKuec5nzIm3okO7ZRSI7Bc8owwtNFFFH9P32fKdwC
-	 6gqjclaGjSf3J11PUHvTME94zgR9aOXVXqOP5oWs=
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1765180911; c=relaxed/simple;
+	bh=4o3k84cSoFVkEFHqlP6kdQk46PTl+iYPVlvk6x9AM7s=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=HZ+tizFGNU5x6NciTcS397tXaTPPtLSm87QtEJ3+TlgrJyx+bfM/9eCmGjsL1toLQuAcBSSsuHX4UN05Vkf1O4FVrx8iY9AcY4TUlbWLbJh12Zs92XSXEv+eHzyvuQ5asehSBIyuOIQiuCnZv4OCe4reTOU63D+SRMeRmJr3U/0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j80OI97R; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8F3AC4CEF1;
+	Mon,  8 Dec 2025 08:01:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1765180910;
+	bh=4o3k84cSoFVkEFHqlP6kdQk46PTl+iYPVlvk6x9AM7s=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=j80OI97RKDz5Ua10r/90B/K+sulEdDJuikydKmNdFReRjDbRKtscr7GEFvSM7UmQE
+	 js3dhNXoqAa8gRmiDsa3mCnJTAcjGfZIPvuB3Ata/c6ut1BIPGqrLKgcdCIBIga0Ys
+	 1iRszMxja7QCJylYxdbmSHgOnFduswhEzt6hVw9CC7nGJ7BCMk6ko2WRzMhNB9AjYF
+	 vvgGpMhlLmKl3+TNDs1wTYf7K8oO4s5meSeridMesNeSAwlOesM1s/1DserQs63QCb
+	 IO30I2IMrT6++rEpc7Jl7h1TyKqsVcP7WGAeATWxkcnTw3e08v3MIMJFH8kjvuItFO
+	 oig7shpTY8BTA==
+Message-ID: <20065270-0d88-4463-9641-f92b4c9e4674@kernel.org>
+Date: Mon, 8 Dec 2025 09:01:46 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <09699385-0aea-4e31-8417-11dfb81ae36d@ideasonboard.com>
-References: <20251112115459.2479225-1-r-donadkar@ti.com> <20251112115459.2479225-19-r-donadkar@ti.com> <09699385-0aea-4e31-8417-11dfb81ae36d@ideasonboard.com>
-Subject: Re: [PATCH v8 18/18] media: ti: j721e-csi2rx: Support system suspend using pm_notifier
-From: Jai Luthra <jai.luthra@ideasonboard.com>
-Cc: y-abhilashchandra@ti.com, devarsht@ti.com, s-jain1@ti.com, vigneshr@ti.com, mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org, p.zabel@pengutronix.de, conor+dt@kernel.org, sakari.ailus@linux.intel.com, hverkuil-cisco@xs4all.nl, changhuang.liang@starfivetech.com, jack.zhu@starfivetech.com, sjoerd@collabora.com, dan.carpenter@linaro.org, hverkuil+cisco@kernel.org, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, devicetree@vger.kernel.org
-To: Rishikesh Donadkar <r-donadkar@ti.com>, Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, jai.luthra@linux.dev, laurent.pinchart@ideasonboard.com, mripard@kernel.org
-Date: Mon, 08 Dec 2025 13:31:17 +0530
-Message-ID: <176518087747.20066.2164303044523575108@freya>
-User-Agent: alot/0.12.dev62+gb9d6144a6
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 1/2] ASoC: rt5575: Add the codec driver for the ALC5575
+To: Oder Chiou <oder_chiou@realtek.com>,
+ "cezary.rojewski@intel.com" <cezary.rojewski@intel.com>,
+ "broonie@kernel.org" <broonie@kernel.org>,
+ "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+ "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+ <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>
+Cc: "perex@perex.cz" <perex@perex.cz>,
+ "linux-sound@vger.kernel.org" <linux-sound@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+ "Flove(HsinFu)" <flove@realtek.com>, =?UTF-8?B?U2h1bWluZyBb6IyD5pu46YqYXQ==?=
+ <shumingf@realtek.com>, Jack Yu <jack.yu@realtek.com>,
+ =?UTF-8?B?RGVyZWsgW+aWueW+t+e+qV0=?= <derek.fang@realtek.com>
+References: <20251201105926.1714341-1-oder_chiou@realtek.com>
+ <20251201105926.1714341-2-oder_chiou@realtek.com>
+ <6c0639e2-dc59-4e0f-be42-224a98b37f75@kernel.org>
+ <2202b463075f4219bffc636fbafb0684@realtek.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <2202b463075f4219bffc636fbafb0684@realtek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Quoting Tomi Valkeinen (2025-12-01 19:16:38)
-> Hi,
->=20
-> On 12/11/2025 13:54, Rishikesh Donadkar wrote:
-> > From: Jai Luthra <jai.luthra@ideasonboard.com>
-> >=20
-> > As this device is the "orchestrator" for the rest of the media
-> > pipeline, we need to stop all on-going streams before system suspend and
-> > enable them back when the system wakes up from sleep.
-> >=20
-> > Using .suspend/.resume callbacks does not work, as the order of those
-> > callbacks amongst various devices in the camera pipeline like the senso=
-r,
-> > FPD serdes, CSI bridge etc. is impossible to enforce, even with
-> > device links. For example, the Cadence CSI bridge is a child device of
-> > this device, thus we cannot create a device link with the CSI bridge as
-> > a provider and this device as consumer. This can lead to situations
-> > where all the dependencies for the bridge have not yet resumed when we
-> > request the subdev to start streaming again through the .resume callback
-> > defined in this device.
-> >=20
-> > Instead here we register a notifier callback with the PM framework
-> > which is triggered when the system is fully functional. At this point we
-> > can cleanly stop or start the streams, because we know all other devices
-> > and their dependencies are functional. A downside of this approach is
-> > that the userspace is also alive (not frozen yet, or just thawed), so
-> > the suspend notifier might complete before the userspace has completed
-> > all ioctls, like QBUF/DQBUF/STREAMON/STREAMOFF.
-> >=20
-> > Tested-by: Rishikesh Donadkar <r-donadkar@ti.com>
-> > Reviewed-by: Rishikesh Donadkar <r-donadkar@ti.com>
-> > Signed-off-by: Jai Luthra <jai.luthra@ideasonboard.com>
-> > Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
-> > ---
-> >  .../platform/ti/j721e-csi2rx/j721e-csi2rx.c   | 128 ++++++++++++++++++
-> >  1 file changed, 128 insertions(+)
-> >=20
-> > diff --git a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c b/dr=
-ivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
-> > index 21e032c64b901..dd47758d51a90 100644
-> > --- a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
-> > +++ b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
-> > @@ -131,6 +131,7 @@ struct ti_csi2rx_dev {
-> >       struct v4l2_subdev              *source;
-> >       struct v4l2_subdev              subdev;
-> >       struct ti_csi2rx_ctx            ctx[TI_CSI2RX_MAX_CTX];
-> > +     struct notifier_block           pm_notifier;
-> >       u8                              pix_per_clk;
-> >       /* Buffer to drain stale data from PSI-L endpoint */
-> >       struct {
-> > @@ -1550,6 +1551,124 @@ static int ti_csi2rx_runtime_resume(struct devi=
-ce *dev)
-> >       return 0;
-> >  }
-> > =20
-> > +static int ti_csi2rx_suspend(struct device *dev)
-> > +{
-> > +     struct ti_csi2rx_dev *csi =3D dev_get_drvdata(dev);
-> > +     enum ti_csi2rx_dma_state state;
-> > +     struct ti_csi2rx_ctx *ctx;
-> > +     struct ti_csi2rx_dma *dma;
-> > +     unsigned long flags =3D 0;
-> > +     int i, ret =3D 0;
-> > +
-> > +     /* If device was not in use we can simply suspend */
-> > +     if (pm_runtime_status_suspended(dev))
-> > +             return 0;
-> > +
-> > +     /*
-> > +      * If device is running, assert the pixel reset to cleanly stop a=
-ny
-> > +      * on-going streams before we suspend.
-> > +      */
-> > +     writel(0, csi->shim + SHIM_CNTL);
-> > +
-> > +     for (i =3D 0; i < csi->num_ctx; i++) {
-> > +             ctx =3D &csi->ctx[i];
-> > +             dma =3D &ctx->dma;
-> > +
-> > +             spin_lock_irqsave(&dma->lock, flags);
-> > +             state =3D dma->state;
-> > +             spin_unlock_irqrestore(&dma->lock, flags);
-> > +
-> > +             if (state !=3D TI_CSI2RX_DMA_STOPPED) {
-> > +                     /* Disable source */
-> > +                     ret =3D v4l2_subdev_disable_streams(&csi->subdev,
-> > +                                                       TI_CSI2RX_PAD_F=
-IRST_SOURCE + ctx->idx,
-> > +                                                       BIT(0));
-> > +                     if (ret)
-> > +                             dev_err(csi->dev, "Failed to stop subdev =
-stream\n");
-> > +             }
-> > +
-> > +             /* Stop any on-going streams */
-> > +             writel(0, csi->shim + SHIM_DMACNTX(ctx->idx));
-> > +
-> > +             /* Drain DMA */
-> > +             ti_csi2rx_drain_dma(ctx);
-> > +
-> > +             /* Terminate DMA */
-> > +             ret =3D dmaengine_terminate_sync(ctx->dma.chan);
-> > +             if (ret)
-> > +                     dev_err(csi->dev, "Failed to stop DMA\n");
-> > +     }
-> > +
-> > +     return ret;
-> > +}
-> > +
-> > +static int ti_csi2rx_resume(struct device *dev)
-> > +{
-> > +     struct ti_csi2rx_dev *csi =3D dev_get_drvdata(dev);
-> > +     struct ti_csi2rx_ctx *ctx;
-> > +     struct ti_csi2rx_dma *dma;
-> > +     struct ti_csi2rx_buffer *buf;
-> > +     unsigned long flags =3D 0;
-> > +     unsigned int reg;
-> > +     int i, ret =3D 0;
-> > +
-> > +     /* If device was not in use, we can simply wakeup */
-> > +     if (pm_runtime_status_suspended(dev))
-> > +             return 0;
->=20
-> Don't we have a streaming-count that would be more intuitive to use as a
-> "are we streaming"?
+On 08/12/2025 08:29, Oder Chiou wrote:
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzk@kernel.org>
+>> Sent: Monday, December 8, 2025 2:05 PM
+>> To: Oder Chiou <oder_chiou@realtek.com>; cezary.rojewski@intel.com;
+>> broonie@kernel.org; lgirdwood@gmail.com; robh@kernel.org;
+>> krzk+dt@kernel.org; conor+dt@kernel.org
+>> Cc: perex@perex.cz; linux-sound@vger.kernel.org; devicetree@vger.kernel.org;
+>> alsa-devel@alsa-project.org; Flove(HsinFu) <flove@realtek.com>; Shuming [范
+>> 書銘] <shumingf@realtek.com>; Jack Yu <jack.yu@realtek.com>; Derek [方德
+>> 義] <derek.fang@realtek.com>
+>> Subject: Re: [PATCH v8 1/2] ASoC: rt5575: Add the codec driver for the
+>> ALC5575
+>>
+>>
+>> External mail : This email originated from outside the organization. Do not
+>> reply, click links, or open attachments unless you recognize the sender and
+>> know the content is safe.
+>>
+>>
+>>
+>> On 01/12/2025 11:59, Oder Chiou wrote:
+>>> +
+>>> +static int rt5575_i2c_read(void *context, unsigned int reg, unsigned int
+>> *val)
+>>> +{
+>>> +     struct i2c_client *client = context;
+>>> +     struct rt5575_priv *rt5575 = i2c_get_clientdata(client);
+>>> +
+>>> +     regmap_read(rt5575->dsp_regmap, reg | RT5575_DSP_MAPPING,
+>> val);
+>>> +
+>>> +     return 0;
+>>> +}
+>>> +
+>>> +static int rt5575_i2c_write(void *context, unsigned int reg, unsigned int val)
+>>> +{
+>>> +     struct i2c_client *client = context;
+>>> +     struct rt5575_priv *rt5575 = i2c_get_clientdata(client);
+>>> +
+>>> +     regmap_write(rt5575->dsp_regmap, reg | RT5575_DSP_MAPPING,
+>> val);
+>>> +
+>>> +     return 0;
+>>> +}
+>>> +
+>>> +static const struct regmap_config rt5575_regmap = {
+>>> +     .reg_bits = 16,
+>>> +     .val_bits = 32,
+>>> +     .reg_stride = 4,
+>>> +     .max_register = 0xfffc,
+>>> +     .readable_reg = rt5575_readable_register,
+>>> +     .reg_read = rt5575_i2c_read,
+>>> +     .reg_write = rt5575_i2c_write,
+>>> +     .use_single_read = true,
+>>> +     .use_single_write = true,
+>>> +};
+>>
+>> OF device ID table goes around here - together with I2C.
+> I will correct it.
+> 
+>>> +
+>>> +static const struct i2c_device_id rt5575_i2c_id[] = {
+>>> +     { "rt5575" },
+>>> +     { }
+>>> +};
+>>> +MODULE_DEVICE_TABLE(i2c, rt5575_i2c_id);
+>>> +
+>>> +static int rt5575_i2c_probe(struct i2c_client *i2c)
+>>> +{
+>>> +     struct rt5575_priv *rt5575;
+>>> +     struct device *dev = &i2c->dev;
+>>> +     int ret, val;
+>>> +
+>>> +#if IS_ENABLED(CONFIG_SND_SOC_RT5575_SPI)
+>>
+>> No ifdefs in driver code.
+> 
+> I am not understanding exactly.
+> If the machine is without SPI interface and the codec with flash, the
+> CONFIG_SND_SOC_RT5575_SPI can be disabled.
 
-Indeed.
+But you still should not use #ifdef. Coding style gives you alternative,
+please look at the doc.
 
->=20
-> And the previous patch said that we lose the DMA channel pairings when
-> suspending. Doesn't that happen here?
+> 
+>>> +     if (!rt5575_spi && of_device_is_compatible(dev->of_node,
+>> rt5575_of_match[1].compatible))
+>>
+>> No, use driver match data if ever, but this is just wrong. You said it
+>> depends on SPI flash, not SPI interface.
+> 
+> I will modify it to use the match data as following.
+> static const struct of_device_id rt5575_of_match[] = {
+> 	{ .compatible = "realtek,rt5575", .data = (void *)RT5575_WITH_FLASH },
+> 	{ .compatible = "realtek,rt5575-use-spi", .data = (void *)RT5575_WITHOUT_FLASH },
 
-In the case of system suspend the UDMA driver has (late) hooks that do the
-book-keeping of channel configuration and restores it (early) on system
-resume.
+What is still wrong is that why you defer probe if there is no flash. I
+really do not get it...
 
-Thanks,
-    Jai
->=20
->  Tomi
->=20
-> > +
-> > +     /* If device was in use before, restore all the running streams */
-> > +     reg =3D SHIM_CNTL_PIX_RST;
-> > +     writel(reg, csi->shim + SHIM_CNTL);
-> > +
-> > +     for (i =3D 0; i < csi->num_ctx; i++) {
-> > +             ctx =3D &csi->ctx[i];
-> > +             dma =3D &ctx->dma;
-> > +             spin_lock_irqsave(&dma->lock, flags);
-> > +             if (dma->state !=3D TI_CSI2RX_DMA_STOPPED) {
-> > +                     /* Re-submit all previously submitted buffers to =
-DMA */
-> > +                     list_for_each_entry(buf, &ctx->dma.submitted, lis=
-t) {
-> > +                             ti_csi2rx_start_dma(ctx, buf);
-> > +                     }
-> > +                     spin_unlock_irqrestore(&dma->lock, flags);
-> > +
-> > +                     /* Restore stream config */
-> > +                     ti_csi2rx_setup_shim(ctx);
-> > +
-> > +                     ret =3D v4l2_subdev_enable_streams(&csi->subdev,
-> > +                                                      TI_CSI2RX_PAD_FI=
-RST_SOURCE + ctx->idx,
-> > +                                                      BIT(0));
-> > +                     if (ret)
-> > +                             dev_err(ctx->csi->dev, "Failed to start s=
-ubdev\n");
-> > +             } else {
-> > +                     spin_unlock_irqrestore(&dma->lock, flags);
-> > +             }
-> > +     }
-> > +
-> > +     return ret;
-> > +}
-> > +
-> > +static int ti_csi2rx_pm_notifier(struct notifier_block *nb,
-> > +                              unsigned long action, void *data)
-> > +{
-> > +     struct ti_csi2rx_dev *csi =3D
-> > +             container_of(nb, struct ti_csi2rx_dev, pm_notifier);
-> > +
-> > +     switch (action) {
-> > +     case PM_HIBERNATION_PREPARE:
-> > +     case PM_SUSPEND_PREPARE:
-> > +     case PM_RESTORE_PREPARE:
-> > +             ti_csi2rx_suspend(csi->dev);
-> > +             break;
-> > +     case PM_POST_SUSPEND:
-> > +     case PM_POST_HIBERNATION:
-> > +     case PM_POST_RESTORE:
-> > +             ti_csi2rx_resume(csi->dev);
-> > +             break;
-> > +     }
-> > +
-> > +     return NOTIFY_DONE;
-> > +}
-> > +
-> >  static const struct dev_pm_ops ti_csi2rx_pm_ops =3D {
-> >       RUNTIME_PM_OPS(ti_csi2rx_runtime_suspend, ti_csi2rx_runtime_resum=
-e,
-> >                      NULL)
-> > @@ -1622,6 +1741,13 @@ static int ti_csi2rx_probe(struct platform_devic=
-e *pdev)
-> >               goto err_notifier;
-> >       }
-> > =20
-> > +     csi->pm_notifier.notifier_call =3D ti_csi2rx_pm_notifier;
-> > +     ret =3D register_pm_notifier(&csi->pm_notifier);
-> > +     if (ret) {
-> > +             dev_err(csi->dev, "Failed to create PM notifier: %d\n", r=
-et);
-> > +             goto err_notifier;
-> > +     }
-> > +
-> >       pm_runtime_set_active(csi->dev);
-> >       pm_runtime_enable(csi->dev);
-> >       pm_request_idle(csi->dev);
-> > @@ -1652,6 +1778,8 @@ static void ti_csi2rx_remove(struct platform_devi=
-ce *pdev)
-> >               ti_csi2rx_cleanup_ctx(&csi->ctx[i]);
-> > =20
-> >       ti_csi2rx_cleanup_notifier(csi);
-> > +     unregister_pm_notifier(&csi->pm_notifier);
-> > +
-> >       ti_csi2rx_cleanup_v4l2(csi);
-> >       mutex_destroy(&csi->mutex);
-> >       dma_free_coherent(csi->dev, csi->drain.len, csi->drain.vaddr,
->
+
+
+Best regards,
+Krzysztof
 
