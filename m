@@ -1,73 +1,62 @@
-Return-Path: <devicetree+bounces-245285-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245286-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D522ECAE47F
-	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 23:09:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D3FBCCAE4BB
+	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 23:11:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A4F2F3054C98
-	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 22:09:20 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B2DF83064ADF
+	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 22:09:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BA4F2E22AB;
-	Mon,  8 Dec 2025 22:09:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 658D82E62C3;
+	Mon,  8 Dec 2025 22:09:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ZIFFayhW"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="u/94yr7V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76EDC2E2852
-	for <devicetree@vger.kernel.org>; Mon,  8 Dec 2025 22:09:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99B4A2E2852;
+	Mon,  8 Dec 2025 22:09:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765231760; cv=none; b=WI4ZtE6wJP/8K4H1v0NroZUMYxsoIfz7kGXM+jcClmOodXyj275PGtTs6Ip1u2dzBPKLD6ewYna620WNXrk9XGurHiV29FJ8Z5WHgwYQXWwwJ/hpp4V7+oPRvNiPU/nTSxqmT09ZIwdTcl7VrRJ0cB8onS2ppZAdwpM/hwLt00Q=
+	t=1765231796; cv=none; b=L56c89sdMMyrCnh73fzEG5MLGumjxOZo5uXTdquMKZSCltDFaFJGViF7Mpi1QDOgabhJ99qJML81sLvbC4V4XoH7n8a9NtYIzKz1pdAjDlbQ4neJS2jh//bWicaaaaxuWEDZy4iWBgtD8PluAEx+yee0ymy4qH5dSXq35r1zVjQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765231760; c=relaxed/simple;
-	bh=MbE1bv1r91ojRBbAgd8sSdkFaVll/H4wSmg6gbMWeGY=;
+	s=arc-20240116; t=1765231796; c=relaxed/simple;
+	bh=J8irHp6MbN2c2a4RVyStaynsf/OasjHQTErx7VEKAK8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=a0BC0FWIg85wAVQlFk2Zu/4ssx+lLx+WKXtYOYLYPuWCPv2CZxVhwEBsFonIkVKAV3I+dGrnatDSkjxSTQTX59ONeCr7Jzj98+6O7OEyr1KckYK/LUuviqPUoLrwlYZ8kFupNwGMOTI69r8rtdN+3FwaPXGbhR9KWalZ26J9m/k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ZIFFayhW; arc=none smtp.client-ip=185.246.84.56
+	 Content-Type:Content-Disposition:In-Reply-To; b=p8MdpBo7SXlKBRJgJk28LbKcS1SxAFjRw3yiPQZeWuHB3AiNlMbZFFeae0CKSlEGt3X9JHHrRti39OPDffdHvDMpDweLgfCKbBwSIA5Fb63QOzNuaSKFes/UK6HmNFqBhhZcY1zFPxUQzvmZOf/RE7UXpPHlrDLZSWycw3f3p9E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=u/94yr7V; arc=none smtp.client-ip=185.246.85.4
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id A5A9D1A203F;
-	Mon,  8 Dec 2025 22:09:16 +0000 (UTC)
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 25D4D4E41AF3;
+	Mon,  8 Dec 2025 22:09:53 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 78604606DD;
-	Mon,  8 Dec 2025 22:09:16 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 13D07103C8D5C;
-	Mon,  8 Dec 2025 23:09:08 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id E9AF5606DD;
+	Mon,  8 Dec 2025 22:09:52 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 42453103C8D5C;
+	Mon,  8 Dec 2025 23:09:49 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1765231755; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 in-reply-to:references; bh=txJRuHrrwV2ADW2a0LZ396P8T6DrwxOBcVmxIdFH5mY=;
-	b=ZIFFayhWWluy/Qms43QysyKzVEzgYbV0fvLPjTvuqBXZkXZsh477ayBau29XgKXhEO/9jp
-	nEVCYk0l9aNSPfiD9uDM7jbB3+NJ2uoMpn0IvxIpRa64dDpRe/CdYLNVVPA01tiZio5rjn
-	Hqv5AqlwlWViU+/fM4A9kiylenR3TeEpf3HZUayLznN/o0vtEr8D0wSDnxwgfmBBlrLYzd
-	6n5F7gVHJkqmvik2uMYPuY/rgnIESqxELcep1iZYvDMXwDUIssjWka7VQJLwbX4xMN2iIZ
-	eBpGAyA2siQARTp01ckbQm41jtJfqCuYSopaHjdIvT3sbRk2BVzHp2duiPTBog==
-Date: Mon, 8 Dec 2025 23:09:08 +0100
+	t=1765231792; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 in-reply-to:references; bh=IpPBmn5Por7VIp81eYBe7WxjsEyiLaoPiOP1GCzp0vM=;
+	b=u/94yr7VKJoFAIT4XNcqfKwDGfDww8jQcNrKa80RhoiKz8dI10C+jw63Z8IKyGl+8FIQcC
+	PLlFBjx7EFH64SlaAXhzNxWuLf/TlijbJKQUDTnIArKKzcB4Yb+8jGiemMQM+dgg7Rkmd5
+	hjc9IEAS1Csuj2rVZMPO9GySBF9PpKAUWMowLF0M1SlbSEyxqbK4Ga7O1F18GyYWFlw637
+	ER4ttJKWEiRbwFH2QaFkaVzw570KweYOHZ4tuH8Qd0+x3VeXOzNlbCbhjjHtw96+dMm3m/
+	UojUMoSzE9zrBx2IsNwubh8yNpSGtwBYF55SslsB9gD3JOj9nejB+BHFOOsvtA==
+Date: Mon, 8 Dec 2025 23:09:49 +0100
 From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>,
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Neal Gompa <neal@gompa.dev>, Lee Jones <lee@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	James Calligeros <jcalligeros99@gmail.com>
-Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-rtc@vger.kernel.org, linux-hwmon@vger.kernel.org,
-	linux-input@vger.kernel.org, linux-doc@vger.kernel.org,
-	Mark Kettenis <kettenis@openbsd.org>,
-	Hector Martin <marcan@marcan.st>
-Subject: Re: (subset) [PATCH v5 00/11] mfd: macsmc: add rtc, hwmon and hid
- subdevices
-Message-ID: <176523152354.342815.17888940507252789645.b4-ty@bootlin.com>
-References: <20251112-macsmc-subdevs-v5-0-728e4b91fe81@gmail.com>
+To: claudiu.beznea.uj@bp.renesas.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, geert+renesas@glider.be, magnus.damm@gmail.com,
+	p.zabel@pengutronix.de,
+	Ovidiu Panait <ovidiu.panait.rb@renesas.com>
+Cc: linux-rtc@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: (subset) [PATCH v4 0/4] Add RTC support for the Renesas RZ/V2H
+ SoC
+Message-ID: <176523152343.342815.5815704941932518377.b4-ty@bootlin.com>
+References: <20251107210706.45044-1-ovidiu.panait.rb@renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,26 +65,27 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251112-macsmc-subdevs-v5-0-728e4b91fe81@gmail.com>
+In-Reply-To: <20251107210706.45044-1-ovidiu.panait.rb@renesas.com>
 X-Last-TLS-Session-Version: TLSv1.3
 
-On Wed, 12 Nov 2025 21:16:46 +1000, James Calligeros wrote:
-> This series adds support for the remaining SMC subdevices. These are the
-> RTC, hwmon, and HID devices. They are being submitted together as the RTC
-> and hwmon drivers both require changes to the SMC DT schema.
+On Fri, 07 Nov 2025 21:07:02 +0000, Ovidiu Panait wrote:
+> This series adds RTC support for the Renesas RZ/V2H SoC.
 > 
-> The RTC driver is responsible for getting and setting the system clock,
-> and requires an NVMEM cell. This series replaces Sven's original RTC driver
-> submission [1].
+> The Renesas RZ/V2H RTC IP is based on the same RTCA3 IP as RZ/G3S
+> (r9a08g045), with the following differences:
+> - it lacks the time capture functionality
+> - the maximum supported periodic interrupt frequency is 128Hz instead
+>   of 256Hz
+> - it requires two reset lines instead of one
 > 
 > [...]
 
 Applied, thanks!
 
-[01/11] dt-bindings: rtc: Add Apple SMC RTC
-        https://git.kernel.org/abelloni/c/07049187e830
-[03/11] rtc: Add new rtc-macsmc driver for Apple Silicon Macs
-        https://git.kernel.org/abelloni/c/49a51df427db
+[1/4] dt-bindings: rtc: renesas,rz-rtca3: Add RZ/V2H support
+      https://git.kernel.org/abelloni/c/4800046b56a5
+[2/4] rtc: renesas-rtca3: Add support for multiple reset lines
+      https://git.kernel.org/abelloni/c/6ada8e24238d
 
 Best regards,
 
