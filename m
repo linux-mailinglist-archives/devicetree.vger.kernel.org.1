@@ -1,124 +1,117 @@
-Return-Path: <devicetree+bounces-245102-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245104-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DD8CCAC3BB
-	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 07:54:50 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46319CAC3E2
+	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 07:57:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BE7B93064379
-	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 06:52:18 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 385123006706
+	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 06:57:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5931227E82;
-	Mon,  8 Dec 2025 06:52:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7624A1E2606;
+	Mon,  8 Dec 2025 06:57:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oYt9raRa"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="zgJzcTGL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82A6D53E0B;
-	Mon,  8 Dec 2025 06:52:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00EA118DB1F;
+	Mon,  8 Dec 2025 06:57:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765176726; cv=none; b=dEw8Qbq308bnF4hFqGLhjIskHTN77NDW9xg6FDmFilxFvs4ck6xQDYlj4lgQ177mmy8L61QGjxdvuIKHrm4LYq00KrXtqkRJhdEHRGLdWK3MqsktWe4RBqqhMXgSDt3gqCoXmYkIGJfm5UppE2MzKdfviuMt9zpnCiamf9BV8hE=
+	t=1765177043; cv=none; b=sAAiQQ+O29ZZ9EzpVM8WVLBifGBQLCkIdr6KCe0Ygk8fQe8xrHH3j+TQzCmVBu84DLJ/FnU70/l/4ZD9tD1HDXcPJQHeDqMlrYnCDbdgBSLz058C9kfieIixLmnacTVnO5nUYizADV3xNhg26eXuWsGe9LgP79dUNgLX8JTlLbI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765176726; c=relaxed/simple;
-	bh=WiykqAdfvwtZNBYSkcwFcQxsD9zJPgq+W1gZ+z+0c6I=;
+	s=arc-20240116; t=1765177043; c=relaxed/simple;
+	bh=GhPXslAU7nuFcLZ9A8dfLObHrQelf+e80NaGtfASJkY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=i18IUIgT79eSX4JYCikzt6UCccd+OdIrdFeEEf7bSvYRCUveszpnEVbNf4VPK8AW2ppcz8Vbk1g7uc+8QBmJnAVvr+0RgIkDl5jK60IxLFn32aByVCaeadAlh05kWbC89GzvvmL4fIAAN5KxHN6tEtLWE1tlt74kXP4YI4OaD+k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oYt9raRa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51A24C4CEF1;
-	Mon,  8 Dec 2025 06:52:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765176725;
-	bh=WiykqAdfvwtZNBYSkcwFcQxsD9zJPgq+W1gZ+z+0c6I=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oYt9raRaVMXk/82ZXZgg+KIzuJk6kaFcjjmbzJhOFhDI4UnNS+t4mnbSZwobxIJuB
-	 tJXwyNrkghr8pHCPLrP89DrEInA37Jitk0fANArNCa8X/jqAbj/eAGJtXJzkLByKWc
-	 UOaCxuiNQ5zb5jvYZEKv0KudwMt1PNFYxmKLYmIcCaQDJXL3Vh3+yyKvAXlKsK0GFP
-	 PEQJTRl5p5ab2eiCcUSUB+9j5g2UqqK3hdQrOIyxh5whymTbjEjMMKe3MrupjG811S
-	 bR4v8cjcX/0Yzus/XLxqbj9vpuhQKwRscDEN0t8VFRzh5NskIT1bVe4tT3FAYEy264
-	 r+2j6HhfUXusw==
-Date: Mon, 8 Dec 2025 07:52:03 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Richard Genoud <richard.genoud@bootlin.com>
-Cc: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
-	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/4] dt-bindings: pwm: sunxi: add PWM controller for
- Allwinner H616
-Message-ID: <20251208-gorgeous-capuchin-of-protection-4ad0c2@quoll>
-References: <20251205100239.1563353-1-richard.genoud@bootlin.com>
- <20251205100239.1563353-2-richard.genoud@bootlin.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=rAjkZ2otvSBYwUV8S9s7ejMGYgkmBRWyCVBeW35zEwZD9uUhR04a7wMIKJ2jo7R+pFe7WERImakR9Ej+9MkHt4M8X7S1adJsvxEbbhrGBD8z+1GrYviBuq427ECFtnKXeYcmQWNP8vm/C18lZRSi8VXnq6F59jDzGtQngKkz3c8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=zgJzcTGL; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from francesco-nb (xcpe-178-82-120-96.dyn.res.sunrise.net [178.82.120.96])
+	by mail11.truemail.it (Postfix) with ESMTPA id 84B151F8F8;
+	Mon,  8 Dec 2025 07:57:11 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1765177032;
+	bh=WzX89WI9Ff7+y2yfQZHdLK5k0mjF3N3JjQBBoJ3ILK4=; h=From:To:Subject;
+	b=zgJzcTGL5tlXkskmwXlB1xUVgYPCvSlP0O/3wsmiwTWz0B1RTyXxJn8qElFiAm994
+	 R0RmzoWWgBaRHXM6QYcX1KQ4GquDzhxnIF8wu6kdGJsTomo/prXF2EMMJthDrbSKfg
+	 l0fX+e8sYmOPCa78DB9vuwDpi86rxcQvUm5e+se6+MiRIoQRumvJNcgreMZcAAYn01
+	 WRRvDTH3KFXE5i4Y/fqoqBpq3KOaPiO8ID6DA+GyGvA8m0adp5ntExywaVgNhroCJT
+	 AP5k0xcfhYog2fvVFeQpl2belm9ytzMnICieNL/opEMSoglcCKnJbIRAwhnKet6P0g
+	 RPbVosspb9muA==
+Date: Mon, 8 Dec 2025 07:57:07 +0100
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Lei Xu <lei.xu@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, justin.jiang@nxp.com,
+	qijian.guo@nxp.com
+Subject: Re: [PATCH 2/2] arm64: dts: freescale: imx95: Add support for i.MX95
+ 15x15 FRDM board
+Message-ID: <20251208065707.GA15128@francesco-nb>
+References: <20251207-127-v1-0-5a2eeb69f150@nxp.com>
+ <20251207-127-v1-2-5a2eeb69f150@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251205100239.1563353-2-richard.genoud@bootlin.com>
+In-Reply-To: <20251207-127-v1-2-5a2eeb69f150@nxp.com>
 
-On Fri, Dec 05, 2025 at 11:02:36AM +0100, Richard Genoud wrote:
-> Allwinner H616 SoC contains a PWM controller quite different from the A10.
-> It has 6 channels than can generate PWM waveforms or clocks if bypass is
-> enabled.
-> 
-> Signed-off-by: Richard Genoud <richard.genoud@bootlin.com>
-> ---
->  .../pwm/allwinner,sun50i-h616-pwm.yaml        | 67 +++++++++++++++++++
->  1 file changed, 67 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pwm/allwinner,sun50i-h616-pwm.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/pwm/allwinner,sun50i-h616-pwm.yaml b/Documentation/devicetree/bindings/pwm/allwinner,sun50i-h616-pwm.yaml
+Hello Lei,
+
+On Sun, Dec 07, 2025 at 05:26:06AM -0800, Lei Xu wrote:
+> The i.MX95 15x15 FRDM board is a compact and cost-effective development
+> platform based on the i.MX95 applications processor.
+
+...
+
+> diff --git a/arch/arm64/boot/dts/freescale/imx95-15x15-frdm.dts b/arch/arm64/boot/dts/freescale/imx95-15x15-frdm.dts
 > new file mode 100644
-> index 000000000000..b89735ad3a43
+> index 000000000000..61e815c858b8
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pwm/allwinner,sun50i-h616-pwm.yaml
-> @@ -0,0 +1,67 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pwm/allwinner,sun50i-h616-pwm.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Allwinner H616 PWM
-> +
-> +maintainers:
-> +  - Richard Genoud <richard.genoud@bootlin.com>
-> +
-> +description: |
+> +++ b/arch/arm64/boot/dts/freescale/imx95-15x15-frdm.dts
 
-Do not need '|' unless you need to preserve formatting.
+...
 
-> +  Allwinner H616 PWM can generate standard PWM signals with variable pulse width
-> +  and period.
-> +  Also, instead of a PWM signal, a channel can be used to provide a clock.
 > +
-> +properties:
-> +  compatible:
-> +    const: allwinner,sun50i-h616-pwm
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: Bus Clock
-> +
+> +/* Default settings in i.mx95.dtsi are for i.MX95 19x19 package.
+> + * Override here for the i.MX95 15x15 package.
+> + */
+> +&netc_bus0 {
+> +	msi-map = <0x0 &its 0x60 0x1>,	//ENETC0 PF
+> +		  <0x10 &its 0x61 0x1>, //ENETC0 VF0
+> +		  <0x20 &its 0x62 0x1>, //ENETC0 VF1
+> +		  <0x40 &its 0x63 0x1>, //ENETC1 PF
+> +		  <0x50 &its 0x65 0x1>, //ENETC1 VF0
+> +		  <0x60 &its 0x66 0x1>, //ENETC1 VF1
+> +		  <0x80 &its 0x64 0x1>, //ENETC2 PF
+> +		  <0xc0 &its 0x67 0x1>; //NETC Timer
+> +	iommu-map = <0x0 &smmu 0x20 0x1>,
+> +		    <0x10 &smmu 0x21 0x1>,
+> +		    <0x20 &smmu 0x22 0x1>,
+> +		    <0x40 &smmu 0x23 0x1>,
+> +		    <0x50 &smmu 0x25 0x1>,
+> +		    <0x60 &smmu 0x26 0x1>,
+> +		    <0x80 &smmu 0x24 0x1>,
+> +		    <0xc0 &smmu 0x27 0x1>;
+> +};
 
-Are you sure there is no first clock? Really, really sure? If you add it
-later, I would be pretty sad, because that's unnecessary duplication of
-binidngs....
+If the 19x19 and 15x15 i.MX95 requires something different you should
+have a different soc dtsi. Probably creating a new imx95-$something
+dtsi, that includes the existing imx95.dtsi and override this property.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+This solution does not scale, please fix it.
 
-Best regards,
-Krzysztof
+Francesco
 
 
