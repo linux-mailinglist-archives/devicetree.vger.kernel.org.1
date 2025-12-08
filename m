@@ -1,191 +1,176 @@
-Return-Path: <devicetree+bounces-245253-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245254-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1DABCADC16
-	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 17:30:15 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 448B2CADC2B
+	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 17:33:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 64DA8300AC5A
-	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 16:30:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7B451300B812
+	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 16:33:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94C6225487C;
-	Mon,  8 Dec 2025 16:30:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4475A1DFE22;
+	Mon,  8 Dec 2025 16:33:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Z4FaYQ6s";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="CPBpbi4h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2549F2D94B2;
-	Mon,  8 Dec 2025 16:30:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AE261D130E
+	for <devicetree@vger.kernel.org>; Mon,  8 Dec 2025 16:33:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765211408; cv=none; b=jjUy2bkr2v/AvwSeSOkTuV6m45wztBzvL4ihbmCF24VPTwFEH4IKRW8z/inNqFy/IzpyNP3lSARW25bIPErV4OiQY2T40s2W7a66435YcPZbhUNNWI15LqNu0m/GWA885il7Ce3T+ITr6OyIW3hLTKqrZWaFrrMOJKtZJXGcflA=
+	t=1765211589; cv=none; b=AErb4Tja+FnL/fri4IhQyMinlB7o/UHHKo/931gVtXl+JY5m/nygnA8FUR2uUIPphSdt1YWfWgwNR7IGQOekyDBiTrzczadq1zPcFbFQGLbEEmImKuR0qh0f1nh7R+Pkp5TvIyX8qHJnHSwHgqzsEu+aEYfE3PaJZDGfp/vSLkM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765211408; c=relaxed/simple;
-	bh=0YFnnRyoofr72fBq6pWHMYFSkqsDU8YOzTAubZLSam4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cRUG/mgFH8Mz85RNlyxy6LgnU9C0RcJhNXGzV5OH/zgvmNLTaY6XV+778oTyGWbVZNRj7jK22FFYpGh254zU+7hHL8j2h9uMMS5xTsCgdB8ELQpBy052iMbfmmwNnHMKQM1q347i5uTfxM5sfRIF9mo2/ofS9sv3a/EDF2O9Ly8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=arm.com; spf=none smtp.mailfrom=foss.arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=foss.arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 308D51691;
-	Mon,  8 Dec 2025 08:29:58 -0800 (PST)
-Received: from bogus (e133711.arm.com [10.1.196.55])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 87ECF3F740;
-	Mon,  8 Dec 2025 08:30:03 -0800 (PST)
-Date: Mon, 8 Dec 2025 16:30:00 +0000
-From: Sudeep Holla <sudeep.holla@arm.com>
-To: Marek Vasut <marek.vasut@mailbox.org>
-Cc: Cristian Marussi <cristian.marussi@arm.com>, arm-scmi@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: firmware: arm,scmi: Document
- arm,poll-transport property
-Message-ID: <20251208-quixotic-cocky-emu-9a3916@sudeepholla>
-References: <20251202-evasive-neon-rhino-d2745e@sudeepholla>
- <66257fcf-9024-454f-b776-4ba584963ebe@mailbox.org>
- <aS82GSN8c2SnRn4S@bogus>
- <8d773671-5e2e-4e21-ade6-2bf9a3b75066@mailbox.org>
- <20251203-thick-didactic-cockatoo-deaa1d@sudeepholla>
- <4ccbcffd-bcc7-478b-a525-a4a11e3092ee@mailbox.org>
- <20251204-calm-peacock-of-fantasy-6b8cbe@sudeepholla>
- <e25c690c-e74d-4641-a97e-8eae81a59168@mailbox.org>
- <20251205-winged-quizzical-pigeon-ed692d@sudeepholla>
- <06fc0557-6b7c-4092-aeec-e3e16bab2d72@mailbox.org>
+	s=arc-20240116; t=1765211589; c=relaxed/simple;
+	bh=4kP2/K5lTTzD5c1dfUscOl9B3nFR54A29c9lPCoqrmg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=om5D1ty17RAmKhgzpyaXc6YXkjdDm78ZPJS6diSuUqUXw21hgLaxnapOhONGKSJD5g2mZmB+18X14GT9vYm4EC8kcpIMYQvIpoMhSKsfjFoGxFZ5eG0KfDJL+NSsfNJOsT0MKI+UxMwDgQnCOf1hK2T8ZQPATL7zSj+4l/gKH7I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Z4FaYQ6s; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=CPBpbi4h; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5B88NMw42884275
+	for <devicetree@vger.kernel.org>; Mon, 8 Dec 2025 16:33:06 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	p0jPCBlDjyAGHOYNhm4qqz3KwSpK2g+kV3CwXvtWt40=; b=Z4FaYQ6s9cH26VAe
+	IdNsMvVHL2UGkdyfjgaRROsDKQqgEErjrGw8b7Vyu5dwyfvg5fSnuOuSERj+riND
+	WkyDFel2arRlNzwuRGIKdXJk87UGs4HDmr6IcgwSDundcOIosM/0D31207HmZh08
+	Ip3c3Tpu+lHn8734L1/enuQbhSXBqcRJGeGWp0lR9b2C1I0Jg2WhJpCvplQliYYk
+	Nb6poajnBosed72iayww7YCXAd8vQXPPViifnrp2gl1Sl+JOsbyD6//co4koj6IJ
+	Ixb5K3LU5CC10eayYWXLZ37tpuqBwagvAhLfZFCc5Bn5cbxsmf4o0/0v1+DbwRkP
+	nW8MJw==
+Received: from mail-vs1-f69.google.com (mail-vs1-f69.google.com [209.85.217.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4awhaqtq2v-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 08 Dec 2025 16:33:06 +0000 (GMT)
+Received: by mail-vs1-f69.google.com with SMTP id ada2fe7eead31-5de05befb05so412053137.0
+        for <devicetree@vger.kernel.org>; Mon, 08 Dec 2025 08:33:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1765211586; x=1765816386; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=p0jPCBlDjyAGHOYNhm4qqz3KwSpK2g+kV3CwXvtWt40=;
+        b=CPBpbi4h02TrjJ6QmamVto3FASF+B7qy3iXUFzUfj7OAvdCpokDjMi5guF6YIWtE7j
+         kY4oKZz7Qm7YiNEBK91Mc21ti748bZsV9n+hAcWJa61BZqNtrIjzT72BgTbwATW8iKxZ
+         QtYLJbtLZIgz9MplsT/oEsCGrQM6F6gN1GwU0m2bshk9Py72LQD29cL3Dj9i1L52F3mn
+         dKAxcIGHmAjgzRtTcBZMPvgJiGmir0VUQtdGhJmuu9vWCV8T3Dy9c16luPIOEQAlKZjZ
+         fA1eE2qbR/aePFxEEO6vlc3UkO4vsFhnnKKO0qI3PlwglsWqTWfifA07/d40n7xJIAXo
+         8C8Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765211586; x=1765816386;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=p0jPCBlDjyAGHOYNhm4qqz3KwSpK2g+kV3CwXvtWt40=;
+        b=rFDYJOCBu3dcls8V/D/eusYmN2gbn10I1ER7747prU6HHWrnERnMlUWM8VNcpKMch5
+         0ipHMerhD/jJAPW9EZWMqL1WxLIWyCag7wW2cZ8M7nKL2UO88Gpi0VSzNNjgnPhbVlDB
+         rupt3r9XhyK+LMj+eMOUShMcLqBFNn0H0tjQ2KXeldrbEeAud6B0JNisAcTrCQw7JFEq
+         qp41sYV2cSI1nmvMQhlOOk5AdoSRiA1yptFQ+YP8J5/k4jraRxZFHuowsHCpJ79nmmX7
+         LYCrjwcO6fM5fk9D+rFqP+Q8rIs5dG91VWWx1uebEr1A7n8OlJ12R6Cos+LBSPpwMSUE
+         HCtA==
+X-Forwarded-Encrypted: i=1; AJvYcCVRZq6j2ZC2lSA9KJPr6uZ8mYE/XLe7F2MGdb/+FJE8wmT2lUClIITUFfClMGdvNJcp1yFRQPELCTeJ@vger.kernel.org
+X-Gm-Message-State: AOJu0YwrqRXocOkXRxg+4u+StWNhVKl3Vwddb6tmUjunU8Y2EZaEMZ/r
+	QHffNyO0nEMjq30JGY0WCSpNgE8aDqvKujNW+SEHxKI3Sx14doiWyzw8PqlubFaVIycXE2tBgUY
+	Vj9xDarCUEajFvtnptmprp7/HSD353tsdjPhM7jkDq23TI041LeeS3jIId+VgnIJk
+X-Gm-Gg: ASbGncu0/bpZm8+hCDyLV7usqJTsJ+HWXljNf/XROf4M/JoCzj+UWa4zpuQ2ucw69ni
+	N9RSGRQ3TL439YtJKhsw9C5VKWklWOJ0FTFhOz4rWbpJE2szdehnGd0OBky+52Y1GX+cBxg9GLG
+	jblgJ7S+uUeaIWVIEz5mxaRhk0afR7lTgEuDajOqC98dJ6xbNFLFdAoQVlnHovtWX4GnzRHFLXW
+	aqBkRCtz3TzP8wWRLCNzCxirjOjGtz1wPYNM9kBhfOqD+u+GYIEQS0abZWYp0tYMJHvFkiZweCC
+	OpT/aYt2dIoqkFDGcqPwUMkshVr90wtlQx7O1wJGoK40cAfXYowZH6jHbCWhuPJ+nqON9g5ZT8E
+	ngF9a+nG8C32CBop6kFnr41hef+Y5BCTcz0VK3U9RPIOYkT0PwfmTAcBPjyvUuIPOmA==
+X-Received: by 2002:a05:6123:590:20b0:559:965e:f563 with SMTP id 71dfb90a1353d-55e8456e09dmr922451e0c.1.1765211585539;
+        Mon, 08 Dec 2025 08:33:05 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IE6DtAX4O9dA9blwgNCdrieGjzAXE19KIk9bTjGIhWldGNpRwxj3DsIOBUbUO1qZ11wI5CioA==
+X-Received: by 2002:a05:6123:590:20b0:559:965e:f563 with SMTP id 71dfb90a1353d-55e8456e09dmr922439e0c.1.1765211585091;
+        Mon, 08 Dec 2025 08:33:05 -0800 (PST)
+Received: from [192.168.119.72] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b79f49a898bsm1146957666b.48.2025.12.08.08.33.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 08 Dec 2025 08:33:03 -0800 (PST)
+Message-ID: <d81e017e-e317-402d-a4bf-7ddfa033299e@oss.qualcomm.com>
+Date: Mon, 8 Dec 2025 17:33:00 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <06fc0557-6b7c-4092-aeec-e3e16bab2d72@mailbox.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: remoteproc: qcom,adsp: Re-add cx-supply
+To: Luca Weiss <luca@lucaweiss.eu>, Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Dzmitry Sankouski <dsankouski@gmail.com>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20251207-adsp-cx-fixup-v1-1-0471bf2c5f33@lucaweiss.eu>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20251207-adsp-cx-fixup-v1-1-0471bf2c5f33@lucaweiss.eu>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjA4MDE0MCBTYWx0ZWRfX2mxqoHfZ86/r
+ HWk+tGwUHVlobwXqs3k3L5LrB0hYPoEygu+P26KYUGAe/0pDcymAVQFA0WgmaM6cHtJU5uKXtHT
+ ls9nzqpsleQpiaShHPRISGjvE7WPsfeR6MeolawVLX3VRezBI0oP1mJJwqmESHAHIrm1jaeiNP2
+ uyDydy5cQu1zfChejT0NJI8fL/gk5WyXzeAY7R3/mJmrx0PUXzbqqudJxOR5hXWD/p/7sZ1iQS2
+ rBnyFXWuzP1FLkUPuOAaaoxlvWssFgwDZCaqPip3tAvfmY6zNDaYG22vLnohjbty1p/WETi44zd
+ 4G2XxMXr61Rjn/cu972nHpKAfpR+WxdOx1jHE/BTMACU3aZ9ip+FoYciEr1wq6up3YRlYvuiFIA
+ 3SOBs4NKKcg60Yonaost3RE0bJTvOg==
+X-Proofpoint-GUID: qC-nN_yFFL8JyvQgmxGkroUX5BWMNjyC
+X-Authority-Analysis: v=2.4 cv=ItUTsb/g c=1 sm=1 tr=0 ts=6936fdc2 cx=c_pps
+ a=5HAIKLe1ejAbszaTRHs9Ug==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=dlmhaOwlAAAA:8 a=2w06CcI7I7z3fbE2fRcA:9
+ a=QEXdDO2ut3YA:10 a=gYDTvv6II1OnSo0itH1n:22 a=y4cfut4LVr_MrANMpYTh:22
+X-Proofpoint-ORIG-GUID: qC-nN_yFFL8JyvQgmxGkroUX5BWMNjyC
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-06_02,2025-12-04_04,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 impostorscore=0 bulkscore=0 malwarescore=0 spamscore=0
+ clxscore=1015 priorityscore=1501 adultscore=0 suspectscore=0
+ lowpriorityscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
+ definitions=main-2512080140
 
-On Sun, Dec 07, 2025 at 10:16:36AM +0100, Marek Vasut wrote:
-> On 12/5/25 10:54 AM, Sudeep Holla wrote:
+On 12/7/25 11:35 AM, Luca Weiss wrote:
+> Some boards (e.g. sdm845-samsung-starqltechn) provide a cx-supply
+> reference for the SLPI PAS.
 > 
-> Hello Sudeep,
+> The Linux driver unconditionally tries getting "cx" and "px" supplies,
+> so it actually is used.
 > 
-> > > > > > Also IIUC, the irq request happens
-> > > > > > as part of channel startup and there are no explicit APIs for the mbox client
-> > > > > > driver to control that. SCMI is mbox client in this case.
-> > > > > 
-> > > > > Sure, but the mailbox driver has to make sure it is correctly demuxing the
-> > > > > IRQs it handles and correctly sends received_data notifications to the right
-> > > > > channel(s) .
-> > > > > 
-> > > > 
-> > > > Agreed, but the concern is that if SCMI is forced to use polling when the
-> > > > channel is opened, and IRQs are enabled by default with no way for SCMI to
-> > > > disable them in polling mode, we could run into issues.
-> > > 
-> > > This constellation seems odd -- if the channel can do IRQs, then this
-> > > property should not be present in DT.
-> > > 
-> > 
-> > Yes, but there is no way to validate or check this and that is the root
-> > cause for all my worries.
-> 
-> Should a configuration like that even be considered valid and relevant ?
-> 
+> Fixes: 3d447dcdae53 ("dt-bindings: remoteproc: qcom,adsp: Make msm8974 use CX as power domain")
+> Signed-off-by: Luca Weiss <luca@lucaweiss.eu>
+> ---
+> There's literally one board using this upstream, judging from that I'm
+> not sure this is a misuse of cx-supply or what exactly. An alternative
+> to this patch is of course removing the usage in
+> sdm845-samsung-starqltechn, but as it stands right now the patch under
+> "Fixes" introduces a dtbs_check warning.
 
-Yes, as I have mentioned, there is no way to validate the same in the kernel.
+FWIW that's likely a hack (because IIUC it needs to power up some
+regulator for the sensor devices to work) but that's "fine"
 
-> > > > I realise it’s a very
-> > > > specific corner case, but every time I’ve assumed such scenarios wouldn’t
-> > > > occur, we eventually ended up encountering them. So sorry if I am very
-> > > > pedantic, but I prefer to start smaller and restrictive and expand if and
-> > > > when necessary or required only.
-> > > 
-> > > I don't think this case, where mailbox channel does IRQs and polling is
-> > > enabled, can/should even be considered valid. Either the channel does not do
-> > > IRQs and then it should do polling, or it does IRQs and then it should use
-> > > IRQs, but not both.
-> > > 
-> > 
-> > Yes ideally, but having loose ends like this binding which allows someone
-> > to add it to their DT complicates though it is invalid. We have no way to
-> > detect and I don't want to work around such configs in the future.
-> 
-> If the DT is invalid, bad things happen, but I would argue that is then a DT
-> bug and the DT should be fixed.
-> 
+I don't know if there's a better way to handle it though.. I think it's
+a board design "issue", since the DSP has access to some GPIOs but it
+seems like that wasn't utilized
 
-Well, ideally I would like that, but not always the reality.
+I'm open to suggestions
 
-> [...]
-> 
-> > > > Yes, that’s essential, because polling in an SMC context is meaningless in my
-> > > > opinion.
-> > > 
-> > > Maybe the "a2p" IRQ is also used for notifications from longer running
-> > > operations ?
-> > > 
-> > 
-> > Yes, it is some sort of work around some platforms implemented as by design
-> > when the SMC returns, the synchronous commands must complete and it is had
-> > to support async SCMI commands without platform specific interrupt(p2a). This
-> > a2p is sort of completion interrupt for synchronous command. I assume the
-> > platform may offload the task from secure f/w to something else otherwise
-> > secure side needs to be given CPU cycles to complete which complicates this.
-> > In short SMC is synchronous and if the execution returns from it in NS world,
-> > the command is complete.
-> 
-> Wouldn't polling still be useful for the async case , even in SMC setup?
-> Note that the SMC setup does use shmem, and therefore can do polling on the
-> shmem.
-> 
++Dzmitry-the-starqltechn-submitter
 
-No, it makes no sense for SMC as I have already mentioned few times.
-
-> > > [...]
-> > > 
-> > > > > > Yes it can be minimalistic but not restrictive. As I already clearly mentioned
-> > > > > > I don't see it makes any sense to enable this for SMC/OPTEE. Lets start with
-> > > > > > just mailbox to start with and extend to other transports if and when needed.
-> > > > > > It would be good to impose that restriction in the binding as well but that
-> > > > > > is not a must IMO. I am fine if the bindings for whatever reasons(though I
-> > > > > > don't see the need) to apply for any transport.
-> > > > > So I should simply drop the smc.c changes , keep the rest, and send V2 ?
-> > > > 
-> > > > Not just that. Unless DT maintainers oppose, I just want to keep this
-> > > > new property valid only for mailbox transport(i.e. "arm,scmi" compatible
-> > > > not otherwise) so that we can catch any other use in binding checks and
-> > > > interested parties must discuss on the list and expand that if they require.
-> > > > 
-> > > > Also we can explore if we can parse and scan this in mailbox transport for
-> > > > now.
-> > > I feel that this only adds more implementation complexity and makes the
-> > > solution less generic, while it does win us very little in the end ? The
-> > > generic solution implementation is actually easier to implement.
-> > 
-> > Yes I want it less generic to start with. Why you want to start making
-> > this workaround on your platform a generic implementation just because
-> > the specification has provision for it ?
-> 
-> Because this is generic kernel code, it seems counterintuitive to introduce
-> less generic solution which requires more complex implementation.
-> 
-
-I would argue. Lot of code gets added as specific and gets generalised
-eventually if there are more users and in different configurations.
-
-> Since the DEN0056 specification states this mode of operation is supported,
-> I also wouldn't call it a workaround.
-
-Sure, I take back if I called it workaround. But why would we want to make
-it generic when we can test only mailbox based platform with it. I don't see
-how it can be useful with SMC/Optee. I am not sure if it is useful with
-virtio and if there is a way to test this. All I am saying is I don't want to
-enable something and advertise it as generic when we have no platform or way
-to test it and keep it functionally correct.
-
--- 
-Regards,
-Sudeep
+Konrad
 
