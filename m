@@ -1,930 +1,190 @@
-Return-Path: <devicetree+bounces-245270-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245271-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1AB2CAE122
-	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 20:25:57 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EF00CAE1C1
+	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 20:44:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id D0064300CD66
-	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 19:25:56 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D5DC13045A4F
+	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 19:44:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AACE52E7BD2;
-	Mon,  8 Dec 2025 19:25:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF4D92EB860;
+	Mon,  8 Dec 2025 19:44:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="N61otzrO"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="LRJl+H4F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f181.google.com (mail-vk1-f181.google.com [209.85.221.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C8FB2EA14E
-	for <devicetree@vger.kernel.org>; Mon,  8 Dec 2025 19:25:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CCD72EA493;
+	Mon,  8 Dec 2025 19:44:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765221915; cv=none; b=kQ1f9lHrOuwm1lvm6cKVK/VHKqcjzOMO1+mVEeUgHDoJAWU99QL6ttyu6q1niODzevebF8NLAU+W/Qb4DOcTIXNylDLG4fkvCmHdPncPa0Co6S2tQkkrTvcV9majYsO9IDsenV1E9t+shZtoWnA8rfnM/3h2StdOp50Uz0H44TQ=
+	t=1765223046; cv=none; b=skNWae20A3oy9/PTVBODSoI/daaUJ3NIbrQ2mekwH4ZrPerlrIscjveRxTDKTQ+4JF5xjt45yjw1HMbNS9o+69PJy20puco+4hB+5o/3WKVV2vvGrWPPI+dgm4DLMeoK7KvYl52jLDwnztaiLyhKq/2u7kUnQp9J8RrZ8uDf7I4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765221915; c=relaxed/simple;
-	bh=02460sdGO2aKTJpjfhj21l2J008A2dWDeaneQVTVyhQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=XEfLpESB+Ds7EmS+2vcy5WajH9TBokpYed0LjTHL45wSpPl6TQWk/ViV8Q2Ghm8M9a9Ji1ch4NGejHzr4H4W3jbd8j+LbjWeUICxA5N2LV7UswZ1iXOH9RkMFR0nF/yT/KCe2tJhC9QSQVWeN77Qo8CKmoEE1Z88GHTMMuQtlow=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=N61otzrO; arc=none smtp.client-ip=209.85.221.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f181.google.com with SMTP id 71dfb90a1353d-55999cc2a87so1131910e0c.0
-        for <devicetree@vger.kernel.org>; Mon, 08 Dec 2025 11:25:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1765221906; x=1765826706; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=PpVdSYsuXVSTxZtx63QJbvEGhD/VAnxHpVQfZFZ2Fwc=;
-        b=N61otzrO0RT641EWyBjuhUCbyOAI2XlD1LQ10VsgZTrkWe5aAyJxwPlz4QbnJ3fRw8
-         5LTNuEaXAITxdj0S18v7TZk76EnpvtWE25YZNHDhUu/Wf5oru7A2WqUf62M6FxK/xWOT
-         LvUAtq1T4KMXgRhBbEKxlV4Idn0MfnDrG6t8YSeHJILDA9ka86swhyHCkA9tIyYw9/fW
-         /FhqpphIK/jBTzwAotx3v0V3zruXmGSqtHIYf4y3eQ8IZiQTp9+2BSe6Om77bNlaqyxy
-         P8l+f8m/rUrwGpAKFrAPyacIz+lzRvsAmWS5VfJFf1X8sRll2fTpwMFZqVNoWZsl7s2C
-         qstw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765221906; x=1765826706;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=PpVdSYsuXVSTxZtx63QJbvEGhD/VAnxHpVQfZFZ2Fwc=;
-        b=iJpDu2pMApQq5wkhVfZrMuaHgtyHbGaUFZbK+3DOH6f8foopz3o2Dr3ucZygMc5pPl
-         UfAyHH+ID9gEjIk8lmbQfBKHjcsETScdtdZa/cuKsRMzM9gRCEMVtfQnXn3t+RIB3gzy
-         W8IWQ2dGFJOq2VZSF1Y7x4/fXkYd41mn9qM1ZtGl4Gw9mXtQcVMIcSjiB38OqEpX2HA3
-         eFvQviI8jKqFPwXxVM2B18m6OKEnJuJ7u4bF2dTLJ50koe0unTKvR8p99ciBQ51mWu7j
-         XuYbDPeBMqKevHozfQsCUUTeRVR7mijyCoFvfHUS5o+pqdsXTFAWf+TA4zSMxEU0Cxt3
-         15ew==
-X-Forwarded-Encrypted: i=1; AJvYcCUF3si57aUDCEH4RmQIy9FDtOTJWz3OK3dxZOD46Xa0N05MaVny2xTa5dKyVS9FQ56/HzAUkpsyCEY9@vger.kernel.org
-X-Gm-Message-State: AOJu0YwpTfBpNCTtiUD6xpOAbSuiEOFWxF3YSZfRQZIovas5ESwKhbj0
-	j0DRfnBVe1Nv0dPmC0aYGeb9ORVT4vb1IV97RlTwA4qCUdrr/3IJgFMJ
-X-Gm-Gg: ASbGncu2d4dCEIHGi4LcRULz849Xvz08YwlswI8j3HuoL1fOEv59ineMkOrjW6CZoqB
-	y9EXjHUKMkM0AJb5KXXu4YKGtN1Z6/HKVkJ86TEA+Ag1cl3FLqE2g+8fcG18W71dSepy8ZRjxWD
-	iqsac1NWJi7OWhflGxQDfddDQ0v4P9rXigiFNR+2QC60nwpnZgGDo/X7SYhGm0MPMaLSzTF+3s2
-	uAAJ7oxRktLXbhZTbWG0HT6D3KxfCvbhNkYCwfH2q03Z4VRm6VUccVCbgsaBlYhGurFn6iCT6KJ
-	OfNYTqkBCtagTeOujag50mhI6nAv8M2+JOzTZb2Z8QS/w4jU9naO7Z/2AYn3LZBugKNBlNDaDX8
-	MVAqauXxdZK0UQZndehc8SOfUwVl3N0ncmOGEIY++YHmQKZwAo9yPbBru5Vue7NEipgTRkKGm+L
-	7jGS3on+srJbxWKnEGC3jBuykf4A==
-X-Google-Smtp-Source: AGHT+IGBK8Jphw5E8BNUJXHKaovTa7N7u6AXNtjGd5j1qxSfnI0AJD/Bp7OlXwbD6XrNSs3VMjDNFA==
-X-Received: by 2002:a05:6122:378e:b0:55b:745e:21d4 with SMTP id 71dfb90a1353d-55e8473d317mr2058843e0c.13.1765221905970;
-        Mon, 08 Dec 2025 11:25:05 -0800 (PST)
-Received: from [192.168.100.61] ([2800:bf0:4580:3149:7d4:54b1:c444:6f2f])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-55e6c9c8fafsm6480475e0c.20.2025.12.08.11.25.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Dec 2025 11:25:05 -0800 (PST)
-From: Kurt Borja <kuurtb@gmail.com>
-Date: Mon, 08 Dec 2025 14:24:36 -0500
-Subject: [PATCH v7 2/2] iio: adc: Add ti-ads1018 driver
+	s=arc-20240116; t=1765223046; c=relaxed/simple;
+	bh=3ipuuZGft/S8N19xrr05kuT8U40MNWLgd1x0A0Em+OA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hgLh3KD6kInV8S2Zl2DmxI5VSiEnH1vEjhjptRSVrYY6WX3C4YwiclEMLOzBFQrRhDMXx1eqtpE5ii8WUgiMQhS1ZIVXH8/4mKkvXZBkd4aeJs0bPZ/w9LK0kirAHnYfGVl4xPRI8Ad1G7rIlHLA6m+QaLKaqbVsulVPOVWVEO8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=LRJl+H4F; arc=none smtp.client-ip=192.198.163.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1765223045; x=1796759045;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=3ipuuZGft/S8N19xrr05kuT8U40MNWLgd1x0A0Em+OA=;
+  b=LRJl+H4F37v+q66RlJ0PyASxPHS7ml7oq6s+ZfL88A273fihsBpYHJM2
+   Iq4qoIOIOMyeDJ8AHqVFihJCtj3hvtx6TSG+EjgsdlhOzHwFu/FvYxGsh
+   Sy1WS/ObWvSaIg9GgoV0wAq2/NVI1OgBHM9JakmxDVgn/Rao7M4eMv8Ap
+   Bdyz1Zv0QZ1pIjvsdrKeM+QRjqynCx+4h7c9tCtyVtzgc33DJR6MUr3aD
+   kQRYrjSMui3UUKt1uM9CZIGQlvH999r6G6FEe5KqQyqLxFnpDzu5pBU7q
+   x2HyoFZhbw/1/0vmzgOG/fV00wY40DktdfI4twgJewUtrv/Eoeh2jIUM9
+   Q==;
+X-CSE-ConnectionGUID: LH7GQyvBQ7W1f2+4cEJuFw==
+X-CSE-MsgGUID: DPUyR9fpRDeox1T1kNZU2A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11636"; a="54714116"
+X-IronPort-AV: E=Sophos;i="6.20,259,1758610800"; 
+   d="scan'208";a="54714116"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Dec 2025 11:44:04 -0800
+X-CSE-ConnectionGUID: n+XSjhiORGCFX38P4L/tgg==
+X-CSE-MsgGUID: NGCiOOtnRBmB7MoDx7MLow==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,259,1758610800"; 
+   d="scan'208";a="195921748"
+Received: from lkp-server01.sh.intel.com (HELO d335e3c6db51) ([10.239.97.150])
+  by fmviesa006.fm.intel.com with ESMTP; 08 Dec 2025 11:44:01 -0800
+Received: from kbuild by d335e3c6db51 with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1vSh9K-000000000mj-0dfK;
+	Mon, 08 Dec 2025 19:43:58 +0000
+Date: Tue, 9 Dec 2025 03:43:42 +0800
+From: kernel test robot <lkp@intel.com>
+To: Ashish Mhetre <amhetre@nvidia.com>, will@kernel.org,
+	robin.murphy@arm.com, joro@8bytes.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, nicolinc@nvidia.com
+Cc: oe-kbuild-all@lists.linux.dev, thierry.reding@gmail.com,
+	jonathanh@nvidia.com, vdumpa@nvidia.com, jgg@ziepe.ca,
+	linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-tegra@vger.kernel.org, Ashish Mhetre <amhetre@nvidia.com>
+Subject: Re: [PATCH V4 1/3] iommu/arm-smmu-v3: Add device-tree support for
+ CMDQV driver
+Message-ID: <202512090331.QAFgb6vQ-lkp@intel.com>
+References: <20251205065850.3841834-2-amhetre@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251208-ads1x18-v7-2-b1be8dfebfa2@gmail.com>
-References: <20251208-ads1x18-v7-0-b1be8dfebfa2@gmail.com>
-In-Reply-To: <20251208-ads1x18-v7-0-b1be8dfebfa2@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Tobias Sperling <tobias.sperling@softing.com>
-Cc: David Lechner <dlechner@baylibre.com>, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- Andy Shevchenko <andy@kernel.org>, linux-iio@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Jonathan Cameron <Jonathan.Cameron@huawei.com>, 
- Kurt Borja <kuurtb@gmail.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=24734; i=kuurtb@gmail.com;
- h=from:subject:message-id; bh=02460sdGO2aKTJpjfhj21l2J008A2dWDeaneQVTVyhQ=;
- b=owGbwMvMwCUmluBs8WX+lTTG02pJDJnmatyRSdOXb/++sz/2sf/F2y32Rxdz7zt81NzRnuXm3
- ina0ffCO0pZGMS4GGTFFFnaExZ9exSV99bvQOh9mDmsTCBDGLg4BWAiK2QZ/tleXPTtjML1NXO8
- wt5OlLCcnl7k2s/QP9898KmF+LbWlbcZ/nsfPuuaMyez6aGMx+c1dq2zFTZa/jjtnC1x9fu85RL
- OUuwA
-X-Developer-Key: i=kuurtb@gmail.com; a=openpgp;
- fpr=54D3BE170AEF777983C3C63B57E3B6585920A69A
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251205065850.3841834-2-amhetre@nvidia.com>
 
-Add ti-ads1018 driver for Texas Instruments ADS1018 and ADS1118 SPI
-analog-to-digital converters.
+Hi Ashish,
 
-These chips' MOSI pin is shared with a data-ready interrupt. Defining
-this interrupt in devicetree is optional, therefore we only create an
-IIO trigger if one is found.
+kernel test robot noticed the following build warnings:
 
-Handling this interrupt requires some considerations. When enabling the
-trigger the CS line is tied low (active), thus we need to hold
-spi_bus_lock() too, to avoid state corruption. This is done inside the
-set_trigger_state() callback, to let users use other triggers without
-wasting a bus lock.
+[auto build test WARNING on next-20251204]
+[also build test WARNING on v6.18]
+[cannot apply to robh/for-next linus/master v6.18 v6.18-rc7 v6.18-rc6]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Signed-off-by: Kurt Borja <kuurtb@gmail.com>
----
- MAINTAINERS                  |   1 +
- drivers/iio/adc/Kconfig      |  12 +
- drivers/iio/adc/Makefile     |   1 +
- drivers/iio/adc/ti-ads1018.c | 743 +++++++++++++++++++++++++++++++++++++++++++
- 4 files changed, 757 insertions(+)
+url:    https://github.com/intel-lab-lkp/linux/commits/Ashish-Mhetre/iommu-arm-smmu-v3-Add-device-tree-support-for-CMDQV-driver/20251205-151258
+base:   next-20251204
+patch link:    https://lore.kernel.org/r/20251205065850.3841834-2-amhetre%40nvidia.com
+patch subject: [PATCH V4 1/3] iommu/arm-smmu-v3: Add device-tree support for CMDQV driver
+config: arm64-randconfig-004-20251209 (https://download.01.org/0day-ci/archive/20251209/202512090331.QAFgb6vQ-lkp@intel.com/config)
+compiler: aarch64-linux-gcc (GCC) 11.5.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251209/202512090331.QAFgb6vQ-lkp@intel.com/reproduce)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 3d5295b5d6eb..b3822cbff2c6 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -25651,6 +25651,7 @@ M:	Kurt Borja <kuurtb@gmail.com>
- L:	linux-iio@vger.kernel.org
- S:	Maintained
- F:	Documentation/devicetree/bindings/iio/adc/ti,ads1018.yaml
-+F:	drivers/iio/adc/ti-ads1018.c
- 
- TI ADS7924 ADC DRIVER
- M:	Hugo Villeneuve <hvilleneuve@dimonoff.com>
-diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
-index 58da8255525e..aa3f7023c64b 100644
---- a/drivers/iio/adc/Kconfig
-+++ b/drivers/iio/adc/Kconfig
-@@ -1664,6 +1664,18 @@ config TI_ADS1015
- 	  This driver can also be built as a module. If so, the module will be
- 	  called ti-ads1015.
- 
-+config TI_ADS1018
-+       tristate "Texas Instruments ADS1018 ADC"
-+       depends on SPI
-+       select IIO_BUFFER
-+       select IIO_TRIGGERED_BUFFER
-+       help
-+         If you say yes here you get support for Texas Instruments ADS1018 and
-+         ADS1118 ADC chips.
-+
-+         This driver can also be built as a module. If so, the module will be
-+         called ti-ads1018.
-+
- config TI_ADS1100
- 	tristate "Texas Instruments ADS1100 and ADS1000 ADC"
- 	depends on I2C
-diff --git a/drivers/iio/adc/Makefile b/drivers/iio/adc/Makefile
-index 7cc8f9a12f76..72ef79becdec 100644
---- a/drivers/iio/adc/Makefile
-+++ b/drivers/iio/adc/Makefile
-@@ -145,6 +145,7 @@ obj-$(CONFIG_TI_ADC12138) += ti-adc12138.o
- obj-$(CONFIG_TI_ADC128S052) += ti-adc128s052.o
- obj-$(CONFIG_TI_ADC161S626) += ti-adc161s626.o
- obj-$(CONFIG_TI_ADS1015) += ti-ads1015.o
-+obj-$(CONFIG_TI_ADS1018) += ti-ads1018.o
- obj-$(CONFIG_TI_ADS1100) += ti-ads1100.o
- obj-$(CONFIG_TI_ADS1119) += ti-ads1119.o
- obj-$(CONFIG_TI_ADS124S08) += ti-ads124s08.o
-diff --git a/drivers/iio/adc/ti-ads1018.c b/drivers/iio/adc/ti-ads1018.c
-new file mode 100644
-index 000000000000..4e4a3ab34a33
---- /dev/null
-+++ b/drivers/iio/adc/ti-ads1018.c
-@@ -0,0 +1,743 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Texas Instruments ADS1018 ADC driver
-+ *
-+ * Copyright (C) 2025 Kurt Borja <kuurtb@gmail.com>
-+ */
-+
-+#include <linux/array_size.h>
-+#include <linux/bitfield.h>
-+#include <linux/bitmap.h>
-+#include <linux/dev_printk.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/interrupt.h>
-+#include <linux/math.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/spi/spi.h>
-+#include <linux/types.h>
-+#include <linux/units.h>
-+
-+#include <asm/byteorder.h>
-+
-+#include <linux/iio/buffer.h>
-+#include <linux/iio/iio.h>
-+#include <linux/iio/trigger.h>
-+#include <linux/iio/trigger_consumer.h>
-+#include <linux/iio/triggered_buffer.h>
-+
-+#define ADS1018_CFG_OS_TRIG		BIT(15)
-+#define ADS1018_CFG_TS_MODE_EN		BIT(4)
-+#define ADS1018_CFG_PULL_UP		BIT(3)
-+#define ADS1018_CFG_NOP			BIT(1)
-+#define ADS1018_CFG_VALID		(ADS1018_CFG_PULL_UP | ADS1018_CFG_NOP)
-+
-+#define ADS1018_CFG_MUX_MASK		GENMASK(14, 12)
-+
-+#define ADS1018_CFG_PGA_MASK		GENMASK(11, 9)
-+#define ADS1018_PGA_DEFAULT		2
-+
-+#define ADS1018_CFG_MODE_MASK		BIT(8)
-+#define ADS1018_MODE_CONTINUOUS		0
-+#define ADS1018_MODE_ONESHOT		1
-+
-+#define ADS1018_CFG_DRATE_MASK		GENMASK(7, 5)
-+#define ADS1018_DRATE_DEFAULT		4
-+
-+#define ADS1018_NUM_PGA_MODES		6
-+#define ADS1018_CHANNELS_MAX		10
-+
-+struct ads1018_chan_data {
-+	u8 pga_mode;
-+	u8 data_rate_mode;
-+};
-+
-+struct ads1018_chip_info {
-+	const char *name;
-+	const struct iio_chan_spec *channels;
-+	unsigned long num_channels;
-+	/* IIO_VAL_INT */
-+	const unsigned int *data_rate_mode_to_hz;
-+	unsigned long num_data_rate_mode_to_hz;
-+	/* IIO_VAL_INT_PLUS_NANO */
-+	const unsigned int pga_mode_to_gain[ADS1018_NUM_PGA_MODES][2];
-+	/* IIO_VAL_INT_PLUS_MICRO */
-+	const int temp_scale[2];
-+};
-+
-+struct ads1018 {
-+	struct spi_device *spi;
-+	struct iio_trigger *indio_trig;
-+
-+	struct gpio_desc *drdy_gpiod;
-+	int drdy_irq;
-+
-+	struct ads1018_chan_data chan_data[ADS1018_CHANNELS_MAX];
-+	const struct ads1018_chip_info *chip_info;
-+
-+	struct spi_message msg_read;
-+	struct spi_transfer xfer;
-+	__be16 tx_buf[2] __aligned(IIO_DMA_MINALIGN);
-+	__be16 rx_buf[2];
-+};
-+
-+#define ADS1018_VOLT_DIFF_CHAN(_index, _chan, _chan2, _realbits) {		\
-+	.type = IIO_VOLTAGE,							\
-+	.channel = _chan,							\
-+	.channel2 = _chan2,							\
-+	.scan_index = _index,							\
-+	.scan_type = {								\
-+		.sign = 's',							\
-+		.realbits = _realbits,						\
-+		.storagebits = 16,						\
-+		.shift = 16 - _realbits,					\
-+		.endianness = IIO_BE,						\
-+	},									\
-+	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |				\
-+			      BIT(IIO_CHAN_INFO_SCALE) |			\
-+			      BIT(IIO_CHAN_INFO_SAMP_FREQ),			\
-+	.info_mask_shared_by_type_available = BIT(IIO_CHAN_INFO_SCALE),		\
-+	.info_mask_shared_by_all_available = BIT(IIO_CHAN_INFO_SAMP_FREQ),	\
-+	.indexed = true,							\
-+	.differential = true,							\
-+}
-+
-+#define ADS1018_VOLT_CHAN(_index, _chan, _realbits) {				\
-+	.type = IIO_VOLTAGE,							\
-+	.channel = _chan,							\
-+	.scan_index = _index,							\
-+	.scan_type = {								\
-+		.sign = 's',							\
-+		.realbits = _realbits,						\
-+		.storagebits = 16,						\
-+		.shift = 16 - _realbits,					\
-+		.endianness = IIO_BE,						\
-+	},									\
-+	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |				\
-+			      BIT(IIO_CHAN_INFO_SCALE) |			\
-+			      BIT(IIO_CHAN_INFO_SAMP_FREQ),			\
-+	.info_mask_shared_by_type_available = BIT(IIO_CHAN_INFO_SCALE),		\
-+	.info_mask_shared_by_all_available = BIT(IIO_CHAN_INFO_SAMP_FREQ),	\
-+	.indexed = true,							\
-+}
-+
-+#define ADS1018_TEMP_CHAN(_index, _realbits) {					\
-+	.type = IIO_TEMP,							\
-+	.scan_index = _index,							\
-+	.scan_type = {								\
-+		.sign = 's',							\
-+		.realbits = _realbits,						\
-+		.storagebits = 16,						\
-+		.shift = 16 - _realbits,					\
-+		.endianness = IIO_BE,						\
-+	},									\
-+	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |				\
-+			      BIT(IIO_CHAN_INFO_SCALE) |			\
-+			      BIT(IIO_CHAN_INFO_SAMP_FREQ),			\
-+	.info_mask_shared_by_all_available = BIT(IIO_CHAN_INFO_SAMP_FREQ),	\
-+}
-+
-+static const struct iio_chan_spec ads1118_iio_channels[] = {
-+	ADS1018_VOLT_DIFF_CHAN(0, 0, 1, 16),
-+	ADS1018_VOLT_DIFF_CHAN(1, 0, 3, 16),
-+	ADS1018_VOLT_DIFF_CHAN(2, 1, 3, 16),
-+	ADS1018_VOLT_DIFF_CHAN(3, 2, 3, 16),
-+	ADS1018_VOLT_CHAN(4, 0, 16),
-+	ADS1018_VOLT_CHAN(5, 1, 16),
-+	ADS1018_VOLT_CHAN(6, 2, 16),
-+	ADS1018_VOLT_CHAN(7, 3, 16),
-+	ADS1018_TEMP_CHAN(8, 14),
-+	IIO_CHAN_SOFT_TIMESTAMP(9),
-+};
-+
-+static const struct iio_chan_spec ads1018_iio_channels[] = {
-+	ADS1018_VOLT_DIFF_CHAN(0, 0, 1, 12),
-+	ADS1018_VOLT_DIFF_CHAN(1, 0, 3, 12),
-+	ADS1018_VOLT_DIFF_CHAN(2, 1, 3, 12),
-+	ADS1018_VOLT_DIFF_CHAN(3, 2, 3, 12),
-+	ADS1018_VOLT_CHAN(4, 0, 12),
-+	ADS1018_VOLT_CHAN(5, 1, 12),
-+	ADS1018_VOLT_CHAN(6, 2, 12),
-+	ADS1018_VOLT_CHAN(7, 3, 12),
-+	ADS1018_TEMP_CHAN(8, 12),
-+	IIO_CHAN_SOFT_TIMESTAMP(9),
-+};
-+
-+/**
-+ * ads1018_calc_delay - Calculates a suitable delay for a single-shot reading
-+ * @hz: Sampling frequency
-+ *
-+ * Calculates an appropriate delay for a single shot reading given a sampling
-+ * frequency.
-+ *
-+ * Return: Delay in microseconds (Always greater than 0).
-+ */
-+static u32 ads1018_calc_delay(unsigned int hz)
-+{
-+	/*
-+	 * Calculate the worst-case sampling rate by subtracting 10% error
-+	 * specified in the datasheet...
-+	 */
-+	hz -= DIV_ROUND_UP(hz, 10);
-+
-+	/* ...Then calculate time per sample in microseconds. */
-+	return DIV_ROUND_UP(MICROHZ_PER_HZ, hz);
-+}
-+
-+/**
-+ * ads1018_spi_read_exclusive - Reads a conversion value from the device
-+ * @ads1018: Device data
-+ * @cnv: ADC Conversion value (optional)
-+ * @hold_cs: Keep CS line asserted after the SPI transfer
-+ *
-+ * Reads the most recent ADC conversion value, without updating the
-+ * device's configuration.
-+ *
-+ * Context: Expects iio_device_claim_buffer_mode() is held and SPI bus
-+ *	    *exclusive* use.
-+ *
-+ * Return: 0 on success, negative errno on error.
-+ */
-+static int ads1018_spi_read_exclusive(struct ads1018 *ads1018, __be16 *cnv,
-+				      bool hold_cs)
-+{
-+	int ret;
-+
-+	ads1018->xfer.cs_change = hold_cs;
-+
-+	ret = spi_sync_locked(ads1018->spi, &ads1018->msg_read);
-+	if (ret)
-+		return ret;
-+
-+	if (cnv)
-+		*cnv = ads1018->rx_buf[0];
-+
-+	return 0;
-+}
-+
-+/**
-+ * ads1018_single_shot - Performs a one-shot reading sequence
-+ * @ads1018: Device data
-+ * @chan: Channel specification
-+ * @cnv: Conversion value
-+ *
-+ * Writes a new configuration, waits an appropriate delay, then reads the most
-+ * recent conversion.
-+ *
-+ * Context: Expects iio_device_claim_direct() is held.
-+ *
-+ * Return: 0 on success, negative errno on error.
-+ */
-+static int ads1018_single_shot(struct ads1018 *ads1018,
-+			       struct iio_chan_spec const *chan, u16 *cnv)
-+{
-+	u8 max_drate_mode = ads1018->chip_info->num_data_rate_mode_to_hz - 1;
-+	u8 drate = ads1018->chip_info->data_rate_mode_to_hz[max_drate_mode];
-+	u8 pga_mode = ads1018->chan_data[chan->scan_index].pga_mode;
-+	struct spi_transfer xfer[2] = {
-+		{
-+			.tx_buf = ads1018->tx_buf,
-+			.len = sizeof(ads1018->tx_buf[0]),
-+			.delay = {
-+				.value = ads1018_calc_delay(drate),
-+				.unit = SPI_DELAY_UNIT_USECS,
-+			},
-+			.cs_change = 1, /* 16-bit mode requires CS de-assert */
-+		},
-+		{
-+			.rx_buf = ads1018->rx_buf,
-+			.len = sizeof(ads1018->rx_buf[0]),
-+		},
-+	};
-+	u16 cfg;
-+	int ret;
-+
-+	cfg = ADS1018_CFG_VALID | ADS1018_CFG_OS_TRIG;
-+	cfg |= FIELD_PREP(ADS1018_CFG_MUX_MASK, chan->scan_index);
-+	cfg |= FIELD_PREP(ADS1018_CFG_PGA_MASK, pga_mode);
-+	cfg |= FIELD_PREP(ADS1018_CFG_MODE_MASK, ADS1018_MODE_ONESHOT);
-+	cfg |= FIELD_PREP(ADS1018_CFG_DRATE_MASK, max_drate_mode);
-+
-+	if (chan->type == IIO_TEMP)
-+		cfg |= ADS1018_CFG_TS_MODE_EN;
-+
-+	ads1018->tx_buf[0] = cpu_to_be16(cfg);
-+	ret = spi_sync_transfer(ads1018->spi, xfer, ARRAY_SIZE(xfer));
-+	if (ret)
-+		return ret;
-+
-+	*cnv = be16_to_cpu(ads1018->rx_buf[0]);
-+
-+	return 0;
-+}
-+
-+static int
-+ads1018_read_raw_direct_mode(struct iio_dev *indio_dev,
-+			     struct iio_chan_spec const *chan, int *val, int *val2,
-+			     long mask)
-+{
-+	struct ads1018 *ads1018 = iio_priv(indio_dev);
-+	const struct ads1018_chip_info *chip_info = ads1018->chip_info;
-+	u8 addr = chan->scan_index;
-+	u8 pga_mode, drate_mode;
-+	u16 cnv;
-+	int ret;
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_RAW:
-+		ret = ads1018_single_shot(ads1018, chan, &cnv);
-+		if (ret)
-+			return ret;
-+
-+		cnv >>= chan->scan_type.shift;
-+		*val = sign_extend32(cnv, chan->scan_type.realbits - 1);
-+
-+		return IIO_VAL_INT;
-+
-+	case IIO_CHAN_INFO_SCALE:
-+		switch (chan->type) {
-+		case IIO_VOLTAGE:
-+			pga_mode = ads1018->chan_data[addr].pga_mode;
-+			*val = chip_info->pga_mode_to_gain[pga_mode][0];
-+			*val2 = chip_info->pga_mode_to_gain[pga_mode][1];
-+			return IIO_VAL_INT_PLUS_NANO;
-+
-+		case IIO_TEMP:
-+			*val = chip_info->temp_scale[0];
-+			*val2 = chip_info->temp_scale[1];
-+			return IIO_VAL_INT_PLUS_MICRO;
-+
-+		default:
-+			return -EOPNOTSUPP;
-+		}
-+
-+	case IIO_CHAN_INFO_SAMP_FREQ:
-+		drate_mode = ads1018->chan_data[addr].data_rate_mode;
-+		*val = chip_info->data_rate_mode_to_hz[drate_mode];
-+		return IIO_VAL_INT;
-+
-+	default:
-+		return -EOPNOTSUPP;
-+	}
-+}
-+
-+static int
-+ads1018_read_raw(struct iio_dev *indio_dev, struct iio_chan_spec const *chan,
-+		 int *val, int *val2, long mask)
-+{
-+	int ret;
-+
-+	if (!iio_device_claim_direct(indio_dev))
-+		return -EBUSY;
-+	ret = ads1018_read_raw_direct_mode(indio_dev, chan, val, val2, mask);
-+	iio_device_release_direct(indio_dev);
-+
-+	return ret;
-+}
-+
-+static int
-+ads1018_read_avail(struct iio_dev *indio_dev, struct iio_chan_spec const *chan,
-+		   const int **vals, int *type, int *length, long mask)
-+{
-+	struct ads1018 *ads1018 = iio_priv(indio_dev);
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_SCALE:
-+		*type = IIO_VAL_INT_PLUS_NANO;
-+		*vals = (const int *)ads1018->chip_info->pga_mode_to_gain;
-+		*length = ADS1018_NUM_PGA_MODES * 2;
-+		return IIO_AVAIL_LIST;
-+
-+	case IIO_CHAN_INFO_SAMP_FREQ:
-+		*type = IIO_VAL_INT;
-+		*vals = ads1018->chip_info->data_rate_mode_to_hz;
-+		*length = ads1018->chip_info->num_data_rate_mode_to_hz;
-+		return IIO_AVAIL_LIST;
-+
-+	default:
-+		return -EOPNOTSUPP;
-+	}
-+}
-+
-+static int
-+ads1018_write_raw_direct_mode(struct iio_dev *indio_dev,
-+			      struct iio_chan_spec const *chan, int val, int val2,
-+			      long mask)
-+{
-+	struct ads1018 *ads1018 = iio_priv(indio_dev);
-+	const struct ads1018_chip_info *info = ads1018->chip_info;
-+	unsigned int i;
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_SCALE:
-+		for (i = 0; i < ADS1018_NUM_PGA_MODES; i++) {
-+			if (val == info->pga_mode_to_gain[i][0] &&
-+			    val2 == info->pga_mode_to_gain[i][1])
-+				break;
-+		}
-+		if (i == ADS1018_NUM_PGA_MODES)
-+			return -EINVAL;
-+
-+		ads1018->chan_data[chan->scan_index].pga_mode = i;
-+		return 0;
-+
-+	case IIO_CHAN_INFO_SAMP_FREQ:
-+		for (i = 0; i < info->num_data_rate_mode_to_hz; i++) {
-+			if (val == info->data_rate_mode_to_hz[i])
-+				break;
-+		}
-+		if (i == info->num_data_rate_mode_to_hz)
-+			return -EINVAL;
-+
-+		ads1018->chan_data[chan->scan_index].data_rate_mode = i;
-+		return 0;
-+
-+	default:
-+		return -EOPNOTSUPP;
-+	}
-+}
-+
-+static int
-+ads1018_write_raw(struct iio_dev *indio_dev, struct iio_chan_spec const *chan,
-+		  int val, int val2, long mask)
-+{
-+	int ret;
-+
-+	if (!iio_device_claim_direct(indio_dev))
-+		return -EBUSY;
-+	ret = ads1018_write_raw_direct_mode(indio_dev, chan, val, val2, mask);
-+	iio_device_release_direct(indio_dev);
-+
-+	return ret;
-+}
-+
-+static int
-+ads1018_write_raw_get_fmt(struct iio_dev *indio_dev,
-+			  struct iio_chan_spec const *chan, long mask)
-+{
-+	switch (mask) {
-+	case IIO_CHAN_INFO_SCALE:
-+		return IIO_VAL_INT_PLUS_NANO;
-+	default:
-+		return IIO_VAL_INT_PLUS_MICRO;
-+	}
-+}
-+
-+static const struct iio_info ads1018_iio_info = {
-+	.read_raw = ads1018_read_raw,
-+	.read_avail = ads1018_read_avail,
-+	.write_raw = ads1018_write_raw,
-+	.write_raw_get_fmt = ads1018_write_raw_get_fmt,
-+};
-+
-+static void ads1018_set_trigger_enable(struct ads1018 *ads1018)
-+{
-+	spi_bus_lock(ads1018->spi->controller);
-+	ads1018_spi_read_exclusive(ads1018, NULL, true);
-+	enable_irq(ads1018->drdy_irq);
-+}
-+
-+static void ads1018_set_trigger_disable(struct ads1018 *ads1018)
-+{
-+	disable_irq(ads1018->drdy_irq);
-+	ads1018_spi_read_exclusive(ads1018, NULL, false);
-+	spi_bus_unlock(ads1018->spi->controller);
-+}
-+
-+static int ads1018_set_trigger_state(struct iio_trigger *trig, bool state)
-+{
-+	struct ads1018 *ads1018 = iio_trigger_get_drvdata(trig);
-+
-+	/*
-+	 * We need to lock the SPI bus and tie CS low (hold_cs) to catch
-+	 * data-ready interrupts, otherwise the MISO line enters a Hi-Z state.
-+	 */
-+
-+	if (state)
-+		ads1018_set_trigger_enable(ads1018);
-+	else
-+		ads1018_set_trigger_disable(ads1018);
-+
-+	return 0;
-+}
-+
-+static const struct iio_trigger_ops ads1018_trigger_ops = {
-+	.set_trigger_state = ads1018_set_trigger_state,
-+	.validate_device = iio_trigger_validate_own_device,
-+};
-+
-+static int ads1018_buffer_preenable(struct iio_dev *indio_dev)
-+{
-+	struct ads1018 *ads1018 = iio_priv(indio_dev);
-+	const struct ads1018_chip_info *chip_info = ads1018->chip_info;
-+	unsigned int pga, drate, addr;
-+	u16 cfg;
-+
-+	addr = find_first_bit(indio_dev->active_scan_mask,
-+			      iio_get_masklength(indio_dev));
-+	pga = ads1018->chan_data[addr].pga_mode;
-+	drate = ads1018->chan_data[addr].data_rate_mode;
-+
-+	cfg = ADS1018_CFG_VALID;
-+	cfg |= FIELD_PREP(ADS1018_CFG_MUX_MASK, addr);
-+	cfg |= FIELD_PREP(ADS1018_CFG_PGA_MASK, pga);
-+	cfg |= FIELD_PREP(ADS1018_CFG_MODE_MASK, ADS1018_MODE_CONTINUOUS);
-+	cfg |= FIELD_PREP(ADS1018_CFG_DRATE_MASK, drate);
-+
-+	if (chip_info->channels[addr].type == IIO_TEMP)
-+		cfg |= ADS1018_CFG_TS_MODE_EN;
-+
-+	ads1018->tx_buf[0] = cpu_to_be16(cfg);
-+	ads1018->tx_buf[1] = 0;
-+
-+	return spi_write(ads1018->spi, ads1018->tx_buf, sizeof(ads1018->tx_buf));
-+}
-+
-+static int ads1018_buffer_postdisable(struct iio_dev *indio_dev)
-+{
-+	struct ads1018 *ads1018 = iio_priv(indio_dev);
-+	u16 cfg;
-+
-+	cfg = ADS1018_CFG_VALID;
-+	cfg |= FIELD_PREP(ADS1018_CFG_MODE_MASK, ADS1018_MODE_ONESHOT);
-+
-+	ads1018->tx_buf[0] = cpu_to_be16(cfg);
-+	ads1018->tx_buf[1] = 0;
-+
-+	return spi_write(ads1018->spi, ads1018->tx_buf, sizeof(ads1018->tx_buf));
-+}
-+
-+static const struct iio_buffer_setup_ops ads1018_buffer_ops = {
-+	.preenable = ads1018_buffer_preenable,
-+	.postdisable = ads1018_buffer_postdisable,
-+	.validate_scan_mask = iio_validate_scan_mask_onehot,
-+};
-+
-+static irqreturn_t ads1018_irq_handler(int irq, void *dev_id)
-+{
-+	struct ads1018 *ads1018 = dev_id;
-+
-+	/*
-+	 * We need to check if the "drdy" pin is actually active or if it's a
-+	 * pending interrupt triggered by the SPI transfer.
-+	 */
-+	if (!gpiod_get_value(ads1018->drdy_gpiod))
-+		return IRQ_HANDLED;
-+
-+	iio_trigger_poll(ads1018->indio_trig);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static irqreturn_t ads1018_trigger_handler(int irq, void *p)
-+{
-+	struct iio_poll_func *pf = p;
-+	struct iio_dev *indio_dev = pf->indio_dev;
-+	struct ads1018 *ads1018 = iio_priv(indio_dev);
-+	struct {
-+		__be16 conv;
-+		aligned_s64 ts;
-+	} scan = {};
-+	int ret;
-+
-+	if (iio_device_claim_buffer_mode(indio_dev))
-+		goto out_notify_done;
-+
-+	if (iio_trigger_using_own(indio_dev)) {
-+		disable_irq(ads1018->drdy_irq);
-+		ret = ads1018_spi_read_exclusive(ads1018, &scan.conv, true);
-+		enable_irq(ads1018->drdy_irq);
-+	} else {
-+		ret = spi_read(ads1018->spi, ads1018->rx_buf, sizeof(ads1018->rx_buf));
-+		scan.conv = ads1018->rx_buf[0];
-+	}
-+	if (ret)
-+		goto out_release_buffer;
-+
-+	iio_push_to_buffers_with_ts(indio_dev, &scan, sizeof(scan), pf->timestamp);
-+
-+out_release_buffer:
-+	iio_device_release_buffer_mode(indio_dev);
-+out_notify_done:
-+	iio_trigger_notify_done(indio_dev->trig);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static int ads1018_trigger_setup(struct iio_dev *indio_dev)
-+{
-+	struct ads1018 *ads1018 = iio_priv(indio_dev);
-+	struct spi_device *spi = ads1018->spi;
-+	struct device *dev = &spi->dev;
-+	const char *con_id = "drdy";
-+	int ret;
-+
-+	ads1018->drdy_gpiod = devm_gpiod_get_optional(dev, con_id, GPIOD_IN);
-+	if (IS_ERR(ads1018->drdy_gpiod))
-+		return dev_err_probe(dev, PTR_ERR(ads1018->drdy_gpiod),
-+				     "Failed to get %s GPIO.\n", con_id);
-+
-+	/* First try to get IRQ from SPI core, then from GPIO */
-+	if (spi->irq > 0)
-+		ads1018->drdy_irq = spi->irq;
-+	else if (ads1018->drdy_gpiod)
-+		ads1018->drdy_irq = gpiod_to_irq(ads1018->drdy_gpiod);
-+	if (ads1018->drdy_irq < 0)
-+		return dev_err_probe(dev, ads1018->drdy_irq,
-+				     "Failed to get IRQ from %s GPIO.\n", con_id);
-+
-+	/* An IRQ line is only an optional requirement for the IIO trigger */
-+	if (ads1018->drdy_irq == 0)
-+		return 0;
-+
-+	ads1018->indio_trig = devm_iio_trigger_alloc(dev, "%s-dev%d-%s",
-+						     indio_dev->name,
-+						     iio_device_id(indio_dev),
-+						     con_id);
-+	if (!ads1018->indio_trig)
-+		return -ENOMEM;
-+
-+	iio_trigger_set_drvdata(ads1018->indio_trig, ads1018);
-+	ads1018->indio_trig->ops = &ads1018_trigger_ops;
-+
-+	ret = devm_iio_trigger_register(dev, ads1018->indio_trig);
-+	if (ret)
-+		return ret;
-+
-+	/*
-+	 * The "data-ready" IRQ line is shared with the MOSI pin, thus we need
-+	 * to keep it disabled until we actually request data.
-+	 */
-+	return devm_request_irq(dev, ads1018->drdy_irq, ads1018_irq_handler,
-+				IRQF_NO_AUTOEN, ads1018->chip_info->name, ads1018);
-+}
-+
-+static int ads1018_spi_probe(struct spi_device *spi)
-+{
-+	const struct ads1018_chip_info *info = spi_get_device_match_data(spi);
-+	struct device *dev = &spi->dev;
-+	struct iio_dev *indio_dev;
-+	struct ads1018 *ads1018;
-+	int ret;
-+
-+	indio_dev = devm_iio_device_alloc(dev, sizeof(*ads1018));
-+	if (!indio_dev)
-+		return -ENOMEM;
-+
-+	ads1018 = iio_priv(indio_dev);
-+	ads1018->spi = spi;
-+	ads1018->chip_info = info;
-+
-+	indio_dev->modes = INDIO_DIRECT_MODE;
-+	indio_dev->name = info->name;
-+	indio_dev->info = &ads1018_iio_info;
-+	indio_dev->channels = info->channels;
-+	indio_dev->num_channels = info->num_channels;
-+
-+	for (unsigned int i = 0; i < ADS1018_CHANNELS_MAX; i++) {
-+		ads1018->chan_data[i].data_rate_mode = ADS1018_DRATE_DEFAULT;
-+		ads1018->chan_data[i].pga_mode = ADS1018_PGA_DEFAULT;
-+	}
-+
-+	ads1018->xfer.rx_buf = ads1018->rx_buf;
-+	ads1018->xfer.len = sizeof(ads1018->rx_buf);
-+	spi_message_init_with_transfers(&ads1018->msg_read, &ads1018->xfer, 1);
-+
-+	ret = ads1018_trigger_setup(indio_dev);
-+	if (ret)
-+		return ret;
-+
-+	ret = devm_iio_triggered_buffer_setup(dev, indio_dev,
-+					      iio_pollfunc_store_time,
-+					      ads1018_trigger_handler,
-+					      &ads1018_buffer_ops);
-+	if (ret)
-+		return ret;
-+
-+	return devm_iio_device_register(&spi->dev, indio_dev);
-+}
-+
-+/**
-+ * ADS1018_FSR_TO_SCALE - Converts FSR into scale
-+ * @_fsr: Full-scale range in millivolts
-+ * @_res: ADC resolution
-+ *
-+ * The macro is crafted to avoid potential overflows on 32-bit machines. This
-+ * imposes restrictions on the possible values for @_fsr (less than 274878),
-+ * and @_res (greater than or equal to 7 bits).
-+ *
-+ * Return: Scale in IIO_VAL_INT_PLUS_NANO format
-+ */
-+#define ADS1018_FSR_TO_SCALE(_fsr, _res) \
-+	{ 0, ((_fsr) * (MICRO >> 6)) / (BIT((_res) - 6 - 1)) }
-+
-+static const unsigned int ads1018_data_rate_table[] = {
-+	128, 250, 490, 920, 1600, 2400, 3300,
-+};
-+
-+static const unsigned int ads1118_data_rate_table[] = {
-+	8, 16, 32, 64, 128, 250, 475, 860,
-+};
-+
-+static const struct ads1018_chip_info ads1018_chip_info = {
-+	.name = "ads1018",
-+	.channels = ads1018_iio_channels,
-+	.num_channels = ARRAY_SIZE(ads1018_iio_channels),
-+	.data_rate_mode_to_hz = ads1018_data_rate_table,
-+	.num_data_rate_mode_to_hz = ARRAY_SIZE(ads1018_data_rate_table),
-+	.pga_mode_to_gain = {
-+		ADS1018_FSR_TO_SCALE(6144, 12),
-+		ADS1018_FSR_TO_SCALE(4096, 12),
-+		ADS1018_FSR_TO_SCALE(2048, 12),
-+		ADS1018_FSR_TO_SCALE(1024, 12),
-+		ADS1018_FSR_TO_SCALE(512, 12),
-+		ADS1018_FSR_TO_SCALE(256, 12),
-+	},
-+	.temp_scale = { 0, 125000 },
-+};
-+
-+static const struct ads1018_chip_info ads1118_chip_info = {
-+	.name = "ads1118",
-+	.channels = ads1118_iio_channels,
-+	.num_channels = ARRAY_SIZE(ads1118_iio_channels),
-+	.data_rate_mode_to_hz = ads1118_data_rate_table,
-+	.num_data_rate_mode_to_hz = ARRAY_SIZE(ads1118_data_rate_table),
-+	.pga_mode_to_gain = {
-+		ADS1018_FSR_TO_SCALE(6144, 16),
-+		ADS1018_FSR_TO_SCALE(4096, 16),
-+		ADS1018_FSR_TO_SCALE(2048, 16),
-+		ADS1018_FSR_TO_SCALE(1024, 16),
-+		ADS1018_FSR_TO_SCALE(512, 16),
-+		ADS1018_FSR_TO_SCALE(256, 16),
-+	},
-+	.temp_scale = { 0, 31250 },
-+};
-+
-+static const struct of_device_id ads1018_of_match[] = {
-+	{ .compatible = "ti,ads1018", .data = &ads1018_chip_info },
-+	{ .compatible = "ti,ads1118", .data = &ads1118_chip_info },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, ads1018_of_match);
-+
-+static const struct spi_device_id ads1018_spi_match[] = {
-+	{ "ads1018", (kernel_ulong_t)&ads1018_chip_info },
-+	{ "ads1118", (kernel_ulong_t)&ads1118_chip_info },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(spi, ads1018_spi_match);
-+
-+static struct spi_driver ads1018_spi_driver = {
-+	.driver = {
-+		.name = "ads1018",
-+		.of_match_table = ads1018_of_match,
-+	},
-+	.probe = ads1018_spi_probe,
-+	.id_table = ads1018_spi_match,
-+};
-+
-+module_spi_driver(ads1018_spi_driver);
-+
-+MODULE_DESCRIPTION("Texas Instruments ADS1018 ADC Driver");
-+MODULE_LICENSE("GPL");
-+MODULE_AUTHOR("Kurt Borja <kuurtb@gmail.com>");
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202512090331.QAFgb6vQ-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   drivers/iommu/arm/arm-smmu-v3/tegra241-cmdqv.c: In function 'tegra241_cmdqv_acpi_is_memory':
+   drivers/iommu/arm/arm-smmu-v3/tegra241-cmdqv.c:863:17: error: implicit declaration of function 'acpi_dev_resource_address_space' [-Werror=implicit-function-declaration]
+     863 |         return !acpi_dev_resource_address_space(res, &win);
+         |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/iommu/arm/arm-smmu-v3/tegra241-cmdqv.c: In function 'tegra241_cmdqv_acpi_get_irqs':
+   drivers/iommu/arm/arm-smmu-v3/tegra241-cmdqv.c:871:26: error: implicit declaration of function 'acpi_dev_resource_interrupt' [-Werror=implicit-function-declaration]
+     871 |         if (*irq <= 0 && acpi_dev_resource_interrupt(ares, 0, &r))
+         |                          ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/iommu/arm/arm-smmu-v3/tegra241-cmdqv.c: In function 'tegra241_cmdqv_find_acpi_resource':
+   drivers/iommu/arm/arm-smmu-v3/tegra241-cmdqv.c:879:36: error: implicit declaration of function 'to_acpi_device'; did you mean 'to_acpi_device_node'? [-Werror=implicit-function-declaration]
+     879 |         struct acpi_device *adev = to_acpi_device(dev);
+         |                                    ^~~~~~~~~~~~~~
+         |                                    to_acpi_device_node
+>> drivers/iommu/arm/arm-smmu-v3/tegra241-cmdqv.c:879:36: warning: initialization of 'struct acpi_device *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
+   drivers/iommu/arm/arm-smmu-v3/tegra241-cmdqv.c:886:15: error: implicit declaration of function 'acpi_dev_get_resources'; did you mean 'acpi_get_event_resources'? [-Werror=implicit-function-declaration]
+     886 |         ret = acpi_dev_get_resources(adev, &resource_list,
+         |               ^~~~~~~~~~~~~~~~~~~~~~
+         |               acpi_get_event_resources
+   drivers/iommu/arm/arm-smmu-v3/tegra241-cmdqv.c:907:9: error: implicit declaration of function 'acpi_dev_free_resource_list' [-Werror=implicit-function-declaration]
+     907 |         acpi_dev_free_resource_list(&resource_list);
+         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+   cc1: some warnings being treated as errors
+
+
+vim +879 drivers/iommu/arm/arm-smmu-v3/tegra241-cmdqv.c
+
+918eb5c856f6ce Nate Watterson 2024-08-29  875  
+918eb5c856f6ce Nate Watterson 2024-08-29  876  static struct resource *
+918eb5c856f6ce Nate Watterson 2024-08-29  877  tegra241_cmdqv_find_acpi_resource(struct device *dev, int *irq)
+918eb5c856f6ce Nate Watterson 2024-08-29  878  {
+918eb5c856f6ce Nate Watterson 2024-08-29 @879  	struct acpi_device *adev = to_acpi_device(dev);
+918eb5c856f6ce Nate Watterson 2024-08-29  880  	struct list_head resource_list;
+918eb5c856f6ce Nate Watterson 2024-08-29  881  	struct resource_entry *rentry;
+918eb5c856f6ce Nate Watterson 2024-08-29  882  	struct resource *res = NULL;
+918eb5c856f6ce Nate Watterson 2024-08-29  883  	int ret;
+918eb5c856f6ce Nate Watterson 2024-08-29  884  
+918eb5c856f6ce Nate Watterson 2024-08-29  885  	INIT_LIST_HEAD(&resource_list);
+918eb5c856f6ce Nate Watterson 2024-08-29  886  	ret = acpi_dev_get_resources(adev, &resource_list,
+918eb5c856f6ce Nate Watterson 2024-08-29  887  				     tegra241_cmdqv_acpi_is_memory, NULL);
+918eb5c856f6ce Nate Watterson 2024-08-29  888  	if (ret < 0) {
+918eb5c856f6ce Nate Watterson 2024-08-29  889  		dev_err(dev, "failed to get memory resource: %d\n", ret);
+918eb5c856f6ce Nate Watterson 2024-08-29  890  		return NULL;
+918eb5c856f6ce Nate Watterson 2024-08-29  891  	}
+918eb5c856f6ce Nate Watterson 2024-08-29  892  
+918eb5c856f6ce Nate Watterson 2024-08-29  893  	rentry = list_first_entry_or_null(&resource_list,
+918eb5c856f6ce Nate Watterson 2024-08-29  894  					  struct resource_entry, node);
+918eb5c856f6ce Nate Watterson 2024-08-29  895  	if (!rentry) {
+918eb5c856f6ce Nate Watterson 2024-08-29  896  		dev_err(dev, "failed to get memory resource entry\n");
+918eb5c856f6ce Nate Watterson 2024-08-29  897  		goto free_list;
+918eb5c856f6ce Nate Watterson 2024-08-29  898  	}
+918eb5c856f6ce Nate Watterson 2024-08-29  899  
+918eb5c856f6ce Nate Watterson 2024-08-29  900  	/* Caller must free the res */
+918eb5c856f6ce Nate Watterson 2024-08-29  901  	res = kzalloc(sizeof(*res), GFP_KERNEL);
+918eb5c856f6ce Nate Watterson 2024-08-29  902  	if (!res)
+918eb5c856f6ce Nate Watterson 2024-08-29  903  		goto free_list;
+918eb5c856f6ce Nate Watterson 2024-08-29  904  
+918eb5c856f6ce Nate Watterson 2024-08-29  905  	*res = *rentry->res;
+918eb5c856f6ce Nate Watterson 2024-08-29  906  
+918eb5c856f6ce Nate Watterson 2024-08-29  907  	acpi_dev_free_resource_list(&resource_list);
+918eb5c856f6ce Nate Watterson 2024-08-29  908  
+918eb5c856f6ce Nate Watterson 2024-08-29  909  	INIT_LIST_HEAD(&resource_list);
+918eb5c856f6ce Nate Watterson 2024-08-29  910  
+918eb5c856f6ce Nate Watterson 2024-08-29  911  	if (irq)
+918eb5c856f6ce Nate Watterson 2024-08-29  912  		ret = acpi_dev_get_resources(adev, &resource_list,
+918eb5c856f6ce Nate Watterson 2024-08-29  913  					     tegra241_cmdqv_acpi_get_irqs, irq);
+918eb5c856f6ce Nate Watterson 2024-08-29  914  	if (ret < 0 || !irq || *irq <= 0)
+918eb5c856f6ce Nate Watterson 2024-08-29  915  		dev_warn(dev, "no interrupt. errors will not be reported\n");
+918eb5c856f6ce Nate Watterson 2024-08-29  916  
+918eb5c856f6ce Nate Watterson 2024-08-29  917  free_list:
+918eb5c856f6ce Nate Watterson 2024-08-29  918  	acpi_dev_free_resource_list(&resource_list);
+918eb5c856f6ce Nate Watterson 2024-08-29  919  	return res;
+918eb5c856f6ce Nate Watterson 2024-08-29  920  }
+918eb5c856f6ce Nate Watterson 2024-08-29  921  
 
 -- 
-2.52.0
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
