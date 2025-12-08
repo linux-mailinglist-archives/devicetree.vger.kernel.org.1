@@ -1,79 +1,114 @@
-Return-Path: <devicetree+bounces-245271-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245272-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EF00CAE1C1
-	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 20:44:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0382FCAE1E8
+	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 20:53:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D5DC13045A4F
-	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 19:44:07 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A25E03048DA6
+	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 19:53:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF4D92EB860;
-	Mon,  8 Dec 2025 19:44:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABEE82FB616;
+	Mon,  8 Dec 2025 19:53:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="LRJl+H4F"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Ohcw4tNx";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Awgm8hIF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CCD72EA493;
-	Mon,  8 Dec 2025 19:44:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6E4D2FB0A3
+	for <devicetree@vger.kernel.org>; Mon,  8 Dec 2025 19:53:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765223046; cv=none; b=skNWae20A3oy9/PTVBODSoI/daaUJ3NIbrQ2mekwH4ZrPerlrIscjveRxTDKTQ+4JF5xjt45yjw1HMbNS9o+69PJy20puco+4hB+5o/3WKVV2vvGrWPPI+dgm4DLMeoK7KvYl52jLDwnztaiLyhKq/2u7kUnQp9J8RrZ8uDf7I4=
+	t=1765223620; cv=none; b=YZN7vcReaYiR+mM5feDFdFALbRLxMquzE+dQSFtEfPtTEfFwKLkFQZb1g3n6zRR55ldTUVbQ+aOhXqoaIeGxIsvcPgOQbrOZbmBGbWeZqD9BkMXfad/GM3JQtjvyNavDyoSFr1wii3SKUSWvCT4ij08VAp80K9DNQ1A2zTMmYhQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765223046; c=relaxed/simple;
-	bh=3ipuuZGft/S8N19xrr05kuT8U40MNWLgd1x0A0Em+OA=;
+	s=arc-20240116; t=1765223620; c=relaxed/simple;
+	bh=J3jGhj+CeAqgwbLCGmC6h1yKUzBHKojJH0Ulj0eDm4I=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hgLh3KD6kInV8S2Zl2DmxI5VSiEnH1vEjhjptRSVrYY6WX3C4YwiclEMLOzBFQrRhDMXx1eqtpE5ii8WUgiMQhS1ZIVXH8/4mKkvXZBkd4aeJs0bPZ/w9LK0kirAHnYfGVl4xPRI8Ad1G7rIlHLA6m+QaLKaqbVsulVPOVWVEO8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=LRJl+H4F; arc=none smtp.client-ip=192.198.163.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1765223045; x=1796759045;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=3ipuuZGft/S8N19xrr05kuT8U40MNWLgd1x0A0Em+OA=;
-  b=LRJl+H4F37v+q66RlJ0PyASxPHS7ml7oq6s+ZfL88A273fihsBpYHJM2
-   Iq4qoIOIOMyeDJ8AHqVFihJCtj3hvtx6TSG+EjgsdlhOzHwFu/FvYxGsh
-   Sy1WS/ObWvSaIg9GgoV0wAq2/NVI1OgBHM9JakmxDVgn/Rao7M4eMv8Ap
-   Bdyz1Zv0QZ1pIjvsdrKeM+QRjqynCx+4h7c9tCtyVtzgc33DJR6MUr3aD
-   kQRYrjSMui3UUKt1uM9CZIGQlvH999r6G6FEe5KqQyqLxFnpDzu5pBU7q
-   x2HyoFZhbw/1/0vmzgOG/fV00wY40DktdfI4twgJewUtrv/Eoeh2jIUM9
-   Q==;
-X-CSE-ConnectionGUID: LH7GQyvBQ7W1f2+4cEJuFw==
-X-CSE-MsgGUID: DPUyR9fpRDeox1T1kNZU2A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11636"; a="54714116"
-X-IronPort-AV: E=Sophos;i="6.20,259,1758610800"; 
-   d="scan'208";a="54714116"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Dec 2025 11:44:04 -0800
-X-CSE-ConnectionGUID: n+XSjhiORGCFX38P4L/tgg==
-X-CSE-MsgGUID: NGCiOOtnRBmB7MoDx7MLow==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,259,1758610800"; 
-   d="scan'208";a="195921748"
-Received: from lkp-server01.sh.intel.com (HELO d335e3c6db51) ([10.239.97.150])
-  by fmviesa006.fm.intel.com with ESMTP; 08 Dec 2025 11:44:01 -0800
-Received: from kbuild by d335e3c6db51 with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vSh9K-000000000mj-0dfK;
-	Mon, 08 Dec 2025 19:43:58 +0000
-Date: Tue, 9 Dec 2025 03:43:42 +0800
-From: kernel test robot <lkp@intel.com>
-To: Ashish Mhetre <amhetre@nvidia.com>, will@kernel.org,
-	robin.murphy@arm.com, joro@8bytes.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, nicolinc@nvidia.com
-Cc: oe-kbuild-all@lists.linux.dev, thierry.reding@gmail.com,
-	jonathanh@nvidia.com, vdumpa@nvidia.com, jgg@ziepe.ca,
-	linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-tegra@vger.kernel.org, Ashish Mhetre <amhetre@nvidia.com>
-Subject: Re: [PATCH V4 1/3] iommu/arm-smmu-v3: Add device-tree support for
- CMDQV driver
-Message-ID: <202512090331.QAFgb6vQ-lkp@intel.com>
-References: <20251205065850.3841834-2-amhetre@nvidia.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZPcA/JtOLYNGpnNVw1P/HcoabERz9kSGqXX45J9AyGJiYb/Qy401NjJW6Bh3jFdbTPouhBxBgWi1Ygj+a8/6SZfaP0G33KJ6WbCkRTt3hc985CL/JGyUZ6p8CLm53hsIjJsNQ7YE1VF1DehDtm2T+xf5Nr/7KTCoX+F6d0LDpm0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Ohcw4tNx; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Awgm8hIF; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5B8B66wD458096
+	for <devicetree@vger.kernel.org>; Mon, 8 Dec 2025 19:53:38 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=IMoJPuRSJAIglcvEDqdvim7H
+	W12Ii9HmYVg97fspS0o=; b=Ohcw4tNx/x1LCUXxXwYt33NLIjCf/vH+TaPoK3Pg
+	Bp+uJrXSYfMkADqG6xPHCHkMUlBXO3iEg/rzDEyJUCen7FrPkoInj5nQpmos+whx
+	wwP3ET9iPz6ion0FEcfDfWYJSMF3hWSS7qM/lfTiGhi2sKuaSxuoD8CpSZU5GC6J
+	NJ/jNmSKLgzkjlFVjqh4VzPBRxnV0UOKHA9q9rJM85jWHob7RWiBZTTioBUNJvUM
+	EzwyFiCBJ5erQQbkVileJ/Xu/0ZqtgODqgPg++dhn+8O+pAI7pmfrDqRLIzdQfr+
+	YlG7UauO4H+FOmOaJOVdIt1T7uAY6QuBkDa4I9CUYRIuYQ==
+Received: from mail-vk1-f200.google.com (mail-vk1-f200.google.com [209.85.221.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4awwgmhk40-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 08 Dec 2025 19:53:37 +0000 (GMT)
+Received: by mail-vk1-f200.google.com with SMTP id 71dfb90a1353d-55b11778b1fso7532839e0c.0
+        for <devicetree@vger.kernel.org>; Mon, 08 Dec 2025 11:53:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1765223617; x=1765828417; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=IMoJPuRSJAIglcvEDqdvim7HW12Ii9HmYVg97fspS0o=;
+        b=Awgm8hIFusCjLVP5H0aDKlW3+5VXpuosu5FWNxJVMzbRSNzzxCpgAsViuaKZeidIHD
+         2BKSi9gt1kO7zs/MhR81tLuEAD/umxi+xuUvpKV+w9b26h2ACMKc8uR5VCz7yzQOqvIr
+         B+qE7FvMv2X/4dUyeLb2fXchq4jkHmINqawK28tGREUIRfKRnoC/swvHFrMPHTkR0F9+
+         dnDx1LpEeT7mCj/+vfG2DZJb1bdcYKh+HEvrR3d3eBiYcJBS1nX1N/rT9lrMCkmG++Jh
+         +Sm3BE7X+lDyffthBZaF4W6YVvYmDWkQoRle7npukzb520SZGOULsBMXAJ8VQnRUw7e6
+         OVIQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765223617; x=1765828417;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=IMoJPuRSJAIglcvEDqdvim7HW12Ii9HmYVg97fspS0o=;
+        b=RG2YboqKeE24qnxspengvDEYKQJMQ+WbBkKJP7M0XjC3kWJzGxjRoYlub83zWXUPHX
+         9Z3vGeNbs9d8T1GhpwgVICtHGolnrZR0Bfrd2ysRMkusQIKbzYuZzEbFFDeBW5ir2zL8
+         AgAQQyb7kbFwqdwK6Ch1M5tKLrfIfDd5wMFK5GWoUst2Q/xMtOKH6lyebcJPiEK8+H5P
+         E9rBxNl2DKVktcCDKyDpOXp+lTLLbj6KavAFnPUUY00XOQFsjIJJ8VGoFPXEsFqrX2tT
+         hjglNsNQrOU6s5S0+spb5XQ42As0aHQe7wJb9Ot8UIgwltj0IEzBzqktmt6f4CdzZKAW
+         Z7ZA==
+X-Forwarded-Encrypted: i=1; AJvYcCUTIU00qDuiLjxJ6Tux+KFbzbzdJXC8QO5v8AexruKCIKQCXY0lKeLBlz4WwuG7nsDNGwRcc/cHv0zH@vger.kernel.org
+X-Gm-Message-State: AOJu0YyMWFfAJt1CgEBxAhHMsP8D8eembHfzKQ2wj4MpO8vuDtq9D/uL
+	ejdlheINDsULLGDErUMxzfxQqkAAKYp6DSRfbjTfG9avnIYC+AC2LgSuhA1OWiWYyttBz5kmCpk
+	Y5o8B1ch/2iQfbqduYy4LW2KMExqRHAyQMt948OofxWLuig5/v9HcSPGJX/2Gdfei
+X-Gm-Gg: ASbGncv0QIHmcCk40XSdFkEW+drhfd7x8KnhGoxVn0jC+cZhkZlYpTsdAmBm7rWix6h
+	FFtuWn8vyAGvfGUoSo1NAAerwnR/3cSNedfu9AKez8zyCv4RyRzELmuew0j5/GteR1Q4DiPsMVD
+	Bjx8p9pFxuWk5ealQePCVjYENGGih0zu8+T15LBPaqY93cQtR+l28w8b0aRt++U+mDXGrrSU0C/
+	I+MeZviIgHnuFj3uRPdOaXMhoEGJAuLh5xZ5Dxb5az3HAHc7yD2gPkk9XUh9l4QFBYDIjeGseSy
+	cokDc9LFJCMjNSZvz5AeAJG4XoAeIp+MHc3oYr4lQ5mtRTYUrs3nOuzXxVP36tZAtNg5ZL3e0hQ
+	tIeYdLe5bErx6H/VGC4g4T30QNGAqkw87LjQxvbOMMBrKNREYFicwzSc0REsk7eWhPOl4nZGhjU
+	4MCOUZwPwJCK5zdRphv1bGqBg=
+X-Received: by 2002:a05:6122:408e:b0:54a:a2a3:b16b with SMTP id 71dfb90a1353d-55fc26c49a0mr216524e0c.3.1765223616698;
+        Mon, 08 Dec 2025 11:53:36 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEQf0dRANa7315VoHii9uRqmwgs9Qvr1ewyX2o+LQRRodOU3oZR3J/58BN9mvyfJhG34NUMwA==
+X-Received: by 2002:a05:6122:408e:b0:54a:a2a3:b16b with SMTP id 71dfb90a1353d-55fc26c49a0mr216511e0c.3.1765223616195;
+        Mon, 08 Dec 2025 11:53:36 -0800 (PST)
+Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-37e6fe6bf8asm39681921fa.5.2025.12.08.11.53.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Dec 2025 11:53:35 -0800 (PST)
+Date: Mon, 8 Dec 2025 21:53:33 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>
+Cc: Loic Poulain <loic.poulain@oss.qualcomm.com>,
+        Robert Foss <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v9 1/5] media: dt-bindings: Add CAMSS device for Kaanapali
+Message-ID: <scnexmcrpemu6vcms3dmq7qjvx54h5pyumjvgqduospao4x2kt@hoi7zfygjq4f>
+References: <20251208-add-support-for-camss-on-kaanapali-v9-0-3fcd31258415@oss.qualcomm.com>
+ <20251208-add-support-for-camss-on-kaanapali-v9-1-3fcd31258415@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,109 +117,299 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251205065850.3841834-2-amhetre@nvidia.com>
+In-Reply-To: <20251208-add-support-for-camss-on-kaanapali-v9-1-3fcd31258415@oss.qualcomm.com>
+X-Authority-Analysis: v=2.4 cv=RtnI7SmK c=1 sm=1 tr=0 ts=69372cc1 cx=c_pps
+ a=wuOIiItHwq1biOnFUQQHKA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=gEfo2CItAAAA:8 a=KKAkSRfTAAAA:8 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=tTaC26Jt8vzVEXVZ0kYA:9 a=CjuIK1q_8ugA:10 a=XD7yVLdPMpWraOa8Un9W:22
+ a=sptkURWiP4Gy88Gu7hUp:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-ORIG-GUID: wsXqcG6ISPg2bH1uWwnA1ZBHiF9mlnKW
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjA4MDE2OCBTYWx0ZWRfX+YCmMkIwcCn5
+ dC0IcH50KYss0+MPEt3r6DzbWNBkMAt4L8hmqDr6Ib6JOcuEKF607YjML/G96yiI4qbCsDYgvUo
+ agclCN3lb2qJXOchc8I246OKBTZGPSh/LLt3Gv+Mi52ZOWD1ehLAWrEZg1cP8JT/GMc/4nP+c4F
+ rneEudUMCTTXS1HF4cYlMz7WTE6iXA0pD53eI8btyEURQ3E4vf8t7bydHRXaPNt5eKpqjaNi5nF
+ 2yrx1MPyJGsK5JtkRmftmMFXGPZ33e6Vcz6O7kNn37CvEJrn078DjR2E9tunwMpQaKq8tjYY7GB
+ +IrLnYdtPbmJ5pWWdpl7dieYlnrpwe4fZdI0KCs163VFV1/FprcjxNkygplUxBrqOzP4WOtF337
+ YQuqGoisrNOl5tQFiFfeZ8UpxcJ//A==
+X-Proofpoint-GUID: wsXqcG6ISPg2bH1uWwnA1ZBHiF9mlnKW
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-06_02,2025-12-04_04,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 suspectscore=0 lowpriorityscore=0 spamscore=0 adultscore=0
+ phishscore=0 impostorscore=0 clxscore=1015 bulkscore=0 priorityscore=1501
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512080168
 
-Hi Ashish,
+On Mon, Dec 08, 2025 at 04:39:47AM -0800, Hangxiang Ma wrote:
+> Add bindings for qcom,kaanapali-camss to support the Camera Subsystem
+> (CAMSS) on the Qualcomm Kaanapali platform.
+> 
+> The Kaanapali platform provides:
+> 
+> - 3 x VFE, 5 RDI per VFE
+> - 2 x VFE Lite, 4 RDI per VFE Lite
+> - 3 x CSID
+> - 2 x CSID Lite
+> - 6 x CSIPHY
+> - 2 x ICP
+> - 1 x IPE
+> - 2 x JPEG DMA & Downscaler
+> - 2 x JPEG Encoder
+> - 1 x OFE
+> - 5 x RT CDM
+> - 3 x TPG
 
-kernel test robot noticed the following build warnings:
+Please describe the acronyms.
 
-[auto build test WARNING on next-20251204]
-[also build test WARNING on v6.18]
-[cannot apply to robh/for-next linus/master v6.18 v6.18-rc7 v6.18-rc6]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> 
+> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+> Signed-off-by: Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>
+> ---
+>  .../bindings/media/qcom,kaanapali-camss.yaml       | 646 +++++++++++++++++++++
+>  1 file changed, 646 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/qcom,kaanapali-camss.yaml b/Documentation/devicetree/bindings/media/qcom,kaanapali-camss.yaml
+> new file mode 100644
+> index 000000000000..3b54620e14c6
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/qcom,kaanapali-camss.yaml
+> @@ -0,0 +1,646 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/qcom,kaanapali-camss.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm Kaanapali Camera Subsystem (CAMSS)
+> +
+> +maintainers:
+> +  - Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>
+> +
+> +description:
+> +  Kaanapali camera subsystem includes submodules such as CSIPHY (CSI Physical layer)
+> +  and CSID (CSI Decoder), which comply with the MIPI CSI2 protocol.
+> +
+> +  The subsystem also integrates a set of real-time image processing engines and their
+> +  associated configuration modules, as well as non-real-time engines.
+> +
+> +  Additionally, it encompasses a test pattern generator (TPG) submodule.
+> +
+> +properties:
+> +  compatible:
+> +    const: qcom,kaanapali-camss
+> +
+> +  reg:
+> +    items:
+> +      - description: Registers for CSID 0
+> +      - description: Registers for CSID 1
+> +      - description: Registers for CSID 2
+> +      - description: Registers for CSID Lite 0
+> +      - description: Registers for CSID Lite 1
+> +      - description: Registers for CSIPHY 0
+> +      - description: Registers for CSIPHY 1
+> +      - description: Registers for CSIPHY 2
+> +      - description: Registers for CSIPHY 3
+> +      - description: Registers for CSIPHY 4
+> +      - description: Registers for CSIPHY 5
+> +      - description: Registers for VFE (Video Front End) 0
+> +      - description: Registers for VFE 1
+> +      - description: Registers for VFE 2
+> +      - description: Registers for VFE Lite 0
+> +      - description: Registers for VFE Lite 1
+> +      - description: Registers for ICP (Imaging Control Processor) 0
+> +      - description: Registers for ICP 0 SYS
+> +      - description: Registers for ICP 1
+> +      - description: Registers for ICP 1 SYS
+> +      - description: Registers for IPE (Image Processing Engine)
+> +      - description: Registers for JPEG DMA & Downscaler
+> +      - description: Registers for JPEG Encoder
+> +      - description: Registers for OFE (Offline Front End)
+> +      - description: Registers for RT CDM (Camera Data Mover) 0
+> +      - description: Registers for RT CDM 1
+> +      - description: Registers for RT CDM 2
+> +      - description: Registers for RT CDM 3
+> +      - description: Registers for RT CDM 4
+> +      - description: Registers for TPG 0
+> +      - description: Registers for TPG 1
+> +      - description: Registers for TPG 2
+> +
+> +  reg-names:
+> +    items:
+> +      - const: csid0
+> +      - const: csid1
+> +      - const: csid2
+> +      - const: csid_lite0
+> +      - const: csid_lite1
+> +      - const: csiphy0
+> +      - const: csiphy1
+> +      - const: csiphy2
+> +      - const: csiphy3
+> +      - const: csiphy4
+> +      - const: csiphy5
+> +      - const: vfe0
+> +      - const: vfe1
+> +      - const: vfe2
+> +      - const: vfe_lite0
+> +      - const: vfe_lite1
+> +      - const: icp0
+> +      - const: icp0_sys
+> +      - const: icp1
+> +      - const: icp1_sys
+> +      - const: ipe
+> +      - const: jpeg_dma
+> +      - const: jpeg_enc
+> +      - const: ofe
+> +      - const: rt_cdm0
+> +      - const: rt_cdm1
+> +      - const: rt_cdm2
+> +      - const: rt_cdm3
+> +      - const: rt_cdm4
+> +      - const: tpg0
+> +      - const: tpg1
+> +      - const: tpg2
+> +
+> +  clocks:
+> +    maxItems: 60
+> +
+> +  clock-names:
+> +    items:
+> +      - const: camnoc_nrt_axi
+> +      - const: camnoc_rt_axi
+> +      - const: camnoc_rt_vfe0
+> +      - const: camnoc_rt_vfe1
+> +      - const: camnoc_rt_vfe2
+> +      - const: camnoc_rt_vfe_lite
+> +      - const: cpas_ahb
+> +      - const: cpas_fast_ahb
+> +      - const: csid
+> +      - const: csid_csiphy_rx
+> +      - const: csiphy0
+> +      - const: csiphy0_timer
+> +      - const: csiphy1
+> +      - const: csiphy1_timer
+> +      - const: csiphy2
+> +      - const: csiphy2_timer
+> +      - const: csiphy3
+> +      - const: csiphy3_timer
+> +      - const: csiphy4
+> +      - const: csiphy4_timer
+> +      - const: csiphy5
+> +      - const: csiphy5_timer
+> +      - const: gcc_axi_hf
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Ashish-Mhetre/iommu-arm-smmu-v3-Add-device-tree-support-for-CMDQV-driver/20251205-151258
-base:   next-20251204
-patch link:    https://lore.kernel.org/r/20251205065850.3841834-2-amhetre%40nvidia.com
-patch subject: [PATCH V4 1/3] iommu/arm-smmu-v3: Add device-tree support for CMDQV driver
-config: arm64-randconfig-004-20251209 (https://download.01.org/0day-ci/archive/20251209/202512090331.QAFgb6vQ-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 11.5.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251209/202512090331.QAFgb6vQ-lkp@intel.com/reproduce)
+This clock (and gcc_axi_sf below) still have the gcc_ prefix and GCC name. Why?
+It was pointed out in the previous review: clock names should be
+describing their purpose, not their source.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202512090331.QAFgb6vQ-lkp@intel.com/
+> +      - const: vfe0
+> +      - const: vfe0_fast_ahb
+> +      - const: vfe1
+> +      - const: vfe1_fast_ahb
+> +      - const: vfe2
+> +      - const: vfe2_fast_ahb
+> +      - const: vfe_lite
+> +      - const: vfe_lite_ahb
+> +      - const: vfe_lite_cphy_rx
+> +      - const: vfe_lite_csid
+> +      - const: qdss_debug_xo
+> +      - const: camnoc_ipe_nps
+> +      - const: camnoc_ofe
+> +      - const: gcc_axi_sf
+> +      - const: icp0
+> +      - const: icp0_ahb
+> +      - const: icp1
+> +      - const: icp1_ahb
+> +      - const: ipe_nps
+> +      - const: ipe_nps_ahb
+> +      - const: ipe_nps_fast_ahb
+> +      - const: ipe_pps
+> +      - const: ipe_pps_fast_ahb
+> +      - const: jpeg
+> +      - const: ofe_ahb
+> +      - const: ofe_anchor
+> +      - const: ofe_anchor_fast_ahb
+> +      - const: ofe_hdr
+> +      - const: ofe_hdr_fast_ahb
+> +      - const: ofe_main
+> +      - const: ofe_main_fast_ahb
+> +      - const: vfe0_bayer
+> +      - const: vfe0_bayer_fast_ahb
+> +      - const: vfe1_bayer
+> +      - const: vfe1_bayer_fast_ahb
+> +      - const: vfe2_bayer
+> +      - const: vfe2_bayer_fast_ahb
+> +
+> +  interrupts:
+> +    maxItems: 30
+> +
+> +  interrupt-names:
+> +    items:
+> +      - const: csid0
+> +      - const: csid1
+> +      - const: csid2
+> +      - const: csid_lite0
+> +      - const: csid_lite1
+> +      - const: csiphy0
+> +      - const: csiphy1
+> +      - const: csiphy2
+> +      - const: csiphy3
+> +      - const: csiphy4
+> +      - const: csiphy5
+> +      - const: vfe0
+> +      - const: vfe1
+> +      - const: vfe2
+> +      - const: vfe_lite0
+> +      - const: vfe_lite1
+> +      - const: camnoc_nrt
+> +      - const: camnoc_rt
+> +      - const: icp0
+> +      - const: icp1
+> +      - const: jpeg_dma
+> +      - const: jpeg_enc
+> +      - const: rt_cdm0
+> +      - const: rt_cdm1
+> +      - const: rt_cdm2
+> +      - const: rt_cdm3
+> +      - const: rt_cdm4
+> +      - const: tpg0
+> +      - const: tpg1
+> +      - const: tpg2
+> +
+> +  interconnects:
+> +    maxItems: 4
+> +
+> +  interconnect-names:
+> +    items:
+> +      - const: ahb
+> +      - const: hf_mnoc
+> +      - const: sf_icp_mnoc
+> +      - const: sf_mnoc
 
-All warnings (new ones prefixed by >>):
+You know... Failure to look around is a sin. What are the names of
+interconnects used by other devices? What do they actually describe?
 
-   drivers/iommu/arm/arm-smmu-v3/tegra241-cmdqv.c: In function 'tegra241_cmdqv_acpi_is_memory':
-   drivers/iommu/arm/arm-smmu-v3/tegra241-cmdqv.c:863:17: error: implicit declaration of function 'acpi_dev_resource_address_space' [-Werror=implicit-function-declaration]
-     863 |         return !acpi_dev_resource_address_space(res, &win);
-         |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/iommu/arm/arm-smmu-v3/tegra241-cmdqv.c: In function 'tegra241_cmdqv_acpi_get_irqs':
-   drivers/iommu/arm/arm-smmu-v3/tegra241-cmdqv.c:871:26: error: implicit declaration of function 'acpi_dev_resource_interrupt' [-Werror=implicit-function-declaration]
-     871 |         if (*irq <= 0 && acpi_dev_resource_interrupt(ares, 0, &r))
-         |                          ^~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/iommu/arm/arm-smmu-v3/tegra241-cmdqv.c: In function 'tegra241_cmdqv_find_acpi_resource':
-   drivers/iommu/arm/arm-smmu-v3/tegra241-cmdqv.c:879:36: error: implicit declaration of function 'to_acpi_device'; did you mean 'to_acpi_device_node'? [-Werror=implicit-function-declaration]
-     879 |         struct acpi_device *adev = to_acpi_device(dev);
-         |                                    ^~~~~~~~~~~~~~
-         |                                    to_acpi_device_node
->> drivers/iommu/arm/arm-smmu-v3/tegra241-cmdqv.c:879:36: warning: initialization of 'struct acpi_device *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
-   drivers/iommu/arm/arm-smmu-v3/tegra241-cmdqv.c:886:15: error: implicit declaration of function 'acpi_dev_get_resources'; did you mean 'acpi_get_event_resources'? [-Werror=implicit-function-declaration]
-     886 |         ret = acpi_dev_get_resources(adev, &resource_list,
-         |               ^~~~~~~~~~~~~~~~~~~~~~
-         |               acpi_get_event_resources
-   drivers/iommu/arm/arm-smmu-v3/tegra241-cmdqv.c:907:9: error: implicit declaration of function 'acpi_dev_free_resource_list' [-Werror=implicit-function-declaration]
-     907 |         acpi_dev_free_resource_list(&resource_list);
-         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~
-   cc1: some warnings being treated as errors
+This is an absolute NAK.
 
+> +
+> +  iommus:
+> +    items:
+> +      - description: VFE non-protected stream
+> +      - description: ICP0 shared stream
+> +      - description: ICP1 shared stream
+> +      - description: IPE CDM non-protected stream
+> +      - description: IPE non-protected stream
+> +      - description: JPEG non-protected stream
+> +      - description: OFE CDM non-protected stream
+> +      - description: OFE non-protected stream
+> +      - description: VFE / VFE Lite CDM non-protected stream
 
-vim +879 drivers/iommu/arm/arm-smmu-v3/tegra241-cmdqv.c
-
-918eb5c856f6ce Nate Watterson 2024-08-29  875  
-918eb5c856f6ce Nate Watterson 2024-08-29  876  static struct resource *
-918eb5c856f6ce Nate Watterson 2024-08-29  877  tegra241_cmdqv_find_acpi_resource(struct device *dev, int *irq)
-918eb5c856f6ce Nate Watterson 2024-08-29  878  {
-918eb5c856f6ce Nate Watterson 2024-08-29 @879  	struct acpi_device *adev = to_acpi_device(dev);
-918eb5c856f6ce Nate Watterson 2024-08-29  880  	struct list_head resource_list;
-918eb5c856f6ce Nate Watterson 2024-08-29  881  	struct resource_entry *rentry;
-918eb5c856f6ce Nate Watterson 2024-08-29  882  	struct resource *res = NULL;
-918eb5c856f6ce Nate Watterson 2024-08-29  883  	int ret;
-918eb5c856f6ce Nate Watterson 2024-08-29  884  
-918eb5c856f6ce Nate Watterson 2024-08-29  885  	INIT_LIST_HEAD(&resource_list);
-918eb5c856f6ce Nate Watterson 2024-08-29  886  	ret = acpi_dev_get_resources(adev, &resource_list,
-918eb5c856f6ce Nate Watterson 2024-08-29  887  				     tegra241_cmdqv_acpi_is_memory, NULL);
-918eb5c856f6ce Nate Watterson 2024-08-29  888  	if (ret < 0) {
-918eb5c856f6ce Nate Watterson 2024-08-29  889  		dev_err(dev, "failed to get memory resource: %d\n", ret);
-918eb5c856f6ce Nate Watterson 2024-08-29  890  		return NULL;
-918eb5c856f6ce Nate Watterson 2024-08-29  891  	}
-918eb5c856f6ce Nate Watterson 2024-08-29  892  
-918eb5c856f6ce Nate Watterson 2024-08-29  893  	rentry = list_first_entry_or_null(&resource_list,
-918eb5c856f6ce Nate Watterson 2024-08-29  894  					  struct resource_entry, node);
-918eb5c856f6ce Nate Watterson 2024-08-29  895  	if (!rentry) {
-918eb5c856f6ce Nate Watterson 2024-08-29  896  		dev_err(dev, "failed to get memory resource entry\n");
-918eb5c856f6ce Nate Watterson 2024-08-29  897  		goto free_list;
-918eb5c856f6ce Nate Watterson 2024-08-29  898  	}
-918eb5c856f6ce Nate Watterson 2024-08-29  899  
-918eb5c856f6ce Nate Watterson 2024-08-29  900  	/* Caller must free the res */
-918eb5c856f6ce Nate Watterson 2024-08-29  901  	res = kzalloc(sizeof(*res), GFP_KERNEL);
-918eb5c856f6ce Nate Watterson 2024-08-29  902  	if (!res)
-918eb5c856f6ce Nate Watterson 2024-08-29  903  		goto free_list;
-918eb5c856f6ce Nate Watterson 2024-08-29  904  
-918eb5c856f6ce Nate Watterson 2024-08-29  905  	*res = *rentry->res;
-918eb5c856f6ce Nate Watterson 2024-08-29  906  
-918eb5c856f6ce Nate Watterson 2024-08-29  907  	acpi_dev_free_resource_list(&resource_list);
-918eb5c856f6ce Nate Watterson 2024-08-29  908  
-918eb5c856f6ce Nate Watterson 2024-08-29  909  	INIT_LIST_HEAD(&resource_list);
-918eb5c856f6ce Nate Watterson 2024-08-29  910  
-918eb5c856f6ce Nate Watterson 2024-08-29  911  	if (irq)
-918eb5c856f6ce Nate Watterson 2024-08-29  912  		ret = acpi_dev_get_resources(adev, &resource_list,
-918eb5c856f6ce Nate Watterson 2024-08-29  913  					     tegra241_cmdqv_acpi_get_irqs, irq);
-918eb5c856f6ce Nate Watterson 2024-08-29  914  	if (ret < 0 || !irq || *irq <= 0)
-918eb5c856f6ce Nate Watterson 2024-08-29  915  		dev_warn(dev, "no interrupt. errors will not be reported\n");
-918eb5c856f6ce Nate Watterson 2024-08-29  916  
-918eb5c856f6ce Nate Watterson 2024-08-29  917  free_list:
-918eb5c856f6ce Nate Watterson 2024-08-29  918  	acpi_dev_free_resource_list(&resource_list);
-918eb5c856f6ce Nate Watterson 2024-08-29  919  	return res;
-918eb5c856f6ce Nate Watterson 2024-08-29  920  }
-918eb5c856f6ce Nate Watterson 2024-08-29  921  
+This will map all IOMMUs to the same domain. Are you sure that this is
+what we want? Or do we wait for iommu-maps to be fixed?
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+With best wishes
+Dmitry
 
