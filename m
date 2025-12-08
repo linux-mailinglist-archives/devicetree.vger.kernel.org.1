@@ -1,159 +1,191 @@
-Return-Path: <devicetree+bounces-245252-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245253-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBA7FCADC0D
-	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 17:29:55 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1DABCADC16
+	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 17:30:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 866B93009541
-	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 16:29:54 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 64DA8300AC5A
+	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 16:30:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98AE82E62D1;
-	Mon,  8 Dec 2025 16:29:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UTWOR8XB"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94C6225487C;
+	Mon,  8 Dec 2025 16:30:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EF04F9C0;
-	Mon,  8 Dec 2025 16:29:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2549F2D94B2;
+	Mon,  8 Dec 2025 16:30:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765211393; cv=none; b=IHlR1K1AVCVjVuQIw8STePQVTjwQY5/wUnbuzXQU1WLBsxvZJRKpSWKCHUFPzcQGf2kBezU42gOOVyJpGARQcWMaMdWo4j40/GTdRFrAYtM6pRVDBObqOgHgaXSBZthQB3oHzTMqLphMiSwCmNIiaAxtGnJoPKkkDCtJ9msjXrI=
+	t=1765211408; cv=none; b=jjUy2bkr2v/AvwSeSOkTuV6m45wztBzvL4ihbmCF24VPTwFEH4IKRW8z/inNqFy/IzpyNP3lSARW25bIPErV4OiQY2T40s2W7a66435YcPZbhUNNWI15LqNu0m/GWA885il7Ce3T+ITr6OyIW3hLTKqrZWaFrrMOJKtZJXGcflA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765211393; c=relaxed/simple;
-	bh=u9/V6FO6d0rm9qZyiiTMyVquQKST3H4QQ0D6A/qqc+k=;
+	s=arc-20240116; t=1765211408; c=relaxed/simple;
+	bh=0YFnnRyoofr72fBq6pWHMYFSkqsDU8YOzTAubZLSam4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DjHzih/17m7TePHSc/lsWLUx/NS42ra4x8FCiIxfGufAteJIWhCNnlXSo6lgH016/RWcAhMNeD6ZR2Eg1gQn7rJHqSI/Sjr+DNAt3QPKwcx2Zpo9zDvh2aqsTRByPNYLczvwUqE5SayQ6FH/fsEJlWWj6ZllAwG181T2V2i7AEA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UTWOR8XB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3AE62C4CEF1;
-	Mon,  8 Dec 2025 16:29:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765211393;
-	bh=u9/V6FO6d0rm9qZyiiTMyVquQKST3H4QQ0D6A/qqc+k=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UTWOR8XBk8PRSyJtXmVlAeQbiK5G1P0UP2JqnYfGjc3F+G5Z4H2ykjk7I0uCe7PzP
-	 85SK5BH2fPt4UCcV1v3jLmrZ54ZovyY7FcUURybT9QAs4xXxYBJDbevjXVm2iCTb0I
-	 CMLbIIVri6eCqpzFxDirb5vPHxzsa7Jvhb7rNMRmyCFuuYt/nYuvVKzHZB3WMykPAS
-	 +qaagc0G5nGRQubEMOUivMoopgz9WltrB3miUbOhTGVt//2L4t/py+uAvb/yOJM3UX
-	 wsW2pJ+HJZAD5wGqhlh06tko1x6AbcULmAitSBMIPQ4MMWDlH4HJzg0yZq4nbFGJ3N
-	 6DcdGYQpzMT9w==
-Date: Mon, 8 Dec 2025 16:29:47 +0000
-From: Conor Dooley <conor@kernel.org>
-To: E Shattow <e@freeshell.de>
-Cc: Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=cRUG/mgFH8Mz85RNlyxy6LgnU9C0RcJhNXGzV5OH/zgvmNLTaY6XV+778oTyGWbVZNRj7jK22FFYpGh254zU+7hHL8j2h9uMMS5xTsCgdB8ELQpBy052iMbfmmwNnHMKQM1q347i5uTfxM5sfRIF9mo2/ofS9sv3a/EDF2O9Ly8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=arm.com; spf=none smtp.mailfrom=foss.arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=foss.arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 308D51691;
+	Mon,  8 Dec 2025 08:29:58 -0800 (PST)
+Received: from bogus (e133711.arm.com [10.1.196.55])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 87ECF3F740;
+	Mon,  8 Dec 2025 08:30:03 -0800 (PST)
+Date: Mon, 8 Dec 2025 16:30:00 +0000
+From: Sudeep Holla <sudeep.holla@arm.com>
+To: Marek Vasut <marek.vasut@mailbox.org>
+Cc: Cristian Marussi <cristian.marussi@arm.com>, arm-scmi@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Hal Feng <hal.feng@starfivetech.com>, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v1] riscv: dts: starfive: Append starfive,jh7110
- compatible to VisionFive 2 Lite
-Message-ID: <20251208-jogging-morally-9b787b7ab1b8@spud>
-References: <20251206204540.112614-1-e@freeshell.de>
+	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: firmware: arm,scmi: Document
+ arm,poll-transport property
+Message-ID: <20251208-quixotic-cocky-emu-9a3916@sudeepholla>
+References: <20251202-evasive-neon-rhino-d2745e@sudeepholla>
+ <66257fcf-9024-454f-b776-4ba584963ebe@mailbox.org>
+ <aS82GSN8c2SnRn4S@bogus>
+ <8d773671-5e2e-4e21-ade6-2bf9a3b75066@mailbox.org>
+ <20251203-thick-didactic-cockatoo-deaa1d@sudeepholla>
+ <4ccbcffd-bcc7-478b-a525-a4a11e3092ee@mailbox.org>
+ <20251204-calm-peacock-of-fantasy-6b8cbe@sudeepholla>
+ <e25c690c-e74d-4641-a97e-8eae81a59168@mailbox.org>
+ <20251205-winged-quizzical-pigeon-ed692d@sudeepholla>
+ <06fc0557-6b7c-4092-aeec-e3e16bab2d72@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="S/9N8GZdPnvmudqA"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251206204540.112614-1-e@freeshell.de>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <06fc0557-6b7c-4092-aeec-e3e16bab2d72@mailbox.org>
 
+On Sun, Dec 07, 2025 at 10:16:36AM +0100, Marek Vasut wrote:
+> On 12/5/25 10:54 AM, Sudeep Holla wrote:
+> 
+> Hello Sudeep,
+> 
+> > > > > > Also IIUC, the irq request happens
+> > > > > > as part of channel startup and there are no explicit APIs for the mbox client
+> > > > > > driver to control that. SCMI is mbox client in this case.
+> > > > > 
+> > > > > Sure, but the mailbox driver has to make sure it is correctly demuxing the
+> > > > > IRQs it handles and correctly sends received_data notifications to the right
+> > > > > channel(s) .
+> > > > > 
+> > > > 
+> > > > Agreed, but the concern is that if SCMI is forced to use polling when the
+> > > > channel is opened, and IRQs are enabled by default with no way for SCMI to
+> > > > disable them in polling mode, we could run into issues.
+> > > 
+> > > This constellation seems odd -- if the channel can do IRQs, then this
+> > > property should not be present in DT.
+> > > 
+> > 
+> > Yes, but there is no way to validate or check this and that is the root
+> > cause for all my worries.
+> 
+> Should a configuration like that even be considered valid and relevant ?
+> 
 
---S/9N8GZdPnvmudqA
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Yes, as I have mentioned, there is no way to validate the same in the kernel.
 
-On Sat, Dec 06, 2025 at 12:45:30PM -0800, E Shattow wrote:
-> Append starfive,jh7110 compatible to VisionFive 2 Lite and VisionFive 2
-> Lite eMMC in the "least compatible" end of the list. JH7110S on these
-> boards is the same tape-out as JH7110 however rated for thermal, voltage,
-> and frequency characteristics for a maximum of 1.25GHz operation.
->=20
-> Link to previous discussion suggesting this change:
-> https://lore.kernel.org/lkml/1f96a267-f5c6-498e-a2c4-7a47a73ea7e7@canonic=
-al.com/
->=20
-> Fixes: 900b32fd601b ("riscv: dts: starfive: Add VisionFive 2 Lite board d=
-evice tree")
-> Fixes: ae264ae12442 ("riscv: dts: starfive: Add VisionFive 2 Lite eMMC bo=
-ard device tree")
-> Suggested-by: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
-> Signed-off-by: E Shattow <e@freeshell.de>
+> > > > I realise it’s a very
+> > > > specific corner case, but every time I’ve assumed such scenarios wouldn’t
+> > > > occur, we eventually ended up encountering them. So sorry if I am very
+> > > > pedantic, but I prefer to start smaller and restrictive and expand if and
+> > > > when necessary or required only.
+> > > 
+> > > I don't think this case, where mailbox channel does IRQs and polling is
+> > > enabled, can/should even be considered valid. Either the channel does not do
+> > > IRQs and then it should do polling, or it does IRQs and then it should use
+> > > IRQs, but not both.
+> > > 
+> > 
+> > Yes ideally, but having loose ends like this binding which allows someone
+> > to add it to their DT complicates though it is invalid. We have no way to
+> > detect and I don't want to work around such configs in the future.
+> 
+> If the DT is invalid, bad things happen, but I would argue that is then a DT
+> bug and the DT should be fixed.
+> 
 
-You can't do this without modifying the binding too, as this doesn't
-pass dtbs_check.
+Well, ideally I would like that, but not always the reality.
 
-However, is this actually correct? The frequency of operation and the
-temperature range aren't a superset of what the jh7110 can do, what is
-the actual advantage of having it? If there's some software that this
-would make a difference for, please mention it in the commit message.
+> [...]
+> 
+> > > > Yes, that’s essential, because polling in an SMC context is meaningless in my
+> > > > opinion.
+> > > 
+> > > Maybe the "a2p" IRQ is also used for notifications from longer running
+> > > operations ?
+> > > 
+> > 
+> > Yes, it is some sort of work around some platforms implemented as by design
+> > when the SMC returns, the synchronous commands must complete and it is had
+> > to support async SCMI commands without platform specific interrupt(p2a). This
+> > a2p is sort of completion interrupt for synchronous command. I assume the
+> > platform may offload the task from secure f/w to something else otherwise
+> > secure side needs to be given CPU cycles to complete which complicates this.
+> > In short SMC is synchronous and if the execution returns from it in NS world,
+> > the command is complete.
+> 
+> Wouldn't polling still be useful for the async case , even in SMC setup?
+> Note that the SMC setup does use shmem, and therefore can do polling on the
+> shmem.
+> 
 
-Cheers,
-Conor.
+No, it makes no sense for SMC as I have already mentioned few times.
 
-> ---
->  .../dts/starfive/jh7110-starfive-visionfive-2-lite-emmc.dts     | 2 +-
->  .../boot/dts/starfive/jh7110-starfive-visionfive-2-lite.dts     | 2 +-
->  2 files changed, 2 insertions(+), 2 deletions(-)
->=20
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-li=
-te-emmc.dts b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-lit=
-e-emmc.dts
-> index e27a662d4022..7544efa95de4 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-lite-emmc=
-=2Edts
-> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-lite-emmc=
-=2Edts
-> @@ -9,7 +9,7 @@
-> =20
->  / {
->  	model =3D "StarFive VisionFive 2 Lite eMMC";
-> -	compatible =3D "starfive,visionfive-2-lite-emmc", "starfive,jh7110s";
-> +	compatible =3D "starfive,visionfive-2-lite-emmc", "starfive,jh7110s", "=
-starfive,jh7110";
->  };
-> =20
->  &mmc0 {
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-li=
-te.dts b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-lite.dts
-> index b96eea4fa7d5..b9913991a1b7 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-lite.dts
-> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-lite.dts
-> @@ -9,7 +9,7 @@
-> =20
->  / {
->  	model =3D "StarFive VisionFive 2 Lite";
-> -	compatible =3D "starfive,visionfive-2-lite", "starfive,jh7110s";
-> +	compatible =3D "starfive,visionfive-2-lite", "starfive,jh7110s", "starf=
-ive,jh7110";
->  };
-> =20
->  &mmc0 {
->=20
-> base-commit: 5e5ea7f61610239fca058011e7d4f342b34d1558
-> --=20
-> 2.50.0
->=20
+> > > [...]
+> > > 
+> > > > > > Yes it can be minimalistic but not restrictive. As I already clearly mentioned
+> > > > > > I don't see it makes any sense to enable this for SMC/OPTEE. Lets start with
+> > > > > > just mailbox to start with and extend to other transports if and when needed.
+> > > > > > It would be good to impose that restriction in the binding as well but that
+> > > > > > is not a must IMO. I am fine if the bindings for whatever reasons(though I
+> > > > > > don't see the need) to apply for any transport.
+> > > > > So I should simply drop the smc.c changes , keep the rest, and send V2 ?
+> > > > 
+> > > > Not just that. Unless DT maintainers oppose, I just want to keep this
+> > > > new property valid only for mailbox transport(i.e. "arm,scmi" compatible
+> > > > not otherwise) so that we can catch any other use in binding checks and
+> > > > interested parties must discuss on the list and expand that if they require.
+> > > > 
+> > > > Also we can explore if we can parse and scan this in mailbox transport for
+> > > > now.
+> > > I feel that this only adds more implementation complexity and makes the
+> > > solution less generic, while it does win us very little in the end ? The
+> > > generic solution implementation is actually easier to implement.
+> > 
+> > Yes I want it less generic to start with. Why you want to start making
+> > this workaround on your platform a generic implementation just because
+> > the specification has provision for it ?
+> 
+> Because this is generic kernel code, it seems counterintuitive to introduce
+> less generic solution which requires more complex implementation.
+> 
 
---S/9N8GZdPnvmudqA
-Content-Type: application/pgp-signature; name="signature.asc"
+I would argue. Lot of code gets added as specific and gets generalised
+eventually if there are more users and in different configurations.
 
------BEGIN PGP SIGNATURE-----
+> Since the DEN0056 specification states this mode of operation is supported,
+> I also wouldn't call it a workaround.
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaTb8+wAKCRB4tDGHoIJi
-0uetAP9cMQDvAr0AAp4fRxgA7OURrPcNt9GY00FOTAltOETTCQEAujHQ4cW/R5jp
-1OiO+b1i5Yq6FHDPK6W9KdLrsNN47w8=
-=PClC
------END PGP SIGNATURE-----
+Sure, I take back if I called it workaround. But why would we want to make
+it generic when we can test only mailbox based platform with it. I don't see
+how it can be useful with SMC/Optee. I am not sure if it is useful with
+virtio and if there is a way to test this. All I am saying is I don't want to
+enable something and advertise it as generic when we have no platform or way
+to test it and keep it functionally correct.
 
---S/9N8GZdPnvmudqA--
+-- 
+Regards,
+Sudeep
 
