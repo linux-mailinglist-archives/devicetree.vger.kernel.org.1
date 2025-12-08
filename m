@@ -1,385 +1,284 @@
-Return-Path: <devicetree+bounces-245120-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245121-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77104CAC5AE
-	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 08:33:33 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3529CAC5D6
+	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 08:36:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 811B630125CF
-	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 07:33:31 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id BAE323007181
+	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 07:36:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 249BA238C2F;
-	Mon,  8 Dec 2025 07:33:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C2BD2D4B68;
+	Mon,  8 Dec 2025 07:36:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="IcSMIFxc"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="GIjxRrEr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02EC224DD1F
-	for <devicetree@vger.kernel.org>; Mon,  8 Dec 2025 07:33:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF16D2253FC;
+	Mon,  8 Dec 2025 07:36:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765179211; cv=none; b=kcNolnGtXTb79C0LVblZEzhHNjSsRUoSDQlC7zveX5yb4Di/yMmev8NxT2RGAmHXmILzx/3r074lAMplfbWg+luT9cHJ2JK16s10ee1TiCI0OFDQ6D3kjZuvl2zkXBFnOUlR5BWs57+maAYTzb8FtXprRVSIYWng368Jj+IjEGs=
+	t=1765179396; cv=none; b=hIoUAabA0kNZmAdwvb3G2GO8+9H28p8/EVDTne9jGmcBCAHN8DSiaUXh8T+3rsrhoMHU9wRy1w5uhyrKN1lJ6oXbnQq7B984Uo68xoU/KW0VS3xYT9GmX4TMFfoJbHwImOWZ4n2lfDVidNOnIh9JESoIoBHdFdLCGD5Y8FV5Ae4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765179211; c=relaxed/simple;
-	bh=dgsL85HtQH4N6Gkpd2wP0Y9dRnpZAZRObKliYeGH4gs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=QUIsrCi+hH4hhbW5qy/nQS7+8JSttbcZHkZ1UZu2UA1cqL9bmJAvZKtAo9gGtvjIKGx465qZ49v8gM2lHge33wWZ4+EUAiXNCyWeTeHrc3AbrLdEz+Y7hBlrm8WjXz4w0VmYO1Jh5fSrN8uU/PeAS2TojlToKQAY1TMuPMnfaqM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=IcSMIFxc; arc=none smtp.client-ip=209.85.210.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-7b7828bf7bcso4782697b3a.2
-        for <devicetree@vger.kernel.org>; Sun, 07 Dec 2025 23:33:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1765179208; x=1765784008; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yk1cUWmBl5XhhK+g/p4690RHmYDgOIsh6ZzYZ8NiuW0=;
-        b=IcSMIFxcjXai0vLoCRETN4HmASuU8xizh/JG6tp3wXd4FbvjmIJn9vGwEb3ia9u+Bt
-         jbO/DKobVdzNAg2NUuQaXaKCyuXz94WSfKd9jvjwAsu2FCjdl/8bMiuKGtxIx2QdBkrY
-         sOz/nhZdYlFtbW1E+q6V7L84ILhWSdlSNcTWI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765179208; x=1765784008;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=yk1cUWmBl5XhhK+g/p4690RHmYDgOIsh6ZzYZ8NiuW0=;
-        b=JbrmET+8bxrhE1sGIFWHpCQ73Th5hGxaihxh437KFIXXdPuI6C/Qeqk9dqjoDoXCCb
-         ZMjJs0hM/aNm2bKoBbr8J0gZK3e9xdkfW0Dua8GXpaBFUPC9T8D3H/LonLrgXERD079Z
-         nJR+pdNtSJfRfkhYSCkcTSkq+c9D4PF+fWUGkO5rmDbaIqsyyyVWdI+p5UyAhzGtzwq4
-         +1OH664ClGGtmCGpiTQN8VJTBcCjRzxZGh0dzWZzqooMZnARlU5FLuWYDn32tRv/lPZF
-         JWWqj0KU/gviuMTxZxxH47nD1sDevswaUax5BJVOd5iHmNMSfnM4khodgZtk4NVqv4+8
-         saeQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXPB4taE9lziSNPPpY1EOaaD/xV9ay+Z54TGZFeN5rdp6930KMwTeI3nOjH3bph8Glt9UNurNkk8FiR@vger.kernel.org
-X-Gm-Message-State: AOJu0YzM+vwtIwHwXfhdZ1zcQ3WZOZSmZpwS+DnCtOlFegaUXTMYavUL
-	avf2xCP0HpYRzBMDS0Hh2ER7cs1FCbv6O4qN8H/EjbMM6VTULaiXGy0jzF745LVji4OxbdzRPP5
-	JpJAy8g==
-X-Gm-Gg: ASbGncu3SbGk7FYbzwxkB3D+o/HHFNZxA7dkS1mkcfr48ytnW8by5f/WIeT7Snyb2qW
-	7FOQBVqtw6RtP+WUcDagK1g3X/uJ/A6hUWvtXDyPXVmw1Dz2CWSCxuzV1fMBrl72tk5XfUxmuLH
-	RXoQCBeJuU/Hrsj532yY82ay7H46llSyX5HVgjxTf4HmB8RTlMk0PruFn/JdT7zgsPpcTZRb+pP
-	s5xAfyQOuorujfDNH99VmvOoKnoxZJwMEGSO8p0sKtFtjZcn/nyCDp0U1sShBGbIqE8QlaKt3JK
-	4cAYHMVR4mlIUzsyZesNsyoR6Nj4U3I91FCA5uthKzHD/H/8rkSRRmpwCBXbhzSJ6SpY4r6xBSL
-	k9HatIcxfi64g8bJkhnjB5EJ/c9Z7r5o8JHdjiT4JBpatBRcBQ9fFCpW5Fl3DbxRiawagSvwe5M
-	905oP8PKj6xR7mUp9S+ycN9R7El+/BNdnsE6usvxNDowgBbqxgLjt1csIkqvabvy+3P3u+
-X-Google-Smtp-Source: AGHT+IH03+VWpfw72JOyBUA2/6zHYSF0GZ6M4iF47ZhbShTJYVZdsObM/Okmg4+ncXpzCQ/1sI3Tkw==
-X-Received: by 2002:a05:6a00:a8e:b0:7b7:8aad:99cc with SMTP id d2e1a72fcca58-7e8c0ad15ecmr6144301b3a.3.1765179208186;
-        Sun, 07 Dec 2025 23:33:28 -0800 (PST)
-Received: from wenstp920.tpe.corp.google.com ([2a00:79e0:201d:8:d31e:c84f:5cc1:d554])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7e29ff6b56esm12127686b3a.20.2025.12.07.23.33.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 07 Dec 2025 23:33:27 -0800 (PST)
-From: Chen-Yu Tsai <wenst@chromium.org>
-To: Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Chen-Yu Tsai <wenst@chromium.org>,
-	linux-mediatek@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [RFC PATCH 3/3] [EXAMPLE] arm64: dts: mediatek: ciri: Drop SKU-specific overlays
-Date: Mon,  8 Dec 2025 15:33:04 +0800
-Message-ID: <20251208073306.75279-4-wenst@chromium.org>
-X-Mailer: git-send-email 2.52.0.223.gf5cc29aaa4-goog
-In-Reply-To: <20251208073306.75279-1-wenst@chromium.org>
-References: <20251208073306.75279-1-wenst@chromium.org>
+	s=arc-20240116; t=1765179396; c=relaxed/simple;
+	bh=D20F60M3wNp1R/DsE0AEzkJ+BGmXT4BYdML64JVTpvY=;
+	h=Content-Type:MIME-Version:In-Reply-To:References:Subject:From:Cc:
+	 To:Date:Message-ID; b=NqIoA+fl06mp5q6sKeu6CkR5INcOftpRD4CXS0rDZU9zJ/huJY9v/HK/1+DKW8y3GbXawYQmz1T9BWxSJUiq1pZWJms65G0sHeyOBSslEM1npUjkAgnR68ShfjBirREL4ACKjK62gopYY7yVuExeRZim+Usc9odYYQqfwRUUO0M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=GIjxRrEr; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from mail.ideasonboard.com (unknown [IPv6:2401:4900:be8a:6a58:2d26:4571:d85d:6729])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 2EB49766;
+	Mon,  8 Dec 2025 08:34:05 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1765179246;
+	bh=D20F60M3wNp1R/DsE0AEzkJ+BGmXT4BYdML64JVTpvY=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=GIjxRrErZtbkvtoCD6tZar6AO3b6bm9pRjuw8ncizW785GQl22WVFkXSTJ5i+/p6i
+	 txlgRHpw04YPyIYNK2JcWs1wRH4XUnCL8KbrGnc9aSfyJs5G1THvwQ2L4kMCY9DVvT
+	 +Rj9ZEgsxMEfEPj5aHukWL+1Kt1UJuHXv+2QDEE8=
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <032b441e-eefc-4574-bf7a-5c4d09599925@ideasonboard.com>
+References: <20251112115459.2479225-1-r-donadkar@ti.com> <20251112115459.2479225-18-r-donadkar@ti.com> <032b441e-eefc-4574-bf7a-5c4d09599925@ideasonboard.com>
+Subject: Re: [PATCH v8 17/18] media: ti: j721e-csi2rx: Support runtime suspend
+From: Jai Luthra <jai.luthra@ideasonboard.com>
+Cc: y-abhilashchandra@ti.com, devarsht@ti.com, s-jain1@ti.com, vigneshr@ti.com, mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org, p.zabel@pengutronix.de, conor+dt@kernel.org, sakari.ailus@linux.intel.com, hverkuil-cisco@xs4all.nl, changhuang.liang@starfivetech.com, jack.zhu@starfivetech.com, sjoerd@collabora.com, dan.carpenter@linaro.org, hverkuil+cisco@kernel.org, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, devicetree@vger.kernel.org
+To: Rishikesh Donadkar <r-donadkar@ti.com>, Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, jai.luthra@linux.dev, laurent.pinchart@ideasonboard.com, mripard@kernel.org, Vignesh Raghavendra <vigneshr@ti.com>
+Date: Mon, 08 Dec 2025 13:06:18 +0530
+Message-ID: <176517937821.20066.4604793543801654609@freya>
+User-Agent: alot/0.12.dev62+gb9d6144a6
 
-The final SKU-specific overlays only set the top level board compatible
-and model, but add nothing else. The specifics are not super important
-to the kernel, and could be removed so we don't have to have so many
-source files.
+Hi Tomi,
 
-However, the ChromeOS bootloader (coreboot / depthcharge) selects the
-device tree blob to load basd on the compatible string, so the mapping
-from a SKU-specific compatible to a DTB (or a series of DTB/DTBOs) needs
-to be maintained somewhere to build the FIT image.
+Quoting Tomi Valkeinen (2025-12-01 18:52:36)
+> Hi,
+>=20
+> On 12/11/2025 13:54, Rishikesh Donadkar wrote:
+> > From: Jai Luthra <jai.luthra@ideasonboard.com>
+> >=20
+> > Add support for runtime power-management to enable powering off the
+> > shared power domain between Cadence CSI2RX and TI CSI2RX wrapper when
+> > the device(s) are not in use.
+> >=20
+> > When powering off the IP, the PSI-L endpoint loses the paired DMA
+> > channels. Thus we have to release the DMA channels at runtime suspend
+> > and request them again at resume.
+>=20
+> I'm not an expert on the dmaengine, but to me this sounds like a bug in
+> the dma driver. It just sounds very wrong...
+>=20
 
-Move the SKU-specific top level compatible strings to a separate file
-stored with the device tree sources, and drop the SKU specific files.
+Cc: Vignesh
 
-Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+IIRC this was done because on AM62 the CSI2RX is on a separate power domain
+and it uses DMA channels from the system-wide DMA engine.
 
----
-This is meant to serve as an example for dropping SKU-specific files
-that just have specific identifiers that the kernel doesn't care about,
-i.e. doesn't need to be present in the DTB itself, but need to be
-preserved for other purposes.
----
- arch/arm64/boot/dts/mediatek/Makefile         | 24 +++------
- .../dts/mediatek/mt8188-geralt-ciri-sku0.dtso | 11 ----
- .../dts/mediatek/mt8188-geralt-ciri-sku1.dtso | 11 ----
- .../dts/mediatek/mt8188-geralt-ciri-sku2.dtso | 11 ----
- .../dts/mediatek/mt8188-geralt-ciri-sku3.dtso | 11 ----
- .../dts/mediatek/mt8188-geralt-ciri-sku4.dtso | 11 ----
- .../dts/mediatek/mt8188-geralt-ciri-sku5.dtso | 11 ----
- .../dts/mediatek/mt8188-geralt-ciri-sku6.dtso | 11 ----
- .../dts/mediatek/mt8188-geralt-ciri-sku7.dtso | 11 ----
- arch/arm64/boot/dts/mediatek/mt8188.yaml      | 51 +++++++++++++++++++
- 10 files changed, 59 insertions(+), 104 deletions(-)
- delete mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku0.dtso
- delete mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku1.dtso
- delete mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku2.dtso
- delete mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku3.dtso
- delete mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku4.dtso
- delete mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku5.dtso
- delete mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku6.dtso
- delete mode 100644 arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku7.dtso
- create mode 100644 arch/arm64/boot/dts/mediatek/mt8188.yaml
+And as those two drivers have different set of users, we have situations
+where CSI2RX goes to runtime suspend state and turns off the power and
+clocks, while the DMA engine remains on as it has other users. This leads
+to the paired PSIL channels to become invalid, and needs a re-pairing.
 
-diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
-index 39a844386366..5123d15c62c1 100644
---- a/arch/arm64/boot/dts/mediatek/Makefile
-+++ b/arch/arm64/boot/dts/mediatek/Makefile
-@@ -89,36 +89,28 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8188-evb.dtb
- 
- mt8188-geralt-ciri-sku0-dtbs := mt8188-geralt-ciri.dtb \
- 				mt8188-geralt-ciri-panel-boe.dtbo \
--				mt8188-geralt-ciri-audio-max98390-rt5682s.dtbo \
--				mt8188-geralt-ciri-sku0.dtbo
-+				mt8188-geralt-ciri-audio-max98390-rt5682s.dtbo
- mt8188-geralt-ciri-sku1-dtbs := mt8188-geralt-ciri.dtb \
- 				mt8188-geralt-ciri-panel-ivo.dtbo \
--				mt8188-geralt-ciri-audio-max98390-es8326.dtbo \
--				mt8188-geralt-ciri-sku1.dtbo
-+				mt8188-geralt-ciri-audio-max98390-es8326.dtbo
- mt8188-geralt-ciri-sku2-dtbs := mt8188-geralt-ciri.dtb \
- 				mt8188-geralt-ciri-panel-boe.dtbo \
--				mt8188-geralt-ciri-audio-max98390-es8326.dtbo \
--				mt8188-geralt-ciri-sku2.dtbo
-+				mt8188-geralt-ciri-audio-max98390-es8326.dtbo
- mt8188-geralt-ciri-sku3-dtbs := mt8188-geralt-ciri.dtb \
- 				mt8188-geralt-ciri-panel-ivo.dtbo \
--				mt8188-geralt-ciri-audio-max98390-rt5682s.dtbo \
--				mt8188-geralt-ciri-sku3.dtbo
-+				mt8188-geralt-ciri-audio-max98390-rt5682s.dtbo
- mt8188-geralt-ciri-sku4-dtbs := mt8188-geralt-ciri.dtb \
- 				mt8188-geralt-ciri-panel-boe.dtbo \
--				mt8188-geralt-ciri-audio-tas2563-rt5682s.dtbo \
--				mt8188-geralt-ciri-sku4.dtbo
-+				mt8188-geralt-ciri-audio-tas2563-rt5682s.dtbo
- mt8188-geralt-ciri-sku5-dtbs := mt8188-geralt-ciri.dtb \
- 				mt8188-geralt-ciri-panel-ivo.dtbo \
--				mt8188-geralt-ciri-audio-tas2563-es8326.dtbo \
--				mt8188-geralt-ciri-sku5.dtbo
-+				mt8188-geralt-ciri-audio-tas2563-es8326.dtbo
- mt8188-geralt-ciri-sku6-dtbs := mt8188-geralt-ciri.dtb \
- 				mt8188-geralt-ciri-panel-boe.dtbo \
--				mt8188-geralt-ciri-audio-tas2563-es8326.dtbo \
--				mt8188-geralt-ciri-sku6.dtbo
-+				mt8188-geralt-ciri-audio-tas2563-es8326.dtbo
- mt8188-geralt-ciri-sku7-dtbs := mt8188-geralt-ciri.dtb \
- 				mt8188-geralt-ciri-panel-ivo.dtbo \
--				mt8188-geralt-ciri-audio-tas2563-rt5682s.dtbo \
--				mt8188-geralt-ciri-sku7.dtbo
-+				mt8188-geralt-ciri-audio-tas2563-rt5682s.dtbo
- 
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8188-geralt-ciri-sku0.dtb
- dtb-$(CONFIG_ARCH_MEDIATEK) += mt8188-geralt-ciri-sku1.dtb
-diff --git a/arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku0.dtso b/arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku0.dtso
-deleted file mode 100644
-index 884a7b2d943c..000000000000
---- a/arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku0.dtso
-+++ /dev/null
-@@ -1,11 +0,0 @@
--// SPDX-License-Identifier: (GPL-2.0 OR MIT)
--/*
-- * Copyright 2023 Google LLC
-- */
--/dts-v1/;
--/plugin/;
--
--&{/} {
--	model = "Google Ciri sku0 board";
--	compatible = "google,ciri-sku0", "google,ciri", "mediatek,mt8188";
--};
-diff --git a/arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku1.dtso b/arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku1.dtso
-deleted file mode 100644
-index d3ed6ea535d7..000000000000
---- a/arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku1.dtso
-+++ /dev/null
-@@ -1,11 +0,0 @@
--// SPDX-License-Identifier: (GPL-2.0 OR MIT)
--/*
-- * Copyright 2023 Google LLC
-- */
--/dts-v1/;
--/plugin/;
--
--&{/} {
--	model = "Google Ciri sku1 board";
--	compatible = "google,ciri-sku1", "google,ciri", "mediatek,mt8188";
--};
-diff --git a/arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku2.dtso b/arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku2.dtso
-deleted file mode 100644
-index 3f9d38bc2ad2..000000000000
---- a/arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku2.dtso
-+++ /dev/null
-@@ -1,11 +0,0 @@
--// SPDX-License-Identifier: (GPL-2.0 OR MIT)
--/*
-- * Copyright 2024 Google LLC
-- */
--/dts-v1/;
--/plugin/;
--
--&{/} {
--	model = "Google Ciri sku2 board";
--	compatible = "google,ciri-sku2", "google,ciri", "mediatek,mt8188";
--};
-diff --git a/arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku3.dtso b/arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku3.dtso
-deleted file mode 100644
-index e6a6f8f06141..000000000000
---- a/arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku3.dtso
-+++ /dev/null
-@@ -1,11 +0,0 @@
--// SPDX-License-Identifier: (GPL-2.0 OR MIT)
--/*
-- * Copyright 2024 Google LLC
-- */
--/dts-v1/;
--/plugin/;
--
--&{/} {
--	model = "Google Ciri sku3 board";
--	compatible = "google,ciri-sku3", "google,ciri", "mediatek,mt8188";
--};
-diff --git a/arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku4.dtso b/arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku4.dtso
-deleted file mode 100644
-index ee5b28c4ef00..000000000000
---- a/arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku4.dtso
-+++ /dev/null
-@@ -1,11 +0,0 @@
--// SPDX-License-Identifier: (GPL-2.0 OR MIT)
--/*
-- * Copyright 2024 Google LLC
-- */
--/dts-v1/;
--/plugin/;
--
--&{/} {
--	model = "Google Ciri sku4 board (rev4)";
--	compatible = "google,ciri-sku4", "google,ciri", "mediatek,mt8188";
--};
-diff --git a/arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku5.dtso b/arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku5.dtso
-deleted file mode 100644
-index ccf8d2f0eb70..000000000000
---- a/arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku5.dtso
-+++ /dev/null
-@@ -1,11 +0,0 @@
--// SPDX-License-Identifier: (GPL-2.0 OR MIT)
--/*
-- * Copyright 2024 Google LLC
-- */
--/dts-v1/;
--/plugin/;
--
--&{/} {
--	model = "Google Ciri sku5 board (rev4)";
--	compatible = "google,ciri-sku5", "google,ciri", "mediatek,mt8188";
--};
-diff --git a/arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku6.dtso b/arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku6.dtso
-deleted file mode 100644
-index 773c702b59d8..000000000000
---- a/arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku6.dtso
-+++ /dev/null
-@@ -1,11 +0,0 @@
--// SPDX-License-Identifier: (GPL-2.0 OR MIT)
--/*
-- * Copyright 2024 Google LLC
-- */
--/dts-v1/;
--/plugin/;
--
--&{/} {
--	model = "Google Ciri sku6 board (rev4)";
--	compatible = "google,ciri-sku6", "google,ciri", "mediatek,mt8188";
--};
-diff --git a/arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku7.dtso b/arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku7.dtso
-deleted file mode 100644
-index c22860eab9f8..000000000000
---- a/arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku7.dtso
-+++ /dev/null
-@@ -1,11 +0,0 @@
--// SPDX-License-Identifier: (GPL-2.0 OR MIT)
--/*
-- * Copyright 2024 Google LLC
-- */
--/dts-v1/;
--/plugin/;
--
--&{/} {
--	model = "Google Ciri sku7 board (rev4)";
--	compatible = "google,ciri-sku7", "google,ciri", "mediatek,mt8188";
--};
-diff --git a/arch/arm64/boot/dts/mediatek/mt8188.yaml b/arch/arm64/boot/dts/mediatek/mt8188.yaml
-new file mode 100644
-index 000000000000..7808ae20060f
---- /dev/null
-+++ b/arch/arm64/boot/dts/mediatek/mt8188.yaml
-@@ -0,0 +1,51 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+%YAML 1.2
-+---
-+- dtb: mt8188-geralt-ciri-sku0.dtb
-+  description: Google Ciri board SKU0
-+  compatibles:
-+    - google,ciri-sku0
-+    - google,ciri
-+    - mediatek,mt8188
-+- dtb: mt8188-geralt-ciri-sku1.dtb
-+  description: Google Ciri board SKU1
-+  compatibles:
-+    - google,ciri-sku1
-+    - google,ciri
-+    - mediatek,mt8188
-+- dtb: mt8188-geralt-ciri-sku2.dtb
-+  description: Google Ciri board SKU2
-+  compatibles:
-+    - google,ciri-sku2
-+    - google,ciri
-+    - mediatek,mt8188
-+- dtb: mt8188-geralt-ciri-sku3.dtb
-+  description: Google Ciri board SKU3
-+  compatibles:
-+    - google,ciri-sku3
-+    - google,ciri
-+    - mediatek,mt8188
-+- dtb: mt8188-geralt-ciri-sku4.dtb
-+  description: Google Ciri board SKU4
-+  compatibles:
-+    - google,ciri-sku4
-+    - google,ciri
-+    - mediatek,mt8188
-+- dtb: mt8188-geralt-ciri-sku5.dtb
-+  description: Google Ciri board SKU5
-+  compatibles:
-+    - google,ciri-sku5
-+    - google,ciri
-+    - mediatek,mt8188
-+- dtb: mt8188-geralt-ciri-sku6.dtb
-+  description: Google Ciri board SKU6
-+  compatibles:
-+    - google,ciri-sku6
-+    - google,ciri
-+    - mediatek,mt8188
-+- dtb: mt8188-geralt-ciri-sku7.dtb
-+  description: Google Ciri board SKU7
-+  compatibles:
-+    - google,ciri-sku7
-+    - google,ciri
-+    - mediatek,mt8188
--- 
-2.52.0.223.gf5cc29aaa4-goog
+I am not an expert on DMA engine APIs to know how feasible it would be to
+do the book-keeping of the power state of various devices in the DMA driver
+and manage the re-pairing entirely there.
 
+On AM62A and later devices, there is a dedicated instance of the BCDMA
+engine for camera pipeline on the same power domain as CSI2RX, so this is
+not a problem. Rishikesh/Vignesh please correct me if I'm wrong, as it has
+been a while since I looked at this in depth.
+
+
+> > Tested-by: Rishikesh Donadkar <r-donadkar@ti.com>
+> > Reviewed-by: Rishikesh Donadkar <r-donadkar@ti.com>
+> > Signed-off-by: Jai Luthra <jai.luthra@ideasonboard.com>
+> > Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
+> > ---
+> >  drivers/media/platform/ti/Kconfig             |  1 +
+> >  .../platform/ti/j721e-csi2rx/j721e-csi2rx.c   | 55 ++++++++++++++++++-
+> >  2 files changed, 54 insertions(+), 2 deletions(-)
+> >=20
+> > diff --git a/drivers/media/platform/ti/Kconfig b/drivers/media/platform=
+/ti/Kconfig
+> > index 3bc4aa35887e6..a808063e24779 100644
+> > --- a/drivers/media/platform/ti/Kconfig
+> > +++ b/drivers/media/platform/ti/Kconfig
+> > @@ -70,6 +70,7 @@ config VIDEO_TI_J721E_CSI2RX
+> >       depends on VIDEO_CADENCE_CSI2RX
+> >       depends on PHY_CADENCE_DPHY_RX || COMPILE_TEST
+> >       depends on ARCH_K3 || COMPILE_TEST
+> > +     depends on PM
+> >       select VIDEOBUF2_DMA_CONTIG
+> >       select V4L2_FWNODE
+> >       help
+> > diff --git a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c b/dr=
+ivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
+> > index 528041ee78cf3..21e032c64b901 100644
+> > --- a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
+> > +++ b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
+> > @@ -13,6 +13,7 @@
+> >  #include <linux/module.h>
+> >  #include <linux/of_platform.h>
+> >  #include <linux/platform_device.h>
+> > +#include <linux/pm_runtime.h>
+> >  #include <linux/property.h>
+> > =20
+> >  #include <media/cadence/cdns-csi2rx.h>
+> > @@ -963,12 +964,16 @@ static int ti_csi2rx_start_streaming(struct vb2_q=
+ueue *vq, unsigned int count)
+> >       unsigned long flags;
+> >       int ret =3D 0;
+> > =20
+> > +     ret =3D pm_runtime_resume_and_get(csi->dev);
+> > +     if (ret)
+> > +             return ret;
+> > +
+> >       spin_lock_irqsave(&dma->lock, flags);
+> >       if (list_empty(&dma->queue))
+> >               ret =3D -EIO;
+> >       spin_unlock_irqrestore(&dma->lock, flags);
+> >       if (ret)
+> > -             return ret;
+> > +             goto err;
+> > =20
+> >       ret =3D video_device_pipeline_start(&ctx->vdev, &csi->pipe);
+> >       if (ret)
+> > @@ -1024,6 +1029,8 @@ static int ti_csi2rx_start_streaming(struct vb2_q=
+ueue *vq, unsigned int count)
+> >       writel(0, csi->shim + SHIM_DMACNTX(ctx->idx));
+> >  err:
+> >       ti_csi2rx_cleanup_buffers(ctx, VB2_BUF_STATE_QUEUED);
+> > +     pm_runtime_put(csi->dev);
+> > +
+> >       return ret;
+> >  }
+> > =20
+> > @@ -1055,6 +1062,7 @@ static void ti_csi2rx_stop_streaming(struct vb2_q=
+ueue *vq)
+> > =20
+> >       ti_csi2rx_stop_dma(ctx);
+> >       ti_csi2rx_cleanup_buffers(ctx, VB2_BUF_STATE_ERROR);
+> > +     pm_runtime_put(csi->dev);
+> >  }
+> > =20
+> >  static const struct vb2_ops csi_vb2_qops =3D {
+> > @@ -1261,7 +1269,9 @@ static void ti_csi2rx_cleanup_notifier(struct ti_=
+csi2rx_dev *csi)
+> > =20
+> >  static void ti_csi2rx_cleanup_ctx(struct ti_csi2rx_ctx *ctx)
+> >  {
+> > -     dma_release_channel(ctx->dma.chan);
+> > +     if (!pm_runtime_status_suspended(ctx->csi->dev))
+> > +             dma_release_channel(ctx->dma.chan);
+> > +
+> >       vb2_queue_release(&ctx->vidq);
+> > =20
+> >       video_unregister_device(&ctx->vdev);
+> > @@ -1512,6 +1522,39 @@ static int ti_csi2rx_init_ctx(struct ti_csi2rx_c=
+tx *ctx)
+> >       return ret;
+> >  }
+> > =20
+> > +static int ti_csi2rx_runtime_suspend(struct device *dev)
+> > +{
+> > +     struct ti_csi2rx_dev *csi =3D dev_get_drvdata(dev);
+> > +     int i;
+> > +
+> > +     if (csi->enable_count !=3D 0)
+> > +             return -EBUSY;
+> > +
+> > +     for (i =3D 0; i < csi->num_ctx; i++)
+> > +             dma_release_channel(csi->ctx[i].dma.chan);
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +static int ti_csi2rx_runtime_resume(struct device *dev)
+> > +{
+> > +     struct ti_csi2rx_dev *csi =3D dev_get_drvdata(dev);
+> > +     int ret, i;
+> > +
+> > +     for (i =3D 0; i < csi->num_ctx; i++) {
+> > +             ret =3D ti_csi2rx_init_dma(&csi->ctx[i]);
+>=20
+> If runtime_resume always requests the dma channels, is the call to
+> ti_csi2rx_init_dma() in ti_csi2rx_init_ctx() needed? If not, you could
+> inline the code from ti_csi2rx_init_dma() to here and also drop the
+> dma_release_channel() call from ti_csi2rx_cleanup_ctx(), making the flow
+> more understandable.
+>=20
+
+Makes sense.
+
+> > +             if (ret)
+> > +                     return ret;
+> > +     }
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +static const struct dev_pm_ops ti_csi2rx_pm_ops =3D {
+> > +     RUNTIME_PM_OPS(ti_csi2rx_runtime_suspend, ti_csi2rx_runtime_resum=
+e,
+> > +                    NULL)
+> > +};
+> > +
+> >  static int ti_csi2rx_probe(struct platform_device *pdev)
+> >  {
+> >       struct device_node *np =3D pdev->dev.of_node;
+> > @@ -1579,6 +1622,10 @@ static int ti_csi2rx_probe(struct platform_devic=
+e *pdev)
+> >               goto err_notifier;
+> >       }
+> > =20
+> > +     pm_runtime_set_active(csi->dev);
+> > +     pm_runtime_enable(csi->dev);
+> > +     pm_request_idle(csi->dev);
+>=20
+> I always forget what exactly the runtime_pm funcs do. What's the idea
+> here? If you do something else than the plain standard
+> pm_runtime_enable(), I think it's good to mention what/why in a comment.
+>=20
+
+https://docs.kernel.org/power/runtime_pm.html#runtime-pm-initialization-dev=
+ice-probing-and-removal
+
+The pm_request_idle() is done to queue up a job to suspend the hardware
+until userspace starts streaming, to save power.
+
+The runtime_set_active() is used because the power domain for CSI is by
+default turned on when system boots up. But Rishikesh, please double check
+that before v9 on AM62.
+
+> >       return 0;
+> > =20
+> >  err_notifier:
+> > @@ -1609,6 +1656,9 @@ static void ti_csi2rx_remove(struct platform_devi=
+ce *pdev)
+> >       mutex_destroy(&csi->mutex);
+> >       dma_free_coherent(csi->dev, csi->drain.len, csi->drain.vaddr,
+> >                         csi->drain.paddr);
+> > +     pm_runtime_disable(&pdev->dev);
+> > +     pm_runtime_set_suspended(&pdev->dev);
+> > +
+> >  }
+> > =20
+> >  static const struct of_device_id ti_csi2rx_of_match[] =3D {
+> > @@ -1623,6 +1673,7 @@ static struct platform_driver ti_csi2rx_pdrv =3D {
+> >       .driver =3D {
+> >               .name =3D TI_CSI2RX_MODULE_NAME,
+> >               .of_match_table =3D ti_csi2rx_of_match,
+> > +             .pm             =3D &ti_csi2rx_pm_ops,
+> >       },
+> >  };
+> > =20
+>
 
