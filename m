@@ -1,105 +1,110 @@
-Return-Path: <devicetree+bounces-245260-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245261-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89036CADCF2
-	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 18:08:31 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DA30CADCF8
+	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 18:09:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id BD2F3301738A
-	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 17:08:29 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9D7B8303E659
+	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 17:09:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB274279DB4;
-	Mon,  8 Dec 2025 17:08:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jRy2pZ8n"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF00227B335;
+	Mon,  8 Dec 2025 17:09:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92FCC2594BD;
-	Mon,  8 Dec 2025 17:08:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9F722B9B7;
+	Mon,  8 Dec 2025 17:09:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765213708; cv=none; b=TGAe0p4g0GJflhB1pHXMEwF5G8EW79bhHTznw5+tueBntIIuBwrv9EPCz8meqTEeYBOz1cs5nVfiZge33t1XipAqlLoXOBJy5jEYcRGAMEZbB//qNrAfTFrA5qZ/XrQi6R3zYh5DqfAc2GMhobIUiAQsFDulP7njd84zwl+Y7zk=
+	t=1765213748; cv=none; b=mSjmJXePKDuefwXefzT3Shm0D1Hf3sS2fOcQkOUKPJ/m9nXCv4PEszgvv2vU3kH4i2L+gW4hu5eIDTfKJbZcrCsQh0OTMrENzUQRHMMAhY+bIMCjnWs906c259aEBvl5nU5YW2kLBKV2Ad+GlYLuz3LBBFqrPpzilLGjLh+x46w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765213708; c=relaxed/simple;
-	bh=XuL/pB20YInvkttkmAkMKq7NAlNvxseizSt7WitdL7U=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tnG6WcXJdLCONsmPnv+gmMfbG0YskUlYHZqAgzKAlRi8aF1O1RIET86/PeNfzWtSnaAu/VyKmwf/4UZeFds4EJ6sdfppXGLtfexXb0OL55tpWzUYkq4Eih4NHdAyvHAEkdr0yK2lkQGZAk+/TPw1No+KtqSgAa2dTk8l1J2lvpk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jRy2pZ8n; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9A27C4CEF1;
-	Mon,  8 Dec 2025 17:08:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765213708;
-	bh=XuL/pB20YInvkttkmAkMKq7NAlNvxseizSt7WitdL7U=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jRy2pZ8nuWUMfxylwrnxq1G1Gu3e7gJ9KkH3uacBJ9yU65CzDsEJrVWcvygoErML5
-	 Yy4xrt4AkMoUFOSYy9TxL8yvrDLjgBfW4r4aQ/u2CdVii8e/36txalNwRawF4etQig
-	 Z8di6Ch5QfW7GFWTUFEBv+x7zQ5toXDoAU+DoAjeQ4hqzSe0NJuhOn5/wOlkwY+9z1
-	 zAlQgDMu6Qy1d8G4PqESSvj2LToFoT4YVSUKw+OGoxN1OsazTIL/DwMI3+hA+dHD8r
-	 vYBr1QkyoSjhTM5sQttama+NWIhKgNGaLDf0AlylMQ/1TTPrnjO64DX04jO4ocbfDN
-	 HaHSKnrEzQfjg==
-Date: Mon, 8 Dec 2025 11:08:25 -0600
-From: Rob Herring <robh@kernel.org>
-To: Jianpeng Chang <jianpeng.chang.cn@windriver.com>
-Cc: saravanak@google.com, quic_obabatun@quicinc.com,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: kdump: Fix elfcorehdr overlap caused by reserved
- memory processing reorder
-Message-ID: <20251208170825.GA2056564-robh@kernel.org>
-References: <20251205015934.700016-1-jianpeng.chang.cn@windriver.com>
+	s=arc-20240116; t=1765213748; c=relaxed/simple;
+	bh=c+Bei5521HPFX4IkVBFAUg3EfYuweTlLkvT3Z9BwFTA=;
+	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=m/ukqplVwwYPlbV02E8VbEXfBl7G9m+zPdFiJFyQgYkSsB9y2vJImVxB+KkeTMp2mnQe0qpllD97tpeubR/MZrq59Tc3AWJ7kTfis2lcBacG5wJAfKfiLrHdhYYcfCTNNCQPE8bza9wJPIbdDLt+WVapRVqNmg/IOEzWba0gGSE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.224.83])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTPS id 4dQ7jq29xDzJ46DZ;
+	Tue,  9 Dec 2025 01:08:47 +0800 (CST)
+Received: from dubpeml100005.china.huawei.com (unknown [7.214.146.113])
+	by mail.maildlp.com (Postfix) with ESMTPS id 4C36340086;
+	Tue,  9 Dec 2025 01:09:02 +0800 (CST)
+Received: from localhost (10.203.177.15) by dubpeml100005.china.huawei.com
+ (7.214.146.113) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.36; Mon, 8 Dec
+ 2025 17:09:01 +0000
+Date: Mon, 8 Dec 2025 17:08:59 +0000
+From: Jonathan Cameron <jonathan.cameron@huawei.com>
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
+CC: Jonathan Cameron <jic23@kernel.org>, Oleksij Rempel
+	<o.rempel@pengutronix.de>, Rob Herring <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, "David
+ Jander" <david@protonic.nl>, <kernel@pengutronix.de>,
+	<linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, Andy Shevchenko <andy@kernel.org>, "David
+ Lechner" <dlechner@baylibre.com>, Nuno =?ISO-8859-1?Q?S=E1?=
+	<nuno.sa@analog.com>
+Subject: Re: [PATCH v4 2/2] iio: adc: Add TI ADS131M0x ADC driver
+Message-ID: <20251208170859.00006f2f@huawei.com>
+In-Reply-To: <aTYGvaZk_PzouTRf@smile.fi.intel.com>
+References: <20251118141821.907364-1-o.rempel@pengutronix.de>
+	<20251118141821.907364-3-o.rempel@pengutronix.de>
+	<20251207193313.794ea339@jic23-huawei>
+	<aTYGvaZk_PzouTRf@smile.fi.intel.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251205015934.700016-1-jianpeng.chang.cn@windriver.com>
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: lhrpeml500010.china.huawei.com (7.191.174.240) To
+ dubpeml100005.china.huawei.com (7.214.146.113)
 
-On Fri, Dec 05, 2025 at 09:59:34AM +0800, Jianpeng Chang wrote:
-> Commit 8a6e02d0c00e ("of: reserved_mem: Restructure how the reserved
-> memory regions are processed") changed the processing order of reserved
-> memory regions, causing elfcorehdr to overlap with dynamically allocated
-> reserved memory regions during kdump kernel boot.
-> 
-> The issue occurs because:
-> 1. kexec-tools allocates elfcorehdr in the last crashkernel reserved
->    memory region and passes it to the second kernel
-> 2. The problematic commit moved dynamic reserved memory allocation
->    (like bman-fbpr) to occur during fdt_scan_reserved_mem(), before
->    elfcorehdr reservation in fdt_reserve_elfcorehdr()
-> 3. bman-fbpr with 16MB alignment requirement can get allocated at
->    addresses that overlap with the elfcorehdr location
-> 4. When fdt_reserve_elfcorehdr() tries to reserve elfcorehdr memory,
->    overlap detection identifies the conflict and skips reservation
-> 5. kdump kernel fails with "Unable to handle kernel paging request"
->    because elfcorehdr memory is not properly reserved
-> 
-> The boot log:
-> Before 8a6e02d0c00e:
->   OF: fdt: Reserving 1 KiB of memory at 0xf4fff000 for elfcorehdr
->   OF: reserved mem: 0xf3000000..0xf3ffffff bman-fbpr
-> 
-> After 8a6e02d0c00e:
->   OF: reserved mem: 0xf4000000..0xf4ffffff bman-fbpr
->   OF: fdt: elfcorehdr is overlapped
-> 
-> Fix this by ensuring elfcorehdr reservation occurs before dynamic
-> reserved memory allocation.
-> 
-> Fixes: 8a6e02d0c00e ("of: reserved_mem: Restructure how the reserved memory regions are processed")
-> Signed-off-by: Jianpeng Chang <jianpeng.chang.cn@windriver.com>
-> ---
-> This BUG is manifested on NXP LS1043 platforms, while other
-> platforms don't trigger this issue, it represents a general problem,
-> and it's more safer to follow original reservation order.
-> 
->  drivers/of/fdt.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+On Mon, 8 Dec 2025 00:59:09 +0200
+Andy Shevchenko <andriy.shevchenko@intel.com> wrote:
 
-Applied, thanks.
+> On Sun, Dec 07, 2025 at 07:33:13PM +0000, Jonathan Cameron wrote:
+> > On Tue, 18 Nov 2025 15:18:21 +0100
+> > Oleksij Rempel <o.rempel@pengutronix.de> wrote:  
+> 
+> ...
+> 
+> > > +	clk = devm_clk_get_enabled(dev, NULL);  
+> > 
+> > This surprised me, so I went digging.  Anyone know why
+> > the stub returns NULL?  Given that the normal function doesn't have
+> > that as an allowed return value that seems really odd.
+> > 
+> > Still, it does, so this code is fine if odd.  
+> 
+> I believe it has to do something with an optional clocks or so, but OTOH
+> I think it's so odd that may be considered as a bug in CCF APIs.
 
-Rob
+I'd think an optional clock is optional whether or not the generic clock
+stuff is built. Hence should use devm_clk_get_optional_enabled()
+That one I agree should be stubbed to return NULL (which it is)
+
+Ah well, I don't really care about the answer, just diverted me for
+a few mins so I thought I'd comment.
+
+Jonathan
+
+> 
+> > > +	if (IS_ERR_OR_NULL(clk)) {
+> > > +		if (IS_ERR(clk))
+> > > +			ret = PTR_ERR(clk);
+> > > +		else
+> > > +			ret = -ENODEV;
+> > > +
+> > > +		return dev_err_probe(dev, ret, "clk get enabled failed\n");
+> > > +	}  
+> 
+
 
