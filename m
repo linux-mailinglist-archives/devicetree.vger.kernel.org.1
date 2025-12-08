@@ -1,257 +1,262 @@
-Return-Path: <devicetree+bounces-245267-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245268-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id D17CDCAE0CB
-	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 20:11:17 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82181CAE116
+	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 20:25:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 7E734301FF34
-	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 19:11:16 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id F1098300C227
+	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 19:25:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 705A62E3360;
-	Mon,  8 Dec 2025 19:11:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 024A02E8B76;
+	Mon,  8 Dec 2025 19:25:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NlB8DKtG"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PKKfZDiq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f180.google.com (mail-vk1-f180.google.com [209.85.221.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A0AB242D79;
-	Mon,  8 Dec 2025 19:11:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F46F2D3237
+	for <devicetree@vger.kernel.org>; Mon,  8 Dec 2025 19:25:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765221073; cv=none; b=YJZXuasRga2CIj7JYVkjcq3j0FB20JtD4VHSqK2+YlrWVzWgQRcNCqRYOhPe2qWhKH3wpOVJ+F9YMOHUKxmXFLfSBVjadmL3hztUmL5DXhlXIP8XWfcg3HvXABVGe7Qq1hmQxEreCYJuvl5tAvkYREOa7xfbjnFI/Uic5C98C/g=
+	t=1765221906; cv=none; b=ePxR/Wf7GsCdtKmXtT0MOqALxBCn1dKx3LYWJEvPIvJ7LgALe+f1BVkCpiI0zPc3Gj1JInufnIA0XWV+zV4RxjzO1wOzBluaGz1nwUgh0yjAWoqyxRqnBRrkUCf0hlDp77rWyH0sJCXnDB5BPJNSqEHKJHZhmHGNcbozdgWHiLU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765221073; c=relaxed/simple;
-	bh=qA200K7aoJ1D07Oig2GNEZ+7d43xuiwI5ZAaPd2N0HA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LqllsJrkKRuXeB7M2LheG90xeJ3povGuq8OwNgKoy4g1wIiPDFfr7Y0N5t466R4X/XWK/En/LrHteJH4K5ngas5W0iZvBhAQOmxsmqOvPm2F8SjGz825nGtNiJLzKwE+QFkbyg6yIhO3UFFjDL1t7PH9Z+a4nRsraGvfegDh03I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NlB8DKtG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80883C4CEF1;
-	Mon,  8 Dec 2025 19:11:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765221072;
-	bh=qA200K7aoJ1D07Oig2GNEZ+7d43xuiwI5ZAaPd2N0HA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NlB8DKtGOG0T/XaVEoYJGV41lqPuxUliaXSAh1m3LBjHCG6y33dMW1qqoMr+d84de
-	 GGLhfiNORkGWPD5mPVzwNQBy24CbI4SkpUupBD4NJ8OjLad4JjqEDLK7WkdisD2Lwf
-	 U9DMY2unyh3P8VfF0j5KF8Ww65syU2rKPi1A5k3/CL6+uH2RbEdGuHf6oxk9qhTsfW
-	 4ShgPVynPhzLFaZ2G3CtaublU6x48EgQHvEAl5dxo2LPmIiLtGoX/3T0WX6O5Cxohl
-	 I5Dwz9ErdGUNH4l1W1qvWRAcPISV7e0I9G+p5YlJGjWVesGr47HXcP0nKqLlxROlcb
-	 1CHlIRQlGjIIA==
-Date: Mon, 8 Dec 2025 13:11:10 -0600
-From: Rob Herring <robh@kernel.org>
-To: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-Cc: Bjorn Helgaas <bhelgaas@google.com>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	Stephan Gerhold <stephan.gerhold@linaro.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-	linux-pm@vger.kernel.org, Frank Li <Frank.Li@nxp.com>
-Subject: Re: [PATCH v3 1/4] dt-bindings: connector: Add PCIe M.2 Mechanical
- Key M connector
-Message-ID: <20251208191110.GA2473021-robh@kernel.org>
-References: <20251125-pci-m2-v3-0-c528042aea47@oss.qualcomm.com>
- <20251125-pci-m2-v3-1-c528042aea47@oss.qualcomm.com>
+	s=arc-20240116; t=1765221906; c=relaxed/simple;
+	bh=zCMZDBm15cVh/x4JQEF8rBeaHpuC3U8OtLBEvmMdgwo=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=QB3X+g04E4KrzNKcezKLgi04KoDIM2jZjk/ObmtUPcBrfRWRMBhuomFe0F1alfrawut7oZK7roJUKS9COApJg4bfA55sQvNh4Lm2TbJYHkhNF1tp/C/Dl0FHp/zuvdrDZUnwwNlacF+nAusT8xlvEEPem0vaOUzcOJbmMI4rENE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PKKfZDiq; arc=none smtp.client-ip=209.85.221.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f180.google.com with SMTP id 71dfb90a1353d-55b2f2ae1cbso3480726e0c.1
+        for <devicetree@vger.kernel.org>; Mon, 08 Dec 2025 11:25:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1765221902; x=1765826702; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=oTDO01MWPwITXTjV2I79z1YT9l7+kYjQpFuhrPI4WXQ=;
+        b=PKKfZDiqFzgzcZqG+itOHlx6A8rSmgPMCzy1iqJ6QfOYEBaHUcMtauGE3kxJlSb8/C
+         wJdHTtWqiGKneNT295iONG3sDWw1xnUCv+ZZ2sApOURHE7YCMa17OSi6ZFMwL+pIw9vf
+         qSDsNLxXI01FtaKeK6V8sEq+ZpFwS905uq2GhLnbXwrCE3DhpLhlM49f+kGO2dk2NAtG
+         /AQ0PlrcGGobMiw70xSnvCtGT3jaA/I9WwN308GXxzqS2dUB/mU6Tic3bm6Hs/9hbT3r
+         eTBMPEZM07o3t4DOJxBPLUySk5LtFsJXEp0xD0TGMtW7bzoxlSIDh66Dc/e8scl/6ZP4
+         Etjw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765221902; x=1765826702;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=oTDO01MWPwITXTjV2I79z1YT9l7+kYjQpFuhrPI4WXQ=;
+        b=VZ6LyTquJI5kyExA3LFN+N/1Ff0WkPzmsbwDHRi7oJCx0VL3wuGvNW6EfMB0CWDF+o
+         lGwanFSkl31G7uQyv86NeV62/HrZWpL5AEnckXylgy0UPITJKiFhi+ZhiY+FYiWhIzUq
+         wIEfPQozZb5Uq3WXkmzjbaR5fHorPj8GtSyEZ7qhS7o4xXBC5dUFCrbm1jjPXUAG+JST
+         bwEYLRCo5A25LukOZvi+FDs2kqtPi2EYI4ICWHJiAIKIniDdXg/JpOgVo6xQXz0KzJEa
+         q/bPCGy5c//Enj0jl1lUw8w+VFLYY0C2pz3gXY3fXPmc1jS8gmZMtYgWL83MmyoosPof
+         qIQQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWKjsRV1ekXwmmzV4kXAcgrwdfq5bQUYzggcNqHYSdGmr/2xmaMcdaVY91o5Al3tTzodE1Smz9ISTFo@vger.kernel.org
+X-Gm-Message-State: AOJu0YzDA39CtZkyp4z7NOoqKs8F0HRB/GclhkZqa0B4SRzlAqhVveYZ
+	ODxdbWbUcwaacFTbt13NIg/Yszcb5BRBqci/jx2WBsOxml4zh8+sWsZD
+X-Gm-Gg: ASbGncvTD5pyM+t4M1sujxWOUBq5T9MvbHSxn6owF9Wx78Dj3FNn6axu0RXflN8U3Nr
+	4VnTiaYBPBG3sJW3jeFooBl4Fu5VbT+SgE+NGdI9iVRHdJWJK5WTlUsczO5aAZpaAvUpOnu5jP0
+	oNMF1XXJGdwaTy2kkpp+vu6ju+d+w28GSS/uxEP2WllGthnQUMw4cZJaO7SOmCLTar6Vqs8UyUj
+	2uhpJdUcvzRr0heRuqkdIZhirExBS604tiTE40E/GlLxL59zr33XG55jroH7xqDvFc9VpDDGHvT
+	99goVzdGeHbAfIMt/6YvGqnvNepFL69It4NOpGXHwNL35zFBM0k31of3hwMtDS3Nb/Xj7v3HMpU
+	85akL09yKd2v/tnLMRl6EcxCiZJVKjRM4JkrJi0/EmaJ3/ZSNoAW+kxqUxWqUSkGPpashnCLhN0
+	V3yVwM5x8zuva48qc=
+X-Google-Smtp-Source: AGHT+IFqHU+dYOKzo16y/G3coPWvFp5VJ/dE+PcuSvfXp0UMXSqsGasXJ96yfLetuPJgRmia2qwW+g==
+X-Received: by 2002:a05:6122:4f81:b0:559:6b0c:1ca2 with SMTP id 71dfb90a1353d-55e847543d6mr2811517e0c.16.1765221902096;
+        Mon, 08 Dec 2025 11:25:02 -0800 (PST)
+Received: from [192.168.100.61] ([2800:bf0:4580:3149:7d4:54b1:c444:6f2f])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-55e6c9c8fafsm6480475e0c.20.2025.12.08.11.25.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Dec 2025 11:25:01 -0800 (PST)
+From: Kurt Borja <kuurtb@gmail.com>
+Subject: [PATCH v7 0/2] iio: Add support for TI ADS1X18 ADCs
+Date: Mon, 08 Dec 2025 14:24:34 -0500
+Message-Id: <20251208-ads1x18-v7-0-b1be8dfebfa2@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251125-pci-m2-v3-1-c528042aea47@oss.qualcomm.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAPIlN2kC/3XPy2rDMBAF0F8JWldlZvR0V/2P0IWeiaCJi1VMQ
+ vC/V06hMoZuBFfo3Bk9WE1TSZW9HR5sSnOpZby2YF4OLJzd9ZR4iS0zAlIISNzFije0HCIYM0T
+ QegDWXn9NKZfbs+n40fK51O9xuj+LZ1xvfzuQ8K9jRg7c6ujBQg6Dk++niyufr2G8sLVjpq0z3
+ VFzlHyOxoLXQuyd2DrbnWjO6eSdt6g8xb2T3bWjO7nuGYRq0wIZkfdObZ3sTjXnNUkRk9E64t7
+ pf5xe/+eSdJRtGiBs3bIsP4sU7vq2AQAA
+X-Change-ID: 20251012-ads1x18-0d0779d06690
+To: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Tobias Sperling <tobias.sperling@softing.com>
+Cc: David Lechner <dlechner@baylibre.com>, 
+ =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
+ Andy Shevchenko <andy@kernel.org>, linux-iio@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Jonathan Cameron <Jonathan.Cameron@huawei.com>, 
+ Kurt Borja <kuurtb@gmail.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5611; i=kuurtb@gmail.com;
+ h=from:subject:message-id; bh=zCMZDBm15cVh/x4JQEF8rBeaHpuC3U8OtLBEvmMdgwo=;
+ b=owGbwMvMwCUmluBs8WX+lTTG02pJDJnmapzLfzU/8HRYb/tCR+5200xBxa3uuYbLl/4+N/cD+
+ x22wrmVHaUsDGJcDLJiiiztCYu+PYrKe+t3IPQ+zBxWJpAhDFycAjCRO1sY/hdXLbXjydZ4ZlZ5
+ 4r7oCynLaxt3+T048VI58yyz0qFNtQyMDJ0+AkcVNL8c+WobMDljZ96RVfEn9i2KDFuxYf6Gw5V
+ nuxgA
+X-Developer-Key: i=kuurtb@gmail.com; a=openpgp;
+ fpr=54D3BE170AEF777983C3C63B57E3B6585920A69A
 
-On Tue, Nov 25, 2025 at 04:42:26PM +0530, Manivannan Sadhasivam wrote:
-> Add the devicetree binding for PCIe M.2 Mechanical Key M connector defined
-> in the PCI Express M.2 Specification, r4.0, sec 5.3. This connector
-> provides interfaces like PCIe and SATA to attach the Solid State Drives
-> (SSDs) to the host machine along with additional interfaces like USB, and
-> SMB for debugging and supplementary features. At any point of time, the
-> connector can only support either PCIe or SATA as the primary host
-> interface.
-> 
-> The connector provides a primary power supply of 3.3v, along with an
-> optional 1.8v VIO supply for the Adapter I/O buffer circuitry operating at
-> 1.8v sideband signaling.
-> 
-> The connector also supplies optional signals in the form of GPIOs for fine
-> grained power management.
-> 
-> Reviewed-by: Frank Li <Frank.Li@nxp.com>
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-> ---
->  .../bindings/connector/pcie-m2-m-connector.yaml    | 141 +++++++++++++++++++++
->  1 file changed, 141 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/connector/pcie-m2-m-connector.yaml b/Documentation/devicetree/bindings/connector/pcie-m2-m-connector.yaml
-> new file mode 100644
-> index 000000000000..f65a05d93735
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/connector/pcie-m2-m-connector.yaml
-> @@ -0,0 +1,141 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/connector/pcie-m2-m-connector.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: PCIe M.2 Mechanical Key M Connector
-> +
-> +maintainers:
-> +  - Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-> +
-> +description:
-> +  A PCIe M.2 M connector node represents a physical PCIe M.2 Mechanical Key M
-> +  connector. The Mechanical Key M connectors are used to connect SSDs to the
-> +  host system over PCIe/SATA interfaces. These connectors also offer optional
-> +  interfaces like USB, SMB.
-> +
-> +properties:
-> +  compatible:
-> +    const: pcie-m2-m-connector
-> +
-> +  vpcie3v3-supply:
-> +    description: A phandle to the regulator for 3.3v supply.
-> +
-> +  vpcie1v8-supply:
-> +    description: A phandle to the regulator for VIO 1.8v supply.
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +    description: OF graph bindings modeling the interfaces exposed on the
-> +      connector. Since a single connector can have multiple interfaces, every
-> +      interface has an assigned OF graph port number as described below.
-> +
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: Host interfaces of the connector
-> +
-> +        properties:
-> +          endpoint@0:
-> +            $ref: /schemas/graph.yaml#/properties/endpoint
-> +            description: PCIe interface
-> +
-> +          endpoint@1:
-> +            $ref: /schemas/graph.yaml#/properties/endpoint
-> +            description: SATA interface
+Hi,
 
+This series adds a new driver for TI ADS1X18 SPI devices.
 
-Where's the binding changes to allow graph nodes on SATA and PCIe 
-bindings? I suppose Thunderbolt/USB4 on USB-C connectors will need that 
-too.
+This is my first time contributing to the IIO subsystem and making
+dt-bindings documentation, so (don't) go easy on me :p.
 
-> +
-> +        anyOf:
-> +          - required:
-> +              - endpoint@0
-> +          - required:
-> +              - endpoint@1
-> +
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: USB 2.0 interface
-> +
-> +      port@2:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: SMB interface
+As explained in Patch 2 changelog, the DRDY interrupt line is shared
+with the MOSI pin. This awkward quirk is also found on some Analog
+Devices sigma-delta SPI ADCs, so the interrupt and trigger design is
+inspired by those.
 
-SMB is SMBus? There's no graph support for I2C either. For that, we use 
-'i2c-parent'.
+Thank you in advance for your reviews.
 
-> +
-> +    required:
-> +      - port@0
-> +
-> +  clocks:
-> +    description: 32.768 KHz Suspend Clock (SUSCLK) input from the host system to
-> +      the M.2 card. Refer, PCI Express M.2 Specification r4.0, sec 3.1.12.1 for
-> +      more details.
-> +    maxItems: 1
-> +
-> +  pedet-gpios:
-> +    description: GPIO controlled connection to PEDET signal. This signal is used
+Signed-off-by: Kurt Borja <kuurtb@gmail.com>
+---
+v2:
+  - [Patch 1]:
+    - Move MAINTAINERS change here
+    - Use generic node names: ads1118@0 -> adc@0
+    - Rename file to ti,ads1118.yaml -> ti,ads1018.yaml
+    - Drop ti,gain and ti,datarate
+    - Add spi-cpha and spi-max-frecuency properties as they are fixed in
+      all models
+    - Add vdd-supply
+    - Make interrupts and drdy-gpios optional properties
 
-Instead of 'controlled connection' use just input or output. Arguably an 
-input isn't GPIO controlled.
+  - [Patch 2]:
+    - Update probe based on dt-bindings changes
+    - Rename file to ti-ads1x18.c -> ti-ads1018.c
+    - Rework ads1018_oneshot(), instead of waiting for IRQ wait an
+      appropriate delay before reading again
+    - Only alloc and register a trigger if we have an IRQ line
+    - Drop ads1x18->msg_lock in favor of IIO API locks
+    - Read conver before enabling and after disabling IRQ to ensure CS
+      state is correct
+    - Add ads1018_read_locked() which takes an additional argument
+      `hold_cs` to explicitly control CS state in trigger and buffer
+    - Fix ADS1X18_CHANNELS_MAX limit 9 -> 10
+    - Call iio_trigger_notify_done() in all IRQ handler paths
+    - Drop unused includes
+    - Drop BIT_U16 and GENMASK_U16 macros
+    - Drop unnecessary named defines
+    - Use u8 types in ads1018_chan_data
+    - Rename some struct members for clarity
+    - Move tx_buf and rx_buf to the end of struct ads1018
+    - Rework channel handling to just make everything visible and add
+      ADS1018_VOLT_DIFF_CHAN
+    - Use .scan_index instead of .address in IIO channels
+    
+  - v1: https://lore.kernel.org/r/20251121-ads1x18-v1-0-86db080fc9a4@gmail.com
 
-> +      by the host systems to determine the communication protocol that the M.2
-> +      card uses; SATA signaling (low) or PCIe signaling (high). Refer, PCI
-> +      Express M.2 Specification r4.0, sec 3.3.4.2 for more details.
-> +    maxItems: 1
-> +
-> +  led1-gpios:
-> +    description: GPIO controlled connection to LED_1# signal. This signal is
-> +      used by the M.2 card to indicate the card status via the system mounted
-> +      LED. Refer, PCI Express M.2 Specification r4.0, sec 3.1.12.2 for more
-> +      details.
-> +    maxItems: 1
-> +
-> +  viocfg-gpios:
-> +    description: GPIO controlled connection to IO voltage configuration
-> +      (VIO_CFG) signal. This signal is used by the M.2 card to indicate to the
-> +      host system that the card supports an independent IO voltage domain for
-> +      the sideband signals. Refer, PCI Express M.2 Specification r4.0, sec
-> +      3.1.15.1 for more details.
-> +    maxItems: 1
-> +
-> +  pwrdis-gpios:
-> +    description: GPIO controlled connection to Power Disable (PWRDIS) signal.
-> +      This signal is used by the host system to disable power on the M.2 card.
-> +      Refer, PCI Express M.2 Specification r4.0, sec 3.3.5.2 for more details.
-> +    maxItems: 1
-> +
-> +  pln-gpios:
-> +    description: GPIO controlled connection to Power Loss Notification (PLN#)
-> +      signal. This signal is use to notify the M.2 card by the host system that
-> +      the power loss event is expected to occur. Refer, PCI Express M.2
-> +      Specification r4.0, sec 3.2.17.1 for more details.
-> +    maxItems: 1
-> +
-> +  plas3-gpios:
-> +    description: GPIO controlled connection to Power Loss Acknowledge (PLA_S3#)
-> +      signal. This signal is used by the M.2 card to notify the host system, the
-> +      status of the M.2 card's preparation for power loss.
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - vpcie3v3-supply
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  # PCI M.2 Key M connector for SSDs with PCIe interface
-> +  - |
-> +    connector {
-> +        compatible = "pcie-m2-m-connector";
-> +        vpcie3v3-supply = <&vreg_nvme>;
-> +
-> +        ports {
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            port@0 {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +
-> +                reg = <0>;
-> +
-> +                endpoint@0 {
-> +                    reg = <0>;
-> +                    remote-endpoint = <&pcie6_port0_ep>;
-> +                };
-> +            };
-> +        };
-> +    };
-> 
-> -- 
-> 2.48.1
-> 
+---
+v3:
+  - [Patch 1]:
+    - Use unevaluatedProperties: false
+    - Drop #address-cells and #size-cells
+
+  - [Patch 2]:
+    - Add kernel-doc to internal API
+    - Drop bits.h and bitops.h includes
+    - Add types.h include
+    - Use unsigned type for data_rate_mode_to_hz
+    - Rename __ads1018_read_raw() -> ads1018_read_raw_unlocked()
+    - Rename __ads1018_write_raw() -> ads1018_write_raw_unlocked()
+    - Rename ads1018_read_locked -> ads1018_read_unlocked() for
+      consistency
+    - Let ads1018_read_unlocked() take NULL cnv pointers
+    - Add ads1018_set_trigger_{enable,disable}()
+    - Refactor ads1018_write_raw_unlocked() loop matching
+    - Invert ads1018_trigger_handler() logic to follow traditional error
+      handling pattern
+    - Refactor ads1018_trigger_setup() cleaner
+    - Make ADS1018_FSR_TO_SCALE() calculation be 32-bit compatible
+    - Some additionall minor cleanups
+
+  - Link to v2: https://lore.kernel.org/r/20251127-ads1x18-v2-0-2ebfd780b633@gmail.com
+
+---
+v4:
+  - [Patch 2]:
+    - Replaced <linux/byteorder/generic.h> -> <asm/byteorder.h>
+    - Dropped ADS1018_CFG_DEFAULT
+    - Fixed long lines
+    - Added Andy's remark on ADS1018_FSR_TO_SCALE() kernel-doc
+      description.
+    - Fixed wrong argument on iio_trigger_notify_done():
+      ads1018->indio_trig -> indio_dev->trig
+    - Renamed argument in channel macros _addr -> _index
+    - Changed return type of ads1018_calc_delay() to u32
+    - Mention @cnv is optional in ads1018_read_unlocked()
+    - Use 16-bit transmission cycle in ads1018_oneshot()
+    - Dropped spi_set_drvdata()
+    - Use full resolution in ADS1018_FSR_TO_SCALE() and subtract 1
+      inside macro
+    - Rename ads1018_read_locked() -> ads1018_spi_read_exclusive() for
+      clarity
+    - Minor style changes
+
+  - Link to v3: https://lore.kernel.org/r/20251128-ads1x18-v3-0-a6ebab815b2d@gmail.com
+
+---
+v5:
+  - [Patch 2]:
+    - Fix ADS1018_FSR_TO_SCALE() long description
+    - In ADS1018_FSR_TO_SCALE() subtract 6 from BIT() argument instead
+      of shifting the value
+
+  - Link to v4: https://lore.kernel.org/r/20251202-ads1x18-v4-0-8c3580bc273f@gmail.com
+
+---
+v6:
+  - [Patch 2]:
+    - Actually make the changes described above. Sorry for the noise :(.
+
+  - Link to v5: https://lore.kernel.org/r/20251204-ads1x18-v5-0-b6243de766d1@gmail.com
+
+---
+Changes in v7:
+  - [Patch 1]:
+    - Reword description slightly
+
+  - [Patch 2]:
+    - In struct ads1018_chip_info, make pga_mode_to_gain an array
+    - Drop ads1018_{get,set}_{data_rate,pga}_mode() helpers
+    - Drop context remark in ads1018_calc_delay
+    - Prepare device configuration in ads1018_single_shot()
+    - Let ads1018_calc_delay() take sampling frequency as an argument
+    - Drop *_unlocked() methods in favor of *_direct_mode()
+
+  - Link to v6: https://lore.kernel.org/r/20251204-ads1x18-v6-0-2ae4a2f8e90c@gmail.com
+
+---
+Kurt Borja (2):
+      dt-bindings: iio: adc: Add TI ADS1018/ADS1118
+      iio: adc: Add ti-ads1018 driver
+
+ .../devicetree/bindings/iio/adc/ti,ads1018.yaml    |  82 +++
+ MAINTAINERS                                        |   7 +
+ drivers/iio/adc/Kconfig                            |  12 +
+ drivers/iio/adc/Makefile                           |   1 +
+ drivers/iio/adc/ti-ads1018.c                       | 743 +++++++++++++++++++++
+ 5 files changed, 845 insertions(+)
+---
+base-commit: f9e05791642810a0cf6237d39fafd6fec5e0b4bb
+change-id: 20251012-ads1x18-0d0779d06690
+
+-- 
+ ~ Kurt
+
 
