@@ -1,435 +1,166 @@
-Return-Path: <devicetree+bounces-245111-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245112-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55F14CAC56D
-	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 08:30:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 19E09CAC4EF
+	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 08:22:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DE8E4306DCA0
-	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 07:27:20 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 86A90300B28A
+	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 07:21:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14D5A315D45;
-	Mon,  8 Dec 2025 07:18:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE1AB2DC762;
+	Mon,  8 Dec 2025 07:21:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t0Fsemg2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.monolithicpower.com (unknown [12.33.0.20])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DE67314D2E;
-	Mon,  8 Dec 2025 07:18:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=12.33.0.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0FBE1DD9AD;
+	Mon,  8 Dec 2025 07:21:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765178299; cv=none; b=VlR76hjLR+4CjO087kqap1cvG2PvY5U2uHKiGwHdxvT8Apgw5Vzl0Q/uHDH4AR0Iun0iZgElLvKnZolY0k6ZQ7eb+3MlnvOrXy10AOAClS4qOWRvrBxepooq1P/KP2Z+QS7ES53XHOXBQ9Oe0ZcfN9YdhPxnoxgNwamURCCm5fQ=
+	t=1765178513; cv=none; b=PMal/pp2P+RzwBhrFKGOgSbPo6L39+dOTn5KVBouElj7foN3XnUEhGZxAdXY4II8EjbDx/WkMYDERd4pniPaLAzGCdLXX43lHssVUZE8esIlzHVpY9gFYHC1tQJf+tP5o7ibE2XhrzkiXMYNl003C8oeNR4f0wnDny4AqdJEgcM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765178299; c=relaxed/simple;
-	bh=MQhlEnqF4537fWEQPNYU2Ofmi3CAyZ5dRWqJKxwTv58=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=f4dyMlKrtz9JtAYYlhZ3SHZ+a0+bWROkT8DFoKJIeC7Z4g/G29WdtnGNKEUxQkRv3EceqUaL/BNNimxzNQpuprBBiERSzwYGWBCaFWkCyrxCLDa7khaED1aIhIEXMeBddz5WamimzalmMVtUX8vGgd8YfwEoU1oi1jUE0IR7WWg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=monolithicpower.com; spf=pass smtp.mailfrom=monolithicpower.com; arc=none smtp.client-ip=12.33.0.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=monolithicpower.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=monolithicpower.com
-Received: from CD-MSH04.monolithicpower.com (10.10.70.213) by
- MPS-MSH04.monolithicpower.com (10.10.10.206) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.39; Sun, 7 Dec 2025 23:18:15 -0800
-Received: from HZ-200D-C0727.monolithicpower.com (10.53.66.137) by
- CD-MSH04.monolithicpower.com (10.10.70.213) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.57; Mon, 8 Dec 2025 15:18:13 +0800
-From: Yuxi Wang <Yuxi.Wang@monolithicpower.com>
-To: <Yuxi.Wang@monolithicpower.com>, <linux@roeck-us.net>, <corbet@lwn.net>,
-	<robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <wyx137120466@gmail.com>, <linux-hwmon@vger.kernel.org>,
-	<linux-doc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>
-Subject: [PATCH 2/2] hwmon: add mp5926 driver
-Date: Mon, 8 Dec 2025 15:16:59 +0800
-Message-ID: <20251208071659.1157-3-Yuxi.Wang@monolithicpower.com>
-X-Mailer: git-send-email 2.51.0.windows.1
-In-Reply-To: <20251208071659.1157-1-Yuxi.Wang@monolithicpower.com>
-References: <20251208071659.1157-1-Yuxi.Wang@monolithicpower.com>
+	s=arc-20240116; t=1765178513; c=relaxed/simple;
+	bh=meuj/Z8/33sYc5TphFbNdcAVhoVxM8DZOQMINCq4wjg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=GL0LIdHj6Bk6YyY9GmRN8TnXy9G4sg/mrr5c/Asp1mqoWfXZWhzd6o+OWqHr9OjZUxLwpjE9tjOseHvvr5VYPWPKNOU1KQx7tLcSpZuDuVDHvj0Vfs7Wi/F6pVXYb4DBF1PF47uxDV3YsKr/+ZD8RH0FkJxgxtzwvHxy1t94kd0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t0Fsemg2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 954C7C4CEF1;
+	Mon,  8 Dec 2025 07:21:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1765178513;
+	bh=meuj/Z8/33sYc5TphFbNdcAVhoVxM8DZOQMINCq4wjg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=t0Fsemg2j8Z7dZKkUo4Ql2nKSiznknbsA9yc107lrZR7yxEZ79UKnMfIF2OBxk4K3
+	 XY3glZ+ia9aw9SpxIKlnwtGj6UgemKKkBq9SZ6DsBwPBV9WwLUYGIjqCWX/g/qHoUy
+	 tl9vj4WBUBDOCF2by04O7EsxCLCjp4EOZst3sMXynWXdGWIXXin4bw1RvLSAZkyCSF
+	 iUi+6CiWCB1KS94Dx+EpHHSZC/DxHRt7+tnC3jWVQfGM0sFRhW7Z9KNWZnTWHRGJH3
+	 5Z0teYUtCBSgWFVv+XFnppEpfD7lzwtPeYr3ZzhoeWhTcH9z/CYgwkoR5gmx7qed+p
+	 YBnWSIOuGMtNw==
+Message-ID: <097fae2e-8a72-443b-8ed0-ffd6ecfc9e64@kernel.org>
+Date: Mon, 8 Dec 2025 08:21:49 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: CD-MSLBN02.monolithicpower.com (192.168.86.32) To
- CD-MSH04.monolithicpower.com (10.10.70.213)
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/2] dt-bindings: iio: pressure: add
+ honeywell,abp2030pa
+To: Petre Rodan <petre.rodan@subdimension.ro>
+Cc: Jonathan Cameron <jic23@kernel.org>, David Lechner
+ <dlechner@baylibre.com>, =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20251207-honeywell_abp2_driver-v4-0-b52a4b96bbf7@subdimension.ro>
+ <20251207-honeywell_abp2_driver-v4-1-b52a4b96bbf7@subdimension.ro>
+ <44adc9d6-2520-4282-8c6e-1fedf5319e77@kernel.org>
+ <aTZ7G8M-FvmEuQ8X@lipo.home.arpa>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <aTZ7G8M-FvmEuQ8X@lipo.home.arpa>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Add support for MPS mp5926.
-Signed-off-by: Yuxi Wang <Yuxi.Wang@monolithicpower.com>
----
- Documentation/hwmon/index.rst  |   1 +
- Documentation/hwmon/mp5926.rst |  92 ++++++++++++++++
- MAINTAINERS                    |   7 ++
- drivers/hwmon/pmbus/Kconfig    |   9 ++
- drivers/hwmon/pmbus/Makefile   |   1 +
- drivers/hwmon/pmbus/mp5926.c   | 192 +++++++++++++++++++++++++++++++++
- 6 files changed, 302 insertions(+)
- create mode 100644 Documentation/hwmon/mp5926.rst
- create mode 100644 drivers/hwmon/pmbus/mp5926.c
+On 08/12/2025 08:15, Petre Rodan wrote:
+> 
+> hello Krzysztof, 
+> 
+> On Mon, Dec 08, 2025 at 06:01:46AM +0100, Krzysztof Kozlowski wrote:
+>> On 07/12/2025 07:00, Petre Rodan wrote:
+>>> Adds binding for digital Honeywell ABP2 series pressure and temperature
+>>> sensors.
+>>> The i2c address is hardcoded and depends on the part number.
+>>> There is an optional interrupt that signals the end of conversion.
+>>>
+>>> Signed-off-by: Petre Rodan <petre.rodan@subdimension.ro>
+>>
+>> <form letter>
+>> This is a friendly reminder during the review process.
+>>
+>> It looks like you received a tag and forgot to add it.
+> 
+> [..]
+> 
+>> If a tag was not added on purpose, please state why and what changed.
+>> </form letter>
+> 
+> I removed the tag on purpose since the yaml file was modified in v4 as per the
+> changelog that is below the commit message.
 
-diff --git a/Documentation/hwmon/index.rst b/Documentation/hwmon/index.rst
-index 85d7a686883e..6181c3f62177 100644
---- a/Documentation/hwmon/index.rst
-+++ b/Documentation/hwmon/index.rst
-@@ -185,6 +185,7 @@ Hardware Monitoring Kernel Drivers
-    mp2993
-    mp5023
-    mp5920
-+   mp5926
-    mp5990
-    mp9941
-    mp9945
-diff --git a/Documentation/hwmon/mp5926.rst b/Documentation/hwmon/mp5926.rst
-new file mode 100644
-index 000000000000..4b64a7e24ae6
---- /dev/null
-+++ b/Documentation/hwmon/mp5926.rst
-@@ -0,0 +1,92 @@
-+.. SPDX-License-Identifier: GPL-2.0
-+
-+Kernel driver mp5926
-+====================
-+
-+Supported chips:
-+
-+  * MPS mp5926
-+
-+    Prefix: 'mp5926'
-+
-+  * Datasheet
-+    https://www.monolithicpower.com/en/
-+
-+Author:
-+
-+	Yuxi Wang <Yuxi.Wang@monolithicpower.com>
-+
-+Description
-+-----------
-+
-+This driver implements support for Monolithic Power Systems, Inc. (MPS)
-+MP5926 Hot-Swap Controller.
-+
-+Device compliant with:
-+
-+- PMBus rev 1.3 interface.
-+
-+The driver exports the following attributes via the 'sysfs' files
-+for input voltage:
-+
-+**in1_input**
-+
-+**in1_label**
-+
-+**in1_crit**
-+
-+**in1_crit_alarm**
-+
-+The driver provides the following attributes for output voltage:
-+
-+**in2_input**
-+
-+**in2_label**
-+
-+**in2_lcrit**
-+
-+**in2_lcrit_alarm**
-+
-+**in2_rated_max**
-+
-+**in2_rated_min**
-+
-+The driver provides the following attributes for input current:
-+
-+**curr1_input**
-+
-+**curr1_label**
-+
-+**curr1_max**
-+
-+**curr1_max_alarm**
-+
-+The driver provides the following attributes for output current:
-+
-+**curr2_input**
-+
-+**curr2_label**
-+
-+The driver provides the following attributes for input power:
-+
-+**power1_input**
-+
-+**power1_label**
-+
-+The driver provides the following attributes for output power:
-+
-+**power2_input**
-+
-+**power2_label**
-+
-+The driver provides the following attributes for temperature:
-+
-+**temp1_input**
-+
-+**temp1_crit**
-+
-+**temp1_crit_alarm**
-+
-+**temp1_max**
-+
-+**temp1_max_alarm**
-diff --git a/MAINTAINERS b/MAINTAINERS
-index d701a4d5b00e..fea710aab535 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -17708,6 +17708,13 @@ S:	Maintained
- F:	Documentation/hwmon/mp2993.rst
- F:	drivers/hwmon/pmbus/mp2993.c
- 
-+MPS MP5926 DRIVER
-+M:	Yuxi Wang <Yuxi.Wang@monolithicpower.com>
-+L:	linux-hwmon@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/hwmon/mp5926.rst
-+F:	drivers/hwmon/pmbus/mp5926.c
-+
- MPS MP9941 DRIVER
- M:	Noah Wang <noahwang.wang@outlook.com>
- L:	linux-hwmon@vger.kernel.org
-diff --git a/drivers/hwmon/pmbus/Kconfig b/drivers/hwmon/pmbus/Kconfig
-index f3fb94cebf1a..0a6699fa976a 100644
---- a/drivers/hwmon/pmbus/Kconfig
-+++ b/drivers/hwmon/pmbus/Kconfig
-@@ -472,6 +472,15 @@ config SENSORS_MP5920
- 	  This driver can also be built as a module. If so, the module will
- 	  be called mp5920.
- 
-+config SENSORS_MP5926
-+	tristate "MPS MP5926"
-+	help
-+	  If you say yes here you get hardware monitoring support for Monolithic
-+	  MP5926.
-+
-+	  This driver can also be built as a module. If so, the module will
-+	  be called MP5926.
-+
- config SENSORS_MP5990
- 	tristate "MPS MP5990"
- 	help
-diff --git a/drivers/hwmon/pmbus/Makefile b/drivers/hwmon/pmbus/Makefile
-index 349a89b6d92e..75ec4956ca8d 100644
---- a/drivers/hwmon/pmbus/Makefile
-+++ b/drivers/hwmon/pmbus/Makefile
-@@ -47,6 +47,7 @@ obj-$(CONFIG_SENSORS_MP2975)	+= mp2975.o
- obj-$(CONFIG_SENSORS_MP2993)	+= mp2993.o
- obj-$(CONFIG_SENSORS_MP5023)	+= mp5023.o
- obj-$(CONFIG_SENSORS_MP5920)	+= mp5920.o
-+obj-$(CONFIG_SENSORS_MP5926)	+= mp5926.o
- obj-$(CONFIG_SENSORS_MP5990)	+= mp5990.o
- obj-$(CONFIG_SENSORS_MP9941)	+= mp9941.o
- obj-$(CONFIG_SENSORS_MP9945)	+= mp9945.o
-diff --git a/drivers/hwmon/pmbus/mp5926.c b/drivers/hwmon/pmbus/mp5926.c
-new file mode 100644
-index 000000000000..e86ec1ec0584
---- /dev/null
-+++ b/drivers/hwmon/pmbus/mp5926.c
-@@ -0,0 +1,192 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+//
-+// mp5926.c  - pmbus driver for mps mp5926
-+//
-+// Copyright 2025 Monolithic Power Systems, Inc
-+//
-+// Author: Yuxi Wang <Yuxi.Wang@monolithicpower.com>
-+
-+#include <linux/bitfield.h>
-+#include <linux/bits.h>
-+#include <linux/i2c.h>
-+#include <linux/module.h>
-+#include <linux/of_device.h>
-+#include <linux/pmbus.h>
-+#include "pmbus.h"
-+
-+/*Common Register*/
-+#define PAGE	0x01
-+#define EFUSE_CFG 0xCF
-+#define I_SCALE_SEL 0xC6
-+#define MP5926_FUNC	(PMBUS_HAVE_VIN | PMBUS_HAVE_VOUT | \
-+			PMBUS_HAVE_IIN | PMBUS_HAVE_PIN | \
-+			PMBUS_HAVE_TEMP | PMBUS_HAVE_STATUS_INPUT | \
-+			PMBUS_HAVE_STATUS_TEMP | PMBUS_HAVE_STATUS_VOUT)
-+static int mp5926_read_word_data(struct i2c_client *client, int page, int phase,
-+				 int reg)
-+{
-+	int ret;
-+	s16 exponent;
-+	s32 mantissa;
-+	s64 val;
-+
-+	switch (reg) {
-+	case PMBUS_READ_VIN...PMBUS_READ_VCAP:
-+	case PMBUS_READ_IOUT...PMBUS_READ_TEMPERATURE_1:
-+	case PMBUS_READ_PIN:
-+	case PMBUS_STATUS_WORD:
-+		ret = -ENODATA;
-+	break;
-+	case PMBUS_READ_VOUT:
-+	// The Vout format used by the chip is linear11 and not linear16.
-+	// So we transform the value into the direct format defined by PMBus.
-+	ret = i2c_smbus_read_word_data(client, EFUSE_CFG);
-+	if (ret < 0)
-+		return ret;
-+	if (ret & BIT(12)) {
-+		ret = i2c_smbus_read_word_data(client, PMBUS_READ_VOUT);
-+		if (ret < 0)
-+			return ret;
-+		exponent = ((s16)ret) >> 11;
-+		mantissa = ((s16)((ret & 0x7ff) << 5)) >> 5;
-+		val = mantissa * 1000;
-+		if (exponent >= 0)
-+			val <<= exponent;
-+		else
-+			val >>= -exponent;
-+		val = div_s64(val * 10 + 313L, 625L);
-+		return val;
-+	}
-+	ret = -ENODATA;
-+	break;
-+	default:
-+		ret = -EINVAL;
-+	break;
-+	}
-+
-+	return ret;
-+}
-+
-+static int mp5926_read_byte_data(struct i2c_client *client, int page,
-+				 int reg)
-+{
-+	int ret;
-+
-+	switch (reg) {
-+	case PMBUS_STATUS_BYTE:
-+	case PMBUS_STATUS_VOUT:
-+	case PMBUS_STATUS_INPUT:
-+	case PMBUS_STATUS_TEMPERATURE:
-+	case PMBUS_STATUS_CML:
-+	case PMBUS_STATUS_MFR_SPECIFIC:
-+	   ret = -ENODATA;
-+	break;
-+	default:
-+		ret = -EINVAL;
-+	break;
-+	}
-+	return ret;
-+}
-+
-+static struct pmbus_driver_info mp5926_info_linear = {
-+	.pages = PAGE,
-+	.format[PSC_VOLTAGE_IN] = linear,
-+	.format[PSC_CURRENT_IN] = linear,
-+	.format[PSC_VOLTAGE_OUT] = direct,
-+	.format[PSC_TEMPERATURE] = linear,
-+	.format[PSC_POWER] = linear,
-+
-+	.m[PSC_VOLTAGE_OUT] = 16,
-+	.b[PSC_VOLTAGE_OUT] = 0,
-+	.R[PSC_VOLTAGE_OUT] = 0,
-+
-+	.read_word_data = mp5926_read_word_data,
-+	.read_byte_data = mp5926_read_byte_data,
-+	.func[0] = MP5926_FUNC,
-+};
-+
-+static struct pmbus_driver_info mp5926_info_direct = {
-+	.pages = PAGE,
-+	.format[PSC_VOLTAGE_IN] = direct,
-+	.format[PSC_CURRENT_IN] = direct,
-+	.format[PSC_VOLTAGE_OUT] = direct,
-+	.format[PSC_TEMPERATURE] = direct,
-+	.format[PSC_POWER] = direct,
-+
-+	.m[PSC_VOLTAGE_IN] = 16,
-+	.b[PSC_VOLTAGE_IN] = 0,
-+	.R[PSC_VOLTAGE_IN] = 0,
-+
-+	.m[PSC_CURRENT_IN] = 16,
-+	.b[PSC_CURRENT_IN] = 0,
-+	.R[PSC_CURRENT_IN] = 0,
-+
-+	.m[PSC_VOLTAGE_OUT] = 16,
-+	.b[PSC_VOLTAGE_OUT] = 0,
-+	.R[PSC_VOLTAGE_OUT] = 0,
-+
-+	.m[PSC_TEMPERATURE] = 4,
-+	.b[PSC_TEMPERATURE] = 0,
-+	.R[PSC_TEMPERATURE] = 3,
-+
-+	.m[PSC_POWER] = 25,
-+	.b[PSC_POWER] = 0,
-+	.R[PSC_POWER] = -2,
-+
-+	.read_word_data = mp5926_read_word_data,
-+	.read_byte_data = mp5926_read_byte_data,
-+	.func[0] = MP5926_FUNC,
-+};
-+
-+static int mp5926_probe(struct i2c_client *client)
-+{
-+	int ret;
-+
-+	if (!i2c_check_functionality(client->adapter,
-+				     I2C_FUNC_SMBUS_READ_BYTE_DATA
-+				     | I2C_FUNC_SMBUS_BLOCK_DATA))
-+		return -ENODEV;
-+	ret = i2c_smbus_read_word_data(client, EFUSE_CFG);
-+	if (ret < 0)
-+		return ret;
-+	if (ret & BIT(12)) {
-+		ret = pmbus_do_probe(client, &mp5926_info_linear);
-+	} else {
-+		ret = i2c_smbus_read_word_data(client, I_SCALE_SEL);
-+		if (ret < 0)
-+			return ret;
-+		if (ret & BIT(6))
-+			mp5926_info_direct.m[PSC_CURRENT_IN] = 4;
-+		ret = pmbus_do_probe(client, &mp5926_info_direct);
-+	}
-+	if (!ret)
-+		dev_info(&client->dev, "%s chip found\n", client->name);
-+	return ret;
-+}
-+
-+static const struct i2c_device_id mp5926_id[] = {
-+	{ "mp5926", 0 },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(i2c, mp5926_id);
-+
-+static const struct of_device_id mp5926_of_match[] = {
-+	{ .compatible = "mps,mp5926" },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, mp5926_of_match);
-+
-+static struct i2c_driver mp5926_driver = {
-+	.probe = mp5926_probe,
-+	.driver = {
-+		.name = "mp5926",
-+		.of_match_table = mp5926_of_match,
-+	},
-+	.id_table = mp5926_id,
-+};
-+
-+module_i2c_driver(mp5926_driver);
-+MODULE_AUTHOR("Yuxi Wang <Yuxi.Wang@monolithicpower.com>");
-+MODULE_DESCRIPTION("MPS MP5926 HWMON driver");
-+MODULE_LICENSE("GPL");
-+MODULE_IMPORT_NS("PMBUS");
--- 
-2.39.2
+Please read my form letter and please read linked submitting patches
+doc. I pointed to a very specific paragraph, so you don't need to read
+everything...
 
+> 
+>> I will not be doing work twice and, without explanation, forcing me to
+>> do that is disrespectful to my time.
+> 
+> sorry about that. the single thing that changed was that
+> 
+> ---- 8< --------------------------------------------
+> @@ -76,8 +71,7 @@ properties:
+>    spi-max-frequency:
+>      maximum: 800000
+>  
+> -  vdd-supply:
+> -    description: provide VDD power to the sensor.
+> +  vdd-supply: true
+>  
+
+
+This is trivial and absolutely NOT a reason to drop the tag. Did you
+read submitting patches document? Please consider TIME of reviewers,
+even time spent on replying on this.
+
+Best regards,
+Krzysztof
 
