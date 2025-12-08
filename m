@@ -1,362 +1,207 @@
-Return-Path: <devicetree+bounces-245052-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245054-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9ED47CABC42
-	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 02:57:16 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8FB6CABC87
+	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 03:01:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id F20DB300090E
-	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 01:57:12 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 123523035A40
+	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 01:57:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0D932620FC;
-	Mon,  8 Dec 2025 01:57:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6AFF25A2C6;
+	Mon,  8 Dec 2025 01:57:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=airkyi.com header.i=@airkyi.com header.b="SAOHj2o6"
+	dkim=pass (2048-bit key) header.d=altera.com header.i=@altera.com header.b="VYmAh2S3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgjp3.qq.com (smtpbgjp3.qq.com [54.92.39.34])
+Received: from PH0PR06CU001.outbound.protection.outlook.com (mail-westus3azon11011046.outbound.protection.outlook.com [40.107.208.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE042242D79;
-	Mon,  8 Dec 2025 01:57:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.92.39.34
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765159027; cv=none; b=HnphAHeRRIwv0g4jJQ2BqByYyF/ZiWOrzB2oxZcNOF3eNM6aWG+S9gi7v26RtdzwPlcDUmDbj512fck72N4OFT6bJvS1e7u/1OxpX0H1Q7cc61Kf2lS+79qZmS8+xIeASL+NGdvVqvHionxSpArC4dk01mWVbZ38llYfb2nsPaU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765159027; c=relaxed/simple;
-	bh=CogOCq7Dgo3J6O+ahfKV8yupDN4OJqUtveUj18KHbi4=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=jnA8Ys/iGcsfZ0ClaShjORQ1MgTUbHRsf8jC7NdXnDGWj5ds0HaetQo5FC+aqJgtFcUEMsceYD74bZBEP114bUGY5XjllcFqRFKNu5MYvart5+lAlkeOXlN9lni8FiGlvi4WPHitCjHIBlY47KzEbHAFNWLQml2M4voDX5N9p7w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=airkyi.com; spf=pass smtp.mailfrom=airkyi.com; dkim=pass (1024-bit key) header.d=airkyi.com header.i=@airkyi.com header.b=SAOHj2o6; arc=none smtp.client-ip=54.92.39.34
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=airkyi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=airkyi.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=airkyi.com;
-	s=altu2504; t=1765159005;
-	bh=Xn5Sqf6jlBXaETnSdjcUsZQPPZf1EW7Rcj8pIik+fGE=;
-	h=From:To:Subject:Date:Message-Id;
-	b=SAOHj2o6kz9zQ17DSoXMOhRW32U597NuwHkPdkmKmB3mr3EKTCQn2Zzxb3DdjwGJn
-	 wzSh4M7Hh5s6JPXpkc3UPYYCa0L/ueMZR/NvpYQjPVH3kyDmcrubXBf/kokxvHC76K
-	 IFhgriWxw6HggM7x8gnREWuKBfWcrWNUhKGMsDWc=
-X-QQ-mid: esmtpsz19t1765158957t8b042638
-X-QQ-Originating-IP: 0VDHYm/TNOZJ8x5lMA+cNxsISV6uedyVhGjPFC9wx+4=
-Received: from DESKTOP-8BT1A2O.localdomain ( [58.22.7.114])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Mon, 08 Dec 2025 09:55:54 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 6033129153185589897
-From: Chaoyi Chen <kernel@airkyi.com>
-To: Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-	Peter Chen <hzpeterchen@gmail.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3DF9246770;
+	Mon,  8 Dec 2025 01:57:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.208.46
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1765159075; cv=fail; b=GUwbNpN1fPjQvgkkzL9A8uFoKNOKO4icgKrSaQnqJqj6GNHimzlqMMvDuWIxkkUDMjjbaAapiqCiVvHAVrz1Gtdm6WdzIe9g+qMINh8OBzAnCBUvf0O9oU+LhnHl5q347wZ9WuvWfgoCQAdiV4ME0ulnZF3Pa7JnDjxEc5aeWYk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1765159075; c=relaxed/simple;
+	bh=YA1xT1j7oJnO0/b2xoZy4rr1qOT7Eb3ly7hWgtVRYII=;
+	h=From:To:Subject:Date:Message-ID:Content-Type:MIME-Version; b=Ng+8MVYpA04Swyt7lJJ+xMs2EtV6VyDZROHZY72k/L3Jw32YegU1E1RjOKnOE1hItKSZMsBOU5qUMWAX9mdOAGszWtprjatmuNoEh4yf/xPZuEbHRckKN3dunZqm2LjN9hLz0BGq5YCmAXLgLn49a8p0qcpEBuHV3CS5XIWiSzs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=altera.com; spf=pass smtp.mailfrom=altera.com; dkim=pass (2048-bit key) header.d=altera.com header.i=@altera.com header.b=VYmAh2S3; arc=fail smtp.client-ip=40.107.208.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=altera.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=altera.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=S8el2ergvO2nzkJiPAUoatqaqdqnn/2K4lLuNooKVVDw8bEbhHMS2wmeUECLOpImT9oQYrz0v/P9jEKJe0WEHx0lDXecGZvflbPIhOxG19dDWS7teTGqTOJEl5zG8rvOYbfO+r+zUkzoC3cru/xFgG3epMqXkTerXmA+vw7oIl33aMOxNEcQlEnAujBHNjC/fTpeH59En+FRMm/drr+IgRrfA/hitH7KI7iIuywFkw+eP1QfpcM0XK2wzycuuMaydfYD52obWEz9nRm1R54Z2z3nsKMCHSmVfJSnYESgs7eS8MPoOpmaFmy0KmGNfW8/TP4I//DhkWpBMsdWxQwjOA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=o9cdUh3mItJC1WnIui3yYwmkq7Hx9dHX/GzdjCYq5ow=;
+ b=pTJf3VAhzJfBJmmlKe5eA+8yn/t15ZKgoJRxs2/QoAesn56EYjsSrHwJAdk2q/HdcQH3wNcRSYJZvu8kDpsLSawz7IZ4qJT3OnEg6tlWX9kkGqCEFZnQd4dXvHNZ0Ml3/FesGUPawB2XTnCvRU+MFPG94TvZ0KCosBs8ySU0nKtEwdbWqktQ6ebsSgzFtDc2kdRMAtm6oG+NLYpLJ8RzBEdr156mkRVLBWEP6CoxsCgdvfvQovRlWYbOSU267FC6HGpwpKSnmAFQ7pjKNtmF+rexkqL1qnzWI0xd4uD99vmLUBOEgtVI4vY4AyvPG7pCnPoMPI3D/RUNN7VfnEsIdA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=altera.com; dmarc=pass action=none header.from=altera.com;
+ dkim=pass header.d=altera.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=altera.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=o9cdUh3mItJC1WnIui3yYwmkq7Hx9dHX/GzdjCYq5ow=;
+ b=VYmAh2S3aixYCzPei5AN9BJOhRPrFD1VIrBlJLZMUHlj7Dgq6WJAB+Bl40qsSKAXjWwDATWMI/znOutlefv2z+3MKcURVx6lyOiAMbp0rQXkKj40yfGPFTw7Rz45D2b1qs0dmk1bBAB6O5ELsx4sgMTuaeZw7pKyteMXCqvv5HxA/HKpZ3mtLX46AdIZDzAD2YTbiynAYp0DcIZQCqFJWc84eGLVDB0vMub08QIVb5KuEAX1BMBKXiuI0iP4irpwgfC+s1HPnf9NVY/PFCMG0IE7+IhKABZ1uqBvCDMqKUQNcK6IYOg19f7xHstU7Isf06QwJvBiQv+A6KLGYupghg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=altera.com;
+Received: from DS4PR03MB8447.namprd03.prod.outlook.com (2603:10b6:8:322::12)
+ by SJ0PR03MB6341.namprd03.prod.outlook.com (2603:10b6:a03:38c::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9388.14; Mon, 8 Dec
+ 2025 01:57:51 +0000
+Received: from DS4PR03MB8447.namprd03.prod.outlook.com
+ ([fe80::4682:710e:536c:360a]) by DS4PR03MB8447.namprd03.prod.outlook.com
+ ([fe80::4682:710e:536c:360a%2]) with mapi id 15.20.9388.013; Mon, 8 Dec 2025
+ 01:57:51 +0000
+From: Khairul Anuar Romli <khairul.anuar.romli@altera.com>
+To: Dinh Nguyen <dinguyen@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
+	Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
 	Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Sandy Huang <hjc@rock-chips.com>,
-	Andy Yan <andy.yan@rock-chips.com>,
-	Yubing Zhang <yubing.zhang@rock-chips.com>,
-	Frank Wang <frank.wang@rock-chips.com>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Amit Sunil Dhamne <amitsd@google.com>,
-	Chaoyi Chen <chaoyi.chen@rock-chips.com>,
-	Dragan Simic <dsimic@manjaro.org>,
-	Johan Jonker <jbx6244@gmail.com>,
-	Diederik de Haas <didi.debian@cknow.org>,
-	Peter Robinson <pbrobinson@gmail.com>
-Cc: linux-usb@vger.kernel.org,
+	dmaengine@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	linux-phy@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	dri-devel@lists.freedesktop.org
-Subject: [PATCH v13 11/11] arm64: dts: rockchip: rk3399-evb-ind: Add support for DisplayPort
-Date: Mon,  8 Dec 2025 09:55:00 +0800
-Message-Id: <20251208015500.94-12-kernel@airkyi.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20251208015500.94-1-kernel@airkyi.com>
-References: <20251208015500.94-1-kernel@airkyi.com>
-X-QQ-SENDSIZE: 520
-Feedback-ID: esmtpsz:airkyi.com:qybglogicsvrgz:qybglogicsvrgz6b-0
-X-QQ-XMAILINFO: MJWNsjxQgzaE4KWEtMpIYLZcqkbQGL+snOj5Wof542RW4w4PlGqHuFRC
-	giWq1Ae6DES/4vzSxMQZw4WI1XoalWnqj0oiGbt4DPwOgdc/DQ9dutCVe9Mfyv8qREaw0et
-	XTdSMbYwmSrT1auYbu4HyYsF9PLNAVeqrOSMEnWSIHI3dj3hNoPrWoeeM5uy67DKTCEIv5R
-	It5eiNS+uKzEPfnNWpBBH7LKDBjsywvaOLpnF2s4MusqLSU1ppIOWcV61LinPclWBEGf7HF
-	uxFuzEjlBM9HhowkqdJ34lfY/UI3UymATo66sJqev2QBEYv/v8XGdNwAEojws4Du00eKW4f
-	+KLfRkO2od74YzgghVCHM4PspSVSg3oOpL+F4qh8XkyMJfFXPQun1WjCtTltWzX1ZeNFB1y
-	VAFZnYe7TP+8zKb1kdYCwngIkILeG1nZebfmCzjcNqEZIVhsuWPjlsLztdRXDQ5L49POG4A
-	y/UZJvED69xTrJ9O+Cfk7SdUykyRG/6McCh6fY/Z2P7w1bOsC3mVm3z8hV3hNnjSbISP0dh
-	i16t7VqrCUhcnr9iPt4uBspoqcJqsvEpzga0ELruiRSupPAhHE2pNOjGhMnFctNxUo0ntO1
-	iYohn3Z0m3fB1MSUgApkNhPBfw2yR4fmNzSZP5MCwFOW5vrZ+BSFjMuSkxmgiR6HdtyYvRo
-	cz1GA9kOe+tBQfe8WRvHgPWCEOin8DB5lXF64qZWVc2DbHEmAoc4AgaImt0hD2f7myPWM7Z
-	qAhz0ToUtoM5QdBkYvfsY5bPT9RP594L9rAJ+6ktfwd0lDR8LYVXQr0xV0HLm4YAv/5Fsfj
-	NFeVDAAKzpwA0EuyoMBGlLhb0II65HEDD+zdOQIT0X55l0PJVVDednIRBZnNKX1Ex29un1p
-	EHrymtE4cKK23Q6jQsmM2B/3ObvOojB5qunwdIHzAl7y1i7DexjXpUcb4kW5vpmQv8fMe2j
-	Lngk6FTt3QvQo05OZUXzGgsYB+yrfCCyC87iwannZ/q/852ttQYSXXYZ8nnNLzgIc7W7W3A
-	OE/x5cLeVAd9Mj2Os2gQA55YJPkHkJd3TS1eW85Q==
-X-QQ-XMRINFO: NI4Ajvh11aEj8Xl/2s1/T8w=
-X-QQ-RECHKSPAM: 0
+	Khairul Anuar Romli <khairul.anuar.romli@altera.com>
+Subject: [PATCH v2 0/4] Add Agilex5 AXI DMA support
+Date: Mon,  8 Dec 2025 09:57:41 +0800
+Message-ID: <cover.1764927089.git.khairul.anuar.romli@altera.com>
+X-Mailer: git-send-email 2.43.7
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SJ0PR13CA0237.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c1::32) To DS4PR03MB8447.namprd03.prod.outlook.com
+ (2603:10b6:8:322::12)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS4PR03MB8447:EE_|SJ0PR03MB6341:EE_
+X-MS-Office365-Filtering-Correlation-Id: c29a5134-57e9-4bac-b8e8-08de35fd31d8
+X-MS-Exchange-AtpMessageProperties: SA
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?dTFfuI3RRAXoHmuqFXZ+5TEzbSDpUCtV8LtBYrvstPGm2CsePT3op65nUKm+?=
+ =?us-ascii?Q?hOHhBgiHzgV62PVbLX4TrYCRr8fq0eOU1HpZkwFbsAeiMybiFtHaT51V9Yqo?=
+ =?us-ascii?Q?cCIKNTs1pil2SW+tm3XGgEsdmzCjTjqlBSYVvqaZy6RmnMt9rSFT9HSpdyWQ?=
+ =?us-ascii?Q?yiNVjv/mqTqNDVeCxPTaIBUMO12rFTUxCeyZQp3WJPlqv93ia3BsIr4wk6Bi?=
+ =?us-ascii?Q?7IMJppXpNK8ZDOUoOHnR6VF5eWbf3y2It8ZuE2bLRmFuA8Bf1rN33kbx3uHk?=
+ =?us-ascii?Q?O0zqocJdl4eNdNd5b4Cj2M/Tvy3IxBG4T7vOZPxDoEqLYpgEy8jrp1LNts5z?=
+ =?us-ascii?Q?/Xlkw3jku/1P6Q0MKsm+X7vcL1/xCuwccvAVbYJ0IxP3/ceJ3Z3HeRZoutEZ?=
+ =?us-ascii?Q?uWaC3Zu6vTCRmI/Upk7hrASE0n7kYuxZm9g9GEw8fjCZIzEt1HzBYPoHtcjk?=
+ =?us-ascii?Q?44pON7rPcDqA87YhXFljv8Z/LztyIJL4AOzJRUuUGAx6RZIAKvXxOAfxeET2?=
+ =?us-ascii?Q?xB8B7u3HhKUh453uaZ/VMXiGhVr+cRX0ARtzlRKi1l8kxmajHtRjVLBz8N2m?=
+ =?us-ascii?Q?U3a6qBRmyisWpxwcqtdP+sL/pCrdQbdDKMXMdSgdhaRWkvAyqG/spHgoL+6o?=
+ =?us-ascii?Q?nFQ//TBoK8jGqPFIN97xGa2zI2BdT9jhMYkHdiFiE3bq89WmcxaAd7/djIi5?=
+ =?us-ascii?Q?YlonKi6PLpJEX/ABbyNRdAbjXlqySjWFrbgN2w3IfBm31Qrov105hh0ZgY7Z?=
+ =?us-ascii?Q?yMQj/B+S9H7106SpPsvYZ3njh0Pn9yr/K7PcjEGeZwgOapG2dhqai0h59nzI?=
+ =?us-ascii?Q?I7Z91jnJdtr5D2H8nS4O7Gabk30gWBiZk/MyxCo7KyBJVh2p7ThF/00n8InK?=
+ =?us-ascii?Q?61gAWGU2OSK+pqWdkEjpVotpjFeen6bAGdPB/SbWinWRsLemEWwwUWdJ/jY7?=
+ =?us-ascii?Q?Hk5/hOczPVAikbUKbByDxs1MwjpYWZHUY7bk3r0T3l+N+S7UXa5K3Fiphgn9?=
+ =?us-ascii?Q?ulmj67BEF2zNCImGBtdgFfYacao7rcAVvMpu8YDk/DnnoRBDpgpUGmfcdI1I?=
+ =?us-ascii?Q?bPQBlRGQUSk/XEV3cOQE8PxVtaSJ3X9XmbbX9arNbqhXtvm0IImIRnPP4p6W?=
+ =?us-ascii?Q?e/o756XnVzggdVlHkxIGOOGr/rmLUNCedoDidGcJKCcw6MK9ki+YNuFhH5DX?=
+ =?us-ascii?Q?zZVTGFKKUi3jJYiHsInUKl+HMfg4PkW2pALsiAOAZFeQRTAQalz5SyZmAIE1?=
+ =?us-ascii?Q?fPZfb7RvHYDT1UMPIuGzyNhcwrX7YwrjBNSEqOxeox1QTpMCgaZBa+iPoFxI?=
+ =?us-ascii?Q?9e+hFoE+tvI64JQpEyn6CW5pEho7azfmMeUNbPbEHssYcrns3KqtsS4qIQoQ?=
+ =?us-ascii?Q?qIAqXAsbM92cjCmS9s5tEflu+NF0cNBcOvrjq+JzdD7IRudxk7ciUZdVorPm?=
+ =?us-ascii?Q?t4nI2/S0Cj3pURIlda9KGrKkLxj5Pkjcl2OMnMmIgBMu82RfLaH6+wqqpVcj?=
+ =?us-ascii?Q?OnbM9l2WRdQQTdIPPwdJvE/24GsuUeQasMA4?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS4PR03MB8447.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(921020);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?97v6DvRfHGgbospRgCItFQ1wJ+ReauAE+06mypTYxG2j43W2KPPtKIOVVf2s?=
+ =?us-ascii?Q?Mytc0zGPvo+mnY1WCROpadO+f/FbOtiRWFvpzI7anPnHalTBmc0zVCQhM/J8?=
+ =?us-ascii?Q?mOSF9IkQcWXAeKVl7tfdF0ORcgP9G4SL2P2DBqdlOtlXAi0/TFm5mnSP4C34?=
+ =?us-ascii?Q?ClpDRNIYL4JFdrczaskkx5m7X1DivHyBYmTaknrxpwVpSO1aCTGomWCWccrL?=
+ =?us-ascii?Q?ELDeTJlozVbI1q8cTRa3diwRttpmxmF0vXMvZ8snOVaIpUkCb15aeOyXIupE?=
+ =?us-ascii?Q?Kw+GZtvE0UKpQKF9SfJBFFQAd1/e6JY91GKgzjAu/9KDz5RFxS4NC3gVj88j?=
+ =?us-ascii?Q?cMzz/qQgxHGopZP4HqmG0KbSBV5ePD+jolgJL9ya6ZushPhpefeovehlOjrg?=
+ =?us-ascii?Q?rtCcsvvhooqgIfbZT97SfQ4B/wsU9NpyhNMfw7ZUv2gPiRJ+cm/FyqnqsPz4?=
+ =?us-ascii?Q?8dYggj2YnMCZGAS3FAB1Ji4fDZJqJ6+zORIqhM8jYMCqw6pmkcRU5imghEUG?=
+ =?us-ascii?Q?l1XnXuwwaeT7GpdvSWSTAN0sHFqt7xpB1AlvyeT6mQ/n5vgyXdhCrZ6sPO//?=
+ =?us-ascii?Q?9gvcvVxRidUXWjTwRfbm8xwE6ihpaZpa31QJw70moZsplEW8YLNOb64nfPlK?=
+ =?us-ascii?Q?EaorWy6HUPReHVxNOha//8Guto0Yn93vcmaz6ySFVstafsnUtcUYAjpbTjsh?=
+ =?us-ascii?Q?zgrIDA0tz1MLDoJECrVfVQ7+6M0RQ7FwaPTevjiGTRBU9rRXA03RKGssaA3K?=
+ =?us-ascii?Q?HD+WPHHnDxgaW4O1I67GEDUcvJBip+R/p3x1Db30P3EIgoxUHK/0jscyRHKu?=
+ =?us-ascii?Q?78yCG3bh4cwhhvjjMSdo0TpFuF5w6KLclpJlBUBH2sjF7WES+OtU9xuW+Uvm?=
+ =?us-ascii?Q?LbdxbcRFVMebuAbkgX19tPty/aUx3HQV1gnYUzK2Aa+C78g4XusGEFRLLXX9?=
+ =?us-ascii?Q?Q5yNu9+4MnsH+6ZtYb5fKTH2yPo11bsKoT5H3vGNV0auY/1QumxRUclBa2mR?=
+ =?us-ascii?Q?3G0RVHVNK+uglDMTcBpEHwsVDIHstGYSx62XfZIWVXAlx+/vradE0IVljxPs?=
+ =?us-ascii?Q?50MBma7ZhrVaTUky8SGhpDgdjcAyI6lYwIaQ1rjAZ25YhRVZ6tC+nKxQjF5+?=
+ =?us-ascii?Q?OVewTVCRXcLXzf92rbjAFNv7rVYB8ky9eooKyBZTd5w4bCLH2Up5qC7272qH?=
+ =?us-ascii?Q?2lnGBOr8bxLIzQ5JLr/Eor2JmQ9keYe4tRRYs5CRNOtxpH1zHk0UnG5fEx0e?=
+ =?us-ascii?Q?chcvJI59qZkmcG60L4ZxbnC06sX77auOxLhFO8C95LGSRrAtD7jxKB7ISki8?=
+ =?us-ascii?Q?H0BY9HDyyNYAMg9fvnYZ09i5+8Oe0pMOcdh47llBRskxvwa0srknd9LtYX7/?=
+ =?us-ascii?Q?C0pLeSAUNg1Nmjf6stqBlvqy0a6dVhwLdMUAODypW148u91ak71dYtDX1qok?=
+ =?us-ascii?Q?swYZREbqKFThFXxznZsiXUuH0q2JYi+KHIrHRrVUUhI9DCaMtjI6kAcmxkZT?=
+ =?us-ascii?Q?UZtzU0mvSr1TpcZDW1nCp7SY9Dl/zxyAcgAhEffAFgKQDaSCCWuwgpyQbCoe?=
+ =?us-ascii?Q?7kZ2dRfw2RqDfFebrjA3EQQOHuFXRxSD7Qj0TE92eGXfbiH2n55CeLO9I8ru?=
+ =?us-ascii?Q?9A=3D=3D?=
+X-OriginatorOrg: altera.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c29a5134-57e9-4bac-b8e8-08de35fd31d8
+X-MS-Exchange-CrossTenant-AuthSource: DS4PR03MB8447.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Dec 2025 01:57:51.4996
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: fbd72e03-d4a5-4110-adce-614d51f2077a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: cFbn1JVrvRjKqEzWI7CAnUlXtmWWEBMg9W3c0+8yMHQlSsrTT2Lb271EkndJhTLelZATgJBfy8xS3r6BExyk9B6dwxwjpXWDsneobabLqd0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR03MB6341
 
-From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+This series introduces support for Agilex5 SoC in the Synopsys DesignWare
+AXI DMA binding and updates the device tree to use the platform-specific
+compatible string.
 
-The RK3399 EVB IND board has a Type-C interface DisplayPort.
-It use fusb302 chip as Type-C controller.
+The Agilex5 only has 40-bit DMA addressable bit instead of 64-bit. Hence,
+this specific addition will enable driver to handle this limitation.
 
-fusb302 chip ---> USB/DP PHY0 <----> CDN-DP controller
-
-Signed-off-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
 ---
-
-(no changes since v10)
-
-Changes in v9:
-- Add usb role switch for Type-C.
-- Remove USB2 PHY in Type-C connection.
-
-(no changes since v4)
-
-Changes in v3:
-- Fix wrong vdo value.
-- Fix port node in usb-c-connector.
+Notes:
+This patch series is applied on socfpga maintainer's tree
+https://git.kernel.org/pub/scm/linux/kernel/git/dinguyen/linux.git/log/?h=socfpga_dts_for_v6.19
 
 Changes in v2:
-- Add endpoint to link DP PHY and DP controller.
-- Fix devicetree coding style.
+	- Add dma-ranges property.
+	- Add address-cells and size-cells due to warning when dma-ranges
+	  is define without address-cells and size-cells present. Also
+	  prevent kernel panic if address-cells and size-cells are not
+	  defined.
+	- Add driver support to handle defined properties and set the DMA
+	  BIT MASK according to value from DT.
+	- Rename "arm64: dts: agilex5: Use platform-specific compatible for
+          AXI DMA" to "arm64: dts: intel: agilex5: Add dma-ranges and
+          address cells to dma node"
 
- .../boot/dts/rockchip/rk3399-evb-ind.dts      | 147 ++++++++++++++++++
- 1 file changed, 147 insertions(+)
+This changes is validated on:
+	- intel/socfpga_agilex5_socdk.dtb
+	- snps,dw-axi-dmac.yaml
+	- snps,dw-axi-dmac.yaml intel/socfpga_agilex5_socdk.dtb
+	- Agilex5 devkit
+---
+Khairul Anuar Romli (4):
+  dt-bindings: dma: snps,dw-axi-dmac: Add compatible string for Agilex5
+  dt-bindings: dma: snps,dw-axi-dmac: Add #address-cells and #size-cells
+  arm64: dts: intel: agilex5: Add dma-ranges and address cells to dma
+    node
+  dma: dw-axi-dmac: Add support for Agilex5 and dynamic bus width
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-evb-ind.dts b/arch/arm64/boot/dts/rockchip/rk3399-evb-ind.dts
-index 70aee1ab904c..be1e90f7a453 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-evb-ind.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-evb-ind.dts
-@@ -4,6 +4,7 @@
-  */
- 
- /dts-v1/;
-+#include <dt-bindings/usb/pd.h>
- #include "rk3399.dtsi"
- 
- / {
-@@ -19,6 +20,21 @@ chosen {
- 		stdout-path = "serial2:1500000n8";
- 	};
- 
-+	sound: sound {
-+		compatible = "rockchip,rk3399-gru-sound";
-+		rockchip,cpu = <&i2s0 &spdif>;
-+	};
-+
-+	vbus_typec: regulator-vbus-typec {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		gpio = <&gpio1 RK_PC2 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&vcc5v0_typec0_en>;
-+		regulator-name = "vbus_typec";
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+
- 	vcc5v0_sys: regulator-vcc5v0-sys {
- 		compatible = "regulator-fixed";
- 		enable-active-high;
-@@ -31,6 +47,11 @@ vcc5v0_sys: regulator-vcc5v0-sys {
- 	};
- };
- 
-+&cdn_dp {
-+	phys = <&tcphy0_dp>;
-+	status = "okay";
-+};
-+
- &cpu_b0 {
- 	cpu-supply = <&vdd_cpu_b>;
- };
-@@ -55,6 +76,12 @@ &cpu_l3 {
- 	cpu-supply = <&vdd_cpu_l>;
- };
- 
-+&dp_out {
-+	dp_controller_output: endpoint {
-+		remote-endpoint = <&dp_phy_in>;
-+	};
-+};
-+
- &emmc_phy {
- 	status = "okay";
- };
-@@ -341,6 +368,71 @@ regulator-state-mem {
- 	};
- };
- 
-+&i2c4 {
-+	i2c-scl-rising-time-ns = <475>;
-+	i2c-scl-falling-time-ns = <26>;
-+	status = "okay";
-+
-+	usbc0: typec-portc@22 {
-+		compatible = "fcs,fusb302";
-+		reg = <0x22>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <RK_PA2 IRQ_TYPE_LEVEL_LOW>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&usbc0_int>;
-+		vbus-supply = <&vbus_typec>;
-+
-+		usb_con: connector {
-+			compatible = "usb-c-connector";
-+			label = "USB-C";
-+			data-role = "dual";
-+			power-role = "dual";
-+			try-power-role = "sink";
-+			op-sink-microwatt = <1000000>;
-+			sink-pdos =
-+				<PDO_FIXED(5000, 2500, PDO_FIXED_USB_COMM)>;
-+			source-pdos =
-+				<PDO_FIXED(5000, 1500, PDO_FIXED_USB_COMM)>;
-+
-+			altmodes {
-+				displayport {
-+					svid = /bits/ 16 <0xff01>;
-+					vdo = <0x00001c46>;
-+				};
-+			};
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+
-+					usbc0_orien_sw: endpoint {
-+						remote-endpoint = <&tcphy0_orientation_switch>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+
-+					usbc0_role_sw: endpoint {
-+						remote-endpoint = <&dwc3_0_role_switch>;
-+					};
-+				};
-+
-+				port@2 {
-+					reg = <2>;
-+
-+					dp_altmode_mux: endpoint {
-+						remote-endpoint = <&tcphy0_typec_dp>;
-+					};
-+				};
-+			};
-+		};
-+	};
-+};
-+
- &i2s2 {
- 	status = "okay";
- };
-@@ -354,6 +446,16 @@ &io_domains {
- };
- 
- &pinctrl {
-+	usb-typec {
-+		usbc0_int: usbc0-int {
-+			rockchip,pins = <1 RK_PA2 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
-+
-+		vcc5v0_typec0_en: vcc5v0-typec0-en {
-+			rockchip,pins = <1 RK_PC2 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
- 	pmic {
- 		pmic_int_l: pmic-int-l {
- 			rockchip,pins = <1 RK_PC5 RK_FUNC_GPIO &pcfg_pull_up>;
-@@ -400,10 +502,48 @@ &sdmmc {
- 	status = "okay";
- };
- 
-+&sound {
-+	rockchip,codec = <&cdn_dp>;
-+	status = "okay";
-+};
-+
-+&spdif {
-+	status = "okay";
-+};
-+
- &tcphy0 {
- 	status = "okay";
- };
- 
-+&tcphy0_dp {
-+	mode-switch;
-+
-+	port {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		tcphy0_typec_dp: endpoint@0 {
-+			reg = <0>;
-+			remote-endpoint = <&dp_altmode_mux>;
-+		};
-+
-+		dp_phy_in: endpoint@1 {
-+			reg = <1>;
-+			remote-endpoint = <&dp_controller_output>;
-+		};
-+	};
-+};
-+
-+&tcphy0_usb3 {
-+	orientation-switch;
-+
-+	port {
-+		tcphy0_orientation_switch: endpoint {
-+			remote-endpoint = <&usbc0_orien_sw>;
-+		};
-+	};
-+};
-+
- &tcphy1 {
- 	status = "okay";
- };
-@@ -461,7 +601,14 @@ &usb_host1_ohci {
- };
- 
- &usbdrd_dwc3_0 {
-+	usb-role-switch;
- 	status = "okay";
-+
-+	port {
-+		dwc3_0_role_switch: endpoint {
-+			remote-endpoint = <&usbc0_role_sw>;
-+		};
-+	};
- };
- 
- &usbdrd3_0 {
+ .../bindings/dma/snps,dw-axi-dmac.yaml        | 33 ++++++++--
+ .../arm64/boot/dts/intel/socfpga_agilex5.dtsi | 12 +++-
+ .../dma/dw-axi-dmac/dw-axi-dmac-platform.c    | 63 ++++++++++++++++++-
+ drivers/dma/dw-axi-dmac/dw-axi-dmac.h         |  1 +
+ 4 files changed, 101 insertions(+), 8 deletions(-)
+
 -- 
-2.51.1
+2.43.7
 
 
