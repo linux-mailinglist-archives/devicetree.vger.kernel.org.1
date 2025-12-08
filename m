@@ -1,92 +1,74 @@
-Return-Path: <devicetree+bounces-245283-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245284-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF22DCAE371
-	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 22:19:09 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8AC8CAE39B
+	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 22:30:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 117413097B87
-	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 21:18:03 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 15C85300CE88
+	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 21:30:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BBBE227E82;
-	Mon,  8 Dec 2025 21:18:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2AAD2D979F;
+	Mon,  8 Dec 2025 21:30:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OqTD+MRu"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="hEwEqMgb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86033281341
-	for <devicetree@vger.kernel.org>; Mon,  8 Dec 2025 21:18:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D21724A047;
+	Mon,  8 Dec 2025 21:30:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765228682; cv=none; b=gvqad2RPwb7qHZOsjVNaQK88CpQ2inXvSwWna+OZ0/bh0B6Ethj2dDnMNB+ysS1yWuWwoOPkk7ruRGNXHug1lBFBaFPJ9WZ457kx9EmlsADdlICWGZ91yBz8SDq+PkK86dTIkryFvuxYEcPOsIV1wq/bGiO36ovpoA7hyL57BKc=
+	t=1765229413; cv=none; b=XEiy5rroyEX3HpU0nCaSoIiUIkNKTh5hJS8Fo/h78RKtBIwhQTntRpoEqnaLtFLR7jgoAznniqw5KqgCCtpDY2fu/wKrBOQm5qtcKRbr9O2E+m+FWZ7d1BvGqW8lCK0uIrp5lLBJ3Bcl0WQgcdB4NoIbV1QTQdJVN5f+C4J2bxw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765228682; c=relaxed/simple;
-	bh=7lZ7yFiwE4BfabfizLUm86ygg5oezWglQcFnqPk03BQ=;
+	s=arc-20240116; t=1765229413; c=relaxed/simple;
+	bh=HrjzLvC+rPXSF5CT4geqsmM15ozAG2X6RjLKAQmniig=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NQPLMWVUTQlBeXx0O4nb4bjsvHimSoje0r+OHoJ6m3ci1cfZZbnz7QDnl70imGdQLt5xyxo0Xy+5wqdfvPw1kTYluInRPgOGWmJv4GZkykhKph8sEQAltFpPZeXsPs/gPcmOEsCCjcT/fqUb3bQb1atENbflLP2auVzMigruzzo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OqTD+MRu; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-47796a837c7so43739165e9.0
-        for <devicetree@vger.kernel.org>; Mon, 08 Dec 2025 13:18:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1765228679; x=1765833479; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=FevBVXsdxMvnzZIFlQ7ZnJU5t6FuMkK60eiavRkgSq0=;
-        b=OqTD+MRuf+ggNDx1WnpmEg4cE/RoBU+ipt1XZtUMbaz+BW+355TEGCSuaKiJazxc2N
-         A5HB0OOuhZwMTV3JR4jhJyYe4jUREnY31z2O5E+xjH9R7P+DyStlpHM6xN05XZ9tqtaq
-         L/xxwrVrMSLtCaOz+NpH2mKEfc8ozzS4zQDd4xlxzx2/2R/WuutaPzkqHGFjTW52+osn
-         R4FtViK4LPl4pxIaRtIyuG8xFXr8+/Ci895DefvmkbUlRBBBTiDjE9tOn4Kl62gC5bbx
-         4aV+//PYq61ImeFC0qMif4nR2OHpjs1kkxesuzp/DjJqSlgt/9r0YQxr811IgDg+Vm8G
-         u3nQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765228679; x=1765833479;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=FevBVXsdxMvnzZIFlQ7ZnJU5t6FuMkK60eiavRkgSq0=;
-        b=cl4FOtt/3eI3IbUVXVKkeg6gdgxb+bPCJxvYAMqNjC8cBtLsTcB9PseCyhQi0OIQSu
-         Y8F4aFfE6a5tLC3iwGBLMBjgyZPdXIO3hksNpfMlUa9XcZm4ahicmjFIs8vNlOdY9Dgv
-         1vYbDej52ccHjqtC6cExAkAQHEA37ubUL2N67UVzJaYBTu3sUhFkfod7eFdQfzN1J+GV
-         glInDPhEDxefIx8EeBNkknaa6LQv4yygeT0wZNwBJQiWbbVhN8MMeJU1qdPo5yaa3XDB
-         pgFb5vAuKCeQwsK7fzapIVNbtN4MLzDrF0sirEsMZ5ydri0Wu/vCrWUqe8G+FIOF7IxO
-         BmEA==
-X-Forwarded-Encrypted: i=1; AJvYcCWzp3WG6gkx7SM17LrPzHgdIfZ3Qt2aEHL26hZlRoEWDiX8p8tYEOkn1fldaIDrpUNIPTOLHn7939Rb@vger.kernel.org
-X-Gm-Message-State: AOJu0YwqIxmcEH+UBPj5afuXFLgcAxKINn7pgxVR/YbcD0GALkkR8dkc
-	kDo1tcUz06ZEO3hagyw+Cq2USOOIad0QTkP4+7NesHNuKq6WPF8rTbGF
-X-Gm-Gg: ASbGncsaGCZyfvGm9eP9+ZOO0V32NJwLKQovC380Nj/M0PxM76h+v3usl2ewoGW7sJ/
-	b0x3CeIiuebCgrAJi/X+wAwVKM8vTqkKv7yb4B8sU7TyLZUD2wJ43qCdEE9cY1H4CdpylOYrLjm
-	luh3ReCZBJGZZFRTM3bLNTlVKA1ygGKIZiIe7HKA2KUbFn2MAFuy7hdi2DEAgZxVEL9L9uoC/5w
-	6LJPS3HaZXaBnEjP18JnjvxAuFcKFgYBSrZxh0jLKhYCzP22zK90AIW8hBOqke0e5NbUyGti+yO
-	we2UpgkPWUiEzuXu6vIbwMqJG75mGPIeh3UHOItHo2+NjHjKW3tk9vdX4sq1jTQXg+JpniefGh5
-	AQF4/D72QDzrL3QNPejpmY9Lz+6Vm6WxJxK9fp5zVEGjtOedcbdrCqQKI7ciMDbzustAAFhsETl
-	on7n6vQ5mdIJwsl90/VLfSMMcvSQ2szV8QmBhhikFUzeVW8ZVHMk8J2JzQyrWdLuOk5Ec=
-X-Google-Smtp-Source: AGHT+IE4yIfqhzMNdQUtI3A3IPxOwF1ZjFVLCMqKqyD/wHiW98WHchIOle5of1otFBu+XeUJTcxuQw==
-X-Received: by 2002:a05:600c:4f82:b0:477:aed0:f3fd with SMTP id 5b1f17b1804b1-47a6f9b153amr68618885e9.8.1765228678559;
-        Mon, 08 Dec 2025 13:17:58 -0800 (PST)
-Received: from HYB-DlYm71t3hSl.ad.analog.com ([2001:a61:1226:7701:cdbc:9893:8abf:1309])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47a7d810c49sm3855035e9.15.2025.12.08.13.17.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Dec 2025 13:17:58 -0800 (PST)
-Date: Mon, 8 Dec 2025 22:17:56 +0100
-From: Jorge Marques <gastmaier@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Jorge Marques <jorge.marques@analog.com>, 
-	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	David Lechner <dlechner@baylibre.com>, Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, 
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jonathan Corbet <corbet@lwn.net>, Linus Walleij <linus.walleij@linaro.org>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v3 1/9] dt-bindings: iio: adc: Add adi,ad4062
-Message-ID: <urniyc27qw5ex6jrwqilqykkcbswxbxlsdshnxqcts5gizdaly@a2ncsddzuyh2>
-References: <20251205-staging-ad4062-v3-0-8761355f9c66@analog.com>
- <20251205-staging-ad4062-v3-1-8761355f9c66@analog.com>
- <20251206165822.778606e1@jic23-huawei>
+	 Content-Type:Content-Disposition:In-Reply-To; b=r8IkXprr3KgUJv5PLpe2yfHuJvPwK/c9GEMsUeAE+cXYixQZlWtkG354IzUOpP09q5QZT+qxjQVv0vNG6OyrmB9AUtLp6TxRNeco0eNlxbwvmZ7dhE3FSyuoaEkdHo9yEE1c15OMPo34tCmjcncYMTDQMd/Gxbn+EzOwWnzMSFg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=hEwEqMgb; arc=none smtp.client-ip=192.198.163.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1765229411; x=1796765411;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=HrjzLvC+rPXSF5CT4geqsmM15ozAG2X6RjLKAQmniig=;
+  b=hEwEqMgbv9ziqkK095voeC3L7kVx5v1uPEDSMuDsh2cwopP+I/MUjiUp
+   HRwTenfkyLmM2RE9K39SRADBAcMZuT95AjN+TcpMkYeDO12SZtrZIMS4I
+   9bfPIK2ZX7Ae6k9IHR5CtLzQ4bOknHvYlBFLrk6545kR7hGvZ7b3jJ1cp
+   rSQpf1d1WWu5OGHZYaRv/7Uw+xKuDddwecXcHIZbqXlhW6rn3/18WDOP5
+   uc87NMZBli2EVsMgVW31Su7c3FC94KJerFUjhGnoip+x67LdX4E5MTQO2
+   4AS9fA5/k0v4l3yoW+4iTcykXh+IyLvN+Nm0yMyr+26kTrz+ED/1h8F1T
+   g==;
+X-CSE-ConnectionGUID: Q/oBALeDRuyH36LZ7ROSTQ==
+X-CSE-MsgGUID: yaf8IBk9SIyitfz6FemBqQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11636"; a="71025140"
+X-IronPort-AV: E=Sophos;i="6.20,259,1758610800"; 
+   d="scan'208";a="71025140"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Dec 2025 13:30:11 -0800
+X-CSE-ConnectionGUID: t/R10licQVWIqhAw8hUzFA==
+X-CSE-MsgGUID: B4qNeXyzSemlYnL8YwXv+A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,259,1758610800"; 
+   d="scan'208";a="196061363"
+Received: from lkp-server01.sh.intel.com (HELO d335e3c6db51) ([10.239.97.150])
+  by orviesa007.jf.intel.com with ESMTP; 08 Dec 2025 13:30:08 -0800
+Received: from kbuild by d335e3c6db51 with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1vSio1-000000000sL-2hW5;
+	Mon, 08 Dec 2025 21:30:05 +0000
+Date: Tue, 9 Dec 2025 05:29:24 +0800
+From: kernel test robot <lkp@intel.com>
+To: Daniel Lezcano <daniel.lezcano@linaro.org>, wbg@kernel.org,
+	robh@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, s32@nxp.com, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org
+Subject: Re: [PATCH v1 3/3] counter: Add STM based counter
+Message-ID: <202512090533.JQEqVYW8-lkp@intel.com>
+References: <20251208030413.3117660-4-daniel.lezcano@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -95,54 +77,57 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251206165822.778606e1@jic23-huawei>
+In-Reply-To: <20251208030413.3117660-4-daniel.lezcano@linaro.org>
 
-On Sat, Dec 06, 2025 at 04:58:22PM +0000, Jonathan Cameron wrote:
-> On Fri, 5 Dec 2025 16:12:02 +0100
-> Jorge Marques <jorge.marques@analog.com> wrote:
-> 
-> > Add dt-bindings for AD4062 family, devices AD4060/AD4062, low-power with
-> > monitor capabilities SAR ADCs. Each variant of the family differs in
-> > resolution. The device contains two outputs (gp0, gp1). The outputs can
-> > be configured for range of options, such as threshold and data ready.
-> > The device uses a 2-wire I3C interface.
-> > 
-> > Signed-off-by: Jorge Marques <jorge.marques@analog.com>
-> > ---
-> >  .../devicetree/bindings/iio/adc/adi,ad4062.yaml    | 124 +++++++++++++++++++++
-> >  MAINTAINERS                                        |   6 +
-> >  2 files changed, 130 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad4062.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad4062.yaml
-> > new file mode 100644
-> > index 0000000000000..a7a2ad761d1f0
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad4062.yaml
-> > +  interrupts:
-> > +    description:
-> > +      The interrupt pins are digital outputs that can be configured at runtime
-> > +      as multiple interrupt signals. Each can be configured as GP_INTR, RDY,
-> > +      DEV_EN, logic low, logic high and DEV_RDY (GP1 only).
-> This is a bit confused.  logic low / logic high aren't interrupt signals so I'd
-> not mention them here.  Maybe something less detailed such as
-> 
->     Two pins are available that can be configured as either a general purpose
->     digital output, device enable signal (used to synchronise other parts of
->     the signal chain with ADC sampling), device ready (GP1 only) or various
->     interrupt signals. If intended for use as a GPIO or device enable, will not
->     present here.
-> 
-> For the binding I'm not sure we care about which interrupts are possible.
-> I guess even for device ready we might treat it as a onetime interrupt. Probably poll
-> it though - which requires a GPIO not an interrupt binding.  If we don't need
-> to use that mode (and can poll a register or something like that) then no need
-> to mention that bit.
-Hi Jonathan,
+Hi Daniel,
 
-Device enabled (DEV_EN) and device ready (DEV_RDY) are not implemented
-at this time at the driver. I believe it is fair to briefly mention in
-the dt-binding. I will use your suggested description.
+kernel test robot noticed the following build warnings:
 
-Best regards,
-Jorge
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on linus/master v6.18 next-20251208]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Daniel-Lezcano/counters-Reorder-the-Makefile/20251208-110937
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20251208030413.3117660-4-daniel.lezcano%40linaro.org
+patch subject: [PATCH v1 3/3] counter: Add STM based counter
+config: alpha-allyesconfig (https://download.01.org/0day-ci/archive/20251209/202512090533.JQEqVYW8-lkp@intel.com/config)
+compiler: alpha-linux-gcc (GCC) 15.1.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251209/202512090533.JQEqVYW8-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202512090533.JQEqVYW8-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   drivers/counter/nxp-stm-cnt.c: In function 'nxp_stm_cnt_set_prescaler':
+   drivers/counter/nxp-stm-cnt.c:110:9: error: implicit declaration of function 'FIELD_MODIFY' [-Wimplicit-function-declaration]
+     110 |         FIELD_MODIFY(STM_CR_CPS_MASK, &reg, prescaler);
+         |         ^~~~~~~~~~~~
+   drivers/counter/nxp-stm-cnt.c: In function 'nxp_stm_cnt_get_prescaler':
+   drivers/counter/nxp-stm-cnt.c:119:16: error: implicit declaration of function 'FIELD_GET' [-Wimplicit-function-declaration]
+     119 |         return FIELD_GET(STM_CR_CPS_MASK, reg);
+         |                ^~~~~~~~~
+   drivers/counter/nxp-stm-cnt.c: At top level:
+>> drivers/counter/nxp-stm-cnt.c:303:32: warning: 'nxp_stm_cnt_pm_ops' defined but not used [-Wunused-const-variable=]
+     303 | static const struct dev_pm_ops nxp_stm_cnt_pm_ops = {
+         |                                ^~~~~~~~~~~~~~~~~~
+
+
+vim +/nxp_stm_cnt_pm_ops +303 drivers/counter/nxp-stm-cnt.c
+
+   302	
+ > 303	static const struct dev_pm_ops nxp_stm_cnt_pm_ops = {
+   304		.suspend = nxp_stm_cnt_suspend,
+   305		.resume  = nxp_stm_cnt_resume,
+   306	};
+   307	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
