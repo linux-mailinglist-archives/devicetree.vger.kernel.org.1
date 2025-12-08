@@ -1,126 +1,146 @@
-Return-Path: <devicetree+bounces-245185-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245186-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33C05CAD3BA
-	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 14:21:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 08842CAD423
+	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 14:27:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 29DEB3028D97
-	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 13:20:34 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D6DD7307A23F
+	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 13:24:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5899830FC1C;
-	Mon,  8 Dec 2025 13:20:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84E87314B91;
+	Mon,  8 Dec 2025 13:24:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="PpbZhLtZ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="udcYsB6K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com [209.85.128.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9118D7262B;
-	Mon,  8 Dec 2025 13:20:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDF883128AB
+	for <devicetree@vger.kernel.org>; Mon,  8 Dec 2025 13:24:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765200033; cv=none; b=eaYa340fO5m0OR93jcv4EevuHoIzGXwPG28jj/CYOflUYbxDyvWII5sJMPY6MAb2f9MHKsACTtsYHnqGIrl6dJ6u8kFb7+EKgT5T28XvUE+FNKLiCEmUPb2yAc1J/xLnJzNHF8hXrc2aWYfUf6Z6aPbDrtpsolExEj4IfyiKUfk=
+	t=1765200296; cv=none; b=HcAmPHQi4bI6iwb4Glbx5nxa6j5MG5mLIiYhmjBgyr+XgH7Vrww/wgCVlTJb2LUOplrDai4IGqGoEJ7T3gXfLgYLCZ/7JdvI5v2C5caXHd9ryUYArN5pkVEXXODCZa5uYHW6Oau/7BEXYmN9ab+Ra0OJejXBQS9+YrmvvjrbM24=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765200033; c=relaxed/simple;
-	bh=kIGMA4eYf9FWBTX61PdX0uRsyDj2sgxjSlWvyFVcj7E=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dlKV9duvrOwczP/BpCeffqa5s2LBj5YW2WYdUYk9EA4VfbC9472t4+gxrBp+IC7sHZerCgGAPOPmo4vFMyKeghGtqbQU6d57mK2sB/q9HIaNviIsWri/M+4sburr541vFu9MiNt87IdqsG4JNbh+AVnCbL1YOFkU4LlHYsUueKo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=PpbZhLtZ; arc=none smtp.client-ip=192.198.163.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1765200031; x=1796736031;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=kIGMA4eYf9FWBTX61PdX0uRsyDj2sgxjSlWvyFVcj7E=;
-  b=PpbZhLtZZMePTpfWc5iORIcF9NYja3PXmSEo/jYxPW/A+8gCuWiQdl31
-   raZgYD3EyQ+n5oLUXYH125GtQxy5jAHmv49TAoXeW11rAh0wJwzO4/FlT
-   kjZEx1W1GuVaUZ950dWVOuZg8vZVzUpn4hO5sO+GL2WMhdznkgyK3zfMN
-   MZaslZgHKWdMEi66Ru3d/FntPdVa86BX6tszEqhA7Sv3ZULnGFx4rssJd
-   rxXLIOw8Rr+QqhDAms7FLrpwtgJ9g0JaVElUtolRYmJwh1xuClZSfoxJa
-   hYfQRsui6+OgDvFUjVORq2sO9RUliG0Hq5Qv/naaOsDXfUkZ1bjInnxkW
-   w==;
-X-CSE-ConnectionGUID: JYzlgryIRMqzgTF4kGYljg==
-X-CSE-MsgGUID: DnxHbOGZRQCngxKcmcQCeQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11635"; a="78496211"
-X-IronPort-AV: E=Sophos;i="6.20,258,1758610800"; 
-   d="scan'208";a="78496211"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Dec 2025 05:20:30 -0800
-X-CSE-ConnectionGUID: dtNfUKknT8SLweMwjUMe5A==
-X-CSE-MsgGUID: evPB4lZATbi57clgyxVczw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,258,1758610800"; 
-   d="scan'208";a="201057100"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.245.47])
-  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Dec 2025 05:20:27 -0800
-Date: Mon, 8 Dec 2025 15:20:24 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Tomas Melin <tomas.melin@vaisala.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Nuno Sa <nuno.sa@analog.com>, Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 3/3] iio: adc: ad9467: drop kernel.h in favor of
- array_size.h
-Message-ID: <aTbQmOpMfQnYkeLT@smile.fi.intel.com>
-References: <20251208-add-ad9211-v3-0-c49897fa91c4@vaisala.com>
- <20251208-add-ad9211-v3-3-c49897fa91c4@vaisala.com>
+	s=arc-20240116; t=1765200296; c=relaxed/simple;
+	bh=N/vD9NIMBdx0UGaCEYgwqH36OYsS96bKye28iDSL2l8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=WRMSP+5x2ozcNvWmFegjAnH6cMLPyImS21Duy0tcjmnJ9oHBOVS2crMZRUz5f7E6fNyq+iAABIWj3lU7qRTyNJxqKksIVHkXaJ/vA9NidpY1ZM2fMEDoRegp3Vk1ZyDQgWF2sNCWRnkbMnbvZdqhVWFEYnuuMgngpAVb+N1nXy8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=udcYsB6K; arc=none smtp.client-ip=209.85.128.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-78aa49cde3dso39835947b3.1
+        for <devicetree@vger.kernel.org>; Mon, 08 Dec 2025 05:24:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1765200293; x=1765805093; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=mpu/cs/5xHVC6KpSzx7cFK/d7AzU0ZQ/t0FxG+WvyB0=;
+        b=udcYsB6Kt0ZSGCbE/dnm6wSEYnjJT3BM7E/Mum+Tb5gCQfhLNIbJkSwJpoyrZKA/+b
+         04YtkOPe0Mmi230gyIjaATyHEjyetNhCtt9Wi1+7X80L+Tfi6ZKbb1xOnrW4doNFjuj4
+         u/YZ8X4w3byevPJM5kCE71kMZ47kz3wUL/+PyD9m3NILQzHZBO0tqzKlARH73KkRyacY
+         Q9zbwumWgVpgPePA7edVJkfixioOKbm4k5Q+zYeHL+guwTa499aPbuhJEAJlnuxaSDEg
+         mY154hcvdb+ZbH8Fd+mQ2J+cdFj3UpbqI3j3J7ywmUDmbhMEhzVTgNtiK/lNN+trTxLo
+         tlbg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765200293; x=1765805093;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=mpu/cs/5xHVC6KpSzx7cFK/d7AzU0ZQ/t0FxG+WvyB0=;
+        b=CV+EqQiMD2M1+cnePUcg9muMSPCHYbf8u6N9bWDAxVsqajKCUnoEshYeMDykTVzZ8u
+         27aS0T0HeM2z4Q8zof7RwyubXGhsaLcIGhBi2czibjjeDNtwnQOR7d1448mRsC2W10Ut
+         NnAAB31/Y+yU/yrNbFV0PHshnuuLpLGXYjKqFSyM8EL9DGobw9ip98NUfodb5n7AfKH2
+         0wehUS7Z+mtLE84aJcPQ1A3L5IK54SKTatpmdB7GqJQb1iSiZrQwCmGVIo4XuwNr5rMB
+         olkLjf/hQDcinOFGDRIPc15iavkDcoGclYFy/pr7xenaemJK4kHwNjKr8sv3pb9DCq7m
+         HQhg==
+X-Forwarded-Encrypted: i=1; AJvYcCU/zAw/ssyaohpQxcSlUwYnrMGZmJtmP+1Tuo33+m/CMhymqiE1pSRULGIrdS9opR+8ncerMCsqulSR@vger.kernel.org
+X-Gm-Message-State: AOJu0YyzQ0bp9tb/r7PVYKBu6+B04MFrAHtuTeSXT7BtewJe07SIK3m3
+	xKOgshJV85LbsLB+NJJZCdnsqroiKP0dnBzRAM+VkBsRw5u6KDvrxMwPyr/90Rk7Kdll1rXCU2N
+	ab1csljlraOds2pY+Bx7ZUaygul3AKTGPco9bfCUqUQ==
+X-Gm-Gg: ASbGncs+fLeaH/BE1SXQVE0+kOu92a+plE1LeWqRfoHG8oT/rVUypeiTaJ/qH/Qoepw
+	ncIe6KPbZfqZDMuhfPyFhSLmUhH3XpZ1ypJjgCZ7UJ5Z2KGsGoG8QVft1+8H8vFeUlS8W7V+FHx
+	oIEj9BCHFxvhiPMV+RaWIXMwuvUYMraJj4K9TtZtS35YroqogfiGXugBeaEeNystV0mHCBsbfuT
+	J29zh6PbP2wy1JmEiuHqLFf2hBlTK/gEq96JGkp42jIGytnfsUjtHNtcwuqNj7cVDjBrA4i
+X-Google-Smtp-Source: AGHT+IE0AuRxNzvS5+Z+cFGpwMA1CWuN4MV7VcMxk53grVuq/mo6go4caopmooiga3p9pToHn9RL/9AL66V4VXW+Eyo=
+X-Received: by 2002:a05:690c:6307:b0:78c:672:9b40 with SMTP id
+ 00721157ae682-78c33c64ccfmr69913917b3.55.1765200292824; Mon, 08 Dec 2025
+ 05:24:52 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251208-add-ad9211-v3-3-c49897fa91c4@vaisala.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+References: <20251119-pmdomain-hierarchy-onecell-v4-0-f25a1d5022f8@baylibre.com>
+ <20251119-pmdomain-hierarchy-onecell-v4-2-f25a1d5022f8@baylibre.com>
+In-Reply-To: <20251119-pmdomain-hierarchy-onecell-v4-2-f25a1d5022f8@baylibre.com>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Mon, 8 Dec 2025 14:24:16 +0100
+X-Gm-Features: AQt7F2o5oTlgmjrE1oNxDidWCM19vZY0IV7rfLV5Fo8hM3AHBEnUaqgxQkEhKFU
+Message-ID: <CAPDyKFq-aGXVTHCqPVQHkVRTffUS+BdK68h2zWDrBpnQGUC6mw@mail.gmail.com>
+Subject: Re: [PATCH RFC v4 2/2] pmdomain: arm_scmi: add support for domain hierarchies
+To: "Kevin Hilman (TI.com)" <khilman@baylibre.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org, 
+	linux-pm@vger.kernel.org, arm-scmi@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Mon, Dec 08, 2025 at 12:30:59PM +0000, Tomas Melin wrote:
-> No need to include the entire kernel.h when the only thing needed
-> is the ARRAY_SIZE macro.
+On Thu, 20 Nov 2025 at 01:58, Kevin Hilman (TI.com)
+<khilman@baylibre.com> wrote:
+>
+> After primary SCMI pmdomain is created, use new of_genpd helper to
+> check subdomain mappings, and create domain hierarchy.
+>
+> Signed-off-by: Kevin Hilman (TI.com) <khilman@baylibre.com>
+> ---
+>  drivers/pmdomain/arm/scmi_pm_domain.c | 11 +++++++++--
+>  1 file changed, 9 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/pmdomain/arm/scmi_pm_domain.c b/drivers/pmdomain/arm/scmi_pm_domain.c
+> index 8fe1c0a501c9..a36bb50c7cf6 100644
+> --- a/drivers/pmdomain/arm/scmi_pm_domain.c
+> +++ b/drivers/pmdomain/arm/scmi_pm_domain.c
+> @@ -41,7 +41,7 @@ static int scmi_pd_power_off(struct generic_pm_domain *domain)
+>
+>  static int scmi_pm_domain_probe(struct scmi_device *sdev)
+>  {
+> -       int num_domains, i;
+> +       int num_domains, i, ret;
+>         struct device *dev = &sdev->dev;
+>         struct device_node *np = dev->of_node;
+>         struct scmi_pm_domain *scmi_pd;
+> @@ -110,7 +110,14 @@ static int scmi_pm_domain_probe(struct scmi_device *sdev)
+>
+>         dev_set_drvdata(dev, scmi_pd_data);
+>
+> -       return of_genpd_add_provider_onecell(np, scmi_pd_data);
+> +       ret = of_genpd_add_provider_onecell(np, scmi_pd_data);
+> +       if (ret)
+> +               return ret;
+> +
+> +       /* check for (optional) subdomain mapping with power-domain-map */
+> +       of_genpd_add_subdomain_map(np, scmi_pd_data);
 
-ARRAY_SIZE().
+I think we need to take better care of dealing with errors here.
+Typically a negative return value should be treated as an error, while
+0 should be fine, right?
 
-...
+> +
+> +       return ret;
+>  }
+>
+>  static void scmi_pm_domain_remove(struct scmi_device *sdev)
+>
+> --
+> 2.51.0
+>
 
+Moreover, I wonder if we need to update the scmi-DT doc [1] too?
 
-> --- a/drivers/iio/adc/ad9467.c
-> +++ b/drivers/iio/adc/ad9467.c
-> @@ -12,7 +12,7 @@
->  #include <linux/module.h>
->  #include <linux/mutex.h>
->  #include <linux/device.h>
-> -#include <linux/kernel.h>
-> +#include <linux/array_size.h>
->  #include <linux/slab.h>
->  #include <linux/spi/spi.h>
->  #include <linux/seq_file.h>
+Kind regards
+Uffe
 
-Please, keep them sorted.
-
-...
-
-While this change is almost (*) okay per se, I think we can address more
-while at it.
-- Make the header inclusions ordered (also fix the location of clk.h)
-- drop other proxy (device.h) or unneeded headers (bitops.h as it's implied by bitmap.h)
-- add missing ones (dev_printk.h, device/devres.h, ...)
-
-(*) no, kernel.h provides more for this driver, for example, your patch
-misses types.h.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+[1]
+Documentation/devicetree/bindings/firmware/arm,scmi.yaml
 
