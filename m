@@ -1,186 +1,148 @@
-Return-Path: <devicetree+bounces-245152-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245153-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9096ACACE0F
-	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 11:30:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 00B74CACE3F
+	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 11:36:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id ADE393015154
-	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 10:30:48 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0B1183031CC5
+	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 10:36:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5ECCE3101DC;
-	Mon,  8 Dec 2025 10:30:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34972310625;
+	Mon,  8 Dec 2025 10:36:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sartura.hr header.i=@sartura.hr header.b="I2dttRsi"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="nMhn5PTL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3C6722D7A9
-	for <devicetree@vger.kernel.org>; Mon,  8 Dec 2025 10:30:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32B7930F94C
+	for <devicetree@vger.kernel.org>; Mon,  8 Dec 2025 10:36:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765189844; cv=none; b=Dx6Oyt4FLx2cP6lhekcp9gWlnzODoHIo9bc7RTry8vSDmQXDFvTxlTrP2Of1taEKl4JI8+HS328KCeFecsxsx9y2llR93dBRM57qzKpVbUeZB/xNKzE+yIxu9iLFXevOp3DAeOaZe7bxx8t2vvttxsecVLusjCQvLUawoQWRHzQ=
+	t=1765190163; cv=none; b=LCnnnoKLtvr/Jb9DXnyKg6GCe+m5KNWXRuAYHb0mKheW5QpxRwb9t6AT23Gj7rcAkOHhgl7vi+S888Tcpp88HfBT2GJwSQhCCSBpVCDdwgcJ8ZknNFLmZFoTlrDSVirM2w7CSO+cwfeyyFeLa8b/UhCSMxyBlvsMgiuPNfofji8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765189844; c=relaxed/simple;
-	bh=RLw9fFUPT6gJ5CGBMzrOruJpNjzbWJE4s01IusHbk/o=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=a/bMg+/6H7oWvhWrBbF6uSbdZV9TOmawiVtNCeKW68VTdDRsK0aUvxakuD1XooyphXa1qMoknfRMumv8VC9OUJ0mJSwF4d1FOd0pWje2lrUTV0JqF6ADGUHKCVDs4cp1la6xBw5GiNwPRJnQMUroJjaF/UUUHUDGZKmKDKQKNqk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sartura.hr; spf=pass smtp.mailfrom=sartura.hr; dkim=pass (2048-bit key) header.d=sartura.hr header.i=@sartura.hr header.b=I2dttRsi; arc=none smtp.client-ip=209.85.218.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sartura.hr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sartura.hr
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-b735b89501fso514984566b.0
-        for <devicetree@vger.kernel.org>; Mon, 08 Dec 2025 02:30:41 -0800 (PST)
+	s=arc-20240116; t=1765190163; c=relaxed/simple;
+	bh=s0L/F0IMsYB37Rxo4CHT7apF8oSazdCraUwxwRSEMFw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OtxoAGQ58Ff19YD2zqPf0sEDfjwV3njffMtFHKCiZhpCmlN1XszT5En8vJo5A+GlRrRXcj28ZPjKM/Z7oPjdqWagef9dv/lEsOLAmivFM7PR9+sY0yto0l03tQPAAm6+5v59LSniVwro/PwkO2DIzQzTsUkh4qLQGEwG+fkutIM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=nMhn5PTL; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-4779ce2a624so54842095e9.2
+        for <devicetree@vger.kernel.org>; Mon, 08 Dec 2025 02:36:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura.hr; s=sartura; t=1765189840; x=1765794640; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wNvqYgBG7iSIMiizE0aJ/ECmeySIS6td2ZjzM3JB2Vg=;
-        b=I2dttRsi9UI2sQb6l32Ht5UL7WYQLHqercIt6GSNW/9uFw4hk+pRVltkpZwSTHyKgV
-         YZIF8PtFUwXKToEm/Fr4kbw2yoH5tbAdVGfV+PU+j0Sgr7tcpT0K3EluUNw6K32T29Ci
-         G4FrUfu7WJrRPyLFw+DpJ2ACoXVefpUhTvB8rHJ4TtUQl2Z/IRZPzcal3gZvV++iGQ0s
-         KkRFS6qCxmZqcF0mRwFVwmFxg76CbytQDNUDv3EsRrw5ssHgOllFF9MTdMCljiVeEECA
-         uRxnQZDxMRv9EbqSlAY0VQ0YfJTJjrd5DGpa1Yb7qblufgbp6h4ln4sMil9/MY8ZJqo6
-         /yUQ==
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1765190159; x=1765794959; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=+E3SOYkqsEc+5aDXpHHAZRqmKpJ7LXworventsdWgtI=;
+        b=nMhn5PTL7mWngGMbeboSyi0dP4zWTcbikcsfwcPLTx5aKFoQ6YACS3xEp7I5wQDn19
+         8+2oMBb4KM3f7xm5TgP9iNxIw/2JGVRoGc/fIIAHZCJuKS2POcqde2W0oj0v2OJZXhry
+         SGzWvtxeP2UNR1Ac3c0KW4Iy328FdcyzlRVD1YFVYiJpFajCmcYmS/YYa83/nJwGzhL5
+         taurYQskIYL4QueLkW7MvOdtVB/nOFF3a5YJUQMYQ/Qus+r3ic3+3YR3sdJ52y8CFwIw
+         1BF2mfTZdOGsRkm1dGNzEBa+ZtAMAKYlVhHE9DqtAcDBWxU6MWii/vchH0S8uzaWaY5x
+         Ip6w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765189840; x=1765794640;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=wNvqYgBG7iSIMiizE0aJ/ECmeySIS6td2ZjzM3JB2Vg=;
-        b=LGg586gew6FW8qa/UCE4RLRICy64mHzUYsZd960VzmWZywu/IkpOTyEZ6hDhIywMy6
-         1bnk470Z6ksQqV6IZdS38ww4iJzQ39w2wqZI1b1684n7r/bzKXzi2RyA8eyZnXfZQpBu
-         qvAyqmiLPvSa2saMRaH2pQGHWvjZA2wySEylOl+RuqhBleOdDvTDGjAb1o+0yYwCbRiS
-         s3lsZ7QU1sjmVj/x4CGzJ/qqBQHm4vijcDEmqIQKSay/LWFlYEWNsEud7+XwTu8V0IQx
-         TZxT/VGYoWddL5PF1Ii7z0kw2ywj3zRvHF71sHxi4HOKhbxbWWo0KWTWxU3Y/uHPLhNr
-         7Rvg==
-X-Forwarded-Encrypted: i=1; AJvYcCXnyCuQk3TmRltMEopcDDCPLZ+s5s7c1D9msm0nbT02C2qOmSWy6u6/rOoA3NDo+vah0CnkQbusy8sh@vger.kernel.org
-X-Gm-Message-State: AOJu0YwstF9ANRGwG1ydcXackrHPiYp9tDmGhUaa4bsqOEgxyu5sNrKN
-	79HER9WU/0/jtKJxJREoCh4hK9lOyCIvrlTSBNQ/lMUsUf4cB+01hUiDvDW5CbW+qa1Nb+4L/xW
-	FekrgUUWXc2HsnTA4CvgQPXXvoJzIOLBg+yT4YhFyKw==
-X-Gm-Gg: ASbGncspKgTHExwFbXTRnEOwhXihd18sqpHWQwC0ocKNP9Gzj+N84jwtFCmp/KaPNfb
-	vLzPiC4Aapg2W+RBrCj3MciRXhpP2VogLqqjbqbuy9+Ko/Y1jDYgNbrnHLkPxWT/NpK8SyYJUgl
-	nav2Ex3X1vDBOCjmKF6u5lvXB8yZHyinyvMW+JGJvwXPybKpMFgbzxCAHwi6ilQVT3SL1LkR0jZ
-	qXRCSzq9/PF9SIkcTK3sHqYZx/sbmTEbiJ0V1mQmeZ3W2gmIGqfNzuhNt1x2pGVdchQbHU=
-X-Google-Smtp-Source: AGHT+IGTGfVyoL064tKoONxhclX3UfjDWBItbzH79CNnYw055wrJS+DIVrLMSFgzEDdDe4VqLWZokTX1m+LMd5COg2g=
-X-Received: by 2002:a17:907:2d9f:b0:b6f:9db1:f831 with SMTP id
- a640c23a62f3a-b7a2432665emr675738166b.23.1765189839808; Mon, 08 Dec 2025
- 02:30:39 -0800 (PST)
+        d=1e100.net; s=20230601; t=1765190159; x=1765794959;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=+E3SOYkqsEc+5aDXpHHAZRqmKpJ7LXworventsdWgtI=;
+        b=MBLrkNFVc9vIJWIQXPn3R4/bc9/ccOxzYE9uU0KyyE8r0LjekbR2afj/Dri6Lg0c9r
+         UEgPu5qvvskDTLFhbRMWvPKFiunjr5Z7zi/bLRKLURfJCDTqMeK6R8cKNjikjE2aj8qO
+         E2llKHtxKNMWPnyAMH/QWJqzirExEAsfZ9IzAs+t2/OIKU6QNIMPQYIrZZQPFTjVr02C
+         1oDTN921TU4TbubXXhLzoet/P+oq01BiPPMQO8clPDKlc8H/gIEc5q0Yl0DDID8MWOge
+         P+ZvGp6ue5ZdKjNRX4VI/hZ36M/fEaLBSxvyLvHOTaspJdj/Au7GClWN1dl8JYkIAT8n
+         c7Dw==
+X-Forwarded-Encrypted: i=1; AJvYcCX1/7NbFA1P+FP2Sc4mwj4ly6sh7qRHR7ENrgFzuSQlin1ojQnh0tvJC3bb4Fq3FBuzN4LKN9dXcK1Z@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz6c0DEk3epS7xJnORg0qZryBLyjLLxTVntlz9bPLo1gEzRB0UU
+	Wk/jUddvb5jdzTRMDVm57f0UGoNZBl3iWzSjLC81ZV7/o5hA4NR2lwlE479Ob2hnoiY=
+X-Gm-Gg: ASbGncskehcWKfYtUcRca8g6E5nRudEXC4YFb3U5JxybAyjcHiw0/YegvsfrEBMAsXn
+	e4I9qxN8k+FENiK+jiu60HjKz+fXgLw5C9pnEuYjI9AoTMSozA432lMl68eXDXz8lV/iQOh6HpW
+	97HRoKrtKLxidRC+ME0IIKjf2wMTIyq7d2tdgj2RpkgVEk0Marc/u0jg0F3T32Yn3mIt5R23smx
+	Jf58yQ9nLxNOE26fuP38D6gVJvdZOJwFnxWB7jYjd7Ov90Cw42iq7NTgR7YyZewya0kZp51Yx/a
+	d0/A14rjeR6hmdz2Taqv7zj3av9Yvs2AwRKpy8LmgQT6N+HQIg24hsaTWAS189SyptPUj246Ad2
+	AwWkzcF1lbastJ9xNOyJgm3Usq3ThsbscscGgeNeAW58BXARw4OXdj90kCyRhn+nJHlvf2yhENU
+	g3k8TleY0K6rtww/LYMeY50wldzH11grVFCyIPjb4lsO8iSQ0Xy15Zu5U+2tNBvz9DL4vetA==
+X-Google-Smtp-Source: AGHT+IGge21HXj48TLUzsA7ggUbHSFC0xO5HgqxGNKT4MTX7Oe0oV8kQd6FtV8OIYLtnHQGrRwLESw==
+X-Received: by 2002:a05:600c:818e:b0:477:9fcf:3fe3 with SMTP id 5b1f17b1804b1-47939c87088mr76977635e9.0.1765190159388;
+        Mon, 08 Dec 2025 02:35:59 -0800 (PST)
+Received: from aspen.lan (aztw-34-b2-v4wan-166919-cust780.vm26.cable.virginm.net. [82.37.195.13])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-479311e712fsm240407865e9.9.2025.12.08.02.35.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Dec 2025 02:35:58 -0800 (PST)
+Date: Mon, 8 Dec 2025 10:35:55 +0000
+From: Daniel Thompson <daniel@riscstar.com>
+To: Maud Spierings <maudspierings@gocontroll.com>
+Cc: Lee Jones <lee@kernel.org>, Daniel Thompson <danielt@kernel.org>,
+	Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Helge Deller <deller@gmx.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, dri-devel@lists.freedesktop.org,
+	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-fbdev@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v6 2/4] backlight: add max25014atg backlight
+Message-ID: <aTaqCxsGj_waN92Y@aspen.lan>
+References: <20251201-max25014-v6-0-88e3ac8112ff@gocontroll.com>
+ <20251201-max25014-v6-2-88e3ac8112ff@gocontroll.com>
+ <aTG0EK_zuSB-U_bb@aspen.lan>
+ <8a9a59b8-d5c0-46b3-8f86-a4cd910b7af3@gocontroll.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251203122313.1287950-1-robert.marko@sartura.hr>
- <20251203122313.1287950-2-robert.marko@sartura.hr> <20251203-duly-leotard-86b83bd840c6@spud>
-In-Reply-To: <20251203-duly-leotard-86b83bd840c6@spud>
-From: Robert Marko <robert.marko@sartura.hr>
-Date: Mon, 8 Dec 2025 11:30:28 +0100
-X-Gm-Features: AQt7F2rM1STFm1xLFXO9y7ZB3gww-XKs-PW-e-F3Xq1nOQlYXGXTztJZMADERPo
-Message-ID: <CA+HBbNH6wO2VWOp1Dn52ArrYg6z89FgYnT3x-jsHsTVJ5xSBSA@mail.gmail.com>
-Subject: Re: [PATCH 2/4] dt-bindings: arm: Document Microchip LAN969x
-To: Conor Dooley <conor@kernel.org>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	gregkh@linuxfoundation.org, nicolas.ferre@microchip.com, 
-	claudiu.beznea@tuxon.dev, mturquette@baylibre.com, sboyd@kernel.org, 
-	richardcochran@gmail.com, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, 
-	daniel.machon@microchip.com, UNGLinuxDriver@microchip.com, 
-	luka.perkov@sartura.hr
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8a9a59b8-d5c0-46b3-8f86-a4cd910b7af3@gocontroll.com>
 
-On Wed, Dec 3, 2025 at 8:19=E2=80=AFPM Conor Dooley <conor@kernel.org> wrot=
-e:
+On Fri, Dec 05, 2025 at 04:20:55PM +0100, Maud Spierings wrote:
+> Thanks for the review.
 >
-> On Wed, Dec 03, 2025 at 01:21:30PM +0100, Robert Marko wrote:
-> > Microchip LAN969x is a series of multi-port, multi-gigabit switches bas=
-ed
-> > on ARMv8 Cortex-A53 CPU.
+> On 12/4/25 17:17, Daniel Thompson wrote:
+> > On Mon, Dec 01, 2025 at 12:53:21PM +0100, Maud Spierings via B4 Relay wrote:
+> > > The Maxim MAX25014 is a 4-channel automotive grade backlight driver IC
+> > > with integrated boost controller.
+> > >
+> > > Signed-off-by: Maud Spierings <maudspierings@gocontroll.com>
+>
+> <snip>
+>
+> > > +static int max25014_update_status(struct backlight_device *bl_dev)
+> > > +{
+> > > +	struct max25014 *maxim = bl_get_data(bl_dev);
+> > > +	uint32_t reg;
+> > > +	int ret;
+> > > +
+> > > +	if (backlight_is_blank(maxim->bl))
+> > > +		bl_dev->props.brightness = 0;
 > >
-> > Signed-off-by: Robert Marko <robert.marko@sartura.hr>
-> > ---
-> >  .../bindings/arm/microchip,lan969x.yaml       | 32 +++++++++++++++++++
+> > This isn't right. Why would you change the backlight level just because
+> > it is currently blanked (and sorry I missed this one last time).
 >
-> This should not be in a unique file, put it in with the other microchip
-> arm devices please. Also, the wildcard in the compatible is not
-> permitted, only way it'd make sense is if these are different binnings
-> of the same silicon. If that's the case, you need to explain why,
-> because compatibles are meant to be soc-specific.
+> so just remove this bit then jeah?
 
-Hi Conor,
-The issue is that there is no unique place for Microchip SoC-s,
-LAN966x series is in the AT91 bindings
-while SparX-5 has its own bindings file.
+Yes. backlight_get_brightness() is all you should need.
 
-What would you suggest in this case?
 
-As for the wildcard, I understand, will get rid of it in v2.
-
-Regards,
-Robert
-
->
-> pw-bot: changes-requested
->
-> >  1 file changed, 32 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/arm/microchip,lan=
-969x.yaml
+> > > +
+> > > +	reg  = TON_STEP * bl_dev->props.brightness;
 > >
-> > diff --git a/Documentation/devicetree/bindings/arm/microchip,lan969x.ya=
-ml b/Documentation/devicetree/bindings/arm/microchip,lan969x.yaml
-> > new file mode 100644
-> > index 000000000000..3fa1d4ed40d1
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/arm/microchip,lan969x.yaml
-> > @@ -0,0 +1,32 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/arm/microchip,lan969x.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Microchip LAN969x Boards
-> > +
-> > +maintainers:
-> > +  - Robert Marko <robert.marko@sartura.hr>
-> > +
-> > +description: |+
-> > +   The Microchip LAN969x SoC is a ARMv8-based used in a family of
-> > +   multi-port, multi-gigabit switches.
-> > +
-> > +properties:
-> > +  $nodename:
-> > +    const: '/'
-> > +  compatible:
-> > +    oneOf:
-> > +      - description: The LAN969x EVB (EV23X71A) is a 24x 1G + 4x 10G
-> > +          Ethernet development system board.
-> > +        items:
-> > +          - const: microchip,ev23x71a
-> > +          - const: microchip,lan969x
-> > +
-> > +required:
-> > +  - compatible
-> > +
-> > +additionalProperties: true
-> > +
-> > +...
-> > --
-> > 2.52.0
-> >
+> > The correct way to honour blanking is just go call
+> > backlight_get_brightness() instead of reading the property directly.
+>
+> will do.
+
+Thanks.
 
 
-
---=20
-Robert Marko
-Staff Embedded Linux Engineer
-Sartura d.d.
-Lendavska ulica 16a
-10000 Zagreb, Croatia
-Email: robert.marko@sartura.hr
-Web: www.sartura.hr
+Daniel.
 
