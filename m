@@ -1,240 +1,664 @@
-Return-Path: <devicetree+bounces-245273-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245274-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F4EDCAE1F7
-	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 20:58:37 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0CEACAE230
+	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 21:06:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 0C5AC300D33A
-	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 19:58:36 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 0895D300A6C6
+	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 20:06:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 130122FB629;
-	Mon,  8 Dec 2025 19:58:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0989C2FD675;
+	Mon,  8 Dec 2025 20:06:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="JDj4ftL0";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="diSdsEdh"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="mtB+jsiI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F0C72ED148
-	for <devicetree@vger.kernel.org>; Mon,  8 Dec 2025 19:58:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765223915; cv=none; b=t2nY6udOu0BeYB6WQ0gK1dOukVqfkamoqM5X9WvgkpeFqkeMgCc1AGqdXuEP6RQue6q0PZnMp8eu0CNIVFEhX5fryjlCTgscHRh7h+/n+a0I+awXVKmwJqzAYbXYh+pihYYzuhL5LH65VGhqkCCFxehCq4Fcw/xyEoZ7SRPFdzI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765223915; c=relaxed/simple;
-	bh=qDxVfd+kjbAbDZBRDuwuXDLEi6JZmbu3TVP/4VitYpE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AU6sfESEyqMWZnWhxHMl3qqF1vLhNjc5MFKorH5VjAKR1BbP60ps70tNDJglUkwIE2sHOAsBYru8UwHvoTEVisPG7hUMBiQVTSPDtnijxBYIn/ZAVYC23L2JCWFRkv15DhT8+ehocqub6SykVs4zHS4P/baijQ3I1tGBW57QqQo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=JDj4ftL0; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=diSdsEdh; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5B8J8F7B1327418
-	for <devicetree@vger.kernel.org>; Mon, 8 Dec 2025 19:58:32 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	tIQxMRJoByHgiShcf0XXstieJQqdicMUSF+aEIZfOXg=; b=JDj4ftL0+bNqbZ8e
-	6ztS9qejy6IiPjon2e5wvRAvClZL5rGLXIZ5iY2xvommZk6ctApibPUS1Uuh+CyV
-	3BlwvLQpPeG+27DQWN6g1rJgTC06F7htifbw1DFtUJrpwhLUM0eIPnwaa4jmzVB5
-	5iturg7gllX7aZ2GebRMtTqkzFZ26pVotHs5Wpsq8vaL8g5mXi0BKfw9m4yCjjyn
-	Mr9iIzaFGtWS/+GZjDoXS68evplL6c4kg86ufFYm6xJgqEkyYdzWEQ1Nl17kvrK+
-	Wl2VG0BpUQmS8izF8y2LcvmrsKaF4Vfc+i3gVyLlvomlLqlecYsTcmCp55LJ/GLa
-	nzqKBg==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ax4jng3vm-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 08 Dec 2025 19:58:32 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4ee0488e746so106102141cf.0
-        for <devicetree@vger.kernel.org>; Mon, 08 Dec 2025 11:58:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1765223912; x=1765828712; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=tIQxMRJoByHgiShcf0XXstieJQqdicMUSF+aEIZfOXg=;
-        b=diSdsEdhp0R8zXwrvDHXSjnxEGMaRWxwwTDRY9bGgF0mVqIqSiWBqx94UdjqvBTQvR
-         7TBhc5spIUpz15TLi6lD2fWCSV0uiVjFOGjMSglCJfOJsL+EFLLZDQIKNIXvuMwEBgiT
-         E19M4VowGzp2XNay1KS4mX2jbNU0+vn8Oc7njOOHFN6aQldAYxuUDkLK1sT7UzjeoSLC
-         0YPkuhGGONNs+ttaiAa9Pls4N4OnE1Cse5RChFDfe0s8U/rsna8uyLxzJQdIpX6J+7wf
-         3h1IEkips511yqfq66AGM/NS1+Cwke2upqWkQkbtatKwQtGo0Op8Ngt6ujR7aLvvrCCD
-         VZ5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765223912; x=1765828712;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tIQxMRJoByHgiShcf0XXstieJQqdicMUSF+aEIZfOXg=;
-        b=RnY3Sow2gGpBstmD9c8ORfs2Q/O9IomWSYvMmx9GgYefpElo8tkNcgZwY8Ta00Ji07
-         vHRblfpjmyCHedjIm4R70fbAsVNJyFnzEPp/pZ1Wzr5EYQt/ltiR17Rwht1ghI4etFif
-         mUlNQ6WRjL2R2BJOm2lNxav44iJlChanw79cX9e86ktAUt5a1PeznbadDS+LAghTaaoZ
-         Fa7gBuTv9++TDwHoK/k6M/xW2VeYE8R3SuVme9aXGyYideYtQGM80IYp34GIuWlJ2b+1
-         51lDCeIaMvap8ZIG3m62gSXDntPYGJqBHIp5SOh/qBJqKwLneHNXw2/Xly3U5WcOqtmh
-         0sIQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWKyZM4zKprO+FEuuVBQBQq5Ya3pdKVoX7B6c19VV/Xmo1xz+9OMhKPvqXx75/O8PXHolGLk13/y2U+@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx5555YbPBaH2EpdClbhsFvLQfAezFdO05QABgNIFhk2OFezZ2i
-	wwlTqh/Cihq9iDVECu5voCoCxy21Pw5T27sKLKkIqm+9m/eM6+RBdiPihv759f+jLd4enG74IoR
-	jQqcflWEkB2gmU367qoEhiqgQncth8tOezaije0uFTnZRuCTbDRhMjHw3w4YhS6G/
-X-Gm-Gg: ASbGncudCQKOJCL7O/grCSEZ1DnfaO1xXGmjNLvyk1Tv80vwtTt+6dh51FA9aht6/O1
-	YyYGuW8QL9qSp305VKQ8ihuUxDwkkhtLN+8RhfYbomKgLebOecT+vOEX5JHDJS+bA9seoFQkia0
-	dTU1v2ah9wsuu4wu2ahHWoZ2+7Y1g6lwRjmGVebQKsXDOujzlXuCjnVXq3kW9mXc5Pewmh0QCjo
-	jHTBbPAJd9CHrTsDp3Y38jSqHujIic3TU43/K46CzXIPE9mgmmY8tsDLzytNoahoqa/LsTuHtFL
-	4GDRbDP2UIIwxzYR1yyIgR4vL5ymrmc6NUKiG634ypyMtc+ncfL7VDXjju2JHca+HOymDGgvQJF
-	NVdFDW7bfbT60tlJW1mR4Apr/cQ710BHQTbx0ybLCxX84Ygg58Uc7Iaw/Ke/R2JIxpPDKM2gsQm
-	FvT0smOybGTmS+8AsuNv2AORo=
-X-Received: by 2002:a05:622a:34e:b0:4ed:a8e0:13c2 with SMTP id d75a77b69052e-4f1a4139f33mr9644951cf.10.1765223911643;
-        Mon, 08 Dec 2025 11:58:31 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGHzR/+p0aIGPsigMrM2khvPLyN96tvvzb847GA21iVlQZxLUUcOjKB8cQthS8CCsRNAd+pDA==
-X-Received: by 2002:a05:622a:34e:b0:4ed:a8e0:13c2 with SMTP id d75a77b69052e-4f1a4139f33mr9644491cf.10.1765223911026;
-        Mon, 08 Dec 2025 11:58:31 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-597d7b24976sm4479290e87.36.2025.12.08.11.58.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Dec 2025 11:58:30 -0800 (PST)
-Date: Mon, 8 Dec 2025 21:58:27 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Vijay Kumar Tumati <vijay.tumati@oss.qualcomm.com>
-Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>,
-        Loic Poulain <loic.poulain@oss.qualcomm.com>,
-        Robert Foss <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Todor Tomov <todor.too@gmail.com>,
-        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
-        trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com,
-        Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
-        Atiya Kailany <atiya.kailany@oss.qualcomm.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Subject: Re: [PATCH v8 1/5] media: dt-bindings: Add CAMSS device for Kaanapali
-Message-ID: <msscnw2e4xil3kynnrfpujaybknbbzzk7mgcowgefqlk57zzfd@h73cxwezx7fg>
-References: <20251130-add-support-for-camss-on-kaanapali-v8-0-143a8265e6e8@oss.qualcomm.com>
- <20251130-add-support-for-camss-on-kaanapali-v8-1-143a8265e6e8@oss.qualcomm.com>
- <f4d29f9b-98ce-4e57-9916-5a37927db2a7@linaro.org>
- <2tvkcuipfaa7cn7goynt6jfzlcxg2d7yvvjqizb6p7sf5oqwuj@drqiyr3khoyf>
- <dc0da45b-165c-455a-8e03-7cdd2d2d2ba0@oss.qualcomm.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88F052FD1DB;
+	Mon,  8 Dec 2025 20:06:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=192.198.163.12
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1765224375; cv=fail; b=aWBv+OtEXq8fi/huQKPqcmYMisNcSwhte4Cx2YmU1H3kBBO02jL40arGdMT/icrSTwUcrtJ9110Fw89B8Yi7mzaZThSOosTQdp9lMk4zzlVU8w+ahoClzr4O0mSqKYFZpk2m24OFxxAi+owubymFqXpuTBuIwp1y9W0HOQUsJ5U=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1765224375; c=relaxed/simple;
+	bh=lCZR3lzGVfSQ5t5wpCvtIDinFW292WvHn21jffCh9PQ=;
+	h=Message-ID:Date:Subject:To:CC:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=W/t1lBrmZ0IsovrRP8VBkvfMqoxu/L67e4jMgazguC4YtAMPrK/UUuk6HrL8gz0dxgCDR6W1Al/8e4F2QaAAwahCBbCIgWI45LOWXlCaj8CPEl9zRh+joFbnpB1YKT8QQU2Xi+fw4kHZO8ty8mkjM9ewO5aas/DCJRsN42uQAKY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=mtB+jsiI; arc=fail smtp.client-ip=192.198.163.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1765224374; x=1796760374;
+  h=message-id:date:subject:to:cc:references:from:
+   in-reply-to:content-transfer-encoding:mime-version;
+  bh=lCZR3lzGVfSQ5t5wpCvtIDinFW292WvHn21jffCh9PQ=;
+  b=mtB+jsiIs/gzemuYY0WISXp4JtzyW8LPgXiw2FwpTNxm+gGaJHZUQhSt
+   ardYHm70BVMUSfBCJ/I/AIWco4GsUOOZ8t5QFQoVukf7oe+HiYlsb6YD0
+   e6ydp/wz+nQh1yen9tIXKgxOqEk7OR1dVqQumSDqjvdrkmqBYHfXFCaWP
+   tu/9J/D6w+q0OS3GXmI1eV5N8mmGD/mvNa6Ka56lHhpU5zQjvC/NEe5rb
+   //dIQmNIITNENBwBl/+Dcr4pTUejqSI+ybTohWUoQ8dDG5KI/koreZrPL
+   U8MmwkE/QTBh9997kr6jzxSS71g2FbcQbrXhk2KzCCAh44ULE3En7+xc/
+   g==;
+X-CSE-ConnectionGUID: oSt31JS9TXuxxtDQINyrDA==
+X-CSE-MsgGUID: UtTf3ePbTcG41xsx/xOXoA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11636"; a="71019419"
+X-IronPort-AV: E=Sophos;i="6.20,259,1758610800"; 
+   d="scan'208";a="71019419"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Dec 2025 12:06:13 -0800
+X-CSE-ConnectionGUID: so32AtsHT3GyncjM5qs0KQ==
+X-CSE-MsgGUID: I2Zdny32TaesrgNp/0hLJQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,259,1758610800"; 
+   d="scan'208";a="200469428"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+  by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Dec 2025 12:06:13 -0800
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Mon, 8 Dec 2025 12:06:12 -0800
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29 via Frontend Transport; Mon, 8 Dec 2025 12:06:12 -0800
+Received: from SN4PR2101CU001.outbound.protection.outlook.com (40.93.195.67)
+ by edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Mon, 8 Dec 2025 12:06:06 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Byt3UHvpdqur0gSAJqqfcQCirSV7MJo8NSRnJznfOjGXJkNUhzKotQ75kQMbfP0s9uufVYE+rdXG9RgSR4zMzTdjUmBH0pjGXbIZ+nHWPMJLKNhNRKPEotN5NjHgRe4XN0Fktma9WkmG8RoT4k/CqvORrTrPYw30j1YQ48MZR7dfmwc7aJNwSr+r2wm1OhSzxLTePeVbIt97UKedlqkYiAXqdy9xCXoHLA1LKrKoEInercjE2A5dxIwbOmW2ohgWARG17LDUzLgVCQD/76gWFmAuwsrmHY+EUTGV30+Qb9GoWfyZuiMpzvjMneZV9ipqte0SMI2VWEG1iPl/AIr2FA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=mvdnT8esOqI33NmUvctLMKVaJM30ja47eni+6Zaq6PQ=;
+ b=c4aiHvkB9lQWR42EWWO6b6cdw3XO33+fzJW78s367yC6DzhiZi5cH9g7UKfNW9SfWNDuYbP980CUffUKCG63CVVbR0vWIPLUkjUFbFRtFwU+N3GEaFnYBV5KKAV+6GXy8EbFgcqITFreOuJWxjS5Z2JnGZnhmMwX84+vrjeQtIgxDDPvJz7mYyLFKYoGsHoqr7Oy8ZafKmVHSI+NrgKYpZJNlksKk3Wrbbm+YvMl2h5F+aVgz1zIhWbstVNRUzydjMWtcttHLpj61on/rz7OMc3R6h6m78sEZNbPGyAOGWivofj73einQUdBcNHUfa4jtpBTGMhjI7VONNpQXOAGvA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from SN7PR11MB8283.namprd11.prod.outlook.com (2603:10b6:806:26c::16)
+ by BL1PR11MB5320.namprd11.prod.outlook.com (2603:10b6:208:316::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9388.14; Mon, 8 Dec
+ 2025 20:05:59 +0000
+Received: from SN7PR11MB8283.namprd11.prod.outlook.com
+ ([fe80::3:e0a:87af:d4b6]) by SN7PR11MB8283.namprd11.prod.outlook.com
+ ([fe80::3:e0a:87af:d4b6%5]) with mapi id 15.20.9388.013; Mon, 8 Dec 2025
+ 20:05:59 +0000
+Message-ID: <1392db4b-968c-4458-bdf0-de6aedc29fc6@intel.com>
+Date: Mon, 8 Dec 2025 21:05:51 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 1/2] ASoC: rt5575: Add the codec driver for the ALC5575
+To: Oder Chiou <oder_chiou@realtek.com>
+CC: <perex@perex.cz>, <linux-sound@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+	<flove@realtek.com>, <shumingf@realtek.com>, <jack.yu@realtek.com>,
+	<derek.fang@realtek.com>, <broonie@kernel.org>, <lgirdwood@gmail.com>,
+	<robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>
+References: <20251201105926.1714341-1-oder_chiou@realtek.com>
+ <20251201105926.1714341-2-oder_chiou@realtek.com>
+Content-Language: en-US
+From: Cezary Rojewski <cezary.rojewski@intel.com>
+In-Reply-To: <20251201105926.1714341-2-oder_chiou@realtek.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: WA1P291CA0007.POLP291.PROD.OUTLOOK.COM
+ (2603:10a6:1d0:19::11) To SN7PR11MB8283.namprd11.prod.outlook.com
+ (2603:10b6:806:26c::16)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <dc0da45b-165c-455a-8e03-7cdd2d2d2ba0@oss.qualcomm.com>
-X-Authority-Analysis: v=2.4 cv=dZSNHHXe c=1 sm=1 tr=0 ts=69372de8 cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=xq3W2uTSAAAA:8 a=EUspDBNiAAAA:8 a=KKAkSRfTAAAA:8 a=VwQbUJbxAAAA:8
- a=bKaWK86LcX3T_COk3v0A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=kacYvNCVWA4VmyqE58fU:22 a=P5L7wpMTXyg1GfFA3Gwx:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-ORIG-GUID: IEnNmGoraB3d4ovuLRzhihm58woEwhtD
-X-Proofpoint-GUID: IEnNmGoraB3d4ovuLRzhihm58woEwhtD
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjA4MDE2OSBTYWx0ZWRfX2RqYGMrsQ9Oy
- M1Tv5+IBAKoBw4LdrQx5YyoGiHKjvgeJdAl9KHYxIwF4kAazg+ATOiwhCVzADm7qzpz59vCfk/0
- +ZYvE3jV5u0Tqh/rY0NYTynI7Wh9eV0xuGG83WPg9kDC8OZXbCmCXUH2AYKtSuw3KnAGW4J+zfH
- U7Q2M3HoiJf7KXZM7XifkTTZJW5nqAP5P05dE+npaKhINK95PL4XEjh2v03azMwWDXOYOExPvOw
- l/9Ap2CdMZ1lep3f5AvUso5hrcEgyI/TkfdUNRZbruDLZe3DSCqVjq2zLay4AfXPfMUjpoRTPRb
- 6ZLyB75/5hz1wwin0kEdF2HXNnVx+4a+zdg1rnhv3QVXGhgiRuNjK5aQ/8L9CgUJlmhUSRPhxU+
- rV2zdL63VZDp90PLMv8+k/x+uHs8Ag==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-06_02,2025-12-04_04,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 impostorscore=0 phishscore=0 clxscore=1015
- priorityscore=1501 bulkscore=0 suspectscore=0 adultscore=0 malwarescore=0
- spamscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
- definitions=main-2512080169
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN7PR11MB8283:EE_|BL1PR11MB5320:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3c7b0ab6-38c8-4bd1-af1d-08de3695340e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014|7416014|7053199007;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?dWVZVWhJcFNuT2R0c0t4Z1FnZzI1TnQxR3oyUGs5clhNZFFqL09PV291TE1I?=
+ =?utf-8?B?T2hDMHUwdXNTOEpBV0Y2c0NUdlYwOVVtQVM5Zk1XYU8veW5HQ3VhZ0JBMDJH?=
+ =?utf-8?B?eU1wekRaTjFranFabStQWmNQSkVXaHpmYit1N1NmL0lKK0hyVHFTbWdTZDdh?=
+ =?utf-8?B?L2szMEhiSnFXNWFPR2RVUTh4ei9pdjVnaGdkZnVnWUxDRUF5bTZUUkpBY0xH?=
+ =?utf-8?B?ZW1VczFValZXVFZyTklWRFRiQ2MrVmFMMGdtSHlwbTZOU0JYcEFTVTdQZXVo?=
+ =?utf-8?B?cjVkcm9SNUpyd0pyMDRYSUNBQ1FpcWM3Ykl6a2JMRWJQUVFNVFhsTTVtWS9E?=
+ =?utf-8?B?V3d0MlY0ZksvTTBBb3p3aFlGWTNKOVpvR3hZZlRsVWFIbjV3SGVSSzRnRTB2?=
+ =?utf-8?B?YWgzSkx5SmUwdkFjUXR1NTFOVitCYkl2S0F5R3FERlFNRzB5WnIrRE9zTFBs?=
+ =?utf-8?B?WUZIekdueU4vRDdyQmp0anp1OHh5TWx2YmsyTkd0dmI2VzhiYzlBdHRTVGlD?=
+ =?utf-8?B?OXZhRG5oNURDMmpURzNCazBWRld1NnJ0ZDBlQ2ZrSE5BTGRyd1pXVTZ1dTUx?=
+ =?utf-8?B?RXd5UVVKNW5YTVZqcTUyNHY0dXNqZDMxRW4yOGYwQ3hHU1dsczRXdkM1dXdr?=
+ =?utf-8?B?T01mV3FlU3VpWWFZaUUyUDlNU2VpTkNzaXppNFkvTkdtcUN4VWpjOHZjc0Z0?=
+ =?utf-8?B?YWhkc2FuaWtpRHd6Yi9lL0hPcWZXbmhSZzJLK004MjNYOVdLeGx3L2V1WUty?=
+ =?utf-8?B?TUl5Wm5USVNUdWtua0NVL0UrWnNqWXdOc0c1TTNsSitQd2svWFZTYitabU5O?=
+ =?utf-8?B?a2ZIdXliSXhWWm1DSEgwY0xDSjNkZmUxT2xBNXdNdXFOelExd3RqdmRUYkZI?=
+ =?utf-8?B?NFpta2M4SFdwb0RIWUNNdjlQaTdlZnlJYXZGdm4wN2lzYlFkbm43NFRwWVZu?=
+ =?utf-8?B?bm9YS2lDd24wT1p3Wlh0ejdOTkdWTUlYQmVMblZhZmd1UHh6TzVHc0dQTUo5?=
+ =?utf-8?B?RlFEdjhSbUxacmNSbzFYZmhlTCtTSjkybzRZZ00zdG40MXIxRWs3S3N2NkJK?=
+ =?utf-8?B?cHRvdjkzeFFUc25vUXRsNng3Nk1NVENhRWJuS0RPQjN6MWt2NklEVUhzVWxh?=
+ =?utf-8?B?TytSQ1JHMGNPS0J1NERQYTJGeE9VaXFNZCtaRllqOFFqY0hMRGVUZnlOdzdj?=
+ =?utf-8?B?elpsNzYzK0YzRDg3SHlhUmpDNVJ5SXIvb3B2eUE0b1UxdThLa2ZOTHVCMndW?=
+ =?utf-8?B?U0NzL1NkMWlubGk0MC9rcFhLT0ZIMVhSTkVCR3lodmo5eTVKMFV3R2hMclZj?=
+ =?utf-8?B?OVh2Q0xEdnpJVUExY3hNSVI2K3FsdW5Pc3p0WXhJSUJLMmhtemxPUUd4Lyta?=
+ =?utf-8?B?K0cyb0NHUENLRmNWSXpCazE4SzRVT29lSUMwL2hVTkJxWlE4NWNmRFZGdCtC?=
+ =?utf-8?B?L0ZBK0k0MjJoQW0va1N4N2xTRENmUnpRSHVqci9qQnRRaW10bGFTUHJ1N3dR?=
+ =?utf-8?B?d2F0c2ltZjJLVEpHcnNJemhMYm4vb2dxcHBJdWpmRnp1RlhyTG4rVGdwWHBo?=
+ =?utf-8?B?c0hwdHd0RGNpbXJGTWNLZ1NjZWo3NnBKRmNNbldDSlJGcmd5M1QzRENUOWtV?=
+ =?utf-8?B?RHhjTDhyN1pwUTI4ekJQNVZYa0ZkWWZRbWNMbGhkdnBnV0Vta2ZuVGloelZu?=
+ =?utf-8?B?T0dac0p6SDZnek5TV1Fta3g5QW5nOHkxYUJrdTJwNVErOWtna2lGUSs0a2VT?=
+ =?utf-8?B?N2NDcjZ5Wm9wbFBBeDVESVhFd25SYXZCRE9ydkRTZWFDVUZrcGVXaGd0eUM2?=
+ =?utf-8?B?V0lWT1ZCVFJpMS9vMjZXTUJNRDBJTE9JUTgvQnl6S0NQRHZWK09tbmVRby9n?=
+ =?utf-8?B?Sk42RUJzSnBWTjNjcmZtZFFuaXVKZkpEeWNubk1WODQvdEdWNUxDQ2dPRmNy?=
+ =?utf-8?Q?rqXxwmCbIiKiSYGxJbLH6G9x+fasOV+/?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN7PR11MB8283.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014)(7053199007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RndFREt6MEdQS2ZndTBhdjlWNDk1ZHBRZ1lTSWZLdVkvNGxJczI3bDM1bTBF?=
+ =?utf-8?B?NjU4Rzd4RDRZZDdxc3A0b0JsNkpUTis0ZnByWitDSk5Na0xNMnUwRW5UL2U4?=
+ =?utf-8?B?YVF5elpuWC9GdUtnMUxZYi9IR2xRWXViVmhselRZVmVlZzJ1Qkx6NVRhOWsz?=
+ =?utf-8?B?WnpaMjZWbXRFaHJVSzRYbldRSW1VUkIxTHZTUGhDVlNSS0dYWHB4eWJJRUpV?=
+ =?utf-8?B?VFRLbG4xNW0wNEg4ZFNla3lCbkhkM2RlVWt3Wm5jRkwxVSsxOTk1Y2xnWHo0?=
+ =?utf-8?B?UnpYSy9xM2JmQ2MwL0NodHFXNFkvKzR4Mk1pQ1NOdzNOYklZY0F0anRRcHBR?=
+ =?utf-8?B?MzhBS0YwZXNrOGl5cWdYditWbEhEdnVYeHRpNGpxUURZR0ZjZUp1eUE4cElM?=
+ =?utf-8?B?dGhnVkREdUhuVmRBQXN1SjUrL004RkZRNDlzNUd2cHlmQ3dNS1BucS81N2l5?=
+ =?utf-8?B?ZytHUEdxckh3VWJCbm8zWEFkT1RFaGZmVzBpSE95bGdobXhGZjdxcWlVVUJu?=
+ =?utf-8?B?MVNLSGJieWRqVGs1NkI5bVFLU21LTStVT0VaNXpiSTVpb0p3d3lxNlZjNkVH?=
+ =?utf-8?B?emtILy9zU0VyUmxyVDFIWnR2cUxRL3F3bmtZZFFwKytxeTRIcTE4bHpmWWlW?=
+ =?utf-8?B?bks4SVpMcnhqRHNleDdmQXM2a3p3dVg5MkxmQlQxMHFMMk9UM2JSUnRES3B6?=
+ =?utf-8?B?Qzk3UlB4U2FOeFhDcE84VnU5U3Y2RmNRc3NBRVM4bzFDQ0VQd2lxb0NzUG82?=
+ =?utf-8?B?Zy96YWdCcEl4b3NEUUdEeWVyQUNpM0Y4djJLa2hob3NEQ01OcTJDNk1sV0kz?=
+ =?utf-8?B?YzRaRkVGSXVxOWNxNkRMMFMyUmRPQ0lvWVloWXJ1b1pzcmZwbWdQNnJ6Tmh1?=
+ =?utf-8?B?K0NaYnVPYk96T0p5WGk4dlVheitQN09NbHlkZmJ1ZWU2ZDhoTGNTVjM1MDdB?=
+ =?utf-8?B?Z2hsdFdCbnhlUzQzc3hzS1JDRnE4NUE4U0dWL0VNS0s3aVRSenBzZTJGb3BY?=
+ =?utf-8?B?N1ZCUnkwNWxBN0FtVVZmOWdUb0hFcE9kc3BoSWo4Wml1T3NkMUtVUWNidGtW?=
+ =?utf-8?B?cUVQVURRZkE5aUhKK0NlSGxoRDFYcHIzb3hwS2pQQVoxTlUrTnliNWNiaHE1?=
+ =?utf-8?B?OXV5OW9EMTE2K3lNS2VUVFUweGFjaUZQYXFBYUVrZWRmVkhDY1NXNThhNWow?=
+ =?utf-8?B?U0JCNG9OUW5EYUhBa3dDYkdVRG0xc3pPNnkvKzlhWFNtV0Jrb2pzZ3JzWDhU?=
+ =?utf-8?B?c0ltZnl1QWl6WW5IcDNrMUEybVF5b3lOZi92UzR6c1l5a29qSkdsZVZ2TmVS?=
+ =?utf-8?B?Qmk1cmZVSUxBS1NUOU9obHRCa1Vpb1hQaWRiTEdhdUhEWDBHM2VDZ216UGgz?=
+ =?utf-8?B?NTlSZHBJSWsrRmxKUEJldXdwTTBvdzRYR1VCTlE2aFJDaEp3My9nVThlbkwv?=
+ =?utf-8?B?MEEyR2FIc2txYTVXbFFnejFEZDlRS1hUL3UzdlFMQmpJWXU5VTN4OUhSb0da?=
+ =?utf-8?B?WS9nemR1aWt5NWZwbEg2VlpmSUZxR1hjMzUwWlhjVkZPYUEyS0hYNzhiSXNL?=
+ =?utf-8?B?NDBWMWtBeWZ1bjNrVWw0V3U3cHdHUUxvRFY1RmJVT0ZvQjdlNHk0c1UybW9F?=
+ =?utf-8?B?elFpSnJsMXBBTlI3TU1aWGUxWlN6Z1hRZllwUWc4OTUrb0NmV25SWnpSVTZr?=
+ =?utf-8?B?Q2ptQWpNMjlFbWlVR3hGYW53dnA4VUJmaEJpRnB1aUs3OHVDZTI3bHNwclJS?=
+ =?utf-8?B?SElnbnlqRzlQQVkvWFRRRThKMm1sS3JNKzNvM2NlMkhMM2lZWmRPQWVXZzJD?=
+ =?utf-8?B?RXBRSy8vNXJkSHdOc0w1QVc5U2luUFBuQmd1N0RxbXNrNGIrZ210K0tkU0J0?=
+ =?utf-8?B?bEtkRUppdW4xMW5rL2F2bW5wQWU2aE5lcVpUR1NzVFZCTk5pSndCT29Ub0Iz?=
+ =?utf-8?B?M1pWOTBTTlVKUEd6UDg1K3pDTmwyVWNHeXJqY0pDRDZlM2MzL0pYMUdQSm9t?=
+ =?utf-8?B?c29xUzlpZWJWVEcwNFNFeUdZdmFEdXRWL3FPNnVRcmc1OCtIWGZWbGtoNVdr?=
+ =?utf-8?B?ekZPZ0lnMWJLQUdMbjlJbDMvWFVjWFFXcG9qcnJCSFlQb2J6ZjJJLzFMK1hz?=
+ =?utf-8?B?NjU5R05oNGRRTVBNaWF3NGZ0UUMyU09rZFd2NTYwZEtQOTA0TFBpMGpLTXBJ?=
+ =?utf-8?B?bXc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3c7b0ab6-38c8-4bd1-af1d-08de3695340e
+X-MS-Exchange-CrossTenant-AuthSource: SN7PR11MB8283.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Dec 2025 20:05:58.7914
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: aQMZNE0XDlBCsS+8rHKccTalq/IXjBeCB+lR+sKz0RdKRfOBHbWMbhvbfiFxhQJDdyOuzTikO7TtUUTERRqvUMsVLL6Pm5z1UIfhfbz0E6A=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR11MB5320
+X-OriginatorOrg: intel.com
 
-On Sun, Dec 07, 2025 at 09:41:11PM -0800, Vijay Kumar Tumati wrote:
+On 2025-12-01 11:59 AM, Oder Chiou wrote:
+> The ALC5575 integrates an audio DSP that typically loads its firmware
+> from an external flash via its own SPI host interface. In certain
+> hardware configurations, the firmware can alternatively be loaded
+> through the SPI client interface. The driver provides basic mute and
+> volume control functions. When the SPI client interface is enabled,
+> firmware loading is handled by the SPI driver.
 > 
-> On 12/7/2025 5:44 PM, Dmitry Baryshkov wrote:
-> > On Sat, Dec 06, 2025 at 10:11:20PM +0000, Bryan O'Donoghue wrote:
-> > > On 01/12/2025 06:30, Hangxiang Ma wrote:
-> > > > Add the compatible string "qcom,kaanapali-camss" to describe the Camera
-> > > > Subsystem (CAMSS) on the Qualcomm Kaanapali platform.
-> > > > 
-> > > > The Kaanapali platform provides:
-> > > > - 3 x VFE, 5 RDI per VFE
-> > > > - 2 x VFE Lite, 4 RDI per VFE Lite
-> > > > - 3 x CSID
-> > > > - 2 x CSID Lite
-> > > > - 6 x CSIPHY
-> > > > - 2 x ICP
-> > > > - 1 x IPE
-> > > > - 2 x JPEG DMA & Downscaler
-> > > > - 2 x JPEG Encoder
-> > > > - 1 x OFE
-> > > > - 5 x RT CDM
-> > > > - 3 x TPG
-> > > > 
-> > > > Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> > > > Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
-> > > > Signed-off-by: Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>
-> > > > ---
-> > > >    .../bindings/media/qcom,kaanapali-camss.yaml       | 647 +++++++++++++++++++++
-> > > >    1 file changed, 647 insertions(+)
-> > > > 
-> > > > +      - const: gcc_hf_axi
-> > > https://patchwork.linuxtv.org/project/linux-media/patch/20251126-add-support-for-camss-on-sm8750-v1-2-646fee2eb720@oss.qualcomm.com/
-> > > 
-> > > Pointed out by Krzysztof in the 8750 patches but the name of this clock is
-> > > gcc_axi_hf.
-> > > 
-> > > ~/Development/worktree/qcom-linux-next
-> > > ➞  grep gcc_axi_hf * -r | wc -l              [git:platform-qcom-next] ✖
-> > > 48
-> > > 
-> > > ~/Development/worktree/qcom-linux-next
-> > > ➞  grep gcc_hf_axi * -r | wc -l              [git:platform-qcom-next] ✖
-> > > 0
-> > My 2c: it should be none of those. gcc_axi_hf is the _source_ of the
-> > clock, while the bindings (in my opinion) should be describing the
-> > function of the clock on the consumer side (e.g. bus, iface, something
-> > else, etc).
-> 
-> Hi Dmitry, this is MMNOC side of the AXI bus clock for the HF clients. If
-> it's ok, we can change it to be consistent with previous generations for KNP
-> and we can take it up in detail when we refactor the bindings for Hawi?
-> Please let me know if you have a strong opinion on this at this point and we
-> can discuss accordingly.
+> Signed-off-by: Oder Chiou <oder_chiou@realtek.com>
 
-Well, why do you think that for Hawi the requirement will be different?
-It's the same: describe the _use_ of the clock rather than the source.
-You got that feedback internally already  during our telcos and then
-later when you've sent your proposal, but for some reason you didn't get
-it.
+...
 
-BTW, if it's an MMNOC end of the bus, should it instead be voted by the
-NoC driver?
+> diff --git a/sound/soc/codecs/rt5575-spi.c b/sound/soc/codecs/rt5575-spi.c
+> new file mode 100644
+> index 000000000000..12c2379a061e
+> --- /dev/null
+> +++ b/sound/soc/codecs/rt5575-spi.c
+> @@ -0,0 +1,84 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * rt5575-spi.c  --  ALC5575 SPI driver
+> + *
+> + * Copyright(c) 2025 Realtek Semiconductor Corp.
+> + *
+> + */
+> +
+> +#include <linux/of.h>
+> +#include <linux/spi/spi.h>
+> +
+> +#include "rt5575-spi.h"
+> +
+> +#define RT5575_SPI_CMD_BURST_WRITE	5
+> +#define RT5575_SPI_BUF_LEN		240
+> +
+> +struct rt5575_spi_burst_write {
+> +	u8 cmd;
+> +	u32 addr;
+> +	u8 data[RT5575_SPI_BUF_LEN];
+> +	u8 dummy;
+> +} __packed;
+> +
+> +struct spi_device *rt5575_spi;
+> +EXPORT_SYMBOL_GPL(rt5575_spi);
+> +
+> +/**
+> + * rt5575_spi_burst_write - Write data to SPI by rt5575 address.
+> + * @addr: Start address.
+> + * @txbuf: Data buffer for writing.
+> + * @len: Data length.
+> + *
+> + */
+> +int rt5575_spi_burst_write(u32 addr, const u8 *txbuf, size_t len)
+> +{
+> +	struct rt5575_spi_burst_write buf = {
+> +		.cmd = RT5575_SPI_CMD_BURST_WRITE
+> +	};
+> +	unsigned int end, offset = 0;
+> +
+> +	while (offset < len) {
+> +		if (offset + RT5575_SPI_BUF_LEN <= len)
+> +			end = RT5575_SPI_BUF_LEN;
+> +		else
+> +			end = len % RT5575_SPI_BUF_LEN;
+> +
+> +		buf.addr = cpu_to_le32(addr + offset);
+> +
+> +		memcpy(&buf.data, &txbuf[offset], end);
+> +
+> +		spi_write(rt5575_spi, &buf, sizeof(buf));
+> +
+> +		offset += RT5575_SPI_BUF_LEN;
 
-> Hi Bryan, we are addressing the things that makes sense for KNP as well in
-> the next revision. Btw, couple things like a separate CSIPHY DT node and
-> ordering of the resources (that were to be added at the end as you advised),
-> I believe are not relevant for KNP. As for the GDSC names, we preferred the
-> module name and it's GDSC name to be consistent so changed the latter as
-> well to VFE. Hope that's ok. Please let us know if you would suggest any
-> further changes to KNP v9 bindings and we can move forward accordingly.
-> 
-> Thank you both.
-> 
-> > > Please resolve the other inconsitencies pointed out by Krzysztof in that
-> > > thread here also.
-> > > 
-> > > I will have to skip application of this series in the meantime.
-> > > 
-> > > ---
-> > > bod
+Make it cohesive by proper spacing - it's a logical block, and logical 
+blocks are easier to read if grouped together e.g.:
 
--- 
-With best wishes
-Dmitry
+<assuming newline after the if-else-statement>
+
+		buf.addr = cpu_to_le32(addr + offset);
+		memcpy(&buf.data, &txbuf[offset], end);
+		spi_write(rt5575_spi, &buf, sizeof(buf));
+
+		offset += RT5575_SPI_BUF_LEN;
+
+See?  Clear separation of operations leading to spi_write() and the 
+offset increment.
+
+> +	}
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL_GPL(rt5575_spi_burst_write);
+> +
+> +static int rt5575_spi_probe(struct spi_device *spi)
+> +{
+> +	rt5575_spi = spi;
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id rt5575_of_match[] = {
+> +	{ .compatible = "realtek,rt5575" },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, rt5575_of_match);
+> +
+> +static struct spi_driver rt5575_spi_driver = {
+> +	.driver = {
+> +		.name = "rt5575",
+> +		.of_match_table = of_match_ptr(rt5575_of_match),
+> +	},
+> +	.probe = rt5575_spi_probe,
+> +};
+> +module_spi_driver(rt5575_spi_driver);
+> +
+> +MODULE_DESCRIPTION("ALC5575 SPI driver");
+> +MODULE_AUTHOR("Oder Chiou <oder_chiou@realtek.com>");
+> +MODULE_LICENSE("GPL");
+> diff --git a/sound/soc/codecs/rt5575-spi.h b/sound/soc/codecs/rt5575-spi.h
+> new file mode 100644
+> index 000000000000..b364b49bb43e
+> --- /dev/null
+> +++ b/sound/soc/codecs/rt5575-spi.h
+> @@ -0,0 +1,16 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +/*
+> + * rt5575-spi.h  --  ALC5575 SPI driver
+> + *
+> + * Copyright(c) 2025 Realtek Semiconductor Corp.
+> + *
+> + */
+> +
+> +#ifndef __RT5575_SPI_H__
+> +#define __RT5575_SPI_H__
+> +
+> +extern struct spi_device *rt5575_spi;
+> +
+> +int rt5575_spi_burst_write(u32 addr, const u8 *txbuf, size_t len);
+> +
+> +#endif /* __RT5575_SPI_H__ */
+
+The entire header can be dropped and its content moved to rt5575.h. 
+It's included in both C-files plus we want to get rid of the global 
+rt5575_spi anyway.  I do not think rt5575_spi_burst_write() belongs here 
+either, see my comments regarding rt5575_fw_load_by_spi().
+
+> diff --git a/sound/soc/codecs/rt5575.c b/sound/soc/codecs/rt5575.c
+> new file mode 100644
+> index 000000000000..c7e8f5a606bc
+> --- /dev/null
+> +++ b/sound/soc/codecs/rt5575.c
+> @@ -0,0 +1,375 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * rt5575.c  --  ALC5575 ALSA SoC audio component driver
+> + *
+> + * Copyright(c) 2025 Realtek Semiconductor Corp.
+> + *
+> + */
+> +
+> +#include <linux/firmware.h>
+> +#include <linux/i2c.h>
+> +#include <sound/soc.h>
+> +#include <sound/tlv.h>
+> +
+> +#include "rt5575.h"
+> +#if IS_ENABLED(CONFIG_SND_SOC_RT5575_SPI)
+> +#include "rt5575-spi.h"
+> +#endif
+> +
+> +static bool rt5575_readable_register(struct device *dev, unsigned int reg)
+> +{
+> +	switch (reg) {
+> +	case RT5575_ID:
+> +	case RT5575_ID_1:
+> +	case RT5575_MIXL_VOL:
+> +	case RT5575_MIXR_VOL:
+> +	case RT5575_PROMPT_VOL:
+> +	case RT5575_SPK01_VOL:
+> +	case RT5575_SPK23_VOL:
+> +	case RT5575_MIC1_VOL:
+> +	case RT5575_MIC2_VOL:
+> +	case RT5575_WNC_CTRL:
+> +	case RT5575_MODE_CTRL:
+> +	case RT5575_I2S_RATE_CTRL:
+> +	case RT5575_SLEEP_CTRL:
+> +	case RT5575_ALG_BYPASS_CTRL:
+> +	case RT5575_PINMUX_CTRL_2:
+> +	case RT5575_GPIO_CTRL_1:
+> +	case RT5575_DSP_BUS_CTRL:
+> +	case RT5575_SW_INT:
+> +	case RT5575_DSP_BOOT_ERR:
+> +	case RT5575_DSP_READY:
+> +	case RT5575_DSP_CMD_ADDR:
+> +	case RT5575_EFUSE_DATA_2:
+> +	case RT5575_EFUSE_DATA_3:
+> +		return true;
+> +	default:
+> +		return false;
+> +	}
+> +}
+> +
+> +static const DECLARE_TLV_DB_SCALE(ob_tlv, -9525, 75, 0);
+> +
+> +#if IS_ENABLED(CONFIG_SND_SOC_RT5575_SPI)
+> +static void rt5575_fw_load_by_spi(const struct firmware *fw, void *context)
+
+So, rt5575_spi_burst_write(), a wrapper for spi_write(), is exported to 
+be available outside of the rt5575-spi module while its only user, 
+rt5575_fw_load_by_spi(), which performs no I2C-specific tasks, is found 
+with the common, rt5575.c file?
+
+We can do better.  There are couple options here, one of them consists of:
+
+1) privatize rt5575_spi_burst_write()
+2) make rt5575_fw_load_by_spi() public
+3) change rt5575_fw_load_by_spi() from void to int and return 
+request_firmware_xxx() result
+4) reword to rt5575_spi_fw_load() to match its friends
+
+In regard to 1), have a #if-else preproc added to rt5575.h that governs 
+the implementation of said function.  If xxx_RT5575_SPI is disabled, let 
+is be a stub that returns 0.
+
+In regard to 2), please do not ignore failures from firmware loading, 
+that's a recurring point in this review and keeps being ignored.  No, 
+async-firmware loading in not the answer why potential errors are left 
+unhandled.
+
+Another option, perhaps a better one is to have both 
+rt5575_spi_burst_write() and rt5575_spi_fw_load() privatized and move 
+the firmware-loading to the SPI-device probe.  See my comments targeting 
+rt5575_probe().
+
+> +{
+> +	struct rt5575_priv *rt5575 = context;
+> +	struct i2c_client *i2c = rt5575->i2c;
+
+The whole reason this function needs i2c_client is ->dev retrieval. 
+Let's simplify by listing 'struct device *dev' as an argument instead. 
+With that, your function's argument list is also more explicit.
+
+> +	const struct firmware *firmware;
+> +	static const char * const fw_path[] = {
+> +		"realtek/rt5575/rt5575_fw2.bin",
+> +		"realtek/rt5575/rt5575_fw3.bin",
+> +		"realtek/rt5575/rt5575_fw4.bin"
+> +	};
+> +	static const u32 fw_addr[] = { 0x5f600000, 0x5f7fe000, 0x5f7ff000 };
+> +	int i, ret;
+> +
+> +	regmap_write(rt5575->dsp_regmap, 0xfafafafa, 0x00000004);
+> +	regmap_write(rt5575->dsp_regmap, 0x18008064, 0x00000000);
+> +	regmap_write(rt5575->dsp_regmap, 0x18008068, 0x0002ffff);
+> +
+> +	rt5575_spi_burst_write(0x5f400000, fw->data, fw->size);
+> +	release_firmware(fw);
+> +
+> +	for (i = 0; i < ARRAY_SIZE(fw_addr); i++) {
+> +		ret = request_firmware(&firmware, fw_path[i], &i2c->dev);
+> +		if (!ret) {
+> +			rt5575_spi_burst_write(fw_addr[i], firmware->data, firmware->size);
+> +			release_firmware(firmware);
+> +		} else {
+> +			dev_err(&i2c->dev, "Request firmware failure: %d\n", ret);
+> +			return;
+> +		}
+> +	}
+> +
+> +	regmap_write(rt5575->dsp_regmap, 0x18000000, 0x00000000);
+> +
+> +	regmap_update_bits(rt5575->regmap, RT5575_SW_INT, 1, 1);
+> +
+> +	regmap_read_poll_timeout(rt5575->regmap, RT5575_SW_INT, ret, !ret, 100000, 10000000);
+> +
+> +	if (ret)
+> +		dev_err(&i2c->dev, "Run firmware failure: %d\n", ret);
+> +}
+> +#endif
+> +
+> +static const struct snd_kcontrol_new rt5575_snd_controls[] = {
+> +	SOC_DOUBLE("Speaker CH-01 Playback Switch", RT5575_SPK01_VOL, 31, 15, 1, 1),
+> +	SOC_DOUBLE_TLV("Speaker CH-01 Playback Volume", RT5575_SPK01_VOL, 17, 1, 167, 0, ob_tlv),
+> +	SOC_DOUBLE("Speaker CH-23 Playback Switch", RT5575_SPK23_VOL, 31, 15, 1, 1),
+> +	SOC_DOUBLE_TLV("Speaker CH-23 Playback Volume", RT5575_SPK23_VOL, 17, 1, 167, 0, ob_tlv),
+> +	SOC_DOUBLE("Mic1 Capture Switch", RT5575_MIC1_VOL, 31, 15, 1, 1),
+> +	SOC_DOUBLE_TLV("Mic1 Capture Volume", RT5575_MIC1_VOL, 17, 1, 167, 0, ob_tlv),
+> +	SOC_DOUBLE("Mic2 Capture Switch", RT5575_MIC2_VOL, 31, 15, 1, 1),
+> +	SOC_DOUBLE_TLV("Mic2 Capture Volume", RT5575_MIC2_VOL, 17, 1, 167, 0, ob_tlv),
+> +	SOC_DOUBLE_R("Mix Playback Switch", RT5575_MIXL_VOL, RT5575_MIXR_VOL, 31, 1, 1),
+> +	SOC_DOUBLE_R_TLV("Mix Playback Volume", RT5575_MIXL_VOL, RT5575_MIXR_VOL, 1, 127, 0,
+> +		ob_tlv),
+> +	SOC_DOUBLE("Prompt Playback Switch", RT5575_PROMPT_VOL, 31, 15, 1, 1),
+> +	SOC_DOUBLE_TLV("Prompt Playback Volume", RT5575_PROMPT_VOL, 17, 1, 167, 0, ob_tlv),
+> +};
+> +
+> +static const struct snd_soc_dapm_widget rt5575_dapm_widgets[] = {
+> +	SND_SOC_DAPM_AIF_IN("AIF1RX", "AIF1 Playback", 0, SND_SOC_NOPM, 0, 0),
+> +	SND_SOC_DAPM_AIF_OUT("AIF1TX", "AIF1 Capture", 0, SND_SOC_NOPM, 0, 0),
+> +	SND_SOC_DAPM_AIF_IN("AIF2RX", "AIF2 Playback", 0, SND_SOC_NOPM, 0, 0),
+> +	SND_SOC_DAPM_AIF_OUT("AIF2TX", "AIF2 Capture", 0, SND_SOC_NOPM, 0, 0),
+> +	SND_SOC_DAPM_AIF_IN("AIF3RX", "AIF3 Playback", 0, SND_SOC_NOPM, 0, 0),
+> +	SND_SOC_DAPM_AIF_OUT("AIF3TX", "AIF3 Capture", 0, SND_SOC_NOPM, 0, 0),
+> +	SND_SOC_DAPM_AIF_IN("AIF4RX", "AIF4 Playback", 0, SND_SOC_NOPM, 0, 0),
+> +	SND_SOC_DAPM_AIF_OUT("AIF4TX", "AIF4 Capture", 0, SND_SOC_NOPM, 0, 0),
+> +
+> +	SND_SOC_DAPM_INPUT("INPUT"),
+> +	SND_SOC_DAPM_OUTPUT("OUTPUT"),
+> +};
+> +
+> +static const struct snd_soc_dapm_route rt5575_dapm_routes[] = {
+> +	{ "AIF1TX", NULL, "INPUT" },
+> +	{ "AIF2TX", NULL, "INPUT" },
+> +	{ "AIF3TX", NULL, "INPUT" },
+> +	{ "AIF4TX", NULL, "INPUT" },
+> +	{ "OUTPUT", NULL, "AIF1RX" },
+> +	{ "OUTPUT", NULL, "AIF2RX" },
+> +	{ "OUTPUT", NULL, "AIF3RX" },
+> +	{ "OUTPUT", NULL, "AIF4RX" },
+> +};
+> +
+> +static long long rt5575_get_priv_id(struct rt5575_priv *rt5575)
+> +{
+> +	int priv_id_low, priv_id_high;
+> +
+> +	regmap_write(rt5575->regmap, RT5575_EFUSE_PID, 0xa0000000);
+> +	regmap_read(rt5575->regmap, RT5575_EFUSE_DATA_2, &priv_id_low);
+> +	regmap_read(rt5575->regmap, RT5575_EFUSE_DATA_3, &priv_id_high);
+> +	regmap_write(rt5575->regmap, RT5575_EFUSE_PID, 0);
+> +
+> +	return ((long long)priv_id_high << 32) | (long long)priv_id_low;
+> +}
+> +
+> +static const struct of_device_id rt5575_of_match[] = {
+> +	{ .compatible = "realtek,rt5575" },
+> +	{ .compatible = "realtek,rt5575-with-spi" },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, rt5575_of_match);
+> +
+> +static int rt5575_probe(struct snd_soc_component *component)
+> +{
+> +	struct rt5575_priv *rt5575 = snd_soc_component_get_drvdata(component);
+> +	struct device *dev = component->dev;
+> +
+> +	rt5575->component = component;
+> +
+> +	dev_info(dev, "Private ID: %llx\n", rt5575_get_priv_id(rt5575));
+> +
+> +#if IS_ENABLED(CONFIG_SND_SOC_RT5575_SPI)
+> +	if (of_device_is_compatible(dev->of_node, rt5575_of_match[1].compatible))
+> +		request_firmware_nowait(THIS_MODULE, FW_ACTION_UEVENT,
+
+
+An ASoC card is typically a mariage of platform-component (e.g.: SoC 
+level DSP) and a codec-component (e.g.: rt5575).  If for any reason the 
+platform-component becomes unloaded, codec-component will also be.  When 
+the platform-component becomes available again, the 
+codec-component->probe() would be invoked again - firmware would be 
+loaded again.  Is this the desired behaviour?
+
+To answer that, the follow up question is:  Is the firmware-loading for 
+this particular solution, a chip -level operation or, a sound-card 
+-level operation?  Typically firmware-loading is the former.  Once 
+succeeeds, an ASoC component can be registered.  There is no reason to 
+register ASoC component, which is mainly used for PCM/streaming reasons, 
+if the preliminary setup - firmware-loading - is unsuccefull.
+
+Perhaps a good approach is to move the firmware loading to the 
+SPI-device's probe()!
+
+> +		"realtek/rt5575/rt5575_fw1.bin", component->dev, GFP_KERNEL, rt5575,
+> +		rt5575_fw_load_by_spi);
+> +#endif
+> +
+> +	return 0;
+> +}
+
+...
+
+> +
+> +static const struct i2c_device_id rt5575_i2c_id[] = {
+> +	{ "rt5575" },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(i2c, rt5575_i2c_id);
+> +
+> +static int rt5575_i2c_probe(struct i2c_client *i2c)
+> +{
+> +	struct rt5575_priv *rt5575;
+> +	struct device *dev = &i2c->dev;
+> +	int ret, val;
+> +
+> +#if IS_ENABLED(CONFIG_SND_SOC_RT5575_SPI)
+> +	if (!rt5575_spi && of_device_is_compatible(dev->of_node, rt5575_of_match[1].compatible))
+> +		return -EPROBE_DEFER;
+> +#endif
+> +
+> +	rt5575 = devm_kzalloc(dev, sizeof(struct rt5575_priv),
+> +				GFP_KERNEL);
+> +	if (rt5575 == NULL)
+> +		return -ENOMEM;
+> +
+> +	i2c_set_clientdata(i2c, rt5575);
+> +
+> +	rt5575->i2c = i2c;
+> +
+> +	rt5575->dsp_regmap = devm_regmap_init_i2c(i2c, &rt5575_dsp_regmap);
+> +	if (IS_ERR(rt5575->dsp_regmap)) {
+> +		ret = PTR_ERR(rt5575->dsp_regmap);
+> +		dev_err(dev, "Failed to allocate register map: %d\n", ret);
+
+"Failed to allocate DSP register map:" so it differs from the one below?
+
+> +		return ret;
+> +	}
+> +
+> +	rt5575->regmap = devm_regmap_init(dev, NULL, i2c, &rt5575_regmap);
+> +	if (IS_ERR(rt5575->regmap)) {
+> +		ret = PTR_ERR(rt5575->regmap);
+> +		dev_err(dev, "Failed to allocate register map: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	regmap_read(rt5575->regmap, RT5575_ID, &val);
+> +	if (val != RT5575_DEVICE_ID) {
+> +		dev_err(dev, "Device with ID register %08x is not rt5575\n", val);
+> +		return -ENODEV;
+> +	}
+> +
+> +	regmap_read(rt5575->regmap, RT5575_ID_1, &val);
+> +	if (!val) {
+> +		dev_err(dev, "This is not formal version\n");
+> +		return -ENODEV;
+> +	}
+> +
+> +	return devm_snd_soc_register_component(dev, &rt5575_soc_component_dev, rt5575_dai,
+> +		ARRAY_SIZE(rt5575_dai));
+
+Alignment.
+
+> +}
+> +
+> +static struct i2c_driver rt5575_i2c_driver = {
+> +	.driver = {
+> +		.name = "rt5575",
+> +		.owner = THIS_MODULE,
+> +		.of_match_table = of_match_ptr(rt5575_of_match),
+> +	},
+> +	.probe = rt5575_i2c_probe,
+> +	.id_table = rt5575_i2c_id,
+> +};
+> +module_i2c_driver(rt5575_i2c_driver);
+> +
+> +MODULE_DESCRIPTION("ASoC ALC5575 driver");
+> +MODULE_AUTHOR("Oder Chiou <oder_chiou@realtek.com>");
+> +MODULE_LICENSE("GPL");
 
