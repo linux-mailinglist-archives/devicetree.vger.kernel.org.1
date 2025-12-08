@@ -1,197 +1,135 @@
-Return-Path: <devicetree+bounces-245099-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245100-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABAE1CAC45B
-	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 08:07:01 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id C65FDCAC39A
+	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 07:52:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7BDFF3082360
-	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 07:02:30 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 16D5330062F6
+	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 06:52:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A89F328B52;
-	Mon,  8 Dec 2025 06:37:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66B603271E8;
+	Mon,  8 Dec 2025 06:45:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=iopsys.eu header.i=@iopsys.eu header.b="cafCFh/x"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eo8if8oC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11023116.outbound.protection.outlook.com [40.107.162.116])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A750328606;
-	Mon,  8 Dec 2025 06:36:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.116
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765175821; cv=fail; b=TBYQ9vRarr8Ell4YItV2Rb5pHwhU4zerQU4oD5Ok34KSaLhSZPkJeOJpUBJnJFMAMclf2KFHFRRrmiD3uzL4aoNT6FuHA6JlOYaTyL1FLqj6N3OBMEvJq59GEDyxLxOJAK8hu7nT5/qmjEbTva89UX+XexHT/l0IGfsApM8VKd0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765175821; c=relaxed/simple;
-	bh=+UAhc/zzPiPCaXbF/XbVfQxRuLYEafKKsFNMdbe1wSI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=AskwaJrr8IXcUziaVlc/8uhwM4c40qm6ce9l2IdQcHP4FR9lmFK/IlkDTluBOEcw1C/zzNCexJ0hfug2d2fG8SLpWZAvP1d/AID641nFlU1g3OTK0P1RkgssnhJ1w5nqdl9GBYJia1+Gslv4BXcEkop+aNsIjGc4lHienL/n1Hc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=iopsys.eu; spf=pass smtp.mailfrom=genexis.eu; dkim=pass (2048-bit key) header.d=iopsys.eu header.i=@iopsys.eu header.b=cafCFh/x; arc=fail smtp.client-ip=40.107.162.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=iopsys.eu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=genexis.eu
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=iRtoh8+axz1Y6OYjFqRAQlgQHYqhC4DGE19O37dsMDR23kygSJ7T255z7mT5DQwkBkyL7RUxowyB7VZcnaVtPVuqsOuAggnFzDZmJnbQkiOtwvIPqNWXFlWrHBMklS9ossLXokbQ0Eya0/rAKiPDRYzXPm9JrBoakrBueb5OoAEzHWf2wtydC52abTOKEZ1CQzSdTkYUHv5qdlt38d1FIM7LbTKs5e9avJY7JNOjaa6+xRlF+PJE9LuYlkjRdT0QcGC0J7F9YYUAho3YBgkIzZPpWESEc/MGAVrWxwPhS1Q29aa2iHfkUUEIQQAt1S2WcIEzDT7vPGpo4wh1/Gf4ug==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ADTHSpRp+uv+dVOZtQkY5yAvdQXOfCFG4kzF4oSxP9Q=;
- b=T96GbfGKygcXqHRdN9j+isOPdWT0O3uZiwnoz/DxZiSzVEceDNLLuJnHzkCgGxUMMI27Tv5/zfE8fpeYGEpi/olBaCHXrcl8G+JCd9dBOUikt8RgzoN4Hci6SyAiqr4i1lIw4NJofqdbmGapQhF66v3budUr0ig2w+2M5OOE4mEZAxd7CN/9d3mRaHQKpZrgCWZDQ0Li4ptK0dvw7aKRoZ7R0EJKv0itYcnu5/OLuYIXxRY7iRzICpD0ZSijhYVk7cGuCxuuwUeqTDBAxHtCSx2QFYZQ/xxayAOZ+ibPGXE6845zYnjg19UvMM64j62EVZ4+escvnqUewV8IPaIdNg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=genexis.eu; dmarc=pass action=none header.from=iopsys.eu;
- dkim=pass header.d=iopsys.eu; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iopsys.eu;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ADTHSpRp+uv+dVOZtQkY5yAvdQXOfCFG4kzF4oSxP9Q=;
- b=cafCFh/xb1NEUY565Bp96RSHSIrKRpREj2xPy37zGgSBGXBAFEgIVIfaKta3oRVySITZTI/83prGnp7Z0zo7B7k6OthS+RhidM2PKfEo0WSQt1I8A75dn/cDInh6W6f0/ydsJ802Y8mDEoAcVONZtODwJh6Qd56HNzN2ePGJOnG5jc0ss5TxMp+lSZC55yVt+01A0UgnqwkKQ2pIDcwGrihL69ELhjKOkQxNleChFHT/mIISKHRkw6t/mASr/RRvWSYSudq4TtptmLI5b3Nl4N4EpAizyGnzl+Uyyh3EmwGIVbhU9P4e7asjxFFiSIZdwsE4QW72XCSUQTEWSsRlEA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=iopsys.eu;
-Received: from GV2PR08MB8121.eurprd08.prod.outlook.com (2603:10a6:150:7d::22)
- by AM0PR08MB11704.eurprd08.prod.outlook.com (2603:10a6:20b:745::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9388.14; Mon, 8 Dec
- 2025 06:36:49 +0000
-Received: from GV2PR08MB8121.eurprd08.prod.outlook.com
- ([fe80::4cd3:da80:2532:daa0]) by GV2PR08MB8121.eurprd08.prod.outlook.com
- ([fe80::4cd3:da80:2532:daa0%3]) with mapi id 15.20.9388.013; Mon, 8 Dec 2025
- 06:36:49 +0000
-From: Mikhail Kshevetskiy <mikhail.kshevetskiy@iopsys.eu>
-To: Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Mikhail Kshevetskiy <mikhail.kshevetskiy@iopsys.eu>,
-	Andreas Gnau <andreas.gnau@iopsys.eu>
-Subject: [PATCH v2 2/2] ARM: dts: airoha: en7523: add reset-controller support
-Date: Mon,  8 Dec 2025 09:36:38 +0300
-Message-ID: <20251208063638.3009460-3-mikhail.kshevetskiy@iopsys.eu>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20251208063638.3009460-1-mikhail.kshevetskiy@iopsys.eu>
-References: <20251208063638.3009460-1-mikhail.kshevetskiy@iopsys.eu>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: FR4P281CA0100.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:cb::14) To GV2PR08MB8121.eurprd08.prod.outlook.com
- (2603:10a6:150:7d::22)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38015326D68;
+	Mon,  8 Dec 2025 06:45:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1765176358; cv=none; b=jXak0CFkOCO15AKQTSfT3PsDoMoczwDicHhvFP+Fe+G6kui/S/tMd4XmCrGKEPWHXA2OHUf+MIMKOz7Ny2keKOnp9bZTxZb24yIK1DeuvOpCZJ5MHalpoG5xCEMgYTMxPhm7o4SxCoeMXjJTXGVuOLUjpnRvp7b0AYewXsqAzTQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1765176358; c=relaxed/simple;
+	bh=nnJu3U+qCQGvyN98FX7xu7pumvxzjQeZ4LH/i9P5OJE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Q+Ge8LDpUzcUD3Y0PIbmHkfnKsQS4Ba8SVMzWVW/UckmcpUTCShuq2RKW6VD6L/MVIAdmp3jbP1d9entx+AOy4Jt5PQdvhXwH22z6kpGCQxC5QamuPv/PZ4FqMrKC2LrNm3DKCbYt1rMLP/JjRwuC12dgrzuq5UcpnvjNX3Rt+Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eo8if8oC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30AE0C4CEF1;
+	Mon,  8 Dec 2025 06:45:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1765176357;
+	bh=nnJu3U+qCQGvyN98FX7xu7pumvxzjQeZ4LH/i9P5OJE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=eo8if8oCPqnPs9qaBZxE6Dh4TvFC59luH1dxoQmyd0yRm5smDeGYzxRiTXrbZcFxx
+	 k4iw1DAGtehN+EBuGysngsDXNhKCQ3vD1zszkjTHs/pRPk7qjbM6y5BlfwNfjYfKzK
+	 UAQlmnRt9D8ScMc59rck+fOwjRiD5Dj51UMdOmtF/2czWzxWgtOBG+J0MqAyMMCYuy
+	 40ti0hyI7tN6K0Tx0LjvjJ9k8PPAN+yZLGcVTBB+h45qp5DN++1R1ZwCixsHcDzjoQ
+	 f+xEt/SCrEqxL9dRGvzWc4P9x6bswCoOrJ6JobYDoNkPxEm4hlB2dsv/5T2puLlgqx
+	 L0pOPIoGw6Flw==
+Date: Mon, 8 Dec 2025 07:45:55 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: dongxuyang@eswincomputing.com
+Cc: ukleinek@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, p.zabel@pengutronix.de, linux-pwm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, ningyu@eswincomputing.com, 
+	linmin@eswincomputing.com, xuxiang@eswincomputing.com, wangguosheng@eswincomputing.com, 
+	pinkesh.vaghela@einfochips.com
+Subject: Re: [PATCH 1/2] dt-bindings: pwm: eswin: Add EIC7700 pwm controller
+Message-ID: <20251208-rational-trout-of-purring-a6150a@quoll>
+References: <20251205090411.1388-1-dongxuyang@eswincomputing.com>
+ <20251205090450.1446-1-dongxuyang@eswincomputing.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: GV2PR08MB8121:EE_|AM0PR08MB11704:EE_
-X-MS-Office365-Filtering-Correlation-Id: c9bdd8e2-6db0-4f13-c738-08de36242a6a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|52116014|376014|366016|1800799024|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?Npy/b/QSpaoiMD2m2tLSfxCTBuz/NyygAnoM4y8s1wRUKhciy7zctgSPuld+?=
- =?us-ascii?Q?eFNPk0402dY3i7y29m4E0TGFUiRO8k+YRGngx05InJ7FcKyWgUgnwjilJ8w2?=
- =?us-ascii?Q?fGn9dAyZ4apzr3pNg42Lw39C1QYeXN614+CZS81gWE+NjMUDHuzX4ZhE8iO6?=
- =?us-ascii?Q?LD5HAgRw5Q4U8DN8RT07uY5vgnBKKBm4TAWL17ixO04tdL9WUpgB4DFASJ3R?=
- =?us-ascii?Q?OR69oiKOM/93EgbXLiUzfHm3iToBGvEcqN+zA24w4NmolGND3dReEwDBxqVy?=
- =?us-ascii?Q?hWE7fPCXjOj/BCtRhbM9PCYt56EeoVdJgRV80TY2nBcf6G9K4rihquYbA4t/?=
- =?us-ascii?Q?9hPcy1qZGXZQqZ5AHAoSDUCyZiyoMMkvBWtGirelFr5kWbzGSPJel3yu25in?=
- =?us-ascii?Q?okF2028d+jebQMtLgb//bznupWaFMqemO1/BG3u2IJ01kmjSVZyN8bcYmSks?=
- =?us-ascii?Q?oimDuh1AOLz25KY1Ccubsr1w1QLDWx/Nzhc8SYbTPwDbGMYvQwPW2slv3I7E?=
- =?us-ascii?Q?Uh2sc1ns9okoZV2SRmoTZwsdNHVp/7qbVfFtBvz/EQL0n6lJS4nOtxrS1KsO?=
- =?us-ascii?Q?PGiIZutByngF+LF1RZD830/+DCbLRgQxIgtJHX81DnjQ/LQkY8tPB3w946kE?=
- =?us-ascii?Q?ERydSVr6eJvX7AEXRR00gxUlEVItFirKLOmaAs7HJm+2MXg1WIqQuJ03lj3d?=
- =?us-ascii?Q?YKkpz2+Eu3vbzMKkP/FIGzYuMsalyXNNwfYjJal3RlMneeobft9P7FUPXNPk?=
- =?us-ascii?Q?EqexroR6WJul3StO3QLhbdw82wzGsofwkaINd+NHGhy3FBRWJsKDESbxYlLm?=
- =?us-ascii?Q?QY45uZzthSuTTCzlwh51K+S/Nws9h3o+j7DJGvkrcptD7TUiPRpXIzQGJkH2?=
- =?us-ascii?Q?l6Z5Z1vmzU909HCymkAGdyT+gXa4NshN6DWDFkD4l9207Zz49hzsYjZwKD+V?=
- =?us-ascii?Q?Anqr5H5YJj9+Fk+a1+H5xs+CNNTJmWgTgZsu+IQ+E2+zG3j6H12BJW4slCgF?=
- =?us-ascii?Q?S5oTnOLIRD+kIfSMJMG22aVfaTKFrEzNfFBY+J90lMDiNmw+H0SiJns7NNG3?=
- =?us-ascii?Q?haCGTsXYBpEfze8zyQuXzh9loib5NqRfOIJnkwBX4Ich50DUn4dXR+pUkXpQ?=
- =?us-ascii?Q?2wGnU20mUylgDvrz6xsOESMLaGxtHofJR37SeF6EVuwLgx42kFmbKX8TyQJN?=
- =?us-ascii?Q?W0G1u60/m8IST4IgP/jC91psIrPjw08t1WcMHr7aGk4COKKGbWOFVOTYp8rg?=
- =?us-ascii?Q?U1SYbs6OkdGTNADdyaKbnLxWLdZIO0Za2z9BIL5nlwoP14/MxjEUNNU25IHy?=
- =?us-ascii?Q?4Q6wIzdInB4MXus5nvLow1BHHDLY5RWBYVLMm1t4Y7HzSy7XrCLDEXZlnAK4?=
- =?us-ascii?Q?I0Wz+aEc63RkcyBcgdHfdOO74iKj9iODWmzTltwE9JUg7+V01AEvbTqbmDyP?=
- =?us-ascii?Q?pHFnTAP4DiT8KsYen/mnXD760GkBZvwG5WgeAAC70ZiX2fnlfzEAoulyV0Uz?=
- =?us-ascii?Q?/BVyRwFh8KtCc9fASmCIAbg3vW5LksWwTuM8?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV2PR08MB8121.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(376014)(366016)(1800799024)(38350700014);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?WxqmUTKR+ysMaG5Bjff6zhFsb2T9m83A7RcWFDRtuV5LtTiOS2YcnYw4nkMW?=
- =?us-ascii?Q?FkTvxhJQe6m7V/EXjnVnhNP9vi9sxQ032IzF+WLSOXcgM6QnS/jClC7NqsJU?=
- =?us-ascii?Q?QWTulMxs6auLwySdpAWLsQdB9yXj61Rk4FwrACNpdbnvAo/iVTM3whA+bpd6?=
- =?us-ascii?Q?pOOYljXzXzcL5Os8ndZm3kqz42WmL9z6kj2GGklG+Bt+z23w9S8LhfLa/VK5?=
- =?us-ascii?Q?yQ7aM17m0lUyYcI8bxQDhU7aEU+ulUvbGN+xICJJDFrNL7qfkfxWEHbzu4E0?=
- =?us-ascii?Q?Ru/Hi+D7vt0a3e4K0YI0qwZrT7DmoPDzAROSstVoBVOqj+KycoI9oNmH051D?=
- =?us-ascii?Q?J56blvm1+M+Ou1n3bywDXMtnPeKqZkwjp6yx8k9MkmIlWhLpAqYycq+rmdyR?=
- =?us-ascii?Q?eFYyC88tB3JUK9H4GdyWzQQbk0q1posBEgjS0Xzcd3IXif6YjMPEFU0tr/KC?=
- =?us-ascii?Q?riJaXTsCmWLes+WGt+B8sT/dT9ZrE9WTCCwIkpNpkSjR/1re3f9M1R4VbE8a?=
- =?us-ascii?Q?fOY2jiP76AWf0+8GE1qhEu2le6n6EcT0SVuQ9B7qTRIY331PG6EmcZeqIFOJ?=
- =?us-ascii?Q?tnO1QnMXFBZE9j2EpMKGTe7bcCoVImKIcn0/xKhfKJs/xXgZ/Ii0+XzU7qB9?=
- =?us-ascii?Q?56/mCZ+nFYLRnLof9mwYc5FekctmNOZPExUW6w7/tIc93LeCMcegliBhiJ+9?=
- =?us-ascii?Q?EBGKAQJOyuhOkgrE3xq9LZ15weAFqWgCLxA/OXG94ivIk0hxW5VgcBTsw3Z4?=
- =?us-ascii?Q?X1fUkhotvGqTYoPuZjgAgzSfqpecwaFGUT83IBYSxUaCqAE1gJv2OiZzSr/X?=
- =?us-ascii?Q?Sly+UelfYqlLhKyEgZ8+Rs6TNIIej8pPPDpMEHz/gFvGsCfpb1GgRQjlDD8T?=
- =?us-ascii?Q?ixTMFSpWCN0LD5GXRBUpoba732fC3CEXv9UXs1suKXQShKtPtK4zRFAKeKyn?=
- =?us-ascii?Q?QHuZF/jLtF+E4L9Ek9qH0fucLWiBtCdc4MZei2ha/6BnGSRknkkptXBinJ8L?=
- =?us-ascii?Q?H+pPFILwLwZA2d9Rl2ceNzyUPSpHEuSR9KeD4Ar6cG3E/D1F5tA1aghRyzZj?=
- =?us-ascii?Q?9l0/g5p2+GnpgFfgZNHowAHZw+rBT9KIrqM36etUeT2693Sjn35Bo+DX/m8G?=
- =?us-ascii?Q?rx6FpW7sBGchorNSne+qualZ/EqrMStdj7tf6j9XswXurC1zsf0sZrf7QAt5?=
- =?us-ascii?Q?qfSZ86yo12ICMoM6A9lEZ4tIYC2kmOaARRt8wCa6cO+eQ+9tQ/nfB+H4czPw?=
- =?us-ascii?Q?M7Zj/xLm7MqMnKTJt/qScsVbWflvBL1VS+xT8Db4TNR6wxKBp69vSFrobVSt?=
- =?us-ascii?Q?1LVVbl1PA6i1m1KFCxmZUkpZ60aSulxZgb+tfWwhqXIVerkGGLozEutpXvcy?=
- =?us-ascii?Q?D3Cxe4bKT0zYykdQuiVK0XhMqkWdiCdCTaSRs3/ek8qkp7NBCiSsou8/W/I0?=
- =?us-ascii?Q?jh+cvGxqSVtZjtxDtZOUpbp1TWUPgivj/g+WvLEHffo8A4O3B4OZIXWiBcde?=
- =?us-ascii?Q?iiUi79k/I3xVNAdLbvm0y1XGfTTndYWuqNngHXQVlNVXk4CQ4YmS0A3IQDu+?=
- =?us-ascii?Q?sQ5gF32s6CP0I3iVQ9K2F+snR7a5xKxZQdAH0Z4RLRhInfkgQInuHGhncnpN?=
- =?us-ascii?Q?HA=3D=3D?=
-X-OriginatorOrg: iopsys.eu
-X-MS-Exchange-CrossTenant-Network-Message-Id: c9bdd8e2-6db0-4f13-c738-08de36242a6a
-X-MS-Exchange-CrossTenant-AuthSource: GV2PR08MB8121.eurprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Dec 2025 06:36:49.3660
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 8d891be1-7bce-4216-9a99-bee9de02ba58
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: AyhHT/dfZJOzzCREKak5mbJzIjWTKcLXDnVC1vTKxH8tCUZToDzv8YbeYMoLYGlxWrEqJI5b1SstQpFFh/TNRkyaS5Hu5aRtvRVx5Ew8w7Q=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR08MB11704
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20251205090450.1446-1-dongxuyang@eswincomputing.com>
 
-This patch updates EN7523 dtsi to reflect the reset-controller
-support for EN7523 SoC.
+On Fri, Dec 05, 2025 at 05:04:50PM +0800, dongxuyang@eswincomputing.com wrote:
+> diff --git a/Documentation/devicetree/bindings/pwm/eswin,eic7700-pwm.yaml b/Documentation/devicetree/bindings/pwm/eswin,eic7700-pwm.yaml
+> new file mode 100644
+> index 000000000000..8b7dc7d4dffe
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pwm/eswin,eic7700-pwm.yaml
+> @@ -0,0 +1,73 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pwm/eswin,eic7700-pwm.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ESWIN EIC7700 PWM controller
+> +
+> +maintainers:
+> +  - Xiang Xu <xuxiang@eswincomputing.com>
+> +  - Guosheng Wang <wangguosheng@eswincomputing.com>
+> +  - Xuyang Dong <dongxuyang@eswincomputing.com>
+> +
+> +description: |
 
-Signed-off-by: Mikhail Kshevetskiy <mikhail.kshevetskiy@iopsys.eu>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- arch/arm/boot/dts/airoha/en7523.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+Do not need '|' unless you need to preserve formatting.
 
-diff --git a/arch/arm/boot/dts/airoha/en7523.dtsi b/arch/arm/boot/dts/airoha/en7523.dtsi
-index 31191b8d1430..115cc44093ab 100644
---- a/arch/arm/boot/dts/airoha/en7523.dtsi
-+++ b/arch/arm/boot/dts/airoha/en7523.dtsi
-@@ -4,6 +4,7 @@
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/clock/en7523-clk.h>
-+#include <dt-bindings/reset/airoha,en7523-reset.h>
- 
- / {
- 	interrupt-parent = <&gic>;
-@@ -91,6 +92,7 @@ scu: system-controller@1fa20000 {
- 		reg = <0x1fa20000 0x400>,
- 		      <0x1fb00000 0x1000>;
- 		#clock-cells = <1>;
-+		#reset-cells = <1>;
- 	};
- 
- 	gic: interrupt-controller@9000000 {
--- 
-2.51.0
+> +  The EIC7700 PWM used the DesignWare APB timers module. The PWM driver
+> +  supports a duty cycle range from 0% to 100%, with explicit support for
+
+Driver is irrelevant here. Describe hardware.
+
+> +  both 0% and 100% duty cycles.
+> +
+> +allOf:
+> +  - $ref: pwm.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: eswin,eic7700-pwm
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  "#pwm-cells":
+> +    const: 3
+> +
+> +  pinctrl-0: true
+> +  pinctrl-1: true
+> +
+> +  pinctrl-names:
+> +    minItems: 1
+> +    items:
+> +      - const: default
+> +      - const: sleep
+> +
+> +  snps,pwm-full-range-enable:
+
+1. Wrong vendor prefix, thats eswin, not snps.
+2. Why is this a hardware property? I really do not see that. You
+described the desired Linux feature or behavior, not the actual
+hardware. The bindings are about the latter, so instead you need to
+rephrase the property and its description to match actual hardware
+capabilities/features/configuration etc.
+
+Best regards,
+Krzysztof
 
 
