@@ -1,244 +1,278 @@
-Return-Path: <devicetree+bounces-245095-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245096-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA355CAC2C8
-	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 07:30:11 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1778CAC36A
+	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 07:48:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 724E2300317C
-	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 06:29:58 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id F30F93096D1F
+	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 06:43:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B010A31A807;
-	Mon,  8 Dec 2025 06:29:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DE25314B8F;
+	Mon,  8 Dec 2025 06:32:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Adp7hNF8"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Gj2CEZ9I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from CH5PR02CU005.outbound.protection.outlook.com (mail-northcentralusazon11012028.outbound.protection.outlook.com [40.107.200.28])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 845F631A7FB;
-	Mon,  8 Dec 2025 06:29:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765175393; cv=none; b=NQBNxji1vlSjgpiJLQXHKJqC52qZxzSHKBZOKS7UswfSHTEF/luvA8N0z1lTEPHvnVKjcbGS74Dd+cUn/nfavoKwpQpPdDHpVREFr+qdpzodLMu7h0zkorrb96fLddumO6xxdmdvdcl6NpbDUP6NOOtU/z4YtTAxmWtyjEwA31c=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765175393; c=relaxed/simple;
-	bh=BNL8+owLhbO9teOYyNVriq9viH9YuOxeblnmtV4NFco=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nTNhi+muaNBnhZvHUonBlfFUkOHDk9KbkeDyvVl2M1XJt8eLwsH4raswiJnglZk6LBMr7rpPzzcAWS4/21nyUE2VbXRUCOzCvpbaZFD0He4vnAC1gkEzleMCXj0Zj2YrKHukuJ8dfdy/Zamx3Oz+cCJtxwixMYi9S7BpOFyaglA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Adp7hNF8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D03D0C4CEF1;
-	Mon,  8 Dec 2025 06:29:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765175393;
-	bh=BNL8+owLhbO9teOYyNVriq9viH9YuOxeblnmtV4NFco=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Adp7hNF8uf+sca8VaTE6dkzXOihGGqJBrNksUNoNA5ao9JDXdYwvTUB6u/nJTBuFE
-	 Yp34u8aXIE2zd/nPu4Q4kATUtCUULw7f6qn50NnYEb8Y9UP9RwCVTVLjP46/rZVL+W
-	 I2bAU0j+2YotigSlLJoWWf8hr5C2uESoLToaTRuKW52bUM5LPCg6mPns9Yqx7pPp9D
-	 TyVtmDTaVM4u00yHu/sn66vv4l66FQSEex3jsmhz7grRJghQeJG+sCUeC5xMgWe263
-	 EaRlVCD9DGRpWwgCb7YQkPLO8mO4qkjVx11IZS0gwYeQTPLZM7mfYTRGBZcmbGneYm
-	 GS0IvVXtW0nUA==
-Date: Mon, 8 Dec 2025 07:29:50 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Ye Zhang <ye.zhang@rock-chips.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>, 
-	Heiko Stuebner <heiko@sntech.de>, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	tao.huang@rock-chips.com
-Subject: Re: [PATCH v2 7/8] dt-bindings: pinctrl: rockchip: Add RMIO
- controller binding
-Message-ID: <20251208-invisible-crazy-squirrel-bb3af0@quoll>
-References: <20251206050844.402958-1-ye.zhang@rock-chips.com>
- <20251206050844.402958-8-ye.zhang@rock-chips.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5B61272816;
+	Mon,  8 Dec 2025 06:31:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.200.28
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1765175523; cv=fail; b=vBpSZnj46ioTESnWHVjQldkGkz49aH0r39ZJrrzfLgcnqpqarnhERZ1MtYkB81DGe4PVbc1wXB2kDn5vna36DGRffK5Jxt+ub5VQ5xJPg5dXA3gkboODyM2q1VOe4oy7LNv/YDTIDZpqovzFyYnag3Au7ufT88p+PDwxaL13hKs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1765175523; c=relaxed/simple;
+	bh=noeneAC8b2vU+cyVCNeJsH3Quj3jn0uQna4gYvTV4Xw=;
+	h=MIME-Version:Content-Type:Date:Message-ID:CC:Subject:From:To:
+	 References:In-Reply-To; b=cJw+z5+w+DbVxDrF9kQBT2krEfXQ+kciDMcJkHPWISLfHJzgFZgppXbqjCTm5RfpBiOTNjnp3x6l9SIGb9GzEiKSEVC9kJsaEKLMUgTuo/LaX3xCOlf1ie05kCCs+HxUG0tPfgM8+i8QveI79CsUEKI/JtFHv3pG3MUZc2GwOkE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Gj2CEZ9I; arc=fail smtp.client-ip=40.107.200.28
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=KvQwnyE0gF5WcVDU0Ag+AbEfu3Vl4KlrmibSrd33j4NY3PTYH3Bw0ZPKWimcRBM74gKZOd1NzBERjimb8jAsy7aU2kDM22C82iWU6paF/I2I5PbpscVl1EDtEgVqnD0o0Q8lYhi4HpaFcjesZXSCFATTvwPejO8bWo0qWc9r2/BbEWJA8T6oQSU4nKF4tJuRDWRf2BEcEStUkAGKpujralIFhj8pME8JfAP6hqtUkrpDfQVblBctdQX4Aw+KI0cgvgXSuLronbbrEu+7td1sIc9nyeGeW4qOBsFmx2EhmJp1w73SgHgXJ91FAFYGWTVGivctTMdARRAVxto0PKFmGw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=U9vi0QJ0M5pziBiXs19Q/RK5qdux00oTKd+SYt7fS8w=;
+ b=NW7KYvf/Yz6si9iBd8H123KAbxfo/wGB52XVV1zZdtRuIVWYLZ/3HGrSIbPYz8KBtSaRhzo4at4GooqX+aj5vErIOQVHOvuaIToviv2HygShHKQQsNLRmAf3l04AI2zoaeaqJvecp5LMQd/s6NEWtaU3RKm/UjvaMMU83SHkKfwCNxo1A8j56IUkpGZv2eXVshWCbsMhVzPuc2wUegKWh096kEx5g/SkaRytC0yK2zlL4jGTFLTL6wIO9uQXQPyZZ0e7VEinkHEFHZVyt7ddFb6+4RC/PmxDKCkW1b9LQW0YIzYsRi7w1jyqfPAMLXa4kJ8ffqTFlZB++vKDS2EQzA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.21.194) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=U9vi0QJ0M5pziBiXs19Q/RK5qdux00oTKd+SYt7fS8w=;
+ b=Gj2CEZ9IM65WnM2C7sw5lxSJ0Z3ZTlN5F5bXnGsBcTWbJV4qzi7K+QNTGiMux90Gr/6l8x4aqYeYqALwc6jHyiV3TdSNfX2JMczDMVQ5ZvRZDNC625qzgg3ABZhfqXLVlCTKd9mGszbwk8i0St2lqyCq+YgvDru6pZr0tE1/ack=
+Received: from BL1PR13CA0163.namprd13.prod.outlook.com (2603:10b6:208:2bd::18)
+ by MN2PR10MB4352.namprd10.prod.outlook.com (2603:10b6:208:1de::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9388.14; Mon, 8 Dec
+ 2025 06:31:53 +0000
+Received: from BL6PEPF0001AB51.namprd04.prod.outlook.com
+ (2603:10b6:208:2bd:cafe::6c) by BL1PR13CA0163.outlook.office365.com
+ (2603:10b6:208:2bd::18) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9412.6 via Frontend Transport; Mon, 8
+ Dec 2025 06:31:53 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
+Received: from flwvzet200.ext.ti.com (198.47.21.194) by
+ BL6PEPF0001AB51.mail.protection.outlook.com (10.167.242.75) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9412.4 via Frontend Transport; Mon, 8 Dec 2025 06:31:53 +0000
+Received: from DFLE215.ent.ti.com (10.64.6.73) by flwvzet200.ext.ti.com
+ (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 8 Dec
+ 2025 00:31:31 -0600
+Received: from DFLE206.ent.ti.com (10.64.6.64) by DFLE215.ent.ti.com
+ (10.64.6.73) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 8 Dec
+ 2025 00:31:31 -0600
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE206.ent.ti.com
+ (10.64.6.64) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Mon, 8 Dec 2025 00:31:31 -0600
+Received: from localhost (dhcp-172-24-233-105.dhcp.ti.com [172.24.233.105])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5B86VURq3175391;
+	Mon, 8 Dec 2025 00:31:30 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20251206050844.402958-8-ye.zhang@rock-chips.com>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
+Date: Mon, 8 Dec 2025 12:01:29 +0530
+Message-ID: <DESMHL7FCYXE.3TE3SG6TDVJ39@ti.com>
+CC: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>, "Santosh
+ Shilimkar" <ssantosh@kernel.org>, Rob Herring <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, "Andrew
+ Davis" <afd@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, "Vignesh
+ Raghavendra" <vigneshr@ti.com>
+Subject: Re: [PATCH v4] dt-bindings: arm: keystone: add boot_* mboxes to
+ ti,sci
+From: Anshul Dalal <anshuld@ti.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>, Anshul Dalal <anshuld@ti.com>
+X-Mailer: aerc 0.21.0-0-g5549850facc2
+References: <20251205-k3_syscon_add_boot_mailboxes-v4-1-8e216fb88941@ti.com>
+ <20251208-abiding-hedgehog-of-lightning-2fe7a2@quoll>
+In-Reply-To: <20251208-abiding-hedgehog-of-lightning-2fe7a2@quoll>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB51:EE_|MN2PR10MB4352:EE_
+X-MS-Office365-Filtering-Correlation-Id: 321ef47b-6883-457f-3c75-08de362379f8
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|376014|82310400026|36860700013;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?cDlDaDdCV3RrN285ZTJhNXlQdW5VNUllRDJ3RVVtd040aWhjOFgyRnFqbk9J?=
+ =?utf-8?B?a3l5ZzgyZXlIU3VGVVdYUC81TGtnaXNFVk1ZSVhmMmJDeVhDV2JkeXhUNVFS?=
+ =?utf-8?B?ZEVoS210cWJWMUs0L1o2ZHJRcy9xa2orU2YvNkJvKzYvU0xyV0o2YWNZL2RD?=
+ =?utf-8?B?NUxRaGFrRnc5Y1BVdEtoSURUR3pucm8rTkpTQlZ5RTNpZjJtQU1tZHU2Nyts?=
+ =?utf-8?B?R2JxWjEvS01jNno5VHdYbnBkU1JTaGJJS2VUYkZZTUNQUVFRTisvejYwRHRq?=
+ =?utf-8?B?dkxsRWRNb0FiSXRmWk5DM2tQRnR4OHVOY3RDQ1VSLzdURVBseGJSRkJ4MS9o?=
+ =?utf-8?B?ZjVORUtrNTllYkNSSytvRlBZSjNIL2lsd25ZUURyYWNHc3Y5aTdHQThVd3VE?=
+ =?utf-8?B?aGNiZXE4aDJrMEpQcTltMzNub3VqRjcxZUZrNXhMNXk0Y0E2Y3pZQTQ4LzVt?=
+ =?utf-8?B?NHhHaWRvMytTVERQM3VFY2FVRStvU3FmU1JVVzRyOE9DdVZqWlJ2ZHkyVXg4?=
+ =?utf-8?B?dmh2WHRSOVZuNWIzMmE3bHIrdUtQRFpGZUZ4T2dFZTk1WnkvdW5sN0ZyemJK?=
+ =?utf-8?B?TWE4VHBOT241Y3BBcHlwK1FuOFVEZDdaTUx6RXpoWUEycU0zSVZVT3Z5VDlK?=
+ =?utf-8?B?YWdwWFVkL2QwRFpJVVc3UG15YXNGb1gyY1dMbnAwZlV6NXRKYnhheHNacmRC?=
+ =?utf-8?B?TWR2ZGlzbnkzM0dzemZUOUNldXdBdDFsS1NqWSttanlJSFA2SmNwOUFpc2Vh?=
+ =?utf-8?B?YWR2L0MyYXJsd3o2KzVQK0x4OHVlSnJqcDY4T040YkJnQW51OFlRSzNDRVNw?=
+ =?utf-8?B?MVZuLzZuV2E4Umw4UWVzdE9peWNGNUo4NlJob0VYKzFWV0w2UjBTL2hjbFpl?=
+ =?utf-8?B?Wm5OSWYvL05wZ243OE9zYStqaUFBYmxLaVZGakt2bWtMQlpNZlVEZTdKbEV6?=
+ =?utf-8?B?aUQ2ZkxZakNQb25Vemd3bWp5ZmVEdk1qOEtrTmV1ZG1KTUtOMEFsUWVzNDdK?=
+ =?utf-8?B?K3dXMk0zTmFxL2ZTN3NTZlZFaXkzeG1UNXErd0pWMENFSlI1SVRwWTB5SXlq?=
+ =?utf-8?B?Yng0M1RLclFONnlPbFdOZVV3NCtHYVB1ZFc0ZEZHMDF2M3hNQlZmZ0lRQUxN?=
+ =?utf-8?B?Y2RMaUo4Z0VweHU3ekpSdjJ4WWJDTHNvUzZpT2J3akdXQzhCMG01cjNrQXY1?=
+ =?utf-8?B?ZTFvdURqVU0rejk1SEE1ZTNwTk1tRlNZdGo3eER6cFpJV0lOakNKYnhRWGQ2?=
+ =?utf-8?B?Um5oREtWdU5jMFBtRFNUT0VmeFZiT0RUamxRYXYrdGk4bXlLS1dkK0Q4VllI?=
+ =?utf-8?B?NExzMndFU3dDWm9qZVJRYzBPZEVvanljVUdtKzlYRE9OM0RZNUhSdHlmR20z?=
+ =?utf-8?B?b2x4Wm9xTHAwNDU1RUlKTldQWUt2MG9qMGsvd005dHVkRXZZalhoM1RoeWNR?=
+ =?utf-8?B?SlBFOVRabG9VdUhnNkcycWpaS0RtUnY1MUhBOEg1cWpZZTloMlBSbVdxTWk2?=
+ =?utf-8?B?eVByOGJQTVVtaE5MRTJaZDVPZTNwVXliY0hUWTV5bnFFdUd6L1dpOVBFY0JB?=
+ =?utf-8?B?U1VWQjB2WC9JR3ZWS3NzUVh3Y0huNWNSOXE3YzBGcWp3cTVLaGJuUEZIYWMr?=
+ =?utf-8?B?bHJjaDZxUzFITEEwamU3ZEZwUHIxZGtPc2laSUxUMTBXa0FFVnBPbGtnOHl4?=
+ =?utf-8?B?ZnJpVVhSTUFuRE04cHVOT1dTRXdiUUxGU2VGMjRzSm1nU2U3UVM5RlNQL0FQ?=
+ =?utf-8?B?SzVaWTlpeUc0WkU1K0x0eTdxa3VqTWx5MkJXWXk1UUZIbUFCOVg5MWVzNE1H?=
+ =?utf-8?B?eElhOFdMK3VMRlFOd3o3a0V3bHlmZUM2K1ZNU1ZOK2h5SERBRVgraytxTlpY?=
+ =?utf-8?B?YXFxMWhxOXZ0UEpIZktsK3VmTkNkK0cvejQxSUxXODdyYStIdEk1VTlOT0Rh?=
+ =?utf-8?B?bTdWSW5iaEJTdUlwR1EwVkxsMTA0eHVXLzRNSHlOMnBmZ0JWU2g1VER5V1JP?=
+ =?utf-8?B?eTRQYUNiSlllWFI0UktQV1ROU2MzV0thb1JuSmpBaFJBVXBSNDNlelNqa0Qx?=
+ =?utf-8?B?ejNxRFF6YkFXMnVqM1BRV0dKT284WXJmQmNpc2FtT3g2TldiMkx3WENhQURj?=
+ =?utf-8?Q?JE3M=3D?=
+X-Forefront-Antispam-Report:
+	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(1800799024)(376014)(82310400026)(36860700013);DIR:OUT;SFP:1101;
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Dec 2025 06:31:53.0189
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 321ef47b-6883-457f-3c75-08de362379f8
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	BL6PEPF0001AB51.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR10MB4352
 
-On Sat, Dec 06, 2025 at 01:08:43PM +0800, Ye Zhang wrote:
-> Add device tree binding for the RMIO (Rockchip Matrix I/O) controller
-> which is a sub-device of the main pinctrl on some Rockchip SoCs.
-> 
-> Signed-off-by: Ye Zhang <ye.zhang@rock-chips.com>
-> ---
->  .../bindings/pinctrl/rockchip,pinctrl.yaml    |   9 ++
->  .../bindings/pinctrl/rockchip,rmio.yaml       | 130 ++++++++++++++++++
->  2 files changed, 139 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/rockchip,rmio.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml
-> index 93bf8f352e48..01df0a51ff83 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml
-> +++ b/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml
-> @@ -83,6 +83,15 @@ required:
->    - rockchip,grf
->  
->  patternProperties:
-> +  "rmio[0-9]*$":
-> +    type: object
-> +
-> +    $ref: "/schemas/pinctrl/rockchip,rmio.yaml#"
-> +
-> +    description:
-> +      The RMIO (Rockchip Matrix I/O) controller node which functions as a
-> +      sub-device of the main pinctrl to handle flexible function routing.
-> +
->    "gpio@[0-9a-f]+$":
->      type: object
->  
-> diff --git a/Documentation/devicetree/bindings/pinctrl/rockchip,rmio.yaml b/Documentation/devicetree/bindings/pinctrl/rockchip,rmio.yaml
-> new file mode 100644
-> index 000000000000..28ec5ad62061
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pinctrl/rockchip,rmio.yaml
-> @@ -0,0 +1,130 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pinctrl/rockchip,rmio.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: RMIO (Rockchip Matrix I/O) Controller
-> +
-> +maintainers:
-> +  - Heiko Stuebner <heiko@sntech.de>
-> +
-> +description: |
-> +  The RMIO controller provides a flexible routing matrix that allows mapping
-> +  various internal peripheral functions (UART, SPI, PWM, etc.) to specific
-> +  physical pins. This block is typically a sub-block of the GRF
-> +  (General Register Files).
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - rockchip,rmio
+On Mon Dec 8, 2025 at 11:50 AM IST, Krzysztof Kozlowski wrote:
+> On Fri, Dec 05, 2025 at 11:45:43AM +0530, Anshul Dalal wrote:
+>> The bootloader on K3 devices makes use of mailboxes as per the ROM spec
+>> which might be different than one's available to the kernel (firmware
+>> spec).
+>>=20
+>> Therefore, this patch adds the missing mailbox entries to the DT binding
+>> if the matching compatible is ti,am654-sci to represent the mailboxes
+>> exposed by the hardware during boot for the purpose of loading the
+>> firmware.
+>>=20
+>> Signed-off-by: Anshul Dalal <anshuld@ti.com>
+>> ---
+>> Changes in v4:
+>> - Make new boot_* mboxes conditional on ti,am654-sci compatible
+>> - Link to v3: https://lore.kernel.org/r/20251112-k3_syscon_add_boot_mail=
+boxes-v3-1-66155a4236dc@ti.com
+>>=20
+>> Changes in v3:
+>> - Drop [1/2] of the last patch series
+>> - Update existing example with boot_* mailboxes instead of adding a new =
+one
+>> - Link to v2: https://lore.kernel.org/r/20251112-k3_syscon_add_boot_mail=
+boxes-v2-0-aebc1e47b391@ti.com
+>>=20
+>> Changes in v2:
+>> - Remove maxItems entry
+>> - Remove RFC tag from patch (added by mistake in v1)
+>> - Document the new mailboxes in mboxes instead of mbox-names
+>> - Provide example with all the mailboxes set
+>> - Update commit title to have "ti,sci"
+>> - Split into two patches
+>> - Link to v1: https://lore.kernel.org/r/20251111-k3_syscon_add_boot_mail=
+boxes-v1-1-529a27f21076@ti.com
+>> ---
+>>  .../devicetree/bindings/arm/keystone/ti,sci.yaml   | 50 +++++++++++++++=
+++++---
+>>  1 file changed, 43 insertions(+), 7 deletions(-)
+>>=20
+>> diff --git a/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml =
+b/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml
+>> index 25a2b42105e5..d9eb2a81e539 100644
+>> --- a/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml
+>> +++ b/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml
+>> @@ -51,15 +51,15 @@ properties:
+>>      minItems: 1
+>> =20
+>>    mbox-names:
+>> +    minItems: 2
+>> +    maxItems: 6
+>>      description: |
+>>        Specifies the mailboxes used to communicate with TI-SCI Controlle=
+r
+>>        made available from TI-SCI controller.
+>> -    items:
+>> -      - const: rx
+>> -      - const: tx
+>> =20
+>>    mboxes:
+>>      minItems: 2
+>> +    maxItems: 6
+>> =20
+>>    ti,host-id:
+>>      $ref: /schemas/types.yaml#/definitions/uint32
+>> @@ -79,6 +79,42 @@ properties:
+>>      type: object
+>>      $ref: /schemas/reset/ti,sci-reset.yaml#
+>> =20
+>> +if:
+>> +  properties:
+>> +    compatible:
+>> +      contains:
+>> +        const: ti,am654-sci
+>> +then:
+>> +  properties:
+>> +    mbox-names:
+>> +      minItems: 2
+>
+> Why is this list flexible?
+>
 
-Nope, you need Soc specific compatibles. Please see writing bindings
-doc first.
+The idea is to make the boot_* mboxes optional so the existing DTs that
+only have rx and tx remain complaint. Also, the boot_notify mbox is not
+supported by every SoC.
 
-
-> +
-> +  rockchip,grf:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-
-Huh? That's already in the parent, no?
-
-> +      The phandle of the syscon node for the GRF registers.
-> +
-> +  rockchip,offset:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      The offset of the RMIO configuration registers within the GRF.
-> +
-> +  rockchip,pins-num:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      The number of physical pins supported by this RMIO instance.
-> +      Used for boundary checking and driver initialization.
-> +
-> +additionalProperties:
-> +  type: object
-> +  additionalProperties:
-> +    type: object
-> +    properties:
-> +      rockchip,rmio:
-> +        $ref: "/schemas/types.yaml#/definitions/uint32-matrix"
-> +        description: |
-> +          A list of pin-function pairs. The format is <pin_id function_id>.
-> +          - pin_id: The index of the RMIO pin (0 to pins-num - 1).
-> +          - function_id: The mux value selecting the peripheral function.
-> +        minItems: 1
-> +        items:
-> +          items:
-> +            - minimum: 0
-> +              maximum: 31
-> +              description:
-> +                RMIO Pin ID.
-> +            - minimum: 0
-> +              maximum: 98
-> +              description:
-> +                Function ID.
-> +
-> +    required:
-> +      - rockchip,rmio
-> +
-> +    additionalProperties: false
-> +
-> +  additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - rockchip,grf
-> +  - rockchip,offset
-> +  - rockchip,pins-num
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/pinctrl/rockchip.h>
-> +    #include <dt-bindings/pinctrl/rockchip,rk3506-rmio.h>
-> +
-> +    pinctrl {
-> +        #address-cells = <1>;
-> +        #size-cells = <1>;
-
-Drop all this and below. Parent node should have complete example.
-
-> +        ranges;
-> +
-> +        rmio {
-> +            compatible = "rockchip,rmio";
-> +            rockchip,grf = <&grf_pmu>;
-> +            rockchip,offset = <0x80>;
-> +            rockchip,pins-num = <32>;
-> +
-> +            rmio-uart {
-> +                rmio_pin27_uart1_tx: rmio-pin27-uart1-tx {
-> +                    rockchip,rmio = <RMIO_PIN27 RMIO_UART1_TX>;
-> +                };
-> +
-> +                rmio_pin28_uart1_rx: rmio-pin28-uart1-rx {
-> +                    rockchip,rmio = <RMIO_PIN28 RMIO_UART1_RX>;
-> +                };
-> +            };
-> +        };
-> +
-> +        pcfg_pull_default: pcfg-pull-default {
-> +          bias-pull-pin-default;
-> +        };
-> +
-> +        rm {
-> +          rmio_pin27_pins: rmio-pin27-pins {
-> +            rockchip,pins = <1 RK_PC2 7 &pcfg-pull-default>;
-> +          };
-> +
-> +          rmio_pin28_pins: rmio-pin28-pins {
-> +            rockchip,pins = <1 RK_PC3 7 &pcfg-pull-default>;
-> +          };
-> +        };
-> +    };
-> +
-> +    uart1: serial@20064000 {
-> +      compatible = "snps,dw-apb-uart";
-
-Do not add irrelevant examples. Please read carefully writing bindings,
-writing schema and for example by talk for beginners in DT.
-
-This patchset does not make me happy, too many trivial issues.
-
-Best regards,
-Krzysztof
+>> +      items:
+>> +        - const: rx
+>> +        - const: tx
+>> +        - const: notify
+>> +        - const: boot_rx
+>> +        - const: boot_tx
+>> +        - const: boot_notify
+>
+> So this list goes to top-level with minItems.
+>
+>> +    mboxes:
+>> +      minItems: 2
+>> +      items:
+>> +        - description: RX thread
+>> +        - description: TX thread
+>> +        - description: Notify thread
+>> +        - description: boot stage RX thread
+>> +        - description: boot stage TX thread
+>> +        - description: boot stage Notify thread
+>
+> This as well
+>
+>> +else:
+>
+> Best regards,
+> Krzysztof
 
 
