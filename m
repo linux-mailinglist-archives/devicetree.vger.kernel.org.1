@@ -1,94 +1,100 @@
-Return-Path: <devicetree+bounces-245256-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245257-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 164F1CADC5B
-	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 17:38:23 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22F41CADC76
+	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 17:42:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 673B0300EDFE
-	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 16:38:21 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 29E423017397
+	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 16:42:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 078F026ED29;
-	Mon,  8 Dec 2025 16:38:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F0F722D785;
+	Mon,  8 Dec 2025 16:42:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (4096-bit key) header.d=canonical.com header.i=@canonical.com header.b="hPdx6GsT"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ntKTu+L+";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="FHKFWn78"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 170B622D785
-	for <devicetree@vger.kernel.org>; Mon,  8 Dec 2025 16:38:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.122
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39F92223DD5
+	for <devicetree@vger.kernel.org>; Mon,  8 Dec 2025 16:42:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765211899; cv=none; b=SBNzKnKjPx/EDobabfG2FkUjeNjc03o25c+VIq6WHQoVYLHklqTy8hF7aBDPW8ndGzpQFagahYCLSu4vKs2Nc0NyuQUr0QuGyMu4qCstA9G1myMZjFK4DXFZ3bzRaJ6AOfgBEzNa3xMTN3DltEbz9JYyv/mX92nWsOegEAKnMGA=
+	t=1765212146; cv=none; b=EVMMCpUWvhLxeo8FKXTLsF6efgYAk/PJ3NtrF/BXy8IjEvVziFouNWadMCCnSPS6hVOPc/yKGW0sd4fIK06IPRekuBwa/pfoygnhVbIlLOCn8DIt43UiQg8n8UlnPkBCghgG8L9529qvsvP6eJiiHt3pULY9oa1qAeB53Bv0hWw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765211899; c=relaxed/simple;
-	bh=3Jn8acQZ7QuhgQ7B8N0UAPFkcToKf6t8l6ew/re6yPI=;
+	s=arc-20240116; t=1765212146; c=relaxed/simple;
+	bh=rdCI/J4BxIKh/i3hjLgTbLO8JRYmei7AX82aSN8Hn0o=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JxRQGegUzOjqXJ8s2FKrsoVo/ElfEpypZiLAZhecvEhDEeVOo9ISd/X9AO2dnIqx9ODBQk4+z+rVlMeyVF3muk0QAIoQ0BL7JBvw0F6tHFv5PJPHTjkq0QeFH8PMUsLHkbnUSSA7mVntXMF1fg7irqWuQTZ/IOAGRs9hZMSVeSM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (4096-bit key) header.d=canonical.com header.i=@canonical.com header.b=hPdx6GsT; arc=none smtp.client-ip=185.125.188.122
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=canonical.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
-Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com [209.85.128.69])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 2B9CA3FB60
-	for <devicetree@vger.kernel.org>; Mon,  8 Dec 2025 16:38:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20251003; t=1765211890;
-	bh=aTNY4Xh/ROKfLe2vsQMihdbK2756ZAjBs/JjXED0kyk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type;
-	b=hPdx6GsT1Wg08tlNN56mtcgUj4d1Q4dD0uIvO1ThLzjUfVnm6hz2wwj3ee60Xdl3N
-	 VCqbj/2omLvRM7oSyEGM09Mjs30MuC5yPWfy9bgyyHADkhGnJX1r3AUvz+5BnjQtKR
-	 ZD1VX1HhJSVIqz6QaiPiCaTbT8oevMFSpXluguzo33KcHSvCtcqXYvL5myHhD1MOAa
-	 PRggQxtDoS/wRjg/KZqxthksA7pk+TAyLOT+kzOuYGrgaHtD1AK4gE8M5FGBxZOBr0
-	 uEmfHztGvbawdCppuokKTqRK5+uwwwDw3I/qVhuAJ4/1QTJOFFpG9C8Yr1yiVXb79H
-	 LZ/z9GlL89mACOhLiPknLBtHrjO5iBCZ1dmNoEaGUOtT/t7588oMkOf9Yk93ewFsFj
-	 yOrpcD+D+WJTERjikcgilffAkvYjntQxc3KO5NdaPbvwPJmesN6yAceC1m3Stu/r7O
-	 dxCN0R3+41u2J5bzJR+CI5LSG3NO9v42mYHFjeca3T1rQmncQst3dUmfFVvx4VPMx8
-	 5YjwpO3xrXGQS1I+dkHhDinZIpY5ixvrT7kDwOgH4ZAddC6XAEtA6GYMv2ADwW5msg
-	 XNnZLVNN59ZF3NHjvMvfhyUaiM2nz3YqHDrEP73yHiFZzrHQXHDvPKGTNP6Rr1nUzT
-	 Mb1hVSOM5BULUyCZajkH1PcY=
-Received: by mail-wm1-f69.google.com with SMTP id 5b1f17b1804b1-47777158a85so52778185e9.3
-        for <devicetree@vger.kernel.org>; Mon, 08 Dec 2025 08:38:10 -0800 (PST)
+	 In-Reply-To:Content-Type; b=EGX5sGkwNgcl2nE1N6GtfRZsAqacDMexjiyv5I/lmRmZrf7w7NV08D/xD/eBHcSGeeqHhknwe8WsKdfEHyE4z2wqA8CXlCwiTgxKjDQpz4vlUv6VAK6/EAvJ1pgoVnoK9xnmY2f0sY0L6XpXDB4usxvVYVcH+ideYidGpVA+MLA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ntKTu+L+; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=FHKFWn78; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5B8B61Gu457995
+	for <devicetree@vger.kernel.org>; Mon, 8 Dec 2025 16:42:23 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	s+7pO2JdB3epd84Y7zPFVXVSf8nsYItdbRxlvUFqUGg=; b=ntKTu+L+TYX9G8Tk
+	PWYKpzfAljk5qyty7nUGTiAUR2RKBoe4QPCYf0UA0KqXVZhJbSbaB0teKLNZR8ZW
+	wZxPcyxzCNdEYc3tM+GGxPDbW4njOyLgFPd+vO0KeStzLgNVv+W8gKPDELq1/Tf/
+	KNaKRcdz60M+EcK/HLPw0P/t1U+91ONrr90iy9Kl4dxVeTAnOWQF7x7ZUz0DY1bl
+	g+r/OvmF0u/gyDXiNRIzpx7o7cSgNXqIexV7EWs/51JOslOlmzpF/rmwFO4E/FVx
+	YNIyWayrEb7e9KdKdYjtD7uDYk6KrF9WqcRQ74P8tN2UthoyOcSFTib7ZYCrxy7m
+	CMd+Hg==
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4awwgmh025-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 08 Dec 2025 16:42:23 +0000 (GMT)
+Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-8b29f90f9fdso75384585a.1
+        for <devicetree@vger.kernel.org>; Mon, 08 Dec 2025 08:42:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1765212142; x=1765816942; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=s+7pO2JdB3epd84Y7zPFVXVSf8nsYItdbRxlvUFqUGg=;
+        b=FHKFWn78CBxJgvY5gyjPMYoscUJjbZdOtd9LkAj1UaDJIAbYOAlXFelJq3s5bNRy30
+         904DrBTAwDHhAND1byGNLy/qh43TQmc1TAw1u7AHDSnRIBn41YfwfMF0mF+T5sUQ0C4W
+         T1+soOpZtjrQ1/wSAgxoXx0DIN4G+tRt4erVz6Gxi60UxkvyyvOGxSdDuF3OAUnd/pTa
+         W5vDlI/gsh6Uv0EEoQ4zS8Xr/UGdmYoaAK+fj8EdDo1oMGtpM0dYWlzSyWKk6TwyjCk5
+         kM1kjIyHWdsNVWn7lmeIBhXPSlT9xckDAOYjOir3t5dj8Y1hNwBlBKto/mEicOP3wgW7
+         Azzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765211890; x=1765816690;
+        d=1e100.net; s=20230601; t=1765212142; x=1765816942;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=aTNY4Xh/ROKfLe2vsQMihdbK2756ZAjBs/JjXED0kyk=;
-        b=qA3bYbE2d4memIny9CCKDTLegqYmesoKvaRFeApdKoUQrK51TPbXg6MEttmhHtb/6K
-         VFiRbBPLBUyPUIawc5K5iXIEog022cqDO1IEq4jdxPKmbxPOT94+UTwbdWNT91VudPVP
-         RpKvFrHuODG9pGuWE57vjFRQE9vZdlC8eMgo1EUT2GS+3gzM5D92N5m1YdMwBRRRvfGt
-         7GmaOJMed4osEKr6Ba28fxKSMWh1sg9Es9weJe9iPBVJJoUhhaI+U/8bgUPDzUVCzFLS
-         oQ3DSLw4HhuwhWSzuxFrlRd+Xrz1Z7U1MTQcRidntcMUVAzbTTJOvfehN8jSDQ9qSo9/
-         TQ3A==
-X-Forwarded-Encrypted: i=1; AJvYcCXbSnB7XtRvsb1Lib2LNQBE0C6QYCBAznpfc7sl7zn3VrCT9oVlPVZGf1BtxP+kHmeWt1xm2K2Ud1sq@vger.kernel.org
-X-Gm-Message-State: AOJu0YzY4es6MrVf14byX9ZzSzw4jz6iSQUzLghqRTXu/fyh2KJ03zlf
-	IOlfd+QU4qG3QZtnd1HXkMQjOTgVNWnhoJ54yzD9BQKM7qk+TSdRJ5ZUa9LhQvgyqR9H1kFFupi
-	kVw/N+9xdQewWaiBl2EBQFpyb0RCe9O7qVwQk/OG83EtLKDIv+/HPvwaRqAoZGhCtwzwuyAcxH4
-	FcU0Q=
-X-Gm-Gg: ASbGncuYpFqeMFBpdQqJ3pmXhCMGEA7AsTF8VUs0fTlkPgShk56VTCbVe/0DwWudJNc
-	0EUkTBHgUH8uCYzFtlz/mcgdx9dx3ssgIw1jyB7TWP1+2FMAR27RI4kI5k7dWEyv665hc44jR2X
-	EbL2d9Z97+lSx0OXAVEhq0sWubrluNTlNcW6UvQKgwBOFtS2uzlS6rMeGjPEVUP99eKMlbNAj6I
-	us4HKBauop+H5NhV3sLnhmoC2juA19KmLxKfUqchvMkT57ne/RheUPrWibrPZXE6dT3IgMsy4q5
-	WAnymdP46/OkWiiHuFuQ1TPhyJWDhTV0qhgEJ5d29YJNTrzsfD/3ZZ/Ztkl5qnxpMyXTveqIDRj
-	+LU0/UPEIZzkbxlx6A3cqR1XJbIVW767fvO/zkTyvvU8Qrep2WO09x6Pad9sT7PwF2XYMftpfND
-	sIZKIK79k=
-X-Received: by 2002:a05:600c:a48:b0:477:9d54:58d7 with SMTP id 5b1f17b1804b1-47939e43adcmr74225125e9.29.1765211889673;
-        Mon, 08 Dec 2025 08:38:09 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGWjq5KbylI+YdbbKo6HpBQI4IH+OKq2snRjF/orQKP8xyyNE6QdOCUkPtdXSTe5KyQiB8V1w==
-X-Received: by 2002:a05:600c:a48:b0:477:9d54:58d7 with SMTP id 5b1f17b1804b1-47939e43adcmr74224985e9.29.1765211889203;
-        Mon, 08 Dec 2025 08:38:09 -0800 (PST)
-Received: from [192.168.103.125] (ip-005-147-080-091.um06.pools.vodafone-ip.de. [5.147.80.91])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42f7cbe9065sm26455128f8f.8.2025.12.08.08.38.07
+        bh=s+7pO2JdB3epd84Y7zPFVXVSf8nsYItdbRxlvUFqUGg=;
+        b=u+Yy9Qj2aiSEAIba2RRRGZLC9JmJIot6ApL5CfrkT4NmPXPVhbszpmKqeT3rc/DtCL
+         neEATlGYyiX+ZJR+LpTBWkIXtkBbmrCykM4yWj9q8fNfT+m4p35rQ3Rhygk5ZdPPReqe
+         f6iMJEViYqRQQiWIGTuceUTWwcpLXu7XFrvl1ZZljV/MOhloeyHQ1Y9mrtY5Adedsx33
+         yD61QztBIPMDOI/LlycAjVn5Etj9NZrHvkXUGSvV9UDQg/thFosthtU+WzopWiEz2WjB
+         lPr6wOxkMMtYgNCQxnkKprvAUHo+q9F7CcYQuV+VoHEjl9+7rOutv/c8raDRn0a9Rtai
+         VOEQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU16OhyM++CCUb8mJ1sBXCkrfmgS4OHTVQ6F8yNe166T0vCFaCwwo5AjoHyTyYL9OYYEx+j2uD6z+nM@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywkv6+i2xnq8y6A/xM/1NoxQYeQ2L0he0ozfniS5+cvMAG8AkxT
+	vWRP1AR9GvF3YCqL7oBX11T1MLXsNVs4BBuIlZd0rjhHqVSL2hZ+sw+gJmtxeHE7PcsZn8oHn4I
+	Am/KBqoNCY67gX5w18GFZV5Hm6DU/5VK7yI8EAA+57IYHdddgTG8wNwxNRGO6UkTL
+X-Gm-Gg: ASbGnct6ncBRBa8IZnW+O/iy4GdSSt/Apt9CguE8BVkZ+3m/zvlSQ1V2n/gH2011Qos
+	Z6l7MbUpH41KqmPaCN9y8cAuDGmblSThq+m9On1Q4mVjw8aWxToQqZCC+ILnFQn2ztM+wV3xjDX
+	0+funTLcwWb6nLnV321kBKjfFiTPvN9wV7bpWaHCSUEuzr/mt+6oyiwqvAvAy/Q6uOYupHBdjkm
+	snkoNiwgQKakVQIRdFahhwhsz5gy297c5qbDp86fRPZ3XA73MSHQIxJMlZLdYcVa8I1F9Pek8pJ
+	yFIp1sPVC+caDV7g3ff+06fL2rn46OdBjx75wI5ceV4M2xXNVJ5JoMwgoEihgUTFqL6sSf798MY
+	xEk8dMOX3CkG4iZuwW6P6S7mV3kZ6jV5RtD5rmJ0a8EwGsDBC4gNVqijhvF6/uKkE1w==
+X-Received: by 2002:a05:620a:280e:b0:8b2:ddd3:adae with SMTP id af79cd13be357-8b6a2341faemr897947385a.0.1765212142190;
+        Mon, 08 Dec 2025 08:42:22 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IH9d1ZSgTYBvoUR6ZufX/t3EcyHWxQK2K05NSoW0KptA246E1nrlhvRRz9A8e9k0NBu+DkEcw==
+X-Received: by 2002:a05:620a:280e:b0:8b2:ddd3:adae with SMTP id af79cd13be357-8b6a2341faemr897941985a.0.1765212141551;
+        Mon, 08 Dec 2025 08:42:21 -0800 (PST)
+Received: from [192.168.119.72] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-647b368dcebsm12390982a12.21.2025.12.08.08.42.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 Dec 2025 08:38:08 -0800 (PST)
-Message-ID: <a18850ad-b6de-4444-9daf-a4a653f4f9ae@canonical.com>
-Date: Mon, 8 Dec 2025 17:38:07 +0100
+        Mon, 08 Dec 2025 08:42:20 -0800 (PST)
+Message-ID: <3476de25-f0e7-48f1-8bec-3888db2f1fc9@oss.qualcomm.com>
+Date: Mon, 8 Dec 2025 17:42:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -96,94 +102,116 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1] riscv: dts: starfive: Append starfive,jh7110
- compatible to VisionFive 2 Lite
-To: Conor Dooley <conor@kernel.org>, E Shattow <e@freeshell.de>
-Cc: Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>, Hal Feng <hal.feng@starfivetech.com>,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
- devicetree@vger.kernel.org,
- Emil Renner Berthing <emil.renner.berthing@canonical.com>,
- Conor Dooley <conor.dooley@microchip.com>
-References: <20251206204540.112614-1-e@freeshell.de>
- <20251208-jogging-morally-9b787b7ab1b8@spud>
+Subject: Re: [PATCH] arm64: dts: qcom: lemans-evk: Add host mode support for
+ USB1 controller
+To: Swati Agarwal <swati.agarwal@oss.qualcomm.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>,
+        andersson@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org,
+        robh@kernel.org, konradybcio@kernel.org
+References: <20251203-swati-v1-1-250efcb4e6a7@oss.qualcomm.com>
+ <ffd6dc9a-372d-4db9-9c2e-92f126cb5ebe@oss.qualcomm.com>
+ <49ecd190-1aee-42d9-9e6b-c155170aa38b@oss.qualcomm.com>
+ <638f4184-b582-4a48-ad63-7c1fd2db492f@oss.qualcomm.com>
+ <9937db19-de90-459f-844d-bce60abe9f7b@oss.qualcomm.com>
 Content-Language: en-US
-From: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
-In-Reply-To: <20251208-jogging-morally-9b787b7ab1b8@spud>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <9937db19-de90-459f-844d-bce60abe9f7b@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Authority-Analysis: v=2.4 cv=RtnI7SmK c=1 sm=1 tr=0 ts=6936ffef cx=c_pps
+ a=50t2pK5VMbmlHzFWWp8p/g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=yq_rQ8PQz4el-smdYOYA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=IoWCM6iH3mJn3m4BftBB:22
+X-Proofpoint-ORIG-GUID: 7qhGFizMY0X3KnpRTyhtzZbZJPNC49wV
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjA4MDE0MSBTYWx0ZWRfXwlLgTw9w2XTq
+ 12PmCKYtT/1xGvxOIg5nwn8xdTrpR7UdN9VEJaeEdD19YSrInHUgjClEjLO4BNSDiptdOo+nZnY
+ A3r9uhUUi1o69SV8h5elDQJ2LFLl0FSVCvD30XKN8A4ZZjyE/nuHCHYkzRR77zA/B5audTZilgE
+ DlF6sFXdq6EPsG/pmDpoTvHkk5Qgjew2P4LV53QbsE8HWpqJ99ti7KD0YfB+5gX8G/Ie4XEBKA7
+ wDj/ihMHWHa2a+LXaLipdfNXnZP3AA8VwlFUT3hhWld9qJuc6JtANllgEn4GUNZBtHjdAJv7oA8
+ rYdRNECUAFbCrkHnLp85harbAHlVxV24TnigRCibFzlzLIR+pEhTH7LdZV8D40KBY04WO7XCtxT
+ ayagPqTCwZFL9fCcJNU8zEqnh6l7SA==
+X-Proofpoint-GUID: 7qhGFizMY0X3KnpRTyhtzZbZJPNC49wV
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-06_02,2025-12-04_04,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 suspectscore=0 lowpriorityscore=0 spamscore=0 adultscore=0
+ phishscore=0 impostorscore=0 clxscore=1015 bulkscore=0 priorityscore=1501
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512080141
 
-On 12/8/25 17:29, Conor Dooley wrote:
-> On Sat, Dec 06, 2025 at 12:45:30PM -0800, E Shattow wrote:
->> Append starfive,jh7110 compatible to VisionFive 2 Lite and VisionFive 2
->> Lite eMMC in the "least compatible" end of the list. JH7110S on these
->> boards is the same tape-out as JH7110 however rated for thermal, voltage,
->> and frequency characteristics for a maximum of 1.25GHz operation.
->>
->> Link to previous discussion suggesting this change:
->> https://lore.kernel.org/lkml/1f96a267-f5c6-498e-a2c4-7a47a73ea7e7@canonical.com/
->>
->> Fixes: 900b32fd601b ("riscv: dts: starfive: Add VisionFive 2 Lite board device tree")
->> Fixes: ae264ae12442 ("riscv: dts: starfive: Add VisionFive 2 Lite eMMC board device tree")
->> Suggested-by: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
->> Signed-off-by: E Shattow <e@freeshell.de>
+On 12/8/25 11:49 AM, Swati Agarwal wrote:
+> Hi,
 > 
-> You can't do this without modifying the binding too, as this doesn't
-> pass dtbs_check.
 > 
-> However, is this actually correct? The frequency of operation and the
-> temperature range aren't a superset of what the jh7110 can do, what is
-> the actual advantage of having it? If there's some software that this
-> would make a difference for, please mention it in the commit message.
-
-Appending "starfive,jh7110" would reduce the number of compatible 
-strings to check in the OpenSBI platform driver.
-
-Best regards
-
-Heinrich
-
+> On 12/3/2025 5:17 PM, Konrad Dybcio wrote:
+>> On 12/3/25 12:41 PM, Krishna Kurapati wrote:
+>>>
+>>>
+>>> On 12/3/2025 4:59 PM, Konrad Dybcio wrote:
+>>>> On 12/3/25 3:42 AM, Swati Agarwal wrote:
+>>>>> Enable Host mode support for USB1 controller on EVK Platform.
+>>>>>
+>>>>> For secondary USB Typec port, there is a genesys USB HUB sitting in between
+>>>>> SOC and HD3SS3220 Type-C port controller and SS lines run from the SoC
+>>>>> through the hub to the Port controller. Mark the second USB controller as
+>>>>> host only capable.
+>>>>>
+>>>>> Added HD3SS3220 Type-C port controller along with Type-c connector for
+>>>>> controlling vbus supply.
+>>>>>
+>>>>> Signed-off-by: Swati Agarwal <swati.agarwal@oss.qualcomm.com>
+>>>>> ---
+>>
+>> [...]
+>>
+>>>>> +                hd3ss3220_47_in_ep: endpoint {
+>>>>
+>>>> How about rename the other one to hd3ss3220_0 and name this one hd3ss322_1?
+>>>> _47 doesn't really tell us anything and may re-appear if there's another
+>>>> instance of this IC on another I2C bus
 > 
-> Cheers,
-> Conor.
-> 
->> ---
->>   .../dts/starfive/jh7110-starfive-visionfive-2-lite-emmc.dts     | 2 +-
->>   .../boot/dts/starfive/jh7110-starfive-visionfive-2-lite.dts     | 2 +-
->>   2 files changed, 2 insertions(+), 2 deletions(-)
->>
->> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-lite-emmc.dts b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-lite-emmc.dts
->> index e27a662d4022..7544efa95de4 100644
->> --- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-lite-emmc.dts
->> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-lite-emmc.dts
->> @@ -9,7 +9,7 @@
->>   
->>   / {
->>   	model = "StarFive VisionFive 2 Lite eMMC";
->> -	compatible = "starfive,visionfive-2-lite-emmc", "starfive,jh7110s";
->> +	compatible = "starfive,visionfive-2-lite-emmc", "starfive,jh7110s", "starfive,jh7110";
->>   };
->>   
->>   &mmc0 {
->> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-lite.dts b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-lite.dts
->> index b96eea4fa7d5..b9913991a1b7 100644
->> --- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-lite.dts
->> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-lite.dts
->> @@ -9,7 +9,7 @@
->>   
->>   / {
->>   	model = "StarFive VisionFive 2 Lite";
->> -	compatible = "starfive,visionfive-2-lite", "starfive,jh7110s";
->> +	compatible = "starfive,visionfive-2-lite", "starfive,jh7110s", "starfive,jh7110";
->>   };
->>   
->>   &mmc0 {
->>
->> base-commit: 5e5ea7f61610239fca058011e7d4f342b34d1558
->> -- 
->> 2.50.0
->>
+> Thanks Konrad and Dmitry for the review.
+> For addressing this renaming for USB0 controller, shall i keep a separate patch and should i address in same DT patch for USB1?>>>
 
+Separate patch, please
+
+>>>
+>>> ACK. Can we rename them as "usb-typec_1" and "usb_typec_2" ?
+>>> Krzysztof suggested to use generic names and hence we used "usb-typec" instead of hd3ss3220.
+>>
+>> The generic names rule only applies to node names (text before '@'),
+>> the labels are generally only expected to "make overall sense", I think
+>>
+>>>>> +&usb_1 {
+>>>>> +    dr_mode = "host";
+>>>>
+>>>> The connector states it's a dual-role data and power device. Is there any
+>>>> reason to keep this in host-only mode?
+>>>>
+>>>
+>>> As mentioned in commit text, there is a onboard hub sitting between SoC and the HD3SS3220 port controller. Hence device mode can't be used. This was the reason we left the above port nodes empty since we can't connect them to port nodes of controller.
+>>
+>> It would have helped if I had paid more attention to that message then..
+>>
+>>> Can we mark the connector as host only and remove the empty endpoints ? Would that we sufficient ?
+>>
+>> The connector should definitely be marked host-only, but the endpoints should
+>> still reflect the physical connectivity.
+>>
+>> If I understood your case properly, this is analogous to what &usb2_2_dwc3
+>> does in arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts - see Commit
+>> c02716951e66 ("arm64: dts: qcom: sdm850-lenovo-yoga-c630: add routing for
+>> second USB connector")
+> 
+> For adding, onboard hub which is GL3590 in DT, it requires adding SS hub bindings in genesys,gl850g.yaml.
+> My plan is to first submit the binding patch and then follow up with this DT patch on top of it.
+
+There's already *some* SS hub described in there - what needs updating?
+
+Konrad
 
