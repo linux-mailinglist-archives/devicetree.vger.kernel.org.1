@@ -1,81 +1,80 @@
-Return-Path: <devicetree+bounces-245223-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245224-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 958DCCAD831
-	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 15:59:36 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32BF8CAD84D
+	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 16:01:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 5192530039D9
-	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 14:59:30 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 23F743042FC9
+	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 14:59:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E098E2E88A7;
-	Mon,  8 Dec 2025 14:59:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44A352EB5CD;
+	Mon,  8 Dec 2025 14:59:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SApP0M4F"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NMMWnXT3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 334BB245012
-	for <devicetree@vger.kernel.org>; Mon,  8 Dec 2025 14:59:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84DE52DC349
+	for <devicetree@vger.kernel.org>; Mon,  8 Dec 2025 14:59:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765205968; cv=none; b=hXCk45KAculWf/q8M+NZzZ+tmpBPvuVawKIO4dZwgh9iWF54EcgKYDkD6g1ARmeiIEpUYc/2f1XrkvOzUYWVSGM0GV+DjF0jA5b5HWRwvTYaWDVeVc2GytyPrjYLjnUdZ+6Ons0F84As4oiVd8gavkOFClN1TgzIOHlGtSicjlI=
+	t=1765205970; cv=none; b=E21u1WNivmGcgm9uGjRAOsxV+AOJ5L2vaeUoVi1Jg4/k4RRTJ22b7CanZkd8VgbpoRFiAsQPCwlQ7Ftm8+YElGodLjCDPomoeyOih65IS5N3Gw9pPsZJepgxjMKUVfUTAGJlWEfIulHKmSkBr8oUJpy2t/S+mdMX7k6FoEjrtKg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765205968; c=relaxed/simple;
-	bh=uLmS3zFAWWg3rczbGlkXkOenTYGyS9ffx9/wMN82yG4=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=YXukecTRuBtk7wmyQ4k7jxYE91RIZgg1vFNEiThE+e7hLrga2bu2qU5yCddH1Z2NGNQitnVTJXMglCey3XaKQ29+Oy8OtPEPtLvcgf2wL8pkI68r84/jIgCzmETud+x9L37jGEQq6rQ0BJn/smCPN+T+87SuaIYtASHplEyYdFU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SApP0M4F; arc=none smtp.client-ip=209.85.208.47
+	s=arc-20240116; t=1765205970; c=relaxed/simple;
+	bh=eUZx25U3sbk45BVbe4VOiqc8SJBQO3VlDhtP4glEGfw=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=iKu/yMg6fzeGzzd3Nwxr77nP7/+Usfbw3i51mA/RvP4Rs66CL+eAXAgXLXz4ZjHaNUMsqeHWJwXGx4odEz6eTv3KymI7ECzzg1UvqSVfEDO2ze34uQ1A/nQl1V1hOJxYqv+GvGD6BLSDauJHY2QrZfR/djqdFOfnWrvTFG0F2BQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NMMWnXT3; arc=none smtp.client-ip=209.85.218.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-647a3bca834so5915112a12.2
-        for <devicetree@vger.kernel.org>; Mon, 08 Dec 2025 06:59:26 -0800 (PST)
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-b73161849e1so1081172566b.2
+        for <devicetree@vger.kernel.org>; Mon, 08 Dec 2025 06:59:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1765205965; x=1765810765; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=J+to6IujjR5asOSoIClqkwi7ZpRp9+FoGFEMQuOxiZM=;
-        b=SApP0M4Fpk10OVuWcZRcpAOxCQttP+51l5UUJr2rxfeLJyEoyYxtb8AwD4TRqPzs0Z
-         fapRi5gg8MxEc7HUxgI8iiJF2FR8pvysOnfH1HaN4wja9LvX1Ee0goIsXXOjeG+JjWIw
-         1ttuyF4X9wjan4gQNRh2a491r5/gQ/UGhbRquYp26VRNwY7VZiRF8e9kDCYfiRnSW8BO
-         RkQQ3xQW8sTZmBQWdvrt4IsZ+92t3jommuuFZoh78io4+bNUTVRGg9iUSwvoxrKzRzNY
-         bRijg3LdmN/CoLUlG4uEvXEg8WebBhWAT/WjWLBe0FCkbbqR+DsiWxERRRcuBPmB9VVI
-         8LtA==
+        d=gmail.com; s=20230601; t=1765205967; x=1765810767; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=OvxbaU3LPveODQZxfbJsnXKFPnTK+dy5k6La/Lv5giw=;
+        b=NMMWnXT38tD72xTyERVdOVSnkQumd/N9VuEU+8Ody51+i/cQQ76UpHWQiIHthIydak
+         4UUj7F8bioWaGJLlPIuP+kjbqJuMdbYJgkDAZgRwnQzTgzPdgGqZEiD+W2ApRSzaapbo
+         APAL5pENPv8T8RqooZA5iSE9mxsPZE04XMkidjo/T8cJB/YXjWPkD1M88/5l0WV14q+y
+         MTQRLIZY3FoffisZXIPSUck7P4iy41FOCebZTwrDXk6OMOSzOKkJy1r10uhuwozt+CRP
+         1Fz7RUtyQXxpV5Fiff3slMD/Q0lwkg0KudAYCfx6VIZF0RCh0viJaZprj9myImfoUvDr
+         xLGg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765205965; x=1765810765;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=J+to6IujjR5asOSoIClqkwi7ZpRp9+FoGFEMQuOxiZM=;
-        b=cHKg0vOkotu6E9IWkouMIkaQ2CJ09XT1DBMI2ZOOA280Mrs5pnDpZa3c8bQJYPgraM
-         zssetasJarjOKpSKfT6xZY8ITRhT2LlC8Uiks9g4KJ6wu2P0RjoEJUh36LdEHGRGetRr
-         O7DABgySMbHUCDwy9hjxu0qN/nlS5/8a4h7ATaqllEu4a8CEMiB6YQYVdfZ3acMgUU33
-         vNpJrLr9TyF0/7940N8VM/8vuLyU6tAaK02v9dgEASj3VsZLWR7aLFnR8cRdd1Sx7Bao
-         z7ubfoOOH9A1kuh8h3vnschVYv4DN+e17vtEXNn7jSPtbjQVeERnLpqQFGAf/rFQBaLK
-         pWtQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWYkvjnmxzVfanYybVCq9Rgnx0m3rzx7FXXJhQ0UERDyYEqK19CoXm25IWhDJ5RFjNlOLUXXEtU9dlN@vger.kernel.org
-X-Gm-Message-State: AOJu0YzsSWq0lDpv69g/XMSloQ9H79cPefwie5qtuFem5uF09OK57F5y
-	Cdysb0xYj9Z46+syyhU9JUa4SkruzRO3mICrtHBZvHduV3H5yV6jfo1Y
-X-Gm-Gg: ASbGncsN8X6HUge7EGwL/P65Kg4z+2EvNkewVaWp5FXl0vF9ceOsjdp1nD61qJ4J82m
-	kAIS8au0mteNW5UoVBaTzKW/dxzYry2hLEKnQehAhBApnfy9M0hk/ATNpUCzA2eZGdQHctDlYNh
-	h4whuEo9XxhqqZUzoBCEhgMsvtWLMrCqyyRQgcBUrr3h6zUQODk3wjyKBQpO5KSZdxgmL/EOI9+
-	nXPZ2YO8nMnFb462b22PzWleeDd0+5CZWb+e/axroxTgIvf2rvz5eMvFchTkBG0oF2/W43Gydwn
-	zTZ8VvDTf4B2qf21H1TOpnCEySHvMnjVUWsEeE+7gPFZjT4uzhARSayg5gtv+9DT7b2ZQ/WywiD
-	xyLiirXsWCEt332yHpLVa/EoENggOnRfN8X4FgQuExjIRMa83+G72wCjXQVLK/jlgZ0DW0MawKc
-	P/t3hrG6qQZtUWig==
-X-Google-Smtp-Source: AGHT+IG8rQqpJ2MB89ONVLWQ+Cg3vkFpX8w8CxK5GGu4BMGraZvYfazZZrEiZpBRcHA5m5CivZzELQ==
-X-Received: by 2002:a05:6402:1d4e:b0:640:9c99:bfac with SMTP id 4fb4d7f45d1cf-6491a3f3b54mr7570377a12.13.1765205965464;
-        Mon, 08 Dec 2025 06:59:25 -0800 (PST)
+        d=1e100.net; s=20230601; t=1765205967; x=1765810767;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=OvxbaU3LPveODQZxfbJsnXKFPnTK+dy5k6La/Lv5giw=;
+        b=JE1vgwZCvN+P1BGaBo7poBwVpCOL2AC1bgG6nsCGdo7wB+wY0MZ8V1+lmACWGTfN3e
+         X6//6dEsZJR1uN1gYiIkpONjFQkR2lntrj66UQqjYIzDngrsZ5YNrX01sY3gxv4ihBhO
+         IsOir/Xh787z4u5zz8m5M/CSKJvYimPeZjjz7uj0n56oayhiZyX0gBSVIfYRjTqI9tLc
+         XmVTS/yi3p0YLaLl2q8XhGRCp32AHBqTDuf4TSAxSZxgylI147NevHO1rvD5n6JRNi8r
+         wZpg/WQqxgTNEzQUxxmubstZCQAPOp1nEGW9fXOxpUJ7YLsTUoJxbU0PnwsS9R/k4QP8
+         hZRw==
+X-Forwarded-Encrypted: i=1; AJvYcCUDO1YHjLhknPlO0ZXYO5dd3oeqHpaaGmk9e4mLuQMsVG7I9S70c8pPr1CS7O6AI+TEsuj1OKHYiP/u@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyr2+hm6hKafMKAsxU0lRHynG9VakTfVChw4RfkF/Cv95ORQAOQ
+	ljfHIwvJaFCo2jj5sDxTJJWWAKQs3wkCNkLevP7tkHIH8FyS0g0tAArq0X15vrF1
+X-Gm-Gg: ASbGncsJn3zfHWsDOLu/4+GxAKqELGMGUrC7Es/dcrclic31vAed7nPGUKKh/0QY9dP
+	UxC9fMXaUovUYjQzRwguVvZkbHR/7rpQ5cpNFFgS7oE8cIuyyPHHFYP8KdKjH4R/oC50Wq8o6t5
+	Oo+t80i8BKFJEHNZpb+gLlM4NtiNZNeT3p3Y9COX4PT2FFYfQyjZBMwPew97WhBNx8868AiDkj0
+	usoaDDbr+8B4ilg4q/3apAehweTtLumovv77OEZR2QMuDMhzn06usLvjhfwhjVFziIl6aNjQHM+
+	t5I+czMtnOgPs20MX1dNakeeetz/PHakrk4AsEBdehCkLPrDFQpyESkAjBpcVuSpSmfLYRJdf4C
+	r20n6nFh/45WihWH1zHI3p/ary3OOOVP+uXYVbRVJzgu690j69oI2h2du7YlN09wQflbZlRwaRW
+	022r4ieZNl59B6cg==
+X-Google-Smtp-Source: AGHT+IHV4wT+FTlujDS+GtkBd7fAewGRJD2xd03tll2P5cqDlF7fKs1POKod7qkfkABTKmYBFPloXA==
+X-Received: by 2002:a17:907:6eaa:b0:b73:9fea:331c with SMTP id a640c23a62f3a-b7a247eb824mr788301366b.47.1765205966796;
+        Mon, 08 Dec 2025 06:59:26 -0800 (PST)
 Received: from [192.168.0.39] ([79.133.247.80])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-647b2ec300esm11365556a12.1.2025.12.08.06.59.23
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-647b2ec300esm11365556a12.1.2025.12.08.06.59.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Dec 2025 06:59:25 -0800 (PST)
+        Mon, 08 Dec 2025 06:59:26 -0800 (PST)
 From: Erikas Bitovtas <xerikasxx@gmail.com>
-Subject: [PATCH v3 0/2] Asus ZenFone 2 Laser/Selfie includes a battery
- measured by voltage mode BMS and a simple GPIO hall effect sensor. The
- following commits include support for these components.
-Date: Mon, 08 Dec 2025 16:59:19 +0200
-Message-Id: <20251208-b4-battery-hall-v3-0-84e2157705a4@gmail.com>
+Date: Mon, 08 Dec 2025 16:59:20 +0200
+Subject: [PATCH v3 1/2] arm64: dts: qcom: msm8939-asus-z00t: add battery
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,47 +83,112 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAMfnNmkC/12Pyw6CMBBFf4V0bU1nAKmu/A/jorQDNOGhBRsJ4
- d8t4AJd3knOuXcm1pOz1LNLNDFH3va2a0OIDxHTlWpL4taEzFBgCigkzxOeq2EgN/JK1TXXmcg
- UCSOVSVigHo4K+16Nt3vIle2Hzo1rgYflurkA0l+RBy44pPKEMjaQ6exaNsrWR901bBF53MEIf
- zAG2OCZhERZICR7eN5mOXq+wn/Dd9s8fwDTozhg/QAAAA==
-X-Change-ID: 20251208-b4-battery-hall-c707ae0d8ad4
+Message-Id: <20251208-b4-battery-hall-v3-1-84e2157705a4@gmail.com>
+References: <20251208-b4-battery-hall-v3-0-84e2157705a4@gmail.com>
+In-Reply-To: <20251208-b4-battery-hall-v3-0-84e2157705a4@gmail.com>
 To: Bjorn Andersson <andersson@kernel.org>, 
  Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>
 Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
  linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
- phone-devel@vger.kernel.org, Erikas Bitovtas <xerikasxx@gmail.com>, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+ phone-devel@vger.kernel.org, Erikas Bitovtas <xerikasxx@gmail.com>
 X-Mailer: b4 0.14.3
+
+This device tracks remaining battery capacity percentage using voltage
+mode BMS. This commit enables the pm8916_bms node and adds a battery
+node to track its capacity. Battery properties were taken from the
+information printed on the battery itself and downstream device tree
+for a battery named "nvt+atl_3000mah" [1]
+
+[1] https://github.com/Asus-MSM8916/android_kernel_asus_msm8916/blob/10.x/arch/arm/boot/dts/qcom/ASUS_ZE550KL_1936167_3000mAh_3p4COV_VBMS_Final.dtsi
 
 Signed-off-by: Erikas Bitovtas <xerikasxx@gmail.com>
 ---
-Changes in v3:
-- Added multiple temperature points for ocv-capacity-celsius
-- Added capacity tables for every temperature point
-- Link to v2: https://lore.kernel.org/r/20251121-battery-hall-v2-0-d29e0828f214@gmail.com
+ arch/arm64/boot/dts/qcom/msm8939-asus-z00t.dts | 61 ++++++++++++++++++++++++++
+ 1 file changed, 61 insertions(+)
 
-Changes in v2:
-- Reworded the battery commit to include a link to the downstream code
-  on which it was based.
-- Separated hall sensor pin configuration from gpio-keys.
-- Link to v1: https://lore.kernel.org/r/20251115-battery-hall-v1-0-1586283d17c7@gmail.com
+diff --git a/arch/arm64/boot/dts/qcom/msm8939-asus-z00t.dts b/arch/arm64/boot/dts/qcom/msm8939-asus-z00t.dts
+index ebb548e62e02..d0f0f80dd326 100644
+--- a/arch/arm64/boot/dts/qcom/msm8939-asus-z00t.dts
++++ b/arch/arm64/boot/dts/qcom/msm8939-asus-z00t.dts
+@@ -20,6 +20,61 @@ aliases {
+ 		serial0 = &blsp_uart2;
+ 	};
+ 
++	battery: battery {
++		compatible = "simple-battery";
++		device-chemistry = "lithium-ion-polymer";
++		voltage-min-design-microvolt = <3400000>;
++		voltage-max-design-microvolt = <4400000>;
++		energy-full-design-microwatt-hours = <11500000>;
++		charge-full-design-microamp-hours = <3000000>;
++
++		ocv-capacity-celsius = <(-20) 0 25 40 60>;
++		ocv-capacity-table-0 = <4378000 100>, <4220000 95>, <4125000 90>,
++			<4071000 85>, <3977000 80>, <3916000 75>, <3866000 70>,
++			<3838000 65>, <3822000 60>, <3809000 55>, <3797000 50>,
++			<3784000 45>, <3771000 40>, <3757000 35>, <3743000 30>,
++			<3726000 25>, <3707000 20>, <3688000 16>, <3670000 13>,
++			<3655000 11>, <3648000 10>, <3636000 9>, <3624000 8>,
++			<3612000 7>, <3592000 6>, <3569000 5>, <3540000 4>,
++			<3494000 3>, <3418000 2>, <3289000 1>, <3000000 0>;
++
++		ocv-capacity-table-1 = <4378000 100>, <4292000 95>, <4226000 90>,
++			<4166000 85>, <4109000 80>, <4064000 75>, <3992000 70>,
++			<3942000 65>, <3898000 60>, <3859000 55>, <3826000 50>,
++			<3802000 45>, <3788000 40>, <3779000 35>, <3768000 30>,
++			<3752000 25>, <3732000 20>, <3712000 16>, <3696000 13>,
++			<3688000 11>, <3684000 10>, <3680000 9>, <3675000 8>,
++			<3669000 7>, <3658000 6>, <3636000 5>, <3599000 4>,
++			<3544000 3>, <3466000 2>, <3341000 1>, <3000000 0>;
++
++		ocv-capacity-table-2 = <4372000 100>, <4306000 95>, <4247000 90>,
++			<4190000 85>, <4134000 80>, <4081000 75>, <4030000 70>,
++			<3984000 65>, <3930000 60>, <3884000 55>, <3850000 50>,
++			<3826000 45>, <3804000 40>, <3786000 35>, <3770000 30>,
++			<3753000 25>, <3734000 20>, <3712000 16>, <3693000 13>,
++			<3686000 11>, <3684000 10>, <3682000 9>, <3680000 8>,
++			<3676000 7>, <3668000 6>, <3643000 5>, <3600000 4>,
++			<3542000 3>, <3462000 2>, <3340000 1>, <3000000 0>;
++
++		ocv-capacity-table-3 = <4365000 100>, <4304000 95>, <4246000 90>,
++			<4189000 85>, <4133000 80>, <4080000 75>, <4030000 70>,
++			<3985000 65>, <3933000 60>, <3886000 55>, <3852000 50>,
++			<3827000 45>, <3806000 40>, <3789000 35>, <3769000 30>,
++			<3746000 25>, <3726000 20>, <3706000 16>, <3688000 13>,
++			<3681000 11>, <3678000 10>, <3676000 9>, <3676000 8>,
++			<3672000 7>, <3660000 6>, <3634000 5>, <3588000 4>,
++			<3528000 3>, <3448000 2>, <3322000 1>, <3000000 0>;
++
++		ocv-capacity-table-4 = <4358000 100>, <4298000 95>, <4240000 90>,
++			<4183000 85>, <4128000 80>, <4076000 75>, <4027000 70>,
++			<3983000 65>, <3935000 60>, <3887000 55>, <3852000 50>,
++			<3827000 45>, <3806000 40>, <3789000 35>, <3764000 30>,
++			<3738000 25>, <3715000 20>, <3695000 16>, <3677000 13>,
++			<3672000 11>, <3669000 10>, <3667000 9>, <3666000 8>,
++			<3662000 7>, <3652000 6>, <3622000 5>, <3577000 4>,
++			<3518000 3>, <3440000 2>, <3321000 1>, <3000000 0>;
++	};
++
+ 	chosen {
+ 		stdout-path = "serial0";
+ 	};
+@@ -135,6 +190,12 @@ &mpss_mem {
+ 	reg = <0x0 0x86800000 0x0 0x5500000>;
+ };
+ 
++&pm8916_bms {
++	monitored-battery = <&battery>;
++
++	status = "okay";
++};
++
+ &pm8916_codec {
+ 	qcom,micbias-lvl = <2800>;
+ 	qcom,mbhc-vthreshold-low = <75 150 237 450 500>;
 
----
-Erikas Bitovtas (2):
-      arm64: dts: qcom: msm8939-asus-z00t: add battery
-      arm64: dts: qcom: msm8939-asus-z00t: add hall sensor
-
- arch/arm64/boot/dts/qcom/msm8939-asus-z00t.dts | 79 +++++++++++++++++++++++++-
- 1 file changed, 78 insertions(+), 1 deletion(-)
----
-base-commit: 82bcd04d124a4d84580ea4a8ba6b120db5f512e7
-change-id: 20251208-b4-battery-hall-c707ae0d8ad4
-
-Best regards,
 -- 
-Erikas Bitovtas <xerikasxx@gmail.com>
+2.52.0
 
 
