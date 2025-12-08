@@ -1,96 +1,175 @@
-Return-Path: <devicetree+bounces-245286-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245287-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3FBCCAE4BB
-	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 23:11:40 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FC7CCAE5A0
+	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 23:46:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B2DF83064ADF
-	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 22:09:56 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B93C330533A6
+	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 22:44:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 658D82E62C3;
-	Mon,  8 Dec 2025 22:09:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AC532FD695;
+	Mon,  8 Dec 2025 22:44:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="u/94yr7V"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kyG7XA/W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99B4A2E2852;
-	Mon,  8 Dec 2025 22:09:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CADF2FC038;
+	Mon,  8 Dec 2025 22:44:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765231796; cv=none; b=L56c89sdMMyrCnh73fzEG5MLGumjxOZo5uXTdquMKZSCltDFaFJGViF7Mpi1QDOgabhJ99qJML81sLvbC4V4XoH7n8a9NtYIzKz1pdAjDlbQ4neJS2jh//bWicaaaaxuWEDZy4iWBgtD8PluAEx+yee0ymy4qH5dSXq35r1zVjQ=
+	t=1765233844; cv=none; b=ZvrdrgLnMzQ4cP8PJ3SpE52BqNaHoplaYhsXMnThHo7Qe6zoCMxBSFtSJoQTQDPvE0hj2Gc9jWhsq2Jjnd1XEdorSkTjxeGipjstk4AhQyVF6WOnm75RwWVIMEoq9dNEn3kOSXR6hJ96zlFMijQAtbMQ7gvvq+MNPgaTtifHOos=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765231796; c=relaxed/simple;
-	bh=J8irHp6MbN2c2a4RVyStaynsf/OasjHQTErx7VEKAK8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=p8MdpBo7SXlKBRJgJk28LbKcS1SxAFjRw3yiPQZeWuHB3AiNlMbZFFeae0CKSlEGt3X9JHHrRti39OPDffdHvDMpDweLgfCKbBwSIA5Fb63QOzNuaSKFes/UK6HmNFqBhhZcY1zFPxUQzvmZOf/RE7UXpPHlrDLZSWycw3f3p9E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=u/94yr7V; arc=none smtp.client-ip=185.246.85.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 25D4D4E41AF3;
-	Mon,  8 Dec 2025 22:09:53 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id E9AF5606DD;
-	Mon,  8 Dec 2025 22:09:52 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 42453103C8D5C;
-	Mon,  8 Dec 2025 23:09:49 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1765231792; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 in-reply-to:references; bh=IpPBmn5Por7VIp81eYBe7WxjsEyiLaoPiOP1GCzp0vM=;
-	b=u/94yr7VKJoFAIT4XNcqfKwDGfDww8jQcNrKa80RhoiKz8dI10C+jw63Z8IKyGl+8FIQcC
-	PLlFBjx7EFH64SlaAXhzNxWuLf/TlijbJKQUDTnIArKKzcB4Yb+8jGiemMQM+dgg7Rkmd5
-	hjc9IEAS1Csuj2rVZMPO9GySBF9PpKAUWMowLF0M1SlbSEyxqbK4Ga7O1F18GyYWFlw637
-	ER4ttJKWEiRbwFH2QaFkaVzw570KweYOHZ4tuH8Qd0+x3VeXOzNlbCbhjjHtw96+dMm3m/
-	UojUMoSzE9zrBx2IsNwubh8yNpSGtwBYF55SslsB9gD3JOj9nejB+BHFOOsvtA==
-Date: Mon, 8 Dec 2025 23:09:49 +0100
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: claudiu.beznea.uj@bp.renesas.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, geert+renesas@glider.be, magnus.damm@gmail.com,
-	p.zabel@pengutronix.de,
-	Ovidiu Panait <ovidiu.panait.rb@renesas.com>
-Cc: linux-rtc@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: (subset) [PATCH v4 0/4] Add RTC support for the Renesas RZ/V2H
- SoC
-Message-ID: <176523152343.342815.5815704941932518377.b4-ty@bootlin.com>
-References: <20251107210706.45044-1-ovidiu.panait.rb@renesas.com>
+	s=arc-20240116; t=1765233844; c=relaxed/simple;
+	bh=CfonjFjXObsctsSc24y/BdI66bpo0K+sN2oUZQCLLtI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=D6dW00pO7bwk/Thqsz0ZwZJ+nDJxRvn0XHydtIFBOcMIIMcsZHCxNZYkXBbyWpvNCW7DvXYjopa+whmoal4RYjwnZej3qLyMsmBBHzsrxzMMxiD0jnQWaFb3a1B7CFmii/SijVTU3E4tqJ9fkDaFKEX7JOMiV9SqxY/M1Y+egw0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kyG7XA/W; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61EE6C4CEF1;
+	Mon,  8 Dec 2025 22:44:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1765233843;
+	bh=CfonjFjXObsctsSc24y/BdI66bpo0K+sN2oUZQCLLtI=;
+	h=From:To:Cc:Subject:Date:From;
+	b=kyG7XA/W0ITT/3SZrNYjA/h6o2OPazttPJEU4oyREDeZEjPfDfckSjJt76hJOAGNJ
+	 B2Q2NCdP5I6Mg0sykS0QC/Ctc7GxWOTmqd/jCeCkMgUxD/ceJoIG9pjurZnnJ9dDs2
+	 5WC4tjC54BDeOsvBOMfsa1QLSu4tVqQ6u5zryVHzq1mOwnMLyAAuK2zHuaObqn2cR1
+	 NWmdlwY3ecHVZIwIyW0S1laviw+SU48UZoXP5CdW7oEGwEEHh38wOBXDhqObYSMq4q
+	 VLa7KU42QL07OOEptmEar1m6hg4oSsfKp1Mtw2PaUa32IxvUpijivvG5Jc4b+Z7niF
+	 gIL72R3kHT31w==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Nathan Chancellor <nathan@kernel.org>,
+	Nicolas Schier <nsc@kernel.org>
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-kbuild@vger.kernel.org
+Subject: [PATCH] dt-bindings: kbuild: Support single binding targets
+Date: Mon,  8 Dec 2025 16:43:03 -0600
+Message-ID: <20251208224304.2907913-1-robh@kernel.org>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251107210706.45044-1-ovidiu.panait.rb@renesas.com>
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Transfer-Encoding: 8bit
 
-On Fri, 07 Nov 2025 21:07:02 +0000, Ovidiu Panait wrote:
-> This series adds RTC support for the Renesas RZ/V2H SoC.
-> 
-> The Renesas RZ/V2H RTC IP is based on the same RTCA3 IP as RZ/G3S
-> (r9a08g045), with the following differences:
-> - it lacks the time capture functionality
-> - the maximum supported periodic interrupt frequency is 128Hz instead
->   of 256Hz
-> - it requires two reset lines instead of one
-> 
-> [...]
+Running the full 'make dt_binding_check' is slow. A shortcut is to set
+DT_SCHEMA_FILES env variable to a substring of DT schema files to test.
+It both limits which examples are validated and which schemas are used
+to validate the examples. This is a problem because errors from other
+schemas are missed. What makes validation slow is checking all examples,
+so we really just need a way to test a single example.
 
-Applied, thanks!
+Add a %.yaml target to validate the schema and validate the example:
 
-[1/4] dt-bindings: rtc: renesas,rz-rtca3: Add RZ/V2H support
-      https://git.kernel.org/abelloni/c/4800046b56a5
-[2/4] rtc: renesas-rtca3: Add support for multiple reset lines
-      https://git.kernel.org/abelloni/c/6ada8e24238d
+make example-schema.yaml
 
-Best regards,
+The behavior for 'make dt_binding_check DT_SCHEMA_FILES=example-schema'
+is unchanged. Really it should mirror dtbs_check and validate all the
+examples with a subset of schemas, but there are lots of users of
+expecting the existing behavior.
 
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+---
+ Documentation/devicetree/bindings/Makefile         |  5 ++++-
+ .../devicetree/bindings/writing-schema.rst         | 12 ++++++++----
+ Makefile                                           | 14 ++++++++++----
+ 3 files changed, 22 insertions(+), 9 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/Makefile b/Documentation/devicetree/bindings/Makefile
+index 8d6f85f4455d..1e116425ad70 100644
+--- a/Documentation/devicetree/bindings/Makefile
++++ b/Documentation/devicetree/bindings/Makefile
+@@ -82,5 +82,8 @@ clean-files = $(shell find $(obj) \( -name '*.example.dts' -o \
+ dt_compatible_check: $(obj)/processed-schema.json
+ 	$(Q)$(srctree)/scripts/dtc/dt-extract-compatibles $(srctree) | xargs dt-check-compatible -v -s $<
+ 
++PHONY += dt_binding_check_one
++dt_binding_check_one: $(obj)/.dt-binding.checked $(obj)/.yamllint.checked
++
+ PHONY += dt_binding_check
+-dt_binding_check: $(obj)/.dt-binding.checked $(obj)/.yamllint.checked $(CHK_DT_EXAMPLES)
++dt_binding_check: dt_binding_check_one $(CHK_DT_EXAMPLES)
+diff --git a/Documentation/devicetree/bindings/writing-schema.rst b/Documentation/devicetree/bindings/writing-schema.rst
+index 05c34248e544..2ff5b0565a31 100644
+--- a/Documentation/devicetree/bindings/writing-schema.rst
++++ b/Documentation/devicetree/bindings/writing-schema.rst
+@@ -214,6 +214,10 @@ binding schema. All of the DT binding documents can be validated using the
+ 
+     make dt_binding_check
+ 
++Or to validate a single schema and its example::
++
++    make sram/sram.yaml
++
+ In order to perform validation of DT source files, use the ``dtbs_check`` target::
+ 
+     make dtbs_check
+@@ -226,10 +230,10 @@ It is possible to run both in a single command::
+ 
+     make dt_binding_check dtbs_check
+ 
+-It is also possible to run checks with a subset of matching schema files by
+-setting the ``DT_SCHEMA_FILES`` variable to 1 or more specific schema files or
+-patterns (partial match of a fixed string). Each file or pattern should be
+-separated by ':'.
++It is also possible to combine running the above commands with a subset of
++matching schema files by setting the ``DT_SCHEMA_FILES`` variable to 1 or more
++specific schema files or patterns (partial match of a fixed string). Each file
++or pattern should be separated by ':'.
+ 
+ ::
+ 
+diff --git a/Makefile b/Makefile
+index 2f545ec1690f..1ae6b4c51955 100644
+--- a/Makefile
++++ b/Makefile
+@@ -1506,6 +1506,12 @@ ifneq ($(wildcard $(srctree)/arch/$(SRCARCH)/boot/dts/),)
+ dtstree := arch/$(SRCARCH)/boot/dts
+ endif
+ 
++dtbindingtree := Documentation/devicetree/bindings
++
++%.yaml: dtbs_prepare
++	$(Q)$(MAKE) $(build)=$(dtbindingtree) \
++		    $(dtbindingtree)/$(patsubst %.yaml,%.example.dtb,$@) dt_binding_check_one
++
+ ifneq ($(dtstree),)
+ 
+ %.dtb: dtbs_prepare
+@@ -1523,7 +1529,7 @@ dtbs: dtbs_prepare
+ # dtbs_install depend on it as dtbs_install may run as root.
+ dtbs_prepare: include/config/kernel.release scripts_dtc
+ 
+-ifneq ($(filter dtbs_check, $(MAKECMDGOALS)),)
++ifneq ($(filter dtbs_check %.yaml, $(MAKECMDGOALS)),)
+ export CHECK_DTBS=y
+ endif
+ 
+@@ -1556,14 +1562,14 @@ endif
+ 
+ PHONY += dt_binding_check dt_binding_schemas
+ dt_binding_check: dt_binding_schemas scripts_dtc
+-	$(Q)$(MAKE) $(build)=Documentation/devicetree/bindings $@
++	$(Q)$(MAKE) $(build)=$(dtbindingtree) $@
+ 
+ dt_binding_schemas:
+-	$(Q)$(MAKE) $(build)=Documentation/devicetree/bindings
++	$(Q)$(MAKE) $(build)=$(dtbindingtree)
+ 
+ PHONY += dt_compatible_check
+ dt_compatible_check: dt_binding_schemas
+-	$(Q)$(MAKE) $(build)=Documentation/devicetree/bindings $@
++	$(Q)$(MAKE) $(build)=$(dtbindingtree) $@
+ 
+ # ---------------------------------------------------------------------------
+ # Modules
 -- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+2.51.0
+
 
