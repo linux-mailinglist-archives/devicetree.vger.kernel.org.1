@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-245128-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245129-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E7A2CAC728
-	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 09:02:10 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79560CAC74F
+	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 09:06:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A7274301D580
-	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 08:01:52 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id C662B3003146
+	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 08:06:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F4AE2D0C76;
-	Mon,  8 Dec 2025 08:01:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B87A62D7DD5;
+	Mon,  8 Dec 2025 08:06:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j80OI97R"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qi47j8V0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59FD217E4;
-	Mon,  8 Dec 2025 08:01:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 904DC2D3EC7;
+	Mon,  8 Dec 2025 08:06:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765180911; cv=none; b=phSXBCekfOJoRx/RivaMaArgio8z+mDa/5PSm1TYGeDHvoEXxV9rIicwY1HdNkdWagfg89QNkMiah0oIV5P7VO5Zlp1IycbPINKDOkeWGTyh4c6r2JIB68/lvX1sFEtzlLeEAAZXkWOL9ihPeEGjgN2cpwfjHR+grhvtVbtad0I=
+	t=1765181193; cv=none; b=n+enrK5x3SrLZd392cOlAFa7nkLtaVuNKrWv68niOkfd0IVKz22p7tBXSwL1VKetYJ+VUgb5UHQvTR3hT1kZbs+WKIcDdHQrzJS7xad5+QkXuKtMDYjUzoewqj59Z2UGr2dwRQQBHHYvXuIlIey+a0zw1EJU2xuLGF3lHAe2R2g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765180911; c=relaxed/simple;
-	bh=4o3k84cSoFVkEFHqlP6kdQk46PTl+iYPVlvk6x9AM7s=;
+	s=arc-20240116; t=1765181193; c=relaxed/simple;
+	bh=9pSObY2KGxZ0Uddg9G4xHE+I8qofg6gLUc9CnZEJtzI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HZ+tizFGNU5x6NciTcS397tXaTPPtLSm87QtEJ3+TlgrJyx+bfM/9eCmGjsL1toLQuAcBSSsuHX4UN05Vkf1O4FVrx8iY9AcY4TUlbWLbJh12Zs92XSXEv+eHzyvuQ5asehSBIyuOIQiuCnZv4OCe4reTOU63D+SRMeRmJr3U/0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j80OI97R; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8F3AC4CEF1;
-	Mon,  8 Dec 2025 08:01:47 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=sPeZKakgSIq8HdaPLGxvbRwtrfuNplGVxc1fzdT11xpyQzeUm2mnO+3FsjSnHLz6Wc4Y5NPLLnO/0tCafz7GZsd0OjIVDQ1ElCwSoLlXBPbPzTao/9t2bbBYBAyeyuWhq9wi+2Ngfx8L3BFEv+6maNfajY84dyNSchoddNEeFdU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qi47j8V0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 260EAC4CEF1;
+	Mon,  8 Dec 2025 08:06:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765180910;
-	bh=4o3k84cSoFVkEFHqlP6kdQk46PTl+iYPVlvk6x9AM7s=;
+	s=k20201202; t=1765181193;
+	bh=9pSObY2KGxZ0Uddg9G4xHE+I8qofg6gLUc9CnZEJtzI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=j80OI97RKDz5Ua10r/90B/K+sulEdDJuikydKmNdFReRjDbRKtscr7GEFvSM7UmQE
-	 js3dhNXoqAa8gRmiDsa3mCnJTAcjGfZIPvuB3Ata/c6ut1BIPGqrLKgcdCIBIga0Ys
-	 1iRszMxja7QCJylYxdbmSHgOnFduswhEzt6hVw9CC7nGJ7BCMk6ko2WRzMhNB9AjYF
-	 vvgGpMhlLmKl3+TNDs1wTYf7K8oO4s5meSeridMesNeSAwlOesM1s/1DserQs63QCb
-	 IO30I2IMrT6++rEpc7Jl7h1TyKqsVcP7WGAeATWxkcnTw3e08v3MIMJFH8kjvuItFO
-	 oig7shpTY8BTA==
-Message-ID: <20065270-0d88-4463-9641-f92b4c9e4674@kernel.org>
-Date: Mon, 8 Dec 2025 09:01:46 +0100
+	b=qi47j8V0WsSQbfbnWmOT6JHA4+w4isNSZwLiUyvX4WB2ta1EDutxfiG7pw0XN+wZs
+	 m9yjeZ1CVsiBH5k9ufVhQhxMFGqEdm9RanEcgpwIVagAuDn5TRNSi+orMhZxQf6Fmp
+	 b2drXWxHTAPuAN7MwV3aknVNm3ctxg8b6ToJEt6JNX8uWD5OA7uF+9DX06jYSVtWEb
+	 tKhJMzRGcQUV5RSa0sIL/SnQzKW6cH6E6Wx1+Ol9iV7tRToQjUnCvOg6jkpY97OQeJ
+	 BFAwdl+MYmfMVQiNrd+SCKEKekCZDSFDA15Oxk4vxLv1gp260bWHSE8YRu2bKt0hU6
+	 4MYHNYkRRvpAA==
+Message-ID: <96f61d12-2472-4179-a9ec-0dd7b1fdca8a@kernel.org>
+Date: Mon, 8 Dec 2025 09:06:28 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,24 +48,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 1/2] ASoC: rt5575: Add the codec driver for the ALC5575
-To: Oder Chiou <oder_chiou@realtek.com>,
- "cezary.rojewski@intel.com" <cezary.rojewski@intel.com>,
- "broonie@kernel.org" <broonie@kernel.org>,
- "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
- "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
- <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>
-Cc: "perex@perex.cz" <perex@perex.cz>,
- "linux-sound@vger.kernel.org" <linux-sound@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
- "Flove(HsinFu)" <flove@realtek.com>, =?UTF-8?B?U2h1bWluZyBb6IyD5pu46YqYXQ==?=
- <shumingf@realtek.com>, Jack Yu <jack.yu@realtek.com>,
- =?UTF-8?B?RGVyZWsgW+aWueW+t+e+qV0=?= <derek.fang@realtek.com>
-References: <20251201105926.1714341-1-oder_chiou@realtek.com>
- <20251201105926.1714341-2-oder_chiou@realtek.com>
- <6c0639e2-dc59-4e0f-be42-224a98b37f75@kernel.org>
- <2202b463075f4219bffc636fbafb0684@realtek.com>
+Subject: Re: [PATCH v4] dt-bindings: arm: keystone: add boot_* mboxes to
+ ti,sci
+To: Anshul Dalal <anshuld@ti.com>
+Cc: Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+ Santosh Shilimkar <ssantosh@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Vignesh Raghavendra <vigneshr@ti.com>
+References: <20251205-k3_syscon_add_boot_mailboxes-v4-1-8e216fb88941@ti.com>
+ <20251208-abiding-hedgehog-of-lightning-2fe7a2@quoll>
+ <DESMHL7FCYXE.3TE3SG6TDVJ39@ti.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,109 +105,43 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <2202b463075f4219bffc636fbafb0684@realtek.com>
+In-Reply-To: <DESMHL7FCYXE.3TE3SG6TDVJ39@ti.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 08/12/2025 08:29, Oder Chiou wrote:
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzk@kernel.org>
->> Sent: Monday, December 8, 2025 2:05 PM
->> To: Oder Chiou <oder_chiou@realtek.com>; cezary.rojewski@intel.com;
->> broonie@kernel.org; lgirdwood@gmail.com; robh@kernel.org;
->> krzk+dt@kernel.org; conor+dt@kernel.org
->> Cc: perex@perex.cz; linux-sound@vger.kernel.org; devicetree@vger.kernel.org;
->> alsa-devel@alsa-project.org; Flove(HsinFu) <flove@realtek.com>; Shuming [范
->> 書銘] <shumingf@realtek.com>; Jack Yu <jack.yu@realtek.com>; Derek [方德
->> 義] <derek.fang@realtek.com>
->> Subject: Re: [PATCH v8 1/2] ASoC: rt5575: Add the codec driver for the
->> ALC5575
+On 08/12/2025 07:31, Anshul Dalal wrote:
+>>>  
+>>>    mboxes:
+>>>      minItems: 2
+>>> +    maxItems: 6
+>>>  
+>>>    ti,host-id:
+>>>      $ref: /schemas/types.yaml#/definitions/uint32
+>>> @@ -79,6 +79,42 @@ properties:
+>>>      type: object
+>>>      $ref: /schemas/reset/ti,sci-reset.yaml#
+>>>  
+>>> +if:
+>>> +  properties:
+>>> +    compatible:
+>>> +      contains:
+>>> +        const: ti,am654-sci
+>>> +then:
+>>> +  properties:
+>>> +    mbox-names:
+>>> +      minItems: 2
 >>
+>> Why is this list flexible?
 >>
->> External mail : This email originated from outside the organization. Do not
->> reply, click links, or open attachments unless you recognize the sender and
->> know the content is safe.
->>
->>
->>
->> On 01/12/2025 11:59, Oder Chiou wrote:
->>> +
->>> +static int rt5575_i2c_read(void *context, unsigned int reg, unsigned int
->> *val)
->>> +{
->>> +     struct i2c_client *client = context;
->>> +     struct rt5575_priv *rt5575 = i2c_get_clientdata(client);
->>> +
->>> +     regmap_read(rt5575->dsp_regmap, reg | RT5575_DSP_MAPPING,
->> val);
->>> +
->>> +     return 0;
->>> +}
->>> +
->>> +static int rt5575_i2c_write(void *context, unsigned int reg, unsigned int val)
->>> +{
->>> +     struct i2c_client *client = context;
->>> +     struct rt5575_priv *rt5575 = i2c_get_clientdata(client);
->>> +
->>> +     regmap_write(rt5575->dsp_regmap, reg | RT5575_DSP_MAPPING,
->> val);
->>> +
->>> +     return 0;
->>> +}
->>> +
->>> +static const struct regmap_config rt5575_regmap = {
->>> +     .reg_bits = 16,
->>> +     .val_bits = 32,
->>> +     .reg_stride = 4,
->>> +     .max_register = 0xfffc,
->>> +     .readable_reg = rt5575_readable_register,
->>> +     .reg_read = rt5575_i2c_read,
->>> +     .reg_write = rt5575_i2c_write,
->>> +     .use_single_read = true,
->>> +     .use_single_write = true,
->>> +};
->>
->> OF device ID table goes around here - together with I2C.
-> I will correct it.
 > 
->>> +
->>> +static const struct i2c_device_id rt5575_i2c_id[] = {
->>> +     { "rt5575" },
->>> +     { }
->>> +};
->>> +MODULE_DEVICE_TABLE(i2c, rt5575_i2c_id);
->>> +
->>> +static int rt5575_i2c_probe(struct i2c_client *i2c)
->>> +{
->>> +     struct rt5575_priv *rt5575;
->>> +     struct device *dev = &i2c->dev;
->>> +     int ret, val;
->>> +
->>> +#if IS_ENABLED(CONFIG_SND_SOC_RT5575_SPI)
->>
->> No ifdefs in driver code.
-> 
-> I am not understanding exactly.
-> If the machine is without SPI interface and the codec with flash, the
-> CONFIG_SND_SOC_RT5575_SPI can be disabled.
+> The idea is to make the boot_* mboxes optional so the existing DTs that
 
-But you still should not use #ifdef. Coding style gives you alternative,
-please look at the doc.
+Then explain it in the commit msg.
 
-> 
->>> +     if (!rt5575_spi && of_device_is_compatible(dev->of_node,
->> rt5575_of_match[1].compatible))
->>
->> No, use driver match data if ever, but this is just wrong. You said it
->> depends on SPI flash, not SPI interface.
-> 
-> I will modify it to use the match data as following.
-> static const struct of_device_id rt5575_of_match[] = {
-> 	{ .compatible = "realtek,rt5575", .data = (void *)RT5575_WITH_FLASH },
-> 	{ .compatible = "realtek,rt5575-use-spi", .data = (void *)RT5575_WITHOUT_FLASH },
+> only have rx and tx remain complaint. Also, the boot_notify mbox is not
+> supported by every SoC.
 
-What is still wrong is that why you defer probe if there is no flash. I
-really do not get it...
+Not really relevant. This is one specific SoC. Not "every"...
 
 
 
