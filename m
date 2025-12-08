@@ -1,115 +1,162 @@
-Return-Path: <devicetree+bounces-245187-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245188-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FEBDCAD445
-	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 14:29:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AC5A0CAD48A
+	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 14:35:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0900930707B4
-	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 13:27:30 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B4EE13049D16
+	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 13:32:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B91493128D8;
-	Mon,  8 Dec 2025 13:27:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAA78314D12;
+	Mon,  8 Dec 2025 13:32:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Ud0e8hqg"
+	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="OVZ7XTtt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+Received: from ixit.cz (ip-94-112-25-9.bb.vodafone.cz [94.112.25.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30FA21E5B7A;
-	Mon,  8 Dec 2025 13:27:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 306B11EE033;
+	Mon,  8 Dec 2025 13:32:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.112.25.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765200449; cv=none; b=hPZSlpSffC//JaE139pXd4SIqDMVu4rRhruFwUHfcBLRGj9U7e444MAIojl8w6yBF3RSLVWfxLs0s+/mcZRFlSFt+UQVY3WGIff4xAUOu83DIgSuuJIc1DQwvoGHbTOH+QxLbvAzdtaDNvhBEOr3UdmRy6mUnKRw5esfyCEtba0=
+	t=1765200746; cv=none; b=lbaIWedNZ1JIae3pdPN03rhM/IUf1WnF60AtaonX2Vm7foaDORzCUd/aIOtNxePTQD+acm99S/qEfrmmmZeEz6ozmAIxettvTo8uwWmKsAX48P0ngxV91fCqE8FUidMzl8UGoGwPGCR0RmbAhNCypYaZEp46sqiv3/Z1n5m/JLE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765200449; c=relaxed/simple;
-	bh=XMTcb1/gYnNP+8nq0VZfYw0+4rpEVrK7AEwVB73HoVo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NzOnzxn/ZPAwQqW/oh+HwVsZIKtx1EIC9iJHLE3rqDFbc1a9xJQ5uB/T91aPwlE7arRXjQtp6RrgqqL47AYBNWaI2CRwHTNauEQx0wsQCR8tpTeSGyoWolG3CecljDBMbG1RTfLXIfaduB3/2TzWNkqZwTS3Fcm+gWrSjSTkeWM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Ud0e8hqg; arc=none smtp.client-ip=192.198.163.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1765200448; x=1796736448;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=XMTcb1/gYnNP+8nq0VZfYw0+4rpEVrK7AEwVB73HoVo=;
-  b=Ud0e8hqgHdx1iKKnOuKELIskLy2XKSzDuf5GuBy1ga07cOLDvEPkSLi/
-   7pIsj/qA9qZ3HxGgv8iaXGr1ZVYbiBO1ecWTs07Jp+He4HyvCE57T0yz2
-   k+u8MjL3QqvnVpwV7BcvNW4vVaMsXoa8ySoibtiI5ZYocqXSL4Lwhgjjh
-   swHjnJUoz1y70dCqqqCzQ9qhjJ9ePGc/j0TKof8/v+47pM6Mh7PzrgdWV
-   8Yk2O9TZTzipQLyNB5FDY4CNycXPMvsjoBQLBjqu+7Sogh5+ufjhux4WS
-   mPYGHwrzdir69WQWKmVDjvl3YIpVuGtKai3FuCrU6kz+ZBVOz6rCU6XJy
-   w==;
-X-CSE-ConnectionGUID: jj7VAv/nRFS5o8C4IaA6+A==
-X-CSE-MsgGUID: APD8K9vdS96QSSPQ1mSUxg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11635"; a="67177426"
-X-IronPort-AV: E=Sophos;i="6.20,258,1758610800"; 
-   d="scan'208";a="67177426"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Dec 2025 05:27:26 -0800
-X-CSE-ConnectionGUID: /dg/rHMcQiCBkNmYiwrxIw==
-X-CSE-MsgGUID: n4Mt4cwcRPiqVSiG4Yj4kw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,258,1758610800"; 
-   d="scan'208";a="200400681"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.245.47])
-  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Dec 2025 05:27:22 -0800
-Date: Mon, 8 Dec 2025 15:27:19 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Tomas Melin <tomas.melin@vaisala.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Nuno Sa <nuno.sa@analog.com>, Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/3] iio: adc: ad9467: add support for ad9211
-Message-ID: <aTbSN22rSC55G-nd@smile.fi.intel.com>
-References: <20251208-add-ad9211-v3-0-c49897fa91c4@vaisala.com>
- <20251208-add-ad9211-v3-2-c49897fa91c4@vaisala.com>
+	s=arc-20240116; t=1765200746; c=relaxed/simple;
+	bh=eUYewcQyzKdMXmwFTKSfaJeFA1I03PQncb1KG3clHA4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=b1lUNRy83bNazJkh6evXbKGtAM1tl6XXsPitFVyYKc+O0GB56S+Ri0+d4kEU1ZuqYgn4rHlm9R8B2tpZikW/ySCAMgKOVVagVghHZTDmCdwAf9L8wf365/N3VcwjFz2WpgxmR83v7r7dYTNnSMIMkuEwFLsEUXqbBLKgYGycF1Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=OVZ7XTtt; arc=none smtp.client-ip=94.112.25.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
+Received: from [10.0.0.200] (unknown [10.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by ixit.cz (Postfix) with ESMTPSA id C32DE5341140;
+	Mon, 08 Dec 2025 14:32:11 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+	t=1765200731;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=dnVoTyfwYS0LuPFoVb6qfSqVMRaPB+lLWfOFmpj5q5M=;
+	b=OVZ7XTtthnNHeqyGWpdst6puRgUdN2XAvvc5640eCeKSndNSZpLZDGgrFDOhmTQeJxipKF
+	m1GYy8UTIwi+avbptSaix+VLpraVzqKgt3XdY/E4t/7c93Uft3tO4ck2I6onWWIdk1YZgy
+	vRChbZm1zHXGUvHK6KlAxab8bYRNsfg=
+Message-ID: <648bdb71-fef9-4762-9f05-330457fda0b0@ixit.cz>
+Date: Mon, 8 Dec 2025 14:32:11 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251208-add-ad9211-v3-2-c49897fa91c4@vaisala.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] ARM: dts: qcom: msm8974-hammerhead: Update model property
+To: Luca Weiss <luca@lucaweiss.eu>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jens Reidel <adrian@mainlining.org>,
+ Bhushan Shah <bshah@kde.org>
+Cc: phone-devel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20251208-msm8974-hammerhead-model-v1-1-88975f30cbaa@lucaweiss.eu>
+Content-Language: en-US
+From: David Heidelberg <david@ixit.cz>
+Autocrypt: addr=david@ixit.cz; keydata=
+ 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
+In-Reply-To: <20251208-msm8974-hammerhead-model-v1-1-88975f30cbaa@lucaweiss.eu>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Mon, Dec 08, 2025 at 12:30:58PM +0000, Tomas Melin wrote:
-> The AD9211 is a 10-bit monolithic sampling analog-to-digital converter
-> optimized for high performance, low power, and ease of use. The product
-> operates at up to a 300 MSPS conversion rate and is optimized for
-> outstanding dynamic performance in wideband carrier and broadband systems.
+On 08/12/2025 13:41, Luca Weiss wrote:
+> Many years have passed (more than 9 actually) since the introduction of
+> the Nexus 5 dts to Linux and it's high time to update the model property
+> to be a proper model name and thereby bringing it to the standards of
+> the 2020s.
 > 
-> The scale table implemented here is not an exact match with the
-> datasheet as the table presented there is missing some information.
-> The reference presents these values as being linear,
-> but that does not add up. There is information missing in the table.
-> Implemented scale table matches values at the middle and at the ends,
-> smoothing the curve towards middle and end.
-> Impact on end result from deviation in scale factor affects only software
-> using it for scaling. All the possible hw-settings are also available with
-> this implementation.
+> Signed-off-by: Luca Weiss <luca@lucaweiss.eu>
+> ---
+> The phone was manufactured by LG and sold by Google. Some sources call
+> it LG Nexus 5, some Google Nexus 5. I think it was mostly marketed as
+> just Nexus 5, but consensus in upstream dts seems to be to use the
+> manufacturer, see Nexus 5X, Nexus 6P, Nexus 4.
+> 
+> Arguments could also easily be made to change the compatible to
+> "lg,hammerhead" and rename the dts, since lge (LG Electronics) is not
+> even documented in vendor-prefixes and doesn't really appear anywhere
+> else in the kernel and lg, (for LG Corporation, the parent of LG
+> Electronics from what I can tell) is used. But that's more invasive so
+> I'm leaving this out in favor of this simple patch.
+> ---
+>   arch/arm/boot/dts/qcom/qcom-msm8974-lge-nexus5-hammerhead.dts | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm/boot/dts/qcom/qcom-msm8974-lge-nexus5-hammerhead.dts b/arch/arm/boot/dts/qcom/qcom-msm8974-lge-nexus5-hammerhead.dts
+> index b3127f0383cf..8f4a1fda9276 100644
+> --- a/arch/arm/boot/dts/qcom/qcom-msm8974-lge-nexus5-hammerhead.dts
+> +++ b/arch/arm/boot/dts/qcom/qcom-msm8974-lge-nexus5-hammerhead.dts
+> @@ -7,7 +7,7 @@
+>   #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
+>   
+>   / {
+> -	model = "LGE MSM 8974 HAMMERHEAD";
+> +	model = "LG Nexus 5";
+>   	compatible = "lge,hammerhead", "qcom,msm8974";
+>   	chassis-type = "handset";
+>   
+> 
+> ---
+> base-commit: 7d0a66e4bb9081d75c82ec4957c50034cb0ea449
+> change-id: 20251208-msm8974-hammerhead-model-fa3aca1fda0e
+> 
+> Best regards,
 
-...
+Hehe, definitely an improvement.
 
-> +	.max_rate = 300 * HZ_PER_MHZ,
-
-With this change applied, you may consider adding a new patch to convert other
-initialisers to use the same approach for the sake of consistency and making it
-less error prone (easier to count up to 3 digits than zillions of zeroes).
-
--- 
-With Best Regards,
-Andy Shevchenko
-
+Reviewed-by: David Heidelberg <david@ixit.cz>
 
 
