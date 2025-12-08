@@ -1,217 +1,130 @@
-Return-Path: <devicetree+bounces-245222-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245223-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A3B8CAD774
-	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 15:40:33 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 958DCCAD831
+	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 15:59:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2A15030EE817
-	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 14:33:29 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 5192530039D9
+	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 14:59:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03727324B06;
-	Mon,  8 Dec 2025 14:25:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E098E2E88A7;
+	Mon,  8 Dec 2025 14:59:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="WzaAR94P";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="PiO2YsDV"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SApP0M4F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6493B3246FE
-	for <devicetree@vger.kernel.org>; Mon,  8 Dec 2025 14:25:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 334BB245012
+	for <devicetree@vger.kernel.org>; Mon,  8 Dec 2025 14:59:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765203928; cv=none; b=Uf32alauPwbtYhcxvwqzvWr+d8NDnd2YU/Ol9u4rbYL8Pvc7ndwubS7FnJSdYPt5eJJX7NjhZj7vIMcCG+7IGBwT2qR6P+LwqY6EE62SwoaoV/SZtQ+8fN/SMLki2sPwQ+rXAjWlDTJMQEYWsH3Nec2GDHjMlT2otQwKamfwh2w=
+	t=1765205968; cv=none; b=hXCk45KAculWf/q8M+NZzZ+tmpBPvuVawKIO4dZwgh9iWF54EcgKYDkD6g1ARmeiIEpUYc/2f1XrkvOzUYWVSGM0GV+DjF0jA5b5HWRwvTYaWDVeVc2GytyPrjYLjnUdZ+6Ons0F84As4oiVd8gavkOFClN1TgzIOHlGtSicjlI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765203928; c=relaxed/simple;
-	bh=Ppw7wRM0wBbCaPjd5el6qk76FQRh20pkumuSo/hRLdA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DqObML35Ek5SibtEwm+qiGDsAEzrHOmnBKeWd44+MDAvVjZZA+/cCgQPNW3ucqyt74sl5rhmdF2ftaCs8OWUL4j5PxKGJlASHU4Pdua2e5Q0l2F51haYWfIqG4lb6UAOM+n3pcr5Mjh0xEIeD8e+5YMzxw/v3LdjofahkSm+DzQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=WzaAR94P; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=PiO2YsDV; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5B87tpbu410199
-	for <devicetree@vger.kernel.org>; Mon, 8 Dec 2025 14:25:26 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=+uTeFMrSmVdakec7XKSAsdwj
-	aXaP4GIsMmUDOx/E8zo=; b=WzaAR94PXKkc8MoeLR3U+qtnluuyRHlZ624/n/s9
-	xt1G/rLr5S11curKRTf6wec1I+kBhCQvPk34x0f8fPpLyPB7OKHznVgyNUpSA6Xb
-	9q/NFuSaWH7xE6APgbKU05qcHMun5iPI20N8zcgaUGi4GNDrjqbCFCv+aexgH36s
-	ChWf+m7d79r9iJ08D7ha7bwyFGSYtSlG85hG0cqg0f4ZjayUHjkDZylthc2FFoKo
-	gvcbgwkiWSTSbslYPQyJP3gxuQAsPU8W4gr9cRLpjp4t8LQFXHw9FZwFrbcOSofc
-	EufFvhUWx8lwDSVtWgpdUPr6al+8LI7M7I60euHIZ2xdmQ==
-Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4awtqg9632-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 08 Dec 2025 14:25:25 +0000 (GMT)
-Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-2956a694b47so19792455ad.1
-        for <devicetree@vger.kernel.org>; Mon, 08 Dec 2025 06:25:25 -0800 (PST)
+	s=arc-20240116; t=1765205968; c=relaxed/simple;
+	bh=uLmS3zFAWWg3rczbGlkXkOenTYGyS9ffx9/wMN82yG4=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=YXukecTRuBtk7wmyQ4k7jxYE91RIZgg1vFNEiThE+e7hLrga2bu2qU5yCddH1Z2NGNQitnVTJXMglCey3XaKQ29+Oy8OtPEPtLvcgf2wL8pkI68r84/jIgCzmETud+x9L37jGEQq6rQ0BJn/smCPN+T+87SuaIYtASHplEyYdFU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SApP0M4F; arc=none smtp.client-ip=209.85.208.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-647a3bca834so5915112a12.2
+        for <devicetree@vger.kernel.org>; Mon, 08 Dec 2025 06:59:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1765203925; x=1765808725; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=+uTeFMrSmVdakec7XKSAsdwjaXaP4GIsMmUDOx/E8zo=;
-        b=PiO2YsDVpD1vNdRInfhKUZZx8txAZK2vrV+hdaOu2XMyY5i/nsh5RotVoI347NWfWf
-         iiCwlYNo9IVi/O+AGCKhkMd1tteW+Em1jEFZSMzVtCErXPRtuQDSB1rWGbRaKbLVG7GI
-         ZQrQOOLT4NXh8qIS+Tk8kK8SXqLrTxRvp+OQd7L3xbSMBFkGoRdaz605GP6kBzhpdM6Z
-         qndtfBsYx4arXde3HAfYHMaK3C2M4tH+VmjB/xo0/H01/JSRXcKBxkLAwXqslm2HIQSh
-         xC4aDtzt7DHFNyiN3woABk8qLQtupdEhFt5VJ8p6ygTfGGMy9qk2YgAVortw/b7Uvdf+
-         jGzQ==
+        d=gmail.com; s=20230601; t=1765205965; x=1765810765; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=J+to6IujjR5asOSoIClqkwi7ZpRp9+FoGFEMQuOxiZM=;
+        b=SApP0M4Fpk10OVuWcZRcpAOxCQttP+51l5UUJr2rxfeLJyEoyYxtb8AwD4TRqPzs0Z
+         fapRi5gg8MxEc7HUxgI8iiJF2FR8pvysOnfH1HaN4wja9LvX1Ee0goIsXXOjeG+JjWIw
+         1ttuyF4X9wjan4gQNRh2a491r5/gQ/UGhbRquYp26VRNwY7VZiRF8e9kDCYfiRnSW8BO
+         RkQQ3xQW8sTZmBQWdvrt4IsZ+92t3jommuuFZoh78io4+bNUTVRGg9iUSwvoxrKzRzNY
+         bRijg3LdmN/CoLUlG4uEvXEg8WebBhWAT/WjWLBe0FCkbbqR+DsiWxERRRcuBPmB9VVI
+         8LtA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765203925; x=1765808725;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+uTeFMrSmVdakec7XKSAsdwjaXaP4GIsMmUDOx/E8zo=;
-        b=uGKFfNFem97Y+pGgbcb+YRzm4q5pttP4EA+H4/xGRCVYiLC4bC7Spm2eiERb5VDUc0
-         HdwYbGcphA+OhtFUbs0wAY7F3UF4ImoZcrpcFyCnRNXUb7MHDFDkuqEZ+3aPh0eEpoZB
-         XCiyopszhhR9R8U1Ss0j2BkvsfXWDFRL9TJ1x6hqgGKteGRFQg2vgVy2TLTXXDluAWLo
-         iD6SbLzb40gHj4dzacUXmCP3nD5h0lTjbYiRD9fyHZP3DzW1GB7w1kqxbKqhlWEQb683
-         YmC3OaFuKMY8o/QYrqbye/ycxD59sz69Dg3zgkhzNdSGU0bvabtOo/Y8CHs5ZWBGXtpn
-         VA7A==
-X-Forwarded-Encrypted: i=1; AJvYcCXgaFBIud8B/+9X4X4zi0l0+aPtQ7AUCtUraAXKBfV5Ofs8jX5bl+aKKGM0jgLg49uTAc9jzizIyGTk@vger.kernel.org
-X-Gm-Message-State: AOJu0YyRFDjoHjWNVZ/qILOsDWX98qhDxZgZvvLC1Jjvkzfz4yMmiXQL
-	f3Qk8Au70Kqe1HMjASETm4NplsXNV0Q3lsLE+++Vv3ofurSAQ1A9WkOlVWL/zS4ZKPG5YCMbAbC
-	OGT3uGum29WRvjCuIB1i/tgPuiolfGFjhGyPL1K5EhMwVbtF7u5Dztf7q2ScHaccbYEJlqeZB
-X-Gm-Gg: ASbGnctQ9PA96pWHlDnynawxIgAqNUBpa2Pi5fMzUnEnx3yUfhv13/kWBJIqwBmTUuv
-	PomnJYOBvzUgvvcYnGi6bEca1PuEUuDS0BgxyLb67rxohw+7/mabAZbMQLFRj5p3tpPQSP6Y5Ad
-	+XGsoLmPA5cosybkNE57TZBYXx7hWfbR9zQuAz5GpQu1b2QwvZmTIvoijnTpw3pRlq6pSeBfQ4V
-	KCSHPYFhjJTdKdLa4gpaC82pQK/W+j4Cx9JzMZmhKhsH2CeCFWDXBX05TqjkDoIL5EcFyaFzhnq
-	HccvCHrz+Upy00Z5BRPyIeuPKhYV6bCWozOyZ6kD1aVRnCT3PtNhB/73CwN7VbMjmjochWFk3rF
-	B3HY/lUrfFko4d6rih5HyOMxoPCEh+j4pZ1Md
-X-Received: by 2002:a17:902:e950:b0:295:3f35:a312 with SMTP id d9443c01a7336-29df5abdf36mr54824305ad.20.1765203924567;
-        Mon, 08 Dec 2025 06:25:24 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHLusxfrDXiXne5FSC3yqKkWrlHG22BZERr/Fi6paq2FhLIFr4DrT058tbCaXaTlMtOavPBdw==
-X-Received: by 2002:a17:902:e950:b0:295:3f35:a312 with SMTP id d9443c01a7336-29df5abdf36mr54823985ad.20.1765203923826;
-        Mon, 08 Dec 2025 06:25:23 -0800 (PST)
-Received: from hu-mojha-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29dae4cf97fsm126735465ad.25.2025.12.08.06.25.20
+        d=1e100.net; s=20230601; t=1765205965; x=1765810765;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=J+to6IujjR5asOSoIClqkwi7ZpRp9+FoGFEMQuOxiZM=;
+        b=cHKg0vOkotu6E9IWkouMIkaQ2CJ09XT1DBMI2ZOOA280Mrs5pnDpZa3c8bQJYPgraM
+         zssetasJarjOKpSKfT6xZY8ITRhT2LlC8Uiks9g4KJ6wu2P0RjoEJUh36LdEHGRGetRr
+         O7DABgySMbHUCDwy9hjxu0qN/nlS5/8a4h7ATaqllEu4a8CEMiB6YQYVdfZ3acMgUU33
+         vNpJrLr9TyF0/7940N8VM/8vuLyU6tAaK02v9dgEASj3VsZLWR7aLFnR8cRdd1Sx7Bao
+         z7ubfoOOH9A1kuh8h3vnschVYv4DN+e17vtEXNn7jSPtbjQVeERnLpqQFGAf/rFQBaLK
+         pWtQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWYkvjnmxzVfanYybVCq9Rgnx0m3rzx7FXXJhQ0UERDyYEqK19CoXm25IWhDJ5RFjNlOLUXXEtU9dlN@vger.kernel.org
+X-Gm-Message-State: AOJu0YzsSWq0lDpv69g/XMSloQ9H79cPefwie5qtuFem5uF09OK57F5y
+	Cdysb0xYj9Z46+syyhU9JUa4SkruzRO3mICrtHBZvHduV3H5yV6jfo1Y
+X-Gm-Gg: ASbGncsN8X6HUge7EGwL/P65Kg4z+2EvNkewVaWp5FXl0vF9ceOsjdp1nD61qJ4J82m
+	kAIS8au0mteNW5UoVBaTzKW/dxzYry2hLEKnQehAhBApnfy9M0hk/ATNpUCzA2eZGdQHctDlYNh
+	h4whuEo9XxhqqZUzoBCEhgMsvtWLMrCqyyRQgcBUrr3h6zUQODk3wjyKBQpO5KSZdxgmL/EOI9+
+	nXPZ2YO8nMnFb462b22PzWleeDd0+5CZWb+e/axroxTgIvf2rvz5eMvFchTkBG0oF2/W43Gydwn
+	zTZ8VvDTf4B2qf21H1TOpnCEySHvMnjVUWsEeE+7gPFZjT4uzhARSayg5gtv+9DT7b2ZQ/WywiD
+	xyLiirXsWCEt332yHpLVa/EoENggOnRfN8X4FgQuExjIRMa83+G72wCjXQVLK/jlgZ0DW0MawKc
+	P/t3hrG6qQZtUWig==
+X-Google-Smtp-Source: AGHT+IG8rQqpJ2MB89ONVLWQ+Cg3vkFpX8w8CxK5GGu4BMGraZvYfazZZrEiZpBRcHA5m5CivZzELQ==
+X-Received: by 2002:a05:6402:1d4e:b0:640:9c99:bfac with SMTP id 4fb4d7f45d1cf-6491a3f3b54mr7570377a12.13.1765205965464;
+        Mon, 08 Dec 2025 06:59:25 -0800 (PST)
+Received: from [192.168.0.39] ([79.133.247.80])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-647b2ec300esm11365556a12.1.2025.12.08.06.59.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Dec 2025 06:25:23 -0800 (PST)
-Date: Mon, 8 Dec 2025 19:55:17 +0530
-From: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
-To: Bjorn Andersson <andersson@kernel.org>
-Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v8 11/14] firmware: qcom_scm: Add
- qcom_scm_pas_get_rsc_table() to get resource table
-Message-ID: <20251208142517.wdve2btbcvn2dmq3@hu-mojha-hyd.qualcomm.com>
-References: <20251121-kvm_rproc_v8-v8-0-8e8e9fb0eca0@oss.qualcomm.com>
- <20251121-kvm_rproc_v8-v8-11-8e8e9fb0eca0@oss.qualcomm.com>
- <86f3cb9f-e42d-40f9-9103-1a4953c66c71@oss.qualcomm.com>
- <20251124152538.wt3kzztqmpr76hsx@hu-mojha-hyd.qualcomm.com>
- <p3t7ggu7wg74knfa4x6kauelfalgi6yx7xdgsoemwekpzogetg@a7xwv2s3zxmw>
+        Mon, 08 Dec 2025 06:59:25 -0800 (PST)
+From: Erikas Bitovtas <xerikasxx@gmail.com>
+Subject: [PATCH v3 0/2] Asus ZenFone 2 Laser/Selfie includes a battery
+ measured by voltage mode BMS and a simple GPIO hall effect sensor. The
+ following commits include support for these components.
+Date: Mon, 08 Dec 2025 16:59:19 +0200
+Message-Id: <20251208-b4-battery-hall-v3-0-84e2157705a4@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <p3t7ggu7wg74knfa4x6kauelfalgi6yx7xdgsoemwekpzogetg@a7xwv2s3zxmw>
-X-Proofpoint-ORIG-GUID: c4iZ7yLj5UQ-gex3I5mCCdPZuKRnTNhs
-X-Authority-Analysis: v=2.4 cv=Ks1AGGWN c=1 sm=1 tr=0 ts=6936dfd5 cx=c_pps
- a=IZJwPbhc+fLeJZngyXXI0A==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=kj9zAlcOel0A:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=nmGXgFyiiTx6iAFQcSgA:9
- a=CjuIK1q_8ugA:10 a=uG9DUKGECoFWVXl0Dc02:22
-X-Proofpoint-GUID: c4iZ7yLj5UQ-gex3I5mCCdPZuKRnTNhs
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjA4MDEyMiBTYWx0ZWRfX90tiZgBx9aIP
- 1gVFKqZ1t4eHxVS2XtlzrMwlAnBD9D/7EtxpQQjug/GIl2SPPyzjprgctnHXnVxLFgC1JABu9Po
- LLFmIqH3nemGwJq4a7Fn4mU6OJ5cIKchoC6upJ57N/JTeAFVpug3uK2VfOJk14VTkaNHwVZjkAi
- 3w104NY43ERxQu71nf1Z3vNvExCL4iQGfQXPuNE1hzGcXT1+q5/0d+rrhDwsmPK2dYOW6IpzSEf
- qF8LnnlbickwEkUwBrwuHI1xAt+ht89sZbBFujwD/8Z0lUuSz7BUur/ZRlYHE9jY8ZBeiL52ECN
- 6dGjakocO7bvevW8yQ5sUYzJQ2P9DMOWNVTthRWNKWKM01eOi7EOOS7o4MiWbh0GB5HONdNtPg8
- CN/dBHc8xWwUOOmcrUMvjqYTs5v3RA==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-06_02,2025-12-04_04,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 malwarescore=0 clxscore=1015 bulkscore=0 adultscore=0
- impostorscore=0 spamscore=0 suspectscore=0 lowpriorityscore=0 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512080122
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMfnNmkC/12Pyw6CMBBFf4V0bU1nAKmu/A/jorQDNOGhBRsJ4
+ d8t4AJd3knOuXcm1pOz1LNLNDFH3va2a0OIDxHTlWpL4taEzFBgCigkzxOeq2EgN/JK1TXXmcg
+ UCSOVSVigHo4K+16Nt3vIle2Hzo1rgYflurkA0l+RBy44pPKEMjaQ6exaNsrWR901bBF53MEIf
+ zAG2OCZhERZICR7eN5mOXq+wn/Dd9s8fwDTozhg/QAAAA==
+X-Change-ID: 20251208-b4-battery-hall-c707ae0d8ad4
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
+ phone-devel@vger.kernel.org, Erikas Bitovtas <xerikasxx@gmail.com>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.14.3
 
-On Fri, Dec 05, 2025 at 04:21:07PM -0600, Bjorn Andersson wrote:
-> On Mon, Nov 24, 2025 at 08:55:38PM +0530, Mukesh Ojha wrote:
-> > On Mon, Nov 24, 2025 at 12:48:31PM +0100, Konrad Dybcio wrote:
-> > > On 11/21/25 12:01 PM, Mukesh Ojha wrote:
-> > > > Qualcomm remote processor may rely on Static and Dynamic resources for
-> > > > it to be functional. Static resources are fixed like for example,
-> > > > memory-mapped addresses required by the subsystem and dynamic
-> > > > resources, such as shared memory in DDR etc., are determined at
-> > > > runtime during the boot process.
-> > > > 
-> > > > For most of the Qualcomm SoCs, when run with Gunyah or older QHEE
-> > > > hypervisor, all the resources whether it is static or dynamic, is
-> > > > managed by the hypervisor. Dynamic resources if it is present for a
-> > > > remote processor will always be coming from secure world via SMC call
-> > > > while static resources may be present in remote processor firmware
-> > > > binary or it may be coming qcom_scm_pas_get_rsc_table() SMC call along
-> > > > with dynamic resources.
-> > > > 
-> > > > Some of the remote processor drivers, such as video, GPU, IPA, etc., do
-> > > > not check whether resources are present in their remote processor
-> > > > firmware binary. In such cases, the caller of this function should set
-> > > > input_rt and input_rt_size as NULL and zero respectively. Remoteproc
-> > > > framework has method to check whether firmware binary contain resources
-> > > > or not and they should be pass resource table pointer to input_rt and
-> > > > resource table size to input_rt_size and this will be forwarded to
-> > > > TrustZone for authentication. TrustZone will then append the dynamic
-> > > > resources and return the complete resource table in output_rt
-> > > > 
-> > > > More about documentation on resource table format can be found in
-> > > > include/linux/remoteproc.h
-> > > > 
-> > > > Signed-off-by: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
-> > > > ---
-> > > 
-> > > [...]
-> > > 
-> > > > +int qcom_scm_pas_get_rsc_table(struct qcom_scm_pas_context *ctx, void *input_rt,
-> > > > +			       size_t input_rt_size, void **output_rt,
-> > > > +			       size_t *output_rt_size)
-> > > > +{
-> > > > +	unsigned int retry_num = 5;
-> > > > +	int ret;
-> > > > +
-> > > > +	do {
-> > > > +		*output_rt = kzalloc(*output_rt_size, GFP_KERNEL);
-> > > > +		if (!*output_rt)
-> > > > +			return -ENOMEM;
-> > > > +
-> > > > +		ret = __qcom_scm_pas_get_rsc_table(ctx->pas_id, input_rt,
-> > > > +						   input_rt_size, output_rt,
-> > > > +						   output_rt_size);
-> > > > +		if (ret)
-> > > > +			kfree(*output_rt);
-> > > > +
-> > > > +	} while (ret == -EAGAIN && --retry_num);
-> > > 
-> > > Will firmware return -EAGAIN as a result, or is this to handle the
-> > > "buffer too small case"?
-> > 
-> > The latter one where a re-attempt could pass..
-> > 
-> 
-> But why would we need more than 1 retry here? In what cases do we expect
-> that the first attempt is too small, and then the next 4 attempts are
-> also going to be too small?
-> 
-> Why is 5 a good number?
+Signed-off-by: Erikas Bitovtas <xerikasxx@gmail.com>
+---
+Changes in v3:
+- Added multiple temperature points for ocv-capacity-celsius
+- Added capacity tables for every temperature point
+- Link to v2: https://lore.kernel.org/r/20251121-battery-hall-v2-0-d29e0828f214@gmail.com
 
-This was a misunderstanding, will fix it as per latest discussion.
+Changes in v2:
+- Reworded the battery commit to include a link to the downstream code
+  on which it was based.
+- Separated hall sensor pin configuration from gpio-keys.
+- Link to v1: https://lore.kernel.org/r/20251115-battery-hall-v1-0-1586283d17c7@gmail.com
 
+---
+Erikas Bitovtas (2):
+      arm64: dts: qcom: msm8939-asus-z00t: add battery
+      arm64: dts: qcom: msm8939-asus-z00t: add hall sensor
+
+ arch/arm64/boot/dts/qcom/msm8939-asus-z00t.dts | 79 +++++++++++++++++++++++++-
+ 1 file changed, 78 insertions(+), 1 deletion(-)
+---
+base-commit: 82bcd04d124a4d84580ea4a8ba6b120db5f512e7
+change-id: 20251208-b4-battery-hall-c707ae0d8ad4
+
+Best regards,
 -- 
--Mukesh Ojha
+Erikas Bitovtas <xerikasxx@gmail.com>
+
 
