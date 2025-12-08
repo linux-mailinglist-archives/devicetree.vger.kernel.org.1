@@ -1,77 +1,78 @@
-Return-Path: <devicetree+bounces-245280-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245281-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDC8CCAE32E
-	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 22:12:53 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id A48C3CAE33D
+	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 22:16:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7AD3A304AC9C
-	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 21:12:50 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id F19AB300BAEE
+	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 21:16:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BEEF2E03EA;
-	Mon,  8 Dec 2025 21:12:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D5CE2D63E3;
+	Mon,  8 Dec 2025 21:16:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cN1qyvL3"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZFvOCcKr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C53952D7DE2
-	for <devicetree@vger.kernel.org>; Mon,  8 Dec 2025 21:12:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E7EA53E0B
+	for <devicetree@vger.kernel.org>; Mon,  8 Dec 2025 21:16:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765228369; cv=none; b=V6pFoVK9t20bxJua/rWLS3Z4tLQlq6ItFbji2NKDANv/HaRrJl+rbVuwtPP3/kpvqeecYHobEJnAq87ffi7ZYGLLyDl7ESiCR6aqIyCPGZfVcv9DJXbsTcnR2BWGfVVPsaPcIYIFZr9dJRflD8dp7HINSxoY6lys++gT0BcFKhg=
+	t=1765228616; cv=none; b=ptuyp7EBi164tBqhG9bO9tZQc0nT52U2h3LxhuOQZHLIHNTOvgXDl5EHpH+ILspgOB+yMZjN36vA2PnEBZyBm73AeQSApCZHcUF28W2EtaCAMxoBMmqa75CLsrcf0fCo0q71xioIRTo4FC9V4sC5Eza0DXZvlOllMMJcNLbTgq0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765228369; c=relaxed/simple;
-	bh=/eT67ox63Y2ukyMLEkJ7o4b1T9x/HDKX33n+Cz5ZXX0=;
+	s=arc-20240116; t=1765228616; c=relaxed/simple;
+	bh=aTp6s8SOajX1loYMMUVMEVq/+ub0M7yL7CO4E/6jnR0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=byxSTpC7nCqNLvAjRNJ5SRFh1do5EQ263cW2VMyGmzjNdJqDWHAYuxd8rzEbcH/qnu57kwZlKPW+MbZm1nQrJRp/2DvzTyutodCQBue/1CHIqAxA1bCBprpckcnh8yK4VX5iskHV0vYz6JPhLZ3htTLbBxy+lE5dU7m/hGXl/4Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cN1qyvL3; arc=none smtp.client-ip=209.85.221.50
+	 Content-Type:Content-Disposition:In-Reply-To; b=SPwcseKmCmPMydVKYA9wEury27SX2V70Y5oo1De01Zk0xd1pYeDIJPYZXcQ0NFjyeX4T+mH4WvoZHWzHmZV1BUZQUr46PLaxTK4tyWBzHyQmqpAiGV0mRnsBdCZfBhx/rXqYrSwljuMEFbhk882D49UNQpnNubp0kcL/b4fCbio=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZFvOCcKr; arc=none smtp.client-ip=209.85.128.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-42b32ff5d10so3800555f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 08 Dec 2025 13:12:47 -0800 (PST)
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-477632d9326so33432915e9.1
+        for <devicetree@vger.kernel.org>; Mon, 08 Dec 2025 13:16:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1765228366; x=1765833166; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1765228612; x=1765833412; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=rv7pv8F5RO+cWw9DM2GqkbgxyRJgD6vx59IxXgSv8+A=;
-        b=cN1qyvL3CuoYUrWP6lMSGlsWS+dW7HAOaUGuL4MorolNH1Be3bero3WQi4OYnUiCi6
-         5ejAcNsAtpfY3LL1Ce1a8zGNtfJP5k9ojjYZj7NMsT1iLwsvU3BMuq100YSHiPKTAmZ0
-         93aNu+gDtOluYvSNpr+lbIdvLQvweQsyiLOAKcOZCBCD1YXb4MrOS9juZ7c5VSoRwHex
-         8rb2bAXPj6xfEd9MPCyhqVvH8tWV3C0gXvffzoIKf7c9tR2ulcwWzwWDYkKelakMUeeH
-         8Wwxti7Wxxby0wHoXHclTCmFRVrcjX0ygnO74ErBxUbbBlbJbnel6J9lHzXUASrNtP3r
-         TaTg==
+        bh=1QXqfDHNutyIta4OGfol2oPFrTaak/Tfgf2D3NkaM3c=;
+        b=ZFvOCcKrbtGDG/qmBLKyFmvXE+8mV1IpLrZTgfGjTIdf2s62lT+90X8pmcFM8Jifm/
+         LXccsJb1CGaE8PWcYqpHZtbZHyZ1Hsku+XJxagqZ1y0ItAQbQoltbPP8aSS128Fuv8Vb
+         6Ar9S7wKZtbkIa8VhqJ0Rv53T8TOG82dST5XQ6QzpSQif8pytUXX9qyal6g+gRBAvWY4
+         JxmTFM/cMWDWe2wQ6NRbxOzQzHQci772hdcwyqIwCRiHT+33xsXKOmUBalW+5cXCFlTF
+         Vm+5XmWXIgmRJ/noDQfRTL0AyBKoosFDpYftonXfoDA7olgxkT9CbkUTy10F33rnHy2H
+         gKgg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765228366; x=1765833166;
+        d=1e100.net; s=20230601; t=1765228612; x=1765833412;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=rv7pv8F5RO+cWw9DM2GqkbgxyRJgD6vx59IxXgSv8+A=;
-        b=wM407VMkqXMJJc0bvsK47RORZiadMJWXrGSZscCtl5Zt9rrFawnb5oMl0pUIBxUe8K
-         QbIMQK8g8G1H18U6xixd3Fsun9funLlr+86TwyulkTIfcQQkHrMT7H9/Ly8PdSOu9Vjp
-         g3H7KT1ZRM0eKtAdZHu8cxmnrRSuUbyx4MaevMhvwzQ4UgLvgTUK79TuyJuR891EG57h
-         o8XWAQJCR+CUXZZ6tTfYkQbfSO68tITbn01/xutff+pPVYeoKexF8BNB0Qnt+WjeQomM
-         TwlhlRZnhHkWPX7A4Qz8R41rHH/CwgUusfs+7ikxNsvnOV6XYjk6jdQyDva3v14gq6V1
-         hOsg==
-X-Forwarded-Encrypted: i=1; AJvYcCU7+DnA5sqR9XPlpQaaVhoPROvSTV7ewHMhgaHJNhu8S85+yB2+S4GavGypjarPX7UNr1w3+BhDm0Ad@vger.kernel.org
-X-Gm-Message-State: AOJu0YzIqfgZ+PRtRq0grtdR/K9o8Kfdf1KMio2Cb6TfohnZSCcWWoN5
-	QjrIyWVhm7zs24COf0liVB2Nz7FJzsOgO9N5BSSrw8NXuZCVjp+a9PD+
-X-Gm-Gg: ASbGnctugfa9epZgkcTpIUnFa01Lv7CnsY9mmVmsUXdUchxy+0NxS2Wj4J/wZtJRKci
-	HnrwlZZhD14eYIseVHWQI/11l5BfnWQ6ArGQVh/JuFNyQrjl0QNqPsqPhPLF1KqQoihTbx3zIZc
-	4nveMhDbAKJIxtVZCFyO2XO3eCv0mztaX4S8sa2F+bwuTg4eVf6S/65YM9BtWJDlOunw4BAqmEL
-	KsVWZqbreHyZG4dBHrTjM91Ce6bgxbql5VJligU89noal+gwgxPQMkW1dhNAVAgYyT2BLQmSqST
-	JRQ7IzuVDqcWlXW2xh3yhzABqiARRHKIBPgF+PYv2OnEI1c9W1px9kkx0QGo1s+lFJXzeEJMBcw
-	Gb+jPLEOYjdETWuSdrVa+jG52vvWEZG5jnVAhreoOknH9qJ4bMm7f+1RfnTMR7nFZ85Jcrwo26S
-	CKKlWOy0nIxfCvs4YpdUyiwpCqU3BaPQTKZ8XlU+4/+LoKO4vOUoT5nVdjIOkYW3Q/tNk=
-X-Google-Smtp-Source: AGHT+IGziC8WJUD4dISbRmg+IA/4zSrbcv8g/8vcOpn2B+LAP5qj3Xlp2TJThfuKL3AT7cfP8cG91w==
-X-Received: by 2002:a5d:4741:0:b0:429:cacf:1065 with SMTP id ffacd0b85a97d-42f9def752dmr564283f8f.17.1765228366006;
-        Mon, 08 Dec 2025 13:12:46 -0800 (PST)
+        bh=1QXqfDHNutyIta4OGfol2oPFrTaak/Tfgf2D3NkaM3c=;
+        b=BI3yiKH6k65b9lGQxfa7aGOjJ7jOysnMPItTQXyUHHocpmAcqsyEIqse2aMixEz0qy
+         h1VlNi0HdR55Ju1jbljVTQpkLGez3rHaQ3PmbouU7crm+9pxNpdUq8po5Tnbc455twso
+         3nkqvMDWOvRmQ/Jq6w3fkh1lEMAwAJ2Z98bGEHFbi7VQKLONb6U7U0zhyBjdrOFmNQt8
+         0BtPaOITX49kCoc7P5RcjS/g6k5bf1CfDA0Ch1jeveje5dnnqzZa4HMtiYUF7tY1YRSU
+         qnIHmKdZpdAdPgdHWwgILyNk3dTmN/BtTNVyr6UAmZSFJb5I67/9HX6SEXNy0S0xdfL3
+         WovA==
+X-Forwarded-Encrypted: i=1; AJvYcCU79hwQfYGOdatFQn98U8Fpq5FjKzY6FBAakgzByvDr0TMJGJIKvWf2vfSc3WQc+XtXLpR3DLW3qHzw@vger.kernel.org
+X-Gm-Message-State: AOJu0YxHbXporbD+ysJ1TlNvrkha6EQkEV57rvEHMBoB3pMulnoW0CyZ
+	X8TsnPGtaX3KhGq4wm/NDBESnpjvYpTqA0XWk/soYWnR3gVlUXE47NMD
+X-Gm-Gg: ASbGncuHigWdxBCUTlqwAhJB+uR2FqsD+Of/Kxhwf9IbxnD93dCy+XltMmQS0/rnKMV
+	p/8IWzxAejHDwfqnNOVfSGc8WPiQoVAK4E0OFGNboYyZEZ82FXs5X/ih0dftuiRAY5HgqzbN2hc
+	oZV2B8teTg921mHd/rAHM3ai5Boe2EQ0YpuX05Hwe2enWZYrI6p/leykcX2xSFg6R+aoiecJwUc
+	JpfLcFo6U04P3sPIn42yUdutxL3TjodVFt3axdif4g4jwX4UodhEIFbE2U/4emAjCZ7XZVeXaoL
+	EIwOPak7aHtjChwThV9bFEde0bvCVDxkEHQhRxIiLDL20o3/pwGMxGHp/jyZ+0sma32sKlUoXeg
+	asAbQbQDb9JjXfLdeJ+rcrbqt11MvgzGwPKcuYmgrGDAsWbbwILI9/Gev/zKRx1xfAQuCcE4lnq
+	U7Y0iYuZYAqFT9Tr1e0JdCCG7nDzlRHBE0ZsfoR7mNkfkw+A1dLi7MFwsfKxkI//jOfw3UzPhuj
+	r2XrA==
+X-Google-Smtp-Source: AGHT+IGCE5UzYrl8pkDkRLcq1d5zP7aR+wQ6bk6Bx1MWYRaV0fOZoJKajnRj+Uy5J+cjFXmvlWqpjA==
+X-Received: by 2002:a05:600c:1c10:b0:46f:b327:ecfb with SMTP id 5b1f17b1804b1-47939dfa487mr95372755e9.9.1765228612306;
+        Mon, 08 Dec 2025 13:16:52 -0800 (PST)
 Received: from HYB-DlYm71t3hSl.ad.analog.com ([2001:a61:1226:7701:cdbc:9893:8abf:1309])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42f7cbfee66sm27548839f8f.11.2025.12.08.13.12.45
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47a7d2e7110sm3983905e9.0.2025.12.08.13.16.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Dec 2025 13:12:45 -0800 (PST)
-Date: Mon, 8 Dec 2025 22:12:43 +0100
+        Mon, 08 Dec 2025 13:16:52 -0800 (PST)
+Date: Mon, 8 Dec 2025 22:16:35 +0100
 From: Jorge Marques <gastmaier@gmail.com>
 To: Jonathan Cameron <jic23@kernel.org>
 Cc: Jorge Marques <jorge.marques@analog.com>, 
@@ -82,11 +83,11 @@ Cc: Jorge Marques <jorge.marques@analog.com>,
 	Jonathan Corbet <corbet@lwn.net>, Linus Walleij <linus.walleij@linaro.org>, 
 	Bartosz Golaszewski <brgl@bgdev.pl>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
 	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v3 7/9] iio: adc: ad4062: Add IIO Events support
-Message-ID: <trpmhlupu3vwzrulnctewwnfxwtlbr6iovtw6whyzfpjbwnpdh@rcdykddqwoal>
+Subject: Re: [PATCH v3 3/9] iio: adc: Add support for ad4062
+Message-ID: <krbiav67bscvqs6bumx5ay5tk4axeuc4z7gbn26nxgaoqrdfiz@dqzqpgcpclnz>
 References: <20251205-staging-ad4062-v3-0-8761355f9c66@analog.com>
- <20251205-staging-ad4062-v3-7-8761355f9c66@analog.com>
- <20251206175231.3522233f@jic23-huawei>
+ <20251205-staging-ad4062-v3-3-8761355f9c66@analog.com>
+ <20251206173459.727fb3f5@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -95,70 +96,163 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251206175231.3522233f@jic23-huawei>
+In-Reply-To: <20251206173459.727fb3f5@jic23-huawei>
 
-On Sat, Dec 06, 2025 at 05:52:31PM +0000, Jonathan Cameron wrote:
-> On Fri, 5 Dec 2025 16:12:08 +0100
+On Sat, Dec 06, 2025 at 05:34:59PM +0000, Jonathan Cameron wrote:
+> On Fri, 5 Dec 2025 16:12:04 +0100
 > Jorge Marques <jorge.marques@analog.com> wrote:
 > 
-> > Adds support for IIO Events. Optionally, gp0 is assigned as Threshold
-> > Either signal, if not present, fallback to an I3C IBI with the same
-> > role.
+> > The AD4060/AD4062 are versatile, 16-bit/12-bit, successive approximation
+> > register (SAR) analog-to-digital converter (ADC) with low-power and
+> > threshold monitoring modes.
 > > 
 > > Signed-off-by: Jorge Marques <jorge.marques@analog.com>
-> > ---
 Hi Jonathan,
+> Hi Jorge,
+> 
+> I replied late to some of the earlier review discussion as I've been
+> away.  Make sure you check those as well as this review as I may have
+> forgotten to repeat something here.
+> 
+> Thanks,
+> 
+> Jonathan
+> 
+> > +#include <linux/iio/sysfs.h>
+> 
+> What is this here for?  It is not needed in a typical modern IIO driver.
+> (One day I hope to finish getting rid of the remaining users and drop this
+> header!)
+> 
+IIO_DEVICE_ATTR_RW for events/sampling_frequency in the events commit.
+I will add only add at that commit.
+> > +#include <linux/interrupt.h>
+> > +#include <linux/jiffies.h>
+> > +#include <linux/math.h>
+> > +#include <linux/minmax.h>
+> > +#include <linux/pm_runtime.h>
+> > +#include <linux/property.h>
+> > +#include <linux/regmap.h>
+> > +#include <linux/regulator/consumer.h>
+> > +#include <linux/string.h>
+> > +#include <linux/types.h>
+> > +#include <linux/units.h>
+> > +#include <linux/unaligned.h>
+> > +#include <linux/util_macros.h>
+> 
+> > +static const struct iio_scan_type ad4062_scan_type_12_s[] = {
+> > +	[AD4062_SCAN_TYPE_SAMPLE] = {
+> > +		.sign = 's',
+> > +		.realbits = 16,
+> 
+> Not 12?
+Yes, and for burst avg mode, 14 bits.
+> 
+> > +		.storagebits = 32,
+> Given we are doing data mangling anyway why not store in a 16 bit value.
+> 
+> BTW it would have been easier to spot issues with this if you'd introduced
+> the scan type stuff with the use of scans in the patch that adds buffered
+> support.  So please move this stuff there.
+>
+This can be done, just note that for ad4062 in burst avg mode the
+realbits is 24 bits, so the storagebits is 32 bits only on that case
+and will requires a few conditionals to handle just this case.
 
-> > +	if (!iio_device_claim_direct(indio_dev))
-> > +		return -EBUSY;
+To not overly complicated the logic, for ad4062 I will always read
+32-bits still. st->reg_addr_conv then takes:
+	// IBI Fallback
+	st->reg_addr_conv = st->chip->prod_id == 0x7C ? AD4062_REG_CONV_TRIGGER_32BITS :
+							AD4062_REG_CONV_TRIGGER_16BITS;
+	// GPO IRQ
+	st->reg_addr_conv = st->chip->prod_id == 0x7C ? AD4062_REG_CONV_READ_32BITS :
+							AD4062_REG_CONV_READ_16BITS;
+
+Then, for sample size:
+	const bool is_32b = st->chip->prod_id == 0x7C;
+	const size_t _sizeof = is_32b ? sizeof(st->buf.be32) : sizeof(st->buf.be16);
+instead of
+	const bool is_32b = st->mode == AD4062_BURST_AVERAGING_MODE && st->chip->prod_id == 0x7C;
+	const size_t _sizeof = is_32b ? sizeof(st->buf.be32) : sizeof(st->buf.be16);
+	+ extra st->reg_addr_conv_avg that may or may not be equal to
+	st->reg_addr_conv.
+
+Note that the header section of the I3C transfer (8-bits) occurs
+at 1MHz, while the reading in 12.5MHz. I wouldn't go as far as say it is
+negligible, but for the part, protocol and software overhead, it
+wouldn't provide ground-breaking higher effective maximum
+sampling frequency.
+> > +		.endianness = IIO_BE,
+> > +	},
+> > +	[AD4062_SCAN_TYPE_BURST_AVG] = {
+> > +		.sign = 's',
+> > +		.realbits = 16,
+> > +		.storagebits = 32,
+> > +		.endianness = IIO_BE,
+> > +	},
+> > +};
 > 
-> Similar to below. Consider factoring out this stuff or I guess wait
-> for an ACQUIRE() based standard solution.
-> 
+ 
 > > +
-> > +	if (!iio_device_claim_direct(indio_dev))
-> > +		return -EBUSY;
+> > +static const struct ad4062_chip_info ad4060_chip_info = {
+> > +	.name = "ad4060",
+> > +	.channels = { AD4062_CHAN(12) },
+> > +	.prod_id = 0x7A,
+> > +	.max_avg = AD4060_MAX_AVG,
 > 
-> Whilst I do plan to take a look at whether we can do an ACQUIRE pattern
-> like the runtime pm ones, for now (unless you fancy taking that on)
-> I'd be tempt	ed to factor out this stuff under the direct mode claim into
-> a helper that can then do direct returns. That should end up easier to ready
-> that this.
-I will factor out, adding _dispatch() methods to return directly, so
-
-	if (st->wait_event)
-		return -EBUSY;
-
-	switch (type) {
-	case IIO_EV_TYPE_THRESH:
-		switch (info) {
-		case IIO_EV_INFO_VALUE:
-			return __ad4062_write_event_info_value(st, dir, val);
-	// ...
-
-> > +	if (st->wait_event) {
-> > +		ret = -EBUSY;
-> > +		goto out_release;
-> > +	}
+> This is a little confusing. I guess it's the maximum register value, not the
+> number of samples averaged.  Perhaps rename.
+This isn't doing much, I will just replace with the value and bump the
+type from u8 to u16.
+ad4060 max_avg:  256
+ad4062 max_avg: 4096
+> 
+> > +};
 > > +
-> > +	switch (type) {
-> > +	case IIO_EV_TYPE_THRESH:
-> > +		switch (info) {
-> > +		case IIO_EV_INFO_VALUE:
-> > +			ret = __ad4062_write_event_info_value(st, dir, val);
-> > +			break;
-> > +		case IIO_EV_INFO_HYSTERESIS:
-> > +			ret = __ad4062_write_event_info_hysteresis(st, dir, val);
-> > +			break;
-> > +		default:
-> > +			ret = -EINVAL;
-> > +			break;
-> > +		}
-> > +		break;
-> > +	default:
-> > +		ret = -EINVAL;
-> > +		break;
-> > +	}
+> > +static const struct ad4062_chip_info ad4062_chip_info = {
+> > +	.name = "ad4062",
+> > +	.channels = { AD4062_CHAN(16) },
+> > +	.prod_id = 0x7C,
+> > +	.max_avg = AD4062_MAX_AVG,
+> > +};
+> > +
+> > +static int ad4062_set_oversampling_ratio(struct ad4062_state *st, unsigned int val)
+> > +{
+> > +	const u32 _max = GENMASK(st->chip->max_avg, 0)  + 1;
+> 
+> One too many spaces before +
+> 
+Here just
+	const u32 _max = st->chip->avg_max;
+...
+> > +		.data.in = &st->buf.be32,
+> > +		.len = sizeof(st->buf.be32),
+> > +		.rnw = true,
+> > +	};
+> > +
+> > +	ACQUIRE(pm_runtime_active_try_enabled, pm)(&st->i3cdev->dev);
+> 
+> Rafael did propose a cleaner way of doing this. I'm not sure if it went
+> in during the merge window or not.  Take a look to see if it anything
+> has been added in the PM pull request (IIRC Rafael converted all existing
+> users to the new scheme in that patch set so should be easy to find.)
+> 
+Yep got merged.
+https://github.com/torvalds/linux/commit/ef8057b07c72a817537856b98d6e7493b9404eaf
+Will do
+	PM_RUNTIME_ACQUIRE(&st->i3cdev->dev, pm);
+	ret = PM_RUNTIME_ACQUIRE_ERR(&pm);
+	if (ret)
+		return ret;
+
+> > +	ret = ACQUIRE_ERR(pm_runtime_active_try_enabled, &pm);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	ret = ad4062_set_operation_mode(st, st->mode);
+> > +	if (ret)
+> > +		return ret;
+> > +
 Best regards,
 Jorge
 
