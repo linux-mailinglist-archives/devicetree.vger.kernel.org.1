@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-245086-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245087-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AEC2CAC1D6
-	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 07:05:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 08A51CAC1DF
+	for <lists+devicetree@lfdr.de>; Mon, 08 Dec 2025 07:09:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B7AEA3008FAA
-	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 06:05:30 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DEE5D300B2B6
+	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 06:09:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECDAC18DB2A;
-	Mon,  8 Dec 2025 06:05:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41AA91C861D;
+	Mon,  8 Dec 2025 06:09:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QNf+2RTM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o6aQgkoT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3EDA322A;
-	Mon,  8 Dec 2025 06:05:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E41B1CAA4;
+	Mon,  8 Dec 2025 06:09:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765173929; cv=none; b=mqT5saPpUQ9mnSTlFxbQuZETQ+cT7pJqYdydmOwz/rkq5Wv6kSR/a1aGJh73qsR489QVBUqqq9L5zjTwbZgPs3eGEqe39jxarnjvcEJxZKwdRryqZIMCclx8ckk21Xy6P4yTVfqM0xCgK4snmsTFKnTRS5LPB+oL1edOBQlCQ4o=
+	t=1765174162; cv=none; b=TWGPjC4gQSa3u/aA1UABZwSmvLSe4j6Tb7RLGr4VxN8q6K5Ee1lx336+LlnQXC+eJwyiDjtKqomQwrmj2gc35mzxN39upzJenxfUZx/CSI26a4OQNE8h4QMkvaG2q3bxmbb0RVzcY7x8JYT/NG0NZSo14xy6e1s7lrGGT0y8Sr0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765173929; c=relaxed/simple;
-	bh=BBHCM7UdnMGlXe5fMxZRh+NVNz0ZoKGyMBiui7+zKYk=;
+	s=arc-20240116; t=1765174162; c=relaxed/simple;
+	bh=h3PcJlKbGRviaTgnIx1PhOAjnZm0y28gwbkABoOO4Cw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PM2NIn7pznUhM6L6MyyEcMtXS5Pny3VCJPQ7Yau21fbcO4c6kcNbDRgh2dtrq+8p7r3fgtDBBztuueJI0P5rrkyE9SsqrhzkguZI6ZZr7mZHkJmr+L8R3BpZ9aLinGrSJT4BNSt/GH4BhoDwLQ627AK8NufnCZxNjiekeu9R1e0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QNf+2RTM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96438C4CEF1;
-	Mon,  8 Dec 2025 06:05:27 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=kaWn/RoH45gBnMIYZ3vCSO6dWdA/qk8BbhCgpmdJsgIqeBRAOvuZLd7wqbHtsUGDftXw2dAN77ZtgEj/+bIUOfcx5zKBYWXH8KJyWPhcqWmU52S+P6R0eJzb/vzdKTgQXVFkZXZ5ocjB3D0b9WeQ0ueVnaE7WqB/60JGkqsRVWc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o6aQgkoT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36BA4C4CEF1;
+	Mon,  8 Dec 2025 06:09:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765173929;
-	bh=BBHCM7UdnMGlXe5fMxZRh+NVNz0ZoKGyMBiui7+zKYk=;
+	s=k20201202; t=1765174160;
+	bh=h3PcJlKbGRviaTgnIx1PhOAjnZm0y28gwbkABoOO4Cw=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=QNf+2RTMhdW+KuaJOmwBqKMO/o/xVRdIr7O1GTLfj/2bTIl2s/E+tiJ4oT7OOVan0
-	 pbSXnQ6n1jCZC/AZ9gk49LAt6Vhfbro8FN/u3S/rHpM7GgZp20timg/qZluBOOr5H0
-	 UH22s8PNHMzSx6N4vvdjktqOlfB3DcW6Prr7zKc5qltCc5crXO7+elioXRs0pZHFPT
-	 HiwaX/gaMEf4+8NYTVQpjkeLcqPuTf5OsoknrMS+eVFZ2WGyWH8s2HIIKx1XOYZ0PQ
-	 rFwkb95Frft0HpqTwLMrGCnzPMgkn53wGT/Gi2EIfBfkC6hrzHfGelPtL9boTE8tRk
-	 FvioKkJOMOg8A==
-Message-ID: <6c0639e2-dc59-4e0f-be42-224a98b37f75@kernel.org>
-Date: Mon, 8 Dec 2025 07:05:26 +0100
+	b=o6aQgkoT0CQhOSKhfkLosHB5iOFDZzprzVERJKEy12jqgk88j4UkftIUAVu6r2ObP
+	 izvCQKbi7mAKg2S1CtVs+sKFbjw+D3eQvLanjNXCaOF2UCrKzbpQi6Qkngz1g/ChkQ
+	 fm+Y52za/khgzTTyiQdO06umjb1IS1GXKthnYHfH72oxZW32BxttXRtcWYcxjv/wqE
+	 29MO+xhIu3bPGZChfXoh0wNLu7MnecJvdDYrvdQEj2uloYmRJQGoqdVvcYIuvK8SWC
+	 E2IWtoa4zx9PZZC1Kz6guXUfe221u5ZZ5rOKsfX1IH1t0Zk8ku2q4fjNQBA50cSMw4
+	 gsVGEak/gCpmQ==
+Message-ID: <b5731ee5-8a16-40f1-8418-07c45a97c609@kernel.org>
+Date: Mon, 8 Dec 2025 07:09:16 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,15 +48,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 1/2] ASoC: rt5575: Add the codec driver for the ALC5575
-To: Oder Chiou <oder_chiou@realtek.com>, cezary.rojewski@intel.com,
- broonie@kernel.org, lgirdwood@gmail.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: perex@perex.cz, linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- alsa-devel@alsa-project.org, flove@realtek.com, shumingf@realtek.com,
- jack.yu@realtek.com, derek.fang@realtek.com
-References: <20251201105926.1714341-1-oder_chiou@realtek.com>
- <20251201105926.1714341-2-oder_chiou@realtek.com>
+Subject: Re: [PATCH 2/4] pwm: sun50i: Add H616 PWM support
+To: Richard Genoud <richard.genoud@bootlin.com>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>, Philipp Zabel <p.zabel@pengutronix.de>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org
+References: <20251205100239.1563353-1-richard.genoud@bootlin.com>
+ <20251205100239.1563353-3-richard.genoud@bootlin.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -102,136 +106,33 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251201105926.1714341-2-oder_chiou@realtek.com>
+In-Reply-To: <20251205100239.1563353-3-richard.genoud@bootlin.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 01/12/2025 11:59, Oder Chiou wrote:
-> +
-> +static int rt5575_i2c_read(void *context, unsigned int reg, unsigned int *val)
-> +{
-> +	struct i2c_client *client = context;
-> +	struct rt5575_priv *rt5575 = i2c_get_clientdata(client);
-> +
-> +	regmap_read(rt5575->dsp_regmap, reg | RT5575_DSP_MAPPING, val);
-> +
-> +	return 0;
-> +}
-> +
-> +static int rt5575_i2c_write(void *context, unsigned int reg, unsigned int val)
-> +{
-> +	struct i2c_client *client = context;
-> +	struct rt5575_priv *rt5575 = i2c_get_clientdata(client);
-> +
-> +	regmap_write(rt5575->dsp_regmap, reg | RT5575_DSP_MAPPING, val);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct regmap_config rt5575_regmap = {
-> +	.reg_bits = 16,
-> +	.val_bits = 32,
-> +	.reg_stride = 4,
-> +	.max_register = 0xfffc,
-> +	.readable_reg = rt5575_readable_register,
-> +	.reg_read = rt5575_i2c_read,
-> +	.reg_write = rt5575_i2c_write,
-> +	.use_single_read = true,
-> +	.use_single_write = true,
-> +};
-
-OF device ID table goes around here - together with I2C.
-> +
-> +static const struct i2c_device_id rt5575_i2c_id[] = {
-> +	{ "rt5575" },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(i2c, rt5575_i2c_id);
-> +
-> +static int rt5575_i2c_probe(struct i2c_client *i2c)
-> +{
-> +	struct rt5575_priv *rt5575;
-> +	struct device *dev = &i2c->dev;
-> +	int ret, val;
-> +
-> +#if IS_ENABLED(CONFIG_SND_SOC_RT5575_SPI)
-
-No ifdefs in driver code.
-
-> +	if (!rt5575_spi && of_device_is_compatible(dev->of_node, rt5575_of_match[1].compatible))
-
-No, use driver match data if ever, but this is just wrong. You said it
-depends on SPI flash, not SPI interface.
-
-> +		return -EPROBE_DEFER;
-> +#endif
-> +
-> +	rt5575 = devm_kzalloc(dev, sizeof(struct rt5575_priv),
-> +				GFP_KERNEL);
-> +	if (rt5575 == NULL)
-
-This is not Linux coding style. Open existing drivers. It's everywhere
-written (!foo)
-
-> +		return -ENOMEM;
-> +
-> +	i2c_set_clientdata(i2c, rt5575);
-> +
-> +	rt5575->i2c = i2c;
-> +
-> +	rt5575->dsp_regmap = devm_regmap_init_i2c(i2c, &rt5575_dsp_regmap);
-> +	if (IS_ERR(rt5575->dsp_regmap)) {
-> +		ret = PTR_ERR(rt5575->dsp_regmap);
-> +		dev_err(dev, "Failed to allocate register map: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	rt5575->regmap = devm_regmap_init(dev, NULL, i2c, &rt5575_regmap);
-> +	if (IS_ERR(rt5575->regmap)) {
-> +		ret = PTR_ERR(rt5575->regmap);
-> +		dev_err(dev, "Failed to allocate register map: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	regmap_read(rt5575->regmap, RT5575_ID, &val);
-> +	if (val != RT5575_DEVICE_ID) {
-> +		dev_err(dev, "Device with ID register %08x is not rt5575\n", val);
-> +		return -ENODEV;
-> +	}
-> +
-> +	regmap_read(rt5575->regmap, RT5575_ID_1, &val);
-> +	if (!val) {
-> +		dev_err(dev, "This is not formal version\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	return devm_snd_soc_register_component(dev, &rt5575_soc_component_dev, rt5575_dai,
-> +		ARRAY_SIZE(rt5575_dai));
-> +}
-> +
-> +static struct i2c_driver rt5575_i2c_driver = {
+On 05/12/2025 11:02, Richard Genoud wrote:
+> +static struct platform_driver h616_pwm_driver = {
 > +	.driver = {
-> +		.name = "rt5575",
-> +		.owner = THIS_MODULE,
-
-Please drop it.
-
-Please run standard kernel tools for static analysis, like coccinelle,
-smatch and sparse, and fix reported warnings. Also please check for
-warnings when building with W=1 for gcc and clang. Most of these
-commands (checks or W=1 build) can build specific targets, like some
-directory, to narrow the scope to only your code. The code here looks
-like it needs a fix. Feel free to get in touch if the warning is not clear.
-
-> +		.of_match_table = of_match_ptr(rt5575_of_match),
-
-You have warning here. Drop of_match_ptr.
-
+> +		.name = "h616-pwm",
+> +		.of_match_table = h616_pwm_dt_ids,
 > +	},
-> +	.probe = rt5575_i2c_probe,
-> +	.id_table = rt5575_i2c_id,
+> +	.probe = h616_pwm_probe,
 > +};
-> +module_i2c_driver(rt5575_i2c_driver)
+> +module_platform_driver(h616_pwm_driver);
+> +
+> +MODULE_ALIAS("platform:h616-pwm");
+
+You should not need MODULE_ALIAS() in normal cases. If you need it,
+usually it means your device ID table is wrong (e.g. misses either
+entries or MODULE_DEVICE_TABLE()). MODULE_ALIAS() is not a substitute
+for incomplete ID table.
+
+
+> +MODULE_AUTHOR("Richard Genoud <richard.genoud@bootlin.com>");
+> +MODULE_DESCRIPTION("Allwinner H616 PWM driver");
+> +MODULE_LICENSE("GPL");
+
+
 Best regards,
 Krzysztof
 
