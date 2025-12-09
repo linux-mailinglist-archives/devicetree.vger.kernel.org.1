@@ -1,66 +1,60 @@
-Return-Path: <devicetree+bounces-245450-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245451-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F62DCB10E1
-	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 21:50:41 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4465BCB10F0
+	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 21:52:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E9FB530AB2CA
-	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 20:50:38 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 9BA45301B274
+	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 20:52:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 467EC2C237C;
-	Tue,  9 Dec 2025 20:50:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 160652C326C;
+	Tue,  9 Dec 2025 20:52:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k2FHVx10"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ClDra+oU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19820262FC1;
-	Tue,  9 Dec 2025 20:50:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE1FF27B4FA;
+	Tue,  9 Dec 2025 20:52:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765313437; cv=none; b=p5LgEhFbKCmF0PiyP/llV/WVi5hi83vRrJ+G/Blvt3qmZoYtPBuVgy4Y8ncTKRnPWxt1qrGKMBlepWuPhIE/c0e3fswnT7bLVUX8Q2ocHw8vvKwj/X7ShssII9xQ4hylEO7Y4kEtduLhey34AMIXQjBkdLaD9q7Wi2EyPfqD9CM=
+	t=1765313522; cv=none; b=DdVQTRcN/pIYgoHpXJjwDs/Uogl7hKaPWzIkBbLLtARcyjCzD4JvEso/aCjq1jlPxH6PwtYo2MZFdUZdYiKf60BajlIJV5MNW0rHQikPf4IXiAvUIOJLcRW12ZlLBoHJbNZa1PgBJ00wLMCla+Zy+lXBpXCCnfSq3N1Y4G+SwqM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765313437; c=relaxed/simple;
-	bh=+NrxrvZMgkcpBUKcfznjEv3pgGvqP8bd/L6BGqUssYk=;
+	s=arc-20240116; t=1765313522; c=relaxed/simple;
+	bh=VmN3AEFLBJHTbo1gne1kM6xJGtRrR6e+QjVlA5+pR1U=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iOhbSWH3JHl13uVu3mcpug3HSamZtSN2eUQiHnprJEsrE5wC/Fnr0BEQZQnKTl7uUPy18A9NSshyGU/o/l0Z60DFwiR+BDHnPJVmGaBc9/1OjF1U0d9IaBj/RoRGtNQlibEecCJFyYwdEs64AZ+0JfFXbPNIEGDT6FJET9MGRsc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k2FHVx10; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BBA14C4CEF5;
-	Tue,  9 Dec 2025 20:50:36 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=dATgqWdzsZjPjhsPwV1I1nfsNuP/ktwgcPCSjWrXsT+bNC/ZrRkmE0cZQf+Bn/5fTlnDe5RiDhrgFo2FSjQxQ2vO/l0UjuS/gwdXQWt7UPTvVd6GwrDpe+GNWBA0ONW3K92P+HFuvKP67Dd2WPWuZCRTf7w7eVvKDi81LlCA9+M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ClDra+oU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A534C4CEF5;
+	Tue,  9 Dec 2025 20:52:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765313436;
-	bh=+NrxrvZMgkcpBUKcfznjEv3pgGvqP8bd/L6BGqUssYk=;
+	s=k20201202; t=1765313521;
+	bh=VmN3AEFLBJHTbo1gne1kM6xJGtRrR6e+QjVlA5+pR1U=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=k2FHVx10lU9ymJ024KMK22dlyRk155qhGloao/pSRz4jhhFpXovieBQvErMqIjWb0
-	 AdZYlCm48RH3jrzdGsS/A55Wdu3GDDkl+qUTLvPs0cg1bd27lhDg6VjF4eyQtc9Pv7
-	 ucRGmTR5z070mWSQ0GBmGg/MF17WszEWWkJA8b7e+bvOBrI8mFv8yg92qsOdtvQv0M
-	 fsUjo5De94mBVOfFI1b3L7nVyZbOFGz60p5XuV1v/cjaI8zRQnF7Z6a4UX1Q8q98YJ
-	 RO6IGfa/XlMnaLYkxPSQ1XFordW8jMm90tsWcYYLbYfoot2Y8PoiZ3n0nYeQ3yOJ0Z
-	 buLKTnh/ZOkGA==
-Date: Tue, 9 Dec 2025 14:50:34 -0600
-From: Rob Herring <robh@kernel.org>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Jacky Chou <jacky_chou@aspeedtech.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	b=ClDra+oUA2mIIhPNqP4eXf4AQU2nmGqNLX9fhYIuRnfXlUyrtVrn9qqqPR3z6nPz0
+	 2L1waK8jNjWT4VmtwImnKVc4Ph1hi4nZ+ysjnsKHLno2J8PaDQaFz78TzIGcjafmtu
+	 6ivxnVKAP1zIkPIugKwj/1UBl+eFMydoLUIhqxWoB5ZJ68Cs4Q4909U2cvXCLcF9ov
+	 ZLflbUCgqsmGSC1PFYHp4v/rFTf0o72a8/VJQ4BnyGudPP0k06N949jLgFBSgakPja
+	 3Xx3RMQB9+eOrnBahQeOWs+oojspzhuGzdXtLAN+fgPaZ4Hf14xxORu4i841J5XZL/
+	 B5SOQp1bWkmMg==
+Date: Tue, 9 Dec 2025 14:51:58 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Cc: Michael Hennerich <Michael.Hennerich@analog.com>,
+	David Lechner <dlechner@baylibre.com>, linux-iio@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Po-Yu Chuang <ratbert@faraday-tech.com>,
-	Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org, taoren@meta.com
-Subject: Re: [PATCH net-next v5 3/4] net: ftgmac100: Add RGMII delay support
- for AST2600
-Message-ID: <20251209205034.GB1056291-robh@kernel.org>
-References: <20251205-rgmii_delay_2600-v5-0-bd2820ad3da7@aspeedtech.com>
- <20251205-rgmii_delay_2600-v5-3-bd2820ad3da7@aspeedtech.com>
- <8a991b33-f653-4f0c-bbea-b5b3404cdfe6@lunn.ch>
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Andy Shevchenko <andy@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>
+Subject: Re: [PATCH v6 1/2] dt-bindings: iio: amplifiers: add adl8113
+Message-ID: <176531351772.1075654.11407839110196127214.robh@kernel.org>
+References: <20251205144058.1918-1-antoniu.miclaus@analog.com>
+ <20251205144058.1918-2-antoniu.miclaus@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,37 +63,24 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <8a991b33-f653-4f0c-bbea-b5b3404cdfe6@lunn.ch>
+In-Reply-To: <20251205144058.1918-2-antoniu.miclaus@analog.com>
 
-On Sat, Dec 06, 2025 at 07:30:30PM +0100, Andrew Lunn wrote:
-> > @@ -1907,6 +2179,10 @@ static int ftgmac100_probe(struct platform_device *pdev)
-> >  		priv->rxdes0_edorr_mask = BIT(30);
-> >  		priv->txdes0_edotr_mask = BIT(30);
-> >  		priv->is_aspeed = true;
-> > +		/* Configure RGMII delay if there are the corresponding compatibles */
-> > +		err = ftgmac100_set_internal_delay(priv, &phy_intf);
-> > +		if (err)
-> > +			goto err_phy_connect;
+
+On Fri, 05 Dec 2025 16:40:40 +0200, Antoniu Miclaus wrote:
+> Add devicetree bindings for adl8113.
 > 
-> Thinking forward to when you add 2700 support, i really think you need
-> to break the probe up into helpers for 2500 and before, 2600 and in
-> the future 2700. You currently have a couple of tests on the
-> compatible which you can reduce to one.
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> ---
+> changes in v6:
+>  - Use items list for ctrl-gpios instead of minItems/maxItems
+>  - Simplify ctrl-gpios item descriptions (remove GPIO_ACTIVE_HIGH mentions)
+>  - Remove maxItems (implied by items list)
 > 
-> In fact, this driver has 10 calls to of_device_is_compatible(). I
-> think you should first refactor the code to list each compatible in
-> ftgmac100_of_match[], and add a data structure which contains an enum
-> of the MAC type. You can then transfer this to priv, and replace all
-> the of_device_is_compatible() tests to just look at the enum value.
+>  .../bindings/iio/amplifiers/adi,adl8113.yaml  | 87 +++++++++++++++++++
+>  1 file changed, 87 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/amplifiers/adi,adl8113.yaml
+> 
 
-Better yet, define a structure which defines the different settings 
-directly. Such as:
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-priv->rxdes0_edorr_mask
-priv->txdes0_edotr_mask
-priv->is_aspeed
-
-And anything else needed...
-
-Rob
 
