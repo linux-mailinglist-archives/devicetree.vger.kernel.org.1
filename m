@@ -1,223 +1,202 @@
-Return-Path: <devicetree+bounces-245299-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245300-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E69A6CAEDE0
-	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 05:27:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C70EFCAEE4D
+	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 05:36:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 87EF9300E039
-	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 04:27:46 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 30573302037E
+	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 04:36:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF19A2D97AF;
-	Tue,  9 Dec 2025 04:27:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C831D26E6FE;
+	Tue,  9 Dec 2025 04:36:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BRkpHss2"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="bTMvkw99";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Q9z9nvXS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB3801CAA79
-	for <devicetree@vger.kernel.org>; Tue,  9 Dec 2025 04:27:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5395223AE9A
+	for <devicetree@vger.kernel.org>; Tue,  9 Dec 2025 04:36:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765254465; cv=none; b=e2d2JugAsO66Oyujv1lNOhXbsP6Hr9nVidNzkzL87Mu9BaysuOoQX5wNi7DZc5Q/CFS51+z7o3uiVAx/9h5RODxkaOVV8aMk4C1tA23Rp3ICdwZTU8AWZmRol1OtrZZnVJbIsMWrJnc/sHSdrAzLvfdz5FvCUY4V6hLuPRRaZmE=
+	t=1765254998; cv=none; b=Kfu0Ej3e/4488AbR/kbrgI3IchhTot66RmZ01ff1yMclIEVKTXwj0ae8tFQMQGbnQOmvuR2dZKIkrlTt1VNehKbeyT/eExRJytVISNhgIVaRBlIJeJ95uyrqYm1cKsaC3h+9n7IhChTTawidIDlcCYn4oGCdNbFv9yTkpDyVGVI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765254465; c=relaxed/simple;
-	bh=Cbqrmcc54drJXoEx9wYOJfemeR+eB7sGSu4BM2rb9Aw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=XNYrbrTts9tYkN0yRu9w1/O6slZo+KzBELoujDuZDsX69s3TYuPp6AlGLEOR8gR7vsXRhenqOn6RltXbkQAUl4YdGPYT/ZAuIusuC/M3/mLQEE/2qZipJFKm7W6ns8KhQ+VrcK7LTEx9htLcqHJSfEfpvyMw+Z9zgOuJyX7NWu4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BRkpHss2; arc=none smtp.client-ip=209.85.167.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-59581e32163so6602253e87.1
-        for <devicetree@vger.kernel.org>; Mon, 08 Dec 2025 20:27:43 -0800 (PST)
+	s=arc-20240116; t=1765254998; c=relaxed/simple;
+	bh=GThSbvjbToT2JrFsO0luYZiceKv+rcGmeMOARrySPFo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=UHSSpa+2Xvc/Oy8AJ28uKEHgUVvIQUxhLeA7AH2AclNRuru8IPIiIJpdPuIVfF8eXqkiZP5fduZxXm7G5Z4BJgv1CgKDnDh0MeYLT9BrHKF2cVkbDwK1dZXGqna5qY818tNTDCFLl8AMLwsz5B2CwYLDOS0LkIa/u1g8Ku3VZ0s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=bTMvkw99; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Q9z9nvXS; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5B8NXN6n1870462
+	for <devicetree@vger.kernel.org>; Tue, 9 Dec 2025 04:36:36 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	J4c0Tq/BmToaocMx8xkBZuMcN9gE+0JfPotxMOnM9Po=; b=bTMvkw99QUkbbfTv
+	+xpK3imneg7y1i0Pg9HVamNOgKumnVkw5+xh/FmiLR/n2GLy76JOafau6dff648V
+	dGGN5iaIcYHOCv+7Okj6CnNQcFsxu8XOt8hNPDKTXyn6Lwjk5VQKQejKe5DUPJtb
+	kU3Ohz2cZjK4vaT2DITRN3V1yArsD001CzdzshpA/p2NpfpXHa+NRPVdGGGLMuUe
+	wMFRisYnwWqd13oS4z+dt50PHmXw/XyDtiqIhY5coTVqkEb1fI6SRiM9ojh4gp3M
+	ZjqqCTyM+JTj18thl9FRm5M+YLOa6w6Ftoxuf4DSALV6+46X5BiyrRBaPiFaL+Am
+	mXNt2A==
+Received: from mail-pg1-f200.google.com (mail-pg1-f200.google.com [209.85.215.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ax4jnh9u3-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 09 Dec 2025 04:36:36 +0000 (GMT)
+Received: by mail-pg1-f200.google.com with SMTP id 41be03b00d2f7-b9ceccbd7e8so10344237a12.0
+        for <devicetree@vger.kernel.org>; Mon, 08 Dec 2025 20:36:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1765254462; x=1765859262; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=F4WpmHTbKcifGYAFFryKnbXtddGIYXrVx0U5IkY//qM=;
-        b=BRkpHss2EiFSbMQ6oNoNAqoPK6KEas3tIV1MgM2A0XQ0WQav7ZYZomnnyugad1lex0
-         5vckjsb1sVSVsD8fEv69xMS6OlUs1vPdlnfXI8aDgraUZFZRfyfe2oxKzFKGCmaaCoL4
-         kiI5urbcuUzevFZuPqceWd0Gf0g0cRbgv00gU66ogNbT/HnA8wHDdSkyUcoAFwDowBJQ
-         rupvmY0p7a2Kt5Mn0nDK/k0jeSFW0oub/jYSo9/wyu7dgGeKEKhAhIUbkXcm4dkBvLv8
-         qOWTZXpnFZw2rZ7S/gIbJqdLWioL1iiMW+py/TIvVo2FWpY5+hVjayIGmpHsNMweCd6w
-         nPvg==
+        d=oss.qualcomm.com; s=google; t=1765254996; x=1765859796; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=J4c0Tq/BmToaocMx8xkBZuMcN9gE+0JfPotxMOnM9Po=;
+        b=Q9z9nvXS9R9zNMUAmih7ZhpFwFuXEl5YzvDJuIkvqH/3113EWARmjEff2rkGNyDJgc
+         HImyTOrts6JmLc/N421ItvMq93858W1650TK5ai7FM2+yeExEi1aPfuODrn0ESgcOy5J
+         TeZqdTeVUxegVxL3BgzEZGwKozzP5K4mJL98jrna6lCnEgjs446NFFCSa4c3a2EC1a4D
+         9L0UIT124AU4V2JM3DWKI7B1IZfG2rDrPFRrTJV14mtsgkUtUeepjIA9P2OG0doXvW3l
+         w3Ihxdnms22g4+Cq0/JrPLeLtSm0MpT4oAaaqe8mLIp4dNMybja6rAHEieCLqvU1EGG8
+         3x9g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765254462; x=1765859262;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=F4WpmHTbKcifGYAFFryKnbXtddGIYXrVx0U5IkY//qM=;
-        b=f1QDbc0Ca4FclDV091URvHvdUqzxwtXz4bdBPfMBWxEDQ1gk0xyrVK8jlYFBay4oFI
-         0gFJP2bJBrtM5rvaPsqs+Ov+qDhy7VPRWrX4AgfwdC/+RIYVWasa+uXIscuI3ry5hqzp
-         tTDAgrPd2zYvba5N/cszUbOUhg1amWbYa03JAZDvGmCLlD5G5lMFbxubV92kSC0MxRhD
-         IuFf43JoPdux8lkFBHNKXqw1Cge7dynWkhEYtd2IyK4YeEMMAWLklRxhbw4xNp2O1YZT
-         dfwkcUX2D4O5PdQH9/9fPaZ1cqnV7/eWyfYgqoBJe1K6nqEbXt1o7pwXtW4RuTSBAIVL
-         Vm8g==
-X-Forwarded-Encrypted: i=1; AJvYcCVoCp/CFVQB9BDbv+wVnwGXBZNIQ8QLyHux1bMt2puJpKGPMn0ZOYHGF+rxAyyZVewODdbt9NAnuS4v@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz6M0mCkscOI5ayYWlZtPQyxndPiU66e2woUlMq9ImZ1uxhNV3L
-	spMxAnE3J69AcdiZY9lKWo5OaLNYmcF7EaMBk94xsCH7cCjJKKGQr6zCd5JCHVnk8YYm4C9pfmR
-	LYJ2OnrLc/Z91eNTh87bE0ZMHayk+JAk=
-X-Gm-Gg: ASbGnctLua7I2HRZnfc+CO/WgP7jdzpUPdJg/oVCqAYqkdbvpXlAngOBuh+FRKyAzmi
-	XLBq+gu+F985lwd2ZFfizDh2hSk3H2H+OCkZ8ipn8bv7wboVAilNkEonm/S9sIWTPME4cUGQVHR
-	v+zaBCdHSn59YbLytdQszYoEtBmwJxwWNLUKpRr8PpRl7aVipH3Vd1m+96YwIsxV7BDkrfdJe4q
-	eMQWGb1DtHBzIaNZWJuO2UGBuYCmr1XJxofoSIbzE0ZJmXqjqnBmEq6yWZ/1hJZb67kAfo=
-X-Google-Smtp-Source: AGHT+IGvfbU31rATrFW7yKgrfprgR+nt3X9seL3vdzkCriOND0amwqexHU+zTbNxhLhoihgc9v5Fmj1r9zqeH+vbdrk=
-X-Received: by 2002:a05:6512:3e04:b0:595:7e73:995c with SMTP id
- 2adb3069b0e04-598853b91f3mr3260088e87.44.1765254461935; Mon, 08 Dec 2025
- 20:27:41 -0800 (PST)
+        d=1e100.net; s=20230601; t=1765254996; x=1765859796;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=J4c0Tq/BmToaocMx8xkBZuMcN9gE+0JfPotxMOnM9Po=;
+        b=WLD1Eno0SRwMDxpuJIpZ9iRsu+dibDLAOfavnVXruZs8Vre2l2lZ07xkTGDgDdCTYf
+         JFpvUJpDVN64T0Z2xeMHxn7UUlNF1uWDbo9u+ExJBsHFx2yuWjTmMAvOQE37iOydpL6q
+         jqtUU0vnTdbAcOSX6TbHpPFxkPyY7LOYlSCH95Hzcu5+t3ViMMrKMTPifVsb0BRCswUN
+         IDrj+MUh0mrhsWSWViJEXx3Uv8hKJsQTsLv32cb5Uka8oJXvFV19sRIBrHxcHpyOqD02
+         tGsf3myCdRyCfWS9dEB9+3XQMDP/0HmJgsaHo+ilaYDMxKh4X02+RDCQCKF7WffAWqgv
+         9guA==
+X-Forwarded-Encrypted: i=1; AJvYcCUPuOLOeLtTa0DsDG8FsP7tw177eJhelFJFXb05GU4S//hhNKfANgh5VbE+YdpC32Nb7b6E84DpdzEV@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz3McFR64dB+5DbAKgPes61r15PeCsPuuC1H+WXYXz3RNhXu2xH
+	4feqYthrtHJpUfAh9WOYkZbOwec90SDZLjKmYSmZCmZcocsF2bUDOfR5K11LOC07gKCDENNVXXn
+	CXs9TF62oTSJuQ3PP3ppSe0PotrMc1TH4NyNx8l/+8piDHB6oPdUZVwloVZUtTPsQ
+X-Gm-Gg: ASbGncuwdRbYxRbEFfDQQ+k5gLyCfeNECU0c5j7eRxYTdkViYqdugvk66voTDN5jvS/
+	ILmvDs4ehuw8qE+EMf1j/ynP+nsMa3kMDtql1ukBeYWqJsfFP6RlWio+pjTQLsXr+wTg5oKmxGf
+	FSW6oKJmxsim2CRo8Ghed5/8HkcIXiZPE378fFIERCGzBh11imYNJztj6Tp6Q+8wMj38N56pGc1
+	iNZRq/ZJqKbQ7JPgJx6ZpPy7SFmJX0GjcHJkOiDow8gKUVNe2e1MoY6BUaSDVs/Z0UmnwWWbaJE
+	WRUFhzLtaF0Go4pNL3bUWlMR0S5gpbMBX8rUjVP7RTKdk3+DMTuCiqinJTr1nplpRXN+uuofvmq
+	hHsOHbHiZVhgTUQMxHhUnbF4nKxSkh+MUdUSj2IVRFOlOgA==
+X-Received: by 2002:a05:7301:fae:b0:2a4:3593:9698 with SMTP id 5a478bee46e88-2abc71f7ec6mr6465292eec.21.1765254995501;
+        Mon, 08 Dec 2025 20:36:35 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGgu4aPb0+lj4MxhGBo4aAChAGZ01Kns/S/0CeavX4HExSHWEmqMwaWLLzXzoMHs39iBx8u4g==
+X-Received: by 2002:a05:7301:fae:b0:2a4:3593:9698 with SMTP id 5a478bee46e88-2abc71f7ec6mr6465273eec.21.1765254994907;
+        Mon, 08 Dec 2025 20:36:34 -0800 (PST)
+Received: from [10.217.219.121] ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2aba87aa5fcsm40914062eec.3.2025.12.08.20.36.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 08 Dec 2025 20:36:34 -0800 (PST)
+Message-ID: <db033ab1-9b5f-41e7-8048-3ae327b48ad4@oss.qualcomm.com>
+Date: Tue, 9 Dec 2025 10:06:27 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251021-t210-actmon-p4-v5-0-4a4dbc49fbc8@gmail.com>
- <20251021-t210-actmon-p4-v5-2-4a4dbc49fbc8@gmail.com> <56aed0ec-b104-4612-8901-3f6f95e0afab@nvidia.com>
- <CALHNRZ8Hc+kqWVCjTZvtJ+hBrsgpjO9EySOQFfLaLHvt9P_reg@mail.gmail.com>
-In-Reply-To: <CALHNRZ8Hc+kqWVCjTZvtJ+hBrsgpjO9EySOQFfLaLHvt9P_reg@mail.gmail.com>
-From: Aaron Kling <webgeek1234@gmail.com>
-Date: Mon, 8 Dec 2025 22:27:29 -0600
-X-Gm-Features: AQt7F2oCKVfzdOHI88ZZ-GHLP6TDXGTHzetFCKsT_okj-D0HByOTmpoRN0mC8y4
-Message-ID: <CALHNRZ8qnVGu130Yxsf2e_6GHJj13H+_gA0T_JTNXT0xx7NyjQ@mail.gmail.com>
-Subject: Re: [PATCH v5 2/3] arm64: tegra: Add interconnect properties to
- Tegra210 device-tree
-To: Jon Hunter <jonathanh@nvidia.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, 
-	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/3] dt-bindings: phy: qcom,snps-eusb2-repeater: Add
+ squelch param update
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
+ <kishon@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Luca Weiss
+ <luca.weiss@fairphone.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Pengyu Luo <mitltlatltl@gmail.com>, linux-arm-msm@vger.kernel.org,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20251204044644.3072086-1-krishna.kurapati@oss.qualcomm.com>
+ <20251204044644.3072086-2-krishna.kurapati@oss.qualcomm.com>
+ <fxf66ulont7wnmozqww2cklpp3djkzsgvc3znew4m7t47qlye7@32hxp3yze7h5>
+ <20251206-efficient-tireless-dragonfly-c5d2ff@quoll>
+Content-Language: en-US
+From: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
+In-Reply-To: <20251206-efficient-tireless-dragonfly-c5d2ff@quoll>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=dZSNHHXe c=1 sm=1 tr=0 ts=6937a754 cx=c_pps
+ a=oF/VQ+ItUULfLr/lQ2/icg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=MsxH4LtXGSFWTCPOqMgA:9
+ a=QEXdDO2ut3YA:10 a=3WC7DwWrALyhR5TkjVHa:22
+X-Proofpoint-ORIG-GUID: at4vftqDJykUAsUvyQM12JocnUjLWrCa
+X-Proofpoint-GUID: at4vftqDJykUAsUvyQM12JocnUjLWrCa
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjA5MDAzMiBTYWx0ZWRfXxuzK4vJCs2Xw
+ Ers4hhTFSsKDpDzx/fownBuwYIlZNibt3nOjS8ft45EFnKrKOcWv8WAhaFwDl+SJB1hTrybECYI
+ 2aFzCgIqsuajfh+Sd73yzrtmv7YAOnIaBiAtmGb85TMThkjG+KebE4C/96Vs9KPF3+SsOxZ+zuE
+ XddDmgBMuAhvzE/43r5NBXGRGQwS7HikOTc5gnxsZjEwgQd1otOfpiZMfNPkBYnQvHmffx03Bi4
+ nrKZEifXi7R7Tl8ak0GB66c1y3dHaddUbERqJZ6iiGnB8P1Ndi+lZemgx/OtYri96FPjczEJtv+
+ WK5ZrHx1OKNt0z8BQY/vxPKZp/C/9Dxx6gyIeDESq2I2LhS7nlK/9grgZXw6msc90hCM0LMupDj
+ N1LX7U+swI2sfO3yIDONvSpss/lxMw==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-08_07,2025-12-04_04,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 impostorscore=0 phishscore=0 clxscore=1015
+ priorityscore=1501 bulkscore=0 suspectscore=0 adultscore=0 malwarescore=0
+ spamscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
+ definitions=main-2512090032
 
-On Fri, Nov 21, 2025 at 1:32=E2=80=AFPM Aaron Kling <webgeek1234@gmail.com>=
- wrote:
->
-> On Fri, Nov 21, 2025 at 5:24=E2=80=AFAM Jon Hunter <jonathanh@nvidia.com>=
- wrote:
-> >
-> >
-> > On 22/10/2025 04:13, Aaron Kling via B4 Relay wrote:
-> > > From: Aaron Kling <webgeek1234@gmail.com>
-> > >
-> > > Add interconnect properties to the Memory Controller, External Memory
-> > > Controller and the Display Controller nodes in order to describe hard=
-ware
-> > > interconnection.
-> > >
-> > > Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
-> > > ---
-> > >   arch/arm64/boot/dts/nvidia/tegra210.dtsi | 24 +++++++++++++++++++++=
-+++
-> > >   1 file changed, 24 insertions(+)
-> > >
-> > > diff --git a/arch/arm64/boot/dts/nvidia/tegra210.dtsi b/arch/arm64/bo=
-ot/dts/nvidia/tegra210.dtsi
-> > > index 6da10db893add44a98fde1666c382511212fd43c..2fcc7a28690f7100d49e8=
-b93c4fb77de7947b002 100644
-> > > --- a/arch/arm64/boot/dts/nvidia/tegra210.dtsi
-> > > +++ b/arch/arm64/boot/dts/nvidia/tegra210.dtsi
-> > > @@ -202,6 +202,19 @@ dc@54200000 {
-> > >
-> > >                       nvidia,outputs =3D <&dsia &dsib &sor0 &sor1>;
-> > >                       nvidia,head =3D <0>;
-> > > +
-> > > +                     interconnects =3D <&mc TEGRA210_MC_DISPLAY0A &e=
-mc>,
-> > > +                                     <&mc TEGRA210_MC_DISPLAY0B &emc=
->,
-> > > +                                     <&mc TEGRA210_MC_DISPLAY0C &emc=
->,
-> > > +                                     <&mc TEGRA210_MC_DISPLAYHC &emc=
->,
-> > > +                                     <&mc TEGRA210_MC_DISPLAYD &emc>=
-,
-> > > +                                     <&mc TEGRA210_MC_DISPLAYT &emc>=
-;
-> > > +                     interconnect-names =3D "wina",
-> > > +                                          "winb",
-> > > +                                          "winc",
-> > > +                                          "cursor",
-> > > +                                          "wind",
-> > > +                                          "wint";
-> > >               };
-> > >
-> > >               dc@54240000 {
-> > > @@ -217,6 +230,15 @@ dc@54240000 {
-> > >
-> > >                       nvidia,outputs =3D <&dsia &dsib &sor0 &sor1>;
-> > >                       nvidia,head =3D <1>;
-> > > +
-> > > +                     interconnects =3D <&mc TEGRA210_MC_DISPLAY0AB &=
-emc>,
-> > > +                                     <&mc TEGRA210_MC_DISPLAY0BB &em=
-c>,
-> > > +                                     <&mc TEGRA210_MC_DISPLAY0CB &em=
-c>,
-> > > +                                     <&mc TEGRA210_MC_DISPLAYHCB &em=
-c>;
-> > > +                     interconnect-names =3D "wina",
-> > > +                                          "winb",
-> > > +                                          "winc",
-> > > +                                          "cursor";
-> > >               };
-> > >
-> > >               dsia: dsi@54300000 {
-> > > @@ -990,6 +1012,7 @@ mc: memory-controller@70019000 {
-> > >
-> > >               #iommu-cells =3D <1>;
-> > >               #reset-cells =3D <1>;
-> > > +             #interconnect-cells =3D <1>;
-> > >       };
-> > >
-> > >       emc: external-memory-controller@7001b000 {
-> > > @@ -1001,6 +1024,7 @@ emc: external-memory-controller@7001b000 {
-> > >               clock-names =3D "emc";
-> > >               interrupts =3D <GIC_SPI 78 IRQ_TYPE_LEVEL_HIGH>;
-> > >               nvidia,memory-controller =3D <&mc>;
-> > > +             #interconnect-cells =3D <0>;
-> > >               #cooling-cells =3D <2>;
-> > >       };
-> >
-> >
-> > I am seeing another failure on -next for Tegra210 and bisect is point t=
-o
-> > this commit ...
-> >
-> > # first bad commit: [3cad4369399a31277e9e20de723c665b30cba574] arm64:
-> > tegra: Add interconnect properties for Tegra210
-> >
-> > The tegra-tests [0] devices test is failing and after this commit the
-> > DRM device is no longer bound to the driver.
->
-> Upon research, this one appears to be a bit more complicated. The dc
-> code in tegra-drm sets up an icc connection per plane to emc, I
-> presume in order to prevent underruns. If the icc path exists in the
-> dt, but the emc driver has not added itself to icc, then dc will
-> infinitely defer [0]. And per earlier statements on this list, the
-> regression test setup for Tegra210 does not pass emc training data
-> from the bootloader to the kernel, meaning the emc driver fails to
-> probe.
->
-> I am not sure how to handle this. As far as I know, the previous archs
-> that the dc icc code was originally written for wouldn't ever have the
-> emc driver fail, because the untrained tables are in the kernel dt,
-> meaning that the driver could at least load that. On Tegra210 since
-> the dt tables were rejected, there's nothing for the driver to fall
-> back on, so it is possible to have a hard failure.
->
-> Does anyone have ideas on how to handle this? To allow dc to report
-> icc bw on Tegra210, but not fail probe if the emc is missing? Making
-> the icc path lookup non-fatal isn't really an option.
->
-> Aaron
->
-> [0] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tr=
-ee/drivers/gpu/drm/tegra/plane.c?h=3Dv6.18-rc6#n778
 
-Are there any further thoughts on this patch? I would like to get this
-requeued as soon as possible.
 
-Aaron
+On 12/6/2025 4:32 PM, Krzysztof Kozlowski wrote:
+> On Fri, Dec 05, 2025 at 10:55:36PM +0200, Dmitry Baryshkov wrote:
+>> On Thu, Dec 04, 2025 at 10:16:42AM +0530, Krishna Kurapati wrote:
+>>> Add squelch detect parameter update for synopsys eusb2 repeater.
+>>>
+>>> Signed-off-by: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
+>>> ---
+>>>   .../devicetree/bindings/phy/qcom,snps-eusb2-repeater.yaml | 8 ++++++++
+>>>   1 file changed, 8 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/phy/qcom,snps-eusb2-repeater.yaml b/Documentation/devicetree/bindings/phy/qcom,snps-eusb2-repeater.yaml
+>>> index 5bf0d6c9c025..f2afcf0e986a 100644
+>>> --- a/Documentation/devicetree/bindings/phy/qcom,snps-eusb2-repeater.yaml
+>>> +++ b/Documentation/devicetree/bindings/phy/qcom,snps-eusb2-repeater.yaml
+>>> @@ -59,6 +59,14 @@ properties:
+>>>       minimum: 0
+>>>       maximum: 7
+>>>   
+>>> +  qcom,squelch-detector-bp:
+>>
+>> -uV? -mV?
+> 
+> If thi sis adjustment in ratio, then bp is correct. Some sort of
+> explanation in commit msg would be nice, but I don't want to stall the
+> patchset for that.
+> 
+> Assuming this is indeed ratio without actual SI units:
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> 
+
+Thanks for the RB Krzysztof,
+
+  Can I update the following as commit text and retain your RB when 
+sending v3:
+
+"Add squelch detect parameter update for synopsys eusb2 repeater. The
+values (indicated in basis-points) depict a percentage change with
+respect to the nominal value."
+
+
+Regards,
+Krishna,
 
