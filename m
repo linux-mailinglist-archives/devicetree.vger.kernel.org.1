@@ -1,67 +1,59 @@
-Return-Path: <devicetree+bounces-245455-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245456-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E59ACB122F
-	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 22:16:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AB43CB12CA
+	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 22:21:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E156A3063179
-	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 21:15:25 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 362FC30FFEF8
+	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 21:19:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D041130FC19;
-	Tue,  9 Dec 2025 21:15:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8B1F30CDAE;
+	Tue,  9 Dec 2025 21:19:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WSsQaaSo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Fd6lSjtb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A59742DC769;
-	Tue,  9 Dec 2025 21:15:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11FC630C62F;
+	Tue,  9 Dec 2025 21:19:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765314924; cv=none; b=WLUkHMW86PR6xrvqp0wZHmAuzVlt/yXwFeI1IOwxCyIBp0w8XX2mS2JXH1k1rxXNLE3TrTd1Dk4GvnzjOHFWi+/VSMLgGVriELYIYh6wRC3ZRMl+Kt5HW+pPY4j60YOkAaXpSanWm4dq5OpRuCaOmGL6UE6oWFOhMIAyA//WJ14=
+	t=1765315147; cv=none; b=QxDwngD84RP+KSgNJXZxGqSEN9kfqANVp7LfmH5jXZ10naS6YuCaDjys14omhmzwefqNc6/L/oMjli+oF+x539+/u7KeCHsOFHRXZWiSVOMo1dTsZrZDzHqUOJoemR9/50KY7uDgLsp+B5+uQsMLEyUyjZacBxlz+jGIVZVk6do=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765314924; c=relaxed/simple;
-	bh=GZzlQAeYSZb5jVj++vPLnWFa3c9qeYvB2alZl24BowI=;
+	s=arc-20240116; t=1765315147; c=relaxed/simple;
+	bh=pDSgft3va/X+kqW8q1URovj4IThmlNfci9JAAQluSds=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WudxF8W6oZWie7DRW716O2hyYxfWnsbRhan84xYL4+aGjD/OZzQramj4bWTTo7Ws9Z+S/PECO4agfWPiPdUjZ2f24HhfzO/6fzfjPiJk8GrLsw2ukXNTylX5aoh6+G/xbf9dzcFrT4qN2okweybnOSj3HYK9i0/Fp0y9J0Dd7mA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WSsQaaSo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F306C4CEF5;
-	Tue,  9 Dec 2025 21:15:24 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=JBtuhkXfQyKnoZWiC6KgkIyaf6hXLNvmeTYmqErPAafKaDR+1GyesR+7BK+15NJTBwpV8UghHy95X3SBxXqmxn91xN9aQ16hMkRDHIR2P29BxRtzWR+xLLIMGSoCS8LFpjJJ1kSqF9GvfO5a6rZhzXOgY1wohIj5ZKnQg97VJLQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Fd6lSjtb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4480BC4CEF5;
+	Tue,  9 Dec 2025 21:19:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765314924;
-	bh=GZzlQAeYSZb5jVj++vPLnWFa3c9qeYvB2alZl24BowI=;
+	s=k20201202; t=1765315146;
+	bh=pDSgft3va/X+kqW8q1URovj4IThmlNfci9JAAQluSds=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WSsQaaSox3Sv1ZZXnrjg6JPER4Jkf+EjpO/ud+3A+icp4zA7Rk8fgdQGpgJODbX2C
-	 G2DbLtfrtVAQJ+puOb2xhlO6yk8SOVVy2NqKYvzQQ3BW4UwpmkxxWB0z9r+uMUEQCv
-	 phYtW7NqHunI+Wt1DF6bIFlvIRzvFpJ9kqFhp/zjuVoqO0AXtgh4XGTjJtv395LO3c
-	 jXbjJc12mdSfpY8VqB4VbhJgE+4OAbiwV1YsFkRXwaTkBzoBWfKaOROpZ9khgjjD2a
-	 gd8spWk2HJ+N0AZMFhdzal62kSz6QGQLn8NJwVoMBKtpyuQxqPF5P43aDYbfjBellY
-	 x9Eaqk/IDy+7A==
-Date: Tue, 9 Dec 2025 15:15:21 -0600
+	b=Fd6lSjtbq8lGthxyj1Q76N1Jfsg5QS3SbhTzwHObRq71hVx3naLJ1zsTIGjirxeK1
+	 Vk405Qm0okSikGQiDAyujF9mZDEKQ5ZBjZJ5rs0DRy41r+4VtuIfQLJnuduXhdXeOC
+	 h3zOtiqg1041jp8nNBK4B14IGvHbjogTUxz4bZvwbD4/5fpOZbEiMr75dwyEuV7kPd
+	 uJlAJTyH9Z4Y089hswCRzxdwF4ZXov/02Ylkc0MVsO4ShyMtjqhwtB7SSYNKb0QPox
+	 QhRuUEGLYdnrh960qyeuTD6DQ6ga7fR9EDtmDt7COacYbyubn+nWxFXT+yEtjOzu+J
+	 XxOlz2OgSZHtg==
+Date: Tue, 9 Dec 2025 15:19:04 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Christian Hewitt <christianshewitt@gmail.com>
-Cc: Dmitry Osipenko <dmitry.osipenko@collabora.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+To: Luca Weiss <luca@lucaweiss.eu>
+Cc: devicetree@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	linux-rockchip@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	Dragan Simic <dsimic@manjaro.org>, linux-media@vger.kernel.org,
-	Olivier =?iso-8859-1?Q?Cr=EAte?= <olivier.crete@collabora.com>,
-	devicetree@vger.kernel.org,
-	Diederik de Haas <diederik@cknow-tech.com>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>, linux-kernel@vger.kernel.org,
-	Chukun Pan <amadeus@jmu.edu.cn>,
-	Detlev Casanova <detlev.casanova@collabora.com>
-Subject: Re: [PATCH 2/4] media: dt-bindings: rockchip: Add RK3568 Video
- Decoder bindings
-Message-ID: <176531492074.1107900.2748821252600292565.robh@kernel.org>
-References: <20251206082809.2040679-1-christianshewitt@gmail.com>
- <20251206082809.2040679-3-christianshewitt@gmail.com>
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	phone-devel@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-remoteproc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH] dt-bindings: remoteproc: qcom,adsp: Re-add cx-supply
+Message-ID: <176531514393.1121410.3278248360744028841.robh@kernel.org>
+References: <20251207-adsp-cx-fixup-v1-1-0471bf2c5f33@lucaweiss.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,21 +62,27 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251206082809.2040679-3-christianshewitt@gmail.com>
+In-Reply-To: <20251207-adsp-cx-fixup-v1-1-0471bf2c5f33@lucaweiss.eu>
 
 
-On Sat, 06 Dec 2025 08:28:07 +0000, Christian Hewitt wrote:
-> The video decoder in RK356X (vdpu346) is described in the same way as
-> the one in RK3588 (vdpu381). A new compatible is added as the decoder
-> capabilities are a subset of the vdpu381 capabilities.
+On Sun, 07 Dec 2025 19:35:35 +0900, Luca Weiss wrote:
+> Some boards (e.g. sdm845-samsung-starqltechn) provide a cx-supply
+> reference for the SLPI PAS.
 > 
-> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+> The Linux driver unconditionally tries getting "cx" and "px" supplies,
+> so it actually is used.
+> 
+> Fixes: 3d447dcdae53 ("dt-bindings: remoteproc: qcom,adsp: Make msm8974 use CX as power domain")
+> Signed-off-by: Luca Weiss <luca@lucaweiss.eu>
 > ---
-> nb: I've chosen to us rk3568-vdec not rk356x-vdec as other compatibles
-> for these chips are using rk3568.
-> 
->  Documentation/devicetree/bindings/media/rockchip,vdec.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+> There's literally one board using this upstream, judging from that I'm
+> not sure this is a misuse of cx-supply or what exactly. An alternative
+> to this patch is of course removing the usage in
+> sdm845-samsung-starqltechn, but as it stands right now the patch under
+> "Fixes" introduces a dtbs_check warning.
+> ---
+>  Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
 
 Acked-by: Rob Herring (Arm) <robh@kernel.org>
