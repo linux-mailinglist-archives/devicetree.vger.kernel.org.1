@@ -1,733 +1,388 @@
-Return-Path: <devicetree+bounces-245305-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245306-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F18BCAEF24
-	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 06:35:17 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69B34CAEF33
+	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 06:36:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 743393003872
-	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 05:35:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5CB7F304C5D3
+	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 05:35:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6744227F163;
-	Tue,  9 Dec 2025 05:35:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA9B02BE657;
+	Tue,  9 Dec 2025 05:35:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LQjz3AiI"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b="pTlNgKrb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com [209.85.216.50])
+Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58CD0223DD5
-	for <devicetree@vger.kernel.org>; Tue,  9 Dec 2025 05:35:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E50BF241CB7;
+	Tue,  9 Dec 2025 05:35:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.75.126.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765258515; cv=none; b=UACWJW8UGL+Evze4srBePm4WHAvEPw8jFWS+7x2oReWRaccDaXvxXDPIixUOENXW4b6VrB1hQ38L2Rwj8Ut3Bb/XLs6Q5bGTxUWxCEYSrQgw96rW7h6AzPbd6aB+o10kCoiqQwHAR36kncjIXxb5vGEpj+3F+YghbZ5sQQBDPEA=
+	t=1765258556; cv=none; b=p0zsvKWAxcXMOqFDcQRiLIDyPS46cSvqZaWzyr35GFkyZ4NxDxTsiVU6/6B6iXIyTmj6yrb962l84afP4DiWb6PIEPAypY/VyB2N0mZSInsVBB/OIfKQX6tyRFkpxLDVN2YQEWYjAf9+YyGcKOc6+AYp2vGWGGWLY8DOOzzWxPk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765258515; c=relaxed/simple;
-	bh=s12Fw0RBi+AYN0WtmkhENhJqPelIHFUDGdHjyhF8VII=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kPk7AmD1fhm4ARuJGeqdWoq2PXA2FaGrg64pgIIDtgOEMRmsdDyldM8uSSxCLKQVNqVwfUaNsTC2lguv9QCn0COWkZbxOXfkgJj1LiWGPWNQhnGNM7uIf4I2iT8f6ZOEgEIeys94D0hKVmZxe4VUWb6H8OyFoIXr5ZuoHZASNyA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LQjz3AiI; arc=none smtp.client-ip=209.85.216.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f50.google.com with SMTP id 98e67ed59e1d1-34381ec9197so4483563a91.1
-        for <devicetree@vger.kernel.org>; Mon, 08 Dec 2025 21:35:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1765258513; x=1765863313; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=DDfwI0TNjfqib2Q2/XRnkkZBlhjSoWkGyeiM4cTKdn8=;
-        b=LQjz3AiI1924UzYwYdL6rfcFyjWRTncvUIWIeqaQev3Bw7JZCTHLgc2v6xFIwKKYyh
-         e9DsyyYSTWgC7wUfVIx4TFVDPF427kTAh1igs+UMENgNQNP4OAYV5UVGMYymKGVVe40U
-         Xv1lRnUpzOp2OJUyN+RlDVooH6XLPZuHmcdRk82uvp/XJC/XHcfIen9ygzUVpU9SCvr6
-         SGCXE75ZbfoA51lZ8zHXFqsQPvqgXqa6si/HJchkbXzt2nuVnDeKAaUQh1hW2YnPnEBB
-         ySm/qdDF5KUV607ayDsecduI+laAzOZ42IhIRibiyotx412tw4mA9ucSJL+Wwm9p786Y
-         RSqw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765258513; x=1765863313;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=DDfwI0TNjfqib2Q2/XRnkkZBlhjSoWkGyeiM4cTKdn8=;
-        b=J7VfvxogjabM9zkfej/cTLwRuvB0XsVhXBeoBpQioGXjqsPkT5AYc/qo3bhi1fknS6
-         7MscFWMGRM320KckHtUZc6DXYIiAHx+6qZK1WcLkwUljDjYgNnF9r3dxt5LvNOaBIN0T
-         MqZigV0h1q3tsrvpvSWQ+gs6ar77QFfl8bfffKfEdnBUsYQDQVf5lZyKvzdr0jC8/2mo
-         peJoI9gVs8UFkj/uQFrYiDe6LA+z8gvkAWDx34AcwYzWmJ9XWTX2IJZ6LRCgU6cn5VVP
-         f5fnonT96G7I+NB9qJZ6hVphsGExo7uDs7gZRYcj4LUoX0+PBgYTxdsB1n1SgW0XFy6T
-         s91Q==
-X-Forwarded-Encrypted: i=1; AJvYcCX7nrFnrpfbqsA0xqbiKD1bEimbv91xtpfviGjD81hDaQI5y2nHkUEFhUIEj6Dkc7+XOBGnAOoARjiZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YzJMJdN8GEm5leqmpaNM67z3pEa4/lUX1AztjGzHTCotxtq7MFQ
-	yWXE/pAOmNhCe4V6Es5Ne1y+RXlNqG2OIS9W0SAEZ/+q9U0HnGXgmjAI
-X-Gm-Gg: ASbGncujODsay/bfFEM1EGogNPPKBTPD9MAZ8WEeoe9++5cEqftf2ICq/dNdc1/Cy3f
-	ghA3YvCsloZ2ObYozYVeJhZpHwIjmL6/uJjpf1AR4adchFLPLyzhDBbYYXZWIyjDbheAE8KdWDy
-	iITxejHqvf6+AmDeAiVhCO4bytMzzgZOMWOZRB+Pz7cZ466Q168jJwFeux4PdLnWZakseDLCeBS
-	T9oahLP+QkZUU2mK9TV46UWkuqng0GJhCeYpjcxPk+lXPNarSDf8ck9n8VKJXyWY8i/LBKzF6gI
-	tsJS5tyIm8sz7Jp863PlHMkTzRPmWaRXzDpAKX6Pv7IEuy6rBmdfYBN7El0EQpIA8/OKF4WxZjz
-	HPxeL5l+AFwoq86FTy3JVSwgyN6fQtE5PSK2erPgNOu59GxT5s7/i/U1DdgkRIYGAKojUlHCdDy
-	xFBtZpPnclcewUsTiimc11F7RkhqUfsUV1WpPObbVn2M6MID9D2NZNlJiNQNljqSI=
-X-Google-Smtp-Source: AGHT+IHu0dN0o61FhbayVvNcqso/wb/7JAb5WQklwPBNNluMt28FIgpUrlCRIYhMu7903qiqAhBbxw==
-X-Received: by 2002:a05:7022:618a:b0:11b:d4a8:d244 with SMTP id a92af1059eb24-11e03260cd2mr7295756c88.16.1765258512282;
-        Mon, 08 Dec 2025 21:35:12 -0800 (PST)
-Received: from google.com ([2a00:79e0:2ebe:8:bf2e:ccbe:6eae:cfa7])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-11df76ff44asm73013891c88.9.2025.12.08.21.35.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Dec 2025 21:35:11 -0800 (PST)
-Date: Mon, 8 Dec 2025 21:35:09 -0800
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Hendrik Noack <hendrik-noack@gmx.de>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-input@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] Input: Add support for Wacom W9000-series penabled
- touchscreens
-Message-ID: <k5rhkjmttba4aznb3xa44pqaxepsfkbe5ap6g2ln3rcgunvkky@262tpqra76v7>
-References: <20251205152858.14415-1-hendrik-noack@gmx.de>
- <20251205164952.17709-1-hendrik-noack@gmx.de>
+	s=arc-20240116; t=1765258556; c=relaxed/simple;
+	bh=SFbbWyrG/vV0lgobikwGEaSLuRYVvAm4qJ15iRzjsq4=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=b4hM69FXVz++u3r5Tger5Mvv0lKb0GRjgccA0V0MHBTFd6wj6tOwSg/R/WeNiPwrO2M06+d3dA4PIW6ewgTR57k6e+8/jBXrsLFlf6Lzh7kq5WscwctK0RYts8RQRxNpY3v6pO8PguLTsHLoQDsVU6Xo8B7iNAf8uKsDNSDqH6I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com; spf=pass smtp.mailfrom=realtek.com; dkim=fail (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b=pTlNgKrb reason="signature verification failed"; arc=none smtp.client-ip=211.75.126.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=realtek.com
+X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 5B95ZCgaC1428977, This message is accepted by code: ctloc85258
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=realtek.com; s=dkim;
+	t=1765258512; bh=SFbbWyrG/vV0lgobikwGEaSLuRYVvAm4qJ15iRzjsq4=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:Content-Transfer-Encoding:MIME-Version;
+	b=pTlNgKrba+SJVC8obyqlzuv8b69m63SQ4bKzo010n5sVll9PyJeVQPWzdW36ONnt1
+	 nTQDxrlq3G9DgdJHfCs/uTFCjWTLsQ6TXaQ+751W2tkOBKwd5kIL7diECr8nOV3dTa
+	 L62+QOQ75LCWE8ALleWaaO+zwTn+2DGq65FMKot8QOY4RI32dveinFB0wcLXanyvKh
+	 K/ai4OmjFeHI25fz/tWOIbEoh4DV7XgzBo7W88Jwo4rbhsbrQSJn+dv02+VOk5IdqP
+	 AQvojax5Ulklz6+zdmyRKALGXtQXaIHXp7aB4mLkWiHLf5swllfTW2pKQmvqsTq9Ik
+	 ESoitt1voqH2A==
+Received: from mail.realtek.com (rtkexhmbs02.realtek.com.tw[172.21.6.41])
+	by rtits2.realtek.com.tw (8.15.2/3.21/5.94) with ESMTPS id 5B95ZCgaC1428977
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 9 Dec 2025 13:35:12 +0800
+Received: from RTKEXHMBS06.realtek.com.tw (10.21.1.56) by
+ RTKEXHMBS02.realtek.com.tw (172.21.6.41) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.10; Tue, 9 Dec 2025 13:35:12 +0800
+Received: from RTKEXHMBS06.realtek.com.tw (10.21.1.56) by
+ RTKEXHMBS06.realtek.com.tw (10.21.1.56) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.27; Tue, 9 Dec 2025 13:35:12 +0800
+Received: from RTKEXHMBS06.realtek.com.tw ([::1]) by
+ RTKEXHMBS06.realtek.com.tw ([fe80::2fa5:eccb:34ee:7bb%10]) with mapi id
+ 15.02.1544.027; Tue, 9 Dec 2025 13:35:12 +0800
+From: Oder Chiou <oder_chiou@realtek.com>
+To: "'Cezary Rojewski'" <cezary.rojewski@intel.com>
+CC: "perex@perex.cz" <perex@perex.cz>,
+        "linux-sound@vger.kernel.org"
+	<linux-sound@vger.kernel.org>,
+        "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>,
+        "alsa-devel@alsa-project.org"
+	<alsa-devel@alsa-project.org>,
+        "Flove(HsinFu)" <flove@realtek.com>,
+        =?utf-8?B?U2h1bWluZyBb6IyD5pu46YqYXQ==?= <shumingf@realtek.com>,
+        Jack Yu
+	<jack.yu@realtek.com>,
+        =?utf-8?B?RGVyZWsgW+aWueW+t+e+qV0=?=
+	<derek.fang@realtek.com>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "robh@kernel.org"
+	<robh@kernel.org>,
+        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>
+Subject: RE: [PATCH v8 1/2] ASoC: rt5575: Add the codec driver for the ALC5575
+Thread-Topic: [PATCH v8 1/2] ASoC: rt5575: Add the codec driver for the
+ ALC5575
+Thread-Index: AQHcYrFaS/5FqQdtw0yFH8gKhtK+rLUXsJuAgAEdh1A=
+Date: Tue, 9 Dec 2025 05:35:12 +0000
+Message-ID: <e0b61db5cef74c78a0e0b21ebb7e101d@realtek.com>
+References: <20251201105926.1714341-1-oder_chiou@realtek.com>
+ <20251201105926.1714341-2-oder_chiou@realtek.com>
+ <1392db4b-968c-4458-bdf0-de6aedc29fc6@intel.com>
+In-Reply-To: <1392db4b-968c-4458-bdf0-de6aedc29fc6@intel.com>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251205164952.17709-1-hendrik-noack@gmx.de>
 
-Hi Hendrik,
-
-On Fri, Dec 05, 2025 at 05:49:52PM +0100, Hendrik Noack wrote:
-> Add driver for two Wacom W9007A variants. These are penabled touchscreens
-> supporting passive Wacom Pens and use I2C.
-> 
-> Signed-off-by: Hendrik Noack <hendrik-noack@gmx.de>
-> ---
->  drivers/input/touchscreen/Kconfig       |  12 +
->  drivers/input/touchscreen/Makefile      |   1 +
->  drivers/input/touchscreen/wacom_w9000.c | 480 ++++++++++++++++++++++++
->  3 files changed, 493 insertions(+)
->  create mode 100644 drivers/input/touchscreen/wacom_w9000.c
-> 
-> diff --git a/drivers/input/touchscreen/Kconfig b/drivers/input/touchscreen/Kconfig
-> index 7d5b72ee07fa..40f7af0a681a 100644
-> --- a/drivers/input/touchscreen/Kconfig
-> +++ b/drivers/input/touchscreen/Kconfig
-> @@ -610,6 +610,18 @@ config TOUCHSCREEN_WACOM_I2C
->  	  To compile this driver as a module, choose M here: the module
->  	  will be called wacom_i2c.
->  
-> +config TOUCHSCREEN_WACOM_W9000
-> +	tristate "Wacom W9000-series penabled touchscreen (I2C)"
-> +	depends on I2C
-> +	help
-> +	  Say Y here if you have a Wacom W9000-series penabled I2C touchscreen.
-> +	  This driver supports model W9007A.
-> +
-> +	  If unsure, say N.
-> +
-> +	  To compile this driver as a module, choose M here: the module
-> +	  will be called wacom_w9000.
-> +
->  config TOUCHSCREEN_LPC32XX
->  	tristate "LPC32XX touchscreen controller"
->  	depends on ARCH_LPC32XX
-> diff --git a/drivers/input/touchscreen/Makefile b/drivers/input/touchscreen/Makefile
-> index ab9abd151078..aa3915df83b2 100644
-> --- a/drivers/input/touchscreen/Makefile
-> +++ b/drivers/input/touchscreen/Makefile
-> @@ -102,6 +102,7 @@ tsc2007-$(CONFIG_TOUCHSCREEN_TSC2007_IIO)	+= tsc2007_iio.o
->  obj-$(CONFIG_TOUCHSCREEN_TSC2007)	+= tsc2007.o
->  obj-$(CONFIG_TOUCHSCREEN_WACOM_W8001)	+= wacom_w8001.o
->  obj-$(CONFIG_TOUCHSCREEN_WACOM_I2C)	+= wacom_i2c.o
-> +obj-$(CONFIG_TOUCHSCREEN_WACOM_W9000)	+= wacom_w9000.o
->  obj-$(CONFIG_TOUCHSCREEN_WDT87XX_I2C)	+= wdt87xx_i2c.o
->  obj-$(CONFIG_TOUCHSCREEN_WM831X)	+= wm831x-ts.o
->  obj-$(CONFIG_TOUCHSCREEN_WM97XX)	+= wm97xx-ts.o
-> diff --git a/drivers/input/touchscreen/wacom_w9000.c b/drivers/input/touchscreen/wacom_w9000.c
-> new file mode 100644
-> index 000000000000..05c928646bc3
-> --- /dev/null
-> +++ b/drivers/input/touchscreen/wacom_w9000.c
-> @@ -0,0 +1,480 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
-> +/*
-> + * Wacom W9000-series penabled I2C touchscreen driver
-> + *
-> + * Copyright (c) 2025 Hendrik Noack <hendrik-noack@gmx.de>
-> + *
-> + * Partially based on vendor driver:
-> + *	Copyright (C) 2012, Samsung Electronics Co. Ltd.
-> + */
-> +
-> +#include <linux/delay.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/i2c.h>
-> +#include <linux/input.h>
-> +#include <linux/input/touchscreen.h>
-> +#include <linux/unaligned.h>
-> +
-> +// Message length
-
-Prefer C-style comments /* */
-
-> +#define COM_COORD_NUM_MAX	12
-> +#define COM_QUERY_NUM_MAX	9
-
-What does "COM" stand for?
-> +
-> +// Commands
-> +#define COM_QUERY		0x2a
-> +
-> +struct wacom_w9000_variant {
-> +	int com_coord_num;
-
-unsigned?
-
-> +	int com_query_num;
-> +	char *name;
-
-const?
-
-> +};
-> +
-> +struct wacom_w9000_data {
-> +	struct i2c_client *client;
-> +	struct input_dev *input_dev;
-> +	const struct wacom_w9000_variant *variant;
-> +	unsigned int fw_version;
-> +
-> +	struct touchscreen_properties prop;
-> +	unsigned int max_pressure;
-> +
-> +	struct regulator *regulator;
-> +
-> +	struct gpio_desc *flash_mode_gpio;
-> +	struct gpio_desc *pen_inserted_gpio;
-> +
-> +	unsigned int irq;
-> +	unsigned int pen_insert_irq;
-> +
-> +	bool pen_inserted;
-> +	bool pen_proximity;
-> +};
-> +
-> +static int wacom_w9000_read(struct i2c_client *client, u8 command, int len, char *data)
-> +{
-> +	struct i2c_msg xfer[2];
-
-	struct i2c_msg xfer[] = {
-		{
-			.addr = client->addr,
-			.buf = &comand,
-			.len = sizeof(command),
-		},
-		{
-			...
-		},
-	};
-> +	bool retried = false;
-> +	int ret;
-> +
-> +	/* Write register */
-> +	xfer[0].addr = client->addr;
-> +	xfer[0].flags = 0;
-> +	xfer[0].len = 1;
-> +	xfer[0].buf = &command;
-> +
-> +	/* Read data */
-> +	xfer[1].addr = client->addr;
-> +	xfer[1].flags = I2C_M_RD;
-> +	xfer[1].len = len;
-> +	xfer[1].buf = data;
-> +
-> +retry:
-
-Why do we need a retry? Is it because the controller might be asleep?
-If so can we wake it up explicitly?
-
-> +	ret = i2c_transfer(client->adapter, xfer, 2);
-> +	if (ret == 2) {
-
-ARRAY_SIZE(xfer)
-
-> +		ret = 0;
-> +	} else if (!retried) {
-> +		retried = true;
-> +		goto retry;
-> +	} else {
-> +		if (ret >= 0)
-> +			ret = -EIO;
-> +		dev_err(&client->dev, "%s: i2c transfer failed (%d)\n", __func__, ret);
-> +	}
-> +
-> +	return ret;
-> +}
-> +
-> +static int wacom_w9000_query(struct wacom_w9000_data *wacom_data)
-> +{
-> +	struct i2c_client *client = wacom_data->client;
-> +	struct device *dev = &wacom_data->client->dev;
-> +	bool retried = false;
-> +	int ret;
-> +	u8 data[COM_QUERY_NUM_MAX];
-> +
-> +retry:
-> +	ret = wacom_w9000_read(client, COM_QUERY, wacom_data->variant->com_query_num, data);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (data[0] == 0x0f) {
-> +		wacom_data->fw_version = get_unaligned_be16(&data[7]);
-> +	} else if (!retried) {
-> +		retried = true;
-> +		goto retry;
-> +	} else {
-> +		return -EIO;
-> +	}
-> +
-> +	dev_dbg(dev, "query: %X, %X, %X, %X, %X, %X, %X, %X, %X, %d\n", data[0], data[1], data[2],
-> +		data[3], data[4], data[5], data[6], data[7], data[8], retried);
-
-Please print hex data with "%*ph".
-
-> +
-> +	wacom_data->prop.max_x = get_unaligned_be16(&data[1]);
-> +	wacom_data->prop.max_y = get_unaligned_be16(&data[3]);
-> +	wacom_data->max_pressure = get_unaligned_be16(&data[5]);
-> +
-> +	dev_dbg(dev, "max_x:%d, max_y:%d, max_pressure:%d, fw:0x%X", wacom_data->prop.max_x,
-
-fw: %#X
-
-> +		wacom_data->prop.max_y, wacom_data->max_pressure,
-> +		wacom_data->fw_version);
-> +
-> +	return 0;
-> +}
-> +
-> +static void wacom_w9000_coord(struct wacom_w9000_data *wacom_data)
-> +{
-> +	struct i2c_client *client = wacom_data->client;
-> +	struct device *dev = &wacom_data->client->dev;
-> +	int ret;
-> +	u8 data[COM_COORD_NUM_MAX];
-> +	bool touch, rubber, side_button;
-> +	u16 x, y, pressure;
-> +	u8 distance;
-> +
-> +	ret = i2c_master_recv(client, data, wacom_data->variant->com_coord_num);
-> +	if (ret != wacom_data->variant->com_coord_num) {
-> +		if (ret >= 0)
-> +			ret = -EIO;
-> +		dev_err(dev, "%s: i2c receive failed (%d)\n", __func__, ret);
-> +		return;
-> +	}
-> +
-> +	dev_dbg(dev, "data: %X, %X, %X, %X, %X, %X, %X, %X, %X, %X, %X, %X", data[0], data[1],
-> +		data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10],
-> +		data[11]);
-
-"data: %*ph"
-
-> +
-> +	if (data[0] & BIT(7)) {
-> +		wacom_data->pen_proximity = 1;
-
-= true
-
-> +
-> +		touch = !!(data[0] & BIT(4));
-> +		side_button = !!(data[0] & BIT(5));
-> +		rubber = !!(data[0] & BIT(6));
-> +
-> +		x = get_unaligned_be16(&data[1]);
-> +		y = get_unaligned_be16(&data[3]);
-> +		pressure = get_unaligned_be16(&data[5]);
-> +		distance = data[7];
-> +
-> +		if (!((x <= wacom_data->prop.max_x) && (y <= wacom_data->prop.max_y))) {
-
-Too many parens. Also maybe
-
-		if (x > wacom_data->prop.max_x || y > wacom_data->prop.max_y)
-
-> +			dev_warn(dev, "Coordinates out of range x=%d, y=%d", x, y);
-> +			return;
-> +		}
-> +
-> +		touchscreen_report_pos(wacom_data->input_dev, &wacom_data->prop, x, y, false);
-> +		input_report_abs(wacom_data->input_dev, ABS_PRESSURE, pressure);
-> +		input_report_abs(wacom_data->input_dev, ABS_DISTANCE, distance);
-> +		input_report_key(wacom_data->input_dev, BTN_STYLUS, side_button);
-> +		input_report_key(wacom_data->input_dev, BTN_TOUCH, touch);
-> +		input_report_key(wacom_data->input_dev, BTN_TOOL_PEN, !rubber);
-> +		input_report_key(wacom_data->input_dev, BTN_TOOL_RUBBER, rubber);
-> +		input_sync(wacom_data->input_dev);
-> +	} else {
-> +		if (wacom_data->pen_proximity) {
-
-Can be collapsed "else if"
-
-> +			input_report_abs(wacom_data->input_dev, ABS_PRESSURE, 0);
-> +			input_report_abs(wacom_data->input_dev, ABS_DISTANCE, 0);
-> +			input_report_key(wacom_data->input_dev, BTN_STYLUS, 0);
-> +			input_report_key(wacom_data->input_dev, BTN_TOUCH, 0);
-> +			input_report_key(wacom_data->input_dev, BTN_TOOL_PEN, 0);
-> +			input_report_key(wacom_data->input_dev, BTN_TOOL_RUBBER, 0);
-> +			input_sync(wacom_data->input_dev);
-> +
-> +			wacom_data->pen_proximity = 0;
-
-= false
-
-> +		}
-> +	}
-> +}
-> +
-> +static irqreturn_t wacom_w9000_interrupt(int irq, void *dev_id)
-> +{
-> +	struct wacom_w9000_data *wacom_data = dev_id;
-> +
-> +	wacom_w9000_coord(wacom_data);
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +static irqreturn_t wacom_w9000_interrupt_pen_insert(int irq, void *dev_id)
-> +{
-> +	struct wacom_w9000_data *wacom_data = dev_id;
-> +	struct device *dev = &wacom_data->client->dev;
-> +	int ret;
-
-	int error;
-
-> +
-> +	wacom_data->pen_inserted = gpiod_get_value(wacom_data->pen_inserted_gpio);
-
-This runs in a thread, use "can sleep" variant.
-
-> +
-> +	input_report_switch(wacom_data->input_dev, SW_PEN_INSERTED, wacom_data->pen_inserted);
-> +	input_sync(wacom_data->input_dev);
-> +
-> +	if (!wacom_data->pen_inserted && !regulator_is_enabled(wacom_data->regulator)) {
-
-What if the regulator is shared with something else? You should not
-operate based on the state, just do what you need (i.e. enable or
-disable).
-
-> +		ret = regulator_enable(wacom_data->regulator);
-> +		if (ret) {
-> +			dev_err(dev, "Failed to enable regulators: %d\n", ret);
-> +			return IRQ_HANDLED;
-> +		}
-> +		msleep(200);
-> +		enable_irq(wacom_data->irq);
-> +	} else if (wacom_data->pen_inserted && regulator_is_enabled(wacom_data->regulator)) {
-> +		disable_irq(wacom_data->irq);
-> +		regulator_disable(wacom_data->regulator);
-> +	}
-> +
-> +	dev_dbg(dev, "Pen inserted changed to %d", wacom_data->pen_inserted);
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +static int wacom_w9000_open(struct input_dev *dev)
-> +{
-> +	struct wacom_w9000_data *wacom_data = input_get_drvdata(dev);
-> +	int ret;
-
-	int error;
-
-> +
-> +	if (!wacom_data->pen_inserted && !regulator_is_enabled(wacom_data->regulator)) {
-> +		ret = regulator_enable(wacom_data->regulator);
-> +		if (ret) {
-> +			dev_err(&wacom_data->client->dev, "Failed to enable regulators: %d\n",
-> +				ret);
-> +			return ret;
-> +		}
-> +		msleep(200);
-> +		enable_irq(wacom_data->irq);
-> +	}
-> +	return 0;
-> +}
-> +
-> +static void wacom_w9000_close(struct input_dev *dev)
-> +{
-> +	struct wacom_w9000_data *wacom_data = input_get_drvdata(dev);
-> +
-> +	if (regulator_is_enabled(wacom_data->regulator)) {
-> +		disable_irq(wacom_data->irq);
-> +		regulator_disable(wacom_data->regulator);
-> +	}
-> +}
-> +
-> +static int wacom_w9000_probe(struct i2c_client *client)
-> +{
-> +	struct device *dev = &client->dev;
-> +	struct wacom_w9000_data *wacom_data;
-> +	struct input_dev *input_dev;
-> +	int ret;
-
-	int error;
-
-> +	u32 val;
-> +
-> +	if (!i2c_check_functionality(client->adapter, I2C_FUNC_I2C)) {
-> +		dev_err(dev, "i2c_check_functionality error\n");
-> +		return -EIO;
-> +	}
-> +
-> +	wacom_data = devm_kzalloc(dev, sizeof(*wacom_data), GFP_KERNEL);
-> +	if (!wacom_data)
-> +		return -ENOMEM;
-> +
-> +	wacom_data->variant = i2c_get_match_data(client);
-> +
-> +	wacom_data->client = client;
-> +
-> +	input_dev = devm_input_allocate_device(dev);
-> +	if (!input_dev)
-> +		return -ENOMEM;
-> +	wacom_data->input_dev = input_dev;
-> +
-> +	wacom_data->irq = client->irq;
-> +	i2c_set_clientdata(client, wacom_data);
-> +
-> +	wacom_data->regulator = devm_regulator_get(dev, "vdd");
-> +	if (IS_ERR(wacom_data->regulator))
-> +		return dev_err_probe(dev, PTR_ERR(wacom_data->regulator),
-> +				     "Failed to get regulators\n");
-> +
-> +	wacom_data->flash_mode_gpio = devm_gpiod_get_optional(dev, "flash-mode", GPIOD_OUT_LOW);
-> +	if (IS_ERR(wacom_data->flash_mode_gpio))
-> +		return dev_err_probe(dev, PTR_ERR(wacom_data->flash_mode_gpio),
-> +				     "Failed to get flash-mode gpio\n");
-> +
-> +	wacom_data->pen_inserted_gpio = devm_gpiod_get_optional(dev, "pen-inserted", GPIOD_IN);
-> +	if (IS_ERR(wacom_data->pen_inserted_gpio))
-> +		return dev_err_probe(dev, PTR_ERR(wacom_data->pen_inserted_gpio),
-> +				     "Failed to get pen-insert gpio\n");
-> +
-> +	ret = regulator_enable(wacom_data->regulator);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to enable regulators\n");
-> +
-> +	msleep(200);
-> +
-> +	ret = wacom_w9000_query(wacom_data);
-> +	if (ret)
-> +		goto err_disable_regulators;
-
-I do not think you need power past this point until you open the device.
-Maybe turn it off right here?
-
-> +
-> +	input_dev->name = wacom_data->variant->name;
-> +	input_dev->id.bustype = BUS_I2C;
-> +	input_dev->dev.parent = dev;
-> +	input_dev->id.vendor = 0x56a;
-> +	input_dev->id.version = wacom_data->fw_version;
-> +	input_dev->open = wacom_w9000_open;
-> +	input_dev->close = wacom_w9000_close;
-> +
-> +	input_set_capability(input_dev, EV_KEY, BTN_TOUCH);
-> +	input_set_capability(input_dev, EV_KEY, BTN_TOOL_PEN);
-> +	input_set_capability(input_dev, EV_KEY, BTN_TOOL_RUBBER);
-> +	input_set_capability(input_dev, EV_KEY, BTN_STYLUS);
-> +
-> +	// Calculate x and y resolution from size in devicetree
-> +	ret = device_property_read_u32(dev, "touchscreen-x-mm", &val);
-> +	if (ret)
-> +		input_abs_set_res(input_dev, ABS_X, 100);
-
-If you do not have resolution data simply do not set it.
-
-> +	else
-> +		input_abs_set_res(input_dev, ABS_X, wacom_data->prop.max_x / val);
-
-Don't you parse prop below so here max_x and max_y are both 0?
-
-> +	ret = device_property_read_u32(dev, "touchscreen-y-mm", &val);
-> +	if (ret)
-> +		input_abs_set_res(input_dev, ABS_Y, 100);
-> +	else
-> +		input_abs_set_res(input_dev, ABS_Y, wacom_data->prop.max_y / val);
-> +
-> +	input_set_abs_params(input_dev, ABS_X, 0, wacom_data->prop.max_x, 4, 0);
-> +	input_set_abs_params(input_dev, ABS_Y, 0, wacom_data->prop.max_y, 4, 0);
-> +	input_set_abs_params(input_dev, ABS_PRESSURE, 0, wacom_data->max_pressure, 0, 0);
-> +	input_set_abs_params(input_dev, ABS_DISTANCE, 0, 255, 0, 0);
-> +
-> +	touchscreen_parse_properties(input_dev, false, &wacom_data->prop);
-> +
-> +	ret = devm_request_threaded_irq(dev, wacom_data->irq, NULL, wacom_w9000_interrupt,
-> +					IRQF_ONESHOT | IRQF_NO_AUTOEN, client->name, wacom_data);
-> +	if (ret) {
-> +		dev_err(dev, "Failed to register interrupt\n");
-> +		goto err_disable_regulators;
-> +	}
-> +
-> +	if (wacom_data->pen_inserted_gpio) {
-> +		input_set_capability(input_dev, EV_SW, SW_PEN_INSERTED);
-> +		wacom_data->pen_insert_irq = gpiod_to_irq(wacom_data->pen_inserted_gpio);
-> +		ret = devm_request_threaded_irq(dev, wacom_data->pen_insert_irq, NULL,
-> +						wacom_w9000_interrupt_pen_insert, IRQF_ONESHOT |
-> +						IRQF_NO_AUTOEN | IRQF_TRIGGER_RISING |
-> +						IRQF_TRIGGER_FALLING, "wacom_pen_insert",
-
-Rely on DT to define triggers. Use IRQF_ONESHOT only.
-
-> +						wacom_data);
-> +		if (ret) {
-> +			dev_err(dev, "Failed to register pen-insert interrupt\n");
-> +			goto err_disable_regulators;
-> +		}
-> +
-> +		wacom_data->pen_inserted = gpiod_get_value(wacom_data->pen_inserted_gpio);
-> +		if (wacom_data->pen_inserted)
-> +			regulator_disable(wacom_data->regulator);
-> +		else
-> +			enable_irq(wacom_data->irq);
-> +	} else {
-> +		enable_irq(wacom_data->irq);
-
-Can this be moved into "open"?
-
-> +	}
-> +
-> +	input_set_drvdata(input_dev, wacom_data);
-> +
-> +	input_report_switch(wacom_data->input_dev, SW_PEN_INSERTED, wacom_data->pen_inserted);
-> +	input_sync(wacom_data->input_dev);
-> +
-> +	if (wacom_data->pen_inserted_gpio)
-> +		enable_irq(wacom_data->pen_insert_irq);
-> +
-> +	ret = input_register_device(wacom_data->input_dev);
-> +	if (ret) {
-> +		dev_err(dev, "Failed to register input device: %d\n", ret);
-> +		goto err_disable_regulators;
-> +	}
-> +
-> +	return 0;
-> +
-> +err_disable_regulators:
-> +	regulator_disable(wacom_data->regulator);
-> +	return ret;
-> +}
-> +
-> +static void wacom_w9000_remove(struct i2c_client *client)
-> +{
-> +	struct wacom_w9000_data *wacom_data = i2c_get_clientdata(client);
-> +
-> +	if (regulator_is_enabled(wacom_data->regulator))
-> +		regulator_disable(wacom_data->regulator);
-
-Please move this to "close" and drop wacom_w9000_remove() altogether.
-
-> +}
-> +
-> +static int wacom_w9000_suspend(struct device *dev)
-> +{
-> +	struct i2c_client *client = to_i2c_client(dev);
-> +	struct wacom_w9000_data *wacom_data = i2c_get_clientdata(client);
-> +	struct input_dev *input_dev = wacom_data->input_dev;
-> +
-> +	mutex_lock(&input_dev->mutex);
-
-	guard(mutex)(&input_dev->mutex);
-
-> +
-> +	if (regulator_is_enabled(wacom_data->regulator)) {
-> +		disable_irq(wacom_data->irq);
-> +		regulator_disable(wacom_data->regulator);
-> +	}
-> +
-> +	mutex_unlock(&input_dev->mutex);
-> +
-> +	return 0;
-> +}
-> +
-> +static int wacom_w9000_resume(struct device *dev)
-> +{
-> +	struct i2c_client *client = to_i2c_client(dev);
-> +	struct wacom_w9000_data *wacom_data = i2c_get_clientdata(client);
-> +	struct input_dev *input_dev = wacom_data->input_dev;
-> +	int ret = 0;
-> +
-> +	mutex_lock(&input_dev->mutex);
-
-	guard(mutex)(&input_dev->mutex);
-> +
-> +	if (!wacom_data->pen_inserted && !regulator_is_enabled(wacom_data->regulator)) {
-> +		ret = regulator_enable(wacom_data->regulator);
-> +		if (ret) {
-> +			dev_err(&wacom_data->client->dev, "Failed to enable regulators: %d\n",
-> +				ret);
-> +		} else {
-> +			msleep(200);
-> +			enable_irq(wacom_data->irq);
-> +		}
-> +	}
-> +
-> +	mutex_unlock(&input_dev->mutex);
-> +
-> +	return ret;
-> +}
-> +
-> +static DEFINE_SIMPLE_DEV_PM_OPS(wacom_w9000_pm, wacom_w9000_suspend, wacom_w9000_resume);
-> +
-> +static const struct wacom_w9000_variant w9007a_lt03 = {
-> +	.com_coord_num	= 8,
-> +	.com_query_num	= 9,
-> +	.name = "Wacom W9007 LT03 Digitizer",
-> +};
-> +
-> +static const struct wacom_w9000_variant w9007a_v1 = {
-> +	.com_coord_num	= 12,
-> +	.com_query_num	= 9,
-> +	.name = "Wacom W9007 V1 Digitizer",
-> +};
-> +
-> +static const struct of_device_id wacom_w9000_of_match[] = {
-> +	{ .compatible = "wacom,w9007a-lt03", .data = &w9007a_lt03, },
-> +	{ .compatible = "wacom,w9007a-v1", .data = &w9007a_v1, },
-> +	{},
-
-	{ }
-
-No need for trailing comma on a sentinel entry.
-
-> +};
-> +MODULE_DEVICE_TABLE(of, wacom_w9000_of_match);
-> +
-> +static const struct i2c_device_id wacom_w9000_id[] = {
-> +	{ .name = "w9007a-lt03", .driver_data = (kernel_ulong_t)&w9007a_lt03 },
-> +	{ .name = "w9007a-v1", .driver_data = (kernel_ulong_t)&w9007a_v1 },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(i2c, wacom_w9000_id);
-> +
-> +static struct i2c_driver wacom_w9000_driver = {
-> +	.driver = {
-> +		.name	= "wacom_w9000",
-> +		.of_match_table = wacom_w9000_of_match,
-> +		.pm	= pm_sleep_ptr(&wacom_w9000_pm),
-> +	},
-> +	.probe		= wacom_w9000_probe,
-> +	.remove		= wacom_w9000_remove,
-> +	.id_table	= wacom_w9000_id,
-> +};
-> +module_i2c_driver(wacom_w9000_driver);
-> +
-> +/* Module information */
-> +MODULE_AUTHOR("Hendrik Noack <hendrik-noack@gmx.de>");
-> +MODULE_DESCRIPTION("Wacom W9000-series penabled touchscreen driver");
-> +MODULE_LICENSE("GPL");
-
-Thanks.
-
--- 
-Dmitry
+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBDZXphcnkgUm9qZXdza2kgPGNl
+emFyeS5yb2pld3NraUBpbnRlbC5jb20+DQo+IFNlbnQ6IFR1ZXNkYXksIERlY2VtYmVyIDksIDIw
+MjUgNDowNiBBTQ0KPiBUbzogT2RlciBDaGlvdSA8b2Rlcl9jaGlvdUByZWFsdGVrLmNvbT4NCj4g
+Q2M6IHBlcmV4QHBlcmV4LmN6OyBsaW51eC1zb3VuZEB2Z2VyLmtlcm5lbC5vcmc7IGRldmljZXRy
+ZWVAdmdlci5rZXJuZWwub3JnOw0KPiBhbHNhLWRldmVsQGFsc2EtcHJvamVjdC5vcmc7IEZsb3Zl
+KEhzaW5GdSkgPGZsb3ZlQHJlYWx0ZWsuY29tPjsgU2h1bWluZyBb6IyDDQo+IOabuOmKmF0gPHNo
+dW1pbmdmQHJlYWx0ZWsuY29tPjsgSmFjayBZdSA8amFjay55dUByZWFsdGVrLmNvbT47IERlcmVr
+IFvmlrnlvrcNCj4g576pXSA8ZGVyZWsuZmFuZ0ByZWFsdGVrLmNvbT47IGJyb29uaWVAa2VybmVs
+Lm9yZzsgbGdpcmR3b29kQGdtYWlsLmNvbTsNCj4gcm9iaEBrZXJuZWwub3JnOyBrcnprK2R0QGtl
+cm5lbC5vcmc7IGNvbm9yK2R0QGtlcm5lbC5vcmcNCj4gU3ViamVjdDogUmU6IFtQQVRDSCB2OCAx
+LzJdIEFTb0M6IHJ0NTU3NTogQWRkIHRoZSBjb2RlYyBkcml2ZXIgZm9yIHRoZQ0KPiBBTEM1NTc1
+DQo+IA0KPiANCj4gRXh0ZXJuYWwgbWFpbCA6IFRoaXMgZW1haWwgb3JpZ2luYXRlZCBmcm9tIG91
+dHNpZGUgdGhlIG9yZ2FuaXphdGlvbi4gRG8gbm90DQo+IHJlcGx5LCBjbGljayBsaW5rcywgb3Ig
+b3BlbiBhdHRhY2htZW50cyB1bmxlc3MgeW91IHJlY29nbml6ZSB0aGUgc2VuZGVyIGFuZA0KPiBr
+bm93IHRoZSBjb250ZW50IGlzIHNhZmUuDQo+IA0KPiANCj4gDQo+IE9uIDIwMjUtMTItMDEgMTE6
+NTkgQU0sIE9kZXIgQ2hpb3Ugd3JvdGU6DQo+ID4gVGhlIEFMQzU1NzUgaW50ZWdyYXRlcyBhbiBh
+dWRpbyBEU1AgdGhhdCB0eXBpY2FsbHkgbG9hZHMgaXRzIGZpcm13YXJlDQo+ID4gZnJvbSBhbiBl
+eHRlcm5hbCBmbGFzaCB2aWEgaXRzIG93biBTUEkgaG9zdCBpbnRlcmZhY2UuIEluIGNlcnRhaW4N
+Cj4gPiBoYXJkd2FyZSBjb25maWd1cmF0aW9ucywgdGhlIGZpcm13YXJlIGNhbiBhbHRlcm5hdGl2
+ZWx5IGJlIGxvYWRlZA0KPiA+IHRocm91Z2ggdGhlIFNQSSBjbGllbnQgaW50ZXJmYWNlLiBUaGUg
+ZHJpdmVyIHByb3ZpZGVzIGJhc2ljIG11dGUgYW5kDQo+ID4gdm9sdW1lIGNvbnRyb2wgZnVuY3Rp
+b25zLiBXaGVuIHRoZSBTUEkgY2xpZW50IGludGVyZmFjZSBpcyBlbmFibGVkLA0KPiA+IGZpcm13
+YXJlIGxvYWRpbmcgaXMgaGFuZGxlZCBieSB0aGUgU1BJIGRyaXZlci4NCj4gPg0KPiA+IFNpZ25l
+ZC1vZmYtYnk6IE9kZXIgQ2hpb3UgPG9kZXJfY2hpb3VAcmVhbHRlay5jb20+DQo+IA0KPiAuLi4N
+Cj4gDQo+ID4gZGlmZiAtLWdpdCBhL3NvdW5kL3NvYy9jb2RlY3MvcnQ1NTc1LXNwaS5jIGIvc291
+bmQvc29jL2NvZGVjcy9ydDU1NzUtc3BpLmMNCj4gPiBuZXcgZmlsZSBtb2RlIDEwMDY0NA0KPiA+
+IGluZGV4IDAwMDAwMDAwMDAwMC4uMTJjMjM3OWEwNjFlDQo+ID4gLS0tIC9kZXYvbnVsbA0KPiA+
+ICsrKyBiL3NvdW5kL3NvYy9jb2RlY3MvcnQ1NTc1LXNwaS5jDQo+ID4gQEAgLTAsMCArMSw4NCBA
+QA0KPiA+ICsvLyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogR1BMLTIuMC1vbmx5DQo+ID4gKy8q
+DQo+ID4gKyAqIHJ0NTU3NS1zcGkuYyAgLS0gIEFMQzU1NzUgU1BJIGRyaXZlcg0KPiA+ICsgKg0K
+PiA+ICsgKiBDb3B5cmlnaHQoYykgMjAyNSBSZWFsdGVrIFNlbWljb25kdWN0b3IgQ29ycC4NCj4g
+PiArICoNCj4gPiArICovDQo+ID4gKw0KPiA+ICsjaW5jbHVkZSA8bGludXgvb2YuaD4NCj4gPiAr
+I2luY2x1ZGUgPGxpbnV4L3NwaS9zcGkuaD4NCj4gPiArDQo+ID4gKyNpbmNsdWRlICJydDU1NzUt
+c3BpLmgiDQo+ID4gKw0KPiA+ICsjZGVmaW5lIFJUNTU3NV9TUElfQ01EX0JVUlNUX1dSSVRFICAg
+NQ0KPiA+ICsjZGVmaW5lIFJUNTU3NV9TUElfQlVGX0xFTiAgICAgICAgICAgMjQwDQo+ID4gKw0K
+PiA+ICtzdHJ1Y3QgcnQ1NTc1X3NwaV9idXJzdF93cml0ZSB7DQo+ID4gKyAgICAgdTggY21kOw0K
+PiA+ICsgICAgIHUzMiBhZGRyOw0KPiA+ICsgICAgIHU4IGRhdGFbUlQ1NTc1X1NQSV9CVUZfTEVO
+XTsNCj4gPiArICAgICB1OCBkdW1teTsNCj4gPiArfSBfX3BhY2tlZDsNCj4gPiArDQo+ID4gK3N0
+cnVjdCBzcGlfZGV2aWNlICpydDU1NzVfc3BpOw0KPiA+ICtFWFBPUlRfU1lNQk9MX0dQTChydDU1
+NzVfc3BpKTsNCj4gPiArDQo+ID4gKy8qKg0KPiA+ICsgKiBydDU1NzVfc3BpX2J1cnN0X3dyaXRl
+IC0gV3JpdGUgZGF0YSB0byBTUEkgYnkgcnQ1NTc1IGFkZHJlc3MuDQo+ID4gKyAqIEBhZGRyOiBT
+dGFydCBhZGRyZXNzLg0KPiA+ICsgKiBAdHhidWY6IERhdGEgYnVmZmVyIGZvciB3cml0aW5nLg0K
+PiA+ICsgKiBAbGVuOiBEYXRhIGxlbmd0aC4NCj4gPiArICoNCj4gPiArICovDQo+ID4gK2ludCBy
+dDU1NzVfc3BpX2J1cnN0X3dyaXRlKHUzMiBhZGRyLCBjb25zdCB1OCAqdHhidWYsIHNpemVfdCBs
+ZW4pDQo+ID4gK3sNCj4gPiArICAgICBzdHJ1Y3QgcnQ1NTc1X3NwaV9idXJzdF93cml0ZSBidWYg
+PSB7DQo+ID4gKyAgICAgICAgICAgICAuY21kID0gUlQ1NTc1X1NQSV9DTURfQlVSU1RfV1JJVEUN
+Cj4gPiArICAgICB9Ow0KPiA+ICsgICAgIHVuc2lnbmVkIGludCBlbmQsIG9mZnNldCA9IDA7DQo+
+ID4gKw0KPiA+ICsgICAgIHdoaWxlIChvZmZzZXQgPCBsZW4pIHsNCj4gPiArICAgICAgICAgICAg
+IGlmIChvZmZzZXQgKyBSVDU1NzVfU1BJX0JVRl9MRU4gPD0gbGVuKQ0KPiA+ICsgICAgICAgICAg
+ICAgICAgICAgICBlbmQgPSBSVDU1NzVfU1BJX0JVRl9MRU47DQo+ID4gKyAgICAgICAgICAgICBl
+bHNlDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgIGVuZCA9IGxlbiAlIFJUNTU3NV9TUElfQlVG
+X0xFTjsNCj4gPiArDQo+ID4gKyAgICAgICAgICAgICBidWYuYWRkciA9IGNwdV90b19sZTMyKGFk
+ZHIgKyBvZmZzZXQpOw0KPiA+ICsNCj4gPiArICAgICAgICAgICAgIG1lbWNweSgmYnVmLmRhdGEs
+ICZ0eGJ1ZltvZmZzZXRdLCBlbmQpOw0KPiA+ICsNCj4gPiArICAgICAgICAgICAgIHNwaV93cml0
+ZShydDU1NzVfc3BpLCAmYnVmLCBzaXplb2YoYnVmKSk7DQo+ID4gKw0KPiA+ICsgICAgICAgICAg
+ICAgb2Zmc2V0ICs9IFJUNTU3NV9TUElfQlVGX0xFTjsNCj4gDQo+IE1ha2UgaXQgY29oZXNpdmUg
+YnkgcHJvcGVyIHNwYWNpbmcgLSBpdCdzIGEgbG9naWNhbCBibG9jaywgYW5kIGxvZ2ljYWwNCj4g
+YmxvY2tzIGFyZSBlYXNpZXIgdG8gcmVhZCBpZiBncm91cGVkIHRvZ2V0aGVyIGUuZy46DQo+IA0K
+PiA8YXNzdW1pbmcgbmV3bGluZSBhZnRlciB0aGUgaWYtZWxzZS1zdGF0ZW1lbnQ+DQo+IA0KPiAg
+ICAgICAgICAgICAgICAgYnVmLmFkZHIgPSBjcHVfdG9fbGUzMihhZGRyICsgb2Zmc2V0KTsNCj4g
+ICAgICAgICAgICAgICAgIG1lbWNweSgmYnVmLmRhdGEsICZ0eGJ1ZltvZmZzZXRdLCBlbmQpOw0K
+PiAgICAgICAgICAgICAgICAgc3BpX3dyaXRlKHJ0NTU3NV9zcGksICZidWYsIHNpemVvZihidWYp
+KTsNCj4gDQo+ICAgICAgICAgICAgICAgICBvZmZzZXQgKz0gUlQ1NTc1X1NQSV9CVUZfTEVOOw0K
+PiANCj4gU2VlPyAgQ2xlYXIgc2VwYXJhdGlvbiBvZiBvcGVyYXRpb25zIGxlYWRpbmcgdG8gc3Bp
+X3dyaXRlKCkgYW5kIHRoZQ0KPiBvZmZzZXQgaW5jcmVtZW50Lg0KPiANCj4gPiArICAgICB9DQo+
+ID4gKw0KPiA+ICsgICAgIHJldHVybiAwOw0KPiA+ICt9DQo+ID4gK0VYUE9SVF9TWU1CT0xfR1BM
+KHJ0NTU3NV9zcGlfYnVyc3Rfd3JpdGUpOw0KPiA+ICsNCj4gPiArc3RhdGljIGludCBydDU1NzVf
+c3BpX3Byb2JlKHN0cnVjdCBzcGlfZGV2aWNlICpzcGkpDQo+ID4gK3sNCj4gPiArICAgICBydDU1
+NzVfc3BpID0gc3BpOw0KPiA+ICsNCj4gPiArICAgICByZXR1cm4gMDsNCj4gPiArfQ0KPiA+ICsN
+Cj4gPiArc3RhdGljIGNvbnN0IHN0cnVjdCBvZl9kZXZpY2VfaWQgcnQ1NTc1X29mX21hdGNoW10g
+PSB7DQo+ID4gKyAgICAgeyAuY29tcGF0aWJsZSA9ICJyZWFsdGVrLHJ0NTU3NSIgfSwNCj4gPiAr
+ICAgICB7IH0NCj4gPiArfTsNCj4gPiArTU9EVUxFX0RFVklDRV9UQUJMRShvZiwgcnQ1NTc1X29m
+X21hdGNoKTsNCj4gPiArDQo+ID4gK3N0YXRpYyBzdHJ1Y3Qgc3BpX2RyaXZlciBydDU1NzVfc3Bp
+X2RyaXZlciA9IHsNCj4gPiArICAgICAuZHJpdmVyID0gew0KPiA+ICsgICAgICAgICAgICAgLm5h
+bWUgPSAicnQ1NTc1IiwNCj4gPiArICAgICAgICAgICAgIC5vZl9tYXRjaF90YWJsZSA9IG9mX21h
+dGNoX3B0cihydDU1NzVfb2ZfbWF0Y2gpLA0KPiA+ICsgICAgIH0sDQo+ID4gKyAgICAgLnByb2Jl
+ID0gcnQ1NTc1X3NwaV9wcm9iZSwNCj4gPiArfTsNCj4gPiArbW9kdWxlX3NwaV9kcml2ZXIocnQ1
+NTc1X3NwaV9kcml2ZXIpOw0KPiA+ICsNCj4gPiArTU9EVUxFX0RFU0NSSVBUSU9OKCJBTEM1NTc1
+IFNQSSBkcml2ZXIiKTsNCj4gPiArTU9EVUxFX0FVVEhPUigiT2RlciBDaGlvdSA8b2Rlcl9jaGlv
+dUByZWFsdGVrLmNvbT4iKTsNCj4gPiArTU9EVUxFX0xJQ0VOU0UoIkdQTCIpOw0KPiA+IGRpZmYg
+LS1naXQgYS9zb3VuZC9zb2MvY29kZWNzL3J0NTU3NS1zcGkuaCBiL3NvdW5kL3NvYy9jb2RlY3Mv
+cnQ1NTc1LXNwaS5oDQo+ID4gbmV3IGZpbGUgbW9kZSAxMDA2NDQNCj4gPiBpbmRleCAwMDAwMDAw
+MDAwMDAuLmIzNjRiNDliYjQzZQ0KPiA+IC0tLSAvZGV2L251bGwNCj4gPiArKysgYi9zb3VuZC9z
+b2MvY29kZWNzL3J0NTU3NS1zcGkuaA0KPiA+IEBAIC0wLDAgKzEsMTYgQEANCj4gPiArLyogU1BE
+WC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0yLjAtb25seSAqLw0KPiA+ICsvKg0KPiA+ICsgKiBy
+dDU1NzUtc3BpLmggIC0tICBBTEM1NTc1IFNQSSBkcml2ZXINCj4gPiArICoNCj4gPiArICogQ29w
+eXJpZ2h0KGMpIDIwMjUgUmVhbHRlayBTZW1pY29uZHVjdG9yIENvcnAuDQo+ID4gKyAqDQo+ID4g
+KyAqLw0KPiA+ICsNCj4gPiArI2lmbmRlZiBfX1JUNTU3NV9TUElfSF9fDQo+ID4gKyNkZWZpbmUg
+X19SVDU1NzVfU1BJX0hfXw0KPiA+ICsNCj4gPiArZXh0ZXJuIHN0cnVjdCBzcGlfZGV2aWNlICpy
+dDU1NzVfc3BpOw0KPiA+ICsNCj4gPiAraW50IHJ0NTU3NV9zcGlfYnVyc3Rfd3JpdGUodTMyIGFk
+ZHIsIGNvbnN0IHU4ICp0eGJ1Ziwgc2l6ZV90IGxlbik7DQo+ID4gKw0KPiA+ICsjZW5kaWYgLyog
+X19SVDU1NzVfU1BJX0hfXyAqLw0KPiANCj4gVGhlIGVudGlyZSBoZWFkZXIgY2FuIGJlIGRyb3Bw
+ZWQgYW5kIGl0cyBjb250ZW50IG1vdmVkIHRvIHJ0NTU3NS5oLg0KPiBJdCdzIGluY2x1ZGVkIGlu
+IGJvdGggQy1maWxlcyBwbHVzIHdlIHdhbnQgdG8gZ2V0IHJpZCBvZiB0aGUgZ2xvYmFsDQo+IHJ0
+NTU3NV9zcGkgYW55d2F5LiAgSSBkbyBub3QgdGhpbmsgcnQ1NTc1X3NwaV9idXJzdF93cml0ZSgp
+IGJlbG9uZ3MgaGVyZQ0KPiBlaXRoZXIsIHNlZSBteSBjb21tZW50cyByZWdhcmRpbmcgcnQ1NTc1
+X2Z3X2xvYWRfYnlfc3BpKCkuDQo+IA0KPiA+IGRpZmYgLS1naXQgYS9zb3VuZC9zb2MvY29kZWNz
+L3J0NTU3NS5jIGIvc291bmQvc29jL2NvZGVjcy9ydDU1NzUuYw0KPiA+IG5ldyBmaWxlIG1vZGUg
+MTAwNjQ0DQo+ID4gaW5kZXggMDAwMDAwMDAwMDAwLi5jN2U4ZjVhNjA2YmMNCj4gPiAtLS0gL2Rl
+di9udWxsDQo+ID4gKysrIGIvc291bmQvc29jL2NvZGVjcy9ydDU1NzUuYw0KPiA+IEBAIC0wLDAg
+KzEsMzc1IEBADQo+ID4gKy8vIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBHUEwtMi4wLW9ubHkN
+Cj4gPiArLyoNCj4gPiArICogcnQ1NTc1LmMgIC0tICBBTEM1NTc1IEFMU0EgU29DIGF1ZGlvIGNv
+bXBvbmVudCBkcml2ZXINCj4gPiArICoNCj4gPiArICogQ29weXJpZ2h0KGMpIDIwMjUgUmVhbHRl
+ayBTZW1pY29uZHVjdG9yIENvcnAuDQo+ID4gKyAqDQo+ID4gKyAqLw0KPiA+ICsNCj4gPiArI2lu
+Y2x1ZGUgPGxpbnV4L2Zpcm13YXJlLmg+DQo+ID4gKyNpbmNsdWRlIDxsaW51eC9pMmMuaD4NCj4g
+PiArI2luY2x1ZGUgPHNvdW5kL3NvYy5oPg0KPiA+ICsjaW5jbHVkZSA8c291bmQvdGx2Lmg+DQo+
+ID4gKw0KPiA+ICsjaW5jbHVkZSAicnQ1NTc1LmgiDQo+ID4gKyNpZiBJU19FTkFCTEVEKENPTkZJ
+R19TTkRfU09DX1JUNTU3NV9TUEkpDQo+ID4gKyNpbmNsdWRlICJydDU1NzUtc3BpLmgiDQo+ID4g
+KyNlbmRpZg0KPiA+ICsNCj4gPiArc3RhdGljIGJvb2wgcnQ1NTc1X3JlYWRhYmxlX3JlZ2lzdGVy
+KHN0cnVjdCBkZXZpY2UgKmRldiwgdW5zaWduZWQgaW50IHJlZykNCj4gPiArew0KPiA+ICsgICAg
+IHN3aXRjaCAocmVnKSB7DQo+ID4gKyAgICAgY2FzZSBSVDU1NzVfSUQ6DQo+ID4gKyAgICAgY2Fz
+ZSBSVDU1NzVfSURfMToNCj4gPiArICAgICBjYXNlIFJUNTU3NV9NSVhMX1ZPTDoNCj4gPiArICAg
+ICBjYXNlIFJUNTU3NV9NSVhSX1ZPTDoNCj4gPiArICAgICBjYXNlIFJUNTU3NV9QUk9NUFRfVk9M
+Og0KPiA+ICsgICAgIGNhc2UgUlQ1NTc1X1NQSzAxX1ZPTDoNCj4gPiArICAgICBjYXNlIFJUNTU3
+NV9TUEsyM19WT0w6DQo+ID4gKyAgICAgY2FzZSBSVDU1NzVfTUlDMV9WT0w6DQo+ID4gKyAgICAg
+Y2FzZSBSVDU1NzVfTUlDMl9WT0w6DQo+ID4gKyAgICAgY2FzZSBSVDU1NzVfV05DX0NUUkw6DQo+
+ID4gKyAgICAgY2FzZSBSVDU1NzVfTU9ERV9DVFJMOg0KPiA+ICsgICAgIGNhc2UgUlQ1NTc1X0ky
+U19SQVRFX0NUUkw6DQo+ID4gKyAgICAgY2FzZSBSVDU1NzVfU0xFRVBfQ1RSTDoNCj4gPiArICAg
+ICBjYXNlIFJUNTU3NV9BTEdfQllQQVNTX0NUUkw6DQo+ID4gKyAgICAgY2FzZSBSVDU1NzVfUElO
+TVVYX0NUUkxfMjoNCj4gPiArICAgICBjYXNlIFJUNTU3NV9HUElPX0NUUkxfMToNCj4gPiArICAg
+ICBjYXNlIFJUNTU3NV9EU1BfQlVTX0NUUkw6DQo+ID4gKyAgICAgY2FzZSBSVDU1NzVfU1dfSU5U
+Og0KPiA+ICsgICAgIGNhc2UgUlQ1NTc1X0RTUF9CT09UX0VSUjoNCj4gPiArICAgICBjYXNlIFJU
+NTU3NV9EU1BfUkVBRFk6DQo+ID4gKyAgICAgY2FzZSBSVDU1NzVfRFNQX0NNRF9BRERSOg0KPiA+
+ICsgICAgIGNhc2UgUlQ1NTc1X0VGVVNFX0RBVEFfMjoNCj4gPiArICAgICBjYXNlIFJUNTU3NV9F
+RlVTRV9EQVRBXzM6DQo+ID4gKyAgICAgICAgICAgICByZXR1cm4gdHJ1ZTsNCj4gPiArICAgICBk
+ZWZhdWx0Og0KPiA+ICsgICAgICAgICAgICAgcmV0dXJuIGZhbHNlOw0KPiA+ICsgICAgIH0NCj4g
+PiArfQ0KPiA+ICsNCj4gPiArc3RhdGljIGNvbnN0IERFQ0xBUkVfVExWX0RCX1NDQUxFKG9iX3Rs
+diwgLTk1MjUsIDc1LCAwKTsNCj4gPiArDQo+ID4gKyNpZiBJU19FTkFCTEVEKENPTkZJR19TTkRf
+U09DX1JUNTU3NV9TUEkpDQo+ID4gK3N0YXRpYyB2b2lkIHJ0NTU3NV9md19sb2FkX2J5X3NwaShj
+b25zdCBzdHJ1Y3QgZmlybXdhcmUgKmZ3LCB2b2lkICpjb250ZXh0KQ0KPiANCj4gU28sIHJ0NTU3
+NV9zcGlfYnVyc3Rfd3JpdGUoKSwgYSB3cmFwcGVyIGZvciBzcGlfd3JpdGUoKSwgaXMgZXhwb3J0
+ZWQgdG8NCj4gYmUgYXZhaWxhYmxlIG91dHNpZGUgb2YgdGhlIHJ0NTU3NS1zcGkgbW9kdWxlIHdo
+aWxlIGl0cyBvbmx5IHVzZXIsDQo+IHJ0NTU3NV9md19sb2FkX2J5X3NwaSgpLCB3aGljaCBwZXJm
+b3JtcyBubyBJMkMtc3BlY2lmaWMgdGFza3MsIGlzIGZvdW5kDQo+IHdpdGggdGhlIGNvbW1vbiwg
+cnQ1NTc1LmMgZmlsZT8NCg0KVGhlcmUgYXJlIGZldyBJMkMgci93IGluIHJ0NTU3NV9md19sb2Fk
+X2J5X3NwaSgpLg0KDQpCdXQgdGhlIFNQSSBsb2FkIGZpcm13YXJlIGZ1bmN0aW9uIGNhbiBtb3Zl
+IHRvIHJ0NTU3NS1zcGkuYy4NClRoZSBydDU1NzVfc3BpX2Z3X2xvYWQoKSB3aWxsIGRvIGFsbCBm
+aXJtd2FyZSBsb2FkIHJlbGF0ZWQgd29ya3MsIGFuZCBpdA0Kd2lsbCByZXR1cm4gcmVxdWVzdF9m
+aXJtd2FyZV94eHgoKSByZXN1bHQuDQpUaGUgcnQ1NTc1X2Z3X2xvYWRfYnlfc3BpKCkgd2lsbCBi
+ZSBpbXBsZW1lbnQgYXMgZm9sbG93aW5nLCBhbmQgaXQgd2lsbCBwdXQNCmludG8gdGhlIGJvdHRv
+bSBvZiBydDU1NzVfaTJjX3Byb2JlKCkuDQoNCnJ0NTU3NV9md19sb2FkX2J5X3NwaSgpDQp7DQoJ
+Li4uDQoNCglyZWdtYXBfd3JpdGUocnQ1NTc1LT5kc3BfcmVnbWFwLCAweGZhZmFmYWZhLCAweDAw
+MDAwMDA0KTsNCglyZWdtYXBfd3JpdGUocnQ1NTc1LT5kc3BfcmVnbWFwLCAweDE4MDA4MDY0LCAw
+eDAwMDAwMDAwKTsNCglyZWdtYXBfd3JpdGUocnQ1NTc1LT5kc3BfcmVnbWFwLCAweDE4MDA4MDY4
+LCAweDAwMDJmZmZmKTsNCg0KCXJldCA9IHJ0NTU3NV9zcGlfZndfbG9hZCgpOw0KCWlmIChyZXQp
+IHsNCgkJZGV2X2VycihkZXYsICJMb2FkIGZpcm13YXJlIGZhaWx1cmU6ICVkXG4iLCByZXQpOw0K
+CQlyZXR1cm4gRU5PREVWOw0KCX0NCg0KCXJlZ21hcF93cml0ZShydDU1NzUtPmRzcF9yZWdtYXAs
+IDB4MTgwMDAwMDAsIDB4MDAwMDAwMDApOw0KCXJlZ21hcF91cGRhdGVfYml0cyhydDU1NzUtPnJl
+Z21hcCwgUlQ1NTc1X1NXX0lOVCwgMSwgMSk7DQoNCglyZWdtYXBfcmVhZF9wb2xsX3RpbWVvdXQo
+KTsNCglpZiAocmV0KSB7DQoJCWRldl9lcnIoZGV2LCAiUnVuIGZpcm13YXJlIGZhaWx1cmU6ICVk
+XG4iLCByZXQpOw0KCQlyZXR1cm4gRU5PREVWOw0KCX0NCg0KCS4uLg0KfQ0KDQo+IFdlIGNhbiBk
+byBiZXR0ZXIuICBUaGVyZSBhcmUgY291cGxlIG9wdGlvbnMgaGVyZSwgb25lIG9mIHRoZW0gY29u
+c2lzdHMgb2Y6DQo+IA0KPiAxKSBwcml2YXRpemUgcnQ1NTc1X3NwaV9idXJzdF93cml0ZSgpDQo+
+IDIpIG1ha2UgcnQ1NTc1X2Z3X2xvYWRfYnlfc3BpKCkgcHVibGljDQo+IDMpIGNoYW5nZSBydDU1
+NzVfZndfbG9hZF9ieV9zcGkoKSBmcm9tIHZvaWQgdG8gaW50IGFuZCByZXR1cm4NCj4gcmVxdWVz
+dF9maXJtd2FyZV94eHgoKSByZXN1bHQNCj4gNCkgcmV3b3JkIHRvIHJ0NTU3NV9zcGlfZndfbG9h
+ZCgpIHRvIG1hdGNoIGl0cyBmcmllbmRzDQo+IA0KPiBJbiByZWdhcmQgdG8gMSksIGhhdmUgYSAj
+aWYtZWxzZSBwcmVwcm9jIGFkZGVkIHRvIHJ0NTU3NS5oIHRoYXQgZ292ZXJucw0KPiB0aGUgaW1w
+bGVtZW50YXRpb24gb2Ygc2FpZCBmdW5jdGlvbi4gIElmIHh4eF9SVDU1NzVfU1BJIGlzIGRpc2Fi
+bGVkLCBsZXQNCj4gaXMgYmUgYSBzdHViIHRoYXQgcmV0dXJucyAwLg0KPiANCj4gSW4gcmVnYXJk
+IHRvIDIpLCBwbGVhc2UgZG8gbm90IGlnbm9yZSBmYWlsdXJlcyBmcm9tIGZpcm13YXJlIGxvYWRp
+bmcsDQo+IHRoYXQncyBhIHJlY3VycmluZyBwb2ludCBpbiB0aGlzIHJldmlldyBhbmQga2VlcHMg
+YmVpbmcgaWdub3JlZC4gIE5vLA0KPiBhc3luYy1maXJtd2FyZSBsb2FkaW5nIGluIG5vdCB0aGUg
+YW5zd2VyIHdoeSBwb3RlbnRpYWwgZXJyb3JzIGFyZSBsZWZ0DQo+IHVuaGFuZGxlZC4NCj4gDQo+
+IEFub3RoZXIgb3B0aW9uLCBwZXJoYXBzIGEgYmV0dGVyIG9uZSBpcyB0byBoYXZlIGJvdGgNCj4g
+cnQ1NTc1X3NwaV9idXJzdF93cml0ZSgpIGFuZCBydDU1NzVfc3BpX2Z3X2xvYWQoKSBwcml2YXRp
+emVkIGFuZCBtb3ZlDQo+IHRoZSBmaXJtd2FyZS1sb2FkaW5nIHRvIHRoZSBTUEktZGV2aWNlIHBy
+b2JlLiAgU2VlIG15IGNvbW1lbnRzIHRhcmdldGluZw0KPiBydDU1NzVfcHJvYmUoKS4NCj4gDQo+
+ID4gK3sNCj4gPiArICAgICBzdHJ1Y3QgcnQ1NTc1X3ByaXYgKnJ0NTU3NSA9IGNvbnRleHQ7DQo+
+ID4gKyAgICAgc3RydWN0IGkyY19jbGllbnQgKmkyYyA9IHJ0NTU3NS0+aTJjOw0KPiANCj4gVGhl
+IHdob2xlIHJlYXNvbiB0aGlzIGZ1bmN0aW9uIG5lZWRzIGkyY19jbGllbnQgaXMgLT5kZXYgcmV0
+cmlldmFsLg0KPiBMZXQncyBzaW1wbGlmeSBieSBsaXN0aW5nICdzdHJ1Y3QgZGV2aWNlICpkZXYn
+IGFzIGFuIGFyZ3VtZW50IGluc3RlYWQuDQo+IFdpdGggdGhhdCwgeW91ciBmdW5jdGlvbidzIGFy
+Z3VtZW50IGxpc3QgaXMgYWxzbyBtb3JlIGV4cGxpY2l0Lg0KPiANCj4gPiArICAgICBjb25zdCBz
+dHJ1Y3QgZmlybXdhcmUgKmZpcm13YXJlOw0KPiA+ICsgICAgIHN0YXRpYyBjb25zdCBjaGFyICog
+Y29uc3QgZndfcGF0aFtdID0gew0KPiA+ICsgICAgICAgICAgICAgInJlYWx0ZWsvcnQ1NTc1L3J0
+NTU3NV9mdzIuYmluIiwNCj4gPiArICAgICAgICAgICAgICJyZWFsdGVrL3J0NTU3NS9ydDU1NzVf
+ZnczLmJpbiIsDQo+ID4gKyAgICAgICAgICAgICAicmVhbHRlay9ydDU1NzUvcnQ1NTc1X2Z3NC5i
+aW4iDQo+ID4gKyAgICAgfTsNCj4gPiArICAgICBzdGF0aWMgY29uc3QgdTMyIGZ3X2FkZHJbXSA9
+IHsgMHg1ZjYwMDAwMCwgMHg1ZjdmZTAwMCwgMHg1ZjdmZjAwMCB9Ow0KPiA+ICsgICAgIGludCBp
+LCByZXQ7DQo+ID4gKw0KPiA+ICsgICAgIHJlZ21hcF93cml0ZShydDU1NzUtPmRzcF9yZWdtYXAs
+IDB4ZmFmYWZhZmEsIDB4MDAwMDAwMDQpOw0KPiA+ICsgICAgIHJlZ21hcF93cml0ZShydDU1NzUt
+PmRzcF9yZWdtYXAsIDB4MTgwMDgwNjQsIDB4MDAwMDAwMDApOw0KPiA+ICsgICAgIHJlZ21hcF93
+cml0ZShydDU1NzUtPmRzcF9yZWdtYXAsIDB4MTgwMDgwNjgsIDB4MDAwMmZmZmYpOw0KPiA+ICsN
+Cj4gPiArICAgICBydDU1NzVfc3BpX2J1cnN0X3dyaXRlKDB4NWY0MDAwMDAsIGZ3LT5kYXRhLCBm
+dy0+c2l6ZSk7DQo+ID4gKyAgICAgcmVsZWFzZV9maXJtd2FyZShmdyk7DQo+ID4gKw0KPiA+ICsg
+ICAgIGZvciAoaSA9IDA7IGkgPCBBUlJBWV9TSVpFKGZ3X2FkZHIpOyBpKyspIHsNCj4gPiArICAg
+ICAgICAgICAgIHJldCA9IHJlcXVlc3RfZmlybXdhcmUoJmZpcm13YXJlLCBmd19wYXRoW2ldLCAm
+aTJjLT5kZXYpOw0KPiA+ICsgICAgICAgICAgICAgaWYgKCFyZXQpIHsNCj4gPiArICAgICAgICAg
+ICAgICAgICAgICAgcnQ1NTc1X3NwaV9idXJzdF93cml0ZShmd19hZGRyW2ldLA0KPiBmaXJtd2Fy
+ZS0+ZGF0YSwgZmlybXdhcmUtPnNpemUpOw0KPiA+ICsgICAgICAgICAgICAgICAgICAgICByZWxl
+YXNlX2Zpcm13YXJlKGZpcm13YXJlKTsNCj4gPiArICAgICAgICAgICAgIH0gZWxzZSB7DQo+ID4g
+KyAgICAgICAgICAgICAgICAgICAgIGRldl9lcnIoJmkyYy0+ZGV2LCAiUmVxdWVzdCBmaXJtd2Fy
+ZSBmYWlsdXJlOg0KPiAlZFxuIiwgcmV0KTsNCj4gPiArICAgICAgICAgICAgICAgICAgICAgcmV0
+dXJuOw0KPiA+ICsgICAgICAgICAgICAgfQ0KPiA+ICsgICAgIH0NCj4gPiArDQo+ID4gKyAgICAg
+cmVnbWFwX3dyaXRlKHJ0NTU3NS0+ZHNwX3JlZ21hcCwgMHgxODAwMDAwMCwgMHgwMDAwMDAwMCk7
+DQo+ID4gKw0KPiA+ICsgICAgIHJlZ21hcF91cGRhdGVfYml0cyhydDU1NzUtPnJlZ21hcCwgUlQ1
+NTc1X1NXX0lOVCwgMSwgMSk7DQo+ID4gKw0KPiA+ICsgICAgIHJlZ21hcF9yZWFkX3BvbGxfdGlt
+ZW91dChydDU1NzUtPnJlZ21hcCwgUlQ1NTc1X1NXX0lOVCwNCj4gcmV0LCAhcmV0LCAxMDAwMDAs
+IDEwMDAwMDAwKTsNCj4gPiArDQo+ID4gKyAgICAgaWYgKHJldCkNCj4gPiArICAgICAgICAgICAg
+IGRldl9lcnIoJmkyYy0+ZGV2LCAiUnVuIGZpcm13YXJlIGZhaWx1cmU6ICVkXG4iLCByZXQpOw0K
+PiA+ICt9DQo+ID4gKyNlbmRpZg0KPiA+ICsNCj4gPiArc3RhdGljIGNvbnN0IHN0cnVjdCBzbmRf
+a2NvbnRyb2xfbmV3IHJ0NTU3NV9zbmRfY29udHJvbHNbXSA9IHsNCj4gPiArICAgICBTT0NfRE9V
+QkxFKCJTcGVha2VyIENILTAxIFBsYXliYWNrIFN3aXRjaCIsIFJUNTU3NV9TUEswMV9WT0wsDQo+
+IDMxLCAxNSwgMSwgMSksDQo+ID4gKyAgICAgU09DX0RPVUJMRV9UTFYoIlNwZWFrZXIgQ0gtMDEg
+UGxheWJhY2sgVm9sdW1lIiwNCj4gUlQ1NTc1X1NQSzAxX1ZPTCwgMTcsIDEsIDE2NywgMCwgb2Jf
+dGx2KSwNCj4gPiArICAgICBTT0NfRE9VQkxFKCJTcGVha2VyIENILTIzIFBsYXliYWNrIFN3aXRj
+aCIsIFJUNTU3NV9TUEsyM19WT0wsDQo+IDMxLCAxNSwgMSwgMSksDQo+ID4gKyAgICAgU09DX0RP
+VUJMRV9UTFYoIlNwZWFrZXIgQ0gtMjMgUGxheWJhY2sgVm9sdW1lIiwNCj4gUlQ1NTc1X1NQSzIz
+X1ZPTCwgMTcsIDEsIDE2NywgMCwgb2JfdGx2KSwNCj4gPiArICAgICBTT0NfRE9VQkxFKCJNaWMx
+IENhcHR1cmUgU3dpdGNoIiwgUlQ1NTc1X01JQzFfVk9MLCAzMSwgMTUsIDEsDQo+IDEpLA0KPiA+
+ICsgICAgIFNPQ19ET1VCTEVfVExWKCJNaWMxIENhcHR1cmUgVm9sdW1lIiwgUlQ1NTc1X01JQzFf
+Vk9MLCAxNywNCj4gMSwgMTY3LCAwLCBvYl90bHYpLA0KPiA+ICsgICAgIFNPQ19ET1VCTEUoIk1p
+YzIgQ2FwdHVyZSBTd2l0Y2giLCBSVDU1NzVfTUlDMl9WT0wsIDMxLCAxNSwgMSwNCj4gMSksDQo+
+ID4gKyAgICAgU09DX0RPVUJMRV9UTFYoIk1pYzIgQ2FwdHVyZSBWb2x1bWUiLCBSVDU1NzVfTUlD
+Ml9WT0wsIDE3LA0KPiAxLCAxNjcsIDAsIG9iX3RsdiksDQo+ID4gKyAgICAgU09DX0RPVUJMRV9S
+KCJNaXggUGxheWJhY2sgU3dpdGNoIiwgUlQ1NTc1X01JWExfVk9MLA0KPiBSVDU1NzVfTUlYUl9W
+T0wsIDMxLCAxLCAxKSwNCj4gPiArICAgICBTT0NfRE9VQkxFX1JfVExWKCJNaXggUGxheWJhY2sg
+Vm9sdW1lIiwgUlQ1NTc1X01JWExfVk9MLA0KPiBSVDU1NzVfTUlYUl9WT0wsIDEsIDEyNywgMCwN
+Cj4gPiArICAgICAgICAgICAgIG9iX3RsdiksDQo+ID4gKyAgICAgU09DX0RPVUJMRSgiUHJvbXB0
+IFBsYXliYWNrIFN3aXRjaCIsIFJUNTU3NV9QUk9NUFRfVk9MLCAzMSwNCj4gMTUsIDEsIDEpLA0K
+PiA+ICsgICAgIFNPQ19ET1VCTEVfVExWKCJQcm9tcHQgUGxheWJhY2sgVm9sdW1lIiwNCj4gUlQ1
+NTc1X1BST01QVF9WT0wsIDE3LCAxLCAxNjcsIDAsIG9iX3RsdiksDQo+ID4gK307DQo+ID4gKw0K
+PiA+ICtzdGF0aWMgY29uc3Qgc3RydWN0IHNuZF9zb2NfZGFwbV93aWRnZXQgcnQ1NTc1X2RhcG1f
+d2lkZ2V0c1tdID0gew0KPiA+ICsgICAgIFNORF9TT0NfREFQTV9BSUZfSU4oIkFJRjFSWCIsICJB
+SUYxIFBsYXliYWNrIiwgMCwNCj4gU05EX1NPQ19OT1BNLCAwLCAwKSwNCj4gPiArICAgICBTTkRf
+U09DX0RBUE1fQUlGX09VVCgiQUlGMVRYIiwgIkFJRjEgQ2FwdHVyZSIsIDAsDQo+IFNORF9TT0Nf
+Tk9QTSwgMCwgMCksDQo+ID4gKyAgICAgU05EX1NPQ19EQVBNX0FJRl9JTigiQUlGMlJYIiwgIkFJ
+RjIgUGxheWJhY2siLCAwLA0KPiBTTkRfU09DX05PUE0sIDAsIDApLA0KPiA+ICsgICAgIFNORF9T
+T0NfREFQTV9BSUZfT1VUKCJBSUYyVFgiLCAiQUlGMiBDYXB0dXJlIiwgMCwNCj4gU05EX1NPQ19O
+T1BNLCAwLCAwKSwNCj4gPiArICAgICBTTkRfU09DX0RBUE1fQUlGX0lOKCJBSUYzUlgiLCAiQUlG
+MyBQbGF5YmFjayIsIDAsDQo+IFNORF9TT0NfTk9QTSwgMCwgMCksDQo+ID4gKyAgICAgU05EX1NP
+Q19EQVBNX0FJRl9PVVQoIkFJRjNUWCIsICJBSUYzIENhcHR1cmUiLCAwLA0KPiBTTkRfU09DX05P
+UE0sIDAsIDApLA0KPiA+ICsgICAgIFNORF9TT0NfREFQTV9BSUZfSU4oIkFJRjRSWCIsICJBSUY0
+IFBsYXliYWNrIiwgMCwNCj4gU05EX1NPQ19OT1BNLCAwLCAwKSwNCj4gPiArICAgICBTTkRfU09D
+X0RBUE1fQUlGX09VVCgiQUlGNFRYIiwgIkFJRjQgQ2FwdHVyZSIsIDAsDQo+IFNORF9TT0NfTk9Q
+TSwgMCwgMCksDQo+ID4gKw0KPiA+ICsgICAgIFNORF9TT0NfREFQTV9JTlBVVCgiSU5QVVQiKSwN
+Cj4gPiArICAgICBTTkRfU09DX0RBUE1fT1VUUFVUKCJPVVRQVVQiKSwNCj4gPiArfTsNCj4gPiAr
+DQo+ID4gK3N0YXRpYyBjb25zdCBzdHJ1Y3Qgc25kX3NvY19kYXBtX3JvdXRlIHJ0NTU3NV9kYXBt
+X3JvdXRlc1tdID0gew0KPiA+ICsgICAgIHsgIkFJRjFUWCIsIE5VTEwsICJJTlBVVCIgfSwNCj4g
+PiArICAgICB7ICJBSUYyVFgiLCBOVUxMLCAiSU5QVVQiIH0sDQo+ID4gKyAgICAgeyAiQUlGM1RY
+IiwgTlVMTCwgIklOUFVUIiB9LA0KPiA+ICsgICAgIHsgIkFJRjRUWCIsIE5VTEwsICJJTlBVVCIg
+fSwNCj4gPiArICAgICB7ICJPVVRQVVQiLCBOVUxMLCAiQUlGMVJYIiB9LA0KPiA+ICsgICAgIHsg
+Ik9VVFBVVCIsIE5VTEwsICJBSUYyUlgiIH0sDQo+ID4gKyAgICAgeyAiT1VUUFVUIiwgTlVMTCwg
+IkFJRjNSWCIgfSwNCj4gPiArICAgICB7ICJPVVRQVVQiLCBOVUxMLCAiQUlGNFJYIiB9LA0KPiA+
+ICt9Ow0KPiA+ICsNCj4gPiArc3RhdGljIGxvbmcgbG9uZyBydDU1NzVfZ2V0X3ByaXZfaWQoc3Ry
+dWN0IHJ0NTU3NV9wcml2ICpydDU1NzUpDQo+ID4gK3sNCj4gPiArICAgICBpbnQgcHJpdl9pZF9s
+b3csIHByaXZfaWRfaGlnaDsNCj4gPiArDQo+ID4gKyAgICAgcmVnbWFwX3dyaXRlKHJ0NTU3NS0+
+cmVnbWFwLCBSVDU1NzVfRUZVU0VfUElELCAweGEwMDAwMDAwKTsNCj4gPiArICAgICByZWdtYXBf
+cmVhZChydDU1NzUtPnJlZ21hcCwgUlQ1NTc1X0VGVVNFX0RBVEFfMiwNCj4gJnByaXZfaWRfbG93
+KTsNCj4gPiArICAgICByZWdtYXBfcmVhZChydDU1NzUtPnJlZ21hcCwgUlQ1NTc1X0VGVVNFX0RB
+VEFfMywNCj4gJnByaXZfaWRfaGlnaCk7DQo+ID4gKyAgICAgcmVnbWFwX3dyaXRlKHJ0NTU3NS0+
+cmVnbWFwLCBSVDU1NzVfRUZVU0VfUElELCAwKTsNCj4gPiArDQo+ID4gKyAgICAgcmV0dXJuICgo
+bG9uZyBsb25nKXByaXZfaWRfaGlnaCA8PCAzMikgfCAobG9uZyBsb25nKXByaXZfaWRfbG93Ow0K
+PiA+ICt9DQo+ID4gKw0KPiA+ICtzdGF0aWMgY29uc3Qgc3RydWN0IG9mX2RldmljZV9pZCBydDU1
+NzVfb2ZfbWF0Y2hbXSA9IHsNCj4gPiArICAgICB7IC5jb21wYXRpYmxlID0gInJlYWx0ZWsscnQ1
+NTc1IiB9LA0KPiA+ICsgICAgIHsgLmNvbXBhdGlibGUgPSAicmVhbHRlayxydDU1NzUtd2l0aC1z
+cGkiIH0sDQo+ID4gKyAgICAgeyB9DQo+ID4gK307DQo+ID4gK01PRFVMRV9ERVZJQ0VfVEFCTEUo
+b2YsIHJ0NTU3NV9vZl9tYXRjaCk7DQo+ID4gKw0KPiA+ICtzdGF0aWMgaW50IHJ0NTU3NV9wcm9i
+ZShzdHJ1Y3Qgc25kX3NvY19jb21wb25lbnQgKmNvbXBvbmVudCkNCj4gPiArew0KPiA+ICsgICAg
+IHN0cnVjdCBydDU1NzVfcHJpdiAqcnQ1NTc1ID0NCj4gc25kX3NvY19jb21wb25lbnRfZ2V0X2Ry
+dmRhdGEoY29tcG9uZW50KTsNCj4gPiArICAgICBzdHJ1Y3QgZGV2aWNlICpkZXYgPSBjb21wb25l
+bnQtPmRldjsNCj4gPiArDQo+ID4gKyAgICAgcnQ1NTc1LT5jb21wb25lbnQgPSBjb21wb25lbnQ7
+DQo+ID4gKw0KPiA+ICsgICAgIGRldl9pbmZvKGRldiwgIlByaXZhdGUgSUQ6ICVsbHhcbiIsIHJ0
+NTU3NV9nZXRfcHJpdl9pZChydDU1NzUpKTsNCj4gPiArDQo+ID4gKyNpZiBJU19FTkFCTEVEKENP
+TkZJR19TTkRfU09DX1JUNTU3NV9TUEkpDQo+ID4gKyAgICAgaWYgKG9mX2RldmljZV9pc19jb21w
+YXRpYmxlKGRldi0+b2Zfbm9kZSwNCj4gcnQ1NTc1X29mX21hdGNoWzFdLmNvbXBhdGlibGUpKQ0K
+PiA+ICsgICAgICAgICAgICAgcmVxdWVzdF9maXJtd2FyZV9ub3dhaXQoVEhJU19NT0RVTEUsDQo+
+IEZXX0FDVElPTl9VRVZFTlQsDQo+IA0KPiANCj4gQW4gQVNvQyBjYXJkIGlzIHR5cGljYWxseSBh
+IG1hcmlhZ2Ugb2YgcGxhdGZvcm0tY29tcG9uZW50IChlLmcuOiBTb0MNCj4gbGV2ZWwgRFNQKSBh
+bmQgYSBjb2RlYy1jb21wb25lbnQgKGUuZy46IHJ0NTU3NSkuICBJZiBmb3IgYW55IHJlYXNvbiB0
+aGUNCj4gcGxhdGZvcm0tY29tcG9uZW50IGJlY29tZXMgdW5sb2FkZWQsIGNvZGVjLWNvbXBvbmVu
+dCB3aWxsIGFsc28gYmUuDQo+IFdoZW4NCj4gdGhlIHBsYXRmb3JtLWNvbXBvbmVudCBiZWNvbWVz
+IGF2YWlsYWJsZSBhZ2FpbiwgdGhlDQo+IGNvZGVjLWNvbXBvbmVudC0+cHJvYmUoKSB3b3VsZCBi
+ZSBpbnZva2VkIGFnYWluIC0gZmlybXdhcmUgd291bGQgYmUNCj4gbG9hZGVkIGFnYWluLiAgSXMg
+dGhpcyB0aGUgZGVzaXJlZCBiZWhhdmlvdXI/DQo+IA0KPiBUbyBhbnN3ZXIgdGhhdCwgdGhlIGZv
+bGxvdyB1cCBxdWVzdGlvbiBpczogIElzIHRoZSBmaXJtd2FyZS1sb2FkaW5nIGZvcg0KPiB0aGlz
+IHBhcnRpY3VsYXIgc29sdXRpb24sIGEgY2hpcCAtbGV2ZWwgb3BlcmF0aW9uIG9yLCBhIHNvdW5k
+LWNhcmQNCj4gLWxldmVsIG9wZXJhdGlvbj8gIFR5cGljYWxseSBmaXJtd2FyZS1sb2FkaW5nIGlz
+IHRoZSBmb3JtZXIuICBPbmNlDQo+IHN1Y2NlZWVkcywgYW4gQVNvQyBjb21wb25lbnQgY2FuIGJl
+IHJlZ2lzdGVyZWQuICBUaGVyZSBpcyBubyByZWFzb24gdG8NCj4gcmVnaXN0ZXIgQVNvQyBjb21w
+b25lbnQsIHdoaWNoIGlzIG1haW5seSB1c2VkIGZvciBQQ00vc3RyZWFtaW5nIHJlYXNvbnMsDQo+
+IGlmIHRoZSBwcmVsaW1pbmFyeSBzZXR1cCAtIGZpcm13YXJlLWxvYWRpbmcgLSBpcyB1bnN1Y2Nl
+ZnVsbC4NCj4gDQo+IFBlcmhhcHMgYSBnb29kIGFwcHJvYWNoIGlzIHRvIG1vdmUgdGhlIGZpcm13
+YXJlIGxvYWRpbmcgdG8gdGhlDQo+IFNQSS1kZXZpY2UncyBwcm9iZSgpIQ0KDQpCdXQgYmVmb3Jl
+IHRoZSBmaXJtd2FyZS1sb2FkaW5nLCBJMkMgY29tbWFuZHMgYXJlIG5lZWRlZC4gVGhlIFNQSQ0K
+ZmlybXdhcmUtbG9hZGluZyBjYW5ub3QgYmUgaW5kZXBlbmRlbnQgYnkgSTJDLg0KDQpUaGFua3Ms
+DQpPZGVyDQo=
 
