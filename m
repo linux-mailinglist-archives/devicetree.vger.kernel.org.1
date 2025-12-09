@@ -1,116 +1,188 @@
-Return-Path: <devicetree+bounces-245355-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245356-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C516ECAF9AC
-	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 11:19:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0604FCAF9C4
+	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 11:21:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 40E4730B6AF8
-	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 10:15:45 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4C12730DC38E
+	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 10:16:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 871432D0C7F;
-	Tue,  9 Dec 2025 10:15:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F91C13774D;
+	Tue,  9 Dec 2025 10:16:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="QOxbIGad"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="mMbaVT80"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FF1823E35B
-	for <devicetree@vger.kernel.org>; Tue,  9 Dec 2025 10:15:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CA2E2BE64F
+	for <devicetree@vger.kernel.org>; Tue,  9 Dec 2025 10:16:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765275344; cv=none; b=tMGAAEdrdJquXmasBp1COYGO7wZXYQP/GjO1cYtiz+c8oH8WXvPsGob8XR9ryuHJLXoEpwX/G5L9ZeBp3ZaHZzR5DSGOBEBdZG7/dA6C+MyedXzgS5Fjgz8rjTQmcpxEbLoXtyP9XYsfulpUuBcqZbvHCIYoYtDELleKvmo1G9s=
+	t=1765275417; cv=none; b=Gb4QMcluwPG5moM3t4vbxhIAT3qMDZPmu2pKq+0FrMU5r1BwHIApKqQpxjj+3iAA1/XdwvXpu1nZDqNHxQ11tmgrVFRyXAl38wyn8nq+j8t+Zuht0jnO1HavpoXas8TW9q7g40/GHs/kBmQn8rZ6FAe8D/jiRASeu3m5GLx55Wg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765275344; c=relaxed/simple;
-	bh=KPjrS6GxnPYzHDMYAk6YLBITqRSwjAmUJFXSpNs2EAI=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=hE//NeZDQw6Sdln69mxsC+z9U73B4KiDmwmTb8CXHzYP/p7iwrBuMwsUpQ4WGXos92WhLgadqWSmVG2qAN2/LNw7Oz1f5v7ucliYhNwqMY/14CVU0qzknccoDH8QnlA4Rg2tSCt7tWP/oSyKwPglL0RAU9IhMWPVlR4WLMcLawE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=QOxbIGad; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 9068DC180DB;
-	Tue,  9 Dec 2025 10:15:16 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 4FA71606E2;
-	Tue,  9 Dec 2025 10:15:40 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 6A40D119303C5;
-	Tue,  9 Dec 2025 11:15:35 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1765275339; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=4au7Cml72l2Aobo8eDvZUTdmfZek/y9FC5ZuTwey5gQ=;
-	b=QOxbIGadVzDsKQpR0ymqhWpOYmOpGFmE3Oqr5CcYvGSSM5OdbEm8hC7IF5GBurQj/3TGBp
-	38HLxKZnVfJUm64F+csENXDWnqcFc+Cx9MElPSt9jnNiUprkiNpKasFNGGUnFhPmWgQFhH
-	hV+JAdjf/zgLN9JN0Sa0bvR+vGZtUQM9dgA0q/BagIT98GpjC8BS/p0tvEuIWmsLKQtih8
-	0SkHFkpbg5KfCyatzPNAq9wZZ3A0hRfueL4JD1g5JsB/+cUMW6TzAfAOB5poPWdXFxCTwf
-	Gtp75XIUm1WcCWyZ46jykdL0stwU0qgqMxrqvo3IQ4PD3iPm/osl1YcVCt9alw==
-Date: Tue, 9 Dec 2025 11:15:34 +0100
-From: Kory Maincent <kory.maincent@bootlin.com>
-To: Kevin Hilman <khilman@baylibre.com>
-Cc: Aaro Koskinen <aaro.koskinen@iki.fi>, Andreas Kemnade
- <andreas@kemnade.info>, Roger Quadros <rogerq@kernel.org>, Tony Lindgren
- <tony@atomide.com>, Lee Jones <lee@kernel.org>, Shree Ramamoorthy
- <s-ramamoorthy@ti.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Andrew Davis
- <afd@ti.com>, Bajjuri Praneeth <praneeth@ti.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, linux-omap@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- stable@vger.kernel.org
-Subject: Re: [PATCH v4 0/2] Enable 1GHz OPP am335x-bonegreen-eco
-Message-ID: <20251209111534.0f871a04@kmaincent-XPS-13-7390>
-In-Reply-To: <7hsedk73ly.fsf@baylibre.com>
-References: <20251112-fix_tps65219-v4-0-696a0f55d5d8@bootlin.com>
-	<20251127144138.400d1dcd@kmaincent-XPS-13-7390>
-	<7hsedk73ly.fsf@baylibre.com>
-Organization: bootlin
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1765275417; c=relaxed/simple;
+	bh=lnP0ofzE8d7DV/VQbUQ/F9NhcdvvDdebrS3l/N8sJM4=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=aFigvQsgRpLvqLg+XXW/b/8mFzrhKp9kBT7L6PNxFfcNDWOdIL7qIQw4ypJick3c7d5bBe6uOUogyAVHRJMwamfDP8z/rkOZa5cFByoKIjQlJ4DIAw4fJx/spUvWodZWS4xcZu+YzOOVt9mvod0ZXHOlmX+81p0kCGus3SUb8/4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=mMbaVT80; arc=none smtp.client-ip=209.85.221.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-42e2b90ad22so2012398f8f.2
+        for <devicetree@vger.kernel.org>; Tue, 09 Dec 2025 02:16:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1765275413; x=1765880213; darn=vger.kernel.org;
+        h=mime-version:message-id:date:user-agent:references:in-reply-to
+         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=7jqYN1k2sIIVDynNkGogy0+4dYc363N58InYK+olTwA=;
+        b=mMbaVT80BNtcSYVt3NJVjNQbVygQR3cHB8Ey9CCDbZ5/9ThkW7puUCWZBXOTLVhQEZ
+         vGxI8TuJ8upwftqvzwxi9gOup+A0LutK18PpkcAUtz4kWPqRIOsElyW5qasImf+OO9Vr
+         4Hza4Edu1fPlAqL9zUTDfLD9M0rJRtrZtDKPCKKtOcnaHc+YAbMItzhBLnylvxwujGd/
+         pr3yjqJ1PGohSJ3JgYk7dM/G84JWIvkB8kXdlgr3p5VTvYj5ENgRjYiff/PrRWZKuNga
+         z30KB/xtZz/OE31ppBhOsGS/Yjs3NdRdMUFDHP4ARUB8Nl5kKzpEUVRYkYsEVPSyWv/S
+         oMZg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765275413; x=1765880213;
+        h=mime-version:message-id:date:user-agent:references:in-reply-to
+         :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=7jqYN1k2sIIVDynNkGogy0+4dYc363N58InYK+olTwA=;
+        b=S+5vCW14LY7WtNvQORmh6pbf5fwuqryUJ7BC60bbI7WJpBCriy5AIDwVncF7+qfM1P
+         VHGrqgQ6jyC5RMvOVsZTia9fdBRryenUYFsM3pJtgPN0fCCJdfxu6MTRCqLv+GGMiYVH
+         G1GSxGOveWRJ+yhQ08TcysJQm913A7mAKhx24NuFHbPumjQIT4yto6JRHdeyp1nKR35m
+         YWIT12pOQXFDKglIdFp2Hu+bGD1USHlRZnZ0sBtaOZvfMORhVQ7egtxhlLx1jEETh9ts
+         Yi4sETUYJxLIj1qTSUsizaQyYwCfOGpug2qkpip/QOJameEMMX/qusqGB/qnxibMFqKx
+         lj4Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWMg1R566a38X8ldT9tj4lGpSJI8BKKUuD18zKJ0bojOh/bycK6o3VW2WI5gYnF7wBYKCbw7gS/MP8+@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywa3as6R4qIkiGTp9Zgb5cDQ92pdMUPV80EkJRYRtwBrzn69LDe
+	RnjmkznEHqodrDBhcWa+SmQoKLrCdCwTo+3ZykN4/FG1EbX6h/q/WZcLV+EJPsGVzJI=
+X-Gm-Gg: ASbGncsIp6rV2WXpbqOuhy9pZkpq6xqt5Xje9cIG3i5jogbtZUekbwly3vxhSn2Jt6x
+	rPeToatczhqE29UZGbFQsK1WH41yK+nIGVwRBE1FSvFxj1EmNKm2klbsNghhpPZ6UKnKv+f8CCb
+	Qdj/S6AktnDCwFFBytsTDVknrTwLptEgaC0BrmqB/5OD7dghixl4H1hs3jLeWhN4Gtt5ZGxJrn+
+	XL08h6mZbZJWI+ro3jgGvroQL0TaAm2SEKTi3ClqQ5+QBg3nJzinoO8f+Ege1VpOWp03DepHzdV
+	YsChn8MT6UIwcyic8/bdXbWS5f3ViXwc+fAGQgEzMlnk96Bmyexxl/KTLJHFu0a5MWhkKNYdd0z
+	a6qRhrr5FL8p+hYi5HQIER0kCw5RGIeivf7JHr/mJBYoJtXmh/h4PzA4q458vhf++WP/Q8HbHw9
+	+Sm72bW8hwog==
+X-Google-Smtp-Source: AGHT+IGYLG3rhZdJLL1r2IWmCryy/+X0jCUOg6jWuDZZCpYYA9nn3V/pWnZyhAXTJz8/W4BJn1NtMw==
+X-Received: by 2002:a5d:42c4:0:b0:42f:9e8d:548 with SMTP id ffacd0b85a97d-42f9e8d1ee0mr1375634f8f.60.1765275413393;
+        Tue, 09 Dec 2025 02:16:53 -0800 (PST)
+Received: from localhost ([2a01:e0a:3c5:5fb1:f9ab:1ddd:a971:a17b])
+        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-42f7cbe9032sm28891327f8f.1.2025.12.09.02.16.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 Dec 2025 02:16:52 -0800 (PST)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Jian Hu <jian.hu@amlogic.com>,  Xianwei Zhao <xianwei.zhao@amlogic.com>,
+  Chuan Liu <chuan.liu@amlogic.com>,  Neil Armstrong
+ <neil.armstrong@linaro.org>,  Kevin Hilman <khilman@baylibre.com>,
+  Stephen Boyd <sboyd@kernel.org>,  Michael Turquette
+ <mturquette@baylibre.com>,  robh+dt <robh+dt@kernel.org>,  Rob Herring
+ <robh@kernel.org>,  devicetree <devicetree@vger.kernel.org>,  linux-clk
+ <linux-clk@vger.kernel.org>,  linux-amlogic
+ <linux-amlogic@lists.infradead.org>,  linux-kernel
+ <linux-kernel@vger.kernel.org>,  linux-arm-kernel
+ <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v6 2/5] dt-bindings: clock: add Amlogic T7 SCMI clock
+ controller
+In-Reply-To: <4f5ec838-f8d6-4c3b-94f2-b2a60cfe64ec@kernel.org> (Krzysztof
+	Kozlowski's message of "Tue, 9 Dec 2025 07:01:44 +0100")
+References: <20251204053635.1234150-1-jian.hu@amlogic.com>
+	<20251204053635.1234150-3-jian.hu@amlogic.com>
+	<20251208-independent-warping-macaw-74a169@quoll>
+	<dd90b445-bafb-46d4-8cec-e0877cf425b3@amlogic.com>
+	<4f5ec838-f8d6-4c3b-94f2-b2a60cfe64ec@kernel.org>
+User-Agent: mu4e 1.12.9; emacs 30.1
+Date: Tue, 09 Dec 2025 11:16:52 +0100
+Message-ID: <1jy0ncvu23.fsf@starbuckisacylon.baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain
 
-On Mon, 08 Dec 2025 19:09:45 -0800
-Kevin Hilman <khilman@baylibre.com> wrote:
+On Tue 09 Dec 2025 at 07:01, Krzysztof Kozlowski <krzk@kernel.org> wrote:
 
-> Kory Maincent <kory.maincent@bootlin.com> writes:
->=20
-> > On Wed, 12 Nov 2025 16:14:19 +0100
-> > "Kory Maincent (TI.com)" <kory.maincent@bootlin.com> wrote:
-> > =20
-> >> The vdd_mpu regulator maximum voltage was previously limited to 1.2985=
-V,
-> >> which prevented the CPU from reaching the 1GHz operating point. This
-> >> limitation was put in place because voltage changes were not working
-> >> correctly, causing the board to stall when attempting higher frequenci=
-es.
-> >> Increase the maximum voltage to 1.3515V to allow the full 1GHz OPP to =
-be
-> >> used.
-> >>=20
-> >> Add a TPS65219 PMIC driver fixes that properly implement the LOCK regi=
-ster
-> >> handling, to make voltage transitions work reliably. =20
-> >
-> > Hello,
-> >
-> > What is the status on this series?
-> > Is there anything that could prevent it from being merged? =20
->=20
-> Nothing technical.  I'll start queuing things up after the merge window
-> closes and -rc1 (or maybe -rc2) is out.
+> On 08/12/2025 09:40, Jian Hu wrote:
+>> Hi, Krzysztof
+>> 
+>> 
+>> Thans for your review.
+>> 
+>> On 12/8/2025 2:17 PM, Krzysztof Kozlowski wrote:
+>>> [ EXTERNAL EMAIL ]
+>>>
+>>> On Thu, Dec 04, 2025 at 01:36:31PM +0800, Jian Hu wrote:
+>>>> Add DT bindings for the SCMI clock controller of the Amlogic T7 SoC family.
+>>>>
+>>>> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+>>>> Acked-by: Rob Herring (Arm) <robh@kernel.org>
+>>>> ---
+>>>>   include/dt-bindings/clock/amlogic,t7-scmi.h | 47 +++++++++++++++++++++
+>>>>   1 file changed, 47 insertions(+)
+>>>>   create mode 100644 include/dt-bindings/clock/amlogic,t7-scmi.h
+>>>>
+>>> Where is any binding doc for this? Why is this a separate patch?
+>> 
+>> 
+>> The ARM SCMI device tree binding specification is located at 
+>> ./Documentation/devicetree/bindings/firmware/arm,scmi.yaml.
+>
+> Then git grep for the file name - there is no such compatible. Are you
+> sure you follow writing bindings doc?
+>
+> Think how are you going to use these values. You will have phandle, yes?
+> To some controller, yes? Which one?
 
-Ok, thank you!
+For the C3 (I believe the T7 is the same), the compatible being used is
+"arm,scmi-smc". It is a generic one documented here:
 
-Regards,
---=20
-K=C3=B6ry Maincent, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/firmware/arm,scmi.yaml?h=v6.18#n202
+
+The phandle used is a subnode of that, to clock protocol:
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi?h=v6.18#n116
+
+Same things is done on imx, stm and rockchip platforms from what I can
+see.
+
+Jian is just adding the arbitrary IDs used to identify the clocks in the
+FW. I don't think there is anything out of the ordirnary here.
+
+Is there something else Rob and I missed reviewing this ?
+
+>
+>> 
+>> Certain secure clocks on the T7 rely on the ARM SCMI driver stack, which 
+>> is officially supported by ARM.
+>> 
+>> The kernel-side SCMI client implementation resides in 
+>> ./drivers/firmware/arm_scmi/.
+>> 
+>> To enable ARM SCMI on T7, three components are needed:
+>> 
+>> - Kernel-side definition of ARM SCMI clock indices (this patch addresses 
+>> this component);
+>> - SCMI server implementation in the ARM Trusted Firmware (ATF) running 
+>> at Exception Level 3 (EL3), which has been integrated into the bootloader;
+>> - Device Tree Source (DTS) configuration for ARM SCMI clock nodes (the 
+>> DTS changes will be submitted after the T7 clock driver patches are 
+>> merged upstream).
+>
+> So silently you keep the users hidden? No, I want to see the users.
+>
+
+Is there a new requirement to submit the DTS file changes along with the
+driver changes now ?
+
+This has never been case before, especially since the changes are merged
+through different trees.
+
+>
+> Best regards,
+> Krzysztof
+
+-- 
+Jerome
 
