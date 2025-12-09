@@ -1,188 +1,155 @@
-Return-Path: <devicetree+bounces-245297-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245298-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4D1ECAEDB6
-	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 05:22:08 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B4BBCAEDD7
+	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 05:26:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 63EAC300D49D
-	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 04:21:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D196E301F5E8
+	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 04:26:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43E45274FEB;
-	Tue,  9 Dec 2025 04:21:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55F742ECD37;
+	Tue,  9 Dec 2025 04:26:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VViSmwMh"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mdKdbvI8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F74F228CA9
-	for <devicetree@vger.kernel.org>; Tue,  9 Dec 2025 04:21:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72CAC2D97AF
+	for <devicetree@vger.kernel.org>; Tue,  9 Dec 2025 04:26:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765254097; cv=none; b=ac7Pcnjwfd+BZY8vqr6wwSCnYdmha9thqlSYLQmPK1idtkAMa0MiamkBXvq2uHY/oezlPNc4amgsr919NvdAnQbfGrsovNGgdmf+7+MngauFNaYQxmOLD97RRCfK0JSJEw1ATziJm3IGUyXudLgw2EDc+n0fp2agWhRuy/H5tis=
+	t=1765254390; cv=none; b=p62Vx+33REd5o85zNo5KiaykEqU+a0s75kSkeFzMQmQ3pHZ7Ybd5buV5++8I5eXjLNzbLxDGWQX9GrqA8UEhm7/uGNxu2fjExQYbVWSPM/0mg4CPcvr+0F6ceGb+32serGv6Wl6qyWlW7UsIC5fEZFQLmgHLkeF/epEWmKMKS7E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765254097; c=relaxed/simple;
-	bh=PZhds5N6X6MmhbvC04AMxoJcF84daqIxkM47skgPn24=;
+	s=arc-20240116; t=1765254390; c=relaxed/simple;
+	bh=4QNfQT+yaSWc9HC3z84t8OAr2py9WRAhBnkZqk0vEH4=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=hBS4a2yBUSaLUgaIsBJZPuHXWZoqreC0Q+HJCg1P918+gZIEuF9CgqI1LlSy0u5GRDCd6/WkxWo51v4Kn+qfT7IU2M4J5bufOIND1So1tGxGiAaiOEs6mCNfVtq6KcVE18jlf9HgQ7mqSYCS35gxfrnFerHhSnlpneu3FvlHi0Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VViSmwMh; arc=none smtp.client-ip=209.85.167.54
+	 To:Cc:Content-Type; b=D6Mbg4zJZsajWfQTaY19SHSUbiynVe/MY6/IMdbOf+C9zlJoskJNRm5xViqE/StzjUA9bQJ8IA8ValSjo1bIR1gyf+OcZBbmxXh6Bo2u8SI8DudeXsNHoAk4CPyEm+pRxE9QoBLiu73QN0mFvjpFMDJKFbFFsq8EA8SQqfUXknQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mdKdbvI8; arc=none smtp.client-ip=209.85.167.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-59578e38613so5699889e87.2
-        for <devicetree@vger.kernel.org>; Mon, 08 Dec 2025 20:21:35 -0800 (PST)
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-5957e017378so6642642e87.3
+        for <devicetree@vger.kernel.org>; Mon, 08 Dec 2025 20:26:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1765254093; x=1765858893; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1765254387; x=1765859187; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=C9NVGlJCg7ykVUdeW2T+8c4mtxDYcXfoa/ug95D9+KU=;
-        b=VViSmwMhBx40sY4unsLoR4vgHrLYnz8kwlROf7jAFZVwGkFeftKXZUX/9McL0aKQTM
-         Q7AIvB4vWIteXqpsasawjS/Yo7WEZggR4ro8pqFDqeqNRMOVMAXaVF2W8HU8jsqlEUp6
-         7phamk5dpluvxdI4Hi3DUhB5otPNvzGljEckym7dPfW4iXvhDGMcZwhcSmdMwGfJgExg
-         3x2U2GTHIoNoGcrW/rt0cF9keXsCjVwOUIqT+GzePrd/xuJlTw3UWqE8lt7PCjeco2JW
-         TMRdeobXN2+cnanKyQX3Pn9h4kgGwB8QjMF5Sg+PfgWUnbkC9Ph5tgK3tOJnFWbpPVP9
-         JYhw==
+        bh=4QNfQT+yaSWc9HC3z84t8OAr2py9WRAhBnkZqk0vEH4=;
+        b=mdKdbvI8Yk2rfMLD3tPLnJudt6MMA7IBoXOviqbTKJzz4pZl4T5lE0nyvMib8MdjWd
+         jriiucdHCgYb0uZL93ZNsUcJkXQqVEiYx4j6cHEiQR4UkEdtDQtz786W9eQklO+SKvMI
+         bQNdVBSIoQZ0AyFWI6o7KVL3sQi8trEIxpM6ue83AYwFWwm9hgpUXYJncsdK2BJMQeer
+         7mfgWFGQsBsyfXBuXR9oPax4Cg0FX9ixKeiMQp8Fg0z9c23twqcqMsL6bkZZGaBQUPOI
+         Nqenlzxa+f0qI5v+QhY6h0sqHDjzsgMti2gYx4n+FZuRq2cLjwZ/Dsfc8MGva9/w1Ggf
+         +AVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765254093; x=1765858893;
+        d=1e100.net; s=20230601; t=1765254387; x=1765859187;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=C9NVGlJCg7ykVUdeW2T+8c4mtxDYcXfoa/ug95D9+KU=;
-        b=C/LuRXJbBS64PY61K1pbM87idftdavvzKheSb/q0KzbKVBbFcd6OadezQKH3YHt4ii
-         xodYHc1PJPTztNGnXKWxkCP01oKfD1IUfPdLt086vVxOK+PPd1eNNmwuDHNPA21vPyHM
-         AoBBymYc7KSBoRVmNJVgw495Jj8ILnPutWNUq29UALu0C3ciyZ61lr5215UA2Cjsdevx
-         IERrbs1KCNdXCjWYaRi6+Wt1M496O+BGT+cZJcnS7hGwkPdSfU3p3hE6GmW3noBl/tSm
-         o7HZs8GcR7Q7fGdEr1L1zVj+oaTzZrz90SeGXDPDWgc7aokJzRdQS6ljQXDKZLXlLReX
-         e4EA==
-X-Forwarded-Encrypted: i=1; AJvYcCWg0f7i2DSWpGyHrzt3HI77U8lfdmVuJCq4/7IZlAR9e3lHSKaIeXF1evYLrVNffz4AuvlSScZChA3D@vger.kernel.org
-X-Gm-Message-State: AOJu0YzedIwEu0+MGycq6yJVzp3hRHSAiu/rTN4jn7vcBs+8KVzU9u+p
-	55vtrU4fmORK2xhnr7HUpnfkoHfoFhJRg0h7x5Bt9eRnyCcHuP3N3SxZy+iatRMmSYheYUlomT8
-	w5gvdb++ZclGSIt1GA8r1Mk1IdJhCTuGX3A==
-X-Gm-Gg: ASbGncvHUZ4Hi3Xy/vZzVbb5huQ7V1QUgfrNziDq8qYMmDqaQTTxt+jRRh1fVixUxxK
-	khkQUlGgyo0DiZqBf4Gi3LTvaEmDpmXe87rw+535VbG34Ajbi0xJqclPBnrX17uRiL/szPLiJqs
-	MA+37bUft7dtRNS53MgstL5LxiLfA8wYGxC1ktURTDKyETYR7iAnAP7Fz/sjZ0Tq5PIgmRanbua
-	N6X9zeq01XmJT9waiAmyRGAIzgIfV6LjR7HdHTWJkzVEihT4Kq2X7CiZMR35d6Kqih3++A=
-X-Google-Smtp-Source: AGHT+IH9ow4VGpZQxvEmwOt6xtR/45A8V+ydlsbvjhAiEm/De1njwbRl1RCDsqCKKbvLz+iAKmYkKo8bb9PDDvlzQqY=
-X-Received: by 2002:a05:6512:1325:b0:597:d6d6:4a35 with SMTP id
- 2adb3069b0e04-5987e8c8cd7mr3385735e87.33.1765254093127; Mon, 08 Dec 2025
- 20:21:33 -0800 (PST)
+        bh=4QNfQT+yaSWc9HC3z84t8OAr2py9WRAhBnkZqk0vEH4=;
+        b=okJH81CaAxSbEpFQYeepLW7u83Rmsz7JzJbFTg1Amj3IXERdhlnIIsU+d/JOQTT5yV
+         GX8hB39i8pjBuVu56HouIMEjDLkfCYG3BUHIKKVgsrPk9LhhxE6utz9L31S7LHAi7BBE
+         we66XrB/RCP/UUDckIq+LPCoLaoYA6SYpFf1e8qqqkUahvVTkXUfuylyfQY7j7LQbiAM
+         5lolS8wNkg8++g/qB5lum9EShFpu9tj96urC6YL9P8jbAYp8BJ+gyfCoiw8gQuA/ZMSE
+         NrtUnFq4ofgFaMCMshbOO6ie5xuyXAYNbLuQ89Nr+FrH3i8B3FOphB/MDo9dei19JUDm
+         V5jw==
+X-Forwarded-Encrypted: i=1; AJvYcCVHSccUyUKkzBP9dnCy/ZB55t06hRIHknCVlKihJu6/Oca3g1f2KeC/qaW5PZPP5+ghdIImgXH6K71J@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz2H0OGNL7WiM9GqxrG2nl7ZvBzVT3XKzi909JVvF5LrF9SqcqI
+	OX0Kc/VkhfF2mWsf7nAu/Z/BC4iGtxLlLGdj/gub5zeWfgMsqkwtN0Sa8F/rq0h36uhKDz0CUPT
+	ivvycEhNn0rxfjzBfkFfH7/JB2D5jYng=
+X-Gm-Gg: ASbGncuHhYfcrAJ0hpR6X0AchkvJlv5H6Hg1n/IWAnNWG01f1cDsvKU2BXTllGjI1g2
+	FIdzuh+deNXCCbXZsF1wsa3mciH+/N1lViwOw/MEShLWcGexFDP09sQVLt/qXjR/CjeDlBpDDK8
+	Kf44paD2eUh7NPnnRib/f9VePiuJavzTQVWH30v+aFUAbYxqhNEo/gUuW9eQYjt893J9vuM/K8Q
+	EF+0U0c8tILZ4d/uvj91P/yNpUnv7dC2Su29DJN8MK33WdzclMem1OxgZFfs666Ju/HY+Q=
+X-Google-Smtp-Source: AGHT+IFR8801MDmyrZ18WOguOY+Gn0UIvPBqOLGDs22BI9QURUqSD4rNMEHzVCfSwWAzDWvmrLJoAz9Gyfs5PBTeLDo=
+X-Received: by 2002:a05:6512:3d9e:b0:577:318a:a1c6 with SMTP id
+ 2adb3069b0e04-5987e8bf1cdmr3462912e87.23.1765254386315; Mon, 08 Dec 2025
+ 20:26:26 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251101-tegra194-dc-mmu-v1-0-8401c45d8f13@gmail.com>
- <20251101-tegra194-dc-mmu-v1-1-8401c45d8f13@gmail.com> <CALHNRZ_QrQHCmF7f1z29tAmuNR-=rG1SgYJ1sssK3VXiQqURYg@mail.gmail.com>
- <ehkwvvmvk4mddxtcmne5jrex2rfq4phqsa5zifxdslrpvdl2ir@3zlwejmx5f5f> <CALHNRZ-rArVkbEaiEVwMevfbu0dgX5P-ooVYTd-3RHvrhOJ5vQ@mail.gmail.com>
-In-Reply-To: <CALHNRZ-rArVkbEaiEVwMevfbu0dgX5P-ooVYTd-3RHvrhOJ5vQ@mail.gmail.com>
+References: <20251027-tegra186-icc-p2-v4-0-e4e4f57e2103@gmail.com>
+ <20251027-tegra186-icc-p2-v4-3-e4e4f57e2103@gmail.com> <82c8dda8-6fcb-48f9-bdaa-f3d1431e41ae@nvidia.com>
+ <CALHNRZ8nCojreFCMXfbBBhWAMtmWN-04XtuW8fEsVD9bw+-AzA@mail.gmail.com>
+ <CALHNRZ-CO5i9jeLkEG2cmHxcW1bcLhxcBSxjmL2euHfQy8yr-w@mail.gmail.com>
+ <e6ce190e-6df7-4c36-abca-f09df3cc80e7@nvidia.com> <99ca4992-5736-417d-854e-379542549bee@kernel.org>
+ <7f3dad08-cff5-40c2-8e7f-f6441a3d6b91@nvidia.com> <d5d23eb5-f43c-4e4b-9926-3fba6ffd3acf@nvidia.com>
+ <CALHNRZ8vFJyfFXbxFehWA9TGkdrEUy9Wsm-DxEOT=tVbYTcU5Q@mail.gmail.com>
+ <249bbe7e-e2da-4493-bdd5-8f4b17aff8fe@nvidia.com> <CALHNRZ8uPaKqSpFWkmYZn==Xw=rxh95Xm0_6LPN1HDj20zofqw@mail.gmail.com>
+ <d16803e5-7b6d-4472-b50c-aa324cf52736@nvidia.com> <CALHNRZ83Q2Ha8VYoWAnqoCZQ=Fd9rtVRVLwRFxAY68ePQ29GHw@mail.gmail.com>
+ <29cf2c16-3a0e-42c5-a083-16f77ae5d09a@nvidia.com> <63be3373-1ab4-4aa4-aa7a-0175727aa9a3@kernel.org>
+In-Reply-To: <63be3373-1ab4-4aa4-aa7a-0175727aa9a3@kernel.org>
 From: Aaron Kling <webgeek1234@gmail.com>
-Date: Mon, 8 Dec 2025 22:21:21 -0600
-X-Gm-Features: AQt7F2qUovQzQ0cgOIiDDf4VAk0bamHdd6WWdUgxFn3oWlK1__sJAG8hXFhHdPc
-Message-ID: <CALHNRZ-YQe7_7UGfFNsBe6pdvFjK+1sS0Sye7od6WF+yqAYttQ@mail.gmail.com>
-Subject: Re: [PATCH 1/2] Revert "arm64: tegra: Disable ISO SMMU for Tegra194"
-To: Thierry Reding <thierry.reding@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Jonathan Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org, 
-	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Date: Mon, 8 Dec 2025 22:26:15 -0600
+X-Gm-Features: AQt7F2qHv1xU42NvH4dUdczccSFHNDISNqkEzdZv_IWSUPDeDRC4VEc-RTlPQG0
+Message-ID: <CALHNRZ83EcVnyBYADsuXtMu9omBd8WW+7reyb4GX8FfJ4sOcyw@mail.gmail.com>
+Subject: Re: [PATCH v4 3/5] memory: tegra186-emc: Support non-bpmp icc scaling
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Jon Hunter <jonathanh@nvidia.com>, Rob Herring <robh@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-tegra@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Nov 3, 2025 at 12:05=E2=80=AFPM Aaron Kling <webgeek1234@gmail.com>=
- wrote:
+On Sat, Nov 22, 2025 at 6:01=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
 >
-> On Mon, Nov 3, 2025 at 5:07=E2=80=AFAM Thierry Reding <thierry.reding@gma=
-il.com> wrote:
+> On 21/11/2025 12:21, Jon Hunter wrote:
 > >
-> > On Sat, Nov 01, 2025 at 06:13:26PM -0500, Aaron Kling wrote:
-> > > On Sat, Nov 1, 2025 at 6:01=E2=80=AFPM Aaron Kling via B4 Relay
-> > > <devnull+webgeek1234.gmail.com@kernel.org> wrote:
-> > > >
-> > > > From: Aaron Kling <webgeek1234@gmail.com>
-> > > >
-> > > > This reverts commit ebea268ea583ba4970df425dfef8c8e21d0a4e12.
-> > > >
-> > > > Mmu is now being enabled for the display controllers.
-> > > >
-> > > > Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
-> > > > ---
-> > > >  arch/arm64/boot/dts/nvidia/tegra194.dtsi | 2 +-
-> > > >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > > >
-> > > > diff --git a/arch/arm64/boot/dts/nvidia/tegra194.dtsi b/arch/arm64/=
-boot/dts/nvidia/tegra194.dtsi
-> > > > index 1399342f23e1c4f73b278adc66dfb948fc30d326..854ed6d46aa1d8eedcd=
-fbae1fdde1374adf40337 100644
-> > > > --- a/arch/arm64/boot/dts/nvidia/tegra194.dtsi
-> > > > +++ b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
-> > > > @@ -1807,7 +1807,7 @@ iommu@10000000 {
-> > > >                         #iommu-cells =3D <1>;
-> > > >
-> > > >                         nvidia,memory-controller =3D <&mc>;
-> > > > -                       status =3D "disabled";
-> > > > +                       status =3D "okay";
-> > > >                 };
-> > > >
-> > > >                 smmu: iommu@12000000 {
-> > > >
-> > > > --
-> > > > 2.51.0
-> > > >
-> > > >
-> > >
-> > > Question for Jon as the author of the commit being reverted. The
-> > > commit message states "we do not have a way to pass frame-buffer
-> > > memory from the bootloader to the kernel". If I understand this
-> > > correctly, this is talking about seamless handoff. What does this hav=
+> > On 12/11/2025 07:21, Aaron Kling wrote:
+> >> On Wed, Nov 12, 2025 at 12:18=E2=80=AFAM Jon Hunter <jonathanh@nvidia.=
+com> wrote:
+> >>>
+> >>>
+> >>> On 11/11/2025 23:17, Aaron Kling wrote:
+> >>>
+> >>> ...
+> >>>
+> >>>> Alright, I think I've got the picture of what's going on now. The
+> >>>> standard arm64 defconfig enables the t194 pcie driver as a module. A=
+nd
+> >>>> my simple busybox ramdisk that I use for mainline regression testing
+> >>>> isn't loading any modules. If I set the pcie driver to built-in, I
+> >>>> replicate the issue. And I don't see the issue on my normal use case=
+,
+> >>>> because I have the dt changes as well.
+> >>>>
+> >>>> So it appears that the pcie driver submits icc bandwidth. And withou=
+t
+> >>>> cpufreq submitting bandwidth as well, the emc driver gets a very low
+> >>>> number and thus sets a very low emc freq. The question becomes... wh=
+at
+> >>>> to do about it? If the related dt changes were submitted to
+> >>>> linux-next, everything should fall into place. And I'm not sure wher=
 e
-> > > to do with enabling mmu on the display controllers? Seamless does not
-> > > work on any tegra arch as far as I'm aware, but Tegra194 is the only
-> > > one that doesn't have mmu enabled for the dc's. But enabling mmu
-> > > allows for better and faster memory allocation. My initial attempts t=
-o
-> > > enable this didn't work because I tried to attach them to the main mm=
-u
-> > > unit, see the related freedesktop issue [0]. After noticing in the
-> > > downstream dt that the dc's are on a separate unit, I made it work.
-> > > And so far, it seems to work just as well as Tegra186. Then when I wa=
-s
-> > > packaging up the change to submit, I found that this had been
-> > > explicitly disabled. But I'm not seeing why. Am I missing some
-> > > additional factors?
+> >>>> this falls on the severity scale since it doesn't full out break boo=
+t
+> >>>> or prevent operation.
+> >>>
+> >>> Where are the related DT changes? If we can get these into -next and
+> >>> lined up to be merged for v6.19, then that is fine. However, we shoul=
+d
+> >>> not merge this for v6.19 without the DT changes.
+> >>
+> >> The dt changes are here [0].
 > >
-> > This isn't seamless handoff to the Tegra DRM driver for display, but
-> > rather to simple-framebuffer. While this does technically work, it also
-> > causes a spew of SMMU faults during early boot because the firmware doe=
-s
-> > not properly pass the SMMU mapping information to the kernel.
+> > To confirm, applying the DT changes do not fix this for me. Thierry is
+> > having a look at this to see if there is a way to fix this.
 > >
-> > In a nutshell what happens is that the firmware sets up the display
-> > controller to scan out from a reserved memory region, but it does so
-> > without involving the SMMU, so it uses physical addresses directly. Whe=
-n
-> > the kernel boots and the SMMU is enabled the continued accesses from
-> > display hardware cause SMMU faults (because there is no mapping for the
-> > framebuffer addresses).
-> >
-> > That said, we did solve these issues and this may not be happening
-> > anymore with the most recent L4T releases, so it may be okay to revert
-> > this now. We should find out exactly which release includes all the
-> > needed changes so that it can be referenced in the commit message. I
-> > want to avoid people running new kernels with an old L4T release and
-> > then seeing these errors without any reference as to why that might
-> > suddenly happen.
->
-> For reference, I have rolled back my Android usecase to use the L4T
-> r32.7.6 bootloaders on T194 for a variety of reasons. So I am using
-> cboot as the final bootloader and not edk2 as in L4T r34/r35. I have a
-> pending cboot patch to support simple-framebuffer handoff, but haven't
-> fully verified it as tegra-drm is currently unable to takeover from
-> simplefb like openrm does for t234. But all that to say that since I
-> no longer use r35 for t194 I don't have the setup to easily verify
-> which point release works here and what doesn't.
+> > BTW, I have also noticed that Thierry's memory frequency test [0] is
+> > also failing on Tegra186. The test simply tries to set the frequency vi=
+a
+> > the sysfs and this is now failing. I am seeing ..
 
-Any further thoughts on this patch?
+With this patch dropped from -next, what needs to happen to get it
+requeued? I gave an analysis over two weeks ago and have seen no
+response since.
 
 Aaron
 
