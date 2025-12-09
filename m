@@ -1,117 +1,146 @@
-Return-Path: <devicetree+bounces-245361-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245362-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B045CAF9F8
-	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 11:24:45 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id BAC81CAFA8B
+	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 11:36:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A8DA23006A4E
-	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 10:20:57 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4C405301355D
+	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 10:36:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32B4E24E4A1;
-	Tue,  9 Dec 2025 10:20:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 284F62FC879;
+	Tue,  9 Dec 2025 10:36:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="IF7lHoCB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [13.76.142.27])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E6CA13774D;
-	Tue,  9 Dec 2025 10:20:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.76.142.27
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA8CE2C08DC;
+	Tue,  9 Dec 2025 10:36:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765275656; cv=none; b=hdWRB45bWfibPg/cERUme9g1Mfv1MvltjQP3g1IYWH6rg+UvHjVWc+25ye3Rzealr3BPVcta9UVmMyTw0NhuaYcnrQO8KKlko0dwq1N0Y3MtyZBU9UdHNiTaYQofkbsyPRrrcMkhhLD66eUYZ/JAZFnjmejg6MzCwHE9TRYThfo=
+	t=1765276600; cv=none; b=GypQeeGA4vO06kl4/H9gw75oAcjWHEeeH5KztTSFw4fyTTsP2wpBpl80JtcSD9D6OCegJoR6apn1BRp+8JP6hxDURFcAssPx9k50Mrj+muyjyNBogTh/pq/OmV6NNNGh6d5kyHJmocHXb0Rx1z8ylYbRCFFlqrgiA6LQ/BN+veA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765275656; c=relaxed/simple;
-	bh=0igFMeA4r8WgMm2AgCebME9sRmF3+EaQ8kuAiHD7q90=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
-	 MIME-Version:Message-ID; b=VaNrFN46p2F9CgFwjlKpDSQqda6yAW7AWaZ1Z0gJU/KaRMdqCorKl5VWwPVJ1JBXMwTwFUzqoe/lUS1veqCGC3xzbc/LP3qeeb+S9xJz1i3j2nDEfTatINJa2aU2k3+eXDUH8YA53ICCcS0exO33J+RqS/oTZUSgtQ0Ecl6JztQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=13.76.142.27
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
-Received: from dongxuyang$eswincomputing.com ( [10.12.96.41] ) by
- ajax-webmail-app2 (Coremail) ; Tue, 9 Dec 2025 18:20:26 +0800 (GMT+08:00)
-Date: Tue, 9 Dec 2025 18:20:26 +0800 (GMT+08:00)
-X-CM-HeaderCharset: UTF-8
-From: "Xuyang Dong" <dongxuyang@eswincomputing.com>
-To: "Krzysztof Kozlowski" <krzk@kernel.org>, ben.dooks@codethink.co.uk
-Cc: ukleinek@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, p.zabel@pengutronix.de,
-	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, ningyu@eswincomputing.com,
-	linmin@eswincomputing.com, xuxiang@eswincomputing.com,
-	wangguosheng@eswincomputing.com, pinkesh.vaghela@einfochips.com
-Subject: Re: Re: [PATCH 1/2] dt-bindings: pwm: eswin: Add EIC7700 pwm
- controller
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version 2024.2-cmXT6 build
- 20241203(6b039d88) Copyright (c) 2002-2025 www.mailtech.cn
- mispb-72143050-eaf5-4703-89e0-86624513b4ce-eswincomputing.com
-In-Reply-To: <20251208-rational-trout-of-purring-a6150a@quoll>
-References: <20251205090411.1388-1-dongxuyang@eswincomputing.com>
- <20251205090450.1446-1-dongxuyang@eswincomputing.com>
- <20251208-rational-trout-of-purring-a6150a@quoll>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset=UTF-8
+	s=arc-20240116; t=1765276600; c=relaxed/simple;
+	bh=xahUIlaehVh5FxxfTPdwDxMO0j0MxgfWUvmLAcXksMs=;
+	h=Content-Type:MIME-Version:In-Reply-To:References:Subject:From:Cc:
+	 To:Date:Message-ID; b=VzcmLc2hyMalXaE+ouQWNLBuuqwR3gfoECpFfu9qqJASY+7K6iv9Mmn+XnA3guZAesWs669MqfyCwdbqx0R0pj/px46XxFTwvT2V82kgx66f6dCbvCIhx+7Ustq+mkSZFTW55dzzvhjJfTPgmnxA7m7cOOH6Sqzfoewvme17bZk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=IF7lHoCB; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from mail.ideasonboard.com (unknown [IPv6:2401:4900:1c31:3dca:74fd:8a0a:9c63:1c11])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id D4C4E89A;
+	Tue,  9 Dec 2025 11:34:02 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1765276443;
+	bh=xahUIlaehVh5FxxfTPdwDxMO0j0MxgfWUvmLAcXksMs=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=IF7lHoCBINGUw91elaq/7JG9ch89ucyRlwOgI/55MSLa0QEsV+IJ8VJqABKvGzQST
+	 GCOYtmlOklAW1XyOzF0ovRN3FQ2KOcisoIED618NV0fjJNC1FYcBCO6bAU3reCC8iq
+	 EQn/7bDJ/MdFRcemLXdfdLrJt1g86r70ObdTiHzk=
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <47025bea.10ca.19b02a06c69.Coremail.dongxuyang@eswincomputing.com>
-X-Coremail-Locale: zh_CN
-X-CM-TRANSID:TQJkCgDnK6_q9zdp+DCDAA--.3844W
-X-CM-SenderInfo: pgrqw5xx1d0w46hv4xpqfrz1xxwl0woofrz/1tbiAQELAmk2-YUhH
-	gABsQ
-X-Coremail-Antispam: 1Ur529EdanIXcx71UUUUU7IcSsGvfJ3iIAIbVAYjsxI4VWxJw
-	CS07vEb4IE77IF4wCS07vE1I0E4x80FVAKz4kxMIAIbVAFxVCaYxvI4VCIwcAKzIAtYxBI
-	daVFxhVjvjDU=
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <719ee15a-92fd-4597-b25e-196f4a906a5a@ti.com>
+References: <20251112115459.2479225-1-r-donadkar@ti.com> <20251112115459.2479225-14-r-donadkar@ti.com> <1e7be0c3-b7da-4eac-9a39-147c1e627cbb@ideasonboard.com> <719ee15a-92fd-4597-b25e-196f4a906a5a@ti.com>
+Subject: Re: [PATCH v8 13/18] media: ti: j721e-csi2rx: add multistream support
+From: Jai Luthra <jai.luthra@ideasonboard.com>
+Cc: y-abhilashchandra@ti.com, devarsht@ti.com, s-jain1@ti.com, vigneshr@ti.com, mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org, p.zabel@pengutronix.de, conor+dt@kernel.org, sakari.ailus@linux.intel.com, hverkuil-cisco@xs4all.nl, changhuang.liang@starfivetech.com, jack.zhu@starfivetech.com, sjoerd@collabora.com, dan.carpenter@linaro.org, hverkuil+cisco@kernel.org, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, devicetree@vger.kernel.org
+To: Rishikesh Donadkar <r-donadkar@ti.com>, Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, jai.luthra@linux.dev, laurent.pinchart@ideasonboard.com, mripard@kernel.org
+Date: Tue, 09 Dec 2025 16:06:16 +0530
+Message-ID: <176527657688.20066.3405220622225469005@freya>
+User-Agent: alot/0.12.dev62+gb9d6144a6
 
-PiA+IGRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvcHdtL2Vz
-d2luLGVpYzc3MDAtcHdtLnlhbWwgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3Mv
-cHdtL2Vzd2luLGVpYzc3MDAtcHdtLnlhbWwKPiA+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0Cj4gPiBp
-bmRleCAwMDAwMDAwMDAwMDAuLjhiN2RjN2Q0ZGZmZQo+ID4gLS0tIC9kZXYvbnVsbAo+ID4gKysr
-IGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3B3bS9lc3dpbixlaWM3NzAwLXB3
-bS55YW1sCj4gPiBAQCAtMCwwICsxLDczIEBACj4gPiArIyBTUERYLUxpY2Vuc2UtSWRlbnRpZmll
-cjogKEdQTC0yLjAtb25seSBPUiBCU0QtMi1DbGF1c2UpCj4gPiArJVlBTUwgMS4yCj4gPiArLS0t
-Cj4gPiArJGlkOiBodHRwOi8vZGV2aWNldHJlZS5vcmcvc2NoZW1hcy9wd20vZXN3aW4sZWljNzcw
-MC1wd20ueWFtbCMKPiA+ICskc2NoZW1hOiBodHRwOi8vZGV2aWNldHJlZS5vcmcvbWV0YS1zY2hl
-bWFzL2NvcmUueWFtbCMKPiA+ICsKPiA+ICt0aXRsZTogRVNXSU4gRUlDNzcwMCBQV00gY29udHJv
-bGxlcgo+ID4gKwo+ID4gK21haW50YWluZXJzOgo+ID4gKyAgLSBYaWFuZyBYdSA8eHV4aWFuZ0Bl
-c3dpbmNvbXB1dGluZy5jb20+Cj4gPiArICAtIEd1b3NoZW5nIFdhbmcgPHdhbmdndW9zaGVuZ0Bl
-c3dpbmNvbXB1dGluZy5jb20+Cj4gPiArICAtIFh1eWFuZyBEb25nIDxkb25neHV5YW5nQGVzd2lu
-Y29tcHV0aW5nLmNvbT4KPiA+ICsKPiA+ICtkZXNjcmlwdGlvbjogfAo+IAo+IERvIG5vdCBuZWVk
-ICd8JyB1bmxlc3MgeW91IG5lZWQgdG8gcHJlc2VydmUgZm9ybWF0dGluZy4KPiAKPiA+ICsgIFRo
-ZSBFSUM3NzAwIFBXTSB1c2VkIHRoZSBEZXNpZ25XYXJlIEFQQiB0aW1lcnMgbW9kdWxlLiBUaGUg
-UFdNIGRyaXZlcgo+ID4gKyAgc3VwcG9ydHMgYSBkdXR5IGN5Y2xlIHJhbmdlIGZyb20gMCUgdG8g
-MTAwJSwgd2l0aCBleHBsaWNpdCBzdXBwb3J0IGZvcgo+IAo+IERyaXZlciBpcyBpcnJlbGV2YW50
-IGhlcmUuIERlc2NyaWJlIGhhcmR3YXJlLgo+IAo+ID4gKyAgYm90aCAwJSBhbmQgMTAwJSBkdXR5
-IGN5Y2xlcy4KPiA+ICsKPiA+ICthbGxPZjoKPiA+ICsgIC0gJHJlZjogcHdtLnlhbWwjCj4gPiAr
-Cj4gPiArcHJvcGVydGllczoKPiA+ICsgIGNvbXBhdGlibGU6Cj4gPiArICAgIGNvbnN0OiBlc3dp
-bixlaWM3NzAwLXB3bQo+ID4gKwo+ID4gKyAgcmVnOgo+ID4gKyAgICBtYXhJdGVtczogMQo+ID4g
-Kwo+ID4gKyAgY2xvY2tzOgo+ID4gKyAgICBtYXhJdGVtczogMQo+ID4gKwo+ID4gKyAgcmVzZXRz
-Ogo+ID4gKyAgICBtYXhJdGVtczogMQo+ID4gKwo+ID4gKyAgIiNwd20tY2VsbHMiOgo+ID4gKyAg
-ICBjb25zdDogMwo+ID4gKwo+ID4gKyAgcGluY3RybC0wOiB0cnVlCj4gPiArICBwaW5jdHJsLTE6
-IHRydWUKPiA+ICsKPiA+ICsgIHBpbmN0cmwtbmFtZXM6Cj4gPiArICAgIG1pbkl0ZW1zOiAxCj4g
-PiArICAgIGl0ZW1zOgo+ID4gKyAgICAgIC0gY29uc3Q6IGRlZmF1bHQKPiA+ICsgICAgICAtIGNv
-bnN0OiBzbGVlcAo+ID4gKwo+ID4gKyAgc25wcyxwd20tZnVsbC1yYW5nZS1lbmFibGU6Cj4gCj4g
-MS4gV3JvbmcgdmVuZG9yIHByZWZpeCwgdGhhdHMgZXN3aW4sIG5vdCBzbnBzLgo+IDIuIFdoeSBp
-cyB0aGlzIGEgaGFyZHdhcmUgcHJvcGVydHk/IEkgcmVhbGx5IGRvIG5vdCBzZWUgdGhhdC4gWW91
-Cj4gZGVzY3JpYmVkIHRoZSBkZXNpcmVkIExpbnV4IGZlYXR1cmUgb3IgYmVoYXZpb3IsIG5vdCB0
-aGUgYWN0dWFsCj4gaGFyZHdhcmUuIFRoZSBiaW5kaW5ncyBhcmUgYWJvdXQgdGhlIGxhdHRlciwg
-c28gaW5zdGVhZCB5b3UgbmVlZCB0bwo+IHJlcGhyYXNlIHRoZSBwcm9wZXJ0eSBhbmQgaXRzIGRl
-c2NyaXB0aW9uIHRvIG1hdGNoIGFjdHVhbCBoYXJkd2FyZQo+IGNhcGFiaWxpdGllcy9mZWF0dXJl
-cy9jb25maWd1cmF0aW9uIGV0Yy4KPiAKSGkgS3J6eXN6dG9mIGFuZCBCZW4sCgpUaGVyZSBpcyBh
-IHBhdGNoIFsxXSBzdWJtbWl0dGVkIGJ5IEJlbiBEb29rIGEgZmV3IHllYXJzIGFnby4gVGhlwqAK
-aW50ZW50aW9uIG9mIHRoaXMgcGF0Y2ggaXMgdG8gbWFrZSBEV0MgcHdtIGNvbnRyb2xsZXIgY2Fu
-IGJlIHVzZWQgYXPCoApwbGF0Zm9ybSBkcml2ZXIuIFRoaXMgaXMgd2hhdCB3ZSBhcmUgY3VycmVu
-dGx5IHdvcmtpbmcgb24uCkl0IHNlZW1zIHRoYXQgaXQgd291bGQgYmUgbW9yZSByZWFzb25hYmxl
-IHRvIGNvbnRpbnVlIGltcHJvdmluZyB0aGlzwqAKcGF0Y2ggYW5kIG1ha2UgdGhlIERXQyBQV00g
-ZHJpdmVyIHVuaXZlcnNhbCwgcmF0aGVyIHRoYW4gY3JlYXRpbmcgYcKgCnNlcGFyYXRlIEVTV0lO
-IFBXTSBkcml2ZXIuCgpUaGUgRFdDIHB3bSAyLjEzYSB2ZXJzaW9uIHN1cHBvcnRzICJQdWxzZSBX
-aWR0aCBNb2R1bGF0aW9uIHdpdGggMCUgYW5kwqAKMTAwJSBEdXR5IEN5Y2xlIiBieSBwcm9ncmFt
-bWluZyBUSU1FUl8wTjEwMFBXTV9FTiBiaXQgZmllbGQuIFdlIGFsc2/CoAp3YW50IHRvIHN1cHBv
-cnQgdGhpcyBuZXcgaGFyZHdhcmUgZmVhdHVyZS4gU28sIGFkZGluZyBhIG5ldyBwcm9wZXJ0eSzC
-oApsaWtlIHNucHMsdGltZXItMG4xMDBwd20tZW4sIGluIHB3bS9zbnBzLGR3LWFwYi10aW1lcnMt
-cHdtMi55YW1sCndvdWxkIGJlIGJldHRlcj8KCktyenlzenRvZiBhbmQgQmVuLCBkbyB5b3UgdGhp
-bmsgdGhlIGFib3ZlIGFwcHJvYWNoIGlzIHJlYXNvbmFibGUgYW5kIGFjY2VwdGFibGU/CgpbMV0g
-aHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvbGttbC8yMDIzMDkwNzE2MTI0Mi42NzE5MC03LWJlbi5k
-b29rc0Bjb2RldGhpbmsuY28udWsvCgpSZWdhcmRzLApYdXlhbmcgRG9uZwo=
+Hi Rishikesh,
+
+Quoting Rishikesh Donadkar (2025-12-09 15:38:33)
+>=20
+> On 01/12/25 18:33, Tomi Valkeinen wrote:
+> > Hi,
+>=20
+>=20
+> Hi Tomi,
+>=20
+> Thank you for the review !
+>=20
+> >
+> > On 12/11/2025 13:54, Rishikesh Donadkar wrote:
+> >> From: Jai Luthra <j-luthra@ti.com>
+> >>
+> >> Each CSI2 stream can be multiplexed into 4 independent streams, each
+> > Well, that's not true, at least generally speaking (there can be more
+> > than 4). Is that specific to TI hardware?
+>=20
+>=20
+> Yes, The commit message talks about how TI CSI does the multiplexing of=20
+> CSI stream from the sensor into 4 streams as show in the Figure 12-388=20
+> in AM62A TRM[1]. I will modify the commit message to mention that this=20
+> is TI CSI specific.
+
+Figure 12-388 shows the internal pixel stream coming from Cadence to
+different hardware blocks like TI's Shim (DMA) and VP0 (ISP) and VP1. I
+don't see that being related to CSI2 VC/DT support, which is handled by the
+Shim using different DMA contexts and channels.
+
+In the TRM, under 12.6.1.1.1 CSI_RX_IF Features, I see:
+ * Compliant to MIPI CSI v1.3
+ * Supports up to 16 virtual channels per input (partial MIPI CSI v2.0 feat=
+ure)
+
+So 16 VCs is supported by TI's CSI pipeline, despite it being MIPI CSI2
+v1.3 compliant otherwise. I think I might have been confused with DS90UB960
+while writing this commit message originally, which strictly supports a
+maximum of 4 VCs.
+
+Secondly, even with just CSI2 v1.0 compliant source, this could
+theoretically handle 8 "streams" of data with 4 different VCs x 2 data
+types each. So please update the paragraph in next revision.
+
+Thanks,
+    Jai
+
+>=20
+>=20
+> [1]:=20
+> https://www.ti.com/lit/ug/spruj16c/spruj16c.pdf?ts=3D1765273774405&ref_ur=
+l=3Dhttps%253A%252F%252Fwww.ti.com%252Fproduct%252FAM62A7
+>=20
+>=20
+> >
+> >> identified by its virtual channel number and data type. The incoming
+> >> data from these streams can be filtered on the basis of either the
+> >> virtual channel or the data type.
+> >>
+> >> To capture this multiplexed stream, the application needs to tell
+> >> the driver how it wants to route the data. It needs to specify
+> >> which context should process which stream. This is done via the
+> >> new routing APIs.
+> >>
+> >> Add ioctls to accept routing information from the application and save
+> >> that in the driver. This can be used when starting streaming on a
+> >> context to determine which route and consequently which virtual channel
+> >> it should process.
+> >>
+> >> De-assert the pixel interface reset on first start_streaming() and ass=
+ert
+> >> it on the last stop_streaming().
+> >>
+> >> Reviewed-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+> >> Co-developed-by: Pratyush Yadav <p.yadav@ti.com>
+> >> Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
+> >> Signed-off-by: Jai Luthra <j-luthra@ti.com>
+> >> Co-developed-by: Rishikesh Donadkar <r-donadkar@ti.com>
+> >> Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
+> >> ---
+> >>   .../platform/ti/j721e-csi2rx/j721e-csi2rx.c   | 224 ++++++++++++++--=
+--
+> >>   1 file changed, 179 insertions(+), 45 deletions(-)
+
+[snip]
 
