@@ -1,105 +1,58 @@
-Return-Path: <devicetree+bounces-245445-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245446-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B5CFCB1029
-	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 21:08:10 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E18BCB104E
+	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 21:17:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 9391D301EE79
-	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 20:08:09 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 1EE1130185DD
+	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 20:17:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68CEA305E33;
-	Tue,  9 Dec 2025 20:08:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 315C2273D6D;
+	Tue,  9 Dec 2025 20:17:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="goz/AY9W";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="EiV7ALW7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Qrt9O9Gq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDCBC2E7653
-	for <devicetree@vger.kernel.org>; Tue,  9 Dec 2025 20:08:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 010C3221F24;
+	Tue,  9 Dec 2025 20:17:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765310888; cv=none; b=bQ2FgQiZHLIVTJ0lF7MK/fZZzRR1nzahxl8hEec8pl4z7j84DlueER+LsZyIIYvfQWGkWdJulYm0PSWmSQOJzYiBtswvWBWf/RbtvDLj4uLJTScrLeoCRd8YU/SGILoyENYkDpsaeGvCkijejj3GJBRGG4JRVnj/zIZWNTFkwvI=
+	t=1765311448; cv=none; b=eLjYsxwIf2gOm24HAkKOB78yWMn311SzHy1WlCJYUDiEUQinztEfBy1XiBPJcdWThGTNLYLgcwRX+plW3sr6WKoNnSKyS1Kw0fXLHpKvp/WVMokaWP5snaUhOG3icBNmaYaIrQUTYpmJ1VV5+FRp+XtzQmkGLOt0qIzxM50D994=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765310888; c=relaxed/simple;
-	bh=wd1/D09aFtkoubefla+BuIbGHSDlGcOOMs2R3N5WJcE=;
+	s=arc-20240116; t=1765311448; c=relaxed/simple;
+	bh=WaUkBQ4r806vyiBGKBACPoJXtG1aq44WJUp8ANciYac=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lUAMP+ttW9lidKTJvn7Pv3JqwVxEgyvM261zJxGG+4OiB0C1nQUhbziWvFhkBqqF7ecigXHWHX8bCNIHapdSYjDxh3v+U0LnSPeQ8g7yvhpO8YDzXu2yjNERaqMHt0iXh+iOwI5HbCowcPuW7Hyd3GRKFK2WCi8DLWDeWsRX7L0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=goz/AY9W; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=EiV7ALW7; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5B9H3K8M801879
-	for <devicetree@vger.kernel.org>; Tue, 9 Dec 2025 20:08:06 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=rhsdXjDD2SzcoxNnGzHkJYEV
-	oJZYmwyrxp5W0gC1w+o=; b=goz/AY9W/srUmNkmLkRkNh78IL2FIwGuZmFuxbUf
-	AbvDiKCYpygbm9CQ5aQHxFYcHers64Xtw+WDOTK+XVlzP8GRQ6ySC2ovrrZkkERy
-	CPHYB4E9qYBr2x1TRoiT3DvX7gK6R+gWmyOAAIzGNkF9PMEmOTfNDg3lMk7u0ky4
-	79ENYlSk4t4bV0hbn/U4DT9IpTrel4x/3JYIjR3unnCHZrRCfffBpdlMy3z/C/G0
-	/DUsirf+EklCbdInz5fLG4/iE4L/QIxhxj9Hgoy5g3pDlTjX7G/OcH21wWo/FGPP
-	6vVrBZ3qBVNtm8HEUOTqegmUgBLkJBoJoWJIyvM+82Dq9w==
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4axqu58hbk-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 09 Dec 2025 20:08:05 +0000 (GMT)
-Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4ee3dfe072dso136766921cf.2
-        for <devicetree@vger.kernel.org>; Tue, 09 Dec 2025 12:08:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1765310885; x=1765915685; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=rhsdXjDD2SzcoxNnGzHkJYEVoJZYmwyrxp5W0gC1w+o=;
-        b=EiV7ALW7eFlz+5NvTAoTOdH1VH/SYVertMR9yeW58BNF1nNTHTCCRz3dNM+lViY4X0
-         GMTkczkf8BlPKypQJXykm8GmSM+L2aguqnzZ2qGu2wMcTXUU1eazS7EdAVFRrB8SABdy
-         nySbgh0IPfj0kGZW+dr2NMQhoo2UE5+4PNOSSB+CjNosD0XcXJRZi4uCuk4QRMhvBHA2
-         vGJczUuGfn0qrX8jscGvkwF5MrWHZSOJeM/ZdarBk2FINhm4r80xwe1t5FnvMzMPgFsA
-         QNDnIJmTmv15VFDDpibvlRhWxyl8+dhUksPWZhg7CT18H/PATf8TzLwPS220moKUvpMH
-         LMcw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765310885; x=1765915685;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=rhsdXjDD2SzcoxNnGzHkJYEVoJZYmwyrxp5W0gC1w+o=;
-        b=wmMzegxt5S5DPNep5EaRJRFDsdeOtZI+wC+S4zR1YcjcJzcAmmU6DqAENGoAh0nl2p
-         dC9mKrSmtPMmv21+/wy9WPS0chT45hQlTaW3HwrPM5rjLBtdFCNuNzHyUrqric5rmyQ1
-         LPyFe3OhcSoz73SB5uuYLxNzSjX77wFlCYQOE2ffKrgV0HZCMy+xLTXUEVyCTjyFUWD7
-         TVm5YRK/rAYk1DwM/vQzCtKHbRIaIXMjw8lvs144Z+PLsLvm6AAv4kxnpRVntJYuPFaz
-         ofQOfZ8wJKoK/F642AMr/iKQuSD3rd8ZDciBhOE9i6p50HJ90/N4zSOGULP16PrnhVTj
-         z7lg==
-X-Forwarded-Encrypted: i=1; AJvYcCVBVhTg9YjyBk7j+2jS4d/WsRflPFQh6jdR5Ym3cZrCQ6r8lGBA4fOVo0Br/vZiKFu13OqOgYnEcMAE@vger.kernel.org
-X-Gm-Message-State: AOJu0YxXE45olFMqgDIhu+ta4nBythFjP1s39XoS44Olry4mrnZ+t4hs
-	GDiM7YQFNWcxI8zwNuNVqhzvcD0DJc+0WrHDoFcLQW39D9ClMc+daa/AYEexrVFuiOPyp8amd0O
-	qPiM0cxJU0jqvaPBnax/7AuV1XIoq7psptbl7fP7y6i9q1bwdKrkPFaBua4pPSs6gXhJcYdXF
-X-Gm-Gg: ASbGncsc672eUEb/+pwN3HYvn0CS+40wuTCAxM3q5A2hssRWzKgVc27RooH0zLm9405
-	M2pp2hqQsrWPZc7zp21v5+or3dEpI4ceBJI9s8b2vlNc1oTPlOFIuiSFAyOEV6RncEGWeA9cSw8
-	XPZIMM3BuT3SM4i1N8RtKdXde5j2abFFVJd/9jOUPUJsFdytmC191Dhrk1kpMI+NGoE3R8Uvz40
-	bwSeGZvfmkIgD/V9YiA9VccnNHjp/UOfy7Ma2tT9nyBMHgRdv7bXkqq5JkcEwjab1mWkPvcfFp4
-	K/pW9SvIZj5ViUgkzqX7OzRVIXVZ7/b6APdaYNBAkMX7MAuGtNHUaWJCDSt8N+B+7vmvvw0RY38
-	YEkF5eiUfUSmdgFvlPdmN6JYyRsRcJ+RRpFViJxHGH3nrEGk3S97scfv6wMG30e65dkCZ15OsfP
-	F3OyBB/SOpFoVsLMcUSL4wjcI=
-X-Received: by 2002:ac8:6903:0:b0:4ed:6782:12c4 with SMTP id d75a77b69052e-4f03fe31fecmr177539271cf.33.1765310884895;
-        Tue, 09 Dec 2025 12:08:04 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGWX4SoovkEdzKr8A8RkAVsUv0ot7k6WtZTT0c1rlSD6/0b1tucveK93Jyw/VcNUy01sU6lWw==
-X-Received: by 2002:ac8:6903:0:b0:4ed:6782:12c4 with SMTP id d75a77b69052e-4f03fe31fecmr177538661cf.33.1765310884371;
-        Tue, 09 Dec 2025 12:08:04 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-597d7c2e2c9sm5388761e87.89.2025.12.09.12.08.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Dec 2025 12:08:03 -0800 (PST)
-Date: Tue, 9 Dec 2025 22:08:02 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: monaco: Enable cpufreq cooling devices
-Message-ID: <a3mzhjs3kl7yfrar3gh6p3benvfa5bx22xwuznaqlhyytlyxkj@r5p3vfd3ykde>
-References: <20251208114558.2343462-1-gaurav.kohli@oss.qualcomm.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=mhoLm4dGpVKVBbUNUH51LynUhyt2otDes1xdC6aINt9yoglXfd30EUuHCwUXDNKbdhW7dYiES/MvXu1p7N5fnUUfddfU1P0OxunMkur/AezT+DygI4kz7GBJgg2XnF4C9M2rqw8xGb8mpP0kcmXFaPBa+uY7uoIcwev/97LhiEE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Qrt9O9Gq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31427C4CEF5;
+	Tue,  9 Dec 2025 20:17:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1765311447;
+	bh=WaUkBQ4r806vyiBGKBACPoJXtG1aq44WJUp8ANciYac=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Qrt9O9GqjfTKzm00Hh0OsM3usbi57/q7ndBFnw8Zo0q4lsP4he+NLmeT0sj5EJ1ox
+	 FTTtMlYI4tzQsAYHFsJczTkw2iUf6/WUqtD73kQQZiaifkYcalc3LLAKnsIse2P9aG
+	 qfK4GWhyg2bRuUxrfxBrnbAATZ5l2YXuJxioPw+dx7ft/7e4KwA65LSAuwEWikuMRt
+	 SuLaJWWqZEStsgWiJp+g9Zuf40FW8MX6Pf2w2Ii3/lkGJMPovJOMfCdsX5pGUUGa35
+	 CxHFypwCxjnYQk+07iVbrBaACB77MOPhPSFgvlULD0/TpINOcPGxilmlVK+lZ+vALu
+	 kEe1KmBREwvMQ==
+Date: Tue, 9 Dec 2025 14:17:25 -0600
+From: Rob Herring <robh@kernel.org>
+To: Vijayanand Jitta <vijayanand.jitta@oss.qualcomm.com>
+Cc: robin.murphy@arm.com, will@kernel.org, joro@8bytes.org,
+	dmitry.baryshkov@oss.qualcomm.com, konrad.dybcio@oss.qualcomm.com,
+	bjorn.andersson@oss.qualcomm.com, bod@kernel.org,
+	conor+dt@kernel.org, krzk+dt@kernel.org,
+	charan.kalla@oss.qualcomm.com, prakash.gupta@oss.qualcomm.com,
+	vikash.garodia@oss.qualcomm.com, iommu@lists.linux.dev,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 3/3] of: Respect #{iommu,msi}-cells in maps
+Message-ID: <20251209201725.GB1015230-robh@kernel.org>
+References: <20251204095530.8627-1-vijayanand.jitta@oss.qualcomm.com>
+ <20251204095530.8627-4-vijayanand.jitta@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -108,43 +61,294 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251208114558.2343462-1-gaurav.kohli@oss.qualcomm.com>
-X-Proofpoint-GUID: Sm9jhYZBmeLqRHqPQLNt-O8BC79oUw0G
-X-Authority-Analysis: v=2.4 cv=Y7/1cxeN c=1 sm=1 tr=0 ts=693881a5 cx=c_pps
- a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=sdudbG9VLmQq8Pjc1rUA:9 a=CjuIK1q_8ugA:10
- a=a_PwQJl-kcHnX1M80qC6:22
-X-Proofpoint-ORIG-GUID: Sm9jhYZBmeLqRHqPQLNt-O8BC79oUw0G
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjA5MDE1NCBTYWx0ZWRfX4r/RrLjsx+ZE
- vFy/C31gqBVBJYBjLFr6V+XeXjM8vWS9D2uEs1HJdMcc1xMtLef3TjDYOu//wSJTT2g8qGGNhNG
- WDiaeB0Jkjga2Dp98AFkJmXOglxz5+34Jeoi/GREDaU3n/zT4Ub4383jJiEJo9hFBHNrg6dEG7j
- la7yCzWhS5lUykOcd2EckbJl6kvIEffw5T8TL/kfPkkCGOoWeeL7msNUTrKoBYnCIuDCuRxPUve
- BM9pxFwCOv6WGAaEYEfQscmVgDVmbqJ6QydVk3Bc28BLc0t9c4hKIJP/x52CFO3LJoWMCCDxW4r
- 5vDLnxZMMBtnLmtTS9yw1/2gb0Y7jypT0hXP7d4rXdlfAdglA9j5fxkEa5OPV1QNV/8b7UVLHAO
- LZ7+sDm7mTAN4a3KWZtL34j2Rq5p6g==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-09_04,2025-12-09_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 impostorscore=0 lowpriorityscore=0 suspectscore=0 spamscore=0
- phishscore=0 bulkscore=0 priorityscore=1501 adultscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512090154
+In-Reply-To: <20251204095530.8627-4-vijayanand.jitta@oss.qualcomm.com>
 
-On Mon, Dec 08, 2025 at 05:15:58PM +0530, Gaurav Kohli wrote:
-> Add cooling-cells property to the CPU nodes to support cpufreq
-> cooling devices.
+On Thu, Dec 04, 2025 at 03:25:30PM +0530, Vijayanand Jitta wrote:
+> From: Robin Murphy <robin.murphy@arm.com>
 > 
-> Signed-off-by: Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
+> So far our parsing of {iommu,msi}-map properites has always blindly
+> asusmed that the output specifiers will always have exactly 1 cell.
+> This typically does happen to be the case, but is not actually enforced
+> (and the PCI msi-map binding even explicitly states support for 0 or 1
+> cells) - as a result we've now ended up with dodgy DTs out in the field
+> which depend on this behaviour to map a 1-cell specifier for a 2-cell
+> provider, despite that being bogus per the bindings themselves.
+> 
+> Since there is some potential use in being able to map at least single
+> input IDs to multi-cell output specifiers (and properly support 0-cell
+> outputs as well), add support for properly parsing and using the target
+> nodes' #cells values, albeit with the unfortunate complication of still
+> having to work around expectations of the old behaviour too.
+> 
+> Since there are multi-cell output specifiers, the callers of of_map_id()
+> may need to get the exact cell output value for further processing.
+> Added support for that part --charan
+> 
+> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
+> Signed-off-by: Vijayanand Jitta <vijayanand.jitta@oss.qualcomm.com>
 > ---
->  arch/arm64/boot/dts/qcom/monaco.dtsi | 8 ++++++++
->  1 file changed, 8 insertions(+)
+>  drivers/iommu/of_iommu.c |   3 +-
+>  drivers/of/base.c        | 107 ++++++++++++++++++++++++++++++---------
+>  include/linux/of.h       |  17 ++++---
+>  3 files changed, 94 insertions(+), 33 deletions(-)
 > 
+> diff --git a/drivers/iommu/of_iommu.c b/drivers/iommu/of_iommu.c
+> index eac62bc441c5..48759cf1d900 100644
+> --- a/drivers/iommu/of_iommu.c
+> +++ b/drivers/iommu/of_iommu.c
+> @@ -45,10 +45,11 @@ static int of_iommu_configure_dev_id(struct device_node *master_np,
+>  				     struct device *dev,
+>  				     const u32 *id)
+>  {
+> -	struct of_phandle_args iommu_spec = { .args_count = 1 };
+> +	struct of_phandle_args iommu_spec = {};
+>  	struct of_map_id_arg arg = {
+>  		.target = &iommu_spec.np,
+>  		.id_out = iommu_spec.args,
+> +		.map_cells = &iommu_spec.args_count,
+>  	};
+>  	int err;
+>  
+> diff --git a/drivers/of/base.c b/drivers/of/base.c
+> index b8f78a9e6a09..68a7d6ddba66 100644
+> --- a/drivers/of/base.c
+> +++ b/drivers/of/base.c
+> @@ -2045,11 +2045,30 @@ int of_find_last_cache_level(unsigned int cpu)
+>  	return cache_level;
+>  }
+>  
+> +/*
+> + * Some DTs have an iommu-map targeting a 2-cell IOMMU node while
+> + * specifying only 1 cell. Fortunately they all consist of length == 1
+> + * entries with the same target, so check for that pattern.
 
-Are there any cooling maps to be defined?
+Can you show what a bad entry looks like here.
 
--- 
-With best wishes
-Dmitry
+> + */
+> +static bool of_check_bad_map(const __be32 *map, int len)
+> +{
+> +	__be32 phandle = map[1];
+> +
+> +	if (len % 4)
+> +		return false;
+> +	for (int i = 0; i < len; i += 4) {
+> +		if (map[i + 1] != phandle || map[i + 3] != cpu_to_be32(1))
+
+Why does the IOMMU arg cell have to be 1? The description said 'same 
+target', but it is just all have an IOMMU cell value of 1?
+
+> +			return false;
+> +	}
+> +	return true;
+> +}
+> +
+>  /**
+>   * of_map_id - Translate an ID through a downstream mapping.
+>   * @np: root complex device node.
+>   * @id: device ID to map.
+>   * @map_name: property name of the map to use.
+> + * @cells_name: property name of target specifier cells.
+>   * @map_mask_name: optional property name of the mask to use.
+>   * @arg: contains the optional params, @target which is a pointer
+>   *	to the target device node and id_out which is a pointer
+> @@ -2065,18 +2084,19 @@ int of_find_last_cache_level(unsigned int cpu)
+>   *
+>   * Return: 0 on success or a standard error code on failure.
+>   */
+> -int of_map_id(const struct device_node *np, u32 id,
+> -	       const char *map_name, const char *map_mask_name,
+> -	       struct of_map_id_arg *arg)
+> +int of_map_id(const struct device_node *np, u32 id, const char *map_name,
+> +	      const char *cells_name, const char *map_mask_name,
+> +	      struct of_map_id_arg *arg)
+>  {
+>  	u32 map_mask, masked_id;
+> -	int map_len;
+> +	int map_bytes, map_len, offset = 0;
+> +	bool bad_map = false;
+>  	const __be32 *map = NULL;
+>  
+>  	if (!np || !map_name || !arg || (!arg->target && !arg->id_out))
+>  		return -EINVAL;
+>  
+> -	map = of_get_property(np, map_name, &map_len);
+> +	map = of_get_property(np, map_name, &map_bytes);
+>  	if (!map) {
+>  		if (arg->target)
+>  			return -ENODEV;
+> @@ -2085,11 +2105,9 @@ int of_map_id(const struct device_node *np, u32 id,
+>  		return 0;
+>  	}
+>  
+> -	if (!map_len || map_len % (4 * sizeof(*map))) {
+> -		pr_err("%pOF: Error: Bad %s length: %d\n", np,
+> -			map_name, map_len);
+> -		return -EINVAL;
+> -	}
+> +	if (map_bytes % sizeof(*map))
+> +		goto err_map_len;
+> +	map_len = map_bytes / sizeof(*map);
+>  
+>  	/* The default is to select all bits. */
+>  	map_mask = 0xffffffff;
+> @@ -2102,27 +2120,62 @@ int of_map_id(const struct device_node *np, u32 id,
+>  		of_property_read_u32(np, map_mask_name, &map_mask);
+>  
+>  	masked_id = map_mask & id;
+> -	for ( ; map_len > 0; map_len -= 4 * sizeof(*map), map += 4) {
+> +	while (offset < map_len) {
+>  		struct device_node *phandle_node;
+> -		u32 id_base = be32_to_cpup(map + 0);
+> -		u32 phandle = be32_to_cpup(map + 1);
+> -		u32 out_base = be32_to_cpup(map + 2);
+> -		u32 id_len = be32_to_cpup(map + 3);
+> +		u32 id_base, phandle, cells, id_len, id_off;
+> +		const __be32 *out_base;
+> +
+> +		if (map_len - offset < 2)
+> +			goto err_map_len;
+>  
+> +		id_base = be32_to_cpup(map + offset);
+>  		if (id_base & ~map_mask) {
+> -			pr_err("%pOF: Invalid %s translation - %s-mask (0x%x) ignores id-base (0x%x)\n",
+> -				np, map_name, map_name,
+> +			pr_err("%pOF: Invalid %s translation - %s (0x%x) ignores id-base (0x%x)\n",
+> +				np, map_name, map_mask_name,
+>  				map_mask, id_base);
+>  			return -EFAULT;
+>  		}
+>  
+> -		if (masked_id < id_base || masked_id >= id_base + id_len)
+> -			continue;
+> -
+> +		phandle = be32_to_cpup(map + offset + 1);
+>  		phandle_node = of_find_node_by_phandle(phandle);
+>  		if (!phandle_node)
+>  			return -ENODEV;
+>  
+> +		if (!bad_map && of_property_read_u32(phandle_node, cells_name, &cells)) {
+> +			pr_err("%pOF: missing %s property\n", phandle_node, cells_name);
+> +			return -EINVAL;
+> +		}
+> +
+> +		if (map_len - offset < 3 + cells)
+> +			goto err_map_len;
+> +
+> +		if (offset == 0 && cells == 2) {
+> +			bad_map = of_check_bad_map(map, map_len);
+> +			if (bad_map) {
+> +				pr_warn_once("%pOF: %s mismatches target %s, assuming extra cell of 0\n",
+> +				np, map_name, cells_name);
+> +				cells = 1;
+> +			}
+> +		}
+> +
+> +		out_base = map + offset + 2;
+> +		offset += 3 + cells;
+> +
+> +		id_len = be32_to_cpup(map + offset - 1);
+> +		if (id_len > 1 && cells > 1) {
+> +			/*
+> +			 * With 1 output cell we reasonably assume its value
+> +			 * has a linear relationship to the input; with more,
+> +			 * we'd need help from the provider to know what to do.
+> +			 */
+> +			pr_err("%pOF: Unsupported %s - cannot handle %d-ID range with %d-cell output specifier\n",
+> +				np, map_name, id_len, cells);
+> +			return -EINVAL;
+> +		}
+> +		id_off = masked_id - id_base;
+> +		if (masked_id < id_base || id_off >= id_len)
+> +			continue;
+> +
+>  		if (arg->target) {
+>  			if (*arg->target)
+>  				of_node_put(phandle_node);
+> @@ -2133,12 +2186,14 @@ int of_map_id(const struct device_node *np, u32 id,
+>  				continue;
+>  		}
+>  
+> -		if (arg->id_out)
+> -			*arg->id_out = masked_id - id_base + out_base;
+> +		for (int i = 0; arg->id_out && i < cells; i++)
+> +			arg->id_out[i] = id_off + be32_to_cpu(out_base[i]);
+>  
+> +		if (arg->map_cells)
+> +			*arg->map_cells = cells;
+>  		pr_debug("%pOF: %s, using mask %08x, id-base: %08x, out-base: %08x, length: %08x, id: %08x -> %08x\n",
+> -			np, map_name, map_mask, id_base, out_base,
+> -			id_len, id, masked_id - id_base + out_base);
+> +			np, map_name, map_mask, id_base, be32_to_cpup(out_base),
+> +			id_len, id, id_off + be32_to_cpup(out_base));
+>  		return 0;
+>  	}
+>  
+> @@ -2149,5 +2204,9 @@ int of_map_id(const struct device_node *np, u32 id,
+>  	if (arg->id_out)
+>  		*arg->id_out = id;
+>  	return 0;
+> +
+> +err_map_len:
+> +	pr_err("%pOF: Error: Bad %s length: %d\n", np, map_name, map_bytes);
+> +	return -EINVAL;
+>  }
+>  EXPORT_SYMBOL_GPL(of_map_id);
+> diff --git a/include/linux/of.h b/include/linux/of.h
+> index 21bdce2b37ca..1981509c7918 100644
+> --- a/include/linux/of.h
+> +++ b/include/linux/of.h
+> @@ -29,6 +29,7 @@ struct device_node;
+>  struct of_map_id_arg {
+>  	struct device_node **target;
+>  	u32 *id_out;
+> +	u32 *map_cells;
+>  };
+>  
+>  struct property {
+> @@ -462,9 +463,9 @@ const char *of_prop_next_string(const struct property *prop, const char *cur);
+>  
+>  bool of_console_check(const struct device_node *dn, char *name, int index);
+>  
+> -int of_map_id(const struct device_node *np, u32 id,
+> -	       const char *map_name, const char *map_mask_name,
+> -	       struct of_map_id_arg *arg);
+> +int of_map_id(const struct device_node *np, u32 id, const char *map_name,
+> +	      const char *cells_name, const char *map_mask_name,
+> +	      struct of_map_id_arg *arg);
+>  
+>  phys_addr_t of_dma_get_max_cpu_address(struct device_node *np);
+>  
+> @@ -911,9 +912,9 @@ static inline void of_property_clear_flag(struct property *p, unsigned long flag
+>  {
+>  }
+>  
+> -static inline int of_map_id(const struct device_node *np, u32 id,
+> -			     const char *map_name, const char *map_mask_name,
+> -			     struct of_map_id_arg *arg)
+> +static inline int of_map_id(const struct device_node *np, u32 id, const char *map_name,
+> +			    const char *cells_name, const char *map_mask_name,
+> +			    struct of_map_id_arg *arg);
+>  {
+>  	return -EINVAL;
+>  }
+> @@ -1444,7 +1445,7 @@ static inline int of_property_read_s32(const struct device_node *np,
+>  static inline int of_map_iommu_id(const struct device_node *np, u32 id,
+>  				  struct of_map_id_arg *arg)
+>  {
+> -	return of_map_id(np, id, "iommu-map", "iommu-map-mask", arg);
+> +	return of_map_id(np, id, "iommu-map", "#iommu-cells", "iommu-map-mask", arg);
+>  }
+>  
+>  static inline int of_map_msi_id(const struct device_node *np, u32 id,
+> @@ -1455,7 +1456,7 @@ static inline int of_map_msi_id(const struct device_node *np, u32 id,
+>  		.id_out = id_out,
+>  	};
+>  
+> -	return of_map_id(np, id, "msi-map", "msi-map-mask", &arg);
+> +	return of_map_id(np, id, "msi-map", "#msi-cells", "msi-map-mask", &arg);
+
+There are cases of no #msi-cells and we default to 0 cells in that case. 
+Do you maintain that?
+
+Rob
 
