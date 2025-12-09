@@ -1,160 +1,189 @@
-Return-Path: <devicetree+bounces-245405-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245426-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57767CB07CF
-	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 17:02:53 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09369CB0C1D
+	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 18:42:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 7E8053009FE7
-	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 16:02:51 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id B8EA4301B749
+	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 17:42:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EEB32FFF8E;
-	Tue,  9 Dec 2025 16:02:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 373C832AAC9;
+	Tue,  9 Dec 2025 17:42:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CLhKu8z1"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="iIkUEtvX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E3D529DB88
-	for <devicetree@vger.kernel.org>; Tue,  9 Dec 2025 16:02:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 936E1199FAB;
+	Tue,  9 Dec 2025 17:42:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765296170; cv=none; b=ofvgmKZxCOfDLwKDZ9h5vVrfh9fuT9WVGeCJo4FBLEP8EKY/gJ28Lo9G7ruNGguEnWtVrXqO+JiXWgaAQDsnTSa397BWjPFlxnmemOMtKvyRUa1AnxRNEV5GLubJWC8W87Klu461pqCKAw61+5SbQhkbDPeRYy4fHJ7z3xiRVrU=
+	t=1765302173; cv=none; b=I+VO5dGqUh3OpU8UUaJN1ITBSV8XfQ4N4rV/32voprT+nThix0MnzdjHK9KUhgxHOpK6V8NubtHFVLlAXryXdTMZb8QNUI4SXgljCp0G4WDq8/oJjLoJMaHaCPqJcPrn8BLq1SDSbNiGhJDB5PpFCuzlisYWlwZB308/43hL22I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765296170; c=relaxed/simple;
-	bh=P0y9AzHMVDw56v7bDsS/jYQWeXGxy/dGmh214wSQexQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=QGZlH6EdFEq61IJq/QcXFXwB0ZW83xyyQn0o5UEa0isMvK8ONbydM+fe1/OGhqYrg9qORGBSrd+x4eQR/jtkFF4quUCz1y08zLwvBTH7UXE4ctyajeef7Ow5wYTN2xXhMgbykmFbbP2yBnIn1Qg6O9FHJ85pE/6axTfeevzFAI4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CLhKu8z1; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-42e2d5e119fso2455634f8f.2
-        for <devicetree@vger.kernel.org>; Tue, 09 Dec 2025 08:02:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1765296167; x=1765900967; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=P0y9AzHMVDw56v7bDsS/jYQWeXGxy/dGmh214wSQexQ=;
-        b=CLhKu8z1SPzOOIWBMBie6+AYIvWPwmUmiSzbUL5q1pHQa1D+tacJsVO9UQGLzi1MKe
-         hAVvs/MoSBoOzmRBYf2TYxZKfU1SjbR7hHgEuU3h3pr62iMw04cvtUNl6PpfmbiXCgQH
-         4ER8+MQoUrMcFMZAL2f5A6+e4BLyM9V5xUoItOOMNQJtXAF04XcZY1zvVcAWqsf1aDmJ
-         yksDFMWIF3xETF8yg4CTpGzDtcy5nsyR2TCpxFBMgD02iV6H9Pdg16ln5gTC7O7ZWq1Y
-         Ikl1lzUWR1d/5/3C586J9rSi1ClXrQnAINpxh6NdZZCjyCByXaJWIZz2yvmpxGFR+UoS
-         GZgA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765296167; x=1765900967;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=P0y9AzHMVDw56v7bDsS/jYQWeXGxy/dGmh214wSQexQ=;
-        b=X4gRRwNPDVVa2Q2lG3Ip7MxxIZGmml13vejAxxROMFqKpPIRShudEO7sgJxiIgJAbb
-         K8FB8HmvvRI39ybegWYe2bWrIHhDfcmSsZGlt5WiS/nOQ3FEmgpABoYs9dPX1z1wTxtu
-         0zSMTYljDLiD8nmuUbJ1Z9MF/vbDYl45X+NfCootmSIqfExyOvt6EFU+MV2cmhHyaN+j
-         VoDqB+XikSjd4e0ij4gUk2onmYN97fcvC9CYknX5jGjtzuD3Zp/D24IVs5JbZfN3XfVP
-         TeOk2oNbIn8XV8UcLt6ud52/+XHJWg0DdO4lDxF6Xg6mnZGNe9s3ryYAen8eqxS/amn0
-         wnCw==
-X-Forwarded-Encrypted: i=1; AJvYcCVHz/E5a9qhEAycSbpq90Bl8OQjyAdXNyppMKHwG+tuX8GxfKAu5fESKR8twkqqIfBq71RjV5/YeJjx@vger.kernel.org
-X-Gm-Message-State: AOJu0YxCsZyiWMR4QlO5+kZfAyJ2bGMiz/PMi1zN5chZyHDIRmm6FdyU
-	+yY6waDKaHMV6jrILruOqAcpaEZ/RvZU26w2ScmIrmAj/0tuqFepka85dCUB+RPEoRwnT+dXmXd
-	kCE81paqmtTkZ+U+CyS2p+J8qmTkrDrQ=
-X-Gm-Gg: AY/fxX7lKDOdOK4RkDbVeKoSJzOJm4DU3Cttig3nl7goEjdMpppb2nQPxwAReKwerGw
-	zZ4xG7S0fEaaVeOH5rJHiV5x8YJ5i7aK8saxm88JxVYYt7w5PybXhcluxoBOA2C4EP/WjeWH4le
-	ccp987FgrdAUWcC1AcW+nZ7LO+PbIyo6qDBb5d71J6MsbXCRpFMSm0xW0W+K0styNMp7Wz077O4
-	ObU1HE61k+Bw279PaW1ZUuqw4kzTIYI+vmRNX5dwECnLBVDMOIubuTWUWOJSNJK5y9E65Ik3yex
-	mkixsF9tz5RQe9ZcyF5eD3kyrzHG
-X-Google-Smtp-Source: AGHT+IF22w8WPJ+UlZl9Ma99jHI4R3o2mO9P/F/KMwatKGiWlb6HPQkmByUN17gG7EsZe26xrIfQiZ1CrwX+esSdnJE=
-X-Received: by 2002:a05:6000:208a:b0:42f:8816:c01c with SMTP id
- ffacd0b85a97d-42f89f6390fmr11947805f8f.60.1765296166162; Tue, 09 Dec 2025
- 08:02:46 -0800 (PST)
+	s=arc-20240116; t=1765302173; c=relaxed/simple;
+	bh=ltbEnJePxGHfiWbMRJejKVkhJ9FvXRiTBky6V8Q0BXM=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=jqlbHTlWs33nZqiEKs0p/9Xyv5RwZSLva+77xPiSOv5fPqHM706CX4PkM+wXhiVVf2LhwRS88+Y7SoSwET5DCBggqDg5mDV5H5Q+HYJpPts7F0Zhjbmc73NjCWjK/q5imkMXrNKvZNYSQnRMVoj8TmTv6aML34/kIF9hB8yanPI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=iIkUEtvX; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1765302171; x=1796838171;
+  h=from:subject:date:message-id:mime-version:
+   content-transfer-encoding:to:cc;
+  bh=ltbEnJePxGHfiWbMRJejKVkhJ9FvXRiTBky6V8Q0BXM=;
+  b=iIkUEtvXJ2cto+BjKR4Heq1JsvkT73W1ebcxN0FL4Xf9p46IRTyJo7p7
+   LJAYKFaJOhn1ApbwNKsqGLCRhRprbGah8loX5HM6Xb7Zn7wQGpZ4LZiGc
+   UAmc3lvqKldXJ/5pfi+RzMCj8OCMJPOl8gbEJ7y0p2cHrzTmxq5Wy125n
+   sCAEq7h8X4mq4MJ8i3lSvzqL2ZEe5rLPEYCFyZEh2AK+i0gq5jSTc4aBi
+   Bqb8Gz1XKKbE1UnLy1367g/si01rCHUZaCd8K+SmGfahfIMFgoIxntkwv
+   6vtra6yErrjDE6SWv4NmF/8P79uiEE+BjmeTSv71DiSYoY7JC3/QhwRFh
+   A==;
+X-CSE-ConnectionGUID: LG0HgYJJTZ+gWu6GgiIt8w==
+X-CSE-MsgGUID: Y75IwKQcQeOcyOtd1erMbw==
+X-IronPort-AV: E=Sophos;i="6.20,262,1758610800"; 
+   d="scan'208";a="50302834"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 09 Dec 2025 10:42:44 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.58; Tue, 9 Dec 2025 10:42:33 -0700
+Received: from [127.0.1.1] (10.10.85.11) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server id 15.1.2507.58 via Frontend
+ Transport; Tue, 9 Dec 2025 10:42:31 -0700
+From: Ariana Lazar <ariana.lazar@microchip.com>
+Subject: [PATCH v3 0/2] Adding support for Microchip MCP47FEB02
+Date: Tue, 9 Dec 2025 18:06:22 +0200
+Message-ID: <20251209-mcp47feb02-v3-0-bb0ba9052f4f@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251121113553.2955854-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20251121113553.2955854-10-prabhakar.mahadev-lad.rj@bp.renesas.com> <20251121210504.ljeejnltaawahqtv@skbuf>
-In-Reply-To: <20251121210504.ljeejnltaawahqtv@skbuf>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Tue, 9 Dec 2025 16:02:19 +0000
-X-Gm-Features: AQt7F2pvBSI85gchAJ7G_EIO8j35frbGVSxrBViC0qcBM-JePncctg6lgQ7WYxs
-Message-ID: <CA+V-a8ve6vV_O1XwPX0sn+Qqm5QoYrf6Xu5gansxW05waMf43Q@mail.gmail.com>
-Subject: Re: [PATCH net-next 09/11] net: dsa: rzn1-a5psw: Add support for
- management port frame length adjustment
-To: Vladimir Oltean <olteanv@gmail.com>
-Cc: =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>, 
-	Andrew Lunn <andrew@lunn.ch>, "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Simon Horman <horms@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Russell King <linux@armlinux.org.uk>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAP5IOGkC/13MQQ6CMBCF4auQrq1pp+CAK+9hXJShyCywpDWNh
+ nB3CyZGXb6X/N8sogvsojgWswgucWR/y8PsCkGDvV2d5C5vAQoqVUMlR5pK7F2rQBpNiHWF1kE
+ jcjAF1/Njw86XvAeOdx+em530+r6ZBuCbSVoqqQ7UlpasNSWeRqbgaeBpT34UK5Xgk2utzE8OO
+ a/JIJa67Rq0//myLC/jGene5wAAAA==
+X-Change-ID: 20250825-mcp47feb02-31c77857ae29
+To: Ariana Lazar <ariana.lazar@microchip.com>, Jonathan Cameron
+	<jic23@kernel.org>, David Lechner <dlechner@baylibre.com>,
+	=?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, Andy Shevchenko
+	<andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+CC: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1765296389; l=4389;
+ i=ariana.lazar@microchip.com; s=20250825; h=from:subject:message-id;
+ bh=ltbEnJePxGHfiWbMRJejKVkhJ9FvXRiTBky6V8Q0BXM=;
+ b=UIHgkxJ7kTCiN27HHBGGyOYXhlYfdsWmZ0VjPowCewVHENYyRVOjaJVSvHBvstEgwDj6jNdXy
+ NvWfY806aP2Axtew/EdNsVgbJpq27PbwMiooP5zym6RXtLt0XFZQLbl
+X-Developer-Key: i=ariana.lazar@microchip.com; a=ed25519;
+ pk=jmvf1fSxcnzZmXfITM3L94IwutM+wqA1POQHiYyD6Dk=
 
-Hi Vladimir,
+Adding support for Microchip MCP47F(E/V)B(0/1/2)1, MCP47F(E/V)B(0/1/2)2,
+MCP47F(E/V)B(0/1/2)4 and MCP47F(E/V)B(0/1/2)8 series of buffered voltage
+output Digital-to-Analog converters with an I2C Interface. This driver
+covers the following part numbers:
+ - With nonvolatile memory:
+   - MCP47FEB01, MCP47FEB11, MCP47FEB21, MCP47FEB02, MCP47FEB12,
+   - MCP47FEB22, MCP47FEB04, MCP47FEB14, MCP47FEB24, MCP47FEB08,
+     MCP47FEB18, MCP47FEB28
+ - With volatile memory:
+   - MCP47FVB01, MCP47FVB11, MCP47FVB21, MCP47FVB02, MCP47FVB12,
+     MCP47FVB22, MCP47FVB04, MCP47FVB14, MCP47FVB24, MCP47FVB08,
+     MCP47FVB18, MCP47FVB28
 
-Thank you for the review. Sorry for the late reply.
+The families support up to 8 output channels. The devices can be 8-bit,
+10-bit and 12-bit resolution.
 
-On Fri, Nov 21, 2025 at 9:05=E2=80=AFPM Vladimir Oltean <olteanv@gmail.com>=
- wrote:
->
-> On Fri, Nov 21, 2025 at 11:35:35AM +0000, Prabhakar wrote:
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > Extend the RZN1 A5PSW driver to support SoC-specific adjustments to the
-> > management (CPU) port frame length. Some SoCs, such as the RZ/T2H and
-> > RZ/N2H, require additional headroom on the management port to account
-> > for a special management tag added to frames. Without this adjustment,
-> > frames may be incorrectly detected as oversized and subsequently
-> > discarded.
-> >
-> > Introduce a new field, `management_port_frame_len_adj`, in
-> > `struct a5psw_of_data` to represent this adjustment, and apply it in
-> > `a5psw_port_change_mtu()` when configuring the frame length for the
-> > CPU port.
-> >
-> > This change prepares the driver for use on RZ/T2H and RZ/N2H SoCs.
->
-> In the next change you set this to 40. What's the reason behind such a
-> high value (need to set the management port A5PSW_FRM_LENGTH value to
-> 1574 bytes to pass L2 payload of 1500 bytes)? It sounds like this needs
-> to be called out more clearly for what it is - a hardware bug.
->
-Regarding the question about the relatively large adjustment value:
-according to the hardware manual,
-=E2=80=9CSet the FRM_LENGTH register in port 3 (CPU port) to more than or
-equal to the initial value. When you want to limit the frame length of
-the received frame, use FRM_LENGTH registers in port 0 to port 2.=E2=80=9D
+---
+Changes in v3:
+- fix review comments driver:
+    run pahole on mcp47feb02_features, mcp47feb02_channel_data and
+      mcp47feb02_data structs
+    rephase comment with datasheet links
+    add missing include files
+    remove shift operations from defines and provided the shifted values
+      instead
+    remove MCP47FEB02_DELAY_1_MS define, renamed _MV to _mV
+    correct style issue in struct definition 
+    remove fwnode_property_present
+    protect setting active mask bits operation with mutex
+    use unsigned int instead of int where possible
+    use IIO_DEVICE_ATTR_WO() for store_eeprom instead of IIO_DEVICE_ATTR()
+    refractor Kconfig entry for better visibility
+- Link to v2: https://lore.kernel.org/r/20251103-mcp47feb02-v2-0-8c37741bd97a@microchip.com
 
-In practice, with the default MTU (i.e. without applying the +40-byte
-adjustment), RX traffic operates correctly. For example, running
-iperf3 in reverse mode shows no issues, and frames are received
-without errors. However, in the forward direction (TX from the CPU
-port), throughput drops to zero and iperf3 fails.
+Changes in v2:
+v2:
+- fix review comments device tree binding:
+    corrected the use of patternProperties and enum with an array of
+      channel numbers instead of minimum/maximum
+    gave more specific names to the labels of the channels
+    removed '|' from where it was unneccesarry
+    removed unneccesarry setting of attributes to true
 
-When the MTU of the CPU-facing interface is increased (e.g. ip link
-set lan0 mtu 1540), TX traffic immediately starts working correctly.
-Likewise, increasing the FRM_LENGTH on the switch side for the CPU
-port resolves the problem, which indicates that the frame length
-configuration on this port is directly involved.
+- fix review comments driver:
+    replace custom write function with regmap_update_bits.
+    add read_flag_mask field to regmap_config struct and shifted all
+       register addresses with 3 bits in order to correctly apply R/W
+       command mask
+    change cache_type field of regmap_config structs to REGCACHE_MAPLE
+    add val_format_endian field to regmap_config struct as
+       REGMAP_ENDIAN_BIG
+    keep in powerdown_mode last value written to register before reloading
+       the driver
+    create defines for magic bits used in probe function
+    remove unneccesarry channel enabled checks
+    add in parse_fw initialization of reg with 0, check for valid
+    reg number after reading it from devicetree and nonzero num_channels
+    initialize vref_mv, vref1_mv, vdd_mv
+    replace CH_0, ... CH_7 masks with DAC_CTRL_BITS(ch) and  G_0, ... G_7
+      with DAC_GAIN_BIT(ch)
+    correct write_powerdown function to write normal operation into
+      specific bit mask from power-down register when a channel exits
+      power-down mode.
+    add const pointer to info in data struct
+    delete device_property_present checks for vref, vref1. Read vref1 only
+      if have_ext_vref1 is present in features
+    protect write operations with mutex using scoped_guard or guard
+    refactor probe function by creating 2 setup functions,
+      mcp47feb02_init_ctrl_regs and mcp47feb02_init_ch_scales.
+    correct info/debug messages where it was specified
+    use devm_iio_device_register and deleted remove() function
+    in write_raw only update struct data if regmap write succeeds
 
-Given this behaviour, it appears that the management (CPU) port
-requires additional headroom to successfully transmit frames, even
-though RX succeeds without it. The STMMAC driver is used as the
-controller driver for the management port, we are trying to determine
-whether there is any known interaction, alignment constraint, or
-undocumented overhead that would explain the need for this extra
-margin.
+v1:
+- first version committed to review
+- Link to v1: https://lore.kernel.org/r/20250922-mcp47feb02-v1-0-06cb4acaa347@microchip.com
 
-Could you please advise on how to handle this issue?
+Signed-off-by: Ariana Lazar <ariana.lazar@microchip.com>
 
-Cheers,
-Prabhakar
+---
+Ariana Lazar (2):
+      dt-bindings: iio: dac: adding support for Microchip MCP47FEB02
+      iio: dac: adding support for Microchip MCP47FEB02
+
+ .../bindings/iio/dac/microchip,mcp47feb02.yaml     |  302 +++++
+ MAINTAINERS                                        |    7 +
+ drivers/iio/dac/Kconfig                            |   17 +
+ drivers/iio/dac/Makefile                           |    1 +
+ drivers/iio/dac/mcp47feb02.c                       | 1254 ++++++++++++++++++++
+ 5 files changed, 1581 insertions(+)
+---
+base-commit: 19272b37aa4f83ca52bdf9c16d5d81bdd1354494
+change-id: 20250825-mcp47feb02-31c77857ae29
+
+Best regards,
+-- 
+Ariana Lazar <ariana.lazar@microchip.com>
+
 
