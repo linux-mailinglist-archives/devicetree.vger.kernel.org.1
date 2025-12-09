@@ -1,269 +1,97 @@
-Return-Path: <devicetree+bounces-245334-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245335-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C809CAF52A
-	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 09:48:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 93898CAF5C6
+	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 09:58:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3340830173BA
-	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 08:48:47 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A66E73025322
+	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 08:57:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BF6E2D641F;
-	Tue,  9 Dec 2025 08:48:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 102532D662D;
+	Tue,  9 Dec 2025 08:57:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HTVzP5Ms"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="nzL5fq2N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 687062D5416
-	for <devicetree@vger.kernel.org>; Tue,  9 Dec 2025 08:48:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B28F273810;
+	Tue,  9 Dec 2025 08:57:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765270125; cv=none; b=pCX3G3W/jFVE18WATpRiSibxlI5pC9ZtlND9KD5KRxrDi5ZcZOGGFSbFO70NhV3AatFPA2lfT0JOFR2LnyK5RFFNUhqBkmdaLi6E9ZqkRVynAr9cKKJWVxTYxE/w4NGwpm8vaR0ODkLBUo2LtiRgB46kOItiBDZD5YliH4IRA8c=
+	t=1765270678; cv=none; b=aCIUn72QN0UYox53Cfs0pF3VQKdQJvg0pgNe7u0Te/QhQLRw/XXFePHSobq3gk0JQNFnG3thJpgJyo07QZQGwtHOLMMmDXh0dYSKjaX3EfwZA0oiIDae/2qIw8vV4TAIaAfoKWrfPJtjwhE07wkYc5YHJhf4Qcjsw3U/Z6fyeVQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765270125; c=relaxed/simple;
-	bh=xxXWsfhWpFA1GJp9c27igTe9TDJA5SsjtabW2SCAI7o=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=Phl7HSLYJlujrDPcoKAU5urRzEwhZZAIxlYQPC2tKZh91Ky1cYXFURsLZ7xJ0Bt6amd/tdREvVweVewSQXOE05BSRv4iOazqa0ta7JCIjOEifhE2xK0AoTTnyYlFOhW4Q1rDbpGKZfT8marvag1byMx5XI7zQN0+DBpmlqlC+8k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HTVzP5Ms; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-477b5e0323bso32606015e9.0
-        for <devicetree@vger.kernel.org>; Tue, 09 Dec 2025 00:48:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1765270122; x=1765874922; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
-         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=l/9hlXudcKRpY6hrJvKE8N2TDVYcPTRVJwW6FEeBPqA=;
-        b=HTVzP5MsBCly6vDTk9YynTinMV5UCQtRAeP1RJe4Ds/O26/sAYfittEtLDk0EgnAsT
-         Nu+mQ3grhRkBe0jYUsgojZ1X7eD/2uwjEHfvQTqlJ8FPRY6VTfxW0muWg2PFnRjo+BcR
-         PyWvvnRmSKti/dfZcXdlwULqBc/i7Bcd/HPvs3Jsy9sGSsSwbeeWwk64TXmekhAzU1Ko
-         bbsejDnnUvh4XF3S/bBuM6W8yM2eG93+pedgeb9sQ77FQi1kY6GY2/sQPS8gpdA8mlcA
-         esWfiiusUdp7Nzpzk33wgm9j7Zz+E+nWd7pY8crDygr2BKu6mH1Q0M2o7SghUUJdMTHC
-         aS1Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765270122; x=1765874922;
-        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
-         :to:from:date:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=l/9hlXudcKRpY6hrJvKE8N2TDVYcPTRVJwW6FEeBPqA=;
-        b=IVHHBu1aI1E5qYC7LKDQWQUD4dFS74XGbtd8UVqyZtKLiasV7b54d6qjzs1oKLWZGI
-         zqCxRwQETZrfNoXPXRVNBSrzKVF5+Grdl3h7fXdh7VOO49mHJLoIlgAO/cKwwhLzhekg
-         GfyBtOycG/1lUK333coe5wQYIMHVxAAZ4+aiOJQlFiPt+UrWoa0yiyhhONHVQt/xtweA
-         DZaYk8s6DMsca3gf9prK0qi5kuJWnyOIzD5VCI9MsvtRTY8aqEx/LDgl8Qp7kA4z5oMh
-         SHzY4Pc9QOIooPR58h3bq4T+Q+UZKpY/6WHpW/KVN0AkzQMGemmPEp6fD4RJSwX90cvW
-         x2Gw==
-X-Forwarded-Encrypted: i=1; AJvYcCWfVZzm/NH0rls/0dHstFSjDuLRV09QWC9G+//FV8GWLZQobPlzQi8zS+u9EeBjAB3viojABp+wPxg0@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy3PBmzzUULNl/yLd+UpVNvoJFxSjJ/d90FhfWer1CQhAoYKHC3
-	zXLgaa92wt4Ijubgm/j87D5ggSf0+Rn4Z8LVTAReNH5l7Rw2YlMhcmE+T0m8TwqHCOg=
-X-Gm-Gg: ASbGncvSYIM8WFQCEyFh1v6HNgtqGL+P6SUZpai1bOeCRSa+xGs72EBVtSEHMnney/8
-	FcswNAZnOV9OMpwEuOhz95usMjNk1D29gdxgwYsTdsYseHQKXjoB1ACbVaFGPjqcnX7UnoOl2/N
-	Zwm/aWu7mxJu1iowYDiFyFAiBKI0sshqA70WO3G/8C+7S3s3VSr0TNL9fye3vrPJwfNz/806NfW
-	dJQ/pMtikueuJL1Im7XpwSGXvT/pasOzNDeuCNCEnVxOXnjC4HAFlwjVd46UF5n6QNj5jT6Uk1p
-	BID5sZ7Pvs0o3TYD4xSz7LixBMigJq1oNCaJEaXt3S0DA3/aJuxW3y1DzhbWI15W88HOdEUHLwh
-	7zE8vPl/JXPoOOsh6U8eCILzCH+x7f9dn+rQtTFi3bdZGRvTumbCoFynsiHIAPPa/WsVRfG3Sr9
-	8OO596b90XhtWHCEYq
-X-Google-Smtp-Source: AGHT+IEyUdXVoGKJ6G1vggWr7AbmYX2zJ5dyUaV8iLG3jzVKrJy/wBKa5LULXZdnqeSVsi3fwgMy3w==
-X-Received: by 2002:a05:600c:4fcd:b0:46f:a2ba:581f with SMTP id 5b1f17b1804b1-47a7fa4d3a5mr7260845e9.16.1765270121392;
-        Tue, 09 Dec 2025 00:48:41 -0800 (PST)
-Received: from localhost ([196.207.164.177])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42f7d222478sm29846951f8f.20.2025.12.09.00.48.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Dec 2025 00:48:40 -0800 (PST)
-Date: Tue, 9 Dec 2025 11:48:37 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: oe-kbuild@lists.linux.dev, Sriram Dash <sriram.dash@oss.qualcomm.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
+	s=arc-20240116; t=1765270678; c=relaxed/simple;
+	bh=jc0xZG1ao3WGJ9fwbICCd/WyXrcvuCLFP7ufvZgmT/U=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=KwxsLjT0bHOL5lOM+/5mjfTwQmzqLgVnt5u1+g8ZEgu5ANb0XXHPoJxKEgruNwEbxjRmEVCTniDPGTuf+Lu0XlUfuC7ON0a1T1IZsJv2Z3dJiHku3mHKFbKiKnl6AtUCN+YB/1zuv0w7rz29A2s+RBn1c1abBRGk+Wz7HODhIYI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=nzL5fq2N; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from localhost.localdomain (xcpe-178-82-120-96.dyn.res.sunrise.net [178.82.120.96])
+	by mail11.truemail.it (Postfix) with ESMTPA id 5F7F91FD2A;
+	Tue,  9 Dec 2025 09:57:52 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1765270672;
+	bh=NqyhWdtOKMTjo3D66DgZuH8PnsU6W6516xPtdN0UaOs=; h=From:To:Subject;
+	b=nzL5fq2NfqqpVsdB7AxEa4oX+jLYUFf/jvxlFWTnhvuaisFNXeDHCJjIJGKhSze6x
+	 AsTM4prYesQNBY8cjJHy+vVovD3oSDbgMmqvgwG5+tfCik3EwNl1uN1ySGDEIJl7K4
+	 G4shyT2K3aXeomV3uV7Hmlp1W64bpVR+JDZtIJxvgiDWyHv2lBfdiE1SkuVqRQ2CjP
+	 JWow4GI7Kgls7FbtjnRB9yXGbJtJI2ps5o6uZoJi6xys/wPcehAc2qEZ2IuD7Sxp5S
+	 yLilIaSnZxzQrb9XdM+1rCC7+U0ExvWVJNqCfM8ZY2yFuwVvHGDkf3k0SYfSKW8yiV
+	 sDO1t0R4ETL0A==
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Wesley Cheng <quic_wcheng@quicinc.com>,
-	Thinh Nguyen <Thinh.Nguyen@synopsys.com>
-Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev,
-	jack.pham@oss.qualcomm.com, faisal.hassan@oss.qualcomm.com,
-	krishna.kurapati@oss.qualcomm.com, andersson@kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Sriram Dash <sriram.dash@oss.qualcomm.com>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Shazad Hussain <shazad.hussain@oss.qualcomm.com>
-Subject: Re: [PATCH 2/2] usb: dwc3: qcom: Support firmware-managed resource
- states for power management
-Message-ID: <202512060556.pgIgFNxx-lkp@intel.com>
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>
+Cc: Francesco Dolcini <francesco.dolcini@toradex.com>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v1] arm64: dts: freescale: imx8-apalis: Add ethernet alias
+Date: Tue,  9 Dec 2025 09:57:46 +0100
+Message-ID: <20251209085747.39009-1-francesco@dolcini.it>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251127-controller_scmi_upstream-v1-2-38bcca513c28@oss.qualcomm.com>
+Content-Transfer-Encoding: 8bit
 
-Hi Sriram,
+From: Francesco Dolcini <francesco.dolcini@toradex.com>
 
-kernel test robot noticed the following build warnings:
+Add alias for the apalis first ethernet interface, this ensures
+consistent interface naming (e.g. `end0`) and this is used by the
+firmware to correctly set the MAC address.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Sriram-Dash/dt-bindings-usb-qcom-snps-dwc3-Add-support-for-firmware-managed-resources/20251127-183548
-base:   c77a6544d8a2364e4bee1b52890f577be27b7296
-patch link:    https://lore.kernel.org/r/20251127-controller_scmi_upstream-v1-2-38bcca513c28%40oss.qualcomm.com
-patch subject: [PATCH 2/2] usb: dwc3: qcom: Support firmware-managed resource states for power management
-config: nios2-randconfig-r071-20251204 (https://download.01.org/0day-ci/archive/20251206/202512060556.pgIgFNxx-lkp@intel.com/config)
-compiler: nios2-linux-gcc (GCC) 8.5.0
+Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+---
+ arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
-| Closes: https://lore.kernel.org/r/202512060556.pgIgFNxx-lkp@intel.com/
-
-smatch warnings:
-drivers/usb/dwc3/dwc3-qcom.c:801 dwc3_qcom_probe() error: uninitialized symbol 'ret'.
-
-vim +/ret +801 drivers/usb/dwc3/dwc3-qcom.c
-
-21188e8d6d7590 Krishna Kurapati   2025-09-07  668  
-2bc02355f8ba2c Lee Jones          2019-06-17  669  static int dwc3_qcom_probe(struct platform_device *pdev)
-2bc02355f8ba2c Lee Jones          2019-06-17  670  {
-1881a32fe14df8 Bjorn Andersson    2025-04-14  671  	struct dwc3_probe_data	probe_data = {};
-2bc02355f8ba2c Lee Jones          2019-06-17  672  	struct device		*dev = &pdev->dev;
-a4333c3a6ba9ca Manu Gautam        2018-05-09  673  	struct dwc3_qcom	*qcom;
-1881a32fe14df8 Bjorn Andersson    2025-04-14  674  	struct resource		res;
-1881a32fe14df8 Bjorn Andersson    2025-04-14  675  	struct resource		*r;
-e33ebb133a245a Bjorn Andersson    2025-05-08  676  	int			ret;
-a4333c3a6ba9ca Manu Gautam        2018-05-09  677  	bool			ignore_pipe_clk;
-e3fafbd8e36530 Johan Hovold       2022-08-04  678  	bool			wakeup_source;
-a4333c3a6ba9ca Manu Gautam        2018-05-09  679  
-a4333c3a6ba9ca Manu Gautam        2018-05-09  680  	qcom = devm_kzalloc(&pdev->dev, sizeof(*qcom), GFP_KERNEL);
-a4333c3a6ba9ca Manu Gautam        2018-05-09  681  	if (!qcom)
-a4333c3a6ba9ca Manu Gautam        2018-05-09  682  		return -ENOMEM;
-a4333c3a6ba9ca Manu Gautam        2018-05-09  683  
-a4333c3a6ba9ca Manu Gautam        2018-05-09  684  	qcom->dev = &pdev->dev;
-a4333c3a6ba9ca Manu Gautam        2018-05-09  685  
-79456073227880 Sriram Dash        2025-11-27  686  	qcom->fw_managed = device_get_match_data(dev);
-79456073227880 Sriram Dash        2025-11-27  687  	if (qcom->fw_managed) {
-79456073227880 Sriram Dash        2025-11-27  688  		ret = dev_pm_opp_set_level(qcom->dev, DWC3_QCOM_FW_MANAGED_INIT);
-79456073227880 Sriram Dash        2025-11-27  689  		if (ret < 0)
-79456073227880 Sriram Dash        2025-11-27  690  			return ret;
-79456073227880 Sriram Dash        2025-11-27  691  	}
-79456073227880 Sriram Dash        2025-11-27  692  
-a4333c3a6ba9ca Manu Gautam        2018-05-09  693  	qcom->resets = devm_reset_control_array_get_optional_exclusive(dev);
-a4333c3a6ba9ca Manu Gautam        2018-05-09  694  	if (IS_ERR(qcom->resets)) {
-79456073227880 Sriram Dash        2025-11-27  695  		dev_err_probe(&pdev->dev, PTR_ERR(qcom->resets),
-60d5b71933c4f1 Andrew Halaney     2023-06-05  696  			      "failed to get resets\n");
-
-ret = dev_err_probe()
-
-79456073227880 Sriram Dash        2025-11-27  697  		goto resources_off;
-a4333c3a6ba9ca Manu Gautam        2018-05-09  698  	}
-a4333c3a6ba9ca Manu Gautam        2018-05-09  699  
-e33ebb133a245a Bjorn Andersson    2025-05-08  700  	ret = devm_clk_bulk_get_all(&pdev->dev, &qcom->clks);
-e33ebb133a245a Bjorn Andersson    2025-05-08  701  	if (ret < 0)
-e33ebb133a245a Bjorn Andersson    2025-05-08  702  		return dev_err_probe(dev, ret, "failed to get clocks\n");
-e33ebb133a245a Bjorn Andersson    2025-05-08  703  	qcom->num_clocks = ret;
-e33ebb133a245a Bjorn Andersson    2025-05-08  704  
-a4333c3a6ba9ca Manu Gautam        2018-05-09  705  	ret = reset_control_assert(qcom->resets);
-a4333c3a6ba9ca Manu Gautam        2018-05-09  706  	if (ret) {
-a4333c3a6ba9ca Manu Gautam        2018-05-09  707  		dev_err(&pdev->dev, "failed to assert resets, err=%d\n", ret);
-79456073227880 Sriram Dash        2025-11-27  708  		goto resources_off;
-a4333c3a6ba9ca Manu Gautam        2018-05-09  709  	}
-a4333c3a6ba9ca Manu Gautam        2018-05-09  710  
-a4333c3a6ba9ca Manu Gautam        2018-05-09  711  	usleep_range(10, 1000);
-a4333c3a6ba9ca Manu Gautam        2018-05-09  712  
-a4333c3a6ba9ca Manu Gautam        2018-05-09  713  	ret = reset_control_deassert(qcom->resets);
-a4333c3a6ba9ca Manu Gautam        2018-05-09  714  	if (ret) {
-a4333c3a6ba9ca Manu Gautam        2018-05-09  715  		dev_err(&pdev->dev, "failed to deassert resets, err=%d\n", ret);
-ef8abc0ba49ce7 Krishna Kurapati   2025-07-09  716  		return ret;
-a4333c3a6ba9ca Manu Gautam        2018-05-09  717  	}
-a4333c3a6ba9ca Manu Gautam        2018-05-09  718  
-e33ebb133a245a Bjorn Andersson    2025-05-08  719  	ret = clk_bulk_prepare_enable(qcom->num_clocks, qcom->clks);
-e33ebb133a245a Bjorn Andersson    2025-05-08  720  	if (ret < 0)
-ef8abc0ba49ce7 Krishna Kurapati   2025-07-09  721  		return ret;
-a4333c3a6ba9ca Manu Gautam        2018-05-09  722  
-1881a32fe14df8 Bjorn Andersson    2025-04-14  723  	r = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-4c0fca65d10548 Dan Carpenter      2025-04-23  724  	if (!r) {
-4c0fca65d10548 Dan Carpenter      2025-04-23  725  		ret = -EINVAL;
-1881a32fe14df8 Bjorn Andersson    2025-04-14  726  		goto clk_disable;
-4c0fca65d10548 Dan Carpenter      2025-04-23  727  	}
-1881a32fe14df8 Bjorn Andersson    2025-04-14  728  	res = *r;
-1881a32fe14df8 Bjorn Andersson    2025-04-14  729  	res.end = res.start + SDM845_QSCRATCH_BASE_OFFSET;
-1881a32fe14df8 Bjorn Andersson    2025-04-14  730  
-1881a32fe14df8 Bjorn Andersson    2025-04-14  731  	qcom->qscratch_base = devm_ioremap(dev, res.end, SDM845_QSCRATCH_SIZE);
-4c0fca65d10548 Dan Carpenter      2025-04-23  732  	if (!qcom->qscratch_base) {
-4c0fca65d10548 Dan Carpenter      2025-04-23  733  		dev_err(dev, "failed to map qscratch region\n");
-4c0fca65d10548 Dan Carpenter      2025-04-23  734  		ret = -ENOMEM;
-41717b88abf1ca Krishna Kurapati   2024-03-05  735  		goto clk_disable;
-a4333c3a6ba9ca Manu Gautam        2018-05-09  736  	}
-a4333c3a6ba9ca Manu Gautam        2018-05-09  737  
-2dc9f137e19426 Bjorn Andersson    2025-04-14  738  	ret = dwc3_qcom_setup_irq(qcom, pdev);
-2bc02355f8ba2c Lee Jones          2019-06-17  739  	if (ret) {
-2bc02355f8ba2c Lee Jones          2019-06-17  740  		dev_err(dev, "failed to setup IRQs, err=%d\n", ret);
-41717b88abf1ca Krishna Kurapati   2024-03-05  741  		goto clk_disable;
-a4333c3a6ba9ca Manu Gautam        2018-05-09  742  	}
-a4333c3a6ba9ca Manu Gautam        2018-05-09  743  
-a4333c3a6ba9ca Manu Gautam        2018-05-09  744  	/*
-a4333c3a6ba9ca Manu Gautam        2018-05-09  745  	 * Disable pipe_clk requirement if specified. Used when dwc3
-a4333c3a6ba9ca Manu Gautam        2018-05-09  746  	 * operates without SSPHY and only HS/FS/LS modes are supported.
-a4333c3a6ba9ca Manu Gautam        2018-05-09  747  	 */
-a4333c3a6ba9ca Manu Gautam        2018-05-09  748  	ignore_pipe_clk = device_property_read_bool(dev,
-a4333c3a6ba9ca Manu Gautam        2018-05-09  749  				"qcom,select-utmi-as-pipe-clk");
-a4333c3a6ba9ca Manu Gautam        2018-05-09  750  	if (ignore_pipe_clk)
-a4333c3a6ba9ca Manu Gautam        2018-05-09  751  		dwc3_qcom_select_utmi_clk(qcom);
-a4333c3a6ba9ca Manu Gautam        2018-05-09  752  
-21188e8d6d7590 Krishna Kurapati   2025-09-07  753  	qcom->mode = usb_get_dr_mode(dev);
-21188e8d6d7590 Krishna Kurapati   2025-09-07  754  
-21188e8d6d7590 Krishna Kurapati   2025-09-07  755  	if (qcom->mode == USB_DR_MODE_HOST) {
-21188e8d6d7590 Krishna Kurapati   2025-09-07  756  		qcom->current_role = USB_ROLE_HOST;
-21188e8d6d7590 Krishna Kurapati   2025-09-07  757  	} else if (qcom->mode == USB_DR_MODE_PERIPHERAL) {
-21188e8d6d7590 Krishna Kurapati   2025-09-07  758  		qcom->current_role = USB_ROLE_DEVICE;
-21188e8d6d7590 Krishna Kurapati   2025-09-07  759  		dwc3_qcom_vbus_override_enable(qcom, true);
-21188e8d6d7590 Krishna Kurapati   2025-09-07  760  	} else {
-21188e8d6d7590 Krishna Kurapati   2025-09-07  761  		if ((device_property_read_bool(dev, "usb-role-switch")) &&
-21188e8d6d7590 Krishna Kurapati   2025-09-07  762  		    (usb_get_role_switch_default_mode(dev) == USB_DR_MODE_HOST))
-21188e8d6d7590 Krishna Kurapati   2025-09-07  763  			qcom->current_role = USB_ROLE_HOST;
-21188e8d6d7590 Krishna Kurapati   2025-09-07  764  		else
-21188e8d6d7590 Krishna Kurapati   2025-09-07  765  			qcom->current_role = USB_ROLE_DEVICE;
-21188e8d6d7590 Krishna Kurapati   2025-09-07  766  	}
-21188e8d6d7590 Krishna Kurapati   2025-09-07  767  
-21188e8d6d7590 Krishna Kurapati   2025-09-07  768  	qcom->dwc.glue_ops = &dwc3_qcom_glue_ops;
-21188e8d6d7590 Krishna Kurapati   2025-09-07  769  
-1881a32fe14df8 Bjorn Andersson    2025-04-14  770  	qcom->dwc.dev = dev;
-1881a32fe14df8 Bjorn Andersson    2025-04-14  771  	probe_data.dwc = &qcom->dwc;
-1881a32fe14df8 Bjorn Andersson    2025-04-14  772  	probe_data.res = &res;
-1881a32fe14df8 Bjorn Andersson    2025-04-14  773  	probe_data.ignore_clocks_and_resets = true;
-7298c06d58e23c Frank Li           2025-09-29  774  	probe_data.properties = DWC3_DEFAULT_PROPERTIES;
-1881a32fe14df8 Bjorn Andersson    2025-04-14  775  	ret = dwc3_core_probe(&probe_data);
-2bc02355f8ba2c Lee Jones          2019-06-17  776  	if (ret)  {
-1881a32fe14df8 Bjorn Andersson    2025-04-14  777  		ret = dev_err_probe(dev, ret, "failed to register DWC3 Core\n");
-41717b88abf1ca Krishna Kurapati   2024-03-05  778  		goto clk_disable;
-a4333c3a6ba9ca Manu Gautam        2018-05-09  779  	}
-a4333c3a6ba9ca Manu Gautam        2018-05-09  780  
-bea46b9815154a Sandeep Maheswaram 2020-07-27  781  	ret = dwc3_qcom_interconnect_init(qcom);
-bea46b9815154a Sandeep Maheswaram 2020-07-27  782  	if (ret)
-1881a32fe14df8 Bjorn Andersson    2025-04-14  783  		goto remove_core;
-bea46b9815154a Sandeep Maheswaram 2020-07-27  784  
-e3fafbd8e36530 Johan Hovold       2022-08-04  785  	wakeup_source = of_property_read_bool(dev->of_node, "wakeup-source");
-e3fafbd8e36530 Johan Hovold       2022-08-04  786  	device_init_wakeup(&pdev->dev, wakeup_source);
-d9be8d5c5b032e Sandeep Maheswaram 2022-06-13  787  
-a4333c3a6ba9ca Manu Gautam        2018-05-09  788  	qcom->is_suspended = false;
-a4333c3a6ba9ca Manu Gautam        2018-05-09  789  
-a4333c3a6ba9ca Manu Gautam        2018-05-09  790  	return 0;
-a4333c3a6ba9ca Manu Gautam        2018-05-09  791  
-1881a32fe14df8 Bjorn Andersson    2025-04-14  792  remove_core:
-1881a32fe14df8 Bjorn Andersson    2025-04-14  793  	dwc3_core_remove(&qcom->dwc);
-a4333c3a6ba9ca Manu Gautam        2018-05-09  794  clk_disable:
-e33ebb133a245a Bjorn Andersson    2025-05-08  795  	clk_bulk_disable_unprepare(qcom->num_clocks, qcom->clks);
-a4333c3a6ba9ca Manu Gautam        2018-05-09  796  
-79456073227880 Sriram Dash        2025-11-27  797  resources_off:
-79456073227880 Sriram Dash        2025-11-27  798  	if (qcom->fw_managed)
-79456073227880 Sriram Dash        2025-11-27  799  		dev_pm_opp_set_level(qcom->dev, DWC3_QCOM_FW_MANAGED_EXIT);
-79456073227880 Sriram Dash        2025-11-27  800  
-a4333c3a6ba9ca Manu Gautam        2018-05-09 @801  	return ret;
-a4333c3a6ba9ca Manu Gautam        2018-05-09  802  }
-
+diff --git a/arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi b/arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi
+index 9153dddfd3b8..6fc82b5eb58c 100644
+--- a/arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi
+@@ -6,6 +6,10 @@
+ #include <dt-bindings/pwm/pwm.h>
+ 
+ / {
++	aliases {
++		ethernet0 = &fec1;
++	};
++
+ 	chosen {
+ 		stdout-path = &lpuart1;
+ 	};
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.47.3
 
 
