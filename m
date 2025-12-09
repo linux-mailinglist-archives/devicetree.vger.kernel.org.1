@@ -1,111 +1,108 @@
-Return-Path: <devicetree+bounces-245423-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245424-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8DBCCB0977
-	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 17:36:14 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id A44C5CB0BBB
+	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 18:32:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E27033038767
-	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 16:35:17 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 900963041E0F
+	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 17:31:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1181832E6A2;
-	Tue,  9 Dec 2025 16:35:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 416DF32ED4A;
+	Tue,  9 Dec 2025 17:24:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Y5jvpwnG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="l1Dq13mg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 583EA32E69E;
-	Tue,  9 Dec 2025 16:34:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15BE832ED34;
+	Tue,  9 Dec 2025 17:24:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765298100; cv=none; b=Htn7tNRYyMQd/DubMXFojUUkOWM8kFQHig/GqBX20fG1lPaPolCaBBi3wfFYjzWVoMSErCH/nUNXpAoJpCKdi1yGOHRUxk0ZSr2isk2ZUdYpPZSRcIFeottm6i0sFTuoGhNzhdKgbB/Rz54m+te56t3NJD6Re9psM3GWblRi7Sw=
+	t=1765301049; cv=none; b=EX4dNOVBTksoKOp7gYbZMa8a2CnUXauI+kjedk+EcTjgb6xTNNUDHHUivTJjqQo8DlNqEqsley84IOz9ivX1DFJ9Vk7wtAWJl5I5RF8J793g65LdhafnNC6U69xSSF+Mzx6CVkzxjN56DTF45nVNpo93+/ogdTrh0Gynozb58O8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765298100; c=relaxed/simple;
-	bh=KcsnWznaCJU8MOVAN1wmTGeLu//ZGdwoIZ+6tcgUhIE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=GE3aAwu9YrzjnW/TmLUjozq1omlQL27SottUvTrS2Nn2+hewckcBhsM+SavNEnzKhM1PITmoQbHQWoJc4ExEebdm9dEUUCuuld0jbWJPSHJUzGvaLkWl5CnhNo3aEJCAogenDvT4HPww75O3/yrpNvuiEFGmKCQW6e7ohJ0gVoA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Y5jvpwnG; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1765298095;
-	bh=KcsnWznaCJU8MOVAN1wmTGeLu//ZGdwoIZ+6tcgUhIE=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=Y5jvpwnGObyceyDShDTX7w66eOP8zN97wJsEr60gjKcgeyTB0/gAW1RfFxzvEtAXQ
-	 jOh0Affa3ZBBamJKOvASGwD8VmWVnECKUBa29lX9gr+1LepbPAuvpLvQ1Si0i0TYSZ
-	 MOV7CcrtyJWGSd2vT5D60D3cpG56jgvZkegFOfdIcScPTpQXdGH9tzOFQHZXN1yllu
-	 sVgQs6wXYSi2HdGO9Tu+PzQSDVTE1qxH1PGCtTbEuE/S6qa5agejIPkATvp6xy8y6R
-	 ShzKndAMD7ZttSN94Ay9Q7iGtcf3pD7UjM0NuqjH1jngLfcWF9FSlpBRNOidizlhwj
-	 lp4AA05EgzcUw==
-Received: from yukiji.home (amontpellier-657-1-116-247.w83-113.abo.wanadoo.fr [83.113.51.247])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: laeyraud)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 8ABCC17E1541;
-	Tue,  9 Dec 2025 17:34:54 +0100 (CET)
-From: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-Date: Tue, 09 Dec 2025 17:34:42 +0100
-Subject: [PATCH 12/12] arm64: defconfig: Enable Mediatek HDMIv2 driver
+	s=arc-20240116; t=1765301049; c=relaxed/simple;
+	bh=jeWfM1ta4ijL9dpaYyIrgDKDAAU/iGUmT4B/25is+n0=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=McMQqiaZxKX2HkaRBOG/ZVoGEYM1BbebqrIfXJKDaLn6H7hjQcpXmajkQpTxciFgCyfcL+gZ3pW8gMYx5VUshUuRg7/9wF2J37w61AUrCCT/zT+k1gY83ATI5jUs5vvaQYf2S9MoLf7uuoy0lWd+FVNf/pOAj9zhFenaqyZlcbE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l1Dq13mg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4308FC4CEF5;
+	Tue,  9 Dec 2025 17:24:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1765301047;
+	bh=jeWfM1ta4ijL9dpaYyIrgDKDAAU/iGUmT4B/25is+n0=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=l1Dq13mgAXX52FnFCDDcUdXXRV5Z1N/Z7iw/d4hkA+6Utzv/SrAZapcF4PZEQLyTh
+	 f2qT2wNA3EXH1UDyxBpRD/aklM1s1NxZ+ZUhYtQvn8/zlW1S+Vm/M7FVQaNNGAB/s1
+	 Od1b1dZQQjiNZkt2U8TYUTTNHUchx7+hJqVpvnZdEYFm9NwbxOGaPWdEibH5Ui7lZ7
+	 qZfOCwGGViDxrWG4P/iYqIDp5PyD8PoDJicuBl6yRiykTRiQt64M/QkM7qQ3qDAf+1
+	 Pz/7XVWjPg2/3Iw3Wowm/fj14W4HGadnn3vKb5Zqi+Qygn5qsPyYIdL62cYu5gHhVT
+	 VA/HI4aLQP2PA==
+Date: Tue, 09 Dec 2025 11:24:05 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251209-mtk-genio-evk-hdmi-support-v1-12-9a6106effba6@collabora.com>
-References: <20251209-mtk-genio-evk-hdmi-support-v1-0-9a6106effba6@collabora.com>
-In-Reply-To: <20251209-mtk-genio-evk-hdmi-support-v1-0-9a6106effba6@collabora.com>
-To: Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Chun-Kuang Hu <chunkuang.hu@kernel.org>, 
- Philipp Zabel <p.zabel@pengutronix.de>, 
- Guillaume Ranquet <granquet@baylibre.com>
-Cc: kernel@collabora.com, Krzysztof Kozlowski <krzk@kernel.org>, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1765298083; l=792;
- i=louisalexis.eyraud@collabora.com; s=20250113; h=from:subject:message-id;
- bh=KcsnWznaCJU8MOVAN1wmTGeLu//ZGdwoIZ+6tcgUhIE=;
- b=oIVEXIknM/gDRvQKglYE1HyEGdUXUQRTBpy8aFDzYu1FlRQMCNRqtRtxbE9YHNCd3Ymc1Zzlv
- ssH9z75vXp6A8Uyh+ccCpIk/d3bMbAiFpgyordgKieCT3sakZxys0xo
-X-Developer-Key: i=louisalexis.eyraud@collabora.com; a=ed25519;
- pk=CHFBDB2Kqh4EHc6JIqFn69GhxJJAzc0Zr4e8QxtumuM=
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Tzung-Bi Shih <tzungbi@kernel.org>, 
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, linux-input@vger.kernel.org, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Simon Glass <sjg@chromium.org>, 
+ devicetree@vger.kernel.org, chrome-platform@lists.linux.dev, 
+ Guenter Roeck <groeck@chromium.org>, Conor Dooley <conor+dt@kernel.org>, 
+ Benson Leung <bleung@chromium.org>, linux-kernel@vger.kernel.orga
+To: Fabio Baltieri <fabiobaltieri@chromium.org>
+In-Reply-To: <20251209154706.529784-4-fabiobaltieri@chromium.org>
+References: <20251209154706.529784-1-fabiobaltieri@chromium.org>
+ <20251209154706.529784-4-fabiobaltieri@chromium.org>
+Message-Id: <176530104512.701024.1104589612757918275.robh@kernel.org>
+Subject: Re: [PATCH v1 3/3] dt-bindings: google,cros-ec-keyb: add fn-key
+ and f-keymap props
 
-In order to enable the HDMI output support on Mediatek Genio 510-EVK,
-700-EVK, and 1200-EVK boards, enable the driver for it in the default
-configuration.
 
-Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+On Tue, 09 Dec 2025 15:47:06 +0000, Fabio Baltieri wrote:
+> Add binding documentation for the fn-key and fn-keymap properties,
+> verify that the two new properties are either both preseent or none.
+> 
+> Signed-off-by: Fabio Baltieri <fabiobaltieri@chromium.org>
+> ---
+>  .../bindings/input/google,cros-ec-keyb.yaml   | 60 +++++++++++++++----
+>  1 file changed, 49 insertions(+), 11 deletions(-)
+> 
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index cdb7d69e3b248975557e141481a88fd86115cf40..24c1670e5bfd4ed0902d5440d43fdb4e5dd676f1 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -1015,6 +1015,7 @@ CONFIG_DRM_HISI_KIRIN=m
- CONFIG_DRM_MEDIATEK=m
- CONFIG_DRM_MEDIATEK_DP=m
- CONFIG_DRM_MEDIATEK_HDMI=m
-+CONFIG_DRM_MEDIATEK_HDMI_V2=m
- CONFIG_DRM_MXSFB=m
- CONFIG_DRM_IMX_LCDIF=m
- CONFIG_DRM_MESON=m
+My bot found errors running 'make dt_binding_check' on your patch:
 
--- 
-2.52.0
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml:83:11: [warning] wrong indentation: expected 12 but found 10 (indentation)
+./Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml:85:11: [warning] wrong indentation: expected 12 but found 10 (indentation)
+
+dtschema/dtc warnings/errors:
+Error: Documentation/devicetree/bindings/input/google,cros-ec-keyb.example.dts:83.9-89 Properties must precede subnodes
+FATAL ERROR: Unable to parse input tree
+make[2]: *** [scripts/Makefile.dtbs:141: Documentation/devicetree/bindings/input/google,cros-ec-keyb.example.dtb] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1559: dt_binding_check] Error 2
+make: *** [Makefile:248: __sub-make] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.kernel.org/project/devicetree/patch/20251209154706.529784-4-fabiobaltieri@chromium.org
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
