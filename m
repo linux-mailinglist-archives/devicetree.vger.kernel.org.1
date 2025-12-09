@@ -1,145 +1,212 @@
-Return-Path: <devicetree+bounces-245314-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245315-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AAEDCAF020
-	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 07:19:10 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14561CAF05C
+	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 07:27:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id D33E9300569D
-	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 06:19:06 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 9E3E9300BDBE
+	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 06:27:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B64B021ABD0;
-	Tue,  9 Dec 2025 06:19:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8A57320A34;
+	Tue,  9 Dec 2025 06:27:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="RlaHstet"
+	dkim=pass (2048-bit key) header.d=altera.com header.i=@altera.com header.b="VuX7Suxz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from BL0PR03CU003.outbound.protection.outlook.com (mail-eastusazon11012017.outbound.protection.outlook.com [52.101.53.17])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F1FC79DA
-	for <devicetree@vger.kernel.org>; Tue,  9 Dec 2025 06:19:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.42
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765261145; cv=none; b=akArDaUM7IuU/GtCcqk5G0qlvSr2/YF4BTPkGuNFZ6aTANeD8zxNqyqN8Y7OuuswNKhvxjv6GJanQPePoUSAKvQIywft228lOnTQ35fFVLTf24ZwPv1jX30jaIBmkBX/vlC3wZ+aMfs4TfgM2LmSTLUle95B0TdOli2djkr5W8k=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765261145; c=relaxed/simple;
-	bh=l4EVe9RafhQ3WUkRtqp4/NizWmZJwSi2CtslaMCMZSk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qE2eThAkx/rxR7z/Ik4p2np+yYoQzv8OfrJnZJqzzp1wxMdfsRcDcnplH8+QmRuoyWnNiIGVEx0Ap2NUiG+FuRKBE4wPg1r4/PojmYhkmHzO49Jk3JENr6Z8wy5BjZcF4FGGipv7vjfuiSkV22JEKFPbgCIvLiT4s5B97pwvK74=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=RlaHstet; arc=none smtp.client-ip=209.85.216.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-pj1-f42.google.com with SMTP id 98e67ed59e1d1-343f52d15efso4923126a91.3
-        for <devicetree@vger.kernel.org>; Mon, 08 Dec 2025 22:19:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1765261143; x=1765865943; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=vIa6jqcHFzv9iZgum8ltDygq/7mCA6BUmLPiZxq3KhM=;
-        b=RlaHstetoCauFYeNnfcIzU/5CkHRnGaqUJEqPFe2EYXkZ9ssyCk8raRKQ24bwpnSIK
-         1sNjjvjUNUyqaejc1SK4eE0XKXc9A68r7vz+F4lC5kt3j+FwOEe8u35z3ys+lMxI0sGU
-         Q6PwHMyNakZ1ChEldb3vYLwdo3+UzNYQ1oCT0xwlbntprtyK4GPndhBRiPxQngWR6r8i
-         OFR8izHzFwwPvqYB68TFmSnRbxz841eYsPF1EK/Mlo8+Y9hPMS68+jKdQa2XAoSozidd
-         rFSxO7s3q33Hef8fMpfTsbeFfERP0CdJG55lmK+gyYfq8Ms7HnN9BCWWojp8th0WY6Yx
-         G32Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765261143; x=1765865943;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=vIa6jqcHFzv9iZgum8ltDygq/7mCA6BUmLPiZxq3KhM=;
-        b=KVXqJq95gaoloS52UlnTR7/nZe+FqyE9aIDALxogr1zaJc98MQwZtr4bMxBsQ3XQKr
-         PUFonJUVD0qdus704TAwKdncjIxObcDdohxp/oxOv4Bxfr6XlxisrxyQStZvmk051+oI
-         qTwOCjDJ1xiNCmkBKhdd5cO/wqCss4GCQS2fOULPtnd7xDEQPNWWBSomRKhlPsAWQ6rn
-         416FQKGIr9U1qCOqo8uXRam5d/V4mSPvLYSrzCdD9jv3Q0I3oXS+0xjXOTuftHZSRqbN
-         jJoK1dwj46M9HhjADllH46jXu1qVeH3cloW4kH0eBbod2IR9X09Rb80VKsp4rVhxe4Fk
-         fMog==
-X-Forwarded-Encrypted: i=1; AJvYcCX9qQ9pK/6yzGsBswYm+IVVKTQoMqGhe6e4R5+Mz4fz5egx/3XuobgEp9R4ZPWHJOhroiS+LqdfnPsw@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyib6UXR7XxbNBp1FY3nwm1eFNAbI1yNJ6jsNY/mN+xgjKXMf+d
-	sbYAw+fCkGfCVrg1rYl/zeIXIhyVPZDELASn0/fh3c5p2YEwVBiZtIR3aDGto7U5/zM=
-X-Gm-Gg: ASbGncsqlnfvSNNVxBY2OQnQ0SToDLF4J4P9rMPpKErhojtcMuk842vnx4oC7dX7t4m
-	SYBw89Tg2SPU7mcGWsxMkcdQ5Wyaf9mdBSo6tz5Fb5gQojRsrc9AQ1phMX/poR7JfGlf8SeJ++y
-	VHs8lK8oqS8LDOy7RBSQ6x3i9m0UFpZuYM9kQzb65d6D0bmHTxdg6EUOxSbe9cWkxveR5BmzMI9
-	mPxaJAGDigcXNyTCXQlo3H8G8KL1tMkuYnWqjlCM2llNvdn/MJYcOLCiEE3JPhIPW5SFUZfIp/I
-	k5E7x5c4JDhJ8moK2jUr9322vOqWhAoDidjWotZndQSExTOEf/YTNUWu/AevGj3oj1aSHdjc5Pm
-	vgixJ03sT4VAN6YerAA7+8KK9dzIE62fwHc2lx4XyyTHXBRXNrVYeBUaD57McqoO7WzW3n/6cl9
-	uWMM5R7uayy0R0GIsdIqmFeesq3R+slgk=
-X-Google-Smtp-Source: AGHT+IF3CV82MN0YNFqOU++plw/a37xGD2xf2oy84fWcz0qoUsA3eX7qyuzYpkhkVT+G2+ljIRTWbw==
-X-Received: by 2002:a17:90b:1e53:b0:343:7714:4ca6 with SMTP id 98e67ed59e1d1-349a25b4969mr8093659a91.22.1765261143392;
-        Mon, 08 Dec 2025 22:19:03 -0800 (PST)
-Received: from [100.64.0.1] ([165.225.110.109])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-34a49658704sm1161413a91.6.2025.12.08.22.18.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 Dec 2025 22:19:02 -0800 (PST)
-Message-ID: <d8fa12cc-7a03-4954-8ea5-1e2edf9a149d@sifive.com>
-Date: Tue, 9 Dec 2025 15:18:58 +0900
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C255D31ED97;
+	Tue,  9 Dec 2025 06:27:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.53.17
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1765261675; cv=fail; b=YpzLN1lkAcmTzCm7dbu73dhN1F4nGnJ6jhnXXUzYG/vttkOZI88klbvze6TXHFlpI0dY20CRqROeSQEOc3Bvv6IxnyVDzAULjYk/iGkHDoSuoMxAg3a8hUzwK5klR6uK0ed9ZLZqEhJkCzsaSl+qceN7WUXOjHUOok0kLX1n/48=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1765261675; c=relaxed/simple;
+	bh=CXulcPBFAbGQqBEwhCcZX9aRQJIJFU+Q5MYiD0MOQSc=;
+	h=From:To:Cc:Subject:Date:Message-ID:Content-Type:MIME-Version; b=X8JLbY04jKKg4VeJG4KLJphRpXoc3MYlEzUBApzXhI05sFFAEHlRfPQI5RL4Cmcj0QchRQ46hz9lYXOXbfCZTFKbygouhmwqjL40bVhrQyj+zW3Meg18zynqI+DDlhcHEqY3pYP5Xe1Zz6tIF8TTUC1LGnvdMO51fUdPHZ7aLaE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=altera.com; spf=pass smtp.mailfrom=altera.com; dkim=pass (2048-bit key) header.d=altera.com header.i=@altera.com header.b=VuX7Suxz; arc=fail smtp.client-ip=52.101.53.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=altera.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=altera.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=L4lrp9dvvZC14/kxRwbglyedsXM+SzkJOvzrwMtE6VDFm7tHZvWLqRo7EJZ7epA09a3i+sXKiAtivWUgPZFx74ZXY1JZDJfDN2k+/mch5R8UkGXhNZi1Kr3Xe1ZnYwGcDeb4oW1iA0TqyMPOD5EyQMaUVzecB+nwM89yJA44SV4P+kPqsu25CKTsLeF+NRe8WSP8YMZWZT2Ok8dlwDO1X4LzsGx0gHgjkK/4iyFMWrfnG+hJNpCd7MlqR96XdOWK0wQmDuEnykRLY6UzFB4EtIZyKrMSu4nf7RF0CLNLNQH7b66w54C180f7zV71tVh7Rzt33uZXjMEHkZWIiO6/3A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=vNejdvlKM156/lnzVmXlxm/XdZo7HV+wddLfL1ZpLPU=;
+ b=qufTOri0HoJTE/zO5qwVQ5Px7LZ8WCzCtaNspojjqHc2oeO9NQ2cpyqdhnvtA09YmuNEGUMWAUgjm0Tn2fQApOQuIr0X+ylbQzbS+bvi1wBSt9eTR/YTv2qjcU2R1LVApcYptjw3HakHZekj4lyqt5utWt3bpAqousidbSABuM9W+5QD9tSrGPjDeto01cj2UeUMUhupMf6ZFa7wopimF5x0VyevCM72wkXsvlP1Ee5vYv2i0bQuSnGjBlC4e8Wvxe4DWu2f8JRx9LJ1H/UM/cHnfG+t3mRaiWH1RyTs+kMcaB2ZiAWcNvD67RuJdtzQFsI+k5dLOfM1swpTb+3ZXw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=altera.com; dmarc=pass action=none header.from=altera.com;
+ dkim=pass header.d=altera.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=altera.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=vNejdvlKM156/lnzVmXlxm/XdZo7HV+wddLfL1ZpLPU=;
+ b=VuX7Suxzy34M0rcJeEvtIS4H266vOjI9agiKbc5ybzlrpovVzNZj2XcRWE4EkmxwP70Ab6DrO44KEwnJQJMOZKRLb2eHCYTsj1Xj1Ueda36mgFgW99nVca1UyR+LC7DcmvJkHXn1Hu14QTiq2opJ2vEcNfYlCId6BLL4YX0O4yWf+ETN+ERZyPlI6iL5YkTiDuYX1j+baRygapEsH/XDSPfFSHOdZ7RsLLmEMv6y+WBTdRaZeTAW7yCnJtHdc7SK5X4sF8L3Vw2HQp6o8zwTT9j2+GQfgBxoEoAYFwsOjadZa8rbCTNgVB+a5zrBobhUXPf6I79O7/9K/jURdofd5g==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=altera.com;
+Received: from DM8PR03MB6230.namprd03.prod.outlook.com (2603:10b6:8:3c::13) by
+ CH3PR03MB7314.namprd03.prod.outlook.com (2603:10b6:610:1a4::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9388.14; Tue, 9 Dec
+ 2025 06:27:50 +0000
+Received: from DM8PR03MB6230.namprd03.prod.outlook.com
+ ([fe80::abad:9d80:7a13:9542]) by DM8PR03MB6230.namprd03.prod.outlook.com
+ ([fe80::abad:9d80:7a13:9542%3]) with mapi id 15.20.9388.013; Tue, 9 Dec 2025
+ 06:27:50 +0000
+From: adrianhoyin.ng@altera.com
+To: gregkh@linuxfoundation.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	dinguyen@kernel.org,
+	Thinh.Nguyen@synopsys.com,
+	devicetree@vger.kernel.org,
+	linux-usb@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: adrianhoyin.ng@altera.com
+Subject: [PATCH v2 0/4] Add Altera Agilex5 DWC3 support
+Date: Tue,  9 Dec 2025 14:25:07 +0800
+Message-ID: <cover.1765249127.git.adrianhoyin.ng@altera.com>
+X-Mailer: git-send-email 2.49.GIT
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: KU0P306CA0008.MYSP306.PROD.OUTLOOK.COM
+ (2603:1096:d10:17::13) To DM8PR03MB6230.namprd03.prod.outlook.com
+ (2603:10b6:8:3c::13)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1] riscv: dts: starfive: Append starfive,jh7110
- compatible to VisionFive 2 Lite
-To: E Shattow <e@freeshell.de>,
- Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
- Conor Dooley <conor@kernel.org>
-Cc: Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>, Hal Feng <hal.feng@starfivetech.com>,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
- devicetree@vger.kernel.org,
- Emil Renner Berthing <emil.renner.berthing@canonical.com>,
- Conor Dooley <conor.dooley@microchip.com>
-References: <20251206204540.112614-1-e@freeshell.de>
- <20251208-jogging-morally-9b787b7ab1b8@spud>
- <a18850ad-b6de-4444-9daf-a4a653f4f9ae@canonical.com>
- <0bb12889-cb28-44e7-b2d6-7ecba6264d1a@freeshell.de>
-From: Samuel Holland <samuel.holland@sifive.com>
-Content-Language: en-US
-In-Reply-To: <0bb12889-cb28-44e7-b2d6-7ecba6264d1a@freeshell.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM8PR03MB6230:EE_|CH3PR03MB7314:EE_
+X-MS-Office365-Filtering-Correlation-Id: 90e7f620-3bd6-4787-1002-08de36ec136f
+X-MS-Exchange-AtpMessageProperties: SA
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?RgjEbArYmNam1lxZe5LbLVRyZcIreMIXS2jj5he/ahKo67Dq5xmMC/eUnWV7?=
+ =?us-ascii?Q?srj1r1NLOo4zZLGiKRn3HNlh0oAkogAs5KrDO9xeAK3z/IW01AsiQ4X4KOUI?=
+ =?us-ascii?Q?ckkzlK4kHe9iEQD60aMS8C6aS7BlKJj4kc28hOGblbVp0wND27mMJ8cFFLVw?=
+ =?us-ascii?Q?65dQjVdch9XJ+yfiQAmvjGGMNbVwkK+cqUG04kDHY9O+i5wKpSIpwC2jgCYQ?=
+ =?us-ascii?Q?FMB3XUX08PcgrCzKMIq00Vcb6JwCJDi64zdG+1eBoaCMw0P8RUYZwwT/WQuQ?=
+ =?us-ascii?Q?sVAme7AmzoUpTiBhPLO4Pqv/C/YJF6rDoYnVptU+Aw8SJU0U9GsxAZspd7ha?=
+ =?us-ascii?Q?TSs11fdpckkGn3eoff7wBPs1yHK2m4HDFlJBYWXGQSGC8KQyF5y7QnIu1bbh?=
+ =?us-ascii?Q?12K5QYBZZyJ5IrTeP6xOemNQ95uZd7Eofal+vy/yrLn6ENtiz3B4ARpGaCbP?=
+ =?us-ascii?Q?Z7HjWKTF46dmalgYV4a83mnabbpGpqRnSlYQNM0X7UTgY6g9rewu6YCQPNII?=
+ =?us-ascii?Q?HQrdXpfdfZ6bhZxGZLfvFGOt6cPqQXdQNchhu9z5AIbbrjO6wsSKKYUlW5Lz?=
+ =?us-ascii?Q?KLT7ncozU7EI4KVDD4Z0tMzhCOpCFwbbvYtXPh4N1jg3FK4MmnsOqe9XQS7V?=
+ =?us-ascii?Q?hOCCshzX6W/SM+g1Wc+esi0f/8kVgp3L1Y8wg9G25g59/SSrJ+0vBiG8tboS?=
+ =?us-ascii?Q?pw2vxM+WaSTNcbwcSwZdqEqeTx0nCgQxJwD0dqal+dkzE7a4BnQX9OknLB5S?=
+ =?us-ascii?Q?uW0inVNTnsyAL3BNc5KwpNLuXyea2HjxP9YPfTvxGSosQERG7W4g5FPJE1vK?=
+ =?us-ascii?Q?DGsXD90IiQZzVwxve0q7P6Nlasn8NsKsdpzBp3HZ0DZUh0g5ldhrv60rFDFB?=
+ =?us-ascii?Q?xE0EBxtA1EC7D8AXqHgZ39XblqjM+fDd14Px27jbL0yfy8vTnmmm+995PmDc?=
+ =?us-ascii?Q?lZLpBbTp/OkskzUQe4CvqPyZAX3EwGCzoAfP3E7v5c22a3k10IXY/1/uZNaR?=
+ =?us-ascii?Q?Sc9dwFPdTGHzxZZrkWamXaTKMJHhFu8gcA1JrCePr8cPaYFSZPYfuM/3/Hls?=
+ =?us-ascii?Q?r8n0VJBcW20C50ZHcHa1yhYVVXQ9ZLOm1WDuAF3KZo16//s+Gly5H2ZvndU8?=
+ =?us-ascii?Q?prlYKfs2a7GqP2AsbLiycuNbBONa68n14x2mbHEzzMd0UawBu/xZIppbzp3b?=
+ =?us-ascii?Q?mu9YB6URADD3pcGiHsKiEuy5+LreqrSQtfOkAGufRfkvDW+LiLVFzc2MNExR?=
+ =?us-ascii?Q?FqvX+fbqlfwPHEwNWEIzlqR/nJTsKJj/YxStUJxDwLLAGlD54kat77Gro1t6?=
+ =?us-ascii?Q?8T25nfvl9wO80t7/94II4WwfPvfxn/EtjjJfPiIiEM/bRendMa3BKyjsY5xK?=
+ =?us-ascii?Q?3c2IImXOUPLc4grc2tz+hLwCoc9NvgfmsfSOXGLE1vaDl6M0AaFj9JawGjFe?=
+ =?us-ascii?Q?Vd7x/69yoPc77FniHTBvctr8KwGadAn3FTkWaVc0qpJoY522K7PeaQ=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM8PR03MB6230.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(366016);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?pa48VaPUQseXGSgxE6zKj0G15gwsdG2VSPpTeH2gClkiYIbhBuevQfohR0id?=
+ =?us-ascii?Q?f5FArzbmjN++KYxx3jJZKV1PlqvUrSZRvP+4+MX5CcFRCkdUwLZTDIYhH5od?=
+ =?us-ascii?Q?6BNPV1Oz4gJPMQnCtlIrjSpPo026TRugxjAt9bVScL/UEAjji9tFW45elnDL?=
+ =?us-ascii?Q?eM25IywtHCrxkKqeJOXe4FcJQTUMA6UZDLb8TumvOW1goKFOorZ8M1i1Ubny?=
+ =?us-ascii?Q?FbF1DjyMv4cjQME/07ozuxf+tKZtelLiJncn1qZELvkU19qt6SYVohcEo8GR?=
+ =?us-ascii?Q?Kcdxak7mZZNZVT1qBM5LY/gWZDTmKeUOYbydscvGJLZgy9fLutD1Xem7PRtW?=
+ =?us-ascii?Q?dylVNjkGkLPP4g3/MiejSIACtDkjo9/avGK8/Ng5aqhft5YSNOZvFeHGyyAQ?=
+ =?us-ascii?Q?Qpk02fAFAS0Qz/fPCDCqaVw9muMi/MTbL+1zGEc6u5RDwCJJA0wwM1HyJfzx?=
+ =?us-ascii?Q?QM66jL9+lxI8wYcAaPJ/L44ExB2HWwQtyhkitTAM816M8bcaWwt8fG3QC+NL?=
+ =?us-ascii?Q?GrUZi6Wh0FBu0x7+94WTetLH//SP0EpHrwY8ekUE4otfCro+IfpxZ1+zEhwK?=
+ =?us-ascii?Q?jp+1F/iDYbu0FTmOFhCOnwO7+ZOH3QirIOlIIH5lRKDCsBNamj20MN2p7WCu?=
+ =?us-ascii?Q?x6pSE6ETDY1Yn0YmUl8Aaoku4QpHUTqVpz9BnwmbHSGeCo/9yNZyAWB3buXU?=
+ =?us-ascii?Q?n3p0Ezr2Z4J/TVSaxPCvVP4wms8qaJOEr1fJVqaBRIlqvWJOXLQp2Yv33uIW?=
+ =?us-ascii?Q?DP/82q9h1VlJWcSN5etbejDJD1bU7sApgpPmyI7lak6TS4XGCLaERj7est95?=
+ =?us-ascii?Q?3FOordMtdetU7LbbPbTJQCG4a3jZGq//zmaNsaZBhos6utDmgku0+LgMGEmA?=
+ =?us-ascii?Q?yzkXco21TBanBlvXYRZASBgiQDFUrBq8Oh7hIrZxjrce6ZGpLICDghl/2Rjb?=
+ =?us-ascii?Q?uUePQ45/ggFapIP60eMNM6fEDsrktjcbbgak4WdUi+Qav1SRWNGCMjAa8160?=
+ =?us-ascii?Q?ijFe7CaOGeiYi2dioKpSFNKd6Rc6kSC/VNQFb0bqddBPFMbi4ta0NCzZxAnW?=
+ =?us-ascii?Q?a9hD33DfaWGcaHobjHm5fGF1wDxQHhyKePb+f4ntT1d6qJXGP2F+xLuns1wS?=
+ =?us-ascii?Q?KNmYER7e3l1Zadv31jzdlqH4Ntb0WDWBDO3pqCA9qJcF2SF1q2AKK5dbesr0?=
+ =?us-ascii?Q?LtWsl07A/OCAD1URaMPYrAlPdBR9hvby7EsVU14JRNdH0ajtUwoWIo65Etyl?=
+ =?us-ascii?Q?9UxAOzexp4YDV+OCD5J8xfHoQpqpa457t39uacCOzxmCjfCLL2oVdvMpAay8?=
+ =?us-ascii?Q?5IfoXyzI6Rj0y0MUFZ9eMI95d6EIySEj3zOW1RBsvp4c1xgM/LHveneWobQb?=
+ =?us-ascii?Q?BcKRFI0yhLrFR/28yoCdQow++xlpnwZQKBbt2SHbDht3Q6COMOtqmnihWWiV?=
+ =?us-ascii?Q?R15BaxJSaDrBpbuaNmsyTVps3vYrbYjjvwpvpxKKvSkmllJqurhCQ0ci77KI?=
+ =?us-ascii?Q?bFynlK0dJv6vc2pxKvXFLMF75IlauOFPKmFMqzGXQwRtc8eeS2aTGlCSVFXt?=
+ =?us-ascii?Q?1R501KZQsVkSyyoKECh92N9RXtBO1CMMdyZTDib2S3lwCG9hZUs974+7oxXi?=
+ =?us-ascii?Q?kA=3D=3D?=
+X-OriginatorOrg: altera.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 90e7f620-3bd6-4787-1002-08de36ec136f
+X-MS-Exchange-CrossTenant-AuthSource: DM8PR03MB6230.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Dec 2025 06:27:50.1984
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: fbd72e03-d4a5-4110-adce-614d51f2077a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 7cetudI5QH03vVre4lcL46tqPMYg9hjm3D5Yy5to+P5J3l9gURQNLMylFx9Ys7LyPWMH3nfrnk7cv3L5krCSpswlL+26G1JzxuG3LFN2GpE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR03MB7314
 
-On 2025-12-09 9:53 AM, E Shattow wrote:
-> The unanswered question what I was asking in the code review of StarFive 
-> VisionFive 2 Lite series: What is the normal thing to do for compatible 
-> strings of relabeled silicon when there is a suggestion of different 
-> operational parameters?
-I don't think we are very consistent on this, and some of it depends on how
-different the binned chips are from each other.
+From: Adrian Ng Ho Yin <adrianhoyin.ng@altera.com>
 
-Example 1: Rockchip RK3399 has several bins. RK3399-S and RK3399-T just override
-the OPPs, but reuse the SoC compatible string without change. On the other hand
-RK3399pro is a superset of RK3399, but uses a new compatible string without a
-fallback.
+Agilex5 integrates a Synopsys DesignWare USB3 controller via a
+SoC-specific wrapper that requires dedicated clock, reset, PHY, and
+optional SMMU integration. In addition, the Agilex5 has a 40-bit DMA 
+address bus limitation. When SMMU is enabled, using the default 64-bit
+DMA mask can result in address truncation and subsequent translation
+faults. This series addresses that limitation by allowing the glue
+driver to constrain the DMA mask appropriately.
 
-Example 2: Allwinner H616 (https://linux-sunxi.org/H616) has multiple
-bins/packages/die revisions. H313 is a down-binned version of H616, which reuses
-the SoC compatible string without change. H700 is a superset of H616 (same die,
-more pins), but uses a new compatible string without a fallback.
+This series adds a device tree binding for the Agilex5 DWC3 wrapper and
+introduces the corresponding USB3.1 controller node in the Agilex5 SoC
+and SoCDK device trees. As the SoCDK only exposes the USB3.1 interface,
+the unused USB0 node is removed. The series also extends the dwc3
+generic platform driver with Agilex5-specific configuration support,
+including limiting the DMA addressable width to 40 bits to avoid DMA
+faults when SMMU is enabled.
 
-> I can include the (paraphrased) above summary by Heinrich, yes. Although
-> now I doubt whether this is the best approach, when removal of
-> "starfive,jh7110s" compatible is potentially an equally valid fix, or if
-> we're rather considering JH7110 at 1.5GHz maximum to be a superset of
-> itself at 1.25GHz maximum (JH-7110S). Would we want to change all the
-> JH-7110 boards to then have JH-7110S as the least-compatible, if I am
-> understanding that meaning of "superset"? I would like to know what is
-> expected.
+---
+changelog:
+v1->v2:
+* Update new binding name to match compatible.
+* Update binding to use single node instead of parent child node structure.
+* Update binding according to comments from maintainer.
+* Split USB3 and USB2 changes in dts into separate commits.
+* Update to use flattened model and use dwc3-generic-plat driver instead of
+  dwc3-of-simple driver.
+* Add dma_addressable_bits as a dwc3 property which is set by the glue driver
+  which is used to configure the dma mask in the core driver.
 
-If starfive,jh7110 is a superset of starfive,jh7110s, yes, it would be valid to
-add starfive,jh7110s as a fallback compatible string in all of the existing
-board bindings. But this is not very useful, as existing software already looks
-for starfive,jh7110, and you can't replace that without breaking compatibility
-with existing DTs. So the advantage of one compatible string (mostly) covering
-both SoCs only applies to new software.
+v1 patch link:
+https://lore.kernel.org/all/cover.1762839776.git.adrianhoyin.ng@altera.com/
+---
 
-Regards,
-Samuel
+Adrian Ng Ho Yin (4):
+  dt-bindings: usb: dwc3: Add support for Altera Agilex5 DWC3
+  arm64: dts: intel: agilex5: Add USB3.1 support for Agilex5 SoCDK
+  arm64: dts: intel: agilex5: Remove usb0 in Agilex5 SoCDK
+  usb: dwc3: Add support for Agilex5 in dwc3-generic-platform driver
+
+ .../bindings/usb/altr,agilex5-dwc3.yaml       | 96 +++++++++++++++++++
+ .../arm64/boot/dts/intel/socfpga_agilex5.dtsi | 18 ++++
+ .../boot/dts/intel/socfpga_agilex5_socdk.dts  |  4 +-
+ drivers/usb/dwc3/core.c                       |  6 +-
+ drivers/usb/dwc3/core.h                       |  5 +
+ drivers/usb/dwc3/dwc3-generic-plat.c          | 20 +++-
+ 6 files changed, 145 insertions(+), 4 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/usb/altr,agilex5-dwc3.yaml
+
+-- 
+2.49.GIT
 
 
