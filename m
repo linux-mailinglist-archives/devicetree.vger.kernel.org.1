@@ -1,157 +1,151 @@
-Return-Path: <devicetree+bounces-245410-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245412-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39517CB08EA
-	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 17:29:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D0258CB0968
+	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 17:35:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C3B6430640FE
-	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 16:26:10 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9843D300E7B0
+	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 16:34:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D1D9320A3B;
-	Tue,  9 Dec 2025 16:26:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8572232824B;
+	Tue,  9 Dec 2025 16:34:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="C2jBinvb"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="RawSdYFu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7742131ED9C
-	for <devicetree@vger.kernel.org>; Tue,  9 Dec 2025 16:26:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63721326D55;
+	Tue,  9 Dec 2025 16:34:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765297569; cv=none; b=bvgA+7zyBDS5+p7L3/Ab0sSmXy7vwk5J5Sz6yWwdwj3evR/2lzCYqfFJkonwpFgYgUVQJmr4ocm9ApaE401l1cQTz6IA0P1Bh2GzHuxKAzI1i05poFVdlZa4rFjChzkXr8H0O3qPxKenMBl0SkU1DvOw89wVv3xN/HfshvL+WGU=
+	t=1765298089; cv=none; b=EFtAS2EiWW9T/xEGzSL9BeCIP3SRze+4KxRBiuZHjnGGXqIzaY/E95PUBPOI7UljwbXN+xuKMaXkLBM56Oo5dGwTgjMHiaDvyYOGaqa4It6Rgka/Y2j9aPV99KT+UiNuxWN3TQl12A//lajEwecX5goeB9qKu3/SUKIuIGgYCHQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765297569; c=relaxed/simple;
-	bh=biGOZb1RIX5ikhtgxteyi8161lILYFSAu5T6Hgxesz4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pgl2vdF2dcwUH6UULvlP60akJw3j1fYBNJRjFQyG5sWRnkKGV1xNFHDbEbXj9ob9OmzOQ4aDYYuPcdxCMCoIDNQzuBv6wyKpeRS0l/HdIsBIAS6PhvpKqxIiuoMk6wJvrOB738BZ562ijRCO6MwV/fUOpOtNpMJKe6oGCt7ZESY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=C2jBinvb; arc=none smtp.client-ip=209.85.210.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ot1-f52.google.com with SMTP id 46e09a7af769-7cac9225485so448897a34.3
-        for <devicetree@vger.kernel.org>; Tue, 09 Dec 2025 08:26:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1765297563; x=1765902363; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=F5zRiXPRY1gEzqlGjNHUp6dTOKIROF+8I0Et8Ms264g=;
-        b=C2jBinvbVNa/LLRajtZBKuHhItW+5FLYNeykX9t4tHmeTokqpast7pqX859Qjmm+Rq
-         WaemVJGB3uLUdmK24n/XMGAnQ+LfWNx1FdXRBXgeJ9lA+YhkpSct+vjaBsTAPAuwyzgK
-         0kyVoKjFgwrTInImER4OCxdWrL/ofG1gCpsilUL7iPmqkintlXHbkpTqndKnqdVNmITD
-         kqFnFsKteu3XiQsjNpvxRJyI3LcrulUxlwEdEh6KsCpKea9QOf21yxJXbwn9XrgVt0SA
-         zov56aP7+Ukjd9NWM1Zs8kpNRRUgCmJl3L1UhdnxsAG1lkzvn7h3onuWksuOZdinX/1d
-         PSsQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765297563; x=1765902363;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=F5zRiXPRY1gEzqlGjNHUp6dTOKIROF+8I0Et8Ms264g=;
-        b=r31TSWqaT90F5wK3FqB0cBgcPls1c8x9706gJPv4utruzVlpsXcC4iU/y2QgKd7sRM
-         NjZbcoFyCBVf3n8T3AZR2uov/SwwB3CVSunF4HYFHzptsPOsS5E6PoCQHh4tWupOfty/
-         v6B1foHsKscXR+ufKFXR4X+OpE6/0ppm51SLGeuiGnfiBKhsvZz+SU5Bu0f8wIRXAj+R
-         cahTzRlXwifr39Rw9uLVWXscS6u+DG/d98TFZUpzwLC/M4KCQvBbe7C0V+B7FgW6IaLo
-         6uMLjtPKrRr8hOirEbqYYV3Hx+8gxECMjnYQeV/fWHLjmXhKrcuf+bSQS1X/GX/SZpjY
-         CDYg==
-X-Forwarded-Encrypted: i=1; AJvYcCWS6CaDrMbMgsVEBN7/rlzNgBWRJwZ6WG7DTo/YUMgogHzWQAaeSf7VxDsOEm7OXwZQZE/OPjsPUb6q@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyh92NinI+L+TQtz7wwNd7nEwTGvUYgpd/qCJytjjcfPNBXi/1U
-	YRU7JuPbMRlhV9bbp5cmLE6DAGyDxoXUv6jfzM0V0lCaH5u1BlxedaIy
-X-Gm-Gg: ASbGncsHwM762Kts09xlYBG9BU+ePib4qHA3YlJUsAwbna2+VyM2QddSV8n7pDp5iZd
-	5utqvWwXJqRuTgDcVyY8caw0ZTTEZLrxUvUGsdAFVkiY/bxxGYogoc7daCvNlEKNcCCiVVMzWJe
-	GqXao3y5OuFIa8oDD7padOHHIs3YOMKAbovSNMivMHHNg2Ze25rzHY0aQ9bnnV6vpSIcsr+zBAF
-	K+hUkk459Tz2BvD5tCDvF6vFP4Qb7WSG9I2AqJCR6t305PM51/3e1WQWeYfju7ffsE/DM7DNn1U
-	LrST1SA/SaL9PnCbwuz6fw4XVRGbyfSauCuDRlI7lVCtyVrteu6gWlUosmiR2wrMiI3Izhg652j
-	2oYLRu/WxPb7nfwneb7bzq1o+GiW/aEuMojdvRdmOIbrkhTP8LqRzLHTqHEygkINQb4R2uISOeV
-	o6WOXHGv3AoXEwOdVpYIANhimkH7kWvfcQ/o+YRXLWj+ScbuyOL9A0N3WkFrZLwBKOGXyRp5SU6
-	FAIq2mPgamTKkoKjXAd/Q4138ZsPUWBhCLZYltEBatr
-X-Google-Smtp-Source: AGHT+IFmTKjIjeFDsRUal05BF/whcGMQ56pIqRSSm2fIFKSoV0XP7XVAyr9RBrBMhtPaZ7mpmksR4Q==
-X-Received: by 2002:a05:6830:412a:b0:7c5:3798:fa3f with SMTP id 46e09a7af769-7c970748674mr4845571a34.2.1765297563411;
-        Tue, 09 Dec 2025 08:26:03 -0800 (PST)
-Received: from [192.168.7.203] (c-98-57-15-22.hsd1.tx.comcast.net. [98.57.15.22])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7c95ac833d3sm12560318a34.17.2025.12.09.08.26.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 Dec 2025 08:26:02 -0800 (PST)
-Message-ID: <23d3bc82-0909-42a4-b4a9-742834faec76@gmail.com>
-Date: Tue, 9 Dec 2025 10:26:01 -0600
+	s=arc-20240116; t=1765298089; c=relaxed/simple;
+	bh=MVyNdWFXaQKj/KOaxhKV47wH1Z8rT4xOoRVTsltB5nM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=RUjb0CNaPE/whwGde+U2hBeQc8G/hxzluwX5ojg8Z6jbTLbaTJuJPQfBXse7jJZ8JJwKxZHUiBVstIgatHAa2gQhKOdb6IIfqaBWDjNpyiaD530e6pEw0g+oW961xDKmQ42hswCPN48Wu9P1PaskJz9jlaMYH+1XKC3jwcVLA8k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=RawSdYFu; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1765298084;
+	bh=MVyNdWFXaQKj/KOaxhKV47wH1Z8rT4xOoRVTsltB5nM=;
+	h=From:Subject:Date:To:Cc:From;
+	b=RawSdYFuRr9LPcmeHVv0dZ2nMhAV+zfTDR+K5IcjDFQ62CXFH3hfxUGJ6DZiW+vsR
+	 jBa2rGFg+fgBPgu+eH3lAkEHWmYRzQtFetgMC7IaIoufGzmhs5UuIyte7xqchgOxNL
+	 yTIIg0bubFCL4TnvExB7eVSnI32lp6E6hFv4c7ACNvGk9Qkmw80AS5vKtF2GfPZsrS
+	 nek3CTn7YFt4wjpsKTqRyzAGLa+RAsWOlXUnstIfzCA7t+kJzv9+vgY8o4cOrCjb0T
+	 SWSdyDjij/yMVxGatles9PY1UMwGhUfwmDhU373LWCfiDF+g3yq+I1ApmcL20hErT3
+	 Wkb2NI/QGO0Bw==
+Received: from yukiji.home (amontpellier-657-1-116-247.w83-113.abo.wanadoo.fr [83.113.51.247])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: laeyraud)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id EDC3317E1292;
+	Tue,  9 Dec 2025 17:34:43 +0100 (CET)
+From: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+Subject: [PATCH 00/12] Add HDMI support for Mediatek Genio 510/700/1200-EVK
+ and Radxa NIO-12L boards
+Date: Tue, 09 Dec 2025 17:34:30 +0100
+Message-Id: <20251209-mtk-genio-evk-hdmi-support-v1-0-9a6106effba6@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: ipq9574: Use 'usb-phy' for node names
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20251209160755.3878878-1-mr.nuke.me@gmail.com>
- <xmserprghzwpcxt7ionh2ju7o3cudj5emtkycvurbz5obztzr5@lkllnnsag6ri>
-Content-Language: en-US
-From: mr.nuke.me@gmail.com
-In-Reply-To: <xmserprghzwpcxt7ionh2ju7o3cudj5emtkycvurbz5obztzr5@lkllnnsag6ri>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/y2NywqDMBAAfyXsuQsmxWr9leIhNasukkeTKIL47
+ w21x5nDzAGJIlOCThwQaePE3hWQNwHDrN1EyKYwqErVUlV3tHnBiRx7pG3B2VjGtIbgY0bZGF3
+ Lh2xVo6EEQqSR91/81V8c6bOWR74kvHUiHLy1nDvhaM/4/zyhP88vGAvUBZ0AAAA=
+X-Change-ID: 20251203-mtk-genio-evk-hdmi-support-17da5161827a
+To: Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Chun-Kuang Hu <chunkuang.hu@kernel.org>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, 
+ Guillaume Ranquet <granquet@baylibre.com>
+Cc: kernel@collabora.com, Krzysztof Kozlowski <krzk@kernel.org>, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>, 
+ =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1765298083; l=2982;
+ i=louisalexis.eyraud@collabora.com; s=20250113; h=from:subject:message-id;
+ bh=MVyNdWFXaQKj/KOaxhKV47wH1Z8rT4xOoRVTsltB5nM=;
+ b=4SOG6oNUo8Am1C5FYpNCoOcCXaIXGUa6p1b7RQpYrj8Ibkvvbi1Xys4s0lYw1PKjqUw+zTaRS
+ 9/WcUpWb6zDC/sfGToCHRPBWibLvI2v9qwEWtPOqV95xzXe/TOsOOLR
+X-Developer-Key: i=louisalexis.eyraud@collabora.com; a=ed25519;
+ pk=CHFBDB2Kqh4EHc6JIqFn69GhxJJAzc0Zr4e8QxtumuM=
 
-On 12/9/25 10:17 AM, Dmitry Baryshkov wrote:
-> On Tue, Dec 09, 2025 at 10:07:54AM -0600, Alexandru Gagniuc wrote:
->> The devicetree spec allows node names of "usb-phy". So be more
->> specific for the USB PHYs, and name the nodes "usb-phy" instead of
->> just "phy".
-> 
-> Why? "phy" is more generic.
+This patch series adds and enables the HDMI output support for the
+following boards:
+- Mediatek Genio 510-EVK (MT8370)
+- Mediatek Genio 700-EVK (MT8390)
+- Mediatek Genio 1200-EVK (MT8395)
+- Radxa NIO-12L (MT8395)
 
-Hi Dmitry,
+Patch 1 is a 'mediatek,hdmi-phy' dt-binding fix for MT8195 SoC and a
+revised version of [1], that addresses previous feedback from mailing
+list ([2]).
+Patch 2 was split from [1] into a separate patch and adds a MT8188 SoC
+compatible in 'mediatek,hdmi-phy' dt-binding.
+Patch 3 documents in 'mediatek,hdmi-phy' dt-binding extra clocks for
+MT8195 SoC.
+Patch 4 adds all of the nodes that are required to enable HDMI output
+for MT8195 SoC and its variant (MT8395).
+Patch 5 adds the same but for MT8188 SoC and its variants (MT8370,
+MT8390).
+Patches 6 to 11 enable HDMI output and sound support for each board.
+Patch 12 enables the Mediatek HDMIv2 driver as module in defconfig.
 
-The goal is to be more specific. I find usb-phy, ethernet-phy and others
-to me much clearer. As I see these more specific names being used throughut
-dts files, I did not expect this to be controversial.
+The series is based on linux-next (tag: next-20251209).
 
-I am trying to follow devicetree v0.4, "2.2.2 Generic Names Recommendation",
-which allows these more-specific node names.
+[1] https://lore.kernel.org/linux-mediatek/20250724083914.61351-16-angelogioacchino.delregno@collabora.com/
+[2] https://lore.kernel.org/linux-mediatek/ee525312-bde1-4724-b32f-83be32c87696@kernel.org/
 
-Alex
+Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+---
+AngeloGioacchino Del Regno (5):
+      dt-bindings: phy: mediatek,hdmi-phy: Fix clock output names for MT8195
+      arm64: dts: mediatek: mt8195: Add DPI1, HDMI, HDMI PHY/DDC nodes
+      arm64: dts: mediatek: mt8188: Add DPI1, HDMI, HDMI PHY/DDC nodes
+      arm64: dts: mediatek: mt8390-genio-common: Enable HDMI output
+      arm64: dts: mediatek: mt8395-radxa-nio-12l: Enable HDMI output
 
+Louis-Alexis Eyraud (6):
+      dt-bindings: phy: mediatek,hdmi-phy: Add support for MT8188 SoC
+      arm64: dts: mediatek: mt8390-genio-common: Add HDMI sound output support
+      arm64: dts: mediatek: mt8395-radxa-nio-12l: Add HDMI sound output support
+      arm64: dts: mediatek: mt8395-genio-common: Enable HDMI output
+      arm64: dts: mediatek: mt8395-genio-common: Add HDMI sound output support
+      arm64: defconfig: Enable Mediatek HDMIv2 driver
 
+Nícolas F. R. A. Prado (1):
+      dt-bindings: phy: mediatek,hdmi-phy: Document extra clocks for MT8195
 
-> 
->>
->> Signed-off-by: Alexandru Gagniuc <mr.nuke.me@gmail.com>
->> ---
->>   arch/arm64/boot/dts/qcom/ipq9574.dtsi | 4 ++--
->>   1 file changed, 2 insertions(+), 2 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
->> index 86c9cb9fffc98..4b8cbf1ff131b 100644
->> --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
->> @@ -702,7 +702,7 @@ qpic_nand: spi@79b0000 {
->>   			status = "disabled";
->>   		};
->>   
->> -		usb_0_qusbphy: phy@7b000 {
->> +		usb_0_qusbphy: usb-phy@7b000 {
->>   			compatible = "qcom,ipq9574-qusb2-phy";
->>   			reg = <0x0007b000 0x180>;
->>   			#phy-cells = <0>;
->> @@ -716,7 +716,7 @@ usb_0_qusbphy: phy@7b000 {
->>   			status = "disabled";
->>   		};
->>   
->> -		usb_0_qmpphy: phy@7d000 {
->> +		usb_0_qmpphy: usb-phy@7d000 {
->>   			compatible = "qcom,ipq9574-qmp-usb3-phy";
->>   			reg = <0x0007d000 0xa00>;
->>   			#phy-cells = <0>;
->> -- 
->> 2.45.1
->>
-> 
-The
+ .../devicetree/bindings/phy/mediatek,hdmi-phy.yaml |  43 +++++-
+ arch/arm64/boot/dts/mediatek/mt8188.dtsi           |  82 +++++++++++
+ arch/arm64/boot/dts/mediatek/mt8195.dtsi           |  86 ++++++++++++
+ .../boot/dts/mediatek/mt8390-genio-common.dtsi     | 150 +++++++++++++++++++++
+ .../boot/dts/mediatek/mt8395-genio-common.dtsi     | 150 +++++++++++++++++++++
+ .../boot/dts/mediatek/mt8395-radxa-nio-12l.dts     | 150 +++++++++++++++++++++
+ arch/arm64/configs/defconfig                       |   1 +
+ 7 files changed, 656 insertions(+), 6 deletions(-)
+---
+base-commit: 8ebfd5290c6162d65f83f9a8acdbbf243b49a586
+change-id: 20251203-mtk-genio-evk-hdmi-support-17da5161827a
+
+Best regards,
+-- 
+Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
 
 
