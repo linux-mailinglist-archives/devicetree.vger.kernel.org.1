@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-245371-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245372-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BE58CAFB27
-	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 11:55:34 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8860BCAFB2A
+	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 11:55:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1300E30BA6CF
-	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 10:54:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3795D30BFD4C
+	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 10:54:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF4C731985B;
-	Tue,  9 Dec 2025 10:54:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1988231ED88;
+	Tue,  9 Dec 2025 10:54:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="pyEyEWtk"
+	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="YiqjCBy1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx-relay48-hz3.antispameurope.com (mx-relay48-hz3.antispameurope.com [94.100.134.237])
+Received: from mx-relay06-hz1.antispameurope.com (mx-relay06-hz1.antispameurope.com [94.100.132.206])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79668296BD5
-	for <devicetree@vger.kernel.org>; Tue,  9 Dec 2025 10:54:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=94.100.134.237
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA1A32D2391
+	for <devicetree@vger.kernel.org>; Tue,  9 Dec 2025 10:54:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=94.100.132.206
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765277647; cv=pass; b=o+TkEWyfvdp2SgReQNAhL1SBps6oemMjXNvHprLTroCv494/R7G0DlS3LGFCZt8P6LRgo4n+J42k0h4ARnUfKMPioJMBNtE19ammdz/YU675O1iZshmQAtk2fHSP0DGvo2ANVX9adzkAwbHzLGIEQASudaam0LDkgxxPQYauQmE=
+	t=1765277648; cv=pass; b=ByGAL0uA+jz1kslx11oMPmWRg+fKdPyfrU37kbdVpr+eUTwqrQj8bV+YKhMeKZfc1s5+ewXUmWSm1KLbvNgXm9ugEKTIbqsK7/f3aF6jUc92AFVsExHjn1Pz8W3u1CYTttF9BX6K9qKfPXWseDLdEqikCnoreQ1zYCON3HIFX0g=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765277647; c=relaxed/simple;
-	bh=nmPAFYlLwYdLHsbfcU9mSYegvCAZChpys2/gU1VqB00=;
+	s=arc-20240116; t=1765277648; c=relaxed/simple;
+	bh=dXDi0s+km02ebBe7AWt7DzqybHNlwTYq4q7yTrzOyeA=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=nS1o36f9mpxbzOwUq1RTToAva8xBSLDg5zAK6JsTfX72Yc3QBFDSkMXUbUj+LyC84C4VPKZSiM6eB56JZRRw5aznxt958tE1U4tiF7Yro2AMgLIUEF0sQ2NXMRv6BSeqP41Gs6z73s3Ca16ua3fjHwh1wa9i3iAE2MzFNtz6wh0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=pyEyEWtk; arc=pass smtp.client-ip=94.100.134.237
+	 MIME-Version; b=YOLfcT+9uP2pEnEAGOpBo9IqdrWbKMCvkoylIVQgiks2pDTHlUw7MxmUcAgWMl4rUPpSe+/+IECxAB3qLuUUXoL3KxaIXFD6R5xiaStQsuPKekQs/BwfwQ71vU/MgiIOvZYASq3niWug4ooO82ARxRKKgrdYA9MdxZZ4OTeAfHE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=YiqjCBy1; arc=pass smtp.client-ip=94.100.132.206
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-ARC-Authentication-Results: i=1; mx-gate48-hz3.hornetsecurity.com 1; spf=pass
+ARC-Authentication-Results: i=1; mx-gate06-hz1.hornetsecurity.com 1; spf=pass
  reason=mailfrom (ip=94.100.132.6, headerfrom=ew.tq-group.com)
  smtp.mailfrom=ew.tq-group.com
  smtp.helo=hmail-p-smtp01-out03-hz1.hornetsecurity.com; dmarc=pass
  header.from=ew.tq-group.com orig.disposition=pass
 ARC-Message-Signature: a=rsa-sha256;
- bh=A8W5mptCdk0S8QGbadr+z6jPfJ8L5En4UezduXTQKbg=; c=relaxed/relaxed;
+ bh=nmy9fyQ6PEbPx0XQ71lGiSv7DepEPOFim0DYw8pJHy4=; c=relaxed/relaxed;
  d=hornetsecurity.com; h=from:to:date:subject:mime-version:; i=1; s=hse1;
- t=1765277612;
- b=Oi/8mR7zYoXDwB4RBc7ZEGllzrJobaDudYgXCC8vAovwvL6f29jkJOZv+XXH2JgjH9+thg+C
- GWA2h12ui78SzHGJ/MJ6Rpc/34oEnSQWBB8DCDF+sXgmR8Pa3aDLLTTB77bz9UpCG0wbv4tBqLU
- 5GFUuNhJ/3S/8Jg4YsUYYJWd1nyfZEEfmM4EfswteecatYw0FlPkBklxdFrM0u7+Om6WJmTmAVs
- xYy72wlpkr1mikJXazM41KFZQDE96xKcRDdhDgNCQ3NVSwBI2oDwbfaToZjl/yo6+Qn+kbjWKKA
- oL5t2wPNURhM8ByeckyTt8o8ykffpZ+Yh9LIdcQUnTSHA==
+ t=1765277614;
+ b=aBJeNEyK/PUhNm1eXN+DvTEqncMFidWrDB7DHyz5tT3lDt63Am24+r3859udSlLKxsgycYtW
+ SdDsxmNTrHQR7rZWss0VTIWfmD2QWjx5sA7DI855k3roqV/mOVyFeM7rqxozQbXe4aMo0t76lEH
+ apLx7AvFpsUoAh+RqHJve4/1Y1XouTsfeSwez3Ys1+EZjmvX7eQ92ChupsE4VllkTvBLBg1+u18
+ /hOHtv47txK9iq3eIsXvxAnaoiMTncXuAHlNEt58vSwWNabuZsedXXBBJQEnVZusIVynTB1/dAg
+ 208DqSdsMRD4Xb+de7p3GZLg1k6MwQi340OIRgF//kWAg==
 ARC-Seal: a=rsa-sha256; cv=none; d=hornetsecurity.com; i=1; s=hse1;
- t=1765277612;
- b=EmQf4alFzyIIJ1LH0nub83eZO9cwsgIIxfb8F06Xi1YZFaVRFcGEMClHfAzFUQ2roFwTCAQ0
- DM8bY0ydWxoF7LaJG8VnTTUesBDS2pfLNwVZEVIf5UKu+fOw/qHzc31S6DVhdZ6cwX9Uj59fG5B
- 3LILeJTgx3t03ZI+dbpV8zrVHTU6BtyUsKy36Csq7xSy8evvvx7RZWbqFnjbTTCcdlKXgcvqoMh
- jomxiSYDqIVax/r3kx/OS4566uhxPFswb3ACiRAXIuzDAfkHzMQj/FB2cY5SVeNb1hhDg1wYXga
- cz8QASNATVevL85vo9gVPaj0UZR3LCYcpDOCSPqbD8A1w==
-Received: from he-nlb01-hz1.hornetsecurity.com ([94.100.132.6]) by mx-relay48-hz3.antispameurope.com;
- Tue, 09 Dec 2025 11:53:32 +0100
+ t=1765277614;
+ b=XXFLXsAfjLdpOCi4a+KevIFQGe1jbB4MJmXozx7P2+XeatiT6gyVCxQ5wZwds4DuGeN/5cFe
+ HC5c+7X6nQlnciSyeEWYarPdlQyBJbyJYfXJnY4Kshv1K0bIoEg3n97PAnXUFQUHttf9fxsf3Gi
+ SbRp5Birj1JYVRXusmZtzogiilZ+AgcKbFor5m8rZYbL6gfsAnv18a+6kXCjf7ZEs35AF+Sbt0s
+ G7FWo3HQBcOyJqfJvMiKLx0BKesCUYt9qL7WmA4uqMOKUhcsX/EC3Hb4FeLY2T6wK5hcrLJfIBS
+ vIrPvauuHZ4jmVhbD/GLk8Ola7bIVwVQyS+nrOh4nsLww==
+Received: from he-nlb01-hz1.hornetsecurity.com ([94.100.132.6]) by mx-relay06-hz1.antispameurope.com;
+ Tue, 09 Dec 2025 11:53:34 +0100
 Received: from steina-w.tq-net.de (host-82-135-125-110.customer.m-online.net [82.135.125.110])
 	(Authenticated sender: alexander.stein@ew.tq-group.com)
-	by hmail-p-smtp01-out03-hz1.hornetsecurity.com (Postfix) with ESMTPSA id 5A481CC0CCB;
-	Tue,  9 Dec 2025 11:53:25 +0100 (CET)
+	by hmail-p-smtp01-out03-hz1.hornetsecurity.com (Postfix) with ESMTPSA id 78D3FCC0E92;
+	Tue,  9 Dec 2025 11:53:26 +0100 (CET)
 From: Alexander Stein <alexander.stein@ew.tq-group.com>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -71,9 +71,9 @@ Cc: linux@ew.tq-group.com,
 	imx@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 4/8] arm64: dts: tqma8mpql-mba8mpxl: Add HDMI audio output support
-Date: Tue,  9 Dec 2025 11:53:10 +0100
-Message-ID: <20251209105318.977102-5-alexander.stein@ew.tq-group.com>
+Subject: [PATCH v2 5/8] arm64: dts: tqma8mpql-mba8mpxl: Configure IEEE 1588 event out signal
+Date: Tue,  9 Dec 2025 11:53:11 +0100
+Message-ID: <20251209105318.977102-6-alexander.stein@ew.tq-group.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251209105318.977102-1-alexander.stein@ew.tq-group.com>
 References: <20251209105318.977102-1-alexander.stein@ew.tq-group.com>
@@ -90,68 +90,43 @@ X-cloud-security-crypt: load encryption module
 X-cloud-security-Mailarchiv: E-Mail archived for: alexander.stein@ew.tq-group.com
 X-cloud-security-Mailarchivtype:outbound
 X-cloud-security-Virusscan:CLEAN
-X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on mx-relay48-hz3.antispameurope.com with 4dQbLG0GZzz1kNh54
+X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on mx-relay06-hz1.antispameurope.com with 4dQbLH1DFbz4PRJ9
 X-cloud-security-connect: he-nlb01-hz1.hornetsecurity.com[94.100.132.6], TLS=1, IP=94.100.132.6
-X-cloud-security-Digest:f72542e298952ecd7d6a450cc7cae500
-X-cloud-security:scantime:1.806
+X-cloud-security-Digest:fc01c51da6ede21ee2d8c257f7bd177f
+X-cloud-security:scantime:1.956
 DKIM-Signature: a=rsa-sha256;
- bh=A8W5mptCdk0S8QGbadr+z6jPfJ8L5En4UezduXTQKbg=; c=relaxed/relaxed;
+ bh=nmy9fyQ6PEbPx0XQ71lGiSv7DepEPOFim0DYw8pJHy4=; c=relaxed/relaxed;
  d=ew.tq-group.com;
  h=content-type:mime-version:subject:from:to:message-id:date; s=hse1;
- t=1765277612; v=1;
- b=pyEyEWtk2wIPwtoxej+STf2WKM14HpDSdF5DhVi/7Z44FpoUwpMeAxC8SSnFk6TRzyF+e3mz
- GdJJ4l624LZSeZQ2kRtBMtkuw5V6n3kyuxGl/U+G2E44+aG5AjAQa+3vyPaVGA14/YpnUF6rfe4
- lC+abeZJzSHPXXsHpoBnGGTujW+UggiwM0QtR9LchqznQN+9O6orKXKEvEtVd02bwEQxUihyB0R
- TVdjXuEAi9d9uYYLcaVjwjWvrXdmZlzmTfUKwQNeJM/fHG73iDuC8TDlhUH+cEjyyTqbXM9OYPb
- RbSkT/9jk3ImOUPsHCy6/SutfLzEA7H6myzexcpTc+ycA==
+ t=1765277613; v=1;
+ b=YiqjCBy1Qve81kTEwnygBaaEBBmEpMaSxsy+2DQ+AeW0XYb57ZEt1pdOo5MBNwpS749FZYHj
+ jK49gDYEpyqpPNCG5wmLiarTnGTi5UmOOhPMINT1HPrEPmLhTSpAAEU+dLMH+XFNVVZlVeO/V9K
+ pofUvvipKnl01+KPWhC3GOmrB4vrD+94s0g/iVzkNUylkk2i1NV+2Sj4j2pa05h9odURZhnz+dY
+ phFU3uvYu3IczDG8TO5+GgHygs4I1sLBEKZYrqPDhk/E2+Zpdf7VtvBNcNqJzwZ+oHSmg8N+sU3
+ aq9mSzAI62dHbDW0GFxtJOs0nuD3FiDj2hoeuiHFlrJug==
 
-Add the HDMI audio soundcard and enable necessary nodes.
+The event out signal on channel 2 is available on pad SAI2_RXD0 which is
+connected to X63 pin 13.
 
 Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 ---
- .../dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts   | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+ arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
 diff --git a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
-index 03b75d4cf699a..ac889a69da69a 100644
+index ac889a69da69a..fdfe246c56407 100644
 --- a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
 +++ b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl.dts
-@@ -248,6 +248,13 @@ sound {
- 			"Line Out Jack", "LOR";
+@@ -807,7 +807,8 @@ pinctrl_eqos: eqosgrp {
+ 			   <MX8MP_IOMUXC_ENET_TD2__ENET_QOS_RGMII_TD2			0x12>,
+ 			   <MX8MP_IOMUXC_ENET_TD3__ENET_QOS_RGMII_TD3			0x12>,
+ 			   <MX8MP_IOMUXC_ENET_TX_CTL__ENET_QOS_RGMII_TX_CTL		0x12>,
+-			   <MX8MP_IOMUXC_ENET_TXC__CCM_ENET_QOS_CLOCK_GENERATE_TX_CLK	0x14>;
++			   <MX8MP_IOMUXC_ENET_TXC__CCM_ENET_QOS_CLOCK_GENERATE_TX_CLK	0x14>,
++			   <MX8MP_IOMUXC_SAI2_RXD0__ENET_QOS_1588_EVENT2_OUT		0x16>;
  	};
  
-+	sound-hdmi {
-+		compatible = "fsl,imx-audio-hdmi";
-+		model = "audio-hdmi";
-+		audio-cpu = <&aud2htx>;
-+		hdmi-out;
-+	};
-+
- 	thermal-zones {
- 		soc-thermal {
- 			trips {
-@@ -290,6 +297,10 @@ map3 {
- 	};
- };
- 
-+&aud2htx {
-+	status = "okay";
-+};
-+
- &ecspi1 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_ecspi1>;
-@@ -486,6 +497,10 @@ &gpio5 {
- 			  "", "", "", "";
- };
- 
-+&hdmi_pai {
-+	status = "okay";
-+};
-+
- &hdmi_pvi {
- 	status = "okay";
- };
+ 	pinctrl_eqos_event: eqosevtgrp {
 -- 
 2.43.0
 
