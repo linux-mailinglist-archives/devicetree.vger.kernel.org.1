@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-245308-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245309-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4570CAEF8A
-	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 06:53:51 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65CD7CAEFC2
+	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 07:01:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id C2A383004445
-	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 05:53:50 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 59413300CAF1
+	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 06:01:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F86C31ED88;
-	Tue,  9 Dec 2025 05:53:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15FFB22A4E9;
+	Tue,  9 Dec 2025 06:01:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DDNVubnu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TFcNpqQN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F13F26F296;
-	Tue,  9 Dec 2025 05:53:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCBDD168BD;
+	Tue,  9 Dec 2025 06:01:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765259629; cv=none; b=sqT2DT4LkoD32FjNS8EBYLDtRWAWjpTQtKADk+ekHUECEvCx3Fms1SHf8/TwR0pb7jBusv9beaAGNan3AUb3K80nh+R6QlF3q3wmFDqRlhxHz1qo8PDiCO1fV079c5XCH5ABd5GnLigUgJzJC5FZLh/UXkoZlZofofh5cZlsoDs=
+	t=1765260110; cv=none; b=LuYwZ4yXgr5PnupFih4NrlPCceBQqNTmhfBomqosSYjDWZ5wY0E2biAqWr0pJkxP7gEtRB7vIuWThNI6jX41cqtIuGz0RcPSeu6q5DY/2ZRnxDAyifRwNptakqss+036ny6wVUl+W1Ptp76sgt9hSv63FnllCl6m2ttRMF/ZNNA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765259629; c=relaxed/simple;
-	bh=z+m0utOd2YnpOXXxw6CT1KiBiBPO3m93BrS90rijNgU=;
+	s=arc-20240116; t=1765260110; c=relaxed/simple;
+	bh=HdtPK6iYrRFuq2CVhFJGFpGIYHyWnTZQI8p7EvGykcM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Onv8LJm5yS+BfHecIJt6zmvWRtlxyugrnwTa5p8bD7BkcFmaOZ5FfX7FTdsvTC5K0w+I/xrdLSgUF64HzxX/MT6mvjMBmqkY+0lisTwPHp8lb0wnjITdv4T+jE6EbwJ21ndLbL8qwdji+UCEsPhw3xul32njQZth14is6uV1rAk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DDNVubnu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F0A1AC4CEF5;
-	Tue,  9 Dec 2025 05:53:46 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=rz6vckMmhweAxJ2pgO92cE4GbN6qer9ZZ29ZBAWlv6F1nlpbiy52lypDojfKJo47TYAL2eKtJaVLS9WIeNeMHd69lqP2AM/53GkusXvs9s06f/av95XoAy4K8TwgfmXjbHQp4gLk+qkaxaoa8PJI98BZXpLIkmDqRrrk0x5zrRY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TFcNpqQN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3AE53C4CEF5;
+	Tue,  9 Dec 2025 06:01:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765259628;
-	bh=z+m0utOd2YnpOXXxw6CT1KiBiBPO3m93BrS90rijNgU=;
+	s=k20201202; t=1765260109;
+	bh=HdtPK6iYrRFuq2CVhFJGFpGIYHyWnTZQI8p7EvGykcM=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=DDNVubnujiykhrzYXvr80WmV8f3bm3dgue6tBsXXGSQfXrdJX7pCOlhK75QSBif0G
-	 rgJwKBh+u9UnyxUeCZlbYXwR/InOAT8QqFeMELUPR+B62+vitLTuQKXTJ+NtkxY+Fd
-	 8YYG/A9ThLkdnqkiQGQ5w753H19nljApdosTkEDmJevhspQk1YRw++vBCozlQnv3rW
-	 0y5Xy7kTS9uyG2Yo2QPTDsFR5xmHfzAHyRiNm1W5u95fgguBOqX8SzzVn1im03HZy4
-	 MTj8u/kK1gZUsavbL8qFyN7WpkXrB8+RxVwTbuGxftDueCMY2ZNvGTw9iQbaEZZzT/
-	 u+AyZ2J9g8d8Q==
-Message-ID: <83142b0c-0743-4a23-8846-e9f5e72a7677@kernel.org>
-Date: Tue, 9 Dec 2025 06:53:45 +0100
+	b=TFcNpqQNRaA8+CIpFtE+dr0meXUL9MCdFSLzg0h04s0hMzM8JajU2tZNXPFbJIjwB
+	 fVBXHLz5VlcYeKC5KKPR4Td/Kv9g5AZ4TH66E2/04tLwPBrvn0Tu6Un3lcDDt3eHyv
+	 98O1wp/XkN41OdQGapaofNzcFC9Do/zIrMNO2o0JAPmyCTLlGAM+TbXSMyZbFXcHjA
+	 miw9GLscxpWPhcRz99KMSwagdy3J1etxKwYgszAbGl3Aj3JXs/h/5LKOcUIfXi072h
+	 l3/7ZRsPvc6dxb2e4rx9uBVVNkts+9qGWQomumkjLcfs/3xQnYq0dvp3yC7jUTQTYA
+	 m6apX/krIJhEQ==
+Message-ID: <4f5ec838-f8d6-4c3b-94f2-b2a60cfe64ec@kernel.org>
+Date: Tue, 9 Dec 2025 07:01:44 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,29 +48,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/5] memory: tegra186-emc: Support non-bpmp icc scaling
-To: Aaron Kling <webgeek1234@gmail.com>
-Cc: Jon Hunter <jonathanh@nvidia.com>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Thierry Reding
- <thierry.reding@gmail.com>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
-References: <20251027-tegra186-icc-p2-v4-0-e4e4f57e2103@gmail.com>
- <20251027-tegra186-icc-p2-v4-3-e4e4f57e2103@gmail.com>
- <82c8dda8-6fcb-48f9-bdaa-f3d1431e41ae@nvidia.com>
- <CALHNRZ8nCojreFCMXfbBBhWAMtmWN-04XtuW8fEsVD9bw+-AzA@mail.gmail.com>
- <CALHNRZ-CO5i9jeLkEG2cmHxcW1bcLhxcBSxjmL2euHfQy8yr-w@mail.gmail.com>
- <e6ce190e-6df7-4c36-abca-f09df3cc80e7@nvidia.com>
- <99ca4992-5736-417d-854e-379542549bee@kernel.org>
- <7f3dad08-cff5-40c2-8e7f-f6441a3d6b91@nvidia.com>
- <d5d23eb5-f43c-4e4b-9926-3fba6ffd3acf@nvidia.com>
- <CALHNRZ8vFJyfFXbxFehWA9TGkdrEUy9Wsm-DxEOT=tVbYTcU5Q@mail.gmail.com>
- <249bbe7e-e2da-4493-bdd5-8f4b17aff8fe@nvidia.com>
- <CALHNRZ8uPaKqSpFWkmYZn==Xw=rxh95Xm0_6LPN1HDj20zofqw@mail.gmail.com>
- <d16803e5-7b6d-4472-b50c-aa324cf52736@nvidia.com>
- <CALHNRZ83Q2Ha8VYoWAnqoCZQ=Fd9rtVRVLwRFxAY68ePQ29GHw@mail.gmail.com>
- <29cf2c16-3a0e-42c5-a083-16f77ae5d09a@nvidia.com>
- <63be3373-1ab4-4aa4-aa7a-0175727aa9a3@kernel.org>
- <CALHNRZ83EcVnyBYADsuXtMu9omBd8WW+7reyb4GX8FfJ4sOcyw@mail.gmail.com>
+Subject: Re: [PATCH v6 2/5] dt-bindings: clock: add Amlogic T7 SCMI clock
+ controller
+To: Jian Hu <jian.hu@amlogic.com>
+Cc: Jerome Brunet <jbrunet@baylibre.com>,
+ Xianwei Zhao <xianwei.zhao@amlogic.com>, Chuan Liu <chuan.liu@amlogic.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, robh+dt <robh+dt@kernel.org>,
+ Rob Herring <robh@kernel.org>, devicetree <devicetree@vger.kernel.org>,
+ linux-clk <linux-clk@vger.kernel.org>,
+ linux-amlogic <linux-amlogic@lists.infradead.org>,
+ linux-kernel <linux-kernel@vger.kernel.org>,
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+References: <20251204053635.1234150-1-jian.hu@amlogic.com>
+ <20251204053635.1234150-3-jian.hu@amlogic.com>
+ <20251208-independent-warping-macaw-74a169@quoll>
+ <dd90b445-bafb-46d4-8cec-e0877cf425b3@amlogic.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -116,61 +110,60 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <CALHNRZ83EcVnyBYADsuXtMu9omBd8WW+7reyb4GX8FfJ4sOcyw@mail.gmail.com>
+In-Reply-To: <dd90b445-bafb-46d4-8cec-e0877cf425b3@amlogic.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 09/12/2025 05:26, Aaron Kling wrote:
-> On Sat, Nov 22, 2025 at 6:01 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>
->> On 21/11/2025 12:21, Jon Hunter wrote:
->>>
->>> On 12/11/2025 07:21, Aaron Kling wrote:
->>>> On Wed, Nov 12, 2025 at 12:18 AM Jon Hunter <jonathanh@nvidia.com> wrote:
->>>>>
->>>>>
->>>>> On 11/11/2025 23:17, Aaron Kling wrote:
->>>>>
->>>>> ...
->>>>>
->>>>>> Alright, I think I've got the picture of what's going on now. The
->>>>>> standard arm64 defconfig enables the t194 pcie driver as a module. And
->>>>>> my simple busybox ramdisk that I use for mainline regression testing
->>>>>> isn't loading any modules. If I set the pcie driver to built-in, I
->>>>>> replicate the issue. And I don't see the issue on my normal use case,
->>>>>> because I have the dt changes as well.
->>>>>>
->>>>>> So it appears that the pcie driver submits icc bandwidth. And without
->>>>>> cpufreq submitting bandwidth as well, the emc driver gets a very low
->>>>>> number and thus sets a very low emc freq. The question becomes... what
->>>>>> to do about it? If the related dt changes were submitted to
->>>>>> linux-next, everything should fall into place. And I'm not sure where
->>>>>> this falls on the severity scale since it doesn't full out break boot
->>>>>> or prevent operation.
->>>>>
->>>>> Where are the related DT changes? If we can get these into -next and
->>>>> lined up to be merged for v6.19, then that is fine. However, we should
->>>>> not merge this for v6.19 without the DT changes.
->>>>
->>>> The dt changes are here [0].
->>>
->>> To confirm, applying the DT changes do not fix this for me. Thierry is
->>> having a look at this to see if there is a way to fix this.
->>>
->>> BTW, I have also noticed that Thierry's memory frequency test [0] is
->>> also failing on Tegra186. The test simply tries to set the frequency via
->>> the sysfs and this is now failing. I am seeing ..
+On 08/12/2025 09:40, Jian Hu wrote:
+> Hi, Krzysztof
 > 
-> With this patch dropped from -next, what needs to happen to get it
-> requeued? I gave an analysis over two weeks ago and have seen no
-> response since.
+> 
+> Thans for your review.
+> 
+> On 12/8/2025 2:17 PM, Krzysztof Kozlowski wrote:
+>> [ EXTERNAL EMAIL ]
+>>
+>> On Thu, Dec 04, 2025 at 01:36:31PM +0800, Jian Hu wrote:
+>>> Add DT bindings for the SCMI clock controller of the Amlogic T7 SoC family.
+>>>
+>>> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+>>> Acked-by: Rob Herring (Arm) <robh@kernel.org>
+>>> ---
+>>>   include/dt-bindings/clock/amlogic,t7-scmi.h | 47 +++++++++++++++++++++
+>>>   1 file changed, 47 insertions(+)
+>>>   create mode 100644 include/dt-bindings/clock/amlogic,t7-scmi.h
+>>>
+>> Where is any binding doc for this? Why is this a separate patch?
+> 
+> 
+> The ARM SCMI device tree binding specification is located at 
+> ./Documentation/devicetree/bindings/firmware/arm,scmi.yaml.
 
-Hm, I did not see the root cause identified, so maybe I missed something.
+Then git grep for the file name - there is no such compatible. Are you
+sure you follow writing bindings doc?
 
-Anyway, I am waiting for the patchset to be retested and resent. And
-testing MUST include kernel development process rules, including how
-patches are taken - see maintainer soc profile. Any dependencies must be
-clearly marked.
+Think how are you going to use these values. You will have phandle, yes?
+To some controller, yes? Which one?
+
+> 
+> Certain secure clocks on the T7 rely on the ARM SCMI driver stack, which 
+> is officially supported by ARM.
+> 
+> The kernel-side SCMI client implementation resides in 
+> ./drivers/firmware/arm_scmi/.
+> 
+> To enable ARM SCMI on T7, three components are needed:
+> 
+> - Kernel-side definition of ARM SCMI clock indices (this patch addresses 
+> this component);
+> - SCMI server implementation in the ARM Trusted Firmware (ATF) running 
+> at Exception Level 3 (EL3), which has been integrated into the bootloader;
+> - Device Tree Source (DTS) configuration for ARM SCMI clock nodes (the 
+> DTS changes will be submitted after the T7 clock driver patches are 
+> merged upstream).
+
+So silently you keep the users hidden? No, I want to see the users.
+
 
 Best regards,
 Krzysztof
