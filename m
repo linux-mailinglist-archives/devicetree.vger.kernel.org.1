@@ -1,48 +1,49 @@
-Return-Path: <devicetree+bounces-245388-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245387-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BE87CB03DA
-	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 15:19:37 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A6E8CB022D
+	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 15:01:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 11CBF30365A8
-	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 14:19:36 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 5EBC93017DA4
+	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 14:00:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91C832BEFE4;
-	Tue,  9 Dec 2025 14:19:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A7BB27B358;
+	Tue,  9 Dec 2025 14:00:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ziyao.cc header.i=@ziyao.cc header.b="epEFCiLb"
+	dkim=pass (1024-bit key) header.d=ziyao.cc header.i=@ziyao.cc header.b="L2/Ys5/r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail2.out.flockmail.com (mail2.out.flockmail.com [52.206.209.181])
+Received: from mail77.out.titan.email (mail77.out.titan.email [3.216.99.57])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6E25299929
-	for <devicetree@vger.kernel.org>; Tue,  9 Dec 2025 14:19:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=52.206.209.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F29727B349
+	for <devicetree@vger.kernel.org>; Tue,  9 Dec 2025 14:00:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=3.216.99.57
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765289974; cv=none; b=oNPXCFxqr245BcgTSvufhAgeQxNAlwjlT+tSXi95pkzXanPH7jkUrzGwvgLPVfbJm3bTwvI5pPGtxZFlTKnCiGFb14n+Ot4J3MgXBK75Fd3hXI0BbaWYgV2xFLo4FgLVjoF0walt5sSoyu+EwxFz0gdj47/1oMFBBb/D3MCTW94=
+	t=1765288845; cv=none; b=pCqlMhAy6ykPRBvs1VELdRUWfklkyIsN0jSGLcuvsdJWzqjtGWsLOpSLSY5ZGKIncz9DGqn2dGOiBjaZj/MiepDg/3hSDl+10iF3G5ICpkAOmRnIBA2z337A7rKI42bVIRbnAtwuXQbzpYF79/1suL1MjrHk1GwRj7LaqrKDYv8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765289974; c=relaxed/simple;
-	bh=nyTQZgxqbzgEgJc5dsLmfDOLr351cJZa7XNqltO7PjE=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=WDzKPIdFyrb7YsZfdTe6+pK+rymPdHI+ZPId6/GOYzeQcbWIu7KOLDu3KBNn82YA9vzGtwlUAcPUkE32k2WrrJnntYqQeIrchfFG4NThaKpqK/k38oVnbEngffxGSHu0JGQA/+KO78q5BDzJXCjskJ01x44xV2zh76phRn0UGoA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ziyao.cc; spf=pass smtp.mailfrom=ziyao.cc; dkim=pass (1024-bit key) header.d=ziyao.cc header.i=@ziyao.cc header.b=epEFCiLb; arc=none smtp.client-ip=52.206.209.181
+	s=arc-20240116; t=1765288845; c=relaxed/simple;
+	bh=vX9kXXrJnR1rHWThBL7xU5N4xiOBbubeqzMIe08FOCw=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=RJ+ct/nFop/s5zOdCBeOFgF/hw0cU+R8QLfb+bbQtzd+A2CyeXTdqs+qXYs3sZo3t93XsPSNYPpvwWXQphjcNEcyPf3VRyyUHhff3RQ/ILaHzMc5PcFMOlQFxLZvumxP0CBbL9wL8A2E8DYNjng2iGnYrhCSfq0rlOQLeZkO4cc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ziyao.cc; spf=pass smtp.mailfrom=ziyao.cc; dkim=pass (1024-bit key) header.d=ziyao.cc header.i=@ziyao.cc header.b=L2/Ys5/r; arc=none smtp.client-ip=3.216.99.57
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ziyao.cc
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziyao.cc
 Received: from localhost (localhost [127.0.0.1])
-	by smtp-out.flockmail.com (Postfix) with ESMTP id 4dQgV36FPbz9rx4;
-	Tue,  9 Dec 2025 14:00:27 +0000 (UTC)
-DKIM-Signature: a=rsa-sha256; bh=R4nibh5JRSMMO3gyGOy//Kvj4/C4x07Pa4snNO8+7VU=;
+	by smtp-out.flockmail.com (Postfix) with ESMTP id 4dQgVL3jrQz9s0n;
+	Tue,  9 Dec 2025 14:00:42 +0000 (UTC)
+DKIM-Signature: a=rsa-sha256; bh=UWQDG7nF1KGYTr9qrLmsnw74AeAFGq39le95Kv6fqh8=;
 	c=relaxed/relaxed; d=ziyao.cc;
-	h=from:cc:date:message-id:to:subject:mime-version:from:to:cc:subject:date:message-id:in-reply-to:reply-to:references;
-	q=dns/txt; s=titan1; t=1765288827; v=1;
-	b=epEFCiLb++LLFhADULTWg7i2/dR+maFgQX+VcAwTe5YWnXX0aoOcHr9B3mlZ8vHDRxpSrrE4
-	ES1RH9+2n4gTPo1aUCEnIcoe5NPFlbGEIO5zezfHCbhp98zrdkrpmptHBzI0LbH3TzYv1Sj+k4u
-	wo+oXwfRN7Fx4BbfrAVP4qwo=
+	h=to:cc:date:in-reply-to:subject:mime-version:references:message-id:from:from:to:cc:subject:date:message-id:in-reply-to:references:reply-to;
+	q=dns/txt; s=titan1; t=1765288842; v=1;
+	b=L2/Ys5/rRsHspyPxCmLtjuCLI7JH48PgtoxK5CJxsAgO9dl4uCbgPbEXdvRkNrQYFFRxWgNa
+	Em9R1c9k3kbqsdXo3xIGtqiGGCUdiF+NGJu7U/3dAsfFaa4EMNsgTdki7UyPhNGeV61+DuGXesl
+	tdO+X9nzL/g0u+M+W/A9Rf8c=
 Received: from ketchup (unknown [117.171.66.90])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp-out.flockmail.com (Postfix) with ESMTPSA id 4dQgTw4Gb9z9rxS;
-	Tue,  9 Dec 2025 14:00:19 +0000 (UTC)
+	by smtp-out.flockmail.com (Postfix) with ESMTPSA id 4dQgVC0wtJz9rxQ;
+	Tue,  9 Dec 2025 14:00:34 +0000 (UTC)
 Feedback-ID: :me@ziyao.cc:ziyao.cc:flockmailId
 From: Yao Zi <me@ziyao.cc>
 To: Lorenzo Pieralisi <lpieralisi@kernel.org>,
@@ -61,10 +62,12 @@ Cc: linux-pci@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	loongarch@lists.linux.dev,
 	Yao Zi <me@ziyao.cc>
-Subject: [PATCH 0/2] Fix LoongArch dtbs_check warnings
-Date: Tue,  9 Dec 2025 14:00:04 +0000
-Message-ID: <20251209140006.54821-1-me@ziyao.cc>
+Subject: [PATCH 2/2] dt-bindings: PCI: loongson: Document msi-parent property
+Date: Tue,  9 Dec 2025 14:00:06 +0000
+Message-ID: <20251209140006.54821-3-me@ziyao.cc>
 X-Mailer: git-send-email 2.51.2
+In-Reply-To: <20251209140006.54821-1-me@ziyao.cc>
+References: <20251209140006.54821-1-me@ziyao.cc>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,49 +76,42 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-F-Verdict: SPFVALID
-X-Titan-Src-Out: 1765288827551596737.21635.3562549596523812257@prod-use1-smtp-out1003.
+X-Titan-Src-Out: 1765288842007571500.21635.6149325618728624297@prod-use1-smtp-out1003.
 X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.4 cv=a8/K9VSF c=1 sm=1 tr=0 ts=69382b7b
+X-CMAE-Analysis: v=2.4 cv=a8/K9VSF c=1 sm=1 tr=0 ts=69382b8a
 	a=rBp+3XZz9uO5KTvnfbZ58A==:117 a=rBp+3XZz9uO5KTvnfbZ58A==:17
-	a=MKtGQD3n3ToA:10 a=1oJP67jkp3AA:10 a=CEWIc4RMnpUA:10 a=gEfo2CItAAAA:8
-	a=gG2v9l9OlLWBpoMu9D0A:9 a=sptkURWiP4Gy88Gu7hUp:22
-	a=3z85VNIBY5UIEeAh_hcH:22 a=NWVoK91CQySWRX1oVYDe:22
+	a=MKtGQD3n3ToA:10 a=1oJP67jkp3AA:10 a=CEWIc4RMnpUA:10
+	a=luwqUdSl4_V6MCu2PjAA:9 a=3z85VNIBY5UIEeAh_hcH:22
+	a=NWVoK91CQySWRX1oVYDe:22
 
-Running dtbs_check with ARCH=loongarch emits a lot of warnings, most
-about describing sideband interrupts for PCI devices through interrupts
-property, and usage of undocumented msi-parent property in pcie
-controller in loongson-2k2000.dtsi.
+Loongson PCI controllers found in LS2K1000/2000 SoCs
+(loongson,ls2k-pci), 7A1000/2000 bridge chips (loongson,ls7a-pci), and
+RS780E bridge chips (loongson,rs780e-pci) all have their paired MSI
+controllers.
 
-Patch 1 solves the former problem by using interrupts-extended property
-for these devices. I don't have LS2K1000/2000 devices on hand, so
-helping in testing it will be appreciated. msi-parent property is
-documented in the second patch for Loongson PCI controllers.
+Though only the one in LS2K2000 SoC is described in devicetree, we
+should document the property for all variants. For the same reason, it
+isn't marked as required for now.
 
-After applying the series, the only two warnings left are about naming
-of I2C controllers,
+Fixes: 83e757ecfd5d ("dt-bindings: Document Loongson PCI Host Controller")
+Signed-off-by: Yao Zi <me@ziyao.cc>
+---
+ Documentation/devicetree/bindings/pci/loongson.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-/builder/repo/linux/arch/loongarch/boot/dts/loongson-2k1000-ref.dtb: i2c-gpio-0 (i2c-gpio): $nodename:0: 'i2c-gpio-0' does not match '^i2c(@.+|-[a-z0-9]+)?$'
-	from schema $id: http://devicetree.org/schemas/i2c/i2c-gpio.yaml#
-/builder/repo/linux/arch/loongarch/boot/dts/loongson-2k1000-ref.dtb: i2c-gpio-1 (i2c-gpio): $nodename:0: 'i2c-gpio-1' does not match '^i2c(@.+|-[a-z0-9]+)?$'
-	from schema $id: http://devicetree.org/schemas/i2c/i2c-gpio.yaml#
-
-which IMHO is a regression caused by dt-schema commit 57138f5b8c92
-("schemas: i2c: Avoid extra characters in i2c nodename pattern"). Commit
-647181a1f8ff ("schemas: i2c: Allow for 'i2c-.*' node names") fails to
-fix the case, as it doesn't take nodenames with multiple hyphens in
-account. I'll start a separate series for this.
-
-Thanks for your time and review.
-
-Yao Zi (2):
-  LoongArch: dts: Describe PCI sideband IRQ through interrupt-extended
-  dt-bindings: PCI: loongson: Document msi-parent property
-
- .../devicetree/bindings/pci/loongson.yaml     |  2 ++
- arch/loongarch/boot/dts/loongson-2k1000.dtsi  | 25 ++++++---------
- arch/loongarch/boot/dts/loongson-2k2000.dtsi  | 32 +++++++------------
- 3 files changed, 23 insertions(+), 36 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/pci/loongson.yaml b/Documentation/devicetree/bindings/pci/loongson.yaml
+index e5bba63aa947..26e77218b901 100644
+--- a/Documentation/devicetree/bindings/pci/loongson.yaml
++++ b/Documentation/devicetree/bindings/pci/loongson.yaml
+@@ -32,6 +32,8 @@ properties:
+     minItems: 1
+     maxItems: 3
+ 
++  msi-parent: true
++
+ required:
+   - compatible
+   - reg
 -- 
 2.51.2
 
