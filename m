@@ -1,59 +1,58 @@
-Return-Path: <devicetree+bounces-245456-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245458-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AB43CB12CA
-	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 22:21:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 240B9CB1330
+	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 22:34:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 362FC30FFEF8
-	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 21:19:08 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1454830F7019
+	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 21:31:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8B1F30CDAE;
-	Tue,  9 Dec 2025 21:19:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B901B31A545;
+	Tue,  9 Dec 2025 21:21:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Fd6lSjtb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ifxuqgbi"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11FC630C62F;
-	Tue,  9 Dec 2025 21:19:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DD4C30E856;
+	Tue,  9 Dec 2025 21:21:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765315147; cv=none; b=QxDwngD84RP+KSgNJXZxGqSEN9kfqANVp7LfmH5jXZ10naS6YuCaDjys14omhmzwefqNc6/L/oMjli+oF+x539+/u7KeCHsOFHRXZWiSVOMo1dTsZrZDzHqUOJoemR9/50KY7uDgLsp+B5+uQsMLEyUyjZacBxlz+jGIVZVk6do=
+	t=1765315315; cv=none; b=plfiUAYP/dcH6XsEXg+xWzepnMXluokgKzrn2ZMUJrm9nhM9idY1aTxiAerGC3cnsBbz9hQlvX+Z+04+X+7+LM7Oh9zS2qXSNwlMfOT/0nsOOHno4j2vXI+uaxkJ/hO2tr8DXv6a1LJyvwJekhBlQH0kuVbgnZ3VREWeY77PyxE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765315147; c=relaxed/simple;
-	bh=pDSgft3va/X+kqW8q1URovj4IThmlNfci9JAAQluSds=;
+	s=arc-20240116; t=1765315315; c=relaxed/simple;
+	bh=aOzN0wGw1DHRzBnSLWWtfycerLfPcbuHpGrDYMKFVMQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JBtuhkXfQyKnoZWiC6KgkIyaf6hXLNvmeTYmqErPAafKaDR+1GyesR+7BK+15NJTBwpV8UghHy95X3SBxXqmxn91xN9aQ16hMkRDHIR2P29BxRtzWR+xLLIMGSoCS8LFpjJJ1kSqF9GvfO5a6rZhzXOgY1wohIj5ZKnQg97VJLQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Fd6lSjtb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4480BC4CEF5;
-	Tue,  9 Dec 2025 21:19:06 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=TCKF4nWtAqbPwtSHsjOlueVvwVna8oLPe/3/lSHB5Ys3FmWVNL+wIHzgHG3BB1fLfre/mpMb3yjctzR9kEO4a+aDPlCQIuzNFtOihgL7uyKWeShIb/bNWz9iJPZnpiHRh0mTHPqYwdmrRdPIsHyN9XlsOZiKMbceELPWgB7hTfk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ifxuqgbi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ECDFFC4CEF5;
+	Tue,  9 Dec 2025 21:21:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765315146;
-	bh=pDSgft3va/X+kqW8q1URovj4IThmlNfci9JAAQluSds=;
+	s=k20201202; t=1765315315;
+	bh=aOzN0wGw1DHRzBnSLWWtfycerLfPcbuHpGrDYMKFVMQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Fd6lSjtbq8lGthxyj1Q76N1Jfsg5QS3SbhTzwHObRq71hVx3naLJ1zsTIGjirxeK1
-	 Vk405Qm0okSikGQiDAyujF9mZDEKQ5ZBjZJ5rs0DRy41r+4VtuIfQLJnuduXhdXeOC
-	 h3zOtiqg1041jp8nNBK4B14IGvHbjogTUxz4bZvwbD4/5fpOZbEiMr75dwyEuV7kPd
-	 uJlAJTyH9Z4Y089hswCRzxdwF4ZXov/02Ylkc0MVsO4ShyMtjqhwtB7SSYNKb0QPox
-	 QhRuUEGLYdnrh960qyeuTD6DQ6ga7fR9EDtmDt7COacYbyubn+nWxFXT+yEtjOzu+J
-	 XxOlz2OgSZHtg==
-Date: Tue, 9 Dec 2025 15:19:04 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Luca Weiss <luca@lucaweiss.eu>
-Cc: devicetree@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
-	phone-devel@vger.kernel.org, linux-kernel@vger.kernel.org,
+	b=IfxuqgbihooB8sWTh2eZILSbH3lrJX/hbV68bDigT9KUUBpWMH4puJ2kxuhpoOKjU
+	 6UxDbxIdam7cTRRujUzOIToYiEvZotcXS4W6oYjQkyx1XYneRg1zLi1Tu9D1+NCdKV
+	 szlBAOaqp3U8lFIpxgoY1DY2FFlDXh5SJiyT+WOAX8X+7btuIDhhYhUuVJN2VxaDtc
+	 DxPJED4N9rgg/bjIsp2vQuUixwfCdwsTm4PrjlcxWLR5e5egsqRnxYFHzD8AefaagQ
+	 oKuOKH5D3XypKfBmPKCZiJQkp1NEnMqBi8kfQSFpigk7WNfZCOn5lpMKAPCm5fydfq
+	 etioegxkX8NBw==
+Date: Tue, 9 Dec 2025 15:21:52 -0600
+From: Rob Herring <robh@kernel.org>
+To: Khairul Anuar Romli <khairul.anuar.romli@altera.com>
+Cc: Dinh Nguyen <dinguyen@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-remoteproc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH] dt-bindings: remoteproc: qcom,adsp: Re-add cx-supply
-Message-ID: <176531514393.1121410.3278248360744028841.robh@kernel.org>
-References: <20251207-adsp-cx-fixup-v1-1-0471bf2c5f33@lucaweiss.eu>
+	Conor Dooley <conor+dt@kernel.org>,
+	Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
+	Vinod Koul <vkoul@kernel.org>, dmaengine@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/4] dt-bindings: dma: snps,dw-axi-dmac: Add
+ compatible string for Agilex5
+Message-ID: <20251209212152.GA1121752-robh@kernel.org>
+References: <cover.1764927089.git.khairul.anuar.romli@altera.com>
+ <09c56ccbd5b9cfa717c7901ac35d9235458bbc30.1764927089.git.khairul.anuar.romli@altera.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,29 +61,76 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251207-adsp-cx-fixup-v1-1-0471bf2c5f33@lucaweiss.eu>
+In-Reply-To: <09c56ccbd5b9cfa717c7901ac35d9235458bbc30.1764927089.git.khairul.anuar.romli@altera.com>
 
-
-On Sun, 07 Dec 2025 19:35:35 +0900, Luca Weiss wrote:
-> Some boards (e.g. sdm845-samsung-starqltechn) provide a cx-supply
-> reference for the SLPI PAS.
+On Mon, Dec 08, 2025 at 09:57:42AM +0800, Khairul Anuar Romli wrote:
+> The address bus on Agilex5 is limited to 40 bits. When SMMU is enable this
+> will cause address truncation and translation faults. Hence introducing
+> "altr,agilex5-axi-dma" to enable platform specific configuration to
+> configure the dma addressable bit mask.
 > 
-> The Linux driver unconditionally tries getting "cx" and "px" supplies,
-> so it actually is used.
+> Add a fallback capability for the compatible property to allow driver to
+> probe and initialize with a newly added compatible string without requiring
+> additional entry in the driver.
 > 
-> Fixes: 3d447dcdae53 ("dt-bindings: remoteproc: qcom,adsp: Make msm8974 use CX as power domain")
-> Signed-off-by: Luca Weiss <luca@lucaweiss.eu>
+> Add dma-ranges to the binding schema to allow specifying DMA address
+> mapping between the controller and its parent bus.
+> 
+> Signed-off-by: Khairul Anuar Romli <khairul.anuar.romli@altera.com>
 > ---
-> There's literally one board using this upstream, judging from that I'm
-> not sure this is a misuse of cx-supply or what exactly. An alternative
-> to this patch is of course removing the usage in
-> sdm845-samsung-starqltechn, but as it stands right now the patch under
-> "Fixes" introduces a dtbs_check warning.
+> Changes in v2:
+> 	- Add dma-ranges
 > ---
->  Documentation/devicetree/bindings/remoteproc/qcom,adsp.yaml | 3 +++
->  1 file changed, 3 insertions(+)
+>  .../bindings/dma/snps,dw-axi-dmac.yaml        | 23 +++++++++++++++----
+>  1 file changed, 18 insertions(+), 5 deletions(-)
 > 
+> diff --git a/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml b/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
+> index a393a33c8908..1a1800d9b544 100644
+> --- a/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
+> +++ b/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
+> @@ -17,11 +17,15 @@ allOf:
+>  
+>  properties:
+>    compatible:
+> -    enum:
+> -      - snps,axi-dma-1.01a
+> -      - intel,kmb-axi-dma
+> -      - starfive,jh7110-axi-dma
+> -      - starfive,jh8100-axi-dma
+> +    oneOf:
+> +      - enum:
+> +          - snps,axi-dma-1.01a
+> +          - intel,kmb-axi-dma
+> +          - starfive,jh7110-axi-dma
+> +          - starfive,jh8100-axi-dma
+> +      - items:
+> +          - const: altr,agilex5-axi-dma
+> +          - const: snps,axi-dma-1.01a
+>  
+>    reg:
+>      minItems: 1
+> @@ -104,6 +108,15 @@ properties:
+>      minimum: 1
+>      maximum: 256
+>  
+> +  dma-ranges:
+> +    description: |
+> +      Describe memory addresses translation between the DMA address and the
+> +      CPU address. Each memory region, is declared with 3-6 32-bit cells
+> +      parameters:
+> +        - param 1: device base address
+> +        - param 2: physical base address
+> +        - param 3: size of the memory region.
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+No need to generically describe dma-ranges. Just 'dma-ranges: true' 
+unless you define constaints on the number of entries or want to put 
+some description about why it is needed here.
 
+> +
+>  required:
+>    - compatible
+>    - reg
+> -- 
+> 2.43.7
+> 
 
