@@ -1,187 +1,105 @@
-Return-Path: <devicetree+bounces-245449-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245450-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3776CB10BD
-	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 21:47:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F62DCB10E1
+	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 21:50:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 66AB830AECA8
-	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 20:47:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E9FB530AB2CA
+	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 20:50:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1930226E706;
-	Tue,  9 Dec 2025 20:47:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 467EC2C237C;
+	Tue,  9 Dec 2025 20:50:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b="vJNrIu/Z"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k2FHVx10"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5194F2367BA
-	for <devicetree@vger.kernel.org>; Tue,  9 Dec 2025 20:47:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19820262FC1;
+	Tue,  9 Dec 2025 20:50:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765313235; cv=none; b=oV+bwEuF3inpuuvDCi1YeiJ79Qza5AOCo3Pj5vUchZEgx7jAOw/IbzfEMER5lxxhFubLQnprpGAUnie4ePzeY1ta0PjWk3MOi3GrSPT/sJJmKaFY8SzT3tOYQuQe3oKyvHgDENIkqQVnZM3X/h8+v8iOUW6wjMKptxlwiqNhfOw=
+	t=1765313437; cv=none; b=p5LgEhFbKCmF0PiyP/llV/WVi5hi83vRrJ+G/Blvt3qmZoYtPBuVgy4Y8ncTKRnPWxt1qrGKMBlepWuPhIE/c0e3fswnT7bLVUX8Q2ocHw8vvKwj/X7ShssII9xQ4hylEO7Y4kEtduLhey34AMIXQjBkdLaD9q7Wi2EyPfqD9CM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765313235; c=relaxed/simple;
-	bh=tPo61BjFSIsTiq+qr9Xq4v+Jwo/eWZ9R2CBvQUlX28c=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=nrZ0odXGbYA5itvgwsFgjnm47Wb5UJRHnvtVjZA2nlHNVqB/viA1QHoh3Etp2x5/epDeUVjp+aRXPgAegFiQXLoTA5gB6SnT1xRyBP4x7/oDJecEgTAHGb2Jb3v5Q4XnHZktWUTUYaFxeKwATwibs0494G//XvEY/huNNfdvy4E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca; spf=pass smtp.mailfrom=ndufresne.ca; dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b=vJNrIu/Z; arc=none smtp.client-ip=209.85.160.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ndufresne.ca
-Received: by mail-qt1-f176.google.com with SMTP id d75a77b69052e-4ed66b5abf7so2174451cf.1
-        for <devicetree@vger.kernel.org>; Tue, 09 Dec 2025 12:47:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20230601.gappssmtp.com; s=20230601; t=1765313232; x=1765918032; darn=vger.kernel.org;
-        h=mime-version:user-agent:autocrypt:references:in-reply-to:date:cc:to
-         :from:subject:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=c4INrajJZxer3eDvKBBVTy/6pmKf+B5vk/ryF/UUlog=;
-        b=vJNrIu/Zmy2YsrDM+80oDyeNT8NmeTaZ9Eil8EA5TRJ8HeFn3Qyi2T3mYgu7ZIrBQ6
-         Kaosru+tSxTm9nu1PY8LMr1lsaW+n3Jx1aVDWHOloBboInPCHzH1RLnhw3Ke6Wq/5lW1
-         xPLI0ceESMcjzS9+AlnejJvAi6n4UxJDI4CFeNbnq2+032DLMyikYlkYXPkF0rAnvfnG
-         qjqLTDJCt2Ti58lbVX/A3K8vlhXeG3ftf08GxQAG3QliQ4TpWvc09t52SClD/jpxWsP6
-         t1eTbzpRm4SVcviex6Yj0TTFOMcX58y4YeThexixELTaZ6ki++arpokfgXD3L5XI77Sd
-         fwBA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765313232; x=1765918032;
-        h=mime-version:user-agent:autocrypt:references:in-reply-to:date:cc:to
-         :from:subject:message-id:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=c4INrajJZxer3eDvKBBVTy/6pmKf+B5vk/ryF/UUlog=;
-        b=RIVtzKhBTsOxofNgCMVFyKtuq6lbGMQpjsX5Rp1oQLCtjYy4apiOKKkIfbR79cBJVy
-         f9ZDfbQHdxoSPrmnG1aLUtLgxD7R4kVgug1j6kk/c6WPr+czfAoC4yVLSy295nD7hQuJ
-         7qc6BDnFuUmRmYiN2V2n9cD6B/bg+6pAtv1Y9b84lZdjDUv+f/xkyJXCtAqzH6VGLIwe
-         ah8oyUKNzJwadl04P14n0qJQEWnvChkQdL9T7bDvtnsYTPYdKCCwqhIp8pJxje1CVQfW
-         PMFD9VR6vxsHyCuyKgSaFk2NYY8SJ6RuqTqhGdrPCygObQRnZMc2pLVroZkS+e65ogu4
-         QfPQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW7DWq17q0YWTzifKhTEm75TQOL2VYRDDK/w6TecQckeM5Chl1hcvfNSO4Oxdcb4Kp7EDpHLTmyaDMS@vger.kernel.org
-X-Gm-Message-State: AOJu0YwzVgRA33vKxDGG6qgTyywl9E7uqedvQwpEp3NiY4GL76qbqneU
-	UICePAtEe8cyz+YBxnMM4BhpAxuVHEf9H+x2QJc8izAE88yOHG9WGFCwd5s/P7BiHxRaYc5wQXa
-	4Dwz3ai1QRQ==
-X-Gm-Gg: ASbGnctOoKRTdzRmtDM4GGS2rW37EHpEnlktUno6hAFAw+bLEdh8SyW65N1nsqbP0/q
-	BlmkcllczBYX4EFNq9ctzusutQ2My1XTnLQ4D/3UepC4J9+bieoDjWBYfCTLMfvbwxJaJmA9cIY
-	AutO5xyYlV/o5WhEDquRP4zNfGBQsyPtGzBCjf9BjAERTLXuOWYStCWNXMG2Spm05NcVFHKy6Y6
-	YX7VvBrIWKcUUWbuyFVK+W/8gs95Wdq+GuyZWBb/oYwR1G59iWv4J4BfAHR0EgM8oaNJy+/Xb/h
-	6xSWbBLfrmm9NMSKZqBOnWNrDtS/ouAiPDovln0xnlSSFzXxYoyF7Ronxot9a9X4fxW/RdPMAfr
-	tzEWKe0kbjqwqaDcgVxgGQv2UYCF7ErMiltqt9pf5fwgQfdAGMC4c8zaATteekI1bqbIzg6/0TF
-	zCyaW4Du4BErlTp9fw
-X-Google-Smtp-Source: AGHT+IEoy3WsJss4eewDF1IObVZFsEEO8RMc62bsDTegGuaNornhGcbzFkR2E0lJrV1isVMQC9W0cQ==
-X-Received: by 2002:ac8:7d86:0:b0:4ed:b570:569 with SMTP id d75a77b69052e-4f1b17f042fmr1022671cf.27.1765313232127;
-        Tue, 09 Dec 2025 12:47:12 -0800 (PST)
-Received: from ?IPv6:2606:6d00:17:7b4b::c41? ([2606:6d00:17:7b4b::c41])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-4f027d2b3a4sm108009241cf.25.2025.12.09.12.47.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Dec 2025 12:47:11 -0800 (PST)
-Message-ID: <e0144120e0943b94454b1cddd5359c34b5a15412.camel@ndufresne.ca>
-Subject: Re: [PATCH 5/5] media: platform: mtk-mdp3: Change
- cmdq_pkt_jump_rel() to cmdq_pkt_jump_rel_temp()
-From: Nicolas Dufresne <nicolas@ndufresne.ca>
-To: Jason-JH Lin <jason-jh.lin@mediatek.com>, Rob Herring <robh@kernel.org>,
-  Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jassi Brar	 <jassisinghbrar@gmail.com>, Chun-Kuang
- Hu <chunkuang.hu@kernel.org>,  AngeloGioacchino Del Regno
- <angelogioacchino.delregno@collabora.com>, Mauro Carvalho Chehab
- <mchehab@kernel.org>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>, Nancy Lin	
- <nancy.lin@mediatek.com>, Singo Chang <singo.chang@mediatek.com>, Paul-PL
- Chen	 <paul-pl.chen@mediatek.com>, Moudy Ho <moudy.ho@mediatek.com>,
- Xiandong Wang	 <xiandong.wang@mediatek.com>, Sirius Wang
- <sirius.wang@mediatek.com>, Fei Shao	 <fshao@chromium.org>, Chen-yu Tsai
- <wenst@chromium.org>, 	Project_Global_Chrome_Upstream_Group@mediatek.com,
- devicetree@vger.kernel.org, 	linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, 	linux-mediatek@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, 	linux-media@vger.kernel.org
-Date: Tue, 09 Dec 2025 15:47:10 -0500
-In-Reply-To: <20251031160309.1654761-6-jason-jh.lin@mediatek.com>
-References: <20251031160309.1654761-1-jason-jh.lin@mediatek.com>
-	 <20251031160309.1654761-6-jason-jh.lin@mediatek.com>
-Autocrypt: addr=nicolas@ndufresne.ca; prefer-encrypt=mutual;
- keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
- /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
- cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
- CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
- abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
- nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
- AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
- smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
- AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
- iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
- ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
- bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-MnGLK1uGO3sHzXuy/5rZ"
-User-Agent: Evolution 3.58.2 (3.58.2-1.fc43) 
+	s=arc-20240116; t=1765313437; c=relaxed/simple;
+	bh=+NrxrvZMgkcpBUKcfznjEv3pgGvqP8bd/L6BGqUssYk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iOhbSWH3JHl13uVu3mcpug3HSamZtSN2eUQiHnprJEsrE5wC/Fnr0BEQZQnKTl7uUPy18A9NSshyGU/o/l0Z60DFwiR+BDHnPJVmGaBc9/1OjF1U0d9IaBj/RoRGtNQlibEecCJFyYwdEs64AZ+0JfFXbPNIEGDT6FJET9MGRsc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k2FHVx10; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BBA14C4CEF5;
+	Tue,  9 Dec 2025 20:50:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1765313436;
+	bh=+NrxrvZMgkcpBUKcfznjEv3pgGvqP8bd/L6BGqUssYk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=k2FHVx10lU9ymJ024KMK22dlyRk155qhGloao/pSRz4jhhFpXovieBQvErMqIjWb0
+	 AdZYlCm48RH3jrzdGsS/A55Wdu3GDDkl+qUTLvPs0cg1bd27lhDg6VjF4eyQtc9Pv7
+	 ucRGmTR5z070mWSQ0GBmGg/MF17WszEWWkJA8b7e+bvOBrI8mFv8yg92qsOdtvQv0M
+	 fsUjo5De94mBVOfFI1b3L7nVyZbOFGz60p5XuV1v/cjaI8zRQnF7Z6a4UX1Q8q98YJ
+	 RO6IGfa/XlMnaLYkxPSQ1XFordW8jMm90tsWcYYLbYfoot2Y8PoiZ3n0nYeQ3yOJ0Z
+	 buLKTnh/ZOkGA==
+Date: Tue, 9 Dec 2025 14:50:34 -0600
+From: Rob Herring <robh@kernel.org>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Jacky Chou <jacky_chou@aspeedtech.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Po-Yu Chuang <ratbert@faraday-tech.com>,
+	Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org, taoren@meta.com
+Subject: Re: [PATCH net-next v5 3/4] net: ftgmac100: Add RGMII delay support
+ for AST2600
+Message-ID: <20251209205034.GB1056291-robh@kernel.org>
+References: <20251205-rgmii_delay_2600-v5-0-bd2820ad3da7@aspeedtech.com>
+ <20251205-rgmii_delay_2600-v5-3-bd2820ad3da7@aspeedtech.com>
+ <8a991b33-f653-4f0c-bbea-b5b3404cdfe6@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8a991b33-f653-4f0c-bbea-b5b3404cdfe6@lunn.ch>
 
+On Sat, Dec 06, 2025 at 07:30:30PM +0100, Andrew Lunn wrote:
+> > @@ -1907,6 +2179,10 @@ static int ftgmac100_probe(struct platform_device *pdev)
+> >  		priv->rxdes0_edorr_mask = BIT(30);
+> >  		priv->txdes0_edotr_mask = BIT(30);
+> >  		priv->is_aspeed = true;
+> > +		/* Configure RGMII delay if there are the corresponding compatibles */
+> > +		err = ftgmac100_set_internal_delay(priv, &phy_intf);
+> > +		if (err)
+> > +			goto err_phy_connect;
+> 
+> Thinking forward to when you add 2700 support, i really think you need
+> to break the probe up into helpers for 2500 and before, 2600 and in
+> the future 2700. You currently have a couple of tests on the
+> compatible which you can reduce to one.
+> 
+> In fact, this driver has 10 calls to of_device_is_compatible(). I
+> think you should first refactor the code to list each compatible in
+> ftgmac100_of_match[], and add a data structure which contains an enum
+> of the MAC type. You can then transfer this to priv, and replace all
+> the of_device_is_compatible() tests to just look at the enum value.
 
---=-MnGLK1uGO3sHzXuy/5rZ
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Better yet, define a structure which defines the different settings 
+directly. Such as:
 
-Hi,
+priv->rxdes0_edorr_mask
+priv->txdes0_edotr_mask
+priv->is_aspeed
 
+And anything else needed...
 
-Le samedi 01 novembre 2025 =C3=A0 00:02 +0800, Jason-JH Lin a =C3=A9crit=C2=
-=A0:
-> To facilitate the removal of the shift_pa parameter from
-> cmdq_pkt_jump_rel(), current users of cmdq_pkt_jump_rel() need to
-> transition to using cmdq_pkt_jump_rel_temp() before the API change
-> is implemented.
->=20
-> Signed-off-by: Jason-JH Lin <jason-jh.lin@mediatek.com>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collab=
-ora.com>
-> ---
-> =C2=A0drivers/media/platform/mediatek/mdp3/mtk-mdp3-cmdq.c | 2 +-
-> =C2=A01 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git a/drivers/media/platform/mediatek/mdp3/mtk-mdp3-cmdq.c b/drive=
-rs/media/platform/mediatek/mdp3/mtk-mdp3-cmdq.c
-> index d0b0b072f953..5fc9263ccb78 100644
-> --- a/drivers/media/platform/mediatek/mdp3/mtk-mdp3-cmdq.c
-> +++ b/drivers/media/platform/mediatek/mdp3/mtk-mdp3-cmdq.c
-> @@ -628,7 +628,7 @@ static struct mdp_cmdq_cmd *mdp_cmdq_prepare(struct m=
-dp_dev *mdp,
-> =C2=A0		goto err_free_path;
-> =C2=A0	}
-> =C2=A0	cmdq_pkt_eoc(&cmd->pkt);
-> -	cmdq_pkt_jump_rel(&cmd->pkt, CMDQ_INST_SIZE, mdp->cmdq_shift_pa[pp_idx]=
-);
-> +	cmdq_pkt_jump_rel_temp(&cmd->pkt, CMDQ_INST_SIZE, mdp->cmdq_shift_pa[pp=
-_idx]);
-
-I cannot take that right now in the media tree, as it won't build. Can the =
-SoC
-maintainer help me know if I just leave that on hold, or perhaps you'd like=
- to
-take it ? (or its in next, and I just have to wait for next udpate?)
-
-I also doubt patch 4/5 is make much of a difference without the soc changes=
- ?
-
-regards,
-Nicolas
-
-> =C2=A0
-> =C2=A0	for (i =3D 0; i < num_comp; i++) {
-> =C2=A0		s32 inner_id =3D MDP_COMP_NONE;
-
---=-MnGLK1uGO3sHzXuy/5rZ
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaTiKzgAKCRDZQZRRKWBy
-9HnQAQCvZCLQCXpFlsUfn7DWx1kuIT+I+byuKT/dhCrJ0Qly3gEAh9feswFfhKgL
-He/DKiOx62zT1aAhbBCmngiS+Tir/wg=
-=/OPV
------END PGP SIGNATURE-----
-
---=-MnGLK1uGO3sHzXuy/5rZ--
+Rob
 
