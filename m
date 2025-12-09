@@ -1,180 +1,140 @@
-Return-Path: <devicetree+bounces-245408-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245409-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68811CB087B
-	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 17:18:38 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2030FCB089F
+	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 17:21:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B93C730C1282
-	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 16:18:02 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id AB5393016958
+	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 16:21:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 561023009E9;
-	Tue,  9 Dec 2025 16:18:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C39930102C;
+	Tue,  9 Dec 2025 16:21:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="NDpxgASj";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="h86Gddlq"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BGdKk1Bx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90C9E2FE582
-	for <devicetree@vger.kernel.org>; Tue,  9 Dec 2025 16:17:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DE6B237180
+	for <devicetree@vger.kernel.org>; Tue,  9 Dec 2025 16:21:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765297081; cv=none; b=jKVpUS6sotbVjMgZjWiA1890XfPFzW1LA6VTcupY43N7VsvYb215Sg4RbaUBIvZxbtlQyKhHUYJ3A3LZZSvIGHlta6B9wzmUdRvqW1z/XvZDQ1jy9EvgtAEkEz4fG2qe8E1TNxs8mppUamON3UDaF/0KJnKsOb35LMe4MrHgevE=
+	t=1765297312; cv=none; b=t3KnO7Ey9CF46q6qf2Hxog+uvv7n5SjJJGhP1AUWZJS4C8b3FmoBnAvuU2qYJZ+wLFx7viE2QlaE3XggZXsfRXQj4hBPl75fAijAo4cTOaURtzDfwIdY7kA+FiHZYF+Q8Fdqg47LxqDCNe04tGS+UUloWDlZqLYJFcABjLRW+Eg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765297081; c=relaxed/simple;
-	bh=Y2Lk733WYmLDKg5FYlfP1NWRsD6WeDL9M3sLn0p3zw8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=e1XunLmr8WzQrHyKYX36ybNNAjUYjxz7GAhorEthc4xFoCh88N6660yf6YN1Rku6FTUfhJHV1IqbqY9XCFOuMKA9N4GMjLmZy3h/jVBxdeHt/Ff3p/83CUalweFzCNVtMyWRpbr64NGolAOz4nibyoJgnKQcgwNBX9jj25QEfFc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=NDpxgASj; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=h86Gddlq; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5B9FhaNi517255
-	for <devicetree@vger.kernel.org>; Tue, 9 Dec 2025 16:17:58 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=ElTGFxQMLglFIHDskkjStI1P
-	Q8H7QYuzazr8vG/1lr4=; b=NDpxgASjIXmYN4phY+3loczxCDEUvDlUFrfTcodS
-	NB/bb83ACdr0zqlcM2LLvqS6faGKFPeX0r+SaaBAjZCt+EOQchG7nG8Vrov8+fYC
-	bRFlsd81+tBLxfUNl4d09ZEuPhPDHkPTvbghHVMZxLQdClutsUiY58n0wuVS0SiA
-	J6dnwD2zKEZ9LAqljIlLCRLABLtRB3wSczFqNegGyBtPVZQ4phOzrrtgWnR2j/wk
-	S57wWFbFBRL0FIaTCJPj+8f2vLlTPZHl63SNMJbiIJBlO+CG5bVd4tizGj1ziEs2
-	r7ke+z/rAyyc86BfRIFr8fws0SL2Q4n2lyy7TLP6+7OGKw==
-Received: from mail-vk1-f200.google.com (mail-vk1-f200.google.com [209.85.221.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4axmg60krf-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 09 Dec 2025 16:17:58 +0000 (GMT)
-Received: by mail-vk1-f200.google.com with SMTP id 71dfb90a1353d-55d05bf6490so3034576e0c.0
-        for <devicetree@vger.kernel.org>; Tue, 09 Dec 2025 08:17:58 -0800 (PST)
+	s=arc-20240116; t=1765297312; c=relaxed/simple;
+	bh=WKVB9gYz078ahZTJ7TAAKtKVHlfvZgJuO6vYNG2AKFg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=sFuUyAIPepPolHKxZWPIctVAdXwWobKr9NDDhNcIATVRvrO3TM8bQnZMuybrjUZYZkEj9C+VMZiyBhDhozyqiskwB1gbmbYmctdsb4DO7D781jY4ZvmyHLObsggpqBJ7pFEsJVRFScjHZX3fEu0LA86JJYt9h2uVTCzLfpbf7w8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BGdKk1Bx; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-4775ae77516so70568645e9.1
+        for <devicetree@vger.kernel.org>; Tue, 09 Dec 2025 08:21:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1765297078; x=1765901878; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=ElTGFxQMLglFIHDskkjStI1PQ8H7QYuzazr8vG/1lr4=;
-        b=h86Gddlqzy/Qa+/OcueppB3+mc1e3kVEWX/CowbbO6YIm5eB1vxwtpYB51PlQ9FM4U
-         LxUkgiwhZvCTE2z0CfKUIhGLUnHeLQs71PS4uwBVLkvLin0DbhuTYFtE0kerYgicZr3n
-         3LK18v/EN/iqmSBhERZV/D+a03Qk70foWjT7lOPTTT9cE5/pIZmB4WVyKFVo+MM0zEmC
-         8vBypb9iwU5Cn4x1zmLDNgPluV9WcDZ+KbJ51JUfr0z/aofMga/53sEx8NOfn9uUuqDs
-         hYxQL+O042UYjXz3waERjNYUEEkXjcmt9zlbJVmKO8piDzwTg1F3OmhvvWSlAlTEAbyc
-         /UnQ==
+        d=gmail.com; s=20230601; t=1765297309; x=1765902109; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=6k61kbm8SLV9e2m07xo3XBz6H86gYGw8sgo6ilH2TnI=;
+        b=BGdKk1BxWhCVO4ogODrLzBaurkg5bziO3lXrAFPbPhZ/ZkM8+mlSSb47B1+g9dQINd
+         QhSBP8VFFHapDdgGsbNJ4bbUzjZyB3ChJBgos67BMLawfUO1g85mmDzXU+Yythyrn+nB
+         HhR943qRYqpNy4WhVo0MJiMkTRG7yP/GiF24KVeOsXTS0Aku3RmiXZ4MA9Ll/7DIf8YE
+         UKw2yTW6S1E+AcMh+SH3Eop/XlCwlimTuNRSkXHC6QZsi3dNBiVpf1q+q0O4QkXVrbTa
+         S0Hls3wxCDeOm6B9etNaC+Yek8M+tZuo1a99W2fjp+SjY6el/a6LCNWtjJAnk15MLH9V
+         LD+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765297078; x=1765901878;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ElTGFxQMLglFIHDskkjStI1PQ8H7QYuzazr8vG/1lr4=;
-        b=uuHVjOqD012ruAZt2Xp3aWSvBF9OdJ7C5sRpVhcgi3pYazPpHEzIaC6jdjjOgok51N
-         a+h8EesQV4ZWAbqHPQHp4lAp2nM+zTCaAof78g7qH1HBCp0s10HYWSSQL7UV1yIM7EaJ
-         TWx8jJEJ/SvCEqXkwQU2kDgHXCYdnbfUbiEpZSOOPSTNiuzXZkU0k2npx8Jdq8SdJZ2y
-         8sPEhbPH0VwP6GY77CxHE47DCLtd2lqh3nM7YST+NGSmzhuRAS/+8U693zj092Et1FAG
-         Iy6tm591utfommuOCHLaPsOcsP5rvDfywj7tr1RDftNWPmr2OYhxhra/lC7Je9n2Ehi2
-         DbhA==
-X-Forwarded-Encrypted: i=1; AJvYcCW9W7m45abD7hhK6ISaVydxiEhCih7eSBLEn9mwM/LwtfCrYT/7dE3uYPDZJGW7m4amuBzp+TaEEVT7@vger.kernel.org
-X-Gm-Message-State: AOJu0YxYULXNIHjjyT071Mr2K1z6tUOHwCuqiMxJQuZ/XOAQINSiftqa
-	BHnIM0JuyQdcexFP6DO4GWdrttrbvYA4RjmRxzu7fY1RhopaJzYeZD2FpHPAVz4RFRYGKmIoSeC
-	h1+17l+79GZpNpYdTAqkL0hyM3HoVnsHaT1craRkUa2kXqUaH1ZdwEZ+brL1xje/Y
-X-Gm-Gg: ASbGncuJYibZnW85f9r6Ru7XHguIo8DUWCmxskpHl7r1KUkeUMBGDx1L7Dr8PaI4rSr
-	EuIf6FwUvTRcx9Q6aQvURctMQ8aIbfec6y6gVIGwzz94ldjU/u0fvWbzAABPAiY4HtnxsIO8xZd
-	uQo8O5bd25kYcZ1ZLa0x7LJRe9jdazILXUCEA2sj1/p49C8xK/hEQ1soyOI3AEmmhcjVLEYgy6W
-	Krzt6zoKBFNh3/7vH4jcG71xS4pdAdu+bb+tTKllHzdpOhezptspXX5iPo4maldhyHdFWMOdfpX
-	QhsDZqW7Mi/11I/U8qW7QTXGkYZR8V4eQGzsg3nbn3UAkP/t2MOa2toWyjwIjc3sWboN2hvI0+D
-	uSyMLQ7X2i3AEjyECUCzxN/R73R88FL+SvIHUaxDY/cBCTmkus2ApLsueC3q2u0mQv2QRS2mIbm
-	cu2Q3iln0yaS1yKr45LCWabEY=
-X-Received: by 2002:a05:6122:318b:b0:55b:305b:4e3c with SMTP id 71dfb90a1353d-55e8477c8a3mr3515777e0c.18.1765297077722;
-        Tue, 09 Dec 2025 08:17:57 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEJplDoWHUuU4XC4O8OJ07DX3zlSMoz4LtuK7lJSnCPjCg3HxqIF5X2AN1S3eNyf/G03YBuuQ==
-X-Received: by 2002:a05:6122:318b:b0:55b:305b:4e3c with SMTP id 71dfb90a1353d-55e8477c8a3mr3515760e0c.18.1765297077298;
-        Tue, 09 Dec 2025 08:17:57 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-37e70595fcasm46117731fa.24.2025.12.09.08.17.56
+        d=1e100.net; s=20230601; t=1765297309; x=1765902109;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6k61kbm8SLV9e2m07xo3XBz6H86gYGw8sgo6ilH2TnI=;
+        b=USGmx2eD9hJ3vm2FlLWMaWVU5czQwsCi3ZPVcT5B1AvUmFAtPUHxGYGWx67dbLzja8
+         pMURDA2aF39Ccu7LYVDMSA9S63or84rN99lFRTj5ruzx/s0fTwAFHUrAAv9ay+FVGxV8
+         h/bBM/7/IVX02C0KWuI3avA2M5WzYJcbv+f4C/EHiNcudMhvINmNIJtZI3JjqiiEkps+
+         GOoz3C5bXOy6vzJuqWwYg/+AjW8KhiVwraWAJoaiCrWa3hd99xfAwDHIK9iIomv6kguH
+         BIH8WdCJbr+Fs2vXr95po2k++2DfHYBtgkcrsCkW2JsZ71Q9fk6kaKMgy32eT9HZH8lh
+         QmYQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUDiyNIdujttlgc2ZcmuZMLCdXS/9s7nZ+0EP0xXwSKrPm7kOxdiGKK7d5SJmWZ9Glhe97ru6juQuPj@vger.kernel.org
+X-Gm-Message-State: AOJu0YwWSIfv7m4fBVv1CquOIBeV8LYiqj1FUU4YSMy27yuH+5XtHDNy
+	oyZhYQ0EE+norj+383K4+KZgjZ6YEBaEszBMlbgURtpoxkC0lbJVfNKo
+X-Gm-Gg: ASbGncsmMWCbuA4kY+3kLVts5pjWpuJwWtAvP2SNl1L5NVOiLTXKcRdFpT7oABVYQdn
+	v4qHtfNpxzWfrqUQaE6quo1UbF3mYFvKrB1Sv6qjWh2MxPAQVrNCqLMqxl7g1muoFpnF7LD2+UZ
+	Om7JPb2KvL8ZzyE3wFH4pyRUcF4o0aeHNS5c0hPQL3YLKZYxu9wXy4TWzIiZVikyi5+dPe+PRY1
+	sS/XCstTPjpkR/eNAl+1kyn8LqvvnKhTcao2CPDodHf46sj0A1UcGtylld+JYP23koD909EsFfG
+	U19HV6gHEj4one9T2X+2O6ILuV+fAQNSlFGnEH2rnCzeizUrKuxsLAITQbqd55VJ0fXQ4Fj+Kqs
+	DdnOhDcDJvkPg1OYgNgQWlApCXIEyH8K0VclPzMxRFHtwn1xFbVnrC7r/8DKaaoZbVtjVL8mqV4
+	gigI9F9ZWWNmCdMyhbQnZY0ERraR5DNyNCOD4=
+X-Google-Smtp-Source: AGHT+IHTFgQLT3CSEDcGRS9InaoXZRqkZVe771K3JeLcdli+0zRTuA49I/7K39Ax5OsQ9FDXMJf/8g==
+X-Received: by 2002:a05:600c:1992:b0:46e:1abc:1811 with SMTP id 5b1f17b1804b1-47939e387e2mr115381085e9.27.1765297308666;
+        Tue, 09 Dec 2025 08:21:48 -0800 (PST)
+Received: from iku.Home ([2a06:5906:61b:2d00:357a:854b:fd78:dcbd])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47a7d612e49sm54437935e9.3.2025.12.09.08.21.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Dec 2025 08:17:56 -0800 (PST)
-Date: Tue, 9 Dec 2025 18:17:54 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Alexandru Gagniuc <mr.nuke.me@gmail.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: ipq9574: Use 'usb-phy' for node names
-Message-ID: <xmserprghzwpcxt7ionh2ju7o3cudj5emtkycvurbz5obztzr5@lkllnnsag6ri>
-References: <20251209160755.3878878-1-mr.nuke.me@gmail.com>
+        Tue, 09 Dec 2025 08:21:48 -0800 (PST)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Marc Kleine-Budde <mkl@pengutronix.de>,
+	Vincent Mailhol <mailhol@kernel.org>,
+	Vinod Koul <vkoul@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Aswath Govindraju <a-govindraju@ti.com>,
+	Frank Li <Frank.li@nxp.com>
+Cc: linux-can@vger.kernel.org,
+	linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v2] dt-bindings: phy: ti,tcan104x-can: Document TI TCAN1046
+Date: Tue,  9 Dec 2025 16:21:19 +0000
+Message-ID: <20251209162119.2038313-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.52.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251209160755.3878878-1-mr.nuke.me@gmail.com>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjA5MDEyMiBTYWx0ZWRfXzeLC/R3iKio8
- FnUdKo4PnZrak8WKiTIsAOX4sqQ0gAIwq0EdQZtx295bgl5mGlFPCi3t/aRFY5otZKbLB+7Nk3T
- PgRzHssV9I3WnEegcDE8TK6XK+W+ikELtHPT1qoazj8EF/P5Sv0sHoH+Xax0PFr/uaMrj1sfPTH
- aYd84ZEfQ11BOlfLdYFEPQ6oMGfXmyJWHEnN59y+chvHkvq6H1ZJKycTiRjbklO9pdxR2d7BMhQ
- RygzyptTbtnYKB1Gs469h4YpVJJFzPdhR1AhG/VOGgkJRrx3mZqNSbmWa+tA2gJDuDG3g+bZ+1m
- I25InaS4xqh81pPSzwTsyzB3fzStarp88D17jtfY1AtG3KAGqygvD3MAr8BAmmewBK3kzVQTH7C
- DRz0MiCp73I3VHz0oGtm6ACFlTDiPQ==
-X-Authority-Analysis: v=2.4 cv=IZWKmGqa c=1 sm=1 tr=0 ts=69384bb6 cx=c_pps
- a=wuOIiItHwq1biOnFUQQHKA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=pGLkceISAAAA:8 a=oe-HYfr5i6muIj_1Hq8A:9 a=CjuIK1q_8ugA:10
- a=XD7yVLdPMpWraOa8Un9W:22
-X-Proofpoint-ORIG-GUID: FIaayCkkv-l_Ga1HbcX6TyuNEaW0g4sM
-X-Proofpoint-GUID: FIaayCkkv-l_Ga1HbcX6TyuNEaW0g4sM
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-09_04,2025-12-09_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 spamscore=0 malwarescore=0 adultscore=0 bulkscore=0
- priorityscore=1501 lowpriorityscore=0 clxscore=1015 phishscore=0
- suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
- definitions=main-2512090122
+Content-Transfer-Encoding: 8bit
 
-On Tue, Dec 09, 2025 at 10:07:54AM -0600, Alexandru Gagniuc wrote:
-> The devicetree spec allows node names of "usb-phy". So be more
-> specific for the USB PHYs, and name the nodes "usb-phy" instead of
-> just "phy".
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Why? "phy" is more generic.
+Document the TI TCAN1046 automotive CAN transceiver. The TCAN1046 is a
+dual high-speed CAN transceiver with sleep-mode support and no EN pin,
+mirroring the behaviour of the NXP TJA1048, which also provides dual
+channels and STB1/2 sleep-control lines.
 
-> 
-> Signed-off-by: Alexandru Gagniuc <mr.nuke.me@gmail.com>
-> ---
->  arch/arm64/boot/dts/qcom/ipq9574.dtsi | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-> index 86c9cb9fffc98..4b8cbf1ff131b 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-> @@ -702,7 +702,7 @@ qpic_nand: spi@79b0000 {
->  			status = "disabled";
->  		};
->  
-> -		usb_0_qusbphy: phy@7b000 {
-> +		usb_0_qusbphy: usb-phy@7b000 {
->  			compatible = "qcom,ipq9574-qusb2-phy";
->  			reg = <0x0007b000 0x180>;
->  			#phy-cells = <0>;
-> @@ -716,7 +716,7 @@ usb_0_qusbphy: phy@7b000 {
->  			status = "disabled";
->  		};
->  
-> -		usb_0_qmpphy: phy@7d000 {
-> +		usb_0_qmpphy: usb-phy@7d000 {
->  			compatible = "qcom,ipq9574-qmp-usb3-phy";
->  			reg = <0x0007d000 0xa00>;
->  			#phy-cells = <0>;
-> -- 
-> 2.45.1
-> 
+Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+---
+TCAN 1046, https://www.ti.com/lit/ds/symlink/tcan1046v-q1.pdf?ts=1765297159307&ref_url=https%253A%252F%252Fwww.ti.com%252Fproduct%252FTCAN1046V-Q1
+NXP TJA1048, https://www.nxp.com/docs/en/data-sheet/TJA1048.pdf
 
+v1->v2:
+- Used "nxp,tja1048" as a fallback compatible string.
+---
+ Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
+index c686d06f5f56..9f5c37ca6496 100644
+--- a/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
++++ b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
+@@ -20,6 +20,9 @@ properties:
+               - microchip,ata6561
+               - ti,tcan1051
+           - const: ti,tcan1042
++      - items:
++          - const: ti,tcan1046
++          - const: nxp,tja1048
+       - enum:
+           - ti,tcan1042
+           - ti,tcan1043
 -- 
-With best wishes
-Dmitry
+2.52.0
+
 
