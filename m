@@ -1,86 +1,136 @@
-Return-Path: <devicetree+bounces-245451-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245457-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4465BCB10F0
-	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 21:52:07 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6A3CCB12EB
+	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 22:26:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 9BA45301B274
-	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 20:52:03 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D1D393007D8B
+	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 21:26:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 160652C326C;
-	Tue,  9 Dec 2025 20:52:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ClDra+oU"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A732310785;
+	Tue,  9 Dec 2025 21:19:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from finn.localdomain (finn.gateworks.com [108.161.129.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE1FF27B4FA;
-	Tue,  9 Dec 2025 20:52:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 260A130F801;
+	Tue,  9 Dec 2025 21:19:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=108.161.129.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765313522; cv=none; b=DdVQTRcN/pIYgoHpXJjwDs/Uogl7hKaPWzIkBbLLtARcyjCzD4JvEso/aCjq1jlPxH6PwtYo2MZFdUZdYiKf60BajlIJV5MNW0rHQikPf4IXiAvUIOJLcRW12ZlLBoHJbNZa1PgBJ00wLMCla+Zy+lXBpXCCnfSq3N1Y4G+SwqM=
+	t=1765315190; cv=none; b=T9CAp/jHHjZDLhSpPC/DC17HN+i2q34X+pgHOdHUqIT7gjnHs1eF1pKsygqp++Llo0Zxsh88KpDsW2JljI+LHx4zZISPMyWla2mQ/pxT0RVmsRaFe7IyselhhP6WmDIgjUd7bvtvuLQDfSSYHbGL4kTsFCqtE0VtOzwiiBAFuVA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765313522; c=relaxed/simple;
-	bh=VmN3AEFLBJHTbo1gne1kM6xJGtRrR6e+QjVlA5+pR1U=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dATgqWdzsZjPjhsPwV1I1nfsNuP/ktwgcPCSjWrXsT+bNC/ZrRkmE0cZQf+Bn/5fTlnDe5RiDhrgFo2FSjQxQ2vO/l0UjuS/gwdXQWt7UPTvVd6GwrDpe+GNWBA0ONW3K92P+HFuvKP67Dd2WPWuZCRTf7w7eVvKDi81LlCA9+M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ClDra+oU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A534C4CEF5;
-	Tue,  9 Dec 2025 20:52:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765313521;
-	bh=VmN3AEFLBJHTbo1gne1kM6xJGtRrR6e+QjVlA5+pR1U=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ClDra+oUA2mIIhPNqP4eXf4AQU2nmGqNLX9fhYIuRnfXlUyrtVrn9qqqPR3z6nPz0
-	 2L1waK8jNjWT4VmtwImnKVc4Ph1hi4nZ+ysjnsKHLno2J8PaDQaFz78TzIGcjafmtu
-	 6ivxnVKAP1zIkPIugKwj/1UBl+eFMydoLUIhqxWoB5ZJ68Cs4Q4909U2cvXCLcF9ov
-	 ZLflbUCgqsmGSC1PFYHp4v/rFTf0o72a8/VJQ4BnyGudPP0k06N949jLgFBSgakPja
-	 3Xx3RMQB9+eOrnBahQeOWs+oojspzhuGzdXtLAN+fgPaZ4Hf14xxORu4i841J5XZL/
-	 B5SOQp1bWkmMg==
-Date: Tue, 9 Dec 2025 14:51:58 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>
-Cc: Michael Hennerich <Michael.Hennerich@analog.com>,
-	David Lechner <dlechner@baylibre.com>, linux-iio@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
+	s=arc-20240116; t=1765315190; c=relaxed/simple;
+	bh=EUY7F24NFYP0FXSzpt1PyO4sIbxgQQaAoD+qmJ/tzBo=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=huGEGG1JMOFDzYdRupRxrXUw+LidDtpkN3YVaHx1O8AGHTlNiPcJttJZzjwFINaFsLED+H7O6NDY0fVVQmAT8VzwLuiHrfkxJgx8CMsl01Q67g1c+vtOIKCnN0+7Tiynqt39Wd2gTT+8BkQbiGMU+YsN7g6l8r7h6ZSuEc7K8MA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gateworks.com; spf=pass smtp.mailfrom=gateworks.com; arc=none smtp.client-ip=108.161.129.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gateworks.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gateworks.com
+Received: from syn-068-189-091-139.biz.spectrum.com ([68.189.91.139] helo=tharvey.pdc.gateworks.com)
+	by finn.localdomain with esmtp (Exim 4.95)
+	(envelope-from <tharvey@gateworks.com>)
+	id 1vT4n7-00DO8D-8x;
+	Tue, 09 Dec 2025 20:58:37 +0000
+From: Tim Harvey <tharvey@gateworks.com>
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Andy Shevchenko <andy@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>
-Subject: Re: [PATCH v6 1/2] dt-bindings: iio: amplifiers: add adl8113
-Message-ID: <176531351772.1075654.11407839110196127214.robh@kernel.org>
-References: <20251205144058.1918-1-antoniu.miclaus@analog.com>
- <20251205144058.1918-2-antoniu.miclaus@analog.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>
+Cc: devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Tim Harvey <tharvey@gateworks.com>
+Subject: [PATCH] arm64: dts: imx8m{m,p}-venice-gw71xx: Add Magetometer
+Date: Tue,  9 Dec 2025 12:58:28 -0800
+Message-Id: <20251209205828.689999-1-tharvey@gateworks.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251205144058.1918-2-antoniu.miclaus@analog.com>
+Content-Transfer-Encoding: 8bit
 
+Add support for the optional LIS2MDL magnetometer on GW71xx baseboards.
 
-On Fri, 05 Dec 2025 16:40:40 +0200, Antoniu Miclaus wrote:
-> Add devicetree bindings for adl8113.
-> 
-> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-> ---
-> changes in v6:
->  - Use items list for ctrl-gpios instead of minItems/maxItems
->  - Simplify ctrl-gpios item descriptions (remove GPIO_ACTIVE_HIGH mentions)
->  - Remove maxItems (implied by items list)
-> 
->  .../bindings/iio/amplifiers/adi,adl8113.yaml  | 87 +++++++++++++++++++
->  1 file changed, 87 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/amplifiers/adi,adl8113.yaml
-> 
+Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+---
+ .../boot/dts/freescale/imx8mm-venice-gw71xx.dtsi  | 15 +++++++++++++++
+ .../boot/dts/freescale/imx8mp-venice-gw71xx.dtsi  | 15 +++++++++++++++
+ 2 files changed, 30 insertions(+)
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx.dtsi
+index 429be2bab8a2..320806d3d073 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw71xx.dtsi
+@@ -92,6 +92,15 @@ accelerometer@19 {
+ 		interrupt-parent = <&gpio4>;
+ 		interrupts = <5 IRQ_TYPE_LEVEL_LOW>;
+ 	};
++
++	magnetometer@1e {
++		compatible = "st,lis2mdl";
++		reg = <0x1e>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_mag>;
++		interrupt-parent = <&gpio4>;
++		interrupts = <1 IRQ_TYPE_LEVEL_LOW>;
++	};
+ };
+ 
+ /* off-board header */
+@@ -174,6 +183,12 @@ MX8MM_IOMUXC_SAI1_RXD3_GPIO4_IO5	0x159
+ 		>;
+ 	};
+ 
++	pinctrl_mag: maggrp {
++		fsl,pins = <
++			MX8MM_IOMUXC_SAI1_RXC_GPIO4_IO1		0x159
++		>;
++	};
++
+ 	pinctrl_gpio_leds: gpioledgrp {
+ 		fsl,pins = <
+ 			MX8MM_IOMUXC_SPDIF_EXT_CLK_GPIO5_IO5	0x19
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw71xx.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw71xx.dtsi
+index 4bf818873fe3..9317e62304e3 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw71xx.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw71xx.dtsi
+@@ -101,6 +101,15 @@ accelerometer@19 {
+ 		interrupt-parent = <&gpio4>;
+ 		interrupts = <21 IRQ_TYPE_LEVEL_LOW>;
+ 	};
++
++	magnetometer@1e {
++		compatible = "st,lis2mdl";
++		reg = <0x1e>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_mag>;
++		interrupt-parent = <&gpio4>;
++		interrupts = <25 IRQ_TYPE_LEVEL_LOW>;
++	};
+ };
+ 
+ &pcie_phy {
+@@ -198,6 +207,12 @@ MX8MP_IOMUXC_SAI2_RXFS__GPIO4_IO21	0x150	/* IRQ */
+ 		>;
+ 	};
+ 
++	pinctrl_mag: maggrp {
++		fsl,pins = <
++			MX8MP_IOMUXC_SAI2_TXC__GPIO4_IO25	0x150	/* IRQ */
++		>;
++	};
++
+ 	pinctrl_gpio_leds: gpioledgrp {
+ 		fsl,pins = <
+ 			MX8MP_IOMUXC_SAI1_RXC__GPIO4_IO01	0x6	/* LEDG */
+-- 
+2.25.1
 
 
