@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-245311-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245312-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BDEDCAEFEC
-	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 07:05:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D6B0ACAEFF2
+	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 07:05:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2F7F4304790A
-	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 06:04:20 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B57953029BA7
+	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 06:04:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D61FA320383;
-	Tue,  9 Dec 2025 06:04:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04AD42E542C;
+	Tue,  9 Dec 2025 06:04:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hL/iWr2l"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c3rlP9M2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA6CF23F417;
-	Tue,  9 Dec 2025 06:04:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9C4E8F4A;
+	Tue,  9 Dec 2025 06:04:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765260258; cv=none; b=ZfjrsY1so+rBaQ0txzdCgbPXf7SIS09B6+dH4pr1stNbHgvEm2HYy/3UvWyy/M0kW6dB6wAuSEVnSmH6ZeN5glgjglhRAhZT0uHZG96WjhoF6TdqU0PQIdO0UMFc2DsaGgtEtoBga574s93urEPyvUKduA3xIWdbuG/guRJ8tI4=
+	t=1765260289; cv=none; b=bHOeuBGdcjT30vjp28QBbvRuu3BGJyrNKRgdE/VFmcyz2fs5+kLI1RYnBzpv2o05Pu04Hg07EkpLtPpyzMyhz6+Onmkb2mZzl/7IbY2EN6ICt+0aFYGwGRPFQykJNtbPFF17v3MY1RXWGQnk17RvW66OSlIJcoz1Rf5xd7jDfhU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765260258; c=relaxed/simple;
-	bh=MjnbSyMNPetmf8dhZp1BRfKmvSUQOH6uohFisTU3vyM=;
+	s=arc-20240116; t=1765260289; c=relaxed/simple;
+	bh=ea44/ga/xuLV8J5uLfVbwWdxM/jIGHFQEBqcJ/vGb6I=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WBhX8urhzBHOC3RPyjCnnaYs3lGpNiVxYprbycFEdHaZQIMRww6jOMf+gRlD4ZP4xbPM+gE+hdT1965rMdT6UTWs4838PUK+jsSPs9ZYnLWC2nbUQDG7qkHyPS3i1x2ylOTsa5SOgw5Y2A/6OQv8ur3KpTBScS0vIUqmA0voUc8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hL/iWr2l; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98D62C4CEF5;
-	Tue,  9 Dec 2025 06:04:15 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Q+BE0r0AGMWnTD3QGpwg9klJL1Hj7mR7Kn/9DdpewH774YD1v5ULR+pdvgsF1HbzIXLfCilWzj+WTfmdkII4x1Bb0IWlsMj4mkF9QSVH7I4Wt+rUpk0Ly7yJtpqO86XmHEC69iXFqd7zHxF4LQzgXJAYxXGZeTZkYFZJ0FalDK0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c3rlP9M2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B51DC4CEF5;
+	Tue,  9 Dec 2025 06:04:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765260258;
-	bh=MjnbSyMNPetmf8dhZp1BRfKmvSUQOH6uohFisTU3vyM=;
+	s=k20201202; t=1765260289;
+	bh=ea44/ga/xuLV8J5uLfVbwWdxM/jIGHFQEBqcJ/vGb6I=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=hL/iWr2lLKqWNzlADBMw71roNdr3NUPHkoQ+pD35BAdT88f6tT/roOl53xzZ2eNuC
-	 /fy2IP7RVjpg+oJZNP7DL+wcqB8Hb9xaVL8PM0oaN07FFcQK2ZPeSjnqKfnAnxcgw5
-	 oxuD/rvsERrzXKgCv4kohxs/nwZjxlEzr4vu4C/M07+4Fi0eLiLgPRgW1caHESVZdR
-	 A0sXNdTryUvRnPnLfEiaDB2Z1iBAZUWKESvx7IDnJWxFagWaNKiU3QpBcB7Txeb9q6
-	 Z82DTY2S/tlVJ3FUwCXgYyV/QqdNk5O9FqER7tp5rlOjhOnTB0Y0+wXHSqMOsaZA10
-	 GTA00WN1lfdVA==
-Message-ID: <f48de0f4-4ebb-4634-8c3d-1d2b753eb232@kernel.org>
-Date: Tue, 9 Dec 2025 07:04:13 +0100
+	b=c3rlP9M2yRdnAnr7EeAKQpXPILv+GmroRMgli2f7aGLFrKqKN7DaGPkKhzdyV33Nt
+	 fSicNucXSRHyai9M/uWkUOOTnvB33t5bzrCbRcbXPQF/cR+UVuI8NcKiPxPRQANrl5
+	 qc58F5tAMdSBlOMsjYLH0mibpfTmu1EnEy3bUmM88jiCNsFv9xD3yp8Ma1VVSgB7s6
+	 mZ8FEoEH73EGJQH9Ybcsps/QqvsHrK9QfbS565Ym/EQr2dtEXYrIsZpNbaTpSlYllG
+	 7LWD4l9x1O2i7k757xb+k4UwF+Oo6xERulyXW41pZRloxsK0qMDRPnlxwinFExthHk
+	 X1s82VcCqd1Nw==
+Message-ID: <d40f32d9-b8fb-42c5-ad4e-5b04a7eaec38@kernel.org>
+Date: Tue, 9 Dec 2025 07:04:44 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,22 +48,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 7/8] dt-bindings: pinctrl: rockchip: Add RMIO
- controller binding
-To: =?UTF-8?B?5byg54Oo?= <ye.zhang@rock-chips.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Heiko Stuebner
- <heiko@sntech.de>, Bartosz Golaszewski <brgl@bgdev.pl>,
- Rob Herring <robh@kernel.org>, krzk+dt <krzk+dt@kernel.org>,
- conor+dt <conor+dt@kernel.org>, linux-gpio <linux-gpio@vger.kernel.org>,
- devicetree <devicetree@vger.kernel.org>,
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
- linux-rockchip <linux-rockchip@lists.infradead.org>,
- linux-kernel <linux-kernel@vger.kernel.org>,
- "tao.huang" <tao.huang@rock-chips.com>
-References: <20251206050844.402958-1-ye.zhang@rock-chips.com>
- <20251206050844.402958-8-ye.zhang@rock-chips.com>
- <20251208-invisible-crazy-squirrel-bb3af0@quoll>
- <AGkAlwDSJz*Fj0POUP7xe4pV.3.1765201861250.Hmail.ye.zhang@rock-chips.com>
+Subject: Re: [PATCH 01/10] dt-bindings: net: bluetooth: qualcomm: Fix WCN6855
+ regulator names
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: Jeff Johnson <jeff.johnson@oss.qualcomm.com>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, Marcel Holtmann <marcel@holtmann.org>,
+ Luiz Augusto von Dentz <luiz.dentz@gmail.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Balakrishna Godavarthi <quic_bgodavar@quicinc.com>,
+ Rocky Liao <quic_rjliao@quicinc.com>, Bjorn Andersson
+ <andersson@kernel.org>, Luiz Augusto von Dentz <luiz.von.dentz@intel.com>,
+ linux-arm-msm@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20251205-topic-wcn6855_pmu_dtbdings-v1-0-165611f687c8@oss.qualcomm.com>
+ <20251205-topic-wcn6855_pmu_dtbdings-v1-1-165611f687c8@oss.qualcomm.com>
+ <20251208-soft-beaver-of-justice-ae6fc4@quoll>
+ <10077527-0295-4d82-b60f-e566ef5ac076@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,21 +111,35 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <AGkAlwDSJz*Fj0POUP7xe4pV.3.1765201861250.Hmail.ye.zhang@rock-chips.com>
+In-Reply-To: <10077527-0295-4d82-b60f-e566ef5ac076@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 08/12/2025 14:51, 张烨 wrote:
-> Hi Krzysztof,
-> First of all, I sincerely apologize for the low quality of this patchset and the extra workload it caused. I appreciate your detailed review and strict checks, which help improve the code.
+On 08/12/2025 13:30, Konrad Dybcio wrote:
+> On 12/8/25 7:59 AM, Krzysztof Kozlowski wrote:
+>> On Fri, Dec 05, 2025 at 01:47:20PM +0100, Konrad Dybcio wrote:
+>>> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+>>>
+>>> Commit 5f4f954bba12 ("dt-bindings: bluetooth: bring the HW description
+>>> closer to reality for wcn6855") changed the vddrfa1p7-supply to 1p8
+>>> for whatever reason.
+>>>
+>>> The schematics footprint for this chip definitely says 7 on the input
+>>> leg and the driver still expects 1p7. Bring it back.
+>>>
+>>> Fixes: 5f4f954bba12 ("dt-bindings: bluetooth: bring the HW description closer to reality for wcn6855")
+>>> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+>>> ---
+>>
+>> This will conflict with my series which (for whatever reason) are
+>> waiting for 1.5 months now:
+>> https://lore.kernel.org/all/20251029-dt-bindings-qcom-bluetooth-v2-9-dd8709501ea1@linaro.org/
+>> (I wonder how many maintainers need to review them...)
+>> ... but I can rebase, no big deal.
 > 
-> 
-> Regarding your comments, I have the following questions and a proposal for v3. Could you please check if this aligns with your expectations?
-> 
+> As explicitly mentioned, this is rebased atop that!
 
-
-I have no clue what you are referring to. Please follow standard mailing
-list discussion style. I am not reading the rest of whatever this is.
+Cool! I missed that, thanks.
 
 Best regards,
 Krzysztof
