@@ -1,91 +1,93 @@
-Return-Path: <devicetree+bounces-245453-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245454-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20363CB121D
-	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 22:14:31 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B57FCB11C6
+	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 22:09:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 03AA9313B443
-	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 21:12:12 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7F90630D10B9
+	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 21:09:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3168314D14;
-	Tue,  9 Dec 2025 21:06:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D57D33191B2;
+	Tue,  9 Dec 2025 21:09:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Hpfryp4r"
+	dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b="nLAGgxKc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout01.posteo.de (mout01.posteo.de [185.67.36.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFE42314B95;
-	Tue,  9 Dec 2025 21:06:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 367DC318152
+	for <devicetree@vger.kernel.org>; Tue,  9 Dec 2025 21:09:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765314405; cv=none; b=QFEFqF0Q11GeEhf6QcBexxUqlDPx2Oh9GD6HK+6kbs4oNUdNbgEqo4n/5xrzNLuFcYHQjEaDBApxKRCLXmGCvcZPD4M7HyS6CjI+itet2Up8ULFyeHe7yh8u/BmxPhOFjW31LtfTFXdrUazoIHpmStlyTfWs0IuzgwdwYw8KISE=
+	t=1765314577; cv=none; b=OmHxVJ0q9K6TnTGrN460G5uB0cQXO5IKQ6CtvdAki3p/pdEo74KkDklAitgbYoBSylSYHN347nyy4q0Ac2pgY7ltz3SBZxgUdUqc46fzb8BftjTfG5nzI1IRq1LmJvQe7PKFcxIME7PwNnIn/dYYLNBMqkxFxlBTM4YYE9CaEgU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765314405; c=relaxed/simple;
-	bh=K7lfH5ZCqJa+nz75ryUq9dUNrsY09Rv7nhuM3sRhrqw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kYvekBtvLmtDmIJRqbd2soHnjeJGUI8/SgkATqt7mWpY9RLnmEphjOViYvu88Fv281qXbpCeZMlyObb+Afl3YSRqY6Ez0g8gYkri92ZTKEafGiq51ahnrezYuZzjz4k7drUTIEOLPEVdj5X+Kzb1NOT+qlN6Wdnd++6t9HgTp4g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Hpfryp4r; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13C3BC4CEF5;
-	Tue,  9 Dec 2025 21:06:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765314405;
-	bh=K7lfH5ZCqJa+nz75ryUq9dUNrsY09Rv7nhuM3sRhrqw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Hpfryp4raHwq13xaTN83E0tYkc1rDnIAo41SWEQdMEjqR+QiYKv+/1PkY8RGMIb7s
-	 BonSJhPkDhVrtUL7YKPubNgv90XUYz4X+C4eWkQ/Cr2Y6PneUypdYUu4VoBi3hLTHb
-	 fB3YcyeeXlXN2GwXHA8YEEBgxK0qWpgtExH7mBRjv1ZBXgBQ0Ux7ZCdAxX1CWs3HcA
-	 5OV/pLTnE6C8N9U3qAfhG7q0gYz6H9YqZOUuWCzPLpcZra3AxRauijDSjJfbf8gtfQ
-	 dMtJoQjmnAPaGcoaxyW639GUbFBm5O2Sr4/Mo8p+FoicYu1gSAuEg3N98ReFXZBa28
-	 hSki604E/hZWg==
-Date: Tue, 9 Dec 2025 15:06:43 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
-Cc: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
+	s=arc-20240116; t=1765314577; c=relaxed/simple;
+	bh=qJiKHFAzj9fzwdlWE5j3UbQ82N8DEnDoMSbQ0Pat0DY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=rMFG5IhX1iVHNTV6TdPfwee3Jn9BEX+Fiu0SbDJAumj52+r8yZp+Ihm4wZocGoAmTBpBzynerHNkZJMHXMSWGR/k1DAbs0AtPzSfBHC/O5kdgaSZpOTGj5/mSLSoQ3S+rNLkU3AySdVsLZlt3fjYccnqurCFtOyb3z/O8ns1CT0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de; spf=pass smtp.mailfrom=posteo.de; dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b=nLAGgxKc; arc=none smtp.client-ip=185.67.36.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.de
+Received: from submission (posteo.de [185.67.36.169]) 
+	by mout01.posteo.de (Postfix) with ESMTPS id 6D7A8240027
+	for <devicetree@vger.kernel.org>; Tue,  9 Dec 2025 22:09:34 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=posteo.de; s=2017;
+	t=1765314574; bh=wF3GnrTWwt9u8gVRh0B7rm3VkNAnKwt/+N/TCp3T70Y=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:
+	 Content-Transfer-Encoding:From;
+	b=nLAGgxKcyHvnB9mHvreS3qIB2z1t90PDhDLN+8MsuzW/f6SAkzHVY8rvyCsnrTIhw
+	 WutmSLtL3REy8Q6BRz1d8yAU7tTmwbQ49TAUrzcNduGpscV5sbYkad5IB66PE35FwI
+	 AAft9vSCtEvxI9KoYo0QEkBsHTeRRCqYpzrrBrs/9YaibyAyFMOg7ZD/lK5SAE+6WB
+	 SvSbufZgS2sJRTXouXKlyTs5+rbSNzTtg+GD9uvsAPZaRzDNmU7t6I8EQpjfAr2YY/
+	 Khp88uoXdLKNmEHw9c6S3hqcuZf/gE/onUKVpq96L6XTGiuzilo6ozlk62ZufO20ey
+	 pgpX+MBBVMZ/A==
+Received: from customer (localhost [127.0.0.1])
+	by submission (posteo.de) with ESMTPSA id 4dQs191mWfz9rxK;
+	Tue,  9 Dec 2025 22:09:33 +0100 (CET)
+From: Adrian Kossmann <adrian.kossmann@posteo.de>
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	devicetree@vger.kernel.org, Linus Walleij <linusw@kernel.org>
-Subject: Re: [PATCH v2 3/8] dt-bindings: pinctrl: renesas,r9a09g077-pinctrl:
- Document GPIO IRQ
-Message-ID: <176531440261.1095746.9490643740609832659.robh@kernel.org>
-References: <20251205150234.2958140-1-cosmin-gabriel.tanislav.xa@renesas.com>
- <20251205150234.2958140-4-cosmin-gabriel.tanislav.xa@renesas.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>
+Cc: Adrian Kossmann <adrian.kossmann@posteo.de>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: rockchip: Add compatible for Ethernet PHY
+Date: Tue, 09 Dec 2025 21:09:33 +0000
+Message-ID: <20251209210658.458506-2-adrian.kossmann@posteo.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251205150234.2958140-4-cosmin-gabriel.tanislav.xa@renesas.com>
+Content-Transfer-Encoding: 8bit
 
+Without the compatible string the Ethernet PHY is not bound to the
+correct driver. This causes link instability under load, with throughput
+eventually dropping to zero.
+Add the explicit PHY ID compatible to ensure the proper driver is selected.
 
-On Fri, 05 Dec 2025 17:02:29 +0200, Cosmin Tanislav wrote:
-> The Renesas RZ/T2H (R9A09G077) and Renesas RZ/N2H (R9A09G087) SoCs have
-> IRQ-capable pins handled by the ICU, which forwards them to the GIC.
-> 
-> The ICU supports 16 IRQ lines, the pins map to these lines arbitrarily,
-> and the mapping is not configurable.
-> 
-> Document the required properties to handle GPIO IRQ.
-> 
-> Signed-off-by: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
-> ---
-> 
-> V2:
->  * drop interrupt-controller and #interrupt-cells from required to keep
->    compatibility
-> 
->  .../bindings/pinctrl/renesas,r9a09g077-pinctrl.yaml | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
-> 
+Signed-off-by: Adrian Kossmann <adrian.kossmann@posteo.de>
+---
+ arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts | 1 +
+ 1 file changed, 1 insertion(+)
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+diff --git a/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts b/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
+index a4bdd87d0729..4da5ff6f2572 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
+@@ -163,6 +163,7 @@ mdio {
+ 		#size-cells = <0>;
+ 
+ 		rtl8211: ethernet-phy@1 {
++			compatible = "ethernet-phy-id001c.c916";
+ 			reg = <1>;
+ 			pinctrl-0 = <&eth_phy_int_pin>, <&eth_phy_reset_pin>;
+ 			pinctrl-names = "default";
+-- 
+2.52.0
 
 
