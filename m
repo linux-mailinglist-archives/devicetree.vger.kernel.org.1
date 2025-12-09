@@ -1,129 +1,155 @@
-Return-Path: <devicetree+bounces-245381-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245382-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A23ECAFDE6
-	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 13:06:53 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02EACCAFDEF
+	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 13:09:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id BBF5430101F8
-	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 12:06:52 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4846E30194D8
+	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 12:09:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B58532142E;
-	Tue,  9 Dec 2025 12:06:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 589A5320A33;
+	Tue,  9 Dec 2025 12:09:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="JaJBj2PN"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="L+1QO4MW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F208A28CF42;
-	Tue,  9 Dec 2025 12:06:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C200306B14
+	for <devicetree@vger.kernel.org>; Tue,  9 Dec 2025 12:09:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765282011; cv=none; b=DQ9YMSSPm29dAHNMAcYcWfyDS2SA8nEH07JCaGZgqFZwZfD7yvmG8/P5IYjok2xz/FvquVv0NjbN83vH4ULdOG1EhjASlMoirlO/3iO0FJFZ7IiZtD7yGzgpcKv+asOgPri0atb2WuxX333jCC2xDKn7EAdta1WYLkpHgNLluNw=
+	t=1765282165; cv=none; b=BV0Io2Y06MGq9tyjoXlCXB+BPgwGMAAMnGf/CrM8HFQ3Vmc3QRaffJIB2g96zaDmAHvJxS72uacA6hQmP3J741B8evI/u5o1lW/pogdkaSLKH7zBQsSK6ixTYTLqgWFyepgxK36MH7lKfC7HN5n5HEdX00zUUECsWfIBqz93A4E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765282011; c=relaxed/simple;
-	bh=Wfzvf4SfA+dZX+wTPJwevOS9BDPLIu5wLsr/P3PyK28=;
-	h=Content-Type:MIME-Version:In-Reply-To:References:Subject:From:Cc:
-	 To:Date:Message-ID; b=dD+pMSlD2FZ3MNhLN+kyfgH04gPHobm3W2kMSwaC+gmIA3TdlF3Fij6WHybMg7Xqmm0JtnVr5E+oPVxzI5eHE3JHtXCixB+nnZjfp2vTiXmdRkJox1fB39+rSZ4VnvBFLcFgk7IJkESDrdYPPLxG28z6cJMn2TCgWnXBOz172QE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=JaJBj2PN; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from mail.ideasonboard.com (unknown [IPv6:2401:4900:1c31:3dca:74fd:8a0a:9c63:1c11])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id D730B667;
-	Tue,  9 Dec 2025 13:06:43 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1765282004;
-	bh=Wfzvf4SfA+dZX+wTPJwevOS9BDPLIu5wLsr/P3PyK28=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=JaJBj2PNv4OeRqDCuUeBhSJ1V3yJKgS35tk5UPa1+ZQZk7KiKbxcb/m4PqInL7Cau
-	 ESSlldDCw5HpKp+1hsDCP81Vmn8dOmfCWneCW0Kndbu0ocXzuJyCTqDiuhOZZjE0IP
-	 yd35PMG0oQSbCgPFA7w4CCTfrQYlRNTc2OSOz+VI=
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1765282165; c=relaxed/simple;
+	bh=yCYVKKoXCSoQtguNvJbzEOrNTHKAVLyyZ77IrMgfBjA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=QXcLyhUDCgA/cELqe9lb4ViRGk1/o9cTi71A9TnASoU/VrcDdlqyl/G+TUh5ffJASyC4Y87fdmWe6uYg7aZ/X9vFjcDPYZE1Ff8ecF40wzGYSXO+wbXVVwIefNv/qql04aLZ5hI6KsRRFjKGz2zNssEgo+fMzO9p6vgIQvv+Uo8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=L+1QO4MW; arc=none smtp.client-ip=209.85.128.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-78c2e5745bdso34775417b3.0
+        for <devicetree@vger.kernel.org>; Tue, 09 Dec 2025 04:09:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1765282162; x=1765886962; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=BzmLw97ilOLn2bX7GqaP6PaM9f0k2YjRWtrW6v3bqsY=;
+        b=L+1QO4MWpFJ7MqAH/Tx93IwelJOKMdhNQec5V8gYrLCRSMp88O0gw3QhKuJSpBqqnd
+         iOX5N8QqzePnpcWr/AmS6De1R0QD+A9wKlzU3PNE9j8L+dqmeSL5VL4Y4vOD6PqZlNPQ
+         wqRedtQZl/HXRP9woakUMD8TDZvt8kTiWoXYOUvztmt9Cr48fSIedkAOnKoI3Kn6F5Jg
+         xGe0Vh1bHv9FQ1fEFJrFscXXW67hLwgZFSNKuuI2AptNVf7Fo/93Cl2nweAmT571N+lK
+         Mlaoan8fjYkrIgyl3McVIvqxx55ibGmn3g9m/+vSBR9eNUcxhIbeNTDW0vua1uwlIbDn
+         Sg5w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765282162; x=1765886962;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=BzmLw97ilOLn2bX7GqaP6PaM9f0k2YjRWtrW6v3bqsY=;
+        b=S2rd/o7c+9narJFFh0AH3SZTGkJuVxw8BefzV8yqd0pHg1U7ccl2WegfJM/hnb91ba
+         YYXa6PNT9JbBeEjYC/pMED7qWEms0cXlX9PUnslXRX0TVrxtIkJVkXP7bJqJmmRM7uVq
+         kcQ6Mghcvp323Qxdqsb4T2y/wFIGXOhnFbbw7WRW7+8GJ+FpcAW3Fi9HNAxgTiKcIxhk
+         ydBshIT2RL9qQ3JbbtJG8vinicdU955IQLiM5nbalqAjrT4tvHHV1GPTfZtGXFHimCwt
+         PPjl9XeMWFRogLJWmpTV+znnVuPQrrO5FCyOtmEqkqRwIMUk0RSCvcuX1kxDrqqh5uxV
+         a4Hw==
+X-Forwarded-Encrypted: i=1; AJvYcCXP6yeodaE1qDOAW8grrlclvArLjDOvsRZZtWoaPyggVTkw3P5Xkjdt4KXaKuRBGNcoiQ8TMmcHnUta@vger.kernel.org
+X-Gm-Message-State: AOJu0YzVoMVIjNLGLz0+pxSy8XwCXGfA7TgVFw6aDnsHl0Tz0c4fWoIP
+	Dzcs5C/hYlhri4xPXaUVcBHpIv9lzHH0NnLQXfeWeoTJHULPGBiMyUaUvP37/bA3won62ctgMv2
+	Fvdt0oG2SOF3s98wywdWsgJBeZMdMLeZMKpm1llM4xw==
+X-Gm-Gg: AY/fxX4BKgyBUnJA3Wp/ag4r0PjfmvE527aU0AWR+m+8mnqMoeqM3Q2v7Ybg5Z+wpsK
+	nQVZFRS82t4P+ZmNFpPtKwZcWJN1qoBFu9fCuGx+pEEmALg9EjjUFkG2VBEwgOHtpkofFetpc1+
+	t2JywPcOqcr4jTJ6/y0blP45OqEsvWDa1BWDmyFNfmfw0sZAPruCC/1Uob6hcPqUQZhe5HRnxrj
+	17Hvw5+dzMtqg7l+YLKqrg1VYRj4OncsdaH7hDkC7hMMRURAjaRS9Kbn+91LLhdMUf8Pr8D
+X-Google-Smtp-Source: AGHT+IHJMvrdiHL0dzxlye43tWxemqNsj3XKbdM5WF7g7hOQydSkyf3phIxwFJPbN9jPlEGazi0aDHDzYf+fYMSmjhQ=
+X-Received: by 2002:a05:690c:7306:b0:787:f2c3:7164 with SMTP id
+ 00721157ae682-78c339d1c77mr192573057b3.0.1765282162456; Tue, 09 Dec 2025
+ 04:09:22 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <4854792f-e682-4291-89c4-c0139a6c24bc@ideasonboard.com>
-References: <20251112115459.2479225-1-r-donadkar@ti.com> <20251112115459.2479225-14-r-donadkar@ti.com> <1e7be0c3-b7da-4eac-9a39-147c1e627cbb@ideasonboard.com> <719ee15a-92fd-4597-b25e-196f4a906a5a@ti.com> <176527657688.20066.3405220622225469005@freya> <4854792f-e682-4291-89c4-c0139a6c24bc@ideasonboard.com>
-Subject: Re: [PATCH v8 13/18] media: ti: j721e-csi2rx: add multistream support
-From: Jai Luthra <jai.luthra@ideasonboard.com>
-Cc: y-abhilashchandra@ti.com, devarsht@ti.com, s-jain1@ti.com, vigneshr@ti.com, mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org, p.zabel@pengutronix.de, conor+dt@kernel.org, sakari.ailus@linux.intel.com, hverkuil-cisco@xs4all.nl, changhuang.liang@starfivetech.com, jack.zhu@starfivetech.com, sjoerd@collabora.com, dan.carpenter@linaro.org, hverkuil+cisco@kernel.org, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, devicetree@vger.kernel.org
-To: Rishikesh Donadkar <r-donadkar@ti.com>, Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, jai.luthra@linux.dev, laurent.pinchart@ideasonboard.com, mripard@kernel.org
-Date: Tue, 09 Dec 2025 17:36:39 +0530
-Message-ID: <176528199956.20066.17866034505160159556@freya>
-User-Agent: alot/0.12.dev62+gb9d6144a6
+References: <20251201-rz-sdio-mux-v2-0-bcb581b88dd7@solid-run.com> <20251201-rz-sdio-mux-v2-1-bcb581b88dd7@solid-run.com>
+In-Reply-To: <20251201-rz-sdio-mux-v2-1-bcb581b88dd7@solid-run.com>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Tue, 9 Dec 2025 13:08:46 +0100
+X-Gm-Features: AQt7F2r1lyAuAvPl8XAr0oXpaCyrxw65vCWYOlOZTELJxwXwUotYjVniauuZrmM
+Message-ID: <CAPDyKFrD2x0U49w2Fpzrc98wKXtyyN-B1P69OMJk27+0Yzsg8Q@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: mmc: renesas,sdhi: Add mux-states property
+To: Josua Mayer <josua@solid-run.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Magnus Damm <magnus.damm@gmail.com>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	Mikhail Anikin <mikhail.anikin@solid-run.com>, Yazan Shhady <yazan.shhady@solid-run.com>, 
+	Jon Nettleton <jon@solid-run.com>, linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-Quoting Tomi Valkeinen (2025-12-09 17:22:08)
-> Hi,
->=20
-> On 09/12/2025 12:36, Jai Luthra wrote:
-> > Hi Rishikesh,
-> >=20
-> > Quoting Rishikesh Donadkar (2025-12-09 15:38:33)
-> >>
-> >> On 01/12/25 18:33, Tomi Valkeinen wrote:
-> >>> Hi,
-> >>
-> >>
-> >> Hi Tomi,
-> >>
-> >> Thank you for the review !
-> >>
-> >>>
-> >>> On 12/11/2025 13:54, Rishikesh Donadkar wrote:
-> >>>> From: Jai Luthra <j-luthra@ti.com>
-> >>>>
-> >>>> Each CSI2 stream can be multiplexed into 4 independent streams, each
-> >>> Well, that's not true, at least generally speaking (there can be more
-> >>> than 4). Is that specific to TI hardware?
-> >>
-> >>
-> >> Yes, The commit message talks about how TI CSI does the multiplexing o=
-f=20
-> >> CSI stream from the sensor into 4 streams as show in the Figure 12-388=
-=20
-> >> in AM62A TRM[1]. I will modify the commit message to mention that this=
-=20
-> >> is TI CSI specific.
-> >=20
-> > Figure 12-388 shows the internal pixel stream coming from Cadence to
-> > different hardware blocks like TI's Shim (DMA) and VP0 (ISP) and VP1. I
-> > don't see that being related to CSI2 VC/DT support, which is handled by=
- the
-> > Shim using different DMA contexts and channels.
-> >=20
-> > In the TRM, under 12.6.1.1.1 CSI_RX_IF Features, I see:
-> >  * Compliant to MIPI CSI v1.3
-> >  * Supports up to 16 virtual channels per input (partial MIPI CSI v2.0 =
-feature)
-> >=20
-> > So 16 VCs is supported by TI's CSI pipeline, despite it being MIPI CSI2
-> > v1.3 compliant otherwise. I think I might have been confused with DS90U=
-B960
-> > while writing this commit message originally, which strictly supports a
-> > maximum of 4 VCs.
-> >=20
-> > Secondly, even with just CSI2 v1.0 compliant source, this could
-> > theoretically handle 8 "streams" of data with 4 different VCs x 2 data
-> > types each. So please update the paragraph in next revision.
-> Where does the "8" come from? Do we have 8 context registers, to which
-> we program the VC + DT filter?
-
-Indeed, 8 was just an example. The hardware can support upto 32
-combinations, as that is the total number of DMA contexts available.
-
-Thanks,
-    Jai
-
->=20
-> Also, it could as well be 8 streams, all with VC 0, but each different
-> DT (probably unlikely scenario =3D). But I just want to highlight that VC
-> is not the "stream". The "stream" is the VC+DT tuple.
->=20
->  Tomi
+On Mon, 1 Dec 2025 at 13:31, Josua Mayer <josua@solid-run.com> wrote:
 >
+> Add mux controller support for when sdio lines are muxed between a host
+> and multiple cards.
+
+We have the SD, SDIO, (e)MMC interfaces with their corresponding pins.
+Using "sdio lines" becomes confusing as it kind of indicates this is
+for "SDIO" only.
+
+>
+> There are several devices supporting a choice of eMMC or SD on a single
+> board by both dip switch and gpio, e.g. Renesas RZ/G2L SMARC SoM and
+> SolidRun RZ/G2L SoM.
+>
+> In-tree dts for the Renesas boards currently rely on preprocessor macros
+> to hog gpios and define the card.
+>
+> By adding mux-states property to sdio controller description, boards can
+
+Again, please don't use "sdio" here.
+
+> correctly describe the mux that already exists in hardware - and drivers
+> can coordinate between mux selection and probing for cards.
+>
+> Signed-off-by: Josua Mayer <josua@solid-run.com>
+> ---
+>  Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
+> index c754ea71f51f7..754ccb1c30efb 100644
+> --- a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
+> @@ -106,6 +106,11 @@ properties:
+>    iommus:
+>      maxItems: 1
+>
+> +  mux-states:
+> +    description:
+> +      mux controller node to route the SDIO signals from SoC to cards.
+
+I suggest we change from "SDIO" to "SD/SDIO/eMMC".
+
+> +    maxItems: 1
+> +
+>    power-domains:
+>      maxItems: 1
+>
+> @@ -275,6 +280,7 @@ examples:
+>          max-frequency = <195000000>;
+>          power-domains = <&sysc R8A7790_PD_ALWAYS_ON>;
+>          resets = <&cpg 314>;
+> +        mux-states = <&mux 0>;
+>      };
+>
+>      sdhi1: mmc@ee120000 {
+>
+> --
+> 2.51.0
+>
+>
+
+Kind regards
+Uffe
 
