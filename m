@@ -1,56 +1,60 @@
-Return-Path: <devicetree+bounces-245470-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245471-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6184ECB14D7
-	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 23:37:56 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB950CB14F8
+	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 23:39:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id C7128302959C
-	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 22:37:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7592630E761D
+	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 22:38:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 459F52BD11;
-	Tue,  9 Dec 2025 22:37:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B770B2EC56E;
+	Tue,  9 Dec 2025 22:38:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ieeCri33"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RrzM7SZI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73B482EC54A;
-	Tue,  9 Dec 2025 22:37:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 854DE2DF13E;
+	Tue,  9 Dec 2025 22:38:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765319874; cv=none; b=aUHlHbNzWZQLC/5mjP+KwVzmeUHuUfpA8EHlbAwK5n7BypU2LlkqfKvvQox6s1B1JGEaqrr17oc6rbjl8T7C7Y/1v5vmVhPfLRixyMM+3XIA5ywagN8JTbjyDs/U1h5E+ffxDQfvEwGNT8k940sbO0iLBP4Ru09tujkl8xHJXyM=
+	t=1765319907; cv=none; b=GdRN9ZTmdX2B1mr440tbX2IYPzpJYsGL2OSUTNSxd8h6QN3gUOYoiReACKMSn21VnGt8N7kzDkcFaZoZQHBwEzsD9ZkpmAijG5nCftryv7IWqYIhoaGpconjMu78tbeAbuA0YU59DQBGG7iktmNaU+WkekJR+ROrlVx6/whJT9Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765319874; c=relaxed/simple;
-	bh=z0X+SLq8oqqF9Ecnf7WAKlKrV/c9O21OXRq5oNj0Zyg=;
+	s=arc-20240116; t=1765319907; c=relaxed/simple;
+	bh=vD24s0bunHknwtVdHkYxMUpz5WPWdJEacfKCk1wqSw0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=B4vfs4gt6eeFwtRsFcVBDPpjSpbzT/X63yQHjpUgpqO9IJAes3uwomWPETEjN1utv50ynhubLlzR/gwO+X8v96/CvWFmxK578cvE6Mwh8IpuQeWrBk54KfXV6vFoXe40oyGY/auCPIKrrBki9x+/J9tQSsdvP6adhY/DGlhKqfg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ieeCri33; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BDC54C4CEF5;
-	Tue,  9 Dec 2025 22:37:53 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=isZ/UvwUKlwD5dYRe859kYJiqWW2HvCm0vF9CDu+LJpuq7ZqmFn16y9QqtIQMqVq+j7uzvAnYKX4HmqhXSWUPe3bVxFucXByuVADphqrT4mx2UMhEduMYiCE3+uVaxPxEgdZ83t/FJrObDgxvp3pcykc6dd/8/jD4QBs85Ao7U4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RrzM7SZI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DFD9FC4CEF5;
+	Tue,  9 Dec 2025 22:38:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765319873;
-	bh=z0X+SLq8oqqF9Ecnf7WAKlKrV/c9O21OXRq5oNj0Zyg=;
+	s=k20201202; t=1765319907;
+	bh=vD24s0bunHknwtVdHkYxMUpz5WPWdJEacfKCk1wqSw0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ieeCri336JbO2W4n5JduqzwXptUt41FIMtHwK9LrnKzJzCWYOLhnotnNgGTr/Y7I4
-	 GV6tS9w7+a3K4Z41mg289mVpG9xe49JMl7avctGw9/n5BTxN7sFr+T0yocyBcHLuHH
-	 0twqgqQPVrbmkGTP+rBmflQC89AGeI8/FKH2eDqJj8ejt/vJhxBTOVpAAnX5+eAm1I
-	 1a/5ejXF1LavA+u5DTHE4MwTDgjUGQQeZkMx0FLqIPz7AD4MTdOdxwF1lFJxD+zCvg
-	 fvCcAJDQIGfq+WOxAvUF8/BmYnnN1B+7CCK0dMDqo+Zj+qnKZRM/NfFgMNhMZHVAEl
-	 B0ms7B5x/An7A==
-Date: Tue, 9 Dec 2025 16:37:51 -0600
-From: Rob Herring <robh@kernel.org>
-To: adrianhoyin.ng@altera.com
-Cc: gregkh@linuxfoundation.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	dinguyen@kernel.org, Thinh.Nguyen@synopsys.com,
-	devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/4] dt-bindings: usb: dwc3: Add support for Altera
- Agilex5 DWC3
-Message-ID: <20251209223751.GB1242261-robh@kernel.org>
-References: <cover.1765249127.git.adrianhoyin.ng@altera.com>
- <4c8d2a1fa93e38afe64ce71bf2709e76352eb630.1765249127.git.adrianhoyin.ng@altera.com>
+	b=RrzM7SZIr3gCaB4y4ZKjrfBlRSJglrviC1fd65ko1+YVEmEyS7dvFINUjoGYkbP1O
+	 afns0Lxb6wMihPIwwyCSRQTk3GnTp19WtYfB4NdHZyQcmFCCRAdqA66NEhJRvd7CET
+	 e+6Pc2c7ts4ifvV4ooaYrtbxX0b2BUaQN7cIwQChNLCgT3o/mrg4nZkrmhba6wOvtl
+	 kc9psazzIFHSOoJZMSG2y5laPKAiSTvC/DLnU68xFd+ULJQgRljr5d6eMWLJh/WihM
+	 MqYsK3jEzleBWDqGY//JC1/dSKx6wsuQhMkH2R6IMYPkUWPJOpkq44B0mrqCXrZc74
+	 Npjp3iaEFy2jw==
+Date: Tue, 9 Dec 2025 16:38:22 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Ovidiu Panait <ovidiu.panait.rb@renesas.com>
+Cc: devicetree@vger.kernel.org, lukasz.luba@arm.com, conor+dt@kernel.org,
+	sboyd@kernel.org, linux-kernel@vger.kernel.org,
+	magnus.damm@gmail.com, geert+renesas@glider.be,
+	mturquette@baylibre.com, linux-renesas-soc@vger.kernel.org,
+	linux-clk@vger.kernel.org, daniel.lezcano@linaro.org,
+	linux-pm@vger.kernel.org, krzk+dt@kernel.org,
+	john.madieu.xa@bp.renesas.com, rui.zhang@intel.com,
+	rafael@kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: thermal: r9a09g047-tsu: Document RZ/V2N
+ TSU
+Message-ID: <176531990213.1290341.12301174162121325549.robh@kernel.org>
+References: <20251209091115.8541-1-ovidiu.panait.rb@renesas.com>
+ <20251209091115.8541-2-ovidiu.panait.rb@renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,132 +63,28 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <4c8d2a1fa93e38afe64ce71bf2709e76352eb630.1765249127.git.adrianhoyin.ng@altera.com>
+In-Reply-To: <20251209091115.8541-2-ovidiu.panait.rb@renesas.com>
 
-On Tue, Dec 09, 2025 at 02:25:08PM +0800, adrianhoyin.ng@altera.com wrote:
-> From: Adrian Ng Ho Yin <adrianhoyin.ng@altera.com>
+
+On Tue, 09 Dec 2025 09:11:13 +0000, Ovidiu Panait wrote:
+> The Renesas RZ/V2N SoC includes a Thermal Sensor Unit (TSU) block designed
+> to measure the junction temperature. The device provides real-time
+> temperature measurements for thermal management, utilizing two dedicated
+> channels for temperature sensing.
 > 
-> Add device tree binding for the Synopsys DesignWare USB3 (DWC3) controller
-> on Altera Agilex5 SoC. The binding describes SoC-specific integration
-> including clock and reset control for the USB subsystem.
+> The Renesas RZ/V2N SoC is using the same TSU IP found on the RZ/G3E SoC,
+> the only difference being that it has two channels instead of one.
 > 
-> Signed-off-by: Adrian Ng Ho Yin <adrianhoyin.ng@altera.com>
+> Add new compatible string "renesas,r9a09g056-tsu" for RZ/V2N and use
+> "renesas,r9a09g047-tsu" as a fallback compatible to indicate hardware
+> compatibility with the RZ/G3E implementation.
+> 
+> Signed-off-by: Ovidiu Panait <ovidiu.panait.rb@renesas.com>
 > ---
->  .../bindings/usb/altr,agilex5-dwc3.yaml       | 96 +++++++++++++++++++
->  1 file changed, 96 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/usb/altr,agilex5-dwc3.yaml
+>  .../devicetree/bindings/thermal/renesas,r9a09g047-tsu.yaml    | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/usb/altr,agilex5-dwc3.yaml b/Documentation/devicetree/bindings/usb/altr,agilex5-dwc3.yaml
-> new file mode 100644
-> index 000000000000..d40719e0e49d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/usb/altr,agilex5-dwc3.yaml
-> @@ -0,0 +1,96 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/usb/altr,agilex5-dwc3.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Altera Agilex5 DWC3 USB SoC Controller Wrapper
-> +
-> +maintainers:
-> +  - Adrian Ng <adrianhoyin.ng@altera.com>
-> +
-> +description:
-> +  The Altera Agilex5 SoCFPGA integrates a Synopsys DesignWare USB3 (DWC3)
-> +  controller that supports host, device and DRD modes. This binding describes
-> +  SoC integration including clocks, resets, PHY connections, and optional
-> +  IOMMU support.
-> +
-> +allOf:
-> +  - $ref: snps,dwc3-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: altr,agilex5-dwc3
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: Controller suspend clock
-> +      - description: Master/Core bus clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: suspend_clk
-> +      - const: bus_clk
 
-Don't invent new names. The common names are 'suspend' and 'bus_early'.
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-Sure there is no 'ref' clock too?
-
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  phys:
-> +    items:
-> +      - description: USB2 PHY
-> +      - description: USB3 PHY
-> +
-> +  phy-names:
-> +    items:
-> +      - const: usb2-phy
-> +      - const: usb3-phy
-> +
-> +  iommus:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    items:
-> +      - description: DWC3 core reset
-> +      - description: DWC3 ECC reset
-> +
-> +  reset-names:
-> +    items:
-> +      - const: dwc3
-> +      - const: dwc3-ecc
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - interrupts
-> +  - phys
-> +  - phy-names
-> +  - resets
-> +  - reset-names
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/reset/altr,rst-mgr-s10.h>
-> +    #include <dt-bindings/clock/intel,agilex5-clkmgr.h>
-> +
-> +    usb31: usb@11000000 {
-
-Drop unused labels.
-
-> +        compatible = "altr,agilex5-dwc3";
-> +        reg = <0x11000000 0x100000>;
-> +        interrupts = <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH>;
-> +        clocks = <&clkmgr AGILEX5_USB31_SUSPEND_CLK>,
-> +                 <&clkmgr AGILEX5_USB31_BUS_CLK_EARLY>;
-> +        clock-names = "suspend_clk", "bus_clk";
-> +        phys = <&usbphy0>, <&usbphy1>;
-> +        phy-names = "usb2-phy", "usb3-phy";
-> +        resets = <&rst USB1_RESET>, <&rst USB1_OCP_RESET>;
-> +        reset-names = "dwc3", "dwc3-ecc";
-> +        iommus = <&smmu 7>;
-> +        dr_mode = "host";
-> +    };
-> -- 
-> 2.49.GIT
-> 
 
