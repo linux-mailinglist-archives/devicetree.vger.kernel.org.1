@@ -1,180 +1,155 @@
-Return-Path: <devicetree+bounces-245461-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245462-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2B45CB131E
-	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 22:31:33 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E765CB1384
+	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 22:41:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5B7FA30DD963
-	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 21:28:52 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 3538B3009F74
+	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 21:41:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B02F30CDB0;
-	Tue,  9 Dec 2025 21:28:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 054CD306496;
+	Tue,  9 Dec 2025 21:41:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CFnwEemh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TLQ232pm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69322308F2E
-	for <devicetree@vger.kernel.org>; Tue,  9 Dec 2025 21:28:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C27691A38F9;
+	Tue,  9 Dec 2025 21:41:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765315731; cv=none; b=bhMXt/4lcmUaIE8oNjtdjONJ6/4Qjuw06c2P5QUlsoZsjRZ8t25+YrhPHTi0u+sxMFKF7EXfJBhrR6+wcbjxzJnUBMVZFhFI+p5VHicd5GeVJGdyls9lkSNt9RJLrWUNpkM4D+jtXNCaxguI0laFkav17hRVz3sn8dR18/vkVTY=
+	t=1765316462; cv=none; b=ak7Zn3Bme46J0A+P04p6abfMpUsnSP0K8CQ1rljSzgBUBwkLYov+3fs0d2T2W4J2SOoPZu2UZXj6X+FawKsWJGo6umTcVrjR8WkhwXR+/+bQNZCFXyUqRb7+0RQ8KpEhUr5QSZHUxn1Rm3DNhA4X5Wgf/iuTsdA9RRIkd4tnQFU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765315731; c=relaxed/simple;
-	bh=iQOG3N1YgG36US/X17rOmOupxuV1Wcn4H4xf4OfX/X0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=amx0nU5lchcr85BV9OJGytHrVFY3HxtlKxwp3gEZk3S685MSpJmtVbp/rWqo8RwBuIHrl2pgn2L0xKOhfYaOMgF8hhU9CIrPZ6oHJ4fCznmuEXl6bV30TadChNjMYmA89AfNiIURnDs/kefqJRb1HHzax+m4WI/AIMEtdhSLcMs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CFnwEemh; arc=none smtp.client-ip=209.85.208.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-6415fc4093bso903497a12.1
-        for <devicetree@vger.kernel.org>; Tue, 09 Dec 2025 13:28:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1765315727; x=1765920527; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=6KdPDL+qEVcFOmw2u283MuRo/oz188auYP5u+mGxWi8=;
-        b=CFnwEemhswq0ojGly9ykyiME8u7BwF4252u3/HJzyaBfO+J1kyyeOzyWdwNnmNmDaq
-         JKSvbOo/jv+5evzwRULGLhaf/cLD5dN5RoBq8+50x0ZXhYeLdu7NG63/6hxD/lJlM4w1
-         1G8LkC9M7QvhCp+VZwfQUa7D850uJW83DSL7j5O4O9eUbBMh6sLWlReUP8YarsDtXVIc
-         OcPoVRD6qkftBM+hkq8a6k3oMT3d6YRtO1E60Rwx/JiusW6+cvI7qxFJp6j6stHjdhd8
-         n0LC9WEdIyA2bN/AA07c2nNLSbmKoJi2IVuW31M8oHg0Vayz9uuMzoX9XKStDmniJvPg
-         Qz/Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765315727; x=1765920527;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6KdPDL+qEVcFOmw2u283MuRo/oz188auYP5u+mGxWi8=;
-        b=lbIpWK/buQ2rPQ4l8w/40es0c/X+5DspuSG34lp4aXhDo2oLSc0lG/6qJyqRbDs2r7
-         c2M7uG/U2fn9EPP0F45MaUIRppKgA5iDdl61lxGxr2B8etrxCaNjjpPHUZVmNb8abLcJ
-         tt7GQw4lbr5HwLjlOf8EEN+dKI1t9Tc5OKhR4gPQW4lZSjbDRh+wUT5Dq47wcoBHt6m8
-         jusg950SHa/gDhQtDhftBLZ0ftAzLmts7lmX15zrJYQHj7CXDBciieUUL5sIlNabiG3k
-         E2MtDVxwNzDXU9kUeiuxyBcPC11sTqDDx1RX0ZZ2DSUScjGHaz6DnFyYjdzzLiUIXofb
-         bl5w==
-X-Forwarded-Encrypted: i=1; AJvYcCXfowOms6v8jK0M8c5aczDmssdh6AI0enhe0oJTQQarknF+7WL1w/59BpVANfdIohFkdxfptH5kz2Dt@vger.kernel.org
-X-Gm-Message-State: AOJu0YzMTH/fGt6mXTlLDvii85X3fTtsJv4AgGZLee9A3Zjf6lTim1oQ
-	NMGhZRKXXRmylqJz2BEO0S7pzp0D7RxJnfnNZ8yapcuJ6PIPd+ET7YAk
-X-Gm-Gg: AY/fxX52OYCiubThVC0KiceSPqZdm5XXwavmZ7JSEr3k7QcyRWCvanrgAL4s+fx3aJP
-	ICyKyNQWYM5Q5CYxw3qLIZt6kHXD4F7Uq56KziAiPgN0cWi8SNGWzfzEOhPoKagHaDqGVcyFuK3
-	bwJyCWlKobp1lPMjRvVQbinEQUgiwaexNaVUQApmxovb1pVy1i9aJiN0oKg8cZe/L3/yCX29H1v
-	aIl3d6YsK6oe+6qFSFWJ3j3UtVHmCdjarXQMswkaRPoyG/7G5gkdX7gdZPc603hbWvWeFMpJ7YZ
-	jWdaGz7zjrH3egH0OCEzJaCd3cZnw/tyZbkbhs7byfIfMVFCwPOJgS+YDxH9YlRPZFo8vSoYrb/
-	CPCbg7sV0BTDfffbRcNW9pmWJSSRZUT1VDykHkUSKlCpMU295EmNRzuM/DkkcQski1XYFjW2Mjv
-	rFGzo=
-X-Google-Smtp-Source: AGHT+IFj/5wMArLmW3OmgzskhhnbPrwRXcYYDaRCfYhUBMAssQaU+5cD3/Q1W1ov5oVEalokTWW63w==
-X-Received: by 2002:a05:6402:270b:b0:647:5055:6690 with SMTP id 4fb4d7f45d1cf-6496d5ec098mr165057a12.7.1765315726430;
-        Tue, 09 Dec 2025 13:28:46 -0800 (PST)
-Received: from skbuf ([2a02:2f04:d106:d600:116a:e491:5469:b955])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-647b4121eb6sm15083879a12.26.2025.12.09.13.28.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Dec 2025 13:28:44 -0800 (PST)
-Date: Tue, 9 Dec 2025 23:28:41 +0200
-From: Vladimir Oltean <olteanv@gmail.com>
-To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc: =?utf-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Russell King <linux@armlinux.org.uk>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH net-next 09/11] net: dsa: rzn1-a5psw: Add support for
- management port frame length adjustment
-Message-ID: <20251209212841.upskgi5dphsmkrpi@skbuf>
-References: <20251121113553.2955854-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20251121113553.2955854-10-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20251121210504.ljeejnltaawahqtv@skbuf>
- <CA+V-a8ve6vV_O1XwPX0sn+Qqm5QoYrf6Xu5gansxW05waMf43Q@mail.gmail.com>
+	s=arc-20240116; t=1765316462; c=relaxed/simple;
+	bh=T+OQdSpprTMLyOyQvOyUGr/53HXWjYUT34ZPA/7ZAeQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=EN9GoiEeDC81E7sg61c0hh5tZ4bH+OiVWWd55lxZDddFiQ1ATpbV6CZzzwzH1nqb6k0tH4Y9PPKgk0VW6xtBtHk7mWiiIQdXJBjCOdjevudC9Xez+Oc+cBj4nyQhIQTJsnc1FL8FqnuagNbUpaZZZrarWmzj0qfSGP1Mh9nVFiE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TLQ232pm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52551C4CEF5;
+	Tue,  9 Dec 2025 21:40:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1765316462;
+	bh=T+OQdSpprTMLyOyQvOyUGr/53HXWjYUT34ZPA/7ZAeQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=TLQ232pmr+5DkWyPFjkWcwqJLyVEFktveSWCn6LIezWEKC3Fug5e+ei7U/Fp4AZBN
+	 wbk07sk25HJi7uLpPxzls1XheneMF9SB1x3zppEWp+n3ZSIb3sI/BbT6WNmoWajqfL
+	 Lc/vCpzfA04dCRl3WRli3QeA7DO3LAjM6B1/ZfORYNxvl3KcHVAUV9SFtJTUqzRRzs
+	 Ehx37YS5RStEfYIeECoEotYQXRQ0WwRGD3VJ/l9qSZqz2BrB14WvWwHCUD6QWJkS29
+	 DKZYIgu1rrTHaJG7vtvkBclMPSbLswYb/L8o6Oytg7E7eT01ysguELwqtF+QUFUC0h
+	 09XVN1ci09YnQ==
+Message-ID: <502cc1eb-87a6-4574-903a-6181cd2258cc@kernel.org>
+Date: Tue, 9 Dec 2025 22:40:55 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: pwm: eswin: Add EIC7700 pwm controller
+To: Xuyang Dong <dongxuyang@eswincomputing.com>, ben.dooks@codethink.co.uk
+Cc: ukleinek@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, p.zabel@pengutronix.de, linux-pwm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ ningyu@eswincomputing.com, linmin@eswincomputing.com,
+ xuxiang@eswincomputing.com, wangguosheng@eswincomputing.com,
+ pinkesh.vaghela@einfochips.com
+References: <20251205090411.1388-1-dongxuyang@eswincomputing.com>
+ <20251205090450.1446-1-dongxuyang@eswincomputing.com>
+ <20251208-rational-trout-of-purring-a6150a@quoll>
+ <47025bea.10ca.19b02a06c69.Coremail.dongxuyang@eswincomputing.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <47025bea.10ca.19b02a06c69.Coremail.dongxuyang@eswincomputing.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CA+V-a8ve6vV_O1XwPX0sn+Qqm5QoYrf6Xu5gansxW05waMf43Q@mail.gmail.com>
 
-On Tue, Dec 09, 2025 at 04:02:19PM +0000, Lad, Prabhakar wrote:
-> > In the next change you set this to 40. What's the reason behind such a
-> > high value (need to set the management port A5PSW_FRM_LENGTH value to
-> > 1574 bytes to pass L2 payload of 1500 bytes)? It sounds like this needs
-> > to be called out more clearly for what it is - a hardware bug.
-> >
-> Regarding the question about the relatively large adjustment value:
-> according to the hardware manual,
-> “Set the FRM_LENGTH register in port 3 (CPU port) to more than or
-> equal to the initial value. When you want to limit the frame length of
-> the received frame, use FRM_LENGTH registers in port 0 to port 2.”
+On 09/12/2025 11:20, Xuyang Dong wrote:
+>>> +
+>>> +  pinctrl-0: true
+>>> +  pinctrl-1: true
+>>> +
+>>> +  pinctrl-names:
+>>> +    minItems: 1
+>>> +    items:
+>>> +      - const: default
+>>> +      - const: sleep
+>>> +
+>>> +  snps,pwm-full-range-enable:
+>>
+>> 1. Wrong vendor prefix, thats eswin, not snps.
+>> 2. Why is this a hardware property? I really do not see that. You
+>> described the desired Linux feature or behavior, not the actual
+>> hardware. The bindings are about the latter, so instead you need to
+>> rephrase the property and its description to match actual hardware
+>> capabilities/features/configuration etc.
+>>
+> Hi Krzysztof and Ben,
 > 
-> In practice, with the default MTU (i.e. without applying the +40-byte
-> adjustment), RX traffic operates correctly. For example, running
-> iperf3 in reverse mode shows no issues, and frames are received
-> without errors. However, in the forward direction (TX from the CPU
-> port), throughput drops to zero and iperf3 fails.
+> There is a patch [1] submmitted by Ben Dook a few years ago. The 
+> intention of this patch is to make DWC pwm controller can be used as 
+> platform driver. This is what we are currently working on.
+> It seems that it would be more reasonable to continue improving this 
+> patch and make the DWC PWM driver universal, rather than creating a 
+> separate ESWIN PWM driver.
 > 
-> When the MTU of the CPU-facing interface is increased (e.g. ip link
-> set lan0 mtu 1540),
-
-"lan0" isn't a typical name for a CPU-facing interface. Do you mean that
-the primary action is that you increase the MTU of a user port, and the
-FRM_LENGTH of the CPU port is implicitly readjusted by the driver as
-well (to 1540 + ETH_HLEN + A5PSW_EXTRA_MTU_LEN + ETH_FCS_LEN)?
-
-This isn't actually bringing new data, because unless you also increase
-the MTU of the other iperf3 device to 1540, the TCP MSS will still be
-calculated as if the MTU were 1500, and you won't be making use of
-larger packet sizes on the wire. On the contrary, you are introducing
-one extra variable into the equation: with this test you are also
-increasing the stmmac MTU, which you later clarify that by itself it
-doesn't change the outcome.
-
-> TX traffic immediately starts working correctly.
-> Likewise, increasing the FRM_LENGTH on the switch side for the CPU
-> port resolves the problem, which indicates that the frame length
-> configuration on this port is directly involved.
-
-So increasing FRM_LENGTH is the only factor that alters the outcome.
-
-> Given this behaviour, it appears that the management (CPU) port
-> requires additional headroom to successfully transmit frames, even
-> though RX succeeds without it. The STMMAC driver is used as the
-> controller driver for the management port, we are trying to determine
-> whether there is any known interaction, alignment constraint, or
-> undocumented overhead that would explain the need for this extra
-> margin.
+> The DWC pwm 2.13a version supports "Pulse Width Modulation with 0% and 
+> 100% Duty Cycle" by programming TIMER_0N100PWM_EN bit field. We also 
+> want to support this new hardware feature. So, adding a new property, 
+> like snps,timer-0n100pwm-en, in pwm/snps,dw-apb-timers-pwm2.yaml
+> would be better?
 > 
-> Could you please advise on how to handle this issue?
+> Krzysztof and Ben, do you think the above approach is reasonable and acceptable?
 
-Have you verified that the value you need to add to FRM_LENGTH is linear
-for MTU values above 1500? I.e. that at MTU values of 1510, 1520, 1540,
-2000, ..., you always need to add 40 additional octets to FRM_LENGTH on
-top of the ETH_HLEN + A5PSW_EXTRA_MTU_LEN + ETH_FCS_LEN extra that the
-driver is already adding, and no less?
 
-One other thing to look at is to send known-size Ethernet frames using
-mausezahn or ping over lan0, run ethtool -S on the eth0 stmmac interface
-(this will also capture the switch's CPU port statistics counters) and
-see by how many octets does the aOctetsReceivedOK counter increment for
-a known size packet. Then, if you go oversize, look at the statistics
-counters and see which counter marks the drop. Maybe this will provide
-any clue.
+How any of this is related to the binding? We talk here about hardware
+and binding, but you ask me about driver.... I don't care.
 
-I don't have advice, but what you're saying seems highly unusual,
-doesn't have an explanation, and is not fully characterised.
+Best regards,
+Krzysztof
 
