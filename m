@@ -1,75 +1,66 @@
-Return-Path: <devicetree+bounces-245290-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245291-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7426CAE6C2
-	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 00:45:32 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F473CAE728
+	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 01:11:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 76827300C524
-	for <lists+devicetree@lfdr.de>; Mon,  8 Dec 2025 23:45:29 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 265B830124C3
+	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 00:11:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 229ED2FE56E;
-	Mon,  8 Dec 2025 23:45:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7BF21A073F;
+	Tue,  9 Dec 2025 00:11:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="D55jLRHs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Nzqe2YsL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFAA414F9D6;
-	Mon,  8 Dec 2025 23:45:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B23B86331;
+	Tue,  9 Dec 2025 00:11:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765237523; cv=none; b=B50gKRolb3u2juRlHmGwVBoIka6bd4YnQnpIFT+yohlM+KEWQGAD8X8g9lHJXEKDLfNP5Kkv0L3Zy6giYpJp7ikARk/wgw2wU0oSVv6IZ7qsd/2IuL1lGXwDQT/CF3OeawWCZwOgqdc59jMWAP7NFA+a1FncILiqCcusj7gdxe8=
+	t=1765239069; cv=none; b=bK/v/1+18+kD3p2yoqyXV+K5dBNVXu/680o3m2dIAIABerlAomFKo+aYs+GJ6Iz+G7DyS1X5bZkC8agS7r+BvaV63454b1q353va8hrUGe/yGyPQ0hl3Qu8S+6BBbCXqFdKqLcSfjnzkUrynVJIETqk911Y6HVGk5eCKwdmxprQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765237523; c=relaxed/simple;
-	bh=bsJnXLBqpkHlxg3nJh0VQf4CSX1YHmXd2sgXfZ1QDBA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BKi+k9jCKttaLCZO5auZLSgC7mSEl0h0oRbA2F7hUUp3tv3YYS9WbWr2FWLjgm4AaZAB3xo9lqslJRanLwHe27ELQMgoYmjJ3m4DXN35cQwgYRr1Ud/c8fEEYtb10LLYstshDF48v2/lOc5B+HBQCMqnnkHnZBlz9iHTxgUMb8k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=D55jLRHs; arc=none smtp.client-ip=192.198.163.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1765237522; x=1796773522;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=bsJnXLBqpkHlxg3nJh0VQf4CSX1YHmXd2sgXfZ1QDBA=;
-  b=D55jLRHs8+hniZU6wBWgEpe8dB83MwDIoUIwYjdUoTi6dybriaHHHErN
-   geXJqJQfy6ZI0txAFoaZ894asHE9N1NLmbJIkjxxH/yMwWSbCyeJ8+wA/
-   1dDa5tqasJDEr2GG7w59Is6Bm9k2VY2GzS2oSKg9k4x/aQAF7j6LZ3uj3
-   mmgLrdhf5BYxgdLV5pAu/FqXRYuM/+qlWYQwiWolPcfibvopfUej47XAj
-   HeRbZ54WZ/ELxtF8x8C1EoqAlTl/Rd3y1fc0mgz3U1Mw46MYSji+rzZFo
-   tm/01O5OBpT/P7IkidaVLFjNhP/rAXd9srNNNbed+88UhV+uFJ0scBn2z
-   A==;
-X-CSE-ConnectionGUID: hdKKXuQsQumrMvwEK+KCmA==
-X-CSE-MsgGUID: PmVMX3agQxu6r9ZFhIL0ZQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11636"; a="71034160"
-X-IronPort-AV: E=Sophos;i="6.20,260,1758610800"; 
-   d="scan'208";a="71034160"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
-  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Dec 2025 15:45:21 -0800
-X-CSE-ConnectionGUID: l/pU+BjHTLG7/Nstv/Ja0g==
-X-CSE-MsgGUID: oCwZPB1/RD+SIn7cl858aw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.20,260,1758610800"; 
-   d="scan'208";a="219415352"
-Received: from lkp-server01.sh.intel.com (HELO d335e3c6db51) ([10.239.97.150])
-  by fmviesa002.fm.intel.com with ESMTP; 08 Dec 2025 15:45:18 -0800
-Received: from kbuild by d335e3c6db51 with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vSkuq-000000000zF-0YjF;
-	Mon, 08 Dec 2025 23:45:16 +0000
-Date: Tue, 9 Dec 2025 07:45:14 +0800
-From: kernel test robot <lkp@intel.com>
-To: Daniel Lezcano <daniel.lezcano@linaro.org>, wbg@kernel.org,
-	robh@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev, s32@nxp.com,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org
-Subject: Re: [PATCH v1 3/3] counter: Add STM based counter
-Message-ID: <202512090758.GOPbQ2xm-lkp@intel.com>
-References: <20251208030413.3117660-4-daniel.lezcano@linaro.org>
+	s=arc-20240116; t=1765239069; c=relaxed/simple;
+	bh=7ptARhGnIW0rweJs/X7vTtC/SQB8ulRmWeebM2Urvl0=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=YkM/SLsGggLsP0L5dzLPV9QMZGF39wqTfyJgFi0RkLmYxTysujzDJxj7SszGLMrOSx94ILGYSZ2Bo7KztLSOefs2GEYeWvRW2ARUj6WStV/rx+J7Yu7q82oFgWe/PheLG1oXjybtte43bkcDqi1fYF/cdwQsl1HZDVNcykAmSKM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Nzqe2YsL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF78BC4CEF1;
+	Tue,  9 Dec 2025 00:11:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1765239068;
+	bh=7ptARhGnIW0rweJs/X7vTtC/SQB8ulRmWeebM2Urvl0=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=Nzqe2YsLmvHdUUpvvSUvm6rLElIkqyZsP8E7UC7VgLN1jMvslaQaB65EuuR2M3tQD
+	 ++rs5KQFBsdOe7SSQ8hVf+DJAugUoPM5Mqrfs69Wm5NDb1BwhrWGYUAduiY2Yokwcw
+	 UnX/Dznj2igM6Bvu9sfjXeM7bTJaA4vS7oKDjiqP6a78W6GKZiw//u+Q7WQb61e+KS
+	 HRkk6gQ/8ovRTrwFr5gibfZmzjuyR5eHFLZzYqvj1cKSwTFL0LbWpbU7omxzWiVhGp
+	 mAEOHH5Lmz7F8T0wk0TahZiroHww1QftElDdmGAe4Dk+Qfg0wy4JVD6zQ794GMZXJu
+	 /flhU9gTQ0Z9A==
+Date: Mon, 8 Dec 2025 18:11:07 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Jacky Chou <jacky_chou@aspeedtech.com>
+Cc: Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	linux-aspeed@lists.ozlabs.org, linux-pci@vger.kernel.org,
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Andrew Jeffery <andrew@aj.id.au>, openbmc@lists.ozlabs.org,
+	linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v6 6/7] PCI: aspeed: Add ASPEED PCIe RC driver
+Message-ID: <20251209001107.GA3430423@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,49 +69,217 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251208030413.3117660-4-daniel.lezcano@linaro.org>
+In-Reply-To: <20251201-upstream_pcie_rc-v6-6-8c8800c56b16@aspeedtech.com>
 
-Hi Daniel,
+On Mon, Dec 01, 2025 at 02:29:16PM +0800, Jacky Chou wrote:
+> Introduce PCIe Root Complex driver for ASPEED SoCs. Support RC
+> initialization, reset, clock, IRQ domain, and MSI domain setup.
+> Implement platform-specific setup and register configuration for
+> ASPEED. And provide PCI config space read/write and INTx/MSI
+> interrupt handling.
+> ...
 
-kernel test robot noticed the following build warnings:
+> +struct aspeed_pcie {
+> +	struct pci_host_bridge *host;
+> +	struct device *dev;
+> +	void __iomem *reg;
+> +	struct regmap *ahbc;
+> +	struct regmap *cfg;
+> +	const struct aspeed_pcie_rc_platform *platform;
+> +	struct list_head ports;
+> +
+> +	u8 tx_tag;
+> +	int host_bus_num;
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on linus/master v6.18 next-20251208]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Only needs a u8.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Daniel-Lezcano/counters-Reorder-the-Makefile/20251208-110937
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20251208030413.3117660-4-daniel.lezcano%40linaro.org
-patch subject: [PATCH v1 3/3] counter: Add STM based counter
-config: riscv-allyesconfig (https://download.01.org/0day-ci/archive/20251209/202512090758.GOPbQ2xm-lkp@intel.com/config)
-compiler: clang version 16.0.6 (https://github.com/llvm/llvm-project 7cbf1a2591520c2491aa35339f227775f4d3adf6)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251209/202512090758.GOPbQ2xm-lkp@intel.com/reproduce)
+> +static int aspeed_pcie_port_init(struct aspeed_pcie_port *port)
+> +{
+> +	struct aspeed_pcie *pcie = port->pcie;
+> +	struct device *dev = pcie->dev;
+> +	int ret;
+> +
+> +	ret = clk_prepare_enable(port->clk);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret,
+> +				     "failed to set clock for slot (%d)\n",
+> +				     port->slot);
+> +
+> +	ret = phy_init(port->phy);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret,
+> +				     "failed to init phy pcie for slot (%d)\n",
+> +				     port->slot);
+> +
+> +	ret = phy_set_mode_ext(port->phy, PHY_MODE_PCIE, PHY_MODE_PCIE_RC);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret,
+> +				     "failed to set phy mode for slot (%d)\n",
+> +				     port->slot);
+> +
+> +	reset_control_deassert(port->perst);
+> +	mdelay(PCIE_RESET_CONFIG_WAIT_MS);
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202512090758.GOPbQ2xm-lkp@intel.com/
+I think this should use msleep().
 
-All warnings (new ones prefixed by >>):
+> +static int aspeed_ast2600_setup(struct platform_device *pdev)
+> +{
+> +	struct aspeed_pcie *pcie = platform_get_drvdata(pdev);
+> +	struct device *dev = pcie->dev;
+> +
+> +	pcie->ahbc = syscon_regmap_lookup_by_phandle(dev->of_node,
+> +						     "aspeed,ahbc");
+> +	if (IS_ERR(pcie->ahbc))
+> +		return dev_err_probe(dev, PTR_ERR(pcie->ahbc),
+> +				     "failed to map ahbc base\n");
+> +
+> +	aspeed_host_reset(pcie);
+> +
+> +	regmap_write(pcie->ahbc, ASPEED_AHBC_KEY, ASPEED_AHBC_UNLOCK_KEY);
+> +	regmap_update_bits(pcie->ahbc, ASPEED_AHBC_ADDR_MAPPING,
+> +			   ASPEED_PCIE_RC_MEMORY_EN, ASPEED_PCIE_RC_MEMORY_EN);
+> +	regmap_write(pcie->ahbc, ASPEED_AHBC_KEY, ASPEED_AHBC_UNLOCK);
+> +
+> +	/* Due to the BAR assignment is fixed mapping on 0x6000_0000.*/
+> +	writel(ASPEED_AHB_REMAP_LO_ADDR(0x600) | ASPEED_AHB_MASK_LO_ADDR(0xe00),
+> +	       pcie->reg + ASPEED_H2X_AHB_ADDR_CONFIG0);
+> +	writel(ASPEED_AHB_REMAP_HI_ADDR(0),
+> +	       pcie->reg + ASPEED_H2X_AHB_ADDR_CONFIG1);
 
->> drivers/counter/nxp-stm-cnt.c:303:32: warning: unused variable 'nxp_stm_cnt_pm_ops' [-Wunused-const-variable]
-   static const struct dev_pm_ops nxp_stm_cnt_pm_ops = {
-                                  ^
-   1 warning generated.
+I assume this ASPEED_H2X_AHB_ADDR_CONFIG is doing basically the same
+thing as aspeed_ast2700_remap_pci_addr() below, so see the comments
+there.
 
+> +	writel(ASPEED_AHB_MASK_HI_ADDR(~0),
+> +	       pcie->reg + ASPEED_H2X_AHB_ADDR_CONFIG2);
+> +	writel(ASPEED_H2X_BRIDGE_EN, pcie->reg + ASPEED_H2X_CTRL);
+> +
+> +	writel(ASPEED_PCIE_RX_DMA_EN | ASPEED_PCIE_RX_LINEAR |
+> +	       ASPEED_PCIE_RX_MSI_SEL | ASPEED_PCIE_RX_MSI_EN |
+> +	       ASPEED_PCIE_WAIT_RX_TLP_CLR | ASPEED_PCIE_RC_RX_ENABLE |
+> +	       ASPEED_PCIE_RC_ENABLE,
+> +	       pcie->reg + ASPEED_H2X_DEV_CTRL);
+> +
+> +	writel(ASPEED_RC_TLP_TX_TAG_NUM, pcie->reg + ASPEED_H2X_DEV_TX_TAG);
+> +
+> +	pcie->host->ops = &aspeed_ast2600_pcie_ops;
+> +	pcie->host->child_ops = &aspeed_ast2600_pcie_child_ops;
+> +
+> +	return 0;
+> +}
+> +
+> +static int aspeed_ast2700_remap_pci_addr(struct aspeed_pcie *pcie)
+> +{
+> +	struct device_node *dev_node = pcie->dev->of_node;
+> +	struct of_pci_range range;
+> +	struct of_pci_range_parser parser;
+> +	int ret;
+> +
+> +	ret = of_pci_range_parser_init(&parser, dev_node);
+> +	if (ret)
+> +		return ret;
+> +
+> +	for_each_of_pci_range(&parser, &range) {
+> +		if ((range.flags & IORESOURCE_TYPE_BITS) == IORESOURCE_MEM) {
+> +			writel(ASPEED_REMAP_PCI_ADDR_31_12(range.pci_addr),
+> +			       pcie->reg + ASPEED_H2X_REMAP_PCI_ADDR_LO);
+> +			writel(ASPEED_REMAP_PCI_ADDR_63_32(range.pci_addr),
+> +			       pcie->reg + ASPEED_H2X_REMAP_PCI_ADDR_HI);
+> +			return 0;
 
-vim +/nxp_stm_cnt_pm_ops +303 drivers/counter/nxp-stm-cnt.c
+It looks like this is essentially hardcoding the offset between the
+parent-bus-address and the child-bus-address in the DT 'ranges'
+property.  Since ASPEED_REMAP_PCI_ADDR_31_12() and
+ASPEED_REMAP_PCI_ADDR_63_32() do nothing except mask out the low 12
+bits, I assume that offset is zero.
 
-   302	
- > 303	static const struct dev_pm_ops nxp_stm_cnt_pm_ops = {
-   304		.suspend = nxp_stm_cnt_suspend,
-   305		.resume  = nxp_stm_cnt_resume,
-   306	};
-   307	
+But this should not be hard-coded at all; it should be extracted from
+'ranges'.  I don't think we really have a consistent way of doing
+this, but you can take a look at how these other drivers program
+"outbound" mappings like this using bridge->windows:
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+  cdns_pcie_hpa_host_init_address_translation()
+  dw_pcie_iatu_setup()
+  mobiveil_host_init()
+  xgene_pcie_map_ranges()
+  iproc_pcie_map_ranges()
+  rzg3s_pcie_parse_map_ranges()
+
+> +static int aspeed_pcie_parse_dt(struct aspeed_pcie *pcie)
+> +{
+> +	struct device *dev = pcie->dev;
+> +	struct device_node *node = dev->of_node;
+> +	int ret;
+> +
+> +	for_each_available_child_of_node_scoped(node, child) {
+> +		int slot;
+> +		const char *type;
+> +
+> +		ret = of_property_read_string(child, "device_type", &type);
+> +		if (ret || strcmp(type, "pci"))
+> +			continue;
+> +
+> +		ret = of_pci_get_devfn(child);
+> +		if (ret < 0)
+> +			return dev_err_probe(dev, ret,
+> +					     "failed to parse devfn\n");
+> +
+> +		slot = PCI_SLOT(ret);
+> +
+> +		ret = aspeed_pcie_parse_port(pcie, child, slot);
+> +		if (ret)
+> +			return ret;
+
+It looks unnecessarily complicated to put each port on a list in
+aspeed_pcie_parse_port() and then iterate over that list in
+aspeed_pcie_init_ports().
+
+I think you could just do something like:
+
+  aspeed_pcie_parse_port();
+  aspeed_pcie_port_init();
+
+and get rid of the list completely.
+
+> +	}
+> +
+> +	if (list_empty(&pcie->ports))
+> +		return dev_err_probe(dev, -ENODEV,
+> +				     "No PCIe port found in DT\n");
+> +
+> +	return 0;
+> +}
+> +
+> +static int aspeed_pcie_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct pci_host_bridge *host;
+> +	struct aspeed_pcie *pcie;
+> +	struct resource_entry *entry;
+> +	const struct aspeed_pcie_rc_platform *md;
+> +	int irq, ret;
+> +
+> +	md = of_device_get_match_data(dev);
+> +	if (!md)
+> +		return -ENODEV;
+> +
+> +	host = devm_pci_alloc_host_bridge(dev, sizeof(*pcie));
+> +	if (!host)
+> +		return -ENOMEM;
+> +
+> +	pcie = pci_host_bridge_priv(host);
+> +	pcie->dev = dev;
+> +	pcie->tx_tag = 0;
+> +	platform_set_drvdata(pdev, pcie);
+> +
+> +	pcie->platform = md;
+> +	pcie->host = host;
+> +	INIT_LIST_HEAD(&pcie->ports);
+> +
+> +	/* Get root bus num for cfg command to decide tlp type 0 or type 1 */
+> +	entry = resource_list_first_type(&host->windows, IORESOURCE_BUS);
+> +	if (entry)
+> +		pcie->host_bus_num = entry->res->start;
+
+s/host_bus_num/root_bus_nr/   to match struct altera_pcie
 
