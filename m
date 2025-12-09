@@ -1,140 +1,157 @@
-Return-Path: <devicetree+bounces-245409-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245410-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2030FCB089F
-	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 17:21:58 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39517CB08EA
+	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 17:29:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id AB5393016958
-	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 16:21:54 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C3B6430640FE
+	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 16:26:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C39930102C;
-	Tue,  9 Dec 2025 16:21:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D1D9320A3B;
+	Tue,  9 Dec 2025 16:26:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BGdKk1Bx"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="C2jBinvb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DE6B237180
-	for <devicetree@vger.kernel.org>; Tue,  9 Dec 2025 16:21:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7742131ED9C
+	for <devicetree@vger.kernel.org>; Tue,  9 Dec 2025 16:26:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765297312; cv=none; b=t3KnO7Ey9CF46q6qf2Hxog+uvv7n5SjJJGhP1AUWZJS4C8b3FmoBnAvuU2qYJZ+wLFx7viE2QlaE3XggZXsfRXQj4hBPl75fAijAo4cTOaURtzDfwIdY7kA+FiHZYF+Q8Fdqg47LxqDCNe04tGS+UUloWDlZqLYJFcABjLRW+Eg=
+	t=1765297569; cv=none; b=bvgA+7zyBDS5+p7L3/Ab0sSmXy7vwk5J5Sz6yWwdwj3evR/2lzCYqfFJkonwpFgYgUVQJmr4ocm9ApaE401l1cQTz6IA0P1Bh2GzHuxKAzI1i05poFVdlZa4rFjChzkXr8H0O3qPxKenMBl0SkU1DvOw89wVv3xN/HfshvL+WGU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765297312; c=relaxed/simple;
-	bh=WKVB9gYz078ahZTJ7TAAKtKVHlfvZgJuO6vYNG2AKFg=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=sFuUyAIPepPolHKxZWPIctVAdXwWobKr9NDDhNcIATVRvrO3TM8bQnZMuybrjUZYZkEj9C+VMZiyBhDhozyqiskwB1gbmbYmctdsb4DO7D781jY4ZvmyHLObsggpqBJ7pFEsJVRFScjHZX3fEu0LA86JJYt9h2uVTCzLfpbf7w8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BGdKk1Bx; arc=none smtp.client-ip=209.85.128.43
+	s=arc-20240116; t=1765297569; c=relaxed/simple;
+	bh=biGOZb1RIX5ikhtgxteyi8161lILYFSAu5T6Hgxesz4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pgl2vdF2dcwUH6UULvlP60akJw3j1fYBNJRjFQyG5sWRnkKGV1xNFHDbEbXj9ob9OmzOQ4aDYYuPcdxCMCoIDNQzuBv6wyKpeRS0l/HdIsBIAS6PhvpKqxIiuoMk6wJvrOB738BZ562ijRCO6MwV/fUOpOtNpMJKe6oGCt7ZESY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=C2jBinvb; arc=none smtp.client-ip=209.85.210.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-4775ae77516so70568645e9.1
-        for <devicetree@vger.kernel.org>; Tue, 09 Dec 2025 08:21:50 -0800 (PST)
+Received: by mail-ot1-f52.google.com with SMTP id 46e09a7af769-7cac9225485so448897a34.3
+        for <devicetree@vger.kernel.org>; Tue, 09 Dec 2025 08:26:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1765297309; x=1765902109; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=6k61kbm8SLV9e2m07xo3XBz6H86gYGw8sgo6ilH2TnI=;
-        b=BGdKk1BxWhCVO4ogODrLzBaurkg5bziO3lXrAFPbPhZ/ZkM8+mlSSb47B1+g9dQINd
-         QhSBP8VFFHapDdgGsbNJ4bbUzjZyB3ChJBgos67BMLawfUO1g85mmDzXU+Yythyrn+nB
-         HhR943qRYqpNy4WhVo0MJiMkTRG7yP/GiF24KVeOsXTS0Aku3RmiXZ4MA9Ll/7DIf8YE
-         UKw2yTW6S1E+AcMh+SH3Eop/XlCwlimTuNRSkXHC6QZsi3dNBiVpf1q+q0O4QkXVrbTa
-         S0Hls3wxCDeOm6B9etNaC+Yek8M+tZuo1a99W2fjp+SjY6el/a6LCNWtjJAnk15MLH9V
-         LD+Q==
+        d=gmail.com; s=20230601; t=1765297563; x=1765902363; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=F5zRiXPRY1gEzqlGjNHUp6dTOKIROF+8I0Et8Ms264g=;
+        b=C2jBinvbVNa/LLRajtZBKuHhItW+5FLYNeykX9t4tHmeTokqpast7pqX859Qjmm+Rq
+         WaemVJGB3uLUdmK24n/XMGAnQ+LfWNx1FdXRBXgeJ9lA+YhkpSct+vjaBsTAPAuwyzgK
+         0kyVoKjFgwrTInImER4OCxdWrL/ofG1gCpsilUL7iPmqkintlXHbkpTqndKnqdVNmITD
+         kqFnFsKteu3XiQsjNpvxRJyI3LcrulUxlwEdEh6KsCpKea9QOf21yxJXbwn9XrgVt0SA
+         zov56aP7+Ukjd9NWM1Zs8kpNRRUgCmJl3L1UhdnxsAG1lkzvn7h3onuWksuOZdinX/1d
+         PSsQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765297309; x=1765902109;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6k61kbm8SLV9e2m07xo3XBz6H86gYGw8sgo6ilH2TnI=;
-        b=USGmx2eD9hJ3vm2FlLWMaWVU5czQwsCi3ZPVcT5B1AvUmFAtPUHxGYGWx67dbLzja8
-         pMURDA2aF39Ccu7LYVDMSA9S63or84rN99lFRTj5ruzx/s0fTwAFHUrAAv9ay+FVGxV8
-         h/bBM/7/IVX02C0KWuI3avA2M5WzYJcbv+f4C/EHiNcudMhvINmNIJtZI3JjqiiEkps+
-         GOoz3C5bXOy6vzJuqWwYg/+AjW8KhiVwraWAJoaiCrWa3hd99xfAwDHIK9iIomv6kguH
-         BIH8WdCJbr+Fs2vXr95po2k++2DfHYBtgkcrsCkW2JsZ71Q9fk6kaKMgy32eT9HZH8lh
-         QmYQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUDiyNIdujttlgc2ZcmuZMLCdXS/9s7nZ+0EP0xXwSKrPm7kOxdiGKK7d5SJmWZ9Glhe97ru6juQuPj@vger.kernel.org
-X-Gm-Message-State: AOJu0YwWSIfv7m4fBVv1CquOIBeV8LYiqj1FUU4YSMy27yuH+5XtHDNy
-	oyZhYQ0EE+norj+383K4+KZgjZ6YEBaEszBMlbgURtpoxkC0lbJVfNKo
-X-Gm-Gg: ASbGncsmMWCbuA4kY+3kLVts5pjWpuJwWtAvP2SNl1L5NVOiLTXKcRdFpT7oABVYQdn
-	v4qHtfNpxzWfrqUQaE6quo1UbF3mYFvKrB1Sv6qjWh2MxPAQVrNCqLMqxl7g1muoFpnF7LD2+UZ
-	Om7JPb2KvL8ZzyE3wFH4pyRUcF4o0aeHNS5c0hPQL3YLKZYxu9wXy4TWzIiZVikyi5+dPe+PRY1
-	sS/XCstTPjpkR/eNAl+1kyn8LqvvnKhTcao2CPDodHf46sj0A1UcGtylld+JYP23koD909EsFfG
-	U19HV6gHEj4one9T2X+2O6ILuV+fAQNSlFGnEH2rnCzeizUrKuxsLAITQbqd55VJ0fXQ4Fj+Kqs
-	DdnOhDcDJvkPg1OYgNgQWlApCXIEyH8K0VclPzMxRFHtwn1xFbVnrC7r/8DKaaoZbVtjVL8mqV4
-	gigI9F9ZWWNmCdMyhbQnZY0ERraR5DNyNCOD4=
-X-Google-Smtp-Source: AGHT+IHTFgQLT3CSEDcGRS9InaoXZRqkZVe771K3JeLcdli+0zRTuA49I/7K39Ax5OsQ9FDXMJf/8g==
-X-Received: by 2002:a05:600c:1992:b0:46e:1abc:1811 with SMTP id 5b1f17b1804b1-47939e387e2mr115381085e9.27.1765297308666;
-        Tue, 09 Dec 2025 08:21:48 -0800 (PST)
-Received: from iku.Home ([2a06:5906:61b:2d00:357a:854b:fd78:dcbd])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47a7d612e49sm54437935e9.3.2025.12.09.08.21.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Dec 2025 08:21:48 -0800 (PST)
-From: Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To: Marc Kleine-Budde <mkl@pengutronix.de>,
-	Vincent Mailhol <mailhol@kernel.org>,
-	Vinod Koul <vkoul@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Aswath Govindraju <a-govindraju@ti.com>,
-	Frank Li <Frank.li@nxp.com>
-Cc: linux-can@vger.kernel.org,
-	linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v2] dt-bindings: phy: ti,tcan104x-can: Document TI TCAN1046
-Date: Tue,  9 Dec 2025 16:21:19 +0000
-Message-ID: <20251209162119.2038313-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.52.0
+        d=1e100.net; s=20230601; t=1765297563; x=1765902363;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=F5zRiXPRY1gEzqlGjNHUp6dTOKIROF+8I0Et8Ms264g=;
+        b=r31TSWqaT90F5wK3FqB0cBgcPls1c8x9706gJPv4utruzVlpsXcC4iU/y2QgKd7sRM
+         NjZbcoFyCBVf3n8T3AZR2uov/SwwB3CVSunF4HYFHzptsPOsS5E6PoCQHh4tWupOfty/
+         v6B1foHsKscXR+ufKFXR4X+OpE6/0ppm51SLGeuiGnfiBKhsvZz+SU5Bu0f8wIRXAj+R
+         cahTzRlXwifr39Rw9uLVWXscS6u+DG/d98TFZUpzwLC/M4KCQvBbe7C0V+B7FgW6IaLo
+         6uMLjtPKrRr8hOirEbqYYV3Hx+8gxECMjnYQeV/fWHLjmXhKrcuf+bSQS1X/GX/SZpjY
+         CDYg==
+X-Forwarded-Encrypted: i=1; AJvYcCWS6CaDrMbMgsVEBN7/rlzNgBWRJwZ6WG7DTo/YUMgogHzWQAaeSf7VxDsOEm7OXwZQZE/OPjsPUb6q@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyh92NinI+L+TQtz7wwNd7nEwTGvUYgpd/qCJytjjcfPNBXi/1U
+	YRU7JuPbMRlhV9bbp5cmLE6DAGyDxoXUv6jfzM0V0lCaH5u1BlxedaIy
+X-Gm-Gg: ASbGncsHwM762Kts09xlYBG9BU+ePib4qHA3YlJUsAwbna2+VyM2QddSV8n7pDp5iZd
+	5utqvWwXJqRuTgDcVyY8caw0ZTTEZLrxUvUGsdAFVkiY/bxxGYogoc7daCvNlEKNcCCiVVMzWJe
+	GqXao3y5OuFIa8oDD7padOHHIs3YOMKAbovSNMivMHHNg2Ze25rzHY0aQ9bnnV6vpSIcsr+zBAF
+	K+hUkk459Tz2BvD5tCDvF6vFP4Qb7WSG9I2AqJCR6t305PM51/3e1WQWeYfju7ffsE/DM7DNn1U
+	LrST1SA/SaL9PnCbwuz6fw4XVRGbyfSauCuDRlI7lVCtyVrteu6gWlUosmiR2wrMiI3Izhg652j
+	2oYLRu/WxPb7nfwneb7bzq1o+GiW/aEuMojdvRdmOIbrkhTP8LqRzLHTqHEygkINQb4R2uISOeV
+	o6WOXHGv3AoXEwOdVpYIANhimkH7kWvfcQ/o+YRXLWj+ScbuyOL9A0N3WkFrZLwBKOGXyRp5SU6
+	FAIq2mPgamTKkoKjXAd/Q4138ZsPUWBhCLZYltEBatr
+X-Google-Smtp-Source: AGHT+IFmTKjIjeFDsRUal05BF/whcGMQ56pIqRSSm2fIFKSoV0XP7XVAyr9RBrBMhtPaZ7mpmksR4Q==
+X-Received: by 2002:a05:6830:412a:b0:7c5:3798:fa3f with SMTP id 46e09a7af769-7c970748674mr4845571a34.2.1765297563411;
+        Tue, 09 Dec 2025 08:26:03 -0800 (PST)
+Received: from [192.168.7.203] (c-98-57-15-22.hsd1.tx.comcast.net. [98.57.15.22])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7c95ac833d3sm12560318a34.17.2025.12.09.08.26.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 09 Dec 2025 08:26:02 -0800 (PST)
+Message-ID: <23d3bc82-0909-42a4-b4a9-742834faec76@gmail.com>
+Date: Tue, 9 Dec 2025 10:26:01 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: ipq9574: Use 'usb-phy' for node names
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20251209160755.3878878-1-mr.nuke.me@gmail.com>
+ <xmserprghzwpcxt7ionh2ju7o3cudj5emtkycvurbz5obztzr5@lkllnnsag6ri>
+Content-Language: en-US
+From: mr.nuke.me@gmail.com
+In-Reply-To: <xmserprghzwpcxt7ionh2ju7o3cudj5emtkycvurbz5obztzr5@lkllnnsag6ri>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On 12/9/25 10:17 AM, Dmitry Baryshkov wrote:
+> On Tue, Dec 09, 2025 at 10:07:54AM -0600, Alexandru Gagniuc wrote:
+>> The devicetree spec allows node names of "usb-phy". So be more
+>> specific for the USB PHYs, and name the nodes "usb-phy" instead of
+>> just "phy".
+> 
+> Why? "phy" is more generic.
 
-Document the TI TCAN1046 automotive CAN transceiver. The TCAN1046 is a
-dual high-speed CAN transceiver with sleep-mode support and no EN pin,
-mirroring the behaviour of the NXP TJA1048, which also provides dual
-channels and STB1/2 sleep-control lines.
+Hi Dmitry,
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
-TCAN 1046, https://www.ti.com/lit/ds/symlink/tcan1046v-q1.pdf?ts=1765297159307&ref_url=https%253A%252F%252Fwww.ti.com%252Fproduct%252FTCAN1046V-Q1
-NXP TJA1048, https://www.nxp.com/docs/en/data-sheet/TJA1048.pdf
+The goal is to be more specific. I find usb-phy, ethernet-phy and others
+to me much clearer. As I see these more specific names being used throughut
+dts files, I did not expect this to be controversial.
 
-v1->v2:
-- Used "nxp,tja1048" as a fallback compatible string.
----
- Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml | 3 +++
- 1 file changed, 3 insertions(+)
+I am trying to follow devicetree v0.4, "2.2.2 Generic Names Recommendation",
+which allows these more-specific node names.
 
-diff --git a/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
-index c686d06f5f56..9f5c37ca6496 100644
---- a/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
-+++ b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
-@@ -20,6 +20,9 @@ properties:
-               - microchip,ata6561
-               - ti,tcan1051
-           - const: ti,tcan1042
-+      - items:
-+          - const: ti,tcan1046
-+          - const: nxp,tja1048
-       - enum:
-           - ti,tcan1042
-           - ti,tcan1043
--- 
-2.52.0
+Alex
+
+
+
+> 
+>>
+>> Signed-off-by: Alexandru Gagniuc <mr.nuke.me@gmail.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/ipq9574.dtsi | 4 ++--
+>>   1 file changed, 2 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+>> index 86c9cb9fffc98..4b8cbf1ff131b 100644
+>> --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+>> @@ -702,7 +702,7 @@ qpic_nand: spi@79b0000 {
+>>   			status = "disabled";
+>>   		};
+>>   
+>> -		usb_0_qusbphy: phy@7b000 {
+>> +		usb_0_qusbphy: usb-phy@7b000 {
+>>   			compatible = "qcom,ipq9574-qusb2-phy";
+>>   			reg = <0x0007b000 0x180>;
+>>   			#phy-cells = <0>;
+>> @@ -716,7 +716,7 @@ usb_0_qusbphy: phy@7b000 {
+>>   			status = "disabled";
+>>   		};
+>>   
+>> -		usb_0_qmpphy: phy@7d000 {
+>> +		usb_0_qmpphy: usb-phy@7d000 {
+>>   			compatible = "qcom,ipq9574-qmp-usb3-phy";
+>>   			reg = <0x0007d000 0xa00>;
+>>   			#phy-cells = <0>;
+>> -- 
+>> 2.45.1
+>>
+> 
+The
 
 
