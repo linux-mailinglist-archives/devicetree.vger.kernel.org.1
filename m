@@ -1,56 +1,58 @@
-Return-Path: <devicetree+bounces-245440-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245441-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33E69CB0FA8
-	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 20:56:44 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99389CB0FBA
+	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 20:59:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 304823007DA8
-	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 19:56:43 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 82C55305F3B6
+	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 19:59:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72AFB3043BA;
-	Tue,  9 Dec 2025 19:56:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4493307AE9;
+	Tue,  9 Dec 2025 19:59:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EtlozrW/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t+o4qRND"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3909A26056E;
-	Tue,  9 Dec 2025 19:56:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B46621E8332;
+	Tue,  9 Dec 2025 19:59:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765310202; cv=none; b=PMxxv8FNwjn0iliVd5uxnPH+kELHoDXBYE4Y+BMgH3iGbEVyq/QOo4gL+Z/aliRmzS+gy86ASPfHBApw2HJBUEi409v+W8mh6ixBiJWRqohsWMg8ro/Kd/Of8DjGne1xr55CPPAryZ6e1ThCQTpkA1huVfPbbIiMb1SHwk7uoMI=
+	t=1765310394; cv=none; b=rGQnGDVzl8HVYeu3j87V6SswarfbCcKj8Dk/pbuNTnHQPqeACQ0Wy/KYZSReoR0876RfQGXVERjz1eP8M/ySJNvviCgdl0CznD3hXqAV+dG4lTDe4A480tkyTaY9BJU2yjoIy1QvCl6PFS6isjUK+lYJ6Rsn0+/PLYnrONixcAg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765310202; c=relaxed/simple;
-	bh=Dq6vVcM9EIHywsyjVDP17JBVvTmECn0e4FCYDopnSo4=;
+	s=arc-20240116; t=1765310394; c=relaxed/simple;
+	bh=bSBSOMZzVxZ5Cf+yjiZOP8aoxsPQwvX4T1edYoaT4TU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lecNTAWPMyktibAMzSXzBVjKtyHNY/17POjBaoQp0S0tRYMo2Mo2hLAOmhR7He1IrIUFest46Vgi2Ql9BKXf9XAsE/c42RHXIKRH+YpcApPrZUattgZBcO559zuXcZ/Ta+zyfuEFSsHImnWjcxSQmebQhifrCUsz8oX3NZoIRvw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EtlozrW/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67528C4CEF5;
-	Tue,  9 Dec 2025 19:56:34 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=LHBpMcCs+jxEppGPguq8fps+nHm0lm4iCF+xQa3b8tzFLzXhRD1chu+KXyG9p79HANSpeWXo33J6+SMGZAbW5cH0W/i8YDF05/bg5UukPV/uAPj0nBpKcBanv+29U7ZSywxr8L2ZBtdDld6z9HvucKI6QMbxRw7sh4PsXRqz/s0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t+o4qRND; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1CA9BC4CEF5;
+	Tue,  9 Dec 2025 19:59:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765310201;
-	bh=Dq6vVcM9EIHywsyjVDP17JBVvTmECn0e4FCYDopnSo4=;
+	s=k20201202; t=1765310394;
+	bh=bSBSOMZzVxZ5Cf+yjiZOP8aoxsPQwvX4T1edYoaT4TU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EtlozrW/QyLbuxYMECeTqRhMFLv3t3F8Z/yFhwQEQUEjzgKxaHuDdxuQJGS9/y4nx
-	 DlN0zv1JCeWafL+5CvD1gSwCyCm4r3k5oKzhikRLW4NhuNgXgAM7VD1M9nYZvZ2T7i
-	 JtNRg9XjBEy59++fNWESMZrca8gHgcpSJuypMv0VhKAFnxUw5c5AusnR3XbyW1KQmT
-	 lg43NdBHFvTYX/7o+EvUtV9EPi/R+y9LhRFLvERGqmotQMF3Cv7mLIjUtvcFNS6lZb
-	 Q5Ep3qXsH63zmnjVVpW9pR2LiU7UG3Czt1L6Za7HSPMe3YMCKwqyW7AEeJu/8CoVan
-	 8mtt1TGJgfcZg==
-Date: Tue, 9 Dec 2025 13:56:30 -0600
+	b=t+o4qRND33ZsKQaV1iKgwz+g3nSgXIusOx/Jk0cVwwmBzIpQkSBz8OLg2GZQNtXEm
+	 +0PId3fSLfAijxXP14Z00UYFlNDeQGF2rzjV94BXwsffxt3pROTqGVYs2hNOrg6EX1
+	 Mjfn3Go3uCYtb2WUC4osxfXJlh0Fhn48OnRgLTQeugiI4eMnq5EbMCXoWkJrhNQGGL
+	 27ZdU/DRfTW6W58l1gC9KiVtxfse6b3lAuHg41p+1yguh670zw9L7bz2/g4T+wIbeT
+	 tAzLOR4XE0rro/qDKJFXM6RxsAsvcEa9KQlVwctQO14TVW6inGq3bbZLeT3olJhgR3
+	 EsWDeSLXvotcg==
+Date: Tue, 9 Dec 2025 13:59:51 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	conor+dt@kernel.org, krzk+dt@kernel.org,
-	linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
-	johannes@sipsolutions.net, jjohnson@kernel.org
-Subject: Re: [PATCH ath-current 2/2] dt-bindings: net: wireless: ath11k-pci:
- deprecate 'firmware-name' property
-Message-ID: <176531018921.1011228.15625154455386723373.robh@kernel.org>
-References: <20251204071100.970518-1-miaoqing.pan@oss.qualcomm.com>
- <20251204071100.970518-3-miaoqing.pan@oss.qualcomm.com>
+To: Vijayanand Jitta <vijayanand.jitta@oss.qualcomm.com>
+Cc: vikash.garodia@oss.qualcomm.com, krzk+dt@kernel.org,
+	prakash.gupta@oss.qualcomm.com, linux-kernel@vger.kernel.org,
+	iommu@lists.linux.dev, devicetree@vger.kernel.org, will@kernel.org,
+	bod@kernel.org, robin.murphy@arm.com, conor+dt@kernel.org,
+	bjorn.andersson@oss.qualcomm.com, charan.kalla@oss.qualcomm.com,
+	konrad.dybcio@oss.qualcomm.com, dmitry.baryshkov@oss.qualcomm.com,
+	joro@8bytes.org
+Subject: Re: [PATCH v2 1/3] of: Add convenience wrappers for of_map_id()
+Message-ID: <176531039069.1014961.838560850328790360.robh@kernel.org>
+References: <20251204095530.8627-1-vijayanand.jitta@oss.qualcomm.com>
+ <20251204095530.8627-2-vijayanand.jitta@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,22 +61,31 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251204071100.970518-3-miaoqing.pan@oss.qualcomm.com>
+In-Reply-To: <20251204095530.8627-2-vijayanand.jitta@oss.qualcomm.com>
 
 
-On Thu, 04 Dec 2025 15:11:00 +0800, Miaoqing Pan wrote:
-> The firmware-name property was introduced to allow end-users and
-> integrators to select usecase specific firmware for the WCN6855.
-> However, specifying firmware for an M.2 WLAN module in the Device
-> Tree is not appropriate. Instead, this functionality will be handled
-> within the ath11k driver.
+On Thu, 04 Dec 2025 15:25:28 +0530, Vijayanand Jitta wrote:
+> From: Robin Murphy <robin.murphy@arm.com>
 > 
-> Signed-off-by: Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>
+> Since we now have quite a few users parsing "iommu-map" and "msi-map"
+> properties, give them some wrappers to conveniently encapsulate the
+> appropriate sets of property names. This will also make it easier to
+> then change of_map_id() to correctly account for specifier cells.
+> 
+> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
+> Signed-off-by: Vijayanand Jitta <vijayanand.jitta@oss.qualcomm.com>
 > ---
->  .../devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml        | 1 +
->  1 file changed, 1 insertion(+)
+>  drivers/cdx/cdx_msi.c                    |  3 +--
+>  drivers/iommu/of_iommu.c                 |  4 +---
+>  drivers/irqchip/irq-gic-its-msi-parent.c |  4 ++--
+>  drivers/of/irq.c                         |  3 +--
+>  drivers/pci/controller/dwc/pci-imx6.c    |  6 ++----
+>  drivers/pci/controller/pcie-apple.c      |  3 +--
+>  drivers/xen/grant-dma-ops.c              |  3 +--
+>  include/linux/of.h                       | 14 ++++++++++++++
+>  8 files changed, 23 insertions(+), 17 deletions(-)
 > 
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
