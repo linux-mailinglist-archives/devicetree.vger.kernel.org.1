@@ -1,105 +1,117 @@
-Return-Path: <devicetree+bounces-245358-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245361-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8D8BCAF995
-	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 11:18:14 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B045CAF9F8
+	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 11:24:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 4DD78300BFB9
-	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 10:18:12 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A8DA23006A4E
+	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 10:20:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92F672EB5A1;
-	Tue,  9 Dec 2025 10:18:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="OpuzYQ6M"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32B4E24E4A1;
+	Tue,  9 Dec 2025 10:20:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C12F429B22F;
-	Tue,  9 Dec 2025 10:18:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [13.76.142.27])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E6CA13774D;
+	Tue,  9 Dec 2025 10:20:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.76.142.27
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765275490; cv=none; b=slXuwkZi2de9etKJGAgec/cQgm99eXacHdQNwzk8oGGjKisJD6K94IO+faY6vvUa0kt5xo8dVMWUPYIe0FPYrCrVU/ztt9clGG0NmRXSMEJ+RTPxLqpgM17yqeAwStj3aNIvhy9DL/KAlUNeFcGVekbLzFpLb+eBQriGxt5fJWE=
+	t=1765275656; cv=none; b=hdWRB45bWfibPg/cERUme9g1Mfv1MvltjQP3g1IYWH6rg+UvHjVWc+25ye3Rzealr3BPVcta9UVmMyTw0NhuaYcnrQO8KKlko0dwq1N0Y3MtyZBU9UdHNiTaYQofkbsyPRrrcMkhhLD66eUYZ/JAZFnjmejg6MzCwHE9TRYThfo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765275490; c=relaxed/simple;
-	bh=LspRMhoTuEdQUl2WfoGMpMaiR51ngYd4tC8jRrq7vwg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=EHGoMqAeLmFHoTbgSygPH1grsi2Iot40LcuOH1+x6t6d4Ayw6paQpBTUvRgmVf6x33j77k6Zf3XLa/19wKY5iaJJKKrQPAFeDSV6ngyb3ZohOAC7uf8GxpeEDdxUzHTPcFWjebbB6ee6Us059xhGz47s3RL+4t8A4uI8k8MRnm0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=OpuzYQ6M; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from localhost.localdomain (xcpe-178-82-120-96.dyn.res.sunrise.net [178.82.120.96])
-	by mail11.truemail.it (Postfix) with ESMTPA id 5742D22B2A;
-	Tue,  9 Dec 2025 11:18:06 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1765275487;
-	bh=+dxeERWmLPtcv4v6HQIjHDVzEq/iPpIZia0cA32K9L8=; h=From:To:Subject;
-	b=OpuzYQ6MchrXobF5N7m8NlAb/Pk1SjMKzrNswtjtumjcOHt3p12rG0fQpVNFXcu23
-	 jhV5kJu2qIuoiXkJnJ6gYqYEinXM3k5nPKa9T4kpZfEhlUiXqQGIH9x4Mm0EI3n7en
-	 FflxU65uLIbJ1bb1nvybiASqrvDP2tjpEA1NXQWoSNIqknL2mx2Hz5XE5uLdKCHP52
-	 fc3cjCFN4uDK2Ub+oN22+EnGjLhApENFXfu97laBY4WLudPn/FmOee6YqBcwbvXL76
-	 lK8yxjLjMiuBZtl38rRmZ+NH6OzXELvUKhwja4XVYy9e6z13ahBLafLdE5Lja0Qm1e
-	 EZVvRNspqXTFg==
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: Francesco Dolcini <francesco.dolcini@toradex.com>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v1 3/3] arm64: dts: freescale: imx8mp-toradex-smarc: enable hdmi_pai device
-Date: Tue,  9 Dec 2025 11:17:51 +0100
-Message-ID: <20251209101754.54067-4-francesco@dolcini.it>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20251209101754.54067-1-francesco@dolcini.it>
-References: <20251209101754.54067-1-francesco@dolcini.it>
+	s=arc-20240116; t=1765275656; c=relaxed/simple;
+	bh=0igFMeA4r8WgMm2AgCebME9sRmF3+EaQ8kuAiHD7q90=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
+	 MIME-Version:Message-ID; b=VaNrFN46p2F9CgFwjlKpDSQqda6yAW7AWaZ1Z0gJU/KaRMdqCorKl5VWwPVJ1JBXMwTwFUzqoe/lUS1veqCGC3xzbc/LP3qeeb+S9xJz1i3j2nDEfTatINJa2aU2k3+eXDUH8YA53ICCcS0exO33J+RqS/oTZUSgtQ0Ecl6JztQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=13.76.142.27
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
+Received: from dongxuyang$eswincomputing.com ( [10.12.96.41] ) by
+ ajax-webmail-app2 (Coremail) ; Tue, 9 Dec 2025 18:20:26 +0800 (GMT+08:00)
+Date: Tue, 9 Dec 2025 18:20:26 +0800 (GMT+08:00)
+X-CM-HeaderCharset: UTF-8
+From: "Xuyang Dong" <dongxuyang@eswincomputing.com>
+To: "Krzysztof Kozlowski" <krzk@kernel.org>, ben.dooks@codethink.co.uk
+Cc: ukleinek@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, p.zabel@pengutronix.de,
+	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, ningyu@eswincomputing.com,
+	linmin@eswincomputing.com, xuxiang@eswincomputing.com,
+	wangguosheng@eswincomputing.com, pinkesh.vaghela@einfochips.com
+Subject: Re: Re: [PATCH 1/2] dt-bindings: pwm: eswin: Add EIC7700 pwm
+ controller
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version 2024.2-cmXT6 build
+ 20241203(6b039d88) Copyright (c) 2002-2025 www.mailtech.cn
+ mispb-72143050-eaf5-4703-89e0-86624513b4ce-eswincomputing.com
+In-Reply-To: <20251208-rational-trout-of-purring-a6150a@quoll>
+References: <20251205090411.1388-1-dongxuyang@eswincomputing.com>
+ <20251205090450.1446-1-dongxuyang@eswincomputing.com>
+ <20251208-rational-trout-of-purring-a6150a@quoll>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=UTF-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Message-ID: <47025bea.10ca.19b02a06c69.Coremail.dongxuyang@eswincomputing.com>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID:TQJkCgDnK6_q9zdp+DCDAA--.3844W
+X-CM-SenderInfo: pgrqw5xx1d0w46hv4xpqfrz1xxwl0woofrz/1tbiAQELAmk2-YUhH
+	gABsQ
+X-Coremail-Antispam: 1Ur529EdanIXcx71UUUUU7IcSsGvfJ3iIAIbVAYjsxI4VWxJw
+	CS07vEb4IE77IF4wCS07vE1I0E4x80FVAKz4kxMIAIbVAFxVCaYxvI4VCIwcAKzIAtYxBI
+	daVFxhVjvjDU=
 
-From: Francesco Dolcini <francesco.dolcini@toradex.com>
-
-Enable the hdmi_pai device on the Toradex SMARC iMX8M Plus Development
-boards.
-
-The hdmi_pai device, together with aud2htx module, hdmi_pai and hdmi
-controller compose the HDMI audio pipeline.
-
-See commit b21f87b8322f ("arm64: dts: imx8mp-evk: enable hdmi_pai
-device") for the equivalent change on the NXP i.MX8MP EVK board.
-
-Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
----
- arch/arm64/boot/dts/freescale/imx8mp-toradex-smarc-dev.dts | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-toradex-smarc-dev.dts b/arch/arm64/boot/dts/freescale/imx8mp-toradex-smarc-dev.dts
-index 6f9dcd3a75c8..b31de307093c 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-toradex-smarc-dev.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-toradex-smarc-dev.dts
-@@ -107,6 +107,10 @@ &gpio4 {
- 	pinctrl-0 = <&pinctrl_gpio4>, <&pinctrl_gpio6>;
- };
- 
-+&hdmi_pai {
-+	status = "okay";
-+};
-+
- &hdmi_pvi {
- 	status = "okay";
- };
--- 
-2.47.3
-
+PiA+IGRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvcHdtL2Vz
+d2luLGVpYzc3MDAtcHdtLnlhbWwgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3Mv
+cHdtL2Vzd2luLGVpYzc3MDAtcHdtLnlhbWwKPiA+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0Cj4gPiBp
+bmRleCAwMDAwMDAwMDAwMDAuLjhiN2RjN2Q0ZGZmZQo+ID4gLS0tIC9kZXYvbnVsbAo+ID4gKysr
+IGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3B3bS9lc3dpbixlaWM3NzAwLXB3
+bS55YW1sCj4gPiBAQCAtMCwwICsxLDczIEBACj4gPiArIyBTUERYLUxpY2Vuc2UtSWRlbnRpZmll
+cjogKEdQTC0yLjAtb25seSBPUiBCU0QtMi1DbGF1c2UpCj4gPiArJVlBTUwgMS4yCj4gPiArLS0t
+Cj4gPiArJGlkOiBodHRwOi8vZGV2aWNldHJlZS5vcmcvc2NoZW1hcy9wd20vZXN3aW4sZWljNzcw
+MC1wd20ueWFtbCMKPiA+ICskc2NoZW1hOiBodHRwOi8vZGV2aWNldHJlZS5vcmcvbWV0YS1zY2hl
+bWFzL2NvcmUueWFtbCMKPiA+ICsKPiA+ICt0aXRsZTogRVNXSU4gRUlDNzcwMCBQV00gY29udHJv
+bGxlcgo+ID4gKwo+ID4gK21haW50YWluZXJzOgo+ID4gKyAgLSBYaWFuZyBYdSA8eHV4aWFuZ0Bl
+c3dpbmNvbXB1dGluZy5jb20+Cj4gPiArICAtIEd1b3NoZW5nIFdhbmcgPHdhbmdndW9zaGVuZ0Bl
+c3dpbmNvbXB1dGluZy5jb20+Cj4gPiArICAtIFh1eWFuZyBEb25nIDxkb25neHV5YW5nQGVzd2lu
+Y29tcHV0aW5nLmNvbT4KPiA+ICsKPiA+ICtkZXNjcmlwdGlvbjogfAo+IAo+IERvIG5vdCBuZWVk
+ICd8JyB1bmxlc3MgeW91IG5lZWQgdG8gcHJlc2VydmUgZm9ybWF0dGluZy4KPiAKPiA+ICsgIFRo
+ZSBFSUM3NzAwIFBXTSB1c2VkIHRoZSBEZXNpZ25XYXJlIEFQQiB0aW1lcnMgbW9kdWxlLiBUaGUg
+UFdNIGRyaXZlcgo+ID4gKyAgc3VwcG9ydHMgYSBkdXR5IGN5Y2xlIHJhbmdlIGZyb20gMCUgdG8g
+MTAwJSwgd2l0aCBleHBsaWNpdCBzdXBwb3J0IGZvcgo+IAo+IERyaXZlciBpcyBpcnJlbGV2YW50
+IGhlcmUuIERlc2NyaWJlIGhhcmR3YXJlLgo+IAo+ID4gKyAgYm90aCAwJSBhbmQgMTAwJSBkdXR5
+IGN5Y2xlcy4KPiA+ICsKPiA+ICthbGxPZjoKPiA+ICsgIC0gJHJlZjogcHdtLnlhbWwjCj4gPiAr
+Cj4gPiArcHJvcGVydGllczoKPiA+ICsgIGNvbXBhdGlibGU6Cj4gPiArICAgIGNvbnN0OiBlc3dp
+bixlaWM3NzAwLXB3bQo+ID4gKwo+ID4gKyAgcmVnOgo+ID4gKyAgICBtYXhJdGVtczogMQo+ID4g
+Kwo+ID4gKyAgY2xvY2tzOgo+ID4gKyAgICBtYXhJdGVtczogMQo+ID4gKwo+ID4gKyAgcmVzZXRz
+Ogo+ID4gKyAgICBtYXhJdGVtczogMQo+ID4gKwo+ID4gKyAgIiNwd20tY2VsbHMiOgo+ID4gKyAg
+ICBjb25zdDogMwo+ID4gKwo+ID4gKyAgcGluY3RybC0wOiB0cnVlCj4gPiArICBwaW5jdHJsLTE6
+IHRydWUKPiA+ICsKPiA+ICsgIHBpbmN0cmwtbmFtZXM6Cj4gPiArICAgIG1pbkl0ZW1zOiAxCj4g
+PiArICAgIGl0ZW1zOgo+ID4gKyAgICAgIC0gY29uc3Q6IGRlZmF1bHQKPiA+ICsgICAgICAtIGNv
+bnN0OiBzbGVlcAo+ID4gKwo+ID4gKyAgc25wcyxwd20tZnVsbC1yYW5nZS1lbmFibGU6Cj4gCj4g
+MS4gV3JvbmcgdmVuZG9yIHByZWZpeCwgdGhhdHMgZXN3aW4sIG5vdCBzbnBzLgo+IDIuIFdoeSBp
+cyB0aGlzIGEgaGFyZHdhcmUgcHJvcGVydHk/IEkgcmVhbGx5IGRvIG5vdCBzZWUgdGhhdC4gWW91
+Cj4gZGVzY3JpYmVkIHRoZSBkZXNpcmVkIExpbnV4IGZlYXR1cmUgb3IgYmVoYXZpb3IsIG5vdCB0
+aGUgYWN0dWFsCj4gaGFyZHdhcmUuIFRoZSBiaW5kaW5ncyBhcmUgYWJvdXQgdGhlIGxhdHRlciwg
+c28gaW5zdGVhZCB5b3UgbmVlZCB0bwo+IHJlcGhyYXNlIHRoZSBwcm9wZXJ0eSBhbmQgaXRzIGRl
+c2NyaXB0aW9uIHRvIG1hdGNoIGFjdHVhbCBoYXJkd2FyZQo+IGNhcGFiaWxpdGllcy9mZWF0dXJl
+cy9jb25maWd1cmF0aW9uIGV0Yy4KPiAKSGkgS3J6eXN6dG9mIGFuZCBCZW4sCgpUaGVyZSBpcyBh
+IHBhdGNoIFsxXSBzdWJtbWl0dGVkIGJ5IEJlbiBEb29rIGEgZmV3IHllYXJzIGFnby4gVGhlwqAK
+aW50ZW50aW9uIG9mIHRoaXMgcGF0Y2ggaXMgdG8gbWFrZSBEV0MgcHdtIGNvbnRyb2xsZXIgY2Fu
+IGJlIHVzZWQgYXPCoApwbGF0Zm9ybSBkcml2ZXIuIFRoaXMgaXMgd2hhdCB3ZSBhcmUgY3VycmVu
+dGx5IHdvcmtpbmcgb24uCkl0IHNlZW1zIHRoYXQgaXQgd291bGQgYmUgbW9yZSByZWFzb25hYmxl
+IHRvIGNvbnRpbnVlIGltcHJvdmluZyB0aGlzwqAKcGF0Y2ggYW5kIG1ha2UgdGhlIERXQyBQV00g
+ZHJpdmVyIHVuaXZlcnNhbCwgcmF0aGVyIHRoYW4gY3JlYXRpbmcgYcKgCnNlcGFyYXRlIEVTV0lO
+IFBXTSBkcml2ZXIuCgpUaGUgRFdDIHB3bSAyLjEzYSB2ZXJzaW9uIHN1cHBvcnRzICJQdWxzZSBX
+aWR0aCBNb2R1bGF0aW9uIHdpdGggMCUgYW5kwqAKMTAwJSBEdXR5IEN5Y2xlIiBieSBwcm9ncmFt
+bWluZyBUSU1FUl8wTjEwMFBXTV9FTiBiaXQgZmllbGQuIFdlIGFsc2/CoAp3YW50IHRvIHN1cHBv
+cnQgdGhpcyBuZXcgaGFyZHdhcmUgZmVhdHVyZS4gU28sIGFkZGluZyBhIG5ldyBwcm9wZXJ0eSzC
+oApsaWtlIHNucHMsdGltZXItMG4xMDBwd20tZW4sIGluIHB3bS9zbnBzLGR3LWFwYi10aW1lcnMt
+cHdtMi55YW1sCndvdWxkIGJlIGJldHRlcj8KCktyenlzenRvZiBhbmQgQmVuLCBkbyB5b3UgdGhp
+bmsgdGhlIGFib3ZlIGFwcHJvYWNoIGlzIHJlYXNvbmFibGUgYW5kIGFjY2VwdGFibGU/CgpbMV0g
+aHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvbGttbC8yMDIzMDkwNzE2MTI0Mi42NzE5MC03LWJlbi5k
+b29rc0Bjb2RldGhpbmsuY28udWsvCgpSZWdhcmRzLApYdXlhbmcgRG9uZwo=
 
