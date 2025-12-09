@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-245293-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245294-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB4C9CAEBD4
-	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 03:32:31 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EFD3CAEC0A
+	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 03:47:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 00801300F5BC
-	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 02:32:02 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 3EE5C3002E94
+	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 02:47:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC58823ABAA;
-	Tue,  9 Dec 2025 02:32:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 953952116E0;
+	Tue,  9 Dec 2025 02:47:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ssDBAeTb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eH3c6bwA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D3A117D2;
-	Tue,  9 Dec 2025 02:32:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A1BC18C03F;
+	Tue,  9 Dec 2025 02:47:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765247521; cv=none; b=c+WhJSt90Tk+GWcj6Lu08PJsj2cghYwC+ZOfv8P9fb1Mn0S4KI03ZGQj12ztAcASIaVX2UhDAM7xH51AQaiUnsRKbFuJgxXq5FIHuda69FYgYDQa5xHtpYNMQ8Yhiit89NsQpoPJaw1QL+mqeb+KfWcMh+BPNmvQTQ5VRcUxzRo=
+	t=1765248429; cv=none; b=DzQ+35urVmhPfY5swHSsOV3OcdLhCpUDXz83UCFqqh2U8dAaHPJVS2lu105JQSQbMLvIk/NWKDePFragbN2V+Ks2ZEU45544Pb7Q0unKG0WgzgT1yrezyTz8Il/upjo2QbqnMHUYTt82ZiRBPFUWgeDqpqxsgiCSWq3pFYsd+lA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765247521; c=relaxed/simple;
-	bh=PFVA+zI/bstNK1jQzv4pqwneP+Zt6w13hC5OvKuRyxA=;
+	s=arc-20240116; t=1765248429; c=relaxed/simple;
+	bh=IuepdvH4dOQp5JQQJ7FUzYAaxb2t3Imf6ywhA2IeQ6w=;
 	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=LrcukmjBzGa5MS/Ss4eFMSmfQxGBr3A8lypY92oxof288aFE3PE1I1fAUuYKdHRbKwYzDCgdVGs+PedlE1PIHB8NIzxxV4h82GT7Em68rNroihsPz0dL0eXjqT9K+yA/tNTk0k+g4MiZ9SXjshTlJqyoIIuaHdE97Y+oHu1bv0k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ssDBAeTb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5133C4CEF1;
-	Tue,  9 Dec 2025 02:31:59 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=K3K0g4/FgTtv+OqsP/9z5lNJlK4u1kM+4l2o/H/yxO7/TEHnM+AnE0MrUIoJpYye2/ewAEaCGzXfNhCNXjTaxoHDQMwtau57K67IqTv3CF9D8/YDMbOxnj7grlHs2258Zx00m5FZgC6QSAyTNTMpT1uPmALa26XyqW4bQ90Jkcs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eH3c6bwA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 392FCC4CEF1;
+	Tue,  9 Dec 2025 02:47:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765247521;
-	bh=PFVA+zI/bstNK1jQzv4pqwneP+Zt6w13hC5OvKuRyxA=;
+	s=k20201202; t=1765248428;
+	bh=IuepdvH4dOQp5JQQJ7FUzYAaxb2t3Imf6ywhA2IeQ6w=;
 	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=ssDBAeTbczZcFBMVwJmnbc5qTq4e3er8CMp8YHSBZeSJNJCRRehCBlaX69b4xM6CC
-	 RTGORQ7hpxfny+Pl46rv5Ho5XD7fE9sxwtE+8iGu+LpGLS5y43jXc+I1xI3yGWwBKB
-	 qieu9pYrgpQvy4Rz0Hs+hjeoyyL0dwjgyMPBtG4emJgKch6f4c2LxE7cRkYqI/fQyZ
-	 FXK2+X3C6JBp3QC48q5xf8EsOmpTSQQPfqjb5b4lDhvQ6qVaEk1a9RgkEiZsepnrpp
-	 aqnzSnBXjs11ueplVPkabxSpSHDArAaqUTQYXkvXXETtteAKFperbM9o3uSONI7B9X
-	 prSg9e6ertUPQ==
-Message-ID: <e1aae851-4031-4b5c-a807-7a61ecfe6af1@kernel.org>
-Date: Mon, 8 Dec 2025 20:31:58 -0600
+	b=eH3c6bwABUbo8b4ISWZ3fu5rFJ8jiwWr3wYB3WeW8+KrMG3I1qzmn/9FOcfnl6h0Y
+	 ij3htfpy9mVGCb8zan3I0ltKd9nq73b6029NSvbnOOMzOS9fnwRSZYPiAkTdXHNp0w
+	 mLKq4FgLF1ZsdBaclkgfdyH9H44Z72EO3sd+6rWddhOfzsiU88FdWPEkwC17+BtP2A
+	 ATQylFSJOMZ0FOX82kw6AzAfxuQLNoGf5nlhjKkGwW/uGbrcabw98nkadrdhiZVVbA
+	 aTuNje9UTgah6vbM600uvfDfWiS8kjQfPirzt8lhw+Tm1g/QNP+0GXknYtOxjKihzL
+	 Nk0OC7mx40OIg==
+Message-ID: <8c394b32-b0b1-4096-a149-bc8923506549@kernel.org>
+Date: Mon, 8 Dec 2025 20:47:06 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,74 +48,72 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/3] Add dma-coherent property
-To: Khairul Anuar Romli <khairul.anuar.romli@altera.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>, Vinod Koul
- <vkoul@kernel.org>, Miquel Raynal <miquel.raynal@bootlin.com>,
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
- Niravkumar L Rabara <niravkumar.l.rabara@intel.com>,
- dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org
-References: <cover.1764717960.git.khairul.anuar.romli@altera.com>
+Subject: Re: [PATCH 2/2] arm64: dts: socfpga: agilex5: add support for modular
+ board
+To: niravkumarlaxmidas.rabara@altera.com, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20251202101652.2317844-1-niravkumarlaxmidas.rabara@altera.com>
+ <20251202101652.2317844-3-niravkumarlaxmidas.rabara@altera.com>
 Content-Language: en-US
 From: Dinh Nguyen <dinguyen@kernel.org>
-In-Reply-To: <cover.1764717960.git.khairul.anuar.romli@altera.com>
+In-Reply-To: <20251202101652.2317844-3-niravkumarlaxmidas.rabara@altera.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
 
 
-On 12/2/25 17:47, Khairul Anuar Romli wrote:
-> This patch series adds dma-coherent property for the Agilex5 platform by:
+On 12/2/25 04:16, niravkumarlaxmidas.rabara@altera.com wrote:
+> From: Niravkumar L Rabara <niravkumarlaxmidas.rabara@altera.com>
 > 
-> - Updating the device tree bindings for:
->    - Cadence HP NAND controller (`cdns,hp-nfc`)
->    - Synopsys DesignWare AXI DMA controller (`snps,dw-axi-dmac`)
->    to accept the `dma-coherent` property.
+> The Agilex5 Modular board consists of a compute module (Agilex5 SoCFPGA)
+> attached to a carrier board that provides PCIe and additional system
+> interfaces.
 > 
-> - Adding the dma-coherent property to the Agilex5 device tree and wiring up
->    the property to the supported peripherals:
->    - NAND controller
->    - DMA controller
-> 
-> This dma-coherent addition aligns the Agilex5 platform with ARM’s
-> architectural requirements for coherent interconnects.
-> 
+> Signed-off-by: Niravkumar L Rabara <niravkumarlaxmidas.rabara@altera.com>
 > ---
-> Notes:
-> This patch series is applied and validated on socfpga dts maintainer's
-> branch
+> Note: This patch is based on socfpga maintainer's tree
 > https://git.kernel.org/pub/scm/linux/kernel/git/dinguyen/linux.git/log/?h=socfpga_dts_for_v6.19
 > 
-> This changes is validated on:
-> 	- intel/socfpga_agilex5_socdk.dtb
-> 	- snps,dw-axi-dmac.yaml
-> 	- snps,dw-axi-dmac.yaml intel/socfpga_agilex5_socdk.dtb
-> 	- cdns,hp-nfc.yaml
-> 	- cdns,hp-nfc.yaml intel/socfpga_agilex5_socdk.dtb
+>   arch/arm64/boot/dts/intel/Makefile            |   1 +
+>   .../intel/socfpga_agilex5_socdk_modular.dts   | 109 ++++++++++++++++++
+>   2 files changed, 110 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_modular.dts
 > 
-> Changes in v2:
-> 	- Rephrase git commit message to describe why the property is
-> 	  needed now.
-> 	- Remove redundant statement in the git commit message.
-> 	- Correct the version in patch series title to v2.
-> ---
-> Khairul Anuar Romli (3):
->    dt-bindings: mtd: cdns,hp-nfc: Add dma-coherent property
->    dt-bindings: dma: snps,dw-axi-dmac: add dma-coherent property
->    arm64: dts: socfpga: agilex5: Add dma-coherent property
-> 
->   Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml | 2 ++
->   Documentation/devicetree/bindings/mtd/cdns,hp-nfc.yaml      | 2 ++
->   arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi              | 3 +++
->   3 files changed, 7 insertions(+)
-> 
+> diff --git a/arch/arm64/boot/dts/intel/Makefile b/arch/arm64/boot/dts/intel/Makefile
+> index a117268267ee..b15e9c5083b6 100644
+> --- a/arch/arm64/boot/dts/intel/Makefile
+> +++ b/arch/arm64/boot/dts/intel/Makefile
+> @@ -5,6 +5,7 @@ dtb-$(CONFIG_ARCH_INTEL_SOCFPGA) += socfpga_agilex_n6000.dtb \
+>   				socfpga_agilex3_socdk.dtb \
+>   				socfpga_agilex5_socdk.dtb \
+>   				socfpga_agilex5_socdk_013b.dtb \
+> +				socfpga_agilex5_socdk_modular.dtb \
+>   				socfpga_agilex5_socdk_nand.dtb \
+>   				socfpga_n5x_socdk.dtb
+>   dtb-$(CONFIG_ARCH_KEEMBAY) += keembay-evm.dtb
+> diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_modular.dts b/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_modular.dts
+> new file mode 100644
+> index 000000000000..1831402d8808
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_modular.dts
+> @@ -0,0 +1,109 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (C) 2025, Altera Corporation
+> + */
+> +#include "socfpga_agilex5.dtsi"
+> +
+> +/ {
+> +	model = "SoCFPGA Agilex5 SoCDK - Modular development kit";
+> +	compatible = "intel,socfpga-agilex5-socdk-modular", "intel,socfpga-agilex5";
+> +
+> +	aliases {
+> +		serial0 = &uart0;
+> +		ethernet2 = &gmac2;
 
-Applied!
+If gmac2 is the only active ethernet port, then use ethernet0.
 
-Thanks,
 Dinh
-
 
