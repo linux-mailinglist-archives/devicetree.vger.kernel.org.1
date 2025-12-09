@@ -1,304 +1,251 @@
-Return-Path: <devicetree+bounces-245433-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245434-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 439CACB0DE3
-	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 19:47:03 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97B74CB0E5A
+	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 20:03:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E529130AF554
-	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 18:47:01 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AF7163089E31
+	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 19:02:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B7D2303A02;
-	Tue,  9 Dec 2025 18:47:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 930B5301472;
+	Tue,  9 Dec 2025 19:02:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rGqtTbR7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eUs7MWCk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 364C0302CD0
-	for <devicetree@vger.kernel.org>; Tue,  9 Dec 2025 18:46:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 617C3230BF6;
+	Tue,  9 Dec 2025 19:02:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765306020; cv=none; b=EzfU2+r/ENAh24gj5KoWWazmeqQo/HRyYaCJJwdY0Kckk/bAvIG2/laV9u8nu+UtgPxFxg56Y5C5YmYH2+qsHlfR+9zDLfFpurdQEfNxpy8zZdMMHkmFEek3MNIFDc1ZaGvOIBBP0Kgde+I8H/YPzu8GZazAprVLHvCNcr7sVQw=
+	t=1765306977; cv=none; b=YEXajh59XnKfzsMNhmiSpUdDzRdJkeNkVqdhK/tnk1UBYTd92um1ZGWaJVXN6u7L8UX1NSFAL+EgKlZPQUmHQOllc4g7K+n78sTPLUj+/XztBTdok1xYKcpVM3JgCvwbdC+FnboqHgIp7jj/Us+4exDK0H0qs8cz1/6NFnmBEdM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765306020; c=relaxed/simple;
-	bh=RwOQrdvCZOCfPcXTjdfzp8hxiecKCqijW9ilAgKJgbw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=mRQJvZ1E7/wV27JOc8Fb17+KHll7RQZfVRqj7yZQXePOKnAEQDkmOi/M+xGK3OReVbTax1nYOrRA/dNxJbFvCCqb/VQpfCsGT57Fc9P+eTRVOt0SIHCWywzJYpEqeGlL+KJfeLr8d5Thur3QzRUwAL/Z2zVoESW1FP9h/l3qq1Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rGqtTbR7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD125C4CEF5
-	for <devicetree@vger.kernel.org>; Tue,  9 Dec 2025 18:46:59 +0000 (UTC)
+	s=arc-20240116; t=1765306977; c=relaxed/simple;
+	bh=W91mDGUT+fVf9qRNx5z3Rn1jWIavo7jjER0IHtDfaGA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=H68aiH5yIc5YOBXFZVAwXPteQev38owBenoM6Y1ggorWCWnPKGwEDgYhY9RklO+fKlFfx+FXKFARS7sz75ijRuFe9AoQeToPw44WPZMhDKiK5EOXjkfcuYQQz5FAcEd48hk0zWPGo4QGZ8ABELxioeiXyxvw8yYeso7P5c6ERA8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eUs7MWCk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CEF9FC4CEF5;
+	Tue,  9 Dec 2025 19:02:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765306019;
-	bh=RwOQrdvCZOCfPcXTjdfzp8hxiecKCqijW9ilAgKJgbw=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=rGqtTbR7LKuQG0njmH2ICqOSPikT2HBarN4T1/NcNvoh+90wCIKJ8OKdy0+Q2wzhN
-	 lvCpLc1PWK+AyTP2Qcb0NK6xxYJJsFQonz1OfcpAZDHY2kPaOYjkrMn7v1UfN7zOUm
-	 fSOW+fTDTGmzSMIy+SnELERctLJjqR+11yApyaD2XkcTLrpLorCNU8qk5pe0k7pJmL
-	 Dgf4dl576c54fxpHuPnN3PLD7km/cgJR9UQN+n37ThE1HVPbU2ubQfac0Mg4en7yVs
-	 Oz6GU8klBXtH1fMyyTr/kqSaUjBS+j9de6AQhE94zB1jKBCzaNrJPm/iXuOsuN7rq3
-	 AhXh8x+pi27Mw==
-Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-640d0ec9651so10630093a12.3
-        for <devicetree@vger.kernel.org>; Tue, 09 Dec 2025 10:46:59 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVofSg66BUzkASqjwqkK1g+AKqQNadfwxfWvXIimDlCCCqW2Yh/4nQp29Qg6if5vZV8RrqeIed2nD/u@vger.kernel.org
-X-Gm-Message-State: AOJu0YwR4PKVEYDjEhaCsbOS6mML27jxrnsY7X8/ZAf+ceP6Uo9LChS5
-	hI2oqYpXrlf/rDO77rUQm1qervLjUqhiGv95WwRATh3rKbnRF3DQnCkm+arZJdazJfLOXa17EID
-	oBH89w7KpWy0kq/6wDiL/fwvGhpg/mA==
-X-Google-Smtp-Source: AGHT+IFiQ4wJ/VE1EASUueymKfss72+4pujtua9C+jSjLvlkO3/K2JEd2eLfJpaiVceQ4TlzGIbWBFlVQfUjIUYHCnc=
-X-Received: by 2002:a05:6402:90d:b0:640:a9b1:870b with SMTP id
- 4fb4d7f45d1cf-6491a3fefffmr9632476a12.14.1765306018059; Tue, 09 Dec 2025
- 10:46:58 -0800 (PST)
+	s=k20201202; t=1765306977;
+	bh=W91mDGUT+fVf9qRNx5z3Rn1jWIavo7jjER0IHtDfaGA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=eUs7MWCk/mgmeAjt/M+LpQhfnJK53kNxpTFrfc0e4SOxrml9aElCYQ9OlcqdNpvVj
+	 09Qagkgv3BsbZFn1n8/4JCIOY70wvwfhBKyVZ8cHthTRobQ9aiJNyBhWnUeROtLeha
+	 m8CUIeIdvhaqZzfq8E34RgIcFq/pduCnNqoEw+3oR4yRtLYyiH41lQJLC5ByV4GS1H
+	 tDW97z1HD5rI8Jbn2+QvyfTWnMKAjG1h+PYu/N08IqgKmEheDw0FznIdjTWpYTbOEz
+	 lt9+u+pTrjX0tPn8osIm6ftZGx1UbX20bDWGIRmeHF66f4+BxG0616Q0rpWdFLVTX/
+	 YdsGY99N6XgkA==
+Date: Tue, 9 Dec 2025 13:02:54 -0600
+From: Rob Herring <robh@kernel.org>
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+	"biju.das.au" <biju.das.au@gmail.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	"magnus.damm" <magnus.damm@gmail.com>,
+	wsa+renesas <wsa+renesas@sang-engineering.com>,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
+Subject: Re: [PATCH v5 01/17] dt-bindings: serial: renesas,rsci: Document
+ RZ/G3E support
+Message-ID: <20251209190254.GA927812-robh@kernel.org>
+References: <20251129164325.209213-1-biju.das.jz@bp.renesas.com>
+ <20251129164325.209213-2-biju.das.jz@bp.renesas.com>
+ <20251204-cute-slim-husky-aa4dc4@quoll>
+ <TY3PR01MB11346AB991A69C28F3D7D512286A6A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250812085037.13517-1-andrea.porta@suse.com> <4fee3870-f9d5-48e3-a5be-6df581d3e296@kernel.org>
- <aKc5nMT1xXpY03ip@apocalypse> <e7875f70-2b79-48e0-a63b-caf6f1fd287b@kernel.org>
- <aLVePQRfU4IB1zK8@apocalypse> <CAL_JsqJUzB71QdMcxJtNZ7raoPcK+SfTh7EVzGmk=syo8xLKQw@mail.gmail.com>
- <aThjYt3ux0U-9-3A@apocalypse> <aThp99OfgAfNFUX-@apocalypse>
-In-Reply-To: <aThp99OfgAfNFUX-@apocalypse>
-From: Rob Herring <robh@kernel.org>
-Date: Tue, 9 Dec 2025 12:46:45 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+VfWJtb_VEEmHCtDdKUUFWUrxw80FocuEiVwFTAM9zyg@mail.gmail.com>
-X-Gm-Features: AQt7F2rQuv1o7PzOcLYEjioegQxnHbuyX-xlEY6nKer24-O9xmckn5nOlwjXHeI
-Message-ID: <CAL_Jsq+VfWJtb_VEEmHCtDdKUUFWUrxw80FocuEiVwFTAM9zyg@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: pci: brcmstb: Add rp1-nexus node to fix DTC warning
-To: Andrea della Porta <andrea.porta@suse.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Jim Quinlan <jim2101024@gmail.com>, 
-	Florian Fainelli <florian.fainelli@broadcom.com>, 
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, kwilczynski@kernel.org, 
-	Manivannan Sadhasivam <mani@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rpi-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, iivanov@suse.de, svarbanov@suse.de, 
-	mbrugger@suse.com, Jonathan Bell <jonathan@raspberrypi.com>, 
-	Phil Elwell <phil@raspberrypi.com>, kernel test robot <lkp@intel.com>, 
-	Herve Codina <herve.codina@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <TY3PR01MB11346AB991A69C28F3D7D512286A6A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
 
-On Tue, Dec 9, 2025 at 12:24=E2=80=AFPM Andrea della Porta
-<andrea.porta@suse.com> wrote:
->
-> [+cc Herve]
->
-> On 18:58 Tue 09 Dec     , Andrea della Porta wrote:
-> > Hi Rob,
-> >
-> > On 11:09 Thu 04 Dec     , Rob Herring wrote:
-> > > On Mon, Sep 1, 2025 at 3:48=E2=80=AFAM Andrea della Porta <andrea.por=
-ta@suse.com> wrote:
-> > > >
-> > > > Hi Krzysztof,
-> > > >
-> > > > On 08:50 Fri 22 Aug     , Krzysztof Kozlowski wrote:
-> > > > > On 21/08/2025 17:22, Andrea della Porta wrote:
-> > > > > > Hi Krzysztof,
-> > > > > >
-> > > > > > On 10:55 Tue 12 Aug     , Krzysztof Kozlowski wrote:
-> > > > > >> On 12/08/2025 10:50, Andrea della Porta wrote:
-> > > > > >>> The devicetree compiler is complaining as follows:
-> > > > > >>>
-> > > > > >>> arch/arm64/boot/dts/broadcom/rp1-nexus.dtsi:3.11-14.3: Warnin=
-g (unit_address_vs_reg): /axi/pcie@1000120000/rp1_nexus: node has a reg or =
-ranges property, but no unit name
-> > > > > >>> /home/andrea/linux-torvalds/arch/arm64/boot/dts/broadcom/bcm2=
-712-rpi-5-b.dtb: pcie@1000120000: Unevaluated properties are not allowed ('=
-rp1_nexus' was unexpected)
-> > > > > >>
-> > > > > >> Please trim the paths.
-> > > > > >
-> > > > > > Ack.
-> > > > > >
-> > > > > >>
-> > > > > >>>
-> > > > > >>> Add the optional node that fix this to the DT binding.
-> > > > > >>>
-> > > > > >>> Reported-by: kernel test robot <lkp@intel.com>
-> > > > > >>> Closes: https://lore.kernel.org/oe-kbuild-all/202506041952.ba=
-JDYBT4-lkp@intel.com/
-> > > > > >>> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
-> > > > > >>> ---
-> > > > > >>>  Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml | 9=
- +++++++++
-> > > > > >>>  1 file changed, 9 insertions(+)
-> > > > > >>>
-> > > > > >>> diff --git a/Documentation/devicetree/bindings/pci/brcm,stb-p=
-cie.yaml b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> > > > > >>> index 812ef5957cfc..7d8ba920b652 100644
-> > > > > >>> --- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yam=
-l
-> > > > > >>> +++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yam=
-l
-> > > > > >>> @@ -126,6 +126,15 @@ required:
-> > > > > >>>  allOf:
-> > > > > >>>    - $ref: /schemas/pci/pci-host-bridge.yaml#
-> > > > > >>>    - $ref: /schemas/interrupt-controller/msi-controller.yaml#
-> > > > > >>> +  - if:
-> > > > > >>> +      properties:
-> > > > > >>> +        compatible:
-> > > > > >>> +          contains:
-> > > > > >>> +            const: brcm,bcm2712-pcie
-> > > > > >>> +    then:
-> > > > > >>> +      properties:
-> > > > > >>> +        rp1_nexus:
-> > > > > >>
-> > > > > >> No, you cannot document post-factum... This does not follow DT=
-S coding
-> > > > > >> style.
-> > > > > >
-> > > > > > I think I didn't catch what you mean here: would that mean that
-> > > > > > we cannot resolve that warning since we cannot add anything to =
-the
-> > > > > > binding?
-> > > > >
-> > > > > I meant, you cannot use a warning from the code you recently intr=
-oduced
-> > > > > as a reason to use incorrect style.
-> > > > >
-> > > > > Fixing warning is of course fine and correct, but for the code re=
-cently
-> > > > > introduced and which bypassed ABI review it is basically like new=
- review
-> > > > > of new ABI.
-> > > > >
-> > > > > This needs standard review practice, so you need to document WHY =
-you
-> > > > > need such node. Warning is not the reason here why you are doing.=
- If
-> > > > > this was part of original patchset, like it should have been, you=
- would
-> > > > > not use some imaginary warning as reason, right?
-> > > > >
-> > > > > So provide reason why you need here this dedicated child, what is=
- that
-> > > > > child representing.
-> > > >
-> > > > Ack.
-> > > >
-> > > > >
-> > > > > Otherwise I can suggest: drop the child and DTSO, this also solve=
-s the
-> > > > > warning...
-> > > >
-> > > > This would not fix the issue: it's the non overlay that needs the s=
-pecific
-> > > > node. But I got the point, and we have a solution for that (see bel=
-ow).
-> > > >
-> > > > >
-> > > > > >
-> > > > > > Regarding rp1_nexus, you're right I guess it should be
-> > > > > > rp1-nexus as per DTS coding style.
-> > > > > >
-> > > > > >>
-> > > > > >> Also:
-> > > > > >>
-> > > > > >> Node names should be generic. See also an explanation and list=
- of
-> > > > > >> examples (not exhaustive) in DT specification:
-> > > > > >> https://devicetree-specification.readthedocs.io/en/latest/chap=
-ter2-devicetree-basics.html#generic-names-recommendation
-> > > > > >
-> > > > > > In this case it could be difficult: we need to search for a DT =
-node
-> > > > >
-> > > > > Search like in driver? That's wrong, you should be searching by c=
-ompatible.
-> > > >
-> > > > Thanks for the hint. Searching by compatble is the solution.
+On Thu, Dec 04, 2025 at 08:23:06AM +0000, Biju Das wrote:
+> Hi Krzysztof Kozlowski,
+> 
+> Thanks for the feedback.
+> 
+> > -----Original Message-----
+> > From: Krzysztof Kozlowski <krzk@kernel.org>
+> > Sent: 04 December 2025 08:03
+> > Subject: Re: [PATCH v5 01/17] dt-bindings: serial: renesas,rsci: Document RZ/G3E support
+> > 
+> > On Sat, Nov 29, 2025 at 04:42:57PM +0000, Biju wrote:
+> > > From: Biju Das <biju.das.jz@bp.renesas.com>
 > > >
-> > > No, it is not.
-> >
-> > This is partly true, indeed. On one side there's the need to avoid a
-> > specific node name ('rp1_nexus'), so the only other unique identifier w=
-ould
-> > be the compatible string ('pci1de4,1' in this case, which identifies th=
-at specific
-> > device). Unfortunately, the same compatible string is also assigned to =
-the pci
-> > endpoint node filled automatically by enabling CONFIG_PCI_DYNAMIC_OF_NO=
-DES.
-> > We would end up with two nodes with the same compatible, which is not u=
-nique
-> > anymore.
-> > This applies only when using 'full' dtb (bcm2712-rpi-5-b.dtb) *and* you=
- enable
-> > CONFIG_PCI_DYNAMIC_OF_NODES, the latter being not necessary since the o=
-verlay dtb
-> > (...-ovl-rp1.dtb) is not in use here. To overcome this problem, the sol=
-utions
-> > I can think of are the following:
-> >
-> > 1- Just disable CONFIG_PCI_DYNAMIC_OF_NODES should work, but only when =
-using the
-> >    full dtb version. However, if the user enable that option for debug =
-or to use
-> >    the overlay dtb version, he better be sure not to use teh full dtb o=
-r it won't
-> >    work.
-> >    This solution seems really weak.
-> >
-> > 2- Add another compatible string other than 'pci1de4,1', so it will be =
-really
-> >    unique.
-> >
+> > > Add documentation for the serial communication interface (RSCI) found
+> > > on the Renesas RZ/G3E (R9A09G047) SoC. The RSCI IP on this SoC is
+> > > identical to that on the RZ/T2H (R9A09G077) SoC, but it has a 32-stage
+> > > FIFO compared to 16 on RZ/T2H. It supports both FIFO and non-FIFO mode
+> > > operation. RZ/G3E has 6 clocks(5 module clocks + 1 external clock)
+> > > compared to 3 clocks
+> > > (2 module clocks + 1 external clock) on RZ/T2H, and it has multiple resets.
+> > > It has 6 interrupts compared to 4 on RZ/T2H.
 > > >
-> > > > >
-> > > > > > starting from the DT root and using generic names like pci@0,0 =
-or
-> > > > > > dev@0,0 could possibly led to conflicts with other peripherals.
-> > > > > > That's why I chose a specific name.
-> > > > >
-> > > > > Dunno, depends what can be there, but you do not get a specific
-> > > > > (non-generic) device node name for a generic PCI device or endpoi=
-nt.
-> > > >
-> > > > I would use 'port' instead of rp1-nexus. Would it work for you?
+> > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> > > ---
+> > > v4->v5:
+> > >  * Updated commit description related to IRQ difference
+> > >  * Added aed and bfd irqs for RZ/G3E.
+> > >  * Moved reset: false to RZ/T2H SoC and dropped the else part for RZ/G3E.
+> > >  * Updated conditional schema with interrupts and interrupts-names.
+> > >  * Dropped the tag as there are new changes.
+> > > v3->v4:
+> > >  * Dropped separate compatible for non-FIFO mode and instead using single
+> > >    compatible "renesas,r9a09g047-rsci" as non-FIFO mode can be achieved
+> > >    by software configuration.
+> > >  * Renamed clock-names bus->pclk
+> > >  * Rearranged clock-names tclk{4, 16, 64}
+> > >  * Retained the tag as the changes are trivial.
+> > > v2->v3:
+> > >  * Dropped 1st and 3rd items from clk-names and added minItems for the
+> > >    range.
+> > >  * Added minItems for clk and clk-names for RZ/T2H as the range is 2-3
+> > >  * Added maxItems for clk and clk-names for RZ/G3E as the range is 5-6
+> > >  * Retained the tag as it is trivial change.
+> > > v1->v2:
+> > >  * Updated commit message
+> > >  * Added resets:false for non RZ/G3E SoCs.
+> > > ---
+> > >  .../bindings/serial/renesas,rsci.yaml         | 99 ++++++++++++++++---
+> > >  1 file changed, 88 insertions(+), 11 deletions(-)
 > > >
-> > > Do you still plan to fix this? This is broken far worse than just the=
- node name.
-> >
-> > Yes, if we want to get rid of that nasty warning and comply with DT gui=
-delines,
-> > I think I really need to fix that.
-> >
+> > > diff --git
+> > > a/Documentation/devicetree/bindings/serial/renesas,rsci.yaml
+> > > b/Documentation/devicetree/bindings/serial/renesas,rsci.yaml
+> > > index 6b1f827a335b..1f8cee8171de 100644
+> > > --- a/Documentation/devicetree/bindings/serial/renesas,rsci.yaml
+> > > +++ b/Documentation/devicetree/bindings/serial/renesas,rsci.yaml
+> > > @@ -10,46 +10,72 @@ maintainers:
+> > >    - Geert Uytterhoeven <geert+renesas@glider.be>
+> > >    - Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > > >
-> > > The 'rp1_nexus' node is applied to the PCI host bridge. That's wrong
-> > > unless this is PCI rather than PCIe. There's the root port device in
-> > > between.
+> > > -allOf:
+> > > -  - $ref: serial.yaml#
+> > > -
+> > >  properties:
+> > >    compatible:
+> > >      oneOf:
+> > > -      - items:
+> > > -          - const: renesas,r9a09g087-rsci # RZ/N2H
+> > > -          - const: renesas,r9a09g077-rsci # RZ/T2H
+> > > +      - enum:
+> > > +          - renesas,r9a09g047-rsci # RZ/G3E
+> > > +          - renesas,r9a09g077-rsci # RZ/T2H
 > > >
-> > > The clue that things are wrong are start in the driver here:
+> > >        - items:
+> > > +          - const: renesas,r9a09g087-rsci # RZ/N2H
+> > >            - const: renesas,r9a09g077-rsci # RZ/T2H
 > > >
-> > > rp1_node =3D of_find_node_by_name(NULL, "rp1_nexus");
-> > > if (!rp1_node) {
-> > >   rp1_node =3D dev_of_node(dev);
-> > >   skip_ovl =3D false;
-> > > }
+> > >    reg:
+> > >      maxItems: 1
 > > >
-> > > You should not need to do this nor care what the node name is. The PC=
-I
-> > > core should have populated pdev->dev.of_node for you. If not, your DT
-> > > is wrong. Turn on CONFIG_PCI_DYNAMIC_OF_NODES and look at the
-> > > resulting PCI nodes. They should also match what the hierarchy looks
-> > > like with lspci. I don't recommend you rely on
-> > > CONFIG_PCI_DYNAMIC_OF_NODES, but statically populate the nodes in the
-> > > DT. First, CONFIG_PCI_DYNAMIC_OF_NODES is an under development thing
-> > > and I hope to get rid of the config option. Second, your case is
-> > > static (i.e. not a PCIe card in a slot) so there is no issue
-> > > hardcoding the DT.
->
-> Are you planning to get rid of the CONFIG_PCI_DYNAMIC_OF_NODES features?
-> There could be other drivers relying on that besides RP1 in overlay mode,
-> e.g. LAN966x for instance.
+> > >    interrupts:
+> > > +    minItems: 4
+> > >      items:
+> > >        - description: Error interrupt
+> > >        - description: Receive buffer full interrupt
+> > >        - description: Transmit buffer empty interrupt
+> > >        - description: Transmit end interrupt
+> > > +      - description: Active edge detection interrupt
+> > > +      - description: Break field detection interrupt
+> > >
+> > >    interrupt-names:
+> > > +    minItems: 4
+> > >      items:
+> > >        - const: eri
+> > >        - const: rxi
+> > >        - const: txi
+> > >        - const: tei
+> > > +      - const: aed
+> > > +      - const: bfd
+> > >
+> > >    clocks:
+> > >      minItems: 2
+> > > -    maxItems: 3
+> > > +    maxItems: 6
+> > >
+> > >    clock-names:
+> > > -    minItems: 2
+> > > +    oneOf:
+> > > +      - items:
+> > > +          - const: operation
+> > > +          - const: bus
+> > > +          - const: sck # optional external clock input
+> > > +
+> > > +        minItems: 2
+> > > +
+> > > +      - items:
+> > > +          - const: pclk
 
-I only plan/want to get rid of the kconfig option, not the feature
-itself! IOW, it will be enabled/disabled at runtime based on
-something. I'm not sure what that something is.
+Isn't this still just 'bus'?
+
+> > > +          - const: tclk
+
+And 'operation'?
+
+Sure, renaming would look nicer, but better to extend than just change 
+the binding.
+
+> > > +          - const: tclk_div4
+> > > +          - const: tclk_div16
+> > > +          - const: tclk_div64
+> > > +          - const: sck # optional external clock input
+> > > +
+> > > +        minItems: 5
+> > > +
+> > > +  resets:
+> > >      items:
+> > > -      - const: operation
+> > > -      - const: bus
+> > > -      - const: sck # optional external clock input
+> > > +      - description: Input for resetting the APB clock
+> > > +      - description: Input for resetting TCLK
+> > > +
+> > > +  reset-names:
+> > > +    items:
+> > > +      - const: presetn
+> > > +      - const: tresetn
+> > 
+> > You did not include lore links, so I cannot check whether we already talked about this (why you still
+> > do not send big patchsets like this with b4?), but you are mixing here devices with completely
+> > different innputs. This does not make the binding readable.
+> 
+> See the links.
+> 
+> https://lore.kernel.org/all/20251031000012.GA466250-robh@kernel.org/
+> 
+> https://lore.kernel.org/linux-renesas-soc/20251030-regroup-garter-c70c7fc6a71a@spud/
+> 
+> I use the below command to send the patches, is it wrong? I will try b4 next time.
+> 
+> git send-email --annotate *.patch
+> 
+> > 
+> > Split the binding.
+> 
+> I can split the binding, if Rob/Conor/Geert is OK with it.
+> 
+> Ie, Always put per SoC changes in new dt bindings files to make it more readable without any complex if
+> statements.
+
+There's no hard rule. It's a judgement call. If the if/then schemas are 
+longer than the main schema, then it is probably time for a split. The 
+downside to splitting is then there's no motivation to keep resource 
+names the same (and makes it harder to review that).
 
 Rob
 
