@@ -1,110 +1,177 @@
-Return-Path: <devicetree+bounces-245307-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245308-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 958A6CAEF5A
-	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 06:41:59 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4570CAEF8A
+	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 06:53:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8E0843031708
-	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 05:41:44 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id C2A383004445
+	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 05:53:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA4DC2FD694;
-	Tue,  9 Dec 2025 05:41:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F86C31ED88;
+	Tue,  9 Dec 2025 05:53:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="W6QaUzQU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DDNVubnu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 348F73009ED
-	for <devicetree@vger.kernel.org>; Tue,  9 Dec 2025 05:41:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F13F26F296;
+	Tue,  9 Dec 2025 05:53:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765258903; cv=none; b=A25dx6eimLtFIFhiTQx+0+N3N8I7d4a3y8v42xbCaZ1FqdB4vstHP4jppWEU9xxb1qFq1vPAsqAUZkNE/H55cSZ9LGHi2xay2/sKzUfnWE3yRIVvUgdKYuU1LCaVcDrm0UsaU0QdK8NMePfg3EUP5O7WyuqT4WQN2We3uetCxfs=
+	t=1765259629; cv=none; b=sqT2DT4LkoD32FjNS8EBYLDtRWAWjpTQtKADk+ekHUECEvCx3Fms1SHf8/TwR0pb7jBusv9beaAGNan3AUb3K80nh+R6QlF3q3wmFDqRlhxHz1qo8PDiCO1fV079c5XCH5ABd5GnLigUgJzJC5FZLh/UXkoZlZofofh5cZlsoDs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765258903; c=relaxed/simple;
-	bh=zSLSl+demqE3EELs8KN+P2CNXNA1rhxB2CbBz18Chns=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=h+KoTFlSfGk41EXemq2AilfTHUknHD5W6689aVr5AigQwRTS7Q8BIuK9WRwqOXt07AvyEQpJhrpbbVkOT/VShu3i2dzdZTLdlCX4Bw0Mey8gT0bNCB2aLwFAG7m3cijzeXIaZP1ZvgCjSP4DzRPTtpukvNHOCFXC+3jK4n3kQLM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=W6QaUzQU; arc=none smtp.client-ip=209.85.210.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-7b89c1ce9easo5972333b3a.2
-        for <devicetree@vger.kernel.org>; Mon, 08 Dec 2025 21:41:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1765258901; x=1765863701; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=5LHZA5YDa3eruXOPuF/H7ti+YsMo7fQPUEFvvdAmt+U=;
-        b=W6QaUzQUIGzWSOoey/Vz5R9d0eLn645cXgskxmrLxjJxBj4ntBe3XdbjjWR0oU30KS
-         5CRqUOXFcZPa7LWbUzFqcjtJlwL59lya0WxP15oxbo9PfaHocx7Y4ks0LVLtrMa+yySD
-         2lWy7/GEvgnjgAp9D33GOnDFJvHpOs7YA1156lF2b7UAbRmcGCi7EDzIGpnJmRdKM2A7
-         E1Or7uOK46DYmybysKLwEGoU+yfC8GirMAxNgNu/Rt0njvKSatZgckdty3HPXKZEnXDe
-         8DEub/GcfbuZZHqQBf88yCZORGDd5cySvafh9w5cVb4jCN+PLNvMRGkwXKj2hsjGQOHq
-         ySFg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765258901; x=1765863701;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=5LHZA5YDa3eruXOPuF/H7ti+YsMo7fQPUEFvvdAmt+U=;
-        b=Nof4n0c0QM6hg67/+dtcDKTtXEOYoPfBEp6baQ1+7foGdn1DJNSPNf+w+F9WQjYVgR
-         S/SrsSwJu3pna0z/8HrOITFzUw2eN9em80pQeKF+f7GIy2G6+Xx7U0gdiZgiAkl4sVHF
-         cjoDe6KLYPG36YUaDMxsWGtG6mzTbF7UEAlfaPHN24Z8bLqalUeTPIAe9dEHm4uoP3Q3
-         9H+YDwy8NRZtLn/TvnKGyAE+JHB2DNo/N8HdItM209fQZTSPwhqt0QKyNSqEBLGVhPWD
-         ZQ4vZdBQ2vunZ8OLJp87G5Mje1NG+RZt8mE16yTf4LmQUbxp7TWdhZYupdMoX+ceGhzb
-         tzeQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWEq8omxzs7KTrtpbiErS+gw4H9yJ2h7hKAOaxmYBlnetL4l6pnCy7qzo5UYwIIldYUPZKQZOqK24Av@vger.kernel.org
-X-Gm-Message-State: AOJu0YwyI++T1ddyiAJQnQK6NoyUK4L0sUKxo1CnwcNDtG43gQgWX1xi
-	NTzwftKdWKe34KwozBttZNvNYzAHFa7sCRMGsjSk1jNga/CxE0irMJpV
-X-Gm-Gg: ASbGncs/LxVabHgp44b5u8oHm0Cw0esdoN244vUoBJQL5lHh1C5u4da8spcJoAcEr/B
-	FAZRRO8gVH23oPVov5d79NvVbzSQ40G+ylZqDJB1X6EctkXQ5wtLY0kjaaeuDCu9L+gDsYjUy5n
-	BiImlxPjqmHGXvX62Plf6qKSmSzyEDFQH/vkBou3VvxO0zqW/rE/91o/EMQDhMwu6S55n0eoPZT
-	V/VAbfmMZ1EI4+XVpdQAo1/zb9DT1q0wHtwCcGrcYnvzIxLgQGwSS7vvkedo0T13amflrudel7G
-	n8AFpFRZsDook3z+QMXgmoB/SGNIPeuOde+TmcSEYKsX/n65gWmtPCPmQVBNf6qGrvsPixNmTyc
-	hjeMdtlmMq73ScR9G1twFYVqULWGBL8UdFaOXMRA/N04r3ik2Fmxs6hVZ37Q6ICQ1SJfWQBXABQ
-	VdQelJAwToGxMzKGxsv8bOLWdsNp6dkqMHI9aqXq58ypLbycmkLy27
-X-Google-Smtp-Source: AGHT+IG/Um2k31NfRI9ovEMXsbhvXmwyf6UVaKDsBHH/HNkQGRW07a8Dg1HKz/AUBKO2KkgQMD+E2g==
-X-Received: by 2002:a05:7022:f89:b0:11d:e40f:ee69 with SMTP id a92af1059eb24-11e032b4024mr9024002c88.36.1765258901340;
-        Mon, 08 Dec 2025 21:41:41 -0800 (PST)
-Received: from google.com ([2a00:79e0:2ebe:8:bf2e:ccbe:6eae:cfa7])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-11df7703bd7sm68986088c88.10.2025.12.08.21.41.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Dec 2025 21:41:40 -0800 (PST)
-Date: Mon, 8 Dec 2025 21:41:38 -0800
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Hendrik Noack <hendrik-noack@gmx.de>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-input@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] Input: Add support for Wacom W9000-series penabled
- touchscreens
-Message-ID: <5zfoikfpctpvphtzmthqb3ue5zc43ueriaaesyyqkvjm3b25re@7w2uo4es5har>
-References: <20251205152858.14415-1-hendrik-noack@gmx.de>
- <20251205164952.17709-1-hendrik-noack@gmx.de>
- <k5rhkjmttba4aznb3xa44pqaxepsfkbe5ap6g2ln3rcgunvkky@262tpqra76v7>
+	s=arc-20240116; t=1765259629; c=relaxed/simple;
+	bh=z+m0utOd2YnpOXXxw6CT1KiBiBPO3m93BrS90rijNgU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Onv8LJm5yS+BfHecIJt6zmvWRtlxyugrnwTa5p8bD7BkcFmaOZ5FfX7FTdsvTC5K0w+I/xrdLSgUF64HzxX/MT6mvjMBmqkY+0lisTwPHp8lb0wnjITdv4T+jE6EbwJ21ndLbL8qwdji+UCEsPhw3xul32njQZth14is6uV1rAk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DDNVubnu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F0A1AC4CEF5;
+	Tue,  9 Dec 2025 05:53:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1765259628;
+	bh=z+m0utOd2YnpOXXxw6CT1KiBiBPO3m93BrS90rijNgU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=DDNVubnujiykhrzYXvr80WmV8f3bm3dgue6tBsXXGSQfXrdJX7pCOlhK75QSBif0G
+	 rgJwKBh+u9UnyxUeCZlbYXwR/InOAT8QqFeMELUPR+B62+vitLTuQKXTJ+NtkxY+Fd
+	 8YYG/A9ThLkdnqkiQGQ5w753H19nljApdosTkEDmJevhspQk1YRw++vBCozlQnv3rW
+	 0y5Xy7kTS9uyG2Yo2QPTDsFR5xmHfzAHyRiNm1W5u95fgguBOqX8SzzVn1im03HZy4
+	 MTj8u/kK1gZUsavbL8qFyN7WpkXrB8+RxVwTbuGxftDueCMY2ZNvGTw9iQbaEZZzT/
+	 u+AyZ2J9g8d8Q==
+Message-ID: <83142b0c-0743-4a23-8846-e9f5e72a7677@kernel.org>
+Date: Tue, 9 Dec 2025 06:53:45 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <k5rhkjmttba4aznb3xa44pqaxepsfkbe5ap6g2ln3rcgunvkky@262tpqra76v7>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 3/5] memory: tegra186-emc: Support non-bpmp icc scaling
+To: Aaron Kling <webgeek1234@gmail.com>
+Cc: Jon Hunter <jonathanh@nvidia.com>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Thierry Reding
+ <thierry.reding@gmail.com>, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
+References: <20251027-tegra186-icc-p2-v4-0-e4e4f57e2103@gmail.com>
+ <20251027-tegra186-icc-p2-v4-3-e4e4f57e2103@gmail.com>
+ <82c8dda8-6fcb-48f9-bdaa-f3d1431e41ae@nvidia.com>
+ <CALHNRZ8nCojreFCMXfbBBhWAMtmWN-04XtuW8fEsVD9bw+-AzA@mail.gmail.com>
+ <CALHNRZ-CO5i9jeLkEG2cmHxcW1bcLhxcBSxjmL2euHfQy8yr-w@mail.gmail.com>
+ <e6ce190e-6df7-4c36-abca-f09df3cc80e7@nvidia.com>
+ <99ca4992-5736-417d-854e-379542549bee@kernel.org>
+ <7f3dad08-cff5-40c2-8e7f-f6441a3d6b91@nvidia.com>
+ <d5d23eb5-f43c-4e4b-9926-3fba6ffd3acf@nvidia.com>
+ <CALHNRZ8vFJyfFXbxFehWA9TGkdrEUy9Wsm-DxEOT=tVbYTcU5Q@mail.gmail.com>
+ <249bbe7e-e2da-4493-bdd5-8f4b17aff8fe@nvidia.com>
+ <CALHNRZ8uPaKqSpFWkmYZn==Xw=rxh95Xm0_6LPN1HDj20zofqw@mail.gmail.com>
+ <d16803e5-7b6d-4472-b50c-aa324cf52736@nvidia.com>
+ <CALHNRZ83Q2Ha8VYoWAnqoCZQ=Fd9rtVRVLwRFxAY68ePQ29GHw@mail.gmail.com>
+ <29cf2c16-3a0e-42c5-a083-16f77ae5d09a@nvidia.com>
+ <63be3373-1ab4-4aa4-aa7a-0175727aa9a3@kernel.org>
+ <CALHNRZ83EcVnyBYADsuXtMu9omBd8WW+7reyb4GX8FfJ4sOcyw@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <CALHNRZ83EcVnyBYADsuXtMu9omBd8WW+7reyb4GX8FfJ4sOcyw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Mon, Dec 08, 2025 at 09:35:09PM -0800, Dmitry Torokhov wrote:
-> Hi Hendrik,
+On 09/12/2025 05:26, Aaron Kling wrote:
+> On Sat, Nov 22, 2025 at 6:01 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>
+>> On 21/11/2025 12:21, Jon Hunter wrote:
+>>>
+>>> On 12/11/2025 07:21, Aaron Kling wrote:
+>>>> On Wed, Nov 12, 2025 at 12:18 AM Jon Hunter <jonathanh@nvidia.com> wrote:
+>>>>>
+>>>>>
+>>>>> On 11/11/2025 23:17, Aaron Kling wrote:
+>>>>>
+>>>>> ...
+>>>>>
+>>>>>> Alright, I think I've got the picture of what's going on now. The
+>>>>>> standard arm64 defconfig enables the t194 pcie driver as a module. And
+>>>>>> my simple busybox ramdisk that I use for mainline regression testing
+>>>>>> isn't loading any modules. If I set the pcie driver to built-in, I
+>>>>>> replicate the issue. And I don't see the issue on my normal use case,
+>>>>>> because I have the dt changes as well.
+>>>>>>
+>>>>>> So it appears that the pcie driver submits icc bandwidth. And without
+>>>>>> cpufreq submitting bandwidth as well, the emc driver gets a very low
+>>>>>> number and thus sets a very low emc freq. The question becomes... what
+>>>>>> to do about it? If the related dt changes were submitted to
+>>>>>> linux-next, everything should fall into place. And I'm not sure where
+>>>>>> this falls on the severity scale since it doesn't full out break boot
+>>>>>> or prevent operation.
+>>>>>
+>>>>> Where are the related DT changes? If we can get these into -next and
+>>>>> lined up to be merged for v6.19, then that is fine. However, we should
+>>>>> not merge this for v6.19 without the DT changes.
+>>>>
+>>>> The dt changes are here [0].
+>>>
+>>> To confirm, applying the DT changes do not fix this for me. Thierry is
+>>> having a look at this to see if there is a way to fix this.
+>>>
+>>> BTW, I have also noticed that Thierry's memory frequency test [0] is
+>>> also failing on Tegra186. The test simply tries to set the frequency via
+>>> the sysfs and this is now failing. I am seeing ..
 > 
-> On Fri, Dec 05, 2025 at 05:49:52PM +0100, Hendrik Noack wrote:
-> > +
-> > +	struct gpio_desc *flash_mode_gpio;
+> With this patch dropped from -next, what needs to happen to get it
+> requeued? I gave an analysis over two weeks ago and have seen no
+> response since.
 
-Forgot to ask - what does this do? We do not seem to be using it except
-for requesting.
+Hm, I did not see the root cause identified, so maybe I missed something.
 
-Thanks.
+Anyway, I am waiting for the patchset to be retested and resent. And
+testing MUST include kernel development process rules, including how
+patches are taken - see maintainer soc profile. Any dependencies must be
+clearly marked.
 
--- 
-Dmitry
+Best regards,
+Krzysztof
 
