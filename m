@@ -1,50 +1,46 @@
-Return-Path: <devicetree+bounces-245292-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245293-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBBE3CAE90F
-	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 01:54:25 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB4C9CAEBD4
+	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 03:32:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A50C5303E649
-	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 00:54:24 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 00801300F5BC
+	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 02:32:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0904F23A9BD;
-	Tue,  9 Dec 2025 00:54:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC58823ABAA;
+	Tue,  9 Dec 2025 02:32:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=freeshell.de header.i=@freeshell.de header.b="n0BGyjBW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ssDBAeTb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from freeshell.de (freeshell.de [116.202.128.144])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8524021B9C1;
-	Tue,  9 Dec 2025 00:54:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D3A117D2;
+	Tue,  9 Dec 2025 02:32:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765241663; cv=none; b=mJxsnvfkyJbKFhA4tDDyGCLHSS9pempXW2fM4IUojRNWYvVtX84oTPciyo3pMG9WwVucvV0tSQd4651qJ2ttgT7Lc4wUaXHpdZJAn+aRBuRXI17IT8r2CHeJPW3qagmAIee7JO2/kCHXKn3heKG8+NxbfHnVwjqeb0v4AwKNsq8=
+	t=1765247521; cv=none; b=c+WhJSt90Tk+GWcj6Lu08PJsj2cghYwC+ZOfv8P9fb1Mn0S4KI03ZGQj12ztAcASIaVX2UhDAM7xH51AQaiUnsRKbFuJgxXq5FIHuda69FYgYDQa5xHtpYNMQ8Yhiit89NsQpoPJaw1QL+mqeb+KfWcMh+BPNmvQTQ5VRcUxzRo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765241663; c=relaxed/simple;
-	bh=IcrSzNLRTlAoQPSW3P9mptM1rDUMIWzZ9Or6n1sFKSM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FNHuEib9NEpC3y+xl1CWZfdoJzAAKsud5Cbx6t3RpfTj3EO/sCKKq3nZS61SOGvMC256OBAeRHoMClwEZJzoIXhhyLJ6wbnPA/1k9Q9doGmxY5r8ijAKO0vLlz9UsgKYuDL/P1HyDaaIMydmVlP1JgNb3vdTjm5Yb+bd9oSUBXI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; dkim=pass (2048-bit key) header.d=freeshell.de header.i=@freeshell.de header.b=n0BGyjBW; arc=none smtp.client-ip=116.202.128.144
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=freeshell.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=freeshell.de;
-	s=s2025; t=1765241608;
-	bh=JYbGL1yqQk9SuwODfYiIFqUpr7SdpAuoCOkoOtKwzjo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=n0BGyjBWBVeCMnYmYKWTILMYPfIjeney/xMqe0OhvU8ZLEGLi2p6M+2EtdGA8tzO5
-	 8srH96kKXvdBh8rM4UhzNG1NmoB5lkiOa5q8LXR8sgWJehogAPYVmB99PKL5/Q+rCq
-	 kKmmqI2k7oyjnkIGS3FAUyLaMXCsnQizHK8FZKJ5zzzunPdFD2KDvpHHqrwPOTHY14
-	 Gr35yDSTw5jFu64FHqnHwZ2YTv2kA1aoy51sbAEyoqzD7LqmZ5nuWHtQ3BT89h+7op
-	 YxXtNtmyACVEUZnsWxiIPuqz0ThsNfojJ2Py7W0wpy/MqmT8Lp2ppQ4jnAzO1ykRQs
-	 tzdSQgNHiNsOw==
-Received: from [192.168.2.54] (unknown [98.97.27.25])
-	(Authenticated sender: e)
-	by freeshell.de (Postfix) with ESMTPSA id 7A5E8B2215DE;
-	Tue,  9 Dec 2025 01:53:25 +0100 (CET)
-Message-ID: <0bb12889-cb28-44e7-b2d6-7ecba6264d1a@freeshell.de>
-Date: Mon, 8 Dec 2025 16:53:23 -0800
+	s=arc-20240116; t=1765247521; c=relaxed/simple;
+	bh=PFVA+zI/bstNK1jQzv4pqwneP+Zt6w13hC5OvKuRyxA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=LrcukmjBzGa5MS/Ss4eFMSmfQxGBr3A8lypY92oxof288aFE3PE1I1fAUuYKdHRbKwYzDCgdVGs+PedlE1PIHB8NIzxxV4h82GT7Em68rNroihsPz0dL0eXjqT9K+yA/tNTk0k+g4MiZ9SXjshTlJqyoIIuaHdE97Y+oHu1bv0k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ssDBAeTb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5133C4CEF1;
+	Tue,  9 Dec 2025 02:31:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1765247521;
+	bh=PFVA+zI/bstNK1jQzv4pqwneP+Zt6w13hC5OvKuRyxA=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=ssDBAeTbczZcFBMVwJmnbc5qTq4e3er8CMp8YHSBZeSJNJCRRehCBlaX69b4xM6CC
+	 RTGORQ7hpxfny+Pl46rv5Ho5XD7fE9sxwtE+8iGu+LpGLS5y43jXc+I1xI3yGWwBKB
+	 qieu9pYrgpQvy4Rz0Hs+hjeoyyL0dwjgyMPBtG4emJgKch6f4c2LxE7cRkYqI/fQyZ
+	 FXK2+X3C6JBp3QC48q5xf8EsOmpTSQQPfqjb5b4lDhvQ6qVaEk1a9RgkEiZsepnrpp
+	 aqnzSnBXjs11ueplVPkabxSpSHDArAaqUTQYXkvXXETtteAKFperbM9o3uSONI7B9X
+	 prSg9e6ertUPQ==
+Message-ID: <e1aae851-4031-4b5c-a807-7a61ecfe6af1@kernel.org>
+Date: Mon, 8 Dec 2025 20:31:58 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -52,113 +48,74 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1] riscv: dts: starfive: Append starfive,jh7110
- compatible to VisionFive 2 Lite
-To: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
- Conor Dooley <conor@kernel.org>
-Cc: Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>, Hal Feng <hal.feng@starfivetech.com>,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
- devicetree@vger.kernel.org,
- Emil Renner Berthing <emil.renner.berthing@canonical.com>,
- Conor Dooley <conor.dooley@microchip.com>
-References: <20251206204540.112614-1-e@freeshell.de>
- <20251208-jogging-morally-9b787b7ab1b8@spud>
- <a18850ad-b6de-4444-9daf-a4a653f4f9ae@canonical.com>
+Subject: Re: [PATCH v2 0/3] Add dma-coherent property
+To: Khairul Anuar Romli <khairul.anuar.romli@altera.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>, Vinod Koul
+ <vkoul@kernel.org>, Miquel Raynal <miquel.raynal@bootlin.com>,
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Niravkumar L Rabara <niravkumar.l.rabara@intel.com>,
+ dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org
+References: <cover.1764717960.git.khairul.anuar.romli@altera.com>
 Content-Language: en-US
-From: E Shattow <e@freeshell.de>
-In-Reply-To: <a18850ad-b6de-4444-9daf-a4a653f4f9ae@canonical.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+From: Dinh Nguyen <dinguyen@kernel.org>
+In-Reply-To: <cover.1764717960.git.khairul.anuar.romli@altera.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
 
-On 12/8/25 08:38, Heinrich Schuchardt wrote:
-> On 12/8/25 17:29, Conor Dooley wrote:
->> On Sat, Dec 06, 2025 at 12:45:30PM -0800, E Shattow wrote:
->>> Append starfive,jh7110 compatible to VisionFive 2 Lite and VisionFive 2
->>> Lite eMMC in the "least compatible" end of the list. JH7110S on these
->>> boards is the same tape-out as JH7110 however rated for thermal,
->>> voltage,
->>> and frequency characteristics for a maximum of 1.25GHz operation.
->>>
->>> Link to previous discussion suggesting this change:
->>> https://lore.kernel.org/lkml/1f96a267-f5c6-498e-
->>> a2c4-7a47a73ea7e7@canonical.com/
->>>
->>> Fixes: 900b32fd601b ("riscv: dts: starfive: Add VisionFive 2 Lite
->>> board device tree")
->>> Fixes: ae264ae12442 ("riscv: dts: starfive: Add VisionFive 2 Lite
->>> eMMC board device tree")
->>> Suggested-by: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
->>> Signed-off-by: E Shattow <e@freeshell.de>
->>
 
->> You can't do this without modifying the binding too, as this doesn't
->> pass dtbs_check.
-
-Will fix, thanks.
-
->>
->> However, is this actually correct? The frequency of operation and the
->> temperature range aren't a superset of what the jh7110 can do, what is
-
-The unanswered question what I was asking in the code review of StarFive
-VisionFive 2 Lite series: What is the normal thing to do for compatible
-strings of relabeled silicon when there is a suggestion of different
-operational parameters?
-
-The devicetree/usage-model documentation does mention SoC family but is
-not specific about any marketing or quality assurance test for silicon
-binning. For the K1/M1 SpacemiT chips relabled as Ky manufacture there's
-no suggestion that the relabeled chips have different operational
-parameters and so a new compatible was rejected then.
-
-The reset condition of 1000MHz @ 0.9V on the family of JH7110/JH7110-S
-boards is not present in the dts OPP tables for jh7110 and jh7110s dts.
-I've asked previously [1] (in the discussions about bootph-pre-ram
-hints) before having knowledge that there was a JH-7110S product
-planned, what prevents JH-7110 from having more than 4 divider operating
-points and including this default condition? Not having been tested
-seems to be the answer. Not all testing results are published or
-described in code upstream either. I'm making my guess based on what
-information that is available.
-
-1:
-https://lore.kernel.org/lkml/40d77aae-9e53-4981-a2aa-dcdc6f11ac83@freeshell.de/
-
->> the actual advantage of having it? If there's some software that this
-
-Unless I misunderstand the meaning (as above), then this is what is
-recommended for in the documentation. Heinrich confirms this avoids the
-need for checking the new "starfive,jh7110s" SoC compatible. Maybe I'm
-wrong about this approach for binned silicon? Please someone give me a
-clue if this was answered already and I missed it.
-
->> would make a difference for, please mention it in the commit message.
+On 12/2/25 17:47, Khairul Anuar Romli wrote:
+> This patch series adds dma-coherent property for the Agilex5 platform by:
 > 
-> Appending "starfive,jh7110" would reduce the number of compatible
-> strings to check in the OpenSBI platform driver.
-
-I can include the (paraphrased) above summary by Heinrich, yes. Although
-now I doubt whether this is the best approach, when removal of
-"starfive,jh7110s" compatible is potentially an equally valid fix, or if
-we're rather considering JH7110 at 1.5GHz maximum to be a superset of
-itself at 1.25GHz maximum (JH-7110S). Would we want to change all the
-JH-7110 boards to then have JH-7110S as the least-compatible, if I am
-understanding that meaning of "superset"? I would like to know what is
-expected.
-
+> - Updating the device tree bindings for:
+>    - Cadence HP NAND controller (`cdns,hp-nfc`)
+>    - Synopsys DesignWare AXI DMA controller (`snps,dw-axi-dmac`)
+>    to accept the `dma-coherent` property.
 > 
-> Best regards
+> - Adding the dma-coherent property to the Agilex5 device tree and wiring up
+>    the property to the supported peripherals:
+>    - NAND controller
+>    - DMA controller
 > 
-> Heinrich
+> This dma-coherent addition aligns the Agilex5 platform with ARM’s
+> architectural requirements for coherent interconnects.
 > 
->>
->> Cheers,
->> Conor.
->>
+> ---
+> Notes:
+> This patch series is applied and validated on socfpga dts maintainer's
+> branch
+> https://git.kernel.org/pub/scm/linux/kernel/git/dinguyen/linux.git/log/?h=socfpga_dts_for_v6.19
+> 
+> This changes is validated on:
+> 	- intel/socfpga_agilex5_socdk.dtb
+> 	- snps,dw-axi-dmac.yaml
+> 	- snps,dw-axi-dmac.yaml intel/socfpga_agilex5_socdk.dtb
+> 	- cdns,hp-nfc.yaml
+> 	- cdns,hp-nfc.yaml intel/socfpga_agilex5_socdk.dtb
+> 
+> Changes in v2:
+> 	- Rephrase git commit message to describe why the property is
+> 	  needed now.
+> 	- Remove redundant statement in the git commit message.
+> 	- Correct the version in patch series title to v2.
+> ---
+> Khairul Anuar Romli (3):
+>    dt-bindings: mtd: cdns,hp-nfc: Add dma-coherent property
+>    dt-bindings: dma: snps,dw-axi-dmac: add dma-coherent property
+>    arm64: dts: socfpga: agilex5: Add dma-coherent property
+> 
+>   Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml | 2 ++
+>   Documentation/devicetree/bindings/mtd/cdns,hp-nfc.yaml      | 2 ++
+>   arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi              | 3 +++
+>   3 files changed, 7 insertions(+)
+> 
 
-Thanks for the review, -E
+Applied!
+
+Thanks,
+Dinh
+
 
