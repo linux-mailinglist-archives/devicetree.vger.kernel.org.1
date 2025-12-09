@@ -1,66 +1,69 @@
-Return-Path: <devicetree+bounces-245436-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245437-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13414CB0E95
-	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 20:13:31 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB552CB0EA1
+	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 20:16:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CE7EF30B2E95
-	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 19:13:28 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B04763015E00
+	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 19:16:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C27BE3009D2;
-	Tue,  9 Dec 2025 19:13:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D923D2989BF;
+	Tue,  9 Dec 2025 19:16:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tewNc3LL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VLBk1Fdj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A2A226F443;
-	Tue,  9 Dec 2025 19:13:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE06F1DDC37;
+	Tue,  9 Dec 2025 19:16:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765307606; cv=none; b=iKlCLFoqFEY38/3jCXhxmebBJOnxnir36FotSCalPoic8owABeyVXmkOti7k1bVfrH2S5Zrhu5n9Tv8meUaSgTvY/BE9ZV1URXjwVGbkBma0mMaDzbNWBQ4NNlpX5pOQ4AKOKOYf/Ibk19jb3diX5Dc6gmcEJwVEAwBXdlAOa4g=
+	t=1765307776; cv=none; b=VSWjhZ6Yb/F154QmNf3t/2qFUkqkRhOuwinDNsP7qBXYWUrA0brQIaUivtJpPDTUBahJjzX9MLa/hpmBFAkj/k80a8FL6E1gaFMXsaCYIRg5Dv5yEW8Wb8PJrnUGqOxvC+0ygG+KoF3ZzDmUxL/47oI7LNLk8hsAfc+PnqrXMEk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765307606; c=relaxed/simple;
-	bh=E/h9yRqykG5Tglzcrsb/BCu5betWyxIoDaKz+Xbemzo=;
+	s=arc-20240116; t=1765307776; c=relaxed/simple;
+	bh=wbIgBz9jhfukqW45Bc1ESQeYwcynSBabt4gOrczvcsg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PgJJ6GfS5bGfUkQ2GeUlCEUYgNveLdguM6VukOUeT4JwJwPZG3TsJdZKO1wdNwgkb9LCCZBnTLPROKAb0NQspNcKk0XjNMNtVLf3XHSsz+pTr28pN4ew+y8etd7H3cLTNVRGc1ImHwzz8FJZuIX/mS+IJvYbxnPN5diTRCqLK7s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tewNc3LL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9FEF8C4CEF5;
-	Tue,  9 Dec 2025 19:13:25 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=YWjW7sRP8Rqy7UY/FCa6Zm3ljp7YNO9jDTuiZMD/hMGvWQBjMheEXFgLPh+BzEyvpkMnW8t8vF+yK5n12y9xKnhs5GOq/V3+8J0Q5uBOP0YDa/bhS8xqYORnAfXnvk4E8fUKdEUxkhUVqgisXhMGThOmzcTCo80BTA1318906hc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VLBk1Fdj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00C7CC4CEF5;
+	Tue,  9 Dec 2025 19:16:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765307605;
-	bh=E/h9yRqykG5Tglzcrsb/BCu5betWyxIoDaKz+Xbemzo=;
+	s=k20201202; t=1765307776;
+	bh=wbIgBz9jhfukqW45Bc1ESQeYwcynSBabt4gOrczvcsg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tewNc3LLWC40awRaXgJRiR1PXqqGU+Mu32EeTyOs5DCaaPNNiJvPWFvcmlcAvlkfw
-	 Q9817VCsC5cNDSTUk7uAk8erpV9uAWCOMiBXE1GZlOObvj5v0b2N9cGFXR5kecTYio
-	 MhncKrgNG5CzcIYuwx0LV5T1plm72acYecsGUww9K5maTDpu8Out4kvgbq8/zgxzOQ
-	 fdrFTrwppSbao9IIMMMSjJH2kVOi1sdVBmumcCDwvQsTTIi32csbZc/cRH3M2yV5q3
-	 Cufl+RxaSwf5TCtJkxHs53oEWm09K7E7q4fzAD8sOLtLE3bAH2MPgfaH6gfHK5NqP0
-	 /qrJTGztmzj/A==
-Date: Tue, 9 Dec 2025 13:13:23 -0600
+	b=VLBk1FdjyckFSv3MfS7PhXI8v+1iC25qzsPR3e8EzrcTummIPgvbJTWN7C/hA6UWN
+	 iup+CW7629dOGT0aQIyIQflkVkBHoTzj9pmg8bpKmVFi4vVQCWeSeaaEYPYRoGZUxQ
+	 ibRlbZpTsN5DtKSIJ0vHG0MzAAnwsRUf8EzlwID0BZnUqoOu70199Zd0Ze+NbiJW4V
+	 V125qsq30R+GoD1QnrjpjQ32NcfP+rnFNx/lBnJykaye0FB+ztrM1d/UXKCLOsdBO7
+	 98xUhSTe+7+uLpchVsf5498wXxa3UL7ulhfqiVmowGtyIXCdRa0l2j/adYsYTRi41P
+	 QGRq72UbzJo+w==
+Date: Tue, 9 Dec 2025 13:16:12 -0600
 From: Rob Herring <robh@kernel.org>
-To: James Calligeros <jcalligeros99@gmail.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-	Shengjiu Wang <shengjiu.wang@nxp.com>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	Shenghao Ding <shenghao-ding@ti.com>, Kevin Lu <kevin-lu@ti.com>,
-	Baojun Xu <baojun.xu@ti.com>, linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	asahi@lists.linux.dev
-Subject: Re: [PATCH 2/7] ASoC: dt-bindings: update tdm-slot.txt references to
- tdm-slot.yaml
-Message-ID: <20251209191323.GA954261-robh@kernel.org>
-References: <20251209-tdm-idle-slots-v1-0-38dabf6bc01e@gmail.com>
- <20251209-tdm-idle-slots-v1-2-38dabf6bc01e@gmail.com>
+To: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>
+Cc: sakari.ailus@linux.intel.com, krzk+dt@kernel.org,
+	Elgin Perumbilly <elgin.perumbilly@siliconsignals.io>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Hans Verkuil <hverkuil@kernel.org>,
+	Hans de Goede <hansg@kernel.org>,
+	Mehdi Djait <mehdi.djait@linux.intel.com>,
+	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+	=?iso-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+	Dongcheng Yan <dongcheng.yan@intel.com>,
+	Sylvain Petinot <sylvain.petinot@foss.st.com>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Jingjing Xiong <jingjing.xiong@intel.com>,
+	Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: media: i2c: Add os05b10 sensor
+Message-ID: <20251209191612.GA961171-robh@kernel.org>
+References: <20251209100017.302518-1-himanshu.bhavani@siliconsignals.io>
+ <20251209100017.302518-2-himanshu.bhavani@siliconsignals.io>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,69 +72,135 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251209-tdm-idle-slots-v1-2-38dabf6bc01e@gmail.com>
+In-Reply-To: <20251209100017.302518-2-himanshu.bhavani@siliconsignals.io>
 
-On Tue, Dec 09, 2025 at 07:31:15PM +1000, James Calligeros wrote:
-> Ensure that all references to tdm-slot.txt have been updated to
-> tdm-slot.yaml.
+On Tue, Dec 09, 2025 at 03:30:05PM +0530, Himanshu Bhavani wrote:
+> From: Elgin Perumbilly <elgin.perumbilly@siliconsignals.io>
 > 
-> Achieved by running "sed -i 's/tdm-slot.txt/tdm-slot.yaml/g' *"
-> against the bindings/sound. No other references to the file
-> were found in the tree.
+> Add bindings for Omnivision OS05B10 sensor.
 > 
-> Signed-off-by: James Calligeros <jcalligeros99@gmail.com>
+> Add MAINTAINERS entry for Omnivision OS05B10 binding documentation
+> 
+> Signed-off-by: Elgin Perumbilly <elgin.perumbilly@siliconsignals.io>
+> Signed-off-by: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>
 > ---
->  .../bindings/sound/imx-audio-card.yaml   | 4 ++--
->  .../bindings/sound/simple-card.yaml      | 4 ++--
->  2 files changed, 4 insertions(+), 4 deletions(-)
+>  .../bindings/media/i2c/ovti,os05b10.yaml      | 103 ++++++++++++++++++
+>  MAINTAINERS                                   |   7 ++
+>  2 files changed, 110 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,os05b10.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/imx-audio-card.yaml b/Documentation/devicetree/bindings/sound/imx-audio-card.yaml
-> index 3c75c8c78987..1df29a556120 100644
-> --- a/Documentation/devicetree/bindings/sound/imx-audio-card.yaml
-> +++ b/Documentation/devicetree/bindings/sound/imx-audio-card.yaml
-> @@ -39,11 +39,11 @@ patternProperties:
->              - dsp_b
->  
->        dai-tdm-slot-num:
-> -        description: see tdm-slot.txt.
-> +        description: see tdm-slot.yaml.
->          $ref: /schemas/types.yaml#/definitions/uint32
->  
->        dai-tdm-slot-width:
-> -        description: see tdm-slot.txt.
-> +        description: see tdm-slot.yaml.
->          $ref: /schemas/types.yaml#/definitions/uint32
+> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,os05b10.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,os05b10.yaml
+> new file mode 100644
+> index 000000000000..fabe01cc7003
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,os05b10.yaml
+> @@ -0,0 +1,103 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/i2c/ovti,os05b10.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: OmniVision OS05B10 Image Sensor
+> +
+> +maintainers:
+> +  - Elgin Perumbilly <elgin.perumbilly@siliconsignals.io>
+> +
+> +description:
+> +  The OmniVision OS05B10 is a 5MP (2592x1944) color CMOS image sensor controlled
+> +  through an I2C-compatible SCCB bus. it outputs RAW10/RAW12 format and uses a
+> +  1/2.78"optical format.
+> +
+> +properties:
+> +  compatible:
+> +    const: ovti,os05b10
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: XCLK clock
+> +
+> +  avdd-supply:
+> +    description: Analog Domain Power Supply
+> +
+> +  dovdd-supply:
+> +    description: I/O Domain Power Supply
+> +
+> +  dvdd-supply:
+> +    description: Digital Domain Power Supply
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +    description: Reset Pin GPIO Control (active high)
+> +
+> +  port:
+> +    description: MIPI CSI-2 transmitter port
+> +    $ref: /schemas/graph.yaml#/$defs/port-base
+> +    additionalProperties: false
+> +
+> +    properties:
+> +      endpoint:
+> +        $ref: /schemas/media/video-interfaces.yaml#
+> +        unevaluatedProperties: false
+> +
+> +        properties:
+> +          data-lanes:
+> +            oneOf:
+> +              - items:
+> +                  - const: 1
+> +                  - const: 2
+> +                  - const: 3
+> +                  - const: 4
+> +              - items:
+> +                  - const: 1
+> +                  - const: 2
+> +        required:
+> +          - data-lanes
+> +          - link-frequencies
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - avdd-supply
+> +  - dovdd-supply
+> +  - dvdd-supply
+> +  - port
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        camera-sensor@36 {
+> +            compatible = "ovti,os05b10";
+> +            reg = <0x36>;
+> +            clocks = <&os05b10_clk>;
+> +            reset-gpios = <&gpio1 7 GPIO_ACTIVE_HIGH>;
+> +
+> +            avdd-supply = <&os05b10_avdd_2v8>;
+> +            dvdd-supply = <&os05b10_dvdd_1v2>;
+> +            dovdd-supply = <&os05b10_dovdd_1v8>;
+> +
+> +            port {
+> +                cam_out: endpoint {
+> +                    remote-endpoint = <&mipi_in_cam>;
+> +                    data-lanes = <1 2 3 4>;
+> +                    link-frequencies = /bits/ 64 <600000000>;
+> +                 };
+> +             };
 
-These should be removed and replaced with a '$ref: tdm-slot.yaml#' at 
-the top-level. 
+Indentation is wrong.
 
-If you have some constraints to add here, then the property can stay.
+> +        };
+> +    }
 
->  
->        playback-only:
-> diff --git a/Documentation/devicetree/bindings/sound/simple-card.yaml b/Documentation/devicetree/bindings/sound/simple-card.yaml
-> index 533d0a1da56e..2e1a5b3216c5 100644
-> --- a/Documentation/devicetree/bindings/sound/simple-card.yaml
-> +++ b/Documentation/devicetree/bindings/sound/simple-card.yaml
-> @@ -28,11 +28,11 @@ definitions:
->      $ref: /schemas/types.yaml#/definitions/flag
->  
->    dai-tdm-slot-num:
-> -    description: see tdm-slot.txt.
-> +    description: see tdm-slot.yaml.
->      $ref: /schemas/types.yaml#/definitions/uint32
->  
->    dai-tdm-slot-width:
-> -    description: see tdm-slot.txt.
-> +    description: see tdm-slot.yaml.
->      $ref: /schemas/types.yaml#/definitions/uint32
-
-Same here.
-
->  
->    system-clock-frequency:
-> 
-> -- 
-> 2.52.0
-> 
+Missing ';'
 
