@@ -1,46 +1,80 @@
-Return-Path: <devicetree+bounces-245313-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245314-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AB42CAEFFE
-	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 07:07:45 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AAEDCAF020
+	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 07:19:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0783C3030DAF
-	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 06:07:44 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id D33E9300569D
+	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 06:19:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7087F320383;
-	Tue,  9 Dec 2025 06:07:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B64B021ABD0;
+	Tue,  9 Dec 2025 06:19:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lOG3hutS"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="RlaHstet"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 469D08F4A;
-	Tue,  9 Dec 2025 06:07:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F1FC79DA
+	for <devicetree@vger.kernel.org>; Tue,  9 Dec 2025 06:19:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765260463; cv=none; b=EpdYn4AMfE4ELG5m5UhfWx/hwO+bXiYk8qEzBGUrzzH/8WAqKdaSpJZ2IJSaNjfE6pJijLpx6xcSaInEkE6xVAez0ydLnKtdyX/cvQC0QsUMaP/vCHAD5KbtcAW1JmexNGuhnWhmQ8bG821s+kjpumhB7vgB1K4ea8QM8wJ5HZM=
+	t=1765261145; cv=none; b=akArDaUM7IuU/GtCcqk5G0qlvSr2/YF4BTPkGuNFZ6aTANeD8zxNqyqN8Y7OuuswNKhvxjv6GJanQPePoUSAKvQIywft228lOnTQ35fFVLTf24ZwPv1jX30jaIBmkBX/vlC3wZ+aMfs4TfgM2LmSTLUle95B0TdOli2djkr5W8k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765260463; c=relaxed/simple;
-	bh=dvx5Kj6GjsQIgmbGMLZOiBl94WqVJBRgoTZ92Y5c8Y4=;
+	s=arc-20240116; t=1765261145; c=relaxed/simple;
+	bh=l4EVe9RafhQ3WUkRtqp4/NizWmZJwSi2CtslaMCMZSk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pCYTO7u5n20MqykM7cUO62HQboD0pw3kTitjD1FUWir7XbQdp3c3Z4ZjJf3FK/sSNTLpWPGY96rpl/zZ0uocEyO23dMEbbPqqDWu607V0uYDWAQoo2dymCBCNrAPx4EwsEmqvTqwu2NIqHfJ7mOlsaUA2tw1jOapXqrzRwQD+sE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lOG3hutS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96997C4CEF5;
-	Tue,  9 Dec 2025 06:07:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765260462;
-	bh=dvx5Kj6GjsQIgmbGMLZOiBl94WqVJBRgoTZ92Y5c8Y4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=lOG3hutSOR4bsfptQAoA7NWEMwZbDv7XvtJls/Tvtj7ExgyXqhELLnWOcV/lHt8AG
-	 CPCjSYk7wxJJRLlaV0D7ZFjjH9pl0gGDFnj//09xgdgGG2T0qRYP8w01nJy/4cUWU4
-	 VvoNk6KcMm2tl9LrtAUMPag13ZhRY+s5M4Xa+cd/LFrejFd6DlkNJrxFvK8afxDCLU
-	 WZUwhEgy3E7kbNH2QhLhrX2yXiigmGxs+zdHpXf+fPOh/j3gJEiC6v96pve9wdQ3sV
-	 Pmcd/ZzWAovEsDpZGRgObwgJDIBV0BNK56W5rLEGfrqUrsYJaQCPqkYfrBWXEh48SW
-	 ZMvoOl1LfwgEg==
-Message-ID: <545e2353-c8f3-4e3b-82a6-92970a17b8d7@kernel.org>
-Date: Tue, 9 Dec 2025 07:07:38 +0100
+	 In-Reply-To:Content-Type; b=qE2eThAkx/rxR7z/Ik4p2np+yYoQzv8OfrJnZJqzzp1wxMdfsRcDcnplH8+QmRuoyWnNiIGVEx0Ap2NUiG+FuRKBE4wPg1r4/PojmYhkmHzO49Jk3JENr6Z8wy5BjZcF4FGGipv7vjfuiSkV22JEKFPbgCIvLiT4s5B97pwvK74=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=RlaHstet; arc=none smtp.client-ip=209.85.216.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
+Received: by mail-pj1-f42.google.com with SMTP id 98e67ed59e1d1-343f52d15efso4923126a91.3
+        for <devicetree@vger.kernel.org>; Mon, 08 Dec 2025 22:19:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google; t=1765261143; x=1765865943; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vIa6jqcHFzv9iZgum8ltDygq/7mCA6BUmLPiZxq3KhM=;
+        b=RlaHstetoCauFYeNnfcIzU/5CkHRnGaqUJEqPFe2EYXkZ9ssyCk8raRKQ24bwpnSIK
+         1sNjjvjUNUyqaejc1SK4eE0XKXc9A68r7vz+F4lC5kt3j+FwOEe8u35z3ys+lMxI0sGU
+         Q6PwHMyNakZ1ChEldb3vYLwdo3+UzNYQ1oCT0xwlbntprtyK4GPndhBRiPxQngWR6r8i
+         OFR8izHzFwwPvqYB68TFmSnRbxz841eYsPF1EK/Mlo8+Y9hPMS68+jKdQa2XAoSozidd
+         rFSxO7s3q33Hef8fMpfTsbeFfERP0CdJG55lmK+gyYfq8Ms7HnN9BCWWojp8th0WY6Yx
+         G32Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765261143; x=1765865943;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=vIa6jqcHFzv9iZgum8ltDygq/7mCA6BUmLPiZxq3KhM=;
+        b=KVXqJq95gaoloS52UlnTR7/nZe+FqyE9aIDALxogr1zaJc98MQwZtr4bMxBsQ3XQKr
+         PUFonJUVD0qdus704TAwKdncjIxObcDdohxp/oxOv4Bxfr6XlxisrxyQStZvmk051+oI
+         qTwOCjDJ1xiNCmkBKhdd5cO/wqCss4GCQS2fOULPtnd7xDEQPNWWBSomRKhlPsAWQ6rn
+         416FQKGIr9U1qCOqo8uXRam5d/V4mSPvLYSrzCdD9jv3Q0I3oXS+0xjXOTuftHZSRqbN
+         jJoK1dwj46M9HhjADllH46jXu1qVeH3cloW4kH0eBbod2IR9X09Rb80VKsp4rVhxe4Fk
+         fMog==
+X-Forwarded-Encrypted: i=1; AJvYcCX9qQ9pK/6yzGsBswYm+IVVKTQoMqGhe6e4R5+Mz4fz5egx/3XuobgEp9R4ZPWHJOhroiS+LqdfnPsw@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyib6UXR7XxbNBp1FY3nwm1eFNAbI1yNJ6jsNY/mN+xgjKXMf+d
+	sbYAw+fCkGfCVrg1rYl/zeIXIhyVPZDELASn0/fh3c5p2YEwVBiZtIR3aDGto7U5/zM=
+X-Gm-Gg: ASbGncsqlnfvSNNVxBY2OQnQ0SToDLF4J4P9rMPpKErhojtcMuk842vnx4oC7dX7t4m
+	SYBw89Tg2SPU7mcGWsxMkcdQ5Wyaf9mdBSo6tz5Fb5gQojRsrc9AQ1phMX/poR7JfGlf8SeJ++y
+	VHs8lK8oqS8LDOy7RBSQ6x3i9m0UFpZuYM9kQzb65d6D0bmHTxdg6EUOxSbe9cWkxveR5BmzMI9
+	mPxaJAGDigcXNyTCXQlo3H8G8KL1tMkuYnWqjlCM2llNvdn/MJYcOLCiEE3JPhIPW5SFUZfIp/I
+	k5E7x5c4JDhJ8moK2jUr9322vOqWhAoDidjWotZndQSExTOEf/YTNUWu/AevGj3oj1aSHdjc5Pm
+	vgixJ03sT4VAN6YerAA7+8KK9dzIE62fwHc2lx4XyyTHXBRXNrVYeBUaD57McqoO7WzW3n/6cl9
+	uWMM5R7uayy0R0GIsdIqmFeesq3R+slgk=
+X-Google-Smtp-Source: AGHT+IF3CV82MN0YNFqOU++plw/a37xGD2xf2oy84fWcz0qoUsA3eX7qyuzYpkhkVT+G2+ljIRTWbw==
+X-Received: by 2002:a17:90b:1e53:b0:343:7714:4ca6 with SMTP id 98e67ed59e1d1-349a25b4969mr8093659a91.22.1765261143392;
+        Mon, 08 Dec 2025 22:19:03 -0800 (PST)
+Received: from [100.64.0.1] ([165.225.110.109])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-34a49658704sm1161413a91.6.2025.12.08.22.18.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 08 Dec 2025 22:19:02 -0800 (PST)
+Message-ID: <d8fa12cc-7a03-4954-8ea5-1e2edf9a149d@sifive.com>
+Date: Tue, 9 Dec 2025 15:18:58 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,213 +82,64 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 1/2] ASoC: rt5575: Add the codec driver for the ALC5575
-To: Oder Chiou <oder_chiou@realtek.com>,
- "cezary.rojewski@intel.com" <cezary.rojewski@intel.com>,
- "broonie@kernel.org" <broonie@kernel.org>,
- "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
- "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
- <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>
-Cc: "perex@perex.cz" <perex@perex.cz>,
- "linux-sound@vger.kernel.org" <linux-sound@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
- "Flove(HsinFu)" <flove@realtek.com>, =?UTF-8?B?U2h1bWluZyBb6IyD5pu46YqYXQ==?=
- <shumingf@realtek.com>, Jack Yu <jack.yu@realtek.com>,
- =?UTF-8?B?RGVyZWsgW+aWueW+t+e+qV0=?= <derek.fang@realtek.com>
-References: <20251201105926.1714341-1-oder_chiou@realtek.com>
- <20251201105926.1714341-2-oder_chiou@realtek.com>
- <6c0639e2-dc59-4e0f-be42-224a98b37f75@kernel.org>
- <2202b463075f4219bffc636fbafb0684@realtek.com>
- <20065270-0d88-4463-9641-f92b4c9e4674@kernel.org>
- <4859e7819e264382be4b3b58cd348aa0@realtek.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v1] riscv: dts: starfive: Append starfive,jh7110
+ compatible to VisionFive 2 Lite
+To: E Shattow <e@freeshell.de>,
+ Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
+ Conor Dooley <conor@kernel.org>
+Cc: Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>, Hal Feng <hal.feng@starfivetech.com>,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+ devicetree@vger.kernel.org,
+ Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+ Conor Dooley <conor.dooley@microchip.com>
+References: <20251206204540.112614-1-e@freeshell.de>
+ <20251208-jogging-morally-9b787b7ab1b8@spud>
+ <a18850ad-b6de-4444-9daf-a4a653f4f9ae@canonical.com>
+ <0bb12889-cb28-44e7-b2d6-7ecba6264d1a@freeshell.de>
+From: Samuel Holland <samuel.holland@sifive.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <4859e7819e264382be4b3b58cd348aa0@realtek.com>
+In-Reply-To: <0bb12889-cb28-44e7-b2d6-7ecba6264d1a@freeshell.de>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 08/12/2025 10:16, Oder Chiou wrote:
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzk@kernel.org>
->> Sent: Monday, December 8, 2025 4:02 PM
->> To: Oder Chiou <oder_chiou@realtek.com>; cezary.rojewski@intel.com;
->> broonie@kernel.org; lgirdwood@gmail.com; robh@kernel.org;
->> krzk+dt@kernel.org; conor+dt@kernel.org
->> Cc: perex@perex.cz; linux-sound@vger.kernel.org; devicetree@vger.kernel.org;
->> alsa-devel@alsa-project.org; Flove(HsinFu) <flove@realtek.com>; Shuming [范
->> 書銘] <shumingf@realtek.com>; Jack Yu <jack.yu@realtek.com>; Derek [方德
->> 義] <derek.fang@realtek.com>
->> Subject: Re: [PATCH v8 1/2] ASoC: rt5575: Add the codec driver for the
->> ALC5575
->>
->>
->> External mail : This email originated from outside the organization. Do not
->> reply, click links, or open attachments unless you recognize the sender and
->> know the content is safe.
->>
->>
->>
->> On 08/12/2025 08:29, Oder Chiou wrote:
->>>> -----Original Message-----
->>>> From: Krzysztof Kozlowski <krzk@kernel.org>
->>>> Sent: Monday, December 8, 2025 2:05 PM
->>>> To: Oder Chiou <oder_chiou@realtek.com>; cezary.rojewski@intel.com;
->>>> broonie@kernel.org; lgirdwood@gmail.com; robh@kernel.org;
->>>> krzk+dt@kernel.org; conor+dt@kernel.org
->>>> Cc: perex@perex.cz; linux-sound@vger.kernel.org;
->>>> devicetree@vger.kernel.org; alsa-devel@alsa-project.org;
->>>> Flove(HsinFu) <flove@realtek.com>; Shuming [范
->>>> 書銘] <shumingf@realtek.com>; Jack Yu <jack.yu@realtek.com>; Derek [方
->> 德
->>>> 義] <derek.fang@realtek.com>
->>>> Subject: Re: [PATCH v8 1/2] ASoC: rt5575: Add the codec driver for
->>>> the
->>>> ALC5575
->>>>
->>>>
->>>> External mail : This email originated from outside the organization.
->>>> Do not reply, click links, or open attachments unless you recognize
->>>> the sender and know the content is safe.
->>>>
->>>>
->>>>
->>>> On 01/12/2025 11:59, Oder Chiou wrote:
->>>>> +
->>>>> +static int rt5575_i2c_read(void *context, unsigned int reg,
->>>>> +unsigned int
->>>> *val)
->>>>> +{
->>>>> +     struct i2c_client *client = context;
->>>>> +     struct rt5575_priv *rt5575 = i2c_get_clientdata(client);
->>>>> +
->>>>> +     regmap_read(rt5575->dsp_regmap, reg | RT5575_DSP_MAPPING,
->>>> val);
->>>>> +
->>>>> +     return 0;
->>>>> +}
->>>>> +
->>>>> +static int rt5575_i2c_write(void *context, unsigned int reg,
->>>>> +unsigned int val) {
->>>>> +     struct i2c_client *client = context;
->>>>> +     struct rt5575_priv *rt5575 = i2c_get_clientdata(client);
->>>>> +
->>>>> +     regmap_write(rt5575->dsp_regmap, reg | RT5575_DSP_MAPPING,
->>>> val);
->>>>> +
->>>>> +     return 0;
->>>>> +}
->>>>> +
->>>>> +static const struct regmap_config rt5575_regmap = {
->>>>> +     .reg_bits = 16,
->>>>> +     .val_bits = 32,
->>>>> +     .reg_stride = 4,
->>>>> +     .max_register = 0xfffc,
->>>>> +     .readable_reg = rt5575_readable_register,
->>>>> +     .reg_read = rt5575_i2c_read,
->>>>> +     .reg_write = rt5575_i2c_write,
->>>>> +     .use_single_read = true,
->>>>> +     .use_single_write = true,
->>>>> +};
->>>>
->>>> OF device ID table goes around here - together with I2C.
->>> I will correct it.
->>>
->>>>> +
->>>>> +static const struct i2c_device_id rt5575_i2c_id[] = {
->>>>> +     { "rt5575" },
->>>>> +     { }
->>>>> +};
->>>>> +MODULE_DEVICE_TABLE(i2c, rt5575_i2c_id);
->>>>> +
->>>>> +static int rt5575_i2c_probe(struct i2c_client *i2c) {
->>>>> +     struct rt5575_priv *rt5575;
->>>>> +     struct device *dev = &i2c->dev;
->>>>> +     int ret, val;
->>>>> +
->>>>> +#if IS_ENABLED(CONFIG_SND_SOC_RT5575_SPI)
->>>>
->>>> No ifdefs in driver code.
->>>
->>> I am not understanding exactly.
->>> If the machine is without SPI interface and the codec with flash, the
->>> CONFIG_SND_SOC_RT5575_SPI can be disabled.
->>
->> But you still should not use #ifdef. Coding style gives you alternative, please
->> look at the doc.
->>
->>>
->>>>> +     if (!rt5575_spi && of_device_is_compatible(dev->of_node,
->>>> rt5575_of_match[1].compatible))
->>>>
->>>> No, use driver match data if ever, but this is just wrong. You said
->>>> it depends on SPI flash, not SPI interface.
->>>
->>> I will modify it to use the match data as following.
->>> static const struct of_device_id rt5575_of_match[] = {
->>>       { .compatible = "realtek,rt5575", .data = (void
->> *)RT5575_WITH_FLASH },
->>>       { .compatible = "realtek,rt5575-use-spi", .data = (void
->>> *)RT5575_WITHOUT_FLASH },
->>
->> What is still wrong is that why you defer probe if there is no flash. I really do
->> not get it...
-> 
-> If the codec has flash, the flash is connected to the codec's SPI host
-> interface.
-> 
-> If the codec has no flash, the codec SPI driver should load the firmware
-> from the codec's SPI slave interface. The I2C driver must wait until the
-> SPI driver is ready to ensure the firmware is loaded correctly.
-> 
+On 2025-12-09 9:53 AM, E Shattow wrote:
+> The unanswered question what I was asking in the code review of StarFive 
+> VisionFive 2 Lite series: What is the normal thing to do for compatible 
+> strings of relabeled silicon when there is a suggestion of different 
+> operational parameters?
+I don't think we are very consistent on this, and some of it depends on how
+different the binned chips are from each other.
 
-Ah, so for that reason you created that singleton, exported it and you
-wait for it? Singletons are pretty no-go anyway, how do you handle to
-codecs in the system? Fragile design.
+Example 1: Rockchip RK3399 has several bins. RK3399-S and RK3399-T just override
+the OPPs, but reuse the SoC compatible string without change. On the other hand
+RK3399pro is a superset of RK3399, but uses a new compatible string without a
+fallback.
 
-Best regards,
-Krzysztof
+Example 2: Allwinner H616 (https://linux-sunxi.org/H616) has multiple
+bins/packages/die revisions. H313 is a down-binned version of H616, which reuses
+the SoC compatible string without change. H700 is a superset of H616 (same die,
+more pins), but uses a new compatible string without a fallback.
+
+> I can include the (paraphrased) above summary by Heinrich, yes. Although
+> now I doubt whether this is the best approach, when removal of
+> "starfive,jh7110s" compatible is potentially an equally valid fix, or if
+> we're rather considering JH7110 at 1.5GHz maximum to be a superset of
+> itself at 1.25GHz maximum (JH-7110S). Would we want to change all the
+> JH-7110 boards to then have JH-7110S as the least-compatible, if I am
+> understanding that meaning of "superset"? I would like to know what is
+> expected.
+
+If starfive,jh7110 is a superset of starfive,jh7110s, yes, it would be valid to
+add starfive,jh7110s as a fallback compatible string in all of the existing
+board bindings. But this is not very useful, as existing software already looks
+for starfive,jh7110, and you can't replace that without breaking compatibility
+with existing DTs. So the advantage of one compatible string (mostly) covering
+both SoCs only applies to new software.
+
+Regards,
+Samuel
+
 
