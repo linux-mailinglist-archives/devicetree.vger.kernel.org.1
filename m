@@ -1,285 +1,164 @@
-Return-Path: <devicetree+bounces-245291-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245292-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F473CAE728
-	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 01:11:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EBBE3CAE90F
+	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 01:54:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 265B830124C3
-	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 00:11:11 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A50C5303E649
+	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 00:54:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7BF21A073F;
-	Tue,  9 Dec 2025 00:11:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0904F23A9BD;
+	Tue,  9 Dec 2025 00:54:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Nzqe2YsL"
+	dkim=pass (2048-bit key) header.d=freeshell.de header.i=@freeshell.de header.b="n0BGyjBW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from freeshell.de (freeshell.de [116.202.128.144])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B23B86331;
-	Tue,  9 Dec 2025 00:11:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8524021B9C1;
+	Tue,  9 Dec 2025 00:54:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765239069; cv=none; b=bK/v/1+18+kD3p2yoqyXV+K5dBNVXu/680o3m2dIAIABerlAomFKo+aYs+GJ6Iz+G7DyS1X5bZkC8agS7r+BvaV63454b1q353va8hrUGe/yGyPQ0hl3Qu8S+6BBbCXqFdKqLcSfjnzkUrynVJIETqk911Y6HVGk5eCKwdmxprQ=
+	t=1765241663; cv=none; b=mJxsnvfkyJbKFhA4tDDyGCLHSS9pempXW2fM4IUojRNWYvVtX84oTPciyo3pMG9WwVucvV0tSQd4651qJ2ttgT7Lc4wUaXHpdZJAn+aRBuRXI17IT8r2CHeJPW3qagmAIee7JO2/kCHXKn3heKG8+NxbfHnVwjqeb0v4AwKNsq8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765239069; c=relaxed/simple;
-	bh=7ptARhGnIW0rweJs/X7vTtC/SQB8ulRmWeebM2Urvl0=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=YkM/SLsGggLsP0L5dzLPV9QMZGF39wqTfyJgFi0RkLmYxTysujzDJxj7SszGLMrOSx94ILGYSZ2Bo7KztLSOefs2GEYeWvRW2ARUj6WStV/rx+J7Yu7q82oFgWe/PheLG1oXjybtte43bkcDqi1fYF/cdwQsl1HZDVNcykAmSKM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Nzqe2YsL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF78BC4CEF1;
-	Tue,  9 Dec 2025 00:11:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765239068;
-	bh=7ptARhGnIW0rweJs/X7vTtC/SQB8ulRmWeebM2Urvl0=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=Nzqe2YsLmvHdUUpvvSUvm6rLElIkqyZsP8E7UC7VgLN1jMvslaQaB65EuuR2M3tQD
-	 ++rs5KQFBsdOe7SSQ8hVf+DJAugUoPM5Mqrfs69Wm5NDb1BwhrWGYUAduiY2Yokwcw
-	 UnX/Dznj2igM6Bvu9sfjXeM7bTJaA4vS7oKDjiqP6a78W6GKZiw//u+Q7WQb61e+KS
-	 HRkk6gQ/8ovRTrwFr5gibfZmzjuyR5eHFLZzYqvj1cKSwTFL0LbWpbU7omxzWiVhGp
-	 mAEOHH5Lmz7F8T0wk0TahZiroHww1QftElDdmGAe4Dk+Qfg0wy4JVD6zQ794GMZXJu
-	 /flhU9gTQ0Z9A==
-Date: Mon, 8 Dec 2025 18:11:07 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Jacky Chou <jacky_chou@aspeedtech.com>
-Cc: Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	linux-aspeed@lists.ozlabs.org, linux-pci@vger.kernel.org,
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Andrew Jeffery <andrew@aj.id.au>, openbmc@lists.ozlabs.org,
-	linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v6 6/7] PCI: aspeed: Add ASPEED PCIe RC driver
-Message-ID: <20251209001107.GA3430423@bhelgaas>
+	s=arc-20240116; t=1765241663; c=relaxed/simple;
+	bh=IcrSzNLRTlAoQPSW3P9mptM1rDUMIWzZ9Or6n1sFKSM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=FNHuEib9NEpC3y+xl1CWZfdoJzAAKsud5Cbx6t3RpfTj3EO/sCKKq3nZS61SOGvMC256OBAeRHoMClwEZJzoIXhhyLJ6wbnPA/1k9Q9doGmxY5r8ijAKO0vLlz9UsgKYuDL/P1HyDaaIMydmVlP1JgNb3vdTjm5Yb+bd9oSUBXI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; dkim=pass (2048-bit key) header.d=freeshell.de header.i=@freeshell.de header.b=n0BGyjBW; arc=none smtp.client-ip=116.202.128.144
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=freeshell.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=freeshell.de;
+	s=s2025; t=1765241608;
+	bh=JYbGL1yqQk9SuwODfYiIFqUpr7SdpAuoCOkoOtKwzjo=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=n0BGyjBWBVeCMnYmYKWTILMYPfIjeney/xMqe0OhvU8ZLEGLi2p6M+2EtdGA8tzO5
+	 8srH96kKXvdBh8rM4UhzNG1NmoB5lkiOa5q8LXR8sgWJehogAPYVmB99PKL5/Q+rCq
+	 kKmmqI2k7oyjnkIGS3FAUyLaMXCsnQizHK8FZKJ5zzzunPdFD2KDvpHHqrwPOTHY14
+	 Gr35yDSTw5jFu64FHqnHwZ2YTv2kA1aoy51sbAEyoqzD7LqmZ5nuWHtQ3BT89h+7op
+	 YxXtNtmyACVEUZnsWxiIPuqz0ThsNfojJ2Py7W0wpy/MqmT8Lp2ppQ4jnAzO1ykRQs
+	 tzdSQgNHiNsOw==
+Received: from [192.168.2.54] (unknown [98.97.27.25])
+	(Authenticated sender: e)
+	by freeshell.de (Postfix) with ESMTPSA id 7A5E8B2215DE;
+	Tue,  9 Dec 2025 01:53:25 +0100 (CET)
+Message-ID: <0bb12889-cb28-44e7-b2d6-7ecba6264d1a@freeshell.de>
+Date: Mon, 8 Dec 2025 16:53:23 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251201-upstream_pcie_rc-v6-6-8c8800c56b16@aspeedtech.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1] riscv: dts: starfive: Append starfive,jh7110
+ compatible to VisionFive 2 Lite
+To: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
+ Conor Dooley <conor@kernel.org>
+Cc: Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>, Hal Feng <hal.feng@starfivetech.com>,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+ devicetree@vger.kernel.org,
+ Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+ Conor Dooley <conor.dooley@microchip.com>
+References: <20251206204540.112614-1-e@freeshell.de>
+ <20251208-jogging-morally-9b787b7ab1b8@spud>
+ <a18850ad-b6de-4444-9daf-a4a653f4f9ae@canonical.com>
+Content-Language: en-US
+From: E Shattow <e@freeshell.de>
+In-Reply-To: <a18850ad-b6de-4444-9daf-a4a653f4f9ae@canonical.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, Dec 01, 2025 at 02:29:16PM +0800, Jacky Chou wrote:
-> Introduce PCIe Root Complex driver for ASPEED SoCs. Support RC
-> initialization, reset, clock, IRQ domain, and MSI domain setup.
-> Implement platform-specific setup and register configuration for
-> ASPEED. And provide PCI config space read/write and INTx/MSI
-> interrupt handling.
-> ...
 
-> +struct aspeed_pcie {
-> +	struct pci_host_bridge *host;
-> +	struct device *dev;
-> +	void __iomem *reg;
-> +	struct regmap *ahbc;
-> +	struct regmap *cfg;
-> +	const struct aspeed_pcie_rc_platform *platform;
-> +	struct list_head ports;
-> +
-> +	u8 tx_tag;
-> +	int host_bus_num;
+On 12/8/25 08:38, Heinrich Schuchardt wrote:
+> On 12/8/25 17:29, Conor Dooley wrote:
+>> On Sat, Dec 06, 2025 at 12:45:30PM -0800, E Shattow wrote:
+>>> Append starfive,jh7110 compatible to VisionFive 2 Lite and VisionFive 2
+>>> Lite eMMC in the "least compatible" end of the list. JH7110S on these
+>>> boards is the same tape-out as JH7110 however rated for thermal,
+>>> voltage,
+>>> and frequency characteristics for a maximum of 1.25GHz operation.
+>>>
+>>> Link to previous discussion suggesting this change:
+>>> https://lore.kernel.org/lkml/1f96a267-f5c6-498e-
+>>> a2c4-7a47a73ea7e7@canonical.com/
+>>>
+>>> Fixes: 900b32fd601b ("riscv: dts: starfive: Add VisionFive 2 Lite
+>>> board device tree")
+>>> Fixes: ae264ae12442 ("riscv: dts: starfive: Add VisionFive 2 Lite
+>>> eMMC board device tree")
+>>> Suggested-by: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
+>>> Signed-off-by: E Shattow <e@freeshell.de>
+>>
 
-Only needs a u8.
+>> You can't do this without modifying the binding too, as this doesn't
+>> pass dtbs_check.
 
-> +static int aspeed_pcie_port_init(struct aspeed_pcie_port *port)
-> +{
-> +	struct aspeed_pcie *pcie = port->pcie;
-> +	struct device *dev = pcie->dev;
-> +	int ret;
-> +
-> +	ret = clk_prepare_enable(port->clk);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret,
-> +				     "failed to set clock for slot (%d)\n",
-> +				     port->slot);
-> +
-> +	ret = phy_init(port->phy);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret,
-> +				     "failed to init phy pcie for slot (%d)\n",
-> +				     port->slot);
-> +
-> +	ret = phy_set_mode_ext(port->phy, PHY_MODE_PCIE, PHY_MODE_PCIE_RC);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret,
-> +				     "failed to set phy mode for slot (%d)\n",
-> +				     port->slot);
-> +
-> +	reset_control_deassert(port->perst);
-> +	mdelay(PCIE_RESET_CONFIG_WAIT_MS);
+Will fix, thanks.
 
-I think this should use msleep().
+>>
+>> However, is this actually correct? The frequency of operation and the
+>> temperature range aren't a superset of what the jh7110 can do, what is
 
-> +static int aspeed_ast2600_setup(struct platform_device *pdev)
-> +{
-> +	struct aspeed_pcie *pcie = platform_get_drvdata(pdev);
-> +	struct device *dev = pcie->dev;
-> +
-> +	pcie->ahbc = syscon_regmap_lookup_by_phandle(dev->of_node,
-> +						     "aspeed,ahbc");
-> +	if (IS_ERR(pcie->ahbc))
-> +		return dev_err_probe(dev, PTR_ERR(pcie->ahbc),
-> +				     "failed to map ahbc base\n");
-> +
-> +	aspeed_host_reset(pcie);
-> +
-> +	regmap_write(pcie->ahbc, ASPEED_AHBC_KEY, ASPEED_AHBC_UNLOCK_KEY);
-> +	regmap_update_bits(pcie->ahbc, ASPEED_AHBC_ADDR_MAPPING,
-> +			   ASPEED_PCIE_RC_MEMORY_EN, ASPEED_PCIE_RC_MEMORY_EN);
-> +	regmap_write(pcie->ahbc, ASPEED_AHBC_KEY, ASPEED_AHBC_UNLOCK);
-> +
-> +	/* Due to the BAR assignment is fixed mapping on 0x6000_0000.*/
-> +	writel(ASPEED_AHB_REMAP_LO_ADDR(0x600) | ASPEED_AHB_MASK_LO_ADDR(0xe00),
-> +	       pcie->reg + ASPEED_H2X_AHB_ADDR_CONFIG0);
-> +	writel(ASPEED_AHB_REMAP_HI_ADDR(0),
-> +	       pcie->reg + ASPEED_H2X_AHB_ADDR_CONFIG1);
+The unanswered question what I was asking in the code review of StarFive
+VisionFive 2 Lite series: What is the normal thing to do for compatible
+strings of relabeled silicon when there is a suggestion of different
+operational parameters?
 
-I assume this ASPEED_H2X_AHB_ADDR_CONFIG is doing basically the same
-thing as aspeed_ast2700_remap_pci_addr() below, so see the comments
-there.
+The devicetree/usage-model documentation does mention SoC family but is
+not specific about any marketing or quality assurance test for silicon
+binning. For the K1/M1 SpacemiT chips relabled as Ky manufacture there's
+no suggestion that the relabeled chips have different operational
+parameters and so a new compatible was rejected then.
 
-> +	writel(ASPEED_AHB_MASK_HI_ADDR(~0),
-> +	       pcie->reg + ASPEED_H2X_AHB_ADDR_CONFIG2);
-> +	writel(ASPEED_H2X_BRIDGE_EN, pcie->reg + ASPEED_H2X_CTRL);
-> +
-> +	writel(ASPEED_PCIE_RX_DMA_EN | ASPEED_PCIE_RX_LINEAR |
-> +	       ASPEED_PCIE_RX_MSI_SEL | ASPEED_PCIE_RX_MSI_EN |
-> +	       ASPEED_PCIE_WAIT_RX_TLP_CLR | ASPEED_PCIE_RC_RX_ENABLE |
-> +	       ASPEED_PCIE_RC_ENABLE,
-> +	       pcie->reg + ASPEED_H2X_DEV_CTRL);
-> +
-> +	writel(ASPEED_RC_TLP_TX_TAG_NUM, pcie->reg + ASPEED_H2X_DEV_TX_TAG);
-> +
-> +	pcie->host->ops = &aspeed_ast2600_pcie_ops;
-> +	pcie->host->child_ops = &aspeed_ast2600_pcie_child_ops;
-> +
-> +	return 0;
-> +}
-> +
-> +static int aspeed_ast2700_remap_pci_addr(struct aspeed_pcie *pcie)
-> +{
-> +	struct device_node *dev_node = pcie->dev->of_node;
-> +	struct of_pci_range range;
-> +	struct of_pci_range_parser parser;
-> +	int ret;
-> +
-> +	ret = of_pci_range_parser_init(&parser, dev_node);
-> +	if (ret)
-> +		return ret;
-> +
-> +	for_each_of_pci_range(&parser, &range) {
-> +		if ((range.flags & IORESOURCE_TYPE_BITS) == IORESOURCE_MEM) {
-> +			writel(ASPEED_REMAP_PCI_ADDR_31_12(range.pci_addr),
-> +			       pcie->reg + ASPEED_H2X_REMAP_PCI_ADDR_LO);
-> +			writel(ASPEED_REMAP_PCI_ADDR_63_32(range.pci_addr),
-> +			       pcie->reg + ASPEED_H2X_REMAP_PCI_ADDR_HI);
-> +			return 0;
+The reset condition of 1000MHz @ 0.9V on the family of JH7110/JH7110-S
+boards is not present in the dts OPP tables for jh7110 and jh7110s dts.
+I've asked previously [1] (in the discussions about bootph-pre-ram
+hints) before having knowledge that there was a JH-7110S product
+planned, what prevents JH-7110 from having more than 4 divider operating
+points and including this default condition? Not having been tested
+seems to be the answer. Not all testing results are published or
+described in code upstream either. I'm making my guess based on what
+information that is available.
 
-It looks like this is essentially hardcoding the offset between the
-parent-bus-address and the child-bus-address in the DT 'ranges'
-property.  Since ASPEED_REMAP_PCI_ADDR_31_12() and
-ASPEED_REMAP_PCI_ADDR_63_32() do nothing except mask out the low 12
-bits, I assume that offset is zero.
+1:
+https://lore.kernel.org/lkml/40d77aae-9e53-4981-a2aa-dcdc6f11ac83@freeshell.de/
 
-But this should not be hard-coded at all; it should be extracted from
-'ranges'.  I don't think we really have a consistent way of doing
-this, but you can take a look at how these other drivers program
-"outbound" mappings like this using bridge->windows:
+>> the actual advantage of having it? If there's some software that this
 
-  cdns_pcie_hpa_host_init_address_translation()
-  dw_pcie_iatu_setup()
-  mobiveil_host_init()
-  xgene_pcie_map_ranges()
-  iproc_pcie_map_ranges()
-  rzg3s_pcie_parse_map_ranges()
+Unless I misunderstand the meaning (as above), then this is what is
+recommended for in the documentation. Heinrich confirms this avoids the
+need for checking the new "starfive,jh7110s" SoC compatible. Maybe I'm
+wrong about this approach for binned silicon? Please someone give me a
+clue if this was answered already and I missed it.
 
-> +static int aspeed_pcie_parse_dt(struct aspeed_pcie *pcie)
-> +{
-> +	struct device *dev = pcie->dev;
-> +	struct device_node *node = dev->of_node;
-> +	int ret;
-> +
-> +	for_each_available_child_of_node_scoped(node, child) {
-> +		int slot;
-> +		const char *type;
-> +
-> +		ret = of_property_read_string(child, "device_type", &type);
-> +		if (ret || strcmp(type, "pci"))
-> +			continue;
-> +
-> +		ret = of_pci_get_devfn(child);
-> +		if (ret < 0)
-> +			return dev_err_probe(dev, ret,
-> +					     "failed to parse devfn\n");
-> +
-> +		slot = PCI_SLOT(ret);
-> +
-> +		ret = aspeed_pcie_parse_port(pcie, child, slot);
-> +		if (ret)
-> +			return ret;
+>> would make a difference for, please mention it in the commit message.
+> 
+> Appending "starfive,jh7110" would reduce the number of compatible
+> strings to check in the OpenSBI platform driver.
 
-It looks unnecessarily complicated to put each port on a list in
-aspeed_pcie_parse_port() and then iterate over that list in
-aspeed_pcie_init_ports().
+I can include the (paraphrased) above summary by Heinrich, yes. Although
+now I doubt whether this is the best approach, when removal of
+"starfive,jh7110s" compatible is potentially an equally valid fix, or if
+we're rather considering JH7110 at 1.5GHz maximum to be a superset of
+itself at 1.25GHz maximum (JH-7110S). Would we want to change all the
+JH-7110 boards to then have JH-7110S as the least-compatible, if I am
+understanding that meaning of "superset"? I would like to know what is
+expected.
 
-I think you could just do something like:
+> 
+> Best regards
+> 
+> Heinrich
+> 
+>>
+>> Cheers,
+>> Conor.
+>>
 
-  aspeed_pcie_parse_port();
-  aspeed_pcie_port_init();
-
-and get rid of the list completely.
-
-> +	}
-> +
-> +	if (list_empty(&pcie->ports))
-> +		return dev_err_probe(dev, -ENODEV,
-> +				     "No PCIe port found in DT\n");
-> +
-> +	return 0;
-> +}
-> +
-> +static int aspeed_pcie_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct pci_host_bridge *host;
-> +	struct aspeed_pcie *pcie;
-> +	struct resource_entry *entry;
-> +	const struct aspeed_pcie_rc_platform *md;
-> +	int irq, ret;
-> +
-> +	md = of_device_get_match_data(dev);
-> +	if (!md)
-> +		return -ENODEV;
-> +
-> +	host = devm_pci_alloc_host_bridge(dev, sizeof(*pcie));
-> +	if (!host)
-> +		return -ENOMEM;
-> +
-> +	pcie = pci_host_bridge_priv(host);
-> +	pcie->dev = dev;
-> +	pcie->tx_tag = 0;
-> +	platform_set_drvdata(pdev, pcie);
-> +
-> +	pcie->platform = md;
-> +	pcie->host = host;
-> +	INIT_LIST_HEAD(&pcie->ports);
-> +
-> +	/* Get root bus num for cfg command to decide tlp type 0 or type 1 */
-> +	entry = resource_list_first_type(&host->windows, IORESOURCE_BUS);
-> +	if (entry)
-> +		pcie->host_bus_num = entry->res->start;
-
-s/host_bus_num/root_bus_nr/   to match struct altera_pcie
+Thanks for the review, -E
 
