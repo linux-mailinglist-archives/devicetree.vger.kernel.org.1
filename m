@@ -1,72 +1,74 @@
-Return-Path: <devicetree+bounces-245399-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245400-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3508CB0740
-	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 16:48:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 96B39CB0746
+	for <lists+devicetree@lfdr.de>; Tue, 09 Dec 2025 16:48:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CFB84300DA7F
-	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 15:47:17 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E1AFE3017F1C
+	for <lists+devicetree@lfdr.de>; Tue,  9 Dec 2025 15:47:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECF292DA776;
-	Tue,  9 Dec 2025 15:47:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C39802F4A0C;
+	Tue,  9 Dec 2025 15:47:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="MV1QY9me"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="PIKKl3Nz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D19722D4E9
-	for <devicetree@vger.kernel.org>; Tue,  9 Dec 2025 15:47:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9988A2820A0
+	for <devicetree@vger.kernel.org>; Tue,  9 Dec 2025 15:47:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765295235; cv=none; b=rDDzvVCXiS8GzgprrTznn5asExzJsSMLMxk9NUedzoXS5oqydjnZcuLB4EG9Fhxy+SMGqG3EFeCSh2p0BSqj/r3y6zwl5Tpp15ChU5Mb7RNrcwZOS0Nz5wk0d0Sf/g443JKfCexqAydE8WZ2OIpgZ5yJ5tFr8ObayBJ2w2hQt+8=
+	t=1765295237; cv=none; b=kvfsx6JCXEIzaRFsh9r7mg6ohRncbxAy1A9xGHIxKprkMRjv6ZW0TenX3yijygB32YR0Goqy59/ke2eeDEbOcRP+lYckUD11ce1HHwTIAK/KqdoiX4rNL6O6NVkpkcA9IsRgP+qDrCt295zY9TzfA97g3LoPfbmv3AWKcVLxQpo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765295235; c=relaxed/simple;
-	bh=m2A6ZHh38QLY0KCcRCAKW90Du25XkQzdMPrnADEF3KI=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=cSeT5HtGmpusIzx3pl6oi7KFCLqkDo2Bzut2n43WeTV/wLfnk+bEE5jdgYa5rU91nozu4PG8vEcwXZGC8ZbMdnSneTqUM0YtOK81/oL+9Y0dn/SpLsvndW6BeIxVsmRle4fL2UPRyn85LpmkP93vIw1hs9R0EV6DiXRUMvqp3zg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=MV1QY9me; arc=none smtp.client-ip=209.85.128.54
+	s=arc-20240116; t=1765295237; c=relaxed/simple;
+	bh=SSTQV71zhH+KAIMdkOHqBQujgdzOTQUnEVzh22O3y1k=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=VZauoVK7PL71uUZMK/aGrvvd3GI1mDUQzFmzZvIGKw9M/dQj203o2vc4ddibbajeZEP2ZZ6DVvOiKRmHtDglwkKHPpJ5sTjG/K+npCibsygELeYHkoxhplCz2MTsGeuQB55vt0Fps/AH+dz/b4julDHAR76QtoiNQOEpgRMfpfA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=PIKKl3Nz; arc=none smtp.client-ip=209.85.221.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-47a8195e515so4302415e9.0
-        for <devicetree@vger.kernel.org>; Tue, 09 Dec 2025 07:47:13 -0800 (PST)
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-42e2e3c0dccso3200384f8f.2
+        for <devicetree@vger.kernel.org>; Tue, 09 Dec 2025 07:47:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1765295232; x=1765900032; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=2c04LwHbF/s3zM8ygqzdu4yzOQ4Hv2zMBfxhEf+2XtE=;
-        b=MV1QY9meNAZBJpggxuyc/LAC8VkGQqZ1ZfXGunE33iKv/2z+C0dnZC3I2pQL6RtJoc
-         EHKWKg+TnEXuqvzjxo81o7sV/nftgzroKibt8NOR7bju9L6/V+MsDfWARwbYWgiVEK0U
-         C+DPsz67gKvdg/GnaAZ95q+sWuf2A7K9qbtPM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765295232; x=1765900032;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=chromium.org; s=google; t=1765295233; x=1765900033; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=2c04LwHbF/s3zM8ygqzdu4yzOQ4Hv2zMBfxhEf+2XtE=;
-        b=AOt2aFZPusnpJZhoTDNv5G31j9SxKO+ftxpwgeH02ajMpFafwbbmCeqjqKhyxsawLJ
-         HHLGg4h3Tc7OOXqfS0Rwn20J5uN19CsW0FcFGV7Ti+g49+5WLKYXd/P3TK2r9M3oxFLj
-         49z0/6y+fLHahxrdu5k1bqgvDstJ2dK4ROnL6NdNu4/25QxcEmw08yQ/xtgSsyNguxlc
-         8SxaqI4ryiuDdDtnyWKcbAPCuO6s+uJJXTZW/dzDsoKB5ytN1MOCipcbxqdvB7YJs4Im
-         //wU+ZGf/hTPHV/oSLh7S8Dl2JCVoAaTxO7mFbN3hGhKHIebHD6q1I7jUPLX/7X2Wd7E
-         aXhw==
-X-Forwarded-Encrypted: i=1; AJvYcCUPr5mF61a7FMslLj3YbnGG8DZjbgx5MtB8Xxre7+rH5jkdOCuTZVALd5ggfpqkEnmoIQ9AphpRAtVW@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzv6d0HusdyBvdXqoGW7PdBJm2rZrdRw1/r+xutYcCu6daR0qjA
-	purCaGQQa9K8D59rc+jevjiMba8MJY+cd5DGhoEEHnX+BJHjCgw64IbQS5KQ+Gy5Tw==
-X-Gm-Gg: ASbGncs/nJki6NSWk4bV/zMvV3+VfPfSENZuDWxRFWigOF2o134bxPwcl4lXcz4sLmB
-	boOXLIkR5SnTU4RsiWT/LIalmRMfn4+B+/tL8Y2+YLkB/T3eRUoKe80q+PwYfBpa3H7/xpnSqrZ
-	0O0aUgNCRHo9zsmXH6e4FKg4nWBUcUbGsQ8A/HS9M0Yo5qtfk0AfbkO9bc/rClQ3oEyGW8RZ0WT
-	dmrsxrggujWoidDgyGPoLxBiaXLebtnFajbn9iZ5m1ga3HwwJQmZAk8CxQeUP0oW5IqXkGyQFNo
-	lvWKtuwWUt/ojs9cIVuT9uCdgE0GslQmZww8gPkWkm4S+rwobvgbQtRIaSxZE2uDQLtcMniA6ab
-	tWMrr3ENH9GkWKTdzhpuBrFv6ujnmUZyI1WgWnB/I6h0JzlCYq2Y4IYtGszjeYLXObGxczeZSR3
-	G4oEzxCfe2xXbLp0s=
-X-Google-Smtp-Source: AGHT+IETtig917c/959U67stUU8b8pUELNsuVOkLdt6GOzPmjWWtx8z0b7xMKjenAYwi61hJeTVS2g==
-X-Received: by 2002:a05:600c:19cf:b0:46e:4586:57e4 with SMTP id 5b1f17b1804b1-47939e3a6c6mr124500145e9.24.1765295231876;
-        Tue, 09 Dec 2025 07:47:11 -0800 (PST)
+        bh=Nijc6TapEVx1m//kz19HJEsLmLHghSeoAA0KmTIDep4=;
+        b=PIKKl3NzVKDO2FMPktMgbbAUdNwaqQ8UoCZG0i51h06VphZal9cZUpU1emRWgsCDAy
+         p8QFtrN5QZx8xJUceqXZ0bFxa8es1vQnmavlnB7k3iwL4l1N5zc77Q5L+kgvovhVpYRH
+         nP3TgdpsorSToG7ddMTv6cxjMyIkCTj3I798o=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765295233; x=1765900033;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=Nijc6TapEVx1m//kz19HJEsLmLHghSeoAA0KmTIDep4=;
+        b=NvPLdUykX6P6J1DteKFmdDf3e9A0sLz/qKN9JGZ6RFrIo3caSUtIkPGDfsmU3IO5Ae
+         Ft7p4dGRC1yQ0drXeTRUdXpysjwukJjrHtoD/CxeY+ySWShYNwEAgW745piry6kP0FkE
+         bBELKufoVnHxdxkSKTgiYIb62pslK0Ps/qXbv5fivw6GuPlQWffCIHwm36+6tzSxLhRM
+         KEvKxtQZfmdJ2ED86Ic7WKXsSE882f6fB84hhsbnolpOs/cpHMebek01fgULWYkFIHRB
+         fq7uXO4TGCOMwRwpjhW9R0StRlYhNbfI5l7sgw0vejpUHOacWWEd/e3e0WlL04Sjx6wz
+         HyIA==
+X-Forwarded-Encrypted: i=1; AJvYcCXjN90Ny1AlgEoTQkqztDhc0lggvEKiva9zKcZfLS+F8d8iq6uVzZjNoDFRm/ChnPuiViFRzcqJl9Ja@vger.kernel.org
+X-Gm-Message-State: AOJu0YyoPdMBFOwt2kmuSvDacP40mhFaoch+WPmA1tnvxK83lYNH6AwK
+	Ou3h6Z1vlXFsIrBYDU9DPZWzDmcAcO++lqCgmYJ24ppt1otADqY+7ilU4Y3II6aE3w==
+X-Gm-Gg: AY/fxX42GJGFmQfVfp5xV+wzeFYP2v/BOm7zDN9aB9a9vVgDq1J6T8a7OUGhAi258/5
+	seHQXrYAGHZfYaQeDUXBVL9k9SnLvbljJjxgdOZFFpBBieqCOHd78aE51eNOmc/k7M73bdOB+sr
+	hpvUQ2clRm2hEJUg4m+cd0CpRJalDSJbGM7oVZ7NjQDiWH78j6iPwxSsNhp3m2eST2Mu5GnGj7Q
+	HpLBIOGu61rEOLMw7ItFQwsiQACi58T7TO3d/FJ7ecq261AnfTGKeZQ+66XfJ46Ds0k/vT8W7/V
+	wp7LFBGDl7WncDxI+OEtXglB4cRwOn6KT43d+jJiHcW4pZA1+SPhqbdLTkZp7UPxhYfhXK18rQm
+	TNkaCV6NAdcLQecrcZpWkokUg7eFgAq7geKBiuPFJ7m7/wBdenZ9/mbbC0PWP2GPqR0PEknzRsC
+	+W5kmT8NHudBdafp4=
+X-Google-Smtp-Source: AGHT+IFIwxIRvtKdP7oP+tHCC5AXu9N6uYSmNB+//1Ldk1GFkhn80JY7zzQCa3PkorTGapSGbkUsHA==
+X-Received: by 2002:a05:6000:4027:b0:42b:3ed2:c079 with SMTP id ffacd0b85a97d-42f89f897dcmr11220121f8f.48.1765295232875;
+        Tue, 09 Dec 2025 07:47:12 -0800 (PST)
 Received: from balto-ws ([37.228.206.31])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42f7d353c9esm31097881f8f.40.2025.12.09.07.47.10
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42f7d353c9esm31097881f8f.40.2025.12.09.07.47.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Dec 2025 07:47:11 -0800 (PST)
+        Tue, 09 Dec 2025 07:47:12 -0800 (PST)
 From: Fabio Baltieri <fabiobaltieri@chromium.org>
 To: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
 	Rob Herring <robh@kernel.org>,
@@ -81,10 +83,12 @@ Cc: Fabio Baltieri <fabiobaltieri@chromium.org>,
 	devicetree@vger.kernel.org,
 	chrome-platform@lists.linux.dev,
 	linux-kernel@vger.kernel.orga
-Subject: [PATCH v1 0/3] Input: cros_ec_keyb: add function key support
-Date: Tue,  9 Dec 2025 15:47:03 +0000
-Message-ID: <20251209154706.529784-1-fabiobaltieri@chromium.org>
+Subject: [PATCH v1 1/3] Input: cros_ec_keyb: clarify key event error message
+Date: Tue,  9 Dec 2025 15:47:04 +0000
+Message-ID: <20251209154706.529784-2-fabiobaltieri@chromium.org>
 X-Mailer: git-send-email 2.52.0.223.gf5cc29aaa4-goog
+In-Reply-To: <20251209154706.529784-1-fabiobaltieri@chromium.org>
+References: <20251209154706.529784-1-fabiobaltieri@chromium.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -93,27 +97,29 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Hi,
+Reword one of the key event error messages to clarify its meaning: it's
+not necessarily an incomplete message, more of a mismatch length.
+Clarify that and log the expected and received length too.
 
-this adds function key support to the cros_ec_keyb driver: the platform
-can specify a key to be used as "function key", and that changes the
-keycode emitted for other keys as long as the function key remains
-pressed.
+Signed-off-by: Fabio Baltieri <fabiobaltieri@chromium.org>
+---
+ drivers/input/keyboard/cros_ec_keyb.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-The Fn key omits its own code if pressed and released with no other
-function key pressed in the meantime. Non mapped keys do not emit any
-codes, this seems to be the behavior of other devices I have lying
-around.
-
-Fabio Baltieri (3):
-  Input: cros_ec_keyb: clarify key event error message
-  Input: cros_ec_keyb: add function key support
-  dt-bindings: google,cros-ec-keyb: add fn-key and f-keymap props
-
- .../bindings/input/google,cros-ec-keyb.yaml   |  60 +++++-
- drivers/input/keyboard/cros_ec_keyb.c         | 193 ++++++++++++++++--
- 2 files changed, 227 insertions(+), 26 deletions(-)
-
+diff --git a/drivers/input/keyboard/cros_ec_keyb.c b/drivers/input/keyboard/cros_ec_keyb.c
+index 1c6b0461dc35..2822c592880b 100644
+--- a/drivers/input/keyboard/cros_ec_keyb.c
++++ b/drivers/input/keyboard/cros_ec_keyb.c
+@@ -269,7 +269,8 @@ static int cros_ec_keyb_work(struct notifier_block *nb,
+ 
+ 		if (ckdev->ec->event_size != ckdev->cols) {
+ 			dev_err(ckdev->dev,
+-				"Discarded incomplete key matrix event.\n");
++				"Discarded key matrix event, unexpected length: %d != %d\n",
++				ckdev->ec->event_size, ckdev->cols);
+ 			return NOTIFY_OK;
+ 		}
+ 
 -- 
 2.52.0.223.gf5cc29aaa4-goog
 
