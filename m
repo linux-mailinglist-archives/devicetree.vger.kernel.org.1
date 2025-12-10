@@ -1,233 +1,454 @@
-Return-Path: <devicetree+bounces-245536-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245537-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01B1CCB1F03
-	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 06:06:56 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC928CB1F12
+	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 06:11:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BF1B2303D307
-	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 05:06:52 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 318063044B91
+	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 05:10:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94EC42D5C83;
-	Wed, 10 Dec 2025 05:06:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95D9F2FB0BA;
+	Wed, 10 Dec 2025 05:10:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SFAhVD9r"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="US9eSX2G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8842A26FDBB
-	for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 05:06:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35DC12D5C83
+	for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 05:10:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765343211; cv=none; b=jW4dVu/GLqQRSFNDaZCTsixqvGA/jIpu+qIqE2nJsVYjizO3+B1m1h4D3k6Zt/F5WnpC0OT2BV0+IUprrGvDdbmnMqO/mYsLnM+dPBoz7gMhoTwohH4ZKZVl1Y1qFZvDrQVOmQgi4dxy6rbhfOSLYy/aka7vegZXWChpmI572BA=
+	t=1765343422; cv=none; b=mJr8Y1Xgp3Pmt0L3XLSOV87/ZwgN+luZcNfbhiSb2ZPdIKo1gQV1UZbs6cuwoQFhgLS+mDiI4utM3/MWw3VNwkaBye6FXv8Vu8C6i6kMPottoUcwdqzrybgbte0VjPicWIzWzOYV6mAEk/V37N0HMpCS79ya4kK/jukBKYob6qc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765343211; c=relaxed/simple;
-	bh=J1mCaVxdHq5uB6Eo60OXrHAj6qDbeR6ep4VsMHoBUws=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=KYALldoC1qgKVMUHjbjIxFeAGTvvWMo+odMfSttR90P/v7chCZX9M4asyHOvBBWMkRAbXH1gj+xbU54zurRK8GVMhtkP6Bc4/gPGRYRkBsc48O16DtmncLrm7PIo1x+Zt4ho2icDkZOao18zS0+phoFAOMxi5i7OKChZMSli+HA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SFAhVD9r; arc=none smtp.client-ip=209.85.208.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-37a415a22ecso5256341fa.0
-        for <devicetree@vger.kernel.org>; Tue, 09 Dec 2025 21:06:49 -0800 (PST)
+	s=arc-20240116; t=1765343422; c=relaxed/simple;
+	bh=bTa6N8dDPhiUcCHPgHGvCiaKmQpQ67AqcDF4d+4yiiA=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=CGOwp5P2KATx2Sp6+lqDQFuejEUzxY8QMo0+6zftbSy9XhpgfqvbyaVY9V/AIdDBpfufeOpKTRvPJXt2VrolWLb5dKt194HnOm88Vldh/uxO6WItEERiQrrC4+iXohWf223LTaIQlAWA/enu5HNyg2YDeNHSXLTpYUGfKJblbfE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=US9eSX2G; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-4777771ed1aso52630985e9.2
+        for <devicetree@vger.kernel.org>; Tue, 09 Dec 2025 21:10:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1765343208; x=1765948008; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
+        d=fairphone.com; s=fair; t=1765343418; x=1765948218; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=cILwPL07kmVMgs2qEzjNirTOJ78Hi53PQg9DcT1cFUs=;
-        b=SFAhVD9rhmIaazNZkSJe0Z/+wHcTGG5aAB7zdpJ2uDF01JlfqOPPDO//PccSIRiY9j
-         sHUs9qqQJtw1l8HuuKaJnDUgWQRRPf/+9PWlvjKJBAAeyIsPEn+XwCJ9THr+A35Q3yh2
-         lXC6N8r/5cQJ1DS3FB/QvB/5QxFtrkId36JcGCcgf8y0a7vuBCXk2tn0W4L6vAShdC0M
-         +P+XLiQssDMmAfDsGhNlAmSjd4nQdHFN3jOebGCCgSKUmxc/Wy5lApRkNlQN8oUNRilc
-         3tiPek6ro72lrCEgeBWCQ4ndAVuc+pENE0LgV2+o7PFd1akO4yni8O9pkk2z6Yo3pguk
-         p47g==
+        bh=7XEAFrvxTFkX/hsHogJSu8gbmrA35vtUoTfUZCahOAo=;
+        b=US9eSX2Gux3qtYiKAzrV/ClG5/x5hWpJRhW54VTuMWaZmR5+UIMXNvR2hWC+eD9+nH
+         ECp7MbUqGxucNT3BGJE/KUnIviyMgu9g772ZvxwGB5URNtN/g7TbUZHOPIAR/b0ybtLm
+         mvQjfP4GA2D/E8JTZL/f2VNgITeFuGlE1DWTAUfBDaMg8NTRSHCxluZQKz9pR+9Q5l3R
+         hJ0mpHopyaPdOpjtz8Tsd0G5XGJWR7x7BmuQRziXEbPnjZBSCCb2h+Jk04raAcScgBKQ
+         F02EreWWmfqhYs/8fJkw4Jx2NMig+1BqnlaJVEGUuE/Etq0bbjtOBxik/Dn6o+abZN4j
+         0jzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765343208; x=1765948008;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=cILwPL07kmVMgs2qEzjNirTOJ78Hi53PQg9DcT1cFUs=;
-        b=G4y3BLdZQjtkIhifbbFbz/mR4DkJDPgq96tGpI3rfZkqT3VF/hmSDswaS+HkvwP9Pu
-         TOL2+Z0lU/rrjcLciJ4oUg4eIDabgSXttB2hWyeZBfY2lfWBEeSpNb/3sP3ijZ7l17CS
-         IfKxb6qJSp162dstF9foCWCc/yW5pycZr5JfoLxPdUd/opDhuVp4Am/3P+YQPRgGXVis
-         UZ0DBmsMmAF0ChRCzIVeCUdTItC36Ur5YcYUqywkfMVxHo7CdsozXK+e5UuCucUE4Cio
-         /UjqXQiIzWYMGy9tC2yk+kqNySiWxDi4wu4jVSYkA80/5ZeFHzkuOiY5Q941c6wjMMN0
-         LUSw==
-X-Forwarded-Encrypted: i=1; AJvYcCXuqrP/lrOIuJ3rYuBSkm2TR28u4ft2g/KIuCigd2SZe1IXWcsT95sF5IbT6Yrtnegb2ECpE37xvGZN@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxe4s5cRzNYXuQQ2ee37EwLyuS9ajjs3F7EIfFo0uPMaFW3MhOQ
-	s0YIqNRwtoAaWEsvv75DgYd4qOK+hJfDRv1q+fZbc9NjtO66NN3g0cjn3nUDCbevnKlUt2ycrfx
-	ZjJesiqjfOk1thRiWEu9Y6mYjx/R6dKonsg8O
-X-Gm-Gg: AY/fxX4Xby9e+X8QP/+hNoAm6je3mlFymMIAVsMq5ffqY3+I0GADJna0VCLPloKFLAC
-	bAGDrM1UyWzDuwTymuCPMegqaOpj8G93AjZu1gwc0JUV73ME8FzwqSLt5/lHM8JwFyzFvBgbetH
-	yxAfUWhSezI1GPR3pE9ZKAgQ9fv9BVerInODx5wxAkJHb97rSbNKRVv1hIUJn6OYnoX4HYLIRLU
-	rnBq+D9WDwz8Mr9GVkP0yIhz4E6LqxBKxK4FVjTFUMJRE4Usnzn9WRuQlBJlGYBsYuHGlU=
-X-Google-Smtp-Source: AGHT+IEtD51pVgfyEoZs16zdlkS5zOCHps39l1VDJ6qAeRTKqL8udHWBgVhfQdit4f38nYtvHD+3Y4GH3SE3RhssnNo=
-X-Received: by 2002:a05:651c:1508:b0:37b:98d3:7bc8 with SMTP id
- 38308e7fff4ca-37faa664722mr12420771fa.20.1765343207258; Tue, 09 Dec 2025
- 21:06:47 -0800 (PST)
+        d=1e100.net; s=20230601; t=1765343418; x=1765948218;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-gg:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=7XEAFrvxTFkX/hsHogJSu8gbmrA35vtUoTfUZCahOAo=;
+        b=Lth4SFBSb/R84lCDJtRzPIDVdBAKu0OLNeXeIARa2K9vS+jjP6n1CtxONMOb+bYtAq
+         dmtaYFuD7uJqKOBLBx57CYzVQWb7PZY+WJV//mwE178DNgqr/bPB6lUQV++Za94poUTt
+         6yNE9R8lL1tbeS+jaABgPO60qaPe6POB/yTCY6O1sJB44wjLMX8QOtAvt+rDCLQRXkDO
+         hbIk3NgXkteGu2hr+WGz6onJVRN05zWUxGHUBYr8VhvnJ5NIq++251odn29HkL8VsfMP
+         dRC522DOXTYfED90OBzsqTIknvY/LuMkNUGTURVIohGlls5bPGF4+wvjdWAM0iypojp5
+         Wt+g==
+X-Forwarded-Encrypted: i=1; AJvYcCXbtLHIMXWAQW2QsKiz4nJyb3bscS92YuIDWAqLZB1DJC9XlsAHchdiQgnwXoxYmXLgbdddeR2jFzkN@vger.kernel.org
+X-Gm-Message-State: AOJu0YzOAWtnhH3qqrGtG25ZHE1nc/iL18P7kSszoDcX0OwnbDkBDi4A
+	9RzDpwiwjITSYQmeS/8Iqr66KyG1sXehLn9MJXXZzvocyXr8AS3H8ZcHS0Vm2j/Mxy8=
+X-Gm-Gg: ASbGncvKgW6V3qglqU/EJiPZaYKNczN1iVw2RbowRfnFqJhdCRZQba2rx2irNRURuNa
+	aSmLUE6w9EbMupwJFPucBF6yuRhqVVBEp0WN9lQWmUxOOTAv19N/gQ3qlOo71TMFnYDN3v/zk0U
+	uGMzIhhbaC1ghMMEqFrFLmx36xLck2TNq/d+d97IJsRtSgnoJzG7zu9pPeG5JQUSdAuHkujElQV
+	HhZrcjuEPw5hPaTmYonml9XNJmYiPGfyPpQUOP3gBkwoFaDe9s/5nbk4U4YVi3yrInPC9+6/zDc
+	zgsscfs+V03q3pK2Hu4S0K8C7myji0lP/evRCQSatM87omddCwm2qSdIq9hDcJUPGZ19+U+WrpI
+	drQmR1YVEd2s3xwHd44Kkdm84z18lWEPIQ0RvAIinKRclFgT0aMP3uRuHlXjuZfaJrP7xeev9gO
+	iPj0hhbHHkUZHHsN3WpextkDRP4w5CT+UeGjU65r9B+OcbJqSVAMCIg6bv
+X-Google-Smtp-Source: AGHT+IFStEHj4aPWOmBIPigikYjX84huKXBNQQdaiQ5/PB/m10ZW9YmQM7+d11ZDgrKcwq+XC/p6Dg==
+X-Received: by 2002:a05:600c:a48:b0:477:9c73:2680 with SMTP id 5b1f17b1804b1-47a838064fbmr7353855e9.23.1765343418405;
+        Tue, 09 Dec 2025 21:10:18 -0800 (PST)
+Received: from localhost (fs96f9c361.tkyc007.ap.nuro.jp. [150.249.195.97])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7e2a0dd6c28sm17688049b3a.30.2025.12.09.21.10.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 09 Dec 2025 21:10:17 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20251027-tegra186-icc-p2-v4-0-e4e4f57e2103@gmail.com>
- <20251027-tegra186-icc-p2-v4-3-e4e4f57e2103@gmail.com> <82c8dda8-6fcb-48f9-bdaa-f3d1431e41ae@nvidia.com>
- <CALHNRZ8nCojreFCMXfbBBhWAMtmWN-04XtuW8fEsVD9bw+-AzA@mail.gmail.com>
- <CALHNRZ-CO5i9jeLkEG2cmHxcW1bcLhxcBSxjmL2euHfQy8yr-w@mail.gmail.com>
- <e6ce190e-6df7-4c36-abca-f09df3cc80e7@nvidia.com> <99ca4992-5736-417d-854e-379542549bee@kernel.org>
- <7f3dad08-cff5-40c2-8e7f-f6441a3d6b91@nvidia.com> <d5d23eb5-f43c-4e4b-9926-3fba6ffd3acf@nvidia.com>
- <CALHNRZ8vFJyfFXbxFehWA9TGkdrEUy9Wsm-DxEOT=tVbYTcU5Q@mail.gmail.com>
- <249bbe7e-e2da-4493-bdd5-8f4b17aff8fe@nvidia.com> <CALHNRZ8uPaKqSpFWkmYZn==Xw=rxh95Xm0_6LPN1HDj20zofqw@mail.gmail.com>
- <d16803e5-7b6d-4472-b50c-aa324cf52736@nvidia.com> <CALHNRZ83Q2Ha8VYoWAnqoCZQ=Fd9rtVRVLwRFxAY68ePQ29GHw@mail.gmail.com>
- <29cf2c16-3a0e-42c5-a083-16f77ae5d09a@nvidia.com> <CALHNRZ9KAv-hL6+6Uiaz2O2odm1rqMnjNxNVPsbCOdqX15KTuw@mail.gmail.com>
- <856447ae-4338-471d-a71f-a34aed749ac7@nvidia.com>
-In-Reply-To: <856447ae-4338-471d-a71f-a34aed749ac7@nvidia.com>
-From: Aaron Kling <webgeek1234@gmail.com>
-Date: Tue, 9 Dec 2025 23:06:35 -0600
-X-Gm-Features: AQt7F2p8HV3-IIxyA2es5G8USNAvQnuSmeVt0nyJ-nZ6wfxM32pOyTDXFbd106o
-Message-ID: <CALHNRZ9y0n6JNfeDUQgZoECkxo+We0_G8TP0H4advcSqrX86kg@mail.gmail.com>
-Subject: Re: [PATCH v4 3/5] memory: tegra186-emc: Support non-bpmp icc scaling
-To: Jon Hunter <jonathanh@nvidia.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Thierry Reding <thierry.reding@gmail.com>, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 10 Dec 2025 14:10:10 +0900
+Message-Id: <DEUA0F5Q4TJH.2A7A0WJE6UH6Y@fairphone.com>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>, "Viresh Kumar"
+ <viresh.kumar@linaro.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Manivannan Sadhasivam" <mani@kernel.org>, "Herbert Xu"
+ <herbert@gondor.apana.org.au>, "David S. Miller" <davem@davemloft.net>,
+ "Vinod Koul" <vkoul@kernel.org>, "Thomas Gleixner" <tglx@linutronix.de>,
+ "Bjorn Andersson" <andersson@kernel.org>, "Konrad Dybcio"
+ <konradybcio@kernel.org>, <~postmarketos/upstreaming@lists.sr.ht>,
+ <phone-devel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-arm-msm@vger.kernel.org>, <linux-crypto@vger.kernel.org>, "Konrad
+ Dybcio" <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH v4 5/9] arm64: dts: qcom: pm8550vs: Disable different
+ PMIC SIDs by default
+From: "Luca Weiss" <luca.weiss@fairphone.com>
+To: "Dmitry Baryshkov" <dmitry.baryshkov@oss.qualcomm.com>, "Luca Weiss"
+ <luca.weiss@fairphone.com>
+X-Mailer: aerc 0.21.0-0-g5549850facc2
+References: <20251210-sm7635-fp6-initial-v4-0-b05fddd8b45c@fairphone.com>
+ <20251210-sm7635-fp6-initial-v4-5-b05fddd8b45c@fairphone.com>
+ <jyyamotpswptzirtido6iufroxpdu3dyqkf4zs3hkfqj6mt6f2@sklyrpyahzjb>
+In-Reply-To: <jyyamotpswptzirtido6iufroxpdu3dyqkf4zs3hkfqj6mt6f2@sklyrpyahzjb>
 
-On Tue, Dec 9, 2025 at 10:08=E2=80=AFPM Jon Hunter <jonathanh@nvidia.com> w=
-rote:
+On Wed Dec 10, 2025 at 10:55 AM JST, Dmitry Baryshkov wrote:
+> On Wed, Dec 10, 2025 at 10:43:29AM +0900, Luca Weiss wrote:
+>> Keep the different PMIC definitions in pm8550vs.dtsi disabled by
+>> default, and only enable them in boards explicitly.
+>>=20
+>> This allows to support boards better which only have pm8550vs_c, like
+>> the Milos/SM7635-based Fairphone (Gen. 6).
+>>=20
+>> Note: I assume that at least some of these devices with PM8550VS also
+>> don't have _c, _d, _e and _g, but this patch is keeping the resulting
+>> devicetree the same as before this change, disabling them on boards that
+>> don't actually have those is out of scope for this patch.
+>>=20
+>> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+>> ---
+>>  arch/arm64/boot/dts/qcom/pm8550vs.dtsi                   |  8 ++++++++
+>>  arch/arm64/boot/dts/qcom/qcs8550-aim300.dtsi             | 16 +++++++++=
++++++++
+>>  arch/arm64/boot/dts/qcom/sm8550-hdk.dts                  | 16 +++++++++=
++++++++
+>>  arch/arm64/boot/dts/qcom/sm8550-mtp.dts                  | 16 +++++++++=
++++++++
+>>  arch/arm64/boot/dts/qcom/sm8550-qrd.dts                  | 16 +++++++++=
++++++++
+>>  arch/arm64/boot/dts/qcom/sm8550-samsung-q5q.dts          | 16 +++++++++=
++++++++
+>>  .../boot/dts/qcom/sm8550-sony-xperia-yodo-pdx234.dts     | 16 +++++++++=
++++++++
+>>  arch/arm64/boot/dts/qcom/sm8650-hdk.dts                  | 16 +++++++++=
++++++++
+>>  arch/arm64/boot/dts/qcom/sm8650-mtp.dts                  | 16 +++++++++=
++++++++
+>>  arch/arm64/boot/dts/qcom/sm8650-qrd.dts                  | 16 +++++++++=
++++++++
+>>  10 files changed, 152 insertions(+)
+>>=20
+>> diff --git a/arch/arm64/boot/dts/qcom/pm8550vs.dtsi b/arch/arm64/boot/dt=
+s/qcom/pm8550vs.dtsi
+>> index 6426b431616b..7b5898c263ad 100644
+>> --- a/arch/arm64/boot/dts/qcom/pm8550vs.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/pm8550vs.dtsi
+>> @@ -98,6 +98,8 @@ pm8550vs_c: pmic@2 {
+>>  		#address-cells =3D <1>;
+>>  		#size-cells =3D <0>;
+>> =20
+>> +		status =3D "disabled";
+>> +
 >
+> Would it be better to split pm8550vs into 4 files rather than disabling
+> irrelevant bits?
+
+Maybe, but imo that's a different discussion, here I'm just making sure
+I don't need three status =3D "disabled" properties in my milos-fp6 dts.
+
+Regards
+Luca
+
 >
-> On 21/11/2025 18:17, Aaron Kling wrote:
-> > On Fri, Nov 21, 2025 at 5:21=E2=80=AFAM Jon Hunter <jonathanh@nvidia.co=
-m> wrote:
-> >>
-> >>
-> >> On 12/11/2025 07:21, Aaron Kling wrote:
-> >>> On Wed, Nov 12, 2025 at 12:18=E2=80=AFAM Jon Hunter <jonathanh@nvidia=
-.com> wrote:
-> >>>>
-> >>>>
-> >>>> On 11/11/2025 23:17, Aaron Kling wrote:
-> >>>>
-> >>>> ...
-> >>>>
-> >>>>> Alright, I think I've got the picture of what's going on now. The
-> >>>>> standard arm64 defconfig enables the t194 pcie driver as a module. =
-And
-> >>>>> my simple busybox ramdisk that I use for mainline regression testin=
-g
-> >>>>> isn't loading any modules. If I set the pcie driver to built-in, I
-> >>>>> replicate the issue. And I don't see the issue on my normal use cas=
-e,
-> >>>>> because I have the dt changes as well.
-> >>>>>
-> >>>>> So it appears that the pcie driver submits icc bandwidth. And witho=
-ut
-> >>>>> cpufreq submitting bandwidth as well, the emc driver gets a very lo=
-w
-> >>>>> number and thus sets a very low emc freq. The question becomes... w=
-hat
-> >>>>> to do about it? If the related dt changes were submitted to
-> >>>>> linux-next, everything should fall into place. And I'm not sure whe=
-re
-> >>>>> this falls on the severity scale since it doesn't full out break bo=
-ot
-> >>>>> or prevent operation.
-> >>>>
-> >>>> Where are the related DT changes? If we can get these into -next and
-> >>>> lined up to be merged for v6.19, then that is fine. However, we shou=
-ld
-> >>>> not merge this for v6.19 without the DT changes.
-> >>>
-> >>> The dt changes are here [0].
-> >>
-> >> To confirm, applying the DT changes do not fix this for me. Thierry is
-> >> having a look at this to see if there is a way to fix this.
-> >>
-> >> BTW, I have also noticed that Thierry's memory frequency test [0] is
-> >> also failing on Tegra186. The test simply tries to set the frequency v=
-ia
-> >> the sysfs and this is now failing. I am seeing ...
-> >>
-> >> memory: emc: - available rates: (* =3D current)
-> >> memory: emc:   -   40800000
-> >> memory: emc:   -   68000000
-> >> memory: emc:   -  102000000
-> >> memory: emc:   -  204000000
-> >> memory: emc:   -  408000000
-> >> memory: emc:   -  665600000
-> >> memory: emc:   -  800000000
-> >> memory: emc:   - 1062400000
-> >> memory: emc:   - 1331200000
-> >> memory: emc:   - 1600000000
-> >> memory: emc:   - 1866000000 *
-> >> memory: emc: - testing:
-> >> memory: emc:   -   40800000...OSError: [Errno 34] Numerical result out
-> >> of range
-> >
-> > Question. Does this test run and pass on jetson-tk1? I based the
-> > tegra210 and tegra186 [0] code on tegra124 [1]. And I don't see a
-> > difference in the flow now. What appears to be happening is that icc
-> > is reporting a high bandwidth, setting the emc min_freq to something
-> > like 1600MHz. Then debugfs is having max_freq set to something low
-> > like 40.8MHz. Then the linked code block fails because the higher of
-> > the min_freqs is greater than the lower of the max_freqs. But if this
-> > same test is run on jetson-tk1, I don't see how it passes. Unless
-> > maybe the t124 actmon is consistently setting min freqs during the
-> > tests.
->
-> So we don't currently run this test on Tegra124. We could certainly try.
-> I don't recall if there was an issue that prevented us from doing so now.
->
-> > An argument could be made that any attempt to set debugfs should win a
-> > conflict with icc. That could be done. But if that needs done here,
-> > I'd argue that it needs replicated across all other applicable emc
-> > drivers too.
->
-> The bottom line is that we cannot regress anything that was working befor=
-e.
+>>  		pm8550vs_c_temp_alarm: temp-alarm@a00 {
+>>  			compatible =3D "qcom,spmi-temp-alarm";
+>>  			reg =3D <0xa00>;
+>> @@ -122,6 +124,8 @@ pm8550vs_d: pmic@3 {
+>>  		#address-cells =3D <1>;
+>>  		#size-cells =3D <0>;
+>> =20
+>> +		status =3D "disabled";
+>> +
+>>  		pm8550vs_d_temp_alarm: temp-alarm@a00 {
+>>  			compatible =3D "qcom,spmi-temp-alarm";
+>>  			reg =3D <0xa00>;
+>> @@ -146,6 +150,8 @@ pm8550vs_e: pmic@4 {
+>>  		#address-cells =3D <1>;
+>>  		#size-cells =3D <0>;
+>> =20
+>> +		status =3D "disabled";
+>> +
+>>  		pm8550vs_e_temp_alarm: temp-alarm@a00 {
+>>  			compatible =3D "qcom,spmi-temp-alarm";
+>>  			reg =3D <0xa00>;
+>> @@ -170,6 +176,8 @@ pm8550vs_g: pmic@6 {
+>>  		#address-cells =3D <1>;
+>>  		#size-cells =3D <0>;
+>> =20
+>> +		status =3D "disabled";
+>> +
+>>  		pm8550vs_g_temp_alarm: temp-alarm@a00 {
+>>  			compatible =3D "qcom,spmi-temp-alarm";
+>>  			reg =3D <0xa00>;
+>> diff --git a/arch/arm64/boot/dts/qcom/qcs8550-aim300.dtsi b/arch/arm64/b=
+oot/dts/qcom/qcs8550-aim300.dtsi
+>> index e6ac529e6b72..e6ebb643203b 100644
+>> --- a/arch/arm64/boot/dts/qcom/qcs8550-aim300.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/qcs8550-aim300.dtsi
+>> @@ -366,6 +366,22 @@ &pm8550b_eusb2_repeater {
+>>  	vdd3-supply =3D <&vreg_l5b_3p1>;
+>>  };
+>> =20
+>> +&pm8550vs_c {
+>> +	status =3D "okay";
+>> +};
+>> +
+>> +&pm8550vs_d {
+>> +	status =3D "okay";
+>> +};
+>> +
+>> +&pm8550vs_e {
+>> +	status =3D "okay";
+>> +};
+>> +
+>> +&pm8550vs_g {
+>> +	status =3D "okay";
+>> +};
+>> +
+>>  &sleep_clk {
+>>  	clock-frequency =3D <32764>;
+>>  };
+>> diff --git a/arch/arm64/boot/dts/qcom/sm8550-hdk.dts b/arch/arm64/boot/d=
+ts/qcom/sm8550-hdk.dts
+>> index 599850c48494..ee13e6136a82 100644
+>> --- a/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
+>> +++ b/arch/arm64/boot/dts/qcom/sm8550-hdk.dts
+>> @@ -1107,6 +1107,22 @@ &pm8550b_eusb2_repeater {
+>>  	vdd3-supply =3D <&vreg_l5b_3p1>;
+>>  };
+>> =20
+>> +&pm8550vs_c {
+>> +	status =3D "okay";
+>> +};
+>> +
+>> +&pm8550vs_d {
+>> +	status =3D "okay";
+>> +};
+>> +
+>> +&pm8550vs_e {
+>> +	status =3D "okay";
+>> +};
+>> +
+>> +&pm8550vs_g {
+>> +	status =3D "okay";
+>> +};
+>> +
+>>  &pon_pwrkey {
+>>  	status =3D "okay";
+>>  };
+>> diff --git a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts b/arch/arm64/boot/d=
+ts/qcom/sm8550-mtp.dts
+>> index f430038bd402..94ed1c221856 100644
+>> --- a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
+>> +++ b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
+>> @@ -789,6 +789,22 @@ &pm8550b_eusb2_repeater {
+>>  	vdd3-supply =3D <&vreg_l5b_3p1>;
+>>  };
+>> =20
+>> +&pm8550vs_c {
+>> +	status =3D "okay";
+>> +};
+>> +
+>> +&pm8550vs_d {
+>> +	status =3D "okay";
+>> +};
+>> +
+>> +&pm8550vs_e {
+>> +	status =3D "okay";
+>> +};
+>> +
+>> +&pm8550vs_g {
+>> +	status =3D "okay";
+>> +};
+>> +
+>>  &qupv3_id_0 {
+>>  	status =3D "okay";
+>>  };
+>> diff --git a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts b/arch/arm64/boot/d=
+ts/qcom/sm8550-qrd.dts
+>> index 05c98fe2c25b..3fd261377a0c 100644
+>> --- a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
+>> +++ b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
+>> @@ -1003,6 +1003,22 @@ &pm8550b_eusb2_repeater {
+>>  	vdd3-supply =3D <&vreg_l5b_3p1>;
+>>  };
+>> =20
+>> +&pm8550vs_c {
+>> +	status =3D "okay";
+>> +};
+>> +
+>> +&pm8550vs_d {
+>> +	status =3D "okay";
+>> +};
+>> +
+>> +&pm8550vs_e {
+>> +	status =3D "okay";
+>> +};
+>> +
+>> +&pm8550vs_g {
+>> +	status =3D "okay";
+>> +};
+>> +
+>>  &pon_pwrkey {
+>>  	status =3D "okay";
+>>  };
+>> diff --git a/arch/arm64/boot/dts/qcom/sm8550-samsung-q5q.dts b/arch/arm6=
+4/boot/dts/qcom/sm8550-samsung-q5q.dts
+>> index b4ef40ae2cd9..81c02ee27fe9 100644
+>> --- a/arch/arm64/boot/dts/qcom/sm8550-samsung-q5q.dts
+>> +++ b/arch/arm64/boot/dts/qcom/sm8550-samsung-q5q.dts
+>> @@ -533,6 +533,22 @@ volume_up_n: volume-up-n-state {
+>>  	};
+>>  };
+>> =20
+>> +&pm8550vs_c {
+>> +	status =3D "okay";
+>> +};
+>> +
+>> +&pm8550vs_d {
+>> +	status =3D "okay";
+>> +};
+>> +
+>> +&pm8550vs_e {
+>> +	status =3D "okay";
+>> +};
+>> +
+>> +&pm8550vs_g {
+>> +	status =3D "okay";
+>> +};
+>> +
+>>  &pon_pwrkey {
+>>  	status =3D "okay";
+>>  };
+>> diff --git a/arch/arm64/boot/dts/qcom/sm8550-sony-xperia-yodo-pdx234.dts=
+ b/arch/arm64/boot/dts/qcom/sm8550-sony-xperia-yodo-pdx234.dts
+>> index d90dc7b37c4a..0e6ed6fce614 100644
+>> --- a/arch/arm64/boot/dts/qcom/sm8550-sony-xperia-yodo-pdx234.dts
+>> +++ b/arch/arm64/boot/dts/qcom/sm8550-sony-xperia-yodo-pdx234.dts
+>> @@ -661,6 +661,22 @@ focus_n: focus-n-state {
+>>  	};
+>>  };
+>> =20
+>> +&pm8550vs_c {
+>> +	status =3D "okay";
+>> +};
+>> +
+>> +&pm8550vs_d {
+>> +	status =3D "okay";
+>> +};
+>> +
+>> +&pm8550vs_e {
+>> +	status =3D "okay";
+>> +};
+>> +
+>> +&pm8550vs_g {
+>> +	status =3D "okay";
+>> +};
+>> +
+>>  &pm8550vs_g_gpios {
+>>  	cam_pwr_a_cs: cam-pwr-a-cs-state {
+>>  		pins =3D "gpio4";
+>> diff --git a/arch/arm64/boot/dts/qcom/sm8650-hdk.dts b/arch/arm64/boot/d=
+ts/qcom/sm8650-hdk.dts
+>> index 5bf1af3308ce..eabc828c05b4 100644
+>> --- a/arch/arm64/boot/dts/qcom/sm8650-hdk.dts
+>> +++ b/arch/arm64/boot/dts/qcom/sm8650-hdk.dts
+>> @@ -1046,6 +1046,22 @@ &pm8550b_eusb2_repeater {
+>>  	vdd3-supply =3D <&vreg_l5b_3p1>;
+>>  };
+>> =20
+>> +&pm8550vs_c {
+>> +	status =3D "okay";
+>> +};
+>> +
+>> +&pm8550vs_d {
+>> +	status =3D "okay";
+>> +};
+>> +
+>> +&pm8550vs_e {
+>> +	status =3D "okay";
+>> +};
+>> +
+>> +&pm8550vs_g {
+>> +	status =3D "okay";
+>> +};
+>> +
+>>  &pon_pwrkey {
+>>  	status =3D "okay";
+>>  };
+>> diff --git a/arch/arm64/boot/dts/qcom/sm8650-mtp.dts b/arch/arm64/boot/d=
+ts/qcom/sm8650-mtp.dts
+>> index c67bbace2743..bb688a5d21c2 100644
+>> --- a/arch/arm64/boot/dts/qcom/sm8650-mtp.dts
+>> +++ b/arch/arm64/boot/dts/qcom/sm8650-mtp.dts
+>> @@ -692,6 +692,22 @@ &pm8550b_eusb2_repeater {
+>>  	vdd3-supply =3D <&vreg_l5b_3p1>;
+>>  };
+>> =20
+>> +&pm8550vs_c {
+>> +	status =3D "okay";
+>> +};
+>> +
+>> +&pm8550vs_d {
+>> +	status =3D "okay";
+>> +};
+>> +
+>> +&pm8550vs_e {
+>> +	status =3D "okay";
+>> +};
+>> +
+>> +&pm8550vs_g {
+>> +	status =3D "okay";
+>> +};
+>> +
+>>  &qupv3_id_1 {
+>>  	status =3D "okay";
+>>  };
+>> diff --git a/arch/arm64/boot/dts/qcom/sm8650-qrd.dts b/arch/arm64/boot/d=
+ts/qcom/sm8650-qrd.dts
+>> index b2feac61a89f..809fd6080a99 100644
+>> --- a/arch/arm64/boot/dts/qcom/sm8650-qrd.dts
+>> +++ b/arch/arm64/boot/dts/qcom/sm8650-qrd.dts
+>> @@ -1002,6 +1002,22 @@ &pm8550b_eusb2_repeater {
+>>  	vdd3-supply =3D <&vreg_l5b_3p1>;
+>>  };
+>> =20
+>> +&pm8550vs_c {
+>> +	status =3D "okay";
+>> +};
+>> +
+>> +&pm8550vs_d {
+>> +	status =3D "okay";
+>> +};
+>> +
+>> +&pm8550vs_e {
+>> +	status =3D "okay";
+>> +};
+>> +
+>> +&pm8550vs_g {
+>> +	status =3D "okay";
+>> +};
+>> +
+>>  &qup_i2c3_data_clk {
+>>  	/* Use internal I2C pull-up */
+>>  	bias-pull-up =3D <2200>;
+>>=20
+>> --=20
+>> 2.52.0
+>>=20
 
-Let me try to iterate the potential issues I've seen stated here. If
-I'm missing anything, please fill in the blanks.
-
-1) If this change is applied without the related dt change and the
-pcie drvier is loaded, the emc clock can become stuck at the lowest
-rate. This is caused by the pcie driver providing icc data, but
-nothing else is. So the very low requested bandwidth results in the
-emc clock being set very low. I'm not sure there is a 'fix' for this,
-beyond making sure the dt change is merged to ensure that the cpufreq
-driver provides bandwidth info, causing the emc driver to select a
-more reasonable emc clock rate. This is a similar situation to what's
-currently blocking the tegra210 actmon series. I don't think there is
-a way for the drivers to know if icc data is missing/wrong. The
-scaling is doing exactly what it's told based on the icc routing given
-in the dt.
-
-2) Jon, you report that even with both this change and the related dt
-change, that the issue is still not fixed. But then posted a log
-showing that the emc rate is set to max. If the issue is that emc rate
-is too low, then how can debugfs report that the rate is max? For
-reference, everything scales as expected for me given this change plus
-the dt change on both p2771 and p3636+p3509.
-
-3) If icc is requesting enough bandwidth to set the emc clock to a
-high value, then a user tries to set debugfs max_freq to a lower
-value, this code will reject the change. I do not believe this is an
-issue unique to this code. tegra20-emc, tegra30-emc, and tegra124-emc
-all have this same flow. And so does my proposed change to
-tegra210-emc-core in the actmon series. This is why I asked if
-tegra124 ran this test, to see if the failure was unique. If this is
-not a unique failure, then I'd argue that all instances need changed,
-not just this one causing diverging results depending on the soc being
-utilized. A lot of the work I'm doing is to try to bring unity and
-feature parity to all the tegra socs I'm working on. I don't want to
-cause even more divergence.
-
-What actions need taken for which issue?
-
-Aaron
 
