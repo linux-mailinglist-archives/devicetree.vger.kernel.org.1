@@ -1,117 +1,90 @@
-Return-Path: <devicetree+bounces-245649-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245650-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C6D0CB3B32
-	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 18:53:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C9709CB3B50
+	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 19:01:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 54F1F310562E
-	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 17:51:29 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C4F12302C4F3
+	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 18:00:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C275528725D;
-	Wed, 10 Dec 2025 17:51:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C37A31A05B;
+	Wed, 10 Dec 2025 18:00:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="TIQfC9mX";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="S9RqGACl"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="JInx26C1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28BF21F09A5
-	for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 17:51:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB4154C79
+	for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 18:00:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765389088; cv=none; b=KmXux5mDZdao8sUlLNiVHv0zwcT3hYcOEWEbQF4XUR4rTG5k9ppteCUjNC6HiYxxJzwZvOkLcF/AV6VpwCJ6ZzGHauZl2WOEQG5zKa0Hs+sfUm54OgIzl1MnGRdqAwvCK7E+Y0KWBkc19zvg73NP09tONrgZIYEMa+8jBZhHbjg=
+	t=1765389635; cv=none; b=ej1TpIqFmzteUCFivKzI82a4PFx3IbRnnKkERQuGc1oAm909tm035+JuKGIR7nvjVEDs5VJvsp+sjrn9RiRzxd+cmBHZs1qqU7irixsq/nfHpGWcsQOqz1sp+yXOAl+1sdt3XWYxqXS0mzz0KKAw/mWdlGRY81iM36Yh4L84txI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765389088; c=relaxed/simple;
-	bh=hqxLe5wDqnsYvlp23QTWqd8JEec/XyT1t+QccVqor7g=;
+	s=arc-20240116; t=1765389635; c=relaxed/simple;
+	bh=a+WgLV8Me8he8vsaz9WjfiuVCZvCj6zKFhsOIiTYBLs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=G7VGT00rV966KHxmcgSn88AetZLAcQhLxMNHmshbT83D3d0Ys9fTEektcEeLyXEIIoSHUu6tlRns3SOad1xz2V0Vz+jIkkEbBTYrfZn53m1IeLwlKtizVja2O4RlXViZBi42D1UPuzNTnqo5Bx/IZm67LKdfGIeT97lD7KKqpE8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=TIQfC9mX; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=S9RqGACl; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BAH2LNe1817911
-	for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 17:51:26 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=BeSQQNCY7n3ICAefy9Ece8ch
-	se8u8sQw7ZSYOSvx66w=; b=TIQfC9mXoDdJvk4a9oHqwyMn1jgTT5pNgliPChck
-	ygFL6I/FJkGztwY9KfZ9OXoujBCFkPjdSr6mkAmc7rhAzaFGbRhRm8XhEVCwkGnF
-	SDWDSx4RGoEIVKcXjiMYib9iAP5c00TwaqV5Tzt69cLHyXRUyKpz70SUiCwHpYKU
-	T8VwysJJmeupjVDoL6jHYRIiIQAUUHMHt7TWQ/7a7irIPzeO1rfwZaeAf/vY1aI5
-	7s8fJ9X0vM2Qq1w10uCp7nO3NvJUhUEmhWfQus+e29X5jS7KlQ6dNuop8HfafOLX
-	wvMAshfL8B2Z5QRkxyZSMvezRYJRIlno8hotxj5Qa5FLVQ==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ay2e0j8eq-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 17:51:25 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4ed782d4c7dso837371cf.2
-        for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 09:51:25 -0800 (PST)
+	 Content-Type:Content-Disposition:In-Reply-To; b=YmgW+bq1+JqLFBj31q8xz88a08bGkgRMWJhHbglXrjyCKyTaLy4QSWfrQa4YCD45NcPIg4agYVAqrG9j63HB15OZ8RuatJmVQGoEK5HOAHmwJAQpImEz5/UVoJj0UQ3QbrksEZzJcZtxI3RJ46Bi69GmGx+tozvZ4FbGM1sGeoY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=JInx26C1; arc=none smtp.client-ip=209.85.221.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-42e2e6aa22fso10549f8f.2
+        for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 10:00:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1765389085; x=1765993885; darn=vger.kernel.org;
+        d=chromium.org; s=google; t=1765389632; x=1765994432; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=BeSQQNCY7n3ICAefy9Ece8chse8u8sQw7ZSYOSvx66w=;
-        b=S9RqGAClm6yU58l8FPwP105v0neO0Bxc8xIcmGhN08XKeIv5lvTHpoHaNrtqTIzVrb
-         RK4bnWeUM640Og9ZXmb5kGt/4lf/i5pnWbwisnXHr8wuJVvlDMUTvOc9GsLfeepC1sWm
-         FOriWrhJx7rzOlLGbFfPJfdPCOEoY+2ue2ULMg+G8hCX6OGJaarNcRn8nBEX5/Hl4Z2A
-         fnXykgyhwgvml3nSnODp5o+yuScLXqtJHxDaPz5KIUUjbbUsf7nhsY+bRk4zG7k+2aUH
-         zaP4h4TZ5QakuTvcM4y3d5/F+iB67+vy4yid1dpYFnSfdcRYqxxL3Z2P04teazZ87MlI
-         4OZQ==
+        bh=vNo6uQ8AO0yOaAEJTUC3/zvI8C5HZVj+hKvmdCETuYM=;
+        b=JInx26C1T9J4bIK8XSvC0fuP1epZ1mBZq02rYH0f/BaN3cbM6qusuYxq4pKQ3dllxp
+         xQsWKTr4XHbPLFgWXWcTOptPq26oOiG1D69YNKH3V/I3A30ohO5ByoJaLTAuPQtqKJnW
+         X+prjUObi70W7zv4fMdlW04mPK63PaT0bgeJA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765389085; x=1765993885;
+        d=1e100.net; s=20230601; t=1765389632; x=1765994432;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=BeSQQNCY7n3ICAefy9Ece8chse8u8sQw7ZSYOSvx66w=;
-        b=t/4gH9egIE73Q4GrTc5Hv9CypwDVl75YsEN24krph4TrmdV5TbYQO34kNhkdzqKkbg
-         HlI3qsG2l2lfB8OfnCYMU/EfxX069l69Y7rhFCEdGpSTV9rw39lv2EEnHIN8ERjo35VE
-         xjIvj5tprLeUM0EkYu/E621s1yB4X0pDe1x9v8yXA1LMuDVH7Li0rXhfg2lbauPP98RZ
-         rZSm+hdSDuBMWzo5qp4y7Z9xV9Hpodg5RzdYNHJvUQunxLoEA57BXxJAYabhHgLubzfN
-         1euyys2buw9B3I/A06ITLr3jDxeArUK7AuoepAbRgjx2jpPvafZ1rkFfkW3px17Tf497
-         MYjw==
-X-Forwarded-Encrypted: i=1; AJvYcCWJYGwfUQRd0y1/Evxf0qvTZZJFyPNXamfGeljvWexZmL136mpLXeDDk2dXyuCJUBVvMTbtgP+rC61f@vger.kernel.org
-X-Gm-Message-State: AOJu0YxNj4uaRWjtZ0cIERVk8hAxcBS182D2C1Lf4rDWP9foiyIdeREa
-	bocKyYOP5TTsY6h42TcY6Up23LJ9WtKfEgulrZkvgGsUBgI+LA6GvGMwOiIP6c8k9Q0fUeJezxz
-	doUicsJuSjKeXnkOqPuAUZmzX3laPlJg7l4Oq7FU3VO0LRKHjM2hNr7SsmmECgVGy
-X-Gm-Gg: ASbGncvtQmuOgRiPxmpE1zQXvaGOOSpgMKnGefHwuWvRVWGx/ezlra51Y7aD/PJUbz4
-	cEHeWNseNgKesjhNcUzIzUh/26/mV42cMYwjskt7VqFHGrdgRnCmZLZs7ho4X/+VgVZZPN/1vBI
-	XT/1/mRt8IhBcgPaMVsK++FBM7G897qGTcqD7RLJyyOr0TKZeLPn6o/MJqcmkhkeb2aVfm3R2ST
-	Z/KYC0hJ7y2Zm0KrZ1jQjVAh/wOyTzScnEIAN9zx/eFYap4FTfeXQ3/kSskn6lvHKQ2hp07ssWM
-	t8NVrlaV77tJMldKT8QQK7gUHXMh4fbFLpVMhLywkoCcpPsKEorOKoJGxKW4sgYgP6nDLeTpC/W
-	ZApxyY5bR1UPDQ0ADCaElTwy9g4BIN7orEjC43wLZozvIBJXXCchSVru74YY2GdrzX7dzMANiHr
-	3LAErLky5Tdu77KI8rHceB4Ao=
-X-Received: by 2002:a05:622a:6089:b0:4ee:2bfb:1658 with SMTP id d75a77b69052e-4f1b1b0b1d6mr38135821cf.45.1765389085300;
-        Wed, 10 Dec 2025 09:51:25 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFuloF8EWYgTNimNJfZde6kWgxvxaGZZr+YBsiejZFJFGZe+iFpq3QoI+oYylCx2XnCAFrI6g==
-X-Received: by 2002:a05:622a:6089:b0:4ee:2bfb:1658 with SMTP id d75a77b69052e-4f1b1b0b1d6mr38135421cf.45.1765389084815;
-        Wed, 10 Dec 2025 09:51:24 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-598f2f379f5sm37713e87.11.2025.12.10.09.51.23
+        bh=vNo6uQ8AO0yOaAEJTUC3/zvI8C5HZVj+hKvmdCETuYM=;
+        b=wZg6vLvqn7/X/0FvSinIyFuqFV7Y9dWN9ekcBFgSrm2FrVfzAgIUrthHqO+l1ycGdr
+         b/tREFGl+NpyNgpLArzBLNqpJqW8Q5pulWnBtp8jdfGAdCb6p3ucN1JlgyN0vRfaB4Sw
+         wHSP/LokgxSYx+4mkDoxMIub7L5Phiy7HBkddTxT1esd0BghhYv2FPQLdMhJWeON3PK8
+         UGF9xpBjLMSXXbuJKy9PTOSM9iit+aOhFBizxc89DPjiVb/NeCpEnSJOnQYcTlkZMbWP
+         DHdSokfqmNISq0JbMuF3jXEDOi5b6lYseVDjBlcEpeKLRocaXTGewybhNEr1O07THxn0
+         TXJw==
+X-Forwarded-Encrypted: i=1; AJvYcCXqbxt6XHx5WvQMKOyC4d8jbjN6XyFQag9FjTpOq+QxI0UlznlgglpxpSL62q5LaQZajfouysi6jut6@vger.kernel.org
+X-Gm-Message-State: AOJu0YxHetJ+QqfW7clpHlpu1znx6fGgCeVfhVegN6ySdwpHxcJNvLVV
+	JVpOM6VjY8Om+qu4/tApdaIaiHoK6xLIbaoXvAbIkRaRS8KVjHnmHelvc4iq5Xc2Lg==
+X-Gm-Gg: AY/fxX7C9E8JTvQTd2Xbb+aWVv81egGPJmYPiWQFJLKauY8KChUQ93P2K/FIFzQ2xfO
+	8tqfy/VBcO+BoUylLOIa5BSvxpOZu1AnSNzoWSRoOEuJ/JhET/UOVkd4Z4yrmhMism8eaWJFW3h
+	lKG7aNHg3C22r8uB8w1aBYy0qjxXcQQRnzoj4LK7Nq7nr03OpAy3zOh7vnezKHtpR8FrPHZljKf
+	or34t7vsEwdGvxePPDJ6Ot0Hd1oj7cmRdiBaQQ8tkpNV9gKHmkPwYGucLqLEApJkaNNCbFtxyoO
+	FbokKmmvV+MmLLRAu9aFVAfdLFi0udvbQeBGj4/l3KtKAoUTUUnsSkWJotorM/lNyu11lfEQGvA
+	la8FsX11Xwm7dYEesVmNcMIsURgQfKbuYpRsqqKjBTxztr/ejW3o+HP5L33heGExW9a4ycVWhk+
+	rVhx1CDwmImIRNanHmCw==
+X-Google-Smtp-Source: AGHT+IGPESWqtdwT/XRTR5/RmcuAb3YXC3b7FMypahW+beW9pJZ9LM1+rqVviz4PyBnlnycCgdJNOQ==
+X-Received: by 2002:a05:6000:608:b0:429:b9bc:e826 with SMTP id ffacd0b85a97d-42fa3b079c1mr3929886f8f.53.1765389632184;
+        Wed, 10 Dec 2025 10:00:32 -0800 (PST)
+Received: from google.com ([37.228.206.31])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42fa8b8601csm291118f8f.22.2025.12.10.10.00.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Dec 2025 09:51:24 -0800 (PST)
-Date: Wed, 10 Dec 2025 19:51:22 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Abel Vesa <abel.vesa@oss.qualcomm.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Dmitry Baryshkov <lumag@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Abel Vesa <abel.vesa@linaro.org>
-Subject: Re: [PATCH v5 4/4] phy: qcom: edp: Add Glymur platform support
-Message-ID: <mao4pyywje5x526ggasodx2hpmrgrw3yhq7a4v2lxtj2m3p6ii@6mtei6u7jbuc>
-References: <20251205-phy-qcom-edp-add-glymur-support-v5-0-201773966f1f@oss.qualcomm.com>
- <20251205-phy-qcom-edp-add-glymur-support-v5-4-201773966f1f@oss.qualcomm.com>
- <q7iguwi6uxkzl3ogk2jidfncc3guuaqzszvemvqita6t3mlnvz@6e2vxnu4li46>
- <e22cqybvhlfv6mvmbr6tlaz4zousxcyo475g67yjerxw6xks64@6zzg6tj33kxa>
- <ef6gkmgy4n6ipdam2nbm3no2ew3mga6dt45xpf6ykv3is2nkjh@gvz6pzg6dk7e>
+        Wed, 10 Dec 2025 10:00:31 -0800 (PST)
+Date: Wed, 10 Dec 2025 18:00:29 +0000
+From: Fabio Baltieri <fabiobaltieri@chromium.org>
+To: Rob Herring <robh@kernel.org>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Benson Leung <bleung@chromium.org>,
+	Guenter Roeck <groeck@chromium.org>,
+	Tzung-Bi Shih <tzungbi@kernel.org>, Simon Glass <sjg@chromium.org>,
+	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+	chrome-platform@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 3/3] dt-bindings: google,cros-ec-keyb: add fn-key and
+ f-keymap props
+Message-ID: <aTm1PVLrS7Ra0OTF@google.com>
+References: <20251209154706.529784-1-fabiobaltieri@chromium.org>
+ <20251209154706.529784-4-fabiobaltieri@chromium.org>
+ <20251209192243.GA963693-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -120,98 +93,34 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ef6gkmgy4n6ipdam2nbm3no2ew3mga6dt45xpf6ykv3is2nkjh@gvz6pzg6dk7e>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjEwMDE0NiBTYWx0ZWRfX/SyjYv4WBbyu
- 5YjibuNxMs3NmRObznuucrKhqK9EhbnNDk0eCBumPPu46FTwGUkgdmE/hhhzJNs8/vOm52oms+n
- oxCiMbz+3NZhOKnBA3y5Q2VGGYlhvGxt0Sy5gRe1o1EwHXhJY1NLreMc5ZkX/btS13Jei9FCZVj
- thwpbtmQiiJNfo8nGxZca7PsbMyEhHlGfKpMijEnIlE5wmQX9ioaUNIPUd0uCMwOUESH1IMggIF
- DdYxSDNZnFED4lh6Fx2ksn5DwdI4vAuEGDgnveId+sDO1781yHkuI9SvVkYBA8bBQ+myDn0VJuu
- t7x7dyb67vX0UVGE2NFiGbqUwYTiq79BxseDj3FSuhdWNOAySRLzuQmu4vrGF5/3xcT02H8/rKj
- Y3juDf8NDVeWKsf0MIKP33wGnlQxnQ==
-X-Proofpoint-ORIG-GUID: gXtDsiRgc34A_pJdcJmL-yOJQVnTKH-N
-X-Authority-Analysis: v=2.4 cv=G5oR0tk5 c=1 sm=1 tr=0 ts=6939b31d cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=JfrnYn6hAAAA:8 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8 a=x1iXGeQro2BAPSpZQGcA:9
- a=CjuIK1q_8ugA:10 a=kacYvNCVWA4VmyqE58fU:22 a=1CNFftbPRP8L7MoqJWF3:22
- a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-GUID: gXtDsiRgc34A_pJdcJmL-yOJQVnTKH-N
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-10_02,2025-12-09_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 adultscore=0 clxscore=1015 lowpriorityscore=0 malwarescore=0
- impostorscore=0 bulkscore=0 suspectscore=0 priorityscore=1501 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512100146
+In-Reply-To: <20251209192243.GA963693-robh@kernel.org>
 
-On Wed, Dec 10, 2025 at 01:26:38PM +0200, Abel Vesa wrote:
-> On 25-12-08 16:16:31, Abel Vesa wrote:
-> > On 25-12-05 22:26:35, Dmitry Baryshkov wrote:
-> > > On Fri, Dec 05, 2025 at 04:23:23PM +0200, Abel Vesa wrote:
-> > > > From: Abel Vesa <abel.vesa@linaro.org>
-> > > > 
-> > > > The Qualcomm Glymur platform has the new v8 version
-> > > > of the eDP/DP PHY. So rework the driver to support this
-> > > > new version and add the platform specific configuration data.
-> > > > 
-> > > > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> > > > Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
-> > > > ---
-> > > >  drivers/phy/qualcomm/phy-qcom-edp.c | 230 +++++++++++++++++++++++++++++++++++-
-> > > >  1 file changed, 224 insertions(+), 6 deletions(-)
-> > > > 
-> > > > diff --git a/drivers/phy/qualcomm/phy-qcom-edp.c b/drivers/phy/qualcomm/phy-qcom-edp.c
-> > > > index f98fe83de42e..052b7782b3d4 100644
-> > > > --- a/drivers/phy/qualcomm/phy-qcom-edp.c
-> > > > +++ b/drivers/phy/qualcomm/phy-qcom-edp.c
-> > > > @@ -26,6 +26,8 @@
-> > > >  #include "phy-qcom-qmp-qserdes-com-v4.h"
-> > > >  #include "phy-qcom-qmp-qserdes-com-v6.h"
-> > > >  
-> > > > +#include "phy-qcom-qmp-qserdes-dp-com-v8.h"
-> > > > +
-> > > >  /* EDP_PHY registers */
-> > > >  #define DP_PHY_CFG                              0x0010
-> > > >  #define DP_PHY_CFG_1                            0x0014
-> > > > @@ -76,6 +78,7 @@ struct phy_ver_ops {
-> > > >  	int (*com_power_on)(const struct qcom_edp *edp);
-> > > >  	int (*com_resetsm_cntrl)(const struct qcom_edp *edp);
-> > > >  	int (*com_bias_en_clkbuflr)(const struct qcom_edp *edp);
-> > > > +	int (*com_clk_fwd_cfg)(const struct qcom_edp *edp);
-> > > >  	int (*com_configure_pll)(const struct qcom_edp *edp);
-> > > >  	int (*com_configure_ssc)(const struct qcom_edp *edp);
-> > > >  };
-> > > > @@ -83,6 +86,8 @@ struct phy_ver_ops {
-> > > >  struct qcom_edp_phy_cfg {
-> > > >  	bool is_edp;
-> > > >  	const u8 *aux_cfg;
-> > > > +	int aux_cfg_size;
-> > > 
-> > > Can we always write DP_AUX_CFG_SIZE values?
-> > > 
-> > 
-> > Sure, I could check what are the values for the rest of the regs for platforms
-> > with v4 and v5.
-> > 
-> 
-> So, after checking the docs, it seems we could write the reset values for the
-> v4 and v5 as they always are the same between all platforms: 0x03, 0x02, 0x02, 0x00.
-> At least on the platforms I was able to check.
-> 
-> Should we risk it and add these extra values to the array even though they are
-> the reset values, just to make the driver more clean by having single sized arrays
-> for AUX_CFGx between all platforms ?
+Hey Rob, thanks for the review.
 
-as far as I can see, yet, please. I don't see a risk in it.
-
+On Tue, Dec 09, 2025 at 01:22:43PM -0600, Rob Herring wrote:
+> On Tue, Dec 09, 2025 at 03:47:06PM +0000, Fabio Baltieri wrote:
+> > +  fn-key:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description: |
+> > +      An u32 containing the coordinate of the Fn key, use the MATRIX_KEY(row,
+> > +      col, code) macro, code is ignored.
+> > +
+> > +  fn-keymap:
 > 
-> -- 
-> linux-phy mailing list
-> linux-phy@lists.infradead.org
-> https://lists.infradead.org/mailman/listinfo/linux-phy
+> If keymap is linux,keymap, then this should perhaps be linux,fn-keymap. 
+> Depends if we still think linux,keymap is Linux specific?
+
+I'm open for suggestions, trying to understand the pattern, these are
+specific to this binding I think if anything they should be
+google,fn-key and google,fn-keymap, similarly to the existing
+google,needs-ghost-filter -- no idea why function-row-physmap was not
+prefixed but I guess it slipped in and now it's not worth changing it.
+
+Would it make sense?
+
+Thanks,
+Fabio
 
 -- 
-With best wishes
-Dmitry
+Fabio Baltieri
 
