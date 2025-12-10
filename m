@@ -1,249 +1,222 @@
-Return-Path: <devicetree+bounces-245678-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245679-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE0B7CB41E6
-	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 23:05:43 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42D72CB4271
+	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 23:42:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C7AE43013701
-	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 22:05:41 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 18EE03007199
+	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 22:41:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21343327BF8;
-	Wed, 10 Dec 2025 22:05:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCA3A2FB0A4;
+	Wed, 10 Dec 2025 22:41:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JRvvkcwQ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Dkblqr2f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDC092D781E
-	for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 22:05:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C2BF271462
+	for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 22:41:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765404338; cv=none; b=MXUSm2Eu97926SIkWRkHB9xQMkShbnfr6uERcPRa+ixYB7B+IWDABEJkYAw7UHupQyo51Ywq/bua3ecC35Y9Z47yfkKBk7LzpzKUaQfiQcRUl1paNxGzYuP4AQOQSjB2+OFTmqh1Q6i+vuqTeU0yeUOSRSuY0pHPsvAzwyr+tZo=
+	t=1765406517; cv=none; b=Bcf4G3ZwHNppjqtWyb0ogAQ6A6GjHnYALSBJ1DkeoNmcsOPIo2RzDAOXk2eBK3XmMM4zMtOvDfwfkl1lQG4s/NDOfdkWMKuRJhrAUzCZf/BV3VO35IoCUan8+bkJgH2V+emczCTQj8Svh/6Cp3UU18wojevzVJ0jLIz0F2wbBB8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765404338; c=relaxed/simple;
-	bh=afgIP1WZS5HbqRBspQa2oUUooNIXpXxeQSniqBBD/sY=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=GKF5aUBbO5z+Mcp1V85/6YoumMz8BmQPP4EPEnNoVnf9F7qk+rjcMSLmxlSTGDHtz58HgPxcWIUYce23AevuRElm9XTgYV/c3eanKUJV/PCSxXKHj/06O4mvDUgDc8/6urCnLjtdWf9oMZDOY+FhRPT8rEpX7GkbK442dsC7NgY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JRvvkcwQ; arc=none smtp.client-ip=209.85.210.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-7aae5f2633dso303714b3a.3
-        for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 14:05:35 -0800 (PST)
+	s=arc-20240116; t=1765406517; c=relaxed/simple;
+	bh=1OMD4xUDwT6u/G0dJl1XTjBHGfj/rQRY2e5zShZyDNw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=dumzSljOcyFan1xzszAH1JIYFlSPmZ+Mu77nOZXSrSQSyk8MgzyFDCrjKSPXFT45EalLmjGdC1Cp1DwxvBIT+y8wO0fIuABFY8DmQwX16yosL9AGBOMJdJ4zce7FN7c+9p5fFC5O32eyx5ZKbphA95cRvVj8L86TgjDtci7sTi4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Dkblqr2f; arc=none smtp.client-ip=209.85.167.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-594330147efso282942e87.2
+        for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 14:41:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1765404335; x=1766009135; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :reply-to:cc:to:from:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=j+3Fp0e7+CAe2qx3ZAGyWsh59Da2Z8lZFYYhFOen7e8=;
-        b=JRvvkcwQu194nX+k2c2eWlCdHxsFMCtuwltHvER0Rh8/RodaYEaeTq85wpUHn7kyPE
-         1daCfqqwMGGldqzEnCM2nhwkJUjnPvxwyKCBo0Z+xyJD5bpcFn/BT2NVZWi22hS++AXV
-         uF8jbZnv74GWyB+bL56SBd/AIGdizqfdM7sX32OnE1lElCv2CExjNE6Z9P/XjaUxZRDt
-         VQoQ7HV2/xx/5k5zLKEJ6XPmNF6dPwdDO0xf+7AKQWpY267UyKn6kZ/Bfsb9SX7/kIzP
-         7kpbv8/Lzhqrqp0HOvCykTe9vJfcKf0rbZpwvFfPfJRYWQEHSF9QaG0RXCsdYbL04Jiz
-         E3wQ==
+        d=gmail.com; s=20230601; t=1765406514; x=1766011314; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1OMD4xUDwT6u/G0dJl1XTjBHGfj/rQRY2e5zShZyDNw=;
+        b=Dkblqr2fDGZlU3LNtaDPHpWTKtEah6nnz6Z5Ecm70wN0bMMYsEicMFXOgcmnSNu3x4
+         V00fQk3r5fPgbQRHHQ8JMquGaWwdWX+q77+sk2W6ftnWJwnzTrW9+lyKXaUCCGEoDRgx
+         QZK02vFaRn3y3rxZoojwnGiY93piqMO0R1khaPe/ozbizF0WA7RaZgs0kXHv09VGsxuO
+         rZ4nyYZRrQ50NesJni4tycD6XQS7rrKF3d2RxqiqzSegowkgqvMwy76LE1vrj9X/6B4D
+         bJgc/ychFsrNQ2vBF/0DJa4lzWKg8IzlmD4u0fBRxTTNc1RXItoTvAdK3l+ioEEVZj6h
+         SE2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765404335; x=1766009135;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :reply-to:cc:to:from:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=j+3Fp0e7+CAe2qx3ZAGyWsh59Da2Z8lZFYYhFOen7e8=;
-        b=IoUPcqu0a9IxIYfjkaVWswPJ389JtVJzHC1UBGTFkeLshAvmDIcyXPS/bRYYEqc7u1
-         VsXuocWmVUR/3YVf5VTEJGlpH2L6cyfiAb19mVnjpICN6SOGi02rcP26O0hpuUi1M9dC
-         dCTI+omkXaO8o0RWJdrjsDTE3Z6+wHHrUQ6rQF3aHrIv44msoS4asuDUTzkAZ2+MCt+X
-         RC3100eJXK3BEjQW1usfjfPN9Rlu+iEXy8Hpg37HrXN5TzzKcyGn7NVrwj/+v4vtQ6uF
-         GKwi0m3Yx8/6YcajDr+OZ0SWVjqqhl/Tq83USgmxx3yQDIiLzf147sK5eWprOMg/JZui
-         8g1Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWA7JkDPGhIs7c2FI7kJt2IZuuerGEjCih50kHVI//RjQGa7QnPra2Y+1f/SydpczjxNPePwSlRsTYu@vger.kernel.org
-X-Gm-Message-State: AOJu0YxqsnMkAUipsfAo3QOlAP5op+xb3nfoK+54ybUduiYEFCyYRcWc
-	6jwo5QQXJ3PO3h+nO/P/8Ho2A9NF301Cyu2p0yEY/L33Vtlsu3ge8/h/1Lx2BVXPPLQ=
-X-Gm-Gg: AY/fxX4dsYJfhN57oZXOZfsSkLISW42+37cxXbZpnkOqdQ2Qus7gNLWCpReixi40w5T
-	I1Akolv3R8JEDIvtu0X1vFp4BZR71LVojfhxM2rRZCHNExx6PvIzkYnhTcC9MWKKbLALfwjv2Q3
-	0PryFz6jhskN9PI/6dJATX5fPPfCwoZf0ubwSD+HBXxsfmGAB/SfiS3pI0p9rxqPOsAB1x+pz4S
-	IgxhmZA4AT+LcMcWG8ZE2tQnFjC7x0+jVv2TVs+3B/D7vb+Q3iOLSWFbr9eTbvhx9Hl7LjxeTVk
-	isA4IQlRtEj4fRSfmH8gOzqUejmnvSlp8os664lot1v2bo5zNuFb9MUyX5mGyDRwO6ctKxjUHG2
-	4DHZE3RYycuvk7pyt/rWCiZM+LtsUTzHQQk5xjMOB10kH+2TqNiq1kqF8qunn7UHuURXglU5Ykm
-	ZdY+BvfWg+bDBacCazLSJjdqs96YgzURVkc2wiELCTfX00jiWZ9zx2QF9VNvI=
-X-Google-Smtp-Source: AGHT+IF3KUPFrL4bHbOPu1WT1G49RqczR26kcOyX6K5VmloGDfvztYKpxQz7JT9Y1I3PBOjTJ7628Q==
-X-Received: by 2002:a05:6a00:4fd3:b0:7b8:3549:85f9 with SMTP id d2e1a72fcca58-7f22e58a573mr3528819b3a.30.1765404334727;
-        Wed, 10 Dec 2025 14:05:34 -0800 (PST)
-Received: from [10.237.118.45] (M106185144161.v4.enabler.ne.jp. [106.185.144.161])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7f4c2772a51sm481675b3a.17.2025.12.10.14.05.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Dec 2025 14:05:34 -0800 (PST)
-Message-ID: <a512b470-4e8b-45b5-9cbc-06501e21163e@linaro.org>
-Date: Wed, 10 Dec 2025 22:05:17 +0000
+        d=1e100.net; s=20230601; t=1765406514; x=1766011314;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=1OMD4xUDwT6u/G0dJl1XTjBHGfj/rQRY2e5zShZyDNw=;
+        b=dCp4ebNdpkt9clwfYCUCNQRkip10NH076OV4imKPduvrg0TpN4qqyk+TCogj2/I21g
+         JZDdIWVkvDuFYilgOq7UYoOSRYpOX/VUDzufGLq3at15PJ/1vwOCNQCkztvlZu+lJKRb
+         LSmJug9CAuMccfOpQWkqVjx3JFBP6ifIiPcK+7e+mi83t8Chw6w/9XKixoUb9D7PeI4s
+         WvL/APeHB4zH4v2PkNBBnGJXpB+QR0/mK+EdOwOW3rLWOo2dACVAhvbDqwI/fq9jH/9z
+         K/p8vWSPi/BsTmVwC5q06nin8sR7leHohOMPnSOJ5dIhU310zcR+L0dxhm9MXYxgvxXX
+         foOQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV6hqzhFmJ1ijWntFUjTKBol+FQd63znOLKUiHfuRP+mekH7BMfTFSxr9I1S0/zSYGclAkCUez4gvpe@vger.kernel.org
+X-Gm-Message-State: AOJu0YzGfjy7qFOg24Koc9GFLmPDqUonnPLaK3uRSxGJloAq6Db512Mp
+	wcJdtgiAXPMnCe4A9mHn/1DKtPsT6oKLtocf3LOjb5BBXLhCTYxqBFMUaj5iQVKN5AaU9lT6see
+	rhDu9ACHaowY2tNuLznDbYsh3T6QXBpA=
+X-Gm-Gg: AY/fxX41cGMVQ1YbNJjvdEbboTl7viXbwfR6B8RUZjxNid/+ojef3XMK/QT13oxjtwX
+	JPsX4etZ8vAzJkZQn9z/mVSY/Lef5a+IQwlM8/TmGznldcKjnhd4SN5I2dPtsbrsmEzX3HsaN46
+	OyW9mvnYrBW6+5AMOMihjD/WptAL/Q/vUNFHXmVvhO46kNvC2tfUdRugeRD15/PmPHMoyfasQXM
+	QZZlbUrh8BcPOeLIZFl48lFcVigj0mf7Xi89tOycynXh+noAxtO/BYsd9ArFEjFWdjd/jE=
+X-Google-Smtp-Source: AGHT+IGsKYkhTWcpJpLscMxwx7R3zru+drHhH4uF8OXfDLT2nVkQImR9wpH1gNyMwWK+Dxoi4dyZRG4zgtd80OqXY6M=
+X-Received: by 2002:a05:6512:39d5:b0:594:2d64:bd0f with SMTP id
+ 2adb3069b0e04-598ee4e63fdmr1526066e87.16.1765406513923; Wed, 10 Dec 2025
+ 14:41:53 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 1/5] media: dt-bindings: Add CAMSS device for Kaanapali
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-To: Vijay Kumar Tumati <vijay.tumati@oss.qualcomm.com>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>,
- Loic Poulain <loic.poulain@oss.qualcomm.com>, Robert Foss
- <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Todor Tomov <todor.too@gmail.com>,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-media@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>
-Reply-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-References: <20251208-add-support-for-camss-on-kaanapali-v9-0-3fcd31258415@oss.qualcomm.com>
- <20251208-add-support-for-camss-on-kaanapali-v9-1-3fcd31258415@oss.qualcomm.com>
- <scnexmcrpemu6vcms3dmq7qjvx54h5pyumjvgqduospao4x2kt@hoi7zfygjq4f>
- <458a7841-e422-4cad-83de-f5b5c1b683a6@oss.qualcomm.com>
- <puv24qramoiq4qq3i4bibatg5ihnrv6hdloul5ajbblvasvwk3@nbse2m6aftkh>
- <2e38b9f3-8a35-4a27-82d3-c1d4996a1684@oss.qualcomm.com>
- <9ecf4783-e1a2-430b-a889-997689bafe45@oss.qualcomm.com>
- <qfhlyl46i7az56t5ceyo42mw55udzwhxgpygw3jnpw3onr6qc2@5r3i6tb6ac3v>
- <bf54a030-ee01-4b66-97d4-37f50a75d93c@oss.qualcomm.com>
- <r9iYRcJfz-QPlUHxIU_8vaHC87ctBayyOGVVtAbWEODCJjLkfQWv9rEX4b1zAIA_AWa47FcqNCmr7HxCetwcQw==@protonmail.internalid>
- <1c9db550-677e-4fdc-8929-89c21deecf17@linaro.org>
-Content-Language: en-US
-In-Reply-To: <1c9db550-677e-4fdc-8929-89c21deecf17@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20251027-tegra186-icc-p2-v4-0-e4e4f57e2103@gmail.com>
+ <e6ce190e-6df7-4c36-abca-f09df3cc80e7@nvidia.com> <99ca4992-5736-417d-854e-379542549bee@kernel.org>
+ <7f3dad08-cff5-40c2-8e7f-f6441a3d6b91@nvidia.com> <d5d23eb5-f43c-4e4b-9926-3fba6ffd3acf@nvidia.com>
+ <CALHNRZ8vFJyfFXbxFehWA9TGkdrEUy9Wsm-DxEOT=tVbYTcU5Q@mail.gmail.com>
+ <249bbe7e-e2da-4493-bdd5-8f4b17aff8fe@nvidia.com> <CALHNRZ8uPaKqSpFWkmYZn==Xw=rxh95Xm0_6LPN1HDj20zofqw@mail.gmail.com>
+ <d16803e5-7b6d-4472-b50c-aa324cf52736@nvidia.com> <CALHNRZ83Q2Ha8VYoWAnqoCZQ=Fd9rtVRVLwRFxAY68ePQ29GHw@mail.gmail.com>
+ <29cf2c16-3a0e-42c5-a083-16f77ae5d09a@nvidia.com> <CALHNRZ9KAv-hL6+6Uiaz2O2odm1rqMnjNxNVPsbCOdqX15KTuw@mail.gmail.com>
+ <856447ae-4338-471d-a71f-a34aed749ac7@nvidia.com> <CALHNRZ9y0n6JNfeDUQgZoECkxo+We0_G8TP0H4advcSqrX86kg@mail.gmail.com>
+ <f906f85f-b110-4328-b177-02fcdf7ffe53@nvidia.com> <CALHNRZ8go4ATHgJ4SE=7pkAMgRP_0tj5z4pDXjxicV9o7F13Ng@mail.gmail.com>
+ <1b9f0b14-876c-4c6e-90eb-b04d016f88e8@nvidia.com>
+In-Reply-To: <1b9f0b14-876c-4c6e-90eb-b04d016f88e8@nvidia.com>
+From: Aaron Kling <webgeek1234@gmail.com>
+Date: Wed, 10 Dec 2025 16:41:42 -0600
+X-Gm-Features: AQt7F2rRb0r-F0QPrReCRvnoBgcPrhggXOXKiUk6KwS3zwChkVgtdtb9j31p3DM
+Message-ID: <CALHNRZ_GGAg_VP8gSdtw_1CA2A0netrOeA2+guZfxyG7POhHoA@mail.gmail.com>
+Subject: Re: [PATCH v4 3/5] memory: tegra186-emc: Support non-bpmp icc scaling
+To: Jon Hunter <jonathanh@nvidia.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Thierry Reding <thierry.reding@gmail.com>, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 10/12/2025 21:45, Bryan O'Donoghue wrote:
-> On 10/12/2025 19:36, Vijay Kumar Tumati wrote:
->>
->> On 12/10/2025 11:25 AM, Dmitry Baryshkov wrote:
->>> On Wed, Dec 10, 2025 at 09:50:51AM -0800, Vijay Kumar Tumati wrote:
->>>> On 12/8/2025 3:21 PM, Vijay Kumar Tumati wrote:
->>>>> On 12/8/2025 2:48 PM, Dmitry Baryshkov wrote:
->>>>>> On Mon, Dec 08, 2025 at 01:03:06PM -0800, Vijay Kumar Tumati wrote:
->>>>>>> On 12/8/2025 11:53 AM, Dmitry Baryshkov wrote:
->>>>>>>>> +  interconnects:
->>>>>>>>> +    maxItems: 4
->>>>>>>>> +
->>>>>>>>> +  interconnect-names:
->>>>>>>>> +    items:
->>>>>>>>> +      - const: ahb
->>>>>>>>> +      - const: hf_mnoc
->>>>>>>>> +      - const: sf_icp_mnoc
->>>>>>>>> +      - const: sf_mnoc
->>>>>>>> You know... Failure to look around is a sin. What are the names of
->>>>>>>> interconnects used by other devices? What do they actually describe?
->>>>>>>>
->>>>>>>> This is an absolute NAK.
->>>>>>> Please feel free to correct me here but, a couple things.
->>>>>>>
->>>>>>> 1. This is consistent with
->>>>>>> Documentation/devicetree/bindings/media/qcom,qcm2290-camss.yaml. no?
->>>>>> I see that nobody noticed an issue with Agatti, Lemans and Monaco
->>>>>> bindings (Krzysztof?)
->>>>>>
->>>>>> Usually interconnect names describe the blocks that are connected.
->>>>>> Here
->>>>>> are the top results of a quick git grep of interconnect names through
->>>>>> arch/arm64/dts/qcom:
->>>>>>
->>>>>>        729 "qup-core",
->>>>>>        717 "qup-config",
->>>>>>        457 "qup-memory",
->>>>>>         41 "usb-ddr",
->>>>>>         41 "apps-usb",
->>>>>>         39 "pcie-mem",
->>>>>>         39 "cpu-pcie",
->>>>>>         28 "sdhc-ddr",
->>>>>>         28 "cpu-sdhc",
->>>>>>         28 "cpu-cfg",
->>>>>>         24 "mdp0-mem",
->>>>>>         17 "memory",
->>>>>>         14 "ufs-ddr",
->>>>>>         14 "mdp1-mem",
->>>>>>         14 "cpu-ufs",
->>>>>>         13 "video-mem",
->>>>>>         13 "gfx-mem",
->>>>>>
->>>>>> I hope this gives you a pointer on how to name the interconnects.
->>>>>>
->>>>>>> 2. If you are referring to some other targets that use, "cam_"
->>>>>>> prefix, we
->>>>>>> may not need that , isn't it? If we look at these interconnects
->>>>>>> from camera
->>>>>>> side, as you advised for other things like this?
->>>>>> See above.
->>>>> I see, so the names cam-cfg, cam-hf-mem, cam-sf-mem, cam-sf-icp-mem
->>>>> should be ok?
->>>>>
->>>>> Or the other option, go exactly like
->>>>> Documentation/devicetree/bindings/media/qcom,sc8280xp-camss.yaml.
->>>>>
->>>>> What would you advise?
->>>>>
->>>> To keep it consistent with the previous generations and still
->>>> represent the
->>>> block name, we will go ahead with the style in qcom,sc8280xp-
->>>> camss.yaml. If
->>>> anyone has any concerns, please do let us know.
->>> Krzysztof, Bryan, your opinion? My preference would be to start using
->>> sensible names, but I wouldn't enforce that.
->>>
->>>>>>>>> +
->>>>>>>>> +  iommus:
->>>>>>>>> +    items:
->>>>>>>>> +      - description: VFE non-protected stream
->>>>>>>>> +      - description: ICP0 shared stream
->>>>>>>>> +      - description: ICP1 shared stream
->>>>>>>>> +      - description: IPE CDM non-protected stream
->>>>>>>>> +      - description: IPE non-protected stream
->>>>>>>>> +      - description: JPEG non-protected stream
->>>>>>>>> +      - description: OFE CDM non-protected stream
->>>>>>>>> +      - description: OFE non-protected stream
->>>>>>>>> +      - description: VFE / VFE Lite CDM non-protected stream
->>>>>>>> This will map all IOMMUs to the same domain. Are you sure that
->>>>>>>> this is
->>>>>>>> what we want? Or do we wait for iommu-maps to be fixed?
->>>> Yes, when it is available, we can start using iommu-maps to create
->>>> separate
->>>> context banks.
->>> It would be necessary to justify removing items from the list. Wouldn't
->>> it be better to map only necessary SIDs now and add other later once we
->>> have iommu-maps?
->> I will let Bryan take the call on this. He was the one who wanted all
->> the SIDs in the bindings. Hi @Bryan, if you can kindly share your
->> thoughts on this and the interconnect naming, we will go ahead and push
->> rev 10 for this. I believe we have taken care of other things. Thank you.
->>>
-> 
-> Since when are we delaying patches for future patches that may land never ?
-> 
-> I'm fine with whatever clock name changes you can agree with Krzysztof
-> but it seems a bit ironic to me to be given feedback to "align with
-> previous dts" to then have the result be further change.
-> 
-> I'd like a bit of stability and consistency TBH.
-> 
-> ---
-> bod
-> 
+On Wed, Dec 10, 2025 at 3:24=E2=80=AFPM Jon Hunter <jonathanh@nvidia.com> w=
+rote:
+>
+>
+> On 10/12/2025 18:32, Aaron Kling wrote:
+> > On Wed, Dec 10, 2025 at 9:04=E2=80=AFAM Jon Hunter <jonathanh@nvidia.co=
+m> wrote:
+> >>
+> >>
+> >> On 10/12/2025 05:06, Aaron Kling wrote:
+> >>
+> >> ...
+> >>
+> >>> Let me try to iterate the potential issues I've seen stated here. If
+> >>> I'm missing anything, please fill in the blanks.
+> >>>
+> >>> 1) If this change is applied without the related dt change and the
+> >>> pcie drvier is loaded, the emc clock can become stuck at the lowest
+> >>> rate. This is caused by the pcie driver providing icc data, but
+> >>> nothing else is. So the very low requested bandwidth results in the
+> >>> emc clock being set very low. I'm not sure there is a 'fix' for this,
+> >>> beyond making sure the dt change is merged to ensure that the cpufreq
+> >>> driver provides bandwidth info, causing the emc driver to select a
+> >>> more reasonable emc clock rate. This is a similar situation to what's
+> >>> currently blocking the tegra210 actmon series. I don't think there is
+> >>> a way for the drivers to know if icc data is missing/wrong. The
+> >>> scaling is doing exactly what it's told based on the icc routing give=
+n
+> >>> in the dt.
+> >>
+> >> So this is the fundamental issue with this that must be fixed. We can'=
+t
+> >> allow the PCIe driver to slow the system down. I think that Krzysztof
+> >> suggested we need some way to determine if the necessary ICC clients a=
+re
+> >> present/registered for ICC to work. Admittedly, I have no idea if ther=
+e
+> >> is a simple way to do this, but we need something like that.
+> >
+> > I'm not sure I understand how checking clients would work. Is there a
+> > mechanism for the emc driver to know if cpufreq is registered to icc
+> > in a way that works with probe deferrals, but also allows for it to be
+> > optional?
+>
+> I am not sure if such a mechanism exists either, but it seems that we
+> need something like this.
+>
+> > Alternatively if there is not, can we just accept the abi break and
+> > have this and the dt change depend on each other? I know it's not
+> > desirable or the first choice, but if the other option is to rewrite
+> > part of the icc system, then perhaps it should be an option.
+>
+> I am not sure it is an ABI break, but the default performance might be
+> worse. I am not sure if you are proposing a way to enforce the
+> dependency or just saying that there is a dependency. We can't do the
+> latter, but if there is a way for the kernel to check the dependency and
+> make the right choice, then that should work.
 
-My feedback is
+So we can't accept that older dt's will run slower on a newer kernel
+and say that a newer dt is needed for full performance?
 
-- Include the full list of SIDs
-- Stick to previous clock and interconnect names
+If that's not an option, then I have no idea how to resolve this. I'm
+not greatly knowledgeable about the icc subsystem. I can try to look
+into options, but I'm not greatly optimistic about me finding one. If
+someone could suggest a concept on how to make it work, I could
+implement it. But I'm not even seeing the concept right now.
 
-Your other alternative is to suspend Kaanapali CAMSS unless/until 
-iommu-map is landed.
+> >>> 2) Jon, you report that even with both this change and the related dt
+> >>> change, that the issue is still not fixed. But then posted a log
+> >>> showing that the emc rate is set to max. If the issue is that emc rat=
+e
+> >>> is too low, then how can debugfs report that the rate is max? For
+> >>> reference, everything scales as expected for me given this change plu=
+s
+> >>> the dt change on both p2771 and p3636+p3509.
+> >>
+> >> To clarify, this broke the boot test on Tegra194 because the boot was
+> >> too slow. However, this also broke the EMC test on Tegra186 because
+> >> setting the frequency from the debugfs failed. So two different failur=
+es
+> >> on two different devices. I am guessing the EMC test would also fail o=
+n
+> >> Tegra194, but given that it does not boot, we did not get that far.
+> >
+> > So you're saying that even with the dt changes, this change on
+> > tegra194 still does not boot before the regression test framework
+> > times out? If so, I need some more details about this. I have not seen
+> > issues on p2972 or p3518. For example, if I boot to android recovery
+> > where I set the cpufreq governor to performance, I see emc clock rate
+> > set to 2133 MHz and 1600 MHz respectively. And boot time from kernel
+> > start to pixels on display is 15 seconds, give or take a couple
+> > seconds. This is using the boot stack from l4t r32.7.6.
+>
+> Yes. The boot failure here is not a hard boot failure, but the device
+> takes too long to boot and the boot test times out. And no we will not
+> increase the timeout as it is there for a reason. It could well be
+> because the default governor is not set to performance. If you boot with
+> just using the stock 'defconfig' for ARM64 without setting the governor
+> does it take longer?
 
-As I say though "change your patch until my other patch is landed" is 
-the opposite of how things are supposed to be done.
+So, I checked out next-20251210, then b4 shazam'ed this series and the
+matching dt series,
+20251021-tegra186-icc-p3-v3-0-68184ee8a89c@gmail.com. Then built with
+LLVM=3D1 ARCH=3Darm64 make defconfig
+LLVM=3D1 ARCH=3Darm64 make -j33 Image nvidia/tegra194-p2972-0000.dtb
 
-I recommend you focus on your own series. If iommu-map gets merged 
-first, adapt.
+I packaged them into an android boot image using a lightly modified
+copy of Gnurou's bbinitramfs which just drops to a busybox shell. Note
+that this includes no modules, and since the pcie driver is =3Dm in
+defconfig, it is not included. Then I flashed that with the l4t
+r32.7.6 boot stack to p2972. I got the shell on uart after 4.275
+seconds in the kernel. Per sysfs, the cpufreq governor is schedutil
+and all policies are idling at min freq, 115200. And per debugfs, the
+emc clock is 800000000. All this looks to be as expected.
 
-If not, don't delay your work to accommodate stuff that is up in the air 
-which for all you know may never land or may take six more months.
+I have no idea why the regression test setup is timing out. I have not
+seen the issue through any of my testing. On pure mainline as per the
+above paragraph, or with the patches on the android common kernel, as
+per my target use case. I don't know what to do if I can't replicate
+the issue. I don't suppose the flash package for the regression test
+setup is something that could be released?
 
----
-bod
+Aaron
 
