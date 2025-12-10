@@ -1,177 +1,164 @@
-Return-Path: <devicetree+bounces-245658-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245659-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49D82CB3CB3
-	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 19:56:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BD6CCB3D0A
+	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 20:06:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8F2A0304C5F4
-	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 18:56:33 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C2B0230B758E
+	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 19:02:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93196329386;
-	Wed, 10 Dec 2025 18:56:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D75230594E;
+	Wed, 10 Dec 2025 19:02:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="lEAROqxL"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="UT/C/c+E";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="cMR4Buw5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20B151E8320;
-	Wed, 10 Dec 2025 18:56:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64AB83016EB
+	for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 19:02:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765392992; cv=none; b=e7nA/YO7ONpG7WZ3EmD593GTQ/7W6EeeouVVwRt2eKut/ODAbSPMwsbvfgnnFQefmMUzDE92TzDCcjBxaXfq+f3vkdY7Qkesdp/uXf1zWKkcufrZBMQKA3tFTD2D4ZlmQVYDycNb6IB+hvuUOTBoERM+mwEAjANdYRrB3p5J8Fk=
+	t=1765393373; cv=none; b=VKut4GTyLJv73/fVqAG4P65EXQKyi5DxZKkObV1oRwiSuf6h+SfIISoBDZM884RGGLPqZdW+ybcVYMChaFQghlSzfeObUsCKVasZSz3OVHW3JTAJ2MpNkg1mMAQ9pSF2l9EQQIT8dAIMV388C0BOPcHa4/6uOIolSrTxwIV2DTc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765392992; c=relaxed/simple;
-	bh=qrbbn3eV36Nw2ao+vEGVF7AYl3Qz8GtjAWg+Soyefbw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=B6bUCBJWwHpHc8ChO9ESLBL4ETQBxfYLPlkMhaqolJYI/zm8nfvB/GVNW49qa+WQ/QF+5IfUKJlUPzDrnD4s2za6Dc4Fq7CU0g7Fq0YjkHyuResNObz1pXr4SK77Dk/rNW2j3qgF5rPx3fSXCU+BiCCyMlnFXx+em2FWySxc8XQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=lEAROqxL; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=6IYETY9gTGhZvL1uGOVErqBQbdqL5dP9cyjhDBQlylc=; b=lEAROqxLv8AfIOKClV7r+5glYK
-	OOuWL4J961SbYNouDqzvdzEafjmMNHj4Jiw+gik6DaiY0KN3aSVz4ObXXXoKocK9R9cKFc+bWq0ny
-	TAeNk34FC4Hgxg6tlBBRjsomwfI8seEtpCh5VP1mIODQbJvX+iXNIxoRl6qktg2b32tw=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1vTPMD-00GZKy-5X; Wed, 10 Dec 2025 19:56:13 +0100
-Date: Wed, 10 Dec 2025 19:56:13 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Daniel Golle <daniel@makrotopia.org>
-Cc: Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
-	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Frank Wunderlich <frankwu@gmx.de>,
-	Avinash Jayaraman <ajayaraman@maxlinear.com>,
-	Bing tao Xu <bxu@maxlinear.com>, Liang Xu <lxu@maxlinear.com>,
-	Juraj Povazanec <jpovazanec@maxlinear.com>,
-	"Fanni (Fang-Yi) Chan" <fchan@maxlinear.com>,
-	"Benny (Ying-Tsan) Weng" <yweng@maxlinear.com>,
-	"Livia M. Rosu" <lrosu@maxlinear.com>,
-	John Crispin <john@phrozen.org>
-Subject: Re: [PATCH RFC net-next 3/3] net: dsa: add basic initial driver for
- MxL862xx switches
-Message-ID: <d5ea5bee-40c5-43f5-9238-ced5ca1904b7@lunn.ch>
-References: <cover.1764717476.git.daniel@makrotopia.org>
- <d92766bc84e409e6fafdc5e3505573662dc19d08.1764717476.git.daniel@makrotopia.org>
- <c6525467-2229-4941-803d-1be5efb431c3@lunn.ch>
- <aTmPjw83jFQXgWQt@makrotopia.org>
+	s=arc-20240116; t=1765393373; c=relaxed/simple;
+	bh=zCRVzUDVjpYrZJf7pNRuz1Eg83yBgTnv9RjMEu4R5ss=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=c89/qxjMVfhxDSifuiggAD/A/D1XEix+DRTDbgf9hCXWNMGmfOdMJH65cmHAPk+KdiDzzALnyFGCGI86dkCTW/zWmN3kEi7VD7fesTcaM9vNlCvO64Rb8OxdbaZdu3SUpZ/lpCnZd4pe0JQiUQQbBShsQAYV3xO932B7ctEdryk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=UT/C/c+E; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=cMR4Buw5; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BAIRu0Y3083386
+	for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 19:02:51 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=+bqt69haCWbAOVKkAXinlH
+	eWPXH+vwr79zol61nj2x4=; b=UT/C/c+EW1FjsqGXU5gcIuqRYCTnHeCOxinr24
+	6G3a+9WzouJzUfC6LSxYZd/lNiPdu4MD6yBZESrAmQlBwfXwyDUXTaIfsvGqulT4
+	PfaHKaSBRCOpyxugo8GoxrRmOJSUGHKln1eCNZXWK2pd7xui1vX0ZfWx3Mg4iQv5
+	23FYqAfSFRXOQDujKft0+msDw/8hnPSzYfc3brxIs+oY7H+tb0nXjz69XImEWe+7
+	VYcP4DszUZIMnCpq32KshXo5CCghuKJyVGCYP35cQUF5YklI6rPQ+CY3Ka0A3mdu
+	dmgELcFFoCwIHuFuwUEgkBgAzuyrpSiTJj4iIjHyMKa0NV4w==
+Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ay2e0jhs2-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 19:02:51 +0000 (GMT)
+Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-29e921af9easo3120655ad.1
+        for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 11:02:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1765393370; x=1765998170; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=+bqt69haCWbAOVKkAXinlHeWPXH+vwr79zol61nj2x4=;
+        b=cMR4Buw5V8GOMw6NXs2/+YERL80skgjGMRpPvJZ8mD2GldrLh8Ns5JNXomyQa+eprO
+         PATmaLuhM4+Qi+HB3CyasKDtb7c/lM9m3JQ40ZEohsa2i7uG5QZSEr6SnZ6MnnjNPGLF
+         BB8Srzi8Jwx0pYP6jPsq8ss7z/3Z527sTYvpbJgHXC440wKcCfIeSOVNzgs9+nWlg3yo
+         1uBLSbIUmFxNS7osAUYL+ZilCVuu54McdQzkfiHq28u8vB960+E4hs6abYxsDCNg6chI
+         BHnlyQxU4AH3V1dmr7ZngwFGKAN+yvMXmOJkEFPYvdiobaD29tpGFwRG8WLRuGHOvrzk
+         tRnw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765393370; x=1765998170;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+bqt69haCWbAOVKkAXinlHeWPXH+vwr79zol61nj2x4=;
+        b=HUdkEgxgSrnCfBOT1SEaxDKN+2v2WoY0ee2TcPZKm4OqBvgj5n6XMW28k/YPp/GpMA
+         9iKxdzxfwPKF982h6T5h7pBSSVgisTxPNVkjtDMAXnPVBCMDDBudKrJAYSGhEL6X+8Nt
+         Bqquzl9S85MyrNBnH5xuRVcJ8m0NvsaJg0IzgBx0oxbU3rNvjP+F5sQ4ykPBipIaXsXj
+         EHnTVCi5SUs6Wmp3XZa2xjI3kx7F+HvSHOcRyBCMJ4qvmz4Q2t1ls0zEFPRGD+F6iV6z
+         YcpXPOlo5as5bZPwwIzCnL/TqdZ1oXHuOuqPf6xgDrNEo84RmHX3f/U0d5DYYWsSfa8R
+         XllQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX9IMQDcuTuXtXINl7LqT0NfxVnASDxtHy7mQGx7hlZXLccCgEtGZJT9A5JlqexJNG6ze7ryAK5z4J+@vger.kernel.org
+X-Gm-Message-State: AOJu0YznrvWHiV7jwiEHYmgUn38c7ubaUZTCXuy2nA6xPvOJunTqdKjf
+	g4eIapjj4mx7kJri+MSOmk1l6HlRLKC8fKMmeMahcY0V37hluCzVGK4PslK2wwB5V7o6VJ3sJWR
+	eby5RM5GLWOt/c+GhgKdXEUlUL26fiydDhFxUfdfG5hKl/Ybe8mhDuCmugXZfsUNE
+X-Gm-Gg: AY/fxX5TL7gD8CEi3AMosopx1ux638JTatin7F9vQMfnEP/QJ2euqyKSBi9uFttf0WK
+	lXrAZjYlMQeW55fbXLBFsItdaL5ByfQZhztl8Xu2ZSP2tv1/VizxFAaZ5VKbjrwdEpCUZ+/DXGO
+	7Qajlp4RrRhGJ5GKbUU7lz8iQcsyYJtsXvaFULVxZxUVQ/ZyFvqGTfGwqHMLji7r7eZGq22rUwj
+	n8Fug1ToA6ymYaq0tJD+lLpGDv4E+Hibt1FlU/5rsvlA/JbhfUt12Ajn5vZh9Y/Dszf0ZHdG71O
+	Am3TqWYYfd5IEeXsY1TvOsU/ADtfyxMcOUBOq0TiOjlJQ8sguIvfCZtd3KCt2SWyMjM0/5J0iuE
+	8/NtKg+SueUClvyn0tCNPGFtRh3qJZrylxP2P7mOh
+X-Received: by 2002:a17:902:d492:b0:295:557e:7465 with SMTP id d9443c01a7336-29ec22e3e83mr33026225ad.11.1765393370016;
+        Wed, 10 Dec 2025 11:02:50 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IH5A+q7D7QVDFc2KKQ+VoYW8O8VrAjcZHjO0QxemqZmBovQMde+4YyqV/ENoXMF+yChxCXqzg==
+X-Received: by 2002:a17:902:d492:b0:295:557e:7465 with SMTP id d9443c01a7336-29ec22e3e83mr33025805ad.11.1765393369341;
+        Wed, 10 Dec 2025 11:02:49 -0800 (PST)
+Received: from hu-jkona-hyd.qualcomm.com ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29eea06b49csm888225ad.95.2025.12.10.11.02.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 10 Dec 2025 11:02:48 -0800 (PST)
+From: Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>
+Subject: [PATCH 0/2] qcom: SM8750: Enable CPUFreq support
+Date: Thu, 11 Dec 2025 00:32:22 +0530
+Message-Id: <20251211-sm8750-cpufreq-v1-0-394609e8d624@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aTmPjw83jFQXgWQt@makrotopia.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAL7DOWkC/x2MSwqAIBQAryJvneAHMbpKtBB91ltkphSBdPek1
+ TCLmQYVC2GFiTUoeFOlI3WRAwO/ubQip9AdlFBGKil43UdrBPf5igVPbrXGYNG4DuhRLhjp+Yf
+ z8r4flQzUl2AAAAA=
+X-Change-ID: 20251210-sm8750-cpufreq-733ed7e5a3ed
+To: Sibi Sankar <sibi.sankar@oss.qualcomm.com>,
+        Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: Ajit Pandey <ajit.pandey@oss.qualcomm.com>,
+        Imran Shaik <imran.shaik@oss.qualcomm.com>,
+        Taniya Das <taniya.das@oss.qualcomm.com>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjEwMDE1NiBTYWx0ZWRfXxZQY2MpkPBm7
+ bXSDcDnJ+9qzrJ6zBG680dxUc3OM5kuhp5Hmj1Wd0daX0rQB29u+fq/V2fMMpGta3Wd8CgrU+S/
+ xfPMg9MYwMEnMSf1La2PNZ+8V6d6B9Mv2rbhqDc9PcLq73Lnlh45P1Ijugb51GrICm+FvWg7eKx
+ CS6ieykHn1x1x2l6Yb9yDlQC8Jl0cnFC2AM8N+tBza1JiuKDY01qLuPrTNh6xeJh6r/LSQoYzOw
+ 3Ni9oWEwtPZsutmp5hCB24Gpg4XW9moO1gQVELfpfZR4Cp+G9UY0qdLP7zpbJBY93pBcNUOZ0Ee
+ cTGUb8VxHlJTx9QxPdt0EdNYiyK1gcdX8gs4GUVIu7RYBGbL5zv94escGjGCMFWWb01+7nHUi2B
+ zohmwqfufnjDT8sZ6qnX9y4KVvdI2w==
+X-Proofpoint-ORIG-GUID: aztUjWQo9fTWh4INBzUbn7UChUkQp5Ee
+X-Authority-Analysis: v=2.4 cv=G5oR0tk5 c=1 sm=1 tr=0 ts=6939c3db cx=c_pps
+ a=IZJwPbhc+fLeJZngyXXI0A==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=lYwxeunw1VhM2irEm_IA:9
+ a=QEXdDO2ut3YA:10 a=uG9DUKGECoFWVXl0Dc02:22
+X-Proofpoint-GUID: aztUjWQo9fTWh4INBzUbn7UChUkQp5Ee
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-10_02,2025-12-09_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 adultscore=0 clxscore=1015 lowpriorityscore=0 malwarescore=0
+ impostorscore=0 bulkscore=0 suspectscore=0 priorityscore=1501 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512100156
 
-> Imho it would be nice to introduce unlock __mdiodev_c45_* helpers in
-> include/linux/mdio.h, ie.
-> 
-> static inline int __mdiodev_c45_read(struct mdio_device *mdiodev, int devad,
-> 				     u16 regnum)
-> {
-> 	return __mdiobus_c45_read(mdiodev->bus, mdiodev->addr, devad, regnum);
-> }
-> 
-> static inline int __mdiodev_c45_write(struct mdio_device *mdiodev, u32 devad,
-> 				      u16 regnum, u16 val)
-> {
-> 	return __mdiobus_c45_write(mdiodev->bus, mdiodev->addr, devad, regnum,
-> 				   val);
-> }
+This series enables CPUFreq support on the SM8750 SoC
+using the SCMI perf protocol.
 
-https://elixir.bootlin.com/linux/v6.18/source/drivers/net/phy/mdio_bus.c#L531
+Signed-off-by: Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>
+---
+Jagadeesh Kona (2):
+      dt-bindings: mailbox: qcom: Document SM8750 CPUCP mailbox controller
+      arm64: dts: qcom: SM8750: Enable CPUFreq support
 
-> static int mxl862xx_reg_read(struct mxl862xx_priv *priv, u32 addr)
-> {
-> 	return __mdiodev_c45_read(priv->mdiodev, MDIO_MMD_VEND1, addr);
-> }
-> 
-> static int mxl862xx_reg_write(struct mxl862xx_priv *priv, u32 addr, u16 data)
-> {
-> 	return __mdiodev_c45_write(priv->mdiodev, MDIO_MMD_VEND1, addr, data);
-> }
-> 
-> static int mxl862xx_ctrl_read(struct mxl862xx_priv *priv)
-> {
-> 	return mxl862xx_reg_read(priv, MXL862XX_MMD_REG_CTRL);
-> }
-> 
-> static int mxl862xx_busy_wait(struct mxl862xx_priv *priv)
-> {
-> 	int val;
-> 
-> 	return readx_poll_timeout(mxl862xx_ctrl_read, priv, val,
-> 				  !(val & CTRL_BUSY_MASK), 15, 10000);
-> }
-> 
-> Do you agree?
+ .../bindings/mailbox/qcom,cpucp-mbox.yaml          |  1 +
+ arch/arm64/boot/dts/qcom/sm8750.dtsi               | 73 +++++++++++++++++-----
+ 2 files changed, 58 insertions(+), 16 deletions(-)
+---
+base-commit: 008d3547aae5bc86fac3eda317489169c3fda112
+change-id: 20251210-sm8750-cpufreq-733ed7e5a3ed
 
-This part, yes.
-
-> > > +	if (result < 0) {
-> > > +		ret = result;
-> > > +		goto out;
-> > > +	}
-> > 
-> > If i'm reading mxl862xx_send_cmd() correct, result is the value of a
-> > register. It seems unlikely this is a Linux error code?
-> 
-> Only someone with insights into the use of error codes by the uC
-> firmware can really answer that. However, as also Russell pointed out,
-> the whole use of s16 here with negative values being interpreted as
-> errors is fishy here, because in the end this is also used to read
-> registers from external MDIO connected PHYs which may return arbitrary
-> 16-bit values...
-> Someone in MaxLinear will need to clarify here.
-
-It looks wrong, and since different architectures use different error
-code values, it is hard to get right. I would suggest you just return
-EPROTO or EIO and add a netdev_err() to print the value of result.
-
-> > > +#define MXL862XX_API_WRITE(dev, cmd, data) \
-> > > +	mxl862xx_api_wrap(dev, cmd, &(data), sizeof((data)), false)
-> > > +#define MXL862XX_API_READ(dev, cmd, data) \
-> > > +	mxl862xx_api_wrap(dev, cmd, &(data), sizeof((data)), true)
-> > 
-> > > +/* PHY access via firmware relay */
-> > > +static int mxl862xx_phy_read_mmd(struct mxl862xx_priv *priv, int port,
-> > > +				 int devadd, int reg)
-> > > +{
-> > > +	struct mdio_relay_data param = {
-> > > +		.phy = port,
-> > > +		.mmd = devadd,
-> > > +		.reg = reg & 0xffff,
-> > > +	};
-> > > +	int ret;
-> > > +
-> > > +	ret = MXL862XX_API_READ(priv, INT_GPHY_READ, param);
-> > 
-> > That looks a bit ugly, using a macro as a function name. I would
-> > suggest tiny functions rather than macros. The compiler should do the
-> > right thing.
-> 
-> The thing is that the macro way allows to use MXL862XX_API_* on
-> arbitrary types, such as the packed structs. Using a function would
-> require the type of the parameter to be defined, which would result
-> in a lot of code duplication in this case.
-
-How many different invocations of these macros are there? For MDIO you
-need two. How many more are there? 
-
-     Andrew
+Best regards,
+-- 
+Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>
 
 
