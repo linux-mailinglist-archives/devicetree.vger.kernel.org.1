@@ -1,189 +1,153 @@
-Return-Path: <devicetree+bounces-245655-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245656-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5ECB3CB3C50
-	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 19:33:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 04EB9CB3C5A
+	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 19:36:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D595630421B6
-	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 18:33:05 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B13B5304CC3E
+	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 18:36:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF56C324B30;
-	Wed, 10 Dec 2025 18:33:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35F2F30F819;
+	Wed, 10 Dec 2025 18:36:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CzjPXtjb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qhcWEI0u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D63D82FFF8C
-	for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 18:33:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 046BE283FC9;
+	Wed, 10 Dec 2025 18:36:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765391584; cv=none; b=K16l/Q+xPTXWvdy4bjTg4JNZVoAPjLu4T1gT/1OH/umVKF3KtXnAPmgBTLnTK0knB2498ChswQVLMZGoBgPsHCLw9wTAsNDEdbMpIctWgH5yyRf0SXgEZf7eay3cHPkj7tzaKDqUxYmcMvmlqWWJv8Ao0pCpiZRoNPEv06hGCRk=
+	t=1765391794; cv=none; b=P1le6VFTIGw4Oyf5SNb8UVEIc3eT489u6I8GOg412KiRFSemQhs2p/A/MMS8VpSYR5LWeqU09U7d8sVSuEEzvuEI68n07Qe4ismgRUvsckJTCWLRSPtOf9G0NOfv2rFIPt/9iq1+ek2KLiW2/XC60hkQygTUUgQCRmjfbzCfSzQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765391584; c=relaxed/simple;
-	bh=XCYunP1MFaxEZGn5zsjzuD3N4V4sc+8T88BNtQaa6W8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=SjDRiztlXDQCuiTPWs0kn3nbvI5j/LQU0faMKT4jVlIm/hiVDwaqJaLvgTEqvKFYneefZZ6w1++bl3ENgMe72aMzquhiU1MGAXJtd8XBz2lj4wY0e8nJbSAvAOb2Yew80Q4xUkxe/9OpfL7Gh+NzenY2QPUxUbBxqy2WuFWx05g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CzjPXtjb; arc=none smtp.client-ip=209.85.167.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-594270ec7f9so46967e87.3
-        for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 10:33:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1765391581; x=1765996381; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=XCYunP1MFaxEZGn5zsjzuD3N4V4sc+8T88BNtQaa6W8=;
-        b=CzjPXtjbRY4jZze3ur0cYZ03hdF0wPKWjCjCZqEQfmiNeJJXQajvLjLBOjclTl+b4Q
-         k4wyTREp852TwoaLdF1/mIINPUIgyH7//tSkmbIDnBdzz9vxgok7I5ofrgSdwOADT68y
-         tsN+ZiWMgvv9HMtROAjeMU965HJv8gI+2OZEu7TYiJ+EKr+TSvofDiPDdCuDx4avKCXZ
-         kKpLNBcwB6wKXVayDNxi5nnhkvET3NdTc0w987emL1TChal7ndRIpW5fi3JExmrPisjK
-         pTb6vruTvBmDiEI5PShUGdfGsTzQVe9GbYslH2NwHRWUskggYfH4pnooIYVd80Gq3iuT
-         Yo+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765391581; x=1765996381;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=XCYunP1MFaxEZGn5zsjzuD3N4V4sc+8T88BNtQaa6W8=;
-        b=f3qbwm3cBGRJJzE71DmLmdRHp8ii///nTfYhcb7Cqe0V40C4YiGMODBBwcQaGJa0Ha
-         RpUzdBSOebV4n9XqiHe0zbPk/+q/vMwnvkGhOF69LJ5p7kjkyHgsrBp8hwvshz3jb1Mt
-         CMeQRVpYmJKgOrtqCybFhOcWhfDn7p0RUY0IGtekzktz953/pz1X7tq+ZH6MVSmPss8L
-         iPNMbYmRyYMpQ/J51zE7nQCcWXt/Jr8EtuMeW4Bu+waxBD8RdX3XNzgSC2Z+yV/EkMox
-         6sMUIlGwK0K5cUBbuk9pimNc4Oq0uo8te6qt8LIhVdiYSGqmYwZEa0LhPTl+Squ61B9Y
-         WIgQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVp+OIBZM/XOX444SCwz7qKXFMTcFwkmYOJqur0M/BFAFCCcfzqu6hxWHpGorSz4/AeqLHgAf1pZj8S@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxp6b1aAfHNPn/gnL+pPYOl2NV2OwjqrABsrUuFOXBVgW8symj3
-	9XYc+m4MFfW5a6gnZYqTuweFQdgdOAuim08X5Y05Xz9M/9xi4Rzf/j9bOvvSLt5LE8DLky4gYZI
-	x4WNeo0A0rNpGfeE3t2PUFDDAtcbS9xI=
-X-Gm-Gg: AY/fxX75RJKrrpMOl20TLuSAkITN2MOZI1lB//1pAPVCunp1GF5ULO3lN0iC5fnp/2X
-	ci7gkB7Zy8EOuBrgul7QXGbctRdjMNgu3bCRNvyUzZL2iTZuJqAB5teeqvC7VyzftkaNHF5MdQ+
-	m6jNCuZyBmAa4iJjoDeIWbZhKZpHt6LkvBUO3D9EkI4AOLWg0gPFNfLDDZmqyeiZO1jMusSnWBD
-	zZLXEuwYgF1VKFhXb5Y63g3USiJ5IdZvjTof29DNnq9YRnYxNGAgW2dr5FKTeuas5sXMTTFuaEY
-	MWP6tg==
-X-Google-Smtp-Source: AGHT+IGRzhuQbpaIiIx64rRvoMPeKJ0tQ5iWh5PoRl1Q9jUkP3/981+fYv9+vNw3dV5sUXQsiIuENZJ6gz0824ZfVmU=
-X-Received: by 2002:a05:6512:b02:b0:594:253c:209f with SMTP id
- 2adb3069b0e04-598ee53ec6dmr1455024e87.39.1765391580727; Wed, 10 Dec 2025
- 10:33:00 -0800 (PST)
+	s=arc-20240116; t=1765391794; c=relaxed/simple;
+	bh=EKm0SGHZ3KmBRr79ByTOZgV5jqb57ykeH76XMVwzoOY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ze2aOWbqNoPvkV2e2vsFauMZfW6GQIPqikYVZ6mz2s+uvjIUOIDKI8v3Ma69w/g7xLm1s7Oz9HHwJjLmTOFFh8vAHNhQt5a4oT+nrlWknaonUG/0e8rXfND565HLS4lqy5i3Stexbvy3N3/oTGQAYVjoRt741chzhXSmJ8bDjIE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qhcWEI0u; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7E11C4CEF1;
+	Wed, 10 Dec 2025 18:36:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1765391792;
+	bh=EKm0SGHZ3KmBRr79ByTOZgV5jqb57ykeH76XMVwzoOY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qhcWEI0ua2L36FHVg/O/UxjbMrk2/YUwOZ8T9/Mt4l57S1EgcwAZTg6z7iD9d4UW7
+	 6CYkuPy7RUX17NBnOCKRgLPjV0N4ufCgCFpMrkbU2wKpxlk3P3Ty6IN4w6VgPDKrQA
+	 ax0ucZjiR+R9P0EgeKG8F5r5kUZD01XmEXJvhmTdzJzVDrJgzFSHidBkeFOaUCt3WM
+	 AUFAaNZcEEhGce3i3fO8FR8TxJaACXrzorChAKqzDmAIMH9JIicQ2f56CL5sAmVbd6
+	 qTCZbhQiI1YTDJ7HaWCx35ewY6AUTlABiNP5P/zLtsXsXfGDR8/cQ2E4j5S0UsGmgC
+	 srsD4NZLE6nfQ==
+Date: Wed, 10 Dec 2025 18:36:28 +0000
+From: Conor Dooley <conor@kernel.org>
+To: CL Wang <cl634@andestech.com>
+Cc: broonie@kernel.org, linux-spi@vger.kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, tim609@andestech.com
+Subject: Re: [PATCH V2 1/3] dt-bindings: spi: Add support for ATCSPI200 SPI
+ controller
+Message-ID: <20251210-repeated-perjurer-99219893524a@spud>
+References: <20251210090430.3602380-1-cl634@andestech.com>
+ <20251210090430.3602380-2-cl634@andestech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251027-tegra186-icc-p2-v4-0-e4e4f57e2103@gmail.com>
- <CALHNRZ8nCojreFCMXfbBBhWAMtmWN-04XtuW8fEsVD9bw+-AzA@mail.gmail.com>
- <CALHNRZ-CO5i9jeLkEG2cmHxcW1bcLhxcBSxjmL2euHfQy8yr-w@mail.gmail.com>
- <e6ce190e-6df7-4c36-abca-f09df3cc80e7@nvidia.com> <99ca4992-5736-417d-854e-379542549bee@kernel.org>
- <7f3dad08-cff5-40c2-8e7f-f6441a3d6b91@nvidia.com> <d5d23eb5-f43c-4e4b-9926-3fba6ffd3acf@nvidia.com>
- <CALHNRZ8vFJyfFXbxFehWA9TGkdrEUy9Wsm-DxEOT=tVbYTcU5Q@mail.gmail.com>
- <249bbe7e-e2da-4493-bdd5-8f4b17aff8fe@nvidia.com> <CALHNRZ8uPaKqSpFWkmYZn==Xw=rxh95Xm0_6LPN1HDj20zofqw@mail.gmail.com>
- <d16803e5-7b6d-4472-b50c-aa324cf52736@nvidia.com> <CALHNRZ83Q2Ha8VYoWAnqoCZQ=Fd9rtVRVLwRFxAY68ePQ29GHw@mail.gmail.com>
- <29cf2c16-3a0e-42c5-a083-16f77ae5d09a@nvidia.com> <CALHNRZ9KAv-hL6+6Uiaz2O2odm1rqMnjNxNVPsbCOdqX15KTuw@mail.gmail.com>
- <856447ae-4338-471d-a71f-a34aed749ac7@nvidia.com> <CALHNRZ9y0n6JNfeDUQgZoECkxo+We0_G8TP0H4advcSqrX86kg@mail.gmail.com>
- <f906f85f-b110-4328-b177-02fcdf7ffe53@nvidia.com>
-In-Reply-To: <f906f85f-b110-4328-b177-02fcdf7ffe53@nvidia.com>
-From: Aaron Kling <webgeek1234@gmail.com>
-Date: Wed, 10 Dec 2025 12:32:48 -0600
-X-Gm-Features: AQt7F2pVjeNsup3vHu6UK02azziNs5j464FN4HX7BMVbonnjEkrnrV-F0sqKxT4
-Message-ID: <CALHNRZ8go4ATHgJ4SE=7pkAMgRP_0tj5z4pDXjxicV9o7F13Ng@mail.gmail.com>
-Subject: Re: [PATCH v4 3/5] memory: tegra186-emc: Support non-bpmp icc scaling
-To: Jon Hunter <jonathanh@nvidia.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Thierry Reding <thierry.reding@gmail.com>, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="wZGgkeRKxeoiumFS"
+Content-Disposition: inline
+In-Reply-To: <20251210090430.3602380-2-cl634@andestech.com>
+
+
+--wZGgkeRKxeoiumFS
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Dec 10, 2025 at 9:04=E2=80=AFAM Jon Hunter <jonathanh@nvidia.com> w=
-rote:
->
->
-> On 10/12/2025 05:06, Aaron Kling wrote:
->
-> ...
->
-> > Let me try to iterate the potential issues I've seen stated here. If
-> > I'm missing anything, please fill in the blanks.
-> >
-> > 1) If this change is applied without the related dt change and the
-> > pcie drvier is loaded, the emc clock can become stuck at the lowest
-> > rate. This is caused by the pcie driver providing icc data, but
-> > nothing else is. So the very low requested bandwidth results in the
-> > emc clock being set very low. I'm not sure there is a 'fix' for this,
-> > beyond making sure the dt change is merged to ensure that the cpufreq
-> > driver provides bandwidth info, causing the emc driver to select a
-> > more reasonable emc clock rate. This is a similar situation to what's
-> > currently blocking the tegra210 actmon series. I don't think there is
-> > a way for the drivers to know if icc data is missing/wrong. The
-> > scaling is doing exactly what it's told based on the icc routing given
-> > in the dt.
->
-> So this is the fundamental issue with this that must be fixed. We can't
-> allow the PCIe driver to slow the system down. I think that Krzysztof
-> suggested we need some way to determine if the necessary ICC clients are
-> present/registered for ICC to work. Admittedly, I have no idea if there
-> is a simple way to do this, but we need something like that.
+On Wed, Dec 10, 2025 at 05:04:28PM +0800, CL Wang wrote:
+> Document devicetree bindings for the Andes ATCSPI200 SPI controller.
+>=20
+> Signed-off-by: CL Wang <cl634@andestech.com>
+>   - Dropped the "spi_" prefix from dma-names as suggested.
+>   - Updated the DT binding and documented all compatible strings.
+>   - Added the "andestech,ae350-spi" compatible string.
+>    =20
+>     AE350 is part of the AndeShape=E2=84=A2 platform family and is a comm=
+ercially
+>     supported product with a fixed, documented SoC-level architecture (me=
+mory
+>     map, interrupt topology, and peripheral integration). Although AE350 =
+is
+>     often deployed on FPGA boards, the platform behaves as a stable SoC
+>     integration rather than a prototype.
+>    =20
+>     Upstream Linux already accepts FPGA-based platform-level compatible s=
+trings
+>     for stable SoC-like integrations. For example, the Tensilica FPGA pla=
+tform
+>     uses:
+>     compatible =3D "cdns,xtfpga-spi";
+>   =20
+>     Following the same rationale, "andestech,ae350-spi" is proposed as the
+>     platform-level compatible string for AE350-based devices.
+>=20
+>     More information about AE350 can be found at:
+>     https://www.andestech.com/en/products-solutions/andeshape-platforms/a=
+e350-axi-based-platform-pre-integrated-with-n25f-nx25f-a25-ax25/
+>=20
+> ---
+>  .../bindings/spi/andestech,qilai-spi.yaml     | 86 +++++++++++++++++++
+>  1 file changed, 86 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/spi/andestech,qilai=
+-spi.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/spi/andestech,qilai-spi.ya=
+ml b/Documentation/devicetree/bindings/spi/andestech,qilai-spi.yaml
+> new file mode 100644
+> index 000000000000..e58e6d675d70
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/spi/andestech,qilai-spi.yaml
+> @@ -0,0 +1,86 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/spi/andestech,qilai-spi.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Andes ATCSPI200 SPI controller
+> +
+> +maintainers:
+> +  - CL Wang <cl634@andestech.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - andestech,qilai-spi
+> +      - andestech,ae350-spi
 
-I'm not sure I understand how checking clients would work. Is there a
-mechanism for the emc driver to know if cpufreq is registered to icc
-in a way that works with probe deferrals, but also allows for it to be
-optional?
+I accept the rationale for adding the ae350 compatible, but given the
+lack of match data in your driver, you should pick one of these and have
+it be the fallback for the other. If you pick ae350, rename the file to
+match (since that'd be the "main" compatible then).
 
-Alternatively if there is not, can we just accept the abi break and
-have this and the dt change depend on each other? I know it's not
-desirable or the first choice, but if the other option is to rewrite
-part of the icc system, then perhaps it should be an option.
+pw-bot: changes-requested
 
-> > 2) Jon, you report that even with both this change and the related dt
-> > change, that the issue is still not fixed. But then posted a log
-> > showing that the emc rate is set to max. If the issue is that emc rate
-> > is too low, then how can debugfs report that the rate is max? For
-> > reference, everything scales as expected for me given this change plus
-> > the dt change on both p2771 and p3636+p3509.
->
-> To clarify, this broke the boot test on Tegra194 because the boot was
-> too slow. However, this also broke the EMC test on Tegra186 because
-> setting the frequency from the debugfs failed. So two different failures
-> on two different devices. I am guessing the EMC test would also fail on
-> Tegra194, but given that it does not boot, we did not get that far.
+Cheers,
+Conor.
 
-So you're saying that even with the dt changes, this change on
-tegra194 still does not boot before the regression test framework
-times out? If so, I need some more details about this. I have not seen
-issues on p2972 or p3518. For example, if I boot to android recovery
-where I set the cpufreq governor to performance, I see emc clock rate
-set to 2133 MHz and 1600 MHz respectively. And boot time from kernel
-start to pixels on display is 15 seconds, give or take a couple
-seconds. This is using the boot stack from l4t r32.7.6.
+--wZGgkeRKxeoiumFS
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> > 3) If icc is requesting enough bandwidth to set the emc clock to a
-> > high value, then a user tries to set debugfs max_freq to a lower
-> > value, this code will reject the change. I do not believe this is an
-> > issue unique to this code. tegra20-emc, tegra30-emc, and tegra124-emc
-> > all have this same flow. And so does my proposed change to
-> > tegra210-emc-core in the actmon series. This is why I asked if
-> > tegra124 ran this test, to see if the failure was unique. If this is
-> > not a unique failure, then I'd argue that all instances need changed,
-> > not just this one causing diverging results depending on the soc being
-> > utilized. A lot of the work I'm doing is to try to bring unity and
-> > feature parity to all the tegra socs I'm working on. I don't want to
-> > cause even more divergence.
->
-> Yes that is fair point, however, we need to detect this in the
-> tegra-tests so that we know that this will not work. It would be nice if
-> we could disable ICC from userspace and then run the test.
+-----BEGIN PGP SIGNATURE-----
 
-I am unaware of a way to disable icc from userspace. That would be
-useful to me as well. And for the record, I'm not refusing to make
-such a change. I would just want to have a series to change all the
-others uploaded and merged concurrently. But I cannot test t20 or t30.
-Only t124+.
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaTm9rAAKCRB4tDGHoIJi
+0v7OAQCnOjpxudD1hw9A8eh178DV9YBX6taLIXzefdCL1xVOsQEAtwrU1fmPGvvk
+fs6/O1V6gi5b8oUf2lkqaFbHsrgUPgM=
+=jnqp
+-----END PGP SIGNATURE-----
 
-> Bottom line here is that #1 is the problem that needs to be fixed.
-
-Aaron
+--wZGgkeRKxeoiumFS--
 
