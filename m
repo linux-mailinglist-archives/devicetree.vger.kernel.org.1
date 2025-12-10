@@ -1,132 +1,115 @@
-Return-Path: <devicetree+bounces-245637-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245638-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDA72CB37C6
-	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 17:35:55 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 758EDCB3827
+	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 17:44:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4ED6F310E039
-	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 16:33:52 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EF12E301E197
+	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 16:43:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C641F30DED1;
-	Wed, 10 Dec 2025 16:33:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B66A3246E7;
+	Wed, 10 Dec 2025 16:43:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YZC5I9VH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jwopFP4j"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 909503B8D68;
-	Wed, 10 Dec 2025 16:33:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B48C53233E3;
+	Wed, 10 Dec 2025 16:43:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765384430; cv=none; b=EJ1/DenI9sGrNfsaU0us/0wiJ+OjoHYmHnZc+MBKTGcZuQVl6tXPpBx6tX6Q7AkQ1NJs/UCp+JY7AGqx4Ke10ZLCNJHPdGAQ/70HPIc2yjdawgzf86DW1Z0nknuVa9F+XP3oGeTOLkjsp9JKJ1h0bUA1Y1gw57wEyc0euvjngAs=
+	t=1765385009; cv=none; b=X1TPigmBJQLD9RvwLVwpvIt6UPU71mKywL7RM0hBmKtGBX5Uy1fkZxSYS1KV2lkUvPtzeSWS/SHpvXFyNI00aTF/58VIcmvZ1MJ4lfJoXWkK1okuCLYbduXZRzWrVz5uUrC9+vQvTmfZGChfaJWpFlLH/wjAt70sOalUuTz7Eb4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765384430; c=relaxed/simple;
-	bh=RAVkpptHG6oJO9hSoLDzB0Os+BfA+qYSejoiWrxKU4Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AMaY/0u7hczkhzBXnOmnxcPVo8OERvNOy75H1g+lnmYX3rS4Zel/DkRTbgA7mFRHQ0m56/t1SSG2zYh5Yde9Gi7fODbv5aZA45rWHq2nCmYOMfVjXlZwCqZKRwkpiCbNjVDfjujHtpbCcCGdpxcUi7aTp3bO6JqHKlnaEm+Vgzs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YZC5I9VH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3253CC4CEF1;
-	Wed, 10 Dec 2025 16:33:46 +0000 (UTC)
+	s=arc-20240116; t=1765385009; c=relaxed/simple;
+	bh=D6oMO8hz9iCEccabjb39VyXWX9MEu9ZISEEglyieFkE=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=AkNC6rhdTYd9G4QE5PzMv/YV/CZt0QDSlypB514LU1xFmSgsqVol8reCzQ3yMuTQMhLF2fFNkjbdU/L+X1MS8yHHyGPV0lz9NJGrObXWFF0CshLNyjoLBsLiMjdL6nlsaaDf0VGzbJ7oMurvwy2NVJn1BnDkDb/CZoZSZXQjJ5k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jwopFP4j; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8C9CC4CEF1;
+	Wed, 10 Dec 2025 16:43:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765384430;
-	bh=RAVkpptHG6oJO9hSoLDzB0Os+BfA+qYSejoiWrxKU4Q=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YZC5I9VHWyMXJ19/yNiYo6ezpCM8sOhmTUF41m72Jtm2iABVgaS/27p0ZTqrKHh9Z
-	 bG0D7vM+v6w9EOFpDUmmi2mR2Ji9klQGmuoEEXdKT5sH0LKV1NfwG5SyCqR+rwBf22
-	 3f+xgcZscWmZnVWb0mlWjJ+ro/SQtsRiA3jQjRDuC/qc2XyaggmxLmTS0DwfMaRSmE
-	 C5m96GavAQ+CxKaR2ahdr0K0iov94ANatToT9spS59SQ6+q9r08QSUAbHCFTuPXNdh
-	 aJhFk/5B0+DjpskV68Wmb2QqHCarNXOW4Z8+UUSbyglElBaHthmaEo+PNHTbBeOO8u
-	 U6553F6TADWJA==
-Date: Wed, 10 Dec 2025 16:33:43 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Irving-CH Lin =?utf-8?B?KOael+W7uuW8mCk=?= <Irving-CH.Lin@mediatek.com>
-Cc: "robh@kernel.org" <robh@kernel.org>,
-	"ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
-	Sirius Wang =?utf-8?B?KOeOi+eak+aYsSk=?= <Sirius.Wang@mediatek.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"mturquette@baylibre.com" <mturquette@baylibre.com>,
-	"richardcochran@gmail.com" <richardcochran@gmail.com>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	Vince-WL Liu =?utf-8?B?KOWKieaWh+m+jSk=?= <Vince-WL.Liu@mediatek.com>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	Jh Hsu =?utf-8?B?KOioseW4jOWtnCk=?= <Jh.Hsu@mediatek.com>,
-	Project_Global_Chrome_Upstream_Group <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
-	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-	"sboyd@kernel.org" <sboyd@kernel.org>,
-	Qiqi Wang =?utf-8?B?KOeOi+eQpueQpik=?= <Qiqi.Wang@mediatek.com>,
-	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-	"netdev@vger.kernel.org" <netdev@vger.kernel.org>
-Subject: Re: [PATCH v3 01/21] dt-bindings: clock: mediatek: Add MT8189 clock
- definitions
-Message-ID: <20251210-progress-overdue-bded69c47048@spud>
-References: <20251106124330.1145600-1-irving-ch.lin@mediatek.com>
- <20251106124330.1145600-2-irving-ch.lin@mediatek.com>
- <20251106-hug-stingray-2d3ff42fd365@spud>
- <626b5c4b810678a7f0de1f109371a6d6694bd2a8.camel@mediatek.com>
+	s=k20201202; t=1765385009;
+	bh=D6oMO8hz9iCEccabjb39VyXWX9MEu9ZISEEglyieFkE=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=jwopFP4jBNqfZmSihJanQd3drbFgmVOEHv4W3zy1K53cnGquk8vxqBX3CyB4t092w
+	 Xi17V3xkxD1nSk2eZgvdYwRhIuNSeKZ8j7waJWD11k9LgM2KuLWM5cCw87OROWm0FT
+	 9nGcR8pPD3SJsH+wLpInCEcF6CM9UNkiXExjc2HlYBxLtQYiZXnKaUDSDvRKJcK8AN
+	 ZCdwaewQxLAxxk2LEwEAbWjjCuU7QN/ta9fJgaLmaphnYsfk6RoV+uGcE7qPbMWIAB
+	 nvP1mAJlwXNadfSvw8y5Lz3obfoVQ+oC4xKdtLHS2ZoqWUUNfv/vI8XZMyBdjwO8VC
+	 KapgOqfxgsc6w==
+Date: Wed, 10 Dec 2025 10:43:27 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: zhangsenchuan@eswincomputing.com
+Cc: bhelgaas@google.com, mani@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, lpieralisi@kernel.org, kwilczynski@kernel.org,
+	robh@kernel.org, p.zabel@pengutronix.de, jingoohan1@gmail.com,
+	gustavo.pimentel@synopsys.com, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	christian.bruel@foss.st.com, mayank.rana@oss.qualcomm.com,
+	shradha.t@samsung.com, krishna.chundru@oss.qualcomm.com,
+	thippeswamy.havalige@amd.com, inochiama@gmail.com, Frank.li@nxp.com,
+	ningyu@eswincomputing.com, linmin@eswincomputing.com,
+	pinkesh.vaghela@einfochips.com, ouyanghui@eswincomputing.com
+Subject: Re: [PATCH v7 2/3] PCI: eic7700: Add Eswin PCIe host controller
+ driver
+Message-ID: <20251210164327.GA3477281@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="6/aPeWQhkTkgoOqT"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <626b5c4b810678a7f0de1f109371a6d6694bd2a8.camel@mediatek.com>
+In-Reply-To: <20251202090406.1636-1-zhangsenchuan@eswincomputing.com>
 
+On Tue, Dec 02, 2025 at 05:04:06PM +0800, zhangsenchuan@eswincomputing.com wrote:
+> From: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
+> 
+> Add driver for the Eswin EIC7700 PCIe host controller, which is based on
+> the DesignWare PCIe core, IP revision 5.96a. The PCIe Gen.3 controller
+> supports a data rate of 8 GT/s and 4 channels, support INTx and MSI
+> interrupts.
 
---6/aPeWQhkTkgoOqT
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> +static int eic7700_pcie_host_init(struct dw_pcie_rp *pp)
+> ...
+> +	/*
+> +	 * The PWR and DBI Reset signals are respectively used to reset the
+> +	 * PCIe controller and the DBI registers.
+> +	 * The PERST# signal is a reset signal that simultaneously controls the
+> +	 * PCIe controller, PHY, and Endpoint.
+> +	 * Before configuring the PHY, the PERST# signal must first be
+> +	 * deasserted.
+> +	 * The external reference clock is supplied simultaneously to the PHY
+> +	 * and EP. When the PHY is configurable, the entire chip already has
+> +	 * stable power and reference clock.
+> +	 * The PHY will be ready within 20ms after writing app_hold_phy_rst
+> +	 * register of ELBI register space.
 
-On Wed, Dec 10, 2025 at 10:01:24AM +0000, Irving-CH Lin (=E6=9E=97=E5=BB=BA=
-=E5=BC=98) wrote:
-> Hi Conor,
->=20
-> On Thu, 2025-11-06 at 17:19 +0000, Conor Dooley wrote:
-> > On Thu, Nov 06, 2025 at 08:41:46PM +0800, irving.ch.lin wrote:
-> > > From: Irving-CH Lin <irving-ch.lin@mediatek.com>
-> > >=20
-> > > Add device tree bindings for the clock of MediaTek MT8189 SoC.
-> > >=20
-> > > Signed-off-by: Irving-CH Lin <irving-ch.lin@mediatek.com>
-> >=20
-> > Before I approve this, can you share the dts that actually uses it?
-> > This many different syscons really does look suspect, and that not
-> > all
-> > of these should be nodes of their own. They may very well be, I would
-> > just like to see what the dts looks like. Doesn't need to be a patch,
-> > a
-> > link to your tree will suffice.
-> >=20
-> > Cheers,
-> > Conor.
-> >=20
-> https://patchwork.kernel.org/project/linux-mediatek/patch/20251111070031.=
-305281-10-jh.hsu@mediatek.com/
-> Please refer to link for mt8189 dts.
+Add blank lines between paragraphs.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-pw-bot: not-applicable
+> +static int eic7700_pcie_probe(struct platform_device *pdev)
+> ...
+> +	pci->no_pme_handshake = pcie->data->no_pme_handshake;
 
---6/aPeWQhkTkgoOqT
-Content-Type: application/pgp-signature; name="signature.asc"
+This needs to go in the 3/3 "PCI: dwc: Add no_pme_handshake flag and
+skip PME_Turn_Off broadcast" patch because "no_pme_handshake" doesn't
+exist yet so this patch doesn't build by itself.
 
------BEGIN PGP SIGNATURE-----
+> +static const struct dev_pm_ops eic7700_pcie_pm_ops = {
+> +	NOIRQ_SYSTEM_SLEEP_PM_OPS(eic7700_pcie_suspend_noirq,
+> +				  eic7700_pcie_resume_noirq)
+> +};
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaTmg5wAKCRB4tDGHoIJi
-0gQLAQDlf0YH1hYoXc9Bdh1D48xuvf9j1Xm/38X050i72dQjuAEA3Ycuor/nuZxO
-KtGQq2Rg+DlffLIgFceLi1KapRxZVQo=
-=RQBU
------END PGP SIGNATURE-----
+Use DEFINE_NOIRQ_DEV_PM_OPS() instead.  The collection of PM-related
+macros is confusing to say the least, and they're not used
+consistently across the PCIe drivers, but I *think* the rule of thumb
+should be:
 
---6/aPeWQhkTkgoOqT--
+  Prefer DEFINE_NOIRQ_DEV_PM_OPS() over NOIRQ_SYSTEM_SLEEP_PM_OPS()
+  when possible and omit pm_sleep_ptr() and pm_ptr().
+
+Bjorn
 
