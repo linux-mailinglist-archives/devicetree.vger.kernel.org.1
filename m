@@ -1,118 +1,100 @@
-Return-Path: <devicetree+bounces-245653-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245654-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33886CB3BF9
-	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 19:21:43 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF999CB3C0E
+	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 19:23:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 3DCE230146ED
-	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 18:21:42 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 712F6301A716
+	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 18:22:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F16C43009C7;
-	Wed, 10 Dec 2025 18:21:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A71B32825E;
+	Wed, 10 Dec 2025 18:22:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BvAVRy0j"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="F9GR1MB4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF4AE1898F8;
-	Wed, 10 Dec 2025 18:21:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75D883246FD;
+	Wed, 10 Dec 2025 18:22:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765390900; cv=none; b=XNXlpdplo6viPIVCcCxjQsRGLlef1eijJxv08jMkIF0bLH4/QlpomJia1+5uhnbHZhcMnQ9/JkBkYqJ/9fnqDKst8LY75hVEUw5gsENzXP/Flmr0BdhiFEHwOarTXoB2PnPxPubCDopMpBtqvT/Nr2nXwnKdn94G49YnE/Y3DjI=
+	t=1765390939; cv=none; b=WMHn6c7Yjcx/7KxnImNwVrg51BGhOb7kAeE51taCPUK+8D6H7BBeIiEaGf/1gYsNuldsXUSkJfwMkycNxL6//JMPFiEQqJhHWDOLZ4J/86TqWuZiBWcadNniKvQ7yXftCpiBkifqpYKRFFC/3sw26kODhWV9lSV9hEOSDVyDBW4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765390900; c=relaxed/simple;
-	bh=O+bGZbuvV5kBW7ZrBjTqnBm76ibmQ69yjYsTylWkcb4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aqMHnjBJIyVX0lnWCUcHnIBTSAW2cXgOQjktbXFDQLWDG11N4Tfp9F5X0oPB8xyo+1FeNJxrYLBwKM1e6108JR7tM7rJ6JJAmO7owdTsKO2iVO+FjcQQEDIk/WnxAsrpGWjx9AjpaFalv2dYB/oQKBYR2l+4NQYbEyEpB2mf5lk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BvAVRy0j; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB4D6C4CEF1;
-	Wed, 10 Dec 2025 18:21:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765390900;
-	bh=O+bGZbuvV5kBW7ZrBjTqnBm76ibmQ69yjYsTylWkcb4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BvAVRy0j+eyq40iKGFIWrLwNVP55uSf8AD4b81YFOwB5wOjrt3gLIqkJtmaOmbx6u
-	 /H1NnCpqCcJafwoaygyuMgqITpp+A0bC//qQNcSeBLmNbYti9qiozuFSyqNNzl8zdo
-	 E9VIeIOQUp5PIm8e2JjCPN0UAkrM61i5UgIjNmfK069X0ZnEPtKskxo1nFFlKoV8Df
-	 Gggyb2hHueVniuewm9/BFvUWr7/b4OliGyJW3GAiokao6XQM39anwQ8a6AcKS7Dtgv
-	 PxsPCqT4Q6nJt2i9ekG58XqeWnOQ2dCkfF1KcEEypfh4T2sD2xk6gA08K7/widSsu7
-	 9/N0llidyrzfQ==
-Date: Wed, 10 Dec 2025 18:21:34 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Marc Kleine-Budde <mkl@pengutronix.de>
-Cc: Prabhakar <prabhakar.csengg@gmail.com>,
-	Vincent Mailhol <mailhol@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Aswath Govindraju <a-govindraju@ti.com>,
-	Frank Li <Frank.li@nxp.com>, linux-can@vger.kernel.org,
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v2] dt-bindings: phy: ti,tcan104x-can: Document TI
- TCAN1046
-Message-ID: <20251210-persuaded-rewire-8ac93b0cc039@spud>
-References: <20251209162119.2038313-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20251210-mauve-cow-of-hurricane-0f969d-mkl@pengutronix.de>
+	s=arc-20240116; t=1765390939; c=relaxed/simple;
+	bh=PUXR57mTieP5CBzCja98cqoyFj4aV18gefXhTgd/6qY=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
+	 References:In-Reply-To; b=hPZdIu5JvEowJ3jbsJ9mlSn09giA/jN8AilB83V5JyAo84gFW5jgUJc5pA8Gh1X3u6k16k06yaJxNTmAVVtN0GLIoHTngHJyZZtkGGaCJG/jVGwY5U4YSOA75FvcDnmMhOBUCd/+T95E5Xf90n0kgAfnZ4eBRbIEZDCFmGB9BrE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=F9GR1MB4; arc=none smtp.client-ip=185.246.85.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 1D2F24E41B4E;
+	Wed, 10 Dec 2025 18:22:13 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id DAD2660714;
+	Wed, 10 Dec 2025 18:22:12 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 155F4103C8CB3;
+	Wed, 10 Dec 2025 19:22:05 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1765390931; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=PUXR57mTieP5CBzCja98cqoyFj4aV18gefXhTgd/6qY=;
+	b=F9GR1MB4SM2KDodDE/TOQoAX42RWMhfc+j0VOF24Yt8l74MiY4JY+hGeX75GJOfYV52cxn
+	vM6FWccI8aSSc3Mh1EoYSBAFojiJYIh1ZhicDXPhOpIisEg+MD3SQAZ1PlrsluQvmWWqGH
+	49gPgtyAuTtMd6Cfk4h+Gxj6hSWhkxN3I4KWQ5oxVSJbq/72GZKg9fCT2EIbWaGMnqGk8W
+	vOm4iKkiiB5G1jxQASH2opdWgJT3KT5+mxoooRHpJWsVEzB8wDoo9TCX2Cpo29caQ3E+lF
+	Fnb7KWKuFMfx6GKNewg8DVJD/5i0vemI+FlKyrP/9Dg5/aIeLMIHVcY5mcvvIw==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="IIsQrjuMkvqB7/Hb"
-Content-Disposition: inline
-In-Reply-To: <20251210-mauve-cow-of-hurricane-0f969d-mkl@pengutronix.de>
-
-
---IIsQrjuMkvqB7/Hb
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 10 Dec 2025 19:22:04 +0100
+Message-Id: <DEUQUQS51C7K.FJD7W3YFJJU5@bootlin.com>
+Subject: Re: [PATCH 10/21] drm/tilcdc: Remove redundant #endif/#ifdef in
+ debugfs code
+Cc: "Markus Schneider-Pargmann" <msp@baylibre.com>, "Louis Chauvet"
+ <louis.chauvet@bootlin.com>, "Thomas Petazzoni"
+ <thomas.petazzoni@bootlin.com>, "Miguel Gazquez"
+ <miguel.gazquez@bootlin.com>, <dri-devel@lists.freedesktop.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-arm-kernel@lists.infradead.org>, <linux-omap@vger.kernel.org>
+To: "Kory Maincent (TI.com)" <kory.maincent@bootlin.com>, "Jyri Sarha"
+ <jyri.sarha@iki.fi>, "Tomi Valkeinen" <tomi.valkeinen@ideasonboard.com>,
+ "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>, "Maxime Ripard"
+ <mripard@kernel.org>, "Thomas Zimmermann" <tzimmermann@suse.de>, "David
+ Airlie" <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Rob
+ Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>, "Russell King"
+ <linux@armlinux.org.uk>, "Bartosz Golaszewski" <brgl@bgdev.pl>, "Tony
+ Lindgren" <tony@atomide.com>, "Andrzej Hajda" <andrzej.hajda@intel.com>,
+ "Neil Armstrong" <neil.armstrong@linaro.org>, "Robert Foss"
+ <rfoss@kernel.org>, "Laurent Pinchart" <Laurent.pinchart@ideasonboard.com>,
+ "Jonas Karlman" <jonas@kwiboo.se>, "Jernej Skrabec"
+ <jernej.skrabec@gmail.com>
+From: "Luca Ceresoli" <luca.ceresoli@bootlin.com>
+X-Mailer: aerc 0.20.1
+References: <20251126-feature_tilcdc-v1-0-49b9ef2e3aa0@bootlin.com>
+ <20251126-feature_tilcdc-v1-10-49b9ef2e3aa0@bootlin.com>
+In-Reply-To: <20251126-feature_tilcdc-v1-10-49b9ef2e3aa0@bootlin.com>
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Wed, Dec 10, 2025 at 08:52:58AM +0100, Marc Kleine-Budde wrote:
-> On 09.12.2025 16:21:19, Prabhakar wrote:
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > Document the TI TCAN1046 automotive CAN transceiver. The TCAN1046 is a
-> > dual high-speed CAN transceiver with sleep-mode support and no EN pin,
-> > mirroring the behaviour of the NXP TJA1048, which also provides dual
-> > channels and STB1/2 sleep-control lines.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > ---
-> > TCAN 1046, https://www.ti.com/lit/ds/symlink/tcan1046v-q1.pdf?ts=3D1765=
-297159307&ref_url=3Dhttps%253A%252F%252Fwww.ti.com%252Fproduct%252FTCAN1046=
-V-Q1
-> > NXP TJA1048, https://www.nxp.com/docs/en/data-sheet/TJA1048.pdf
->=20
-> The polarity of the standby line of the chips is different.
->=20
-> You must set the correct active high/low property for the GPIO, as the
-> driver uses logical levels.
->=20
-> Reviewed-by: Marc Kleine-Budde <mkl@pengutronix.de>
+On Wed Nov 26, 2025 at 6:35 PM CET, Kory Maincent (TI.com) wrote:
+> Remove the unnecessary #endif/#ifdef CONFIG_DEBUG_FS pair that splits
+> the debugfs code section. This keeps all debugfs-related code within a
+> single preprocessor conditional block, improving code readability.
+>
+> Signed-off-by: Kory Maincent (TI.com) <kory.maincent@bootlin.com>
 
-What you're saying seems to contradict the tag you've given, is a
-fallback really suitable if the standby polarity is not the same?
+Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
 
---IIsQrjuMkvqB7/Hb
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaTm6LgAKCRB4tDGHoIJi
-0rd8AQCVqGYenKiVlmsteQjlS3YKRFO6NfcKVKty99nB08UYYAD9EvjL6s2ARUpL
-Tk/sBch2w9KMamz7vNWItgV48BNsgA8=
-=XC1y
------END PGP SIGNATURE-----
-
---IIsQrjuMkvqB7/Hb--
+--
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
