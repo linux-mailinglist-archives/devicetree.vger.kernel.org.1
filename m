@@ -1,123 +1,118 @@
-Return-Path: <devicetree+bounces-245652-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245653-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A94C3CB3B98
-	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 19:14:24 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33886CB3BF9
+	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 19:21:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 17EE0300CA1A
-	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 18:14:06 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 3DCE230146ED
+	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 18:21:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4219329379;
-	Wed, 10 Dec 2025 18:14:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F16C43009C7;
+	Wed, 10 Dec 2025 18:21:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="fJ+jfCzl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BvAVRy0j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3572329378;
-	Wed, 10 Dec 2025 18:14:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF4AE1898F8;
+	Wed, 10 Dec 2025 18:21:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765390442; cv=none; b=mD7eDYlrkjlp75f/Fo8wwevQ2IjbcaVAjgggxZayda7K4hHjQi91mRBr/Qq8+swrmTSE3sM7qdq5z/VuI84JsejJG4kMeSXjXtMGBY28TNArTEHMIL/cZ9ROF7kYjSKGP5RSuJlba+6RaTZUbWDACXNdnQt08Ad8eObrKUrit7Q=
+	t=1765390900; cv=none; b=XNXlpdplo6viPIVCcCxjQsRGLlef1eijJxv08jMkIF0bLH4/QlpomJia1+5uhnbHZhcMnQ9/JkBkYqJ/9fnqDKst8LY75hVEUw5gsENzXP/Flmr0BdhiFEHwOarTXoB2PnPxPubCDopMpBtqvT/Nr2nXwnKdn94G49YnE/Y3DjI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765390442; c=relaxed/simple;
-	bh=l98qOu+0/tY6Orese0IPL2xdfoJODXFr8iaKgobrYT0=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
-	 References:In-Reply-To; b=ejto5cpeFfbbdMJfJ8l4oEDuAEVYeXWVrBJBQ+T4gPn/Hrxee9RSLIsHxSHgcvWBPX5Hhe9N8MpbTJLg04KrFxSka3d3NwMnLappJfjHxWWffXSJkLLdS+zn8nCrEnRCTX3rkEhXZ7V1/YhI9e5f/mD3KFmegmsvaFJx3MXTIbk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=fJ+jfCzl; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id D8557C180F6;
-	Wed, 10 Dec 2025 18:13:34 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 9D6E760714;
-	Wed, 10 Dec 2025 18:13:58 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id C3317103C8CB3;
-	Wed, 10 Dec 2025 19:13:53 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1765390437; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=l98qOu+0/tY6Orese0IPL2xdfoJODXFr8iaKgobrYT0=;
-	b=fJ+jfCzl8+4tV/5a2fjeAI0hqo1ETpxNTPbTLeRkcWl+3hg9ddajcJlzgT3RjWWIkjbsTa
-	T4tqLnnKAatCmuruKQGjuXAVE9e0LrCIxjrm8mXAd1/SuYg832ffC6HxVGAtXPRDd/1+Dq
-	VQTVso6cfbjeA/+6fsZnkkjz3tkYOQmzYjF5t3T3fh8hmXnv7MjXuyAIsTFOWOQMQIB5ku
-	H2CsRwiLKpWqq3oESdJoguxhOAmEondgANQOWNl573uWipCPUJSaPR3+WO/WniA9KT9Npo
-	Kns/EKpwKZTEk9u5sMtXBkRNXC2t7+mtM73poDyR4SIxWIc8b1XHx0jiYdExuA==
+	s=arc-20240116; t=1765390900; c=relaxed/simple;
+	bh=O+bGZbuvV5kBW7ZrBjTqnBm76ibmQ69yjYsTylWkcb4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=aqMHnjBJIyVX0lnWCUcHnIBTSAW2cXgOQjktbXFDQLWDG11N4Tfp9F5X0oPB8xyo+1FeNJxrYLBwKM1e6108JR7tM7rJ6JJAmO7owdTsKO2iVO+FjcQQEDIk/WnxAsrpGWjx9AjpaFalv2dYB/oQKBYR2l+4NQYbEyEpB2mf5lk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BvAVRy0j; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB4D6C4CEF1;
+	Wed, 10 Dec 2025 18:21:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1765390900;
+	bh=O+bGZbuvV5kBW7ZrBjTqnBm76ibmQ69yjYsTylWkcb4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=BvAVRy0j+eyq40iKGFIWrLwNVP55uSf8AD4b81YFOwB5wOjrt3gLIqkJtmaOmbx6u
+	 /H1NnCpqCcJafwoaygyuMgqITpp+A0bC//qQNcSeBLmNbYti9qiozuFSyqNNzl8zdo
+	 E9VIeIOQUp5PIm8e2JjCPN0UAkrM61i5UgIjNmfK069X0ZnEPtKskxo1nFFlKoV8Df
+	 Gggyb2hHueVniuewm9/BFvUWr7/b4OliGyJW3GAiokao6XQM39anwQ8a6AcKS7Dtgv
+	 PxsPCqT4Q6nJt2i9ekG58XqeWnOQ2dCkfF1KcEEypfh4T2sD2xk6gA08K7/widSsu7
+	 9/N0llidyrzfQ==
+Date: Wed, 10 Dec 2025 18:21:34 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Marc Kleine-Budde <mkl@pengutronix.de>
+Cc: Prabhakar <prabhakar.csengg@gmail.com>,
+	Vincent Mailhol <mailhol@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Aswath Govindraju <a-govindraju@ti.com>,
+	Frank Li <Frank.li@nxp.com>, linux-can@vger.kernel.org,
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH v2] dt-bindings: phy: ti,tcan104x-can: Document TI
+ TCAN1046
+Message-ID: <20251210-persuaded-rewire-8ac93b0cc039@spud>
+References: <20251209162119.2038313-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20251210-mauve-cow-of-hurricane-0f969d-mkl@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="IIsQrjuMkvqB7/Hb"
+Content-Disposition: inline
+In-Reply-To: <20251210-mauve-cow-of-hurricane-0f969d-mkl@pengutronix.de>
+
+
+--IIsQrjuMkvqB7/Hb
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 10 Dec 2025 19:13:53 +0100
-Message-Id: <DEUQOGYVBYFL.39NLEZ2GBI2WT@bootlin.com>
-Subject: Re: [PATCH 04/21] drm/tilcdc: Add support for DRM bus flags and
- simplify panel config
-Cc: "Markus Schneider-Pargmann" <msp@baylibre.com>, "Louis Chauvet"
- <louis.chauvet@bootlin.com>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>, "Miguel Gazquez"
- <miguel.gazquez@bootlin.com>, <dri-devel@lists.freedesktop.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-arm-kernel@lists.infradead.org>, <linux-omap@vger.kernel.org>
-To: "Kory Maincent (TI.com)" <kory.maincent@bootlin.com>, "Jyri Sarha"
- <jyri.sarha@iki.fi>, "Tomi Valkeinen" <tomi.valkeinen@ideasonboard.com>,
- "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>, "Maxime Ripard"
- <mripard@kernel.org>, "Thomas Zimmermann" <tzimmermann@suse.de>, "David
- Airlie" <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Rob
- Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>, "Russell King"
- <linux@armlinux.org.uk>, "Bartosz Golaszewski" <brgl@bgdev.pl>, "Tony
- Lindgren" <tony@atomide.com>, "Andrzej Hajda" <andrzej.hajda@intel.com>,
- "Neil Armstrong" <neil.armstrong@linaro.org>, "Robert Foss"
- <rfoss@kernel.org>, "Laurent Pinchart" <Laurent.pinchart@ideasonboard.com>,
- "Jonas Karlman" <jonas@kwiboo.se>, "Jernej Skrabec"
- <jernej.skrabec@gmail.com>
-From: "Luca Ceresoli" <luca.ceresoli@bootlin.com>
-X-Mailer: aerc 0.20.1
-References: <20251126-feature_tilcdc-v1-0-49b9ef2e3aa0@bootlin.com>
- <20251126-feature_tilcdc-v1-4-49b9ef2e3aa0@bootlin.com>
-In-Reply-To: <20251126-feature_tilcdc-v1-4-49b9ef2e3aa0@bootlin.com>
-X-Last-TLS-Session-Version: TLSv1.3
 
-On Wed Nov 26, 2025 at 6:35 PM CET, Kory Maincent (TI.com) wrote:
-> Migrate CRTC mode configuration to use standard DRM bus flags in
-> preparation for removing the tilcdc_panel driver and its custom
-> tilcdc_panel_info structure.
->
-> Add support for DRM_BUS_FLAG_PIXDATA_DRIVE_NEGEDGE and
-> DRM_BUS_FLAG_SYNC_DRIVE_NEGEDGE flags to control pixel clock and sync
-> signal edge polarity, while maintaining backward compatibility with the
-> existing tilcdc panel info structure.
->
-> Simplify several hardware parameters by setting them to fixed defaults
-> based on common usage across existing device trees:
-> - DMA burst size: 16 (previously configurable via switch statement)
-> - AC bias frequency: 255 (previously panel-specific)
-> - FIFO DMA request delay: 128 (previously panel-specific)
->
-> These parameters show no variation in real-world usage, so hardcoding
-> them simplifies the driver without losing functionality.
->
-> Preserve FIFO threshold configurability by adding a new "fifo-threshold"
-> device tree property at the display controller level, as this parameter
-> varies across different display configurations in existing device trees.
->
-> Signed-off-by: Kory Maincent (TI.com) <kory.maincent@bootlin.com>
+On Wed, Dec 10, 2025 at 08:52:58AM +0100, Marc Kleine-Budde wrote:
+> On 09.12.2025 16:21:19, Prabhakar wrote:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Document the TI TCAN1046 automotive CAN transceiver. The TCAN1046 is a
+> > dual high-speed CAN transceiver with sleep-mode support and no EN pin,
+> > mirroring the behaviour of the NXP TJA1048, which also provides dual
+> > channels and STB1/2 sleep-control lines.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > ---
+> > TCAN 1046, https://www.ti.com/lit/ds/symlink/tcan1046v-q1.pdf?ts=3D1765=
+297159307&ref_url=3Dhttps%253A%252F%252Fwww.ti.com%252Fproduct%252FTCAN1046=
+V-Q1
+> > NXP TJA1048, https://www.nxp.com/docs/en/data-sheet/TJA1048.pdf
+>=20
+> The polarity of the standby line of the chips is different.
+>=20
+> You must set the correct active high/low property for the GPIO, as the
+> driver uses logical levels.
+>=20
+> Reviewed-by: Marc Kleine-Budde <mkl@pengutronix.de>
 
-Apart from the "fifo-threshold" property, which as discussed should instead
-be inferred from the compatible, the patch looks good. I checked the values
-which are being removed and they have all the same value in the code
-defaults and all in-tree dts files.
+What you're saying seems to contradict the tag you've given, is a
+fallback really suitable if the standby polarity is not the same?
 
-Luca
+--IIsQrjuMkvqB7/Hb
+Content-Type: application/pgp-signature; name="signature.asc"
 
---
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaTm6LgAKCRB4tDGHoIJi
+0rd8AQCVqGYenKiVlmsteQjlS3YKRFO6NfcKVKty99nB08UYYAD9EvjL6s2ARUpL
+Tk/sBch2w9KMamz7vNWItgV48BNsgA8=
+=XC1y
+-----END PGP SIGNATURE-----
+
+--IIsQrjuMkvqB7/Hb--
 
