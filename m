@@ -1,365 +1,510 @@
-Return-Path: <devicetree+bounces-245647-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245648-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14136CB3AF3
-	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 18:42:53 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2567BCB3B1A
+	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 18:51:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C7AED31BC8A4
-	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 17:39:49 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 01221300BD88
+	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 17:51:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54D5E329367;
-	Wed, 10 Dec 2025 17:39:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0FE527CCF2;
+	Wed, 10 Dec 2025 17:50:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=solidrn.onmicrosoft.com header.i=@solidrn.onmicrosoft.com header.b="muRuKYx4";
-	dkim=pass (1024-bit key) header.d=solidrn.onmicrosoft.com header.i=@solidrn.onmicrosoft.com header.b="muRuKYx4"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="MVSXWHq5";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Fo3pX7Za"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11022138.outbound.protection.outlook.com [52.101.66.138])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 608F43233E3;
-	Wed, 10 Dec 2025 17:39:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.138
-ARC-Seal:i=4; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765388374; cv=fail; b=hbAC1xIYBKp1kVvZdFDay5sPS7WjK5qIAvUQwryW2GyQUONznm4Kg/d/SASMP6Bd5J0yzB2G3HUK41QjINygJpVBOi+7fLsCwh2cMYQCvPEXtCLO+EBsRCAlLDczCuROBg5FMMcPitzArHjUt2xkIO8CunMzwuBLzIa/tudFZ9s=
-ARC-Message-Signature:i=4; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765388374; c=relaxed/simple;
-	bh=X9cCrRUUIkFz7uJ/jY6Sk2GRT9fTD3vh8gQojIkBEIo=;
-	h=From:Date:Subject:Content-Type:Message-Id:References:In-Reply-To:
-	 To:Cc:MIME-Version; b=YTjuijE178kpA3DIrH1fHFlYaYtSB+pNCPiqp6z/DOyr47W4c+69Xvh45bJ4xesR1sBAJhZpgZICfRf5bRori6GRUBFE9WkFhnAMfZYiqpmq6QiFB7uoKBlmnw1N3jDyvShoV1sCOq4c834x1qeoSEptLzi0Ve445OgKTGEySdw=
-ARC-Authentication-Results:i=4; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=solid-run.com; spf=pass smtp.mailfrom=solid-run.com; dkim=pass (1024-bit key) header.d=solidrn.onmicrosoft.com header.i=@solidrn.onmicrosoft.com header.b=muRuKYx4; dkim=pass (1024-bit key) header.d=solidrn.onmicrosoft.com header.i=@solidrn.onmicrosoft.com header.b=muRuKYx4; arc=fail smtp.client-ip=52.101.66.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=solid-run.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=solid-run.com
-ARC-Seal: i=3; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=pass;
- b=tQGePUbdXUwtXRCIs051vYcUNwT4smWmMjLb21qnpU5mZDZS/s73gRLM1ctDyVup86KPY+b9JIV5VNssAfoRtEHLieAk0KEpEujJK28uhUa5vny2AO1vzlAfiq8bJYOMgWTDeE7MJvVIrmqlCQI/TfkxamBiAqx++mGJ66LTu0M5oEZdfYOLQsn6D3o8JHrrBiB8Y4G7y+6HDC98z9QXsPf5zxD6+JaPkSm2ZGLs+DHZAmVADJHieaPNT3sYUlOJM7WxSxNlJbD0nIStgc8DfPpQdT11K3bOL57GAvwjFFZM5o+12WtCbv8ASJquw5QzGSHamFf1efpgBkGMgVgnoA==
-ARC-Message-Signature: i=3; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kgJWiGyYNQxgfjY+cvgUSMZNliPv+COPjJYSzB25l9A=;
- b=nqrs/3iTB28+GdiCx8aya+EPT6lMILBUHb6bbx6NzqAU6Y5FMNhXi/2m3T3V+kV1zlSzb/jKZMbfsAzGi2HixaZj7WGPG/f4121PhZ0+B5lTdWpn+akU2wDiRNu+BTGCBhAXD7CPKmLGCXGtQmaj1RM7b3t72rEbamURXesidzHx6BUie4at8zyeMtMfIM87wcIv1CTT9AwnJXUXxLZwLBSP0+tN1Hy0Tn/r/2KtAQUDP7oGuDgB278c7HH0cw+O3GiBc4gytIr4oDC0z0qJkh9kfvweQ5Vis6VVFDb3vTzJK5p6mEKokNl54AAYu7WKVY8sBH3l8ysH1bMIjtOseQ==
-ARC-Authentication-Results: i=3; mx.microsoft.com 1; spf=fail (sender ip is
- 52.17.62.50) smtp.rcpttodomain=atomide.com smtp.mailfrom=solid-run.com;
- dmarc=fail (p=none sp=none pct=100) action=none header.from=solid-run.com;
- dkim=pass (signature was verified) header.d=solidrn.onmicrosoft.com; arc=pass
- (0 oda=1 ltdi=1 spf=[1,1,smtp.mailfrom=solid-run.com]
- dkim=[1,1,header.d=solid-run.com] dmarc=[1,1,header.from=solid-run.com])
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B0D4221FCF
+	for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 17:50:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1765389059; cv=none; b=rDidFW0iCzHNZUppegSePRN3/O0swOXVdKBYKIabOx17YhayW//au5Jx9qbg20VGCowSuva8ejBtiyxxNdxq26XYKKWrdsY73nLlpg/tA/QchO7dXr+epetyuBZnLIFiFCVXM0uROVeVYB4NBYCeodScedlVzq78EJUpf2o1/kI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1765389059; c=relaxed/simple;
+	bh=yxzev8EM5E0T7lxaL9VjsGhEPZMDoh38zloToSzWu4Q=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=LS+Yb3d+wesXAUYP93TNDZIr0nXlJ1GjFIG2psBcpeidAlH1FIP1dqb0LamtsADR8UEZIAAuAObolnp52GOUA6iOqu8VxbQLSQH0LCblAZOzxrfVxKwhdZ7vLSi87z7KcwrtLPsKNndU8vk+5vvgXStKG9bCwaTJNaE2cd28Tok=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=MVSXWHq5; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Fo3pX7Za; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BA9Gnip2858880
+	for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 17:50:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	O0xdAhyjVRQ3P4u6QZOwEX+3rAEIjfeC+exH9qNW2JE=; b=MVSXWHq5n5kfKrXZ
+	vDZTsPsRM+RFKz7hALKBjIexiPF2vLkXa2e9XhQ70smN0vJ2x12S3QcBAVvXHPCS
+	nXdsvZ8KMpm7m28vjIN77bg/FVxswBrE3ZoopdDrCy9h4d7LTvuMXZ/6RIzWrTkS
+	cXy6Elmy17UnLI+11fFUr+qoxoaXeunoGsjHrIbIt5v3md1I8Ef91cCx8bRqLqKl
+	w3t3tlpY7JUl8Ltdj/D9sMr+OeRgsPJSeJZfRMJ4nkhVNa4gPlRJOzZuzZIOEufW
+	5J1NKdzunM70aGpoQw/t0l1sNbKYUM9pEb1RZt0NVFYPCAP4P5hl+djFKTRDzGJm
+	04y4Aw==
+Received: from mail-pg1-f199.google.com (mail-pg1-f199.google.com [209.85.215.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ay63fsj0y-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 17:50:56 +0000 (GMT)
+Received: by mail-pg1-f199.google.com with SMTP id 41be03b00d2f7-b99763210e5so126114a12.3
+        for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 09:50:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=solidrn.onmicrosoft.com; s=selector1-solidrn-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kgJWiGyYNQxgfjY+cvgUSMZNliPv+COPjJYSzB25l9A=;
- b=muRuKYx4tppHvdtLXmihnbDSqvy8lZdNt9nnvZ5FXf360foskOZB1/4KoJsEBZUXersw4tBFf7jDVDJLs54kM0nym8CG1XAfcwP/jv4nj6EsvJlVwF6elMjGnyuLJv6PlzibHfrQ5SPwCcd8HVt2B7h51JHCvzLkZ4/JdbQ+UI4=
-Received: from DB9PR05CA0015.eurprd05.prod.outlook.com (2603:10a6:10:1da::20)
- by VI1PR04MB7005.eurprd04.prod.outlook.com (2603:10a6:803:136::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9412.7; Wed, 10 Dec
- 2025 17:39:26 +0000
-Received: from DU2PEPF00028D08.eurprd03.prod.outlook.com
- (2603:10a6:10:1da:cafe::59) by DB9PR05CA0015.outlook.office365.com
- (2603:10a6:10:1da::20) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9388.15 via Frontend Transport; Wed,
- 10 Dec 2025 17:39:25 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 52.17.62.50)
- smtp.mailfrom=solid-run.com; dkim=pass (signature was verified)
- header.d=solidrn.onmicrosoft.com;dmarc=fail action=none
- header.from=solid-run.com;
-Received-SPF: Fail (protection.outlook.com: domain of solid-run.com does not
- designate 52.17.62.50 as permitted sender) receiver=protection.outlook.com;
- client-ip=52.17.62.50; helo=eu-dlp.cloud-sec-av.com;
-Received: from eu-dlp.cloud-sec-av.com (52.17.62.50) by
- DU2PEPF00028D08.mail.protection.outlook.com (10.167.242.168) with Microsoft
- SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.20.9412.4
- via Frontend Transport; Wed, 10 Dec 2025 17:39:24 +0000
-Received: from emails-9008924-12-mt-prod-cp-eu-2.checkpointcloudsec.com (ip-10-20-6-47.eu-west-1.compute.internal [10.20.6.47])
-	by mta-outgoing-dlp-431-mt-prod-cp-eu-2.checkpointcloudsec.com (Postfix) with ESMTPS id B3C3E7FF97;
-	Wed, 10 Dec 2025 17:39:24 +0000 (UTC)
-ARC-Authentication-Results: i=2; mx.checkpointcloudsec.com;
- arc=pass;
- dkim=none header.d=none
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=checkpointcloudsec.com; s=arcselector01; t=1765388364; h=from : to :
- subject : date : message-id : content-type : mime-version;
- bh=kgJWiGyYNQxgfjY+cvgUSMZNliPv+COPjJYSzB25l9A=;
- b=HnKvRaJeXCY7YwZAj1TEpNkoGWNTmIm6ENSWv1wKJ7WiCsuKjQHUUykcKH50thNbo8vl/
- zvzzzp5MB7tJCndvFugbTWwP2zaFBzJFuTGRb/E02oTVZTz+8pqOGlpe0An/+NkQm1bRseX
- abGyqDdNfraNGI3WGI3tgkcIqKaoiCU=
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=checkpointcloudsec.com;
- s=arcselector01; t=1765388364;
- b=RJJU9CnkJktdcYiI8YuZLQqcGrIWoY+Ywn61NxfZANbRCw7Y7gDIs4zfUuQuBJmBEzGiB
- oVTcAcjoiuvSVQebjNijio6ZkwpKjo0fMcTUrS6Y6NJgbiDYx80EhjU/IJve3HLkSUPVS9c
- aIpUIQyJzuOCR9IIeAnw669HYZFpnPk=
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=IauEbNds0dq6T6A0N8CNPn0nyAT+Hveib+F3t6AOoUnkDttXST4QkwYXwKmUSfHDdeKZ1ToJuW54tUv3I6dCJFSof0bGFL1klVwtzgJzXvOGffYkzWZ4KX5Z5Nvqn9hIHV5ntvkohptAaTORy5Znxb//8hVkSaHGqK0aYjobO+sPj0iaLK2vQ+STdeG/mbkVFOfO81oJ4lXV4VwIk1C/q2nI0rH4QdEfucPgKiUCAUIPSdX2HKkCdmWpRTgP+V+BD92oVU0/9x7hAMVuF7y2f/pbXBrfa1wmtpWHztilf9fJ0vDCqqMnaZBp3LmrBt5PF7R7+z95GQ52oREie0pr9Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kgJWiGyYNQxgfjY+cvgUSMZNliPv+COPjJYSzB25l9A=;
- b=W0nQdnpdfJlGvO2NazpZ3rG52YpGW8GNWSoP68pEl+naGLdyCT+Ye/g80J7G3+2nLDDQIsdBuomGnX6jLzMO+hfegQZOk3QaxwqNGjVEtqhIJnw0zSHyNTQmgY/uHWYBHg8ivhXgWfMwrnyONJKMrhIw+l5hDcpxaZ91UnqtDQYGrJ9MlHais+32pXmqoNT37xYH9am9+X5WTBfD2b9y0zRzVCV3WVWLeHTZNaWGAPQb9xXsLaoAlCYBJHwyrLADVVq32jVwA2WtPJ72W/Em/0j1iZyYOTT5P/S2xrZMasMPWEKBsQ97KFaY8kEJBzkz/gPgxWDMv40ERPyYPfMV6w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=solid-run.com; dmarc=pass action=none
- header.from=solid-run.com; dkim=pass header.d=solid-run.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=solidrn.onmicrosoft.com; s=selector1-solidrn-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kgJWiGyYNQxgfjY+cvgUSMZNliPv+COPjJYSzB25l9A=;
- b=muRuKYx4tppHvdtLXmihnbDSqvy8lZdNt9nnvZ5FXf360foskOZB1/4KoJsEBZUXersw4tBFf7jDVDJLs54kM0nym8CG1XAfcwP/jv4nj6EsvJlVwF6elMjGnyuLJv6PlzibHfrQ5SPwCcd8HVt2B7h51JHCvzLkZ4/JdbQ+UI4=
-Received: from PAXPR04MB8749.eurprd04.prod.outlook.com (2603:10a6:102:21f::22)
- by PAWPR04MB10008.eurprd04.prod.outlook.com (2603:10a6:102:38b::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9412.7; Wed, 10 Dec
- 2025 17:39:12 +0000
-Received: from PAXPR04MB8749.eurprd04.prod.outlook.com
- ([fe80::aa83:81a0:a276:51f6]) by PAXPR04MB8749.eurprd04.prod.outlook.com
- ([fe80::aa83:81a0:a276:51f6%4]) with mapi id 15.20.9412.005; Wed, 10 Dec 2025
- 17:39:12 +0000
-From: Josua Mayer <josua@solid-run.com>
-Date: Wed, 10 Dec 2025 18:38:40 +0100
-Subject: [PATCH v3 6/6] mmc: host: renesas_sdhi_core: support selecting an
- optional mux
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251210-rz-sdio-mux-v3-6-ca628db56d60@solid-run.com>
-References: <20251210-rz-sdio-mux-v3-0-ca628db56d60@solid-run.com>
-In-Reply-To: <20251210-rz-sdio-mux-v3-0-ca628db56d60@solid-run.com>
-To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>,
- Wolfram Sang <wsa+renesas@sang-engineering.com>,
- Marc Kleine-Budde <mkl@pengutronix.de>,
- Vincent Mailhol <mailhol@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Peter Rosin <peda@axentia.se>,
- Aaro Koskinen <aaro.koskinen@iki.fi>,
- Andreas Kemnade <andreas@kemnade.info>, Kevin Hilman <khilman@baylibre.com>,
- Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>,
- Vignesh R <vigneshr@ti.com>, Janusz Krzysztofik <jmkrzyszt@gmail.com>,
- Andi Shyti <andi.shyti@kernel.org>
-Cc: Mikhail Anikin <mikhail.anikin@solid-run.com>,
- Yazan Shhady <yazan.shhady@solid-run.com>,
- Jon Nettleton <jon@solid-run.com>, linux-mmc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org, linux-can@vger.kernel.org,
- linux-phy@lists.infradead.org, linux-omap@vger.kernel.org,
- linux-i2c@vger.kernel.org, Josua Mayer <josua@solid-run.com>
-X-Mailer: b4 0.14.3
-X-ClientProxiedBy: FR0P281CA0072.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:49::9) To PAXPR04MB8749.eurprd04.prod.outlook.com
- (2603:10a6:102:21f::22)
+        d=oss.qualcomm.com; s=google; t=1765389055; x=1765993855; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=O0xdAhyjVRQ3P4u6QZOwEX+3rAEIjfeC+exH9qNW2JE=;
+        b=Fo3pX7Zaf32dzelnVU9smipTRu4zhFDQu2RYOaQAWuqSuS27Ma+xzc7xPSgJ9pdlD5
+         fZ+W7ccGNFKG4VioTOmWxgUUm/5JxnhylSckRABOLsSJkNehNflYzSb6ojIOIrhg/sYh
+         foI5S+Sq2LtEAj2BKQjpyYLhTYt+UK9Y12Yeyx1LCSkD7q+F7cfDZNZYe3s4hLg5o1Bx
+         McG9NDfGb+mEobBnO42/tHGzHwWbkLyIGhnGy+Jx7R+L8IPyQ9r0GVLePyBjxoJXrT3R
+         uA/6iPgqgdiT8pgvUijNro1b8/FnZ3R4zgsUwbFb6dq5gQVviW8VYghNTtfJFRuYQARE
+         mVsQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765389055; x=1765993855;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=O0xdAhyjVRQ3P4u6QZOwEX+3rAEIjfeC+exH9qNW2JE=;
+        b=I4UB5TXSOceE7aLYZMYMG8nJhi97H+IrnytIVPy8cX+YL/z/DQdgkvlSAu1mWppfqN
+         /SNniirLQ6k92nNCB3ZgGbFG4HoeKtUV3ImaPJ0rmZsJlmzcwbfqeraOkiczH79aXGzU
+         bx8EfXaPpnx9hzekh+bfM6kx3LN6JJZEg6kuf6+Wt7Cx62DbeOQur3pU34AkpW6OZjhn
+         u8KFLTpxUkYpt3fTFdujL0UAG+kVKkBS0imC261tH2ip12F+x8Z7YxeUvaPPt74BuW/m
+         VJ5U2Z0wpZ6h07hFRLw9HvXWyXcJwb4MFwarMWG4kIUFKATpFnV+CIRxPrMg5PHv9E0d
+         nE8g==
+X-Forwarded-Encrypted: i=1; AJvYcCUHDLxEXBKTyBeCP50fkOloK4DFCdq4kLPYSIEcDMr03zR6a4hWDdWzzF6OGNuRKnNYnvu162TZxste@vger.kernel.org
+X-Gm-Message-State: AOJu0YytfxdjaaQ/nkkp9NNnHTJRdja3kNGtYjdL0RNaM+iOhCR3jROp
+	vaLrgYvZ0pmhTOt7yPSpegPBmbKSALB6+B1Acbj8VfguHWy6c5RLy4dVsD5RZD9fVgk9z9zDqsP
+	PoKIFoqDypWUXMtnTIH2DeXrtg/9o7rOd308tLK6KCPTc7co6DwbktBZqTa8cEcdO
+X-Gm-Gg: AY/fxX5wPloTAeyS9NcSLK6hNlcWpqcEvYRuZUApAV1A1QT4uPnwIo2yjRQl3MLu20o
+	krwEPphOZN0SPImKt9j9bkVVQLH5XRUgGCqoBMtrug45HTIOCv5YqTlFv09Dl/zgWuJeWwzDnm+
+	yz2HDdEyyGVMWVctOZUuxZuM9RlCL0X/4D/6imp5jBgILMbKkvUAiO+Rqd3JlDPWnIeVajb9WFW
+	0YH9JrWEEFpBGUbHwA3Jkd+3V3v+25WWC2CZxsfBuBHIRCgXs0l83QtHyNiM3SA+sRPOF1Tl5Gg
+	5MaZRZCc3KTKFrhSm1HluaANWpRutCKlyQXk1pwzXniGk0YqDKfn+He2H1fyF4t4Qi1fH40INgu
+	Rt/8wQB/VL1nIpDPcFMkRmMejmcZUhUE8YChuZBAd
+X-Received: by 2002:a05:7300:de0a:b0:2a4:3593:6450 with SMTP id 5a478bee46e88-2ac052c7943mr2211553eec.0.1765389054942;
+        Wed, 10 Dec 2025 09:50:54 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHM+srJkTEntkf5wFVDdJ5uIFXsbpgJvPlw74PFWmuI3Xu2nHDQTmVRvuO3BSPGSD3pCtsN8g==
+X-Received: by 2002:a05:7300:de0a:b0:2a4:3593:6450 with SMTP id 5a478bee46e88-2ac052c7943mr2211516eec.0.1765389054294;
+        Wed, 10 Dec 2025 09:50:54 -0800 (PST)
+Received: from [192.168.1.57] ([98.148.145.183])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-11f2e1bb45csm348793c88.1.2025.12.10.09.50.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 10 Dec 2025 09:50:53 -0800 (PST)
+Message-ID: <9ecf4783-e1a2-430b-a889-997689bafe45@oss.qualcomm.com>
+Date: Wed, 10 Dec 2025 09:50:51 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-TrafficTypeDiagnostic:
-	PAXPR04MB8749:EE_|PAWPR04MB10008:EE_|DU2PEPF00028D08:EE_|VI1PR04MB7005:EE_
-X-MS-Office365-Filtering-Correlation-Id: c7feed49-14ef-40e1-7684-08de38130f77
-X-CLOUD-SEC-AV-Info: solidrun,office365_emails,sent,inline
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam-Untrusted:
- BCL:0;ARA:13230040|366016|52116014|7416014|376014|1800799024|38350700014|921020;
-X-Microsoft-Antispam-Message-Info-Original:
- =?utf-8?B?d0t1eGxlUkFJY253L0NIem5SSUFoeGNPMGpvWWc0MEFQbmNsNmpXTHNxK1ly?=
- =?utf-8?B?bGpVNU1LRnZ1OC9FclBuQzFXR2U1OCthTzFRRCtNejZFTy9rMGhJakUwNU84?=
- =?utf-8?B?ZFBBMXA3MVdHM2NZbzJRMURIKzJnY1Fqckd6V3lWYmlYSnptVW9FSnB5NkxE?=
- =?utf-8?B?cXpjY2RhVSszMHhDLy90Ri9wdllBeHEycE9IbG9nVDBKTU8xYUtCV0VQRjM2?=
- =?utf-8?B?OVpzbW1XRC9CNE42NGU4MytwVUZMSlRVeUpwd1RCMm9DVy9zWitiMTVXdTlS?=
- =?utf-8?B?RkV1TnRydjMrZmY5K2lWVUFFbzB2TWlsNnBZQy9GUEpLSVQzOU1VQno2UlFp?=
- =?utf-8?B?QmdJeTUzYllmYW5razBtdmpyYzExR2wzTk9hZlVXbjVCZFVoV0M4WE4zNWdm?=
- =?utf-8?B?bGE5RFMzZE5YVGpoM3RqMGJLK0JRWGN3MGRjTGxDeHdsRkE4c2l3WkZ6YTNW?=
- =?utf-8?B?OTdxSWhXMlpIMm0xWXgvYmRZY0dCWTJsWFlUUDdvMW5PTFdRUm5vd2c5eFZ4?=
- =?utf-8?B?cVRZejlKRURIZk5kMGxyTTZxVmpRK1dXUXcvdXl6cHJFWFdGUFR6S1paNGdj?=
- =?utf-8?B?QkdETE9NSjU4ZitPNVB0LzhjUVhGMFdlMVU1dlhWR0RBdzZLOHJxVlk1cFlN?=
- =?utf-8?B?a25uUkZLYXMyVkZ3U1JYVEQxUTJHLzZJQW1oR3Z4VUNIaGwxN2tFVXM5Yzk0?=
- =?utf-8?B?SDUxUXpsOTgzM1FiU0U2VE5JYnlsMGNsT3BHVTJxR2x0WitNMFdGQ1FISnpV?=
- =?utf-8?B?OXV5dnBRcXU3Zko3REZTbTNwR0c0TGphczFFU0ZERGZOVWpwYVFzaGE5bmdv?=
- =?utf-8?B?dFI1REt1eXdzUTJnNkQ0czVkWmtJMWh5KzdZSDhkcFRnVU1yQk51Y3VQbmtk?=
- =?utf-8?B?dmIzUEhITVNHamtGZVBBWlphaEtoQVd2cjRFYzhzZEx5dUQ1MlcxNXZIbzRs?=
- =?utf-8?B?RU9pK01zM0owam85VGRJNlEyNlliWWRUNE5TdXJ4dDNhVEtROTFBVzZSNTJw?=
- =?utf-8?B?aHU2Y0Fvd1F0WHBRTGFocTRoaUI3KzhuRGNCeDZ2ajZTbU1LdGJHaVlSRWM5?=
- =?utf-8?B?ZDRBejg3eHBvVGFlSGlydXRjdnRrTGRoSTJTQXFZUDhOa0pOV1g3dE4vNXBZ?=
- =?utf-8?B?TGJpdU4zVGRSaVplTWJUN3FMUTlWZUJ3SGJZb3dNMVBvN05wNmFjUVpCR2ww?=
- =?utf-8?B?ejZnU2pOVWNmUW0vM0UydHpkcXAvQ2dROW01bmxCdS9YczF5MzJYVlNrVEMw?=
- =?utf-8?B?MW8rN2E1NkpsQjI4TkIzcVN3T3c2UGZDTTM4QzNScUdJd0FwQ3hDNmFOUE9L?=
- =?utf-8?B?UUVHcmRsdTZvUENwTCs2TDFBaHpWS3VjekFYZjZtcXdTKzN5Q21hUE5ldTNp?=
- =?utf-8?B?ejRNbndJSVBSb1RtOWd0WVV5Tm5BT2dQZVVTUnRFNlF2bjhadzRPWlZrUTBX?=
- =?utf-8?B?ZjZEMHFlNGNKd1lpcThFYmt5QXNLdnUyNXVHT3oyTDN6M1k1OWpYdzRrR3Nr?=
- =?utf-8?B?NnU5eVR0bmtSU3NSZXowQ0MvdVN2eEVIQk1LWVB0eHNRUkh4RWxBZUNnOFRH?=
- =?utf-8?B?QW5LU0hKZ2l2S2FGaDlwNm1CdC9QekFHeVZsTHpKQzhQSkxwMzVxZmJsemVE?=
- =?utf-8?B?N0FJL0tDLzlmNFpQbTd0cDZCczB2UjBXcnhJVFA2d05rMjRaREpLcjdzTmh2?=
- =?utf-8?B?RUVuUnVsT3B0NFRna2VJaHdYaDFlNENEdkoyTWU2L2ptVGZOZldUdHcrVWtk?=
- =?utf-8?B?Q1NhZU5xeW1UYlVrd0dkMmdnc2ZzSUNvY3RmdndVSHlRVDJnRWRrei8zemZo?=
- =?utf-8?B?NUFEbUJNS2ZpQzIzcHZRQThQamwvR2VpdDVLUUNtMndhZHY3S0tXQXRTRkJN?=
- =?utf-8?B?anN1bk50endoRHpBVHo3a2JMcWNCOFUrSVBwaEczN2d3Y3FKVmFEdkhvcDAx?=
- =?utf-8?B?QitmUlNqaFRBa2tJZTc5VXp1VEtOZlNtMEhRbjFkdFlBejhIcnZIc3poTUFy?=
- =?utf-8?B?UmlnZURJZWZYMnYza05abG93cmxxbHRvbUdCdjByYTQwKzkwcGZJS3VxM0ZQ?=
- =?utf-8?B?akhrR0RRNmpGVFd5N09DdjE4Uy85MW1zdEwrUT09?=
-X-Forefront-Antispam-Report-Untrusted:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8749.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(52116014)(7416014)(376014)(1800799024)(38350700014)(921020);DIR:OUT;SFP:1102;
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAWPR04MB10008
-X-CLOUD-SEC-AV-INT-Relay: sent<mta-outgoing-dlp-mt-prod-cp-eu-2.checkpointcloudsec.com>
-X-CLOUD-SEC-AV-UUID: 990b08cbfc9d4565911325d057ca363c:solidrun,office365_emails,sent,inline:e3405425bbbc305e82807fbe90c335b7
-Authentication-Results-Original: mx.checkpointcloudsec.com; arc=pass;
- dkim=none header.d=none
-X-EOPAttributedMessage: 0
-X-MS-Exchange-Transport-CrossTenantHeadersStripped:
- DU2PEPF00028D08.eurprd03.prod.outlook.com
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id-Prvs:
-	ec620165-8c9e-4a6b-0e6b-08de3813081f
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|82310400026|35042699022|1800799024|376014|7416014|14060799003|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?cFVzMDNmTXdZTUFDTmZiVUR6eHdLTFRFRzJNU01SS3VFaFROYTcyZ01jekt0?=
- =?utf-8?B?ZTQ1U0ZpYTk0Y2tqektSbXdVNlkzYXJwSWR4QlM1OVU1aEU4RUhKMVhuYnFY?=
- =?utf-8?B?TFNDUkNGeW94aWJ2Y1c1eUVzQzd4V3RqYnVGRVdwQVUrNkp3OTFtM1ZSTk40?=
- =?utf-8?B?WS9RYkZFZEdEakg5WksraU52Z0xXa1FFMmQzMTRpMjVyQ3FuUjVLT0hQQ1lH?=
- =?utf-8?B?NjlXMUNLb01ydTM2TXJjY01YbUhCb2JyT21sMFcrbFJZYlN6dFd0b0pJTHBG?=
- =?utf-8?B?WFl2QTJ4V1k2eVBISjZEQnFIM1hGeGdDSHZMSFRYbXlKTEhRZlNFWXdjdkU2?=
- =?utf-8?B?UFZzdE5lSWdVeGhPMDViTDhha2ZmdC9tenk2UjhmOTRxVVRBdFhUekxDcVl1?=
- =?utf-8?B?bFZRKzFUNkMycG16RWlsUTdSVXc1cCsxeVNGOWl2NkQ0Y1A2ZWJrcVdNb1U5?=
- =?utf-8?B?N1lxelpWWUhaY3Jac2lpU1FTRCtzL2Vqb29TLzNoTm5DRlNvUEkvckZqVDQz?=
- =?utf-8?B?dEI5ZVhLTG1ON2MrdDJMSGhwTUV2cmJZbFlCMnlCOUIzekV6R0RvT2Rabkk2?=
- =?utf-8?B?cnhUUlZzdlhVUWpPSlk0S2ZUbElac1pLOG5GaGVraHk1eW0reVVEZ1RtcTRj?=
- =?utf-8?B?d1l5VTFRS2g2TEgrZmFOK2htVzlnUkQ4WVdVTVdMdzEzWXhGQ0EyczNwbHZL?=
- =?utf-8?B?NmhVNUNJRThoQVZxK1hGN0hIanV2SnFxdWYxYURZQ1ZEbEdoZkJaR2dsZVV0?=
- =?utf-8?B?N3l6QmI0MXZVd0JqUjY1c0VUc1BFUkZZZzAya3hCRURENkdHL3JaajVqcnJv?=
- =?utf-8?B?MWpKaUsvWGQrM1JVRzhtMVpqWFQwZXI0MmgwMU9qRXFmSjhYRS8ycDlFaTBw?=
- =?utf-8?B?bDBHS2lGMU9yMThGUG9QNk8xVkJ3eThGQi9uRGVOR1ZEdVZBenlEUzhGb1Vj?=
- =?utf-8?B?bFNuLzhPdkhIbWw0N0JMWk02SFhxQUQxN2x5ZTJFbkErMFlac3F3Vkt3YkQr?=
- =?utf-8?B?OGpYbWJ4ZktUdm9uZmltQUt5aHEyblJsdE5RK1c3djdyMXcxblVDeFFCaG9D?=
- =?utf-8?B?VHhzQXQzWE9ZRzJ5WU9lSGMzamVRQ2dGN3R4OTV6YzR5WWJzTUIzc2QyY21J?=
- =?utf-8?B?OERIclN1TEVCckdFZThPY2RNQzlQTzNDeHNXZmVCNUgwWWxjVHl1VjhIMXVJ?=
- =?utf-8?B?QUV2dmswd1BobktmV0hQSHB0ZzBzcjVVaWJ3Vk5VZVlxN1JqR3E5aEpueGYz?=
- =?utf-8?B?K0dwVlFLSjJFMlZyM0tXU1l6ZFgwaDM2MmYvMW94eXVRNXFyaFlOU3ZBYmRk?=
- =?utf-8?B?TXF4MWlFS0Jjb0dDNmFSUzJqSmNDMXhjWWEveWlVREZiS1JBcEFod0xIZXhG?=
- =?utf-8?B?MUxyYnVzRTRNYlR5ZUo3MHFaUlE1TnlCWkdSSWZTOC92Q09XbHlpSEVteWk3?=
- =?utf-8?B?ZHNEcWJJZ2FhUWZFV3N4WkVNNTN3UzJFNmlVSFdWYVVjYWQ5UEtReHE0TTV0?=
- =?utf-8?B?bUNjaXJwOURqdVprTHJtYWc4UDRZN2VVQnoyVisyYktKMGVvdytWVloxY1Jt?=
- =?utf-8?B?K0d4UGRUS0phRThBUnM3blJ0VXZGWWNjM0dFblhkeHhqaEFBcjNHcmNCZFVo?=
- =?utf-8?B?V2dFQTgzOFJvSDR1cWhaZTUxVlp5QlNVaGdiaEg0RUh6dUlrSWluWDlBN1JJ?=
- =?utf-8?B?N09weFZVbllJdW1hZHdiMnVzaDVRT0hnaGJEYjA3TTlaci9kKzNYQlYxQlRV?=
- =?utf-8?B?UE1uMVlVbjhlamFndFJMMUdIUEl2cjRLRTdBZ3V3YjBoVHg0N3dMVy9iamhm?=
- =?utf-8?B?NFFkWkhkQldLZGZhcDYvYkgzVWZySko0Z0FXNVZzMkNsY05CSXFRSkFPSTk4?=
- =?utf-8?B?dzllb3F3NmVyT0tMRHlKMXZmMGpVNmJCektxKzVpeVVaZTkzbWo1aDBaKzZV?=
- =?utf-8?B?a2E3U3BHaC9GclZsdEVhTVBDL2RDb0NiRmhiOVdlT3FzOFd4ek1peEhGRDJp?=
- =?utf-8?B?UklIOXV5dXhOVWtIZFQ4NzErYjZ1RzB3Q1k3U2dudHl5aFowV0JQdGhabU8z?=
- =?utf-8?B?ZWlad0lrUGlLcGZiMjlKOHJBT2VONVhaOG9BVHJTbC9WZWI4c3VlRFJ5eG5X?=
- =?utf-8?Q?ChrY=3D?=
-X-Forefront-Antispam-Report:
-	CIP:52.17.62.50;CTRY:IE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:eu-dlp.cloud-sec-av.com;PTR:eu-dlp.cloud-sec-av.com;CAT:NONE;SFS:(13230040)(36860700013)(82310400026)(35042699022)(1800799024)(376014)(7416014)(14060799003)(921020);DIR:OUT;SFP:1102;
-X-OriginatorOrg: solid-run.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Dec 2025 17:39:24.7787
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c7feed49-14ef-40e1-7684-08de38130f77
-X-MS-Exchange-CrossTenant-Id: a4a8aaf3-fd27-4e27-add2-604707ce5b82
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=a4a8aaf3-fd27-4e27-add2-604707ce5b82;Ip=[52.17.62.50];Helo=[eu-dlp.cloud-sec-av.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	DU2PEPF00028D08.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB7005
-
-Some hardware designs route data or control signals through a mux to
-support multiple devices on a single sdhi controller.
-
-In particular SolidRun RZ/G2L/G2LC/V2L System on Module use a mux for
-switching between soldered eMMC and an optional microSD on a carrier
-board, e.g. for development or provisioning.
-
-SD/SDIO/eMMC are not well suited for runtime switching between different
-cards, however boot-time selection is possible and useful - in
-particular considering dt overlays.
-
-Add support for an optional SD/SDIO/eMMC mux defined in dt, and select
-it during probe.
-
-Similar functionality already exists in other places, e.g. i2c-omap.
-
-Signed-off-by: Josua Mayer <josua@solid-run.com>
----
- drivers/mmc/host/Kconfig             |  1 +
- drivers/mmc/host/renesas_sdhi.h      |  1 +
- drivers/mmc/host/renesas_sdhi_core.c | 16 +++++++++++++---
- 3 files changed, 15 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/mmc/host/Kconfig b/drivers/mmc/host/Kconfig
-index 2c963cb6724b9..c01ab7d81a5af 100644
---- a/drivers/mmc/host/Kconfig
-+++ b/drivers/mmc/host/Kconfig
-@@ -707,6 +707,7 @@ config MMC_SDHI
- 	depends on SUPERH || ARCH_RENESAS || COMPILE_TEST
- 	depends on (RESET_CONTROLLER && REGULATOR) || !OF
- 	select MMC_TMIO_CORE
-+	select MULTIPLEXER
- 	help
- 	  This provides support for the SDHI SD/SDIO controller found in
- 	  Renesas SuperH, ARM and ARM64 based SoCs
-diff --git a/drivers/mmc/host/renesas_sdhi.h b/drivers/mmc/host/renesas_sdhi.h
-index 084964cecf9d8..9508908d8179f 100644
---- a/drivers/mmc/host/renesas_sdhi.h
-+++ b/drivers/mmc/host/renesas_sdhi.h
-@@ -97,6 +97,7 @@ struct renesas_sdhi {
- 	struct reset_control *rstc;
- 	struct tmio_mmc_host *host;
- 	struct regulator_dev *rdev;
-+	struct mux_state *mux_state;
- };
- 
- #define host_to_priv(host) \
-diff --git a/drivers/mmc/host/renesas_sdhi_core.c b/drivers/mmc/host/renesas_sdhi_core.c
-index f56fa2cd208dd..3d833a325c61f 100644
---- a/drivers/mmc/host/renesas_sdhi_core.c
-+++ b/drivers/mmc/host/renesas_sdhi_core.c
-@@ -26,6 +26,7 @@
- #include <linux/mmc/mmc.h>
- #include <linux/mmc/slot-gpio.h>
- #include <linux/module.h>
-+#include <linux/mux/consumer.h>
- #include <linux/pinctrl/consumer.h>
- #include <linux/pinctrl/pinctrl-state.h>
- #include <linux/platform_data/tmio.h>
-@@ -1115,9 +1116,15 @@ int renesas_sdhi_probe(struct platform_device *pdev,
- 						"state_uhs");
- 	}
- 
-+	priv->mux_state = devm_mux_state_get_optional_selected(&pdev->dev, NULL);
-+	if (IS_ERR(priv->mux_state))
-+		return PTR_ERR(priv->mux_state);
-+
- 	host = tmio_mmc_host_alloc(pdev, mmc_data);
--	if (IS_ERR(host))
--		return PTR_ERR(host);
-+	if (IS_ERR(host)) {
-+		ret = PTR_ERR(host);
-+		goto edselmux;
-+	}
- 
- 	priv->host = host;
- 
-@@ -1200,7 +1207,7 @@ int renesas_sdhi_probe(struct platform_device *pdev,
- 
- 	ret = renesas_sdhi_clk_enable(host);
- 	if (ret)
--		return ret;
-+		goto edselmux;
- 
- 	rcfg.of_node = of_get_available_child_by_name(dev->of_node, "vqmmc-regulator");
- 	if (rcfg.of_node) {
-@@ -1304,6 +1311,9 @@ int renesas_sdhi_probe(struct platform_device *pdev,
- 
- edisclk:
- 	renesas_sdhi_clk_disable(host);
-+edselmux:
-+	if (priv->mux_state)
-+		mux_state_deselect(priv->mux_state);
- 	return ret;
- }
- EXPORT_SYMBOL_GPL(renesas_sdhi_probe);
-
--- 
-2.51.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v9 1/5] media: dt-bindings: Add CAMSS device for Kaanapali
+From: Vijay Kumar Tumati <vijay.tumati@oss.qualcomm.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>,
+        Loic Poulain <loic.poulain@oss.qualcomm.com>,
+        Robert Foss
+ <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        Krzysztof Kozlowski <krzk@kernel.org>
+References: <20251208-add-support-for-camss-on-kaanapali-v9-0-3fcd31258415@oss.qualcomm.com>
+ <20251208-add-support-for-camss-on-kaanapali-v9-1-3fcd31258415@oss.qualcomm.com>
+ <scnexmcrpemu6vcms3dmq7qjvx54h5pyumjvgqduospao4x2kt@hoi7zfygjq4f>
+ <458a7841-e422-4cad-83de-f5b5c1b683a6@oss.qualcomm.com>
+ <puv24qramoiq4qq3i4bibatg5ihnrv6hdloul5ajbblvasvwk3@nbse2m6aftkh>
+ <2e38b9f3-8a35-4a27-82d3-c1d4996a1684@oss.qualcomm.com>
+Content-Language: en-US
+In-Reply-To: <2e38b9f3-8a35-4a27-82d3-c1d4996a1684@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: fJBR5Q_H326OE55LY0qA_PXwVixtguo0
+X-Authority-Analysis: v=2.4 cv=Y6P1cxeN c=1 sm=1 tr=0 ts=6939b300 cx=c_pps
+ a=Oh5Dbbf/trHjhBongsHeRQ==:117 a=BiHMn5M11h/vNwziJwzFrg==:17
+ a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=gEfo2CItAAAA:8 a=KKAkSRfTAAAA:8 a=VwQbUJbxAAAA:8
+ a=EUspDBNiAAAA:8 a=gcM7WY6xUhQuHh4SBcoA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=_Vgx9l1VpLgwpw_dHYaR:22 a=sptkURWiP4Gy88Gu7hUp:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-ORIG-GUID: fJBR5Q_H326OE55LY0qA_PXwVixtguo0
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjEwMDE0NiBTYWx0ZWRfX+f0/1vC8XgOT
+ O7LsFgBFhYkiZPR1TxduIkB/YIB+Pz6IGY/U+G9yD1QxoTdZonNR5G+XxCQMjpttXAGpk3gTQMl
+ 0fjVJwqIlrBUu4sgt9ftSWXk4YzCkkOGNPECKCjmzyr7lShqAdUZTLpdRbFRUPfmqjjAS4vb6oa
+ yd2SHdTy77TwplJvxSpj17yY0sBPEpiqdS2cO9UYv0G/qCSu0/AnupKZBmd9CriJBXpm2F/qQHF
+ t8zFroMOU8P3yGdV6ekCt1yLlMlsMlFzL9bdmOfkD/ESK3a5UMzsES3FfJ+rCOEJX0fJ5iNAP8P
+ 5wZgw1r+IP0hNrf1JVTbTUxn/XLE5TN+LkySjhVPEfShxX62IPJYamOEpLQn/Ur19t07lgmUBaU
+ 53RtSh2DlVKWkOQcWvgQy4890E2u7g==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-10_02,2025-12-09_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 malwarescore=0 adultscore=0 spamscore=0 lowpriorityscore=0
+ suspectscore=0 clxscore=1015 phishscore=0 bulkscore=0 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512100146
 
 
+On 12/8/2025 3:21 PM, Vijay Kumar Tumati wrote:
+>
+> On 12/8/2025 2:48 PM, Dmitry Baryshkov wrote:
+>> On Mon, Dec 08, 2025 at 01:03:06PM -0800, Vijay Kumar Tumati wrote:
+>>> On 12/8/2025 11:53 AM, Dmitry Baryshkov wrote:
+>>>> On Mon, Dec 08, 2025 at 04:39:47AM -0800, Hangxiang Ma wrote:
+>>>>> Add bindings for qcom,kaanapali-camss to support the Camera Subsystem
+>>>>> (CAMSS) on the Qualcomm Kaanapali platform.
+>>>>>
+>>>>> The Kaanapali platform provides:
+>>>>>
+>>>>> - 3 x VFE, 5 RDI per VFE
+>>>>> - 2 x VFE Lite, 4 RDI per VFE Lite
+>>>>> - 3 x CSID
+>>>>> - 2 x CSID Lite
+>>>>> - 6 x CSIPHY
+>>>>> - 2 x ICP
+>>>>> - 1 x IPE
+>>>>> - 2 x JPEG DMA & Downscaler
+>>>>> - 2 x JPEG Encoder
+>>>>> - 1 x OFE
+>>>>> - 5 x RT CDM
+>>>>> - 3 x TPG
+>>>> Please describe the acronyms.
+>>> Ack.
+>>>>> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+>>>>> Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+>>>>> Signed-off-by: Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>
+>>>>> ---
+>>>>>    .../bindings/media/qcom,kaanapali-camss.yaml       | 646 
+>>>>> +++++++++++++++++++++
+>>>>>    1 file changed, 646 insertions(+)
+>>>>>
+>>>>> diff --git 
+>>>>> a/Documentation/devicetree/bindings/media/qcom,kaanapali-camss.yaml 
+>>>>> b/Documentation/devicetree/bindings/media/qcom,kaanapali-camss.yaml
+>>>>> new file mode 100644
+>>>>> index 000000000000..3b54620e14c6
+>>>>> --- /dev/null
+>>>>> +++ 
+>>>>> b/Documentation/devicetree/bindings/media/qcom,kaanapali-camss.yaml
+>>>>> @@ -0,0 +1,646 @@
+>>>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>>>> +%YAML 1.2
+>>>>> +---
+>>>>> +$id: http://devicetree.org/schemas/media/qcom,kaanapali-camss.yaml#
+>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>>> +
+>>>>> +title: Qualcomm Kaanapali Camera Subsystem (CAMSS)
+>>>>> +
+>>>>> +maintainers:
+>>>>> +  - Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>
+>>>>> +
+>>>>> +description:
+>>>>> +  Kaanapali camera subsystem includes submodules such as CSIPHY 
+>>>>> (CSI Physical layer)
+>>>>> +  and CSID (CSI Decoder), which comply with the MIPI CSI2 protocol.
+>>>>> +
+>>>>> +  The subsystem also integrates a set of real-time image 
+>>>>> processing engines and their
+>>>>> +  associated configuration modules, as well as non-real-time 
+>>>>> engines.
+>>>>> +
+>>>>> +  Additionally, it encompasses a test pattern generator (TPG) 
+>>>>> submodule.
+>>>>> +
+>>>>> +properties:
+>>>>> +  compatible:
+>>>>> +    const: qcom,kaanapali-camss
+>>>>> +
+>>>>> +  reg:
+>>>>> +    items:
+>>>>> +      - description: Registers for CSID 0
+>>>>> +      - description: Registers for CSID 1
+>>>>> +      - description: Registers for CSID 2
+>>>>> +      - description: Registers for CSID Lite 0
+>>>>> +      - description: Registers for CSID Lite 1
+>>>>> +      - description: Registers for CSIPHY 0
+>>>>> +      - description: Registers for CSIPHY 1
+>>>>> +      - description: Registers for CSIPHY 2
+>>>>> +      - description: Registers for CSIPHY 3
+>>>>> +      - description: Registers for CSIPHY 4
+>>>>> +      - description: Registers for CSIPHY 5
+>>>>> +      - description: Registers for VFE (Video Front End) 0
+>>>>> +      - description: Registers for VFE 1
+>>>>> +      - description: Registers for VFE 2
+>>>>> +      - description: Registers for VFE Lite 0
+>>>>> +      - description: Registers for VFE Lite 1
+>>>>> +      - description: Registers for ICP (Imaging Control Processor) 0
+>>>>> +      - description: Registers for ICP 0 SYS
+>>>>> +      - description: Registers for ICP 1
+>>>>> +      - description: Registers for ICP 1 SYS
+>>>>> +      - description: Registers for IPE (Image Processing Engine)
+>>>>> +      - description: Registers for JPEG DMA & Downscaler
+>>>>> +      - description: Registers for JPEG Encoder
+>>>>> +      - description: Registers for OFE (Offline Front End)
+>>>>> +      - description: Registers for RT CDM (Camera Data Mover) 0
+>>>>> +      - description: Registers for RT CDM 1
+>>>>> +      - description: Registers for RT CDM 2
+>>>>> +      - description: Registers for RT CDM 3
+>>>>> +      - description: Registers for RT CDM 4
+>>>>> +      - description: Registers for TPG 0
+>>>>> +      - description: Registers for TPG 1
+>>>>> +      - description: Registers for TPG 2
+>>>>> +
+>>>>> +  reg-names:
+>>>>> +    items:
+>>>>> +      - const: csid0
+>>>>> +      - const: csid1
+>>>>> +      - const: csid2
+>>>>> +      - const: csid_lite0
+>>>>> +      - const: csid_lite1
+>>>>> +      - const: csiphy0
+>>>>> +      - const: csiphy1
+>>>>> +      - const: csiphy2
+>>>>> +      - const: csiphy3
+>>>>> +      - const: csiphy4
+>>>>> +      - const: csiphy5
+>>>>> +      - const: vfe0
+>>>>> +      - const: vfe1
+>>>>> +      - const: vfe2
+>>>>> +      - const: vfe_lite0
+>>>>> +      - const: vfe_lite1
+>>>>> +      - const: icp0
+>>>>> +      - const: icp0_sys
+>>>>> +      - const: icp1
+>>>>> +      - const: icp1_sys
+>>>>> +      - const: ipe
+>>>>> +      - const: jpeg_dma
+>>>>> +      - const: jpeg_enc
+>>>>> +      - const: ofe
+>>>>> +      - const: rt_cdm0
+>>>>> +      - const: rt_cdm1
+>>>>> +      - const: rt_cdm2
+>>>>> +      - const: rt_cdm3
+>>>>> +      - const: rt_cdm4
+>>>>> +      - const: tpg0
+>>>>> +      - const: tpg1
+>>>>> +      - const: tpg2
+>>>>> +
+>>>>> +  clocks:
+>>>>> +    maxItems: 60
+>>>>> +
+>>>>> +  clock-names:
+>>>>> +    items:
+>>>>> +      - const: camnoc_nrt_axi
+>>>>> +      - const: camnoc_rt_axi
+>>>>> +      - const: camnoc_rt_vfe0
+>>>>> +      - const: camnoc_rt_vfe1
+>>>>> +      - const: camnoc_rt_vfe2
+>>>>> +      - const: camnoc_rt_vfe_lite
+>>>>> +      - const: cpas_ahb
+>>>>> +      - const: cpas_fast_ahb
+>>>>> +      - const: csid
+>>>>> +      - const: csid_csiphy_rx
+>>>>> +      - const: csiphy0
+>>>>> +      - const: csiphy0_timer
+>>>>> +      - const: csiphy1
+>>>>> +      - const: csiphy1_timer
+>>>>> +      - const: csiphy2
+>>>>> +      - const: csiphy2_timer
+>>>>> +      - const: csiphy3
+>>>>> +      - const: csiphy3_timer
+>>>>> +      - const: csiphy4
+>>>>> +      - const: csiphy4_timer
+>>>>> +      - const: csiphy5
+>>>>> +      - const: csiphy5_timer
+>>>>> +      - const: gcc_axi_hf
+>>>> This clock (and gcc_axi_sf below) still have the gcc_ prefix and 
+>>>> GCC name. Why?
+>>>> It was pointed out in the previous review: clock names should be
+>>>> describing their purpose, not their source.
+>>> Hi Dmitry, let me add a bit more detail on this clock. As confirmed 
+>>> by the
+>>> HW team, the logic that runs based on this clock is still inside the
+>>> CAMNOC_PDX, just that it is on the CX / MMNOC domain side. Do you think
+>>> "axi_hf_cx" and "axi_sf_cx" makes sense?
+>> Why? You are again describing the source. What is the function of?
+>> bus_hf / bus_sf?
+>
+> In what I proposed,
+>
+> axi - represents that we are talking about the axi bus from camera 
+> (against ahb bus).
+>
+> hf - hf wrapper
+>
+> cx - logic on the CX side of the bus in CAMNOC.
+>
+> If you think that 'bus' (even looking from camera client side) by 
+> default means AXI bus and 'hf' and 'sf' implicitly represent the CX 
+> side (which, kind of, in the current design), then yes, "bus_hf" and 
+> "bus_sf" makes sense. Do you advise us to go ahead with these?
+>
+Ok, we will go ahead with "bus_hf" and "bus_sf". Hi @Bryan and others, 
+please let us know if you have any concerns with this.
+>>>>> +      - const: vfe0
+>>>>> +      - const: vfe0_fast_ahb
+>>>>> +      - const: vfe1
+>>>>> +      - const: vfe1_fast_ahb
+>>>>> +      - const: vfe2
+>>>>> +      - const: vfe2_fast_ahb
+>>>>> +      - const: vfe_lite
+>>>>> +      - const: vfe_lite_ahb
+>>>>> +      - const: vfe_lite_cphy_rx
+>>>>> +      - const: vfe_lite_csid
+>>>>> +      - const: qdss_debug_xo
+>>>>> +      - const: camnoc_ipe_nps
+>>>>> +      - const: camnoc_ofe
+>>>>> +      - const: gcc_axi_sf
+>>>>> +      - const: icp0
+>>>>> +      - const: icp0_ahb
+>>>>> +      - const: icp1
+>>>>> +      - const: icp1_ahb
+>>>>> +      - const: ipe_nps
+>>>>> +      - const: ipe_nps_ahb
+>>>>> +      - const: ipe_nps_fast_ahb
+>>>>> +      - const: ipe_pps
+>>>>> +      - const: ipe_pps_fast_ahb
+>>>>> +      - const: jpeg
+>>>>> +      - const: ofe_ahb
+>>>>> +      - const: ofe_anchor
+>>>>> +      - const: ofe_anchor_fast_ahb
+>>>>> +      - const: ofe_hdr
+>>>>> +      - const: ofe_hdr_fast_ahb
+>>>>> +      - const: ofe_main
+>>>>> +      - const: ofe_main_fast_ahb
+>>>>> +      - const: vfe0_bayer
+>>>>> +      - const: vfe0_bayer_fast_ahb
+>>>>> +      - const: vfe1_bayer
+>>>>> +      - const: vfe1_bayer_fast_ahb
+>>>>> +      - const: vfe2_bayer
+>>>>> +      - const: vfe2_bayer_fast_ahb
+>>>>> +
+>>>>> +  interrupts:
+>>>>> +    maxItems: 30
+>>>>> +
+>>>>> +  interrupt-names:
+>>>>> +    items:
+>>>>> +      - const: csid0
+>>>>> +      - const: csid1
+>>>>> +      - const: csid2
+>>>>> +      - const: csid_lite0
+>>>>> +      - const: csid_lite1
+>>>>> +      - const: csiphy0
+>>>>> +      - const: csiphy1
+>>>>> +      - const: csiphy2
+>>>>> +      - const: csiphy3
+>>>>> +      - const: csiphy4
+>>>>> +      - const: csiphy5
+>>>>> +      - const: vfe0
+>>>>> +      - const: vfe1
+>>>>> +      - const: vfe2
+>>>>> +      - const: vfe_lite0
+>>>>> +      - const: vfe_lite1
+>>>>> +      - const: camnoc_nrt
+>>>>> +      - const: camnoc_rt
+>>>>> +      - const: icp0
+>>>>> +      - const: icp1
+>>>>> +      - const: jpeg_dma
+>>>>> +      - const: jpeg_enc
+>>>>> +      - const: rt_cdm0
+>>>>> +      - const: rt_cdm1
+>>>>> +      - const: rt_cdm2
+>>>>> +      - const: rt_cdm3
+>>>>> +      - const: rt_cdm4
+>>>>> +      - const: tpg0
+>>>>> +      - const: tpg1
+>>>>> +      - const: tpg2
+>>>>> +
+>>>>> +  interconnects:
+>>>>> +    maxItems: 4
+>>>>> +
+>>>>> +  interconnect-names:
+>>>>> +    items:
+>>>>> +      - const: ahb
+>>>>> +      - const: hf_mnoc
+>>>>> +      - const: sf_icp_mnoc
+>>>>> +      - const: sf_mnoc
+>>>> You know... Failure to look around is a sin. What are the names of
+>>>> interconnects used by other devices? What do they actually describe?
+>>>>
+>>>> This is an absolute NAK.
+>>> Please feel free to correct me here but, a couple things.
+>>>
+>>> 1. This is consistent with
+>>> Documentation/devicetree/bindings/media/qcom,qcm2290-camss.yaml. no?
+>> I see that nobody noticed an issue with Agatti, Lemans and Monaco
+>> bindings (Krzysztof?)
+>>
+>> Usually interconnect names describe the blocks that are connected. Here
+>> are the top results of a quick git grep of interconnect names through
+>> arch/arm64/dts/qcom:
+>>
+>>      729 "qup-core",
+>>      717 "qup-config",
+>>      457 "qup-memory",
+>>       41 "usb-ddr",
+>>       41 "apps-usb",
+>>       39 "pcie-mem",
+>>       39 "cpu-pcie",
+>>       28 "sdhc-ddr",
+>>       28 "cpu-sdhc",
+>>       28 "cpu-cfg",
+>>       24 "mdp0-mem",
+>>       17 "memory",
+>>       14 "ufs-ddr",
+>>       14 "mdp1-mem",
+>>       14 "cpu-ufs",
+>>       13 "video-mem",
+>>       13 "gfx-mem",
+>>
+>> I hope this gives you a pointer on how to name the interconnects.
+>>
+>>> 2. If you are referring to some other targets that use, "cam_" 
+>>> prefix, we
+>>> may not need that , isn't it? If we look at these interconnects from 
+>>> camera
+>>> side, as you advised for other things like this?
+>> See above.
+>
+> I see, so the names cam-cfg, cam-hf-mem, cam-sf-mem, cam-sf-icp-mem 
+> should be ok?
+>
+> Or the other option, go exactly like 
+> Documentation/devicetree/bindings/media/qcom,sc8280xp-camss.yaml.
+>
+> What would you advise?
+>
+To keep it consistent with the previous generations and still represent 
+the block name, we will go ahead with the style in 
+qcom,sc8280xp-camss.yaml. If anyone has any concerns, please do let us 
+know.
+>>
+>>>>> +
+>>>>> +  iommus:
+>>>>> +    items:
+>>>>> +      - description: VFE non-protected stream
+>>>>> +      - description: ICP0 shared stream
+>>>>> +      - description: ICP1 shared stream
+>>>>> +      - description: IPE CDM non-protected stream
+>>>>> +      - description: IPE non-protected stream
+>>>>> +      - description: JPEG non-protected stream
+>>>>> +      - description: OFE CDM non-protected stream
+>>>>> +      - description: OFE non-protected stream
+>>>>> +      - description: VFE / VFE Lite CDM non-protected stream
+>>>> This will map all IOMMUs to the same domain. Are you sure that this is
+>>>> what we want? Or do we wait for iommu-maps to be fixed?
+>
+Yes, when it is available, we can start using iommu-maps to create 
+separate context banks.
+> Thanks,
+>
+> Vijay.
+>
 
