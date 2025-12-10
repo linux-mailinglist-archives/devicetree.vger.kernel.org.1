@@ -1,126 +1,129 @@
-Return-Path: <devicetree+bounces-245650-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245651-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9709CB3B50
-	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 19:01:32 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3211CB3B83
+	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 19:11:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C4F12302C4F3
-	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 18:00:36 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 237F2301296A
+	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 18:11:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C37A31A05B;
-	Wed, 10 Dec 2025 18:00:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9EB530F93C;
+	Wed, 10 Dec 2025 18:11:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="JInx26C1"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="O6jczRAH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB4154C79
-	for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 18:00:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29EFF3271ED
+	for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 18:10:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765389635; cv=none; b=ej1TpIqFmzteUCFivKzI82a4PFx3IbRnnKkERQuGc1oAm909tm035+JuKGIR7nvjVEDs5VJvsp+sjrn9RiRzxd+cmBHZs1qqU7irixsq/nfHpGWcsQOqz1sp+yXOAl+1sdt3XWYxqXS0mzz0KKAw/mWdlGRY81iM36Yh4L84txI=
+	t=1765390260; cv=none; b=mhFVY3wTMBQ7Q3WsBSLRMI0UbKMDNn4Qwvc1FvcGy/YRbBbpjykGg0GfVlmMTISg5iP8xJymJJf//m4TRy8HfHFhO6NoLCMCv6oKTtwlefPHM6/mX9HFhmJK4UjW8UVCPQGf32fy1QRMG0KLO52KavkkAGlGlUix98CWmLumICU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765389635; c=relaxed/simple;
-	bh=a+WgLV8Me8he8vsaz9WjfiuVCZvCj6zKFhsOIiTYBLs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YmgW+bq1+JqLFBj31q8xz88a08bGkgRMWJhHbglXrjyCKyTaLy4QSWfrQa4YCD45NcPIg4agYVAqrG9j63HB15OZ8RuatJmVQGoEK5HOAHmwJAQpImEz5/UVoJj0UQ3QbrksEZzJcZtxI3RJ46Bi69GmGx+tozvZ4FbGM1sGeoY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=JInx26C1; arc=none smtp.client-ip=209.85.221.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-42e2e6aa22fso10549f8f.2
-        for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 10:00:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1765389632; x=1765994432; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=vNo6uQ8AO0yOaAEJTUC3/zvI8C5HZVj+hKvmdCETuYM=;
-        b=JInx26C1T9J4bIK8XSvC0fuP1epZ1mBZq02rYH0f/BaN3cbM6qusuYxq4pKQ3dllxp
-         xQsWKTr4XHbPLFgWXWcTOptPq26oOiG1D69YNKH3V/I3A30ohO5ByoJaLTAuPQtqKJnW
-         X+prjUObi70W7zv4fMdlW04mPK63PaT0bgeJA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765389632; x=1765994432;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=vNo6uQ8AO0yOaAEJTUC3/zvI8C5HZVj+hKvmdCETuYM=;
-        b=wZg6vLvqn7/X/0FvSinIyFuqFV7Y9dWN9ekcBFgSrm2FrVfzAgIUrthHqO+l1ycGdr
-         b/tREFGl+NpyNgpLArzBLNqpJqW8Q5pulWnBtp8jdfGAdCb6p3ucN1JlgyN0vRfaB4Sw
-         wHSP/LokgxSYx+4mkDoxMIub7L5Phiy7HBkddTxT1esd0BghhYv2FPQLdMhJWeON3PK8
-         UGF9xpBjLMSXXbuJKy9PTOSM9iit+aOhFBizxc89DPjiVb/NeCpEnSJOnQYcTlkZMbWP
-         DHdSokfqmNISq0JbMuF3jXEDOi5b6lYseVDjBlcEpeKLRocaXTGewybhNEr1O07THxn0
-         TXJw==
-X-Forwarded-Encrypted: i=1; AJvYcCXqbxt6XHx5WvQMKOyC4d8jbjN6XyFQag9FjTpOq+QxI0UlznlgglpxpSL62q5LaQZajfouysi6jut6@vger.kernel.org
-X-Gm-Message-State: AOJu0YxHetJ+QqfW7clpHlpu1znx6fGgCeVfhVegN6ySdwpHxcJNvLVV
-	JVpOM6VjY8Om+qu4/tApdaIaiHoK6xLIbaoXvAbIkRaRS8KVjHnmHelvc4iq5Xc2Lg==
-X-Gm-Gg: AY/fxX7C9E8JTvQTd2Xbb+aWVv81egGPJmYPiWQFJLKauY8KChUQ93P2K/FIFzQ2xfO
-	8tqfy/VBcO+BoUylLOIa5BSvxpOZu1AnSNzoWSRoOEuJ/JhET/UOVkd4Z4yrmhMism8eaWJFW3h
-	lKG7aNHg3C22r8uB8w1aBYy0qjxXcQQRnzoj4LK7Nq7nr03OpAy3zOh7vnezKHtpR8FrPHZljKf
-	or34t7vsEwdGvxePPDJ6Ot0Hd1oj7cmRdiBaQQ8tkpNV9gKHmkPwYGucLqLEApJkaNNCbFtxyoO
-	FbokKmmvV+MmLLRAu9aFVAfdLFi0udvbQeBGj4/l3KtKAoUTUUnsSkWJotorM/lNyu11lfEQGvA
-	la8FsX11Xwm7dYEesVmNcMIsURgQfKbuYpRsqqKjBTxztr/ejW3o+HP5L33heGExW9a4ycVWhk+
-	rVhx1CDwmImIRNanHmCw==
-X-Google-Smtp-Source: AGHT+IGPESWqtdwT/XRTR5/RmcuAb3YXC3b7FMypahW+beW9pJZ9LM1+rqVviz4PyBnlnycCgdJNOQ==
-X-Received: by 2002:a05:6000:608:b0:429:b9bc:e826 with SMTP id ffacd0b85a97d-42fa3b079c1mr3929886f8f.53.1765389632184;
-        Wed, 10 Dec 2025 10:00:32 -0800 (PST)
-Received: from google.com ([37.228.206.31])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42fa8b8601csm291118f8f.22.2025.12.10.10.00.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Dec 2025 10:00:31 -0800 (PST)
-Date: Wed, 10 Dec 2025 18:00:29 +0000
-From: Fabio Baltieri <fabiobaltieri@chromium.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Benson Leung <bleung@chromium.org>,
-	Guenter Roeck <groeck@chromium.org>,
-	Tzung-Bi Shih <tzungbi@kernel.org>, Simon Glass <sjg@chromium.org>,
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-	chrome-platform@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 3/3] dt-bindings: google,cros-ec-keyb: add fn-key and
- f-keymap props
-Message-ID: <aTm1PVLrS7Ra0OTF@google.com>
-References: <20251209154706.529784-1-fabiobaltieri@chromium.org>
- <20251209154706.529784-4-fabiobaltieri@chromium.org>
- <20251209192243.GA963693-robh@kernel.org>
+	s=arc-20240116; t=1765390260; c=relaxed/simple;
+	bh=11D+FbyBRjBd7dRkaGNZbGmzx6wWeykWSe7o2lp4Unw=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
+	 References:In-Reply-To; b=jhrkvlKOFcK8t6EILHUpN10isFfzI9Nx1PTzxsTla4WI3m0ZXigG7NAvyrmr/jnAqJRbo1NjCS5VjKKXRMCmENyEDQW+s3e2Sr23RyYsaY718fECXDdGtsHIwkpIyqN5ZpfHAlK0C7XTreBaqs9T+/9VnLAh5Ch/223bmM9lstY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=O6jczRAH; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 4731FC180F6;
+	Wed, 10 Dec 2025 18:10:32 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id D59F760714;
+	Wed, 10 Dec 2025 18:10:55 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 63FF8103C8CB3;
+	Wed, 10 Dec 2025 19:10:46 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1765390254; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=zHScQ9epIs7tSkBpcNfLT2ySqJpIcU3hl0yiRWEMSxU=;
+	b=O6jczRAHlyE369TuBgKbSoI5sr+D8r2p/p/jJJNzLR9kXxPqm7i8xrI7fQB90odCyPIXe1
+	4YZEYdjGPIrzpd27WpJ88/6qed4b09CpY+O8jxnssomse8LoTt8CSvaA6wr3dlSpRtijCJ
+	vAHmY6R0ZD1eQUyUZarC66Ne+Ux/2RcQd5t77tAyFL1OfRlXrUkmm1ZMn+BPB5r7RdTl7h
+	Qk+hr7+AYIIFJwhZj0Tgwd+BKfz6bdCRIMotppabJdlVf4Bs8C4uOdOKVnpS/5nLW/u5hk
+	/fANJbwQ2wd/+NdKjXBdlPyCrER7pQDgNesMJqkCFPh9spNiUJ1olbTsiUR65A==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251209192243.GA963693-robh@kernel.org>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 10 Dec 2025 19:10:45 +0100
+Message-Id: <DEUQM2HNEOQU.3K4ZPL44GVZAJ@bootlin.com>
+Subject: Re: [PATCH 03/21] drm/tilcdc: Remove simulate_vesa_sync flag
+Cc: "Markus Schneider-Pargmann" <msp@baylibre.com>, "Louis Chauvet"
+ <louis.chauvet@bootlin.com>, "Thomas Petazzoni"
+ <thomas.petazzoni@bootlin.com>, "Miguel Gazquez"
+ <miguel.gazquez@bootlin.com>, <dri-devel@lists.freedesktop.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-arm-kernel@lists.infradead.org>, <linux-omap@vger.kernel.org>
+To: "Kory Maincent (TI.com)" <kory.maincent@bootlin.com>, "Jyri Sarha"
+ <jyri.sarha@iki.fi>, "Tomi Valkeinen" <tomi.valkeinen@ideasonboard.com>,
+ "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>, "Maxime Ripard"
+ <mripard@kernel.org>, "Thomas Zimmermann" <tzimmermann@suse.de>, "David
+ Airlie" <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Rob
+ Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>, "Russell King"
+ <linux@armlinux.org.uk>, "Bartosz Golaszewski" <brgl@bgdev.pl>, "Tony
+ Lindgren" <tony@atomide.com>, "Andrzej Hajda" <andrzej.hajda@intel.com>,
+ "Neil Armstrong" <neil.armstrong@linaro.org>, "Robert Foss"
+ <rfoss@kernel.org>, "Laurent Pinchart" <Laurent.pinchart@ideasonboard.com>,
+ "Jonas Karlman" <jonas@kwiboo.se>, "Jernej Skrabec"
+ <jernej.skrabec@gmail.com>
+From: "Luca Ceresoli" <luca.ceresoli@bootlin.com>
+X-Mailer: aerc 0.20.1
+References: <20251126-feature_tilcdc-v1-0-49b9ef2e3aa0@bootlin.com>
+ <20251126-feature_tilcdc-v1-3-49b9ef2e3aa0@bootlin.com>
+In-Reply-To: <20251126-feature_tilcdc-v1-3-49b9ef2e3aa0@bootlin.com>
+X-Last-TLS-Session-Version: TLSv1.3
 
-Hey Rob, thanks for the review.
+Hi K=C3=B6ry,
 
-On Tue, Dec 09, 2025 at 01:22:43PM -0600, Rob Herring wrote:
-> On Tue, Dec 09, 2025 at 03:47:06PM +0000, Fabio Baltieri wrote:
-> > +  fn-key:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description: |
-> > +      An u32 containing the coordinate of the Fn key, use the MATRIX_KEY(row,
-> > +      col, code) macro, code is ignored.
-> > +
-> > +  fn-keymap:
-> 
-> If keymap is linux,keymap, then this should perhaps be linux,fn-keymap. 
-> Depends if we still think linux,keymap is Linux specific?
+On Wed Nov 26, 2025 at 6:35 PM CET, Kory Maincent (TI.com) wrote:
+> The tilcdc hardware does not generate VESA-compliant sync signals. It
+> aligns the vertical sync (VS) on the second edge of the horizontal sync
+> (HS) instead of the first edge. To compensate for this hardware
+> behavior, the driver applies a timing adjustment in mode_fixup().
+>
+> Previously, this adjustment was conditional based on the simulate_vesa_sy=
+nc
+> flag, which was only set when using external encoders. This appears
+> problematic because:
+>
+> 1. The timing adjustment seems needed for the hardware behavior regardles=
+s
+>    of whether an external encoder is used
+> 2. The external encoder infrastructure is driver-specific and being
+>    removed due to design issues
+> 3. Boards using tilcdc without bridges (e.g., am335x-evm, am335x-evmsk)
+>    may not be getting the necessary timing adjustments
+>
+> Remove the simulate_vesa_sync flag and apply the VESA sync timing
+> adjustment unconditionally, ensuring consistent behavior across all
+> configurations. While it's unclear if the previous conditional behavior
+> was causing actual issues, the unconditional adjustment better reflects
+> the hardware's characteristics.
+>
+> Signed-off-by: Kory Maincent (TI.com) <kory.maincent@bootlin.com>
+> ---
+>
+> Only few board currently use tilcdc not associated to a bridge like the
+> am335x_evm or the am335x-evmsk.
 
-I'm open for suggestions, trying to understand the pattern, these are
-specific to this binding I think if anything they should be
-google,fn-key and google,fn-keymap, similarly to the existing
-google,needs-ghost-filter -- no idea why function-row-physmap was not
-prefixed but I guess it slipped in and now it's not worth changing it.
+Have you tested this change on any affected board?
 
-Would it make sense?
+The change looks good to me but without some testing it would be risky.
 
-Thanks,
-Fabio
+Luca
 
--- 
-Fabio Baltieri
+--
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
