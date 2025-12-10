@@ -1,120 +1,133 @@
-Return-Path: <devicetree+bounces-245520-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245521-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6CC2CB1B5C
-	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 03:22:51 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3373CB1BA7
+	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 03:41:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 93084300728A
-	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 02:22:50 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 166C53015AF8
+	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 02:41:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A95A22620E5;
-	Wed, 10 Dec 2025 02:22:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E2DE26E706;
+	Wed, 10 Dec 2025 02:41:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gs06zghp"
+	dkim=pass (1024-bit key) header.d=zohomail.com header.i=newwheatzjz@zohomail.com header.b="cB1C0omI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender4-pp-o94.zoho.com (sender4-pp-o94.zoho.com [136.143.188.94])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 780C52512FF;
-	Wed, 10 Dec 2025 02:22:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765333368; cv=none; b=cJKbOb1cPRZHXwImxcKvVfLN/5eeK64oO1WB7k5gJRsuzB7nYIoJQBSF0/MoMUaRAYn5Mz2a4RvZVHWM2nmhYhMad5o3QOAxV5hpJf/e01hi9oymKCg4xYsM1CfGRbl0u7jCDB+FcuYExmUNRVK5Itrl4DteVJgQCjR+0oZIBB0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765333368; c=relaxed/simple;
-	bh=BdZF2pNd4UIWn0TZnS2/oExdzTkeLzEDfnMcg2OQOR4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IR26+iCdDNjqV5uVO0OPxNLPqX8C6FD4oT0HFNntRMRizpuZD2kLhNaSp1o6YneYEdh37h/qDfMgslCPpO3Dj17E81nPVcp2fUTmqN/TY5Xgb6B78XTJ17VMNzUY7ihvBfBf5GaEm8+kmrUX4/YOMc+mJbgMvG1AdiSYjWx6ajU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gs06zghp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3A46C4CEF5;
-	Wed, 10 Dec 2025 02:22:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765333366;
-	bh=BdZF2pNd4UIWn0TZnS2/oExdzTkeLzEDfnMcg2OQOR4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Gs06zghpqLzTxOlMoiGA6jMiwlvq+UADOE1DnQMhmYIAiH9dfmhXppHkd7jTOIOvM
-	 o60UV+4uvP/ZZU9H1EnCRMXukPh7rtYrlp9VxoHq9ahIcHuDm4qbQs/JZAFnSS6Li4
-	 A0rzwvJIrSnAqhpuA6mJHcxE1ffLvU4d2z9o/WtL4fuS8jIfrH0bIE/vqTrJJ4TMnM
-	 mpVEtHuOHcV8SRZ/ZIvCF5UWiOhzSdGcLrvk/AVgCzT/pupFCYa9uQOnwPvf5amC2S
-	 Tz3Biw7vN4skwOcLOr0daKLTs1n5L4cEcH1JvAtjIMzKQgBwluE1d8mj6zo5JIgPnK
-	 ZKB1oPLrt9zEw==
-Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
-	id 4E38E1ACB974; Wed, 10 Dec 2025 02:22:43 +0000 (GMT)
-Date: Wed, 10 Dec 2025 11:22:43 +0900
-From: Mark Brown <broonie@kernel.org>
-To: James Calligeros <jcalligeros99@gmail.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-	Shengjiu Wang <shengjiu.wang@nxp.com>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	Shenghao Ding <shenghao-ding@ti.com>, Kevin Lu <kevin-lu@ti.com>,
-	Baojun Xu <baojun.xu@ti.com>, linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	asahi@lists.linux.dev
-Subject: Re: [PATCH 4/7] ASoC: soc-dai: define TDM idle behaviour modes
-Message-ID: <aTjZc3mgu7CQOkDU@sirena.co.uk>
-References: <20251209-tdm-idle-slots-v1-0-38dabf6bc01e@gmail.com>
- <20251209-tdm-idle-slots-v1-4-38dabf6bc01e@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEB8F8C1F;
+	Wed, 10 Dec 2025 02:41:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.94
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1765334517; cv=pass; b=oe9O6XSfdyNi/QD6OPYel6qmTmulo5jPEtiL1iKj0BK44d3oBkD6+VLWec2P6CrgA0AMTOPNSGE9Dwf9gR4xkCwx/kx8OLB1IKZngrEX+NWvuBeFTZ3aJ+kDwpTNlz45cpN6ryZ+HZ6mfPcX9P74Zro2UXPATKP9puqgIG+YZFk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1765334517; c=relaxed/simple;
+	bh=hZ8pvp6kNLVe6K2JsJTXt0IAqhgo7AtOcTDP28mTUzo=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=E7SS9jPD8lNt7zs0b9092cid4YbqEBXu5TTyPTSnnCiNknln/+w7JTCgPlNvUvUBSZn6XW4207cB13tPwrRDKHfHmoqWVqjMrxrfWn2WEILXs0kuPpNmac6pjF8a3qQhQD4+5Nu5ORQvTmlKXFeH8qR8jyIRrCmXofPu7ZaCk9U=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=zohomail.com; spf=pass smtp.mailfrom=zohomail.com; dkim=pass (1024-bit key) header.d=zohomail.com header.i=newwheatzjz@zohomail.com header.b=cB1C0omI; arc=pass smtp.client-ip=136.143.188.94
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=zohomail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=zohomail.com
+ARC-Seal: i=1; a=rsa-sha256; t=1765334500; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=GPOCJIqR+6YDi0UN3Is6LK5Kwt7piFibOVR9PBGOj7QiklFwAkwy92MnpVbDACDDI/DobJVtaBucXflMw4u50ZgerSNiwtrYezoq3ayHagt7rmbmZFyFTy8CbcGZLd8w9Igw48VaE1mh87IdCx1ywOu6C1/7eF+1cDodAiFm+kE=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1765334500; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=CKn7/g8UpxEQoZv4pbVapdyGLwvm12PyezsMJf0IWsA=; 
+	b=lpm/Bjytk08HU4CbeupmDzZLFNuMy+I/ojf4kPLcU+YgyOvHBuP4VT/q9UMsnrgcWtsfbxOq2gtkWok5G5Jk7YsjBbbxRlXiZzeCXNCGm9mC6ymIzbI+v7f8yrvyBikCb1zkQovBtOlk2nMULDjql7azmdN2QlDr9cFrszyPq4k=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=zohomail.com;
+	spf=pass  smtp.mailfrom=newwheatzjz@zohomail.com;
+	dmarc=pass header.from=<newwheatzjz@zohomail.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1765334500;
+	s=zm2022; d=zohomail.com; i=newwheatzjz@zohomail.com;
+	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Feedback-ID:Message-Id:Reply-To;
+	bh=CKn7/g8UpxEQoZv4pbVapdyGLwvm12PyezsMJf0IWsA=;
+	b=cB1C0omIVrQhrubbFlgPTYScgIme3vD3BGC3L4cP3EKC5I6Bgln7Tm3QSNDBiQEG
+	lcPZTuFhh4V3Wq1D68Ik9GP1O/9MvW40N3TzjEDLjcR3lyG2f6k5uTuC/5T1mfgSnIK
+	L5lFFfYyF5d6CYI3HhZ2cSbaHpCim2mQXYeTqqSc=
+Received: by mx.zohomail.com with SMTPS id 1765334498407551.7200531943936;
+	Tue, 9 Dec 2025 18:41:38 -0800 (PST)
+From: Jingzhou Zhu <newwheatzjz@zohomail.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject:
+ Re: [PATCH 2/2] arm64: dts: qcom: sdm850-huawei-matebook-e-2019: Correct
+ ipa_fw_mem for the driver to load successfully
+Date: Wed, 10 Dec 2025 10:41:27 +0800
+Message-ID: <3393067.44csPzL39Z@debian-vmware>
+In-Reply-To: <vlz4zg6wnxvxz2hqpzinzxztghwxmx2wwkxl4ami42aqvdjkg5@7o4fvadz76cv>
+References:
+ <20251208031511.3284-1-newwheatzjz@zohomail.com>
+ <20251208031511.3284-3-newwheatzjz@zohomail.com>
+ <vlz4zg6wnxvxz2hqpzinzxztghwxmx2wwkxl4ami42aqvdjkg5@7o4fvadz76cv>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="er/1OtNA51My+cwA"
-Content-Disposition: inline
-In-Reply-To: <20251209-tdm-idle-slots-v1-4-38dabf6bc01e@gmail.com>
-X-Cookie: It's clever, but is it art?
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
+Feedback-ID: rr080112275dc2e79c4c233296be36c59f0000bf71c2fcddf7ad100df2feb3f499433d71f7c7a452cea650cf:zu080112271cae571641a086572e9bd3070000d33e1218b8860d765062af9fd6121e8dfb4190633b7157b237:rf0801122c8525524b3709c9502ba5a6bb0000b40973b64f6a26713a6eb725448fc71309f26804e74aeb7a0ab234d53f2c:ZohoMail
+X-ZohoMailClient: External
+
+On Wednesday, 10 December 2025 07:08:41 CST, Dmitry Baryshkov wrote:
+> On Mon, Dec 08, 2025 at 11:15:11AM +0800, Jingzhou Zhu wrote:
+> > The ipa driver refuses to load with the old ipa_fw_mem in newer kernels.
+> > Shrinking its size to 0x5a000 fixes the problem.
+> > 
+> > Fixes: aab69794b55d ("arm64: dts: qcom: Add support for Huawei MateBook E 2019")
+> > 
+> > Signed-off-by: Jingzhou Zhu <newwheatzjz@zohomail.com>
+> 
+> There should be no empty lines between tags.
+> 
+
+Understood.
+
+> > ---
+> >  arch/arm64/boot/dts/qcom/sdm850-huawei-matebook-e-2019.dts | 6 +++---
+> >  1 file changed, 3 insertions(+), 3 deletions(-)
+> > 
+> > diff --git a/arch/arm64/boot/dts/qcom/sdm850-huawei-matebook-e-2019.dts b/arch/arm64/boot/dts/qcom/sdm850-huawei-matebook-e-2019.dts
+> > index a5f025ae7dbe..f04865381870 100644
+> > --- a/arch/arm64/boot/dts/qcom/sdm850-huawei-matebook-e-2019.dts
+> > +++ b/arch/arm64/boot/dts/qcom/sdm850-huawei-matebook-e-2019.dts
+> > @@ -144,12 +144,12 @@ wlan_msa_mem: wlan-msa@8c400000 {
+> >  		};
+> >  
+> >  		ipa_fw_mem: ipa-fw@8df00000 {
+> > -			reg = <0 0x8df00000 0 0x100000>;
+> > +			reg = <0 0x8df00000 0 0x5a000>;
+> >  			no-map;
+> >  		};
+> >  
+> > -		gpu_mem: gpu@97900000 {
+> > -			reg = <0 0x97900000 0 0x5000>;
+> > +		gpu_mem: gpu@8df5a000 {
+> 
+> Why are you adjusting gpu_mem?
+> 
+
+In sdm845.dtsi, ipa_fw_mem is followed by gpu_mem, so I moved gpu_mem to
+0x8df5a000 since the memory was freed after shrinking ipa_fw_mem size.
+I'm not sure whether the order matters, but I think it's best to follow
+how they are arranged in sdm845.dtsi.
+
+Also, this change didn't seem to cause problems according to my testing.
+
+> > +			reg = <0 0x8df5a000 0 0x5000>;
+> >  			no-map;
+> >  		};
+> >  
+> 
+> 
 
 
---er/1OtNA51My+cwA
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 
-On Tue, Dec 09, 2025 at 07:31:17PM +1000, James Calligeros wrote:
 
-> Imagine for example two codecs sharing a bus. When one codec is
-> transmitting, the other must ensure that it is holding its side
-> to 0, or data from the transmitting codec will be corrupted. We
-> can trust the "idle" codec to simply do this itself, however
-> this is undefined behaviour. Some devices may leave the line
-> floating, others still may pull the line high. We need a way to
-> control this behaviour.
-
-I'm finding this explanation quite confusing - you appear to be
-describing the situation where two devices simultaneously drive the same
-signal which would be extremely unusual and I can't see how it would
-work electrically.
-
-> Thus, we define five possible bus-keeping modes that a device can
-> be in: NONE (UB/as initialised), OFF (explicitly disabled), ZERO
-> (actively transmit a 0), PULLDOWN, and HIZ (floating).
-
-What is "explicitly disabled" in ths context?  Why aren't pull up or
-drive high options?
-
---er/1OtNA51My+cwA
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmk42XIACgkQJNaLcl1U
-h9Dvngf/Q8hLsUPgUG/WCbl9wKOoJ0KFzFLX0pXGLPoa5P1aal4uK1pP4erJN/7L
-qegwM8H6BSQ3wD6l2JBGYmZJKH/UKEr3b+n7pFh4ek40r8h+Y/g9QOZknIHaTtrs
-07areWAyrXXVr20+YcHlsKGmyV1xqBMNoMiA9r6cs8d3LRfNprkXzN9YQN2fcKcQ
-AUJYg01zlsOkdjcoSeJFmnIhgv9klROT7xGj1gNmUKMp+lVUkRV3mHRr56g0enE8
-Q5nWUQ4G2UqxNMBJmMVij7Oz3QHfuK8zwk/x3t+M/wXWkK5zSUo3a0ceJIH09u3/
-0IX7nNttZTCXalNXZzVMtPnxRwCIbw==
-=RadW
------END PGP SIGNATURE-----
-
---er/1OtNA51My+cwA--
 
