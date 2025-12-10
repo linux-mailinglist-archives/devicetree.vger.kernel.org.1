@@ -1,148 +1,198 @@
-Return-Path: <devicetree+bounces-245522-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245523-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E745BCB1BB3
-	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 03:43:14 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E43FCB1CB7
+	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 04:28:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 52D35307B4F9
-	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 02:43:13 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id C88793020663
+	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 03:28:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 558AC26ED5C;
-	Wed, 10 Dec 2025 02:43:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E8BB2DC76B;
+	Wed, 10 Dec 2025 03:28:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CpQdcJSM"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="n0MQrJtK";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="DUqV3zD7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20B1E217F29;
-	Wed, 10 Dec 2025 02:43:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFF202BE02B
+	for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 03:28:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765334592; cv=none; b=AWPrIzi6I6LhHcl/WBZaaO79vhIEeEik9i89unpW3Tr/POvHYbhqyqChZnne/E47LlsRCAqcTiJ+NE4UIglBnmFzsUv5XEes082RfnXP8gMA6Ik0No3KxrbmRvJS+ShUhp1uV1wOBdqzycnNF5LC7hlJQQcOkKhnBiwVUeKCQAs=
+	t=1765337305; cv=none; b=sk2UfVaVR//yzs7VHhcj+suw+NxbnGT4SbRg4sYXSo21DDqoF6Q6cnGso4OPcXGfOLW0XQ/NyamadVk4w7DDGYZ+BUOdA31wuTeFlqQjX9gOLGZ5eNr/vEJwJTO5MG79ewxPEdu3UcOUO9cmv0C0tN4Iv18H2+/DIHJBuKarWOE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765334592; c=relaxed/simple;
-	bh=X+b6Ds7bmDEkMPiz88ZlLr0Tke0Lzhiei47PPP9Y6Ns=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BfQRx7Ta6q5uBTulXWjSvFC6UfnT3puPCliI4nESbZzSNszsaZlwUOuERhFc3U+VATo6eRqrR2OF3p5byZ97r9hvAAvx9fMrpGHnz6gIJE6XX/3h+Tluv3TT/i3TUblOxcKlgmfQabRpjXv80TEE7kM3nydkzNXTQAXOJjGToyc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CpQdcJSM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 798B4C4CEF5;
-	Wed, 10 Dec 2025 02:43:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765334591;
-	bh=X+b6Ds7bmDEkMPiz88ZlLr0Tke0Lzhiei47PPP9Y6Ns=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CpQdcJSMWs4M8QuTtVJ+bnbNUmARkQ1gBUYFKTXSt3AhAYhizWobpRAWvY+LJOFg3
-	 dVfIqakpH/b8pKN1BMKpXl6jUJdnqwpG9vzFjl3vUDV/GP/rcd66AMvTyGXH1+b4WK
-	 o6KdADELPU+VRszdDs/MBnJf+MJUMkHhJFNA7L01QAxEFlq5yxfPUq6DSVKLx8mZKy
-	 Rt0wu0Q777MwB/xDVyIcNAEOAcDxNU0raLrKK43Z+ZG1vWBBQdtCnJ9v1dPBEtU01o
-	 ed+Es/YgKeAs95siQfkBh1AvzXs50f9R3SpiV+ncQiQ/2TbpFLQ3bhbI8zRjN1wfGX
-	 wYX+Tp5HPyfFQ==
-Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
-	id E23071ACB974; Wed, 10 Dec 2025 02:43:08 +0000 (GMT)
-Date: Wed, 10 Dec 2025 11:43:08 +0900
-From: Mark Brown <broonie@kernel.org>
-To: James Calligeros <jcalligeros99@gmail.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-	Shengjiu Wang <shengjiu.wang@nxp.com>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	Shenghao Ding <shenghao-ding@ti.com>, Kevin Lu <kevin-lu@ti.com>,
-	Baojun Xu <baojun.xu@ti.com>, linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	asahi@lists.linux.dev
-Subject: Re: [PATCH 0/7] ASoC: basic support for configuring bus keepers
-Message-ID: <aTjePJuPNegXc9cl@sirena.co.uk>
-References: <20251209-tdm-idle-slots-v1-0-38dabf6bc01e@gmail.com>
+	s=arc-20240116; t=1765337305; c=relaxed/simple;
+	bh=mL8BQRSfSLpenJxOV2s7nY+cpLCjOlwBOvaf6QDbtWg=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=pxcsvm6/NxQn5FHtUI2FJUVACRax5Kj/S55S6wMMnHrGZ+p2lTXRuk1noHWLR1daH67UnZXt3Nrn9slYSbxVAf3YUrzT9aRryygZ9lN+H1/ZFeMKtMOu0CJLElfgD2PAzMQWuxoJ6nyCDf8K/zWlhXyIF04wqZzHUlVOYyrdJu4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=n0MQrJtK; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=DUqV3zD7; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BA3LNRs1235251
+	for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 03:28:23 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=+kW8ODxAaz7QQNnJKbjUtVD2FLFWWdEaRp8
+	Fwf6EPU4=; b=n0MQrJtKwLtgbRMld4C9vbsiA/8gwNHplb3tGuCd/z9aLIfWqKp
+	2VlQSptEjy85n1L7DbwkWULKC9yPJLO81dk/BaQ8XAJ5ryNwAh1bHg3hvJ99TXYJ
+	KJQq3iJtw3+CnjaUA2MquUIOdTlfa2OEbIrK9RsZqWjwF4r0HVsvGwL3xd15lGQk
+	MqgS1+HQoBVXN8IplFSrQhCPOzYTpBcrHV7/S+RyWwp22tAzyWHN/6LJkxKGKi9Y
+	sxC1yTHLnP5D2EUYsudBr+sT+Ks6l9E5SnV8QyY35xdV47R2yuGfNBuX6FhasQ5F
+	bhIlYtqEnCY0Jbwga7K4gwkJeLi1jcRT4hQ==
+Received: from mail-dl1-f72.google.com (mail-dl1-f72.google.com [74.125.82.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4axjk532v7-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 03:28:23 +0000 (GMT)
+Received: by mail-dl1-f72.google.com with SMTP id a92af1059eb24-11ddcc9f85eso771108c88.0
+        for <devicetree@vger.kernel.org>; Tue, 09 Dec 2025 19:28:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1765337302; x=1765942102; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=+kW8ODxAaz7QQNnJKbjUtVD2FLFWWdEaRp8Fwf6EPU4=;
+        b=DUqV3zD7OO3uwCodmfsyyu818nF/r+3AlCawYs14sSSrns5SNnCIa0KCZPETor42lj
+         whFIGUNuEtqNp2+iag6SJon0YFaw2ItIYJS22FvtEfu2q2vFNJOJXaEgN7mwTVE5WBxJ
+         SnV8Gu65ofxQb48Ms5OkwM2RP6iHo/drKdeuASksND6U2Uhi/pGDRuH3PImJIjfF8+TR
+         59Vp3OoviLv0ys0tI3kSXKEiAkwN+FE/V+LEGHPq7qX5ixedrmepk0Dp4+wHvIFb6XxZ
+         co18CsdSwc+sdkzr7rOI2a3Mzkp5YK0ABWZPEQpKTSH9SXVZO50f/ZBRDqwq3Q0Eq2Hd
+         DqQw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765337302; x=1765942102;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+kW8ODxAaz7QQNnJKbjUtVD2FLFWWdEaRp8Fwf6EPU4=;
+        b=UOlFD1JUMJ0RbG7dSNwW4IRdz8/CVHfG/eCz+YbuZpSOC1nxJrgz8BGrUyIf4+1cqV
+         kqmtIj2yQVb+ohBaq0a/WdPUiCZH6FHcRZjoA8kfrpulRJvaCvY8b1/xJVYgBjk91s10
+         t+MBgu+4SLNRtkywsyUqizocQQxQPp80FdGKL1piooHvhSWPeX5GMHDQbOarYYPrkHwp
+         T6FBFeWTlPPjWtIDe7Rn7IClcFqaKJj8FWwwhChYlUmdwstsnVqIUY/WvFd9gcmjppAz
+         ilc/AkfQ9Ln0+Gll61x8Iht3e1Y/Ch+Q0EWQFd2iy8jdcbUp917wZ/j/Vi17y8LPjwoo
+         FNoA==
+X-Forwarded-Encrypted: i=1; AJvYcCVcy7J1jr0+iJ5ulnvQKjUvn5VEXELN+8hQeIn1Zg81dwg/q4nvj4gYtGKTwIp3ml6d9JBxiR3oymtW@vger.kernel.org
+X-Gm-Message-State: AOJu0YwbFYD1+oOZZ7+G0dlLJKja1pY75yGGV1AY5mHz8UHdyYWzS05S
+	pZYWv+yiQ2zIG7TlNyFzUjkVXMjv4AwP8uHl8NjX/RAwLJd/1UyUmbLTx/eDyFyq+hRBYaz8++8
+	c0KgQlgwwcbvAwkXEac1OdjwaUz64bBL1LBsFh130FQWRjDQdB5IYYoJY9DXgq6QO
+X-Gm-Gg: ASbGncs/cmfImvyriwTtdULQ0gp1GKxxGyKKa1ld0XDi4MnwZBo5dt0g7eVqBGOZWfR
+	lqCkt19msztFGO8vYgcMrNxcqvNnRjDHiAUpYiZgfuMsJONb+HSR6ELXjIFGOR1lAP5dQDlqqSl
+	w5TyzmjgQKo/eAh3u77q2kgKrAac+rp7FZeTDLC405GWB6B85blq4zC1Om/PaiGfFfXNXePO+Fc
+	CuaBzcBxKWamGXNLQqbOYWPXpEP2bsC2oobbEk/jWDVoEjCEDZ9uBGutvPepfgI/UKfYvpcMxm3
+	XAl13hbImefMn91w1hDRIgaiUGOQLzXYCkyfuEOGqAloH4o6Z/IWefCBy/Xrr0xCWHz1wiMECwh
+	g/tCbIkWHT1oTNzmWFGYar4MCrnTl3dQqGzwP6q6htfXNVxdKYxJl+Hi95bzEaPuK
+X-Received: by 2002:a05:7022:6088:b0:11a:fb0a:ceca with SMTP id a92af1059eb24-11f251c3883mr2225964c88.16.1765337302159;
+        Tue, 09 Dec 2025 19:28:22 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IESGLVaS/XomA7cqH1pdh6XG4HmKelSneQo/8i5fnsVS/ZicQhfH10ecAmudlax9uKbEo8daw==
+X-Received: by 2002:a05:7022:6088:b0:11a:fb0a:ceca with SMTP id a92af1059eb24-11f251c3883mr2225945c88.16.1765337301577;
+        Tue, 09 Dec 2025 19:28:21 -0800 (PST)
+Received: from hu-yintang-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-11f283d4796sm4773715c88.13.2025.12.09.19.28.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 Dec 2025 19:28:21 -0800 (PST)
+From: Yingying Tang <yingying.tang@oss.qualcomm.com>
+To: andersson@kernel.org, konradybcio@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, tingweiz@qti.qualcomm.com,
+        yijiyang@qti.qualcomm.com, yintang@qti.qualcomm.com
+Cc: Yingying Tang <yingying.tang@oss.qualcomm.com>
+Subject: [PATCH v2] arm64: dts: qcom: hamoa-iot-evk: Add WLAN node for Hamoa IoT EVK board
+Date: Wed, 10 Dec 2025 11:28:17 +0800
+Message-Id: <20251210032817.1264850-1-yingying.tang@oss.qualcomm.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="SJWIcwdK1mSmc43s"
-Content-Disposition: inline
-In-Reply-To: <20251209-tdm-idle-slots-v1-0-38dabf6bc01e@gmail.com>
-X-Cookie: It's clever, but is it art?
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-ORIG-GUID: NlFQLR_8bMobtVbwJPvQ1BItqa6K1PqW
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjEwMDAyNyBTYWx0ZWRfX9X4lgpGAIjDv
+ 7VMO2dgcEM89AyqyuoAd/1ilTYR4nPDF9+zEXfrSBFjSeCRXspTzCNmd59voYFsyjPJQlGHfS+V
+ JSsanwmFm73EqJi9D6hl/TFF8uNl/ZlQNiTlZ7hi8NALYdI0dOel706uhFxfzPx/Kw/D4xO97R8
+ hhoqJYCN91zehuaHsk2nYM2Z8UsqIFSsLI7cq93a0Y68aaaYPNMgo0HsOVX/wClcpxEz/ts2F7U
+ Vn9MyGKSJOAslUAC34cQ2JKoWS8iJ/MUzylZE0KIFfQsU40UwsHeqG7XAwEokbo66VG/7lJ87sK
+ GHEeDmm1pCEuRzyc+acPVHjrDtRSsjwzgK2cJt9XSTvJWvk+9kC7qpQsmiWjVddut6djb9JOMi6
+ geEuzCwd7ntVbzAB7JYcDLcvdBEKgw==
+X-Proofpoint-GUID: NlFQLR_8bMobtVbwJPvQ1BItqa6K1PqW
+X-Authority-Analysis: v=2.4 cv=RqvI7SmK c=1 sm=1 tr=0 ts=6938e8d7 cx=c_pps
+ a=bS7HVuBVfinNPG3f6cIo3Q==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=X6RbibbD_IlxcGgopv0A:9
+ a=vBUdepa8ALXHeOFLBtFW:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-09_05,2025-12-09_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 clxscore=1015 priorityscore=1501 malwarescore=0 suspectscore=0
+ bulkscore=0 lowpriorityscore=0 phishscore=0 impostorscore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512100027
 
+WLAN card is connected to PCIe4 on Hamoa IoT EVK board. Add WLAN node
+to support power sequence for this WLAN card.
 
---SJWIcwdK1mSmc43s
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Signed-off-by: Yingying Tang <yingying.tang@oss.qualcomm.com>
+---
+Changes in v2:
+- Updated commit message
+- Link to v1: https://lore.kernel.org/all/20251209115924.848165-1-yingying.tang@oss.qualcomm.com
+---
+ arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts | 26 +++++++++++++++++++++-
+ 1 file changed, 25 insertions(+), 1 deletion(-)
 
-On Tue, Dec 09, 2025 at 07:31:13PM +1000, James Calligeros wrote:
+diff --git a/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts b/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts
+index 36dd6599402b..d66d337292ef 100644
+--- a/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts
++++ b/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts
+@@ -534,7 +534,7 @@ wcn7850-pmu {
+ 		bt-enable-gpios = <&tlmm 116 GPIO_ACTIVE_HIGH>;
+ 		wlan-enable-gpios = <&tlmm 117 GPIO_ACTIVE_HIGH>;
+ 
+-		pinctrl-0 = <&wcn_bt_en>;
++		pinctrl-0 = <&wcn_bt_en>, <&wcn_wlan_en>;
+ 		pinctrl-names = "default";
+ 
+ 		regulators {
+@@ -844,6 +844,23 @@ &mdss_dp3_phy {
+ 	status = "okay";
+ };
+ 
++&pcie4_port0 {
++	wifi@0 {
++		compatible = "pci17cb,1107";
++		reg = <0x10000 0x0 0x0 0x0 0x0>;
++
++		vddaon-supply = <&vreg_pmu_aon_0p59>;
++		vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
++		vddwlmx-supply = <&vreg_pmu_wlmx_0p85>;
++		vddrfacmn-supply = <&vreg_pmu_rfa_cmn>;
++		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
++		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
++		vddrfa1p8-supply = <&vreg_pmu_rfa_1p8>;
++		vddpcie0p9-supply = <&vreg_pmu_pcie_0p9>;
++		vddpcie1p8-supply = <&vreg_pmu_pcie_1p8>;
++	};
++};
++
+ &pcie6a {
+ 	vddpe-3v3-supply = <&vreg_nvme>;
+ };
+@@ -1143,6 +1160,13 @@ wcn_bt_en: wcn-bt-en-state {
+ 		bias-disable;
+ 	};
+ 
++	wcn_wlan_en: wcn-wlan-en-state {
++		pins = "gpio117";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-disable;
++	};
++
+ 	wwan_sw_en: wwan-sw-en-state {
+ 		pins = "gpio221";
+ 		function = "gpio";
+-- 
+2.25.1
 
-> Consider a device with two codecs that report voice coil voltage and
-> current data back to the host via I2S. Codec A is configured to transmit
-> its V/ISENSE data on TDM slots 1 and 3, while Codec B is configured to
-> do so on slots 2 and 4. The receiving end sums the two together.
-> If Codec A transmits anything on slots 2 or 4 (and vice versa), the
-> result is a bus conflict.
-
-> Some codecs include configurable bus keepers to ameliorate this issue.
-
-You've not really mentioned an issue here?  The expected behaviour for
-TDM is that devices should only drive the the slots they are configured
-to drive and should let the bus float otherwise, otherwise no other
-device could transmit.
-
-> Notable examples are the TI TAS2764 and TAS2770. By default, these
-> codecs keep their SDOUT pin floating during unconfigured TDM slots,
-> however this can result in garbage data on the bus. TAS2764 can be
-> set up to fill specific TDM slots with zeroes, TAS2770 can hold its
-> SDOUT pin to ground.
-
-Right, so AIUI this is the actual thing you're trying to do - you want
-to additionally configure a CODEC to drive slots it's not putting data
-on to ensure there are no dead slots on the bus?  I guess you might have
-some restrictions on clocking which mean you need extra BCLKs (eg,
-needing power of 2 clocks).  But I'm having a hard time connecting this
-to your description below so I don't think I've followed what you're
-saying here.
-
-> This feature is necessary to properly drive the speaker systems found
-> on most Apple Silicon laptops. All but three models include six codecs
-> in two groups of three driving two woofers and a tweeter on both the left
-> and right channels. Each codec group has a single line for SDOUT, to
-> which all codecs are connected. The two groups are then summed on to
-> one I2S port. Each group must ensure that it is silent on the bus while
-> the other is supposed to be active.
-
-So is there one SDOUT or two which are connected... somehow?  I'm
-confused.
-
-> In the downstream Asahi Linux kernel[1], we set up one codec in each
-> group to zero-fill or pull down its group's side of the bus for the
-> opposite group's transmit slots. This is done entirely in the codec
-> driver, however this approach is perhaps over-fit for our use case.
-> Following previous mailing list discussions[2], I have tried to
-> expose the functionality in a more configurable and generic way.
-
-I can't parse what this is describing at all, sorry.  What is a "side"
-of a bus, and how is all this different to idle TDM slots?
-
---SJWIcwdK1mSmc43s
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmk43jwACgkQJNaLcl1U
-h9AHiwf+KNgaEov7+sP0RmabPXtktOJflXPUzmECYjFNugoBNM4LeV91NCbOd17I
-w3/P3+7rS798JEmVpnB6u/ERppHZt6hXDRNP7BVSB5y/vr0+P6Iv7aSIWnjsjsXJ
-K+OicnfxX2MNo4QoSRkHKZqr0tXGOyewfsAidl4nxVvhbdZUPpozGXDexOxIvsbP
-HE4RQBTIz5F9pISZ+pdEjrGCrj1aNbCfd8/DYlzdm9TQExI61JJ+HPPlUnv7YFEq
-hHmuXXyqDt1MKIEqbvp3fwLzdM0aABW24WFoieXFwZNtZ0Aw2VAFkwvtNBvDCYVA
-wtM8KiYQDpQp/Fnmj62T4YS9Yt7dyg==
-=50C4
------END PGP SIGNATURE-----
-
---SJWIcwdK1mSmc43s--
 
