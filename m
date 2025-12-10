@@ -1,41 +1,41 @@
-Return-Path: <devicetree+bounces-245579-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245582-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF5B2CB2ABA
-	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 11:22:04 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEB1FCB2B45
+	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 11:32:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C14AF305059D
-	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 10:21:44 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 350AC30909FB
+	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 10:28:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1644630CD99;
-	Wed, 10 Dec 2025 10:16:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E31930DD3B;
+	Wed, 10 Dec 2025 10:16:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=phytecmesstechnikgmbh.onmicrosoft.com header.i=@phytecmesstechnikgmbh.onmicrosoft.com header.b="Q11O0U0I"
+	dkim=pass (1024-bit key) header.d=phytecmesstechnikgmbh.onmicrosoft.com header.i=@phytecmesstechnikgmbh.onmicrosoft.com header.b="Okvfpenf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11020137.outbound.protection.outlook.com [52.101.69.137])
+Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11021091.outbound.protection.outlook.com [52.101.65.91])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69EB030BF66;
-	Wed, 10 Dec 2025 10:16:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.137
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2972D30AD05;
+	Wed, 10 Dec 2025 10:16:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.91
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765361783; cv=fail; b=T3HRJyjG4KM1WipLcnejF7yzQj+EkuegYduag1Awnb0UfCux8g+AJMvdTgG/qCE4XzluAMdTg3AUo5UOeHziY+M5qtIPvjTvqxo2DlWYoKBcyXMbeLMKG8wutQYOSx1WfMchkVtia9wASY1PM9QILr4xyvcjVYdUHvra79GSYWg=
+	t=1765361784; cv=fail; b=RcjMrE1Ls9NfPjp8M5+TzXT40R8Qn93KW5kOzRuQBk7A8fwCc3jMaRV983a3gQtSa/k+u98VO5zK1dsrzUL1IG6OVfPNdt2S7vu/CS4DG0GVPfIu0oDxEPnSMUUEuwoIk50DDpnHzoxoqTv+rATuU0r5Nmdq0X4RyZSYHQeP6BU=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765361783; c=relaxed/simple;
-	bh=k0libBrD3eP6H848lsHwZ+NxwNLUFSVbPJNMEgcEnS4=;
+	s=arc-20240116; t=1765361784; c=relaxed/simple;
+	bh=Jje1HGvqkXSE2GFUrgAg7ou5ZSmtZhO6jLJq0RwIjRw=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Ibv1xARXYrQLqJuMxNnAlzbOjBRt40e6I+/XCJa1WiG5uP3GAWdIy4VQsw4wMLQDXmqNe69r2mLgEYP+js5stsDf9ej2wCc4cKx0QC8b4qleYoLn2wJptGtnrNo1codQ+KnoBP34C+EFQK/fmU4Et1GGrLOr5RUWihtmkwvsjTc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.fr; spf=pass smtp.mailfrom=phytec.fr; dkim=pass (1024-bit key) header.d=phytecmesstechnikgmbh.onmicrosoft.com header.i=@phytecmesstechnikgmbh.onmicrosoft.com header.b=Q11O0U0I; arc=fail smtp.client-ip=52.101.69.137
+	 MIME-Version:Content-Type; b=ZKrdhR6AgAzrxNLRqypzyHy1bSRt9AqXPgjUM+zcEBlVQWnpwEbMZEnD9Ci05Cpy2hdx5hFqd5CpkC+ajEjOtrF8c1tH3uwvkXNOv7M3PAN1RHTBOgfcgtq29JpN3GfnUoF58kkSaJK8C8PvKuT9HGoN/W9yVnGb2bRWA2MabpQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.fr; spf=pass smtp.mailfrom=phytec.fr; dkim=pass (1024-bit key) header.d=phytecmesstechnikgmbh.onmicrosoft.com header.i=@phytecmesstechnikgmbh.onmicrosoft.com header.b=Okvfpenf; arc=fail smtp.client-ip=52.101.65.91
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.fr
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.fr
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=QbYeb2AhUoUB3RroLmJbPyIBgeQyXaC+4KRA2VbAekTCNDEa1uDywg+6sC9XnpKrE6HvvieCTnWl0PqxmI43M6owvPRUjQvZ0UfUpXtp7sd/c+Fig+gODcjPZz2RrNXNHfFGhgrT7Ht3KKzo3atOWrSpHYslhS1F5pyA+5ZCYjo64d2fsGqb7wKiDfB+utLuQs2QMtBeTYrjnHrhYzwA6ssZWZd+4+49x+d2OtKRSuJL0pEC07Yud/Wywj1jfWQuCKv8NSHAonTtkK7CCYRA6DNSiJ9t8lIgGcD9bd3VD6YDkJFAvbqkvtZ/fuua1JjXg3vtGOTNK5Ac7Kwuao/kQw==
+ b=o3EHkJoMTrs8NVod9tHtO9qVclyeUCDDWBNdvLp6m5hBsJrjgs/a4b5xhi572cLtwGdo45LtpEDEw96DttwrThTiHS2XqtTTj2SmcQ2l8M92YW9BmXhqeH1BRMFTWJcQZ3/mrBPVOsm6Dq3dAZijXMol32BYU2u3bmuov1hRXzwIDXD2bwRkRMu0aNJxr+kAfOMvq/EcZMvoKW/nuYgrvcMTCkhuuS1A+4ialC38jxUpER31yyt1etpG2o45vqPiO2vgzP3Qbl7RYeYLXonpvAFIw9AvjJ9Mk665B1MWtKd6F+WMpHjTx1S4dK1j/XeTq2KxNaNMwbFwMZF2IChnzA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=RfnSzLR/duxm3IUxGAlwn2fbzDVyLuSpyxsrAfEf0fo=;
- b=pf/Xq4lhZz1bzuiPABK6gfyPNy8NKCLprQ4eI0SrNX0wupfNpkL67GW0O98tIVQ56GlyuLAMUpBbFj/KuJ/8ZhmsW5DNc1T6vBw9XP3qPf4qs8phYEiFvfDWfRfFFGJcttaHl8jhfwS8GMHJqKn8R/NPy7NnqgGj/Xa8w7i/SpjyVSbJoY5vwVmyrh0zYP3QOFioPwUWCZPqgeXi5SWg2iuCTfwCgepr6XCNCsgWvQO6c33s8A9SYB1oSmKDgOTs1ufkquSGBtAmajZ2qo/FwPhClAt/CBc7Udi41KlWv/vzAwT2nWoouQrYweklKnTiM3z9q12gji8mD/CmKrXobA==
+ bh=/GQP4wRF0C9Ayuoe88iWNVNtaLSpaAhjrkZfGNetWnY=;
+ b=O5qzHaPqL4GVlnpakMg43WD6cVNiMHmCGJ1KNBfBKz6nBB/dHPmRLIDEFbnt9D3LuEzz6AY4NNyDj1tktZtq94xlfY2WedC9Q/D15mF48UOD1Iwt9LaWtnQ9rmDEbMPrLu2HDuz5UdH8fRRR0MrxDAptQjvxqA+/9Ry5HG5KuR25HTGfbniYlimTh0npPs0RdW8+8mfwOoMyv1fPWX/m3MKX7XcraikAt+Z3R1baETL3yuO0zjorQxDzAOJFueNck5/rwkt2JqCCgmtkEfJO6jfWWRPxai/9MSbQe+YZ7MN0QrY8ngZf2vmrKlDwpqxDaM2JchN/0R9HLY4VViXFbA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
  91.26.50.189) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=phytec.fr;
  dmarc=fail (p=quarantine sp=quarantine pct=100) action=quarantine
@@ -44,18 +44,18 @@ DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=phytecmesstechnikgmbh.onmicrosoft.com;
  s=selector1-phytecmesstechnikgmbh-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RfnSzLR/duxm3IUxGAlwn2fbzDVyLuSpyxsrAfEf0fo=;
- b=Q11O0U0IOgYzyJB23uuytI2BctoNDP0r81fyoaymsiTpA/kiDpuuj0avqfsc9oLXF8AAQ6OtFQT2BSFHzDAiYDkBt7yIa+9HSELZvNvG77qFvngbw6TaSPBl0fqoJANcPzXh8vEsMaFK0d2pCeXgGWZ+Dq0uj9otXs1/bhKvdrA=
-Received: from DB9PR01CA0017.eurprd01.prod.exchangelabs.com
- (2603:10a6:10:1d8::22) by AM9P195MB1300.EURP195.PROD.OUTLOOK.COM
- (2603:10a6:20b:3af::7) with Microsoft SMTP Server (version=TLS1_2,
+ bh=/GQP4wRF0C9Ayuoe88iWNVNtaLSpaAhjrkZfGNetWnY=;
+ b=OkvfpenfLTjCxcrcVAk1O/FbPE3+UsLP9DYx5ucI/qqXaCCfxfPjxsRDnz1hmzg/H08ZTWHJh+Z1Tf+H/mBN2sbjJYaoTNepcVNFsRZZsjRLLCe6RjG/5zrZJ/NB5jJ+6yvTKI5ixlR/UcRkJdfa4YjlEnZZjXprHlfBr8xICx0=
+Received: from DB9PR01CA0020.eurprd01.prod.exchangelabs.com
+ (2603:10a6:10:1d8::25) by PR3P195MB0554.EURP195.PROD.OUTLOOK.COM
+ (2603:10a6:102:34::8) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9412.8; Wed, 10 Dec
  2025 10:16:16 +0000
 Received: from DU2PEPF00028D09.eurprd03.prod.outlook.com
- (2603:10a6:10:1d8:cafe::15) by DB9PR01CA0017.outlook.office365.com
- (2603:10a6:10:1d8::22) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9412.6 via Frontend Transport; Wed,
- 10 Dec 2025 10:16:12 +0000
+ (2603:10a6:10:1d8:cafe::61) by DB9PR01CA0020.outlook.office365.com
+ (2603:10a6:10:1d8::25) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9388.14 via Frontend Transport; Wed,
+ 10 Dec 2025 10:15:37 +0000
 X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 91.26.50.189)
  smtp.mailfrom=phytec.fr; dkim=none (message not signed)
  header.d=none;dmarc=fail action=quarantine header.from=phytec.fr;
@@ -75,8 +75,8 @@ Received: from idefix.phytec.de (172.25.0.20) by mailrelayint.phytec.de
  Transport; Wed, 10 Dec 2025 11:16:14 +0100
 Received: from pc.home ([172.25.39.2])
           by idefix.phytec.de (IBM Domino Release 9.0.1FP7)
-          with ESMTP id 2025121011161390-314 ;
-          Wed, 10 Dec 2025 11:16:13 +0100 
+          with ESMTP id 2025121011161432-315 ;
+          Wed, 10 Dec 2025 11:16:14 +0100 
 From: Christophe Parant <c.parant@phytec.fr>
 To: <devicetree@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
 	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
@@ -84,9 +84,9 @@ CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>, Maxime Coquelin
 	<mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>,
 	<upstream@lists.phytec.de>
-Subject: [PATCH RESEND v2 05/11] ARM: dts: stm32: phyboard-sargas: Fix uart4 and sai2 pinctrl
-Date: Wed, 10 Dec 2025 11:16:05 +0100
-Message-ID: <20251210101611.27008-6-c.parant@phytec.fr>
+Subject: [PATCH RESEND v2 06/11] ARM: dts: stm32: phycore-stm32mp15: qspi: Fix memory map and pinctrl
+Date: Wed, 10 Dec 2025 11:16:06 +0100
+Message-ID: <20251210101611.27008-7-c.parant@phytec.fr>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251210101611.27008-1-c.parant@phytec.fr>
 References: <20251210101611.27008-1-c.parant@phytec.fr>
@@ -97,7 +97,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-MIMETrack: Itemize by SMTP Server on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
- 10.12.2025 11:16:13,
+ 10.12.2025 11:16:14,
 	Serialize by Router on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
  10.12.2025 11:16:14
 X-TNEFEvaluated: 1
@@ -105,101 +105,87 @@ Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU2PEPF00028D09:EE_|AM9P195MB1300:EE_
-X-MS-Office365-Filtering-Correlation-Id: d5e93e3b-84b2-49ac-3470-08de37d527a0
+X-MS-TrafficTypeDiagnostic: DU2PEPF00028D09:EE_|PR3P195MB0554:EE_
+X-MS-Office365-Filtering-Correlation-Id: aa8c9a0c-c707-44a2-7595-08de37d527d5
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|82310400026|36860700013|376014;
+	BCL:0;ARA:13230040|376014|1800799024|82310400026|36860700013;
 X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?Cs4+tErpE4tn7aCztl/vR1VnAw37DGPzM7VY4XgoiDVp/wSVbXfHYLL/sj6x?=
- =?us-ascii?Q?UMJOi21W1dR0ypsWkWgy58TsQdx2C7ku5PlM2Kx0/bpPSg02JWOHJU5JEbJI?=
- =?us-ascii?Q?ET1p5DJRsZx5w9B0qHhSk5ShVegsrcfhDny7EG2ZvZj0/iuqjDwbJ1N3Z86D?=
- =?us-ascii?Q?XdyzKwLLMb57SAPims//SQh2ASIpjcWnAsqaNO2MhiOuGKPCJXTSbzZfKW3c?=
- =?us-ascii?Q?KMYvpjsRigbSNP888nUvoL/C9w4b8mOqfzws6nXIO23U0SAPU+Km5KIRdu0j?=
- =?us-ascii?Q?0LPHVhLFh5xikUkIfq3r/6tTq4kaycic4Dul06AzYMtQGh8VrOIPJuu6KEhv?=
- =?us-ascii?Q?k2N1WbCkgVzqkX/YcnRee6w3WenkccbJZPQoxFwpuBos0NLO4CtZ6SrD5Mpp?=
- =?us-ascii?Q?KusSaZ5T8LMCmlxrnzy5X3M6Ceu5QlXyh8sPncBn6xEtnimmQkrlXGIJM0oX?=
- =?us-ascii?Q?lNJOVQNYKC3MAUbFkPWoMMWFCNYDCEOMwe4MZoqIocqyc1WTQ8BrnXQx8WTq?=
- =?us-ascii?Q?/fuGofIBL5FTuRDlI4HWPMmMJPGZKXBrLh+aSzc5QbcO6+eCw/XXyOS5vu/R?=
- =?us-ascii?Q?ei7yo+ReI/FWdo7mR5DnbEqhdo6zh9MCUkqbTCCzFN44m18FHjZKQBhwoG05?=
- =?us-ascii?Q?lYiWNc4vjzYxdQE1R5sl4y5VF3qoS724/qJv/v8sKN2yhDmK4bbI3SseMzQ6?=
- =?us-ascii?Q?Magy/q23e9HGQ9CuUvZv39HP1y0rER0qNyBjE4uAGT/vfsWEGXR62VBOZJ1q?=
- =?us-ascii?Q?VszJFJx4YXpnhTUBDWWc5Sbh4s06wtD6ZdzhvsUBrRtwFwixGUDg6YgtfWqN?=
- =?us-ascii?Q?USN76bGDjq6AgaG/ojnYlFYZ87DoqHJaKneHDfJ/2BzOoantHGBvK96i4ebo?=
- =?us-ascii?Q?tUBojQcmLPlpkMt3OHyzXOom5pXg+z/62KZI+LrW4zLXXccQdjo+sk5UDy8x?=
- =?us-ascii?Q?J4W9cTRL6Kn716zRn+edn3ccEQXpOP5mxJ1Tc85aXkT0BQ6Wf980cCeoJft7?=
- =?us-ascii?Q?h4hP4Fd96sPCEHvEmRHhtt58cdRBER9+IKsQ1FwE1crtbZRe22q3f4Vow/pO?=
- =?us-ascii?Q?eTrChLY+J9WmAGl1apvmVuFkmKYD0gY7gYINFzWfpzUS5fn2Vle/eDapJekO?=
- =?us-ascii?Q?ZJpnO/A422QexDjdwbjW1vK6+/0ov6pM/y1YxBxYQpaJSv1ddtg5aF8s5Kj6?=
- =?us-ascii?Q?+CooazWdpco0mZJEAHmI1jPtQsBvEXcDFHwblnRUne2+JOE75JqQ+53OoCLG?=
- =?us-ascii?Q?CWQ2yYlnuLJUctEAdmRziUc4H6L9shWGPrvxpetykaecuxgmKjmqMZgISE0B?=
- =?us-ascii?Q?RTCxFuDiYQ+CdTKk/5/MsbV+sfQ1KyeILD7ZDhGcw9zuHLspgB1jS4KwvcYW?=
- =?us-ascii?Q?FKiVCkILw5aOYcLcOxLNKRw6f6gQOGHtVoLg84t15pYlAwmn93aKZpKiwsgH?=
- =?us-ascii?Q?lW7AnFCh+pMt9QvtySj4N3Xy49tOQN95JJiXbzCOCWC5Yw+rXfFpHUVHnMxI?=
- =?us-ascii?Q?OyrDI8PAuFqJNEkg2lOkhlFyV2b6dHgvizLSB3wceWIP1yu/aHCAzQwbLJwU?=
- =?us-ascii?Q?bix0wC/mg6T8PXDhOco=3D?=
+	=?us-ascii?Q?IdvYewS6k7WRvVKsHDrTKgTWnGqko55OVpmHzSXxR0Do2rQ5vNToswg2VAhC?=
+ =?us-ascii?Q?AGEUoXldOoGdBnuyt19NX5lGwr0eILJdIYz3D+pBiq9nH8nt3K4G3usYdGp6?=
+ =?us-ascii?Q?0drDog7Fprl6Gainx2mN4TwSCb0QrA7jcNp1JeEReQX9+t9y+tkzfxzd8ty6?=
+ =?us-ascii?Q?+ez420hEt6LN7mh+YHh84jWmf7jXCH2aNnb9bKQRZRLWH6Ehn+UOLHX9QC81?=
+ =?us-ascii?Q?j0ozIbbsp6qAueNRgEhiJ4etXZJfX5zglK4ZjZExCxhh7n3zoO0ErCHZzhVE?=
+ =?us-ascii?Q?uBd2LBhu95G06yFU1ebnPxprvouHC+2PLa9+aGHJpAG+ySYmAJ3qMejcrpNp?=
+ =?us-ascii?Q?yOsSitx5h4/Ob9hHwkA/6WoK2g1mgYq6J207URerqcHy4olnAOuQsCyFWpAq?=
+ =?us-ascii?Q?PR5EFa4JkfBgIpikwH9QJEfyGvjdMcuEk4gFsvn5Em+Nlc0NmM3HOG4mZNip?=
+ =?us-ascii?Q?Y9mcGnSRzuGRHlUXzUmIKe7ERN6Yea1zos3n0JTxVum/Rp7ccQgYs6ZIEF2+?=
+ =?us-ascii?Q?+1g4IgzuPzYHVaAFMYKitHIwPkTkNVqDEQwq6jIsPr+H0oSjh7bkHoNayiYz?=
+ =?us-ascii?Q?nV+afHetjcfx13nv61eqFpsn/P0iIBRnkpy8J//MFRrdsG25GY3bczlwQlST?=
+ =?us-ascii?Q?WSnpwMIZcpKkm0go5hPIVFHsaBSWDefwCQ/XRAo5yanBpMzU3swODhEFZGK3?=
+ =?us-ascii?Q?Piet6YZcturZA82Dp+bvgGWt5T1eSZ5wlFZUpYBCctsqwccP2YXLcmiyy1X/?=
+ =?us-ascii?Q?O3q6pBv/JmA1B7uwDs1IVq8QFfteFZu0HyGts0RMiNPCtM3F1ys9VUrhTS71?=
+ =?us-ascii?Q?Qw0BGbXeLm9AAHuEdb13DBOYiwKU8Lks0KRt0huyvdmphOKAbcL0TEYkGkst?=
+ =?us-ascii?Q?iO31qfZVDWehMcZbZPdTFbdswX/E3hIOqa9P3BtrOQrkpXIyW5lbb5UVxCw5?=
+ =?us-ascii?Q?adsXQAZ1LQzZuZxmOxMWM9U8WhJxJy5ba3DHJkZjNJe5qk+L/oaO0caMZ8DH?=
+ =?us-ascii?Q?PDUN3zOvozAprQWyau9Tmrv34dOfGQJXs8gze8AisgKrwxHyVW52bYreUOII?=
+ =?us-ascii?Q?WrHktgtS+l4dAxG7hURxH0BVjrChIk0vzLo1Upi/rqN71W0piK84TQA9lj/S?=
+ =?us-ascii?Q?upXpnIY/OmHlHcQwGNhHv7H5ZJmDLgfoT2jsesFBsfZEDs6baSWvcVFPVvM5?=
+ =?us-ascii?Q?qOMm5wzFLQYectcJB9WERPG5Yvt2pCcaewxd/Mny706gpuvtl+eHP7WTNIfP?=
+ =?us-ascii?Q?CxC2KSHT9roqe98ZL3mIo64Xwh1rtSkb7GCoF+xONS08VB4qjk2AwSTWSwgx?=
+ =?us-ascii?Q?yFZlGkpLWO5q5FiHNvurxLg7NbLJndfI1DRu9tbn8Chkr3QgnrwCMCQRvpcS?=
+ =?us-ascii?Q?YDeJrm7TSlGuX8wsOEU3kjUm3Zy08EuhDTUgi2kWHITxEzVJogcebJJ+RtWP?=
+ =?us-ascii?Q?rpsfyxuCUp25gtevd88Hw1vr6nrWVz5IR3woTzbKEFH7BUg6ZQyK5Oi/4VBj?=
+ =?us-ascii?Q?a5IJmaL8Qy5A6YFhqdvOAIt+RQJKw4scUK9cC76oIAak8NfUxcUhQrqX2eH2?=
+ =?us-ascii?Q?U1jakUoh10S206WKens=3D?=
 X-Forefront-Antispam-Report:
-	CIP:91.26.50.189;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:Postix.phytec.de;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(36860700013)(376014);DIR:OUT;SFP:1102;
+	CIP:91.26.50.189;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:Postix.phytec.de;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(1800799024)(82310400026)(36860700013);DIR:OUT;SFP:1102;
 X-OriginatorOrg: phytec.fr
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Dec 2025 10:16:16.4831
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Dec 2025 10:16:16.8327
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d5e93e3b-84b2-49ac-3470-08de37d527a0
+X-MS-Exchange-CrossTenant-Network-Message-Id: aa8c9a0c-c707-44a2-7595-08de37d527d5
 X-MS-Exchange-CrossTenant-Id: e609157c-80e2-446d-9be3-9c99c2399d29
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e609157c-80e2-446d-9be3-9c99c2399d29;Ip=[91.26.50.189];Helo=[Postix.phytec.de]
 X-MS-Exchange-CrossTenant-AuthSource:
 	DU2PEPF00028D09.eurprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9P195MB1300
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PR3P195MB0554
 
-- UART4:
-  "uart4=5Fpins=5Fa" pinmux option does not apply here, as PB9 should be
-  used for UART4=5FTX instead of PG11 (PG11 is LCD=5FB3 on Sargas).
-  Use "uart4=5Fpins=5Ff" instead.
-  Also remove "pinctrl-3" which is useless (identical to "pinctrl-1").
-
-- SAI2 A:
-  "sai2a=5Fpins=5Fb" pinmux option does not apply here, as only PI6 is used
-  for SAI2 A ("SAI2=5FSD=5FA"). Other pins of this group (PI7 and PD13) are
-  not used for audio.
-  Use "sai2a=5Fsleep=5Fpins=5Fd" instead.
+- Add missing chip select pin group in pinctrl.
+- Overwrite the memory map to the Flash device size (16MB) is necessary
+to avoid waste of virtual memory that will not be used.
+Without this modification, qspi probe fails because of ioremap error.
 
 Signed-off-by: Christophe Parant <c.parant@phytec.fr>
 ---
- arch/arm/boot/dts/st/stm32mp15xx-phyboard-sargas.dtsi | 11 +++++------
- 1 file changed, 5 insertions(+), 6 deletions(-)
+ arch/arm/boot/dts/st/stm32mp15xx-phycore-som.dtsi | 10 ++++++++--
+ 1 file changed, 8 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/st/stm32mp15xx-phyboard-sargas.dtsi b/arch/a=
-rm/boot/dts/st/stm32mp15xx-phyboard-sargas.dtsi
-index 2fdab99fc562..44f3aa1ddebf 100644
---- a/arch/arm/boot/dts/st/stm32mp15xx-phyboard-sargas.dtsi
-+++ b/arch/arm/boot/dts/st/stm32mp15xx-phyboard-sargas.dtsi
-@@ -143,8 +143,8 @@ &sai2 {
- 	clocks =3D <&rcc SAI2>, <&rcc PLL3=5FQ>, <&rcc PLL3=5FR>;
- 	clock-names =3D "pclk", "x8k", "x11k";
+diff --git a/arch/arm/boot/dts/st/stm32mp15xx-phycore-som.dtsi b/arch/arm/b=
+oot/dts/st/stm32mp15xx-phycore-som.dtsi
+index 660cdc260963..72926c3de52c 100644
+--- a/arch/arm/boot/dts/st/stm32mp15xx-phycore-som.dtsi
++++ b/arch/arm/boot/dts/st/stm32mp15xx-phycore-som.dtsi
+@@ -290,8 +290,14 @@ &pwr=5Fregulators {
+=20
+ &qspi {
  	pinctrl-names =3D "default", "sleep";
--	pinctrl-0 =3D <&sai2a=5Fpins=5Fb>, <&sai2b=5Fpins=5Fd>;
--	pinctrl-1 =3D <&sai2a=5Fsleep=5Fpins=5Fb>, <&sai2b=5Fsleep=5Fpins=5Fd>;
-+	pinctrl-0 =3D <&sai2a=5Fpins=5Fd>, <&sai2b=5Fpins=5Fd>;
-+	pinctrl-1 =3D <&sai2a=5Fsleep=5Fpins=5Fd>, <&sai2b=5Fsleep=5Fpins=5Fd>;
+-	pinctrl-0 =3D <&qspi=5Fclk=5Fpins=5Fa &qspi=5Fbk1=5Fpins=5Fa>;
+-	pinctrl-1 =3D <&qspi=5Fclk=5Fsleep=5Fpins=5Fa &qspi=5Fbk1=5Fsleep=5Fpins=
+=5Fa>;
++	pinctrl-0 =3D <&qspi=5Fclk=5Fpins=5Fa
++		     &qspi=5Fbk1=5Fpins=5Fa
++		     &qspi=5Fcs1=5Fpins=5Fa>;
++	pinctrl-1 =3D <&qspi=5Fclk=5Fsleep=5Fpins=5Fa
++		     &qspi=5Fbk1=5Fsleep=5Fpins=5Fa
++		     &qspi=5Fcs1=5Fsleep=5Fpins=5Fa>;
++	reg =3D <0x58003000 0x1000>,
++	      <0x70000000 0x1000000>;
  	status =3D "okay";
- };
 =20
-@@ -202,10 +202,9 @@ &spi1 {
-=20
- &uart4 {
- 	pinctrl-names =3D "default", "sleep", "idle";
--	pinctrl-0 =3D <&uart4=5Fpins=5Fa>;
--	pinctrl-1 =3D <&uart4=5Fsleep=5Fpins=5Fa>;
--	pinctrl-2 =3D <&uart4=5Fidle=5Fpins=5Fa>;
--	pinctrl-3 =3D <&uart4=5Fpins=5Fa>;
-+	pinctrl-0 =3D <&uart4=5Fpins=5Ff>;
-+	pinctrl-1 =3D <&uart4=5Fsleep=5Fpins=5Ff>;
-+	pinctrl-2 =3D <&uart4=5Fidle=5Fpins=5Ff>;
- 	/delete-property/dmas;
- 	/delete-property/dma-names;
- 	status =3D "okay";
+ 	flash0: flash@0 {
 --=20
 2.34.1
 
