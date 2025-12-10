@@ -1,186 +1,208 @@
-Return-Path: <devicetree+bounces-245668-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245669-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60FC7CB4065
-	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 22:04:22 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0E72CB407A
+	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 22:10:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 15B06303B7C0
-	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 21:04:21 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id EEA95300CCF6
+	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 21:10:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B788F217F53;
-	Wed, 10 Dec 2025 21:04:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E81AF2FF67A;
+	Wed, 10 Dec 2025 21:10:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jP5Zfoic"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="h/il+UyR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87A0719DF62;
-	Wed, 10 Dec 2025 21:04:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE5492F5A1F
+	for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 21:10:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765400658; cv=none; b=fMRsz87uCBEmCDIyf7P7Rci5FKqxrmHaonABf7Lx0rFx3siqyVL6gxMGrekniLwA0eiY6NnhloHp65dpQnhbYN6XApCLbNNi4C3SoVzH+qzXJbx3oyi6WQimXXSR4w2WzPNO+NZM7RgyfsxrNM4GRvGqS2Gy8j4rkJCqCmIzaQA=
+	t=1765401023; cv=none; b=FXtcurYw8gNTWlODaRBR1ZIOSTZN5Txt1Dv1YRjegyB8mtaHeGhbVfnLf/+JO/2QJ9BhYW2oZ6tj3OLQxKFnhPgZd2M8q8vBnoLzh+dBSCxpphV6cwxeDI2F6YU4oav7McOrfklJtYabBm7fbQ2p10Q0iCV4rZjs7tFUE/u9FvI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765400658; c=relaxed/simple;
-	bh=Qs4b3z1pm0ndIdr4UcDS2LE1LcsKzBmrdvQ17Sx/6EE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SH4HX0hX+LSZs1aFZP0yw/+YDlIZWW5U6Fhj66SMCQ6xRTpwSkVWBD7Y08iqdcd/QCQnt03p6RKTr19zixh3Xzn8giuRL+RifbQM40YKmsoXlhImGyUlbMK4N8RDm9iFuTUE8o6ToE8GhIPdQkQk+D2hezvBDqB7UjbH+xMbSgs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jP5Zfoic; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8625C4CEF1;
-	Wed, 10 Dec 2025 21:04:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765400658;
-	bh=Qs4b3z1pm0ndIdr4UcDS2LE1LcsKzBmrdvQ17Sx/6EE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jP5ZfoicM9N+3tiTUpWMH9mGWtrC5oyPW81SRPOwyz/9Lj4KBEAu6yXKuQSxAuqym
-	 zFyG0F38lsblWg1Gx5DD3VzMvmeruRwBLtkhkUPkOFWwgrM7leb5yFSu7W1Cfr8JQk
-	 9UE5Z2Y3fjabVKbo9DKvnnXyYYjQ0cExmWFXqTgWItgpjr2va2cwAvz3xcOFt6ZhoI
-	 rLTyRdhCcJDa2XdFXVDaFJ2BeBN5Yz79NWuRXbgp61AFlJdXCAprEpAv2L0qE9niCU
-	 C4endY8NgKQAXP1GQ4NxutwpkNy7WweVSimARqP/gu5qUwqlwfJyVzs+W8uk7vJn/E
-	 q8O7hRqp1v9nQ==
-Date: Wed, 10 Dec 2025 15:04:14 -0600
-From: Rob Herring <robh@kernel.org>
-To: Vijayanand Jitta <vijayanand.jitta@oss.qualcomm.com>
-Cc: robin.murphy@arm.com, will@kernel.org, joro@8bytes.org,
-	dmitry.baryshkov@oss.qualcomm.com, konrad.dybcio@oss.qualcomm.com,
-	bjorn.andersson@oss.qualcomm.com, bod@kernel.org,
-	conor+dt@kernel.org, krzk+dt@kernel.org,
-	charan.kalla@oss.qualcomm.com, prakash.gupta@oss.qualcomm.com,
-	vikash.garodia@oss.qualcomm.com, iommu@lists.linux.dev,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] of: Respect #{iommu,msi}-cells in maps
-Message-ID: <20251210210414.GA3329469-robh@kernel.org>
-References: <20251204095530.8627-1-vijayanand.jitta@oss.qualcomm.com>
- <20251204095530.8627-4-vijayanand.jitta@oss.qualcomm.com>
- <20251209201725.GB1015230-robh@kernel.org>
- <a0a5cf96-70fe-4005-a100-58ae0b72b4cd@oss.qualcomm.com>
+	s=arc-20240116; t=1765401023; c=relaxed/simple;
+	bh=Uh+9H8bdDNwclyo234VBfjWf+hPZD/RjvnJ13fK+bUE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=NA2DlteO+urG89FmWkU+ASlcDqikSO7cEHJr8+fjSdw216Q+ZeVeWycw+0YKPTDKzfODRS4N+P4AobtQpdq8X8mqe4C6U69pVUzLwI31B0ELLTOX2AwJ8/SEWxs9avMZszApUgqOi9FIx1vt9XGMaRfPjwS+ERaE27mLsRXWzRE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=h/il+UyR; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-47774d3536dso2605135e9.0
+        for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 13:10:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1765401020; x=1766005820; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=f6Ap2wL2QNWzNOuJh0hZXjD0O0VdpkojkcVs56Al8cw=;
+        b=h/il+UyRcfUV5ophE7yr1bMcD8/fMeLheEypjbuvu7gg07nvOz18oRtr5oLVz5LIyH
+         xUf21BFcctap5DVpMyUTbqXg8IKTvg45zLY1ajh6etNnEuom/Cx52lsTKw3LTj41JRMB
+         foS0SH8GdRloYqhxhBULP2sGCsUU2nngKpmtzwl7C11IdHVzd6RWOt8wmFfvyjn5pZpj
+         VIaB0tSnlnaKxfAc9hB7116T9zslVFg+lNl+TfIgyFnFTx12y6nF4wwZveALQl5HgPu8
+         p7YgcSurCZH/C/4PrCxCf2AdPcs7FoXdfw7qRqe7G76B4qLIg/ayaXaSL5cYqrCXNCoG
+         HcSw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765401020; x=1766005820;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=f6Ap2wL2QNWzNOuJh0hZXjD0O0VdpkojkcVs56Al8cw=;
+        b=ZJpiZBb2LaziYRrZmrcYHPyZNxHVNK8BnOFBXCH41b4TzTB+x+MDp6xj0fyVem/2dw
+         GvtOyAast2sQmyT7vMMr0HHWF0AQkXE30BZLA1PR5TpfuXQvPuQ7+2v2Nj/NxkY01lXG
+         wDVhX3Yw2JyYz4NlPPqcNtyD/LeGhVCN4FCDPxDI/QGHZXO93BDWs1GdlzbJKkDKkoML
+         +Ltk6eNLVtvbCrzi9cJ8mSKqcFxxg5AhcPvDmaJeuXMmTH4Tam7FoQjnrxAq4Im/b02n
+         1ReNqGJ/vMg03/nIelq9omXKtUkf8c9PO1c2rZcgu5ER2R6cc85pC8isF5nRWuzV3H1X
+         dgMg==
+X-Forwarded-Encrypted: i=1; AJvYcCVLEUC0amQEkHkMLxbfnErZP+4Zv9+ZsbjlRVyNNHzVy+0zVtsW+76llcWlsWRqptYsaHmSRHTlBiN0@vger.kernel.org
+X-Gm-Message-State: AOJu0YwksFAUAoXUR7WAhxRZcWS8zb6azdUW8hZSQ9GL008+fhvTdHX+
+	a2+0E7GWAL95ldvxqWzH5LHg/3GA0xKNY7Hhr3o5ah6cYHHJ2UKajs3TB2w9aLx9hhPZsXRZHDd
+	0HXAy4eh2XR0J0+T93bcyK4YymZ5hUbQ=
+X-Gm-Gg: ASbGncu1MPgKT12EgYeWWtAeHj8+jwswQYP86v/5rCUV6muEkqQAzL+RWxT+2ryFKf1
+	MQyscj4qfJvx3P8CJnW6Wh5gZ4IMzCkCX/jvQbi4f75bP3LX7y9sxTWXUtHznPRFAxvqXOvazoQ
+	z+u4c6A2pHIdydyZtcAypUEpkgj3QdfUURTCPpK7RLAYfGiZnlYfv8rX0nC/DcO46CLUOBuWcYs
+	i3mPNnFDKJ17NikNB/Hju0S+OlFG9ecxbZX1aCuHw7Kmek2/hNbwFAj20gSpLDjo69itZjbhw==
+X-Google-Smtp-Source: AGHT+IFQU1/Jhu22RnkhsOBefhQOpeX8PaoabdXqTjqdirBbdMixKWOg/r6NaWYfEBa73u04Avqi37Rvk+u2FM+qxao=
+X-Received: by 2002:a05:600c:56c8:b0:477:9890:4528 with SMTP id
+ 5b1f17b1804b1-47a886a08e1mr5232305e9.2.1765401020116; Wed, 10 Dec 2025
+ 13:10:20 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <a0a5cf96-70fe-4005-a100-58ae0b72b4cd@oss.qualcomm.com>
+References: <20251121113553.2955854-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20251121113553.2955854-10-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20251121210504.ljeejnltaawahqtv@skbuf> <CA+V-a8ve6vV_O1XwPX0sn+Qqm5QoYrf6Xu5gansxW05waMf43Q@mail.gmail.com>
+ <20251209212841.upskgi5dphsmkrpi@skbuf>
+In-Reply-To: <20251209212841.upskgi5dphsmkrpi@skbuf>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Wed, 10 Dec 2025 21:09:52 +0000
+X-Gm-Features: AQt7F2o4iDtd3Rpuz4FTtk60m3_b-aAdWYBIboBEH1hguLv-mqZPIp_mG5EBJfA
+Message-ID: <CA+V-a8vkzrO77UBeR+YhPwcv608Zh9n7CHL-ugcsuhk-vuRyMg@mail.gmail.com>
+Subject: Re: [PATCH net-next 09/11] net: dsa: rzn1-a5psw: Add support for
+ management port frame length adjustment
+To: Vladimir Oltean <olteanv@gmail.com>
+Cc: =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>, 
+	Andrew Lunn <andrew@lunn.ch>, "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Simon Horman <horms@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Russell King <linux@armlinux.org.uk>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
+	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Dec 10, 2025 at 03:57:56PM +0530, Vijayanand Jitta wrote:
-> On 12/10/2025 1:47 AM, Rob Herring wrote:
-> > On Thu, Dec 04, 2025 at 03:25:30PM +0530, Vijayanand Jitta wrote:
-> >> From: Robin Murphy <robin.murphy@arm.com>
-> >>
-> >> So far our parsing of {iommu,msi}-map properites has always blindly
-> >> asusmed that the output specifiers will always have exactly 1 cell.
-> >> This typically does happen to be the case, but is not actually enforced
-> >> (and the PCI msi-map binding even explicitly states support for 0 or 1
-> >> cells) - as a result we've now ended up with dodgy DTs out in the field
-> >> which depend on this behaviour to map a 1-cell specifier for a 2-cell
-> >> provider, despite that being bogus per the bindings themselves.
-> >>
-> >> Since there is some potential use in being able to map at least single
-> >> input IDs to multi-cell output specifiers (and properly support 0-cell
-> >> outputs as well), add support for properly parsing and using the target
-> >> nodes' #cells values, albeit with the unfortunate complication of still
-> >> having to work around expectations of the old behaviour too.
-> >>
-> >> Since there are multi-cell output specifiers, the callers of of_map_id()
-> >> may need to get the exact cell output value for further processing.
-> >> Added support for that part --charan
-> >>
-> >> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
-> >> Signed-off-by: Vijayanand Jitta <vijayanand.jitta@oss.qualcomm.com>
-> >> ---
-> >>  drivers/iommu/of_iommu.c |   3 +-
-> >>  drivers/of/base.c        | 107 ++++++++++++++++++++++++++++++---------
-> >>  include/linux/of.h       |  17 ++++---
-> >>  3 files changed, 94 insertions(+), 33 deletions(-)
-> >>
-> >> diff --git a/drivers/iommu/of_iommu.c b/drivers/iommu/of_iommu.c
-> >> index eac62bc441c5..48759cf1d900 100644
-> >> --- a/drivers/iommu/of_iommu.c
-> >> +++ b/drivers/iommu/of_iommu.c
-> >> @@ -45,10 +45,11 @@ static int of_iommu_configure_dev_id(struct device_node *master_np,
-> >>  				     struct device *dev,
-> >>  				     const u32 *id)
-> >>  {
-> >> -	struct of_phandle_args iommu_spec = { .args_count = 1 };
-> >> +	struct of_phandle_args iommu_spec = {};
-> >>  	struct of_map_id_arg arg = {
-> >>  		.target = &iommu_spec.np,
-> >>  		.id_out = iommu_spec.args,
-> >> +		.map_cells = &iommu_spec.args_count,
-> >>  	};
-> >>  	int err;
-> >>  
-> >> diff --git a/drivers/of/base.c b/drivers/of/base.c
-> >> index b8f78a9e6a09..68a7d6ddba66 100644
-> >> --- a/drivers/of/base.c
-> >> +++ b/drivers/of/base.c
-> >> @@ -2045,11 +2045,30 @@ int of_find_last_cache_level(unsigned int cpu)
-> >>  	return cache_level;
-> >>  }
-> >>  
-> >> +/*
-> >> + * Some DTs have an iommu-map targeting a 2-cell IOMMU node while
-> >> + * specifying only 1 cell. Fortunately they all consist of length == 1
-> >> + * entries with the same target, so check for that pattern.
-> > 
-> > Can you show what a bad entry looks like here.
-> > 
-> 
-> Sure, will add an example in the comments. Basically it would look like below.
-> 
-> for iommu with iommu-cells  = <2>;
-> 
-> Device having below iommu-map property.
-> 
-> iommu-map = <0x0000  &smmu  0x0000  0x1>,
->             <0x0100  &smmu  0x0100  0x1>;
-> 
-> >> + */
-> >> +static bool of_check_bad_map(const __be32 *map, int len)
-> >> +{
-> >> +	__be32 phandle = map[1];
-> >> +
-> >> +	if (len % 4)
-> >> +		return false;
-> >> +	for (int i = 0; i < len; i += 4) {
-> >> +		if (map[i + 1] != phandle || map[i + 3] != cpu_to_be32(1))
-> > 
-> > Why does the IOMMU arg cell have to be 1? The description said 'same 
-> > target', but it is just all have an IOMMU cell value of 1?
-> > 
-> 
-> Here, the check is for length argument to be 1. This is to maintain backward
-> compatibility as mentioned above, as all such bad entries right now have
-> length as 1.
+Hi Vladimir,
 
-You say length and I think arg/cell length, not that the cell value 
-contains a length. That's because generally cell args are provider 
-defined and specific. So just say the 2nd cell has a value of 1 and 
-leave out that's a length.
+On Tue, Dec 9, 2025 at 9:28=E2=80=AFPM Vladimir Oltean <olteanv@gmail.com> =
+wrote:
+>
+> On Tue, Dec 09, 2025 at 04:02:19PM +0000, Lad, Prabhakar wrote:
+> > > In the next change you set this to 40. What's the reason behind such =
+a
+> > > high value (need to set the management port A5PSW_FRM_LENGTH value to
+> > > 1574 bytes to pass L2 payload of 1500 bytes)? It sounds like this nee=
+ds
+> > > to be called out more clearly for what it is - a hardware bug.
+> > >
+> > Regarding the question about the relatively large adjustment value:
+> > according to the hardware manual,
+> > =E2=80=9CSet the FRM_LENGTH register in port 3 (CPU port) to more than =
+or
+> > equal to the initial value. When you want to limit the frame length of
+> > the received frame, use FRM_LENGTH registers in port 0 to port 2.=E2=80=
+=9D
+> >
+> > In practice, with the default MTU (i.e. without applying the +40-byte
+> > adjustment), RX traffic operates correctly. For example, running
+> > iperf3 in reverse mode shows no issues, and frames are received
+> > without errors. However, in the forward direction (TX from the CPU
+> > port), throughput drops to zero and iperf3 fails.
+> >
+> > When the MTU of the CPU-facing interface is increased (e.g. ip link
+> > set lan0 mtu 1540),
+>
+> "lan0" isn't a typical name for a CPU-facing interface. Do you mean that
+> the primary action is that you increase the MTU of a user port, and the
+> FRM_LENGTH of the CPU port is implicitly readjusted by the driver as
+> well (to 1540 + ETH_HLEN + A5PSW_EXTRA_MTU_LEN + ETH_FCS_LEN)?
+>
+> This isn't actually bringing new data, because unless you also increase
+> the MTU of the other iperf3 device to 1540, the TCP MSS will still be
+> calculated as if the MTU were 1500, and you won't be making use of
+> larger packet sizes on the wire. On the contrary, you are introducing
+> one extra variable into the equation: with this test you are also
+> increasing the stmmac MTU, which you later clarify that by itself it
+> doesn't change the outcome.
+>
+> > TX traffic immediately starts working correctly.
+> > Likewise, increasing the FRM_LENGTH on the switch side for the CPU
+> > port resolves the problem, which indicates that the frame length
+> > configuration on this port is directly involved.
+>
+> So increasing FRM_LENGTH is the only factor that alters the outcome.
+>
+> > Given this behaviour, it appears that the management (CPU) port
+> > requires additional headroom to successfully transmit frames, even
+> > though RX succeeds without it. The STMMAC driver is used as the
+> > controller driver for the management port, we are trying to determine
+> > whether there is any known interaction, alignment constraint, or
+> > undocumented overhead that would explain the need for this extra
+> > margin.
+> >
+> > Could you please advise on how to handle this issue?
+>
+> Have you verified that the value you need to add to FRM_LENGTH is linear
+> for MTU values above 1500? I.e. that at MTU values of 1510, 1520, 1540,
+> 2000, ..., you always need to add 40 additional octets to FRM_LENGTH on
+> top of the ETH_HLEN + A5PSW_EXTRA_MTU_LEN + ETH_FCS_LEN extra that the
+> driver is already adding, and no less?
+>
+> One other thing to look at is to send known-size Ethernet frames using
+> mausezahn or ping over lan0, run ethtool -S on the eth0 stmmac interface
+> (this will also capture the switch's CPU port statistics counters) and
+> see by how many octets does the aOctetsReceivedOK counter increment for
+> a known size packet. Then, if you go oversize, look at the statistics
+> counters and see which counter marks the drop. Maybe this will provide
+> any clue.
+>
+So I started off with ping and that worked i.e. without +40 to
+FRM_LENGTH. So when I increased the size upto <=3D1440 ping worked OK.
+Anything after 1441 ping failed I could see
+p03_etherStatsOversizePkts/p03_ifInErrors incrementing.
 
-[...]
+              MTU Ifconfig
+-----------------------------
+ETH0 -  1508
+LAN0 -  1500
+LAN1 -  1500
 
-> >> @@ -1455,7 +1456,7 @@ static inline int of_map_msi_id(const struct device_node *np, u32 id,
-> >>  		.id_out = id_out,
-> >>  	};
-> >>  
-> >> -	return of_map_id(np, id, "msi-map", "msi-map-mask", &arg);
-> >> +	return of_map_id(np, id, "msi-map", "#msi-cells", "msi-map-mask", &arg);
-> > 
-> > There are cases of no #msi-cells and we default to 0 cells in that case. 
-> > Do you maintain that?
-> > 
-> > Rob
-> 
-> Thanks for pointing this, I see this case of no #msi-cells is not covered. Will
-> add it in next revision.  Also, IIUC shouldn't we set default cells to '1' to
-> maintain backward compatibility of of_map_id in this case ? No ?
+After increasing the MTU size to 1501 of lan0 propagtes change to eth0
+as seen below:
+root@rzn2h-evk:~# ip link set lan0 mtu 1501
 
-The only default is 0. Perhaps msi-map is never used if there are 0 
-cells? IDK, you tell me.
+              MTU Ifconfig
+-----------------------------
+ETH0 -  1509
+LAN0 -  1501
+LAN1 -  1500
 
-Rob
+$ ping -I lan0 192.168.10.30 -c5 -s 1441 # Works
+$ ping -I lan0 192.168.10.30 -c5 -s 1442 # Fails and
+p03_etherStatsOversizePkts/p03_ifInErrors increments.
+
+So +40 to FRM_LENGTH just made the iperf worked earlier as the length
+of iperf packets is 1514.
+
+I'm still looking into the switch on why it could be dropping the frames.
+
+Cheers,
+Prabhakar
 
