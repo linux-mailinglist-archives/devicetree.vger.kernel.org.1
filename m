@@ -1,169 +1,155 @@
-Return-Path: <devicetree+bounces-245531-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245532-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EE2CCB1DD9
-	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 05:07:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 88387CB1DF7
+	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 05:09:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 20B1130CD286
-	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 04:05:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 65C1F305481F
+	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 04:07:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC09830E0D9;
-	Wed, 10 Dec 2025 04:05:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D763230F526;
+	Wed, 10 Dec 2025 04:07:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="OqCGoGs1";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="EgHtploL"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TCwhRmx7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f53.google.com (mail-vs1-f53.google.com [209.85.217.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5957630E0F1
-	for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 04:05:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 273F530E0D9
+	for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 04:07:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765339537; cv=none; b=tNuWMs+6bm6rXTc8/+MX2Q81XanqUwtD+KUFRJd9MB/NLy5lsWE5Fa8G16QIG8B82Ot0fcqqeKRCSxVDJCIJbzZqzY62eU+kKfF7VDxVNChR16dbOqitPKKFIuC6q2K8Qo1/QoI1sWIRC3d46tJta/tG5OySflOFaLq4nOQMNtc=
+	t=1765339674; cv=none; b=qo8Z2lBKlh+uE3sfKD9w0gwFRtppNI9w31EFFsnFPcfKdMdIeU6EI8FSk9FXFqa+HegK/iUTAi+ea+Ky86MVNEb+kBSfKrek3eioJ4AF+YCCE22aGM5lSSLgjQCy3afrvpyrmVGaXj/gF36WgUOsPli65vLmIeAig10DqiN3smg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765339537; c=relaxed/simple;
-	bh=e+g3dqOZ2PcVFKzAealcv2hz8SQ64WuoXheOf32dpoA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ied+68gKF1xG8Te0DigQR8C3ScpJMMw/FiMiPBZK8r9atESlqVNEcBjyn3gzMLuvKxINJrXU5ErEGgh4pXUPDb+w4dLBUc4lqQNAYXaN2C3O9vLq2kBf53dzYQdhbWv/VNF/eriRymtZlZmhGUxbHpcWJ/1cWOAvv/FTnBXaSRA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=OqCGoGs1; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=EgHtploL; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BA3LMO21122868
-	for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 04:05:35 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=BaIaRANy3uqkRwMb/m3PyK/b
-	+TpFVtVKhaShgO/WNgs=; b=OqCGoGs1J9YjOB6IR9+X/KbZ87o35AwVJOD40MOI
-	ojMQm9YRXKf1GfNN6Hbx5navLzkS9TWpKrqeUEbPfmSJYUFQ9EPCA4do8btHVgGw
-	W5hoXl74Y8HhrT8tAE1c8HXpHrolHCw1Ko/KEJCjlkmkWSjss2+bfn3v/Z8cvlRq
-	btxzqFDeQnXeX1WyKbXOCojq3zqOFLrtSBamFV/E0Xb7Xjb+nhyF36IpABC2ITE1
-	ey2D6IJYa/yvxh48cnw4JBoj9HvXi0e9dDbeyMxLyk/bbAbdgrGyjDqC/KzTNEFr
-	v+Dnkb6l9/9ERO5qeGcc+r4tIK1ZgEvfs0DpUQoGRfUjSw==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4axgqrbgpj-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 04:05:34 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4ed79dd4a47so145438541cf.3
-        for <devicetree@vger.kernel.org>; Tue, 09 Dec 2025 20:05:33 -0800 (PST)
+	s=arc-20240116; t=1765339674; c=relaxed/simple;
+	bh=i1gpkRHjj52HV/bqp8fIanguYj2f3n3g7/smx5nUqtQ=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:From:To:Cc:
+	 References:In-Reply-To; b=bKMYhPFw4N7m+5ptlHcBsQS4LsW8kRzw2Xfyq2ufeab6ILwLHLlVnW108LPvhBJ7HuZPQv+VDsd/uBzH+nECSQuQ5M8bgadcGg5bPLjc8gT/U5j0ItwMEjNmALAGiACfhFFTq3O/MYE5dCKdpwog+NsQj54ajJpqDfzfExvlaew=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TCwhRmx7; arc=none smtp.client-ip=209.85.217.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f53.google.com with SMTP id ada2fe7eead31-5dbd9c7e468so2812141137.3
+        for <devicetree@vger.kernel.org>; Tue, 09 Dec 2025 20:07:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1765339533; x=1765944333; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=BaIaRANy3uqkRwMb/m3PyK/b+TpFVtVKhaShgO/WNgs=;
-        b=EgHtploLIulnljaSLPxsrxUEqMIla7CnTQUlg+sez2tqm2WjGjhGiJgsaB+qJJuBdp
-         9yDCwisToiV5Gh2bhxQBEs7ElP3gbBT/SiNW0c59NNatTYL6V8QQJTjYyY2HdATxvNeg
-         Q/xXX7EemHnnG349pG97Huzoo3nZPEaS1vG3Wdu1gsKoLF8dLyTdys3/P8iVsue6ZMrm
-         YdOBRN53huTwhn5W/l0W8njXr6MrOv77CQAQPpulgh6gHdZeR8uNj/P6kH+MQsogZ0qO
-         pj+PsMD7WYNp5Q5/tpwy5h88r6ZqKoIl/+1xitSDhXOcvU4IkdLUaECwU4zV4fKdHwMy
-         BuRA==
+        d=gmail.com; s=20230601; t=1765339672; x=1765944472; darn=vger.kernel.org;
+        h=in-reply-to:references:cc:to:from:subject:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jCN+wOZwpo+EvlIubaoI595wTf7FwItvq914uZQahfk=;
+        b=TCwhRmx7DKQcjs1fd2pZ00L5G2gMNwzG3ge9d5wMJcWkwm7PjeI0i1iAI+IvLQh0KY
+         ZpT9+SvotPFyivH19cKXZMCiGBKTQfCddUiTeKmbN5XNpADMv2SDx00G6AL3RvK7KVz/
+         F0htTaYiZ02mwLz5e1xPs2UE3v17LngYwg2LVceVWqwMBHkXBrCuaHaQvazM15FutHTs
+         w0TweSXNXfttP2RmnSCPHYJ4cpGx8ZGHwWecGzHfpbqvP+ShIB6ECfFQ7Z5e+xyIWuq4
+         4pdUa6QGZkGm87oxFzRC9sloq9NQ70PxgMUw2+or4Te8DtH9RfeTizWU9Z2BxJE0cWa5
+         Jb2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765339533; x=1765944333;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=BaIaRANy3uqkRwMb/m3PyK/b+TpFVtVKhaShgO/WNgs=;
-        b=VUuSgKYFeyJdhzqpwwnD1qxeR+H9msieCg1/TjBa4cNYdGloKdEQ1PYs3gM8rRTRy3
-         Rx3hRloOiZ7Ce8+FLyzyJkj69AtC3uev0IEnoXA3yoBX8rlK7URvTduyqvsNlEXJetKy
-         uGivjY4q9RhUggdy9pUlU2E6+4OhV/EOJxZhNJkCIGAuuazcBgbYEamfSJhcFmV2m0d/
-         Z8AUKWxERJwHNRNw6fH3snctgOSUolXG9hCy/Qu1lxzZXGGo/wHS3E0Cpr1ADdhyIjIg
-         fm0q7Up0PMnM0KYLINEscIQHwc6hLlHNKgM1Q7yrPEPbnqwOwz44HAbfSLgqOgUFTcDL
-         GPlQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVmpD5AFuOy3ik+Y1TxoVMTWuW7qgOW+caJ4GXiz54MvucXiTDumH8GUoVsq/69bETbL4XTFFpIuzI/@vger.kernel.org
-X-Gm-Message-State: AOJu0YzBvMDlokSh/JX3OjwX0XrNOTnuiMdrZ/TvOj/m76o7qhiQGAkA
-	XzMoFy3WkZ745CBRB2A40Tt66nukXutfAQecA9wtFKinswKTn7dJMHnCXFTecl9JyiBhLa5au9Y
-	mM3J+6/bS9EPxBxJTTus/6KEubw0Qc0m8jUYpU1iZQP1J0KZCfLwAn1Qze75VNIEU+vRiLOBL
-X-Gm-Gg: ASbGncuhSzlF/oDFJx8c6CstLFfQS91KcGLfpQrzFINHOC6gIMI5tR/gs68pd61ochp
-	j4eITC1upS5vhb8pYXEDNp6MdFX0A1H7oNyoQAYHPeiF4vE6tWIBXnZmuI0wceFshAefrb0z2b6
-	Qq7aRIcWz/YuzbA4ZHJSZai2p2l/JEcTlzeQQ0lu4LQj/axfC36cDDvANLQd/DJSFKSqEr+M6xW
-	Hls4Yf4c6LRRk0Cj1WW5KvrMEPOCwc24iNwyfX7QoG+O7McEShes+UN5EAlt/tbgF4iE37v4LUN
-	GeBXl1EE79f4ve4OB7g4WLvw0aqTuPzoz9MT77Vsq63Tdc9GCm8aqhTynd5qom+uQw/hT+XUNAU
-	7CBGG12gfFWSmyED+kMY2K/BpHy0gX8OeEbVSK9VkKnn/49q+E0S3bh5sC9g6ut+zjaMwyTTSe9
-	IELWOVG34Z+beG+g4hQ2vWp9k=
-X-Received: by 2002:a05:622a:1990:b0:4eb:9ea0:cc3b with SMTP id d75a77b69052e-4f1b1a31be3mr13947551cf.11.1765339532863;
-        Tue, 09 Dec 2025 20:05:32 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHkHSfkrOLAxJ5L1yij91ofOJjggiNdYtSat5qOrz5N2u0warmpPcwiROaiBMBHLGo/LWAr9Q==
-X-Received: by 2002:a05:622a:1990:b0:4eb:9ea0:cc3b with SMTP id d75a77b69052e-4f1b1a31be3mr13947351cf.11.1765339532485;
-        Tue, 09 Dec 2025 20:05:32 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-597d7b24730sm5940027e87.33.2025.12.09.20.05.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Dec 2025 20:05:31 -0800 (PST)
-Date: Wed, 10 Dec 2025 06:05:28 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
-Cc: krzk+dt@kernel.org, abel.vesa@linaro.org, conor+dt@kernel.org,
-        vkoul@kernel.org, robh@kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Abel Vesa <abelvesa@kernel.org>
-Subject: Re: [PATCH v8 9/9] phy: qualcomm: qmp-combo: Add DP offsets and
- settings for Glymur platforms
-Message-ID: <ukl7rhthpfz5pw7pdeacplnaybq7txrkcnji5v5md6lazkw5bm@in5q3lilm5ug>
-References: <20251209-linux-next-12825-v8-0-42133596bda0@oss.qualcomm.com>
- <20251209-linux-next-12825-v8-9-42133596bda0@oss.qualcomm.com>
+        d=1e100.net; s=20230601; t=1765339672; x=1765944472;
+        h=in-reply-to:references:cc:to:from:subject:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-gg:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=jCN+wOZwpo+EvlIubaoI595wTf7FwItvq914uZQahfk=;
+        b=GghskOcwofVQYfNan1+Vqt9pzLg2zFfZLhKEm/SWoT4VQmgSNw9veUa5kyZ9RtK0pO
+         nDwQt/vkSMyaprfhaMORyFpIPUIkmiTNDEtW5Ag1HObBYA7SgDL6ddoSEqSLULlOKJAH
+         6Ic50JBno3lv07Qny5Tv0PCTYJ311pNphQK+dFdpMRYKuqjnxKmU6lrffOnxyDHDvMof
+         ytwTrpsCIGqmSbjsvmURzIDmDq09XPr5B9awu0XBgCwX4nsNo/P+oIPNxx2NaPYpNgNH
+         mojFqPo1Jmu9lus68sK4V1GcgQNPlKkWlRK3toEKgSOx1LHQcioPb6mukk9xQ+dnl2IF
+         m0lw==
+X-Forwarded-Encrypted: i=1; AJvYcCW+5jfCEsoNImaiCZpKUpN1Y7iOs8nbuLtulaaBLcsXQGJ7RzMF2deeXP7rR2rBQ9owJId0fWOq/LOf@vger.kernel.org
+X-Gm-Message-State: AOJu0YwT4eUHM5pM09fCJdpsNh0ywq08qTU+3fr9ja9wBuPLJl97ViEO
+	oUFTt1Zk+1/liti1gWb+fNGcDHqZmZ0c4C/M8DFSzVvv7nPnNNPLKcJR
+X-Gm-Gg: AY/fxX4E9g/04bimye6Q+/I/LYTiSEFskVHBqC0inG1JMhtPOnSG5YHwdKUJYEufYki
+	kB0VrE6+en/rgr8LtXXa5251bfxAmbVryrqjodEUDQkYBwt7SUR4ivr/fi7hpZS0mCwPTHxARMH
+	NevNsUIUbw7Mo+C9vu5qn17qgB4T7/q+joaQE4JRNq69PazPsweTSiydwq6ezzauninhpdFPCnY
+	BHnUq7a5A9EAFWwBIz8JR0oG6Y2yF7FcKv4J6ykS2zkMlnqwr54Xq481Gdm+oXCmdqgtWF/ljdP
+	75WjVLPipnJRUx6kymeUUwlJcXZLigoWYsQHqxpZDoQBxc+xeZuY/wNvZp5chu8OB9XKMz/O4pn
+	0TojWX6Fj4dg1D1qO70ngo3KF+hFhZ/L8x1QuP9abuw+JMCCtthQpXKFImK367WvGeOpXdSa9mm
+	jkpHk=
+X-Google-Smtp-Source: AGHT+IHM30DvWmYtT07T8M42FAxd4lX1UgnTiBhKzv5t+gCOoi7mVGJuQlvB9Bjp4pGe49Z4oPi6Rg==
+X-Received: by 2002:a05:6102:390f:b0:5db:faa2:f3e1 with SMTP id ada2fe7eead31-5e571a3b7eemr309836137.15.1765339672002;
+        Tue, 09 Dec 2025 20:07:52 -0800 (PST)
+Received: from localhost ([2800:bf0:82:3d2:875c:6c76:e06b:3095])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-93eed6c41c6sm7781948241.5.2025.12.09.20.07.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 09 Dec 2025 20:07:51 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251209-linux-next-12825-v8-9-42133596bda0@oss.qualcomm.com>
-X-Proofpoint-GUID: A11-34tXkw1N9vUGxvSWaN3XohxhthxQ
-X-Authority-Analysis: v=2.4 cv=UrBu9uwB c=1 sm=1 tr=0 ts=6938f18e cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=KKAkSRfTAAAA:8 a=2SJS8p1ZE3BWaHnukEQA:9
- a=CjuIK1q_8ugA:10 a=kacYvNCVWA4VmyqE58fU:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-ORIG-GUID: A11-34tXkw1N9vUGxvSWaN3XohxhthxQ
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjEwMDAzMyBTYWx0ZWRfXxoWG8wZaaSs4
- AeJkfCu/hOrgNTdBjDJSdELcHYmYGqC3DulZsKUYAdhsGE2pGliwqHh0MUW0s5J+DtFHIna3i2i
- MX/hJRp6qKArlF0o1FZ8zifOxdj+aaihM+DkO5cKeJd2eTA7o1+zgcAQyhvXwKhZoXFvW5DSA4g
- H6bI08Vw773XvmyMwmDA2tZxa7p2/2g87WBU6C5D0zanQR30bzZ14wf/ONuNmPVb9gh8VLXpm0k
- +pm6AN42sqwcRcnEa1/aQ0Av/v9/ExG8H1LHTvy8uJ9yAvEjCwL9MWUTm/HKuklU61PT5bJp/Fc
- u7OV1dacgZqkCRSluMMVAAA990ugdST/vx/QhooHR25jNIOmN8otKlQGV1p5zH4LG5P6lAMuWF3
- bM7xpX0ETNT+znfwdH53Gh1mcCmpaw==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-09_05,2025-12-09_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 bulkscore=0 suspectscore=0 adultscore=0 malwarescore=0
- impostorscore=0 phishscore=0 lowpriorityscore=0 spamscore=0
- priorityscore=1501 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
- definitions=main-2512100033
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 09 Dec 2025 23:07:49 -0500
+Message-Id: <DEU8OOETPWRO.12I8HY6SHTQAA@gmail.com>
+Subject: Re: [PATCH v7 2/2] iio: adc: Add ti-ads1018 driver
+From: "Kurt Borja" <kuurtb@gmail.com>
+To: "Andy Shevchenko" <andy.shevchenko@gmail.com>, "Kurt Borja"
+ <kuurtb@gmail.com>
+Cc: "Jonathan Cameron" <jic23@kernel.org>, "Rob Herring" <robh@kernel.org>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
+ <conor+dt@kernel.org>, "Tobias Sperling" <tobias.sperling@softing.com>,
+ "David Lechner" <dlechner@baylibre.com>, =?utf-8?q?Nuno_S=C3=A1?=
+ <nuno.sa@analog.com>, "Andy Shevchenko" <andy@kernel.org>,
+ <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, "Jonathan Cameron"
+ <Jonathan.Cameron@huawei.com>
+X-Mailer: aerc 0.21.0-0-g5549850facc2
+References: <20251208-ads1x18-v7-0-b1be8dfebfa2@gmail.com>
+ <20251208-ads1x18-v7-2-b1be8dfebfa2@gmail.com>
+ <CAHp75VcOVpGbb3UBm+QQrw25=yU+J624c29ptMk8yrJpNEL=jA@mail.gmail.com>
+In-Reply-To: <CAHp75VcOVpGbb3UBm+QQrw25=yU+J624c29ptMk8yrJpNEL=jA@mail.gmail.com>
 
-On Tue, Dec 09, 2025 at 03:09:45PM -0800, Wesley Cheng wrote:
-> From: Abel Vesa <abelvesa@kernel.org>
-> 
-> Starting with Glymur, the PCIe and DP PHYs qserdes register offsets differ
-> for the same version number. So in order to be able to differentiate
-> between them, add these ones with DP prefix.
-> 
-> Add the necessary PHY setting tables for enabling the DP path within the
-> QMP subsystem.  Introduced some new callbacks for v8 specific sequences,
-> such as for clock configurations based on the different link speeds.
-> 
-> Wesley Cheng added some updated settings from the hardware programming
-> guides on existing PHY tables and clock settings.
-> 
-> Co-developed-by: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> Signed-off-by: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
-> ---
->  drivers/phy/qualcomm/phy-qcom-qmp-combo.c          | 355 ++++++++++++++++++++-
->  drivers/phy/qualcomm/phy-qcom-qmp-dp-phy-v8.h      |  25 ++
->  .../phy/qualcomm/phy-qcom-qmp-dp-qserdes-com-v8.h  |  52 +++
->  3 files changed, 428 insertions(+), 4 deletions(-)
-> 
+On Mon Dec 8, 2025 at 3:19 PM -05, Andy Shevchenko wrote:
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+...
+
+>> +/**
+>> + * ads1018_calc_delay - Calculates a suitable delay for a single-shot r=
+eading
+>> + * @hz: Sampling frequency
+>> + *
+>> + * Calculates an appropriate delay for a single shot reading given a sa=
+mpling
+>> + * frequency.
+>> + *
+>> + * Return: Delay in microseconds (Always greater than 0).
+>> + */
+>> +static u32 ads1018_calc_delay(unsigned int hz)
+>> +{
+>> +       /*
+>> +        * Calculate the worst-case sampling rate by subtracting 10% err=
+or
+>> +        * specified in the datasheet...
+>> +        */
+>> +       hz -=3D DIV_ROUND_UP(hz, 10);
+>> +
+>> +       /* ...Then calculate time per sample in microseconds. */
+>> +       return DIV_ROUND_UP(MICROHZ_PER_HZ, hz);
+>
+> If time per sample is in =C2=B5s, the associated frequency is in MHz, so
+> the correct constant is HZ_PER_MHZ. What did I miss here?
+
+I was very confused about this, but the dimensional analysis works with
+HZ_PER_MHZ so it should be the right constant. Thanks!
+
+...
+
+> Other than above, LGTM!
+> Reviewed-by: Andy Shevchenko <andy@kernel.org>
+
+Thanks a lot for all your feedback!
+
+I also found that the sysfs ABI specifies millivolt for voltage final
+calculation and millidegree for temps. I will adjust scales to comply
+with this in the next version.
+
+Do you have a suggestion for this? I can keep the ADS1018_FSR_TO_SCALE()
+macro but it will get a bit more complex or I can just hard code the
+scales and document the calculation. I'm inclined to do the latter.
 
 
--- 
-With best wishes
-Dmitry
+--=20
+ ~ Kurt
+
 
