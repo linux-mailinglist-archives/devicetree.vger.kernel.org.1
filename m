@@ -1,208 +1,232 @@
-Return-Path: <devicetree+bounces-245669-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245670-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0E72CB407A
-	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 22:10:25 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0892CB4089
+	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 22:11:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id EEA95300CCF6
-	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 21:10:24 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id A1086300699A
+	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 21:11:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E81AF2FF67A;
-	Wed, 10 Dec 2025 21:10:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EE5D30EF9F;
+	Wed, 10 Dec 2025 21:11:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="h/il+UyR"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="CLaqhhBy";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="kjXDYOMk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE5492F5A1F
-	for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 21:10:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF4752FF16F
+	for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 21:11:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765401023; cv=none; b=FXtcurYw8gNTWlODaRBR1ZIOSTZN5Txt1Dv1YRjegyB8mtaHeGhbVfnLf/+JO/2QJ9BhYW2oZ6tj3OLQxKFnhPgZd2M8q8vBnoLzh+dBSCxpphV6cwxeDI2F6YU4oav7McOrfklJtYabBm7fbQ2p10Q0iCV4rZjs7tFUE/u9FvI=
+	t=1765401065; cv=none; b=qQmynTjFEMkvXo9joIihxwCrjy/XzoobrQ2b1wne6MMW0OXpwN441tzNzBeQ3KSIlB108DJVrSiSPUXrFw9pMeppoFG63NAb/YreOqxKRU8TT1o/hv1R7QohgG1CI2Vq3bmeoZYqHgCVwyhqbhTFpoe2NNcI+W/tdY6MX5pCQsU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765401023; c=relaxed/simple;
-	bh=Uh+9H8bdDNwclyo234VBfjWf+hPZD/RjvnJ13fK+bUE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=NA2DlteO+urG89FmWkU+ASlcDqikSO7cEHJr8+fjSdw216Q+ZeVeWycw+0YKPTDKzfODRS4N+P4AobtQpdq8X8mqe4C6U69pVUzLwI31B0ELLTOX2AwJ8/SEWxs9avMZszApUgqOi9FIx1vt9XGMaRfPjwS+ERaE27mLsRXWzRE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=h/il+UyR; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-47774d3536dso2605135e9.0
-        for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 13:10:21 -0800 (PST)
+	s=arc-20240116; t=1765401065; c=relaxed/simple;
+	bh=+T3vUfJ11E+U0yN9uerHgOG94gZT1ZMagZYXKT+rbWk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=goGEh2EJC4iAQ4+i960J1y7cPgvnEg27l4kE+6Bf+hfs55zCyLA+4Ml7fXw1/0JsNIAZ+CXEZbaqWtodAl3/zqFjZZ4EBzJU6My0t2DfSGu6BQSaYAfTZUmaGANQ2bw8qnyjH2UDgFrkKbKNpGo6wrT4bgxmbsDbyeQIu4KY3Hc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=CLaqhhBy; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=kjXDYOMk; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BAIROlX3524785
+	for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 21:11:03 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	bfNgQDXXb8iWBGKdAi5rKgqEDEYcr51IEsgHSku4xr8=; b=CLaqhhBy0oW4NfTA
+	Veh/x0/TcqmAMrnMZj+melezU5YkN1Sn4u3O5BZF9GWf1Oydv2qBr9vlV9g9iy6i
+	8ObpTD4fXGzeoWt4gR5fxLzJN/+uXBw6IPXdnul5A2w2XAkTcnuAEGCGEf/rRte/
+	/lQBFIsui7fpwgW0ErDDu2a/kaGxYyYY3A0gLQQOZuLPcj6ABdsmYE4edx77sceu
+	JQxpOVVNIGvJWV3jC2orOCXUd2iOY76RydmzCF/vgA3rn/5224ZeZK3BTCgQgnkz
+	T4WpqsogsirERyTFdMK0QcV0FgVHurTPG0xhJKUNYWhvqoJv3F2rY90CdDniVXkW
+	SWghGw==
+Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ay5tx288b-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 21:11:01 +0000 (GMT)
+Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-7d481452732so424538b3a.1
+        for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 13:11:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1765401020; x=1766005820; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=f6Ap2wL2QNWzNOuJh0hZXjD0O0VdpkojkcVs56Al8cw=;
-        b=h/il+UyRcfUV5ophE7yr1bMcD8/fMeLheEypjbuvu7gg07nvOz18oRtr5oLVz5LIyH
-         xUf21BFcctap5DVpMyUTbqXg8IKTvg45zLY1ajh6etNnEuom/Cx52lsTKw3LTj41JRMB
-         foS0SH8GdRloYqhxhBULP2sGCsUU2nngKpmtzwl7C11IdHVzd6RWOt8wmFfvyjn5pZpj
-         VIaB0tSnlnaKxfAc9hB7116T9zslVFg+lNl+TfIgyFnFTx12y6nF4wwZveALQl5HgPu8
-         p7YgcSurCZH/C/4PrCxCf2AdPcs7FoXdfw7qRqe7G76B4qLIg/ayaXaSL5cYqrCXNCoG
-         HcSw==
+        d=oss.qualcomm.com; s=google; t=1765401061; x=1766005861; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=bfNgQDXXb8iWBGKdAi5rKgqEDEYcr51IEsgHSku4xr8=;
+        b=kjXDYOMkn+zg75PFV+W6X5EQiJLQov2osyQMP9a5sa6sGayaDSamJVdEI5rS5M/s8w
+         z3+K9r8dbQqgCpm4McVcwsC4FJKY46y82UXXASQSRURykoVNudecT5rLyfOfi44r8Mup
+         CvRQ+fILP57MgM3Q+fUlUEymwCdSz/iFemruhPPFI1PRqtpUfgmH7lnXJM2sDDbjerhm
+         JbGUY8aKFzfFie/IIwg3N5HX68xE25E97hMP+LR1kpM6K8+RxTwoUIsiaYY+F+3AUwC7
+         xFx48QZ71GuSow0DOyMdp6ippYWYvvfXwodIfX3C7Q1tBeoSNMcjDUDxtAfTBQDOqsDv
+         RVXg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765401020; x=1766005820;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=f6Ap2wL2QNWzNOuJh0hZXjD0O0VdpkojkcVs56Al8cw=;
-        b=ZJpiZBb2LaziYRrZmrcYHPyZNxHVNK8BnOFBXCH41b4TzTB+x+MDp6xj0fyVem/2dw
-         GvtOyAast2sQmyT7vMMr0HHWF0AQkXE30BZLA1PR5TpfuXQvPuQ7+2v2Nj/NxkY01lXG
-         wDVhX3Yw2JyYz4NlPPqcNtyD/LeGhVCN4FCDPxDI/QGHZXO93BDWs1GdlzbJKkDKkoML
-         +Ltk6eNLVtvbCrzi9cJ8mSKqcFxxg5AhcPvDmaJeuXMmTH4Tam7FoQjnrxAq4Im/b02n
-         1ReNqGJ/vMg03/nIelq9omXKtUkf8c9PO1c2rZcgu5ER2R6cc85pC8isF5nRWuzV3H1X
-         dgMg==
-X-Forwarded-Encrypted: i=1; AJvYcCVLEUC0amQEkHkMLxbfnErZP+4Zv9+ZsbjlRVyNNHzVy+0zVtsW+76llcWlsWRqptYsaHmSRHTlBiN0@vger.kernel.org
-X-Gm-Message-State: AOJu0YwksFAUAoXUR7WAhxRZcWS8zb6azdUW8hZSQ9GL008+fhvTdHX+
-	a2+0E7GWAL95ldvxqWzH5LHg/3GA0xKNY7Hhr3o5ah6cYHHJ2UKajs3TB2w9aLx9hhPZsXRZHDd
-	0HXAy4eh2XR0J0+T93bcyK4YymZ5hUbQ=
-X-Gm-Gg: ASbGncu1MPgKT12EgYeWWtAeHj8+jwswQYP86v/5rCUV6muEkqQAzL+RWxT+2ryFKf1
-	MQyscj4qfJvx3P8CJnW6Wh5gZ4IMzCkCX/jvQbi4f75bP3LX7y9sxTWXUtHznPRFAxvqXOvazoQ
-	z+u4c6A2pHIdydyZtcAypUEpkgj3QdfUURTCPpK7RLAYfGiZnlYfv8rX0nC/DcO46CLUOBuWcYs
-	i3mPNnFDKJ17NikNB/Hju0S+OlFG9ecxbZX1aCuHw7Kmek2/hNbwFAj20gSpLDjo69itZjbhw==
-X-Google-Smtp-Source: AGHT+IFQU1/Jhu22RnkhsOBefhQOpeX8PaoabdXqTjqdirBbdMixKWOg/r6NaWYfEBa73u04Avqi37Rvk+u2FM+qxao=
-X-Received: by 2002:a05:600c:56c8:b0:477:9890:4528 with SMTP id
- 5b1f17b1804b1-47a886a08e1mr5232305e9.2.1765401020116; Wed, 10 Dec 2025
- 13:10:20 -0800 (PST)
+        d=1e100.net; s=20230601; t=1765401061; x=1766005861;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=bfNgQDXXb8iWBGKdAi5rKgqEDEYcr51IEsgHSku4xr8=;
+        b=OCpj25aF0i6/7OUGhfVyxc1hOwVVBHePs/zIh32P+nhCdXz6839/CpPMjQ6g1jgXVH
+         2X/NeFZ76tR3TJ56xqVij3TjqN/ohxgJYvZRtbvITpFGCZ3ftRDiZtkuf/i/qWKugCMc
+         FMt2V6M8WznI4u56fGm0UqVQMtdT4nBW6vL+owovsJYPrgIg8O1fMBSGf1xG0Hz4JHnX
+         9I3Ds0729/DkXWoe+CLZv3E9H8PYC9RyIu+527wHEFEMDSV9+NZmCuGMlMmZiv4XP+Pw
+         cvpxDN+Ob7AuMJFv0cJp2y7hVMtZ7xNjIHOSDMMSBnYDjC6+xCuCkEYsv5EkgF1DFJbC
+         rTEA==
+X-Forwarded-Encrypted: i=1; AJvYcCX/HVX2rpl/rL42QgJjuaExphG0aHrA72aTszDNAfojlJZfMDGZP82t44jDF2lclfb4HfMr4yIvNU1G@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx9PewpzxjRppWgKI/kc8gVgHBVUmfmaOS3WLgx4/Ku32V0rukc
+	Hz2R/tPDRsvduXTZuDXGq42DPqDrTcHsE6Q7OIooddgvWWLvlJeJgIG1QID3u4NP0fSJi/H7lct
+	S4//AI2DLQtW+k4wqoswsuUk5rCQDlVfPJpSS2IqVv4iI6YcYlRjm+4LRbwxeWbWi
+X-Gm-Gg: AY/fxX4DD0ckKEPVbdXM++O2z9C/WAj5BcqbGeDFoKXOl1a2cJTGbf2N5oWo8EvkoLc
+	Bh2fR4LNU0leRAh2hTjQX9K3cSL+7aL98gU/1Wac4QYxkS03N4pFOB5txgDwP3tsgc9KPoCHWFB
+	RaNzuEo6XcJteuovI4SpWGttYI+W+YFulj+pBerF9dpKlqP0cXhHsOJ5QrKInrOXPxvae42y8Re
+	Z5Q8bOaEpTbsXosDv1tEwxqfqItl0eOorEOdGXv/njU2DBm4pR/V7U+xuYNT3oHVIYyhjZGqOPv
+	XEsWHx+O6g1mCumfl/zVxpw/TPxeDBFmEq0Rl1XYSzGaqyhlzIU9LabU12CRf7OPUkgAo2B7xfA
+	nYPwQO81l/2NOTSWN4d8MDbyEApiBPN1N
+X-Received: by 2002:a05:6a00:b91:b0:77f:efd:829b with SMTP id d2e1a72fcca58-7f22e0a30bfmr3813231b3a.22.1765401060896;
+        Wed, 10 Dec 2025 13:11:00 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHbBXzDiOXtSdMaF2b7fdEH4r75SwGnJGdOCk5npK2CmpZqJ2QEVbCBDzn/HBSCMic4HCMWZw==
+X-Received: by 2002:a05:6a00:b91:b0:77f:efd:829b with SMTP id d2e1a72fcca58-7f22e0a30bfmr3813195b3a.22.1765401060352;
+        Wed, 10 Dec 2025 13:11:00 -0800 (PST)
+Received: from [192.168.1.5] ([106.222.234.96])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7f4c4aa91d0sm402642b3a.32.2025.12.10.13.10.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 10 Dec 2025 13:11:00 -0800 (PST)
+Message-ID: <9971bd9b-88db-4628-b36b-de50c1619396@oss.qualcomm.com>
+Date: Thu, 11 Dec 2025 02:40:52 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251121113553.2955854-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20251121113553.2955854-10-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20251121210504.ljeejnltaawahqtv@skbuf> <CA+V-a8ve6vV_O1XwPX0sn+Qqm5QoYrf6Xu5gansxW05waMf43Q@mail.gmail.com>
- <20251209212841.upskgi5dphsmkrpi@skbuf>
-In-Reply-To: <20251209212841.upskgi5dphsmkrpi@skbuf>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Wed, 10 Dec 2025 21:09:52 +0000
-X-Gm-Features: AQt7F2o4iDtd3Rpuz4FTtk60m3_b-aAdWYBIboBEH1hguLv-mqZPIp_mG5EBJfA
-Message-ID: <CA+V-a8vkzrO77UBeR+YhPwcv608Zh9n7CHL-ugcsuhk-vuRyMg@mail.gmail.com>
-Subject: Re: [PATCH net-next 09/11] net: dsa: rzn1-a5psw: Add support for
- management port frame length adjustment
-To: Vladimir Oltean <olteanv@gmail.com>
-Cc: =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>, 
-	Andrew Lunn <andrew@lunn.ch>, "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Simon Horman <horms@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Russell King <linux@armlinux.org.uk>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 5/6] arm64: dts: qcom: sm6150: Add gpu and rgmu nodes
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Rob Clark <robin.clark@oss.qualcomm.com>, Sean Paul <sean@poorly.run>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Dmitry Baryshkov <lumag@kernel.org>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Jessica Zhang <jesszhan0024@gmail.com>,
+        Dan Carpenter <dan.carpenter@linaro.org>,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Jie Zhang <quic_jiezh@quicinc.com>
+References: <20251122-qcs615-spin-2-v3-0-9f4d4c87f51d@oss.qualcomm.com>
+ <20251122-qcs615-spin-2-v3-5-9f4d4c87f51d@oss.qualcomm.com>
+ <8560ad26-4756-4c2a-97c3-2c5c0695172c@oss.qualcomm.com>
+ <z4gqro2bx6oq2ht75m2klogo5dsirb74tmc3u3shjyalxmaxil@5sy7ufmqhdgw>
+ <6fa1da5d-9ea7-4d72-a03a-82edc4bef099@oss.qualcomm.com>
+ <3gqq3w6ovy5srgvabyeugsjbwrhaxmjvicykhjmlcxd74gtsaf@5u6wvvzeq52z>
+ <90bc84e7-19ca-450d-b41f-fd96367e8cce@oss.qualcomm.com>
+ <2e5sqv2gnxdfwnfsepzdkchxip5zdeamp6bzbamq6kbk77kr3p@u5i4rrnrywno>
+Content-Language: en-US
+From: Akhil P Oommen <akhilpo@oss.qualcomm.com>
+In-Reply-To: <2e5sqv2gnxdfwnfsepzdkchxip5zdeamp6bzbamq6kbk77kr3p@u5i4rrnrywno>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: 8IEBLAJmXm0axD3QLI9C4YHpPpzzlW7l
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjEwMDE3NCBTYWx0ZWRfX7ZCagowFW4c1
+ D/zthOncj3czxhAF9W9JQfBQ29M8PmwLrnvWjeQIs0nmRXNCBiOOb+ITepccmqV5NPaNcVbEy20
+ ybcjZqZQDTFQDwtb//HeDJWpvOgYCSoihRpCcpPOZce/jVkWG8l+3SDkU4TCgpgnT7/oU6x+hLe
+ Pp4r/RRjPpMi1ln3DA8eHiFYIoOmfHxXq1pAjFpxyZ7062EcyaigVtB8nmZ9tlSn8j4aoYCwuss
+ gZpd2xnX7MsE6e3KPcrBiQF1reK0gaYJGD8acu5s8W23ujImJmW+kHUWr+aTSgPtHDpa6cpXZVz
+ q6oQD8hRaaq3TWyCyLGncdLJO6Onsf5HaibJkrHGrS/HAwwqYfVusKJGDf8u6xa2/YQs+nNR0ft
+ jjx1/dpgFeLYO4ak5WrdVpwOW2bE0w==
+X-Authority-Analysis: v=2.4 cv=dq7Wylg4 c=1 sm=1 tr=0 ts=6939e1e6 cx=c_pps
+ a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=CcjbiXvC7xLhAd+qVKJczA==:17
+ a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8
+ a=iOf4mfiAVVuFJQUywdwA:9 a=QEXdDO2ut3YA:10 a=OpyuDcXvxspvyRM73sMx:22
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: 8IEBLAJmXm0axD3QLI9C4YHpPpzzlW7l
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-10_03,2025-12-09_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 clxscore=1015 suspectscore=0 adultscore=0 malwarescore=0
+ spamscore=0 impostorscore=0 priorityscore=1501 lowpriorityscore=0
+ phishscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
+ definitions=main-2512100174
 
-Hi Vladimir,
+On 12/6/2025 2:04 AM, Dmitry Baryshkov wrote:
+> On Fri, Dec 05, 2025 at 03:59:09PM +0530, Akhil P Oommen wrote:
+>> On 12/4/2025 7:49 PM, Dmitry Baryshkov wrote:
+>>> On Thu, Dec 04, 2025 at 03:43:33PM +0530, Akhil P Oommen wrote:
+>>>> On 11/26/2025 6:12 AM, Dmitry Baryshkov wrote:
+>>>>> On Sat, Nov 22, 2025 at 03:03:10PM +0100, Konrad Dybcio wrote:
+>>>>>> On 11/21/25 10:52 PM, Akhil P Oommen wrote:
+>>>>>>> From: Jie Zhang <quic_jiezh@quicinc.com>
+>>>>>>>
+>>>>>>> Add gpu and rgmu nodes for qcs615 chipset.
+>>>>>>>
+>>>>>>> Signed-off-by: Jie Zhang <quic_jiezh@quicinc.com>
+>>>>>>> Signed-off-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
+>>>>>>> ---
+>>>>>>
+>>>>>> [...]
+>>>>>>
+>>>>>>> +			gpu_opp_table: opp-table {
+>>>>>>> +				compatible = "operating-points-v2";
+>>>>>>> +
+>>>>>>> +				opp-845000000 {
+>>>>>>> +					opp-hz = /bits/ 64 <845000000>;
+>>>>>>> +					required-opps = <&rpmhpd_opp_turbo>;
+>>>>>>> +					opp-peak-kBps = <7050000>;
+>>>>>>> +				};
+>>>>>>
+>>>>>> I see another speed of 895 @ turbo_l1, perhaps that's for speedbins
+>>>>>> or mobile parts specifically?
+>>>>>
+>>>>> msm-4.14 defines 7 speedbins for SM6150. Akhil, I don't see any of them
+>>>>> here.
+>>>>
+>>>> The IoT/Auto variants have a different frequency plan compared to the
+>>>> mobile variant. I reviewed the downstream code and this aligns with that
+>>>> except the 290Mhz corner. We can remove that one.
+>>>>
+>>>> Here we are describing the IoT variant of Talos. So we can ignore the
+>>>> speedbins from the mobile variant until that is supported.
+>>>
+>>> No, we are describing just Talos, which hopefully covers both mobile and
+>>> non-mobile platforms.
+>>
+>> We cannot assume that.
+>>
+>> Even if we assume that there is no variation in silicon, the firmware
+>> (AOP, TZ, HYP etc) is different between mobile and IoT version. So it is
+>> wise to use the configuration that is commercialized, especially when it
+>> is power related.
+> 
+> How does it affect the speed bins? I'd really prefer if we:
+> - describe OPP tables and speed bins here
+> - remove speed bins cell for the Auto / IoT boards
+> - make sure that the driver uses the IoT bin if there is no speed bin
+>   declared in the GPU.
+> 
 
-On Tue, Dec 9, 2025 at 9:28=E2=80=AFPM Vladimir Oltean <olteanv@gmail.com> =
-wrote:
->
-> On Tue, Dec 09, 2025 at 04:02:19PM +0000, Lad, Prabhakar wrote:
-> > > In the next change you set this to 40. What's the reason behind such =
-a
-> > > high value (need to set the management port A5PSW_FRM_LENGTH value to
-> > > 1574 bytes to pass L2 payload of 1500 bytes)? It sounds like this nee=
-ds
-> > > to be called out more clearly for what it is - a hardware bug.
-> > >
-> > Regarding the question about the relatively large adjustment value:
-> > according to the hardware manual,
-> > =E2=80=9CSet the FRM_LENGTH register in port 3 (CPU port) to more than =
-or
-> > equal to the initial value. When you want to limit the frame length of
-> > the received frame, use FRM_LENGTH registers in port 0 to port 2.=E2=80=
-=9D
-> >
-> > In practice, with the default MTU (i.e. without applying the +40-byte
-> > adjustment), RX traffic operates correctly. For example, running
-> > iperf3 in reverse mode shows no issues, and frames are received
-> > without errors. However, in the forward direction (TX from the CPU
-> > port), throughput drops to zero and iperf3 fails.
-> >
-> > When the MTU of the CPU-facing interface is increased (e.g. ip link
-> > set lan0 mtu 1540),
->
-> "lan0" isn't a typical name for a CPU-facing interface. Do you mean that
-> the primary action is that you increase the MTU of a user port, and the
-> FRM_LENGTH of the CPU port is implicitly readjusted by the driver as
-> well (to 1540 + ETH_HLEN + A5PSW_EXTRA_MTU_LEN + ETH_FCS_LEN)?
->
-> This isn't actually bringing new data, because unless you also increase
-> the MTU of the other iperf3 device to 1540, the TCP MSS will still be
-> calculated as if the MTU were 1500, and you won't be making use of
-> larger packet sizes on the wire. On the contrary, you are introducing
-> one extra variable into the equation: with this test you are also
-> increasing the stmmac MTU, which you later clarify that by itself it
-> doesn't change the outcome.
->
-> > TX traffic immediately starts working correctly.
-> > Likewise, increasing the FRM_LENGTH on the switch side for the CPU
-> > port resolves the problem, which indicates that the frame length
-> > configuration on this port is directly involved.
->
-> So increasing FRM_LENGTH is the only factor that alters the outcome.
->
-> > Given this behaviour, it appears that the management (CPU) port
-> > requires additional headroom to successfully transmit frames, even
-> > though RX succeeds without it. The STMMAC driver is used as the
-> > controller driver for the management port, we are trying to determine
-> > whether there is any known interaction, alignment constraint, or
-> > undocumented overhead that would explain the need for this extra
-> > margin.
-> >
-> > Could you please advise on how to handle this issue?
->
-> Have you verified that the value you need to add to FRM_LENGTH is linear
-> for MTU values above 1500? I.e. that at MTU values of 1510, 1520, 1540,
-> 2000, ..., you always need to add 40 additional octets to FRM_LENGTH on
-> top of the ETH_HLEN + A5PSW_EXTRA_MTU_LEN + ETH_FCS_LEN extra that the
-> driver is already adding, and no less?
->
-> One other thing to look at is to send known-size Ethernet frames using
-> mausezahn or ping over lan0, run ethtool -S on the eth0 stmmac interface
-> (this will also capture the switch's CPU port statistics counters) and
-> see by how many octets does the aOctetsReceivedOK counter increment for
-> a known size packet. Then, if you go oversize, look at the statistics
-> counters and see which counter marks the drop. Maybe this will provide
-> any clue.
->
-So I started off with ping and that worked i.e. without +40 to
-FRM_LENGTH. So when I increased the size upto <=3D1440 ping worked OK.
-Anything after 1441 ping failed I could see
-p03_etherStatsOversizePkts/p03_ifInErrors incrementing.
+The frequency plan is different between mobile and IoT. Are you
+proposing to describe a union of OPP table from both mobile and IoT?
 
-              MTU Ifconfig
------------------------------
-ETH0 -  1508
-LAN0 -  1500
-LAN1 -  1500
+Another wrinkle we need to address is that, so far, we have never had a
+dt binding where opp-supp-hw property exist without the speedbin cells.
+And that adds a bit of complexity on the driver side because, today, the
+KMD relies on the presence of speed bin cells to decide whether to
+select bin via opp_supp_hw API or not. Also, we may have to reserve this
+combination (opp bins without speedbin cells) to help KMD detect that it
+should use socinfo APIs instead of speedbin cells on certain chipsets.
 
-After increasing the MTU size to 1501 of lan0 propagtes change to eth0
-as seen below:
-root@rzn2h-evk:~# ip link set lan0 mtu 1501
+-Akhil
 
-              MTU Ifconfig
------------------------------
-ETH0 -  1509
-LAN0 -  1501
-LAN1 -  1500
-
-$ ping -I lan0 192.168.10.30 -c5 -s 1441 # Works
-$ ping -I lan0 192.168.10.30 -c5 -s 1442 # Fails and
-p03_etherStatsOversizePkts/p03_ifInErrors increments.
-
-So +40 to FRM_LENGTH just made the iperf worked earlier as the length
-of iperf packets is 1514.
-
-I'm still looking into the switch on why it could be dropping the frames.
-
-Cheers,
-Prabhakar
 
