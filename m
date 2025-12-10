@@ -1,92 +1,97 @@
-Return-Path: <devicetree+bounces-245497-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245498-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43134CB1808
-	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 01:37:42 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B29ACB181C
+	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 01:38:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D6ACE309D023
-	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 00:37:40 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4836B30EACC1
+	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 00:37:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7689F1C3306;
-	Wed, 10 Dec 2025 00:37:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F34C1DE3DF;
+	Wed, 10 Dec 2025 00:37:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jg+NfP2Q"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Db2ZIqMB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
+Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C27071AAE13
-	for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 00:37:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E4061DB13A
+	for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 00:37:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765327059; cv=none; b=lEkGtdLm11stCuguSWE2lvC1Ta2JY7t303tbwVaBFkJlPLNQRQaFWec/6F2ygRGESO03/seWzzw+J8HRmUTfyMYY1Ca9VFM78KuthsRd2V6OPWU0vnWFOtZWRYsQqtHYQFcx5zPh7VQx5vYTka0XrmTgHILjKUAledboD+f+0x0=
+	t=1765327063; cv=none; b=F6Sp3qXz0yWTARPH5E45z7WG8GVPvdGnUQ75SbtdzFJMi2jiTvAXjL1qXoOjy7sNFhCuvJsbPagd2fQv51n/5NYTdZ7hPPn+/99JUl2NJt1IueL4E4RAoObFZd947NCfBwsmB36KtuIvHzx4qLdCl7e4lFRNSVle3d/vYm5RroM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765327059; c=relaxed/simple;
-	bh=K7SL4I/jLPDVOaIVbr+yXThL0SdIYhmyS5+E2q11BCQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Zhf2rdcejLEkXkf6FIp9kMabFgA4S9ZMurHC4EeIQIh1T2HDr7rdq+iQpkOzIiYu1e7bm5DHm1w1cviUgmD0RvIkZirSQ5t5SEIyoCI5pIZxzs4qwqvYiu8xowWnIU4NCk42kQ2pEjejaJI3l8cXpDJzZw6eLZ56ldOFBIUi98U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jg+NfP2Q; arc=none smtp.client-ip=209.85.210.50
+	s=arc-20240116; t=1765327063; c=relaxed/simple;
+	bh=MkNz6YqHsBSFvsaxHTigfveKtaQAkdkwyH1gzRZO2Wk=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=ZMgWffzOmWHpkfNZN9xMM/WdXw7L+MWqEIr6W6VuwvWoizJ0nPeGcRmJtu0wWnwHipnW+Cui7N2wX+gBPXJa0fA8C7ko3Be9zcdK5jDm+BcTK1zwa246RT0aR+98Fuk6c3E3P4TijHrvnsiyOuwNPJm7s/RRSWGQZQsN51QbEDg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Db2ZIqMB; arc=none smtp.client-ip=209.85.160.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ot1-f50.google.com with SMTP id 46e09a7af769-7c701097a75so3777384a34.3
-        for <devicetree@vger.kernel.org>; Tue, 09 Dec 2025 16:37:37 -0800 (PST)
+Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-3eae4e590a4so3120743fac.1
+        for <devicetree@vger.kernel.org>; Tue, 09 Dec 2025 16:37:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1765327057; x=1765931857; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=SVce6XDDwdhvebzxe/BKrWVM8PIwQ4nAIr2E3eOzxcI=;
-        b=jg+NfP2QoCYdEl966aaeRC5omG8icNcB/QVKRa2aPZsXeonfqsATS+u/kRwEv+5KSL
-         vDdaFPg7aU6QxStC4uy2B+EyOtt36+nRbsV9YR3NugAh/l6ClhLmxGkGH6X1X0gl4mtJ
-         xJuEPjUSCxh68gY72tM3RTvo43YENpW9yE8zXlm7+8BeYGn+i5AEXjdz0kYzdtIkoqYT
-         FyjJqjwOuygLiCjr518dtT/XzyBGmFNlo/XAk3d9J9cVlFwoMcrQ7WPZavkmQjadIScK
-         e46N1CmeepapMJ3bzlgyXUHVXwngjUBy6d/VV9G1U/v3XW/nPeOhIZcq4jZkFmO1POyi
-         awqQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765327057; x=1765931857;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1765327060; x=1765931860; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=SVce6XDDwdhvebzxe/BKrWVM8PIwQ4nAIr2E3eOzxcI=;
-        b=fvZ7BGvEFoXyVBf7VigOmX5/uhTOcmb46aOwCDzFRdUE4mlnNh2MtpK1YM8F6+6vW9
-         DZi+GKV9dtHRilDFugI0sp3fsSMp9hLw1csJgt0bZaMysM6l0a91avhIlndHsh5B6wxU
-         9bn8xUIj427JVNhpiARohJFhj0CQBV1CECLjI0GsJ0bgdikSFxOaV5wTRrReQRujl5C/
-         G3SBppVhMM1PLHcqcc+qJPu56JapcTEpaSV4Pvlrto5VMw+1RZ1Bq/KHeOvHGBacWvfV
-         RiJio/CUFrsU9xueIA5v7FKoD/koha0kjysuqlfkmR0/9kyeradu0yCp4JGFxcesjcCC
-         5PJw==
-X-Forwarded-Encrypted: i=1; AJvYcCXZRHE6l3GwiDeYT6lrp1gPGIGraemuNBZsgBwJHstoiKfnUxKyFVmzhRcTQ+As/YOtU9aZ3u8P9Wx3@vger.kernel.org
-X-Gm-Message-State: AOJu0Yye0cf7cFuSHmqcu5QuzBRNyoPkh9STdjK0x9hqODeEL4+JfPkt
-	EEMbBKd131FYhK7f3Trbi9xKVgf0jsf9AZlIxmB9mjCJ1fZFrM8nE8nD
-X-Gm-Gg: ASbGncv5zoPE8OChz46JggbjsReVZvqzYMPM8aUdRiJSDs6jyEOpNUz9629EMEog445
-	6gZ2c6BvXWRa0LY/TfXwC+7WC36ANosb+TY/vsplrNFjKQk9tmQMHhellnVKAMBV9ebVI94qOJu
-	ufFU5flcmR94PkCeHogXYapQXfoWf6dnN4G+pjcmoV+tHpCDy5jvBrDF7g4OCaYF1sg1x8pZaU7
-	5XZOStuJgrkWdteIMVI2NlT6dQBI/1crsJOY8kn5BtZWwsEJLnvlW7SOoDQrSAssUiqpYYFiMe1
-	iU0t6CvOa0/4W6lNt3Y6FT1lsqi64vdBLeBryTDtY5mJtWfvUiebRjYcOjiD7xURKGPCqEYjSAb
-	0zYm7sPknUPdm3KDu4c0Sxqefs33oAsEqlepL0lJqDiGeSwLbTCXKleYhyEchRGW3IGapEpuDfQ
-	3wvjkFlBos0er2q+6LGpUQw0r/PPEfojrt4yz+H1s5p582xmfas1KKPKoywlIj9S2gEGGfzuv8A
-	rwjOK3p1jGeRtB4UcXRM608dTI0+MDBH/mfKMU=
-X-Google-Smtp-Source: AGHT+IEg65s3h9e8Yp05cjRdQ7oOeApFKAZof7ptzLGUYqrrlMeRO3TUWBgDrWjfg7jGq7tFMiGYeg==
-X-Received: by 2002:a05:6820:1845:b0:65b:2795:cb0b with SMTP id 006d021491bc7-65b2abacf7emr471229eaf.1.1765327056774;
-        Tue, 09 Dec 2025 16:37:36 -0800 (PST)
+        bh=z+PYBSiJp/d+9az4w/HJpjkv67V4ACob7nnsTPY6B7o=;
+        b=Db2ZIqMBsuRCQzCcf10BznD5P8LWHoZ08kxUgnERlfgikX3bQ1czrma0lFeSoQj3rk
+         63uzZFJF1QsN/I8vH9OeHhc86HWIRkqKZ/zk8kvltYs9RRXrmIopF2ZQtLf3GQ5wZGzM
+         rtmznEyRe+KV42dXKml8T2Re6alGYQEQTdniRXV9gYEyJc7S6V1i8RTd55eKYdpryxD9
+         5JDL5OsHyRncmy0XRUE5QpGmA+oGlad5LdylP9riVaoU6UhFzqcFr8SBmY3ksh4PRm45
+         rrHlKPl9zk7wWneYiNAucO7jGl2HIyFxGRcSI8QjcAh6/3AfmTNszqt4jWEvN0JnS4x0
+         Otqw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765327060; x=1765931860;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=z+PYBSiJp/d+9az4w/HJpjkv67V4ACob7nnsTPY6B7o=;
+        b=hWIfPJPHtC3BOd1WUgr9fPXCQBqC5dXX9dgpG53OxhlY74adAsKbsFrCDXpNEGUJxQ
+         rIpQwOfioDOJmjoEHwKbhRrdqY36d6HviEsVO10WzcSKKWaBKlgjC1ZisHg/6C1YRPvZ
+         tRA72gDQh2nBudeSIedtDdc6XPLy08jsKDEmqD1KZTDKTxrykBSfOvMN143sl5s4edV4
+         NLBj5cFXWQVhAPb+8kiWs0qvp6xCXKDKWJD7PUUfZp6JGcm4jLInvz9ETq75mQpcjh+Z
+         0PTUYF4GQCrwFo2z2AqRINbt8LGAmJN+dUwcumHoW8rSMfleGlA2kqkaMu5+KwSlTUi+
+         ZCYw==
+X-Forwarded-Encrypted: i=1; AJvYcCUokJbyT2+DhOyeVEyJ4vkcgRVCk+it9MSwtjHyRsw8bW/+WTHUNIzgrdIJt0qtKVGQa2XnCnFDNyPQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YzFckncm3gNLXU1PQNK+1/SljaK8b1jKPeu7HOuZ9EyyHJczbzR
+	BUeijytTBBmEDxqrmE0zRvBnsCXa9G/vMmLQdbvOjzhlhFG3xSxgFpls
+X-Gm-Gg: ASbGncta3Rt+lA1YlHW/rJD2hmVdbo836wrfsz2n1rppikNzZopXgYIiyTBNmlWl3Mu
+	8U0nKx/9zqVM40vItoHBodQ3zK6y83wGWRwhv+YurQTsrURcm5mgjrM47lULud9gF1N5XyzgYkM
+	ViicWIOEGxoIG2KDqitMihkYitpFpkXUp1Peiz9O+tE3ylyBAeruzhkL92MtSfM5kne8rG1JogA
+	roIK281RvQFpdS/bTDWS0P1Uo4kvlJ3Fmbtw4u+7Vwao7+YdOUG9P2zpTBruyPrKq0SLYj3v3tQ
+	nE5709BL6VYUNCfAUeBElHK3Cdly8KcC2qBBc5Ox4+sdclMstcTGlQ403XvPp37ebk8pLbe5v2G
+	cB3EjYhoYskfXNAJc0xYoQSYAkhN9zteFqd9D+xuXN3BAAITsQV8GVjVDd3oue68Bd2BAWFB4iJ
+	1dnqWbsP0U5QJlB/IR+mKd3NGX40dx6I0jUsDYYHF3PFSOOnnc8buGsxC7AZNmhgnIhX5lsnGLY
+	SOPEXpOXtYvNs6a0GmLMsGwIBeG
+X-Google-Smtp-Source: AGHT+IFmHaV8CXvM01LwOOyl6BMhdBjJsxkT1IkIhIQRnuDkPGFOEOlSZ4eSnruo/u54dcHyKVEoOQ==
+X-Received: by 2002:a05:6820:210d:b0:659:9a49:8e71 with SMTP id 006d021491bc7-65b2acebe42mr515805eaf.65.1765327060188;
+        Tue, 09 Dec 2025 16:37:40 -0800 (PST)
 Received: from nukework.lan (c-98-57-15-22.hsd1.tx.comcast.net. [98.57.15.22])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-6597ea6807esm8588826eaf.0.2025.12.09.16.37.35
+        by smtp.gmail.com with ESMTPSA id 006d021491bc7-6597ea6807esm8588826eaf.0.2025.12.09.16.37.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Dec 2025 16:37:36 -0800 (PST)
+        Tue, 09 Dec 2025 16:37:39 -0800 (PST)
 From: Alexandru Gagniuc <mr.nuke.me@gmail.com>
 To: robh@kernel.org,
 	krzk+dt@kernel.org,
 	conor+dt@kernel.org,
-	devicetree@vger.kernel.org
-Cc: andersson@kernel.org,
-	mathieu.poirier@linaro.org,
-	konradybcio@kernel.org,
+	devicetree@vger.kernel.org,
+	Bjorn Andersson <andersson@kernel.org>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Placeholder Maintainer <placeholder@kernel.org>
+Cc: konradybcio@kernel.org,
 	linux-arm-msm@vger.kernel.org,
 	linux-remoteproc@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Alexandru Gagniuc <mr.nuke.me@gmail.com>
-Subject: [PATCH RFC 0/3] remoteproc/qcom,q6v5: introduce IPQ9574
-Date: Tue,  9 Dec 2025 18:37:22 -0600
-Message-ID: <20251210003729.3909663-1-mr.nuke.me@gmail.com>
+Subject: [PATCH RFC 1/3] dt-bindings: remoteproc: qcom,ipq8074-wcss-pil: convert to DT schema
+Date: Tue,  9 Dec 2025 18:37:23 -0600
+Message-ID: <20251210003729.3909663-2-mr.nuke.me@gmail.com>
 X-Mailer: git-send-email 2.45.1
+In-Reply-To: <20251210003729.3909663-1-mr.nuke.me@gmail.com>
+References: <20251210003729.3909663-1-mr.nuke.me@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -95,34 +100,300 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-I want to enable ath11k on IPQ9574 SoCs, which uses the qcom remoteproc
-for communication with firmware. It is similar to qcom,ipq8074-wcss-pil,
-and I think it makes sense to extend the IP8074 path. The existing bidings
-are not yaml. Am I required to convert the bindings to DT schema before
-updating them?
+Convert the QCS404 and IPQ WCSS Peripheral Image Loader bindings to DT
+schema. The text bindngs incorrectly implied that IPQ8074 needs only
+one qcom,smem-states entry. This is only true for QCS404. IPQ8074
+requires both "stop" and "shutdown".
 
-Whom do I add as the maintainer for the YAML binding? Do I add my name? Do
-I need to find an existing maintainer who is willing to use their name?
-
-I would like to add the remoteproc node to IPQ8074. One of the resets is
-missing from "qcom,gcc-ipq8074.h". Can I use a placeholder value with a
-comment? Am I expected to enable the reset in code before adding the
-devicetree node?
-
-Alex
---- 
-Alexandru Gagniuc (3):
-  dt-bindings: remoteproc: qcom,ipq8074-wcss-pil: convert to DT schema
-  dt-bindings: remoteproc: qcom: add IPQ9574 image loader
-  arm64: dts: qcom: ipq8074: add remoteproc nodes
-
- .../remoteproc/qcom,ipq9574-wcss-pil.yaml     | 269 ++++++++++++++++++
- .../bindings/remoteproc/qcom,q6v5.txt         | 102 -------
- arch/arm64/boot/dts/qcom/ipq8074.dtsi         |  79 +++++
- 3 files changed, 348 insertions(+), 102 deletions(-)
+Signed-off-by: Alexandru Gagniuc <mr.nuke.me@gmail.com>
+---
+ .../remoteproc/qcom,ipq9574-wcss-pil.yaml     | 167 ++++++++++++++++++
+ .../bindings/remoteproc/qcom,q6v5.txt         | 102 -----------
+ 2 files changed, 167 insertions(+), 102 deletions(-)
  create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,ipq9574-wcss-pil.yaml
  delete mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,q6v5.txt
 
+diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,ipq9574-wcss-pil.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,ipq9574-wcss-pil.yaml
+new file mode 100644
+index 0000000000000..d28f42661d084
+--- /dev/null
++++ b/Documentation/devicetree/bindings/remoteproc/qcom,ipq9574-wcss-pil.yaml
+@@ -0,0 +1,167 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/remoteproc/qcom,ipq9574-wcss-pil.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm IPQ WCSS Peripheral Image Loader
++
++maintainers:
++  - Placeholder Maintainer <placeholder@kernel.org>
++
++description:
++  The IPQ WCSS peripheral image loader is used to load firmware on the Qualcomm
++  Q6 processor that exposes WiFi-6 devices to the OS via the AHB bus. It is
++  generally used by ath11k to start up the wireless firmware.
++
++properties:
++  compatible:
++    enum:
++      - qcom,ipq8074-wcss-pil
++      - qcom,qcs404-wcss-pil
++
++  reg:
++    minItems: 2
++    maxItems: 2
++    description:
++      The base address and size of the QDSP6, and RMB register blocks
++
++  reg-names:
++    items:
++      - const: qdsp6
++      - const: rmb
++
++  interrupts-extended:
++    minItems: 5
++    maxItems: 5
++
++  interrupt-names:
++    items:
++      - const: wdog
++      - const: fatal
++      - const: ready
++      - const: handover
++      - const: stop-ack
++
++  resets:
++    minItems: 3
++    maxItems: 3
++
++  reset-names:
++    items:
++      - const: wcss_aon_reset
++      - const: wcss_reset
++      - const: wcss_q6_reset
++
++  clocks:
++    minItems: 10
++    maxItems: 13
++
++  clock-names:
++    minItems: 10
++    maxItems: 13
++
++  cx-supply:
++    description:
++      reference to the regulators used for the booting of the Hexagon core
++
++  memory-region:
++    description: Reference to wcss reserved-memory region
++
++  qcom,halt-regs:
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++    description:
++      A phandle reference to a syscon representing TCSR followed by the three
++      offsets within syscon for q6, wcss and nc halt registers.
++    items:
++      - items:
++          - description: phandle to TCSR_MUTEX registers
++          - description: offset to the Q6 halt register
++          - description: offset to the wcss halt register
++          - description: offset to the nc halt register
++
++  qcom,smem-states:
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++    description: States used by the AP to signal the remote processor
++
++  qcom,smem-state-names:
++    description:
++      Names of the states used by the AP to signal the remote processor
++
++  glink-edge:
++    $ref: /schemas/remoteproc/qcom,glink-edge.yaml#
++    description:
++      Qualcomm G-Link subnode which represents communication edge, channels
++      and devices related to the Modem.
++
++required:
++  - compatible
++  - reg
++  - reg-names
++  - interrupts-extended
++  - interrupt-names
++  - memory-region
++  - qcom,halt-regs
++  - qcom,smem-states
++  - qcom,smem-state-names
++
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - qcom,ipq8074-wcss-pil
++    then:
++      properties:
++        qcom,smem-states:
++          items:
++            - description: Shutdown Q6
++            - description: Stop Q6
++        qcom,smem-state-names:
++          items:
++            - const: shutdown
++            - const: stop
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - qcom,qcs404-wcss-pil
++    then:
++      properties:
++        qcom,smem-states:
++          maxItems: 1
++        qcom,smem-state-names:
++          items:
++            - const: stop
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - qcom,qcs404-wcss-pil
++    then:
++      properties:
++        clocks:
++          minItems: 10
++          maxItems: 10
++        clock-names:
++          items:
++            - const: xo
++            - const: gcc_abhs_cbcr
++            - const: gcc_axim_cbcr
++            - const: lcc_ahbfabric_cbc
++            - const: tcsr_lcc_cbc
++            - const: lcc_abhs_cbc
++            - const: lcc_tcm_slave_cbc
++            - const: lcc_abhm_cbc
++            - const: lcc_axim_cbc
++            - const: lcc_bcr_sleep
++      required:
++        - clocks
++        - clock-names
++        - cx-supply
++
++additionalProperties: false
+diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,q6v5.txt b/Documentation/devicetree/bindings/remoteproc/qcom,q6v5.txt
+deleted file mode 100644
+index 573a88b606773..0000000000000
+--- a/Documentation/devicetree/bindings/remoteproc/qcom,q6v5.txt
++++ /dev/null
+@@ -1,102 +0,0 @@
+-Qualcomm Hexagon Peripheral Image Loader
+-
+-This document defines the binding for a component that loads and boots firmware
+-on the Qualcomm Hexagon core.
+-
+-- compatible:
+-	Usage: required
+-	Value type: <string>
+-	Definition: must be one of:
+-		    "qcom,ipq8074-wcss-pil"
+-		    "qcom,qcs404-wcss-pil"
+-
+-- reg:
+-	Usage: required
+-	Value type: <prop-encoded-array>
+-	Definition: must specify the base address and size of the qdsp6 and
+-		    rmb register blocks
+-
+-- reg-names:
+-	Usage: required
+-	Value type: <stringlist>
+-	Definition: must be "q6dsp" and "rmb"
+-
+-- interrupts-extended:
+-	Usage: required
+-	Value type: <prop-encoded-array>
+-	Definition: reference to the interrupts that match interrupt-names
+-
+-- interrupt-names:
+-	Usage: required
+-	Value type: <stringlist>
+-	Definition: must be "wdog", "fatal", "ready", "handover", "stop-ack"
+-
+-- clocks:
+-	Usage: required
+-	Value type: <phandle>
+-	Definition: reference to the clocks that match clock-names
+-
+-- clock-names:
+-	Usage: required
+-	Value type: <stringlist>
+-	Definition: The clocks needed depend on the compatible string:
+-	qcom,ipq8074-wcss-pil:
+-		    no clock names required
+-	qcom,qcs404-wcss-pil:
+-		    must be "xo", "gcc_abhs_cbcr", "gcc_abhs_cbcr",
+-		    "gcc_axim_cbcr", "lcc_ahbfabric_cbc", "tcsr_lcc_cbc",
+-		    "lcc_abhs_cbc", "lcc_tcm_slave_cbc", "lcc_abhm_cbc",
+-		    "lcc_axim_cbc", "lcc_bcr_sleep"
+-
+-- resets:
+-	Usage: required
+-	Value type: <phandle>
+-	Definition: reference to the list of 3 reset-controllers for the
+-		    wcss sub-system
+-
+-- reset-names:
+-	Usage: required
+-	Value type: <stringlist>
+-	Definition: must be "wcss_aon_reset", "wcss_reset", "wcss_q6_reset"
+-		    for the wcss sub-system
+-
+-- memory-region:
+-	Usage: required
+-	Value type: <phandle>
+-	Definition: reference to wcss reserved-memory region.
+-
+-For the compatible string below the following supplies are required:
+-  "qcom,qcs404-wcss-pil"
+-- cx-supply:
+-	Usage: required
+-	Value type: <phandle>
+-	Definition: reference to the regulators to be held on behalf of the
+-		    booting of the Hexagon core
+-
+-- qcom,smem-states:
+-	Usage: required
+-	Value type: <phandle>
+-	Definition: reference to the smem state for requesting the Hexagon to
+-		    shut down
+-
+-- qcom,smem-state-names:
+-	Usage: required
+-	Value type: <stringlist>
+-	Definition: must be "stop"
+-
+-- qcom,halt-regs:
+-	Usage: required
+-	Value type: <prop-encoded-array>
+-	Definition: a phandle reference to a syscon representing TCSR followed
+-		    by the three offsets within syscon for q6, wcss and nc
+-		    halt registers.
+-
+-- memory-region:
+-	Usage: required
+-	Value type: <phandle>
+-	Definition: reference to the reserved-memory for the region
+-
+-The Hexagon node may also have an subnode named either "smd-edge" or
+-"glink-edge" that describes the communication edge, channels and devices
+-related to the Hexagon.  See ../soc/qcom/qcom,smd.yaml and
+-../soc/qcom/qcom,glink.txt for details on how to describe these.
 -- 
 2.45.1
 
