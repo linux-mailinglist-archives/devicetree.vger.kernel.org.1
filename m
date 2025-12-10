@@ -1,100 +1,189 @@
-Return-Path: <devicetree+bounces-245654-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245655-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF999CB3C0E
-	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 19:23:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5ECB3CB3C50
+	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 19:33:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 712F6301A716
-	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 18:22:21 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D595630421B6
+	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 18:33:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A71B32825E;
-	Wed, 10 Dec 2025 18:22:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF56C324B30;
+	Wed, 10 Dec 2025 18:33:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="F9GR1MB4"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CzjPXtjb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75D883246FD;
-	Wed, 10 Dec 2025 18:22:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D63D82FFF8C
+	for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 18:33:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765390939; cv=none; b=WMHn6c7Yjcx/7KxnImNwVrg51BGhOb7kAeE51taCPUK+8D6H7BBeIiEaGf/1gYsNuldsXUSkJfwMkycNxL6//JMPFiEQqJhHWDOLZ4J/86TqWuZiBWcadNniKvQ7yXftCpiBkifqpYKRFFC/3sw26kODhWV9lSV9hEOSDVyDBW4=
+	t=1765391584; cv=none; b=K16l/Q+xPTXWvdy4bjTg4JNZVoAPjLu4T1gT/1OH/umVKF3KtXnAPmgBTLnTK0knB2498ChswQVLMZGoBgPsHCLw9wTAsNDEdbMpIctWgH5yyRf0SXgEZf7eay3cHPkj7tzaKDqUxYmcMvmlqWWJv8Ao0pCpiZRoNPEv06hGCRk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765390939; c=relaxed/simple;
-	bh=PUXR57mTieP5CBzCja98cqoyFj4aV18gefXhTgd/6qY=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
-	 References:In-Reply-To; b=hPZdIu5JvEowJ3jbsJ9mlSn09giA/jN8AilB83V5JyAo84gFW5jgUJc5pA8Gh1X3u6k16k06yaJxNTmAVVtN0GLIoHTngHJyZZtkGGaCJG/jVGwY5U4YSOA75FvcDnmMhOBUCd/+T95E5Xf90n0kgAfnZ4eBRbIEZDCFmGB9BrE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=F9GR1MB4; arc=none smtp.client-ip=185.246.85.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 1D2F24E41B4E;
-	Wed, 10 Dec 2025 18:22:13 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id DAD2660714;
-	Wed, 10 Dec 2025 18:22:12 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 155F4103C8CB3;
-	Wed, 10 Dec 2025 19:22:05 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1765390931; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=PUXR57mTieP5CBzCja98cqoyFj4aV18gefXhTgd/6qY=;
-	b=F9GR1MB4SM2KDodDE/TOQoAX42RWMhfc+j0VOF24Yt8l74MiY4JY+hGeX75GJOfYV52cxn
-	vM6FWccI8aSSc3Mh1EoYSBAFojiJYIh1ZhicDXPhOpIisEg+MD3SQAZ1PlrsluQvmWWqGH
-	49gPgtyAuTtMd6Cfk4h+Gxj6hSWhkxN3I4KWQ5oxVSJbq/72GZKg9fCT2EIbWaGMnqGk8W
-	vOm4iKkiiB5G1jxQASH2opdWgJT3KT5+mxoooRHpJWsVEzB8wDoo9TCX2Cpo29caQ3E+lF
-	Fnb7KWKuFMfx6GKNewg8DVJD/5i0vemI+FlKyrP/9Dg5/aIeLMIHVcY5mcvvIw==
+	s=arc-20240116; t=1765391584; c=relaxed/simple;
+	bh=XCYunP1MFaxEZGn5zsjzuD3N4V4sc+8T88BNtQaa6W8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=SjDRiztlXDQCuiTPWs0kn3nbvI5j/LQU0faMKT4jVlIm/hiVDwaqJaLvgTEqvKFYneefZZ6w1++bl3ENgMe72aMzquhiU1MGAXJtd8XBz2lj4wY0e8nJbSAvAOb2Yew80Q4xUkxe/9OpfL7Gh+NzenY2QPUxUbBxqy2WuFWx05g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CzjPXtjb; arc=none smtp.client-ip=209.85.167.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-594270ec7f9so46967e87.3
+        for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 10:33:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1765391581; x=1765996381; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=XCYunP1MFaxEZGn5zsjzuD3N4V4sc+8T88BNtQaa6W8=;
+        b=CzjPXtjbRY4jZze3ur0cYZ03hdF0wPKWjCjCZqEQfmiNeJJXQajvLjLBOjclTl+b4Q
+         k4wyTREp852TwoaLdF1/mIINPUIgyH7//tSkmbIDnBdzz9vxgok7I5ofrgSdwOADT68y
+         tsN+ZiWMgvv9HMtROAjeMU965HJv8gI+2OZEu7TYiJ+EKr+TSvofDiPDdCuDx4avKCXZ
+         kKpLNBcwB6wKXVayDNxi5nnhkvET3NdTc0w987emL1TChal7ndRIpW5fi3JExmrPisjK
+         pTb6vruTvBmDiEI5PShUGdfGsTzQVe9GbYslH2NwHRWUskggYfH4pnooIYVd80Gq3iuT
+         Yo+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765391581; x=1765996381;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=XCYunP1MFaxEZGn5zsjzuD3N4V4sc+8T88BNtQaa6W8=;
+        b=f3qbwm3cBGRJJzE71DmLmdRHp8ii///nTfYhcb7Cqe0V40C4YiGMODBBwcQaGJa0Ha
+         RpUzdBSOebV4n9XqiHe0zbPk/+q/vMwnvkGhOF69LJ5p7kjkyHgsrBp8hwvshz3jb1Mt
+         CMeQRVpYmJKgOrtqCybFhOcWhfDn7p0RUY0IGtekzktz953/pz1X7tq+ZH6MVSmPss8L
+         iPNMbYmRyYMpQ/J51zE7nQCcWXt/Jr8EtuMeW4Bu+waxBD8RdX3XNzgSC2Z+yV/EkMox
+         6sMUIlGwK0K5cUBbuk9pimNc4Oq0uo8te6qt8LIhVdiYSGqmYwZEa0LhPTl+Squ61B9Y
+         WIgQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVp+OIBZM/XOX444SCwz7qKXFMTcFwkmYOJqur0M/BFAFCCcfzqu6hxWHpGorSz4/AeqLHgAf1pZj8S@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxp6b1aAfHNPn/gnL+pPYOl2NV2OwjqrABsrUuFOXBVgW8symj3
+	9XYc+m4MFfW5a6gnZYqTuweFQdgdOAuim08X5Y05Xz9M/9xi4Rzf/j9bOvvSLt5LE8DLky4gYZI
+	x4WNeo0A0rNpGfeE3t2PUFDDAtcbS9xI=
+X-Gm-Gg: AY/fxX75RJKrrpMOl20TLuSAkITN2MOZI1lB//1pAPVCunp1GF5ULO3lN0iC5fnp/2X
+	ci7gkB7Zy8EOuBrgul7QXGbctRdjMNgu3bCRNvyUzZL2iTZuJqAB5teeqvC7VyzftkaNHF5MdQ+
+	m6jNCuZyBmAa4iJjoDeIWbZhKZpHt6LkvBUO3D9EkI4AOLWg0gPFNfLDDZmqyeiZO1jMusSnWBD
+	zZLXEuwYgF1VKFhXb5Y63g3USiJ5IdZvjTof29DNnq9YRnYxNGAgW2dr5FKTeuas5sXMTTFuaEY
+	MWP6tg==
+X-Google-Smtp-Source: AGHT+IGRzhuQbpaIiIx64rRvoMPeKJ0tQ5iWh5PoRl1Q9jUkP3/981+fYv9+vNw3dV5sUXQsiIuENZJ6gz0824ZfVmU=
+X-Received: by 2002:a05:6512:b02:b0:594:253c:209f with SMTP id
+ 2adb3069b0e04-598ee53ec6dmr1455024e87.39.1765391580727; Wed, 10 Dec 2025
+ 10:33:00 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
+MIME-Version: 1.0
+References: <20251027-tegra186-icc-p2-v4-0-e4e4f57e2103@gmail.com>
+ <CALHNRZ8nCojreFCMXfbBBhWAMtmWN-04XtuW8fEsVD9bw+-AzA@mail.gmail.com>
+ <CALHNRZ-CO5i9jeLkEG2cmHxcW1bcLhxcBSxjmL2euHfQy8yr-w@mail.gmail.com>
+ <e6ce190e-6df7-4c36-abca-f09df3cc80e7@nvidia.com> <99ca4992-5736-417d-854e-379542549bee@kernel.org>
+ <7f3dad08-cff5-40c2-8e7f-f6441a3d6b91@nvidia.com> <d5d23eb5-f43c-4e4b-9926-3fba6ffd3acf@nvidia.com>
+ <CALHNRZ8vFJyfFXbxFehWA9TGkdrEUy9Wsm-DxEOT=tVbYTcU5Q@mail.gmail.com>
+ <249bbe7e-e2da-4493-bdd5-8f4b17aff8fe@nvidia.com> <CALHNRZ8uPaKqSpFWkmYZn==Xw=rxh95Xm0_6LPN1HDj20zofqw@mail.gmail.com>
+ <d16803e5-7b6d-4472-b50c-aa324cf52736@nvidia.com> <CALHNRZ83Q2Ha8VYoWAnqoCZQ=Fd9rtVRVLwRFxAY68ePQ29GHw@mail.gmail.com>
+ <29cf2c16-3a0e-42c5-a083-16f77ae5d09a@nvidia.com> <CALHNRZ9KAv-hL6+6Uiaz2O2odm1rqMnjNxNVPsbCOdqX15KTuw@mail.gmail.com>
+ <856447ae-4338-471d-a71f-a34aed749ac7@nvidia.com> <CALHNRZ9y0n6JNfeDUQgZoECkxo+We0_G8TP0H4advcSqrX86kg@mail.gmail.com>
+ <f906f85f-b110-4328-b177-02fcdf7ffe53@nvidia.com>
+In-Reply-To: <f906f85f-b110-4328-b177-02fcdf7ffe53@nvidia.com>
+From: Aaron Kling <webgeek1234@gmail.com>
+Date: Wed, 10 Dec 2025 12:32:48 -0600
+X-Gm-Features: AQt7F2pVjeNsup3vHu6UK02azziNs5j464FN4HX7BMVbonnjEkrnrV-F0sqKxT4
+Message-ID: <CALHNRZ8go4ATHgJ4SE=7pkAMgRP_0tj5z4pDXjxicV9o7F13Ng@mail.gmail.com>
+Subject: Re: [PATCH v4 3/5] memory: tegra186-emc: Support non-bpmp icc scaling
+To: Jon Hunter <jonathanh@nvidia.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Thierry Reding <thierry.reding@gmail.com>, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 10 Dec 2025 19:22:04 +0100
-Message-Id: <DEUQUQS51C7K.FJD7W3YFJJU5@bootlin.com>
-Subject: Re: [PATCH 10/21] drm/tilcdc: Remove redundant #endif/#ifdef in
- debugfs code
-Cc: "Markus Schneider-Pargmann" <msp@baylibre.com>, "Louis Chauvet"
- <louis.chauvet@bootlin.com>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>, "Miguel Gazquez"
- <miguel.gazquez@bootlin.com>, <dri-devel@lists.freedesktop.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-arm-kernel@lists.infradead.org>, <linux-omap@vger.kernel.org>
-To: "Kory Maincent (TI.com)" <kory.maincent@bootlin.com>, "Jyri Sarha"
- <jyri.sarha@iki.fi>, "Tomi Valkeinen" <tomi.valkeinen@ideasonboard.com>,
- "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>, "Maxime Ripard"
- <mripard@kernel.org>, "Thomas Zimmermann" <tzimmermann@suse.de>, "David
- Airlie" <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Rob
- Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>, "Russell King"
- <linux@armlinux.org.uk>, "Bartosz Golaszewski" <brgl@bgdev.pl>, "Tony
- Lindgren" <tony@atomide.com>, "Andrzej Hajda" <andrzej.hajda@intel.com>,
- "Neil Armstrong" <neil.armstrong@linaro.org>, "Robert Foss"
- <rfoss@kernel.org>, "Laurent Pinchart" <Laurent.pinchart@ideasonboard.com>,
- "Jonas Karlman" <jonas@kwiboo.se>, "Jernej Skrabec"
- <jernej.skrabec@gmail.com>
-From: "Luca Ceresoli" <luca.ceresoli@bootlin.com>
-X-Mailer: aerc 0.20.1
-References: <20251126-feature_tilcdc-v1-0-49b9ef2e3aa0@bootlin.com>
- <20251126-feature_tilcdc-v1-10-49b9ef2e3aa0@bootlin.com>
-In-Reply-To: <20251126-feature_tilcdc-v1-10-49b9ef2e3aa0@bootlin.com>
-X-Last-TLS-Session-Version: TLSv1.3
 
-On Wed Nov 26, 2025 at 6:35 PM CET, Kory Maincent (TI.com) wrote:
-> Remove the unnecessary #endif/#ifdef CONFIG_DEBUG_FS pair that splits
-> the debugfs code section. This keeps all debugfs-related code within a
-> single preprocessor conditional block, improving code readability.
+On Wed, Dec 10, 2025 at 9:04=E2=80=AFAM Jon Hunter <jonathanh@nvidia.com> w=
+rote:
 >
-> Signed-off-by: Kory Maincent (TI.com) <kory.maincent@bootlin.com>
+>
+> On 10/12/2025 05:06, Aaron Kling wrote:
+>
+> ...
+>
+> > Let me try to iterate the potential issues I've seen stated here. If
+> > I'm missing anything, please fill in the blanks.
+> >
+> > 1) If this change is applied without the related dt change and the
+> > pcie drvier is loaded, the emc clock can become stuck at the lowest
+> > rate. This is caused by the pcie driver providing icc data, but
+> > nothing else is. So the very low requested bandwidth results in the
+> > emc clock being set very low. I'm not sure there is a 'fix' for this,
+> > beyond making sure the dt change is merged to ensure that the cpufreq
+> > driver provides bandwidth info, causing the emc driver to select a
+> > more reasonable emc clock rate. This is a similar situation to what's
+> > currently blocking the tegra210 actmon series. I don't think there is
+> > a way for the drivers to know if icc data is missing/wrong. The
+> > scaling is doing exactly what it's told based on the icc routing given
+> > in the dt.
+>
+> So this is the fundamental issue with this that must be fixed. We can't
+> allow the PCIe driver to slow the system down. I think that Krzysztof
+> suggested we need some way to determine if the necessary ICC clients are
+> present/registered for ICC to work. Admittedly, I have no idea if there
+> is a simple way to do this, but we need something like that.
 
-Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+I'm not sure I understand how checking clients would work. Is there a
+mechanism for the emc driver to know if cpufreq is registered to icc
+in a way that works with probe deferrals, but also allows for it to be
+optional?
 
---
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Alternatively if there is not, can we just accept the abi break and
+have this and the dt change depend on each other? I know it's not
+desirable or the first choice, but if the other option is to rewrite
+part of the icc system, then perhaps it should be an option.
+
+> > 2) Jon, you report that even with both this change and the related dt
+> > change, that the issue is still not fixed. But then posted a log
+> > showing that the emc rate is set to max. If the issue is that emc rate
+> > is too low, then how can debugfs report that the rate is max? For
+> > reference, everything scales as expected for me given this change plus
+> > the dt change on both p2771 and p3636+p3509.
+>
+> To clarify, this broke the boot test on Tegra194 because the boot was
+> too slow. However, this also broke the EMC test on Tegra186 because
+> setting the frequency from the debugfs failed. So two different failures
+> on two different devices. I am guessing the EMC test would also fail on
+> Tegra194, but given that it does not boot, we did not get that far.
+
+So you're saying that even with the dt changes, this change on
+tegra194 still does not boot before the regression test framework
+times out? If so, I need some more details about this. I have not seen
+issues on p2972 or p3518. For example, if I boot to android recovery
+where I set the cpufreq governor to performance, I see emc clock rate
+set to 2133 MHz and 1600 MHz respectively. And boot time from kernel
+start to pixels on display is 15 seconds, give or take a couple
+seconds. This is using the boot stack from l4t r32.7.6.
+
+> > 3) If icc is requesting enough bandwidth to set the emc clock to a
+> > high value, then a user tries to set debugfs max_freq to a lower
+> > value, this code will reject the change. I do not believe this is an
+> > issue unique to this code. tegra20-emc, tegra30-emc, and tegra124-emc
+> > all have this same flow. And so does my proposed change to
+> > tegra210-emc-core in the actmon series. This is why I asked if
+> > tegra124 ran this test, to see if the failure was unique. If this is
+> > not a unique failure, then I'd argue that all instances need changed,
+> > not just this one causing diverging results depending on the soc being
+> > utilized. A lot of the work I'm doing is to try to bring unity and
+> > feature parity to all the tegra socs I'm working on. I don't want to
+> > cause even more divergence.
+>
+> Yes that is fair point, however, we need to detect this in the
+> tegra-tests so that we know that this will not work. It would be nice if
+> we could disable ICC from userspace and then run the test.
+
+I am unaware of a way to disable icc from userspace. That would be
+useful to me as well. And for the record, I'm not refusing to make
+such a change. I would just want to have a series to change all the
+others uploaded and merged concurrently. But I cannot test t20 or t30.
+Only t124+.
+
+> Bottom line here is that #1 is the problem that needs to be fixed.
+
+Aaron
 
