@@ -1,311 +1,154 @@
-Return-Path: <devicetree+bounces-245661-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245662-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94FD0CB3D2E
-	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 20:07:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B497ACB3D3A
+	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 20:08:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E8F66312C553
-	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 19:03:03 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C5C063011A46
+	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 19:05:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2B2B2EBDCD;
-	Wed, 10 Dec 2025 19:03:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="OWbHn0kz";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Y5LtHSnp"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F7B7324B2F;
+	Wed, 10 Dec 2025 19:05:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA73D301704
-	for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 19:03:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECAAF221540;
+	Wed, 10 Dec 2025 19:05:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765393383; cv=none; b=PWJxax/qsc3jIofby20mwIv2+5115UzFdFrEl4AOs+Jy0diETQSOrkBUqMCTXEny2JBSVI1IWsT0mSaMWFsF+eSJEWIPr4YqtLSMMqOenhNfZBzImq6oTduJ60QnkeonfMI4dR6ghdsrnUZJ2xjw5QrrAqqddkEnO/e+glh0chw=
+	t=1765393551; cv=none; b=fZgMnY0FbiJhNoPr4nmVAndQmAwraFzFpe+X6BNwCSGo6QzdlE7B+Ua3Oh2zoKOzY6yM/J6kZg16+tFt/RFQRoHhoF6NNBl4bY3sx7UAlqPZlVj3ci4FCHp30F98lHlc/V+MUuh2hsXJ8J0pVk2HKkXTftl0Iawlu1yQ1Z/KEBs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765393383; c=relaxed/simple;
-	bh=Njk4lTxac6wfGFb81GjhYAuNTxQsW3FJ66/36VTBzdI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=UgTKFuAQhqnWZ3Ez7tb5ZCk22jO/aWbV/VoqCg3E6rlH5vWVw0YPIRAaOobLgAKx/qcefpbt7nk9Y7+sz1qNkvoHh5Zr6x9gfFwlqvf6oWXEYYLJyK8gN0/eW+Glv9IU2Elst/fzmjF3nE/nDapuNX4+GI5Bn/0y+Veu804RMFM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=OWbHn0kz; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Y5LtHSnp; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BAIR9624034132
-	for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 19:02:59 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	td0VzW7o41POGrX5w5apOp+GwTPefU2LMgQyzYja1BQ=; b=OWbHn0kzizn8NzrF
-	fXGBxrCXmDX3Y/Qsi0M7T8yGb+AU3bfk5OrvKH3gwyMYRqr8ky6QvkdLMQIBODwh
-	XwbZtIFY68K0bH2/jyOYMntoS+l+J1Nnl/X7iCJifO1pAnC5qGGHMhdPrkcW9O+h
-	XsVLYNY09MmWAq6azJLfa91acrDEErBpxOHhMbbz8JgzofGDPdta+QvcG7e1Mx8g
-	srsf+kNKo4AHDNw4Scz4vDDhpqhqj/A8u1tspmYN/DQFQpOkhsDbtcEeMAZWip6g
-	iY9+gRW7WE/k9ru/YsoybohVq7Qamv1LT8vJ4oxZk9fgxvswer4pYIM8N5o0ZZSg
-	ka4pvg==
-Received: from mail-pg1-f200.google.com (mail-pg1-f200.google.com [209.85.215.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ay63fsuck-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 19:02:59 +0000 (GMT)
-Received: by mail-pg1-f200.google.com with SMTP id 41be03b00d2f7-bcecfea0e8aso718267a12.0
-        for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 11:02:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1765393378; x=1765998178; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=td0VzW7o41POGrX5w5apOp+GwTPefU2LMgQyzYja1BQ=;
-        b=Y5LtHSnpTA98drtuf18BnzHFuhY33/La3wxDTOi8wF5ArMmNzaNsHKdEuQnpWV5vCs
-         MjPbeofQrz06gSsTS63pknGOCXXqOLWiIGYBFzPCYxO/xCnrk+6p7MgZYSvulhA0AjfK
-         yafzdMht6/5TJi+E3HOklI/PxmOWQKHxv5nlkYaVZc1nZmdcDuJK2G0j7GNd/pu+yKBk
-         S3S/FpmerGNCQA1maElGZ0kzFTZnRqagaMR1wyML7Wv9j0tjmPA1rTx8fxV0iXaVzWm4
-         PK4zBz1l8FMUn/u+qnAKfx+3IqRsoQAIC2Tv5aXXVUAb68q5NfVPNZsxHr4t+glAIw3v
-         AIqA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765393378; x=1765998178;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=td0VzW7o41POGrX5w5apOp+GwTPefU2LMgQyzYja1BQ=;
-        b=YSgHNsG75ys88lsGi2K821eB/hIapXfnERDNjTNfGOwc2K8a79eZBgBQnkd5/Npb38
-         dLxMhbCj7MkVrCSsEZ+1IjPsGXfr5qrTAjkb+pyow5Vf31w6naCEFUBuU5QET/ZRFvjP
-         WvZrx9ePaapLGrl9nACbJoxJc5r+fuPvEXeVbq150GmAbSgP09KwZMzoyUU6xcs8+E2G
-         oGYsshJO09jDdG7uyEl6T5HgxCIZlk3yNItnlaG5JZTRP6julZ0pTgGjkZPy5ns79sSl
-         e2a3f9R2Mqedoz/gfS/CqAVjqAnzO2QhS8+ojqmbFCM9DNufZQUIECB1NaD5q4MG6fei
-         5o/g==
-X-Forwarded-Encrypted: i=1; AJvYcCWroO6q+o8EOX9myE7W5vSA6l1Z+nEkMcw+R+IdFzYqmEn67ehcw6z7FYWIpTAr9RnRjkxyzqt0k1cR@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw7my7fRtlNtkZPNqhrm/ysh2MywT1go57GZEWns+LWefvOQVFA
-	kzk53GDE2dOV9+9RY+9YG6Sv8PHkyp1+Vc5Mcj5K22k60vsJsM/Xl54SBiG9ldyk1UI3LSUCzYn
-	ItpSkHUy7gIi0/RHJDXWqXmoDXc0/9w9SeMPWjoISpSRghOdIjcD9Yk00InOEjqto7aSwxNrH
-X-Gm-Gg: AY/fxX5N+Ly8672MUrwIso7ReLU9Ma5G8AFsgNO6kegxswWoWgslgKm88CpOe+hzW5W
-	LwC2QbflHn2/bzAf9LPCq9DKxAhbaD3nVN+K6gGR90OnoU2FBRLraJCgbqdZuQFSuU2NVVNWnB8
-	cGzpNQrByNfNNk4EQAL4vxBEZH1kRZywxFEXnXVgtG4T/welYKM+P0JKb4XzNwTuTHHyqHWBBu4
-	QKCav+Za3lm2lIsSuUNW5Tcd1Omg7WMRSXBifWqiGWSmn5ahXKgcbXVxNKGjjcIxQ+ib0qh1ea0
-	r4WeBGjxyIRoq6nI02vJe/ILVIm4HRU3j80I9z52ky34J8TgsPwCxmf0A16yfzRiNoNPCITNcSv
-	rIOBx5orhZHXZj7bblRvrlT2ojxlIoj/6AYOc6rkP
-X-Received: by 2002:a17:902:ce89:b0:298:360:1662 with SMTP id d9443c01a7336-29ee7007e03mr3338585ad.1.1765393378216;
-        Wed, 10 Dec 2025 11:02:58 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGx0LI6XpTdjeda3I2G2PJF1wpjSOKHBokw37DmTTjk8eVAbBc1jgwKOEszkrbPDBn2YBEG5w==
-X-Received: by 2002:a17:902:ce89:b0:298:360:1662 with SMTP id d9443c01a7336-29ee7007e03mr3338225ad.1.1765393377651;
-        Wed, 10 Dec 2025 11:02:57 -0800 (PST)
-Received: from hu-jkona-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29eea06b49csm888225ad.95.2025.12.10.11.02.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Dec 2025 11:02:57 -0800 (PST)
-From: Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>
-Date: Thu, 11 Dec 2025 00:32:24 +0530
-Subject: [PATCH 2/2] arm64: dts: qcom: SM8750: Enable CPUFreq support
+	s=arc-20240116; t=1765393551; c=relaxed/simple;
+	bh=KDEoCCT9zD0xJYow6wdIftf1Mh3RLXNQ3swoQ7pMTPg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TWsLAH8tIVrC1FXsACVJHV+IZugyNSQcMaILzKZbo02sLZmj+1sp+6p+ZEHFhBj93imutGSf2+cH6sfZQYgoBbeTAi46jKHiNGn2xCK6oaF9G6DNO2bczfoeJRIPUTkf1uedK5duKBDhPZ9Dcy1fID1774ypMCaWx30SBPs27tM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.99)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1vTPVN-000000006DG-3tJi;
+	Wed, 10 Dec 2025 19:05:42 +0000
+Date: Wed, 10 Dec 2025 19:05:38 +0000
+From: Daniel Golle <daniel@makrotopia.org>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
+	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Frank Wunderlich <frankwu@gmx.de>,
+	Avinash Jayaraman <ajayaraman@maxlinear.com>,
+	Bing tao Xu <bxu@maxlinear.com>, Liang Xu <lxu@maxlinear.com>,
+	Juraj Povazanec <jpovazanec@maxlinear.com>,
+	"Fanni (Fang-Yi) Chan" <fchan@maxlinear.com>,
+	"Benny (Ying-Tsan) Weng" <yweng@maxlinear.com>,
+	"Livia M. Rosu" <lrosu@maxlinear.com>,
+	John Crispin <john@phrozen.org>
+Subject: Re: [PATCH RFC net-next 3/3] net: dsa: add basic initial driver for
+ MxL862xx switches
+Message-ID: <aTnEgjso87YRDlmr@makrotopia.org>
+References: <cover.1764717476.git.daniel@makrotopia.org>
+ <d92766bc84e409e6fafdc5e3505573662dc19d08.1764717476.git.daniel@makrotopia.org>
+ <c6525467-2229-4941-803d-1be5efb431c3@lunn.ch>
+ <aTmPjw83jFQXgWQt@makrotopia.org>
+ <d5ea5bee-40c5-43f5-9238-ced5ca1904b7@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251211-sm8750-cpufreq-v1-2-394609e8d624@oss.qualcomm.com>
-References: <20251211-sm8750-cpufreq-v1-0-394609e8d624@oss.qualcomm.com>
-In-Reply-To: <20251211-sm8750-cpufreq-v1-0-394609e8d624@oss.qualcomm.com>
-To: Sibi Sankar <sibi.sankar@oss.qualcomm.com>,
-        Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: Ajit Pandey <ajit.pandey@oss.qualcomm.com>,
-        Imran Shaik <imran.shaik@oss.qualcomm.com>,
-        Taniya Das <taniya.das@oss.qualcomm.com>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
-X-Proofpoint-GUID: ROT-QPQNAr5Hr_6yYZSqA2F6bjLoXn9I
-X-Authority-Analysis: v=2.4 cv=Y6P1cxeN c=1 sm=1 tr=0 ts=6939c3e3 cx=c_pps
- a=oF/VQ+ItUULfLr/lQ2/icg==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=yPp0gT2-jTIv1Hu-STYA:9
- a=QEXdDO2ut3YA:10 a=3WC7DwWrALyhR5TkjVHa:22
-X-Proofpoint-ORIG-GUID: ROT-QPQNAr5Hr_6yYZSqA2F6bjLoXn9I
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjEwMDE1NiBTYWx0ZWRfX1qdrjCyXOh0r
- wfifdla4xrMPA+oBjinxBxtsaoZgbjT7FVmOaWobvgxs0YkXgpxgfeN8NrUDzKORHqmMH+Pmc9q
- m/FFFIfacms15aCc9BaAObyJJ30R2SpcB+q+4La3AqadRRk7JNeHIZTOeNhqvY6V05T5o/0HNAe
- WphcPlLixZ7ieOMxxv2uqrKgCjJVDZykBi/yoDP3GN0f1u/I+itSTSxtOtRuldWmG98JW9yQtQU
- 40qrr1JHKnRT6PGpbUa+Xd6MCR4M6eyHdW7nvcUH7PuvPTZtUqsI8c5esWKZyrsXZuW/hp/iB/u
- 9TTWVf2cruTBad2eRaqPZWuinVy65GVBt8b2cEra3gGVwCZNY99M3U25ZfT62RuCJu866WNfA7a
- Gx2QZ0g2U9jhdm6mQoZMO4kNqMu1zw==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-10_02,2025-12-09_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 malwarescore=0 adultscore=0 spamscore=0 lowpriorityscore=0
- suspectscore=0 clxscore=1015 phishscore=0 bulkscore=0 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512100156
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <d5ea5bee-40c5-43f5-9238-ced5ca1904b7@lunn.ch>
 
-Add the cpucp mailbox, sram and SCMI nodes required to enable
-the CPUFreq support using the SCMI perf protocol on SM8750 SoCs.
+On Wed, Dec 10, 2025 at 07:56:13PM +0100, Andrew Lunn wrote:
+> > Imho it would be nice to introduce unlock __mdiodev_c45_* helpers in
+> > include/linux/mdio.h, ie.
+> > 
+> > static inline int __mdiodev_c45_read(struct mdio_device *mdiodev, int devad,
+> > 				     u16 regnum)
+> > {
+> > 	return __mdiobus_c45_read(mdiodev->bus, mdiodev->addr, devad, regnum);
+> > }
+> > 
+> > static inline int __mdiodev_c45_write(struct mdio_device *mdiodev, u32 devad,
+> > 				      u16 regnum, u16 val)
+> > {
+> > 	return __mdiobus_c45_write(mdiodev->bus, mdiodev->addr, devad, regnum,
+> > 				   val);
+> > }
+> 
+> https://elixir.bootlin.com/linux/v6.18/source/drivers/net/phy/mdio_bus.c#L531
 
-Signed-off-by: Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/sm8750.dtsi | 73 ++++++++++++++++++++++++++++--------
- 1 file changed, 57 insertions(+), 16 deletions(-)
+That's __mdiobus_c45_*, but having __mdiodev_c45_* would be nice as
+well, see above.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8750.dtsi b/arch/arm64/boot/dts/qcom/sm8750.dtsi
-index 3f0b57f428bbb388521c27d9ae96bbef3d62b2e2..ae4d768b68721c5e35aa80d1aa63a02289b72ce6 100644
---- a/arch/arm64/boot/dts/qcom/sm8750.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8750.dtsi
-@@ -35,8 +35,8 @@ cpu0: cpu@0 {
- 			reg = <0x0 0x0>;
- 			enable-method = "psci";
- 			next-level-cache = <&l2_0>;
--			power-domains = <&cpu_pd0>;
--			power-domain-names = "psci";
-+			power-domains = <&cpu_pd0>, <&scmi_dvfs 0>;
-+			power-domain-names = "psci", "perf";
- 
- 			l2_0: l2-cache {
- 				compatible = "cache";
-@@ -51,8 +51,8 @@ cpu1: cpu@100 {
- 			reg = <0x0 0x100>;
- 			enable-method = "psci";
- 			next-level-cache = <&l2_0>;
--			power-domains = <&cpu_pd1>;
--			power-domain-names = "psci";
-+			power-domains = <&cpu_pd1>, <&scmi_dvfs 0>;
-+			power-domain-names = "psci", "perf";
- 		};
- 
- 		cpu2: cpu@200 {
-@@ -61,8 +61,8 @@ cpu2: cpu@200 {
- 			reg = <0x0 0x200>;
- 			enable-method = "psci";
- 			next-level-cache = <&l2_0>;
--			power-domains = <&cpu_pd2>;
--			power-domain-names = "psci";
-+			power-domains = <&cpu_pd2>, <&scmi_dvfs 0>;
-+			power-domain-names = "psci", "perf";
- 		};
- 
- 		cpu3: cpu@300 {
-@@ -71,8 +71,8 @@ cpu3: cpu@300 {
- 			reg = <0x0 0x300>;
- 			enable-method = "psci";
- 			next-level-cache = <&l2_0>;
--			power-domains = <&cpu_pd3>;
--			power-domain-names = "psci";
-+			power-domains = <&cpu_pd3>, <&scmi_dvfs 0>;
-+			power-domain-names = "psci", "perf";
- 		};
- 
- 		cpu4: cpu@400 {
-@@ -81,8 +81,8 @@ cpu4: cpu@400 {
- 			reg = <0x0 0x400>;
- 			enable-method = "psci";
- 			next-level-cache = <&l2_0>;
--			power-domains = <&cpu_pd4>;
--			power-domain-names = "psci";
-+			power-domains = <&cpu_pd4>, <&scmi_dvfs 0>;
-+			power-domain-names = "psci", "perf";
- 		};
- 
- 		cpu5: cpu@500 {
-@@ -91,8 +91,8 @@ cpu5: cpu@500 {
- 			reg = <0x0 0x500>;
- 			enable-method = "psci";
- 			next-level-cache = <&l2_0>;
--			power-domains = <&cpu_pd5>;
--			power-domain-names = "psci";
-+			power-domains = <&cpu_pd5>, <&scmi_dvfs 0>;
-+			power-domain-names = "psci", "perf";
- 		};
- 
- 		cpu6: cpu@10000 {
-@@ -101,8 +101,8 @@ cpu6: cpu@10000 {
- 			reg = <0x0 0x10000>;
- 			enable-method = "psci";
- 			next-level-cache = <&l2_1>;
--			power-domains = <&cpu_pd6>;
--			power-domain-names = "psci";
-+			power-domains = <&cpu_pd6>, <&scmi_dvfs 1>;
-+			power-domain-names = "psci", "perf";
- 
- 			l2_1: l2-cache {
- 				compatible = "cache";
-@@ -117,8 +117,8 @@ cpu7: cpu@10100 {
- 			reg = <0x0 0x10100>;
- 			enable-method = "psci";
- 			next-level-cache = <&l2_1>;
--			power-domains = <&cpu_pd7>;
--			power-domain-names = "psci";
-+			power-domains = <&cpu_pd7>, <&scmi_dvfs 1>;
-+			power-domain-names = "psci", "perf";
- 		};
- 
- 		cpu-map {
-@@ -206,6 +206,21 @@ scm: scm {
- 			interconnects = <&aggre2_noc MASTER_CRYPTO QCOM_ICC_TAG_ALWAYS
- 					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
- 		};
-+
-+		scmi {
-+			compatible = "arm,scmi";
-+			mboxes = <&cpucp_mbox 0>, <&cpucp_mbox 2>;
-+			mbox-names = "tx", "rx";
-+			shmem = <&cpu_scp_lpri0>, <&cpu_scp_lpri1>;
-+
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			scmi_dvfs: protocol@13 {
-+				reg = <0x13>;
-+				#power-domain-cells = <1>;
-+			};
-+		};
- 	};
- 
- 	clk_virt: interconnect-0 {
-@@ -3743,6 +3758,13 @@ opp-403000000 {
- 			};
- 		};
- 
-+		cpucp_mbox: mailbox@16430000 {
-+			compatible = "qcom,sm8750-cpucp-mbox", "qcom,x1e80100-cpucp-mbox";
-+			reg = <0x0 0x16430000 0x0 0x8000>, <0x0 0x17830000 0x0 0x8000>;
-+			interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
-+			#mbox-cells = <1>;
-+		};
-+
- 		apps_rsc: rsc@16500000 {
- 			compatible = "qcom,rpmh-rsc";
- 			reg = <0x0 0x16500000 0x0 0x10000>,
-@@ -3954,6 +3976,25 @@ frame@1680d000 {
- 			};
- 		};
- 
-+		sram: sram@17b4e000 {
-+			compatible = "mmio-sram";
-+			reg = <0x0 0x17b4e000 0x0 0x400>;
-+
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0x0 0x0 0x17b4e000 0x400>;
-+
-+			cpu_scp_lpri0: scp-sram-section@0 {
-+				compatible = "arm,scmi-shmem";
-+				reg = <0x0 0x200>;
-+			};
-+
-+			cpu_scp_lpri1: scp-sram-section@200 {
-+				compatible = "arm,scmi-shmem";
-+				reg = <0x200 0x200>;
-+			};
-+		};
-+
- 		/* cluster0 */
- 		pmu@240b3400 {
- 			compatible = "qcom,sm8750-cpu-bwmon", "qcom,sdm845-bwmon";
+> > > > +	if (result < 0) {
+> > > > +		ret = result;
+> > > > +		goto out;
+> > > > +	}
+> > > 
+> > > If i'm reading mxl862xx_send_cmd() correct, result is the value of a
+> > > register. It seems unlikely this is a Linux error code?
+> > 
+> > Only someone with insights into the use of error codes by the uC
+> > firmware can really answer that. However, as also Russell pointed out,
+> > the whole use of s16 here with negative values being interpreted as
+> > errors is fishy here, because in the end this is also used to read
+> > registers from external MDIO connected PHYs which may return arbitrary
+> > 16-bit values...
+> > Someone in MaxLinear will need to clarify here.
+> 
+> It looks wrong, and since different architectures use different error
+> code values, it is hard to get right. I would suggest you just return
+> EPROTO or EIO and add a netdev_err() to print the value of result.
 
--- 
-2.34.1
+Ack, makes sense.
 
+> > > > +#define MXL862XX_API_WRITE(dev, cmd, data) \
+> > > > +	mxl862xx_api_wrap(dev, cmd, &(data), sizeof((data)), false)
+> > > > +#define MXL862XX_API_READ(dev, cmd, data) \
+> > > > +	mxl862xx_api_wrap(dev, cmd, &(data), sizeof((data)), true)
+> > > 
+> > > > +/* PHY access via firmware relay */
+> > > > +static int mxl862xx_phy_read_mmd(struct mxl862xx_priv *priv, int port,
+> > > > +				 int devadd, int reg)
+> > > > +{
+> > > > +	struct mdio_relay_data param = {
+> > > > +		.phy = port,
+> > > > +		.mmd = devadd,
+> > > > +		.reg = reg & 0xffff,
+> > > > +	};
+> > > > +	int ret;
+> > > > +
+> > > > +	ret = MXL862XX_API_READ(priv, INT_GPHY_READ, param);
+> > > 
+> > > That looks a bit ugly, using a macro as a function name. I would
+> > > suggest tiny functions rather than macros. The compiler should do the
+> > > right thing.
+> > 
+> > The thing is that the macro way allows to use MXL862XX_API_* on
+> > arbitrary types, such as the packed structs. Using a function would
+> > require the type of the parameter to be defined, which would result
+> > in a lot of code duplication in this case.
+> 
+> How many different invocations of these macros are there? For MDIO you
+> need two. How many more are there? 
+
+A lot, 80+ in total in the more-or-less complete driver, using 30+
+different __packed structs as parameters.
+
+https://github.com/dangowrt/linux/blob/mxl862xx-for-upstream/drivers/net/dsa/mxl862xx/mxl862xx.c
+
+https://github.com/dangowrt/linux/blob/mxl862xx-for-upstream/drivers/net/dsa/mxl862xx/mxl862xx-api.h
 
