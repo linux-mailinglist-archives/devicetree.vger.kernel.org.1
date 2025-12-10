@@ -1,556 +1,236 @@
-Return-Path: <devicetree+bounces-245544-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245545-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E470BCB1F7B
-	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 06:25:31 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71734CB1F83
+	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 06:26:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C5CEC300A346
-	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 05:25:26 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id A586830262C0
+	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 05:26:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 893462FF166;
-	Wed, 10 Dec 2025 05:25:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 410C13002D4;
+	Wed, 10 Dec 2025 05:25:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="t1LNYmnc"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="QYepnAMS";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Ko68ZYX0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF29D2FFF8C
-	for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 05:25:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82B1B2FC874
+	for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 05:25:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765344326; cv=none; b=PZdZwNoL5Hd7KWhq1qr5oSbTRhZg2sRdtvaJdTxbZB84LAO7b+i4HoqRvHdT1ysXvNODXqv8lALVS64Ua8qHA+1vEAVA2FErTEjQpjDVy2l1alMaz1h8PwqRtTH8PEw8wTNc8ZxpCJoPFNmdnm4OPrATRZPhtx5+kC/2WV50iXY=
+	t=1765344358; cv=none; b=UnoqkFAPHspeUp1gsTefHwEQQUJWx/SrgYENAsnnV3R+32n2tBWvXa24afiexZyCmsMZ/LfGLnEp3wJJ8vBfqD+9Y4ijOzQdfMOrceKbtgoYImUUpyXEhEKSgVbXOkRPiwQ9NBmdDFm1DT1VySz8dPexq2BYOi9EjxAK1I1s7mA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765344326; c=relaxed/simple;
-	bh=Uzz9j1WUGmfM5RgcfPHJ5+TVKTboUZVmA6U82s6nN2o=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=csLlljFZdOx3L59xvDOfkD9IUQbDYRWdLP5KhCiNMEwoTzWEOFpch8Ltxn4K2gu8XzIM/FlPIWfXbxh7yukQkNiv6Jde/b2+8bPZCfNQhh8SzlEko6Z8CWb+6C618NBsloEYw+dkicy1KJic+MewVUpPW32w5f0+7O2Z9h78Jdo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=t1LNYmnc; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-477632d9326so42990875e9.1
-        for <devicetree@vger.kernel.org>; Tue, 09 Dec 2025 21:25:23 -0800 (PST)
+	s=arc-20240116; t=1765344358; c=relaxed/simple;
+	bh=xdDdUZnOYcgCwJUZZ34tZ/A0VcSemH5Zjgu8YsJDYGE=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=JUmK5KZwpQeguMESYQ1cPM1tq49ZrvZYIKYm/nJSewF+C+Jfuk1nZkk0I2eFa/rmVukbU/K2RPD04892z7SqSGvqq5rH4iZ1hRxIMqb2uS3bTdrnX8h7q2Zqib15cELR9lGngc302jPAOYABvgYAXhCTj+AUxRVw8TZ2qSwa/o8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=QYepnAMS; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Ko68ZYX0; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BA3M52x1987456
+	for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 05:25:55 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=h4+jgRJZq4MrRRcwGvChOT
+	Hw1OOD/rCwr41pxytunco=; b=QYepnAMSds0kdHxJZKp4PpsD4A8jIzXJ6BqAv3
+	Ij5IQ+NAaiYS3Dyp8cI9Vd4rHlQ2PhT0OURXE4YVPvYPSHO15q//ZWJu0bQaullg
+	ZyJzACjicaSECGOKk2WBAX7tHI4WtYnRas12Pp1SHaa3sIq7nVSy1F8sIPh40Vkj
+	ge8zdDbKq+LfGdcMUqxu1kNZpIS7pW2nC5VENKtUfPUPmXYGhY9GRGARLKF3nGNc
+	i7zn0w1jU0d9s7eSqf91E3/aIIP+hMUE0crmil9D6MZP3MJ2DnrkDRMQW1POUaKC
+	ghgar3lMzTh7ssQieZbnzSq1ZS1tL/Bgpv+COBE2P4b3Z+WA==
+Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4axvn4h8h7-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 05:25:55 +0000 (GMT)
+Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-297f48e81b8so8190995ad.0
+        for <devicetree@vger.kernel.org>; Tue, 09 Dec 2025 21:25:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1765344322; x=1765949122; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gQnnf4/i1gXmHnGWWjHqF82jQwF8lJyYevfy5KcRtwc=;
-        b=t1LNYmncr+6S2LWP5/rJ8qfMNFm1SIsXtPPYFqE+VXxfGTVJfFbok/H0JYM49okWnl
-         locQ1ZRcd5Us7OoA2e+aebQ24vzEwoGK9gB34KzBycdO5CrTz5r5sVn0+6FUw1mAoGYM
-         yZ2Yn28MUKNvvfHU/eSBScMd3dkkeptsYWm5+qbuCElnRFuGwwmFNfSDcuk5fI251ZGD
-         NSCDDQzvKGVSDLPFqi1OcXBx0pDybooOpLYLeU6asIqe9skkNBTnekO8GId/fB0MsAu3
-         5DUAEJZAIkRGqiTDcmmfT1ltq8spcvziTQV3DDgjXNUkZy0j/TSZucj1TElD25BxS+sM
-         EX4w==
+        d=oss.qualcomm.com; s=google; t=1765344354; x=1765949154; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=h4+jgRJZq4MrRRcwGvChOTHw1OOD/rCwr41pxytunco=;
+        b=Ko68ZYX0Mo77vVdJwZGSGnhrG4EJUUNzHH4wR5LobOmL0ymFxJeMBeReesiKlIp1tx
+         Dkkw99Pv8PuyZVCagVWwmF/TS8rV+7aTGXE9mPyiYacvCSZcDeI+JV1HIAdGS1sOAzfe
+         +Ym1RA61Tj0a5nPEL+xfodSMnfFVkQvyKyLw0q733G7LzVNXgikDkIODRHazcW3z5HcT
+         ShpmYy2SdlfxmxLUCTE8DX+YVstW9nwExRXHz6iHlbBU66r6PU7seh2SDWPW7RBlaY/T
+         UQt4/NMltUukfxUREQkvxSHiTszEAVOucOgS2bvHABaarkIIBjK/9h/nGbHK+I/GoaqP
+         aPKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765344322; x=1765949122;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=gQnnf4/i1gXmHnGWWjHqF82jQwF8lJyYevfy5KcRtwc=;
-        b=aaON8KdifjlQR40n2osQJTDmEV2L+5l+FtUSMKA++TbwlH2U/wkJdVWEiFKUeDnl9U
-         ggOI/7JVr9A7ij8R5Uelejtz95qxKOM0ciqDIiYGUBfp7wWuRRycXZX9qMtQ+Bw6SIuH
-         fq09jZqsfgLtj5vJgfJWI1npJe5crwEA5Zj601Bc/PJE9DH73tk+g3XxZIwz6v019Amq
-         Xj/HqkwMuwCKky25/I3dBHGo+PwGDG0pp+5+KEGyls/sGez5dSuvg1FGmqcF3NnDguKC
-         70TEl3QaeFry5KZO6j7vYIywY4BEgCLcHGa2B5GRo9uu7Gln2qROB7lgEnLY2oW/fWdO
-         P6Tg==
-X-Forwarded-Encrypted: i=1; AJvYcCV6X5Q/XsBrPVL1bYF1m7XgVizt7ztboDyRGA52p6vNQ+JLmivbVlfSLHcyZzruUIH19OopyygwYTuB@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy626byIZ6got2MT4lvbvft8Ari8oMdyp+MODt29x6AOXLBgoF4
-	HkPZ+fVg0I7k/3rkpS90rvv59p0oon/WbpxLfVUbc9qkGIqlOe6sLevvlF2IZoqgCJQ=
-X-Gm-Gg: ASbGncvYy5XVVc/fdhORtVOuw4jccQHh6mdGaUmdJ8wyMaxQIU1c1g1tclTa3isAVWn
-	ZoU/4MF8QxNXYSeyk3uvOtbauqUJmJmwBOCxzFjwRlQ5ao0+TaRQxBkajJR9UzUuFx1XdfTFypI
-	juGzAXCt4lwWXf4JKB4XzQqPIa1wB4ESLpYVy78/CzT2mT5M8rvsCk8AtckvFeiYQYk1hZPcA4s
-	reQAAQZ5AkMtXKyJiXWnRugl6n2CSW6vgx6l+Wth4bvxywHMja9yfPXJ8mudAbTTN0d0YSBA/8/
-	0o6cA0mQaU5m8ILz6rNsqmcqpZsUk372fohuze2GtRpAjUgcLgcZh8BeOnuLF02DGk/XW5B6JfV
-	bj9k5caVzxyBBkxcca3hVUcxP3nCciI4Z0vmJbB833UGlAFX5nXawdNY3n/ICcKU/8XL0TFwfso
-	Pg/ygIt+O3lLGtjT2cKX8BKpgVepFJ3BU=
-X-Google-Smtp-Source: AGHT+IHtTQZQEOi/01wtyusFyCfqsqk26GiFjJ4zfoTrpC3Xwr4N2SeeP+sZkYfgwOyzvXl9xv3NXg==
-X-Received: by 2002:a05:600c:4ec9:b0:477:63b5:7148 with SMTP id 5b1f17b1804b1-47a8380b2e6mr10228405e9.6.1765344321760;
-        Tue, 09 Dec 2025 21:25:21 -0800 (PST)
-Received: from mai.box.freepro.com ([2a05:6e02:1041:c10:4fde:b93c:87db:86e6])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47a7d3a75a3sm33485695e9.6.2025.12.09.21.25.20
+        d=1e100.net; s=20230601; t=1765344354; x=1765949154;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=h4+jgRJZq4MrRRcwGvChOTHw1OOD/rCwr41pxytunco=;
+        b=WvFZtmeU6ukKrj59E04g4pGAMyimYekm052mgrhScYq9osPD8J4yqrFn5fFvIYlOgB
+         dZXZBV2z+2dcEEeq3TF+tVWpBDZnLb118HiYvz01shtweI0+VpFwR4AGuvloaOg6piJT
+         G/kjOMdiKLpjARV2VBG6SZKeKLK2xsHRWz2WH3862CIr4x6BeBnP6Cb464tT2eutZuk0
+         JvzkB747d0V74pG75IkiVSYz1fS0iNSSPd32bmgWfDKBsirmYreb//GkQO/7UY1ctYDG
+         pbgy5ByNFA5NES7Hmh1YNOr1lOkdPT0RRRkSivFS0yl9Sb4kAzmKBK5DevQ22vkW2RdH
+         6JmA==
+X-Forwarded-Encrypted: i=1; AJvYcCUzCb5hNzwvBmXFPAl95K9im5XnJHavIXYiCQaNgPfTP48VBfpfSLrlMvZ+3QRjWWSCrIKSuagE+KTf@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz+/sS5mSQYc8+DXjjfOyAC6JFWG6RsYw8qWSPa+agtJeUJTikQ
+	FflZla/SIA7Xoij79Kyf4jTpCem2NlpEhRTu9rZ+O0qECK6odKTY+S+euNZqY8003ngTiJQtcFY
+	VlbrDiRTNizAtJ91INLADnKctVTltwe8pgKfAr95Ju/8kbgt9Ye3bEkWuTuSyvxiJ
+X-Gm-Gg: AY/fxX7gV428ckbcM9Ep7QRrygFywKZnB1vQ4uvdCWek8ogKYeq3aFEpwz+PXYGB+31
+	SlVwiiD6mk4h7zYYB2/L1jkCPxx6cACkDcelwQ2ezMJsEDGexn1eIc5XSAcT0OPWIZd3sy4rF2O
+	8TeMoXZzbzdCp/fUP3Nvh9xTmLjL/kSe8Htwzy2rXbgi/wZx3gGmkTk5Tp4x8yBntrCy7MX0NUd
+	UJ2C5UN9hanaao/lc4TwrPpxFRSBZmORomdu94ln0hJZIkg4UtH4SIUGp44bgYQtUf0ICJvrb9r
+	OAb7+viiufQjkIp6Mt2EkYgUO+nS5b4IOoIwn1GZoY6MF/p+NJHtWBAAOi4aDvbLJpU696ay02u
+	OOzNuQn/e1mITJdRqgoqod7oJ2YsEUEWncm4=
+X-Received: by 2002:a17:903:1aab:b0:282:2c52:508e with SMTP id d9443c01a7336-29ec27f3a42mr13459945ad.8.1765344354101;
+        Tue, 09 Dec 2025 21:25:54 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEYyjbZaWOt1SfFIga+uyq6cXzyGdN4fCdqbt8UdQgQckADhNLsbaTQEK62uYp6sbBXPpZRMw==
+X-Received: by 2002:a17:903:1aab:b0:282:2c52:508e with SMTP id d9443c01a7336-29ec27f3a42mr13459525ad.8.1765344353604;
+        Tue, 09 Dec 2025 21:25:53 -0800 (PST)
+Received: from hu-hdev-hyd.qualcomm.com ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29daeae6ad1sm172644265ad.90.2025.12.09.21.25.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Dec 2025 21:25:21 -0800 (PST)
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-To: wbg@kernel.org,
-	robh@kernel.org,
-	conor+dt@kernel.org,
-	krzk+dt@kernel.org
-Cc: s32@nxp.com,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	linux-stm32@st-md-mailman.stormreply.com (moderated list:ARM/STM32 ARCHITECTURE),
-	linux-arm-kernel@lists.infradead.org (moderated list:ARM/STM32 ARCHITECTURE)
-Subject: [PATCH v2 3/3] counter: Add STM based counter
-Date: Wed, 10 Dec 2025 06:24:47 +0100
-Message-ID: <20251210052449.4154283-4-daniel.lezcano@linaro.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251210052449.4154283-1-daniel.lezcano@linaro.org>
-References: <20251210052449.4154283-1-daniel.lezcano@linaro.org>
+        Tue, 09 Dec 2025 21:25:52 -0800 (PST)
+From: Harshal Dev <harshal.dev@oss.qualcomm.com>
+Date: Wed, 10 Dec 2025 10:55:33 +0530
+Subject: [PATCH v5] arm64: dts: qcom: x1e80100: Add crypto engine
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20251210-crypto_dt_node_x1e80100-v5-1-5ad22a869a56@oss.qualcomm.com>
+X-B4-Tracking: v=1; b=H4sIAEwEOWkC/4XNwQ6CMAyA4VchOzvSdUzQk+9hDGFjyBJhuOECI
+ by7g4sXjZcmf5N+XYjXzmhPzslCnA7GG9vHEIeEqLbq75qaOjZBQMEY5lS5eRhtWY9lb2tdTkw
+ XwACoVJJVWPBciiOJ14PTjZl2+XqL3Ro/WjfvjwLftv/NwCmjeMoRAXijC36x3qfPV/VQtuvSO
+ MhGh+zDIRS/uSxyjaiBS4lKAPvCrev6Bt6TtWIUAQAA
+X-Change-ID: 20251127-crypto_dt_node_x1e80100-bcb1a2837b56
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Val Packett <val@packett.cool>,
+        Stephan Gerhold <stephan.gerhold@linaro.org>,
+        Abel Vesa <abel.vesa@oss.qualcomm.com>,
+        Udit Tiwari <quic_utiwari@quicinc.com>,
+        Neeraj Soni <quic_neersoni@quicinc.com>,
+        Wenjia Zhang <wenjia.zhang@oss.qualcomm.com>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Harshal Dev <harshal.dev@oss.qualcomm.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1765344348; l=3082;
+ i=harshal.dev@oss.qualcomm.com; s=20251124; h=from:subject:message-id;
+ bh=xdDdUZnOYcgCwJUZZ34tZ/A0VcSemH5Zjgu8YsJDYGE=;
+ b=CBs+/uHUIhz9sBnzvQBEXJBH77HK6Cf0lmef6ko4CcD12E+Nfs9Elip9eANqPy6vVLVnwcH1m
+ KVsdZrRlDp2BhbeGP0m9DxFzhD4JaheMFpn5j9RGmJYrRP60g7dGSvb
+X-Developer-Key: i=harshal.dev@oss.qualcomm.com; a=ed25519;
+ pk=SHJ8K4SglF5t7KmfMKXl6Mby40WczSeLs4Qus7yFO7c=
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjEwMDA0NSBTYWx0ZWRfX8dIH/nXbUugu
+ q0Bip+xGJUi5snenz+s8ilOq5b+/9q6CMmjJ6JEZo0Jj5ZBYYoILnHr2SY8y5GhqnzcUEbDRTJD
+ NWuOtrs4ujnkA4/Ypps7igymF/YLIcEtZ8CQkJcbY/leYqP+TZJwZ2VlQT8nx7ULABfpRoh9KQD
+ /8gLdw5djXRkdrRC0bpWaeRozK9BtJB/20YsVA7WB4ZdE5jTpB5BPtb7DqRXXkfCFafuVs9szZN
+ aMvarNuXsW9E+24/8W1Qg5Gg6t+C1md3V0EIhorYe/g6pL+eBaUd+GrysvNnGb4gALh7/arz8o9
+ bpz8udSPb30Sn5KNHhmjlfJKCYRa9csRiateahcJoT6vp02E17qgoF1YVkVSRPY3yRMOdtXYMG6
+ 1SvPZqFUuEI9LGloteaenLvCp20hww==
+X-Proofpoint-GUID: vIiXlZy9sJEtkBfyykbf6b7RnRYGGyzH
+X-Authority-Analysis: v=2.4 cv=EarFgfmC c=1 sm=1 tr=0 ts=69390463 cx=c_pps
+ a=JL+w9abYAAE89/QcEU+0QA==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8
+ a=sh6W_4nX93PCX1bT9VcA:9 a=QEXdDO2ut3YA:10 a=324X-CrmTo6CU4MGRt3R:22
+ a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-ORIG-GUID: vIiXlZy9sJEtkBfyykbf6b7RnRYGGyzH
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-09_05,2025-12-09_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 suspectscore=0 phishscore=0 bulkscore=0 impostorscore=0
+ adultscore=0 malwarescore=0 clxscore=1015 priorityscore=1501 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512100045
 
-The NXP S32G2 automotive platform integrates four Cortex-A53 cores and
-three Cortex-M7 cores, along with a large number of timers and
-counters. These hardware blocks can be used as clocksources or
-clockevents, or as timestamp counters shared across the various
-subsystems running alongside the Linux kernel, such as firmware
-components. Their actual usage depends on the overall platform
-software design.
+On X Elite, there is a crypto engine IP block similar to ones found on
+SM8x50 platforms.
 
-In a Linux-based system, the kernel controls the counter, which is a
-read-only shared resource for the other subsystems. One of its primary
-purposes is to act as a common timestamp source for messages or
-traces, allowing correlation of events occurring in different
-operating system contexts.
+Describe the crypto engine and its BAM.
 
-These changes introduce a basic counter driver that can start, stop,
-and reset the counter. It also handles overflow accounting and
-configures the prescaler value.
-
-Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+Tested-by: Wenjia Zhang <wenjia.zhang@oss.qualcomm.com>
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Signed-off-by: Harshal Dev <harshal.dev@oss.qualcomm.com>
 ---
- drivers/counter/Kconfig       |  10 +
- drivers/counter/Makefile      |   1 +
- drivers/counter/nxp-stm-cnt.c | 386 ++++++++++++++++++++++++++++++++++
- 3 files changed, 397 insertions(+)
- create mode 100644 drivers/counter/nxp-stm-cnt.c
+The dt-binding schema update for the x1e80100 compatible is here
+(already merged):
+    
+https://lore.kernel.org/all/20250213-dt-bindings-qcom-qce-x1e80100-v1-1-d17ef73a1c12@linaro.org/
+---
+Changes in v5:
+- Sorted the nodes correctly as per their unit address.
+- Collected Tested-by and Reviewed-by tags.
+- Link to v4: https://lore.kernel.org/r/20251208-crypto_dt_node_x1e80100-v4-1-f5d03bb2c501@oss.qualcomm.com
 
-diff --git a/drivers/counter/Kconfig b/drivers/counter/Kconfig
-index d30d22dfe577..bf5b281f194c 100644
---- a/drivers/counter/Kconfig
-+++ b/drivers/counter/Kconfig
-@@ -90,6 +90,16 @@ config MICROCHIP_TCB_CAPTURE
- 	  To compile this driver as a module, choose M here: the
- 	  module will be called microchip-tcb-capture.
+Changes in v4:
+- Updated iommu property to use 0x0 instead of 0x0000 in last cell.
+- Updated dma-names property by listing one dma channel name per line.
+- Use QCOM_ICC_TAG_ALWAYS symbol instead of 0 in the interconnects property.
+- Link to v3: https://lore.kernel.org/r/20251127-crypto_dt_node_x1e80100-v3-1-29722003fe83@oss.qualcomm.com
+---
+Changes in v3:
+- Fixed num-channels and qcom,num-ees properties by updating them to 20 and 4 respectively.
+- Link to v2: https://lore.kernel.org/all/20250221-x1e80100-crypto-v2-1-413ecf68dcd7@linaro.org
+Changes in v2:
+- Added EE and channels numbers in BAM node, like Stephan suggested.
+- Added v1.7.4 compatible as well.
+- Link to v1: https://lore.kernel.org/r/20250213-x1e80100-crypto-v1-1-f93afdd4025a@linaro.org
+---
+ arch/arm64/boot/dts/qcom/x1e80100.dtsi | 26 ++++++++++++++++++++++++++
+ 1 file changed, 26 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+index 51576d9c935d..7066130f242d 100644
+--- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
++++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+@@ -3760,6 +3760,32 @@ pcie4_phy: phy@1c0e000 {
+ 			status = "disabled";
+ 		};
  
-+config NXP_STM_CNT
-+	tristate "NXP System Timer Module Counter driver"
-+	depends on ARCH_S32 || COMPILE_TEST
-+	help
-+	  Select this option to enable the NXP System Timer Module
-+	  Counter driver.
-+
-+	  To compile this driver as a module, choose M here: the
-+	  module will be called nxp_stm_cnt.
-+
- config RZ_MTU3_CNT
- 	tristate "Renesas RZ/G2L MTU3a counter driver"
- 	depends on RZ_MTU3
-diff --git a/drivers/counter/Makefile b/drivers/counter/Makefile
-index 40e644948e7a..196b3c216875 100644
---- a/drivers/counter/Makefile
-+++ b/drivers/counter/Makefile
-@@ -12,6 +12,7 @@ obj-$(CONFIG_I8254)			+= i8254.o
- obj-$(CONFIG_INTEL_QEP)			+= intel-qep.o
- obj-$(CONFIG_INTERRUPT_CNT)		+= interrupt-cnt.o
- obj-$(CONFIG_MICROCHIP_TCB_CAPTURE)	+= microchip-tcb-capture.o
-+obj-$(CONFIG_NXP_STM_CNT)		+= nxp-stm-cnt.o
- obj-$(CONFIG_RZ_MTU3_CNT)		+= rz-mtu3-cnt.o
- obj-$(CONFIG_STM32_TIMER_CNT)		+= stm32-timer-cnt.o
- obj-$(CONFIG_STM32_LPTIMER_CNT)		+= stm32-lptimer-cnt.o
-diff --git a/drivers/counter/nxp-stm-cnt.c b/drivers/counter/nxp-stm-cnt.c
-new file mode 100644
-index 000000000000..4b310dbbc76f
---- /dev/null
-+++ b/drivers/counter/nxp-stm-cnt.c
-@@ -0,0 +1,386 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright 2018,2021-2025 NXP
-+ * Copyright 2025 Linaro Limited
-+ *
-+ * Author: Daniel Lezcano <daniel.lezcano@linaro.org>
-+ *
-+ * NXP S32G System Timer Module counters:
-+ *
-+ *  STM supports commonly required system and application software
-+ *  timing functions. STM includes a 32-bit count-up timer and four
-+ *  32-bit compare channels with a separate interrupt source for each
-+ *  channel. The timer is driven by the STM module clock divided by an
-+ *  8-bit prescale value (1 to 256). It has ability to stop the timer
-+ *  in Debug mode
-+ *
-+ */
-+#include <linux/bitfield.h>
-+#include <linux/clk.h>
-+#include <linux/counter.h>
-+#include <linux/interrupt.h>
-+#include <linux/io.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/of_device.h>
-+#include <linux/platform_device.h>
-+#include <linux/pm.h>
-+#include <linux/slab.h>
-+#include <linux/spinlock.h>
-+
-+#define STM_CR(__base)		(__base)
-+#define STM_CR_TEN		BIT(0)
-+#define STM_CR_FRZ		BIT(1)
-+#define STM_CR_CPS_MASK         GENMASK(15, 8)
-+
-+#define STM_CCR0(__base)	((__base) + 0x10)
-+#define STM_CCR_CEN		BIT(0)
-+
-+#define STM_CIR0(__base)	((__base) + 0x14)
-+#define STM_CIR_CIF		BIT(0)
-+
-+#define STM_CMP0(__base)	((__base) + 0x18)
-+
-+#define STM_CNT(__base)		((__base) + 0x04)
-+
-+#define STM_ENABLE_MASK	(STM_CR_FRZ | STM_CR_TEN)
-+
-+struct nxp_stm_cnt {
-+	spinlock_t lock;
-+	void __iomem *base;
-+	u64 overflow;
-+	u32 counter;
-+	u8 prescaler;
-+	bool is_started;
-+};
-+
-+static void nxp_stm_cnt_enable(struct nxp_stm_cnt *stm_cnt)
-+{
-+	u32 reg;
-+
-+	reg = readl(STM_CR(stm_cnt->base));
-+
-+	reg |= STM_ENABLE_MASK;
-+
-+	writel(reg, STM_CR(stm_cnt->base));
-+}
-+
-+static void nxp_stm_cnt_disable(struct nxp_stm_cnt *stm_cnt)
-+{
-+	u32 reg;
-+
-+	reg = readl(STM_CR(stm_cnt->base));
-+
-+	reg &= ~STM_ENABLE_MASK;
-+
-+	writel(reg, STM_CR(stm_cnt->base));
-+}
-+
-+static void nxp_stm_cnt_ccr_disable(struct nxp_stm_cnt *stm_cnt)
-+{
-+	writel(0, STM_CCR0(stm_cnt->base));
-+}
-+
-+static void nxp_stm_cnt_ccr_enable(struct nxp_stm_cnt *stm_cnt)
-+{
-+	writel(STM_CCR_CEN, STM_CCR0(stm_cnt->base));
-+}
-+
-+static void nxp_stm_cnt_set_overflow(struct nxp_stm_cnt *stm_cnt)
-+{
-+	writel(UINT_MAX, STM_CMP0(stm_cnt->base));
-+}
-+
-+static u32 nxp_stm_cnt_get_counter(struct nxp_stm_cnt *stm_cnt)
-+{
-+	return readl(STM_CNT(stm_cnt->base));
-+}
-+
-+static void nxp_stm_cnt_set_counter(struct nxp_stm_cnt *stm_cnt, u32 counter)
-+{
-+	writel(counter, STM_CNT(stm_cnt->base));
-+}
-+
-+static void nxp_stm_cnt_set_prescaler(struct nxp_stm_cnt *stm_cnt, u8 prescaler)
-+{
-+	u32 reg;
-+
-+	reg = readl(STM_CR(stm_cnt->base));
-+
-+	FIELD_MODIFY(STM_CR_CPS_MASK, &reg, prescaler);
-+
-+	writel(reg, STM_CR(stm_cnt->base));
-+}
-+
-+static u8 nxp_stm_cnt_get_prescaler(struct nxp_stm_cnt *stm_cnt)
-+{
-+	u32 reg = readl(STM_CR(stm_cnt->base));
-+
-+	return FIELD_GET(STM_CR_CPS_MASK, reg);
-+}
-+
-+static bool nxp_stm_cnt_is_started(struct nxp_stm_cnt *stm_cnt)
-+{
-+	u32 reg;
-+
-+	reg = readl(STM_CR(stm_cnt->base));
-+
-+	return !!FIELD_GET(STM_CR_TEN, reg);
-+}
-+
-+static void nxp_stm_cnt_irq_ack(struct nxp_stm_cnt *stm_cnt)
-+{
-+	writel(STM_CIR_CIF, STM_CIR0(stm_cnt->base));
-+}
-+
-+static irqreturn_t nxp_stm_cnt_irq(int irq, void *dev_id)
-+{
-+	struct nxp_stm_cnt *stm_cnt = dev_id;
-+
-+	nxp_stm_cnt_irq_ack(stm_cnt);
-+
-+	spin_lock(&stm_cnt->lock);
-+	stm_cnt->overflow++;
-+	spin_unlock(&stm_cnt->lock);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static void nxp_stm_cnt_start(struct nxp_stm_cnt *stm_cnt)
-+{
-+	nxp_stm_cnt_ccr_enable(stm_cnt);
-+	nxp_stm_cnt_set_overflow(stm_cnt);
-+	nxp_stm_cnt_enable(stm_cnt);
-+}
-+
-+static void nxp_stm_cnt_stop(struct nxp_stm_cnt *stm_cnt)
-+{
-+	nxp_stm_cnt_disable(stm_cnt);
-+	nxp_stm_cnt_irq_ack(stm_cnt);
-+	nxp_stm_cnt_ccr_disable(stm_cnt);
-+}
-+
-+static int nxp_stm_cnt_overflow_read(struct counter_device *counter,
-+				     struct counter_count *count, u64 *val)
-+{
-+	struct nxp_stm_cnt *stm_cnt = counter_priv(counter);
-+	unsigned long irqflags;
-+
-+	spin_lock_irqsave(&stm_cnt->lock, irqflags);
-+	*val = stm_cnt->overflow;
-+	spin_unlock_irqrestore(&stm_cnt->lock, irqflags);
-+
-+	return 0;
-+}
-+
-+static int nxp_stm_cnt_overflow_write(struct counter_device *counter,
-+				      struct counter_count *count, u64 val)
-+{
-+	struct nxp_stm_cnt *stm_cnt = counter_priv(counter);
-+	unsigned long irqflags;
-+
-+	spin_lock_irqsave(&stm_cnt->lock, irqflags);
-+	stm_cnt->overflow = val;
-+	spin_unlock_irqrestore(&stm_cnt->lock, irqflags);
-+
-+	return 0;
-+}
-+
-+static int nxp_stm_cnt_reset_write(struct counter_device *counter,
-+				   struct counter_count *count, u8 val)
-+{
-+	struct nxp_stm_cnt *stm_cnt = counter_priv(counter);
-+
-+	nxp_stm_cnt_set_counter(stm_cnt, 0);
-+	spin_lock(&stm_cnt->lock);
-+	stm_cnt->overflow = 0;
-+	spin_unlock(&stm_cnt->lock);
-+
-+	return 0;
-+}
-+
-+static int nxp_stm_cnt_prescaler_read(struct counter_device *counter,
-+				      struct counter_count *count, u8 *val)
-+{
-+	struct nxp_stm_cnt *stm_cnt = counter_priv(counter);
-+
-+	*val = nxp_stm_cnt_get_prescaler(stm_cnt);
-+
-+	return 0;
-+}
-+
-+static int nxp_stm_cnt_prescaler_write(struct counter_device *counter,
-+				       struct counter_count *count, u8 val)
-+{
-+	struct nxp_stm_cnt *stm_cnt = counter_priv(counter);
-+
-+	nxp_stm_cnt_set_prescaler(stm_cnt, val);
-+
-+	return 0;
-+}
-+
-+static int nxp_stm_cnt_count_enable_write(struct counter_device *counter,
-+					  struct counter_count *count, u8 enable)
-+{
-+	struct nxp_stm_cnt *stm_cnt = counter_priv(counter);
-+
-+	if (enable)
-+		nxp_stm_cnt_start(stm_cnt);
-+	else
-+		nxp_stm_cnt_stop(stm_cnt);
-+
-+	return 0;
-+}
-+
-+static int nxp_stm_cnt_count_enable_read(struct counter_device *counter,
-+					 struct counter_count *count, u8 *enable)
-+{
-+	struct nxp_stm_cnt *stm_cnt = counter_priv(counter);
-+
-+	*enable = nxp_stm_cnt_is_started(stm_cnt);
-+
-+	return 0;
-+}
-+
-+static struct counter_comp stm_cnt_count_ext[] = {
-+	COUNTER_COMP_COUNT_BOOL("reset",  NULL, nxp_stm_cnt_reset_write),
-+	COUNTER_COMP_COUNT_U8("prescaler", nxp_stm_cnt_prescaler_read, nxp_stm_cnt_prescaler_write),
-+	COUNTER_COMP_COUNT_U64("overflows", nxp_stm_cnt_overflow_read, nxp_stm_cnt_overflow_write),
-+	COUNTER_COMP_ENABLE(nxp_stm_cnt_count_enable_read, nxp_stm_cnt_count_enable_write),
-+};
-+
-+static int nxp_stm_cnt_count_read(struct counter_device *dev,
-+				  struct counter_count *count, u64 *val)
-+{
-+	struct nxp_stm_cnt *stm_cnt = counter_priv(dev);
-+
-+	*val = nxp_stm_cnt_get_counter(stm_cnt);
-+
-+	return 0;
-+}
-+
-+static const struct counter_ops nxp_stm_cnt_counter_ops = {
-+	.count_read  = nxp_stm_cnt_count_read,
-+};
-+
-+static struct counter_count nxp_stm_cnt_counts[] = {
-+	{
-+		.id = 0,
-+		.name = "stm_cnt",
-+		.ext = stm_cnt_count_ext,
-+		.num_ext = ARRAY_SIZE(stm_cnt_count_ext),
-+	},
-+};
-+
-+static int nxp_stm_cnt_suspend(struct device *dev)
-+{
-+	struct nxp_stm_cnt *stm_cnt = dev_get_drvdata(dev);
-+
-+	stm_cnt->is_started = nxp_stm_cnt_is_started(stm_cnt);
-+
-+	if (stm_cnt->is_started) {
-+		nxp_stm_cnt_stop(stm_cnt);
-+		stm_cnt->prescaler = nxp_stm_cnt_get_prescaler(stm_cnt);
-+		stm_cnt->counter = nxp_stm_cnt_get_counter(stm_cnt);
-+	}
-+
-+	return 0;
-+}
-+
-+static int nxp_stm_cnt_resume(struct device *dev)
-+{
-+	struct nxp_stm_cnt *stm_cnt = dev_get_drvdata(dev);
-+
-+	if (stm_cnt->is_started) {
-+		nxp_stm_cnt_set_counter(stm_cnt, stm_cnt->counter);
-+		nxp_stm_cnt_set_prescaler(stm_cnt, stm_cnt->prescaler);
-+		nxp_stm_cnt_start(stm_cnt);
-+	}
-+
-+	return 0;
-+}
-+
-+static DEFINE_SIMPLE_DEV_PM_OPS(nxp_stm_cnt_pm_ops, nxp_stm_cnt_suspend,
-+				nxp_stm_cnt_resume);
-+
-+static int nxp_stm_cnt_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct device_node *np = dev->of_node;
-+	struct counter_device *counter;
-+	struct nxp_stm_cnt *stm_cnt;
-+	struct clk *clk;
-+	void __iomem *base;
-+	int irq, ret;
-+
-+	base = devm_of_iomap(dev, np, 0, NULL);
-+	if (IS_ERR(base))
-+		return dev_err_probe(dev, PTR_ERR(base), "Failed to iomap %pOFn\n", np);
-+
-+	irq = platform_get_irq(pdev, 0);
-+	if (irq < 0)
-+		return dev_err_probe(dev, irq, "Failed to get IRQ\n");
-+
-+	clk = devm_clk_get_enabled(dev, NULL);
-+	if (IS_ERR(clk))
-+		return dev_err_probe(dev, PTR_ERR(clk), "Clock not found\n");
-+
-+	counter = devm_counter_alloc(dev, sizeof(*stm_cnt));
-+	if (!counter)
-+		return -ENOMEM;
-+
-+	stm_cnt = counter_priv(counter);
-+
-+	stm_cnt->base = base;
-+	stm_cnt->overflow = 0;
-+	spin_lock_init(&stm_cnt->lock);
-+
-+	counter->name       = "stm_counter";
-+	counter->parent     = &pdev->dev;
-+	counter->ops        = &nxp_stm_cnt_counter_ops;
-+	counter->counts     = nxp_stm_cnt_counts;
-+	counter->num_counts = ARRAY_SIZE(nxp_stm_cnt_counts);
-+
-+	ret = devm_request_irq(dev, irq, nxp_stm_cnt_irq, IRQF_TIMER | IRQF_NOBALANCING,
-+			       dev_name(&counter->dev), stm_cnt);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Unable to allocate interrupt line\n");
-+
-+	ret = devm_counter_add(dev, counter);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to register counter\n");
-+
-+	platform_set_drvdata(pdev, stm_cnt);
-+
-+	return 0;
-+}
-+
-+static void nxp_stm_cnt_remove(struct platform_device *pdev)
-+{
-+	struct nxp_stm_cnt *stm_cnt = platform_get_drvdata(pdev);
-+
-+	if (nxp_stm_cnt_is_started(stm_cnt))
-+		nxp_stm_cnt_stop(stm_cnt);
-+}
-+
-+static const struct of_device_id nxp_stm_cnt_of_match[] = {
-+	{ .compatible = "nxp,s32g2-stm", },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, nxp_stm_cnt_of_match);
-+
-+static struct platform_driver nxp_stm_cnt_driver = {
-+	.probe  = nxp_stm_cnt_probe,
-+	.remove = nxp_stm_cnt_remove,
-+	.driver = {
-+		.name           = "nxp-stm-cnt",
-+		.pm		= pm_sleep_ptr(&nxp_stm_cnt_pm_ops),
-+		.of_match_table = nxp_stm_cnt_of_match,
-+	},
-+};
-+module_platform_driver(nxp_stm_cnt_driver);
-+
-+MODULE_LICENSE("GPL");
-+MODULE_AUTHOR("Daniel Lezcano");
-+MODULE_DESCRIPTION("NXP System Timer Module counter driver");
-+MODULE_IMPORT_NS("COUNTER");
++		cryptobam: dma-controller@1dc4000 {
++			compatible = "qcom,bam-v1.7.4", "qcom,bam-v1.7.0";
++			reg = <0x0 0x01dc4000 0x0 0x28000>;
++			interrupts = <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH>;
++			#dma-cells = <1>;
++			iommus = <&apps_smmu 0x480 0x0>,
++				 <&apps_smmu 0x481 0x0>;
++			qcom,ee = <0>;
++			qcom,controlled-remotely;
++			num-channels = <20>;
++			qcom,num-ees = <4>;
++		};
++
++		crypto: crypto@1dfa000 {
++			compatible = "qcom,x1e80100-qce", "qcom,sm8150-qce", "qcom,qce";
++			reg = <0x0 0x01dfa000 0x0 0x6000>;
++			dmas = <&cryptobam 4>, <&cryptobam 5>;
++			dma-names = "rx",
++				    "tx";
++			iommus = <&apps_smmu 0x480 0x0>,
++				 <&apps_smmu 0x481 0x0>;
++			interconnects = <&aggre2_noc MASTER_CRYPTO QCOM_ICC_TAG_ALWAYS
++					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
++			interconnect-names = "memory";
++		};
++
+ 		tcsr_mutex: hwlock@1f40000 {
+ 			compatible = "qcom,tcsr-mutex";
+ 			reg = <0 0x01f40000 0 0x20000>;
+
+---
+base-commit: 765e56e41a5af2d456ddda6cbd617b9d3295ab4e
+change-id: 20251127-crypto_dt_node_x1e80100-bcb1a2837b56
+
+Best regards,
 -- 
-2.43.0
+Harshal Dev <harshal.dev@oss.qualcomm.com>
 
 
