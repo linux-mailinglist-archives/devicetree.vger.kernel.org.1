@@ -1,86 +1,100 @@
-Return-Path: <devicetree+bounces-245571-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245572-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6242FCB28E3
-	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 10:29:46 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE7DFCB28F5
+	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 10:31:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B563D300451F
-	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 09:25:36 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C0C6030C9211
+	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 09:27:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 308E9275105;
-	Wed, 10 Dec 2025 09:25:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F399B30507B;
+	Wed, 10 Dec 2025 09:27:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="I+uEPfHu"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="MHXEQUX1";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="GQrqDuR8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from PH7PR06CU001.outbound.protection.outlook.com (mail-westus3azon11010043.outbound.protection.outlook.com [52.101.201.43])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 546D12236E5;
-	Wed, 10 Dec 2025 09:25:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.201.43
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765358736; cv=fail; b=HTJvawL/uZ2/4VaWKJH1oWaTzgK6gKstG+zkQ1xdgaD5e11e7JvUJMrX0UhE7kAcvBdQms/4va8jPb2CNf2fZoV4G9nR4aweaw2ZzVTLr0VBjIMRMCh7BvaMQPxwEvpmsC24wgZSYzrUYw9oQVpElIsQGCINQaCNHmRBpLiPaxg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765358736; c=relaxed/simple;
-	bh=j5RSMXrz+Q9pnDbJFNi0LQaTtNH2eTQMY2WdEo2B+3I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=XtnSPWPoi08G2JzT8O/dsVm8NdAsIQpqPgNxF35I2p1r+dI1uPX7Qnm16G8j9iaR0Fr/LO09cZOV5JeiO/h98JUzY8hy3nJOJE9YGnN9SxrmnRgrO3vSPsLNdy5MwsutuEFYckPijFa3l1tASXCYJ7O6zqlQh44MIOV3HKOSuAM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=I+uEPfHu; arc=fail smtp.client-ip=52.101.201.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=S1u8Juo2eW46EpJ349ibKMQRJaLrPEvjveasJuVRvU8wJZUbHA0VsiSCZ9Tjuga0YoXl5AQB92R0ZuI7RZUdrvIih0qkZaCpsGzlX30E22inPEttvZ5s1v48J0HKX2np0X1aSmr42Ej3NlXsNYg945Ih2x49WbN3dI8Ope0bD/MeOPyaKpncfGWQ0IhJhv6lN2hQU12wExSaQnm9cBGiBorFJRlD5uHz22hNTTwtMwKfCv1QVVHH8siiVKKkTqA+ISU/4PPEGt/grRtlJXjUl7fl8shmDgKPBZGNsH+saCHuDRa+Hh1GNlT8AK1usUS15VrcKlv+VJDjZwuBkvtQ/w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZQW+pxJf6vZ6zb5vRyMEwctFIj/KU78Ai/gjoVLCVfo=;
- b=wGeH86uy034oROMuJIi8KPh9U+vLsn++njusocbA4JJP+dnmD815R2c329iGGM14b9KshCl+5dySEuKgWkO77OzXTOlL/4wqGZSMbZwU4G/gJ2boYYGRWLmuH+WrJDD0s/eywHrIyRK+Hbax8pzBB7Rs5bU4zHNQhSQwKl4hI7VDT2zgwzaxQPNrmTQjmM0AO1JUA3Vr7OvUIkb/RaRTFaLDviMA2ctx0nNVnCFdMC3eVZZ4P4O4BbNgdKqCU2/+fj7bN9NV+J2xG50aNeH2WqbnuCj2V2lpNAKq55exSg6mOU8OVnnRpGPX5zlCxRCCYnBDSTsSt5VugkVIwbMljg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.194) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZQW+pxJf6vZ6zb5vRyMEwctFIj/KU78Ai/gjoVLCVfo=;
- b=I+uEPfHugXhBYP8RTDhdoOStDWRxhb7ZvmjVEmATg2eUlngpJW2YiDUKBbrsufRkq/YLdgWFRYfaPxRtkLJ0yVxSvdM1kiDnowBfvdz8pLCFzIXC3RVuM1f6cvXXUAmfzVIogKNKoK9YmrDBQx2VWCIclv70Nl8CEnYoJl18wCk=
-Received: from SN6PR16CA0040.namprd16.prod.outlook.com (2603:10b6:805:ca::17)
- by CY8PR10MB7292.namprd10.prod.outlook.com (2603:10b6:930:7a::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9412.7; Wed, 10 Dec
- 2025 09:25:30 +0000
-Received: from SN1PEPF0002BA4D.namprd03.prod.outlook.com
- (2603:10b6:805:ca:cafe::71) by SN6PR16CA0040.outlook.office365.com
- (2603:10b6:805:ca::17) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9412.7 via Frontend Transport; Wed,
- 10 Dec 2025 09:25:30 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.194)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.23.194 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.23.194; helo=lewvzet200.ext.ti.com; pr=C
-Received: from lewvzet200.ext.ti.com (198.47.23.194) by
- SN1PEPF0002BA4D.mail.protection.outlook.com (10.167.242.70) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9388.8 via Frontend Transport; Wed, 10 Dec 2025 09:25:30 +0000
-Received: from DLEE205.ent.ti.com (157.170.170.85) by lewvzet200.ext.ti.com
- (10.4.14.103) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 10 Dec
- 2025 03:25:27 -0600
-Received: from DLEE208.ent.ti.com (157.170.170.97) by DLEE205.ent.ti.com
- (157.170.170.85) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 10 Dec
- 2025 03:25:27 -0600
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE208.ent.ti.com
- (157.170.170.97) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Wed, 10 Dec 2025 03:25:27 -0600
-Received: from [10.24.68.198] (abhilash-hp.dhcp.ti.com [10.24.68.198])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5BA9P5x32700949;
-	Wed, 10 Dec 2025 03:25:06 -0600
-Message-ID: <d3c8df6a-f9d7-4ce3-9da5-25af98be91c3@ti.com>
-Date: Wed, 10 Dec 2025 14:55:05 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 713CB2727E0
+	for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 09:27:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1765358873; cv=none; b=dAZLDUSQSNH0xm8okYbRBmSXQTIx30K107TAmO+rZPkXbEkDZ2OOaYy70i3NduEwntE+0wYt2Gc3Mz7V650T6eTOLjTQms5qwAGEFyDJ1HxdNmag2gllaZkanU2Af3bg9Plr9ztkuD9LOvBlpLNYVsY1gJMwLQ2iewmWEMY0CPs=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1765358873; c=relaxed/simple;
+	bh=ZncHYmryPePCczJvv0foKWpEDe+N1au7Gi2Dbjsh42w=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kU3pm6lxNexKCX9jq/NNGRmE2joby4MwdsA3qm8DSFI/C1UHKmguMlcDat4DrgzTfo5IwAVWHRjDDdb5PdPuB2ljLNxvnrcu2Zea5VJZaoVYM3ZtwauZCAF7LZs03TH8K0eth+VUx7qQslPS660rp2FM4s482Srrz6oKJo3S9tA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=MHXEQUX1; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=GQrqDuR8; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BA8e4Vo1564133
+	for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 09:27:51 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	d7YV5apk9L0waFuyr5a1Vu77m2o20ucLVea/0ka9hf4=; b=MHXEQUX1Bydm8kzx
+	vAdx9hO1L6TQnFs88BdDPawz5ZqVX8Q3HOd7PlT/flR6zVN+grvRsIPTrPxOmG9t
+	1X3wMPRfDl9DU46QbED5xg3P5+rn3O5OdnZkBm/SOOEYQy95Zo1GTiWaRVZhuXpI
+	FLQ0GKEqF0GUYGDLoHGD2eFKqzIpqLByuKKmo4MAemyXFCL6SSpwjETXHUkXRC+l
+	MbIyuGLG0UXQtJPYy0yZU/lAjRuT95wAul5g+qp/ME1DbkOTqfusWhcLKj0X6L3r
+	CcnDbaWeEVRonQwAP507NDzSeeDMp1MLIXjBnsGHZmqGVZ5VnNUU6B9ntMRldLBT
+	Skb4gg==
+Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4axp4vu9nb-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 09:27:51 +0000 (GMT)
+Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-297f48e81b8so11355235ad.0
+        for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 01:27:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1765358871; x=1765963671; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=d7YV5apk9L0waFuyr5a1Vu77m2o20ucLVea/0ka9hf4=;
+        b=GQrqDuR80yzswu7JrpkBu02Om3K/57RFO4mrXpCpFA7YU3y+9H4xtb65pyGY64YO1/
+         zwddsS8gV86AF0gss8loucNpNzcuUGr/NWgnFi4A9xYggZlf/oRnYUvNsXivK6NSLTrt
+         G9+EukFMwzSjAFEIhiYOsaev4OxkxbWPEpENLKu+IKPUTnH3R881yY/j1pOGS7mys/kx
+         QwRr/JY2++f9g7e35WOh4XWWyaLp5FYOJ4jOIZMQbw0AGg35AkVYjr6IYE8yPRjuVfUQ
+         Qi9xhrrsdsXzVNq6TVuv9asFoiNeK0HW7lcXhrLZQKcdi0SeUGJVhEo09vQi4Ff4vFM7
+         TuCA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765358871; x=1765963671;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=d7YV5apk9L0waFuyr5a1Vu77m2o20ucLVea/0ka9hf4=;
+        b=vcDlvs0cig5RalRz3wu8ZKzqWUSXZdKVjAT1oMFlPgTAZ6mgvhQI2TJFm80xQZQWtY
+         N6qKToyRvIVyqbppKeohPz5756VlMZGwg0Z1qbqtzN9NVnQgmsNHR5HgMhzgS3BHsmOI
+         mPZfj51dYT9a3evRvS4iFf4f4LeZL9YbdYnuNl+vb+pGGktoIbq/rfbHrHTO1ikxsDNi
+         6xrSnxDW+VqkVG40y+KrTMsfkHUystBKG9dauRPTK5a61uzJkxePT2KqxsmV8UrBj9jb
+         Jdv58DIBX/pvbQ5T9wUTw+3ZTVmLkFtSTr+B5fKZ160ScqgfhDmsuhvX2S4Lb2CtWWi7
+         dKEA==
+X-Forwarded-Encrypted: i=1; AJvYcCU9knN6ksSBAwuWkbmS0JLP8WmHYshIkRynffAIPcowa9llSiWM29jfJ8ebtLcelPybeIht3tlUB3/L@vger.kernel.org
+X-Gm-Message-State: AOJu0YwUdxU4TmJZI+u7fzNjCow2g46B9SaCM7MJyK25aI+WnnvoC0me
+	LWK6QUp7OmWtHWwUBI8/Nb+hxuQnkUG0LEMwb2ff6lABoMv9q/nNsY6XYsHA8oThaLTY/XW7cDn
+	kp0k+xE6+3s1hU0RaUs0d5MzbcaWQFHU6g+q/ABe7iBeikyftUuP2rThtG725OuNN
+X-Gm-Gg: AY/fxX6HUeAIi4H9FEvzAMGKLHvdlpKkl+8VpnglFmvgHWAXhDuvGp24RoCNzwPGSRz
+	6jwfFllIpEE6eQRTVQA6lPZVYqdbBg6fjYwn8DIkYgWoohxfJQtZlElpX3ljESOqUTQs8Koo654
+	UnJs2HvLSmY0+PHXweGwizW/nNxFi/ZNtMN5754HgWMNp0IulIUtnMbCyEfZvo0K4pRM4eFJMUi
+	Tn8XKIgtTMteXnkrr1cfHGD/uvzJem7nBGME6xABMN8unndWRp28Tq+Mo4d9ax+3n9mULCZK+kR
+	kSYqTKYCSYj1xKD9kulapjLD5W6M5jtbnYt1Ok+dKi43fsji5fJgZ5vJ/Zy8w2ZYmInEzs9CQwf
+	lgwVV7mw1JIeDruvl+RPMTQ9Gsq4=
+X-Received: by 2002:a17:903:189:b0:297:e1da:6fd6 with SMTP id d9443c01a7336-29ea03af6e3mr45488835ad.8.1765358870964;
+        Wed, 10 Dec 2025 01:27:50 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHLRkDSAmj0KFW1AhaONVqeN2xtUYqN76SVdEnUakrrP1MHG/QjQ7CSxPumuAYGWaBrEfu38Q==
+X-Received: by 2002:a17:903:189:b0:297:e1da:6fd6 with SMTP id d9443c01a7336-29ea03af6e3mr45488705ad.8.1765358870493;
+        Wed, 10 Dec 2025 01:27:50 -0800 (PST)
+Received: from [10.147.240.173] ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29dae99fa59sm180082225ad.58.2025.12.10.01.27.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 10 Dec 2025 01:27:49 -0800 (PST)
+Message-ID: <86721b44-35ee-4a14-b38e-d40a10952496@oss.qualcomm.com>
+Date: Wed, 10 Dec 2025 14:56:03 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,279 +102,62 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2 1/4] media: dt-bindings: ti,ds90ub960: Refactor port
- definitions
-To: Rob Herring <robh@kernel.org>
-CC: <tomi.valkeinen@ideasonboard.com>, <mchehab@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <hverkuil@xs4all.nl>,
-	<sakari.ailus@linux.intel.com>, <laurent.pinchart@ideasonboard.com>,
-	<hansg@kernel.org>, <mehdi.djait@linux.intel.com>, <ribalda@chromium.org>,
-	<git@apitzsch.eu>, <vladimir.zapolskiy@linaro.org>,
-	<benjamin.mugnier@foss.st.com>, <dongcheng.yan@intel.com>, <u-kumar1@ti.com>,
-	<jai.luthra@linux.dev>, <linux-media@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20251202102208.80713-1-y-abhilashchandra@ti.com>
- <20251202102208.80713-2-y-abhilashchandra@ti.com>
- <20251205151158.GA158904-robh@kernel.org>
+Subject: Re: [PATCH] arm64: dts: qcom: monaco-evk: Enable TPM (ST33)
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20251114-enable-tpm-monaco-v1-1-4ed566838698@oss.qualcomm.com>
+ <cf2dfdba-bb1d-4255-9db6-7aa6125265bb@oss.qualcomm.com>
 Content-Language: en-US
-From: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
-In-Reply-To: <20251205151158.GA158904-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF0002BA4D:EE_|CY8PR10MB7292:EE_
-X-MS-Office365-Filtering-Correlation-Id: ce2d5324-c662-4749-8fc6-08de37ce0fe1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|7416014|1800799024|376014|36860700013|82310400026;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?Q1pyTVJDNUZHUzg5RHFqWkZTL1pjZitQaXlrbkNzU2ZzdkpGOEtYbkUyblBP?=
- =?utf-8?B?NUhjbnZUdHJRTTdxeWtDWWxHazZ6MHlXaFkxY3lTd1Nwc0ZtY1NOdDZ3a0dt?=
- =?utf-8?B?NTBHTXl2Wlc4SW9SamN1VUNRTldNOWZnRmZzM1BuYTFqY1pDTTc2L3BQMENP?=
- =?utf-8?B?a2FYeVBVeE04MHQzV3pXWVVsU2F3NVNiQ3NJOSsxVEw0akZLbVYyMFpWbnJs?=
- =?utf-8?B?WkhGY0VtaHl6dGd1Zk9Gbm9IVWEwcVcrT0tKbTc1TzE2b1RxSE5vSFhKZlBt?=
- =?utf-8?B?NXNxYjRjMmNQZEhEY0lVTnlsOStjTG1mQXBXSDZSWEtPYlpNZWZZR2tKMXkr?=
- =?utf-8?B?ZlpNZjUzMEdWRHhCbkl4QTRRYVZreXY2bTRuNDFRR1JjaWxiMjRRVjVHMlFO?=
- =?utf-8?B?azNUTjlMRWhDTG1XNDBXT21FeTdHZGFreCtSTWJBeUxwQ3hIOXlLNHBJSjFp?=
- =?utf-8?B?cld0THBiSm1NRlNWenZWbktJeEI4T3ZjanhQeVN0L3dFbUU1WVV4cjhNMnRN?=
- =?utf-8?B?VlVCMWJRb0h1dzRSTlMxT0RjL1JWUUlFZWFOV2xHeHJ3WkJlK2J5L1NBdmtx?=
- =?utf-8?B?UCtudEY0ZW9CUVNjd212L0tsZVRtbWo2YysrRThoSUt4VzlvTjVWeDd0c2pa?=
- =?utf-8?B?L2cyUjZEemZkeHJ0ZVQzeW9QK3M0T1BHSUoxdlN5bE5KdTZHbnkrV3NSUHdp?=
- =?utf-8?B?U0xnVzBHb3hyUitqWTJESTlRQjEyVGZlWTN1ajZ2Z25jZHhJYUtlNDR0dDJH?=
- =?utf-8?B?bzNUK2gwRDd0aHl0a2JRYzFtWXJLZlZJMDQycVFQTWkycU1iVWRuUUZ1dm9q?=
- =?utf-8?B?WU5VZTFHb0NtaGhtSXRjaEFLMEFmUXU0N2RwbTkxWnNLdkVuTXpvbWNkM05y?=
- =?utf-8?B?elVkaXNTYS9Pd1dRNzk4cjM5bkhNdDhocWRhOXkyLzVUMFRiOXFYT3JaMDRV?=
- =?utf-8?B?RHZWL1p4ZUtxbXZkdDJqVFErVzFFSEh1bWIvUkNycW44TDBsRzBwTEI0ZDgr?=
- =?utf-8?B?WUN4SGNTeDVvRDM0T0lpY044OXgwbkNZNzhLMFlLRVF5cmx3NWtHWTJGcmhW?=
- =?utf-8?B?d1ZxZnhqZEFuTFZDaVU1cldJMUUwWHl4R0FRQUxCN1cvL1lxTjdqSmE4YjNM?=
- =?utf-8?B?VUN3UnRyZDdqNXVhTEVpK3o4U05rRUN0ZkxTUm5LcHJ5M29xbVhZcmk5QUph?=
- =?utf-8?B?MTNBdUkxMTc1d0ZrTk5tKzFIVEJpMWtmR2ZYWHMzSDBZcFNEeXBMN3N1NG9Q?=
- =?utf-8?B?YllCMTVFOFhkU2VmQXVBZTQ1U1A0YVdpZjdibFhWTE9HVkZMZzRhSzR1MnZp?=
- =?utf-8?B?MXM1R1JMNDdGeVVxa2hyOENxU3N1ekYvZmFqWVpGKzlxazh4Y284WWZXYnZ0?=
- =?utf-8?B?TE14d1dXR2FEdXZjbnllVVlEYlcyT0xNOGJzdGN1dU04SURERmU3bU9wMU8r?=
- =?utf-8?B?OERCR01JYWpYSHN3ZjNGcjJIN1R2QkkxdTBQZGRnMDQ3RFdmczB1dlY0TkVz?=
- =?utf-8?B?eHFXd2N6czVRY1NNQTBCd1BBU2tGN1c4TWI1d3hrK0RINzI0OGdVdlo5VVhJ?=
- =?utf-8?B?ZjJ0ZVcrOUtNR2xlc3BtWWdmaitYNS9NMi93ZjJHaWRMd25ObmRMK2hoTVlD?=
- =?utf-8?B?NG9vQzZRdzVuZ05XMHI0K1lBeTkxUEtzK3ZTK0U2ZjNCcFZpc0hweTdmTUJ1?=
- =?utf-8?B?NDJWbGVXbkdkZXYrcDVHeXVULzJnSFcwRVUvRU5manhGRTdLR0ZTU2pkNEl2?=
- =?utf-8?B?bmJ3c2o0ZDZNbldWbTQxU0FnRWN3a24vZndqN0JsL085b3pUYXhFWUVTK3lk?=
- =?utf-8?B?YzRGUmFvM1NHL3dvbVY0ZlFmVXB1bHFwUnVSRFF0SVhWeWVJZ1ZVUmVmdTJN?=
- =?utf-8?B?YkFWcnRNQ3dBV05OWTNjMVhLMlR1ckhSYWszU3lJeDg4YVpScHVsMnYvc2tv?=
- =?utf-8?B?TUpXZEM2N29OVlAwajE2RFo2MXNYTDJNUElSUXgwdTIwOTBmL2RsV2FPMUJp?=
- =?utf-8?B?THVFM0h5ZitRWTRRT1hCdnIwVGtXcXhia3haYWZrTHVNQmZsOEdlcUFhYm8v?=
- =?utf-8?B?aXR5WHRPbXBMK3pyZUF6ZnJ6QTF2V0VSbVFoR1ppZ1ZFS0dFOHVwTmNLaGsx?=
- =?utf-8?Q?zXMk=3D?=
-X-Forefront-Antispam-Report:
-	CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(7416014)(1800799024)(376014)(36860700013)(82310400026);DIR:OUT;SFP:1101;
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Dec 2025 09:25:30.2103
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: ce2d5324-c662-4749-8fc6-08de37ce0fe1
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.194];Helo=[lewvzet200.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SN1PEPF0002BA4D.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR10MB7292
+From: Khalid Faisal Ansari <khalid.ansari@oss.qualcomm.com>
+In-Reply-To: <cf2dfdba-bb1d-4255-9db6-7aa6125265bb@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: FRE3GJoYrg3qCYJSRx7I7Sio2Fa4srPl
+X-Proofpoint-ORIG-GUID: FRE3GJoYrg3qCYJSRx7I7Sio2Fa4srPl
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjEwMDA4MSBTYWx0ZWRfX5MKwwTFJ1v+P
+ hqmNcmsYcCvrTPtSYr20bJgAbnrL05G+OWhWdOtyECYsxGGjpczgM3KRaPEdTp92dxne2BbZsHG
+ f9E68/QJ5e12b0Axbn+mMM+AzmFcRCYu4cC0b8L9Ztm8U8WjM0pyLPd181MHzNkdQ4Xl0QCQWPg
+ npTC+3D59cxL/l/JBcz70vSREBrtd0vYDRW0ZJhCvaccIKAbxFPkAww5TpexWbzIWif/y8Apg59
+ ZEL3OULBbW+pbu4D9GK9kZ2nVGXdV16UAZqpt1nmjBZes2YHxDZUusrKYCMS6nlaCbEDrIuGESO
+ tdu2qNTIIrNpc1TE7+bXgzOZ7FFQe8xO8Y55VB6b4sGmRVhyVLI7hjmnZYtR8RioMR4znRJpW3B
+ jE3Euwd9qt2ciD4DbHcgs0IbZo+/aQ==
+X-Authority-Analysis: v=2.4 cv=IoYTsb/g c=1 sm=1 tr=0 ts=69393d17 cx=c_pps
+ a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=V94qMDdOdRTrBcetFLYA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=GvdueXVYPmCkWapjIL-Q:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-09_05,2025-12-09_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 impostorscore=0 priorityscore=1501 spamscore=0
+ lowpriorityscore=0 malwarescore=0 bulkscore=0 phishscore=0 suspectscore=0
+ clxscore=1015 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
+ definitions=main-2512100081
 
-Hi Rob,
-Thanks for the review.
+Hi Kernel Reviewers,
 
-On 05/12/25 20:41, Rob Herring wrote:
-> On Tue, Dec 02, 2025 at 03:52:05PM +0530, Yemike Abhilash Chandra wrote:
->> The current bindings duplicate the port definitions for each FPD-Link RX
->> and CSI-2 TX ports. This results in a large amount of repeated schema
->> blocks and makes it harder to extend the bindings for new devices.
+I wanted to follow up regarding the patch. It was reviewed but hasn’t 
+been applied yet. Please let me know if there’s anything pending on my 
+side or any additional changes required.
+
+Thanks
+
+On 11/15/25 03:30, Konrad Dybcio wrote:
+> On 11/14/25 11:17 AM, Khalid Faisal Ansari wrote:
+>> Enable ST33HTPM TPM over SPI10 on the Monaco IoT EVK by adding the
+>> required SPI and TPM nodes.
 >>
->> Refactor the bindings by introducing shared deftinitions for FPD-Link
->> input ports and CSI-2 output ports. No functional change intended.
->>
->> Signed-off-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+>> Signed-off-by: Khalid Faisal Ansari <khalid.ansari@oss.qualcomm.com>
 >> ---
->>   .../bindings/media/i2c/ti,ds90ub960.yaml      | 120 +++++++-----------
->>   1 file changed, 44 insertions(+), 76 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml b/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
->> index 0539d52de422..6a78288aebaa 100644
->> --- a/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
->> +++ b/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
->> @@ -125,102 +125,35 @@ properties:
->>   
->>     ports:
->>       $ref: /schemas/graph.yaml#/properties/ports
->> +    description: |
 > 
-> Don't need '|' unless you have formatting to preserve.
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 > 
-
-Understood. I will fix this in v3.
-
->> +      Ports represent FPD-Link inputs to the deserializer and CSI TX outputs from the deserializer.
->> +      Their number is model-dependent.
-> 
-> 'The number of ports is...'
-> 
-> Wrap lines at 80.
-> 
-
-I will fix this in v3.
-
-Thanks and Regards,
-Yemike Abhilash Chandra
-
->>   
->>       properties:
->>         port@0:
->> -        $ref: /schemas/graph.yaml#/$defs/port-base
->> -        unevaluatedProperties: false
->> +        $ref: '#/$defs/FPDLink-input-port'
->>           description: FPD-Link input 0
->>   
->> -        properties:
->> -          endpoint:
->> -            $ref: /schemas/media/video-interfaces.yaml#
->> -            unevaluatedProperties: false
->> -            description:
->> -              Endpoint for FPD-Link port. If the RX mode for this port is RAW,
->> -              hsync-active and vsync-active must be defined.
->> -
->>         port@1:
->> -        $ref: /schemas/graph.yaml#/$defs/port-base
->> -        unevaluatedProperties: false
->> +        $ref: '#/$defs/FPDLink-input-port'
->>           description: FPD-Link input 1
->>   
->> -        properties:
->> -          endpoint:
->> -            $ref: /schemas/media/video-interfaces.yaml#
->> -            unevaluatedProperties: false
->> -            description:
->> -              Endpoint for FPD-Link port. If the RX mode for this port is RAW,
->> -              hsync-active and vsync-active must be defined.
->> -
->>         port@2:
->> -        $ref: /schemas/graph.yaml#/$defs/port-base
->> -        unevaluatedProperties: false
->> +        $ref: '#/$defs/FPDLink-input-port'
->>           description: FPD-Link input 2
->>   
->> -        properties:
->> -          endpoint:
->> -            $ref: /schemas/media/video-interfaces.yaml#
->> -            unevaluatedProperties: false
->> -            description:
->> -              Endpoint for FPD-Link port. If the RX mode for this port is RAW,
->> -              hsync-active and vsync-active must be defined.
->> -
->>         port@3:
->> -        $ref: /schemas/graph.yaml#/$defs/port-base
->> -        unevaluatedProperties: false
->> +        $ref: '#/$defs/FPDLink-input-port'
->>           description: FPD-Link input 3
->>   
->> -        properties:
->> -          endpoint:
->> -            $ref: /schemas/media/video-interfaces.yaml#
->> -            unevaluatedProperties: false
->> -            description:
->> -              Endpoint for FPD-Link port. If the RX mode for this port is RAW,
->> -              hsync-active and vsync-active must be defined.
->> -
->>         port@4:
->> -        $ref: /schemas/graph.yaml#/$defs/port-base
->> -        unevaluatedProperties: false
->> +        $ref: '#/$defs/CSI2-output-port'
->>           description: CSI-2 Output 0
->>   
->> -        properties:
->> -          endpoint:
->> -            $ref: /schemas/media/video-interfaces.yaml#
->> -            unevaluatedProperties: false
->> -
->> -            properties:
->> -              data-lanes:
->> -                minItems: 1
->> -                maxItems: 4
->> -              link-frequencies:
->> -                maxItems: 1
->> -
->> -            required:
->> -              - data-lanes
->> -              - link-frequencies
->> -
->>         port@5:
->> -        $ref: /schemas/graph.yaml#/$defs/port-base
->> -        unevaluatedProperties: false
->> +        $ref: '#/$defs/CSI2-output-port'
->>           description: CSI-2 Output 1
->>   
->> -        properties:
->> -          endpoint:
->> -            $ref: /schemas/media/video-interfaces.yaml#
->> -            unevaluatedProperties: false
->> -
->> -            properties:
->> -              data-lanes:
->> -                minItems: 1
->> -                maxItems: 4
->> -              link-frequencies:
->> -                maxItems: 1
->> -
->> -            required:
->> -              - data-lanes
->> -              - link-frequencies
->> -
->>       required:
->>         - port@0
->>         - port@1
->> @@ -236,6 +169,41 @@ required:
->>     - clock-names
->>     - ports
->>   
->> +$defs:
->> +  FPDLink-input-port:
->> +    $ref: /schemas/graph.yaml#/$defs/port-base
->> +    unevaluatedProperties: false
->> +    description: FPD-Link input
->> +
->> +    properties:
->> +      endpoint:
->> +        $ref: /schemas/media/video-interfaces.yaml#
->> +        unevaluatedProperties: false
->> +        description:
->> +          Endpoint for FPD-Link port. If the RX mode for this port is RAW,
->> +          hsync-active and vsync-active must be defined.
->> +
->> +  CSI2-output-port:
->> +    $ref: /schemas/graph.yaml#/$defs/port-base
->> +    unevaluatedProperties: false
->> +    description: CSI-2 Output
->> +
->> +    properties:
->> +      endpoint:
->> +        $ref: /schemas/media/video-interfaces.yaml#
->> +        unevaluatedProperties: false
->> +
->> +        properties:
->> +          data-lanes:
->> +            minItems: 1
->> +            maxItems: 4
->> +          link-frequencies:
->> +            maxItems: 1
->> +
->> +        required:
->> +          - data-lanes
->> +          - link-frequencies
->> +
->>   unevaluatedProperties: false
->>   
->>   examples:
->> -- 
->> 2.34.1
->>
-
+> Konrad
 
