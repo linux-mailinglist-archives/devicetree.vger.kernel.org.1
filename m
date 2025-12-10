@@ -1,141 +1,147 @@
-Return-Path: <devicetree+bounces-245540-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245541-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AC23CB1F49
-	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 06:22:55 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC379CB1F6B
+	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 06:25:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 042C3305392C
-	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 05:22:54 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 11D43301E214
+	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 05:25:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1258E2FB97A;
-	Wed, 10 Dec 2025 05:22:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D299B2FC874;
+	Wed, 10 Dec 2025 05:25:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p6C/47DJ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EkEoGQn2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D124C26FD9B;
-	Wed, 10 Dec 2025 05:22:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15743271457
+	for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 05:25:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765344172; cv=none; b=QMD5t1BJkdgjPA3xTEKU/qXC7uaI4/TAXI9bYSlEG32Opgnrfxh6Or1sUDmQD93DvgBMxdo/kvrtM6yCF2+fr+ZMfFiXGroWiOtGIScWx1V1tKuryTXJEbX0BMpmKEOviIEQQPk9NT1/KEk9gydiseZip+aKra2vLIVZR22PeBE=
+	t=1765344314; cv=none; b=i+nkbF7+S1497UqWZ0abXRRxIbM7FpIwkAzMNFfAlYCQDLh4vZY7dChDidPi6xuPAEuzx+EtrgcnIou9YH1oZXeo4Q32ELGyN4eHfhIMmT7YsDgSDxQhAhVZq1yTFiZjTSIYoJ59J8p6KdbsmApF3aiheLNKUKvnQTJQ/EC+Gn8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765344172; c=relaxed/simple;
-	bh=agIB/Qw+TXfuVA5CgzBsNTUU04Q/gq1TKNOzawpKfcc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZXhc20FSzc4j1kpCb2wWqRCTD7bB93dOPxMdVUyQWzhrLgcaXDfnwQ2CM/O6EaaZ7Gw8HypYPJEqr+BIbVBBkUyXcx2FCppaH6yj8nlpofwKX15hXOe7OxCCIanKLnAQh7eCXVtmedsDAyzI60T1QM75aUR35KjPlX1ZOYB5pjc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p6C/47DJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 075C6C4CEF1;
-	Wed, 10 Dec 2025 05:22:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765344171;
-	bh=agIB/Qw+TXfuVA5CgzBsNTUU04Q/gq1TKNOzawpKfcc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=p6C/47DJAjwSKaUfSY78ZHwowaH5MoVfQKwpdmKSsaxFWeV3JrNQp/2HKkFnvWiAV
-	 T8fNs8ZG951plAIBFqBD3vDXLt7iXMITujNh6JOiZ3KJEwiz/VinBO18H0gMUMJMQW
-	 gHnEe8DNkAc6dg9Eg4OltvqFqK+xoVoRqbBH7lLhIbZWboM9RZeXTwI4aST486AL0D
-	 VTUlj8Qw3Tz40Jm70gQLcdRROUHhqi1jY68uu0B63vISXcbw0yxumvLrpxI37alSoF
-	 93CUWVo01mFrld2rHmQ1JUBWBjBCWRLSf3Wv2pGgYgzEYVvSKNUzp/6mpXh3fcuTeX
-	 ogmyEmikZGEHg==
-Message-ID: <471caf7c-e94a-4c8c-b6be-e4f3c51b2d3d@kernel.org>
-Date: Wed, 10 Dec 2025 06:22:46 +0100
+	s=arc-20240116; t=1765344314; c=relaxed/simple;
+	bh=e+j95jMXeUM0YV8aOFZvi80Us2v0kcLgnRw05P63QNc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=p8sA30CUN5X0tOFvElQgCLRU8SZEo2WMiC8Qwpmp+NLXUItbscbRBuvrulD/B9aV667mmgNKqlByrtZJDSNs4Pfi4NNXN7q9Wo5UIrIWtvRyUQ+kTXpxyGAPz6zsG2kNgQM13MJVwlbnBKtPEVhK68EywHbzNyhaTpNzbF600d4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=EkEoGQn2; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-4779d47be12so57504995e9.2
+        for <devicetree@vger.kernel.org>; Tue, 09 Dec 2025 21:25:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1765344311; x=1765949111; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=eGfQ3qiTzzG9reGNHg6its+3nIMomB7nNh7rZSun6mE=;
+        b=EkEoGQn2+ZJHFwir4wetRrUJKSzbyEHMDNKMmohCDhDis425tZrZdoypPmGB9NFKgm
+         62oKOrDOyvswUzru+9pxfeQh8krdOvWNW/VxiKKaTpwkBX5dSP9ywnharedQ4yOgvLOx
+         cDWV4YoLLFJOxzUBPTTfgpUtEVXBz4h4gPmh43rAm37XQ0nAPzJqc0fW47TuSEIH54gg
+         /sMYjF6oQvDXtrJtqogO4ALNcwL/Mx/tJy+qtPn1fhGRfDw15b8bPIkBx9J1JZ6uZZXk
+         QaTjHzVNStHedcGD23NwAyVryG4KMJFrbyZykUncz/Xn6J9QBhBMtG9Ad1Iade0vwfnb
+         LU+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765344311; x=1765949111;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=eGfQ3qiTzzG9reGNHg6its+3nIMomB7nNh7rZSun6mE=;
+        b=O2Nvcj1cnIeYEMBCA+E6n6JVaJYXAJuuqJkpEe5AHCDR16Cpu0doqnuCld5adr4y6g
+         Eraiz3IsRUkqCCifJe9OwiQxXIrBsdvpTk3zcmuQ+DLoGjlQbCDFCKc6UtADpB3AC5oj
+         roYWbTGy5yVwZGNXD1GOYIGjC/ZFzziztOZ0z2GA3ye39VMbWEtC9yB7GJeN7DYW5Y7f
+         2+dW4zPILdLGmdZrfK6TX1LUCFTugJS9Q/Zff05yk+VcW7BNlvhGLDPjVTUjtrqA68vj
+         xohL9jU235m1cEKMELQucK9HmP908Q88/NU0Xtsjk5YVfgOhFnSIYl1Ugrgm08fIt49n
+         mqyg==
+X-Forwarded-Encrypted: i=1; AJvYcCUmGUQeQ7ekP5jN6FOxwA+Yym8944yHqNmuxKsG8sZiGL955EaGw4BlflIULdi0jW7Y4+DGsCNnDKb0@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzl87ilMwzQCBPaR/QxoIGaxQE1OZsJBg0D206zcW/jUCzNSopg
+	XX/BLYOLJGWeQ0p68orJ7OIKUYI3TxBP0sxcuvGbzaA3IpR0ksqzk8Jqc2Y0//xfNJY=
+X-Gm-Gg: ASbGncvWNX0L5gfd961Safgy79gfmbadlbCA5mG5ykG+N4uXr7iSmzOM8BCfhwjVr0y
+	HIoLeIi4RgIkWBCK4WAXLNJiZR20hS1kvsWE1kUfP+81iAyeVMTU+B8HzAeZLUirlnKSPyRQqc7
+	Sfc0tSf3R8kha9lG3aGZhPXp0+/0EYmnJOaccC4x5z4UceoRu6hKmrXjUmLXDAHSM+t94eCKJte
+	sta60T3vLi7HplbCJq1HbK6DXdHCZjTc/MkpD613QEoZ0t+ndNSwfbLeaLOC9mzwfmm5tsHI+fw
+	AqdK54bKhDmWGoVLuTzzxAppkWqhC11voh88Hd5wwzPrBhGhhj1X70bGXCvD5MzzPJ9FQtFPMsH
+	nZ6B9pE21zIsex2bfDJchsjh1e5Xibh3y39SDqytXIwte6ejSroyHMOrAxRJlQqey/2rVhxaZ9g
+	tzJ2gUUvdiRyW+Hfnm+ICs1MoCklRWbtk=
+X-Google-Smtp-Source: AGHT+IFDRRrdDRlTyL+UUuEgDOPir+MxwY91C6SGfC4AqLJbo3UvQmoYIDZUN04cqYhCz3QTSE6IyQ==
+X-Received: by 2002:a05:600c:198a:b0:47a:80f8:82ac with SMTP id 5b1f17b1804b1-47a8385848amr10132335e9.26.1765344311432;
+        Tue, 09 Dec 2025 21:25:11 -0800 (PST)
+Received: from mai.box.freepro.com ([2a05:6e02:1041:c10:4fde:b93c:87db:86e6])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47a7d3a75a3sm33485695e9.6.2025.12.09.21.25.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 Dec 2025 21:25:09 -0800 (PST)
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+To: wbg@kernel.org,
+	robh@kernel.org,
+	conor+dt@kernel.org,
+	krzk+dt@kernel.org
+Cc: s32@nxp.com,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org
+Subject: [PATCH v2 0/3] Add the System Timer Module counter
+Date: Wed, 10 Dec 2025 06:24:44 +0100
+Message-ID: <20251210052449.4154283-1-daniel.lezcano@linaro.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] dt-bindings: PCI: loongson: Document msi-parent
- property
-To: "Rob Herring (Arm)" <robh@kernel.org>, Yao Zi <me@ziyao.cc>
-Cc: linux-pci@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
- linux-kernel@vger.kernel.org, Jiaxun Yang <jiaxun.yang@flygoat.com>,
- devicetree@vger.kernel.org, Manivannan Sadhasivam <mani@kernel.org>,
- WANG Xuerui <kernel@xen0n.name>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- loongarch@lists.linux.dev, Binbin Zhou <zhoubinbin@loongson.cn>,
- Bjorn Helgaas <bhelgaas@google.com>, Huacai Chen <chenhuacai@kernel.org>
-References: <20251209140006.54821-1-me@ziyao.cc>
- <20251209140006.54821-3-me@ziyao.cc>
- <176531999095.1292172.5473670665283409608.robh@kernel.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <176531999095.1292172.5473670665283409608.robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 09/12/2025 23:39, Rob Herring (Arm) wrote:
-> 
-> On Tue, 09 Dec 2025 14:00:06 +0000, Yao Zi wrote:
->> Loongson PCI controllers found in LS2K1000/2000 SoCs
->> (loongson,ls2k-pci), 7A1000/2000 bridge chips (loongson,ls7a-pci), and
->> RS780E bridge chips (loongson,rs780e-pci) all have their paired MSI
->> controllers.
->>
->> Though only the one in LS2K2000 SoC is described in devicetree, we
->> should document the property for all variants. For the same reason, it
->> isn't marked as required for now.
->>
->> Fixes: 83e757ecfd5d ("dt-bindings: Document Loongson PCI Host Controller")
->> Signed-off-by: Yao Zi <me@ziyao.cc>
->> ---
->>  Documentation/devicetree/bindings/pci/loongson.yaml | 2 ++
->>  1 file changed, 2 insertions(+)
->>
-> 
-> Acked-by: Rob Herring (Arm) <robh@kernel.org>
-> 
+The NXP S32 family provides a System Timer Module (STM), a 32-bit
+free-running counter clocked from a peripheral clock. The STM includes
+a prescaler and one or more compare channels generating optional
+interrupts. When used as a generic hardware counter, only the main
+free-running counter is required, while the compare channels are
+typically unused.
 
-Seems my explicit pointing towards Loongarch during OSS talk brought
-some effects...
+On S32G2 devices, the STM is exposed as a simple counter block that
+can operate continuously and be shared across subsystems such as the
+Linux kernel, firmware components running on Cortex-M7 cores, or other
+co-processors. The counter can be read atomically and provides a
+stable timestamp source to correlate events occurring in different
+execution contexts.
 
-Best regards,
-Krzysztof
+The Linux kernel controls the STM through a memory-mapped interface,
+configuring the prescaler, enabling or disabling the counter, and
+accounting for wrap-arounds. Other subsystems access the counter in
+read-only mode, making it a shared timestamp reference across the
+platform.
+
+This driver adds support for the STM when used as a counter on S32G2
+platforms. The device is described in the device tree using the
+following compatible:
+
+compatible = "nxp,s32g2-stm-cnt";
+
+The driver exposes basic counter functionality: start, stop, reset,
+prescaler configuration, and overflow handling.
+
+Changelog:
+	* v2
+	  - Added Rob's tag
+	  ** kbuild
+	  - Reordered alphabetically the headers
+	  - Added bitfield.h header
+	  - Use DEFINE_SIMPLE_DEV_PM_OPS() and pm_sleep_ptr()
+
+Daniel Lezcano (3):
+  counters: Reorder the Makefile
+  dt-bindings: counter: Add NXP System Timer Module Counter
+  counter: Add STM based counter
+
+ .../bindings/counter/nxp,s32g2-stm-cnt.yaml   |  64 +++
+ drivers/counter/Kconfig                       |  10 +
+ drivers/counter/Makefile                      |  21 +-
+ drivers/counter/nxp-stm-cnt.c                 | 386 ++++++++++++++++++
+ 4 files changed, 472 insertions(+), 9 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/counter/nxp,s32g2-stm-cnt.yaml
+ create mode 100644 drivers/counter/nxp-stm-cnt.c
+
+-- 
+2.43.0
+
 
