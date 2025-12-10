@@ -1,133 +1,134 @@
-Return-Path: <devicetree+bounces-245558-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245559-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA620CB254D
-	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 08:53:50 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1D50CB2565
+	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 08:59:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C0C933082D79
-	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 07:53:29 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5A8BD3026AF6
+	for <lists+devicetree@lfdr.de>; Wed, 10 Dec 2025 07:59:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBC472D3A60;
-	Wed, 10 Dec 2025 07:53:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B2D42E2DF2;
+	Wed, 10 Dec 2025 07:59:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="FV9tK3GH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77F8D221545
-	for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 07:53:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9502D1F12E0;
+	Wed, 10 Dec 2025 07:59:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765353208; cv=none; b=eYrgwALZ0qtGzF7QRcNOPK0GSMkbmYh54PtAn9amGPHusdjcLiEAOpBdEfZPpsCiYPTo+FOQi+xXFyqwzEfo/bls3Ze72OoHnc+QboNdv6qfflFg+NHDp4QkM2zlAQwFHn51K4J930a5dn6KWTG10RFUhazlXmoHq3hZei5wf70=
+	t=1765353576; cv=none; b=syBS1sH3OQG8tH5+nP9NK1+qiI9iowz1awqWxsxgXPx3Eb8qaIFXXzdbHGah492Sye64aKXRxM6/3Ba2CxKuFL6cxC/LG4Kw46eBDjRGy7hlAgEWKvs4FY9c2U9vPJggUeDxNXEVt3fMzEj30d5DdJQoS6SgdHL9MXYOK5RYoI0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765353208; c=relaxed/simple;
-	bh=3kuGZOTUwPOsrIgNaRKdJ33+hh3Yox1Ms/LqZ7sTvK4=;
+	s=arc-20240116; t=1765353576; c=relaxed/simple;
+	bh=Xolxt+QrhaS9hz2X8iVtg4ETZGnI8hZfmTwleP2LN90=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=V53haY/RMWtMnyCFfTOnoPBPy6S19YI2E7tDR/4tj9AlOoZR1PN+iCJlR0JZIz+zlxpO+/KPgCDvH3yoWdUy8OmCldPzVRFzJSOhbx9v3EJ4+DksfO8pCITEUgq5eVA+4DupNhvn9nFKHLHAqUIYdWryOtQqad716icJoj9q9X4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1vTF0Q-0003HH-GJ; Wed, 10 Dec 2025 08:53:02 +0100
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1vTF0O-004uxp-1R;
-	Wed, 10 Dec 2025 08:53:00 +0100
-Received: from pengutronix.de (p54b152ce.dip0.t-ipconnect.de [84.177.82.206])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id 150BD4B3A9F;
-	Wed, 10 Dec 2025 07:53:00 +0000 (UTC)
-Date: Wed, 10 Dec 2025 08:52:58 +0100
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Vincent Mailhol <mailhol@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Aswath Govindraju <a-govindraju@ti.com>, Frank Li <Frank.li@nxp.com>, linux-can@vger.kernel.org, 
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v2] dt-bindings: phy: ti,tcan104x-can: Document TI
- TCAN1046
-Message-ID: <20251210-mauve-cow-of-hurricane-0f969d-mkl@pengutronix.de>
-References: <20251209162119.2038313-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=C07k2ITdxTfqAoQbhote1Fy2jQCnX5rBg/vrCJmGh08lOQzwCJSnBkgiSviqDhjm56LOFPgWoJIyO1ci+x7aqPQ+VBxgXWcWwLeAbCZzgr23DxotRCdMQjkMzYEMEilqBsv8VdCDnfbDPMOa5E3nhVi9xC3fVh8HdhzKrIqf3u4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=FV9tK3GH; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from francesco-nb (xcpe-178-82-120-96.dyn.res.sunrise.net [178.82.120.96])
+	by mail11.truemail.it (Postfix) with ESMTPA id E40B91F928;
+	Wed, 10 Dec 2025 08:59:31 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1765353572;
+	bh=igHAM7gpcqVQ023jKZCGrSxBPCfNLJIiGNDNPhqNs6g=; h=From:To:Subject;
+	b=FV9tK3GH9+oCoarJLRn2k2gThBeYpH0UtYAnzjnzrc+jMwk/3CQRKfr5y9zSvoR2v
+	 yuY/U/ohMm+p9M4yvn9jbnNd7H9vbX7/pL7qf+zudusHBIQTjTCaIftiu/mWT+px1q
+	 tRhfubMoLByJVVJw0QPH2drk874uNOS9xu1/44lJVwFVDrfyElZj3gYt45i2eKLz4J
+	 NF/pZSp7Et9vS3zywYn+57F2ZzuHPWFwz1E3RCuRqm06z7fOc0hxAB5NEk+HeP7fX9
+	 aJL8tk/maftlYWT9XAlBgH0ylXwT21/JCE/x+mn7ah3BIqZ1E2EzjYtRIPpPpYxTxW
+	 CrZhRaKUw2duA==
+Date: Wed, 10 Dec 2025 08:59:27 +0100
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Lei Xu <lei.xu@nxp.com>
+Cc: Francesco Dolcini <francesco@dolcini.it>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, justin.jiang@nxp.com,
+	qijian.guo@nxp.com
+Subject: Re: [PATCH 2/2] arm64: dts: freescale: imx95: Add support for i.MX95
+ 15x15 FRDM board
+Message-ID: <20251210075927.GA13526@francesco-nb>
+References: <20251207-127-v1-0-5a2eeb69f150@nxp.com>
+ <20251207-127-v1-2-5a2eeb69f150@nxp.com>
+ <20251208065707.GA15128@francesco-nb>
+ <aTkbyAHjrwzTsfO8@lsvm07u0000156.swis.us-west-2.aws.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="e6urrv5hrowjmz7i"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251209162119.2038313-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <aTkbyAHjrwzTsfO8@lsvm07u0000156.swis.us-west-2.aws.nxp.com>
 
+On Tue, Dec 09, 2025 at 11:05:44PM -0800, Lei Xu wrote:
+> On Mon, Dec 08, 2025 at 07:57:07AM +0100, Francesco Dolcini wrote:
+> > On Sun, Dec 07, 2025 at 05:26:06AM -0800, Lei Xu wrote:
+> > > The i.MX95 15x15 FRDM board is a compact and cost-effective development
+> > > platform based on the i.MX95 applications processor.
+> > 
+> > ...
+> > 
+> > > diff --git a/arch/arm64/boot/dts/freescale/imx95-15x15-frdm.dts b/arch/arm64/boot/dts/freescale/imx95-15x15-frdm.dts
+> > > new file mode 100644
+> > > index 000000000000..61e815c858b8
+> > > --- /dev/null
+> > > +++ b/arch/arm64/boot/dts/freescale/imx95-15x15-frdm.dts
+> > 
+> > ...
+> > 
+> > > +
+> > > +/* Default settings in i.mx95.dtsi are for i.MX95 19x19 package.
+> > > + * Override here for the i.MX95 15x15 package.
+> > > + */
+> > > +&netc_bus0 {
+> > > +	msi-map = <0x0 &its 0x60 0x1>,	//ENETC0 PF
+> > > +		  <0x10 &its 0x61 0x1>, //ENETC0 VF0
+> > > +		  <0x20 &its 0x62 0x1>, //ENETC0 VF1
+> > > +		  <0x40 &its 0x63 0x1>, //ENETC1 PF
+> > > +		  <0x50 &its 0x65 0x1>, //ENETC1 VF0
+> > > +		  <0x60 &its 0x66 0x1>, //ENETC1 VF1
+> > > +		  <0x80 &its 0x64 0x1>, //ENETC2 PF
+> > > +		  <0xc0 &its 0x67 0x1>; //NETC Timer
+> > > +	iommu-map = <0x0 &smmu 0x20 0x1>,
+> > > +		    <0x10 &smmu 0x21 0x1>,
+> > > +		    <0x20 &smmu 0x22 0x1>,
+> > > +		    <0x40 &smmu 0x23 0x1>,
+> > > +		    <0x50 &smmu 0x25 0x1>,
+> > > +		    <0x60 &smmu 0x26 0x1>,
+> > > +		    <0x80 &smmu 0x24 0x1>,
+> > > +		    <0xc0 &smmu 0x27 0x1>;
+> > > +};
+> > 
+> > If the 19x19 and 15x15 i.MX95 requires something different you should
+> > have a different soc dtsi. Probably creating a new imx95-$something
+> > dtsi, that includes the existing imx95.dtsi and override this property.
+> > 
+> > This solution does not scale, please fix it.
+> > 
+> > Francesco
+> >
+> 
+> Hello, Francesco
+> 
+> The original comment is misleading because this configuration applies
+> to the board rather than the SoC.
 
---e6urrv5hrowjmz7i
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v2] dt-bindings: phy: ti,tcan104x-can: Document TI
- TCAN1046
-MIME-Version: 1.0
+If this is a board configuration, why it is in imx95.dtsi in the first
+place?
 
-On 09.12.2025 16:21:19, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Document the TI TCAN1046 automotive CAN transceiver. The TCAN1046 is a
-> dual high-speed CAN transceiver with sleep-mode support and no EN pin,
-> mirroring the behaviour of the NXP TJA1048, which also provides dual
-> channels and STB1/2 sleep-control lines.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
-> TCAN 1046, https://www.ti.com/lit/ds/symlink/tcan1046v-q1.pdf?ts=3D176529=
-7159307&ref_url=3Dhttps%253A%252F%252Fwww.ti.com%252Fproduct%252FTCAN1046V-=
-Q1
-> NXP TJA1048, https://www.nxp.com/docs/en/data-sheet/TJA1048.pdf
+In addition, I am interested in the topic, can you explain in more
+detail why this is needed and what is this achieving?
 
-The polarity of the standby line of the chips is different.
+Francesco
 
-You must set the correct active high/low property for the GPIO, as the
-driver uses logical levels.
-
-Reviewed-by: Marc Kleine-Budde <mkl@pengutronix.de>
-
-regards,
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---e6urrv5hrowjmz7i
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEn/sM2K9nqF/8FWzzDHRl3/mQkZwFAmk5JtcACgkQDHRl3/mQ
-kZwxIgf/eUDLIjC6LBRgFTzonAO1ySjcSPxz5b68r3lN+Fvh85PzhF0hjQKy4rJK
-y7IitOQcsYbNWhT/Fb2hQ16upPZ+OMz/TLTN5T7KL/aNCELTfXZ4byV7yklI/80j
-til6mvAf5f5XLEKDUhGZyhU5tCBYjzm1VINTonZjS184Aonvgm7yOX6KoeDBPfkj
-Uq6r7R/d2Sf5lQnyrElepWAb6no84OrBbO2uo7cHcp/xSOhjFsXo6usk2Xf0QJWL
-XywgDNwNbmmqSg1T8Svsq9hSiG+Zpd73xpCxUmxC1sbtvxNo3ktlgOvBW73mTdwr
-VllmqGd0XH9U5dYp6Con58PNS3VWGg==
-=IgJz
------END PGP SIGNATURE-----
-
---e6urrv5hrowjmz7i--
 
