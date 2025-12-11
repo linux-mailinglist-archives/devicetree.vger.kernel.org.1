@@ -1,82 +1,81 @@
-Return-Path: <devicetree+bounces-245848-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245849-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 349E7CB6056
-	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 14:29:21 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1C89CB6074
+	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 14:30:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 331573003077
-	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 13:29:20 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 693783030918
+	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 13:29:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C404E313E0C;
-	Thu, 11 Dec 2025 13:29:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3420531355C;
+	Thu, 11 Dec 2025 13:29:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="csHQqq6T"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="CaGRNucx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A94BF313294
-	for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 13:29:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6F5B2FC881
+	for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 13:29:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765459758; cv=none; b=kxad7dcROCVYe0VXQjv4jkeLEfGgnUWgTO1dukUuaigXZ7Z5fVfa3Si0TRa1m61+w4pRXwQGt/EfEGSL89+H3yzDFEBxUgwt9MIDY2U89Xdek+e3W0j92eaNZZffUmlM9KLXmxrfji7Fszp9gZzaV1LC97hYaIJp6VlptxJPQ3o=
+	t=1765459762; cv=none; b=YZak3PWgDcYalDI1LjLtN3FBlzTxR6a92xDi0yfd76o42IVTO0THKUAZTp1ZI3f6SfqhsNwBKEK3asIItYAbrHFffOT+chrFv+rodh26JGDyC9YytggasMAUpPwO+dfQ+QqfEDccgUYoA3an24vLXpG3MN/HbJ0ZsrAmmZN5N70=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765459758; c=relaxed/simple;
-	bh=GC52vdlrMOCjvAl4e8rzaU0FUykCrlzn0zAFAvejcPI=;
+	s=arc-20240116; t=1765459762; c=relaxed/simple;
+	bh=ojJInOep1VLoL9h+fD5rBM8sQU+rlkYFjbP0Rr11rb8=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=pVEsA/OJ1wrz7k1m8gwZuWTnSnrFsnMjPiaDtGNz1xEB4zMGMzDXcLzwM/S5bipGS9E0ZlfFo0A9ytkrRWHcUk41NqFhpGNt/iLNY7Mpi2/Auu4Newg3p2H2plPNUHMmc6sN2umVd/cW+HNawIZVZIyHM925IWiM/Z+8p62Znws=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=csHQqq6T; arc=none smtp.client-ip=209.85.208.44
+	 To:Cc:Content-Type; b=SK8DwsCHqfeqV5N11s7tqGTY0V8Y7hXJSXav/Zq9sOV+B7jS+W7f67Ril5WXKIIfHusL3RBwy+k5YpgjLbotkzQGLTqg15owydey2A1mpGUWnUtfFbOGviuJYvFnKzHpXcjtWphaDRpDFquTzqK4jr7loUUYkwujdKjsP4+Jrq4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=CaGRNucx; arc=none smtp.client-ip=209.85.208.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-644f90587e5so170190a12.0
-        for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 05:29:16 -0800 (PST)
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-6495e5265c9so155703a12.0
+        for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 05:29:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1765459755; x=1766064555; darn=vger.kernel.org;
+        d=chromium.org; s=google; t=1765459758; x=1766064558; darn=vger.kernel.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=iZd9JSxTLfqAEQ8kerPa/TuPf6DF4xFDdQfs8AMcfNc=;
-        b=csHQqq6TLEKCMZy8oRJsVZhd/VEoAC0+Aq4ioHyQTcy1qXfCZdalnvVNxMMGImm0PL
-         6p5rXaEoYAIKduj/48gBTGHyb8pccb5mjBjemCqR3cQRT84RRPt04v+saJ/aLmCCKVrm
-         DSoAad8U7fPzQ0WjfWloYtSJ0CQViQfMiPLRs=
+        bh=40J2ufHoRtplJjSJlhlkCbvquopI47IOlsToESLd6RQ=;
+        b=CaGRNucxGZV1EsP8+WOMWwVBb+CcctYdLuGG3lT6PoDoHwIQVWuNpJqdJgFznT9jkc
+         Y98DMN5swJiVXdUB4znRBTVLH5QBXC2OUebBVdDOWmwVVqkDvyeJy4PhL7jNUrdDW2AF
+         b9sZmVAXZ1WoTkjsUDpqQz+HAxiEbcmBym1Og=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765459755; x=1766064555;
+        d=1e100.net; s=20230601; t=1765459758; x=1766064558;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=iZd9JSxTLfqAEQ8kerPa/TuPf6DF4xFDdQfs8AMcfNc=;
-        b=wh7KLE7zw6lYsnbtDu1N1GSs9bfYQ8pO4dLa8QLPGSSdfkvgYQy/QqorfJlmu4ytBG
-         7BpU4uWflZ9IRd57YOQSI8WoiELlp5MPsQ9auSNwxGxOU3e+nsS6Dre4LDtvEkH4I4RJ
-         +mOipPvlEcGAOdinPvlYVbVx/eLS50mja57ulY9ZUPkP3ZBecW27GHsYIb1Eo9Mc8Rca
-         kpmIKxn3USELhzZPazJRVzxOjMOp24LeEpILMXUdPe+FVJNhUk8FFVkAPXGGGVVCgdCq
-         DpbsxvSTDzcFIW3VPZZvu//+LvAsPn/X9uoVdKVJKRGJaYx1InT6jC91Sb9BGqD0yFIP
-         P15A==
-X-Forwarded-Encrypted: i=1; AJvYcCVZ97D6gu0dxYr/lr4GUvDQOy3a9HmZv/R3RC3++dveYbHdVcNTRZjgyIl1cOVBepD/9NvanQAJokBr@vger.kernel.org
-X-Gm-Message-State: AOJu0YyRhYk/X5i0jTUnVmbivNEyldX0VcfhG4+EE0SLXCE+/N6jDbhN
-	rq3YC2ZGCbT/OeCzEW6v5rW2EuenRPavClXXhDXAsstb/LR+6gmn9Wruz2qadrwiBl2qNcH0pLj
-	FWm70Vl+iF2EIsQycUFc3P8pUCgZT0AjWEuNHTpAo
-X-Gm-Gg: AY/fxX7KgIUEylqLNdkxTeAUk8r/tjyuy7cadntT+UhkWWvm6NLaYdpz7Z2aw4UK6VM
-	nnYsMU5X510pefZmXybZa5Vhpgjrthk++8F6dc5Pp8MZeGKYhE4Jc8reaYULx4cEJ7eT4YX+XJ3
-	gXTMCnnpz5Ow2paFgP29FTaJpmyXPpsNYzWXhtciuleaA/NrxQ2y3v+2v4aDVi8gTQEJkfVVbCd
-	tUkI/TXO92MPwwYuV+X8CgEjAzQRNIsicDYkN5s0yi9p+FZnche5inNFcQfL7WQxn82HG3LHhbL
-	uSK8
-X-Google-Smtp-Source: AGHT+IEuv3tebhZIRlzQWAPBE+dSHTINZTdfGtZ3PA3haPFLoHb5OV390vNmFdrv9z8I1+SlzrtdMYHkubaZaYo7/sU=
-X-Received: by 2002:a05:6402:3508:b0:641:1d64:8dce with SMTP id
- 4fb4d7f45d1cf-6496cbc4315mr5231506a12.17.1765459754896; Thu, 11 Dec 2025
- 05:29:14 -0800 (PST)
+        bh=40J2ufHoRtplJjSJlhlkCbvquopI47IOlsToESLd6RQ=;
+        b=LcNW8tTB3hll94T/lp+lL544VvuoBCiy3TQRXq6ZTulNQfgDqrSwGe7on+FUATqvFi
+         57EfxDVZW3UAkiJ4EnQn5zH7BzHE9kc/l22MhuDeuzXLhUNmltBRYa8SrH+DigtrggWB
+         8PBQ3xRVoxzDeVY/fOZC54U75aeUHo2sv4PeRHVSWMutjniPOmoBspwd2XoOAli0mTwu
+         lASZTggnvO8ayq16g+9qqytgR4jwTRR7xuGDxL6gYad1/XtT7DyhbRoV9xd0GFRnqZMi
+         PJUonK7npxTHFFGGPFXaedjWWtcedwSnkYclzclNIKh7Zr2QSbsYdyCyjoKhQLS/i2y6
+         SBug==
+X-Forwarded-Encrypted: i=1; AJvYcCWwQFLvyWADBuOn5CwtrY4Zi4wy902FDplFDcp1XcNDnrWOJiKJe9LhqBiExfAd45od54jbHKOyHY5n@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzc9apAqPso8mmKriZxNvb6pMmuQ9hjFgAOs2pg3b92z9WOMKR0
+	LmZUQ6YS5clgAChz5d7+8bFK9kp4OvOX8FGaypiRRKZD3DOWqhiJQ0m9TeKY48qGj/WxAwvRKZ2
+	H76nC0r/FGrjjiOf1Ie/uoYP9cCWIo0ULOQrSS9wyLE0KHyZyCHg=
+X-Gm-Gg: AY/fxX7/+gPJxOigw4T0ADNaBfXgDFP0EjM/3JfTSKRWPN6PCD/0kFXbTUnfIY333z1
+	BlYpGlHAmHvpnQqGJXHX+ZrSldlpp3bSIy3WCqDfQKIMHE588gjLAbqgsg0pidpvIxSl1Hngvbn
+	r2Ne1K+irPBPMRL3E77+3iYliOJvqcdYIhLRctsx2JA4f9aRL5RsZH0SqcUywxJ88SHvfj/vZoo
+	MTT9Vncf1VH4GiGmyJ4+O2RTmWa0UjZWZPalTEZjCsqrCBFkIeJqibZOKQznMUfY9qrqA==
+X-Google-Smtp-Source: AGHT+IFOJf7KsX1gencvXlznomNuZ47WJRKUVY0snnRl9GGqsPTHs1K0HSR+8cnk6z5dt0Wl//1dZqiYxyZLB7dcvGM=
+X-Received: by 2002:a05:6402:50cb:b0:641:1cd6:fee9 with SMTP id
+ 4fb4d7f45d1cf-6496cb6b810mr5048329a12.1.1765459758184; Thu, 11 Dec 2025
+ 05:29:18 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251209154706.529784-1-fabiobaltieri@chromium.org> <20251209154706.529784-3-fabiobaltieri@chromium.org>
-In-Reply-To: <20251209154706.529784-3-fabiobaltieri@chromium.org>
+References: <20251209154706.529784-1-fabiobaltieri@chromium.org> <20251209154706.529784-2-fabiobaltieri@chromium.org>
+In-Reply-To: <20251209154706.529784-2-fabiobaltieri@chromium.org>
 From: Simon Glass <sjg@chromium.org>
-Date: Thu, 11 Dec 2025 06:29:01 -0700
-X-Gm-Features: AQt7F2qBWeYaN0u_VBKcb-i_m0I-6rgQQIPctWT0S1pBtt7pqVSJ69wvkHmUQvk
-Message-ID: <CAFLszThUU4hfb4vY4mmGHQadRKThG3e=9cAKRy_ampKwA_XNcA@mail.gmail.com>
-Subject: Re: [PATCH v1 2/3] Input: cros_ec_keyb: add function key support
+Date: Thu, 11 Dec 2025 06:29:04 -0700
+X-Gm-Features: AQt7F2q39jfzfQcSjoh2PhZIB0p10Hq4RkLwBSMZXGJoO0Utb3wqUiNtN-ClMDg
+Message-ID: <CAFLszThG_iHbm3A=X585_SVpLgWVqoAC9j_qJAG4yrJxfkG5Cg@mail.gmail.com>
+Subject: Re: [PATCH v1 1/3] Input: cros_ec_keyb: clarify key event error message
 To: Fabio Baltieri <fabiobaltieri@chromium.org>
 Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
@@ -86,293 +85,36 @@ Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>,
 	linux-kernel@vger.kernel.orga
 Content-Type: text/plain; charset="UTF-8"
 
-Hi Fabio!
-
 On Tue, 9 Dec 2025 at 08:47, Fabio Baltieri <fabiobaltieri@chromium.org> wrote:
 >
-> Add support for handling an Fn button and sending separate keycodes for
-> a subset of keys in the matrix.
+> Reword one of the key event error messages to clarify its meaning: it's
+> not necessarily an incomplete message, more of a mismatch length.
+> Clarify that and log the expected and received length too.
 >
 > Signed-off-by: Fabio Baltieri <fabiobaltieri@chromium.org>
 > ---
->  drivers/input/keyboard/cros_ec_keyb.c | 190 ++++++++++++++++++++++++--
->  1 file changed, 176 insertions(+), 14 deletions(-)
+>  drivers/input/keyboard/cros_ec_keyb.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+
+Reviewed-by: Simon Glass <simon.glass@canonical.com>
+
+
 >
 > diff --git a/drivers/input/keyboard/cros_ec_keyb.c b/drivers/input/keyboard/cros_ec_keyb.c
-> index 2822c592880b..b0965e5d20de 100644
+> index 1c6b0461dc35..2822c592880b 100644
 > --- a/drivers/input/keyboard/cros_ec_keyb.c
 > +++ b/drivers/input/keyboard/cros_ec_keyb.c
-> @@ -29,6 +29,14 @@
+> @@ -269,7 +269,8 @@ static int cros_ec_keyb_work(struct notifier_block *nb,
 >
->  #include <linux/unaligned.h>
->
-> +/* Maximum number of Fn keys, limited by the key status mask size. */
-> +#define CROS_EC_FN_KEYMAP_MAX 32
-> +
-> +/* Maximum size of the normal key matrix, this is limited by the host command
-> + * key_matrix field defined in ec_response_get_next_data_v3
-> + */
-> +#define CROS_EC_KEYBOARD_COLS_MAX 18
-> +
->  /**
->   * struct cros_ec_keyb - Structure representing EC keyboard device
->   *
-> @@ -44,6 +52,13 @@
->   * @bs_idev: The input device for non-matrix buttons and switches (or NULL).
->   * @notifier: interrupt event notifier for transport devices
->   * @vdata: vivaldi function row data
-> + * @fn_key: coordinate of the function key
-> + * @fn_keymap: array of coordinate and codes for the function keys
-> + * @fn_keymap_len: number of entries in the fn_keymap array
-> + * @fn_key_status: active function keys bitmap
-> + * @normal_key_status: active normal keys bitmap
-> + * @fn_key_pressed: tracks the function key status
-> + * @fn_key_triggered: tracks where any function key fired
->   */
->  struct cros_ec_keyb {
->         unsigned int rows;
-> @@ -61,6 +76,14 @@ struct cros_ec_keyb {
->         struct notifier_block notifier;
->
->         struct vivaldi_data vdata;
-> +
-> +       uint32_t fn_key;
-
-Normally we use u32/u8 these days
-
-> +       uint32_t *fn_keymap;
-> +       int fn_keymap_len;
-> +       uint32_t fn_key_status;
-> +       uint8_t normal_key_status[CROS_EC_KEYBOARD_COLS_MAX];
-> +       bool fn_key_pressed;
-> +       bool fn_key_triggered;
->  };
->
->  /**
-> @@ -166,16 +189,108 @@ static bool cros_ec_keyb_has_ghosting(struct cros_ec_keyb *ckdev, uint8_t *buf)
->         return false;
->  }
->
-> +static bool cros_ec_key_is(int row, int col, uint32_t key)
-> +{
-> +       if (row == KEY_ROW(key) && col == KEY_COL(key))
-> +               return true;
-> +
-> +       return false;
-> +}
-> +
-> +static void cros_ec_keyb_process_one(struct cros_ec_keyb *ckdev,
-> +                                    int row, int col, bool state)
-> +{
-> +       struct input_dev *idev = ckdev->idev;
-> +       const unsigned short *keycodes = idev->keycode;
-> +       int pos = MATRIX_SCAN_CODE(row, col, ckdev->row_shift);
-> +       unsigned int code = keycodes[pos];
-> +
-> +       dev_dbg(ckdev->dev, "changed: [r%d c%d]: byte %02x\n", row, col, state);
-> +
-> +       if (ckdev->fn_keymap) {
-> +               if (cros_ec_key_is(row, col, ckdev->fn_key)) {
-> +                       ckdev->fn_key_pressed = state;
-> +
-> +                       if (state) {
-> +                               ckdev->fn_key_triggered = false;
-> +                       } else if (!ckdev->fn_key_triggered) {
-> +                               /*
-> +                                * Send the original code if nothing else has
-> +                                * been pressed together with Fn.
-> +                                */
-> +                               input_event(idev, EV_MSC, MSC_SCAN, pos);
-> +                               input_report_key(idev, code, true);
-> +                               input_sync(ckdev->idev);
-
-What is this function? I might be missing a patch?
-
-> +
-> +                               input_event(idev, EV_MSC, MSC_SCAN, pos);
-> +                               input_report_key(idev, code, false);
-> +                       }
-> +
-> +                       return;
-> +               }
-> +
-> +               if (!state) {
-> +                       /* Key release, may need to release the Fn code */
-> +                       for (int i = 0; i < ckdev->fn_keymap_len; i++) {
-> +                               if (!cros_ec_key_is(row, col,
-> +                                                   ckdev->fn_keymap[i]))
-> +                                       continue;
-> +
-> +                               if ((ckdev->fn_key_status & BIT(i)) == 0)
-> +                                       continue;
-> +
-> +                               code = KEY_VAL(ckdev->fn_keymap[i]);
-> +                               ckdev->fn_key_status &= ~BIT(i);
-> +
-> +                               input_event(idev, EV_MSC, MSC_SCAN, pos);
-> +                               input_report_key(idev, code, state);
-> +
-> +                               return;
-> +                       }
-> +
-> +                       if ((ckdev->normal_key_status[col] & BIT(row)) == 0)
-> +                               /* Discard, key press code was not sent */
-> +                               return;
-> +               } else if (ckdev->fn_key_pressed) {
-> +                       /* Key press while holding Fn */
-> +                       ckdev->fn_key_triggered = true;
-> +
-> +                       for (int i = 0; i < ckdev->fn_keymap_len; i++) {
-> +                               if (!cros_ec_key_is(row, col,
-> +                                                   ckdev->fn_keymap[i]))
-> +                                       continue;
-> +
-> +                               code = KEY_VAL(ckdev->fn_keymap[i]);
-> +                               ckdev->fn_key_status |= BIT(i);
-> +
-> +                               input_event(idev, EV_MSC, MSC_SCAN, pos);
-> +                               input_report_key(idev, code, state);
-> +
-> +                               return;
-> +                       }
-> +
-> +                       /* Do not emit a code if the key is not mapped */
-> +                       return;
-> +               }
-> +       }
-
-I think this function could do with splitting a bit
-
-> +
-> +       if (state)
-> +               ckdev->normal_key_status[col] |= BIT(row);
-> +       else
-> +               ckdev->normal_key_status[col] &= ~BIT(row);
-> +
-> +       input_event(idev, EV_MSC, MSC_SCAN, pos);
-> +       input_report_key(idev, code, state);
-> +}
->
->  /*
->   * Compares the new keyboard state to the old one and produces key
-> - * press/release events accordingly.  The keyboard state is 13 bytes (one byte
-> - * per column)
-> + * press/release events accordingly.  The keyboard state is one byte
-> + * per column.
->   */
->  static void cros_ec_keyb_process(struct cros_ec_keyb *ckdev,
->                          uint8_t *kb_state, int len)
->  {
-> -       struct input_dev *idev = ckdev->idev;
->         int col, row;
->         int new_state;
->         int old_state;
-> @@ -192,20 +307,13 @@ static void cros_ec_keyb_process(struct cros_ec_keyb *ckdev,
->
->         for (col = 0; col < ckdev->cols; col++) {
->                 for (row = 0; row < ckdev->rows; row++) {
-> -                       int pos = MATRIX_SCAN_CODE(row, col, ckdev->row_shift);
-> -                       const unsigned short *keycodes = idev->keycode;
-> -
->                         new_state = kb_state[col] & (1 << row);
->                         old_state = ckdev->old_kb_state[col] & (1 << row);
-> -                       if (new_state != old_state) {
-> -                               dev_dbg(ckdev->dev,
-> -                                       "changed: [r%d c%d]: byte %02x\n",
-> -                                       row, col, new_state);
->
-> -                               input_event(idev, EV_MSC, MSC_SCAN, pos);
-> -                               input_report_key(idev, keycodes[pos],
-> -                                                new_state);
-> -                       }
-> +                       if (new_state == old_state)
-> +                               continue;
-> +
-> +                       cros_ec_keyb_process_one(ckdev, row, col, new_state);
+>                 if (ckdev->ec->event_size != ckdev->cols) {
+>                         dev_err(ckdev->dev,
+> -                               "Discarded incomplete key matrix event.\n");
+> +                               "Discarded key matrix event, unexpected length: %d != %d\n",
+> +                               ckdev->ec->event_size, ckdev->cols);
+>                         return NOTIFY_OK;
 >                 }
->                 ckdev->old_kb_state[col] = kb_state[col];
->         }
-> @@ -604,6 +712,12 @@ static int cros_ec_keyb_register_matrix(struct cros_ec_keyb *ckdev)
->         if (err)
->                 return err;
 >
-> +       if (ckdev->cols > CROS_EC_KEYBOARD_COLS_MAX) {
-> +               dev_err(dev, "keypad,num-columns too large: %d (max: %d)\n",
-> +                       ckdev->cols, CROS_EC_KEYBOARD_COLS_MAX);
-> +               return -EINVAL;
-> +       }
-> +
->         ckdev->valid_keys = devm_kzalloc(dev, ckdev->cols, GFP_KERNEL);
->         if (!ckdev->valid_keys)
->                 return -ENOMEM;
-> @@ -660,6 +774,47 @@ static int cros_ec_keyb_register_matrix(struct cros_ec_keyb *ckdev)
->         return 0;
->  }
->
-> +static int cros_ec_keyb_register_fn_keys(struct cros_ec_keyb *ckdev)
-> +{
-> +       struct device *dev = ckdev->dev;
-> +       uint32_t fn_key;
-> +       uint32_t *keymap;
-> +       int keymap_len;
-> +       int ret;
-> +
-> +       if (!(device_property_present(dev, "fn-key") &&
-> +             device_property_present(dev, "fn-keymap")))
-> +               return 0;
-> +
-> +       device_property_read_u32(dev, "fn-key", &fn_key);
-> +
-> +       keymap_len = device_property_count_u32(ckdev->dev, "fn-keymap");
-> +       if (keymap_len > CROS_EC_FN_KEYMAP_MAX) {
-> +               dev_err(dev, "fn-keymap too large: %d limit=%d",
-> +                       keymap_len, CROS_EC_FN_KEYMAP_MAX);
-> +               return -EINVAL;
-> +       }
-> +
-> +       keymap = devm_kcalloc(dev, keymap_len, sizeof(*keymap), GFP_KERNEL);
-> +       if (!keymap)
-> +               return -ENOMEM;
-> +
-> +       ret = device_property_read_u32_array(dev, "fn-keymap", keymap, keymap_len);
-> +       if (ret) {
-> +               dev_err(dev, "failed to read fn-keymap property: %d\n", ret);
-> +               return ret;
-> +       }
-> +
-> +       for (int i = 0; i < keymap_len; i++)
-> +               __set_bit(KEY_VAL(keymap[i]), ckdev->idev->keybit);
-> +
-> +       ckdev->fn_key = fn_key;
-> +       ckdev->fn_keymap = keymap;
-> +       ckdev->fn_keymap_len = keymap_len;
-> +
-> +       return 0;
-> +}
-> +
->  static ssize_t function_row_physmap_show(struct device *dev,
->                                          struct device_attribute *attr,
->                                          char *buf)
-> @@ -734,6 +889,13 @@ static int cros_ec_keyb_probe(struct platform_device *pdev)
->                                 err);
->                         return err;
->                 }
-> +
-> +               err = cros_ec_keyb_register_fn_keys(ckdev);
-> +               if (err) {
-> +                       dev_err(dev, "cannot register fn-keys inputs: %d\n",
-> +                               err);
-> +                       return err;
-> +               }
->         }
->
->         err = cros_ec_keyb_register_bs(ckdev, buttons_switches_only);
 > --
 > 2.52.0.223.gf5cc29aaa4-goog
 >
-
-Can the sandbox driver support this too?
-
-Regards,
-Simon
 
