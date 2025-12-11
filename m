@@ -1,427 +1,116 @@
-Return-Path: <devicetree+bounces-245789-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245790-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78B0DCB54A5
-	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 10:03:35 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F2F4CB5583
+	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 10:20:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 9A0C2301F014
-	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 09:03:07 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 55E9F30194D7
+	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 09:20:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F296E2F6579;
-	Thu, 11 Dec 2025 09:03:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB5B92BE642;
+	Thu, 11 Dec 2025 09:20:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="PITZM+fb";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="T6YQ/r8/"
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=gaisler.com header.i=@gaisler.com header.b="J7Pc+UjQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp-out3.simply.com (smtp-out3.simply.com [94.231.106.210])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F9262F6187
-	for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 09:02:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10D531C3F36;
+	Thu, 11 Dec 2025 09:20:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.231.106.210
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765443781; cv=none; b=QciPj5Pvy38vhuBpYIT1ot2V5S49VFJ3m4SwOjV7oOc46HazTecTLvX5ohyBF2etZ4xHc2T6oWzwD5KuHh+NPH8O3JaxJXNxICwlK9Gwfr8XWC8kBhmICAcMVvhHr+nF4+JnstpP8a/HsPkorCquNHVEwDV1Yp5LD3/Ahl9/0PQ=
+	t=1765444820; cv=none; b=DJdD8zZ7QVBiIofDJ3ENdZNwm37ecSNW71h/WpEph8mmJggZada50CsSeTKkgdYuX0M3Fk9f+saF7jplgljDl5uQIpASQ+MicwpOdWALQbRWbiQ259/qi8XtWV4E7t1OzWMq9vbEMPAgpWPsSqssQDOioQF6ZEbbCYLyqTz8/Wk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765443781; c=relaxed/simple;
-	bh=LC6+YJ+r4Oa4PWxB06n5WJfG0upbybA1CX3fP7BHWJs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=R3uBwmQEB8JmVZ1Dvb1vSL6S4X8XXFIpK8HJk9VQdMlYRi3beIZ4XoGT1oq0tMBZJFUkHW8evb+FUSJIaZhupG1ivZn+UZu7k4QRqcnNdWRVId7DaPQzvLXhsOwfESQ8IjKz2M9c1A7dk5BGH76/70d0Q6U/oETe/q80XQWzMWA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=PITZM+fb; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=T6YQ/r8/; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BB8gS6Q1123587
-	for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 09:02:59 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	+NgoTJmSdoAfs6QQOK57IwUDwNIJjJ23MvoLDcN9wIM=; b=PITZM+fbzzYAgRQV
-	gMkpjWAjnJrz9vo3jNp9vuqZqeNzbBuYx8aDainS3XlwRWMMW4t/FPLanC0/HMjJ
-	UrBmYBeM5O7ShRtEjBY/vrdYxI4k7aZonixL0mx7xszzLrHxmWzRWbkSu/eSOIFW
-	HJzKevQdY+WwfJK2LVldE5C5t7O84qokiDOnR0ZtuD3doXX784X3yAIRXG166rdd
-	46cWbnf6Bh4lkPWKrp7TtGW7uJAkU03npFSJViZDntyJktV2fG2qd/3++RnyiOS9
-	eOfU+irKSK7R+1XVEcor6Vl2X0yH0RmGmnBtwFTnUKH8jNZb6GxIwW3ZNCmZFd4R
-	RRizFw==
-Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com [209.85.216.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ays4qgckp-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 09:02:58 +0000 (GMT)
-Received: by mail-pj1-f70.google.com with SMTP id 98e67ed59e1d1-34a8cdba421so956312a91.2
-        for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 01:02:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1765443778; x=1766048578; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=+NgoTJmSdoAfs6QQOK57IwUDwNIJjJ23MvoLDcN9wIM=;
-        b=T6YQ/r8/KqXeH9UwI8NuZPDCczSbwV2MJpsdrfxJUOs24l3xbhl2uf6x/+yUYw6mw0
-         J/j6CHUwj633tM+VQKWNCpzAOoVrkfPwxGruAOTInCP0oKzZvVrYC26QgJYGcjNbzv3C
-         VXHRhnKa65OZZhH4KErgYMyzOYy3ct1JwMIBqSwqNjsTmCPFhTalRAvQqlTaUjdanqNG
-         Nm0J6/0rdZVh2IdhsV3hPBk3tkxRLt1DJrR6JHCPiBVoiXIkbYwI3sNPUZMw0VON5067
-         oiJesinGdfLVZ9fcBLTRN/k8YrM9tOtloqkyfYjiWq5cK07mdSBeNgyY/fYdTKf8QB8b
-         Hmww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765443778; x=1766048578;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=+NgoTJmSdoAfs6QQOK57IwUDwNIJjJ23MvoLDcN9wIM=;
-        b=O6VVBq9IZJhXmNTmwX23B0Tc4RrZQiBw9LwnD9h/Pish/HQ3d3Ha3lmZ1MhECvGHOW
-         LrEvOZ3blIANMQg5k2Jx9i60hK4Qv4lVuOIe7RJ/w8o5zCQCCIlVeEBuRs/UnVC6eqHB
-         +y7dWL7Ei6arFQYBcsjDuksLzoXqtW49E8J9XYk30DoXbvplRGdWOe8+wh2S6YYyAgYV
-         nZ8e+IA+SMcaM82mSTgCVSYla3VvCW+pytUKUJZn7iurQrFJJXVqFkbgXMIAYHs40ipF
-         TIZxCIdEutcvjtzcH//VtnidUw06r8r5TnYkAql0tmCkmYE7QvJKLElTziPpKHQ2lSbj
-         X/2Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVtSn2b2ShEmy6Ph5OT4wJl81d1p64OS7669A7hIFrhJLpBubBqn66kNxyQWz/TLawJN0oO6G7piwjI@vger.kernel.org
-X-Gm-Message-State: AOJu0YzozRk51/1KECUshh0YT2ySBiZ1+HtwfnNHi8quUtWdYv7LTohO
-	Le3KoiU43Wo7fSgK1Os+ts8DE4tL545vuomosUvY6NE1ofpoM5OKuf/3XnsJfU4UFfLUm2CYR5x
-	EnQdoNxD/jJKF4QOoHdT3UcJbYcGETdbwFNYNg0RXc8t5eJV2Q1W/ts/edyRSVdWL
-X-Gm-Gg: AY/fxX5VLRA0imiRDkqGrFYGsbd1seVQXrcj16uAXri0Wz8fKs9VERTcY2y7MwhAsQ0
-	Wqfta3K/2yd40sCkuXoM09PSao5KMzviueRaXUvE4y27Hf9sGYcrYw1O0sox0DrinVi6WYgEvQv
-	j1uUUsoooiMQ4VZCPHiYQOXuxrsKB5KTS742JSfZwKDg4bhpjWPDiHNlyffmC1WQy8bePy/4EHT
-	diNxoHLrJkC+txXBPSilYIILhScRzm2/toU/ip9ZkHJ8k+8nXSLuylMFcMsgA/lpfzRCKH+8JWX
-	5SJ8QC/43HJRyWCr+Bvg8jw69ZKG7voaGAm54rIvwNJs/WN/K0DmgU2UnETwYNSmgtK5sqJI1oe
-	jh0ZFHpSCs/PQ6yExy4pggDsrQ5uQ4dGKEJTu1Le/PnAYZpKV3jyW5qjkk8qZDkh418oFSFyDqK
-	Zj3vKUVCNE4tLX3e0FquXy6r4Yp/5MKg==
-X-Received: by 2002:a05:6a20:a110:b0:366:14b0:4b0f with SMTP id adf61e73a8af0-366e3de7b04mr5898672637.75.1765443777618;
-        Thu, 11 Dec 2025 01:02:57 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHRRruCQfp9AbvMcWtmH5QzkjuM7BYpunQ0FdzkcV1+6D7ZrkkUw39KCB1GqEam4QQI5pVAEw==
-X-Received: by 2002:a05:6a20:a110:b0:366:14b0:4b0f with SMTP id adf61e73a8af0-366e3de7b04mr5898628637.75.1765443777102;
-        Thu, 11 Dec 2025 01:02:57 -0800 (PST)
-Received: from hu-pankpati-blr.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com. [103.229.18.19])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-34a92860032sm1273780a91.11.2025.12.11.01.02.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Dec 2025 01:02:56 -0800 (PST)
-From: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
-Date: Thu, 11 Dec 2025 14:32:36 +0530
-Subject: [PATCH v3 2/2] soc: qcom: llcc-qcom: Add support for Glymur
+	s=arc-20240116; t=1765444820; c=relaxed/simple;
+	bh=nzviFtLK5l+zZ9O9Z2jT+irEn9c1cX70YfPmQZaUWh0=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=nXb2ZDoyyNwnvU/u5i43I1LHhn/M/pU5ARtPg0LqXQsegljPc0ezR7mnn3aYcr2/janzxTcyGW4cU+CTBCGuSafQTUrx3wRL7g1e9mJCbG4yw99B2RUKxLgveAizLzb5/MHnONiqMQmYeHQBdiFu14jHIukAuw41iWxPFZR5CY8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gaisler.com; spf=pass smtp.mailfrom=gaisler.com; dkim=fail (0-bit key) header.d=gaisler.com header.i=@gaisler.com header.b=J7Pc+UjQ reason="key not found in DNS"; arc=none smtp.client-ip=94.231.106.210
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gaisler.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gaisler.com
+Received: from localhost (localhost [127.0.0.1])
+	by smtp.simply.com (Simply.com) with ESMTP id 4dRn1l2bs7z1DDB7;
+	Thu, 11 Dec 2025 10:13:15 +0100 (CET)
+Received: from webmail.unoeuro.com (webmail.unoeuro.com [94.231.108.230])
+	by smtp.simply.com (Simply.com) with ESMTPA id 4dRn1l1CXhz1DLXN;
+	Thu, 11 Dec 2025 10:13:15 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gaisler.com;
+	s=simplycom2; t=1765444395;
+	bh=is2tbS59QKKkJQ+llMCfR4QBx1YlnuAxAWBkhwggy4k=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=J7Pc+UjQTbOzxnLkTbPOCAOFwl9+tquEvQL7sb+MbcHey+0TETkPGIGfbNhy62cEQ
+	 qkP/scEPyoVr4vv8Ac5a5iB/RUBt5MK7L9eOhau4URNkimdPJiPDPGldz9fJR75lQs
+	 kNAN7mPiDRGPKkrX+/I9A8E+cIJ001JLam/cwrBk+EbHA8KdwxG3EK40jacCN6LyBv
+	 3m4w/1YNg+1aMMyEIfOk7SRFspHj8MjHMLdiEM5vxXeWGy2VO/lmUufDO/WXW4RQcH
+	 sWnKJ3bLTdYqaKlZWtasEWP+uCZ57Drf12fRY0llP56qprYTTFUUrlsF1xEzQTbZJt
+	 ieoC96AizP4FQ==
+Received: from h-98-128-223-123.NA.cust.bahnhof.se ([98.128.223.123])
+ by webmail.simply.com
+ with HTTP (HTTP/2.0 POST); Thu, 11 Dec 2025 10:13:15 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251211-glymur_llcc_enablement-v3-2-43457b354b0d@oss.qualcomm.com>
-References: <20251211-glymur_llcc_enablement-v3-0-43457b354b0d@oss.qualcomm.com>
-In-Reply-To: <20251211-glymur_llcc_enablement-v3-0-43457b354b0d@oss.qualcomm.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Conor Dooley <conor@kernel.org>,
-        Jonathan Cameron <jonathan.cameron@huawei.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Pankaj Patil <pankaj.patil@oss.qualcomm.com>,
-        rajendra.nayak@oss.qualcomm.com, sibi.sankar@oss.qualcomm.com,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1765443765; l=6824;
- i=pankaj.patil@oss.qualcomm.com; s=20251121; h=from:subject:message-id;
- bh=LC6+YJ+r4Oa4PWxB06n5WJfG0upbybA1CX3fP7BHWJs=;
- b=ExiET/4JVUY5qyR5XcDjzS6gIT7OM0fOTglFMc0os4WkCZ/J2HSLLZbIJ4gU3HcQkq0M+WHXz
- zE26cZskaVRCmetsjrIcavKL4rfa1G/+YkkUeqsTXiYWsXIwnHczCpB
-X-Developer-Key: i=pankaj.patil@oss.qualcomm.com; a=ed25519;
- pk=pWpEq/tlX6TaKH1UQolvxjRD+Vdib/sEkb8bH8AL6gc=
-X-Proofpoint-GUID: pW0AR6i2RpDLo_UiZtCkTD1dGf_La6w_
-X-Proofpoint-ORIG-GUID: pW0AR6i2RpDLo_UiZtCkTD1dGf_La6w_
-X-Authority-Analysis: v=2.4 cv=B/S0EetM c=1 sm=1 tr=0 ts=693a88c2 cx=c_pps
- a=0uOsjrqzRL749jD1oC5vDA==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
- a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=7DQyclDd9yYmhgmT4UAA:9
- a=QEXdDO2ut3YA:10 a=mQ_c8vxmzFEMiUWkPHU9:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjExMDA2NyBTYWx0ZWRfX/m0Qt9ZhnkJw
- 1b5qPNaAxlkp+s3RegyNF2HLGyzO34nD+r5UlkfX7Sdqx/aj/ZXwGsxdu5vB+1dmy3gbpttDBJh
- jUmc7lgC7YuF+OvIukUMTLWy2kakczlGxrcBni1leG5gU8cx2EqeR9BGGtGxG7si8U3mGiakHkz
- YphG8JRZR91nyTdEWw8+bG2G3VIEAy4rnP8vjf+CNiytPaXgTe5MUkhuNuvOYNV8b8yEfJg6SJf
- gm7qh6PnxuSKj6lF47THvhTqB7PIm/vt93BqCm9ZDac6nFUGdeKV7GG+WSgHGJi7G0GauZKiO6C
- 8fDOkLcCJLQAbrrSOqX5oTAhrQQ5+yge1TBqKzlZICMQZANIjN1Xu0ihqufUtIKzLTror3L/g3i
- 22vnuN1Z/o9iYMDHhcFimOIZ6mcmSw==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-10_03,2025-12-09_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 priorityscore=1501 bulkscore=0 spamscore=0 clxscore=1015
- impostorscore=0 malwarescore=0 suspectscore=0 lowpriorityscore=0 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512110067
+Date: Thu, 11 Dec 2025 10:13:15 +0100
+From: Arun Muthusamy <arun.muthusamy@gaisler.com>
+To: Marc Kleine-Budde <mkl@pengutronix.de>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ mailhol@kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-can@vger.kernel.org, Daniel Hellstrom
+ <daniel@gaisler.com>
+Subject: Re: [PATCH 08/10] can: grcan: Add saving and restoring of CAN FD
+ baud-rate registers
+In-Reply-To: <20251121-daft-vigorous-leech-7719b8-mkl@pengutronix.de>
+References: <20251118092115.3455-1-arun.muthusamy@gaisler.com>
+ <20251118092115.3455-9-arun.muthusamy@gaisler.com>
+ <20251121-daft-vigorous-leech-7719b8-mkl@pengutronix.de>
+User-Agent: Simply.com webmail
+Message-ID: <7b5a723711c7a3045e68246effd806b0@gaisler.com>
+X-Sender: arun.muthusamy@gaisler.com
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
 
-Add system cache table(SCT) and configs for Glymur SoC
-Updated the list of usecase id's to enable additional clients for Glymur
+Thank you for your suggestion.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Signed-off-by: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
----
- drivers/soc/qcom/llcc-qcom.c       | 207 +++++++++++++++++++++++++++++++++++++
- include/linux/soc/qcom/llcc-qcom.h |   4 +
- 2 files changed, 211 insertions(+)
-
-diff --git a/drivers/soc/qcom/llcc-qcom.c b/drivers/soc/qcom/llcc-qcom.c
-index 13e174267294..1abfda7a58f2 100644
---- a/drivers/soc/qcom/llcc-qcom.c
-+++ b/drivers/soc/qcom/llcc-qcom.c
-@@ -182,6 +182,197 @@ enum llcc_reg_offset {
- 	LLCC_TRP_WRS_CACHEABLE_EN,
- };
- 
-+static const struct llcc_slice_config glymur_data[] = {
-+	{
-+		.usecase_id = LLCC_CPUSS,
-+		.slice_id = 1,
-+		.max_cap = 7680,
-+		.priority = 1,
-+		.bonus_ways = 0xFFF,
-+		.res_ways = 0x0,
-+		.vict_prio = true,
-+		.activate_on_init = true,
-+	}, {
-+		.usecase_id = LLCC_VIDSC0,
-+		.slice_id = 2,
-+		.max_cap = 512,
-+		.priority = 3,
-+		.fixed_size = true,
-+		.bonus_ways = 0xFFF,
-+		.res_ways = 0x0,
-+		.vict_prio = true,
-+	}, {
-+		.usecase_id = LLCC_AUDIO,
-+		.slice_id = 6,
-+		.max_cap = 1024,
-+		.priority = 1,
-+		.fixed_size = true,
-+		.bonus_ways = 0xFFF,
-+		.res_ways = 0x0,
-+		.vict_prio = true,
-+	}, {
-+		.usecase_id = LLCC_VIDSC1,
-+		.slice_id = 4,
-+		.max_cap = 512,
-+		.priority = 3,
-+		.fixed_size = true,
-+		.bonus_ways = 0xFFF,
-+		.res_ways = 0x0,
-+		.vict_prio = true,
-+	}, {
-+		.usecase_id = LLCC_CMPT,
-+		.slice_id = 10,
-+		.max_cap = 7680,
-+		.priority = 1,
-+		.fixed_size = true,
-+		.bonus_ways = 0xFFF,
-+		.res_ways = 0x0,
-+		.vict_prio = true,
-+	}, {
-+		.usecase_id = LLCC_GPUHTW,
-+		.slice_id = 11,
-+		.max_cap = 512,
-+		.priority = 1,
-+		.fixed_size = true,
-+		.bonus_ways = 0xFFF,
-+		.res_ways = 0x0,
-+		.vict_prio = true,
-+	}, {
-+		.usecase_id = LLCC_GPU,
-+		.slice_id = 9,
-+		.max_cap = 7680,
-+		.priority = 1,
-+		.bonus_ways = 0xFFF,
-+		.res_ways = 0x0,
-+		.write_scid_en = true,
-+		.write_scid_cacheable_en = true,
-+		.stale_en = true,
-+		.vict_prio = true,
-+	}, {
-+		.usecase_id = LLCC_MMUHWT,
-+		.slice_id = 18,
-+		.max_cap = 768,
-+		.priority = 1,
-+		.fixed_size = true,
-+		.bonus_ways = 0xFFF,
-+		.res_ways = 0x0,
-+		.vict_prio = true,
-+		.activate_on_init = true,
-+	}, {
-+		.usecase_id = LLCC_AUDHW,
-+		.slice_id = 22,
-+		.max_cap = 1024,
-+		.priority = 1,
-+		.fixed_size = true,
-+		.bonus_ways = 0xFFF,
-+		.res_ways = 0x0,
-+		.vict_prio = true,
-+	}, {
-+		.usecase_id = LLCC_CVP,
-+		.slice_id = 8,
-+		.max_cap = 64,
-+		.priority = 3,
-+		.fixed_size = true,
-+		.bonus_ways = 0xFFF,
-+		.res_ways = 0x0,
-+		.vict_prio = true,
-+	}, {
-+		.usecase_id = LLCC_WRCACHE,
-+		.slice_id = 31,
-+		.max_cap = 1536,
-+		.priority = 1,
-+		.fixed_size = true,
-+		.bonus_ways = 0xFFF,
-+		.res_ways = 0x0,
-+		.vict_prio = true,
-+		.activate_on_init = true,
-+	}, {
-+		.usecase_id = LLCC_CMPTHCP,
-+		.slice_id = 17,
-+		.max_cap = 256,
-+		.priority = 3,
-+		.fixed_size = true,
-+		.bonus_ways = 0xFFF,
-+		.res_ways = 0x0,
-+		.vict_prio = true,
-+	}, {
-+		.usecase_id = LLCC_LCPDARE,
-+		.slice_id = 30,
-+		.max_cap = 768,
-+		.priority = 3,
-+		.fixed_size = true,
-+		.bonus_ways = 0xFFF,
-+		.res_ways = 0x0,
-+		.alloc_oneway_en = true,
-+		.vict_prio = true,
-+		.activate_on_init = true,
-+	}, {
-+		.usecase_id = LLCC_AENPU,
-+		.slice_id = 3,
-+		.max_cap = 3072,
-+		.priority = 1,
-+		.fixed_size = true,
-+		.bonus_ways = 0xFFF,
-+		.res_ways = 0x0,
-+		.cache_mode = 2,
-+		.vict_prio = true,
-+	}, {
-+		.usecase_id = LLCC_ISLAND1,
-+		.slice_id = 12,
-+		.max_cap = 5632,
-+		.priority = 7,
-+		.fixed_size = true,
-+		.bonus_ways = 0x0,
-+		.res_ways = 0x7FF,
-+		.vict_prio = true,
-+	}, {
-+		.usecase_id = LLCC_VIDVSP,
-+		.slice_id = 28,
-+		.max_cap = 256,
-+		.priority = 3,
-+		.fixed_size = true,
-+		.bonus_ways = 0xFFF,
-+		.res_ways = 0x0,
-+		.vict_prio = true,
-+	}, {
-+		.usecase_id = LLCC_OOBM_NS,
-+		.slice_id = 5,
-+		.max_cap = 512,
-+		.priority = 1,
-+		.bonus_ways = 0xFFF,
-+		.res_ways = 0x0,
-+		.vict_prio = true,
-+	}, {
-+		.usecase_id = LLCC_CPUSS_OPP,
-+		.slice_id = 32,
-+		.max_cap = 0,
-+		.fixed_size = true,
-+		.bonus_ways = 0x0,
-+		.res_ways = 0x0,
-+		.vict_prio = true,
-+		.activate_on_init = true,
-+	}, {
-+		.usecase_id = LLCC_PCIE_TCU,
-+		.slice_id = 19,
-+		.max_cap = 256,
-+		.priority = 1,
-+		.fixed_size = true,
-+		.bonus_ways = 0xFFF,
-+		.res_ways = 0x0,
-+		.vict_prio = true,
-+		.activate_on_init = true,
-+	}, {
-+		.usecase_id = LLCC_VIDSC_VSP1,
-+		.slice_id = 29,
-+		.max_cap = 256,
-+		.priority = 3,
-+		.fixed_size = true,
-+		.bonus_ways = 0xFFF,
-+		.res_ways = 0x0,
-+		.vict_prio = true,
-+	}
-+};
-+
- static const struct llcc_slice_config ipq5424_data[] =  {
- 	{
- 		.usecase_id = LLCC_CPUSS,
-@@ -3872,6 +4063,16 @@ static const struct qcom_llcc_config kaanapali_cfg[] = {
- 	},
- };
- 
-+static const struct qcom_llcc_config glymur_cfg[] = {
-+	{
-+		.sct_data	= glymur_data,
-+		.size		= ARRAY_SIZE(glymur_data),
-+		.reg_offset	= llcc_v6_reg_offset,
-+		.edac_reg_offset = &llcc_v2_1_edac_reg_offset,
-+		.no_edac	= true,
-+	},
-+};
-+
- static const struct qcom_llcc_config qcs615_cfg[] = {
- 	{
- 		.sct_data	= qcs615_data,
-@@ -4103,6 +4304,11 @@ static const struct qcom_sct_config kaanapali_cfgs = {
- 	.num_config	= ARRAY_SIZE(kaanapali_cfg),
- };
- 
-+static const struct qcom_sct_config glymur_cfgs = {
-+	.llcc_config	= glymur_cfg,
-+	.num_config	= ARRAY_SIZE(glymur_cfg),
-+};
-+
- static const struct qcom_sct_config qcs615_cfgs = {
- 	.llcc_config	= qcs615_cfg,
- 	.num_config	= ARRAY_SIZE(qcs615_cfg),
-@@ -4941,6 +5147,7 @@ static int qcom_llcc_probe(struct platform_device *pdev)
- }
- 
- static const struct of_device_id qcom_llcc_of_match[] = {
-+	{ .compatible = "qcom,glymur-llcc", .data = &glymur_cfgs },
- 	{ .compatible = "qcom,ipq5424-llcc", .data = &ipq5424_cfgs},
- 	{ .compatible = "qcom,kaanapali-llcc", .data = &kaanapali_cfgs},
- 	{ .compatible = "qcom,qcs615-llcc", .data = &qcs615_cfgs},
-diff --git a/include/linux/soc/qcom/llcc-qcom.h b/include/linux/soc/qcom/llcc-qcom.h
-index 0287f9182c4d..8243ab3a12a8 100644
---- a/include/linux/soc/qcom/llcc-qcom.h
-+++ b/include/linux/soc/qcom/llcc-qcom.h
-@@ -74,13 +74,17 @@
- #define LLCC_CAMSRTIP	 73
- #define LLCC_CAMRTRF	 74
- #define LLCC_CAMSRTRF	 75
-+#define LLCC_OOBM_NS	 81
-+#define LLCC_OOBM_S	 82
- #define LLCC_VIDEO_APV	 83
- #define LLCC_COMPUTE1	 87
- #define LLCC_CPUSS_OPP	 88
- #define LLCC_CPUSSMPAM	 89
-+#define LLCC_VIDSC_VSP1	 91
- #define LLCC_CAM_IPE_STROV	 92
- #define LLCC_CAM_OFE_STROV	 93
- #define LLCC_CPUSS_HEU	 94
-+#define LLCC_PCIE_TCU	 97
- #define LLCC_MDM_PNG_FIXED	 100
- 
- /**
+ From the design point of view, I prefer to retain the "do_set_bittiming" 
+callback to maintain flexibility in adjusting baud rates by the 
+framework. Since CAN and CANFD configurations differ as they use 
+different registers for timing configuration and Specifically, the 
+timing configuration is closely tied to the reset logic only in 
+scenarios where the baud rate for CANFD is stored in a register. This 
+differentiation is not applicable to CAN timing configuration, as CAN 
+and CANFD are handled differently.
 
 -- 
-2.34.1
+BR,
 
+Arun Muthusamy
+Software Engineer
+Frontgrade Gaisler
+T : +46 (0) 700 558 528
+arun.muthusamy@gaisler.com
+
+Frontgrade Gaisler AB, Kungsgatan 12, SE-411 19 GÖTEBORG, Sweden.
++46 (0) 31 775 8650, www.gaisler.com
+
+On 21.11.2025 13:50, Marc Kleine-Budde wrote:
+> On 18.11.2025 10:21:13, Arun Muthusamy wrote:
+>> From: Daniel Hellstrom <daniel@gaisler.com>
+>> 
+>> While reset the GRCAN baud-rates are preserved, since GRCANFD has the
+>> baud-rate in different registers we need to add saving of those
+>> registers too.
+> 
+> What about removing the do_set_bittiming callback
+> 
+> 	priv->can.do_set_bittiming = grcan_set_bittiming;
+> 
+> and calling grcan_set_bittiming() explicitly after the reset?
+> 
+> regards,
+> Marc
 
