@@ -1,204 +1,126 @@
-Return-Path: <devicetree+bounces-245809-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245811-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A8AACB5820
-	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 11:23:17 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id E46E4CB58CC
+	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 11:46:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 2D35D3018756
-	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 10:23:12 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B82B0301791C
+	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 10:46:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63387301498;
-	Thu, 11 Dec 2025 10:23:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00EED306498;
+	Thu, 11 Dec 2025 10:46:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d9C9yWwO"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kfk4bb3z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36F2D3016EF;
-	Thu, 11 Dec 2025 10:23:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B088F305045
+	for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 10:46:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765448591; cv=none; b=rGK/W3BzrrGe6VESX3kMghMx4ObSZOUX/h3PF0aN0jlGeKSSR3Rd4Dk+mCUj3eChQsueVm1424zaFfpJve9+RLuXYZ/LBExhWUY5/HZNSG0H0w8I4pDVtMzTqOj1GYUTSg+bR92r1byx8SA9Y16MqtS0dozB/Y9fpt4MynrLqQE=
+	t=1765449981; cv=none; b=TX14yT7413KcEuYA3IyVaiZH4JEhfn/MydDwS8bWTh1xWL2YwYthw2COWyIrC3M9dtj1WImhRaqFLSwD4UhF5QGeukHTNP2dqRoA2Srget7vEGQW/ONDTOlU5Nlx4Z/TVABi4uXtrFF5/DjM3qK9pMenbFzSzbob3yjjBEd307c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765448591; c=relaxed/simple;
-	bh=cLuEKIbfWtyqS4ucO3ap2OAyMb/6+sZmHMi/FojZCjM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=fhw2ZB3tVs87TPUAriHynmGfzFfolF/XNmp5cJ7heK/TAW9n+FKxmd8LKQwaPprHt6SiQa6CqlyHDnDlw9qeqXuLM8fzh6CDYpMLUORJtHq9LlpzAjF+tzUAS3BDAfjsGEAuPB2W5dR81SVK0PAfp3WMu9byRFDFRyn8cPwa9xo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d9C9yWwO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 9AF14C4CEF7;
-	Thu, 11 Dec 2025 10:23:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765448590;
-	bh=cLuEKIbfWtyqS4ucO3ap2OAyMb/6+sZmHMi/FojZCjM=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=d9C9yWwOBRGJo93PW54IRt5BrEk1SPi+YNYMcGCtxJGO/ACRKIlk+4mkVUWpDMYHl
-	 q4uxOd4dJEVjqKlnofv8IVNuWl6WIX7OMy0o+sNsmTG52kJKiC0DbMG9TxEy03Op72
-	 0AweEHR6GU+ZmoRhZ/YoC3E+a/+KIKLxXmDFrti1SXDPA/UcNK1H0cKh24P8dCwkNA
-	 GK+mNwVQZesz2TvGSClehUKwlL0swQnwzdhczwO5RdkfQO7nDyR8Q5Mm5FphMo6WUC
-	 S+N48nt8KzZUp7D8twf4KmcDPdB9ksnHlvDO0JC+L8IVO147skExhO0PUnIeD2QghL
-	 lReK6Oxsp4vXg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 92A60D3E774;
-	Thu, 11 Dec 2025 10:23:10 +0000 (UTC)
-From: Rudraksha Gupta via B4 Relay <devnull+guptarud.gmail.com@kernel.org>
-Date: Thu, 11 Dec 2025 02:23:09 -0800
-Subject: [PATCH] ARM: dts: qcom: msm8960: expressatt Add PWM vibrator
+	s=arc-20240116; t=1765449981; c=relaxed/simple;
+	bh=7nizhHjO3b9Dw9M3chS4sgZFznZhBTrr/fB3xTkLVf4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=U/4VgK+/UmOZV21HtkGvF78C4KPxuU8sPPSj00x5KBhDZpU5iGaiWs9tPWpBv4agkOsw8WC2ioVnjbyJpTjrU1JnmqRwjQX7OYgavLSD+Ar9D1Z5PtMlY4AXqUVvlVH0TTd/9MAVojPjt9Is7ePJZr31udduDtvFyUpt09GHGfE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kfk4bb3z; arc=none smtp.client-ip=209.85.167.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-5957a623c7fso133382e87.0
+        for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 02:46:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1765449977; x=1766054777; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=go1f5cR2F7EaH8swZCcuA0b9ZduXHeBI/V7kRO1y+wY=;
+        b=kfk4bb3zpYKmsMtIEyAC/fHXA4XdnfhRt4d/5nQXgtqg9/PGvAn2w0DesQYBJjFzE2
+         /ywhvHH0oa20AgG7lNjn+9fthibMXaHAZNNZkxYBZcDf1TOUK9IqMigahhvMyv5PuALz
+         GzeLLhjjtfpnTqMbHRWQR4b4VYKVVD9EdRl4I7XAjlrenAS7etyth3MDsoiKwM/IbXMD
+         tbUijkOmjYxFv4W9wpmDZPUZJjzGs3M3aIfcPp/klgcFTA3Fv4Vfvi5jr/IiGdSs2d3X
+         fxJ1JhkY9bYunE+xe7xBoZ0jDBtBC+E2ETM/2MJPDUnj0Vc+g2r2lkdMQkUCcn/DkvxP
+         j6UA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765449977; x=1766054777;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=go1f5cR2F7EaH8swZCcuA0b9ZduXHeBI/V7kRO1y+wY=;
+        b=L3IN8SBn0pdnC8XR5DDy3iIDDfWQsBPqnSADXqgJwF5zZTyh2qM2CfCqa57gkYoLnV
+         rtFUAkXGSHrILb/TlNJ4EksT5T5Ejt1gaBR0t/vFyXiBDzeNmV3/cXtJTXyBEYIg4E3M
+         pEVZAz1cv7rgXwyJzG+W2W0zV/djfOrRrOg93uyr6erIh7dHwmRe6I0R2jDDxXynaa30
+         zlCeME6wG254Snu9fXK4cPZg253VAOxJl66ZI3R0S9lR3bA/he6+JIB07XH4zSYaVFyA
+         hU3vDl6IO17nXXx/t+2mBY2xs1cLM/7Xfa5Ly81u8w6t8M5surmQnRtSI0x8H0v1e9dU
+         mN4g==
+X-Forwarded-Encrypted: i=1; AJvYcCW32WGb4jglwhNYsF8yTmKSyApPIsrfQDa8JlwuXk6q3EQslWtYYYdsblWrKrd5pIlPayFxaE0z/5Cz@vger.kernel.org
+X-Gm-Message-State: AOJu0YytjE2LqFmUE9j/fW8aaYzxBwm1MWQbinEqksT9KcowtavotpI6
+	bcJ9kcz1j3q5HEiMbLzKXi6ZDm9fz9seOBa1WUazvbzkOJYRAqgk+5na2hS8J2aUMmk=
+X-Gm-Gg: AY/fxX4b5ykJM51BeLfsPIeD8gaFoGm+vj/MAUaDLAGspOHJFb6oziYLcx1wumLGli1
+	dyG2+OUO7W3zfWJh06MTPYddbf+fqlvi4JtFQzZtLveP6oEmLiuP+EURToP47KGyU8ZTyQpVjta
+	AbmIj7xx+PsY2ACJCbYhi/CAjaVynLJlwuUHjhQoxr9qeudCWmtQijxDNdUsTEbX3GT7hWFsFLT
+	hq+QWTwN0CddFvluloiWn3EGkX0ZuOzcrnvzaSwomYM2pA793g+zKZp/wVdZS5bkvDJ464eodUU
+	IOAm70OUDmKaKljl136o7TCDJB0vuhCO8N17vPhaETz+n8npF9AFqQ7cTQP0ex6ktii+wFcsC5v
+	4tv4fMn3834GiUmezkUVfS8apJeN3jfsEEDW9vgFewtE6t2L8aQPle7+1Av27Kh/wAqnh5GcRwX
+	u2ZsHV1I7rVYCRt3P9XaUXsOZUHKUMRmBYmDfoZmQtT7a8OxEDvNzEkJx7EKlJEoksiw==
+X-Google-Smtp-Source: AGHT+IE9M+bCShDEmQtEErnzK0/+9MOvXjCquSMAEdTJbHAqDbkRp/jSYuX+hNEV5JitECiyFFHZZQ==
+X-Received: by 2002:a05:6512:130b:b0:597:d790:a1a2 with SMTP id 2adb3069b0e04-598f380609dmr399134e87.8.1765449977401;
+        Thu, 11 Dec 2025 02:46:17 -0800 (PST)
+Received: from [192.168.1.100] (91-159-24-186.elisa-laajakaista.fi. [91.159.24.186])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-598f3199a23sm755322e87.95.2025.12.11.02.46.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 11 Dec 2025 02:46:16 -0800 (PST)
+Message-ID: <32463967-8256-4681-b823-7ddce29f1c00@linaro.org>
+Date: Thu, 11 Dec 2025 12:46:15 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 3/5] arm64: dts: qcom: sdm670: remove camss endpoint
+ nodes
+Content-Language: ru-RU
+To: Richard Acayan <mailingradian@gmail.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Tianshu Qiu <tian.shu.qiu@intel.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-media@vger.kernel.org
+Cc: Robert Mader <robert.mader@collabora.com>
+References: <20251211014846.16602-1-mailingradian@gmail.com>
+ <20251211014846.16602-4-mailingradian@gmail.com>
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <20251211014846.16602-4-mailingradian@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251211-expressatt-vibrator-v1-1-41bdc47217b2@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAIybOmkC/03MwQ6CMAyA4VchPTvD5haEGON7GA5jFGgUptsgG
- MK7O+Fievqb9lvAoyP0UCQLOJzIkx1i8EMCptNDi4zq2CBSobjgnOH8cui9DoFNVDkdrGM1KpV
- pfW6yWkL8jBcNzZt6L/d2+B4jHvYl9D9iw4vkstup+reDHU33wA+bOIsjpaxykZm8Od3aXtPza
- Gx/hXJdv7sq1nPCAAAA
-X-Change-ID: 20251211-expressatt-vibrator-de557aa8f7d4
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Rudraksha Gupta <guptarud@gmail.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1765448590; l=3861;
- i=guptarud@gmail.com; s=20240916; h=from:subject:message-id;
- bh=ISLw8u+aVcL38Og1i02YfdmWTkxiTbCmji9uWmWdQeM=;
- b=1QAwfks1/c7/sv6EAAOantjAr/R5zmQv5mVuyOkbZeiOta7c4NjZmqEjILi5sYph1miZeX7AF
- JTWU0Tj3cFKDsHiz+Ue2OA2pShytIdyQHb5QxSQxqCFmcIXR9LtFILZ
-X-Developer-Key: i=guptarud@gmail.com; a=ed25519;
- pk=ETrudRugWAtOpr0OhRiheQ1lXM4Kk4KGFnBySlKDi2I=
-X-Endpoint-Received: by B4 Relay for guptarud@gmail.com/20240916 with
- auth_id=211
-X-Original-From: Rudraksha Gupta <guptarud@gmail.com>
-Reply-To: guptarud@gmail.com
 
-From: Rudraksha Gupta <guptarud@gmail.com>
+On 12/11/25 03:48, Richard Acayan wrote:
+> There is no need to add these by default for all of SDM670. Originally,
+> they were added so there could be a label for each port. This is
+> unnecessary if the endpoints are all added in a fixup to the camss node.
+> 
+> This is required since dcf6fb89e6f7 ("media: qcom: camss: remove a check
+> for unavailable CAMSS endpoint") was applied, forcing all endpoint nodes
+> to be probed, even if they are marked as disabled. According to the body
+> of this commit, there is "no valid or sane usecase".
 
-Add a pwm-vibrator to expressatt. Currently this vibrates only at 100%
+Right, endpoints are not devices.
 
-Signed-off-by: Rudraksha Gupta <guptarud@gmail.com>
----
-Add a pwm-vibrator to expressatt. Currently this vibrates only at 100%
+> 
+> Suggested-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> Link: https://lore.kernel.org/r/488281f6-5e5d-4864-8220-63e2a0b2d7f2@linaro.org
+> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
 
-Link:
-- https://github.com/LineageOS/android_kernel_samsung_d2/blob/stable/cm-12.0-YNG4N/arch/arm/mach-msm/board-express.c#L1767
-- https://github.com/LineageOS/android_kernel_samsung_d2/blob/stable/cm-12.0-YNG4N/drivers/motor/Makefile#L5
+Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
 
-Test:
-=====================
-samsung-expressatt:~$ dmesg | grep vibra
-[   79.892226] input: pwm-vibrator as /devices/platform/vibrator/input/input4
-samsung-expressatt:~$ fftest /dev/input/event4 
-Force feedback test program.
-HOLD FIRMLY YOUR WHEEL OR JOYSTICK TO PREVENT DAMAGES
-
-Device /dev/input/event4 opened
-Features:
-  * Absolute axes: 
-    [00 00 00 00 00 00 00 00 ]
-  * Relative axes: 
-    [00 00 ]
-  * Force feedback effects types: Periodic, Rumble, Gain, 
-    Force feedback periodic effects: Square, Triangle, Sine, 
-    [00 00 00 00 00 00 00 00 00 00 03 07 01 00 00 00 ]
-  * Number of simultaneous effects: 16
-
-Setting master gain to 75% ... OK
-Uploading effect #0 (Periodic sinusoidal) ... OK (id 0)
-Uploading effect #1 (Constant) ... Error: Invalid argument
-Uploading effect #2 (Spring) ... Error: Invalid argument
-Uploading effect #3 (Damper) ... Error: Invalid argument
-Uploading effect #4 (Strong rumble, with heavy motor) ... OK (id 1)
-Uploading effect #5 (Weak rumble, with light motor) ... OK (id 2)
-Enter effect number, -1 to exit
-0
-Now Playing: Sine vibration
-Enter effect number, -1 to exit
-[  157.967092] pwm-vibrator vibrator: failed to apply pwm state: -16
-[  158.017952] pwm-vibrator vibrator: failed to apply pwm state: -16
-
-Note: This patch was assisted with Claude and cleaned up by me.
----
- .../dts/qcom/qcom-msm8960-samsung-expressatt.dts   | 44 ++++++++++++++++++++++
- 1 file changed, 44 insertions(+)
-
-diff --git a/arch/arm/boot/dts/qcom/qcom-msm8960-samsung-expressatt.dts b/arch/arm/boot/dts/qcom/qcom-msm8960-samsung-expressatt.dts
-index c4b98af6955d..09443df0fdce 100644
---- a/arch/arm/boot/dts/qcom/qcom-msm8960-samsung-expressatt.dts
-+++ b/arch/arm/boot/dts/qcom/qcom-msm8960-samsung-expressatt.dts
-@@ -87,6 +87,35 @@ touchkey@20 {
- 			linux,keycodes = <KEY_MENU KEY_BACK>;
- 		};
- 	};
-+
-+	gp1_pwm: pwm {
-+		compatible = "clk-pwm";
-+		#pwm-cells = <2>;
-+		clocks = <&gcc GP1_CLK>;
-+	};
-+
-+	/* TODO: Vary the frequency besides being 0% or 100% */
-+	vibrator {
-+		compatible = "pwm-vibrator";
-+		pwms = <&gp1_pwm 0 54347 0>;  /* ~18.4 kHz */
-+		pwm-names = "enable";
-+		enable-gpios = <&pm8921_gpio 4 GPIO_ACTIVE_HIGH>;
-+		vcc-supply = <&vdd_haptics>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&vib_pwm_gpio>;
-+	};
-+
-+	vdd_haptics: vdd-haptics-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vdd_haptics";
-+		gpio = <&tlmm 47 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		regulator-boot-on;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&haptics_pwr_en>;
-+	};
- };
- 
- &gsbi2 {
-@@ -241,6 +270,21 @@ touchkey_i2c_pins: touchkey-i2c-state {
- 		bias-disable;
- 	};
- 
-+	haptics_pwr_en: haptics-pwr-en-state {
-+		pins = "gpio47";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+		output-low;
-+	};
-+
-+	vib_pwm_gpio: vib-pwm-gpio-state {
-+		pins = "gpio70";
-+		function = "gp_clk_1b";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
- 	touchkey_irq_pin: touchkey-irq-state {
- 		pins = "gpio52";
- 		function = "gpio";
-
----
-base-commit: b066d7751f99fabaa07939006233781536ab16e5
-change-id: 20251211-expressatt-vibrator-de557aa8f7d4
-prerequisite-message-id: <20251205-expressatt-touchkey-v1-1-1444b927c9f3@gmail.com>
-prerequisite-patch-id: 8de4de7909722ccaf385c4224f25a623eaa72c28
-
-Best regards,
 -- 
-Rudraksha Gupta <guptarud@gmail.com>
-
-
+Best wishes,
+Vladimir
 
