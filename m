@@ -1,104 +1,108 @@
-Return-Path: <devicetree+bounces-245873-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245874-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25507CB6686
-	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 16:58:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E77F2CB6698
+	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 17:00:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 14CEF302E07B
-	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 15:57:54 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8E94F300C5DE
+	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 16:00:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A04D3148B6;
-	Thu, 11 Dec 2025 15:57:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6883A26E710;
+	Thu, 11 Dec 2025 16:00:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="esKifij/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jcO3NBxt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDD9A313E2C;
-	Thu, 11 Dec 2025 15:57:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 403422773F;
+	Thu, 11 Dec 2025 16:00:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765468672; cv=none; b=rrLV/AyNb5Lx7Ih+3sHVILAK1hqmTFblMSFbfATqauiswkYbvgY+WZpEKyiv8qyRvl1Hvwp5P/I1ubU7UVILmNBJHgoe1j4S5l68c1ntB2dew5PW4YM8kK735G4XfTDVOk1saRK09hVLyp9mFDSM2un8A7NEtoceTC49ZgZFtxk=
+	t=1765468816; cv=none; b=ulAoeRz/vZ1a4MEX113iTwolMiT6lxYtcwVtvmzKE6cCQIuoknIT+MwARb/XTbvi7rZ/Z1+EZtL3ngVVgnG9lj3iIzli7OFca89EvoMLZ5cpB4QtgSJTr8sAgTgdcmJg7ihABK69Q78FC1sWP3obiY6nfl7vfWQfkSJxkvALNXk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765468672; c=relaxed/simple;
-	bh=aQN9YBZJ1/3TgzhE0vb1ucmDOVbahlZuL1in8B8rZXA=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=FeJVS+w7ufyq7LPfOzvNix2rpYsSN4uBy9HR5XMrqLhgao/oMJt6YxyG3R6yDqBRkkKSaL/z/G7Recx4ICCHXJ09ESJ9qb8mGy8mP0A3apOYugC5wfQk3Li0S4FryhJH27uI55lm6HVkWc/ejS8DKrJERXOuM6RH0p0fUuaxXbE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=esKifij/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33A1BC4CEFB;
-	Thu, 11 Dec 2025 15:57:51 +0000 (UTC)
+	s=arc-20240116; t=1765468816; c=relaxed/simple;
+	bh=tWm4pp9IdFxUH810SQiXnaXzZK3H8gSPlK4Uk4k3lX0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=AW9d2XO5byj40orpOvWkJNVfi1nH6cVdQDMfZkDwTMi3e3wDZJY576O2jYLMK96Hkkf76WBJclGkzXIs2aNZKKd2WWGTqg0mxsiGPzgOy8q5OBUXWjYmxTl3I/s8g5FYiNN9Dn5MC6H+YITH+AEEyLCTQbZTqGiU1mw+Z3+evbE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jcO3NBxt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C9F7C4CEF7;
+	Thu, 11 Dec 2025 16:00:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765468671;
-	bh=aQN9YBZJ1/3TgzhE0vb1ucmDOVbahlZuL1in8B8rZXA=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=esKifij/8dhYsEU8w1WyMNuXAVSlN23yCyZg9abVk+EvvGTJik0I6PaTapC6y6lgk
-	 9DSN2eWrwg2PpNOnHvWhEH3b/ZgVGsLDmZXqcNrs0NeOlj+x9E0Wh+kGDDwu4CCF8F
-	 4XYa/pUqW6wHxb/qBshR7WOIaLTh/0fnn7VoDOSwgWPdwJ8ErIcFxlduWvBivpoFn+
-	 IpPjwCGfsiicFSRpmuICleEUojKPqGOGsf3xwCxxLR5+grBffvMpZEQXfSoGKBJmAc
-	 +J/H0qT5EqY1z/AglqUXvyaokIxb2Evp3PrfGCq5FsRJG8aPW+KCfP75qCONvUrM3h
-	 pXM6DvHSuCwXw==
-Date: Thu, 11 Dec 2025 09:57:50 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1765468815;
+	bh=tWm4pp9IdFxUH810SQiXnaXzZK3H8gSPlK4Uk4k3lX0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=jcO3NBxtMdynpjom17YQeJxXaBc2oKdYd/bYhNZikoyCc0oYEQ/0u+Url0SIuyYua
+	 vm/Am4GobA6FaiuZGd+z5h+mpLJNRnxSHpy/7Xu+ZMFejygTi3HU3X8ftpaXo+KVb1
+	 xKODMRpc7wkPinmLVWpugfg+fF8nSIfQ0WnoL5+eCp0BfGg1QQVWZPJW8Cs9E4n57P
+	 j1BdoqLPY220li3kcu2jar4uOjjaAvxj7Jf+MU2voHRT4PDFjjmLt5FKOwoK2Ut32y
+	 L11wicXjpu9zTpWJ3XpXVgz2Z6RCGEfFKe9JaQ680IX9Dvpa1NK2AdBTekEv/q4Dx4
+	 MRpW1c0UNba6A==
+Date: Thu, 11 Dec 2025 10:00:13 -0600
+From: Rob Herring <robh@kernel.org>
+To: Christophe Parant <c.parant@phytec.fr>
+Cc: devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	upstream@lists.phytec.de
+Subject: Re: [PATCH RESEND v2 03/11] dt-bindings: arm: stm32: Modify
+ STM32MP15x Phytec board items types
+Message-ID: <20251211160013.GA1485420-robh@kernel.org>
+References: <20251210101611.27008-1-c.parant@phytec.fr>
+ <20251210101611.27008-4-c.parant@phytec.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: openbmc@lists.ozlabs.org, linux-crypto@vger.kernel.org, 
- linux-hwmon@vger.kernel.org, Joel Stanley <joel@jms.id.au>, 
- linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-iio@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org, 
- linux-aspeed@lists.ozlabs.org, devicetree@vger.kernel.org, 
- Linus Walleij <linusw@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-To: Andrew Jeffery <andrew@codeconstruct.com.au>
-In-Reply-To: <20251211-dev-dt-warnings-all-v1-16-21b18b9ada77@codeconstruct.com.au>
-References: <20251211-dev-dt-warnings-all-v1-0-21b18b9ada77@codeconstruct.com.au>
- <20251211-dev-dt-warnings-all-v1-16-21b18b9ada77@codeconstruct.com.au>
-Message-Id: <176546866713.1487167.4918701456595372928.robh@kernel.org>
-Subject: Re: [PATCH RFC 16/16] dt-bindings: mfd: Document smp-memram node
- for AST2600 SCU
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251210101611.27008-4-c.parant@phytec.fr>
 
+On Wed, Dec 10, 2025 at 11:16:03AM +0100, Christophe Parant wrote:
+> As Phytec manages different SoM configurations with different STM32MP15
+> SoC versions, modify the phyBOARD and SoM compatible items to "enum"
+> instead of "const".
 
-On Thu, 11 Dec 2025 17:45:58 +0900, Andrew Jeffery wrote:
-> The platform initialisation code for the AST2600 implements the custom
-> SMP bringup protocol, and searches for the relevant compatible. As a
-> consequence, define the requisite node and the compatible string, which
-> in-turn tidies up the dtb check results.
+Change to enum when you add a 2nd string. I don't follow why you would 
+do that either. You have more than 1 SoM for stm32mp157?
+
+> The description concerns PHYTEC SoM equipped with STM32MP157
+> ("st,stm32mp157" is "const").
+> Also add comments in front of the enum items to be able to identify the
+> compatible string with the phyBOARD/phyCORE names.
 > 
-> Signed-off-by: Andrew Jeffery <andrew@codeconstruct.com.au>
+> Signed-off-by: Christophe Parant <c.parant@phytec.fr>
 > ---
->  .../devicetree/bindings/mfd/aspeed,ast2x00-scu.yaml    | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
+>  Documentation/devicetree/bindings/arm/stm32/stm32.yaml | 8 +++++---
+>  1 file changed, 5 insertions(+), 3 deletions(-)
 > 
-
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/mfd/aspeed,ast2x00-scu.yaml:140:16: [error] string value is redundantly quoted with any quotes (quoted-strings)
-
-dtschema/dtc warnings/errors:
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.kernel.org/project/devicetree/patch/20251211-dev-dt-warnings-all-v1-16-21b18b9ada77@codeconstruct.com.au
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+> diff --git a/Documentation/devicetree/bindings/arm/stm32/stm32.yaml b/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
+> index 408532504a24..fbd3d364c1f7 100644
+> --- a/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
+> +++ b/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
+> @@ -182,10 +182,12 @@ properties:
+>            - const: seeed,stm32mp157c-odyssey-som
+>            - const: st,stm32mp157
+>  
+> -      - description: Phytec STM32MP1 SoM based Boards
+> +      - description: Phytec STM32MP157 SoM based Boards
+>          items:
+> -          - const: phytec,phycore-stm32mp1-3
+> -          - const: phytec,phycore-stm32mp157c-som
+> +          - enum:
+> +              - phytec,phycore-stm32mp1-3 # phyBOARD-Sargas with phyCORE-STM32MP157C SoM
+> +          - enum:
+> +              - phytec,phycore-stm32mp157c-som # phyCORE-STM32MP157C SoM
+>            - const: st,stm32mp157
+>  
+>        - description: Ultratronik STM32MP1 SBC based Boards
+> -- 
+> 2.34.1
+> 
 
