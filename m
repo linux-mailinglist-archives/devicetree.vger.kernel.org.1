@@ -1,194 +1,153 @@
-Return-Path: <devicetree+bounces-245801-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245802-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED8ABCB5755
-	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 11:10:13 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0D3ACB5782
+	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 11:13:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D3767301D327
-	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 10:09:59 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3BDCB30184F5
+	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 10:11:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A5202FFDD7;
-	Thu, 11 Dec 2025 10:09:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51DD32FE566;
+	Thu, 11 Dec 2025 10:11:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="j2dFDH62"
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=gaisler.com header.i=@gaisler.com header.b="cP0XU75m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp-out3.simply.com (smtp-out3.simply.com [94.231.106.210])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61F082FF66A;
-	Thu, 11 Dec 2025 10:09:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D46B2F5A0D;
+	Thu, 11 Dec 2025 10:11:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.231.106.210
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765447796; cv=none; b=qa0/PtRg+idjS4VYT0t/9Ow5jgsP+qRDjNAyaftIyHHQzkikRJO9+vG6vs6JnYbGZWJloSjF5mzzUDtzY/VNc5d3ddr1nQVndZ8OzrvU3Gp7whu6Rxv8jNof395ES7fJ6hfCp43J2t67gF+JZTXZEUvbBiwY2D2gWDiHBbXPcPQ=
+	t=1765447882; cv=none; b=pmHmhFPfjLfVJ7BDCbHd2EqqIH6ndNVERnk61yFSB4D2PxqV5IUMLr092CwvoxOhPaMGR5lRLBg68yUxtdkugyA7/qFbdW8i1E/Ln0mrJ1sJDnnFt+h/N6gtNu0JnfcC5k6iOJ22KK/S0B2aKCIoXLGJ09FzOG5MfhBGWTNGGiY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765447796; c=relaxed/simple;
-	bh=1bhxSf2/Y8D86Y6DHpiNlB7iFuF07Jb5dJFEFzkWFTQ=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=nBacADbfbHOfV06xP8d/pu+5ppqiBc4eorP9/goiaZe9OgrQj6wNvcnFSHWGMICXgbY1MbrF/FZvQt6vz4OKYmS6TJ9DnxZFluQfHBK7jV8S/aR22Rb9b/SPFwecMB3rRATR2G3YoWS04OoeCTVYCc9oQEJ4q8situla/vVF1LQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=j2dFDH62; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BB9ZREE1054833;
-	Thu, 11 Dec 2025 10:09:49 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=iiYtERK5lDS
-	jU0f7TnMrdUzOzeVIfDyXuyD3Ay+56Fk=; b=j2dFDH62SWidfTwwYK+uRupV80O
-	+ICsjsjWNnRD7eJXS6u1gUeBnS79XHt7IwnJJhsHzPEo9rFHhe0VXxTYMk+3shHT
-	p5/RYwxwLkRxMtfkWMtxEQ6NPs1pIyGX3YnpMDJoZLGptr8hYIgcNlg9sEUrkkiQ
-	Vt4A6UVtTldPmOFrIUBZIXl0bczdRmJLpTjOLoF7J9RQw+wmj7t0PbZZX4q+EPsf
-	D5UzcOwHkBCOWXczzNNd2wRPiliaMJjk+tbrLtEfaMQGMlUrqCaW1f/Y6BauGGHX
-	64h36SyU2fqGzSKo23cUOQ2oXJHa5XGD5znj4qz1Wzb1eel1UjsHp/7A5rg==
-Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4aygsx1yav-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 11 Dec 2025 10:09:49 +0000 (GMT)
-Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-	by APBLRPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 5BBA9kaV013920;
-	Thu, 11 Dec 2025 10:09:46 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 4avdjnuppp-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 11 Dec 2025 10:09:46 +0000
-Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 5BBA9kKr013904;
-	Thu, 11 Dec 2025 10:09:46 GMT
-Received: from hu-devc-hyd-u22-c.qualcomm.com (hu-kpallavi-hyd.qualcomm.com [10.147.243.7])
-	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 5BBA9jwA013896
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 11 Dec 2025 10:09:46 +0000
-Received: by hu-devc-hyd-u22-c.qualcomm.com (Postfix, from userid 4720299)
-	id A6DD756A; Thu, 11 Dec 2025 15:39:44 +0530 (+0530)
-From: Kumari Pallavi <kumari.pallavi@oss.qualcomm.com>
-To: kpallavi@qti.qualcomm.com, srini@kernel.org, amahesh@qti.qualcomm.com,
-        arnd@arndb.de, gregkh@linuxfoundation.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: Kumari Pallavi <kumari.pallavi@oss.qualcomm.com>, quic_bkumar@quicinc.com,
-        ekansh.gupta@oss.qualcomm.com, linux-kernel@vger.kernel.org,
-        quic_chennak@quicinc.com, dri-devel@lists.freedesktop.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        jingyi.wang@oss.qualcomm.com, aiqun.yu@oss.qualcomm.com,
-        ktadakam@qti.qualcomm.com
-Subject: [PATCH v6 4/4] misc: fastrpc: Update dma_bits for CDSP support on Kaanapali SoC
-Date: Thu, 11 Dec 2025 15:39:33 +0530
-Message-Id: <20251211100933.1285093-5-kumari.pallavi@oss.qualcomm.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251211100933.1285093-1-kumari.pallavi@oss.qualcomm.com>
-References: <20251211100933.1285093-1-kumari.pallavi@oss.qualcomm.com>
+	s=arc-20240116; t=1765447882; c=relaxed/simple;
+	bh=u7mfOzFflvlmdugnRuTbOtY+B85m2Y0zNY6dWa5DwpQ=;
+	h=Message-ID:Date:MIME-Version:Subject:References:From:To:Cc:
+	 In-Reply-To:Content-Type; b=WgJ6bgm8AmGieR38x6CKl4eAxpE7Gz7lxQGjtN8ZxNt8a9kDpzSajYv06nAN6fLEInnxP468zIO/oOgZHW5deaDXT7plmfA0wPgRdw86faqhFU0dhtUOhow3zbmExp+aIO2anUgViB4AEs8AC7wnehx//hQNW8B+RbFkvTPnhOo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gaisler.com; spf=pass smtp.mailfrom=gaisler.com; dkim=fail (0-bit key) header.d=gaisler.com header.i=@gaisler.com header.b=cP0XU75m reason="key not found in DNS"; arc=none smtp.client-ip=94.231.106.210
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gaisler.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gaisler.com
+Received: from localhost (localhost [127.0.0.1])
+	by smtp.simply.com (Simply.com) with ESMTP id 4dRpJj0kHFz1FDXb;
+	Thu, 11 Dec 2025 11:11:17 +0100 (CET)
+Received: from [192.168.0.5] (h-98-128-223-123.NA.cust.bahnhof.se [98.128.223.123])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by smtp.simply.com (Simply.com) with ESMTPSA id 4dRpJh3VZwz1DQrn;
+	Thu, 11 Dec 2025 11:11:16 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gaisler.com;
+	s=simplycom2; t=1765447876;
+	bh=IrA8Rt8OM9kn2f8ZmSosLYepoEWZ+S7sOHvBlYVY+AU=;
+	h=Date:Subject:References:From:To:Cc:In-Reply-To;
+	b=cP0XU75m0Zbaz/9xumZh2UTvebk8L+SJ1IQaK0an6xWBX8xqqeCTBKtVtEedRi7p+
+	 vZZoZQZKjNDXnLbS3uYDouWtp2SVufzm0fk2mDdwXTk38PIYykb/S4J7nI2b3aKe/0
+	 rTAvlx6e1GJltn95OA+Za2IZOrZITR4av7MeXB5Qfk+uK4/FgF6+yLtauBJxAIjXUl
+	 rHc7T2mcL9foA90VbQz0N8x15W0bqJCIkXv3Ct7rvYPxLG9kGSOXLqT+WWcmtWO8ba
+	 VA7+ayAhXfONI+n3lqyMc9Rn9N0xw+Hsygy73NT6HUVe4c56bGWHFyQOynxeDG3ui0
+	 c8cJUCvkUTkQA==
+Message-ID: <13d562aa-3425-4753-a78f-dd268dd78794@gaisler.com>
+Date: Thu, 11 Dec 2025 11:11:16 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 02/10] dt-bindings: net: can: grcan: Convert GRCAN CAN
+ controllers binding from txt to YAML
+References: <20251118092115.3455-1-arun.muthusamy@gaisler.com>
+ <20251118092115.3455-3-arun.muthusamy@gaisler.com>
+ <c80ff180-b7f1-4f39-b39d-2953ef75a7ad@kernel.org>
+Content-Language: en-US
+From: Arun Muthusamy <arun.muthusamy@gaisler.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ mkl@pengutronix.de, mailhol@kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-can@vger.kernel.org
+In-Reply-To: <c80ff180-b7f1-4f39-b39d-2953ef75a7ad@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: r9lxgX0muM-eLe9b-Ua8Suynkwm33XWk
-X-Authority-Analysis: v=2.4 cv=d974CBjE c=1 sm=1 tr=0 ts=693a986d cx=c_pps
- a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
- a=wP3pNCr1ah4A:10 a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8
- a=pfE1wiWnY1F2L3mdSfMA:9
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjExMDA3NyBTYWx0ZWRfX7g28sQSf5yvk
- pUJ8L3wid5/PpsB0PD6EIPLTHLKndsiw55KKIaf+TgNdHMdhyx2vc0jIyrcLDz8ptwCgFjdLeRx
- GVW800EIOXM7rxrJjMWLOsO8xZLRuZz5bezjELi5ODcldmVd1C6GPkA0w6fClxJJAlBE5LRGwPQ
- QKDIgTBmClsrMXkBukOKvTBP3mvHUFOUjSRYKa1gUS9svNeF3h5AwvsizPPXFRb8TTZ4iuReIay
- aRe6K9JEwT3TpDDPOKrfC2vC9ttq6JEwOg78YY7HVHikrlrymJ6OpdGXvpQJ4tBQIKzZbhiv5PY
- d54xKSkQkUrwp/+Qp5hek5I1t1Q9CEReTdpUflNoBb8hyweVG2rJp1Ug0jbOHZ1uUwf1l2P9Wzw
- KCtXtU6LtWfBfWH8YSHvSAfns+J39g==
-X-Proofpoint-ORIG-GUID: r9lxgX0muM-eLe9b-Ua8Suynkwm33XWk
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-10_03,2025-12-09_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 bulkscore=0 impostorscore=0 spamscore=0 priorityscore=1501
- adultscore=0 lowpriorityscore=0 malwarescore=0 clxscore=1015 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512110077
 
-DSP currently supports 32-bit IOVA (32-bit PA + 4-bit SID) for
-both Q6 and user DMA (uDMA) access. This is being upgraded to
-34-bit PA + 4-bit SID due to a hardware revision in CDSP for
-Kaanapali SoC, which expands the DMA addressable range.
-Update DMA bits configuration in the driver to support CDSP on
-Kaanapali SoC. Set the default `dma_bits` to 32-bit and update
-it to 34-bit based on CDSP and OF matching on the fastrpc node.
+Hi Krzysztof,
 
-Signed-off-by: Kumari Pallavi <kumari.pallavi@oss.qualcomm.com>
----
- drivers/misc/fastrpc.c | 15 +++++++++++++--
- 1 file changed, 13 insertions(+), 2 deletions(-)
+Thank you for your thorough review. I’d like to clarify a few points 
+regarding the DT binding and get your guidance.
 
-diff --git a/drivers/misc/fastrpc.c b/drivers/misc/fastrpc.c
-index af92876f1cc1..333be4c4f10b 100644
---- a/drivers/misc/fastrpc.c
-+++ b/drivers/misc/fastrpc.c
-@@ -276,6 +276,8 @@ struct fastrpc_session_ctx {
- 
- struct fastrpc_soc_data {
- 	u32 sid_pos;
-+	u32 dma_addr_bits_cdsp;
-+	u32 dma_addr_bits_default;
- };
- 
- struct fastrpc_channel_ctx {
-@@ -2202,6 +2204,7 @@ static int fastrpc_cb_probe(struct platform_device *pdev)
- 	int i, sessions = 0;
- 	unsigned long flags;
- 	int rc;
-+	u32 dma_bits;
- 
- 	cctx = dev_get_drvdata(dev->parent);
- 	if (!cctx)
-@@ -2215,12 +2218,16 @@ static int fastrpc_cb_probe(struct platform_device *pdev)
- 		spin_unlock_irqrestore(&cctx->lock, flags);
- 		return -ENOSPC;
- 	}
-+	dma_bits = cctx->soc_data->dma_addr_bits_default;
- 	sess = &cctx->session[cctx->sesscount++];
- 	sess->used = false;
- 	sess->valid = true;
- 	sess->dev = dev;
- 	dev_set_drvdata(dev, sess);
- 
-+	if (cctx->domain_id == CDSP_DOMAIN_ID)
-+		dma_bits = cctx->soc_data->dma_addr_bits_cdsp;
-+
- 	if (of_property_read_u32(dev->of_node, "reg", &sess->sid))
- 		dev_info(dev, "FastRPC Session ID not specified in DT\n");
- 
-@@ -2235,9 +2242,9 @@ static int fastrpc_cb_probe(struct platform_device *pdev)
- 		}
- 	}
- 	spin_unlock_irqrestore(&cctx->lock, flags);
--	rc = dma_set_mask(dev, DMA_BIT_MASK(32));
-+	rc = dma_set_mask(dev, DMA_BIT_MASK(dma_bits));
- 	if (rc) {
--		dev_err(dev, "32-bit DMA enable failed\n");
-+		dev_err(dev, "%u-bit DMA enable failed\n", dma_bits);
- 		return rc;
- 	}
- 
-@@ -2324,10 +2331,14 @@ static int fastrpc_get_domain_id(const char *domain)
- 
- static const struct fastrpc_soc_data kaanapali_soc_data = {
- 	.sid_pos = 56,
-+	.dma_addr_bits_cdsp = 34,
-+	.dma_addr_bits_default = 32,
- };
- 
- static const struct fastrpc_soc_data default_soc_data = {
- 	.sid_pos = 32,
-+	.dma_addr_bits_cdsp = 32,
-+	.dma_addr_bits_default = 32,
- };
- 
- static int fastrpc_rpmsg_probe(struct rpmsg_device *rpdev)
+On 11/18/25 12:01, Krzysztof Kozlowski wrote:
+> On 18/11/2025 10:21, Arun Muthusamy wrote:
+>> +      Fallback on node name matching for systems that don't provide compatible.
+>> +    enum:
+>> +      - GAISLER_GRCAN
+>> +      - 01_03d
+>> +      - GAISLER_GRHCAN
+>> +      - "01_034"
+> This does not really work. Are you really defining here "name" property?
+
+The driver supports two of the platforms which are LEON and NOEL 
+platforms. PROM-based *LEON* systems identify uses the "node name" 
+property, while DTS based *NOEL* systems use proper "|compatible"|strings. On LEON (SPARC32), AMBA Plug & Play information creates the DT 
+properties, and drivers historically match devices based on node names.
+To reflect this, I updated the $nodename pattern to support LEON-style 
+node names: properties:
+   $nodename:
+     pattern: "^(GAISLER_GRCAN|01_03d|GAISLER_GRHCAN|01_034)$" I’d 
+appreciate any suggestions on the preferred way to describe this node 
+name for PROM-based LEON.
+
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    maxItems: 1
+>> +
+>> +  freq:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    description: |
+>> +      Frequency of the external oscillator clock in Hz (the frequency of the
+>> +      amba bus in the ordinary case).
+>> +      This property should be used by systems that utilize the common clock
+>> +      framework is not supported.
+> Missing systemid. Your commit msg must explain any changes done to the
+> binding during conversion.
+
+The driver now reads systemid directly from /ambapp0, so the property no 
+longer needs to be defined in the DTS. The previous documentation was 
+outdated and should have been updated after commit:
+1e93ed26acf0 ("can: grcan: grcan_probe(): fix broken system id check for 
+errata workaround needs").
+
+>> +  - reg
+>> +  - interrupts
+> Where is freq? It was required in the old binding. Again, you need to
+> explain the changes.
+
+LEON: relies on the freq property
+NOEL: uses a standard clocks binding
+Because of this dual approach, the freq property is no longer required 
+in the DTS binding itself as theAMBA Plug & Play creates the DT properties.
+
+
+Thanks,
+
 -- 
-2.34.1
+BR,
+
+Arun Muthusamy
+Software Engineer
+Frontgrade Gaisler
+T : +46 (0) 700 558 528
+arun.muthusamy@gaisler.com
+
+Frontgrade Gaisler AB, Kungsgatan 12, SE-411 19 GÖTEBORG, Sweden.
++46 (0) 31 775 8650,www.gaisler.com <http://www.gaisler.com/>
+
 
 
