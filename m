@@ -1,241 +1,354 @@
-Return-Path: <devicetree+bounces-245739-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245740-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FE86CB4D1C
-	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 06:52:29 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1542CB4D61
+	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 07:09:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C913B301E177
-	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 05:51:46 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A00EF300E7B0
+	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 06:09:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C139A2D7DC0;
-	Thu, 11 Dec 2025 05:44:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FA3E1DF963;
+	Thu, 11 Dec 2025 06:09:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="mGBQbx14";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="OsP96+QT"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="fyTHI1V3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from PH7PR06CU001.outbound.protection.outlook.com (mail-westus3azon11010031.outbound.protection.outlook.com [52.101.201.31])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CB612D738E
-	for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 05:44:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765431889; cv=none; b=ZkEB5ome+EDmMGHf2VNHZYjEQvND7ANWpObdOE+WErUm5k9d0T2NwOU4bKxBKIdjA8UNhAVNFptAtD9kj2lZm4YBf0GxnA8+MdZ50DWZx0PBQLNx6N4u57WyxnQVhSiE97M3KU58X8girvjFm+peqCdXB0pJ8EMo5g165GyTtSs=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765431889; c=relaxed/simple;
-	bh=SzxaHVHPjqDlmBpQu5Xm2YNMObWyx8B6VBrtONyU0s0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FLUpdcCx6RhhjrkMjeRLUf+IyFj/+zyHrhHGPcsEeYitL27fb20SAbTAgqAWUIK4tuL35bz4sVcqLWFus+H65svnLDgLSQlbXvsLreqVXFuIE1NOLHJHwxGE+/YDN4tysm9QQm/fdSi/4jbyBK6/JhwxTyOgjOj5ffsx3FhL4Yg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=mGBQbx14; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=OsP96+QT; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BB337JT3683971
-	for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 05:44:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=JLG2w+C3sTszdx4VirmlaHOi
-	FL5gN+K2jZmVYvVT/j8=; b=mGBQbx14LnZEz0Emgk0KwuJjoz2lMbaSeFM/9Qq/
-	JLTR8SLPUjwowuVwEyVWNPWImBAy8h4FOa0My0wyAr0qS3cjwfQ5I8NLGJo41n6d
-	uI9jM/Ow+5l0bGXgPNhf0BEOnOHYlLq8Rr06uhe3HvQI1GxiZPoiIMDoYlp2nyB3
-	G388bNB9ewU0UeQ5d8Pby3MpxcnPAecZnAzW0Mpp9dJlaVN6rldmT7Yh1r44Zgex
-	UrEJ09L7I7s+tdw4TcaMglVU9Gus5KU5v3dGHScqMjNZqxnA6iInY59H30zZ9Sqt
-	lNh/A2p9X/WNyP1lnhwrSLz/xK7ojDEF+o7O4vkUbLyhNw==
-Received: from mail-vk1-f197.google.com (mail-vk1-f197.google.com [209.85.221.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4aynpvrcjh-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 05:44:47 +0000 (GMT)
-Received: by mail-vk1-f197.google.com with SMTP id 71dfb90a1353d-559867c92dfso376929e0c.1
-        for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 21:44:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1765431886; x=1766036686; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=JLG2w+C3sTszdx4VirmlaHOiFL5gN+K2jZmVYvVT/j8=;
-        b=OsP96+QTQ8LNqYFPJWDqmvxvEMZ/7vhOc6MlNR68dKRQGV7njBQRCo9Av0RMx04R+O
-         2RvmbV9BBcpRDnuE2ML+tJYajI7WoQ7KJoX5ukP5VzNYHGqmZn5xA0AbtQU7Fix5qW7a
-         hp6O8Rmq9QSEJF7f8Tm1pKcSySUsLaIPljKkTGn0alphvaWxraxMcS4cQVIwQB4xRuJc
-         F/hGHvSMz5u9iwXEoWra4z7T4V2eNOxW7/x+zZdaoFDNjZpG2lfV9T9mvt7N0GQ+oKge
-         zGU+yl6b7tyn8Q2LMY0p61RiqghPbsDw+lEvNuNGcpxi4qwC80HziiapRa2Yy3sVDypG
-         h0Gw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765431886; x=1766036686;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=JLG2w+C3sTszdx4VirmlaHOiFL5gN+K2jZmVYvVT/j8=;
-        b=CQJIYV+Sz95XUg+/SkTzASi1BzSXA+L5gUtBIpGCIfHoq4YOBNZSQTWMSv8MS31PXg
-         ppqEZB1pRJPH/5cRXyU+AShCTGyle1ovG7U5wFnk5LbGkTBqtyltgBDCboVFXbkYA+sW
-         XOFUH+cYod0OZlTcD7llSnqR+64hVozbaYjbZa4gGD7TrZBY/uPJ6/mkAK2BlLd1Xe8V
-         6p2tl4WoiVrC/cX3gvxdAJC/5vdaRCYa6ljVE4NgmXxolmMmZADZ4WLbuC5U+e67PnHD
-         /Mjonykldjfhdj9z4r5IZw0GFXD70/81ySUhQDt8GXwzFaEJralV4VbBhWGUX42DjA0v
-         y4GA==
-X-Forwarded-Encrypted: i=1; AJvYcCXtBuSAzyQ69x3ODszflTF8jpKYyM5MEBoeWvGL7MR5Li5CG1fSwhJBEzfn0ldlTfyIcZhFxQycYQdU@vger.kernel.org
-X-Gm-Message-State: AOJu0YxNF1OGG5xYhV/R9JSAc9AggRXcH4CbPgdvLli/WG3g27VVpFaE
-	6lHWO04iRe9XS3Q6NiNwD/nAICb+Z32M2+RrPj3+HJ5neQNjyYNXP+URpBhp570dKl8n1KsATgx
-	ZyTYbUtSwyDjQUchzLislK9Lpf489GPNK6x4me7wpjwEFUjBvCl/tw1SdF9K8vMT4
-X-Gm-Gg: AY/fxX52qmBpdd0IQW0+eUQs9SZLMfxW0NvFDJmWp7mkqqPuAdemfoErxP++w5BUIwe
-	8VYPQnIxMuw5ZIZQGTJIwuK/5pCGrEvgi3dSMSGIQi3asYWs0OszbdE/n3BoS8oa8/3XO/dUh5d
-	1qcwx10Q3Uw7eVhBammPijLdTxNIcB/G+Bxo8SceWXaI8FeODRSseQC/aODXFpWHIrraDn15jIp
-	asyLVTGMw5v1BRWdbbynve5U+PSR+QHFM95yL9WgfOxXyV6cvKX2Mckl/Jn4QkRxfF6WtmjPFt9
-	nVp6LdrJdCxtpOzH4LEvxU3siLY1+mkaft6fqjEql4ER8XRX5IRH9vBxvsQgPj+oUHkz5M/+zn/
-	Y62XrbvPICEFufRH59tsfud//gOztv792x4qMSx3pJBVw9HDcxKbI+0Y4t17Im65aQ9akHcoeRn
-	drtm+H2ODTLCQEeObGhBKu3sI=
-X-Received: by 2002:a05:6122:32c4:b0:54a:a048:45a4 with SMTP id 71dfb90a1353d-55fcfc5104amr1538458e0c.16.1765431886197;
-        Wed, 10 Dec 2025 21:44:46 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGGfi2cilvQl8uWCLP+ABlqrwXcWpY35vi39IvBW1eJLuXb5tc9Q5Oi12IXGio+bfFJJkuxng==
-X-Received: by 2002:a05:6122:32c4:b0:54a:a048:45a4 with SMTP id 71dfb90a1353d-55fcfc5104amr1538441e0c.16.1765431885725;
-        Wed, 10 Dec 2025 21:44:45 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-37fbca6c62esm3887871fa.32.2025.12.10.21.44.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Dec 2025 21:44:45 -0800 (PST)
-Date: Thu, 11 Dec 2025 07:44:42 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, aiqun.yu@oss.qualcomm.com,
-        tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com,
-        yijie.yang@oss.qualcomm.com, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        phone-devel@vger.kernel.org,
-        Tengfei Fan <tengfei.fan@oss.qualcomm.com>
-Subject: Re: [PATCH v3 3/5] arm64: dts: qcom: Introduce Kaanapali SoC
-Message-ID: <drbc2hb5hv36s2bzxaalfnr6lcer7zfyexnya3xpi6ltlhw6et@6gu5s7wfwm26>
-References: <20251210-knp-dts-v3-0-8dcd52f055c2@oss.qualcomm.com>
- <20251210-knp-dts-v3-3-8dcd52f055c2@oss.qualcomm.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAF02FC0A;
+	Thu, 11 Dec 2025 06:09:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.201.31
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1765433376; cv=fail; b=hTT61RpTXEZE7LihfI+OKDv1bsPKqRDeQe1dLdvpTaU4nMQ7BKG/NE4+0VR+yhgT+yc7tBNe20gDUwZXAkMXB/RReOob3pprHpPpH5nz4jb5j3bSt0iOTtigfzry+hcEJ8FxzjGdijnUjmal8hO/HXCz4i7rUw6XDbQHoG2IPPM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1765433376; c=relaxed/simple;
+	bh=5EVFUUS0qb9wgei8Ng6AAtzfzq/g3vIB3kvRWgPWEvw=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rnzl4IzvREwcm2CPCx/8cTXlIVDlsDekwYR1LChI0juFdeMHjvAk0zOcerbwRlQSq2FYgbZXrbpdlR1Y5Y20KUjlfmvtESifUZsnqMk/PXUfLd/adpL75xvddWI1j8r0xL24xhp32S29Nddse6p/Ql5xIB+4LC6byjqnZeXhksI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=fyTHI1V3; arc=fail smtp.client-ip=52.101.201.31
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=oqcsSAzfgPve6CetbKpVxg1+gQioUJLOj6T6qgrOb2fn43UfnT6G4R6gH4jgVDe1HIXdgitNIMvnOQKhw8xltPiCycWqw22yJpdBLWdy5OAHuGDgrTFPXS6XIub3AxULD5obtb6ow2kRK1VBko2XjPRPMpFZMOPqUw7N/aEs90L2p12ZWv5tW3dFI5cUSKx9yy+/eDW31TDvu77dk9bahfjPW1yjQ2VuozpXORy6gFb3hCvrzoN6HFmyrgtEL/YUKALfOaRIQQScvQkHs9T0/LacvwM6pvTWclwaitfh4TsfenMzAyhXZ+Dtt6MuEIevAOEBBQhxaX8kuLRjIriGng==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=oZuV8+EjHAsb9UfjPhO1rkXiZbx2xlxeI8ewygNbw7o=;
+ b=MUD/XEolpbPuFEKDQAQia1A9DEsJdu5OvwIGYbLMLFK+cPNwCsGFBCgShZPXPVE1Sz+Uy960d9d6u6JNjPkqtF1rvN4D21K+fFIm+KW4bOySo3u1Zcm4jBz0cnpbE1NFzUreV01YgrZ+2TJgJdbXskagV63RwgOc819alYLN/3nR3w4+amnSyaPCibb/ZgVYkGFnSPHZWQ8WCoEpR9xfMa0av0RWWB1/qePLe/Z/Zn7VxAMgB/XDCJZOzkGXbEcV0wMiQm64q5nItV8O19KRBLYUb6Wjdyfqk1jauTWuuEDepVAlWos6nkuGahNyr3RokJAe0ovcp8hvXHCkGaudkg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.160) smtp.rcpttodomain=arm.com smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=oZuV8+EjHAsb9UfjPhO1rkXiZbx2xlxeI8ewygNbw7o=;
+ b=fyTHI1V3aqa3shi9EeqP2jC1Q2PYsM6F3ndYXsou24mBaCx8wp66tv+xoerC0BlTrHvP6q6hlmIePK/62IBu4cn8O2UPy86k9U/Z9t2qSUeFklo8UEtvmx7lpClPx24/c/eQPP+s7o1flCxUIGlMvTo3TvkVsvshYGcWx8iycEn2cXrcjpco28trKS69g44o7dW1KrH7cIYOUOBeLxL8zEDhxv0cltxjpN4PuoHuZV6Q6jrxER6KFXrIIn/ChWsCk5gbmtj59O1DQnWVZ4rH+S8mw7c53vAR1rxEH89ZQkGrzsKe21lZ8WrJ+MI+sWYzK5ILg3cdtcwjUYp2lhBA8g==
+Received: from DM6PR17CA0023.namprd17.prod.outlook.com (2603:10b6:5:1b3::36)
+ by CH3PR12MB9194.namprd12.prod.outlook.com (2603:10b6:610:19f::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9412.9; Thu, 11 Dec
+ 2025 06:09:28 +0000
+Received: from DS2PEPF0000343B.namprd02.prod.outlook.com
+ (2603:10b6:5:1b3:cafe::76) by DM6PR17CA0023.outlook.office365.com
+ (2603:10b6:5:1b3::36) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9412.6 via Frontend Transport; Thu,
+ 11 Dec 2025 06:09:27 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.160) by
+ DS2PEPF0000343B.mail.protection.outlook.com (10.167.18.38) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9412.4 via Frontend Transport; Thu, 11 Dec 2025 06:09:27 +0000
+Received: from rnnvmail202.nvidia.com (10.129.68.7) by mail.nvidia.com
+ (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 10 Dec
+ 2025 22:09:12 -0800
+Received: from rnnvmail205.nvidia.com (10.129.68.10) by rnnvmail202.nvidia.com
+ (10.129.68.7) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 10 Dec
+ 2025 22:09:11 -0800
+Received: from nvidia.com (10.127.8.10) by mail.nvidia.com (10.129.68.10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Wed, 10 Dec 2025 22:09:08 -0800
+Date: Wed, 10 Dec 2025 22:09:05 -0800
+From: Nicolin Chen <nicolinc@nvidia.com>
+To: Robin Murphy <robin.murphy@arm.com>, Ashish Mhetre <amhetre@nvidia.com>
+CC: <oe-kbuild-all@lists.linux.dev>, <thierry.reding@gmail.com>,
+	<jonathanh@nvidia.com>, <vdumpa@nvidia.com>, <jgg@ziepe.ca>,
+	<linux-arm-kernel@lists.infradead.org>, <iommu@lists.linux.dev>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-tegra@vger.kernel.org>, <joro@8bytes.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, kernel test robot
+	<lkp@intel.com>, <will@kernel.org>
+Subject: Re: [PATCH V4 1/3] iommu/arm-smmu-v3: Add device-tree support for
+ CMDQV driver
+Message-ID: <aTpgAU6FjinhclQH@nvidia.com>
+References: <20251205065850.3841834-2-amhetre@nvidia.com>
+ <202512090331.QAFgb6vQ-lkp@intel.com>
+ <2bf7bb25-9a6b-42d5-b095-978f7bb81f35@nvidia.com>
+ <e7c69e9c-6af4-468a-88ed-fb8829afb92e@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20251210-knp-dts-v3-3-8dcd52f055c2@oss.qualcomm.com>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjExMDAzOCBTYWx0ZWRfXy283RdwkqXQt
- H9wm0hSjDPs+7Cseve/ca78gXTmhri0IwfZNK8m/vhSHsHzj/IP1XH4i76v9Aynn51l+JKnmHOF
- hT7B6RSmhr8auoGHVzrVF3tfrtdIflbRnw4Jc07gNdclFei01dm1+s77EVDmulpj6j9XFcyX1aM
- mQo+d0pb92s4DEme5CyxyUDfasnSOMtaKUSGC/OcqB9hUPOOQD8QWKAT0o6ULrN3epcGLXzL+uk
- 3AFyj4+9m+lcr6SClc9YCujODVTCfZydLqcdvqG9ehZzWIhhn7ZvkTn94qrA6eQ84OXo4ctOxc6
- XxuFKCCYtqqJU0Fii6HHT6cGlbKNO2bBw0w5FctJiuGeBnM3qzvnktwf7oveNlIBAJWIA+kitG8
- Mswbd7ajhF3Q3UynC/QOg4oHvCEbmw==
-X-Proofpoint-GUID: HESRlE3dleWwSnfVgN7KsWeeXo32HxKa
-X-Authority-Analysis: v=2.4 cv=C6nkCAP+ c=1 sm=1 tr=0 ts=693a5a4f cx=c_pps
- a=JIY1xp/sjQ9K5JH4t62bdg==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=rz-J1vZrXhXIdLqqZeEA:9 a=CjuIK1q_8ugA:10
- a=tNoRWFLymzeba-QzToBc:22
-X-Proofpoint-ORIG-GUID: HESRlE3dleWwSnfVgN7KsWeeXo32HxKa
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-10_03,2025-12-09_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 adultscore=0 lowpriorityscore=0 malwarescore=0 clxscore=1015
- priorityscore=1501 impostorscore=0 phishscore=0 suspectscore=0 bulkscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512110038
+In-Reply-To: <e7c69e9c-6af4-468a-88ed-fb8829afb92e@arm.com>
+X-NV-OnPremToCloud: ExternallySecured
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS2PEPF0000343B:EE_|CH3PR12MB9194:EE_
+X-MS-Office365-Filtering-Correlation-Id: f0fcf275-8698-4646-ec6e-08de387bd785
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|7416014|376014|1800799024|82310400026|36860700013|7053199007;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?xyNu8To4a3Ytma2S2DQIDJtKp2TQrzydPsMjPt6ZhUbVDhN0i3dFzlqHYiIs?=
+ =?us-ascii?Q?wUIUVzA/2V+ztB/483RMMflqdpYWI7RJsJkSGP00nGGgV3qxFerViqfb/og3?=
+ =?us-ascii?Q?ODdMjxlADUGwYiWGJj+Fx+KrvhePMXqEIQsZC1PCK2UszrNIas1s1VBi4eMz?=
+ =?us-ascii?Q?KvaZV6CyjEYpxu/jA/0GjVmDU4wF9sbzTayfnBjvJ/xyk7iCNQ3F9Wwd8jpT?=
+ =?us-ascii?Q?5Na30+MfdtjjsbDx91TfI1mHF3zBMoveBuilTJe/SL8dNueIeSxMo8c4Ojdr?=
+ =?us-ascii?Q?I4wXBr+05tzSVD5pbyk57iZK3/fNG5OxMApDiBhPwKu2fJBjHqHW5C76SqBa?=
+ =?us-ascii?Q?ZiyRRaKLvoQmUY/iXVZeL0bogMB4wkG4tApIUwLlCLNi+FavKawWKLn/pAyd?=
+ =?us-ascii?Q?TFK9uYCphGhi0XMpVS+74FSNyCV+yFT2AIuEBow+JcxIb4B8mWaDFzHKhdJg?=
+ =?us-ascii?Q?jkSnSc3ZBGJeWJEfwJlV80FA5x1GPPBSvZ6xeJFhoSX6JBNjAyK+nkDdBx26?=
+ =?us-ascii?Q?2ZS5ne8OK7d8Thij0KeUDGoj4IeuzSqvH6UB3TeWPFGk9p0QFMYzbpQQ23fq?=
+ =?us-ascii?Q?MgnEyQcAXsi6ipAbiPqW8x+7lqhGwncdGUAuOKmnHbc04q2ldQpF0j8kFmQP?=
+ =?us-ascii?Q?3BUlNuUH7/DcnG80YmJ9ervNi6eqQ3mp11r0R1MsFXIlghOF5AmMYRlHfCcY?=
+ =?us-ascii?Q?gCz/IwuAXm6KnVnNK/OtM4EGmxWwxHMr/ifpa1Ztywnu3onjG0WuzQCS2B/8?=
+ =?us-ascii?Q?wB6eXCYr46oa47PiSjUwtbT+1dCMfFK0VHAH2lY9cYA7I0FGAmOjeRBca3/w?=
+ =?us-ascii?Q?DJ1flJAxiD8AV+/4EQ9ZjZRtpmSQnNnciAWzBvgRyUQIZgBFVTPsBHoA/p2X?=
+ =?us-ascii?Q?KiUejN2hHExqqaZ7+LrB2lzRfio6TBuRIivvdhqcB1WsgUv74RzJayTpJD87?=
+ =?us-ascii?Q?cQo8oaf9yiaHPe0HB1rVQJa+Rwf0coVxA2NiXeZfwsi4M73gkjzjbvC1DpoX?=
+ =?us-ascii?Q?8SYE5APMpYp0FvhrybSH3W9zxejqfovhR1pe5yZvjwExx7U6AnscU32nWO8H?=
+ =?us-ascii?Q?zDi+O0gNW6uv1xaEOsnTrPYpFENRwTuyuyR/2O6SUedzUC6I9DoqaiRiF63t?=
+ =?us-ascii?Q?VD/LQZDFox6qJlJGC9Tzp8XH3VImFvbOdwfk3HG8w29CuDOCGv5Xmb0ajUcs?=
+ =?us-ascii?Q?KSO9HybCLs/h4tSMVPxmqrMYQALLvW7PNK5J1m/DpRIVMCBn3z4Jf9i175SV?=
+ =?us-ascii?Q?/nuFtHwI+0Ke8i2dD9jFTWPWB2prWw6iR5AATt3AbcDu/uOQBytEnSpTtj0y?=
+ =?us-ascii?Q?N3hzVbT3KC7QhDXXI6vK1YqFT0IRZ0tCysGIeYtT1J3pkYGzpdC55nl1D+JA?=
+ =?us-ascii?Q?s0uhICnlEXwauyKGUVnYzGroBqBOC3YVAi5uY1dDcUXUbl7PmPwYhBYgTcah?=
+ =?us-ascii?Q?myRSuq3cmHkfyfMkLk1D+lbAc49DpbwESxlCvDPV93VIQ9XJAuwJaV0FN4Uk?=
+ =?us-ascii?Q?cJrk+GE+rzAlsKIADj0fNSMD7o+mlGvk7HazJuGVx/sDie7K9B3E4yXNjhjZ?=
+ =?us-ascii?Q?gNeD9EPNHtZdPj8VGgE=3D?=
+X-Forefront-Antispam-Report:
+	CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(82310400026)(36860700013)(7053199007);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Dec 2025 06:09:27.9764
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f0fcf275-8698-4646-ec6e-08de387bd785
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.160];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DS2PEPF0000343B.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB9194
 
-On Wed, Dec 10, 2025 at 07:05:04PM -0800, Jingyi Wang wrote:
-> Kaanapali is Snapdragon SoC from Qualcomm.
+On Wed, Dec 10, 2025 at 12:39:49PM +0000, Robin Murphy wrote:
+> On 2025-12-10 5:19 am, Ashish Mhetre wrote:
+> [...]
+> > Hi Robin, Nic,
+> > We removed ACPI dependency in Kconfig but driver still depends
+> > on ACPI for these functions. I will be protecting ACPIspecific
+> > tegra241-cmdqv code under CONFIG_ACPI similar to what is done
+> > in arm-smmu-v3 driver. Is this the correct thing to do or do you
+> > have any other suggestions?
 > 
-> Features added in this patch:
-> - CPUs with PSCI idle states and cpufreq
-> - Interrupt-controller with PDC wakeup support
-> - Timers, TCSR Clock Controllers
-> - Reserved Shared memory
-> - GCC and RPMHCC
-> - TLMM
-> - Interconnect with CPU BWMONs
-> - QuP with UART
-> - SMMU
-> - RPMhPD
-> - UFS with Inline Crypto Engine
-> - LLCC
-> - Watchdog
-> - SD Card
-> - PCIe
+> Yes, when I commented that "depends on ACPI || OF" was functionally the same
+> as just removing "depends on ACPI", I didn't mean to suggest that wasn't
+> necessarily a genuine dependency still.
 > 
-> Written with help from Raviteja Laggyshetty (added interconnect nodes),
-> Taniya Das (added Clock Controllers and cpufreq), Jishnu Prakash
-> (added RPMhPD), Nitin Rawat (added UFS), Gaurav Kashyap (added ICE),
-> Manish Pandey (added SD Card) and Qiang Yu (added PCIe).
-> 
-> Co-developed-by: Tengfei Fan <tengfei.fan@oss.qualcomm.com>
-> Signed-off-by: Tengfei Fan <tengfei.fan@oss.qualcomm.com>
-> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-> ---
->  arch/arm64/boot/dts/qcom/kaanapali.dtsi | 1606 +++++++++++++++++++++++++++++++
->  1 file changed, 1606 insertions(+)
-> 
-> +
-> +	reserved-memory {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		pdp_mem: pdp-region@81300000 {
+> I guess if you can wrap the ACPI-specific functions in a single #ifdef block
+> that's reasonable, however I do now wonder whether things couldn't be
+> factored out a bit more - if it's a standard DSDT/SSDT namespace device,
+> shouldn't there also be a corresponding platform device created for it,
+> which we could look up instead of delving directly into the _CRS of the ACPI
+> node itself? (not sure off-hand if there's a straightforward inverse of
+> ACPI_COMPANION()...)
 
-please drop -region, please be consistent
+Ah, I did a quick tracer at acpi_create_platform_device(). And I
+do see platform devices being created. So, we could have made it
+ACPI-independent from the beginning, as you expected :)
 
-> +			reg = <0x0 0x81300000 0x0 0x100000>;
-> +			no-map;
-> +		};
-> +
-> +		aop_cmd_db_mem: aop-cmd-db@81c60000 {
-> +			compatible = "qcom,cmd-db";
-> +			reg = <0x0 0x81c60000 0x0 0x20000>;
-> +			no-map;
-> +		};
-> +
-> +		smem_mem: smem@81d00000 {
-> +			compatible = "qcom,smem";
-> +			reg = <0x0 0x81d00000 0x0 0x200000>;
-> +			hwlocks = <&tcsr_mutex 3>;
-> +			no-map;
-> +		};
-> +
-> +		pdp_ns_shared_mem: pdp-ns-shared-region@81f00000 {
+Ashish, let's attach the following patch in your series:
 
-please drop -region
+From 7b69a638276e66b16b923b0ce1743d3efc85a04c Mon Sep 17 00:00:00 2001
+From: Nicolin Chen <nicolinc@nvidia.com>
+Date: Thu, 11 Dec 2025 05:47:05 +0000
+Subject: [PATCH] iommu/tegra241-cmdqv: Decouple driver from ACPI
 
-> +			reg = <0x0 0x81f00000 0x0 0x100000>;
-> +			no-map;
-> +		};
-> +
+A platform device is created by acpi_create_platform_device() per CMDQV's
+adev. That means there is no point in going through _CRS of ACPI.
 
-> +
-> +		pcie0: pcie@1c00000 {
-> +			device_type = "pci";
-> +			compatible = "qcom,kaanapali-pcie", "qcom,pcie-sm8550";
-> +			reg = <0 0x01c00000 0 0x3000>,
+Replace all the ACPI functions with standard platform functions. And drop
+all ACPI dependencies. This will make the driver compatible with DT also.
 
-0x0 instead of 0 (here and in other reg entries).
+Suggested-by: Robin Murphy <robin.murphy@arm.com>
+Signed-off-by: Nicolin Chen <nicolinc@nvidia.com>
+---
+ drivers/iommu/arm/Kconfig                     |  1 -
+ drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c   |  2 +-
+ .../iommu/arm/arm-smmu-v3/tegra241-cmdqv.c    | 84 +++----------------
+ 3 files changed, 13 insertions(+), 74 deletions(-)
 
-> +			      <0 0x40000000 0 0xf1d>,
-> +			      <0 0x40000f20 0 0xa8>,
-> +			      <0 0x40001000 0 0x1000>,
-> +			      <0 0x40100000 0 0x100000>,
-> +			      <0 0x01c03000 0 0x1000>;
-> +			reg-names = "parf",
-> +				    "dbi",
-> +				    "elbi",
-> +				    "atu",
-> +				    "config",
-> +				    "mhi";
-> +			#address-cells = <3>;
-> +			#size-cells = <2>;
-> +			ranges = <0x01000000 0 0x00000000 0 0x40200000 0 0x100000>,
-
-Also 0x0 here
-
-> +				 <0x02000000 0 0x40300000 0 0x40300000 0 0x23d00000>;
-> +
-
+diff --git a/drivers/iommu/arm/Kconfig b/drivers/iommu/arm/Kconfig
+index ef42bbe07dbef..5fac08b89deea 100644
+--- a/drivers/iommu/arm/Kconfig
++++ b/drivers/iommu/arm/Kconfig
+@@ -121,7 +121,6 @@ config ARM_SMMU_V3_KUNIT_TEST
+ 
+ config TEGRA241_CMDQV
+ 	bool "NVIDIA Tegra241 CMDQ-V extension support for ARM SMMUv3"
+-	depends on ACPI
+ 	help
+ 	  Support for NVIDIA CMDQ-Virtualization extension for ARM SMMUv3. The
+ 	  CMDQ-V extension is similar to v3.3 ECMDQ for multi command queues
+diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
+index 38028e4a52f7f..0c98be3135c63 100644
+--- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
++++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
+@@ -5280,7 +5280,7 @@ static void acpi_smmu_dsdt_probe_tegra241_cmdqv(struct acpi_iort_node *node,
+ 	adev = acpi_dev_get_first_match_dev("NVDA200C", uid, -1);
+ 	if (adev) {
+ 		/* Tegra241 CMDQV driver is responsible for put_device() */
+-		smmu->impl_dev = &adev->dev;
++		smmu->impl_dev = acpi_get_first_physical_node(adev);
+ 		smmu->options |= ARM_SMMU_OPT_TEGRA241_CMDQV;
+ 		dev_info(smmu->dev, "found companion CMDQV device: %s\n",
+ 			 dev_name(smmu->impl_dev));
+diff --git a/drivers/iommu/arm/arm-smmu-v3/tegra241-cmdqv.c b/drivers/iommu/arm/arm-smmu-v3/tegra241-cmdqv.c
+index 378104cd395e5..1fc03b72beb88 100644
+--- a/drivers/iommu/arm/arm-smmu-v3/tegra241-cmdqv.c
++++ b/drivers/iommu/arm/arm-smmu-v3/tegra241-cmdqv.c
+@@ -3,17 +3,15 @@
+ 
+ #define dev_fmt(fmt) "tegra241_cmdqv: " fmt
+ 
+-#include <linux/acpi.h>
+ #include <linux/debugfs.h>
+ #include <linux/dma-mapping.h>
+ #include <linux/interrupt.h>
+ #include <linux/iommu.h>
+ #include <linux/iommufd.h>
+ #include <linux/iopoll.h>
++#include <linux/platform_device.h>
+ #include <uapi/linux/iommufd.h>
+ 
+-#include <acpi/acpixf.h>
+-
+ #include "arm-smmu-v3.h"
+ 
+ /* CMDQV register page base and size defines */
+@@ -854,69 +852,6 @@ static struct arm_smmu_impl_ops tegra241_cmdqv_impl_ops = {
+ 
+ /* Probe Functions */
+ 
+-static int tegra241_cmdqv_acpi_is_memory(struct acpi_resource *res, void *data)
+-{
+-	struct resource_win win;
+-
+-	return !acpi_dev_resource_address_space(res, &win);
+-}
+-
+-static int tegra241_cmdqv_acpi_get_irqs(struct acpi_resource *ares, void *data)
+-{
+-	struct resource r;
+-	int *irq = data;
+-
+-	if (*irq <= 0 && acpi_dev_resource_interrupt(ares, 0, &r))
+-		*irq = r.start;
+-	return 1; /* No need to add resource to the list */
+-}
+-
+-static struct resource *
+-tegra241_cmdqv_find_acpi_resource(struct device *dev, int *irq)
+-{
+-	struct acpi_device *adev = to_acpi_device(dev);
+-	struct list_head resource_list;
+-	struct resource_entry *rentry;
+-	struct resource *res = NULL;
+-	int ret;
+-
+-	INIT_LIST_HEAD(&resource_list);
+-	ret = acpi_dev_get_resources(adev, &resource_list,
+-				     tegra241_cmdqv_acpi_is_memory, NULL);
+-	if (ret < 0) {
+-		dev_err(dev, "failed to get memory resource: %d\n", ret);
+-		return NULL;
+-	}
+-
+-	rentry = list_first_entry_or_null(&resource_list,
+-					  struct resource_entry, node);
+-	if (!rentry) {
+-		dev_err(dev, "failed to get memory resource entry\n");
+-		goto free_list;
+-	}
+-
+-	/* Caller must free the res */
+-	res = kzalloc(sizeof(*res), GFP_KERNEL);
+-	if (!res)
+-		goto free_list;
+-
+-	*res = *rentry->res;
+-
+-	acpi_dev_free_resource_list(&resource_list);
+-
+-	INIT_LIST_HEAD(&resource_list);
+-
+-	if (irq)
+-		ret = acpi_dev_get_resources(adev, &resource_list,
+-					     tegra241_cmdqv_acpi_get_irqs, irq);
+-	if (ret < 0 || !irq || *irq <= 0)
+-		dev_warn(dev, "no interrupt. errors will not be reported\n");
+-
+-free_list:
+-	acpi_dev_free_resource_list(&resource_list);
+-	return res;
+-}
+-
+ static int tegra241_cmdqv_init_structures(struct arm_smmu_device *smmu)
+ {
+ 	struct tegra241_cmdqv *cmdqv =
+@@ -1042,18 +977,23 @@ __tegra241_cmdqv_probe(struct arm_smmu_device *smmu, struct resource *res,
+ 
+ struct arm_smmu_device *tegra241_cmdqv_probe(struct arm_smmu_device *smmu)
+ {
++	struct platform_device *pdev = to_platform_device(smmu->impl_dev);
+ 	struct arm_smmu_device *new_smmu;
+-	struct resource *res = NULL;
++	struct resource *res;
+ 	int irq;
+ 
+-	if (!smmu->dev->of_node)
+-		res = tegra241_cmdqv_find_acpi_resource(smmu->impl_dev, &irq);
+-	if (!res)
++	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
++	if (!res) {
++		dev_err(&pdev->dev, "no memory resource found for CMDQV\n");
+ 		goto out_fallback;
++	}
+ 
+-	new_smmu = __tegra241_cmdqv_probe(smmu, res, irq);
+-	kfree(res);
++	irq = platform_get_irq_optional(pdev, 0);
++	if (irq <= 0)
++		dev_warn(&pdev->dev,
++			 "no interrupt. errors will not be reported\n");
+ 
++	new_smmu = __tegra241_cmdqv_probe(smmu, res, irq);
+ 	if (new_smmu)
+ 		return new_smmu;
+ 
 -- 
-With best wishes
-Dmitry
+2.43.0
 
