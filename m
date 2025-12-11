@@ -1,331 +1,343 @@
-Return-Path: <devicetree+bounces-245944-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245945-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F114CB7045
-	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 20:38:36 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E587CB705D
+	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 20:42:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 310903031376
-	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 19:36:46 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B033E303B2C3
+	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 19:41:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 192F331DDBF;
-	Thu, 11 Dec 2025 19:31:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05D2232144A;
+	Thu, 11 Dec 2025 19:31:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=marvell.com header.i=@marvell.com header.b="cSAl72Sg"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="R5XoI1Yq";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="TWR84s/k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0016f401.pphosted.com (mx0b-0016f401.pphosted.com [67.231.156.173])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36EC531DDB7;
-	Thu, 11 Dec 2025 19:31:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=67.231.156.173
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765481485; cv=fail; b=HY3jmgQXX3l7ZhMWA/QjxmzDIcuxNO1M4ruP9CbP4AFylZTf6L1Z4CHfNQH1WWVaV+clW7TFo8aLELcNgcrekH2hlBuV8SbKSekF1Yzjfw4mv+SO8G1Jzq2aK6t+NoHndBG03dTdL9FCnZAxWPx0ejjh5dNr5pLdUIdx24Gq/CA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765481485; c=relaxed/simple;
-	bh=5w3ShUkDTxNekfqJAD6gXDz4tziDIyLPzvxdzMPPvQ8=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=XZ/TxeKEfYrTTryi7rBGKMb8EJ6ODzJElGYo6GIRIlS7EHjaY6MXfolFD8FIyRmimiw3fTk+sTy6z5iRSA31y7Ywcs0o8dYd7RNQtRIAnAOHPnI06E076rvtK5OJLYLTcNp8PM3OCxenPGW5/NsVYzSckMNVcCL50Z6JVcrHOk0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=marvell.com; spf=pass smtp.mailfrom=marvell.com; dkim=pass (1024-bit key) header.d=marvell.com header.i=@marvell.com header.b=cSAl72Sg; arc=fail smtp.client-ip=67.231.156.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=marvell.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=marvell.com
-Received: from pps.filterd (m0431383.ppops.net [127.0.0.1])
-	by mx0b-0016f401.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BBAnSKK2374371;
-	Thu, 11 Dec 2025 11:30:56 -0800
-Received: from co1pr03cu002.outbound.protection.outlook.com (mail-westus2azon11020126.outbound.protection.outlook.com [52.101.46.126])
-	by mx0b-0016f401.pphosted.com (PPS) with ESMTPS id 4ayjjfjj11-1
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Thu, 11 Dec 2025 11:30:56 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=c8/RNNAyoZvQIcYBbBnN5x1IJf4VhpMkxo3AzBCQ9j4XnGsPoVg7luq+RCvVIT6cgHrg3oY5p/OKeInhv2zkij25YNHPBl2T9Yzm/SkYxyDEXpCFXgc7cVKvoAcp11VAcG5JzWVm2inPA5PGaDm92U8G6RwQR5B62KFp5KHW4Fa3grx4S82aJkOVXi00+SXimnrPVM6xxJyKTHtP9ldd4osf0+I+JS/lNh0s83tbbTgEeYeOVtyQm7IDMF1t8oqGjeA3Y8ggl9URLMosbN6D7jNt6AT+UuZxYt0BJBQ5QH5p15q+CRxwbFbRtLlSKNEm9PFB/LnBsrjaegzx02KcHA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5w3ShUkDTxNekfqJAD6gXDz4tziDIyLPzvxdzMPPvQ8=;
- b=ddHMTxiChdz+j8GUeBduOdrRXmCztnjSH6bAbOZLsnIAUXVOL3gCoPdAw9sZ5URezh1QP3z8magYyoZTyszImj1qWADmjBPtpVcRG0EYQnOIfRt+EvKiDClG/UBgLVxm1SoGvY9jj2Q9yw3auTLoG4bA72qgZA8qKNgkunUYklNSq0/SyymQhRxupRI4V6CPQYtJdJZRXpsXPOSVSWTccyuPlJxHXMjCjXfCjG118kwb7tTbyKTYOMKbNE3M7yfuZlm9mMZFCBF9Xoo+ZekwOoQ2sx1fGXL5aX74Mad8fdn0TUOcDcQy3c/Sl+E3a20k9LyrIONGIQdCAudVsyHFkQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=marvell.com; dmarc=pass action=none header.from=marvell.com;
- dkim=pass header.d=marvell.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5w3ShUkDTxNekfqJAD6gXDz4tziDIyLPzvxdzMPPvQ8=;
- b=cSAl72SgabVI3z+xp4KslCiXAp2DiG+3uPfmOAfpORBDPNKpTTsPir2jdnn+LMoGKeUa+/kebHkMZZHIvYya+xWAAjk3U3bUyEECzKvLfDTeNtyJEIm4cjESQvIvhqUsnAEYEFTfOhkWGkTX7sIIAY62nUpIDuLVR6TM2s2+6eo=
-Received: from BY3PR18MB4707.namprd18.prod.outlook.com (2603:10b6:a03:3ca::23)
- by MW3PR18MB3531.namprd18.prod.outlook.com (2603:10b6:303:2d::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9388.15; Thu, 11 Dec
- 2025 19:30:53 +0000
-Received: from BY3PR18MB4707.namprd18.prod.outlook.com
- ([fe80::ad08:c104:6b33:ef04]) by BY3PR18MB4707.namprd18.prod.outlook.com
- ([fe80::ad08:c104:6b33:ef04%4]) with mapi id 15.20.9388.013; Thu, 11 Dec 2025
- 19:30:53 +0000
-From: Sai Krishna Gajula <saikrishnag@marvell.com>
-To: "Chalios, Babis" <bchalios@amazon.es>,
-        "robh@kernel.org"
-	<robh@kernel.org>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "richardcochran@gmail.com"
-	<richardcochran@gmail.com>,
-        "dwmw2@infradead.org" <dwmw2@infradead.org>,
-        "andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>,
-        "davem@davemloft.net"
-	<davem@davemloft.net>,
-        "edumazet@google.com" <edumazet@google.com>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "pabeni@redhat.com" <pabeni@redhat.com>
-CC: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Graf (AWS),
- Alexander" <graf@amazon.de>,
-        "mzxreary@0pointer.de" <mzxreary@0pointer.de>,
-        "Cali, Marco" <xmarcalx@amazon.co.uk>,
-        "Woodhouse, David" <dwmw@amazon.co.uk>
-Subject: RE: [PATCH v3 4/4] ptp: ptp_vmclock: Add device tree support
-Thread-Topic: [PATCH v3 4/4] ptp: ptp_vmclock: Add device tree support
-Thread-Index: AQHcZFGNDesDBE0O+UOcWP2wUC57mrUc1OqA
-Date: Thu, 11 Dec 2025 19:30:53 +0000
-Message-ID:
- <BY3PR18MB4707921531D6A7DF7B1FBF0FA0A1A@BY3PR18MB4707.namprd18.prod.outlook.com>
-References: <20251203123539.7292-1-bchalios@amazon.es>
- <20251203123539.7292-5-bchalios@amazon.es>
-In-Reply-To: <20251203123539.7292-5-bchalios@amazon.es>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BY3PR18MB4707:EE_|MW3PR18MB3531:EE_
-x-ms-office365-filtering-correlation-id: 015f5c6f-92d9-4d92-9007-08de38ebcc75
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|376014|7416014|10070799003|1800799024|366016|38070700021|921020;
-x-microsoft-antispam-message-info:
- =?utf-8?B?ZkU5VmNtcXNwQWJtdS96WVY0aEVua2tJOE9KMWo0WHlKN3V0OGsyT3lHUHd0?=
- =?utf-8?B?eHZFeHNWQVN0dkVCU2g0aStyUFcyR1htRmJhRG9RVDVQcHJPcmJPamVSK05G?=
- =?utf-8?B?cy81b3dYaWk2WVFPMVBIYUlJMXRvQ1FrWExZRDRXUDRrb2NZSUNOcWlGZ0o4?=
- =?utf-8?B?N253S3ZJVUFJRFI1NmduQ1kwNVVYUW9iRnE2elg2Q3ZBZjQ1NXQzZFJZMU16?=
- =?utf-8?B?bXNyZ1pYSXFsNS9ZbHJzUUhVSmlzQitLd1UwTjhaQUYvd0ZNaDVMZW4weGs3?=
- =?utf-8?B?MnhKSUFicmF3ZkxOLzdpZUgyR2dMRmVJYUJDclkrMjBsUkQzL3dtUjZiYTdY?=
- =?utf-8?B?SkJGdEQwTXEwTEdWdTVYZVVucnlKdUFSY0xGdFJMK1NabnpaeHNrWklvSFZT?=
- =?utf-8?B?VTVzQThXN1ppcmJMYW1OQmc5aS9oWFRROVJKRGVPdlZ4WUhPZVdSeU5JRE9z?=
- =?utf-8?B?ZEJkY3pDVGxHOEpIT1loZXhIWEtPVjRRL1lObTMrUkVCZy9hREZ6amVyY2Rk?=
- =?utf-8?B?QkpkOFF1Y042bjc1VUpuNkpxSnNoOGlUZFIzQlZqbmp3amljVmRjeFpGK25C?=
- =?utf-8?B?NlBlaGtnZUxRMTJtKzY0M0wrRDRtSHJ2RHF2cHhEd1FORzRITzNzZnQzTmhD?=
- =?utf-8?B?TWdZeVAwZkNXdHJzNDc3YjhvTHdOOXhlNnRieHlxc2R5eFpOaDF4VmNkRlVp?=
- =?utf-8?B?UFpjSFpUaVZtSHl6VjJWcWkydEhwbnAxOGhiS3FPYkE2U2xiRWl2ajlieSt4?=
- =?utf-8?B?RVI0VWtmUGJZSHJyZ0I1V1lSdFJhblY1Q2dzRlNmRk1nTVkwdENvQm01bzJt?=
- =?utf-8?B?RmQvOFFUZ3lvd2FNbmZaVC9QLzNKcVJzY0orQ1VONmIrNE1CVkxLNHNvVjZX?=
- =?utf-8?B?UURZd2toZ1UrWTRjRDZkemhuOW16bElrVkt0WW5VNG9QMnQ0Z0JiSDBCdDFP?=
- =?utf-8?B?cmdRcldYNFR4NnJFaWlzWDlUNDZOZVh3NW93bzEvMEZkdTJxWklDR04yY3dV?=
- =?utf-8?B?ZDlmcjBId1RTNytuZDI1ZDJmVFVDejVmTEd1aEJwUURJNnUvbnRFVWxFMUZp?=
- =?utf-8?B?UmVCa2NYNXcxZHZjNW5YSlFrMDlGTEZKbWUvZ0hFY3BPWVZtL3V0Y1RyM2pJ?=
- =?utf-8?B?aVM3YVNqREI1dFl6QjA2d3JobWtpRXFUdEFsYkJTdDlOVU1hYzlYM2NjWXg0?=
- =?utf-8?B?bnR5TzNBNFNxS2ZYRzFtSmFNMGFCQXo0ZUI0eDJyVGxCai8yUExDMUpUZ1Fu?=
- =?utf-8?B?RmF5YlgzM1JUekF2eGRLRTg3OVQ1azdKNFUwTEkrWTdmSHcyblp1TEVud29M?=
- =?utf-8?B?YU91c3NEb3BxVXlsVVEzKzN2OWNyVU1qdG84cXBVMTVPMmZnK1ZRdHJDVnBm?=
- =?utf-8?B?aGRXdWV2NGdlS0s3QVk0emIxaVJuM0srb2lxQWh6OVBYblpURWN4aGFZa1Za?=
- =?utf-8?B?eE43SFdNb0N4dUJHekZzVW1jSnlBODNFVG5rSVBRTzhZRzFLRTZwVS9LSEIx?=
- =?utf-8?B?M25uTTJBOTBrNDhobmIzNzlLNDBzV1Rwbkp3QWVvK1EvWWFNYmFkZWlNMkRN?=
- =?utf-8?B?dExmMTR5WUZVYlBhNUFTUGhLNHEvOUkralNhNlRxOU9tTFlCb2c5T3VRRmRi?=
- =?utf-8?B?VU9iUVdmSGxYSWJHRVNEYy9iTTJKYzhrK05NQ2F1RmI2aFpYb1QxY1puWjVv?=
- =?utf-8?B?UjgxRnV2ZSs3SHBBUldPc1pCWE15UWs3WVhYd09rQ29lTE9IcWJra2VaNkpI?=
- =?utf-8?B?Y1ExVGs1d1RQL0FtdGFyTlV4Y1Y4b1lRVXhEaEVoS2dSUCsrSWUyRG5UbVRE?=
- =?utf-8?B?d2Z0SzVSVFJWb2VYcktWaDVUZm1qMnpOUy9PSlVKSlNhOTlvWnNZa2ZYZlJn?=
- =?utf-8?B?UjdzL0ZWd0laU2RMMnVJSW5UaTRzSzdqL3VPWTFjTHJGSzhmOGhSZ0NOTGUr?=
- =?utf-8?B?SnNVRk9qR1JsTTBLeERFTGV1WjF0TFp1aTNzd2IxSjRQM21CaFN5UjVFNUth?=
- =?utf-8?B?cHpMTjVhT1djYWFIZGZqcU1OdHhpcUpORlV6MWIxdzJKbG1oRzJ2UUZ4eW1h?=
- =?utf-8?B?Zm1JRWxhTVFIZ1hVT0tsWTVTWkxQTGpoUnlIZz09?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY3PR18MB4707.namprd18.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(10070799003)(1800799024)(366016)(38070700021)(921020);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?RjNlcnppMnZZOE92WDhjY05VTkJaSG5sdEpid1hiMW15SmlIdWJGTUZnS1M0?=
- =?utf-8?B?ZndpQlUyMlZuT3c4TWwvY2ozSmswUlI4ZzNwZEVMY3RzNHN6eUJwSXkweWE4?=
- =?utf-8?B?YWs2SFRvN3hXbmhHYU5lZFd1RzIzVXVSd0kzV201emkvaDh3OWVkZzMwNEJ4?=
- =?utf-8?B?SkR3N3ZVMzJKRWlUSDRMbVk3ZVdCVnFnWGpaM3hwQnJVSncwWFpoT05jd2cx?=
- =?utf-8?B?SUNHeXJ4T1JzTExxSUNpa1JPalR1RFRwUFhvazRWbDhjU1c0aWMzYlhzYys4?=
- =?utf-8?B?a0xTbjdPTzZLT0htMnp0NlFFZU9uY014ZGxVMUNhSjhmM3F6ZUtETXhHQVFx?=
- =?utf-8?B?OGYxVkp2UWhnOUJ6dEo2TnZWZ1lGT0NZWEpZdzg1UThqbVU1cDhNR0haWkRv?=
- =?utf-8?B?bXF1N0Z3VkdKUnBYL1dabkQxOGRFUzZmdHlNNVdGdis0N0V0SnY4V1EzRTVR?=
- =?utf-8?B?cHpsSmRIUGNxVXZpRjZteEM1MmlpSFVoN0lpY0dKcW0xSkcxKzY5eEE5cFpx?=
- =?utf-8?B?RW54OXhNeW02L3U2ZENJV0RNbnpZVGpDOHRYaUMyMlVZU0p1enVzc1hHamRJ?=
- =?utf-8?B?ZWFzNktrajgvQk1QVzdKWC82Nm1sdGhpd2NtbzRYbDFxcG9aeU5RQkt3OENK?=
- =?utf-8?B?UVhtVndGSSt5WFNLWEZJV05NUzFzKzg2eEV1SW5OUTBIQ2g2SE9sdUpyNXpP?=
- =?utf-8?B?RVIvOXdFTlREM3BuSkhhZzBPRkRwMzZDaUZzbEd3SjVlWHQ1Y3dGWHhDbUxo?=
- =?utf-8?B?OTFTbDVBTkROcFR3TVIxNFV2UVBudDBvVUlyc2lxYjIxeWI5YlNLWmJpUzE4?=
- =?utf-8?B?bXkwSHlSMTNtNmI2TDhoQ1hRcmJqcGgybm9SSHZvRVBFWlZOcWNKd3VqbG02?=
- =?utf-8?B?RVJwTlJCcWd3OHJFY1dPSlZwYm1UcFJPa0pZVGdKR3NLZnI5R0JPdUw4Nk5M?=
- =?utf-8?B?LzlHWC9IK2h2d1Q5Z1JQQzVoK2ZaWFNkTmt1N2I4c0R5L1VnTmRmUTVycjdT?=
- =?utf-8?B?YjlYcTJlckxDZGl5Ky9WQnlEZFltQkQ2OHYrc0hFWG9rcTRwU20rQTJZNkxH?=
- =?utf-8?B?eFRQNlFPbjdCU0p2MVpmaDVLZkhNMjV3UWN5NktJcUhvRUxDSmIrMXc4dnEy?=
- =?utf-8?B?aU03S1JSbEMzaDlRTTdtYnBtak5Wd0xGMDNFMkVYWEpXQ294QXU3d0FjVk5w?=
- =?utf-8?B?aVhGM3RlZHhxZ1lFaldyeWVhWEsrMjZZdTJ4VGhJOTNRdWlLREtWQnVpTUwx?=
- =?utf-8?B?OUxHUlJhdHovSWFYZ0QvUDBCU2M0dWpQVEMxazhvSm5zVTA0ZE9mbzBBSy95?=
- =?utf-8?B?eGM0RU96MUkzUkVPVDMvaVVIazZESjJ4MXY1Z1FSdDdEWGp1Q1VWZDNhRWU2?=
- =?utf-8?B?ZUtvYUtjSDU0UjRxOUdVZG5qTDBwSnVOQThwRExHTnNQNW1kYkNBTUJyNzNy?=
- =?utf-8?B?cHZhbGhHUHJSTlRuTXNiWHBUODhxVWZueTV0UDhVZVUyaG1hNVRoTGZWcUF5?=
- =?utf-8?B?Kzd5aEs3c1JWRXhaQXlXeVp5MGtHalVtT291R3dTa1Q5cHNndm82VFV1R252?=
- =?utf-8?B?TE13Vk1wVGxqOThIVmNWT0tkLzFJUkk2U1pTVlViajBFNFdGUEFWTFVEdkF4?=
- =?utf-8?B?VnpFMUkySDErbnZHT25KN0dxbUNoSnRLclpRbzVBZjg5WnBySkluOWVlUU5D?=
- =?utf-8?B?N3dhVjBzTzZCS0lWY0Z6OGs4bDArZGNJdGhrbFdSd0dXYllGd1Vqd1R0Umxy?=
- =?utf-8?B?WFJzSWhQdSticVJwWFhpTVdaZFV2VzMyTlVUb2tpRzNZa0lIV3FURDhGTmVp?=
- =?utf-8?B?NzJBUWV6SEV3Z3N5eldoUTBjRlZoUlMvQ1ZnMXI5ektxelZmV0JnN3VEMFlT?=
- =?utf-8?B?Z3ArWVVVakVPbFdSaWpudmxsTUxYNUZpUENuL0lKZWRycFJSNHdudEt0UUJD?=
- =?utf-8?B?UXhsZ3RXMmt3MmZYSlh3UkhvaGw5MkphVTN4MXU4UHloS0VkNmEzVmtVUzRu?=
- =?utf-8?B?UGxWSDAxMVJuZUVpSExubThwV0ZCZ2tuRjVvSlNDamVMRWNKZWJ0RWRtYzhv?=
- =?utf-8?B?YlArS055NXR2Y2hSQ3h3Wk1YOUszK255VEVRdTJmVTlrZklXOUZUZzV5QzAz?=
- =?utf-8?B?Wm9SaE81ZFQvZ2ptaUJoL21CNWpCZjFBNEk4cHQzYVhVLzFUNk5FTXZ5TXNk?=
- =?utf-8?Q?55ZFbT1tFK6BVXdMdE2MXZFFJAXHB0taWNNvR1miGKRP?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 241D3320CB3
+	for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 19:31:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1765481516; cv=none; b=ZohQs03CMWAHLcRKg8GUAZp5GMtFasIsYeAJB/BKQ60bCQDjv6frSDO7x1mEW07GlVsmxJHnmWi3iDo6p5tD1brZ76BuYBKvDd2/4AKnqM1Q7GBOA3607GwbbECwcq95kh3FNrNM9IHtIHjGynEM0QQ61/4btBdkeozMFamh9NM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1765481516; c=relaxed/simple;
+	bh=8npxPOltmmX32ARNaXgWS4hWJcpDCdyop3gruZpD8Rk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=W5M1WuPvzZGLcbfybe4KXUNy63UB4aouZmN5CmiIlVhXCBylKsHLmo/4RNfaHMwimmsbq9s7CnnT3mkJy+RGxwD98ABlkDrdpGtQM5BQEolfYERf5NsmkQnu0wt56J/f6NLZbIMLH6DrfRR7XYLxFzJRvUq18oFJpte/xH6SjGI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=R5XoI1Yq; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=TWR84s/k; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BBGwV3v1867076
+	for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 19:31:54 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	LrASXI6znESlT6+VMhJjmcgNU47qp3dF0DDnq1IYifI=; b=R5XoI1Yq0sZ/pgrA
+	3IxX6U27HdksCQWbRP5gsPE61MKl2271xgDeVyt3pMi03QbSB7Vlu4i7nuU56IKk
+	06I2pxb96wdnu29NLr0gwOrCvZPWBP50NKQKzCLC7kxKZQtVsf53JG0qdI/bfPgi
+	mXTRVJL20RbNnM+HEQ06xwcPgIwhF6CMpTciUvoef7kZYTPl8zxyOktQb8Jm0xsa
+	BHsSO+SW5S1OvqIdFFOa3lRhll5fpENOTFsLh4EzCT0aAbCmga3aakz9dl9iLxjm
+	TeKNanK4tH5mL6TBOfZdbFqLH2hRzENtltcj3EcVzMxo67Y7lBNGhw9MYQFLrGfQ
+	WvF7wg==
+Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b01xugev8-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 19:31:54 +0000 (GMT)
+Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-29f1f79d6afso251405ad.0
+        for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 11:31:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1765481514; x=1766086314; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=LrASXI6znESlT6+VMhJjmcgNU47qp3dF0DDnq1IYifI=;
+        b=TWR84s/kRCcBKyhlaX4IrXgIyYcA5dBRssyP9EjbPQCSGubUNA2vU0Lf4+0id+o6lp
+         +p4yIuekV7xzVrlxjqjCKp2DT1g++OK421BERMdnmnIrjJkYIILux3WDHa3eoxp7YgUU
+         iSFGZel6nn4gRwnrh5eIw94jGxkmZRn2I6k17qSHLtZWFmV2tHJCql/A9ztFch+etYI/
+         ZHRIpr7LtVtVJA9M+y/PnJeVFtTF2+iiMAmTheeCiGXK6GfFQ1aXrEi9IO7Cac2jVxRY
+         ziQ5X7sJfc46Aza1C1QjYWqfszDs6JYaS4/hk4HCaEYmuAgckQdQ3LwELY+4Nhd6UW0/
+         2xGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765481514; x=1766086314;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LrASXI6znESlT6+VMhJjmcgNU47qp3dF0DDnq1IYifI=;
+        b=BZkiHQ9IncrgeWvfVdccp1WCZLjl0OY3tv3HQGVMPBMYy8NL1yhFgBKPEKqk5ZBsJC
+         thR7Wpwtr/NDSEixhwSL4zIFHIuRDeMyK4vfdHgX+6bDehSxiQoQRlPdN+iL6av3m3SF
+         k4bfGyR/ISJ3KvcYMwfU0xMV9bf/b4LQdhlZMLK6AOjif47D3fZ5CvDvtgZtdKP53tBq
+         /XSXD1T9CScL6Fq/0F+0VaPZHdoun9IaGq7JoVobMV7wS1Fz3ITUpsjxd7QPm+JGjIXM
+         x2BjyQq+23Mlw0xpDWqAz8W2j0HRlua5T3m8+ICY0lKRDjjM4YoXGajwt7iOH8jioUMC
+         KY/Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUQfZBgwHO6AotdL9cRE11A9raNi3zp3M3cYetbDYTfQK0BfirLMQ5ZL98hfYuaxIP2Nsheu0M8z5z9@vger.kernel.org
+X-Gm-Message-State: AOJu0YyfUzNrBuY751jmcw2WT/12dElUyusbLx/Q+iQP6+CljBhdsrVY
+	DWgvlxsulZCZw1f/hOq6QdMVDjcMV8KcjebO4sGd04B22vk081rTK/iMDyDCfCeGHBwur2Pzeb9
+	ajPoUtE7j/TcpDPzNy1M68oMFe7i1WXcJx7hnWyChREhhve/IG5/Um+KxzRPM3blC
+X-Gm-Gg: AY/fxX75i4EomMzb8zryDDMgQvQuI+a8PRcED42GR872vMvSrvhyM8wyS5EqXP/hPQ5
+	SwjB6V1xhPYFhe/Uya18GkkxF0n173tJx9YCD74Wc4veLmA011k498jLf3ZcUlVrNsInhpGFTuN
+	7QgodVQ49f1d/J0YyNQeUEfjbfKhvdxWIOfiiiQCxw8EYQN3nZzO6mOqh0zw3I/y+nVZ3r5HPes
+	CUGID/dIvO4382JGwSsj1BTGRiK8BNmsi+eK3z0iwhZost1XmBKta7Ue+ocEiC+d5gMYu0cgM5T
+	WaqCMD1jZJL+ueXfwAkb3NhdTLdCdxf1mSx1dZLdbQC7bPwZWk3CriogJQWEO2aL7s9vrDHKDXb
+	+M8gf153gF1AxC1Rf3JQ1OK3gnIIsyuMq
+X-Received: by 2002:a17:903:1a68:b0:295:7806:1d64 with SMTP id d9443c01a7336-29ec27bccb8mr72382735ad.25.1765481513444;
+        Thu, 11 Dec 2025 11:31:53 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFwKMH3JoymZv/R9FuXFwy5r6E/RpZRMS7ShXMvshU023URAl9M1bhttp68mxYVqkF9kVyfMg==
+X-Received: by 2002:a17:903:1a68:b0:295:7806:1d64 with SMTP id d9443c01a7336-29ec27bccb8mr72382445ad.25.1765481512863;
+        Thu, 11 Dec 2025 11:31:52 -0800 (PST)
+Received: from [10.206.103.12] ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29ee9d394desm31758335ad.40.2025.12.11.11.31.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 11 Dec 2025 11:31:52 -0800 (PST)
+Message-ID: <030a8eb3-c79e-4be0-8305-7c9bb2005785@oss.qualcomm.com>
+Date: Fri, 12 Dec 2025 01:01:44 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: marvell.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BY3PR18MB4707.namprd18.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 015f5c6f-92d9-4d92-9007-08de38ebcc75
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Dec 2025 19:30:53.1635
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 70e1fb47-1155-421d-87fc-2e58f638b6e0
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: nDlyavBEFabGQIhOBh4qsM5HSGWcuykR39MNshsMSg6AoVZqlhWae6mgeyM1iqRlGy9+Sqh8vtbrAVuDp8VN+Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR18MB3531
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjExMDE1NiBTYWx0ZWRfX5L4yEmm/DiXt
- sloZbu6nzSWZ0KVtY7pEKhx0T1Oif4slNo1a5OowTo86mZGVJzMf56iBgW/bzzaSJXS5fUsOUwA
- Tpncb38+K6Px3tD3FFb+lUkdaT6niKSwnyzceY6aIQlRYhTwz/YBWTF6bUx1aKSUXLpTd2hTAJw
- YqkKaaFD9s3NXJc9i/I/x3+Gp2bYdpjZjsAmgtldNinUiSxG3Wywag1EVKCv7xFZKPODxptfyQ3
- 5gX63e3aKy9oFUwzVNWh2+b5kfknAsvcDreHjbUTqnbcjmxJnC15wOo0CJEI1s+tSCrdE2T7jQU
- rVH9dia2sXEqxm0PUl1vMn0rMzlkZ+gvhs+RfJJoVp02Dt/d52q60ULtrIhZt3uqDbbAUX2pRXP
- 078Xa0o23OVzhCzVng16qKdxUqL/KQ==
-X-Authority-Analysis: v=2.4 cv=IayKmGqa c=1 sm=1 tr=0 ts=693b1bf0 cx=c_pps
- a=W9KrTTgrKfNcK5viAlcM6w==:117 a=z/mQ4Ysz8XfWz/Q5cLBRGdckG28=:19
- a=lCpzRmAYbLLaTzLvsPZ7Mbvzbb8=:19 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=wP3pNCr1ah4A:10 a=-AAbraWEqlQA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=VwQbUJbxAAAA:8 a=pGLkceISAAAA:8 a=JfrnYn6hAAAA:8 a=J1Y8HTJGAAAA:8
- a=1XWaLZrsAAAA:8 a=20KFwNOVAAAA:8 a=pBOR-ozoAAAA:8 a=i_jxt56ykGC74MhKlw8A:9
- a=QEXdDO2ut3YA:10 a=1CNFftbPRP8L7MoqJWF3:22 a=y1Q9-5lHfBjTkpIzbSAN:22
-X-Proofpoint-GUID: k-rJJ_p5vv6a7Tf_fvhySNyXJszd6pjP
-X-Proofpoint-ORIG-GUID: k-rJJ_p5vv6a7Tf_fvhySNyXJszd6pjP
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 5/6] arm64: dts: qcom: sm6150: Add gpu and rgmu nodes
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Rob Clark <robin.clark@oss.qualcomm.com>, Sean Paul <sean@poorly.run>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Dmitry Baryshkov <lumag@kernel.org>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Jessica Zhang <jesszhan0024@gmail.com>,
+        Dan Carpenter <dan.carpenter@linaro.org>,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Jie Zhang <quic_jiezh@quicinc.com>
+References: <8560ad26-4756-4c2a-97c3-2c5c0695172c@oss.qualcomm.com>
+ <z4gqro2bx6oq2ht75m2klogo5dsirb74tmc3u3shjyalxmaxil@5sy7ufmqhdgw>
+ <6fa1da5d-9ea7-4d72-a03a-82edc4bef099@oss.qualcomm.com>
+ <3gqq3w6ovy5srgvabyeugsjbwrhaxmjvicykhjmlcxd74gtsaf@5u6wvvzeq52z>
+ <90bc84e7-19ca-450d-b41f-fd96367e8cce@oss.qualcomm.com>
+ <2e5sqv2gnxdfwnfsepzdkchxip5zdeamp6bzbamq6kbk77kr3p@u5i4rrnrywno>
+ <9971bd9b-88db-4628-b36b-de50c1619396@oss.qualcomm.com>
+ <raj276z7euq7skvhsw7prwzlgsdy6ay7bhm4wgb64mt63q4ot4@eyvhcou7qwgg>
+ <57706b2e-becf-47ac-a874-79ce17d12b74@oss.qualcomm.com>
+ <812cfa55-269d-4b19-8e18-4815608b6bbb@oss.qualcomm.com>
+ <6agidc2r2d2jevtiizj77mtlytoo3raxaoe6b53rvk3obmmiha@x7pqjco4ulhg>
+Content-Language: en-US
+From: Akhil P Oommen <akhilpo@oss.qualcomm.com>
+In-Reply-To: <6agidc2r2d2jevtiizj77mtlytoo3raxaoe6b53rvk3obmmiha@x7pqjco4ulhg>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: I0v0CR7Za6cKobQiebQV5wnW4iiYfUqs
+X-Proofpoint-GUID: I0v0CR7Za6cKobQiebQV5wnW4iiYfUqs
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjExMDE1NiBTYWx0ZWRfX/RQoYAi0WJCP
+ Rhrm5B5VNwiiTABUZ3O+SXmIKV3JSkXQEIbdHjYe1BE3kt6Y41+4n0wp6wGkFy1lHuNaMZn4LbD
+ qStt5H5JNVR9RiAs5KEeROzX6aTz+UCSMzMO3wvBJwKlZ4ernDyQ6EaURO4NL9gtzyKbdn1Zemz
+ 7755WQy7kPFo62eM65i+nUPLD0SKctC5bUzYYfnOwA2KPa+YH6nJi2RtSa1UDvhZO5R1iS590aw
+ PmMfEtfoe6DNSUNZdvJ+p7w+XIN0xsHNJYR/IZEbjyk6NObqh9Q9zXwUfkb5fwsqsn38tWGY1ro
+ l5m7CaGMOU1DeWy3m1WKHrZ3YyP+BNZPqqsN5snTXhmPlUUdWKFpsDsUCcFQQXVoIrF44r8xiCK
+ ybRWuPosGL+FAH1Sn+HMQX+BcUQFIg==
+X-Authority-Analysis: v=2.4 cv=aeBsXBot c=1 sm=1 tr=0 ts=693b1c2a cx=c_pps
+ a=JL+w9abYAAE89/QcEU+0QA==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8
+ a=xHsVVGY7H8Oq9asR6b0A:9 a=QEXdDO2ut3YA:10 a=324X-CrmTo6CU4MGRt3R:22
+ a=TjNXssC_j7lpFel5tvFf:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
  definitions=2025-12-11_03,2025-12-11_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 bulkscore=0 spamscore=0 malwarescore=0 phishscore=0
+ clxscore=1015 suspectscore=0 impostorscore=0 priorityscore=1501 adultscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512110156
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogQ2hhbGlvcywgQmFiaXMg
-PGJjaGFsaW9zQGFtYXpvbi5lcz4NCj4gU2VudDogV2VkbmVzZGF5LCBEZWNlbWJlciAzLCAyMDI1
-IDY6MDYgUE0NCj4gVG86IHJvYmhAa2VybmVsLm9yZzsga3J6aytkdEBrZXJuZWwub3JnOyBjb25v
-citkdEBrZXJuZWwub3JnOw0KPiByaWNoYXJkY29jaHJhbkBnbWFpbC5jb207IGR3bXcyQGluZnJh
-ZGVhZC5vcmc7DQo+IGFuZHJldytuZXRkZXZAbHVubi5jaDsgZGF2ZW1AZGF2ZW1sb2Z0Lm5ldDsg
-ZWR1bWF6ZXRAZ29vZ2xlLmNvbTsNCj4ga3ViYUBrZXJuZWwub3JnOyBwYWJlbmlAcmVkaGF0LmNv
-bQ0KPiBDYzogZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmc7IG5ldGRldkB2Z2VyLmtlcm5lbC5v
-cmc7IGxpbnV4LQ0KPiBrZXJuZWxAdmdlci5rZXJuZWwub3JnOyBDaGFsaW9zLCBCYWJpcyA8YmNo
-YWxpb3NAYW1hem9uLmVzPjsgR3JhZiAoQVdTKSwNCj4gQWxleGFuZGVyIDxncmFmQGFtYXpvbi5k
-ZT47IG16eHJlYXJ5QDBwb2ludGVyLmRlOyBDYWxpLCBNYXJjbw0KPiA8eG1hcmNhbHhAYW1hem9u
-LmNvLnVrPjsgV29vZGhvdXNlLCBEYXZpZCA8ZHdtd0BhbWF6b24uY28udWs+DQo+IFN1YmplY3Q6
-ICBbUEFUQ0ggdjMgNC80XSBwdHA6IHB0cF92bWNsb2NrOiBBZGQgZGV2aWNlIHRyZWUNCj4gc3Vw
-cG9ydA0KPiANCj4gRnJvbTogRGF2aWQgV29vZGhvdXNlIDxkd213QOKAimFtYXpvbi7igIpjby7i
-gIp1az4gQWRkIGRldmljZSB0cmVlIHN1cHBvcnQNCj4gdG8gdGhlIHB0cF92bWNsb2NrIGRyaXZl
-ciwgYWxsb3dpbmcgaXQgdG8gcHJvYmUgdmlhIGRldmljZSB0cmVlIGluIGFkZGl0aW9uIHRvDQo+
-IEFDUEkuIEhhbmRsZSBvcHRpb25hbCBpbnRlcnJ1cHQgZm9yIGNsb2NrIGRpc3J1cHRpb24gbm90
-aWZpY2F0aW9ucywgbWlycm9yaW5nDQo+IHRoZSBBQ1BJIG5vdGlmaWNhdGlvbiANCj4gRnJvbTog
-RGF2aWQgV29vZGhvdXNlIDxkd213QGFtYXpvbi5jby51az4NCj4gDQo+IEFkZCBkZXZpY2UgdHJl
-ZSBzdXBwb3J0IHRvIHRoZSBwdHBfdm1jbG9jayBkcml2ZXIsIGFsbG93aW5nIGl0IHRvIHByb2Jl
-IHZpYQ0KPiBkZXZpY2UgdHJlZSBpbiBhZGRpdGlvbiB0byBBQ1BJLg0KPiANCj4gSGFuZGxlIG9w
-dGlvbmFsIGludGVycnVwdCBmb3IgY2xvY2sgZGlzcnVwdGlvbiBub3RpZmljYXRpb25zLCBtaXJy
-b3JpbmcgdGhlIEFDUEkNCj4gbm90aWZpY2F0aW9uIGJlaGF2aW9yLg0KPiANCj4gU2lnbmVkLW9m
-Zi1ieTogRGF2aWQgV29vZGhvdXNlIDxkd213QGFtYXpvbi5jby51az4NCj4gU2lnbmVkLW9mZi1i
-eTogQmFiaXMgQ2hhbGlvcyA8YmNoYWxpb3NAYW1hem9uLmVzPg0KPiAtLS0NCj4gIGRyaXZlcnMv
-cHRwL3B0cF92bWNsb2NrLmMgfCA2OSArKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysr
-Ky0tLS0NCj4gIDEgZmlsZSBjaGFuZ2VkLCA2MyBpbnNlcnRpb25zKCspLCA2IGRlbGV0aW9ucygt
-KQ0KPiANCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvcHRwL3B0cF92bWNsb2NrLmMgYi9kcml2ZXJz
-L3B0cC9wdHBfdm1jbG9jay5jIGluZGV4DQo+IDQ5YTE3NDM1YmQzNS4uMzQ5NTgyZjFjY2MzIDEw
-MDY0NA0KPiAtLS0gYS9kcml2ZXJzL3B0cC9wdHBfdm1jbG9jay5jDQo+ICsrKyBiL2RyaXZlcnMv
-cHRwL3B0cF92bWNsb2NrLmMNCj4gQEAgLTE0LDEwICsxNCwxMiBAQA0KPiAgI2luY2x1ZGUgPGxp
-bnV4L2ZpbGUuaD4NCj4gICNpbmNsdWRlIDxsaW51eC9mcy5oPg0KPiAgI2luY2x1ZGUgPGxpbnV4
-L2luaXQuaD4NCj4gKyNpbmNsdWRlIDxsaW51eC9pbnRlcnJ1cHQuaD4NCj4gICNpbmNsdWRlIDxs
-aW51eC9rZXJuZWwuaD4NCj4gICNpbmNsdWRlIDxsaW51eC9taXNjZGV2aWNlLmg+DQo+ICAjaW5j
-bHVkZSA8bGludXgvbW0uaD4NCj4gICNpbmNsdWRlIDxsaW51eC9tb2R1bGUuaD4NCj4gKyNpbmNs
-dWRlIDxsaW51eC9vZi5oPg0KPiAgI2luY2x1ZGUgPGxpbnV4L3BsYXRmb3JtX2RldmljZS5oPg0K
-PiAgI2luY2x1ZGUgPGxpbnV4L3NsYWIuaD4NCj4gDQo+IEBAIC01MzYsNyArNTM4LDcgQEAgdm1j
-bG9ja19hY3BpX25vdGlmaWNhdGlvbl9oYW5kbGVyKGFjcGlfaGFuZGxlDQo+IF9fYWx3YXlzX3Vu
-dXNlZCBoYW5kbGUsDQo+ICAJd2FrZV91cF9pbnRlcnJ1cHRpYmxlKCZzdC0+ZGlzcnVwdF93YWl0
-KTsNCj4gIH0NCj4gDQo+IC1zdGF0aWMgaW50IHZtY2xvY2tfc2V0dXBfbm90aWZpY2F0aW9uKHN0
-cnVjdCBkZXZpY2UgKmRldiwgc3RydWN0IHZtY2xvY2tfc3RhdGUNCj4gKnN0KQ0KPiArc3RhdGlj
-IGludCB2bWNsb2NrX3NldHVwX2FjcGlfbm90aWZpY2F0aW9uKHN0cnVjdCBkZXZpY2UgKmRldikN
-Cj4gIHsNCj4gIAlzdHJ1Y3QgYWNwaV9kZXZpY2UgKmFkZXYgPSBBQ1BJX0NPTVBBTklPTihkZXYp
-Ow0KPiAgCWFjcGlfc3RhdHVzIHN0YXR1czsNCj4gQEAgLTU0OSwxMCArNTUxLDYgQEAgc3RhdGlj
-IGludCB2bWNsb2NrX3NldHVwX25vdGlmaWNhdGlvbihzdHJ1Y3QgZGV2aWNlDQo+ICpkZXYsIHN0
-cnVjdCB2bWNsb2NrX3N0YXRlICoNCj4gIAlpZiAoIWFkZXYpDQo+ICAJCXJldHVybiAtRU5PREVW
-Ow0KPiANCj4gLQkvKiBUaGUgZGV2aWNlIGRvZXMgbm90IHN1cHBvcnQgbm90aWZpY2F0aW9ucy4g
-Tm90aGluZyBlbHNlIHRvIGRvICovDQo+IC0JaWYgKCEobGU2NF90b19jcHUoc3QtPmNsay0+Zmxh
-Z3MpICYNCj4gVk1DTE9DS19GTEFHX05PVElGSUNBVElPTl9QUkVTRU5UKSkNCj4gLQkJcmV0dXJu
-IDA7DQo+IC0NCj4gIAlzdGF0dXMgPSBhY3BpX2luc3RhbGxfbm90aWZ5X2hhbmRsZXIoYWRldi0+
-aGFuZGxlLA0KPiBBQ1BJX0RFVklDRV9OT1RJRlksDQo+ICAJCQkJCSAgICAgdm1jbG9ja19hY3Bp
-X25vdGlmaWNhdGlvbl9oYW5kbGVyLA0KPiAgCQkJCQkgICAgIGRldik7DQo+IEBAIC01ODcsNiAr
-NTg1LDU4IEBAIHN0YXRpYyBpbnQgdm1jbG9ja19wcm9iZV9hY3BpKHN0cnVjdCBkZXZpY2UgKmRl
-diwNCj4gc3RydWN0IHZtY2xvY2tfc3RhdGUgKnN0KQ0KPiAgCXJldHVybiAwOw0KPiAgfQ0KPiAN
-Cj4gK3N0YXRpYyBpcnFyZXR1cm5fdCB2bWNsb2NrX29mX2lycV9oYW5kbGVyKGludCBfX2Fsd2F5
-c191bnVzZWQgaXJxLCB2b2lkDQo+ICsqZGV2KSB7DQo+ICsJc3RydWN0IGRldmljZSAqZGV2aWNl
-ID0gZGV2Ow0KPiArCXN0cnVjdCB2bWNsb2NrX3N0YXRlICpzdCA9IGRldmljZS0+ZHJpdmVyX2Rh
-dGE7DQo+ICsNCj4gKwl3YWtlX3VwX2ludGVycnVwdGlibGUoJnN0LT5kaXNydXB0X3dhaXQpOw0K
-PiArCXJldHVybiBJUlFfSEFORExFRDsNCj4gK30NCg0KTWlub3Igbml0OiAgIEZvciBjbGFyaXR5
-IGFuZCB0eXBlLXNhZmV0eSwgaXQgd291bGQgYmUgYmV0dGVyIHRvIHBhc3Mgc3QgYXMgdGhlIElS
-USBoYW5kbGVyIGRldl9pZCBhbmQgY2FzdCBkaXJlY3RseToNCnN0YXRpYyBpcnFyZXR1cm5fdCB2
-bWNsb2NrX29mX2lycV9oYW5kbGVyKGludCBfX2Fsd2F5c191bnVzZWQgaXJxLCB2b2lkICpkZXZf
-aWQpDQp7DQogICAgc3RydWN0IHZtY2xvY2tfc3RhdGUgKnN0ID0gZGV2X2lkOw0KLi4uDQp9DQoN
-CnN0YXRpYyBpbnQgdm1jbG9ja19zZXR1cF9vZl9ub3RpZmljYXRpb24oc3RydWN0IGRldmljZSAq
-ZGV2KQ0Kew0KICAgIHN0cnVjdCBwbGF0Zm9ybV9kZXZpY2UgKnBkZXYgPSB0b19wbGF0Zm9ybV9k
-ZXZpY2UoZGV2KTsNCiAgICBzdHJ1Y3Qgdm1jbG9ja19zdGF0ZSAqc3QgPSBkZXZfZ2V0X2RydmRh
-dGEoZGV2KTsNCi4uLi4NCnJldHVybiBkZXZtX3JlcXVlc3RfaXJxKGRldiwgaXJxLCB2bWNsb2Nr
-X29mX2lycV9oYW5kbGVyLCBJUlFGX1NIQVJFRCwNCiAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAidm1jbG9jayIsIHN0KTsgIC8qIFBhc3Mgc3QgZGlyZWN0bHkgKi8NCn0NCg0KDQo+ICsNCj4g
-K3N0YXRpYyBpbnQgdm1jbG9ja19wcm9iZV9kdChzdHJ1Y3QgZGV2aWNlICpkZXYsIHN0cnVjdCB2
-bWNsb2NrX3N0YXRlDQo+ICsqc3QpIHsNCkFsc28sIHNob3VsZCBhbGwgZnVuY3Rpb25zIGhhdmUg
-dGhlIG9wZW5pbmcgYnJhY2Ugb24gdGhlIG5leHQgbGluZSwgdG8gc2F0aXNmeSBrZXJuZWwgY29k
-aW5nIHN0eWxlLg0KDQpzdGF0aWMgaW50IHZtY2xvY2tfcHJvYmVfZHQoc3RydWN0IGRldmljZSAq
-ZGV2LCBzdHJ1Y3Qgdm1jbG9ja19zdGF0ZSAgKnN0KSANCnsNCi4uLg0KfQ0KDQo+ICsJc3RydWN0
-IHBsYXRmb3JtX2RldmljZSAqcGRldiA9IHRvX3BsYXRmb3JtX2RldmljZShkZXYpOw0KPiArCXN0
-cnVjdCByZXNvdXJjZSAqcmVzOw0KPiArDQo+ICsJcmVzID0gcGxhdGZvcm1fZ2V0X3Jlc291cmNl
-KHBkZXYsIElPUkVTT1VSQ0VfTUVNLCAwKTsNCj4gKwlpZiAoIXJlcykNCj4gKwkJcmV0dXJuIC1F
-Tk9ERVY7DQo+ICsNCj4gKwlzdC0+cmVzID0gKnJlczsNCj4gKw0KPiArCXJldHVybiAwOw0KPiAr
-fQ0KPiArDQo+ICtzdGF0aWMgaW50IHZtY2xvY2tfc2V0dXBfb2Zfbm90aWZpY2F0aW9uKHN0cnVj
-dCBkZXZpY2UgKmRldikgew0KPiArCXN0cnVjdCBwbGF0Zm9ybV9kZXZpY2UgKnBkZXYgPSB0b19w
-bGF0Zm9ybV9kZXZpY2UoZGV2KTsNCj4gKwlpbnQgaXJxOw0KPiArDQo+ICsJaXJxID0gcGxhdGZv
-cm1fZ2V0X2lycShwZGV2LCAwKTsNCj4gKwlpZiAoaXJxIDwgMCkNCj4gKwkJcmV0dXJuIGlycTsN
-Cj4gKw0KPiArCXJldHVybiBkZXZtX3JlcXVlc3RfaXJxKGRldiwgaXJxLCB2bWNsb2NrX29mX2ly
-cV9oYW5kbGVyLA0KPiBJUlFGX1NIQVJFRCwNCj4gKwkJCQkidm1jbG9jayIsIGRldik7DQo+ICt9
-DQo+ICsNCj4gK3N0YXRpYyBpbnQgdm1jbG9ja19zZXR1cF9ub3RpZmljYXRpb24oc3RydWN0IGRl
-dmljZSAqZGV2LA0KPiArCQkJCSAgICAgIHN0cnVjdCB2bWNsb2NrX3N0YXRlICpzdCkNCj4gK3sN
-Cj4gKwkvKiBUaGUgZGV2aWNlIGRvZXMgbm90IHN1cHBvcnQgbm90aWZpY2F0aW9ucy4gTm90aGlu
-ZyBlbHNlIHRvIGRvICovDQo+ICsJaWYgKCEobGU2NF90b19jcHUoc3QtPmNsay0+ZmxhZ3MpICYN
-Cj4gVk1DTE9DS19GTEFHX05PVElGSUNBVElPTl9QUkVTRU5UKSkNCj4gKwkJcmV0dXJuIDA7DQo+
-ICsNCj4gKwlpZiAoaGFzX2FjcGlfY29tcGFuaW9uKGRldikpIHsNCj4gKwkJcmV0dXJuIHZtY2xv
-Y2tfc2V0dXBfYWNwaV9ub3RpZmljYXRpb24oZGV2KTsNCj4gKwl9IGVsc2Ugew0KPiArCQlyZXR1
-cm4gdm1jbG9ja19zZXR1cF9vZl9ub3RpZmljYXRpb24oZGV2KTsNCj4gKwl9DQo+ICsNCj4gK30N
-Cj4gKw0KPiArDQo+ICBzdGF0aWMgdm9pZCB2bWNsb2NrX3B1dF9pZHgodm9pZCAqZGF0YSkgIHsN
-Cj4gIAlzdHJ1Y3Qgdm1jbG9ja19zdGF0ZSAqc3QgPSBkYXRhOw0KPiBAQCAtNjA3LDcgKzY1Nyw3
-IEBAIHN0YXRpYyBpbnQgdm1jbG9ja19wcm9iZShzdHJ1Y3QgcGxhdGZvcm1fZGV2aWNlDQo+ICpw
-ZGV2KQ0KPiAgCWlmIChoYXNfYWNwaV9jb21wYW5pb24oZGV2KSkNCj4gIAkJcmV0ID0gdm1jbG9j
-a19wcm9iZV9hY3BpKGRldiwgc3QpOw0KPiAgCWVsc2UNCj4gLQkJcmV0ID0gLUVJTlZBTDsgLyog
-T25seSBBQ1BJIGZvciBub3cgKi8NCj4gKwkJcmV0ID0gdm1jbG9ja19wcm9iZV9kdChkZXYsIHN0
-KTsNCj4gDQo+ICAJaWYgKHJldCkgew0KPiAgCQlkZXZfaW5mbyhkZXYsICJGYWlsZWQgdG8gb2J0
-YWluIHBoeXNpY2FsIGFkZHJlc3M6ICVkXG4iLCByZXQpOw0KPiBAQCAtNzA3LDExICs3NTcsMTgg
-QEAgc3RhdGljIGNvbnN0IHN0cnVjdCBhY3BpX2RldmljZV9pZA0KPiB2bWNsb2NrX2FjcGlfaWRz
-W10gPSB7ICB9OyAgTU9EVUxFX0RFVklDRV9UQUJMRShhY3BpLCB2bWNsb2NrX2FjcGlfaWRzKTsN
-Cj4gDQo+ICtzdGF0aWMgY29uc3Qgc3RydWN0IG9mX2RldmljZV9pZCB2bWNsb2NrX29mX2lkc1td
-ID0gew0KPiArCXsgLmNvbXBhdGlibGUgPSAiYW1hem9uLHZtY2xvY2siLCB9LA0KPiArCXsgfSwN
-Cj4gK307DQo+ICtNT0RVTEVfREVWSUNFX1RBQkxFKG9mLCB2bWNsb2NrX29mX2lkcyk7DQo+ICsN
-Cj4gIHN0YXRpYyBzdHJ1Y3QgcGxhdGZvcm1fZHJpdmVyIHZtY2xvY2tfcGxhdGZvcm1fZHJpdmVy
-ID0gew0KPiAgCS5wcm9iZQkJPSB2bWNsb2NrX3Byb2JlLA0KPiAgCS5kcml2ZXIJPSB7DQo+ICAJ
-CS5uYW1lCT0gInZtY2xvY2siLA0KPiAgCQkuYWNwaV9tYXRjaF90YWJsZSA9IHZtY2xvY2tfYWNw
-aV9pZHMsDQo+ICsJCS5vZl9tYXRjaF90YWJsZSA9IHZtY2xvY2tfb2ZfaWRzLA0KPiAgCX0sDQo+
-ICB9Ow0KPiANCj4gLS0NCj4gMi4zNC4xDQo+IA0KDQo=
+On 12/11/2025 6:56 PM, Dmitry Baryshkov wrote:
+> On Thu, Dec 11, 2025 at 05:22:40PM +0530, Akhil P Oommen wrote:
+>> On 12/11/2025 4:42 PM, Akhil P Oommen wrote:
+>>> On 12/11/2025 6:06 AM, Dmitry Baryshkov wrote:
+>>>> On Thu, Dec 11, 2025 at 02:40:52AM +0530, Akhil P Oommen wrote:
+>>>>> On 12/6/2025 2:04 AM, Dmitry Baryshkov wrote:
+>>>>>> On Fri, Dec 05, 2025 at 03:59:09PM +0530, Akhil P Oommen wrote:
+>>>>>>> On 12/4/2025 7:49 PM, Dmitry Baryshkov wrote:
+>>>>>>>> On Thu, Dec 04, 2025 at 03:43:33PM +0530, Akhil P Oommen wrote:
+>>>>>>>>> On 11/26/2025 6:12 AM, Dmitry Baryshkov wrote:
+>>>>>>>>>> On Sat, Nov 22, 2025 at 03:03:10PM +0100, Konrad Dybcio wrote:
+>>>>>>>>>>> On 11/21/25 10:52 PM, Akhil P Oommen wrote:
+>>>>>>>>>>>> From: Jie Zhang <quic_jiezh@quicinc.com>
+>>>>>>>>>>>>
+>>>>>>>>>>>> Add gpu and rgmu nodes for qcs615 chipset.
+>>>>>>>>>>>>
+>>>>>>>>>>>> Signed-off-by: Jie Zhang <quic_jiezh@quicinc.com>
+>>>>>>>>>>>> Signed-off-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
+>>>>>>>>>>>> ---
+>>>>>>>>>>>
+>>>>>>>>>>> [...]
+>>>>>>>>>>>
+>>>>>>>>>>>> +			gpu_opp_table: opp-table {
+>>>>>>>>>>>> +				compatible = "operating-points-v2";
+>>>>>>>>>>>> +
+>>>>>>>>>>>> +				opp-845000000 {
+>>>>>>>>>>>> +					opp-hz = /bits/ 64 <845000000>;
+>>>>>>>>>>>> +					required-opps = <&rpmhpd_opp_turbo>;
+>>>>>>>>>>>> +					opp-peak-kBps = <7050000>;
+>>>>>>>>>>>> +				};
+>>>>>>>>>>>
+>>>>>>>>>>> I see another speed of 895 @ turbo_l1, perhaps that's for speedbins
+>>>>>>>>>>> or mobile parts specifically?
+>>>>>>>>>>
+>>>>>>>>>> msm-4.14 defines 7 speedbins for SM6150. Akhil, I don't see any of them
+>>>>>>>>>> here.
+>>>>>>>>>
+>>>>>>>>> The IoT/Auto variants have a different frequency plan compared to the
+>>>>>>>>> mobile variant. I reviewed the downstream code and this aligns with that
+>>>>>>>>> except the 290Mhz corner. We can remove that one.
+>>>>>>>>>
+>>>>>>>>> Here we are describing the IoT variant of Talos. So we can ignore the
+>>>>>>>>> speedbins from the mobile variant until that is supported.
+>>>>>>>>
+>>>>>>>> No, we are describing just Talos, which hopefully covers both mobile and
+>>>>>>>> non-mobile platforms.
+>>>>>>>
+>>>>>>> We cannot assume that.
+>>>>>>>
+>>>>>>> Even if we assume that there is no variation in silicon, the firmware
+>>>>>>> (AOP, TZ, HYP etc) is different between mobile and IoT version. So it is
+>>>>>>> wise to use the configuration that is commercialized, especially when it
+>>>>>>> is power related.
+>>>>>>
+>>>>>> How does it affect the speed bins? I'd really prefer if we:
+>>>>>> - describe OPP tables and speed bins here
+>>>>>> - remove speed bins cell for the Auto / IoT boards
+>>>>>> - make sure that the driver uses the IoT bin if there is no speed bin
+>>>>>>   declared in the GPU.
+>>>>>>
+>>>>>
+>>>>> The frequency plan is different between mobile and IoT. Are you
+>>>>> proposing to describe a union of OPP table from both mobile and IoT?
+>>>>
+>>>> Okay, this prompted me to check the sa6155p.dtsi from msm-4.14... And it
+>>>> has speed bins. How comes we don't have bins for the IoT variant?
+>>>>
+>>>> Mobile bins: 0, 177, 187, 156, 136, 105, 73
+>>>> Auto bins:   0, 177,      156, 136, 105, 73
+>>>>
+>>>> Both Mobile and Auto chips used the same NVMEM cell (0x6004, 8 bits
+>>>> starting from bit 21).
+>>>>
+>>>> Mobile freqs:
+>>>> 0:         845M, 745M, 700M,       550M,       435M,       290M
+>>>> 177:       845M, 745M, 700M,       550M,       435M,       290M
+>>>> 187: 895M, 845M, 745M, 700M,       550M,       435M,       290M
+>>>> 156:             745M, 700M,       550M,       435M,       290M
+>>>> 136:                         650M, 550M,       435M,       290M
+>>>> 105:                                     500M, 435M,       290M
+>>>> 73:                                                  350M, 290M
+>>>>
+>>>> Auto freqs:
+>>>> 0:         845M, 745M, 650M, 500M, 435M
+>>>> 177:       845M, 745M, 650M, 500M, 435M
+>>>> 156:             745M, 650M, 500M, 435M
+>>>> 136:                   650M, 500M, 435M
+>>>> 105:                         500M, 435M
+>>>> 73:                                      350M
+>>>>
+>>>> 290M was a part of the freq table, but later it was removed as "not
+>>>> required", so probably it can be brought back, but I'm not sure how to
+>>>> handle 650 MHz vs 700 MHz and 500 MHz vs 550 MHz differences.
+>>>>
+>>>> I'm a bit persistent here because I really want to avoid the situation
+>>>> where we define a bin-less OPP table and later we face binned QCS615
+>>>> chips (which is possible since both SM and SA were binned).
+>>>
+>>> Why is that a problem as long as KMD can handle it without breaking
+>>> backward compatibility?
+>>
+>> I replied too soon. I see your point. Can't we keep separate OPP tables
+>> when that happen? That is neat-er than complicating the driver, isn't it?
+> 
+> I have different story in mind. We ship DTB for IQ-615 listing 845 MHz
+> as a max freq without speed bins. Later some of the chips shipped in
+> IQ-615 are characterized as not belonging to bin 0 / not supporting 845
+> MHz. The users end up overclocking those chips, because the DTB doesn't
+> make any difference.
+
+That is unlikely, because the characterization and other similiar
+activities are completed and finalized before ramp up at foundries.
+Nobody likes to RMA tons of chipsets.
+
+Anyway, this hypothetical scenarios is a problem even when we use the
+hard fuse.
+
+> 
+>>
+>>>
+>>>>
+>>>> Also I don't see separate QFPROM memory map definitions for Mobile, IoT
+>>>> and Auto SKUs. If you have access to the QCS615 hardware, what is the
+>>>> value written in that fuse area?
+>>>>
+>>>>> Another wrinkle we need to address is that, so far, we have never had a
+>>>>> dt binding where opp-supp-hw property exist without the speedbin cells.
+>>>>> And that adds a bit of complexity on the driver side because, today, the
+>>>>> KMD relies on the presence of speed bin cells to decide whether to
+>>>>> select bin via opp_supp_hw API or not. Also, we may have to reserve this
+>>>>> combination (opp bins without speedbin cells) to help KMD detect that it
+>>>>> should use socinfo APIs instead of speedbin cells on certain chipsets.\
+>>
+>>> If it is a soft fuse, it could fall into an unused region in qfprom. On
+>>> other IoT chipsets like Lemans, Product teams preferred a soft fuse
+>>> instead of the hard fuse. The downside of the hard fuse that it should
+>>> be blown from factory and not flexible to update from software later in
+>>> the program.
+>>
+>> This response is for your comment above. Adding to that, the value for
+>> the hard fuse is mostly likely to be '0' (unfused), but all internal
+>> parts are always unfused. Maybe it is 'practically' harmless to use the
+>> freq-limiter hard fuse for now, because 845Mhz is the Fmax for '0' on
+>> mobile, Auto and IoT. I am not sure.
+>>
+>> I am trying to play safe here as this is dt. We don't want to configure
+>> the wrong thing now and later struggle to correct it. It is safe to
+>> defer things which we don't know.
+> 
+> What is "soft fuse"? Why do we need an extra entity in addition to the
+> one that was defined for auto / mobile units?
+
+The hard fuse (freq limiter one) has to be blown at a very early stage
+in the chip manufacturing. Instead of that, a soft fuse region which is
+updated by the firmware during the cold boot is used to provide a hint
+to KMD about the supported GPU fmax. I was told that this provides
+better operational flexibility to the Product team.
+
+-Akhil
+
+> 
+>>
+>> -Akhil.
+>>
+>>>
+>>> -Akhil.
+>>>
+>>>>
+>>>> We already have "machine" as another axis in the GPU catalog. I'd
+>>>> suggest defining separate speed bins for mobile and auto/IoT in the DT
+>>>> (0x1 - 0x20 for mobile, 0x100 - 0x1000 for auto) and then in the driver
+>>>> mapping those by the machine compat.
+>>>>
+>>>
+>>
+> 
+
+
 
