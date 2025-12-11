@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-245731-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245732-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CA25CB4B2E
-	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 05:57:27 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7434DCB4B56
+	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 06:03:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2C8D93006F67
-	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 04:57:15 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 5B5C730014D4
+	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 05:02:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A18B3272E45;
-	Thu, 11 Dec 2025 04:57:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F12DE21423C;
+	Thu, 11 Dec 2025 05:02:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Az+JefTT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kMvZWBzo"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69518265CC2;
-	Thu, 11 Dec 2025 04:57:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C023233985;
+	Thu, 11 Dec 2025 05:02:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765429034; cv=none; b=sH+TnCV6rkmhWNJIQS7FD+fNS/kquiXqd0V/XgNqdHntO+S0boU7lLBxbxynMXJsah6o4MLXvzb7vwbuWDyBlWkOk/THRcbNkFNKGWfHcvtGs5zaQNbnTWzHmk98nPtqb8d4vgsNAfuhlyWtLAo2BTmQZxZpwGa77EFUXdXRB9g=
+	t=1765429375; cv=none; b=ognrgKtGJJpxS9Rh1NccWCFcSy0Veljfb85qJW4lqqjGKI254X0nVD0M1pHVU3W/NB+kz6KthMfKQ59WcKvikmYuLfcwelox9a1HbBwaacMrYQD1J+1wuytdegp3LEym666COQgcjGqRJ8V4VT9tQ58BHTmamub3I2Lm6kar5r8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765429034; c=relaxed/simple;
-	bh=6c2G/zN/aR4grxYTJmCI6xSwRtGynlIqJHUgso8UTBM=;
+	s=arc-20240116; t=1765429375; c=relaxed/simple;
+	bh=N+DVqea8PB/xEo/WuV4I4HNrn1s5euNo03gswlFsI1o=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=satuHiXASqHpaDbmIC3OvqOmgHa0qou1t4Iag1YrgxtaMqUzY/efii/tPv8vZUT3mLhJT1FS82FU9nlPwVSKVZ4jmvv2wYPKUUmijtS97goUN0aiOKR7k4Lwy4zEBPUVitUlMUb2QV4jqAHmS1xT25ZdTtazE16FI1Ysv8MIoco=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Az+JefTT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3A93C4CEFB;
-	Thu, 11 Dec 2025 04:57:12 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=O/gbhjOk18GusL7TkqDhJ25w8aVZyVBtqn7yahhHlXGDLFBbYUdUQWv/df7NPxqVlXHmlg0IyI86ROE2pEWB5xKn4Fb1vhyllC6erCe6j8FNCUILET8UvV4ITuqSGCUWTBh13ma1nEMwv4M8NVKJPSda0rC9UOJS4QLjSeqvOvg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kMvZWBzo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E7EF2C4CEFB;
+	Thu, 11 Dec 2025 05:02:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765429034;
-	bh=6c2G/zN/aR4grxYTJmCI6xSwRtGynlIqJHUgso8UTBM=;
+	s=k20201202; t=1765429375;
+	bh=N+DVqea8PB/xEo/WuV4I4HNrn1s5euNo03gswlFsI1o=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Az+JefTTwbhQJiqCAhzmG+dm/OxxXFUWeK479vPnxJ6TXmtb2Xz5eL66X8P65F3RK
-	 agd8b5386UD5llcSiDGyNbQDadnWXMplVz1m00IrH9w7Be8cSyt9FbGGcKQ7R7tRRi
-	 /Vbmcg0PRkCTrvsTrtE7JM9p+pYJEO4t5tYONVWBLBQXbm9V1avwFwoqV+aEssWXUq
-	 JjWW4S0jD56C6fAaG0l0KpJj7tYS2LxEzf+tIHcxEK0RNvHuJlpS7WRxMLnD44BHTQ
-	 nVXrtUnagLjYa9gwnD8BKpIMt84TsM9eGgwaIwVDsgJSC8XG4wquQqX9eHrzt82LVx
-	 aHOMo7h/F8lRg==
-Message-ID: <e7810622-0b4a-4671-8027-07faa9249915@kernel.org>
-Date: Thu, 11 Dec 2025 05:57:11 +0100
+	b=kMvZWBzor/+L3lJ8pne/HkCdC8IOrtVmzqUFLCQReOtJemIexn2OPJmDx+mkwhJdk
+	 Ck7GdisM2/FkunNQG2r+kI2pk/wPfGwmEVhYEtA/NI6RG3Kir+bOoMjjs6VrUybH4P
+	 rf45aZX/WI6/+vPnYHs9eFMbm+Hu37GJ4K97RM9ZKg2g5dYXjRuYXbsulmNzAMtox+
+	 IyRHgtsMj/1G3QmcFpI366NohuMoVXIyAncSNnLczy7pJiAxudBubrnedGuTQtTcwD
+	 Yj4Jlqn4MbfwXBiyTxM2qM5n4aT/a/7sdBYNMZ+ZDzB4+MVWlzF41HpVJfhQh1sr0D
+	 exunkFi6jwfYw==
+Message-ID: <bc831622-8cbb-4bc6-b96c-9b87fb414725@kernel.org>
+Date: Thu, 11 Dec 2025 06:02:51 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,12 +48,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: arm: altera: combine Intel's SoCFPGA into
- altera.yaml
-To: Dinh Nguyen <dinguyen@kernel.org>, devicetree@vger.kernel.org
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-kernel@vger.kernel.org
-References: <20251211043353.93944-1-dinguyen@kernel.org>
+Subject: Re: [PATCH v4 1/5] dt-bindings: media: i2c: Add Sony IMX355
+To: Richard Acayan <mailingradian@gmail.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Tianshu Qiu <tian.shu.qiu@intel.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-media@vger.kernel.org
+Cc: Robert Mader <robert.mader@collabora.com>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+References: <20251211014846.16602-1-mailingradian@gmail.com>
+ <20251211014846.16602-2-mailingradian@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -99,26 +106,28 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251211043353.93944-1-dinguyen@kernel.org>
+In-Reply-To: <20251211014846.16602-2-mailingradian@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 11/12/2025 05:33, Dinh Nguyen wrote:
-> For all SoCFPGA platforms, whether it has the "intel" or "altr" vendor
-> prefix are referring to the same business unit that is responsible for
-> the platform. And now that Altera has spun off to be a separate corporate
-> entity from Intel, it would make sense to have the device bindings
-> documentation in the same file.
-> 
-> Move the Intel AgileX board binding documentations into the same file that
-> contains the Altera ones.
-> 
-> Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
+On 11/12/2025 02:48, Richard Acayan wrote:
+> +
+> +    properties:
+> +      endpoint:
+> +        $ref: /schemas/media/video-interfaces.yaml
+> +        unevaluatedProperties: false
+> +
 
-I feel that's a v2, so changelog and v2 would be appropriate but I also
-remember our last talk, so:
+Ah, here, this obviously was not ever tested. Heh, please do not use the
+community as a testing service. Missing props...
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> +        data-lanes:
+> +          items:
+> +            - const: 0
+> +            - const: 1
+> +            - const: 2
+> +            - const: 3
+
 
 Best regards,
 Krzysztof
