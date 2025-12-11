@@ -1,163 +1,185 @@
-Return-Path: <devicetree+bounces-245856-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245857-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD4AECB60E6
-	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 14:40:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DDE6ECB618B
+	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 14:53:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 40A1E303DD24
-	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 13:38:39 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 23EC4304CC2C
+	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 13:52:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96F25306B20;
-	Thu, 11 Dec 2025 13:38:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F3D627EFF1;
+	Thu, 11 Dec 2025 13:52:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="FZC9wF7r";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="LYjdZdfM"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="O5qVzYVn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E81C238C08
-	for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 13:38:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E37252741BC
+	for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 13:52:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765460318; cv=none; b=ROaui6c8PvpfEUbM5LXaKPiYEWshoDv2GHc8qxGscvIzazqsMcxXh6b6mWgh777u0wYpe+AaYmz6mHRnzAZ+vG1YK2DJQJFGR6+m63Za9o7sNAnO/vSuuoy25EV4vDVTgAjAlq+3fuHUgGfzuv9dn/l3QJv3IuJ7v2ld0DCiL10=
+	t=1765461156; cv=none; b=Tt8JOmvdmsNBnMHrJmkGfpimXkEPO26BI1MgpeXRvEAEgdk/tvwbS3QpMMOglXe8wlBhtxmtusiliOhWTwmHpdJxcg9y0jbj0gy6B7GdRh4+8SMVjyXyFtdBooqzdg+GBaYB407KrfnmWQNin+9pcaMnZqCFpKZNnaMwBbgPoaY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765460318; c=relaxed/simple;
-	bh=0XxEF5FKehVgy+piGRqaHQSdKFpng4vJ3y+vf/BPOnw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DbWf62OqHa40aYFBrJq3v3tpLyNQhLHQH8wV7WndQtEGn8BJ0iTzE7UiGF1qbVJjjMhLByEm0Rw7ncHHDNzNAWcNV+ZMdDSaXHnM0b5TeMC8rQkcsDwNNFrM8ftnYLuC6FOs++sevpXeR4ZFss6JH0g0FwJn7WpVSwDI25GZuhE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=FZC9wF7r; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=LYjdZdfM; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BBAXpuK1025143
-	for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 13:38:36 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=1txFr79AtXs5zaKWsK7avjrh
-	Np91Cmv9tciNTCP/ZI0=; b=FZC9wF7r0xzWVHjIpIVdT065fJR4/8LbJPEW2wmu
-	IEXZtro8wxT5zSsYAOb2Q6lwreeJMuCvlurFpz9OVQhG8oGzRNfanp1rs+k8Pugt
-	jk/gLNDSsMVp5DOStu3Xm8/SQZnSms0C7pCEllcrTtSip1ioXAsuZ/YUQ7c6eyHm
-	GBHdMgcxfrHjpnfpHL5tmLZDX3owkMTmFlGY+boebKuVP9KY059+r6+khAOy3IzE
-	8d055rxlDlBmjBNWIEBFGxPh8Lvn1d+JzoPyO5a4DM7xUrIgoW/Z2smMxp+jHOkL
-	et8okZs2kdgDJNUSiY26uREEIBddM4YRboHyVnAPmEs2vA==
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ayrpahc9b-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 13:38:36 +0000 (GMT)
-Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4ee04f4c632so1500661cf.3
-        for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 05:38:36 -0800 (PST)
+	s=arc-20240116; t=1765461156; c=relaxed/simple;
+	bh=G75QtHwaXyoGaF97/dwbuAjoqGb0m37v7wfeVaP4ZQU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bTW1DgIRGTNN2lKbBPDGdADcVm4Gcqut3sXAivRVtqNkrvjfI6qJ3s8vNpqohFJdyHKqfinmgVV+LYL2UuUy27kYzUnixzkjlq0h3xNKbGkix+PAwd902pj3YjwxqxO8Kbt7odejSZL0A79s4MeaJmWwOva4wf3cFVn1Q82d9+0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=O5qVzYVn; arc=none smtp.client-ip=209.85.167.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-594285c6509so131948e87.0
+        for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 05:52:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1765460315; x=1766065115; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=1txFr79AtXs5zaKWsK7avjrhNp91Cmv9tciNTCP/ZI0=;
-        b=LYjdZdfMcsm2BQO1H+wkJeuRSszXyijEOO0IrRvdsIsSRLR4mof/gEJ33UqPSWyd7F
-         WSDvmJYWsdT3gBbwYgptIKk9HoHhK1ZsR2amhsUyllEQDDaghbffxidLmzkaoS5Fj949
-         JpDSdHXTbUQbWTEyMxs7SQhhFIQcscxJD1pA4G4m7Ozn+WGh9FJF4XCFKJ9iqKHYIush
-         tSaosF7ulHQ9ZaJtG/OSMFMtB5LuuipFrIqR6deZkhbYmUp37Ig2rEHhDyeWFU0hQuQ/
-         U9xTSJVsI88uZsTgdMG24BNuFJ49WYhkzevI5UDTdHKbk4/AhgyxjSqhTqK/Uq7iF5zA
-         4Rsw==
+        d=gmail.com; s=20230601; t=1765461152; x=1766065952; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=OyF8Llfg/KLa+0XknFO643JOUJVOQHSA+WqT/UvRncg=;
+        b=O5qVzYVnkNAcBM0yU6/ECghA5DRIx/1vVPyJlHnBpRP0GapnWkpi6WRp2s3WP3FJdS
+         kQTdbNBmDRPs5RP2zVC05U2ryvX5+DMju0KLFgWs8XDo4xpjFH5p6dlS/iF283SUjROq
+         /jlL+BzBFrzCYPsre33fFUM3wq+N1G3gnplPBg7ZjgE5ESofxOJzGqZnmbXkjF8nmRAv
+         lmHtzHR4/t+AHezqADCg2QD8t2s+e8FCRCTMVhbXWuXzPpyevNM+lyuYTEtvGrBptNpN
+         vQGQtBx4c5yYcARkXeK/lMvMRShdukWmJi9T4IiYhSkFOK5joxJvnxZQUy+qfKxTewrN
+         sptw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765460315; x=1766065115;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1txFr79AtXs5zaKWsK7avjrhNp91Cmv9tciNTCP/ZI0=;
-        b=ROlZxcsVYu5a1+0yrO1JA3E4jZeBE7ce+Q4HYhqTLXfB5e7Z4GIAeFe808DeICyvRN
-         KbQXppKR0lX43ITOzEEZHar+81BH1zF0k1OIITQay5fipfuAz6nQV8W64izAIPp7Y3nj
-         0aBgCh/lYFVlOuyUYB747Lg00n7NQIRx/2S7a1RfKjb0hOJkCcL4JZ9qoZooaoF5dBMv
-         QnOU5Y7TS51ok0TXjsQ90W2FYBa12ZmuYN2eTGWSaxjGl0Q3Z9MMbdpbW8vFjmqBnQze
-         jATIM6YATwt6zB7xGs00XrfuCHV8QtkCyJeGc0+KwVLF7m9m6NknstgtLa5n2lZZ0/z4
-         aiVg==
-X-Forwarded-Encrypted: i=1; AJvYcCW+T6+oELH8Cq6HdrxncnRgyolWxeA84+jkLDXQXsS6IuwZKUv51s0z4A5wHdo0QJtcBUOV8nnTeQRN@vger.kernel.org
-X-Gm-Message-State: AOJu0YwSzqan1voElKI2kN3jiD7luUH3cr4GG2I5v1R1pA0ERmy+W2qa
-	KGxWaQqkeg4RvyHKjSRqWiuSdYqO2N3+SaHJu8SAlFTXHNvpTBF4qzuyMXaXZt8sFqSX1g8zTDB
-	reweXRmYJAIOPjYFK52PwaVHuYu26iNs9zvDzll/h/pvFFSEwVqtbxosHVnSlGKon
-X-Gm-Gg: AY/fxX6dz235U118txHXoiTY0ycCBG3Rd7h05tuXAN0iak2qN9cEqKvPeuD0rOiXhlw
-	/IYV9yjWQNnJah6h11HX/gwLeS6VTjtDenOekkPw4qtJ7TH03PjERH+Oj7nQKPOKmYvEFOAt0BB
-	Vp9kIGho/hvabLNQ73ytbTJCpNHYxA2vhXSdKhVUOrbd/2HS+ggObM7d5s/as4Znoufe1LOuH8w
-	J1rrAexdg2OzW89l+08KVC9+FAMaeuhRVpAs2EfB7MFFsjTT9yA+lBr+km9ABCTDS6ITb5l0yXQ
-	ciu91sNx1lUk6AIED4x1U75jOMkrca4osrGpHpbWXuGCELzVST/kF/8qg8l8dgt8Sfw9Z+DyakK
-	HfU60QmSWtVuvCzNW0KUkBZ9gq2O4ze2Rb1jZsc51Kpo6j9YkK5cKDSvyBCOS68QwtVASkKyN47
-	k21SgKb4VMUKmP7NTA0nrnytk=
-X-Received: by 2002:a05:622a:5a91:b0:4ee:1a54:d2bd with SMTP id d75a77b69052e-4f1b19d3c6dmr88158741cf.29.1765460315415;
-        Thu, 11 Dec 2025 05:38:35 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IG2TUScDpmeBa5M3MVeCZVAKKT2iORqa8I+l1ZWfWExOlbD0U/32mQsYXJLNemDvwTLUvDdqw==
-X-Received: by 2002:a05:622a:5a91:b0:4ee:1a54:d2bd with SMTP id d75a77b69052e-4f1b19d3c6dmr88158371cf.29.1765460314996;
-        Thu, 11 Dec 2025 05:38:34 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-598f2fa7fe0sm871983e87.72.2025.12.11.05.38.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Dec 2025 05:38:34 -0800 (PST)
-Date: Thu, 11 Dec 2025 15:38:32 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Kumari Pallavi <kumari.pallavi@oss.qualcomm.com>
-Cc: kpallavi@qti.qualcomm.com, srini@kernel.org, amahesh@qti.qualcomm.com,
-        arnd@arndb.de, gregkh@linuxfoundation.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, quic_bkumar@quicinc.com,
-        ekansh.gupta@oss.qualcomm.com, linux-kernel@vger.kernel.org,
-        quic_chennak@quicinc.com, dri-devel@lists.freedesktop.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        jingyi.wang@oss.qualcomm.com, aiqun.yu@oss.qualcomm.com,
-        ktadakam@qti.qualcomm.com
-Subject: Re: [PATCH v6 4/4] misc: fastrpc: Update dma_bits for CDSP support
- on Kaanapali SoC
-Message-ID: <e3kkj7fjovs7gd5vqmyrgkojkodmmaqur7tzuq4oq52zb264xs@x6opdbm65k5i>
-References: <20251211100933.1285093-1-kumari.pallavi@oss.qualcomm.com>
- <20251211100933.1285093-5-kumari.pallavi@oss.qualcomm.com>
+        d=1e100.net; s=20230601; t=1765461152; x=1766065952;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=OyF8Llfg/KLa+0XknFO643JOUJVOQHSA+WqT/UvRncg=;
+        b=GZIkD3/sh7UmUNjFDj1mMbNrNUc8yNq1YbsumPMBUoBH3VuVPnNZsNnREgiv7ZGkxD
+         du5mluUxvhNYTzXZkTBzd3YSf58bBsirEbgSd9pTJ4vMaAPpPTWhpyiORXIy1dFHGVsx
+         9kOPAYizXTmrc/3VC4tygLfI9BUTKiTE2bw7zzDdcgQhf/qSdulqy/hWfs45mNmWlr2H
+         a284Zo8nX34t/cKI2m24XEIg2oy8BB56zLJ2x2c3fWF9tvgHq/t/2hPL7Q+cGRIqNsxp
+         Z5mSdGT3Piv/PloNRlssMel67myTqoX6ayu0PHyGDWQkDynkbteB7AlWq144NpjxGkP4
+         T3WQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVfwP2Tet1iLjPdfW34HlJzFYzmv+nf3J2cPvgiE3fCFcXRUAQfXdKrjpAXNLwLU8X5qmY9pwdjzos+@vger.kernel.org
+X-Gm-Message-State: AOJu0YzpFD4nP6G1PQUI5M4sSBaOApHQoWLFOSExb7u2FIsALF3z56jU
+	kPyh4eBLiTCxHhAowE7BtFXz52sjBNJzBX+ta7gt7E7ydoXuVvbDcWoe
+X-Gm-Gg: AY/fxX4wZpizFVCD0xhkyE7ar+h64SSI6F+1/EPrgX63wEb1NVIgtCO3CQZoHIny6D3
+	BOhqBsZwden+BjZDNxvffMYaus775HeO37i4+LMRyXGXoT2abXvbKFQg+jV/TySxZUAE2//AMom
+	Qh3M/XNiszOqT+Jv76cIajm3k1JjulnJVKz/P0ldipuZ7Bmek26hHk7WHH1iRtMlw3I7UOKEPu9
+	O512KaepwJ2k0vX4duQl0wuNzart2qHl+kilsMRScSqerol5W63VK43PRoD6M2On5DN+J9yUa/Y
+	mz8oIiFQP5UAUF+OfGZljJeffjUgShTZqSWgaydm8Skmy5Ynhj6yutCvKyA6p/7Hg0G69WL+/vG
+	dtSTTX0k1fTG1rbJvRmQ2MXHeWtPMyQo9TkzQ2vtQmvZTvfPxpo64M+MiAFLV/FYB8vWZvQOVV6
+	AoToAi0i/8YVoGfjFcgUkuPjEABZ2RuPsOBdEsUj8RZUD5S2QC0VgHzjlfrDQKlq/XYQ59
+X-Google-Smtp-Source: AGHT+IFWJFGGAGC5oB/hILZqbH9Fl+tM9Ekock+BvVcvC2+WO2RAGZK2t4qHgeuRfvNMm8ED4+amVw==
+X-Received: by 2002:a05:6512:1390:b0:594:28f6:b065 with SMTP id 2adb3069b0e04-598ee47cf27mr2467104e87.17.1765461151758;
+        Thu, 11 Dec 2025 05:52:31 -0800 (PST)
+Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-598f2f37951sm877935e87.4.2025.12.11.05.52.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 11 Dec 2025 05:52:30 -0800 (PST)
+Message-ID: <1b9fa77b-d74a-4fa7-b2e7-8b389d59a5a0@gmail.com>
+Date: Thu, 11 Dec 2025 15:52:28 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251211100933.1285093-5-kumari.pallavi@oss.qualcomm.com>
-X-Proofpoint-ORIG-GUID: vsYOa5FZmh3vHcGRWKvxCTN5EI94OkED
-X-Proofpoint-GUID: vsYOa5FZmh3vHcGRWKvxCTN5EI94OkED
-X-Authority-Analysis: v=2.4 cv=G9sR0tk5 c=1 sm=1 tr=0 ts=693ac95c cx=c_pps
- a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=IFhsdl8TXimEBemdgfkA:9 a=CjuIK1q_8ugA:10 a=zZCYzV9kfG8A:10
- a=dawVfQjAaf238kedN5IG:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjExMDEwNiBTYWx0ZWRfXxW0r0SgnqMRb
- UVGKsVashSD3ZlQP0unaVu/coUGPl4d1FGHAbi2EQ2zCMOwJkatSwn0ZqkuacnLZTWWG3N3zrc7
- Yf4Yzq+s8ollc6TDx50zU4nwAv5yCZbpiETcDLiNOkoBPUxbky6kPe3PVcvF0dlgJ8dflbeuuoa
- 92OoJp2HKun5Z2BTIPMMcmEV5Ez60cOUHkHSauzUsZ8Kl9k8Z8zoDS3A94DCEysc1Ij4PF4OYMQ
- BWKzjkmTzuV3Y5RQLhre241lfGyPW91YQcF/tFslxbJv5BGa53zcYozEYeZ8guzz5k1AE528muW
- p+8zv3nT7Z0Ie47G+oa/U/f9orw7VxcdvWhQyoZ7+5zKE9QeEFe1ZjDGcEAqPjXR+WQ2E2Zc/hb
- N6ufjrfwmgYjWNoB6JDFfoZvX5orNQ==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-11_01,2025-12-09_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 priorityscore=1501 suspectscore=0 bulkscore=0 adultscore=0
- clxscore=1015 impostorscore=0 lowpriorityscore=0 spamscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512110106
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 01/29] Revert "treewide: Fix probing of devices in DT
+ overlays"
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Geert Uytterhoeven <geert@linux-m68k.org>,
+ Kalle Niemi <kaleposti@gmail.com>, Rob Herring <robh@kernel.org>,
+ linux-arm-kernel@lists.infradead.org, Andrew Lunn <andrew@lunn.ch>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>,
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ Peter Rosin <peda@axentia.se>, Arnd Bergmann <arnd@arndb.de>,
+ Bjorn Helgaas <bhelgaas@google.com>,
+ Charles Keepax <ckeepax@opensource.cirrus.com>,
+ Richard Fitzgerald <rf@opensource.cirrus.com>,
+ David Rhodes <david.rhodes@cirrus.com>,
+ Linus Walleij <linus.walleij@linaro.org>,
+ Ulf Hansson <ulf.hansson@linaro.org>, Mark Brown <broonie@kernel.org>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Daniel Scally <djrscally@gmail.com>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>, Len Brown <lenb@kernel.org>,
+ Davidlohr Bueso <dave@stgolabs.net>,
+ Jonathan Cameron <jonathan.cameron@huawei.com>,
+ Dave Jiang <dave.jiang@intel.com>,
+ Alison Schofield <alison.schofield@intel.com>,
+ Vishal Verma <vishal.l.verma@intel.com>, Ira Weiny <ira.weiny@intel.com>,
+ Dan Williams <dan.j.williams@intel.com>, Wolfram Sang <wsa@kernel.org>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ imx@lists.linux.dev, linux-clk@vger.kernel.org, linux-i2c@vger.kernel.org,
+ linux-pci@vger.kernel.org, linux-sound@vger.kernel.org,
+ patches@opensource.cirrus.com, linux-gpio@vger.kernel.org,
+ linux-pm@vger.kernel.org, linux-spi@vger.kernel.org,
+ linux-acpi@vger.kernel.org, linux-cxl@vger.kernel.org,
+ Allan Nielsen <allan.nielsen@microchip.com>,
+ Horatiu Vultur <horatiu.vultur@microchip.com>,
+ Steen Hegelund <steen.hegelund@microchip.com>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+References: <20251015071420.1173068-1-herve.codina@bootlin.com>
+ <20251015071420.1173068-2-herve.codina@bootlin.com>
+ <f74ab0a2-b74b-4b96-8469-a716c850e230@gmail.com>
+ <CAL_JsqJDOYuzutMHMeFAogd5a_OX6Hwi8Gwz1Vy7HpXgNeYKsg@mail.gmail.com>
+ <5cf2a12a-7c66-4622-b4a9-14896c6df005@gmail.com>
+ <CAL_JsqJjm12LxpDg6LmpY=Ro_keHwnrWiYMLVnG=s_pSP4X2WQ@mail.gmail.com>
+ <072dde7c-a53c-4525-83ac-57ea38edc0b5@gmail.com>
+ <CAL_JsqKyG98pXGKpL=gxSc92izpzN7YCdq62ZJByhE6aFYs1fw@mail.gmail.com>
+ <55076f4b-d523-4f8c-8bd4-0645b790737e@gmail.com>
+ <20251202102619.5cd971cc@bootlin.com>
+ <088af3ff-bd04-4bc9-b304-85f6ed555f2a@gmail.com>
+ <20251202175836.747593c0@bootlin.com>
+ <dc813fc2-28d2-4f2c-a2a3-08e33eec8ec7@gmail.com>
+ <20251204083839.4fb8a4b1@bootlin.com>
+ <CAMuHMdXdwf7La1EYBWTJadsTAJG3nKQVW6wtBn-bUqshA=XHRw@mail.gmail.com>
+ <20251210132140.32dbc3d7@bootlin.com>
+ <c50c40cc-69f6-436c-a94e-94a3a10f6727@gmail.com>
+ <20251211132044.10f5b1ea@bootlin.com>
+Content-Language: en-US, en-AU, en-GB, en-BW
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <20251211132044.10f5b1ea@bootlin.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, Dec 11, 2025 at 03:39:33PM +0530, Kumari Pallavi wrote:
-> DSP currently supports 32-bit IOVA (32-bit PA + 4-bit SID) for
-> both Q6 and user DMA (uDMA) access. This is being upgraded to
-> 34-bit PA + 4-bit SID due to a hardware revision in CDSP for
-> Kaanapali SoC, which expands the DMA addressable range.
-> Update DMA bits configuration in the driver to support CDSP on
-> Kaanapali SoC. Set the default `dma_bits` to 32-bit and update
-> it to 34-bit based on CDSP and OF matching on the fastrpc node.
+On 11/12/2025 14:20, Herve Codina wrote:
+> Hi Matti,
 > 
-> Signed-off-by: Kumari Pallavi <kumari.pallavi@oss.qualcomm.com>
-> ---
->  drivers/misc/fastrpc.c | 15 +++++++++++++--
->  1 file changed, 13 insertions(+), 2 deletions(-)
+> On Thu, 11 Dec 2025 10:34:46 +0200
+> Matti Vaittinen <mazziesaccount@gmail.com> wrote:
 > 
+/snip
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> 
+> Do you see the same trace with:
+> - "pinctrl-0 = <&i2c1_pins>;" in your overlay
+> - fragment0 removed from the overlay (i2c1_pins definition removed from
+>    the overlay.
+> - i2c1_pins node defined in your base DT.
+
+Just tested. The i2c1 appears and the test-overlay probe gets called, 
+when the i2c1_pins is in the base-dt and not in the overlay.
+
+> In other word, is the issues related to adding a pinctrl sub-node (pinctrl
+> pins definition) in the overlay or is it something else?
+
+Seems to be related to the pinctrl.
 
 
--- 
-With best wishes
-Dmitry
+Yours,
+	-- Matti
+
+---
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
+
+~~ When things go utterly wrong vim users can always type :help! ~~
 
