@@ -1,134 +1,173 @@
-Return-Path: <devicetree+bounces-245688-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245689-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E26C3CB4543
-	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 01:01:32 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A629CB4592
+	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 01:29:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6DDA430443DE
-	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 00:00:56 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id DB15930006F6
+	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 00:29:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 932A7292938;
-	Thu, 11 Dec 2025 00:00:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36C8A214228;
+	Thu, 11 Dec 2025 00:29:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sIvjmRPM"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="UhH4xqTJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C3BA27FB03
-	for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 00:00:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E7731B87C0
+	for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 00:29:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765411255; cv=none; b=pat7aYtVfOIux5NySdG/Cw20LFOblqiWlVT4Own/UGlEmbfw1WwZPXiDk9uVZETEt3xcROm3BJ74tt2+hoOkfCdpJXGMhWFlr3GAA5ViAKyWAkqSBOWknes5esElCYPgosOTv+iXE/QCYfCmwMCdq2/3SNWGsGrRJ1HsS/9yjAo=
+	t=1765412977; cv=none; b=EBK+zkEhPmxQN1v3u8dPiKwlUcFdsdMG6WNoX/FTxQ6QYBpfpfltozTAu8IPNMhlj3n7PUbu8azMP24EAndPQanThuVoPNUOoUS+PJdgarEByoF1xhgLaf3JZZYQmVEH/QGP1G1Z6GayxAtfKbwWsjeMRTY3/+ckeymVh83nAwk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765411255; c=relaxed/simple;
-	bh=MUedD+3YAiiPswMjQy2loynuhb6leoZiy1y3+RaZw9U=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Irxn/fvru+vw8RtuYb89lC/RBwW5vQZdy2B+oJzQnno1VP1IGk3847LU0ZVvsbkiBVvDoO4EWYnJnDT1wE84VFvj2Vfpo2khfhSbh7m2Zldt4xM+S1HxIwaLvn+6/orXtuqi+wwuTRAERB0qe2IDJH8/8ceWqX8jncI1jo2dHsQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sIvjmRPM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D883C19422
-	for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 00:00:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765411255;
-	bh=MUedD+3YAiiPswMjQy2loynuhb6leoZiy1y3+RaZw9U=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=sIvjmRPMkXbmF/JBrzCZG3h2tcvc9PipUea8WgVjqrFYoXI6XeerTOraHjzVTBBba
-	 6dpk7NHP2XtH/X+Xmxn98OmepMIHGqzaEQYBlh3YLY5q6bV+YBO4jd2yqLHGTBifYe
-	 kn5j96onLrQs3aJk51ZajErCTEGGJzem6DkkP1xA92YOZpaiExnXqzDQDG3qzXBoLS
-	 fY3JBub+ek+LapHYIA84yxKZrnisV2BcWmmfJVE/MyHdHGM1dKwjTt6Ur/BirPLr0t
-	 ziKK2yVt9A45VwuZb2dpNyQuR2sEHzbfU2I4H8V5eiI4mlx/ZIPH9Mnod/OLLS2Yw5
-	 DY0P14sbN37hA==
-Received: by mail-qk1-f178.google.com with SMTP id af79cd13be357-8a3eac7ca30so33400985a.2
-        for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 16:00:54 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVxYUjWI5QaeqSsUvI4hyP6SVfmVElh3AhroTVfyBCrGurRbWy3SyDDMIgt3mSawtLVrASBMEuAqum3@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy37aPR55qf1Yv9+/HHJ88lYk1X9gJxx4FixvoqXJr91rYGzuUL
-	B4D8k4HgM4gFgAyO2Gtz2bJPr4+n0iZUT4NbxrTBdTyxG7f7zrSzoILc9CWnTNe/4pwyK+H8jS+
-	IDwR7ZqqXNHFFsN9C0CV+cs56/l4EYHs=
-X-Google-Smtp-Source: AGHT+IF5ILxbPzEO8srko4P9caJRjZ8oYRRPnfGYYyAQGSJvhbE0FCvelM56QCi20m9DjJ9S531E6IS5WiEjEjZOdVE=
-X-Received: by 2002:a05:620a:1989:b0:80e:3af7:7a0c with SMTP id
- af79cd13be357-8ba3a471ab8mr569354985a.43.1765411254276; Wed, 10 Dec 2025
- 16:00:54 -0800 (PST)
+	s=arc-20240116; t=1765412977; c=relaxed/simple;
+	bh=miPtFXPjQNvxTz6ptrwfqOKKfUKaGCFr92LjoipOyMs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WyvcRsF3frtkzp6tDI2RGLlteFFUkyQeW7TgXzIovIknj4i5XQquk88kcUXxHg1Ue0dVKPs1h1/YJYrKjjDJ0hH3HQ5ZEa1oQ8o83Yb8VoWWUAIVA9C/ZvjkS7VMZjzTdjK7902GQYE9BY9W28YSGWg8ZXsDQsRlUadC+zISw9M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=UhH4xqTJ; arc=none smtp.client-ip=209.85.214.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
+Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-297dc3e299bso4217725ad.1
+        for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 16:29:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google; t=1765412975; x=1766017775; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=hph6c6mLrMrxrVM4J3elgrKqEusrkULz2AJc0PIUBG4=;
+        b=UhH4xqTJV7OnKLxaLGTHqPjOX7o83Kw1MFwnZ4ybCSn7mWbrWDS9tlL/B7htYglQl5
+         543aU/Y5vzywK8LdUoT6gTBMFlLtpGMe/xFt4xUNGOHD9qUd8zux6c5KhinYV7G4MbqN
+         wM/1EHcFgSr9ZdcEdzO/ave4EMngGXISW4Jk6/k/Blw0MDTNJqHjgazxEroXB8xATTJC
+         +YWTmw3iHdcKs3Fls6wiCroVsUdpOFn22ESwOpiFowDa1rijm8a+2Kw//zd1HDf8XQVE
+         8jYd0Yy5io/4zxoMqI1rf89yU5va4T789oM38lkd6Dccw/9YVOoQQwRIyrmyFHNoFETE
+         zxdg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765412975; x=1766017775;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hph6c6mLrMrxrVM4J3elgrKqEusrkULz2AJc0PIUBG4=;
+        b=jGWb7J8SG95XHpxLnh5+p795Na3nGEu9okIM3VizrS9cmRiIoV0himvJrz36MO4nIS
+         CbZRMLbT1xfuJSAThXaC05klogTEl8a0roh7ymZ15nZ3fqnmjO3rETiP9m5lV+JTJSTI
+         sVJeDztNAl3dpKXe9oi4IVieH8FquEvknUpNpSqvDZ8smXBWR5VwXpfkx1WLndn60s+0
+         R3HMta6QWgzRmMXxjl+yqV/Fx1nWCk/1ce2D3VZAkJFsMLaJoqHRQqQ1smi0/Jve5fBw
+         aFt6TSxEBEC5R+82uMOxf8CSqij7lhNs7fHM4bHRznQD5vHj/PlcOTZlq5kuIA3RpOyM
+         sHzg==
+X-Gm-Message-State: AOJu0YwOg9jyrDbxM8phip3Le3OOx+C83SBkHfcg9zWYcSnyv62UbojG
+	QVmBo7uWMt1Wk0XGNBcAMnKzg9NwSgwxHlYZhmnTs3oJJIQ21TqZPbCmftlDVhMf+TfgMpF4cgd
+	dCpPe
+X-Gm-Gg: AY/fxX72vuBEZWfqSslar10IL7hh1MANgYkgK9xLHxG/U36jM2cbPXONyqzYNEHUpNN
+	hgmSGpuk7U7vFqTtAl9BEcxropbh1p0KGSEepfBULXQWSvKRR8hpLr3YEXvJbEzdVXTXhmNbRqI
+	/i3CQonfhFzi2GiOn/AmrMi7aMa7eXxsSm4ccaQYselNMmTM7qAepuA2nrjb7pF3iILKVTK3cw0
+	VnsX94sDmpZLLEcYrTog3KTjp/ovJRvr/ZpEPqyNUHAqfgbKBiFcU9sZ6U8wn3vSwQOxY/b396K
+	2RJDbVIVCoKU3AAikF70JCx8PJfdP56JF04Gv7IgSXd7Rk/NvFbQUo3O/S4U2Fwv/3Q/fuP0xSh
+	WPgr6YRz1Yt6H0jTMXBPfMvW0qJEEd0WGYDF6V1w9V/xoohJ1ElSYzSQnCRx3zys0tRPfMCHp5l
+	MmR2OUVhwBvYMenI5kIDe2J2pHTrVH6A==
+X-Google-Smtp-Source: AGHT+IEqajP6+u4eTxzUYHfF6PVb972s/3Qa3UlhPbS0/TAJuALl6ObT5PUNXanFEPyHtJ8XnDuE7g==
+X-Received: by 2002:a17:903:234c:b0:299:e041:ecf6 with SMTP id d9443c01a7336-29ec27ce2b4mr43176775ad.40.1765412974654;
+        Wed, 10 Dec 2025 16:29:34 -0800 (PST)
+Received: from [100.64.0.1] ([167.103.29.104])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c0c2b8e0fb4sm539653a12.25.2025.12.10.16.29.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 10 Dec 2025 16:29:34 -0800 (PST)
+Message-ID: <818ba76e-0553-459d-b956-520f23762034@sifive.com>
+Date: Thu, 11 Dec 2025 09:29:28 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251014191121.368475-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20251014191121.368475-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20251016-dimmed-affidavit-90bae7e162aa@spud> <CA+V-a8un1cF=acNjG=79_v7oaR8gzBQ+3z1As8AqrJnOnk-OUw@mail.gmail.com>
- <CA+V-a8vq2EvTb_hXxRzW_Rbp+BPLSaLsEVkvaTjc1zRin-RV=Q@mail.gmail.com> <20251208-headgear-header-e17e162f0f52@spud>
-In-Reply-To: <20251208-headgear-header-e17e162f0f52@spud>
-From: Linus Walleij <linusw@kernel.org>
-Date: Thu, 11 Dec 2025 01:00:43 +0100
-X-Gmail-Original-Message-ID: <CAD++jL=rp=_J7vN4E9hUqu0Fa4H+1E1EhMFAe79Tc8jMtNHTcA@mail.gmail.com>
-X-Gm-Features: AQt7F2qjFqdAydDyHnMgE08WSEx2LkQdlBBvzuD4aPVzhMGo4v0plMBG0U8lGBA
-Message-ID: <CAD++jL=rp=_J7vN4E9hUqu0Fa4H+1E1EhMFAe79Tc8jMtNHTcA@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: renesas,r9a09g077: Document pin
- configuration properties
-To: Conor Dooley <conor@kernel.org>
-Cc: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Linus Walleij <linus.walleij@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 07/22] checkpatch: Warn on page table access without
+ accessors
+To: "David Hildenbrand (Red Hat)" <david@kernel.org>,
+ Joe Perches <joe@perches.com>, Palmer Dabbelt <palmer@dabbelt.com>,
+ Paul Walmsley <pjw@kernel.org>, linux-riscv@lists.infradead.org,
+ Andrew Morton <akpm@linux-foundation.org>, linux-mm@kvack.org
+Cc: devicetree@vger.kernel.org, Suren Baghdasaryan <surenb@google.com>,
+ linux-kernel@vger.kernel.org, Mike Rapoport <rppt@kernel.org>,
+ Michal Hocko <mhocko@suse.com>, Conor Dooley <conor@kernel.org>,
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Alexandre Ghiti <alex@ghiti.fr>,
+ Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh+dt@kernel.org>,
+ Vlastimil Babka <vbabka@suse.cz>, "Liam R . Howlett"
+ <Liam.Howlett@oracle.com>, Andy Whitcroft <apw@canonical.com>,
+ Dwaipayan Ray <dwaipayanray1@gmail.com>,
+ Lukas Bulwahn <lukas.bulwahn@gmail.com>
+References: <20251113014656.2605447-1-samuel.holland@sifive.com>
+ <20251113014656.2605447-8-samuel.holland@sifive.com>
+ <1dfa1e3566cafbe43a1d4753defef9c82ddb3b64.camel@perches.com>
+ <a6e7a571-91d2-4e66-bc86-ba30f624294b@sifive.com>
+ <273b638e-8251-4faf-929a-87432a48abdc@kernel.org>
+From: Samuel Holland <samuel.holland@sifive.com>
+Content-Language: en-US
+In-Reply-To: <273b638e-8251-4faf-929a-87432a48abdc@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi Lad,
+On 2025-11-14 4:17 AM, David Hildenbrand (Red Hat) wrote:
+> On 13.11.25 03:36, Samuel Holland wrote:
+>> On 2025-11-12 8:21 PM, Joe Perches wrote:
+>>> On Wed, 2025-11-12 at 17:45 -0800, Samuel Holland wrote:
+>>>> Architectures may have special rules for accessing the hardware page
+>>>> tables (for example, atomicity/ordering requirements), so the generic MM
+>>>> code provides the pXXp_get() and set_pXX() hooks for architectures to
+>>>> implement. These accessor functions are often omitted where a raw
+>>>> pointer dereference is believed to be safe (i.e. race-free). However,
+>>>> RISC-V needs to use these hooks to rewrite the page table values at
+>>>> read/write time on some platforms. A raw pointer dereference will no
+>>>> longer produce the correct value on those platforms, so the generic code
+>>>> must always use the accessor functions.
+>>> []
+>>>> diff --git a/scripts/checkpatch.pl b/scripts/checkpatch.pl
+>>> []
+>>>> @@ -7721,6 +7721,13 @@ sub process {
+>>>>                   ERROR("MISSING_SENTINEL", "missing sentinel in ID
+>>>> array\n" . "$here\n$stat\n");
+>>>>               }
+>>>>           }
+>>>> +
+>>>> +# check for raw dereferences of hardware page table pointers
+>>>> +        if ($realfile !~ m@^arch/@ &&
+>>>> +            $line =~ /(?<!pte_t |p[mu4g]d_t |izeof\()\*\(?(vmf(\.|->))?
+>>>> (pte|p[mu4g]d)p?\b/) {
+>>>> +            WARN("PAGE_TABLE_ACCESSORS",
+>>>> +                 "Use $3p_get()/set_$3() instead of dereferencing page
+>>>> table pointers\n" . $herecurr);
+>>>> +        }
+>>>>       }
+>>>
+>>> Seems like a lot of matches
+>>>
+>>> $ git grep -P '(?<!pte_t |p[mu4g]d_t |izeof\()\*\(?(vmf(\.|->))?(pte|
+>>> p[mu4g]d)p?\b' | \
+>>>    grep -v '^arch/' | wc -l
+>>> 766
+> 
+> That is indeed concerning.
+> 
+> I recall that we discussed an alternative approach with Ryan in the past: I
+> don't remember all the details, but essentially it was about using separate
+> types, such that dereferencing would not get you the type the other functions
+> would be expecting. Such that the compiler will bark when you try to dereference.
 
-thanks for your patch!
+Even if some functions a new incompatible pointer type, don't we still have the
+problem that neither type would be safe to dereference?
 
-On Mon, Dec 8, 2025 at 7:01=E2=80=AFPM Conor Dooley <conor@kernel.org> wrot=
-e:
-> On Mon, Dec 08, 2025 at 10:36:04AM +0000, Lad, Prabhakar wrote:
+A similar option to a new type would be to add a sparse annotation to the
+pointers that reference hardware page tables, similar to __user. I have
+prototyped a coccinelle script to add this annotation, and the sparse checking
+works. But I don't have the coccinelle expertise to automate the whole thing, so
+there's a lot of manual cleanup required. And this requires touching all
+architectures at once to avoid introducing erroneous sparse warnings. So I did
+not include this for v3 because it is quite a lot of churn. Is this something I
+should try to fully implement for v4?
 
-> > > > > +      slew-rate:
-> > > > > +        enum: [0, 1]
-> > > >
-> > > > What are the meanings of "0" and "1" for slew rate? Why isn't this =
-given
-> > > I'll add a description for it (0 =3D slow, 1 =3D fast) and the same v=
-alues
-> > > are programmed in the register to configure the slew rate.
-> > >
-> > > > as the actual rates? The docs surely give more detail than just "sl=
-ow"
-> > > > and "fast".
-> > > You mean to represent slew-rate in some sort of a unit?
-> > >
-> > Based on the comments from the HW team, there is no numerical
-> > definition to represent slow/fast It only defines a relative
-> > relationship.
+Regards,
+Samuel
 
-Then describe relative to what, so we can understand when to use
-which setting?
-
-> > The current value is determined by the load on the external circuit
-> > and is not affected by the choice of drive strength.
-(...)
-> Remember, drive strength is the current that can be delivered through a
-> pin, not how much it is delivering at a given point in time.
-
-This seems to be the core of the misunderstanding here.
-
-The setting defines the cap. How much current *can* be delivered.
-
-If the pin controller had a fuse that would bust if we delivered too
-much current, this would be the grading of that fuse.
-
-It's the current where the driver stage(s) stop pushing in more
-electrons, it's a very real thing and does not depend on what the
-circuit look like.
-
-Pins usually have protected driver stages, so connecting an
-amperemeter directly to ground and driving the line high would
-actually give this value.
-
-Yours,
-Linus Walleij
 
