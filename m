@@ -1,219 +1,348 @@
-Return-Path: <devicetree+bounces-245861-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245862-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 650A5CB6284
-	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 15:13:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 61E7BCB62EB
+	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 15:30:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2590E30778EA
-	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 14:07:51 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 07768300D155
+	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 14:30:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E37472D238D;
-	Thu, 11 Dec 2025 14:07:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59A79221FCD;
+	Thu, 11 Dec 2025 14:30:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F4nRF+jI"
+	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="aRzbMpeI";
+	dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="v8PdGHtI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C29A2D1932;
-	Thu, 11 Dec 2025 14:07:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 304E438FA3;
+	Thu, 11 Dec 2025 14:30:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765462068; cv=none; b=lg/xrlU8HawVWsarZItkOxzgv0Rw4CVV778th24E5KuVIxt7d2SIWe9bQPSKrmrnc4clt0wqjyhf7rbTbeFh6VNfMKA3bIH5+SfyuZ5lVud0pQxbJ47EGH3H7RUN0e693VkJzMHklNZJJjVX42VEYfVGkNnOu6MfPmD6nvQh23Y=
+	t=1765463432; cv=none; b=qdZoo6TGa9lTnW5CJiU6J7QrDSK1J8cwLzNDocglEvGZoHqMUxFoEtNg5sfFLX8ZpekQa3FegHHseQzafKGndTkesgPbG7oK/ax2tauNzRhtHxG2q15tIfvwCHmtWIE/MpoX68jVPUms++1/4/yMTab3fPC8+85QxP8xy/q/wsw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765462068; c=relaxed/simple;
-	bh=hx7b5hrK/t1h1EGBuhSZdXxMqefCkNpMbXzh1Pxl/GQ=;
-	h=From:Date:Content-Type:MIME-Version:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=pBW092m8Hgc0bvEob76sg54fdwNwrTWTyAUwpLh13w2cN8oMUJPBbcTpPF2r/GzcWipM3HDnBWjYrCHFAxa9i2S+xZsleRXqMxI/GakXcPni/tuZZ1d15XkqdbLdBk9XzO8CU/2Ra3Y0g79Tmk6bD3KpIP/kXxvMpjTCIo/6qtk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F4nRF+jI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0558FC113D0;
-	Thu, 11 Dec 2025 14:07:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765462068;
-	bh=hx7b5hrK/t1h1EGBuhSZdXxMqefCkNpMbXzh1Pxl/GQ=;
-	h=From:Date:Cc:To:In-Reply-To:References:Subject:From;
-	b=F4nRF+jILoOBJXDsreY4/ec1oenpKVgurmtPrhus5kXNUIYF/WfF+26aLVpRCEnQk
-	 J4bn4I+pf4emRNZ0naH44bYtNweuoB/BPCoO29fYQZW4zgjopbjuhSfMPxX8r5C9Sd
-	 HwiRVfqG44YlO4jVout14vF5bi56Uq4IBV1g4d1e8jNEULYuOm9QaZbHrg4GJYPUpk
-	 Ce+TKRcAdNShbHb98RYKQRWl5VNC4J8FTWcRlsMdsY0irxv1iN+gSAv0F5xjGF1tDo
-	 8pyIosatEszKp+OVkMh46qLMQx878RXXrVhSFpV2S8RGMxXc1tSS1ag6GbVr2JfXPM
-	 l7Gbv0noZ03iA==
-From: Rob Herring <robh@kernel.org>
-Date: Thu, 11 Dec 2025 08:07:47 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1765463432; c=relaxed/simple;
+	bh=HanZ+/qgWBXy7S8UZRE968eY2vcDOAtoxztEL7j3smk=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=qr4SAVsZF0x3Ed7lpdKRtBqHQlsqAJ6ktPNSqKd19comZqP7QKXOjWOJ5rXabwDEaiTyyq8JqdRMEesDCpV4+exhMKWBj35fpNSSgAqWLthVNQac7hp3iyFqWCyrHO4Kjj0NgWyqsbj7WQSXO9uQ6qi5B2UhhcJVtkbsW1Cjan0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=aRzbMpeI; dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=v8PdGHtI; arc=none smtp.client-ip=5.75.144.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
+DKIM-Signature: v=1; a=rsa-sha256; s=202507r; d=mainlining.org; c=relaxed/relaxed;
+	h=To:From:Subject:Date:Message-ID; t=1765463418; bh=NIryG4q0EqZ3z4E2IuR9+hd
+	lAYVMaDiANLiXLo2UMCg=; b=aRzbMpeIuYbjF03EnXb4sdeVbT6AIdXghhXJqaDSAum+Q4rWDg
+	e3rzQTUClTWrTpGNziwRcDj+QZp+OQ8YojNzZ+UCRrYpc3j8Ftgx2mBjcdGFl2yNi4pZlAYA12s
+	HMyxeeKI+RwbP5sh9ddeEBA81ojBSGuc92ZfsRV5juNmQm+XFE99FqissyHE7jfI7T8igk5dKFg
+	k7EljXACDlggjIVCFnMClT5sJTXOWEeSz16m9oMusriVvEzioA37Gxc9y4Lop2LbECWd3LeBJHV
+	XNdrk2HFhaljYlNO39PbxlYJIU9Fvb24u27hRaCgtnHDxAfp95Ba4v9wvJYHeOGZLhQ==;
+DKIM-Signature: v=1; a=ed25519-sha256; s=202507e; d=mainlining.org; c=relaxed/relaxed;
+	h=To:From:Subject:Date:Message-ID; t=1765463418; bh=NIryG4q0EqZ3z4E2IuR9+hd
+	lAYVMaDiANLiXLo2UMCg=; b=v8PdGHtIXl+GRjZxmPjj2QSjmusLAx2wsMkleAi9k/m/wvurK1
+	ZOj4Kpewfvcyitk36nnKvG3zI+0xG08DxPBg==;
+Message-ID: <c778f58c-0075-41a5-b230-db6df1f98329@mainlining.org>
+Date: Thu, 11 Dec 2025 17:30:17 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-crypto@vger.kernel.org, 
- linux-iio@vger.kernel.org, linux-aspeed@lists.ozlabs.org, 
- linux-hwmon@vger.kernel.org, linux-gpio@vger.kernel.org, 
- Joel Stanley <joel@jms.id.au>, Linus Walleij <linusw@kernel.org>, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-mmc@vger.kernel.org, openbmc@lists.ozlabs.org, 
- linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>
-To: Andrew Jeffery <andrew@codeconstruct.com.au>
-In-Reply-To: <20251211-dev-dt-warnings-all-v1-0-21b18b9ada77@codeconstruct.com.au>
-References: <20251211-dev-dt-warnings-all-v1-0-21b18b9ada77@codeconstruct.com.au>
-Message-Id: <176546188070.971010.10583431722134708925.robh@kernel.org>
-Subject: Re: [PATCH RFC 00/16] Eliminate warnings for AST2500 and AST2600
- EVB devicetrees
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/3] arm64: dts: qcom: sdm630/660: Add CDSP-related
+ nodes
+From: Nickolay Goppen <setotau@mainlining.org>
+To: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Ekansh Gupta <ekansh.gupta@oss.qualcomm.com>,
+ Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+ linux@mainlining.org
+References: <20251023-qcom-sdm660-cdsp-adsp-dts-v2-0-895ffe50ab5f@mainlining.org>
+ <20251023-qcom-sdm660-cdsp-adsp-dts-v2-1-895ffe50ab5f@mainlining.org>
+ <9009eb8b-309d-4ddc-bb3f-081b974b1fa0@mainlining.org>
+Content-Language: ru-RU, en-US
+In-Reply-To: <9009eb8b-309d-4ddc-bb3f-081b974b1fa0@mainlining.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
 
-On Thu, 11 Dec 2025 17:45:42 +0900, Andrew Jeffery wrote:
-> Hi all,
-> 
-> This series removes the remaining warnings produced by `make
-> CHECK_DTBS=y ...` for the AST2500 and AST2600 EVBs and their related
-> DTSIs. The tidy-up has the usual benefit of making it clear to
-> contributors that any warnings are likely their own to fix before their
-> patches will be considered for merging.
-> 
-> I've framed it as an RFC with all patches contained in the one series
-> so the goal is clear, we can see what's needed to reach it, and we can
-> decide whether and how it should be split or merged going forward.
-> 
-> As it stands there's little in the way of code change, except to
-> pinctrl (though also not much there). As such I've included the
-> binding maintainers and subsystem lists as recipients but not yet Cc'ed
-> subsystem maintainers directly because there are quite a few and I hope
-> to avoid mostly uninteresting patches being a source of irritation.
-> 
-> The patches fall into several groups:
-> 
-> Patch 1:
->   Rob's conversion of the PWM/tach binding to DT schema with fixes
->   applied for the license and typos identified by Krzysztof.
-> 
-> Patches 2-5:
->   Fixes for the warnings related to the LPC and pinctrl nodes, touching
->   relevant drivers and the devicetrees.
-> 
->   I expect that if this approach is acceptable that we'll need to split
->   application of the patches across successive release cycles, with the
->   driver changes going in first.
-> 
-> Patches 6-8:
->   Fix MMC/SDHCI warnings, touching the relevant binding and devicetrees
-> 
-> Patches 9-10:
->   Clarify the relationships between the ACRY and AHB controller
-> 
-> Patches 11-16:
->   The remaining pieces that eliminate the warnings
-> 
-> I'm at plumbers so don't have hardware on hand to test with, but some
-> brief smoke tests under qemu look okay. Given that it's all RFC that
-> should be enough for the moment. I'll do more testing after discussions
-> and when I have boards at hand.
-> 
-> Please review!
-> 
-> Andrew
-> 
-> Signed-off-by: Andrew Jeffery <andrew@codeconstruct.com.au>
-> ---
-> Andrew Jeffery (15):
->       pinctrl: aspeed: g5: Constrain LPC binding revision workaround to AST2500
->       pinctrl: aspeed: g5: Allow use of LPC node instead of LPC host controller
->       ARM: dts: aspeed: g5: Use LPC phandle for pinctrl aspeed,external-nodes
->       ARM: dts: aspeed: Remove unspecified LPC host controller node
->       dt-bindings: mmc: Switch ref to sdhci-common.yaml
->       ARM: dts: aspeed: Remove sdhci-drive-type property from AST2600 EVB
->       ARM: dts: aspeed: Use specified wp-inverted property for AST2600 EVB
->       dt-bindings: bus: aspeed: Require syscon for AST2600 AHB controller
->       dt-bindings: crypto: Document aspeed,ahbc property for Aspeed ACRY
->       ARM: dts: aspeed: Drop syscon compatible from EDAC in g6 dtsi
->       ARM: dts: aspeed: g6: Drop unspecified aspeed,ast2600-udma node
->       ARM: dts: aspeed: ast2600-evb: Tidy up A0 work-around for UART5
->       dt-bindings: iio: adc: Allow interrupts property for AST2600
->       ARM: dts: aspeed: g6: Drop clocks property from arm,armv7-timer
->       dt-bindings: mfd: Document smp-memram node for AST2600 SCU
-> 
-> Rob Herring (Arm) (1):
->       dt-bindings: hwmon: Convert aspeed,ast2400-pwm-tacho to DT schema
-> 
->  .../bindings/bus/aspeed,ast2600-ahbc.yaml          |   8 +-
->  .../bindings/crypto/aspeed,ast2600-acry.yaml       |   7 ++
->  .../bindings/hwmon/aspeed,ast2400-pwm-tacho.yaml   | 106 +++++++++++++++++++++
->  .../devicetree/bindings/hwmon/aspeed-pwm-tacho.txt |  73 --------------
->  .../bindings/iio/adc/aspeed,ast2600-adc.yaml       |   3 +
->  .../bindings/mfd/aspeed,ast2x00-scu.yaml           |  18 ++++
->  .../devicetree/bindings/mmc/aspeed,sdhci.yaml      |   2 +-
->  arch/arm/boot/dts/aspeed/aspeed-ast2600-evb.dts    |   7 +-
->  .../dts/aspeed/aspeed-bmc-facebook-clemente.dts    |   4 -
->  arch/arm/boot/dts/aspeed/aspeed-g4.dtsi            |   5 -
->  arch/arm/boot/dts/aspeed/aspeed-g5.dtsi            |   8 +-
->  arch/arm/boot/dts/aspeed/aspeed-g6.dtsi            |  17 +---
->  drivers/pinctrl/aspeed/pinctrl-aspeed-g5.c         |  32 ++++---
->  13 files changed, 165 insertions(+), 125 deletions(-)
-> ---
-> base-commit: 5ce74bc1b7cb2732b22f9c93082545bc655d6547
-> change-id: 20251211-dev-dt-warnings-all-bd5854b04d60
-> 
-> Best regards,
-> --
-> Andrew Jeffery <andrew@codeconstruct.com.au>
-> 
-> 
-> 
+11.12.2025 15:24, Nickolay Goppen пишет:
+>
+> 23.10.2025 22:51, Nickolay Goppen пишет:
+>> In order to enable CDSP support for SDM660 SoC:
+>>   * add shared memory p2p nodes for CDSP
+>>   * add CDSP-specific smmu node
+>>   * add CDSP peripheral image loader node
+>>
+>> Memory region for CDSP in SDM660 occupies the same spot as
+>> TZ buffer mem defined in sdm630.dtsi (which does not have CDSP).
+>> In sdm660.dtsi replace buffer_mem inherited from SDM630 with
+>> cdsp_region, which is also larger in size.
+>>
+>> SDM636 also doesn't have CDSP, so remove inherited from sdm660.dtsi
+>> related nodes and add buffer_mem back.
+>>
+>> Signed-off-by: Nickolay Goppen <setotau@mainlining.org>
+>> ---
+>>   arch/arm64/boot/dts/qcom/sdm630.dtsi |   2 +-
+>>   arch/arm64/boot/dts/qcom/sdm636.dtsi |  23 +++--
+>>   arch/arm64/boot/dts/qcom/sdm660.dtsi | 162 
+>> +++++++++++++++++++++++++++++++++++
+>>   3 files changed, 177 insertions(+), 10 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi 
+>> b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+>> index 8b1a45a4e56e..a6a1933229b9 100644
+>> --- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+>> @@ -563,7 +563,7 @@ modem_smp2p_in: slave-kernel {
+>>           };
+>>       };
+>>   -    soc@0 {
+>> +    soc: soc@0 {
+>>           #address-cells = <1>;
+>>           #size-cells = <1>;
+>>           ranges = <0 0 0 0xffffffff>;
+>> diff --git a/arch/arm64/boot/dts/qcom/sdm636.dtsi 
+>> b/arch/arm64/boot/dts/qcom/sdm636.dtsi
+>> index ae15d81fa3f9..38e6e3bfc3ce 100644
+>> --- a/arch/arm64/boot/dts/qcom/sdm636.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sdm636.dtsi
+>> @@ -7,15 +7,20 @@
+>>     #include "sdm660.dtsi"
+>>   -/*
+>> - * According to the downstream DTS,
+>> - * 636 is basically a 660 except for
+>> - * different CPU frequencies, Adreno
+>> - * 509 instead of 512 and lack of
+>> - * turing IP. These differences will
+>> - * be addressed when the aforementioned
+>> - * peripherals will be enabled upstream.
+>> - */
+>> +/delete-node/ &remoteproc_cdsp;
+>> +/delete-node/ &cdsp_smmu;
+>> +/delete-node/ &cdsp_region;
+>> +
+>> +/ {
+>> +    /delete-node/ smp2p-cdsp;
+>> +
+>> +    reserved-memory {
+>> +        buffer_mem: tzbuffer@94a00000 {
+>> +            reg = <0x0 0x94a00000 0x00 0x100000>;
+>> +            no-map;
+>> +        };
+>> +    };
+>> +};
+>>     &adreno_gpu {
+>>       compatible = "qcom,adreno-509.0", "qcom,adreno";
+>> diff --git a/arch/arm64/boot/dts/qcom/sdm660.dtsi 
+>> b/arch/arm64/boot/dts/qcom/sdm660.dtsi
+>> index ef4a563c0feb..d50cce25ccbe 100644
+>> --- a/arch/arm64/boot/dts/qcom/sdm660.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sdm660.dtsi
+>> @@ -9,6 +9,37 @@
+>>     #include "sdm630.dtsi"
+>>   +/delete-node/ &buffer_mem;
+>> +
+>> +/ {
+>> +    smp2p-cdsp {
+>> +        compatible = "qcom,smp2p";
+>> +        qcom,smem = <94>, <432>;
+>> +        interrupts = <GIC_SPI 514 IRQ_TYPE_EDGE_RISING>;
+>> +        mboxes = <&apcs_glb 30>;
+>> +        qcom,local-pid = <0>;
+>> +        qcom,remote-pid = <5>;
+>> +
+>> +        cdsp_smp2p_out: master-kernel {
+>> +            qcom,entry-name = "master-kernel";
+>> +            #qcom,smem-state-cells = <1>;
+>> +        };
+>> +
+>> +        cdsp_smp2p_in: slave-kernel {
+>> +            qcom,entry-name = "slave-kernel";
+>> +            interrupt-controller;
+>> +            #interrupt-cells = <2>;
+>> +        };
+>> +    };
+>> +
+>> +    reserved-memory {
+>> +        cdsp_region: cdsp@94a00000 {
+>> +            reg = <0x0 0x94a00000 0x00 0x600000>;
+>> +            no-map;
+>> +        };
+>> +    };
+>> +};
+>> +
+>>   &adreno_gpu {
+>>       compatible = "qcom,adreno-512.0", "qcom,adreno";
+>>       operating-points-v2 = <&gpu_sdm660_opp_table>;
+>> @@ -247,6 +278,137 @@ &mmcc {
+>>               <0>;
+>>   };
+>>   +&soc {
+>> +    cdsp_smmu: iommu@5180000 {
+>> +        compatible = "qcom,sdm630-smmu-v2", "qcom,smmu-v2";
+>> +        reg = <0x5180000 0x40000>;
+>> +        #iommu-cells = <1>;
+>> +
+>> +        #global-interrupts = <2>;
+>> +        interrupts = <GIC_SPI 229 IRQ_TYPE_LEVEL_HIGH>,
+>> +                 <GIC_SPI 231 IRQ_TYPE_LEVEL_HIGH>,
+>> +                 <GIC_SPI 533 IRQ_TYPE_LEVEL_HIGH>,
+>> +                 <GIC_SPI 534 IRQ_TYPE_LEVEL_HIGH>,
+>> +                 <GIC_SPI 535 IRQ_TYPE_LEVEL_HIGH>,
+>> +                 <GIC_SPI 536 IRQ_TYPE_LEVEL_HIGH>,
+>> +                 <GIC_SPI 537 IRQ_TYPE_LEVEL_HIGH>,
+>> +                 <GIC_SPI 538 IRQ_TYPE_LEVEL_HIGH>,
+>> +                 <GIC_SPI 539 IRQ_TYPE_LEVEL_HIGH>,
+>> +                 <GIC_SPI 540 IRQ_TYPE_LEVEL_HIGH>,
+>> +                 <GIC_SPI 541 IRQ_TYPE_LEVEL_HIGH>,
+>> +                 <GIC_SPI 542 IRQ_TYPE_LEVEL_HIGH>,
+>> +                 <GIC_SPI 543 IRQ_TYPE_LEVEL_HIGH>,
+>> +                 <GIC_SPI 544 IRQ_TYPE_LEVEL_HIGH>,
+>> +                 <GIC_SPI 545 IRQ_TYPE_LEVEL_HIGH>,
+>> +                 <GIC_SPI 546 IRQ_TYPE_LEVEL_HIGH>,
+>> +                 <GIC_SPI 547 IRQ_TYPE_LEVEL_HIGH>,
+>> +                 <GIC_SPI 548 IRQ_TYPE_LEVEL_HIGH>,
+>> +                 <GIC_SPI 549 IRQ_TYPE_LEVEL_HIGH>;
+>> +
+>> +        clocks = <&gcc GCC_HLOS1_VOTE_TURING_ADSP_SMMU_CLK>;
+>> +        clock-names = "bus";
+>> +
+>> +        power-domains = <&gcc HLOS1_VOTE_TURING_ADSP_GDSC>;
+>> +
+>> +    };
+>> +
+>> +    remoteproc_cdsp: remoteproc@1a300000 {
+>> +        compatible = "qcom,sdm660-cdsp-pas";
+>> +        reg = <0x1a300000 0x00100>;
+>> +        interrupts-extended = <&intc GIC_SPI 518 IRQ_TYPE_EDGE_RISING>,
+>> +                      <&cdsp_smp2p_in 0 IRQ_TYPE_EDGE_RISING>,
+>> +                      <&cdsp_smp2p_in 1 IRQ_TYPE_EDGE_RISING>,
+>> +                      <&cdsp_smp2p_in 2 IRQ_TYPE_EDGE_RISING>,
+>> +                      <&cdsp_smp2p_in 3 IRQ_TYPE_EDGE_RISING>;
+>> +        interrupt-names = "wdog",
+>> +                  "fatal",
+>> +                  "ready",
+>> +                  "handover",
+>> +                  "stop-ack";
+>> +
+>> +        clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>;
+>> +        clock-names = "xo";
+>> +
+>> +        memory-region = <&cdsp_region>;
+>> +        power-domains = <&rpmpd SDM660_VDDCX>;
+>> +        power-domain-names = "cx";
+>> +
+>> +        qcom,smem-states = <&cdsp_smp2p_out 0>;
+>> +        qcom,smem-state-names = "stop";
+>> +
+>> +        glink-edge {
+>> +            interrupts = <GIC_SPI 513 IRQ_TYPE_EDGE_RISING>;
+>> +
+>> +            label = "turing";
+>> +            mboxes = <&apcs_glb 29>;
+>> +            qcom,remote-pid = <5>;
+>> +
+>> +            fastrpc {
+>> +                compatible = "qcom,fastrpc";
+>> +                qcom,glink-channels = "fastrpcglink-apps-dsp";
+>> +                label = "cdsp";
+>> +                qcom,non-secure-domain;
+>> +                #address-cells = <1>;
+>> +                #size-cells = <0>;
+>> +
+>> +                compute-cb@5 {
+>> +                    compatible = "qcom,fastrpc-compute-cb";
+>> +                    reg = <5>;
+>> +                    iommus = <&cdsp_smmu 3>;
+>> +                };
+>> +
+>> +                compute-cb@6 {
+>> +                    compatible = "qcom,fastrpc-compute-cb";
+>> +                    reg = <6>;
+>> +                    iommus = <&cdsp_smmu 4>;
+>> +                };
+>> +
+>> +                compute-cb@7 {
+>> +                    compatible = "qcom,fastrpc-compute-cb";
+>> +                    reg = <7>;
+>> +                    iommus = <&cdsp_smmu 5>;
+>> +                };
+>> +
+>> +                compute-cb@8 {
+>> +                    compatible = "qcom,fastrpc-compute-cb";
+>> +                    reg = <8>;
+>> +                    iommus = <&cdsp_smmu 6>;
+>> +                };
+>> +
+>> +                compute-cb@9 {
+>> +                    compatible = "qcom,fastrpc-compute-cb";
+>> +                    reg = <9>;
+>> +                    iommus = <&cdsp_smmu 7>;
+>> +                };
+>> +
+>> +                compute-cb@10 {
+>> +                    compatible = "qcom,fastrpc-compute-cb";
+>> +                    reg = <10>;
+>> +                    iommus = <&cdsp_smmu 8>;
+>> +                };
+>> +
+>> +                compute-cb@11 {
+>> +                    compatible = "qcom,fastrpc-compute-cb";
+>> +                    reg = <11>;
+>> +                    iommus = <&cdsp_smmu 9>;
+>> +                };
+>> +
+>> +                compute-cb@12 {
+>> +                    compatible = "qcom,fastrpc-compute-cb";
+>> +                    reg = <12>;
+>> +                    iommus = <&cdsp_smmu 10>;
+>> +                };
+>> +
+>> +                compute-cb@13 {
+>> +                    compatible = "qcom,fastrpc-compute-cb";
+>> +                    reg = <13>;
+>> +                    iommus = <&cdsp_smmu 11>;
+>> +                };
+>> +            };
+>> +        };
+>> +    };
+>> +};
+>> +
+>>   &tlmm {
+>>       compatible = "qcom,sdm660-pinctrl";
+>>   };
+>>
+> I've found out that all (both ADSP's and CDSP's) fastrpc-compute-cb's 
+> in downstream are defined under the one node [1], and all of them are 
+> handled by one adsprpc driver. There's a node [2], where a 
+> memory-region is assigned to this driver.
+>
+> Does this mean that both DSP's are using this one region for FastRPC?
+>
+> [1] 
+> https://github.com/pix106/android_kernel_xiaomi_southwest-4.19/blob/main/arch/arm64/boot/dts/vendor/qcom/sdm660.dtsi#L1349
+>
+> [2] 
+> https://github.com/pix106/android_kernel_xiaomi_southwest-4.19/blob/main/arch/arm64/boot/dts/vendor/qcom/sdm660.dtsi#L1342 
+>
+>
+I've also noticed that both DSP's are connected to the mas_crypto_c0 bus 
+[1].
 
+Is this bus neccessary for DSP's to use the FastRPC?
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
+[1] 
+https://github.com/pix106/android_kernel_xiaomi_southwest-4.19/blob/main/arch/arm64/boot/dts/vendor/qcom/sdm660.dtsi#L1963
 
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
-
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-This patch series was applied (using b4) to base:
- Base: 5ce74bc1b7cb2732b22f9c93082545bc655d6547 (use --merge-base to override)
-
-If this is not the correct base, please add 'base-commit' tag
-(or use b4 which does this automatically)
-
-New warnings running 'make CHECK_DTBS=y for arch/arm/boot/dts/aspeed/' for 20251211-dev-dt-warnings-all-v1-0-21b18b9ada77@codeconstruct.com.au:
-
-arch/arm/boot/dts/aspeed/aspeed-bmc-quanta-s6q.dtb: adc@1e6e9000 (aspeed,ast2600-adc0): 'vref' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/iio/adc/aspeed,ast2600-adc.yaml
-arch/arm/boot/dts/aspeed/aspeed-bmc-quanta-s6q.dtb: adc@1e6e9100 (aspeed,ast2600-adc1): 'vref' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/iio/adc/aspeed,ast2600-adc.yaml
-arch/arm/boot/dts/aspeed/aspeed-bmc-opp-mowgli.dtb: pwm-tacho-controller@1e786000 (aspeed,ast2500-pwm-tacho): 'fan@8', 'fan@9' do not match any of the regexes: '^fan@[0-7]$', '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/hwmon/aspeed,ast2400-pwm-tacho.yaml
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-bletchley.dtb: adc@1e6e9000 (aspeed,ast2600-adc0): 'vref' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/iio/adc/aspeed,ast2600-adc.yaml
-arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-bletchley.dtb: adc@1e6e9100 (aspeed,ast2600-adc1): 'vref' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/iio/adc/aspeed,ast2600-adc.yaml
-arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtjade.dtb: pwm-tacho-controller@1e786000 (aspeed,ast2500-pwm-tacho): 'fan@10', 'fan@11', 'fan@8', 'fan@9' do not match any of the regexes: '^fan@[0-7]$', '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/hwmon/aspeed,ast2400-pwm-tacho.yaml
-arch/arm/boot/dts/aspeed/aspeed-bmc-asus-x4tf.dtb: adc@1e6e9000 (aspeed,ast2600-adc0): 'vref' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/iio/adc/aspeed,ast2600-adc.yaml
-arch/arm/boot/dts/aspeed/aspeed-bmc-asus-x4tf.dtb: adc@1e6e9100 (aspeed,ast2600-adc1): 'vref' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/iio/adc/aspeed,ast2600-adc.yaml
-arch/arm/boot/dts/aspeed/aspeed-bmc-lenovo-hr855xg2.dtb: pwm-tacho-controller@1e786000 (aspeed,ast2500-pwm-tacho): 'fan@10', 'fan@11', 'fan@12', 'fan@13', 'fan@14', 'fan@15', 'fan@16', 'fan@8', 'fan@9' do not match any of the regexes: '^fan@[0-7]$', '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/hwmon/aspeed,ast2400-pwm-tacho.yaml
-arch/arm/boot/dts/aspeed/aspeed-bmc-amd-daytonax.dtb: pwm-tacho-controller@1e786000 (aspeed,ast2500-pwm-tacho): 'fan@10', 'fan@11', 'fan@12', 'fan@13', 'fan@14', 'fan@15', 'fan@8', 'fan@9' do not match any of the regexes: '^fan@[0-7]$', '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/hwmon/aspeed,ast2400-pwm-tacho.yaml
-arch/arm/boot/dts/aspeed/aspeed-bmc-lenovo-hr630.dtb: pwm-tacho-controller@1e786000 (aspeed,ast2500-pwm-tacho): 'fan@10', 'fan@11', 'fan@12', 'fan@13', 'fan@8', 'fan@9' do not match any of the regexes: '^fan@[0-7]$', '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/hwmon/aspeed,ast2400-pwm-tacho.yaml
-arch/arm/boot/dts/aspeed/aspeed-bmc-ufispace-ncplite.dtb: adc@1e6e9000 (aspeed,ast2600-adc0): 'vref' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/iio/adc/aspeed,ast2600-adc.yaml
-arch/arm/boot/dts/aspeed/aspeed-bmc-ufispace-ncplite.dtb: adc@1e6e9100 (aspeed,ast2600-adc1): 'vref' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/iio/adc/aspeed,ast2600-adc.yaml
-
-
-
-
+-- 
+Best regards,
+Nickolay
 
 
