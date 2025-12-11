@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-245750-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245751-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B60C4CB4DBC
-	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 07:17:35 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2340CB4DFC
+	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 07:30:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E5F3630054BC
-	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 06:16:33 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 8444D300F72A
+	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 06:30:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB30B1F2B88;
-	Thu, 11 Dec 2025 06:16:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD40B22068F;
+	Thu, 11 Dec 2025 06:30:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mUGpwECA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uzU1pF7r"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A239520322;
-	Thu, 11 Dec 2025 06:16:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9B792C181;
+	Thu, 11 Dec 2025 06:30:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765433792; cv=none; b=qhIKMOsYKIaIU7x1avIkjLbwVPLabF1YySMBfssV4sWgDiIHWrjf9GMtgoshIBRoHpbxjVjGbOPYXGVyMvutiMvvUWZ8/ng4oJMSaNiYD7cvDhDUDHMaUCe997sS7WWLy1fW+AYqV/07M/rMW00TfSFFvN282Eltb9wAOtjw674=
+	t=1765434648; cv=none; b=QnIN1mNKPcBSulYQKWympANdxRU7HzKxitVQ9ANeUj8FSPje/wHgf55TJ0ECHHUH+nKBjOyseGk2Y+b57aYak7jUALR+CLi557GFNYg/Oz9gt0hkFUa26/laijL6H4JY88TP2QNColxSAeAWnVym5+6hk//O3Kusye+nUmT8qFU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765433792; c=relaxed/simple;
-	bh=bvT1VlwRH7XGC2MP4ovfWsz0gA8jdt47wxOpuOfG/XM=;
+	s=arc-20240116; t=1765434648; c=relaxed/simple;
+	bh=9B49z4mSQq2fdk45EC2zWM3dpwpqmAWVUVEHlhsXyz4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=e+zJxRds3s66UmNvY+WEyxyysk/3YtZPSoZFzskcP/aXwS8EG0+TxtMtwjaclCD8wPHezGGfl6ETs8S9jGZKiKpUDlK6EvfZm+1zWlkTqovIw4+PLFA8tYpvueH8C/0w87uxF/jeOwyvXYPv0T3OlQRYrytwL0p438FqashNIv8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mUGpwECA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65EBAC4CEFB;
-	Thu, 11 Dec 2025 06:16:27 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=JuaDycfGB+0ceDi3GDXVraDLhuH8M0ZnJB522qZra0zCaxVCrN62X6gofiVPNXAP/0YB7vyjrwCEgwvuK80glbob26fOb1z/pYrEJHcgt6YWwYplCbwDTJ835GD+uAflSLI/jFIf28OiHGfu293/BdG5rgDSUQLRnPmEMtnCnXc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uzU1pF7r; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 620FEC4CEFB;
+	Thu, 11 Dec 2025 06:30:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765433791;
-	bh=bvT1VlwRH7XGC2MP4ovfWsz0gA8jdt47wxOpuOfG/XM=;
+	s=k20201202; t=1765434648;
+	bh=9B49z4mSQq2fdk45EC2zWM3dpwpqmAWVUVEHlhsXyz4=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=mUGpwECA6gZn5jHX2eYEMqFzVIFUVnMAR9FSdFdAOxjVkFmZgf+0xS0gNDd4KvaJ5
-	 4cCJG4naR/JkLFnqIlIe43x9XvZajRMCMn1jbROQXq2Zkjd0Et2D5DnSlTuTyAt9SA
-	 l9cJnAwZAARSDNv4YHSpg4C7vFxR0pNvnN9MLzBt4TfE8jUw7op/Vjm/uba1oJmwRj
-	 A+h4tdZFPKmMjQqyYQvNCV7ruRqJAgn5SM9Yo5HHpRwx2YQ6K0J3FHOLHVAo9tMcyK
-	 alKLOAPhAfNKba8GJKYa+StfQ34YRtM3NA3O/0yPVtZzfuHAUQk0nJ5txbVQdufr6T
-	 tHhONQ/igKaGQ==
-Message-ID: <38ef7ee0-1879-42d5-a7fd-d32b96d01367@kernel.org>
-Date: Thu, 11 Dec 2025 07:16:25 +0100
+	b=uzU1pF7r1qyGz755+VDjMeOc17yjx6PmbwBP7c8kht62DYAK4neisJlxyRG6zAI0/
+	 g0VyN0V8NsJoY/otbm8/XK/AHDtUfsqbqWZzYWxMLANbCwSZLUDk1jC4l5pwM9awAJ
+	 dSjQGixcx6Cphf0dG3mzkNyYaYmaXS9QCehaS7XOypZzEdCDzyq7mi2q3kq3dViPhS
+	 ix9sIKIwbEl22pZWUAH1LxSVRkjmais+ngK/N7oeJ4DkHzNc8ZHFBU2Is8ZCYAq9tn
+	 gAX+mYkQwarUuG68BTBBuO6xpZAnc8qiRF+Jgrz06QJ6HQzzsbW+OMin6i+3nud+0g
+	 qj/NXrzCSDurw==
+Message-ID: <e56989f9-c2a1-4103-8471-a8e550f940ef@kernel.org>
+Date: Thu, 11 Dec 2025 07:30:41 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,25 +48,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 2/5] dt-bindings: clock: add Amlogic T7 SCMI clock
- controller
-To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Jian Hu <jian.hu@amlogic.com>, Xianwei Zhao <xianwei.zhao@amlogic.com>,
- Chuan Liu <chuan.liu@amlogic.com>, Neil Armstrong
- <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Michael Turquette
- <mturquette@baylibre.com>, robh+dt <robh+dt@kernel.org>,
- Rob Herring <robh@kernel.org>, devicetree <devicetree@vger.kernel.org>,
- linux-clk <linux-clk@vger.kernel.org>,
- linux-amlogic <linux-amlogic@lists.infradead.org>,
- linux-kernel <linux-kernel@vger.kernel.org>,
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-References: <20251204053635.1234150-1-jian.hu@amlogic.com>
- <20251204053635.1234150-3-jian.hu@amlogic.com>
- <20251208-independent-warping-macaw-74a169@quoll>
- <dd90b445-bafb-46d4-8cec-e0877cf425b3@amlogic.com>
- <4f5ec838-f8d6-4c3b-94f2-b2a60cfe64ec@kernel.org>
- <1jy0ncvu23.fsf@starbuckisacylon.baylibre.com>
+Subject: Re: [PATCH V1 2/3] dt-bindings: ufs: Document bindings for SA8255P
+ UFS Host Controller
+To: Ram Kumar Dwivedi <ram.dwivedi@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>
+Cc: mani@kernel.org, alim.akhtar@samsung.com, avri.altman@wdc.com,
+ bvanassche@acm.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, James.Bottomley@hansenpartnership.com,
+ martin.petersen@oracle.com, quic_ahari@quicinc.com,
+ linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20251114145646.2291324-1-ram.dwivedi@oss.qualcomm.com>
+ <20251114145646.2291324-3-ram.dwivedi@oss.qualcomm.com>
+ <p6a5nazgd74fwbo6c3ctgvwifcigwwn4azkiu7nrmovrn5cmqn@nxzryxyx4oao>
+ <23580203-3aa7-45af-872f-4bd86f39877b@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -112,104 +107,37 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <1jy0ncvu23.fsf@starbuckisacylon.baylibre.com>
+In-Reply-To: <23580203-3aa7-45af-872f-4bd86f39877b@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 09/12/2025 11:16, Jerome Brunet wrote:
-> On Tue 09 Dec 2025 at 07:01, Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> 
->> On 08/12/2025 09:40, Jian Hu wrote:
->>> Hi, Krzysztof
->>>
->>>
->>> Thans for your review.
->>>
->>> On 12/8/2025 2:17 PM, Krzysztof Kozlowski wrote:
->>>> [ EXTERNAL EMAIL ]
->>>>
->>>> On Thu, Dec 04, 2025 at 01:36:31PM +0800, Jian Hu wrote:
->>>>> Add DT bindings for the SCMI clock controller of the Amlogic T7 SoC family.
->>>>>
->>>>> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
->>>>> Acked-by: Rob Herring (Arm) <robh@kernel.org>
->>>>> ---
->>>>>   include/dt-bindings/clock/amlogic,t7-scmi.h | 47 +++++++++++++++++++++
->>>>>   1 file changed, 47 insertions(+)
->>>>>   create mode 100644 include/dt-bindings/clock/amlogic,t7-scmi.h
->>>>>
->>>> Where is any binding doc for this? Why is this a separate patch?
->>>
->>>
->>> The ARM SCMI device tree binding specification is located at 
->>> ./Documentation/devicetree/bindings/firmware/arm,scmi.yaml.
+On 10/12/2025 16:56, Ram Kumar Dwivedi wrote:
+>>> +unevaluatedProperties: false
+>>> +
+>>> +examples:
+>>> +  - |
+>>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>>> +
+>>> +    soc {
+>>> +        #address-cells = <2>;
+>>> +        #size-cells = <2>;
+>>> +
+>>> +        ufshc@1d84000 {
+>>> +            compatible = "qcom,sa8255p-ufshc";
+>>> +            reg = <0x0 0x01d84000 0x0 0x3000>;
 >>
->> Then git grep for the file name - there is no such compatible. Are you
->> sure you follow writing bindings doc?
->>
->> Think how are you going to use these values. You will have phandle, yes?
->> To some controller, yes? Which one?
+>> Drop the two 0x0 and you don't need to change address/size-cells.
 > 
-> For the C3 (I believe the T7 is the same), the compatible being used is
-> "arm,scmi-smc". It is a generic one documented here:
+> Hi Bjorn,
 > 
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/firmware/arm,scmi.yaml?h=v6.18#n202
-> 
-> The phandle used is a subnode of that, to clock protocol:
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi?h=v6.18#n116
-> 
-> Same things is done on imx, stm and rockchip platforms from what I can
-> see.
+> All current Qualcomm chipsets, including lemans, sm8550, sm8650,sm8750,
+> use a 2-cell format (#address-cells = <2>; #size-cells = <2>;) at the 
+> SoC level, so I followed the same pattern here for consistency. 
+> We plan to use the same 2-cell format in the device tree for 
+> this chipset as well. Please let me know your opinion.
 
-I see, thanks for explanation, it's fine.
-
-> 
-> Jian is just adding the arbitrary IDs used to identify the clocks in the
-> FW. I don't think there is anything out of the ordirnary here.
-> 
-> Is there something else Rob and I missed reviewing this ?
-> 
->>
->>>
->>> Certain secure clocks on the T7 rely on the ARM SCMI driver stack, which 
->>> is officially supported by ARM.
->>>
->>> The kernel-side SCMI client implementation resides in 
->>> ./drivers/firmware/arm_scmi/.
->>>
->>> To enable ARM SCMI on T7, three components are needed:
->>>
->>> - Kernel-side definition of ARM SCMI clock indices (this patch addresses 
->>> this component);
->>> - SCMI server implementation in the ARM Trusted Firmware (ATF) running 
->>> at Exception Level 3 (EL3), which has been integrated into the bootloader;
->>> - Device Tree Source (DTS) configuration for ARM SCMI clock nodes (the 
->>> DTS changes will be submitted after the T7 clock driver patches are 
->>> merged upstream).
->>
->> So silently you keep the users hidden? No, I want to see the users.
->>
-> 
-> Is there a new requirement to submit the DTS file changes along with the
-> driver changes now ?
-> 
-> This has never been case before, especially since the changes are merged
-> through different trees.
-
-There is no such requirement, but "has never been case before" is
-clearly not accurate, because I raised this question multiple times last
-two-three years.
-
-There is no reasonable way to hold publishing of DTS, therefore if
-someone uses arguments like above with waiting for driver, I usually got
-suspicious.
-
-Also note, that many contributions from various people (not saying that
-this one here is) were bad quality and badly designed but without seeing
-DTS it takes me significantly more time to understand that design. So
-yes, publish your DTS solving all of the questions and making reviewing
-easier. Or don't and receive questions...
-
+That's not relevant. Read Bjorn's response again, till you agree and
+change your code.
 
 Best regards,
 Krzysztof
