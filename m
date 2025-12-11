@@ -1,304 +1,156 @@
-Return-Path: <devicetree+bounces-245724-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245725-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BCBDCB4A2E
-	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 04:38:43 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28412CB4ACB
+	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 05:25:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 117DE3005B9C
-	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 03:38:42 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 249E5300F185
+	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 04:25:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E13612288F7;
-	Thu, 11 Dec 2025 03:38:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49F411E98EF;
+	Thu, 11 Dec 2025 04:25:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ziyao.cc header.i=@ziyao.cc header.b="Sb3V7oy9"
+	dkim=pass (2048-bit key) header.d=freeshell.de header.i=@freeshell.de header.b="WHz3iI8Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail61.out.titan.email (mail61.out.titan.email [44.210.205.39])
+Received: from freeshell.de (freeshell.de [116.202.128.144])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3135E202979
-	for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 03:38:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=44.210.205.39
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65D321990C7;
+	Thu, 11 Dec 2025 04:24:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765424320; cv=none; b=Ht6CKPwVs4BUZ1G9gyjxijW1+B3+22rdRQvMYrWS0Xiz7B7yeqt3PFFLYN3Yq4jHueDTQ1ZoLSHcYB07J+gEHUF4tm8zULif5JWe5gQhGh9dTIUjEt/Mr3VjltE3YU0xETtvEgmZvHl7ITvLthqO0rSbvkK2EtlNX7vUDPOPjvM=
+	t=1765427102; cv=none; b=i+epnX3/zWK3GJ6nBrmddP/qYpZDh7l9TPNjAN915vL9b3HrojaBnWjyaUM4Re3uFFhcR7S1jFMHod/8cLjPIhE/TvkEL6f3uG8K4w9sgOSgKlLj/j1V44RYYWf/xJAeGv6GuRdVrXNVUctqupW9FTmGwQWs5nJGnKBZ84LMOjo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765424320; c=relaxed/simple;
-	bh=cPNQLUwa+P97Hxd8FElwN4GQt3ITSegw1GxWLMMjdLI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bdDS979zz/lqvjWzig1e6XpYrXZp+PS/sE8Te9NAj1GNwRzz4NvODPyBLPoXtgYF0xvhtOk9pb5Nh2K9xlVQbfN73dDQ3i6+YOdNnZAqRAOx6WBGSClzbGGf48gqZ1vwJh1t0+zDM9DnMDT23E+EnFo+V7yz6YBBG13RarvhaYE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ziyao.cc; spf=pass smtp.mailfrom=ziyao.cc; dkim=pass (1024-bit key) header.d=ziyao.cc header.i=@ziyao.cc header.b=Sb3V7oy9; arc=none smtp.client-ip=44.210.205.39
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ziyao.cc
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziyao.cc
-Received: from localhost (localhost [127.0.0.1])
-	by smtp-out.flockmail.com (Postfix) with ESMTP id 4dRdbX2hJHz9ry1;
-	Thu, 11 Dec 2025 03:38:32 +0000 (UTC)
-DKIM-Signature: a=rsa-sha256; bh=d8kSlJlqIefSfeNRWxze+FrgjZpC7LfELXdE8F9Z6j8=;
-	c=relaxed/relaxed; d=ziyao.cc;
-	h=to:date:from:references:mime-version:cc:message-id:subject:in-reply-to:from:to:cc:subject:date:message-id:in-reply-to:references:reply-to;
-	q=dns/txt; s=titan1; t=1765424312; v=1;
-	b=Sb3V7oy9M6KtFk/EiXbU3x0sxy5ui/n0npN3DwZKF8ai6I1TaUdKUuz56G7e4T6xOBtat4td
-	U7jdvHVN/nzH2FqZ9JWqOjG2amaNDwxM9UwQmC4f4pRDfrlGty808TiGdu7Mok9omeVG6m7qtjc
-	HQAw30C5S8c3YI8FMn5ialmY=
-Received: from pie (unknown [117.171.66.90])
-	by smtp-out.flockmail.com (Postfix) with ESMTPA id 4dRdbS1wFqz9rwy;
-	Thu, 11 Dec 2025 03:38:27 +0000 (UTC)
-Date: Thu, 11 Dec 2025 03:38:24 +0000
-Feedback-ID: :me@ziyao.cc:ziyao.cc:flockmailId
-From: Yao Zi <me@ziyao.cc>
-To: Yixun Lan <dlan@gentoo.org>, Stephen Boyd <sboyd@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Haylen Chu <heylenay@4d2.org>, Inochi Amaoto <inochiama@gmail.com>,
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RFC 4/4] clk: spacemit: k3: add the clock tree
-Message-ID: <aTo8sCPpVM1o9PKX@pie>
-References: <20251211-k3-clk-v1-0-8ee47c70c5bc@gentoo.org>
- <20251211-k3-clk-v1-4-8ee47c70c5bc@gentoo.org>
+	s=arc-20240116; t=1765427102; c=relaxed/simple;
+	bh=nBQFIwMb/eEw4mPx0JRKzB7ALrdF9gXzdI+rCXBJpno=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=h/QSSKhN7d6JgdvgNfrOgGE/oEToT/1jaVA5ynF2Lmm/b/AGtfOFETec8pYMoGMVT1yCZOcDPBcpNtUFdEfNiXEASwLIVbodt7NlT36poWZ4dx/g8wU9mHnn6R8HIEZAmBv9fJHDo1qPj1OpcIevFmeDhh9DzxSGZI9c+4au3ns=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; dkim=pass (2048-bit key) header.d=freeshell.de header.i=@freeshell.de header.b=WHz3iI8Q; arc=none smtp.client-ip=116.202.128.144
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=freeshell.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=freeshell.de;
+	s=s2025; t=1765427040;
+	bh=T5Vf+2g+YWYe547tJSzNV/cF5Tk9glp5AMeYZIdRYEg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=WHz3iI8QsXUdWqRMSYh+oh6Sv+6TF04T9W9DhNukl54ncN+B2+/pYl9UBmRl+aO88
+	 +c1Nm49a8Z95HRpru5yDXJdTQKYYmYEwGv/idQBJISIUMCvZ+KDnDEDZ8Jbp8VTD37
+	 hNQwXdf92WsEqhUEMAQUuPfKScHEtxlQT5MLeb3GNyt49OysPuUgijw+az1uv/uHqw
+	 P2DCgtULT8Ozs5jBJw+Qi83GWYthFAf2r3OWuPu/lEa3mKkBQ9Q2nzdDC+eeMrQhQ3
+	 kkrCbLTtBRlhCldyFKxAoYcywxPR1bN/EPI6Q2xzapozuZTTDwLgi7a5E0vNLOFVN4
+	 FLTArFl0uM5Fw==
+Received: from [192.168.2.54] (unknown [98.97.63.68])
+	(Authenticated sender: e)
+	by freeshell.de (Postfix) with ESMTPSA id 39ED2B2203F2;
+	Thu, 11 Dec 2025 05:23:57 +0100 (CET)
+Message-ID: <4b08ce35-9d2d-4e7b-9ea6-c1dcbc4ad04d@freeshell.de>
+Date: Wed, 10 Dec 2025 20:23:54 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251211-k3-clk-v1-4-8ee47c70c5bc@gentoo.org>
-X-F-Verdict: SPFVALID
-X-Titan-Src-Out: 1765424312200132238.21635.2368487487041513004@prod-use1-smtp-out1003.
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.4 cv=TPG/S0la c=1 sm=1 tr=0 ts=693a3cb8
-	a=rBp+3XZz9uO5KTvnfbZ58A==:117 a=rBp+3XZz9uO5KTvnfbZ58A==:17
-	a=kj9zAlcOel0A:10 a=MKtGQD3n3ToA:10 a=CEWIc4RMnpUA:10 a=7mOBRU54AAAA:8
-	a=prZasoeBdVvYPQNCfvoA:9 a=CjuIK1q_8ugA:10 a=wa9RWnbW_A1YIeRBVszw:22
-	a=3z85VNIBY5UIEeAh_hcH:22 a=NWVoK91CQySWRX1oVYDe:22
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1] riscv: dts: starfive: Append starfive,jh7110
+ compatible to VisionFive 2 Lite
+To: Conor Dooley <conor@kernel.org>,
+ Samuel Holland <samuel.holland@sifive.com>
+Cc: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
+ Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>, Hal Feng <hal.feng@starfivetech.com>,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+ devicetree@vger.kernel.org,
+ Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+ Conor Dooley <conor.dooley@microchip.com>
+References: <20251206204540.112614-1-e@freeshell.de>
+ <20251208-jogging-morally-9b787b7ab1b8@spud>
+ <a18850ad-b6de-4444-9daf-a4a653f4f9ae@canonical.com>
+ <0bb12889-cb28-44e7-b2d6-7ecba6264d1a@freeshell.de>
+ <d8fa12cc-7a03-4954-8ea5-1e2edf9a149d@sifive.com>
+ <20251210-pull-pleading-57c880596510@spud>
+Content-Language: en-US
+From: E Shattow <e@freeshell.de>
+In-Reply-To: <20251210-pull-pleading-57c880596510@spud>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Dec 11, 2025 at 09:19:44AM +0800, Yixun Lan wrote:
-> Add clock support to SpacemiT K3 SoC, the clock tree consist of several
-> blocks which are APBC, APBS, APMU, DCIU, MPUM.
+
+On 12/10/25 08:43, Conor Dooley wrote:
+> On Tue, Dec 09, 2025 at 03:18:58PM +0900, Samuel Holland wrote:
+>> On 2025-12-09 9:53 AM, E Shattow wrote:
+>>> The unanswered question what I was asking in the code review of StarFive 
+>>> VisionFive 2 Lite series: What is the normal thing to do for compatible 
+>>> strings of relabeled silicon when there is a suggestion of different 
+>>> operational parameters?
+>> I don't think we are very consistent on this, and some of it depends on how
+>> different the binned chips are from each other.
 > 
-> Signed-off-by: Yixun Lan <dlan@gentoo.org>
-> ---
->  drivers/clk/spacemit/Kconfig     |    6 +
->  drivers/clk/spacemit/Makefile    |   11 +-
->  drivers/clk/spacemit/ccu-k3.c    | 1641 ++++++++++++++++++++++++++++++++++++++
->  include/soc/spacemit/ccu.h       |   18 +
->  include/soc/spacemit/k1-syscon.h |   12 +-
->  include/soc/spacemit/k3-syscon.h |  273 +++++++
->  6 files changed, 1947 insertions(+), 14 deletions(-)
+> Largely I think the lack of consistency stems from there being relatively
+> few users of these soc-level compatibles, so there's nothing really gained
+> from having one in a lot of cases.
+> 
+>> Example 1: Rockchip RK3399 has several bins. RK3399-S and RK3399-T just override
+>> the OPPs, but reuse the SoC compatible string without change. On the other hand
+>> RK3399pro is a superset of RK3399, but uses a new compatible string without a
+>> fallback.
+>>
+>> Example 2: Allwinner H616 (https://linux-sunxi.org/H616) has multiple
+>> bins/packages/die revisions. H313 is a down-binned version of H616, which reuses
+>> the SoC compatible string without change. H700 is a superset of H616 (same die,
+>> more pins), but uses a new compatible string without a fallback.
+>>
+>>> I can include the (paraphrased) above summary by Heinrich, yes. Although
+>>> now I doubt whether this is the best approach, when removal of
+>>> "starfive,jh7110s" compatible is potentially an equally valid fix, or if
+>>> we're rather considering JH7110 at 1.5GHz maximum to be a superset of
+>>> itself at 1.25GHz maximum (JH-7110S). Would we want to change all the
+>>> JH-7110 boards to then have JH-7110S as the least-compatible, if I am
+>>> understanding that meaning of "superset"? I would like to know what is
+>>> expected.
+>>
+>> If starfive,jh7110 is a superset of starfive,jh7110s, yes, it would be valid to
+>> add starfive,jh7110s as a fallback compatible string in all of the existing
+>> board bindings. But this is not very useful, as existing software already looks
+>> for starfive,jh7110, and you can't replace that without breaking compatibility
+>> with existing DTs. So the advantage of one compatible string (mostly) covering
+>> both SoCs only applies to new software.
+> 
+> Yeah, adding it to the existing stuff provides no real benefit.
 
-...
+I agree, there's not any benefit to add "starfive,jh7110s" as the
+least-compatible to existing stuff.
 
-> diff --git a/drivers/clk/spacemit/ccu-k3.c b/drivers/clk/spacemit/ccu-k3.c
-> new file mode 100644
-> index 000000000000..948889e8ca8c
-> --- /dev/null
-> +++ b/drivers/clk/spacemit/ccu-k3.c
-> @@ -0,0 +1,1641 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2025 SpacemiT Technology Co. Ltd
-> + */
-> +
-> +#include <linux/array_size.h>
-> +#include <linux/auxiliary_bus.h>
-> +#include <linux/clk-provider.h>
-> +#include <linux/delay.h>
-> +#include <linux/mfd/syscon.h>
-> +#include <linux/minmax.h>
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +#include <soc/spacemit/k3-syscon.h>
-> +
-> +#include "ccu_common.h"
-> +#include "ccu_pll.h"
-> +#include "ccu_mix.h"
-> +#include "ccu_ddn.h"
-> +
-> +#include <dt-bindings/clock/spacemit,k3-clocks.h>
-> +
-> +struct spacemit_ccu_data {
-> +	const char *reset_name;
-> +	struct clk_hw **hws;
-> +	size_t num;
-> +};
+The reply from Samuel is quite helpful however it's not any clearer to
+me what direction to take this.
 
-...
+1. Can we now remove "starfive,jh7110s" compatible and replace with
+"starfive,jh7110" or is this not possible because it is already merged?
 
-> +static const struct spacemit_ccu_data k3_ccu_dciu_data = {
-> +	.reset_name	= "dciu-reset",
-> +	.hws		= k3_ccu_dciu_hws,
-> +	.num		= ARRAY_SIZE(k3_ccu_dciu_hws),
-> +};
-> +
-> +static int spacemit_ccu_register(struct device *dev,
-> +				 struct regmap *regmap,
-> +				 struct regmap *lock_regmap,
-> +				 const struct spacemit_ccu_data *data)
-> +{
-> +	struct clk_hw_onecell_data *clk_data;
-> +	int i, ret;
-> +
-> +	/* Nothing to do if the CCU does not implement any clocks */
-> +	if (!data->hws)
-> +		return 0;
-> +
-> +	clk_data = devm_kzalloc(dev, struct_size(clk_data, hws, data->num),
-> +				GFP_KERNEL);
-> +	if (!clk_data)
-> +		return -ENOMEM;
-> +
-> +	for (i = 0; i < data->num; i++) {
-> +		struct clk_hw *hw = data->hws[i];
-> +		struct ccu_common *common;
-> +		const char *name;
-> +
-> +		if (!hw) {
-> +			clk_data->hws[i] = ERR_PTR(-ENOENT);
-> +			continue;
-> +		}
-> +
-> +		name = hw->init->name;
-> +
-> +		common = hw_to_ccu_common(hw);
-> +		common->regmap		= regmap;
-> +		common->lock_regmap	= lock_regmap;
-> +
-> +		ret = devm_clk_hw_register(dev, hw);
-> +		if (ret) {
-> +			dev_err(dev, "Cannot register clock %d - %s\n",
-> +				i, name);
-> +			return ret;
-> +		}
-> +
-> +		clk_data->hws[i] = hw;
-> +	}
-> +
-> +	clk_data->num = data->num;
-> +
-> +	ret = devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get, clk_data);
-> +	if (ret)
-> +		dev_err(dev, "failed to add clock hardware provider (%d)\n", ret);
-> +
-> +	return ret;
-> +}
-> +
-> +static void spacemit_cadev_release(struct device *dev)
-> +{
-> +	struct auxiliary_device *adev = to_auxiliary_dev(dev);
-> +
-> +	kfree(to_spacemit_ccu_adev(adev));
-> +}
-> +
-> +static void spacemit_adev_unregister(void *data)
-> +{
-> +	struct auxiliary_device *adev = data;
-> +
-> +	auxiliary_device_delete(adev);
-> +	auxiliary_device_uninit(adev);
-> +}
-> +
-> +static int spacemit_ccu_reset_register(struct device *dev,
-> +				       struct regmap *regmap,
-> +				       const char *reset_name)
-> +{
-> +	struct spacemit_ccu_adev *cadev;
-> +	struct auxiliary_device *adev;
-> +	static u32 next_id;
-> +	int ret;
-> +
-> +	/* Nothing to do if the CCU does not implement a reset controller */
-> +	if (!reset_name)
-> +		return 0;
-> +
-> +	cadev = devm_kzalloc(dev, sizeof(*cadev), GFP_KERNEL);
-> +	if (!cadev)
-> +		return -ENOMEM;
-> +	cadev->regmap = regmap;
-> +
-> +	adev = &cadev->adev;
-> +	adev->name = reset_name;
-> +	adev->dev.parent = dev;
-> +	adev->dev.release = spacemit_cadev_release;
-> +	adev->dev.of_node = dev->of_node;
-> +	adev->id = next_id++;
-> +
-> +	ret = auxiliary_device_init(adev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = auxiliary_device_add(adev);
-> +	if (ret) {
-> +		auxiliary_device_uninit(adev);
-> +		return ret;
-> +	}
-> +
-> +	return devm_add_action_or_reset(dev, spacemit_adev_unregister, adev);
-> +}
+2. From the StarFive maintainer: "I prefer to keep 'starfive,jh7110s'
+compatible, because 'JH7110S' is the chip name in StarFive documents and
+the name printed on the chip. It is easier for the users to know which
+chip they are using and select the correct device tree."
 
-This piece of code looks quiet similar to types/functions with the same
-names in ccu-k1.c. If I'm correct, could we separate the logic into a
-new file and avoid duplication?
+https://lore.kernel.org/lkml/ZQ2PR01MB13075CDDEFC2F03C837E1B31E6C92@ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn/
 
-> +static int k3_ccu_probe(struct platform_device *pdev)
-> +{
-> +	struct regmap *base_regmap, *lock_regmap = NULL;
-> +	const struct spacemit_ccu_data *data;
-> +	struct device *dev = &pdev->dev;
-> +	int ret;
-> +
-> +	base_regmap = device_node_to_regmap(dev->of_node);
-> +	if (IS_ERR(base_regmap))
-> +		return dev_err_probe(dev, PTR_ERR(base_regmap),
-> +				     "failed to get regmap\n");
-> +	/*
-> +	 * The lock status of PLLs locate in MPMU region, while PLLs themselves
-> +	 * are in APBS region. Reference to MPMU syscon is required to check PLL
-> +	 * status.
-> +	 */
-> +	if (of_device_is_compatible(dev->of_node, "spacemit,k3-pll")) {
-> +		struct device_node *mpmu = of_parse_phandle(dev->of_node, "spacemit,mpmu", 0);
-> +
-> +		if (!mpmu)
-> +			return dev_err_probe(dev, -ENODEV,
-> +					     "Cannot parse MPMU region\n");
-> +
-> +		lock_regmap = device_node_to_regmap(mpmu);
-> +		of_node_put(mpmu);
-> +
-> +		if (IS_ERR(lock_regmap))
-> +			return dev_err_probe(dev, PTR_ERR(lock_regmap),
-> +					     "failed to get lock regmap\n");
-> +	}
-> +
-> +	data = of_device_get_match_data(dev);
-> +
-> +	ret = spacemit_ccu_register(dev, base_regmap, lock_regmap, data);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "failed to register clocks\n");
-> +
-> +	ret = spacemit_ccu_reset_register(dev, base_regmap, data->reset_name);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "failed to register resets\n");
-> +
-> +	return 0;
-> +}
+So this is the only reason for a new compatible and I'm doing as
+Heinrich suggests with a follow-up after that new compatible is merged
+to add the actual "starfive,jh7110" compatible to the list.
 
-k3_ccu_probe looks quote similar to k1_ccu_probe, too. The only
-difference is that k3_ccu_probe checks for spacemit,k3-pll instead of
-spacemit,k1-pll.
+What then, what is the consensus, is "starfive,jh7110" more or less
+compatible than "starfive,jh7110s" for adding to the compatible list of
+the VisionFive 2 Lite board(s)?
 
-We could share most of the probe code by writing a SoC-independent probe
-function,
+https://lore.kernel.org/lkml/1f96a267-f5c6-498e-a2c4-7a47a73ea7e7@canonical.com/
 
-	int spacemit_ccu_probe(struct platform_dev *pdev,
-			       const char *pll_compatible);
+3. Does everyone instead agree that "starfive,jh7110" cannot be added to
+StarFive VisionFive 2 Lite compatible list when a new compatible
+"starfive,jh7110s" has been merged and I should drop this ?  Seems
+pointless to me now to pursue this if there is not any consistency and
+what Heinrich suggested is not accepted.
 
-and calling it in ccu-k1.c and ccu-k3.c with different pll_compatible.
-
-Regards,
-Yao Zi
+-E
 
