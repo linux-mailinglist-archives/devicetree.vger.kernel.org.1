@@ -1,81 +1,52 @@
-Return-Path: <devicetree+bounces-245940-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245941-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62AFBCB6DC3
-	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 19:06:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3193BCB6E05
+	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 19:12:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7EF2030181A4
-	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 18:06:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EC2843010A9B
+	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 18:12:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D4CC31AAA3;
-	Thu, 11 Dec 2025 17:57:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C707C311C16;
+	Thu, 11 Dec 2025 18:12:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZBqdaish"
+	dkim=pass (2048-bit key) header.d=hetzner.com header.i=@hetzner.com header.b="R7p0MsKT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.hetzner.company (mail.hetzner.company [213.133.106.242])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A726031AA91
-	for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 17:56:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B351224249;
+	Thu, 11 Dec 2025 18:12:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.133.106.242
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765475822; cv=none; b=O/Bhfyd6MVIRQmlivT+1NVF2XJKxcns5einlDMM0uitLiN7RC6xl8IYdDZSlEKlM5/O9C0WzpEx3Df6cHvgG1+AalwHldtBPqm7/sjHiyqdEGwLQ5bDnExzvD+eLpUfoy3mEa5JgggLG9y0G4IzVbz2MFRsjdwk80juMF0XuNl8=
+	t=1765476747; cv=none; b=QwVxG6d2TAoIeoFLXDBy4pe5lyPzwd0mUFlIORlZPlEHdWFGzQA7kXcEzvIH7f6k+oK8NH4ci11WbKVM6K5DTVpSgRGGi9dDVeY2fH3aN5bDuisQ0itbPt1QnU23OQtWbEZQFEy9ZWHY7XOCF8mUig9XXYxmVWJcZRtzswN8bQ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765475822; c=relaxed/simple;
-	bh=r5Gh8BtQw4Fw6SZHXapts29EloHtVbCqPTTFyEp867Q=;
+	s=arc-20240116; t=1765476747; c=relaxed/simple;
+	bh=FIENHjUsMKXY3KBpx01vkwPfv6Og1xnR98Lo2lhSA/E=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fz+h/DaQkEA0V0L+yNHsdE6kIZzKhB9LNLX+6TujJkkK4nlXxwUTXbRArIG4LbsAIIvQ/Fsl1DnFkPxc4vh9vePfaPaBAoZwaMyfABlfW+pKTVk26z58hHilsuKTRZv1VyiwceEyK4r1DFAas8nBkQVysTY4kJPwpoaFP/WSsu4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZBqdaish; arc=none smtp.client-ip=209.85.214.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-2956d816c10so4569495ad.1
-        for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 09:56:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1765475819; x=1766080619; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=uIdEFMeZvO+edU0KvHNYdR5fL5Tb1DJ+OTZWn9o/+ps=;
-        b=ZBqdaishJkKsWefUqBXJYS5dL9mK3ayfHoIJj7ZO3VlJ5nT3QwQ3L5U5RoQ6zveAdo
-         ot1/VLM1eXqL2FSpuWWlT1zalbvD02rsULPmJBss1ytTFjlGuqiJ1/ZG6b8d8yMrOc0S
-         m7GrSYhA13fjgJ7Vy2K6pJoyUEdqVZYNxU/QwufGJ3sbbGgup0JoGs/g+JPLyxwqqW/U
-         ityDJtybZRb4X68h+cVj52HLn8icP7XhEMJ8eAcFdiVVG6q/VJmts7eenAilJ+UI3CtF
-         tKatkyGHaFlY6nG4Ojjyz4ATdoqViR9LDawQIJ4e7dVHsnjXUKQv/tKU5YGo/WcaZvn0
-         9nCA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765475819; x=1766080619;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=uIdEFMeZvO+edU0KvHNYdR5fL5Tb1DJ+OTZWn9o/+ps=;
-        b=NTQDwVaFIrgkjG9x9ttGEEzFwUKDzStpW2GlzuahN/lXWoW8m8HKjHvfQLFgfCY6Kd
-         pyJgYFDRuKimN1VpacI1yBObtUvtH2FIxbjRHT6AdJFOmwxiHp5A9wf1e8fr9m4MhxCk
-         FbzAaoYC01Xxh0F6Dl5MN6W3ZBBoSkxa6+btWVuEWBCDS+SAs0hLitSFrPTlfywRULcA
-         08F+NiYTWhnkJFfqipWFKQNjQUyQp1qNNU+Rc3IUZDcU8t938wSLp8cPwM4IhgURFopj
-         CwSNfy2x9MsA/b+Bw7RRhduCszyx9UcYRlm1J9i1LksSQ+dIErw3Nhfpad25HMUoKvAy
-         rF+g==
-X-Forwarded-Encrypted: i=1; AJvYcCX560lgMbrL67iXqEB/xG669XVJZGA571TYQ8QAJW46OzrXHHxoXzb7iFa8+eRlt+ZpEo+U130zvUm/@vger.kernel.org
-X-Gm-Message-State: AOJu0YxbHQGBLv1JhthTagRrB+h7Zv6Wlsv/nK92YKyh4ilcLc29Fe8M
-	BKqfZ7B7zEzGFusWuNKpfGLNKBs9/JMpjzUwMBIgJzyZSBb9k/XoV4DK
-X-Gm-Gg: AY/fxX70QmPBKAl2qhOebZUcMUoaSEO13/W6nuaBFqYhddMA+yXd2wYtmaMShb3zouP
-	FGXPfJvPdSgXTOkNwC06+nwfxGu7b7Woe9PvYbio8N2lQB4nbmnkPu/9KR2liCprpL0+fq0vW5Y
-	VgmeUW31PsIwvY5dBorlXZVxgL/2g/kelttznhKzExTh0mAz/oyngOXyaGSOzgPcT9PmxNT70hU
-	LkFcJ3BWmXZPQebF2hZTZqg59cl89tUnUQmks9wZyJ0cSDha2Wy3qo2/zTo99Y4cY35RJ7hDK5g
-	hfyslPi3Np88Mpeb3e6QK6u4t1jLRfKRif2tEbb+tGn0iR8Fx1aCdkD2V0U0sUwm9ZeglwdnN2B
-	YDLKHgWRafwxTmmwUzKjAx+DCdXMZGKtQeCuI5gkITxGZNlXAkZGTl6G45OChNopKMi6SdGLtDH
-	8my1lhFd5eRf4D1pRIXvWspcaqnx/gZrxJeperVWzd5Nrxivo2dXFfS6T7PUQ=
-X-Google-Smtp-Source: AGHT+IFQNogpPMRzOu6d54PgBmI9xY54RYNtpQ6LYKflW4Gkrdm1ZiKCI55gcE3/d1GJBHRREX5iNQ==
-X-Received: by 2002:a17:902:ea05:b0:298:68e:405e with SMTP id d9443c01a7336-29ec27f9101mr80990845ad.59.1765475818731;
-        Thu, 11 Dec 2025 09:56:58 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29ee9d38ad1sm30521295ad.29.2025.12.11.09.56.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Dec 2025 09:56:57 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <c9cb3a2b-da6b-42a6-87b0-7a2b780f5ad8@roeck-us.net>
-Date: Thu, 11 Dec 2025 09:56:55 -0800
+	 In-Reply-To:Content-Type; b=RI73xql6gL8YBYxXNN7oBVUzuOwDK7nUMsRpg0nTfYTnsgNJTQ6JkJNOT3pVang0f0A9FFMGExbaDeXzMKLfUkuNVH8Omu7ziqBfWBbTkZKFRePma/x+u/wFhj9Tm4DMPM5Lcn9UTEDgWjz/WBJLvwsXEer8qwoUYWN4aHf6voQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hetzner.com; spf=pass smtp.mailfrom=hetzner.com; dkim=pass (2048-bit key) header.d=hetzner.com header.i=@hetzner.com header.b=R7p0MsKT; arc=none smtp.client-ip=213.133.106.242
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hetzner.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hetzner.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hetzner.com
+	; s=lms2212; h=Content-Type:In-Reply-To:From:References:Cc:To:Subject:
+	MIME-Version:Date:Message-ID:Sender:Reply-To:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=FIENHjUsMKXY3KBpx01vkwPfv6Og1xnR98Lo2lhSA/E=; b=R7p0MsKTAsOZtzwbK1l0TaGnKT
+	89SdijZQ5Vjs1HBPKarAtPjfDVwPf/1A4WBGxzTGoasFzR8Htb5ajWkOPzTOBPcgBltlUxZyoBeKP
+	mYyOzTubTIC2HEsgfdxBkwXZ1nO1f6/vHXIl1GrBD4l1bwVVbSai+4OKlDs03IZT1NhdyBMNhaGRK
+	4ngYvkzVW9TP0UzOLn+RNIkqCBXKvnUe7IqyK9qsLwKwHA9WKL8PBSlDdr0lERhV+mmTQbIED1NOJ
+	mAYkDRO37VR70iFAodratfZpgSviZ84/XCNdUHv2FDrSYY4RLJ98trdxcVLew43NhbYum6CIo/S69
+	cN4n7QTQ==;
+Received: from nbg1-vpn1-entry1.hetzner.company ([78.47.119.212] helo=[10.1.220.249])
+	by mail.hetzner.company with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	(Exim 4.94.2)
+	(envelope-from <tan.siewert@hetzner.com>)
+	id 1vTl9G-009ltc-2q; Thu, 11 Dec 2025 19:12:17 +0100
+Message-ID: <9b58d801-43b5-4c5b-b734-a83c86912df4@hetzner.com>
+Date: Thu, 11 Dec 2025 19:12:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,111 +54,135 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/3] hwmon: ltc4283: Add support for the LTC4283 Swap
- Controller
-To: nuno.sa@analog.com, linux-hwmon@vger.kernel.org,
- linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-doc@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>,
- Jonathan Corbet <corbet@lwn.net>, Linus Walleij <linus.walleij@linaro.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>
-References: <20251204-ltc4283-support-v4-0-db0197fd7984@analog.com>
- <20251204-ltc4283-support-v4-2-db0197fd7984@analog.com>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <20251204-ltc4283-support-v4-2-db0197fd7984@analog.com>
+Subject: Re: [PATCH v5 0/2] Add device tree for ASRock Rack ALTRAD8 BMC
+Content-Language: en-GB
+To: Rebecca Cran <rebecca@bsdio.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+ Andrew Jeffery <andrew@codeconstruct.com.au>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+ linux-kernel@vger.kernel.org
+Cc: Billy Tsai <billy_tsai@aspeedtech.com>
+References: <20251211165700.29206-1-rebecca@bsdio.com>
+From: Tan Siewert <tan.siewert@hetzner.com>
+Autocrypt: addr=tan.siewert@hetzner.com; keydata=
+ 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
+Organization: Hetzner Cloud GmbH
+In-Reply-To: <20251211165700.29206-1-rebecca@bsdio.com>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------SR0WIWbru0jmTyipj2g0uCVZ"
+X-Authenticated-Sender: tan.siewert@hetzner.com
+
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------SR0WIWbru0jmTyipj2g0uCVZ
+Content-Type: multipart/mixed; boundary="------------MVPbRcVvi0vUJF018cLkopuP";
+ protected-headers="v1"
+From: Tan Siewert <tan.siewert@hetzner.com>
+To: Rebecca Cran <rebecca@bsdio.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+ Andrew Jeffery <andrew@codeconstruct.com.au>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+ linux-kernel@vger.kernel.org
+Cc: Billy Tsai <billy_tsai@aspeedtech.com>
+Message-ID: <9b58d801-43b5-4c5b-b734-a83c86912df4@hetzner.com>
+Subject: Re: [PATCH v5 0/2] Add device tree for ASRock Rack ALTRAD8 BMC
+References: <20251211165700.29206-1-rebecca@bsdio.com>
+In-Reply-To: <20251211165700.29206-1-rebecca@bsdio.com>
+
+--------------MVPbRcVvi0vUJF018cLkopuP
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: base64
 
-On 12/4/25 08:15, Nuno Sá via B4 Relay wrote:
-> From: Nuno Sá <nuno.sa@analog.com>
-> 
-> Support the LTC4283 How Swap Controller. The device features programmable
-> current limit with foldback and independently adjustable inrush current to
-> optimize the MOSFET safe operating area (SOA). The SOA timer limits MOSFET
-> temperature rise for reliable protection against overstresses.
-> 
-> An I2C interface and onboard ADC allow monitoring of board current,
-> voltage, power, energy, and fault status.
-> 
-> Signed-off-by: Nuno Sá <nuno.sa@analog.com>
-> ---
-...
-> diff --git a/drivers/hwmon/ltc4283.c b/drivers/hwmon/ltc4283.c
-> new file mode 100644
-> index 000000000000..d79432678b84
-> --- /dev/null
-> +++ b/drivers/hwmon/ltc4283.c
-...
-> +
-> +static int ltc4283_read_voltage_word(const struct ltc4283_hwmon *st,
-> +				     u32 reg, u32 fs, long *val)
-> +{
-> +	__be16 in;
-> +	int ret;
-> +
-> +	ret = regmap_bulk_read(st->map, reg, &in, sizeof(in));
+T24gMTEuMTIuMjUgMTc6NTYsIFJlYmVjY2EgQ3JhbiB3cm90ZToNCj4gVGhlIEFTUm9jayBS
+YWNrIEFMVFJBRDggQk1DIGlzIGFuIEFzcGVlZCBBU1QyNTAwLWJhc2VkIEJNQyBmb3IgdGhl
+DQo+IEFMVFJBRDhVRC0xTDJUIGFuZCBBTFRSQUQ4VUQyLTFMMlEgYm9hcmRzIHdpdGggYW4g
+QW1wZXJlIEFsdHJhDQo+IHByb2Nlc3Nvci4gVGhlIEJNQyBydW5zIE9wZW5CTUMuDQo+IA0K
+PiBUaGVzZSBwYXRjaGVzIGFkZCBhIGRldmljZSB0cmVlIGFuZCBiaW5kaW5nIGZvciB0aGUg
+Qk1DLg0KPiANCj4gKipDaGFuZ2VzIGJldHdlZW4gdjQgYW5kIHY1KioNCj4gDQo+IC0gUmVt
+b3ZlZCB0aGUgdWFydHgtbW9kZTEgR1BJT3MsIHdoaWNoIHdlcmUgd3JvbmcuDQo+IC0gRml4
+ZWQgYnV0dG9uLXBvd2VyLW4gR1BJTyBuYW1lLg0KPiAtIFJlbW92ZWQgYmFja3NsYXNoIGZy
+b20gZW5kIG9mIGxpbmUsIHdoaWNoIGlzbid0IG5lZWRlZC4NCj4gLSBSZW1vdmVkIGR1cGxp
+Y2F0ZS93cm9uZyBibWMgaGVhcnRiZWF0IEdQSU8uDQo+IA0KPiAqKlRlc3RpbmcqKg0KPiAN
+Cj4gUmFuIGBtYWtlIEFSQ0g9YXJtIENIRUNLX0RUQlM9eSBhc3BlZWQvYXNwZWVkLWJtYy1h
+c3JvY2stYWx0cmFkOC5kdGJgLg0KPiANCj4gDQo+IFJlYmVjY2EgQ3JhbiAoMik6DQo+ICAg
+IGR0LWJpbmRpbmdzOiBhcm06IGFzcGVlZDogYWRkIEFTUm9jayBSYWNrIEFMVFJBRDggYm9h
+cmQNCj4gICAgQVJNOiBkdHM6IGFzcGVlZDogYWRkIGRldmljZSB0cmVlIGZvciBBU1JvY2sg
+UmFjayBBTFRSQUQ4IEJNQw0KPiANCj4gICBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmlu
+ZGluZ3MvYXJtL2FzcGVlZC9hc3BlZWQueWFtbCB8ICAgMSArDQo+ICAgYXJjaC9hcm0vYm9v
+dC9kdHMvYXNwZWVkL01ha2VmaWxlICAgICAgICAgICAgICAgICAgICAgICAgfCAgIDEgKw0K
+PiAgIGFyY2gvYXJtL2Jvb3QvZHRzL2FzcGVlZC9hc3BlZWQtYm1jLWFzcm9jay1hbHRyYWQ4
+LmR0cyAgIHwgNjI0ICsrKysrKysrKysrKysrKysrKysrDQo+ICAgMyBmaWxlcyBjaGFuZ2Vk
+LCA2MjYgaW5zZXJ0aW9ucygrKQ0KPiAgIGNyZWF0ZSBtb2RlIDEwMDY0NCBhcmNoL2FybS9i
+b290L2R0cy9hc3BlZWQvYXNwZWVkLWJtYy1hc3JvY2stYWx0cmFkOC5kdHMNCj4gDQoNCkZv
+ciB0aGUgc2VyaWVzLA0KDQpUZXN0ZWQtYnk6IFRhbiBTaWV3ZXJ0IDx0YW4uc2lld2VydEBo
+ZXR6bmVyLmNvbT4NClJldmlld2VkLWJ5OiBUYW4gU2lld2VydCA8dGFuLnNpZXdlcnRAaGV0
+em5lci5jb20+DQoNCk1hbnkgdGhhbmtzLCBSZWJlY2NhIQ0KDQotLSBUYW4NCg==
 
-I had a look into the regmap code. In its current implementation,
-that will work as long as
-1) regmap is configured to not cache anything
-2) the I2C controller supports I2C_FUNC_SMBUS_I2C_BLOCK
+--------------MVPbRcVvi0vUJF018cLkopuP--
 
-I'd personally not want to rely on that and implement driver-internal
-bus code instead to handle the varying register width and to be able
-to utilize regmap caching.
+--------------SR0WIWbru0jmTyipj2g0uCVZ
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature.asc"
 
-In the absence of that, please add a comment to the regmap configuration
-stating that regmap caching must not be enabled. That comment should
-explain the reason and the dependency on the current regmap implementation.
-Also please add a check to ensure that the I2C controller supports
-I2C_FUNC_SMBUS_I2C_BLOCK into the probe function.
+-----BEGIN PGP SIGNATURE-----
 
-Thanks,
-Guenter
+wsF5BAABCAAjFiEEGogUkqo1678CFZJAOx3dOtjZyWMFAmk7CX4FAwAAAAAACgkQOx3dOtjZyWP/
+yRAA19XJ8k36sQFgG8FmQPxvXQ/Wb9NdTnswAkF1XRKq8jE0wo0u7fvk6ydoCDoweHB0Do3rxZ6P
+ygrwjX9QVrmmJgak/Nc51TKyQdyz32AEdFQg9p/mfIEO3ItA82TMfQStr83v+sWWLJERTvXped1I
+R201ncpft+nP4Nx9ncMpaa87s2nGCd0aRJggSmqp6lqWB/2GVhRFkP33nEJQDOAk2CeNpl7EqOwg
+LceCKPXdANAocR8d9zB6RDPJ8vKxMtR89Pp0lcFFN18MjtMhvr+3kx1hhfghGOhJFquA2t/cX/5P
+iVSNEnlgbHbWd3pPjNd6bT4FGFx0sHNF9tc1H3AFD+il2pYtydoNyC15C7hrRdaBudkjNsqgHZS+
+zQEwMHOdCnt9iiuG4rSlF2Y4EHoTRcxImoc1EXxsRlSbNQiRGxTMOzlSXA3BqJEYRP6vW86y2Nmf
+uT3ijmTMyeAW1pHarfVXsvxrjmVKf+aHsW9oQAuMX/ZMad0ASzy6LDiupx+vDAC+m6F0pAJMD9gT
+h341ubwxa1n4RsRqWgpLs9Y7CsJL2FZIH8LmwSEMwztria7MH3fzCmpsHJeRVCmFnj4RdfvLyYWK
+ElRXUb3M57KoZLRU5xPUVmW3Fg2FYwHkSOGVmqdHPAxLMHSMc1EI+rUgvuDkFCJ+bcbDXdJKOz06
+Y7E=
+=UO5c
+-----END PGP SIGNATURE-----
 
+--------------SR0WIWbru0jmTyipj2g0uCVZ--
 
