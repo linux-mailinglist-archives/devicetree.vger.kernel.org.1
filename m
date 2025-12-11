@@ -1,81 +1,100 @@
-Return-Path: <devicetree+bounces-245822-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245823-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABF9CCB59AC
-	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 12:09:44 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03BB6CB59C4
+	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 12:12:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A9F30300976E
-	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 11:09:43 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 92C2E3001627
+	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 11:12:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49EF7307AD0;
-	Thu, 11 Dec 2025 11:09:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5E5E307AEB;
+	Thu, 11 Dec 2025 11:12:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="B8FajkAt"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="OgWC17zU";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="i/xUcfIf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57930306485
-	for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 11:09:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E844A20C463
+	for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 11:12:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765451382; cv=none; b=GH7bpiX9ByffVLg2mUZtPu/bF4qz8iVkDwK000szZ4WUe9IKBnwUH4iHl3VXpr9Cu90IXAEKOvSiW//W/rkEzewjTS/TrPFAMvO8wYsfS4EdeWpCOrENM+MAk7NV8eQqB3UpbmiMncbyCsQMcOGH/RvPzGL1UpRehvA4UF7UWi4=
+	t=1765451546; cv=none; b=Kw8JFF8wnPEfedooRb+naa3Eo6JfnY94TkoJDqsONMqgjRkuEdNko9YoWE9OcBJ1JPx6XMxLZNwBjhAFOq9g0sN/dzsn1YZRBuxIRXRGJ2DCODchR8KlQoSD/9NMQU5RHfvu4SEQutRwaQ7IdLpcHj3jX33niQTcrCUvJ2jLl9U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765451382; c=relaxed/simple;
-	bh=CNGxVNdd0BeSWDaYjncbbECd94rZPpRsWPtt8x5bons=;
+	s=arc-20240116; t=1765451546; c=relaxed/simple;
+	bh=HBracrVwnOnwLQQbYawCG3E2RV8u96Dy6acjiCKDltc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pS1I76KC46rTobW196c+NaemOFMHpoLYB4b3hL7p0/t9yISwxuhARjevs+iKG93F3TP/t+jj+66fbPC5iI/d5hRdENRm2ExDaNRKD7ICLs1kVRGQZtPyjjKQmb970jlM6B3k2sw079jsEMTRYo72r2sL84wrmLKqCy5JGwKuWBY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=B8FajkAt; arc=none smtp.client-ip=209.85.208.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-37a5a3f6bc2so460221fa.1
-        for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 03:09:40 -0800 (PST)
+	 In-Reply-To:Content-Type; b=lqmwWLO7lrjg3G89PTfJrSRbwGm0nKkHJdwBbJyWbQp2ClHL3aUUzJHkdvdoaS44Kv5IVttkl+95zTjZ57WmEleY8p6a6sNES7G8e/eFjjxKx8T8Fkjs8+E12OB/Z+5D20DsbwkRdVj/SK9DbAlFQZ5b07xBytEYvz+VxA3lg48=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=OgWC17zU; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=i/xUcfIf; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BBAXnpG932640
+	for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 11:12:24 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	nYDLFP9b/1c4pXko38MT5KA8qHbxB4jvUIX8uXejm2o=; b=OgWC17zU0zH0nnk/
+	iMPBcgfPe8ResLdMrtvvpL9X/AXQAajU6FVAq6w9cTPfdBZTx5YyR0WwCnLT8r1s
+	yNZboI4kOX/cfdaWttw58fqMZWRB7X9C93qKdb2m5j+rqg28yiBhnbzkHjpCzrZP
+	PSr7oXtXeoyk2ujnZ7ThfSTZhoddLYN7hl+QclFCwmpZfvq024JQrXh3LCnsYq8x
+	cN45oUEt77TPILQ5D1hdiCmIOLV5fjjtq/E92+lDKCsRcIsr/dpziw4thr83W1RS
+	HLN0wsSKpw2PWm0ONqHX7s1zUrr5b6brFfCTcJX8nWcDqgTd7TxY7rzMix01X+K5
+	stHTJw==
+Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4aym581p6t-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 11:12:23 +0000 (GMT)
+Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-2956f09f382so6047105ad.1
+        for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 03:12:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1765451378; x=1766056178; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=oss.qualcomm.com; s=google; t=1765451543; x=1766056343; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=8EyBRZPRp8b/cAnvFkXFeWu8lRTa53gJUQVL0pLmo3o=;
-        b=B8FajkAtELrxs2TFpIPtPiu3a0fbprnsErOn74Sacs2QMnXkAj4z5RFh1D54stvvqe
-         bgHEd8eTOvgsDRtODkZFge6icsUnwrcvs7iv0iJJmHnypcHlw5lRLqpXEcCECaN3emVi
-         yMyf8jcx6M6EpxKN2+mIpZAd2slZWPhtDOg+tdZkcikkQLzxygnRxHNzMwU0PXGy0nsc
-         f1IcfJuOVz5kyo9X1bCxagGxg3LYSVBC28GLngIlX3XccsYMdDiWWaHy2iM395Cx5Xan
-         AMzlUPF4yqnljWB7lVMBWUs8Hb81aHRa0fvDdhTtRILW9qnx+O0itv8Em6/xsOBH2bbC
-         sbqg==
+        bh=nYDLFP9b/1c4pXko38MT5KA8qHbxB4jvUIX8uXejm2o=;
+        b=i/xUcfIfrmzzIAEI1WKgbtP8+KKvv9P6TyHyaiCgi5+F14h2NcKph50x/Or7x4BRq6
+         uTdJeNRTVUzU2ulccGGZJ2jB1+Ta7OWYTOGT14mPl0F/cxvmPWTjGiFI0NhLI3mhGr7s
+         1+u6jki0SLwhJoboAdmaNVC4M6GJFqMOMFJPmHF1DVFzAnKziTHHgatrasmRGcfzhixK
+         iUEijt9VJ7c6FmU6XUiuPOGYqKl9CS3SeTPrhYLqghaDpTwUh8D0CY7RMUcqNIomY0/T
+         y4/oOxgVpq+e3pt2le0EtPSJ5ojm28YpP7eFHgSS2GoovBn7ePRs/opVGtT398AfF8K/
+         V/mg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765451378; x=1766056178;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1765451543; x=1766056343;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=8EyBRZPRp8b/cAnvFkXFeWu8lRTa53gJUQVL0pLmo3o=;
-        b=fEBk1spXBpXLPb0vQC2J9g+LSJi9pQNX6aJj13HH9vOqjxAZO7YTtjQKWRNUKXtpGJ
-         XdPCCSFtFudJdQuYiu9xrOYeo0qKuDdYy51R5JPzyMPEw/XIDlRK0upPOKEVRhoRFzx6
-         E8mezBeD7SfjtHJH/kmiLvJURPg69c+qW/zyvGHU7iJW8kmSJKjrU/bVYrot90tOTHsx
-         r2AS3sR/X5WWOoJXUqXdGBF+Dy3tpG3A99K/B8pnsWqVV0OSLhZWOYvgMOIUN2XGi8Yz
-         mXET7G9RYaei+FTABLnBcgECdz2qzUTt7MKhzcqDE0c+05aloWzhE2GGPUdJOIdMvwNQ
-         4oKQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV02G669VA2tgciY0KE+eRVHCDznfO4qwHW31ADP5CjiFSEt914ibILM03rJsLzCriCGks+oNehBGHd@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyq5d7vFEH3JiAK8R+4D2/vMnNMHcZ4OAcQAvhl5uWwGl4Z6VFK
-	ZmvaRJCmLw2cCpJcVYyn0ixRbSFULRBKIABjAudFZbn3q199BjJB0L727gn3sTIbeF+H061PU9T
-	8cjmQ
-X-Gm-Gg: AY/fxX6JOuRVzHHqnGZV94HKL4yDsSp3+XEO+FiyEP2ziNOOMAFPqixz0Xa0aXaHehS
-	uTS7Tn3+fqkH2WzvNtPx/+fV+j4jbIZ4yZ6AAAGPZEgg9yD1AvGtJklidqk0ZyEpO9Szqk3sbsI
-	sMzOhOr89ZBzogj2psmDDjt634PgxfEangl1hy53TfN740dBXmrSqllEoBFoqqc5zKhKryXSluu
-	jw0q1TRxFNxms+5i5DzKsMNuFotNkjC1UDfODLTVzA6ywNFi5mXABlzlh/B/K+pxF4knDdm2IP3
-	xilqrxItFIcm8XHp273yKnPlMioE2QbR6o2GhjhiwNTqecSoeuzK3Y2WuVASz45MXW4ZwE46dCy
-	Kl3GZGnLQdfYsErtDrOKCIJ7RDt9L3TINE4kEe68vS4Zk3isekiDdo3nueCSMOoRnkXVjoWpjjn
-	C3PSNVSDR3Bgp7P1Uq2apsnZq8ybcUAC8RXAnQIVqrYVv2uCrZvMNpI/39zUQtnCGwqg==
-X-Google-Smtp-Source: AGHT+IEVhRY0kPCxpKfnu3mkzNfGXD92o3Dd/PndMoowcESrQWjQ+spldYQtJfLrkziZioOdsCo8Vg==
-X-Received: by 2002:a05:6512:3e19:b0:594:5582:f77e with SMTP id 2adb3069b0e04-598ee52a384mr1208087e87.4.1765451378286;
-        Thu, 11 Dec 2025 03:09:38 -0800 (PST)
-Received: from [192.168.1.100] (91-159-24-186.elisa-laajakaista.fi. [91.159.24.186])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-598f2fa8702sm763706e87.76.2025.12.11.03.09.37
+        bh=nYDLFP9b/1c4pXko38MT5KA8qHbxB4jvUIX8uXejm2o=;
+        b=D6iWoYDS/VMPefJXdJtVUYcLfJCMcXGESvL/xKeMs5ttAc3k4rY2KwjGgaddZtXw+R
+         bwlfCRGh8DYB2DzlaXrRJ0dT3DCfUhz0fRjAPztGsdKueFwQ8MRZt0rOdeiROzwV2bvm
+         coDCMy/SWxs4abP+IK5KO25JrHahjSyQpcNQU59E3/5WX3J9w+8z7aywk7pInXFH9KDb
+         7g8tLolUC+8qMqOF8sozwEiLzcJbOLJp/7uq8trtCEJ2EqsGjGFdvbI9pe6F3mRuU7j6
+         k8W9/dkXpxZx3UtFowsc+VwD3Cpum+MoJx5U2eltz70JpBU724Xou/3gUx+Q61YjgYPX
+         ZbbQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX+hsrgj3WncC/oDa+Za+B9iRtro4n9n9zH0E9c7QxuyARMytL3i/lx9jvwZBZzwxlH98nuVBsI19Br@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx3DQVmeHm9aZRJvBbaMfckJK3GfQAmWpjKCW3HlEV0vEJC4Vpy
+	0S5LYAjQPrgGQKR/7TfaNKVlW7Fc2smz70v5zKsgS4g37fxFuDLHyj0solY0V9bsOIY1KCRzDu8
+	TFrp7/auTSVr90pENhVOdKTcw0IXqwsTuV+2GQ5JsLfZD14DhMl/Gm0fLr/1960Nd
+X-Gm-Gg: AY/fxX7qcBQWPAhhS77UnhMJROHDMsmtDz0B8n14ZLVXWEhpzgcBpDhyiTqv3hx3X3F
+	QOHrkIJHW20VlDiFoHVc93jhp8m8g5TluNwuH9M07X4R7dIsTf1aYpg+IuRry2+3DyOerkkRM+Z
+	5YrGsi5kFD4f8xRm4Zu0Ef5TDyvs6qIcJv++DqclYWU7obrvsl+K4L6VABT/eg/sugIosPiOBf9
+	ayjhPEwCa0aUQOhKhdpUdu44mAa+T2oFCfyw2AEbg3A/MCNu5vO3dkuc1iP8FlUGuA9n6FB6nJw
+	HNdGAk1BNyVnwPk6Sj7mYSkLo47kZDMNtClxbNOevmt0Tn5G2ZaE2FAVXsUcnTlMclPpWD60hHd
+	vg/7V6cVinJRrY8tLwexgmXmPcxJ6+gwF
+X-Received: by 2002:a17:903:228a:b0:290:ad7a:bb50 with SMTP id d9443c01a7336-29eeec1d562mr19896305ad.27.1765451542679;
+        Thu, 11 Dec 2025 03:12:22 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFSxcR+t5PTEgJPkTzQ8uhLer5CJXS8Vq8pvl6loFtZkKr35tm0xP60CurwEJc2gIwwdS9J/g==
+X-Received: by 2002:a17:903:228a:b0:290:ad7a:bb50 with SMTP id d9443c01a7336-29eeec1d562mr19895715ad.27.1765451541983;
+        Thu, 11 Dec 2025 03:12:21 -0800 (PST)
+Received: from [192.168.1.5] ([106.222.234.96])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29eea03fcd8sm21961715ad.74.2025.12.11.03.12.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Dec 2025 03:09:37 -0800 (PST)
-Message-ID: <dbd4c202-5be9-4f18-9413-5c5e50d3db88@linaro.org>
-Date: Thu, 11 Dec 2025 13:09:36 +0200
+        Thu, 11 Dec 2025 03:12:21 -0800 (PST)
+Message-ID: <57706b2e-becf-47ac-a874-79ce17d12b74@oss.qualcomm.com>
+Date: Thu, 11 Dec 2025 16:42:13 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,185 +102,188 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: media: i2c: Add os05b10 sensor
-Content-Language: ru-RU
-To: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>, robh@kernel.org,
- krzk+dt@kernel.org, sakari.ailus@linux.intel.com
-Cc: Elgin Perumbilly <elgin.perumbilly@siliconsignals.io>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Hans Verkuil <hverkuil@kernel.org>,
- Hans de Goede <hansg@kernel.org>, Mehdi Djait <mehdi.djait@linux.intel.com>,
- =?UTF-8?Q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Dongcheng Yan <dongcheng.yan@intel.com>,
- Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
- Sylvain Petinot <sylvain.petinot@foss.st.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Jingjing Xiong <jingjing.xiong@intel.com>,
- Svyatoslav Ryhel <clamor95@gmail.com>,
- Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20251211105427.22374-1-himanshu.bhavani@siliconsignals.io>
- <20251211105427.22374-2-himanshu.bhavani@siliconsignals.io>
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <20251211105427.22374-2-himanshu.bhavani@siliconsignals.io>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Subject: Re: [PATCH v3 5/6] arm64: dts: qcom: sm6150: Add gpu and rgmu nodes
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Rob Clark <robin.clark@oss.qualcomm.com>, Sean Paul <sean@poorly.run>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Dmitry Baryshkov <lumag@kernel.org>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Jessica Zhang <jesszhan0024@gmail.com>,
+        Dan Carpenter <dan.carpenter@linaro.org>,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Jie Zhang <quic_jiezh@quicinc.com>
+References: <20251122-qcs615-spin-2-v3-0-9f4d4c87f51d@oss.qualcomm.com>
+ <20251122-qcs615-spin-2-v3-5-9f4d4c87f51d@oss.qualcomm.com>
+ <8560ad26-4756-4c2a-97c3-2c5c0695172c@oss.qualcomm.com>
+ <z4gqro2bx6oq2ht75m2klogo5dsirb74tmc3u3shjyalxmaxil@5sy7ufmqhdgw>
+ <6fa1da5d-9ea7-4d72-a03a-82edc4bef099@oss.qualcomm.com>
+ <3gqq3w6ovy5srgvabyeugsjbwrhaxmjvicykhjmlcxd74gtsaf@5u6wvvzeq52z>
+ <90bc84e7-19ca-450d-b41f-fd96367e8cce@oss.qualcomm.com>
+ <2e5sqv2gnxdfwnfsepzdkchxip5zdeamp6bzbamq6kbk77kr3p@u5i4rrnrywno>
+ <9971bd9b-88db-4628-b36b-de50c1619396@oss.qualcomm.com>
+ <raj276z7euq7skvhsw7prwzlgsdy6ay7bhm4wgb64mt63q4ot4@eyvhcou7qwgg>
+Content-Language: en-US
+From: Akhil P Oommen <akhilpo@oss.qualcomm.com>
+In-Reply-To: <raj276z7euq7skvhsw7prwzlgsdy6ay7bhm4wgb64mt63q4ot4@eyvhcou7qwgg>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: oKyHqux8L9UM6bFLFoVilEtjNs8KzgZs
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjExMDA4NiBTYWx0ZWRfXyHb/S0dCWlto
+ /W0PdQtJJ4uUaojhMAxVCWddhEsxh/IOC+w8RzFhd9t+zoGHzRjhNvQ6oiHlgnolVZft1Vv8TUL
+ 5jHkjResx5aAKrdxCcLJhCIApUOMivsA4+eWZYoZtcU1EV2p3cjauV5zkpc6HAgxfWpZ4t/Gpki
+ wQxJsJEKRK64+Sah91n3FAUO1Uw94a+vPzWcQFTMN+Mycti7cSicYA+TsvxKPo53RaureP/RwrI
+ XjJSVKOOoLlejDE2pkXgLolU92DQFw26nj4To7Yr7caAZHR0vaXWo2iodUcxF0W5Z2hxP0VU80L
+ VqOIF5tvdd6pLmVVNFIE1c3eysEhrkrNwm5Mi6NszQQ3FJvgzLb9Zp2i9vDE7uI1k/tqSXlrntf
+ DNU6e1AWEFUCSEBaTCfQLzw5fwqXhg==
+X-Authority-Analysis: v=2.4 cv=FYU6BZ+6 c=1 sm=1 tr=0 ts=693aa717 cx=c_pps
+ a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=CcjbiXvC7xLhAd+qVKJczA==:17
+ a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8
+ a=5yBAA5BE7NXvCg71rZ8A:9 a=QEXdDO2ut3YA:10 a=GvdueXVYPmCkWapjIL-Q:22
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: oKyHqux8L9UM6bFLFoVilEtjNs8KzgZs
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-10_03,2025-12-09_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 malwarescore=0 phishscore=0 priorityscore=1501 impostorscore=0
+ lowpriorityscore=0 bulkscore=0 adultscore=0 spamscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512110086
 
-On 12/11/25 12:54, Himanshu Bhavani wrote:
-> From: Elgin Perumbilly <elgin.perumbilly@siliconsignals.io>
+On 12/11/2025 6:06 AM, Dmitry Baryshkov wrote:
+> On Thu, Dec 11, 2025 at 02:40:52AM +0530, Akhil P Oommen wrote:
+>> On 12/6/2025 2:04 AM, Dmitry Baryshkov wrote:
+>>> On Fri, Dec 05, 2025 at 03:59:09PM +0530, Akhil P Oommen wrote:
+>>>> On 12/4/2025 7:49 PM, Dmitry Baryshkov wrote:
+>>>>> On Thu, Dec 04, 2025 at 03:43:33PM +0530, Akhil P Oommen wrote:
+>>>>>> On 11/26/2025 6:12 AM, Dmitry Baryshkov wrote:
+>>>>>>> On Sat, Nov 22, 2025 at 03:03:10PM +0100, Konrad Dybcio wrote:
+>>>>>>>> On 11/21/25 10:52 PM, Akhil P Oommen wrote:
+>>>>>>>>> From: Jie Zhang <quic_jiezh@quicinc.com>
+>>>>>>>>>
+>>>>>>>>> Add gpu and rgmu nodes for qcs615 chipset.
+>>>>>>>>>
+>>>>>>>>> Signed-off-by: Jie Zhang <quic_jiezh@quicinc.com>
+>>>>>>>>> Signed-off-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
+>>>>>>>>> ---
+>>>>>>>>
+>>>>>>>> [...]
+>>>>>>>>
+>>>>>>>>> +			gpu_opp_table: opp-table {
+>>>>>>>>> +				compatible = "operating-points-v2";
+>>>>>>>>> +
+>>>>>>>>> +				opp-845000000 {
+>>>>>>>>> +					opp-hz = /bits/ 64 <845000000>;
+>>>>>>>>> +					required-opps = <&rpmhpd_opp_turbo>;
+>>>>>>>>> +					opp-peak-kBps = <7050000>;
+>>>>>>>>> +				};
+>>>>>>>>
+>>>>>>>> I see another speed of 895 @ turbo_l1, perhaps that's for speedbins
+>>>>>>>> or mobile parts specifically?
+>>>>>>>
+>>>>>>> msm-4.14 defines 7 speedbins for SM6150. Akhil, I don't see any of them
+>>>>>>> here.
+>>>>>>
+>>>>>> The IoT/Auto variants have a different frequency plan compared to the
+>>>>>> mobile variant. I reviewed the downstream code and this aligns with that
+>>>>>> except the 290Mhz corner. We can remove that one.
+>>>>>>
+>>>>>> Here we are describing the IoT variant of Talos. So we can ignore the
+>>>>>> speedbins from the mobile variant until that is supported.
+>>>>>
+>>>>> No, we are describing just Talos, which hopefully covers both mobile and
+>>>>> non-mobile platforms.
+>>>>
+>>>> We cannot assume that.
+>>>>
+>>>> Even if we assume that there is no variation in silicon, the firmware
+>>>> (AOP, TZ, HYP etc) is different between mobile and IoT version. So it is
+>>>> wise to use the configuration that is commercialized, especially when it
+>>>> is power related.
+>>>
+>>> How does it affect the speed bins? I'd really prefer if we:
+>>> - describe OPP tables and speed bins here
+>>> - remove speed bins cell for the Auto / IoT boards
+>>> - make sure that the driver uses the IoT bin if there is no speed bin
+>>>   declared in the GPU.
+>>>
+>>
+>> The frequency plan is different between mobile and IoT. Are you
+>> proposing to describe a union of OPP table from both mobile and IoT?
 > 
-> Add bindings for Omnivision OS05B10 sensor.
+> Okay, this prompted me to check the sa6155p.dtsi from msm-4.14... And it
+> has speed bins. How comes we don't have bins for the IoT variant?
 > 
-> Add MAINTAINERS entry for Omnivision OS05B10 binding documentation
+> Mobile bins: 0, 177, 187, 156, 136, 105, 73
+> Auto bins:   0, 177,      156, 136, 105, 73
 > 
-> Signed-off-by: Elgin Perumbilly <elgin.perumbilly@siliconsignals.io>
-> Signed-off-by: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>
-> ---
->   .../bindings/media/i2c/ovti,os05b10.yaml      | 103 ++++++++++++++++++
->   MAINTAINERS                                   |   7 ++
->   2 files changed, 110 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,os05b10.yaml
+> Both Mobile and Auto chips used the same NVMEM cell (0x6004, 8 bits
+> starting from bit 21).
 > 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,os05b10.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,os05b10.yaml
-> new file mode 100644
-> index 000000000000..b16e5333b1ec
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,os05b10.yaml
-> @@ -0,0 +1,103 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/i2c/ovti,os05b10.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: OmniVision OS05B10 Image Sensor
-> +
-> +maintainers:
-> +  - Elgin Perumbilly <elgin.perumbilly@siliconsignals.io>
-> +
-> +description:
-> +  The OmniVision OS05B10 is a 5MP (2592x1944) color CMOS image sensor controlled
-> +  through an I2C-compatible SCCB bus. it outputs RAW10/RAW12 format and uses a
-> +  1/2.78"optical format.
+> Mobile freqs:
+> 0:         845M, 745M, 700M,       550M,       435M,       290M
+> 177:       845M, 745M, 700M,       550M,       435M,       290M
+> 187: 895M, 845M, 745M, 700M,       550M,       435M,       290M
+> 156:             745M, 700M,       550M,       435M,       290M
+> 136:                         650M, 550M,       435M,       290M
+> 105:                                     500M, 435M,       290M
+> 73:                                                  350M, 290M
+> 
+> Auto freqs:
+> 0:         845M, 745M, 650M, 500M, 435M
+> 177:       845M, 745M, 650M, 500M, 435M
+> 156:             745M, 650M, 500M, 435M
+> 136:                   650M, 500M, 435M
+> 105:                         500M, 435M
+> 73:                                      350M
+> 
+> 290M was a part of the freq table, but later it was removed as "not
+> required", so probably it can be brought back, but I'm not sure how to
+> handle 650 MHz vs 700 MHz and 500 MHz vs 550 MHz differences.
+> 
+> I'm a bit persistent here because I really want to avoid the situation
+> where we define a bin-less OPP table and later we face binned QCS615
+> chips (which is possible since both SM and SA were binned).
 
-A space symbol is missing before 'optical'.
+Why is that a problem as long as KMD can handle it without breaking
+backward compatibility?
 
-> +
-> +properties:
-> +  compatible:
-> +    const: ovti,os05b10
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: XCLK clock
-> +
-> +  avdd-supply:
-> +    description: Analog Domain Power Supply
-> +
-> +  dovdd-supply:
-> +    description: I/O Domain Power Supply
-> +
-> +  dvdd-supply:
-> +    description: Digital Domain Power Supply
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +    description: Reset Pin GPIO Control (active high)
+> 
+> Also I don't see separate QFPROM memory map definitions for Mobile, IoT
+> and Auto SKUs. If you have access to the QCS615 hardware, what is the
+> value written in that fuse area?
+> 
+>> Another wrinkle we need to address is that, so far, we have never had a
+>> dt binding where opp-supp-hw property exist without the speedbin cells.
+>> And that adds a bit of complexity on the driver side because, today, the
+>> KMD relies on the presence of speed bin cells to decide whether to
+>> select bin via opp_supp_hw API or not. Also, we may have to reserve this
+>> combination (opp bins without speedbin cells) to help KMD detect that it
+>> should use socinfo APIs instead of speedbin cells on certain chipsets.
+If it is a soft fuse, it could fall into an unused region in qfprom. On
+other IoT chipsets like Lemans, Product teams preferred a soft fuse
+instead of the hard fuse. The downside of the hard fuse that it should
+be blown from factory and not flexible to update from software later in
+the program.
 
-If you have access to datasheet, what does it say about the reset GPIO?
+-Akhil.
 
-It's very uncommon to see an active high GPIO here, most likely it
-shoud be changed to active low.
+> 
+> We already have "machine" as another axis in the GPU catalog. I'd
+> suggest defining separate speed bins for mobile and auto/IoT in the DT
+> (0x1 - 0x20 for mobile, 0x100 - 0x1000 for auto) and then in the driver
+> mapping those by the machine compat.
+> 
 
-> +
-> +  port:
-> +    description: MIPI CSI-2 transmitter port
-> +    $ref: /schemas/graph.yaml#/$defs/port-base
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      endpoint:
-> +        $ref: /schemas/media/video-interfaces.yaml#
-> +        unevaluatedProperties: false
-> +
-> +        properties:
-> +          data-lanes:
-> +            oneOf:
-> +              - items:
-> +                  - const: 1
-> +                  - const: 2
-> +                  - const: 3
-> +                  - const: 4
-> +              - items:
-> +                  - const: 1
-> +                  - const: 2
-> +        required:
-> +          - data-lanes
-> +          - link-frequencies
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - avdd-supply
-> +  - dovdd-supply
-> +  - dvdd-supply
-> +  - port
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        camera-sensor@36 {
-> +            compatible = "ovti,os05b10";
-> +            reg = <0x36>;
-> +            clocks = <&os05b10_clk>;
-> +            reset-gpios = <&gpio1 7 GPIO_ACTIVE_HIGH>;
-> +
-> +            avdd-supply = <&os05b10_avdd_2v8>;
-> +            dvdd-supply = <&os05b10_dvdd_1v2>;
-> +            dovdd-supply = <&os05b10_dovdd_1v8>;
-> +
-> +            port {
-> +                cam_out: endpoint {
-> +                    remote-endpoint = <&mipi_in_cam>;
-> +                    data-lanes = <1 2 3 4>;
-> +                    link-frequencies = /bits/ 64 <600000000>;
-> +                };
-> +            };
-> +        };
-> +    };
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 663e86eb9ff1..c85915d5d20e 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -19234,6 +19234,13 @@ T:	git git://linuxtv.org/media_tree.git
->   F:	Documentation/devicetree/bindings/media/i2c/ovti,og0ve1b.yaml
->   F:	drivers/media/i2c/og0ve1b.c
->   
-> +OMNIVISION OS05B10 SENSOR DRIVER
-> +M:	Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>
-> +M:	Elgin Perumbilly <elgin.perumbilly@siliconsignals.io>
-> +L:	linux-media@vger.kernel.org
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/media/i2c/ovti,os05b10.yaml
-> +
->   OMNIVISION OV01A10 SENSOR DRIVER
->   M:	Bingbu Cao <bingbu.cao@intel.com>
->   L:	linux-media@vger.kernel.org
-
--- 
-Best wishes,
-Vladimir
 
