@@ -1,149 +1,192 @@
-Return-Path: <devicetree+bounces-245713-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245714-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56962CB47E7
-	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 02:55:58 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9291BCB493B
+	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 03:53:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0C36C3006F5D
-	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 01:55:57 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 093083015EDD
+	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 02:53:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A680275B0F;
-	Thu, 11 Dec 2025 01:55:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5889226E719;
+	Thu, 11 Dec 2025 02:53:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="MpAmoqOo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from inva020.nxp.com (inva020.nxp.com [92.121.34.13])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59BE62737F3;
-	Thu, 11 Dec 2025 01:55:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9983422E3E7;
+	Thu, 11 Dec 2025 02:53:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765418156; cv=none; b=AWchGpJUuuZcE9KQIJRj1075XuXhmrtE7Yh6d0yCGXy/hT3x5TjFxYY1t7aYcFO1bA3k5Itwqfr8EVqyLHJ3RhkaIPtXNwsLrx4svIz55erv6CiOLta64bWFgHAuSU6Jw4u6z5kZMC2qzvjENsg05NYcQg8Z/6dTmlZyZ5s7nJ0=
+	t=1765421604; cv=none; b=VOxDgFGufU3PcW3IQfEEjJj9kOqct4oxMFfrX8WYt7ZYRbN9tGv1FGkSuJf81Kr7Vrhvb1Doechk50l0MgyiRpP5tG/4LS/aEUuUH0FNlIMUrUU25llVLBTJRNIdS1gcbQonVzUOjBnIG0A+K0c2GccsUyWvw2PtGjtO8Hev104=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765418156; c=relaxed/simple;
-	bh=zv/vPGvH+GlU5R0Nma7xKjoV2AR7w+pzdH7A6UiWLnY=;
+	s=arc-20240116; t=1765421604; c=relaxed/simple;
+	bh=nCP4Qrkpz8bVZqCHE4sJmyUXXrSPtXg/5yZwtOzX+cg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=h/dpfiKAVV2kWCwk0UrTVDAAKrN+XEf2IBmzpbMjHJhyNBoCyrP78uAkWy1+dUxyT2x0yHjYI1oyXchSjFjFwOD5OyI75PEUGD4iab+pdoukiCHBCrCzZFbh8F/MHPiQzG7rcW0jz7xghN7wVEqsRWVQ4ccRvQM8RHUsG+sU2LU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id C089A1A0372;
-	Thu, 11 Dec 2025 02:55:46 +0100 (CET)
-Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
-	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 940691A0271;
-	Thu, 11 Dec 2025 02:55:46 +0100 (CET)
-Received: from lsvm11u0000554.swis.ap-northeast-2.aws.nxp.com (lsvm11u0000554.swis.ap-northeast-2.aws.nxp.com [10.52.9.11])
-	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 8E1761802213;
-	Thu, 11 Dec 2025 09:55:44 +0800 (+08)
-Date: Thu, 11 Dec 2025 10:55:44 +0900
-From: Yanan Yang <yanan.yang@nxp.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, qijian.guo@nxp.com,
-	justin.jiang@nxp.com
-Subject: Re: [PATCH 1/2] dt-bindings: arm: fsl: Add FRDM-IMX91S board
-Message-ID: <aTokoPlN-II2qA9V@lsvm11u0000554.swis.ap-northeast-2.aws.nxp.com>
-References: <20251205-imx91s-frdm-v1-0-afd6cd01c299@nxp.com>
- <20251205-imx91s-frdm-v1-1-afd6cd01c299@nxp.com>
- <4b29cc46-28a1-45f1-b24e-548513178884@kernel.org>
- <aTkTz-5QoB8BuLs7@lsvm11u0000554.swis.ap-northeast-2.aws.nxp.com>
- <a252e741-aab3-4fec-ae8f-38634d071d77@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=LJwa9fcIIHJr4TX2OwvOcftrXJpV7nSw+zssjGaqAMZcDh5yRafFVcYnbb0MEI2NdSFs+nT7xBMfWohv4Gd6Lu3AW3rt5qlF+1E4Fn8X2qAuGhkSGsdfCzXn6Dy4xxhDFc9UM68I9K4iNks/YZlmGb32VOnrN9sWLOskuektdgU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=MpAmoqOo; arc=none smtp.client-ip=192.198.163.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1765421602; x=1796957602;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=nCP4Qrkpz8bVZqCHE4sJmyUXXrSPtXg/5yZwtOzX+cg=;
+  b=MpAmoqOoHGZysuAML7Y+wd/q3kaq00LLRezMvmqNtJ+kXENeIbykF2RW
+   x7ZwpzNuyNcpH/GLOGEjGl0di3xTetAWpOz79RzILU55Uh+ZVkM1Rykl3
+   R7ePJ42Uki5NhKirq8/a5Wx0l/kMrH7fU/NC7U3CAcQqLqK7/4seSelH/
+   anlvleuu8UZ2T4FQLIpN22fFb3A/QF9Fbzl4iA1XIjOc1KLKp+Sfpv97c
+   do9J0LTJ2s2PlkfHLn8biQ0CnO6ybuqKEd3o49m6WrH0KzBed2ZUhxDhF
+   89gfc3J8sBBTpLclwOPSNsG9f1OjiQFNWvlhOuluWWNKeW9ksHRr8EChk
+   Q==;
+X-CSE-ConnectionGUID: nS78aV6CQ1CVgJzDracwRA==
+X-CSE-MsgGUID: MQn3uHaWTAGbSeXkAg41GA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11638"; a="78765557"
+X-IronPort-AV: E=Sophos;i="6.20,265,1758610800"; 
+   d="scan'208";a="78765557"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Dec 2025 18:53:20 -0800
+X-CSE-ConnectionGUID: Zev6oIoBRpaOqU2xDpbw4g==
+X-CSE-MsgGUID: oROrgDILQmSBZQ6XsbXTuA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.20,265,1758610800"; 
+   d="scan'208";a="196738003"
+Received: from ranerica-svr.sc.intel.com ([172.25.110.23])
+  by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Dec 2025 18:53:20 -0800
+Date: Wed, 10 Dec 2025 19:00:06 -0800
+From: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
+To: Changyuan Lyu <changyuanl@google.com>,
+	"Mike Rapoport (Microsoft)" <rppt@kernel.org>
+Cc: akpm@linux-foundation.org, linux-kernel@vger.kernel.org,
+	anthony.yznaga@oracle.com, arnd@arndb.de, ashish.kalra@amd.com,
+	benh@kernel.crashing.org, bp@alien8.de, catalin.marinas@arm.com,
+	corbet@lwn.net, dave.hansen@linux.intel.com,
+	devicetree@vger.kernel.org, dwmw2@infradead.org,
+	ebiederm@xmission.com, graf@amazon.com, hpa@zytor.com,
+	jgowans@amazon.com, kexec@lists.infradead.org, krzk@kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
+	linux-mm@kvack.org, luto@kernel.org, mark.rutland@arm.com,
+	mingo@redhat.com, pasha.tatashin@soleen.com, pbonzini@redhat.com,
+	peterz@infradead.org, ptyadav@amazon.de, robh@kernel.org,
+	rostedt@goodmis.org, rppt@kernel.org, saravanak@google.com,
+	skinsburskii@linux.microsoft.com, tglx@linutronix.de,
+	thomas.lendacky@amd.com, will@kernel.org, x86@kernel.org
+Subject: Re: [PATCH v8 17/17] Documentation: KHO: Add memblock bindings
+Message-ID: <20251211030006.GA9333@ranerica-svr.sc.intel.com>
+References: <20250509074635.3187114-1-changyuanl@google.com>
+ <20250509074635.3187114-18-changyuanl@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <a252e741-aab3-4fec-ae8f-38634d071d77@kernel.org>
-X-Virus-Scanned: ClamAV using ClamSMTP
+In-Reply-To: <20250509074635.3187114-18-changyuanl@google.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 
-On Thu, Dec 11, 2025 at 02:16:55AM +0100, Krzysztof Kozlowski wrote:
-> On 10/12/2025 07:31, Yanan Yang wrote:
-> > On Fri, Dec 05, 2025 at 09:21:55AM +0100, Krzysztof Kozlowski wrote:
-> >> On 05/12/2025 09:03, Yanan.Yang wrote:
-> >>> Add DT compatible string for NXP FRDM-IMX91S board
-> >>>
-> >>> The FRDM i.MX 91S development board is an low-cost and compact
-> >>> development board featuring the i.MX 91 applications processor.
-> >>>
-> >>> Signed-off-by: Yanan.Yang <yanan.yang@nxp.com>
-> >>
-> >> Are you sure your Latin name contains '.' character? Or you just copied
-> >> login?
-> >>
-> >>> ---
-> >>>  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
-> >>>  1 file changed, 1 insertion(+)
-> >>>
-> >>> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-> >>> index 68a2d5fecc43..82f28be401b8 100644
-> >>> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> >>> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> >>> @@ -1412,6 +1412,7 @@ properties:
-> >>>          items:
-> >>>            - enum:
-> >>>                - fsl,imx91-11x11-evk       # i.MX91 11x11 EVK Board
-> >>> +              - fsl,imx91-11x11-frdm-s    # FRDM-IMX91S Board
-> >>
-> >> Anyway, this was sent, or something almost the same.
-> >>
-> >> Align internally before posting duplicates or at least explain why this
-> >> is not a duplicate It is not the job of the community to coordinate how
-> >> NXP employees should work. Srsly, it's NXP's job.
-> >>
-> > Hi Krzysztof,
-> > Thank you for your review and for pointing this out.
-> > 
-> > This patch set is not a duplicate of the FRDM-IMX91 series. It introduces
-> > support for a new board: FRDM-IMX91S. While FRDM-IMX91S is similar to
-> > FRDM-IMX91, there are hardware differences that require a separate DTS:
-> > 
-> > - 512MB LPDDR4 (FRDM-IMX91 uses 1GB)
-> > - 256MB FlexSPI-NAND (FRDM-IMX91 uses 8GB eMMC)
-> > - Single GbE port (FRDM-IMX91 has dual GbE)
-> > - PMIC PF9453 (FRDM-IMX91 uses PCA9451A)
-> > 
-> > These differences were described in the cover letter and commit message,
-> > but I can make them more explicit if needed.
+On Fri, May 09, 2025 at 12:46:35AM -0700, Changyuan Lyu wrote:
+> From: "Mike Rapoport (Microsoft)" <rppt@kernel.org>
 > 
-> I cannot find anything about it in commit msg. Look, you wrote:
+> We introduced KHO into Linux: A framework that allows Linux to pass
+> metadata and memory across kexec from Linux to Linux. KHO reuses fdt
+> as file format and shares a lot of the same properties of firmware-to-
+> Linux boot formats: It needs a stable, documented ABI that allows for
+> forward and backward compatibility as well as versioning.
 > 
-> "Add DT compatible string for NXP FRDM-IMX91S board
+> As first user of KHO, we introduced memblock which can now preserve
+> memory ranges reserved with reserve_mem command line options contents
+> across kexec, so you can use the post-kexec kernel to read traces from
+> the pre-kexec kernel.
 > 
-> The FRDM i.MX 91S development board is an low-cost and compact
-> development board featuring the i.MX 91 applications processor."
+> This patch adds memblock schemas similar to "device" device tree ones to
+> a new kho bindings directory. This allows us to force contributors to
+> document the data that moves across KHO kexecs and catch breaking change
+> during review.
 > 
-> so where is it? About cover letter, I usually do not read them, some
-> maintainers skip entirely.
->
+> Co-developed-by: Alexander Graf <graf@amazon.com>
+> Signed-off-by: Alexander Graf <graf@amazon.com>
+> Signed-off-by: Mike Rapoport (Microsoft) <rppt@kernel.org>
+> Signed-off-by: Changyuan Lyu <changyuanl@google.com>
+> ---
+>  .../kho/bindings/memblock/memblock.yaml       | 39 ++++++++++++++++++
+>  .../kho/bindings/memblock/reserve-mem.yaml    | 40 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  3 files changed, 80 insertions(+)
+>  create mode 100644 Documentation/core-api/kho/bindings/memblock/memblock.yaml
+>  create mode 100644 Documentation/core-api/kho/bindings/memblock/reserve-mem.yaml
+> 
+> diff --git a/Documentation/core-api/kho/bindings/memblock/memblock.yaml b/Documentation/core-api/kho/bindings/memblock/memblock.yaml
+> new file mode 100644
+> index 0000000000000..d388c28eb91d1
+> --- /dev/null
+> +++ b/Documentation/core-api/kho/bindings/memblock/memblock.yaml
+> @@ -0,0 +1,39 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +title: Memblock reserved memory
+> +
+> +maintainers:
+> +  - Mike Rapoport <rppt@kernel.org>
+> +
+> +description: |
+> +  Memblock can serialize its current memory reservations created with
+> +  reserve_mem command line option across kexec through KHO.
+> +  The post-KHO kernel can then consume these reservations and they are
+> +  guaranteed to have the same physical address.
 
-Hi Krzysztof,
+Hi Changyuan, Mike,
 
-Thank you for the feedback. I’ve added the detailed description in the DTS
-patch. For the DT binding commit message, I’m planning to update it as below.
-Please let me know if this looks acceptable or if you have further suggestions:
+I am sorry I am late to this patchset. I am working on a patchset to use
+KHO to pass reserved memory regions to a driver after kexec and I have a
+few questions.
 
-The FRDM-IMX91S is a low-cost, compact development board based on the
-i.MX91 applications processor. It is a cost-optimized variant of the
-FRDM-IMX91 board, with notable hardware differences that require a
-separate DTS:
-- 512MB LPDDR4 (FRDM-IMX91 uses 1GB)
-- 256MB FlexSPI-NAND (FRDM-IMX91 uses 8GB eMMC)
-- Single GbE port (FRDM-IMX91 has dual GbE)
-- PMIC PF9453 (FRDM-IMX91 uses PCA9451A)
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - reserve-mem-v1
 
-Regards,
-Yanan
+Shouldn't this be "memblock-v1". IIUC, the compatible "reserve-mem-v1" is
+to be used for the memblock reserved memory regions, not the memblock node.
 
-> Best regards,
-> Krzysztof
+
+> +
+> +patternProperties:
+> +  "$[0-9a-f_]+^":
+
+Shouldn't this be "^[0-9a-f_]+$": ^ at the start of the pattern and $ at
+the end of it? Or is this a KHO-specific rule?
+
+Also, IIUC, this means that names of the nodes are hexadecimal numbers
+whereas the example below has a "membloc" name. I assume this does not
+refer to the subnode named "n1" as this does not follow the pattern
+either Moreover, it should have been documented in the reserve-mem binding.
+
+> +    $ref: reserve-mem.yaml#
+> +    description: reserved memory regions
+> +
+> +required:
+> +  - compatible
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    memblock {
+> +      compatible = "memblock-v1";
+> +      n1 {
+> +        compatible = "reserve-mem-v1";
+> +        start = <0xc06b 0x4000000>;
+> +        size = <0x04 0x00>;
+> +      };
+> +    };
+
+Thanks and BR,
+Ricardo
 
