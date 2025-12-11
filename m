@@ -1,79 +1,60 @@
-Return-Path: <devicetree+bounces-245963-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245964-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7BE0CB7188
-	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 20:58:05 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20600CB71D4
+	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 21:01:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D6982301C3F8
-	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 19:57:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B31EC3047475
+	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 19:57:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA8F631A554;
-	Thu, 11 Dec 2025 19:57:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 356CF31A553;
+	Thu, 11 Dec 2025 19:57:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="i7Qp0ceJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IJwriffR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7871D314D2B;
-	Thu, 11 Dec 2025 19:57:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE246313294;
+	Thu, 11 Dec 2025 19:57:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765483043; cv=none; b=FJk0H5w9/kYjo/X28QcblSR3eaFWXTVMmSULoHSH6DBm3mozmUQ5yEDZBcdUYwU6XgJ7QEs20pZcDG0XHDVQvO8QYoZKTaDx7IydAOfDVPgVGWxcKj7yoOHOmZKslaq5tfDFfS4Ksp38hQ0jvg8JNwFwNQLbZhH5VyIfJqcU2sE=
+	t=1765483062; cv=none; b=Jxw+b/jO465p29yZ/cnNLCb3k30wA8veDdR8kik9jUT41HdJO4JmBC2Svb2jcPcD9v9Es3C0oOXRWa2z7iMFH3faI8ZEJVR4PtbaCnfgwD9X736B2kBX4VAmfQgPPZys9L5RgN5FFTr+vk1qchB5u3iLpcCwN0YGVmQ31zulxfw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765483043; c=relaxed/simple;
-	bh=2zPUdaMCrtIj668myNZ+Nbc5FdMCx+hekduQa59mElQ=;
+	s=arc-20240116; t=1765483062; c=relaxed/simple;
+	bh=Io33r65MkdLUI5ebj+eMtKFDPiobvPbUbAdbp66gtmM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=E/gnStLQHLifrJsKcvxxhDy9LPfxubTHruLu0bG9MeXmoDbWij2onaS/eCy4k9BX85SB/xHWYQCX4FC5KF2eh5zh3TvJXvqnOEGWHNEoHt1ZYCAKeGWBr1jvs+IcuBWuYhPQf3GeO2sAMnvZoa5LDoiVzd8lBrd6EegD9kNlEAA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=i7Qp0ceJ; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=owhNvb4BmlJlqJlDYQvQvwlr0ivxIOfTUUdM9/4+rQM=; b=i7Qp0ceJdAJQniU1oAQZ2ziaWY
-	/9miFVeSUnvCNeDVJB/0egU/rrhzjvqhGrQZuLqhojFepglZJoBq+Ees43SbR60fuyLoqg/qPMqz5
-	+bih+o6neGABIFBASpxL67XtScpm0bEL+d9yrg2G0XpCt+CA/vVnxSY9omYavlfZbcc4=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1vTmmS-00GfyF-J7; Thu, 11 Dec 2025 20:56:52 +0100
-Date: Thu, 11 Dec 2025 20:56:52 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Ivan Vecera <ivecera@redhat.com>
-Cc: netdev@vger.kernel.org, Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=QsT2cIs+ibn0aZoj3XueGsg2Jkpq3Y5ZRijYu/osJDNNFErMfbFDaMUiXf2XO7eoSskhVR2M384Y/6lzx0Tx6qWeMv89HIFOnTcYCOYQqI4mGVvaeFGejtoE0SgV2kYpGgip8w9ThYwr/LKbSI7KG2IyF4dp+uhfO4BtC/DqQJo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IJwriffR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67D7EC4CEF7;
+	Thu, 11 Dec 2025 19:57:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1765483061;
+	bh=Io33r65MkdLUI5ebj+eMtKFDPiobvPbUbAdbp66gtmM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=IJwriffR9MxTEwDY8BFqGcfGKTyA9NAJZYyNkQxepc3ukZDkbmlLiKZnUuUg5BdpK
+	 +rDsFiU20ettgn8YFwTV59q0fKS8i7z9iiB6wl+9lzfRWDAY/Zuj4Y/Myg+zO3UmsY
+	 HS/D5dGWLaGcK0X3un+3iTS7eoW1xKKfXGc9h3rIp/GFfx7Q9KASCQ/D4K+bwv5BiT
+	 vvrB5Wstcdhi2i18vI+CBPhTlcSAulgmYvhh4QripX7dKRxdFeZpJJASdUAP+stp7E
+	 cwsxoA3FUK02G6cbNXED9jumWAIa3H3gqGjX6KJhTwSD3zJwvuwBIbP9LeRKtv0Ecx
+	 QUk3WGja0XMpA==
+Date: Thu, 11 Dec 2025 13:57:38 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: linux-hwmon@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Vadim Fedorenko <vadim.fedorenko@linux.dev>,
-	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
-	Grzegorz Nitka <grzegorz.nitka@intel.com>,
-	Jiri Pirko <jiri@resnulli.us>, Petr Oros <poros@redhat.com>,
-	Michal Schmidt <mschmidt@redhat.com>,
-	Prathosh Satish <Prathosh.Satish@microchip.com>,
-	Tony Nguyen <anthony.l.nguyen@intel.com>,
-	Przemek Kitszel <przemyslaw.kitszel@intel.com>,
-	Saeed Mahameed <saeedm@nvidia.com>,
-	Leon Romanovsky <leon@kernel.org>, Tariq Toukan <tariqt@nvidia.com>,
-	Mark Bloch <mbloch@nvidia.com>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Jonathan Lemon <jonathan.lemon@gmail.com>,
-	Simon Horman <horms@kernel.org>,
-	Alexander Lobakin <aleksander.lobakin@intel.com>,
-	Willem de Bruijn <willemb@google.com>,
-	Stefan Wahren <wahrenst@gmx.net>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, intel-wired-lan@lists.osuosl.org,
-	linux-rdma@vger.kernel.org
-Subject: Re: [PATCH RFC net-next 01/13] dt-bindings: net:
- ethernet-controller: Add DPLL pin properties
-Message-ID: <2de556f0-d7db-47f1-a59e-197f92f93d46@lunn.ch>
-References: <20251211194756.234043-1-ivecera@redhat.com>
- <20251211194756.234043-2-ivecera@redhat.com>
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	openbmc@lists.ozlabs.org, linux-mmc@vger.kernel.org,
+	Linus Walleij <linusw@kernel.org>, linux-gpio@vger.kernel.org,
+	linux-iio@vger.kernel.org, Joel Stanley <joel@jms.id.au>,
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+	linux-crypto@vger.kernel.org
+Subject: Re: [PATCH RFC 10/16] dt-bindings: crypto: Document aspeed,ahbc
+ property for Aspeed ACRY
+Message-ID: <176548305816.1801207.6301308659120970227.robh@kernel.org>
+References: <20251211-dev-dt-warnings-all-v1-0-21b18b9ada77@codeconstruct.com.au>
+ <20251211-dev-dt-warnings-all-v1-10-21b18b9ada77@codeconstruct.com.au>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,21 +63,20 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251211194756.234043-2-ivecera@redhat.com>
+In-Reply-To: <20251211-dev-dt-warnings-all-v1-10-21b18b9ada77@codeconstruct.com.au>
 
-On Thu, Dec 11, 2025 at 08:47:44PM +0100, Ivan Vecera wrote:
-> Ethernet controllers may be connected to DPLL (Digital Phase Locked Loop)
-> pins for frequency synchronization purposes, such as in Synchronous
-> Ethernet (SyncE) configurations.
+
+On Thu, 11 Dec 2025 17:45:52 +0900, Andrew Jeffery wrote:
+> The g6 DTSI already provides the property and the driver errors out if
+> the AHB controller's syscon can't be located, so define the property and
+> mark it as required.
 > 
-> Add 'dpll-pins' and 'dpll-pin-names' properties to the generic
-> ethernet-controller schema. This allows describing the physical
-> connections between the Ethernet controller and the DPLL subsystem pins
-> in the Device Tree, enabling drivers to request and manage these
-> resources.
+> Signed-off-by: Andrew Jeffery <andrew@codeconstruct.com.au>
+> ---
+>  Documentation/devicetree/bindings/crypto/aspeed,ast2600-acry.yaml | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
 
-Please include a .dts patch in the series which actually makes use of
-these new properties.
+Applied, thanks!
 
-	Andrew
 
