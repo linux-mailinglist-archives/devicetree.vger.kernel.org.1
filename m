@@ -1,155 +1,175 @@
-Return-Path: <devicetree+bounces-245796-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245798-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71E58CB567A
-	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 10:47:51 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 214EDCB5741
+	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 11:09:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 72D21300A29C
-	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 09:47:50 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 51F083015013
+	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 10:09:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E2B72FD7C7;
-	Thu, 11 Dec 2025 09:47:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3EE42FF17F;
+	Thu, 11 Dec 2025 10:09:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="RGSe8UYm"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="BF/QRY6A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADD7F2FD67B
-	for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 09:47:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C3F02FD7CD;
+	Thu, 11 Dec 2025 10:09:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765446469; cv=none; b=bFGqpxrVw0HMRxfEoelR+574F7aiPDsA6kJM3Bj7RepkM8p8zdGeLDEJSKGppku2KsXUZNB2bdnoqVO7Keg0SFzVXyXMc76f+oemBzOgfEcjwVjk/JL6YZr4nGCa1aGigom7W/yqpeCoHFp+Io/kQFb5P6KRdpFDN5Ms1WpIi40=
+	t=1765447790; cv=none; b=f77OJrxo49KQBuHWRk55ZS2Z+dDmZqCGCcct01FSbwS0NfTJXWQrpM0WXyY79GKwjSLpfAdXzprLrhltMdPyz0HVPixIs6YpVk2XBKz5JusLHy5DTozEkrzrsiLyqY3jC7sMYwPkta4BkHG1XvX5mB15Q9kceRtXx3HmlkqsqFM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765446469; c=relaxed/simple;
-	bh=5/cZhTyEaxs+cMBKt/g8jpzzvxLdV/3sXD7smW34P3Y=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
-	 References:In-Reply-To; b=nH9SB6ICW55KQYfYS3CFN06Dlh4ud8BoMunjyKWo281HmFbFBX38VRCHD9asWK7KIDgwYT3fe4KuDDjIHgh/SPAgSU5i3lnAqzIxVtb38SKHG2lXc2wXIRVv72IBZhKNAVyqGfmz6YHk5lFTKREvaO5ga7Q2D8BcqeJFBegut4A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=RGSe8UYm; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id F2656C19342;
-	Thu, 11 Dec 2025 09:47:20 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id F16AA6068C;
-	Thu, 11 Dec 2025 09:47:44 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 06BA9103C8C1E;
-	Thu, 11 Dec 2025 10:47:39 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1765446463; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=dEYtoHd6truLlW9dDvvW4TyZqvth1FwMIgnGkOwvmQk=;
-	b=RGSe8UYmgqic1d7gzrTAi6DwwYIydD58RU8J6fsmdoC5KlSEJclSPhwA9hemgK7p7TAyxb
-	hLGOsvfjj0bVM4vks4oO+w20GsZOAkXbMLifL0QCJxE1oGW36lyEa36v4grMx2+PRF63ir
-	inqrCx4Q+I9cc4QXro9EtuXKF14xvgVDPbE8BbAs4ykm46UbcLZCz0AIqjAdpU+rNGnW+5
-	0i4s2yiuKa/M8hfjtszF+uB89KxdDZiOmsrjUeeBMHPRyQWlww3fZvYT1Vhw7JTZII4k9P
-	ML/tOQlh2X31xmjvB2bAR79Ojdv3x4BY0ox3b2l+56gDER59bOhtr2R0Lf9a3Q==
+	s=arc-20240116; t=1765447790; c=relaxed/simple;
+	bh=c0HkASsaUyIb3J5VQNfNmptXMLLJ1RTF9olsq+Vy5kw=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=e4cn1+fmdN4xeYLh2iWorQWHQj7d40rn7CoFqiFhc9YUyAXStmVMfByTIH0obQ0//pvBvo9vvGESlzbY9bAyzm4TnIYiENy8P6jXPqN2QIP9ovJmqxGoQzhW4QYKP1emZAtardyIw+ihu5SA+bnIehR1Ciet9BFHk/kCXyyl2yo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=BF/QRY6A; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BB9ZQmK1054761;
+	Thu, 11 Dec 2025 10:09:42 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=iWnyfbxTVPkKeLEE7XBQor
+	6ONyFDohuekEjxqOB5Mtc=; b=BF/QRY6AoPgJ8nuglg5sb8wLNpuUqPTuSepfm8
+	+pDH0XGWNFB8Wjl4Ha7Z7Z6+yJWDhKI+Azt0QYfiX5c+GOfQcH4cjTFNocPpQ4Ra
+	8v/Inow14kk6mrTngkrbaIcgoiq6qkuZ3FaUa8wFoIFBNV1jd7Zws9OeIjvbPSEG
+	95yvnoGvKCj25JZNLQJv2dpjalEpt1L3pla2r++HAnUtf+6AnklW+D877+PEFbpT
+	vIDUMzL44PYocgnced87LzMRvRGAuXfXurljXWRI8w28BzmGK/FzoBngSGmm9d0M
+	g3c/MfkO9uyyLyl9brp5sniASVf7tJAn5fNPfrM28Mh/wVWw==
+Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4aygsx1yaj-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 11 Dec 2025 10:09:41 +0000 (GMT)
+Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+	by APBLRPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 5BBA9cAS013828;
+	Thu, 11 Dec 2025 10:09:38 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 4avdjnupnp-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 11 Dec 2025 10:09:38 +0000
+Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 5BBA9cpv013823;
+	Thu, 11 Dec 2025 10:09:38 GMT
+Received: from hu-devc-hyd-u22-c.qualcomm.com (hu-kpallavi-hyd.qualcomm.com [10.147.243.7])
+	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 5BBA9bVv013815
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 11 Dec 2025 10:09:38 +0000
+Received: by hu-devc-hyd-u22-c.qualcomm.com (Postfix, from userid 4720299)
+	id 7CB9E56A; Thu, 11 Dec 2025 15:39:36 +0530 (+0530)
+From: Kumari Pallavi <kumari.pallavi@oss.qualcomm.com>
+To: kpallavi@qti.qualcomm.com, srini@kernel.org, amahesh@qti.qualcomm.com,
+        arnd@arndb.de, gregkh@linuxfoundation.org, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: Kumari Pallavi <kumari.pallavi@oss.qualcomm.com>, quic_bkumar@quicinc.com,
+        ekansh.gupta@oss.qualcomm.com, linux-kernel@vger.kernel.org,
+        quic_chennak@quicinc.com, dri-devel@lists.freedesktop.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        jingyi.wang@oss.qualcomm.com, aiqun.yu@oss.qualcomm.com,
+        ktadakam@qti.qualcomm.com
+Subject: [PATCH v6 0/4] Add ADSP and CDSP support on Kaanapali SoC
+Date: Thu, 11 Dec 2025 15:39:29 +0530
+Message-Id: <20251211100933.1285093-1-kumari.pallavi@oss.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Date: Thu, 11 Dec 2025 10:47:39 +0100
-Message-Id: <DEVAJEYEL7SW.2F8RT465LAL5U@bootlin.com>
-Subject: Re: [PATCH 03/21] drm/tilcdc: Remove simulate_vesa_sync flag
-Cc: "Jyri Sarha" <jyri.sarha@iki.fi>, "Tomi Valkeinen"
- <tomi.valkeinen@ideasonboard.com>, "Maarten Lankhorst"
- <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
- "Thomas Zimmermann" <tzimmermann@suse.de>, "David Airlie"
- <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Rob Herring"
- <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, "Russell King" <linux@armlinux.org.uk>,
- "Bartosz Golaszewski" <brgl@bgdev.pl>, "Tony Lindgren" <tony@atomide.com>,
- "Andrzej Hajda" <andrzej.hajda@intel.com>, "Neil Armstrong"
- <neil.armstrong@linaro.org>, "Robert Foss" <rfoss@kernel.org>, "Laurent
- Pinchart" <Laurent.pinchart@ideasonboard.com>, "Jonas Karlman"
- <jonas@kwiboo.se>, "Jernej Skrabec" <jernej.skrabec@gmail.com>, "Markus
- Schneider-Pargmann" <msp@baylibre.com>, "Louis Chauvet"
- <louis.chauvet@bootlin.com>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>, "Miguel Gazquez"
- <miguel.gazquez@bootlin.com>, <dri-devel@lists.freedesktop.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-arm-kernel@lists.infradead.org>, <linux-omap@vger.kernel.org>
-To: "Kory Maincent" <kory.maincent@bootlin.com>
-From: "Luca Ceresoli" <luca.ceresoli@bootlin.com>
-X-Mailer: aerc 0.20.1
-References: <20251126-feature_tilcdc-v1-0-49b9ef2e3aa0@bootlin.com>
- <20251126-feature_tilcdc-v1-3-49b9ef2e3aa0@bootlin.com>
- <DEUQM2HNEOQU.3K4ZPL44GVZAJ@bootlin.com>
- <20251211104024.1e7d5c42@kmaincent-XPS-13-7390>
-In-Reply-To: <20251211104024.1e7d5c42@kmaincent-XPS-13-7390>
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Transfer-Encoding: 8bit
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: bKnkgQtWDnJ6Dzlk1aukj_hg_efkfsHy
+X-Authority-Analysis: v=2.4 cv=d974CBjE c=1 sm=1 tr=0 ts=693a9866 cx=c_pps
+ a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
+ a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=12PqH8mLdQwCrg6kZbUA:9 a=3ZKOabzyN94A:10
+ a=QEXdDO2ut3YA:10
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjExMDA3NyBTYWx0ZWRfX/yXLXC8swRMy
+ O+E+azwGnBga5iL/A2rmcIcO+EJUqWgjB9S1sfxb4JBYVthAp2k1kUFpYLgV38sPbrxm794V0mc
+ 4VkF2q5C3EVu3JHqh44x31dpdhVb6Bvj8T3T5kayYv8eAvwh4kw2aNqS4sB5nk8xKg8l2tbcZR9
+ Nrne2ijU8cp2vU6L1g3DHQTrSyU9K8hfbBcYZCSRHPE65+bxkH4wqwb2mFHFNSfmSZLAh37PWfR
+ NtKVxiv4ftaBJwYVo/4k48kNTVfws8bgyrcumIXxzwtRHW1GeDlQpgKOAjaTz3Y7SizP7+fBB+U
+ scJ+EAGb0jC8H5fZQEv9vqnTAmR1JA/C9w9wjjBVD/rThoBztJBP73MD+HkkMGU2DzA/uXyS0p7
+ sOkIihalAPwMYL4diOHLqTMhBxLGPg==
+X-Proofpoint-ORIG-GUID: bKnkgQtWDnJ6Dzlk1aukj_hg_efkfsHy
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-10_03,2025-12-09_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 bulkscore=0 impostorscore=0 spamscore=0 priorityscore=1501
+ adultscore=0 lowpriorityscore=0 malwarescore=0 clxscore=1015 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512110077
 
-On Thu Dec 11, 2025 at 10:40 AM CET, Kory Maincent wrote:
-> On Wed, 10 Dec 2025 19:10:45 +0100
-> "Luca Ceresoli" <luca.ceresoli@bootlin.com> wrote:
->
->> Hi K=C3=B6ry,
->>
->> On Wed Nov 26, 2025 at 6:35 PM CET, Kory Maincent (TI.com) wrote:
->> > The tilcdc hardware does not generate VESA-compliant sync signals. It
->> > aligns the vertical sync (VS) on the second edge of the horizontal syn=
-c
->> > (HS) instead of the first edge. To compensate for this hardware
->> > behavior, the driver applies a timing adjustment in mode_fixup().
->> >
->> > Previously, this adjustment was conditional based on the simulate_vesa=
-_sync
->> > flag, which was only set when using external encoders. This appears
->> > problematic because:
->> >
->> > 1. The timing adjustment seems needed for the hardware behavior regard=
-less
->> >    of whether an external encoder is used
->> > 2. The external encoder infrastructure is driver-specific and being
->> >    removed due to design issues
->> > 3. Boards using tilcdc without bridges (e.g., am335x-evm, am335x-evmsk=
-)
->> >    may not be getting the necessary timing adjustments
->> >
->> > Remove the simulate_vesa_sync flag and apply the VESA sync timing
->> > adjustment unconditionally, ensuring consistent behavior across all
->> > configurations. While it's unclear if the previous conditional behavio=
-r
->> > was causing actual issues, the unconditional adjustment better reflect=
-s
->> > the hardware's characteristics.
->> >
->> > Signed-off-by: Kory Maincent (TI.com) <kory.maincent@bootlin.com>
->> > ---
->> >
->> > Only few board currently use tilcdc not associated to a bridge like th=
-e
->> > am335x_evm or the am335x-evmsk.
->>
->> Have you tested this change on any affected board?
->>
->> The change looks good to me but without some testing it would be risky.
->
-> I have tested it on few boards but not these mainline devicetree as I don=
-'t
-> have them.
->
-> I have tested a tilcdc with tda998x bridge (BeagleBone Black), a tilcdc w=
-ith
-> ti,tilcdc,panel panel (BeagleBone with LCD cape), a tilcdc with it66121 b=
-ridge
-> (new Beagle Bone Green Eco board with HDMI cape).
-> That's all the boards I have.
+Introduces support for new DSP IOVA formatting and hardware-specific
+configuration required to enable ADSP and CDSP functionality on the
+Kaanapali SoC.
 
-OK, thanks for the info. For future iterations, I think it's useful to
-mention, for all patches that may potentially break existing hardware, such
-info on which hardware you have tested.
+Add support for a new IOVA formatting scheme by adding a sid_pos to the DSP
+driver. Sid_pos standardizes the placement of the stream ID (SID) within the
+physical address, which is required for DSPs to operate correctly on
+Kaanapali. DSP currently supports 32-bit IOVA (32-bit PA + 4-bit SID) for
+both Q6 and user DMA (uDMA) access.
+This is being upgraded to 34-bit PA + 4-bit SID due to a hardware revision
+in CDSP for Kaanapali SoC, which expands the DMA addressable range.
+To support CDSP operation, this series updates the DMA mask configuration
+to reflect the expanded DMA addressable range.
 
-Luca
+Patch [v5]:https://lore.kernel.org/all/20251202060628.1869967-1-kumari.pallavi@oss.qualcomm.com/
 
---
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Changes in v6:
+  - Update the commit messages and drop the unnecessary items from bindings
+  - Add the function fastrpc_compute_dma_addr as the wrapper for more readability
+  - Update the comments for better visiblity and use of GENMASK to avoids 
+    subtle precedence pitfalls
+  - Renamed the dma_addr_bits_extended to dma_addr_bits_cdsp to highlight 
+    maintainability
+
+Changes in v5:
+  - Update the commit message to clearly explain the background of the change
+  - Use the proper format specifier (%pad) for printing dma_addr_t instead of %llx
+  - Remove unnecessary NULL assignments where not required
+  - Rearrange code for proper alignment and style compliance
+
+Changes in v4:
+  - Resolve warnings reported by make dt_bindings_check
+  - Convert the data type of the dma_addr to dma_addr_t
+  - Replace the macro with an inline function for more readability
+  - Rename the cdsp_dma_bits to dma_addr_bits_extended and default_dma_bits
+    to the dma_addr_bits_default for more clarity
+
+Changes in v3:
+  - dt-bindings documentation update to support Kaanapali Soc
+  - update comments to ensure clarity
+  - Read SoC-specific data by matching the SoC’s .compatible field
+    in the driver’s of_device_id match table instead of root node
+  - Rename the dma_mask to the dma_bits for more clarity and set it's
+    value based on the dsp_default_dma_bits instead of hardcode to 32
+
+Changes in v2:
+  - Rename phys to dma_addr for clarity
+  - Remove iova_format, add soc_data with sid_pos in channel ctx
+  - Remove sid_pos and pa_bits from the session ctx
+
+Kumari Pallavi (4):
+  dt-bindings: misc: qcom,fastrpc: Add compatible for Kaanapali
+  misc: fastrpc: Rename phys to dma_addr for clarity
+  misc: fastrpc: Add support for new DSP IOVA formatting
+  misc: fastrpc: Update dma_bits for CDSP support on Kaanapali SoC
+
+ .../bindings/misc/qcom,fastrpc.yaml           |   7 +-
+ drivers/misc/fastrpc.c                        | 141 +++++++++++++-----
+ 2 files changed, 107 insertions(+), 41 deletions(-)
+
+-- 
+2.34.1
+
 
