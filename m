@@ -1,80 +1,79 @@
-Return-Path: <devicetree+bounces-245689-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245690-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A629CB4592
-	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 01:29:41 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82A71CB45A4
+	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 01:33:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id DB15930006F6
-	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 00:29:38 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id EE4B33000962
+	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 00:33:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36C8A214228;
-	Thu, 11 Dec 2025 00:29:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E44AF219319;
+	Thu, 11 Dec 2025 00:33:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="UhH4xqTJ"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="T8FMIFHq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
+Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E7731B87C0
-	for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 00:29:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72B811DFDB8
+	for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 00:33:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765412977; cv=none; b=EBK+zkEhPmxQN1v3u8dPiKwlUcFdsdMG6WNoX/FTxQ6QYBpfpfltozTAu8IPNMhlj3n7PUbu8azMP24EAndPQanThuVoPNUOoUS+PJdgarEByoF1xhgLaf3JZZYQmVEH/QGP1G1Z6GayxAtfKbwWsjeMRTY3/+ckeymVh83nAwk=
+	t=1765413228; cv=none; b=QZnul1qZOhWNcmWKW5hVQDXdOjneZ6TFsb1mEqOyB3Oc0cvKWwmZRWL/syDtPSN0gpg5K6sXlhn9lsanL21yzfX2kUdDFA3ZoyUD3nOqQsWADVcQ6mjvgY/UUJ6Qgf4eAFBfXSJpcp1m4V8hrRJOvUpNYmyNjOHSa5AzACYJjnw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765412977; c=relaxed/simple;
-	bh=miPtFXPjQNvxTz6ptrwfqOKKfUKaGCFr92LjoipOyMs=;
+	s=arc-20240116; t=1765413228; c=relaxed/simple;
+	bh=2JDmWBATpaUa6H2BcCIWxO0SvGynnnvWoeBMOOx9Drk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WyvcRsF3frtkzp6tDI2RGLlteFFUkyQeW7TgXzIovIknj4i5XQquk88kcUXxHg1Ue0dVKPs1h1/YJYrKjjDJ0hH3HQ5ZEa1oQ8o83Yb8VoWWUAIVA9C/ZvjkS7VMZjzTdjK7902GQYE9BY9W28YSGWg8ZXsDQsRlUadC+zISw9M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=UhH4xqTJ; arc=none smtp.client-ip=209.85.214.172
+	 In-Reply-To:Content-Type; b=MNrdF2G/oyvnJsybaq3He+B/8OweZZMtP7KZYrEdM6SDPJ51AeZ6otrSm8Vj6SZ8gyacp9UgWpInrAV2Se83DlUlNBv6+C9DGyEbXHfFTX2sHqUEKqgq7cEoz52QULQpIOH8K+/FUYhs69GtPVD5ernpqIb87JshX9Zmxd3MYPY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=T8FMIFHq; arc=none smtp.client-ip=209.85.210.182
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-297dc3e299bso4217725ad.1
-        for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 16:29:35 -0800 (PST)
+Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-7ade456b6abso303882b3a.3
+        for <devicetree@vger.kernel.org>; Wed, 10 Dec 2025 16:33:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1765412975; x=1766017775; darn=vger.kernel.org;
+        d=sifive.com; s=google; t=1765413227; x=1766018027; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:content-language:from
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=hph6c6mLrMrxrVM4J3elgrKqEusrkULz2AJc0PIUBG4=;
-        b=UhH4xqTJV7OnKLxaLGTHqPjOX7o83Kw1MFwnZ4ybCSn7mWbrWDS9tlL/B7htYglQl5
-         543aU/Y5vzywK8LdUoT6gTBMFlLtpGMe/xFt4xUNGOHD9qUd8zux6c5KhinYV7G4MbqN
-         wM/1EHcFgSr9ZdcEdzO/ave4EMngGXISW4Jk6/k/Blw0MDTNJqHjgazxEroXB8xATTJC
-         +YWTmw3iHdcKs3Fls6wiCroVsUdpOFn22ESwOpiFowDa1rijm8a+2Kw//zd1HDf8XQVE
-         8jYd0Yy5io/4zxoMqI1rf89yU5va4T789oM38lkd6Dccw/9YVOoQQwRIyrmyFHNoFETE
-         zxdg==
+        bh=3QrmlcsyPJfUCC0ZcW/aA6sfMqx5l+Z163FBQ6ysu4g=;
+        b=T8FMIFHqn/hM8JeS6uY3CfllpKUzV8BLY81iwqyoLQfzJG0jOkjPFvNABY4YTiS5B2
+         1m0uBmVoY9aImrqNl3xNsKyI5ooKpPc9HXmYy1oRUxFv57S6pLJr1PUDbN8GbMA6mLi/
+         FOekgp9AaRK5zUht6iCnFL42l1DQ7jA9N/r9ZYdEmNSmtY+HRHodivM2vqDBypY7PDte
+         cAhMhqtNSdYE/yjCg5hzgRDhQbVHtslJyBRpnbNZEp3i0V+cxIFPCEC7Ob9okdMauaWW
+         T2kkRdZwRFGRvJKUFMEux3rRvD/eSsunAT4S8NTwrS+ThZDhDUGpUZOL3vfcl3AjlBGl
+         1qXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765412975; x=1766017775;
+        d=1e100.net; s=20230601; t=1765413227; x=1766018027;
         h=content-transfer-encoding:in-reply-to:content-language:from
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=hph6c6mLrMrxrVM4J3elgrKqEusrkULz2AJc0PIUBG4=;
-        b=jGWb7J8SG95XHpxLnh5+p795Na3nGEu9okIM3VizrS9cmRiIoV0himvJrz36MO4nIS
-         CbZRMLbT1xfuJSAThXaC05klogTEl8a0roh7ymZ15nZ3fqnmjO3rETiP9m5lV+JTJSTI
-         sVJeDztNAl3dpKXe9oi4IVieH8FquEvknUpNpSqvDZ8smXBWR5VwXpfkx1WLndn60s+0
-         R3HMta6QWgzRmMXxjl+yqV/Fx1nWCk/1ce2D3VZAkJFsMLaJoqHRQqQ1smi0/Jve5fBw
-         aFt6TSxEBEC5R+82uMOxf8CSqij7lhNs7fHM4bHRznQD5vHj/PlcOTZlq5kuIA3RpOyM
-         sHzg==
-X-Gm-Message-State: AOJu0YwOg9jyrDbxM8phip3Le3OOx+C83SBkHfcg9zWYcSnyv62UbojG
-	QVmBo7uWMt1Wk0XGNBcAMnKzg9NwSgwxHlYZhmnTs3oJJIQ21TqZPbCmftlDVhMf+TfgMpF4cgd
-	dCpPe
-X-Gm-Gg: AY/fxX72vuBEZWfqSslar10IL7hh1MANgYkgK9xLHxG/U36jM2cbPXONyqzYNEHUpNN
-	hgmSGpuk7U7vFqTtAl9BEcxropbh1p0KGSEepfBULXQWSvKRR8hpLr3YEXvJbEzdVXTXhmNbRqI
-	/i3CQonfhFzi2GiOn/AmrMi7aMa7eXxsSm4ccaQYselNMmTM7qAepuA2nrjb7pF3iILKVTK3cw0
-	VnsX94sDmpZLLEcYrTog3KTjp/ovJRvr/ZpEPqyNUHAqfgbKBiFcU9sZ6U8wn3vSwQOxY/b396K
-	2RJDbVIVCoKU3AAikF70JCx8PJfdP56JF04Gv7IgSXd7Rk/NvFbQUo3O/S4U2Fwv/3Q/fuP0xSh
-	WPgr6YRz1Yt6H0jTMXBPfMvW0qJEEd0WGYDF6V1w9V/xoohJ1ElSYzSQnCRx3zys0tRPfMCHp5l
-	MmR2OUVhwBvYMenI5kIDe2J2pHTrVH6A==
-X-Google-Smtp-Source: AGHT+IEqajP6+u4eTxzUYHfF6PVb972s/3Qa3UlhPbS0/TAJuALl6ObT5PUNXanFEPyHtJ8XnDuE7g==
-X-Received: by 2002:a17:903:234c:b0:299:e041:ecf6 with SMTP id d9443c01a7336-29ec27ce2b4mr43176775ad.40.1765412974654;
-        Wed, 10 Dec 2025 16:29:34 -0800 (PST)
+        bh=3QrmlcsyPJfUCC0ZcW/aA6sfMqx5l+Z163FBQ6ysu4g=;
+        b=NIBKjppiTTj+W0ahEoqRzUT7adPtU2xs4Ez2ziks8S+VeDfIfE0FSQZuUeYP/voTqA
+         57PuHWb/nfQ8HBl2l9if6E4SrfJUvd4Ju+UPnrUd6jSwdY/ft+3AB8bPvjUxRxQ7eucl
+         SRCyKPyi6ml7XgWWOlYVdMdqLVglsJLGjiDjlz7BodT8HqyZWBbFIZZriW3WHQ4oSJRq
+         r6aUZbMrNESMNKo6lalZt4+xHi0Ki0wxGrrU2HeCAA87dWXO0OyQrZUhCnvgSZe8SaOh
+         uxKwx5Di0y6PBvdLw9LI9ingIF+YBIVkC+gpzM80KsGRhaznI+S293iEd6VyRDRJCcu3
+         CwCQ==
+X-Gm-Message-State: AOJu0YwvdAk/VBe9PJG6FZkLIeDBc4NBvls7ZR/9mZYfKzp/IJqjV5Dw
+	RWMztG3IaJ4m/TmP4gFpgIj7OGQaKx21zZDluWHgwf0JT4momWs7q2fsA6gJAQGyrrw=
+X-Gm-Gg: ASbGnct0ttmO4xWUj9yuxPQ59jkXhsSd4Zanrr9h9bRvDdAxhNbZHYWkaqqf/VPCjf8
+	6cmlfHeBr7Jij6fr5T0pKNDWiPBso4jsYXraKVRlXUbDcX3WAKajzbaB0qFuc/NmNO+tDChY0Kx
+	cZe2MU5HNWPSD0SMF2rsiKXplQ+5/E/EHk1sashlZKzrvhEfFFAlMXrwJcygfrrbUX4xJwcgrkY
+	NpFkaPre+b8sPUZDq3G30RehAvEVBLBz8I8tNwyT8OLYzU4ZR1Pv90HfLtXpM3SPFBW1rRzmnpi
+	9uqzWADTcFKdTfPkRfYyMJov3asARkdUqHrBvhHN4KDygNcdgxCPu83L7Drh1gQuzJ7lPAbC1fo
+	tM4V/ufdggKVapIkNE78bw3vhTEZypeeNm8BO9OcGeeN0LwlltImJ734X2oFV7+2ObW2SwqaMUk
+	jzYqdyYPXTNgUjfA==
+X-Google-Smtp-Source: AGHT+IGjk/exFuz2Gv/i6l6p36w76njH4yBjUre8KbL1otNzyBmhPQsg1E1fJ2rghGyT0+Ekep5ekQ==
+X-Received: by 2002:a05:6a20:a10a:b0:366:14b0:4b0e with SMTP id adf61e73a8af0-366e3acee69mr4438378637.74.1765413226713;
+        Wed, 10 Dec 2025 16:33:46 -0800 (PST)
 Received: from [100.64.0.1] ([167.103.29.104])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c0c2b8e0fb4sm539653a12.25.2025.12.10.16.29.29
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c0c25b7d59dsm580312a12.6.2025.12.10.16.33.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Dec 2025 16:29:34 -0800 (PST)
-Message-ID: <818ba76e-0553-459d-b956-520f23762034@sifive.com>
-Date: Thu, 11 Dec 2025 09:29:28 +0900
+        Wed, 10 Dec 2025 16:33:46 -0800 (PST)
+Message-ID: <af8fd275-a34d-4b2f-8834-9c85dab2bbae@sifive.com>
+Date: Thu, 11 Dec 2025 09:33:41 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,10 +81,10 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 07/22] checkpatch: Warn on page table access without
- accessors
+Subject: Re: [PATCH v3 08/22] mm: Allow page table accessors to be
+ non-idempotent
 To: "David Hildenbrand (Red Hat)" <david@kernel.org>,
- Joe Perches <joe@perches.com>, Palmer Dabbelt <palmer@dabbelt.com>,
+ Ryan Roberts <ryan.roberts@arm.com>, Palmer Dabbelt <palmer@dabbelt.com>,
  Paul Walmsley <pjw@kernel.org>, linux-riscv@lists.infradead.org,
  Andrew Morton <akpm@linux-foundation.org>, linux-mm@kvack.org
 Cc: devicetree@vger.kernel.org, Suren Baghdasaryan <surenb@google.com>,
@@ -95,77 +94,42 @@ Cc: devicetree@vger.kernel.org, Suren Baghdasaryan <surenb@google.com>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Alexandre Ghiti <alex@ghiti.fr>,
  Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh+dt@kernel.org>,
  Vlastimil Babka <vbabka@suse.cz>, "Liam R . Howlett"
- <Liam.Howlett@oracle.com>, Andy Whitcroft <apw@canonical.com>,
- Dwaipayan Ray <dwaipayanray1@gmail.com>,
- Lukas Bulwahn <lukas.bulwahn@gmail.com>
+ <Liam.Howlett@oracle.com>
 References: <20251113014656.2605447-1-samuel.holland@sifive.com>
- <20251113014656.2605447-8-samuel.holland@sifive.com>
- <1dfa1e3566cafbe43a1d4753defef9c82ddb3b64.camel@perches.com>
- <a6e7a571-91d2-4e66-bc86-ba30f624294b@sifive.com>
- <273b638e-8251-4faf-929a-87432a48abdc@kernel.org>
+ <20251113014656.2605447-9-samuel.holland@sifive.com>
+ <fbfef7fc-4030-462b-b514-498eea6620aa@arm.com>
+ <c2597d43-d909-4259-bb5b-9294e4069385@kernel.org>
 From: Samuel Holland <samuel.holland@sifive.com>
 Content-Language: en-US
-In-Reply-To: <273b638e-8251-4faf-929a-87432a48abdc@kernel.org>
+In-Reply-To: <c2597d43-d909-4259-bb5b-9294e4069385@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 2025-11-14 4:17 AM, David Hildenbrand (Red Hat) wrote:
-> On 13.11.25 03:36, Samuel Holland wrote:
->> On 2025-11-12 8:21 PM, Joe Perches wrote:
->>> On Wed, 2025-11-12 at 17:45 -0800, Samuel Holland wrote:
->>>> Architectures may have special rules for accessing the hardware page
->>>> tables (for example, atomicity/ordering requirements), so the generic MM
->>>> code provides the pXXp_get() and set_pXX() hooks for architectures to
->>>> implement. These accessor functions are often omitted where a raw
->>>> pointer dereference is believed to be safe (i.e. race-free). However,
->>>> RISC-V needs to use these hooks to rewrite the page table values at
->>>> read/write time on some platforms. A raw pointer dereference will no
->>>> longer produce the correct value on those platforms, so the generic code
->>>> must always use the accessor functions.
->>> []
->>>> diff --git a/scripts/checkpatch.pl b/scripts/checkpatch.pl
->>> []
->>>> @@ -7721,6 +7721,13 @@ sub process {
->>>>                   ERROR("MISSING_SENTINEL", "missing sentinel in ID
->>>> array\n" . "$here\n$stat\n");
->>>>               }
->>>>           }
->>>> +
->>>> +# check for raw dereferences of hardware page table pointers
->>>> +        if ($realfile !~ m@^arch/@ &&
->>>> +            $line =~ /(?<!pte_t |p[mu4g]d_t |izeof\()\*\(?(vmf(\.|->))?
->>>> (pte|p[mu4g]d)p?\b/) {
->>>> +            WARN("PAGE_TABLE_ACCESSORS",
->>>> +                 "Use $3p_get()/set_$3() instead of dereferencing page
->>>> table pointers\n" . $herecurr);
->>>> +        }
->>>>       }
+On 2025-11-28 2:47 AM, David Hildenbrand (Red Hat) wrote:
+> On 11/27/25 17:57, Ryan Roberts wrote:
+>> On 13/11/2025 01:45, Samuel Holland wrote:
+>>> Currently, some functions such as pte_offset_map() are passed both
+>>> pointers to hardware page tables, and pointers to previously-read PMD
+>>> entries on the stack. To ensure correctness in the first case, these
+>>> functions must use the page table accessor function (pmdp_get()) to
+>>> dereference the supplied pointer. However, this means pmdp_get() is
+>>> called twice in the second case. This double call must be avoided if
+>>> pmdp_get() applies some non-idempotent transformation to the value.
 >>>
->>> Seems like a lot of matches
->>>
->>> $ git grep -P '(?<!pte_t |p[mu4g]d_t |izeof\()\*\(?(vmf(\.|->))?(pte|
->>> p[mu4g]d)p?\b' | \
->>>    grep -v '^arch/' | wc -l
->>> 766
+>>> Avoid the double transformation by calling set_pmd() on the stack
+>>> variables where necessary to keep set_pmd()/pmdp_get() calls balanced.
+>>
+>> I don't think this is a good solution.
 > 
-> That is indeed concerning.
+> Agreed,
 > 
-> I recall that we discussed an alternative approach with Ryan in the past: I
-> don't remember all the details, but essentially it was about using separate
-> types, such that dereferencing would not get you the type the other functions
-> would be expecting. Such that the compiler will bark when you try to dereference.
-
-Even if some functions a new incompatible pointer type, don't we still have the
-problem that neither type would be safe to dereference?
-
-A similar option to a new type would be to add a sparse annotation to the
-pointers that reference hardware page tables, similar to __user. I have
-prototyped a coccinelle script to add this annotation, and the sparse checking
-works. But I don't have the coccinelle expertise to automate the whole thing, so
-there's a lot of manual cleanup required. And this requires touching all
-architectures at once to avoid introducing erroneous sparse warnings. So I did
-not include this for v3 because it is quite a lot of churn. Is this something I
-should try to fully implement for v4?
+>     set_pmd(&pmd, pmd);
+> 
+> is rather horrible.
+I agree that this patch is ugly. The only way I see to avoid code like this is
+to refactor (or duplicate) the functions so no function takes pointers to both
+hardware page tables and on-stack page table entries. Is that sort of
+refactoring the right direction to go for v4?
 
 Regards,
 Samuel
