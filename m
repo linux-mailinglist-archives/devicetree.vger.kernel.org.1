@@ -1,157 +1,149 @@
-Return-Path: <devicetree+bounces-245832-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245829-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2C2ECB5B7B
-	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 12:55:52 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79E2FCB5AC5
+	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 12:42:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0AE7630329EA
-	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 11:54:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4EB62300F886
+	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 11:42:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C6F930DD0C;
-	Thu, 11 Dec 2025 11:54:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C55612DA743;
+	Thu, 11 Dec 2025 11:42:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AUiEWFPh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED52530DD08
-	for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 11:54:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F59B23D7CA
+	for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 11:42:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765454048; cv=none; b=ijBvRdpLm8klxVWS6gEH6RPIY9HOsHltqZJnh8MXfFEE/b/6swMo90CfsVEYBncwk2zgquZLTx5eKTkEEpYXzIdCgXIdPMFDVJr+q/7YQd2W5UIsnKb08WB9N8kQPAYfA2vCoXncAtQSpeVUIgjSZwthwAvV2bUC54I3N1/VIj8=
+	t=1765453346; cv=none; b=Et/rrYjR3CAKIwoqlpn0m5S1hGGirC/2nAynptqHxMbgTCQ+FzuYTWYqldKx6lEHt+Kvd+/VQeLvU27KP8JYmmHidJJAXlW2h1M2c0zkHZjnLJ3kTYVTqybpwGvMfaWKIvUJE6C+8z5YqMMLLImYApiIvEaNkj595qia08qPs/8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765454048; c=relaxed/simple;
-	bh=eLq21bKcCebUUqlnNblEmCeRwjgKogVGDfli81WskRc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YgE8DgWLYpH0ApQNZDHmPUJYAK+85F3v3dkuK/Yfrq0gB3618JDrIE03+9YvzyPXN3xOAFtb26iauPnX0RqLyKtKNJdvN3cgmlXFkqiZD1lpMIOeq7RNA5DGDzcTLEqmlXi2PBvhlYA3RUqeC0fffeEd6hpBt57l+YMGgnCSRDY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1vTezO-0001Dd-Kv; Thu, 11 Dec 2025 12:37:42 +0100
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1vTezO-0057WA-0u;
-	Thu, 11 Dec 2025 12:37:42 +0100
-Received: from pengutronix.de (p54b152ce.dip0.t-ipconnect.de [84.177.82.206])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id 03D3D4B4844;
-	Thu, 11 Dec 2025 11:37:41 +0000 (UTC)
-Date: Thu, 11 Dec 2025 12:37:41 +0100
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Arun Muthusamy <arun.muthusamy@gaisler.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	mailhol@kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-can@vger.kernel.org, Daniel Hellstrom <daniel@gaisler.com>
-Subject: Re: [PATCH 08/10] can: grcan: Add saving and restoring of CAN FD
- baud-rate registers
-Message-ID: <20251211-saffron-ara-of-weather-e83dda-mkl@pengutronix.de>
-References: <20251118092115.3455-1-arun.muthusamy@gaisler.com>
- <20251118092115.3455-9-arun.muthusamy@gaisler.com>
- <20251121-daft-vigorous-leech-7719b8-mkl@pengutronix.de>
- <7b5a723711c7a3045e68246effd806b0@gaisler.com>
+	s=arc-20240116; t=1765453346; c=relaxed/simple;
+	bh=X4W6VdSJMZDWzU5q7/taH9//HBgenfsjSIz1HlAy/OQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=UeTLZII+nje/v3HVGMH33ZRhpOshFdQ448VCneEJdrk6ZNwdwY12JTOvh7mux5ttwgCO+SVKr1jguFAduEOBQjmKoiRCXRWj8PPdmrdxItj5I3dyhUe7BRdiMb8yEA2B8HpyX2YIWR1LpxQdjIhVkFKu6zFaEPdxSHMBdZDd5Dk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=AUiEWFPh; arc=none smtp.client-ip=209.85.128.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-78c27dfd1c3so7398417b3.1
+        for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 03:42:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1765453343; x=1766058143; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=9IFdfWdLJAyjd1BcVLsmGOyCGVUW8Zr+SeuVuiATEpo=;
+        b=AUiEWFPhpgIp32G0GaHPKgJ3ZtQBBe1SSh2CjTC/5OhzyuVCC4yorQ0qbFmcmsuM4y
+         PHXXjAxWmZaHel7DUgERW9iImMNXc9Wrh6ju04kBlead8GDNaNkBRzmYaF2s+Nws/frs
+         8wLQ9O/DD4Sosd0T9nIqFxap/o/mBPRMLyZOh4jPtDaMzNHE00Q2RIoptjy50i4oMgLb
+         X5YFtxpoqzsIDeQenNPi4YnVWvrXWB8b43yyRGSszY1V+2ekuifPpQBy5ziQJKEjPuMp
+         fZGGfRHI1ZEbGleDgTGv9pHCvKVPdhHCopL2VYs4gZ164SOiDfaQjNFDgkFjdMTTmtZX
+         MF8w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765453343; x=1766058143;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9IFdfWdLJAyjd1BcVLsmGOyCGVUW8Zr+SeuVuiATEpo=;
+        b=OyfcBhJROzL2v2VSBvjK0Nhj77eBHq40/CdUQg47GFKIY08GbuGVgNvOjPyJn6h355
+         6+ktVso8fC5S0JVBC73ntOl/kagsSNaJ4RqO3BAFzfGbYCxRxX/9kAHY/yzDosh7J1mU
+         nlN1eNdPl4gYPwX1m/kZ5eKDDtSaPN3IeaSbmEXoLJoGoDtVEU3ZoJQFo0tLrnAaMUHl
+         J7xa+gdfLzW1XLVhdnXmqUAm2en8vHVUf6g+MzpT0a6oKQBVFrEXpJTRsAXVdLYQANSb
+         JojLfPrD/alpAvYX1MoJcnIQ6szTp5DVWwGbiufVED/J3N5Icp+AZfL/VYqYQJGTnaPp
+         6TAw==
+X-Forwarded-Encrypted: i=1; AJvYcCVDTK1JG+UtM7S/OFUE43X7O5vL10OrnjT5PliSb3/a2Yz8ROSyoVmnlbLhaWGRmsGED68xoPDVxBCv@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw2oeJ+XOdop8FwwlRtRal5P3XYa3VbJwLPMsTBZ5m5cH9LpQOV
+	6alTjpZTWbRCM0gHRlTUcpp1ro7MHJkpCMmu/LJEv5DTVSOQl7LPSu2rE7oOQTf6oYUKePJgKQZ
+	pW0MhJEAAkHa0ZIgAHqHgX87vxjQ6gYDC9sCvxUqyNQ==
+X-Gm-Gg: AY/fxX6OMw3ajkGQp6YNAATkdS0Io0LTjg8BAoN3+vovKVuHDVWPubWrf0DcAr9V4jp
+	t5Xflfzt8Oqbn9O/i4Wo1LKn+glW0+yWuacMtn3iHFoTqXgAS8cOndNeo95mBx3GwXiXCVdQ8jA
+	eWooY3exm/xLVOtJTEorlgY1h9iwFiu4yIl3CPsNYk7NH+Mv7HzOwPOM/ROMT79rF4d/zoPfzkE
+	AOh8clpucI8ZB1KuA5KlRcfy9peGP+UPe/rKcokkvRytHPHHJZNGv7KsssM91sUswuXR/Be
+X-Google-Smtp-Source: AGHT+IEoYIRkikxEWVC+siA1pF45o1MKKPPvk1VzFP0SFtR3L38NqSQi2qStQv6qtu1IQS3nOgNj9UtKBKUj4gYRHDE=
+X-Received: by 2002:a05:690c:23c2:b0:78c:68f3:1abf with SMTP id
+ 00721157ae682-78ca640dd42mr51225907b3.66.1765453343352; Thu, 11 Dec 2025
+ 03:42:23 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="4lqhpjyi5upb6rww"
-Content-Disposition: inline
-In-Reply-To: <7b5a723711c7a3045e68246effd806b0@gaisler.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20251211-rework-rpmhpd-rpmpd-v2-0-a5ec4028129f@oss.qualcomm.com>
+In-Reply-To: <20251211-rework-rpmhpd-rpmpd-v2-0-a5ec4028129f@oss.qualcomm.com>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Thu, 11 Dec 2025 12:41:47 +0100
+X-Gm-Features: AQt7F2qfbZ_yXjZRaxadymjtJdZWFf0EdSmG6EOOmg6lb1RRoJS4liOjZFEQ6Q4
+Message-ID: <CAPDyKFpCZyseq2XiQLfL+zHWjYZpS-4Wo56=W5AkBpdhajJxrQ@mail.gmail.com>
+Subject: Re: [PATCH v2 0/3] pmdomain: qcom: sort out RPM power domain indices
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+	Bjorn Andersson <andersson@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+
+On Thu, 11 Dec 2025 at 02:52, Dmitry Baryshkov
+<dmitry.baryshkov@oss.qualcomm.com> wrote:
+>
+> - Switch platforms to using bindings for RPM power domains controller
+>   where compatible
+>
+> - Drop now-unused binding indices for RPM platforms.
+>
+> Two last patch depend on first two patches and either should be merged
+> through the same tee, should be merged with the help of the immutable
+> branch or just merged in the next release.
+
+As soon as a couple of related changes [1] that are taken care of by
+Bjorn, has reached an 6.19-rc[n], I can pick the complete series and
+share it via an immutable branch. Let me know if you prefer another
+route.
+
+Kind regards
+Uffe
+
+[1]
+https://lore.kernel.org/all/176499396490.224243.15580177530806530343.b4-ty@kernel.org/
 
 
---4lqhpjyi5upb6rww
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 08/10] can: grcan: Add saving and restoring of CAN FD
- baud-rate registers
-MIME-Version: 1.0
 
-On 11.12.2025 10:13:15, Arun Muthusamy wrote:
-> From the design point of view, I prefer to retain the "do_set_bittiming"
-> callback to maintain flexibility in adjusting baud rates by the framework.
-
-If you don't implement the do_set_bittiming callback you don't loose any
-flexibility.
-
-> Since CAN and CANFD configurations differ as they use different registers
-> for timing configuration and Specifically, the timing configuration is
-> closely tied to the reset logic only in scenarios where the baud rate for
-> CANFD is stored in a register. This differentiation is not applicable to =
-CAN
-> timing configuration, as CAN and CANFD are handled differently.
-
-=46rom my point of view not implementing the do_set_bittiming makes it
-easier from the driver's perspective.
-
-Now
----
-
-If the interface is down do_set_bittiming may be called at any time.
-
-Consider a scenario where the device and driver support deep sleep,
-power down clocks/voltages etc. .... In the do_set_bittiming callback,
-you must switch on the device, write the bit timing information and
-switch the device off again. Some devices lose their configuration
-when they are switched off. It therefore makes no sense to implement
-this callback on these devices.
-
-
-What I propose
---------------
-
-Do not implement do_set_bittiming.
-
-If the interface is down the user can configure the bit timing. The
-information is stored as usual in priv->can.bittiming,
-priv->can.data_bittiming.
-
-If the user brings up the interface the open callback is executed. In
-this callback you power on the device, do a reset and then call
-grcan_set_bittiming() explicitly. You don't have to take care to
-preserve the timing register information around the reset.
-
-
-Does this make sense?
-
-regards,
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---4lqhpjyi5upb6rww
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEn/sM2K9nqF/8FWzzDHRl3/mQkZwFAmk6rQIACgkQDHRl3/mQ
-kZwdKAf/csNWDP/PGSe+qMNFf04a8576lPg3nn8+/yALuPQzB/rOoIxRZok+kGcg
-2d9GO4bwQ8dzNdOL0WrBlOpH1OR8Ihfplcr17JhvLNvGJSg0wtBka5Qhq1+DUwYn
-kwfDaVb7KQKPvJef1zXfFk89rnM+l72b99EBAjLI4362Sj+ULCblsW0TLrdPcQJp
-MI4Np3JI1SsdNQN1Cqi16zivQsW9OU4v9BhQttBqL+BcCkOvMsVXCZgrk05c5/Qy
-vpLG6S0ArDgM3qjd77hbBZyRUtxN0oJVWyLklpuJQrD9bLOotVFTOY3d+dMT9lwA
-0t5sCz4fn685XXWhGXHvIqLbqNqcYw==
-=SGmm
------END PGP SIGNATURE-----
-
---4lqhpjyi5upb6rww--
+>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> ---
+> Changes in v2:
+> - Rebased on linux-next, dropping merged patches.
+> - Split RPMh bindings patch to separate series.
+> - Link to v1: https://lore.kernel.org/r/20250718-rework-rpmhpd-rpmpd-v1-0-eedca108e540@oss.qualcomm.com
+>
+> ---
+> Dmitry Baryshkov (3):
+>       arm64: dts: qcom: dts: switch to RPMPD_* indices
+>       ARM: dts: qcom: dts: switch to RPMPD_* indices
+>       dt-bindings: power: qcom-rpmpd: drop compatibility defines
+>
+>  arch/arm/boot/dts/qcom/qcom-msm8226.dtsi |  4 +-
+>  arch/arm64/boot/dts/qcom/msm8916.dtsi    |  8 +--
+>  arch/arm64/boot/dts/qcom/msm8917.dtsi    | 10 ++--
+>  arch/arm64/boot/dts/qcom/msm8937.dtsi    | 12 ++---
+>  arch/arm64/boot/dts/qcom/msm8976.dtsi    |  4 +-
+>  arch/arm64/boot/dts/qcom/msm8998.dtsi    | 16 +++---
+>  arch/arm64/boot/dts/qcom/sdm630.dtsi     | 16 +++---
+>  arch/arm64/boot/dts/qcom/sdm660.dtsi     |  2 +-
+>  arch/arm64/boot/dts/qcom/sm6125.dtsi     | 12 ++---
+>  include/dt-bindings/power/qcom-rpmpd.h   | 88 --------------------------------
+>  10 files changed, 42 insertions(+), 130 deletions(-)
+> ---
+> base-commit: 008d3547aae5bc86fac3eda317489169c3fda112
+> change-id: 20250717-rework-rpmhpd-rpmpd-13352a10cbd5
+>
+> Best regards,
+> --
+> With best wishes
+> Dmitry
+>
 
