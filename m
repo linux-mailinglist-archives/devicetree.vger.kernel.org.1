@@ -1,99 +1,102 @@
-Return-Path: <devicetree+bounces-245787-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245788-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A6C8CB54E1
-	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 10:06:33 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52200CB549C
+	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 10:03:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 663A0301A73C
-	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 09:02:56 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 4A292300CAED
+	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 09:03:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95C3E2F5A09;
-	Thu, 11 Dec 2025 09:02:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2707A2F5A32;
+	Thu, 11 Dec 2025 09:02:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="NOSEQvtX";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="K6DGCbd3"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="fDsnWTD1";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="fsH5ypwb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6660E2BCF46
-	for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 09:02:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F5C92F6169
+	for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 09:02:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765443774; cv=none; b=J8RBawCR3grng6/nRJeyXVKYH8FZEonAQFdBp6aj5yGWohlRPd2iFlkQowVGfxWk2UPimJXQAlgdwSnoZeylQOQMevyV3IEdAVGTQQ2EOZ3rBU3djEdKJrJxuS80bpATFMbaWh3D8XxqMD56ZfdIEvFButvbKSMr8Fb8NK1KX7c=
+	t=1765443778; cv=none; b=GXCQQR0qwEHAVWhHcsjuXOFDBQlBF3nKWse7kwheyFvXOIDPqkobbLTnU19zEHRxidPKaTEhQcRamFiJt1jm5S/M24Ib58FSPKMp5tGMPcFir9di+hPcrJKOjVf18IGnm6SvXpSMy4W++EfFG4oALyTpTF+vlV5DhxtoTl5hsxc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765443774; c=relaxed/simple;
-	bh=QUa3DEZcMWBiNcmvpB2lseRak8nUOh0xeBJQMi2ZJhk=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=sOwWATHm4BDB99XtMkHw1C3+9XVuVC3iPZPmPFteXnGdyWfAb2xjoOmdrOGvanT27qwlPNSMoXr5sf3HNNg/GqBxRvw/VDqhlCKQTqg42WGsWt2lWL2tP4Eoacs8Ke7H0eXK76y+j2SC2GW0X/nmYF5wnkaUhB+ixQMA7RxU9Zc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=NOSEQvtX; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=K6DGCbd3; arc=none smtp.client-ip=205.220.180.131
+	s=arc-20240116; t=1765443778; c=relaxed/simple;
+	bh=qxAW6oQscBMfQtm8NdQP+0QHSpF2gOPIWMormT9TEBg=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=Y9AIsTkrR98msuFKdag4UhDQH6BgYkNhJQmMSo03/AU+OGDtOUrO46/pDGvE09tyEqrEmKWYmCQcOQ786YDre0XCjDSLz8hv5WTcP15HhVkaSBAB126zUkhVsb9nmyAahXo50YSLmntkPlt8X8STfVohyDvaRHLpD+tNF8KTGO8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=fDsnWTD1; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=fsH5ypwb; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BB8gTDj1352084
-	for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 09:02:51 GMT
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BB8gV4d1528628
+	for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 09:02:55 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=F58wD7iZDQFljT0FOPoy97
-	8P+NtpnD2MVmAR+CtsprI=; b=NOSEQvtXGD/LWi1Oeag7Wu7l+kWC7ViqVEVyWq
-	vgNS8WjXQs5JdJCOiSEC1tImIio1qpdSnz+ao3D8tC9q6hVlyAvijwBT05cfkU5b
-	SyN9K6YXzPRyJ+E4swgpxwrEEtHylOFKYuLaRdHAj4k7M99k/cOhlh8krKe1pDcZ
-	A3PEydvKanlNaWO1pQCmo9SV1t2Zwpnfs1NLEpP36D0/OoiWpi+B0JRyvmR4NhDm
-	azlZU307oXMjYyk59MfG2TgceBrpkJoQgwWEzWoZ6y8AdpqeYBvhkbLuYSL7ayi+
-	LuF2F/pL3PsbXNGoH6X7UbiZLsjWb7/BBr/HUIDHPyDQ73ng==
-Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4aybhpawhd-1
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	BHAYZYgCEBJomFxYYuNuHzjFxbu3btZJSkUa3sxsEBU=; b=fDsnWTD1Frjf3lHh
+	Yks7nm0H/HVKjVGvYeIO+snnf/t+Y0kLrrNv5OuHLu9nXSqqCHacPhoztxKAb5M8
+	E6zlzxL6oskKP+vJZGH+3eOlElju/zW5Xho+tH2Y2bkr+685rrDAp4J7eNJ9gUjF
+	16FINyzZZvRpGH1tXqkFH++OPa1egifzQhsdCVNrlMw4HOCT5YOSsLAhuN+h0uA7
+	wEC4aveIRFw1tHHX5y2DN2XmHBS0twljUrx/H0dtcK4eQV6g8jpXypxRh9zqTABZ
+	7riX8Jup3AfpQicWsW3CSioaZ/3yDk5dUvQw9N9+iZwSLMkCga0ec2/Qi+8i+lxf
+	/s6tdQ==
+Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com [209.85.216.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ayt70858r-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 09:02:51 +0000 (GMT)
-Received: by mail-pj1-f72.google.com with SMTP id 98e67ed59e1d1-34188ba5990so2010308a91.0
-        for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 01:02:51 -0800 (PST)
+	for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 09:02:54 +0000 (GMT)
+Received: by mail-pj1-f70.google.com with SMTP id 98e67ed59e1d1-343daf0f38aso963792a91.3
+        for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 01:02:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1765443770; x=1766048570; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=F58wD7iZDQFljT0FOPoy978P+NtpnD2MVmAR+CtsprI=;
-        b=K6DGCbd3/ANAt96rlppzP9JIeM5mFpYJy9EfDkufCwT1j0mrT3/LKLLJCUpFWtmYNQ
-         C1b004VupSylkU+kmON+gLEQEysXoUSr5x6bSUkJqLS7i/h/m7Y1OBorHwuzNLtbmFEb
-         4EDa35K26aHYWPbEjR3S5dHquVHxFyOcfPYYfmCK7slnAiJQ/x6zAZuSSCtjY63VAp8f
-         AUEoKX7xG30VhUlG7RoOwvEcFmnPvoNG5SdldllXza6Wk9xrcBV04hC99PiQRBkazur9
-         1KEWMmdAPS/l1lARUYXKtmRB9COgJfjOCZfliVkA6Ec9RHV5i4Rc4wviTuynOiYeTWZD
-         C9VQ==
+        d=oss.qualcomm.com; s=google; t=1765443774; x=1766048574; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BHAYZYgCEBJomFxYYuNuHzjFxbu3btZJSkUa3sxsEBU=;
+        b=fsH5ypwbfG/WEV8EWaXnBGYWV8f61wXCKa2QQNgZYPkWINxmoc2bFwfiLCSR9G+7Yj
+         rTgiFUYo1+uVZQXTcJBf340/9QqS6FeU51loRYDgU7ySeUk5TULzlNYL+z/Rf75ZGcQo
+         mhBd38IOgGmwTbFVAdwBdxOWL//4WZBMbumRveoapdq/ZvzRso9unGKFrj+yW3bI9gKX
+         v/p1O3JvTo3wBpBapRSwZ+/b2XfpgdwNtBqr5CcAvsnBu3lTYCCwrRFt8vms+Y1BIlrw
+         M+xTDgIhhebe9njFQbAxCg0RTk6hP6dPATlgtMQ6DnbKSjRD0VePPDENjS9j/QC/gTpI
+         OJhA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765443770; x=1766048570;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=F58wD7iZDQFljT0FOPoy978P+NtpnD2MVmAR+CtsprI=;
-        b=FkMsSpKV8HvG7oobec8eLM5q7gzhEbEkCNX5/Gyoi0xwKYT2eTgAcTbYNRA2D1bOxt
-         GN8TPs03YuExzfJNBCNBzMSxw8MPt4hLmRZv7GUUPoWknx5hVjVoMQjybGPUR9ryJawR
-         YajlSMHBu4ZF+T/bdTPhrH37d16jpeK6XQJmhgO8mJssVLsVlFnlWY88ZRgL6zZHu06s
-         rrfuT7xz/dKHHbi44PqwE6GmeYAI2oHIZDSumn2SWPCbVoE+ALl6Suckx9uGc1Dry6Qc
-         OGMNACQF+gX2XZn9ngI33t+PJCo6u/6KUezQzfBKZ2yoFIGMWU1bbkTns9Frov7ISYUC
-         1Cdw==
-X-Forwarded-Encrypted: i=1; AJvYcCXsRfN12Y/muL86qBSsnxL/qKAFKl9IifjQ5Ks43facMTVkiKRkzdoNhxF/aNptxkjVIC0Rd4X6IBmn@vger.kernel.org
-X-Gm-Message-State: AOJu0YwZ4LIHvd9sU4AMXRadr5kRiGf4Xc5Tv1FC4ObKtaiSIvlgGTWz
-	jlftYjrpyufzvcgl1V0/eFjbmnpK3DTLGzOiqdWNJHgsV0gYL85Y3n8j1rdRpn7ey4VZwNFDaP7
-	TIroMFXJkZTvn+3J0q0nQsWafdTjdsLLP92ZRT4EuZuyeb9HXr5EHphhUpT+v9voB
-X-Gm-Gg: AY/fxX6VfrWj03EXZCzETYDIctKGGJBSBR1BSb7Pvan38zdzJxVzdPzsE9V/cf2ae2a
-	NinobnqdYpVC9SygqgeeUMIDRqr3iV5QaiRgsHZm+og7d70MLTz4d2xThLPCXfmKQATPqqrc2Xu
-	AqlsVevXaLtUw3/dUTnkihICJkWv8eIx535lGS401tS0TQpftcX3DdZ7YvJhOWHyl59bffncd5Z
-	6E+RfobeocFmv6pHpj6jCsmpsdy0btGb1ThJ0qWGrFiC9VEhfb+Fz528oKt4KQNNdcZjKAo0tQD
-	/i/zlohKX8s9dpaxxE0sR+yCePe1RIaZJj+pymg/E7bExXWnUMuUztycafkYEQYxesSlMMmnZnB
-	w/uFB417nJpiyysNvfa3DOky6sRKuGnPX77f6GkA7CT+qAkkYLdiCIN6Djzzwr9IwNz/aWYWiJy
-	YzyZQz4HRUiIzIPvFMMtq0s5dWDgOJEg==
-X-Received: by 2002:a17:90b:3806:b0:340:c070:82d7 with SMTP id 98e67ed59e1d1-34a7287ff49mr5417147a91.35.1765443770073;
-        Thu, 11 Dec 2025 01:02:50 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFpdBFOK+imWh1RtyBCLxP9QV8KUhIo5EFmPmTd8eE4f9vxE4MXLIE1IrNkcqT9CW932fD1Xw==
-X-Received: by 2002:a17:90b:3806:b0:340:c070:82d7 with SMTP id 98e67ed59e1d1-34a7287ff49mr5417105a91.35.1765443769582;
-        Thu, 11 Dec 2025 01:02:49 -0800 (PST)
+        d=1e100.net; s=20230601; t=1765443774; x=1766048574;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=BHAYZYgCEBJomFxYYuNuHzjFxbu3btZJSkUa3sxsEBU=;
+        b=R0eeKb4SF99LQAzdcvkBOVkri+H7LxtsDq0Yjnr8psjDZ5Lo4nRvxacYx/7Y/7+dXH
+         L1ckBaeEsXFUlo0GMTeOt4EEm4iZ6xDedJVxgDi8uRCGzlF6C1jrdhqVdbOzeZQNIQTZ
+         LEczKEBtgxu8/oNlK7cF8wW9BQgOI5mZ+zXDE1F65XgY6RTBBz1wRZCJU5E9iJy1E7PK
+         rc4rxgUeV4sXUr82um7GdwazxeLQjPiKfBZdevShbc/6wU05mxOD365tk8t3vpLCgbuw
+         0f3BlVY9xqemN91FavKzzsPnjP7ShkNyEMQaFo4lzwQLlN61a9S+pif9G7bSVaywVGDJ
+         GoIQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWD/d3TzWv1470Xp4K+641fpMFLyutd4uRiaSXAA/kWOCw7WslsrHgRYHTzT5jVqytuIiUjgC8qTbG5@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz1ebTL1LrfCNNfb1kQ+UGhShDSMmi3Dbu7DP70VoP6mEN178E9
+	TcLLDlWVx5vpv6jaE0rV8x/O0ORl2rmj/JewBGqgdNJ3YU2JKRUZ9O/ZNrcCBoiXn+1i+lHTVvZ
+	eT4+t2JySEEGF90kulf9m+9hGz9KHHImNZ/hEMCuOvN2QRhMn1qMreriifmVZHzuR
+X-Gm-Gg: AY/fxX7ZBdVDEZn8p0imTsAZVqwFnYjYbh5VQn+q9t2kbaIXQE1SSXXXTSXjYpUOGNi
+	34cqTQarne56JgpSJYT+pG1MLqYAvZbI4dOB2w+Hxx5BiLebPuIeQOdNIi6HhR2SmHvuk1C/nRZ
+	+qG/a0kLTmNzweE+oV7H9z6tasUWH3Y4mQ/faw1wasqcpbnO09e0V/qFQl3y3LDNQZ3q1WAU0G0
+	c7EuVbkaNuR/q8yuj4rsD98T9J8Mn6MF79ti5h+XdWGXx3AudDSKawfpy1M0tBpspkc8DVM158r
+	L9LwA5Jc/WEZ5d4GzVRJs99R6dJgiZOl3QVcjJBfAT8TIUpmfldkYFPVZycsjGDxMKQf/L3bz5/
+	jHFwB9t87Sd57eiDUUc69O5frLxVcN+liofllOMLVPXtBbcONDW/8n2kFh09MXpd4U12L5n/X9B
+	8RlOpNk8mbvSgaCi3QADOiivKZukGvzw==
+X-Received: by 2002:a17:90b:2f84:b0:340:a19f:c25b with SMTP id 98e67ed59e1d1-34a72874773mr5722905a91.24.1765443773918;
+        Thu, 11 Dec 2025 01:02:53 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEL/QFpZybf+jFwe4H89R3Up/hwJ8hmhEqnk/f8/0uJ1zDZIYyDwZGY7Z0YpSvwAcOPI3Mx2Q==
+X-Received: by 2002:a17:90b:2f84:b0:340:a19f:c25b with SMTP id 98e67ed59e1d1-34a72874773mr5722871a91.24.1765443773414;
+        Thu, 11 Dec 2025 01:02:53 -0800 (PST)
 Received: from hu-pankpati-blr.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com. [103.229.18.19])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-34a92860032sm1273780a91.11.2025.12.11.01.02.46
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-34a92860032sm1273780a91.11.2025.12.11.01.02.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Dec 2025 01:02:49 -0800 (PST)
+        Thu, 11 Dec 2025 01:02:52 -0800 (PST)
 From: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
-Subject: [PATCH v3 0/2] soc: qcom: llcc: Add support for Glymur SoC
-Date: Thu, 11 Dec 2025 14:32:34 +0530
-Message-Id: <20251211-glymur_llcc_enablement-v3-0-43457b354b0d@oss.qualcomm.com>
+Date: Thu, 11 Dec 2025 14:32:35 +0530
+Subject: [PATCH v3 1/2] dt-bindings: cache: qcom,llcc: Document Glymur LLCC
+ block
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -102,11 +105,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAKqIOmkC/3WNyw6CMBREf4V0bUl7pYKu/A9DSCkXaNKHtkAkh
- H+34trNJGeSObORiEFjJLdsIwEXHbV3Cc6njKhRugGp7hITYCA4gysdzGrn0BijVINOtgYtuol
- eZMVBsaovFCdp/AzY6/chftSJRx0nH9bjZ4Fv+1NyEP+UC1BGSyE5a1HwrizuPsb8NUujvLV5C
- lLv+/4BTuAbq8MAAAA=
-X-Change-ID: 20251029-glymur_llcc_enablement-6a812c08f4c1
+Message-Id: <20251211-glymur_llcc_enablement-v3-1-43457b354b0d@oss.qualcomm.com>
+References: <20251211-glymur_llcc_enablement-v3-0-43457b354b0d@oss.qualcomm.com>
+In-Reply-To: <20251211-glymur_llcc_enablement-v3-0-43457b354b0d@oss.qualcomm.com>
 To: Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konradybcio@kernel.org>,
         Conor Dooley <conor@kernel.org>,
@@ -117,81 +118,126 @@ Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org,
         Pankaj Patil <pankaj.patil@oss.qualcomm.com>,
         rajendra.nayak@oss.qualcomm.com, sibi.sankar@oss.qualcomm.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1765443765; l=1669;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1765443765; l=2932;
  i=pankaj.patil@oss.qualcomm.com; s=20251121; h=from:subject:message-id;
- bh=QUa3DEZcMWBiNcmvpB2lseRak8nUOh0xeBJQMi2ZJhk=;
- b=l2ybs94rRCXgGLVRQz5cHnwnzw1SEI6ju38FUzO2stw9luMlDTXxZLv7GnAN6vjtPWNhVmXpf
- hjE3VaDas8qAj71segRGh/QLk2+vgqFM4YsPKCIiDJGL09MDFRCnB3H
+ bh=qxAW6oQscBMfQtm8NdQP+0QHSpF2gOPIWMormT9TEBg=;
+ b=7s061glpqPe218C4iakHDMGZo7t7n16ly4S7nONnV8PfWPLVV4XOat06zWeORBxdvKyKZQWzs
+ Nr6f2PvF8VmA59IpeQo8Ferl+2KLxA/RAFuPfOYuy2lWfXr4RecYutB
 X-Developer-Key: i=pankaj.patil@oss.qualcomm.com; a=ed25519;
  pk=pWpEq/tlX6TaKH1UQolvxjRD+Vdib/sEkb8bH8AL6gc=
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjExMDA2NyBTYWx0ZWRfX1tQxmjzMHy9b
- Gh1m0+CFzdFtPTLmtB0OufGahNH6lI3Q+caAsvZiVIJCk5KgHslRHi1qjR8fwDHTvSKLjI7hzFY
- nJywXSiokGUE0OdRTtDa0iN3HnwtP74nWC/VtlytKBSVMQAnDPNJ1GaDNzmeL974PTRhudM28Pr
- YjYLQG7xCJ6DsFNPj0y8VqIn8599hrCsnny1erImB/Tj8LMgCLSsj0v9v1dfKmN04Kpb8UhAAjI
- IQfT0h9derG+1SJkgfEisORR93CTrye1F22blXW5w03erJGpE1k1BOEcvz9Mi6V8knSdYFZyo3Y
- uORtodhpoOb6SP5nn12PCTAh0GiTK9iFMpiscmUgq3kEmBUnJj/YuQxdwuF0+hdJ+k6YgL80u7n
- WpgAtkBrgX1ZZ/z7JiggTrdqOU/m6w==
-X-Proofpoint-ORIG-GUID: KxEYJJi2e6S0FUHqM2uFxl8_mwRF6ZjI
-X-Proofpoint-GUID: KxEYJJi2e6S0FUHqM2uFxl8_mwRF6ZjI
-X-Authority-Analysis: v=2.4 cv=LJ9rgZW9 c=1 sm=1 tr=0 ts=693a88bb cx=c_pps
- a=RP+M6JBNLl+fLTcSJhASfg==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjExMDA2NyBTYWx0ZWRfX8Hrd09peYJoI
+ a66hGwhUocSQkUcfww7AAFT2zslI65wZuD2pcwRHCcu9PhoT369D/E6P45rOx1j7fE24IkTiOaU
+ DQMTxp+q29whqVSOJe6jTgdgtA/YsSSAZn+YQ9mTz2AOvxtX+/IZuJUHBWDcKHryowGqqsTcpV1
+ lXSttRxyPXU2Hy6rPrKf6JxbOVqrS7DtJ5rQEJfFKSE8FxJ+c1BK5o7DMbB17uZg84o4jD/qYIS
+ gy+Xhdif32EI5otB+5gN/8VUUBr/kwQLYa0EFdK6wvKALXXIuhu+IIzMiRauapalKNtURbJLlpl
+ 2FJR/x9mVsWi7U0n/k7vHG9TrKLfOQShxuA+EdHLCwqrqzIo23wEEwv2G2zgCu7FRlrXfk9IYxi
+ 2ogLW/RqKgWnrHJQxw6uK1P+ckfBOQ==
+X-Authority-Analysis: v=2.4 cv=WYIBqkhX c=1 sm=1 tr=0 ts=693a88be cx=c_pps
+ a=0uOsjrqzRL749jD1oC5vDA==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
  a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
- a=7q9y67zIC7BUKB0Phv0A:9 a=QEXdDO2ut3YA:10 a=iS9zxrgQBfv6-_F4QbHw:22
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=PUoVtFHm2Id53UaNtWkA:9
+ a=QEXdDO2ut3YA:10 a=mQ_c8vxmzFEMiUWkPHU9:22
+X-Proofpoint-GUID: Yo-Wn6o9yugw5XpdMC-QQwyft-0ofm8J
+X-Proofpoint-ORIG-GUID: Yo-Wn6o9yugw5XpdMC-QQwyft-0ofm8J
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
  definitions=2025-12-10_03,2025-12-09_03,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 spamscore=0 clxscore=1015 priorityscore=1501 suspectscore=0
- lowpriorityscore=0 bulkscore=0 malwarescore=0 adultscore=0 impostorscore=0
+ phishscore=0 suspectscore=0 priorityscore=1501 adultscore=0 impostorscore=0
+ spamscore=0 bulkscore=0 lowpriorityscore=0 malwarescore=0 clxscore=1015
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512110067
 
-Glymur SoC uses the Last Level Cache Controller (LLCC) as its
-system cache controller, update the device-tree bindings to allow
-maximum of 14 registers for llcc block since GLymur has 12 llcc base
-register regions and an additional AND, OR broadcast base register.
-Updated SCT configuration data in the LLCC driver.
+Document the Last Level Cache Controller on Glymur SoC
+Glymur LLCC has 12 base register regions and an additional AND, OR
+broadcast region, total 14 register regions
+Increase maxItems for reg and reg-names to allow 14 entries for Glymur
 
-Enabled additional use case IDs defined in
-include/linux/soc/qcom/llcc-qcom.h:
-
-OOBM_NS
-OOBM_S
-VIDSC_VSP1
-PCIE_TCU
-
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 Signed-off-by: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
 ---
-Changes in v3:
-- Dropped patch for changing alignment style for usecase-id macro in
-  include/linux/soc/qcom/llcc-qcom.h
-- Link to v2: https://lore.kernel.org/r/20251125-glymur_llcc_enablement-v2-0-75a10be51d74@oss.qualcomm.com
+ .../devicetree/bindings/cache/qcom,llcc.yaml       | 47 +++++++++++++++++++++-
+ 1 file changed, 45 insertions(+), 2 deletions(-)
 
-Changes in v2:
-- Updated dt-bindings for maximum no of registers to be 14
-- Re-ordered the fix alignment patch to before adding a new entry for Glymur
-- Squashed commit for enablement of usecase id and driver changes
-- Link to v1: https://lore.kernel.org/all/20251121-glymur_llcc_enablement-v1-0-336b851b8dcb@oss.qualcomm.com/
+diff --git a/Documentation/devicetree/bindings/cache/qcom,llcc.yaml b/Documentation/devicetree/bindings/cache/qcom,llcc.yaml
+index a620a2ff5c56..4e99c405aea3 100644
+--- a/Documentation/devicetree/bindings/cache/qcom,llcc.yaml
++++ b/Documentation/devicetree/bindings/cache/qcom,llcc.yaml
+@@ -20,6 +20,7 @@ description: |
+ properties:
+   compatible:
+     enum:
++      - qcom,glymur-llcc
+       - qcom,ipq5424-llcc
+       - qcom,kaanapali-llcc
+       - qcom,qcs615-llcc
+@@ -46,11 +47,11 @@ properties:
+ 
+   reg:
+     minItems: 1
+-    maxItems: 10
++    maxItems: 14
+ 
+   reg-names:
+     minItems: 1
+-    maxItems: 10
++    maxItems: 14
+ 
+   interrupts:
+     maxItems: 1
+@@ -84,6 +85,48 @@ allOf:
+           items:
+             - const: llcc0_base
+ 
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - qcom,glymur-llcc
++    then:
++      properties:
++        reg:
++          items:
++            - description: LLCC0 base register region
++            - description: LLCC1 base register region
++            - description: LLCC2 base register region
++            - description: LLCC3 base register region
++            - description: LLCC4 base register region
++            - description: LLCC5 base register region
++            - description: LLCC6 base register region
++            - description: LLCC7 base register region
++            - description: LLCC8 base register region
++            - description: LLCC9 base register region
++            - description: LLCC10 base register region
++            - description: LLCC11 base register region
++            - description: LLCC broadcast base register region
++            - description: LLCC broadcast AND register region
++        reg-names:
++          items:
++            - const: llcc0_base
++            - const: llcc1_base
++            - const: llcc2_base
++            - const: llcc3_base
++            - const: llcc4_base
++            - const: llcc5_base
++            - const: llcc6_base
++            - const: llcc7_base
++            - const: llcc7_base
++            - const: llcc8_base
++            - const: llcc9_base
++            - const: llcc10_base
++            - const: llcc11_base
++            - const: llcc_broadcast_base
++            - const: llcc_broadcast_and_base
++
+   - if:
+       properties:
+         compatible:
 
----
-Pankaj Patil (2):
-      dt-bindings: cache: qcom,llcc: Document Glymur LLCC block
-      soc: qcom: llcc-qcom: Add support for Glymur
-
- .../devicetree/bindings/cache/qcom,llcc.yaml       |  47 ++++-
- drivers/soc/qcom/llcc-qcom.c                       | 207 +++++++++++++++++++++
- include/linux/soc/qcom/llcc-qcom.h                 |   4 +
- 3 files changed, 256 insertions(+), 2 deletions(-)
----
-base-commit: c75caf76ed86bbc15a72808f48f8df1608a0886c
-change-id: 20251029-glymur_llcc_enablement-6a812c08f4c1
-
-Best regards,
 -- 
-Pankaj Patil <pankaj.patil@oss.qualcomm.com>
+2.34.1
 
 
