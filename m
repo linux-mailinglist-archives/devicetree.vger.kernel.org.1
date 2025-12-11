@@ -1,116 +1,292 @@
-Return-Path: <devicetree+bounces-245813-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245814-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FFB3CB58F0
-	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 11:50:40 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98012CB5908
+	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 11:54:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DFD733031354
-	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 10:49:32 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 03E343001828
+	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 10:54:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDDA33064B1;
-	Thu, 11 Dec 2025 10:49:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B5333064B1;
+	Thu, 11 Dec 2025 10:54:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sYm21SbQ"
+	dkim=pass (2048-bit key) header.d=siliconsignals.io header.i=@siliconsignals.io header.b="N5bLSDXF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from PNYPR01CU001.outbound.protection.outlook.com (mail-centralindiaazon11020101.outbound.protection.outlook.com [52.101.225.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A15ED30649F
-	for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 10:49:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765450170; cv=none; b=Z5fF0lEhikORHh/pckYTz/6I9PuJ5d6/ag1mwZFvckoadJZT8/CDOYFBj35JIgVkFd+Ev3Ry0RN9he+1pKnsOhhDUoaiKMJ/1M1fObxCNCQ8QoMeGpBI+vLwnbA4G5eGP5akVSCV6JPFH8iaq2KJK5njHOIeTbr6GgkoVpdhVlA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765450170; c=relaxed/simple;
-	bh=Jc6+Ys+XHen8v80U0lVjY12DVN2DFWCFxOekVIhcmJA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qblJHTZfhXNYs+uzW1USZaqGv2aoDWnKTS9jvBJhGAt4hzvpDL3843ktJv2e+PAaoq8pCwfZ+iFrTqJ4P3wPKYTcyqM1/9SYgmWf3KySkjRfsV8kLDSV0Hd4rgWnvAT9KKr6OYBrJQQQ2x4HGdJft7Vv3s6EIF6lEKrU3q9zDfE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=sYm21SbQ; arc=none smtp.client-ip=209.85.208.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-37f8cc9a9feso499541fa.0
-        for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 02:49:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1765450167; x=1766054967; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=a3kd4yW1gc1Gruxageeys0GxddFeeTYgSHK0aHKOuEo=;
-        b=sYm21SbQbAN5LV3ce1hSwNUoL8mqlhBYICP9v2goIi7tRgqGd9Hi79PO7cx0K/1wam
-         +QmvNY1T5fsUyJciThnsLTVZFIRg994f5NKLjCtpYfXnlPguBvmBJmH3Xhcg9x4cc+dJ
-         WOIsupzaKPzoi+QlJTdvzyNBLzHJqba7jmFFnD7QQQkgFl0sLK20aitBV/41XirzpQ4d
-         Eugp7SRpFOFwo90DOSqL3WR9IvwrtXLU89AFv8rjw2lu6oxTHRs236ubE3HS4P9+GEzk
-         L6Ipr2KyTi95jb3DimP7NlUY4b+oBWKaRIOVam11qFUzvwmYHwDt0UGgOKVhv+Qt8zDc
-         iYdg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765450167; x=1766054967;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-gg:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=a3kd4yW1gc1Gruxageeys0GxddFeeTYgSHK0aHKOuEo=;
-        b=uCJZ4DmdtsJWtXN4DzK36iAzpm/4hMxJSJuWxR7K381k2Zc8hC+MYAT6QvtpiuT+cP
-         D0kxZEE59BNMhXnR9Limua85O2Nna2Qv8Rbx6JIRGyBMKcu/Tb+PRgX7XHGvSxul8AQa
-         n2Z+zpSn5f3tRB/UTepn0Lc7CRNjiHGhuKUte9Ue/wTiTdJjgLZ74OhL7QUcSIq7okqF
-         cmyD75UDYKCu/EA9EZ+7kXEPyQwsCzu43mE2iCc4OG6tGBFh20mPNYS35UgiXfVhM446
-         0mlPWXjazTiItYBZOR3XBroTs7XCm6hHE09ijMmujF+TF7jTpjuwPWDJiHkjCulU+Gz6
-         uXFg==
-X-Forwarded-Encrypted: i=1; AJvYcCWIaaH4aCW1zSvK2/EcRO7YkfKSgg7k6dOk0cz+BrbuEi35DPYlBjoviZfg7FqvEW3QpXh3tpmuDgRK@vger.kernel.org
-X-Gm-Message-State: AOJu0YxYPB4S5tByUn8jhAOTnsPXIxwJmdJT6BerM4Lm1p0hBfrl/PHD
-	VM2eK6+J13IU7JqzJE4O9R+yGWuvxKr9lDfh6Gx9s1JxEfhMU/IDBYzpLACZ5edw/Vg=
-X-Gm-Gg: AY/fxX4TCqp/YxsykAO6thznh6IkIajNsB//YV0dGRw9tUX4EWGffpmSG7PUCh9icJi
-	cDSPX6JxLL57Sdr4Y+16m8dp61Xt7/N21j+FGDbgjsTecdAzclDBDYISjv8JEsxo6o+cnSE/EuA
-	/7QliL1c7erxgFYBK8bIaPPj2xBRuCg9L2erYwXpOvBFTpODnUJcntG29pR4lBMzFSBImKoXYvx
-	2SrQ2QhQbBhnzGKCbRPfSU2bZTMjwwga5E8Nw+xbEPNw+5aD741IB1omQ2PTy1dlbnaA7Abm2Yt
-	JlgONgMp7bPAerloCQPHmWBbwoFQcqalfCBQ5Xa0U4sld7cEGKAwZ/pWoQGnYI4cuFplO8th5NZ
-	paYBCFC5VTU06wNbSkXg/7ZK63akFx5+xEd8qPtMQMl1VHklcIi4bw7QAV/qdKdWFt9GZ36N2yF
-	C09FbcEY5qL4PDiaPMODjeZ8rhufl9ULTp2JIZskI52OKVQ/1FAleMCG6W/0h6wljwFQ==
-X-Google-Smtp-Source: AGHT+IFt6XeeZKHv7sJfFbXi7ZwTZ/XAVBJkSAg3r7xDq8QS7bdQubNXrv3Qvi50WCHnpPFPH5YD9g==
-X-Received: by 2002:a05:6512:2399:b0:597:d7a1:aa9c with SMTP id 2adb3069b0e04-598ee52a41bmr1124042e87.3.1765450166708;
-        Thu, 11 Dec 2025 02:49:26 -0800 (PST)
-Received: from [192.168.1.100] (91-159-24-186.elisa-laajakaista.fi. [91.159.24.186])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-598f2f44d6bsm764789e87.37.2025.12.11.02.49.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Dec 2025 02:49:26 -0800 (PST)
-Message-ID: <809c23e7-954a-4d7e-92e1-0d2da820bdd9@linaro.org>
-Date: Thu, 11 Dec 2025 12:49:25 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB85D286D73;
+	Thu, 11 Dec 2025 10:54:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.225.101
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1765450493; cv=fail; b=ozdb56Yv4SyQKpKXewulN5FbhkkqZvQMtM9aRYWOqWzus0HoRkMhOR3+suKUmKFFqmjHPuoO7rDhFUEaPhNqDtcOy/71MwC97FsNPGpzAYY6tf7DoaLcMZ0r07qRi+VJwDRidvpmLoPAEPCMmTNYcPivE5H7LIbPlEaoMP0PV90=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1765450493; c=relaxed/simple;
+	bh=SkZxdTlVoa1+Zf2bjr4GwmXQ9C3q6dWWJE9pSyh+T7o=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=AFYAMhaIIYmzEnaZVwUrF+pDWndxS5L3AutuqqqM0aNwxCMaOuWzgABV48sLP2ZKIdSp3veGHSTpusEqeUS2TF0bguBmAyM+HIIKtzzWcWP8pbYPLfGrumKZ/MFik0KdfNYyFYDraRdp8FEOp0e6OvEs7LRh1Hf1AEqYQ6NNgAM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=siliconsignals.io; spf=pass smtp.mailfrom=siliconsignals.io; dkim=pass (2048-bit key) header.d=siliconsignals.io header.i=@siliconsignals.io header.b=N5bLSDXF; arc=fail smtp.client-ip=52.101.225.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=siliconsignals.io
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=siliconsignals.io
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=JNw79A6+Nu6lvKhgpfMV9DuLn8SVHS2JLEAjaxtlctcMFocARdjgZxNG29+9Xx/MliDboYCkK5GLkNSq12yH3bS6U/z0gVNrkbObPBEa4566p+Y73rGgJLq47EP1wtv7URUa8TMF1pdajsp8uHTDNSvBGSsuQ0GpjNqUhhKPHek2KlDbr5GjTKYg0VWGB621mrQXFGt78L8ke/pQ6kwGFSZTEFL5cS68Trf1BjyuQL6s93/6UpxhXEdFnyMA9aGe4ov7UZG3NTnJFMOocaiawmq6wdU+eXVDjDf77OMzXeQ6ecPXwSVV7PkTnP75BwNGWWv9Ov3+ouXZeVbu/bX2rA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=gLVuiy3bDuN4MS5yVe32hqVtd9spkAK2Upd6Chn5VBA=;
+ b=ICl36reta4refghkjAnVEnmFfx5l0vpSgkeoDo55hOu2J4SelRz/yHSOUxvbPoVauvqXW7/AF/tvAb8DrUSgysxF8CzJYsfbqsAm/2sCNVjxrDF+GgUGkoO4BYxgVlwufTg0uBNPVtEM6euyUOHftGv2uT8SY54Z9ElErjAVSZj/Hl2VH2HtbYYdnrx6p0qJwpOF+/cwpbwYqDv2jLrJrKGbFEY5oUoFuDUg4wf724UKiwA4zcNoap+uiFoOgAWNI+mfjMOQK6GU4Ie2FFe8f1WV57eUs6XjXTeB9cXvzciBeY/WgRVkddwwgctK6nLQNZP5MCguiV55rsIaYhralA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=siliconsignals.io; dmarc=pass action=none
+ header.from=siliconsignals.io; dkim=pass header.d=siliconsignals.io; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=siliconsignals.io;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=gLVuiy3bDuN4MS5yVe32hqVtd9spkAK2Upd6Chn5VBA=;
+ b=N5bLSDXFjhT49hBPPP53K+cpSBFBWFu9mWHyhovKK9tqtxbOfbbIzFZph9X2BLWHAxKAfG7hlxLI6XSWiWYwyv4W0d4EAGPdU0BOf6iHm8SmeTSWIqNM0ism9cOSmvFlZ4WmiTFjj3IvNYFYj6Sc90UvQwkuiv+V+k/LiaUEv8UvIkZbwFc/h5e2/e2Ef0NdYjXZ4APPPvpzcH5K0fij5eWhC8dQM2zPfQv2bpkmdAq5qfq+xmFc0AlhN53TuBKQRnbIj7nEmxfFV1zzU7LdDsveyA5oADc5dnfujC+2BmuyjItNAeLHKKPeKtE6V2CONhLouFU7VY6FMCLcfp6PVw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=siliconsignals.io;
+Received: from PN0P287MB2019.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:1b8::9)
+ by MAYP287MB3833.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:14c::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9412.10; Thu, 11 Dec
+ 2025 10:54:45 +0000
+Received: from PN0P287MB2019.INDP287.PROD.OUTLOOK.COM
+ ([fe80::ebd8:538d:c705:8432]) by PN0P287MB2019.INDP287.PROD.OUTLOOK.COM
+ ([fe80::ebd8:538d:c705:8432%7]) with mapi id 15.20.9412.005; Thu, 11 Dec 2025
+ 10:54:44 +0000
+From: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	sakari.ailus@linux.intel.com
+Cc: Elgin Perumbilly <elgin.perumbilly@siliconsignals.io>,
+	Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Hans Verkuil <hverkuil@kernel.org>,
+	Hans de Goede <hansg@kernel.org>,
+	Mehdi Djait <mehdi.djait@linux.intel.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	=?UTF-8?q?Andr=C3=A9=20Apitzsch?= <git@apitzsch.eu>,
+	Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+	Sylvain Petinot <sylvain.petinot@foss.st.com>,
+	Dongcheng Yan <dongcheng.yan@intel.com>,
+	"Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
+	Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>,
+	Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>,
+	Svyatoslav Ryhel <clamor95@gmail.com>,
+	Jingjing Xiong <jingjing.xiong@intel.com>,
+	linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/2] media: i2c: Add os05b10 camera sensor driver
+Date: Thu, 11 Dec 2025 16:24:05 +0530
+Message-Id: <20251211105427.22374-1-himanshu.bhavani@siliconsignals.io>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: PN4P287CA0116.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:c01:2b0::8) To PN0P287MB2019.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:c01:1b8::9)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 5/5] arm64: dts: qcom: sdm670-google-sargo: add imx355
- front camera
-To: Richard Acayan <mailingradian@gmail.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Sakari Ailus <sakari.ailus@linux.intel.com>,
- Tianshu Qiu <tian.shu.qiu@intel.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-media@vger.kernel.org
-Cc: Robert Mader <robert.mader@collabora.com>
-References: <20251211014846.16602-1-mailingradian@gmail.com>
- <20251211014846.16602-6-mailingradian@gmail.com>
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <20251211014846.16602-6-mailingradian@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PN0P287MB2019:EE_|MAYP287MB3833:EE_
+X-MS-Office365-Filtering-Correlation-Id: 33e55255-d7a6-48aa-02c3-08de38a3b1d6
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|1800799024|376014|7416014|52116014|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?pKTYAPUY9bCCNXgw84tNjwcDRuFMF2CenpdG98iLVmzRlcq7ZYLFUIFPyqfJ?=
+ =?us-ascii?Q?wgHrtVd/yvc2Bp9CuvD/R8YOg1z7oGpLMzvNTVlbxI/yTwbpuVhnEvALLdzi?=
+ =?us-ascii?Q?g97Egbj13MmSKOOgvXsSIh4dA/Z7B+atzqqxqvxCCMAW68YAO8nLXplpoRoW?=
+ =?us-ascii?Q?yEZs/gAXrm+6bqQr31kskr5bcU1Oh6Ui1z7feujuWf+WZMn0x8HR1z4tjaUv?=
+ =?us-ascii?Q?M9Tqwq+hOTZsuwNN9IZN0QG3qyEF5GWDvtZmoIY7OZmrFb8zSZaDZ+t89ocu?=
+ =?us-ascii?Q?7ZBMkkM5xUZi1fSYD9plsV2/egd2mXj3MyWPBUtC/1wlaeWWD5Yv9pr99JLJ?=
+ =?us-ascii?Q?N2UGA3tOorV+XD65LBRExGlHt5xyQm11wXRD+tOxIbLldLXLxF0gUpyVjcWP?=
+ =?us-ascii?Q?TOU928MKe60/5yGyN+jOxC8ZDYytHEBh/l3I7ZMLxj0aJiOuxPeOer+OmNj4?=
+ =?us-ascii?Q?6Mg0tf74iRpqC5b+C3SlmxdxNodusvjJnmj0qY2DpGv0/IjZymE0FV/0FjhR?=
+ =?us-ascii?Q?yOFbyQSlWpPI3JPRfkjWlRdhgTPeVn/cZDz7p6UPD4oTRIxoUwxF1FPvKlu9?=
+ =?us-ascii?Q?pvUPMpbszLw0spzdPlSGDwHrMVksPQvAQOoyA7/HYh7F3RGOVbpREKL06FaF?=
+ =?us-ascii?Q?EqHy6kPVPPoKPqKeDXKm8rKdm1w3ANoaWdgyhJsVDx2+qfpNmMKsbz0AkfJf?=
+ =?us-ascii?Q?MyzAqXZndN26ZA+j1CmkCugBVz1Z+NyUFQS0YOMCUqjhQ0YmaqdbwZ+pS4s5?=
+ =?us-ascii?Q?lmYLUfB/MbXyOaI1RVTMNrZs6/DQCgMnk7sHXBycZylfIjYJfWgU2kL8tGeS?=
+ =?us-ascii?Q?u18Lm3pwzJlxlDes/0IPuPH8xgvL/nAsVFLzAAFdNgYiDZTrdRjxmi5D5BaF?=
+ =?us-ascii?Q?v7k52p2gUFbW/O9FgjgUj4tZ4fWybI3Gd3QM7SWnO3C9v0iM/P+9Ml+8D0b3?=
+ =?us-ascii?Q?z4tjx8juDd/JjGwHX55Td0N4SEyNwgOomsyXKFWlIr/LmkUyEhqBU2TxlW1T?=
+ =?us-ascii?Q?eWePL1eULKdg7Y0jp4WrdLy4jgYVoQtA1liuLkmrvs8PqxHYSz5P9ugCxaxr?=
+ =?us-ascii?Q?9FMQCFcNxUd5rIYVylNkHP9pFLpgb5DHv6DHZJbULyZsl6lWD61/rhc6qwwt?=
+ =?us-ascii?Q?ypt0ZDMMVMAb5NrUtkMtNv6mJi2RBK9MomppVFdpQfgnW1FonAVtt2H4kfPS?=
+ =?us-ascii?Q?2QJ8jwuAGdpvSC57o5UNwaS2fuZ9/1fPTWye8+Kxv0VFLU9JpGJ1Sqr0fb7h?=
+ =?us-ascii?Q?vS2kfqL5W855lwnujaSv4bu60UDPCoSge+9dkBKSVbEX9oSItPbqIRtYmwaG?=
+ =?us-ascii?Q?itHFJY/eGweb7eVKhXD8VGVedFPQeGl3lgCnuvvIQ43hF1lNPQmp+ZPm2Rij?=
+ =?us-ascii?Q?9Pr6lVvismFQ35DNcZ0jAAth6Z1sIDSqCfGQwnuBwJJ0WfnxjEbxQ6K1r77i?=
+ =?us-ascii?Q?oChARsI3CuD8dZ8QhK0sIIN+cPD9X2yLdbkxFevI+fAhmMYYNEIvhHN44XyD?=
+ =?us-ascii?Q?Vow8gWScvdXzkgAVbcaQIdDZ3qHXJzlddEGR?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PN0P287MB2019.INDP287.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(7416014)(52116014)(38350700014);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?v9/DgkQzXcQkNuWdY/Gfu+yHIpuy3rz06swLCz95EZZJmpm97sB35WcIrlsd?=
+ =?us-ascii?Q?X0FGSM6jEUoLnPrdEjxYk0xStyB5xDVUyvWMlpPsitt+pz0SOP/3NoE1JC8Y?=
+ =?us-ascii?Q?5CVyQDQU04jBrfCRRCiPz9zxBanKAPGtMYHCXITndcXGxWdNIm2RaLVmhODn?=
+ =?us-ascii?Q?0dbgoucxqKnvK6aKngWqW8sWnwRwloUzmNJ/liSnDMVLFDdkTbx2eUovdFAq?=
+ =?us-ascii?Q?aoauJGmuHbBCoMIOOFV6+IPxiGVD6mUVQWKA+btxpxupehqZgcLEVwpWVzC0?=
+ =?us-ascii?Q?BLicYV/RVW/zpNRfQ9mk4wpgwLk3jH9pe/mtPQtGNuKHOtX0cGk957Its8gG?=
+ =?us-ascii?Q?vVqWK7mS168wOLpsORRZIovWfc/5XCnQxyXS6kXIK7GfIrGomDgA2kqWCeam?=
+ =?us-ascii?Q?7/qJXM5KyOndwz6UnYbkLunM9PJ6RmTi2qUURc2yytdELJHb4fD+qKXC0n1U?=
+ =?us-ascii?Q?jBYd9P6+3WI4FJk6gGAuB+ZLWzqM6G6V0TxVShulWluGybISyA41Mri5opai?=
+ =?us-ascii?Q?GX2f++GR1Dw1ujopzj3k0anT8eUvovW8Kcw6uslPghjYGE9BLOGaJZHWYW19?=
+ =?us-ascii?Q?Kk/O4BhV/3kHcRz9i4O86pSenun6UOrs6sRhsEAr463BaqxHSaX2ACXb/fAj?=
+ =?us-ascii?Q?IZ90wDrEwQxQwN2xqbsAhvtO+yw8BVm2MS6AYhXtjhVbAfX4gEU9ASRJ19b2?=
+ =?us-ascii?Q?1lJaDE8Hyp+HPvpFnwI4rgStjOnjJhTpEBAtvSbJgkrb3OxzqwasoP+9yTVI?=
+ =?us-ascii?Q?Ubyyxrj5Q5RkljknnThiyy7Eqox6HFtGtFqaV9EZrkWYP2yq71006IUeBZ0p?=
+ =?us-ascii?Q?jxzxjVNg3T9N6OdrBKn0AqE9UwLN/stQO5BGs+4+/r7OHNW/vilnjwUPd4QM?=
+ =?us-ascii?Q?bqvMq3fnwBSD0Df+vMqtW2om/xpdDYOxJSgyF1QdDr2/4fvGCDFr/p2YOHEc?=
+ =?us-ascii?Q?Ak8AH1+hLCc5/g4PFwsnClHd4kyuQFBInWfiFGwuGwfOfF/fNViaPqCY1Yyi?=
+ =?us-ascii?Q?JRjUzrLCDLKSsP20kJQdhNYTWnERKFlihYXV6vGdP4QAdZxyGUsKxa6LliXX?=
+ =?us-ascii?Q?G2crJfSOFL3wfnK5ICoXSrV83eINKdqV3mX0NP/JLwcaQoEaUFp2wJppnIoh?=
+ =?us-ascii?Q?tTV3xcyL5c26aqFeSZwJZiq4CDaQKOsxmoGM/CPzztWOw6lo604ApKvrtlSc?=
+ =?us-ascii?Q?vqpoB1fuqrEZhlKCDZwTd/qolj5ILoATQ+gkMWhTj3r+vcL1TK6dinArkRSK?=
+ =?us-ascii?Q?X7cCQ9iZ1/IxRhvtzpgQB0/Phaj0fyias8Mq9UR0JwkN13nsF/fVsBdogIz2?=
+ =?us-ascii?Q?LRCUchi0w0qY5WSZbo6qSWe+lUPfZ+qGNq7a1vhQuGlf/dkeyIP/fOutcbLC?=
+ =?us-ascii?Q?JpscuG1trZGFL35R5E7YD0cfQ82Rl5GUvjoF3qNn57edpgF52BjILLQeYlAw?=
+ =?us-ascii?Q?yTfM/jWKvrEk8gMiExrwYlzLbKN6apary+ca++JCKJ4bL0V6ubVix23l4V31?=
+ =?us-ascii?Q?R+sOgSmMIf17wmHQqUCWQyb3v8oY2KN3PTocNw5stGwjAWj39v/qcGjIeqCu?=
+ =?us-ascii?Q?OG5749Ay70dayZixp+ImIQCBUzZB5NZgFvnOgF67vSc6sDydhRMfNJZoDJth?=
+ =?us-ascii?Q?LPMPSDCgaBbQXiULaQ45pLs=3D?=
+X-OriginatorOrg: siliconsignals.io
+X-MS-Exchange-CrossTenant-Network-Message-Id: 33e55255-d7a6-48aa-02c3-08de38a3b1d6
+X-MS-Exchange-CrossTenant-AuthSource: PN0P287MB2019.INDP287.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Dec 2025 10:54:44.8784
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 7ec5089e-a433-4bd1-a638-82ee62e21d37
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Bl3Gr9Nm72VEk/Q1+IHM4fy8J41tCF1x9s8PvJ6Typxq54Enp1pkRKxWMMWegobhIE+I+cKR3EEnJF6VEbM8r+y5xG90T3qpEzpDSYFSpZqeG2t0b9twtpsd5dygitG1
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MAYP287MB3833
 
-On 12/11/25 03:48, Richard Acayan wrote:
-> The Sony IMX355 is the front camera on the Pixel 3a, mounted in portrait
-> mode. It is connected to CSIPHY1 and CCI I2C1, and uses MCLK2. Add
-> support for it.
-> 
-> Co-developed-by: Robert Mader <robert.mader@collabora.com>
-> Signed-off-by: Robert Mader <robert.mader@collabora.com>
-> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
+From: Elgin Perumbilly <elgin.perumbilly@siliconsignals.io>
 
-Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+The Omnivision OS05B10 is a 1/2.78-Inch CMOS image sensor with an
+active array size of 2592 x 1944.
 
--- 
-Best wishes,
-Vladimir
+The following features are supported:
+- Manual exposure an gain control support.
+- vblank/hblank control support.
+- Supported resolution: 2592 x 1944 @ 60fps (SBGGR10).
+
+The driver is tested on mainline branch v6.17 on IMX8MP Verdin Toradex.
+
+v4l2-compliance 1.26.1-5142, 64 bits, 64-bit time_t
+v4l2-compliance SHA: 4aee01a02792 2023-12-12 21:40:38
+
+Compliance test for device /dev/v4l-subdev3:
+
+Driver Info:
+        Driver version   : 6.17.0
+        Capabilities     : 0x00000000
+
+Required ioctls:
+        test VIDIOC_SUDBEV_QUERYCAP: OK
+        test invalid ioctls: OK
+
+Allow for multiple opens:
+        test second /dev/v4l-subdev3 open: OK
+        test VIDIOC_SUBDEV_QUERYCAP: OK
+        test for unlimited opens: OK
+
+Debug ioctls:
+        test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+        test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+        test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+        test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+        test VIDIOC_ENUMAUDIO: OK (Not Supported)
+        test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+        test VIDIOC_G/S_AUDIO: OK (Not Supported)
+        Inputs: 0 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+        test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+        test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+        test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+        test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+        test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+        Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+        test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+        test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+        test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+        test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Control ioctls:
+        test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
+        test VIDIOC_QUERYCTRL: OK
+        test VIDIOC_G/S_CTRL: OK
+        test VIDIOC_G/S/TRY_EXT_CTRLS: OK
+        test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
+        test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+        Standard Controls: 9 Private Controls: 0
+
+Format ioctls:
+        test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK (Not Supported)
+        test VIDIOC_G/S_PARM: OK (Not Supported)
+        test VIDIOC_G_FBUF: OK (Not Supported)
+        test VIDIOC_G_FMT: OK (Not Supported)
+        test VIDIOC_TRY_FMT: OK (Not Supported)
+        test VIDIOC_S_FMT: OK (Not Supported)
+        test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+        test Cropping: OK (Not Supported)
+        test Composing: OK (Not Supported)
+        test Scaling: OK (Not Supported)
+
+Codec ioctls:
+        test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+        test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+        test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+
+Buffer ioctls:
+        test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK (Not Supported)
+        test CREATE_BUFS maximum buffers: OK
+        test VIDIOC_EXPBUF: OK (Not Supported)
+        test Requests: OK (Not Supported)
+
+Total for device /dev/v4l-subdev3: 44, Succeeded: 44, Failed: 0, Warnings: 0
+
+v1 -> v2
+
+In Patch 1/2:
+- Fixed indentation.
+
+In Patch 2/2:
+- Fix kernel test robot warnings
+
+Elgin Perumbilly (1):
+  dt-bindings: media: i2c: Add os05b10 sensor
+
+Himanshu Bhavani (1):
+  media: i2c: add os05b10 image sensor driver
+
+ .../bindings/media/i2c/ovti,os05b10.yaml      |  103 ++
+ MAINTAINERS                                   |    8 +
+ drivers/media/i2c/Kconfig                     |   10 +
+ drivers/media/i2c/Makefile                    |    1 +
+ drivers/media/i2c/os05b10.c                   | 1119 +++++++++++++++++
+ 5 files changed, 1241 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,os05b10.yaml
+ create mode 100644 drivers/media/i2c/os05b10.c
+
+--
+2.34.1
+
 
