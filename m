@@ -1,60 +1,79 @@
-Return-Path: <devicetree+bounces-245962-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245963-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53B91CB713B
-	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 20:56:37 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7BE0CB7188
+	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 20:58:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E1C5F30136C4
-	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 19:56:35 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D6982301C3F8
+	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 19:57:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BBE2326D68;
-	Thu, 11 Dec 2025 19:56:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA8F631A554;
+	Thu, 11 Dec 2025 19:57:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Doq9lqp+"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="i7Qp0ceJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DFF230BF59;
-	Thu, 11 Dec 2025 19:56:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7871D314D2B;
+	Thu, 11 Dec 2025 19:57:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765482992; cv=none; b=Hrwx3i3gH80XKzzhdggBPabQexsA7os6N3IL2FiM+wUGPL9GYQyNUN7DcJz4WsHAyP4olHWEBA7kOM80FKw0VM0nmJEXG1b7pTpGh2kqRSYHHsleTPAjI2pDi9qKrpSbU+04EP9AxEfRiUSCtE3adT5eO5XeJj6r6vSvpvRQboo=
+	t=1765483043; cv=none; b=FJk0H5w9/kYjo/X28QcblSR3eaFWXTVMmSULoHSH6DBm3mozmUQ5yEDZBcdUYwU6XgJ7QEs20pZcDG0XHDVQvO8QYoZKTaDx7IydAOfDVPgVGWxcKj7yoOHOmZKslaq5tfDFfS4Ksp38hQ0jvg8JNwFwNQLbZhH5VyIfJqcU2sE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765482992; c=relaxed/simple;
-	bh=HMv7vikpdiyc0tr0TYhhhGH6GWe2x1iyzq1EumBTr7g=;
+	s=arc-20240116; t=1765483043; c=relaxed/simple;
+	bh=2zPUdaMCrtIj668myNZ+Nbc5FdMCx+hekduQa59mElQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LmvjvjCIL4sns/lN8yrKz0Qk5zP4/35YZrhFwI5q1KPBUUdR0WTfw4PaZibcHDqdWhwRXXg3nesYBKSwyZl9TGixZyMfBVUuo5CQJsNRZWhcVlCSEyueSBFrLPInCUW0eZjcXErBXP2Pq2nhnxSzLfDDG3TLV5nZqYO9HBxEX58=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Doq9lqp+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C135C4CEF7;
-	Thu, 11 Dec 2025 19:56:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765482991;
-	bh=HMv7vikpdiyc0tr0TYhhhGH6GWe2x1iyzq1EumBTr7g=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Doq9lqp+j2BkKC59X5d5xNwaCtkHdKMBqSJU7xd3VUKEqtGRMStY3+hLyCm4cx0PY
-	 GLAbUgXK69XtkVMGraP+oCePaYTvpho4LQX16dgzQU1+DO00Nz7RcTjFKFBOuONG85
-	 2hR0JZ7ywSzoUAA/FuiUFFdJ3ShigaABCVM40fAqO/QyaSay5gu4EU85LRfFAaa+hX
-	 faR5MhuXj9/QnQr/LosBEaKF3bQds37XndtjoLJknc2/MmhaxM4oGTuWXoag+2mIEd
-	 Ph46y5A3pEv34txN9cZWx3UGV9trTMC1k0Uzd3PUSZMn/6Svnsr7Ewt9n0lTSQKP1N
-	 Bh8xxGiRogr9g==
-Date: Thu, 11 Dec 2025 13:56:28 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Andrew Jeffery <andrew@codeconstruct.com.au>
-Cc: linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
-	Joel Stanley <joel@jms.id.au>, Linus Walleij <linusw@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=E/gnStLQHLifrJsKcvxxhDy9LPfxubTHruLu0bG9MeXmoDbWij2onaS/eCy4k9BX85SB/xHWYQCX4FC5KF2eh5zh3TvJXvqnOEGWHNEoHt1ZYCAKeGWBr1jvs+IcuBWuYhPQf3GeO2sAMnvZoa5LDoiVzd8lBrd6EegD9kNlEAA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=i7Qp0ceJ; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=owhNvb4BmlJlqJlDYQvQvwlr0ivxIOfTUUdM9/4+rQM=; b=i7Qp0ceJdAJQniU1oAQZ2ziaWY
+	/9miFVeSUnvCNeDVJB/0egU/rrhzjvqhGrQZuLqhojFepglZJoBq+Ees43SbR60fuyLoqg/qPMqz5
+	+bih+o6neGABIFBASpxL67XtScpm0bEL+d9yrg2G0XpCt+CA/vVnxSY9omYavlfZbcc4=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1vTmmS-00GfyF-J7; Thu, 11 Dec 2025 20:56:52 +0100
+Date: Thu, 11 Dec 2025 20:56:52 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Ivan Vecera <ivecera@redhat.com>
+Cc: netdev@vger.kernel.org, Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-hwmon@vger.kernel.org, linux-crypto@vger.kernel.org,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-aspeed@lists.ozlabs.org, linux-mmc@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH RFC 09/16] dt-bindings: bus: aspeed: Require syscon for
- AST2600 AHB controller
-Message-ID: <176548298699.1799665.1259025609428986424.robh@kernel.org>
-References: <20251211-dev-dt-warnings-all-v1-0-21b18b9ada77@codeconstruct.com.au>
- <20251211-dev-dt-warnings-all-v1-9-21b18b9ada77@codeconstruct.com.au>
+	Conor Dooley <conor+dt@kernel.org>,
+	Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
+	Grzegorz Nitka <grzegorz.nitka@intel.com>,
+	Jiri Pirko <jiri@resnulli.us>, Petr Oros <poros@redhat.com>,
+	Michal Schmidt <mschmidt@redhat.com>,
+	Prathosh Satish <Prathosh.Satish@microchip.com>,
+	Tony Nguyen <anthony.l.nguyen@intel.com>,
+	Przemek Kitszel <przemyslaw.kitszel@intel.com>,
+	Saeed Mahameed <saeedm@nvidia.com>,
+	Leon Romanovsky <leon@kernel.org>, Tariq Toukan <tariqt@nvidia.com>,
+	Mark Bloch <mbloch@nvidia.com>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Jonathan Lemon <jonathan.lemon@gmail.com>,
+	Simon Horman <horms@kernel.org>,
+	Alexander Lobakin <aleksander.lobakin@intel.com>,
+	Willem de Bruijn <willemb@google.com>,
+	Stefan Wahren <wahrenst@gmx.net>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, intel-wired-lan@lists.osuosl.org,
+	linux-rdma@vger.kernel.org
+Subject: Re: [PATCH RFC net-next 01/13] dt-bindings: net:
+ ethernet-controller: Add DPLL pin properties
+Message-ID: <2de556f0-d7db-47f1-a59e-197f92f93d46@lunn.ch>
+References: <20251211194756.234043-1-ivecera@redhat.com>
+ <20251211194756.234043-2-ivecera@redhat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,21 +82,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251211-dev-dt-warnings-all-v1-9-21b18b9ada77@codeconstruct.com.au>
+In-Reply-To: <20251211194756.234043-2-ivecera@redhat.com>
 
-
-On Thu, 11 Dec 2025 17:45:51 +0900, Andrew Jeffery wrote:
-> The AST2600's ACRY (eliptic curve and RSA crypto engine) requires access
-> to configuration exposed by the AHB controller. The devicetree already
-> describes the AHB controller node as a syscon, so require this in the
-> binding to satisfy the ACRY relationship.
+On Thu, Dec 11, 2025 at 08:47:44PM +0100, Ivan Vecera wrote:
+> Ethernet controllers may be connected to DPLL (Digital Phase Locked Loop)
+> pins for frequency synchronization purposes, such as in Synchronous
+> Ethernet (SyncE) configurations.
 > 
-> Signed-off-by: Andrew Jeffery <andrew@codeconstruct.com.au>
-> ---
->  Documentation/devicetree/bindings/bus/aspeed,ast2600-ahbc.yaml | 8 +++++---
->  1 file changed, 5 insertions(+), 3 deletions(-)
-> 
+> Add 'dpll-pins' and 'dpll-pin-names' properties to the generic
+> ethernet-controller schema. This allows describing the physical
+> connections between the Ethernet controller and the DPLL subsystem pins
+> in the Device Tree, enabling drivers to request and manage these
+> resources.
 
-Applied, thanks!
+Please include a .dts patch in the series which actually makes use of
+these new properties.
 
+	Andrew
 
