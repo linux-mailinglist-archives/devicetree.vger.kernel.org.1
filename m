@@ -1,112 +1,309 @@
-Return-Path: <devicetree+bounces-245876-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245877-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 604B0CB66C2
-	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 17:07:56 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA8AACB6774
+	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 17:29:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1772A300FE11
-	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 16:07:55 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 12A6A3001BFC
+	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 16:29:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25DDB2FF64C;
-	Thu, 11 Dec 2025 16:07:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8EFC31197E;
+	Thu, 11 Dec 2025 16:29:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CX4bUVA3"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BLTPdJ8q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC72629BDB3;
-	Thu, 11 Dec 2025 16:07:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1B922D3EC1
+	for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 16:29:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765469274; cv=none; b=LUmw0DkexHzZKAwGE60fxMGBxdy56iRyavpOLGdtOh75v2OoREIg2hSr2S4ac3XifYiBS49VxN8mRN77DgoOlpohn9m0w12tqqQlwl3tysioxuMTorveAVuAuibQ08v3nmCBWktBHDNArcPu5/QGYtA7mc3gh34xNpJ75NuznYQ=
+	t=1765470577; cv=none; b=M/tKQnw3AIq08O2mx2mEUCUUpdIXCugDj7vFVkal7szaHqB0XmqMW331K9eA5fpTulXCYmp10GhDy/rTfI0yuy/PeV+5ACkmmcQqSELxuyQVFEBGd1weznjnLj9iZg9JI5u9D1zF4WNF/xnMKnh0lb34Sv0wPZLwusqN1wRdRbI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765469274; c=relaxed/simple;
-	bh=N98WoACJ/uJsQv2tfbWthp3jiUs/8Mi+M4KpGmdwZj0=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=uuOL2BMk0rQF5o9xtRqdLNKx/yLjujmIuDA6cZSjVezfzkBdYBn4cgxFyFOfHJU38s4Xpug3dIjt+DYess0jwVOQ54vq0/J3RrgvdSDRJuvGn5vVLY6MTGQB9l0u89/DryX46d8pz/fZqttGvQp7e/IlMRNEfZdEQQKldzbJetk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CX4bUVA3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44B1DC4CEF7;
-	Thu, 11 Dec 2025 16:07:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765469273;
-	bh=N98WoACJ/uJsQv2tfbWthp3jiUs/8Mi+M4KpGmdwZj0=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=CX4bUVA3WXyVGAWRazsLSLdsCOwj4rIjG0WnBbUdl1j8Y9UGIXcpQKVmu3gbJ3lqX
-	 ZUfYU5qJMMrHQO1mGYUliAB0Af80G1z+5RkHOci76V/DcjfI4NGVQ1fZkLTsmY+AfG
-	 gluV1gElqkKrXuU4DNJ84vcP2JgoyfpZcfgvJpMnTPhiUuYVi5WUy2InoR5ngXpvf1
-	 dOkdXOTBoagUGyXVnwwZ2nre4vyzIbOzrC/Za5PibcVgC+QpSXMcKlU6UZ54LHtsZf
-	 I3+f3Bf8DRVgB0FTK6yBBtJ9s4bTfD7zy/9l3Yu4j99tB5FcsnvmRAVkdDlNjg+wCw
-	 B5xfin8/tPtkA==
-Date: Thu, 11 Dec 2025 10:07:52 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: zhangsenchuan <zhangsenchuan@eswincomputing.com>
-Cc: bhelgaas@google.com, mani@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, lpieralisi@kernel.org, kwilczynski@kernel.org,
-	robh@kernel.org, p.zabel@pengutronix.de, jingoohan1@gmail.com,
-	gustavo.pimentel@synopsys.com, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	christian.bruel@foss.st.com, mayank.rana@oss.qualcomm.com,
-	shradha.t@samsung.com, krishna.chundru@oss.qualcomm.com,
-	thippeswamy.havalige@amd.com, inochiama@gmail.com, Frank.li@nxp.com,
-	ningyu@eswincomputing.com, linmin@eswincomputing.com,
-	pinkesh.vaghela@einfochips.com, ouyanghui@eswincomputing.com
-Subject: Re: Re: [PATCH v7 2/3] PCI: eic7700: Add Eswin PCIe host controller
- driver
-Message-ID: <20251211160752.GA3594705@bhelgaas>
+	s=arc-20240116; t=1765470577; c=relaxed/simple;
+	bh=axH9+ML3iDQ94phCY/ovWj6g1PfWab2qlgyPUs88ia0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Ad53+hC6smW8D28fGxFVfIrLizNi4cdOEw6yLpap/+Hz9EaPPPkuBwCtY096Bbnea4HCdFZ2HOB9096T2gxXmLS4701Y00dsKZ2gmHmZRtEISIt2Fnyn3orC0qoVU69fEBy/76B1EZW4VzYkIFUj5poVw03/ire9FisSm6mioz0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BLTPdJ8q; arc=none smtp.client-ip=209.85.210.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-7bf0ad0cb87so333126b3a.2
+        for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 08:29:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1765470575; x=1766075375; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=awr8DF0rOP11yNcKK692Kf3EHuJbOE7t15SvXNPQdiU=;
+        b=BLTPdJ8q73HYxewRzHEHDOovib99Xp0gk8nilXhzwNbI34UoWZWWXv98PL1h4e8Nyn
+         vlOk/bDmYjuh1UH9WU7HwOCBGEUTYhIaAU95oQT84223Jf8BV9w+A0MMvnYSML+G2PZW
+         Zo3MD0bH6UAjOQMbbiJfAqwlBJyVtdRjYub3WG+B2RTmByy12jEwd0sBkZHWTbJ2Jxpg
+         xRzuy/9yhNCTl/u1etg9HGToChAeZAT+r5T4Knoj1zwqIehPcPMwSd7Sw8aNvN+v6qbK
+         DjRkbXj5tfVtLxaW28BsN7UaVQCvPrewMGrNqhywouAnpNXhfnpBA64vc2y5bWYvHFq4
+         3VRQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765470575; x=1766075375;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=awr8DF0rOP11yNcKK692Kf3EHuJbOE7t15SvXNPQdiU=;
+        b=Q0taIPvVguIjH5RNdgDSewCuGfjv7iR8QWkzAW4xlJaMLIEyhyrWB8TBmkhE4zHIeB
+         ONvWOt8QNMCphuYo4xFBWbypaUlrnUnTfClAIrLiZPQkyXMG1VekJysoFTfS81n7tGLI
+         ptnOecAYTE44h9luusVmT1y/8QIHd8QeMFLaxpDRd9Gk4B0ndQJ4PTwyx29xUhAdpZS4
+         kH/GU1Ib5sD6PMqRmRvpmNNL3M5154SLMet+qv24jZxnBu5xU83Gu7Z6NxRgaZbkN9J2
+         AhRsDZk1LFUupPtd4qBjdOFp6D2tmnAw636wyWnGOVqONsLY6rGQLPbuObvQHw37TSs+
+         HckQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU3Hk5Ivzew95SqC6/byH+1cLT4VaAlwdxjEqhyRkmGntKx1OYJpxkNDARaCOkrVUukOfa83JgbvKtL@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy7TJYa8ECoUz2Z+RD9tEPv8jMjqFiaN6fuHHYioEz5BwuG3LVf
+	65QJRmygnIcPrmnJUfEoLVBCOtZKYLA9IQlSh880ixb6Oz+OjC3dPkay
+X-Gm-Gg: AY/fxX7cBLKAPpO5iEsFoe2/VUIUMIB986WXyTwN8nW8kyyuCt9gZdsCxfyTtzs68D3
+	vFYRiQqQGPeo0tUymLmUA6Daf6tZQDqFcJavUda4G7z9/miF7ieVe3RbEnZslwcWLUq57uxkJNa
+	83UPSR04bxnSJEOITaZ57k7Azq2eDnn2ToaPvw+6a0rmeFIoT5EIPWZtgfa0KVip3kNoM7xFEzc
+	qyRn4DQOiibMMqaoc62+fJBs9/pruJK0GK19L/pm+FvI4fG8yvAXytVm8lc2POVRC0XPPGWJzBs
+	QpBl03xbOf9qDddZqmH3VC0kETGUYzMNAFoVXFn4NljYSV6kbnEvMfMkNyMZkaHs2x53dc4Ey+B
+	cIz5qaOltflB+BdW5PR3Buk30FEuuhBf13FWM9b1WEwcQQGYo4zqQD//89c5lw3QwE1hp+bR6rW
+	et4zwL7OI1YqpGB62IUZ4xANkXS5n1D0qj/0A=
+X-Google-Smtp-Source: AGHT+IGm8+dgYyRDv3gJ1XDI1aFNCRMzHlfROQeOfZxqRqUrkSy07arPhVguaQ6k7761nOnWCZjbgg==
+X-Received: by 2002:a05:6a00:a0a:b0:7b8:758c:7e86 with SMTP id d2e1a72fcca58-7f22e0a1307mr7024548b3a.15.1765470574904;
+        Thu, 11 Dec 2025 08:29:34 -0800 (PST)
+Received: from [192.168.1.5] ([115.99.253.182])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7f4c54812c5sm2952433b3a.59.2025.12.11.08.29.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 11 Dec 2025 08:29:34 -0800 (PST)
+Message-ID: <62b62814-29a5-4809-969c-a258da8eb415@gmail.com>
+Date: Thu, 11 Dec 2025 21:59:28 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <68c6494b.1244.19b0d4d2b8c.Coremail.zhangsenchuan@eswincomputing.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: mtd: nvidia,tegra20-nand: convert to DT
+ schema
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Thierry Reding
+ <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>,
+ Stefan Agner <stefan@agner.ch>, Lucas Stach <dev@lynxeye.de>,
+ linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20251030-nvidia-nand-v1-1-7614e1428292@gmail.com>
+ <20251104-prompt-rampant-cat-30fd9a@kuoka>
+Content-Language: en-US
+From: Charan Pedumuru <charan.pedumuru@gmail.com>
+In-Reply-To: <20251104-prompt-rampant-cat-30fd9a@kuoka>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Dec 11, 2025 at 08:05:19PM +0800, zhangsenchuan wrote:
-> > -----Original Messages-----
-> > From: "Bjorn Helgaas" <helgaas@kernel.org>
-> > Send time:Thursday, 11/12/2025 00:43:27
-> > To: zhangsenchuan@eswincomputing.com
-> > Cc: bhelgaas@google.com, mani@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, lpieralisi@kernel.org, kwilczynski@kernel.org, robh@kernel.org, p.zabel@pengutronix.de, jingoohan1@gmail.com, gustavo.pimentel@synopsys.com, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, christian.bruel@foss.st.com, mayank.rana@oss.qualcomm.com, shradha.t@samsung.com, krishna.chundru@oss.qualcomm.com, thippeswamy.havalige@amd.com, inochiama@gmail.com, Frank.li@nxp.com, ningyu@eswincomputing.com, linmin@eswincomputing.com, pinkesh.vaghela@einfochips.com, ouyanghui@eswincomputing.com
-> > Subject: Re: [PATCH v7 2/3] PCI: eic7700: Add Eswin PCIe host controller driver
 
-Please avoid the pointless quote of all the headers (above) if you
-can.  That just clutters the thread.  Also trim context that is not
-relevant.  More hints here: https://subspace.kernel.org/etiquette.html
 
-> > On Tue, Dec 02, 2025 at 05:04:06PM +0800, zhangsenchuan@eswincomputing.com wrote:
-> > > From: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
-> > > 
-> > > Add driver for the Eswin EIC7700 PCIe host controller, which is based on
-> > > the DesignWare PCIe core, IP revision 5.96a. The PCIe Gen.3 controller
-> > > supports a data rate of 8 GT/s and 4 channels, support INTx and MSI
-> > > interrupts.
-
-> > > +static int eic7700_pcie_probe(struct platform_device *pdev)
-> > > ...
-> > > +	pci->no_pme_handshake = pcie->data->no_pme_handshake;
-> > 
-> > This needs to go in the 3/3 "PCI: dwc: Add no_pme_handshake flag and
-> > skip PME_Turn_Off broadcast" patch because "no_pme_handshake" doesn't
-> > exist yet so this patch doesn't build by itself.
+On 04-11-2025 15:33, Krzysztof Kozlowski wrote:
+> On Thu, Oct 30, 2025 at 06:47:25PM +0000, Charan Pedumuru wrote:
+>> Convert NVIDIA Tegra NAND Flash Controller binding to YAML format.
+>> Changes during Conversion:
+>> - Define new properties `power-domains` and `operating-points-v2`
+>>   to resolve errors generated by `dtb_check`.
 > 
-> Do I need to adjust the order of the patches?
-> 3/2 "PCI: dwc: Add no_pme_handshake flag and skip PME_Turn_Off broadcast"
-> 3/3 "PCI: eic7700: Add Eswin PCIe host controller driver"
+> instead - because existing in-tree DTS uses them.
 > 
-> Or merge Patch 2/3 and Patch 3/3?
+>> - Add the `#address-cells` and `#size-cells` properties to the parent
+>>   node to fix errors reported by `dt_check`, and include these properties
+> 
+> What is dt_check? Aren't you adding them because other schema requires
+> them? Then say that (and which schema...).
 
-I think the best thing would be to leave dw_pcie_suspend_noirq() along
-and implement eic7700_pcie_suspend_noirq() without calling it.
+Sure, I will modify accordingly.
 
-dw_pcie_suspend_noirq() is already problematic [1], and we don't need
-more complication there.  Even without calling
-dw_pcie_suspend_noirq(), your eic7700_pcie_suspend_noirq() will be
-pretty simple.  Just add a comment about why you don't use
-dw_pcie_suspend_noirq().
+> 
+> 
+>>   in the `required` section, as they are not mentioned in the text binding.
+>>
+>> Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
+>> ---
+>>  .../bindings/mtd/nvidia,tegra20-nand.yaml          | 157 +++++++++++++++++++++
+>>  .../bindings/mtd/nvidia-tegra20-nand.txt           |  64 ---------
+>>  2 files changed, 157 insertions(+), 64 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/mtd/nvidia,tegra20-nand.yaml b/Documentation/devicetree/bindings/mtd/nvidia,tegra20-nand.yaml
+>> new file mode 100644
+>> index 000000000000..67b3c45566db
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/mtd/nvidia,tegra20-nand.yaml
+>> @@ -0,0 +1,157 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/mtd/nvidia,tegra20-nand.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: NVIDIA Tegra NAND Flash Controller
+>> +
+>> +maintainers:
+>> +  - Jonathan Hunter <jonathanh@nvidia.com>
+>> +
+>> +description:
+>> +  Device tree bindings for the NVIDIA Tegra NAND Flash Controller (NFC).
+> 
+> Drop sentencem completely redundant. Title already said that.
 
-[1] https://lore.kernel.org/linux-pci/20251114213540.GA2335845@bhelgaas/
+Okay.
+
+> 
+>> +  The controller supports a single NAND chip with specific properties.
+> 
+> What is/are "specific properties"? Can properties be unspecific?
+
+I will modify the description.
+
+> 
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: nvidia,tegra20-nand
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    maxItems: 1
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: nand
+>> +
+>> +  resets:
+>> +    maxItems: 1
+>> +
+>> +  reset-names:
+>> +    items:
+>> +      - const: nand
+>> +
+>> +  '#address-cells':
+>> +    const: 1
+>> +
+>> +  '#size-cells':
+>> +    const: 0
+>> +
+>> +  power-domains:
+>> +    maxItems: 1
+>> +
+>> +  operating-points-v2:
+>> +    maxItems: 1
+>> +
+>> +patternProperties:
+>> +  "^nand@[0-5]$":
+> 
+> Keep consistent quotes, either ' or "
+
+Sure.
+
+> 
+>> +    type: object
+>> +    description: Individual NAND chip connected to the NAND controller
+>> +    properties:
+>> +      reg:
+>> +        maxItems: 1
+>> +
+>> +      nand-ecc-mode:
+>> +        description:
+>> +          Operation mode of the NAND ECC, currently only hardware
+>> +          mode supported
+>> +        const: hw
+>> +
+>> +      nand-ecc-algo:
+>> +        description: Algorithm for NAND ECC when using hw ECC mode
+>> +        enum:
+>> +          - rs
+>> +          - bch
+>> +
+>> +      nand-bus-width:
+>> +        description: Width of the NAND flash bus in bits
+>> +        enum: [8, 16]
+>> +        default: 8
+>> +
+>> +      nand-on-flash-bbt:
+>> +        description: Use an on-flash bad block table to track bad blocks
+>> +        type: boolean
+>> +
+>> +      nand-ecc-maximize:
+> 
+> Why are you duplicating all these properties from nand schema?
+
+Sure, I will make nand-chip as ref and remove duplicate properties.
+
+> 
+>> +        description:
+>> +          Maximize ECC strength for the NAND chip, overriding
+>> +          default strength selection
+>> +        type: boolean
+>> +
+>> +      nand-ecc-strength:
+>> +        description: Number of bits to correct per ECC step (512 bytes)
+>> +        enum: [4, 6, 8, 14, 16]
+>> +
+>> +      nand-is-boot-medium:
+>> +        description: Ensures ECC strengths are compatible with the boot ROM
+>> +        type: boolean
+>> +
+>> +      wp-gpios:
+>> +        description: GPIO specifier for the write protect pin
+>> +        maxItems: 1
+>> +
+>> +      '#address-cells':
+>> +        const: 1
+>> +
+>> +      '#size-cells':
+>> +        const: 1
+>> +
+>> +    patternProperties:
+>> +      "^partition@[0-9a-f]+$":
+>> +        $ref: /schemas/mtd/mtd.yaml#
+>> +        description:
+>> +          Optional MTD partitions for the NAND chip, as defined in mtd.yaml
+>> +
+>> +    required:
+>> +      - reg
+>> +
+>> +    unevaluatedProperties: false
+> 
+> So this should tell you that you miss proper ref
+> 
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - interrupts
+>> +  - clocks
+>> +  - clock-names
+>> +  - resets
+>> +  - reset-names
+>> +  - '#address-cells'
+>> +  - '#size-cells'
+>> +
+>> +unevaluatedProperties: false
+> 
+> Same here. Why do you use unevaluatedProperties if there is no ref?
+> Please open other bindings to understand how MTD binding should be
+> written.
+
+I will add appropriate common nand-controller ref to the schema.
+
+> 
+> Best regards,
+> Krzysztof
+> 
+
+-- 
+Best Regards,
+Charan.
+
 
