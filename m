@@ -1,80 +1,81 @@
-Return-Path: <devicetree+bounces-245821-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245822-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D082ECB5989
-	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 12:03:40 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id ABF9CCB59AC
+	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 12:09:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0D28B3005FFA
-	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 11:02:56 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id A9F30300976E
+	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 11:09:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B56A42F7AA8;
-	Thu, 11 Dec 2025 11:02:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49EF7307AD0;
+	Thu, 11 Dec 2025 11:09:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rBKEbwZ/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="B8FajkAt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D06552D8364
-	for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 11:02:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57930306485
+	for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 11:09:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765450974; cv=none; b=BUztfvE6877zRn52ayuVCNmTcfZkWQBuWWzXkvz3R37aPBXPQY34MFVTxXEoul2M8YJntw8Gli5G0Z9vx9NjjYwSSEkn9Ro5oBsfcWJAMpbafp0LQnz6s66/U2TjA+o07SP0uJn05XMESl8HboXe4RAV+dE3btIijlasTdWdh4U=
+	t=1765451382; cv=none; b=GH7bpiX9ByffVLg2mUZtPu/bF4qz8iVkDwK000szZ4WUe9IKBnwUH4iHl3VXpr9Cu90IXAEKOvSiW//W/rkEzewjTS/TrPFAMvO8wYsfS4EdeWpCOrENM+MAk7NV8eQqB3UpbmiMncbyCsQMcOGH/RvPzGL1UpRehvA4UF7UWi4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765450974; c=relaxed/simple;
-	bh=nrYL+p3whmUEM5YpWCZ767nAIenkR15h2mmeoDqw5PQ=;
+	s=arc-20240116; t=1765451382; c=relaxed/simple;
+	bh=CNGxVNdd0BeSWDaYjncbbECd94rZPpRsWPtt8x5bons=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TfkMHzzrUyXIyOOyZM079+KK9LU7qCByqtLRDWWlDnUiniY1sWSrKT6c9cHzYbjxh2Ydk30aCgDxrdraroxbDz5lskHy+UMcvgYfx0jYu8cnFLw6WepOs55V+x6ztGo8xGXVfgvo2yYbkwm/fd6GOT02Wn7Lm1u/lVulDGUk2Kg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rBKEbwZ/; arc=none smtp.client-ip=209.85.167.50
+	 In-Reply-To:Content-Type; b=pS1I76KC46rTobW196c+NaemOFMHpoLYB4b3hL7p0/t9yISwxuhARjevs+iKG93F3TP/t+jj+66fbPC5iI/d5hRdENRm2ExDaNRKD7ICLs1kVRGQZtPyjjKQmb970jlM6B3k2sw079jsEMTRYo72r2sL84wrmLKqCy5JGwKuWBY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=B8FajkAt; arc=none smtp.client-ip=209.85.208.174
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-5957a623c7fso136559e87.0
-        for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 03:02:52 -0800 (PST)
+Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-37a5a3f6bc2so460221fa.1
+        for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 03:09:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1765450971; x=1766055771; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1765451378; x=1766056178; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=4IpgOIEea7XPlTH9HIW1XTLqM3YdzmpFIYxfSSkeFYE=;
-        b=rBKEbwZ/fBVLDv5YnOt8cl8mOKQ/knlS7A7zX+c2bkKmuPETpCeA625WCVMz+nl9qy
-         QTQXA2Pd0BBeuYSnzL7IrtHbu7TgH/E1/Rlzg/MWSwYI4nabLal4PnZNOQ497Dwe4WEw
-         c6gOEBCM+AnRTs8Ybuw/SzrM017ta4GS3Qh1/ua1JcmNjmr+95kx1DaNVQDwXLN2rePg
-         WZHdAfiyt2tGuwKvn97ioPaUC8LPQIvskZDnn/yC/9Lm+qe3azT1N+c499fudzJpaYzp
-         ciOez2mGqbqYSIBiBL7xPOSjuGcMo/08YVbMbVen1E6W75vn+kOqdBgmlqZAxWW8yKxK
-         95og==
+        bh=8EyBRZPRp8b/cAnvFkXFeWu8lRTa53gJUQVL0pLmo3o=;
+        b=B8FajkAtELrxs2TFpIPtPiu3a0fbprnsErOn74Sacs2QMnXkAj4z5RFh1D54stvvqe
+         bgHEd8eTOvgsDRtODkZFge6icsUnwrcvs7iv0iJJmHnypcHlw5lRLqpXEcCECaN3emVi
+         yMyf8jcx6M6EpxKN2+mIpZAd2slZWPhtDOg+tdZkcikkQLzxygnRxHNzMwU0PXGy0nsc
+         f1IcfJuOVz5kyo9X1bCxagGxg3LYSVBC28GLngIlX3XccsYMdDiWWaHy2iM395Cx5Xan
+         AMzlUPF4yqnljWB7lVMBWUs8Hb81aHRa0fvDdhTtRILW9qnx+O0itv8Em6/xsOBH2bbC
+         sbqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765450971; x=1766055771;
+        d=1e100.net; s=20230601; t=1765451378; x=1766056178;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=4IpgOIEea7XPlTH9HIW1XTLqM3YdzmpFIYxfSSkeFYE=;
-        b=wYH5W+vIKE+LHevRL8ruf2azKkqa2SO4J94ooXVQwnc0YcS4fXKZKNcf5A/AxS9nZw
-         AwEthjKGabNszLmamixO2qzXBem1zUrCwnWYwddouTBz0MA08iJlyNJQp0BMxBDDc0mz
-         DfdZxEMyyFwE/X1C+73fq9ajggKXmM/sILHsSwrExmmGmdcWD+fLlFAJKfvaR82u6RUd
-         oQAUYLhgLyVoDvDeydRdDHBJ+bLxuQjuYjX4+OkBDAvV01DNte20+XVTP+2J2lmKpXD3
-         eUtX4FWSr3X1YcF7YaSw2EhMVKbfPJgmRwKGtl/Zr4sHcvtiSKsDOcrz/QlVk8d8j+zc
-         JlFA==
-X-Forwarded-Encrypted: i=1; AJvYcCVUxIelrzFM0TzyanaaEdw9alvX3Cebeb0VARdZCTNoroeUjzWIfWDHpPhQO5wNt3EKSfpoAegN4/gV@vger.kernel.org
-X-Gm-Message-State: AOJu0YzKRalPHzm8nMgv3i3d+7F3FoNALIzRgRNCrw42SYAG2/5QVBYb
-	Uwni0F4+qow689KZ9mX8izkpyUuxa1D8NSHlcGxt2Zdm8db4xGuZZlgAlvLmSX90x5U=
-X-Gm-Gg: AY/fxX66216HA3UHP9dnbBaYdCUHDqecblNkly8GK0wtahZzxNBEImHwqNj5/sBFUK2
-	84XrmlnjOFPW0tslVg4pf0AY6TZvBWWj4C9f2MgsD01K1yjWxE1pdDpvFotdYzUwYEwoW+HbxWU
-	csnLgZBr6gAetksbNs5Z5Sn2M7jIYnRxNfJhLBTwB2Crm0kf84QAP8u3XYFEMU6+jAzE5UQTOV5
-	Oz0/WXoKCkoKjHGeoZzsQf+ZcnSKdyXbOpnTuGDBB28ou34nlEDeRBkg9Y5rlMAV5ulaURJ1Z6y
-	CkM4rPW88ugiIt4Ce0YxigcrdvKt0mpzfWV9zf4JolMgETIwulhmr4BnLHxag5gMw2l3C6s4wTY
-	ln9InKj1EIjSwU9OdS5UCjdqxpqmvj3Vgrhx+A4WBjC2RQ4erlaJEYjKMHmZQtW5gtXhYarX9Zg
-	kPelgDeCwrlL5mFxvd05Y2g5yC9dHb843JgkHrVP++EKC3N3PjHKeB7hSS3gdvntSvBQ==
-X-Google-Smtp-Source: AGHT+IFk2biVIAj45RBGf3zLMigOPvVju7YdIhY0AHKiPT8b07zME4lPqCahZLx/NOmDPJlsa42yNQ==
-X-Received: by 2002:a05:6512:3da3:b0:594:493b:4249 with SMTP id 2adb3069b0e04-598f373d7f5mr421553e87.0.1765450970793;
-        Thu, 11 Dec 2025 03:02:50 -0800 (PST)
+        bh=8EyBRZPRp8b/cAnvFkXFeWu8lRTa53gJUQVL0pLmo3o=;
+        b=fEBk1spXBpXLPb0vQC2J9g+LSJi9pQNX6aJj13HH9vOqjxAZO7YTtjQKWRNUKXtpGJ
+         XdPCCSFtFudJdQuYiu9xrOYeo0qKuDdYy51R5JPzyMPEw/XIDlRK0upPOKEVRhoRFzx6
+         E8mezBeD7SfjtHJH/kmiLvJURPg69c+qW/zyvGHU7iJW8kmSJKjrU/bVYrot90tOTHsx
+         r2AS3sR/X5WWOoJXUqXdGBF+Dy3tpG3A99K/B8pnsWqVV0OSLhZWOYvgMOIUN2XGi8Yz
+         mXET7G9RYaei+FTABLnBcgECdz2qzUTt7MKhzcqDE0c+05aloWzhE2GGPUdJOIdMvwNQ
+         4oKQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV02G669VA2tgciY0KE+eRVHCDznfO4qwHW31ADP5CjiFSEt914ibILM03rJsLzCriCGks+oNehBGHd@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyq5d7vFEH3JiAK8R+4D2/vMnNMHcZ4OAcQAvhl5uWwGl4Z6VFK
+	ZmvaRJCmLw2cCpJcVYyn0ixRbSFULRBKIABjAudFZbn3q199BjJB0L727gn3sTIbeF+H061PU9T
+	8cjmQ
+X-Gm-Gg: AY/fxX6JOuRVzHHqnGZV94HKL4yDsSp3+XEO+FiyEP2ziNOOMAFPqixz0Xa0aXaHehS
+	uTS7Tn3+fqkH2WzvNtPx/+fV+j4jbIZ4yZ6AAAGPZEgg9yD1AvGtJklidqk0ZyEpO9Szqk3sbsI
+	sMzOhOr89ZBzogj2psmDDjt634PgxfEangl1hy53TfN740dBXmrSqllEoBFoqqc5zKhKryXSluu
+	jw0q1TRxFNxms+5i5DzKsMNuFotNkjC1UDfODLTVzA6ywNFi5mXABlzlh/B/K+pxF4knDdm2IP3
+	xilqrxItFIcm8XHp273yKnPlMioE2QbR6o2GhjhiwNTqecSoeuzK3Y2WuVASz45MXW4ZwE46dCy
+	Kl3GZGnLQdfYsErtDrOKCIJ7RDt9L3TINE4kEe68vS4Zk3isekiDdo3nueCSMOoRnkXVjoWpjjn
+	C3PSNVSDR3Bgp7P1Uq2apsnZq8ybcUAC8RXAnQIVqrYVv2uCrZvMNpI/39zUQtnCGwqg==
+X-Google-Smtp-Source: AGHT+IEVhRY0kPCxpKfnu3mkzNfGXD92o3Dd/PndMoowcESrQWjQ+spldYQtJfLrkziZioOdsCo8Vg==
+X-Received: by 2002:a05:6512:3e19:b0:594:5582:f77e with SMTP id 2adb3069b0e04-598ee52a384mr1208087e87.4.1765451378286;
+        Thu, 11 Dec 2025 03:09:38 -0800 (PST)
 Received: from [192.168.1.100] (91-159-24-186.elisa-laajakaista.fi. [91.159.24.186])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-598f2f3e82dsm762042e87.23.2025.12.11.03.02.49
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-598f2fa8702sm763706e87.76.2025.12.11.03.09.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 11 Dec 2025 03:02:50 -0800 (PST)
-Message-ID: <25c8ad84-2a3f-4e09-a32f-8af68379858e@linaro.org>
-Date: Thu, 11 Dec 2025 13:02:49 +0200
+        Thu, 11 Dec 2025 03:09:37 -0800 (PST)
+Message-ID: <dbd4c202-5be9-4f18-9413-5c5e50d3db88@linaro.org>
+Date: Thu, 11 Dec 2025 13:09:36 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,168 +83,183 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/5] dt-bindings: media: i2c: Add Sony IMX355
+Subject: Re: [PATCH v2 1/2] dt-bindings: media: i2c: Add os05b10 sensor
 Content-Language: ru-RU
-To: Richard Acayan <mailingradian@gmail.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Sakari Ailus <sakari.ailus@linux.intel.com>,
- Tianshu Qiu <tian.shu.qiu@intel.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-media@vger.kernel.org
-Cc: Robert Mader <robert.mader@collabora.com>
-References: <20251211014846.16602-1-mailingradian@gmail.com>
- <20251211014846.16602-2-mailingradian@gmail.com>
+To: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>, robh@kernel.org,
+ krzk+dt@kernel.org, sakari.ailus@linux.intel.com
+Cc: Elgin Perumbilly <elgin.perumbilly@siliconsignals.io>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Hans Verkuil <hverkuil@kernel.org>,
+ Hans de Goede <hansg@kernel.org>, Mehdi Djait <mehdi.djait@linux.intel.com>,
+ =?UTF-8?Q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Dongcheng Yan <dongcheng.yan@intel.com>,
+ Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+ Sylvain Petinot <sylvain.petinot@foss.st.com>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Jingjing Xiong <jingjing.xiong@intel.com>,
+ Svyatoslav Ryhel <clamor95@gmail.com>,
+ Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20251211105427.22374-1-himanshu.bhavani@siliconsignals.io>
+ <20251211105427.22374-2-himanshu.bhavani@siliconsignals.io>
 From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <20251211014846.16602-2-mailingradian@gmail.com>
+In-Reply-To: <20251211105427.22374-2-himanshu.bhavani@siliconsignals.io>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 12/11/25 03:48, Richard Acayan wrote:
-> The IMX355 camera sensor is a camera sensor that can be found as the
-> front camera in some smartphones, such as the Pixel 3, Pixel 3 XL, Pixel
-> 3a, and Pixel 3a XL. It already has a driver, but needs support for
-> device tree. Document the IMX355 to support defining it in device tree.
+On 12/11/25 12:54, Himanshu Bhavani wrote:
+> From: Elgin Perumbilly <elgin.perumbilly@siliconsignals.io>
 > 
-> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
+> Add bindings for Omnivision OS05B10 sensor.
+> 
+> Add MAINTAINERS entry for Omnivision OS05B10 binding documentation
+> 
+> Signed-off-by: Elgin Perumbilly <elgin.perumbilly@siliconsignals.io>
+> Signed-off-by: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>
 > ---
->   .../bindings/media/i2c/sony,imx355.yaml       | 119 ++++++++++++++++++
->   1 file changed, 119 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx355.yaml
+>   .../bindings/media/i2c/ovti,os05b10.yaml      | 103 ++++++++++++++++++
+>   MAINTAINERS                                   |   7 ++
+>   2 files changed, 110 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,os05b10.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx355.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx355.yaml
+> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,os05b10.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,os05b10.yaml
 > new file mode 100644
-> index 000000000000..9aa2c7b7ea71
+> index 000000000000..b16e5333b1ec
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx355.yaml
-> @@ -0,0 +1,119 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +
+> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,os05b10.yaml
+> @@ -0,0 +1,103 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/media/i2c/sony,imx355.yaml#
+> +$id: http://devicetree.org/schemas/media/i2c/ovti,os05b10.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Sony IMX355 Sensor
+> +title: OmniVision OS05B10 Image Sensor
 > +
 > +maintainers:
-> +  - Richard Acayan <mailingradian@gmail.com>
+> +  - Elgin Perumbilly <elgin.perumbilly@siliconsignals.io>
 > +
 > +description:
-> +  The IMX355 sensor is a 3280x2464 image sensor, commonly found as the front
-> +  camera in smartphones.
-> +
-> +allOf:
-> +  - $ref: /schemas/media/video-interface-devices.yaml#
+> +  The OmniVision OS05B10 is a 5MP (2592x1944) color CMOS image sensor controlled
+> +  through an I2C-compatible SCCB bus. it outputs RAW10/RAW12 format and uses a
+> +  1/2.78"optical format.
+
+A space symbol is missing before 'optical'.
+
 > +
 > +properties:
 > +  compatible:
-> +    const: sony,imx355
+> +    const: ovti,os05b10
 > +
 > +  reg:
 > +    maxItems: 1
 > +
 > +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    const: mclk
-
-clock-names property can be removed, there is just one supply clock.
-
+> +    items:
+> +      - description: XCLK clock
 > +
 > +  avdd-supply:
-> +    description: Analog power supply.
-> +
-> +  dvdd-supply:
-> +    description: Digital power supply.
+> +    description: Analog Domain Power Supply
 > +
 > +  dovdd-supply:
-> +    description: Interface power supply.
+> +    description: I/O Domain Power Supply
+> +
+> +  dvdd-supply:
+> +    description: Digital Domain Power Supply
 > +
 > +  reset-gpios:
 > +    maxItems: 1
+> +    description: Reset Pin GPIO Control (active high)
 
-Please explicitly document that the reset GPIO is active low, and make
-the correspondent dts changes.
+If you have access to datasheet, what does it say about the reset GPIO?
+
+It's very uncommon to see an active high GPIO here, most likely it
+shoud be changed to active low.
 
 > +
 > +  port:
+> +    description: MIPI CSI-2 transmitter port
 > +    $ref: /schemas/graph.yaml#/$defs/port-base
 > +    additionalProperties: false
 > +
 > +    properties:
 > +      endpoint:
-> +        $ref: /schemas/media/video-interfaces.yaml
+> +        $ref: /schemas/media/video-interfaces.yaml#
 > +        unevaluatedProperties: false
 > +
-> +        data-lanes:
-> +          items:
-> +            - const: 0
-> +            - const: 1
-> +            - const: 2
-> +            - const: 3
-> +
+> +        properties:
+> +          data-lanes:
+> +            oneOf:
+> +              - items:
+> +                  - const: 1
+> +                  - const: 2
+> +                  - const: 3
+> +                  - const: 4
+> +              - items:
+> +                  - const: 1
+> +                  - const: 2
 > +        required:
-> +          - link-frequencies
 > +          - data-lanes
-> +
-> +    required:
-> +      - endpoint
+> +          - link-frequencies
 > +
 > +required:
 > +  - compatible
 > +  - reg
 > +  - clocks
-> +  - clock-names
 > +  - avdd-supply
-> +  - dvdd-supply
 > +  - dovdd-supply
+> +  - dvdd-supply
 > +  - port
 > +
-> +unevaluatedProperties: false
+> +additionalProperties: false
 > +
 > +examples:
 > +  - |
-> +    #include <dt-bindings/clock/qcom,camcc-sdm845.h>
 > +    #include <dt-bindings/gpio/gpio.h>
 > +
 > +    i2c {
 > +        #address-cells = <1>;
 > +        #size-cells = <0>;
 > +
-> +        camera@1a {
-> +            compatible = "sony,imx355";
-> +            reg = <0x1a>;
+> +        camera-sensor@36 {
+> +            compatible = "ovti,os05b10";
+> +            reg = <0x36>;
+> +            clocks = <&os05b10_clk>;
+> +            reset-gpios = <&gpio1 7 GPIO_ACTIVE_HIGH>;
 > +
-> +            clocks = <&camcc CAM_CC_MCLK2_CLK>;
-> +            clock-names = "mclk";
-> +
-> +            assigned-clocks = <&camcc CAM_CC_MCLK2_CLK>;
-> +            assigned-clock-rates = <24000000>;
-> +
-> +            reset-gpios = <&tlmm 9 GPIO_ACTIVE_HIGH>;
-> +
-> +            avdd-supply = <&cam_front_ldo>;
-> +            dvdd-supply = <&cam_front_ldo>;
-> +            dovdd-supply = <&cam_vio_ldo>;
-> +
-> +            pinctrl-names = "default";
-> +            pinctrl-0 = <&cam_front_default>;
-> +
-> +            rotation = <270>;
-> +            orientation = <0>;
+> +            avdd-supply = <&os05b10_avdd_2v8>;
+> +            dvdd-supply = <&os05b10_dvdd_1v2>;
+> +            dovdd-supply = <&os05b10_dovdd_1v8>;
 > +
 > +            port {
-> +                cam_front_endpoint: endpoint {
-> +                    data-lanes = <0 1 2 3>;
-> +                    link-frequencies = /bits/ 64 <360000000>;
-> +                    remote-endpoint = <&camss_endpoint1>;
+> +                cam_out: endpoint {
+> +                    remote-endpoint = <&mipi_in_cam>;
+> +                    data-lanes = <1 2 3 4>;
+> +                    link-frequencies = /bits/ 64 <600000000>;
 > +                };
 > +            };
 > +        };
 > +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 663e86eb9ff1..c85915d5d20e 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -19234,6 +19234,13 @@ T:	git git://linuxtv.org/media_tree.git
+>   F:	Documentation/devicetree/bindings/media/i2c/ovti,og0ve1b.yaml
+>   F:	drivers/media/i2c/og0ve1b.c
+>   
+> +OMNIVISION OS05B10 SENSOR DRIVER
+> +M:	Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>
+> +M:	Elgin Perumbilly <elgin.perumbilly@siliconsignals.io>
+> +L:	linux-media@vger.kernel.org
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/media/i2c/ovti,os05b10.yaml
+> +
+>   OMNIVISION OV01A10 SENSOR DRIVER
+>   M:	Bingbu Cao <bingbu.cao@intel.com>
+>   L:	linux-media@vger.kernel.org
 
 -- 
 Best wishes,
