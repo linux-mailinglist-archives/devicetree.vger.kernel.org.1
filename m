@@ -1,271 +1,338 @@
-Return-Path: <devicetree+bounces-245842-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245843-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 830EFCB5D51
-	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 13:26:59 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C30B9CB5DD6
+	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 13:31:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id BC800300DBAC
-	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 12:26:43 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C0C193019E05
+	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 12:31:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF991313292;
-	Thu, 11 Dec 2025 12:21:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1E8A3148BB;
+	Thu, 11 Dec 2025 12:25:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="IjInWeKl"
+	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="PyBQKQwU";
+	dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="Ju+ofwEN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF9EC313276
-	for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 12:21:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18845313E3B;
+	Thu, 11 Dec 2025 12:25:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765455670; cv=none; b=g60m5B4bNCbmQACJUdGYwOOcREGYTRza48A7N1g+INqgTZnh6sqU6LHBhODQGrxphSO9jKnfMzW6Eils97evpogEr08aO3xWaz8dq3sMjReCgoaDY4cXuvkTZsJ0/vJwOYharfUZnhavCboeh1bQSVldxOXmnMDS3Odduh7Og/o=
+	t=1765455904; cv=none; b=g0Jd/zc9mS5vvWUGrGB4/uOvFJWcqYESLOLCDbypv16AH8UAXc2vOc2Pi/ge2ejNaIC131s7O0KtOLCZAiuyVva4bcp9Dc023dmEizSB7cwl7pgEjosWYWkML5llz8coitBIVhZ0TIuWqTmzYQng+MPVg+yH94WJOjMjcSogMzs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765455670; c=relaxed/simple;
-	bh=/vgpPVra5oX60x9VjkwZBWSoe+NZGWdku0olx5e7T7w=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=mZmqaxaHTF5STog+yxIDEiQ+8rzfd9nMW9aa+qTFVyeaGJXhhtCfyX39kWFbIxP2/ikcahdwNQ82kdTnCwzf5sIpPPWRB/qdpjQPAP56NOTX0bXmAyX0mgR1FnmT+nZqOC5A51w/n/YoasMP5YyTv0v2WUVO/wshGATg0iPye28=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=IjInWeKl; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 084EA1A20E4;
-	Thu, 11 Dec 2025 12:21:06 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id C891D6068C;
-	Thu, 11 Dec 2025 12:21:05 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 0008B103C8C7B;
-	Thu, 11 Dec 2025 13:20:45 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1765455663; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=y60RLBstvqr0/tZgH22eIXq0hipLzZ65ZyEuPfHKBSU=;
-	b=IjInWeKlYOFPOumcxa8beepe8z3enCkm9QJK7R7eqYYjwSwLdRD40bWQDLG8p48lOccH44
-	9YU/TzCVlvVpLBH+VisZeK+QOHu4XWz8XDCzY9/UldUTvpBnpLQrY6MsRgZTW0DUcUTBe4
-	hibWIU0HY6qCZJdJqbZJP4zCLvsjmBPv4RMN/0DSBbBZnIkJWur8sOjI5FpOp2WjXFssDo
-	n6FNS6Cg4jv8sDVHEVqN/NeB1i/T29a9TQ+V4fVEVUsILjTkiBTIkC0m/ee7SA5YBVSF2y
-	zhhNHhmGfVvaoZgGD3mkjX0rl8yUEpSeXJno276hVApN2fvcwOEqe/6Na5xCoQ==
-Date: Thu, 11 Dec 2025 13:20:44 +0100
-From: Herve Codina <herve.codina@bootlin.com>
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Geert Uytterhoeven <geert@linux-m68k.org>, Kalle Niemi
- <kaleposti@gmail.com>, Rob Herring <robh@kernel.org>,
- linux-arm-kernel@lists.infradead.org, Andrew Lunn <andrew@lunn.ch>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Danilo Krummrich
- <dakr@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
- <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Michael Turquette
- <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Andi Shyti
- <andi.shyti@kernel.org>, Wolfram Sang <wsa+renesas@sang-engineering.com>,
- Peter Rosin <peda@axentia.se>, Arnd Bergmann <arnd@arndb.de>, Bjorn Helgaas
- <bhelgaas@google.com>, Charles Keepax <ckeepax@opensource.cirrus.com>,
- Richard Fitzgerald <rf@opensource.cirrus.com>, David Rhodes
- <david.rhodes@cirrus.com>, Linus Walleij <linus.walleij@linaro.org>, Ulf
- Hansson <ulf.hansson@linaro.org>, Mark Brown <broonie@kernel.org>, Andy
- Shevchenko <andriy.shevchenko@linux.intel.com>, Daniel Scally
- <djrscally@gmail.com>, Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Sakari Ailus <sakari.ailus@linux.intel.com>, Len Brown <lenb@kernel.org>,
- Davidlohr Bueso <dave@stgolabs.net>, Jonathan Cameron
- <jonathan.cameron@huawei.com>, Dave Jiang <dave.jiang@intel.com>, Alison
- Schofield <alison.schofield@intel.com>, Vishal Verma
- <vishal.l.verma@intel.com>, Ira Weiny <ira.weiny@intel.com>, Dan Williams
- <dan.j.williams@intel.com>, Wolfram Sang <wsa@kernel.org>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- imx@lists.linux.dev, linux-clk@vger.kernel.org, linux-i2c@vger.kernel.org,
- linux-pci@vger.kernel.org, linux-sound@vger.kernel.org,
- patches@opensource.cirrus.com, linux-gpio@vger.kernel.org,
- linux-pm@vger.kernel.org, linux-spi@vger.kernel.org,
- linux-acpi@vger.kernel.org, linux-cxl@vger.kernel.org, Allan Nielsen
- <allan.nielsen@microchip.com>, Horatiu Vultur
- <horatiu.vultur@microchip.com>, Steen Hegelund
- <steen.hegelund@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v4 01/29] Revert "treewide: Fix probing of devices in DT
- overlays"
-Message-ID: <20251211132044.10f5b1ea@bootlin.com>
-In-Reply-To: <c50c40cc-69f6-436c-a94e-94a3a10f6727@gmail.com>
-References: <20251015071420.1173068-1-herve.codina@bootlin.com>
-	<20251015071420.1173068-2-herve.codina@bootlin.com>
-	<f74ab0a2-b74b-4b96-8469-a716c850e230@gmail.com>
-	<CAL_JsqJDOYuzutMHMeFAogd5a_OX6Hwi8Gwz1Vy7HpXgNeYKsg@mail.gmail.com>
-	<5cf2a12a-7c66-4622-b4a9-14896c6df005@gmail.com>
-	<CAL_JsqJjm12LxpDg6LmpY=Ro_keHwnrWiYMLVnG=s_pSP4X2WQ@mail.gmail.com>
-	<072dde7c-a53c-4525-83ac-57ea38edc0b5@gmail.com>
-	<CAL_JsqKyG98pXGKpL=gxSc92izpzN7YCdq62ZJByhE6aFYs1fw@mail.gmail.com>
-	<55076f4b-d523-4f8c-8bd4-0645b790737e@gmail.com>
-	<20251202102619.5cd971cc@bootlin.com>
-	<088af3ff-bd04-4bc9-b304-85f6ed555f2a@gmail.com>
-	<20251202175836.747593c0@bootlin.com>
-	<dc813fc2-28d2-4f2c-a2a3-08e33eec8ec7@gmail.com>
-	<20251204083839.4fb8a4b1@bootlin.com>
-	<CAMuHMdXdwf7La1EYBWTJadsTAJG3nKQVW6wtBn-bUqshA=XHRw@mail.gmail.com>
-	<20251210132140.32dbc3d7@bootlin.com>
-	<c50c40cc-69f6-436c-a94e-94a3a10f6727@gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1765455904; c=relaxed/simple;
+	bh=I6mK/5KEjDmLPodxPX30VL7/uKkqbUo/vCMZQAIfd5g=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=mGtRuAppDPBLYBtgttDNZnhuFvXsxjbbd0wT5/sprJ6Y9wDkreaIO5tccU/kXCgQgMEyaHt0fDe+Am081sxRP3OCS4Z1XxNVVBHhtA4o0fYx1Y/mP9r8WhzsgtRA9Q5ZyYqJqx5yoml8oSgAdFLHiuafxEGQwptCRgKKuJ4ADA8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=PyBQKQwU; dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=Ju+ofwEN; arc=none smtp.client-ip=5.75.144.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
+DKIM-Signature: v=1; a=rsa-sha256; s=202507r; d=mainlining.org; c=relaxed/relaxed;
+	h=From:To:Subject:Date:Message-ID; t=1765455894; bh=fuvF+6EZ6fDEkp0uovYh3Xh
+	DxgJaGH/XZj+pFEfBuKk=; b=PyBQKQwUtDoDyi4DCc7Dt7pmhEwZiTkBH+5udIvJOIPDLW2bMN
+	zBq1bFRqazRF3LbMuYIBiXKmnaepvx/y/7M+A9cG09rlfcibdkMuNHIhmA2X/KzRP9dxpmdFwlc
+	ef0ifZBvbB7GA9Dqw1rK01p1fyE6eOT1Do5jrE+eVbCKTo8MqfTlSi6bVmPddWFcuyIKT7BR90n
+	nCoO5/CLZ7FCY9sEJlYYVr7RUattwcuOgohYHud+LcKz77f1jhY+SuFMweq9AC598clKaIaRV6R
+	eelwuB1VIsElF8ux6OIGq/I+iXwJS0E5FGWluS8JuDIikQCfBfYmQX593rFKmd0gJpw==;
+DKIM-Signature: v=1; a=ed25519-sha256; s=202507e; d=mainlining.org; c=relaxed/relaxed;
+	h=From:To:Subject:Date:Message-ID; t=1765455894; bh=fuvF+6EZ6fDEkp0uovYh3Xh
+	DxgJaGH/XZj+pFEfBuKk=; b=Ju+ofwENizzNX6CssRSDDs/qNfQMrtCwmUDUDeZ6DUlxPo3yJV
+	i3MJym9vOGLuFHzNYQERZYU/34eIGMf/H2DQ==;
+Message-ID: <9009eb8b-309d-4ddc-bb3f-081b974b1fa0@mainlining.org>
+Date: Thu, 11 Dec 2025 15:24:53 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/3] arm64: dts: qcom: sdm630/660: Add CDSP-related
+ nodes
+To: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+ linux@mainlining.org
+References: <20251023-qcom-sdm660-cdsp-adsp-dts-v2-0-895ffe50ab5f@mainlining.org>
+ <20251023-qcom-sdm660-cdsp-adsp-dts-v2-1-895ffe50ab5f@mainlining.org>
+Content-Language: ru-RU, en-US
+From: Nickolay Goppen <setotau@mainlining.org>
+In-Reply-To: <20251023-qcom-sdm660-cdsp-adsp-dts-v2-1-895ffe50ab5f@mainlining.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
 
-Hi Matti,
 
-On Thu, 11 Dec 2025 10:34:46 +0200
-Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+23.10.2025 22:51, Nickolay Goppen пишет:
+> In order to enable CDSP support for SDM660 SoC:
+>   * add shared memory p2p nodes for CDSP
+>   * add CDSP-specific smmu node
+>   * add CDSP peripheral image loader node
+>
+> Memory region for CDSP in SDM660 occupies the same spot as
+> TZ buffer mem defined in sdm630.dtsi (which does not have CDSP).
+> In sdm660.dtsi replace buffer_mem inherited from SDM630 with
+> cdsp_region, which is also larger in size.
+>
+> SDM636 also doesn't have CDSP, so remove inherited from sdm660.dtsi
+> related nodes and add buffer_mem back.
+>
+> Signed-off-by: Nickolay Goppen <setotau@mainlining.org>
+> ---
+>   arch/arm64/boot/dts/qcom/sdm630.dtsi |   2 +-
+>   arch/arm64/boot/dts/qcom/sdm636.dtsi |  23 +++--
+>   arch/arm64/boot/dts/qcom/sdm660.dtsi | 162 +++++++++++++++++++++++++++++++++++
+>   3 files changed, 177 insertions(+), 10 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+> index 8b1a45a4e56e..a6a1933229b9 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+> @@ -563,7 +563,7 @@ modem_smp2p_in: slave-kernel {
+>   		};
+>   	};
+>   
+> -	soc@0 {
+> +	soc: soc@0 {
+>   		#address-cells = <1>;
+>   		#size-cells = <1>;
+>   		ranges = <0 0 0 0xffffffff>;
+> diff --git a/arch/arm64/boot/dts/qcom/sdm636.dtsi b/arch/arm64/boot/dts/qcom/sdm636.dtsi
+> index ae15d81fa3f9..38e6e3bfc3ce 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm636.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm636.dtsi
+> @@ -7,15 +7,20 @@
+>   
+>   #include "sdm660.dtsi"
+>   
+> -/*
+> - * According to the downstream DTS,
+> - * 636 is basically a 660 except for
+> - * different CPU frequencies, Adreno
+> - * 509 instead of 512 and lack of
+> - * turing IP. These differences will
+> - * be addressed when the aforementioned
+> - * peripherals will be enabled upstream.
+> - */
+> +/delete-node/ &remoteproc_cdsp;
+> +/delete-node/ &cdsp_smmu;
+> +/delete-node/ &cdsp_region;
+> +
+> +/ {
+> +	/delete-node/ smp2p-cdsp;
+> +
+> +	reserved-memory {
+> +		buffer_mem: tzbuffer@94a00000 {
+> +			reg = <0x0 0x94a00000 0x00 0x100000>;
+> +			no-map;
+> +		};
+> +	};
+> +};
+>   
+>   &adreno_gpu {
+>   	compatible = "qcom,adreno-509.0", "qcom,adreno";
+> diff --git a/arch/arm64/boot/dts/qcom/sdm660.dtsi b/arch/arm64/boot/dts/qcom/sdm660.dtsi
+> index ef4a563c0feb..d50cce25ccbe 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm660.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm660.dtsi
+> @@ -9,6 +9,37 @@
+>   
+>   #include "sdm630.dtsi"
+>   
+> +/delete-node/ &buffer_mem;
+> +
+> +/ {
+> +	smp2p-cdsp {
+> +		compatible = "qcom,smp2p";
+> +		qcom,smem = <94>, <432>;
+> +		interrupts = <GIC_SPI 514 IRQ_TYPE_EDGE_RISING>;
+> +		mboxes = <&apcs_glb 30>;
+> +		qcom,local-pid = <0>;
+> +		qcom,remote-pid = <5>;
+> +
+> +		cdsp_smp2p_out: master-kernel {
+> +			qcom,entry-name = "master-kernel";
+> +			#qcom,smem-state-cells = <1>;
+> +		};
+> +
+> +		cdsp_smp2p_in: slave-kernel {
+> +			qcom,entry-name = "slave-kernel";
+> +			interrupt-controller;
+> +			#interrupt-cells = <2>;
+> +		};
+> +	};
+> +
+> +	reserved-memory {
+> +		cdsp_region: cdsp@94a00000 {
+> +			reg = <0x0 0x94a00000 0x00 0x600000>;
+> +			no-map;
+> +		};
+> +	};
+> +};
+> +
+>   &adreno_gpu {
+>   	compatible = "qcom,adreno-512.0", "qcom,adreno";
+>   	operating-points-v2 = <&gpu_sdm660_opp_table>;
+> @@ -247,6 +278,137 @@ &mmcc {
+>   			<0>;
+>   };
+>   
+> +&soc {
+> +	cdsp_smmu: iommu@5180000 {
+> +		compatible = "qcom,sdm630-smmu-v2", "qcom,smmu-v2";
+> +		reg = <0x5180000 0x40000>;
+> +		#iommu-cells = <1>;
+> +
+> +		#global-interrupts = <2>;
+> +		interrupts = <GIC_SPI 229 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 231 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 533 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 534 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 535 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 536 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 537 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 538 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 539 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 540 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 541 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 542 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 543 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 544 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 545 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 546 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 547 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 548 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 549 IRQ_TYPE_LEVEL_HIGH>;
+> +
+> +		clocks = <&gcc GCC_HLOS1_VOTE_TURING_ADSP_SMMU_CLK>;
+> +		clock-names = "bus";
+> +
+> +		power-domains = <&gcc HLOS1_VOTE_TURING_ADSP_GDSC>;
+> +
+> +	};
+> +
+> +	remoteproc_cdsp: remoteproc@1a300000 {
+> +		compatible = "qcom,sdm660-cdsp-pas";
+> +		reg = <0x1a300000 0x00100>;
+> +		interrupts-extended = <&intc GIC_SPI 518 IRQ_TYPE_EDGE_RISING>,
+> +				      <&cdsp_smp2p_in 0 IRQ_TYPE_EDGE_RISING>,
+> +				      <&cdsp_smp2p_in 1 IRQ_TYPE_EDGE_RISING>,
+> +				      <&cdsp_smp2p_in 2 IRQ_TYPE_EDGE_RISING>,
+> +				      <&cdsp_smp2p_in 3 IRQ_TYPE_EDGE_RISING>;
+> +		interrupt-names = "wdog",
+> +				  "fatal",
+> +				  "ready",
+> +				  "handover",
+> +				  "stop-ack";
+> +
+> +		clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>;
+> +		clock-names = "xo";
+> +
+> +		memory-region = <&cdsp_region>;
+> +		power-domains = <&rpmpd SDM660_VDDCX>;
+> +		power-domain-names = "cx";
+> +
+> +		qcom,smem-states = <&cdsp_smp2p_out 0>;
+> +		qcom,smem-state-names = "stop";
+> +
+> +		glink-edge {
+> +			interrupts = <GIC_SPI 513 IRQ_TYPE_EDGE_RISING>;
+> +
+> +			label = "turing";
+> +			mboxes = <&apcs_glb 29>;
+> +			qcom,remote-pid = <5>;
+> +
+> +			fastrpc {
+> +				compatible = "qcom,fastrpc";
+> +				qcom,glink-channels = "fastrpcglink-apps-dsp";
+> +				label = "cdsp";
+> +				qcom,non-secure-domain;
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+> +				compute-cb@5 {
+> +					compatible = "qcom,fastrpc-compute-cb";
+> +					reg = <5>;
+> +					iommus = <&cdsp_smmu 3>;
+> +				};
+> +
+> +				compute-cb@6 {
+> +					compatible = "qcom,fastrpc-compute-cb";
+> +					reg = <6>;
+> +					iommus = <&cdsp_smmu 4>;
+> +				};
+> +
+> +				compute-cb@7 {
+> +					compatible = "qcom,fastrpc-compute-cb";
+> +					reg = <7>;
+> +					iommus = <&cdsp_smmu 5>;
+> +				};
+> +
+> +				compute-cb@8 {
+> +					compatible = "qcom,fastrpc-compute-cb";
+> +					reg = <8>;
+> +					iommus = <&cdsp_smmu 6>;
+> +				};
+> +
+> +				compute-cb@9 {
+> +					compatible = "qcom,fastrpc-compute-cb";
+> +					reg = <9>;
+> +					iommus = <&cdsp_smmu 7>;
+> +				};
+> +
+> +				compute-cb@10 {
+> +					compatible = "qcom,fastrpc-compute-cb";
+> +					reg = <10>;
+> +					iommus = <&cdsp_smmu 8>;
+> +				};
+> +
+> +				compute-cb@11 {
+> +					compatible = "qcom,fastrpc-compute-cb";
+> +					reg = <11>;
+> +					iommus = <&cdsp_smmu 9>;
+> +				};
+> +
+> +				compute-cb@12 {
+> +					compatible = "qcom,fastrpc-compute-cb";
+> +					reg = <12>;
+> +					iommus = <&cdsp_smmu 10>;
+> +				};
+> +
+> +				compute-cb@13 {
+> +					compatible = "qcom,fastrpc-compute-cb";
+> +					reg = <13>;
+> +					iommus = <&cdsp_smmu 11>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +};
+> +
+>   &tlmm {
+>   	compatible = "qcom,sdm660-pinctrl";
+>   };
+>
+I've found out that all (both ADSP's and CDSP's) fastrpc-compute-cb's in 
+downstream are defined under the one node [1], and all of them are 
+handled by one adsprpc driver. There's a node [2], where a memory-region 
+is assigned to this driver.
 
-> Hi Dee Ho peeps,
-> 
-> I tried to create a minimal piece of code/dts to demonstrate the issue 
-> seem in the ROHM automated testing.
-> 
-> On 10/12/2025 14:21, Herve Codina wrote:
-> > Hi Geert, Kalle, Rob,
-> > 
-> > On Thu, 4 Dec 2025 11:49:13 +0100
-> > Geert Uytterhoeven <geert@linux-m68k.org> wrote:  
-> 
-> //snip
-> 
-> > When a new node is added, a new device is created. Indeed, because the
-> > driver is an MFD driver, it is a bus driver and handled by of_platform bus.  
-> 
-> We do also have an MFD device - but it is not a platform device but an 
-> I2C device - thus it should be probed by the I2C bus (if I'm not 
-> mistaken). So, I guess this is not bus-specific problem.
-> https://elixir.bootlin.com/linux/v6.18/source/drivers/mfd/rohm-bd718x7.c#L206
-> 
-> 
-> > My new node is considered by devlink as a node that will have a device ready
-> > to work (driver attached and device probed). A link is created between this
-> > node and the consumers of this node (i.e. the SPI controller). devlink is
-> > waiting for this provider to be ready before allowing the its consumer to probe.
-> > This node (simple pinmux description) will never lead to a device and devlink
-> > will never see this "provider" ready.  
-> 
-> I believe Kalle did see the same "probe-not-called" -problem, even when 
-> disabling the fw_devlink from the kernel commandline. (It's worth 
-> mentioning that I am not sure if Kalle tried if probe was called with 
-> "previously working" kernels when fw_devlink is disabled).
-> 
-> > Did a test with a Renesas RZ/N1D (r9a06g032) based board and built a similar
-> > overlay involving I2C controller pinmux, I2C controller and an EEPROM.
-> > 
-> > Here, also the overlay didn't work but the issue is different.
-> > 
-> > The pinmux definition for pinctrl (i.e. pinctrl subnodes) are looked when
-> > the pinctrl driver probes. Adding a new node later is not handled by the
-> > pinctrl driver.
-> > Applying the overlay leads to a simple:
-> >    [   16.934168] rzn1-pinctrl 40067000.pinctrl: unable to find group for node /soc/pinctrl@40067000/pins_i2c2
-> > 
-> > Indeed, the 'pins_i2c2' has been added by the overlay and was not present
-> > when the pinctrl probed.
-> > 
-> > Tried without adding a new pinmux node (pinctrl subnode) from the overlay
-> > and used nodes already existing in the base DT.
-> > 
-> > On my Marvell Armada 3720 board, it works with or without my patches.
-> > No regression detected due to my patches.
-> > 
-> > On my RZ/N1D board, it works also with or without my patches.
-> > Here also, no regression detected.
-> > 
-> > Also, on my Marvell Armada 3720 board, I can plug my LAN966x PCI board.
-> > The LAN966x PCI driver used an overlay to describe the LAN966x PCI board.
-> > 
-> > With the upstream patch not reverted, i.e. 1a50d9403fb9 ("treewide: Fix
-> > probing of devices in DT overlays")" applied, devlinks created for the
-> > LAN966x PCI board internal devices are incorrect and lead to crashes when
-> > the LAN966x PCI driver is removed due to wrong provider/consumer dependencies.
-> > 
-> > When this patch is reverted and replaced by "of: dynamic: Fix overlayed
-> > devices not probing because of fw_devlink", devlinks created for the LAN966x
-> > PCI board internal devices are corrects and crashes are no more present on
-> > removal.
-> > 
-> > Kalle, Geert, can you perform a test on your hardware with my patches
-> > applied and moving your pinmux definition from the overlay to the base
-> > device-tree?  
-> 
-> I got a bit lost regarding which patches to test :)
+Does this mean that both DSP's are using this one region for FastRPC?
 
-The next-20251127 tag has every patches needed for the test.
-Tests you did with this kernel are perfectly valid. Many Thanks for that!
+[1] 
+https://github.com/pix106/android_kernel_xiaomi_southwest-4.19/blob/main/arch/arm64/boot/dts/vendor/qcom/sdm660.dtsi#L1349
 
-> 
-> > The kernel you can use is for instance the kernel at the next-20251127 tag.
-> > Needed patches for test are present in this kernel:
-> >      - 76841259ac092 ("of: dynamic: Fix overlayed devices not probing because of fw_devlink")
-> >      - 7d67ddc5f0148 ("Revert "treewide: Fix probing of devices in DT overlays"")
-> >   
-> 
-> I did a minimal overlay test which can be ran on beaglebone black. I 
-> assume the same can be done on any board where you have 
-> (i2c/spi/xxx)-controller node with status="disabled". Doing this on BBB 
-> requires recompiling the beaglebone black (base)device-tree with -@ 
-> though, so that the overlay target nodes are found. I'll attach the 
-> files for interested.
-> 
-> overlay-test.c:
-> Is a 'device-driver' for device added in overlay. (simply a probe() with 
-> print, extracted from the bd71847 driver).
-> 
-> overlay-test.dts:
-> Is a minimal device-tree overlay describing the 'test device' matching 
-> above overlay-test driver. When this is overlaid using next-20251121 
-> (contains the 7d67ddc5f0148b3a03594a45bba5547e92640c89), probe in 
-> overlay-test.c is not called. When 
-> 7d67ddc5f0148b3a03594a45bba5547e92640c89 is reverted, the probe is called.
-> 
-> mva_overlay.c:
-> Is simplified 'glue-code' for adding an overlay to running kernel by 
-> feeding the compiled overlay to the bin_attribute - for example using:
-> 
-> dd if=/overlay-test.dtbo of=/sys/kernel/mva_overlay/overlay_add bs=4M
-> 
-> am335x-boneblack.dtb.dts.tmp and tps65217.dtsi:
-> are (intermediate) beaglebone-black device-trees which can be recompiled 
-> to a 'base device-tree' using:
-> 
-> dtc -O dtb -o am335x-boneblack.dtb -b 0 -@ am335x-boneblack.dtb.dts.tmp
->   - but I suggest you to use the dts from your kernel build. I provided 
-> this just for the sake of the completeness.
-> 
-> Makefile:
-> Off-tree build targets to build the above DTSes and modules. Requires 
-> KERNEL_DIR and CC to be correctly set.
-> 
-> 
-> My findings:
-> The pinctrl node indeed plays a role. When the "pinctrl-0 = 
-> <&i2c1_pins>;" (and fragment0) was removed from the dts, the 
-> 'overlay-test' was probed with the "next-20251121".
-> 
-> With the pinctrl node, I see:
-> [  104.098958] probe of 4802a000.i2c returned -517 (EPROBE_DEFER I 
-> suppose) after 50 usecs
-> - and the 'overlay-test' probe is not called.
+[2] 
+https://github.com/pix106/android_kernel_xiaomi_southwest-4.19/blob/main/arch/arm64/boot/dts/vendor/qcom/sdm660.dtsi#L1342
 
-Do you see the same trace with:
-- "pinctrl-0 = <&i2c1_pins>;" in your overlay
-- fragment0 removed from the overlay (i2c1_pins definition removed from
-  the overlay.
-- i2c1_pins node defined in your base DT.
 
-In other word, is the issues related to adding a pinctrl sub-node (pinctrl
-pins definition) in the overlay or is it something else?
-
+-- 
 Best regards,
-Hervé
-
-
+Nickolay
 
 
