@@ -1,123 +1,110 @@
-Return-Path: <devicetree+bounces-245722-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245723-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84579CB49F8
-	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 04:26:49 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C95BCB49FB
+	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 04:26:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 221803014DE1
-	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 03:26:48 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 9811F3012CDE
+	for <lists+devicetree@lfdr.de>; Thu, 11 Dec 2025 03:26:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C9A2279DC3;
-	Thu, 11 Dec 2025 03:26:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84F352C0260;
+	Thu, 11 Dec 2025 03:26:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ziyao.cc header.i=@ziyao.cc header.b="NaNJjnf9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NjjfE5YX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail3.out.flockmail.com (mail3.out.flockmail.com [18.215.190.59])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8C9E24677D
-	for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 03:26:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=18.215.190.59
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F28A2BE7D2;
+	Thu, 11 Dec 2025 03:26:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765423607; cv=none; b=R+201s6J2KwnVMLajBN3sr8ywe0sxSYgIevzxS6Uj4CrC3dFBOrWMDKWtU1X+TO6vvbmT/rEAME9YSZhR08ZGOprqDZeQgR/BnWqDU2kP4U0LDDN8V7tJISTBr5ReSU6nUUYOkeVdUWMUMqrmDwhJUZNjaw3813UWRDFNjZTJxU=
+	t=1765423608; cv=none; b=fJSwe4W+CMTVG09/jtzymyP31b+S4koWgEdDenGJ1iGKSCK9PAyu9wjhBSYWB3u+/kVjv6iq1JOtTC1uj0vhZbL/ahkEJ6t/E52xWxGSZYZk/3BfpLkkC3MX6QhMSe5ckgTYEC5ShXOxqY3EF+zB8qbxMOiuufzXjJBGRsPCf50=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765423607; c=relaxed/simple;
-	bh=UUbEIjuzTCkyHBUkZ4tp7y1fS5OX2f6YTlMykZN9bnc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=d8doLZo1rkdQU9GrMSr8zGEq1YvbUEA/rJj9PoX+5Mw1bqaaidkYXbJSFSej2omtoB1dM0/sf27NM6/WeMMQbrOCEGBAiXyvPX1HS5WRb+6u9Z3BaHdQCy6GcOJrKuwRk/3y5qXGXXiGX3+oritkOyGjby21GCVVD/SbNaCjOr4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ziyao.cc; spf=pass smtp.mailfrom=ziyao.cc; dkim=pass (1024-bit key) header.d=ziyao.cc header.i=@ziyao.cc header.b=NaNJjnf9; arc=none smtp.client-ip=18.215.190.59
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ziyao.cc
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziyao.cc
-Received: from localhost (localhost [127.0.0.1])
-	by smtp-out.flockmail.com (Postfix) with ESMTP id 4dRdKp3tpQz9rx9;
-	Thu, 11 Dec 2025 03:26:38 +0000 (UTC)
-DKIM-Signature: a=rsa-sha256; bh=G/iuUnjpcIevUzMMPzirSlOjACwdcdZsgXjZiOGXtCw=;
-	c=relaxed/relaxed; d=ziyao.cc;
-	h=subject:references:mime-version:from:to:cc:in-reply-to:date:message-id:from:to:cc:subject:date:message-id:in-reply-to:references:reply-to;
-	q=dns/txt; s=titan1; t=1765423598; v=1;
-	b=NaNJjnf9R54AbOoy9olS0jWo1uXGTAv3OqUnuRGk/uFu3dmsvOK7Vdfhg38BX15wkCfu6kMt
-	+DdgogPii7wGeSAcUujQpKIYMck4LqNfrgpTAzRzi7+KC0WxpX/LWgZCdx9+i2EZDcQcTUp34S4
-	9KKgMlERIteK+fwOYnTrx3Oo=
-Received: from pie (unknown [117.171.66.90])
-	by smtp-out.flockmail.com (Postfix) with ESMTPA id 4dRdKk13CSz9rwy;
-	Thu, 11 Dec 2025 03:26:33 +0000 (UTC)
-Date: Thu, 11 Dec 2025 03:26:25 +0000
-Feedback-ID: :me@ziyao.cc:ziyao.cc:flockmailId
-From: Yao Zi <me@ziyao.cc>
-To: Yixun Lan <dlan@gentoo.org>, Stephen Boyd <sboyd@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Haylen Chu <heylenay@4d2.org>, Inochi Amaoto <inochiama@gmail.com>,
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RFC 2/4] clk: spacemit: ccu_mix: add inverted enable gate
- clock
-Message-ID: <aTo54Q3luukdJiJw@pie>
-References: <20251211-k3-clk-v1-0-8ee47c70c5bc@gentoo.org>
- <20251211-k3-clk-v1-2-8ee47c70c5bc@gentoo.org>
+	s=arc-20240116; t=1765423608; c=relaxed/simple;
+	bh=NQD2BB2agYzXemcuGQVl/K3z+EgYt7RFGc+9U3+8j/c=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=I3nmAxF9oSQYMeMOEQt39QQ+wNnEO2uBGgIgcqrtFoRuLgdne3U6mnzq8UjwScJSUKnOV9kJyopW36/xbBVum2xQI1gkjzcxf3NpQOjeWyljwxpnPZkHAoHvY7iULxAgB2yKYEpyehU0EWdlWfzD7EHBogqSGcoVNR6n5kay/YE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NjjfE5YX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A36B3C19423;
+	Thu, 11 Dec 2025 03:26:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1765423607;
+	bh=NQD2BB2agYzXemcuGQVl/K3z+EgYt7RFGc+9U3+8j/c=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=NjjfE5YXbUr7QI9Zv6YD1jJAvTlNABTzCQigTFz3yppZOvY/dxJ1szTFizUqeXc/b
+	 gDXBVGhQumuMs/NJk0DSA5cUiGTiT6/YcoUbql0ZkKN6C6VleyYEc0of8BhTQ8T34d
+	 Qjl4MtUL3O4gNGm9ex+IYlLD/nvrchTeKksisTYsTpnZ0CPyDsFKD2toYxuiSBLg1b
+	 7aRKW4AM7Hyx4rxygQm8rT2yK6tlV1ldpjp8rLCf72T44nX2v4GpNSjmFCY8F67SI8
+	 FuiifcieAJkdXR11Yvyn5SpJnRpzYVyQ0c2baBg9xwUF3Mn6gzO6R8zIPaYi8WQevP
+	 rSHzRwzeUM5Cg==
+Date: Wed, 10 Dec 2025 21:26:45 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251211-k3-clk-v1-2-8ee47c70c5bc@gentoo.org>
-X-F-Verdict: SPFVALID
-X-Titan-Src-Out: 1765423598363540247.21635.6277641652149414312@prod-use1-smtp-out1003.
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.4 cv=TPG/S0la c=1 sm=1 tr=0 ts=693a39ee
-	a=rBp+3XZz9uO5KTvnfbZ58A==:117 a=rBp+3XZz9uO5KTvnfbZ58A==:17
-	a=kj9zAlcOel0A:10 a=MKtGQD3n3ToA:10 a=CEWIc4RMnpUA:10 a=7mOBRU54AAAA:8
-	a=sWB5wAynvVkB54t-ZH0A:9 a=CjuIK1q_8ugA:10 a=wa9RWnbW_A1YIeRBVszw:22
-	a=3z85VNIBY5UIEeAh_hcH:22 a=NWVoK91CQySWRX1oVYDe:22
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, 
+ Robert Mader <robert.mader@collabora.com>, 
+ Sakari Ailus <sakari.ailus@linux.intel.com>, 
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+ linux-media@vger.kernel.org, Tianshu Qiu <tian.shu.qiu@intel.com>, 
+ Konrad Dybcio <konradybcio@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Richard Acayan <mailingradian@gmail.com>
+In-Reply-To: <20251211014846.16602-2-mailingradian@gmail.com>
+References: <20251211014846.16602-1-mailingradian@gmail.com>
+ <20251211014846.16602-2-mailingradian@gmail.com>
+Message-Id: <176542360577.3870756.16103619361508957186.robh@kernel.org>
+Subject: Re: [PATCH v4 1/5] dt-bindings: media: i2c: Add Sony IMX355
 
-On Thu, Dec 11, 2025 at 09:19:42AM +0800, Yixun Lan wrote:
-> K3 SoC has the clock IP which support to write value 0 for enabling the
-> clock, while write 1 for disabling it, thus the enable BIT is inverted.
-> So, introduce a flag to support the inverted gate clock.
+
+On Wed, 10 Dec 2025 20:48:42 -0500, Richard Acayan wrote:
+> The IMX355 camera sensor is a camera sensor that can be found as the
+> front camera in some smartphones, such as the Pixel 3, Pixel 3 XL, Pixel
+> 3a, and Pixel 3a XL. It already has a driver, but needs support for
+> device tree. Document the IMX355 to support defining it in device tree.
 > 
-> Signed-off-by: Yixun Lan <dlan@gentoo.org>
+> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
 > ---
->  drivers/clk/spacemit/ccu_mix.c | 12 ++++++++----
->  drivers/clk/spacemit/ccu_mix.h | 12 ++++++++++++
->  2 files changed, 20 insertions(+), 4 deletions(-)
+>  .../bindings/media/i2c/sony,imx355.yaml       | 119 ++++++++++++++++++
+>  1 file changed, 119 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx355.yaml
 > 
-> diff --git a/drivers/clk/spacemit/ccu_mix.c b/drivers/clk/spacemit/ccu_mix.c
-> index 7b7990875372..14fbf7048c89 100644
-> --- a/drivers/clk/spacemit/ccu_mix.c
-> +++ b/drivers/clk/spacemit/ccu_mix.c
-> @@ -16,17 +16,19 @@
->  static void ccu_gate_disable(struct clk_hw *hw)
->  {
->  	struct ccu_mix *mix = hw_to_ccu_mix(hw);
-> +	struct ccu_gate_config *gate = &mix->gate;
-> +	u32 val = gate->inverted ? gate->mask : 0;
->  
-> -	ccu_update(&mix->common, ctrl, mix->gate.mask, 0);
-> +	ccu_update(&mix->common, ctrl, gate->mask, val);
->  }
->  
->  static int ccu_gate_enable(struct clk_hw *hw)
->  {
->  	struct ccu_mix *mix = hw_to_ccu_mix(hw);
->  	struct ccu_gate_config *gate = &mix->gate;
-> +	u32 val = gate->inverted ? 0 : gate->mask;
->  
-> -	ccu_update(&mix->common, ctrl, gate->mask, gate->mask);
-> -
-> +	ccu_update(&mix->common, ctrl, gate->mask, val);
 
-An unrelated blank line gets removed here, is this intended?
+My bot found errors running 'make dt_binding_check' on your patch:
 
->  	return 0;
->  }
+yamllint warnings/errors:
 
-Regards,
-Yao Zi
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/sony,imx355.yaml: properties:port:properties:endpoint: 'anyOf' conditional failed, one must be fixed:
+	'data-lanes' is not one of ['$ref', 'additionalItems', 'additionalProperties', 'allOf', 'anyOf', 'const', 'contains', 'default', 'dependencies', 'dependentRequired', 'dependentSchemas', 'deprecated', 'description', 'else', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'items', 'if', 'minItems', 'minimum', 'maxItems', 'maximum', 'multipleOf', 'not', 'oneOf', 'pattern', 'patternProperties', 'properties', 'required', 'then', 'typeSize', 'unevaluatedProperties', 'uniqueItems']
+	'type' was expected
+	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.kernel.org/project/devicetree/patch/20251211014846.16602-2-mailingradian@gmail.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
