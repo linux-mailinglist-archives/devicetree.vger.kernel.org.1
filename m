@@ -1,163 +1,139 @@
-Return-Path: <devicetree+bounces-246113-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246114-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC0CFCB8B40
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 12:21:52 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5132DCB8B58
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 12:25:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A7E57306B161
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 11:21:41 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6410F3012DC7
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 11:25:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A67031691C;
-	Fri, 12 Dec 2025 11:21:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3079F31B11D;
+	Fri, 12 Dec 2025 11:25:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=resnulli-us.20230601.gappssmtp.com header.i=@resnulli-us.20230601.gappssmtp.com header.b="cMeOE3kA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 426D8231A23
-	for <devicetree@vger.kernel.org>; Fri, 12 Dec 2025 11:21:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F48D3093B6
+	for <devicetree@vger.kernel.org>; Fri, 12 Dec 2025 11:25:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765538500; cv=none; b=cwhdSUY7e7cE73gMH3nWMaxggkMNjKRrt9YfVskbd3CKT17HNQKoyH4NIAa33vT/OEkvR5moPDmWs5bJ6W54e2Jg8cQa/DIy4qXELT9zA0HBBZ3ItVGtLKy3Rz8tjc42EFhE5Bl8DDokQx2nOnj4DXwb2VehlBJuflje9TZMYbE=
+	t=1765538719; cv=none; b=D0BBM4tMe2bFGesVwvwxggYNUQoZukdUHCjIUSTUFTzhBU7Z1LRGl9NrwqULA3HgCi8W/5giqYd9qNWvvOl/sseYh6wtuzu3kolCKWSFbH8izULxmcDQf5YaMjxPrM5TYi28NKUlGNCObEw4vkPxkyIrkP+pWec7ldl7lqEr23I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765538500; c=relaxed/simple;
-	bh=dBiEXSXqAe1+bjWPLYEbVWzfCTeFakFmTqGBVAZdykk=;
+	s=arc-20240116; t=1765538719; c=relaxed/simple;
+	bh=hTO9aQVk1BjsYhwnOVt6ys9wXkYUKex0i/wuCIuc6wM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RLlXQG/f+oBgBvmF223rVs2zkzT4J7htOAaE9xMkMGlEzs+uozVYo4jSsY83lA03MTouOjKx8CwlegXbM/otbhd4at/FQrDnqtRf9gCsaUqdy0YDWdxP5KgUZJOOdBVD++PmLGrWBHmnNI38FPrLREpTUKgYPj9SVl+zkz4zGrM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1vU1Cs-0004Lc-D5; Fri, 12 Dec 2025 12:21:06 +0100
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1vU1Cq-005Hin-05;
-	Fri, 12 Dec 2025 12:21:04 +0100
-Received: from pengutronix.de (p54b152ce.dip0.t-ipconnect.de [84.177.82.206])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id A86804B5198;
-	Fri, 12 Dec 2025 11:21:03 +0000 (UTC)
-Date: Fri, 12 Dec 2025 12:21:03 +0100
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Conor Dooley <conor@kernel.org>
-Cc: Prabhakar <prabhakar.csengg@gmail.com>, 
-	Vincent Mailhol <mailhol@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, 
+	 Content-Type:Content-Disposition:In-Reply-To; b=bvSiXg5mwU/gmsKXaMJO5seIOE/JLQpXeFfGFIiSjalkJco9PYxuD7BiR1m1vbFrWIiF9+rvamPrHZXY3LVzYTYYQT8mvqumlho5CF3PzqzDVrBS2TipsNNUTmQA5mtc9XCvp3TqW8RS7Q6OjjKjfM8qQUfXSTlWu9/zvtBy0Lk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=resnulli.us; spf=none smtp.mailfrom=resnulli.us; dkim=pass (2048-bit key) header.d=resnulli-us.20230601.gappssmtp.com header.i=@resnulli-us.20230601.gappssmtp.com header.b=cMeOE3kA; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=resnulli.us
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=resnulli.us
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-4775ae77516so12366585e9.1
+        for <devicetree@vger.kernel.org>; Fri, 12 Dec 2025 03:25:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=resnulli-us.20230601.gappssmtp.com; s=20230601; t=1765538716; x=1766143516; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=gEnn545SHxpJYbhpEqJ4kau8ivvtfD9Ghf76lIvPG6E=;
+        b=cMeOE3kACU3Ha23b+to+W7aPNYOihqvQuOjwSqGOXZ0gICe92Db6JhvmQ6BJ8/qtEw
+         PR194sicrzJkAYlJ+jmzXgJvZk09uDchh9eOJQWn7xKmHuA34Yt5Hgkalp6DkBvNaIu1
+         qCkppwq/uAyrsk4N3Gycwl6RZCj2PZgWbgeUSoBIRRpLNHKNREqryVW18rEw2cDBoZkO
+         fQNzhs4ug4EllxjaAewe+1nbz9dsEozWQCM7fnXWMPDozG4Urh8gHbe/161oSoGR2NbI
+         e7nXoLcLIKLETzBZByXcCxc/cqa56m0aYBV7XQAtagciJIMul+LBf0PGLxbU27r7A1h0
+         74Og==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765538716; x=1766143516;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=gEnn545SHxpJYbhpEqJ4kau8ivvtfD9Ghf76lIvPG6E=;
+        b=B9aTlg7M/r2T8gT452S9buJEZngZSn+U2KfC3JVEY8JM7n/AeMS0XPdBWqPv80NUy3
+         mcuvaCiKYGamgNl9nnJ4xBvpK4OeSXdCTn9QeeYafgiEKwe5LgAn5zN1wvltybxg21Rm
+         eysuzytvzEfA5HikrhHyEBB2ZAilJLAjrg8QD9kL0S27z7IekoukzrtFzZbBTa8H4Y3L
+         Lq9DwBYZtYslvU+oapPmVFSxIP0LzkoPZtFlNB2VyiCG7HdVlS4d1V8caKnYFHocqHq9
+         n9cIlS8vvlWbe5+nwE/31AhcamavQwcrDsrc2fny+94tfQKRi7gMYRiLRdMEZgA2LRXI
+         Zb1Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUwCoimJW2OSH3FokgTRCWnsTYSXE/oqFFr3vbOUZZHbQv1ewfrRsdXBv0cZYnZ8BfDFly1c4nu28SP@vger.kernel.org
+X-Gm-Message-State: AOJu0YzxT37HQ9vWxxTF+aq8zHr0avqEHKw7WLGFE7UVQ7VeFQbTXVW9
+	BsyQTiP0PbL/sTWW8itqabxhvKKv8rqLuHD29HhG8VE7p4u4XTxWDBu9sTpN0+LeqWY=
+X-Gm-Gg: AY/fxX7/xPvBuYgskO0bwInMA0TnCQLL5uJY9bPUdGyLWBYTeWD1bNPbRONHhLBsNBw
+	OMeD6C10AM714wdlSAGcPwfor2uDBdTnY6TABszF+rbOjLkfUzVhalk2AIfWj5uYhqLAPgvF+ZO
+	HItXcqjg8IbgzqFdGgToL2lN4sXdWycKWekO5BDywUIp94Uw7k3S+qDXdiBDZOtWxgoG4hQ7dFp
+	Q+5a5MHk26ttuVrDF5EH9s5J3FmkLm3BiNOKniwRDOJBmrF2bdV+jmeahoOTDj3asAhf0Vq0Ff+
+	3OGyxifdkPWHcb7ukiBS1y0IHJDH7MPQBM19wYJZH9tbPRJHmI/+Lbc2FHAnGqFmWx9GrUS3VWd
+	rQS+28+q/iWwDibONRr5aDad8j/gI9bvlDDtmXvsFeTlMwKPxzmOx+EaX5O7Rw9Dv7/XQ8EpQmP
+	Q9jejzbuV8vJk3AQEHUbwFrEA=
+X-Google-Smtp-Source: AGHT+IHkaay9CDV5kfE74IqgXxI+GzQAfyiag1hnUiI3Kv6EDGuWkv0C2Lwzh9GBMI+h6MNTm6fuig==
+X-Received: by 2002:a05:6000:2c09:b0:42b:5406:f289 with SMTP id ffacd0b85a97d-42fb44a24f0mr1717666f8f.3.1765538715596;
+        Fri, 12 Dec 2025 03:25:15 -0800 (PST)
+Received: from FV6GYCPJ69 ([140.209.217.211])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42fa8a66761sm11462241f8f.3.2025.12.12.03.25.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 12 Dec 2025 03:25:15 -0800 (PST)
+Date: Fri, 12 Dec 2025 12:25:12 +0100
+From: Jiri Pirko <jiri@resnulli.us>
+To: Ivan Vecera <ivecera@redhat.com>
+Cc: netdev@vger.kernel.org, Andrew Lunn <andrew+netdev@lunn.ch>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Aswath Govindraju <a-govindraju@ti.com>, Frank Li <Frank.li@nxp.com>, linux-can@vger.kernel.org, 
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v2] dt-bindings: phy: ti,tcan104x-can: Document TI
- TCAN1046
-Message-ID: <20251211-wonderful-singing-eel-4e2293-mkl@pengutronix.de>
-References: <20251209162119.2038313-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20251210-mauve-cow-of-hurricane-0f969d-mkl@pengutronix.de>
- <20251210-persuaded-rewire-8ac93b0cc039@spud>
+	Vadim Fedorenko <vadim.fedorenko@linux.dev>, Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>, 
+	Grzegorz Nitka <grzegorz.nitka@intel.com>, Petr Oros <poros@redhat.com>, 
+	Michal Schmidt <mschmidt@redhat.com>, Prathosh Satish <Prathosh.Satish@microchip.com>, 
+	Tony Nguyen <anthony.l.nguyen@intel.com>, Przemek Kitszel <przemyslaw.kitszel@intel.com>, 
+	Saeed Mahameed <saeedm@nvidia.com>, Leon Romanovsky <leon@kernel.org>, 
+	Tariq Toukan <tariqt@nvidia.com>, Mark Bloch <mbloch@nvidia.com>, 
+	Richard Cochran <richardcochran@gmail.com>, Jonathan Lemon <jonathan.lemon@gmail.com>, 
+	Simon Horman <horms@kernel.org>, Alexander Lobakin <aleksander.lobakin@intel.com>, 
+	Willem de Bruijn <willemb@google.com>, Stefan Wahren <wahrenst@gmx.net>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, intel-wired-lan@lists.osuosl.org, linux-rdma@vger.kernel.org
+Subject: Re: [PATCH RFC net-next 02/13] dpll: Allow registering pin with
+ firmware node
+Message-ID: <ahyyksqki6bas5rqngd735k4fmoeaj7l2a7lazm43ky3lj6ero@567g2ijcpekp>
+References: <20251211194756.234043-1-ivecera@redhat.com>
+ <20251211194756.234043-3-ivecera@redhat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="7xctq6j2q5icdxbk"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251210-persuaded-rewire-8ac93b0cc039@spud>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20251211194756.234043-3-ivecera@redhat.com>
+
+Thu, Dec 11, 2025 at 08:47:45PM +0100, ivecera@redhat.com wrote:
+
+[..]
+
+>@@ -559,7 +563,8 @@ EXPORT_SYMBOL(dpll_netdev_pin_clear);
+>  */
+> struct dpll_pin *
+> dpll_pin_get(u64 clock_id, u32 pin_idx, struct module *module,
+>-	     const struct dpll_pin_properties *prop)
+>+	     const struct dpll_pin_properties *prop,
+>+	     struct fwnode_handle *fwnode)
+> {
+> 	struct dpll_pin *pos, *ret = NULL;
+> 	unsigned long i;
+>@@ -568,14 +573,15 @@ dpll_pin_get(u64 clock_id, u32 pin_idx, struct module *module,
+> 	xa_for_each(&dpll_pin_xa, i, pos) {
+> 		if (pos->clock_id == clock_id &&
+> 		    pos->pin_idx == pin_idx &&
+>-		    pos->module == module) {
+>+		    pos->module == module &&
+>+		    pos->fwnode == fwnode) {
+
+Is fwnode part of the key? Doesn't look to me like that. Then you can
+have a simple helper to set fwnode on struct dpll_pin *, and leave
+dpll_pin_get() out of this, no?
 
 
---7xctq6j2q5icdxbk
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v2] dt-bindings: phy: ti,tcan104x-can: Document TI
- TCAN1046
-MIME-Version: 1.0
+> 			ret = pos;
+> 			refcount_inc(&ret->refcount);
+> 			break;
+> 		}
 
-On 10.12.2025 18:21:34, Conor Dooley wrote:
-> On Wed, Dec 10, 2025 at 08:52:58AM +0100, Marc Kleine-Budde wrote:
-> > On 09.12.2025 16:21:19, Prabhakar wrote:
-> > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > >
-> > > Document the TI TCAN1046 automotive CAN transceiver. The TCAN1046 is a
-> > > dual high-speed CAN transceiver with sleep-mode support and no EN pin,
-> > > mirroring the behaviour of the NXP TJA1048, which also provides dual
-> > > channels and STB1/2 sleep-control lines.
-> > >
-> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > ---
-> > > TCAN 1046, https://www.ti.com/lit/ds/symlink/tcan1046v-q1.pdf?ts=3D17=
-65297159307&ref_url=3Dhttps%253A%252F%252Fwww.ti.com%252Fproduct%252FTCAN10=
-46V-Q1
-> > > NXP TJA1048, https://www.nxp.com/docs/en/data-sheet/TJA1048.pdf
-> >
-> > The polarity of the standby line of the chips is different.
-> >
-> > You must set the correct active high/low property for the GPIO, as the
-> > driver uses logical levels.
-> >
-> > Reviewed-by: Marc Kleine-Budde <mkl@pengutronix.de>
->
-> What you're saying seems to contradict the tag you've given, is a
-> fallback really suitable if the standby polarity is not the same?
-
-The driver uses _logical_ levels to switch the GPIOs. For example to
-power on the PHY, it disables the standby GPIO by setting the value to
-"0".
-
-| static int can_transceiver_phy_power_on(struct phy *phy)
-| {
-[...]
-|         gpiod_set_value_cansleep(can_transceiver_phy->standby_gpio, 0);
-[...]
-| }
-
-You have to use GPIO_ACTIVE_HIGH/GPIO_ACTIVE_LOW in the DT to configure
-the actual level of the GPIO.
-
-If you connect the PHY's standby input directly to the SoC's GPIO....
-
-| TJA1048: HIGH =3D Normal mode, LOW =3D Standby mode
-| TCAN1046: High =3D Standby mode, Low =3D Normal Mode
-
-=2E..for the TJA1048 you would use GPIO_ACTIVE_LOW, while for the
-TCAN1046 you would use GPIO_ACTIVE_HIGH.
-
-regards,
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---7xctq6j2q5icdxbk
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEn/sM2K9nqF/8FWzzDHRl3/mQkZwFAmk7+pwACgkQDHRl3/mQ
-kZzoXAf/WppHtgf+xjeHcSDUxWQiT0y/ms86YiQzUQjFGDoc+DrkDvbpuaMAc93u
-Gsxz0QtfwMnzoMRyvd514QpjuacWsRppi+Td6sE70o8P4bOMWqy6oErLNqzHqOMX
-4Z4ouZIL8vy+0uBD2KOicJ4lveWiJikUM4/I1tA3EW/19a0PJraNizbrnhzytasp
-9YkxE/fMQopyYhb7//q4kyyzA/CzNqCS2qvi7RSk9XzXQYfzgSVCvF22USjkTUtH
-J+hBMluDYcw1DAoRTB7YqBrCYsdnjDtokuiY2lvvnnXl3FX4PjmWMrSRnkyFhmtB
-KlwlVtJ9F8qJbQrT0cqukuPBhyOcwA==
-=RGBu
------END PGP SIGNATURE-----
-
---7xctq6j2q5icdxbk--
+[..]
 
