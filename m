@@ -1,63 +1,68 @@
-Return-Path: <devicetree+bounces-246174-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246175-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79AB7CB97E3
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 18:58:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C9ACCB9804
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 19:00:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EBCD0306384F
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 17:55:33 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 01DD0303134E
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 17:59:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FB6D2F4A0E;
-	Fri, 12 Dec 2025 17:55:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71E252F60DB;
+	Fri, 12 Dec 2025 17:59:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HAB0zwkL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JnKkkqOs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DA3726980F;
-	Fri, 12 Dec 2025 17:55:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48D1F2F5322;
+	Fri, 12 Dec 2025 17:59:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765562133; cv=none; b=fLFTht5SGZcIhjWRA8IYl4RPkGBqiPf/T/NRfsoPhHGMf5vqy/RFHV1/aGbxpHCjrJgfwnT+xISxlwlmmCtFqdvpRZuUi5HBkrVeWoUL7Jse2+kgrvcOltan/C51zk7Nw10uAYgHqPkhRBlr83PZCR7OnQvAVBigoaT6AMkT+Xk=
+	t=1765562354; cv=none; b=oHp+CGGMBHAiQWOBp9amcpEEDBIP5rfvjEMyEleG0RXxPIX8lo9TppTiUOT+3enM771IUFE8B2vDnLON2tBHQmIUveGUDxC7MLSNK2fjkZjVXCn/KXuEnF5XWno40CfMPtlVBh4/C616GvV8zJwIu86yl+MW+7m76YrTVjOG6hs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765562133; c=relaxed/simple;
-	bh=TT3BjiDXo7vLPijIYy6fIZThrWVyzGnxiLcPa/Xmfuw=;
+	s=arc-20240116; t=1765562354; c=relaxed/simple;
+	bh=8RRRc4CBHUq0nTddaC6P4w2gbfOVChhf7hvdjIaZf3w=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JV5LkT1S1fqYOSYbAIZqMPipp6DPC5wt/cHoeUsRfPl3JI/ZUT5k2kI+vuhBVoGeCKubw6hlLTm/+5fLxiQ0WTKiivy+KEI86u/7/+zUWfFUiCWltJX2XotpQzT3OH093RsHAdXtBNfP0geyBQySYg95Au98c4VLsn0J0L8ZknE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HAB0zwkL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3004AC19421;
-	Fri, 12 Dec 2025 17:55:29 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=HDYRY9tV6Jdwydm7SkGp2q1w5NYpRQs5c87SHpoMihF/nfE6rfFvceulmEghiCm0VWmYmO1V/5Uj4GQeo9ufPsdTRnRa6pzWOWzFwYtHLBvyLBvED3SL93zHoBa1SnN5hy/wGe3+qIjxY7nq4V1QUVP7itfiC+udY9CnI0NFyF4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JnKkkqOs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DADD3C4CEF1;
+	Fri, 12 Dec 2025 17:59:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765562132;
-	bh=TT3BjiDXo7vLPijIYy6fIZThrWVyzGnxiLcPa/Xmfuw=;
+	s=k20201202; t=1765562353;
+	bh=8RRRc4CBHUq0nTddaC6P4w2gbfOVChhf7hvdjIaZf3w=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HAB0zwkLUGYg5Vcyi7Ms2WP5CJQHFP5S+cVj3UkFnmqiNW2xTlcmzLOVdkyEPCDpJ
-	 l6baQspDib/b05s84imOxcfD5oi6iPxoY2rhHFyfnvLDG632Yb5C9cpBsjEjA80X9v
-	 7GoDgZQZZ3itPz62rz4J5+qGpwULDouEUKh2jsEJLdhYmi7nv98gALs61leSuqv4OS
-	 A86YdE9JPCe0qNhStkxyUT/tb8i7GqRNr4LcSDcJt4bPYF279MbUPr9BwU/ioXJlA5
-	 GHSSusvNAXbNgmG8JvFMfp4jvBQjQIw5jTzuhADq2TlHkU12uxVFjUFL0KnlsYTgYu
-	 1dRDsSX7Lj/iw==
-Date: Fri, 12 Dec 2025 17:55:26 +0000
+	b=JnKkkqOsuQYo6Kg/tf3OLKczT7R+rmDIqxBXoC1ouGBPIYWybMu1jOjUCYs1AIhbX
+	 Xja5+84QoJsD6CPaTpUPv50qtXCmrctCWJCBQTZxlHbye+f4Bp9ov3MT0ybaryu05A
+	 VrAvQARc/Kdeb0EalRbebKXZBb0QPcYvNCpIJeTJDcjl43oxH38TFAhlgI7yzrMQyp
+	 75RM7OWSrr4mW1g7Ve+ze5CVITxQc2WqlDjwxvraGvXtHVaGl5mBJb9n+CuuXwcta2
+	 LONKGNyC4CbiBwCAvW+LYLypMAEcX+tJVIX5Z+dHXyDZRD7RQldGFxdk9iCFDaCIYr
+	 xltoAOAUV0UPQ==
+Date: Fri, 12 Dec 2025 17:59:08 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Robert Marko <robert.marko@sartura.hr>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	gregkh@linuxfoundation.org, nicolas.ferre@microchip.com,
-	claudiu.beznea@tuxon.dev, mturquette@baylibre.com, sboyd@kernel.org,
-	richardcochran@gmail.com, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-	daniel.machon@microchip.com, UNGLinuxDriver@microchip.com,
-	luka.perkov@sartura.hr
-Subject: Re: [PATCH 2/4] dt-bindings: arm: Document Microchip LAN969x
-Message-ID: <20251212-dazzler-agility-d45940bd27d2@spud>
-References: <20251203122313.1287950-1-robert.marko@sartura.hr>
- <20251203122313.1287950-2-robert.marko@sartura.hr>
- <20251203-duly-leotard-86b83bd840c6@spud>
- <CA+HBbNH6wO2VWOp1Dn52ArrYg6z89FgYnT3x-jsHsTVJ5xSBSA@mail.gmail.com>
- <20251208-absolute-diploma-6575729ab43f@spud>
- <CA+HBbNHuYCq9oV4ZjWGjwnJM=oz-O85p_tqB+UnTBmivzDoowg@mail.gmail.com>
+To: E Shattow <e@freeshell.de>
+Cc: Samuel Holland <samuel.holland@sifive.com>,
+	Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Hal Feng <hal.feng@starfivetech.com>, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v1] riscv: dts: starfive: Append starfive,jh7110
+ compatible to VisionFive 2 Lite
+Message-ID: <20251212-arming-slacks-18b9407f69e3@spud>
+References: <20251206204540.112614-1-e@freeshell.de>
+ <20251208-jogging-morally-9b787b7ab1b8@spud>
+ <a18850ad-b6de-4444-9daf-a4a653f4f9ae@canonical.com>
+ <0bb12889-cb28-44e7-b2d6-7ecba6264d1a@freeshell.de>
+ <d8fa12cc-7a03-4954-8ea5-1e2edf9a149d@sifive.com>
+ <20251210-pull-pleading-57c880596510@spud>
+ <4b08ce35-9d2d-4e7b-9ea6-c1dcbc4ad04d@freeshell.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,76 +70,97 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="2+Dmjsrlr/kIiniW"
+	protocol="application/pgp-signature"; boundary="Kfbt5e6Jlj5iflno"
 Content-Disposition: inline
-In-Reply-To: <CA+HBbNHuYCq9oV4ZjWGjwnJM=oz-O85p_tqB+UnTBmivzDoowg@mail.gmail.com>
+In-Reply-To: <4b08ce35-9d2d-4e7b-9ea6-c1dcbc4ad04d@freeshell.de>
 
 
---2+Dmjsrlr/kIiniW
-Content-Type: text/plain; charset=utf-8
+--Kfbt5e6Jlj5iflno
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Dec 12, 2025 at 11:09:01AM +0100, Robert Marko wrote:
-> On Mon, Dec 8, 2025 at 6:10=E2=80=AFPM Conor Dooley <conor@kernel.org> wr=
-ote:
-> >
-> > On Mon, Dec 08, 2025 at 11:30:28AM +0100, Robert Marko wrote:
-> > > On Wed, Dec 3, 2025 at 8:19=E2=80=AFPM Conor Dooley <conor@kernel.org=
-> wrote:
-> > > >
-> > > > On Wed, Dec 03, 2025 at 01:21:30PM +0100, Robert Marko wrote:
-> > > > > Microchip LAN969x is a series of multi-port, multi-gigabit switch=
-es based
-> > > > > on ARMv8 Cortex-A53 CPU.
-> > > > >
-> > > > > Signed-off-by: Robert Marko <robert.marko@sartura.hr>
-> > > > > ---
-> > > > >  .../bindings/arm/microchip,lan969x.yaml       | 32 +++++++++++++=
-++++++
-> > > >
-> > > > This should not be in a unique file, put it in with the other micro=
-chip
-> > > > arm devices please. Also, the wildcard in the compatible is not
-> > > > permitted, only way it'd make sense is if these are different binni=
-ngs
-> > > > of the same silicon. If that's the case, you need to explain why,
-> > > > because compatibles are meant to be soc-specific.
-> > >
-> > > Hi Conor,
-> > > The issue is that there is no unique place for Microchip SoC-s,
-> > > LAN966x series is in the AT91 bindings
-> > > while SparX-5 has its own bindings file.
-> > >
-> > > What would you suggest in this case?
-> >
-> > Ideally, arm/atmel-at91.yaml and arm/microchip,sparx5.yaml would just
-> > become arm/microchip.yaml. The axi@600000000 thing in the sparx5 file
-> > looks pointless and can be deleted IMO.
+On Wed, Dec 10, 2025 at 08:23:54PM -0800, E Shattow wrote:
 >=20
-> Ok, I merged them all in one generic microchip.yaml binding, but I notice=
-d that
-> arm/atmel-at91.yaml is licensed under GPL-2.0 while arm/microchip,sparx5.=
-yaml
-> is dual-licensed as its preferred for bindings.
+> On 12/10/25 08:43, Conor Dooley wrote:
+> > On Tue, Dec 09, 2025 at 03:18:58PM +0900, Samuel Holland wrote:
+> >> On 2025-12-09 9:53 AM, E Shattow wrote:
+> >>> The unanswered question what I was asking in the code review of StarF=
+ive=20
+> >>> VisionFive 2 Lite series: What is the normal thing to do for compatib=
+le=20
+> >>> strings of relabeled silicon when there is a suggestion of different=
+=20
+> >>> operational parameters?
+> >> I don't think we are very consistent on this, and some of it depends o=
+n how
+> >> different the binned chips are from each other.
+> >=20
+> > Largely I think the lack of consistency stems from there being relative=
+ly
+> > few users of these soc-level compatibles, so there's nothing really gai=
+ned
+> > from having one in a lot of cases.
+> >=20
+> >> Example 1: Rockchip RK3399 has several bins. RK3399-S and RK3399-T jus=
+t override
+> >> the OPPs, but reuse the SoC compatible string without change. On the o=
+ther hand
+> >> RK3399pro is a superset of RK3399, but uses a new compatible string wi=
+thout a
+> >> fallback.
+> >>
+> >> Example 2: Allwinner H616 (https://linux-sunxi.org/H616) has multiple
+> >> bins/packages/die revisions. H313 is a down-binned version of H616, wh=
+ich reuses
+> >> the SoC compatible string without change. H700 is a superset of H616 (=
+same die,
+> >> more pins), but uses a new compatible string without a fallback.
+> >>
+> >>> I can include the (paraphrased) above summary by Heinrich, yes. Altho=
+ugh
+> >>> now I doubt whether this is the best approach, when removal of
+> >>> "starfive,jh7110s" compatible is potentially an equally valid fix, or=
+ if
+> >>> we're rather considering JH7110 at 1.5GHz maximum to be a superset of
+> >>> itself at 1.25GHz maximum (JH-7110S). Would we want to change all the
+> >>> JH-7110 boards to then have JH-7110S as the least-compatible, if I am
+> >>> understanding that meaning of "superset"? I would like to know what is
+> >>> expected.
+> >>
+> >> If starfive,jh7110 is a superset of starfive,jh7110s, yes, it would be=
+ valid to
+> >> add starfive,jh7110s as a fallback compatible string in all of the exi=
+sting
+> >> board bindings. But this is not very useful, as existing software alre=
+ady looks
+> >> for starfive,jh7110, and you can't replace that without breaking compa=
+tibility
+> >> with existing DTs. So the advantage of one compatible string (mostly) =
+covering
+> >> both SoCs only applies to new software.
+> >=20
+> > Yeah, adding it to the existing stuff provides no real benefit.
 >=20
-> Is that going to be an issue?
+> I agree, there's not any benefit to add "starfive,jh7110s" as the
+> least-compatible to existing stuff.
+>=20
+> The reply from Samuel is quite helpful however it's not any clearer to
+> me what direction to take this.
 
-I *think* everyone that contributed, other than maybe Wolfram has
-already okayed any binding going to dual license. Just do it as a
-standalone commit in the patchset and make sure you CC Michael Walle
-and Wolfram Sang.
+I think the idea is fine, just explain why it'd be helpful in the commit
+message and do the dt-binding change that this doesn't cause warnings.
 
---2+Dmjsrlr/kIiniW
+--Kfbt5e6Jlj5iflno
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaTxXCwAKCRB4tDGHoIJi
-0th0AQCeGvXNFnRESx7BYMbBp8z3ebY/JmtThhaK/pvT8fDEAgEA+31CSiBsVH57
-cSVa85MdpgBrlggqpPrz+t3kfd+Vhg0=
-=/YvB
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaTxX7AAKCRB4tDGHoIJi
+0nmjAQDvW2M/SJc1mloZZeSTieEzeq3XEtz99LP8y2uOdYeEzwD+Km3roylyabwi
+8vw0sl/uT0llCM/gnJswUJDN6CjCywc=
+=7Ipe
 -----END PGP SIGNATURE-----
 
---2+Dmjsrlr/kIiniW--
+--Kfbt5e6Jlj5iflno--
 
