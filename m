@@ -1,125 +1,123 @@
-Return-Path: <devicetree+bounces-245980-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245981-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D747CB78A3
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 02:27:28 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EC02CB78E2
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 02:39:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 9B788300BDB6
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 01:27:27 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CC5E130249CD
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 01:39:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A94C4221FBA;
-	Fri, 12 Dec 2025 01:27:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8AB7284662;
+	Fri, 12 Dec 2025 01:39:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="ZXPO4alD";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="3DfD3WRH"
+	dkim=pass (2048-bit key) header.d=nxsw.ie header.i=@nxsw.ie header.b="bTT6QHCD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+Received: from mail-08.mail-europe.com (mail-08.mail-europe.com [57.129.93.249])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1275D19067C;
-	Fri, 12 Dec 2025 01:27:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB62926B0B7;
+	Fri, 12 Dec 2025 01:39:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=57.129.93.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765502846; cv=none; b=uO+TqWZl7gysnapTwXucGjoAqoYKuT8HJFExTNne9WBGTB0BwI9ioczMXmh8aSAImMPVXABpYhpuBChkDJ85CK2yIwU5gFkxckoyvO6C1bTw5Pt17PC52hwoa6nMyq55DXCf6x4CL20OJrK3T1TzgXWU81heMC+5pFoCRvceqO4=
+	t=1765503567; cv=none; b=sDs8I8U14YQoPJFegL7ETKyP9ghNfs+VV/SHeaJhXGdxvFgzaJi45GcAn3DIUqKsa2JSTJmrnVqX53vfwZLlm4tyb+caToZTWQRX5tdrcf8hq4AMFtGVaHyAqgUrpCH+O+/LavVV/ql758C3ObZDCq5QWEfoNm8ReFYtNJAh6D0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765502846; c=relaxed/simple;
-	bh=Jgq0RLoiT9+jff0IstUKH3Um5OWq2m/2BrCmb/x1RFc=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=FenqsR+I+KTE5umCO/jnSOk3Gvu95sF31apefI+0GxCqSl57JLXriIv2rppIkfmH0/j3VhZH8CBBAhGMUfvBZWZSkbzY5V7N/ukNcjmFSsZAZOepnt4ujjGogWBzh3WHGB/k6dFsMSZYGsTIZbdxynvoz7OFKk2cnw1j38XlpUY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=ZXPO4alD; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=3DfD3WRH; arc=none smtp.client-ip=193.142.43.55
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
-From: Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1765502843;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=OaMnphTqktOpkqienFmb235BNgNOVZfNfr2TnIb1Qck=;
-	b=ZXPO4alD6O1udp8b8q1nYnbhXp0cvXN7INVnSakW5fsQ2YV0gf9CFQw8uJ/bxT8ucUVzVo
-	ROHI8hstWSxvwhpq4zt1Xp0k7GH19fo0iTusRhtpUPLmlh6FFTMsFQp5i1tYr/v9qrqR+2
-	B5A4/CJeE8DdIha36S6rbrJLccHUSZH67FgeiZHw1gaeWwlFblhJz67VgbQ3jaeXR6Dciq
-	vfdl68Rg+jNbSD3hWpd56Wo5n7DVSwRI9Owm5mDwVzYKd4ElYfqqGzLX2WWaH3GxTZPTBB
-	hxn4uEera0CecgpBbgwq1TtKstvKTd38WAfR62UCFWaXo4+gN8dTGM35rOhIgg==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1765502843;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=OaMnphTqktOpkqienFmb235BNgNOVZfNfr2TnIb1Qck=;
-	b=3DfD3WRH6JIdddkN688AXbZLmxq8gLkLSqi4e/BnFjLv8LwF75R/NQOCoYsoalS7XFyir0
-	GCj4Uo+A5oSQdNDQ==
-To: "Rob Herring (Arm)" <robh@kernel.org>, Prabhakar
- <prabhakar.csengg@gmail.com>
-Cc: devicetree@vger.kernel.org, Fabrizio Castro
- <fabrizio.castro.jz@renesas.com>, Conor Dooley <conor+dt@kernel.org>,
- linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, Geert
- Uytterhoeven <geert+renesas@glider.be>, Magnus Damm
- <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, Lad Prabhakar
- <prabhakar.mahadev-lad.rj@bp.renesas.com>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: interrupt-controller:
- renesas,rzv2h-icu: Document RZ/V2N SoC
-In-Reply-To: <176426377371.294874.17331116412829860585.robh@kernel.org>
-References: <20251127162447.320971-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20251127162447.320971-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <176426377371.294874.17331116412829860585.robh@kernel.org>
-Date: Fri, 12 Dec 2025 10:27:20 +0900
-Message-ID: <87o6o4ebgn.ffs@tglx>
+	s=arc-20240116; t=1765503567; c=relaxed/simple;
+	bh=1IXJ+R/nRF1p2OiDUhcU6Qic+YoyTSQGka6/QxALgRs=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=G41uoxRnLcd8ka7kOpgpyTK2aNEuFyZB4nnKtrJZ2RHfSMp1A5eYc1KbKqnUFnWV4Fopzo7aWgDdU27VU5Q1Fxfl95jL23qsnIT6HVTwrR6j+viH6gj7pexbC9YSjciDHWVx8HRE7/ZXhH25ZJRIVKkyMgNjyA28+F3Ae3eBr/U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=nxsw.ie; spf=pass smtp.mailfrom=nxsw.ie; dkim=pass (2048-bit key) header.d=nxsw.ie header.i=@nxsw.ie header.b=bTT6QHCD; arc=none smtp.client-ip=57.129.93.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=nxsw.ie
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxsw.ie
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxsw.ie;
+	s=protonmail3; t=1765503554; x=1765762754;
+	bh=7PimDlet7X+DGcrSzNbhUu2K67E0rLe6upjfsSMVgQg=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector;
+	b=bTT6QHCDhT7zmEQGDFMBzuJtGE/+gQkhMtDya/mfaoRzZABPN9nxdFM3e9Nr82GtL
+	 9eVwjlW0aIxNQM98sx5q88kEBbu9GCF3RG2azOjGncLUVpITIB3ViOhr+H10vfQYJC
+	 Gs7UJUBx2LP5ZSvzpXahfuFlSekLInu636SPx8t5KRQIbXtimi75JfZUTftMTO2vD7
+	 39vUsGJYjtIsF4x60s9Yk/I89VifHxvQRoTIGNwNSKnFslO9jgmJSpJFy1Zahov1cb
+	 7Bn2slQvd/DFBcI98wgZKtUbgds+gqfsfKW9DAXrpW/ePI4TBJ6Ojbux8gl1N3WbZ5
+	 GLHUAa/eYDmUg==
+Date: Fri, 12 Dec 2025 01:39:08 +0000
+To: Richard Acayan <mailingradian@gmail.com>, Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Sakari Ailus <sakari.ailus@linux.intel.com>, Tianshu Qiu <tian.shu.qiu@intel.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-media@vger.kernel.org
+From: Bryan O'Donoghue <bod.linux@nxsw.ie>
+Cc: Robert Mader <robert.mader@collabora.com>, Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Subject: Re: [PATCH v4 3/5] arm64: dts: qcom: sdm670: remove camss endpoint nodes
+Message-ID: <b9bef9be-4d11-4ccb-be16-3036046bc153@nxsw.ie>
+In-Reply-To: <20251211014846.16602-4-mailingradian@gmail.com>
+References: <20251211014846.16602-1-mailingradian@gmail.com> <20251211014846.16602-4-mailingradian@gmail.com>
+Feedback-ID: 136405006:user:proton
+X-Pm-Message-ID: 07b1a71a1e78ac3d78205ea67d1d99dc32b09136
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Nov 27 2025 at 11:16, Rob Herring wrote:
-> On Thu, 27 Nov 2025 16:24:46 +0000, Prabhakar wrote:
->> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->> 
->> Document the Interrupt Control Unit (ICU) used on the Renesas RZ/V2N SoC.
->> Although the ICU closely matches the design found on the RZ/V2H(P) family,
->> it differs in its register layout, particularly in the reduced set of
->> ECCRAM related registers. These variations require a distinct compatible
->> string so that software can correctly match and handle the RZ/V2N
->> implementation.
->> 
->> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->> ---
->> v1->v2:
->> - Dropped using RZ/V2H compatible as a fallback.
->> ---
->>  .../bindings/interrupt-controller/renesas,rzv2h-icu.yaml         | 1 +
->>  1 file changed, 1 insertion(+)
->> 
->
-> My bot found errors running 'make dt_binding_check' on your patch:
->
-> yamllint warnings/errors:
->
-> dtschema/dtc warnings/errors:
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/slimbus/slimbus.example.dtb: slim@28080000 (qcom,slim-ngd-v1.5.0): 'audio-codec@1,0' does not match any of the regexes: '^pinctrl-[0-9]+$', '^slim@[0-9a-f]+$'
-> 	from schema $id: http://devicetree.org/schemas/slimbus/qcom,slim-ngd.yaml
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/slimbus/slimbus.example.dtb: slim@28080000 (qcom,slim-ngd-v1.5.0): #address-cells: 1 was expected
-> 	from schema $id: http://devicetree.org/schemas/slimbus/qcom,slim-ngd.yaml
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/slimbus/slimbus.example.dtb: slim@28080000 (qcom,slim-ngd-v1.5.0): 'dmas' is a required property
-> 	from schema $id: http://devicetree.org/schemas/slimbus/qcom,slim-ngd.yaml
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/slimbus/slimbus.example.dtb: slim@28080000 (qcom,slim-ngd-v1.5.0): 'dma-names' is a required property
-> 	from schema $id: http://devicetree.org/schemas/slimbus/qcom,slim-ngd.yaml
-> Documentation/devicetree/bindings/thermal/thermal-sensor.example.dtb: /example-0/soc/thermal-sensor@c263000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
-> Documentation/devicetree/bindings/thermal/thermal-sensor.example.dtb: /example-0/soc/thermal-sensor@c263000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
-> Documentation/devicetree/bindings/thermal/thermal-sensor.example.dtb: /example-0/soc/thermal-sensor@c265000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
-> Documentation/devicetree/bindings/thermal/thermal-sensor.example.dtb: /example-0/soc/thermal-sensor@c265000: failed to match any schema with compatible: ['qcom,sdm845-tsens', 'qcom,tsens-v2']
+On 11/12/2025 01:48, Richard Acayan wrote:
+> There is no need to add these by default for all of SDM670. Originally,
+> they were added so there could be a label for each port. This is
+> unnecessary if the endpoints are all added in a fixup to the camss node.
+>=20
+> This is required since dcf6fb89e6f7 ("media: qcom: camss: remove a check
+> for unavailable CAMSS endpoint") was applied, forcing all endpoint nodes
+> to be probed, even if they are marked as disabled. According to the body
+> of this commit, there is "no valid or sane usecase".
+>=20
+> Suggested-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> Link: https://lore.kernel.org/r/488281f6-5e5d-4864-8220-63e2a0b2d7f2@lina=
+ro.org
+> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
+> ---
+>   arch/arm64/boot/dts/qcom/sdm670.dtsi | 12 ------------
+>   1 file changed, 12 deletions(-)
+>=20
+> diff --git a/arch/arm64/boot/dts/qcom/sdm670.dtsi b/arch/arm64/boot/dts/q=
+com/sdm670.dtsi
+> index c33f3de779f6..c275089237e4 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm670.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm670.dtsi
+> @@ -1768,26 +1768,14 @@ ports {
+>=20
+>   =09=09=09=09port@0 {
+>   =09=09=09=09=09reg =3D <0>;
+> -
+> -=09=09=09=09=09camss_endpoint0: endpoint {
+> -=09=09=09=09=09=09status =3D "disabled";
+> -=09=09=09=09=09};
+>   =09=09=09=09};
+>=20
+>   =09=09=09=09port@1 {
+>   =09=09=09=09=09reg =3D <1>;
+> -
+> -=09=09=09=09=09camss_endpoint1: endpoint {
+> -=09=09=09=09=09=09status =3D "disabled";
+> -=09=09=09=09=09};
+>   =09=09=09=09};
+>=20
+>   =09=09=09=09port@2 {
+>   =09=09=09=09=09reg =3D <2>;
+> -
+> -=09=09=09=09=09camss_endpoint2: endpoint {
+> -=09=09=09=09=09=09status =3D "disabled";
+> -=09=09=09=09=09};
+>   =09=09=09=09};
+>   =09=09=09};
+>   =09=09};
+> --
+> 2.52.0
+>=20
+>=20
 
-Confused. How is the change in
+Reviewed-by: Bryan O'Donoghue <bod@kernel.org>
 
-          bindings/interrupt-controller/renesas,rzv2h-icu.yaml
+---
+bod
 
-related to the errors your bot found>
-
-Thanks,
-
-        tglx
 
