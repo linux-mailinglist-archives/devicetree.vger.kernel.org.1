@@ -1,120 +1,191 @@
-Return-Path: <devicetree+bounces-246151-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246153-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6B72CB9127
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 16:12:16 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48076CB9183
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 16:22:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 30C52307CDD7
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 15:11:43 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 77516300E80E
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 15:22:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28BDD31B110;
-	Fri, 12 Dec 2025 15:06:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F3583115B1;
+	Fri, 12 Dec 2025 15:22:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PNpBb7ZG"
+	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="onT3DUAd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from ixit.cz (ip-94-112-25-9.bb.vodafone.cz [94.112.25.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE556317711;
-	Fri, 12 Dec 2025 15:06:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 517E719F40A;
+	Fri, 12 Dec 2025 15:22:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.112.25.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765551995; cv=none; b=GnkUrA7lJS4ubdmSqTRKixbuF1dWjE96P3oS3lsXepHeHx7Tpf7WQfL9/rd/F3gcQLjerxvlRWEwSUXgYCOXZ35FEL3H2MH9g1t4HkwuOKG/EXYROvvkjJSQ41DESPHTuj8Hn5qVMZ4wVjY1p+BFydsPDKOBEhhVL5Z6Gz4qoTw=
+	t=1765552950; cv=none; b=kCj/l9ZbN0VBPejhdmYdifghCX4sCGnxyUXQZrMSRX4usof6tjYX2JfFg9DkKEvLglihes9VO9QdXC5dIRh5EYbSmr4Up8/JqdO0g8aSHZoXHrnhFGSqQfoks24CwNtgOLVD5vw/fbr2lt4UFBaUcLCsWvNa9eeWyjHIlcQH3q4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765551995; c=relaxed/simple;
-	bh=i6MeqSZJJ3hHFz2r4+e4b3P7T9WrW1v1WkoNCvc0ZZk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jU/4OtiGJUaK9erzQhnxsTTqpImo8kYeDRU7j6ghrNmF7Svl0/pOVpf5R1vE4om2BWy0bxIWPz+T2cBNZpLHQ365C6HA0go7sdqxXgE01YEl2wsn5xHvBS2tw01uSuRyBHWHFVy4nCOyYv/lVTph7HYLGkhGxdjFu2VsuQR6eYs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PNpBb7ZG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 12611C4CEF1;
-	Fri, 12 Dec 2025 15:06:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765551994;
-	bh=i6MeqSZJJ3hHFz2r4+e4b3P7T9WrW1v1WkoNCvc0ZZk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PNpBb7ZGqIVlmaf47k6ev2T4JjXdjAO+tcbKShFJsIO55k3KtGbE03/P7Svf3km2w
-	 N7HxOvFwRaYla6WM589pL2VAM0U9dkquInkkqDc4rd5cwldPZhGPVk6YjPrL5BfTkw
-	 OMrXAPXy/3HJ9MxzbyS7SeN2BzR/tFLC1uSU6dV72zAX6zZq+182FPtOI7Ulu6JyaQ
-	 v6Hl59jMGME7mGMvO7nAvG2EoQDbMGCC+PLsGJXMz0B6b2YoQJQQDJMgWrF++vtmBy
-	 mh3LZTJwv+O+R+frS4ZeyU+/czISRuySQ/llWCRnjLNvM+tqiSK517M7+UjOikTVk1
-	 r8da6U0nOJsZg==
-Date: Fri, 12 Dec 2025 09:06:31 -0600
-From: Rob Herring <robh@kernel.org>
-To: Andrew Jeffery <andrew@codeconstruct.com.au>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Linus Walleij <linusw@kernel.org>, Joel Stanley <joel@jms.id.au>,
-	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
-	linux-gpio@vger.kernel.org, linux-mmc@vger.kernel.org,
-	linux-crypto@vger.kernel.org, linux-iio@vger.kernel.org
-Subject: Re: [PATCH RFC 00/16] Eliminate warnings for AST2500 and AST2600 EVB
- devicetrees
-Message-ID: <20251212150631.GA3997751-robh@kernel.org>
-References: <20251211-dev-dt-warnings-all-v1-0-21b18b9ada77@codeconstruct.com.au>
+	s=arc-20240116; t=1765552950; c=relaxed/simple;
+	bh=+IblNVT1S6CLR1JEjL42CUwdGpM2anjc5n8A6MmD+2c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=QmLGr6l0qQb1X+/Lvzowzp2Vk0hUaWv/qa1lmc9DhJ5XW3bPzFsnj3mLM9YyVit8nYA8ThEuqmAm45irmU1SblJbstlN/+69IH3891rdjYQXUCFUASQCiKrZcE37a5lzUQGnr/gOcfwaqGcfrWq8tX5xrVl/P6Ooaq3XtVJVGwc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=onT3DUAd; arc=none smtp.client-ip=94.112.25.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
+Received: from [10.0.0.200] (unknown [10.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by ixit.cz (Postfix) with ESMTPSA id 4EAE25340C9A;
+	Fri, 12 Dec 2025 16:22:14 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+	t=1765552934;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=McnJ1LW6C8Q5h1Cv7cup4coDzbIea7AHQdJ49VdSV+U=;
+	b=onT3DUAdQorz+yRSuqdKQfS8xkjPf1ykFsOZYdBVONlTfgGMokO5k/6iQBysAeQnqWc1KH
+	OyiM628thmrYuCQncLqjkvIS5jdvDtgQl5b2q32wTtqLe+d/TTQ0s7t90OCdnPRHaswTF+
+	4CTWHELiVFYQfYiLjy3m99zCGUds2cM=
+Message-ID: <d84c25d7-62c7-433d-9978-dd6b20f5681c@ixit.cz>
+Date: Fri, 12 Dec 2025 16:22:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251211-dev-dt-warnings-all-v1-0-21b18b9ada77@codeconstruct.com.au>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC 2/8] power: supply: Add driver for Qualcomm PMI8998
+ fuel gauge
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Casey Connolly <casey.connolly@linaro.org>,
+ Casey Connolly <casey@connolly.tech>, Joel Selvaraj <foss@joelselvaraj.com>,
+ Yassine Oudjana <y.oudjana@protonmail.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Alexander Martinz <amartinz@shiftphones.com>,
+ =?UTF-8?B?QmFybmFiw6FzIEN6w6ltw6Fu?= <barnabas.czeman@mainlining.org>,
+ Richard Acayan <mailingradian@gmail.com>,
+ Alexey Minnekhanov <alexeymin@postmarketos.org>
+Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ phone-devel@vger.kernel.org
+References: <20251124-pmi8998_fuel_gauge-v1-0-dd3791f61478@ixit.cz>
+ <20251124-pmi8998_fuel_gauge-v1-2-dd3791f61478@ixit.cz>
+ <5d6c3dda-71cd-4684-8546-bc4918b560de@oss.qualcomm.com>
+Content-Language: en-US
+From: David Heidelberg <david@ixit.cz>
+Autocrypt: addr=david@ixit.cz; keydata=
+ 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
+In-Reply-To: <5d6c3dda-71cd-4684-8546-bc4918b560de@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, Dec 11, 2025 at 05:45:42PM +0900, Andrew Jeffery wrote:
-> Hi all,
-> 
-> This series removes the remaining warnings produced by `make
-> CHECK_DTBS=y ...` for the AST2500 and AST2600 EVBs and their related
-> DTSIs. The tidy-up has the usual benefit of making it clear to
-> contributors that any warnings are likely their own to fix before their
-> patches will be considered for merging.
-> 
-> I've framed it as an RFC with all patches contained in the one series
-> so the goal is clear, we can see what's needed to reach it, and we can
-> decide whether and how it should be split or merged going forward.
-> 
-> As it stands there's little in the way of code change, except to
-> pinctrl (though also not much there). As such I've included the
-> binding maintainers and subsystem lists as recipients but not yet Cc'ed
-> subsystem maintainers directly because there are quite a few and I hope
-> to avoid mostly uninteresting patches being a source of irritation.
-> 
-> The patches fall into several groups:
-> 
-> Patch 1:
->   Rob's conversion of the PWM/tach binding to DT schema with fixes
->   applied for the license and typos identified by Krzysztof.
-> 
-> Patches 2-5:
->   Fixes for the warnings related to the LPC and pinctrl nodes, touching
->   relevant drivers and the devicetrees.
-> 
->   I expect that if this approach is acceptable that we'll need to split
->   application of the patches across successive release cycles, with the
->   driver changes going in first.
-> 
-> Patches 6-8:
->   Fix MMC/SDHCI warnings, touching the relevant binding and devicetrees
-> 
-> Patches 9-10:
->   Clarify the relationships between the ACRY and AHB controller
-> 
-> Patches 11-16:
->   The remaining pieces that eliminate the warnings
+On 27/11/2025 16:28, Konrad Dybcio wrote:
+> On 11/24/25 10:53 PM, David Heidelberg via B4 Relay wrote:
+>> From: Joel Selvaraj <foss@joelselvaraj.com>
+>>
+>> Ths driver supports the fuel gauge hardware available on PMICs known as
+>> 3rd generation fuel gauge hardware available on PMI8998.
+>>
+[...]
 
-Don't you see warnings for at25:
+> Downstream checks if the address is > 0xBA which is what you want
+> at least for pmi8998
 
-     89 (atmel,at25): 'size' is a required property
-     89 (atmel,at25): 'pagesize' is a required property
-     89 (atmel,at25): 'address-width' is a required property
+My downstream [1] checks this value.
 
-These are due to using the deprecated (since 2012) at25,byte-len, 
-at25,addr-mode, and at25,page-size properties. I think it has been long 
-enough you can just replace them with the new ones.
+[1] 
+https://github.com/LineageOS/android_kernel_xiaomi_sdm845/blob/lineage-22.2/drivers/power/supply/qcom/qpnp-fg.c#L760> 
 
-Rob
+> You can de-abbreviate this to 'secure_access' (not to be confused
+> with 'secondary' or so). There's a locking mechanism which needs a
+> 0xa5 byte written to the base+0xd0 register (applies to all FG
+> peripherals with the 'last non-secure register' value possibly
+> varying).
+> 
+> [...]
+> 
+>> +	u8 sec_addr_val = 0xa5;
+>> +	int ret;
+>> +
+>> +	if (((chip->base + addr) & 0xff00) == 0)
+> 
+> The 'fuel gauge' consists of:
+> 
+> FG_BATT_SOC @ 0x4000 (state of charge monitor)
+> FG_BATT_INFO @ 0x4100 ("general fg minus SoC")
+> FG_BCL @ 0x4200 (battery current limiter)
+> FG_LMH @ 0x4300 (limits management hardware)
+> FG_MEM_IF @ 0x4400 (DMA engine)
+> RRADC @ 0x4500 (today handled by its own driver)
+> 
+> and a couple other peripherals that Linux doesn't need to worry about
+> 
+> Each one of them should have its own 'reg' entry (which is assumed
+> to be 0x100-long), which will let you skip such interesting checks
+> and rely on the regmap framework disallowing address spillover (or
+> you can just then make the addr argument a u8)
+
+Sounds good.
+
+> 
+> It would be good to keep in mind their relationship and think about how
+> to model them together. I don't think they must all necessarily be part
+> of a single big "fg" dt node, particularly the LMH/BCL part seems to be
+> rather self-contained
+
+Would you recommend some readings to prepare for this task?
+
+I see the FG_BATT* + FG_MEM_IF seems to be pretty relying on each other, 
+so I assume I need to take good care of that relation, when spliting 
+pieces up.
+
+Thanks
+David
+
+
+[...]
 
