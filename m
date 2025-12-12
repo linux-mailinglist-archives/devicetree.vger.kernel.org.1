@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-246051-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246052-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18758CB8432
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 09:25:51 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id F022DCB8426
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 09:25:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 057973049B3A
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 08:23:35 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 2983930087B8
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 08:25:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37C4D30FC10;
-	Fri, 12 Dec 2025 08:23:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B96CA30FF20;
+	Fri, 12 Dec 2025 08:25:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KkRwMDVn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="REBSKmeM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0471F1D5147;
-	Fri, 12 Dec 2025 08:23:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 889DB305047;
+	Fri, 12 Dec 2025 08:25:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765527814; cv=none; b=FNYqSsyVrSOyYS06FYb6Mju9grYFvPZhMm8ZyWKz3WNcvk1k8NSA6B1nKG4D2Ub3RDw/wNwCzwoKFbjH512pFBJzLNQeXvo1By+/FW0DZY/cU90nYJrCqsGXsZyq3w+NAY1tkOp5wDUEVp5VqTAqPSNvh/h3nLo21A+g3K+J4mA=
+	t=1765527923; cv=none; b=o5yiDsonFA2ANSuCnuVHGzT6Pqa9jn+2HW8Yz7zGNt9yttkezOUylTptqnLhjcAZwp0xYlHcrQWXCsf9ArwQ0szaOkkQuErPovG1FL9Twpc8w5fM/wOx9GKD6Ott0iTTQCNFUXDOJob9L39IN4w1ZwgTRJpgWil/JzmPjo8kN8Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765527814; c=relaxed/simple;
-	bh=/j/1ScGxZjR6kSM7InGcpMqir6HHE0SEYQMEId1tmR0=;
+	s=arc-20240116; t=1765527923; c=relaxed/simple;
+	bh=upWDMuhIcu+SWLL+zcWNbgXHC/uII+5c6EWIs8OVh4w=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=b+BULYdHq7bPrNfrLaGKuNrN2NdaHU1beQpWWtHzjpey4CvQR0Isimmqjv8FxH//ueirC3lwmXVbq9e36aDLoWO13FWiaeLrd0l4ZjmyO3o3/ScqKYefOse+yv+QSyrJLNUU0iLKjHiS2c38r3piIcGq86MEhrPnrzkboFpjkIQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KkRwMDVn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1360EC19421;
-	Fri, 12 Dec 2025 08:23:27 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=EtywV6Tb/KutSs9xxE6YjwXPG+TkoHSTd8aaZHMg4wg3FzsPKdLlpYEb+4H8zyjRST1cM7PWzt8vQz37KfSkBBiXgydryhvsndEDkvBM+gkd3CwBa8vSmyU7WEPJi3ImdsvcYdEFbk9i0EQcU2lV3YH39zg+NgBfaX/W9k/+gCA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=REBSKmeM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB12CC16AAE;
+	Fri, 12 Dec 2025 08:25:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765527813;
-	bh=/j/1ScGxZjR6kSM7InGcpMqir6HHE0SEYQMEId1tmR0=;
+	s=k20201202; t=1765527922;
+	bh=upWDMuhIcu+SWLL+zcWNbgXHC/uII+5c6EWIs8OVh4w=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=KkRwMDVnoFuKQOr6gwuRYOBlideqLk91TzXBlyCypVMmqrMivn/fb2UupBY7poXu8
-	 Xf00NQNelapVOxVlUnf8NguLm0fQSKdrdQuHG2lmu8wvHEDRAcn3TfVXSV+4OpYIMN
-	 oLAw8Cao7PYJczck+3bwy+LFCHy+3Q/poU3dVID9QZnmruOHPXoVP4pTLpXPd48u/H
-	 OJ7la/Siz+1BUBmpTQc3RWvynTyZ0h/WxaQuHmpMnYoHYx9f5+Y9CdjgZrhkLE2MMr
-	 UHZz9QDl48nfvwOaya65AhlsswBMsi33PKfuR4/rQ2EDyfa6eu4aQQf45mpKEZdh3f
-	 v1KPH7sGVZjBw==
-Message-ID: <ac5d7935-3285-416d-8024-02a26753c564@kernel.org>
-Date: Fri, 12 Dec 2025 09:23:25 +0100
+	b=REBSKmeMQWaTuTDumDAxCM/gg6gPeV2Mb5zrZq9bd2exPFYF4NLN+oP/LPKrNDNqT
+	 mEODKK6EBO8RjhVuBr7ifr+kIMjFTrPD1CKA3+cZ1Qx9uOs24ksR137CcA6LdG/3UO
+	 LFTpUBC/Em8GF2e6EgaSdXS74tlPk4pte0HLIBDyTvEsFugXzSEyaxV9YJBHmwfYet
+	 zJIYwhs5baNqRvVWlcfnqCfB59slJO3ZlIVIR3wCopr/Imt3tFCsnXPtJr2Q41sTUn
+	 15OZFZFhq1CHGbTdISJgRMx5cTWhwWMENTQjzHZQQ3ipGlqVVHuh7bDlffhN+grq47
+	 PVHvDsmjx/BPA==
+Message-ID: <93224408-6b09-4cec-8e84-a66d9ef138e6@kernel.org>
+Date: Fri, 12 Dec 2025 09:25:16 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,24 +48,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 8/8] MAINTAINERS: Add entry for AAEON SRG-IMX8PL MCU
- driver
-To: "Thomas Perrot (Schneider Electric)" <thomas.perrot@bootlin.com>,
+Subject: Re: [PATCH 1/4] dt-bindings: pwm: sunxi: add PWM controller for
+ Allwinner H616
+To: Richard GENOUD <richard.genoud@bootlin.com>
+Cc: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Linus Walleij <linusw@kernel.org>,
- Bartosz Golaszewski <brgl@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>,
- =?UTF-8?B?SsOpcsOpbWllIERhdXRoZXJpYmVz?= <jeremie.dautheribes@bootlin.com>,
- Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck
- <linux@roeck-us.net>, Lee Jones <lee@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-gpio@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-watchdog@vger.kernel.org,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-References: <20251212-dev-b4-aaeon-mcu-driver-v1-0-6bd65bc8ef12@bootlin.com>
- <20251212-dev-b4-aaeon-mcu-driver-v1-8-6bd65bc8ef12@bootlin.com>
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>, Philipp Zabel
+ <p.zabel@pengutronix.de>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org
+References: <20251205100239.1563353-1-richard.genoud@bootlin.com>
+ <20251205100239.1563353-2-richard.genoud@bootlin.com>
+ <20251208-gorgeous-capuchin-of-protection-4ad0c2@quoll>
+ <4d34658b-874d-4681-95c1-616f5b385550@bootlin.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,21 +109,52 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251212-dev-b4-aaeon-mcu-driver-v1-8-6bd65bc8ef12@bootlin.com>
+In-Reply-To: <4d34658b-874d-4681-95c1-616f5b385550@bootlin.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 12/12/2025 08:41, Thomas Perrot (Schneider Electric) wrote:
-> +AAEON SRG-IMX8PL CONTROLLER MFD DRIVER
-> +M:	Thomas Perrot <thomas.perrot@bootlin.com>
-> +R:	Jérémie Dautheribes <jeremie.dautheribes@bootlin.com>
-> +S:	Maintained
-> +F:	drivers/gpio/gpio-aaeon-mcu.c
-> +F:	drivers/mfd/aaeon-mcu.c
-> +F:	drivers/watchdog/aaeon_mcu_wdt.c
-> +F:	include/linux/mfd/aaeon-mcu.h
+On 12/12/2025 08:50, Richard GENOUD wrote:
+>>> +
+>>> +  clocks:
+>>> +    items:
+>>> +      - description: Bus Clock
+>>> +
+>>
+>> Are you sure there is no first clock? Really, really sure? If you add it
+>> later, I would be pretty sad, because that's unnecessary duplication of
+>> binidngs....
+> I surely don't want to make you sad :)
+> 
+> Having a second look at the sun4i binding, I think there's a way to use it.
+> The sun4i, as you said, has a module clock (OSC24M) and an optional bus 
+> clock.
+> Here, the bus clock is mandatory, but the H616 PWM uses OSC24M and APB1 
+> as clock sources.
+> 
+> So, I guess that if we add something like that:
+>     clocks:
+>       minItems: 1
+>       items:
+>         - description: Module Clock
+>         - description: Bus Clock
+> +      - description: APB Clock
+> 
+>     clock-names:
+>       minItems: 1
+>       items:
+>         - const: mod
+>         - const: bus
+> +      - const: apb
+> 
+>     resets:
+>       maxItems: 1
+> 
+> In the sun4i pwm binding, we could re-use it for the H616 pwm right?
+> (APB clock is maybe not the best name, could be secondary module clock)
 
-Incomplete - missing bindings.
+
+apb is probably the bus clock, so you don't need to change the bindings
+at all.
 
 Best regards,
 Krzysztof
