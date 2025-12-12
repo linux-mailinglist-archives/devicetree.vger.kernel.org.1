@@ -1,261 +1,391 @@
-Return-Path: <devicetree+bounces-246105-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246106-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17A16CB8A3E
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 11:42:16 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55C54CB8A6A
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 11:50:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1CCF530517EE
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 10:41:34 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 2234130069A7
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 10:50:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18CEA313E26;
-	Fri, 12 Dec 2025 10:41:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A3393176EF;
+	Fri, 12 Dec 2025 10:50:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="SD2RJAiI"
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="bbqFUS6Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-00128a01.pphosted.com (mx0b-00128a01.pphosted.com [148.163.139.77])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65E1E2D979F;
-	Fri, 12 Dec 2025 10:41:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=148.163.139.77
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765536093; cv=fail; b=HlIYjluEfA8wFtLC60zgMHB2C61wgwGoVCZF2T4hXSFSAWPbIVPaeR9zTuoxGuByaoBjYgRT0jTTdbwlpYvaMWZgGFvZVOJiWHQvlLCSV1euw5j1xmDCA1X7LQF3lAWPn0cpj/n/fpzeSA3MIZ4VG+e1DMH8KUnewXrm7Kj7wqo=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765536093; c=relaxed/simple;
-	bh=ubNSxGuVb7UCnYMnLAZ0WTE8575acgNIc08Y+baVgyM=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=GdKHzNDHU1cnkvaWoglr2YeykD3Rq50Hka0IppRsZRxgXwRsQUYRz6tFLEA9kd7Wnumw4RT1KhwgpnBi4bZZVMz4fFOQSJ3SuxgMGobHf4fyf3JxTnM3GJjXLAwMDFy3PmrkPhWFifza3xFJOjo0HNzA91I60J8wvG+nYBwxAhc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=SD2RJAiI; arc=fail smtp.client-ip=148.163.139.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
-Received: from pps.filterd (m0167091.ppops.net [127.0.0.1])
-	by mx0b-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BC76E7h3384516;
-	Fri, 12 Dec 2025 05:41:10 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=DKIM; bh=lmbDA
-	J1MAuP410SxjRzjkd/+GAg9rG76WNup6ZUw2Qc=; b=SD2RJAiIVwbiQTqkQyWdO
-	tgGV7kYyWkUkv4H1a3p0qYWEVCPQix1+ZSDGT4aAwsM1OZjPDUEKgThcb4RQPq/l
-	N3aQRPjD0XeowA32fm4VpBCrAyqihszF9EXnWcBZGyPO/uK50vvCaLo5XV9dIF+a
-	oUuPUZ1U/MZlavf3LPfHJtvXvnkgzhn8OzzVysl7mDru5kEvh3Byh/bLPR55FIkA
-	qiwWn5vft63WK9qBUFsVyf2xCs1j0Zn6ukVsACyB9eh23RwZZ8YB3/1QRmmHpK2v
-	/y5OGHZayPWaW645X7kzkduC0pMlCJke4OWoQMiTYzkabeBZP5NGG5JX8aiRd2Ai
-	A==
-Received: from bl2pr02cu003.outbound.protection.outlook.com (mail-eastusazon11011053.outbound.protection.outlook.com [52.101.52.53])
-	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 4b0ec8rnt7-2
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Fri, 12 Dec 2025 05:41:10 -0500 (EST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=AbpeNAhJX6gqpPAYtyNB4AB+/CXTL8yi0xC/iNEJI3/t3W4y30BTJb450nxEaVuckRxWfMzGtQVAtqIdraac+TGcuYnC1Qvioeku4keCUknmtvkfvH+agvUIhZyXj0/yjEABCvS5IzO4quB3JKqO1Lm2Sh8FPbwmhO+r9Q4/TXmvLaTTMWh2J0jhjbqIogyuWiS5Wi1swfA984/bUCaU7ryogT7TICLeHEBdUOYjTpZhztXzM6eHnZ+OIz6nZcynAtk+sIu9uj34qOr+u5Hv0h+rK5KrYi8AA/wtUrVRmZVYDwh5IXz8qtDwymHRFSVOi60qVppVaFJyrVQQVkVn5Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=lmbDAJ1MAuP410SxjRzjkd/+GAg9rG76WNup6ZUw2Qc=;
- b=TwdNweHYEZaDS5juUTNiKEuvMd4eG1VrLcVaR76dfeZYx6oT4VJyIwKsYlzGq2W1e3IfaB1cs7KivjnAHo4qrwZpskV10fBOD1911qPGvYGlcBme0NfivUczHdD1o0AZJVVai44nAPBJrTlyVbnPopu8ARg1c8Teo4HEPN1tSVVr8+/U7z3UtCkTey7pUhtQwXK3d6VjVXRumrZM86pWRqOQ93aFPG9lPlMtLumyPlH2Hst8BHC3nOANlWPuTzkbu15ZwJJkZd0uRuZ+WZPUbJCTXMEQstx++gfQMfnwdzRBGwPBSemLa0eTzmbzu8gZwH3bLrpeCodzJ4T1xltKGQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=analog.com; dmarc=pass action=none header.from=analog.com;
- dkim=pass header.d=analog.com; arc=none
-Received: from CY4PR03MB3399.namprd03.prod.outlook.com (2603:10b6:910:57::13)
- by BLAPR03MB5441.namprd03.prod.outlook.com (2603:10b6:208:29d::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9412.11; Fri, 12 Dec
- 2025 10:41:07 +0000
-Received: from CY4PR03MB3399.namprd03.prod.outlook.com
- ([fe80::1527:d313:16d4:2376]) by CY4PR03MB3399.namprd03.prod.outlook.com
- ([fe80::1527:d313:16d4:2376%4]) with mapi id 15.20.9412.005; Fri, 12 Dec 2025
- 10:41:07 +0000
-From: "Miclaus, Antoniu" <Antoniu.Miclaus@analog.com>
-To: Jonathan Cameron <jic23@kernel.org>
-CC: Lars-Peter Clausen <lars@metafoo.de>,
-        "Hennerich, Michael"
-	<Michael.Hennerich@analog.com>,
-        David Lechner <dlechner@baylibre.com>,
-        "Sa,
- Nuno" <Nuno.Sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        "linux-iio@vger.kernel.org"
-	<linux-iio@vger.kernel.org>,
-        "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH v6 2/2] iio: amplifiers: adl8113: add driver support
-Thread-Topic: [PATCH v6 2/2] iio: amplifiers: adl8113: add driver support
-Thread-Index: AQHcZfX1QEN8JgivpUeQ//unjStBibUU+hsAgAjgA4A=
-Date: Fri, 12 Dec 2025 10:41:07 +0000
-Message-ID:
- <CY4PR03MB3399DB00FCF85E28132833199BAEA@CY4PR03MB3399.namprd03.prod.outlook.com>
-References: <20251205144058.1918-1-antoniu.miclaus@analog.com>
-	<20251205144058.1918-3-antoniu.miclaus@analog.com>
- <20251206190332.53874d41@jic23-huawei>
-In-Reply-To: <20251206190332.53874d41@jic23-huawei>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-x-dg-rorf: true
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CY4PR03MB3399:EE_|BLAPR03MB5441:EE_
-x-ms-office365-filtering-correlation-id: c15504a6-d77d-4126-efee-08de396af535
-x-ld-processed: eaa689b4-8f87-40e0-9c6f-7228de4d754a,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|1800799024|366016|376014|7416014|38070700021;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?nkOMokd3Ke2h9Huif7iac/8jzL7yKCs/CF990f7mruLPLI/tZNRJQ1nwm/cW?=
- =?us-ascii?Q?zRP+efrN5yNMt/gGzX6GQPtgDWuT8G1EAt4yZdNJsQSFrSUhpv7qRvFY3Ppl?=
- =?us-ascii?Q?4EDltDbcjBqc0bNdFGF9rbI7YtSua/Jbt/p1efUyj4Cbmgve8Ied444VykbV?=
- =?us-ascii?Q?hSNAKu9fqaCBH8uXtB2DuXlD6h7+anfhwC4M2a4uraZ8Y3AuUqStKnWr6V7E?=
- =?us-ascii?Q?3BW2uAuNw/iVpBrJ5sAYbeYgXERBwArJEsD02VUvbXjLL9qQSgba8l1zGHrb?=
- =?us-ascii?Q?/5SCzscm1TKzSuuxOycOHOXsErpSLwrgUeyc8EFiFr1bAx4jjjqurmXcqPM5?=
- =?us-ascii?Q?sst4AnE9q8UlDtGutK0id3o6uQoIx5r0LjUWjcDIbZN7HqSj17yLyeGP1bcG?=
- =?us-ascii?Q?9BU5V4hPMeYzRW+hE6N1J0ADEQdxeVjg4LcD4t/9ZvM8jyuEgMdPT4VYszkj?=
- =?us-ascii?Q?a8j0KJIGKkWZN3mrWUaY3FDTwwgflzghlD38Iw1u2FNtR8M0iGPfYMsi6gOu?=
- =?us-ascii?Q?+xCwA3lCLenXW0elQ7C6hBaQFeZFOToC9isS0CQVXZHGCQJ9ORiwxRMC8LXa?=
- =?us-ascii?Q?3IH/+vx8zrdZD3yPKsMZYRYa0/PrJWRC6j1p5LMFrUjEQ3iy1MmhNMfQNz2L?=
- =?us-ascii?Q?uXCDld1tfLKo7Y+It+BPyh9u3h0SMQ2sRETIZZ/CZMcGooRbYKWRipWiipK0?=
- =?us-ascii?Q?/TDQGWXhUp2elc/dpeIaob0jcfXcCEoL+C7O0cfQfm3wrbcT3v643NHkqfHa?=
- =?us-ascii?Q?bTWR+cO04hYMSjoR3+pU4Jf/gUue+BJh2wUhfaB5eqmOddgqPWaq/HqNKCDG?=
- =?us-ascii?Q?d5oES3KX6lX/iJCDcmA0tMYVgjDuUraXIa/4a5MviFbASkMPIFv+0hgGJd2V?=
- =?us-ascii?Q?t/o9cy3xlsaEiSgfh3IP7o9YitgDP//pQxwlL8Z3lsrHeCdzt3R+q7KTG2vr?=
- =?us-ascii?Q?ZryF4lsJqi4mKiYQb4W3rNqxyaH35VfifqnMXvDvpmnmjdiACmfxaSqCB0JA?=
- =?us-ascii?Q?xSv1PDwGz7L3tBslk1H9rWzsUmgCPoDMnb0O0zg2Jm9Z16K7yGGw1Bau+olM?=
- =?us-ascii?Q?asxVFLp6plGl/6GRuqlrEOPMLp04EoyOtEKTc1qTK4s7td9DqvsD32sdcOYv?=
- =?us-ascii?Q?AV5+5CTtigh11yY0OTWsT+nb5+wz+SIpcdATk2wU7UeA7O2RkcX/12d356/W?=
- =?us-ascii?Q?lb2L8aIVfyfWJQSOhSAgsNDdzZF1oRROIzEx/oOhLn16KNL/uY+E1q2sHzxT?=
- =?us-ascii?Q?EMtSvjufGLTLA6KCFyA7+/Izjptvi8G4DgU4xU3fGohZN9gy+czdSh7+4IJ+?=
- =?us-ascii?Q?VHUVs8G2UN6Rof2UgAv9dPd731vcavY1b1j0axUbOdxy3FpvPph8TtHto0ch?=
- =?us-ascii?Q?YapSXxSVJeNw2OmLyVVFCqm/r3/r2L7kagfi3qrZq0rlPHEZo7BLLmyuSa16?=
- =?us-ascii?Q?Yab1kNVPl4tOsdxGpIWLdjMM0jCk2FMht/4PxOY+UpC4WkRIObncP1JgejLI?=
- =?us-ascii?Q?C/U3n4nGkTrtmMiCEIQcWGYlKDJT6xdLt6PL?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CY4PR03MB3399.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014)(38070700021);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?Gk3YTp3S/ocbPxiOzODLQEUPbLF3XO1XtjuCuwJLd9h/UETwszmAtP2q8j75?=
- =?us-ascii?Q?4ZIewdyqmisbBjnpQanlHJ4ejexMI7I1rKTO6O2t2jT3RKrxz2wOyZ8nK7NJ?=
- =?us-ascii?Q?HmNcR7X9aBPfhN4MThiFPlYdmCQS3CDP0Qf6mnzQD+/fzWxcVsiWeWwsEJ8d?=
- =?us-ascii?Q?9PxkJkXpxq0ca+TukQS0N7bbarBVAcQ5L8vQChEBYfeNrS3Tv3mpBlbZoZhi?=
- =?us-ascii?Q?9vd3QuoMjcmuCnqfyoKqkchjIIycW0R25aHENdY7drYz5yRRVa5ehOuR/1IN?=
- =?us-ascii?Q?H864q7fTSaNjJYlXxuZB5/XpfdYzfGauWVoFRcdDnjkghmjqdNMPmjcXY3Li?=
- =?us-ascii?Q?TkjqOsRk3e/fAdZWlnk+MMIm0Dk2+F4Sovb1tjSoZcIbb0BN4UmaKQ/eeqIr?=
- =?us-ascii?Q?8jlKCQ7NfyaqoL7hAzBb9OPa9XjLfdXORuPAkRnz4tULKxH+02VD2LlW29Pz?=
- =?us-ascii?Q?aYU3Z5YW/YBYfw9W6FlX+3DSu8ja1uUYWlrMs+z1O7NHVqnHguB0emOs3HFV?=
- =?us-ascii?Q?PnKzWJulsvvSAqzdoADMZdAGi7QYRLILqv6wdzMyCuIhfJikC3zpAC0H291i?=
- =?us-ascii?Q?oDKS1JoEiH1h0GuhctfOes7hDP7mv55dnrA/xwA4cv4EQQNhLb4mktRNy3YP?=
- =?us-ascii?Q?CFPxdlLYeEc1NdMB2JjdONxhBHkOXsxEEyJ1kF4932rNRiqiXQthoSrth/68?=
- =?us-ascii?Q?KupHzBr1+Ny8UAkFyP7Sit5oaleEQ90imxOUstkV7MO2JzJOtnvEWW6GCIzD?=
- =?us-ascii?Q?2AU/8inOzgFRr/KsUbeo94ddBvmGPSnP88cRTwAl1foxmsFal+uNs0RGsZuL?=
- =?us-ascii?Q?/ASkTTjCHj4+uqvcEnl58Bw15TLrHqOujFD/NRTAfuWKKHB5jz8kSmbwTKOI?=
- =?us-ascii?Q?tFHGvQFGqALny2TCxz+BHt6Q4USjaUDVNEipFMn/SGqI6ux+3pTqNBxQ1d7M?=
- =?us-ascii?Q?g5km9pIIglDImxYXiS8Vde4kv12bTKvr7cGJiz5STrqRBWkfrXtWQcsgOoss?=
- =?us-ascii?Q?ecdM/tv+HLZJYqQBRQc38co02rmknyDiHzbaPrmZ52lKIs8ExPFdO2R5SVhl?=
- =?us-ascii?Q?IvccA+de4GGNbLKhJsqak0EPi++W/dQmjQQh/xfzBwps30V3PLKO4MmaQ1jU?=
- =?us-ascii?Q?rol1Ye5MQY1N+Vy22KIDZbv1WzR7yEIzrcn+tcJZd/atxA8SYenAoyNY+8Fd?=
- =?us-ascii?Q?GHHQPWwPLm7bPYmdZivJO9qYS2UgS/i2xLPXf5BP7UJfFU1mqhVtuviOgKaM?=
- =?us-ascii?Q?7fdr5FdFkHvvwOeBlTMvfhgWQs70KBlFNDtejKuFUgNEbxGTWUW0FVklTzjQ?=
- =?us-ascii?Q?V7RJqq+8jYCUHIKIWrW2AO1KEm7Pa+XUFFgbcDVXqeMfKXE8+7FMZdAd4Cws?=
- =?us-ascii?Q?vVlqpA55RSESG4ln4AICtHumkDJFxdw6pgf3xhJjg2jya9fohb+fJRsz20rx?=
- =?us-ascii?Q?39WnIqdeNuF9T8bDelLKWB+3CQzUAi5lr6/pSpscNBvVGHq8P4/4PKl47uWx?=
- =?us-ascii?Q?8RwELgajNo6bPKiKgMu9ot6s4ppuKpLN/fT9BaN0MZvk3CFikzMZdjoUoIyZ?=
- =?us-ascii?Q?8WzTsRXpVSgDRedtPaF9LKhODWLUb39Bpss5yej6?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C810F20B7ED
+	for <devicetree@vger.kernel.org>; Fri, 12 Dec 2025 10:50:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1765536618; cv=none; b=fNL0gEL5nmV3HCOIOEdj9t8zQM2VTRY13hyRR+vpnya1Okpww5u691jToL0OOCQpaxCRSZfARlYBO3XyjpSMRECWTgmxNpzatdJkeBb5Ccd5g5oCEScYwmqlbWZ1jbiYN00om75zeqNNCsauJaDNGuoCZGe162t8m4SLen7n0VQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1765536618; c=relaxed/simple;
+	bh=bHhkHahOZRRfzsqNDJSbsheb/JFACeIuxmaqOTjfSx4=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=phElGL9zaIdnhWzkDg4TNLN8/9Wxl1vU7skdiKZm3GYesbp0zWKDTvTEAb/j7PbnJ6CVEHbrIwE75abxd2Gm867wd82HMdYmKQ40KUZR9GoADvlmnQi2B8RuCJRpU3YMejaCDrVkKhjA+0ewYCA0ffGTeG8Fc4cKk4ggDRyz8SM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=bbqFUS6Z; arc=none smtp.client-ip=209.85.208.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
+Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-6418b55f86dso1483367a12.1
+        for <devicetree@vger.kernel.org>; Fri, 12 Dec 2025 02:50:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=suse.com; s=google; t=1765536614; x=1766141414; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:date:from:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=oH5Dsb1naLnW7dWzGXhlOLJ/pnzetkUvxVuR5fJQEFg=;
+        b=bbqFUS6ZTv7RSzfNGgdIhiGIPInpCmZgbNUi3OZmoOGknwqA7KZnfHHw0MfUJ10zL+
+         MhF17O+xJSVpPJA8BcOgLdkoQtGBWXsEV42wzR1MMAhss95zIZK7+ne4hDtmVlUiyXnA
+         gvioxLNsmkB0zV2chgj8fsAkxMhA6ATpGj9trw5glzoKes+N2XAxWe5OydnKnkyspMWB
+         ksHmNWgCbEYb9lrZQoYPMHVa5O7bqO/2op3qa4EB0EKZ7HSHH9Rro0l5wJAtEd3Wnakb
+         q1Brirmsnb9fpCyVSNN5179qlIpNfG8T6x9iI2t3NAsaBp45YTbmIB/fU07eoxYWZl0w
+         kY6A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765536614; x=1766141414;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:date:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=oH5Dsb1naLnW7dWzGXhlOLJ/pnzetkUvxVuR5fJQEFg=;
+        b=WSymXRMI5eD2BF8XNIZwgQzXssQFM+0l49gzISVlJTDhzCUpZZFnM7oNMwNg5xXNG6
+         +WhJSjSeog+1cjmwUzBjIn2GTCsEmXG9hJpN++UsBlL++5lRiAWdh7qpaMVldt2bgDYC
+         u2Kc4T7cc6izlxz1Uk4N1Kf/NWjAXJsJ56ohjH8HXTQdYrNpMHa/c3J1jsGrYoByNSb6
+         X+w02suqvx3IPFOx2JSuSyWIOddrpOLlPCqdcYtIC+1c2UrPoqqOHg5SYaSuYanM58ME
+         eCme15s99YXEDhKOl7C3c4vRK6G40mwh7Je+voU7ioDOXS9fc/+U008+0GmGNX/HWVoi
+         2ykA==
+X-Forwarded-Encrypted: i=1; AJvYcCUjHhUrICnWnWhFfhMIloqDkRPkdbF+3vshF+31QzWqtYpG+K/dJZ+dUw3w2qUPnbOKkaEHlkrbnP6A@vger.kernel.org
+X-Gm-Message-State: AOJu0YxzdQgGB34YaBbqPD3d9pPcgNIrco+L9iGFFDq0D8upJojo3LUR
+	YppDWvHM55Ryoi2jJz7ZbM9mYCGSfEPgR0UgIFLBgCQ/r2/x/h4HvJcw0NMcFC4BOI8=
+X-Gm-Gg: AY/fxX4EVjh5B+GrCggOtIDxOIVK/OrBF8hq3by3vr7r6eXLH2NhvNJMqFqc2iTPHEb
+	olIbUhnA7sU/xTeq8+2SBDV8TdYXqjoGK/FZj9lSOuvbYXdTomY2Gmiz3ntwK7RLigcDom/9q9U
+	spu5Wb3Y8mm33u0W4GQ7En+STgF+x/tkELJRd+OpxObnVFO4mhFb/xDS5Q0Z7L9zGTyft/exPg4
+	Upnx6ks12Y2FiPDCD39Fa2acobr+P4dso7GGtIZTm8mBRuSx/do6aEVT3z+snj7KBfzn+SQg819
+	Ff8fVqSpxtRPSgG1Q15JhdiJ059WWwTYubR6jqNhObWrG4cJTyIJiSldspEP15cd6YM9vVbowZZ
+	0lobmWCuKL0gkiiGBsSUJiDSDjNcJG+6VSy/jpMa+krVkRJV4pKkKUE8Xg8FTbkiPxskMao/ELf
+	53maqrDozliudvKv7xBLnM3TQe2KHrVYxSFu6yJO1DBDp4Ky8ufBOt5Q==
+X-Google-Smtp-Source: AGHT+IGck4kKwwuc5UddoonnynVhYKwpmHQM5vRIV3zz1AKvip50OdgKpOlRUBUIDMMPxx61FIjoTg==
+X-Received: by 2002:a05:6402:3551:b0:649:8378:994a with SMTP id 4fb4d7f45d1cf-6499b07e4b6mr1530658a12.0.1765536613938;
+        Fri, 12 Dec 2025 02:50:13 -0800 (PST)
+Received: from localhost (host-87-6-211-245.retail.telecomitalia.it. [87.6.211.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6498210ed32sm4861010a12.29.2025.12.12.02.50.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 12 Dec 2025 02:50:13 -0800 (PST)
+From: Andrea della Porta <andrea.porta@suse.com>
+X-Google-Original-From: Andrea della Porta <aporta@suse.de>
+Date: Fri, 12 Dec 2025 11:52:44 +0100
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Andrea della Porta <andrea.porta@suse.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Jim Quinlan <jim2101024@gmail.com>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, kwilczynski@kernel.org,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-pci@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rpi-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, iivanov@suse.de, svarbanov@suse.de,
+	mbrugger@suse.com, Jonathan Bell <jonathan@raspberrypi.com>,
+	Phil Elwell <phil@raspberrypi.com>,
+	kernel test robot <lkp@intel.com>
+Subject: Re: [PATCH] dt-bindings: pci: brcmstb: Add rp1-nexus node to fix DTC
+ warning
+Message-ID: <aTvz_OeVnciiqATz@apocalypse>
+References: <20250812085037.13517-1-andrea.porta@suse.com>
+ <4fee3870-f9d5-48e3-a5be-6df581d3e296@kernel.org>
+ <aKc5nMT1xXpY03ip@apocalypse>
+ <e7875f70-2b79-48e0-a63b-caf6f1fd287b@kernel.org>
+ <aLVePQRfU4IB1zK8@apocalypse>
+ <CAL_JsqJUzB71QdMcxJtNZ7raoPcK+SfTh7EVzGmk=syo8xLKQw@mail.gmail.com>
+ <aThjYt3ux0U-9-3A@apocalypse>
+ <aThp99OfgAfNFUX-@apocalypse>
+ <20251210150008.2ef2f8c4@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: analog.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CY4PR03MB3399.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c15504a6-d77d-4126-efee-08de396af535
-X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Dec 2025 10:41:07.6053
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: eaa689b4-8f87-40e0-9c6f-7228de4d754a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: mT3xRUMu7FlZOndRA4w670GimrHjNbZeQFAuVUOBDZj0XtxiCKuvo6Z7LjpE+02mU3HaGV5E6sfoCV8vdJNQ5mjT/rOmkcQTqfdI5e565/o=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BLAPR03MB5441
-X-Authority-Analysis: v=2.4 cv=MuVfKmae c=1 sm=1 tr=0 ts=693bf146 cx=c_pps
- a=H9d2Io+6O/etw3jU54J+0Q==:117 a=z/mQ4Ysz8XfWz/Q5cLBRGdckG28=:19
- a=lCpzRmAYbLLaTzLvsPZ7Mbvzbb8=:19 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=wP3pNCr1ah4A:10 a=VkNPw1HP01LnGYTKEx00:22 a=1mA3O9KYgNTPXQfYGVMA:9
- a=CjuIK1q_8ugA:10
-X-Proofpoint-ORIG-GUID: guzYO6eovEXk--oUdVxVg2GDlf8CdkEb
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjEyMDA4MSBTYWx0ZWRfX48PbQ/N9Q5dX
- t/LQwU0d1HUNtKJJ5u0Sd4QSUINRtYsXWFbyP2QJgXNAikFAl4GLWHmFsE4L1684TRZvc83IAv6
- Tu43m5q13pMWOYKYXAnmHi5vToiP990dosi995zIeTbbJG55quziJv2I49Qe0GC7cDJTmV0RdIx
- 31OepL8nc8Tir5w3H9FBCNLJtPnJMEoyBYbMPb1CiJffRalk4whao/qLqy+uhrHghFaZozVkLoS
- ScXpJlY/qGHBBML0MOgj8YFf5RziuWL0GzEFVWlHwLtzE8CFiStF1SHDhJz8wD7qnl/A4pWFyfa
- Ic2LVaJJtx7t6Mcgz4MYEFScp7mQOSTvCPZDgMqAW2mjPqvopytNUD4JYNYC8ZcRS0Z/gFyX3v2
- lDDxNj0lfF0AxwI+/3bMDgcQGbf+Ww==
-X-Proofpoint-GUID: guzYO6eovEXk--oUdVxVg2GDlf8CdkEb
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-12_02,2025-12-11_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 clxscore=1015 spamscore=0 adultscore=0 phishscore=0
- priorityscore=1501 impostorscore=0 malwarescore=0 suspectscore=0 bulkscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512120081
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251210150008.2ef2f8c4@bootlin.com>
 
-Hi,
->=20
-> Could do this as something like:
->=20
-> 	st->gain_configs[i++] =3D (struct adl8113_gain_config) {
-> 		.path =3D ADL8113_INTERNAL_AMP,
-> 		.gain_db =3D 14,
-> 	};
->=20
-> 	st->gain_configs[i++] =3D (struct adl8113_gain_config) {
-> 		.path =3D ADL8113_INTERNAL_BYPASS,
-> 		.gain_db =3D -2,
-> 	};
->=20
-> etc.
->=20
-> > +	i++;
-> > +
-> > +	/* Always include internal bypass (-2dB insertion loss) */
-> > +	st->gain_configs[i].path =3D ADL8113_INTERNAL_BYPASS;
-> > +	st->gain_configs[i].gain_db =3D -2;
-> > +	i++;
-> > +
-> > +	/* Add external bypass A if configured */
-> > +	if (!device_property_read_u32(dev, "adi,external-bypass-a-gain-db",
-> > +				      &external_a_gain)) {
-> > +		st->gain_configs[i].path =3D ADL8113_EXTERNAL_A;
-> > +		st->gain_configs[i].gain_db =3D external_a_gain;
-> > +		i++;
-> > +	}
-> > +
-> > +	/* Add external bypass B if configured */
-> > +	if (!device_property_read_u32(dev, "adi,external-bypass-b-gain-db",
-> > +				      &external_b_gain)) {
-> > +		st->gain_configs[i].path =3D ADL8113_EXTERNAL_B;
-> > +		st->gain_configs[i].gain_db =3D external_b_gain;
-> > +		i++;
-> > +	}
-> > +
-> > +	/*
-> > +	 * If there's a free external bypass path, add one with INT_MIN gain
-> > +	 * to represent "nothing connected" for testing purposes
->=20
-> I don't follow this one.  What sort of testing purpose?  Something we wan=
-t
-> in a real system?
-This addition was suggested by David in v4. But I can revert it in the next=
- series.
+Hi Herve, Rob,
 
-Regards,
-Antoniu
+On 15:00 Wed 10 Dec     , Herve Codina wrote:
+> Hi Andrea,
+> 
+> On Tue, 9 Dec 2025 19:27:03 +0100
+> Andrea della Porta <andrea.porta@suse.com> wrote:
+> 
+> > [+cc Herve]
+> > 
+> > On 18:58 Tue 09 Dec     , Andrea della Porta wrote:
+> > > Hi Rob,
+> > > 
+> > > On 11:09 Thu 04 Dec     , Rob Herring wrote:  
+> > > > On Mon, Sep 1, 2025 at 3:48 AM Andrea della Porta <andrea.porta@suse.com> wrote:  
+> > > > >
+> > > > > Hi Krzysztof,
+> > > > >
+> > > > > On 08:50 Fri 22 Aug     , Krzysztof Kozlowski wrote:  
+> > > > > > On 21/08/2025 17:22, Andrea della Porta wrote:  
+> > > > > > > Hi Krzysztof,
+> > > > > > >
+> > > > > > > On 10:55 Tue 12 Aug     , Krzysztof Kozlowski wrote:  
+> > > > > > >> On 12/08/2025 10:50, Andrea della Porta wrote:  
+> > > > > > >>> The devicetree compiler is complaining as follows:
+> > > > > > >>>
+> > > > > > >>> arch/arm64/boot/dts/broadcom/rp1-nexus.dtsi:3.11-14.3: Warning (unit_address_vs_reg): /axi/pcie@1000120000/rp1_nexus: node has a reg or ranges property, but no unit name
+> > > > > > >>> /home/andrea/linux-torvalds/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dtb: pcie@1000120000: Unevaluated properties are not allowed ('rp1_nexus' was unexpected)  
+> > > > > > >>
+> > > > > > >> Please trim the paths.  
+> > > > > > >
+> > > > > > > Ack.
+> > > > > > >  
+> > > > > > >>  
+> > > > > > >>>
+> > > > > > >>> Add the optional node that fix this to the DT binding.
+> > > > > > >>>
+> > > > > > >>> Reported-by: kernel test robot <lkp@intel.com>
+> > > > > > >>> Closes: https://lore.kernel.org/oe-kbuild-all/202506041952.baJDYBT4-lkp@intel.com/
+> > > > > > >>> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
+> > > > > > >>> ---
+> > > > > > >>>  Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml | 9 +++++++++
+> > > > > > >>>  1 file changed, 9 insertions(+)
+> > > > > > >>>
+> > > > > > >>> diff --git a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
+> > > > > > >>> index 812ef5957cfc..7d8ba920b652 100644
+> > > > > > >>> --- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
+> > > > > > >>> +++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
+> > > > > > >>> @@ -126,6 +126,15 @@ required:
+> > > > > > >>>  allOf:
+> > > > > > >>>    - $ref: /schemas/pci/pci-host-bridge.yaml#
+> > > > > > >>>    - $ref: /schemas/interrupt-controller/msi-controller.yaml#
+> > > > > > >>> +  - if:
+> > > > > > >>> +      properties:
+> > > > > > >>> +        compatible:
+> > > > > > >>> +          contains:
+> > > > > > >>> +            const: brcm,bcm2712-pcie
+> > > > > > >>> +    then:
+> > > > > > >>> +      properties:
+> > > > > > >>> +        rp1_nexus:  
+> > > > > > >>
+> > > > > > >> No, you cannot document post-factum... This does not follow DTS coding
+> > > > > > >> style.  
+> > > > > > >
+> > > > > > > I think I didn't catch what you mean here: would that mean that
+> > > > > > > we cannot resolve that warning since we cannot add anything to the
+> > > > > > > binding?  
+> > > > > >
+> > > > > > I meant, you cannot use a warning from the code you recently introduced
+> > > > > > as a reason to use incorrect style.
+> > > > > >
+> > > > > > Fixing warning is of course fine and correct, but for the code recently
+> > > > > > introduced and which bypassed ABI review it is basically like new review
+> > > > > > of new ABI.
+> > > > > >
+> > > > > > This needs standard review practice, so you need to document WHY you
+> > > > > > need such node. Warning is not the reason here why you are doing. If
+> > > > > > this was part of original patchset, like it should have been, you would
+> > > > > > not use some imaginary warning as reason, right?
+> > > > > >
+> > > > > > So provide reason why you need here this dedicated child, what is that
+> > > > > > child representing.  
+> > > > >
+> > > > > Ack.
+> > > > >  
+> > > > > >
+> > > > > > Otherwise I can suggest: drop the child and DTSO, this also solves the
+> > > > > > warning...  
+> > > > >
+> > > > > This would not fix the issue: it's the non overlay that needs the specific
+> > > > > node. But I got the point, and we have a solution for that (see below).
+> > > > >  
+> > > > > >  
+> > > > > > >
+> > > > > > > Regarding rp1_nexus, you're right I guess it should be
+> > > > > > > rp1-nexus as per DTS coding style.
+> > > > > > >  
+> > > > > > >>
+> > > > > > >> Also:
+> > > > > > >>
+> > > > > > >> Node names should be generic. See also an explanation and list of
+> > > > > > >> examples (not exhaustive) in DT specification:
+> > > > > > >> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation  
+> > > > > > >
+> > > > > > > In this case it could be difficult: we need to search for a DT node  
+> > > > > >
+> > > > > > Search like in driver? That's wrong, you should be searching by compatible.  
+> > > > >
+> > > > > Thanks for the hint. Searching by compatble is the solution.  
+> > > > 
+> > > > No, it is not.  
+> > > 
+> > > This is partly true, indeed. On one side there's the need to avoid a
+> > > specific node name ('rp1_nexus'), so the only other unique identifier would
+> > > be the compatible string ('pci1de4,1' in this case, which identifies that specific
+> > > device). Unfortunately, the same compatible string is also assigned to the pci
+> > > endpoint node filled automatically by enabling CONFIG_PCI_DYNAMIC_OF_NODES.
+> > > We would end up with two nodes with the same compatible, which is not unique
+> > > anymore. 
+> > > This applies only when using 'full' dtb (bcm2712-rpi-5-b.dtb) *and* you enable
+> > > CONFIG_PCI_DYNAMIC_OF_NODES, the latter being not necessary since the overlay dtb
+> > > (...-ovl-rp1.dtb) is not in use here. To overcome this problem, the solutions
+> > > I can think of are the following:
+> > > 
+> > > 1- Just disable CONFIG_PCI_DYNAMIC_OF_NODES should work, but only when using the
+> > >    full dtb version. However, if the user enable that option for debug or to use
+> > >    the overlay dtb version, he better be sure not to use teh full dtb or it won't
+> > >    work.
+> > >    This solution seems really weak.
+> > > 
+> > > 2- Add another compatible string other than 'pci1de4,1', so it will be really
+> > >    unique.
+> > >   
+> > > >   
+> > > > > >  
+> > > > > > > starting from the DT root and using generic names like pci@0,0 or
+> > > > > > > dev@0,0 could possibly led to conflicts with other peripherals.
+> > > > > > > That's why I chose a specific name.  
+> > > > > >
+> > > > > > Dunno, depends what can be there, but you do not get a specific
+> > > > > > (non-generic) device node name for a generic PCI device or endpoint.  
+> > > > >
+> > > > > I would use 'port' instead of rp1-nexus. Would it work for you?  
+> > > > 
+> > > > Do you still plan to fix this? This is broken far worse than just the node name.  
+> > > 
+> > > Yes, if we want to get rid of that nasty warning and comply with DT guidelines,
+> > > I think I really need to fix that.
+> > >   
+> > > > 
+> > > > The 'rp1_nexus' node is applied to the PCI host bridge. That's wrong
+> > > > unless this is PCI rather than PCIe. There's the root port device in
+> > > > between.
+> > > > 
+> > > > The clue that things are wrong are start in the driver here:
+> > > > 
+> > > > rp1_node = of_find_node_by_name(NULL, "rp1_nexus");
+> > > > if (!rp1_node) {
+> > > >   rp1_node = dev_of_node(dev);
+> > > >   skip_ovl = false;
+> > > > }
+> 
+> I don't fully understand what you want to do.
+> 
+> This piece of code is present in the drivers/misc/rp1/rp1_pci.c driver.
+> This driver is used when a specific PCI device is available on the system.
+> This device is PCI_DEVICE(PCI_VENDOR_ID_RPI, PCI_DEVICE_ID_RPI_RP1_C0)
+> 
+> In order to work, the driver needs either CONFIG_PCI_DYNAMIC_OF_NODES or
+> having the full PCI hierarchy described in the DT leading to this device.
+> Indeed, it needs a DT node related to the PCI device.
+> 
+> I don't understand why rp1_nexus should be described at the PCI controller
+> root level.
+> 
+> Only PCI devices (or bridges as they are particular devices) at this level
+> as decribed in the pci-bus-common.yaml binding [1].
+
+Ack. As you and Rob pointed out, I will amend the full DT hierarchy with the
+PCI nodes in the way as they are dynamically created by CONFIG_PCI_DYNAMIC_OF_NODES.
+
+> 
+> If the purpose of this 'rp1_nexus' node is to only avoid the application of
+> the overlay, even if I don't understand why, you should search for something
+> added by the overlay and not for the 'rp1_nexus' node in the whole DT.
+
+I cannot search for something added by the overlay if I need to choose whether
+to apply the overlay or not in teh first place (iIOW the overlay is not yet loaded).
+This is not of a concern however, since I'm planning to get rid of the overlay
+for reasons already explained here [1]. This will not only solve all of this
+problems but it will also address Rob's concern of not relying on 
+CONFIG_PCI_DYNAMIC_OF_NODES.
+
+> 
+> Instead of:
+>   rp1_node = of_find_node_by_name(NULL, "rp1_nexus");
+> 
+> You should search for a sub-node added by the overlay. Something like the
+> following for instance:
+> --- 8< ---
+> int rp1_probe(struct pci_dev *pdev, const struct pci_device_id *id)
+> {
+> 	struct device_node *np;
+> 
+> 	np = dev_of_node(&pdev->dev);
+> 
+> 	...
+> 	if ( np && of_find_node_by_name(np, "pci-ep-bus@1");
+>         ...
+> }
+> --- 8< ---
+> 
+> If you really want to be sure that the "pci-ep-bus@1" comes from an overlay
+> you can check for the OF_OVERLAY flag.
+> --- 8< ---
+>   node = of_find_node_by_name(np, "pci-ep-bus@1");
+>   if (node && of_node_check_flag(node, OF_OVERLAY))
+> --- 8< ---
+> 
+> Also your overlay has to be applied on the DT node related to your PCI
+> device and not the rp1_nexus you search for in the whole DT. In other
+> word, in your driver, the following is not correct:
+> 
+>    err = of_overlay_fdt_apply(dtbo_start, dtbo_size, &rp1->ovcs_id,
+>                                            rp1_node);
+> 
+> It should be:
+> 
+>    err = of_overlay_fdt_apply(dtbo_start, dtbo_size, &rp1->ovcs_id,
+>                                            dev_of_node(&pdev->dev));
+>  
+> In your overlay, your have
+> 	__overlay__ {
+> 		compatible = "pci1de4,1";
+> 		#address-cells = <3>;
+> 		#size-cells = <2>;
+> 		interrupt-controller;
+> 		#interrupt-cells = <2>;
+> 
+> 		#include "arm64/broadcom/rp1-common.dtsi"
+>        };
+> 
+> Only sub-nodes should be present (#address-cells = <3> and #size-cells = <2>)
+> can be there just to make DTC happy.
+> 
+> It is worth noting that any properties other than #address-cells and
+> #size-cells lead to memleaks. And so avoid them.
+> 
+> Memleaks are reported at runtime when the overlay is applied with this
+> kind of logs:
+>  OF: overlay: WARNING: memory leak will occur if overlay removed, property: ...
+> 
+> I am pretty sure that you have those kind of traces when you apply your
+> overlay.
+
+Indeed.
+
+Many thanks,
+Andrea
+
+[1] - https://lore.kernel.org/all/aTvtr5v4DjuqctdY@apocalypse/
+
+> 
+> compatible, interrupt-controller and #interrupt-cells should not be added by
+> the overlay. Either they are added by when PCI nodes are created by 
+> CONFIG_PCI_DYNAMIC_OF_NODES either they are already available in the base
+> DT if the PCI device is described in the base DT.
+> 
+> [1] https://github.com/devicetree-org/dt-schema/blob/aa859412ce8e38c63bb13fa55c5e1c6ba66a8e3b/dtschema/schemas/pci/pci-bus-common.yaml#L226
+> 
+> Best regards,
+> Hervé
 
