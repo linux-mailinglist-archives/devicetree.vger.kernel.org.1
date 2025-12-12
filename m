@@ -1,181 +1,146 @@
-Return-Path: <devicetree+bounces-246159-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246160-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A6FCCB9438
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 17:32:26 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 979B4CB9444
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 17:33:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1854A3009A97
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 16:30:20 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 3DE1D30137BA
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 16:33:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA2B52BE02C;
-	Fri, 12 Dec 2025 16:30:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02B0B2BF000;
+	Fri, 12 Dec 2025 16:33:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=probably.group header.i=@probably.group header.b="B+IKY976"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="H7+2NI56"
 X-Original-To: devicetree@vger.kernel.org
-Received: from m1-out-mua-15.websupport.sk (m1-out-mua-15.websupport.sk [45.13.137.24])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C465B29BDBF;
-	Fri, 12 Dec 2025 16:30:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.13.137.24
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C6882BE65B
+	for <devicetree@vger.kernel.org>; Fri, 12 Dec 2025 16:33:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765557018; cv=none; b=UuUGxtDGSey3eRNhE5Dgtn8Z6+qhCuWjB51p3cZ16TjJJZM/t7KuIz7/IPZvj2GR90ER0kNOIFUcJDTOHsUjyDqFGBUWlLyFe2ZFh8iEdpylAwMA2UMhzwUbBrBrkYRJX/RjVwbuwPji4j2b15Uo70xIt6fbnEgYuYvWMOrxrfY=
+	t=1765557232; cv=none; b=WH1OzMye0092P7dWj1zLy7umCoK3yFTfGAXEK59lBFfd7/FN4NMQzbuA/kb2rcCQpM5xzhX0GBsszdWKxW5ESG3VLWOHkKr5ZLO66J2+OG5U0apAeEsy/sNkSlthYDyxV/G7d37bXPqXZXg4S6qYq2mmtUP8hTsC0818eyfUAo4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765557018; c=relaxed/simple;
-	bh=TrCdtX5y8/aG9+FjbComU0WuILS9P+D9rKrhj1SXgko=;
-	h=From:Content-Type:Mime-Version:Subject:Message-Id:Date:Cc:To; b=Swz421/56DN5HE6yQ835epzcSHrwKZg17J8R+umngPoVS8b2vY9gwwNwZbjURHqqdy92jANOgyMqER09oaLex5gxAv+x0UsOAOh906aSqCgXeF0DMugU8U57tW0sSGhrmlJBXU1GGPGgueziqh3h2S9LsLYmb/Ff7SoauHiHVjk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=probably.group; spf=pass smtp.mailfrom=probably.group; dkim=pass (2048-bit key) header.d=probably.group header.i=@probably.group header.b=B+IKY976; arc=none smtp.client-ip=45.13.137.24
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=probably.group
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=probably.group
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=probably.group;
-	s=mail; t=1765556627;
-	bh=+nONJqjep5LEd4f09CvcjseCMGXyI1xL6ZMFEmMKLaw=;
-	h=From:Subject:Date:Cc:To:From;
-	b=B+IKY976kgdpzNFohYgSqkuTAHhovcbQRC12kMyzNpArJuTWkROGd1dFBsplmqoo3
-	 BWnZlQfF6SvoZQJwDcdkODjA30KTWi1/YMIMABYKovtOXfa7WW59uM5OwjfNDe9l62
-	 TpJgEE14ceCNbqt8A+OjVbiPwIB+T4uAW45K0K/+OtP1iTFF6UDygBlzcHB4CrffDr
-	 65rl3ukvcLvtvA8rGj7dJB3/8aM3wNI7XqRCG72GAWULzHd1q0HgGhDFLB5EjVH6kv
-	 dOO7rTI8gzbhrPZdbbVUvJgpCkXZOFWpW93RMPBr/G5JUa+GlWgGgEdcXXq6wPYG16
-	 1b1x5llcZE+Dw==
-Received: from m1-u5-ing.websupport.sk (unknown [10.30.5.2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	by m1-out-mua-15.websupport.sk (Postfix) with ESMTPS id 4dSZX30SCHz1N1L;
-	Fri, 12 Dec 2025 17:23:47 +0100 (CET)
-X-Authenticated-Sender: mh@probably.group
-Authentication-Results: m1-u5-ing.websupport.sk;
-	auth=pass smtp.auth=mh@probably.group smtp.mailfrom=mh@probably.group
-Received: from smtpclient.apple (unknown [109.164.127.134])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	(Authenticated sender: mh@probably.group)
-	by m1-u5-ing.websupport.sk (Postfix) with ESMTPSA id 4dSZX21BWdzGMVD;
-	Fri, 12 Dec 2025 17:23:45 +0100 (CET)
-From: =?utf-8?B?Ik1hcnRpbiBIb2xvdnNrw70gKFByb2JhYmx5IE5vdGhpbmcgcy5yLm8u?=
- =?utf-8?B?KSI=?= <mh@probably.group>
-Content-Type: text/plain;
-	charset=us-ascii
+	s=arc-20240116; t=1765557232; c=relaxed/simple;
+	bh=vTwFW/M5orw9Y0dilyu2imvoiT3dfkAfNeGwFzDzihI=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=sZEF2dmaXDKKu6xKv1SufdSMHqMdlS/L507HwcmFtm+HneXxEHKvA2HAqsyvPoAGitmuPrzBShLhvqI2vMF8OdkrAdQ0PJOHhQKcMbr5a+oeqbU65uclR+fLUheqvFwSd+sTDoKcmzT8kUi3AnReZZhcvXSBdXj51qrIRL3p4ik=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=H7+2NI56; arc=none smtp.client-ip=209.85.128.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-4775895d69cso6055695e9.0
+        for <devicetree@vger.kernel.org>; Fri, 12 Dec 2025 08:33:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1765557229; x=1766162029; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=vTwFW/M5orw9Y0dilyu2imvoiT3dfkAfNeGwFzDzihI=;
+        b=H7+2NI569vSc69UiOEvuH8qkQmjtOOcRULQTsOVgVh3JRQg+alKiDPEsrTkBLlHUK8
+         aFF9vrrQg5McISaMC0mnCQj7uC+PfgTa0nSKE5T0E6yS0JLh2prQPHLkM7UOWa+JZ/65
+         vNWUoT2n3kCacb46OlKe/PzpRkmHVM3PZXOx1eDN608pH141z/HYrVpOXHJQe2tmPWOw
+         JVK3LYQ1kuQymGTpLpCTKpdulPGL92y3pRr0QEMK4PDlEuUvXA3LhsFvTwOCPDv6Iyy+
+         3OkOEykEsKjw5IpBvFgjhBE9vCLF/UaG9FgRcwVTlHDDv8kWyL+h7LAaJ0C41gLm1ff0
+         0U2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765557229; x=1766162029;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vTwFW/M5orw9Y0dilyu2imvoiT3dfkAfNeGwFzDzihI=;
+        b=EdMr3Jf2NZWBkbbhcKXLAxnkIsilWX+hHbbv+fzKBzMRmwIWYPFzSPHbWiBGKTRG3L
+         /F59z8qLdNI93RCEiP+QdFKh/WRyxHMDxOevWA5YiMKBYqaYXMnpD/zWa/kmxCTlKMC+
+         umS0qXuT7gEsvmup+iJpyYlYGi1/JLDLKRXPOuXvDGwnP4Xq8rgG9GlaxViz0OZWaSmP
+         HlypkThGpWTm7uim6+LGrj5bN2emoNpp1pt+ZQXrxoOk0oDh8h9D+RSegtrOE7az/Dij
+         wQZhEbdZvtj2slG1A06oAsvnvWqmo7JERHeWyRl/vV/nNOsRGO5DJBZM/XhoHnifYy1X
+         ZIrw==
+X-Forwarded-Encrypted: i=1; AJvYcCXci9bhceAXudtYh3Da68YmK0X9uyrwAyw1tC2jnkjqEFPuQYq0tOoSJ/fn5w3fUFBdzgTabDXNwFRc@vger.kernel.org
+X-Gm-Message-State: AOJu0YwoNtbXTX6bLzMq/bU90eVvzZo3cTK8XRIReZMaHzGerNzbPbJF
+	dkIwAs7xqUxCE+tCVswdmQSVJjVVZDyS9uM70fdjPmn2MGlVVqVl/YFZ
+X-Gm-Gg: AY/fxX5hb3dq1OexFfDEf2AnZLmCZQqNzETDSTU2ag3+ApH2MaaAHDE+JvoKiDEOnQM
+	VT9wgs8KXW7aaRYETsnfKXFSGC+38oxMg3gwlGqh12D36i+VJiB9/w/e+rfdHzOhbWQgSbWyPvh
+	2YPoV/Y0EIa29HuYqi/m+wbLp3ZQXii2biu4/4UWwz0wB7GhvdbrFzueixMNCXoQG07gPUAQDFl
+	CW1DywrpNEzZ92a095TjhQtwgJXXj1qDIAhZUoyAG4lpLu6uG/FHQprwi9CvFwzQUISwNESwbvX
+	WfyFA/B6MyubstOru7JejXJItWkyFHIi4uHPipPbR6HA+jmq1ku+Mu4kudmhj1R6zNm6fVIO02+
+	QGFE4g0qqhGNN1RZtdBq4husqxZUJaFwenMkgtSKPxMDt/xlC6pTZKBxkxljvBXwvZ4IcHJy2zj
+	UpJfFtoabCww5rTPMH8y4=
+X-Google-Smtp-Source: AGHT+IGZ0L9l7A5Odalp5J0/0NIl+zjmCJtcDKPahPJ7kG1ItBw9GgpXroQrL1TURDT38jXXgCfg8w==
+X-Received: by 2002:a05:600c:4f86:b0:45d:d97c:236c with SMTP id 5b1f17b1804b1-47a8f9071c6mr29585235e9.21.1765557229319;
+        Fri, 12 Dec 2025 08:33:49 -0800 (PST)
+Received: from [192.168.1.187] ([161.230.67.253])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42fa8a7044csm14112522f8f.15.2025.12.12.08.33.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 12 Dec 2025 08:33:49 -0800 (PST)
+Message-ID: <67209860ae2ff5626b7eaa50f2dd4b496eaa06d3.camel@gmail.com>
+Subject: Re: [PATCH v4 2/3] hwmon: ltc4283: Add support for the LTC4283 Swap
+ Controller
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Guenter Roeck <linux@roeck-us.net>, nuno.sa@analog.com, 
+	linux-hwmon@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-doc@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>,  Jean Delvare <jdelvare@suse.com>, Jonathan Corbet
+ <corbet@lwn.net>, Linus Walleij <linus.walleij@linaro.org>,  Bartosz
+ Golaszewski	 <brgl@bgdev.pl>
+Date: Fri, 12 Dec 2025 16:34:29 +0000
+In-Reply-To: <144d50f7-398c-4b10-bd21-a6d0c6c7b4c8@roeck-us.net>
+References: <20251204-ltc4283-support-v4-0-db0197fd7984@analog.com>
+	 <20251204-ltc4283-support-v4-2-db0197fd7984@analog.com>
+	 <144d50f7-398c-4b10-bd21-a6d0c6c7b4c8@roeck-us.net>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3864.200.81.1.6\))
-Subject: [PATCH] arm64: dts: rockchip: enable dual 2.5GbE on Rock 5T
-Message-Id: <96516D1F-9787-47FE-A67E-4745D11D9207@probably.group>
-Date: Fri, 12 Dec 2025 17:23:35 +0100
-Cc: Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-To: Heiko Stuebner <heiko@sntech.de>
-X-Mailer: Apple Mail (2.3864.200.81.1.6)
-X-Out-Spamd-Result: default: False [0.40 / 1000.00];
-	MV_CASE(0.50)[];
-	MIME_GOOD(-0.10)[text/plain];
-	TAGGED_RCPT(0.00)[dt];
-	RCVD_COUNT_ZERO(0.00)[0];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:44489, ipnet:109.164.0.0/17, country:CZ];
-	ARC_NA(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	HAS_X_AS(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FROM_EQ_ENVFROM(0.00)[];
-	TO_MATCH_ENVRCPT_ALL(0.00)[];
-	MIME_TRACE(0.00)[0:+]
-X-Out-Rspamd-Queue-Id: 4dSZX21BWdzGMVD
-X-Rspamd-Action: no action
-X-Out-Rspamd-Server: m1-rspamd-out-5
-X-purgate-type: clean
-X-purgate-Ad: Categorized by eleven eXpurgate (R) https://www.eleven.de
-X-purgate: This mail is considered clean (visit https://www.eleven.de for further information)
-X-purgate: clean
-X-purgate-size: 2219
-X-purgate-ID: 155908::1765556627-C232F043-832C1352/0/0
+MIME-Version: 1.0
 
-The Radxa Rock 5T board features two RTL8125B 2.5GbE Ethernet =
-controllers
-connected via PCIe lanes pcie2x1l0 (fe170000) and pcie2x1l2 (fe190000).
-Currently only one interface is functional because the PCIe controller
-nodes lack the necessary reset GPIO configuration.
+On Sat, 2025-12-06 at 10:40 -0800, Guenter Roeck wrote:
+> On 12/4/25 08:15, Nuno S=C3=A1 via B4 Relay wrote:
+> > From: Nuno S=C3=A1 <nuno.sa@analog.com>
+> >=20
+> > Support the LTC4283 How Swap Controller. The device features programmab=
+le
+> > current limit with foldback and independently adjustable inrush current=
+ to
+> > optimize the MOSFET safe operating area (SOA). The SOA timer limits MOS=
+FET
+> > temperature rise for reliable protection against overstresses.
+> >=20
+> > An I2C interface and onboard ADC allow monitoring of board current,
+> > voltage, power, energy, and fault status.
+> >=20
+> > Signed-off-by: Nuno S=C3=A1 <nuno.sa@analog.com>
+>=20
+> I finally found the time to write module test code for the driver.
+>=20
 
-Without the reset-gpios property, the RTL8125B PHYs remain in reset =
-state
-and are not enumerated by the PCIe bus. This results in only one =
-Ethernet
-interface being detected, or none at all depending on U-Boot =
-initialization.
+Thanks!
 
-This patch adds the missing configuration for both PCIe controllers:
-- Enables both pcie2x1l0 and pcie2x1l2 nodes (status =3D "okay")
-- Configures reset GPIOs (GPIO4_PA5 and GPIO3_PB0 respectively)
-- Adds corresponding pinctrl definitions
+> Some early feedback:
+>=20
+> - The driver must work with non-devicetree systems and without device
+> =C2=A0=C2=A0 property support. Select defaults where necessary.
 
-With this change, both 2.5GbE interfaces are properly detected and
-functional on the Rock 5T.
+I'll double check that... But one thing that already comes to mind is rsens=
+e? Rsense
+is the main design choice for a thing like this. Not sure we can decide on =
+a meaningful
+default for it? I believe we have the same situation for ltc4282.c
 
-Tested on Radxa Rock 5T v1.2 running Linux 6.12.
+> - Attributes marked as readable in the is_visible function must be readab=
+le.
+> =C2=A0=C2=A0 It is not acceptable to return -EOPNOTSUPP. That applies to =
+all
+> =C2=A0=C2=A0 reset_history attributes and maybe to others.
 
+Hmm that's a mistake. They should be WO and I have the same bug in ltc4282 =
+so I need to
+send a patch.
 
----
- .../boot/dts/rockchip/rk3588-rock-5t.dts      | 23 +++++++++++++++++++
- 1 file changed, 23 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5t.dts =
-b/arch/arm64/boot/dts/rockchip/rk3588-rock-5t.dts
-index 0dd90c744380..aeb8e0d42f09 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5t.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5t.dts
-@@ -68,6 +68,20 @@ &pcie2x1l1 {
- 	status =3D "okay";
- };
-=20
-+&pcie2x1l0 {
-+	pinctrl-names =3D "default";
-+	pinctrl-0 =3D <&pcie2_0_rst>;
-+	reset-gpios =3D <&gpio4 RK_PA5 GPIO_ACTIVE_HIGH>;
-+	status =3D "okay";
-+};
-+
-+&pcie2x1l2 {
-+	pinctrl-names =3D "default";
-+	pinctrl-0 =3D <&pcie2_2_rst>;
-+	reset-gpios =3D <&gpio3 RK_PB0 GPIO_ACTIVE_HIGH>;
-+	status =3D "okay";
-+};
-+
- &pcie30phy {
- 	data-lanes =3D <1 1 2 2>;
- };
-@@ -101,6 +115,15 @@ pcie2 {
- 		pcie2_1_rst: pcie2-1-rst {
- 			rockchip,pins =3D <4 RK_PA2 RK_FUNC_GPIO =
-&pcfg_pull_none>;
- 		};
-+
-+		pcie2_0_rst: pcie2-0-rst {
-+			rockchip,pins =3D <4 RK_PA5 RK_FUNC_GPIO =
-&pcfg_pull_none>;
-+		};
-+
-+		pcie2_2_rst: pcie2-2-rst {
-+			rockchip,pins =3D <3 RK_PB0 RK_FUNC_GPIO =
-&pcfg_pull_none>;
-+		};
-+
- 		pcie2_0_vcc3v3_en: pcie2-0-vcc-en {
- 			rockchip,pins =3D <2 RK_PC0 RK_FUNC_GPIO =
-&pcfg_pull_none>;
- 		};
---=20
-2.52.0
-
+- Nuno S=C3=A1
+>=20
 
