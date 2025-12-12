@@ -1,163 +1,110 @@
-Return-Path: <devicetree+bounces-246026-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246027-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A46ECB7F81
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 06:53:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D07CDCB7F99
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 06:54:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A704E300EA0B
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 05:53:23 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9AE23301894E
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 05:53:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04A121EE7C6;
-	Fri, 12 Dec 2025 05:53:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E68C287516;
+	Fri, 12 Dec 2025 05:53:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AyO/BSfw"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="Uw8M944d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8E823C465;
-	Fri, 12 Dec 2025 05:53:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29A723C465;
+	Fri, 12 Dec 2025 05:53:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765518802; cv=none; b=ls8Bs8YjOTnJtho1gY+NFjisv4S2hK4tY9xBaECDiZmX7moo0eMkFsL+8fxIbY+wVsIz7DMZx2e0vvrESuoXn+dsNbt/MTU8k97SauT0SA67QHsvrYbrytcZt/yIuz+UfMjXd77g0TCj6qIFhBvAYZy7pM6Sxd6+WtVjMQN0+gM=
+	t=1765518837; cv=none; b=hEcV4I83eFLlwSjhYTsPbFu6dKatj3Tf6mdClugvTejKApZuR6/EOlXDSgkVQ7iutM5Tg9aJtvoyWQAc0VBDs8VFBivXcS5dAhPdO+5qD2ff3RJfx/obmElKUVhceLQ19D+zoU4llX2OpRxV1Io70cco9qB6isAub448TCVKHL4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765518802; c=relaxed/simple;
-	bh=hqZiXxUv6smJHZEauESfPalDA9+KANqTpadXMEusfNw=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=UtSESvPkb/iSuX3SpjXZjQYcz5M0VIDGRnSVTJhdoyrs5Bi5tJfutSTpmE0Eixc8gKJ+XepFxKYjQDHI5BQCpqtJasYvaQmOaFN3QgInhQiuuC9pwYnKICIwru0JM+f34FyQLq5I7ynY1OS3eQnlMydMCH/qUQNh2CQLNHU0rZs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AyO/BSfw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E4EAC4CEF1;
-	Fri, 12 Dec 2025 05:53:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765518802;
-	bh=hqZiXxUv6smJHZEauESfPalDA9+KANqTpadXMEusfNw=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=AyO/BSfwTPEnPYiKTNe49XE5ReOcZayLHxn1jhIueisyharCn+IGjtVnILr1TyT4G
-	 nKspnHRVYrODD0i8/slxWhZO45GVoryW8+V/nxlc/cl74nTuJRbLhh3ggNHZOEBuYb
-	 QDmLjiWrVjXjswh87/9uwuRkEI8eFewPySbNTeNTwGLTcMN1WG3UEMMW4dyWT3R8WC
-	 usqvWUjSdiWX6RPs7TcBpBmWUvNqIWTkoQltHM7P5Np0sArdIfW5uDHthsrsmogOdO
-	 hIkW5ifAR2CVWEU0QaSLWbDYhAy2B4dDGsH3opzA5PTXmucpnskg1uCN7anY9zjNbX
-	 o+vLEGqelWAfA==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id F34E13809A37;
-	Fri, 12 Dec 2025 05:50:16 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1765518837; c=relaxed/simple;
+	bh=nymakgngEqa2xYkDvgOemL5CEXBpo6nJY1AxWDMssYE=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=I1dbUTmCKraRQ1D7RTz3+nscMtCAbHjVtvj04mcb98IDmT+EBibxi0hEj51drStuGqib7LVlViFPvm4UaWiiyEe6Zxx+/UQT0nEpsobnujSkIJEcqK3U3/xiFq4ErPYYcfQPVjam8cy5PjJiT14uWAS7OZB5nI9GG8/POCc1psk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=Uw8M944d; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1765518832;
+	bh=nymakgngEqa2xYkDvgOemL5CEXBpo6nJY1AxWDMssYE=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=Uw8M944ddkCuo7TKw8vEj0pe9OVwdCUR8ds3VFZPFMoGmmwDDDDAS5gllwdBymtwM
+	 rlDGAzgGt52r4DknCy8cSmpnb+STxVnuP+58X3njR8XEUE3LPK8wc55CYRB6ncShPt
+	 Q9HW3vTE4rmKy34NEZULugrDyDarw5QL4j5BlqZUJU+1EpGr018H44Wss2dG4RtA5z
+	 G0nU4S+rVQ/srzIa5VHUITWlgoDw8+w6nQpRxd33duGKJDOJ6rJApS+PrqshimNe6q
+	 hPGK3ovU2t66VXQENfH5OUA8po09EOFJqrDF52BnIjDrfd1EqSGAojvi8IYet+JMx4
+	 ThFy1QSuMkcOQ==
+Received: from [10.200.3.67] (fs96f9c361.tkyc007.ap.nuro.jp [150.249.195.97])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 16C2664DF1;
+	Fri, 12 Dec 2025 13:53:46 +0800 (AWST)
+Message-ID: <97f2eee63e1ed908866c10721b9f0a57036723dc.camel@codeconstruct.com.au>
+Subject: Re: [PATCH RFC 01/16] dt-bindings: hwmon: Convert
+ aspeed,ast2400-pwm-tacho to DT schema
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski
+	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Linus Walleij
+	 <linusw@kernel.org>
+Cc: Joel Stanley <joel@jms.id.au>, linux-hwmon@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
+	openbmc@lists.ozlabs.org, linux-gpio@vger.kernel.org,
+ linux-mmc@vger.kernel.org, 	linux-crypto@vger.kernel.org,
+ linux-iio@vger.kernel.org
+Date: Fri, 12 Dec 2025 14:53:42 +0900
+In-Reply-To: <f17d93db-f96b-469d-88f0-0878a0fc9fe7@roeck-us.net>
+References: 
+	<20251211-dev-dt-warnings-all-v1-0-21b18b9ada77@codeconstruct.com.au>
+	 <20251211-dev-dt-warnings-all-v1-1-21b18b9ada77@codeconstruct.com.au>
+	 <f17d93db-f96b-469d-88f0-0878a0fc9fe7@roeck-us.net>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-0+deb13u1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v26 00/28] riscv control-flow integrity for usermode
-From: patchwork-bot+linux-riscv@kernel.org
-Message-Id: 
- <176551861579.2032148.13920544388182691102.git-patchwork-notify@kernel.org>
-Date: Fri, 12 Dec 2025 05:50:15 +0000
-References: <20251211-v5_user_cfi_series-v26-0-f0f419e81ac0@rivosinc.com>
-In-Reply-To: <20251211-v5_user_cfi_series-v26-0-f0f419e81ac0@rivosinc.com>
-To: Deepak Gupta <debug@rivosinc.com>
-Cc: linux-riscv@lists.infradead.org, tglx@linutronix.de, mingo@redhat.com,
- bp@alien8.de, dave.hansen@linux.intel.com, x86@kernel.org, hpa@zytor.com,
- akpm@linux-foundation.org, Liam.Howlett@oracle.com, vbabka@suse.cz,
- lorenzo.stoakes@oracle.com, paul.walmsley@sifive.com, palmer@dabbelt.com,
- aou@eecs.berkeley.edu, conor@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- arnd@arndb.de, brauner@kernel.org, peterz@infradead.org, oleg@redhat.com,
- ebiederm@xmission.com, kees@kernel.org, corbet@lwn.net, shuah@kernel.org,
- jannh@google.com, conor+dt@kernel.org, ojeda@kernel.org,
- alex.gaynor@gmail.com, boqun.feng@gmail.com, gary@garyguo.net,
- bjorn3_gh@protonmail.com, a.hindborg@kernel.org, aliceryhl@google.com,
- tmgross@umich.edu, lossin@kernel.org, linux-kernel@vger.kernel.org,
- linux-fsdevel@vger.kernel.org, linux-mm@kvack.org,
- devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
- linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org,
- alistair.francis@wdc.com, richard.henderson@linaro.org, jim.shu@sifive.com,
- andybnac@gmail.com, kito.cheng@sifive.com, charlie@rivosinc.com,
- atishp@rivosinc.com, evan@rivosinc.com, cleger@rivosinc.com,
- alexghiti@rivosinc.com, samitolvanen@google.com, broonie@kernel.org,
- rick.p.edgecombe@intel.com, rust-for-linux@vger.kernel.org,
- zong.li@sifive.com, david@redhat.com, andreas.korb@aisec.fraunhofer.de,
- valentin.haudiquet@canonical.com, cmirabil@redhat.com
 
-Hello:
+On Thu, 2025-12-11 at 12:27 -0800, Guenter Roeck wrote:
+> On 12/11/25 00:45, Andrew Jeffery wrote:
+> > From: "Rob Herring (Arm)" <robh@kernel.org>
+> >=20
+> > Convert the ASpeed fan controller binding to DT schema format.
+> >=20
+> > The '#cooling-cells' value used is 1 rather than 2. '#size-cells' is 0
+> > rather 1.
+> >=20
+> > Some users define more that 8 fan nodes where 2 fans share a PWM. The
+> > driver seems to let the 2nd fan just overwrite the 1st one. That also
+> > creates some addressing errors in the DT (duplicate addresses and wrong
+> > unit-addresses).
+> >=20
+> > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> > Signed-off-by: Andrew Jeffery <andrew@codeconstruct.com.au>
+>=20
+> I am not sure I understand what the plan is here. I am assuming it will b=
+e
+> applied through a non-hwmon branch.
+>=20
+> Acked-by: Guenter Roeck <linux@roeck-us.net>
 
-This series was applied to riscv/linux.git (for-next)
-by Paul Walmsley <pjw@kernel.org>:
+Thanks Guenter.
 
-On Thu, 11 Dec 2025 09:20:33 -0800 you wrote:
-> v26: CONFIG_RISCV_USER_CFI depends on CONFIG_MMU (dependency of shadow stack
-> on MMU). Used b4 to pick tags, apparantly it messed up some tag picks. Fixing it
-> 
-> v25: Removal of `riscv_nousercfi` from `cpufeature.c` and instead placing
-> it as extern in `usercfi.h` was leading to build error whene cfi config
-> is not selected. Placed `riscv_nousercfi` outside cfi config ifdef block
-> in `usercfi.h`
-> 
-> [...]
+Apologies for confusion there. The series is currently a collection of
+miscellaneous binding stuff that I felt needed DT maintainer input, so
+I avoided adding driver subsystem maintainers in To/Cc to minimise
+noise. Rob's feedback at [1] needs to be addressed - I'll make sure
+you're in To: once that's sorted.
 
-Here is the summary with links:
-  - [v26,01/28] mm: VM_SHADOW_STACK definition for riscv
-    https://git.kernel.org/riscv/c/e53803e4a8c5
-  - [v26,02/28] dt-bindings: riscv: zicfilp and zicfiss in dt-bindings (extensions.yaml)
-    https://git.kernel.org/riscv/c/d6c9672baa77
-  - [v26,03/28] riscv: zicfiss / zicfilp enumeration
-    (no matching commit)
-  - [v26,04/28] riscv: zicfiss / zicfilp extension csr and bit definitions
-    (no matching commit)
-  - [v26,05/28] riscv: usercfi state for task and save/restore of CSR_SSP on trap entry/exit
-    https://git.kernel.org/riscv/c/2acf75f432dc
-  - [v26,06/28] riscv/mm : ensure PROT_WRITE leads to VM_READ | VM_WRITE
-    https://git.kernel.org/riscv/c/813c549f5b08
-  - [v26,07/28] riscv/mm: manufacture shadow stack pte
-    https://git.kernel.org/riscv/c/d3cea05f52a7
-  - [v26,08/28] riscv/mm: teach pte_mkwrite to manufacture shadow stack PTEs
-    https://git.kernel.org/riscv/c/444404ff99bf
-  - [v26,09/28] riscv/mm: write protect and shadow stack
-    https://git.kernel.org/riscv/c/5da46726825d
-  - [v26,10/28] riscv/mm: Implement map_shadow_stack() syscall
-    (no matching commit)
-  - [v26,11/28] riscv/shstk: If needed allocate a new shadow stack on clone
-    (no matching commit)
-  - [v26,12/28] riscv: Implements arch agnostic shadow stack prctls
-    https://git.kernel.org/riscv/c/46f2da262367
-  - [v26,13/28] prctl: arch-agnostic prctl for indirect branch tracking
-    https://git.kernel.org/riscv/c/5b23a2d70976
-  - [v26,14/28] riscv: Implements arch agnostic indirect branch tracking prctls
-    https://git.kernel.org/riscv/c/2b1bd48147c5
-  - [v26,15/28] riscv/traps: Introduce software check exception and uprobe handling
-    (no matching commit)
-  - [v26,16/28] riscv: signal: abstract header saving for setup_sigcontext
-    (no matching commit)
-  - [v26,17/28] riscv/signal: save and restore of shadow stack for signal
-    (no matching commit)
-  - [v26,18/28] riscv/kernel: update __show_regs to print shadow stack register
-    https://git.kernel.org/riscv/c/35d89b5390a9
-  - [v26,19/28] riscv/ptrace: riscv cfi status and state via ptrace and in core files
-    (no matching commit)
-  - [v26,20/28] riscv/hwprobe: zicfilp / zicfiss enumeration in hwprobe
-    (no matching commit)
-  - [v26,21/28] riscv: kernel command line option to opt out of user cfi
-    (no matching commit)
-  - [v26,22/28] riscv: enable kernel access to shadow stack memory via FWFT sbi call
-    https://git.kernel.org/riscv/c/ef83c58ab12f
-  - [v26,23/28] arch/riscv: compile vdso with landing pad and shadow stack note
-    (no matching commit)
-  - [v26,24/28] arch/riscv: dual vdso creation logic and select vdso based on hw
-    https://git.kernel.org/riscv/c/fbe7823a03f1
-  - [v26,25/28] riscv: create a config for shadow stack and landing pad instr support
-    (no matching commit)
-  - [v26,26/28] riscv: Documentation for landing pad / indirect branch tracking
-    (no matching commit)
-  - [v26,27/28] riscv: Documentation for shadow stack on riscv
-    (no matching commit)
-  - [v26,28/28] kselftest/riscv: kselftest for user mode cfi
-    (no matching commit)
+Andrew
 
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
+[1]:
+https://lore.kernel.org/all/20251211170333.GA1557987-robh@kernel.org/
 
