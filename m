@@ -1,163 +1,185 @@
-Return-Path: <devicetree+bounces-246176-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246177-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DC78CB9819
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 19:03:03 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D340DCB9925
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 19:33:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9E938304219E
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 18:00:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 17CA53065E02
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 18:33:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E15762D5940;
-	Fri, 12 Dec 2025 18:00:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F7533090DD;
+	Fri, 12 Dec 2025 18:33:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c+evEzBh"
+	dkim=pass (2048-bit key) header.d=rivosinc.com header.i=@rivosinc.com header.b="FSKlyM7e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0A28293B75;
-	Fri, 12 Dec 2025 18:00:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 781493090C5
+	for <devicetree@vger.kernel.org>; Fri, 12 Dec 2025 18:33:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765562429; cv=none; b=nCLsMlt5UcfEoojtBazosseJ3atgFXZ4vhZnFPTZQHXUnZYztkGOBTtLFIM4Vz/iNSbrxhQ2bexgvsUvR6Nf3j9q3OdECyxEKID0bHuKVv6Kr1cjio+9us24Z6azOtPyDIWthf40hs6iqUaBbXlkXxACFWZ0bXbqwRc34MTkI4Q=
+	t=1765564403; cv=none; b=aRv3WhZcJWbb/PZXXeB9P+/bEqH5oaOyew+QVvB00tdjby5dGm+wuADBUXZvMC6BcbH6xhHrxUwAdZ+sIA6sDP+F9GyG5HrxwE5D877I69mzd1VnlaTzsYUCi8tK/ZZub1aQporEHWUMlA37J08f4cz7tubABWelwTi/pe97shI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765562429; c=relaxed/simple;
-	bh=bJ2KJCFxwgxmMsSuX7IhdV9rCVpxtdIdE13CWYdQEx4=;
+	s=arc-20240116; t=1765564403; c=relaxed/simple;
+	bh=v8LGo5rep+oNiHljlHrcb1/qPP3q5ouQwFXofTc8V8E=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lI5VsU6+1PDqZVVk4C6BESTkAGXflqH1y5/E7nJpsTR0B2G9eBiN/PO+g1TY9ZFiBJqR8bgKUibGUsU8fMxyRD7sq5i2Ug/T6vrdIxh/D4cz2MZSOv5/09VbOgEB+X5KJA9DWzCY1IDMLN0YK/9aGv/K4TI/tLMqxdqueBW0Ivo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c+evEzBh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E51AC4CEF1;
-	Fri, 12 Dec 2025 18:00:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765562429;
-	bh=bJ2KJCFxwgxmMsSuX7IhdV9rCVpxtdIdE13CWYdQEx4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=c+evEzBhkPlDbI3BlJdEvZ8AEjftKU/VXIdPPQJWvsCkWhGn0dqBuVSLZ16mXLcK+
-	 OQYy/rRiaQmYlbi8QYxP/qhukPanqLxFBIRQOgUCDqyNpOQhI8JxXsFTEp0EbPxClx
-	 UkxH7VzoYkIwaFc9ouQK5nOVWoqpUzdszERP5MM8ercsEPDYSvBkJfWfDbsjbe0Tyc
-	 uV/YvsLvAAlE+F6xW8hjBaVU4sa1nIcTGpdaz5udHVRAbVeXbkffrWornvbLJlxJuO
-	 myLTdNnURrg6rm4H/SWNmBWTVxv0n6rUtk1280Ij8u5Gnov3A2O5hjDK1iGxgOcKTr
-	 +0hfL/nEmnITw==
-Date: Fri, 12 Dec 2025 18:00:23 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Marc Kleine-Budde <mkl@pengutronix.de>
-Cc: Prabhakar <prabhakar.csengg@gmail.com>,
-	Vincent Mailhol <mailhol@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZL71uPss7tTGOJDHAmCymjXqbiSwM3ZmyA0OA0/lIPa5ZOLwdGd6e48SR5u3ZtJbu6HoJAOl99dMoR6GX1VmVplLfq8xd6qBDnqEXXT0gDof6yREAbtyrfrYoAMOAmkDa5mfI8aWck0rPgopf5QIHUFWlXlp+iOGHBUdaLw8/uU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc.com header.i=@rivosinc.com header.b=FSKlyM7e; arc=none smtp.client-ip=209.85.214.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-29f1bc40b35so17297845ad.2
+        for <devicetree@vger.kernel.org>; Fri, 12 Dec 2025 10:33:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc.com; s=google; t=1765564401; x=1766169201; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=eUSGmEJqTzYByGnUlGU1GkRTgZG6xNYZQ+XlXEoFmO0=;
+        b=FSKlyM7eSovvmr5cj3Hu93OFhDLQSJZWqkQ3xqj/yrR8BnMb4QZW8ArYGL+QIEeDLa
+         meBncfDWtcrvqRkgIYrSzSAnW4JcmFxZnuuCZuysf2HN5I63zIFyy5mUQGIPsJ7qOcjM
+         5Oi1AFHY8QS+1yGNUzFcR1k0oXNA1hjSu3RbCdG6d0XHg1Z7LYCWmB+fCWDA10KVMyzF
+         JvTS5XbYQZ8qdZEu4mQqoo6mBGvuKZ/M6eWiCRd8h5xG/mDVZMyvJ+wRF1LAkmnqq3xI
+         GCoFNKwjXxXdqUgutKTzFoBpsK3oDgdyriyYdIa2dTmqMucgVcvy2qeySSy/xL2EsNJ4
+         kGKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765564401; x=1766169201;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=eUSGmEJqTzYByGnUlGU1GkRTgZG6xNYZQ+XlXEoFmO0=;
+        b=EBJ9P9XYfMk8J3969VlvN9dSOa8adoBNk6hItxZFME9Kyn6J9b1lCINn0ax5BZ8q6s
+         Vup3Zm10fFtt64MzuMWCafvOUn2rYzr4sCrzB8RpVJa8jHUg6HRJDu7sMWY/RBy5FfBE
+         wwp2MDaag91FKR/xiE6dGMbAlyQgA7py+3dAFQTmAwBCuValf4vBIWsxqAR1Cix0Ch7u
+         j8aKY5PUOiTbwpLW4e4wkXokD67fC3mPbvyMLj8DY23w+VtoW9mObaqguSjYxQ/FfcD+
+         QehYkfkVNynRS0uhw3GJP0fOQ2AIKUwECNbf8r0aYFWduHuKr30t7fRUMWZ6XaT8HQs4
+         9lfA==
+X-Forwarded-Encrypted: i=1; AJvYcCU08/gQuOGGR7GbZAANCvDDe1VLk0Yv4lzb6IvfbsQiYc437EXGzaYMlhy/jtS2KKKvxaTE0RDJiFZc@vger.kernel.org
+X-Gm-Message-State: AOJu0YwN8mnGPivGfXQBFbtlBR1j/1lEmJ1nW1kErCgCNS/plQAxzOI0
+	Q5/fyFOUKXjsqIapmO1Wo8+2AJXP4JMJ08Xig7aW1nLUjPc++IVatPJOT38Ta/TulCY=
+X-Gm-Gg: AY/fxX6IfMQXY6nIe9yfRtJ4z3bKPn/kcOn7etEioE0CU9RUv9xl55Ht8bBb7nOq8Qd
+	hB6wgiOX9iUAXs9qJZFICJ7p7SlX960K0yXsYu9PNfCC6ji0qMgfYu+CvDJHOKPv3EfTEo+IUAu
+	BijJ+zbRfcW7/xy5Cnnzn8GtSDLkSqd5oqSspzma/UfAt+dLmLH8OIHslV2CVGLwXWBTqG0J0az
+	0h99T+LkYnpNM4ybfWNa4R8ObQGktfmF0qyFHyNUgEoMymWqV58FBX127UBE2NlzGUMSMm5v58Z
+	pktc9asFJnZb3Nk1+LRpPtBPC1N1rLwoYPrPoCPlHRVBZ5sa3FOo7HaQDn9Xpe4ZRxQGfFddsx9
+	YgZK0S67CE4cRuoTA3AsOEOt74cKN6GXaTIo/l1hqOAprKlho5lgHjczbbbGTV4cBMdMOEw6gVr
+	PL/N4ilk2n1nVfdHHsUikf
+X-Google-Smtp-Source: AGHT+IFtnl41QfJeu3IJ/uV+L4EiFBX8zP0ux5EampS/J9pJIP4sBjIMESLAF9z1UPcxbBQKr8xzaw==
+X-Received: by 2002:a17:903:22cc:b0:29f:2456:8cde with SMTP id d9443c01a7336-29f245690bdmr29337135ad.4.1765564400511;
+        Fri, 12 Dec 2025 10:33:20 -0800 (PST)
+Received: from debug.ba.rivosinc.com ([64.71.180.162])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29eea04b7bdsm59970265ad.85.2025.12.12.10.33.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 12 Dec 2025 10:33:20 -0800 (PST)
+Date: Fri, 12 Dec 2025 10:33:16 -0800
+From: Deepak Gupta <debug@rivosinc.com>
+To: Paul Walmsley <pjw@kernel.org>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
+	Borislav Petkov <bp@alien8.de>,
+	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
+	"H. Peter Anvin" <hpa@zytor.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
+	Vlastimil Babka <vbabka@suse.cz>,
+	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Aswath Govindraju <a-govindraju@ti.com>,
-	Frank Li <Frank.li@nxp.com>, linux-can@vger.kernel.org,
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v2] dt-bindings: phy: ti,tcan104x-can: Document TI
- TCAN1046
-Message-ID: <20251212-thaw-octopus-57e8400506ea@spud>
-References: <20251209162119.2038313-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20251210-mauve-cow-of-hurricane-0f969d-mkl@pengutronix.de>
- <20251210-persuaded-rewire-8ac93b0cc039@spud>
- <20251211-wonderful-singing-eel-4e2293-mkl@pengutronix.de>
+	Arnd Bergmann <arnd@arndb.de>,
+	Christian Brauner <brauner@kernel.org>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Oleg Nesterov <oleg@redhat.com>,
+	Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
+	Jann Horn <jannh@google.com>, Conor Dooley <conor+dt@kernel.org>,
+	Miguel Ojeda <ojeda@kernel.org>,
+	Alex Gaynor <alex.gaynor@gmail.com>,
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+	Benno Lossin <lossin@kernel.org>, linux-kernel@vger.kernel.org,
+	linux-fsdevel@vger.kernel.org, linux-mm@kvack.org,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-arch@vger.kernel.org, linux-doc@vger.kernel.org,
+	linux-kselftest@vger.kernel.org, alistair.francis@wdc.com,
+	richard.henderson@linaro.org, jim.shu@sifive.com,
+	Andy Chiu <andybnac@gmail.com>, kito.cheng@sifive.com,
+	charlie@rivosinc.com, atishp@rivosinc.com, evan@rivosinc.com,
+	cleger@rivosinc.com, alexghiti@rivosinc.com,
+	samitolvanen@google.com, broonie@kernel.org,
+	rick.p.edgecombe@intel.com, rust-for-linux@vger.kernel.org,
+	Zong Li <zong.li@sifive.com>, David Hildenbrand <david@redhat.com>,
+	Andreas Korb <andreas.korb@aisec.fraunhofer.de>,
+	Valentin Haudiquet <valentin.haudiquet@canonical.com>,
+	Charles Mirabile <cmirabil@redhat.com>
+Subject: Re: [PATCH v26 00/28] riscv control-flow integrity for usermode
+Message-ID: <aTxf7IGlkGLgHgI2@debug.ba.rivosinc.com>
+References: <20251211-v5_user_cfi_series-v26-0-f0f419e81ac0@rivosinc.com>
+ <e052745b-6bf0-c2a3-21b2-5ecd8b04ec70@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ec+kgCN350Y3b0uL"
+Content-Type: text/plain; charset=us-ascii; format=flowed
 Content-Disposition: inline
-In-Reply-To: <20251211-wonderful-singing-eel-4e2293-mkl@pengutronix.de>
+In-Reply-To: <e052745b-6bf0-c2a3-21b2-5ecd8b04ec70@kernel.org>
 
+On Fri, Dec 12, 2025 at 01:30:29AM -0700, Paul Walmsley wrote:
+>On Thu, 11 Dec 2025, Deepak Gupta via B4 Relay wrote:
+>
+>> v26: CONFIG_RISCV_USER_CFI depends on CONFIG_MMU (dependency of shadow stack
+>> on MMU). Used b4 to pick tags, apparantly it messed up some tag picks. Fixing it
+>
+>Deepak: I'm now (at least) the third person to tell you to stop resending
+>this entire series over and over again.
 
---ec+kgCN350Y3b0uL
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+To be very honest I also feel very bad doing and DOSing the lists. Sorry to you
+and everyone else.
 
-On Fri, Dec 12, 2025 at 12:21:03PM +0100, Marc Kleine-Budde wrote:
-> On 10.12.2025 18:21:34, Conor Dooley wrote:
-> > On Wed, Dec 10, 2025 at 08:52:58AM +0100, Marc Kleine-Budde wrote:
-> > > On 09.12.2025 16:21:19, Prabhakar wrote:
-> > > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > >
-> > > > Document the TI TCAN1046 automotive CAN transceiver. The TCAN1046 i=
-s a
-> > > > dual high-speed CAN transceiver with sleep-mode support and no EN p=
-in,
-> > > > mirroring the behaviour of the NXP TJA1048, which also provides dual
-> > > > channels and STB1/2 sleep-control lines.
-> > > >
-> > > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.c=
-om>
-> > > > ---
-> > > > TCAN 1046, https://www.ti.com/lit/ds/symlink/tcan1046v-q1.pdf?ts=3D=
-1765297159307&ref_url=3Dhttps%253A%252F%252Fwww.ti.com%252Fproduct%252FTCAN=
-1046V-Q1
-> > > > NXP TJA1048, https://www.nxp.com/docs/en/data-sheet/TJA1048.pdf
-> > >
-> > > The polarity of the standby line of the chips is different.
-> > >
-> > > You must set the correct active high/low property for the GPIO, as the
-> > > driver uses logical levels.
-> > >
-> > > Reviewed-by: Marc Kleine-Budde <mkl@pengutronix.de>
-> >
-> > What you're saying seems to contradict the tag you've given, is a
-> > fallback really suitable if the standby polarity is not the same?
->=20
-> The driver uses _logical_ levels to switch the GPIOs. For example to
-> power on the PHY, it disables the standby GPIO by setting the value to
-> "0".
->=20
-> | static int can_transceiver_phy_power_on(struct phy *phy)
-> | {
-> [...]
-> |         gpiod_set_value_cansleep(can_transceiver_phy->standby_gpio, 0);
-> [...]
-> | }
->=20
-> You have to use GPIO_ACTIVE_HIGH/GPIO_ACTIVE_LOW in the DT to configure
-> the actual level of the GPIO.
+But I have been sitting on this patch series for last 3-4 merge windows with
+patches being exactly same/similar. So I have been a little more than desperate
+to get it in.
 
-Ah okay, I prob should have looked a bit further into the binding.
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+I really haven't had any meaningful feedback on patch series except stalling
+just before each merge window for reasons which really shouldn't stall its
+merge. Sure that's the nature of open source development and it's maintainer's
+call at the end of the day. And I am new to this. I'll improve.
 
+>
+>First, a modified version of the CFI v23 series was ALREADY SITTING IN
+>LINUX-NEXT.  So there's no reason you should be resending the entire
+>series, UNLESS your intention for me is to drop the entire existing series
+>and wait for another merge window.
+>
+>Second: when someone asks you questions about an individual patch, and you
+>want to answer those questions, it's NOT GOOD for you to resend the entire
+>28 series as the response!  You are DDOSing a bunch of lists and E-mail
+>inboxes.  Just answer the question in a single E-mail.  If you want to
+>update a single patch, just send that one patch.
 
->=20
-> If you connect the PHY's standby input directly to the SoC's GPIO....
->=20
-> | TJA1048: HIGH =3D Normal mode, LOW =3D Standby mode
-> | TCAN1046: High =3D Standby mode, Low =3D Normal Mode
->=20
-> ...for the TJA1048 you would use GPIO_ACTIVE_LOW, while for the
-> TCAN1046 you would use GPIO_ACTIVE_HIGH.
->=20
-> regards,
-> Marc
->=20
-> --=20
-> Pengutronix e.K.                 | Marc Kleine-Budde          |
-> Embedded Linux                   | https://www.pengutronix.de |
-> Vertretung N=FCrnberg              | Phone: +49-5121-206917-129 |
-> Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+Noted. I wasn't sure about it. I'll explicitly ask next time if you want me to
+send another one.
 
+>
+>If you don't start paying attention to these rules then people are going
+>to start ignoring you -- at best! -- and it's going to give the entire
+>community a bad reputation.
 
+Even before this, this patch series has been ignored largely. I don't know
+how to get attention. All I wanted was either feedback or get it in. And as I
+said I've been desparate to get it in. Also as I said, I'll improve.
 
---ec+kgCN350Y3b0uL
-Content-Type: application/pgp-signature; name="signature.asc"
+>
+>Please acknowledge that you understand this,
 
------BEGIN PGP SIGNATURE-----
+ACKed.
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaTxYNwAKCRB4tDGHoIJi
-0u4GAQCKQ0zLIMjJX0Bdhe/NUX9j3cgUy7HrpJmvIB9NveY+mQEA21rq6AEs7yyQ
-5BxDz7hP5JNIAVC+Im1gKpg60Oy2JAs=
-=8+rD
------END PGP SIGNATURE-----
-
---ec+kgCN350Y3b0uL--
+>
+>
+>- Paul
 
