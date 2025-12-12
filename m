@@ -1,111 +1,101 @@
-Return-Path: <devicetree+bounces-246206-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246208-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54097CB9E0C
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 22:22:39 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 848B5CB9E78
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 23:06:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 346513001FC3
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 21:22:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 40EAD307DA5F
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 22:06:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5A3C2BCF43;
-	Fri, 12 Dec 2025 21:22:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B09E279DCC;
+	Fri, 12 Dec 2025 22:06:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=freeshell.de header.i=@freeshell.de header.b="Vr6uJPHc"
+	dkim=pass (2048-bit key) header.d=free.fr header.i=@free.fr header.b="dRVPQAQU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from freeshell.de (freeshell.de [116.202.128.144])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37E2D2749C9;
-	Fri, 12 Dec 2025 21:22:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
+Received: from smtpfb1-g21.free.fr (smtpfb1-g21.free.fr [212.27.42.9])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 441C619258E;
+	Fri, 12 Dec 2025 22:06:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.27.42.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765574556; cv=none; b=gI/5dV8ksVNo+IZJMPaBh48sWxV1dIJ9fyQYDudcYSbKtZzvv8hTMsuyNsPWThETNEF1xlxq03CkNdFIpUEUY/2gYrjaJvuaHb5koA1hNHmYNMa6dcwaxFRXPGO3J7baUuUZytc/6PMTQ0/xUfdgwAotScaNBiYMwr2FDXdY7ks=
+	t=1765577187; cv=none; b=Pgfjhbuu3G/5GsFvDO42Kk1izt3wslVmel8WnGVCaHPO/33xmC0rdRddkwTLTJIgJrp+U3ahxNPPnv+4YZPl3U14VMJOGN1w0qPDwi/AGZd+/yYUPyN/d6b46frMk1MkCQ2WGghcI95igy5hcqj8PBx2SzCjEpaAOt6S8rYf5UI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765574556; c=relaxed/simple;
-	bh=TSPNRQBf4k5sXExI/xycT3Sj2lLf/Gt4Dd2aN4cImPM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=c4VMlzjRgL+LDJPj+CKiMogOSD8ouBtGdIVzqIEtGxIFq5ddtiVAaKtjVn10MtJuS4OvSjvKTXh7asuyE3zGLE+5gzHNwQGn+XE9Ksodn1/uayGu+pmr8xuhddbu34knMBo//Va2h21FKGI4NeKEX4AugROuQeAq+y0SHvD2tWE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; dkim=pass (2048-bit key) header.d=freeshell.de header.i=@freeshell.de header.b=Vr6uJPHc; arc=none smtp.client-ip=116.202.128.144
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=freeshell.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=freeshell.de;
-	s=s2025; t=1765574436;
-	bh=5MdfPukJ3hoONSmZ87YbV4TFIzjtXUGofKnYalLysac=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=Vr6uJPHcV2uyHic5JqWEU3dcYtBTqdM4OyKM4abqfFWYen1c0l1B3Qp/aGSe47aC+
-	 I2F6hIF0J8jWEPi2D76kCUIgcDz/1w6FB4Mcs2/N+p7RuNHWYISpju426Ti6PVdL4u
-	 t3ySdOhKjRtIar4R0bw6/gt3U5YjG2w5s7bISUFerrEjAzF6FHbrUAX2dnCu0J+7wP
-	 hM7rQJPNHJe7Xu4WpyfMYGV6lchqtd/NN/GE9eHyIKpdXs5jaXovlMuvD0GAY3NF0i
-	 yMNCU1mUBGkux5pQhhr1ZcOCgW28bJs5g1Z56vDAefqqB1TjyYbCL+HbppsYT57YeO
-	 a9MhS4rTgnPdw==
-Received: from hay.lan (unknown [IPv6:2605:59c0:2078:cf00:6ecf:39ff:fe00:8375])
-	(Authenticated sender: e)
-	by freeshell.de (Postfix) with ESMTPSA id C3970B221428;
-	Fri, 12 Dec 2025 22:20:32 +0100 (CET)
-From: E Shattow <e@freeshell.de>
-To: Emil Renner Berthing <kernel@esmil.dk>,
-	Conor Dooley <conor@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Hal Feng <hal.feng@starfivetech.com>
-Cc: linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	E Shattow <e@freeshell.de>,
-	Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v2 3/3] riscv: dts: starfive: Append JH-7110 SoC compatible to VisionFive 2 Lite eMMC board
-Date: Fri, 12 Dec 2025 13:19:20 -0800
-Message-ID: <20251212211934.135602-4-e@freeshell.de>
-X-Mailer: git-send-email 2.50.0
-In-Reply-To: <20251212211934.135602-1-e@freeshell.de>
-References: <20251212211934.135602-1-e@freeshell.de>
+	s=arc-20240116; t=1765577187; c=relaxed/simple;
+	bh=gPwKxCd2LVBnJ4p5fX3ephTehUZ4nezWU5qgNY16S14=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=NpdJPEWzgeiLoIgy9HURF1Qnk29XAfsQOrCtuBDGdvE3xxiwBoOieP/9rV5a8gkErUQ769DEky09SMUR6iVrpq9NBaEmPBYm39IEQEjqzH//JdjXYHK6C2r7ASfvx0l/GgUXeEz94d5wUBJJERpPdGkFQkGWpaGRA7OiXGHODz8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=free.fr; spf=pass smtp.mailfrom=free.fr; dkim=pass (2048-bit key) header.d=free.fr header.i=@free.fr header.b=dRVPQAQU; arc=none smtp.client-ip=212.27.42.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=free.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=free.fr
+Received: from smtp5-g21.free.fr (smtp5-g21.free.fr [212.27.42.5])
+	by smtpfb1-g21.free.fr (Postfix) with ESMTP id C6415DF83D5;
+	Fri, 12 Dec 2025 22:58:39 +0100 (CET)
+Received: from belgarion.local (unknown [IPv6:2a01:e0a:a6a:5f90:6d9f:c3d:adb3:41ea])
+	(Authenticated sender: robert.jarzmik@free.fr)
+	by smtp5-g21.free.fr (Postfix) with ESMTPSA id 811066012D;
+	Fri, 12 Dec 2025 22:58:16 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=free.fr;
+	s=smtp-20201208; t=1765576712;
+	bh=gPwKxCd2LVBnJ4p5fX3ephTehUZ4nezWU5qgNY16S14=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+	b=dRVPQAQUwrYpZ+vlWxvBAV0aRc3cx/hfMjdv7NoQUmjhWlqo26/6F/ZlYvnWXsWJL
+	 ezQkixGbeA5jyETgHYl8xz3Tcl+FZnrv7JCQsf+gHBkkxvYrm596pNcoWvL8miXCRk
+	 yeXrt4wsmxVbqJFHPTncFTBBYULcDwWjua4K89L/1wl9JoRmjxlMKWQTDkQ4wWgzaH
+	 FzcJDhLzRzi9Zu2zjgJMmOZbS+S2TF6HwoE8LUjHmlAOntGkTzxI335x1/DWjC0aKP
+	 oTpNXFtSzpNeiSqWQhbZdWu9Lk+gR8oedCbfeG8/1v8A85cQV7cEFjf1kaJpxLuKDT
+	 8dJno7OoFsG8w==
+From: Robert Jarzmik <robert.jarzmik@free.fr>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>,  Magnus Damm
+ <magnus.damm@gmail.com>,  Krzysztof Kozlowski <krzk+dt@kernel.org>,  Conor
+ Dooley <conor+dt@kernel.org>,  Daniel Mack <daniel@zonque.org>,  Haojian
+ Zhuang <haojian.zhuang@gmail.com>,  Andrew Lunn <andrew@lunn.ch>,  Gregory
+ Clement <gregory.clement@bootlin.com>,  Sebastian Hesselbarth
+ <sebastian.hesselbarth@gmail.com>,  linux-renesas-soc@vger.kernel.org,
+  devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org,
+  linux-arm-kernel@lists.infradead.org, Arnd Bergmann <arnd@arndb.de>
+Subject: Re: [PATCH] ARM: dts: intel: Drop pxa2xx
+In-Reply-To: <20251212203226.458694-4-robh@kernel.org> (Rob Herring's message
+	of "Fri, 12 Dec 2025 14:32:10 -0600")
+References: <20251212203226.458694-4-robh@kernel.org>
+User-Agent: mu4e 1.12.13; emacs 29.4
+Date: Fri, 12 Dec 2025 22:58:16 +0100
+Message-ID: <m2345fmkg7.fsf@free.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; format=flowed
 
-Append "starfive,jh7110" compatible to VisionFive 2 Lite eMMC board in the
-least-compatible end of the list.
+"Rob Herring (Arm)" <robh@kernel.org> writes:
 
-Appending "starfive,jh7110" reduces the number of compatible strings to
-check in the OpenSBI platform driver. JH-7110S SoC on this board is the
-same as JH-7110 SoC however rated for thermal, voltage, and frequency
-characteristics for a maximum of 1.25GHz operation.
+> These .dtsi files are not included anywhere in the tree and 
+> can't be
+> tested. They have not been touched since 2018 other than 
+> clean-ups.
+>
+And yet, there are used by people using pxa2xx board with an DT 
+support
+(like the mioa701 for which a board file was never merged).
 
-Link to previous discussion suggesting this change:
-https://lore.kernel.org/lkml/1f96a267-f5c6-498e-a2c4-7a47a73ea7e7@canonical.com/
+If you remove pxa25x.dtsi and pxa27x.dtsi, you might as well 
+remove all
+support for this architecture from the kernel, as these are the 
+building
+blocks needed to make it work.
 
-Fixes: ae264ae12442 ("riscv: dts: starfive: Add VisionFive 2 Lite eMMC board device tree")
-Suggested-by: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
-Signed-off-by: E Shattow <e@freeshell.de>
----
- .../dts/starfive/jh7110-starfive-visionfive-2-lite-emmc.dts     | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+That might be what should be done, I'll let Arnd and Daniel 
+comment on
+the future of PXA in the kernel.
 
-diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-lite-emmc.dts b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-lite-emmc.dts
-index e27a662d4022..7544efa95de4 100644
---- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-lite-emmc.dts
-+++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2-lite-emmc.dts
-@@ -9,7 +9,7 @@
- 
- / {
- 	model = "StarFive VisionFive 2 Lite eMMC";
--	compatible = "starfive,visionfive-2-lite-emmc", "starfive,jh7110s";
-+	compatible = "starfive,visionfive-2-lite-emmc", "starfive,jh7110s", "starfive,jh7110";
- };
- 
- &mmc0 {
+Cheers.
+
+--
+Robert
+
 -- 
-2.50.0
-
+Formal Signature
+Emacs 25, org-mode 9, mu4e 1.0
 
