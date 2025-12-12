@@ -1,176 +1,109 @@
-Return-Path: <devicetree+bounces-246196-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246197-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B93ACB9CAE
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 21:36:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D26BCB9CB7
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 21:37:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 722FD306457A
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 20:33:17 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E29803055BB5
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 20:36:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A92032EBB93;
-	Fri, 12 Dec 2025 20:33:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GIsLIGzr"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4332B2EB85B;
+	Fri, 12 Dec 2025 20:36:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C41B2D24AC;
-	Fri, 12 Dec 2025 20:33:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 440A22D663F;
+	Fri, 12 Dec 2025 20:36:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765571596; cv=none; b=sYCv8DVeM6nBwC8q4zUY5GcPMfRTqtgbu7H/8jOvpSobPOIcPi2SY9DBZKDNxzXL3NIFHaeoBGYNtALLm7OJbIuDBD5wvaywMjCN0lh8F6JXeG2SyU8CMB67ykaRNv5bB9KexbXKn9zFofd2V4gWiLGLa7UNoUy8VHEtRfZifrQ=
+	t=1765571798; cv=none; b=Z8EwmChnKoRGnOPvN8yAw9j0HMr85wipUdsMsVxdw/oY8pAd5st/q29qd+/3PNHZS7PaVRHjuET1JZ1OdScwf0NxashzmkfqsL3+TmiIg3zItJ/Junbd9DgMzwXISYPZ5KTVeBWJGuC4pZhkDR34oBFHnUat5OfvnHGEM+ZZ5qI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765571596; c=relaxed/simple;
-	bh=QBowjkhrZT9dUgwW3OEeOfAAxYk8PKAFF0Wg/jajdWo=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=QUI1PMBF91vC+6OS/NNPRJmCDUpn+AYvxbPVUDdyh4y1VqaW9XnMwFf1s58my3RdhXPn6MHMpnAEv4u5bIHduXe94T5wrTotnkvCQcZW1OfyQ3T9MJ/chyA6Ms4HVyUu4YVLLc0u2+hHBz0Ymk91o2MIEBFi/JNNe35w8IEQl44=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GIsLIGzr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B6FDC116B1;
-	Fri, 12 Dec 2025 20:33:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765571596;
-	bh=QBowjkhrZT9dUgwW3OEeOfAAxYk8PKAFF0Wg/jajdWo=;
-	h=From:To:Cc:Subject:Date:From;
-	b=GIsLIGzr6vy2YxvKlDttWnjjUxOyJ1HXsqpyTT/BFbzSfrUw+wrUukuAIxoCNiOC9
-	 GiFMQY1MILLU4SjbDrhUO2MHB2ZiquHSUyTpk9C6JSiKyf0opAdMDxPbVHR2PuQaGY
-	 lp2ijscFgiSeUfSXLG8Daxkkzhd25L4uM1B2G+c/522jGOBNemHQy+Ksp/+GtIoe7i
-	 FwBSQxCnVJf250dy3B4PnBqJh7hd7lxlYezbM1LLPKl718/mH1NvnMM8ep9n+mmXRG
-	 pVRZQrG5OhpCnbfwijZrZlNQn2+ICZQkSvyGfhqwvBdicY9OaadK98pawMUqPFqdaG
-	 y01Ou1LsNcCNQ==
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>
-Cc: linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH] ARM: dts: microchip: Drop usb_a9g20-dab-mmx.dtsi
-Date: Fri, 12 Dec 2025 14:32:14 -0600
-Message-ID: <20251212203226.458694-8-robh@kernel.org>
-X-Mailer: git-send-email 2.51.0
+	s=arc-20240116; t=1765571798; c=relaxed/simple;
+	bh=Wr5l93HxK6yATXbDCP7Hf/rUCIiHc/qT9612u4YlCsg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bqJenIp3/V7DHAl/cmLEytqvUvkAm2apiblldzumbSuf5+xBzhwO0/O7EW718+VoZbm6EFCsmde9A99d1fPHESxHlkWpX1euXJCT9xVXkuFaGuhdAoHmhzZ0IidXiSQm16yjNoMVRyCy2No/k7aUAZf/yOwOWjYegMRQjFsVYG0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3014B1063;
+	Fri, 12 Dec 2025 12:36:27 -0800 (PST)
+Received: from [10.1.196.95] (e121345-lin.cambridge.arm.com [10.1.196.95])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id DA0FD3F740;
+	Fri, 12 Dec 2025 12:36:31 -0800 (PST)
+Message-ID: <104441bd-1284-4147-873a-f94c91788609@arm.com>
+Date: Fri, 12 Dec 2025 20:36:25 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V6 1/4] iommu/tegra241-cmdqv: Decouple driver from ACPI
+To: Nicolin Chen <nicolinc@nvidia.com>
+Cc: Ashish Mhetre <amhetre@nvidia.com>, will@kernel.org, joro@8bytes.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ thierry.reding@gmail.com, jonathanh@nvidia.com, vdumpa@nvidia.com,
+ jgg@ziepe.ca, linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-tegra@vger.kernel.org
+References: <20251212060803.1712637-1-amhetre@nvidia.com>
+ <20251212060803.1712637-2-amhetre@nvidia.com>
+ <54fce1f8-7675-4351-b292-0009b2e8c599@arm.com> <aTxxBdcY4hODXcdu@nvidia.com>
+From: Robin Murphy <robin.murphy@arm.com>
+Content-Language: en-GB
+In-Reply-To: <aTxxBdcY4hODXcdu@nvidia.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-This .dtsi file is not included anywhere in the tree and can't be
-tested.
+On 12/12/2025 7:46 pm, Nicolin Chen wrote:
+> On Fri, Dec 12, 2025 at 12:01:41PM +0000, Robin Murphy wrote:
+>>> @@ -4542,7 +4542,7 @@ static void acpi_smmu_dsdt_probe_tegra241_cmdqv(struct acpi_iort_node *node,
+>>>    	adev = acpi_dev_get_first_match_dev("NVDA200C", uid, -1);
+>>>    	if (adev) {
+>>>    		/* Tegra241 CMDQV driver is responsible for put_device() */
+>>
+>> Don't we need to bring the put_device(adev) out to this level, since
+>> impl_dev is now something else that AFAICS we are *not* taking a new
+>> reference on (and thus should not be putting either)?
+> 
+> Ah, right! We are using the platform device now.
+> 
+>>> -		smmu->impl_dev = &adev->dev;
+>>> +		smmu->impl_dev = acpi_get_first_physical_node(adev);
+>>>    		smmu->options |= ARM_SMMU_OPT_TEGRA241_CMDQV;
+>>>    		dev_info(smmu->dev, "found companion CMDQV device: %s\n",
+>>>    			 dev_name(smmu->impl_dev));
+> 
+> I think we should squash this:
 
-Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
----
- .../boot/dts/microchip/usb_a9g20-dab-mmx.dtsi | 93 -------------------
- 1 file changed, 93 deletions(-)
- delete mode 100644 arch/arm/boot/dts/microchip/usb_a9g20-dab-mmx.dtsi
+Ack, it occurred to me shortly after sending that in fact it's good to 
+still hold our own reference on impl_dev itself, as we're not relying on 
+a bound driver to hold one for us.
 
-diff --git a/arch/arm/boot/dts/microchip/usb_a9g20-dab-mmx.dtsi b/arch/arm/boot/dts/microchip/usb_a9g20-dab-mmx.dtsi
-deleted file mode 100644
-index 5b1d80c0ab26..000000000000
---- a/arch/arm/boot/dts/microchip/usb_a9g20-dab-mmx.dtsi
-+++ /dev/null
-@@ -1,93 +0,0 @@
--// SPDX-License-Identifier: GPL-2.0-only
--/*
-- * calao-dab-mmx.dtsi - Device Tree Include file for Calao DAB-MMX Daughter Board
-- *
-- * Copyright (C) 2011 Jean-Christophe PLAGNIOL-VILLARD <plagnioj@jcrosoft.com>
-- */
--
--/ {
--	ahb {
--		apb {
--			usart1: serial@fffb4000 {
--				status = "okay";
--			};
--
--			usart3: serial@fffd0000 {
--				status = "okay";
--			};
--		};
--	};
--
--	i2c-gpio@0 {
--		status = "okay";
--	};
--
--	leds {
--		compatible = "gpio-leds";
--
--		user_led1 {
--			label = "user_led1";
--			gpios = <&pioB 20 GPIO_ACTIVE_LOW>;
--		};
--
--/*
--* led already used by mother board but active as high
--*		user_led2 {
--*			label = "user_led2";
--*			gpios = <&pioB 21 GPIO_ACTIVE_LOW>;
--*		};
--*/
--		user_led3 {
--			label = "user_led3";
--			gpios = <&pioB 22 GPIO_ACTIVE_LOW>;
--		};
--
--		user_led4 {
--			label = "user_led4";
--			gpios = <&pioB 23 GPIO_ACTIVE_LOW>;
--		};
--
--		red {
--			label = "red";
--			gpios = <&pioB 24 GPIO_ACTIVE_LOW>;
--		};
--
--		orange {
--			label = "orange";
--			gpios = <&pioB 30 GPIO_ACTIVE_LOW>;
--		};
--
--		green {
--			label = "green";
--			gpios = <&pioB 31 GPIO_ACTIVE_LOW>;
--		};
--	};
--
--	gpio_keys {
--		compatible = "gpio-keys";
--
--		button-user-pb1 {
--			label = "user_pb1";
--			gpios = <&pioB 25 GPIO_ACTIVE_LOW>;
--			linux,code = <0x100>;
--		};
--
--		button-user-pb2 {
--			label = "user_pb2";
--			gpios = <&pioB 13 GPIO_ACTIVE_LOW>;
--			linux,code = <0x101>;
--		};
--
--		button-user-pb3 {
--			label = "user_pb3";
--			gpios = <&pioA 26 GPIO_ACTIVE_LOW>;
--			linux,code = <0x102>;
--		};
--
--		button-user-pb4 {
--			label = "user_pb4";
--			gpios = <&pioC 9 GPIO_ACTIVE_LOW>;
--			linux,code = <0x103>;
--		};
--	};
--};
--- 
-2.51.0
+Cheers,
+Robin.
+
+> diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
+> index 0c98be3135c63..88625e3c27a65 100644
+> --- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
+> +++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
+> @@ -5280,10 +5280,11 @@ static void acpi_smmu_dsdt_probe_tegra241_cmdqv(struct acpi_iort_node *node,
+>   	adev = acpi_dev_get_first_match_dev("NVDA200C", uid, -1);
+>   	if (adev) {
+>   		/* Tegra241 CMDQV driver is responsible for put_device() */
+> -		smmu->impl_dev = acpi_get_first_physical_node(adev);
+> +		smmu->impl_dev = get_device(acpi_get_first_physical_node(adev));
+>   		smmu->options |= ARM_SMMU_OPT_TEGRA241_CMDQV;
+>   		dev_info(smmu->dev, "found companion CMDQV device: %s\n",
+>   			 dev_name(smmu->impl_dev));
+> +		acpi_dev_put(adev);
+>   	}
+>   	kfree(uid);
+>   }
+> 
+> Thanks
+> Nicolin
 
 
