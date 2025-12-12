@@ -1,109 +1,91 @@
-Return-Path: <devicetree+bounces-246197-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246199-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D26BCB9CB7
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 21:37:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4EB0DCB9D4A
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 21:56:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E29803055BB5
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 20:36:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CE720306019F
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 20:56:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4332B2EB85B;
-	Fri, 12 Dec 2025 20:36:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F761310620;
+	Fri, 12 Dec 2025 20:56:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=siemens.com header.i=alexander.sverdlin@siemens.com header.b="CIFquPs9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 440A22D663F;
-	Fri, 12 Dec 2025 20:36:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mta-64-228.siemens.flowmailer.net (mta-64-228.siemens.flowmailer.net [185.136.64.228])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41060236A8B
+	for <devicetree@vger.kernel.org>; Fri, 12 Dec 2025 20:56:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.136.64.228
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765571798; cv=none; b=Z8EwmChnKoRGnOPvN8yAw9j0HMr85wipUdsMsVxdw/oY8pAd5st/q29qd+/3PNHZS7PaVRHjuET1JZ1OdScwf0NxashzmkfqsL3+TmiIg3zItJ/Junbd9DgMzwXISYPZ5KTVeBWJGuC4pZhkDR34oBFHnUat5OfvnHGEM+ZZ5qI=
+	t=1765572978; cv=none; b=OKV+BPW5G+OcC8+CBlnTY6KZmdUqjsH1syac5tHaGpGRfdKWzkracYICXztrBdYTHYHhTmM1lc3ojPKKpgNBTJjw7yJswokB7dSS+99MLo+jXs3isH6KWbIA6EjFQvmKrljtv9erwFRXWeblP8xICHTRqKtxHTUQh7Fko3dtfcM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765571798; c=relaxed/simple;
-	bh=Wr5l93HxK6yATXbDCP7Hf/rUCIiHc/qT9612u4YlCsg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bqJenIp3/V7DHAl/cmLEytqvUvkAm2apiblldzumbSuf5+xBzhwO0/O7EW718+VoZbm6EFCsmde9A99d1fPHESxHlkWpX1euXJCT9xVXkuFaGuhdAoHmhzZ0IidXiSQm16yjNoMVRyCy2No/k7aUAZf/yOwOWjYegMRQjFsVYG0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3014B1063;
-	Fri, 12 Dec 2025 12:36:27 -0800 (PST)
-Received: from [10.1.196.95] (e121345-lin.cambridge.arm.com [10.1.196.95])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id DA0FD3F740;
-	Fri, 12 Dec 2025 12:36:31 -0800 (PST)
-Message-ID: <104441bd-1284-4147-873a-f94c91788609@arm.com>
-Date: Fri, 12 Dec 2025 20:36:25 +0000
+	s=arc-20240116; t=1765572978; c=relaxed/simple;
+	bh=aauJs1J/Gkh6roPnBtH5sB4pnrQTI9lCh4Ou19IFhWw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=HXTPoufNomBRhB+52X8mQHO2IIgdlS93Yfx4AsaDkD3h7oL2neSDtSW+ytnlbwxcFLzDTNQWFbpGI9TUmzLR4lg/hUD+C2TQZ66J1BpEXssDkOocbY9YIDGyOy6rthGivyDD8ppGLC/xmu8jYZc/SqVFd/CcA6bzymDm7uTHOBo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com; dkim=pass (2048-bit key) header.d=siemens.com header.i=alexander.sverdlin@siemens.com header.b=CIFquPs9; arc=none smtp.client-ip=185.136.64.228
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com
+Received: by mta-64-228.siemens.flowmailer.net with ESMTPSA id 20251212204604d47407c8da00020761
+        for <devicetree@vger.kernel.org>;
+        Fri, 12 Dec 2025 21:46:04 +0100
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; s=fm2;
+ d=siemens.com; i=alexander.sverdlin@siemens.com;
+ h=Date:From:Subject:To:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:Cc;
+ bh=jkKRNu8RePBTzLRlHwShxXUlHdolGq1GO4F41VgDmFU=;
+ b=CIFquPs93Lz2rmW0h1/25BobRFozlevYo0Po+OAMN5x1plsaAKnOG953rr9pW7T0gULdFl
+ AJrHubyUuGb06BaUP37JOdSEBdMm41MUM7NvLKiywESTPlKuroT7tWJebMw0xe9ezXv+zZk9
+ 9GO39GZhko7G5UqsBIxGZBoWJLzatxgpe0YJHdCjxzewaQ2QGN0obsvaqOoqS0Md3G1O9NpM
+ i4xyt8iZz6LGJuoSw8SV9fAzzbbLJf2ZGwCkc0zUOI4pufFAY+XMWYsD8xGer5qifaq1T4gE
+ A1/uawR2nmt3HiA8NxAT9c+jNNk8PIxjcA0lNJLeSvmiNaTzOS7M/3Bg==;
+From: "A. Sverdlin" <alexander.sverdlin@siemens.com>
+To: netdev@vger.kernel.org
+Cc: Alexander Sverdlin <alexander.sverdlin@siemens.com>,
+	Hauke Mehrtens <hauke@hauke-m.de>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Daniel Golle <daniel@makrotopia.org>
+Subject: [PATCH net-next 0/2] dsa: mxl-gsw1xx: Support R(G)MII slew rate configuration
+Date: Fri, 12 Dec 2025 21:45:51 +0100
+Message-ID: <20251212204557.2082890-1-alexander.sverdlin@siemens.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V6 1/4] iommu/tegra241-cmdqv: Decouple driver from ACPI
-To: Nicolin Chen <nicolinc@nvidia.com>
-Cc: Ashish Mhetre <amhetre@nvidia.com>, will@kernel.org, joro@8bytes.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- thierry.reding@gmail.com, jonathanh@nvidia.com, vdumpa@nvidia.com,
- jgg@ziepe.ca, linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-tegra@vger.kernel.org
-References: <20251212060803.1712637-1-amhetre@nvidia.com>
- <20251212060803.1712637-2-amhetre@nvidia.com>
- <54fce1f8-7675-4351-b292-0009b2e8c599@arm.com> <aTxxBdcY4hODXcdu@nvidia.com>
-From: Robin Murphy <robin.murphy@arm.com>
-Content-Language: en-GB
-In-Reply-To: <aTxxBdcY4hODXcdu@nvidia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Flowmailer-Platform: Siemens
+Feedback-ID: 519:519-456497:519-21489:flowmailer
 
-On 12/12/2025 7:46 pm, Nicolin Chen wrote:
-> On Fri, Dec 12, 2025 at 12:01:41PM +0000, Robin Murphy wrote:
->>> @@ -4542,7 +4542,7 @@ static void acpi_smmu_dsdt_probe_tegra241_cmdqv(struct acpi_iort_node *node,
->>>    	adev = acpi_dev_get_first_match_dev("NVDA200C", uid, -1);
->>>    	if (adev) {
->>>    		/* Tegra241 CMDQV driver is responsible for put_device() */
->>
->> Don't we need to bring the put_device(adev) out to this level, since
->> impl_dev is now something else that AFAICS we are *not* taking a new
->> reference on (and thus should not be putting either)?
-> 
-> Ah, right! We are using the platform device now.
-> 
->>> -		smmu->impl_dev = &adev->dev;
->>> +		smmu->impl_dev = acpi_get_first_physical_node(adev);
->>>    		smmu->options |= ARM_SMMU_OPT_TEGRA241_CMDQV;
->>>    		dev_info(smmu->dev, "found companion CMDQV device: %s\n",
->>>    			 dev_name(smmu->impl_dev));
-> 
-> I think we should squash this:
+From: Alexander Sverdlin <alexander.sverdlin@siemens.com>
 
-Ack, it occurred to me shortly after sending that in fact it's good to 
-still hold our own reference on impl_dev itself, as we're not relying on 
-a bound driver to hold one for us.
+Maxlinear GSW1xx switches offer slew rate configuration bits for R(G)MII
+interface. The default state of the configuration bits is "normal", while
+"slow" can be used to reduce the radiated emissions. Add the support for
+the latter option into the driver as well as the new DT bindings.
 
-Cheers,
-Robin.
+Alexander Sverdlin (2):
+  dt-bindings: net: dsa: lantiq,gswip: add MaxLinear R(G)MII slew rate
+  net: dsa: mxl-gsw1xx: Support R(G)MII slew rate configuration
 
-> diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-> index 0c98be3135c63..88625e3c27a65 100644
-> --- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-> +++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-> @@ -5280,10 +5280,11 @@ static void acpi_smmu_dsdt_probe_tegra241_cmdqv(struct acpi_iort_node *node,
->   	adev = acpi_dev_get_first_match_dev("NVDA200C", uid, -1);
->   	if (adev) {
->   		/* Tegra241 CMDQV driver is responsible for put_device() */
-> -		smmu->impl_dev = acpi_get_first_physical_node(adev);
-> +		smmu->impl_dev = get_device(acpi_get_first_physical_node(adev));
->   		smmu->options |= ARM_SMMU_OPT_TEGRA241_CMDQV;
->   		dev_info(smmu->dev, "found companion CMDQV device: %s\n",
->   			 dev_name(smmu->impl_dev));
-> +		acpi_dev_put(adev);
->   	}
->   	kfree(uid);
->   }
-> 
-> Thanks
-> Nicolin
+ Documentation/devicetree/bindings/net/dsa/lantiq,gswip.yaml | 5 +++++
+ drivers/net/dsa/lantiq/mxl-gsw1xx.c                         | 6 ++++++
+ drivers/net/dsa/lantiq/mxl-gsw1xx.h                         | 2 ++
+ 3 files changed, 13 insertions(+)
+
+-- 
+2.52.0
 
 
