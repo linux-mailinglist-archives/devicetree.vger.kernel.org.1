@@ -1,143 +1,171 @@
-Return-Path: <devicetree+bounces-246068-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246066-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A562ECB859E
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 10:00:40 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4C50CB8591
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 09:59:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D1E9E3026ACE
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 09:00:09 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 7FB753009291
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 08:59:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DC0E30F922;
-	Fri, 12 Dec 2025 09:00:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56C9D2989B5;
+	Fri, 12 Dec 2025 08:59:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="hsW5++jm"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b="kyaO2tZO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx-relay10-hz2.antispameurope.com (mx-relay10-hz2.antispameurope.com [83.246.65.96])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B139930E854
-	for <devicetree@vger.kernel.org>; Fri, 12 Dec 2025 09:00:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=83.246.65.96
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765530008; cv=pass; b=Mr9teIAzy7mlja/or4lYlWavUTkIxw5lOFBfY2h20cdJ3AkdUxzQTj6JTHn9I75+k2pg9F+JN6yEf6U/WsN/8+Hono0KgZHBrxQ1BMLh0CXf5wja1KbAcZGrqgnQbqi2Ubdv12jE89PfIbsrZkCMlbt40GGKHrQ2DeDE/KkzaaU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765530008; c=relaxed/simple;
-	bh=WKBInquyslnsVUJK3IFncVat4T55trFVNhoPBVSI2Jk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=TvONDmRJiOOMe3wombpE/8s5/PVWdOcKrF7q+1+bDP3nnrkI+WhrHAuVzEOXCuySqcQigj8rCRZhs1sJJD5DXnj1BB5+3Sv3rzviM7fb0u4Uw9RrDYminpg9O0IHVDLp95SVqj9ElZFvoeH71jz2EUPSOPLceXISK3f8YK0Czy0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=hsW5++jm; arc=pass smtp.client-ip=83.246.65.96
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-ARC-Authentication-Results: i=1; mx-gate10-hz2.hornetsecurity.com 1; spf=pass
- reason=mailfrom (ip=94.100.132.6, headerfrom=ew.tq-group.com)
- smtp.mailfrom=ew.tq-group.com
- smtp.helo=hmail-p-smtp01-out03-hz1.hornetsecurity.com; dmarc=pass
- header.from=ew.tq-group.com orig.disposition=pass
-ARC-Message-Signature: a=rsa-sha256;
- bh=84P47lxHC3BLIWqL12zvfUpIKwtTk6oo/ph1IGpKWdI=; c=relaxed/relaxed;
- d=hornetsecurity.com; h=from:to:date:subject:mime-version:; i=1; s=hse1;
- t=1765529965;
- b=OvqG29koEV9d9YJKnv/ff1GBUoKDmH4pT3lXbDJe7EP/OTcq+P9VU/8W5kAjurd8FRq2jBek
- HoqrwjaMGzeB5kUvnlnDskP+oTEAx6z0sZTuKFQVe04bFcG08QkOxfH5TGqOL5TVMIspKwMj9pk
- f6RLuoNG9t2TU6uUBetc0KyAGEhCc00lWiK+Og6JK7918EfRgHmQV1GWX94Gg1B9anqNgqXRAFR
- 3I7557zqyB1tddAV3nveTUtqI9z+4JW+YCK28nrOMnZQ8+9hnqshRU1J1r7TlEcAw/EnFYhpwrx
- AeQBokJHZLSu4dKKEbVvfiQ15F7LNXeXLKqXhj5ftuFxg==
-ARC-Seal: a=rsa-sha256; cv=none; d=hornetsecurity.com; i=1; s=hse1;
- t=1765529965;
- b=BJtSxIX5pTwt+ch56Z5gR6qEh3O9mir/TNosfBcSnIhHxQAyCHgg/WfM+RMSDwhiFECZrZE/
- 7hjY9aPLAH7iLsCS4YlDjMlxnB+4qND152hMZej4usBHWfG6aXIaDzNjyHW54manV7Qn0A+X5lh
- 8nEpzuI0Qb2ij4ccGJ3QlO8bQEYiQJJhldsn/EQSLi8lg/A2nhR2xiFo4OT28qDkFIxbDOVGfYy
- 6XIYLwmPS7fnfgYYKbT3IKcPfxHrcpFO5Yf78FA+PudKu7Ytfkzoj6cyiCUx3pX7A6bV9Abqn9j
- IX3qoVx1WhY/zPmUrtjwRsFgKaNwQFngQzvooyUSIBjXA==
-Received: from he-nlb01-hz1.hornetsecurity.com ([94.100.132.6]) by mx-relay10-hz2.antispameurope.com;
- Fri, 12 Dec 2025 09:59:24 +0100
-Received: from steina-w.tq-net.de (host-82-135-125-110.customer.m-online.net [82.135.125.110])
-	(Authenticated sender: alexander.stein@ew.tq-group.com)
-	by hmail-p-smtp01-out03-hz1.hornetsecurity.com (Postfix) with ESMTPSA id 69CACCC0CCB;
-	Fri, 12 Dec 2025 09:59:11 +0100 (CET)
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>
-Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] ARM: dts: imx6qdl: Add default GIC address cells
-Date: Fri, 12 Dec 2025 09:59:00 +0100
-Message-ID: <20251212085902.103507-2-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251212085902.103507-1-alexander.stein@ew.tq-group.com>
-References: <20251212085902.103507-1-alexander.stein@ew.tq-group.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DF54221DB1;
+	Fri, 12 Dec 2025 08:59:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.75.126.72
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1765529992; cv=none; b=UU9Ej9CBC/YXfvX5H63ELXmlFdh6OB+S7wuYHNP/tqpEAMhjf+E6FjpWAKgz3+zRpAC3WEqlP5GGp+ZIluWAR1xl4EwJHdFHpXSm32OMQgWi24qzIOaDhpPGxMBRwVWXcrEpshgENqLz4cdFxeFWwDbS3P4QVC8cQViiLmZ7+8w=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1765529992; c=relaxed/simple;
+	bh=J7+MHP9JHv0O6N4thchA53z0h4Lo6YTW9NlwTADzJ9c=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=FYrkO9y8z14trucbya5E5VwCLIC4KAtkEAGV0owWdj26l3bGjGHUo4nQHI07ZE5G901HVZrIyXFKz6jCNBFaPLw1oYQHgQwjQzr/Go+2TpyUEE5nufJEaIOhThKPeuT0y41Fo8SdMWS+UyAJitDOR0Szjrv2Zay/M7Ruj8f9xAM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com; spf=pass smtp.mailfrom=realtek.com; dkim=fail (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b=kyaO2tZO reason="signature verification failed"; arc=none smtp.client-ip=211.75.126.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=realtek.com
+X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 5BC8xAunD3978353, This message is accepted by code: ctloc85258
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=realtek.com; s=dkim;
+	t=1765529950; bh=J7+MHP9JHv0O6N4thchA53z0h4Lo6YTW9NlwTADzJ9c=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:Content-Transfer-Encoding:MIME-Version;
+	b=kyaO2tZOhlb26XWKzWjyl2tvLqtJ6Qe+Z7cBgs6a27SGEVj00ag6GTmERPmaDkmS/
+	 I4+HZHjyBdWOma6uiN93aPccdQEe/XecjXxCk73dj96SKOqhd4BAJx5gvK8K1v/i+F
+	 CD+zfMZWUBqL5cUBftgRlU7/WHAJdtnS7Y8qB1STzphuNYYUBwHNQiIWG9qLCHa/XI
+	 VeUCdr84y9Os6k+LCkNEhMOGjt7SkXo1v3X+/kfZ67qO8/E++QRHKt9ifVXwG3ppAk
+	 XIZ7SqcA/2FS7GwjHLYln/XIpLB74g1mFa7MXRGFXMFkP339e/lI77pCfvy7lQ4QL1
+	 i5eSu2zSnwfBg==
+Received: from mail.realtek.com (rtkexhmbs03.realtek.com.tw[10.21.1.53])
+	by rtits2.realtek.com.tw (8.15.2/3.21/5.94) with ESMTPS id 5BC8xAunD3978353
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Fri, 12 Dec 2025 16:59:10 +0800
+Received: from RTKEXHMBS06.realtek.com.tw (10.21.1.56) by
+ RTKEXHMBS03.realtek.com.tw (10.21.1.53) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.10; Fri, 12 Dec 2025 16:59:10 +0800
+Received: from RTKEXHMBS06.realtek.com.tw ([::1]) by
+ RTKEXHMBS06.realtek.com.tw ([fe80::2fa5:eccb:34ee:7bb%10]) with mapi id
+ 15.02.1544.027; Fri, 12 Dec 2025 16:59:10 +0800
+From: Oder Chiou <oder_chiou@realtek.com>
+To: "'Rob Herring'" <robh@kernel.org>
+CC: "cezary.rojewski@intel.com" <cezary.rojewski@intel.com>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "lgirdwood@gmail.com"
+	<lgirdwood@gmail.com>,
+        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "perex@perex.cz"
+	<perex@perex.cz>,
+        "linux-sound@vger.kernel.org"
+	<linux-sound@vger.kernel.org>,
+        "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>,
+        "alsa-devel@alsa-project.org"
+	<alsa-devel@alsa-project.org>,
+        "Flove(HsinFu)" <flove@realtek.com>,
+        =?big5?B?U2h1bWluZyBbrVOu0bvKXQ==?= <shumingf@realtek.com>,
+        Jack Yu
+	<jack.yu@realtek.com>,
+        =?big5?B?RGVyZWsgW6TovHe4cV0=?=
+	<derek.fang@realtek.com>
+Subject: RE: [PATCH v9 1/2] ASoC: dt-bindings: realtek,rt5575: add support for
+ ALC5575
+Thread-Topic: [PATCH v9 1/2] ASoC: dt-bindings: realtek,rt5575: add support
+ for ALC5575
+Thread-Index: AQHcao1RKCDC/uF5H0eyR5PDy/RBT7UcDTWAgAGESCA=
+Date: Fri, 12 Dec 2025 08:59:10 +0000
+Message-ID: <6c85fd92dc244789a5259ff4b11ec2e0@realtek.com>
+References: <20251211110130.2925541-1-oder_chiou@realtek.com>
+ <20251211110130.2925541-2-oder_chiou@realtek.com>
+ <20251211153835.GA1251928-robh@kernel.org>
+In-Reply-To: <20251211153835.GA1251928-robh@kernel.org>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+Content-Type: text/plain; charset="big5"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-cloud-security-sender:alexander.stein@ew.tq-group.com
-X-cloud-security-recipient:devicetree@vger.kernel.org
-X-cloud-security-crypt: load encryption module
-X-cloud-security-Mailarchiv: E-Mail archived for: alexander.stein@ew.tq-group.com
-X-cloud-security-Mailarchivtype:outbound
-X-cloud-security-Virusscan:CLEAN
-X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on mx-relay10-hz2.antispameurope.com with 4dSNg41V2Cz4FKLF
-X-cloud-security-connect: he-nlb01-hz1.hornetsecurity.com[94.100.132.6], TLS=1, IP=94.100.132.6
-X-cloud-security-Digest:bb4a7dffaef21819fc1d7783b77528b3
-X-cloud-security:scantime:3.879
-DKIM-Signature: a=rsa-sha256;
- bh=84P47lxHC3BLIWqL12zvfUpIKwtTk6oo/ph1IGpKWdI=; c=relaxed/relaxed;
- d=ew.tq-group.com;
- h=content-type:mime-version:subject:from:to:message-id:date; s=hse1;
- t=1765529964; v=1;
- b=hsW5++jmMX/i6kwcEyVF7Dpjwy+Js1COrnlq04y3qFO2bvNdTV4RTc8q4I/vr6nb92Ppc+dv
- dsBVhW1rJP97rQoAOQYwWiWTeKXtWDoGacRwPCxocmjh12VtUnjrE/WgsPbL93pbd+QI1AHcEEj
- voQbuFO+5yIHr3sF6aORK1EQU7fryCDILMGIYVbcYY/WPIMmBH4JmOuocSi6UqoDdwBdbsO0PHn
- mIWiJucUrX1M/nlfglUXxf+wsLGLm+JncQB6waG/9ac+FLkMPU2bXBsGVtvFnPRPBoCgmqtGEcB
- 5bZCsMuU5WQiewZUZy61cgrxMiift6Pjn0vVjutIXYDYA==
 
-Add missing address-cells 0 to GPC interrupt node to silence W=1
-warning:
-
-  imx6qdl.dtsi:281.4-284.29: Warning (interrupt_map): /soc/pcie@1ffc000:interrupt-map:
-    Missing property '#address-cells' in node /soc/bus@2000000/gpc@20dc000, using 0 as fallback
-
-Value '0' is correct because:
-1. GPC interrupt controller children are only power domains,
-2. interrupt-map property (in PCI node) consists of five components and
-   the fourth component "parent unit address", which size is defined by
-   '#address-cells' of the node pointed to by the interrupt-parent
-   component, is not used (=0)
-
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
-This is based on commit faf183a02ed6b ("arm64: dts: imx8mp: Add default GIC
-address cells")
-
- arch/arm/boot/dts/nxp/imx/imx6qdl.dtsi | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl.dtsi
-index 45bcfd7faf9db..9793feee63947 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6qdl.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx6qdl.dtsi
-@@ -875,6 +875,7 @@ src: reset-controller@20d8000 {
- 			gpc: gpc@20dc000 {
- 				compatible = "fsl,imx6q-gpc";
- 				reg = <0x020dc000 0x4000>;
-+				#address-cells = <0>;
- 				interrupt-controller;
- 				#interrupt-cells = <3>;
- 				interrupts = <0 89 IRQ_TYPE_LEVEL_HIGH>;
--- 
-2.43.0
-
+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBSb2IgSGVycmluZyA8cm9iaEBr
+ZXJuZWwub3JnPg0KPiBTZW50OiBUaHVyc2RheSwgRGVjZW1iZXIgMTEsIDIwMjUgMTE6MzkgUE0N
+Cj4gVG86IE9kZXIgQ2hpb3UgPG9kZXJfY2hpb3VAcmVhbHRlay5jb20+DQo+IENjOiBjZXphcnku
+cm9qZXdza2lAaW50ZWwuY29tOyBicm9vbmllQGtlcm5lbC5vcmc7IGxnaXJkd29vZEBnbWFpbC5j
+b207DQo+IGtyemsrZHRAa2VybmVsLm9yZzsgY29ub3IrZHRAa2VybmVsLm9yZzsgcGVyZXhAcGVy
+ZXguY3o7DQo+IGxpbnV4LXNvdW5kQHZnZXIua2VybmVsLm9yZzsgZGV2aWNldHJlZUB2Z2VyLmtl
+cm5lbC5vcmc7DQo+IGFsc2EtZGV2ZWxAYWxzYS1wcm9qZWN0Lm9yZzsgRmxvdmUoSHNpbkZ1KSA8
+ZmxvdmVAcmVhbHRlay5jb20+OyBTaHVtaW5nIFutUw0KPiCu0bvKXSA8c2h1bWluZ2ZAcmVhbHRl
+ay5jb20+OyBKYWNrIFl1IDxqYWNrLnl1QHJlYWx0ZWsuY29tPjsgRGVyZWsgW6TovHcNCj4guHFd
+IDxkZXJlay5mYW5nQHJlYWx0ZWsuY29tPg0KPiBTdWJqZWN0OiBSZTogW1BBVENIIHY5IDEvMl0g
+QVNvQzogZHQtYmluZGluZ3M6IHJlYWx0ZWsscnQ1NTc1OiBhZGQgc3VwcG9ydCBmb3INCj4gQUxD
+NTU3NQ0KPiANCj4gDQo+IEV4dGVybmFsIG1haWwgOiBUaGlzIGVtYWlsIG9yaWdpbmF0ZWQgZnJv
+bSBvdXRzaWRlIHRoZSBvcmdhbml6YXRpb24uIERvIG5vdA0KPiByZXBseSwgY2xpY2sgbGlua3Ms
+IG9yIG9wZW4gYXR0YWNobWVudHMgdW5sZXNzIHlvdSByZWNvZ25pemUgdGhlIHNlbmRlciBhbmQN
+Cj4ga25vdyB0aGUgY29udGVudCBpcyBzYWZlLg0KPiANCj4gDQo+IA0KPiBPbiBUaHUsIERlYyAx
+MSwgMjAyNSBhdCAwNzowMToyOVBNICswODAwLCBPZGVyIENoaW91IHdyb3RlOg0KPiA+IEF1ZGlv
+IGNvZGVjIHdpdGggSTJTLCBJMkMgYW5kIFNQSS4NCj4gPg0KPiA+IFNpZ25lZC1vZmYtYnk6IE9k
+ZXIgQ2hpb3UgPG9kZXJfY2hpb3VAcmVhbHRlay5jb20+DQo+ID4gLS0tDQo+ID4gIC4uLi9iaW5k
+aW5ncy9zb3VuZC9yZWFsdGVrLHJ0NTU3NS55YW1sICAgICAgICB8IDQ0DQo+ICsrKysrKysrKysr
+KysrKysrKysNCj4gPiAgMSBmaWxlIGNoYW5nZWQsIDQ0IGluc2VydGlvbnMoKykNCj4gPiAgY3Jl
+YXRlIG1vZGUgMTAwNjQ0DQo+IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9zb3Vu
+ZC9yZWFsdGVrLHJ0NTU3NS55YW1sDQo+ID4NCj4gPiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlv
+bi9kZXZpY2V0cmVlL2JpbmRpbmdzL3NvdW5kL3JlYWx0ZWsscnQ1NTc1LnlhbWwNCj4gYi9Eb2N1
+bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3Mvc291bmQvcmVhbHRlayxydDU1NzUueWFtbA0K
+PiA+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0DQo+ID4gaW5kZXggMDAwMDAwMDAwMDAwLi42MGY5YWYz
+OTlkZDINCj4gPiAtLS0gL2Rldi9udWxsDQo+ID4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0
+cmVlL2JpbmRpbmdzL3NvdW5kL3JlYWx0ZWsscnQ1NTc1LnlhbWwNCj4gPiBAQCAtMCwwICsxLDQ0
+IEBADQo+ID4gKyMgU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0yLjAtb25seSBPUiBCU0Qt
+Mi1DbGF1c2UNCj4gPiArJVlBTUwgMS4yDQo+ID4gKy0tLQ0KPiA+ICskaWQ6IGh0dHA6Ly9kZXZp
+Y2V0cmVlLm9yZy9zY2hlbWFzL3NvdW5kL3JlYWx0ZWsscnQ1NTc1LnlhbWwjDQo+ID4gKyRzY2hl
+bWE6IGh0dHA6Ly9kZXZpY2V0cmVlLm9yZy9tZXRhLXNjaGVtYXMvY29yZS55YW1sIw0KPiA+ICsN
+Cj4gPiArdGl0bGU6IEFMQzU1NzUgYXVkaW8gQ09ERUMNCj4gPiArDQo+ID4gK21haW50YWluZXJz
+Og0KPiA+ICsgIC0gT2RlciBDaGlvdSA8b2Rlcl9jaGlvdUByZWFsdGVrLmNvbT4NCj4gPiArDQo+
+ID4gK2Rlc2NyaXB0aW9uOg0KPiA+ICsgIFRoZSBkZXZpY2Ugc3VwcG9ydHMgYm90aCBJMkMgYW5k
+IFNQSS4gSTJDIGlzIG1hbmRhdG9yeSwgd2hpbGUgU1BJIGlzDQo+ID4gKyAgb3B0aW9uYWwgZGVw
+ZW5kaW5nIG9uIHRoZSBoYXJkd2FyZSBjb25maWd1cmF0aW9uLg0KPiA+ICsNCj4gPiArYWxsT2Y6
+DQo+ID4gKyAgLSAkcmVmOiAvc2NoZW1hcy9zcGkvc3BpLXBlcmlwaGVyYWwtcHJvcHMueWFtbCMN
+Cj4gPiArICAtICRyZWY6IGRhaS1jb21tb24ueWFtbCMNCj4gPiArDQo+ID4gK3Byb3BlcnRpZXM6
+DQo+ID4gKyAgY29tcGF0aWJsZToNCj4gPiArICAgIGVudW06DQo+ID4gKyAgICAgIC0gcmVhbHRl
+ayxydDU1NzUNCj4gPiArICAgICAgLSByZWFsdGVrLHJ0NTU3NS11c2Utc3BpDQo+ID4gKw0KPiA+
+ICsgIHJlZzoNCj4gPiArICAgIG1heEl0ZW1zOiAxDQo+ID4gKw0KPiA+ICtyZXF1aXJlZDoNCj4g
+PiArICAtIGNvbXBhdGlibGUNCj4gPiArICAtIHJlZw0KPiA+ICsNCj4gPiArdW5ldmFsdWF0ZWRQ
+cm9wZXJ0aWVzOiBmYWxzZQ0KPiA+ICsNCj4gPiArZXhhbXBsZXM6DQo+ID4gKyAgLSB8DQo+ID4g
+KyAgICBpMmMgew0KPiA+ICsgICAgICAgICNhZGRyZXNzLWNlbGxzID0gPDE+Ow0KPiA+ICsgICAg
+ICAgICNzaXplLWNlbGxzID0gPDA+Ow0KPiA+ICsgICAgICAgIGNvZGVjQDU3IHsNCj4gPiArICAg
+ICAgICAgICAgY29tcGF0aWJsZSA9ICJyZWFsdGVrLHJ0NTU3NSI7DQo+ID4gKyAgICAgICAgICAg
+IHJlZyA9IDwweDU3PjsNCj4gPiArICAgICAgICB9Ow0KPiA+ICsgICAgfTsNCj4gDQo+IEl0IGlz
+IGNvbXBsZXRlbHkgdW5jbGVhciB3aGF0IHlvdSBhcmUgZG9pbmcgaW4gdGhlIFNQSSBjYXNlLiBJ
+DQo+IGRlY2lwaGVyZWQgaXQgc3R1ZHlpbmcgdGhlIGRyaXZlci4gSSBzaG91bGRuJ3QgaGF2ZSB0
+byBkbyB0aGF0LCB5b3VyDQo+IGJpbmRpbmcgc2hvdWxkIG1ha2UgdGhhdCBjbGVhci4NCj4gDQo+
+IFNvIHlvdXIgRFQgbXVzdCBsb29rIGxpa2UgdGhpczoNCj4gDQo+IGkyYyB7DQo+ICAgICAgICAg
+Y29kZWNANTcgew0KPiAgICAgICAgICAgICAgICAgY29tcGF0aWJsZSA9ICJyZWFsdGVrLHJ0NTU3
+NS11c2Utc3BpIjsNCj4gICAgICAgICAgICAgICAgIHJlZyA9IDwweDU3PjsNCj4gICAgICAgICB9
+Ow0KPiB9Ow0KPiANCj4gc3BpIHsNCj4gICAgICAgICBjb2RlY0AxIHsNCj4gICAgICAgICAgICAg
+ICAgIGNvbXBhdGlibGUgPSAicmVhbHRlayxydDU1NzUiOw0KPiAgICAgICAgICAgICAgICAgcmVn
+ID0gPDB4MT47DQo+ICAgICAgICAgfTsNCj4gfTsNCj4gDQo+IEZpcnN0LCB0aGVyZSdzIG5vIG5l
+ZWQgZm9yICItdXNlLXNwaSIgYmVjYXVzZSB5b3UgY2FuIGp1c3QgY2hlY2sgaWYNCj4gdGhlcmUg
+aXMgYSBydDU1NzUgU1BJIGRldmljZSBhbmQgdXNlIGl0IGlmIHRoZXJlIGlzLiBXaHkgd291bGQg
+eW91IGhhdmUNCj4gdGhlIFNQSSBkZXZpY2UgYW5kIG5vdCB1c2UgaXQ/DQoNClRoZSBjb21wYXRp
+YmxlIHJlYWx0ZWsscnQ1NTc1LXVzZS1zcGkgd2lsbCBiZSByZW1vdmVkLCBhbmQgaWYgdGhlcmUg
+aXMgbm8NClNQSSBkZXZpY2UgaW4gdGhlIERUUywgdGhlIHdhcm5pbmcgbWVzc2FnZSB3aWxsIGJl
+IHNob3duIGFzICJUaGUgaGFyZHdhcmUNCmNvbmZpZ3VyYXRpb24gc2hvdWxkIGJlIHdpdGggYnVp
+bHQtaW4gZmxhc2giLg0KDQo+IEJ1dCByZWFsbHkgaXQgaXMgbm90IGlkZWFsIGhhdmluZyAyIGRl
+dmljZSBub2RlcyBmb3IgYSBzaW5nbGUgZGV2aWNlLiBJdA0KPiB3b3VsZCBiZSBtdWNoIHNpbXBs
+ZXIgdG8ganVzdCBoYXZlIHNvbWV0aGluZyBsaWtlIHRoaXMgaW4gdGhlIGkyYyBub2RlOg0KPiAN
+Cj4gc3BpLXBhcmVudCA9IDwmc3BpMCAxPjsNCj4gDQo+IFdoZXJlIHRoZSBjZWxsIGlzIHRoZSBj
+aGlwLXNlbGVjdCAjLg0KPiANCj4gV2UgaGF2ZSBhbiAnaTJjLXBhcmVudCcgYWxyZWFkeSBmb3Ig
+c2ltaWxhciByZWFzb25zIHdoZW4gdGhlcmUgYXJlIDINCj4gYnVzIGNvbm5lY3Rpb25zLg0KDQpJ
+biB0aGUgY3VycmVudCBrZXJuZWwsIEkgY2Fubm90IGZpbmQgYW55IGZ1bmN0aW9uIHRvIG9idGFp
+biBhDQpzdHJ1Y3Qgc3BpX2NvbnRyb2xsZXIgd2hlbiBubyBTUEkgZGV2aWNlIGlzIGRlZmluZWQg
+aW4gdGhlIERUUy4gVGhpcyB3YXMNCnBvc3NpYmxlIGluIG9sZGVyIGtlcm5lbHMgdXNpbmcgdGhl
+IGxlZ2FjeSBzcGlfYnVzbnVtX3RvX21hc3RlcigpLCBidXQNCnRoYXQgZnVuY3Rpb24gaXMgbm8g
+bG9uZ2VyIGF2YWlsYWJsZSBpbiB1cHN0cmVhbS4NCg0KVGhhbmtzLA0KT2Rlcg0K
 
