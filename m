@@ -1,177 +1,100 @@
-Return-Path: <devicetree+bounces-246046-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246047-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B0E1CB828A
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 08:50:44 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED4B3CB8374
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 09:15:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id BAE6B300B8F5
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 07:50:42 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 2AB9D301BCD6
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 08:15:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1025730F801;
-	Fri, 12 Dec 2025 07:50:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9F0F30E85D;
+	Fri, 12 Dec 2025 08:15:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="i61QUMSp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nFeJPvAg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08DB930F7EA;
-	Fri, 12 Dec 2025 07:50:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 647C630E0E7;
+	Fri, 12 Dec 2025 08:15:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765525840; cv=none; b=EtN8sJq9fQiNbUU453TW65u6iOdAYTu6Ds/XkWh4pGKkas5GUSIZjP7YmmV5wbK5Pg+WaXR2RbWD31bgliKlqOzMiJAPsAyOVeu/53+TmSE4317ZRJlUK+U0e5DzepZtqFeSyQrIiivN0/yAYFetxUDVlzALL8SonkoXooZjG/I=
+	t=1765527333; cv=none; b=CtFwKedGccDO8hj/1g3m4QoUBjR4sxg8/SG1R51i4Lmmcj97k3LDWKI5SSiEiEyar5DiMYdhTFGjACrPDQEHoM59tyOCcEcn9TWAvFfpuuN8kb0g48keO+rwNCu6q9ApGN7b+5AfDEhj85DPs/zf0Hwtir0bLiC/nxfSFTX+oRo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765525840; c=relaxed/simple;
-	bh=+2bbw/KsVrEgb/z+PSRCnvFocrRg0rPa/Cvl155WVls=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=F2LougUfGPdK7psU26DupntsbSlMhIJt6Ro3NhhfcH3S+PRV/E6XGjmqARquN4ifgQ562ajpWcFbySISqgdtGwZ+NBqyP6cyo+s6DgIlro+qDo+wh1kcrb+me3zKIYrxTKGgL0T6YZvySIRzHE1WOcY/s8GjsWlVr/hg+XhXiUk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=i61QUMSp; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 722851A2118;
-	Fri, 12 Dec 2025 07:50:37 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 3839D606DF;
-	Fri, 12 Dec 2025 07:50:37 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 20F8D103C8DF7;
-	Fri, 12 Dec 2025 08:50:32 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1765525836; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=WDRM+Mcm+eaOgrPszSVJn6wMYj7R2OASXJPVQeqhico=;
-	b=i61QUMSpjF3ehPjvtdhLBXiDK+nSX9ISYyXEt0WWu741UGA1f79yxdE7Sa6i/LvuOIEZlY
-	Z7Qcc5tyZimRoBVA6HyoftzOZCv2JsQcYrZLOeyAFoar93NxsEe6VfjoHuEjvNbzlG4u60
-	QBu1frPhcvkKZvDS375pi6bIof5vcVnbZeAvgZD3C4C97ciJV+Q02OiUSrdD7HXCW36In4
-	amlB8XE/6uOMpylphGGF4VMDORIM49r+C06J9ZrfNWT/DZ1Y8jPatGIeTlrif5cizSaO3U
-	ICx40/SR70zz0cHGx+hVpt/POSwEKUmlskokjb/3qWx+F/2lhqJpxrvtswNz0g==
-Message-ID: <4d34658b-874d-4681-95c1-616f5b385550@bootlin.com>
-Date: Fri, 12 Dec 2025 08:50:31 +0100
+	s=arc-20240116; t=1765527333; c=relaxed/simple;
+	bh=/hrrCjWB7RCTyEWEeMlOdi0WwTl2Sn/DGE23XvsAA1U=;
+	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
+	 MIME-Version:Content-Type; b=SJoCLG+JLozlFKeYZYems+icK32n+OkfybtPTjrYbr4mEKA9teDNHq+lBVwPnrAXlJYY/nwiBz1sm2QqIMc11QEacRY/RiKJiQQ76C9XvmwPKQ/i5czEsTtXcDTJkTuIbFk/Vq0/Lpl0rPcc68MgLMH4BSJnkNQMxu4ApLxyqTo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nFeJPvAg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D38DDC4CEF1;
+	Fri, 12 Dec 2025 08:15:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1765527331;
+	bh=/hrrCjWB7RCTyEWEeMlOdi0WwTl2Sn/DGE23XvsAA1U=;
+	h=Date:From:To:cc:Subject:In-Reply-To:References:From;
+	b=nFeJPvAgpE2u+HqSBX8PIxPmMSQ17wJNJelCCJFq1uX7BJ4kkZTE58a4A/8W62uDv
+	 8dCoi9GTVmIMujcz+AOuXNHyzOpNdkqYb0DKCTnbVN5TLfcAkHHk4X5GkOY53+fRgD
+	 H2vRj24tmoDmCl8w/eVYpZl4Jls0dlJuEvEZknT2PTiKXaOtE9hzu2MBmaeM6kr1j/
+	 ogHmwcJaqT9Ixl5mvdquTPY2dsBps1wEREysFISYUzN+OM8KsbYw3C3l1ZIxq/kU5p
+	 WRGZq7FJYPTT9l34JbOAyhRb6Au3e9WpMLWJE01Ek738rPu9oBt8WFwFmkHSBIxHo9
+	 YRpD801VkVqYw==
+Date: Fri, 12 Dec 2025 01:15:11 -0700 (MST)
+From: Paul Walmsley <pjw@kernel.org>
+To: Deepak Gupta <debug@rivosinc.com>
+cc: linux-riscv@lists.infradead.org, tglx@linutronix.de, mingo@redhat.com, 
+    bp@alien8.de, dave.hansen@linux.intel.com, x86@kernel.org, hpa@zytor.com, 
+    akpm@linux-foundation.org, Liam.Howlett@oracle.com, vbabka@suse.cz, 
+    lorenzo.stoakes@oracle.com, paul.walmsley@sifive.com, palmer@dabbelt.com, 
+    aou@eecs.berkeley.edu, conor@kernel.org, robh@kernel.org, 
+    krzk+dt@kernel.org, arnd@arndb.de, brauner@kernel.org, 
+    peterz@infradead.org, oleg@redhat.com, ebiederm@xmission.com, 
+    kees@kernel.org, corbet@lwn.net, shuah@kernel.org, jannh@google.com, 
+    conor+dt@kernel.org, ojeda@kernel.org, alex.gaynor@gmail.com, 
+    boqun.feng@gmail.com, gary@garyguo.net, bjorn3_gh@protonmail.com, 
+    a.hindborg@kernel.org, aliceryhl@google.com, tmgross@umich.edu, 
+    lossin@kernel.org, linux-kernel@vger.kernel.org, 
+    linux-fsdevel@vger.kernel.org, linux-mm@kvack.org, 
+    devicetree@vger.kernel.org, linux-arch@vger.kernel.org, 
+    linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org, 
+    alistair.francis@wdc.com, richard.henderson@linaro.org, jim.shu@sifive.com, 
+    andybnac@gmail.com, kito.cheng@sifive.com, charlie@rivosinc.com, 
+    atishp@rivosinc.com, evan@rivosinc.com, cleger@rivosinc.com, 
+    alexghiti@rivosinc.com, samitolvanen@google.com, broonie@kernel.org, 
+    rick.p.edgecombe@intel.com, rust-for-linux@vger.kernel.org, 
+    zong.li@sifive.com, david@redhat.com, andreas.korb@aisec.fraunhofer.de, 
+    valentin.haudiquet@canonical.com, cmirabil@redhat.com
+Subject: Re: [PATCH v26 00/28] riscv control-flow integrity for usermode
+In-Reply-To: <176551861579.2032148.13920544388182691102.git-patchwork-notify@kernel.org>
+Message-ID: <b9991702-44d9-1f0d-e5c8-677c404e2522@kernel.org>
+References: <20251211-v5_user_cfi_series-v26-0-f0f419e81ac0@rivosinc.com> <176551861579.2032148.13920544388182691102.git-patchwork-notify@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] dt-bindings: pwm: sunxi: add PWM controller for
- Allwinner H616
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>, Philipp Zabel
- <p.zabel@pengutronix.de>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- linux-kernel@vger.kernel.org
-References: <20251205100239.1563353-1-richard.genoud@bootlin.com>
- <20251205100239.1563353-2-richard.genoud@bootlin.com>
- <20251208-gorgeous-capuchin-of-protection-4ad0c2@quoll>
-From: Richard GENOUD <richard.genoud@bootlin.com>
-Content-Language: en-US, fr
-Organization: Bootlin
-In-Reply-To: <20251208-gorgeous-capuchin-of-protection-4ad0c2@quoll>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=US-ASCII
 
-Hi Krzysztof,
+On Fri, 12 Dec 2025, patchwork-bot+linux-riscv@kernel.org wrote:
 
-Le 08/12/2025 à 07:52, Krzysztof Kozlowski a écrit :
-> On Fri, Dec 05, 2025 at 11:02:36AM +0100, Richard Genoud wrote:
->> Allwinner H616 SoC contains a PWM controller quite different from the A10.
->> It has 6 channels than can generate PWM waveforms or clocks if bypass is
->> enabled.
->>
->> Signed-off-by: Richard Genoud <richard.genoud@bootlin.com>
->> ---
->>   .../pwm/allwinner,sun50i-h616-pwm.yaml        | 67 +++++++++++++++++++
->>   1 file changed, 67 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/pwm/allwinner,sun50i-h616-pwm.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/pwm/allwinner,sun50i-h616-pwm.yaml b/Documentation/devicetree/bindings/pwm/allwinner,sun50i-h616-pwm.yaml
->> new file mode 100644
->> index 000000000000..b89735ad3a43
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/pwm/allwinner,sun50i-h616-pwm.yaml
->> @@ -0,0 +1,67 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/pwm/allwinner,sun50i-h616-pwm.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Allwinner H616 PWM
->> +
->> +maintainers:
->> +  - Richard Genoud <richard.genoud@bootlin.com>
->> +
->> +description: |
+> This series was applied to riscv/linux.git (for-next)
+> by Paul Walmsley <pjw@kernel.org>:
 > 
-> Do not need '|' unless you need to preserve formatting.
-Ok, I was thinking that it was nicer with the formatting.
+> On Thu, 11 Dec 2025 09:20:33 -0800 you wrote:
+> > v26: CONFIG_RISCV_USER_CFI depends on CONFIG_MMU (dependency of shadow stack
+> > on MMU). Used b4 to pick tags, apparantly it messed up some tag picks. Fixing it
 
-> 
->> +  Allwinner H616 PWM can generate standard PWM signals with variable pulse width
->> +  and period.
->> +  Also, instead of a PWM signal, a channel can be used to provide a clock.
->> +
->> +properties:
->> +  compatible:
->> +    const: allwinner,sun50i-h616-pwm
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  clocks:
->> +    items:
->> +      - description: Bus Clock
->> +
-> 
-> Are you sure there is no first clock? Really, really sure? If you add it
-> later, I would be pretty sad, because that's unnecessary duplication of
-> binidngs....
-I surely don't want to make you sad :)
+This is the Patchwork bot getting things wrong, again.  
 
-Having a second look at the sun4i binding, I think there's a way to use it.
-The sun4i, as you said, has a module clock (OSC24M) and an optional bus 
-clock.
-Here, the bus clock is mandatory, but the H616 PWM uses OSC24M and APB1 
-as clock sources.
+What got repushed was a slightly modified version of the v23 series -- 
+with the non-code changes described here:
 
-So, I guess that if we add something like that:
-    clocks:
-      minItems: 1
-      items:
-        - description: Module Clock
-        - description: Bus Clock
-+      - description: APB Clock
+   https://lore.kernel.org/linux-riscv/176551861579.2032148.13920544388182691102.git-patchwork-notify@kernel.org/T/#t
 
-    clock-names:
-      minItems: 1
-      items:
-        - const: mod
-        - const: bus
-+      - const: apb
+Deepak: as others have pointed out, you shouldn't be sending patch series 
+during merge windows.
 
-    resets:
-      maxItems: 1
 
-In the sun4i pwm binding, we could re-use it for the H616 pwm right?
-(APB clock is maybe not the best name, could be secondary module clock)
-
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-> 
-> Best regards,
-> Krzysztof
-> 
-Thanks for your review!
-
-Regards,
-Richard
-
+- Paul
 
