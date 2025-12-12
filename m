@@ -1,231 +1,104 @@
-Return-Path: <devicetree+bounces-246137-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246138-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C158CB8E21
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 14:20:05 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32154CB8E72
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 14:33:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D4116304D56F
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 13:20:03 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B975F304FBA3
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 13:33:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5175A21CA13;
-	Fri, 12 Dec 2025 13:20:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA80421CC60;
+	Fri, 12 Dec 2025 13:33:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PQiTLARM"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="4m6yDxHo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BFF91D6188
-	for <devicetree@vger.kernel.org>; Fri, 12 Dec 2025 13:20:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADE421C860B;
+	Fri, 12 Dec 2025 13:33:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765545603; cv=none; b=Yo7Is7LiMjX3xVpneeuzJsuMpB5uqNNvHkcyZlh5lnFQ7eA7BTry1nMd9a9uX4nMe+6LDuKSUwremygXt9aWwfqOdU6OyVHhL0gW/HRf4mhIDZQhURK4go84Rm/yAx3Ky8kd99ggHod/scn/Nc/Cq4amX5fgSOlgQbKIdNodd/I=
+	t=1765546398; cv=none; b=KWKL7JFnN9waj0YWatmkWCLxJMxdXqB346MESC5wx94k5M95GwXS1k9CH1imDKcm07gblXcOSyg6BJbGOAsSEBARwZU7w+zlbUMe+Z1ZJoKKjltWANKHPGYpf6CDL2cK0YcdAIyG00AXANYuaElUbemzWhy/D4x7PdDA9jZVKfo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765545603; c=relaxed/simple;
-	bh=y/n2HpEJXEeD2OUCVwpAOVpXqQe23MBCeXUtceU56aE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=TYJOJ7EXwwb137cglZbyzRc1wXn6WNIi2KmRLMA4G6R12I2Rm7/ZmxP/iSzN/UJnBNUwO7wa5L8VCaMxMZz3cHRTi8pF/EANZ0GoEXr2KlOESV1lEGe7E4KQyohgh7Y9CFeapRzu99kFY3oLE0AYzWNNASB53MhmVNszHUXInLw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PQiTLARM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDD4AC4CEF5
-	for <devicetree@vger.kernel.org>; Fri, 12 Dec 2025 13:20:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765545602;
-	bh=y/n2HpEJXEeD2OUCVwpAOVpXqQe23MBCeXUtceU56aE=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=PQiTLARM1UgaA3lrisoVcXjE3DMZqjgPT9rgGqrKhXLzbJ487bGm5ZWjG5mN6lWHO
-	 utAuUwuA3JihOAE+acgRTR6bltWI/3BN/sjzhC7Qw2WQFh7zmFgedj2sWwV5hZ9475
-	 XHd8QC5dGiwxLx1yoFpbTvBTmdgaGb5ZicWBwaZg7BB4MeB29ySZTIVzEvO1HV4z6D
-	 bvQkR8snFjblurZLhvP1W7S02P+wC7yVjASefkKGS47QfcH7/pJcljGhDc3KNejFdi
-	 GhCJOJ342KC5bjEYKCdI01uog1ZJWukstOwwTq4Dm16ZMzEwn5tKCxDwq7vwp2vjAU
-	 2J3SodHc4/lag==
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-649822b4b64so1839637a12.3
-        for <devicetree@vger.kernel.org>; Fri, 12 Dec 2025 05:20:02 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUJ3rjIO0mJcRCn+MTIrEfPIkYtNrLbCiXiDKuarPqE7XQBMrz5SPRT12hBzEldOHtzubnaqH6yBzLA@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx9VZZEhFC8lOX01MTx3k8VRPt9e7dL7GaYImdf5AYxN6l0wPbl
-	MfPXChTJaBd/LMxr7xVdEjnJga5hw5LLsWQ8eqZLeEQ42UI07eW7G4YCuWNSSNpNMS+7lnzx05W
-	4x3E8P+ePcDyOVpUw2k1qupeSikExRg==
-X-Google-Smtp-Source: AGHT+IH5efhgSFOPqgOiwqHuVybcB1pM+vtgMykwpJv7zU5eTdlwMKKp3N9YCPgC8H309zIrc1SLEg1Gef91bpLp6oE=
-X-Received: by 2002:a05:6402:5194:b0:647:8d63:d8b4 with SMTP id
- 4fb4d7f45d1cf-6499b10ffd2mr2004220a12.6.1765545601392; Fri, 12 Dec 2025
- 05:20:01 -0800 (PST)
+	s=arc-20240116; t=1765546398; c=relaxed/simple;
+	bh=BEUmvl8d8kXh9t7wSCVSE4StPMCjB7sRRmM5ccq47uc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OWQB7IiQNVKbGC0yoE/iiT7tyg7psJSJ/KLZjj1W8lfPiCi5XpkYwWTyEqmtNW62E4AyvNjeURnR7i6u3XHu4WhZw1+u/TDojJ1i1Z4YsehTs1Jh0IBDvZPkHz+e19BhnoUGY6aRpRkB3A/C38X23cmpBaMSbGIKRyKyZ7LzdF8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=4m6yDxHo; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=YWjUVnv5CTcr+GDjfb0bwkJFd0vRqz5/wKl7xHkr6Es=; b=4m6yDxHoMU2gAPCnoz6Xchn4U8
+	KHPhsZe/KvJls05qtq0Tfi6OJ+xBFeIG7OmYVQ5Srq0fKdB6+IzfbicCgVtZR7fHZb462uNM4ZzGg
+	hpVA1B+8C/GHe8td/FPRqvsGy95sT+D8mqTRl5pdpzcOLEPS7wms4s6ku/jAIMFBj6HE=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1vU3GV-00Gksn-Fh; Fri, 12 Dec 2025 14:32:59 +0100
+Date: Fri, 12 Dec 2025 14:32:59 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: "Joseph Guo (OSS)" <qijian.guo@oss.nxp.com>
+Cc: Joseph Guo <qijian.guo@nxp.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Justin Jiang <justin.jiang@nxp.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	Tom Zheng <haidong.zheng@nxp.com>,
+	Steven Yang <steven.yang@nxp.com>
+Subject: Re: [PATCH v2 2/2] arm64: dts: freescale: Add FRDM-IMX91 basic
+ support
+Message-ID: <8334a902-fd56-4860-82c5-402e1d982fa9@lunn.ch>
+References: <20251212-imx91_frdm-v2-0-4dd6d289e81d@nxp.com>
+ <20251212-imx91_frdm-v2-2-4dd6d289e81d@nxp.com>
+ <55fa5159-768c-4785-b0ba-5553193932ab@lunn.ch>
+ <15608952-e974-4b9f-9832-e6a23860fc62@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1765425415.git.khairul.anuar.romli@altera.com>
- <646113c742278626c8796d8553cdb251a4daf737.1765425415.git.khairul.anuar.romli@altera.com>
- <20251211154524.GA1464056-robh@kernel.org> <CAL_JsqKPVdUzytrVKs5q5JfPnxLdz-UdN5K-cJUVQ_uWM5azLA@mail.gmail.com>
- <b4e36cd5-959b-4758-8c52-6dad7e6f17f0@altera.com>
-In-Reply-To: <b4e36cd5-959b-4758-8c52-6dad7e6f17f0@altera.com>
-From: Rob Herring <robh@kernel.org>
-Date: Fri, 12 Dec 2025 07:19:49 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqL5yLyQ2_MEGorETtqz_EEZDRy_b+9PtBcV5ZVFG25qyg@mail.gmail.com>
-X-Gm-Features: AQt7F2p6jIbY7t1hLFi5XdgYG8BFlHa57zPqUcXer1tzcZ3WhU6A9lFxHU3oiao
-Message-ID: <CAL_JsqL5yLyQ2_MEGorETtqz_EEZDRy_b+9PtBcV5ZVFG25qyg@mail.gmail.com>
-Subject: Re: [PATCH v3 3/3] dma: dw-axi-dmac: Add support for Agilex5 and
- dynamic bus width
-To: "Romli, Khairul Anuar" <khairul.anuar.romli@altera.com>
-Cc: Dinh Nguyen <dinguyen@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>, 
-	Vinod Koul <vkoul@kernel.org>, "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <15608952-e974-4b9f-9832-e6a23860fc62@oss.nxp.com>
 
-On Thu, Dec 11, 2025 at 6:46=E2=80=AFPM Romli, Khairul Anuar
-<khairul.anuar.romli@altera.com> wrote:
->
-> On 11/12/2025 11:52 pm, Rob Herring wrote:
-> > On Thu, Dec 11, 2025 at 9:45=E2=80=AFAM Rob Herring <robh@kernel.org> w=
-rote:
-> >>
-> >> On Thu, Dec 11, 2025 at 12:40:38PM +0800, Khairul Anuar Romli wrote:
-> >>> Add device tree compatible string support for the Altera Agilex5 AXI =
-DMA
-> >>> controller.
-> >>>
-> >>> Introduces logic to parse the "dma-ranges" property and calculate the
-> >>> actual number of addressable bits (bus width) for the DMA engine. Thi=
-s
-> >>> calculated value is then used to set the coherent mask via
-> >>> 'dma_set_mask_and_coherent()', allowing the driver to correctly handl=
-e
-> >>> devices with bus widths less than 64 bits. The addressable bits defau=
-lt to
-> >>> 64 if 'dma-ranges' is not specified or cannot be parsed.
-> >>>
-> >>> Introduce 'addressable_bits' to 'struct axi_dma_chip' to store this v=
-alue.
-> >>>
-> >>> Signed-off-by: Khairul Anuar Romli <khairul.anuar.romli@altera.com>
-> >>> ---
-> >>> Changes in v3:
-> >>>        - Refactor the code to align with dma controller device node m=
-ove
-> >>>          to 1 level down.
-> >>> Changes in v2:
-> >>>        - Add driver implementation to set the DMA BIT MAST to 40 base=
-d on
-> >>>          dma-ranges defined in DT.
-> >>>        - Add glue for driver and DT.
-> >>> ---
-> >>>   .../dma/dw-axi-dmac/dw-axi-dmac-platform.c    | 69 ++++++++++++++++=
-++-
-> >>>   drivers/dma/dw-axi-dmac/dw-axi-dmac.h         |  1 +
-> >>>   2 files changed, 69 insertions(+), 1 deletion(-)
-> >>>
-> >>> diff --git a/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c b/drivers=
-/dma/dw-axi-dmac/dw-axi-dmac-platform.c
-> >>> index b23536645ff7..96b0a0842ff5 100644
-> >>> --- a/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
-> >>> +++ b/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
-> >>> @@ -271,7 +271,9 @@ static void axi_dma_hw_init(struct axi_dma_chip *=
-chip)
-> >>>                axi_chan_irq_disable(&chip->dw->chan[i], DWAXIDMAC_IRQ=
-_ALL);
-> >>>                axi_chan_disable(&chip->dw->chan[i]);
-> >>>        }
-> >>> -     ret =3D dma_set_mask_and_coherent(chip->dev, DMA_BIT_MASK(64));
-> >>> +
-> >>> +     dev_dbg(chip->dev, "Adressable bus width: %u\n", chip->addressa=
-ble_bits);
-> >>> +     ret =3D dma_set_mask_and_coherent(chip->dev, DMA_BIT_MASK(chip-=
->addressable_bits));
-> >>>        if (ret)
-> >>>                dev_warn(chip->dev, "Unable to set coherent mask\n");
-> >>>   }
-> >>> @@ -1461,13 +1463,24 @@ static int axi_req_irqs(struct platform_devic=
-e *pdev, struct axi_dma_chip *chip)
-> >>>        return 0;
-> >>>   }
-> >>>
-> >>> +/* Forward declaration (no size required) */
-> >>> +static const struct of_device_id dw_dma_of_id_table[];
-> >>> +
-> >>>   static int dw_probe(struct platform_device *pdev)
-> >>>   {
-> >>>        struct axi_dma_chip *chip;
-> >>>        struct dw_axi_dma *dw;
-> >>>        struct dw_axi_dma_hcfg *hdata;
-> >>>        struct reset_control *resets;
-> >>> +     struct device_node *parent;
-> >>> +     const struct of_device_id *match;
-> >>>        unsigned int flags;
-> >>> +     unsigned int addressable_bits =3D 64;
-> >>> +     unsigned int len_bytes;
-> >>> +     unsigned int num_cells;
-> >>> +     const __be32 *prop;
-> >>> +     u64 bus_width;
-> >>> +     u32 *cells;
-> >>>        u32 i;
-> >>>        int ret;
-> >>>
-> >>> @@ -1483,9 +1496,61 @@ static int dw_probe(struct platform_device *pd=
-ev)
-> >>>        if (!hdata)
-> >>>                return -ENOMEM;
-> >>>
-> >>> +     match =3D of_match_node(dw_dma_of_id_table, pdev->dev.of_node);
-> >>> +     if (!match) {
-> >>> +             dev_err(&pdev->dev, "Unsupported AXI DMA device\n");
-> >>> +             return -ENODEV;
-> >>> +     }
-> >>> +
-> >>> +     parent =3D of_get_parent(pdev->dev.of_node);
-> >>> +     if (parent) {
-> >>> +             prop =3D of_get_property(parent, "dma-ranges", &len_byt=
-es);
-> >>> +             if (prop) {
-> >>> +                     num_cells =3D len_bytes / sizeof(__be32);
-> >>> +                     cells =3D kcalloc(num_cells, sizeof(*cells), GF=
-P_KERNEL);
-> >>> +                     if (!cells)
-> >>> +                             return -ENOMEM;
-> >>> +
-> >>> +                     ret =3D of_property_read_u32(parent, "#address-=
-cells", &i);
-> >>> +                     if (ret) {
-> >>> +                             dev_err(&pdev->dev, "missing #address-c=
-ells property\n");
-> >>> +                             return ret;
-> >>> +                     }
-> >>> +
-> >>> +                     ret =3D of_property_read_u32(parent, "#size-cel=
-ls", &i);
-> >>> +                     if (ret) {
-> >>> +                             dev_err(&pdev->dev, "missing #size-cell=
-s property\n");
-> >>> +                             return ret;
-> >>> +                     }
-> >>> +
-> >>> +                     if (!of_property_read_u32_array(parent, "dma-ra=
-nges",
-> >>> +                                                     cells, num_cell=
-s)) {
-> >>
-> >> We have common code to parse dma-ranges. Use it and don't implement yo=
-ur
-> >> own.
-> >
-> > Actually, the driver and DT core should take care of all this for you
-> > and there's nothing to do in the driver. A driver only needs to set
-> > the mask for the IP itself and only when >32 bits. The core takes care
-> > of any additional restrictions in the bus.
-> >
-> > Rob
->
-> The current implementation explicitly set the mask to 64.
->
-> -     ret =3D dma_set_mask_and_coherent(chip->dev, DMA_BIT_MASK(64));
->
-> Will the core re-set the mask based on the dma-ranges on DT?
+On Fri, Dec 12, 2025 at 02:03:03PM +0800, Joseph Guo (OSS) wrote:
+> 
+> 
+> On 12/12/2025 11:39 AM, Andrew Lunn wrote:
+> > [You don't often get email from andrew@lunn.ch. Learn why this is important at https://aka.ms/LearnAboutSenderIdentification ]
+> > 
+> > > +&fec {
+> > > +     phy-handle = <&ethphy2>;
+> > > +     phy-mode = "rgmii-id";
+> > > +     pinctrl-0 = <&pinctrl_fec>;
+> > > +     pinctrl-1 = <&pinctrl_fec_sleep>;
+> > > +     pinctrl-names = "default", "sleep";
+> > > +     fsl,magic-packet;
+> > 
+> > Have you tested WoL?
+> > 
+> >          Andrew
+> 
+> Hi Andrew,
+> 
+> Yes, already tested.
 
-I don't think it changes the mask, but there's also bus ranges which
-get factored in. See struct device.bus_dma_limit and dma_range_map.
+Great. There is a tendency to just copy/paste this propriety without
+understanding what it implies, so i just wanted to check...
 
-Rob
+For the Ethernet & PHY nodes only:
+
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+
+    Andrew
 
