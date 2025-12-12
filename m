@@ -1,193 +1,101 @@
-Return-Path: <devicetree+bounces-246202-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246203-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 207DDCB9DF1
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 22:19:20 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64E78CB9DF7
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 22:20:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AD95F30B96FC
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 21:18:28 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 642B7300645A
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 21:20:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58D55238C1F;
-	Fri, 12 Dec 2025 21:18:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E30552550DD;
+	Fri, 12 Dec 2025 21:20:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="HLM60RvQ"
+	dkim=pass (2048-bit key) header.d=freeshell.de header.i=@freeshell.de header.b="KCWinTeD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from freeshell.de (freeshell.de [116.202.128.144])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48DC420E005
-	for <devicetree@vger.kernel.org>; Fri, 12 Dec 2025 21:18:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C3ED20E005;
+	Fri, 12 Dec 2025 21:20:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765574308; cv=none; b=lkwsNSAPjGfK4iPKB99Krlky3x/aut4NT03K5/mliZZrzduXxfDLdRt0RJGzNErfiLBeUtZu1dQtJk2KinIxbLyiwTa1zqVAazeAXL7lwH4A/sDEqkRyUcFDDpCViFJCbxOkatRZ3PgwDyg+S7DpH0ih6ElzOCMAhjsEbn6nJOs=
+	t=1765574450; cv=none; b=gK9OSQZiox4yPCjELZW/kIUWALqJOdmqRjrL98VaKgonmHqzgR7ptvHmuVoNRiRa7pzCvyrdpUjb13+6GJCMgsfYT/pmMi6yBkKgKBddksgm7H0XyHjRXkQsGP7TwOycv4GIL5/p9mD2zPAoL5bckWjGU4hOvcV54CfW5luyni4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765574308; c=relaxed/simple;
-	bh=tAYHHvyBIxwmOn0FXzhxdLKMGuBqvYTxhaHEZdafu6A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TgsewnN9AWSvpce47Zqfua8DCuhq56wSuX/sxD73VugsFh/TKBrA+QB8hwDhKuc7WnttdQLCfSG3WEBoAjiGeJ/AuWy0ir9esQtTnwF/h9PUyCfCjCpLHhbP1/HRWzJ+BPnw3Z0U8MOLPyPpchgzRTUy+JN/442kUOBT9FgyZs0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=HLM60RvQ; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id DD0DD1A2145;
-	Fri, 12 Dec 2025 21:18:18 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id A5843606DF;
-	Fri, 12 Dec 2025 21:18:18 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id C8B72103C8D89;
-	Fri, 12 Dec 2025 22:18:13 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1765574297; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 in-reply-to:references; bh=ibpI/8IsPFwa4no7KFk+umJ2AO5xlqf2PVxIa7iLFU0=;
-	b=HLM60RvQYesG36vE7JR/5+uLnWRQf4bdIdat8LNhhwn27mZDSoZ2SDj0eyP003231tegvj
-	UG5YUjBH8eqeOXuidTBTl7qXnVk2PDVrOM7lwXYo2EWHDHtSkpw5pSN6VgmVs1Cdq9r8oT
-	qZzjCAS1Hp3GRbh2BBtJ8S82Y6KOo3hfBw59NXxnpzDVTrfH2keYu4Are0AApWfc4h8X9P
-	bFHApOaQx+lRJwgJBy2vU+ElfJrANokMEMwNUedWns8MrHPn0+dKNvDxU8A5bLOS15PSs7
-	Yg+gSvPB42p4iufmtmIXanb6veaAfiTuLYRzZgsydV5nftcVOoSQY5Ph4vniMg==
-Date: Fri, 12 Dec 2025 22:18:12 +0100
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] ARM: dts: microchip: Drop usb_a9g20-dab-mmx.dtsi
-Message-ID: <20251212211812768361f3@mail.local>
-References: <20251212203226.458694-8-robh@kernel.org>
+	s=arc-20240116; t=1765574450; c=relaxed/simple;
+	bh=iyG1frtzWpNnmYITd4bc+SfdwI9pBuvCnks24U8AKUM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ODg0aXDKwT73RkGBV96vGZmswjLN1nb+GpaxPB+3XKSivoxj/vgVKBSC8cgR1dnhOHaJdsV5ckzXLHptnxttZcfKV9PMtzmW0VNDCpIibr1rSTh3MSvN6ihmo7GzrzA5P4H6hvA5utrieFQRagpie2rJnZyip79gdSbBvmtxJ2w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; dkim=pass (2048-bit key) header.d=freeshell.de header.i=@freeshell.de header.b=KCWinTeD; arc=none smtp.client-ip=116.202.128.144
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=freeshell.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=freeshell.de;
+	s=s2025; t=1765574405;
+	bh=WQDdYwNv2snvRGevd9vz/rtNBkJTH/PSOizUMnJriB8=;
+	h=From:To:Cc:Subject:Date:From;
+	b=KCWinTeDqTI5SGpmD6CRi0NDayJtht3TxcIEYSUZEbWnPAUeL+NUbR6eHHxAfC2o8
+	 5hMAyH+WNrwhyyNiPlNn0rRV7YOiKzz7BfR1JfAuqR+SamZhfhQlfM5kOqcsSVOhid
+	 eY5QLN9ARapYNOLNVi3743vAm4A/i6d4pHMC/jU8cBDlhr7iBXd9Do399KK9FVrBsm
+	 AvOvIRHvhEb+tDU0lQodK8DGjXd3bGRfSpX4AkTh3qaB9BReJNtoVLj3NNzGaPL3zB
+	 z37yOAn5Mqk89yTsCY+Ya3HiaUIaYKda6EZVfUursQOZg/dJ/xZOZncktND4DFWTRs
+	 PTMfx60wCqNVA==
+Received: from hay.lan (unknown [IPv6:2605:59c0:2078:cf00:6ecf:39ff:fe00:8375])
+	(Authenticated sender: e)
+	by freeshell.de (Postfix) with ESMTPSA id C96F0B2213EF;
+	Fri, 12 Dec 2025 22:20:03 +0100 (CET)
+From: E Shattow <e@freeshell.de>
+To: Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>
+Cc: linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	E Shattow <e@freeshell.de>
+Subject: [PATCH v2 0/3] riscv: dts: starfive: Append starfive,jh7110 compatible to VisionFive 2 Lite
+Date: Fri, 12 Dec 2025 13:19:17 -0800
+Message-ID: <20251212211934.135602-1-e@freeshell.de>
+X-Mailer: git-send-email 2.50.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251212203226.458694-8-robh@kernel.org>
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Transfer-Encoding: 8bit
 
-On 12/12/2025 14:32:14-0600, Rob Herring (Arm) wrote:
-> This .dtsi file is not included anywhere in the tree and can't be
-> tested.
-> 
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+Append "starfive,jh7110" compatible to VisionFive 2 Lite and VisionFive 2
+Lite eMMC in the least-compatible end of the list.
 
-Acked-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
+Appending "starfive,jh7110" reduces the number of compatible strings to
+check in the OpenSBI platform driver. JH-7110S SoC on these boards is the same
+as JH-7110 SoC however rated for thermal, voltage, and frequency
+characteristics for a maximum of 1.25GHz operation.
 
-> ---
->  .../boot/dts/microchip/usb_a9g20-dab-mmx.dtsi | 93 -------------------
->  1 file changed, 93 deletions(-)
->  delete mode 100644 arch/arm/boot/dts/microchip/usb_a9g20-dab-mmx.dtsi
-> 
-> diff --git a/arch/arm/boot/dts/microchip/usb_a9g20-dab-mmx.dtsi b/arch/arm/boot/dts/microchip/usb_a9g20-dab-mmx.dtsi
-> deleted file mode 100644
-> index 5b1d80c0ab26..000000000000
-> --- a/arch/arm/boot/dts/microchip/usb_a9g20-dab-mmx.dtsi
-> +++ /dev/null
-> @@ -1,93 +0,0 @@
-> -// SPDX-License-Identifier: GPL-2.0-only
-> -/*
-> - * calao-dab-mmx.dtsi - Device Tree Include file for Calao DAB-MMX Daughter Board
-> - *
-> - * Copyright (C) 2011 Jean-Christophe PLAGNIOL-VILLARD <plagnioj@jcrosoft.com>
-> - */
-> -
-> -/ {
-> -	ahb {
-> -		apb {
-> -			usart1: serial@fffb4000 {
-> -				status = "okay";
-> -			};
-> -
-> -			usart3: serial@fffd0000 {
-> -				status = "okay";
-> -			};
-> -		};
-> -	};
-> -
-> -	i2c-gpio@0 {
-> -		status = "okay";
-> -	};
-> -
-> -	leds {
-> -		compatible = "gpio-leds";
-> -
-> -		user_led1 {
-> -			label = "user_led1";
-> -			gpios = <&pioB 20 GPIO_ACTIVE_LOW>;
-> -		};
-> -
-> -/*
-> -* led already used by mother board but active as high
-> -*		user_led2 {
-> -*			label = "user_led2";
-> -*			gpios = <&pioB 21 GPIO_ACTIVE_LOW>;
-> -*		};
-> -*/
-> -		user_led3 {
-> -			label = "user_led3";
-> -			gpios = <&pioB 22 GPIO_ACTIVE_LOW>;
-> -		};
-> -
-> -		user_led4 {
-> -			label = "user_led4";
-> -			gpios = <&pioB 23 GPIO_ACTIVE_LOW>;
-> -		};
-> -
-> -		red {
-> -			label = "red";
-> -			gpios = <&pioB 24 GPIO_ACTIVE_LOW>;
-> -		};
-> -
-> -		orange {
-> -			label = "orange";
-> -			gpios = <&pioB 30 GPIO_ACTIVE_LOW>;
-> -		};
-> -
-> -		green {
-> -			label = "green";
-> -			gpios = <&pioB 31 GPIO_ACTIVE_LOW>;
-> -		};
-> -	};
-> -
-> -	gpio_keys {
-> -		compatible = "gpio-keys";
-> -
-> -		button-user-pb1 {
-> -			label = "user_pb1";
-> -			gpios = <&pioB 25 GPIO_ACTIVE_LOW>;
-> -			linux,code = <0x100>;
-> -		};
-> -
-> -		button-user-pb2 {
-> -			label = "user_pb2";
-> -			gpios = <&pioB 13 GPIO_ACTIVE_LOW>;
-> -			linux,code = <0x101>;
-> -		};
-> -
-> -		button-user-pb3 {
-> -			label = "user_pb3";
-> -			gpios = <&pioA 26 GPIO_ACTIVE_LOW>;
-> -			linux,code = <0x102>;
-> -		};
-> -
-> -		button-user-pb4 {
-> -			label = "user_pb4";
-> -			gpios = <&pioC 9 GPIO_ACTIVE_LOW>;
-> -			linux,code = <0x103>;
-> -		};
-> -	};
-> -};
-> -- 
-> 2.51.0
-> 
+Link to previous discussion suggesting this change:
+https://lore.kernel.org/lkml/1f96a267-f5c6-498e-a2c4-7a47a73ea7e7@canonical.com/
 
+Changes since v1:
+- add "starfive,jh7110" to dt-binding
+- revise commit message
+- split dts patch to patch-per-fix
+- add cover letter
+
+E Shattow (3):
+  dt-bindings: riscv: starfive: Append JH-7110 SoC compatible to
+    VisionFive 2 Lite board
+  riscv: dts: starfive: Append JH-7110 SoC compatible to VisionFive 2
+    Lite board
+  riscv: dts: starfive: Append JH-7110 SoC compatible to VisionFive 2
+    Lite eMMC board
+
+ Documentation/devicetree/bindings/riscv/starfive.yaml           | 1 +
+ .../dts/starfive/jh7110-starfive-visionfive-2-lite-emmc.dts     | 2 +-
+ .../boot/dts/starfive/jh7110-starfive-visionfive-2-lite.dts     | 2 +-
+ 3 files changed, 3 insertions(+), 2 deletions(-)
+
+
+base-commit: 187d0801404f415f22c0b31531982c7ea97fa341
 -- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+2.50.0
+
 
