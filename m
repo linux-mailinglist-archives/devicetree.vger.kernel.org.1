@@ -1,89 +1,103 @@
-Return-Path: <devicetree+bounces-246089-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246090-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1EC4ECB8881
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 10:52:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FCB1CB88A2
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 10:56:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 45D1A3066708
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 09:49:33 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 99E1B300E3EF
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 09:54:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 649F4229B38;
-	Fri, 12 Dec 2025 09:49:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACC54315D32;
+	Fri, 12 Dec 2025 09:54:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YSwGgriF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from Atcsqr.andestech.com (60-248-80-70.hinet-ip.hinet.net [60.248.80.70])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com [209.85.215.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72EDA17C211
-	for <devicetree@vger.kernel.org>; Fri, 12 Dec 2025 09:49:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.248.80.70
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F64F2C0F6C
+	for <devicetree@vger.kernel.org>; Fri, 12 Dec 2025 09:54:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765532972; cv=none; b=QRDiTkxjGK3XYQ2wgYGPu4JICWZMObvfWVxGTx2q8aG0BjpW7sEu3n8OEZAg6e1mysa9yttjJnBqLTtFpgjVueYGqKtpGDZUH27AZJW+tY1o1faaUxyenX1FzqFe9o9rHsk1aIlyJF09t3Z9j3T1ugJMyuvrbTaraLqaUsuj5QE=
+	t=1765533281; cv=none; b=O0GFjvXuQaSLhbg0hKoXSGo7Wy7L1akdjWNOCWMG7FlFJSX+mAZSaEkr9XcqTUd5Kq+w5kCA7fZ4JJzoCVybBDIzBHvPlMhL4FsjNNUOk5ggK4PAe05pq/gSslITRyr2sy5pifLC2dGuWZGXO6ebPr4a3TagMYq5EhAbouKlLRs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765532972; c=relaxed/simple;
-	bh=K25Ijgc/BM3blmvklpXrCkKN0IcPd1eYBRFuDZGcUxE=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YsYXmNmadKGA3Upmf2nFCUUFK7SqQ9fBTvS/KsKlStnd4ReKLsXKAG2b/ytz4YeO7ou8MbJ5NATescffjBu0iv/zjcpWRtH6nbJysFVMiUpuymgo2+FfIDsqXqcTWmZm88trwmNqY9TQjHAgEt21hJTNXiF7GWR0mE1ycKyrPgc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=permerror header.from=andestech.com; spf=pass smtp.mailfrom=andestech.com; arc=none smtp.client-ip=60.248.80.70
-Authentication-Results: smtp.subspace.kernel.org; dmarc=permerror header.from=andestech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=andestech.com
-Received: from mail.andestech.com (ATCPCS34.andestech.com [10.0.1.134])
-	by Atcsqr.andestech.com with ESMTPS id 5BC9nN5G091007
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=OK);
-	Fri, 12 Dec 2025 17:49:23 +0800 (+08)
-	(envelope-from cl634@andestech.com)
-Received: from swlinux02 (10.0.15.183) by ATCPCS34.andestech.com (10.0.1.134)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 12 Dec
- 2025 17:49:22 +0800
-Date: Fri, 12 Dec 2025 17:49:22 +0800
-From: CL Wang <cl634@andestech.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: <broonie@kernel.org>, <linux-spi@vger.kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <tim609@andestech.com>
-Subject: Re: [PATCH V2 1/3] dt-bindings: spi: Add support for ATCSPI200 SPI
- controller
-Message-ID: <aTvlIqS3KnZZ1UlU@swlinux02>
-References: <20251210090430.3602380-1-cl634@andestech.com>
- <20251210090430.3602380-2-cl634@andestech.com>
- <33e24f43-53d3-46cf-9012-aed67230723b@kernel.org>
+	s=arc-20240116; t=1765533281; c=relaxed/simple;
+	bh=HqEG+nZ1xiQN6AJIt2dnnJZEHC10sC0sNx6sFrPvEsY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=jx2fZjTJz/5D1veYqL3eFaTF3EuaLFpGX5HMzGw4JAepX01ihZsrZ7/KXWN/0gPHzgrPAqmllpvT/tjG+B6nW0I1N4ncwKX0rkcJrWsYEtEFHw/blDlanLMI/NpNCPuI/pypDBQlCR7f8DA3snDyvELSPAozCQMpJOJ72MrBT70=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YSwGgriF; arc=none smtp.client-ip=209.85.215.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f173.google.com with SMTP id 41be03b00d2f7-bc29d64b39dso648168a12.3
+        for <devicetree@vger.kernel.org>; Fri, 12 Dec 2025 01:54:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1765533279; x=1766138079; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HqEG+nZ1xiQN6AJIt2dnnJZEHC10sC0sNx6sFrPvEsY=;
+        b=YSwGgriFUd3pqrIVxo6m2Pt1lW//fJ6F8ZHcPk+vJrsPLd/vBhpYOx1ybwGzO61M8y
+         Wkhoa4ZS9zu3GoqrSVfj2VFXjC4mFkOle+UmGfCB6XyFvNyxIVcekLtsjl8ltEx1IdQG
+         iUyTR4qaec47+goGP9mGHHtJiJWclucIDnyG9dVWVIxed5CH/DMRrAaTb7o01AInXEXk
+         LfQL7BFkffTsOS+o1y6xZEpWNmThW21Af5Nb5VM3V6Holp1mO/9BSF5ImRcgzKnZOIr1
+         cqtnnNf3ZIW/VXyA7vohCixjW2HQkX30p3RI3ZvCAXuqpzh2qQPkkfAAZa/UQnQy+7zR
+         aDAg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765533279; x=1766138079;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=HqEG+nZ1xiQN6AJIt2dnnJZEHC10sC0sNx6sFrPvEsY=;
+        b=cZ4rC7kNrbFIcJ4kpdUKiuhIbHWKre0OLdmK3NhK530nqF/sG9IoR3O0pO+Ok9rXGy
+         J3iU7ksHnvzzvHSkj0njTAnrhwpnlShFcpOUBewpqnOfb985SsoZ9vdLy3Qzve6wWvVy
+         QwZL/XG+QvJM3jqcmjACN5xOOoXNOBxYAnBICNPoUEFmgMSjO0wCLmDR+D1ri42926zI
+         XHToqJsGd5f06Ok4zNc5ETZmz5uHX2LLR9f5JR+Um/dGLKamEaK6kc1IdcqyxoljZT17
+         E8tcDMg9tsHaCFNeOxvypqXACrYBnvvGElu3Qf7W2G0FcjF9RRDOidYvH7aXgPKA1Fdy
+         1TqA==
+X-Forwarded-Encrypted: i=1; AJvYcCWkZ5sqwO7i6RVK7AmTznfm6SyX9icuxN1ukkvifN7pHu0GjiqA4xJ2WiUVgA1wyMCXpbbc+tg8xmDU@vger.kernel.org
+X-Gm-Message-State: AOJu0YySEiwj9WSIOAJCE5vHe25spBH3UfNsgRTdtzwgXD8iRnqo5n2m
+	yIM2QciO7YfaF5KoHlAvixH5zLKiKICzjE9mHm+tMwlJGCBuuaTM7TKeLVednOu3D1wqUU7wRJc
+	8eUdc/6JNgGrZ1/DHYRYlJ0AkjdY5xec=
+X-Gm-Gg: AY/fxX67q5X1oY065T9zq0RMqaQFEtza+m1lM3/XG8mLBCMZi62VCG2RG4pSAHOh32j
+	ipqSVRap5l3cyPbsEuXa105NADxVlcTUItr6lIdTMp2BCevIdL7v+3FdNyM1jHZWNdBkPLx6uIw
+	HIed3F4FGFuvmJ4fY93prmE/NYboMK1GB43nzZr7DHD6/k53uajIIjSCSGmcvI+8xymihzmmwTx
+	L0ZU4N4tGqL5cunHxyDTspsOuwkRmicCPXCJGPs85zpZrufO/HJMtf1IlN7JuLtmUHmoAFQOevf
+	gYAvCbVt9Ej3L4wRubeA8fhtEt76OKbkpeFfTekfCOb1Sjr3iFsK0Qz3mvD4bxuRVVyoY8kNKis
+	9g+TWp6d59NHmHcLtRsSt
+X-Google-Smtp-Source: AGHT+IEa+DSQ1zpDC60+Pq9ToEAnCi93aMl+ozGf04DIAogSjg2j0+bhkGR63QOLDEz4eUMryYb2KSl+0LAa0pnns/8=
+X-Received: by 2002:a05:7301:2e98:b0:2ac:2e93:29aa with SMTP id
+ 5a478bee46e88-2ac30106a4dmr1262862eec.28.1765533279469; Fri, 12 Dec 2025
+ 01:54:39 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <33e24f43-53d3-46cf-9012-aed67230723b@kernel.org>
-User-Agent: Mutt/2.2.12 (2023-09-09)
-X-ClientProxiedBy: ATCPCS33.andestech.com (10.0.1.100) To
- ATCPCS34.andestech.com (10.0.1.134)
-X-DKIM-Results: atcpcs34.andestech.com; dkim=none;
-X-DNSRBL: 
-X-SPAM-SOURCE-CHECK: pass
-X-MAIL:Atcsqr.andestech.com 5BC9nN5G091007
+References: <20251212-imx91_frdm-v2-0-4dd6d289e81d@nxp.com> <20251212-imx91_frdm-v2-1-4dd6d289e81d@nxp.com>
+In-Reply-To: <20251212-imx91_frdm-v2-1-4dd6d289e81d@nxp.com>
+From: Daniel Baluta <daniel.baluta@gmail.com>
+Date: Fri, 12 Dec 2025 11:57:12 +0200
+X-Gm-Features: AQt7F2qmUYq7fmLxWwsl-gTOGPlSokMij1R92_1CGnoPcAOo-CVttUkZ8C_47Hk
+Message-ID: <CAEnQRZB7BtSu2ec4wh0353MYkwgzbpQxD7qa0r6NC_kf+hRfKg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: arm: imx Add FRDM-IMX91 board
+To: Joseph Guo <qijian.guo@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, Justin Jiang <justin.jiang@nxp.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, qijian.guo@oss.nxp.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Krzysztof,
+On Fri, Dec 12, 2025 at 4:32=E2=80=AFAM Joseph Guo <qijian.guo@nxp.com> wro=
+te:
+>
+> Add the board FRDM-IMX91 in the binding document.
+>
+> Signed-off-by: Joseph Guo <qijian.guo@nxp.com>
 
-Thank you for pointing out the mistake. I’ll make sure to properly verify the
-change log formatting before the next submission. I appreciate your guidance
-and will follow this practice going forward.
-
-Best regards,
-CL Wang
-
-
-On Thu, Dec 11, 2025 at 06:31:23AM +0100, Krzysztof Kozlowski wrote:
-> >
-> 
-> That's a completely corrupted changelog.
-> 
-> Please apply your patch and look. Or run checkpatch. Does it look good?
-> 
-> Best regards,
-> Krzysztof
+Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
 
