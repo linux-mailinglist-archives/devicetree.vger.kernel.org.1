@@ -1,184 +1,163 @@
-Return-Path: <devicetree+bounces-246112-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246113-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08BE3CB8B28
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 12:20:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BC0CFCB8B40
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 12:21:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3F0D1306DC8C
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 11:19:58 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A7E57306B161
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 11:21:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B615C31B110;
-	Fri, 12 Dec 2025 11:19:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="KrfgUNaN"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A67031691C;
+	Fri, 12 Dec 2025 11:21:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FD8730DEB2;
-	Fri, 12 Dec 2025 11:19:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 426D8231A23
+	for <devicetree@vger.kernel.org>; Fri, 12 Dec 2025 11:21:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765538396; cv=none; b=PEcUrROU5Jj+VHGFfQuf7y8PgzkR7wFBxAUF86P82bEWmdgdIhOpmcpEonhrVEfptze/E67Jfzlkler/Q9pSKLjA7k9HuGc9zn8tEcqe4ff+9AAw6fs9TgfYfuOLpWpo3oEUQHQr37km3EByGeBaWXXzi3SCcnOhN4aw9z/xwDU=
+	t=1765538500; cv=none; b=cwhdSUY7e7cE73gMH3nWMaxggkMNjKRrt9YfVskbd3CKT17HNQKoyH4NIAa33vT/OEkvR5moPDmWs5bJ6W54e2Jg8cQa/DIy4qXELT9zA0HBBZ3ItVGtLKy3Rz8tjc42EFhE5Bl8DDokQx2nOnj4DXwb2VehlBJuflje9TZMYbE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765538396; c=relaxed/simple;
-	bh=EdVCtB2iBvhcT8kAVicT/eJPLJyC3Q8G7MCNhAvQuvs=;
+	s=arc-20240116; t=1765538500; c=relaxed/simple;
+	bh=dBiEXSXqAe1+bjWPLYEbVWzfCTeFakFmTqGBVAZdykk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qXS2Rpap2295TL8/l18rJPR8qplxp2G+ALBcYoSIedvMe/VeSdrv3SSAdYZsGcF2Mmg7/cYBzZunGVB4MaKSJX/UfAFuUoOp0S4vuwbRmV4HK4vmO7jYEqGmnm/fWAXvdZtnpwSqFPM3Smwa6Z5klZ2J8A32bjPicCDeNDoS/zI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=KrfgUNaN; arc=none smtp.client-ip=192.198.163.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1765538395; x=1797074395;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=EdVCtB2iBvhcT8kAVicT/eJPLJyC3Q8G7MCNhAvQuvs=;
-  b=KrfgUNaN8+IpHUV3aYHf8rfixGOt/P+Wg3JDDFz5s/tdDz3MA6GoavO0
-   3eAGd4dtx8Mfh2RtI6faxhJIejahegbXnHY/DysSOAT7vubGd2JcVLr7h
-   oRwKpYOGYHqX+SM0aGufi6LgQrkv+lGJtM3CzQ8n6CJrz+U5Mw3TqpQWZ
-   Nnkyoovi7Cq1aSgJkw1VYGkDCpY3IyCSOXladf5Xh8rx6bWgp/vGQUzFi
-   4ijpOG8zcbZwoZS8voQSwZe+z59P2r5DSEe/2+sYDfPbGsMO5FvmNssjs
-   kNDcHquipHUwyv0FlUYm/77B5zZBRj5YnpduFyrkPexQT/GOr5D42Cn/q
-   w==;
-X-CSE-ConnectionGUID: OxHr85d8SXWfo75Em384nQ==
-X-CSE-MsgGUID: psNuNqBST+O/K74geXkCew==
-X-IronPort-AV: E=McAfee;i="6800,10657,11639"; a="78908854"
-X-IronPort-AV: E=Sophos;i="6.21,143,1763452800"; 
-   d="scan'208";a="78908854"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Dec 2025 03:19:54 -0800
-X-CSE-ConnectionGUID: qJI1cXddTlCXNr/oOR58Sg==
-X-CSE-MsgGUID: nS3unyGGQ8uyAJys3jLiqg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,143,1763452800"; 
-   d="scan'208";a="196666572"
-Received: from lkp-server01.sh.intel.com (HELO d335e3c6db51) ([10.239.97.150])
-  by fmviesa007.fm.intel.com with ESMTP; 12 Dec 2025 03:19:49 -0800
-Received: from kbuild by d335e3c6db51 with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vU1Bb-000000005yZ-1Ard;
-	Fri, 12 Dec 2025 11:19:47 +0000
-Date: Fri, 12 Dec 2025 19:19:09 +0800
-From: kernel test robot <lkp@intel.com>
-To: Oreoluwa Babatunde <oreoluwa.babatunde@oss.qualcomm.com>,
-	robh@kernel.org, m.szyprowski@samsung.com, ye.li@oss.nxp.com
-Cc: oe-kbuild-all@lists.linux.dev, oreoluwa.babatunde@oss.qualcomm.com,
-	kernel@oss.qualcomm.com, saravanak@google.com,
-	akpm@linux-foundation.org, david@redhat.com,
-	lorenzo.stoakes@oracle.com, Liam.Howlett@oracle.com, vbabka@suse.cz,
-	rppt@kernel.org, surenb@google.com, mhocko@suse.com,
-	robin.murphy@arm.com, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-mm@kvack.org,
-	iommu@lists.linux.dev, quic_c_gdjako@quicinc.com
-Subject: Re: [PATCH] of: reserved_mem: Allow reserved_mem framework detect
- "cma=" kernel param
-Message-ID: <202512121807.G5FMUgvU-lkp@intel.com>
-References: <20251210002027.1171519-1-oreoluwa.babatunde@oss.qualcomm.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=RLlXQG/f+oBgBvmF223rVs2zkzT4J7htOAaE9xMkMGlEzs+uozVYo4jSsY83lA03MTouOjKx8CwlegXbM/otbhd4at/FQrDnqtRf9gCsaUqdy0YDWdxP5KgUZJOOdBVD++PmLGrWBHmnNI38FPrLREpTUKgYPj9SVl+zkz4zGrM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1vU1Cs-0004Lc-D5; Fri, 12 Dec 2025 12:21:06 +0100
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1vU1Cq-005Hin-05;
+	Fri, 12 Dec 2025 12:21:04 +0100
+Received: from pengutronix.de (p54b152ce.dip0.t-ipconnect.de [84.177.82.206])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: mkl-all@blackshift.org)
+	by smtp.blackshift.org (Postfix) with ESMTPSA id A86804B5198;
+	Fri, 12 Dec 2025 11:21:03 +0000 (UTC)
+Date: Fri, 12 Dec 2025 12:21:03 +0100
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: Conor Dooley <conor@kernel.org>
+Cc: Prabhakar <prabhakar.csengg@gmail.com>, 
+	Vincent Mailhol <mailhol@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Aswath Govindraju <a-govindraju@ti.com>, Frank Li <Frank.li@nxp.com>, linux-can@vger.kernel.org, 
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH v2] dt-bindings: phy: ti,tcan104x-can: Document TI
+ TCAN1046
+Message-ID: <20251211-wonderful-singing-eel-4e2293-mkl@pengutronix.de>
+References: <20251209162119.2038313-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20251210-mauve-cow-of-hurricane-0f969d-mkl@pengutronix.de>
+ <20251210-persuaded-rewire-8ac93b0cc039@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="7xctq6j2q5icdxbk"
 Content-Disposition: inline
-In-Reply-To: <20251210002027.1171519-1-oreoluwa.babatunde@oss.qualcomm.com>
-
-Hi Oreoluwa,
-
-kernel test robot noticed the following build errors:
-
-[auto build test ERROR on akpm-mm/mm-everything]
-[also build test ERROR on v6.18]
-[cannot apply to robh/for-next linus/master next-20251212]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Oreoluwa-Babatunde/of-reserved_mem-Allow-reserved_mem-framework-detect-cma-kernel-param/20251210-082127
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/akpm/mm.git mm-everything
-patch link:    https://lore.kernel.org/r/20251210002027.1171519-1-oreoluwa.babatunde%40oss.qualcomm.com
-patch subject: [PATCH] of: reserved_mem: Allow reserved_mem framework detect "cma=" kernel param
-config: nios2-randconfig-r073-20251212 (https://download.01.org/0day-ci/archive/20251212/202512121807.G5FMUgvU-lkp@intel.com/config)
-compiler: nios2-linux-gcc (GCC) 10.5.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251212/202512121807.G5FMUgvU-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202512121807.G5FMUgvU-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   nios2-linux-ld: drivers/of/of_reserved_mem.o: in function `__reserved_mem_reserve_reg':
->> drivers/of/of_reserved_mem.c:176: undefined reference to `cma_skip_dt_default_reserved_mem'
->> drivers/of/of_reserved_mem.c:176:(.init.text+0x5b8): relocation truncated to fit: R_NIOS2_CALL26 against `cma_skip_dt_default_reserved_mem'
-   nios2-linux-ld: drivers/of/of_reserved_mem.o: in function `__reserved_mem_alloc_size':
-   drivers/of/of_reserved_mem.c:444: undefined reference to `cma_skip_dt_default_reserved_mem'
-   drivers/of/of_reserved_mem.c:444:(.init.text+0x8a4): relocation truncated to fit: R_NIOS2_CALL26 against `cma_skip_dt_default_reserved_mem'
-   nios2-linux-ld: drivers/of/of_reserved_mem.o: in function `fdt_scan_reserved_mem_reg_nodes':
-   drivers/of/of_reserved_mem.c:272: undefined reference to `cma_skip_dt_default_reserved_mem'
-   drivers/of/of_reserved_mem.c:272:(.init.text+0xbb0): relocation truncated to fit: R_NIOS2_CALL26 against `cma_skip_dt_default_reserved_mem'
+In-Reply-To: <20251210-persuaded-rewire-8ac93b0cc039@spud>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
 
-vim +176 drivers/of/of_reserved_mem.c
+--7xctq6j2q5icdxbk
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v2] dt-bindings: phy: ti,tcan104x-can: Document TI
+ TCAN1046
+MIME-Version: 1.0
 
-   150	
-   151	/*
-   152	 * __reserved_mem_reserve_reg() - reserve all memory described in 'reg' property
-   153	 */
-   154	static int __init __reserved_mem_reserve_reg(unsigned long node,
-   155						     const char *uname)
-   156	{
-   157		int t_len = (dt_root_addr_cells + dt_root_size_cells) * sizeof(__be32);
-   158		phys_addr_t base, size;
-   159		int len;
-   160		const __be32 *prop;
-   161		bool nomap, default_cma;
-   162	
-   163		prop = of_get_flat_dt_prop(node, "reg", &len);
-   164		if (!prop)
-   165			return -ENOENT;
-   166	
-   167		if (len && len % t_len != 0) {
-   168			pr_err("Reserved memory: invalid reg property in '%s', skipping node.\n",
-   169			       uname);
-   170			return -EINVAL;
-   171		}
-   172	
-   173		nomap = of_get_flat_dt_prop(node, "no-map", NULL) != NULL;
-   174		default_cma = of_get_flat_dt_prop(node, "linux,cma-default", NULL);
-   175	
- > 176		if (default_cma && cma_skip_dt_default_reserved_mem()) {
-   177			pr_err("Skipping dt linux,cma-default for \"cma=\" kernel param.\n");
-   178			return -EINVAL;
-   179		}
-   180	
-   181		while (len >= t_len) {
-   182			base = dt_mem_next_cell(dt_root_addr_cells, &prop);
-   183			size = dt_mem_next_cell(dt_root_size_cells, &prop);
-   184	
-   185			if (size && early_init_dt_reserve_memory(base, size, nomap) == 0) {
-   186				/* Architecture specific contiguous memory fixup. */
-   187				if (of_flat_dt_is_compatible(node, "shared-dma-pool") &&
-   188				    of_get_flat_dt_prop(node, "reusable", NULL))
-   189					dma_contiguous_early_fixup(base, size);
-   190				pr_debug("Reserved memory: reserved region for node '%s': base %pa, size %lu MiB\n",
-   191					uname, &base, (unsigned long)(size / SZ_1M));
-   192			} else {
-   193				pr_err("Reserved memory: failed to reserve memory for node '%s': base %pa, size %lu MiB\n",
-   194				       uname, &base, (unsigned long)(size / SZ_1M));
-   195			}
-   196	
-   197			len -= t_len;
-   198		}
-   199		return 0;
-   200	}
-   201	
+On 10.12.2025 18:21:34, Conor Dooley wrote:
+> On Wed, Dec 10, 2025 at 08:52:58AM +0100, Marc Kleine-Budde wrote:
+> > On 09.12.2025 16:21:19, Prabhakar wrote:
+> > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > >
+> > > Document the TI TCAN1046 automotive CAN transceiver. The TCAN1046 is a
+> > > dual high-speed CAN transceiver with sleep-mode support and no EN pin,
+> > > mirroring the behaviour of the NXP TJA1048, which also provides dual
+> > > channels and STB1/2 sleep-control lines.
+> > >
+> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > ---
+> > > TCAN 1046, https://www.ti.com/lit/ds/symlink/tcan1046v-q1.pdf?ts=3D17=
+65297159307&ref_url=3Dhttps%253A%252F%252Fwww.ti.com%252Fproduct%252FTCAN10=
+46V-Q1
+> > > NXP TJA1048, https://www.nxp.com/docs/en/data-sheet/TJA1048.pdf
+> >
+> > The polarity of the standby line of the chips is different.
+> >
+> > You must set the correct active high/low property for the GPIO, as the
+> > driver uses logical levels.
+> >
+> > Reviewed-by: Marc Kleine-Budde <mkl@pengutronix.de>
+>
+> What you're saying seems to contradict the tag you've given, is a
+> fallback really suitable if the standby polarity is not the same?
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+The driver uses _logical_ levels to switch the GPIOs. For example to
+power on the PHY, it disables the standby GPIO by setting the value to
+"0".
+
+| static int can_transceiver_phy_power_on(struct phy *phy)
+| {
+[...]
+|         gpiod_set_value_cansleep(can_transceiver_phy->standby_gpio, 0);
+[...]
+| }
+
+You have to use GPIO_ACTIVE_HIGH/GPIO_ACTIVE_LOW in the DT to configure
+the actual level of the GPIO.
+
+If you connect the PHY's standby input directly to the SoC's GPIO....
+
+| TJA1048: HIGH =3D Normal mode, LOW =3D Standby mode
+| TCAN1046: High =3D Standby mode, Low =3D Normal Mode
+
+=2E..for the TJA1048 you would use GPIO_ACTIVE_LOW, while for the
+TCAN1046 you would use GPIO_ACTIVE_HIGH.
+
+regards,
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+
+--7xctq6j2q5icdxbk
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEn/sM2K9nqF/8FWzzDHRl3/mQkZwFAmk7+pwACgkQDHRl3/mQ
+kZzoXAf/WppHtgf+xjeHcSDUxWQiT0y/ms86YiQzUQjFGDoc+DrkDvbpuaMAc93u
+Gsxz0QtfwMnzoMRyvd514QpjuacWsRppi+Td6sE70o8P4bOMWqy6oErLNqzHqOMX
+4Z4ouZIL8vy+0uBD2KOicJ4lveWiJikUM4/I1tA3EW/19a0PJraNizbrnhzytasp
+9YkxE/fMQopyYhb7//q4kyyzA/CzNqCS2qvi7RSk9XzXQYfzgSVCvF22USjkTUtH
+J+hBMluDYcw1DAoRTB7YqBrCYsdnjDtokuiY2lvvnnXl3FX4PjmWMrSRnkyFhmtB
+KlwlVtJ9F8qJbQrT0cqukuPBhyOcwA==
+=RGBu
+-----END PGP SIGNATURE-----
+
+--7xctq6j2q5icdxbk--
 
