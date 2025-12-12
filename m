@@ -1,154 +1,108 @@
-Return-Path: <devicetree+bounces-246035-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246036-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DC4DCB8108
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 08:04:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 06FBCCB81D6
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 08:29:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BDD4A30275E6
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 07:03:59 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1B51D301EC65
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 07:29:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F1DC1F584C;
-	Fri, 12 Dec 2025 07:03:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D4C725C821;
+	Fri, 12 Dec 2025 07:29:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fXDGbyhi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o1NM2jmY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 051123C38;
-	Fri, 12 Dec 2025 07:03:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05276AD24;
+	Fri, 12 Dec 2025 07:29:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765523039; cv=none; b=XkBPDMiuPGQ2crSqcHzZTV9gig9eYJWDqOzt/uAdJYd3/XWLAAE98TZoU7eKlYylT6P8w/8rPYjSr+L0njQLuqMvQ2JSNFo9cissj6mMojwiNkAfI/jd/E4rlHrdGYayaBQRe7v2h1YEfNajxEZIVXsO4J49qg0OPC3JvcZ4b2M=
+	t=1765524584; cv=none; b=Y5wrGXU9wyIylibtaWbSzx56s6MLEzRs524HdtCfLD5khErUsX51j69BukqoT2x2X84Fbshm+FQcxjMYqQehY9l7dvsPYQTzWsA9KsirHcbDkwoZWvCCgPvYBlPCOA3bcw2d1SXoX7yPOn/bHbond6SAPNbGCmASM5Lt8NX1yiI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765523039; c=relaxed/simple;
-	bh=n4offG3EqwMbVW8/OBK3MfHI0CYSEzfUavMXp7FIme0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pKqNvwM7aZ3Z8bPN6/NjmhUj5kb7CVvOGKfahnQTUSfUWxcMqn4HTIZTtpNb8vX13TtugiE/Q3QJWelZ5GQ+Eu/HCG3glhP1L5AisOVxhllUcrYtD5t4jTYVDFeFBoU7PfH/Vp/xheDeSQhsRBiZSgcrL4Nodj+N5v2bSmrEscY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fXDGbyhi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 577B3C4CEF1;
-	Fri, 12 Dec 2025 07:03:55 +0000 (UTC)
+	s=arc-20240116; t=1765524584; c=relaxed/simple;
+	bh=rduUdumnnvnex39AKYNG2xtSbZ3PSZ0eETlOCnoIfYI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qnNubNqrJclxG52xIy9gq7t3nW4RHetCM2i/6OF+UIvj8P1iSRzGKHVUTTMXmsltNbYxQIcRj9cWiPGgDpM4rPJwXdSxeqS3T00UvzvyWr6oETua5iWBowJAG4h9O8WxHAZ270oV4rJtfRpEQXt06U/M4/Ne2xy7mWuSwo781pA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o1NM2jmY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69ACDC4CEF1;
+	Fri, 12 Dec 2025 07:29:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765523038;
-	bh=n4offG3EqwMbVW8/OBK3MfHI0CYSEzfUavMXp7FIme0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=fXDGbyhi1p9Xlcu6VLH2UgG5vbNCVkWvimUHd8NB7fYX2Q7cbvgrRJKB9x/ySMPN/
-	 sliz/p0A2F4mp56SSU2k9JrghaBgLBnz2f4Obk0z4+PLtIyYPaZEmYuSG42NDRdQBN
-	 XLvw8KeJiwUKDDUbVOosDsY6ZEBhiHso08pe8gricMXL+SIwCp975fzy6S8Hxs4JDC
-	 VjUdXNDlE9EjKIJv1t84V1lVIwqGEY3iXx9XzZ2zp/0o6mGYW0yT+H5Y2zJxfbc3e2
-	 GGTWOoUTw25SfmkvC7OP35jLSt9Q9UxSHUwxIRQtTfoZYA4nAibTFCLIqniXgwUraz
-	 TBQkTnjCiVm6A==
-Message-ID: <bf3dfa16-b6d5-44ad-bb0b-b1bf2d1c2b6c@kernel.org>
-Date: Fri, 12 Dec 2025 08:03:52 +0100
+	s=k20201202; t=1765524583;
+	bh=rduUdumnnvnex39AKYNG2xtSbZ3PSZ0eETlOCnoIfYI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=o1NM2jmYFdaNvOjyMTldVaizsl4IQBtdiioiDYetBcyjS6FFmomTSFE70fZYxqT3f
+	 rHcWnwZ4GvPv3jt+ZJ0B9ghlQZiR5bzXYuP6pWetu+0KrOVyVqEEzGXwbZlMAnWBAy
+	 9bhdxKGN6V5R5/MlIMOQPu746l+N2+gBeTwJTbROBl/IbQ/pWnp0At18xHpSv0yO71
+	 TY6CNmZ5J3ZylTcepobxAAcldTXjroxmBHowhCzMMvcvs7twS3I+vK3xpovY2AeO+c
+	 Zxa8zyn4vf346Ci7XGD8FqoePMENzFqVzB7CKIMOSnmPY0AEHltN5VWYwuRRiqzgfo
+	 L7f3ejw/F9QRQ==
+Date: Fri, 12 Dec 2025 07:29:37 +0000
+From: Lee Jones <lee@kernel.org>
+To: Kory Maincent <kory.maincent@bootlin.com>
+Cc: Kevin Hilman <khilman@baylibre.com>,
+	Aaro Koskinen <aaro.koskinen@iki.fi>,
+	Andreas Kemnade <andreas@kemnade.info>,
+	Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>,
+	Shree Ramamoorthy <s-ramamoorthy@ti.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>,
+	Bajjuri Praneeth <praneeth@ti.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, stable@vger.kernel.org
+Subject: Re: [PATCH v4 0/2] Enable 1GHz OPP am335x-bonegreen-eco
+Message-ID: <20251212072937.GA9275@google.com>
+References: <20251112-fix_tps65219-v4-0-696a0f55d5d8@bootlin.com>
+ <20251127144138.400d1dcd@kmaincent-XPS-13-7390>
+ <7hsedk73ly.fsf@baylibre.com>
+ <20251209111534.0f871a04@kmaincent-XPS-13-7390>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] dt-bindings: soc: devapc: Add for support MT8189
-To: "Rob Herring (Arm)" <robh@kernel.org>,
- Xiaoshun Xu <xiaoshun.xu@mediatek.corp-partner.google.com>
-Cc: Xiaoshun Xu <xiaoshun.xu@mediatek.com>,
- Vince-wl Liu <vince-wl.liu@mediatek.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Project_Global_Chrome_Upstream_Group@mediatek.com,
- linux-arm-kernel@lists.infradead.org, Sirius Wang
- <sirius.wang@mediatek.com>, devicetree@vger.kernel.org,
- Matthias Brugger <matthias.bgg@gmail.com>,
- linux-mediatek@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>,
- linux-kernel@vger.kernel.org
-References: <20251212031450.489128-1-xiaoshun.xu@mediatek.corp-partner.google.com>
- <20251212031450.489128-2-xiaoshun.xu@mediatek.corp-partner.google.com>
- <176551375433.2514847.16610029422866924600.robh@kernel.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
- QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
- +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
- ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
- 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
- hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
- tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
- 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
- naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
- hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
- whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
- qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
- RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
- Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
- H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
- dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
- AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
- jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
- zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
- XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <176551375433.2514847.16610029422866924600.robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251209111534.0f871a04@kmaincent-XPS-13-7390>
 
-On 12/12/2025 05:29, Rob Herring (Arm) wrote:
-> 
-> On Fri, 12 Dec 2025 11:13:42 +0800, Xiaoshun Xu wrote:
->>
->> External email : Please do not click links or open attachments until you have verified the sender or the content.
->>
->>
->> From: "xiaoshun.xu" <xiaoshun.xu@mediatek.com>
->>
->> Add compatible and vio-idx-num attribute of MT8189
->>
->> Signed-off-by: xiaoshun.xu <xiaoshun.xu@mediatek.com>
->> ---
->>  Documentation/devicetree/bindings/soc/mediatek/devapc.yaml | 6 ++++++
->>  1 file changed, 6 insertions(+)
->>
-> 
-> My bot found errors running 'make dt_binding_check' on your patch:
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/mediatek/devapc.yaml: vio-idx-num: missing type definition
-> 
-> doc reference errors (make refcheckdocs):
-> 
+On Tue, 09 Dec 2025, Kory Maincent wrote:
 
+> On Mon, 08 Dec 2025 19:09:45 -0800
+> Kevin Hilman <khilman@baylibre.com> wrote:
+> 
+> > Kory Maincent <kory.maincent@bootlin.com> writes:
+> > 
+> > > On Wed, 12 Nov 2025 16:14:19 +0100
+> > > "Kory Maincent (TI.com)" <kory.maincent@bootlin.com> wrote:
+> > >  
+> > >> The vdd_mpu regulator maximum voltage was previously limited to 1.2985V,
+> > >> which prevented the CPU from reaching the 1GHz operating point. This
+> > >> limitation was put in place because voltage changes were not working
+> > >> correctly, causing the board to stall when attempting higher frequencies.
+> > >> Increase the maximum voltage to 1.3515V to allow the full 1GHz OPP to be
+> > >> used.
+> > >> 
+> > >> Add a TPS65219 PMIC driver fixes that properly implement the LOCK register
+> > >> handling, to make voltage transitions work reliably.  
+> > >
+> > > Hello,
+> > >
+> > > What is the status on this series?
+> > > Is there anything that could prevent it from being merged?  
+> > 
+> > Nothing technical.  I'll start queuing things up after the merge window
+> > closes and -rc1 (or maybe -rc2) is out.
+> 
+> Ok, thank you!
 
-None of these patches here managed to pass spam checks on my inbox, so I
-got only this report. Considering patch containing "External email"
-clause in the commit msg, I would say posting was somehow non-standard
-or just broken.
+Andrew made a suggestion on the MFD patch, so I unmarked it for review.
 
-That's obviously a no-go and finally mediatek corp-partners need to act
-on these poor postings (not an exception here).
-
-Best regards,
-Krzysztof
+-- 
+Lee Jones [李琼斯]
 
