@@ -1,154 +1,451 @@
-Return-Path: <devicetree+bounces-246099-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246100-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95FFCCB8938
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 11:09:44 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45273CB893E
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 11:11:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EC2E7302EF78
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 10:09:19 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 4B35D300B910
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 10:11:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C99E22DFA3A;
-	Fri, 12 Dec 2025 10:09:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FA8A315D46;
+	Fri, 12 Dec 2025 10:11:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sartura.hr header.i=@sartura.hr header.b="Zy5C2mH3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B4Grw/XY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0755C2494F0
-	for <devicetree@vger.kernel.org>; Fri, 12 Dec 2025 10:09:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10A4731078B
+	for <devicetree@vger.kernel.org>; Fri, 12 Dec 2025 10:11:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765534157; cv=none; b=bvJ7MzNNoQYh8yVSNg14POFCVCoVRlu9qt5sFGl3HWDZVnyNd9I9vxWbAIwARSvxSR4/RFhnnLgt1PdmvpwqQQj5vIYTvgtOOmuRuExlCrPbb6MjhNK7wxgUhe7b1FK10UYfjzNryqZR0ujT9pGx/WkYUO8zSb2XqVVqI7iy0qU=
+	t=1765534275; cv=none; b=mMaqe9t9XuZqd2N48+XeoKF0UsISzskuTZtaYqg3M64sviyDWd886EnIIgUNrlSqN25Xt9A4vqqFvr8JBAtLmzt2/pl2GkjBtCPQx7j3FNaEk3vycr1spdcF0M2GmjfxuWJ4D3253BVJtK+/nf0F+PUoFb1LRx6/5oT54cehwJM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765534157; c=relaxed/simple;
-	bh=+CgqYVH9orNZOCijPAUqc+h3PhteR2BDiAlkPl93y2o=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=n0jIxcwPrMALKEuaIK25rlOq2qVvkJgHHZzR4M+9f9huXQzTNLei2byl92N8Ye34KOY5W3OP5yyBOuFnBFY3hjgmB6gkiESqHjoAROYT0OyOj0pAA3Phg0G9FC/84nKCu+IoosxT3p1IlWHsWWQMFqysE8fyiJd3K/aU6PRTp9E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sartura.hr; spf=pass smtp.mailfrom=sartura.hr; dkim=pass (2048-bit key) header.d=sartura.hr header.i=@sartura.hr header.b=Zy5C2mH3; arc=none smtp.client-ip=209.85.218.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sartura.hr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sartura.hr
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-b736d883ac4so176565166b.2
-        for <devicetree@vger.kernel.org>; Fri, 12 Dec 2025 02:09:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura.hr; s=sartura; t=1765534153; x=1766138953; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=piKeicldVFohFnPgSVyUwsQHuUt89125myGk5tf25V8=;
-        b=Zy5C2mH3YV3kmR8lWvRj8ihyBacWLyf8HZzakMAOQgEjFKxqUOQMQLlRSmB8qVh1R0
-         W2M9hL6vEtna1D83xuWy5rYzO9keo72jTylMimmImti0eu6FonAXHdCIlGm76sYGZEw0
-         /UKwjUsaUGcvqx17waTIfbZDmDlfhilMEraLQChb5RzE2/6hVEhJdpsr1BrNTz6+QEp1
-         sGYGKWrwh0XaTtvs1nw3ZILQWbcmRUxOqkY942oB0YsTRQ67W/DIdAg4vOF5tbsDXhE6
-         oghjsaETf666NTM5iqFHV7DDklMqNaD9uqQRn9XTTrZCjIe1y9xVVOX0JaTG00j4RH44
-         cXgw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765534153; x=1766138953;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=piKeicldVFohFnPgSVyUwsQHuUt89125myGk5tf25V8=;
-        b=gqyFe/X7+bz3MT/xkMxZj++ubutHu2RjyJIrhqPNxZ84BA4jjQhg/gteAOBP1NPk/A
-         VACvAuP3wA5vLTkm3zG8Txi4z0+cL5dcfMJRshCvvs/01YxwESWYjHrFTFw0bXgmj/60
-         Wjl0yASfx7yK+KG78LzORAVWrXh3T/KWxvK0gdi9iHZZBzkuQjq3DsDecAAe3FYO18LD
-         eZBCwiRxry/SJ4RiO+RGCAGP/sDymHfIguxd+BH8lBl+ZbU6EKg5Mlx7TLHVdTcx5hUi
-         IH7eWY0qVDoh0F6e3lqvOLL782OF8R8At1tKZ7wS/j7GoXL1Lgje/6WLSbbYaIyPgjWQ
-         BHQQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWbtyLgyw8Dk4FojBISVHAm+9JNVlUbdLbC62Llb05JL5FS/leTSTgsAqpnp6pNiuDC+dTwAvdtMWSD@vger.kernel.org
-X-Gm-Message-State: AOJu0YwIA/TshFrJh5Nrk/4yvj4FRWRaocWo9a8q1bgZ/LpqeNV3HGDs
-	xLcSQpPx2wzVY2lerPMxV3x/0UOBIz+tV4SkVJcido/FhoY3KBKeUNTDyYpZJgyLBxNbKR67W2J
-	OsDQca65yA7pg+KdhLzE0CXRH0ZRQR8w7rQXH+fMsfQ==
-X-Gm-Gg: AY/fxX6LN1bFGUCzBNFmm7MhtKyoRcQLhvw5fQ2ul8amDWhe3mTrsZLb+3cQtOPxx8N
-	vkViTMQEqr/OnHUD1tuXTp5jJA/gDJBEoJIeVJgzbeCiok9u4iVn1TM3pzsj+MkkkFWxXcBeRKl
-	BLoRaCdcSCtAdt5gav3EcRN0S3ND6d2xanu82y5aplRoBDE3vqqoQYZmEEtMfuzdA+zaAXMnE1q
-	QTGS81CzTQlRaC3MXnnZFOLSFa7qJCTA8RdPbOVjgOK5S5lpku8v3/qYPT5KDMoiMJny4U=
-X-Google-Smtp-Source: AGHT+IGu9UDsKSPu1wQCEy9ZSntpZSOo/9V+U0kQrHcNkQAxG5oPTpTaMv6wXo2k7lZ0/X2pNnXrjg4sARyaZrNmc5Q=
-X-Received: by 2002:a17:906:f5a9:b0:b76:8077:4eaa with SMTP id
- a640c23a62f3a-b7d23618a6dmr134378366b.6.1765534153256; Fri, 12 Dec 2025
- 02:09:13 -0800 (PST)
+	s=arc-20240116; t=1765534275; c=relaxed/simple;
+	bh=K9iOfHu3sHH8E2mx/0wrzT5tjpWF/oxkt/1WE6QwHvc=;
+	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=muwrDoWTc5Pr37Yj4cwZBr+PlV1MtMmlkhQB2/DQ7bYMMCp0EpZXNmgG1wJGPudGBvFjBXuVcigeaCMcf2m706Yt3B49hqWCrvxNU01/64I7oGY4TF6Rls5t1tWVHlgWhPh0GB/lPVlb1rGNM/St8c2rR1v9Yaz7NKFxVxENlSo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B4Grw/XY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6580C2BC9E
+	for <devicetree@vger.kernel.org>; Fri, 12 Dec 2025 10:11:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1765534274;
+	bh=K9iOfHu3sHH8E2mx/0wrzT5tjpWF/oxkt/1WE6QwHvc=;
+	h=From:In-Reply-To:References:Date:Subject:To:Cc:From;
+	b=B4Grw/XYgfImbgds3cMa893XWbZhiOjKQrw2KF9QHZLYIC3QpCHOqDsX0FPv+95ZA
+	 MtVWlIM9q5R55GZukJY5aHWz/R5bZGJj5zYusPu/v42G6olNoebuToBTIo/WyZvZh2
+	 xmagALpXV6kY1/wIHLMOfARvx/zlsQYdgEjvG7aA3A1Y2/Rz6kspBp22j86ebBkMHy
+	 V8TxVS9QzWDUCL5YCprzPoTREi8IC0r7IDSolRdY1BACD9h/pwhfT1gIsCr1KAwd+3
+	 SgfEX+KVHCl6trqKeiRsp1xqscRedCq2uTdwMzuG6bjv9Y/CPf5s4bANrxDJfkIHeO
+	 nFAdAYOy0Cs5g==
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-5945510fd7aso849372e87.0
+        for <devicetree@vger.kernel.org>; Fri, 12 Dec 2025 02:11:14 -0800 (PST)
+X-Gm-Message-State: AOJu0YzuIcZ+y1XCkLGJflo/Q7n7LbP9ZX1HyvztXsa4eOtMB/t11U0b
+	10bsQyrvbNS/fpYU09oCkodA3NPxibOfp9M6wj7Hq5cGtKXKLoF7n1aWGbJ5N7K2MexcgLTHuDt
+	aU9+7OkxJ6Gfb/+2JwoBgVJaLzO+B9uqexgQ+cdnZtw==
+X-Google-Smtp-Source: AGHT+IGgQcDDVx5CV5iALdJF8BCtSi9/N1Hvmh5TeNsn50J9aXMOA2he1DDvPHJXZouFGJPTLM1rhMNOTARniy28pOQ=
+X-Received: by 2002:a05:6512:3e01:b0:598:f262:15ec with SMTP id
+ 2adb3069b0e04-598faa8083bmr601324e87.26.1765534273448; Fri, 12 Dec 2025
+ 02:11:13 -0800 (PST)
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Fri, 12 Dec 2025 02:11:11 -0800
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Fri, 12 Dec 2025 02:11:11 -0800
+From: Bartosz Golaszewski <brgl@kernel.org>
+In-Reply-To: <20251212-dev-b4-aaeon-mcu-driver-v1-6-6bd65bc8ef12@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251203122313.1287950-1-robert.marko@sartura.hr>
- <20251203122313.1287950-2-robert.marko@sartura.hr> <20251203-duly-leotard-86b83bd840c6@spud>
- <CA+HBbNH6wO2VWOp1Dn52ArrYg6z89FgYnT3x-jsHsTVJ5xSBSA@mail.gmail.com> <20251208-absolute-diploma-6575729ab43f@spud>
-In-Reply-To: <20251208-absolute-diploma-6575729ab43f@spud>
-From: Robert Marko <robert.marko@sartura.hr>
-Date: Fri, 12 Dec 2025 11:09:01 +0100
-X-Gm-Features: AQt7F2qi9N_ckMGJFgowBcvF34rbB96zRSF2oUqF51CXmoKh0Qd3rJ2sqP-K-eQ
-Message-ID: <CA+HBbNHuYCq9oV4ZjWGjwnJM=oz-O85p_tqB+UnTBmivzDoowg@mail.gmail.com>
-Subject: Re: [PATCH 2/4] dt-bindings: arm: Document Microchip LAN969x
-To: Conor Dooley <conor@kernel.org>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	gregkh@linuxfoundation.org, nicolas.ferre@microchip.com, 
-	claudiu.beznea@tuxon.dev, mturquette@baylibre.com, sboyd@kernel.org, 
-	richardcochran@gmail.com, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, 
-	daniel.machon@microchip.com, UNGLinuxDriver@microchip.com, 
-	luka.perkov@sartura.hr
+References: <20251212-dev-b4-aaeon-mcu-driver-v1-0-6bd65bc8ef12@bootlin.com> <20251212-dev-b4-aaeon-mcu-driver-v1-6-6bd65bc8ef12@bootlin.com>
+Date: Fri, 12 Dec 2025 02:11:11 -0800
+X-Gmail-Original-Message-ID: <CAMRc=McSHcYfz2L-jeJa9Dnb=fp8ACRAwNtDJmHEMQ3b+BOd+A@mail.gmail.com>
+X-Gm-Features: AQt7F2oPhStXk_-W99l7ac0r049RG0GE-tK9DybvagfZd3dPy0ulff7h6NWizGs
+Message-ID: <CAMRc=McSHcYfz2L-jeJa9Dnb=fp8ACRAwNtDJmHEMQ3b+BOd+A@mail.gmail.com>
+Subject: Re: [PATCH 6/8] gpio: aaeon: Add GPIO driver for SRG-IMX8PL MCU
+To: "Thomas Perrot (Schneider Electric)" <thomas.perrot@bootlin.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-watchdog@vger.kernel.org, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Linus Walleij <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, 
+	=?UTF-8?B?SsOpcsOpbWllIERhdXRoZXJpYmVz?= <jeremie.dautheribes@bootlin.com>, 
+	Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>, Lee Jones <lee@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Dec 8, 2025 at 6:10=E2=80=AFPM Conor Dooley <conor@kernel.org> wrot=
-e:
+On Fri, 12 Dec 2025 08:41:09 +0100, "Thomas Perrot (Schneider
+Electric)" <thomas.perrot@bootlin.com> said:
+> Add GPIO driver for the Aaeon SRG-IMX8PL embedded controller. This
+> driver supports 7 GPO (General Purpose Output) pins and 12 GPIO pins
+> that can be configured as inputs or outputs.
 >
-> On Mon, Dec 08, 2025 at 11:30:28AM +0100, Robert Marko wrote:
-> > On Wed, Dec 3, 2025 at 8:19=E2=80=AFPM Conor Dooley <conor@kernel.org> =
-wrote:
-> > >
-> > > On Wed, Dec 03, 2025 at 01:21:30PM +0100, Robert Marko wrote:
-> > > > Microchip LAN969x is a series of multi-port, multi-gigabit switches=
- based
-> > > > on ARMv8 Cortex-A53 CPU.
-> > > >
-> > > > Signed-off-by: Robert Marko <robert.marko@sartura.hr>
-> > > > ---
-> > > >  .../bindings/arm/microchip,lan969x.yaml       | 32 +++++++++++++++=
-++++
-> > >
-> > > This should not be in a unique file, put it in with the other microch=
-ip
-> > > arm devices please. Also, the wildcard in the compatible is not
-> > > permitted, only way it'd make sense is if these are different binning=
-s
-> > > of the same silicon. If that's the case, you need to explain why,
-> > > because compatibles are meant to be soc-specific.
-> >
-> > Hi Conor,
-> > The issue is that there is no unique place for Microchip SoC-s,
-> > LAN966x series is in the AT91 bindings
-> > while SparX-5 has its own bindings file.
-> >
-> > What would you suggest in this case?
+> The driver implements proper state management for GPO pins (which are
+> output-only) and full direction control for GPIO pins. During probe,
+> all pins are reset to a known state (GPOs low, GPIOs as inputs) to
+> prevent undefined behavior across system reboots, as the MCU does not
+> reset GPIO states on soft reboot.
 >
-> Ideally, arm/atmel-at91.yaml and arm/microchip,sparx5.yaml would just
-> become arm/microchip.yaml. The axi@600000000 thing in the sparx5 file
-> looks pointless and can be deleted IMO.
+> Co-developed-by: J=C3=A9r=C3=A9mie Dautheribes (Schneider Electric) <jere=
+mie.dautheribes@bootlin.com>
+> Signed-off-by: J=C3=A9r=C3=A9mie Dautheribes (Schneider Electric) <jeremi=
+e.dautheribes@bootlin.com>
+> Signed-off-by: Thomas Perrot (Schneider Electric) <thomas.perrot@bootlin.=
+com>
+> ---
+>  drivers/gpio/Kconfig          |  10 ++
+>  drivers/gpio/Makefile         |   1 +
+>  drivers/gpio/gpio-aaeon-mcu.c | 248 ++++++++++++++++++++++++++++++++++++=
+++++++
+>  3 files changed, 259 insertions(+)
+>
+> diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
+> index c74da29253e810b51540684b1186e8f274066b69..7e0f675b664fa25243fc2802e=
+dc3380572c94c41 100644
+> --- a/drivers/gpio/Kconfig
+> +++ b/drivers/gpio/Kconfig
+> @@ -157,6 +157,16 @@ config GPIO_74XX_MMIO
+>  	    8 bits:	74244 (Input), 74273 (Output)
+>  	    16 bits:	741624 (Input), 7416374 (Output)
+>
+> +config GPIO_AAEON_MCU
+> +	tristate "Aaeon MCU GPIO support"
+> +	depends on MFD_AAEON_MCU && OF_GPIO
 
-Ok, I merged them all in one generic microchip.yaml binding, but I noticed =
-that
-arm/atmel-at91.yaml is licensed under GPL-2.0 while arm/microchip,sparx5.ya=
-ml
-is dual-licensed as its preferred for bindings.
+You don't need OF_GPIO, please drop it.
 
-Is that going to be an issue?
+> +	select GPIO_GENERIC
+> +	help
+> +	  Select this option to enable GPIO support for the Aaeon SRG-IMX8PL
+> +	  onboard MCU. This driver provides access to GPIO pins and GPO
+> +	  (General Purpose Output) pins controlled by the microcontroller.
+> +	  The driver handles both input and output configuration.
+> +
+>  config GPIO_ALTERA
+>  	tristate "Altera GPIO"
+>  	select GPIOLIB_IRQCHIP
+> diff --git a/drivers/gpio/Makefile b/drivers/gpio/Makefile
+> index 2421a8fd3733e0b06c2581262aaa9cd629f66c7d..1ba6318bc558743fbe5910966=
+c2c8fc3f792efe9 100644
+> --- a/drivers/gpio/Makefile
+> +++ b/drivers/gpio/Makefile
+> @@ -29,6 +29,7 @@ obj-$(CONFIG_GPIO_104_IDI_48)		+=3D gpio-104-idi-48.o
+>  obj-$(CONFIG_GPIO_104_IDIO_16)		+=3D gpio-104-idio-16.o
+>  obj-$(CONFIG_GPIO_74X164)		+=3D gpio-74x164.o
+>  obj-$(CONFIG_GPIO_74XX_MMIO)		+=3D gpio-74xx-mmio.o
+> +obj-$(CONFIG_GPIO_AAEON_MCU)		+=3D gpio-aaeon-mcu.o
+>  obj-$(CONFIG_GPIO_ADNP)			+=3D gpio-adnp.o
+>  obj-$(CONFIG_GPIO_ADP5520)		+=3D gpio-adp5520.o
+>  obj-$(CONFIG_GPIO_ADP5585)		+=3D gpio-adp5585.o
+> diff --git a/drivers/gpio/gpio-aaeon-mcu.c b/drivers/gpio/gpio-aaeon-mcu.=
+c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..cebd17d1877147b987ea673b0=
+81334c8062f5fc0
+> --- /dev/null
+> +++ b/drivers/gpio/gpio-aaeon-mcu.c
+> @@ -0,0 +1,248 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/*
+> + * Aaeon MCU GPIO driver
+> + *
+> + * Copyright (C) 2025 Bootlin
+> + * Author: J=C3=A9r=C3=A9mie Dautheribes <jeremie.dautheribes@bootlin.co=
+m>
+> + * Author: Thomas Perrot <thomas.perrot@bootlin.com>
+> + */
+> +
+> +#include <linux/bitmap.h>
+> +#include <linux/gpio/driver.h>
+> +#include <linux/mfd/aaeon-mcu.h>
+> +#include <linux/module.h>
+> +#include <linux/platform_device.h>
 
-Regards,
-Robert
+You need more headers than that. At least device.h for devm_kzalloc(),
+mod_devicetable.h, bitops.h and probably some more.
+
+> +
+> +#define AAEON_MCU_CONFIG_GPIO_INPUT 0x69
+> +#define AAEON_MCU_CONFIG_GPIO_OUTPUT 0x6F
+> +#define AAEON_MCU_READ_GPIO 0x72
+> +#define AAEON_MCU_WRITE_GPIO 0x77
+> +
+> +#define AAEON_MCU_CONTROL_GPO 0x6C
+> +
+> +#define MAX_GPIOS 12
+> +#define MAX_GPOS 7
+> +
+> +struct aaeon_mcu_gpio {
+> +	struct gpio_chip gc;
+> +	struct aaeon_mcu_dev *mfd;
+> +	DECLARE_BITMAP(dir_in, MAX_GPOS + MAX_GPIOS);
+> +	DECLARE_BITMAP(gpo_state, MAX_GPOS);
+> +};
+> +
+> +static int aaeon_mcu_gpio_config_input_cmd(struct aaeon_mcu_gpio *data,
+> +					    unsigned int offset)
+> +{
+> +	u8 cmd[3], rsp;
+> +
+> +	cmd[0] =3D AAEON_MCU_CONFIG_GPIO_INPUT;
+> +	cmd[1] =3D offset - 7;
+> +	cmd[2] =3D 0x00;
+> +
+> +	return aaeon_mcu_i2c_xfer(data->mfd->i2c_client, cmd, 3, &rsp, 1);
+> +}
+> +
+> +static int aaeon_mcu_gpio_direction_input(struct gpio_chip *gc, unsigned=
+ int offset)
+> +{
+> +	struct aaeon_mcu_gpio *data =3D gpiochip_get_data(gc);
+> +	int ret;
+> +
+> +	if (offset < MAX_GPOS) {
+> +		dev_err(gc->parent, "GPIO offset (%d) must be an output GPO\n", offset=
+);
+> +		return -EOPNOTSUPP;
+> +	}
+> +
+> +	ret =3D aaeon_mcu_gpio_config_input_cmd(data, offset);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	set_bit(offset, data->dir_in);
+> +
+> +	return 0;
+> +}
+> +
+> +static int aaeon_mcu_gpio_config_output_cmd(struct aaeon_mcu_gpio *data,
+> +					     unsigned int offset,
+> +					     int value)
+> +{
+> +	u8 cmd[3], rsp;
+> +	int ret;
+> +
+> +	cmd[0] =3D AAEON_MCU_CONFIG_GPIO_OUTPUT;
+> +	cmd[1] =3D offset - 7;
+> +	cmd[2] =3D 0x00;
+> +
+> +	ret =3D aaeon_mcu_i2c_xfer(data->mfd->i2c_client, cmd, 3, &rsp, 1);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	cmd[0] =3D AAEON_MCU_WRITE_GPIO;
+> +	/* cmd[1] =3D offset - 7; */
+> +	cmd[2] =3D !!value;
+> +
+> +	return aaeon_mcu_i2c_xfer(data->mfd->i2c_client, cmd, 3, &rsp, 1);
+> +}
+> +
+> +static int aaeon_mcu_gpio_direction_output(struct gpio_chip *gc, unsigne=
+d int offset, int value)
+> +{
+> +	struct aaeon_mcu_gpio *data =3D gpiochip_get_data(gc);
+> +	int ret;
+> +
+> +	if (offset < MAX_GPOS)
+> +		return 0;
+> +
+> +	ret =3D aaeon_mcu_gpio_config_output_cmd(data, offset, value);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	clear_bit(offset, data->dir_in);
+> +
+> +	return 0;
+> +}
+> +
+> +static int aaeon_mcu_gpio_get_direction(struct gpio_chip *gc, unsigned i=
+nt offset)
+> +{
+> +	struct aaeon_mcu_gpio *data =3D gpiochip_get_data(gc);
+> +
+> +	return test_bit(offset, data->dir_in) ?
+> +		GPIO_LINE_DIRECTION_IN : GPIO_LINE_DIRECTION_OUT;
+> +}
+> +
+> +static int aaeon_mcu_gpio_get(struct gpio_chip *gc, unsigned int offset)
+> +{
+> +	struct aaeon_mcu_gpio *data =3D gpiochip_get_data(gc);
+> +	u8 cmd[3], rsp;
+> +	int ret;
+> +
+> +	if (offset < MAX_GPOS)
+> +		return test_bit(offset, data->gpo_state);
+
+Are you sure the bit ops in this driver need to be atomic?
+
+> +
+> +	cmd[0] =3D AAEON_MCU_READ_GPIO;
+> +	cmd[1] =3D offset - 7;
+> +	cmd[2] =3D 0x00;
+> +
+> +	ret =3D aaeon_mcu_i2c_xfer(data->mfd->i2c_client, cmd, 3, &rsp, 1);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	return rsp;
+> +}
+> +
+> +static int aaeon_mcu_gpo_set_cmd(struct aaeon_mcu_gpio *data, unsigned i=
+nt offset, int value)
+> +{
+> +	u8 cmd[3], rsp;
+> +
+> +	cmd[0] =3D AAEON_MCU_CONTROL_GPO;
+> +	cmd[1] =3D offset + 1;
+> +	cmd[2] =3D !!value;
+> +
+> +	return aaeon_mcu_i2c_xfer(data->mfd->i2c_client, cmd, 3, &rsp, 1);
+> +}
+> +
+> +static int aaeon_mcu_gpio_set_cmd(struct aaeon_mcu_gpio *data, unsigned =
+int offset, int value)
+> +{
+> +	u8 cmd[3], rsp;
+> +
+> +	cmd[0] =3D AAEON_MCU_WRITE_GPIO;
+> +	cmd[1] =3D offset - 7;
+> +	cmd[2] =3D !!value;
+> +
+> +	return aaeon_mcu_i2c_xfer(data->mfd->i2c_client, cmd, 3, &rsp, 1);
+> +}
+> +
+> +static int aaeon_mcu_gpio_set(struct gpio_chip *gc, unsigned int offset,
+> +			      int value)
+> +{
+> +	struct aaeon_mcu_gpio *data =3D gpiochip_get_data(gc);
+> +
+> +	if (offset < MAX_GPOS) {
+> +		if (aaeon_mcu_gpo_set_cmd(data, offset, value) =3D=3D 0)
+> +			assign_bit(offset, data->gpo_state, value);
+> +	} else {
+> +		return aaeon_mcu_gpio_set_cmd(data, offset, value);
+> +	}
+> +	return 0;
+
+
+It would be much cleaner if you did it like:
+
+	if (offset >=3D MAX_GPOS)
+		return aaeon_mcu_gpio_set_cmd(data, offset, value);
+
+	if (aaeon_mcu_gpo_set_cmd(data, offset, value) =3D=3D 0)
+		assign_bit(offset, data->gpo_state, value);
+
+	return 0;
+
+> +}
+> +
+> +static const struct gpio_chip aaeon_mcu_chip =3D {
+> +	.label			=3D "gpio-aaeon-mcu",
+> +	.owner			=3D THIS_MODULE,
+> +	.get_direction		=3D aaeon_mcu_gpio_get_direction,
+> +	.direction_input	=3D aaeon_mcu_gpio_direction_input,
+> +	.direction_output	=3D aaeon_mcu_gpio_direction_output,
+> +	.get			=3D aaeon_mcu_gpio_get,
+> +	.set			=3D aaeon_mcu_gpio_set,
+> +	.base			=3D -1,
+> +	.ngpio			=3D MAX_GPOS + MAX_GPIOS,
+> +	.can_sleep		=3D true,
+> +};
+
+There's no point in keeping it in memory if you copy it into data->gc anywa=
+y.
+Use compound literals in aaeon_mcu_gpio_probe() if you want to initialize
+members explicitly.
+
+> +
+> +static void aaeon_mcu_gpio_reset(struct aaeon_mcu_gpio *data, struct dev=
+ice *dev)
+> +{
+> +	unsigned int i;
+> +	int ret;
+> +
+> +	/* Reset all GPOs */
+> +	for (i =3D 0; i < MAX_GPOS; i++) {
+> +		ret =3D aaeon_mcu_gpo_set_cmd(data, i, 0);
+> +		if (ret < 0)
+> +			dev_warn(dev, "Failed to reset GPO %u state: %d\n", i, ret);
+> +		clear_bit(i, data->dir_in);
+> +	}
+> +
+> +	/* Reset all GPIOs */
+> +	for (i =3D MAX_GPOS; i < MAX_GPOS + MAX_GPIOS; i++) {
+> +		ret =3D aaeon_mcu_gpio_config_input_cmd(data, i);
+> +		if (ret < 0)
+> +			dev_warn(dev, "Failed to reset GPIO %u state: %d\n", i, ret);
+> +		set_bit(i, data->dir_in);
+> +	}
+> +}
+> +
+> +static int aaeon_mcu_gpio_probe(struct platform_device *pdev)
+> +{
+> +	struct aaeon_mcu_dev *mfd =3D dev_get_drvdata(pdev->dev.parent);
+> +	struct aaeon_mcu_gpio *data;
+> +
+> +	data =3D devm_kzalloc(&pdev->dev, sizeof(*data), GFP_KERNEL);
+> +	if (!data)
+> +		return -ENOMEM;
+> +
+> +	data->mfd =3D mfd;
+
+It looks like all you need is the i2c_client, maybe just store its address =
+and
+avoid constant dereferencing.
+
+> +	data->gc =3D aaeon_mcu_chip;
+> +	data->gc.parent =3D &pdev->dev;
+> +
+> +	/*
+> +	 * Reset all GPIO states to a known configuration. The MCU does not
+> +	 * reset GPIO state on soft reboot, only on power cycle (hard reboot).
+> +	 * Without this reset, GPIOs would retain their previous state across
+> +	 * reboots, which could lead to unexpected behavior.
+> +	 */
+> +	aaeon_mcu_gpio_reset(data, &pdev->dev);
+> +
+> +	platform_set_drvdata(pdev, data);
+
+Where is the corresponding call to platform_get_drvdata()?
+
+> +
+> +	return devm_gpiochip_add_data(&pdev->dev, &data->gc,
+> +				      data);
+> +}
+> +
+> +static const struct of_device_id aaeon_mcu_gpio_of_match[] =3D {
+> +	{ .compatible =3D "aaeon,srg-imx8pl-gpio" },
+> +	{},
+> +};
+> +
+> +MODULE_DEVICE_TABLE(of, aaeon_mcu_gpio_of_match);
+> +
+> +static struct platform_driver aaeon_mcu_gpio_driver =3D {
+> +	.driver =3D {
+> +		.name =3D "aaeon-mcu-gpio",
+> +		.of_match_table =3D aaeon_mcu_gpio_of_match,
+> +	},
+> +	.probe =3D aaeon_mcu_gpio_probe,
+> +};
+> +
+> +module_platform_driver(aaeon_mcu_gpio_driver);
+> +
+> +MODULE_DESCRIPTION("GPIO interface for Aaeon MCU");
+> +MODULE_AUTHOR("J=C3=A9r=C3=A9mie Dautherbes <jeremie.dautheribes@bootlin=
+.com>");
+> +MODULE_LICENSE("GPL");
+>
+> --
+> 2.52.0
+>
 >
 
-
---=20
-Robert Marko
-Staff Embedded Linux Engineer
-Sartura d.d.
-Lendavska ulica 16a
-10000 Zagreb, Croatia
-Email: robert.marko@sartura.hr
-Web: www.sartura.hr
+Bart
 
