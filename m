@@ -1,78 +1,101 @@
-Return-Path: <devicetree+bounces-245991-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-245992-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12C26CB7987
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 02:58:20 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3A3FCB79BA
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 03:06:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5AA80305FAA4
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 01:56:08 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B6610300F180
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 02:06:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0641296BBE;
-	Fri, 12 Dec 2025 01:56:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EADA21C701F;
+	Fri, 12 Dec 2025 02:06:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="GR7EyRlE"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VkCwf4MY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71B021CD15;
-	Fri, 12 Dec 2025 01:56:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8937D1E5018
+	for <devicetree@vger.kernel.org>; Fri, 12 Dec 2025 02:06:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765504564; cv=none; b=EV9/QfMPqtrJTfDUeAdbpdrNhcNO4nYTFvkSetlw5xsH5/GuC9fFcddyxN8IeccqSdJ552B+EJziZaGx9OMsbfPEiZJNYVkDNzyJv4iNVSqRF1aiM/a99AT2KFcsbBMoqQ6NSmCyAVT3966+4mSOwftTqvuMJOz9qqrIOkWGXd4=
+	t=1765505167; cv=none; b=GFnUQDbKTtnKukLm+Y2yiSRogTTWtE08576GinCQyUcUH87i3uKEbfkpl5laxhrdAeNhf8nrosHfdDbkc/r5QMq2pCZV5Ug7CCOhYY9Y8VdSTA99/7jxKRhIMQ0KZf4zIQ+YzCa+HsZCpqoK8/AQWqKw/2gAGw07hcPxffI6SLc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765504564; c=relaxed/simple;
-	bh=HBA0IM3ZKyr9TX+XP98IPKZlbKGhykUjQeFn1HuqFsc=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=JzLN1blXwgiUMgnFioz8jqORm3CMlPYaWkOK9KFVqCQamyMDCa2mK0wGDojB9LuUGCEzCInP39eCiJkM3a8l3a67Ysr+FS7cT/WmNkctrQoYPycu0V4YZUYrn1mS5aXkdyjIa7iT53VNM0qjBejsjhqLZT3lxJG4XCDL2GIzU50=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=GR7EyRlE; arc=none smtp.client-ip=210.61.82.184
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: b253a52ed6fd11f0b33aeb1e7f16c2b6-20251212
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=sBN97zlc1zuJbM5gYgQtbCvVoaqupNsGh6L1SMzLNQ8=;
-	b=GR7EyRlE8nISmr8py6N0xAJ1831LDIciJ1rCjat/BWYITJAckpe4nfSnupr+rZlH0CdMRAa8NdU0YGjcneQu6FxUAkqjzgY5VFXKtowH5zQXL3VAbwOJYXAIk1RXBzTE7g+uclWgqcKmaHnqHzAYA3AqewkHzEvYE+fIKJFtdBU=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.6,REQID:f905e8d5-f738-4848-a1b0-87d9c83fb555,IP:0,UR
-	L:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
-	elease,TS:0
-X-CID-META: VersionHash:a9d874c,CLOUDID:68dead02-1fa9-44eb-b231-4afc61466396,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:81|82|102|836|888|898,TC:-5,Content:
-	0|15|50,EDM:-3,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:nil,BEC:nil,COL:0,OS
-	I:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 2,SSN|SDN
-X-CID-BAS: 2,SSN|SDN,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: b253a52ed6fd11f0b33aeb1e7f16c2b6-20251212
-Received: from mtkmbs14n2.mediatek.inc [(172.21.101.76)] by mailgw02.mediatek.com
-	(envelope-from <jianhua.lin@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 564307736; Fri, 12 Dec 2025 09:55:55 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26; Fri, 12 Dec 2025 09:55:54 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1748.26 via Frontend Transport; Fri, 12 Dec 2025 09:55:53 +0800
-From: Jianhua Lin <jianhua.lin@mediatek.com>
-To: <mchehab@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <matthias.bgg@gmail.com>,
-	<angelogioacchino.delregno@collabora.com>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-media@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-mediatek@lists.infradead.org>,
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>,
-	<sirius.wang@mediatek.com>, <vince-wl.liu@mediatek.com>,
-	<jh.hsu@mediatek.com>, Jianhua Lin <jianhua.lin@mediatek.com>
-Subject: [PATCH 4/4] media: mediatek: jpeg: add compatible for MT8189 SoC
-Date: Fri, 12 Dec 2025 09:52:18 +0800
-Message-ID: <20251212015218.4689-5-jianhua.lin@mediatek.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20251212015218.4689-1-jianhua.lin@mediatek.com>
-References: <20251212015218.4689-1-jianhua.lin@mediatek.com>
+	s=arc-20240116; t=1765505167; c=relaxed/simple;
+	bh=88+bNIzAlxYN1ci1rTDeBjW922J6fpEPqmB1ccuDPaw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=NZZ9wclOrVGMe/SwF+1ZGrJNkLXNqfGt1KWOg6cPGAvz0Ta31wjM/S8dcHFml9E3TS7Vs0ZU9ojc9pktstv3KHWif+NUbDemzBd7Tt1h/bZZqCT9NexE/8VLKSLzHzX/rIupavTXhvUKpE9xejCBJZGix0Y0i4EyFdFSJs4aZEs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VkCwf4MY; arc=none smtp.client-ip=209.85.216.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f49.google.com with SMTP id 98e67ed59e1d1-3436a97f092so922468a91.3
+        for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 18:06:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1765505164; x=1766109964; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=SlgUDFgw3W20yRvzQZnPEu5u5tHChFQ6crwdHESAYTo=;
+        b=VkCwf4MYNcYmReZYkAECM0pxPF2gtmpfdoQDpdPT5R949uMlqHNz5LbTlzXU6cAuf0
+         4oUkAeRNfpca3pVYKbIXEJDl1PTMWkT5ZnrrsUh4o0VqDVe/PEgohY9HRFyuanJbWfSX
+         i40rMFNdVQ9mTS/6AjgySqHHH3wdRbwk47aOF+E45jQmgzaO0EqH/UcfEnEA9ZfH+K10
+         T4JayfHyCfImhSuEVUt2pz+CwM+qUkXxsrEgkFeTPUPjJ2/oM+ni5q3JO0zySqwfmLB9
+         OhQwTCNZj6FCbgChOwPK4J/41P2UHGGjPThpm0Ncpo2usxMWGHtnNOfGPzBYBeqs8qVG
+         1isQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765505164; x=1766109964;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=SlgUDFgw3W20yRvzQZnPEu5u5tHChFQ6crwdHESAYTo=;
+        b=w2XPjcPQNZivZqpgnNkRQq3hQTvXVlq/l7sRv9JHzUbDWK0TzarGI4t70iOWHb9uRi
+         vpG7+mzTRXqZ7KfrUw9VfzSPK2QFVC4VMRms+jF90OqDKwyuCAejq71GqN9SH1NNDdJ5
+         IorWqLQlIgFgMKL/KcGCXCJ+DgGQH125xmyOqsIs39RMmuS7Iw+4fy9eKEN/GyW0U8Ea
+         gEmvYhPyXcLbPu65CV01/rOknnwz58silpVtv9YB+cEHBm7KnPGk03chJXs+d3u0r0ap
+         3dPHVQ8IE4DkJEk9SB2N72aAZKY+hPTml0w1jCED0X+SyOLnmT7bH5edZAqDyScVa4tH
+         SEgQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVTXfeiRpyurErxHFqzR+RS3Ns7YJcqBb4UUUdnAY9d3u+5h3myYk6ChQ/NOpF4vibjHQdLBFfRY1tG@vger.kernel.org
+X-Gm-Message-State: AOJu0YwtpSeAmZkD6zIsoN9WJpV0OCKqgesgxmeHTU2RPj1hZNbsO11n
+	pMCb6V1zUsZyMoQk9VnjVcFw6NDq8LNO/8AEHUYCMCc2X64D3Nj5WBd+
+X-Gm-Gg: AY/fxX6q0UfnOkllyVIFFYyaEnOCa9gcGUZwsPmOGc9N3lvjelqfiwDnNNAAOfp447+
+	IL6/XdeW4Adb82omgaS9fji7+S26d3UljECn2OM5mh0ktMymlgpr1f1RAHrqS60s73q3Taq1o/J
+	ZAiq6T27RfYaAr6/x2GbTTmmghbPTFta7abTr8YWZlwRtTuYKWog5ixV41zsjNFF0XJFCIG7MYS
+	9qgDpv4Veizs/JiTY6cQddnA4CSQWfyapy6P9BynXUymvsAllI03aJPAWR7nCuai9CKGAEditq/
+	dwXqyb6co6y+l9bReBxiHjQUwHTjSbyn75Kdz+ebRLin1PNA87ck+Ic29r01EGteAfdgpVRB4F/
+	3x41wiQqPGgDBRDyPL63kFJI4JCvvIPcF+f9ahsoqSM6SFbgOMrPQWf1sACGSOwW6kFSbNfOEGd
+	1d+rqzv9hJDsoA0HE3TTWs
+X-Google-Smtp-Source: AGHT+IH3Yw9NfBszzIXyVq9G5mI8Je1OQSv84u6vZsMXIzrC8EAZ85t54i22pt6sz/SEwSGENP30UQ==
+X-Received: by 2002:a05:701b:2515:b0:119:e56b:c745 with SMTP id a92af1059eb24-11f34ac52a8mr455769c88.10.1765505164545;
+        Thu, 11 Dec 2025 18:06:04 -0800 (PST)
+Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-11f2e2ff624sm13483678c88.12.2025.12.11.18.06.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 11 Dec 2025 18:06:04 -0800 (PST)
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Chen Wang <unicorn_wang@outlook.com>,
+	Inochi Amaoto <inochiama@gmail.com>,
+	Alexander Sverdlin <alexander.sverdlin@gmail.com>,
+	Longbin Li <looong.bin@gmail.com>,
+	Yixun Lan <dlan@gentoo.org>,
+	Ze Huang <huangze@whut.edu.cn>
+Cc: "Anton D . Stavinskii" <stavinsky@gmail.com>,
+	dmaengine@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	sophgo@lists.linux.dev
+Subject: [PATCH 0/3] riscv: sophgo: allow DMA multiplexer set channel number for DMA controller
+Date: Fri, 12 Dec 2025 10:05:00 +0800
+Message-ID: <20251212020504.915616-1-inochiama@gmail.com>
+X-Mailer: git-send-email 2.52.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,85 +103,25 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
 
-add jpeg decoder and encoder compatible for MT8189 SoC.
+As the DMA controller on Sophgo CV1800 series SoC only has 8 channels,
+the SoC provides a dma multiplexer to reuse the DMA channel. However,
+the dma multiplexer also controlls the DMA interrupt multiplexer, which
+means that the dma multiplexer needs to know the channel number.
 
-Signed-off-by: Jianhua Lin <jianhua.lin@mediatek.com>
----
- .../platform/mediatek/jpeg/mtk_jpeg_core.c    | 44 +++++++++++++++++++
- 1 file changed, 44 insertions(+)
+Inochi Amaoto (3):
+  dt-bindings: dma: snps,dw-axi-dmac: Add CV1800B compatible
+  dmaengine: dw-axi-dmac: Add support for CV1800B DMA
+  riscv: dts: sophgo: cv180x: Allow the DMA multiplexer to set channel
+    number for DMA controller
 
-diff --git a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
-index d08fe365cbb2..9ea8d8f56e9b 100644
---- a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
-+++ b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
-@@ -1866,6 +1866,10 @@ static struct clk_bulk_data mt8173_jpeg_dec_clocks[] = {
- 	{ .id = "jpgdec" },
- };
- 
-+static struct clk_bulk_data mtk_jpeg_dec_clocks[] = {
-+	{ .id = "jpgdec" },
-+};
-+
- static const struct mtk_jpeg_variant mt8173_jpeg_drvdata = {
- 	.clks = mt8173_jpeg_dec_clocks,
- 	.num_clks = ARRAY_SIZE(mt8173_jpeg_dec_clocks),
-@@ -1897,6 +1901,38 @@ static const struct mtk_jpeg_variant mtk_jpeg_drvdata = {
- 	.multi_core = false,
- };
- 
-+static const struct mtk_jpeg_variant mtk8189_jpegenc_drvdata = {
-+	.clks = mtk_jpeg_clocks,
-+	.num_clks = ARRAY_SIZE(mtk_jpeg_clocks),
-+	.formats = mtk_jpeg_enc_formats,
-+	.num_formats = MTK_JPEG_ENC_NUM_FORMATS,
-+	.qops = &mtk_jpeg_enc_qops,
-+	.irq_handler = mtk_jpeg_enc_irq,
-+	.hw_reset = mtk_jpeg_enc_reset,
-+	.m2m_ops = &mtk_jpeg_enc_m2m_ops,
-+	.dev_name = "mtk-jpeg-enc",
-+	.ioctl_ops = &mtk_jpeg_enc_ioctl_ops,
-+	.out_q_default_fourcc = V4L2_PIX_FMT_YUYV,
-+	.cap_q_default_fourcc = V4L2_PIX_FMT_JPEG,
-+	.support_34bit = true,
-+};
-+
-+static const struct mtk_jpeg_variant mtk8189_jpegdec_drvdata = {
-+	.clks = mtk_jpeg_dec_clocks,
-+	.num_clks = ARRAY_SIZE(mtk_jpeg_dec_clocks),
-+	.formats = mtk_jpeg_dec_formats,
-+	.num_formats = MTK_JPEG_DEC_NUM_FORMATS,
-+	.qops = &mtk_jpeg_dec_qops,
-+	.irq_handler = mtk_jpeg_dec_irq,
-+	.hw_reset = mtk_jpeg_dec_reset,
-+	.m2m_ops = &mtk_jpeg_dec_m2m_ops,
-+	.dev_name = "mtk-jpeg-dec",
-+	.ioctl_ops = &mtk_jpeg_dec_ioctl_ops,
-+	.out_q_default_fourcc = V4L2_PIX_FMT_JPEG,
-+	.cap_q_default_fourcc = V4L2_PIX_FMT_YUV420M,
-+	.support_34bit = true,
-+};
-+
- static struct mtk_jpeg_variant mtk8195_jpegenc_drvdata = {
- 	.formats = mtk_jpeg_enc_formats,
- 	.num_formats = MTK_JPEG_ENC_NUM_FORMATS,
-@@ -1936,6 +1972,14 @@ static const struct of_device_id mtk_jpeg_match[] = {
- 		.compatible = "mediatek,mtk-jpgenc",
- 		.data = &mtk_jpeg_drvdata,
- 	},
-+	{
-+		.compatible = "mediatek,mt8189-jpgenc",
-+		.data = &mtk8189_jpegenc_drvdata,
-+	},
-+	{
-+		.compatible = "mediatek,mt8189-jpgdec",
-+		.data = &mtk8189_jpegdec_drvdata,
-+	},
- 	{
- 		.compatible = "mediatek,mt8195-jpgenc",
- 		.data = &mtk8195_jpegenc_drvdata,
--- 
-2.45.2
+ .../bindings/dma/snps,dw-axi-dmac.yaml        |  1 +
+ arch/riscv/boot/dts/sophgo/cv180x.dtsi        |  2 +-
+ .../dma/dw-axi-dmac/dw-axi-dmac-platform.c    | 23 ++++++++++++++++---
+ drivers/dma/dw-axi-dmac/dw-axi-dmac.h         |  1 +
+ 4 files changed, 23 insertions(+), 4 deletions(-)
+
+--
+2.52.0
 
 
