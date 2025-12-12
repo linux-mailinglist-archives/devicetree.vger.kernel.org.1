@@ -1,130 +1,163 @@
-Return-Path: <devicetree+bounces-246025-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246026-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FA03CB7E19
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 05:44:11 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A46ECB7F81
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 06:53:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 1EA56300BEE4
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 04:44:10 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A704E300EA0B
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 05:53:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9337B30DEA3;
-	Fri, 12 Dec 2025 04:44:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04A121EE7C6;
+	Fri, 12 Dec 2025 05:53:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YwIXatwS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AyO/BSfw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B9033002B4
-	for <devicetree@vger.kernel.org>; Fri, 12 Dec 2025 04:44:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8E823C465;
+	Fri, 12 Dec 2025 05:53:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765514648; cv=none; b=nJ23H2uRfc91hWQ22nw6L+HLD30JgUSlleiqvQbsC22vEhZGDhVmoFZwuB+IfWHiO0TRUUmPg+EttmCrywA9juFXSNPzFs2osu4P0fj+kamsj9qSHRZGl8kv4/GrRDUt25IxJqhqUjR0eBUV1FlPIRcSe1O3stklTggY1Q7/Kvc=
+	t=1765518802; cv=none; b=ls8Bs8YjOTnJtho1gY+NFjisv4S2hK4tY9xBaECDiZmX7moo0eMkFsL+8fxIbY+wVsIz7DMZx2e0vvrESuoXn+dsNbt/MTU8k97SauT0SA67QHsvrYbrytcZt/yIuz+UfMjXd77g0TCj6qIFhBvAYZy7pM6Sxd6+WtVjMQN0+gM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765514648; c=relaxed/simple;
-	bh=ktZqzCzHfOOPzM2EvOjd8+qE5gzVGh5FQ5OGoF8l4X0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=idFCxTvPRwUlkvPfJBus8zg7WOoyadFl0ZRqdzCrJCF3r6WlS0eAT7hHxjPJ+nHq+Whms7t+YRPF8QHf92xZYPkcD9ZPXCwf8eeKY7MT9JGDRxOc/DJdgms+qcrKZtf/vSo08iLPRvh8Qh+GyhTlMLOQAVZFF720lfwvI+Ss4tM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YwIXatwS; arc=none smtp.client-ip=209.85.214.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-29558061c68so10381385ad.0
-        for <devicetree@vger.kernel.org>; Thu, 11 Dec 2025 20:44:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1765514645; x=1766119445; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=J9gBZpsCmG1xQqso4bAzsbXRPhWxYEn6n/PkIlRaLDM=;
-        b=YwIXatwSd1+65UOuVU9F5DzsBKqRbx1pHBZJqdq04NvcIePaR9LESp9ZJIV7t6Wqgn
-         2uXSQOS4h2lyMAyhZ30rJV/UhHRuOwbSpWHgStS2apy3/q7CFWznZCfTzBHpPyqMpjXN
-         bFDzhcTx02++g0d5wobFsraslNRYn0FWenu30NZME5Y8tdqQl7+QVae3r8UEBdyaiHek
-         bz4er1HJ+GXNyufwTgZshThi/HV2mCb2szXyMZjZ6hjVliDAPUxXlUlTbngLvLwCUEyz
-         p1ObJQK3uVUv4JLjFsCmtQ3pHf9hpjDw5CEt/pv/2FKaZ6/ak/cEsnIZ+OmljyHmo89Z
-         p5wg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765514645; x=1766119445;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=J9gBZpsCmG1xQqso4bAzsbXRPhWxYEn6n/PkIlRaLDM=;
-        b=rUraDG5iO8kmyfHvLmR2kg6FgHqXSnpccixhT5gQbmQkjzDOn1bhNUmGooFlKXhUTG
-         7lhRbmF7m64b9uzI+U6htX/WTNWvNVgAU+a7S8MlKQxrVkfzTThbBkMJvOSDVdzm0vcZ
-         JpNPRvzWwOeCYnWo1Dgy6Vf8QYlF1FRzVbi5z7c9aW/NLSpm/zQ3C4YCBMtdXfQbj98s
-         GjJmD1E4R+hMF9GR60kFOv8jER42R/eI3y5LlSzE4380C8dvJSGLJgD8d5ZCjYptkGJH
-         QAIaue/wv6QtPySwediRzF2Tl8PKeJq2RubF8a4Ca/2yvzUWgHmmI5Kg6IqDPWNQpdFS
-         +nYQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWwtoKD5nzBH/4V2O4ojiOewGQSwIreZwOdvyvqZa1D+iaOhtfqmTsKQYdzhi7az02GrNfAFAZx7WgF@vger.kernel.org
-X-Gm-Message-State: AOJu0Yznhb17uuxcKe1elLE1qXrsOzwvjr/hnlKONopitzUKoLCswWoz
-	6/hIlDbZpjj3lfVV3gedz2S5P9yOpN8u8iCn7M9o4fJi40EeAKzmaAQT
-X-Gm-Gg: AY/fxX6LdvjWI9teyiKUlzly/zsCn7b5tFm94D2rWuo+yeiJ1suiB8cEXEZ3nKupYvu
-	V91WcPgNuzgKZmm+PlTCDtbbX0MQ7Gy5i+In4DDrb5bKFO/avltxgWJpVd6/h2oAk9m8CUZ61UZ
-	ly0piaDQeYYLWvqOVAPP7VmyuSkQgfjV9YQdA/pxHJbpmWnih5G2jyXxQo21OMa158UKPpZ3f7W
-	OO5ggRm9+upIDZPSgsDccf911BP6jyVlQA9ockDJ+4H1GhRqW6mRJjeowXrRAIx3pYzs59Bs9D/
-	MHHhPoZjmcDPrktRDA5VdFIxlvrmWA2tpL9uqvL/ZnTyjDDWaVv1d0xl4+FV19NC/d5gWKFxkN9
-	JeggHMpeXFU5a+m5cE0hNDU1qVNHOOjd0A+KHhGWWgeXoPFH1M0EXcjB8rjbFBZNDtojhjlINh9
-	a2G1ucSxANpo0YHo/MGgCmKdzoh9Dcs71qkMWcp1jmFfjez+NpqiM=
-X-Google-Smtp-Source: AGHT+IEOVfeIqM/cAri6W38bw/FvyPFw68AOKnN78T6Txd6eJUYhJLV+lIMPJu7qekNQBdDcQJN4rQ==
-X-Received: by 2002:a05:7022:f50f:b0:119:e569:fbb2 with SMTP id a92af1059eb24-11f354dc81emr355897c88.33.1765514645119;
-        Thu, 11 Dec 2025 20:44:05 -0800 (PST)
-Received: from google.com ([2a00:79e0:2ebe:8:fafd:f9bf:2a4:2a0b])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-11f2e2b4bb8sm11165691c88.7.2025.12.11.20.44.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Dec 2025 20:44:04 -0800 (PST)
-Date: Thu, 11 Dec 2025 20:44:02 -0800
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Fabio Baltieri <fabiobaltieri@chromium.org>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Benson Leung <bleung@chromium.org>, Guenter Roeck <groeck@chromium.org>, 
-	Tzung-Bi Shih <tzungbi@kernel.org>, Simon Glass <sjg@chromium.org>, linux-input@vger.kernel.org, 
-	devicetree@vger.kernel.org, chrome-platform@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 3/3] dt-bindings: google,cros-ec-keyb: add fn-key and
- f-keymap props
-Message-ID: <2gd2npolfpo5jruwraamwpn3wurm7w447jnwsbcfonmhos2owf@ejrqiz3qdxj4>
-References: <20251209154706.529784-1-fabiobaltieri@chromium.org>
- <20251209154706.529784-4-fabiobaltieri@chromium.org>
- <20251209192243.GA963693-robh@kernel.org>
- <aTm1PVLrS7Ra0OTF@google.com>
+	s=arc-20240116; t=1765518802; c=relaxed/simple;
+	bh=hqZiXxUv6smJHZEauESfPalDA9+KANqTpadXMEusfNw=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=UtSESvPkb/iSuX3SpjXZjQYcz5M0VIDGRnSVTJhdoyrs5Bi5tJfutSTpmE0Eixc8gKJ+XepFxKYjQDHI5BQCpqtJasYvaQmOaFN3QgInhQiuuC9pwYnKICIwru0JM+f34FyQLq5I7ynY1OS3eQnlMydMCH/qUQNh2CQLNHU0rZs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AyO/BSfw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E4EAC4CEF1;
+	Fri, 12 Dec 2025 05:53:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1765518802;
+	bh=hqZiXxUv6smJHZEauESfPalDA9+KANqTpadXMEusfNw=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=AyO/BSfwTPEnPYiKTNe49XE5ReOcZayLHxn1jhIueisyharCn+IGjtVnILr1TyT4G
+	 nKspnHRVYrODD0i8/slxWhZO45GVoryW8+V/nxlc/cl74nTuJRbLhh3ggNHZOEBuYb
+	 QDmLjiWrVjXjswh87/9uwuRkEI8eFewPySbNTeNTwGLTcMN1WG3UEMMW4dyWT3R8WC
+	 usqvWUjSdiWX6RPs7TcBpBmWUvNqIWTkoQltHM7P5Np0sArdIfW5uDHthsrsmogOdO
+	 hIkW5ifAR2CVWEU0QaSLWbDYhAy2B4dDGsH3opzA5PTXmucpnskg1uCN7anY9zjNbX
+	 o+vLEGqelWAfA==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id F34E13809A37;
+	Fri, 12 Dec 2025 05:50:16 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aTm1PVLrS7Ra0OTF@google.com>
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v26 00/28] riscv control-flow integrity for usermode
+From: patchwork-bot+linux-riscv@kernel.org
+Message-Id: 
+ <176551861579.2032148.13920544388182691102.git-patchwork-notify@kernel.org>
+Date: Fri, 12 Dec 2025 05:50:15 +0000
+References: <20251211-v5_user_cfi_series-v26-0-f0f419e81ac0@rivosinc.com>
+In-Reply-To: <20251211-v5_user_cfi_series-v26-0-f0f419e81ac0@rivosinc.com>
+To: Deepak Gupta <debug@rivosinc.com>
+Cc: linux-riscv@lists.infradead.org, tglx@linutronix.de, mingo@redhat.com,
+ bp@alien8.de, dave.hansen@linux.intel.com, x86@kernel.org, hpa@zytor.com,
+ akpm@linux-foundation.org, Liam.Howlett@oracle.com, vbabka@suse.cz,
+ lorenzo.stoakes@oracle.com, paul.walmsley@sifive.com, palmer@dabbelt.com,
+ aou@eecs.berkeley.edu, conor@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ arnd@arndb.de, brauner@kernel.org, peterz@infradead.org, oleg@redhat.com,
+ ebiederm@xmission.com, kees@kernel.org, corbet@lwn.net, shuah@kernel.org,
+ jannh@google.com, conor+dt@kernel.org, ojeda@kernel.org,
+ alex.gaynor@gmail.com, boqun.feng@gmail.com, gary@garyguo.net,
+ bjorn3_gh@protonmail.com, a.hindborg@kernel.org, aliceryhl@google.com,
+ tmgross@umich.edu, lossin@kernel.org, linux-kernel@vger.kernel.org,
+ linux-fsdevel@vger.kernel.org, linux-mm@kvack.org,
+ devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
+ linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org,
+ alistair.francis@wdc.com, richard.henderson@linaro.org, jim.shu@sifive.com,
+ andybnac@gmail.com, kito.cheng@sifive.com, charlie@rivosinc.com,
+ atishp@rivosinc.com, evan@rivosinc.com, cleger@rivosinc.com,
+ alexghiti@rivosinc.com, samitolvanen@google.com, broonie@kernel.org,
+ rick.p.edgecombe@intel.com, rust-for-linux@vger.kernel.org,
+ zong.li@sifive.com, david@redhat.com, andreas.korb@aisec.fraunhofer.de,
+ valentin.haudiquet@canonical.com, cmirabil@redhat.com
 
-On Wed, Dec 10, 2025 at 06:00:29PM +0000, Fabio Baltieri wrote:
-> Hey Rob, thanks for the review.
+Hello:
+
+This series was applied to riscv/linux.git (for-next)
+by Paul Walmsley <pjw@kernel.org>:
+
+On Thu, 11 Dec 2025 09:20:33 -0800 you wrote:
+> v26: CONFIG_RISCV_USER_CFI depends on CONFIG_MMU (dependency of shadow stack
+> on MMU). Used b4 to pick tags, apparantly it messed up some tag picks. Fixing it
 > 
-> On Tue, Dec 09, 2025 at 01:22:43PM -0600, Rob Herring wrote:
-> > On Tue, Dec 09, 2025 at 03:47:06PM +0000, Fabio Baltieri wrote:
-> > > +  fn-key:
-> > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > +    description: |
-> > > +      An u32 containing the coordinate of the Fn key, use the MATRIX_KEY(row,
-> > > +      col, code) macro, code is ignored.
-> > > +
-> > > +  fn-keymap:
-> > 
-> > If keymap is linux,keymap, then this should perhaps be linux,fn-keymap. 
-> > Depends if we still think linux,keymap is Linux specific?
+> v25: Removal of `riscv_nousercfi` from `cpufeature.c` and instead placing
+> it as extern in `usercfi.h` was leading to build error whene cfi config
+> is not selected. Placed `riscv_nousercfi` outside cfi config ifdef block
+> in `usercfi.h`
 > 
-> I'm open for suggestions, trying to understand the pattern, these are
-> specific to this binding I think if anything they should be
-> google,fn-key and google,fn-keymap, similarly to the existing
-> google,needs-ghost-filter -- no idea why function-row-physmap was not
-> prefixed but I guess it slipped in and now it's not worth changing it.
+> [...]
 
-Just double the number of rows in the regular keymap to accommodate the
-FN modifier, no need for separate keymap. Also no need to have fn-key
-property, use whatever key that reports KEY_FN. See how it is done in
-drivers/input/keyboard/tegra-kbc.c
+Here is the summary with links:
+  - [v26,01/28] mm: VM_SHADOW_STACK definition for riscv
+    https://git.kernel.org/riscv/c/e53803e4a8c5
+  - [v26,02/28] dt-bindings: riscv: zicfilp and zicfiss in dt-bindings (extensions.yaml)
+    https://git.kernel.org/riscv/c/d6c9672baa77
+  - [v26,03/28] riscv: zicfiss / zicfilp enumeration
+    (no matching commit)
+  - [v26,04/28] riscv: zicfiss / zicfilp extension csr and bit definitions
+    (no matching commit)
+  - [v26,05/28] riscv: usercfi state for task and save/restore of CSR_SSP on trap entry/exit
+    https://git.kernel.org/riscv/c/2acf75f432dc
+  - [v26,06/28] riscv/mm : ensure PROT_WRITE leads to VM_READ | VM_WRITE
+    https://git.kernel.org/riscv/c/813c549f5b08
+  - [v26,07/28] riscv/mm: manufacture shadow stack pte
+    https://git.kernel.org/riscv/c/d3cea05f52a7
+  - [v26,08/28] riscv/mm: teach pte_mkwrite to manufacture shadow stack PTEs
+    https://git.kernel.org/riscv/c/444404ff99bf
+  - [v26,09/28] riscv/mm: write protect and shadow stack
+    https://git.kernel.org/riscv/c/5da46726825d
+  - [v26,10/28] riscv/mm: Implement map_shadow_stack() syscall
+    (no matching commit)
+  - [v26,11/28] riscv/shstk: If needed allocate a new shadow stack on clone
+    (no matching commit)
+  - [v26,12/28] riscv: Implements arch agnostic shadow stack prctls
+    https://git.kernel.org/riscv/c/46f2da262367
+  - [v26,13/28] prctl: arch-agnostic prctl for indirect branch tracking
+    https://git.kernel.org/riscv/c/5b23a2d70976
+  - [v26,14/28] riscv: Implements arch agnostic indirect branch tracking prctls
+    https://git.kernel.org/riscv/c/2b1bd48147c5
+  - [v26,15/28] riscv/traps: Introduce software check exception and uprobe handling
+    (no matching commit)
+  - [v26,16/28] riscv: signal: abstract header saving for setup_sigcontext
+    (no matching commit)
+  - [v26,17/28] riscv/signal: save and restore of shadow stack for signal
+    (no matching commit)
+  - [v26,18/28] riscv/kernel: update __show_regs to print shadow stack register
+    https://git.kernel.org/riscv/c/35d89b5390a9
+  - [v26,19/28] riscv/ptrace: riscv cfi status and state via ptrace and in core files
+    (no matching commit)
+  - [v26,20/28] riscv/hwprobe: zicfilp / zicfiss enumeration in hwprobe
+    (no matching commit)
+  - [v26,21/28] riscv: kernel command line option to opt out of user cfi
+    (no matching commit)
+  - [v26,22/28] riscv: enable kernel access to shadow stack memory via FWFT sbi call
+    https://git.kernel.org/riscv/c/ef83c58ab12f
+  - [v26,23/28] arch/riscv: compile vdso with landing pad and shadow stack note
+    (no matching commit)
+  - [v26,24/28] arch/riscv: dual vdso creation logic and select vdso based on hw
+    https://git.kernel.org/riscv/c/fbe7823a03f1
+  - [v26,25/28] riscv: create a config for shadow stack and landing pad instr support
+    (no matching commit)
+  - [v26,26/28] riscv: Documentation for landing pad / indirect branch tracking
+    (no matching commit)
+  - [v26,27/28] riscv: Documentation for shadow stack on riscv
+    (no matching commit)
+  - [v26,28/28] kselftest/riscv: kselftest for user mode cfi
+    (no matching commit)
 
-Thanks.
-
+You are awesome, thank you!
 -- 
-Dmitry
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
+
 
