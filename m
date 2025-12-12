@@ -1,56 +1,53 @@
-Return-Path: <devicetree+bounces-246060-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246061-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6AEACB8537
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 09:52:33 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E80DCB8552
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 09:55:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 841E63009134
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 08:52:32 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AE5E1305D404
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 08:52:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EBBE30F52D;
-	Fri, 12 Dec 2025 08:52:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13B3330F7FB;
+	Fri, 12 Dec 2025 08:52:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=benjamin.gaignard@collabora.com header.b="frIILijI"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="M1yjPg9J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E92FF2741A0;
-	Fri, 12 Dec 2025 08:52:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765529551; cv=pass; b=fJYqbtSinI2YbrLn81ykO83E1524k0OCNjBcbT/htrd9zuxllWpFfjuJ5QaX/uNQw7YBNiCZA1mEdd/+822YiT4Ax0iXntBvdlBh0q9E70YpLSK5Eg9MTvS/eIHoYiyZKXBNgajNQS8Llp75YlrMc8cgCduu4VoDDQdN755mOg0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765529551; c=relaxed/simple;
-	bh=BsQ5+N82BLq7h9EPzOmGWZGFXT4FPYACHwV1bAg+AHw=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64EF630DD29
+	for <devicetree@vger.kernel.org>; Fri, 12 Dec 2025 08:52:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1765529573; cv=none; b=kDI8qRsqfUp8csZX1mhje+0lHG6Qo8bFk4BK6A/QVb5dYg4D/bzh0RE1abuNIWyMaunPB7enDoXFYE6EbmnM5w5t2/4dHusyjgz+5lRCAmmnXQFwsCjg9lxF/FDLddECJfL6WGjg0e4ETxu6mIsSKmgMrvOOkvPej/PZbtM8vgM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1765529573; c=relaxed/simple;
+	bh=guyZbBQHrFcxrRkwkYTczuuu6O76dEdlDJHFch5+Vv0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TgpZc5qhC954Pj9mNBx9yiKF67jMObFpwnWwh65NDEvT85XGJP39dadTvy8xabaf1hoO1s7RPOqirv8lalhUZUgHd4KnW1ivR6cw0/T/vCBjfe2Epnw64Og39G3afLTDNgt8/6LyXGHVHYuWvHihbFgLZeH6c6hct2S9TqZYa4A=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=benjamin.gaignard@collabora.com header.b=frIILijI; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1765529517; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=G2a/yMRoNYEYX32qsSh9klxJhkz42oM/Rs6xEqUkj0GCib3cTPtgakDODcACfn3fPOSdTjp5nCQ4HrmJngxT8hhyZf7P9E6vA3a5QwC4fSg7T189qetTRc0W3hnqp3yRgbsWkW2LxdAe1R679CZ3AROCYtTbM3vG2pMgTd1muF8=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1765529517; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=xnItVhoY0Lh4ZLV1sF8rYZtnMRWqPjsgUKn0khqX+aY=; 
-	b=BI76Zs6kc6v3+Stj5VlhmI+2TOP8RS8JG2lFviNZwApLZgZGTiGjkPb3B23h98BKyjHhWOwR5elzisMyHTr9GLo9tG3k6uQhHC4Zpk8IjIMrPvqVV99Ra4CWOpcZwPRvjoLuY6va0bntFhXR45YVOngOmGaOFbGTDj19AAmBGEE=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=benjamin.gaignard@collabora.com;
-	dmarc=pass header.from=<benjamin.gaignard@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1765529517;
-	s=zohomail; d=collabora.com; i=benjamin.gaignard@collabora.com;
-	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=xnItVhoY0Lh4ZLV1sF8rYZtnMRWqPjsgUKn0khqX+aY=;
-	b=frIILijI+V7VsU7x9gFc0FgCtswAJVCRHVYaKIzxLkHrpO68qTVpwrcmRFR3+WkL
-	mt4ffUw6Br0SsK57xAw4CqvUYtbl0gczF3m/vK4EvR/LI05DhyHqQ76aHxc/37MVr5V
-	VI/8jNg2/7GGPYhGECQCln5VIG2Jznk0GfV7S9cA=
-Received: by mx.zohomail.com with SMTPS id 1765529515530660.6512833937438;
-	Fri, 12 Dec 2025 00:51:55 -0800 (PST)
-Message-ID: <ea3241f1-14a4-44a0-9d85-3fa2a2f6f1ae@collabora.com>
-Date: Fri, 12 Dec 2025 09:51:50 +0100
+	 In-Reply-To:Content-Type; b=KhMtiqY9O+oaIBaZ57Ve34HUeU+2MMVrC8SGRKQkpqk2GV1tNXInCCNOTa+NmZMS6YMYkOpmFwaRybx7MYZCULi53tAa0rHsqOSrLrzKvjJxhtDZjmEyG0aypX3heNFMVfzcApWYDaEsdUMYPdidLo9Ckbidzm+A+pa75pLcmZA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=M1yjPg9J; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 77B23C1935D;
+	Fri, 12 Dec 2025 08:52:24 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 81504606DF;
+	Fri, 12 Dec 2025 08:52:48 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 0EB3A103C8C8B;
+	Fri, 12 Dec 2025 09:52:41 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1765529567; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=dpnbMKxrEd/92FzSGRgQG+BUDZSd3g31Xk5DTCxA3Fo=;
+	b=M1yjPg9J+9muV+mGaXWjHEpEB8kPYNU0mxz3j2MPylOHDAf1GZIVKa3XR/Uq1wdQxphknu
+	8WK9IWMYyYUnEZe++tinnnDQCnGb54YGG4k5gtvfoWE0jD8h/Fnt0aPHIsPpQH//5rS+ZW
+	hZR+5HL9zSgHdJ2sPwT13beOMHP8RXEkeBDhfsHMYvD/Ir4GZQzV4oPc4atqBsHNF5YVGJ
+	svOFwmOmtL+JxmBQgTmVoZ4zqQpAkZ4YE3+YXKsRkO9PvU0ngBLGZCkgmOoJj63m932sDG
+	GJp6FKJ1BoJ2SAa/wdo3zwpsNRsBnVEA1tfAVL4xAM4g1/QKX6DYo5sEevh+Eg==
+Message-ID: <1c8fe534-4b87-46a7-9806-9cbbe5560545@bootlin.com>
+Date: Fri, 12 Dec 2025 09:52:41 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,57 +55,90 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 3/7] iommu: Add verisilicon IOMMU driver
-To: Jianfeng Liu <liujianfeng1994@gmail.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, heiko@sntech.de,
- iommu@lists.linux.dev, jgg@ziepe.ca, joro@8bytes.org, kernel@collabora.com,
- krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
- linux-rockchip@lists.infradead.org, mchehab@kernel.org,
- nicolas.dufresne@collabora.com, p.zabel@pengutronix.de, robh@kernel.org,
- robin.murphy@arm.com
-References: <20250911155720.180465-4-benjamin.gaignard@collabora.com>
- <20251212033157.3036182-1-liujianfeng1994@gmail.com>
-Content-Language: en-US
-From: Benjamin Gaignard <benjamin.gaignard@collabora.com>
-In-Reply-To: <20251212033157.3036182-1-liujianfeng1994@gmail.com>
+Subject: Re: [PATCH 1/4] dt-bindings: pwm: sunxi: add PWM controller for
+ Allwinner H616
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>, Philipp Zabel
+ <p.zabel@pengutronix.de>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org
+References: <20251205100239.1563353-1-richard.genoud@bootlin.com>
+ <20251205100239.1563353-2-richard.genoud@bootlin.com>
+ <20251208-gorgeous-capuchin-of-protection-4ad0c2@quoll>
+ <4d34658b-874d-4681-95c1-616f5b385550@bootlin.com>
+ <93224408-6b09-4cec-8e84-a66d9ef138e6@kernel.org>
+From: Richard GENOUD <richard.genoud@bootlin.com>
+Content-Language: en-US, fr
+Organization: Bootlin
+In-Reply-To: <93224408-6b09-4cec-8e84-a66d9ef138e6@kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
+Le 12/12/2025 à 09:25, Krzysztof Kozlowski a écrit :
+> On 12/12/2025 08:50, Richard GENOUD wrote:
+>>>> +
+>>>> +  clocks:
+>>>> +    items:
+>>>> +      - description: Bus Clock
+>>>> +
+>>>
+>>> Are you sure there is no first clock? Really, really sure? If you add it
+>>> later, I would be pretty sad, because that's unnecessary duplication of
+>>> binidngs....
+>> I surely don't want to make you sad :)
+>>
+>> Having a second look at the sun4i binding, I think there's a way to use it.
+>> The sun4i, as you said, has a module clock (OSC24M) and an optional bus
+>> clock.
+>> Here, the bus clock is mandatory, but the H616 PWM uses OSC24M and APB1
+>> as clock sources.
+>>
+>> So, I guess that if we add something like that:
+>>      clocks:
+>>        minItems: 1
+>>        items:
+>>          - description: Module Clock
+>>          - description: Bus Clock
+>> +      - description: APB Clock
+>>
+>>      clock-names:
+>>        minItems: 1
+>>        items:
+>>          - const: mod
+>>          - const: bus
+>> +      - const: apb
+>>
+>>      resets:
+>>        maxItems: 1
+>>
+>> In the sun4i pwm binding, we could re-use it for the H616 pwm right?
+>> (APB clock is maybe not the best name, could be secondary module clock)
+> 
+> 
+> apb is probably the bus clock, so you don't need to change the bindings
+> at all.
+Indeed, your're right!
+So the only difference will the the #clock-cells for h616.
+I'll send a v2 using the sun4i binding.
 
-Le 12/12/2025 à 04:31, Jianfeng Liu a écrit :
-> Hi,
->
-> On Thu, 11 Sep 2025 17:57:13 +0200, Benjamin Gaignard wrote:
->> +#ifdef CONFIG_VSI_IOMMU
->> +void vsi_iommu_restore_ctx(struct iommu_domain *domain);
->> +#else
->> +static inline void vsi_iommu_restore_ctx(struct iommu_domain *domain) {}
->> +#endif
-> After applying this patch to v6.18, I get error when building this driver
-> as module:
->
-> drivers/iommu/vsi-iommu.c:541:6: error: redefinition of 'vsi_iommu_restore_ctx'
->    541 | void vsi_iommu_restore_ctx(struct iommu_domain *domain)
->     |      ^~~~~~~~~~~~~~~~~~~~~
-> In file included from drivers/iommu/vsi-iommu.c:31:
-> ./include/linux/vsi-iommu.h:18:20: note: previous definition of 'vsi_iommu_restore_ctx' with type 'void(struct iommu_domain *)'
-> 18 | static inline void vsi_iommu_restore_ctx(struct iommu_domain *domain) {}
->     |                    ^~~~~~~~~~~~~~~~~~~~~
->
-> I have to use:
-> #if IS_ENABLED(CONFIG_VSI_IOMMU)
-> instead.
+Thanks!
 
-I have fix in my internal v10 branch:
-https://gitlab.collabora.com/linux/for-upstream/-/commits/verisilicon_mmu_v10
-I don't plan to send this update because that will change nothing about code duplication remarks.
-
-Thanks for the report.
 Regards,
-Benjamin
+Richard
 
+> 
 > Best regards,
-> Jianfeng
->
+> Krzysztof
+
+
+-- 
+Richard Genoud, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
