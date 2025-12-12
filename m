@@ -1,101 +1,103 @@
-Return-Path: <devicetree+bounces-246208-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246207-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 848B5CB9E78
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 23:06:29 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02A65CB9E6C
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 23:02:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 40EAD307DA5F
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 22:06:28 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A439E307CDD6
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 22:02:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B09E279DCC;
-	Fri, 12 Dec 2025 22:06:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05E9C20C463;
+	Fri, 12 Dec 2025 22:02:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=free.fr header.i=@free.fr header.b="dRVPQAQU"
+	dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b="bzVvM2e8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpfb1-g21.free.fr (smtpfb1-g21.free.fr [212.27.42.9])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 441C619258E;
-	Fri, 12 Dec 2025 22:06:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.27.42.9
+Received: from mout02.posteo.de (mout02.posteo.de [185.67.36.66])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CE6D14F125
+	for <devicetree@vger.kernel.org>; Fri, 12 Dec 2025 22:02:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.66
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765577187; cv=none; b=Pgfjhbuu3G/5GsFvDO42Kk1izt3wslVmel8WnGVCaHPO/33xmC0rdRddkwTLTJIgJrp+U3ahxNPPnv+4YZPl3U14VMJOGN1w0qPDwi/AGZd+/yYUPyN/d6b46frMk1MkCQ2WGghcI95igy5hcqj8PBx2SzCjEpaAOt6S8rYf5UI=
+	t=1765576948; cv=none; b=K3J9gqKL3pTXoSTXKtAFKmPWl1imhoaz3QfExwVp3Rh1CO6FoenktRXsN4tMyGdCPjXOYU9RMU3nVJ+fFBtEMK4bbLyaD9I7O448VwtlRhymSgGqvV0jMBLGIewVPTc84HY6jo1tjpHdLtKeQkGXtUxX4KDZ+xGjPE1wUsXdUNk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765577187; c=relaxed/simple;
-	bh=gPwKxCd2LVBnJ4p5fX3ephTehUZ4nezWU5qgNY16S14=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=NpdJPEWzgeiLoIgy9HURF1Qnk29XAfsQOrCtuBDGdvE3xxiwBoOieP/9rV5a8gkErUQ769DEky09SMUR6iVrpq9NBaEmPBYm39IEQEjqzH//JdjXYHK6C2r7ASfvx0l/GgUXeEz94d5wUBJJERpPdGkFQkGWpaGRA7OiXGHODz8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=free.fr; spf=pass smtp.mailfrom=free.fr; dkim=pass (2048-bit key) header.d=free.fr header.i=@free.fr header.b=dRVPQAQU; arc=none smtp.client-ip=212.27.42.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=free.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=free.fr
-Received: from smtp5-g21.free.fr (smtp5-g21.free.fr [212.27.42.5])
-	by smtpfb1-g21.free.fr (Postfix) with ESMTP id C6415DF83D5;
-	Fri, 12 Dec 2025 22:58:39 +0100 (CET)
-Received: from belgarion.local (unknown [IPv6:2a01:e0a:a6a:5f90:6d9f:c3d:adb3:41ea])
-	(Authenticated sender: robert.jarzmik@free.fr)
-	by smtp5-g21.free.fr (Postfix) with ESMTPSA id 811066012D;
-	Fri, 12 Dec 2025 22:58:16 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=free.fr;
-	s=smtp-20201208; t=1765576712;
-	bh=gPwKxCd2LVBnJ4p5fX3ephTehUZ4nezWU5qgNY16S14=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-	b=dRVPQAQUwrYpZ+vlWxvBAV0aRc3cx/hfMjdv7NoQUmjhWlqo26/6F/ZlYvnWXsWJL
-	 ezQkixGbeA5jyETgHYl8xz3Tcl+FZnrv7JCQsf+gHBkkxvYrm596pNcoWvL8miXCRk
-	 yeXrt4wsmxVbqJFHPTncFTBBYULcDwWjua4K89L/1wl9JoRmjxlMKWQTDkQ4wWgzaH
-	 FzcJDhLzRzi9Zu2zjgJMmOZbS+S2TF6HwoE8LUjHmlAOntGkTzxI335x1/DWjC0aKP
-	 oTpNXFtSzpNeiSqWQhbZdWu9Lk+gR8oedCbfeG8/1v8A85cQV7cEFjf1kaJpxLuKDT
-	 8dJno7OoFsG8w==
-From: Robert Jarzmik <robert.jarzmik@free.fr>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>,  Magnus Damm
- <magnus.damm@gmail.com>,  Krzysztof Kozlowski <krzk+dt@kernel.org>,  Conor
- Dooley <conor+dt@kernel.org>,  Daniel Mack <daniel@zonque.org>,  Haojian
- Zhuang <haojian.zhuang@gmail.com>,  Andrew Lunn <andrew@lunn.ch>,  Gregory
- Clement <gregory.clement@bootlin.com>,  Sebastian Hesselbarth
- <sebastian.hesselbarth@gmail.com>,  linux-renesas-soc@vger.kernel.org,
-  devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org,
-  linux-arm-kernel@lists.infradead.org, Arnd Bergmann <arnd@arndb.de>
-Subject: Re: [PATCH] ARM: dts: intel: Drop pxa2xx
-In-Reply-To: <20251212203226.458694-4-robh@kernel.org> (Rob Herring's message
-	of "Fri, 12 Dec 2025 14:32:10 -0600")
-References: <20251212203226.458694-4-robh@kernel.org>
-User-Agent: mu4e 1.12.13; emacs 29.4
-Date: Fri, 12 Dec 2025 22:58:16 +0100
-Message-ID: <m2345fmkg7.fsf@free.fr>
+	s=arc-20240116; t=1765576948; c=relaxed/simple;
+	bh=Rk07fN+keSwEuE0/GjnLh+Wu8+V9WvTvrMsz6G+wAhU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=XMdChSrCTh+/rEx01Gq87fdcxEfCPE4zRy6fFGkkeToCC9nOdn0UMZQkjd62BVhFeRsOaIJy3WyNeIPld0HymMmysOHnLbYsGtCBtlUIbTPUevaW6LHA1g9dtu26Kd3ZLpkJloIqyMFRsxZ/jhV+dmut7iQpdLjJV6LZzCz66q0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de; spf=pass smtp.mailfrom=posteo.de; dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b=bzVvM2e8; arc=none smtp.client-ip=185.67.36.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.de
+Received: from submission (posteo.de [185.67.36.169]) 
+	by mout02.posteo.de (Postfix) with ESMTPS id B1254240101
+	for <devicetree@vger.kernel.org>; Fri, 12 Dec 2025 23:02:24 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=posteo.de; s=2017;
+	t=1765576944; bh=750ln4d5IZ+5twsG5klcrtotTQHvrYbgJe5RP9Qdpfk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:
+	 Content-Transfer-Encoding:From;
+	b=bzVvM2e8Gea+qx5rdLE5QGllabmTMstWgWUcVFNe3oqv9SBq6UB54wNhxC8LIsqza
+	 v8Ai3PIOtsEmze425tkEFdLgM/gEHd18OEdwJTluPqWATXiSJ3bHBYJKMV6j+kewWu
+	 fRjYu931PtKNRK69lAmpkyHVe8Yp//i5ffMG4REaL3dox4QYXuUEUn/KmkvWfDhzJl
+	 lhZwzvUDoCzRQvELQPbt2zCwXazAPo2hcJyIRFeAMH4mdK/hcgqc5k+K7TOp/nGkMq
+	 G6tm9pnPkW8a54EOu/2hSP2XnFErAh36niRdBH9zIdT9xWZpRB57NjKr0t3nRJ/mxr
+	 GTzQo7sZZF7wA==
+Received: from customer (localhost [127.0.0.1])
+	by submission (posteo.de) with ESMTPSA id 4dSk2l69Nsz9rxL;
+	Fri, 12 Dec 2025 23:02:23 +0100 (CET)
+From: Adrian Kossmann <adrian.kossmann@posteo.de>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>
+Cc: Adrian Kossmann <adrian.kossmann@posteo.de>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2] arm64: dts: rockchip: Adjust RGMII TXD/RXD delays for the Rock Pi E
+Date: Fri, 12 Dec 2025 22:02:24 +0000
+Message-ID: <20251212220151.574860-1-adrian.kossmann@posteo.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; format=flowed
+Content-Transfer-Encoding: 8bit
 
-"Rob Herring (Arm)" <robh@kernel.org> writes:
+Current RGMII TXD/RXD delay results in link instability
+under load, with throughput eventually dropping to zero.
+Adjust the RGMII TXD/RXD delay values for stable link
+under load and stable Gigabit throughput
 
-> These .dtsi files are not included anywhere in the tree and 
-> can't be
-> tested. They have not been touched since 2018 other than 
-> clean-ups.
->
-And yet, there are used by people using pxa2xx board with an DT 
-support
-(like the mioa701 for which a board file was never merged).
+Signed-off-by: Adrian Kossmann <adrian.kossmann@posteo.de>
+---
+Changes in v2:
+- Changed the patch subject as the last one contained
+  incorrect changes
+- Drop incorrect PHY compatible string change from v1
+- Adjustments to RGMII RX/TX delay values
+- Link to v1: https://lore.kernel.org/linux-rockchip/20251209210658.458506-2-adrian.kossmann@posteo.de/
 
-If you remove pxa25x.dtsi and pxa27x.dtsi, you might as well 
-remove all
-support for this architecture from the kernel, as these are the 
-building
-blocks needed to make it work.
+ arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-That might be what should be done, I'll let Arnd and Daniel 
-comment on
-the future of PXA in the kernel.
-
-Cheers.
-
---
-Robert
-
+diff --git a/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts b/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
+index a4bdd87d0729..29ff0b8b8f18 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
+@@ -153,8 +153,8 @@ &gmac2io {
+ 	phy-supply = <&vcc_io>;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&rgmiim1_pins>;
+-	tx_delay = <0x26>;
+-	rx_delay = <0x11>;
++	tx_delay = <0x1a>;
++	rx_delay = <0x14>;
+ 	status = "okay";
+ 
+ 	mdio {
 -- 
-Formal Signature
-Emacs 25, org-mode 9, mu4e 1.0
+2.52.0
+
 
