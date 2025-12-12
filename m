@@ -1,161 +1,120 @@
-Return-Path: <devicetree+bounces-246052-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246053-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F022DCB8426
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 09:25:27 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59E08CB847D
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 09:30:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 2983930087B8
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 08:25:24 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 614543005F2D
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 08:30:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B96CA30FF20;
-	Fri, 12 Dec 2025 08:25:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 948F531064B;
+	Fri, 12 Dec 2025 08:30:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="REBSKmeM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dcBuqNIl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 889DB305047;
-	Fri, 12 Dec 2025 08:25:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 569083101DC;
+	Fri, 12 Dec 2025 08:30:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765527923; cv=none; b=o5yiDsonFA2ANSuCnuVHGzT6Pqa9jn+2HW8Yz7zGNt9yttkezOUylTptqnLhjcAZwp0xYlHcrQWXCsf9ArwQ0szaOkkQuErPovG1FL9Twpc8w5fM/wOx9GKD6Ott0iTTQCNFUXDOJob9L39IN4w1ZwgTRJpgWil/JzmPjo8kN8Q=
+	t=1765528246; cv=none; b=lIwJVHXdL2gQfkg2Yz9Myns+o8ac/yoOp1vO8G5UIynGXnOBcF/VTy+rKAld2wUWdUmiPfI59llDD+cY8KveLVPJPNEzuV5AaD+M8h6G3GbekqO9nzC75KJkyD4kvfZFx/r5HPT4122NYqLGtvL4Wro6JL2Hh4+F/fyaD+rRdMI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765527923; c=relaxed/simple;
-	bh=upWDMuhIcu+SWLL+zcWNbgXHC/uII+5c6EWIs8OVh4w=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EtywV6Tb/KutSs9xxE6YjwXPG+TkoHSTd8aaZHMg4wg3FzsPKdLlpYEb+4H8zyjRST1cM7PWzt8vQz37KfSkBBiXgydryhvsndEDkvBM+gkd3CwBa8vSmyU7WEPJi3ImdsvcYdEFbk9i0EQcU2lV3YH39zg+NgBfaX/W9k/+gCA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=REBSKmeM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB12CC16AAE;
-	Fri, 12 Dec 2025 08:25:18 +0000 (UTC)
+	s=arc-20240116; t=1765528246; c=relaxed/simple;
+	bh=DRPzZm8wRyj4mY54tq0jM/zwgD0vFMbcEQzT/w8zFyM=;
+	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
+	 MIME-Version:Content-Type; b=dqTsHnQ8isNxzGpI+bZxC0VPxJoihKyUZZqPqZ7QQSOUcNVL5q2OJWUDmo2LhQt5THR1TaJ+bBKWOZfBnktcVaeXgp7DB5YPqMNYUedoBaPcRO7ZLuTfguYvmlQ72BbMSShmloUqDrn2vNXmlaSzgOjQNSspfWrMrkIuYwEPeYo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dcBuqNIl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36FF1C4CEF1;
+	Fri, 12 Dec 2025 08:30:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765527922;
-	bh=upWDMuhIcu+SWLL+zcWNbgXHC/uII+5c6EWIs8OVh4w=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=REBSKmeMQWaTuTDumDAxCM/gg6gPeV2Mb5zrZq9bd2exPFYF4NLN+oP/LPKrNDNqT
-	 mEODKK6EBO8RjhVuBr7ifr+kIMjFTrPD1CKA3+cZ1Qx9uOs24ksR137CcA6LdG/3UO
-	 LFTpUBC/Em8GF2e6EgaSdXS74tlPk4pte0HLIBDyTvEsFugXzSEyaxV9YJBHmwfYet
-	 zJIYwhs5baNqRvVWlcfnqCfB59slJO3ZlIVIR3wCopr/Imt3tFCsnXPtJr2Q41sTUn
-	 15OZFZFhq1CHGbTdISJgRMx5cTWhwWMENTQjzHZQQ3ipGlqVVHuh7bDlffhN+grq47
-	 PVHvDsmjx/BPA==
-Message-ID: <93224408-6b09-4cec-8e84-a66d9ef138e6@kernel.org>
-Date: Fri, 12 Dec 2025 09:25:16 +0100
+	s=k20201202; t=1765528245;
+	bh=DRPzZm8wRyj4mY54tq0jM/zwgD0vFMbcEQzT/w8zFyM=;
+	h=Date:From:To:cc:Subject:In-Reply-To:References:From;
+	b=dcBuqNIldXTL6nxc9vHRFmJK1q+pCEpPXDnMynSxTcTE0f5CMeYb1YC/QYimK7HvL
+	 yW9ZIAMunbbNR/XddaD+W2WBzK9ITEOc9Jpd/WF/oFxZGqgMxWJaYnhPdWS/2ZndYV
+	 QvTcZ2zk/8XusiG2mEKWiyswaxnlL8kucMpgGRGKUFvBmh6HToRFzmjdMzC8iFklZ7
+	 C/w/rAiweFwaGnDV+0vs7+eq/kMNQh7nLuDIAH4TZjY2J30aoCpasEx9IT9zYH+9Ck
+	 kNK9eY7wcDmJuvc2ytWrBRu1KTkw/s4QBwSvxfmd6ToD+GB5v6srhdPSZeTpE9iyRE
+	 95/u2RrgtAxkA==
+Date: Fri, 12 Dec 2025 01:30:29 -0700 (MST)
+From: Paul Walmsley <pjw@kernel.org>
+To: Deepak Gupta <debug@rivosinc.com>
+cc: Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>, 
+    Borislav Petkov <bp@alien8.de>, Dave Hansen <dave.hansen@linux.intel.com>, 
+    x86@kernel.org, "H. Peter Anvin" <hpa@zytor.com>, 
+    Andrew Morton <akpm@linux-foundation.org>, 
+    "Liam R. Howlett" <Liam.Howlett@oracle.com>, 
+    Vlastimil Babka <vbabka@suse.cz>, 
+    Lorenzo Stoakes <lorenzo.stoakes@oracle.com>, 
+    Paul Walmsley <paul.walmsley@sifive.com>, 
+    Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+    Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
+    Krzysztof Kozlowski <krzk+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
+    Christian Brauner <brauner@kernel.org>, 
+    Peter Zijlstra <peterz@infradead.org>, Oleg Nesterov <oleg@redhat.com>, 
+    Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>, 
+    Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>, 
+    Jann Horn <jannh@google.com>, Conor Dooley <conor+dt@kernel.org>, 
+    Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
+    Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
+    =?ISO-8859-15?Q?Bj=F6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+    Andreas Hindborg <a.hindborg@kernel.org>, 
+    Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
+    Benno Lossin <lossin@kernel.org>, linux-kernel@vger.kernel.org, 
+    linux-fsdevel@vger.kernel.org, linux-mm@kvack.org, 
+    linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
+    linux-arch@vger.kernel.org, linux-doc@vger.kernel.org, 
+    linux-kselftest@vger.kernel.org, alistair.francis@wdc.com, 
+    richard.henderson@linaro.org, jim.shu@sifive.com, 
+    Andy Chiu <andybnac@gmail.com>, kito.cheng@sifive.com, 
+    charlie@rivosinc.com, atishp@rivosinc.com, evan@rivosinc.com, 
+    cleger@rivosinc.com, alexghiti@rivosinc.com, samitolvanen@google.com, 
+    broonie@kernel.org, rick.p.edgecombe@intel.com, 
+    rust-for-linux@vger.kernel.org, Zong Li <zong.li@sifive.com>, 
+    David Hildenbrand <david@redhat.com>, 
+    Andreas Korb <andreas.korb@aisec.fraunhofer.de>, 
+    Valentin Haudiquet <valentin.haudiquet@canonical.com>, 
+    Charles Mirabile <cmirabil@redhat.com>, Andy Chiu <andybnac@gmail.com>
+Subject: Re: [PATCH v26 00/28] riscv control-flow integrity for usermode
+In-Reply-To: <20251211-v5_user_cfi_series-v26-0-f0f419e81ac0@rivosinc.com>
+Message-ID: <e052745b-6bf0-c2a3-21b2-5ecd8b04ec70@kernel.org>
+References: <20251211-v5_user_cfi_series-v26-0-f0f419e81ac0@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] dt-bindings: pwm: sunxi: add PWM controller for
- Allwinner H616
-To: Richard GENOUD <richard.genoud@bootlin.com>
-Cc: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>, Philipp Zabel
- <p.zabel@pengutronix.de>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- linux-kernel@vger.kernel.org
-References: <20251205100239.1563353-1-richard.genoud@bootlin.com>
- <20251205100239.1563353-2-richard.genoud@bootlin.com>
- <20251208-gorgeous-capuchin-of-protection-4ad0c2@quoll>
- <4d34658b-874d-4681-95c1-616f5b385550@bootlin.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <4d34658b-874d-4681-95c1-616f5b385550@bootlin.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=US-ASCII
 
-On 12/12/2025 08:50, Richard GENOUD wrote:
->>> +
->>> +  clocks:
->>> +    items:
->>> +      - description: Bus Clock
->>> +
->>
->> Are you sure there is no first clock? Really, really sure? If you add it
->> later, I would be pretty sad, because that's unnecessary duplication of
->> binidngs....
-> I surely don't want to make you sad :)
-> 
-> Having a second look at the sun4i binding, I think there's a way to use it.
-> The sun4i, as you said, has a module clock (OSC24M) and an optional bus 
-> clock.
-> Here, the bus clock is mandatory, but the H616 PWM uses OSC24M and APB1 
-> as clock sources.
-> 
-> So, I guess that if we add something like that:
->     clocks:
->       minItems: 1
->       items:
->         - description: Module Clock
->         - description: Bus Clock
-> +      - description: APB Clock
-> 
->     clock-names:
->       minItems: 1
->       items:
->         - const: mod
->         - const: bus
-> +      - const: apb
-> 
->     resets:
->       maxItems: 1
-> 
-> In the sun4i pwm binding, we could re-use it for the H616 pwm right?
-> (APB clock is maybe not the best name, could be secondary module clock)
+On Thu, 11 Dec 2025, Deepak Gupta via B4 Relay wrote:
+
+> v26: CONFIG_RISCV_USER_CFI depends on CONFIG_MMU (dependency of shadow stack
+> on MMU). Used b4 to pick tags, apparantly it messed up some tag picks. Fixing it
+
+Deepak: I'm now (at least) the third person to tell you to stop resending 
+this entire series over and over again.
+
+First, a modified version of the CFI v23 series was ALREADY SITTING IN 
+LINUX-NEXT.  So there's no reason you should be resending the entire 
+series, UNLESS your intention for me is to drop the entire existing series 
+and wait for another merge window.
+
+Second: when someone asks you questions about an individual patch, and you 
+want to answer those questions, it's NOT GOOD for you to resend the entire 
+28 series as the response!  You are DDOSing a bunch of lists and E-mail 
+inboxes.  Just answer the question in a single E-mail.  If you want to 
+update a single patch, just send that one patch.
+
+If you don't start paying attention to these rules then people are going 
+to start ignoring you -- at best! -- and it's going to give the entire 
+community a bad reputation.
+
+Please acknowledge that you understand this,
 
 
-apb is probably the bus clock, so you don't need to change the bindings
-at all.
-
-Best regards,
-Krzysztof
+- Paul
 
