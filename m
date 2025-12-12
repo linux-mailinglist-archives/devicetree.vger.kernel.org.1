@@ -1,132 +1,178 @@
-Return-Path: <devicetree+bounces-246129-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246130-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 931EFCB8D68
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 13:57:02 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4C70CB8DA5
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 14:03:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 573383007FCC
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 12:55:30 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id CD06530080EE
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 13:03:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 997A730E849;
-	Fri, 12 Dec 2025 12:55:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CC6231B81B;
+	Fri, 12 Dec 2025 13:03:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b="SIDmzhaa";
-	dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b="SIDmzhaa"
+	dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b="o/sg3a79"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.mleia.com (mleia.com [178.79.152.223])
+Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11020076.outbound.protection.outlook.com [52.101.84.76])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EDAB2DEA7E;
-	Fri, 12 Dec 2025 12:55:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.79.152.223
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765544128; cv=none; b=D7KntCtAB8cFSDDB/1efRVlsQkxDiuYA6prsQL21ZPvGDRD2jdHxwKWy8LpZTTgK/Qjg8tCeDLTpIm7Jk6VWmvIpU16uLdAOs7M0WuHvtmdXb0LRiQg/h+Qwok2fOp2E6ITt3i5ZOt5NOTMBiIGiLSYRxB/btW4yCf7vEa3VGdI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765544128; c=relaxed/simple;
-	bh=E9TnXrsnB7lsT6PhDe9c6feEUyEWweothBeOpCejcwI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AP9FRViIrfLQpOoCs+n0UTYXb4lVInkpEqzZuwYIsn+cKk3CHm1/7iH9P6UOD3EB8b0hwm77KWzsXLxxSduR+2ae53Ly0f0aOxxWL1TlodtRz+YNzcpvXUZQIrLsmaI3Ws7sJPzJ6KuTbcwq41h93WPTZuP+6xGdQGf5AC3oBLk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mleia.com; spf=none smtp.mailfrom=mleia.com; dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b=SIDmzhaa; dkim=pass (2048-bit key) header.d=mleia.com header.i=@mleia.com header.b=SIDmzhaa; arc=none smtp.client-ip=178.79.152.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mleia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=mleia.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
-	t=1765543769; bh=E9TnXrsnB7lsT6PhDe9c6feEUyEWweothBeOpCejcwI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=SIDmzhaa8CmrTH/GoppH0Vf10xyiAFOjjuKM5MM801ZUi7s3tHT8V/w6gY3Qjmd16
-	 9i4+G4PauDUcGs+54tlbJB93w8L2eFCuvAqTvK3nlFlmFI6QpyTxXUSS8UWQHLK7+W
-	 qS7TM4dp+UKCPaYEFnbS/5tRAPEPaf/XT5rzihuHGNgkg/O8sx6BEXoidtCSglweI3
-	 IomN5f1bnomdpCrKXcdK+zm7l0MnQ8mRmpnlAb6aZkl+QMAEfX6esYhmAAfN+YyQdF
-	 QIXxEo1Pmi3xp1EG3598lhSYj11SctxlBfo3mlC8uhYMTxtOSRp/uaP5QQmQcQM1Ij
-	 DRjUCf4JieV6w==
-Received: from mail.mleia.com (localhost [127.0.0.1])
-	by mail.mleia.com (Postfix) with ESMTP id 85D2A3E64F8;
-	Fri, 12 Dec 2025 12:49:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
-	t=1765543769; bh=E9TnXrsnB7lsT6PhDe9c6feEUyEWweothBeOpCejcwI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=SIDmzhaa8CmrTH/GoppH0Vf10xyiAFOjjuKM5MM801ZUi7s3tHT8V/w6gY3Qjmd16
-	 9i4+G4PauDUcGs+54tlbJB93w8L2eFCuvAqTvK3nlFlmFI6QpyTxXUSS8UWQHLK7+W
-	 qS7TM4dp+UKCPaYEFnbS/5tRAPEPaf/XT5rzihuHGNgkg/O8sx6BEXoidtCSglweI3
-	 IomN5f1bnomdpCrKXcdK+zm7l0MnQ8mRmpnlAb6aZkl+QMAEfX6esYhmAAfN+YyQdF
-	 QIXxEo1Pmi3xp1EG3598lhSYj11SctxlBfo3mlC8uhYMTxtOSRp/uaP5QQmQcQM1Ij
-	 DRjUCf4JieV6w==
-Received: from [192.168.1.100] (91-159-24-186.elisa-laajakaista.fi [91.159.24.186])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mail.mleia.com (Postfix) with ESMTPSA id 5C76C3E5F59;
-	Fri, 12 Dec 2025 12:49:28 +0000 (UTC)
-Message-ID: <ceeee542-a319-4ad9-ada8-3dc769599dec@mleia.com>
-Date: Fri, 12 Dec 2025 14:49:27 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F3F1225779;
+	Fri, 12 Dec 2025 13:03:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.84.76
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1765544623; cv=fail; b=KdTXeTRTF23lNta10J1sd0znnCIQfogTncgMV+vBdGPOYy9hYvY2pJTW1Z91K0K2ny62KAxfxXwh5R7Hdlk8Uq0IXULrqf1VN1785seorOhewV62Vi6U6RWZciu84lRtoxEd4+VfGoiBEf66MFZ65edZAv7GhbNvB30zVfoyKjs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1765544623; c=relaxed/simple;
+	bh=ggRv/RKqM7pQMDPmVor5G8V7NTDYqyeSFgQz0yYK4XM=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=oszP4wwlvQQykzzl7arm7b2X/vZM92Mkn3rTyAx0+EoPVvsLTkoCKCDvICxToEFjfPVSA+BkfagyqVsenAdo9kGGr/J0LA9Z9D2IZp5QFkOscF0lJGFripJ0CE+9zLF0AAaYTyz2zw7dJolWWe06T7XnJuDUR4dKhnngfuq8En8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b=o/sg3a79; arc=fail smtp.client-ip=52.101.84.76
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=VA4eqvIMPIWytWJA6gE/XtXcQZdMljZVdKxXkBaYUW/gQIJ8eOEOQNY8tRL7ehPdlEyzsfs8CQVpLmCL7RLxaCk3R7mKhXSA9bunf3hXHw2CxWZBwZH5i4tJNWNpYG9atLOOrUoSUgl9JqGZ3l+XZmwaVKPTcJUmXdzTZlgx+UPwekx1MR0epvU5wgb1VMB6c6ZDb3RHUoKdGRrZtk5Nx9g8MAmczJkSUomgvWOs6e9Bm4zJ6BUFYowCcq3HX1P/qHkxS2rc+zicyQnHawI5XdvqA5K/0Ckwaq6iEIUUWWBFxCXMtsm64KsdW6POceHYdqoIBFMobiMA27LPp+KZgA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=lBmewPyyqowbBaImbguZvb7gZHH3PlKVNSV0DBcgTd4=;
+ b=YmPPRUznV6JZ2fmoleUARC57XlHRww5WLk8u6u/F7lrH7c99wxpq0pm3Y+qaPxKAmz0iVWa61XS4CLHQFeqRFOfNLrn1Y4MSfrBoqeukqj9DPRT7CdJHJNfl1nJ5x7bZHJXkRG5DQlCyroQdTGkebcvfS25jttUNvAi37r3fq3nCrFjYTxTkGus2aBDhc4I9GmFmUHSBi5YqhPSKLaF4e0nuphGvPXAJm/jz1hFP+VBxgCGwNLTWdq6mxp50cZkoYMp0GijbtYskzPGSFDm2t1ZtOu7U8HJRwlQg0z9GyCojMvX3uk5XntFsSJpzzL6I9Smft0oPZO8N4P5NOUqHWw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
+ is 91.26.50.189) smtp.rcpttodomain=kernel.org smtp.mailfrom=phytec.de;
+ dmarc=fail (p=quarantine sp=quarantine pct=100) action=quarantine
+ header.from=phytec.de; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=phytec.de;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=lBmewPyyqowbBaImbguZvb7gZHH3PlKVNSV0DBcgTd4=;
+ b=o/sg3a79WOTXTh9zi0RH8lZ43V4zAzwlzMrMktukAvfoIVlOj3ulAPf4M1qC6lhr6IkZ3D2wYkx0x/AeTX2FKhl/ABp92c/Kds7E9X67OBzFPh0aR7nIvPA9CYotXIEOS9S7pFdg84ZdgB9Q53AwIBs8/iccHok7ix6Km5V13KsaCdp6yWmVkBTQux46nvMaBliywPVf+IWp7AZHsR21OQgvgDGprafKn37m3n43f3f1M+Jd5IbH+/3Eg7lYyb1bYkHzlMHzmxI6zpVYJ6nBsaP9/HFrBIQU1LWK+UIMdJyUInRJhYt505mF6IA0a8wN9aoco6h3UkYLD7j2xRkOpQ==
+Received: from DU2PR04CA0211.eurprd04.prod.outlook.com (2603:10a6:10:2b1::6)
+ by VI0P195MB3080.EURP195.PROD.OUTLOOK.COM (2603:10a6:800:2d5::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9412.9; Fri, 12 Dec
+ 2025 13:03:33 +0000
+Received: from DB5PEPF00014B96.eurprd02.prod.outlook.com
+ (2603:10a6:10:2b1:cafe::84) by DU2PR04CA0211.outlook.office365.com
+ (2603:10a6:10:2b1::6) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9412.9 via Frontend Transport; Fri,
+ 12 Dec 2025 13:03:29 +0000
+X-MS-Exchange-Authentication-Results: spf=softfail (sender IP is 91.26.50.189)
+ smtp.mailfrom=phytec.de; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=quarantine header.from=phytec.de;
+Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
+ phytec.de discourages use of 91.26.50.189 as permitted sender)
+Received: from Postix.phytec.de (91.26.50.189) by
+ DB5PEPF00014B96.mail.protection.outlook.com (10.167.8.234) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9412.4 via Frontend Transport; Fri, 12 Dec 2025 13:03:33 +0000
+Received: from llp-jremmet.phytec.de (172.25.39.81) by Postix.phytec.de
+ (172.25.0.11) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.29; Fri, 12 Dec
+ 2025 14:03:32 +0100
+From: Jan Remmet <j.remmet@phytec.de>
+Subject: [PATCH 0/3] gpio: pca953x: Add support for TCAL6408 TCAL6416
+Date: Fri, 12 Dec 2025 14:03:15 +0100
+Message-ID: <20251212-wip-jremmet-tcal6416rtw-v1-0-e5db1b66d4cc@phytec.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/5] media: dt-bindings: Add CAMSS device for Kaanapali
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Vijay Kumar Tumati <vijay.tumati@oss.qualcomm.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>,
- Loic Poulain <loic.poulain@oss.qualcomm.com>, Robert Foss
- <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Todor Tomov <todor.too@gmail.com>,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
- aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
- trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com,
- Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
- Atiya Kailany <atiya.kailany@oss.qualcomm.com>
-References: <20251113-add-support-for-camss-on-kaanapali-v6-0-1e6038785a8e@oss.qualcomm.com>
- <20251113-add-support-for-camss-on-kaanapali-v6-1-1e6038785a8e@oss.qualcomm.com>
- <bd899586-f714-4d2e-95e3-6abf124e75a4@linaro.org>
- <37d0f89f-69be-45a7-90fa-347d6a3800bf@oss.qualcomm.com>
- <2d7ac7e8-ab69-44a6-b732-3657abf3a5a6@oss.qualcomm.com>
-From: Vladimir Zapolskiy <vz@mleia.com>
-In-Reply-To: <2d7ac7e8-ab69-44a6-b732-3657abf3a5a6@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-49551924 
-X-CRM114-CacheID: sfid-20251212_124929_579574_BBD90668 
-X-CRM114-Status: GOOD (  11.70  )
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJMSPGkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1NDI0ND3fLMAt2sotTc3NQS3ZLkxBwzE0OzopJy3eQUw5Qkc+MkC7NUSyW
+ g7oKi1LTMCrDJ0bG1tQA3U57NaQAAAA==
+X-Change-ID: 20251211-wip-jremmet-tcal6416rtw-cd1db73b86e9
+To: Linus Walleij <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	=?utf-8?q?Levente_R=C3=A9v=C3=A9sz?= <levente.revesz@eilabs.com>
+CC: <linux-gpio@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
+	<devicetree@vger.kernel.org>, <upstream@lists.phytec.de>
+X-Mailer: b4 0.14.2
+X-ClientProxiedBy: Postix.phytec.de (172.25.0.11) To Postix.phytec.de
+ (172.25.0.11)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB5PEPF00014B96:EE_|VI0P195MB3080:EE_
+X-MS-Office365-Filtering-Correlation-Id: 05d85eb0-7322-40cd-3b9e-08de397edab3
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|82310400026|36860700013|376014|7416014;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?ZU91SnR3cmxTZEh0eHBEckdmUFgvVXNBRzR4eHVqR0hZRHErWHJSdXpXRk9q?=
+ =?utf-8?B?RDBhTVhKTm4rTnpITUFkU0hSekRBTkx3K0dpVWp5cSttREcrLzBVdVZtUjJR?=
+ =?utf-8?B?dFFNVU5ITW16WThOZ0NiRWs1OG1Vc3RzUVE1MkxzWm1mS3hqMlpuQjdlTGZK?=
+ =?utf-8?B?WnVJN3FGTDNIRVNuVDVldFI2WlJES2t2T1pqK0V6WlVicUs3MG1aQkRxa0lu?=
+ =?utf-8?B?ODFXMHlKOHZ6RXcxT0xlSkNZMmt6RlE2aG1ya1IvdzdoSm1lU2dhSzZPUlVX?=
+ =?utf-8?B?TXBvOTdQdEYvNGJJcFJrR043LzFGbjcxMkxIa0JnWE1vUWt6cWhWaGUvcnhS?=
+ =?utf-8?B?SUpuT1Q2dFdUR3owcW84Z2RVOVZURE5FZUpTL0NmUGxpM3ZVa24wajVjYkto?=
+ =?utf-8?B?UlZuMXJ4SVB2Rjk5aXNURTZvYS9yYkQ1aGUwc256djgva1BmTjRmWG5GUW5O?=
+ =?utf-8?B?c2hzandPZ3F6QU11c3JkM25CbDQwZm0zbHkwT3hNcHMzSDdCOUMrdnhKbDla?=
+ =?utf-8?B?NXp0UHhkUUpiQmduVXFqdGpJNkVDQmc0bHdkRGZNemdPT0xCRzBVaDZzRkwy?=
+ =?utf-8?B?UkNXUWtOd1lMRm9KYlorUTh3Mm5FVnVtd3F2WCs1VndBbUh3a0xadlBQUllu?=
+ =?utf-8?B?bEQwbE92cTR5Skp1VlBranIxNVNzYVlLbk9iWjJZOHpLb2pHUEVTcEo4Um1t?=
+ =?utf-8?B?U2pyeUZWQmMrTjVRMWRIR1MraUpwRVdsYTF1VXMrTXo1cVVlYk9iMnpQbHJu?=
+ =?utf-8?B?Nm9yakhpRGt6bVpGeVRYcVh0OWFyMFBUZ2ZxbGIrZ0ZWZGFlVTJWRGNhcHdw?=
+ =?utf-8?B?Z0ljcnNUOTFVNmJqT3hNNTY5aFdFbTlwNXpZcTMxZ1dVZ2VBcHo0NTdZYjRS?=
+ =?utf-8?B?MVdKKy9Na1phaW1yMHk1RkY1L1E5WDhDVHFEY0gyWnpSczhnMGZkV2dmVTZz?=
+ =?utf-8?B?MnNXMG91QWRPcFM1YWpYcnRkcllISnVjV1MycGhpTWs3K1NzSWxhWE1mT251?=
+ =?utf-8?B?WGZSMFNDRnR1YjFlQTNxVW0yQTZCcDFlRDRZdzNxZm03VHpqM1N1clA2cWt3?=
+ =?utf-8?B?STRiTjlRNUxVMVZxek9HbFN4RFIrY1RqZ2R0bGJiZk5KdTUzdHA2b0dvWFlj?=
+ =?utf-8?B?cXZ5WHQzaUtBVXZHd25zYzllY1FWUG5lSkhXenVlZExnVSszZGQ0RXNwVThJ?=
+ =?utf-8?B?RUVsMnFoQUl1M0NIclNFczJUdU1OMm1hUlpGNUZYajBlOVd3K0hVc0JjK0R6?=
+ =?utf-8?B?MGdkVVhoUWpXalhPYkFaYVR1Zk5FanZGZ0lLYzh5YjFuU20vdVRDM0RaZDZR?=
+ =?utf-8?B?MS9oTDl0bDdycVdkbXh5MkJ2N1RqVXZ5a0ROQWdhUGZ2dVhtTkI3WjJaZnpE?=
+ =?utf-8?B?QU1vSnFlYTN0VGtBbENKSEYwTlc5cVFvYVQ5RlcvMGc2ZGdlamdKek1mY0Z6?=
+ =?utf-8?B?WHJjN3QwaTFFWG8rWFUwdURwZlo1dkx2eXQxaHRHRk4xVVQyV0NMUXNXTHpQ?=
+ =?utf-8?B?Wm0rRW1JUzAvSyt0ZWpjV1NsNGpJb0FXaHN1Yy9Kd2h4RE9PWnFWTzRPS25P?=
+ =?utf-8?B?ZHRNeldDRW9Wb2dIT212T0VxRFoxUzVlWU84WkVoRGhHZWFlNzErQzRJUHZM?=
+ =?utf-8?B?R2pZSS8yYjN1eU42R3czL1g1S0VORXg5eE9CbDBZOXl4aUwvUG1ndWEzNGxw?=
+ =?utf-8?B?dFlHeGx4NkQzV0hENzg0QXlpWXBVZ1ZWT3RZUEpMZkpYanJNbmhPeXNybXdu?=
+ =?utf-8?B?Zm53OXl6dnBuaXhDcmNlSE5SenJDV2hVZExHSFIwMHZVSFM5QWROckQwVTM0?=
+ =?utf-8?B?a25yUXRLaFFrN0I1L1kybzdUM0RJVFFvdkZPYWhvQzIvUUxPNXhNRXVrVGwr?=
+ =?utf-8?B?RmZuYm1RWERxMCswYXlrOFNkNXA3QnBpOFpUTDZsTWJta25zUTdWVzZ1azlP?=
+ =?utf-8?B?Y253VHhjcDc4U3locW0xZ1ZHekhGV012Z3A4TjRLbnVOeWZoNDh3Wk5rZWcy?=
+ =?utf-8?B?ZTU5Q0FNbFpoRjVYenp2Yk04eGMzOXVITHhOS0s0eE94eGJxelBqRVMwTjRL?=
+ =?utf-8?B?Y01mRG9EZmFTTW02K1FKN2FWSmlWNi9OU2RSNHcvOWxkSkVRVjVwTi9WN0xS?=
+ =?utf-8?Q?l4Ws=3D?=
+X-Forefront-Antispam-Report:
+	CIP:91.26.50.189;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:Postix.phytec.de;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(36860700013)(376014)(7416014);DIR:OUT;SFP:1102;
+X-OriginatorOrg: phytec.de
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Dec 2025 13:03:33.0310
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 05d85eb0-7322-40cd-3b9e-08de397edab3
+X-MS-Exchange-CrossTenant-Id: e609157c-80e2-446d-9be3-9c99c2399d29
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e609157c-80e2-446d-9be3-9c99c2399d29;Ip=[91.26.50.189];Helo=[Postix.phytec.de]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DB5PEPF00014B96.eurprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0P195MB3080
 
-On 11/18/25 20:44, Konrad Dybcio wrote:
-> On 11/18/25 7:25 PM, Vijay Kumar Tumati wrote:
->>
->> On 11/18/2025 7:00 AM, Bryan O'Donoghue wrote:
->>> On 14/11/2025 03:29, Hangxiang Ma wrote:
->>>> +                  <0x0 0x0900e000 0x0 0x1000>,
->>>
->>> Why aren't you starting @ 0x0900e000 ? seems to be omitting some of the registers in the ICP block. Should start at +0xd000 not +0xe000 ?
->>>
->>>> +                  <0x0 0x0902e000 0x0 0x1000>,
->>>
->>> Same here.
->> Hi Bryan, HLOS does not have access to those registers. They are configured by the Hyp.
-> 
-> If that's hyp, please add them. We already have platforms without
-> Gunyah. Remember, bindings are defined once and for good and I wouldn't
-> call it impossible that someone would want to run that configuration on
-> Kaanapali some day
-> 
+Add two compatible. They share register layout with nxp pcal6408 and
+pcal6416
 
-If the ICP register block is added now, then it will practically exclude
-an option to run hardware demosaic on Kaanapali. There were notorious
-and still unresolved problems with CSIPHY blocks, which shall be split
-from CSID/VFE CAMSS on device tree level also, for similar reasons the
-same should be done with ICP or other blocks. It makes exactly zero
-sense to pile everything into a monolythic device tree node, and doing
-so undermines any future advances in CAMSS support in the upstream
-Linux, the hardware description in downstream is done thoughtfully better,
-and not for no reason.
+Signed-off-by: Jan Remmet <j.remmet@phytec.de>
+---
+Jan Remmet (3):
+      gpio: pca953x: Add support for TCAL6408 TCAL6416
+      Documentation: gpio: add TCAL6408 and TCAL6416
+      dt-bindings: gpio: gpio-pca95xx: Add tcal6408 and tcal6416
 
+ Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml |  2 ++
+ Documentation/driver-api/gpio/pca953x.rst                | 12 ++++++++++++
+ drivers/gpio/Kconfig                                     |  4 ++--
+ drivers/gpio/gpio-pca953x.c                              |  6 ++++++
+ 4 files changed, 22 insertions(+), 2 deletions(-)
+---
+base-commit: d358e5254674b70f34c847715ca509e46eb81e6f
+change-id: 20251211-wip-jremmet-tcal6416rtw-cd1db73b86e9
+
+Best regards,
 -- 
-Best wishes,
-Vladimir
+Jan Remmet <j.remmet@phytec.de>
+
 
