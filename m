@@ -1,451 +1,315 @@
-Return-Path: <devicetree+bounces-246100-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246101-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45273CB893E
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 11:11:19 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0EDECB89CC
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 11:21:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 4B35D300B910
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 10:11:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A41553028E5A
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 10:20:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FA8A315D46;
-	Fri, 12 Dec 2025 10:11:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 164B331A541;
+	Fri, 12 Dec 2025 10:20:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B4Grw/XY"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="TBRkgPGs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10A4731078B
-	for <devicetree@vger.kernel.org>; Fri, 12 Dec 2025 10:11:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765534275; cv=none; b=mMaqe9t9XuZqd2N48+XeoKF0UsISzskuTZtaYqg3M64sviyDWd886EnIIgUNrlSqN25Xt9A4vqqFvr8JBAtLmzt2/pl2GkjBtCPQx7j3FNaEk3vycr1spdcF0M2GmjfxuWJ4D3253BVJtK+/nf0F+PUoFb1LRx6/5oT54cehwJM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765534275; c=relaxed/simple;
-	bh=K9iOfHu3sHH8E2mx/0wrzT5tjpWF/oxkt/1WE6QwHvc=;
-	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=muwrDoWTc5Pr37Yj4cwZBr+PlV1MtMmlkhQB2/DQ7bYMMCp0EpZXNmgG1wJGPudGBvFjBXuVcigeaCMcf2m706Yt3B49hqWCrvxNU01/64I7oGY4TF6Rls5t1tWVHlgWhPh0GB/lPVlb1rGNM/St8c2rR1v9Yaz7NKFxVxENlSo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B4Grw/XY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6580C2BC9E
-	for <devicetree@vger.kernel.org>; Fri, 12 Dec 2025 10:11:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765534274;
-	bh=K9iOfHu3sHH8E2mx/0wrzT5tjpWF/oxkt/1WE6QwHvc=;
-	h=From:In-Reply-To:References:Date:Subject:To:Cc:From;
-	b=B4Grw/XYgfImbgds3cMa893XWbZhiOjKQrw2KF9QHZLYIC3QpCHOqDsX0FPv+95ZA
-	 MtVWlIM9q5R55GZukJY5aHWz/R5bZGJj5zYusPu/v42G6olNoebuToBTIo/WyZvZh2
-	 xmagALpXV6kY1/wIHLMOfARvx/zlsQYdgEjvG7aA3A1Y2/Rz6kspBp22j86ebBkMHy
-	 V8TxVS9QzWDUCL5YCprzPoTREi8IC0r7IDSolRdY1BACD9h/pwhfT1gIsCr1KAwd+3
-	 SgfEX+KVHCl6trqKeiRsp1xqscRedCq2uTdwMzuG6bjv9Y/CPf5s4bANrxDJfkIHeO
-	 nFAdAYOy0Cs5g==
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-5945510fd7aso849372e87.0
-        for <devicetree@vger.kernel.org>; Fri, 12 Dec 2025 02:11:14 -0800 (PST)
-X-Gm-Message-State: AOJu0YzuIcZ+y1XCkLGJflo/Q7n7LbP9ZX1HyvztXsa4eOtMB/t11U0b
-	10bsQyrvbNS/fpYU09oCkodA3NPxibOfp9M6wj7Hq5cGtKXKLoF7n1aWGbJ5N7K2MexcgLTHuDt
-	aU9+7OkxJ6Gfb/+2JwoBgVJaLzO+B9uqexgQ+cdnZtw==
-X-Google-Smtp-Source: AGHT+IGgQcDDVx5CV5iALdJF8BCtSi9/N1Hvmh5TeNsn50J9aXMOA2he1DDvPHJXZouFGJPTLM1rhMNOTARniy28pOQ=
-X-Received: by 2002:a05:6512:3e01:b0:598:f262:15ec with SMTP id
- 2adb3069b0e04-598faa8083bmr601324e87.26.1765534273448; Fri, 12 Dec 2025
- 02:11:13 -0800 (PST)
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 12 Dec 2025 02:11:11 -0800
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 12 Dec 2025 02:11:11 -0800
-From: Bartosz Golaszewski <brgl@kernel.org>
-In-Reply-To: <20251212-dev-b4-aaeon-mcu-driver-v1-6-6bd65bc8ef12@bootlin.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0553731691A;
+	Fri, 12 Dec 2025 10:20:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=198.175.65.13
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1765534859; cv=fail; b=e7huiuuSvHJ81LEHNohR4oCSvG9YMuaXFv87yUs3ICfsL4hZneJrEXzsDCqxYHUxNEeTdcMjJsrgcVGF7E0V7YOMtUzaYIB7WWYu6mUX1/Qh9QMcuAhkbhDjf5dfQqt0otBgiY7gStzeBLxvZixSouPV3m/BYromhmMp2s9DyGA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1765534859; c=relaxed/simple;
+	bh=gP344xiQoRA8/xhakv59Hzx2/WzF6QUIHwRyYBXOPkw=;
+	h=From:To:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=TCAR78CZBpmxSOxjVRCa1uO9HFaEpKoKnR8MryF+eP5q2FvvdPIChdvc6PgSJhoEUqiMPQsBTbfBpvvCgSZrNRCvjVUvlrTKkO2NLCSEcfPaZgUcUHdNVleaisijKacR2a9eBY8rEB9CTZtI4COUTRw1UdScBPEBIG4WvlygbL8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=TBRkgPGs; arc=fail smtp.client-ip=198.175.65.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1765534857; x=1797070857;
+  h=from:to:subject:date:message-id:references:in-reply-to:
+   content-transfer-encoding:mime-version;
+  bh=gP344xiQoRA8/xhakv59Hzx2/WzF6QUIHwRyYBXOPkw=;
+  b=TBRkgPGsSvUVnH5qPdprhnhwN2GgkPBHK/Zy70DFgoDCAAWhtTsDEzFy
+   OrHcVu2x55JIncvyF0pSFFNZ7AoJMtKj8QgeZv3Xn/6y/qefN1cEB92rF
+   DH8alFe8rmPv9WN0GfSCj5Q1vwvURpoKcIhQXOpDGbgIden7eoPkuKFcI
+   REKnpOG2jbzOSk0L0SiCYwLBlsKeBAlp49bSx0TIvBDGU0kapRmRSD6/d
+   m5KocEUwKPKlH5Mbx/Y76NhSzKr0/HeHXnPIlyjVbn3/06QbsW58ev0gf
+   biV/Aj8+mZh9kyOAhgTvjw6lgd5yPnVkHy1Medbky4Vt6V7mxjEJ7d3Ko
+   A==;
+X-CSE-ConnectionGUID: Cw8KdsIwSceCHtTS6nQYTA==
+X-CSE-MsgGUID: nabohtqDSm2m3vDQAkWWvg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11639"; a="78635548"
+X-IronPort-AV: E=Sophos;i="6.21,143,1763452800"; 
+   d="scan'208";a="78635548"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Dec 2025 02:20:57 -0800
+X-CSE-ConnectionGUID: dupgWrQrT/epDGYkXrZn+g==
+X-CSE-MsgGUID: gwnbU3X6SiOCd18VSZA16Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,143,1763452800"; 
+   d="scan'208";a="197102298"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+  by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Dec 2025 02:20:54 -0800
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Fri, 12 Dec 2025 02:20:53 -0800
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29 via Frontend Transport; Fri, 12 Dec 2025 02:20:53 -0800
+Received: from MW6PR02CU001.outbound.protection.outlook.com (52.101.48.9) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Fri, 12 Dec 2025 02:20:52 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=fhcytF8E4ANe+AT8Ul2v0ut/oNCf8P/zBsbKbOZWNo2XDepvYsOG2fs2CyA9zya6nMTjKVRjM9UvAyoWx9rUvbl4jaZ4LPUB6zqHJiznf3hF4fqgu6ZJ5jTZuib7DQOMGGestIj6a2kim4pLy/BZBstuxC+s5aABGism/S3TQGqNW5Eh6XzXb2YXMhAhjCDEODWJsJXQ1cCLa5yd7/dflG+mypiSxjNUMbPK+gZ02EioiLTtfkO4ynOmwP5hwkkg+mGv34lQ13Axtk/3EIrEDGeHforDuMKV/EkDHHgq+XCMy3+ha0R3lizLdZU/rEQsHKzS9QV1mV5CWJSSp25pjg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=dFtOPjD+6nUCpFt0BH2Yx6o6MsLftEW4MdoeptEcf14=;
+ b=lV01M8r3KrT8LOv0DcYgQI3jNSSg0nBqTQ0Jqb15rOCrNA+r3mxUag7UsUuxUfMv2ReIt9fwtYQwGr/6qGA45qxoPdtMLfMN1msYgafmF3KjDK7TyZ0DPkMc7kVQfG6LaX5fwbz2UxEqhmwOvg6g3RhwreDNbpNrKApo7fg1gyKN0VXUcUoYy93VTqCqOTbRpUdv4wnKPtZp1w0cHpvfUdl1yDJpE2AxtVzBUqqgjfHnTABHtCGR8WtPEA7hRjudeE6k6uZbKbysRSlx1OqvdBFJjKGzG7AK18ONQ/mrcj26fvlrRCwVUlo1qTB4TA4mVKTVlwNd+8J33bL973mWKQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from IA3PR11MB8986.namprd11.prod.outlook.com (2603:10b6:208:577::21)
+ by CH3PR11MB8342.namprd11.prod.outlook.com (2603:10b6:610:167::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9412.10; Fri, 12 Dec
+ 2025 10:20:44 +0000
+Received: from IA3PR11MB8986.namprd11.prod.outlook.com
+ ([fe80::395e:7a7f:e74c:5408]) by IA3PR11MB8986.namprd11.prod.outlook.com
+ ([fe80::395e:7a7f:e74c:5408%3]) with mapi id 15.20.9388.013; Fri, 12 Dec 2025
+ 10:20:43 +0000
+From: "Loktionov, Aleksandr" <aleksandr.loktionov@intel.com>
+To: "Vecera, Ivan" <ivecera@redhat.com>, "netdev@vger.kernel.org"
+	<netdev@vger.kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>, "David S.
+ Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, "Jakub
+ Kicinski" <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+	"Kubalewski, Arkadiusz" <arkadiusz.kubalewski@intel.com>, "Nitka, Grzegorz"
+	<grzegorz.nitka@intel.com>, Jiri Pirko <jiri@resnulli.us>, "Oros, Petr"
+	<poros@redhat.com>, "Schmidt, Michal" <mschmidt@redhat.com>, Prathosh Satish
+	<Prathosh.Satish@microchip.com>, "Nguyen, Anthony L"
+	<anthony.l.nguyen@intel.com>, "Kitszel, Przemyslaw"
+	<przemyslaw.kitszel@intel.com>, Saeed Mahameed <saeedm@nvidia.com>, "Leon
+ Romanovsky" <leon@kernel.org>, Tariq Toukan <tariqt@nvidia.com>, Mark Bloch
+	<mbloch@nvidia.com>, Richard Cochran <richardcochran@gmail.com>, "Jonathan
+ Lemon" <jonathan.lemon@gmail.com>, Simon Horman <horms@kernel.org>, "Lobakin,
+ Aleksander" <aleksander.lobakin@intel.com>, Willem de Bruijn
+	<willemb@google.com>, Stefan Wahren <wahrenst@gmx.net>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"intel-wired-lan@lists.osuosl.org" <intel-wired-lan@lists.osuosl.org>,
+	"linux-rdma@vger.kernel.org" <linux-rdma@vger.kernel.org>
+Subject: RE: [Intel-wired-lan] [PATCH RFC net-next 13/13] ice: dpll: Support
+ E825-C SyncE and dynamic pin discovery
+Thread-Topic: [Intel-wired-lan] [PATCH RFC net-next 13/13] ice: dpll: Support
+ E825-C SyncE and dynamic pin discovery
+Thread-Index: AQHcatdy8n9W9Wo/ukWb5S77Vy+wv7Udy3Pw
+Date: Fri, 12 Dec 2025 10:20:43 +0000
+Message-ID: <IA3PR11MB898612C9A66ABA4DA673D3FCE5AEA@IA3PR11MB8986.namprd11.prod.outlook.com>
+References: <20251211194756.234043-1-ivecera@redhat.com>
+ <20251211194756.234043-14-ivecera@redhat.com>
+In-Reply-To: <20251211194756.234043-14-ivecera@redhat.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: IA3PR11MB8986:EE_|CH3PR11MB8342:EE_
+x-ms-office365-filtering-correlation-id: 25bef94f-0188-455f-e56b-08de39681bbb
+x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|7416014|1800799024|376014|366016|921020|38070700021;
+x-microsoft-antispam-message-info: =?us-ascii?Q?iqAi8k6HfqmFDz56lmtM2usQ0pfzag9A1cuPvpqxWseGFGI6wQCbZcHPcRFy?=
+ =?us-ascii?Q?+rQQ7tZUG1l8nhEx+7DHWUlLjOHD+ul7eTTy5GldsXFAzjzk+KQTw+5tlIb5?=
+ =?us-ascii?Q?+mryj414L6ezVRt25D6M7UxCGeCZmGZ9Hk90tMDs5obif4yVNNuiKJAixRYu?=
+ =?us-ascii?Q?Rk+nBxMVG5KOqDB24U+Cwa4K0S2qGEEIjxCUgEk2OYdqHO5U+dQusGLHo/GS?=
+ =?us-ascii?Q?A9bzTacz5N3sSGZ3WyQf9A6fEWAaeNvIixCWMaSuiwlZnfjkdjLguU+xkkPb?=
+ =?us-ascii?Q?INyjFcyImOR8AFi0/I8igwrW9yLqYC9+nh8lLrNuU8YE21bsJ2/VB5qDfJZr?=
+ =?us-ascii?Q?ktzZiSIYi83X6hzWQn/OU2C8t1N1g5r/OjhJSCknY5esXFgOiD/vFjY4BHZx?=
+ =?us-ascii?Q?tXzNiqQ6BJ5qOqto6o4ggJvX4fe4wVo15YmvvceHPjKUixg9T9P9edLGq8ta?=
+ =?us-ascii?Q?CoMpGFWZUjMVJr1+2+uhTgWmEjV1vPDqtdz3GPyi8DG4+3iIxw3USL6AbICr?=
+ =?us-ascii?Q?AyDA+GidWaTaJjq+Arc8y7UW0pZihEwhmIQSV4EvixvB4mx3kmwvw4zPScjj?=
+ =?us-ascii?Q?YfUwOViHX3d2ZRyLQe8CQnQVfptwE0o8cAq1j+3JWw1Xo77m6HE9dqxOyv3/?=
+ =?us-ascii?Q?wFsgRTq7aNv4xCjbg48XLwqfx3J6mjpeR4DSYl3TA9sxhYc5HHccXIaCa6Nj?=
+ =?us-ascii?Q?00/09iveghRgDsa5U5aTjY0AYn7T7ECEYEJr/2j+npCNEFh5Fz95lbcX0s/q?=
+ =?us-ascii?Q?76z5e096BYeZ3m+JzvL3vw/ZC0hRe7tsNHSNJ9UkOVC8d7KGV60VhR65NO95?=
+ =?us-ascii?Q?+5nYYJ2SAOSyUNLwPKcrrs5j8cigyPVh0YwIHyh9Of4Emx9ankaTW31hwDxs?=
+ =?us-ascii?Q?oP6ilLKZ1vZMNx2i05Zb8iEqtjgGRd+tjQXUIKAuLdxc4I43NIfGq0IwtrmN?=
+ =?us-ascii?Q?VB+HjkYm5wGBA/feSJxLNZkRyFD+LLTk3QDNYsznY9mBauKHgKzevXGbKBKq?=
+ =?us-ascii?Q?H8+8D9nmXi59RvpCpDHo3yxvEo1hiAcM1Ncpf+PbaWG6q9NpCmPM4vtWLsy5?=
+ =?us-ascii?Q?PIf3x0JTP/k/1SymrCHCs0/8dm424L8ad8aq3Eew9Ms5kRhnGqiHaK+iZK45?=
+ =?us-ascii?Q?ZeY7WrySDDQqlQKV665bl9SKTBKmGIcIw2g9VS9OH5kt8bEbtaUvr7L8J9ZF?=
+ =?us-ascii?Q?BpUPWzXpOXQf5Yq29RFQpIF30RGz96k0ONNr6oy0XI+p1ySSZfgjLlB8B55H?=
+ =?us-ascii?Q?EeM4KJwEXYG/C6TWC9dYxLN1V1f8pzE3c64oXpRT7sCGbDIXlG85cwOFcol1?=
+ =?us-ascii?Q?PSE0LyLa5CCPseWjDj1eS6zFhCn9eQ7PrS91v3oQvbfWkvxj/+JsP4rHk51/?=
+ =?us-ascii?Q?rWJHBEXUipF7EGgIP8vFRopMrBTLKWbFkLsSNX2vIsn6a3EIvV0ZsbjgRumy?=
+ =?us-ascii?Q?BaSd2hmzgwQW+g9MmWyPu9JVtC3HOYBWD7/sLa8LEyISg5wYzSwinHuyHn4s?=
+ =?us-ascii?Q?pqfhcHySHRCzl5/BS7GJtha8Pu/rsTxv3qt/Wk0ZPq/VAY0Rbu+cLFuTiQ?=
+ =?us-ascii?Q?=3D=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:IA3PR11MB8986.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(1800799024)(376014)(366016)(921020)(38070700021);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?FBVuYtTa0jNslQUqmwPZHV4G3Q35ncn2+LrLEd26KmJb1DoB3ZC//7ki09Ez?=
+ =?us-ascii?Q?VkU0wiIuO4+xEoXDsTS3bu5CIUuWByZv25an5GJHjGEB75JZhfcAouTrC9X3?=
+ =?us-ascii?Q?rxJRBsemicD/CjmtEC5p40UYEPmAYto9jSOfvk0JUsYsB1r5tjsGnFyzNJ9j?=
+ =?us-ascii?Q?PgDBydFK57RqnuBqckzLHKaTP4F/j05zJE6qaRPQu7IhRn9HOOze1gu+ehX+?=
+ =?us-ascii?Q?IipEYKJCddFBkPYV2zzBm3RAW169XU5Xjj8Z6iKQQZZtXI7EWiMXCKPb8ldh?=
+ =?us-ascii?Q?7526bZtoPQtdLK8tdenJFEnbvPAv/njt5hHv7tBLLZhuIbe0qcDrpmcpwhhg?=
+ =?us-ascii?Q?EmtRT7+U3aEQ6w9YUBXFel+NSn3wc7jFPbQjFIX6O5wErCPH0zWkugBsQVVW?=
+ =?us-ascii?Q?cBZ55jutPB/dgR5dEYxqMQtolcvkB74w5CGnr3L7+ShFrlXQi71bhqc57eYW?=
+ =?us-ascii?Q?XDYcSfYnPwdi88EX9xtm+Di5aivpFhjZlvIewSWvNcxs3X/ZLlCWmibHgTlk?=
+ =?us-ascii?Q?BumIK0rnPAcpR0vTX8dgHjqSP+uEDhbvmOUmLeFK3ktqO0dEfxWusFT4dadU?=
+ =?us-ascii?Q?uTpxmSSSFjd2ZqWXmbE427S9N1HV/MAzM7mvSSfeyuGSFs3eCIhyIf0RyBQq?=
+ =?us-ascii?Q?s5UC6ARa892tq0LDfZDpHrBzkHuI3DPdGjBQP6KvjkcIktFKp2i7Pafw4rfO?=
+ =?us-ascii?Q?vALy2TqoYGO2vSMnlkL5pqmP2ue9X/WyKTeGHSVS3le0pTOwqmxXG5D7OsUU?=
+ =?us-ascii?Q?a00HYQwrw6IAfI1UZYK6vtKfGhOsLwOWJJdhe7Z/KmB//Dtrm7FecZCjFKY/?=
+ =?us-ascii?Q?f/gvn89XrBnlbvPDKsXYEUyGWS98si2hamFqGNgEaP98jwdzA7fy23/KhpQZ?=
+ =?us-ascii?Q?yqNlfRckk43onSL/7buED3dVSg+3u6Aim6kf+ty5feJlyMhp2yXMogJYBWgC?=
+ =?us-ascii?Q?L02yJ+2dCwB8MNjQE42U6dayvbCc2mz39gZxdkdkEeNTKTVL8VHzyJG2kBOM?=
+ =?us-ascii?Q?G6gpOZepgvNPOEvAXgg4NqEzNWVxPy/RVuKd3Sa4qDZGFH3/WCcosQKsrmtt?=
+ =?us-ascii?Q?P1zkMWhB8aIBRcvJYARBAvgh/6k5OhuWqU0k0zUSPYpg3mAcrKLZMQx8a7WM?=
+ =?us-ascii?Q?RpN3mtg/NulMUQOKwfrwpbD11x8Zd6gkwyBIgEMGbQVorCCKge+qKVPc5SYt?=
+ =?us-ascii?Q?HEl0pKNshcx7EfeX244i6K2xRC4hZQMW9mgwHHgBEjNmhZdCUeIjyf3/ZgOW?=
+ =?us-ascii?Q?6TLiNOmblOfDmUA1zdpHSqXQwaqm7pU196690S+vzidmq5vApDvAuexBgb+O?=
+ =?us-ascii?Q?w3fLLYmdw2wAVugp60By1MXpSNTSkp6z9ajXqVneT24iR+OQeyStAAPD4f7B?=
+ =?us-ascii?Q?27QBXt4h1IEA/YMh4pm+y2VWh1xA/yM2wb31pBpL8q1hcYSxYjfB4q6oUJdN?=
+ =?us-ascii?Q?xREH+QNSl960zPIA5NZGvJ+ijyMApAeOODqPHwATwYXjkhQtADsDe6sYGLNT?=
+ =?us-ascii?Q?1sFpTorJDMtTZ/T1OSvJTAHKltB+HgsCNsQDxuLTKhEP0W7fYnPTFd2t2al7?=
+ =?us-ascii?Q?BbIwyAf2oC4ow+wb0zmaLMJxrJqfQ/Xk8IAAol1Zcjt57KmTq6L6podhSAZz?=
+ =?us-ascii?Q?Qw=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251212-dev-b4-aaeon-mcu-driver-v1-0-6bd65bc8ef12@bootlin.com> <20251212-dev-b4-aaeon-mcu-driver-v1-6-6bd65bc8ef12@bootlin.com>
-Date: Fri, 12 Dec 2025 02:11:11 -0800
-X-Gmail-Original-Message-ID: <CAMRc=McSHcYfz2L-jeJa9Dnb=fp8ACRAwNtDJmHEMQ3b+BOd+A@mail.gmail.com>
-X-Gm-Features: AQt7F2oPhStXk_-W99l7ac0r049RG0GE-tK9DybvagfZd3dPy0ulff7h6NWizGs
-Message-ID: <CAMRc=McSHcYfz2L-jeJa9Dnb=fp8ACRAwNtDJmHEMQ3b+BOd+A@mail.gmail.com>
-Subject: Re: [PATCH 6/8] gpio: aaeon: Add GPIO driver for SRG-IMX8PL MCU
-To: "Thomas Perrot (Schneider Electric)" <thomas.perrot@bootlin.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-watchdog@vger.kernel.org, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Linus Walleij <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, 
-	=?UTF-8?B?SsOpcsOpbWllIERhdXRoZXJpYmVz?= <jeremie.dautheribes@bootlin.com>, 
-	Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>, Lee Jones <lee@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: IA3PR11MB8986.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 25bef94f-0188-455f-e56b-08de39681bbb
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Dec 2025 10:20:43.7590
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: sAZ56Cz+m76NoUk1cSJ1GUWwUDyx6IMRh8hbH+qEsO0a/P9yfiCOhEz1a2AA0pRupucrrOlef1UJqWonqaZWbWhx+gLE2QhvpelCaO2BpuQ=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB8342
+X-OriginatorOrg: intel.com
 
-On Fri, 12 Dec 2025 08:41:09 +0100, "Thomas Perrot (Schneider
-Electric)" <thomas.perrot@bootlin.com> said:
-> Add GPIO driver for the Aaeon SRG-IMX8PL embedded controller. This
-> driver supports 7 GPO (General Purpose Output) pins and 12 GPIO pins
-> that can be configured as inputs or outputs.
->
-> The driver implements proper state management for GPO pins (which are
-> output-only) and full direction control for GPIO pins. During probe,
-> all pins are reset to a known state (GPOs low, GPIOs as inputs) to
-> prevent undefined behavior across system reboots, as the MCU does not
-> reset GPIO states on soft reboot.
->
-> Co-developed-by: J=C3=A9r=C3=A9mie Dautheribes (Schneider Electric) <jere=
-mie.dautheribes@bootlin.com>
-> Signed-off-by: J=C3=A9r=C3=A9mie Dautheribes (Schneider Electric) <jeremi=
-e.dautheribes@bootlin.com>
-> Signed-off-by: Thomas Perrot (Schneider Electric) <thomas.perrot@bootlin.=
-com>
+
+
+> -----Original Message-----
+> From: Intel-wired-lan <intel-wired-lan-bounces@osuosl.org> On Behalf
+> Of Ivan Vecera
+> Sent: Thursday, December 11, 2025 8:48 PM
+> To: netdev@vger.kernel.org; Andrew Lunn <andrew+netdev@lunn.ch>;
+> David S. Miller <davem@davemloft.net>; Eric Dumazet
+> <edumazet@google.com>; Jakub Kicinski <kuba@kernel.org>; Paolo Abeni
+> <pabeni@redhat.com>; Rob Herring <robh@kernel.org>; Krzysztof
+> Kozlowski <krzk+dt@kernel.org>; Conor Dooley <conor+dt@kernel.org>;
+> Vadim Fedorenko <vadim.fedorenko@linux.dev>; Kubalewski, Arkadiusz
+> <arkadiusz.kubalewski@intel.com>; Nitka, Grzegorz
+> <grzegorz.nitka@intel.com>; Jiri Pirko <jiri@resnulli.us>; Oros,
+> Petr <poros@redhat.com>; Schmidt, Michal <mschmidt@redhat.com>;
+> Prathosh Satish <Prathosh.Satish@microchip.com>; Nguyen, Anthony L
+> <anthony.l.nguyen@intel.com>; Kitszel, Przemyslaw
+> <przemyslaw.kitszel@intel.com>; Saeed Mahameed <saeedm@nvidia.com>;
+> Leon Romanovsky <leon@kernel.org>; Tariq Toukan <tariqt@nvidia.com>;
+> Mark Bloch <mbloch@nvidia.com>; Richard Cochran
+> <richardcochran@gmail.com>; Jonathan Lemon
+> <jonathan.lemon@gmail.com>; Simon Horman <horms@kernel.org>;
+> Lobakin, Aleksander <aleksander.lobakin@intel.com>; Willem de Bruijn
+> <willemb@google.com>; Stefan Wahren <wahrenst@gmx.net>;
+> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; intel-
+> wired-lan@lists.osuosl.org; linux-rdma@vger.kernel.org
+> Subject: [Intel-wired-lan] [PATCH RFC net-next 13/13] ice: dpll:
+> Support E825-C SyncE and dynamic pin discovery
+>=20
+> From: Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>
+>=20
+> Add DPLL support for the Intel E825-C Ethernet controller. Unlike
+> previous
+> generations (E810), the E825-C connects to the platform's DPLL
+> subsystem
+> via MUX pins defined in the system firmware (Device Tree/ACPI).
+>=20
+> Implement the following mechanisms to support this architecture:
+>=20
+> 1. Dynamic Pin Discovery: Use the fwnode_dpll_pin_find() helper to
+>    locate the parent MUX pins defined in the firmware.
+>=20
+> 2. Asynchronous Registration: Since the platform DPLL driver may
+> probe
+>    independently of the network driver, utilize the DPLL notifier
+> chain
+>    (register_dpll_notifier). The driver listens for DPLL_PIN_CREATED
+>    events to detect when the parent MUX pins become available, then
+>    registers its own Recovered Clock (RCLK) and PTP (1588) pins as
+> children
+>    of those parents.
+>=20
+> 3. Hardware Configuration: Implement the specific register access
+> logic
+>    for E825-C CGU (Clock Generation Unit) registers (R10, R11). This
+>    includes configuring the bypass MUXes and clock dividers required
+> to
+>    drive SyncE and PTP signals.
+>=20
+> 4. Split Initialization: Refactor `ice_dpll_init()` to separate the
+>    static initialization path of E810 from the dynamic, firmware-
+> driven
+>    path required for E825-C.
+>=20
+> Co-developed-by: Ivan Vecera <ivecera@redhat.com>
+> Co-developed-by: Grzegorz Nitka <grzegorz.nitka@intel.com>
+> Signed-off-by: Ivan Vecera <ivecera@redhat.com>
+> Signed-off-by: Grzegorz Nitka <grzegorz.nitka@intel.com>
+> Signed-off-by: Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>
 > ---
->  drivers/gpio/Kconfig          |  10 ++
->  drivers/gpio/Makefile         |   1 +
->  drivers/gpio/gpio-aaeon-mcu.c | 248 ++++++++++++++++++++++++++++++++++++=
-++++++
->  3 files changed, 259 insertions(+)
->
-> diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
-> index c74da29253e810b51540684b1186e8f274066b69..7e0f675b664fa25243fc2802e=
-dc3380572c94c41 100644
-> --- a/drivers/gpio/Kconfig
-> +++ b/drivers/gpio/Kconfig
-> @@ -157,6 +157,16 @@ config GPIO_74XX_MMIO
->  	    8 bits:	74244 (Input), 74273 (Output)
->  	    16 bits:	741624 (Input), 7416374 (Output)
->
-> +config GPIO_AAEON_MCU
-> +	tristate "Aaeon MCU GPIO support"
-> +	depends on MFD_AAEON_MCU && OF_GPIO
+>  drivers/net/ethernet/intel/ice/ice_dpll.c   | 964
+> ++++++++++++++++++--
+>  drivers/net/ethernet/intel/ice/ice_dpll.h   |  29 +
+>  drivers/net/ethernet/intel/ice/ice_lib.c    |   3 +
+>  drivers/net/ethernet/intel/ice/ice_ptp.c    |  29 +
+>  drivers/net/ethernet/intel/ice/ice_ptp_hw.c |   9 +-
+>  drivers/net/ethernet/intel/ice/ice_ptp_hw.h |   1 +
+>  drivers/net/ethernet/intel/ice/ice_tspll.c  | 223 +++++
+>  drivers/net/ethernet/intel/ice/ice_tspll.h  |  14 +-
+>  drivers/net/ethernet/intel/ice/ice_type.h   |   6 +
+>  9 files changed, 1188 insertions(+), 90 deletions(-)
+>=20
+> diff --git a/drivers/net/ethernet/intel/ice/ice_dpll.c
 
-You don't need OF_GPIO, please drop it.
+...
 
-> +	select GPIO_GENERIC
-> +	help
-> +	  Select this option to enable GPIO support for the Aaeon SRG-IMX8PL
-> +	  onboard MCU. This driver provides access to GPIO pins and GPO
-> +	  (General Purpose Output) pins controlled by the microcontroller.
-> +	  The driver handles both input and output configuration.
-> +
->  config GPIO_ALTERA
->  	tristate "Altera GPIO"
->  	select GPIOLIB_IRQCHIP
-> diff --git a/drivers/gpio/Makefile b/drivers/gpio/Makefile
-> index 2421a8fd3733e0b06c2581262aaa9cd629f66c7d..1ba6318bc558743fbe5910966=
-c2c8fc3f792efe9 100644
-> --- a/drivers/gpio/Makefile
-> +++ b/drivers/gpio/Makefile
-> @@ -29,6 +29,7 @@ obj-$(CONFIG_GPIO_104_IDI_48)		+=3D gpio-104-idi-48.o
->  obj-$(CONFIG_GPIO_104_IDIO_16)		+=3D gpio-104-idio-16.o
->  obj-$(CONFIG_GPIO_74X164)		+=3D gpio-74x164.o
->  obj-$(CONFIG_GPIO_74XX_MMIO)		+=3D gpio-74xx-mmio.o
-> +obj-$(CONFIG_GPIO_AAEON_MCU)		+=3D gpio-aaeon-mcu.o
->  obj-$(CONFIG_GPIO_ADNP)			+=3D gpio-adnp.o
->  obj-$(CONFIG_GPIO_ADP5520)		+=3D gpio-adp5520.o
->  obj-$(CONFIG_GPIO_ADP5585)		+=3D gpio-adp5585.o
-> diff --git a/drivers/gpio/gpio-aaeon-mcu.c b/drivers/gpio/gpio-aaeon-mcu.=
-c
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..cebd17d1877147b987ea673b0=
-81334c8062f5fc0
-> --- /dev/null
-> +++ b/drivers/gpio/gpio-aaeon-mcu.c
-> @@ -0,0 +1,248 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
-> +/*
-> + * Aaeon MCU GPIO driver
-> + *
-> + * Copyright (C) 2025 Bootlin
-> + * Author: J=C3=A9r=C3=A9mie Dautheribes <jeremie.dautheribes@bootlin.co=
-m>
-> + * Author: Thomas Perrot <thomas.perrot@bootlin.com>
-> + */
-> +
-> +#include <linux/bitmap.h>
-> +#include <linux/gpio/driver.h>
-> +#include <linux/mfd/aaeon-mcu.h>
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-
-You need more headers than that. At least device.h for devm_kzalloc(),
-mod_devicetable.h, bitops.h and probably some more.
-
-> +
-> +#define AAEON_MCU_CONFIG_GPIO_INPUT 0x69
-> +#define AAEON_MCU_CONFIG_GPIO_OUTPUT 0x6F
-> +#define AAEON_MCU_READ_GPIO 0x72
-> +#define AAEON_MCU_WRITE_GPIO 0x77
-> +
-> +#define AAEON_MCU_CONTROL_GPO 0x6C
-> +
-> +#define MAX_GPIOS 12
-> +#define MAX_GPOS 7
-> +
-> +struct aaeon_mcu_gpio {
-> +	struct gpio_chip gc;
-> +	struct aaeon_mcu_dev *mfd;
-> +	DECLARE_BITMAP(dir_in, MAX_GPOS + MAX_GPIOS);
-> +	DECLARE_BITMAP(gpo_state, MAX_GPOS);
-> +};
-> +
-> +static int aaeon_mcu_gpio_config_input_cmd(struct aaeon_mcu_gpio *data,
-> +					    unsigned int offset)
+> +static int
+> +ice_dpll_pin_get_parent_num(struct ice_dpll_pin *pin,
+> +			    const struct dpll_pin *parent)
 > +{
-> +	u8 cmd[3], rsp;
+> +	int i;
 > +
-> +	cmd[0] =3D AAEON_MCU_CONFIG_GPIO_INPUT;
-> +	cmd[1] =3D offset - 7;
-> +	cmd[2] =3D 0x00;
-> +
-> +	return aaeon_mcu_i2c_xfer(data->mfd->i2c_client, cmd, 3, &rsp, 1);
-> +}
-> +
-> +static int aaeon_mcu_gpio_direction_input(struct gpio_chip *gc, unsigned=
- int offset)
-> +{
-> +	struct aaeon_mcu_gpio *data =3D gpiochip_get_data(gc);
-> +	int ret;
-> +
-> +	if (offset < MAX_GPOS) {
-> +		dev_err(gc->parent, "GPIO offset (%d) must be an output GPO\n", offset=
-);
-> +		return -EOPNOTSUPP;
-> +	}
-> +
-> +	ret =3D aaeon_mcu_gpio_config_input_cmd(data, offset);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	set_bit(offset, data->dir_in);
-> +
-> +	return 0;
-> +}
-> +
-> +static int aaeon_mcu_gpio_config_output_cmd(struct aaeon_mcu_gpio *data,
-> +					     unsigned int offset,
-> +					     int value)
-> +{
-> +	u8 cmd[3], rsp;
-> +	int ret;
-> +
-> +	cmd[0] =3D AAEON_MCU_CONFIG_GPIO_OUTPUT;
-> +	cmd[1] =3D offset - 7;
-> +	cmd[2] =3D 0x00;
-> +
-> +	ret =3D aaeon_mcu_i2c_xfer(data->mfd->i2c_client, cmd, 3, &rsp, 1);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	cmd[0] =3D AAEON_MCU_WRITE_GPIO;
-> +	/* cmd[1] =3D offset - 7; */
-> +	cmd[2] =3D !!value;
-> +
-> +	return aaeon_mcu_i2c_xfer(data->mfd->i2c_client, cmd, 3, &rsp, 1);
-> +}
-> +
-> +static int aaeon_mcu_gpio_direction_output(struct gpio_chip *gc, unsigne=
-d int offset, int value)
-> +{
-> +	struct aaeon_mcu_gpio *data =3D gpiochip_get_data(gc);
-> +	int ret;
-> +
-> +	if (offset < MAX_GPOS)
-> +		return 0;
-> +
-> +	ret =3D aaeon_mcu_gpio_config_output_cmd(data, offset, value);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	clear_bit(offset, data->dir_in);
-> +
-> +	return 0;
-> +}
-> +
-> +static int aaeon_mcu_gpio_get_direction(struct gpio_chip *gc, unsigned i=
-nt offset)
-> +{
-> +	struct aaeon_mcu_gpio *data =3D gpiochip_get_data(gc);
-> +
-> +	return test_bit(offset, data->dir_in) ?
-> +		GPIO_LINE_DIRECTION_IN : GPIO_LINE_DIRECTION_OUT;
-> +}
-> +
-> +static int aaeon_mcu_gpio_get(struct gpio_chip *gc, unsigned int offset)
-> +{
-> +	struct aaeon_mcu_gpio *data =3D gpiochip_get_data(gc);
-> +	u8 cmd[3], rsp;
-> +	int ret;
-> +
-> +	if (offset < MAX_GPOS)
-> +		return test_bit(offset, data->gpo_state);
+> +	for (i =3D 0; pin->num_parents; i++)
+> +		if (pin->pf->dplls.inputs[pin->parent_idx[i]].pin =3D=3D
+> parent)
+Oh, no! we don't need a 2nd Infinite Loop in Cupertino!
 
-Are you sure the bit ops in this driver need to be atomic?
-
-> +
-> +	cmd[0] =3D AAEON_MCU_READ_GPIO;
-> +	cmd[1] =3D offset - 7;
-> +	cmd[2] =3D 0x00;
-> +
-> +	ret =3D aaeon_mcu_i2c_xfer(data->mfd->i2c_client, cmd, 3, &rsp, 1);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	return rsp;
-> +}
-> +
-> +static int aaeon_mcu_gpo_set_cmd(struct aaeon_mcu_gpio *data, unsigned i=
-nt offset, int value)
-> +{
-> +	u8 cmd[3], rsp;
-> +
-> +	cmd[0] =3D AAEON_MCU_CONTROL_GPO;
-> +	cmd[1] =3D offset + 1;
-> +	cmd[2] =3D !!value;
-> +
-> +	return aaeon_mcu_i2c_xfer(data->mfd->i2c_client, cmd, 3, &rsp, 1);
-> +}
-> +
-> +static int aaeon_mcu_gpio_set_cmd(struct aaeon_mcu_gpio *data, unsigned =
-int offset, int value)
-> +{
-> +	u8 cmd[3], rsp;
-> +
-> +	cmd[0] =3D AAEON_MCU_WRITE_GPIO;
-> +	cmd[1] =3D offset - 7;
-> +	cmd[2] =3D !!value;
-> +
-> +	return aaeon_mcu_i2c_xfer(data->mfd->i2c_client, cmd, 3, &rsp, 1);
-> +}
-> +
-> +static int aaeon_mcu_gpio_set(struct gpio_chip *gc, unsigned int offset,
-> +			      int value)
-> +{
-> +	struct aaeon_mcu_gpio *data =3D gpiochip_get_data(gc);
-> +
-> +	if (offset < MAX_GPOS) {
-> +		if (aaeon_mcu_gpo_set_cmd(data, offset, value) =3D=3D 0)
-> +			assign_bit(offset, data->gpo_state, value);
-> +	} else {
-> +		return aaeon_mcu_gpio_set_cmd(data, offset, value);
-> +	}
-> +	return 0;
+...
 
 
-It would be much cleaner if you did it like:
-
-	if (offset >=3D MAX_GPOS)
-		return aaeon_mcu_gpio_set_cmd(data, offset, value);
-
-	if (aaeon_mcu_gpo_set_cmd(data, offset, value) =3D=3D 0)
-		assign_bit(offset, data->gpo_state, value);
-
-	return 0;
-
-> +}
-> +
-> +static const struct gpio_chip aaeon_mcu_chip =3D {
-> +	.label			=3D "gpio-aaeon-mcu",
-> +	.owner			=3D THIS_MODULE,
-> +	.get_direction		=3D aaeon_mcu_gpio_get_direction,
-> +	.direction_input	=3D aaeon_mcu_gpio_direction_input,
-> +	.direction_output	=3D aaeon_mcu_gpio_direction_output,
-> +	.get			=3D aaeon_mcu_gpio_get,
-> +	.set			=3D aaeon_mcu_gpio_set,
-> +	.base			=3D -1,
-> +	.ngpio			=3D MAX_GPOS + MAX_GPIOS,
-> +	.can_sleep		=3D true,
-> +};
-
-There's no point in keeping it in memory if you copy it into data->gc anywa=
-y.
-Use compound literals in aaeon_mcu_gpio_probe() if you want to initialize
-members explicitly.
-
-> +
-> +static void aaeon_mcu_gpio_reset(struct aaeon_mcu_gpio *data, struct dev=
-ice *dev)
-> +{
-> +	unsigned int i;
-> +	int ret;
-> +
-> +	/* Reset all GPOs */
-> +	for (i =3D 0; i < MAX_GPOS; i++) {
-> +		ret =3D aaeon_mcu_gpo_set_cmd(data, i, 0);
-> +		if (ret < 0)
-> +			dev_warn(dev, "Failed to reset GPO %u state: %d\n", i, ret);
-> +		clear_bit(i, data->dir_in);
-> +	}
-> +
-> +	/* Reset all GPIOs */
-> +	for (i =3D MAX_GPOS; i < MAX_GPOS + MAX_GPIOS; i++) {
-> +		ret =3D aaeon_mcu_gpio_config_input_cmd(data, i);
-> +		if (ret < 0)
-> +			dev_warn(dev, "Failed to reset GPIO %u state: %d\n", i, ret);
-> +		set_bit(i, data->dir_in);
-> +	}
-> +}
-> +
-> +static int aaeon_mcu_gpio_probe(struct platform_device *pdev)
-> +{
-> +	struct aaeon_mcu_dev *mfd =3D dev_get_drvdata(pdev->dev.parent);
-> +	struct aaeon_mcu_gpio *data;
-> +
-> +	data =3D devm_kzalloc(&pdev->dev, sizeof(*data), GFP_KERNEL);
-> +	if (!data)
-> +		return -ENOMEM;
-> +
-> +	data->mfd =3D mfd;
-
-It looks like all you need is the i2c_client, maybe just store its address =
-and
-avoid constant dereferencing.
-
-> +	data->gc =3D aaeon_mcu_chip;
-> +	data->gc.parent =3D &pdev->dev;
-> +
-> +	/*
-> +	 * Reset all GPIO states to a known configuration. The MCU does not
-> +	 * reset GPIO state on soft reboot, only on power cycle (hard reboot).
-> +	 * Without this reset, GPIOs would retain their previous state across
-> +	 * reboots, which could lead to unexpected behavior.
-> +	 */
-> +	aaeon_mcu_gpio_reset(data, &pdev->dev);
-> +
-> +	platform_set_drvdata(pdev, data);
-
-Where is the corresponding call to platform_get_drvdata()?
-
-> +
-> +	return devm_gpiochip_add_data(&pdev->dev, &data->gc,
-> +				      data);
-> +}
-> +
-> +static const struct of_device_id aaeon_mcu_gpio_of_match[] =3D {
-> +	{ .compatible =3D "aaeon,srg-imx8pl-gpio" },
-> +	{},
-> +};
-> +
-> +MODULE_DEVICE_TABLE(of, aaeon_mcu_gpio_of_match);
-> +
-> +static struct platform_driver aaeon_mcu_gpio_driver =3D {
-> +	.driver =3D {
-> +		.name =3D "aaeon-mcu-gpio",
-> +		.of_match_table =3D aaeon_mcu_gpio_of_match,
-> +	},
-> +	.probe =3D aaeon_mcu_gpio_probe,
-> +};
-> +
-> +module_platform_driver(aaeon_mcu_gpio_driver);
-> +
-> +MODULE_DESCRIPTION("GPIO interface for Aaeon MCU");
-> +MODULE_AUTHOR("J=C3=A9r=C3=A9mie Dautherbes <jeremie.dautheribes@bootlin=
-.com>");
-> +MODULE_LICENSE("GPL");
->
 > --
-> 2.52.0
->
->
+> 2.51.2
 
-Bart
 
