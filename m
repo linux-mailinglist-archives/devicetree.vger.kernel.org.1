@@ -1,171 +1,299 @@
-Return-Path: <devicetree+bounces-246066-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246069-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4C50CB8591
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 09:59:55 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E38DCB85BF
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 10:04:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 7FB753009291
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 08:59:53 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 424DC301E1A7
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 09:04:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56C9D2989B5;
-	Fri, 12 Dec 2025 08:59:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A53DC3101A5;
+	Fri, 12 Dec 2025 09:04:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b="kyaO2tZO"
+	dkim=pass (2048-bit key) header.d=siliconsignals.io header.i=@siliconsignals.io header.b="cz7XsXm6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from PNZPR01CU001.outbound.protection.outlook.com (mail-centralindiaazon11021086.outbound.protection.outlook.com [40.107.51.86])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DF54221DB1;
-	Fri, 12 Dec 2025 08:59:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.75.126.72
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765529992; cv=none; b=UU9Ej9CBC/YXfvX5H63ELXmlFdh6OB+S7wuYHNP/tqpEAMhjf+E6FjpWAKgz3+zRpAC3WEqlP5GGp+ZIluWAR1xl4EwJHdFHpXSm32OMQgWi24qzIOaDhpPGxMBRwVWXcrEpshgENqLz4cdFxeFWwDbS3P4QVC8cQViiLmZ7+8w=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765529992; c=relaxed/simple;
-	bh=J7+MHP9JHv0O6N4thchA53z0h4Lo6YTW9NlwTADzJ9c=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=FYrkO9y8z14trucbya5E5VwCLIC4KAtkEAGV0owWdj26l3bGjGHUo4nQHI07ZE5G901HVZrIyXFKz6jCNBFaPLw1oYQHgQwjQzr/Go+2TpyUEE5nufJEaIOhThKPeuT0y41Fo8SdMWS+UyAJitDOR0Szjrv2Zay/M7Ruj8f9xAM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com; spf=pass smtp.mailfrom=realtek.com; dkim=fail (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b=kyaO2tZO reason="signature verification failed"; arc=none smtp.client-ip=211.75.126.72
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=realtek.com
-X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 5BC8xAunD3978353, This message is accepted by code: ctloc85258
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=realtek.com; s=dkim;
-	t=1765529950; bh=J7+MHP9JHv0O6N4thchA53z0h4Lo6YTW9NlwTADzJ9c=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:Content-Transfer-Encoding:MIME-Version;
-	b=kyaO2tZOhlb26XWKzWjyl2tvLqtJ6Qe+Z7cBgs6a27SGEVj00ag6GTmERPmaDkmS/
-	 I4+HZHjyBdWOma6uiN93aPccdQEe/XecjXxCk73dj96SKOqhd4BAJx5gvK8K1v/i+F
-	 CD+zfMZWUBqL5cUBftgRlU7/WHAJdtnS7Y8qB1STzphuNYYUBwHNQiIWG9qLCHa/XI
-	 VeUCdr84y9Os6k+LCkNEhMOGjt7SkXo1v3X+/kfZ67qO8/E++QRHKt9ifVXwG3ppAk
-	 XIZ7SqcA/2FS7GwjHLYln/XIpLB74g1mFa7MXRGFXMFkP339e/lI77pCfvy7lQ4QL1
-	 i5eSu2zSnwfBg==
-Received: from mail.realtek.com (rtkexhmbs03.realtek.com.tw[10.21.1.53])
-	by rtits2.realtek.com.tw (8.15.2/3.21/5.94) with ESMTPS id 5BC8xAunD3978353
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 12 Dec 2025 16:59:10 +0800
-Received: from RTKEXHMBS06.realtek.com.tw (10.21.1.56) by
- RTKEXHMBS03.realtek.com.tw (10.21.1.53) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.10; Fri, 12 Dec 2025 16:59:10 +0800
-Received: from RTKEXHMBS06.realtek.com.tw ([::1]) by
- RTKEXHMBS06.realtek.com.tw ([fe80::2fa5:eccb:34ee:7bb%10]) with mapi id
- 15.02.1544.027; Fri, 12 Dec 2025 16:59:10 +0800
-From: Oder Chiou <oder_chiou@realtek.com>
-To: "'Rob Herring'" <robh@kernel.org>
-CC: "cezary.rojewski@intel.com" <cezary.rojewski@intel.com>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "lgirdwood@gmail.com"
-	<lgirdwood@gmail.com>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "perex@perex.cz"
-	<perex@perex.cz>,
-        "linux-sound@vger.kernel.org"
-	<linux-sound@vger.kernel.org>,
-        "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>,
-        "alsa-devel@alsa-project.org"
-	<alsa-devel@alsa-project.org>,
-        "Flove(HsinFu)" <flove@realtek.com>,
-        =?big5?B?U2h1bWluZyBbrVOu0bvKXQ==?= <shumingf@realtek.com>,
-        Jack Yu
-	<jack.yu@realtek.com>,
-        =?big5?B?RGVyZWsgW6TovHe4cV0=?=
-	<derek.fang@realtek.com>
-Subject: RE: [PATCH v9 1/2] ASoC: dt-bindings: realtek,rt5575: add support for
- ALC5575
-Thread-Topic: [PATCH v9 1/2] ASoC: dt-bindings: realtek,rt5575: add support
- for ALC5575
-Thread-Index: AQHcao1RKCDC/uF5H0eyR5PDy/RBT7UcDTWAgAGESCA=
-Date: Fri, 12 Dec 2025 08:59:10 +0000
-Message-ID: <6c85fd92dc244789a5259ff4b11ec2e0@realtek.com>
-References: <20251211110130.2925541-1-oder_chiou@realtek.com>
- <20251211110130.2925541-2-oder_chiou@realtek.com>
- <20251211153835.GA1251928-robh@kernel.org>
-In-Reply-To: <20251211153835.GA1251928-robh@kernel.org>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-Content-Type: text/plain; charset="big5"
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57AB13B8D48;
+	Fri, 12 Dec 2025 09:04:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.51.86
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1765530261; cv=fail; b=kFbuMsAJO3FhsmRXPVBzoA3lsxzfDnEwDedAzq5HJQywmGLyBupEtxY0ltZq+NOT9s0z9JlzT5T3hUv2j5Mr8anhCHBSqkVTYG4zHLSOa6G3vFydIqBr6WNRy+KccnIdtfqbC4otYJh0zwpwCfTwebURP8QhvD3QZMO0zl2PS20=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1765530261; c=relaxed/simple;
+	bh=KFplI5lHzNwIljr7ZQyv8qcLx2qe1ZFZi76O9moHkvg=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=i8ihk3fLftP2c284DbeEgZtIH0Ayc1rRrALrwIXGMIRc6tH8SvDmkYez1TGsF0P86/1Wcykq9SW8WvpSQwbOKjPJiBEab1aVopWpBFmQdqoDkdNqt8hSsQZjCkjnJ9VBqYh6jpXqBJI+hfarf2hehpFCoeNIi9Ack/Yr0WGBku8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=siliconsignals.io; spf=pass smtp.mailfrom=siliconsignals.io; dkim=pass (2048-bit key) header.d=siliconsignals.io header.i=@siliconsignals.io header.b=cz7XsXm6; arc=fail smtp.client-ip=40.107.51.86
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=siliconsignals.io
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=siliconsignals.io
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=sBeQ3SrPP/NBOglrnhWX7FCtxnzDyUDiWO0pfSwA8A8uhMYNO2bDlBS4slYrNqdd6jZlfrpZZoRF+VcNEbBTRiUSSZzfOpYSbI1CQEKbah1Bw88MxbfphIn0Z+fxCAwxhnPD7mjx4OutxCYrYqviZ8s8udw+30f6gsjNC4ltCj7bzoa98djTW5VYFcJdeDKhJ0eYdONH+0JgyJfS15ftqPw3hzwbNRent1Hmn5bMS3K5FsRXS1V73Hs8qmbU8QUZz6TYfjO2+CEAoZ5bR63wLOsP8T3wnrGDCWNQPBtTpcpTXN0WhIQ+phxNF3pzpP2Ai6kOZB58VCQi3ti597Eqpg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=9EebfDiYuCLv/XmWAAMz9IGwneXdhGctMZvGn2QAW/Y=;
+ b=stmTjrRuiR2jEEVaUX4c9GPH39Z5GyrvxImgCvQe25e291i6XGop1TpDF0VXMkLPnVl6z/ghO94MnUtCWVLV7nfF3PDouMB4j/QiJfTOGZ9R4NTAcXQGnftfo7vjWwsQ8AD6YTq+OHEroNU0XecyFx63elYf4h/bovzOTU0bjUiyHw2prAbB69SSTLybZg2hp7xOqm3SQx75B7kY8Flr2I3AJdkXhX46NNuoewIa0xi9XTnfgvf1bxfc8kA987mUfPbaTQLSDg0xbIKD2TmKYGU37ot/lwi0KoZXFE0nqlSFEZ4McoFOYko6+7TdDi7LV6fr5uVMJTaTOGAyST3C/Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=siliconsignals.io; dmarc=pass action=none
+ header.from=siliconsignals.io; dkim=pass header.d=siliconsignals.io; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=siliconsignals.io;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=9EebfDiYuCLv/XmWAAMz9IGwneXdhGctMZvGn2QAW/Y=;
+ b=cz7XsXm6LSUoDdaY8ZtzcyqeFO/cwe9wD+qk0E1YbH5H6xKQZgwShEApkuEgLQRC8Mrj3sHFqLUnmDnGdWWTiPYLfIgWhBdsdytg2lo+Elh9hxa7PhDepgNQPfzeHiC4u5+8L1Mhz3v9QiSYu3XPsC2g0yn4A0nG6hDZenT2KkriksneWtXyolt//H8BXQrAIoEenwciUM3Vj7043VTji8T7Cxtj2OTlhKiAdDLIkbRXws+LJs+gSqrEfTZvbmM7aNQPp6wnfWI+ARaBPtsQY2mydUXmNuWzyYc5AMqwyOdW88yWAQQIkRq23+tEgZdILShHSZj+w3SdY32XqPy3Bg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=siliconsignals.io;
+Received: from PN0P287MB2019.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:1b8::9)
+ by PN2P287MB1963.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:1c2::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9412.11; Fri, 12 Dec
+ 2025 09:04:13 +0000
+Received: from PN0P287MB2019.INDP287.PROD.OUTLOOK.COM
+ ([fe80::ebd8:538d:c705:8432]) by PN0P287MB2019.INDP287.PROD.OUTLOOK.COM
+ ([fe80::ebd8:538d:c705:8432%7]) with mapi id 15.20.9412.005; Fri, 12 Dec 2025
+ 09:04:13 +0000
+From: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	sakari.ailus@linux.intel.com
+Cc: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>,
+	Elgin Perumbilly <elgin.perumbilly@siliconsignals.io>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Hans Verkuil <hverkuil@kernel.org>,
+	Hans de Goede <hansg@kernel.org>,
+	Mehdi Djait <mehdi.djait@linux.intel.com>,
+	"Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
+	=?UTF-8?q?Andr=C3=A9=20Apitzsch?= <git@apitzsch.eu>,
+	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Dongcheng Yan <dongcheng.yan@intel.com>,
+	Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+	Sylvain Petinot <sylvain.petinot@foss.st.com>,
+	Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>,
+	Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>,
+	Jingjing Xiong <jingjing.xiong@intel.com>,
+	linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/2] media: i2c: Add os05b10 camera sensor driver
+Date: Fri, 12 Dec 2025 14:33:49 +0530
+Message-Id: <20251212090358.44989-1-himanshu.bhavani@siliconsignals.io>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: PN4PR01CA0044.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:279::6) To PN0P287MB2019.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:c01:1b8::9)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PN0P287MB2019:EE_|PN2P287MB1963:EE_
+X-MS-Office365-Filtering-Correlation-Id: c854dac5-3eb5-45eb-246a-08de395d6b97
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|366016|376014|52116014|7416014|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?M3Az/otr3LK98wauNcq6vL3SWippzCdbUN9hl1tcRMvEesx+omfICAs5FeeR?=
+ =?us-ascii?Q?WWnEeXuK7olvF2fXocwSYJrsyhMzasTxNT+KOoK82A5ACfy1WpHmlV89kF+3?=
+ =?us-ascii?Q?lffkbQQcLAOMCdXRvZelQV4XUmR3TD8ujIJCbiXT9YdXTW7YK07hY5klJaK4?=
+ =?us-ascii?Q?MAp1ajPaZ/QC0AHkEtgSGM1JMf5+zjZv+VXOXx99RCeAlkSMQL8/L+AIpgVK?=
+ =?us-ascii?Q?J7IZhcM5Paw10zZ1cA2GBdwWURABkYznVEfrkEg8U7U6CQeEturyXFAVDz1z?=
+ =?us-ascii?Q?SFpaqRM3b2TBFWVQ8N8TXIiLWRKcUXe6siJ3YoGkidNm9pvIwpmMAWNY8Rey?=
+ =?us-ascii?Q?x3q8UNu9v6BRJBNhr6mm//BpMvw320c+CrxPOawcUDcaGtHpSU+1nKepFDKm?=
+ =?us-ascii?Q?I577W/U5wlDf3ny4GqtuLPr3ggzLMIRxY45pDL89HMwdw0GDBB7PKf2sX1Nr?=
+ =?us-ascii?Q?e5NY9occY8FSZWSHLU04zQAVxTG0hVW2/vbNKtm730P7zoyQH6eWlT9WewZ1?=
+ =?us-ascii?Q?OOyT4ExquxlOVkp8jxj7qfIcfIEM7A6ML67Np9Hm1us4Bk17JSkMzaKN+g+K?=
+ =?us-ascii?Q?U7uYrQ4uy5/IuMJ465MSNz+4qJIhO02tmCXt5OYs6WXGF9jX65HJj7Sc45Ku?=
+ =?us-ascii?Q?cLgdAncyVbpVNanzOOzXLTwinFjp0lGOEiieX8TYTd6lt5ZdtxYVJBPTUo8v?=
+ =?us-ascii?Q?+8sdLBHlS6Dj/oPeQ7g4Ors3gNlyRITfSZpJo04E7ZrQWbxnKiUtfJcTW/aK?=
+ =?us-ascii?Q?obTPY5uQEWAgZkGj06Lej94d/ZZOAScqHhHK6WsD4C+TNTnTEloV3qLUBeyQ?=
+ =?us-ascii?Q?4waFVKXVIHWTQahVILagMr5n+CKsSl6vevHtjfyte5LBevgcchHJnksy/Xla?=
+ =?us-ascii?Q?ggPKnFiBCpfeHPRPZ0OpDX8Jz78sZFA5XJ0M8QMKuSE1ercmBy/MCZuEqwLK?=
+ =?us-ascii?Q?dQpiJu8HLgVxqUPAphhFQu+1Ouo2kMaq5HZoVFqWNcn7eFQQlsQn2daN7AkH?=
+ =?us-ascii?Q?LWgHtIZe1SRSUZv4E3raVIfKwfEOq8nqmzwRYf37/W1A1omiMURM/SMjWrvu?=
+ =?us-ascii?Q?jkextZozdj2gyY5nIzqqou2Mz4qjoV4D7/T4C25jGFgwLx4IpL4q7PVJEcgJ?=
+ =?us-ascii?Q?VcydnffA9j8gkN+uEZP6iX1bBXFpGbkUf9pCeweDjuvXoWfKAVTncTxjqo28?=
+ =?us-ascii?Q?8aYZe1/iL5fUbI/lHgYpgGi2Uv6xpJJ4wMjaelePW8R5y8Hkv4x1ZGr3QVci?=
+ =?us-ascii?Q?mQGhWYo2O+2URKBgpfYQ2IAjjrrj5BblBEhEbpGgbr0e3YHaIoQiV0TvVB2o?=
+ =?us-ascii?Q?0h5lOH9wdHx1TP5SmgF2OVgbSBfqRDLDSdvK3Ytgu/XGPAHXdp3INEZzfFsy?=
+ =?us-ascii?Q?U9VGyyxN56RHjLoHq314SgLOApIg7YIPJ9ocY/Ykz/uAQD/YXlDbFfqTD8ho?=
+ =?us-ascii?Q?U1dKmqj8Xgs14pdgSTo+HGFY4HqapYAoXgh8gDk2TxSpDVismkKmR7C0vSyZ?=
+ =?us-ascii?Q?I1b/KcuVeoYhxbc+BRr85dRu5XN85dVzK0Zb?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PN0P287MB2019.INDP287.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(52116014)(7416014)(38350700014);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?kDtcB4OYnxPWvyaDilPhVqxdzrsIK+P1eTPisePzksH2sg3MUk/4u77utfrP?=
+ =?us-ascii?Q?fbNA1e/bOptuw9UHrgrTfr9RrZgkNimV6bSZ1XgYQ0QbTJ4LDSWKavBEmVTM?=
+ =?us-ascii?Q?7I13Z/trb8ODO0Rpkny3zPF1SgzxyElUsiQPRSPlRbOYKnY/Q0va+8m2S015?=
+ =?us-ascii?Q?mEcKmrkX8+eA8Bjz3eqeoHQWdqEXgwK4MBlXSSDoSO4f2LshYBXwSkerr/ze?=
+ =?us-ascii?Q?D/PNvFp2k7oVM3nQQ2sTUGnJspq8NGxCyftdCKo7rrl1TwFyUz9ywuAPII2Z?=
+ =?us-ascii?Q?i9I5n2X9IcBHXARkoAsIOivuKihYxhNuXqLCF00Ffz1sNz7SXUhtPbLmC1qO?=
+ =?us-ascii?Q?JxBmiRW+aigUfj05MDDU1cc1OZqx7hdn0IpXtpyyk6Xc/dFfo/OlD4p/XqSQ?=
+ =?us-ascii?Q?j4MPwx3aZHNn5QRPA+R2o9E5ynstgTESsuQxuqy4U9u2fyZVvbt+yRRAW4t2?=
+ =?us-ascii?Q?LQkL52NhCDAA6mVrLSZTIRMrpqIdk9VVigoW2sEVQHuIEPlmSs83cT4eC1qb?=
+ =?us-ascii?Q?mo0Ofh8frrZbN+U25ipH5IniGtMU8vzRikKzLVDDFcaqGYCEMSSHtOpxRwB2?=
+ =?us-ascii?Q?GABLyt8EIRKBBDSYQpyUZVTxzu6eVGmEKiQkxhYd4GC1eFaWLLh0bqZpWZZh?=
+ =?us-ascii?Q?U4upVzgKbcZS444Eo+SduOBwoWrld0sJxDyAG/jXGkkIOuZ7Ga4IDtmWjQTQ?=
+ =?us-ascii?Q?FpiRQtxfeVk/hD03Wo8fiSDuuU0r22QNurcN+0ZLFrMYzUqZHOnJmuV39TId?=
+ =?us-ascii?Q?XjGDwtlK+8kRwUHpDL/nd3ilCmRGDhYjXeiHggeouMyMPhLZ8iK48akQye7v?=
+ =?us-ascii?Q?UgyDLzEgxhvzvuH0qwAPDql4lvWRf4ca5/q9MyVHapw7NWoxbHqnKhBqE3s1?=
+ =?us-ascii?Q?wcI2C+12BjrB0gq7yvuOIFivMlio9vUIi2u/5Y1Bae8PTymmGzgeYRu0xm6A?=
+ =?us-ascii?Q?wfzl3AIK8Ho0eizUU10GO9IgH+BNGbArdpcYZX/Tf988Uu6cYhGxGDHAYzFe?=
+ =?us-ascii?Q?MDucgv9yZ36h7subKodYA6TCP6gISCnvPSTkVkDQQEp6FHGcKd1LeYykbok3?=
+ =?us-ascii?Q?g29zU5OYaBbUpXyqAHN7utMR8SgFGoecCw2JlaX930EUwNiQQSVTPqI/V1K9?=
+ =?us-ascii?Q?qtsb3yqBo/szbMk6+tpgkkapx+ZvwIDSIlAw/A74j2fKkAQuXKZtOkKvFprY?=
+ =?us-ascii?Q?0+Z2XU9cNuGIRAaPUC7gJm+f77/ArTAVSTwrr7s845paUhx+NNHE2nOyxErI?=
+ =?us-ascii?Q?m9rgPOsAycoCaNV6MOsNerrQ0qtmZoFk8DXCcZjI1EYfOxKwVlWRI5ee8An0?=
+ =?us-ascii?Q?HkxGXEPGO1e68tkdNpvL3KuwY6j/8py547lI/1bptBYTuytrJs+yi4rGK1KR?=
+ =?us-ascii?Q?B9MaUtvhnZcYAAGx7m0LEi80r9RtaSDNXRVtl+3XO8AmR1XqlrD0rZjOfyOo?=
+ =?us-ascii?Q?OX8xpxnYtOyiJj0i7NBouBlgG1NK9NVYN4cWsK/y+aMMSz18bWUxgoQb+3cj?=
+ =?us-ascii?Q?edt7YnfHJhOcTOf+poXjGEg8VNO5QqOK3NtSjg1f/c+yizxvZM9QTpqNUax5?=
+ =?us-ascii?Q?2HNKcAVFKmNRQU2382Djn4rmiugHD+e+lEgjadKPK3B5yuGE7hpZ24P6E5U1?=
+ =?us-ascii?Q?gptpnfzgltuJj55wOJ+amZM=3D?=
+X-OriginatorOrg: siliconsignals.io
+X-MS-Exchange-CrossTenant-Network-Message-Id: c854dac5-3eb5-45eb-246a-08de395d6b97
+X-MS-Exchange-CrossTenant-AuthSource: PN0P287MB2019.INDP287.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Dec 2025 09:04:13.4079
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 7ec5089e-a433-4bd1-a638-82ee62e21d37
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 7bcSjDIpFOatfYXWeEiOf7QwwxHr41rKSm0M9AU9ip+TZ23vtvvQCl15vfEVTbdntoblZUqxqjLzRt1xmKhVgF0JnZEEcI6M1WsIJULtLoWOb5W7bPFR1ufcMf6AZwu2
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN2P287MB1963
 
-PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBSb2IgSGVycmluZyA8cm9iaEBr
-ZXJuZWwub3JnPg0KPiBTZW50OiBUaHVyc2RheSwgRGVjZW1iZXIgMTEsIDIwMjUgMTE6MzkgUE0N
-Cj4gVG86IE9kZXIgQ2hpb3UgPG9kZXJfY2hpb3VAcmVhbHRlay5jb20+DQo+IENjOiBjZXphcnku
-cm9qZXdza2lAaW50ZWwuY29tOyBicm9vbmllQGtlcm5lbC5vcmc7IGxnaXJkd29vZEBnbWFpbC5j
-b207DQo+IGtyemsrZHRAa2VybmVsLm9yZzsgY29ub3IrZHRAa2VybmVsLm9yZzsgcGVyZXhAcGVy
-ZXguY3o7DQo+IGxpbnV4LXNvdW5kQHZnZXIua2VybmVsLm9yZzsgZGV2aWNldHJlZUB2Z2VyLmtl
-cm5lbC5vcmc7DQo+IGFsc2EtZGV2ZWxAYWxzYS1wcm9qZWN0Lm9yZzsgRmxvdmUoSHNpbkZ1KSA8
-ZmxvdmVAcmVhbHRlay5jb20+OyBTaHVtaW5nIFutUw0KPiCu0bvKXSA8c2h1bWluZ2ZAcmVhbHRl
-ay5jb20+OyBKYWNrIFl1IDxqYWNrLnl1QHJlYWx0ZWsuY29tPjsgRGVyZWsgW6TovHcNCj4guHFd
-IDxkZXJlay5mYW5nQHJlYWx0ZWsuY29tPg0KPiBTdWJqZWN0OiBSZTogW1BBVENIIHY5IDEvMl0g
-QVNvQzogZHQtYmluZGluZ3M6IHJlYWx0ZWsscnQ1NTc1OiBhZGQgc3VwcG9ydCBmb3INCj4gQUxD
-NTU3NQ0KPiANCj4gDQo+IEV4dGVybmFsIG1haWwgOiBUaGlzIGVtYWlsIG9yaWdpbmF0ZWQgZnJv
-bSBvdXRzaWRlIHRoZSBvcmdhbml6YXRpb24uIERvIG5vdA0KPiByZXBseSwgY2xpY2sgbGlua3Ms
-IG9yIG9wZW4gYXR0YWNobWVudHMgdW5sZXNzIHlvdSByZWNvZ25pemUgdGhlIHNlbmRlciBhbmQN
-Cj4ga25vdyB0aGUgY29udGVudCBpcyBzYWZlLg0KPiANCj4gDQo+IA0KPiBPbiBUaHUsIERlYyAx
-MSwgMjAyNSBhdCAwNzowMToyOVBNICswODAwLCBPZGVyIENoaW91IHdyb3RlOg0KPiA+IEF1ZGlv
-IGNvZGVjIHdpdGggSTJTLCBJMkMgYW5kIFNQSS4NCj4gPg0KPiA+IFNpZ25lZC1vZmYtYnk6IE9k
-ZXIgQ2hpb3UgPG9kZXJfY2hpb3VAcmVhbHRlay5jb20+DQo+ID4gLS0tDQo+ID4gIC4uLi9iaW5k
-aW5ncy9zb3VuZC9yZWFsdGVrLHJ0NTU3NS55YW1sICAgICAgICB8IDQ0DQo+ICsrKysrKysrKysr
-KysrKysrKysNCj4gPiAgMSBmaWxlIGNoYW5nZWQsIDQ0IGluc2VydGlvbnMoKykNCj4gPiAgY3Jl
-YXRlIG1vZGUgMTAwNjQ0DQo+IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9zb3Vu
-ZC9yZWFsdGVrLHJ0NTU3NS55YW1sDQo+ID4NCj4gPiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlv
-bi9kZXZpY2V0cmVlL2JpbmRpbmdzL3NvdW5kL3JlYWx0ZWsscnQ1NTc1LnlhbWwNCj4gYi9Eb2N1
-bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3Mvc291bmQvcmVhbHRlayxydDU1NzUueWFtbA0K
-PiA+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0DQo+ID4gaW5kZXggMDAwMDAwMDAwMDAwLi42MGY5YWYz
-OTlkZDINCj4gPiAtLS0gL2Rldi9udWxsDQo+ID4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0
-cmVlL2JpbmRpbmdzL3NvdW5kL3JlYWx0ZWsscnQ1NTc1LnlhbWwNCj4gPiBAQCAtMCwwICsxLDQ0
-IEBADQo+ID4gKyMgU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0yLjAtb25seSBPUiBCU0Qt
-Mi1DbGF1c2UNCj4gPiArJVlBTUwgMS4yDQo+ID4gKy0tLQ0KPiA+ICskaWQ6IGh0dHA6Ly9kZXZp
-Y2V0cmVlLm9yZy9zY2hlbWFzL3NvdW5kL3JlYWx0ZWsscnQ1NTc1LnlhbWwjDQo+ID4gKyRzY2hl
-bWE6IGh0dHA6Ly9kZXZpY2V0cmVlLm9yZy9tZXRhLXNjaGVtYXMvY29yZS55YW1sIw0KPiA+ICsN
-Cj4gPiArdGl0bGU6IEFMQzU1NzUgYXVkaW8gQ09ERUMNCj4gPiArDQo+ID4gK21haW50YWluZXJz
-Og0KPiA+ICsgIC0gT2RlciBDaGlvdSA8b2Rlcl9jaGlvdUByZWFsdGVrLmNvbT4NCj4gPiArDQo+
-ID4gK2Rlc2NyaXB0aW9uOg0KPiA+ICsgIFRoZSBkZXZpY2Ugc3VwcG9ydHMgYm90aCBJMkMgYW5k
-IFNQSS4gSTJDIGlzIG1hbmRhdG9yeSwgd2hpbGUgU1BJIGlzDQo+ID4gKyAgb3B0aW9uYWwgZGVw
-ZW5kaW5nIG9uIHRoZSBoYXJkd2FyZSBjb25maWd1cmF0aW9uLg0KPiA+ICsNCj4gPiArYWxsT2Y6
-DQo+ID4gKyAgLSAkcmVmOiAvc2NoZW1hcy9zcGkvc3BpLXBlcmlwaGVyYWwtcHJvcHMueWFtbCMN
-Cj4gPiArICAtICRyZWY6IGRhaS1jb21tb24ueWFtbCMNCj4gPiArDQo+ID4gK3Byb3BlcnRpZXM6
-DQo+ID4gKyAgY29tcGF0aWJsZToNCj4gPiArICAgIGVudW06DQo+ID4gKyAgICAgIC0gcmVhbHRl
-ayxydDU1NzUNCj4gPiArICAgICAgLSByZWFsdGVrLHJ0NTU3NS11c2Utc3BpDQo+ID4gKw0KPiA+
-ICsgIHJlZzoNCj4gPiArICAgIG1heEl0ZW1zOiAxDQo+ID4gKw0KPiA+ICtyZXF1aXJlZDoNCj4g
-PiArICAtIGNvbXBhdGlibGUNCj4gPiArICAtIHJlZw0KPiA+ICsNCj4gPiArdW5ldmFsdWF0ZWRQ
-cm9wZXJ0aWVzOiBmYWxzZQ0KPiA+ICsNCj4gPiArZXhhbXBsZXM6DQo+ID4gKyAgLSB8DQo+ID4g
-KyAgICBpMmMgew0KPiA+ICsgICAgICAgICNhZGRyZXNzLWNlbGxzID0gPDE+Ow0KPiA+ICsgICAg
-ICAgICNzaXplLWNlbGxzID0gPDA+Ow0KPiA+ICsgICAgICAgIGNvZGVjQDU3IHsNCj4gPiArICAg
-ICAgICAgICAgY29tcGF0aWJsZSA9ICJyZWFsdGVrLHJ0NTU3NSI7DQo+ID4gKyAgICAgICAgICAg
-IHJlZyA9IDwweDU3PjsNCj4gPiArICAgICAgICB9Ow0KPiA+ICsgICAgfTsNCj4gDQo+IEl0IGlz
-IGNvbXBsZXRlbHkgdW5jbGVhciB3aGF0IHlvdSBhcmUgZG9pbmcgaW4gdGhlIFNQSSBjYXNlLiBJ
-DQo+IGRlY2lwaGVyZWQgaXQgc3R1ZHlpbmcgdGhlIGRyaXZlci4gSSBzaG91bGRuJ3QgaGF2ZSB0
-byBkbyB0aGF0LCB5b3VyDQo+IGJpbmRpbmcgc2hvdWxkIG1ha2UgdGhhdCBjbGVhci4NCj4gDQo+
-IFNvIHlvdXIgRFQgbXVzdCBsb29rIGxpa2UgdGhpczoNCj4gDQo+IGkyYyB7DQo+ICAgICAgICAg
-Y29kZWNANTcgew0KPiAgICAgICAgICAgICAgICAgY29tcGF0aWJsZSA9ICJyZWFsdGVrLHJ0NTU3
-NS11c2Utc3BpIjsNCj4gICAgICAgICAgICAgICAgIHJlZyA9IDwweDU3PjsNCj4gICAgICAgICB9
-Ow0KPiB9Ow0KPiANCj4gc3BpIHsNCj4gICAgICAgICBjb2RlY0AxIHsNCj4gICAgICAgICAgICAg
-ICAgIGNvbXBhdGlibGUgPSAicmVhbHRlayxydDU1NzUiOw0KPiAgICAgICAgICAgICAgICAgcmVn
-ID0gPDB4MT47DQo+ICAgICAgICAgfTsNCj4gfTsNCj4gDQo+IEZpcnN0LCB0aGVyZSdzIG5vIG5l
-ZWQgZm9yICItdXNlLXNwaSIgYmVjYXVzZSB5b3UgY2FuIGp1c3QgY2hlY2sgaWYNCj4gdGhlcmUg
-aXMgYSBydDU1NzUgU1BJIGRldmljZSBhbmQgdXNlIGl0IGlmIHRoZXJlIGlzLiBXaHkgd291bGQg
-eW91IGhhdmUNCj4gdGhlIFNQSSBkZXZpY2UgYW5kIG5vdCB1c2UgaXQ/DQoNClRoZSBjb21wYXRp
-YmxlIHJlYWx0ZWsscnQ1NTc1LXVzZS1zcGkgd2lsbCBiZSByZW1vdmVkLCBhbmQgaWYgdGhlcmUg
-aXMgbm8NClNQSSBkZXZpY2UgaW4gdGhlIERUUywgdGhlIHdhcm5pbmcgbWVzc2FnZSB3aWxsIGJl
-IHNob3duIGFzICJUaGUgaGFyZHdhcmUNCmNvbmZpZ3VyYXRpb24gc2hvdWxkIGJlIHdpdGggYnVp
-bHQtaW4gZmxhc2giLg0KDQo+IEJ1dCByZWFsbHkgaXQgaXMgbm90IGlkZWFsIGhhdmluZyAyIGRl
-dmljZSBub2RlcyBmb3IgYSBzaW5nbGUgZGV2aWNlLiBJdA0KPiB3b3VsZCBiZSBtdWNoIHNpbXBs
-ZXIgdG8ganVzdCBoYXZlIHNvbWV0aGluZyBsaWtlIHRoaXMgaW4gdGhlIGkyYyBub2RlOg0KPiAN
-Cj4gc3BpLXBhcmVudCA9IDwmc3BpMCAxPjsNCj4gDQo+IFdoZXJlIHRoZSBjZWxsIGlzIHRoZSBj
-aGlwLXNlbGVjdCAjLg0KPiANCj4gV2UgaGF2ZSBhbiAnaTJjLXBhcmVudCcgYWxyZWFkeSBmb3Ig
-c2ltaWxhciByZWFzb25zIHdoZW4gdGhlcmUgYXJlIDINCj4gYnVzIGNvbm5lY3Rpb25zLg0KDQpJ
-biB0aGUgY3VycmVudCBrZXJuZWwsIEkgY2Fubm90IGZpbmQgYW55IGZ1bmN0aW9uIHRvIG9idGFp
-biBhDQpzdHJ1Y3Qgc3BpX2NvbnRyb2xsZXIgd2hlbiBubyBTUEkgZGV2aWNlIGlzIGRlZmluZWQg
-aW4gdGhlIERUUy4gVGhpcyB3YXMNCnBvc3NpYmxlIGluIG9sZGVyIGtlcm5lbHMgdXNpbmcgdGhl
-IGxlZ2FjeSBzcGlfYnVzbnVtX3RvX21hc3RlcigpLCBidXQNCnRoYXQgZnVuY3Rpb24gaXMgbm8g
-bG9uZ2VyIGF2YWlsYWJsZSBpbiB1cHN0cmVhbS4NCg0KVGhhbmtzLA0KT2Rlcg0K
+The Omnivision OS05B10 is a 1/2.78-Inch CMOS image sensor with an
+active array size of 2592 x 1944.
+
+The following features are supported:
+- Manual exposure an gain control support.
+- vblank/hblank control support.
+- Supported resolution: 2592 x 1944 @ 60fps (SBGGR10).
+
+The driver is tested on mainline branch v6.17 on IMX8MP Verdin Toradex.
+
+v4l2-compliance 1.26.1-5142, 64 bits, 64-bit time_t
+v4l2-compliance SHA: 4aee01a02792 2023-12-12 21:40:38
+
+Compliance test for device /dev/v4l-subdev3:
+
+Driver Info:
+        Driver version   : 6.17.0
+        Capabilities     : 0x00000000
+
+Required ioctls:
+        test VIDIOC_SUDBEV_QUERYCAP: OK
+        test invalid ioctls: OK
+
+Allow for multiple opens:
+        test second /dev/v4l-subdev3 open: OK
+        test VIDIOC_SUBDEV_QUERYCAP: OK
+        test for unlimited opens: OK
+
+Debug ioctls:
+        test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+        test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+        test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+        test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+        test VIDIOC_ENUMAUDIO: OK (Not Supported)
+        test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+        test VIDIOC_G/S_AUDIO: OK (Not Supported)
+        Inputs: 0 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+        test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+        test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+        test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+        test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+        test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+        Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+        test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+        test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+        test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+        test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Control ioctls:
+        test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
+        test VIDIOC_QUERYCTRL: OK
+        test VIDIOC_G/S_CTRL: OK
+        test VIDIOC_G/S/TRY_EXT_CTRLS: OK
+        test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
+        test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+        Standard Controls: 9 Private Controls: 0
+
+Format ioctls:
+        test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK (Not Supported)
+        test VIDIOC_G/S_PARM: OK (Not Supported)
+        test VIDIOC_G_FBUF: OK (Not Supported)
+        test VIDIOC_G_FMT: OK (Not Supported)
+        test VIDIOC_TRY_FMT: OK (Not Supported)
+        test VIDIOC_S_FMT: OK (Not Supported)
+        test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+        test Cropping: OK (Not Supported)
+        test Composing: OK (Not Supported)
+        test Scaling: OK (Not Supported)
+
+Codec ioctls:
+        test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+        test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+        test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+
+Buffer ioctls:
+        test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK (Not Supported)
+        test CREATE_BUFS maximum buffers: OK
+        test VIDIOC_EXPBUF: OK (Not Supported)
+        test Requests: OK (Not Supported)
+
+Total for device /dev/v4l-subdev3: 44, Succeeded: 44, Failed: 0, Warnings: 0
+
+v2 -> v3
+
+In Patch 1/2:
+- Fixed space symbol is missing before 'optical'
+- Changed the reset pin control to "active low"
+
+In Patch 2/2:
+- Correct the module name in Kconfig
+- Fixed use of dev_err_probe() on endpoint parse failure
+- used devm_v4l2_sensor_clk_get() instead of devm_clk_get()
+
+v1 -> v2
+
+In Patch 1/2:
+- Fixed indentation.
+
+In Patch 2/2:
+- Fixed bug in probe() removed unused variable "ret"
+
+Elgin Perumbilly (1):
+  dt-bindings: media: i2c: Add os05b10 sensor
+
+Himanshu Bhavani (1):
+  media: i2c: add os05b10 image sensor driver
+
+ .../bindings/media/i2c/ovti,os05b10.yaml      |  103 ++
+ MAINTAINERS                                   |    8 +
+ drivers/media/i2c/Kconfig                     |   10 +
+ drivers/media/i2c/Makefile                    |    1 +
+ drivers/media/i2c/os05b10.c                   | 1115 +++++++++++++++++
+ 5 files changed, 1237 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,os05b10.yaml
+ create mode 100644 drivers/media/i2c/os05b10.c
+
+--
+2.34.1
+
 
