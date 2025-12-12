@@ -1,108 +1,138 @@
-Return-Path: <devicetree+bounces-245997-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246005-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6678CB7A95
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 03:21:05 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31284CB7B04
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 03:41:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9EDDB300FE21
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 02:21:04 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5DC24301EF87
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 02:41:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0899621B9DA;
-	Fri, 12 Dec 2025 02:21:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxsw.ie header.i=@nxsw.ie header.b="CBwVWto5"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B7772868B4;
+	Fri, 12 Dec 2025 02:41:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-10625.protonmail.ch (mail-10625.protonmail.ch [79.135.106.25])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-sh.amlogic.com (unknown [114.94.151.114])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0765347C7
-	for <devicetree@vger.kernel.org>; Fri, 12 Dec 2025 02:21:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=79.135.106.25
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8861F72639;
+	Fri, 12 Dec 2025 02:41:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.94.151.114
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765506063; cv=none; b=oclwwNU3eDNjHX1GscDV242kPgFkDpswy17XI5Ib0WYTWmNJjSvgx/mHWYs8BGUkCnmdDkCdnfQ65ouytssM05ME7TH+KoWyzwXaE5UTgGFLd3ImUkT9/ySUGG/KPAB7f9N80jj7N6fOIcaxab/ZksfGDUn3USF4Bi4EQmCuqPo=
+	t=1765507295; cv=none; b=Wgesc1ZxGFEhapY/htC65cGu3HBTripWvOi1BDri0qXQ13Vp4GHdwARZ4evODzL8TTGNQvllEX1OIeF0JU7c0uWeEMoX8Mw1cV1xQUFSOcuzt0/7FX9fsw9SvyoIi5WFLMegUJUUBMyrLLP5P0m/4gIAJZSHJnI1PIsrMK94efI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765506063; c=relaxed/simple;
-	bh=O/3l2CepK2qgQr5KuIjsMlLs9pGy2jJUiJ2sEuBxLoc=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=fh02YoP7v4uDoZ5FtBJtkbxoQJFQ4g1zGnI5afc7aQYJNcT9qL9paKPCytM3c7Kd9bvhX4VQyQVGDIAaxl2ofbKX2FS5IgHMfQcaSmoK6Vn/EVjRzpMlNvJJODX2dk8aZe11F8QpIpH0vtSV0xhj86OZY61ALLU+TntvGYKAeeE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=nxsw.ie; spf=pass smtp.mailfrom=nxsw.ie; dkim=pass (2048-bit key) header.d=nxsw.ie header.i=@nxsw.ie header.b=CBwVWto5; arc=none smtp.client-ip=79.135.106.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=nxsw.ie
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxsw.ie
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxsw.ie;
-	s=protonmail3; t=1765506059; x=1765765259;
-	bh=LsbgIYYKc85t8t0G1uxzrHhXL5/jAfCkvGvds6Wvcog=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector;
-	b=CBwVWto5PCzosbHyooHfhje4S7MDxlVtibXL42q+8rmQ7tV4xQB/vLVWe+R/uGEL4
-	 KXKwBlvf3Hv0oEg2hQrb4A0tr3Tw3+XFdz00jN1kjJx2MNwu4VSuQqLLOa1qbqM4bV
-	 +4R4oZL8i7oHCERyRbhs8eO6P3f2VeGJAkb0kklSGudLEmRBOZJx5ND7DJCCh/ZkL6
-	 +2uP6eU7P0TM9RJeYgIjjO3NAKRRzBo7fv2lBX8u1j1KG5piqMphXgCLDMYbcCd0Og
-	 hlcyMPtO2nGsW2tm+QVtSWCP6eptbSzQOCF7BzqrsfX79B+VDTuyFBudgZcmx4nOE0
-	 FSRLwmUg4+aIg==
-Date: Fri, 12 Dec 2025 02:20:53 +0000
-To: Richard Acayan <mailingradian@gmail.com>
-From: Bryan O'Donoghue <bod.linux@nxsw.ie>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Sakari Ailus <sakari.ailus@linux.intel.com>, Tianshu Qiu <tian.shu.qiu@intel.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-media@vger.kernel.org, Robert Mader <robert.mader@collabora.com>, Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Subject: Re: [PATCH v4 5/5] arm64: dts: qcom: sdm670-google-sargo: add imx355 front camera
-Message-ID: <107815a6-6e5c-472a-bf37-ff0719ca7186@nxsw.ie>
-In-Reply-To: <aTt7lGXU5IPfANxq@rdacayan>
-References: <20251211014846.16602-1-mailingradian@gmail.com> <20251211014846.16602-6-mailingradian@gmail.com> <wwpqaecvz42jopgaboasbh353ieelctpvgo3yj6y5tnxoem5oz@j5sbx3yxntot> <aTtkwQb2gOeWAFuv@rdacayan> <2fff55c6-aea5-4019-bcb9-eaff3b44474e@nxsw.ie> <aTt7lGXU5IPfANxq@rdacayan>
-Feedback-ID: 136405006:user:proton
-X-Pm-Message-ID: 0e1cb3415bf300d71fedaeaea847b52befbdcdd2
+	s=arc-20240116; t=1765507295; c=relaxed/simple;
+	bh=5a8wdd1KH3LD/sFRsEFpvA2mIexazzJos0ZdBqNFFCg=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=m1EFAjbDpsiQSvnlMuB77AcQzUvN9nghGv8iy9Kh5ythWZ/gq3kyPyh5j9xqyBCFhV60EWbdIVUCJw4FM5zymLPlU6IJUQqpPB9kUc1k591dANAT63e5eS5O/6m6yugAJ/TIwrA82bK3zrAo9qcv6mlY/jACqwYWG6N2exFngbY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amlogic.com; spf=pass smtp.mailfrom=amlogic.com; arc=none smtp.client-ip=114.94.151.114
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amlogic.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amlogic.com
+Received: from rd03-sz.software.amlogic (10.28.11.121) by mail-sh.amlogic.com
+ (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.61; Fri, 12 Dec 2025
+ 10:26:21 +0800
+From: Jian Hu <jian.hu@amlogic.com>
+To: Jerome Brunet <jbrunet@baylibre.com>, Chuan Liu <chuan.liu@amlogic.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman
+	<khilman@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Michael Turquette
+	<mturquette@baylibre.com>, robh+dt <robh+dt@kernel.org>, Rob Herring
+	<robh@kernel.org>
+CC: Jian Hu <jian.hu@amlogic.com>, devicetree <devicetree@vger.kernel.org>,
+	linux-clk <linux-clk@vger.kernel.org>, linux-amlogic
+	<linux-amlogic@lists.infradead.org>, linux-kernel
+	<linux-kernel@vger.kernel.org>, linux-arm-kernel
+	<linux-arm-kernel@lists.infradead.org>
+Subject: [PATCH v7 0/5] add support for T7 family clock controller
+Date: Fri, 12 Dec 2025 10:26:13 +0800
+Message-ID: <20251212022619.3072132-1-jian.hu@amlogic.com>
+X-Mailer: git-send-email 2.47.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-On 12/12/2025 02:19, Richard Acayan wrote:
-> On Fri, Dec 12, 2025 at 01:45:52AM +0000, Bryan O'Donoghue wrote:
->> On 12/12/2025 00:41, Richard Acayan wrote:
->>>> This would be much better:
->>>>
->>>>     &camss_endpoint1: {
->>>>         clock-lanes, data-lanes, remote-endpoint here
->>>>     };
->>> I'm not sure what you mean, there might be some typo.
->>
->> At least for me the endpoint name could be improved see:
->>
->> Take arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
->>
->> Also since you likely have more than one sensor I'd suggest endpoint@0
->=20
-> Uh... the front and rear camera here are on different CSI ports.
->=20
-> Something like:
->=20
-> =09&camss {
-> =09=09ports {
-> =09=09=09port@0 {
-> =09=09=09=09endpoint {
-> =09=09=09=09=09... // rear camera endpoint goes here
-> =09=09=09=09};
-> =09=09=09};
->=20
-> =09=09=09port@1 {
-> =09=09=09=09endpoint {
-> =09=09=09=09=09... // front camera endpoint goes here
-> =09=09=09=09};
-> =09=09=09};
-> =09=09};
-> =09};
->=20
-> Would they both be endpoint@0? Or would the front camera be endpoint@1?
+It introduces three clock controllers:
+- SCMI clock controller: these clocks are managed by the SCP and handled through SCMI.
+- PLL clock controller.
+- peripheral clock controller.
 
-Yeah no fair point you're right, that @0 is useless.
+Changes v7 since v6 at [6]:
+- add COMMON_CLK_MESON_MPLL for T7 PLL Kconfig
 
-Ignore.
+Changes v6 since v5 at [5]:
+- add a blank line after each PLL register region
+- update GP1 PLL note
+- update PLL and peripherals help message
+- add parentheses around the _iflags member in MESON_COMP_GATE
+- drop CLK_SET_RATE_PARENT and the 4th parent for rtc
+- move sd_emmc_c after sd_emmc_b
 
----
-bod
+Changes v5 since v4 at [4]:
+- rename rtc and cec dualdiv clocks
+- rename dsp clocks
+- rename anakin clocks
+- rename fdiv2_divn to 25m and fix its parent
+- add flag for T7_COMP_GATE
+- use T7_COMP_SEL/DIV/GATE to define glitch clocks
+- add CLK_SET_RATE_NO_REPARENT for t7_eth_rmii_sel and rtc
+- move module_platform_driver after clock driver
+
+Changes v4 since v3 at [3]:
+- drop amlogic_t7_pll_probe, use meson_clkc_mmio_probe instead
+- add CLK_DIVIDER_MAX_AT_ZERO for pcie_pll_od clk
+- add frac for hifi_dco_pll_dco
+- add l_detect for mclk_pll_dco
+- drop v3 5/6 patch, and use MESON_PCLK
+- drop SPI_PWM_CLK_XX macro and use MESON_COMP_XX
+- drop the register's prefix
+
+Changes v3 since v2 at [2]:
+- update T7 PLL YAML
+- add 't7_' prefix for t7 clock name and variable in t7-pll.c and t7-peripherals.c
+- correct v1 patch link
+- add new macro MESON_PCLK_V2
+- update the driver,header,yaml file license
+
+Changes v2 since v1 at [1]:
+- add CLK_MESON import
+- add const for clkc_regmap_config in PLL driver
+- fix eth_rmii_sel parent
+- update T7 PLL YAML file
+
+[1]: https://lore.kernel.org/all/20241231060047.2298871-1-jian.hu@amlogic.com
+[2]: https://lore.kernel.org/all/20250108094025.2664201-1-jian.hu@amlogic.com
+[3]: https://lore.kernel.org/all/20250509074825.1933254-1-jian.hu@amlogic.com
+[4]: https://lore.kernel.org/all/20251030094345.2571222-1-jian.hu@amlogic.com
+[5]: https://lore.kernel.org/all/20251121105934.1759745-1-jian.hu@amlogic.com
+[6]: https://lore.kernel.org/all/20251204053635.1234150-1-jian.hu@amlogic.com
+Jian Hu (5):
+  dt-bindings: clock: add Amlogic T7 PLL clock controller
+  dt-bindings: clock: add Amlogic T7 SCMI clock controller
+  dt-bindings: clock: add Amlogic T7 peripherals clock controller
+  clk: meson: t7: add support for the T7 SoC PLL clock
+  clk: meson: t7: add t7 clock peripherals controller driver
+
+ .../clock/amlogic,t7-peripherals-clkc.yaml    |  116 ++
+ .../bindings/clock/amlogic,t7-pll-clkc.yaml   |  114 ++
+ drivers/clk/meson/Kconfig                     |   28 +
+ drivers/clk/meson/Makefile                    |    2 +
+ drivers/clk/meson/t7-peripherals.c            | 1271 +++++++++++++++++
+ drivers/clk/meson/t7-pll.c                    | 1074 ++++++++++++++
+ .../clock/amlogic,t7-peripherals-clkc.h       |  228 +++
+ .../dt-bindings/clock/amlogic,t7-pll-clkc.h   |   56 +
+ include/dt-bindings/clock/amlogic,t7-scmi.h   |   47 +
+ 9 files changed, 2936 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/amlogic,t7-peripherals-clkc.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/amlogic,t7-pll-clkc.yaml
+ create mode 100644 drivers/clk/meson/t7-peripherals.c
+ create mode 100644 drivers/clk/meson/t7-pll.c
+ create mode 100644 include/dt-bindings/clock/amlogic,t7-peripherals-clkc.h
+ create mode 100644 include/dt-bindings/clock/amlogic,t7-pll-clkc.h
+ create mode 100644 include/dt-bindings/clock/amlogic,t7-scmi.h
+
+-- 
+2.47.1
 
 
