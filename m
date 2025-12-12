@@ -1,108 +1,131 @@
-Return-Path: <devicetree+bounces-246036-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246037-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06FBCCB81D6
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 08:29:47 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FEE4CB8209
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 08:41:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1B51D301EC65
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 07:29:45 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 3EAD3300BAD9
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 07:41:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D4C725C821;
-	Fri, 12 Dec 2025 07:29:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C95B30DEA7;
+	Fri, 12 Dec 2025 07:41:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o1NM2jmY"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="A49GT3jX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05276AD24;
-	Fri, 12 Dec 2025 07:29:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06E5C2E8DE2;
+	Fri, 12 Dec 2025 07:41:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765524584; cv=none; b=Y5wrGXU9wyIylibtaWbSzx56s6MLEzRs524HdtCfLD5khErUsX51j69BukqoT2x2X84Fbshm+FQcxjMYqQehY9l7dvsPYQTzWsA9KsirHcbDkwoZWvCCgPvYBlPCOA3bcw2d1SXoX7yPOn/bHbond6SAPNbGCmASM5Lt8NX1yiI=
+	t=1765525289; cv=none; b=iU5qZpAIMv51uFwzS4C7LUZvX+dvSo48+NSLR9fCPCcEHy4hnEQrDZSY7sv6eViCyD/hBX6sWMzFkt7r105n+QjItLK+m8ZIE6AIboJ5WUi5jBAB9qiQ2Jf/qplzrIbjznAyc0JfZg4QFVKuNo/xAwHBuHLYR3STGNU0ZB9skIM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765524584; c=relaxed/simple;
-	bh=rduUdumnnvnex39AKYNG2xtSbZ3PSZ0eETlOCnoIfYI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qnNubNqrJclxG52xIy9gq7t3nW4RHetCM2i/6OF+UIvj8P1iSRzGKHVUTTMXmsltNbYxQIcRj9cWiPGgDpM4rPJwXdSxeqS3T00UvzvyWr6oETua5iWBowJAG4h9O8WxHAZ270oV4rJtfRpEQXt06U/M4/Ne2xy7mWuSwo781pA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o1NM2jmY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69ACDC4CEF1;
-	Fri, 12 Dec 2025 07:29:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765524583;
-	bh=rduUdumnnvnex39AKYNG2xtSbZ3PSZ0eETlOCnoIfYI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=o1NM2jmYFdaNvOjyMTldVaizsl4IQBtdiioiDYetBcyjS6FFmomTSFE70fZYxqT3f
-	 rHcWnwZ4GvPv3jt+ZJ0B9ghlQZiR5bzXYuP6pWetu+0KrOVyVqEEzGXwbZlMAnWBAy
-	 9bhdxKGN6V5R5/MlIMOQPu746l+N2+gBeTwJTbROBl/IbQ/pWnp0At18xHpSv0yO71
-	 TY6CNmZ5J3ZylTcepobxAAcldTXjroxmBHowhCzMMvcvs7twS3I+vK3xpovY2AeO+c
-	 Zxa8zyn4vf346Ci7XGD8FqoePMENzFqVzB7CKIMOSnmPY0AEHltN5VWYwuRRiqzgfo
-	 L7f3ejw/F9QRQ==
-Date: Fri, 12 Dec 2025 07:29:37 +0000
-From: Lee Jones <lee@kernel.org>
-To: Kory Maincent <kory.maincent@bootlin.com>
-Cc: Kevin Hilman <khilman@baylibre.com>,
-	Aaro Koskinen <aaro.koskinen@iki.fi>,
-	Andreas Kemnade <andreas@kemnade.info>,
-	Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>,
-	Shree Ramamoorthy <s-ramamoorthy@ti.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>,
-	Bajjuri Praneeth <praneeth@ti.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, stable@vger.kernel.org
-Subject: Re: [PATCH v4 0/2] Enable 1GHz OPP am335x-bonegreen-eco
-Message-ID: <20251212072937.GA9275@google.com>
-References: <20251112-fix_tps65219-v4-0-696a0f55d5d8@bootlin.com>
- <20251127144138.400d1dcd@kmaincent-XPS-13-7390>
- <7hsedk73ly.fsf@baylibre.com>
- <20251209111534.0f871a04@kmaincent-XPS-13-7390>
+	s=arc-20240116; t=1765525289; c=relaxed/simple;
+	bh=wWFNlpjkT3FBfyV8+CvWxjN2dGiHa7fN96GpHrrxKt4=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=IGMXVHjSvvG5bg97JRuS0+A6gdS4QZeKTGtQs5/mxFHQhlfGDhmwbhr9Y32Q1U1M0Loje0sG577wJ4hOHG1wXVAhYioY9vex2LdBFF1o3GJSCT09M0nkfd8/YFX1eoSy2j4K4WE23F6ND6CdlzpoEmzc4SAhi4Ml+3sDZyzSQag=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=A49GT3jX; arc=none smtp.client-ip=185.246.85.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 05A034E41BA4;
+	Fri, 12 Dec 2025 07:41:25 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id CCB20606DF;
+	Fri, 12 Dec 2025 07:41:24 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 62CF3103C8DF7;
+	Fri, 12 Dec 2025 08:41:18 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1765525283; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding; bh=g7M2WmltjUcmzGj5/uGfZjuBIODG+CdCH6JXQJ7UeoE=;
+	b=A49GT3jXx/SFk0ctKOl5iKWY9Gs+U6CHsEBr3l0l6v0llXIjVcQHCeElGP4RMklkYwpahn
+	Hegr5yxiML7pPlaqGJURI7ELg/U3yL+cULpeErrVUyMTLUSTRiPtyqYdY4wcbk3+VhiLMN
+	53c+OTW1KX9MinSzSc0OT2KqYL15UXNrTY08ZGawhyB9CR9doQwR5KQN1RZM+eDPIOorlr
+	U+t2n9xHxpO2e8SHRgM/ZXxfzAB0b045GjMk2SjMO+pyjo7LKLNF2zjXPI8h6ffF55FKfR
+	FCY/8E89qbg+0boG50b9kLi+vxlEtZjB3dF/MFdbB9p6Tys/5nrCwweFrCCMPw==
+From: "Thomas Perrot (Schneider Electric)" <thomas.perrot@bootlin.com>
+Subject: [PATCH 0/8] Add support for AAEON SRG-IMX8PL MCU
+Date: Fri, 12 Dec 2025 08:41:03 +0100
+Message-Id: <20251212-dev-b4-aaeon-mcu-driver-v1-0-6bd65bc8ef12@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251209111534.0f871a04@kmaincent-XPS-13-7390>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAA/HO2kC/4WNQQ6CMBBFr0Jm7RimQCKuvAdh0ZapTCKtabHRE
+ O5u5QIu30v++xskjsIJrtUGkbMkCb4AnSqws/Z3RpkKg6pVR4oIJ85oWtSag8fFvnCKkjki13z
+ p2bhWOwNl/Yzs5H2Uh7HwLGkN8XMcZfrZ/81MWGPXG6fJaNu45mZCWB/izzYsMO77/gWo28kLw
+ AAAAA==
+X-Change-ID: 20251211-dev-b4-aaeon-mcu-driver-e0e89ebf4afb
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Linus Walleij <linusw@kernel.org>, 
+ Bartosz Golaszewski <brgl@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, 
+ =?utf-8?q?J=C3=A9r=C3=A9mie_Dautheribes?= <jeremie.dautheribes@bootlin.com>, 
+ Wim Van Sebroeck <wim@linux-watchdog.org>, 
+ Guenter Roeck <linux@roeck-us.net>, Lee Jones <lee@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-gpio@vger.kernel.org, imx@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, linux-watchdog@vger.kernel.org, 
+ "Thomas Perrot (Schneider Electric)" <thomas.perrot@bootlin.com>, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+X-Mailer: b4 0.14.2
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Tue, 09 Dec 2025, Kory Maincent wrote:
+This patch series introduces support for the AAEON SRG-IMX8PL embedded
+controller (MCU). The MCU is connected via I2C and provides GPIO and
+watchdog functionality for the SRG-IMX8PL board.
 
-> On Mon, 08 Dec 2025 19:09:45 -0800
-> Kevin Hilman <khilman@baylibre.com> wrote:
-> 
-> > Kory Maincent <kory.maincent@bootlin.com> writes:
-> > 
-> > > On Wed, 12 Nov 2025 16:14:19 +0100
-> > > "Kory Maincent (TI.com)" <kory.maincent@bootlin.com> wrote:
-> > >  
-> > >> The vdd_mpu regulator maximum voltage was previously limited to 1.2985V,
-> > >> which prevented the CPU from reaching the 1GHz operating point. This
-> > >> limitation was put in place because voltage changes were not working
-> > >> correctly, causing the board to stall when attempting higher frequencies.
-> > >> Increase the maximum voltage to 1.3515V to allow the full 1GHz OPP to be
-> > >> used.
-> > >> 
-> > >> Add a TPS65219 PMIC driver fixes that properly implement the LOCK register
-> > >> handling, to make voltage transitions work reliably.  
-> > >
-> > > Hello,
-> > >
-> > > What is the status on this series?
-> > > Is there anything that could prevent it from being merged?  
-> > 
-> > Nothing technical.  I'll start queuing things up after the merge window
-> > closes and -rc1 (or maybe -rc2) is out.
-> 
-> Ok, thank you!
+The series includes:
+- Device tree bindings for the MFD, GPIO, and watchdog subsystems
+- MFD driver that serves as the core driver for the MCU
+- GPIO driver implementing the GPIO functionality
+- Watchdog driver for system monitoring
+- MAINTAINERS entry for the new drivers
 
-Andrew made a suggestion on the MFD patch, so I unmarked it for review.
+The drivers follow the standard Linux kernel subsystem patterns, with
+the MFD driver registering the sub-devices (GPIO and watchdog) which
+are then handled by their respective subsystem drivers.
 
+Signed-off-by: Thomas Perrot (Schneider Electric) <thomas.perrot@bootlin.com>
+---
+Thomas Perrot (Schneider Electric) (8):
+      dt-bindings: vendor-prefixes: Add AAEON vendor prefix
+      dt-bindings: gpio: Add AAEON embedded controller GPIO binding
+      dt-bindings: watchdog: Add AAEON embedded controller watchdog binding
+      dt-bindings: mfd: Add AAEON embedded controller binding
+      mfd: aaeon: Add SRG-IMX8PL MCU driver
+      gpio: aaeon: Add GPIO driver for SRG-IMX8PL MCU
+      watchdog: aaeon: Add watchdog driver for SRG-IMX8PL MCU
+      MAINTAINERS: Add entry for AAEON SRG-IMX8PL MCU driver
+
+ .../bindings/gpio/aaeon,srg-imx8pl-gpio.yaml       |  54 +++++
+ .../bindings/mfd/aaeon,srg-imx8pl-mcu.yaml         |  58 +++++
+ .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
+ .../bindings/watchdog/aaeon,srg-imx8pl-wdt.yaml    |  38 ++++
+ MAINTAINERS                                        |   9 +
+ drivers/gpio/Kconfig                               |  10 +
+ drivers/gpio/Makefile                              |   1 +
+ drivers/gpio/gpio-aaeon-mcu.c                      | 248 +++++++++++++++++++++
+ drivers/mfd/Kconfig                                |  10 +
+ drivers/mfd/aaeon-mcu.c                            | 133 +++++++++++
+ drivers/watchdog/Kconfig                           |  10 +
+ drivers/watchdog/Makefile                          |   1 +
+ drivers/watchdog/aaeon_mcu_wdt.c                   | 140 ++++++++++++
+ include/linux/mfd/aaeon-mcu.h                      |  30 +++
+ 14 files changed, 744 insertions(+)
+---
+base-commit: d358e5254674b70f34c847715ca509e46eb81e6f
+change-id: 20251211-dev-b4-aaeon-mcu-driver-e0e89ebf4afb
+
+Best regards,
 -- 
-Lee Jones [李琼斯]
+Thomas Perrot (Schneider Electric) <thomas.perrot@bootlin.com>
+
 
