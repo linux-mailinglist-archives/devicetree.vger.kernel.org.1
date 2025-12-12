@@ -1,75 +1,77 @@
-Return-Path: <devicetree+bounces-246056-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246058-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24008CB8519
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 09:48:51 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6D64CB850A
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 09:47:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 393EB308A955
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 08:47:03 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 7F3C63004CC7
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 08:47:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54413308F00;
-	Fri, 12 Dec 2025 08:47:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F119311597;
+	Fri, 12 Dec 2025 08:47:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UwQ+HP1a"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kzbeoYcN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81E6B2D979F
-	for <devicetree@vger.kernel.org>; Fri, 12 Dec 2025 08:47:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4421018A6AD
+	for <devicetree@vger.kernel.org>; Fri, 12 Dec 2025 08:47:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765529222; cv=none; b=jdfa8vZENThhywYJdDlGiD1vcpYh+MKDX5seJSPFGkcNZrW8oq0y/vFD5fTJ143E5+KCe3aYlN6fqlJB4ikXiPxjZZnXuZ0Dm3UhYW83gJp/EOrgh2EiP6KBWrznI2lXiTbCkHrf3TAm+rJLaydsHfoc0XnOmxgPozi9OcDMvBg=
+	t=1765529230; cv=none; b=bXBMwNO1sxaZHILlQowJ1ZpQ/0c2J6BCeuFWsBUT+JL/whJlMoKiZXchNYOZfKxtiX3okaSZ5DD6UwGqe7BW5v1HHoiYtQIOqhbqTEi8M7NLZv7sLVdmm/pDmmn0Qg/eJzO7pS8yUYyal4K5SJQVZipiGt6+9l15tK2Jk8X5niQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765529222; c=relaxed/simple;
-	bh=8E5+Kpt25qMxuVFtPp98+FzLKsx7X8CnYqgMNjiMvQM=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=jZgI1J6Ovup5WY/2gx2T88oz+0AsZ9i5bKiY5+7Ox8KqhCspbS4qwpfz0FnvrwHex1OVfVhhgkSTre57JJLqgzRkuBhGuZbY7nzLchUOXOa1FhvmhUMHXGpSSIx0wbLtAIM80urQDS4TC7+Gh/Egh7XWeZmM5cAbnB5UJVVdbnI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UwQ+HP1a; arc=none smtp.client-ip=209.85.221.46
+	s=arc-20240116; t=1765529230; c=relaxed/simple;
+	bh=/HbfPZd7Ge/AD9m1PL+IJa2yRx9vuWPz77JRY4l9hUw=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=T+HdyidtVljVyFQqevYGy5XlEY+LzBVbnJLlDpBFqPWMMqWgIH14fd8wCpaD+ffKeOdI5jhoi6XW34PN9204UyEBqhS2NVROTNm5QxF2WYM18f5aLnY7zPVZgPn19N9C3eQ8LSwaqZ7Lo23Tqkc/dQTDZff3128Vacp7WRXwiZE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kzbeoYcN; arc=none smtp.client-ip=209.85.221.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-42fb03c3cf2so355574f8f.1
-        for <devicetree@vger.kernel.org>; Fri, 12 Dec 2025 00:47:00 -0800 (PST)
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-429ce7e79f8so606497f8f.0
+        for <devicetree@vger.kernel.org>; Fri, 12 Dec 2025 00:47:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1765529219; x=1766134019; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=IpScSZouW48AySITqAmVJ4AMB6de2gL0dmg8n9rDANs=;
-        b=UwQ+HP1a/DY40Cg0YQ4FjYJSepvrsmHE6YcLc8GYgeIDYwDElow/k7/meJ2jLjjhOU
-         fASH9ooFUu8frUdr01lN17bT1UkdEbeJ17mCTCsr/r+A6c65k7XgrLX+/xtiWVxv+FC+
-         Xgl5xeISf7e1M4E+Vko/y02HBg6DTIZQiJdqmKnWelK6JBY2GXmEAl6k21DJdYweWlrW
-         jnG46qWziaq2E/6/tzBpQy56hiqEqL4ZmTNskOxBKNLSY0e/QvjuJjjCirTeVS66Uv58
-         xL7Y+thEjJRW8eNUCrwMeBo8czaO0KJohRe/+hsGmthFNNs7NbcnZsjOUM4YtL0WJYZp
-         jFlA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765529219; x=1766134019;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1765529225; x=1766134025; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=IpScSZouW48AySITqAmVJ4AMB6de2gL0dmg8n9rDANs=;
-        b=p88IjYJy2cZ6GO0fDnLAw/1h1XZaY2WaFgsCKb1+kHGSDFUXIOrWdDPS2gbLDs32TJ
-         dW1x9r3PkRPEKXxZaPbwFk3NgvCggMYcVa0Rw3TXwW/Whj1HLL1Yi4NQ0CTOJi7tow8H
-         qPK/oHomUIldvVJ0J+BVer/AiNCye7FpyQz2vVO+iWxvBqJs5zUv44mU8qJLzVIOqbaM
-         yK1qvT1vjnXTbopXD0Zrlj39OeorwrmTmseAD988i/Z8QAhN/BgePcFSdDLn+N71Jg5g
-         YumiLlfp95K4Jn8koEojvCBfas02YKNhSzpsAHu5w/v23V5FKytTf/d1v4g9rgA74kd/
-         dzwA==
-X-Forwarded-Encrypted: i=1; AJvYcCVhiLfsxeStxxxq1WnqczHNn/PGOGLI+2j7qOfn9Ixdx6xiHJXyg34w49qN3U7S1Fhim0nWyysbWSNJ@vger.kernel.org
-X-Gm-Message-State: AOJu0YyV+d41+oa7iJRmKnhO+rjgBinWQY6ZXRlfnvY6NVB9SbUmEBUN
-	AOTKy84rTIO8nZ+eVAsWlm/huMLQ0/KbNkamKE7pBjeN8R0dwuM434tK
-X-Gm-Gg: AY/fxX6QcTZ4lLY8ZiLIbkMC7rCWnV+VHC0LWpfDGf1Z5a2BHC3/cGWWQ8o0aCq2A13
-	4E8ThViSLGph0TIspsNdkdzs0mvcyNUPXvexUnr4lie81FSzQOBN7cx1IBFJ3SR/zZ89PZW5ByY
-	cNz/vaAZ9BVbXIgtG/wPkDmygNsJQUJGpaSlyeXzFJxR0pbkxXKQlRjIreQkuz57QpgVbHzQRUB
-	comkryrwcYUUAdh7kJRrb9bQ6r/dxIa2SOXJP6cluwQrzVeezA8AhYqpw2laQRxGWVPgbsTI/jA
-	dbGEuSFhRyhLs2DMxZONqyfp/W4SVT7e3Dg1gI8SAyE9WPY3PBuxQJSe5YvjCzNl97jpmIEu95L
-	dxOd2RPKD9mR0myPQ63owhOePyH3qAodpmhpeDFfP4tcASE/R8fIMa9+wQ1JOhhcGv7FoVHlKZ1
-	VSH6YAeuFlS3fG3Wr4ZSrvaL/Vhtg=
-X-Google-Smtp-Source: AGHT+IEJLrxF4ZhjOxvjryGu5iXxEkpqiLi9xidSHfaDTvccGpMAdBouCofvvVm8bTWQArd3I3G9Tg==
-X-Received: by 2002:a5d:5550:0:b0:42f:b683:b3bf with SMTP id ffacd0b85a97d-42fb683b57amr765197f8f.19.1765529218779;
-        Fri, 12 Dec 2025 00:46:58 -0800 (PST)
+        bh=xAolPPcWuwPJfoj+Pecrxb+tAUG+HiTLzN1u11z3lNc=;
+        b=kzbeoYcN+Y0FinTY3ilwDkHxWfhh6uFZUiQSEd/oa5R0HKMIsSEdevh9sT79UofRpC
+         vkf9ukdC/L1QiJQnA9/uBIaY/+aik8BirRYkrQvU0AUmwQUHkea0zhT4LHrAV0iGyJUK
+         OFcu3qGcilhtGRssDuXAYmtIanoGHD2JKhOGqFPVWg4wU9z19cAcz5ElcazW6pSbYGAA
+         f/5Mo+pigMVW63OvPc+S720wFPE8DiG8vPnYxO9YPwp4FXfqdCfczizImvdSOZ+O7nJH
+         21vhTS56+u6gpHXvO9PUI852EnmGz95/vF9Bai7ADX/MxYW3v+CC5Cv34k+tNzuC1G1Z
+         3uYw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765529225; x=1766134025;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=xAolPPcWuwPJfoj+Pecrxb+tAUG+HiTLzN1u11z3lNc=;
+        b=WNRcRne5aumOIcSgYXfqnbWsVBAj9YprNIP7xX4euxLnuPVh4YSZKza8RRCatU/M1F
+         xpHahJh0dBZBGf6UL3/n33SEDj6m772oRkO9FRnEIYsO72V9hPPA7L6A2l4hIbrN5nKr
+         nQyXgsbwOrtAUVMvSJNZn5YlwExhC4CTp3JfdOiCUFZIgiydhIQjBB4sw9mujMW/iS5X
+         4BEFoQHpYqOfle+FGix6Zi5W509h3n83zQBDw1mkHS14gwev/bMx/c06RYaOHZPwDD16
+         OKsFzJdZ+h5nT4mJImFRVhxzZTkUX6z5NK+5yuyV63pMAc7I0pgSk3m2rFyipPiiSbgk
+         jjTw==
+X-Forwarded-Encrypted: i=1; AJvYcCV4k6OzEmjA8cd82tdtTXbX7x+6sZSvBEYYcnVJf4ZYTJ0lBA5kjLgq7L5+4MHepAtCrh5kl7ydOWjL@vger.kernel.org
+X-Gm-Message-State: AOJu0YzipO24Bf0ljbir07y22jwMyV0gK1cEvau39dCDOHCqKNPOz+VB
+	4kZAmu5xmi9Q6W7iZKfhQsRFXPf1knlrnnB+tcB+22CjufVHMjXOvbRT
+X-Gm-Gg: AY/fxX7feVDULibYgRyc3hT61WSyKS+j7OZRft6XL3fddAWiue48FYGdfpLLt2GIz7r
+	Mfzx6cFGcUFeSr2g/kCD/veXTkzsJLJEal6CTj3CKUbB5vWKMf8GUgrT61Q6cmq5wEFN4dEPvdh
+	vg9DJKi7eh5HVv6aZ3w7MDM6dNAd0SkQxlQcBQlwNzw+rBLtEBqZtA2VAV5+UyhU+v+y4GKKBpd
+	AYzLfa37venQVR1/g3RQwAUYA2GFXU35Q079fmxJElh7a2quhH3YbIOe4ZtjaIq+gtQmd44DH0r
+	elp96T6Aj4TtQQ2m5bh9F1MtVY1J7PnpH67VzUTcGQy+H/vbHwh2VuTUHoXqrTHOBKQ0aPLDZf3
+	IOD7+4k9s5FEryT+ETJBRf3oOSbHHe94cD086Rp2RdarrNl2VdXBm/cjq8xVl4VSaQ8BfZTxjs4
+	i7vwUQGtoA0ShHnyxFdI3+FuUZ9Iw=
+X-Google-Smtp-Source: AGHT+IGVe4/Rz8AeJ3HMLxOOz5Bf1RiY3zY8oxDOcU2jjxF9l8fFzdsL0H6H45SIr2/zva7Jy0M3zw==
+X-Received: by 2002:a5d:5886:0:b0:42b:3a84:1ec3 with SMTP id ffacd0b85a97d-42fb48e5309mr1430488f8f.29.1765529225131;
+        Fri, 12 Dec 2025 00:47:05 -0800 (PST)
 Received: from eichest-laptop.lan ([2a02:168:af72:0:9f18:aff4:897a:cb50])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42fa8a09fbesm10456076f8f.0.2025.12.12.00.46.57
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42fa8a09fbesm10456076f8f.0.2025.12.12.00.47.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Dec 2025 00:46:58 -0800 (PST)
+        Fri, 12 Dec 2025 00:47:04 -0800 (PST)
 From: Stefan Eichenberger <eichest@gmail.com>
 To: andrew+netdev@lunn.ch,
 	davem@davemloft.net,
@@ -87,11 +89,14 @@ Cc: netdev@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	francesco.dolcini@toradex.com,
-	rafael.beims@toradex.com
-Subject: [PATCH net-next v1 0/3] Convert Micrel bindings to YAML, add keep-preamble-before-sfd
-Date: Fri, 12 Dec 2025 09:46:15 +0100
-Message-ID: <20251212084657.29239-1-eichest@gmail.com>
+	rafael.beims@toradex.com,
+	Stefan Eichenberger <stefan.eichenberger@toradex.com>
+Subject: [PATCH net-next v1 1/3] dt-bindings: net: micrel: Convert to YAML schema
+Date: Fri, 12 Dec 2025 09:46:16 +0100
+Message-ID: <20251212084657.29239-2-eichest@gmail.com>
 X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20251212084657.29239-1-eichest@gmail.com>
+References: <20251212084657.29239-1-eichest@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -100,32 +105,854 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-This series converts the Micrel Ethernet PHY device tree bindings to
-YAML format. After the conversion, a new property is added that allows
-to keep the preamble bytes before the start frame delimiter (SFD). This
-helps to work around some issues with the EQOS Ethernet Controller used
-on the i.MX8MP which would otherwise not receive frames from the PHY in
-10MBit/s mode. The full description of the issue can be found in the
-patch messages adding the new property.
+From: Stefan Eichenberger <stefan.eichenberger@toradex.com>
 
-Andrew Lunn I added you and myself as a maintainer to the micrel.yaml
-file. Please let me know if you do not agree and if I should change
-that.
+Convert the devicetree bindings for the Micrel PHY to YAML schema. This
+also combines the information from micrel.txt and micrel-ksz90x1.txt
+into a single micrel.yaml file as this PHYs are from the same series.
+Use yaml conditions to differentiate the properties that only apply to
+specific PHY models.
 
-Stefan Eichenberger (3):
-  dt-bindings: net: micrel: Convert to YAML schema
-  dt-bindings: net: micrel: Add keep-preamble-before-sfd
-  net: phy: micrel: Add keep-preamble-before-sfd property
-
+Signed-off-by: Stefan Eichenberger <stefan.eichenberger@toradex.com>
+---
  .../bindings/net/micrel-ksz90x1.txt           | 228 --------
  .../devicetree/bindings/net/micrel.txt        |  57 --
- .../devicetree/bindings/net/micrel.yaml       | 540 ++++++++++++++++++
- drivers/net/phy/micrel.c                      |  29 +
- 4 files changed, 569 insertions(+), 285 deletions(-)
+ .../devicetree/bindings/net/micrel.yaml       | 527 ++++++++++++++++++
+ 3 files changed, 527 insertions(+), 285 deletions(-)
  delete mode 100644 Documentation/devicetree/bindings/net/micrel-ksz90x1.txt
  delete mode 100644 Documentation/devicetree/bindings/net/micrel.txt
  create mode 100644 Documentation/devicetree/bindings/net/micrel.yaml
 
+diff --git a/Documentation/devicetree/bindings/net/micrel-ksz90x1.txt b/Documentation/devicetree/bindings/net/micrel-ksz90x1.txt
+deleted file mode 100644
+index 6f7b907d5a044..0000000000000
+--- a/Documentation/devicetree/bindings/net/micrel-ksz90x1.txt
++++ /dev/null
+@@ -1,228 +0,0 @@
+-Micrel KSZ9021/KSZ9031/KSZ9131 Gigabit Ethernet PHY
+-
+-Some boards require special tuning values, particularly when it comes
+-to clock delays. You can specify clock delay values in the PHY OF
+-device node. Deprecated, but still supported, these properties can
+-also be added to an Ethernet OF device node.
+-
+-Note that these settings are applied after any phy-specific fixup from
+-phy_fixup_list (see phy_init_hw() from drivers/net/phy/phy_device.c),
+-and therefore may overwrite them.
+-
+-KSZ9021:
+-
+-  All skew control options are specified in picoseconds. The minimum
+-  value is 0, the maximum value is 3000, and it can be specified in 200ps
+-  steps, *but* these values are in no way what you get because this chip's
+-  skew values actually increase in 120ps steps, starting from -840ps. The
+-  incorrect values came from an error in the original KSZ9021 datasheet
+-  before it was corrected in revision 1.2 (Feb 2014), but it is too late to
+-  change the driver now because of the many existing device trees that have
+-  been created using values that go up in increments of 200.
+-
+-  The following table shows the actual skew delay you will get for each of the
+-  possible devicetree values, and the number that will be programmed into the
+-  corresponding pad skew register:
+-
+-  Device Tree Value	Delay	Pad Skew Register Value
+-  -----------------------------------------------------
+-	0   		-840ps		0000
+-	200 		-720ps		0001
+-	400 		-600ps		0010
+-	600 		-480ps		0011
+-	800 		-360ps		0100
+-	1000		-240ps		0101
+-	1200		-120ps		0110
+-	1400		   0ps		0111
+-	1600		 120ps		1000
+-	1800		 240ps		1001
+-	2000		 360ps		1010
+-	2200		 480ps		1011
+-	2400		 600ps		1100
+-	2600		 720ps		1101
+-	2800		 840ps		1110
+-	3000		 960ps		1111
+-
+-  Optional properties:
+-
+-    - rxc-skew-ps : Skew control of RXC pad
+-    - rxdv-skew-ps : Skew control of RX CTL pad
+-    - txc-skew-ps : Skew control of TXC pad
+-    - txen-skew-ps : Skew control of TX CTL pad
+-    - rxd0-skew-ps : Skew control of RX data 0 pad
+-    - rxd1-skew-ps : Skew control of RX data 1 pad
+-    - rxd2-skew-ps : Skew control of RX data 2 pad
+-    - rxd3-skew-ps : Skew control of RX data 3 pad
+-    - txd0-skew-ps : Skew control of TX data 0 pad
+-    - txd1-skew-ps : Skew control of TX data 1 pad
+-    - txd2-skew-ps : Skew control of TX data 2 pad
+-    - txd3-skew-ps : Skew control of TX data 3 pad
+-
+-KSZ9031:
+-
+-  All skew control options are specified in picoseconds. The minimum
+-  value is 0, and the maximum is property-dependent. The increment
+-  step is 60ps. The default value is the neutral setting, so setting
+-  rxc-skew-ps=<0> actually results in -900 picoseconds adjustment.
+-
+-  The KSZ9031 hardware supports a range of skew values from negative to
+-  positive, where the specific range is property dependent. All values
+-  specified in the devicetree are offset by the minimum value so they
+-  can be represented as positive integers in the devicetree since it's
+-  difficult to represent a negative number in the devictree.
+-
+-  The following 5-bit values table apply to rxc-skew-ps and txc-skew-ps.
+-
+-  Pad Skew Value	Delay (ps)	Devicetree Value
+-  ------------------------------------------------------
+-  0_0000		-900ps		0
+-  0_0001		-840ps		60
+-  0_0010		-780ps		120
+-  0_0011		-720ps		180
+-  0_0100		-660ps		240
+-  0_0101		-600ps		300
+-  0_0110		-540ps		360
+-  0_0111		-480ps		420
+-  0_1000		-420ps		480
+-  0_1001		-360ps		540
+-  0_1010		-300ps		600
+-  0_1011		-240ps		660
+-  0_1100		-180ps		720
+-  0_1101		-120ps		780
+-  0_1110		-60ps		840
+-  0_1111		0ps		900
+-  1_0000		60ps		960
+-  1_0001		120ps		1020
+-  1_0010		180ps		1080
+-  1_0011		240ps		1140
+-  1_0100		300ps		1200
+-  1_0101		360ps		1260
+-  1_0110		420ps		1320
+-  1_0111		480ps		1380
+-  1_1000		540ps		1440
+-  1_1001		600ps		1500
+-  1_1010		660ps		1560
+-  1_1011		720ps		1620
+-  1_1100		780ps		1680
+-  1_1101		840ps		1740
+-  1_1110		900ps		1800
+-  1_1111		960ps		1860
+-
+-  The following 4-bit values table apply to the txdX-skew-ps, rxdX-skew-ps
+-  data pads, and the rxdv-skew-ps, txen-skew-ps control pads.
+-
+-  Pad Skew Value	Delay (ps)	Devicetree Value
+-  ------------------------------------------------------
+-  0000			-420ps		0
+-  0001			-360ps		60
+-  0010			-300ps		120
+-  0011			-240ps		180
+-  0100			-180ps		240
+-  0101			-120ps		300
+-  0110			-60ps		360
+-  0111			0ps		420
+-  1000			60ps		480
+-  1001			120ps		540
+-  1010			180ps		600
+-  1011			240ps		660
+-  1100			300ps		720
+-  1101			360ps		780
+-  1110			420ps		840
+-  1111			480ps		900
+-
+-  Optional properties:
+-
+-    Maximum value of 1860, default value 900:
+-
+-      - rxc-skew-ps : Skew control of RX clock pad
+-      - txc-skew-ps : Skew control of TX clock pad
+-
+-    Maximum value of 900, default value 420:
+-
+-      - rxdv-skew-ps : Skew control of RX CTL pad
+-      - txen-skew-ps : Skew control of TX CTL pad
+-      - rxd0-skew-ps : Skew control of RX data 0 pad
+-      - rxd1-skew-ps : Skew control of RX data 1 pad
+-      - rxd2-skew-ps : Skew control of RX data 2 pad
+-      - rxd3-skew-ps : Skew control of RX data 3 pad
+-      - txd0-skew-ps : Skew control of TX data 0 pad
+-      - txd1-skew-ps : Skew control of TX data 1 pad
+-      - txd2-skew-ps : Skew control of TX data 2 pad
+-      - txd3-skew-ps : Skew control of TX data 3 pad
+-
+-    - micrel,force-master:
+-        Boolean, force phy to master mode. Only set this option if the phy
+-        reference clock provided at CLK125_NDO pin is used as MAC reference
+-        clock because the clock jitter in slave mode is too high (errata#2).
+-        Attention: The link partner must be configurable as slave otherwise
+-        no link will be established.
+-
+-KSZ9131:
+-LAN8841:
+-
+-  All skew control options are specified in picoseconds. The increment
+-  step is 100ps. Unlike KSZ9031, the values represent picoseccond delays.
+-  A negative value can be assigned as rxc-skew-psec = <(-100)>;.
+-
+-  Optional properties:
+-
+-    Range of the value -700 to 2400, default value 0:
+-
+-      - rxc-skew-psec : Skew control of RX clock pad
+-      - txc-skew-psec : Skew control of TX clock pad
+-
+-    Range of the value -700 to 800, default value 0:
+-
+-      - rxdv-skew-psec : Skew control of RX CTL pad
+-      - txen-skew-psec : Skew control of TX CTL pad
+-      - rxd0-skew-psec : Skew control of RX data 0 pad
+-      - rxd1-skew-psec : Skew control of RX data 1 pad
+-      - rxd2-skew-psec : Skew control of RX data 2 pad
+-      - rxd3-skew-psec : Skew control of RX data 3 pad
+-      - txd0-skew-psec : Skew control of TX data 0 pad
+-      - txd1-skew-psec : Skew control of TX data 1 pad
+-      - txd2-skew-psec : Skew control of TX data 2 pad
+-      - txd3-skew-psec : Skew control of TX data 3 pad
+-
+-Examples:
+-
+-	/* Attach to an Ethernet device with autodetected PHY */
+-	&enet {
+-		rxc-skew-ps = <1800>;
+-		rxdv-skew-ps = <0>;
+-		txc-skew-ps = <1800>;
+-		txen-skew-ps = <0>;
+-		status = "okay";
+-	};
+-
+-	/* Attach to an explicitly-specified PHY */
+-	mdio {
+-		phy0: ethernet-phy@0 {
+-			rxc-skew-ps = <1800>;
+-			rxdv-skew-ps = <0>;
+-			txc-skew-ps = <1800>;
+-			txen-skew-ps = <0>;
+-			reg = <0>;
+-		};
+-	};
+-	ethernet@70000 {
+-		phy = <&phy0>;
+-		phy-mode = "rgmii-id";
+-	};
+-
+-References
+-
+-  Micrel ksz9021rl/rn Data Sheet, Revision 1.2. Dated 2/13/2014.
+-  http://www.micrel.com/_PDF/Ethernet/datasheets/ksz9021rl-rn_ds.pdf
+-
+-  Micrel ksz9031rnx Data Sheet, Revision 2.1. Dated 11/20/2014.
+-  http://www.micrel.com/_PDF/Ethernet/datasheets/KSZ9031RNX.pdf
+-
+-Notes:
+-
+-  Note that a previous version of the Micrel ksz9021rl/rn Data Sheet
+-  was missing extended register 106 (transmit data pad skews), and
+-  incorrectly specified the ps per step as 200ps/step instead of
+-  120ps/step. The latest update to this document reflects the latest
+-  revision of the Micrel specification even though usage in the kernel
+-  still reflects that incorrect document.
+diff --git a/Documentation/devicetree/bindings/net/micrel.txt b/Documentation/devicetree/bindings/net/micrel.txt
+deleted file mode 100644
+index 01622ce58112e..0000000000000
+--- a/Documentation/devicetree/bindings/net/micrel.txt
++++ /dev/null
+@@ -1,57 +0,0 @@
+-Micrel PHY properties.
+-
+-These properties cover the base properties Micrel PHYs.
+-
+-Optional properties:
+-
+- - micrel,led-mode : LED mode value to set for PHYs with configurable LEDs.
+-
+-	Configure the LED mode with single value. The list of PHYs and the
+-	bits that are currently supported:
+-
+-	KSZ8001: register 0x1e, bits 15..14
+-	KSZ8041: register 0x1e, bits 15..14
+-	KSZ8021: register 0x1f, bits 5..4
+-	KSZ8031: register 0x1f, bits 5..4
+-	KSZ8051: register 0x1f, bits 5..4
+-	KSZ8081: register 0x1f, bits 5..4
+-	KSZ8091: register 0x1f, bits 5..4
+-	LAN8814: register EP5.0, bit 6
+-
+-	See the respective PHY datasheet for the mode values.
+-
+- - micrel,rmii-reference-clock-select-25-mhz: RMII Reference Clock Select
+-						bit selects 25 MHz mode
+-
+-	Setting the RMII Reference Clock Select bit enables 25 MHz rather
+-	than 50 MHz clock mode.
+-
+-	Note that this option is only needed for certain PHY revisions with a
+-	non-standard, inverted function of this configuration bit.
+-	Specifically, a clock reference ("rmii-ref" below) is always needed to
+-	actually select a mode.
+-
+- - clocks, clock-names: contains clocks according to the common clock bindings.
+-
+-	supported clocks:
+-	- KSZ8021, KSZ8031, KSZ8081, KSZ8091: "rmii-ref": The RMII reference
+-	  input clock. Used to determine the XI input clock.
+-
+- - micrel,fiber-mode: If present the PHY is configured to operate in fiber mode
+-
+-	Some PHYs, such as the KSZ8041FTL variant, support fiber mode, enabled
+-	by the FXEN boot strapping pin. It can't be determined from the PHY
+-	registers whether the PHY is in fiber mode, so this boolean device tree
+-	property can be used to describe it.
+-
+-	In fiber mode, auto-negotiation is disabled and the PHY can only work in
+-	100base-fx (full and half duplex) modes.
+-
+- - coma-mode-gpios: If present the given gpio will be deasserted when the
+-		    PHY is probed.
+-
+-	Some PHYs have a COMA mode input pin which puts the PHY into
+-	isolate and power-down mode. On some boards this input is connected
+-	to a GPIO of the SoC.
+-
+-	Supported on the LAN8814.
+diff --git a/Documentation/devicetree/bindings/net/micrel.yaml b/Documentation/devicetree/bindings/net/micrel.yaml
+new file mode 100644
+index 0000000000000..f48e9b9120ca0
+--- /dev/null
++++ b/Documentation/devicetree/bindings/net/micrel.yaml
+@@ -0,0 +1,527 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/net/micrel.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Micrel KSZ series PHYs and switches
++
++maintainers:
++  - Andrew Lunn <andrew@lunn.ch>
++  - Stefan Eichenberger <eichest@gmail.com>
++
++description: |
++  The Micrel KSZ series contains different network phys and switches.
++
++  Some boards require special tuning values, particularly when it comes to
++  clock delays. You can specify clock delay values in the PHY OF device node.
++
++properties:
++  compatible:
++    enum:
++      - ethernet-phy-id000e.7237 # KSZ8873MLL
++      - ethernet-phy-id0022.1430 # KSZ886X
++      - ethernet-phy-id0022.1435 # KSZ8863
++      - ethernet-phy-id0022.1510 # KSZ8041
++      - ethernet-phy-id0022.1537 # KSZ8041RNLI
++      - ethernet-phy-id0022.1550 # KSZ8051
++      - ethernet-phy-id0022.1555 # KSZ8021
++      - ethernet-phy-id0022.1556 # KSZ8031
++      - ethernet-phy-id0022.1560 # KSZ8081, KSZ8091
++      - ethernet-phy-id0022.1570 # KSZ8061
++      - ethernet-phy-id0022.1610 # KSZ9021
++      - ethernet-phy-id0022.1611 # KSZ9021RLRN
++      - ethernet-phy-id0022.161a # KSZ8001
++      - ethernet-phy-id0022.1620 # KSZ9031
++      - ethernet-phy-id0022.1631 # KSZ9477
++      - ethernet-phy-id0022.1640 # KSZ9131
++      - ethernet-phy-id0022.1650 # LAN8841
++      - ethernet-phy-id0022.1660 # LAN8814
++      - ethernet-phy-id0022.1670 # LAN8804
++      - ethernet-phy-id0022.1720 # KS8737
++
++allOf:
++  - $ref: ethernet-phy.yaml#
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: ethernet-phy-id0022.1510
++    then:
++      properties:
++        micrel,fiber-mode:
++          type: boolean
++          description: |
++            If present the PHY is configured to operate in fiber mode.
++
++            The KSZ8041FTL variant, supports fiber mode, enabled by the FXEN
++            boot strapping pin. It can't be determined from the PHY registers
++            whether the PHY is in fiber mode, so this boolean device tree
++            property can be used to describe it.
++
++            In fiber mode, auto-negotiation is disabled and the PHY can only work in
++            100base-fx (full and half duplex) modes.
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - ethernet-phy-id0022.1555
++              - ethernet-phy-id0022.1556
++              - ethernet-phy-id0022.1560
++    then:
++      properties:
++        clock-names:
++          const: rmii-ref
++          description: |
++            supported clocks:
++              - The RMII reference input clock. Used to determine the XI
++                input clock.
++        micrel,rmii-reference-clock-select-25-mhz:
++          type: boolean
++          description: |
++            RMII Reference Clock Select bit selects 25 MHz mode
++
++            Setting the RMII Reference Clock Select bit enables 25 MHz rather
++            than 50 MHz clock mode.
++
++            Note that this option in only needed for certain PHY revisions with a
++            non-standard, inverted function of this configuration bit.
++            Specifically, a clock reference ("rmii-ref") is always needed to
++            actually select a mode.
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: ethernet-phy-id0022.1660
++    then:
++      properties:
++        coma-mode-gpios:
++          maxItems: 1
++          description: |
++            If present the given gpio will be deasserted when the PHY is probed.
++
++            Some PHYs have a COMA mode input pin which puts the PHY into
++            isolate and power-down mode. On some boards this input is connected
++            to a GPIO of the SoC.
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - ethernet-phy-id0022.1510
++              - ethernet-phy-id0022.1555
++              - ethernet-phy-id0022.1556
++              - ethernet-phy-id0022.1550
++              - ethernet-phy-id0022.1560
++              - ethernet-phy-id0022.161a
++              - ethernet-phy-id0022.1660
++    then:
++      properties:
++        micrel,led-mode:
++          description: |
++            LED mode value to set for PHYs with configurable LEDs.
++
++            Configure the LED mode with single value. The list of PHYs and the
++            bits that are currently supported:
++
++            KSZ8001: register 0x1e, bits 15..14
++            KSZ8041: register 0x1e, bits 15..14
++            KSZ8021: register 0x1f, bits 5..4
++            KSZ8031: register 0x1f, bits 5..4
++            KSZ8051: register 0x1f, bits 5..4
++            KSZ8081: register 0x1f, bits 5..4
++            KSZ8091: register 0x1f, bits 5..4
++            LAN8814: register EP5.0, bit 6
++
++            See the respective PHY datasheet for the mode values.
++          minimum: 0
++          maximum: 3
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: ethernet-phy-id0022.1620
++    then:
++      properties:
++        enable-edpd:
++          type: boolean
++          description:
++            Enable Energy Detect Power Down mode. Reduces power consumption when the
++            link is down.
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - ethernet-phy-id0022.1555
++              - ethernet-phy-id0022.1556
++              - ethernet-phy-id0022.1560
++    then:
++      properties:
++        clock-names:
++          const: rmii-ref
++          description: |
++            supported clocks:
++              - The RMII reference input clock. Used to determine the XI
++                input clock.
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - ethernet-phy-id0022.1610
++              - ethernet-phy-id0022.1611
++    then:
++      properties:
++        rxc-skew-ps:
++          description: |
++            Skew control of RXC pad (picoseconds). A value of 0 equals to a
++            skew of -840ps. Increments of 200ps are allowed.
++
++            The actual increment on the chip is 120ps ranging from -840ps to
++            960ps, this mismatch comes from a documentation error before
++            datasheet revision 1.2 (Feb 2014):
++          minimum: 0
++          maximum: 3000
++          default: 1400
++        txc-skew-ps:
++          description: |
++            Skew control of TXC pad (picoseconds). A value of 0 equals to a
++            skew of -840ps. Increments of 200ps are allowed.
++
++            The actual increment on the chip is 120ps ranging from -840ps to
++            960ps, this mismatch comes from a documentation error before
++            datasheet revision 1.2 (Feb 2014):
++          minimum: 0
++          maximum: 3000
++          default: 1400
++        rxdv-skew-ps:
++          description: |
++            Skew control of RX CTL pad (picoseconds). A value of 0 equals to a
++            skew of -840ps. Increments of 200ps are allowed.
++
++            The actual increment on the chip is 120ps ranging from -840ps to
++            960ps, this mismatch comes from a documentation error before
++            datasheet revision 1.2 (Feb 2014):
++          minimum: 0
++          maximum: 3000
++          default: 1400
++        txen-skew-ps:
++          description: |
++            Skew control of TX CTL pad (picoseconds). A value of 0 equals to a
++            skew of -840ps. Increments of 200ps are allowed.
++
++            The actual increment on the chip is 120ps ranging from -840ps to
++            960ps, this mismatch comes from a documentation error before
++            datasheet revision 1.2 (Feb 2014):
++          minimum: 0
++          maximum: 3000
++          default: 1400
++        rxd0-skew-ps:
++          description: |
++            Skew control of RX data 0 pad (picoseconds). A value of 0 equals to
++            a skew of -840ps. Increments of 200ps are allowed.
++
++            The actual increment on the chip is 120ps ranging from -840ps to
++            960ps, this mismatch comes from a documentation error before
++            datasheet revision 1.2 (Feb 2014):
++          minimum: 0
++          maximum: 3000
++          default: 1400
++        rxd1-skew-ps:
++          description: |
++            Skew control of RX data 1 pad (picoseconds). A value of 0 equals to
++            a skew of -840ps. Increments of 200ps are allowed.
++
++            The actual increment on the chip is 120ps ranging from -840ps to
++            960ps, this mismatch comes from a documentation error before
++            datasheet revision 1.2 (Feb 2014):
++          minimum: 0
++          maximum: 3000
++          default: 1400
++        rxd2-skew-ps:
++          description: |
++            Skew control of RX data 2 pad (picoseconds). A value of 0 equals to
++            a skew of -840ps. Increments of 200ps are allowed.
++
++            The actual increment on the chip is 120ps ranging from -840ps to
++            960ps, this mismatch comes from a documentation error before
++            datasheet revision 1.2 (Feb 2014):
++          minimum: 0
++          maximum: 3000
++          default: 1400
++        rxd3-skew-ps:
++          description: |
++            Skew control of RX data 3 pad (picoseconds). A value of 0 equals to
++            a skew of -840ps. Increments of 200ps are allowed.
++
++            The actual increment on the chip is 120ps ranging from -840ps to
++            960ps, this mismatch comes from a documentation error before
++            datasheet revision 1.2 (Feb 2014):
++          minimum: 0
++          maximum: 3000
++          default: 1400
++        txd0-skew-ps:
++          description: |
++            Skew control of TX data 0 pad (picoseconds). A value of 0 equals to
++            a skew of -840ps. Increments of 200ps are allowed.
++
++            The actual increment on the chip is 120ps ranging from -840ps to
++            960ps, this mismatch comes from a documentation error before
++            datasheet revision 1.2 (Feb 2014):
++          minimum: 0
++          maximum: 3000
++          default: 1400
++        txd1-skew-ps:
++          description: |
++            Skew control of TX data 1 pad (picoseconds). A value of 0 equals to
++            a skew of -840ps. Increments of 200ps are allowed.
++
++            The actual increment on the chip is 120ps ranging from -840ps to
++            960ps, this mismatch comes from a documentation error before
++            datasheet revision 1.2 (Feb 2014):
++          minimum: 0
++          maximum: 3000
++          default: 1400
++        txd2-skew-ps:
++          description: |
++            Skew control of TX data 2 pad (picoseconds). A value of 0 equals to
++            a skew of -840ps. Increments of 200ps are allowed.
++
++            The actual increment on the chip is 120ps ranging from -840ps to
++            960ps, this mismatch comes from a documentation error before
++            datasheet revision 1.2 (Feb 2014):
++          minimum: 0
++          maximum: 3000
++          default: 1400
++        txd3-skew-ps:
++          description: |
++            Skew control of TX data 3 pad (picoseconds). A value of 0 equals to
++            a skew of -840ps. Increments of 200ps are allowed.
++
++            The actual increment on the chip is 120ps ranging from -840ps to
++            960ps, this mismatch comes from a documentation error before
++            datasheet revision 1.2 (Feb 2014):
++          minimum: 0
++          maximum: 3000
++          default: 1400
++    else:
++      if:
++        properties:
++          compatible:
++            contains:
++              const: ethernet-phy-id0022.1620
++      then:
++        properties:
++          rxc-skew-ps:
++            description: |
++              Skew control of RXC pad (picoseconds). A value of 0 equals to a skew
++              of -900ps. Increments of 60ps are allowed.
++            minimum: 0
++            maximum: 1860
++            default: 900
++          txc-skew-ps:
++            description: |
++              Skew control of TXC pad (picoseconds). A value of 0 equals to a skew
++              of -900ps. Increments of 60ps are allowed.
++            minimum: 0
++            maximum: 1860
++            default: 900
++          rxdv-skew-ps:
++            description: |
++              Skew control of RX CTL pad (picoseconds). A value of 0 equals to a
++              skew of -420ps. Increments of 60ps are allowed.
++            minimum: 0
++            maximum: 900
++            default: 420
++          txen-skew-ps:
++            description: |
++              Skew control of TX CTL pad (picoseconds). A value of 0 equals to a
++              skew of -420ps. Increments of 60ps are allowed.
++            minimum: 0
++            maximum: 900
++            default: 420
++          rxd0-skew-ps:
++            description: |
++              Skew control of RX data 0 pad (picoseconds). A value of 0 equals to a
++              skew of -420ps. Increments of 60ps are allowed.
++            minimum: 0
++            maximum: 900
++            default: 420
++          rxd1-skew-ps:
++            description: |
++              Skew control of RX data 1 pad (picoseconds). A value of 0 equals to a
++              skew of -420ps. Increments of 60ps are allowed.
++            minimum: 0
++            maximum: 900
++            default: 420
++          rxd2-skew-ps:
++            description: |
++              Skew control of RX data 2 pad (picoseconds). A value of 0 equals to a
++              skew of -420ps. Increments of 60ps are allowed.
++            minimum: 0
++            maximum: 900
++            default: 420
++          rxd3-skew-ps:
++            description: |
++              Skew control of RX data 3 pad (picoseconds). A value of 0 equals to a
++              skew of -420ps. Increments of 60ps are allowed.
++            minimum: 0
++            maximum: 900
++            default: 420
++          txd0-skew-ps:
++            description: |
++              Skew control of TX data 0 pad (picoseconds). A value of 0 equals to a
++              skew of -420ps. Increments of 60ps are allowed.
++            minimum: 0
++            maximum: 900
++            default: 420
++          txd1-skew-ps:
++            description: |
++              Skew control of TX data 1 pad (picoseconds). A value of 0 equals to a
++              skew of -420ps. Increments of 60ps are allowed.
++            minimum: 0
++            maximum: 900
++            default: 420
++          txd2-skew-ps:
++            description: |
++              Skew control of TX data 2 pad (picoseconds). A value of 0 equals to a
++              skew of -420ps. Increments of 60ps are allowed.
++            minimum: 0
++            maximum: 900
++            default: 420
++          txd3-skew-ps:
++            description: |
++              Skew control of TX data 3 pad (picoseconds). A value of 0 equals to a
++              skew of -420ps. Increments of 60ps are allowed.
++            minimum: 0
++            maximum: 900
++            default: 420
++      else:
++        if:
++          properties:
++            compatible:
++              contains:
++                enum:
++                  - ethernet-phy-id0022.1640
++                  - ethernet-phy-id0022.1660
++        then:
++          properties:
++            rxc-skew-psec:
++              description: |
++                Skew control of RXC pad (picoseconds). A value of 0 equals to a
++                skew value of 0ps. Increments of 100ps are allowed.
++              minimum: -700
++              maximum: 2400
++              default: 0
++            txc-skew-psec:
++              description: |
++                Skew control of TXC pad (picoseconds). A value of 0 equals to a
++                skew value of 0ps. Increments of 100ps are allowed.
++              minimum: -700
++              maximum: 2400
++              default: 0
++            rxdv-skew-psec:
++              description: |
++                Skew control of RX CTL pad (picoseconds). A value of 0 equals to a
++                skew value of 0ps. Increments of 100ps are allowed.
++              minimum: -700
++              maximum: 800
++              default: 0
++            txen-skew-psec:
++              description: |
++                Skew control of TX CTL pad (picoseconds). A value of 0 equals to a
++                skew value of 0ps. Increments of 100ps are allowed.
++              minimum: -700
++              maximum: 800
++              default: 0
++            rxd0-skew-psec:
++              description: |
++                Skew control of RX data 0 pad (picoseconds). A value of 0 equals to
++                a skew value of 0ps. Increments of 100ps are allowed.
++              minimum: -700
++              maximum: 800
++              default: 0
++            rxd1-skew-psec:
++              description: |
++                Skew control of RX data 1 pad (picoseconds). A value of 0 equals to
++                a skew value of 0ps. Increments of 100ps are allowed.
++              minimum: -700
++              maximum: 800
++              default: 0
++            rxd2-skew-psec:
++              description: |
++                Skew control of RX data 2 pad (picoseconds). A value of 0 equals to
++                a skew value of 0ps. Increments of 100ps are allowed.
++              minimum: -700
++              maximum: 800
++              default: 0
++            rxd3-skew-psec:
++              description: |
++                Skew control of RX data 3 pad (picoseconds). A value of 0 equals to
++                a skew value of 0ps. Increments of 100ps are allowed.
++              minimum: -700
++              maximum: 800
++              default: 0
++            txd0-skew-psec:
++              description: |
++                Skew control of TX data 0 pad (picoseconds). A value of 0 equals to
++                a skew value of 0ps. Increments of 100ps are allowed.
++              minimum: -700
++              maximum: 800
++              default: 0
++            txd1-skew-psec:
++              description: |
++                Skew control of TX data 1 pad (picoseconds). A value of 0 equals to
++                a skew value of 0ps. Increments of 100ps are allowed.
++              minimum: -700
++              maximum: 800
++              default: 0
++            txd2-skew-psec:
++              description: |
++                Skew control of TX data 2 pad (picoseconds). A value of 0 equals to
++                a skew value of 0ps. Increments of 100ps are allowed.
++              minimum: -700
++              maximum: 800
++              default: 0
++            txd3-skew-psec:
++              description: |
++                Skew control of TX data 3 pad (picoseconds). A value of 0 equals to
++                a skew value of 0ps. Increments of 100ps are allowed.
++              minimum: -700
++              maximum: 800
++              default: 0
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    ethernet {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++
++        ethernet-phy@5 {
++            compatible = "ethernet-phy-id0022.1510";
++            reg = <5>;
++            micrel,led-mode = <2>;
++            micrel,fiber-mode;
++        };
++
++        ethernet-phy@7 {
++            compatible = "ethernet-phy-id0022.1610";
++            reg = <7>;
++            rxc-skew-ps = <3000>;
++            rxdv-skew-ps = <0>;
++            txc-skew-ps = <3000>;
++            txen-skew-ps = <0>;
++        };
++
++        ethernet-phy@9 {
++            compatible = "ethernet-phy-id0022.1640";
++            reg = <9>;
++            rxc-skew-psec = <(-100)>;
++            txc-skew-psec = <(-100)>;
++        };
++    };
 -- 
 2.51.0
 
