@@ -1,174 +1,125 @@
-Return-Path: <devicetree+bounces-246168-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246170-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11CEACB95F1
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 17:55:14 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 627EECB965E
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 18:03:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id CD791300BA34
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 16:55:12 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 8947B30194CB
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 17:02:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A8A72DCBF3;
-	Fri, 12 Dec 2025 16:55:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 977D72D5935;
+	Fri, 12 Dec 2025 17:02:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QWbX+/F4"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="yAwlgqhA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E91B2153EA
-	for <devicetree@vger.kernel.org>; Fri, 12 Dec 2025 16:55:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C35E20E005;
+	Fri, 12 Dec 2025 17:02:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765558511; cv=none; b=p6pikXcQBdAAdFegen0YjwWhvyyKmva/0XIMkyciSEa8/0OGQcKLbmYEa1OPj1LH6pzkiOCAEeay36Sa3btKFsqCahO4t9ZjwMpWi8JVwzmuOfdhQnsSdJiw0wj5UXNVNoV4dCll7mJUWrVgT00Vism3hHdvTLjcHEiHmiD36uw=
+	t=1765558966; cv=none; b=f/INaAwHcZQs9apRAYxtjJkir7mRkOaEO7lQHVqb8EdiQgiFb/+xmWojykS2TeWPe149KGtN37kEGO+A3gExy3K5ZA1lSN9CncUoicXh72WrDhqa9WU5b6Q8Fn01sMviCvyYryvBBQPvXrRFy+JCwwmrxCZASTB3M3nVyPTFs5U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765558511; c=relaxed/simple;
-	bh=ZSdEYNBQZmpD2tooK1Re5wdlIsvwhaGcrS9FBRtGE/8=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=V7GAfyN/oxQF1/sg70o+prQLcXrTXoaAwJa7LjSWNc07XRC1VRtmoHPCCKsEq2aYoWkScSdKRQc42o+KnmIjKEcCMuK4sZW6vMkd921rvkfhGMProwutbtk+cavc/bX5lgsd80kDpulYKiQr8OjhHDV5kVRpd44flWFG4rssMsA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QWbX+/F4; arc=none smtp.client-ip=209.85.221.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-42fb0fc5aa4so862069f8f.1
-        for <devicetree@vger.kernel.org>; Fri, 12 Dec 2025 08:55:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1765558508; x=1766163308; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=ZSdEYNBQZmpD2tooK1Re5wdlIsvwhaGcrS9FBRtGE/8=;
-        b=QWbX+/F4E2QZje7nQG4bOnogQiugfBB3gK++Zz/i5pyXvG5DyC0eOnEoGJMZIfQaHZ
-         te4H9jln5PMWu3voqRdhcpXcdGSleQpQHu3TXbxZXRfosHU1REfVTx0o7ejJa0c82W7B
-         ycubrkCIHV9agtbSeMkLfNyJuhv3827WXAIVQ4BTjxmKafkMmc26nxKi3yntI49wwR61
-         3DBPQRT2mBPF6DCRsdg00IGgt65NRgODO36x9Qe2gAncaOrxgrm+XapP+81j8Sl78417
-         bjkfcVSTsq1U6702JkZomm8xz7LLMkDYV3xvUZj3EPPmVmt/Q1/9H8Dq+yPF5K44E9Ml
-         qyZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765558508; x=1766163308;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZSdEYNBQZmpD2tooK1Re5wdlIsvwhaGcrS9FBRtGE/8=;
-        b=B4+fZtdCEXZZHwAb3lOTnlTPl8QfV5ZVCpWJ59pvgH/57x+TWmV0D3OwtyoRmcQipj
-         8niBBAIv83ctIm+G1RuuctzuKX0AlsWqZ+E3xBUqmvf1mSop18Y9sPpKrYHwCfTCXI2H
-         rlb4BEWzVoxRfkL5eMx+s3XoM8Bcsh+sDpqViwXQ/X09llFaz4gZn6xMlPb2rl0pBBsx
-         sIF88K/WhT1gsdQARyAzTvxB2U8GliSXfE9t80le6OHDc8RVrCt1BGYB0ju7+gGCfPKx
-         /7MKLGpKyF3m+t6/lFtDX6yWdc75aII88dK5e7T7uPsFJQX2kEs5LlSbyab+OI+pwtKt
-         dKCA==
-X-Forwarded-Encrypted: i=1; AJvYcCV53h23xGjwCE1MaqW7ELyiwERbRzunJVu021GK/dp+i8hwm3rBSAQG25h0V9dX6uOQ/JFF79iKubEq@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz/WeS1tMoE1G+bMf6Pzg9pzWEKhf3lOY1JOuGP9ry3HGFOZy1K
-	4XyiFrp5CA/YHn4hNmKPMAum8ukNEKEsJEU4JYBWxwlOS1O8Nn3vIw9x
-X-Gm-Gg: AY/fxX6F4BAGoEgOJpn+BEUknnhikxk+6cuilXDjKqoBeupm9DaezhKlCcBXwdP94l1
-	ruX2HCEgNwg3XnD7mH5gcTDx3+5U5VTCQRqYIRD+Z7CQQt+TpGMBaJEH+2+hHcDNVuEau4olxt1
-	w1//9GTfuF+QZX9B4tbc0eotT36h3aKQKQeUByYUsDSZiTU6Y+i21nWeoebrp5avwaBB3PW7p8P
-	sulbaWtQFK//+CHwBZSPcFM3CJTqMrB4eiL9kOLypSA0v5nZFtfHoF6WeSVY40L2ojr7wsgFuia
-	3bM6YSV+0dCTjSSMjKGBe5/QO7uQcsKeGAMUoTe5WY921sMQLuIMm2h2RUr2lWyrPeP63mRQXJU
-	3/SLD4qgbXIJFl22Fk1/N2wRB8jp0pH04WyNg0ra6Uu7Sc7op89gbcqyyTprVREz4lWZuGGuqt7
-	Iy4dBmewOVhTkVubV+dUg=
-X-Google-Smtp-Source: AGHT+IG2FHJPf4h+6NnUN/J0xatATINNGdkgXy2Mr82izBMwFzE+zbujDdnvd6sCuR4Ij6NDN+G5Bw==
-X-Received: by 2002:a05:6000:2dca:b0:42f:b1c2:c35d with SMTP id ffacd0b85a97d-42fb48e460dmr3260075f8f.50.1765558507843;
-        Fri, 12 Dec 2025 08:55:07 -0800 (PST)
-Received: from [192.168.1.187] ([161.230.67.253])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42fb0fc8d5fsm5630678f8f.2.2025.12.12.08.55.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Dec 2025 08:55:07 -0800 (PST)
-Message-ID: <f530e0c818048bb3ce5c3505a35c1ef99acdf9f1.camel@gmail.com>
-Subject: Re: [PATCH v4 2/3] hwmon: ltc4283: Add support for the LTC4283 Swap
- Controller
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Guenter Roeck <linux@roeck-us.net>, nuno.sa@analog.com, 
-	linux-hwmon@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-doc@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>,  Jean Delvare <jdelvare@suse.com>, Jonathan Corbet
- <corbet@lwn.net>, Linus Walleij <linus.walleij@linaro.org>,  Bartosz
- Golaszewski	 <brgl@bgdev.pl>
-Date: Fri, 12 Dec 2025 16:55:48 +0000
-In-Reply-To: <ee7b7dcf-7756-4ffc-8a2c-e2cf33aac725@roeck-us.net>
-References: <20251204-ltc4283-support-v4-0-db0197fd7984@analog.com>
-	 <20251204-ltc4283-support-v4-2-db0197fd7984@analog.com>
-	 <144d50f7-398c-4b10-bd21-a6d0c6c7b4c8@roeck-us.net>
-	 <67209860ae2ff5626b7eaa50f2dd4b496eaa06d3.camel@gmail.com>
-	 <ee7b7dcf-7756-4ffc-8a2c-e2cf33aac725@roeck-us.net>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.2 
+	s=arc-20240116; t=1765558966; c=relaxed/simple;
+	bh=4jwcUsFKsfuuWXlTypFzWcLKnYZAIVqSoXXqqnQAXog=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KLvaMs3CV268swYTJUlBgjGHDTvzS7cueZdVXXExL7QMLGoClu8Wted2nnD51ZYwdcfZQsXYfZV3vHynMegg0WltLT5Z6d3k2uZj3/wCqd2k/7prZn9UvGq3x7U9+SwKMWV9prkQb17Aznc/09zWlYbwQMi3TQ6TPvWbemxgYzU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=yAwlgqhA; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=OxDAj0WJw7n42iSz1VgIvGe+3TZ3z5y6U/4TSqX2ovA=; b=yAwlgqhA51fiOwVd64CpHI9k2o
+	7NzOfrkQsMBF0nLnBkKvLQ7cucH4dHX32/lyHPPu+SllYOlIlSCQMBN6lX1wMPjhaEFIYW6FyI5PN
+	p6Tnrx5Q9YrMVPse8viuJg6UazUGr3ODSNr5j30QzZAUfZOQkt28vAF2YTuTCnDDIBls=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1vU6XF-00GmpX-1P; Fri, 12 Dec 2025 18:02:29 +0100
+Date: Fri, 12 Dec 2025 18:02:29 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Daniel Golle <daniel@makrotopia.org>
+Cc: Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
+	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Frank Wunderlich <frankwu@gmx.de>,
+	Avinash Jayaraman <ajayaraman@maxlinear.com>,
+	Bing tao Xu <bxu@maxlinear.com>, Liang Xu <lxu@maxlinear.com>,
+	Juraj Povazanec <jpovazanec@maxlinear.com>,
+	"Fanni (Fang-Yi) Chan" <fchan@maxlinear.com>,
+	"Benny (Ying-Tsan) Weng" <yweng@maxlinear.com>,
+	"Livia M. Rosu" <lrosu@maxlinear.com>,
+	John Crispin <john@phrozen.org>
+Subject: Re: [PATCH RFC net-next 3/3] net: dsa: add basic initial driver for
+ MxL862xx switches
+Message-ID: <7526cccd-4a5a-48fc-b3e3-fa8159e69401@lunn.ch>
+References: <cover.1764717476.git.daniel@makrotopia.org>
+ <d92766bc84e409e6fafdc5e3505573662dc19d08.1764717476.git.daniel@makrotopia.org>
+ <c6525467-2229-4941-803d-1be5efb431c3@lunn.ch>
+ <aTmPjw83jFQXgWQt@makrotopia.org>
+ <d5ea5bee-40c5-43f5-9238-ced5ca1904b7@lunn.ch>
+ <aTxHq8PGNPCzZngk@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aTxHq8PGNPCzZngk@makrotopia.org>
 
-On Fri, 2025-12-12 at 08:46 -0800, Guenter Roeck wrote:
-> On 12/12/25 08:34, Nuno S=C3=A1 wrote:
-> > On Sat, 2025-12-06 at 10:40 -0800, Guenter Roeck wrote:
-> > > On 12/4/25 08:15, Nuno S=C3=A1 via B4 Relay wrote:
-> > > > From: Nuno S=C3=A1 <nuno.sa@analog.com>
-> > > >=20
-> > > > Support the LTC4283 How Swap Controller. The device features progra=
-mmable
-> > > > current limit with foldback and independently adjustable inrush cur=
-rent to
-> > > > optimize the MOSFET safe operating area (SOA). The SOA timer limits=
- MOSFET
-> > > > temperature rise for reliable protection against overstresses.
-> > > >=20
-> > > > An I2C interface and onboard ADC allow monitoring of board current,
-> > > > voltage, power, energy, and fault status.
-> > > >=20
-> > > > Signed-off-by: Nuno S=C3=A1 <nuno.sa@analog.com>
-> > >=20
-> > > I finally found the time to write module test code for the driver.
-> > >=20
-> >=20
-> > Thanks!
-> >=20
-> > > Some early feedback:
-> > >=20
-> > > - The driver must work with non-devicetree systems and without device
-> > > =C2=A0=C2=A0=C2=A0 property support. Select defaults where necessary.
-> >=20
-> > I'll double check that... But one thing that already comes to mind is r=
-sense? Rsense
->=20
-> Yes.
->=20
-> > is the main design choice for a thing like this. Not sure we can decide=
- on a meaningful
-> > default for it? I believe we have the same situation for ltc4282.c
-> >=20
->=20
-> Agreed, but that doesn't make it better (and I don't have a unit test for=
- that chip).
-> Default would be your call. I usually go for 1 mOhm.
->=20
-> If you have access to it, can you send me a register dump for LTC4282 ?
+On Fri, Dec 12, 2025 at 04:49:47PM +0000, Daniel Golle wrote:
+> Hi Andrew,
+> 
+> On Wed, Dec 10, 2025 at 07:56:13PM +0100, Andrew Lunn wrote:
+> > > > > +	if (result < 0) {
+> > > > > +		ret = result;
+> > > > > +		goto out;
+> > > > > +	}
+> > > > 
+> > > > If i'm reading mxl862xx_send_cmd() correct, result is the value of a
+> > > > register. It seems unlikely this is a Linux error code?
+> > > 
+> > > Only someone with insights into the use of error codes by the uC
+> > > firmware can really answer that. However, as also Russell pointed out,
+> > > the whole use of s16 here with negative values being interpreted as
+> > > errors is fishy here, because in the end this is also used to read
+> > > registers from external MDIO connected PHYs which may return arbitrary
+> > > 16-bit values...
+> > > Someone in MaxLinear will need to clarify here.
+> > 
+> > It looks wrong, and since different architectures use different error
+> > code values, it is hard to get right. I would suggest you just return
+> > EPROTO or EIO and add a netdev_err() to print the value of result.
+> 
+> MaxLinear folks got back to me. So the error codes returned by the firmware
+> are basically based on Zephyr's errno.h which seems to be a copy of a BSD
+> header, see
+> 
+> https://github.com/zephyrproject-rtos/zephyr/blob/main/lib/libc/minimal/include/errno.h
+> 
+> So the best would probably be to modify and include that header with the
+> driver, together with a function translating the error codes to what ever
+> is defined in uapi/asm/errno.h for the architecture we are building for.
+> 
+> They also told me that (obviously) not all error codes are currently
+> used by the firmware, but the best would be to just catch all the possible
+> error codes and translate Zephyr libc -> Linux kernel.
 
-I'm doing home office these days and I'm not sure I brought that chip with =
-me. If I have
-it, I'll do it!
+That all sounds way too complex. We don't expect errors do we? So
+print the raw value, add a comment about how to manually translate the
+number to something potentially meaningful, and return -EIO.
 
->=20
-> > > - Attributes marked as readable in the is_visible function must be re=
-adable.
-> > > =C2=A0=C2=A0=C2=A0 It is not acceptable to return -EOPNOTSUPP. That a=
-pplies to all
-> > > =C2=A0=C2=A0=C2=A0 reset_history attributes and maybe to others.
-> >=20
-> > Hmm that's a mistake. They should be WO and I have the same bug in ltc4=
-282 so I need to
-> > send a patch.
-> >=20
->=20
-> ... which helps explain why I want to be able to run unit tests (which re=
-quires defaults).
->=20
-
-Makes sense. But from a dt bindings point of view, I assume we should still=
- keep it as a
-mandatory property?
-
-- Nuno S=C3=A1
-
+	  Andrew
 
