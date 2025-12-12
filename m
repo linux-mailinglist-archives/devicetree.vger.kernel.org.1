@@ -1,142 +1,144 @@
-Return-Path: <devicetree+bounces-246012-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246013-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02486CB7BE0
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 04:16:22 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC4C3CB7C2F
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 04:27:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id AE3203029F7A
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 03:15:43 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C6C2D3011B35
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 03:27:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30F6B2C325B;
-	Fri, 12 Dec 2025 03:15:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90F5B2C325B;
+	Fri, 12 Dec 2025 03:16:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="GmL1LiFF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dSinQq1F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A98802BE02A;
-	Fri, 12 Dec 2025 03:15:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7567B2C21E6;
+	Fri, 12 Dec 2025 03:16:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765509322; cv=none; b=I8r4o92flTYGNwc8Dr1cPH9qf6f9eyp1yFDaqJ8qTbyqdDipFdeT5s9/YQuJjcrEKpB7gvh6aANIj426j8CQD41KFtDC6d33A7vv2SIuss9j6lKhnsIGYI+K7H9qHWrPWNM3z2l7X523fmy4B1Ak7QpfLDlxgm8d1QxnY9IXe2E=
+	t=1765509395; cv=none; b=ccfrGNYe0HSWtR+Umx7fMfP7kgsp/H50vpimJvqa0v1oV/pgYEb7C7f5MZLtWtvB5DWgBVQdO5Bv8QPbWSnsanA6oLPQjBTo5399CeGVc1hi3guy63p/VPvUd4VerJ0r/dcIjK1THKWLtjvCNf7VRYmMBB55KDLDmbuNuaxxWUc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765509322; c=relaxed/simple;
-	bh=dS04nuxx+8yVH7wR2r8OWSN7II0lVE9ggH6hlNox+RM=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=n6Ei6NLKfw9swQFZxgbEVLLP8/6W2xdtKev8U0KCCGPjDJ+tpv+0JQwXjc4t/Ve8Bz1A/V07f8yJbtiTfeArAxyibh2uHIFdd3EBC18VqbSawApx+OIYIxG8TeV2bVwPqkVGvXvkd9bGOsJf5h5LgP0EL+5Z4GJXa8bVOKJeppA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=reject dis=none) header.from=mediatek.corp-partner.google.com; spf=fail smtp.mailfrom=mediatek.corp-partner.google.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=GmL1LiFF; arc=none smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=reject dis=none) header.from=mediatek.corp-partner.google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=mediatek.corp-partner.google.com
-X-UUID: c200d3ecd70811f0b2bf0b349165d6e0-20251212
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=uP6o3k14zjZ9k2pmrlwCKibulk4puvnqf209+mWCUco=;
-	b=GmL1LiFFcnq/pacUcICbjX92ZIZTa76QGy0Kffivce0HMeiD+C32zHdFnryViLF3EshaNAIEQkNQZeNl/7EJFYTNWamXssKJpyKi3BaJLOxX+/9Pxkzny2R/WryjpocCOydgP5XMeOs6CpHBg/fmuV6SvtW/9y3fzeI8mvdI1GQ=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.6,REQID:e71db7de-ec3d-43dc-a0a4-032c71405cda,IP:0,UR
-	L:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
-	elease,TS:0
-X-CID-META: VersionHash:a9d874c,CLOUDID:d9655ac6-8a73-4871-aac2-7b886d064f36,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:81|82|102|888|898,TC:-5,Content:0|15
-	|50,EDM:-3,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,
-	OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 2,SSN|SDN
-X-CID-BAS: 2,SSN|SDN,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: c200d3ecd70811f0b2bf0b349165d6e0-20251212
-Received: from mtkmbs14n1.mediatek.inc [(172.21.101.75)] by mailgw01.mediatek.com
-	(envelope-from <xiaoshun.xu@mediatek.corp-partner.google.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 719589274; Fri, 12 Dec 2025 11:15:06 +0800
-Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
- MTKMBS09N2.mediatek.inc (172.21.101.94) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26; Fri, 12 Dec 2025 11:15:04 +0800
-Received: from mtksitap99.mediatek.inc (10.233.130.16) by
- mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1748.26 via Frontend Transport; Fri, 12 Dec 2025 11:15:04 +0800
-From: Xiaoshun Xu <xiaoshun.xu@mediatek.corp-partner.google.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
-	<matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, Xiaoshun Xu
-	<xiaoshun.xu@mediatek.com>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
-	Sirius Wang <sirius.wang@mediatek.com>, Vince-wl Liu
-	<vince-wl.liu@mediatek.com>,
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH 4/4] soc: mediatek: mtk-devapc: refine DEVAPC irq handler
-Date: Fri, 12 Dec 2025 11:13:45 +0800
-Message-ID: <20251212031450.489128-5-xiaoshun.xu@mediatek.corp-partner.google.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20251212031450.489128-1-xiaoshun.xu@mediatek.corp-partner.google.com>
-References: <20251212031450.489128-1-xiaoshun.xu@mediatek.corp-partner.google.com>
+	s=arc-20240116; t=1765509395; c=relaxed/simple;
+	bh=l6T1YNEG5gbbAzo8++MsdtRY+Dl0AK1nAgwXDEotX94=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=RsHXBOuhv3u2cw70ech0XS0AsMAJvhSbxR5fAwXZbb3Zz/e4NmjP1L90RpexPsDOv/OWBzXQ8m0r9k02PzjUKUHauwn4KWTT2atZ8MqvX5R8gQfesOzN+WE9L5AcANrSGsPulfJKFaVRdFirT+O6M2l2YdSR92ySQ/4mR1jp6cI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dSinQq1F; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0CE9C4CEF1;
+	Fri, 12 Dec 2025 03:16:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1765509394;
+	bh=l6T1YNEG5gbbAzo8++MsdtRY+Dl0AK1nAgwXDEotX94=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=dSinQq1FfW0r5rYTFjlEOvNvFm3MwqLTEyeNn0Lzof2BD2eWO8a+G/OIH9M2qwCuD
+	 Sw7+V6SqiHNjnWYWbG6a9ULCMwa+qssajqDEpTr9YN2nvqnKJ+DM8+l3EW0rq8Em1q
+	 yHQub27OMEpkRv3HIjDDyrv94iWI5PwyLQba+r5zbKaIaLi4nrlOjkXvXKAaeQxRSD
+	 4SXcR3WMFIEKiwIVzicCD+5hbAWed3aH714+ZnxXDrYWAQyffIiHM0ov8UTS4cOK4h
+	 Igj8Sz05m9TxhEc4xXTeT9eSCoizIQgefyAhiRk29B29e6Vq+idvUDtPjhhBsfq3yq
+	 GtbXByeeZR47g==
+Message-ID: <a2810e51-1c59-46be-aa3a-411149001c70@kernel.org>
+Date: Fri, 12 Dec 2025 04:16:28 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/4] dt-bindings: media: mediatek-jpeg-decoder: add MT8189
+ compatible string
+To: Jianhua Lin <jianhua.lin@mediatek.com>, mchehab@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org,
+ Project_Global_Chrome_Upstream_Group@mediatek.com, sirius.wang@mediatek.com,
+ vince-wl.liu@mediatek.com, jh.hsu@mediatek.com
+References: <20251212015218.4689-1-jianhua.lin@mediatek.com>
+ <20251212015218.4689-3-jianhua.lin@mediatek.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20251212015218.4689-3-jianhua.lin@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+On 12/12/2025 02:52, Jianhua Lin wrote:
+> Compared to the previous generation IC, the MT8189 uses 34-bit
+> iova address-space. Therefore, add "mediatek,mt8189-jpgdec"
+> compatible to the binding document.
+> 
+> Signed-off-by: Jianhua Lin <jianhua.lin@mediatek.com>
+> ---
+>  .../bindings/media/mediatek-jpeg-decoder.yaml | 46 +++++++++++++++++--
+>  1 file changed, 41 insertions(+), 5 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.yaml b/Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.yaml
+> index a4aacd3eb189..935a908465c8 100644
+> --- a/Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.yaml
+> +++ b/Documentation/devicetree/bindings/media/mediatek-jpeg-decoder.yaml
+> @@ -19,11 +19,15 @@ properties:
+>            - enum:
+>                - mediatek,mt8173-jpgdec
+>                - mediatek,mt2701-jpgdec
+> +              - mediatek,mt8189-jpgdec
+>        - items:
+>            - enum:
+>                - mediatek,mt7623-jpgdec
+> -              - mediatek,mt8188-jpgdec
 
-External email : Please do not click links or open attachments until you ha=
-ve verified the sender or the content.
+That's ABI beak completely unexplained in the commit msg.
 
+No, please read carefully writing bindings doc before posting next DT patch.
 
-From: "xiaoshun.xu" <xiaoshun.xu@mediatek.com>
+I am not reviewing the rest.
 
-Because the violation IRQ uses a while loop, it might cause the
-system to remain in the interrupt handler indefinitely. We are
-currently optimizing this part of the process to handle only 20
-violations for debug violation issues, and then exit the loop
-
-Signed-off-by: xiaoshun.xu <xiaoshun.xu@mediatek.com>
----
- drivers/soc/mediatek/mtk-devapc.c | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/soc/mediatek/mtk-devapc.c b/drivers/soc/mediatek/mtk-d=
-evapc.c
-index 18964d82ff08..30b7ee8b880a 100644
---- a/drivers/soc/mediatek/mtk-devapc.c
-+++ b/drivers/soc/mediatek/mtk-devapc.c
-@@ -15,6 +15,8 @@
- #define VIO_MOD_TO_REG_IND(m)  ((m) / 32)
- #define VIO_MOD_TO_REG_OFF(m)  ((m) % 32)
-
-+#define MAX_VIO_NUM 20
-+
- struct mtk_devapc_vio_dbgs {
-        union {
-                u32 vio_dbg0;
-@@ -234,13 +236,18 @@ static void devapc_extract_vio_dbg(struct mtk_devapc_=
-context *ctx)
-  */
- static irqreturn_t devapc_violation_irq(int irq_number, void *data)
- {
-+       unsigned int vio_num =3D 0;
-        struct mtk_devapc_context *ctx =3D data;
-
--       while (devapc_sync_vio_dbg(ctx))
-+       mask_module_irq(ctx, true);
-+
-+       for (vio_num =3D 0; (vio_num < MAX_VIO_NUM) && (devapc_sync_vio_dbg=
-(ctx)); ++vio_num)
-                devapc_extract_vio_dbg(ctx);
-
-        clear_vio_status(ctx);
-
-+       mask_module_irq(ctx, false);
-+
-        return IRQ_HANDLED;
- }
-
---
-2.45.2
-
+Best regards,
+Krzysztof
 
