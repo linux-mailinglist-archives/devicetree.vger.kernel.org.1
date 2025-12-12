@@ -1,391 +1,152 @@
-Return-Path: <devicetree+bounces-246106-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246107-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55C54CB8A6A
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 11:50:21 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53E32CB8A8C
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 11:58:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 2234130069A7
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 10:50:20 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 3C4AD300721F
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 10:58:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A3393176EF;
-	Fri, 12 Dec 2025 10:50:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0BB8319608;
+	Fri, 12 Dec 2025 10:58:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="bbqFUS6Z"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lvgDn2ys"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C810F20B7ED
-	for <devicetree@vger.kernel.org>; Fri, 12 Dec 2025 10:50:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07F8031960F
+	for <devicetree@vger.kernel.org>; Fri, 12 Dec 2025 10:58:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765536618; cv=none; b=fNL0gEL5nmV3HCOIOEdj9t8zQM2VTRY13hyRR+vpnya1Okpww5u691jToL0OOCQpaxCRSZfARlYBO3XyjpSMRECWTgmxNpzatdJkeBb5Ccd5g5oCEScYwmqlbWZ1jbiYN00om75zeqNNCsauJaDNGuoCZGe162t8m4SLen7n0VQ=
+	t=1765537120; cv=none; b=GHYxmwQ8Bc0BX8sKSwwLZn9VZmhL5/WbNOS1RgivCVLhW0crioz2vhp28T8/f1p3N8wmsTbVPdhjk3cdqeLaW24oSNhUoXBD7Y/qCC64dWs/DDD6o+7YXlIslVTQ252abF+M5Hrsvd5TbE4cDdst2WB9/rJNujQHuNoJoyqgeZA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765536618; c=relaxed/simple;
-	bh=bHhkHahOZRRfzsqNDJSbsheb/JFACeIuxmaqOTjfSx4=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=phElGL9zaIdnhWzkDg4TNLN8/9Wxl1vU7skdiKZm3GYesbp0zWKDTvTEAb/j7PbnJ6CVEHbrIwE75abxd2Gm867wd82HMdYmKQ40KUZR9GoADvlmnQi2B8RuCJRpU3YMejaCDrVkKhjA+0ewYCA0ffGTeG8Fc4cKk4ggDRyz8SM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=bbqFUS6Z; arc=none smtp.client-ip=209.85.208.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-6418b55f86dso1483367a12.1
-        for <devicetree@vger.kernel.org>; Fri, 12 Dec 2025 02:50:15 -0800 (PST)
+	s=arc-20240116; t=1765537120; c=relaxed/simple;
+	bh=WqXxoSqrDnwsvdO/PSfoKvUqgPvzTsDKzE39KogF71s=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=jEuXWilwJHLHw6thfGYpcKKhdnvHsa6nXQuFQHYHuRmOsmzeJ+xbDptXoWVyjVrptxh8lTMFtQfNKaYJt+CNAnrpUyUs1RX4Pg74CplzwqtloHtO97EXeIkPArsRRWrnpbn1FmYrNbkEgovp2DQqUVcd6SgjKr2SfJp8EFS60uM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lvgDn2ys; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-47775fb6c56so8765585e9.1
+        for <devicetree@vger.kernel.org>; Fri, 12 Dec 2025 02:58:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1765536614; x=1766141414; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:date:from:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=oH5Dsb1naLnW7dWzGXhlOLJ/pnzetkUvxVuR5fJQEFg=;
-        b=bbqFUS6ZTv7RSzfNGgdIhiGIPInpCmZgbNUi3OZmoOGknwqA7KZnfHHw0MfUJ10zL+
-         MhF17O+xJSVpPJA8BcOgLdkoQtGBWXsEV42wzR1MMAhss95zIZK7+ne4hDtmVlUiyXnA
-         gvioxLNsmkB0zV2chgj8fsAkxMhA6ATpGj9trw5glzoKes+N2XAxWe5OydnKnkyspMWB
-         ksHmNWgCbEYb9lrZQoYPMHVa5O7bqO/2op3qa4EB0EKZ7HSHH9Rro0l5wJAtEd3Wnakb
-         q1Brirmsnb9fpCyVSNN5179qlIpNfG8T6x9iI2t3NAsaBp45YTbmIB/fU07eoxYWZl0w
-         kY6A==
+        d=gmail.com; s=20230601; t=1765537117; x=1766141917; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HqR+IQTeub3ZkC8GS6Wk65+OamU6y/VpkmKlXNe7HxQ=;
+        b=lvgDn2ysJzd39XPqVSstpGi+diianBQxBqw6zBAmxTHcLYzASsB+DmCYp1eD2GeaWX
+         z/5vK+XhzkDmVaxIqK/IaoqPPcuC1wxB8Wmi61huhdFulcrj7rYJ+fUhpcC6/zEq2tCf
+         EdDOWbAVbT2bVA7x1K/R79OGoz5Qg51+ojBpTi+R/PP8rd1g07yu1/zzUuXPSdiJ7eyw
+         UZPx8+fpJyLtWfoghz9zk8o1GSnVx4gXdbtn54v1dtl3YH5i2jd0Ua8CDa2CVhlB0+NF
+         wB8Ge06OxeYpywcbcXSqd+jJWeNGGJqMnrL5MH+QenmgwWWGF8hDHODj0TSx2DfhXWG8
+         10UA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765536614; x=1766141414;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:date:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oH5Dsb1naLnW7dWzGXhlOLJ/pnzetkUvxVuR5fJQEFg=;
-        b=WSymXRMI5eD2BF8XNIZwgQzXssQFM+0l49gzISVlJTDhzCUpZZFnM7oNMwNg5xXNG6
-         +WhJSjSeog+1cjmwUzBjIn2GTCsEmXG9hJpN++UsBlL++5lRiAWdh7qpaMVldt2bgDYC
-         u2Kc4T7cc6izlxz1Uk4N1Kf/NWjAXJsJ56ohjH8HXTQdYrNpMHa/c3J1jsGrYoByNSb6
-         X+w02suqvx3IPFOx2JSuSyWIOddrpOLlPCqdcYtIC+1c2UrPoqqOHg5SYaSuYanM58ME
-         eCme15s99YXEDhKOl7C3c4vRK6G40mwh7Je+voU7ioDOXS9fc/+U008+0GmGNX/HWVoi
-         2ykA==
-X-Forwarded-Encrypted: i=1; AJvYcCUjHhUrICnWnWhFfhMIloqDkRPkdbF+3vshF+31QzWqtYpG+K/dJZ+dUw3w2qUPnbOKkaEHlkrbnP6A@vger.kernel.org
-X-Gm-Message-State: AOJu0YxzdQgGB34YaBbqPD3d9pPcgNIrco+L9iGFFDq0D8upJojo3LUR
-	YppDWvHM55Ryoi2jJz7ZbM9mYCGSfEPgR0UgIFLBgCQ/r2/x/h4HvJcw0NMcFC4BOI8=
-X-Gm-Gg: AY/fxX4EVjh5B+GrCggOtIDxOIVK/OrBF8hq3by3vr7r6eXLH2NhvNJMqFqc2iTPHEb
-	olIbUhnA7sU/xTeq8+2SBDV8TdYXqjoGK/FZj9lSOuvbYXdTomY2Gmiz3ntwK7RLigcDom/9q9U
-	spu5Wb3Y8mm33u0W4GQ7En+STgF+x/tkELJRd+OpxObnVFO4mhFb/xDS5Q0Z7L9zGTyft/exPg4
-	Upnx6ks12Y2FiPDCD39Fa2acobr+P4dso7GGtIZTm8mBRuSx/do6aEVT3z+snj7KBfzn+SQg819
-	Ff8fVqSpxtRPSgG1Q15JhdiJ059WWwTYubR6jqNhObWrG4cJTyIJiSldspEP15cd6YM9vVbowZZ
-	0lobmWCuKL0gkiiGBsSUJiDSDjNcJG+6VSy/jpMa+krVkRJV4pKkKUE8Xg8FTbkiPxskMao/ELf
-	53maqrDozliudvKv7xBLnM3TQe2KHrVYxSFu6yJO1DBDp4Ky8ufBOt5Q==
-X-Google-Smtp-Source: AGHT+IGck4kKwwuc5UddoonnynVhYKwpmHQM5vRIV3zz1AKvip50OdgKpOlRUBUIDMMPxx61FIjoTg==
-X-Received: by 2002:a05:6402:3551:b0:649:8378:994a with SMTP id 4fb4d7f45d1cf-6499b07e4b6mr1530658a12.0.1765536613938;
-        Fri, 12 Dec 2025 02:50:13 -0800 (PST)
-Received: from localhost (host-87-6-211-245.retail.telecomitalia.it. [87.6.211.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6498210ed32sm4861010a12.29.2025.12.12.02.50.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Dec 2025 02:50:13 -0800 (PST)
-From: Andrea della Porta <andrea.porta@suse.com>
-X-Google-Original-From: Andrea della Porta <aporta@suse.de>
-Date: Fri, 12 Dec 2025 11:52:44 +0100
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Andrea della Porta <andrea.porta@suse.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Jim Quinlan <jim2101024@gmail.com>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, kwilczynski@kernel.org,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-pci@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rpi-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, iivanov@suse.de, svarbanov@suse.de,
-	mbrugger@suse.com, Jonathan Bell <jonathan@raspberrypi.com>,
-	Phil Elwell <phil@raspberrypi.com>,
-	kernel test robot <lkp@intel.com>
-Subject: Re: [PATCH] dt-bindings: pci: brcmstb: Add rp1-nexus node to fix DTC
- warning
-Message-ID: <aTvz_OeVnciiqATz@apocalypse>
-References: <20250812085037.13517-1-andrea.porta@suse.com>
- <4fee3870-f9d5-48e3-a5be-6df581d3e296@kernel.org>
- <aKc5nMT1xXpY03ip@apocalypse>
- <e7875f70-2b79-48e0-a63b-caf6f1fd287b@kernel.org>
- <aLVePQRfU4IB1zK8@apocalypse>
- <CAL_JsqJUzB71QdMcxJtNZ7raoPcK+SfTh7EVzGmk=syo8xLKQw@mail.gmail.com>
- <aThjYt3ux0U-9-3A@apocalypse>
- <aThp99OfgAfNFUX-@apocalypse>
- <20251210150008.2ef2f8c4@bootlin.com>
+        d=1e100.net; s=20230601; t=1765537117; x=1766141917;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=HqR+IQTeub3ZkC8GS6Wk65+OamU6y/VpkmKlXNe7HxQ=;
+        b=qGPx4n5yhw87Jxrs/3L6UfDrglMNakjIQJeQkw41ngezDWRMul2cJ7Z1AqsOccRkiB
+         Rod3Nno5igQKYpbj/93S+X5yWJzXEUVzLnxeJjDx6Z/AWvrYz2ofmM0/NYWGK/a6zPrQ
+         3tDPGwoTtI5KXRPAv8KtHdrJpZhHhuJyAFNFm4NquCQPITwSyh3nuEY9x6Xi592jLU6N
+         psKGhcagH/uJojA8EtuAn9Ay9svoCcMXsfwy+UoKIaz0BidmGhq8iaYE88mhDwoQR2FT
+         +5eG1fKF/r0Dmp3bEvbIcXX0ZOCkBkgjHbOj+yt0HTuGz0UgY/KvL672AT0Nu4F8JCOD
+         JjNA==
+X-Forwarded-Encrypted: i=1; AJvYcCXnX4ozp6OeqxTUOSXq/iOuyqkQGGSYRCJNX7NwupNuZ0Af1fZNxi9DRO1FZ0FgDM8QOegEA4YXoEdR@vger.kernel.org
+X-Gm-Message-State: AOJu0YzyYrVgiJUqeke9wunPVUpPjkWAWbGYUPwh1rQ1wjNYq6IzF1OF
+	Yed3M7rWvctK0sHjFL/qF5NsM2yhbNWRhBz2+sD2nmxqjstfLv94WRSqHuALM/nnEuSan3zJZJs
+	gcnn4YImVp0mKQDHRgDqJ38qOCk3V3Uk=
+X-Gm-Gg: AY/fxX559d5hj9nyKR1m3bMKxGeWwGDzOH5s6OuHdzCNAycwHRF6xw6S+7dOJIpQmNc
+	2NE0Nqq9UIHJnUBwkDdjEU87uJPP0ZumJuxdmdkzzg81NV57YMXkplu8wBN/8Dlf5rwSgXewdVt
+	zYDhknMqFle1e3MnPHun4IRTRKtKN3NVB0RrEUNbyxuBIaEhN7jRCmzEa8iQM3kE0P0fAPfJkCF
+	hEtS6ElQ1PWZ44/lS2DDduV1us+GxxwYy78ZP3SnBJbzgEOzHFAlFjPH5XwoebLXERo+z4wI89i
+	BkVkTkqENFf5HzfaYL9a+qvbReU=
+X-Google-Smtp-Source: AGHT+IE+ahrc04Q/jrdoppQwasQ4J1Y0Y9w6+KHjcQu1lJlaMpy7m90wwcJKrOJXxvNDcByIW5d1baSzOlJ31jhyAq4=
+X-Received: by 2002:a05:6000:186d:b0:3eb:c276:a347 with SMTP id
+ ffacd0b85a97d-42fb42bb935mr1529919f8f.0.1765537117044; Fri, 12 Dec 2025
+ 02:58:37 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251210150008.2ef2f8c4@bootlin.com>
+References: <20251209162119.2038313-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20251210-mauve-cow-of-hurricane-0f969d-mkl@pengutronix.de> <20251210-persuaded-rewire-8ac93b0cc039@spud>
+In-Reply-To: <20251210-persuaded-rewire-8ac93b0cc039@spud>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Fri, 12 Dec 2025 10:58:11 +0000
+X-Gm-Features: AQt7F2qVBwHpP3VeypyTa021PRhJeO9lvQ2ybqJTDVdXUznY1gpLQoN1_DLtzFc
+Message-ID: <CA+V-a8sUPin=r=x6TVvyazqxwfDwW+RsnOfHaTJf1N-VpAPE7g@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: phy: ti,tcan104x-can: Document TI TCAN1046
+To: Conor Dooley <conor@kernel.org>, Marc Kleine-Budde <mkl@pengutronix.de>
+Cc: Vincent Mailhol <mailhol@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Aswath Govindraju <a-govindraju@ti.com>, Frank Li <Frank.li@nxp.com>, linux-can@vger.kernel.org, 
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Herve, Rob,
+Hi Conor,
 
-On 15:00 Wed 10 Dec     , Herve Codina wrote:
-> Hi Andrea,
-> 
-> On Tue, 9 Dec 2025 19:27:03 +0100
-> Andrea della Porta <andrea.porta@suse.com> wrote:
-> 
-> > [+cc Herve]
-> > 
-> > On 18:58 Tue 09 Dec     , Andrea della Porta wrote:
-> > > Hi Rob,
-> > > 
-> > > On 11:09 Thu 04 Dec     , Rob Herring wrote:  
-> > > > On Mon, Sep 1, 2025 at 3:48 AM Andrea della Porta <andrea.porta@suse.com> wrote:  
-> > > > >
-> > > > > Hi Krzysztof,
-> > > > >
-> > > > > On 08:50 Fri 22 Aug     , Krzysztof Kozlowski wrote:  
-> > > > > > On 21/08/2025 17:22, Andrea della Porta wrote:  
-> > > > > > > Hi Krzysztof,
-> > > > > > >
-> > > > > > > On 10:55 Tue 12 Aug     , Krzysztof Kozlowski wrote:  
-> > > > > > >> On 12/08/2025 10:50, Andrea della Porta wrote:  
-> > > > > > >>> The devicetree compiler is complaining as follows:
-> > > > > > >>>
-> > > > > > >>> arch/arm64/boot/dts/broadcom/rp1-nexus.dtsi:3.11-14.3: Warning (unit_address_vs_reg): /axi/pcie@1000120000/rp1_nexus: node has a reg or ranges property, but no unit name
-> > > > > > >>> /home/andrea/linux-torvalds/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dtb: pcie@1000120000: Unevaluated properties are not allowed ('rp1_nexus' was unexpected)  
-> > > > > > >>
-> > > > > > >> Please trim the paths.  
-> > > > > > >
-> > > > > > > Ack.
-> > > > > > >  
-> > > > > > >>  
-> > > > > > >>>
-> > > > > > >>> Add the optional node that fix this to the DT binding.
-> > > > > > >>>
-> > > > > > >>> Reported-by: kernel test robot <lkp@intel.com>
-> > > > > > >>> Closes: https://lore.kernel.org/oe-kbuild-all/202506041952.baJDYBT4-lkp@intel.com/
-> > > > > > >>> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
-> > > > > > >>> ---
-> > > > > > >>>  Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml | 9 +++++++++
-> > > > > > >>>  1 file changed, 9 insertions(+)
-> > > > > > >>>
-> > > > > > >>> diff --git a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> > > > > > >>> index 812ef5957cfc..7d8ba920b652 100644
-> > > > > > >>> --- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> > > > > > >>> +++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> > > > > > >>> @@ -126,6 +126,15 @@ required:
-> > > > > > >>>  allOf:
-> > > > > > >>>    - $ref: /schemas/pci/pci-host-bridge.yaml#
-> > > > > > >>>    - $ref: /schemas/interrupt-controller/msi-controller.yaml#
-> > > > > > >>> +  - if:
-> > > > > > >>> +      properties:
-> > > > > > >>> +        compatible:
-> > > > > > >>> +          contains:
-> > > > > > >>> +            const: brcm,bcm2712-pcie
-> > > > > > >>> +    then:
-> > > > > > >>> +      properties:
-> > > > > > >>> +        rp1_nexus:  
-> > > > > > >>
-> > > > > > >> No, you cannot document post-factum... This does not follow DTS coding
-> > > > > > >> style.  
-> > > > > > >
-> > > > > > > I think I didn't catch what you mean here: would that mean that
-> > > > > > > we cannot resolve that warning since we cannot add anything to the
-> > > > > > > binding?  
-> > > > > >
-> > > > > > I meant, you cannot use a warning from the code you recently introduced
-> > > > > > as a reason to use incorrect style.
-> > > > > >
-> > > > > > Fixing warning is of course fine and correct, but for the code recently
-> > > > > > introduced and which bypassed ABI review it is basically like new review
-> > > > > > of new ABI.
-> > > > > >
-> > > > > > This needs standard review practice, so you need to document WHY you
-> > > > > > need such node. Warning is not the reason here why you are doing. If
-> > > > > > this was part of original patchset, like it should have been, you would
-> > > > > > not use some imaginary warning as reason, right?
-> > > > > >
-> > > > > > So provide reason why you need here this dedicated child, what is that
-> > > > > > child representing.  
-> > > > >
-> > > > > Ack.
-> > > > >  
-> > > > > >
-> > > > > > Otherwise I can suggest: drop the child and DTSO, this also solves the
-> > > > > > warning...  
-> > > > >
-> > > > > This would not fix the issue: it's the non overlay that needs the specific
-> > > > > node. But I got the point, and we have a solution for that (see below).
-> > > > >  
-> > > > > >  
-> > > > > > >
-> > > > > > > Regarding rp1_nexus, you're right I guess it should be
-> > > > > > > rp1-nexus as per DTS coding style.
-> > > > > > >  
-> > > > > > >>
-> > > > > > >> Also:
-> > > > > > >>
-> > > > > > >> Node names should be generic. See also an explanation and list of
-> > > > > > >> examples (not exhaustive) in DT specification:
-> > > > > > >> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation  
-> > > > > > >
-> > > > > > > In this case it could be difficult: we need to search for a DT node  
-> > > > > >
-> > > > > > Search like in driver? That's wrong, you should be searching by compatible.  
-> > > > >
-> > > > > Thanks for the hint. Searching by compatble is the solution.  
-> > > > 
-> > > > No, it is not.  
-> > > 
-> > > This is partly true, indeed. On one side there's the need to avoid a
-> > > specific node name ('rp1_nexus'), so the only other unique identifier would
-> > > be the compatible string ('pci1de4,1' in this case, which identifies that specific
-> > > device). Unfortunately, the same compatible string is also assigned to the pci
-> > > endpoint node filled automatically by enabling CONFIG_PCI_DYNAMIC_OF_NODES.
-> > > We would end up with two nodes with the same compatible, which is not unique
-> > > anymore. 
-> > > This applies only when using 'full' dtb (bcm2712-rpi-5-b.dtb) *and* you enable
-> > > CONFIG_PCI_DYNAMIC_OF_NODES, the latter being not necessary since the overlay dtb
-> > > (...-ovl-rp1.dtb) is not in use here. To overcome this problem, the solutions
-> > > I can think of are the following:
-> > > 
-> > > 1- Just disable CONFIG_PCI_DYNAMIC_OF_NODES should work, but only when using the
-> > >    full dtb version. However, if the user enable that option for debug or to use
-> > >    the overlay dtb version, he better be sure not to use teh full dtb or it won't
-> > >    work.
-> > >    This solution seems really weak.
-> > > 
-> > > 2- Add another compatible string other than 'pci1de4,1', so it will be really
-> > >    unique.
-> > >   
-> > > >   
-> > > > > >  
-> > > > > > > starting from the DT root and using generic names like pci@0,0 or
-> > > > > > > dev@0,0 could possibly led to conflicts with other peripherals.
-> > > > > > > That's why I chose a specific name.  
-> > > > > >
-> > > > > > Dunno, depends what can be there, but you do not get a specific
-> > > > > > (non-generic) device node name for a generic PCI device or endpoint.  
-> > > > >
-> > > > > I would use 'port' instead of rp1-nexus. Would it work for you?  
-> > > > 
-> > > > Do you still plan to fix this? This is broken far worse than just the node name.  
-> > > 
-> > > Yes, if we want to get rid of that nasty warning and comply with DT guidelines,
-> > > I think I really need to fix that.
-> > >   
-> > > > 
-> > > > The 'rp1_nexus' node is applied to the PCI host bridge. That's wrong
-> > > > unless this is PCI rather than PCIe. There's the root port device in
-> > > > between.
-> > > > 
-> > > > The clue that things are wrong are start in the driver here:
-> > > > 
-> > > > rp1_node = of_find_node_by_name(NULL, "rp1_nexus");
-> > > > if (!rp1_node) {
-> > > >   rp1_node = dev_of_node(dev);
-> > > >   skip_ovl = false;
-> > > > }
-> 
-> I don't fully understand what you want to do.
-> 
-> This piece of code is present in the drivers/misc/rp1/rp1_pci.c driver.
-> This driver is used when a specific PCI device is available on the system.
-> This device is PCI_DEVICE(PCI_VENDOR_ID_RPI, PCI_DEVICE_ID_RPI_RP1_C0)
-> 
-> In order to work, the driver needs either CONFIG_PCI_DYNAMIC_OF_NODES or
-> having the full PCI hierarchy described in the DT leading to this device.
-> Indeed, it needs a DT node related to the PCI device.
-> 
-> I don't understand why rp1_nexus should be described at the PCI controller
-> root level.
-> 
-> Only PCI devices (or bridges as they are particular devices) at this level
-> as decribed in the pci-bus-common.yaml binding [1].
+On Wed, Dec 10, 2025 at 6:21=E2=80=AFPM Conor Dooley <conor@kernel.org> wro=
+te:
+>
+> On Wed, Dec 10, 2025 at 08:52:58AM +0100, Marc Kleine-Budde wrote:
+> > On 09.12.2025 16:21:19, Prabhakar wrote:
+> > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > >
+> > > Document the TI TCAN1046 automotive CAN transceiver. The TCAN1046 is =
+a
+> > > dual high-speed CAN transceiver with sleep-mode support and no EN pin=
+,
+> > > mirroring the behaviour of the NXP TJA1048, which also provides dual
+> > > channels and STB1/2 sleep-control lines.
+> > >
+> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com=
+>
+> > > ---
+> > > TCAN 1046, https://www.ti.com/lit/ds/symlink/tcan1046v-q1.pdf?ts=3D17=
+65297159307&ref_url=3Dhttps%253A%252F%252Fwww.ti.com%252Fproduct%252FTCAN10=
+46V-Q1
+> > > NXP TJA1048, https://www.nxp.com/docs/en/data-sheet/TJA1048.pdf
+> >
+> > The polarity of the standby line of the chips is different.
+> >
+> > You must set the correct active high/low property for the GPIO, as the
+> > driver uses logical levels.
+> >
+> > Reviewed-by: Marc Kleine-Budde <mkl@pengutronix.de>
+>
+> What you're saying seems to contradict the tag you've given, is a
+> fallback really suitable if the standby polarity is not the same?
+>
+On the RZ/V2H I have,
 
-Ack. As you and Rob pointed out, I will amend the full DT hierarchy with the
-PCI nodes in the way as they are dynamically created by CONFIG_PCI_DYNAMIC_OF_NODES.
+    can_phy: can-phy {
+        compatible =3D "ti,tcan1046", "nxp,tja1048";
+        max-bitrate =3D <8000000>;
+        #phy-cells =3D <1>;
+        status =3D "okay";
+        standby-gpios =3D <&pinctrl RZV2H_GPIO(7, 0) GPIO_ACTIVE_HIGH>,
+                                  <&pinctrl RZV2H_GPIO(7, 2) GPIO_ACTIVE_HI=
+GH>;
+    };
 
-> 
-> If the purpose of this 'rp1_nexus' node is to only avoid the application of
-> the overlay, even if I don't understand why, you should search for something
-> added by the overlay and not for the 'rp1_nexus' node in the whole DT.
+When the CAN interface is brought up 0 is written to GPIO which brings
+the CAN transceiver to Normal mode  and when the CAN chip is brought
+down `1` is written to GPIO and it puts the CAN transceiver to Standby
+mode. Which matches to the behaviour of TCAN1046 CAN transceiver. Am I
+missing something?
 
-I cannot search for something added by the overlay if I need to choose whether
-to apply the overlay or not in teh first place (iIOW the overlay is not yet loaded).
-This is not of a concern however, since I'm planning to get rid of the overlay
-for reasons already explained here [1]. This will not only solve all of this
-problems but it will also address Rob's concern of not relying on 
-CONFIG_PCI_DYNAMIC_OF_NODES.
-
-> 
-> Instead of:
->   rp1_node = of_find_node_by_name(NULL, "rp1_nexus");
-> 
-> You should search for a sub-node added by the overlay. Something like the
-> following for instance:
-> --- 8< ---
-> int rp1_probe(struct pci_dev *pdev, const struct pci_device_id *id)
-> {
-> 	struct device_node *np;
-> 
-> 	np = dev_of_node(&pdev->dev);
-> 
-> 	...
-> 	if ( np && of_find_node_by_name(np, "pci-ep-bus@1");
->         ...
-> }
-> --- 8< ---
-> 
-> If you really want to be sure that the "pci-ep-bus@1" comes from an overlay
-> you can check for the OF_OVERLAY flag.
-> --- 8< ---
->   node = of_find_node_by_name(np, "pci-ep-bus@1");
->   if (node && of_node_check_flag(node, OF_OVERLAY))
-> --- 8< ---
-> 
-> Also your overlay has to be applied on the DT node related to your PCI
-> device and not the rp1_nexus you search for in the whole DT. In other
-> word, in your driver, the following is not correct:
-> 
->    err = of_overlay_fdt_apply(dtbo_start, dtbo_size, &rp1->ovcs_id,
->                                            rp1_node);
-> 
-> It should be:
-> 
->    err = of_overlay_fdt_apply(dtbo_start, dtbo_size, &rp1->ovcs_id,
->                                            dev_of_node(&pdev->dev));
->  
-> In your overlay, your have
-> 	__overlay__ {
-> 		compatible = "pci1de4,1";
-> 		#address-cells = <3>;
-> 		#size-cells = <2>;
-> 		interrupt-controller;
-> 		#interrupt-cells = <2>;
-> 
-> 		#include "arm64/broadcom/rp1-common.dtsi"
->        };
-> 
-> Only sub-nodes should be present (#address-cells = <3> and #size-cells = <2>)
-> can be there just to make DTC happy.
-> 
-> It is worth noting that any properties other than #address-cells and
-> #size-cells lead to memleaks. And so avoid them.
-> 
-> Memleaks are reported at runtime when the overlay is applied with this
-> kind of logs:
->  OF: overlay: WARNING: memory leak will occur if overlay removed, property: ...
-> 
-> I am pretty sure that you have those kind of traces when you apply your
-> overlay.
-
-Indeed.
-
-Many thanks,
-Andrea
-
-[1] - https://lore.kernel.org/all/aTvtr5v4DjuqctdY@apocalypse/
-
-> 
-> compatible, interrupt-controller and #interrupt-cells should not be added by
-> the overlay. Either they are added by when PCI nodes are created by 
-> CONFIG_PCI_DYNAMIC_OF_NODES either they are already available in the base
-> DT if the PCI device is described in the base DT.
-> 
-> [1] https://github.com/devicetree-org/dt-schema/blob/aa859412ce8e38c63bb13fa55c5e1c6ba66a8e3b/dtschema/schemas/pci/pci-bus-common.yaml#L226
-> 
-> Best regards,
-> Hervé
+Cheers,
+Prabhakar
 
