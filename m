@@ -1,54 +1,55 @@
-Return-Path: <devicetree+bounces-246038-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246039-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D04B1CB821B
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 08:41:41 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDBDBCB8224
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 08:41:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E33203044BAE
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 07:41:32 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 1B1B230210F3
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 07:41:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 520C530EF74;
-	Fri, 12 Dec 2025 07:41:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC82230F7F0;
+	Fri, 12 Dec 2025 07:41:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="XoB4TOmM"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="uAi5Xxef"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D7F82FF673;
-	Fri, 12 Dec 2025 07:41:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8DF630F538;
+	Fri, 12 Dec 2025 07:41:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765525291; cv=none; b=aEsSrv3k86NXz/BDvdGgUpUJWFTco2twiIjFShimNkVOCI8uwMdh/uUiCze1v2VDH0PvMUyBS9NenSDtPj3Fbp6aiEYNHBlqS1umMr6ZcEgumC0NZrP1fT4bBRxp4x3KyfI/0v4NfdC2OnuMkQ/q4yTk/NJk/wClzu2Ds3H9cJ0=
+	t=1765525293; cv=none; b=Qxj6Y0TBlcqMNFOt766E94kP9OcV/SGJ+jgH9G3VYmig2NVgxmrmpmkRYWttGp94jxQyp1Q+/ZF079+fw6rUBGr/zPdDEkBcQzO2lr2cxdAVZvfssPJGEChkOCw9AekcUZZWcAORHngz1idb9SNFZPKNXF4+yqeCkruoTrn3/7Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765525291; c=relaxed/simple;
-	bh=ssoKqAJydkLqEM9LwAMNOgbfeaJFPtH349QgOepIwjM=;
+	s=arc-20240116; t=1765525293; c=relaxed/simple;
+	bh=FIIMYAEVN5l4cUQpvtH4/p59boAQjkVDmxDdAVxEwDg=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=bG0XOknGtdISabCccT05rKIRQW2Qt1kmdDfhS/JOwI1CCKxlPjl3PlQ0Qd9wBjs+jpMqK70t2Atl/4W76BRTvXEEZAzxHvVKMXhkgauFLdqIiUfCo9mJv9cItQvVe2rAOy/8zz5u/+Tx4S6Nd3hSU9MmVkGXrndlzBq0BADVq2U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=XoB4TOmM; arc=none smtp.client-ip=185.171.202.116
+	 In-Reply-To:To:Cc; b=QNa8+7o3zfYwm38CLWXpyspRcQKxVzTBUIuSzPGPkDn8FqQ4ycM4jxXASgPhikeCU7QrQuBoJNtl2q4jx/RdVauMT7ZIf3YxRHmXGr8QbekHu10RHiAeJZ9odJ7RrWr435+KrEsbvIvROjP8tcCPG6QKnXNjhYWRhm/9xq8bAM4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=uAi5Xxef; arc=none smtp.client-ip=185.246.84.56
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 3BABCC1935E;
-	Fri, 12 Dec 2025 07:41:03 +0000 (UTC)
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 0A2671A211D;
+	Fri, 12 Dec 2025 07:41:30 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 4F3E6606DF;
-	Fri, 12 Dec 2025 07:41:27 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1FD6B103C8DFE;
-	Fri, 12 Dec 2025 08:41:23 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id D305A606DF;
+	Fri, 12 Dec 2025 07:41:29 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id BDBD6103C8DFF;
+	Fri, 12 Dec 2025 08:41:26 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1765525286; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1765525288; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=OrhNSUsjIx1QGpYWb8RuZ4zqeIOHKUbiBsb47ZYien8=;
-	b=XoB4TOmMp08zl6JyVc6yaE6CVztfuiRxe6c9k7zhuHZInTGEX0tLS6H5EjX8COZ/TvlXCF
-	9vi04R24axPv7R+TgT4iy4NrVDhvpdxUBw0qZ9X92u6oo99wwkMmmm3ZNT1bMKCBHWABp5
-	pBcNceIjVJ9FcZpS0fU+UkwXswrrvlTcIbkxOq/cIfLwHw0rqqSf56OeISRrKdO+SnvxCP
-	5tx8D/QMLCLlFS0OkSertnTIXQLyLcZ1jp4JVmA7B/bN5LlIa4sEkcLmClImbcGVjRbODc
-	wSVZGoS5fE1i+2sg86M4vbRJ5TBlsB0A0Mi2dSFwGHWG8uJAubVPC78Z9aAXiA==
+	bh=ezHaG49ifLrG8L8qfzPELOpOD4DZDpPJpVprvXJHmRw=;
+	b=uAi5XxefYNgnNq+TWibxsdUF2UesQTOsVqW2gubwawMkbAuuPScMMEVLXiQmW7RXhFx9AX
+	2MRPyqxSEFQUMJSwH+lSqCn3S7cnM0uy2VpCcwXZoK2ncLVK8QKbQcKYts+ktJjLfsYRO8
+	//OXcZraR9+5QRKSLbhEAZmQzcTeejGykxI5e1ZCOEzNx7Xz7v9mJZ2rGvo6znQcAwLiFH
+	Zr1q9x0xhigRth1yEqs1HRFujjFgdLOMU/HBTk2Utr+SqIJoRan8y/5UtD5Fh0DMCMrM5i
+	FmzJUN9stiwRnt23jBuq47ySPfcaG8AVYV0HtPFkTOuSfdGMvykZiAPBnAUoIQ==
 From: "Thomas Perrot (Schneider Electric)" <thomas.perrot@bootlin.com>
-Date: Fri, 12 Dec 2025 08:41:04 +0100
-Subject: [PATCH 1/8] dt-bindings: vendor-prefixes: Add AAEON vendor prefix
+Date: Fri, 12 Dec 2025 08:41:05 +0100
+Subject: [PATCH 2/8] dt-bindings: gpio: Add AAEON embedded controller GPIO
+ binding
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,8 +57,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251212-dev-b4-aaeon-mcu-driver-v1-1-6bd65bc8ef12@bootlin.com>
+Content-Transfer-Encoding: 8bit
+Message-Id: <20251212-dev-b4-aaeon-mcu-driver-v1-2-6bd65bc8ef12@bootlin.com>
 References: <20251212-dev-b4-aaeon-mcu-driver-v1-0-6bd65bc8ef12@bootlin.com>
 In-Reply-To: <20251212-dev-b4-aaeon-mcu-driver-v1-0-6bd65bc8ef12@bootlin.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
@@ -77,27 +78,77 @@ Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
 X-Mailer: b4 0.14.2
 X-Last-TLS-Session-Version: TLSv1.3
 
-Add the AAEON vendor prefix to support the AAEON SRG-IMX8PL MCU driver
-devicetree bindings.
+Add device tree binding documentation for the GPIO controller functionality
+provided by the AAEON embedded controller. This controller provides 7 GPOs
+and 12 GPIOs for a total of 19 GPIO lines.
+
+The GPIO controller is defined as a child node of the AAEON MCU device.
 
 Signed-off-by: Thomas Perrot (Schneider Electric) <thomas.perrot@bootlin.com>
 ---
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ .../bindings/gpio/aaeon,srg-imx8pl-gpio.yaml       | 54 ++++++++++++++++++++++
+ 1 file changed, 54 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index c7591b2aec2a74560a4f687fe7a2070ca21b0752..0f84ee93b3a8473719ee92f8c046e350c4a20825 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -32,6 +32,8 @@ patternProperties:
-     description: 8devices, UAB
-   "^9tripod,.*":
-     description: Shenzhen 9Tripod Innovation and Development CO., LTD.
-+  "^aaeon,.*":
-+    description: AAEON
-   "^abb,.*":
-     description: ABB
-   "^abilis,.*":
+diff --git a/Documentation/devicetree/bindings/gpio/aaeon,srg-imx8pl-gpio.yaml b/Documentation/devicetree/bindings/gpio/aaeon,srg-imx8pl-gpio.yaml
+new file mode 100644
+index 0000000000000000000000000000000000000000..8040dc0a36ee5650488520c2218f09fd08cdf64a
+--- /dev/null
++++ b/Documentation/devicetree/bindings/gpio/aaeon,srg-imx8pl-gpio.yaml
+@@ -0,0 +1,54 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/gpio/aaeon,srg-imx8pl-gpio.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: AAEON Embedded Controller GPIO
++
++maintainers:
++  - Jérémie Dautheribes <jeremie.dautheribes@bootlin.com>
++  - Thomas Perrot <thomas.perrot@bootlin.com>
++
++description: |
++  GPIO controller functionality provided by the AAEON embedded controller.
++  This controller provides 7 GPOs and 12 GPIOs.
++
++  The GPIO controller is a sub-device of the AAEON MCU and must be defined
++  as a child node of the MCU device.
++
++properties:
++  compatible:
++    const: aaeon,srg-imx8pl-gpio
++
++  gpio-controller: true
++
++  "#gpio-cells":
++    const: 2
++    description: |
++      The first cell is the GPIO number (0-6 for GPOs, 7-18 for
++      general-purpose GPIOs).
++      The second cell is the GPIO flags as defined in
++      <dt-bindings/gpio/gpio.h>.
++
++  ngpios:
++    description: |
++      Total number of GPIOs available (GPOs + GPIOs).
++      This should be 19 (7 GPOs + 12 GPIOs).
++    const: 19
++
++required:
++  - compatible
++  - gpio-controller
++  - "#gpio-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    gpio {
++      compatible = "aaeon,srg-imx8pl-gpio";
++      gpio-controller;
++      #gpio-cells = <2>;
++      ngpios = <19>;
++    };
 
 -- 
 2.52.0
