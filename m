@@ -1,315 +1,193 @@
-Return-Path: <devicetree+bounces-246101-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246102-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0EDECB89CC
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 11:21:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 29578CB89E7
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 11:23:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A41553028E5A
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 10:20:59 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D434F3031378
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 10:23:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 164B331A541;
-	Fri, 12 Dec 2025 10:20:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2D382DF3EA;
+	Fri, 12 Dec 2025 10:23:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="TBRkgPGs"
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="XiucCvwb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0553731691A;
-	Fri, 12 Dec 2025 10:20:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=198.175.65.13
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765534859; cv=fail; b=e7huiuuSvHJ81LEHNohR4oCSvG9YMuaXFv87yUs3ICfsL4hZneJrEXzsDCqxYHUxNEeTdcMjJsrgcVGF7E0V7YOMtUzaYIB7WWYu6mUX1/Qh9QMcuAhkbhDjf5dfQqt0otBgiY7gStzeBLxvZixSouPV3m/BYromhmMp2s9DyGA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765534859; c=relaxed/simple;
-	bh=gP344xiQoRA8/xhakv59Hzx2/WzF6QUIHwRyYBXOPkw=;
-	h=From:To:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=TCAR78CZBpmxSOxjVRCa1uO9HFaEpKoKnR8MryF+eP5q2FvvdPIChdvc6PgSJhoEUqiMPQsBTbfBpvvCgSZrNRCvjVUvlrTKkO2NLCSEcfPaZgUcUHdNVleaisijKacR2a9eBY8rEB9CTZtI4COUTRw1UdScBPEBIG4WvlygbL8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=TBRkgPGs; arc=fail smtp.client-ip=198.175.65.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1765534857; x=1797070857;
-  h=from:to:subject:date:message-id:references:in-reply-to:
-   content-transfer-encoding:mime-version;
-  bh=gP344xiQoRA8/xhakv59Hzx2/WzF6QUIHwRyYBXOPkw=;
-  b=TBRkgPGsSvUVnH5qPdprhnhwN2GgkPBHK/Zy70DFgoDCAAWhtTsDEzFy
-   OrHcVu2x55JIncvyF0pSFFNZ7AoJMtKj8QgeZv3Xn/6y/qefN1cEB92rF
-   DH8alFe8rmPv9WN0GfSCj5Q1vwvURpoKcIhQXOpDGbgIden7eoPkuKFcI
-   REKnpOG2jbzOSk0L0SiCYwLBlsKeBAlp49bSx0TIvBDGU0kapRmRSD6/d
-   m5KocEUwKPKlH5Mbx/Y76NhSzKr0/HeHXnPIlyjVbn3/06QbsW58ev0gf
-   biV/Aj8+mZh9kyOAhgTvjw6lgd5yPnVkHy1Medbky4Vt6V7mxjEJ7d3Ko
-   A==;
-X-CSE-ConnectionGUID: Cw8KdsIwSceCHtTS6nQYTA==
-X-CSE-MsgGUID: nabohtqDSm2m3vDQAkWWvg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11639"; a="78635548"
-X-IronPort-AV: E=Sophos;i="6.21,143,1763452800"; 
-   d="scan'208";a="78635548"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Dec 2025 02:20:57 -0800
-X-CSE-ConnectionGUID: dupgWrQrT/epDGYkXrZn+g==
-X-CSE-MsgGUID: gwnbU3X6SiOCd18VSZA16Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,143,1763452800"; 
-   d="scan'208";a="197102298"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
-  by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Dec 2025 02:20:54 -0800
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Fri, 12 Dec 2025 02:20:53 -0800
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29 via Frontend Transport; Fri, 12 Dec 2025 02:20:53 -0800
-Received: from MW6PR02CU001.outbound.protection.outlook.com (52.101.48.9) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Fri, 12 Dec 2025 02:20:52 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=fhcytF8E4ANe+AT8Ul2v0ut/oNCf8P/zBsbKbOZWNo2XDepvYsOG2fs2CyA9zya6nMTjKVRjM9UvAyoWx9rUvbl4jaZ4LPUB6zqHJiznf3hF4fqgu6ZJ5jTZuib7DQOMGGestIj6a2kim4pLy/BZBstuxC+s5aABGism/S3TQGqNW5Eh6XzXb2YXMhAhjCDEODWJsJXQ1cCLa5yd7/dflG+mypiSxjNUMbPK+gZ02EioiLTtfkO4ynOmwP5hwkkg+mGv34lQ13Axtk/3EIrEDGeHforDuMKV/EkDHHgq+XCMy3+ha0R3lizLdZU/rEQsHKzS9QV1mV5CWJSSp25pjg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=dFtOPjD+6nUCpFt0BH2Yx6o6MsLftEW4MdoeptEcf14=;
- b=lV01M8r3KrT8LOv0DcYgQI3jNSSg0nBqTQ0Jqb15rOCrNA+r3mxUag7UsUuxUfMv2ReIt9fwtYQwGr/6qGA45qxoPdtMLfMN1msYgafmF3KjDK7TyZ0DPkMc7kVQfG6LaX5fwbz2UxEqhmwOvg6g3RhwreDNbpNrKApo7fg1gyKN0VXUcUoYy93VTqCqOTbRpUdv4wnKPtZp1w0cHpvfUdl1yDJpE2AxtVzBUqqgjfHnTABHtCGR8WtPEA7hRjudeE6k6uZbKbysRSlx1OqvdBFJjKGzG7AK18ONQ/mrcj26fvlrRCwVUlo1qTB4TA4mVKTVlwNd+8J33bL973mWKQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from IA3PR11MB8986.namprd11.prod.outlook.com (2603:10b6:208:577::21)
- by CH3PR11MB8342.namprd11.prod.outlook.com (2603:10b6:610:167::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9412.10; Fri, 12 Dec
- 2025 10:20:44 +0000
-Received: from IA3PR11MB8986.namprd11.prod.outlook.com
- ([fe80::395e:7a7f:e74c:5408]) by IA3PR11MB8986.namprd11.prod.outlook.com
- ([fe80::395e:7a7f:e74c:5408%3]) with mapi id 15.20.9388.013; Fri, 12 Dec 2025
- 10:20:43 +0000
-From: "Loktionov, Aleksandr" <aleksandr.loktionov@intel.com>
-To: "Vecera, Ivan" <ivecera@redhat.com>, "netdev@vger.kernel.org"
-	<netdev@vger.kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>, "David S.
- Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, "Jakub
- Kicinski" <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
-	"Kubalewski, Arkadiusz" <arkadiusz.kubalewski@intel.com>, "Nitka, Grzegorz"
-	<grzegorz.nitka@intel.com>, Jiri Pirko <jiri@resnulli.us>, "Oros, Petr"
-	<poros@redhat.com>, "Schmidt, Michal" <mschmidt@redhat.com>, Prathosh Satish
-	<Prathosh.Satish@microchip.com>, "Nguyen, Anthony L"
-	<anthony.l.nguyen@intel.com>, "Kitszel, Przemyslaw"
-	<przemyslaw.kitszel@intel.com>, Saeed Mahameed <saeedm@nvidia.com>, "Leon
- Romanovsky" <leon@kernel.org>, Tariq Toukan <tariqt@nvidia.com>, Mark Bloch
-	<mbloch@nvidia.com>, Richard Cochran <richardcochran@gmail.com>, "Jonathan
- Lemon" <jonathan.lemon@gmail.com>, Simon Horman <horms@kernel.org>, "Lobakin,
- Aleksander" <aleksander.lobakin@intel.com>, Willem de Bruijn
-	<willemb@google.com>, Stefan Wahren <wahrenst@gmx.net>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"intel-wired-lan@lists.osuosl.org" <intel-wired-lan@lists.osuosl.org>,
-	"linux-rdma@vger.kernel.org" <linux-rdma@vger.kernel.org>
-Subject: RE: [Intel-wired-lan] [PATCH RFC net-next 13/13] ice: dpll: Support
- E825-C SyncE and dynamic pin discovery
-Thread-Topic: [Intel-wired-lan] [PATCH RFC net-next 13/13] ice: dpll: Support
- E825-C SyncE and dynamic pin discovery
-Thread-Index: AQHcatdy8n9W9Wo/ukWb5S77Vy+wv7Udy3Pw
-Date: Fri, 12 Dec 2025 10:20:43 +0000
-Message-ID: <IA3PR11MB898612C9A66ABA4DA673D3FCE5AEA@IA3PR11MB8986.namprd11.prod.outlook.com>
-References: <20251211194756.234043-1-ivecera@redhat.com>
- <20251211194756.234043-14-ivecera@redhat.com>
-In-Reply-To: <20251211194756.234043-14-ivecera@redhat.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: IA3PR11MB8986:EE_|CH3PR11MB8342:EE_
-x-ms-office365-filtering-correlation-id: 25bef94f-0188-455f-e56b-08de39681bbb
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|7416014|1800799024|376014|366016|921020|38070700021;
-x-microsoft-antispam-message-info: =?us-ascii?Q?iqAi8k6HfqmFDz56lmtM2usQ0pfzag9A1cuPvpqxWseGFGI6wQCbZcHPcRFy?=
- =?us-ascii?Q?+rQQ7tZUG1l8nhEx+7DHWUlLjOHD+ul7eTTy5GldsXFAzjzk+KQTw+5tlIb5?=
- =?us-ascii?Q?+mryj414L6ezVRt25D6M7UxCGeCZmGZ9Hk90tMDs5obif4yVNNuiKJAixRYu?=
- =?us-ascii?Q?Rk+nBxMVG5KOqDB24U+Cwa4K0S2qGEEIjxCUgEk2OYdqHO5U+dQusGLHo/GS?=
- =?us-ascii?Q?A9bzTacz5N3sSGZ3WyQf9A6fEWAaeNvIixCWMaSuiwlZnfjkdjLguU+xkkPb?=
- =?us-ascii?Q?INyjFcyImOR8AFi0/I8igwrW9yLqYC9+nh8lLrNuU8YE21bsJ2/VB5qDfJZr?=
- =?us-ascii?Q?ktzZiSIYi83X6hzWQn/OU2C8t1N1g5r/OjhJSCknY5esXFgOiD/vFjY4BHZx?=
- =?us-ascii?Q?tXzNiqQ6BJ5qOqto6o4ggJvX4fe4wVo15YmvvceHPjKUixg9T9P9edLGq8ta?=
- =?us-ascii?Q?CoMpGFWZUjMVJr1+2+uhTgWmEjV1vPDqtdz3GPyi8DG4+3iIxw3USL6AbICr?=
- =?us-ascii?Q?AyDA+GidWaTaJjq+Arc8y7UW0pZihEwhmIQSV4EvixvB4mx3kmwvw4zPScjj?=
- =?us-ascii?Q?YfUwOViHX3d2ZRyLQe8CQnQVfptwE0o8cAq1j+3JWw1Xo77m6HE9dqxOyv3/?=
- =?us-ascii?Q?wFsgRTq7aNv4xCjbg48XLwqfx3J6mjpeR4DSYl3TA9sxhYc5HHccXIaCa6Nj?=
- =?us-ascii?Q?00/09iveghRgDsa5U5aTjY0AYn7T7ECEYEJr/2j+npCNEFh5Fz95lbcX0s/q?=
- =?us-ascii?Q?76z5e096BYeZ3m+JzvL3vw/ZC0hRe7tsNHSNJ9UkOVC8d7KGV60VhR65NO95?=
- =?us-ascii?Q?+5nYYJ2SAOSyUNLwPKcrrs5j8cigyPVh0YwIHyh9Of4Emx9ankaTW31hwDxs?=
- =?us-ascii?Q?oP6ilLKZ1vZMNx2i05Zb8iEqtjgGRd+tjQXUIKAuLdxc4I43NIfGq0IwtrmN?=
- =?us-ascii?Q?VB+HjkYm5wGBA/feSJxLNZkRyFD+LLTk3QDNYsznY9mBauKHgKzevXGbKBKq?=
- =?us-ascii?Q?H8+8D9nmXi59RvpCpDHo3yxvEo1hiAcM1Ncpf+PbaWG6q9NpCmPM4vtWLsy5?=
- =?us-ascii?Q?PIf3x0JTP/k/1SymrCHCs0/8dm424L8ad8aq3Eew9Ms5kRhnGqiHaK+iZK45?=
- =?us-ascii?Q?ZeY7WrySDDQqlQKV665bl9SKTBKmGIcIw2g9VS9OH5kt8bEbtaUvr7L8J9ZF?=
- =?us-ascii?Q?BpUPWzXpOXQf5Yq29RFQpIF30RGz96k0ONNr6oy0XI+p1ySSZfgjLlB8B55H?=
- =?us-ascii?Q?EeM4KJwEXYG/C6TWC9dYxLN1V1f8pzE3c64oXpRT7sCGbDIXlG85cwOFcol1?=
- =?us-ascii?Q?PSE0LyLa5CCPseWjDj1eS6zFhCn9eQ7PrS91v3oQvbfWkvxj/+JsP4rHk51/?=
- =?us-ascii?Q?rWJHBEXUipF7EGgIP8vFRopMrBTLKWbFkLsSNX2vIsn6a3EIvV0ZsbjgRumy?=
- =?us-ascii?Q?BaSd2hmzgwQW+g9MmWyPu9JVtC3HOYBWD7/sLa8LEyISg5wYzSwinHuyHn4s?=
- =?us-ascii?Q?pqfhcHySHRCzl5/BS7GJtha8Pu/rsTxv3qt/Wk0ZPq/VAY0Rbu+cLFuTiQ?=
- =?us-ascii?Q?=3D=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:IA3PR11MB8986.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(1800799024)(376014)(366016)(921020)(38070700021);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?FBVuYtTa0jNslQUqmwPZHV4G3Q35ncn2+LrLEd26KmJb1DoB3ZC//7ki09Ez?=
- =?us-ascii?Q?VkU0wiIuO4+xEoXDsTS3bu5CIUuWByZv25an5GJHjGEB75JZhfcAouTrC9X3?=
- =?us-ascii?Q?rxJRBsemicD/CjmtEC5p40UYEPmAYto9jSOfvk0JUsYsB1r5tjsGnFyzNJ9j?=
- =?us-ascii?Q?PgDBydFK57RqnuBqckzLHKaTP4F/j05zJE6qaRPQu7IhRn9HOOze1gu+ehX+?=
- =?us-ascii?Q?IipEYKJCddFBkPYV2zzBm3RAW169XU5Xjj8Z6iKQQZZtXI7EWiMXCKPb8ldh?=
- =?us-ascii?Q?7526bZtoPQtdLK8tdenJFEnbvPAv/njt5hHv7tBLLZhuIbe0qcDrpmcpwhhg?=
- =?us-ascii?Q?EmtRT7+U3aEQ6w9YUBXFel+NSn3wc7jFPbQjFIX6O5wErCPH0zWkugBsQVVW?=
- =?us-ascii?Q?cBZ55jutPB/dgR5dEYxqMQtolcvkB74w5CGnr3L7+ShFrlXQi71bhqc57eYW?=
- =?us-ascii?Q?XDYcSfYnPwdi88EX9xtm+Di5aivpFhjZlvIewSWvNcxs3X/ZLlCWmibHgTlk?=
- =?us-ascii?Q?BumIK0rnPAcpR0vTX8dgHjqSP+uEDhbvmOUmLeFK3ktqO0dEfxWusFT4dadU?=
- =?us-ascii?Q?uTpxmSSSFjd2ZqWXmbE427S9N1HV/MAzM7mvSSfeyuGSFs3eCIhyIf0RyBQq?=
- =?us-ascii?Q?s5UC6ARa892tq0LDfZDpHrBzkHuI3DPdGjBQP6KvjkcIktFKp2i7Pafw4rfO?=
- =?us-ascii?Q?vALy2TqoYGO2vSMnlkL5pqmP2ue9X/WyKTeGHSVS3le0pTOwqmxXG5D7OsUU?=
- =?us-ascii?Q?a00HYQwrw6IAfI1UZYK6vtKfGhOsLwOWJJdhe7Z/KmB//Dtrm7FecZCjFKY/?=
- =?us-ascii?Q?f/gvn89XrBnlbvPDKsXYEUyGWS98si2hamFqGNgEaP98jwdzA7fy23/KhpQZ?=
- =?us-ascii?Q?yqNlfRckk43onSL/7buED3dVSg+3u6Aim6kf+ty5feJlyMhp2yXMogJYBWgC?=
- =?us-ascii?Q?L02yJ+2dCwB8MNjQE42U6dayvbCc2mz39gZxdkdkEeNTKTVL8VHzyJG2kBOM?=
- =?us-ascii?Q?G6gpOZepgvNPOEvAXgg4NqEzNWVxPy/RVuKd3Sa4qDZGFH3/WCcosQKsrmtt?=
- =?us-ascii?Q?P1zkMWhB8aIBRcvJYARBAvgh/6k5OhuWqU0k0zUSPYpg3mAcrKLZMQx8a7WM?=
- =?us-ascii?Q?RpN3mtg/NulMUQOKwfrwpbD11x8Zd6gkwyBIgEMGbQVorCCKge+qKVPc5SYt?=
- =?us-ascii?Q?HEl0pKNshcx7EfeX244i6K2xRC4hZQMW9mgwHHgBEjNmhZdCUeIjyf3/ZgOW?=
- =?us-ascii?Q?6TLiNOmblOfDmUA1zdpHSqXQwaqm7pU196690S+vzidmq5vApDvAuexBgb+O?=
- =?us-ascii?Q?w3fLLYmdw2wAVugp60By1MXpSNTSkp6z9ajXqVneT24iR+OQeyStAAPD4f7B?=
- =?us-ascii?Q?27QBXt4h1IEA/YMh4pm+y2VWh1xA/yM2wb31pBpL8q1hcYSxYjfB4q6oUJdN?=
- =?us-ascii?Q?xREH+QNSl960zPIA5NZGvJ+ijyMApAeOODqPHwATwYXjkhQtADsDe6sYGLNT?=
- =?us-ascii?Q?1sFpTorJDMtTZ/T1OSvJTAHKltB+HgsCNsQDxuLTKhEP0W7fYnPTFd2t2al7?=
- =?us-ascii?Q?BbIwyAf2oC4ow+wb0zmaLMJxrJqfQ/Xk8IAAol1Zcjt57KmTq6L6podhSAZz?=
- =?us-ascii?Q?Qw=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E03D1A23AC
+	for <devicetree@vger.kernel.org>; Fri, 12 Dec 2025 10:23:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1765535005; cv=none; b=SV6i8E1y+RG//bHvkGonUnT1OMBd7zDfvDLJ79gnsuzjSVwrigCt2p2LYwiJe5/azeg70zw9Y0eDRtWANacV6HAdNmpQscdd1rhmQm25FxaRrGPDo7moZIbbB+rqYkNxskSAZkMmMHBtLolxlMKD8zfelCALfa+Js8nuKT00FoY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1765535005; c=relaxed/simple;
+	bh=Zaw7TwytTKibQJzcqeC6bowlkTuSP1nupZKdXUZmNZI=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=um9HKcDqU0pm9e6E4U5Ns8l750dTihYetJObLPz7pmVZnk7PAucdPMV27UByW9varLxKL5YcPqJLF27gIQXrXGZxzsO7Quwl/6kUlav7QDHU9vfmOwu13yxiv72zl2PwSH3jgn7jiB9odtoj53hyMVILsb+i/OsLQTH5+vgz47I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=XiucCvwb; arc=none smtp.client-ip=209.85.218.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-b7cee045187so208525966b.0
+        for <devicetree@vger.kernel.org>; Fri, 12 Dec 2025 02:23:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=suse.com; s=google; t=1765535001; x=1766139801; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:date:from:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=CDYLpaBTjYbFNPHg2kQ1gn8B+rdgjHgQZqIXDZficXs=;
+        b=XiucCvwbQmj38oO69R/O88Q2lJ9zvaXiinnMLPljSk00gpO4AXHEQACgoIIXYgEoVH
+         cSe/Ah3FLaS4wPfB2HrhyUVjqgGXLKcEgBE7msYuJugxdpxl8vYMug3TO9ufWDt1Iomd
+         m64S6h/K7c1Io85WtSCr9E58TcSZ4D8A3Sd32RllSVid+0Cb+qDVvYV+rQzzW61058HI
+         OKE+AxL2zmRsxgozyyiv0dqMVu0WkA9C/Voegi2yAmxL1JHtEIVPfwBfMyLkaLuckng1
+         JNl2ttBWWHFYFady4ebGdkOX9+RiRCC6A5BHcyfmaqcwUgjB4gzAHb5JTegTLryB+vEN
+         a8tA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765535001; x=1766139801;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:date:from:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=CDYLpaBTjYbFNPHg2kQ1gn8B+rdgjHgQZqIXDZficXs=;
+        b=IfCUm9mmqF8gUS40n4SZthp1XI9X7cG0b0lMrG6tO/BKSQsva65jtkkjsZyazlCONH
+         EW4fH+jCQmjUfpVq77lon4AGTIQ5xuAlai1ONyF++2We51QoQpE7UiKd55nxxwKFyot/
+         mL+wfw0BAGthnUEfsXfuf+4UlTNqNKwviP/oCEGNbHjcsy63yl+fL4l0AZseV7nbvkil
+         sIPDb5av5cwIurJtKabF19W9iAg5YFYNMgI8YG2CrX/uop2Rcv4q5OJYu7C101foYrzB
+         cyLVsOaYVB8o0Y1a3Tt3dFuGkc6WLnNf19J2C9fOM7G9qrNKd6y2eNfW8/nSw0qy10Q4
+         K1tg==
+X-Forwarded-Encrypted: i=1; AJvYcCV3Jn+ReRYEMlXdcujHEA7B1xIEspXQOsAy9cTce4Alv3GFBSweXOFfgn1NIwX7KNfNX/vh7yqRPA4r@vger.kernel.org
+X-Gm-Message-State: AOJu0YyVBKFOz20Q0WJGb8xd3o3jqtx1IlnZSDFKdRfsuN9sUsFcbv/u
+	W5jIl1jckfsJKNm0MIQH8mXiYCN+GXo4FSPbs063pZY7jq7NqupoXlddblj7xZ8uc5k=
+X-Gm-Gg: AY/fxX6NlL0hEdcNThuCZW3hX14YFnYwuhUaM9kgjf9J2qklki9iCukaVyE1sDskKJk
+	8Od5B9mcXmrGGIIQHoYJfLwO37iJVy/OEH1meYwSw3/8EeiChYIotO6oChdgA5PsyfpH0HYLUIy
+	7FCamAQLWPvztsswTnLoZRMGJdiaFXMty4wRlEoAloTUUyAhtiuD1/vrUS5VHcOeey1reNoLOuo
+	tyYSTy16/UtcQ8AF6UHZi4/wrIevPEFjn750BJTNSjWNthrGk9fh13CNIJHpOz24spkjvCBiR92
+	A8uSJWigq2euWZ9HXrTVvlNBsvY7GcP65tSICmr3gRnFGxFhUdozuIliBaJMj+fJq+Bdl61l9Fe
+	KAYTX/eLi7xfRkiwRLQLPDpl6XghC8T53oS70Trfjf0svB9dKM/4tKhaiZXaqZXbAQ+WSLqLQbv
+	qs8xYo28a0r3d5AIJMURqy/2CE3xyr4u8VMxwKFbKWqZ1FUoKcDIU1Jg==
+X-Google-Smtp-Source: AGHT+IFSA/IDTOqKcf0h+pfynm/B0vl4/MfsuLtrfDiYru5ejvh12sPIowwmXp4itfh3zExKyyL5aw==
+X-Received: by 2002:a17:907:9406:b0:b73:2d9c:9581 with SMTP id a640c23a62f3a-b7d21897355mr184502066b.28.1765535000836;
+        Fri, 12 Dec 2025 02:23:20 -0800 (PST)
+Received: from localhost (host-87-6-211-245.retail.telecomitalia.it. [87.6.211.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b7cfa5d258dsm532332466b.71.2025.12.12.02.23.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 12 Dec 2025 02:23:20 -0800 (PST)
+From: Andrea della Porta <andrea.porta@suse.com>
+X-Google-Original-From: Andrea della Porta <aporta@suse.de>
+Date: Fri, 12 Dec 2025 11:25:51 +0100
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Rob Herring <robh@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Andrea della Porta <andrea.porta@suse.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Andrew Lunn <andrew@lunn.ch>, Conor Dooley <conor+dt@kernel.org>,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	"Ivan T. Ivanov" <iivanov@suse.de>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Phil Elwell <phil@raspberrypi.com>,
+	Stanimir Varbanov <svarbanov@suse.de>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rpi-kernel@lists.infradead.org
+Subject: Re: [PATCH v2] arm64: dts: broadcom: bcm2712: rpi-5: Add ethernet0
+ alias
+Message-ID: <aTvtr5v4DjuqctdY@apocalypse>
+References: <20251102111443.18206-1-laurent.pinchart@ideasonboard.com>
+ <CAL_JsqJg4aYGyd49UAAPBw+FGpmGxV5JkdkXp2FK_7Gt+7DLZA@mail.gmail.com>
+ <20251212023749.GF28411@pendragon.ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: IA3PR11MB8986.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 25bef94f-0188-455f-e56b-08de39681bbb
-X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Dec 2025 10:20:43.7590
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: sAZ56Cz+m76NoUk1cSJ1GUWwUDyx6IMRh8hbH+qEsO0a/P9yfiCOhEz1a2AA0pRupucrrOlef1UJqWonqaZWbWhx+gLE2QhvpelCaO2BpuQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB8342
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251212023749.GF28411@pendragon.ideasonboard.com>
 
+Hi Laurent, Rob,
 
+On 11:37 Fri 12 Dec     , Laurent Pinchart wrote:
+> Hi Rob,
+> 
+> On Thu, Dec 11, 2025 at 12:42:40PM -0600, Rob Herring wrote:
+> > On Sun, Nov 2, 2025 at 5:15 AM Laurent Pinchart wrote:
+> > >
+> > > The RP1 ethernet controller DT node contains a local-mac-address
+> > > property to pass the MAC address from the boot loader to the kernel. The
+> > > boot loader does not fill the MAC address as the ethernet0 alias is
+> > > missing. Add it.
+> > 
+> > My change here[1] is going to effectively revert this.
+> 
+> :-(
+> 
+> > The RP1 stuff
+> > needs to either be an overlay or not. We don't need both ways.
+> > /aliases don't work for overlays. I suppose that could be added as a
+> > fixup when applying. The kernel also assumes aliases are not dynamic
+> > and uses indexes which aren't present, so even if it did work there
+> > would still be problems. OTOH, if the bootloader might use the
+> > ethernet controller, then why would this ever be an overlay in the
+> > first place?
+> > 
+> > Turns out digging into RP1 stuff, it is a mess and needs reworking[2].
 
-> -----Original Message-----
-> From: Intel-wired-lan <intel-wired-lan-bounces@osuosl.org> On Behalf
-> Of Ivan Vecera
-> Sent: Thursday, December 11, 2025 8:48 PM
-> To: netdev@vger.kernel.org; Andrew Lunn <andrew+netdev@lunn.ch>;
-> David S. Miller <davem@davemloft.net>; Eric Dumazet
-> <edumazet@google.com>; Jakub Kicinski <kuba@kernel.org>; Paolo Abeni
-> <pabeni@redhat.com>; Rob Herring <robh@kernel.org>; Krzysztof
-> Kozlowski <krzk+dt@kernel.org>; Conor Dooley <conor+dt@kernel.org>;
-> Vadim Fedorenko <vadim.fedorenko@linux.dev>; Kubalewski, Arkadiusz
-> <arkadiusz.kubalewski@intel.com>; Nitka, Grzegorz
-> <grzegorz.nitka@intel.com>; Jiri Pirko <jiri@resnulli.us>; Oros,
-> Petr <poros@redhat.com>; Schmidt, Michal <mschmidt@redhat.com>;
-> Prathosh Satish <Prathosh.Satish@microchip.com>; Nguyen, Anthony L
-> <anthony.l.nguyen@intel.com>; Kitszel, Przemyslaw
-> <przemyslaw.kitszel@intel.com>; Saeed Mahameed <saeedm@nvidia.com>;
-> Leon Romanovsky <leon@kernel.org>; Tariq Toukan <tariqt@nvidia.com>;
-> Mark Bloch <mbloch@nvidia.com>; Richard Cochran
-> <richardcochran@gmail.com>; Jonathan Lemon
-> <jonathan.lemon@gmail.com>; Simon Horman <horms@kernel.org>;
-> Lobakin, Aleksander <aleksander.lobakin@intel.com>; Willem de Bruijn
-> <willemb@google.com>; Stefan Wahren <wahrenst@gmx.net>;
-> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; intel-
-> wired-lan@lists.osuosl.org; linux-rdma@vger.kernel.org
-> Subject: [Intel-wired-lan] [PATCH RFC net-next 13/13] ice: dpll:
-> Support E825-C SyncE and dynamic pin discovery
->=20
-> From: Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>
->=20
-> Add DPLL support for the Intel E825-C Ethernet controller. Unlike
-> previous
-> generations (E810), the E825-C connects to the platform's DPLL
-> subsystem
-> via MUX pins defined in the system firmware (Device Tree/ACPI).
->=20
-> Implement the following mechanisms to support this architecture:
->=20
-> 1. Dynamic Pin Discovery: Use the fwnode_dpll_pin_find() helper to
->    locate the parent MUX pins defined in the firmware.
->=20
-> 2. Asynchronous Registration: Since the platform DPLL driver may
-> probe
->    independently of the network driver, utilize the DPLL notifier
-> chain
->    (register_dpll_notifier). The driver listens for DPLL_PIN_CREATED
->    events to detect when the parent MUX pins become available, then
->    registers its own Recovered Clock (RCLK) and PTP (1588) pins as
-> children
->    of those parents.
->=20
-> 3. Hardware Configuration: Implement the specific register access
-> logic
->    for E825-C CGU (Clock Generation Unit) registers (R10, R11). This
->    includes configuring the bypass MUXes and clock dividers required
-> to
->    drive SyncE and PTP signals.
->=20
-> 4. Split Initialization: Refactor `ice_dpll_init()` to separate the
->    static initialization path of E810 from the dynamic, firmware-
-> driven
->    path required for E825-C.
->=20
-> Co-developed-by: Ivan Vecera <ivecera@redhat.com>
-> Co-developed-by: Grzegorz Nitka <grzegorz.nitka@intel.com>
-> Signed-off-by: Ivan Vecera <ivecera@redhat.com>
-> Signed-off-by: Grzegorz Nitka <grzegorz.nitka@intel.com>
-> Signed-off-by: Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>
-> ---
->  drivers/net/ethernet/intel/ice/ice_dpll.c   | 964
-> ++++++++++++++++++--
->  drivers/net/ethernet/intel/ice/ice_dpll.h   |  29 +
->  drivers/net/ethernet/intel/ice/ice_lib.c    |   3 +
->  drivers/net/ethernet/intel/ice/ice_ptp.c    |  29 +
->  drivers/net/ethernet/intel/ice/ice_ptp_hw.c |   9 +-
->  drivers/net/ethernet/intel/ice/ice_ptp_hw.h |   1 +
->  drivers/net/ethernet/intel/ice/ice_tspll.c  | 223 +++++
->  drivers/net/ethernet/intel/ice/ice_tspll.h  |  14 +-
->  drivers/net/ethernet/intel/ice/ice_type.h   |   6 +
->  9 files changed, 1188 insertions(+), 90 deletions(-)
->=20
-> diff --git a/drivers/net/ethernet/intel/ice/ice_dpll.c
+I'm currently working on it.
 
-...
+> 
+> I don't have a strong opinion personally. As far as I understand from
+> https://lore.kernel.org/all/cover.1748526284.git.andrea.porta@suse.com/,
+> non-overlay support was added for compatibility with downstream. I don't
+> know why the overlay option was considered better for upstream. Andrea,
+> could you comment on this ?
 
-> +static int
-> +ice_dpll_pin_get_parent_num(struct ice_dpll_pin *pin,
-> +			    const struct dpll_pin *parent)
-> +{
-> +	int i;
-> +
-> +	for (i =3D 0; pin->num_parents; i++)
-> +		if (pin->pf->dplls.inputs[pin->parent_idx[i]].pin =3D=3D
-> parent)
-Oh, no! we don't need a 2nd Infinite Loop in Cupertino!
+The overlay support was initially conceived for three main reasons:
 
-...
+- it was mildly asked for the driver to work also on ACPI based system. It was
+  not clear if the ACPI tables would also include entries for the RP1 so I
+  assumeed they did not (which would be most probably the case). I'm not aware
+  of any hw which complies with these scenario.
 
+- there was a non zero (even though close to zero) chance that RP1 could be used
+  on other appliances (i.e. some PCI cards), which makes teh overlay approach 
+  appealing. Again, I'm not aware of any real existing hw, if ever.
 
-> --
-> 2.51.2
+- paving the way already opened by Bootlin's LAN driver seemed IMHO a good thing
+  to pursue (I would say that drivers for FPGA peripherals could benefit the most
+  from this approach but there could be others), so why not kicking it off with
+  this driver.
 
+Unfortunately, the overlay support is not fully working for all but the simplest
+peripherals that requires referencing their nodes from the main DTB, for reasons
+debated starting from this thread [1].
+
+This is why the full DT has been provided as the default. Now that I see that the
+overlay support is causing a lot of pain and concerns, I'm planning to evict it
+in favor of the full DT only, overlay is not used anyway and will not be functional
+until we solve all those issues which could be in a very long time, if ever feasible.
+
+> 
+> > Right now, I just want the warning gone so I don't get further complaints[3].
+
+I'm also on this. Please provide a priority between fixing this warning (I need to
+do a round of tests) and fixing the RP1 DT hierarchy (there will be changes in
+both DT and driver code).
+
+Many thanks,
+Andrea
+
+[1] - https://lore.kernel.org/all/CAMEGJJ3=W8_R0xBvm8r+Q7iExZx8xPBHEWWGAT9ngpGWDSKCaQ@mail.gmail.com/
+
+> > 
+> > Rob
+> > 
+> > [1] https://lore.kernel.org/all/20251117211503.728354-2-robh@kernel.org/
+> > [2] https://lore.kernel.org/all/CAL_JsqJUzB71QdMcxJtNZ7raoPcK+SfTh7EVzGmk=syo8xLKQw@mail.gmail.com/
+> > [3] https://lore.kernel.org/all/CAHk-=wi+ge-gtCg+iLd6dgjisGchjtsKY8AXG9tXGOxqVv8Fkw@mail.gmail.com/
+> 
+> -- 
+> Regards,
+> 
+> Laurent Pinchart
 
