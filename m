@@ -1,191 +1,144 @@
-Return-Path: <devicetree+bounces-246153-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246155-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48076CB9183
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 16:22:36 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A52D8CB92DF
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 16:46:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 77516300E80E
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 15:22:32 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 05DB43064AF9
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 15:42:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F3583115B1;
-	Fri, 12 Dec 2025 15:22:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67051308F00;
+	Fri, 12 Dec 2025 15:42:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="onT3DUAd"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="auMhWcd/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ixit.cz (ip-94-112-25-9.bb.vodafone.cz [94.112.25.9])
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 517E719F40A;
-	Fri, 12 Dec 2025 15:22:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.112.25.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D173A239E97;
+	Fri, 12 Dec 2025 15:42:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765552950; cv=none; b=kCj/l9ZbN0VBPejhdmYdifghCX4sCGnxyUXQZrMSRX4usof6tjYX2JfFg9DkKEvLglihes9VO9QdXC5dIRh5EYbSmr4Up8/JqdO0g8aSHZoXHrnhFGSqQfoks24CwNtgOLVD5vw/fbr2lt4UFBaUcLCsWvNa9eeWyjHIlcQH3q4=
+	t=1765554154; cv=none; b=S6eCvNte8KmFiK4R4kuClvExurnC8tMwWiGQOMDZraw+fB9dncCr/BubFqKbIlAjB1355EeYfv7HBAR0NG2rBn/CF/ds+pI/tlPwzu9iuDDyNIKru8UBmIWRMWPDEf6xN7BZjz11uUgKx38coi05bkq0A3filpaPJvxC822qzK8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765552950; c=relaxed/simple;
-	bh=+IblNVT1S6CLR1JEjL42CUwdGpM2anjc5n8A6MmD+2c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QmLGr6l0qQb1X+/Lvzowzp2Vk0hUaWv/qa1lmc9DhJ5XW3bPzFsnj3mLM9YyVit8nYA8ThEuqmAm45irmU1SblJbstlN/+69IH3891rdjYQXUCFUASQCiKrZcE37a5lzUQGnr/gOcfwaqGcfrWq8tX5xrVl/P6Ooaq3XtVJVGwc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=onT3DUAd; arc=none smtp.client-ip=94.112.25.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
-Received: from [10.0.0.200] (unknown [10.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by ixit.cz (Postfix) with ESMTPSA id 4EAE25340C9A;
-	Fri, 12 Dec 2025 16:22:14 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-	t=1765552934;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=McnJ1LW6C8Q5h1Cv7cup4coDzbIea7AHQdJ49VdSV+U=;
-	b=onT3DUAdQorz+yRSuqdKQfS8xkjPf1ykFsOZYdBVONlTfgGMokO5k/6iQBysAeQnqWc1KH
-	OyiM628thmrYuCQncLqjkvIS5jdvDtgQl5b2q32wTtqLe+d/TTQ0s7t90OCdnPRHaswTF+
-	4CTWHELiVFYQfYiLjy3m99zCGUds2cM=
-Message-ID: <d84c25d7-62c7-433d-9978-dd6b20f5681c@ixit.cz>
-Date: Fri, 12 Dec 2025 16:22:14 +0100
+	s=arc-20240116; t=1765554154; c=relaxed/simple;
+	bh=A7S1m225m7dPOx4uWG0isST9OlDzlu89DU7VFxA/uwk=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=HXauotdORV2AOKM8rBA7+zkyDs1x9hMO/5dPTBSDI6IiAvFd0MfUUqWu4WCZfGmPp7B3epa6u+eGkp8Jkitl9o8iURvb/z3FtwHYSIpD7CjOsQDozesVEtRO59bsthIEaXpKLouk4fPGQPBGZ4nd415zUnbJ/mybCdZ5mFf5Vhk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=auMhWcd/; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BCBwN2U3366631;
+	Fri, 12 Dec 2025 10:42:18 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=
+	content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=UrpX8QvRwUPayOcpdcwh01CSq5f
+	3pvgyzbd3tIlvvrY=; b=auMhWcd/Snt50rT/KSaCYMYGre2J8zln3pYVbue8zKf
+	STvvKKh2vlxlo4Zd5WKcF10+mxsMj3LxJnKt9TV2R5K09H9khUpHcMA2AwQWk6gd
+	DLy8qXiZeMmb14PAdnlwz03//3IjGhV/mcry8dCPCf/yYajx9Mh5tvyhrMVce4Fx
+	0btmBO9lxj7tyeDGnjMBFi2yE8P79IQgqbMxQGDkZnlLe6RuB0zYI862c0CFLUjc
+	g00ZOqde7cpSBMm8tAQ77dL14ADEJ/ude7gaRhTGceaMMbsZgmUixnkS47zd6/Ik
+	ioQbf4JBnukGo2XuqmRNr0wYr/eMZ4HVW1KCfYc7iFQ==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 4b05uhm8p0-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 12 Dec 2025 10:42:18 -0500 (EST)
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 5BCFgHer049171
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 12 Dec 2025 10:42:17 -0500
+Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
+ ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.37; Fri, 12 Dec 2025 10:42:17 -0500
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
+ ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.37; Fri, 12 Dec 2025 10:42:16 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
+ Transport; Fri, 12 Dec 2025 10:42:16 -0500
+Received: from HYB-b1tGeUj4GP1.ad.analog.com ([10.32.13.98])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 5BCFg2oS020112;
+	Fri, 12 Dec 2025 10:42:04 -0500
+From: Antoniu Miclaus <antoniu.miclaus@analog.com>
+To: Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich
+	<Michael.Hennerich@analog.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        "David
+ Lechner" <dlechner@baylibre.com>,
+        =?UTF-8?q?Nuno=20S=C3=A1?=
+	<nuno.sa@analog.com>,
+        Andy Shevchenko <andy@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Antoniu Miclaus <antoniu.miclaus@analog.com>,
+        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v7 0/2] iio: amplifiers: add support for ADL8113 Low Noise Amplifier
+Date: Fri, 12 Dec 2025 17:38:24 +0200
+Message-ID: <20251212153908.138422-1-antoniu.miclaus@analog.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC 2/8] power: supply: Add driver for Qualcomm PMI8998
- fuel gauge
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Casey Connolly <casey.connolly@linaro.org>,
- Casey Connolly <casey@connolly.tech>, Joel Selvaraj <foss@joelselvaraj.com>,
- Yassine Oudjana <y.oudjana@protonmail.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Alexander Martinz <amartinz@shiftphones.com>,
- =?UTF-8?B?QmFybmFiw6FzIEN6w6ltw6Fu?= <barnabas.czeman@mainlining.org>,
- Richard Acayan <mailingradian@gmail.com>,
- Alexey Minnekhanov <alexeymin@postmarketos.org>
-Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- phone-devel@vger.kernel.org
-References: <20251124-pmi8998_fuel_gauge-v1-0-dd3791f61478@ixit.cz>
- <20251124-pmi8998_fuel_gauge-v1-2-dd3791f61478@ixit.cz>
- <5d6c3dda-71cd-4684-8546-bc4918b560de@oss.qualcomm.com>
-Content-Language: en-US
-From: David Heidelberg <david@ixit.cz>
-Autocrypt: addr=david@ixit.cz; keydata=
- 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
-In-Reply-To: <5d6c3dda-71cd-4684-8546-bc4918b560de@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: BdRdcifokiLFiDQbJASxvPvU8WxC1FBR
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjEyMDEyNCBTYWx0ZWRfXwg+/M/gFIzaX
+ JpNohMxkblPPaKWNZ6Y+bV06ENdFkcUgxzQsVgIpMl2coawULTIfGLlZTPK8xCGQPE8tRy8Q7Li
+ vcb7mwiKx+46HeCCQQWbRCTcGj3mYw1X0tLt3NqwLDV3XfdKje+VZEfDY5nppY1vtZo5MSgGKIx
+ c1rARsRGFB5NpKXU9qIhs5tZLzGp9J9APUlWAQMUut8riXSyBExWwXMn8p+H06Xx21YRAGUDpto
+ 62+tyH36xpUBWZ8/lfql7w7toAUYkAd6cHiRfMNNSvhn4tEcQWEDlLTZ6nIS4qjHNvAx1sFVwGh
+ wrnEyuAtJBdJu41TaS2K4foT1hgHqrBalItmI7CzZ8ea1kF12nC25kS9Wp1Pl6G7amqC0hRGazM
+ zQJR56ARRmnN1qVwZs5PVOobfSy0lg==
+X-Proofpoint-ORIG-GUID: BdRdcifokiLFiDQbJASxvPvU8WxC1FBR
+X-Authority-Analysis: v=2.4 cv=DeMaa/tW c=1 sm=1 tr=0 ts=693c37da cx=c_pps
+ a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
+ a=wP3pNCr1ah4A:10 a=VkNPw1HP01LnGYTKEx00:22 a=_jDn8YihPVvimUYNn0YA:9
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-12_04,2025-12-11_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 adultscore=0 lowpriorityscore=0 priorityscore=1501
+ bulkscore=0 clxscore=1015 spamscore=0 phishscore=0 malwarescore=0
+ suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
+ definitions=main-2512120124
 
-On 27/11/2025 16:28, Konrad Dybcio wrote:
-> On 11/24/25 10:53 PM, David Heidelberg via B4 Relay wrote:
->> From: Joel Selvaraj <foss@joelselvaraj.com>
->>
->> Ths driver supports the fuel gauge hardware available on PMICs known as
->> 3rd generation fuel gauge hardware available on PMI8998.
->>
-[...]
+This patch series adds support for the Analog Devices ADL8113, a 10MHz to 12GHz
+Low Noise Amplifier with integrated bypass switches.
 
-> Downstream checks if the address is > 0xBA which is what you want
-> at least for pmi8998
+The ADL8113 provides four operation modes controlled by two GPIO pins:
+- Internal Amplifier (14dB gain)
+- Internal Bypass (-2dB insertion loss)
+- External Bypass A (configurable gain) - Signal routes from RFIN to OUT_A and from IN_A to RFOUT
+- External Bypass B (configurable gain) - Signal routes from RFIN to OUT_B and from IN_B to RFOUT
 
-My downstream [1] checks this value.
+The driver allows selecting between these paths via the IIO hardwaregain attribute,
+with optional external amplifier gains configured through device tree properties.
 
-[1] 
-https://github.com/LineageOS/android_kernel_xiaomi_sdm845/blob/lineage-22.2/drivers/power/supply/qcom/qpnp-fg.c#L760> 
+Antoniu Miclaus (2):
+  dt-bindings: iio: amplifiers: add adl8113
+  iio: amplifiers: adl8113: add driver support
 
-> You can de-abbreviate this to 'secure_access' (not to be confused
-> with 'secondary' or so). There's a locking mechanism which needs a
-> 0xa5 byte written to the base+0xd0 register (applies to all FG
-> peripherals with the 'last non-secure register' value possibly
-> varying).
-> 
-> [...]
-> 
->> +	u8 sec_addr_val = 0xa5;
->> +	int ret;
->> +
->> +	if (((chip->base + addr) & 0xff00) == 0)
-> 
-> The 'fuel gauge' consists of:
-> 
-> FG_BATT_SOC @ 0x4000 (state of charge monitor)
-> FG_BATT_INFO @ 0x4100 ("general fg minus SoC")
-> FG_BCL @ 0x4200 (battery current limiter)
-> FG_LMH @ 0x4300 (limits management hardware)
-> FG_MEM_IF @ 0x4400 (DMA engine)
-> RRADC @ 0x4500 (today handled by its own driver)
-> 
-> and a couple other peripherals that Linux doesn't need to worry about
-> 
-> Each one of them should have its own 'reg' entry (which is assumed
-> to be 0x100-long), which will let you skip such interesting checks
-> and rely on the regmap framework disallowing address spillover (or
-> you can just then make the addr argument a u8)
+ .../bindings/iio/amplifiers/adi,adl8113.yaml  |  87 ++++++
+ drivers/iio/amplifiers/Kconfig                |  12 +
+ drivers/iio/amplifiers/Makefile               |   1 +
+ drivers/iio/amplifiers/adl8113.c              | 269 ++++++++++++++++++
+ 4 files changed, 369 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/amplifiers/adi,adl8113.yaml
+ create mode 100644 drivers/iio/amplifiers/adl8113.c
 
-Sounds good.
+-- 
+2.43.0
 
-> 
-> It would be good to keep in mind their relationship and think about how
-> to model them together. I don't think they must all necessarily be part
-> of a single big "fg" dt node, particularly the LMH/BCL part seems to be
-> rather self-contained
-
-Would you recommend some readings to prepare for this task?
-
-I see the FG_BATT* + FG_MEM_IF seems to be pretty relying on each other, 
-so I assume I need to take good care of that relation, when spliting 
-pieces up.
-
-Thanks
-David
-
-
-[...]
 
