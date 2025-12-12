@@ -1,68 +1,67 @@
-Return-Path: <devicetree+bounces-246175-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246176-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C9ACCB9804
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 19:00:55 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DC78CB9819
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 19:03:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 01DD0303134E
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 17:59:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9E938304219E
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 18:00:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71E252F60DB;
-	Fri, 12 Dec 2025 17:59:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E15762D5940;
+	Fri, 12 Dec 2025 18:00:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JnKkkqOs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c+evEzBh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48D1F2F5322;
-	Fri, 12 Dec 2025 17:59:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0A28293B75;
+	Fri, 12 Dec 2025 18:00:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765562354; cv=none; b=oHp+CGGMBHAiQWOBp9amcpEEDBIP5rfvjEMyEleG0RXxPIX8lo9TppTiUOT+3enM771IUFE8B2vDnLON2tBHQmIUveGUDxC7MLSNK2fjkZjVXCn/KXuEnF5XWno40CfMPtlVBh4/C616GvV8zJwIu86yl+MW+7m76YrTVjOG6hs=
+	t=1765562429; cv=none; b=nCLsMlt5UcfEoojtBazosseJ3atgFXZ4vhZnFPTZQHXUnZYztkGOBTtLFIM4Vz/iNSbrxhQ2bexgvsUvR6Nf3j9q3OdECyxEKID0bHuKVv6Kr1cjio+9us24Z6azOtPyDIWthf40hs6iqUaBbXlkXxACFWZ0bXbqwRc34MTkI4Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765562354; c=relaxed/simple;
-	bh=8RRRc4CBHUq0nTddaC6P4w2gbfOVChhf7hvdjIaZf3w=;
+	s=arc-20240116; t=1765562429; c=relaxed/simple;
+	bh=bJ2KJCFxwgxmMsSuX7IhdV9rCVpxtdIdE13CWYdQEx4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HDYRY9tV6Jdwydm7SkGp2q1w5NYpRQs5c87SHpoMihF/nfE6rfFvceulmEghiCm0VWmYmO1V/5Uj4GQeo9ufPsdTRnRa6pzWOWzFwYtHLBvyLBvED3SL93zHoBa1SnN5hy/wGe3+qIjxY7nq4V1QUVP7itfiC+udY9CnI0NFyF4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JnKkkqOs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DADD3C4CEF1;
-	Fri, 12 Dec 2025 17:59:10 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=lI5VsU6+1PDqZVVk4C6BESTkAGXflqH1y5/E7nJpsTR0B2G9eBiN/PO+g1TY9ZFiBJqR8bgKUibGUsU8fMxyRD7sq5i2Ug/T6vrdIxh/D4cz2MZSOv5/09VbOgEB+X5KJA9DWzCY1IDMLN0YK/9aGv/K4TI/tLMqxdqueBW0Ivo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c+evEzBh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E51AC4CEF1;
+	Fri, 12 Dec 2025 18:00:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765562353;
-	bh=8RRRc4CBHUq0nTddaC6P4w2gbfOVChhf7hvdjIaZf3w=;
+	s=k20201202; t=1765562429;
+	bh=bJ2KJCFxwgxmMsSuX7IhdV9rCVpxtdIdE13CWYdQEx4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JnKkkqOsuQYo6Kg/tf3OLKczT7R+rmDIqxBXoC1ouGBPIYWybMu1jOjUCYs1AIhbX
-	 Xja5+84QoJsD6CPaTpUPv50qtXCmrctCWJCBQTZxlHbye+f4Bp9ov3MT0ybaryu05A
-	 VrAvQARc/Kdeb0EalRbebKXZBb0QPcYvNCpIJeTJDcjl43oxH38TFAhlgI7yzrMQyp
-	 75RM7OWSrr4mW1g7Ve+ze5CVITxQc2WqlDjwxvraGvXtHVaGl5mBJb9n+CuuXwcta2
-	 LONKGNyC4CbiBwCAvW+LYLypMAEcX+tJVIX5Z+dHXyDZRD7RQldGFxdk9iCFDaCIYr
-	 xltoAOAUV0UPQ==
-Date: Fri, 12 Dec 2025 17:59:08 +0000
+	b=c+evEzBhkPlDbI3BlJdEvZ8AEjftKU/VXIdPPQJWvsCkWhGn0dqBuVSLZ16mXLcK+
+	 OQYy/rRiaQmYlbi8QYxP/qhukPanqLxFBIRQOgUCDqyNpOQhI8JxXsFTEp0EbPxClx
+	 UkxH7VzoYkIwaFc9ouQK5nOVWoqpUzdszERP5MM8ercsEPDYSvBkJfWfDbsjbe0Tyc
+	 uV/YvsLvAAlE+F6xW8hjBaVU4sa1nIcTGpdaz5udHVRAbVeXbkffrWornvbLJlxJuO
+	 myLTdNnURrg6rm4H/SWNmBWTVxv0n6rUtk1280Ij8u5Gnov3A2O5hjDK1iGxgOcKTr
+	 +0hfL/nEmnITw==
+Date: Fri, 12 Dec 2025 18:00:23 +0000
 From: Conor Dooley <conor@kernel.org>
-To: E Shattow <e@freeshell.de>
-Cc: Samuel Holland <samuel.holland@sifive.com>,
-	Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
-	Emil Renner Berthing <kernel@esmil.dk>,
+To: Marc Kleine-Budde <mkl@pengutronix.de>
+Cc: Prabhakar <prabhakar.csengg@gmail.com>,
+	Vincent Mailhol <mailhol@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Hal Feng <hal.feng@starfivetech.com>, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v1] riscv: dts: starfive: Append starfive,jh7110
- compatible to VisionFive 2 Lite
-Message-ID: <20251212-arming-slacks-18b9407f69e3@spud>
-References: <20251206204540.112614-1-e@freeshell.de>
- <20251208-jogging-morally-9b787b7ab1b8@spud>
- <a18850ad-b6de-4444-9daf-a4a653f4f9ae@canonical.com>
- <0bb12889-cb28-44e7-b2d6-7ecba6264d1a@freeshell.de>
- <d8fa12cc-7a03-4954-8ea5-1e2edf9a149d@sifive.com>
- <20251210-pull-pleading-57c880596510@spud>
- <4b08ce35-9d2d-4e7b-9ea6-c1dcbc4ad04d@freeshell.de>
+	Conor Dooley <conor+dt@kernel.org>,
+	Aswath Govindraju <a-govindraju@ti.com>,
+	Frank Li <Frank.li@nxp.com>, linux-can@vger.kernel.org,
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH v2] dt-bindings: phy: ti,tcan104x-can: Document TI
+ TCAN1046
+Message-ID: <20251212-thaw-octopus-57e8400506ea@spud>
+References: <20251209162119.2038313-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20251210-mauve-cow-of-hurricane-0f969d-mkl@pengutronix.de>
+ <20251210-persuaded-rewire-8ac93b0cc039@spud>
+ <20251211-wonderful-singing-eel-4e2293-mkl@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,97 +69,95 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="Kfbt5e6Jlj5iflno"
+	protocol="application/pgp-signature"; boundary="ec+kgCN350Y3b0uL"
 Content-Disposition: inline
-In-Reply-To: <4b08ce35-9d2d-4e7b-9ea6-c1dcbc4ad04d@freeshell.de>
+In-Reply-To: <20251211-wonderful-singing-eel-4e2293-mkl@pengutronix.de>
 
 
---Kfbt5e6Jlj5iflno
-Content-Type: text/plain; charset=us-ascii
+--ec+kgCN350Y3b0uL
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Dec 10, 2025 at 08:23:54PM -0800, E Shattow wrote:
+On Fri, Dec 12, 2025 at 12:21:03PM +0100, Marc Kleine-Budde wrote:
+> On 10.12.2025 18:21:34, Conor Dooley wrote:
+> > On Wed, Dec 10, 2025 at 08:52:58AM +0100, Marc Kleine-Budde wrote:
+> > > On 09.12.2025 16:21:19, Prabhakar wrote:
+> > > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > >
+> > > > Document the TI TCAN1046 automotive CAN transceiver. The TCAN1046 i=
+s a
+> > > > dual high-speed CAN transceiver with sleep-mode support and no EN p=
+in,
+> > > > mirroring the behaviour of the NXP TJA1048, which also provides dual
+> > > > channels and STB1/2 sleep-control lines.
+> > > >
+> > > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.c=
+om>
+> > > > ---
+> > > > TCAN 1046, https://www.ti.com/lit/ds/symlink/tcan1046v-q1.pdf?ts=3D=
+1765297159307&ref_url=3Dhttps%253A%252F%252Fwww.ti.com%252Fproduct%252FTCAN=
+1046V-Q1
+> > > > NXP TJA1048, https://www.nxp.com/docs/en/data-sheet/TJA1048.pdf
+> > >
+> > > The polarity of the standby line of the chips is different.
+> > >
+> > > You must set the correct active high/low property for the GPIO, as the
+> > > driver uses logical levels.
+> > >
+> > > Reviewed-by: Marc Kleine-Budde <mkl@pengutronix.de>
+> >
+> > What you're saying seems to contradict the tag you've given, is a
+> > fallback really suitable if the standby polarity is not the same?
 >=20
-> On 12/10/25 08:43, Conor Dooley wrote:
-> > On Tue, Dec 09, 2025 at 03:18:58PM +0900, Samuel Holland wrote:
-> >> On 2025-12-09 9:53 AM, E Shattow wrote:
-> >>> The unanswered question what I was asking in the code review of StarF=
-ive=20
-> >>> VisionFive 2 Lite series: What is the normal thing to do for compatib=
-le=20
-> >>> strings of relabeled silicon when there is a suggestion of different=
-=20
-> >>> operational parameters?
-> >> I don't think we are very consistent on this, and some of it depends o=
-n how
-> >> different the binned chips are from each other.
-> >=20
-> > Largely I think the lack of consistency stems from there being relative=
-ly
-> > few users of these soc-level compatibles, so there's nothing really gai=
-ned
-> > from having one in a lot of cases.
-> >=20
-> >> Example 1: Rockchip RK3399 has several bins. RK3399-S and RK3399-T jus=
-t override
-> >> the OPPs, but reuse the SoC compatible string without change. On the o=
-ther hand
-> >> RK3399pro is a superset of RK3399, but uses a new compatible string wi=
-thout a
-> >> fallback.
-> >>
-> >> Example 2: Allwinner H616 (https://linux-sunxi.org/H616) has multiple
-> >> bins/packages/die revisions. H313 is a down-binned version of H616, wh=
-ich reuses
-> >> the SoC compatible string without change. H700 is a superset of H616 (=
-same die,
-> >> more pins), but uses a new compatible string without a fallback.
-> >>
-> >>> I can include the (paraphrased) above summary by Heinrich, yes. Altho=
-ugh
-> >>> now I doubt whether this is the best approach, when removal of
-> >>> "starfive,jh7110s" compatible is potentially an equally valid fix, or=
- if
-> >>> we're rather considering JH7110 at 1.5GHz maximum to be a superset of
-> >>> itself at 1.25GHz maximum (JH-7110S). Would we want to change all the
-> >>> JH-7110 boards to then have JH-7110S as the least-compatible, if I am
-> >>> understanding that meaning of "superset"? I would like to know what is
-> >>> expected.
-> >>
-> >> If starfive,jh7110 is a superset of starfive,jh7110s, yes, it would be=
- valid to
-> >> add starfive,jh7110s as a fallback compatible string in all of the exi=
-sting
-> >> board bindings. But this is not very useful, as existing software alre=
-ady looks
-> >> for starfive,jh7110, and you can't replace that without breaking compa=
-tibility
-> >> with existing DTs. So the advantage of one compatible string (mostly) =
-covering
-> >> both SoCs only applies to new software.
-> >=20
-> > Yeah, adding it to the existing stuff provides no real benefit.
+> The driver uses _logical_ levels to switch the GPIOs. For example to
+> power on the PHY, it disables the standby GPIO by setting the value to
+> "0".
 >=20
-> I agree, there's not any benefit to add "starfive,jh7110s" as the
-> least-compatible to existing stuff.
+> | static int can_transceiver_phy_power_on(struct phy *phy)
+> | {
+> [...]
+> |         gpiod_set_value_cansleep(can_transceiver_phy->standby_gpio, 0);
+> [...]
+> | }
 >=20
-> The reply from Samuel is quite helpful however it's not any clearer to
-> me what direction to take this.
+> You have to use GPIO_ACTIVE_HIGH/GPIO_ACTIVE_LOW in the DT to configure
+> the actual level of the GPIO.
 
-I think the idea is fine, just explain why it'd be helpful in the commit
-message and do the dt-binding change that this doesn't cause warnings.
+Ah okay, I prob should have looked a bit further into the binding.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
---Kfbt5e6Jlj5iflno
+
+>=20
+> If you connect the PHY's standby input directly to the SoC's GPIO....
+>=20
+> | TJA1048: HIGH =3D Normal mode, LOW =3D Standby mode
+> | TCAN1046: High =3D Standby mode, Low =3D Normal Mode
+>=20
+> ...for the TJA1048 you would use GPIO_ACTIVE_LOW, while for the
+> TCAN1046 you would use GPIO_ACTIVE_HIGH.
+>=20
+> regards,
+> Marc
+>=20
+> --=20
+> Pengutronix e.K.                 | Marc Kleine-Budde          |
+> Embedded Linux                   | https://www.pengutronix.de |
+> Vertretung N=FCrnberg              | Phone: +49-5121-206917-129 |
+> Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+
+
+
+--ec+kgCN350Y3b0uL
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaTxX7AAKCRB4tDGHoIJi
-0nmjAQDvW2M/SJc1mloZZeSTieEzeq3XEtz99LP8y2uOdYeEzwD+Km3roylyabwi
-8vw0sl/uT0llCM/gnJswUJDN6CjCywc=
-=7Ipe
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaTxYNwAKCRB4tDGHoIJi
+0u4GAQCKQ0zLIMjJX0Bdhe/NUX9j3cgUy7HrpJmvIB9NveY+mQEA21rq6AEs7yyQ
+5BxDz7hP5JNIAVC+Im1gKpg60Oy2JAs=
+=8+rD
 -----END PGP SIGNATURE-----
 
---Kfbt5e6Jlj5iflno--
+--ec+kgCN350Y3b0uL--
 
