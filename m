@@ -1,350 +1,234 @@
-Return-Path: <devicetree+bounces-246180-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246181-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48EC5CB9A3C
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 20:28:21 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7218CB9B27
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 20:51:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8B7F2308902B
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 19:28:19 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 486FF3002FCD
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 19:51:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A7F63093A7;
-	Fri, 12 Dec 2025 19:28:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E4A33271F4;
+	Fri, 12 Dec 2025 19:44:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="HNoDQdsX";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="aQBFXZmj"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="lLqfZiwG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013026.outbound.protection.outlook.com [40.107.162.26])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFC9B2F5467
-	for <devicetree@vger.kernel.org>; Fri, 12 Dec 2025 19:28:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765567698; cv=none; b=Le2euscolPdd61Kt0gS76HuTM+dYxxT/dpyyd216/pDoC8YPxE3UAeRNKvhxSDT/W45DYRZ0BF7C4McuTyGEFsne+LlOTbmp9pNTnKgqDYbHKUMUSEwoLKGRPhcxdYbsba71dpnDHc8dM9fX+ADK4rZsT+Lkf6+7JleRBbwIBQc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765567698; c=relaxed/simple;
-	bh=Fu97WfepiQZ9BwcYS3iF29ob0areZLFurjDVHCMOphA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cakY+5o5sGSTwOzgWUCQbmbN8lLkPXaUPEjoHXlzsDIZDF1FLx3bc+UBq4okkonrw2p6VDk/c/AbdeTffbRxWS5anYq8vPRbwDi1lzdcU2Oew3eBn1yfsYJSZgRZjBWWcQBF2vhxqHSgswLVb5gDbgrivvrTXgZv4ky2ZOeFpFo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=HNoDQdsX; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=aQBFXZmj; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BC68ecX3660851
-	for <devicetree@vger.kernel.org>; Fri, 12 Dec 2025 19:28:16 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=4iG8dDsSSuKdKDc0EjULhQtf
-	uZmHQl5OwS9CIR2jEPc=; b=HNoDQdsXrM9rNYii9DI9/UxQ1oGs+b3BPCjqvDfk
-	onAQeUZlwo/gRBCPIzFFsLMCfBUya8Ur+NW+8my6dZdMTDw7dVmBMN7YPADjSNQs
-	1O50e5kDRJSc/GyRGIQ1OYJtHAp6d3S7LsWs/KAFfiDVGWDgwU88BP1+n61yMJ0R
-	l0L3zAtunNNkGLoqtzBqWzDQ283IpfNjpfDcqASTe7PlhPoXzZy+Kkgfz0L6Yghh
-	FnOa5zFXBceqtiaCr6niRNotIi7BzlFx/oAVFEAPNtOZjJ02+KpPS91V9aGQOiHS
-	mSTokt3ZlKIxBHSNy4/2QD532OICqmz40Gh0X28vzenutA==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b0dh6sku9-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 12 Dec 2025 19:28:15 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4ed74e6c468so23759711cf.3
-        for <devicetree@vger.kernel.org>; Fri, 12 Dec 2025 11:28:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1765567695; x=1766172495; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=4iG8dDsSSuKdKDc0EjULhQtfuZmHQl5OwS9CIR2jEPc=;
-        b=aQBFXZmj6iiSWLuQOEJ6z1K4yyduAEsIJuxXigWs/uFE+spnOx196i2QqD+miLx2RN
-         V9pKOYRiCah4h3yjuo0qfqSsWwKsiTYHNxeDR8XhZfefM0kYA079osmO1SBLBSeT9voe
-         mOaa8Xx1nGfnTlP/HqsvL++QV0u1DIVVrPrTImUmdpR+QH+nqGcG/FOX1vvMN4wVuMp6
-         1A/Vd0g/EQX2CEO4lV0dtVuVOhKLztz4FHtbBzrlLAP4o0Wg37rRfjAxpD2L1lVr6gz3
-         SuoF/8rGTboWJXukDzZ+rrPc8ATvwZjGz+vuYnVv0k9lK4sJps8Tu7WM6I9JoOAKpmJf
-         bN+Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765567695; x=1766172495;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4iG8dDsSSuKdKDc0EjULhQtfuZmHQl5OwS9CIR2jEPc=;
-        b=EoQbDF4l6n8qZ2ky/KO/u0RX7myY8ItXTHgEzwf7uc2jNG71wsyR4gY8OC9H5Zuxsn
-         5Y3TWboCTx8jicgfLBHQZ1Uc/1uXQNmDjCIqI3fRAn9giYxfv5B28705FnVkQ7K3OhaH
-         KwsKF5JFbW8kX6uLrmOhEsaoa/osljKLfqcedBiNlsuLfUyKpGvfSWC07Q5Wnl0CMbSi
-         3bWUqFcDb2q2xznfXwdmwMapnUuomrC/of512Lqbjkc8uNWRUdIUW82QNPUKHZaxIkcL
-         wRqavQBfrH0gbCYUJkHa2oZUOo+X/mPVTqKaFOV3Zavbh9IDwvluAjzqLndDGDZdENf/
-         PjQQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXvMFhC6VZtHAzVj7Wt1Sma+N0hyp+luKjvP0H6sf5EZ3oxtf3XAanFUdVgnE42UtP9VgwYmd4oxImn@vger.kernel.org
-X-Gm-Message-State: AOJu0YxMSnnLaFGJeNgykKQZRq+I72J9L5Q5QrIDK33QOASjHCMvb0Wr
-	9pte/lqI6UQxLKdAvhWRl9RAEakQfXhRsJOC+GOUSssJtwNUZQxbJ+Ggqbme/AUie/pNxWdQDHn
-	7GCpcQ7Kg2Vc9NjN8Enynx66geqcrAUILbgoQkzq9fQJV7mFm9Pcbd48eVQnliBav
-X-Gm-Gg: AY/fxX4x2PYh92Rt2+qmwLEpAbfwRGsZUQS56TGPx3BzQOwAV9d8QCDKNblRHdQk1mb
-	TarFkJtGOt0IiRs/hRQ8gOHhHFnWtjnnyLCJ/EZOCg1VUUA9ufuAjFRET2NOmMzbedw2RZV/NWs
-	fTgY43sGc9R8fpMDeF30c+oxSESko478L9dB9nnuljOIOBUj7OYQDvyiSuwiPivX+QYzST+5fw8
-	qpFD+tMi/u0O8Olp2qTRCRH7qZMtqg4ch3/+3Qg0XKRRH0jgh0hNSYswOoiSVGtJIXWzJ+zeEW5
-	JE6Ob6BjEqWmHQSD1ZlUJhuhS/wkzf8croz0fU6aMbuKDxLCeHB5sn3oJak60HYx2c4pL19ukAM
-	blwJRTZRxLleX619tWZCaaGQ9rIOz5VNPenEqCzNsmIjcAmnT/0yF0dj+G1O50PzMeGDmvajy5T
-	txOWeQaRmNWoAbfuolvdF9p1s=
-X-Received: by 2002:ac8:6f05:0:b0:4ed:6dde:4573 with SMTP id d75a77b69052e-4f1d05defe5mr42633461cf.52.1765567694560;
-        Fri, 12 Dec 2025 11:28:14 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGzyr9/RXsJkVGr07JI30zn5AtzYTW2vr9z9xYxGmBwaQ2xPKZMLmJQAJgtcPN2kJ0FP8aDSg==
-X-Received: by 2002:ac8:6f05:0:b0:4ed:6dde:4573 with SMTP id d75a77b69052e-4f1d05defe5mr42632881cf.52.1765567693969;
-        Fri, 12 Dec 2025 11:28:13 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-598f2f42215sm2300593e87.33.2025.12.12.11.28.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Dec 2025 11:28:13 -0800 (PST)
-Date: Fri, 12 Dec 2025 21:28:11 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Akhil P Oommen <akhilpo@oss.qualcomm.com>
-Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Rob Clark <robin.clark@oss.qualcomm.com>, Sean Paul <sean@poorly.run>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Dmitry Baryshkov <lumag@kernel.org>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Jessica Zhang <jesszhan0024@gmail.com>,
-        Dan Carpenter <dan.carpenter@linaro.org>,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Jie Zhang <quic_jiezh@quicinc.com>
-Subject: Re: [PATCH v3 5/6] arm64: dts: qcom: sm6150: Add gpu and rgmu nodes
-Message-ID: <wwrc637p5nkz6ptuef2hrhyjgqnyifcztlkjrqyw4764vg6jpf@wso4tp6onb5l>
-References: <6fa1da5d-9ea7-4d72-a03a-82edc4bef099@oss.qualcomm.com>
- <3gqq3w6ovy5srgvabyeugsjbwrhaxmjvicykhjmlcxd74gtsaf@5u6wvvzeq52z>
- <90bc84e7-19ca-450d-b41f-fd96367e8cce@oss.qualcomm.com>
- <2e5sqv2gnxdfwnfsepzdkchxip5zdeamp6bzbamq6kbk77kr3p@u5i4rrnrywno>
- <9971bd9b-88db-4628-b36b-de50c1619396@oss.qualcomm.com>
- <raj276z7euq7skvhsw7prwzlgsdy6ay7bhm4wgb64mt63q4ot4@eyvhcou7qwgg>
- <57706b2e-becf-47ac-a874-79ce17d12b74@oss.qualcomm.com>
- <812cfa55-269d-4b19-8e18-4815608b6bbb@oss.qualcomm.com>
- <6agidc2r2d2jevtiizj77mtlytoo3raxaoe6b53rvk3obmmiha@x7pqjco4ulhg>
- <030a8eb3-c79e-4be0-8305-7c9bb2005785@oss.qualcomm.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA7EF3271E7;
+	Fri, 12 Dec 2025 19:44:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.26
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1765568665; cv=fail; b=DQhr9/Ak/qH93QFeq+7+YCnyMSzvYM8aDjLCWSmf19IUWwK+1mX6lhuyPFUnvMBeoX6k2k+20BsKK/IUEtU57gEVE+7uBSbwlLfkkDHXtZNRBMBMJrLp/Ts5KSKgR3VRe56VeiBfcQECqwE2ZETdM+kverUYL99axnLg5zT5RIQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1765568665; c=relaxed/simple;
+	bh=V54aLADkFHboy1h8N/iYvzPOsP6/MyPhnR80Wjc/0zA=;
+	h=From:To:Cc:Subject:Date:Message-ID:Content-Type:MIME-Version; b=UD0kDGotfhSo/AgpSyZ7lcJ2UPnxvCm3SD1lFXJd1R5t+Y/6tdaL/YvkfEkTbQFJjM9xYx3nDgnaZ7gnOjDSBI+fsrwgmPN53dmH9/s//UMWMl30dBsSHIJk6pryHn5INqRROp2+cPdob04slcCMT6TL8vZyedLrwc4/QHIE2pU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=lLqfZiwG; arc=fail smtp.client-ip=40.107.162.26
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=tIkYSw+xeFlfK4VlAwV45g0Axj71HHLwym+FESVPoX4efkIdpMawlR9PTfS0Yb1VeE0AsyBeMsYwGhi1sYyhTchND1yM1BTx/JEefPqDDGVnwmde+EcW/8gVQFvCohNICX8IebNlBbvyKPbcNEjFgCu3VqFIC2sMtJ9qjtzJFjo9VJdeEYagYlhAjbo40oOw2t4y+IS8Uv42eFSwCtSLXSEQRTyjNMVOp6n3rrJ1S9s/lvAI00YvqrsyXlwWbVErCxd1z+PysrLeqTOPd67FhA5g3UcrDJPdcFd3aDvDn6XMwpPFgwaNoxHUPN/DRNg5dvbWp/2J8jP7TBTNk/BYgw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=SkYMZASm1sTfUJTMt1hu8GFXMzRAK/LiB3rR26lTP/8=;
+ b=rlLKW/jjSqdHkf2GAUO2o8oH1F/hWpjCVI1u6UtUuMx2Df14ui3N015RqIpDoStoP/TccKKZiwJH33ru3wELF2NpfyGaHOL5rMbvwjZ+qHKjqWwmFfN9Q7LWbimiuFjSIMqgxoXDfcKIUyk4w8tbFcz1DoMxutIQ5Zf4K4RJfEvcqEjhTb5EQjCbMVG+MVmABMkevZ9vZIO7RMaTH6p19o+p7wZ2rQK4lVJPaJCwzMhC78AmPziJHCnAXz0SutzRBW8GIjb7Tt46fXY2VaeyonuBNnT8FlLzxmvi2EaQ/EpgItRtR1s4LyOD6jrVXuUiQ1d9/RXYX5iUI3qkiwUQKQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=SkYMZASm1sTfUJTMt1hu8GFXMzRAK/LiB3rR26lTP/8=;
+ b=lLqfZiwG6Clhc3RtqHIZAdnUU9C1RtY0Z7k/MqIfns69JY/kGLy6Aw67BRs3XyWnuQ0Q/Q846x1OP6IyRMO7F6inn/3iCUoL8Ily+TS1+wtwkmGMhkWbDQDQLxWY8Y/snhxA4bq6La2FX3b1q1SQ0L9K4xi9TGSoTBQvQ/W2EuJh86najdCtSWIsmYn7yq0TrvJAr9e9inbkMFvBNOO6bPURldSPDEFq3AW6LdE5FP++WV2Qz9Eo/DGlIEtrCq9xCn9eTfvaAmVVSzU3IhhCNUaa5SqV9lz07OdzOht2uGvCZF3TzRFqgRCwyrxjEb/VjsV8GyzdwRirzXKrp78+UQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9185.eurprd04.prod.outlook.com (2603:10a6:102:231::11)
+ by DU0PR04MB9249.eurprd04.prod.outlook.com (2603:10a6:10:350::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9412.9; Fri, 12 Dec
+ 2025 19:44:19 +0000
+Received: from PAXPR04MB9185.eurprd04.prod.outlook.com
+ ([fe80::21bf:975e:f24d:1612]) by PAXPR04MB9185.eurprd04.prod.outlook.com
+ ([fe80::21bf:975e:f24d:1612%5]) with mapi id 15.20.9412.011; Fri, 12 Dec 2025
+ 19:44:19 +0000
+From: Shenwei Wang <shenwei.wang@nxp.com>
+To: Linus Walleij <linusw@kernel.org>,
+	Bartosz Golaszewski <brgl@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Jonathan Corbet <corbet@lwn.net>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Shenwei Wang <shenwei.wang@nxp.com>,
+	Peng Fan <peng.fan@nxp.com>,
+	linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-remoteproc@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-doc@vger.kernel.org,
+	linux-imx@nxp.com
+Subject: [PATCH v6 0/5] Enable Remote GPIO over RPMSG on i.MX Platform
+Date: Fri, 12 Dec 2025 13:43:36 -0600
+Message-ID: <20251212194341.966387-1-shenwei.wang@nxp.com>
+X-Mailer: git-send-email 2.43.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: PH7P220CA0169.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:510:33b::26) To PAXPR04MB9185.eurprd04.prod.outlook.com
+ (2603:10a6:102:231::11)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <030a8eb3-c79e-4be0-8305-7c9bb2005785@oss.qualcomm.com>
-X-Authority-Analysis: v=2.4 cv=eZ0wvrEH c=1 sm=1 tr=0 ts=693c6ccf cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=mj4UdRjbQG8oDJo-2FUA:9 a=CjuIK1q_8ugA:10
- a=kacYvNCVWA4VmyqE58fU:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: X8gIYhj7rdOjjqrTrZa6dY1V6XfgNmuu
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjEyMDE1NSBTYWx0ZWRfX+mtRLo6em6tj
- 2hx3RFaLVEjmvgZiXE5NiAKjdteZSHJmeqpXuzU2cWvyQlOFnt8QiVUl85aO4NT0mcJx1xV1xA+
- PMsDkfVOHSMlrDO1ejLy4aucv2sYp/vS2rBkJpeHQdzOqMLaGcMXiNiCBwLvEOPrtoIgfqTCV/Q
- tZa27DdAFbOCaTZsRAJyWgl1lFnHEWhLsifpMmf0vk4w15vTvXa3Zbr5Ic1qe22hB+QIMZN4uly
- cmnONsO27LEuUFT+U2LESc7T0CL7ggxGcQHnw6tijXzM3pCuKvQnof5sOZQAGRteKbQ88pcKi2q
- m4SeMHttbA8BRUEdaqvrNX1uhYFmTrdYUcC/xE+nTqCrtN+Wji64ru29yOMdgp8Sjr8RMG+64FT
- wVoojKwppfrcmoklKez9xrPZgXQ14w==
-X-Proofpoint-ORIG-GUID: X8gIYhj7rdOjjqrTrZa6dY1V6XfgNmuu
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-12_05,2025-12-11_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 clxscore=1015 malwarescore=0 spamscore=0 adultscore=0
- bulkscore=0 lowpriorityscore=0 priorityscore=1501 suspectscore=0 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512120155
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9185:EE_|DU0PR04MB9249:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9cf189e2-e85d-4e7d-887b-08de39b6d75d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|19092799006|376014|366016|7416014|52116014|921020|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?Siqv4DKM6r2DgQFRatiKkVf2dQII9+IGBpyjLcoZbXCiN+KtX7EwAEs0tMeF?=
+ =?us-ascii?Q?Qb4dByLqFwfDWtx5Dse7kXiXbq3KT4O4sA7rhPHxDpHk2f3vCJR4FSjv7jpg?=
+ =?us-ascii?Q?iF7fXtgLF3Ztb5XeTmMdTnwr2pG4QPchKdGw49I6VBx5Dx7evruMbRH77rhw?=
+ =?us-ascii?Q?uX9Pi/jD3f/QGLfW7q54UO8yw9xN2EOG0dqMCUPv2+U9kKbUOKNwJa8GpPWY?=
+ =?us-ascii?Q?4ZDbEMG6q0kSNHjo5amNaXOIYl5rHI5JwcmpFgSs0nTNr1vf7vnqbuvgE4qD?=
+ =?us-ascii?Q?JTu2TWdMx2qAL6zA6G7NyOnhXBfMRR+ozH20SlOSka7wPvpT0TgjWMMo4Ras?=
+ =?us-ascii?Q?jKYMPJIBaYweOTW9yUD24FnuUBRV28vUtGksADRm+TAVJNrT/E21fKhAvjav?=
+ =?us-ascii?Q?3eM/ux8fL9ntm8A3zbi/4tvj/+ZJHLlJKgsNY0N3Azl521YfrrH3wkGcNpW9?=
+ =?us-ascii?Q?eM4r77uAOiUaocYmDkUXS4b643RpvDF0GMPC4Fg4NIx2U9VIavnpG6d6VYw/?=
+ =?us-ascii?Q?HADWyjvKnKmR3P3kPQySFcZ7EWNyRIon69+JQd7DHeZtTWgH5yqX8IKclyay?=
+ =?us-ascii?Q?7WtX+1dPxKLQYL1NNiSX3/7RSSg7npP52tUu9M3xQLf64Fw4ZFxaX6firQ46?=
+ =?us-ascii?Q?2VmMXy2d3Ey21N29ygtkUkFNkq6ghljNMrirTMaC+zZl3Lfp4h9b5XhJ/pqZ?=
+ =?us-ascii?Q?4O0zt79lAetBFGXDqhIu+5kNhl8CRIihbUtIVGqU2wBK5lCOs22F/qYA0Gyf?=
+ =?us-ascii?Q?EULdWV7C0Yipby4y1XuPBal+abcYXpAOaipg5pWHRrNXak+4uZcUnzdtmmVT?=
+ =?us-ascii?Q?GY/xqfNilgtbgGxzd9RSj2a/C90fPWeEpCgUUPXUSmFtiTXD98BKOayv+8Ns?=
+ =?us-ascii?Q?Go5HJW+eUarF8WpP0NVtBkGgY4mfZ4gz0uWvy9Yw2tn7Vey9iJuVBX7HETzU?=
+ =?us-ascii?Q?rpITz40AH9UVWaxMf4M1RmqwOHJA8pIdvBKxwbHpQdJQWMPsg/QkydHQl2RF?=
+ =?us-ascii?Q?dQXpYRwpOEngmXpEOukd0UV3F7NExF13fmIHHZm+D2qcX+JwMNI6hg3GaCEa?=
+ =?us-ascii?Q?+DSY9SdT30+VMwErAZT/YQsR2t7bgVOrddoJxKm5QiZyPWPOheQYX4kDCZ5t?=
+ =?us-ascii?Q?AfCxTDuFNX2SFm2EPM/MQld2wrLZiIGKT2pvbEK0cfpRfIsV8XFLoTMpyEZp?=
+ =?us-ascii?Q?aV0HNgTrI86nBEMQ0+N3kRziWCPdpnncqJoe690lCXMYf5p+uWNME29dZP41?=
+ =?us-ascii?Q?PPnJpOz88E/D4+2vJtGY5bd/fyRY76ZSW4elnL4xKXB5uEMrREEWUTZKNUvK?=
+ =?us-ascii?Q?afwrzIDZV97TW3ldWidnpZZv2Ielb2bGChmeVb0XYjfzAkTHaSIoK4m3tkMQ?=
+ =?us-ascii?Q?Epb2CqDtje6VemBsSw4MohSK9aN9XVQuOuHqBhUpbItMq/Lfcz0y8wUN/9Hk?=
+ =?us-ascii?Q?YHWIluu1D41wLMcdaCQzTWkpuio+jGQw0L8griJu6VjYV+ett7rVsFZYg+aB?=
+ =?us-ascii?Q?umc8+mPPkIuBJshvwONN61kx+rnGcUkCAqRb?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9185.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(19092799006)(376014)(366016)(7416014)(52116014)(921020)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?T/8kuMHNObrH+1jOzQjVKO1p6KD7WF/Ad7Ih1yLPaabXwyt5AbAB/q8gj2Lv?=
+ =?us-ascii?Q?2NMp6IdCpDbDuNOZcahxunVZOdGRnuLzxWbzUtg8ronXKoM0SoqYGdPM6w6+?=
+ =?us-ascii?Q?LeMBtz1kWLj1Sfw1KoTyUktTzXYxm362/bUZTy/DJj+p1VzGeFAgskBIaitH?=
+ =?us-ascii?Q?vxrmEPmgVWKV9ZBgyqQ03NzDdFEqvkiAG05uQugSWgErd2h8+TrHoSm/KqwR?=
+ =?us-ascii?Q?2pVCQ8bXzZ3aloMOxFx3TwA68bHba2QIJqrKfGsRJ+licwWcyx5s9tzv1uVE?=
+ =?us-ascii?Q?PqgpH1zZLeLuvZc50ifU3jy706zZcPl4uYTJNd1BuLU5OOjPmieiZ0XUn78W?=
+ =?us-ascii?Q?qIxOMKdM6RDD2fWL8MNEha09rLdB4UiiVe+87+b0i3IaC2JLv33l1IS9/1HV?=
+ =?us-ascii?Q?rToWiAC6SyF29bTIVK1d3jfwdK3TWZV17KFsSauOh6iaBhs2FmPD5YOEUWW6?=
+ =?us-ascii?Q?+4jC87kfsXezrE7o64RDoqugCGtkIQ/yg3HKoimwALIEP6ber6J7R/3xkBn/?=
+ =?us-ascii?Q?T+xo2CQXe5QG0U/285MyKHQe2owQr23H882PDVMGRskbzoUJR7bbtcGpBsvg?=
+ =?us-ascii?Q?sl3mxp1HR4lf9yraMupIy4OeYBOWPSkbN+sZtDpGeUG92CnaZJLW+iHU4T+z?=
+ =?us-ascii?Q?G6fsyNdxG/6YaJ19PLyLovQpaGD77qF6dQnPxf8wL10TlEXg0C21O0KRL/+U?=
+ =?us-ascii?Q?KSZ5XJ2iM9nbEcyo1w96sH0nVAGcVtQfFv6DXzNNd+f6CFtHN5VkQiLxUTDd?=
+ =?us-ascii?Q?Q6ITQQQUqcX/wHcNllSnKQ+FwL5BvVGxal2s3m2Gv+g+HBH+WrY49EIxmRgp?=
+ =?us-ascii?Q?rCunbbSUfv0EtM0Pmuajmb0UYwgm6O47eUgB5inmw5FrvZmO7JPfLSJtblv/?=
+ =?us-ascii?Q?Z13Qr4NzG6C0XLCOvZaSnTCNKltWCXaaTEqcOgvwt6TeJjNRooBArvme+dtp?=
+ =?us-ascii?Q?X9mkuPGRZpdLOY9FYF+bKQediEIGCJ8bFC7+M4mjkCYk/b2VNDjlD2Zt5L6i?=
+ =?us-ascii?Q?GmCfkoaMwYVRrXZvFbzkpKdCy2NXETjYycw+OS//SSZKR19ZSbpZsvUCrKDx?=
+ =?us-ascii?Q?w8mr2k6BuC9Aoo3TlsZlGEpy/IMzhII5jHRoB5SZAQKZZfsUNq8jB0Y+vcvv?=
+ =?us-ascii?Q?KYlHa4cLrtaqZUOZ7ocmv1XRX1Rd32IEd6sWCAHKxe49RFfbhIz+fss5d1ct?=
+ =?us-ascii?Q?/LjHEdXnuGeeg8Os0RpZ3A2CcV93P4jwaEB/Z3vOX47pAh8nXOAYQLOzu06c?=
+ =?us-ascii?Q?O6m1vPfFuScxGVQeT8JItXGl6wfOtI/OIkhMRxgNydMYe1vftXL8ehSYDBvw?=
+ =?us-ascii?Q?alkmds+KmVUk1OeWNeUi8NrRVs02vJubkElVLIIqh/3vvSdV6dGZJy8a5eFL?=
+ =?us-ascii?Q?OeSz2JEkNu/35c94SiSPwkhQVqHuzIXMXVoKxIOVnrF0gi5saxxK4VHx4piq?=
+ =?us-ascii?Q?gPrIKZcKZoqcXeiWK/VIQ5wExmURT7kbjl8qSGx4jZw78cXlU8PvNqb5lsYz?=
+ =?us-ascii?Q?w9Gj/QNgRAV0z4BqVKCryesQ3XQO4THAOTGJRCL5hFy66Y7NC/U1zf1mzLnj?=
+ =?us-ascii?Q?pYW3v6/Wp5l6nLFab6p3KA47jH8hHmq7OuAYqWl6?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9cf189e2-e85d-4e7d-887b-08de39b6d75d
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9185.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Dec 2025 19:44:19.5870
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: xVA1QXdcFkjUXfr7x3jBBxErOb47OBHg5iEMlZL76AG1/dfZpmY4UsT71fc3mNOGhHU75cqqFrXbIDjGEFlgxA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR04MB9249
 
-On Fri, Dec 12, 2025 at 01:01:44AM +0530, Akhil P Oommen wrote:
-> On 12/11/2025 6:56 PM, Dmitry Baryshkov wrote:
-> > On Thu, Dec 11, 2025 at 05:22:40PM +0530, Akhil P Oommen wrote:
-> >> On 12/11/2025 4:42 PM, Akhil P Oommen wrote:
-> >>> On 12/11/2025 6:06 AM, Dmitry Baryshkov wrote:
-> >>>> On Thu, Dec 11, 2025 at 02:40:52AM +0530, Akhil P Oommen wrote:
-> >>>>> On 12/6/2025 2:04 AM, Dmitry Baryshkov wrote:
-> >>>>>> On Fri, Dec 05, 2025 at 03:59:09PM +0530, Akhil P Oommen wrote:
-> >>>>>>> On 12/4/2025 7:49 PM, Dmitry Baryshkov wrote:
-> >>>>>>>> On Thu, Dec 04, 2025 at 03:43:33PM +0530, Akhil P Oommen wrote:
-> >>>>>>>>> On 11/26/2025 6:12 AM, Dmitry Baryshkov wrote:
-> >>>>>>>>>> On Sat, Nov 22, 2025 at 03:03:10PM +0100, Konrad Dybcio wrote:
-> >>>>>>>>>>> On 11/21/25 10:52 PM, Akhil P Oommen wrote:
-> >>>>>>>>>>>> From: Jie Zhang <quic_jiezh@quicinc.com>
-> >>>>>>>>>>>>
-> >>>>>>>>>>>> Add gpu and rgmu nodes for qcs615 chipset.
-> >>>>>>>>>>>>
-> >>>>>>>>>>>> Signed-off-by: Jie Zhang <quic_jiezh@quicinc.com>
-> >>>>>>>>>>>> Signed-off-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
-> >>>>>>>>>>>> ---
-> >>>>>>>>>>>
-> >>>>>>>>>>> [...]
-> >>>>>>>>>>>
-> >>>>>>>>>>>> +			gpu_opp_table: opp-table {
-> >>>>>>>>>>>> +				compatible = "operating-points-v2";
-> >>>>>>>>>>>> +
-> >>>>>>>>>>>> +				opp-845000000 {
-> >>>>>>>>>>>> +					opp-hz = /bits/ 64 <845000000>;
-> >>>>>>>>>>>> +					required-opps = <&rpmhpd_opp_turbo>;
-> >>>>>>>>>>>> +					opp-peak-kBps = <7050000>;
-> >>>>>>>>>>>> +				};
-> >>>>>>>>>>>
-> >>>>>>>>>>> I see another speed of 895 @ turbo_l1, perhaps that's for speedbins
-> >>>>>>>>>>> or mobile parts specifically?
-> >>>>>>>>>>
-> >>>>>>>>>> msm-4.14 defines 7 speedbins for SM6150. Akhil, I don't see any of them
-> >>>>>>>>>> here.
-> >>>>>>>>>
-> >>>>>>>>> The IoT/Auto variants have a different frequency plan compared to the
-> >>>>>>>>> mobile variant. I reviewed the downstream code and this aligns with that
-> >>>>>>>>> except the 290Mhz corner. We can remove that one.
-> >>>>>>>>>
-> >>>>>>>>> Here we are describing the IoT variant of Talos. So we can ignore the
-> >>>>>>>>> speedbins from the mobile variant until that is supported.
-> >>>>>>>>
-> >>>>>>>> No, we are describing just Talos, which hopefully covers both mobile and
-> >>>>>>>> non-mobile platforms.
-> >>>>>>>
-> >>>>>>> We cannot assume that.
-> >>>>>>>
-> >>>>>>> Even if we assume that there is no variation in silicon, the firmware
-> >>>>>>> (AOP, TZ, HYP etc) is different between mobile and IoT version. So it is
-> >>>>>>> wise to use the configuration that is commercialized, especially when it
-> >>>>>>> is power related.
-> >>>>>>
-> >>>>>> How does it affect the speed bins? I'd really prefer if we:
-> >>>>>> - describe OPP tables and speed bins here
-> >>>>>> - remove speed bins cell for the Auto / IoT boards
-> >>>>>> - make sure that the driver uses the IoT bin if there is no speed bin
-> >>>>>>   declared in the GPU.
-> >>>>>>
-> >>>>>
-> >>>>> The frequency plan is different between mobile and IoT. Are you
-> >>>>> proposing to describe a union of OPP table from both mobile and IoT?
-> >>>>
-> >>>> Okay, this prompted me to check the sa6155p.dtsi from msm-4.14... And it
-> >>>> has speed bins. How comes we don't have bins for the IoT variant?
-> >>>>
-> >>>> Mobile bins: 0, 177, 187, 156, 136, 105, 73
-> >>>> Auto bins:   0, 177,      156, 136, 105, 73
-> >>>>
-> >>>> Both Mobile and Auto chips used the same NVMEM cell (0x6004, 8 bits
-> >>>> starting from bit 21).
-> >>>>
-> >>>> Mobile freqs:
-> >>>> 0:         845M, 745M, 700M,       550M,       435M,       290M
-> >>>> 177:       845M, 745M, 700M,       550M,       435M,       290M
-> >>>> 187: 895M, 845M, 745M, 700M,       550M,       435M,       290M
-> >>>> 156:             745M, 700M,       550M,       435M,       290M
-> >>>> 136:                         650M, 550M,       435M,       290M
-> >>>> 105:                                     500M, 435M,       290M
-> >>>> 73:                                                  350M, 290M
-> >>>>
-> >>>> Auto freqs:
-> >>>> 0:         845M, 745M, 650M, 500M, 435M
-> >>>> 177:       845M, 745M, 650M, 500M, 435M
-> >>>> 156:             745M, 650M, 500M, 435M
-> >>>> 136:                   650M, 500M, 435M
-> >>>> 105:                         500M, 435M
-> >>>> 73:                                      350M
-> >>>>
-> >>>> 290M was a part of the freq table, but later it was removed as "not
-> >>>> required", so probably it can be brought back, but I'm not sure how to
-> >>>> handle 650 MHz vs 700 MHz and 500 MHz vs 550 MHz differences.
-> >>>>
-> >>>> I'm a bit persistent here because I really want to avoid the situation
-> >>>> where we define a bin-less OPP table and later we face binned QCS615
-> >>>> chips (which is possible since both SM and SA were binned).
-> >>>
-> >>> Why is that a problem as long as KMD can handle it without breaking
-> >>> backward compatibility?
-> >>
-> >> I replied too soon. I see your point. Can't we keep separate OPP tables
-> >> when that happen? That is neat-er than complicating the driver, isn't it?
-> > 
-> > I have different story in mind. We ship DTB for IQ-615 listing 845 MHz
-> > as a max freq without speed bins. Later some of the chips shipped in
-> > IQ-615 are characterized as not belonging to bin 0 / not supporting 845
-> > MHz. The users end up overclocking those chips, because the DTB doesn't
-> > make any difference.
-> 
-> That is unlikely, because the characterization and other similiar
-> activities are completed and finalized before ramp up at foundries.
-> Nobody likes to RMA tons of chipsets.
-> 
-> Anyway, this hypothetical scenarios is a problem even when we use the
-> hard fuse.
+Support the remote devices on the remote processor via the RPMSG bus on
+i.MX platform.
 
-So, are you promising that while there were several characterization
-bins for SM6150 and SA6155P, there is only one bin for QCS615, going up
-to the max freq?
+Changes in v6:
+ - make the driver more generic with the actions below:
+     rename the driver file to gpio-rpmsg.c
+     remove the imx related info in the function and variable names
+     rename the imx_rpmsg.h to rpdev_info.h
+     create a gpio-rpmsg.yaml and refer it in imx_rproc.yaml
+ - update the gpio-rpmsg.rst according to the feedback from Andrew and
+   move the source file to driver-api/gpio
+ - fix the bug reported by Zhongqiu Han
+ - remove the I2C related info
 
-> 
-> > 
-> >>
-> >>>
-> >>>>
-> >>>> Also I don't see separate QFPROM memory map definitions for Mobile, IoT
-> >>>> and Auto SKUs. If you have access to the QCS615 hardware, what is the
-> >>>> value written in that fuse area?
-> >>>>
-> >>>>> Another wrinkle we need to address is that, so far, we have never had a
-> >>>>> dt binding where opp-supp-hw property exist without the speedbin cells.
-> >>>>> And that adds a bit of complexity on the driver side because, today, the
-> >>>>> KMD relies on the presence of speed bin cells to decide whether to
-> >>>>> select bin via opp_supp_hw API or not. Also, we may have to reserve this
-> >>>>> combination (opp bins without speedbin cells) to help KMD detect that it
-> >>>>> should use socinfo APIs instead of speedbin cells on certain chipsets.\
-> >>
-> >>> If it is a soft fuse, it could fall into an unused region in qfprom. On
-> >>> other IoT chipsets like Lemans, Product teams preferred a soft fuse
-> >>> instead of the hard fuse. The downside of the hard fuse that it should
-> >>> be blown from factory and not flexible to update from software later in
-> >>> the program.
-> >>
-> >> This response is for your comment above. Adding to that, the value for
-> >> the hard fuse is mostly likely to be '0' (unfused), but all internal
-> >> parts are always unfused. Maybe it is 'practically' harmless to use the
-> >> freq-limiter hard fuse for now, because 845Mhz is the Fmax for '0' on
-> >> mobile, Auto and IoT. I am not sure.
-> >>
-> >> I am trying to play safe here as this is dt. We don't want to configure
-> >> the wrong thing now and later struggle to correct it. It is safe to
-> >> defer things which we don't know.
-> > 
-> > What is "soft fuse"? Why do we need an extra entity in addition to the
-> > one that was defined for auto / mobile units?
-> 
-> The hard fuse (freq limiter one) has to be blown at a very early stage
-> in the chip manufacturing. Instead of that, a soft fuse region which is
-> updated by the firmware during the cold boot is used to provide a hint
-> to KMD about the supported GPU fmax. I was told that this provides
-> better operational flexibility to the Product team.
+Changes in v5:
+ - move the gpio-rpmsg.rst from admin-guide to staging directory after
+   discussion with Randy Dunlap.
+ - add include files with some code improvements per Bartosz's comments.
 
-Do you have an upstream example by chance?
+Changes in v4:
+ - add a documentation to describe the transport protocol per Andrew's
+   comments.
+ - add a new handler to get the gpio direction.
 
-> 
-> -Akhil
-> 
-> > 
-> >>
-> >> -Akhil.
-> >>
-> >>>
-> >>> -Akhil.
-> >>>
-> >>>>
-> >>>> We already have "machine" as another axis in the GPU catalog. I'd
-> >>>> suggest defining separate speed bins for mobile and auto/IoT in the DT
-> >>>> (0x1 - 0x20 for mobile, 0x100 - 0x1000 for auto) and then in the driver
-> >>>> mapping those by the machine compat.
-> >>>>
-> >>>
-> >>
-> > 
-> 
-> 
+Changes in v3:
+ - fix various format issue and return value check per Peng 's review
+   comments.
+ - add the logic to also populate the subnodes which are not in the
+   device map per Arnaud's request. (in imx_rproc.c)
+ - update the yaml per Frank's review comments.
 
--- 
-With best wishes
-Dmitry
+Changes in v2:
+ - re-implemented the gpio driver per Linus Walleij's feedback by using
+   GPIOLIB_IRQCHIP helper library.
+ - fix various format issue per Mathieu/Peng 's review comments.
+ - update the yaml doc per Rob's feedback
+
+Shenwei Wang (5):
+  dt-bindings: remoteproc: imx_rproc: Add "rpmsg" subnode support
+  remoteproc: imx_rproc: Populate devices under "rpmsg" subnode
+  docs: driver-api: gpio: generic gpio driver over rpmsg bus
+  gpio: rpmsg: add generic rpmsg GPIO driver
+  arm64: dts: imx8ulp: Add rpmsg node under imx_rproc
+
+ .../devicetree/bindings/gpio/gpio-rpmsg.yaml  |  49 ++
+ .../bindings/remoteproc/fsl,imx-rproc.yaml    |  54 ++
+ Documentation/driver-api/gpio/gpio-rpmsg.rst  | 232 +++++++++
+ Documentation/driver-api/gpio/index.rst       |   1 +
+ arch/arm64/boot/dts/freescale/imx8ulp.dtsi    |  27 +
+ drivers/gpio/Kconfig                          |  16 +
+ drivers/gpio/Makefile                         |   1 +
+ drivers/gpio/gpio-rpmsg.c                     | 490 ++++++++++++++++++
+ drivers/remoteproc/imx_rproc.c                | 143 +++++
+ include/linux/rpmsg/rpdev_info.h              |  33 ++
+ 10 files changed, 1046 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/gpio/gpio-rpmsg.yaml
+ create mode 100644 Documentation/driver-api/gpio/gpio-rpmsg.rst
+ create mode 100644 drivers/gpio/gpio-rpmsg.c
+ create mode 100644 include/linux/rpmsg/rpdev_info.h
+
+--
+2.43.0
+
 
