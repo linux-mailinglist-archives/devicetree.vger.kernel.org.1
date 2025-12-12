@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-246014-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246015-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14530CB7C3E
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 04:29:21 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0920CB7BFF
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 04:23:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A62D23067D3D
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 03:26:45 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5516A302858C
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 03:23:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B2282F49FC;
-	Fri, 12 Dec 2025 03:18:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B23EA2FC875;
+	Fri, 12 Dec 2025 03:23:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X+alLLET"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k2x4n1pF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9FEA2F3C13;
-	Fri, 12 Dec 2025 03:18:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8605B2C0290;
+	Fri, 12 Dec 2025 03:23:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765509516; cv=none; b=g47cGy6xyf+xj4SD5zyL438IcDaFlrCNAxC2UA+rvCPe4WlwOvm9B31UePhGGaXqXhDuUI+3lNjZC6GIW5uZiVVOv1QKph1qiUgeQIvHFYAes39764deHXoW0NYbbktGKgJjbBi76rZVcmG93X2XMoqakBaNtLGZPrfpbiLxGuQ=
+	t=1765509833; cv=none; b=ZOZDOg7u+8EvTNHB+PS7mJ7Tr1jHqI27mIdmBsdvUd3tQ/8HdtoZRQvcRI6nlq25av6jPV3LJvmoBZuFPWQreFD4f9Q+zQzePV3iiICks0HE0EbZ2lT8US0yWQ6XnSvYNeUaohc/xM55no4Tz9tvblxL1IxnubxKi+boNowzJKw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765509516; c=relaxed/simple;
-	bh=XUxxH4Vpir9HcnQx+jNzopr+EwSjZL5lv/lWqbEMxBQ=;
+	s=arc-20240116; t=1765509833; c=relaxed/simple;
+	bh=K8jcmDfwawGDO1MmNxAbMFp3nfxo1X3GQ2tU2FUVSHM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LArU5brrpBp9DjQRgJAmwGkU3AbwSIhISu0onuFJCDToUbaWzVdTF8/LHo2IX2/3iGJ0i9imB67SF2Wsw5VqKJjqAJVn3lLvlc8KuNitpXo2EZ/DAOzNGNEweqVg2seorQQuMTm2rcgHund0K5VZXgpPRFJykdbUNXEKVBZ378E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X+alLLET; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1AA0C4CEF1;
-	Fri, 12 Dec 2025 03:18:32 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Ss5/fu8VO8kvPKhubF2vXXWeMSEiu7KHiNA9eg8aEsY/MMlxc4B9Q2p0z0icSWDQFBRQIO9Q9p0w3YROSeKknDt31UzjiyqIlTWacUSd4g8F6KerlvUMCz54v8chHKLqANomrnL3b7lXjkfhwZchOV0WrbnBYue17pWcwNKm/iU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k2x4n1pF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F6DDC4CEF1;
+	Fri, 12 Dec 2025 03:23:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765509516;
-	bh=XUxxH4Vpir9HcnQx+jNzopr+EwSjZL5lv/lWqbEMxBQ=;
+	s=k20201202; t=1765509831;
+	bh=K8jcmDfwawGDO1MmNxAbMFp3nfxo1X3GQ2tU2FUVSHM=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=X+alLLETr0wBTEseYDUi9oCkFRc7rn5MVZ8wIsZkh/LaCFFb+vQmCrsM28yRSubwZ
-	 Hrfi16Uy/8Z6e1aeO5E3nMMW5/6IlOmlPlbPg3PeBGiciaqx+wJRmM37nMcXz4cG0q
-	 4a7I9D0zelioPR6F/6ah8WLBmM7DWLofRTtHzLeUSoNBXnKWEnXn2sY8tzZ71hnS01
-	 8MsHEkTFqiW69S96WhlbaDt1WacAiBBN0J4afpbHoJuo4YtJOAdXwTvSlT2gDCeLaH
-	 6cXmxb6eg03eaTmF762O2BPpWG5SPQJ8vpI0M3hDJICqzRoucSslclQVDN4g5jIMW6
-	 D4XaRITsEyDSQ==
-Message-ID: <9493a11e-7c4e-4c28-91c3-a896d499e151@kernel.org>
-Date: Fri, 12 Dec 2025 04:18:30 +0100
+	b=k2x4n1pFApHVeRJGUl6UCS+KP4iRRxoC6wpsdzoD+/L0NsdyeMaIRSmN+scRE+w+V
+	 RE2bdmy1Eb2iGH/GQc65hc3LWHSWy+f7JoVuVVjF/0+4W5ZkvV1poaoq2lI7liqykJ
+	 70D1czMNqG+zVM77tDUv5QtXRB3+1cYAfFXVPnP0l9C4j3CPmCGhLfmMJsuoqY8+RQ
+	 Y++h6Q4RQflF3a/BQyk1uhMQKEcJ8GAUITq4Go5pgnXNou9lWO7N4kiog972mC8pHf
+	 EWZcn6Si2mlUudrXf+n2uR28MUC31vlUaCQDtbvj47Cglk2VBtacxpmUNDszEyqvp9
+	 zpmRspQmXtTew==
+Message-ID: <76d1c3ad-d648-4719-b016-1f16b195e64c@kernel.org>
+Date: Fri, 12 Dec 2025 04:23:45 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,18 +48,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] dt-bindings: media: mediatek-jpeg-encoder: add MT8189
- compatible string
-To: Jianhua Lin <jianhua.lin@mediatek.com>, mchehab@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org,
- Project_Global_Chrome_Upstream_Group@mediatek.com, sirius.wang@mediatek.com,
- vince-wl.liu@mediatek.com, jh.hsu@mediatek.com
-References: <20251212015218.4689-1-jianhua.lin@mediatek.com>
- <20251212015218.4689-4-jianhua.lin@mediatek.com>
+Subject: Re: [PATCH ath-current 2/2] dt-bindings: net: wireless: ath11k-pci:
+ deprecate 'firmware-name' property
+To: Jeff Johnson <jeff.johnson@oss.qualcomm.com>,
+ Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>, jjohnson@kernel.org,
+ johannes@sipsolutions.net, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org
+Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20251204071100.970518-1-miaoqing.pan@oss.qualcomm.com>
+ <20251204071100.970518-3-miaoqing.pan@oss.qualcomm.com>
+ <f60bc80d-a947-4083-9e14-000a937de412@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,49 +104,48 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251212015218.4689-4-jianhua.lin@mediatek.com>
+In-Reply-To: <f60bc80d-a947-4083-9e14-000a937de412@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 12/12/2025 02:52, Jianhua Lin wrote:
-> Compared to the previous generation IC, the MT8189 uses 34-bit
-> iova address-space. Therefore, add "mediatek,mt8189-jpgenc"
-> compatible to the binding document.
+On 11/12/2025 17:44, Jeff Johnson wrote:
+> On 12/3/2025 11:11 PM, Miaoqing Pan wrote:
+>> The firmware-name property was introduced to allow end-users and
+>> integrators to select usecase specific firmware for the WCN6855.
+>> However, specifying firmware for an M.2 WLAN module in the Device
+>> Tree is not appropriate. Instead, this functionality will be handled
+>> within the ath11k driver.
+>>
+>> Signed-off-by: Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>
+>> ---
+>>  .../devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml        | 1 +
+>>  1 file changed, 1 insertion(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml
+>> index e34d42a30192..0162e365798b 100644
+>> --- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml
+>> +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml
+>> @@ -37,6 +37,7 @@ properties:
+>>  
+>>    firmware-name:
+>>      maxItems: 1
+>> +    deprecated: true
+>>      description:
+>>        If present, a board or platform specific string used to lookup
+>>        usecase-specific firmware files for the device.
 > 
-> Signed-off-by: Jianhua Lin <jianhua.lin@mediatek.com>
-> ---
->  .../bindings/media/mediatek-jpeg-encoder.yaml | 27 ++++++++++++++-----
->  1 file changed, 20 insertions(+), 7 deletions(-)
+> The driver patch completely removes support for this, so is this really
+> considered deprecated? Or should this actually be considered obsolete and
+
+That's silent ABI break. I will formally NAK the patch.
+
+
+> completely removed?
 > 
-> diff --git a/Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.yaml b/Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.yaml
-> index 5b15f8977f67..3044c7fc5c18 100644
-> --- a/Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.yaml
-> +++ b/Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.yaml
-> @@ -14,13 +14,22 @@ description: |-
->  
->  properties:
->    compatible:
-> -    items:
-> -      - enum:
-> -          - mediatek,mt2701-jpgenc
-> -          - mediatek,mt8183-jpgenc
-> -          - mediatek,mt8186-jpgenc
-> -          - mediatek,mt8188-jpgenc
-> -      - const: mediatek,mtk-jpgenc
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - mediatek,mtk-jpgenc
+> Do any DTS files actually reference this?
+> 
+> /jeff
 
-NAK, makes absolutely no sense. It is contradictory to the main DT
-rules, expressed in writing bindings or on numerous presentations.
-
-You cannot have generic front compatible because it expressed nothing.
-Plus this is really, really not properly explained in the commit msg.
-
-Did you receive proper internal review, before posting? Considering
-absolutely poor quality patches from Mediatek, I find it as a
-requirement now.
 
 Best regards,
 Krzysztof
