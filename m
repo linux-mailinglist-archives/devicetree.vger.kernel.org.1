@@ -1,199 +1,110 @@
-Return-Path: <devicetree+bounces-246164-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246166-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37208CB961E
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 17:57:09 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31DF0CB95BB
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 17:51:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 22FEF30239E7
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 16:56:49 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CEB5B301D5A7
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 16:50:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 789522FC877;
-	Fri, 12 Dec 2025 16:46:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CEur7pT6"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48BD325C704;
+	Fri, 12 Dec 2025 16:50:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A68A32FC00E
-	for <devicetree@vger.kernel.org>; Fri, 12 Dec 2025 16:46:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9819A26E715;
+	Fri, 12 Dec 2025 16:50:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765558018; cv=none; b=bHhNsp0AJtuhfiT9RIOx7TEWEXPLrEwPojsZ3gT5smJTDeBBaGlxnJ3s5KlFAsfoxJRfnp13SVvHGz9po3q665NI3rJ6sDJ883VwMe8sHOiZAs9bGeW+Oj6orHZQQCmi59u7q2PEshoID/1drXU5tmwT6eBFGNtjRe8kjb8xwdY=
+	t=1765558209; cv=none; b=Hf9FpBTWA96Xxoxrug0pxIzVefF3neRHWzK1dC7pVICnC0T0VyEBZ0U3aUfRRjn6AF8W+Yfxn7emMhyHjokOvXYq9O3KHEVQyBAnSGV11rA+xseD38Tv8wcPv6lqyo62A2lskhNfyF+KT9u225GDiO6ftCmP0WdMZRUN2GIX68o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765558018; c=relaxed/simple;
-	bh=miRz/GrsgRy0J9Weo6FmdU+ZyoZnbVl34DzRJukHuwE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SDDlkPfFvEAqAIIWwYCwwomkSGSBnsaTFg2vLsyw3HSM0HfBSgrZWVt3Y+1Ehxm5chQnQVP/nLBOsPklj+Us8g+pc9mnuR8bdDe9pqd2e2OTo1saI8bKQSehfMTCYSiIXPQrnlvySDI1DuOVe6jnfcEHEKa/uemvMbYkbPL5vrQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CEur7pT6; arc=none smtp.client-ip=209.85.210.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-7d26a7e5639so1530854b3a.1
-        for <devicetree@vger.kernel.org>; Fri, 12 Dec 2025 08:46:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1765558015; x=1766162815; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=xtV4fauK6DOFkgFV4rVraB1jD3+BL9hGxw37pG/sLMk=;
-        b=CEur7pT6/1IdwnukbfDK7MwRCCvGGRfu+utkTtqJsmkAKrSwzvaduxGOZDPS7pK/uc
-         tOAEtfP1ticE+D6eckR7GRhs86Zk9QkVpnzPg/X+hEF25NBJgI5KHguRBIkS1sEdjJvy
-         JHZ4GbZ7fYQted+ckF/4LRbpR1PZ36cdkQdFbNSGqJH01m/4heiChRpAE4on9C1mNyCs
-         TWkKtVGr0z/BCKyplhmyd4/ihpwFV7c9E8TYFmZGh2d00L24vQstlwmqXNMZeatUoPvB
-         abTdbpZZ0FPVfqYNlGgYRD675sLn3yB+H/EXpc5E5aI+vjYyjuXhtu2kZ4i8Yf5HXwdH
-         oBzA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765558015; x=1766162815;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xtV4fauK6DOFkgFV4rVraB1jD3+BL9hGxw37pG/sLMk=;
-        b=qO+YuoGybH1shzA6YzAJxitUYRFnX0X6gkfNWkT9XUZrk/9ptEK6FJGHYcm4CP0cz2
-         2jBBrTPArRvhWonEZp9cbQXlNP85ncIq4YkHXjBMrjsdro0jfVBsPU5N69MuoNa5yJSy
-         pJxIVpDMASeMS9yL7/KWWg3Mb3mCPeWKOh/8TuDwTgTG/ksjk0ZexXRZYNqlR1wKzc0w
-         y6DofrYXfdaVeRc2YT5qrAx6aIdEhceAyeOnHnE6afpClMdpLytdLZp/INA6gAsa+Uj7
-         HdU9XrpQXU4nB7VVQ/U5gCBHBLwonU0vPgf85KFO5vX7woWqLzkdv3N9FytbbH7nm66z
-         sQAA==
-X-Forwarded-Encrypted: i=1; AJvYcCVJfChCZWBjUgRECfhNGvbHBzL83QS1qeG/lPgJOMpq2s1YtZwgEUpaR2HB928nnGowDTatUC+e48fi@vger.kernel.org
-X-Gm-Message-State: AOJu0YyLSSjhWiHvpjjctx03WbbFm4mh7Kwu9zhwwI7HesBshpWacO6D
-	soUAIRlVM8YCeMu5A3agzo4hTk0/Ae4yojK/2IrvtOH1rZ1fRy38HgGZ
-X-Gm-Gg: AY/fxX7JXNOO/1CWfBOs9+F1rnyRkJnD4JM/39FypjsT9j52KKMfoBj/NtbA792LqYq
-	AAdyjALTafBaWxeYkjcVDIxkWD4u0U3tbUGiTXmBmwfsB19OE/PadjNzZ3hvQ4Mng5OXeZcIBlA
-	S2vNucpZ/TYADLkvVZHKKMU34vcjKb0ZskEcTiuquP6c5UI5uO6QKfMQivmZt4lraOhICiFCATY
-	u1etNQ7HFRq8QZB1cvPOAx4faPr5n1/EedxfVHgnm0IiY/UzkJvH9JJDqC2jM9Y2JvIy9pKYayH
-	V9AkAeHi7jc1Dev9rjP0mr33mPczYlDTNweGuGXsKbnpgTARnluJeXgaCVdgtjS4Z/zIAlVAFwo
-	pQFxxC9nbc3aGKvRz4i+YfLjn7FRgMHJhWPkH1afyRloPHz597Rg56ynChON1QPczL720WgoGCN
-	hbK+SQxtJS+6HCqHOsOF1XV1+YxzdV2P6nHwiXAC6l+fULEMegVjplASd5i8A=
-X-Google-Smtp-Source: AGHT+IGOf7poD4RLXogFDP+Z/AOQSUyog/G6O5VllngB2Kft5JDAOWIlSg8TdwFDDRPttLbtVLA8eg==
-X-Received: by 2002:a05:6a00:4006:b0:7b7:5066:7f9 with SMTP id d2e1a72fcca58-7f66f9f2ccdmr2402041b3a.7.1765558014726;
-        Fri, 12 Dec 2025 08:46:54 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7f66e12698asm2381975b3a.22.2025.12.12.08.46.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Dec 2025 08:46:54 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <ee7b7dcf-7756-4ffc-8a2c-e2cf33aac725@roeck-us.net>
-Date: Fri, 12 Dec 2025 08:46:52 -0800
+	s=arc-20240116; t=1765558209; c=relaxed/simple;
+	bh=uoKoD2ATk0+/eBaR59U2Jf4JIe9a82syCTGli0vQ3IQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SZDJRzQ9Vd6SOVAwMLjXR2vfdY4QtSpP0zmP0ZYM7Ali7OZywWnxnhd+VOVwHHYuh7GEcQBRsu3Frh0GTc2vdKHRoNOp5UTK1VurGMhjp8Aut4KogXVTPUITj0a/fb5KeNffN3ioL723/A5laXwTgh/0dz45O6wDqm6Ftgq5HM8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.99)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1vU6L1-000000000JK-0kpu;
+	Fri, 12 Dec 2025 16:49:51 +0000
+Date: Fri, 12 Dec 2025 16:49:47 +0000
+From: Daniel Golle <daniel@makrotopia.org>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
+	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Frank Wunderlich <frankwu@gmx.de>,
+	Avinash Jayaraman <ajayaraman@maxlinear.com>,
+	Bing tao Xu <bxu@maxlinear.com>, Liang Xu <lxu@maxlinear.com>,
+	Juraj Povazanec <jpovazanec@maxlinear.com>,
+	"Fanni (Fang-Yi) Chan" <fchan@maxlinear.com>,
+	"Benny (Ying-Tsan) Weng" <yweng@maxlinear.com>,
+	"Livia M. Rosu" <lrosu@maxlinear.com>,
+	John Crispin <john@phrozen.org>
+Subject: Re: [PATCH RFC net-next 3/3] net: dsa: add basic initial driver for
+ MxL862xx switches
+Message-ID: <aTxHq8PGNPCzZngk@makrotopia.org>
+References: <cover.1764717476.git.daniel@makrotopia.org>
+ <d92766bc84e409e6fafdc5e3505573662dc19d08.1764717476.git.daniel@makrotopia.org>
+ <c6525467-2229-4941-803d-1be5efb431c3@lunn.ch>
+ <aTmPjw83jFQXgWQt@makrotopia.org>
+ <d5ea5bee-40c5-43f5-9238-ced5ca1904b7@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/3] hwmon: ltc4283: Add support for the LTC4283 Swap
- Controller
-To: =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>, nuno.sa@analog.com,
- linux-hwmon@vger.kernel.org, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-doc@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>,
- Jonathan Corbet <corbet@lwn.net>, Linus Walleij <linus.walleij@linaro.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>
-References: <20251204-ltc4283-support-v4-0-db0197fd7984@analog.com>
- <20251204-ltc4283-support-v4-2-db0197fd7984@analog.com>
- <144d50f7-398c-4b10-bd21-a6d0c6c7b4c8@roeck-us.net>
- <67209860ae2ff5626b7eaa50f2dd4b496eaa06d3.camel@gmail.com>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <67209860ae2ff5626b7eaa50f2dd4b496eaa06d3.camel@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <d5ea5bee-40c5-43f5-9238-ced5ca1904b7@lunn.ch>
 
-On 12/12/25 08:34, Nuno Sá wrote:
-> On Sat, 2025-12-06 at 10:40 -0800, Guenter Roeck wrote:
->> On 12/4/25 08:15, Nuno Sá via B4 Relay wrote:
->>> From: Nuno Sá <nuno.sa@analog.com>
->>>
->>> Support the LTC4283 How Swap Controller. The device features programmable
->>> current limit with foldback and independently adjustable inrush current to
->>> optimize the MOSFET safe operating area (SOA). The SOA timer limits MOSFET
->>> temperature rise for reliable protection against overstresses.
->>>
->>> An I2C interface and onboard ADC allow monitoring of board current,
->>> voltage, power, energy, and fault status.
->>>
->>> Signed-off-by: Nuno Sá <nuno.sa@analog.com>
->>
->> I finally found the time to write module test code for the driver.
->>
+Hi Andrew,
+
+On Wed, Dec 10, 2025 at 07:56:13PM +0100, Andrew Lunn wrote:
+> > > > +	if (result < 0) {
+> > > > +		ret = result;
+> > > > +		goto out;
+> > > > +	}
+> > > 
+> > > If i'm reading mxl862xx_send_cmd() correct, result is the value of a
+> > > register. It seems unlikely this is a Linux error code?
+> > 
+> > Only someone with insights into the use of error codes by the uC
+> > firmware can really answer that. However, as also Russell pointed out,
+> > the whole use of s16 here with negative values being interpreted as
+> > errors is fishy here, because in the end this is also used to read
+> > registers from external MDIO connected PHYs which may return arbitrary
+> > 16-bit values...
+> > Someone in MaxLinear will need to clarify here.
 > 
-> Thanks!
-> 
->> Some early feedback:
->>
->> - The driver must work with non-devicetree systems and without device
->>     property support. Select defaults where necessary.
-> 
-> I'll double check that... But one thing that already comes to mind is rsense? Rsense
+> It looks wrong, and since different architectures use different error
+> code values, it is hard to get right. I would suggest you just return
+> EPROTO or EIO and add a netdev_err() to print the value of result.
 
-Yes.
+MaxLinear folks got back to me. So the error codes returned by the firmware
+are basically based on Zephyr's errno.h which seems to be a copy of a BSD
+header, see
 
-> is the main design choice for a thing like this. Not sure we can decide on a meaningful
-> default for it? I believe we have the same situation for ltc4282.c
-> 
+https://github.com/zephyrproject-rtos/zephyr/blob/main/lib/libc/minimal/include/errno.h
 
-Agreed, but that doesn't make it better (and I don't have a unit test for that chip).
-Default would be your call. I usually go for 1 mOhm.
+So the best would probably be to modify and include that header with the
+driver, together with a function translating the error codes to what ever
+is defined in uapi/asm/errno.h for the architecture we are building for.
 
-If you have access to it, can you send me a register dump for LTC4282 ?
-
->> - Attributes marked as readable in the is_visible function must be readable.
->>     It is not acceptable to return -EOPNOTSUPP. That applies to all
->>     reset_history attributes and maybe to others.
-> 
-> Hmm that's a mistake. They should be WO and I have the same bug in ltc4282 so I need to
-> send a patch.
-> 
-
-... which helps explain why I want to be able to run unit tests (which requires defaults).
-
-Thanks,
-Guenter
-
+They also told me that (obviously) not all error codes are currently
+used by the firmware, but the best would be to just catch all the possible
+error codes and translate Zephyr libc -> Linux kernel.
 
