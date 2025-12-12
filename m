@@ -1,60 +1,61 @@
-Return-Path: <devicetree+bounces-246067-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246068-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7C49CB859B
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 10:00:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A562ECB859E
+	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 10:00:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5B4FB300E01C
+	by sea.lore.kernel.org (Postfix) with ESMTP id D1E9E3026ACE
 	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 09:00:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 965003112BB;
-	Fri, 12 Dec 2025 09:00:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DC0E30F922;
+	Fri, 12 Dec 2025 09:00:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="q/qrF6oH"
+	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="hsW5++jm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx-relay175-hz1.antispameurope.com (mx-relay175-hz1.antispameurope.com [94.100.132.179])
+Received: from mx-relay10-hz2.antispameurope.com (mx-relay10-hz2.antispameurope.com [83.246.65.96])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1CE030F922
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B139930E854
 	for <devicetree@vger.kernel.org>; Fri, 12 Dec 2025 09:00:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=94.100.132.179
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=83.246.65.96
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765530008; cv=pass; b=EZ19PVuGHTWM0Q1K2oSnBblkRfcG75wSQN2y1MN/MeBJHFpn32zfcM2PfLxyTfwnhrtbedWMkEjcygXbfTqfACTHJI/39+dN1817WLmRWDaWJE9PuRpAzSImAT7Qq19BZk1iCw92ZWRxLEiQ2+dpJ8J7UKz8IVfTZIJEG7q64Q8=
+	t=1765530008; cv=pass; b=Mr9teIAzy7mlja/or4lYlWavUTkIxw5lOFBfY2h20cdJ3AkdUxzQTj6JTHn9I75+k2pg9F+JN6yEf6U/WsN/8+Hono0KgZHBrxQ1BMLh0CXf5wja1KbAcZGrqgnQbqi2Ubdv12jE89PfIbsrZkCMlbt40GGKHrQ2DeDE/KkzaaU=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1765530008; c=relaxed/simple;
-	bh=TTPuwWyrhwIbAh7bSDP8tr6fzMuC7IEfYtFGTQnG3t8=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=SkhBwfmbKsZ08IH/I9+XO3KX3hthb40iPfEA9XDDsekYFfLgy/DYUZy+1EY8YXTDYq5b7HaTeJCq4330+XMq2Tq3CqgYp8NdAI04326PmwFXBFf9EToGD6iSDfSTIEjJKFCRbqHdkJ1QqI+tpNslnlsRPq3esJXveH/IPzqaCzM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=q/qrF6oH; arc=pass smtp.client-ip=94.100.132.179
+	bh=WKBInquyslnsVUJK3IFncVat4T55trFVNhoPBVSI2Jk=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=TvONDmRJiOOMe3wombpE/8s5/PVWdOcKrF7q+1+bDP3nnrkI+WhrHAuVzEOXCuySqcQigj8rCRZhs1sJJD5DXnj1BB5+3Sv3rzviM7fb0u4Uw9RrDYminpg9O0IHVDLp95SVqj9ElZFvoeH71jz2EUPSOPLceXISK3f8YK0Czy0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=hsW5++jm; arc=pass smtp.client-ip=83.246.65.96
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-ARC-Authentication-Results: i=1; mx-gate175-hz1.hornetsecurity.com 1;
- spf=pass reason=mailfrom (ip=94.100.132.6, headerfrom=ew.tq-group.com)
+ARC-Authentication-Results: i=1; mx-gate10-hz2.hornetsecurity.com 1; spf=pass
+ reason=mailfrom (ip=94.100.132.6, headerfrom=ew.tq-group.com)
  smtp.mailfrom=ew.tq-group.com
  smtp.helo=hmail-p-smtp01-out03-hz1.hornetsecurity.com; dmarc=pass
  header.from=ew.tq-group.com orig.disposition=pass
 ARC-Message-Signature: a=rsa-sha256;
- bh=EPA4cw3Gvq6SBCJV/vWcX38SZi8PRTPj9bVk8hJPiao=; c=relaxed/relaxed;
+ bh=84P47lxHC3BLIWqL12zvfUpIKwtTk6oo/ph1IGpKWdI=; c=relaxed/relaxed;
  d=hornetsecurity.com; h=from:to:date:subject:mime-version:; i=1; s=hse1;
- t=1765529958;
- b=CVkQg1FdhsuHu247BZ/oTEQtDGhXlZdHOSza8rt3XptfX0CDERVdsWiBRaTKKYVD5hIixMFe
- 4q8FfTkbnPSAOrxX/cbrYeXPBtyk6MfU6ClcAERivvOlTQhetaaoVwOQ8iJN077s7f5o8bC3TSx
- 07JcoswRGMfBqL94IrsTI8l3LayGAbgLdYAzmAXQrEq1310NeXjZka2u8r656lOrq3Mdo0BXYWh
- X5h5wvykyhbHuFE8CpE887O28DDiO6HQcpf6YC7QbWCKfwqdGI/6e3pMkRMO3W2z6tVIOEcl86+
- Rz1cW9cRoPmLN/CqFuBhRjJQSHBoQKMDkU3RYhtZd166w==
+ t=1765529965;
+ b=OvqG29koEV9d9YJKnv/ff1GBUoKDmH4pT3lXbDJe7EP/OTcq+P9VU/8W5kAjurd8FRq2jBek
+ HoqrwjaMGzeB5kUvnlnDskP+oTEAx6z0sZTuKFQVe04bFcG08QkOxfH5TGqOL5TVMIspKwMj9pk
+ f6RLuoNG9t2TU6uUBetc0KyAGEhCc00lWiK+Og6JK7918EfRgHmQV1GWX94Gg1B9anqNgqXRAFR
+ 3I7557zqyB1tddAV3nveTUtqI9z+4JW+YCK28nrOMnZQ8+9hnqshRU1J1r7TlEcAw/EnFYhpwrx
+ AeQBokJHZLSu4dKKEbVvfiQ15F7LNXeXLKqXhj5ftuFxg==
 ARC-Seal: a=rsa-sha256; cv=none; d=hornetsecurity.com; i=1; s=hse1;
- t=1765529958;
- b=ZAmfL/8EIozx8KsEj5u06fvILW/O7IfIjK8r/Kw5JlBW4RhN3yxHLDcvER5RjYXGoUtniokf
- jfdv1aeHFDK6Ca5K7PFL4BMWG13kzy8qEwtJc/Pnm4PBMsLccoHkxP2xQnVOXm5jPwSVO6htncr
- tH7zGJTJPxWRfvu1DQpE55PVuM3t5hEWzhCezYDv5Y594CR2+aK+f4xclJuoPMX+SFMsQk624NA
- iAhI9y7QuVD0/W4AMJ/oJuGh2NytIqVK7ZuKmQqsSWT2yAcfBHyJSfv+u+gRFvP4sumZeyj19Xo
- YgIlxdAPkxvzzq3gbvXjkXOsTgZrQN2JoLu6dNZOXXBng==
-Received: from he-nlb01-hz1.hornetsecurity.com ([94.100.132.6]) by mx-relay175-hz1.antispameurope.com;
- Fri, 12 Dec 2025 09:59:18 +0100
+ t=1765529965;
+ b=BJtSxIX5pTwt+ch56Z5gR6qEh3O9mir/TNosfBcSnIhHxQAyCHgg/WfM+RMSDwhiFECZrZE/
+ 7hjY9aPLAH7iLsCS4YlDjMlxnB+4qND152hMZej4usBHWfG6aXIaDzNjyHW54manV7Qn0A+X5lh
+ 8nEpzuI0Qb2ij4ccGJ3QlO8bQEYiQJJhldsn/EQSLi8lg/A2nhR2xiFo4OT28qDkFIxbDOVGfYy
+ 6XIYLwmPS7fnfgYYKbT3IKcPfxHrcpFO5Yf78FA+PudKu7Ytfkzoj6cyiCUx3pX7A6bV9Abqn9j
+ IX3qoVx1WhY/zPmUrtjwRsFgKaNwQFngQzvooyUSIBjXA==
+Received: from he-nlb01-hz1.hornetsecurity.com ([94.100.132.6]) by mx-relay10-hz2.antispameurope.com;
+ Fri, 12 Dec 2025 09:59:24 +0100
 Received: from steina-w.tq-net.de (host-82-135-125-110.customer.m-online.net [82.135.125.110])
 	(Authenticated sender: alexander.stein@ew.tq-group.com)
-	by hmail-p-smtp01-out03-hz1.hornetsecurity.com (Postfix) with ESMTPSA id 434D5CC0CCA;
-	Fri, 12 Dec 2025 09:59:10 +0100 (CET)
+	by hmail-p-smtp01-out03-hz1.hornetsecurity.com (Postfix) with ESMTPSA id 69CACCC0CCB;
+	Fri, 12 Dec 2025 09:59:11 +0100 (CET)
 From: Alexander Stein <alexander.stein@ew.tq-group.com>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -69,10 +70,12 @@ Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
 	imx@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH 1/2] dt-bindings: power: fsl,imx-gpc: Document address-cells
-Date: Fri, 12 Dec 2025 09:58:59 +0100
-Message-ID: <20251212085902.103507-1-alexander.stein@ew.tq-group.com>
+Subject: [PATCH 2/2] ARM: dts: imx6qdl: Add default GIC address cells
+Date: Fri, 12 Dec 2025 09:59:00 +0100
+Message-ID: <20251212085902.103507-2-alexander.stein@ew.tq-group.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20251212085902.103507-1-alexander.stein@ew.tq-group.com>
+References: <20251212085902.103507-1-alexander.stein@ew.tq-group.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,44 +89,54 @@ X-cloud-security-crypt: load encryption module
 X-cloud-security-Mailarchiv: E-Mail archived for: alexander.stein@ew.tq-group.com
 X-cloud-security-Mailarchivtype:outbound
 X-cloud-security-Virusscan:CLEAN
-X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on mx-relay175-hz1.antispameurope.com with 4dSNg273DBz2SSMs
+X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on mx-relay10-hz2.antispameurope.com with 4dSNg41V2Cz4FKLF
 X-cloud-security-connect: he-nlb01-hz1.hornetsecurity.com[94.100.132.6], TLS=1, IP=94.100.132.6
-X-cloud-security-Digest:fa6caea5f90cd85704070cb335c8b449
-X-cloud-security:scantime:2.182
+X-cloud-security-Digest:bb4a7dffaef21819fc1d7783b77528b3
+X-cloud-security:scantime:3.879
 DKIM-Signature: a=rsa-sha256;
- bh=EPA4cw3Gvq6SBCJV/vWcX38SZi8PRTPj9bVk8hJPiao=; c=relaxed/relaxed;
+ bh=84P47lxHC3BLIWqL12zvfUpIKwtTk6oo/ph1IGpKWdI=; c=relaxed/relaxed;
  d=ew.tq-group.com;
  h=content-type:mime-version:subject:from:to:message-id:date; s=hse1;
- t=1765529957; v=1;
- b=q/qrF6oHkEBqE8k0ziJFCdtNT7iHGOjDXmcmWoxlQMx/rgpx5scBMYPVfaMWOeM2hITIgejn
- iX+sM53ewvM2TnhneIGXm478fvgBWRYzB8H3GgY7MDP0wu9gfWn0jg/WhJvfyiZSvtC5Ug+uRKC
- NH//C1KM2iFrspealBhoD5KvcGjmPgWUmaMOj2Dgq6JD8a+G3bu6wW9DNfUETI7XA900W7Of0BJ
- m/2pHddB8eq5z3SYDYymExkOY+bjJTVz0GD/Z6u+3OjSkcYfwiUyfVgYT+cmCNcMznKwGOxCEM2
- 3bJNUCjM3nDjmefrFfDO/zm6X5ASxpd0g81hKcD5WYdmA==
+ t=1765529964; v=1;
+ b=hsW5++jmMX/i6kwcEyVF7Dpjwy+Js1COrnlq04y3qFO2bvNdTV4RTc8q4I/vr6nb92Ppc+dv
+ dsBVhW1rJP97rQoAOQYwWiWTeKXtWDoGacRwPCxocmjh12VtUnjrE/WgsPbL93pbd+QI1AHcEEj
+ voQbuFO+5yIHr3sF6aORK1EQU7fryCDILMGIYVbcYY/WPIMmBH4JmOuocSi6UqoDdwBdbsO0PHn
+ mIWiJucUrX1M/nlfglUXxf+wsLGLm+JncQB6waG/9ac+FLkMPU2bXBsGVtvFnPRPBoCgmqtGEcB
+ 5bZCsMuU5WQiewZUZy61cgrxMiift6Pjn0vVjutIXYDYA==
 
-The GPC power controller is an interrupt controllers and can be referenced
-in interrupt-map properties, e.g. PCIe controller, thus the node should
-have address-cells property.
+Add missing address-cells 0 to GPC interrupt node to silence W=1
+warning:
+
+  imx6qdl.dtsi:281.4-284.29: Warning (interrupt_map): /soc/pcie@1ffc000:interrupt-map:
+    Missing property '#address-cells' in node /soc/bus@2000000/gpc@20dc000, using 0 as fallback
+
+Value '0' is correct because:
+1. GPC interrupt controller children are only power domains,
+2. interrupt-map property (in PCI node) consists of five components and
+   the fourth component "parent unit address", which size is defined by
+   '#address-cells' of the node pointed to by the interrupt-parent
+   component, is not used (=0)
 
 Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 ---
- Documentation/devicetree/bindings/power/fsl,imx-gpc.yaml | 3 +++
- 1 file changed, 3 insertions(+)
+This is based on commit faf183a02ed6b ("arm64: dts: imx8mp: Add default GIC
+address cells")
 
-diff --git a/Documentation/devicetree/bindings/power/fsl,imx-gpc.yaml b/Documentation/devicetree/bindings/power/fsl,imx-gpc.yaml
-index 9de3fe73c1eb6..d49a5130b87c7 100644
---- a/Documentation/devicetree/bindings/power/fsl,imx-gpc.yaml
-+++ b/Documentation/devicetree/bindings/power/fsl,imx-gpc.yaml
-@@ -38,6 +38,9 @@ properties:
-   reg:
-     maxItems: 1
- 
-+  "#address-cells":
-+    const: 0
-+
-   interrupts:
-     maxItems: 1
- 
+ arch/arm/boot/dts/nxp/imx/imx6qdl.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl.dtsi
+index 45bcfd7faf9db..9793feee63947 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6qdl.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imx6qdl.dtsi
+@@ -875,6 +875,7 @@ src: reset-controller@20d8000 {
+ 			gpc: gpc@20dc000 {
+ 				compatible = "fsl,imx6q-gpc";
+ 				reg = <0x020dc000 0x4000>;
++				#address-cells = <0>;
+ 				interrupt-controller;
+ 				#interrupt-cells = <3>;
+ 				interrupts = <0 89 IRQ_TYPE_LEVEL_HIGH>;
 -- 
 2.43.0
 
