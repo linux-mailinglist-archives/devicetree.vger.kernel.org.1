@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-246227-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246228-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00819CBA401
-	for <lists+devicetree@lfdr.de>; Sat, 13 Dec 2025 04:20:37 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43B8BCBA407
+	for <lists+devicetree@lfdr.de>; Sat, 13 Dec 2025 04:21:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 794F13007970
-	for <lists+devicetree@lfdr.de>; Sat, 13 Dec 2025 03:20:14 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BF11330358DE
+	for <lists+devicetree@lfdr.de>; Sat, 13 Dec 2025 03:21:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F2FE2D77F5;
-	Sat, 13 Dec 2025 03:20:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38B9B2DA763;
+	Sat, 13 Dec 2025 03:21:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dMuicZvK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VlTkL9FD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08470284684;
-	Sat, 13 Dec 2025 03:20:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D1652D1319;
+	Sat, 13 Dec 2025 03:21:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765596013; cv=none; b=srFB7LYTmj1JzUkQMBB6lGn/KbUpuf2V68n/hH4e0E8YX5w8dMUuIdpeLWokgg5km1DipGS5Ba2diAEQDBXOY3qgMX3dXp80RWSRupJAE3lBXxlfVJfCjwuayQf0P+x+hug8FtMD7d9ue5XcDc8QnirbDAHj50dtN9F0bWe65W0=
+	t=1765596089; cv=none; b=H1m8NKecCuJeTeEhDrukEBG/U8GDLq2zcnZ3fVY4SD13OELMWEJQ7iT/LXef1Nh117dWPUB24RBBjL1nuTzwSPAZ+M3JhA5H6lpxoeHQd2vT2ctSos1g2ZhaNiVAMvChWWuobkcIJ2yrqggI0KgpExnw+lnit1gbq36q79pcw6o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765596013; c=relaxed/simple;
-	bh=9pATBF7wQUYhXP9C8AnGk3NrhTMiq+9sTIHoxjElzSs=;
+	s=arc-20240116; t=1765596089; c=relaxed/simple;
+	bh=8lCxTyTY0KcxZMMB0kU/7LQ6zw+ZzAKRLEXnR5zIcg8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XUOpThNsiXLMxnoi/wWFxcjdfrzC4XaOJwvAtIuox4i8vzKMx0Z3IjjYEY602JqyifgdpHzYgCHJvxr5qkGFymJEOVUBbDV7ljJezHP5x99T4Rso41gbvaMSNHFvnSmNRkAIvmP0VVYkDjQVdDQRtm0nF19wZW5EqLf/FJIVWF8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dMuicZvK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65AE3C4CEF7;
-	Sat, 13 Dec 2025 03:20:07 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=R3x5gbEbW0pLK2Ors0b0eaFkmbDvKHaferEk1fEC7EcVP6cUEcrRKImWxUWD8IqTIKKgCuvWuzUHkm5vX7G7gqQAeQHyeq6h2P5/t+mLOZEXYS22PcZaUyfmnCKNc1mOLxka5eXkt1EBJyoknOkZ/oVmWgnOKCT4mwX3Lre1hXw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VlTkL9FD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BFA01C4CEF7;
+	Sat, 13 Dec 2025 03:21:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765596011;
-	bh=9pATBF7wQUYhXP9C8AnGk3NrhTMiq+9sTIHoxjElzSs=;
+	s=k20201202; t=1765596088;
+	bh=8lCxTyTY0KcxZMMB0kU/7LQ6zw+ZzAKRLEXnR5zIcg8=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=dMuicZvKbvl0F91/2dtXtefJOav+8ZHhzZMz6MaKgrSBAom6ZNWIW1/pnoRSYidd7
-	 3Vp8/8UE5XZUaBvtwdXHA0enmdi0Bp2kseGqPrt6BmYTEd3FglBcR/s/cEwnUyPBDD
-	 JkWCvMRa5/674O8WB38Iy1Ecvv1v7XAU7b1Z281OXtWwjjWoHe8ggsKkYvngdkwKoT
-	 GKAuWqxBQtykU5nNRZpTjP9YozsBxV7S3mCtUtEW0gWPdFs/vQFH7eHDMKn+gQ4QuI
-	 EHuf5Y4lgadvSrRTg8z6qDOeKb2Uqe68Tojs1E7s3Q8dw5nkLdy8creWNgR0NQdhUs
-	 ajRqAEyZJj7DQ==
-Message-ID: <612b2b3e-9da6-4bbc-8058-a6c025d76729@kernel.org>
-Date: Sat, 13 Dec 2025 04:20:04 +0100
+	b=VlTkL9FD4raSJcpuZZ5lOUq63Zc+/lNfASTYrRSBkAKrc9DIxCX+WucDCZgZXh40h
+	 TWBVf6Jq7NPLcXokj8H2gAR2U3P7ewQpXShdgbJV/3HTpBKvtlSt9m863gR1gXcHmx
+	 26hxhLG57PqTeU79wL2QexZmgAuLLxStTZOrtgnGxXruO1igRPP4FsrOqINyAfcRhr
+	 Lnxe14loix0lY/FBD2Lc1JitEOin0+YJD5g1CgHnJIkW07Yb1o0OL2AdLrJN5lTNof
+	 z8M58bGwK+SiAudASTKvNT4KBUfgKxkT0UpTfvUgb6BMUtwbM6nABQczBVyrEm0qhv
+	 43eznM51xSRDg==
+Message-ID: <3cfea9e6-0cc6-406f-9a4c-3564ef1e3569@kernel.org>
+Date: Sat, 13 Dec 2025 04:21:21 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,8 +48,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] dt-bindings: misc: agilex5-soc-fcs-config: Add
- binding
+Subject: Re: [PATCH 2/4] dt-bindings: firmware: stratix10-svc: add fcs-config
+ property
 To: hangsuan.wang@altera.com, linux-kernel <linux-kernel@vger.kernel.org>,
  devicetree <devicetree@vger.kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
@@ -65,7 +65,7 @@ Cc: Marek <marex@denx.de>, Simon <simon.k.r.goldschmidt@gmail.com>,
  <muhammad.amirul.asyraf.mohamad.jamian@altera.com>,
  Khairul Anuar Romli <khairul.anuar.romli@altera.com>
 References: <cover.1765534135.git.hang.suan.wang@altera.com>
- <f14623df4725f66c5ab6a9f75f0a5efd062dbd8f.1765534135.git.hang.suan.wang@altera.com>
+ <c5b2e76a7dd04d2143580c4574def095d3f0550c.1765534135.git.hang.suan.wang@altera.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -111,26 +111,47 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <f14623df4725f66c5ab6a9f75f0a5efd062dbd8f.1765534135.git.hang.suan.wang@altera.com>
+In-Reply-To: <c5b2e76a7dd04d2143580c4574def095d3f0550c.1765534135.git.hang.suan.wang@altera.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 12/12/2025 12:35, hangsuan.wang@altera.com wrote:
 > From: "Wang, Hang Suan" <hangsuan.wang@altera.com>
 > 
-> Soc/Hardware FPGA crypto services (fcs) by ensuring optimal performance,
-> secure isolation, and robust system management. This will allow dedicated
-> system resources to communicate with the high-speed FPGA hardware without
-> interruption or software overhead.
-> 
-> This results in faster, more secure, and consistent cryptographic
-> operations compared to running the services entirely on the
-> general-purpose CPU.
-> 
+> Altera SoC FPGA Crypto Service (fcs) provide hardware crypto features
+> through mailbox. Fcs property has to be added to compliance with device
+> tree schema fcs bindings and driver.
 
-You don't have resources there, so that's not a real device... And above
-explanation does not help me at all. Please carefully read slides for
-DTS 101 talk and writing bindings doc.
+Last sentence is completely redundant. If you add new devices for some
+"compliance" you do it wrong. We don't build hardware for "dt compliance"...
+
+> 
+> Signed-off-by: Wang, Hang Suan <hangsuan.wang@altera.com>
+> ---
+> ---
+>  .../devicetree/bindings/firmware/intel,stratix10-svc.yaml     | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/firmware/intel,stratix10-svc.yaml b/Documentation/devicetree/bindings/firmware/intel,stratix10-svc.yaml
+> index b42cfa78b28b..c105f8dc4b7d 100644
+> --- a/Documentation/devicetree/bindings/firmware/intel,stratix10-svc.yaml
+> +++ b/Documentation/devicetree/bindings/firmware/intel,stratix10-svc.yaml
+> @@ -62,6 +62,10 @@ properties:
+>      $ref: /schemas/fpga/intel,stratix10-soc-fpga-mgr.yaml
+>      description: Optional child node for fpga manager to perform fabric configuration.
+>  
+> +  fcs-config:
+> +    $ref: /schemas/misc/intel,agilex5-soc-fcs-config.yaml
+> +    description: Optional child node for fcs Fpga Crypto Service (fcs) to perform SoC Crypto Engine.
+
+You need to wrap according to Linux coding style. Anyway, above schema
+is NAKed so is this child.
+
+> +
+>  required:
+>    - compatible
+>    - method
+
 
 Best regards,
 Krzysztof
