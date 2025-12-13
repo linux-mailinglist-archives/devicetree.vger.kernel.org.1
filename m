@@ -1,46 +1,80 @@
-Return-Path: <devicetree+bounces-246239-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246240-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF6EDCBA69B
-	for <lists+devicetree@lfdr.de>; Sat, 13 Dec 2025 08:28:46 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F2FBCBA6E3
+	for <lists+devicetree@lfdr.de>; Sat, 13 Dec 2025 08:55:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 70B1D30B4C4D
-	for <lists+devicetree@lfdr.de>; Sat, 13 Dec 2025 07:28:44 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 917643009F66
+	for <lists+devicetree@lfdr.de>; Sat, 13 Dec 2025 07:55:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69D3A238C2A;
-	Sat, 13 Dec 2025 07:28:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3580F23A994;
+	Sat, 13 Dec 2025 07:55:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GuwYDZsp"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="f72A4ZBx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3351A3C38;
-	Sat, 13 Dec 2025 07:28:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7372B3FCC
+	for <devicetree@vger.kernel.org>; Sat, 13 Dec 2025 07:55:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765610923; cv=none; b=kXmb11RP2yR0cWOwglBA9gtrWFMSCOqNY/SJ8EyZ7MU69n2CMxwbj0LkNEFrwj2eENXK4Bv3wyo9bDNcR8hk0vPyMLa6DkxoBtsKfoWx0puohbEGq7HTunLPe9McVbwiy4FjiCSyeC9J0ImSRfnhTyv1C1QcBu2++cRjjUScYmQ=
+	t=1765612516; cv=none; b=ke4gz80XCt+V2ONZvgdFFifMXFbPEj5KguvEbJGiw26DhteWRb1tZrlbdwiCsK6q0oO6Yn1j10mPO6pSxhLZXUoIC4A1L8zuGB0moVH1hzJZhYgrA4M3pfqfZL55+k9XlhDS7e1uWgvx6qJ8IpRb8yYvz0HQZI3ZuGc7qOw//Ek=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765610923; c=relaxed/simple;
-	bh=I8KHB05J4hzU7RAcGfM4K+COzPxnPfyndjSsOY4V+h8=;
+	s=arc-20240116; t=1765612516; c=relaxed/simple;
+	bh=/1Y7ZubKQzIS9Nn9KYozZYf4WuMV9JVNDqL7JrO650Q=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IimK+2xakRLlAj+bO4wFdAzYVPDfJvNDuiHS+1eVmQzCFxYsV2liVcIrGs1GlYMUOURYe4MEJhX5oWu1Lg2gaEzaD7b3qcFiOH3tpQhHqPFjsHEZ6LOh7r/ojx0imKiCg+kWaFuqGMQQwUJv1WoiCxWbV08UXq8U0/KHGySB6v8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GuwYDZsp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DCC7CC116B1;
-	Sat, 13 Dec 2025 07:28:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765610922;
-	bh=I8KHB05J4hzU7RAcGfM4K+COzPxnPfyndjSsOY4V+h8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=GuwYDZspCrlYpM3yidUiAHpYR37T1Q4VnneG1ihkjSwHfoZCcVywhoxvYuSZxWN5D
-	 Z9OqOMjbPCmMPeA+HZln6BeweyVD+Z6hg6CYHPTY2F8ktiPFPwqd7EUpvJtBNp2Z7J
-	 12W9+OAtXmUrabNWkNAh4xCK4M3z/N8saObqde0ZqZJi9lQk6nMuQV2sKRPkXH5RL+
-	 bDXSWd1ekWMCLmmTA+/lANrI+O67Zkbd9rboRmzRU07ULyEBCQC+g16n62r6/C2NVd
-	 LjCCAAmBlmBzwLn7bnH8qpxR1rth9wlsEvgb/Ya1pTXpR2WBu9YiIGDIUUYBc/Q3Ba
-	 eu+3LAX6Sqmtg==
-Message-ID: <37ef8a9e-0ebc-4d31-99e1-3f0512d73412@kernel.org>
-Date: Sat, 13 Dec 2025 07:28:32 +0000
+	 In-Reply-To:Content-Type; b=AkHoUQcIF9bjPcnbwJ609OQaftCBzmniokWnL3+8QCbvenF1tLel2h+smYMdFMdQI5Ht+ruMmsQ1jonulq57MJ31jXFeJ1ha/HhPgxAEKDFFt9AfcM/mWHYbrfIN6ncbPXDlidXYpR3Wg5HsrtyrIvmmr3J4YStJWvKZKgRdRTk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=f72A4ZBx; arc=none smtp.client-ip=209.85.210.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
+Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-7e1651ae0d5so1671316b3a.1
+        for <devicetree@vger.kernel.org>; Fri, 12 Dec 2025 23:55:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google; t=1765612513; x=1766217313; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=PSg2TYT9sWOtcESEo56kzWemNLsi4EVpvVRgATHWE1A=;
+        b=f72A4ZBxBYkoapuKADgCoKBW613YRAqiqEAeeMi6rqCN9XJpUoc7jW4RHwwLO4PJE6
+         +wsgiqmToq17kNJRMgtqn14MJ19ih+VWKe704QMKUaFN3R2u6GAYe+x0FturEt6tSHvJ
+         nkgxdVaxbBQfsvwdHvOEe3I25A1+8MSGVF9jtMgfeQJ3O9jasl881g06ErMXznqZ9VR+
+         O3rNuV2KF6jN3ZRioIRQtZLcFtEjZVDtaJHx3e2xgen+PGsT/V1XLSZ8qhVt7IH9jaBs
+         WylCRweAeqzuz3qksqxOMZd2yHZ/WdLCfnm96cpyX8cpT+zg7Vb0wxmhnr3gcqytDrzM
+         LcNg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765612513; x=1766217313;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=PSg2TYT9sWOtcESEo56kzWemNLsi4EVpvVRgATHWE1A=;
+        b=dFnHEHkty/LtBOGb1VTSJPujcjNBbVwdSGDATpYJ24GE6iI/0HcQjgTdmmIX61yySN
+         0C06row6Sd5XfnPEKV8KAg2tgjPAVQyTW8VtQR6vc86Dsvqc7+2BOl38On0Vsn51v1RM
+         XazTyriYHZEHZlip6N0zcMvaAbjEKMKiDfQtADl8UP1MUGHtM51igqOS5Joe/HHjBoss
+         9KOSWbzkrxKcQ0Jxf0zy0D5gWQSWNWlF8JLwynlQ9YNenGzYlmCOgk57ywNW07HM8o1+
+         6mhCgzk12NKCVnPDod1m3AlXSRoV73ZYfCmEWKPCk4qD7eVAMEUYtgxPas7bj2yTTEbR
+         xF9Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXRYES5zd2yfif6Au/7ICAZwjnIdsNiQc7eTyj2lRoaDldvODJxtTYgVbDU0jAo1gMcDB9E/h4o2GPV@vger.kernel.org
+X-Gm-Message-State: AOJu0YwOksRApdr7DbyuWvCCiyvBnCUn/orR+/W337Ngu9DaPJR7c1sN
+	1UgIeWSbg0Q3BAzS09bba+got4OD4VygAuSDWLxGlk4mUFRdpteLm9MORL8eABMyrhE=
+X-Gm-Gg: AY/fxX6QuvDtDRXGBFsGKGB5/Z5AUdd541jlnTwYtwXB0rqMOfbP+9C5spCb0RgRVUq
+	Mlz7qitY0yYTo/ad/XP75xlpFvjNeQJg1tCcfC0zc95alP3jPS2HfBgiEQXu+4Ia0x4OHc9PU3l
+	0gfuG7sEP5tmuEmixM7IMvYw1Bgh98RGzp9Iz9lBLzOtNgkjA9wM3S72t0j1jemlbaSTZiQ7JtI
+	bEDxvda+FOxU8aTXVvC8sVEdN72UsMjgJKRRq5hsqZ70MUDZfGe1u1V7raXrfIxbojK38dFEC6X
+	R6ss9H2ain/sHZcJgSGt38hyU0wTBP0y05GRkh2QBA3YgM3Ux357RpyRWiHEVVIv4kR2ocV/Vot
+	jA4YrVgtsI+G2Ad3cuDOW4zSVQoEfJDJPLrhlGVQKRl28RVkU6kS97B7y8ESp5dpo/wwQvc9EQN
+	vQAYu3NB7OHHGR4Eg73D87w5tCfAeqog==
+X-Google-Smtp-Source: AGHT+IHOWrUINqZuvftQzED4J6JEOwCF3MwpJCzvYtbDq2TpenTmo8Kz5bbfjFWruq5ev9Hib6L/8Q==
+X-Received: by 2002:a05:6a00:1f13:b0:7f6:3f21:7d22 with SMTP id d2e1a72fcca58-7f6693a69e9mr3821365b3a.45.1765612512724;
+        Fri, 12 Dec 2025 23:55:12 -0800 (PST)
+Received: from [100.64.0.1] ([167.103.29.104])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7f4c27733edsm7218185b3a.20.2025.12.12.23.55.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 12 Dec 2025 23:55:12 -0800 (PST)
+Message-ID: <8a3d3db6-6614-42f7-a271-e6188391daf6@sifive.com>
+Date: Sat, 13 Dec 2025 16:55:06 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,143 +82,134 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] media: dt-bindings: Correct camss VDDA PLL supply
- description
-To: david@ixit.cz, Robert Foss <rfoss@kernel.org>,
- Todor Tomov <todor.too@gmail.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Vikram Sharma <quic_vikramsa@quicinc.com>,
- Kapatrala Syed <akapatra@quicinc.com>,
- Hariram Purushothaman <hariramp@quicinc.com>,
- Richard Acayan <mailingradian@gmail.com>
-Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+Subject: Re: [PATCH 2/3] dmaengine: dw-axi-dmac: Add support for CV1800B DMA
+To: Inochi Amaoto <inochiama@gmail.com>
+Cc: "Anton D . Stavinskii" <stavinsky@gmail.com>, dmaengine@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- phone-devel@vger.kernel.org
-References: <-p_V50_c9ufrDqGMvZ5pwIXywQxh2C6Rjo4IEUlVAeFJouqq3zlWRt-VsIRsCmGwuvslk9MU3XxtxyTZrXuSSg==@protonmail.internalid>
- <20251212-docs-camss-fixes-v1-1-5c011505ff59@ixit.cz>
+ linux-riscv@lists.infradead.org, sophgo@lists.linux.dev,
+ Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>, Vinod Koul
+ <vkoul@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>, Chen Wang <unicorn_wang@outlook.com>,
+ Alexander Sverdlin <alexander.sverdlin@gmail.com>,
+ Longbin Li <looong.bin@gmail.com>, Yixun Lan <dlan@gentoo.org>,
+ Ze Huang <huangze@whut.edu.cn>
+References: <20251212020504.915616-1-inochiama@gmail.com>
+ <20251212020504.915616-3-inochiama@gmail.com>
+From: Samuel Holland <samuel.holland@sifive.com>
 Content-Language: en-US
-From: Bryan O'Donoghue <bod@kernel.org>
-In-Reply-To: <20251212-docs-camss-fixes-v1-1-5c011505ff59@ixit.cz>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+In-Reply-To: <20251212020504.915616-3-inochiama@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 12/12/2025 22:55, David Heidelberg via B4 Relay wrote:
-> From: David Heidelberg <david@ixit.cz>
+Hi Inochi,
+
+On 2025-12-12 11:05 AM, Inochi Amaoto wrote:
+> As the DMA controller on Sophgo CV1800 series SoC only has 8 channels,
+> the SoC provides a dma multiplexer to reuse the DMA channel. However,
+> the dma multiplexer also controlls the DMA interrupt multiplexer, which
+
+typo: controls
+
+> means that the dma multiplexer needs to know the channel number.
 > 
-> Usually, the supply is around 1.2 V, not 1.8 V. Rather remove mention of
-> voltage from the description.
+> Allow the driver to use DMA phandle args as the channel number, so the
+> DMA multiplexer can route the DMA interrupt correctly.
 > 
-> Fixes: 849139d46d09 ("media: dt-bindings: media: camss: Fixup vdda regulator descriptions sdm845")
-> Signed-off-by: David Heidelberg <david@ixit.cz>
+> Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
 > ---
-> Added only Fixes tag for the initial commit, not all the copy-paste
-> propagated ones.
-> ---
->   Documentation/devicetree/bindings/media/qcom,sa8775p-camss.yaml  | 2 +-
->   Documentation/devicetree/bindings/media/qcom,sc7280-camss.yaml   | 2 +-
->   Documentation/devicetree/bindings/media/qcom,sc8280xp-camss.yaml | 2 +-
->   Documentation/devicetree/bindings/media/qcom,sdm670-camss.yaml   | 2 +-
->   Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml   | 2 +-
->   Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml   | 2 +-
->   6 files changed, 6 insertions(+), 6 deletions(-)
+>  .../dma/dw-axi-dmac/dw-axi-dmac-platform.c    | 23 ++++++++++++++++---
+>  drivers/dma/dw-axi-dmac/dw-axi-dmac.h         |  1 +
+>  2 files changed, 21 insertions(+), 3 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/media/qcom,sa8775p-camss.yaml b/Documentation/devicetree/bindings/media/qcom,sa8775p-camss.yaml
-> index 019caa2b09c32..9009cfe993d75 100644
-> --- a/Documentation/devicetree/bindings/media/qcom,sa8775p-camss.yaml
-> +++ b/Documentation/devicetree/bindings/media/qcom,sa8775p-camss.yaml
-> @@ -130,7 +130,7 @@ properties:
+> diff --git a/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c b/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
+> index b23536645ff7..62bf0d0dc354 100644
+> --- a/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
+> +++ b/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
+> @@ -50,6 +50,7 @@
+>  #define AXI_DMA_FLAG_HAS_APB_REGS	BIT(0)
+>  #define AXI_DMA_FLAG_HAS_RESETS		BIT(1)
+>  #define AXI_DMA_FLAG_USE_CFG2		BIT(2)
+> +#define AXI_DMA_FLAG_HANDSHAKE_AS_CHAN	BIT(3)
 > 
->     vdda-pll-supply:
->       description:
-> -      Phandle to 1.8V regulator supply to PHY refclk pll block.
-> +      Phandle to regulator supply to PHY refclk pll block.
+>  static inline void
+>  axi_dma_iowrite32(struct axi_dma_chip *chip, u32 reg, u32 val)
+> @@ -1361,15 +1362,26 @@ static struct dma_chan *dw_axi_dma_of_xlate(struct of_phandle_args *dma_spec,
+>  					    struct of_dma *ofdma)
+>  {
+>  	struct dw_axi_dma *dw = ofdma->of_dma_data;
+> +	unsigned int handshake = dma_spec->args[0];
+>  	struct axi_dma_chan *chan;
+>  	struct dma_chan *dchan;
 > 
->     ports:
->       $ref: /schemas/graph.yaml#/properties/ports
-> diff --git a/Documentation/devicetree/bindings/media/qcom,sc7280-camss.yaml b/Documentation/devicetree/bindings/media/qcom,sc7280-camss.yaml
-> index ee35e3bc97ffd..cb922f90fe900 100644
-> --- a/Documentation/devicetree/bindings/media/qcom,sc7280-camss.yaml
-> +++ b/Documentation/devicetree/bindings/media/qcom,sc7280-camss.yaml
-> @@ -129,7 +129,7 @@ properties:
+> -	dchan = dma_get_any_slave_channel(&dw->dma);
+> +	if (dw->hdata->use_handshake_as_channel_number) {
+> +		if (handshake >= dw->hdata->nr_channels)
+> +			return NULL;
+> +
+> +		chan = &dw->chan[handshake];
+> +		dchan = dma_get_slave_channel(&chan->vc.chan);
+> +	} else {
+> +		dchan = dma_get_any_slave_channel(&dw->dma);
+> +	}
+> +
+>  	if (!dchan)
+>  		return NULL;
 > 
->     vdda-pll-supply:
->       description:
-> -      Phandle to 1.8V regulator supply to PHY refclk pll block.
-> +      Phandle to regulator supply to PHY refclk pll block.
+> -	chan = dchan_to_axi_dma_chan(dchan);
+> -	chan->hw_handshake_num = dma_spec->args[0];
+> +	if (!chan)
+
+When use_handshake_as_channel_number is false, chan is uninitialized here.
+
+Regards,
+Samuel
+
+> +		chan = dchan_to_axi_dma_chan(dchan);
+> +	chan->hw_handshake_num = handshake;
+>  	return dchan;
+>  }
 > 
->     ports:
->       $ref: /schemas/graph.yaml#/properties/ports
-> diff --git a/Documentation/devicetree/bindings/media/qcom,sc8280xp-camss.yaml b/Documentation/devicetree/bindings/media/qcom,sc8280xp-camss.yaml
-> index c99fe4106eee9..2231d7216f62a 100644
-> --- a/Documentation/devicetree/bindings/media/qcom,sc8280xp-camss.yaml
-> +++ b/Documentation/devicetree/bindings/media/qcom,sc8280xp-camss.yaml
-> @@ -268,7 +268,7 @@ properties:
+> @@ -1508,6 +1520,8 @@ static int dw_probe(struct platform_device *pdev)
+>  			return ret;
+>  	}
 > 
->     vdda-pll-supply:
->       description:
-> -      Phandle to 1.8V regulator supply to PHY refclk pll block.
-> +      Phandle to regulator supply to PHY refclk pll block.
+> +	chip->dw->hdata->use_handshake_as_channel_number = !!(flags & AXI_DMA_FLAG_HANDSHAKE_AS_CHAN);
+> +
+>  	chip->dw->hdata->use_cfg2 = !!(flags & AXI_DMA_FLAG_USE_CFG2);
 > 
->   required:
->     - clock-names
-> diff --git a/Documentation/devicetree/bindings/media/qcom,sdm670-camss.yaml b/Documentation/devicetree/bindings/media/qcom,sdm670-camss.yaml
-> index 35c40fe223767..8e6ca94c88695 100644
-> --- a/Documentation/devicetree/bindings/media/qcom,sdm670-camss.yaml
-> +++ b/Documentation/devicetree/bindings/media/qcom,sdm670-camss.yaml
-> @@ -95,7 +95,7 @@ properties:
+>  	chip->core_clk = devm_clk_get(chip->dev, "core-clk");
+> @@ -1663,6 +1677,9 @@ static const struct of_device_id dw_dma_of_id_table[] = {
+>  	}, {
+>  		.compatible = "intel,kmb-axi-dma",
+>  		.data = (void *)AXI_DMA_FLAG_HAS_APB_REGS,
+> +	}, {
+> +		.compatible = "sophgo,cv1800b-axi-dma",
+> +		.data = (void *)AXI_DMA_FLAG_HANDSHAKE_AS_CHAN,
+>  	}, {
+>  		.compatible = "starfive,jh7110-axi-dma",
+>  		.data = (void *)(AXI_DMA_FLAG_HAS_RESETS | AXI_DMA_FLAG_USE_CFG2),
+> diff --git a/drivers/dma/dw-axi-dmac/dw-axi-dmac.h b/drivers/dma/dw-axi-dmac/dw-axi-dmac.h
+> index b842e6a8d90d..67cc199e24d1 100644
+> --- a/drivers/dma/dw-axi-dmac/dw-axi-dmac.h
+> +++ b/drivers/dma/dw-axi-dmac/dw-axi-dmac.h
+> @@ -34,6 +34,7 @@ struct dw_axi_dma_hcfg {
+>  	bool	reg_map_8_channels;
+>  	bool	restrict_axi_burst_len;
+>  	bool	use_cfg2;
+> +	bool	use_handshake_as_channel_number;
+>  };
 > 
->     vdda-pll-supply:
->       description:
-> -      Phandle to 1.8V regulator supply to PHY refclk pll block.
-> +      Phandle to regulator supply to PHY refclk pll block.
-> 
->     ports:
->       $ref: /schemas/graph.yaml#/properties/ports
-> diff --git a/Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml b/Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml
-> index 82bf4689d3300..d50e096b900db 100644
-> --- a/Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml
-> +++ b/Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml
-> @@ -211,7 +211,7 @@ properties:
-> 
->     vdda-pll-supply:
->       description:
-> -      Phandle to 1.8V regulator supply to PHY refclk pll block.
-> +      Phandle to regulator supply to PHY refclk pll block.
-> 
->   required:
->     - clock-names
-> diff --git a/Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml b/Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml
-> index ebf68ff4ab961..ccd2d024bfd10 100644
-> --- a/Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml
-> +++ b/Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml
-> @@ -300,7 +300,7 @@ properties:
-> 
->     vdda-pll-supply:
->       description:
-> -      Phandle to 1.8V regulator supply to PHY refclk pll block.
-> +      Phandle to regulator supply to PHY refclk pll block.
-> 
->   required:
->     - clock-names
-> 
-> ---
-> base-commit: d9771d0dbe18dd643760431870a6abf9b0866bb0
-> change-id: 20251212-docs-camss-fixes-0fa525271951
-> 
-> Best regards,
+>  struct axi_dma_chan {
 > --
-> David Heidelberg <david@ixit.cz>
+> 2.52.0
 > 
 > 
-> 
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
-I think this is copy/paste legacy error.
-
-The voltage level should be more usefully encoded in the name anyway.
-
----
-bod
 
