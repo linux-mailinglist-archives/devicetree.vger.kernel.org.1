@@ -1,62 +1,72 @@
-Return-Path: <devicetree+bounces-246261-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246262-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 033D7CBB180
-	for <lists+devicetree@lfdr.de>; Sat, 13 Dec 2025 17:35:34 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81F35CBB19F
+	for <lists+devicetree@lfdr.de>; Sat, 13 Dec 2025 18:00:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id F3A7C30041BA
-	for <lists+devicetree@lfdr.de>; Sat, 13 Dec 2025 16:35:11 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id B362C301EF05
+	for <lists+devicetree@lfdr.de>; Sat, 13 Dec 2025 17:00:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40F27273D9A;
-	Sat, 13 Dec 2025 16:35:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0A4A2E0920;
+	Sat, 13 Dec 2025 17:00:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="naxpG4tB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RwzsPYFW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 138F621FF5F;
-	Sat, 13 Dec 2025 16:35:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4861C2D6E6A;
+	Sat, 13 Dec 2025 17:00:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765643709; cv=none; b=fMrZBo9UpKdZppRg5oiuZfVr1HpM0BoF8cUhNrDyNomyvqeBoxEPUNuU+utM6q/Y3BgRh7pqifRcu07ZHgsGwbw3GCYLrcpiCUT+wD5nCYlGaE5DFMHCOm8sOAJBZzgFAYQ8d5wC9V1xgkKg+fxf18roHyJGxajBfL+7R8cJ3Bs=
+	t=1765645208; cv=none; b=W7b1aNuskS57WPAkf4xS5lUNUKLS6nr2x17M8UGTC6FaLtqaI5qxCwYM0UsfBqExlraPv6T0Qxwp2t0s8doi629w6jp4c+Nx1vDdrfJhX/2HE+9YrG3kNyi/d5SkgfFVfVXfGmxak6V2pICPtSJZ/cy85WpXzXY3AdlF38enUlI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765643709; c=relaxed/simple;
-	bh=ViazW6PvriH9HwsLAvmSJVMIKy5+cXD6aXT4TXjigo0=;
+	s=arc-20240116; t=1765645208; c=relaxed/simple;
+	bh=VzKBYcoy1QLzHCut6+iKlDtsmmJak9U5g55kExj/JFI=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=KqsTXEvWdXfeF0DRPG3hWUW9uHP4GINphu5lpDNtR/FOlYzZFMWZ7Y7VGpRKkWu5mlaEWTvLpen5I9BJYbrF5I1rvshQOGe9pUPDlE3OsYmTnlhYzmFOmIAH8g/cSnDiyabdDyd34MarH+LjP+iAj2tgZhignpaUoNEebbHNX4s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=naxpG4tB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B90EC4CEF7;
-	Sat, 13 Dec 2025 16:35:00 +0000 (UTC)
+	 MIME-Version:Content-Type; b=SDuFPXgszTYzVwbJMXXIUOF45dM0q52mPtJZlH0Lxjt6kKDFyYsjakf1DV6Hz+5iuwYuwNJNxQqEJE0KG0DSdLuL2TNHUMF3KKDaeewdXB6h/fehxKMZYBet36eZlgDctSWN+nzypdJNHpI1bB5I9LBxG6T1gkkstjRq3i5hobU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RwzsPYFW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96631C4CEF7;
+	Sat, 13 Dec 2025 16:59:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765643706;
-	bh=ViazW6PvriH9HwsLAvmSJVMIKy5+cXD6aXT4TXjigo0=;
+	s=k20201202; t=1765645207;
+	bh=VzKBYcoy1QLzHCut6+iKlDtsmmJak9U5g55kExj/JFI=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=naxpG4tBO73G0tkktqL+EWUsebfhMp104Ac2O8xTJsNt6oFbz6DijoL7ICvpNucsK
-	 GnySRcK8OMvZ5zUt2MbIpdchfCczbJjK3HG4nCweZk9x68xqVqM/YSSbKTl1uKZgXY
-	 42Jdjq9ZhrIEuBE7OAT+yFsh0EGCjzvXjQ/wMfD0hZ02xlXMOx4euA2kd1XRbUQcFa
-	 bfgtvM2CnB5MBwvAgP9/Pa+s4d7vH7eLreoV0yaPv+A6ymsT+kNS18nbawu41rljp+
-	 zDyh6MQ0AWJegbAbvGTU3OeNRzcNW72mCwVD+jp6TeY9089h2kadvOhuq29buHIBqG
-	 ZR6jtSpQiBOiQ==
-Date: Sat, 13 Dec 2025 16:34:56 +0000
+	b=RwzsPYFWZct3fYDaSoH2MO8Pr6OmUerebApwD55CqIDmIjhoGYii118YuorwNlvqq
+	 ScAULQd/58dFFaqTTbGQluGmGyWmjP197/lR0mEIj9eB+4T931oqm6bV+zZ3Dtp3UB
+	 /3rEA58xa9OtbeLC8Sdoct2UoObIYuhaP3mRahKBMFr5MyUfu8A/UkiQKKb0hJJ052
+	 XpUK03v0ZQVQ46uHO5Tv0MUUttfEsK/oQCNHvdjrmUt7X7j38m0kpVAalfiSZ9oRUU
+	 sWgR/3U8XMRryBhIuoNjoTDFmxZ+oM6dTz94zalzS6WErXPW7Vhg3NOCfVaTboJchh
+	 qJxB4vBT3+yhg==
+Date: Sat, 13 Dec 2025 16:59:49 +0000
 From: Jonathan Cameron <jic23@kernel.org>
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: Tomas Melin <tomas.melin@vaisala.com>, Andy Shevchenko
- <andy.shevchenko@gmail.com>, Lars-Peter Clausen <lars@metafoo.de>, Michael
- Hennerich <Michael.Hennerich@analog.com>, Nuno Sa <nuno.sa@analog.com>,
- David Lechner <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/3] iio: adc: ad9467: sort header includes
-Message-ID: <20251213163456.2ba481b6@jic23-huawei>
-In-Reply-To: <aThnybDs4lk9ht_f@smile.fi.intel.com>
-References: <20251209-add-ad9211-v4-0-02217f401292@vaisala.com>
-	<20251209-add-ad9211-v4-2-02217f401292@vaisala.com>
-	<CAHp75VeOZHvxr60R0TCS5_c-xsrmfC97gWdP4-EWvFPpbodLTA@mail.gmail.com>
-	<7a792f4e-edba-42f3-bcc8-76004972c2f7@vaisala.com>
-	<aThnybDs4lk9ht_f@smile.fi.intel.com>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, Michal Simek
+ <michal.simek@amd.com>, Vinod Koul <vkoul@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+ <angelogioacchino.delregno@collabora.com>, David Lechner
+ <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy
+ Shevchenko <andy@kernel.org>, Yong Wu <yong.wu@mediatek.com>, Peter Rosin
+ <peda@axentia.se>, Linus Walleij <linusw@kernel.org>, Chen-Yu Tsai
+ <wens@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel
+ Holland <samuel@sholland.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam
+ <festevam@gmail.com>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
+ <broonie@kernel.org>, linux-kernel@vger.kernel.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ dmaengine@vger.kernel.org, linux-mediatek@lists.infradead.org,
+ linux-iio@vger.kernel.org, iommu@lists.linux.dev,
+ linux-gpio@vger.kernel.org, linux-sunxi@lists.linux.dev,
+ imx@lists.linux.dev, linux-sound@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: Remove unused includes
+Message-ID: <20251213165949.4b51f7cb@jic23-huawei>
+In-Reply-To: <20251212231203.727227-1-robh@kernel.org>
+References: <20251212231203.727227-1-robh@kernel.org>
 X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -64,57 +74,23 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Tue, 9 Dec 2025 20:17:45 +0200
-Andy Shevchenko <andriy.shevchenko@intel.com> wrote:
+On Fri, 12 Dec 2025 17:11:52 -0600
+"Rob Herring (Arm)" <robh@kernel.org> wrote:
 
-> On Tue, Dec 09, 2025 at 05:46:16PM +0200, Tomas Melin wrote:
-> > On 09/12/2025 16:41, Andy Shevchenko wrote: =20
-> > > On Tue, Dec 9, 2025 at 7:34=E2=80=AFAM Tomas Melin <tomas.melin@vaisa=
-la.com> wrote: =20
-> > >>
-> > >> Include headers in ascending order. =20
-> > >=20
-> > > Thanks, but...
-> > >  =20
-> > >>  #include <linux/iio/backend.h>
-> > >>  #include <linux/iio/iio.h>
-> > >>  #include <linux/iio/sysfs.h> =20
-> > >=20
-> > > ...this was specifically grouped to show the relation to the certain
-> > > subsystem. At the end we should have something like this
-> > >=20
-> > > linux/*.h // generic ones
-> > > ...blank line...
-> > > asm/*.h // generic ones (optionally, if there is a need in a such)
-> > > ...blank line...
-> > > linux/iio/*.h
-> > > ...blank line... =20
-> >=20
-> > Thanks for the clarification. Sure, it's not a big deal to do a new
-> > version. But FWIW, that convention is not AFAIS explicitly stated
-> > anywhere and with even recent drivers not all following it, it's
-> > somewhat hard to know what expected formatting should be.
-> > It would really be good to have that documented somewhere. =20
->=20
-> I fully agree. The problem with such a documentation is that you will alw=
-ays
-> have 50/50% split at best. At worse ~100% will be against any doc updates
-> like this. For minimum we can do it on an IIO level (only for this subsys=
-tem),
-> see how others do Documentation/process/maintainer-*.rst. There is no IIO.
-> You can start it :-)
->=20
+> Remove includes which are not referenced by either DTS files or drivers.
+> 
+> There's a few more which are new, so they are excluded for now.
+> 
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 
-That maintainer doc is my xmas holiday todo list.  Then again it was
-on there last year and I think the year before :(
+Acked-by: Jonathan Cameron <jonathan.cameron@huawei.com> #for-iio
 
-It's possibly something where we need a rolling draft for a bit out
-of tree so that by the time it actually merges it doesn't imply things
-simply because we forgot certain aspects.
+Ideally we'll get a QC ack on those as well.
 
 Jonathan
-
+>  .../dt-bindings/iio/qcom,spmi-adc7-pmr735b.h  |  30 --
+>  .../dt-bindings/iio/qcom,spmi-adc7-smb139x.h  |  19 --
 
