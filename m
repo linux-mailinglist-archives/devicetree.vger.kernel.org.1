@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-246223-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246224-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61BE0CBA3AC
-	for <lists+devicetree@lfdr.de>; Sat, 13 Dec 2025 04:01:26 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6024CBA3D3
+	for <lists+devicetree@lfdr.de>; Sat, 13 Dec 2025 04:06:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 20D7D3066DA9
-	for <lists+devicetree@lfdr.de>; Sat, 13 Dec 2025 03:01:25 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6525F305FAA2
+	for <lists+devicetree@lfdr.de>; Sat, 13 Dec 2025 03:05:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28B971D0DEE;
-	Sat, 13 Dec 2025 03:01:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A067E2F39B5;
+	Sat, 13 Dec 2025 03:05:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G3nhlJCo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Tou1TIzz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6E8354763;
-	Sat, 13 Dec 2025 03:01:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CCE32F1FF6;
+	Sat, 13 Dec 2025 03:05:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765594884; cv=none; b=DkcUKLVh27jlMrgEvELkmIYpwEePhMaAj0uFoBWJuEO5BKQMaa6JvuobKL+Y4Qh2pj0kUnvcldTphqKZaUDbuvI3vlVt33/eII/SZXNUXYMMgqQtIcB2cPyja1sO0iBT42Hrr45ncn5Sv58SyVZjzYWW2HoA8OplKG+coeHLLTQ=
+	t=1765595149; cv=none; b=io0P9h4UA0RmhUdjBNMfXVf0zZJ4UfPNkSBf58YIAczwVPpYUVBxjzWROEFly37XqJxa8kOb47xVv8pxHkSh29aFpuwrtG02uYW0ujJpSaahZWtrcXZ9S2RsKbDrcJ28eP6gSo0Ir5hv0Xk9cBqG8HdOFg8puG9SzkYUFJeCSzE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765594884; c=relaxed/simple;
-	bh=u4uC+opD9/GDpFJsYurkfVKTjIdwkKonZMXbeLIgp5E=;
+	s=arc-20240116; t=1765595149; c=relaxed/simple;
+	bh=W1uFmluCEYHY1sOBLQ72GWVhd+nRPEVsqx5xqB65vEw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Ycxte6eVEDoDTVr4fOL0Lgn08HmeKi1bB4Bsz7TssGbDQuksHmOx/D8uehCeGv3cKbxcuOYEvIKJVxd0pFGDMJCgY9kvCIDv+ofTLok2Qo66jbQX/PlfkSkm6VOf057rVO4XuM7ElDGfs/CVyzmkcVyK7k2lXQxMUKaI0t/gMIQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G3nhlJCo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AAD92C4CEF5;
-	Sat, 13 Dec 2025 03:01:19 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=SUhz6uzCQfTBb4D+NNZzMDKIH11BHXomvtR5/WNqTzXYYMX9ZE8PmTcv3oyL5kv8zCZYwzw3ssvyQBOfjxAhAEEntafj3RtfyAE7aRM+o1LQeTE8CnXacy1+mJ6IaUDnG5bcle2a0zkmM9ZXZ/7NFSzpNnDntWl8ixIFUDESano=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Tou1TIzz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43F45C4CEF1;
+	Sat, 13 Dec 2025 03:05:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765594883;
-	bh=u4uC+opD9/GDpFJsYurkfVKTjIdwkKonZMXbeLIgp5E=;
+	s=k20201202; t=1765595146;
+	bh=W1uFmluCEYHY1sOBLQ72GWVhd+nRPEVsqx5xqB65vEw=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=G3nhlJCoMGvmOz+XiMZc/DcR6HIW5jKCvJVIs1tjc0OQBqIbqU2hRHpQOfjfRhtNF
-	 IgbI6VXcef8yOWWk5ik0IBpVRTS/+jzGGw5jDQoKUtY35IRtJNy6fmDtUAPGEjLEEq
-	 QbsjSXnjCE00gd8GzeygvC1Gdw90e4t2YrFBtERJ+AbTAP9uPM+yaP/++sibFxJcnq
-	 LPlw98k+NlL5dvbWpIzE9HQKvbWvFtvFwqUJF1Yr/4sqg0Flj90dgP1DImTese0a50
-	 QhM6qH8F/NZHqML2xcG3TLQplB754leenZbK95FHsPAo8zouQBkbLXK/ySETrb3l5B
-	 oschu81Pdykow==
-Message-ID: <eb752290-0eb3-4817-b3ca-91a4f423dac4@kernel.org>
-Date: Sat, 13 Dec 2025 04:01:17 +0100
+	b=Tou1TIzzeH/GhH7Lort8J9KMhi+bPhFkdsPbOBUyXc0+glBlLmCmOKIfsksInFHF3
+	 Olq5d6gkVxpnHGTDpivXm7ipwTh40Hi9hYqJ8ATuANW7lv4OM2PJXePJmkhBHRO9zY
+	 BVLgbHCvRCPqXcjeUzQXVOCQoBQzCqgH3RNUAQ+V+weuc/NSXpftqYVQH2isZh8wqj
+	 GfMSFgzWLF1rWodQOnjjXb3aBSnoXHp6dwcvZXolVZGlmVRTqprmIeygKDTsyNYNvZ
+	 7R576zd02YOgBelkc2bJ89T6WNpEUAi5XMdfnnAyeHlrTbGeTicqL0Kid8KJafAqoS
+	 H0oUpDf8IgkhQ==
+Message-ID: <176bd9cf-688a-480e-93b7-8f1710563c56@kernel.org>
+Date: Sat, 13 Dec 2025 04:05:39 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,21 +48,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm/arm64: dts: st: Drop unused .dtsi
-To: "Rob Herring (Arm)" <robh@kernel.org>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Viresh Kumar <vireshk@kernel.org>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- soc@lists.linux.dev, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-msm@vger.kernel.org
-References: <20251212203226.458694-3-robh@kernel.org>
+Subject: Re: [PATCH 3/8] dt-bindings: watchdog: Add AAEON embedded controller
+ watchdog binding
+To: Guenter Roeck <linux@roeck-us.net>,
+ "Thomas Perrot (Schneider Electric)" <thomas.perrot@bootlin.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Linus Walleij <linusw@kernel.org>,
+ Bartosz Golaszewski <brgl@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>,
+ =?UTF-8?B?SsOpcsOpbWllIERhdXRoZXJpYmVz?= <jeremie.dautheribes@bootlin.com>,
+ Wim Van Sebroeck <wim@linux-watchdog.org>, Lee Jones <lee@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-gpio@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-watchdog@vger.kernel.org,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+References: <20251212-dev-b4-aaeon-mcu-driver-v1-0-6bd65bc8ef12@bootlin.com>
+ <20251212-dev-b4-aaeon-mcu-driver-v1-3-6bd65bc8ef12@bootlin.com>
+ <019aa49f-fe59-488d-aff8-f07cf07ee68d@kernel.org>
+ <cb8031bb-9213-49b7-a85a-5ca9091aee5c@roeck-us.net>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,22 +113,32 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251212203226.458694-3-robh@kernel.org>
+In-Reply-To: <cb8031bb-9213-49b7-a85a-5ca9091aee5c@roeck-us.net>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 12/12/2025 21:32, Rob Herring (Arm) wrote:
-> These .dtsi files are not included anywhere in the tree and can't be
-> tested.
+On 12/12/2025 12:46, Guenter Roeck wrote:
+> On 12/12/25 00:20, Krzysztof Kozlowski wrote:
+>> On 12/12/2025 08:41, Thomas Perrot (Schneider Electric) wrote:
+>>> +
+>>> +additionalProperties: false
+>>> +
+>>> +examples:
+>>> +  - |
+>>> +    watchdog {
+>>> +      compatible = "aaeon,srg-imx8pl-wdt";
+>>
+>> No, that was discussed many times on the mailing list already. Fold the
+>> child into the parent. Your driver model really do not matter for DT.
+>>
 > 
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
->  arch/arm/boot/dts/st/spear320s.dtsi           | 24 -------
->  .../boot/dts/st/stm32mp15xxab-pinctrl.dtsi    | 57 ---------------
->  arch/arm64/boot/dts/qcom/msm8996-v3.0.dtsi    | 63 ----------------
+> Theoretically there could be a 'timeout' property since this is
+> a watchdog driver, but that isn't supported by the driver, so
+> I agree.
+> 
 
-
-This should go to the qcom one.
+Timeout can be added to the parent node. The most differentiating factor
+are dedicated resources and none are here.
 
 Best regards,
 Krzysztof
