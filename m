@@ -1,179 +1,201 @@
-Return-Path: <devicetree+bounces-246236-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246237-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62CE6CBA63F
-	for <lists+devicetree@lfdr.de>; Sat, 13 Dec 2025 07:57:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5554ACBA676
+	for <lists+devicetree@lfdr.de>; Sat, 13 Dec 2025 08:12:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E5F73307B9A0
-	for <lists+devicetree@lfdr.de>; Sat, 13 Dec 2025 06:57:22 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 006D630A085A
+	for <lists+devicetree@lfdr.de>; Sat, 13 Dec 2025 07:12:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E7931DE3DF;
-	Sat, 13 Dec 2025 06:57:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4114F2494F0;
+	Sat, 13 Dec 2025 07:12:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="2Wp77FJW"
+	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="WvlSHr20";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="mybbNFL8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
+Received: from fout-b5-smtp.messagingengine.com (fout-b5-smtp.messagingengine.com [202.12.124.148])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2D1C19E992;
-	Sat, 13 Dec 2025 06:57:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.137.202.133
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9DF9212B0A;
+	Sat, 13 Dec 2025 07:12:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.148
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765609042; cv=none; b=TaIX2YSN9nsNUc/XREgZNaEVFx/XeAiUbzfta1zMJK8ALvQW7ArEthighigLlw1o49ZekqEdFHXetDzXwDBbPrK7kGGK6lmQPxHhxEYbhkSX4PgtyTTRncxyk5s9ddJO6KeH8j69AgWtjoDMWknGhR+RJ30+fqg9LzL7ZJVtF1I=
+	t=1765609933; cv=none; b=PrGgATQ7lp4+pn66ILqeYZRn6ZIpMAmh8mA8q+T/E2udREhflrnu9gfVEIlIReChjHjQdbzShHZkjpEFQwOh9valBdzSn5dqTTW10IV3DJuz2v8WXv7cvWdqPE0vF1wag0c/4BelxVzvVtx9cwALZTeF8Yj+jAqU2QNU69mwH10=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765609042; c=relaxed/simple;
-	bh=Qj0khJmUFOHX1x+G6h6dTnfGsEgUD6DX7A42tG3lZz4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=B8Y+KWaqTFHFflelpJrYzPLvWMB41v4rTflviIqeWbRAC6s35+tTbLUJZC20hsxwgeUNUGJS8FPg5V9Y0oIM19WSMKt1ecdUwp5A9KWwjDRAclk4uLFX2XC2JQ8rl/wFun1gtjC8w3DHInvHTcHvIH2zmB5BwRtXn1hWyNxfRj4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=2Wp77FJW; arc=none smtp.client-ip=198.137.202.133
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=infradead.org
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=infradead.org
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Sender:Reply-To:Content-ID:Content-Description;
-	bh=UxVyimGao7p0sqobtYKOAtYcaEFn3ktSbdCzD3T7UOM=; b=2Wp77FJW1QESi4u/Ikpi/5sH98
-	2n09GBbxkBnzNeqR7/bLDordnvS0VbZ3ISU+6B/iF2FyALRRwyWaFgYrLrm68hMGQ2TKr1AP03xBx
-	9Hj4cmilLnMyteyZVGWxdsdye3IzECUwZu/a632Vwt8dF5pSQQXA6Vn3bfCgeoTEFOd+la+5ycefT
-	XbQ4c0xVUBZFsNadBc+Mhun8jPAM8YcsnRiMciyE48aFXqkhLimuJLnXbledwuEV8VQe7Kvt83dHb
-	0NbFfYdlDF761J3TDFvi0J0e9S5TE6CgjsgfUs1TyQ6oCF4YjYcfpOL9wbOhOxqnSDYqSmSLGj2Ii
-	eejUXsVg==;
-Received: from [50.53.43.113] (helo=[192.168.254.34])
-	by bombadil.infradead.org with esmtpsa (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vUJYx-00000001TgZ-1cAT;
-	Sat, 13 Dec 2025 06:57:07 +0000
-Message-ID: <5903a8e1-71c6-4546-ac50-35effa078dda@infradead.org>
-Date: Fri, 12 Dec 2025 22:57:02 -0800
+	s=arc-20240116; t=1765609933; c=relaxed/simple;
+	bh=/TXINoF4AW+L9J+xO2aukHYD+v5idSSK6IWIEM2iaSU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=aMIHgRnVjLAs6/ilLjiOx1qNG0e4cFk6NQUREkcI/541eQg1uEeilQJGuo9puTje4D1UgQcz4UsuS66eYwuFRLrF616eNjre0AT9LXTh8j21h7EjbDRoJYSZLbovDTC0ejcnwBtU1yxMLPfwGXqmht2Q1OybJMFfsseZOupeZ7M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=WvlSHr20; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=mybbNFL8; arc=none smtp.client-ip=202.12.124.148
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
+Received: from phl-compute-01.internal (phl-compute-01.internal [10.202.2.41])
+	by mailfout.stl.internal (Postfix) with ESMTP id 7444E1D0007D;
+	Sat, 13 Dec 2025 02:12:06 -0500 (EST)
+Received: from phl-mailfrontend-01 ([10.202.2.162])
+  by phl-compute-01.internal (MEProxy); Sat, 13 Dec 2025 02:12:06 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm3; t=1765609926;
+	 x=1765696326; bh=PLDqh7v+zMDgQnnqBZy8oMbIsFgwxCgKb1O9SPI0Dmo=; b=
+	WvlSHr20cL85PzqKCXYRBwnXqrFCjLX3E7JbLkrJ74aFSWWp0c3ayFJWsJjllFTE
+	2mnuxa7GqNnmuQdC1CvZkbq81M+MDYBBMwGQ/DOEV+liM3JgTWiXT11hyZtXCch5
+	Uhw4pSyROdoM/8xCChqc4v3VdQVUnX0uXG0M+Zd+FVRn0iX94nuXpIYxGreVlWc2
+	4iiUcMu+8k9ROuuPkNZTTJnrNbrRtGgc+O9fiIaSie9oyEm0Kaddg056EvN+9HyU
+	If98hMllLheGNZK8wrYEoSgRM2Kn2Seecot2kR4lsjSjJ/PGQKEUTXYxmKiucsXD
+	tivS6DiuB3i+Lyj8pcREQA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1765609926; x=
+	1765696326; bh=PLDqh7v+zMDgQnnqBZy8oMbIsFgwxCgKb1O9SPI0Dmo=; b=m
+	ybbNFL8Tgz2NB33exeVbr7gERNX+2oPr6GvLs2X8Ao2rVfp8UKGdf6jldEkCgFOJ
+	6W/VAktqQc7G9M7VoHLcKOwll8EhJ5R95NrqRrLR3uaArT/d5rz6BRP0nrB3RBq3
+	fNPXHAieUw7uNAVSLfevwX0ik3zROUKbavGRQB1p1bxz8F2dbwIJTx1hvedBAFLM
+	S7qRuCJSU+va3bhOxHF6jNTai7FgAG1qzEF6TXRpXICjK4mox9S6uMYaw64t8Oth
+	Gw8/Mssy6R/HCrOc8vIBbTJN6QoRm2C9xl1bWuF21e+eiFRKtPdDGtatXNZiUFaI
+	rC5Sxe2/IdxfrFAkb6ufA==
+X-ME-Sender: <xms:xRE9aS2EKMqs7Io5SKc-7kXXneDmfCZqiYnG7KOtSKM03EFFKOu_Cg>
+    <xme:xRE9abEsfzIHxBINlDImPJokfJf2Dil0OKX5GswbQpYATrIn0cbbjJWEhDwto1rp5
+    WqOC196fjDFFoILy5f2mMr0vLNmPpfUsRDo31XMATqZ_vGG52rWZsI>
+X-ME-Received: <xmr:xRE9aVt2OQe4Dmj4puCuqXTNqvKEQwqwom0CBgV2Di_XhkN567HtI_KWUISRQCjGAhSIWU-iURzd7U9YQbbdBrJXCysc3MA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgdeftdegvdcutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
+    ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
+    hrpeffhffvvefukfhfgggtugfgjgesthekredttddtjeenucfhrhhomheppfhikhhlrghs
+    ucfunpguvghrlhhunhguuceonhhikhhlrghsrdhsohguvghrlhhunhgusehrrghgnhgrth
+    gvtghhrdhsvgeqnecuggftrfgrthhtvghrnhepveetgedtvddvhfdtkeeghfeffeehteeh
+    keekgeefjeduieduueelgedtheekkeetnecuvehluhhsthgvrhfuihiivgeptdenucfrrg
+    hrrghmpehmrghilhhfrhhomhepnhhikhhlrghsrdhsohguvghrlhhunhgusehrrghgnhgr
+    thgvtghhrdhsvgdpnhgspghrtghpthhtohepuddtpdhmohguvgepshhmthhpohhuthdprh
+    gtphhtthhopehlrghurhgvnhhtrdhpihhntghhrghrthesihguvggrshhonhgsohgrrhgu
+    rdgtohhmpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhope
+    hgvggvrhhtodhrvghnvghsrghssehglhhiuggvrhdrsggvpdhrtghpthhtohepmhgrghhn
+    uhhsrdgurghmmhesghhmrghilhdrtghomhdprhgtphhtthhopehkrhiikhdoughtsehkvg
+    hrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhg
+    pdhrtghpthhtoheplhhinhhugidqrhgvnhgvshgrshdqshhotgesvhhgvghrrdhkvghrnh
+    gvlhdrohhrghdprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgv
+    lhdrohhrghdprhgtphhtthhopehlihhnuhigqdhkvghrnhgvlhesvhhgvghrrdhkvghrnh
+    gvlhdrohhrgh
+X-ME-Proxy: <xmx:xRE9aWo3I3y1ZiQDryhPNvA_e05sXekVRb4c0bxVX9KwGXi-Ud19Yw>
+    <xmx:xRE9aUWW-glbmk9Vh58LuYVnepji1XJn6ip5RXqWD5SDDGO_Xvw9uw>
+    <xmx:xRE9aW1_yCIUElO2Lvj7cBdTe4mtI6fTNdFasaCW_nmZqZHPSu1PlQ>
+    <xmx:xRE9aRtzpOcQXi22TnDZMB5W6t2HSrNMsHxxBvkQ6oEbij9JN0gXxg>
+    <xmx:xhE9aW78gbJiQrXRo89uficiqSBLhVaCwkhRgRBHvPPYYgw6T6Jezzl6>
+Feedback-ID: i80c9496c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
+ 13 Dec 2025 02:12:05 -0500 (EST)
+Date: Sat, 13 Dec 2025 08:12:03 +0100
+From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: "Rob Herring (Arm)" <robh@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+Subject: Re: [PATCH] arm/arm64: dts: renesas: Drop unused .dtsi
+Message-ID: <20251213071203.GA681376@ragnatech.se>
+References: <20251212203226.458694-1-robh@kernel.org>
+ <20251213062037.GA30577@pendragon.ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 00/26] Introduce meminspect
-To: Eugen Hristev <eugen.hristev@linaro.org>, linux-arm-msm@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-mm@kvack.org, tglx@linutronix.de,
- andersson@kernel.org, pmladek@suse.com, corbet@lwn.net, david@redhat.com,
- mhocko@suse.com
-Cc: tudor.ambarus@linaro.org, mukesh.ojha@oss.qualcomm.com,
- linux-arm-kernel@lists.infradead.org, linux-hardening@vger.kernel.org,
- jonechou@google.com, rostedt@goodmis.org, linux-doc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-remoteproc@vger.kernel.org,
- linux-arch@vger.kernel.org, tony.luck@intel.com, kees@kernel.org,
- Trilok Soni <tsoni@quicinc.com>, Kaushal Kumar <kaushalk@qti.qualcomm.com>,
- Shiraz Hashim <shashim@qti.qualcomm.com>,
- Peter Griffin <peter.griffin@linaro.org>, stephen.s.brennan@oracle.com,
- Will McVicker <willmcvicker@google.com>,
- "stefan.schmidt@linaro.org" <stefan.schmidt@linaro.org>
-References: <20251119154427.1033475-1-eugen.hristev@linaro.org>
- <bf00eec5-e9fe-41df-b758-7601815b24a0@linaro.org>
-Content-Language: en-US
-From: Randy Dunlap <rdunlap@infradead.org>
-In-Reply-To: <bf00eec5-e9fe-41df-b758-7601815b24a0@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251213062037.GA30577@pendragon.ideasonboard.com>
 
-Hi,
+Hello,
 
-On 12/12/25 10:48 PM, Eugen Hristev wrote:
+On 2025-12-13 15:20:37 +0900, Laurent Pinchart wrote:
+> Hi Rob,
 > 
+> CC'ing Jacopo.
 > 
-> On 11/19/25 17:44, Eugen Hristev wrote:
->> meminspect is a mechanism which allows the kernel to mark specific memory
->> areas for memory dumping or specific inspection, statistics, usage.
->> Once regions are marked, meminspect keeps an internal list with the regions
->> in a dedicated table.
+> On Fri, Dec 12, 2025 at 02:32:07PM -0600, Rob Herring (Arm) wrote:
+> > These .dtsi files are not included anywhere in the tree and can't be
+> > tested.
+> > 
+> > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> > ---
+> >  .../renesas/gr-peach-audiocamerashield.dtsi   |  75 ----
 > 
-> [...]
+> Jacopo, any opinion on this ? Should it be conevrted to an overlay, or
+> dropped ?
 > 
+> >  .../dts/renesas/r8a77xx-aa121td01-panel.dtsi  |  39 --
 > 
->> I will present this version at Plumbers conference in Tokyo on December 13th:
->> https://lpc.events/event/19/contributions/2080/
->> I am eager to discuss it there face to face.
+> I don't have access to this panel any more. I'm fine dropping this
+> .dtsi, it can always be resurrected and converted to an overlay if
+> someone needs it.
 > 
-> Summary of the discussions at LPC talk on Dec 13th:
+> >  arch/arm64/boot/dts/renesas/gmsl-cameras.dtsi | 332 ------------------
 > 
-> One main idea on the static variables annotation was to do some linker
-> magic, to create a list of variables in the tree, that would be parsed
-> by some script, the addresses and sizes would be then stored into the
-> dedicated section at the script level, without having any C code change.
-> Pros: no C code change, Cons: it would be hidden/masked from the code,
-> easy to miss out, which might lead to people's variables being annotated
-> without them knowing
+> This would be nice to turn into an overlay, but I'm not sure anyone
+> still cares.
+
+I started to write a reply saying I care about this one for V3M and that 
+it should be converted to a .dtso. I then looked at the last time I used 
+it, ~2 years ago, and the next ting I would need it for is to play with 
+the GMSL framework being worked on by Cosmin and streams whenever that 
+is merged. I also looked at the file itself and there is some work 
+needed split it into more useful .dtso structure.
+
+Inertia hit and I deleted the reply thinking I will do a new .dtso when 
+I test the above as the verification of a new overlay alone will require 
+the same setup and verification work.
+
+tl;dr; I care about the function, I'm OK with removing the .dtsi; I will 
+recreate the functionality as .dtso files in future.
+
 > 
-> Another idea was to have variables directly stored in a dedicated
-> section which would be added to the table.
-> e.g. static int __attribute(section (...)) nr_irqs;
-> Pros: no more meminspect section Cons: have to keep all interesting
-> variables in a separate section, which might not be okay for everyone.
+> >  arch/arm64/boot/dts/renesas/r8a779m0.dtsi     |  12 -
+> >  arch/arm64/boot/dts/renesas/r8a779m2.dtsi     |  12 -
+> >  arch/arm64/boot/dts/renesas/r8a779m4.dtsi     |  12 -
+> >  arch/arm64/boot/dts/renesas/r8a779m6.dtsi     |  12 -
+> >  arch/arm64/boot/dts/renesas/r8a779m7.dtsi     |  12 -
+> >  arch/arm64/boot/dts/renesas/r8a779m8.dtsi     |  17 -
+> >  arch/arm64/boot/dts/renesas/r8a779mb.dtsi     |  12 -
+> >  arch/arm64/boot/dts/renesas/r9a07g044c1.dtsi  |  25 --
+> >  arch/arm64/boot/dts/renesas/r9a07g044l1.dtsi  |  18 -
+> >  arch/arm64/boot/dts/renesas/r9a07g054l1.dtsi  |  18 -
+> >  arch/arm64/boot/dts/renesas/r9a09g047e37.dtsi |  18 -
 > 
-> On dynamic memory, the memblock flag marking did not receive any obvious
-> NAKs.
+> I'll let Geert comment on this :-)
 > 
-> On dynamic memory that is bigger in size than one page, as the table
-> entries are registered by virtual address, this would be non-contiguous
-> in physical memory. How is this solved?
-> -> At the moment it's left for the consumer drivers to handle this
-> situation. If the region is a VA and the size > PAGE_SIZE, then the
-> driver needs to handle the way it handles it. Maybe the driver that
-> parses the entry needs to convert it into multiple contiguous entries,
-> or just have virtual address is enough. The inspection table does not
-> enforce or limit the entries to contiguous entries only.
+> >  14 files changed, 614 deletions(-)
+> >  delete mode 100644 arch/arm/boot/dts/renesas/gr-peach-audiocamerashield.dtsi
+> >  delete mode 100644 arch/arm/boot/dts/renesas/r8a77xx-aa121td01-panel.dtsi
+> >  delete mode 100644 arch/arm64/boot/dts/renesas/gmsl-cameras.dtsi
+> >  delete mode 100644 arch/arm64/boot/dts/renesas/r8a779m0.dtsi
+> >  delete mode 100644 arch/arm64/boot/dts/renesas/r8a779m2.dtsi
+> >  delete mode 100644 arch/arm64/boot/dts/renesas/r8a779m4.dtsi
+> >  delete mode 100644 arch/arm64/boot/dts/renesas/r8a779m6.dtsi
+> >  delete mode 100644 arch/arm64/boot/dts/renesas/r8a779m7.dtsi
+> >  delete mode 100644 arch/arm64/boot/dts/renesas/r8a779m8.dtsi
+> >  delete mode 100644 arch/arm64/boot/dts/renesas/r8a779mb.dtsi
+> >  delete mode 100644 arch/arm64/boot/dts/renesas/r9a07g044c1.dtsi
+> >  delete mode 100644 arch/arm64/boot/dts/renesas/r9a07g044l1.dtsi
+> >  delete mode 100644 arch/arm64/boot/dts/renesas/r9a07g054l1.dtsi
+> >  delete mode 100644 arch/arm64/boot/dts/renesas/r9a09g047e37.dtsi
 > 
-> On the traverse/notifier system, the implementation did not receive any
-> obvious NAKs
+> -- 
+> Regards,
 > 
-> General comments:
-> 
-> Trilok Soni from Qualcomm mentioned they will be using this into their
-> software deliveries in production.
-> 
-> Someone suggested to have some mechanism to block specific data from
-> being added to the inspection table as being sensitive non-inspectable
-> data.
-> [Eugen]: Still have to figure out how that could be done. Stuff is not
-> being added to the table by default.
-> 
-> Another comment was about what use case there is in mind, is this for
-> servers, or for confidential computing, because each different use case
-> might have different requirements, like ignoring some regions is an
-> option in one case, but bloating the table in another case might not be
-> fine.
-> [Eugen]: The meminspect scenario should cover all cases and not be too
-> specific. If it is generic enough and customizable enough to care for
-> everyone's needs then I consider it being a success. It should not
-> specialize in neither of these two different cases, but rather be
-> tailored by each use case to provide the mandatory requirements for that
-> case.
-> 
-> Another comment mentioned that this usecase does not apply to many
-> people due to firmware or specific hardware needed.
-> [Eugen]: one interesting proposed usecase is to have a pstore
-> driver/implementation that would traverse the inspection table at panic
-> handler time, then gather data from there to store in the pstore
-> (ramoops, mtdoops or whatever backend) and have it available to the
-> userspace after reboot. This would be a nice use case that does not
-> require firmware nor specific hardware, just pstore backend support.
-> 
-> Ending note was whether this implementation is going in a good direction
-> and what would be the way to having it moving upstream.
-> 
-> Thanks everyone who attended and came up with ideas and comments.
-> There are a few comments which I may have missed, so please feel free to
-> reply to this email to start a discussion thread on the topic you are
-> interested in.
-> 
-> Eugen
+> Laurent Pinchart
 > 
 
-Maybe you or someone else has already mentioned this. If so, sorry I missed it.
-
-How does this compare or contrast to VMCOREINFO?
-
-thanks.
 -- 
-~Randy
-
+Kind Regards,
+Niklas Söderlund
 
