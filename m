@@ -1,124 +1,95 @@
-Return-Path: <devicetree+bounces-246254-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246255-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA252CBB09D
-	for <lists+devicetree@lfdr.de>; Sat, 13 Dec 2025 16:03:15 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4D1FCBB10D
+	for <lists+devicetree@lfdr.de>; Sat, 13 Dec 2025 17:02:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7B94930652E8
-	for <lists+devicetree@lfdr.de>; Sat, 13 Dec 2025 15:03:11 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 2C8CC30019CF
+	for <lists+devicetree@lfdr.de>; Sat, 13 Dec 2025 16:02:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6930A1F5842;
-	Sat, 13 Dec 2025 15:03:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9745921C160;
+	Sat, 13 Dec 2025 16:02:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ExOVUnqy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tqE7DdoL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D1497E110;
-	Sat, 13 Dec 2025 15:03:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67CAB3B8D4B;
+	Sat, 13 Dec 2025 16:02:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765638189; cv=none; b=du8XkQat0edNiIz8b1lYGoXxzl+kPs2l1Lj7CberZJ5QAcb5Zz5ILf5r9sKiOr4tjBMxjrDrxVib0okVYb23097cbwIny0aI9mmNhIK2U/kNFYjY12zDB9glf6RRwFGUnZ6X6ftM3RsWhU4v/kdPq079G6Gx2yFDtNZLor9f138=
+	t=1765641726; cv=none; b=LSsJj42rcpKO0c/NlUrHibF5SLAVYiJHEwb96aek1Runy+yq0PgPh1uq3weQB3YqeQnpxQIiy7XDIeDSPP6ZXbq3BnNPc/t5NaG1prnPtWRJxEgRlyik4tcPpSeSp0X8zSbg0N11CLS41oaQmR7KVZui+PRsFLSFd3b3CoWxNoM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765638189; c=relaxed/simple;
-	bh=AqCmAozaniNHX5GBUBFsaP58Sd82/tS4JqKE9BRjjhQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=OBdTk2spHbfQ+NdNxe59NTTU3X0euXwqAoP1XZS0GPn63Y2PJrGy6TprUT9SlD0d5b+eHDVvNLqiI9aMUgC9BIN0OBd7fXRjyQfbQsIe4/YmhLoFggKBYrQn9wWCCPiHA7G0b3cGbQvehnEsFJByiZq7yWPIF/McWwVYmJ0npYo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ExOVUnqy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id AD65FC4CEF7;
-	Sat, 13 Dec 2025 15:03:08 +0000 (UTC)
+	s=arc-20240116; t=1765641726; c=relaxed/simple;
+	bh=nnhX1g4Ordr61I3/Mes91IwQ59xozmblbvAnSRlmb+k=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=fWfu95ZN+2kokoT4K3O2n7P29wcEt4mXICv4qcEo5FOss3AfA9O7/X8shQ0IPLclH3a+nq/29URPoZ1xOCniLKslt8eC7uGp3TZHptCDMEZmUHjoIKq9xRINIr4qhJ499zpL6LHC+vXCONt5i6ug+kY7qwGyMPWfK8B/GGRk/9U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tqE7DdoL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36C2DC4CEF7;
+	Sat, 13 Dec 2025 16:02:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765638188;
-	bh=AqCmAozaniNHX5GBUBFsaP58Sd82/tS4JqKE9BRjjhQ=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=ExOVUnqyqoBpcbGz6TSB3wdYU9CkZzEW6eFdnvXLnRr9EP9qUeMiGWJ5BT2V6KaUq
-	 zMD3pqol7/z+Y7arrL2udJc5pHu2vnRMMGJvN6thCJsMAdnidzXDIt5pMjCCeNula7
-	 opvkqx58N7C+UufP75sTTyyE/Lvd3fQGOImFwm34BuaTAfPW8bXy0vlq0XCDI9CwTv
-	 GQPENPDUYE+H1QBqbLfL6NiBpK48MaN9vGVooYLZPFr0W5pXOu2GibbvdKJncGOvPS
-	 UBfLZzEJkFeKZbTaTKhYnH3K4/bzevnOQLnnooGG4/uCwZttz8/tmqM0lkTfzxuG+y
-	 j5W959eZkBmCw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9C2B9D5B158;
-	Sat, 13 Dec 2025 15:03:08 +0000 (UTC)
-From: Zhaoming Luo via B4 Relay <devnull+zhml.posteo.com@kernel.org>
-Date: Sat, 13 Dec 2025 23:04:11 +0800
-Subject: [PATCH v2] dt-bindings: ufs: Fix a grammar error
+	s=k20201202; t=1765641725;
+	bh=nnhX1g4Ordr61I3/Mes91IwQ59xozmblbvAnSRlmb+k=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=tqE7DdoLHSDeAfff65N2f7UxQC7BiBCT8Jdrrb9YvDvaMegqzrVROhb85t/UjqNCi
+	 VoG0PBRlIm5Ta4tPe5hTj+qbPUt3Th9muOuoectjK5zl1CeXioG/UFL6giXjsplJMF
+	 c5ZrH/7vMkm6XNrAbZTBMbRFnh14hc/JAjbAWIkkr6W9RjR+m6nrwAvi8P6QtiYNU7
+	 c1WTQP7T5yPmCmZp8t8ozC02Ff3P38Ymyhd09d2Q6aPHla2rNNGC1CWZ7TiTC7NQ/Y
+	 EYjhVOlMDXuZM/wrXerapqNxzR7pa4wfBw8yXl+K+CxrDIiFFSteRScwEW4S3oPkLb
+	 wqi62zJXbiPaw==
+Date: Sat, 13 Dec 2025 16:01:54 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc: dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org,
+ robh@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org,
+ linux-iio@vger.kernel.org, s32@nxp.com, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, chester62515@gmail.com, mbrugger@suse.com,
+ ghennadi.procopciuc@oss.nxp.com, vkoul@kernel.org
+Subject: Re: [PATCH v9 0/2] NXP SAR ADC IIO driver for s32g2/3 platforms
+Message-ID: <20251213160154.6b1aba67@jic23-huawei>
+In-Reply-To: <20251208020819.3063506-1-daniel.lezcano@linaro.org>
+References: <20251208020819.3063506-1-daniel.lezcano@linaro.org>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251213-fix-minor-grammar-err-v2-1-b32be57caa13@posteo.com>
-X-B4-Tracking: v=1; b=H4sIAGqAPWkC/x2MQQqAMAzAviI9W9gqKvoV8TBcpz1sSgciDP/u8
- BhIUiCzCmeYmwLKt2Q5UwVqG9gOl3ZG8ZWBDPWWbIdBHoySTsVdXYxOkVVxGL01W6DgJw+1vZS
- r+H+X9X0/tnyRPWcAAAA=
-X-Change-ID: 20251213-fix-minor-grammar-err-67d10cf2fd9d
-To: Alim Akhtar <alim.akhtar@samsung.com>, 
- Avri Altman <avri.altman@wdc.com>, Bart Van Assche <bvanassche@acm.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-scsi@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Zhaoming Luo <zhml@posteo.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1440; i=zhml@posteo.com;
- h=from:subject:message-id;
- bh=fori8aM450W7B3/fTbmPAYSMy/U8i5ZeqbO0a1qO7mc=;
- b=owGbwMvMwCWW8vrrboHTHcGMp9WSGDJtG1o+qz+J/6IurKsm+/8KI3PRDKb3Ka2T9+Y5iee4R
- 7hHPzzWMZGFQYyLwVJMkcU57kHABd8el8DWY54wc1iZQIZIizQwAAELA19uYl6pkY6Rnqm2oZ6h
- oQ6QycDFKQBT/bqJkWHj3Nv8HTM7TP65uV5R3PjMnicx65JYDeeyxaac3WsqNv9n+GcyIz4uR0p
- 63bmJ/+o3LzqQFPR0CpujSvcOqebQa0E/vrMBAA==
-X-Developer-Key: i=zhml@posteo.com; a=openpgp;
- fpr=435EE050D04D8C445185C64964EBF5BB10CB8853
-X-Endpoint-Received: by B4 Relay for zhml@posteo.com/default with
- auth_id=576
-X-Original-From: Zhaoming Luo <zhml@posteo.com>
-Reply-To: zhml@posteo.com
 
-From: Zhaoming Luo <zhml@posteo.com>
+On Mon,  8 Dec 2025 03:08:17 +0100
+Daniel Lezcano <daniel.lezcano@linaro.org> wrote:
 
-Fix a minor grammar error.
+> The S32G2 and S32G3 platforms have a couple of successive
+> approximation register (SAR) ADCs with eight channels and 12-bit
+> resolution. These changes provide the driver support for these ADCs
+> and the bindings describing them.
+> 
+> The driver is derived from the BSP driver version. It has been partly
+> rewritten to conform to upstream criteria.
+> 
+> https://github.com/nxp-auto-linux/linux/blob/release/bsp44.0-6.6.85-rt/drivers/iio/adc/s32cc_adc.c
+> 
+> After the V1 posting there were some discussions around the DMA code
+> to be converted to use the IIO DMA API [1]. Unfortunately this one is
+> not yet fully implemented and merged in the framework to support the
+> cyclic DMA. The current DMA code in the driver has been used in
+> production since several years and even if I agree it can be improved
+> with a dedicated IIO DMA API in the future, IMO, it sounds reasonable
+> to keep it as is until the IIO DMA API supporting the cyclic DMA is
+> merged. I'll be glad to convert the driver code if such an API exists
+> and allows to remove code inside the driver.
+> 
+> [1] https://lore.kernel.org/all/c30bb4b6328d15a9c213c0fa64b909035dc7bf40.camel@gmail.com/
+> [2] https://lore.kernel.org/all/aRyBKH4KOQ1L8lA4@black.igk.intel.com/
+Series applied to the testing branch of iio.git. It will go out as togreg once
+I have rebased on rc1.
 
-Signed-off-by: Zhaoming Luo <zhml@posteo.com>
----
-Changes from v1[0]:
-- The subject prefixes match the subsystem as suggested in the
-  documentation[1].
-- The necessary To/Cc entries are included.
+Thanks,
 
-Thanks to Krzysztof Kozlowski for pointing out the errors and providing
-helpful information about how to fix them.
-
-[0]: https://lore.kernel.org/linux-scsi/20251212131112.5516-1-zhml@posteo.com/
-[1]: https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
----
- Documentation/devicetree/bindings/ufs/ufs-common.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/ufs/ufs-common.yaml b/Documentation/devicetree/bindings/ufs/ufs-common.yaml
-index 9f04f34d8..efeae8f3d 100644
---- a/Documentation/devicetree/bindings/ufs/ufs-common.yaml
-+++ b/Documentation/devicetree/bindings/ufs/ufs-common.yaml
-@@ -48,7 +48,7 @@ properties:
-     enum: [1, 2]
-     default: 2
-     description:
--      Number of lanes available per direction.  Note that it is assume same
-+      Number of lanes available per direction.  Note that it is assumed same
-       number of lanes is used both directions at once.
- 
-   vdd-hba-supply:
-
----
-base-commit: 9d9c1cfec01cdbf24bd9322ed555713a20422115
-change-id: 20251213-fix-minor-grammar-err-67d10cf2fd9d
-
-Best regards,
--- 
-Zhaoming Luo <zhml@posteo.com>
-
-
+Jonathan
 
