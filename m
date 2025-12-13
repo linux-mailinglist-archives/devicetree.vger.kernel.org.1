@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-246226-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246227-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04C01CBA3F5
-	for <lists+devicetree@lfdr.de>; Sat, 13 Dec 2025 04:18:41 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00819CBA401
+	for <lists+devicetree@lfdr.de>; Sat, 13 Dec 2025 04:20:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 3226630012DA
-	for <lists+devicetree@lfdr.de>; Sat, 13 Dec 2025 03:18:40 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 794F13007970
+	for <lists+devicetree@lfdr.de>; Sat, 13 Dec 2025 03:20:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B07FE279DC3;
-	Sat, 13 Dec 2025 03:18:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F2FE2D77F5;
+	Sat, 13 Dec 2025 03:20:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZLBvr/jE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dMuicZvK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AD18AD24;
-	Sat, 13 Dec 2025 03:18:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08470284684;
+	Sat, 13 Dec 2025 03:20:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765595918; cv=none; b=IlFoS18n1z7nOAKyrPgP1jmY0zaRw2ey9jt1FLEnWuAVidD2Obcau2kwHosRMxngTSgUy50g+YywJRI054YovOSrczJLk904Mpl3p/e0T8CBqNrGdKwLLWHB06Bmrmyq3PNYpyaVLHzoQuLz0JNGJ7ywNM4FxKN7y1GrzNAEoZ4=
+	t=1765596013; cv=none; b=srFB7LYTmj1JzUkQMBB6lGn/KbUpuf2V68n/hH4e0E8YX5w8dMUuIdpeLWokgg5km1DipGS5Ba2diAEQDBXOY3qgMX3dXp80RWSRupJAE3lBXxlfVJfCjwuayQf0P+x+hug8FtMD7d9ue5XcDc8QnirbDAHj50dtN9F0bWe65W0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765595918; c=relaxed/simple;
-	bh=kpnXNzdGYP2zwFs8w+pWtw9Kv4Wj2G2tKsafdEQ5Gks=;
+	s=arc-20240116; t=1765596013; c=relaxed/simple;
+	bh=9pATBF7wQUYhXP9C8AnGk3NrhTMiq+9sTIHoxjElzSs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EBmd0bgxVfnVr14oyn5nGTk/0Et1lUXCc6pd6XMudK/eWSkc6hU/+ik8+IH2yt6ZrJS/mbi8xuLRp8BhNJeTXHBd4H2ZP5Rs3oc7Rg2ZZpahnZ37kKzL4RgF7uMRvNQiEIsEezXYJYxIXYOp4mObpXc6ShDShbM4S75AeT6GEyA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZLBvr/jE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67708C4CEF7;
-	Sat, 13 Dec 2025 03:18:33 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=XUOpThNsiXLMxnoi/wWFxcjdfrzC4XaOJwvAtIuox4i8vzKMx0Z3IjjYEY602JqyifgdpHzYgCHJvxr5qkGFymJEOVUBbDV7ljJezHP5x99T4Rso41gbvaMSNHFvnSmNRkAIvmP0VVYkDjQVdDQRtm0nF19wZW5EqLf/FJIVWF8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dMuicZvK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65AE3C4CEF7;
+	Sat, 13 Dec 2025 03:20:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765595918;
-	bh=kpnXNzdGYP2zwFs8w+pWtw9Kv4Wj2G2tKsafdEQ5Gks=;
+	s=k20201202; t=1765596011;
+	bh=9pATBF7wQUYhXP9C8AnGk3NrhTMiq+9sTIHoxjElzSs=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ZLBvr/jE5QHhvn1Ge7YWIQQuliv0hTWw2mk3Cg53SpyF58iraplDWcSyb72DWmzks
-	 ZFvzK1NSZdsoV0TarnxvjC5qYCBmuTsZpLtoYpEbVUUcOolRdJsbtgaigqbZ0tVPwd
-	 eJq63oYvpsVnmLI8Bv0LcGYDpi5SalJEzpacmKVBJKw6/jFcAu1MAed+NDZWkauUhJ
-	 3xxRkOV4zQ3S+8sIaFOPo4rL8BLwpVhsFZDY1cTvy5JIztYg/l1F53Eb5GoOwKjRNy
-	 fblnm3QhKORjwD64eRZRFcoQvL0WxkvTrQU9dz5V4D2dPXKTN9IXYOzTnmBfTSg4I1
-	 81goUgB/RteMg==
-Message-ID: <ea21463c-89cd-43c3-b3e3-b5bcc5fb82fb@kernel.org>
-Date: Sat, 13 Dec 2025 04:18:31 +0100
+	b=dMuicZvKbvl0F91/2dtXtefJOav+8ZHhzZMz6MaKgrSBAom6ZNWIW1/pnoRSYidd7
+	 3Vp8/8UE5XZUaBvtwdXHA0enmdi0Bp2kseGqPrt6BmYTEd3FglBcR/s/cEwnUyPBDD
+	 JkWCvMRa5/674O8WB38Iy1Ecvv1v7XAU7b1Z281OXtWwjjWoHe8ggsKkYvngdkwKoT
+	 GKAuWqxBQtykU5nNRZpTjP9YozsBxV7S3mCtUtEW0gWPdFs/vQFH7eHDMKn+gQ4QuI
+	 EHuf5Y4lgadvSrRTg8z6qDOeKb2Uqe68Tojs1E7s3Q8dw5nkLdy8creWNgR0NQdhUs
+	 ajRqAEyZJj7DQ==
+Message-ID: <612b2b3e-9da6-4bbc-8058-a6c025d76729@kernel.org>
+Date: Sat, 13 Dec 2025 04:20:04 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,22 +48,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] media: dt-bindings: Correct camss VDDA PLL supply
- description
-To: david@ixit.cz, Robert Foss <rfoss@kernel.org>,
- Todor Tomov <todor.too@gmail.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH 1/4] dt-bindings: misc: agilex5-soc-fcs-config: Add
+ binding
+To: hangsuan.wang@altera.com, linux-kernel <linux-kernel@vger.kernel.org>,
+ devicetree <devicetree@vger.kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Vikram Sharma <quic_vikramsa@quicinc.com>,
- Kapatrala Syed <akapatra@quicinc.com>,
- Hariram Purushothaman <hariramp@quicinc.com>,
- Richard Acayan <mailingradian@gmail.com>
-Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- phone-devel@vger.kernel.org
-References: <20251212-docs-camss-fixes-v1-1-5c011505ff59@ixit.cz>
+ <conor+dt@kernel.org>, Florian Fainelli <florian.fainelli@broadcom.com>,
+ Thierry Reding <treding@nvidia.com>, Lee Jones <lee@kernel.org>,
+ Romain Gantois <romain.gantois@bootlin.com>,
+ Andrea della Porta <andrea.porta@suse.com>,
+ Andrei Simion <andrei.simion@microchip.com>,
+ Dinh Nguyen <dinguyen@kernel.org>, Mahesh Rao <mahesh.rao@altera.com>
+Cc: Marek <marex@denx.de>, Simon <simon.k.r.goldschmidt@gmail.com>,
+ linux-drivers-review@altera.com,
+ Muhammad Amirul Asyraf Mohamad Jamian
+ <muhammad.amirul.asyraf.mohamad.jamian@altera.com>,
+ Khairul Anuar Romli <khairul.anuar.romli@altera.com>
+References: <cover.1765534135.git.hang.suan.wang@altera.com>
+ <f14623df4725f66c5ab6a9f75f0a5efd062dbd8f.1765534135.git.hang.suan.wang@altera.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,47 +111,26 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251212-docs-camss-fixes-v1-1-5c011505ff59@ixit.cz>
+In-Reply-To: <f14623df4725f66c5ab6a9f75f0a5efd062dbd8f.1765534135.git.hang.suan.wang@altera.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 12/12/2025 23:55, David Heidelberg via B4 Relay wrote:
-> From: David Heidelberg <david@ixit.cz>
+On 12/12/2025 12:35, hangsuan.wang@altera.com wrote:
+> From: "Wang, Hang Suan" <hangsuan.wang@altera.com>
 > 
-> Usually, the supply is around 1.2 V, not 1.8 V. Rather remove mention of
-> voltage from the description.
+> Soc/Hardware FPGA crypto services (fcs) by ensuring optimal performance,
+> secure isolation, and robust system management. This will allow dedicated
+> system resources to communicate with the high-speed FPGA hardware without
+> interruption or software overhead.
 > 
-> Fixes: 849139d46d09 ("media: dt-bindings: media: camss: Fixup vdda regulator descriptions sdm845")
-> Signed-off-by: David Heidelberg <david@ixit.cz>
-> ---
-> Added only Fixes tag for the initial commit, not all the copy-paste
-> propagated ones.
-> ---
->  Documentation/devicetree/bindings/media/qcom,sa8775p-camss.yaml  | 2 +-
->  Documentation/devicetree/bindings/media/qcom,sc7280-camss.yaml   | 2 +-
->  Documentation/devicetree/bindings/media/qcom,sc8280xp-camss.yaml | 2 +-
->  Documentation/devicetree/bindings/media/qcom,sdm670-camss.yaml   | 2 +-
->  Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml   | 2 +-
->  Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml   | 2 +-
->  6 files changed, 6 insertions(+), 6 deletions(-)
+> This results in faster, more secure, and consistent cryptographic
+> operations compared to running the services entirely on the
+> general-purpose CPU.
 > 
-> diff --git a/Documentation/devicetree/bindings/media/qcom,sa8775p-camss.yaml b/Documentation/devicetree/bindings/media/qcom,sa8775p-camss.yaml
-> index 019caa2b09c32..9009cfe993d75 100644
-> --- a/Documentation/devicetree/bindings/media/qcom,sa8775p-camss.yaml
-> +++ b/Documentation/devicetree/bindings/media/qcom,sa8775p-camss.yaml
-> @@ -130,7 +130,7 @@ properties:
->  
->    vdda-pll-supply:
->      description:
-> -      Phandle to 1.8V regulator supply to PHY refclk pll block.
-> +      Phandle to regulator supply to PHY refclk pll block.
 
-If doing this then also drop all redundant useless information. It is
-never useful to say that phandle is a phandle and that supply is a
-regulator supply, so just "PHY refclk PLL block supply".
-
-
-
+You don't have resources there, so that's not a real device... And above
+explanation does not help me at all. Please carefully read slides for
+DTS 101 talk and writing bindings doc.
 
 Best regards,
 Krzysztof
