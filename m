@@ -1,96 +1,89 @@
-Return-Path: <devicetree+bounces-246268-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246269-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9FC7CBB44A
-	for <lists+devicetree@lfdr.de>; Sat, 13 Dec 2025 22:52:44 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id A388BCBB472
+	for <lists+devicetree@lfdr.de>; Sat, 13 Dec 2025 23:38:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D7CC43008F9B
-	for <lists+devicetree@lfdr.de>; Sat, 13 Dec 2025 21:52:42 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 4EDDB30014D4
+	for <lists+devicetree@lfdr.de>; Sat, 13 Dec 2025 22:38:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 028682441B8;
-	Sat, 13 Dec 2025 21:52:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A9882C3244;
+	Sat, 13 Dec 2025 22:38:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Tk22ue/E"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="LU4GODiq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com [209.85.222.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E11426FDBF
-	for <devicetree@vger.kernel.org>; Sat, 13 Dec 2025 21:52:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4974025A2B4;
+	Sat, 13 Dec 2025 22:38:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765662761; cv=none; b=m1Cjz03NmYG9MyplW1UFLkQJVb3aU0TgCqJb8G4X58eBR43/O20T92qCwDrmjLxhUMqsh7PF/O97GtJFQ/1BTeZn/39Xdw1q8eFzF3zLEBtUfjwz7BKcSC60AgQe+MZpJ2a+pjyzoNFRCGkv3a5FFqbxGd0UGy3OztOZcIkSPjM=
+	t=1765665512; cv=none; b=Jbl5u57/TGCefmlzCatO80oGXleoistAzg1bfCN19siVC10D8uEajUCyvt3KpYhpI0xs/DSUYBNYfrBVkjgJ4Rq5EHIkEr8/LHgFCmRpbLjYi6WF6ob6+xENwPZKgeu2NMeoexfbL3oUfl8om0U0PDeoZvjye8xi/IE1+A9cMaY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765662761; c=relaxed/simple;
-	bh=MOrv8Z468pz42F7Vvd2hP+rc9j/1X54/GPGCIfRTwL0=;
+	s=arc-20240116; t=1765665512; c=relaxed/simple;
+	bh=x9IUiptFECE3cW/GDCvzyiGlrgVLo6L8ed3LxBK68RM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dHt5WcAlASwgAavX29oD9StqEtj9+TbjMOztnrEF+NDknUO6PE+QWwnv2Ye3RjtAjAXjYZwTvrHa/z31GyPZ+ZToj3qA9gUmeg9BzFSsy0O+6e1SLM6zhxvSzSBRpV+YlA3FMfIfpmd/ew/E0IQL7v9tPQvB/ifBk4nzNbDLUU8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Tk22ue/E; arc=none smtp.client-ip=209.85.222.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f179.google.com with SMTP id af79cd13be357-8a3eac7ca30so166711585a.2
-        for <devicetree@vger.kernel.org>; Sat, 13 Dec 2025 13:52:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1765662759; x=1766267559; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=0vmpfVrhKRCeQv0RKMF2hPkD4G5WVFs8+IoJsGJYwCQ=;
-        b=Tk22ue/EZPyVUX+ppacY8yOIiMdBQwT5vrLi6BbR+l2HyDp3K8OsXqTTvRq3W9HfWo
-         rAIgeiJKdtVK2UsK2t5lwPPlTAInbJD2WIhcrJ45X7kKuwZBvvI1/85Q+f1g3sY2ijty
-         NlPlXrbJgnakpEFHuhmF/GD7wF0pSNccpEdTPIGP+J5ldhHcafLAU9qY55MuptgIft2Z
-         3p0gqZh9mnNbR8sEbDJEKhRt5KlHKzkEFREMLlFCMLeODDVXyoGN6APvmoIIhoeOcMzd
-         Nomddglb4/NW0Kqdhqj3lYLP7SKJ7CcGCq5nA4gBYwXPlVLlyrqrgNCQBa+5Nc3wgQ+I
-         QGyA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765662759; x=1766267559;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=0vmpfVrhKRCeQv0RKMF2hPkD4G5WVFs8+IoJsGJYwCQ=;
-        b=aG+ZCPE01R/IUt8sWOiE1h/ruRwv1CQMhPljx0+zV3U4NDnScosNBr193KAJ9s/hP+
-         36L/kjUrhfobYsFNSq1mXq3+atGknMWykrgx0pRD4ZfHsFQyZGJiRJ/nHy9Tq8Ug+LZi
-         ZZVysU7nBi1W4yQyMVpU2wab6/iovc6odhnny/BU7zA3WeePLcQBUtq2OjnIqmXtgGU9
-         MYJB2JregH0/ra2uXc9ANF/tSqBdO6uFH3TmJ0r0DlqxdTGreQz3vTGL7ycejsenhBgk
-         8TIY7iQ7+eITLfZ4+hT7v25ayESqmc7c5AtfdjFCaAU1yaVC4GqzigDBFDP/HAYX29Cz
-         ftjg==
-X-Forwarded-Encrypted: i=1; AJvYcCXzx1XLr+kJGqXt4Y0jO19hMPtlrTOY8xTLXDwixQcyirEHRUq4JAXXl09ayvfP78uQ5s+aEig7jPSh@vger.kernel.org
-X-Gm-Message-State: AOJu0YzgnbTLjE+Gbb5eJhuwAfO6T/tJcLj7V7X1emjbw4cym+3aXRMb
-	uYZllxNZThW4Lef2Qo3komDKTgStFF/F3FYomMBDvlHnDCR7BD57M5Vq
-X-Gm-Gg: AY/fxX7QlRnOUz+nQxrpHWcBjp5YGwKgQ8I8pf5zSqpFz04b6O9iecrOvPkTtnOVICm
-	qNBeyrOS2pbbBmKpnmWh+RGQwOOLMF2pNHZYMu566XiCaKGi18mHjsOxo3ZnF7FD5RltgKwXArV
-	Jo+nLqf2+YsR5QvkW52SD44CDsKUsvgxOEbYCeqk1FpYw5egDBeTC2lW7QOW6AXVqYDwiO5ntSW
-	SoYI4AQxA1utWMLNTK81md3092YQFlEPH/N19dPigw/86HkVecmvUx9xOpDEVYRgZFUEx3D8IGV
-	Nd17/KUTo/T7ZN4Qp1oNbUjNcl/cQ3LAAJBYfKdgUo92pNw9GjkKqlMoGBhIpQTOpimhpPYrceN
-	QNvs0B3n3gulVhSHgETZUYMhzZ15YnuvgBQbcVleK99ICY2UIx057+r/cj5RpwYGztpzbCM1OO0
-	6sNYyRh+5HmByG4Q==
-X-Google-Smtp-Source: AGHT+IHHh35U+sxh3+imqr2OZ78va01JS9YvuTHyoO2ahBYtY2IepXHUI8Y0tIiK43w8obVA7scckA==
-X-Received: by 2002:a05:620a:4508:b0:8b2:e179:febd with SMTP id af79cd13be357-8bb398dfef4mr1038221585a.10.1765662759216;
-        Sat, 13 Dec 2025 13:52:39 -0800 (PST)
-Received: from localhost ([184.144.58.243])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-8bab5c3bd4bsm744693985a.32.2025.12.13.13.52.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 13 Dec 2025 13:52:37 -0800 (PST)
-Date: Sat, 13 Dec 2025 16:52:51 -0500
-From: Richard Acayan <mailingradian@gmail.com>
-To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=myna9hUZ4lwQ6hBc2+a/QjJmOIM04FNlJr9pAsCSqOPE4KfZyWTpDnXwUjM2XpM0Db6pNAbPm6cLX0wOx+G19UtHNdAlFSsBxixqxflDhTdaamUTqo+zYq8YyVtDc5FodkYbBIxcQ+0YcfoYfPrFknkN8uLx0pDsyO3IeDucNV4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=LU4GODiq; arc=none smtp.client-ip=198.175.65.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1765665511; x=1797201511;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=x9IUiptFECE3cW/GDCvzyiGlrgVLo6L8ed3LxBK68RM=;
+  b=LU4GODiqjQZXZ2Wiw5RidwjNurvIibKuCpOEjBlaHyfhGfxfunpkKu3n
+   sr9UfnMPQAI8h/QOzQXLoF7AIFzCcdcsu1UiWpY/vuKJ8l4RKqydJPaq5
+   17sXQC1O+LF7VphOhS1X+M3D/xIskvuFcTjpfjAM0ocIbGkpKiNrooz8z
+   W1K47rEL3MYNgBHqyqRUn5wbAMZjA+UwnMK3IVZcIeXe0K85ONFttSWFr
+   y9yYe8c2n2gq5PP8vr54EE1mRtR4DDAq4h3j8j3+pjcjrUQubpgILGeFL
+   uJJ8BaYLRF8jf6CE67f1fcrTt11JlkR5w0lSJLPdVtU4He7Zu0BDklZtM
+   Q==;
+X-CSE-ConnectionGUID: 1b04DRrxSOKgBVzDl8C6+w==
+X-CSE-MsgGUID: tSj9KuLxSE2JvsebpuyeGw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11641"; a="67585006"
+X-IronPort-AV: E=Sophos;i="6.21,147,1763452800"; 
+   d="scan'208";a="67585006"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Dec 2025 14:38:30 -0800
+X-CSE-ConnectionGUID: C5+MoIrRSh6bNB54VCqnTg==
+X-CSE-MsgGUID: oGNlm5zrS7S3sfRx771FLQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,147,1763452800"; 
+   d="scan'208";a="202300259"
+Received: from lkp-server01.sh.intel.com (HELO d335e3c6db51) ([10.239.97.150])
+  by fmviesa004.fm.intel.com with ESMTP; 13 Dec 2025 14:38:26 -0800
+Received: from kbuild by d335e3c6db51 with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1vUYFr-000000008HD-3sy5;
+	Sat, 13 Dec 2025 22:38:23 +0000
+Date: Sun, 14 Dec 2025 06:38:13 +0800
+From: kernel test robot <lkp@intel.com>
+To: "Thomas Perrot (Schneider Electric)" <thomas.perrot@bootlin.com>,
 	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Tianshu Qiu <tian.shu.qiu@intel.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-media@vger.kernel.org,
-	Robert Mader <robert.mader@collabora.com>
-Subject: Re: [PATCH v4 1/5] dt-bindings: media: i2c: Add Sony IMX355
-Message-ID: <aT3gM5eSxjNRDmRW@rdacayan>
-References: <20251211014846.16602-1-mailingradian@gmail.com>
- <20251211014846.16602-2-mailingradian@gmail.com>
- <25c8ad84-2a3f-4e09-a32f-8af68379858e@linaro.org>
- <aT3eUlQuwXptSFGD@rdacayan>
+	Linus Walleij <linusw@kernel.org>,
+	Bartosz Golaszewski <brgl@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	=?iso-8859-1?Q?J=E9r=E9mie?= Dautheribes <jeremie.dautheribes@bootlin.com>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>, Lee Jones <lee@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-watchdog@vger.kernel.org,
+	"Thomas Perrot (Schneider Electric)" <thomas.perrot@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 6/8] gpio: aaeon: Add GPIO driver for SRG-IMX8PL MCU
+Message-ID: <202512140637.VrfgC1Tj-lkp@intel.com>
+References: <20251212-dev-b4-aaeon-mcu-driver-v1-6-6bd65bc8ef12@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -99,20 +92,32 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <aT3eUlQuwXptSFGD@rdacayan>
+In-Reply-To: <20251212-dev-b4-aaeon-mcu-driver-v1-6-6bd65bc8ef12@bootlin.com>
 
-On Sat, Dec 13, 2025 at 04:50:07PM -0500, Richard Acayan wrote:
-> On Thu, Dec 11, 2025 at 01:02:49PM +0200, Vladimir Zapolskiy wrote:
-> > On 12/11/25 03:48, Richard Acayan wrote:
-> <snip>
-> > > +  reset-gpios:
-> > > +    maxItems: 1
-> > 
-> > Please explicitly document that the reset GPIO is active low, and make
-> > the correspondent dts changes.
-> 
-> On my local copy, the DTS already specifies active low, and I haven't
-> changed it since sending. I'll just change the dt-bindings.
+Hi Thomas,
 
-Oh nevermind. It is still active high.
+kernel test robot noticed the following build errors:
+
+[auto build test ERROR on d358e5254674b70f34c847715ca509e46eb81e6f]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Thomas-Perrot-Schneider-Electric/dt-bindings-vendor-prefixes-Add-AAEON-vendor-prefix/20251212-154458
+base:   d358e5254674b70f34c847715ca509e46eb81e6f
+patch link:    https://lore.kernel.org/r/20251212-dev-b4-aaeon-mcu-driver-v1-6-6bd65bc8ef12%40bootlin.com
+patch subject: [PATCH 6/8] gpio: aaeon: Add GPIO driver for SRG-IMX8PL MCU
+config: mips-randconfig-r051-20251213 (https://download.01.org/0day-ci/archive/20251214/202512140637.VrfgC1Tj-lkp@intel.com/config)
+compiler: clang version 22.0.0git (https://github.com/llvm/llvm-project 1335a05ab8bc8339ce24be3a9da89d8c3f4e0571)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251214/202512140637.VrfgC1Tj-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202512140637.VrfgC1Tj-lkp@intel.com/
+
+All errors (new ones prefixed by >>, old ones prefixed by <<):
+
+>> ERROR: modpost: "aaeon_mcu_i2c_xfer" [drivers/gpio/gpio-aaeon-mcu.ko] undefined!
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
