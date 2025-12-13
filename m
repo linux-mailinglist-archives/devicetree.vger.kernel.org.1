@@ -1,101 +1,79 @@
-Return-Path: <devicetree+bounces-246216-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246217-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E708CBA114
-	for <lists+devicetree@lfdr.de>; Sat, 13 Dec 2025 00:50:36 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AC19CBA15A
+	for <lists+devicetree@lfdr.de>; Sat, 13 Dec 2025 01:04:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3C39130977E9
-	for <lists+devicetree@lfdr.de>; Fri, 12 Dec 2025 23:50:19 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 84BD83011B05
+	for <lists+devicetree@lfdr.de>; Sat, 13 Dec 2025 00:04:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 693D02D0283;
-	Fri, 12 Dec 2025 23:50:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B52B3594F;
+	Sat, 13 Dec 2025 00:04:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b="nZPdF2MW"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="AyhbqKWe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout02.posteo.de (mout02.posteo.de [185.67.36.66])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFB3A2BDC3F
-	for <devicetree@vger.kernel.org>; Fri, 12 Dec 2025 23:50:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.66
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF4FDA55
+	for <devicetree@vger.kernel.org>; Sat, 13 Dec 2025 00:03:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765583418; cv=none; b=eSnAPGTpYD4pDzCEv9vX8GbLRq7BRjIbmsysAQpkj3ORs9+PUEF2VGuxAPig5oJTnW5xTylhVvJZizZ4b8YOOPNp90JUgGzotqQoAUjdWYGDh4a0yf0Ut2KitG+O+NKaYOyLJ195GWQROUCrVxhhrFoptxYEbw+KgqsMWvL94+w=
+	t=1765584240; cv=none; b=sQ2n3xgQk1Qk8xZHWLWsd2j7PEvPGukzzSQ7bMF8kOEQv0PLze1OKsi87tdrIFnPBynbynZ2LYEqZjMcfJMYsfjxFCJOUlyRmSqpbHj0E4M89kyyQ+LdSOanj4uFhpaEaUTIHqP/zMVFlw8nQ3uYqYV1v5F/8cAeyBWR5g225Gs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765583418; c=relaxed/simple;
-	bh=x45WV6B65y1LYkFFpwm5z3sjTt12/+FjgRk48u8KC4g=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=oNjw9Hi3hw/emVT8kv2LswfSDuqCUpjKcJZB0q84JeCFt9/6OjkvffyvuNJnQYlpKgQ7vhXOZflxY4Th7gzzowmStpLX6FLCp5KNpPyUHYeaR0jIfwGjwtGVCGj+/4E1VpZKAWoFh6aW2Uigt+u2Xfo96QjtjvOLDtM+6Vw1bNE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de; spf=pass smtp.mailfrom=posteo.de; dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b=nZPdF2MW; arc=none smtp.client-ip=185.67.36.66
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.de
-Received: from submission (posteo.de [185.67.36.169]) 
-	by mout02.posteo.de (Postfix) with ESMTPS id CF7A9240105
-	for <devicetree@vger.kernel.org>; Sat, 13 Dec 2025 00:50:13 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=posteo.de; s=2017;
-	t=1765583413; bh=DhnIQJhYt6frMQDEzUl2UnGpUcZg2IdR59Af7tBLeXk=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:
-	 Content-Transfer-Encoding:From;
-	b=nZPdF2MW6m9IOYyXzZtUd1r1ywjf1ar6h/Nu9iLH5p59ZV1kbnl+MCxCfolgg4V+c
-	 Ri9ZgYds/qMSG5/FdZzclRlpmwDCzQ1xwZOSICj9ijbJuSqJTrIM5rmSbz+Ffx3hZm
-	 4k0sounVbQms84237dOVjJ5ATDv09wnsNSl7uwLFHu/WuFNpwjAbOu+hdz+UIWDBXl
-	 xwRAT8OByefuUaubsgl/b6CqGVnJ9sE1zrL+JcE9x2RWRFv8iyO7GjAR46XX3RBCPx
-	 Lyek3tNctnSBtKOV6Brs2ZBLm8SuP9jCy9Iun6uyK7iy1Ws+CWinefw878SFocQ0V0
-	 S3Nfsw7Buw4BQ==
-Received: from customer (localhost [127.0.0.1])
-	by submission (posteo.de) with ESMTPSA id 4dSmR85RRtz9rxD;
-	Sat, 13 Dec 2025 00:50:12 +0100 (CET)
-From: Adrian Kossmann <adrian.kossmann@posteo.de>
-To: andrew@lunn.ch
-Cc: adrian.kossmann@posteo.de,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	heiko@sntech.de,
-	krzk+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	robh@kernel.org
-Subject: Re: [PATCH v2] arm64: dts: rockchip: Adjust RGMII TXD/RXD delays for the Rock Pi E
-Date: Fri, 12 Dec 2025 23:50:13 +0000
-Message-ID: <20251212234957.591812-1-adrian.kossmann@posteo.de>
-In-Reply-To: <57e99fa1-0e59-4129-bcae-b94df46447e7@lunn.ch>
-References: <57e99fa1-0e59-4129-bcae-b94df46447e7@lunn.ch>
+	s=arc-20240116; t=1765584240; c=relaxed/simple;
+	bh=uWBlgI6lleVjBRX3dGhYEGvuHr17iLuHUk03UVwAews=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fKhhZxJB08TfR/Cd07+8Og1N5AybEmM1QultplQOQbj+Z/iE7tA9ss5RUvE1aUFXBs4bVdVGVGyZMynmsprOROrSd3xohD/1W4SaR1Y0vH4rSQHuz5khhLbnEOPXhtZsjqLILTkVibsEq6kisnTyH49UPOw0ilpQay824obmH3g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=AyhbqKWe; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=3vFE
+	eYAXaf3SW6O0CRcnu6sCW72HvMdruArHRMGAKsM=; b=AyhbqKWe0U1hUfrwnOWF
+	jH1B2aE8Y81qXHLbaipdJ8gqNy6Bw/51y6OFSS7lWubz/9BZ527M4oI7joUQvewM
+	Xu/jLVfGg09xyOwcRak+DeYlZ6bMs3+2/WZcgFCqXR8U+TkZuAQaRPaaefsW95T7
+	ceS4Hb7PFarwQuZDvfl2M0s0GV8WI3XVVRurU1pz8lV0a1TtoqDUmjr4VXSOCfnU
+	niMJAZUbTepNSFaQnJUDWZdnmid6ePbXxZlVUtdUZeLQ+a+9bJXBeOO3kB9r3F0n
+	E/b9p+bnPCRBwrN7F+ntCg7KSvCQbHJ7w1jGg29kEeKAJmOqRlpJqietNhU8Zyxt
+	Mg==
+Received: (qmail 129915 invoked from network); 13 Dec 2025 01:03:43 +0100
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 13 Dec 2025 01:03:43 +0100
+X-UD-Smtp-Session: l3s3148p1@h0xRHMpFguAgAQ9wBwAkACQ4Xrn/InjS
+Date: Sat, 13 Dec 2025 09:03:39 +0900
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] ARM: dts: microchip: Drop usb_a9g20-dab-mmx.dtsi
+Message-ID: <aTytWyyZiYFnyauo@shikoro>
+References: <20251212203226.458694-8-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251212203226.458694-8-robh@kernel.org>
 
-Hi Andrew,
+On Fri, Dec 12, 2025 at 02:32:14PM -0600, Rob Herring (Arm) wrote:
+> This .dtsi file is not included anywhere in the tree and can't be
+> tested.
+> 
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 
-> rgmii means the PCB provides the delay. I doubt that is the
-> case.
-
-Yes, however, to my understanding, there are two kinds of delays that
-influence RGMII timing: Delays that are added onto the clock signal 
-(TXC/RXC) and delays added to the data signal (TXD/RXD) by the GMAC.
-The link provided by you describes delays that are either introduced by 
-longer clock traces  on the PCB (rgmii phy-mode) or by programmable clock delays 
-(rgmii-id phy-mode). Delays for TXD timing and RXD timing are described in [1] 
-and are implemented by the Rockchip Ethernet driver which is bound to node 
-gmac2io according to [2]. The example DT binding in [1] as well as other 
-mainline DTS of devices that use the RK3328 seem to adjust RGMII timing 
-via TXD and RXD delays and setting phy-mode to rgmii, despite having 
-programmable TXC/RXC delays, at least according to the technical 
-manual of the RK3328. So, in this case this may be an exception
-from the usual convention that any RGMII phy mode other than 
-'rgmii-id' is probably wrong.
-
-Of course, I may have overlooked something or misunderstood, and I 
-would appreciate further guidance in this case.
-
-[1] https://www.kernel.org/doc/Documentation/devicetree/bindings/net/rockchip-dwmac.txt
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git/tree/arch/arm64/boot/dts/rockchip/rk3328.dtsi#n982
-
-
-      Adrian
+Nowadays, this should be a dtso which did not exist back then. Is it
+okay to convert it? Yes, I can do this.
 
 
