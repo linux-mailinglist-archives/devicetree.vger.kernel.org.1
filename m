@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-246229-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246230-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05C2BCBA419
-	for <lists+devicetree@lfdr.de>; Sat, 13 Dec 2025 04:23:16 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9943DCBA41F
+	for <lists+devicetree@lfdr.de>; Sat, 13 Dec 2025 04:24:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8B6D03074773
-	for <lists+devicetree@lfdr.de>; Sat, 13 Dec 2025 03:22:46 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 8D5483002D44
+	for <lists+devicetree@lfdr.de>; Sat, 13 Dec 2025 03:24:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40C932F5466;
-	Sat, 13 Dec 2025 03:22:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C12BA2EAD0B;
+	Sat, 13 Dec 2025 03:24:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="chzhusg2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q0FqJitW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DFF32E9EA0;
-	Sat, 13 Dec 2025 03:22:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 963482D1319;
+	Sat, 13 Dec 2025 03:24:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765596164; cv=none; b=tzcaOM62kOExPXp4oojCWHxrFxcyjAIwv96Rpex+QUo2xNZqVhU4BqaMJuVhWBoB3xAAUjL5ocoP2Ih5JUUW2WyVqWJK67qsS0TRz912WFNcG8OGIgelvvrBuMoZvqzMWCYYYBgmPzzTqAt6tl1qZAuiN2jtz0OEzKkO3EHjwkg=
+	t=1765596252; cv=none; b=robMvyCr+1pg8bUlw+qxdLp0nPIowQbi99yioJ6H9iCzMsqXUPiKrlCSGLvIwJemDcbMDOFlSrkN9QbZF8N0Zy+zSCyHQNtLXpnBS1yZnjiAcVZa2tzluTRnMS2uPNWMM67b6jyO0ZZjPsqjll4Oewy2p5R1zNr48zs04jClOAA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765596164; c=relaxed/simple;
-	bh=7PXcPwl9Eqc925cbamlyTT6qKhDy7/18D470gQQFE8A=;
+	s=arc-20240116; t=1765596252; c=relaxed/simple;
+	bh=VToERJba/b0J9a9d3rRs3cJnm+pXj/2qU13cdQgP+rI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rWGx5Ast45gVXsSU2DTMGKie9dQ72f0daDBD2sU++NZoFSEpph/WOuccMiP9xiSgCKwn1VLVE7rKDflek4bRxfS8hPeiLo8XjG7CaZPr1FsYKNJuxRy/uQG21B4tLafkEnDmyONBYoR9lzoHvHCH+/KRdyd5ugi8oRFBH7FfAeU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=chzhusg2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2557DC4CEF7;
-	Sat, 13 Dec 2025 03:22:38 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=bAgPTzlgBuIgE8tXeP4S0yL/+awU6697xJnQt7FbQFAoeI8kbYur/2r8G0rzf6SjobZuc80IUYOvTTHzD+stMkr2MrAEBteKOXbvUPte3Zf/ovVyn1S1Nidytt+iolVu3XSYleiLGATsfG6M6iYXOMScrQJI/p8bdUl5S7BDTTQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q0FqJitW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4EDB3C4CEF7;
+	Sat, 13 Dec 2025 03:24:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765596163;
-	bh=7PXcPwl9Eqc925cbamlyTT6qKhDy7/18D470gQQFE8A=;
+	s=k20201202; t=1765596252;
+	bh=VToERJba/b0J9a9d3rRs3cJnm+pXj/2qU13cdQgP+rI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=chzhusg2ThxkiOfeBPtuWE+8latQssBbirTRQJ44A+LiXD2YbOyrWtBfEonmVWM96
-	 XCT3hAq6SyPs9nrXjso6iZm4UksvFO8qf04pMipmejcYg0ZuKmshFD0CHeHkp0xOaU
-	 QkexsT1PSe5exsjQ0uNCed33pHVo+w3GqTmB/rYV3JtCFzkQdOuclyzMnljxqcAz1K
-	 c9uWrYb/n+lzkO3TL8idKUR2Jlkyz/uXtGaQZM0T1UIy2JH4WmKaOXFclLWS5jOCKc
-	 D6sLXL89KUx7EYmcuveqmfcdprB5pmiqJFn1FZpGNj5vF2LVGKOLX6cP7B9WIfcvRf
-	 /zuz6R0cJiD9Q==
-Message-ID: <f7df62b8-ec72-4066-8371-bb7f3fb8a445@kernel.org>
-Date: Sat, 13 Dec 2025 04:22:36 +0100
+	b=Q0FqJitWNIgDGY7YaSOVI1Gq39fC0zkBVDsMXySIEntFTo/0+gaEJGZq7nPRbOsuq
+	 KYqHAgUqoXhG2AaqU6qOg4v6c97UOWm7XEsUQtcO/nVMZHF3tHTda5KtGqnBzZ6+N2
+	 BjFY8zqhRiKCpkJbwDeazHcvHjbc53A8NO9d+OxTiBhAReDnzxOcFu2CRHfEQNkajR
+	 6Ep1uC4Dh8TAwnCTSd34f5WVaFyByrsk6I8yQTAtLTDkKkECgHwR9rlQ1lOEw4sh1s
+	 s98pPPWD0MjcRs4TyqVoLR9y931V7bKcqidquZ6D0KVyGf1QvsQvzPW9mW9FD7BaRr
+	 0W9Y7pRfyxkFA==
+Message-ID: <2d573b6c-083a-4c4e-9ec3-9c9ccb132d06@kernel.org>
+Date: Sat, 13 Dec 2025 04:24:06 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,8 +50,7 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH 0/4] Add Device Tree binding and nodes for Agilex5/Agilex
  SOC FCS configuration.
-To: "Wang, Hang Suan" <hangsuan.wang@altera.com>,
- linux-kernel <linux-kernel@vger.kernel.org>,
+To: hangsuan.wang@altera.com, linux-kernel <linux-kernel@vger.kernel.org>,
  devicetree <devicetree@vger.kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
  <conor+dt@kernel.org>, Florian Fainelli <florian.fainelli@broadcom.com>,
@@ -66,7 +65,6 @@ Cc: Marek <marex@denx.de>, Simon <simon.k.r.goldschmidt@gmail.com>,
  <muhammad.amirul.asyraf.mohamad.jamian@altera.com>,
  Khairul Anuar Romli <khairul.anuar.romli@altera.com>
 References: <cover.1765534135.git.hang.suan.wang@altera.com>
- <df0aee42-cf73-4a49-911f-0dddc4984876@altera.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -112,20 +110,33 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <df0aee42-cf73-4a49-911f-0dddc4984876@altera.com>
+In-Reply-To: <cover.1765534135.git.hang.suan.wang@altera.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 12/12/2025 17:45, Wang, Hang Suan wrote:
-> Please disregard this submission.
-> Apologizes for inconvenience caused.
+On 12/12/2025 12:35, hangsuan.wang@altera.com wrote:
+> From: "Wang, Hang Suan" <hang.suan.wang@altera.com>
 > 
+> This patch series introduces necessary Device Tree (DT) support for the
+> Soc/Hardware FPGA Crypto Service (fcs) functionality across the Altera
+> Agilex SoC families. This feature allows the kernel to identify, interact
+> and communicate with the high-speed FPGA hardware without interruption or
+> software overhead.
+> 
+> The series structured as follows:
+> Patch 1: Introduces the core YAML schema binding for a generic agilex5,
+> soc-fcs-config miscellaneous device.
+> Patch 2: Add fcs property to the existing stratix10-svc firmware binding.
+> Patch 3&4: Add the fcs nodes to the respective Agilex5 and Agilex DT files.
 
 
-I already wasted time on this and then found you don't want to post
-it... Recently Altera started sending poor quality patches, so can you
-get some internal trainings so you (as a company) follow correct process
-and know how to do upstream?
+You cc-ed fake addresses:
+
+Your message to linux-drivers-review@altera.com couldn't be delivered.
+
+Don't do this. Your internal stuff should never be mixed with upstream,
+because I do not see reason why we should keep filtering bounces from
+your internal email boces.
 
 Best regards,
 Krzysztof
