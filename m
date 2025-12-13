@@ -1,220 +1,137 @@
-Return-Path: <devicetree+bounces-246248-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246249-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5706DCBA825
-	for <lists+devicetree@lfdr.de>; Sat, 13 Dec 2025 11:27:41 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 733BBCBA851
+	for <lists+devicetree@lfdr.de>; Sat, 13 Dec 2025 12:01:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 5336C3004F2F
-	for <lists+devicetree@lfdr.de>; Sat, 13 Dec 2025 10:27:39 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 27CF730C176F
+	for <lists+devicetree@lfdr.de>; Sat, 13 Dec 2025 11:01:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AC3F2FB0BB;
-	Sat, 13 Dec 2025 10:27:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1EC52F12BA;
+	Sat, 13 Dec 2025 11:01:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CU2gPfMt"
+	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="Ni/a3Mpq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com [209.85.215.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from ixit.cz (ip-94-112-25-9.bb.vodafone.cz [94.112.25.9])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C83B12FB097
-	for <devicetree@vger.kernel.org>; Sat, 13 Dec 2025 10:27:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9B5021D3CC;
+	Sat, 13 Dec 2025 11:01:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.112.25.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765621658; cv=none; b=edP21StVdcz0cxTIMl1kY2+JULTd8LI02SOUHA0X3AJTMZ7dGuCIARWxRusu2/07iMRD93YN2VYk7I6iYYCghPlozW3Z06zj3I+7z+7ogq6n7zQrHdYXz4hHJIyoaJSZhv9mL9tAdP2+9TkbijZy3mTY/Nj6cPKeGRD9/NlrHVU=
+	t=1765623713; cv=none; b=dr4ZrZzEVgVorx8x5qtH167Why97BPvNzAWOF0QNGxhW0U7kg+Q22Xg72HGFueIU5D9lu/sSbKeOAlfF0UwqNmf56Pj1OnLJlA8JdAM8gae+alAuDkiWVBLxR7/g/jtjGV2aI8dl0CXVLjOnLHb030ASjfk8Q0nGajLqsc4CTY0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765621658; c=relaxed/simple;
-	bh=Ga+OtgLv4XXqLeYthfHmQsxLqCuqOInMrZnoEq37VXg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=F7zS13xq4jd1AwWq46Z85//hWesIdmFP1i4VDzXKme8xUv2Tl7t+Yt8YkUBTL12ycUhESprWQA5WJXggl7JN+15yUAHgpC+FbNcZaMLX32nlTZzZyme0YLBPjaTcKrTrYhPkN+hipKNdWWUtg0fDBEVXz4OTWv30C8pB1tPDAXY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CU2gPfMt; arc=none smtp.client-ip=209.85.215.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f177.google.com with SMTP id 41be03b00d2f7-bc0d7255434so1294567a12.0
-        for <devicetree@vger.kernel.org>; Sat, 13 Dec 2025 02:27:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1765621656; x=1766226456; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=HZe6fXEstv7pAYGHzZssYL65WuRCRc7rX2Oo6ReALjM=;
-        b=CU2gPfMtApkCCGGnWYS5ucB5yVbH400i9b0jQGu0v81FTXUYF14guwqYY/TKJGBfGD
-         MwzjGjOpI7EqpcL1xGAiFGWTPAjUpRLbl9XkWE/Ehk3PZGnNCOXW67BS3FqSs2Q9s5Dq
-         kYRXF39HLagcNchDkfjLSyo5ClyntPo480GXBgUYmNmq0DuNhPKDDMIciOSa4h9NN6mJ
-         4lzcEEF3YnA9wk/TE3MLHs0gSKyCnJk0D0FElKqC9VPa40ZN+1KMHtlPKKt/X7uVp6B0
-         Sc/Ruau0iygD2vk3zOxOqBIUYGYukNHgArlKiVe1QkWK9zb1T09M6gw3+yuCSq8wsvs6
-         Mz+w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765621656; x=1766226456;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=HZe6fXEstv7pAYGHzZssYL65WuRCRc7rX2Oo6ReALjM=;
-        b=o3edqMlWfkcmXN6BCZFYniNciYOWKSq2bAvv6b79qf+E0L1+kYJb8FXAbGyZ75Px2D
-         x3OccIewe885/VWFeUAniWU+rZWqhnrjz/GKY/pARfD8TUz+Y2gP1UbuISeSrHyZVRQz
-         u3dJvujSiMLFP7xiNdn2tgsnghXvQx4HuKXZgbJ3uwZIdPf+EOGXmKio6pH+AZPj0Qnv
-         uCSVBGRbLDoT2anIbGwAqa3xFAmwbnOmr7Poxrx1GwE85hesOkIY5tUnLgfIm2wcm0ee
-         9gdCfHtEBOF57mhB1NIJm4csVbDU+SJCgtJOLCjjJfKl1ovii+qRlWMUAPgYdZBAYNX2
-         eF8g==
-X-Forwarded-Encrypted: i=1; AJvYcCVBB6jWEGadxzVaCO1J4gURXcGNiVKot4vvHvRefBy7mUDGU6o5JNqlLKsmOQsJrG9ncAZ7o0qEi2yS@vger.kernel.org
-X-Gm-Message-State: AOJu0YxhRJI7iS9ZrFv5brfLaQiVZdVzhdhFwaPHGl7m5ZocmHnWc/Oq
-	ltnmAUxWw0dlC3bI/l7SkNi0eotS+SHJlIJa7fFzL4krMoPvMTs74J0H
-X-Gm-Gg: AY/fxX4t/ok5fZesy2R4Yx64IedYgOcje/3FCm02ox3mdPXAu1UN7yMtHM45jcbnjuR
-	Fw34rHs/RY1LqVuieyLDGs9v2+rYsAuO5GpG6Z8LladaCLfnsBtZAnWWd0BTmk4Vz8YssE+0gk9
-	jfYsnrwNaLWDsMeXUFJmVxHRbsjodFwBBhaG0Rm8v0KArxJ/2aM2frWJ0cmm7VucKg4YvgC4Vge
-	NxnN4A6UQ7+Kk1wNQnK0GUJWkNh2pNC8b2YfZnujA6km1WwAzg67IFqhAbu/Q+EQiznKtQzHl2Y
-	jE0bNIJ1QKAGR/CvcBj3588zlEnYs/4i5+NaAS9aaco7KPpvP+vB2pDX/G+TngelMChYAhOIfYq
-	JabkIORJegA35XwD634Ml/TupNLMh99HViX8JBkHdJgLGsNv3KN/Zdav4GVivDT/RgNR/NScprq
-	0zeVCh7jqMvg==
-X-Google-Smtp-Source: AGHT+IEgdWNaLErL+Bv/4TEGb6my3L3COg4e3V2Q69toNrJl2ns4dPdMhDJIDV+5TWNQeiqW0B6fPQ==
-X-Received: by 2002:a05:7023:a8e:b0:11b:c0db:a5ea with SMTP id a92af1059eb24-11f34c4ef0cmr3404454c88.26.1765621655966;
-        Sat, 13 Dec 2025 02:27:35 -0800 (PST)
-Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-11f2e2ff624sm26725752c88.12.2025.12.13.02.27.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 13 Dec 2025 02:27:35 -0800 (PST)
-Date: Sat, 13 Dec 2025 18:26:35 +0800
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Samuel Holland <samuel.holland@sifive.com>, 
-	Inochi Amaoto <inochiama@gmail.com>
-Cc: "Anton D . Stavinskii" <stavinsky@gmail.com>, 
-	dmaengine@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, sophgo@lists.linux.dev, 
-	Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>, Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
-	Chen Wang <unicorn_wang@outlook.com>, Alexander Sverdlin <alexander.sverdlin@gmail.com>, 
-	Longbin Li <looong.bin@gmail.com>, Yixun Lan <dlan@gentoo.org>, Ze Huang <huangze@whut.edu.cn>
-Subject: Re: [PATCH 2/3] dmaengine: dw-axi-dmac: Add support for CV1800B DMA
-Message-ID: <aT0_KFNqDraRodyG@inochi.infowork>
-References: <20251212020504.915616-1-inochiama@gmail.com>
- <20251212020504.915616-3-inochiama@gmail.com>
- <8a3d3db6-6614-42f7-a271-e6188391daf6@sifive.com>
+	s=arc-20240116; t=1765623713; c=relaxed/simple;
+	bh=LHuax+9UV7AYi9SwyqUv11/ssW3n/7zu5oAQRs8lVo0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pCBqFf6hadhiJJ8JCIZkeBBYX1vkdl0igUeTXkQ50O8wzKJaYoO/DbfXcFdSCTULlhfzhz2nnR3PMBkxEcCA1j1jazEBaK0X5rBgL2GaAb5pTG+yyJZ9Hu13d/ibw6SJBW66h59sRT5cxYbv8YocxIXC5rLS8EQW2Adi8mIvqAk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=Ni/a3Mpq; arc=none smtp.client-ip=94.112.25.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
+Received: from [10.0.0.200] (unknown [10.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by ixit.cz (Postfix) with ESMTPSA id 1A94E5340EBE;
+	Sat, 13 Dec 2025 12:01:45 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+	t=1765623705;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=eWrsVo/60025czWfNNOajTcsxwgSJF8DRN7yclYl+6w=;
+	b=Ni/a3MpqTM6LEBxJaCmzC5Xl4GnJewfhPTImW1EU83hC9RbNj6okL5VJ6qsifGPAg+7Qke
+	2BGog+WDDwTGqGYUf/IFEF7nLjDrDmM8ukpt0SKFOkEuvQkhxLEiR48WythbyRySNG0o/w
+	TpgLw8QBlNdgCAf3TkLUhsqZ9I3mt+0=
+Message-ID: <e43ff45b-3539-451a-b832-f4f4da9da87c@ixit.cz>
+Date: Sat, 13 Dec 2025 12:01:44 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <8a3d3db6-6614-42f7-a271-e6188391daf6@sifive.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 4/5] arm64: dts: qcom: sdm670: add camera mclk pins
+To: Richard Acayan <mailingradian@gmail.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Tianshu Qiu <tian.shu.qiu@intel.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-media@vger.kernel.org
+Cc: Robert Mader <robert.mader@collabora.com>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+References: <20251211014846.16602-1-mailingradian@gmail.com>
+ <20251211014846.16602-5-mailingradian@gmail.com>
+Content-Language: en-US
+From: David Heidelberg <david@ixit.cz>
+Autocrypt: addr=david@ixit.cz; keydata=
+ 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
+In-Reply-To: <20251211014846.16602-5-mailingradian@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Sat, Dec 13, 2025 at 04:55:06PM +0900, Samuel Holland wrote:
-> Hi Inochi,
+On 11/12/2025 02:48, Richard Acayan wrote:
+> The camera subsystem is added for the SoC common devicetree, but the
+> mclk pins should also be common across the SoC. Add the mclk pins for
+> the cameras.
 > 
-> On 2025-12-12 11:05 AM, Inochi Amaoto wrote:
-> > As the DMA controller on Sophgo CV1800 series SoC only has 8 channels,
-> > the SoC provides a dma multiplexer to reuse the DMA channel. However,
-> > the dma multiplexer also controlls the DMA interrupt multiplexer, which
-> 
-> typo: controls
-> 
-
-Thanks.
-
-> > means that the dma multiplexer needs to know the channel number.
-> > 
-> > Allow the driver to use DMA phandle args as the channel number, so the
-> > DMA multiplexer can route the DMA interrupt correctly.
-> > 
-> > Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
-> > ---
-> >  .../dma/dw-axi-dmac/dw-axi-dmac-platform.c    | 23 ++++++++++++++++---
-> >  drivers/dma/dw-axi-dmac/dw-axi-dmac.h         |  1 +
-> >  2 files changed, 21 insertions(+), 3 deletions(-)
-> > 
-> > diff --git a/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c b/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
-> > index b23536645ff7..62bf0d0dc354 100644
-> > --- a/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
-> > +++ b/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
-> > @@ -50,6 +50,7 @@
-> >  #define AXI_DMA_FLAG_HAS_APB_REGS	BIT(0)
-> >  #define AXI_DMA_FLAG_HAS_RESETS		BIT(1)
-> >  #define AXI_DMA_FLAG_USE_CFG2		BIT(2)
-> > +#define AXI_DMA_FLAG_HANDSHAKE_AS_CHAN	BIT(3)
-> > 
-> >  static inline void
-> >  axi_dma_iowrite32(struct axi_dma_chip *chip, u32 reg, u32 val)
-> > @@ -1361,15 +1362,26 @@ static struct dma_chan *dw_axi_dma_of_xlate(struct of_phandle_args *dma_spec,
-> >  					    struct of_dma *ofdma)
-> >  {
-> >  	struct dw_axi_dma *dw = ofdma->of_dma_data;
-> > +	unsigned int handshake = dma_spec->args[0];
-> >  	struct axi_dma_chan *chan;
-> >  	struct dma_chan *dchan;
-> > 
-> > -	dchan = dma_get_any_slave_channel(&dw->dma);
-> > +	if (dw->hdata->use_handshake_as_channel_number) {
-> > +		if (handshake >= dw->hdata->nr_channels)
-> > +			return NULL;
-> > +
-> > +		chan = &dw->chan[handshake];
-> > +		dchan = dma_get_slave_channel(&chan->vc.chan);
-> > +	} else {
-> > +		dchan = dma_get_any_slave_channel(&dw->dma);
-> > +	}
-> > +
-> >  	if (!dchan)
-> >  		return NULL;
-> > 
-> > -	chan = dchan_to_axi_dma_chan(dchan);
-> > -	chan->hw_handshake_num = dma_spec->args[0];
-> > +	if (!chan)
-> 
-> When use_handshake_as_channel_number is false, chan is uninitialized here.
-> 
-> Regards,
-> Samuel
+> Suggested-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> Link: https://lore.kernel.org/r/5135823c-f2e4-4873-9e3a-9d190cac0113@oss.qualcomm.com
+> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
+> ---
+>   arch/arm64/boot/dts/qcom/sdm670.dtsi | 21 +++++++++++++++++++++
+>   1 file changed, 21 insertions(+)
 > 
 
-Thanks, I also noticed this, will fixed in the V2.
+Reviewed-by: David Heidelberg <david@ixit.cz>
 
-Regards,
-Inochi
+-- 
+David Heidelberg
 
-> > +		chan = dchan_to_axi_dma_chan(dchan);
-> > +	chan->hw_handshake_num = handshake;
-> >  	return dchan;
-> >  }
-> > 
-> > @@ -1508,6 +1520,8 @@ static int dw_probe(struct platform_device *pdev)
-> >  			return ret;
-> >  	}
-> > 
-> > +	chip->dw->hdata->use_handshake_as_channel_number = !!(flags & AXI_DMA_FLAG_HANDSHAKE_AS_CHAN);
-> > +
-> >  	chip->dw->hdata->use_cfg2 = !!(flags & AXI_DMA_FLAG_USE_CFG2);
-> > 
-> >  	chip->core_clk = devm_clk_get(chip->dev, "core-clk");
-> > @@ -1663,6 +1677,9 @@ static const struct of_device_id dw_dma_of_id_table[] = {
-> >  	}, {
-> >  		.compatible = "intel,kmb-axi-dma",
-> >  		.data = (void *)AXI_DMA_FLAG_HAS_APB_REGS,
-> > +	}, {
-> > +		.compatible = "sophgo,cv1800b-axi-dma",
-> > +		.data = (void *)AXI_DMA_FLAG_HANDSHAKE_AS_CHAN,
-> >  	}, {
-> >  		.compatible = "starfive,jh7110-axi-dma",
-> >  		.data = (void *)(AXI_DMA_FLAG_HAS_RESETS | AXI_DMA_FLAG_USE_CFG2),
-> > diff --git a/drivers/dma/dw-axi-dmac/dw-axi-dmac.h b/drivers/dma/dw-axi-dmac/dw-axi-dmac.h
-> > index b842e6a8d90d..67cc199e24d1 100644
-> > --- a/drivers/dma/dw-axi-dmac/dw-axi-dmac.h
-> > +++ b/drivers/dma/dw-axi-dmac/dw-axi-dmac.h
-> > @@ -34,6 +34,7 @@ struct dw_axi_dma_hcfg {
-> >  	bool	reg_map_8_channels;
-> >  	bool	restrict_axi_burst_len;
-> >  	bool	use_cfg2;
-> > +	bool	use_handshake_as_channel_number;
-> >  };
-> > 
-> >  struct axi_dma_chan {
-> > --
-> > 2.52.0
-> > 
-> > 
-> > _______________________________________________
-> > linux-riscv mailing list
-> > linux-riscv@lists.infradead.org
-> > http://lists.infradead.org/mailman/listinfo/linux-riscv
-> 
 
