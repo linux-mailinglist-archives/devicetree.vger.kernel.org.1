@@ -1,138 +1,138 @@
-Return-Path: <devicetree+bounces-246354-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246355-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6389CCBC181
-	for <lists+devicetree@lfdr.de>; Sun, 14 Dec 2025 23:48:27 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02BC8CBC1DB
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 00:53:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 512A93021F88
-	for <lists+devicetree@lfdr.de>; Sun, 14 Dec 2025 22:47:17 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 2E911300C8E5
+	for <lists+devicetree@lfdr.de>; Sun, 14 Dec 2025 23:53:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18F6D270575;
-	Sun, 14 Dec 2025 22:47:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B674329C35A;
+	Sun, 14 Dec 2025 23:53:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WBJHfYhS"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aLx/by4D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
+Received: from mail-vk1-f171.google.com (mail-vk1-f171.google.com [209.85.221.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EE89284880
-	for <devicetree@vger.kernel.org>; Sun, 14 Dec 2025 22:47:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16620286417
+	for <devicetree@vger.kernel.org>; Sun, 14 Dec 2025 23:53:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765752436; cv=none; b=upjbUIu9qS5Y177p2z0jSy+a6WbUrPv3Kxo+WWvuA+a7r67Ay1vGqQO1/pZOvH5dDZVSFDEPfvVhIcqNybV9rnBiZigmbqz8XdwIMDbDEnUrB/J1ESP61POUGm9ZMnPKAdeu0W54vfLf0zEEY3pfXFyWQVmn8zC+IM1kRyP9qlc=
+	t=1765756404; cv=none; b=kJo84gR2184I27Tpiam6WPUOGWR2S4i2XINzA4k1yoWt2EYbNydbj49kw9sGCDAsqZ6WWV+asFUObYjNFv4gscjqFYAEWYrUaddB1kfIi04wEuKQRy8jb5i24v1nsRblYZBqEAEQmiZH80rVcYlQNLiXrxCd6WnAqPix4XlAMSU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765752436; c=relaxed/simple;
-	bh=9q5/APX87RGgYmhMNh/WDYwQpX7HX4MP+fy+fzWDQzo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=q41CBceXsW1VJauKs/w8i7l7CrvM/M9/pN4ZO0cNVvav+gV0z3Y3fiXnJMugCeguOnJSZGkfNBNru4DGp/9lSu6BOtgqUHJIkeHOtWfLpxsQK68nR9ddi0MH8Xm0UmjL6dpvMY4+SueMyLi/TRld3FQT8xvYZTUkjFd9Ike3/bE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WBJHfYhS; arc=none smtp.client-ip=209.85.210.181
+	s=arc-20240116; t=1765756404; c=relaxed/simple;
+	bh=imomqWpqkx+6bjRUCXg45LFde/m/ON6xIRymtOfup9U=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=KQsIXnbkEaxMN8hVGPyCoLvZmHg21IpFdI0ldCe08XNOTZHYh5o/OJHtsgy4LOmyYT5Gfh0eydnVVL5FBs7IgZ6yYsjaSLx/rpbf8NkbrbDwFpzFrxSr8RwFmPUNWVoKbkMpFGqPCqnXuJJ8CsDLy1HYUZ/EVdqTe8thgbrJdRc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aLx/by4D; arc=none smtp.client-ip=209.85.221.171
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-7aa2170adf9so2175049b3a.0
-        for <devicetree@vger.kernel.org>; Sun, 14 Dec 2025 14:47:15 -0800 (PST)
+Received: by mail-vk1-f171.google.com with SMTP id 71dfb90a1353d-55b09f54e98so895570e0c.1
+        for <devicetree@vger.kernel.org>; Sun, 14 Dec 2025 15:53:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1765752434; x=1766357234; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1765756402; x=1766361202; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=lDRFsyvQwwFF2ebD1NnNsyQGvhsS9i0D0wecAIBs+ow=;
-        b=WBJHfYhScueo0Ftt0iI2I875LYaSlMLZH7xJUQoUrZz/EObezqRr5Gl4eMV5ODmFpY
-         36TXwHUvqIGQzCzSodl86whdSsm9p9K4h+HhlCsJ43qwXu4AzwsYte9wlCpWPSPM8Boe
-         xAgttzDQIxhjbKmR88fetT4fQKecKlwVyut4G0r/kBRjeRquedPner1Vm3vgZDJJFALy
-         tECfyk/Iq0mg8KURS0g2wYDW173P+9nxYsRNHUvKLXCfjQnDfZDLamj9dPE85FwxbshG
-         73SBwSVsTQf6VccjfkoxzCYE2XJNQURVY2Jw9mPIFOr4Y/HPaP6nSumRSiEy/sX8NduM
-         IEVw==
+        bh=imomqWpqkx+6bjRUCXg45LFde/m/ON6xIRymtOfup9U=;
+        b=aLx/by4DSNPUTIIAxfOjwNm5epKzulUATUZjVFYcZAopTYmCzNqX3EHp1uvwV97ToP
+         Fuo2ARJUnfIatMPD3J/eG7VIVZZXfj098g0fWqZQHVqkygaQ3ANNCzfyzjCbtK2zLXXR
+         PGrNMTuv4/DTVPZTDsozIKxIo2uvZTct/Sq8zvjwicG5vMcs5LYbLNfNkg0QX+Z17R3J
+         TT+0n6Fd/4p7wB1zuGCEIWFzfZFMYQbawYhgQ0UxuWN+a3Dn12bS08z4RDphCMUlQXoU
+         btZHSK9R9ciarE3dON/58ONd27nj2/ocYUaUDLUnbtQ/vxDeoEUl7HcwJasvM7VXFnNv
+         RN9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765752434; x=1766357234;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=lDRFsyvQwwFF2ebD1NnNsyQGvhsS9i0D0wecAIBs+ow=;
-        b=DfffEA3l0b7/1E3a2Gfe2q0bnJZzKiW8yjYB2ILXCHroAjbJs5nTg+JHLLyEsBqJLt
-         22ctsf1mJdgcdfsi+W76ztPi6i/ri+S4Tn7GLIk/RzXT4RvdcKYTcoFlYjx8rYkbCAIC
-         rXfsQ7hFbOC+MfFdlGg1pfNmyvZsmbDhCRqZdChoxrJlm7MH9u6Th+o4lFIRK6mNs/gH
-         7UmHs8YmPBeo6zPJ3+Pawkb7PwLKxEqWgnAnPcPo5eB8JsbTtOs0KnR4xvpdv+3zcqV2
-         bdPsHnBomogB9Nh4/RA/tW2VOI2g8zAcrNNUjfvEv7ABox4lmsE0k1mX0f5nMu6PTakJ
-         LUrw==
-X-Forwarded-Encrypted: i=1; AJvYcCVxALipi1cCcnwJluC1/OJ2IiXaRnCiwz5Y5y+Xsdr4I7xd0BJCKP5iw2uIsD4eI6xO4NJ1ELN2zLXX@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx4F+uT8sNrTj1rGUfNqEiMIc2l2hV2teXELdDZhakgAyr1hJHq
-	t8+iebIlbqL7OBOzAaXkfooNCx0uSijx7OZgXcbEwRf9aAkr74rHXLcm
-X-Gm-Gg: AY/fxX5xcrXI2FujDfhr9HIjZ3PNRscfMst40OEtAa8d5Qxw1/sxk1mf0BCJvgUEv6n
-	xDp3JFX1vWp/+mWOzZtaTL7ansAyZepE8lLf3frLYQhG4JXZOhiAH7dJWfnggA4lctB7HjND3VX
-	cQrL0OxvY7l1r6vKNqQnZhdzNcnigeKeL6RAZjdPuHmpkkr6XU7KsHep35dHzos+9bPlI+/yWhV
-	uwnItwdjq05RDq0Vv5IoIAIpZP8IZUYuUn8qEQ/yThCztRwGink1pOqq3spgO/vcn75j+pN79C+
-	YKvCXoD/FwTECYCKqZ/iury3ZEK5qZz2YW6y21Wmob7/k5i4zlPxajG6FuVwnpSVRHNTJcbT5m2
-	+oq3xF2Wpj2QeCqIlPms/Pe8F6QTpWRKUnX4/C2RjJ0gPwOvh5Nb2iF3TnbrbnvHELGeFNB4Xyg
-	P0Iubacde2ug==
-X-Google-Smtp-Source: AGHT+IHY+I6N505J8tBBxCiWTM4hXbMHovgZ3qawJ/YmUXRO/axk7y7nKaNrWFiQXdKScyMIfR120Q==
-X-Received: by 2002:a05:7022:6184:b0:11b:8f3a:3e07 with SMTP id a92af1059eb24-11f34bee60emr7877296c88.11.1765752434409;
-        Sun, 14 Dec 2025 14:47:14 -0800 (PST)
-Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-11f2e2ffac2sm39963363c88.11.2025.12.14.14.47.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 14 Dec 2025 14:47:14 -0800 (PST)
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@gmail.com>,
-	Alexander Sverdlin <alexander.sverdlin@gmail.com>,
-	Longbin Li <looong.bin@gmail.com>,
-	Ze Huang <huangze@whut.edu.cn>
-Cc: "Anton D . Stavinskii" <stavinsky@gmail.com>,
-	dmaengine@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	sophgo@lists.linux.dev,
-	Yixun Lan <dlan@gentoo.org>
-Subject: [PATCH v2 3/3] riscv: dts: sophgo: cv180x: Allow the DMA multiplexer to set channel number for DMA controller
-Date: Mon, 15 Dec 2025 06:46:00 +0800
-Message-ID: <20251214224601.598358-4-inochiama@gmail.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20251214224601.598358-1-inochiama@gmail.com>
-References: <20251214224601.598358-1-inochiama@gmail.com>
+        d=1e100.net; s=20230601; t=1765756402; x=1766361202;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-gg:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=imomqWpqkx+6bjRUCXg45LFde/m/ON6xIRymtOfup9U=;
+        b=WKTlT/E70fE/1z7B9c8qPlu9Q669CkeL64f3odEVcknElm9URwanB13drZovbUpR18
+         wjvs2yQPbmLcmMSPcxOmpz1Pya3lY6UEaerOUObORU+Yj4p21U1ZTh+8kVRsuluw21Ha
+         OHgJKKIhzXNjE68OvOgGdrhp5hNgkf3V4cew/OU2B3V8GSnmy0h+TzP/rU+m3QzAJ+Ut
+         Vn6vftSm8wjMxK4OGyrXrqrR+C9hIB7DVeJozAMNAHel7jIouiBFpHYjUHHCMBhQuhcW
+         Kg4IVv7JB+Izww+Nw0GJpOztiTVqAY+CLJSxy/sQyvGNqy1v+xcAIqhtSZn4zjuwiLsx
+         6EBA==
+X-Forwarded-Encrypted: i=1; AJvYcCWRqIt7CNfdU54e4cW3+e61Dz/EHrEVQC2mfuRUU1nug/YdO4A+DaGKbrxDbot7JocEQ3w7guHJGC64@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx2OdJdUs8+qx5glDveYi5YKRChRd8FOXGZcG2bNi2imADI2S28
+	80YlRMw+YmOP4xJb/ywM1RnhUfor5QF9GJKf4aqFUm7+WbEgs6U5AWqi
+X-Gm-Gg: AY/fxX4SQuY7zrmZyqyMbl4ajHeRIVW/N1q4BnCsGuvvCDV/QnjPFNY0rN8dpf39kAq
+	2PTyhSpp+HyDPyWwSt8itzY/ZdTaTx3d2FQI7TxwD+g5faMKkt296dOVxbe0h+381Cx4nhg5/lx
+	T+k7saVMLn02iVIiUsP5bP4STPKL6I+txRXKI+yawJNxvLprymnrhsIkI/Ly39U9/0fIKWgI9Z9
+	UlY9koCTkULL0G1GC2au2m/Y19dhFidWYODFZjMYCNPPldpKIpSdBL1oDvw2PWT2i4lVEw6bI/u
+	QYzVOD9KatP8ry7PMehPFsF1klYrv49+E/RtnzZvAGednpWpBO8hzlLD010oGZeLdSsc/oad748
+	p+3lQrk3keuyJYj4IU/9TIRCTICt5gjFqZPfXxki0tNMqwoZhl4MeWMYg7HQ7S/xt9M2d5OvnhV
+	J9n8pr
+X-Google-Smtp-Source: AGHT+IEoqQCjZSwLiCqkVJ07lox30kIA6ldc1LVKWm44vuHifiI/AUWhZSeSHNiSZdDgEAi1bOnPUA==
+X-Received: by 2002:a05:6122:458b:b0:55b:305b:4e27 with SMTP id 71dfb90a1353d-55fed66a7b0mr3186745e0c.19.1765756402003;
+        Sun, 14 Dec 2025 15:53:22 -0800 (PST)
+Received: from localhost ([2800:bf0:82:11a2:c6ad:1d0e:15de:a612])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-55fdc638a23sm5590944e0c.8.2025.12.14.15.53.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 14 Dec 2025 15:53:21 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Sun, 14 Dec 2025 18:53:19 -0500
+Message-Id: <DEYCEJB4SWZ3.13MX1YUFLI1QI@gmail.com>
+Cc: "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
+ <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Tobias
+ Sperling" <tobias.sperling@softing.com>, "David Lechner"
+ <dlechner@baylibre.com>, =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+ "Andy Shevchenko" <andy@kernel.org>, <linux-iio@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, "Jonathan
+ Cameron" <Jonathan.Cameron@huawei.com>
+Subject: Re: [PATCH v8 2/2] iio: adc: Add ti-ads1018 driver
+From: "Kurt Borja" <kuurtb@gmail.com>
+To: "Jonathan Cameron" <jic23@kernel.org>, "Kurt Borja" <kuurtb@gmail.com>
+X-Mailer: aerc 0.21.0-0-g5549850facc2
+References: <20251211-ads1x18-v8-0-5cd12ac556da@gmail.com>
+ <20251211-ads1x18-v8-2-5cd12ac556da@gmail.com>
+ <20251214144839.2eec58f9@jic23-huawei>
+In-Reply-To: <20251214144839.2eec58f9@jic23-huawei>
 
-Change the DMA controller compatible to the sophgo,cv1800b-axi-dma,
-which supports setting DMA channel number in DMA phandle args.
+On Sun Dec 14, 2025 at 9:48 AM -05, Jonathan Cameron wrote:
+> On Thu, 11 Dec 2025 23:25:44 -0500
+> Kurt Borja <kuurtb@gmail.com> wrote:
+>
+>> Add ti-ads1018 driver for Texas Instruments ADS1018 and ADS1118 SPI
+>> analog-to-digital converters.
+>>=20
+>> This chips' MOSI pin is shared with a data-ready interrupt. Defining
+>> this interrupt in devicetree is optional, therefore we only create an
+>> IIO trigger if one is found.
+>>=20
+>> Handling this interrupt requires some considerations. When enabling the
+>> trigger the CS line is tied low (active), thus we need to hold
+>> spi_bus_lock() too, to avoid state corruption. This is done inside the
+>> set_trigger_state() callback, to let users use other triggers without
+>> wasting a bus lock.
+>>=20
+>> Reviewed-by: Andy Shevchenko <andy@kernel.org>
+>> Signed-off-by: Kurt Borja <kuurtb@gmail.com>
+>
+> Hi Kurt,=20
+>
+> A couple of minor formatting things. All trivial so I tweaked whilst
+> applying. Applied to the testing branch of iio.git. I'll rebase that
+> on rc1 once available then push out as togreg for linux-next to pick
+> it up.
+>
+> Thanks,
+>
+> Jonathan
 
-Fixes: 514951a81a5e ("riscv: dts: sophgo: cv18xx: add DMA controller")
-Reported-by: Anton D. Stavinskii <stavinsky@gmail.com>
-Closes: https://github.com/sophgo/linux/issues/9
-Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
----
- arch/riscv/boot/dts/sophgo/cv180x.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Hi Jonathan,
 
-diff --git a/arch/riscv/boot/dts/sophgo/cv180x.dtsi b/arch/riscv/boot/dts/sophgo/cv180x.dtsi
-index 1b2b1969a648..e1b515b46466 100644
---- a/arch/riscv/boot/dts/sophgo/cv180x.dtsi
-+++ b/arch/riscv/boot/dts/sophgo/cv180x.dtsi
-@@ -417,7 +417,7 @@ sdhci1: mmc@4320000 {
- 		};
- 
- 		dmac: dma-controller@4330000 {
--			compatible = "snps,axi-dma-1.01a";
-+			compatible = "sophgo,cv1800b-axi-dma";
- 			reg = <0x04330000 0x1000>;
- 			interrupts = <SOC_PERIPHERAL_IRQ(13) IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&clk CLK_SDMA_AXI>, <&clk CLK_SDMA_AXI>;
--- 
-2.52.0
+Thank you, Andy and David for your guidance (and the little tweaks) :)
 
+--=20
+ ~ Kurt
 
