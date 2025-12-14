@@ -1,153 +1,150 @@
-Return-Path: <devicetree+bounces-246279-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246280-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB162CBB52C
-	for <lists+devicetree@lfdr.de>; Sun, 14 Dec 2025 01:13:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 49D90CBB542
+	for <lists+devicetree@lfdr.de>; Sun, 14 Dec 2025 01:41:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 73CDC300B925
-	for <lists+devicetree@lfdr.de>; Sun, 14 Dec 2025 00:13:04 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C2FC3300A1F8
+	for <lists+devicetree@lfdr.de>; Sun, 14 Dec 2025 00:41:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C27D18EAB;
-	Sun, 14 Dec 2025 00:13:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="V5dDYa6i"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2AC0158535;
+	Sun, 14 Dec 2025 00:41:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A003F50F
-	for <devicetree@vger.kernel.org>; Sun, 14 Dec 2025 00:13:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D03CF2EB10;
+	Sun, 14 Dec 2025 00:40:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765671183; cv=none; b=ZaV4GglCwgMZfGgdhzG8kG2lqFUbAaySx3zHI/ZRaJo3QuImNIjJS0LTTQZkX4lCXeBEoVaCC7zRJwiVs9WTEwsa9rS18E8cW0j7fCUoOshqfXb6Ac+LB7CCHnS8Z8sJLrvJqftwo26Pj8NZl2Mal1TnBnP04+kWKMHmsEIhVPU=
+	t=1765672862; cv=none; b=H97OB5S78yEb7GguSa5JMhNZut/eJ9teP3ca/BNANTWW/zVNZlhgmAxlDpmG5pst8kQoRXIl1lxD08VNc+usNQPUibyJU5y3q3T84fdiTp+kzKOgy5+HdqfYW2jkQOqwH9tGKOrbS+Og0PkICKFN20lEDy7xHHR+5MMFYmbaNw0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765671183; c=relaxed/simple;
-	bh=vsvgbqhg3tSK6U4XQECKskE/ov7KmsHhac+n5VQ3Udw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lUIqc70wCDp4/5LouSkM9wjcuJfPkRWfZsCSLa0sQef9F89tWoB7yjhWOJexsE254fYWqSKN6rjB4JiQQ60i1dFn+8PknrUAT2SjfjHFU14Ch3WPq6A6zqVt5JtdPmeX1Tsoim5yAvqQb7zg3DIwwyLz3b1vZHQHUrnq6ubaWk0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=V5dDYa6i; arc=none smtp.client-ip=209.85.167.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-59426dc96f2so196187e87.2
-        for <devicetree@vger.kernel.org>; Sat, 13 Dec 2025 16:13:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1765671179; x=1766275979; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6cs2594TMmAznKRH01WTgorColGdcHW47FTc8OPu5Ls=;
-        b=V5dDYa6i22+s70n2bX4cGfZ697Gk4PcK1t58VlXHk/7F5/GYcN9QAh7ZBc4GdO9z5s
-         wl7V9lYKCMNv5uPtfQ7Fe2Noi3xyx8PKCB2/EwJVhKuXPsYZSiFtm37rtNmISmLeEYTv
-         UyOxkGnO/TcKYR7bjozjYJMTBu56FHHdK0KwziKS9u3X7YIhhftYiNrkVCp61LYB3rWK
-         am/OPBs2jM98tyq1aNnPgSNj5f34UGBNB5yjvyT+l+9+a3+ZoI4uzJqyrCga93Pwnj7O
-         ozTMnZqtOiSKjfT284/yKSt8sdg2PVj51UJ6yvvYPGzNiFsbHO3kkvnrw0kfWylMw1dw
-         48ZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765671179; x=1766275979;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-gg:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=6cs2594TMmAznKRH01WTgorColGdcHW47FTc8OPu5Ls=;
-        b=rfYdGC7IvoZgRyoxsUGQCdS3Jn+u7X/bjitliBBpJgtVpFCRDtO0J8r1gieCGZYqLB
-         6VyTqYy2YpoDGDik8DvW2ejFk5wYEUA4XGmEvy9CJ6D3puejBIo+Umgv2nw30OUjEDfB
-         9PUqMB0CDVy+OOZFqkXL59y5UXjmNl/dLch/wBvTgSmwHjblnmjMDsVSKFWlaDVl2nw7
-         FUbbJ7oLOCQhifF/lW3opKbo6DRaC1RFLr65njAMOYVzEXAVTNckW7BcuANUbjpn+YkQ
-         muirkNAQtcq+t+gOHuHWqYukJgqSUei4AIiCg7+QkWd/HuSs4KnrYep1UWeiKYRgnQUv
-         JHMg==
-X-Forwarded-Encrypted: i=1; AJvYcCXdAbA4W7TCZgSUExJbDrJL+YBS5twdxN9cBmYOtx4caFMqTlGO4dKowrzDbYTTpYYFBsXujOTr/oun@vger.kernel.org
-X-Gm-Message-State: AOJu0YwWjBgOf21RnoJENw70ajCzBmhKH7baeclL0BnE5cbqiHc9CAVu
-	dlq/2Tc3kTGEz2h1hwNxejD6KM+e1tXnRBXcIFVtAeQBVKh/M0dPSkpE/GR4NrA/01U=
-X-Gm-Gg: AY/fxX4pfllIVxE2jbhcpsipbIsW0npYSQ5Rj/jZ44ExnuRLf5J88+NmP6/2tafE8Mh
-	cAEvAHkhHLbVLub9jm/ODC4fLnQtBGVZd9Xjk2xip3cPblNn+UAAISv4oTI5XT+ep1r7I+FSg6b
-	GOEzs+/Hj/GVwwTYbYQGVpbtsmJmrm2PEUlXWzXonqnw3YguWG8OxWSJA530ZTGJN/tqZawyiTv
-	rzeMMFSkJ/c05sqFc0Q/i0GzhGtDjVsAliiAPHBYKa9MynN+UEKqI7qFXKwSiqCKqocwGTRKsIN
-	hsAMkV/Wo1p2qrp3JHTJLaDobvdp2XoLTHRJ4hDCeI0xYAUwd6ie00t/xRuSp5ZVUb36iu+uzzy
-	tfz6g/9dM17P0Pv9ZFBYQnpSC/W2nuZuW3WtxhUBvb5Nv6Fp3axoc8oz0TyYDzRMbhG7v2ZaXJb
-	nTQt3z1xjGTqaXlV5FoL0dZ8U4ETE8o65gqnD8DQ2VvSINI/2MlFGsn7c76P7yyL854L3CjUsd6
-	f0qIfb9CnkPQKQ=
-X-Google-Smtp-Source: AGHT+IFm4BJTCDjreUh2T7xgcVbVJ0wHXDQMXAZTqYS6BUidZybUDCLVjfay5BiQaCQll7cj358FCw==
-X-Received: by 2002:a05:6512:ea3:b0:595:83c6:2228 with SMTP id 2adb3069b0e04-598fa9dd15bmr1086116e87.0.1765671179251;
-        Sat, 13 Dec 2025 16:12:59 -0800 (PST)
-Received: from [192.168.1.100] (91-159-24-186.elisa-laajakaista.fi. [91.159.24.186])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-598f3194dbcsm3466519e87.78.2025.12.13.16.12.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 13 Dec 2025 16:12:57 -0800 (PST)
-Message-ID: <bac65324-6049-40d1-b196-6aeafd37366b@linaro.org>
-Date: Sun, 14 Dec 2025 02:12:55 +0200
+	s=arc-20240116; t=1765672862; c=relaxed/simple;
+	bh=KxcnItTyRqm0LRhEBw+W8qCpjohBWywOpOR/gma97Fg=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=LfoitWafaF8jYlR0LTtIhdQK9zB148+ZWtnNfk0sJUkMgp3pEfskVCmFJQm1AY9q9kudfOX+xo6qpNi6885ZOhCTNNsZ+nTsMWHo/tEwp80JqoqvNjYtOZ8TCWXXfsTRx3vCHmvCCcDYqV7jKyKqa56yEksU9IAeYHPYfZfw+z8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.99)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1vUaAG-000000006kv-1ze4;
+	Sun, 14 Dec 2025 00:40:44 +0000
+Date: Sun, 14 Dec 2025 00:40:40 +0000
+From: Daniel Golle <daniel@makrotopia.org>
+To: Daniel Golle <daniel@makrotopia.org>, Andrew Lunn <andrew@lunn.ch>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Simon Horman <horms@kernel.org>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: Frank Wunderlich <frankwu@gmx.de>, Chad Monroe <chad@monroe.io>,
+	Cezary Wilmanski <cezary.wilmanski@adtran.com>,
+	Avinash Jayaraman <ajayaraman@maxlinear.com>,
+	Bing tao Xu <bxu@maxlinear.com>, Liang Xu <lxu@maxlinear.com>,
+	Juraj Povazanec <jpovazanec@maxlinear.com>,
+	"Fanni (Fang-Yi) Chan" <fchan@maxlinear.com>,
+	"Benny (Ying-Tsan) Weng" <yweng@maxlinear.com>,
+	"Livia M. Rosu" <lrosu@maxlinear.com>,
+	John Crispin <john@phrozen.org>
+Subject: [RFC PATCH v2 net-next 0/4] net: dsa: initial support for MaxLinear
+ MxL862xx switches
+Message-ID: <cover.1765671579.git.daniel@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: sdm845-db845c: Use introduced
- platform wide cam_mclk0_default
-To: david@ixit.cz, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org
-References: <20251213-sdm845-mclk-v1-0-197bc947d4c6@ixit.cz>
- <20251213-sdm845-mclk-v1-2-197bc947d4c6@ixit.cz>
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <20251213-sdm845-mclk-v1-2-197bc947d4c6@ixit.cz>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On 12/13/25 14:00, David Heidelberg via B4 Relay wrote:
-> From: David Heidelberg <david@ixit.cz>
-> 
-> All Snapdragon 845 platform has same controls GPIOs.
+Hi,
 
-It's a bit clumsy and not very informative commit message, and MCLK is
-not a "control GPIO", it's a pad function.
+This series adds very basic DSA support for the MaxLinear MxL86252
+(5 PHY ports) and MxL86282 (8 PHY ports) switches. The intent is to
+validate and get feedback on the overall approach and driver structure,
+especially the firmware-mediated host interface.
 
-> 
-> Signed-off-by: David Heidelberg <david@ixit.cz>
-> ---
->   arch/arm64/boot/dts/qcom/sdm845-db845c-navigation-mezzanine.dtso | 2 +-
->   arch/arm64/boot/dts/qcom/sdm845-db845c.dts                       | 8 --------
->   2 files changed, 1 insertion(+), 9 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c-navigation-mezzanine.dtso b/arch/arm64/boot/dts/qcom/sdm845-db845c-navigation-mezzanine.dtso
-> index dbe1911d8e470..f6c2c98970d76 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-db845c-navigation-mezzanine.dtso
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-db845c-navigation-mezzanine.dtso
-> @@ -40,7 +40,7 @@ camera@10 {
->   		/* CAM0_RST_N */
->   		reset-gpios = <&tlmm 9 GPIO_ACTIVE_LOW>;
->   		pinctrl-names = "default";
-> -		pinctrl-0 = <&cam0_default>;
-> +		pinctrl-0 = <&cam0_default &cam_mclk0_default>;
->   
->   		clocks = <&clock_camcc CAM_CC_MCLK0_CLK>;
->   		clock-names = "xvclk";
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-> index ce23f87e0316b..981d19c20fa1f 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-> @@ -877,14 +877,6 @@ rst-pins {
->   			drive-strength = <16>;
->   			bias-disable;
->   		};
-> -
-> -		mclk0-pins {
-> -			pins = "gpio13";
-> -			function = "cam_mclk";
-> -
-> -			drive-strength = <16>;
-> -			bias-disable;
-> -		};
->   	};
->   
->   	cam3_default: cam3-default-state {
-> 
+MxL862xx integrates a firmware running on an embedded processor (Zephyr
+RTOS). Host interaction uses a simple API transported over MDIO/MMD.
+This series includes only what's needed to pass traffic between user
+ports and the CPU port: relayed MDIO to internal PHYs, basic port
+enable/disable, and CPU-port special tagging.
 
-Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Thanks for taking a look.
+
+
+Changes since initial RFC
+
+1/4 dt-bindings: net: dsa: add bindings for MaxLinear MxL862xx
+ * better description in dt-bindings doc
+
+2/4 net: dsa: add tag formats for MxL862xx switches
+ * make sure all tag fields are initialized
+
+3/4 net: mdio: add unlocked mdiodev C45 bus accessors
+ * new patch
+
+4/4 net: dsa: add basic initial driver for MxL862xx switches
+ * make use of struct mdio_device
+ * add phylink_mac_ops stubs
+ * drop leftover nonsense from mxl862xx_phylink_get_caps()
+ * fix endian conversions
+ * use __le32 instead of enum types in over-the-wire structs
+ * use existing MDIO_* macros whenever possible
+ * simplify API constants to be more readable
+ * use readx_poll_timeout instead of open-coding poll timeout loop
+ * add mxl862xx_reg_read() and mxl862xx_reg_write() helpers
+ * demystify error codes returned by the firmware
+ * add #defines for mxl862xx_ss_sp_tag member values
+ * move reset to dedicated function, clarify magic number being the
+   reset command ID
+
+Daniel Golle (4):
+  dt-bindings: net: dsa: add bindings for MaxLinear MxL862xx
+  net: dsa: add tag formats for MxL862xx switches
+  net: mdio: add unlocked mdiodev C45 bus accessors
+  net: dsa: add basic initial driver for MxL862xx switches
+
+ .../bindings/net/dsa/maxlinear,mxl862xx.yaml  | 162 ++++++++
+ MAINTAINERS                                   |   8 +
+ drivers/net/dsa/Kconfig                       |   2 +
+ drivers/net/dsa/Makefile                      |   1 +
+ drivers/net/dsa/mxl862xx/Kconfig              |  12 +
+ drivers/net/dsa/mxl862xx/Makefile             |   3 +
+ drivers/net/dsa/mxl862xx/mxl862xx-api.h       | 118 ++++++
+ drivers/net/dsa/mxl862xx/mxl862xx-cmd.h       |  28 ++
+ drivers/net/dsa/mxl862xx/mxl862xx-host.c      | 229 +++++++++++
+ drivers/net/dsa/mxl862xx/mxl862xx-host.h      |   4 +
+ drivers/net/dsa/mxl862xx/mxl862xx.c           | 361 ++++++++++++++++++
+ drivers/net/dsa/mxl862xx/mxl862xx.h           |  24 ++
+ include/linux/mdio.h                          |  13 +
+ include/net/dsa.h                             |   2 +
+ net/dsa/Kconfig                               |   7 +
+ net/dsa/Makefile                              |   1 +
+ net/dsa/tag_mxl862xx.c                        | 113 ++++++
+ 17 files changed, 1088 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/dsa/maxlinear,mxl862xx.yaml
+ create mode 100644 drivers/net/dsa/mxl862xx/Kconfig
+ create mode 100644 drivers/net/dsa/mxl862xx/Makefile
+ create mode 100644 drivers/net/dsa/mxl862xx/mxl862xx-api.h
+ create mode 100644 drivers/net/dsa/mxl862xx/mxl862xx-cmd.h
+ create mode 100644 drivers/net/dsa/mxl862xx/mxl862xx-host.c
+ create mode 100644 drivers/net/dsa/mxl862xx/mxl862xx-host.h
+ create mode 100644 drivers/net/dsa/mxl862xx/mxl862xx.c
+ create mode 100644 drivers/net/dsa/mxl862xx/mxl862xx.h
+ create mode 100644 net/dsa/tag_mxl862xx.c
 
 -- 
-Best wishes,
-Vladimir
+2.52.0
 
