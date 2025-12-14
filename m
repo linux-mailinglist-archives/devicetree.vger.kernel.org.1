@@ -1,156 +1,165 @@
-Return-Path: <devicetree+bounces-246307-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246308-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97AE7CBBB97
-	for <lists+devicetree@lfdr.de>; Sun, 14 Dec 2025 15:42:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE503CBBBA1
+	for <lists+devicetree@lfdr.de>; Sun, 14 Dec 2025 15:44:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 9243F3009105
-	for <lists+devicetree@lfdr.de>; Sun, 14 Dec 2025 14:42:12 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id CAD103008D78
+	for <lists+devicetree@lfdr.de>; Sun, 14 Dec 2025 14:44:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7B12273D9F;
-	Sun, 14 Dec 2025 14:42:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DA97274B40;
+	Sun, 14 Dec 2025 14:43:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A2NEGrJ8"
+	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="0rPIEAgr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from ixit.cz (ip-94-112-25-9.bb.vodafone.cz [94.112.25.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B07E127280A
-	for <devicetree@vger.kernel.org>; Sun, 14 Dec 2025 14:42:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 887581DF26B;
+	Sun, 14 Dec 2025 14:43:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.112.25.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765723329; cv=none; b=WshS3oBPEWqYWrzn8V2bYqgi7b/EWWhnSMRP6b1+1UwNKV/ix3OB6W2ULPfMX26U7HEUWMR/LWy+AjX97URFJuY9+mHBpbTFXyls3LFAuG5VP6gWOyIM8xlxrjE2K9e5jKaaCPxjSon3rT69WTikYIrWZTO7X0yh+ONv39pojFE=
+	t=1765723438; cv=none; b=XMcNDf2vYL9CLfoFdx81jVXg8GgqrW6ocDdlRJG4F27QSQ3/gfd5COc47gE/W78QBqJWLIoV5FBmCrkxPWUGFposO3WWB8n3TeMaCeRAtkkfq3SJ12vcjjYrkO2rQWviEmcX/S0Yccb7zsCAkSQgWft7eap9QtBTG6/x8axtFws=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765723329; c=relaxed/simple;
-	bh=oD/KggYabkmpbLwMi9JfkWOU4h7CawiUNWnQZdptfFE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=HoT3s32L6ZXR4VpeKeJkGJVtVxL9g8Wi0VjHa5OzTgqnDcgSNu5IeeboYVnCzNOgDJP72thrvJWtKivu4SZdiNw0Zv5ARxLE3J12m1wRaTwQIBDDfUdDONFobaNkpyIK2v09vGS4b7H6tin44Y3+UOG9fdlGLgkbobBWbdR4u+M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A2NEGrJ8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E1E9C19421
-	for <devicetree@vger.kernel.org>; Sun, 14 Dec 2025 14:42:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765723329;
-	bh=oD/KggYabkmpbLwMi9JfkWOU4h7CawiUNWnQZdptfFE=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=A2NEGrJ8Ca/wyaS8iRk2pzHKLF/U3QmLusVXaZzxtH9hznjnkyrH6Q/SO6I737Qxx
-	 1fnX7nPsD0UrqCV3BjIUBod3S7jfToHWUitD6rzVImFvrO0lFbm/NjP6mXRiqEI8Kg
-	 5RayiPIrLIuvSKmWEqIm/eyoTPZJzFE3Tdrcwb9QtM0xtgOQNsKcp9KV0Fv7/xm7nA
-	 hoADE0vZQgXHuxAv4KjtwdWC5e9aXv5ESFuJNjcCF23fKz1TOw51W4sNiz8JvB+kKK
-	 4m+lkZRUyp3K39p/uLOzqFgk47oFMmO68FQdxZpYgAlkCgcEpj0gVf2XDyK1bEC0dR
-	 Mp/ViGbY8qe1w==
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-b7697e8b01aso506570666b.2
-        for <devicetree@vger.kernel.org>; Sun, 14 Dec 2025 06:42:09 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXzQgfDk5g52j/WyvV1ezldzRWHb3BltNL4daaYrTGJBvDE3z+JKTBG5TyVdK+RnmAI5hm/MoJ34UTu@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy7NEMoNRnWcFGrplb6O9GKfp1pF/T062CSyc2rZ/AQkxDUYbv8
-	9LH1caqCMQaET8sAjevB7tB0SXOv6M1C0doivmD1KDG11ORfoa5enAL7DzMTPjr9P7PjBEVCMyy
-	1dTqlILsBFdxIHa6U3gLY4B1+4osAdQ==
-X-Google-Smtp-Source: AGHT+IH/UNXJVVIzYMzF70T0zT2ePS4CZo3kLeaqHyUCNx7LNUsqU6Z3vZR8gWlhInbPYIFxkyNcgz3+uHF1VkK6TAw=
-X-Received: by 2002:a17:907:3f28:b0:b73:8903:f4b9 with SMTP id
- a640c23a62f3a-b7d23a813bdmr836277766b.24.1765723327827; Sun, 14 Dec 2025
- 06:42:07 -0800 (PST)
+	s=arc-20240116; t=1765723438; c=relaxed/simple;
+	bh=38d14VsJvhCbxnpUdWOYeVEr7x3iGjfi9wDfEND2fO0=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=dzbxdyoM3EXO10qiZeytliAGM86oFT9seABFWvCXtahd47GgIE5yZSV5+K6+Juja2ejnskHjKKTASV8Jg56lU76BYAcQDRxkghlUWB1cMuxoM2G0Z3YWGJONcqioVVHnIusZ1AyhB6UKIr7vqdmCxr6NlKAjzZTKBzXx1ZzstMI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=0rPIEAgr; arc=none smtp.client-ip=94.112.25.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
+Received: from [172.16.12.102] (89-24-64-24.customers.tmcz.cz [89.24.64.24])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange x25519)
+	(No client certificate requested)
+	by ixit.cz (Postfix) with ESMTPSA id B94745340C2F;
+	Sun, 14 Dec 2025 15:43:48 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+	t=1765723429;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=di9ZCcqsLSXIeX22FHRGvyhPhPO+kWwqNhUMHEPpsz8=;
+	b=0rPIEAgrU6WV2/4hOSqm2CEzdad8d/pN/CJ4cP2fC/31iIxYM6bRqMYiKqfKNcmbWpz9FO
+	fBr7IJ7bK1JJYA+SDwCqMCxTVNwP50TSzvDEI2ZSlb2V846kHF2zQqrCeE3hxTwAzzdGoY
+	crhULlbvRIOqf6/McoU7JKscPrb8ckk=
+Message-ID: <2e67ef23-5f20-49aa-95eb-96be2e8bfccc@ixit.cz>
+Date: Sun, 14 Dec 2025 15:43:48 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251212203226.458694-5-robh@kernel.org> <20251213181324.u32ztfblkknfpz44@pengutronix.de>
-In-Reply-To: <20251213181324.u32ztfblkknfpz44@pengutronix.de>
-From: Rob Herring <robh@kernel.org>
-Date: Sun, 14 Dec 2025 08:41:56 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqK9OREenZjBHrDh7AqsyUXYOzTOhY4e0qHGzYkX8tacWQ@mail.gmail.com>
-X-Gm-Features: AQt7F2o1cvCAKghlM7oUFNsydZljaReVAverYw-RqgPCazmU6RqIU2uWyYXg6mg
-Message-ID: <CAL_JsqK9OREenZjBHrDh7AqsyUXYOzTOhY4e0qHGzYkX8tacWQ@mail.gmail.com>
-Subject: Re: [PATCH] ARM: dts: nxp/imx6: Drop unused .dtsi
-To: Marco Felsch <m.felsch@pengutronix.de>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	imx@lists.linux.dev, barebox@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 4/8] drm/panel: sw43408: Add enable/disable and reset
+ functions
+From: David Heidelberg <david@ixit.cz>
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Sumit Semwal <sumit.semwal@linaro.org>,
+ Casey Connolly <casey.connolly@linaro.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Jessica Zhang <jesszhan0024@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Dmitry Baryshkov <lumag@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ Petr Hodina <phodina@protonmail.com>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ phone-devel@vger.kernel.org, dri-devel@lists.freedesktop.org
+References: <20251208-pixel-3-v6-0-e9e559d6f412@ixit.cz>
+ <20251208-pixel-3-v6-4-e9e559d6f412@ixit.cz>
+ <lilbxguznfzupg2gpfb6xuj4ickffgtuwwlve5g4d22lzr3bsm@slkmhn4agvgr>
+ <b171d4d1-9426-49aa-b69b-339fdb78c85d@ixit.cz>
+ <eb5106b4-6beb-471f-92c6-f5f4bba4d9ff@ixit.cz>
+Content-Language: en-US
+Autocrypt: addr=david@ixit.cz; keydata=
+ xsFNBF5v1x4BEADS3EddwsNsvVAI1XF8uQKbdYPY/GhjaSLziwVnbwv5BGwqB1tfXoHnccoA
+ 9kTgKAbiXG/CiZFhD6l4WCIskQDKzyQN3JhCUIxh16Xyw0lECI7iqoW9LmMoN1dNKcUmCO9g
+ lZxQaOl+1bY/7ttd7DapLh9rmBXJ2lKiMEaIpUwb/Nw0d7Enp4Jy2TpkhPywIpUn8CoJCv3/
+ 61qbvI9y5utB/UhfMAUXsaAgwEJyGPAqHlC0YZjaTwOu+YQUE3AFzhCbksq95CwDz4U4gdls
+ dmv9tkATfu2OmzERZQ6vJTehK0Pu4l5KmCAzYg42I9Dy4E6b17x6NncKbcByQFOXMtG0qVUk
+ F1yeeOQUHwu+8t3ZDMBUhCkRL/juuoqLmyDWKMc0hKNNeZ9BNXgB8fXkRLWEUfgDXsFyEkKp
+ NxUy5bDRlivf6XfExnikk5kj9l2gGlNQwqROti/46bfbmlmc/a2GM4k8ZyalHNEAdwtXYSpP
+ 8JJmlbQ7hNTLkc3HQLRsIocN5th/ur7pPMz1Beyp0gbE9GcOceqmdZQB80vJ01XDyCAihf6l
+ AMnzwpXZsjqIqH9r7T7tM6tVEVbPSwPt4eZYXSoJijEBC/43TBbmxDX+5+3txRaSCRQrG9dY
+ k3mMGM3xJLCps2KnaqMcgUnvb1KdTgEFUZQaItw7HyRd6RppewARAQABzSBEYXZpZCBIZWlk
+ ZWxiZXJnIDxkYXZpZEBpeGl0LmN6PsLBlAQTAQgAPgIbAwULCQgHAgYVCgkICwIEFgIDAQIe
+ AQIXgBYhBNd6Cc/u3Cu9U6cEdGACP8TTSSByBQJl+KksBQkPDaAOAAoJEGACP8TTSSBy6IAQ
+ AMqFqVi9LLxCEcUWBn82ssQGiVSDniKpFE/tp7lMXflwhjD5xoftoWOmMYkiWE86t5x5Fsp7
+ afALx7SEDz599F1K1bLnaga+budu55JEAYGudD2WwpLJ0kPzRhqBwGFIx8k6F+goZJzxPDsf
+ loAtXQE62UvEKa4KRRcZmF0GGoRsgA7vE7OnV8LMeocdD3eb2CuXLzauHAfdvqF50IfPH/sE
+ jbzROiAZU+WgrwU946aOzrN8jVU+Cy8XAccGAZxsmPBfhTY5f2VN1IqvfaRdkKKlmWVJWGw+
+ ycFpAEJKFRdfcc5PSjUJcALn5C+hxzL2hBpIZJdfdfStn+DWHXNgBeRDiZj1x6vvyaC43RAb
+ VXvRzOQfG4EaMVMIOvBjBA/FtIpb1gtXA42ewhvPnd5RVCqD9YYUxsVpJ9d+XsAy7uib3BsV
+ W2idAEsPtoqhVhq8bCUs/G4sC2DdyGZK8MRFDJqciJSUbqA+5z1ZCuE8UOPDpZKiW6H/OuOM
+ zDcjh0lOzr4p+/1TSg1PbUh7fQ+nbMuiT044sC1lLtJK0+Zyn0GwhR82oNM4fldNsaHRW42w
+ QGD35+eNo5Pvb3We5XRMlBdhFnj7Siggp4J8/PJ6MJvRyC+RIJPGtbdMB2/RxWunFLn87e5w
+ UgwR9jPMHAstuTR1yR23c4SIYoQ2fzkrRzuazsFNBF5v1x4BEADnlrbta2WL87BlEOotZUh0
+ zXANMrNV15WxexsirLetfqbs0AGCaTRNj+uWlTUDJRXOVIwzmF76Us3I2796+Od2ocNpLheZ
+ 7EIkq8budtLVd1c06qJ+GMraz51zfgSIazVInNMPk9T6fz0lembji5yEcNPNNBA4sHiFmXfo
+ IhepHFOBApjS0CiOPqowYxSTPe/DLcJ/LDwWpTi37doKPhBwlHev1BwVCbrLEIFjY0MLM0aT
+ jiBBlyLJaTqvE48gblonu2SGaNmGtkC3VoQUQFcVYDXtlL9CVbNo7BAt5gwPcNqEqkUL60Jh
+ FtvVSKyQh6gn7HHsyMtgltjZ3NKjv8S3yQd7zxvCn79tCKwoeNevsvoMq/bzlKxc9QiKaRPO
+ aDj3FtW7R/3XoKJBY8Hckyug6uc2qYWRpnuXc0as6S0wfek6gauExUttBKrtSbPPHiuTeNHt
+ NsT4+dyvaJtQKPBTbPHkXpTO8e1+YAg7kPj3aKFToE/dakIh8iqUHLNxywDAamRVn8Ha67WO
+ AEAA3iklJ49QQk2ZyS1RJ2Ul28ePFDZ3QSr9LoJiOBZv9XkbhXS164iRB7rBZk6ZRVgCz3V6
+ hhhjkipYvpJ/fpjXNsVL8jvel1mYNf0a46T4QQDQx4KQj0zXJbC2fFikAtu1AULktF4iEXEI
+ rSjFoqhd4euZ+QARAQABwsF8BBgBCAAmAhsMFiEE13oJz+7cK71TpwR0YAI/xNNJIHIFAmX4
+ qVAFCQ8NoDIACgkQYAI/xNNJIHKN4A/+Ine2Ii7JiuGITjJkcV6pgKlfwYdEs4eFD1pTRb/K
+ 5dprUz3QSLP41u9OJQ23HnESMvn31UENk9ffebNoW7WxZ/8cTQY0JY/cgTTrlNXtyAlGbR3/
+ 3Q/VBJptf04Er7I6TaKAmqWzdVeKTw33LljpkHp02vrbOdylb4JQG/SginLV9purGAFptYRO
+ 8JNa2J4FAQtQTrfOUjulOWMxy7XRkqK3QqLcPW79/CFn7q1yxamPkpoXUJq9/fVjlhk7P+da
+ NYQpe4WQQnktBY29SkFnvfIAwqIVU8ix5Oz8rghuCcAdR7lEJ7hCX9bR0EE05FOXdZy5FWL9
+ GHvFa/Opkq3DPmFl/0nt4HJqq1Nwrr+WR6d0414oo1n2hPEllge/6iD3ZYwptTvOFKEw/v0A
+ yqOoYSiKX9F7Ko7QO+VnYeVDsDDevKic2T/4GDpcSVd9ipiKxCQvUAzKUH7RUpqDTa+rYurm
+ zRKcgRumz2Tc1ouHj6qINlzEe3a5ldctIn/dvR1l2Ko7GBTG+VGp9U5NOAEkGpxHG9yg6eeY
+ fFYnMme51H/HKiyUlFiE3yd5LSmv8Dhbf+vsI4x6BOOOq4Iyop/Exavj1owGxW0hpdUGcCl1
+ ovlwVPO/6l/XLAmSGwdnGqok5eGZQzSst0tj9RC9O0dXO1TZocOsf0tJ8dR2egX4kxM=
+In-Reply-To: <eb5106b4-6beb-471f-92c6-f5f4bba4d9ff@ixit.cz>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Sat, Dec 13, 2025 at 12:13=E2=80=AFPM Marco Felsch <m.felsch@pengutronix=
-.de> wrote:
->
-> Hi Rob,
->
-> On 25-12-12, Rob Herring (Arm) wrote:
-> > These .dtsi files are not included anywhere in the tree and can't be
-> > tested.
->
-> not in the tree but by other projects, please see below.
->
-> > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> > ---
-> >  .../dts/nxp/imx/imx6dl-kontron-samx6i.dtsi    | 12 -----
-> >  .../dts/nxp/imx/imx6q-kontron-samx6i.dtsi     | 12 -----
-> >  .../boot/dts/nxp/imx/imx6qdl-pico-dwarf.dtsi  | 45 ----------------
-> >  .../boot/dts/nxp/imx/imx6qdl-pico-nymph.dtsi  | 54 -------------------
-> >  4 files changed, 123 deletions(-)
-> >  delete mode 100644 arch/arm/boot/dts/nxp/imx/imx6dl-kontron-samx6i.dts=
-i
-> >  delete mode 100644 arch/arm/boot/dts/nxp/imx/imx6q-kontron-samx6i.dtsi
-> >  delete mode 100644 arch/arm/boot/dts/nxp/imx/imx6qdl-pico-dwarf.dtsi
-> >  delete mode 100644 arch/arm/boot/dts/nxp/imx/imx6qdl-pico-nymph.dtsi
-> >
-> > diff --git a/arch/arm/boot/dts/nxp/imx/imx6dl-kontron-samx6i.dtsi b/arc=
-h/arm/boot/dts/nxp/imx/imx6dl-kontron-samx6i.dtsi
-> > deleted file mode 100644
-> > index 5a9b819d7ee8..000000000000
-> > --- a/arch/arm/boot/dts/nxp/imx/imx6dl-kontron-samx6i.dtsi
-> > +++ /dev/null
-> > @@ -1,12 +0,0 @@
-> > -// SPDX-License-Identifier: GPL-2.0 OR X11
-> > -/*
-> > - * Copyright 2019 (C) Pengutronix, Marco Felsch <kernel@pengutronix.de=
->
-> > - */
-> > -
-> > -#include "imx6dl.dtsi"
-> > -#include "imx6qdl-kontron-samx6i.dtsi"
-> > -
-> > -/ {
-> > -     model =3D "Kontron SMARC-sAMX6i Dual-Lite/Solo";
-> > -     compatible =3D "kontron,imx6dl-samx6i", "fsl,imx6dl";
-> > -};
-> > diff --git a/arch/arm/boot/dts/nxp/imx/imx6q-kontron-samx6i.dtsi b/arch=
-/arm/boot/dts/nxp/imx/imx6q-kontron-samx6i.dtsi
-> > deleted file mode 100644
-> > index e76963436079..000000000000
-> > --- a/arch/arm/boot/dts/nxp/imx/imx6q-kontron-samx6i.dtsi
-> > +++ /dev/null
-> > @@ -1,12 +0,0 @@
-> > -// SPDX-License-Identifier: GPL-2.0 OR X11
-> > -/*
-> > - * Copyright 2019 (C) Pengutronix, Marco Felsch <kernel@pengutronix.de=
->
-> > - */
-> > -
-> > -#include "imx6q.dtsi"
-> > -#include "imx6qdl-kontron-samx6i.dtsi"
-> > -
-> > -/ {
-> > -     model =3D "Kontron SMARC-sAMX6i Quad/Dual";
-> > -     compatible =3D "kontron,imx6q-samx6i", "fsl,imx6q";
-> > -};
->
-> I can't speak for the other two .dtsi files but both kontron .dtsi files
-> are used by barebox:
->
->  - https://elixir.bootlin.com/barebox/v2025.11.0/source/arch/arm/dts/imx6=
-dl-samx6i.dts#L8
->  - https://elixir.bootlin.com/barebox/v2025.11.0/source/arch/arm/dts/imx6=
-q-samx6i.dts#L8
->
-> Removing them here will cause a regression for barebox.
+On 12/12/2025 16:39, David Heidelberg wrote:
+> On 09/12/2025 23:51, David Heidelberg wrote:
+>> On 09/12/2025 23:37, Dmitry Baryshkov wrote:
+>>> On Mon, Dec 08, 2025 at 10:41:57AM +0100, David Heidelberg via B4 
+>>> Relay wrote:
+>>>> From: David Heidelberg <david@ixit.cz>
+>>>>
+>>>> Introduce enable(), disable() and reset() functions.
+>>>>
+>>>> The enable() and disable() callbacks keep the symmetry in the commands
+>>>> sent to the panel and also make a clearer distinction between panel
+>>>> initialization and configuration.
+>>>
+>>> It's not just it. There is a difference between commands being sent in
+>>> en/disable and prepare/unprepare.
+>>
+>> Thanks, I didn't know. Is there good rule how to distinguish, which 
+>> command should go where?
+> 
+> How about I would "reduce" this patch to putting reset sequence into own 
+> function, so Pixel 3 support could get merged?
+> 
+> The display will need more work anyway, would you be fine with this 
+> approach?
 
-Please upstream something that uses the .dtsi. Other than the
-undocumented barebox property, no reason these can't be.
+As I did additional few changes, I'll sent v7 now, where I'll just 
+abstract _reset() into own function.
 
-Rob
+I would address any other (non reviewed) changes when we manage to get 
+panel with the driver behave stable on mainline/-next.
+
+If you decide this change is worthy of inclusion in this series, I'm 
+open to bring this commit back in future revisions.
+
+Thank you
+David
 
