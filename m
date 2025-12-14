@@ -1,856 +1,378 @@
-Return-Path: <devicetree+bounces-246314-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246319-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2169CCBBBF5
-	for <lists+devicetree@lfdr.de>; Sun, 14 Dec 2025 15:51:51 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93693CBBC46
+	for <lists+devicetree@lfdr.de>; Sun, 14 Dec 2025 16:10:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id B732A3015D0B
-	for <lists+devicetree@lfdr.de>; Sun, 14 Dec 2025 14:51:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2286B3006A54
+	for <lists+devicetree@lfdr.de>; Sun, 14 Dec 2025 15:10:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFA742848A0;
-	Sun, 14 Dec 2025 14:51:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46D3F286889;
+	Sun, 14 Dec 2025 15:10:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gNry0N0P"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pDssLOw/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9888F27E1DC;
-	Sun, 14 Dec 2025 14:51:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8BAB285CAA;
+	Sun, 14 Dec 2025 15:10:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765723885; cv=none; b=AYOiZoJ8ThiKlm8QHTeDRW29xi0DStDir+mLCdpBcZ/+EkMnGu73s/CwyT0cPKvzmMf2Bb4Yhb0Gl/sxP9OLvfrayLdxnZ7q/ib+Yb4LPjwWut2TjBMZzUl9TQAKWpF6a4vVowUWUMPclVNH400f0q1bpqVm13t07aO7zcm1Ehg=
+	t=1765725011; cv=none; b=iw/KUZe9U468zPvg2W0eu3YodP6WkrPqVQp55b1cMGN8PBQm98nggMYyU2Oi9mBeulWcvzMuK3gR1pCddhCHJg8DYPEeT4hLng/AdXYMOOm/qFpNqGjgNQb2dewIncNTWNqAJ5+9aa5ucw9LU0E7OnDyVkm/jdLMKur0RnDiOz4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765723885; c=relaxed/simple;
-	bh=Lboai8EeopeEBFSuATB/HNZX9cbcUnOk2Po9DEsGe4U=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Wc2cS0niMARd4dlKei5NnC5tNjzYeUoe1KUzhqa+ki7+DU6B59gyDVNT1hm7aS94yrmaXl7J2+Bc72WKAFlQkA0WQQbV4mg9TZhO/e+hAVxxMTo62fMZKn+ty3y0ME5iN7kP+hZhZKXvfgMT8ZeuFFu20waUAAZml+0n/SrP9AY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gNry0N0P; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 62434C4AF55;
-	Sun, 14 Dec 2025 14:51:25 +0000 (UTC)
+	s=arc-20240116; t=1765725011; c=relaxed/simple;
+	bh=tTajTZxuRKktLqOyplqR5swnGojT4l6zDRF4/PQYxyc=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=fUWJ7Jjfr3qMgkxDSbQg+9n/cS966AtRvKYQNXeaSoVrq0IJ8NwFicq9zS+DCrb5GiKLipPj3sbEPHVrUtumUxn79Lvchbzk6UIVGLOPHbS86LIpQfS+3tyqjEP1zVzlIF9hiF1qGUwFRam37AmlN4cDXU7cpWwgCE9W/8QZG3o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pDssLOw/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2C5DC4CEF1;
+	Sun, 14 Dec 2025 15:10:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765723885;
-	bh=Lboai8EeopeEBFSuATB/HNZX9cbcUnOk2Po9DEsGe4U=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=gNry0N0PZWhma0E3uCgzeWZdQoW8sHcgfABn2KBWlGdz0mb2Z16gtRn+aUoLhgWVD
-	 sXfHbS6S1k1njEu7yVlevdmhPCenSZDb73M17MadpyaOB78+uMEoznanCoy3+zvNF0
-	 UGDmDomQAC6/Adq7chatTfQiqCHyl2vL7Uk/K7p+WXP0Q4VGdxmJIJbtezj1aPZabw
-	 Cjiki2OPAqzZGYFK0MrCsGA18QcQqZBqfpRj7p4wbX+7/wMAXg1XWeFXOuiqQuTG2T
-	 44fXm6nK/y/GVZGw00Ajw8OFC+JFzphi0lCPQZ2MzZ9jTyPFj+EmhzvN+fW2nbnF5Z
-	 8OSNjbxNtZXLw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 55323D5B171;
-	Sun, 14 Dec 2025 14:51:25 +0000 (UTC)
-From: David Heidelberg via B4 Relay <devnull+david.ixit.cz@kernel.org>
-Date: Sun, 14 Dec 2025 15:51:24 +0100
-Subject: [PATCH v7 8/8] arm64: dts: qcom: Add support for Pixel 3 and Pixel
- 3 XL
+	s=k20201202; t=1765725010;
+	bh=tTajTZxuRKktLqOyplqR5swnGojT4l6zDRF4/PQYxyc=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=pDssLOw/ZnGcvwmRCxmSWrU34kh7bkzXhaXY3gEqAX6uhPtJJJH6YbqDhh/a5R0iX
+	 ii9or0xaQr2JAYG+D3iPt0yVi7G0Cc3Z58cOPW3mEJ4tDeH8quhIf5he9P9V2L3r01
+	 B+0QWct+5mqNcnYBQFwRBcC/5m76xvJfqDxdx6tnlCdr4P4avSoL+6MgEoJ1h6JquK
+	 Se+e8mhcRbOg6a9cFxEJ1EFpJ3hv3w4/ttV7810o9XbeJtt9ZslS4FvRsnFeEjEon3
+	 MOq3YeukUdCv3XwFm1VNTOscEp21caDZypD/9RQGn2GVx7wujzdMHMYLCryyEd1Bui
+	 30m/YO9x6gZUQ==
+Date: Sun, 14 Dec 2025 15:10:01 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Ariana Lazar <ariana.lazar@microchip.com>
+Cc: David Lechner <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?=
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, <linux-iio@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 2/2] iio: dac: adding support for Microchip
+ MCP47FEB02
+Message-ID: <20251214151001.5e3690ca@jic23-huawei>
+In-Reply-To: <20251209-mcp47feb02-v3-2-bb0ba9052f4f@microchip.com>
+References: <20251209-mcp47feb02-v3-0-bb0ba9052f4f@microchip.com>
+	<20251209-mcp47feb02-v3-2-bb0ba9052f4f@microchip.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251214-pixel-3-v7-8-b1c0cf6f224d@ixit.cz>
-References: <20251214-pixel-3-v7-0-b1c0cf6f224d@ixit.cz>
-In-Reply-To: <20251214-pixel-3-v7-0-b1c0cf6f224d@ixit.cz>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Sumit Semwal <sumit.semwal@linaro.org>, 
- Casey Connolly <casey.connolly@linaro.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Jessica Zhang <jesszhan0024@gmail.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Marijn Suijten <marijn.suijten@somainline.org>, 
- Dmitry Baryshkov <lumag@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
- Petr Hodina <phodina@protonmail.com>, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org, 
- dri-devel@lists.freedesktop.org, David Heidelberg <david@ixit.cz>, 
- Amit Pundir <amit.pundir@linaro.org>, Casey Connolly <casey@connolly.tech>, 
- Joel Selvaraj <foss@joelselvaraj.com>, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
- Bjorn Andersson <andersson@kernel.org>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=18088; i=david@ixit.cz;
- h=from:subject:message-id;
- bh=39zvd9k7CrDiRLbinVszmhIVwGcsW4DHVMWoYFfctZE=;
- b=owEBbQKS/ZANAwAIAWACP8TTSSByAcsmYgBpPs7qDLcGkgQREF/M9CWb5zMfn871fbtiCu9PG
- NmiUxpBqhiJAjMEAAEIAB0WIQTXegnP7twrvVOnBHRgAj/E00kgcgUCaT7O6gAKCRBgAj/E00kg
- cp+jD/9uYqHQ0yP8feXfTq0Lh/fEmLh+JLl7fhNG0UY7AKmfKoKA8zBtjp/ZONH7Kk6FWywH12c
- 6jNfbHVvEBZvY0xqEacAovAlk3QQJfCgPPMb7UVUjynz8UqnvmFo+y8JBbYs4y1VNABA2hWum8c
- FBRve1vSdp3W+XntimOISd1xGPDJa5/lkT14PEZTFFAw5EAVlngID4DiXjpLBVFdJ8ZbzdyAVfP
- ZELtxZ+pWsNyKKnLK3rtL9SWH9Epeg2d0w9m82IEDjXJC3Hn3tCHZ1qB2oEmDpPyEyF6fFDW6GP
- bbuCLP1ztCxK+qL8qvWDd+BDxSN6E/7Bt61iHiyeHk4w6GfZeD+KnHi6TytnRWSPhtLvcUhR628
- xJLh+Zs5AdiR3q+MEymVFULWHz+tK1iPDhiGZOcehBdDAE6wwQBR3k1dvkzTBYI7PHBePcVfPog
- LnkZUas3RuZ09KJE3+sKzUqKDm5TiBTjRe1QfqejXUQI1cJW2xPUd2WY15Fa1Hhen3tsuqoA7oY
- +NyizR1MVRZX7nrVGIfEYLqQUnSUm7ezvQcivtjgbJNjtCPCuvllsw1kSGOyla89G1faMVc6fU6
- 11nYPKJjU5eg4V36kHjuwlMxJShtzr9/F5b1AN9abJuyRYSQUsgI3Utp5sOHhCmoPih4gtRfpoZ
- FbLhmuWP3D3TVEA==
-X-Developer-Key: i=david@ixit.cz; a=openpgp;
- fpr=D77A09CFEEDC2BBD53A7047460023FC4D3492072
-X-Endpoint-Received: by B4 Relay for david@ixit.cz/default with auth_id=355
-X-Original-From: David Heidelberg <david@ixit.cz>
-Reply-To: david@ixit.cz
 
-From: David Heidelberg <david@ixit.cz>
+On Tue, 9 Dec 2025 18:06:24 +0200
+Ariana Lazar <ariana.lazar@microchip.com> wrote:
 
-This adds initial device tree support for the following phones:
+> This is the iio driver for Microchip MCP47F(E/V)B(0/1/2)1,
+> MCP47F(E/V)B(0/1/2)2, MCP47F(E/V)B(0/1/2)4 and MCP47F(E/V)B(0/1/2)8 series
+> of buffered voltage output Digital-to-Analog Converters with nonvolatile or
+> volatile memory and an I2C Interface.
+> 
+> The families support up to 8 output channels.
+> 
+> The devices can be 8-bit, 10-bit and 12-bit.
+> 
+> Signed-off-by: Ariana Lazar <ariana.lazar@microchip.com>
+Hi Ariana,
 
- - Google Pixel 3 (blueline)
- - Google Pixel 3 XL (crosshatch)
+Given you are going to be doing a v4, a few really minor things inline.
 
-Both phone boards use the same identifiers and differ only slightly
-in their connected peripherals.
+thanks,
 
-Supported functionality includes:
- - Debug UART
- - UFS
- - USB-C (peripheral mode)
- - Framebuffer (both u-boot and Linux)
- - Display (Pixel 3 only, and the driver needs work)
- - GPU
- - Bluetooth
- - Wi-Fi
+Jonathan
 
-The rmtfs region is allocated using UIO, making it technically "dynamic."
+> diff --git a/drivers/iio/dac/mcp47feb02.c b/drivers/iio/dac/mcp47feb02.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..40c68767a98f165a3ab91d4a8610b69badf3d3a5
+> --- /dev/null
+> +++ b/drivers/iio/dac/mcp47feb02.c
 
-Its address and size can be read from sysfs:
+> +
+> +/**
+> + * struct mcp47feb02_data - chip configuration
+> + * @chdata: options configured for each channel on the device
+> + * @lock: prevents concurrent reads/writes to driver's state members
+> + * @info: pointer to features struct
+> + * @scale_1: scales set on channels that are based on Vref1
+> + * @scale: scales set on channels that are based on Vref/Vref0
+> + * @active_channels_mask: enabled channels
+> + * @client: the i2c-client attached to the device
+> + * @regmap: regmap for directly accessing device register
+> + * @vref1_buffered: Vref1 buffer is enabled
+> + * @vref_buffered: Vref/Vref0 buffer is enabled
+> + * @phys_channels: physical channels on the device
+> + * @labels: table with channels labels
+> + * @use_vref1: vref1-supply is defined
+> + * @use_vref: vref-supply is defined
+> + */
+> +struct mcp47feb02_data {
+> +	struct mcp47feb02_channel_data chdata[MCP47FEB02_MAX_CH];
+> +	struct mutex lock; /* prevents concurrent reads/writes to driver's state members */
+> +	const struct mcp47feb02_features *info;
 
-$ cat /sys/class/uio/uio0/name
-/sys/class/uio/uio0/maps/map0/addr
-0x00000000f2701000
+See below comment.  Rethink that structure element just to avoid confusiong
+with iio_dev->info which is a very different thing from this.
 
-$ cat /sys/class/uio/uio0/maps/map0/size
-0x0000000000200000
+> + static ssize_t store_eeprom_store(struct device *dev, struct device_attribute *attr,
+> +				  const char *buf, size_t len)
+> +{
+> +	struct mcp47feb02_data *data = iio_priv(dev_to_iio_dev(dev));
+> +	unsigned int i, val, val1, eewa_val;
+> +	bool state;
+> +	int ret;
+> +
+> +	ret = kstrtobool(buf, &state);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (!state)
+> +		return 0;
+> +
+> +	/*
+> +	 * Verify DAC Wiper and DAC Configuratioin are unlocked. If both are disabled,
 
-Like the OnePlus 6, the Pixel 3 requires 1 kB of reserved memory on either
-side of the rmtfs region to work around an XPU bug that would otherwise
-cause erroneous violations when accessing the rmtfs_mem region.
+Configuration
 
-Co-developed-by: Amit Pundir <amit.pundir@linaro.org>
-Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
-Co-developed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-Co-developed-by: Casey Connolly <casey@connolly.tech>
-Signed-off-by: Casey Connolly <casey@connolly.tech>
-Co-developed-by: Joel Selvaraj <foss@joelselvaraj.com>
-Signed-off-by: Joel Selvaraj <foss@joelselvaraj.com>
-Co-developed-by: Sumit Semwal <sumit.semwal@linaro.org>
-Signed-off-by: Sumit Semwal <sumit.semwal@linaro.org>
-Co-developed-by: Vinod Koul <vkoul@kernel.org>
-Signed-off-by: Vinod Koul <vkoul@kernel.org>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Signed-off-by: David Heidelberg <david@ixit.cz>
----
- arch/arm64/boot/dts/qcom/Makefile                  |   2 +
- .../arm64/boot/dts/qcom/sdm845-google-blueline.dts |  89 ++++
- arch/arm64/boot/dts/qcom/sdm845-google-common.dtsi | 536 +++++++++++++++++++++
- .../boot/dts/qcom/sdm845-google-crosshatch.dts     |  36 ++
- 4 files changed, 663 insertions(+)
+Give comments a quick spell check.
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 6f34d5ed331c4..c853b28b3b198 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -250,6 +250,8 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-db845c.dtb
- sdm845-db845c-navigation-mezzanine-dtbs	:= sdm845-db845c.dtb sdm845-db845c-navigation-mezzanine.dtbo
- 
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-db845c-navigation-mezzanine.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-google-crosshatch.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-google-blueline.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-lg-judyln.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-lg-judyp.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-mtp.dtb
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-google-blueline.dts b/arch/arm64/boot/dts/qcom/sdm845-google-blueline.dts
-new file mode 100644
-index 0000000000000..fa89be500fb85
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sdm845-google-blueline.dts
-@@ -0,0 +1,89 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+
-+/dts-v1/;
-+
-+#include "sdm845-google-common.dtsi"
-+
-+/ {
-+	model = "Google Pixel 3";
-+	compatible = "google,blueline", "qcom,sdm845";
-+};
-+
-+&battery {
-+	charge-full-design-microamp-hours = <2970000>;
-+	voltage-min-design-microvolt = <3600000>;
-+	voltage-max-design-microvolt = <4400000>;
-+};
-+
-+&framebuffer0 {
-+	width = <1080>;
-+	height = <2160>;
-+	stride = <(1080 * 4)>;
-+};
-+
-+&i2c2 {
-+	clock-frequency = <1000000>;
-+
-+	status = "okay";
-+
-+	/* ST,FTS @ 49 */
-+};
-+
-+&mdss_dsi0 {
-+	vdda-supply = <&vdda_mipi_dsi0_1p2>;
-+
-+	status = "okay";
-+
-+	panel@0 {
-+		compatible = "lg,sw43408-lh546wf1-ed01", "lg,sw43408";
-+		reg = <0>;
-+
-+		vddi-supply = <&vreg_l14a_1p8>;
-+		vpnl-supply = <&vreg_l28a_3p0>;
-+
-+		reset-gpios = <&tlmm 6 GPIO_ACTIVE_LOW>;
-+
-+		pinctrl-0 = <&panel_default>;
-+		pinctrl-names = "default";
-+
-+		port {
-+			panel_in: endpoint {
-+				remote-endpoint = <&mdss_dsi0_out>;
-+			};
-+		};
-+	};
-+};
-+
-+&mdss_dsi0_out {
-+	data-lanes = <0 1 2 3>;
-+	remote-endpoint = <&panel_in>;
-+	qcom,te-source = "mdp_vsync_e";
-+};
-+
-+&mdss_dsi0_phy {
-+	vdds-supply = <&vdda_mipi_dsi0_pll>;
-+
-+	status = "okay";
-+};
-+
-+&tlmm {
-+	panel_default: panel-default-state {
-+		reset-pins {
-+			pins = "gpio6";
-+			function = "gpio";
-+			drive-strength = <8>;
-+			bias-disable;
-+		};
-+
-+		te-pins {
-+			pins = "gpio12";
-+			function = "mdp_vsync";
-+			drive-strength = <2>;
-+			bias-pull-down;
-+		};
-+	};
-+};
-+
-+&wifi {
-+	qcom,calibration-variant = "Google_blueline";
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-google-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-google-common.dtsi
-new file mode 100644
-index 0000000000000..fd9788d5c3f54
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sdm845-google-common.dtsi
-@@ -0,0 +1,536 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/arm/qcom,ids.h>
-+#include <dt-bindings/dma/qcom-gpi.h>
-+#include <dt-bindings/input/linux-event-codes.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-+
-+#include "sdm845.dtsi"
-+#include "pm8998.dtsi"
-+#include "pmi8998.dtsi"
-+
-+/delete-node/ &mpss_region;
-+/delete-node/ &venus_mem;
-+/delete-node/ &cdsp_mem;
-+/delete-node/ &mba_region;
-+/delete-node/ &slpi_mem;
-+/delete-node/ &spss_mem;
-+/delete-node/ &rmtfs_mem;
-+
-+/ {
-+	chassis-type = "handset";
-+	qcom,board-id = <0x00021505 0>;
-+	qcom,msm-id = <QCOM_ID_SDM845 0x20001>;
-+
-+	aliases {
-+		serial0 = &uart9;
-+		serial1 = &uart6;
-+	};
-+
-+	battery: battery {
-+		compatible = "simple-battery";
-+	};
-+
-+	chosen {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		stdout-path = "serial0:115200n8";
-+
-+		/* Use display framebuffer as setup by bootloader */
-+		framebuffer0: framebuffer-0 {
-+			compatible = "simple-framebuffer";
-+			memory-region = <&cont_splash_mem>;
-+
-+			format = "a8r8g8b8";
-+		};
-+	};
-+
-+	reserved-memory {
-+		cont_splash_mem: splash@9d400000 {
-+			reg = <0 0x9d400000 0 0x02400000>;
-+			no-map;
-+		};
-+
-+		mpss_region: memory@8e000000 {
-+			reg = <0 0x8e000000 0 0x9800000>;
-+			no-map;
-+		};
-+
-+		venus_mem: venus@97800000 {
-+			reg = <0 0x97800000 0 0x500000>;
-+			no-map;
-+		};
-+
-+		cdsp_mem: cdsp-mem@97D00000 {
-+			reg = <0 0x97D00000 0 0x800000>;
-+			no-map;
-+		};
-+
-+		mba_region: mba@98500000 {
-+			reg = <0 0x98500000 0 0x200000>;
-+			no-map;
-+		};
-+
-+		slpi_mem: slpi@98700000 {
-+			reg = <0 0x98700000 0 0x1400000>;
-+			no-map;
-+		};
-+
-+		spss_mem: spss@99B00000 {
-+			reg = <0 0x99B00000 0 0x100000>;
-+			no-map;
-+		};
-+
-+		rmtfs_mem: rmtfs-region@f2700000 {
-+			compatible = "qcom,rmtfs-mem";
-+			reg = <0 0xf2700000 0 0x202000>;
-+			qcom,use-guard-pages;
-+			no-map;
-+
-+			qcom,client-id = <1>;
-+			qcom,vmid = <QCOM_SCM_VMID_MSS_MSA>;
-+		};
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+		label = "Volume keys";
-+		autorepeat;
-+
-+		pinctrl-0 = <&volume_up_gpio>;
-+		pinctrl-names = "default";
-+
-+		key-vol-up {
-+			label = "Volume Up";
-+			linux,code = <KEY_VOLUMEUP>;
-+			gpios = <&pm8998_gpios 6 GPIO_ACTIVE_LOW>;
-+			debounce-interval = <15>;
-+		};
-+	};
-+
-+	vph_pwr: regulator-vph-pwr {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vph_pwr";
-+		regulator-min-microvolt = <3700000>;
-+		regulator-max-microvolt = <3700000>;
-+	};
-+
-+	vreg_s4a_1p8: regulator-vreg-s4a-1p8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vreg_s4a_1p8";
-+
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+
-+		vin-supply = <&vph_pwr>;
-+	};
-+};
-+
-+&adsp_pas {
-+	firmware-name = "qcom/sdm845/Google/blueline/adsp.mbn";
-+
-+	status = "okay";
-+};
-+
-+&apps_rsc {
-+	regulators-0 {
-+		compatible = "qcom,pm8998-rpmh-regulators";
-+		qcom,pmic-id = "a";
-+
-+		vdd-s1-supply = <&vph_pwr>;
-+		vdd-s2-supply = <&vph_pwr>;
-+		vdd-s3-supply = <&vph_pwr>;
-+		vdd-s4-supply = <&vph_pwr>;
-+		vdd-s5-supply = <&vph_pwr>;
-+		vdd-s6-supply = <&vph_pwr>;
-+		vdd-s7-supply = <&vph_pwr>;
-+		vdd-s8-supply = <&vph_pwr>;
-+		vdd-s9-supply = <&vph_pwr>;
-+		vdd-s10-supply = <&vph_pwr>;
-+		vdd-s11-supply = <&vph_pwr>;
-+		vdd-s12-supply = <&vph_pwr>;
-+		vdd-s13-supply = <&vph_pwr>;
-+		vdd-l1-l27-supply = <&vreg_s7a_1p025>;
-+		vdd-l2-l8-l17-supply = <&vreg_s3a_1p35>;
-+		vdd-l3-l11-supply = <&vreg_s7a_1p025>;
-+		vdd-l4-l5-supply = <&vreg_s7a_1p025>;
-+		vdd-l6-supply = <&vph_pwr>;
-+		vdd-l7-l12-l14-l15-supply = <&vreg_s5a_2p04>;
-+		vdd-l9-supply = <&vreg_bob>;
-+		vdd-l10-l23-l25-supply = <&vreg_bob>;
-+		vdd-l13-l19-l21-supply = <&vreg_bob>;
-+		vdd-l16-l28-supply = <&vreg_bob>;
-+		vdd-l18-l22-supply = <&vreg_bob>;
-+		vdd-l20-l24-supply = <&vreg_bob>;
-+		vdd-l26-supply = <&vreg_s3a_1p35>;
-+		vin-lvs-1-2-supply = <&vreg_s4a_1p8>;
-+
-+		vreg_s3a_1p35: smps3 {
-+			regulator-min-microvolt = <1352000>;
-+			regulator-max-microvolt = <1352000>;
-+		};
-+
-+		vreg_s5a_2p04: smps5 {
-+			regulator-min-microvolt = <1904000>;
-+			regulator-max-microvolt = <2040000>;
-+		};
-+
-+		vreg_s7a_1p025: smps7 {
-+			regulator-min-microvolt = <900000>;
-+			regulator-max-microvolt = <1028000>;
-+		};
-+
-+		vdda_mipi_dsi0_pll:
-+		vreg_l1a_0p875: ldo1 {
-+			regulator-min-microvolt = <880000>;
-+			regulator-max-microvolt = <880000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-boot-on;
-+		};
-+
-+		vreg_l5a_0p8: ldo5 {
-+			regulator-min-microvolt = <800000>;
-+			regulator-max-microvolt = <800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l12a_1p8: ldo12 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l7a_1p8: ldo7 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l13a_2p95: ldo13 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <2960000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l14a_1p8: ldo14 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-boot-on;
-+			/*
-+			 * We can't properly bring the panel back if it gets turned off
-+			 * so keep it's regulators always on for now.
-+			 */
-+			regulator-always-on;
-+		};
-+
-+		vreg_l17a_1p3: ldo17 {
-+			regulator-min-microvolt = <1304000>;
-+			regulator-max-microvolt = <1304000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l19a_3p3: ldo19 {
-+			regulator-min-microvolt = <3300000>;
-+			regulator-max-microvolt = <3312000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			/*
-+			 * The touchscreen needs this to be 3.3v, which is apparently
-+			 * quite close to the hardware limit for this LDO (3.312v)
-+			 * It must be kept in high power mode to prevent TS brownouts
-+			 */
-+			regulator-allowed-modes = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l20a_2p95: ldo20 {
-+			regulator-min-microvolt = <2960000>;
-+			regulator-max-microvolt = <2968000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l21a_2p95: ldo21 {
-+			regulator-min-microvolt = <2960000>;
-+			regulator-max-microvolt = <2968000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l24a_3p075: ldo24 {
-+			regulator-min-microvolt = <3088000>;
-+			regulator-max-microvolt = <3088000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l25a_3p3: ldo25 {
-+			regulator-min-microvolt = <3300000>;
-+			regulator-max-microvolt = <3312000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vdda_mipi_dsi0_1p2:
-+		vreg_l26a_1p2: ldo26 {
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-boot-on;
-+		};
-+
-+		vreg_l28a_3p0: ldo28 {
-+			regulator-min-microvolt = <2856000>;
-+			regulator-max-microvolt = <3008000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_LPM>;
-+			regulator-boot-on;
-+			/*
-+			 * We can't properly bring the panel back if it gets turned off
-+			 * so keep it's regulators always on for now.
-+			 */
-+			regulator-always-on;
-+		};
-+	};
-+
-+	regulators-1 {
-+		compatible = "qcom,pmi8998-rpmh-regulators";
-+		qcom,pmic-id = "b";
-+
-+		vdd-bob-supply = <&vph_pwr>;
-+
-+		vreg_bob: bob {
-+			regulator-min-microvolt = <3312000>;
-+			regulator-max-microvolt = <3600000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_AUTO>;
-+			regulator-allow-bypass;
-+		};
-+	};
-+
-+	regulators-2 {
-+		compatible = "qcom,pm8005-rpmh-regulators";
-+		qcom,pmic-id = "c";
-+
-+		vdd-s1-supply = <&vph_pwr>;
-+		vdd-s2-supply = <&vph_pwr>;
-+		vdd-s3-supply = <&vph_pwr>;
-+		vdd-s4-supply = <&vph_pwr>;
-+
-+		vreg_s3c_0p6: smps3 {
-+			regulator-min-microvolt = <600000>;
-+			regulator-max-microvolt = <600000>;
-+		};
-+	};
-+};
-+
-+&cci {
-+	status = "okay";
-+};
-+
-+&cci_i2c1 {
-+	/* actuator @0c */
-+
-+	/* front camera, imx355 @1a */
-+
-+	/* eeprom @50, at24 driver says 8K */
-+};
-+
-+&cdsp_pas {
-+	firmware-name = "qcom/sdm845/Google/blueline/cdsp.mbn";
-+
-+	status = "okay";
-+};
-+
-+&gcc {
-+	protected-clocks = <GCC_QSPI_CORE_CLK>,
-+			   <GCC_QSPI_CORE_CLK_SRC>,
-+			   <GCC_QSPI_CNOC_PERIPH_AHB_CLK>;
-+};
-+
-+&gpi_dma0 {
-+	status = "okay";
-+};
-+
-+&gpi_dma1 {
-+	status = "okay";
-+};
-+
-+&gpu {
-+	status = "okay";
-+};
-+
-+&gpu_zap_shader {
-+	firmware-name = "qcom/sdm845/Google/blueline/a630_zap.mbn";
-+};
-+
-+&i2c12 {
-+	/* Bottom spkr (right) CS35L36 @ 40 */
-+
-+	/* Top spkr (left) CS35L36 @ 41 */
-+};
-+
-+&ipa {
-+	firmware-name = "qcom/sdm845/Google/blueline/ipa_fws.mbn";
-+	memory-region = <&ipa_fw_mem>;
-+
-+	status = "okay";
-+};
-+
-+&mdss {
-+	status = "okay";
-+};
-+
-+&mss_pil {
-+	firmware-name = "qcom/sdm845/Google/blueline/mba.mbn",
-+			"qcom/sdm845/Google/blueline/modem.mbn";
-+
-+	status = "okay";
-+};
-+
-+&pm8998_gpios {
-+	volume_up_gpio: vol-up-active-state {
-+		pins = "gpio6";
-+		function = "normal";
-+		input-enable;
-+		bias-pull-up;
-+		qcom,drive-strength = <0>;
-+	};
-+};
-+
-+&pm8998_resin {
-+	linux,code = <KEY_VOLUMEDOWN>;
-+
-+	status = "okay";
-+};
-+
-+&pmi8998_charger {
-+	monitored-battery = <&battery>;
-+
-+	status = "okay";
-+};
-+
-+&qupv3_id_0 {
-+	status = "okay";
-+};
-+
-+&qupv3_id_1 {
-+	status = "okay";
-+};
-+
-+&qup_uart9_rx {
-+	drive-strength = <2>;
-+	bias-pull-up;
-+};
-+
-+&qup_uart9_tx {
-+	drive-strength = <2>;
-+	bias-disable;
-+};
-+
-+&tlmm {
-+	gpio-reserved-ranges = < 0 4>, /* SPI (Intel MNH Pixel Visual Core) */
-+			       <81 4>; /* SPI (most likely Fingerprint Cards FPC1075) */
-+
-+	touchscreen_reset: ts-reset-state {
-+		pins = "gpio99";
-+		function = "gpio";
-+		drive-strength = <8>;
-+		bias-pull-up;
-+	};
-+
-+	touchscreen_pins: ts-pins-gpio-state {
-+		pins = "gpio125";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	touchscreen_i2c_pins: qup-i2c2-gpio-state {
-+		pins = "gpio27", "gpio28";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+};
-+
-+&uart6 {
-+	pinctrl-0 = <&qup_uart6_4pin>;
-+
-+	status = "okay";
-+
-+	bluetooth {
-+		compatible = "qcom,wcn3990-bt";
-+
-+		vddio-supply = <&vreg_s4a_1p8>;
-+		vddxo-supply = <&vreg_l7a_1p8>;
-+		vddrf-supply = <&vreg_l17a_1p3>;
-+		vddch0-supply = <&vreg_l25a_3p3>;
-+		max-speed = <3200000>;
-+	};
-+};
-+
-+&uart9 {
-+	status = "okay";
-+};
-+
-+&ufs_mem_hc {
-+	reset-gpios = <&tlmm 150 GPIO_ACTIVE_LOW>;
-+
-+	vcc-supply = <&vreg_l20a_2p95>;
-+	vcc-max-microamp = <800000>;
-+
-+	status = "okay";
-+};
-+
-+&ufs_mem_phy {
-+	vdda-phy-supply = <&vreg_l1a_0p875>;
-+	vdda-pll-supply = <&vreg_l26a_1p2>;
-+
-+	status = "okay";
-+};
-+
-+&usb_1 {
-+	status = "okay";
-+};
-+
-+&usb_1_dwc3 {
-+	dr_mode = "peripheral";
-+};
-+
-+&usb_1_hsphy {
-+	vdd-supply = <&vreg_l1a_0p875>;
-+	vdda-pll-supply = <&vreg_l12a_1p8>;
-+	vdda-phy-dpdm-supply = <&vreg_l24a_3p075>;
-+
-+	qcom,imp-res-offset-value = <8>;
-+	qcom,hstx-trim-value = <QUSB2_V2_HSTX_TRIM_21_6_MA>;
-+	qcom,preemphasis-level = <QUSB2_V2_PREEMPHASIS_5_PERCENT>;
-+	qcom,preemphasis-width = <QUSB2_V2_PREEMPHASIS_WIDTH_HALF_BIT>;
-+
-+	status = "okay";
-+};
-+
-+&usb_1_qmpphy {
-+	vdda-phy-supply = <&vreg_l26a_1p2>;
-+	vdda-pll-supply = <&vreg_l1a_0p875>;
-+
-+	status = "okay";
-+};
-+
-+&venus {
-+	firmware-name = "qcom/sdm845/Google/blueline/venus.mbn";
-+
-+	status = "okay";
-+};
-+
-+&wifi {
-+	vdd-0.8-cx-mx-supply = <&vreg_l5a_0p8>;
-+	vdd-1.8-xo-supply = <&vreg_l7a_1p8>;
-+	vdd-1.3-rfa-supply = <&vreg_l17a_1p3>;
-+	vdd-3.3-ch0-supply = <&vreg_l25a_3p3>;
-+
-+	qcom,snoc-host-cap-8bit-quirk;
-+
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-google-crosshatch.dts b/arch/arm64/boot/dts/qcom/sdm845-google-crosshatch.dts
-new file mode 100644
-index 0000000000000..2a81ca1d00b1b
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sdm845-google-crosshatch.dts
-@@ -0,0 +1,36 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+
-+/dts-v1/;
-+
-+#include "sdm845-google-common.dtsi"
-+
-+/ {
-+	model = "Google Pixel 3 XL";
-+	compatible = "google,crosshatch", "qcom,sdm845";
-+};
-+
-+&battery {
-+	charge-full-design-microamp-hours = <3480000>;
-+	voltage-min-design-microvolt = <3600000>;
-+	voltage-max-design-microvolt = <4400000>;
-+};
-+
-+&dispcc {
-+	/* Disable for now so simple-framebuffer continues working */
-+	status = "disabled";
-+};
-+
-+&framebuffer0 {
-+	width = <1440>;
-+	height = <2960>;
-+	stride = <(1440 * 4)>;
-+};
-+
-+&mdss {
-+	/* Disable for now so simple-framebuffer continues working */
-+	status = "disabled";
-+};
-+
-+&wifi {
-+	qcom,calibration-variant = "Google_crosshatch";
-+};
+> +	 * writing to EEPROM is available.
+> +	 */
+> +	ret = regmap_read(data->regmap, MCP47FEB02_WIPERLOCK_STATUS_REG_ADDR, &val);
+> +	if (ret)
+> +		return ret;
+> +
 
--- 
-2.51.0
+...
 
 
+> +static int mcp47feb02_parse_fw(struct iio_dev *indio_dev, const struct mcp47feb02_features *info)
+> +{
+> +	struct iio_chan_spec chanspec = mcp47febxx_ch_template;
+> +	struct mcp47feb02_data *data = iio_priv(indio_dev);
+> +	struct device *dev = &data->client->dev;
+> +	struct iio_chan_spec *channels;
+> +	u32 num_channels;
+> +	u8 chan_idx = 0;
+> +	u32 reg = 0;
+
+I would keep scope more local where possible. In this case that means moving the
+declaration of reg into the device_for_each_child_node_scoped() loop body.
+That will also make it much more obvious why it needs initialization.
+
+Similar applies in a few other places.
+
+> +	int ret;
+> +
+> +	guard(mutex)(&data->lock);
+> +
+> +	num_channels = device_get_child_node_count(dev);
+> +	if (num_channels > info->phys_channels)
+> +		return dev_err_probe(dev, -EINVAL, "More channels than the chip supports\n");
+> +
+> +	if (!num_channels)
+> +		return dev_err_probe(dev, -EINVAL, "No channel specified in the devicetree.\n");
+> +
+> +	channels = devm_kcalloc(dev, num_channels, sizeof(*channels), GFP_KERNEL);
+> +	if (!channels)
+> +		return -ENOMEM;
+> +
+> +	device_for_each_child_node_scoped(dev, child) {
+> +		ret = fwnode_property_read_u32(child, "reg", &reg);
+> +		if (ret)
+> +			return dev_err_probe(dev, ret, "Invalid channel number\n");
+> +
+> +		if (reg >= info->phys_channels)
+> +			return dev_err_probe(dev, -EINVAL,
+> +					     "The index of the channels does not match the chip\n");
+> +
+> +		set_bit(reg, &data->active_channels_mask);
+> +
+> +		ret = fwnode_property_read_string(child, "label", &data->labels[reg]);
+> +		if (ret)
+> +			return dev_err_probe(dev, ret, "%s: invalid label\n",
+> +					     fwnode_get_name(child));
+> +
+> +		chanspec.address = reg;
+> +		chanspec.channel = reg;
+> +		channels[chan_idx] = chanspec;
+> +		chan_idx++;
+> +	}
+> +
+> +	indio_dev->num_channels = num_channels;
+> +	indio_dev->channels = channels;
+> +	indio_dev->modes = INDIO_DIRECT_MODE;
+> +	data->phys_channels = info->phys_channels;
+> +
+> +	/*
+> +	 * Check if microchip,vref-buffered and microchip,vref1-buffered are defined
+> +	 * in the devicetree
+> +	 */
+> +	data->vref_buffered = device_property_read_bool(dev, "microchip,vref-buffered");
+> +
+> +	if (info->have_ext_vref1)
+> +		data->vref1_buffered = device_property_read_bool(dev, "microchip,vref1-buffered");
+> +
+> +	return 0;
+> +}
+
+
+> +
+> +static int mcp47feb02_probe(struct i2c_client *client)
+> +{
+> +	const struct mcp47feb02_features *info;
+> +	struct device *dev = &client->dev;
+> +	struct mcp47feb02_data *data;
+> +	struct iio_dev *indio_dev;
+> +	int vref1_mV = 0;
+> +	int vref_mV = 0;
+> +	int vdd_mV = 0;
+
+Always initialized before use so no need to set this here.
+Different for this one and the vref ones where they are optional
+and hence we do need the zeros.
+
+> +	int ret;
+> +
+> +	indio_dev = devm_iio_device_alloc(dev, sizeof(*data));
+> +	if (!indio_dev)
+> +		return -ENOMEM;
+> +
+> +	data = iio_priv(indio_dev);
+> +	data->client = client;
+> +	info = i2c_get_match_data(client);
+> +	if (!info)
+> +		return -EINVAL;
+> +
+> +	data->info = info;
+> +
+> +	if (info->have_eeprom) {
+> +		data->regmap = devm_regmap_init_i2c(client, &mcp47feb02_regmap_config);
+> +		indio_dev->info = &mcp47feb02_info;
+> +	} else {
+> +		data->regmap = devm_regmap_init_i2c(client, &mcp47fvb02_regmap_config);
+> +		indio_dev->info = &mcp47fvb02_info;
+> +	}
+> +
+> +	if (IS_ERR(data->regmap))
+> +		return dev_err_probe(dev, PTR_ERR(data->regmap), "Error initializing i2c regmap\n");
+> +
+> +	indio_dev->name = info->name;
+
+Given we have this info and the indio_dev->info used very near together
+and they are complete unrelated things I'd rename the mcp47feb02_features to
+features or similar.
+
+> +
+> +	ret = mcp47feb02_parse_fw(indio_dev, info);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Error parsing firmware data\n");
+> +
+> +	ret = devm_mutex_init(dev, &data->lock);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = devm_regulator_get_enable_read_voltage(dev, "vdd");
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	vdd_mV = ret / 1000;
+> +
+> +	ret = devm_regulator_get_enable_read_voltage(dev, "vref");
+> +	if (ret > 0) {
+> +		vref_mV = ret / 1000;
+> +		data->use_vref = true;
+> +	} else {
+> +		dev_dbg(dev, "using internal band gap as voltage reference.\n");
+> +		dev_dbg(dev, "Vref is unavailable.\n");
+> +	}
+> +
+> +	if (info->have_ext_vref1) {
+> +		ret = devm_regulator_get_enable_read_voltage(dev, "vref1");
+> +		if (ret > 0) {
+> +			vref1_mV = ret / 1000;
+> +			data->use_vref1 = true;
+> +		} else {
+> +			dev_dbg(dev, "using internal band gap as voltage reference 1.\n");
+> +			dev_dbg(dev, "Vref1 is unavailable.\n");
+> +		}
+> +	}
+> +
+> +	ret = mcp47feb02_init_ctrl_regs(data);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Error initialising vref register\n");
+> +
+> +	ret = mcp47feb02_init_ch_scales(data, vdd_mV, vref_mV, vref1_mV);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return devm_iio_device_register(dev, indio_dev);
+> +}
+> +
+> +static const struct i2c_device_id mcp47feb02_id[] = {
+> +	{ "mcp47feb01", (kernel_ulong_t)&mcp47feb01_chip_info },
+> +	{ "mcp47feb11", (kernel_ulong_t)&mcp47feb11_chip_info },
+> +	{ "mcp47feb21", (kernel_ulong_t)&mcp47feb21_chip_info },
+> +	{ "mcp47feb02", (kernel_ulong_t)&mcp47feb02_chip_info },
+> +	{ "mcp47feb12", (kernel_ulong_t)&mcp47feb12_chip_info },
+> +	{ "mcp47feb22", (kernel_ulong_t)&mcp47feb22_chip_info },
+> +	{ "mcp47feb04", (kernel_ulong_t)&mcp47feb04_chip_info },
+> +	{ "mcp47feb14", (kernel_ulong_t)&mcp47feb14_chip_info },
+> +	{ "mcp47feb24", (kernel_ulong_t)&mcp47feb24_chip_info },
+> +	{ "mcp47feb08", (kernel_ulong_t)&mcp47feb08_chip_info },
+> +	{ "mcp47feb18", (kernel_ulong_t)&mcp47feb18_chip_info },
+> +	{ "mcp47feb28", (kernel_ulong_t)&mcp47feb28_chip_info },
+> +	{ "mcp47fvb01", (kernel_ulong_t)&mcp47fvb01_chip_info },
+> +	{ "mcp47fvb11", (kernel_ulong_t)&mcp47fvb11_chip_info },
+> +	{ "mcp47fvb21", (kernel_ulong_t)&mcp47fvb21_chip_info },
+> +	{ "mcp47fvb02", (kernel_ulong_t)&mcp47fvb02_chip_info },
+> +	{ "mcp47fvb12", (kernel_ulong_t)&mcp47fvb12_chip_info },
+> +	{ "mcp47fvb22", (kernel_ulong_t)&mcp47fvb22_chip_info },
+> +	{ "mcp47fvb04", (kernel_ulong_t)&mcp47fvb04_chip_info },
+> +	{ "mcp47fvb14", (kernel_ulong_t)&mcp47fvb14_chip_info },
+> +	{ "mcp47fvb24", (kernel_ulong_t)&mcp47fvb24_chip_info },
+> +	{ "mcp47fvb08", (kernel_ulong_t)&mcp47fvb08_chip_info },
+> +	{ "mcp47fvb18", (kernel_ulong_t)&mcp47fvb18_chip_info },
+> +	{ "mcp47fvb28", (kernel_ulong_t)&mcp47fvb28_chip_info },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(i2c, mcp47feb02_id);
+> +
+> +static const struct of_device_id mcp47feb02_of_match[] = {
+> +	{ .compatible = "microchip,mcp47feb01", .data = &mcp47feb01_chip_info },
+> +	{ .compatible = "microchip,mcp47feb11", .data = &mcp47feb11_chip_info },
+> +	{ .compatible = "microchip,mcp47feb21", .data = &mcp47feb21_chip_info },
+
+Whilst I can see you've grouped these by properties, I think it would probably
+be better to just put them in alpha numeric order.  That makes it more obvious
+where new parts belong if they are added in future.
+
+Same applies to the array above.
+
+> +	{ .compatible = "microchip,mcp47feb02", .data = &mcp47feb02_chip_info },
+> +	{ .compatible = "microchip,mcp47feb12", .data = &mcp47feb12_chip_info },
+> +	{ .compatible = "microchip,mcp47feb22", .data = &mcp47feb22_chip_info },
+> +	{ .compatible = "microchip,mcp47feb04", .data = &mcp47feb04_chip_info },
+> +	{ .compatible = "microchip,mcp47feb14", .data = &mcp47feb14_chip_info },
+> +	{ .compatible = "microchip,mcp47feb24", .data = &mcp47feb24_chip_info },
+> +	{ .compatible = "microchip,mcp47feb08", .data = &mcp47feb08_chip_info },
+> +	{ .compatible = "microchip,mcp47feb18", .data = &mcp47feb18_chip_info },
+> +	{ .compatible = "microchip,mcp47feb28", .data = &mcp47feb28_chip_info },
+> +	{ .compatible = "microchip,mcp47fvb01", .data = &mcp47fvb01_chip_info },
+> +	{ .compatible = "microchip,mcp47fvb11", .data = &mcp47fvb11_chip_info },
+> +	{ .compatible = "microchip,mcp47fvb21", .data = &mcp47fvb21_chip_info },
+> +	{ .compatible = "microchip,mcp47fvb02", .data = &mcp47fvb02_chip_info },
+> +	{ .compatible = "microchip,mcp47fvb12", .data = &mcp47fvb12_chip_info },
+> +	{ .compatible = "microchip,mcp47fvb22", .data = &mcp47fvb22_chip_info },
+> +	{ .compatible = "microchip,mcp47fvb04", .data = &mcp47fvb04_chip_info },
+> +	{ .compatible = "microchip,mcp47fvb14",	.data = &mcp47fvb14_chip_info },
+> +	{ .compatible = "microchip,mcp47fvb24", .data = &mcp47fvb24_chip_info },
+> +	{ .compatible = "microchip,mcp47fvb08", .data = &mcp47fvb08_chip_info },
+> +	{ .compatible = "microchip,mcp47fvb18", .data = &mcp47fvb18_chip_info },
+> +	{ .compatible = "microchip,mcp47fvb28", .data = &mcp47fvb28_chip_info },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, mcp47feb02_of_match);
 
