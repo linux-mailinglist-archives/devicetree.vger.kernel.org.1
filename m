@@ -1,111 +1,114 @@
-Return-Path: <devicetree+bounces-246305-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246306-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id DECFFCBBA91
-	for <lists+devicetree@lfdr.de>; Sun, 14 Dec 2025 13:04:57 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15D58CBBB7C
+	for <lists+devicetree@lfdr.de>; Sun, 14 Dec 2025 15:25:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6309130056D1
-	for <lists+devicetree@lfdr.de>; Sun, 14 Dec 2025 12:04:56 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id BA40130010DC
+	for <lists+devicetree@lfdr.de>; Sun, 14 Dec 2025 14:25:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7296924DD15;
-	Sun, 14 Dec 2025 12:04:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AE0925A2B4;
+	Sun, 14 Dec 2025 14:25:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DDy9UIjw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CMhCbksk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7B211DF736
-	for <devicetree@vger.kernel.org>; Sun, 14 Dec 2025 12:04:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6141722B8B0;
+	Sun, 14 Dec 2025 14:25:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765713895; cv=none; b=g9crv+5toO6ChsD2bFrRtjYrAW6hlC6CRb/0X1LKuSkn9ehyMpjppcJlhq0CkI4hz2OVt0LMJE9U4CJTr9g8fvMGQHpT7sOXrDK2aa0tOj98KS7OW5PZZMiDAwxYCRkwV3zZtyzZTBXdfSXq8uj0M9VniV2a92Xx3dZ4fK5R2Zk=
+	t=1765722343; cv=none; b=Hz5+DlBNMZj9LyEyz6EuiTG+ZI1xralk90V3Svd4bUk4RzT8vy5KoIDPrPY33zQkT4TVHdM51bUIcGLoaFIEzRKZ+7CvGlFO2f29iqthONNPScawrJjiwNY6cL8xj9DHmP1CZgMKfbnLhyOjtyDevkN2f0Z1zwjxTGhMO+nnZvM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765713895; c=relaxed/simple;
-	bh=JxC1TTUXOv8h7Je59fO0E1QysMbuRT+b24AHjrR1b3U=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=UDygJp7H6iQUxh5l+jF6gVKZltIJfIFBZ+NgB7panjWAvffHjvIvYRAK6s5x4dFSoskMoIBY+1sdU5i2ffGYjnSrClCfCpoEKRA8bFnVsZHA4Vgmu1XX3DZNKjqu7e1HXxqTHy6A/8yTrRsQljS0HYNqSJCXUkU5nrbTVgniPzc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DDy9UIjw; arc=none smtp.client-ip=209.85.208.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-37bb8bef4cdso22404681fa.3
-        for <devicetree@vger.kernel.org>; Sun, 14 Dec 2025 04:04:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1765713892; x=1766318692; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=h6FVs1lq7FCYiXGgCHToT2WUTH1AKvFmKeDMOd7AaH8=;
-        b=DDy9UIjwA7zS6sEcgX18jQa2pQkksLLDy6JzXGs3WVAOguWIJyCmDFnrlbwJgQgWA8
-         txnwsH1do5xq2HhnoYS54lSqyU39vLW5llce40dl13MfFt3YEaLjDGqCJvqovGLUGuO0
-         x15NFUI9UO0LNmYDPc+LnYQ2Crziy4gEQjmGKsFXkBwuohC8Y8xkFloNNjEnUW6GdX6q
-         SsU1VMsx9+OhehGXTANfSFD0f2mkLYe3O78/XCsgoUzu9G9rdCk2ZS1W6n9dcBrzbxl1
-         h26Ig4KGDWib1o1jc/hhvxtRV30lDIqp3FG/Yghrodh34qJ4q5ho+IpzjU20carCMNcj
-         zxWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765713892; x=1766318692;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=h6FVs1lq7FCYiXGgCHToT2WUTH1AKvFmKeDMOd7AaH8=;
-        b=pn4/tmoOsXTE443p/EmALEyG8CuH8cD6POyJIjVl+Mru6WEq48yFpaU8okAC7I/Y75
-         9UJBQb/FmGJUfgGH6BywUamLa692jJZNbdM8B5vPDmm/YCzgUrLMoE1M1icJxaZ31tU5
-         5yRi5a9pwy+RiwGlIAVLdECD+i4R1hvViFN258ObKlrf20l9Z8hJ71QOOU2krHLnqWns
-         FI8TDAdJppObytRsRDsDWPrEFVZDIeu6LJ6NUcSsJIc0khTuSS5sISxIEw2HM6sSFGVd
-         ldXFZOmZ7s0RN/g0gPKMC0RUEB+DCw8Ko0uTkA1DmosZiKP+r+//lvkzyRArv61G71FG
-         yCew==
-X-Gm-Message-State: AOJu0YyhhfqtRRhik8mo33HzFXx438dio+nE0boMeAcGv1DidZ3WnxKg
-	qxmbwq8bENE2lLWx8IzoiLnwKVVtJ8N/jyQKfLuSq5MN7SJyznGLmVQIQdvtOmSW/AddxO8RScl
-	YdhfMKb8jQ0QEatu5TgoU4dAzLX1X1Ks/jI1v
-X-Gm-Gg: AY/fxX40+Qv/ttirU0I+0gW/PFo8yAZvCy5GnQRE+YGO9nz4U6SyxeIhtdYPsKkAd6G
-	X37RpoznKSCau0EEM8GcIIWxQXggQmM88oeUCNFaJIxXK2uqFQwPh4bbhpwc3o7k9KAPwafiyev
-	ADfm4MLLZEq+6SEqLCn/ij3WUUc1yHiabhJoyr/dgXmvnzOMCXTb5LgyF75445s5qHqnuaMrx8R
-	/X9xZx8eMo2KUWgDqY+N5zjLAX6/PnBu5GVwrYnrRfe9p7sstGHs+oObvdoi8TE73vPlgfExm+N
-	yx24J70dCSIEOXEVPN7QFW/k1t8=
-X-Google-Smtp-Source: AGHT+IFEHj5vW/XmkFcEYVjxG+F3Nz7WaZtq+0llUfoVvXBqTv4i3OwZA6sGVcQV5jtiS+U2ieRUXKmtZhWxjytV7T4=
-X-Received: by 2002:a05:651c:220b:b0:37f:a216:e455 with SMTP id
- 38308e7fff4ca-37fd07ad69amr22302051fa.18.1765713891487; Sun, 14 Dec 2025
- 04:04:51 -0800 (PST)
+	s=arc-20240116; t=1765722343; c=relaxed/simple;
+	bh=r+/5qsA1gT0kLGW99QBrTL8ajG99+c99wvM1zFRce4o=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=U63a5/YXAeFKow7xWHhXK2WmnsEHG9WL8ia575AaiI47vKtMZedhiKS9zQhBFFvPJYwgKj2j6wFnee6V9eK4jBm+Moe80T/pApIkZ4h8+KXdABxd34tSCFifR+r88bdJ2sKKCuUVqV2lCUjsTiCaPSgGO0cSvfz/JM2TM/uzqPA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CMhCbksk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CECA4C4CEF1;
+	Sun, 14 Dec 2025 14:25:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1765722342;
+	bh=r+/5qsA1gT0kLGW99QBrTL8ajG99+c99wvM1zFRce4o=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=CMhCbkskHMo3hjmHVVPMVR744jFL/RTYPHYbs0py8C9gOqXTn42BBoboxM1dkbWDh
+	 hoM3E8Zl+VBvz7pHkf3gdfwIIU5wcavj/H6R6wx5uW3oqCi5qp3X5BWRSiTWah51Qi
+	 kitMPZZ3BTSWSSK7gLiUb2t31u42O0wLATdyOK/TBsb3C7XfpA4JMl3+tOTlwcalfV
+	 BOIG3FJmsUMDYWXzcapXwJdf+el1+gkcwOH45CIaAnM5/77Rv5Oe1yecwLvTr5QQA2
+	 cZCk6svbYnaAWt5CJhoOsVMCoMEFH4v+QgI9d55Gv2fqp+WBH2xuzUt1lVbYKTBJ1C
+	 IvYuc0hJBTzDQ==
+Date: Sun, 14 Dec 2025 14:25:34 +0000
+From: Lee Jones <lee@kernel.org>
+To: hangsuan.wang@altera.com
+Cc: linux-kernel <linux-kernel@vger.kernel.org>,
+	devicetree <devicetree@vger.kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Thierry Reding <treding@nvidia.com>,
+	Romain Gantois <romain.gantois@bootlin.com>,
+	Andrea della Porta <andrea.porta@suse.com>,
+	Andrei Simion <andrei.simion@microchip.com>,
+	Dinh Nguyen <dinguyen@kernel.org>,
+	Mahesh Rao <mahesh.rao@altera.com>, Marek <marex@denx.de>,
+	Simon <simon.k.r.goldschmidt@gmail.com>,
+	linux-drivers-review@altera.com,
+	Muhammad Amirul Asyraf Mohamad Jamian <muhammad.amirul.asyraf.mohamad.jamian@altera.com>,
+	Khairul Anuar Romli <khairul.anuar.romli@altera.com>
+Subject: Re: [PATCH 0/4] Add Device Tree binding and nodes for Agilex5/Agilex
+ SOC FCS configuration.
+Message-ID: <20251214142534.GB9275@google.com>
+References: <cover.1765534135.git.hang.suan.wang@altera.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251214110531.9475-1-stefano.r@variscite.com> <20251214110531.9475-7-stefano.r@variscite.com>
-In-Reply-To: <20251214110531.9475-7-stefano.r@variscite.com>
-From: Fabio Estevam <festevam@gmail.com>
-Date: Sun, 14 Dec 2025 09:04:38 -0300
-X-Gm-Features: AQt7F2p36DBHCZVA3WlHXwUgn4u6_L0tGkOCn88lhySCWth0zVlBdA_shlhyg2g
-Message-ID: <CAOMZO5AzuZVkD3rTLEDGFpCx0ovtKfzjZtNgGG0uLDXbPkiqRg@mail.gmail.com>
-Subject: Re: [PATCH v3 6/6] arm64: dts: imx8mp-var-som: Add support for
- ADS7846 touchscreen
-To: Stefano Radaelli <stefano.radaelli21@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Stefano Radaelli <stefano.r@variscite.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <cover.1765534135.git.hang.suan.wang@altera.com>
 
-Hi Stefano,
+On Fri, 12 Dec 2025, hangsuan.wang@altera.com wrote:
 
-On Sun, Dec 14, 2025 at 8:05=E2=80=AFAM Stefano Radaelli
-<stefano.radaelli21@gmail.com> wrote:
+> From: "Wang, Hang Suan" <hang.suan.wang@altera.com>
+> 
+> This patch series introduces necessary Device Tree (DT) support for the
+> Soc/Hardware FPGA Crypto Service (fcs) functionality across the Altera
+> Agilex SoC families. This feature allows the kernel to identify, interact
+> and communicate with the high-speed FPGA hardware without interruption or
+> software overhead.
+> 
+> The series structured as follows:
+> Patch 1: Introduces the core YAML schema binding for a generic agilex5,
+> soc-fcs-config miscellaneous device.
+> Patch 2: Add fcs property to the existing stratix10-svc firmware binding.
+> Patch 3&4: Add the fcs nodes to the respective Agilex5 and Agilex DT files.
+> 
+> ---
+> Notes:
+> This patch series is applied on socfpga maintainer's tree
+> https://git.kernel.org/pub/scm/linux/kernel/git/dinguyen/linux.git/log/?h=socfpga_dts_for_v6.19
+> 
+> ---
+> Wang, Hang Suan (4):
+>   dt-bindings: misc: agilex5-soc-fcs-config: Add binding
+>   dt-bindings: firmware: stratix10-svc: add fcs-config property
+>   arm64: dts: socfpga: agilex5: add fcs node
+>   arm64: dts: socfpga: agilex: add fcs node
+> 
+>  .../firmware/intel,stratix10-svc.yaml         |  4 +++
+>  .../misc/intel,agilex5-soc-fcs-config.yaml    | 32 +++++++++++++++++++
+>  MAINTAINERS                                   |  5 +++
+>  arch/arm64/boot/dts/intel/socfpga_agilex.dtsi |  4 +++
+>  .../arm64/boot/dts/intel/socfpga_agilex5.dtsi |  5 +++
 
-> +       /* Resistive touch controller */
-> +       ads7846: touchscreen@0 {
-> +               compatible =3D "ti,ads7846";
+Why am I receiving this?
 
-The public datasheet states that the touchscreen is a TSC2046:
-
-https://variscite.com/wp-content/uploads/2024/05/VAR-SOM-MX8M-PLUS_V2_Datas=
-heet.pdf
-
-I understand they are both from the same family of touchscreen
-controllers, but shouldn't you use the ti,tsc2046 compatible string
-instead?
+-- 
+Lee Jones [李琼斯]
 
