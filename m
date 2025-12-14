@@ -1,130 +1,89 @@
-Return-Path: <devicetree+bounces-246321-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246322-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18CF6CBBC67
-	for <lists+devicetree@lfdr.de>; Sun, 14 Dec 2025 16:20:35 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0BE5CBBC99
+	for <lists+devicetree@lfdr.de>; Sun, 14 Dec 2025 16:35:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 825DB3007C63
-	for <lists+devicetree@lfdr.de>; Sun, 14 Dec 2025 15:20:32 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id ABE443007251
+	for <lists+devicetree@lfdr.de>; Sun, 14 Dec 2025 15:35:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 231E129DB65;
-	Sun, 14 Dec 2025 15:20:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D8992C158A;
+	Sun, 14 Dec 2025 15:35:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aj+TAchL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Fw8nQavE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8E7229C33F;
-	Sun, 14 Dec 2025 15:20:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E292EF9E8;
+	Sun, 14 Dec 2025 15:35:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765725631; cv=none; b=WZSXYOvHTvmjNixgBrfXInXiX7LoZ1UZZh1uVScfCJey7YBmzunxnXb7v9ASX8ywE4P2/epCyLwLw+mZ+nX42V1rV/9+dk59pDorsX8tXiX8iSdPKJdre0H2qpDHaW/LB/9awIvpFeVVlRQs+XirNzej4tP8Ryp8b0UoGR96Gi8=
+	t=1765726515; cv=none; b=ARevShUKL2Nh9L8mhYFVmHXrEjti3ZrZvwE02hfliF08yj94V7PBjmseANenacX20Qudx0c9W4dPjTiEANqpZVt2rWS/TH7t8I9zWj0ACO/07eeBZ5PEYbRop7ujENqON/X8mdQedqiFHUrOy6mkQoOFNLVDdtD0yJuvU0Wvn28=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765725631; c=relaxed/simple;
-	bh=gCS24zxS0GqMw/1uUC+Ly+irr9h/H+Ln2ULQ3KWHgWo=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=p0fZilUCtdN0guIpZSmJRlLBQuMt/Q2dREHS3tktFaKbxMEW3nVLHzT2yv70wj+DemyVV0JMc+TLQO4U32DTqKVA+0sne767PUD94VkRUN5MQcSEJ5tbVtkTZ9Mk49q7sROBAcZBWBOitbxfMKdF57FUSOmduW5kXA75VPEsAOE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aj+TAchL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D481C4CEF1;
-	Sun, 14 Dec 2025 15:20:25 +0000 (UTC)
+	s=arc-20240116; t=1765726515; c=relaxed/simple;
+	bh=AC0Ciwe3PEuDgmmeEkF1W546sse6CnA0wCHL70t7nUw=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=N8DQ4lXfrcz3dDlFppnmutViuHgj+KVF08b2CZ4AKwWR4yTjA9S3bcc3K/JbWrcT+FE0ndHDIZlNsC+gH6UF1q1Y1op5jUGdlIOUY8b/r4LwJc/80QiQS1z8W+q/Li5kJCPI8vppoWfVwBdHrNkN4y7YTyrvWmWT/V1tgjL9H6w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Fw8nQavE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F0E8C4CEF1;
+	Sun, 14 Dec 2025 15:35:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765725630;
-	bh=gCS24zxS0GqMw/1uUC+Ly+irr9h/H+Ln2ULQ3KWHgWo=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=aj+TAchLksZ6M11vLBPzOdGte6Qd5M33Qg4T6GwqbHXKxN73+KRhbd4WVKzdDk8v2
-	 oN3VsuO7xZbMVAJt2oHp2QkeTqhJq+vftI5Eqr1Er1MJRM220DKdAiztXgF78T+fYr
-	 pRQ8c+Epwv6u3rN+hbK1rODzJqffDuaSz1zeKN+VWOFVfktq9AqiqlIGwTvrBQZss/
-	 eGBZbR5Yq5xaSzeKm84VHCIFwAu4m+MIlwPlfEUshTY/VXYVqArIFmKXff9RwCD/b1
-	 9Sjl4/GjWXpJJA37tt2ivjFiNHlYjDPjVlB3n0lCZrVVD76kxv9Ojz6+9ephEyOouX
-	 sjfGA53Imxf0g==
-Date: Sun, 14 Dec 2025 15:20:21 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Petre Rodan <petre.rodan@subdimension.ro>, David Lechner
- <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy
- Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	s=k20201202; t=1765726514;
+	bh=AC0Ciwe3PEuDgmmeEkF1W546sse6CnA0wCHL70t7nUw=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=Fw8nQavEWYc9KQQwdhwW16DvxCvi7sCJZGjzXmsr8C58703xOypILkwAVBTkt2M+5
+	 lAcWUQFhvyMkIXDAbmClzZTxRvIuYivlednyUuV/PbzdRDMR+dvQkPvfMPWGE9j1nB
+	 aBKypB6ZM4KuzJWSjf5Nlm3QuAW0gxfWQ+HZ9soMt3UYbtuIy3dctrNAvfcekdiuzF
+	 8dZ/4Jibb9tEF7UmP4v06DUb77+RUcefLm9TkTJ7OUhLPg6lmVj9raOBRrP436RCiX
+	 wggGyJw3lmxb8aX1Q5cEQqzNEKmQaCVlN/ZLD1R6brLTVK2aVLp4Px7TsfCWv2D85Y
+	 a7tRmlHO1NpGQ==
+From: Lee Jones <lee@kernel.org>
+To: lee@kernel.org, pavel@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+ conor+dt@kernel.org, Lukas Timmermann <linux@timmermann.space>
+Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
  linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 1/2] dt-bindings: iio: pressure: add
- honeywell,abp2030pa
-Message-ID: <20251214152021.72081e78@jic23-huawei>
-In-Reply-To: <097fae2e-8a72-443b-8ed0-ffd6ecfc9e64@kernel.org>
-References: <20251207-honeywell_abp2_driver-v4-0-b52a4b96bbf7@subdimension.ro>
-	<20251207-honeywell_abp2_driver-v4-1-b52a4b96bbf7@subdimension.ro>
-	<44adc9d6-2520-4282-8c6e-1fedf5319e77@kernel.org>
-	<aTZ7G8M-FvmEuQ8X@lipo.home.arpa>
-	<097fae2e-8a72-443b-8ed0-ffd6ecfc9e64@kernel.org>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
+In-Reply-To: <20251125114015.355487-1-linux@timmermann.space>
+References: <20251125114015.355487-1-linux@timmermann.space>
+Subject: Re: [PATCH v11 0/2] Support for Osram as3668 LED driver
+Message-Id: <176572651204.304949.14632935583958995926.b4-ty@kernel.org>
+Date: Sun, 14 Dec 2025 15:35:12 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.15-dev-52d38
 
-On Mon, 8 Dec 2025 08:21:49 +0100
-Krzysztof Kozlowski <krzk@kernel.org> wrote:
-
-> On 08/12/2025 08:15, Petre Rodan wrote:
-> > 
-> > hello Krzysztof, 
-> > 
-> > On Mon, Dec 08, 2025 at 06:01:46AM +0100, Krzysztof Kozlowski wrote:  
-> >> On 07/12/2025 07:00, Petre Rodan wrote:  
-> >>> Adds binding for digital Honeywell ABP2 series pressure and temperature
-> >>> sensors.
-> >>> The i2c address is hardcoded and depends on the part number.
-> >>> There is an optional interrupt that signals the end of conversion.
-> >>>
-> >>> Signed-off-by: Petre Rodan <petre.rodan@subdimension.ro>  
-> >>
-> >> <form letter>
-> >> This is a friendly reminder during the review process.
-> >>
-> >> It looks like you received a tag and forgot to add it.  
-> > 
-> > [..]
-> >   
-> >> If a tag was not added on purpose, please state why and what changed.
-> >> </form letter>  
-> > 
-> > I removed the tag on purpose since the yaml file was modified in v4 as per the
-> > changelog that is below the commit message.  
+On Tue, 25 Nov 2025 12:40:13 +0100, Lukas Timmermann wrote:
+> This patch adds basic support for the as3668 driver IC via I2C interface.
+> The IC is capable of driving four individual LEDs up to 25.5mA per
+> channel. Hardware blinking would be theoretically possible, but this chip
+> only supports a few set on/off-delays which makes using that feature
+> unfeasable, therefore my driver doesn't offer that capability.
+> It's intended applications is in mobile devices such as phones,
+> tablets and cameras. This driver was tested and is working on
+> a google-manta which is running postmarketOS with a near mainline kernel.
+> Also there is a patch in the linux mailing list for that device:
+> https://lore.kernel.org/all/20251120201958.1970828-1-linux@timmermann.space/
+> The register names and values are taken from the official datasheet which
+> can be found here:
+> https://www.mouser.com/datasheet/2/588/AS3668_DS000196_1-00-1512816.pdf
 > 
-> Please read my form letter and please read linked submitting patches
-> doc. I pointed to a very specific paragraph, so you don't need to read
-> everything...
-> 
-> >   
-> >> I will not be doing work twice and, without explanation, forcing me to
-> >> do that is disrespectful to my time.  
-> > 
-> > sorry about that. the single thing that changed was that
-> > 
-> > ---- 8< --------------------------------------------
-> > @@ -76,8 +71,7 @@ properties:
-> >    spi-max-frequency:
-> >      maximum: 800000
-> >  
-> > -  vdd-supply:
-> > -    description: provide VDD power to the sensor.
-> > +  vdd-supply: true
-> >    
-> 
-> 
-> This is trivial and absolutely NOT a reason to drop the tag. Did you
-> read submitting patches document? Please consider TIME of reviewers,
-> even time spent on replying on this.
+> [...]
 
-I put the tag back and applied to the testing branch of iio.git.
-I'll rebase that on rc1 once it is available.
+Applied, thanks!
 
-Thanks,
+[1/2] dt-bindings: leds: Add new as3668 support
+      commit: a093bc82b6013c40add22b96deed4d2b67905f41
+[2/2] leds: as3668: Driver for the ams Osram 4-channel i2c LED driver
+      commit: 8856d7fe1758937ac528770f552ec58c388c255b
 
-Jonathan
+--
+Lee Jones [李琼斯]
+
 
