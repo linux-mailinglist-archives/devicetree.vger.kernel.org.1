@@ -1,79 +1,80 @@
-Return-Path: <devicetree+bounces-246278-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246279-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5452CBB51D
-	for <lists+devicetree@lfdr.de>; Sun, 14 Dec 2025 01:09:36 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB162CBB52C
+	for <lists+devicetree@lfdr.de>; Sun, 14 Dec 2025 01:13:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5F0803008EB3
-	for <lists+devicetree@lfdr.de>; Sun, 14 Dec 2025 00:09:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 73CDC300B925
+	for <lists+devicetree@lfdr.de>; Sun, 14 Dec 2025 00:13:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AFA3F50F;
-	Sun, 14 Dec 2025 00:09:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C27D18EAB;
+	Sun, 14 Dec 2025 00:13:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="N+GfDfPZ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="V5dDYa6i"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 995732C9D
-	for <devicetree@vger.kernel.org>; Sun, 14 Dec 2025 00:09:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A003F50F
+	for <devicetree@vger.kernel.org>; Sun, 14 Dec 2025 00:13:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765670974; cv=none; b=jvRUSAO/Rdp0bbb/jAjY1EigtD/zeYqMn8EdrPyrOns8rJCb5VbRj5S7RKK9mLI3vnSruzf954nSvAgxHwpHxl3dMZHaFF6LiA1oA+D3uY2O8Q/VjT1PVl6PU7GpoaKhN7LVdMmaJpDvNjxlr/HJpDA7mYcoRWz4dEVMVygpHow=
+	t=1765671183; cv=none; b=ZaV4GglCwgMZfGgdhzG8kG2lqFUbAaySx3zHI/ZRaJo3QuImNIjJS0LTTQZkX4lCXeBEoVaCC7zRJwiVs9WTEwsa9rS18E8cW0j7fCUoOshqfXb6Ac+LB7CCHnS8Z8sJLrvJqftwo26Pj8NZl2Mal1TnBnP04+kWKMHmsEIhVPU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765670974; c=relaxed/simple;
-	bh=sgNSVyUVIlQGl+4yq6gFL7+dAkwlztttag9JjuKcAB8=;
+	s=arc-20240116; t=1765671183; c=relaxed/simple;
+	bh=vsvgbqhg3tSK6U4XQECKskE/ov7KmsHhac+n5VQ3Udw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qi7TtDZyxiHqTdhkNR4nqdgOm4wuSSzj5JjYnaQZWs7L7XjAN/vTbLvoU99AG1D8WKtpGdCkXspLHGEaHZpM8hw/Wf9Vzs6hST8ccgeX2SqzuGopzSaxmhlJs28ID5hzmpAEPYeVPKF5PLZ7q8Og5iiUdFOQZ18mmiTJM55478k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=N+GfDfPZ; arc=none smtp.client-ip=209.85.167.45
+	 In-Reply-To:Content-Type; b=lUIqc70wCDp4/5LouSkM9wjcuJfPkRWfZsCSLa0sQef9F89tWoB7yjhWOJexsE254fYWqSKN6rjB4JiQQ60i1dFn+8PknrUAT2SjfjHFU14Ch3WPq6A6zqVt5JtdPmeX1Tsoim5yAvqQb7zg3DIwwyLz3b1vZHQHUrnq6ubaWk0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=V5dDYa6i; arc=none smtp.client-ip=209.85.167.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-598ed017e4cso319639e87.0
-        for <devicetree@vger.kernel.org>; Sat, 13 Dec 2025 16:09:32 -0800 (PST)
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-59426dc96f2so196187e87.2
+        for <devicetree@vger.kernel.org>; Sat, 13 Dec 2025 16:13:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1765670971; x=1766275771; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1765671179; x=1766275979; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
          :user-agent:mime-version:date:message-id:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=YLbZpeVWxhUiA9xdv2yvpF5kwmnyurNX54Ve7q/okuU=;
-        b=N+GfDfPZ87JYzoR59zM/+8WfSjy6WI1X/m+CBQAkxW4lS8KmXuwjgzu/fYI26l7zuX
-         jBbdwEIqsNeqL/WR5gBE8iPXBG1vATlGosqrrorghFnDk0grJo3Apn4UTA/yasAtlhZc
-         tZ823kTOA7XjwITOE8/TacFEp+Jnkyu/BSRPR7C64cPc2zTBzHGnj9ZzvWJuJqH2EHY+
-         wcHZrbGluVeoIMLrknyj4XhVa+Gj7E3K+RVIhjgWkMgW2VuELUm2iP9P2bCdktgCYeml
-         dXX+q9zYbNDJbRdrItlmjlE22mp/z9dPEUEvOyvLvyN+vUGius4u7Fxw9aus2xx92VQz
-         yILg==
+        bh=6cs2594TMmAznKRH01WTgorColGdcHW47FTc8OPu5Ls=;
+        b=V5dDYa6i22+s70n2bX4cGfZ697Gk4PcK1t58VlXHk/7F5/GYcN9QAh7ZBc4GdO9z5s
+         wl7V9lYKCMNv5uPtfQ7Fe2Noi3xyx8PKCB2/EwJVhKuXPsYZSiFtm37rtNmISmLeEYTv
+         UyOxkGnO/TcKYR7bjozjYJMTBu56FHHdK0KwziKS9u3X7YIhhftYiNrkVCp61LYB3rWK
+         am/OPBs2jM98tyq1aNnPgSNj5f34UGBNB5yjvyT+l+9+a3+ZoI4uzJqyrCga93Pwnj7O
+         ozTMnZqtOiSKjfT284/yKSt8sdg2PVj51UJ6yvvYPGzNiFsbHO3kkvnrw0kfWylMw1dw
+         48ZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765670971; x=1766275771;
+        d=1e100.net; s=20230601; t=1765671179; x=1766275979;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
          :user-agent:mime-version:date:message-id:x-gm-gg:x-gm-message-state
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=YLbZpeVWxhUiA9xdv2yvpF5kwmnyurNX54Ve7q/okuU=;
-        b=cmPe/NMZwbtJ/9QGWW2UJE3VALk9WDKHt/NPxsTjrFY466aA7cfbpXCsgg2AqFRcVL
-         odh3yVWMvq+WxZ/KDHqu8nz6USfzjPQ0KsuH71Try9RX0auJmhhxG0Db3aFbEaZsUv/G
-         w9gNRmpgMJSBStYRRsJj2vwUSOfXUJYmojU7IQJ+VL5HlC1JLUoetYauSUU5IjJsPo27
-         nBAXCJpIFwbYrVKYkBzj8a66QpyT2Fj5OPMoy4ROfq5kAI6FnrI8W7lHtqHKSKSUvsAe
-         +tZqi5/5A5bDCSGycaBS+PB7lx5xdj2a8BQjHBJPUdsN5cKJ4F3InKYWkraILkqYI+JC
-         B7ow==
-X-Forwarded-Encrypted: i=1; AJvYcCUtNdYlPgNOHIALdkSrcu9im4rJN0jLj1OFf37KAr1ljO0S9Cs3pxumTc0rDt2BhTYPdLLX5pzdtu81@vger.kernel.org
-X-Gm-Message-State: AOJu0YwHIEbN8oXCkDtWFwJ8dU9JSJzXQNRf+FQskZRPunllRPVIYSPN
-	k3l9Gq4+mQ4GdF77Siw7DjFSV3mjr1KXwr7R94yGkGnkYZsolvlW5hilDjw6QZr8ZuI=
-X-Gm-Gg: AY/fxX7a9QO2O43UianyvN01T/Ofm54o+kwo2OyPF0dlqXGLE3NGJVYAJqtLa0Nepcp
-	ll4OtAHFg9xSdkwg38ontXGQBHDhsHD5WPiVE3XEayDicUYTyns0luRM7o1B4jBlgGdNDm/SrQZ
-	RP6mwIzXe4s4+faoMHrXxBvcNfPKSmDNJ90e5LnYlsoNR1PjVtSXsAQBAy8H9XQN9eOYeTXOZf6
-	K0jhKfPAgtanOCgWpHQ6YJEXubPeBgMUfKLH4CwlsYZlLyML0J2TCiA23vf1pgKTEMSuPamo4+V
-	vmeM+7gmqUGhofMCqMHbHTvcTv9D/8zoDTI6vEOJ6HLQyBPECaXo+pTLrv0V/cxIi5uJ1H6OxtO
-	BV+FK7dtZ2HCur82f3T2jjqSM+dA8sDEyAb0pgAl1ftH46PmhU6yOgNRU2lk0zyQLWGbidoNFRd
-	f3JtGnP8DazSOykNanDuF6JKmAPLXSAkyjU4MoKWyi+xZlhVntcUtoaJZCq5YSmXpIPw==
-X-Google-Smtp-Source: AGHT+IGa33buz/rmba0bIG4qV9RX3OHMcGRTnZkr8Mbi7xgjdbVEw2xZ+1nY7hVGxnE3RNPMJLjOOg==
-X-Received: by 2002:a05:6512:3d1b:b0:597:d7d6:398d with SMTP id 2adb3069b0e04-598faa01850mr1324255e87.2.1765670970598;
-        Sat, 13 Dec 2025 16:09:30 -0800 (PST)
+        bh=6cs2594TMmAznKRH01WTgorColGdcHW47FTc8OPu5Ls=;
+        b=rfYdGC7IvoZgRyoxsUGQCdS3Jn+u7X/bjitliBBpJgtVpFCRDtO0J8r1gieCGZYqLB
+         6VyTqYy2YpoDGDik8DvW2ejFk5wYEUA4XGmEvy9CJ6D3puejBIo+Umgv2nw30OUjEDfB
+         9PUqMB0CDVy+OOZFqkXL59y5UXjmNl/dLch/wBvTgSmwHjblnmjMDsVSKFWlaDVl2nw7
+         FUbbJ7oLOCQhifF/lW3opKbo6DRaC1RFLr65njAMOYVzEXAVTNckW7BcuANUbjpn+YkQ
+         muirkNAQtcq+t+gOHuHWqYukJgqSUei4AIiCg7+QkWd/HuSs4KnrYep1UWeiKYRgnQUv
+         JHMg==
+X-Forwarded-Encrypted: i=1; AJvYcCXdAbA4W7TCZgSUExJbDrJL+YBS5twdxN9cBmYOtx4caFMqTlGO4dKowrzDbYTTpYYFBsXujOTr/oun@vger.kernel.org
+X-Gm-Message-State: AOJu0YwWjBgOf21RnoJENw70ajCzBmhKH7baeclL0BnE5cbqiHc9CAVu
+	dlq/2Tc3kTGEz2h1hwNxejD6KM+e1tXnRBXcIFVtAeQBVKh/M0dPSkpE/GR4NrA/01U=
+X-Gm-Gg: AY/fxX4pfllIVxE2jbhcpsipbIsW0npYSQ5Rj/jZ44ExnuRLf5J88+NmP6/2tafE8Mh
+	cAEvAHkhHLbVLub9jm/ODC4fLnQtBGVZd9Xjk2xip3cPblNn+UAAISv4oTI5XT+ep1r7I+FSg6b
+	GOEzs+/Hj/GVwwTYbYQGVpbtsmJmrm2PEUlXWzXonqnw3YguWG8OxWSJA530ZTGJN/tqZawyiTv
+	rzeMMFSkJ/c05sqFc0Q/i0GzhGtDjVsAliiAPHBYKa9MynN+UEKqI7qFXKwSiqCKqocwGTRKsIN
+	hsAMkV/Wo1p2qrp3JHTJLaDobvdp2XoLTHRJ4hDCeI0xYAUwd6ie00t/xRuSp5ZVUb36iu+uzzy
+	tfz6g/9dM17P0Pv9ZFBYQnpSC/W2nuZuW3WtxhUBvb5Nv6Fp3axoc8oz0TyYDzRMbhG7v2ZaXJb
+	nTQt3z1xjGTqaXlV5FoL0dZ8U4ETE8o65gqnD8DQ2VvSINI/2MlFGsn7c76P7yyL854L3CjUsd6
+	f0qIfb9CnkPQKQ=
+X-Google-Smtp-Source: AGHT+IFm4BJTCDjreUh2T7xgcVbVJ0wHXDQMXAZTqYS6BUidZybUDCLVjfay5BiQaCQll7cj358FCw==
+X-Received: by 2002:a05:6512:ea3:b0:595:83c6:2228 with SMTP id 2adb3069b0e04-598fa9dd15bmr1086116e87.0.1765671179251;
+        Sat, 13 Dec 2025 16:12:59 -0800 (PST)
 Received: from [192.168.1.100] (91-159-24-186.elisa-laajakaista.fi. [91.159.24.186])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-598f3194dbcsm3464122e87.78.2025.12.13.16.09.27
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-598f3194dbcsm3466519e87.78.2025.12.13.16.12.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 13 Dec 2025 16:09:28 -0800 (PST)
-Message-ID: <2cb8c5ce-ea80-4cb6-9bef-f526eb433d96@linaro.org>
-Date: Sun, 14 Dec 2025 02:09:27 +0200
+        Sat, 13 Dec 2025 16:12:57 -0800 (PST)
+Message-ID: <bac65324-6049-40d1-b196-6aeafd37366b@linaro.org>
+Date: Sun, 14 Dec 2025 02:12:55 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,93 +82,68 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] arm64: qcom: sdm845: Introduce camera master clock
- pinctrl
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: sdm845-db845c: Use introduced
+ platform wide cam_mclk0_default
 To: david@ixit.cz, Bjorn Andersson <andersson@kernel.org>,
  Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
 Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org
 References: <20251213-sdm845-mclk-v1-0-197bc947d4c6@ixit.cz>
- <20251213-sdm845-mclk-v1-1-197bc947d4c6@ixit.cz>
+ <20251213-sdm845-mclk-v1-2-197bc947d4c6@ixit.cz>
 From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <20251213-sdm845-mclk-v1-1-197bc947d4c6@ixit.cz>
+In-Reply-To: <20251213-sdm845-mclk-v1-2-197bc947d4c6@ixit.cz>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 On 12/13/25 14:00, David Heidelberg via B4 Relay wrote:
 > From: David Heidelberg <david@ixit.cz>
 > 
-> There are shared for the whole architecture, so let's define these in
-> proper place.
+> All Snapdragon 845 platform has same controls GPIOs.
+
+It's a bit clumsy and not very informative commit message, and MCLK is
+not a "control GPIO", it's a pad function.
+
 > 
 > Signed-off-by: David Heidelberg <david@ixit.cz>
 > ---
->   arch/arm64/boot/dts/qcom/sdm845.dtsi | 43 ++++++++++++++++++++++++++++++++++++
->   1 file changed, 43 insertions(+)
+>   arch/arm64/boot/dts/qcom/sdm845-db845c-navigation-mezzanine.dtso | 2 +-
+>   arch/arm64/boot/dts/qcom/sdm845-db845c.dts                       | 8 --------
+>   2 files changed, 1 insertion(+), 9 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> index bf2f9c04adba7..97bd9513b011b 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> @@ -2805,6 +2805,49 @@ tlmm: pinctrl@3400000 {
->   			gpio-ranges = <&tlmm 0 0 151>;
->   			wakeup-parent = <&pdc_intc>;
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c-navigation-mezzanine.dtso b/arch/arm64/boot/dts/qcom/sdm845-db845c-navigation-mezzanine.dtso
+> index dbe1911d8e470..f6c2c98970d76 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845-db845c-navigation-mezzanine.dtso
+> +++ b/arch/arm64/boot/dts/qcom/sdm845-db845c-navigation-mezzanine.dtso
+> @@ -40,7 +40,7 @@ camera@10 {
+>   		/* CAM0_RST_N */
+>   		reset-gpios = <&tlmm 9 GPIO_ACTIVE_LOW>;
+>   		pinctrl-names = "default";
+> -		pinctrl-0 = <&cam0_default>;
+> +		pinctrl-0 = <&cam0_default &cam_mclk0_default>;
 >   
-> +			cam_mclk0_default: cam-mclk0-default-state {
-> +				pins = "gpio13";
-> +				function = "cam_mclk";
-> +				drive-strength = <2>;
-> +				bias-disable;
-> +			};
-> +
-> +			cam_mclk0_sleep: cam-mclk0-sleep-state {
-> +				pins = "gpio13";
-> +				function = "cam_mclk";
-> +				drive-strength = <2>;
-> +				bias-pull-down;
-> +			};
-> +
-> +			cam_mclk1_default: cam-mclk1-default-state {
-> +				pins = "gpio14";
-> +				function = "cam_mclk";
-> +				drive-strength = <2>;
-> +				bias-disable;
-> +			};
-> +
-> +			cam_mclk1_sleep: cam-mclk1-sleep-state {
-> +				pins = "gpio14";
-> +				function = "cam_mclk";
-> +				drive-strength = <2>;
-> +				bias-pull-down;
-> +			};
-> +
-> +			cam_mclk2_default: cam-mclk2-default-state {
-> +				pins = "gpio15";
-> +				function = "cam_mclk";
-> +				drive-strength = <2>;
-> +				bias-disable;
-> +			};
-> +
-> +			cam_mclk2_sleep: cam-mclk2-sleep-state {
-> +				pins = "gpio15";
-> +				function = "cam_mclk";
-> +				drive-strength = <2>;
-> +				bias-pull-down;
-> +			};
-> +
-> +
-
-Please remove an excessive blank line.
-
->   			cci0_default: cci0-default-state {
->   				/* SDA, SCL */
->   				pins = "gpio17", "gpio18";
+>   		clocks = <&clock_camcc CAM_CC_MCLK0_CLK>;
+>   		clock-names = "xvclk";
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+> index ce23f87e0316b..981d19c20fa1f 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+> +++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+> @@ -877,14 +877,6 @@ rst-pins {
+>   			drive-strength = <16>;
+>   			bias-disable;
+>   		};
+> -
+> -		mclk0-pins {
+> -			pins = "gpio13";
+> -			function = "cam_mclk";
+> -
+> -			drive-strength = <16>;
+> -			bias-disable;
+> -		};
+>   	};
+>   
+>   	cam3_default: cam3-default-state {
 > 
-
-Please add mclk3 to the list, it's one of the gpio16 pad functions.
-
-After adding that
 
 Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
 
