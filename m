@@ -1,114 +1,156 @@
-Return-Path: <devicetree+bounces-246306-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246307-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15D58CBBB7C
-	for <lists+devicetree@lfdr.de>; Sun, 14 Dec 2025 15:25:47 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97AE7CBBB97
+	for <lists+devicetree@lfdr.de>; Sun, 14 Dec 2025 15:42:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id BA40130010DC
-	for <lists+devicetree@lfdr.de>; Sun, 14 Dec 2025 14:25:44 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 9243F3009105
+	for <lists+devicetree@lfdr.de>; Sun, 14 Dec 2025 14:42:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AE0925A2B4;
-	Sun, 14 Dec 2025 14:25:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7B12273D9F;
+	Sun, 14 Dec 2025 14:42:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CMhCbksk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A2NEGrJ8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6141722B8B0;
-	Sun, 14 Dec 2025 14:25:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B07E127280A
+	for <devicetree@vger.kernel.org>; Sun, 14 Dec 2025 14:42:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765722343; cv=none; b=Hz5+DlBNMZj9LyEyz6EuiTG+ZI1xralk90V3Svd4bUk4RzT8vy5KoIDPrPY33zQkT4TVHdM51bUIcGLoaFIEzRKZ+7CvGlFO2f29iqthONNPScawrJjiwNY6cL8xj9DHmP1CZgMKfbnLhyOjtyDevkN2f0Z1zwjxTGhMO+nnZvM=
+	t=1765723329; cv=none; b=WshS3oBPEWqYWrzn8V2bYqgi7b/EWWhnSMRP6b1+1UwNKV/ix3OB6W2ULPfMX26U7HEUWMR/LWy+AjX97URFJuY9+mHBpbTFXyls3LFAuG5VP6gWOyIM8xlxrjE2K9e5jKaaCPxjSon3rT69WTikYIrWZTO7X0yh+ONv39pojFE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765722343; c=relaxed/simple;
-	bh=r+/5qsA1gT0kLGW99QBrTL8ajG99+c99wvM1zFRce4o=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=U63a5/YXAeFKow7xWHhXK2WmnsEHG9WL8ia575AaiI47vKtMZedhiKS9zQhBFFvPJYwgKj2j6wFnee6V9eK4jBm+Moe80T/pApIkZ4h8+KXdABxd34tSCFifR+r88bdJ2sKKCuUVqV2lCUjsTiCaPSgGO0cSvfz/JM2TM/uzqPA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CMhCbksk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CECA4C4CEF1;
-	Sun, 14 Dec 2025 14:25:38 +0000 (UTC)
+	s=arc-20240116; t=1765723329; c=relaxed/simple;
+	bh=oD/KggYabkmpbLwMi9JfkWOU4h7CawiUNWnQZdptfFE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=HoT3s32L6ZXR4VpeKeJkGJVtVxL9g8Wi0VjHa5OzTgqnDcgSNu5IeeboYVnCzNOgDJP72thrvJWtKivu4SZdiNw0Zv5ARxLE3J12m1wRaTwQIBDDfUdDONFobaNkpyIK2v09vGS4b7H6tin44Y3+UOG9fdlGLgkbobBWbdR4u+M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A2NEGrJ8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E1E9C19421
+	for <devicetree@vger.kernel.org>; Sun, 14 Dec 2025 14:42:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765722342;
-	bh=r+/5qsA1gT0kLGW99QBrTL8ajG99+c99wvM1zFRce4o=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CMhCbkskHMo3hjmHVVPMVR744jFL/RTYPHYbs0py8C9gOqXTn42BBoboxM1dkbWDh
-	 hoM3E8Zl+VBvz7pHkf3gdfwIIU5wcavj/H6R6wx5uW3oqCi5qp3X5BWRSiTWah51Qi
-	 kitMPZZ3BTSWSSK7gLiUb2t31u42O0wLATdyOK/TBsb3C7XfpA4JMl3+tOTlwcalfV
-	 BOIG3FJmsUMDYWXzcapXwJdf+el1+gkcwOH45CIaAnM5/77Rv5Oe1yecwLvTr5QQA2
-	 cZCk6svbYnaAWt5CJhoOsVMCoMEFH4v+QgI9d55Gv2fqp+WBH2xuzUt1lVbYKTBJ1C
-	 IvYuc0hJBTzDQ==
-Date: Sun, 14 Dec 2025 14:25:34 +0000
-From: Lee Jones <lee@kernel.org>
-To: hangsuan.wang@altera.com
-Cc: linux-kernel <linux-kernel@vger.kernel.org>,
-	devicetree <devicetree@vger.kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Thierry Reding <treding@nvidia.com>,
-	Romain Gantois <romain.gantois@bootlin.com>,
-	Andrea della Porta <andrea.porta@suse.com>,
-	Andrei Simion <andrei.simion@microchip.com>,
-	Dinh Nguyen <dinguyen@kernel.org>,
-	Mahesh Rao <mahesh.rao@altera.com>, Marek <marex@denx.de>,
-	Simon <simon.k.r.goldschmidt@gmail.com>,
-	linux-drivers-review@altera.com,
-	Muhammad Amirul Asyraf Mohamad Jamian <muhammad.amirul.asyraf.mohamad.jamian@altera.com>,
-	Khairul Anuar Romli <khairul.anuar.romli@altera.com>
-Subject: Re: [PATCH 0/4] Add Device Tree binding and nodes for Agilex5/Agilex
- SOC FCS configuration.
-Message-ID: <20251214142534.GB9275@google.com>
-References: <cover.1765534135.git.hang.suan.wang@altera.com>
+	s=k20201202; t=1765723329;
+	bh=oD/KggYabkmpbLwMi9JfkWOU4h7CawiUNWnQZdptfFE=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=A2NEGrJ8Ca/wyaS8iRk2pzHKLF/U3QmLusVXaZzxtH9hznjnkyrH6Q/SO6I737Qxx
+	 1fnX7nPsD0UrqCV3BjIUBod3S7jfToHWUitD6rzVImFvrO0lFbm/NjP6mXRiqEI8Kg
+	 5RayiPIrLIuvSKmWEqIm/eyoTPZJzFE3Tdrcwb9QtM0xtgOQNsKcp9KV0Fv7/xm7nA
+	 hoADE0vZQgXHuxAv4KjtwdWC5e9aXv5ESFuJNjcCF23fKz1TOw51W4sNiz8JvB+kKK
+	 4m+lkZRUyp3K39p/uLOzqFgk47oFMmO68FQdxZpYgAlkCgcEpj0gVf2XDyK1bEC0dR
+	 Mp/ViGbY8qe1w==
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-b7697e8b01aso506570666b.2
+        for <devicetree@vger.kernel.org>; Sun, 14 Dec 2025 06:42:09 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXzQgfDk5g52j/WyvV1ezldzRWHb3BltNL4daaYrTGJBvDE3z+JKTBG5TyVdK+RnmAI5hm/MoJ34UTu@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy7NEMoNRnWcFGrplb6O9GKfp1pF/T062CSyc2rZ/AQkxDUYbv8
+	9LH1caqCMQaET8sAjevB7tB0SXOv6M1C0doivmD1KDG11ORfoa5enAL7DzMTPjr9P7PjBEVCMyy
+	1dTqlILsBFdxIHa6U3gLY4B1+4osAdQ==
+X-Google-Smtp-Source: AGHT+IH/UNXJVVIzYMzF70T0zT2ePS4CZo3kLeaqHyUCNx7LNUsqU6Z3vZR8gWlhInbPYIFxkyNcgz3+uHF1VkK6TAw=
+X-Received: by 2002:a17:907:3f28:b0:b73:8903:f4b9 with SMTP id
+ a640c23a62f3a-b7d23a813bdmr836277766b.24.1765723327827; Sun, 14 Dec 2025
+ 06:42:07 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <cover.1765534135.git.hang.suan.wang@altera.com>
+References: <20251212203226.458694-5-robh@kernel.org> <20251213181324.u32ztfblkknfpz44@pengutronix.de>
+In-Reply-To: <20251213181324.u32ztfblkknfpz44@pengutronix.de>
+From: Rob Herring <robh@kernel.org>
+Date: Sun, 14 Dec 2025 08:41:56 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqK9OREenZjBHrDh7AqsyUXYOzTOhY4e0qHGzYkX8tacWQ@mail.gmail.com>
+X-Gm-Features: AQt7F2o1cvCAKghlM7oUFNsydZljaReVAverYw-RqgPCazmU6RqIU2uWyYXg6mg
+Message-ID: <CAL_JsqK9OREenZjBHrDh7AqsyUXYOzTOhY4e0qHGzYkX8tacWQ@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: nxp/imx6: Drop unused .dtsi
+To: Marco Felsch <m.felsch@pengutronix.de>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	imx@lists.linux.dev, barebox@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, 12 Dec 2025, hangsuan.wang@altera.com wrote:
+On Sat, Dec 13, 2025 at 12:13=E2=80=AFPM Marco Felsch <m.felsch@pengutronix=
+.de> wrote:
+>
+> Hi Rob,
+>
+> On 25-12-12, Rob Herring (Arm) wrote:
+> > These .dtsi files are not included anywhere in the tree and can't be
+> > tested.
+>
+> not in the tree but by other projects, please see below.
+>
+> > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> > ---
+> >  .../dts/nxp/imx/imx6dl-kontron-samx6i.dtsi    | 12 -----
+> >  .../dts/nxp/imx/imx6q-kontron-samx6i.dtsi     | 12 -----
+> >  .../boot/dts/nxp/imx/imx6qdl-pico-dwarf.dtsi  | 45 ----------------
+> >  .../boot/dts/nxp/imx/imx6qdl-pico-nymph.dtsi  | 54 -------------------
+> >  4 files changed, 123 deletions(-)
+> >  delete mode 100644 arch/arm/boot/dts/nxp/imx/imx6dl-kontron-samx6i.dts=
+i
+> >  delete mode 100644 arch/arm/boot/dts/nxp/imx/imx6q-kontron-samx6i.dtsi
+> >  delete mode 100644 arch/arm/boot/dts/nxp/imx/imx6qdl-pico-dwarf.dtsi
+> >  delete mode 100644 arch/arm/boot/dts/nxp/imx/imx6qdl-pico-nymph.dtsi
+> >
+> > diff --git a/arch/arm/boot/dts/nxp/imx/imx6dl-kontron-samx6i.dtsi b/arc=
+h/arm/boot/dts/nxp/imx/imx6dl-kontron-samx6i.dtsi
+> > deleted file mode 100644
+> > index 5a9b819d7ee8..000000000000
+> > --- a/arch/arm/boot/dts/nxp/imx/imx6dl-kontron-samx6i.dtsi
+> > +++ /dev/null
+> > @@ -1,12 +0,0 @@
+> > -// SPDX-License-Identifier: GPL-2.0 OR X11
+> > -/*
+> > - * Copyright 2019 (C) Pengutronix, Marco Felsch <kernel@pengutronix.de=
+>
+> > - */
+> > -
+> > -#include "imx6dl.dtsi"
+> > -#include "imx6qdl-kontron-samx6i.dtsi"
+> > -
+> > -/ {
+> > -     model =3D "Kontron SMARC-sAMX6i Dual-Lite/Solo";
+> > -     compatible =3D "kontron,imx6dl-samx6i", "fsl,imx6dl";
+> > -};
+> > diff --git a/arch/arm/boot/dts/nxp/imx/imx6q-kontron-samx6i.dtsi b/arch=
+/arm/boot/dts/nxp/imx/imx6q-kontron-samx6i.dtsi
+> > deleted file mode 100644
+> > index e76963436079..000000000000
+> > --- a/arch/arm/boot/dts/nxp/imx/imx6q-kontron-samx6i.dtsi
+> > +++ /dev/null
+> > @@ -1,12 +0,0 @@
+> > -// SPDX-License-Identifier: GPL-2.0 OR X11
+> > -/*
+> > - * Copyright 2019 (C) Pengutronix, Marco Felsch <kernel@pengutronix.de=
+>
+> > - */
+> > -
+> > -#include "imx6q.dtsi"
+> > -#include "imx6qdl-kontron-samx6i.dtsi"
+> > -
+> > -/ {
+> > -     model =3D "Kontron SMARC-sAMX6i Quad/Dual";
+> > -     compatible =3D "kontron,imx6q-samx6i", "fsl,imx6q";
+> > -};
+>
+> I can't speak for the other two .dtsi files but both kontron .dtsi files
+> are used by barebox:
+>
+>  - https://elixir.bootlin.com/barebox/v2025.11.0/source/arch/arm/dts/imx6=
+dl-samx6i.dts#L8
+>  - https://elixir.bootlin.com/barebox/v2025.11.0/source/arch/arm/dts/imx6=
+q-samx6i.dts#L8
+>
+> Removing them here will cause a regression for barebox.
 
-> From: "Wang, Hang Suan" <hang.suan.wang@altera.com>
-> 
-> This patch series introduces necessary Device Tree (DT) support for the
-> Soc/Hardware FPGA Crypto Service (fcs) functionality across the Altera
-> Agilex SoC families. This feature allows the kernel to identify, interact
-> and communicate with the high-speed FPGA hardware without interruption or
-> software overhead.
-> 
-> The series structured as follows:
-> Patch 1: Introduces the core YAML schema binding for a generic agilex5,
-> soc-fcs-config miscellaneous device.
-> Patch 2: Add fcs property to the existing stratix10-svc firmware binding.
-> Patch 3&4: Add the fcs nodes to the respective Agilex5 and Agilex DT files.
-> 
-> ---
-> Notes:
-> This patch series is applied on socfpga maintainer's tree
-> https://git.kernel.org/pub/scm/linux/kernel/git/dinguyen/linux.git/log/?h=socfpga_dts_for_v6.19
-> 
-> ---
-> Wang, Hang Suan (4):
->   dt-bindings: misc: agilex5-soc-fcs-config: Add binding
->   dt-bindings: firmware: stratix10-svc: add fcs-config property
->   arm64: dts: socfpga: agilex5: add fcs node
->   arm64: dts: socfpga: agilex: add fcs node
-> 
->  .../firmware/intel,stratix10-svc.yaml         |  4 +++
->  .../misc/intel,agilex5-soc-fcs-config.yaml    | 32 +++++++++++++++++++
->  MAINTAINERS                                   |  5 +++
->  arch/arm64/boot/dts/intel/socfpga_agilex.dtsi |  4 +++
->  .../arm64/boot/dts/intel/socfpga_agilex5.dtsi |  5 +++
+Please upstream something that uses the .dtsi. Other than the
+undocumented barebox property, no reason these can't be.
 
-Why am I receiving this?
-
--- 
-Lee Jones [李琼斯]
+Rob
 
