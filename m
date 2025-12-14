@@ -1,46 +1,101 @@
-Return-Path: <devicetree+bounces-246285-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246286-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0A5ACBB5B9
-	for <lists+devicetree@lfdr.de>; Sun, 14 Dec 2025 02:23:40 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E19ECBB5F0
+	for <lists+devicetree@lfdr.de>; Sun, 14 Dec 2025 03:08:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6DCFF300A1CA
-	for <lists+devicetree@lfdr.de>; Sun, 14 Dec 2025 01:23:39 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3CEF93009553
+	for <lists+devicetree@lfdr.de>; Sun, 14 Dec 2025 02:08:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AAB72D249B;
-	Sun, 14 Dec 2025 01:23:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AC0227F727;
+	Sun, 14 Dec 2025 02:08:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WE74zBcv"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="hjhsmviw";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="GAm1iCWI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D7E613AD05;
-	Sun, 14 Dec 2025 01:23:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D03052AD2C
+	for <devicetree@vger.kernel.org>; Sun, 14 Dec 2025 02:08:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765675418; cv=none; b=FsqQG6jHNSg6MCSubjtxtdi9rLR44KsWKKKbrA+CHtFLuX3b33kmbLqQIFAeN/ntZhdy/82EAxmOPE9NsXXzAfIyDQXcUzMYMKcedIGX6/1J2ztYnDadYtiA4L6/1n/YPvldptpRc0aaQZx3fQnt+Oh1xtkRL9jb5Dv/pEsvskc=
+	t=1765678126; cv=none; b=gC+R6GWV/hnoDrNs67qHAz1tIZvtlOVjDRz6UvbUekVV1sYrOxRQw9LjEyWkMlVhbGsAVpl0gDic52CNHl8vsrIpTEr0yqJW4oHKmkLtbkEV/7wfEhywePtK797aes3MjegeP2PnrWElqQUI3+Kn9J4jx8rNbO7Do6+T5x8YcOc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765675418; c=relaxed/simple;
-	bh=iTxY++bdP8TiQkzNCvYtjfGWKfxPxnjUDmS1j9BlF2Y=;
+	s=arc-20240116; t=1765678126; c=relaxed/simple;
+	bh=OAdqQz7ypcVTD0k6RkiJI+vt7QzaLwSBJbY8qto+MS4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hg6Ii5QPMi1yw5L4nBX1xNWyYuiVJbuM+rVmel/uRDQj+x81/0JfozwBOp/v9MVXv8bBT9QAtdI1KcBJgKnhM/VtM39YXNItYL7dRtrSkBkXCP2Z9FFpS8uGlxd46cv+1rIrV5+lfr/2NKj0aRw4CSjw1Ih+h1H/3bVOZiZnV8A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WE74zBcv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C504C4CEF7;
-	Sun, 14 Dec 2025 01:23:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765675417;
-	bh=iTxY++bdP8TiQkzNCvYtjfGWKfxPxnjUDmS1j9BlF2Y=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=WE74zBcvuMSv0iHpRJZOZkF6UvxChi8Hs+BSoWu0VyZAwXaeBmZWUaAzd+UuqjBZ1
-	 frp0iFXcUz/hFm6m5gLu5Hh7Gl3ISBT4inJbrzoaDwATrcDUZbvz9TYRCMr4nbXfZu
-	 Slczq88Ut2naaj9KshpPMeEA95eDASORZQxOFxgf82Y7ru80CPcyRdx+R/vu7GqdJ9
-	 2iXpmWt8Fs3b+ekDED8v9MMgQF6xLraCxsELs3U6yF4dFAxwWpbRs5QWeQ31E7epVz
-	 iKEl7D8D0yDxPLnUT7bwRE/i8XHfZhRGCmFupRbGGOa0ibw6msCEFtm3/XCbNYwbcA
-	 zT6WYLTYLC0JA==
-Message-ID: <d58e3cae-e303-4e1f-ab43-c800cf0ab2aa@kernel.org>
-Date: Sun, 14 Dec 2025 02:23:32 +0100
+	 In-Reply-To:Content-Type; b=Y2dnIGZTGMk0w52Ol+hneJVyDJy5L83lCKc4prLwUXmCdrfDRdM4dsXHS7dJWI/PAtsOwPki0sASpFymT8F2ri/8MxiqGo7s+/3H2OsL/2yqUn/huDZXBvGIFK0Jna/Z1nviIec0SPq8nI2xK9YjjFFKbQZbjCquGD5ZbsmEV6I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=hjhsmviw; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=GAm1iCWI; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BE1JRbX264539
+	for <devicetree@vger.kernel.org>; Sun, 14 Dec 2025 02:08:44 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	eV2vPS9sJMuGPlbnmOOt4y+RfDf9VGDtbZyjFlLVeeY=; b=hjhsmviw+OH0xEWv
+	1DpBs6tGffgn3qzOPshYifYliafhPcx8zqqOYgOOUyWPzF+8u/L8JVFIC3qHQ9J5
+	Kjs72sheEQaaKwJW1QxNAfvOzDyw9jciQcDYZKHAohW+H6dx2ByFDe9SEYi9lZcB
+	s5HscBxhZJ/NIWdYAd+TAJ7CzCqC2vq/Do1Yu4eTu6lBxBIaKYHDppqmDp46QeSU
+	fcBIAXbELp/ft9FSAvSIVlef1d292K58AKVla+KpADovxCVUmL1SgWoWdwkz6ZGQ
+	/Rd6wIU2hqrUzYg0ofI42oVb3lNuFV6KfBub4h4B7I6txdQLwKSUNUu+qiIRBsNn
+	PNmVRg==
+Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com [209.85.216.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b119t1b9m-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Sun, 14 Dec 2025 02:08:43 +0000 (GMT)
+Received: by mail-pj1-f70.google.com with SMTP id 98e67ed59e1d1-34c314a062aso2186594a91.2
+        for <devicetree@vger.kernel.org>; Sat, 13 Dec 2025 18:08:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1765678123; x=1766282923; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=eV2vPS9sJMuGPlbnmOOt4y+RfDf9VGDtbZyjFlLVeeY=;
+        b=GAm1iCWIXpsZjywarQE+eFgnntKT5jIjADk+TJTTGgl6GrcmeBCU3R/XGqgyW+vbuI
+         ZHJbmcurkkKZloD01u8pkTZ6PM3P54RoK66nK1Qby7voyXsYb9ttND+jFMtzAlMfFZsj
+         +EHfNGUjL6depBLvvYx9CK1HZnslWNzXCnC3FLEnrwjbLc9C+iwM7I7YFK/l/p/LJYsu
+         4dW4Oi6qAim8nPYXxwDY1mSj/ND6b/rsKauAOSMQhQefrCCtDRJpOyOm37QIOKWfB7F7
+         q63JqC+wQLqtuaHsDaz7mUhzhwgBmWjOa+ZJhvjr9XQqQdyYSet99T85zil1bUqIIRX7
+         mEBw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765678123; x=1766282923;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=eV2vPS9sJMuGPlbnmOOt4y+RfDf9VGDtbZyjFlLVeeY=;
+        b=S5d/UEuPK1ahle7U0xopc/m3q0No+DvCP6m/gL8K2jJYrMVqTD1yHAtFLTGxsqfMrm
+         zqe9uyhDel8LJrHejWlAP1uO5kC2QCsVdMamEICMuP+bZ9XYkJi1D1GY/FCRdNliqlGB
+         QwyKY7/6cqIKW3l7OdpVw3A/ip1pPnZFsRl1ibREWx1RYbKqGO4/Fnmm1sSWjwk9Mvcz
+         NU2thHPu3W7giZkkMHSXdWO5sB8fwgMueE+kOnVrFzwBdpeTNVYiEi5h0UrzUI7eoW01
+         C4kDFQbNDqCeF9hJGwS+kHTve/M/yUFbdB+MuHUZQJYmdFA6UI3ymf0e8INaoJBqrwSd
+         183Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVAgOaK2laIblRu/S5ekmTBJGhVdexUheUj6dDCLwLxL98/IQJo07udRmw0b8x4rOI06zIVaEWXz5XC@vger.kernel.org
+X-Gm-Message-State: AOJu0YzuT+ZTNEVoorZpZ48GdrP9zQrRWpNaBAN4PYMcBjG5viAEDhsK
+	flCSG9G30lXbvLMUbR5Jo0aTQJQxUyrOsZMbFxHDvFAvzXwK/B2u43ylxr2FpMml+34eVm69bhU
+	/PL4ZzsqS2e63faVZk40aknK154uLhyb9fO1gIqFIJ948Fa9Ftbok0PwvciP2rVmU
+X-Gm-Gg: AY/fxX5Zb/IvtZjk2Yg9J9LJOGBbIM5jlvzNPB3kYh1wzesUO/fB/hGzA/MX0JTJ5vJ
+	n5e1Nf1FSnsrLEGJL87IJ2m2ByZdvJSX0n713u4bKWKYjr4R5CBgv80slxkkQsZMMkVS8fr3ytQ
+	p38YW6bKsj7V6lJLy/TefdXG8eUedEtmCGQvIv81/laNNbDrkhd5W4a/O34Xbx24EFVXhXvHvs4
+	xcfPVkQcYb8z9IytbWm8CF/QwLDefzBkp8dJA99I5IIu3EElLwldf0wyRop8FP2KUpXfHdSasLQ
+	6jDkYpD7ttH0VP4WM+LSbcxVxb4IR/Sq7T7rA5zS6YfLS7SXcI63dw/3tkjY2dvf3EszrkvTwyA
+	MkO6O2nq8Q2eutg63JHajMadWGwFGumHy8tg5IE3SxWdVCf7uTD5saIk678pjuXJ88CxEh2ZIom
+	0wwPvv
+X-Received: by 2002:a17:90b:2fc8:b0:34a:b8e0:dd64 with SMTP id 98e67ed59e1d1-34abd6c0333mr5843217a91.1.1765678123093;
+        Sat, 13 Dec 2025 18:08:43 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHsOx1VFhUEUQ3J0tBD6Ayef24cfl+ErdI1iQ5B8GJP/1C8VdE0n4fCXQfatWXFaprUhwWxzg==
+X-Received: by 2002:a17:90b:2fc8:b0:34a:b8e0:dd64 with SMTP id 98e67ed59e1d1-34abd6c0333mr5843197a91.1.1765678122575;
+        Sat, 13 Dec 2025 18:08:42 -0800 (PST)
+Received: from [10.133.33.35] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c0c26515d4bsm8486500a12.9.2025.12.13.18.08.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 13 Dec 2025 18:08:42 -0800 (PST)
+Message-ID: <271b1c1e-1273-4900-a427-370a94c9688b@oss.qualcomm.com>
+Date: Sun, 14 Dec 2025 10:08:35 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,100 +103,84 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/6] arm64: dts: imx8mp-var-som: Add WiFi and Bluetooth
- support
-To: Stefano Radaelli <stefano.radaelli21@gmail.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: Stefano Radaelli <stefano.r@variscite.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org
-References: <20251213230909.16810-1-stefano.r@variscite.com>
- <20251213230909.16810-5-stefano.r@variscite.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH ath-current 2/2] dt-bindings: net: wireless: ath11k-pci:
+ deprecate 'firmware-name' property
+To: Jeff Johnson <jeff.johnson@oss.qualcomm.com>, jjohnson@kernel.org,
+        johannes@sipsolutions.net, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org
+Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20251204071100.970518-1-miaoqing.pan@oss.qualcomm.com>
+ <20251204071100.970518-3-miaoqing.pan@oss.qualcomm.com>
+ <f60bc80d-a947-4083-9e14-000a937de412@oss.qualcomm.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
- QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
- +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
- ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
- 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
- hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
- tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
- 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
- naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
- hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
- whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
- qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
- RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
- Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
- H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
- dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
- AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
- jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
- zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
- XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251213230909.16810-5-stefano.r@variscite.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+From: Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>
+In-Reply-To: <f60bc80d-a947-4083-9e14-000a937de412@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjE0MDAxNyBTYWx0ZWRfX5VN2tJHB3gke
+ WNl+L9iZMaIotQiOY4WsmbVSp47QJYwHs9OqPffdkcYXSxldCTbRsTvd1oEfZb5O+Afo3pyPFfr
+ o9+EcvH5dsvX3eQAsruBO9GxBZb9sbU/XrP3RIITLWB+UBF5rKGnmKOYgp6FevbmMBIwW4oQRFW
+ RVVYgJ5SS4YDESzuUADbp8bonib2+IDOiLaknh6cMkXe5rfcOSvPlaJzOTbY0r1b1pzPkOtmS/f
+ fnfXPm+/7a2eO4kb6gI1MR8nf/U1ddNl+feZp/rkSaTi/BXvO+4GunWyMoPwHxUg5BiQ0A33CP7
+ pKA60wvnDVMXGv1q4kwa/V6q6UmKPJEcDC4Ex1FWC9t+yi4rJTaoYheVFDgM1BjjQvN3nzXXw0g
+ lGRMpejIIWncQJAhtv8FONlaN8hxmQ==
+X-Proofpoint-GUID: bBQZehVBqyaYn_gdB5Hq6DS9K0mYxH1U
+X-Authority-Analysis: v=2.4 cv=E6nAZKdl c=1 sm=1 tr=0 ts=693e1c2b cx=c_pps
+ a=0uOsjrqzRL749jD1oC5vDA==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=8gi6obPNpri618rnpZYA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=mQ_c8vxmzFEMiUWkPHU9:22
+X-Proofpoint-ORIG-GUID: bBQZehVBqyaYn_gdB5Hq6DS9K0mYxH1U
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-14_01,2025-12-11_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 suspectscore=0 adultscore=0 clxscore=1015 spamscore=0
+ priorityscore=1501 impostorscore=0 malwarescore=0 lowpriorityscore=0
+ phishscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
+ definitions=main-2512140017
 
-On 14/12/2025 00:09, Stefano Radaelli wrote:
-> Add device tree nodes for the WiFi and Bluetooth module mounted on the
-> VAR-SOM-MX8MP. The module can be based on either the NXP IW612 or IW611
-> chipset, depending on the configuration chosen by the customer.
+
+
+On 12/12/2025 12:44 AM, Jeff Johnson wrote:
+> On 12/3/2025 11:11 PM, Miaoqing Pan wrote:
+>> The firmware-name property was introduced to allow end-users and
+>> integrators to select usecase specific firmware for the WCN6855.
+>> However, specifying firmware for an M.2 WLAN module in the Device
+>> Tree is not appropriate. Instead, this functionality will be handled
+>> within the ath11k driver.
+>>
+>> Signed-off-by: Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>
+>> ---
+>>   .../devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml        | 1 +
+>>   1 file changed, 1 insertion(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml
+>> index e34d42a30192..0162e365798b 100644
+>> --- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml
+>> +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k-pci.yaml
+>> @@ -37,6 +37,7 @@ properties:
+>>   
+>>     firmware-name:
+>>       maxItems: 1
+>> +    deprecated: true
+>>       description:
+>>         If present, a board or platform specific string used to lookup
+>>         usecase-specific firmware files for the device.
 > 
-> Regardless of the chipset used, WiFi communicates over SDIO and Bluetooth
-> over UART.
+> The driver patch completely removes support for this, so is this really
+> considered deprecated? Or should this actually be considered obsolete and
+> completely removed?
 > 
-> Signed-off-by: Stefano Radaelli <stefano.r@variscite.com>
-> ---
->  .../boot/dts/freescale/imx8mp-var-som.dtsi    | 93 +++++++++++++++++++
->  1 file changed, 93 insertions(+)
+> Do any DTS files actually reference this?
 > 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-var-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-var-som.dtsi
-> index 5bba91dcef17..e7f5ec10cbac 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-var-som.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-var-som.dtsi
-> @@ -21,6 +21,15 @@ memory@40000000 {
->  		      <0x1 0x00000000 0 0xc0000000>;
->  	};
->  
-> +	iw61x_pwrseq: wifi-pwrseq {
-> +		compatible = "mmc-pwrseq-simple";
-> +		post-power-on-delay-ms = <100>;
-> +		power-off-delay-us = <10000>;
-> +		reset-gpios = <&gpio2 8 GPIO_ACTIVE_LOW>, /* WIFI_RESET */
-> +			      <&gpio2 19 GPIO_ACTIVE_LOW>; /* WIFI_PWR_EN */
-> +		status = "okay";
+> /jeff
 
-Did you disable it anywhere before?
-
-
-Best regards,
-Krzysztof
+You are correct — since the driver has already removed all support for
+`firmware-name`, marking it as `deprecated` is misleading. The proper
+status should be `obsolete`, and the binding should reflect that this
+property is no longer supported. Regarding DTS usage: no upstream Device 
+Tree files currently reference `firmware-name`.
 
