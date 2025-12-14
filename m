@@ -1,160 +1,229 @@
-Return-Path: <devicetree+bounces-246309-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246310-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCC32CBBBB2
-	for <lists+devicetree@lfdr.de>; Sun, 14 Dec 2025 15:48:53 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56DB8CBBBBC
+	for <lists+devicetree@lfdr.de>; Sun, 14 Dec 2025 15:51:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 27ABD300A55E
-	for <lists+devicetree@lfdr.de>; Sun, 14 Dec 2025 14:48:53 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B91673007221
+	for <lists+devicetree@lfdr.de>; Sun, 14 Dec 2025 14:51:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF05018872A;
-	Sun, 14 Dec 2025 14:48:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7073926E717;
+	Sun, 14 Dec 2025 14:51:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mWJ6S4Zj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WSow5QxC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 793D741C72;
-	Sun, 14 Dec 2025 14:48:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C4BE4207A;
+	Sun, 14 Dec 2025 14:51:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765723729; cv=none; b=MngE9SYaPzNbZCoNAuXgbPNNW1umNpSQaH8THVD7TUcj2EwyZlS46N3SDxD56qnahXK5K8heKyMMw335kUmtSSKVuZO60Icht+8GiyVYP3gZjHx1SZTv6CMj/QkYp1OG6lJrbEG4kMtpaDyolwczAuQC/1d+0OD1uRLtTRBxPs4=
+	t=1765723885; cv=none; b=eYvQAVRyjUKokbYHZFHuhcaEjklbZEe4XXeltJqxRhAh6KuF/9pYJ0uzC0w3ei/RnAnmma4x6AGRcgLwmTsdOPxmJzY27q2cRxcsrcugVh8suMlvPLzPdGEx09Lmy2Svhw35MwtJIIVtWW1wT61I3FAQqC3Tj76cdvzO08FBOPE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765723729; c=relaxed/simple;
-	bh=xFKsuig1p11Hi+asDXDjOoc+F13m61ehJo9EJKbLRdY=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=mO2DkZoV1hTRNuSRWajoxzCZQazeAB9+FeMyTxQ+MhWjeGYellleCELFmEmqpRv9JsuBCezLRQCFcyt5VVgLA8soeFFsPLrJ87mMZsUw5Weo37zdu5//49mH71OpVH7knuP8NsNkZgGt6TWKFzfGzlS9uvo2iBE8IWVGuwoGpm8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mWJ6S4Zj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79BA9C4CEF1;
-	Sun, 14 Dec 2025 14:48:44 +0000 (UTC)
+	s=arc-20240116; t=1765723885; c=relaxed/simple;
+	bh=rH3IkQkrsA/AWaXIXsHO77HqVIDnpkmif5HEE7nJ4BA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=EWIAgQR9PYyJuAHL5zwcsUa0MM7g9gbwzEpoiThxtYAZAV+txphpc5wa+4fEA59ZXHM3lF0HJUIp9xwVm0ckkhgdHnDb3jVllIUCB9CmK/fKtTKqd//oRi2vi/WbKaDF2yGtfUc1bpDwBmcVef4ufeeRHzAKZmedevxBwdNJ6DM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WSow5QxC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id AD25CC4CEF1;
+	Sun, 14 Dec 2025 14:51:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765723728;
-	bh=xFKsuig1p11Hi+asDXDjOoc+F13m61ehJo9EJKbLRdY=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=mWJ6S4Zj4qLB2OhRRnhDdeDuKX/feWfImtu8M3zJB0CZovH8UoWfAQHJmkqwQ7hOK
-	 tJLDkN+GIuUYDjNUwr940Kblo7Ji97mNNiK4gI6xC0jA53X380U1ZJ1By1PoDrUUKl
-	 aXM3z1V4iDH+4TGDgeB5sV4t0uTd2D3LpUtl9G8trye6jE0drDqbZoEFliWcgl9lsw
-	 fDjlWDjyz4y2gJiUXCBcy9/dqUL83HXPBRNqJ8g8P2JF2ar3NVqth/5Sg6UVEqAjkC
-	 PLa4m/MU0EPVyYDO+Zmy5LogQ+XkdSFz40a+lO5FA/9DV41hXutosHLkT6pPIY6kr/
-	 6wWoBNBsTTu0Q==
-Date: Sun, 14 Dec 2025 14:48:39 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Kurt Borja <kuurtb@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Tobias Sperling
- <tobias.sperling@softing.com>, David Lechner <dlechner@baylibre.com>, Nuno
- =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Jonathan Cameron
- <Jonathan.Cameron@huawei.com>
-Subject: Re: [PATCH v8 2/2] iio: adc: Add ti-ads1018 driver
-Message-ID: <20251214144839.2eec58f9@jic23-huawei>
-In-Reply-To: <20251211-ads1x18-v8-2-5cd12ac556da@gmail.com>
-References: <20251211-ads1x18-v8-0-5cd12ac556da@gmail.com>
-	<20251211-ads1x18-v8-2-5cd12ac556da@gmail.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
+	s=k20201202; t=1765723884;
+	bh=rH3IkQkrsA/AWaXIXsHO77HqVIDnpkmif5HEE7nJ4BA=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=WSow5QxC0ES0QbaFalKu2/AnWt+ghzcZhlY5a4LpFKZ9c0mFppE1tL/tr+PpOPBoM
+	 2qWsBYJIRXUnvvg/u2blDW2RFCeJWq4McrtzfCbe4IdgV+Xddlqi69MBfFFE1NG5a+
+	 tSsoUg3W2XowrYyT6djVsCbNhXcL9+XAz8Vq0vUUO7BV/YFjms322Kc7YLIr1/wecB
+	 kBEogSBA9dQcOQ9u0d3QWiuQBx/kfnfdrM1BN26UDAYtosJGAT5tmWJ2+4MXKXPgQk
+	 e04WXA24irnToEEcaOKExMEGvz3IEugEmxqJft2byoTrES2Le3hFPsctMzZy6iBaoR
+	 qi59029UZlPxw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 98BADD5B158;
+	Sun, 14 Dec 2025 14:51:24 +0000 (UTC)
+From: David Heidelberg via B4 Relay <devnull+david.ixit.cz@kernel.org>
+Subject: [PATCH v7 0/8] Add support for Pixel 3 and Pixel 3 XL
+Date: Sun, 14 Dec 2025 15:51:16 +0100
+Message-Id: <20251214-pixel-3-v7-0-b1c0cf6f224d@ixit.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOTOPmkC/1XRTU7DMBAF4KtUXmM0M/5nxT0QC8eeUEuoLUmIC
+ lXujlMQTpbP9vc0Gt/EyEPhUTwdbmLguYzlfKrBPRxEOsbTG8uSaxYEZEBjkJdy5XeppEHknCh
+ qC07U15eB+3q1Nr281nws43Qevu7FM66n9w4EMP8dM0qQsfOdN71Fpfrnci3TY/oWa8NMG6WgK
+ arKp5hzx+Aohb1STSH6plRVCl2kTgNkH/dKbxRtJtSr6hzY3ueUgt0r0xSBbcpUlVMIThG7rMx
+ e2a3aTGir4sDGhGx7jdTU8rvggT8+6w9Nf1telh9F5ZaWvwEAAA==
+X-Change-ID: 20250419-pixel-3-511edc2a4607
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Sumit Semwal <sumit.semwal@linaro.org>, 
+ Casey Connolly <casey.connolly@linaro.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jessica Zhang <jesszhan0024@gmail.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Marijn Suijten <marijn.suijten@somainline.org>, 
+ Dmitry Baryshkov <lumag@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
+ Petr Hodina <phodina@protonmail.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, David Heidelberg <david@ixit.cz>, 
+ Krzysztof Kozlowski <krzk@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
+ Amit Pundir <amit.pundir@linaro.org>, Casey Connolly <casey@connolly.tech>, 
+ Joel Selvaraj <foss@joelselvaraj.com>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+ Bjorn Andersson <andersson@kernel.org>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5142; i=david@ixit.cz;
+ h=from:subject:message-id;
+ bh=rH3IkQkrsA/AWaXIXsHO77HqVIDnpkmif5HEE7nJ4BA=;
+ b=owEBbQKS/ZANAwAIAWACP8TTSSByAcsmYgBpPs7pWhWQdWzYuRHyFci8HaUI3Y8S5v099rmr9
+ Vuxj348dsyJAjMEAAEIAB0WIQTXegnP7twrvVOnBHRgAj/E00kgcgUCaT7O6QAKCRBgAj/E00kg
+ cmYOEADDiv0pNKrqDFkD8sltTuTTJdk7egD0db0uvLdqECWRwXGY+pWlDSwn/G+NWqOO1N0TInC
+ /n4BiTwOs0NkWc8dK1tVR+Q7rA+dw1mGrN7tNOZFVXA7lLZNe9G7q2be3qGgb5vp8XOjkcYPT7s
+ djdJNHKe2OUl2W1kYvVxb39xEr0yYGJVzKj9uAF/oho4xVGB2FuW2kpvXiK1GJBEsjNFThL63bu
+ AcsJ+cp64GWDdeqvbnQdMWHj7uGxwPBRm+JMWAH1SD9hPvMKql6QPFazi1I9EHRBBz3KUf5ECM3
+ D0JNeIa2DkHzCiw1ImBEruEQ2NJ9I64N07jQ3zRBmu3zssi2aJbcCDRAqxPxQXGCvALjqKg3Sqr
+ JEQpFhE2Q77IkqYt8mmyUMDFBLdfaDP7HmMMTY4AgpiS5RkrbDtPf0rwy53zh1iavGvPHOjXjr3
+ RlsTPMU0LkcafB1DlRzGCzVoVingR4p4nceIcAMiXtibcyBy16n3dqpldrpc1IeAWenE0O7HzzV
+ vqePgajWYIXibTHu1ZsjRpT38Odt/nJadVSSp3E6MM3ZewowTHBex8KihkMXXmfnaHtLNBL7G5l
+ OV6NoEgoN9zVUoUB9tHsLLdqRX3q01KZHHOx8YKIMRLKeWqO+/dOXflzzH+9bvNYk2ZP/6iXJ5z
+ Yg9GCCfuyLmwrpA==
+X-Developer-Key: i=david@ixit.cz; a=openpgp;
+ fpr=D77A09CFEEDC2BBD53A7047460023FC4D3492072
+X-Endpoint-Received: by B4 Relay for david@ixit.cz/default with auth_id=355
+X-Original-From: David Heidelberg <david@ixit.cz>
+Reply-To: david@ixit.cz
 
-On Thu, 11 Dec 2025 23:25:44 -0500
-Kurt Borja <kuurtb@gmail.com> wrote:
+This adds initial device tree support for the following phones:
 
-> Add ti-ads1018 driver for Texas Instruments ADS1018 and ADS1118 SPI
-> analog-to-digital converters.
-> 
-> This chips' MOSI pin is shared with a data-ready interrupt. Defining
-> this interrupt in devicetree is optional, therefore we only create an
-> IIO trigger if one is found.
-> 
-> Handling this interrupt requires some considerations. When enabling the
-> trigger the CS line is tied low (active), thus we need to hold
-> spi_bus_lock() too, to avoid state corruption. This is done inside the
-> set_trigger_state() callback, to let users use other triggers without
-> wasting a bus lock.
-> 
-> Reviewed-by: Andy Shevchenko <andy@kernel.org>
-> Signed-off-by: Kurt Borja <kuurtb@gmail.com>
+ - Google Pixel 3 (blueline)
+ - Google Pixel 3 XL (crosshatch)
 
-Hi Kurt, 
+Both phone boards use the same identifiers and differ only slightly
+in their connected peripherals.
 
-A couple of minor formatting things. All trivial so I tweaked whilst
-applying. Applied to the testing branch of iio.git. I'll rebase that
-on rc1 once available then push out as togreg for linux-next to pick
-it up.
+This is mainly focused to get the base functionality of the board and
+being able to use the upstream DTS within Linux and u-boot.
 
-Thanks,
+Booting
+-------
+For older Pixel 3 bootloaders, bootloader-compatible board and MSM IDs are
+required for the kernel to boot, so these have been added.
 
-Jonathan
+For recent Pixel 3 bootloaders,
+a) you want chainloaded proper bootloader (f.e. u-boot),
+b) you can also boot kernel when adding back TEXT_OFFSET
+   (partial revert of 120dc60d).
 
+This series is a beggining of cleaning up and transitioning support from
+sdm845 close to mainline tree to the mainline.
 
+Until merged, available at:
+  https://gitlab.com/sdm845/sdm845-next/-/commits/b4/pixel-3
 
-> diff --git a/drivers/iio/adc/ti-ads1018.c b/drivers/iio/adc/ti-ads1018.c
-> new file mode 100644
-> index 000000000000..e3087bb47699
-> --- /dev/null
-> +++ b/drivers/iio/adc/ti-ads1018.c
+Signed-off-by: David Heidelberg <david@ixit.cz>
+---
+Changes in v7:
+- Added callibration data for both devices.
+  Sent variants to the ath10k mailing list. (Dmitry)
+- Replaced "drm/panel: sw43408: Add enable/disable and reset functions"
+  with "drm/panel: sw43408: Separate reset sequence into own function".
+- Enable cci node, as both cci_i2c0 and cci_i2c1 works (tested with
+  i2cdetect with regulator_ignore_unused).
+- Added front camera and it's eeprom placeholder.
+- Link to v6: https://lore.kernel.org/r/20251208-pixel-3-v6-0-e9e559d6f412@ixit.cz
 
-> +
-> +static int
-> +ads1018_write_raw_get_fmt(struct iio_dev *indio_dev,
-> +			  struct iio_chan_spec const *chan, long mask)
-I'm not immediately seeing why this particular line wrap mapes sense.
-static int ads1018_write_raw_get_fmt(struct iio_dev *indio_dev,
-			  	     struct iio_chan_spec const *chan,
-				     long mask)
+Changes in v6:
+- Disabled dispcc on Pixel 3 XL to keep framebuffer reliably working
+  after the boot. Previously I used framebuffer only in u-boot.
+- Link to v5: https://lore.kernel.org/r/20251206-pixel-3-v5-0-dc99732e7d35@ixit.cz
 
-Is more common way to do this particular combination.
+Changes in v5:
+- Document 1 MHz frequency for i2c2 on blueline and add placeholder for
+  the touchscreen.
+- Rename vreg_l14a_1p88 regulator to vreg_l14a_1p8 as it's 1.80V.
+- Move panel _enable() function below _program(). (Dmitry)
+- Link to v4: https://lore.kernel.org/r/20251125-pixel-3-v4-0-3b706f8dcc96@ixit.cz
 
-There are a few other places where the wrap choice wasn't quite what
-I'd have gone with, so I tweaked those as well.
+Changes in v4:
+- Updated panel device-tree example to contain the both compatibles.
+- Put panel pins into the panel-default-state and drop the suspend state
+  as it's not yet used.
+- Also, sort the pins. (Konrad)
+- Move the framebuffer format to common, as it's UEFI standard. (Konrad)
+- Improve commit descriptions and add Fixes tag. (Dmitry)
+- Link to v3: https://lore.kernel.org/r/20251118-pixel-3-v3-0-317a2b400d8a@ixit.cz
 
+Changes in v3:
+- dropped Documentaion: prefix from 1st commit (Krzysztof)
+- Extended the compatible for panel driver.
+- Document reserved GPIOs.
+- Drop some useless statuses, sort pinctrl. (Konrad)
+- Add placeholders for the known i2c devices.
+- Link to v2: https://lore.kernel.org/r/20251030-pixel-3-v2-0-8caddbe072c9@ixit.cz
 
-> +{
-> +	switch (mask) {
-> +	case IIO_CHAN_INFO_SCALE:
-> +		return IIO_VAL_INT_PLUS_NANO;
-> +	default:
-> +		return IIO_VAL_INT_PLUS_MICRO;
-> +	}
-> +}
-> +
-> +static const struct iio_info ads1018_iio_info = {
-> +	.read_raw = ads1018_read_raw,
-> +	.read_avail = ads1018_read_avail,
-> +	.write_raw = ads1018_write_raw,
-> +	.write_raw_get_fmt = ads1018_write_raw_get_fmt,
-> +};
+Changes in v2:
+- rebased on next-20251030
+- generalize chosen to -common (Dmitry)
+- demystify rmtfs_mem qcom,vmid
+- use qcom,use-guard-pages instead of lower/upper guard block
+- merge port@1 endpoint into label mdss_dsi0_out
+- sort pinctrl
+- sorted the nodes inside root
+- put status as a last property into mdss_dsi0 block
+- rename volume-keys to gpio-keys   
+- removed LS-UART1 label
+- removed gmu block, already enabled
+- removed accidentally introduced WIP crosshatch panel support
+- removed useless panel_pmgpio_pins (Dmitry)
+- removed usb_2 as it's unused on production units (only devkit)
+- move mdss node into the -common and disable in crosshatch (Dmitry)
+- move battery node into the -commonm
+- move framebuffer into the -common (Dmitry)
+- add all firmwares (Dmitry)
+- add Wi-Fi support
+- add Bluetooth support
+- add missing gpi_dma1 node
+- renamed regulators to follow regulator-foo-bar BCP (Dmitry)
+- adapt to recent cleanup GPU's zap-shader node
+- Link to v1: https://lore.kernel.org/r/20251005-pixel-3-v1-0-ab8b85f6133f@ixit.cz
 
+---
+David Heidelberg (8):
+      dt-bindings: arm: qcom: Add Pixel 3 and 3 XL
+      dt-bindings: panel: sw43408: adjust to reflect the DDIC and panel used
+      drm/panel: sw43408: Introduce LH546WF1-ED01 panel compatible
+      drm/panel: sw43408: Separate reset sequence into own function
+      drm/panel: sw43408: Remove manual invocation of unprepare at remove
+      drm/panel: sw43408: Switch to devm_regulator_bulk_get_const
+      drm/panel: sw43408: Improve wording when reset-gpios aren't available
+      arm64: dts: qcom: Add support for Pixel 3 and Pixel 3 XL
 
-> +static int ads1018_spi_probe(struct spi_device *spi)
-> +{
-> +	const struct ads1018_chip_info *info = spi_get_device_match_data(spi);
-> +	struct device *dev = &spi->dev;
-> +	struct iio_dev *indio_dev;
-> +	struct ads1018 *ads1018;
-> +	int ret;
+ Documentation/devicetree/bindings/arm/qcom.yaml    |   2 +
+ .../bindings/display/panel/lg,sw43408.yaml         |  13 +-
+ arch/arm64/boot/dts/qcom/Makefile                  |   2 +
+ .../arm64/boot/dts/qcom/sdm845-google-blueline.dts |  89 ++++
+ arch/arm64/boot/dts/qcom/sdm845-google-common.dtsi | 536 +++++++++++++++++++++
+ .../boot/dts/qcom/sdm845-google-crosshatch.dts     |  36 ++
+ drivers/gpu/drm/panel/panel-lg-sw43408.c           |  58 +--
+ 7 files changed, 705 insertions(+), 31 deletions(-)
+---
+base-commit: 1afd6a72e30f55f3a1699180d01d969444ad4469
+change-id: 20250419-pixel-3-511edc2a4607
 
-...
+Best regards,
+-- 
+David Heidelberg <david@ixit.cz>
 
-> +	ret = devm_iio_triggered_buffer_setup(dev, indio_dev,
-> +					      iio_pollfunc_store_time,
-> +					      ads1018_trigger_handler,
-> +					      &ads1018_buffer_ops);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return devm_iio_device_register(&spi->dev, indio_dev);
-
-You have dev, so makes sense to use it here too.
-
-> +}
 
 
