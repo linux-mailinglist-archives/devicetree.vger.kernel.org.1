@@ -1,190 +1,169 @@
-Return-Path: <devicetree+bounces-246287-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246288-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CD3FCBB60B
-	for <lists+devicetree@lfdr.de>; Sun, 14 Dec 2025 03:44:49 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B799CBB623
+	for <lists+devicetree@lfdr.de>; Sun, 14 Dec 2025 03:53:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 0470A3004F30
-	for <lists+devicetree@lfdr.de>; Sun, 14 Dec 2025 02:44:48 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 048F4300B810
+	for <lists+devicetree@lfdr.de>; Sun, 14 Dec 2025 02:53:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88C482135B8;
-	Sun, 14 Dec 2025 02:44:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 560E92D7DFE;
+	Sun, 14 Dec 2025 02:53:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="SyDgcWz7"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="cdizD84Z";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="eP360zFc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 758A5DF6C;
-	Sun, 14 Dec 2025 02:44:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8CA6BE5E
+	for <devicetree@vger.kernel.org>; Sun, 14 Dec 2025 02:53:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765680286; cv=none; b=afz5g/7J/ZZ4ZZpSqXSGH0u8rUUo3kJHee1D2F/hCFJuTHC0IGpFy44XLjVsCWCOI/yUoTv/hcrasgnYuE0Ce40A+sFX01E4ba9eykRc89SJIvBg937mHNCOS6o53wP4FUOToD1esXZO+K3rKUmJJ123ABJLO/X9QvuHrjiWKeM=
+	t=1765680802; cv=none; b=Xw3uw7gsX0CBLITxjxVhBD3snYQ+PnUJgD4n6nS/ZaaajihgeGBRnYXbxRrPRXETeFnanp7kr8xdHTpTXLknhU7kdxgu4PsEWgAAiWZFteK3ROMlMSHP/4BEIkTDqhZ2MwLMIC5XZfRe2r9iSO/dX3Ve3zKeyQKJNh112X0S56U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765680286; c=relaxed/simple;
-	bh=OpZre1ZbJKF8udkzRRD8kMmJKN4XssmMfDeDAHs25MI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oG6hartMsfRGuUC5zVOatrLy/WHvEgLGWMqWp/VfyHQf0biDNCQxShBOmKmvdJzn+WwzooBMiXchNnGR+pbLm03uKWg+Lq/AqVK0GViZVh9B+qpOrsT77Te4xyGI3ggxy1BAR9qA7poVaSf4mcxGKw/AXclS0ACBAqMcggcTr7I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=SyDgcWz7; arc=none smtp.client-ip=198.175.65.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1765680284; x=1797216284;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=OpZre1ZbJKF8udkzRRD8kMmJKN4XssmMfDeDAHs25MI=;
-  b=SyDgcWz7kIW7BikM4iZs06SXhHLixgdvRblEKW/1WYd204PIr1vubglt
-   soEkxkIbmYb8h5AEAX1Rck52lRVvpuyirKvIJTGdxJyZkPx/3jmBpuYOI
-   fpq1mp9zlOOqRk/mrz4TfAl6kcaI1D60fa1O+pnS2O+HpNzRQN9b2jHbd
-   qEEHA1n+aaH1+lMI6qkHc+IvFad2EQZ46pey2DJSAJNyTgNK4fEMBf+sz
-   pQC5+7/RrCwTOX63c7BbILKWlCCeE/Ab3BrWzmQ94Z5jb+E/fW7Wf4Vv/
-   Y+K3u6bWljwPlOoW9k8WuWqR7JhzvrBEztDlDSezeEeTXGrtqiZ95Q+n6
-   A==;
-X-CSE-ConnectionGUID: 8MRXBu0mQo+N7unk3IlqBw==
-X-CSE-MsgGUID: b6xXbTOgTMKoEw84qthQgg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11641"; a="90282318"
-X-IronPort-AV: E=Sophos;i="6.21,147,1763452800"; 
-   d="scan'208";a="90282318"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Dec 2025 18:44:44 -0800
-X-CSE-ConnectionGUID: uuVL35UCQ9i0K8VntsaC8g==
-X-CSE-MsgGUID: VhPSKb22Q9SaBgR6ilo5Sg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,147,1763452800"; 
-   d="scan'208";a="228491153"
-Received: from lkp-server01.sh.intel.com (HELO d335e3c6db51) ([10.239.97.150])
-  by fmviesa001.fm.intel.com with ESMTP; 13 Dec 2025 18:44:40 -0800
-Received: from kbuild by d335e3c6db51 with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vUc69-000000008Tp-32vO;
-	Sun, 14 Dec 2025 02:44:37 +0000
-Date: Sun, 14 Dec 2025 10:44:22 +0800
-From: kernel test robot <lkp@intel.com>
-To: Pankaj Gupta <pankaj.gupta@nxp.com>, Jonathan Corbet <corbet@lwn.net>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: oe-kbuild-all@lists.linux.dev, linux-doc@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	Frank Li <Frank.Li@nxp.com>
-Subject: Re: [PATCH v21 3/7] firmware: imx: add driver for NXP EdgeLock
- Enclave
-Message-ID: <202512141039.nVscnjzl-lkp@intel.com>
-References: <20251212-imx-se-if-v21-3-ee7d6052d848@nxp.com>
+	s=arc-20240116; t=1765680802; c=relaxed/simple;
+	bh=qqD9m19Ci1t53e4d8zwce9Bd+IeTsxjth7cVzm2/ZwY=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=dvrES/frRtyDg6LfflRN1Xj6En3i2xI1y834e6j25nCXdv1iUrZFClZ6FdMllzj+5Z+WWQ+fmf9qL86t3PT1BLKOk/WN2C2e1jHhYZSQyT60/yEQ6bPqmSxT49wl8qj3TQX8J66Azb4g/dQKnUV7h0T+UNni+EqHpax+DK+Xjik=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=cdizD84Z; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=eP360zFc; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BE1kb981182531
+	for <devicetree@vger.kernel.org>; Sun, 14 Dec 2025 02:53:19 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=aH8VFuNHZzzxxgVJ76CVEsKdT0fPzmeMSK5
+	/kOVfaco=; b=cdizD84ZXFf3mFCJUxnmt9E8b5HrgpyYJcqkmBavTaMnQduwp3q
+	Dejmzv7QsWY43tgDz/8uiExP9hG7JC3Xwa0uFyS6vwsSCwNjMYP4I/BnaC4jS95F
+	qchbEdlvblQpLYMAtsVhWYuoFG9r33vJL3aN2yI1HC1U+QJySz9WmAPRHmmpTnVS
+	b62k0ucpPV4CsbGy1OTV+Whg77REi0rog+chEu6F6M1yHSMXO5N4xmDqBtKd7dTq
+	DZezlw2wp93OnIapAGqbVhjtlTOf9DBQrt+EmyrS16lKJDdjbj/MaFeuT5ezcA6V
+	IAXYyYiXTO/IAjyfvLbY7YHPyDS4DXLUWYQ==
+Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b11a7sbhb-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Sun, 14 Dec 2025 02:53:19 +0000 (GMT)
+Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-29efd658fadso65692205ad.0
+        for <devicetree@vger.kernel.org>; Sat, 13 Dec 2025 18:53:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1765680798; x=1766285598; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=aH8VFuNHZzzxxgVJ76CVEsKdT0fPzmeMSK5/kOVfaco=;
+        b=eP360zFcQqQwu5VHok6tSqQgsJZls7wtQaHwTqtq2+JANavoj8Y0gUl04CFgyWufdB
+         90AVusGqI5mKJaXvc644X3tNoDgdYYE+GcqPGEPXCQNshJfKEiyNLNnYdBDBSUOFhWIZ
+         /hXXVoCiqwglWVbR8WjH30CfuiGvh4MKnvTxXjHrrXnSbtG1yQkYcfMyBlyNWNJc5DU+
+         qaaibr4nk41Ikl6VbnMVr7AS7XXGhUAOm/YORjdLKmf4rYOmys+K6k3KEcMb2l9txZZO
+         lTzqRNXzduG+ZBoa5aJRe2RSQ++M7DvkcbF8kXHRAym4EfXtJhLFRmMuRUFDOWNfN38O
+         sD0Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765680798; x=1766285598;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=aH8VFuNHZzzxxgVJ76CVEsKdT0fPzmeMSK5/kOVfaco=;
+        b=mLMc1S13VCxPm6tic9ZSFbepZ4ZqrzWW+8kEX3HDfQrQgYrBYe+ll19w5+MZ9Nyrtg
+         KEHMfsI2Zdrs4lESlKP0QYlMhzBpKM9nJfcn4h//CId+O+3S97AIKHynqCN63mE+PzH3
+         H70qxA+NqIdHjQmBWbYpVETeLhPARovcbSYaC3X3Gn4nW2lYV+AoTwJNiHFqToTlYPbx
+         9b1KWyRBtlOQ5gkO3KI2yABxC4I+f4jZhWth5OO6yGppEJuemlEvaNUGyewRmtvsWoxs
+         KluV8rknn1ooHKviZsvqb/E9936ZHqQ/ZGBeY0G96/7QWQxqk4dOSMJstW6hMvxAVeod
+         2gQg==
+X-Forwarded-Encrypted: i=1; AJvYcCWSkLgnGpQU7LC+ypK0BFmcZwYV2dG5lFc/77RA/kG0Abb2TTv/t7vQOsYF2TjJBok3avSrh6xwxBCI@vger.kernel.org
+X-Gm-Message-State: AOJu0YxU77iOyAAFY5irzFmz8Y8DsCSJclZ/+qivoyQd033753D1cW/r
+	fOfh0upzpyFgBsg8ARlL32Ugk/OgJf0dUCmNYHYbtmUOEiHHfcUV7sNTRUBShR/nFASY/8vwBxM
+	eq4/2vSqJ5BTlzYw5SkLz/ualn1vdMF/7ixuBKSoVMjSTt60mLY6s98l+3y35nsbs
+X-Gm-Gg: AY/fxX6EWthDHDQJcWCIxfm6Z7k+h42vk3WWJu3/8EcU8lD51iZJbK8rhQRSuNer8au
+	CFu02If0eXjRy+YjirDdFcvjGQrnPXjqS2/dJQPtjmbM4rPMUSHMqzwxWGQb2mLanT6BmRd9K90
+	NLSDzCb2LE4lGoykycZzhrXAu0+nH9JbIkjR4+NDFd1DCGtWtmoHhwf4mJaV10eux4YMi30N2gM
+	H07sj7Ph7PWAPMI7PIX56fHyAaiTRhYpQOaiyyv6YvJl1SelW+Q2ukf/+FyVai8OzIyT/HoWqDw
+	DhE6uVSFgaQnE92NZ17+gq48rToYjD3fC4UuKxtd/CK3noFY4UBU3PXX2+bV/5xwVQ3LYMh6sWI
+	LyeGPti/2s1ARzSIpyBAd8Tgx2pAEAigIJxQg5XyCy0Qe+Nqa9kEOthKH8sMHM7wBUePi
+X-Received: by 2002:a17:903:41c2:b0:2a0:9923:6954 with SMTP id d9443c01a7336-2a099236ad5mr32744495ad.27.1765680798503;
+        Sat, 13 Dec 2025 18:53:18 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHuk7ieLO0eMdTzrYSJ4YJIVDoooCUAXe6905vxnet9/eygsLEDZVvbYuTQMTm6OPuQCO86gg==
+X-Received: by 2002:a17:903:41c2:b0:2a0:9923:6954 with SMTP id d9443c01a7336-2a099236ad5mr32744315ad.27.1765680798056;
+        Sat, 13 Dec 2025 18:53:18 -0800 (PST)
+Received: from Z2-SFF-G9-MQ.ap.qualcomm.com (i-global052.qualcomm.com. [199.106.103.52])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29eea01723bsm94148115ad.62.2025.12.13.18.53.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 13 Dec 2025 18:53:17 -0800 (PST)
+From: Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>
+To: jjohnson@kernel.org, johannes@sipsolutions.net, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        krzk@kernel.org, Miaoqing Pan <miaoqing.pan@oss.qualcomm.com>
+Subject: [PATCH v2 ath-current 0/2]] wifi: ath11k: add usecase firmware handling based on device compatible
+Date: Sun, 14 Dec 2025 10:52:28 +0800
+Message-Id: <20251214025230.716387-1-miaoqing.pan@oss.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251212-imx-se-if-v21-3-ee7d6052d848@nxp.com>
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjE0MDAyNSBTYWx0ZWRfXxai3KU/e9xz2
+ YDwcqSz1XYzpIat+jRYXo/CcixdHI1ZUcIWM/akehKhfcy9h3xHE3B7+34ViIyUGJS/GzRq4433
+ LoQ3VtUzTUCTd7En3czuIs/4uYkFQxs3+Ctdfdzgd6U57KpiicgV2l0pdD/28xsvjcBA6fYvJ4L
+ gQcbuguFoVSS9QAAUKcP7F4HWwjptSGWBD2LVxYCwmAp6haSpYDmfYFkIPpe9rRP8A4xzRL8E/2
+ 5r3v4Tr3gmhHHGlTw2ASTC7kV18zArQI1bHCgq+dEaKx8kH/vjVmaWApBhNJHvoIPPox+d9j4/+
+ Ds52atZ9gR8/PB32O3z/UtNIi3s+7mh800RJSM8I7n1Zz5rH/i4IIyIBiiO1WeGzPyqMxsV7yVs
+ tNPLXxU1oa60YMSmcSHc0VwEoNUieA==
+X-Proofpoint-ORIG-GUID: SV_-4SfuQqugMyqnXaNSvT-8pCta84Pt
+X-Proofpoint-GUID: SV_-4SfuQqugMyqnXaNSvT-8pCta84Pt
+X-Authority-Analysis: v=2.4 cv=aOf9aL9m c=1 sm=1 tr=0 ts=693e269f cx=c_pps
+ a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=b9+bayejhc3NMeqCNyeLQQ==:17
+ a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=ibBZ5ciJxtvWWn4BFuIA:9 a=GvdueXVYPmCkWapjIL-Q:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-14_01,2025-12-11_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 malwarescore=0 impostorscore=0 adultscore=0 bulkscore=0
+ clxscore=1015 phishscore=0 lowpriorityscore=0 suspectscore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512140025
 
-Hi Pankaj,
+The 'firmware-name' property was introduced to allow end-users and
+integrators to select use-case-specific firmware for the WCN6855.
+But for M.2 WLAN chips, there is no suitable DTS node to specify
+the 'firmware-name' property. In addition, assigning firmware for
+the M.2 PCIe interface causes chips that do not use use-case-specific
+firmware to fail. Therefore, abandoning the approach of specifying
+firmware in DTS. As an alternative, propose a static lookup table
+mapping device compatible to firmware names.
 
-kernel test robot noticed the following build warnings:
+The driver has removed all support for firmware-name, and no upstream
+Device Tree files reference this property. Therefore, this patch
+removes the property from the binding and marks it as obsolete.
 
-[auto build test WARNING on 4a26e7032d7d57c998598c08a034872d6f0d3945]
+This is a DT ABI-breaking change, but safe since there are no in-tree
+users.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Pankaj-Gupta/Documentation-firmware-add-imx-se-to-other_interfaces/20251212-172535
-base:   4a26e7032d7d57c998598c08a034872d6f0d3945
-patch link:    https://lore.kernel.org/r/20251212-imx-se-if-v21-3-ee7d6052d848%40nxp.com
-patch subject: [PATCH v21 3/7] firmware: imx: add driver for NXP EdgeLock Enclave
-config: powerpc-randconfig-r131-20251213 (https://download.01.org/0day-ci/archive/20251214/202512141039.nVscnjzl-lkp@intel.com/config)
-compiler: powerpc-linux-gcc (GCC) 13.4.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251214/202512141039.nVscnjzl-lkp@intel.com/reproduce)
+---
+v2:
+- Drops `firmware-name` from completely.
+- Updates the commit message to clearly state that the property is
+  obsolete and the change is ABI-breaking but safe for upstream.
+---
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202512141039.nVscnjzl-lkp@intel.com/
+Miaoqing Pan (2):
+  wifi: ath11k: add usecase firmware handling based on device compatible
+  dt-bindings: net: wireless: ath11k-pci: remove obsolete firmware-name
+    property
 
-sparse warnings: (new ones prefixed by >>)
->> drivers/firmware/imx/ele_base_msg.c:77:52: sparse: sparse: non size-preserving pointer to integer cast
+ .../net/wireless/qcom,ath11k-pci.yaml         |  6 ---
+ drivers/net/wireless/ath/ath11k/core.c        | 37 ++++++++++++++++++-
+ drivers/net/wireless/ath/ath11k/core.h        |  7 ++--
+ 3 files changed, 39 insertions(+), 11 deletions(-)
 
-vim +77 drivers/firmware/imx/ele_base_msg.c
 
-    16	
-    17	int ele_get_info(struct se_if_priv *priv, struct ele_dev_info *s_info)
-    18	{
-    19		struct se_api_msg *tx_msg = NULL;
-    20		struct se_api_msg *rx_msg = NULL;
-    21		dma_addr_t get_info_addr = 0;
-    22		u32 *get_info_data = NULL;
-    23		int ret = 0;
-    24	
-    25		if (!priv)
-    26			return -EINVAL;
-    27	
-    28		memset(s_info, 0x0, sizeof(*s_info));
-    29	
-    30		tx_msg = kzalloc(ELE_GET_INFO_REQ_MSG_SZ, GFP_KERNEL);
-    31		if (!tx_msg)
-    32			return -ENOMEM;
-    33	
-    34		rx_msg = kzalloc(ELE_GET_INFO_RSP_MSG_SZ, GFP_KERNEL);
-    35		if (!rx_msg) {
-    36			ret = -ENOMEM;
-    37			goto exit;
-    38		}
-    39	
-    40		if (priv->mem_pool)
-    41			get_info_data = gen_pool_dma_alloc(priv->mem_pool,
-    42							   ELE_GET_INFO_BUFF_SZ,
-    43							   &get_info_addr);
-    44		else
-    45			get_info_data = dma_alloc_coherent(priv->dev,
-    46							   ELE_GET_INFO_BUFF_SZ,
-    47							   &get_info_addr,
-    48							   GFP_KERNEL);
-    49		if (!get_info_data) {
-    50			dev_dbg(priv->dev,
-    51				"%s: Failed to allocate get_info_addr.", __func__);
-    52			ret = -ENOMEM;
-    53			goto exit;
-    54		}
-    55	
-    56		ret = se_fill_cmd_msg_hdr(priv, (struct se_msg_hdr *)&tx_msg->header,
-    57					  ELE_GET_INFO_REQ, ELE_GET_INFO_REQ_MSG_SZ,
-    58					  true);
-    59		if (ret)
-    60			goto exit;
-    61	
-    62		tx_msg->data[0] = upper_32_bits(get_info_addr);
-    63		tx_msg->data[1] = lower_32_bits(get_info_addr);
-    64		tx_msg->data[2] = sizeof(*s_info);
-    65		ret = ele_msg_send_rcv(priv, tx_msg, ELE_GET_INFO_REQ_MSG_SZ, rx_msg,
-    66				       ELE_GET_INFO_RSP_MSG_SZ);
-    67		if (ret < 0)
-    68			goto exit;
-    69	
-    70		ret = se_val_rsp_hdr_n_status(priv, rx_msg, ELE_GET_INFO_REQ,
-    71					      ELE_GET_INFO_RSP_MSG_SZ, true);
-    72	
-    73		memcpy(s_info, get_info_data, sizeof(*s_info));
-    74	
-    75	exit:
-    76		if (priv->mem_pool)
-  > 77			gen_pool_free(priv->mem_pool, (u64)get_info_data,
-    78				      ELE_GET_INFO_BUFF_SZ);
-    79		else
-    80			dma_free_coherent(priv->dev, ELE_GET_INFO_BUFF_SZ,
-    81					  get_info_data, get_info_addr);
-    82	
-    83		kfree(tx_msg);
-    84		kfree(rx_msg);
-    85		return ret;
-    86	}
-    87	
-
+base-commit: c99ebb6132595b4b288a413981197eb076547c5a
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.34.1
+
 
