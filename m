@@ -1,77 +1,77 @@
-Return-Path: <devicetree+bounces-246337-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246338-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C1E7CBC09F
-	for <lists+devicetree@lfdr.de>; Sun, 14 Dec 2025 22:53:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B7BDFCBC0A8
+	for <lists+devicetree@lfdr.de>; Sun, 14 Dec 2025 22:53:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8B1E23009A9A
-	for <lists+devicetree@lfdr.de>; Sun, 14 Dec 2025 21:53:08 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A0D2B3015AA2
+	for <lists+devicetree@lfdr.de>; Sun, 14 Dec 2025 21:53:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BC94316182;
-	Sun, 14 Dec 2025 21:53:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17ECD2DAFB0;
+	Sun, 14 Dec 2025 21:53:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VC+P5Z27"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dnZ6hpjU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 700E5315D2B
-	for <devicetree@vger.kernel.org>; Sun, 14 Dec 2025 21:53:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DD7B246774
+	for <devicetree@vger.kernel.org>; Sun, 14 Dec 2025 21:53:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765749186; cv=none; b=I1N83Fwc+ea5L4rgF5xGqVKptIWUWVCLWjmvQA2qgzA0x5WIYhB9uNG5MDqdvtd5/PDjgaMW5UFCQVqngAOwx959e/1qnMBlACvtdK6oWOj6kSzAZV/3XMwAFq04ThO4VEUP/UCtGsX8wSOlen/y2OAo95kxu4Dx9N3e1YRPRA8=
+	t=1765749188; cv=none; b=cX7FD5oc8Dj307pEo1MGMQ2VK6qRRwdwFhlzD4bsIN6jWJZ73dC8LrsFFb3jCOXhyMDFv+5owuAAOxn5jh/2IoI9/n0hSUg2upYxKYJJY4svHWZRImmzJcFHyNihEEs141Pwc2WRw732BVnxP+LhnXxT07QO53q0juJDjLT+Uj8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765749186; c=relaxed/simple;
-	bh=uYZSnZuRrwJRAmm9rMjS2CEsXeIqm8YEwy7l+zm6we8=;
+	s=arc-20240116; t=1765749188; c=relaxed/simple;
+	bh=wc1hNM9S6VyXu+UnFmmncpeycGgAm3CAAjOS0sTo/fI=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ZfBsMsDQghS2Cli4Bf6DoUMK/gKibZmFs2EuVR4LkMpc7K0F97QuvayjBxcg8lAlNgfrZV/H1v6Z21P8sTxMkxfkX0ZnZfFiaExW9M0vx4PGJCMegm1Ic3G2bKQamqdNp8d7vFP2nvmQbLgrHITH9uLQ8WONVJBh3oOVWT/Uo6Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VC+P5Z27; arc=none smtp.client-ip=209.85.221.51
+	 MIME-Version; b=Xyzw8R5MuPuCuLCMXB+ja9dq59QAmiyDsxgcWvF6A2HlJ2/rWFKM7d9/F4AoOH9nh0T4wTJym3Q7+jYIAlSP7xsRZq2GSvNs2Qz6skhJ7k6TUPnnZdwn6faoVkNBZiKgbNgzuV2N0dYWY8gQLoea0gxQlBF3CmB+Yc1HxujynA8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dnZ6hpjU; arc=none smtp.client-ip=209.85.221.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-42fbc305914so1321965f8f.0
-        for <devicetree@vger.kernel.org>; Sun, 14 Dec 2025 13:53:04 -0800 (PST)
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-430f57cd471so417365f8f.0
+        for <devicetree@vger.kernel.org>; Sun, 14 Dec 2025 13:53:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1765749183; x=1766353983; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1765749185; x=1766353985; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=r8jury4dWgJkw8r5nImNRFf5uOLhU7BpYSo44vohOG4=;
-        b=VC+P5Z27WjsOTw19Xe3fCRfEAeM2hnO+tfNi280N7iE7ahT64Q4lj1JIJrFj7DCf6h
-         nl4daD3oq2sfGAzlAkHwXjYzcQV3hl4GuNSFpzT5kUTILcjWDgMC1TcnxfKF8bPlkncE
-         vnQ5XxAtTghtZofv9jicANGjKtGLE3aq4CLaZUxpOnqNwGDTp5IAkU9MVfDwDF67s9TO
-         mYfP9bU8i1U3ZHKwyARgGeY/IJ9Xs003qKgQ7olLiTOp96ZPnmwqlpu0D1KS3ARuPdcn
-         IqrnR/yMuHKUrpNpLwPCQaIinlwWT9SSwCd2/SNJd36vO8WFDRJVcBjCfprkTnMnN0XX
-         hNKw==
+        bh=bPsW6S2pqCNYFNBAk1ab6y0h0xeg8Q/fREDfEnNJpHk=;
+        b=dnZ6hpjUINNKo619GlbjJCPsqLd5lgTdC1CqMZ2tl990HzknGJC32U+qz0IYwi/ZLk
+         BEDkitwSq+iF7Z9scQ8ruZkweFz3RUytrrNz2M+TFRaKnETW+ArWgr8e2IYwe2y5pc5i
+         CAshWBFXyEfxiM/J/zAUzmtKvGIND5op8HiHmndVBAxqcnRULNba2d1EcqcVksxWLk5R
+         /Ra1x9XHQfIo7eU+KKd7YBIvUtBGO52lVB6Clr+jNq/31uQrDwT8wYieA2K/FbF2ONhu
+         R51Q8UXA/9VXrtBR26UAnPogEs8Rhn6T9J5j+5QQ+Tw8yXgFQqHXA57EwV2V1+fDze2x
+         7FdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765749183; x=1766353983;
+        d=1e100.net; s=20230601; t=1765749185; x=1766353985;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=r8jury4dWgJkw8r5nImNRFf5uOLhU7BpYSo44vohOG4=;
-        b=vs/DYDQfE1D0Pau8RBTBbvvv/BndPHZ6JvhdWYTrH0K9JQn+IVCEd6RbQHqv5PczCe
-         o1ZQyuIcPJl13Jx5quXBjDC42ZI2xY3PDLR1sEh8g29abS5EkpZlZVmMlVEea2v8iTQz
-         rH9nsVPRtkKT6ee0h205Y8y5nr6zdXKbjbPQkef9oyvDdx/owgEnBt/N+EZVisch8LDK
-         GNsttcYSlBw0t3eH1rcCcTpIoV7FGhuL0cm+ruUAk02PmTobtgy1XDumSyH4mbHlTS0W
-         e/rXZkbsK0uidT4kG6EBwc7Zkp25nL9ScXxWmo7WFeSkxSZX3ErJl/rKp+jAQZQkHZqu
-         +CNQ==
-X-Gm-Message-State: AOJu0YzJe/TJOJN2m3geOy2VbCrwUXSdVprTu6tNPz7ldsWsu+0M+s1Y
-	NTHTZrf4cmm0BoLTgGwg8lYg6UT4Uhl0zFkwMHreynwj77PSy2ZyKrhg9+uQskey
-X-Gm-Gg: AY/fxX7MCk94Ma8VYB05OAVT7IuIt9kkDZXRSX9hMF6FLYM2XKomHRwwzZPWYsw6XF/
-	IAQmU5iuW2/XleOyDirCA+BTLF8o2rl8zSxuW493TsaLE9ip5p+lK6a5qh5LDGp03hox6u7u5Ni
-	4VgvNPiIwcR+wykQIzitKInIt8NFQtNI2YtARYW+hdB9+s1KZXnhNIJSjjBFayfpmftbWwPLbdd
-	BXsWh1cxtdtu7RlpG2bAfmWEY+TEuoHuwlmqHmRezwTHhJlJ76+yZkNGaLTwHif69/bH+FKUGpX
-	SgaQl6TAn9r7Ld0+L7JIJGPrTk17WQ2RxOQvii7Qv+Sc1lABa2PtnRicUBF854l7aHNva9T9Nlw
-	UJD6gpS8qCIzglAqV0fN5l1NCragXjtaLG11AkgSiS8nt6TYAvlWxNUdguFG9f6qD1sz4addjhf
-	JZyd1j/nAStVf5xddtiVRWPxiBZs6egpeyF2hpz0WjTDmTdXs/k4j4Bv4p90xUsf/rZpe+NtMnB
-	rZz2ER+jPtaqOxjvukla8MeNw==
-X-Google-Smtp-Source: AGHT+IHlwvUwhglREyCe2v0pBDkwpLJw4hn2MzBwpG419jFwAHwhdlcI6pbWRQtcoEeM5mlvwGC+Zw==
-X-Received: by 2002:a05:6000:1a8d:b0:430:f742:fbb8 with SMTP id ffacd0b85a97d-430f742fd90mr2518662f8f.21.1765749182731;
-        Sun, 14 Dec 2025 13:53:02 -0800 (PST)
+        bh=bPsW6S2pqCNYFNBAk1ab6y0h0xeg8Q/fREDfEnNJpHk=;
+        b=qMogKlgk9l6ZTOw7xvhXpluXkmR40fDuDb4ea40i7fwYrC8fyJ7NdTUaSNgrHn0W2B
+         TEhAqXKgTOSd0U2uxZDV9CGWK2rWb/KDnDSZYYGYg4FTyc9GhoEctGPIhc8GITqhvbAR
+         jCGT9jEpPT0cyTAg+nXnahiOOa9WmwP8UUJe8myIkZnvgdb0KsruXT8pYps/FAl0HDFO
+         JyVNoVZu+j6vNa0pB8rq3Xs1lhfgIa49bt5/2dTXxUu8mBUZKECkDiKZ+KFXnYpGoxyX
+         3QCpw0n4e9qmwjqC9UkeKYwMzTHH8LZ23H8DA/1IY48TF4DsoUhGi3DwNOO74H6bLn1S
+         Z8tQ==
+X-Gm-Message-State: AOJu0YwqCYSW8u9j54RUZA7mMLd+qogrIYRmVDfsPmwzolNsJOktuXwY
+	/FhELZXn1dAjCX+wl6Dvb4n23BxiMzfn1uUgDSxtXOy6i1z0XKZ0yVC+InyYi1Nt
+X-Gm-Gg: AY/fxX66TmqSQOr3jg70q2eSrV/yIylY7RUfJU+Za2RPAaXNj8IM/IseDmVxBSysgcP
+	Am5xUNGZ34ZwE0sGqYNPlZfe6bHK2NsdjoyA0ZZlJ59GuHKBIRmrfb7EB7wl69AXR1x10Rpi5tQ
+	hbiLZO2zqdgt1JdWXCgBeDo27uqeS5HoYWNlJbN4Db4dmqRVPfZR4sgvFCW7gnGTYhZE3BpmabC
+	hY/Q3w7MbVpAZsmh4xXQ6rWjldsGCqepiFXzUIhmOoPvJy6rusciqutQ/YekmzylkGOwnVRnqo2
+	4xzLpmAnhOonlcRJ3Q3+wnKdTL49K470aHjsQrES/4zvr2DIfKCc2bC35gTtJ54lt28QfvU6Rd0
+	m9DuvC8oOYrJauIi0eamBgMV/vJxXkH8KurrLHVinImML4WxVkQzavqHurcxnWFORFbIx4NCEt9
+	1MPlQIF4OYq71+Nw2ABu/ZFWC/XKuz++NhKvGh03xKmUD7cN1gMjWk7WEobSyFYA/ALBJOf2XOS
+	It8G0Qldgxj8cA=
+X-Google-Smtp-Source: AGHT+IFUiPfYqnPKnFAbb7dTQ9/Zlq66KzQosb/pDW7TXkp0BLQndAEW5/VGYv+cRcJO8L2g0Ou2XA==
+X-Received: by 2002:a05:6000:2411:b0:42b:2fb5:73c9 with SMTP id ffacd0b85a97d-42fb48e870emr9116098f8f.58.1765749184691;
+        Sun, 14 Dec 2025 13:53:04 -0800 (PST)
 Received: from Lord-Beerus.station (net-5-94-28-5.cust.vodafonedsl.it. [5.94.28.5])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-430f6a42c8csm7625568f8f.16.2025.12.14.13.53.01
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-430f6a42c8csm7625568f8f.16.2025.12.14.13.53.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 14 Dec 2025 13:53:02 -0800 (PST)
+        Sun, 14 Dec 2025 13:53:03 -0800 (PST)
 From: Stefano Radaelli <stefano.radaelli21@gmail.com>
 X-Google-Original-From: Stefano Radaelli <stefano.r@variscite.com>
 To: devicetree@vger.kernel.org,
@@ -86,9 +86,9 @@ Cc: Stefano Radaelli <stefano.r@variscite.com>,
 	Fabio Estevam <festevam@gmail.com>,
 	imx@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v4 2/6] arm64: dts: imx8mp-var-som: Move PCA9534 GPIO expander to Symphony carrier
-Date: Sun, 14 Dec 2025 22:52:49 +0100
-Message-ID: <20251214215256.5812-3-stefano.r@variscite.com>
+Subject: [PATCH v4 3/6] arm64: dts: imx8mp-var-som: Move UART2 description to Symphony carrier
+Date: Sun, 14 Dec 2025 22:52:50 +0100
+Message-ID: <20251214215256.5812-4-stefano.r@variscite.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20251214215256.5812-1-stefano.r@variscite.com>
 References: <20251214215256.5812-1-stefano.r@variscite.com>
@@ -100,89 +100,57 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The VAR-SOM-MX8MP module does not include the PCA9534 GPIO expander nor
-the LED connected to it. These components are present only on the
-Symphony carrier board and may vary across custom carrier designs.
+The VAR-SOM-MX8MP module does not provide an onboard debug console.
+UART2 is routed and exposed only on the Symphony carrier board, while
+custom carrier designs may choose to expose a different UART.
 
-Move the PCA9534 GPIO expander node and the associated LED definition
-from the SOM device tree to the Symphony carrier DTS, ensuring the SOM
-dtsi describes only hardware present on the module.
+Move the UART2 node from the SOM device tree to the
+imx8mp-var-som-symphony.dts, keeping the SOM dtsi limited to hardware
+present on the module itself.
 
 Signed-off-by: Stefano Radaelli <stefano.r@variscite.com>
 ---
- .../dts/freescale/imx8mp-var-som-symphony.dts | 50 +++++++++++++++++++
- .../boot/dts/freescale/imx8mp-var-som.dtsi    | 50 -------------------
- 2 files changed, 50 insertions(+), 50 deletions(-)
+ .../dts/freescale/imx8mp-var-som-symphony.dts  | 18 ++++++++++++++++++
+ .../boot/dts/freescale/imx8mp-var-som.dtsi     | 18 ------------------
+ 2 files changed, 18 insertions(+), 18 deletions(-)
 
 diff --git a/arch/arm64/boot/dts/freescale/imx8mp-var-som-symphony.dts b/arch/arm64/boot/dts/freescale/imx8mp-var-som-symphony.dts
-index ea3c193bb684..361e6122bdc3 100644
+index 361e6122bdc3..291f65e36865 100644
 --- a/arch/arm64/boot/dts/freescale/imx8mp-var-som-symphony.dts
 +++ b/arch/arm64/boot/dts/freescale/imx8mp-var-som-symphony.dts
-@@ -9,6 +9,16 @@ / {
+@@ -9,6 +9,10 @@ / {
  	model = "Variscite VAR-SOM-MX8M-PLUS on Symphony-Board";
  	compatible = "variscite,var-som-mx8mp-symphony", "variscite,var-som-mx8mp", "fsl,imx8mp";
  
-+	gpio-leds {
-+		compatible = "gpio-leds";
-+
-+		led-0 {
-+			function = LED_FUNCTION_POWER;
-+			gpios = <&pca9534 0 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "heartbeat";
-+		};
++	chosen {
++		stdout-path = &uart2;
 +	};
 +
- 	reg_usdhc2_vmmc: regulator-usdhc2-vmmc {
- 		compatible = "regulator-fixed";
- 		regulator-name = "VSD_3V3";
-@@ -31,6 +41,33 @@ reg_usdhc2_vqmmc: regulator-usdhc2-vqmmc {
+ 	gpio-leds {
+ 		compatible = "gpio-leds";
+ 
+@@ -68,6 +72,13 @@ usb3-sata-sel-hog {
  	};
  };
  
-+&i2c3 {
-+	clock-frequency = <400000>;
++/* Console */
++&uart2 {
 +	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c3>;
++	pinctrl-0 = <&pinctrl_uart2>;
 +	status = "okay";
-+
-+	/* GPIO expander */
-+	pca9534: gpio@20 {
-+		compatible = "nxp,pca9534";
-+		reg = <0x20>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_pca9534>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <15 IRQ_TYPE_EDGE_FALLING>;
-+		wakeup-source;
-+
-+		usb3-sata-sel-hog {
-+			gpio-hog;
-+			gpios = <4 0>;
-+			output-low;
-+			line-name = "usb3_sata_sel";
-+		};
-+	};
 +};
 +
  /* SD-card */
  &usdhc2 {
  	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-@@ -45,6 +82,19 @@ &usdhc2 {
- };
+@@ -95,6 +106,13 @@ MX8MP_IOMUXC_GPIO1_IO15__GPIO1_IO15                             0xc0
+ 		>;
+ 	};
  
- &iomuxc {
-+	pinctrl_i2c3: i2c3grp {
++	pinctrl_uart2: uart2grp {
 +		fsl,pins = <
-+			MX8MP_IOMUXC_I2C3_SCL__I2C3_SCL                                 0x400001c2
-+			MX8MP_IOMUXC_I2C3_SDA__I2C3_SDA                                 0x400001c2
-+		>;
-+	};
-+
-+	pinctrl_pca9534: pca9534grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_GPIO1_IO15__GPIO1_IO15                             0xc0
++			MX8MP_IOMUXC_UART2_RXD__UART2_DCE_RX                            0x40
++			MX8MP_IOMUXC_UART2_TXD__UART2_DCE_TX                            0x40
 +		>;
 +	};
 +
@@ -190,80 +158,48 @@ index ea3c193bb684..361e6122bdc3 100644
  		fsl,pins = <
  			MX8MP_IOMUXC_GPIO1_IO14__GPIO1_IO14                             0x1c4
 diff --git a/arch/arm64/boot/dts/freescale/imx8mp-var-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-var-som.dtsi
-index 949d9878f395..158a78ec9656 100644
+index 158a78ec9656..5bba91dcef17 100644
 --- a/arch/arm64/boot/dts/freescale/imx8mp-var-som.dtsi
 +++ b/arch/arm64/boot/dts/freescale/imx8mp-var-som.dtsi
-@@ -19,16 +19,6 @@ chosen {
- 		stdout-path = &uart2;
- 	};
+@@ -15,10 +15,6 @@
+ / {
+ 	model = "Variscite VAR-SOM-MX8M Plus module";
  
--	gpio-leds {
--	        compatible = "gpio-leds";
--
--	        led-0 {
--	                function = LED_FUNCTION_POWER;
--	                gpios = <&pca9534 0 GPIO_ACTIVE_HIGH>;
--	                linux,default-trigger = "heartbeat";
--	        };
+-	chosen {
+-		stdout-path = &uart2;
 -	};
 -
  	memory@40000000 {
  		device_type = "memory";
  		reg = <0x0 0x40000000 0 0xc0000000>,
-@@ -216,33 +206,6 @@ ldo5: LDO5 {
+@@ -206,13 +202,6 @@ ldo5: LDO5 {
  	};
  };
  
--&i2c3 {
--        clock-frequency = <400000>;
+-/* Console */
+-&uart2 {
 -        pinctrl-names = "default";
--        pinctrl-0 = <&pinctrl_i2c3>;
+-        pinctrl-0 = <&pinctrl_uart2>;
 -        status = "okay";
--
--	/* GPIO expander */
--	pca9534: gpio@20 {
--	        compatible = "nxp,pca9534";
--	        reg = <0x20>;
--	        pinctrl-names = "default";
--	        pinctrl-0 = <&pinctrl_pca9534>;
--	        gpio-controller;
--	        #gpio-cells = <2>;
--	        interrupt-parent = <&gpio1>;
--	        interrupts = <15 IRQ_TYPE_EDGE_FALLING>;
--	        wakeup-source;
--
--	        usb3-sata-sel-hog {
--	                gpio-hog;
--	                gpios = <4 0>;
--	                output-low;
--	                line-name = "usb3_sata_sel";
--	        };
--	};
 -};
 -
- /* Console */
- &uart2 {
-         pinctrl-names = "default";
-@@ -298,19 +261,6 @@ MX8MP_IOMUXC_SD1_DATA5__I2C1_SDA				0x400001c2
+ /* eMMC */
+ &usdhc3 {
+ 	pinctrl-names = "default", "state_100mhz", "state_200mhz";
+@@ -267,13 +256,6 @@ MX8MP_IOMUXC_SPDIF_RX__GPIO5_IO04				0x1c0
  		>;
  	};
  
--	pinctrl_i2c3: i2c3grp {
+-	pinctrl_uart2: uart2grp {
 -	        fsl,pins = <
--	                MX8MP_IOMUXC_I2C3_SCL__I2C3_SCL                                 0x400001c2
--	                MX8MP_IOMUXC_I2C3_SDA__I2C3_SDA                                 0x400001c2
--	        >;
+-		        MX8MP_IOMUXC_UART2_RXD__UART2_DCE_RX                            0x40
+-			MX8MP_IOMUXC_UART2_TXD__UART2_DCE_TX                            0x40
+-		>;
 -	};
 -
--	pinctrl_pca9534: pca9534grp {
--	        fsl,pins = <
--	                MX8MP_IOMUXC_GPIO1_IO15__GPIO1_IO15                             0xc0
--	        >;
--	};
--
- 	pinctrl_pmic: pmicgrp {
+ 	pinctrl_usdhc3: usdhc3grp {
  		fsl,pins = <
- 			MX8MP_IOMUXC_SPDIF_RX__GPIO5_IO04				0x1c0
+ 			MX8MP_IOMUXC_NAND_WE_B__USDHC3_CLK				0x190
 -- 
 2.47.3
 
