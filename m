@@ -1,246 +1,688 @@
-Return-Path: <devicetree+bounces-246760-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246761-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05E62CBFB18
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 21:11:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B84D7CBFB24
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 21:12:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C018A3007260
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 20:06:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 47AFD30204AC
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 20:08:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AE3B2773EE;
-	Mon, 15 Dec 2025 20:06:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56B842E7BCA;
+	Mon, 15 Dec 2025 20:08:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="huo3+38U"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="lFLcJktV";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="VIpJ1Aub"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ixit.cz (ip-94-112-25-9.bb.vodafone.cz [94.112.25.9])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD570230BDF;
-	Mon, 15 Dec 2025 20:06:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.112.25.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C17C230BDF
+	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 20:08:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765829203; cv=none; b=FILWGgWVQgEpMCU8buE02GJBM7vhSGKa+RErz+DPVJZ8R8vxymfyppmcxbkOgJWudtQ2PzjaCSS0Ud4widW7uWNKkEXYO3jX42qA5Ov2Ry2OF/ceJJdr8sAwz+yCQ2UN5zyN0BtTMl1aLmTu5AJxFngGKXwlswSaK8c6zhhnljE=
+	t=1765829310; cv=none; b=Y4BJ4x3V6gDlPCLhhpQI8OwX3s8ss7RO1g/uc+gC6kRKNrabRRweuUATZbq9pZusg0cHRgwSM0SIb4Y1UKBX7dR/il2ZYzizLb4f3s/OzPrq+IGAG283S2tCBp75Ilr02h7DUQeTBfyUM14dIfmS27c4m9mC6q6NYXtvaiwiu+4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765829203; c=relaxed/simple;
-	bh=+fEPiG6nRDgYkSLJL7xmlOgRM1fqNKRYC1cgfFoj/D8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uZ+xDlDVi0EDQgC43RkOm9vy18eepqCsffCQRNaclKhhIVHbCsg7lj4XRakm5EvjvfFi0UZY8RGvJ85JMXyr7gO1JlYm3quFecCX8YcNl0c8iZjr08zPpGZZrTaiDAChJl/lQgCcLp+zQuNbvA6W/1L23wXO9MjAC045OIa3gPU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=huo3+38U; arc=none smtp.client-ip=94.112.25.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
-Received: from [10.0.0.200] (unknown [10.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by ixit.cz (Postfix) with ESMTPSA id 2ADB753412AF;
-	Mon, 15 Dec 2025 21:06:32 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-	t=1765829192;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=Z4j2/uGpnszAMbRY/gTyuwO8hAfsQxxFOQaGfJQ8+/s=;
-	b=huo3+38UZOFn2IkZEBBtuqFO09u1rKe8NVzXWLiYN2PP4BZeit03wPYs+ZwIWhqvA2Eztl
-	pXjz9JJwqezQ5PT7wQ4urT532/DugbEppBUebJsX89ZLis9GNXE3YkHizFJrR+3JcTx0J1
-	6gi5kUlYET02Et/Kx4Y7ATF564+2vLI=
-Message-ID: <eb898d21-5fda-474d-979e-18da33a85415@ixit.cz>
-Date: Mon, 15 Dec 2025 21:06:31 +0100
+	s=arc-20240116; t=1765829310; c=relaxed/simple;
+	bh=MZbiHcGRp8Db8D3kKXSbxFd0lb4fdZ6I6nRmpDvbRSE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=T0EhFX7kKNGIiz2N2u1QX4MXTw0xZUFK5O5snpEQJAwamIm11brT9LkIMi7YXL7hEDk5+CHAJ/Fct2kG6lQX0JLSI6JGoTo7QI+rMQGixlgGEPSUOy5vdOtgkYNQVrzb8UyfmTiUdnzrOajWPfaK7b1sI/rmYv0EdcBEWexo1Oo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=lFLcJktV; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=VIpJ1Aub; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BFI0n0M1682791
+	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 20:08:27 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=wLpY6r+77aTfEEKFwAtfiX1M
+	lApcWe4XaD8rl58R34Y=; b=lFLcJktVpIE9M1bvN/uGIEyXbof44pTiNuD/qsr8
+	LlFgn1DMu2kbXnhAMDzp7Bjthlbu9t1RXUATJXEr5wk8qyPZCMF4UsJ2s2udqrga
+	k00VpcNuGu4uqKsw0Wca3so4JyQ4L0dya/Yunb+rHRMe5mA7k3+e1EbUPneG7cUP
+	v7omoS0ndeSNKvPD3u9FQKA/lvKRW3TCu5Ro/h7iPgxCzW+q7pRqanjDXWXlyeCe
+	r7qfhtd/JLteNgsyxDv9xTakYir1dOGciiBI+ciaBbNFcmgiYg/8x5D71iRH7CkO
+	8IuyHBNS9ZgyFGEnEdqmp+g+/byah6vfTtX647+foHHOIQ==
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b2q7tgafk-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 20:08:26 +0000 (GMT)
+Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4ed6855557aso78758201cf.1
+        for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 12:08:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1765829306; x=1766434106; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=wLpY6r+77aTfEEKFwAtfiX1MlApcWe4XaD8rl58R34Y=;
+        b=VIpJ1Aubhnf8l1+2dIVZCtG6FG3+fFKmRSL+2FkBpyZInHUwe8vciNoF9b6KB1fiLC
+         Z6hAtGOmpIlmmEs/XmLmybrdRdsypILkG3XZxi4co9CQEe+YkixPiegGx8iS4WdKRJK+
+         BxAuXEWPgfr/ygoMyZOuWaGaqrjnohFggD9yEK4cfnq+aYjfHmdANXLKXKJIGdDhSiSC
+         VCvyZu+sZEdmrKV2YtfnQAwfOe8KRhNLkHoSLESmtibDpCuhuITuMgEPkEaUAPdfXOWV
+         xhhzD9P0XiHv7+A3Rm/uWOEn5KsOGEuACQ+FB+dtlb71CvZQEynGWkrVpdUbNQVf2jXm
+         MzrQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765829306; x=1766434106;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=wLpY6r+77aTfEEKFwAtfiX1MlApcWe4XaD8rl58R34Y=;
+        b=YL0StJnTIoIWyL1XJG6w6QeI0TcbDALM7IzPgsmlAlWXdAl0utpGpCDKqsk0wN7ydl
+         +G9Bd1WSQaceLqnAhJg1zWTy/ptX5UfN7x8EqHHNUX5vy3JT5x6GyJusz5dq7mXjgoy9
+         PTMdogNkaiqQUwhBSAU/I+XMI2+lznXDP+xAa0Tav3Kpxf9Zir6b9IDh9b5SAfVFiFys
+         7TapZ9HinfFnTB0NQZ29cY8nt2rJw2rGt9emujwlWtBVB+kE4JRytPpUtG2I/ebFO4Rx
+         kZb119gGIT+FE9HFbWAnqGo25jnSSDCZNl35yVsy7qY+iGZap9tIoK5OOT/GtMi35kzA
+         5Tjg==
+X-Forwarded-Encrypted: i=1; AJvYcCUuJNlvzecEQyTRxSoJuCuIg1n3CpM2eOaKlOLsBBQZcQcU8PnJPQAHxJAMWxT/tqGyH6p67elBlpLz@vger.kernel.org
+X-Gm-Message-State: AOJu0YzIQWJEoT6lxQs0GjZzqjJWy6NjaPz3aXfcRpe+RTYe6QzW7+BI
+	o+GpWRa5PTEw/oKLDm2/H0h187v67sDb61jN0EPA4t8OV2I0MHC0l8fjaf3Exuq05oc0/LcYxYp
+	15bjqqb/3zFGeIFEPl1ULxDq5pVIwFwjzqbiAnEsZ0lLvS+wHgxPNdQWJKYz7ktvI
+X-Gm-Gg: AY/fxX6nJCwERKmeMJZhtJuP/srcqUfCs5zLabWy9sdsIeN/aMjqYMbFOF3ciTHBqcZ
+	XgDSrGFVvYuAFEj8BsarfhAF6ysBRM09bT7to6He3QeW+0epKNPOdIS+rfir8lv6OsY3fG/Lk6C
+	GIcSFyWg4R1NRW0yv9zJkO9TQieuqbIlVZyezz0xniC1gD1gD9wdK5GWXJKhDMLPYuEKLcGpA6z
+	0uUx5gvEse+5IJCqzqcPiQvfPh8svZV7KqzQUgrB0rsGX7rCU8l07pp+vnUdHOr6YxIcZxDdSLf
+	Sxt8f9XtoKT2d67e9uLGMEX9o+qGBlobNb0jPCBAeLdz+fRWrD4FrVB0LIGKNzcG13N0UuwC+SY
+	vtrusRtqOny873RG6HbDvrfmWYRsYCrY4HMO5snaMiiSPEd3xu9Xmkbc38t3nfVUrmVBpnW7S7z
+	nZH0KCJbegoGk0ibbJnSt47/o=
+X-Received: by 2002:a05:622a:1912:b0:4e8:916f:9716 with SMTP id d75a77b69052e-4f1bfe64d2dmr241799511cf.36.1765829305926;
+        Mon, 15 Dec 2025 12:08:25 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFLWwZ9cz7Lj46fGCEyopKb/cQPg81WGyMRBT2K2brlKyQeeyzNF3rvYNBZ3xEpinp5Vh9jYA==
+X-Received: by 2002:a05:622a:1912:b0:4e8:916f:9716 with SMTP id d75a77b69052e-4f1bfe64d2dmr241798591cf.36.1765829305155;
+        Mon, 15 Dec 2025 12:08:25 -0800 (PST)
+Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5990da5dcdcsm97008e87.73.2025.12.15.12.08.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 15 Dec 2025 12:08:24 -0800 (PST)
+Date: Mon, 15 Dec 2025 22:08:22 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: yuanjie yang <yuanjie.yang@oss.qualcomm.com>
+Cc: robin.clark@oss.qualcomm.com, lumag@kernel.org, abhinav.kumar@linux.dev,
+        jesszhan0024@gmail.com, sean@poorly.run, marijn.suijten@somainline.org,
+        airlied@gmail.com, simona@ffwll.ch, maarten.lankhorst@linux.intel.com,
+        mripard@kernel.org, tzimmermann@suse.de, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org, neil.armstrong@linaro.org,
+        yongxing.mou@oss.qualcomm.com, konrad.dybcio@oss.qualcomm.com,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, tingwei.zhang@oss.qualcomm.com,
+        aiqun.yu@oss.qualcomm.com
+Subject: Re: [PATCH v3 10/11] drm/msm/dpu: Refactor SSPP to compatible DPU
+ 13.0.0
+Message-ID: <pzwgxqdlpmrbylguvzwypry3fix6wi7kxu3jlv3yzdtb3unnrf@wfzvuhvhmue5>
+References: <20251215083854.577-1-yuanjie.yang@oss.qualcomm.com>
+ <20251215083854.577-11-yuanjie.yang@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/3] ARM: dts: exynos: Add Google Manta (Nexus 10)
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Lukas Timmermann <linux@timmermann.space>,
- Alim Akhtar <alim.akhtar@samsung.com>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Russell King <linux@armlinux.org.uk>
-Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- phone-devel@vger.kernel.org, Alexandre Marquet <tb@a-marquet.fr>
-References: <20251215-lat3st-staging-v3-0-2e4914b64dd8@timmermann.space>
- <20251215-lat3st-staging-v3-2-2e4914b64dd8@timmermann.space>
- <c62d6c99-0c8d-40e5-95fc-ae73ecaca926@ixit.cz>
- <546ff0cb-a3a2-4fa4-a78b-79c923ed7765@kernel.org>
-Content-Language: en-US
-From: David Heidelberg <david@ixit.cz>
-Autocrypt: addr=david@ixit.cz; keydata=
- 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
-In-Reply-To: <546ff0cb-a3a2-4fa4-a78b-79c923ed7765@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251215083854.577-11-yuanjie.yang@oss.qualcomm.com>
+X-Proofpoint-GUID: vIxVcasOazEXKwjedUwX-nxixMARu6B8
+X-Proofpoint-ORIG-GUID: vIxVcasOazEXKwjedUwX-nxixMARu6B8
+X-Authority-Analysis: v=2.4 cv=Qo1THFyd c=1 sm=1 tr=0 ts=69406aba cx=c_pps
+ a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=EUspDBNiAAAA:8 a=tuPIilvrXhUzXokbONcA:9 a=CjuIK1q_8ugA:10
+ a=dawVfQjAaf238kedN5IG:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjE1MDE3MyBTYWx0ZWRfX05lNaPxlxpXp
+ B5PKoGedzjAdfH2XY3q1Wehw2C/urmQQx9Q1wS2prPwLeT/aYIQ5Hjxsi8KySwwJ3dhIB2X/n0c
+ FV9jNedOouELZUtwrwd5DBcKPkgVvziM0LNtPVSx156jbHQULGYt3cbxOKXsN1VkEE2fUvSdVgo
+ zxZHG148gdNRI+ppGBTcvKr/AEiSTG9VSxZIKY8LOz7Kx29x5xSvvRFAIw8MCGrPz/4bRXWX9jW
+ MEuYs3Ez6SMtKCC01k8qapQWqL9uIJrRLnHu/4IrWjJW1W2eEBQbRcc8db11J/dxflnXhwv3rYM
+ jo96YZ+hNKaVaYGxS4Z1wesd0VLureT0QpajEuqY8mT9fEuzkIaZq/w+Ylf7wqjytB5Sz6gxqX5
+ /qbcFeOx35w+rXkmiaJVwfdw70X0Mg==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-15_05,2025-12-15_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 spamscore=0 adultscore=0 phishscore=0 bulkscore=0
+ clxscore=1015 lowpriorityscore=0 suspectscore=0 impostorscore=0
+ priorityscore=1501 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
+ definitions=main-2512150173
 
-
-
-On 15/12/2025 20:33, Krzysztof Kozlowski wrote:
-> On 15/12/2025 19:53, David Heidelberg wrote:
->> Hello Lucas,
->>
->> thanks for the sending Nexus 10 upstream, see few nitpicks below:
->>
->> On 15/12/2025 16:05, Lukas Timmermann wrote:
->>> From: Alexandre Marquet <tb@a-marquet.fr>
->>>
->>> Manta is the code name for Google Nexus 10, and was manufactured by
->>> Samsung with their Exynos5250 SoC.
->>> This patch adds initial device-tree file for this board.
->>>
->>> Signed-off-by: Alexandre Marquet <tb@a-marquet.fr>
->>> Co-developed-by: Lukas Timmermann <linux@timmermann.space>
->>> Signed-off-by: Lukas Timmermann <linux@timmermann.space>
->>> ---
->>>    arch/arm/boot/dts/samsung/Makefile             |   1 +
->>>    arch/arm/boot/dts/samsung/exynos5250-manta.dts | 511 +++++++++++++++++++++++++
->>>    2 files changed, 512 insertions(+)
->>>
->>> diff --git a/arch/arm/boot/dts/samsung/Makefile b/arch/arm/boot/dts/samsung/Makefile
->>> index 7becf36656b1..e0143ee8c82d 100644
->>> --- a/arch/arm/boot/dts/samsung/Makefile
->>> +++ b/arch/arm/boot/dts/samsung/Makefile
->>> @@ -26,6 +26,7 @@ dtb-$(CONFIG_ARCH_EXYNOS4) += \
->>>    	exynos4412-trats2.dtb
->>>    dtb-$(CONFIG_ARCH_EXYNOS5) += \
->>>    	exynos5250-arndale.dtb \
->>> +	exynos5250-manta.dtb \
->>>    	exynos5250-smdk5250.dtb \
->>>    	exynos5250-snow.dtb \
->>>    	exynos5250-snow-rev5.dtb \
->>> diff --git a/arch/arm/boot/dts/samsung/exynos5250-manta.dts b/arch/arm/boot/dts/samsung/exynos5250-manta.dts
->>> new file mode 100644
->>> index 000000000000..0f006590576c
->>> --- /dev/null
->>> +++ b/arch/arm/boot/dts/samsung/exynos5250-manta.dts
->>> @@ -0,0 +1,511 @@
->>> +// SPDX-License-Identifier: GPL-2.0
->>
->> you could use here modern SPDX I guess (GPL-2.0-only)
->>
->>> +/*
->>> + * Google Manta (Nexus 10) board device tree source
->>> + *
->>> + * Copyright (c) 2023-2025 Alexandre Marquet
->>> + * Copyright (c) 2025 Lukas Timmermann
->>> + */
->>> +
->>> +/dts-v1/;
->>> +#include <dt-bindings/leds/common.h>
->>> +#include <dt-bindings/gpio/gpio.h>
->>> +#include <dt-bindings/clock/maxim,max77686.h>
->>> +#include <dt-bindings/input/linux-event-codes.h>
->>> +#include "exynos-pinctrl.h"
->>> +#include "exynos5250.dtsi"
->>> +#include "exynos-mfc-reserved-memory.dtsi"
->>> +
->>> +/ {
->>> +	model = "Google Nexus 10";
->>> +	compatible = "google,manta", "samsung,exynos5250", "samsung,exynos5";
->>> +
->>> +	aliases {
->>> +		mmc0 = &mmc_0; /* eMMC */
->>> +		mmc1 = &mmc_1; /* WiFi */
->>> +	};
->>> +
->>> +	bmp180_vdda_reg: regulator-bmp180-vdda {
->>> +		compatible = "regulator-fixed";
->>> +		regulator-name = "BMP180_VDDA";
->>> +	};
->> something-something-regulator (all occurences within the DTS)
->>
+On Mon, Dec 15, 2025 at 04:38:53PM +0800, yuanjie yang wrote:
+> From: Yuanjie Yang <yuanjie.yang@oss.qualcomm.com>
 > 
-> I don't understand this suggestion.
+> DPU version 13.0.0 introduces structural changes including
+> register additions, removals, and relocations.
+> 
+> Refactor SSPP-related code to be compatible with DPU 13.0.0
+> modifications.
+> 
+> Co-developed-by: Yongxing Mou <yongxing.mou@oss.qualcomm.com>
+> Signed-off-by: Yongxing Mou <yongxing.mou@oss.qualcomm.com>
+> Signed-off-by: Yuanjie Yang <yuanjie.yang@oss.qualcomm.com>
+> ---
 
-oh right, let me clarify,
+We've fixed the order of the interrupts patch. Now you are adding SSPP
+customization for 13.x _after_ adding the first 13.x support. Is that
+supposed to work?
 
-the regulator name should end with -regulator postfix.
+>  .../gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h    |  15 +-
+>  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_sspp.c   | 155 ++++++++++--------
+>  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_sspp.h   |  52 ++++++
+>  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_util.c   |  18 ++
+>  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_util.h   |   3 +
+>  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_wb.c     |  17 +-
+>  6 files changed, 191 insertions(+), 69 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
+> index 0eb7cdf82ff9..f2aba9bdfcd3 100644
+> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
+> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
+> @@ -208,6 +208,18 @@ struct dpu_dsc_blk {
+>  	u32 len;
+>  };
+>  
+> +/**
+> + * struct dpu_sspp_v13_rec_blk - SSPP REC sub-blk information
+> + * @name: string name for debug purposes
+> + * @base: offset of this sub-block relative to the block offset
+> + * @len: register block length of this sub-block
+> + */
+> +struct dpu_sspp_v13_rec_blk {
+> +	char name[DPU_HW_BLK_NAME_LEN];
+> +	u32 base;
+> +	u32 len;
+> +};
+> +
+>  /**
+>   * enum dpu_qos_lut_usage - define QoS LUT use cases
+>   */
+> @@ -294,7 +306,8 @@ struct dpu_sspp_sub_blks {
+>  	u32 qseed_ver;
+>  	struct dpu_scaler_blk scaler_blk;
+>  	struct dpu_pp_blk csc_blk;
+> -
+> +	struct dpu_sspp_v13_rec_blk sspp_rec0_blk;
+> +	struct dpu_sspp_v13_rec_blk sspp_rec1_blk;
 
-> 
->>> +
->>> +	bmp180_vddd_reg: regulator-bmp180-vddd {
->>> +		compatible = "regulator-fixed";
->>> +		regulator-name = "BMP180_VDDD";
->>> +	};
-> 
-> 
-> 
->>> +};
->>> +
->>> +&clock {
->>> +	assigned-clocks = <&clock CLK_FOUT_APLL>;
->>> +	assigned-clock-rates = <1000000000>;
->>> +};
->>> +
->>> +&cpu0 {
->>> +	cpu0-supply = <&buck2_reg>;
->>> +};
->>> +
->>> +&ehci {
->>> +	status = "disabled";
->>> +};
->>> +
->>> +&i2c_0 {
->>> +	status = "okay";
->>
->> status should be before first sub-node (none in this case), with
->> preceding newline, please change all occurences
->>
-> 
-> Well yeah, but do you have actually any comment pointing real issues?
+Empty line afterwards.
 
-No I don't, just generic device-tree nitpicks.
+>  	const u32 *format_list;
+>  	u32 num_formats;
+>  	const struct dpu_rotation_cfg *rotation_cfg;
+> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_sspp.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_sspp.c
+> index 6f1fc790ad6d..7ed28009c463 100644
+> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_sspp.c
+> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_sspp.c
+> @@ -145,11 +145,18 @@
+>  static void dpu_hw_sspp_setup_multirect(struct dpu_sw_pipe *pipe)
+>  {
+>  	struct dpu_hw_sspp *ctx = pipe->sspp;
+> -	u32 mode_mask;
+>  
+>  	if (!ctx)
+>  		return;
+>  
+> +	dpu_hw_setup_multirect_impl(pipe, ctx, SSPP_MULTIRECT_OPMODE);
+> +}
+> +
+> +void dpu_hw_setup_multirect_impl(struct dpu_sw_pipe *pipe,
+> +				 struct dpu_hw_sspp *ctx, u32 op_mode_off)
+> +{
+> +	u32 mode_mask;
+> +
+>  	if (pipe->multirect_index == DPU_SSPP_RECT_SOLO) {
+>  		/**
+>  		 * if rect index is RECT_SOLO, we cannot expect a
+> @@ -158,7 +165,7 @@ static void dpu_hw_sspp_setup_multirect(struct dpu_sw_pipe *pipe)
+>  		 */
+>  		mode_mask = 0;
+>  	} else {
+> -		mode_mask = DPU_REG_READ(&ctx->hw, SSPP_MULTIRECT_OPMODE);
+> +		mode_mask = DPU_REG_READ(&ctx->hw, op_mode_off);
+>  		mode_mask |= pipe->multirect_index;
+>  		if (pipe->multirect_mode == DPU_SSPP_MULTIRECT_TIME_MX)
+>  			mode_mask |= BIT(2);
+> @@ -166,11 +173,11 @@ static void dpu_hw_sspp_setup_multirect(struct dpu_sw_pipe *pipe)
+>  			mode_mask &= ~BIT(2);
+>  	}
+>  
+> -	DPU_REG_WRITE(&ctx->hw, SSPP_MULTIRECT_OPMODE, mode_mask);
+> +	DPU_REG_WRITE(&ctx->hw, op_mode_off, mode_mask);
+>  }
+>  
+> -static void _sspp_setup_opmode(struct dpu_hw_sspp *ctx,
+> -		u32 mask, u8 en)
+> +void dpu_hw_sspp_setup_opmode(struct dpu_hw_sspp *ctx,
+> +			      u32 mask, u8 en)
+>  {
+>  	const struct dpu_sspp_sub_blks *sblk = ctx->cap->sblk;
+>  	u32 opmode;
+> @@ -189,8 +196,8 @@ static void _sspp_setup_opmode(struct dpu_hw_sspp *ctx,
+>  	DPU_REG_WRITE(&ctx->hw, sblk->scaler_blk.base + SSPP_VIG_OP_MODE, opmode);
+>  }
+>  
+> -static void _sspp_setup_csc10_opmode(struct dpu_hw_sspp *ctx,
+> -		u32 mask, u8 en)
+> +void dpu_hw_sspp_setup_csc10_opmode(struct dpu_hw_sspp *ctx,
+> +				    u32 mask, u8 en)
+>  {
+>  	const struct dpu_sspp_sub_blks *sblk = ctx->cap->sblk;
+>  	u32 opmode;
+> @@ -211,10 +218,6 @@ static void dpu_hw_sspp_setup_format(struct dpu_sw_pipe *pipe,
+>  		const struct msm_format *fmt, u32 flags)
+>  {
+>  	struct dpu_hw_sspp *ctx = pipe->sspp;
+> -	struct dpu_hw_blk_reg_map *c;
+> -	u32 chroma_samp, unpack, src_format;
+> -	u32 opmode = 0;
+> -	u32 fast_clear = 0;
+>  	u32 op_mode_off, unpack_pat_off, format_off;
+>  
+>  	if (!ctx || !fmt)
+> @@ -231,7 +234,25 @@ static void dpu_hw_sspp_setup_format(struct dpu_sw_pipe *pipe,
+>  		format_off = SSPP_SRC_FORMAT_REC1;
+>  	}
+>  
+> +	dpu_hw_setup_format_impl(pipe, fmt, flags, ctx, op_mode_off,
+> +				 unpack_pat_off, format_off,
+> +				 SSPP_UBWC_STATIC_CTRL, SSPP_UBWC_ERROR_STATUS);
+> +}
+> +
+> +void dpu_hw_setup_format_impl(struct dpu_sw_pipe *pipe, const struct msm_format *fmt,
+> +			      u32 flags, struct dpu_hw_sspp *ctx, u32 op_mode_off,
+> +			      u32 unpack_pat_off, u32 format_off, u32 ubwc_ctrl_off,
+> +			      u32 ubwc_err_off)
+> +{
+> +	struct dpu_hw_blk_reg_map *c;
+> +	u32 chroma_samp, unpack, src_format;
+> +	u32 opmode;
+> +	u32 fast_clear;
+> +	u8 core_major_ver;
+> +
+>  	c = &ctx->hw;
+> +	core_major_ver = ctx->mdss_ver->core_major_ver;
+> +
+>  	opmode = DPU_REG_READ(c, op_mode_off);
+>  	opmode &= ~(MDSS_MDP_OP_FLIP_LR | MDSS_MDP_OP_FLIP_UD |
+>  			MDSS_MDP_OP_BWC_EN | MDSS_MDP_OP_PE_OVERRIDE);
+> @@ -273,31 +294,34 @@ static void dpu_hw_sspp_setup_format(struct dpu_sw_pipe *pipe,
+>  		if (MSM_FORMAT_IS_UBWC(fmt))
+>  			opmode |= MDSS_MDP_OP_BWC_EN;
+>  		src_format |= (fmt->fetch_mode & 3) << 30; /*FRAME_FORMAT */
+> -		DPU_REG_WRITE(c, SSPP_FETCH_CONFIG,
+> -			DPU_FETCH_CONFIG_RESET_VALUE |
+> -			ctx->ubwc->highest_bank_bit << 18);
+> +
+> +		if (core_major_ver < 13)
+> +			DPU_REG_WRITE(c, SSPP_FETCH_CONFIG,
+> +				      DPU_FETCH_CONFIG_RESET_VALUE |
+> +				      ctx->ubwc->highest_bank_bit << 18);
+> +
 
-David
+This is not refactoring. Drop the conditions.
 
+>  		switch (ctx->ubwc->ubwc_enc_version) {
+>  		case UBWC_1_0:
+>  			fast_clear = fmt->alpha_enable ? BIT(31) : 0;
+> -			DPU_REG_WRITE(c, SSPP_UBWC_STATIC_CTRL,
+> -					fast_clear | (ctx->ubwc->ubwc_swizzle & 0x1) |
+> -					BIT(8) |
+> -					(ctx->ubwc->highest_bank_bit << 4));
+> +			DPU_REG_WRITE(c, ubwc_ctrl_off,
+> +				      fast_clear | (ctx->ubwc->ubwc_swizzle & 0x1) |
+> +				      BIT(8) |
+> +				     (ctx->ubwc->highest_bank_bit << 4));
+
+I have asked to drop unrelated changes. You didn't. Why? You are
+changing whitespaces for no reason. It's just a noise which hides the
+actual change here.
+
+>  			break;
+>  		case UBWC_2_0:
+>  			fast_clear = fmt->alpha_enable ? BIT(31) : 0;
+> -			DPU_REG_WRITE(c, SSPP_UBWC_STATIC_CTRL,
+> -					fast_clear | (ctx->ubwc->ubwc_swizzle) |
+> -					(ctx->ubwc->highest_bank_bit << 4));
+> +			DPU_REG_WRITE(c, ubwc_ctrl_off,
+> +				      fast_clear | (ctx->ubwc->ubwc_swizzle) |
+> +				     (ctx->ubwc->highest_bank_bit << 4));
+>  			break;
+>  		case UBWC_3_0:
+> -			DPU_REG_WRITE(c, SSPP_UBWC_STATIC_CTRL,
+> -					BIT(30) | (ctx->ubwc->ubwc_swizzle) |
+> -					(ctx->ubwc->highest_bank_bit << 4));
+> +			DPU_REG_WRITE(c, ubwc_ctrl_off,
+> +				      BIT(30) | (ctx->ubwc->ubwc_swizzle) |
+> +				     (ctx->ubwc->highest_bank_bit << 4));
+>  			break;
+>  		case UBWC_4_0:
+> -			DPU_REG_WRITE(c, SSPP_UBWC_STATIC_CTRL,
+> -					MSM_FORMAT_IS_YUV(fmt) ? 0 : BIT(30));
+> +			DPU_REG_WRITE(c, ubwc_ctrl_off,
+> +				      MSM_FORMAT_IS_YUV(fmt) ? 0 : BIT(30));
+>  			break;
+>  		}
+>  	}
+> @@ -313,19 +337,18 @@ static void dpu_hw_sspp_setup_format(struct dpu_sw_pipe *pipe,
+>  
+>  	/* update scaler opmode, if appropriate */
+>  	if (test_bit(DPU_SSPP_CSC, &ctx->cap->features))
+> -		_sspp_setup_opmode(ctx, VIG_OP_CSC_EN | VIG_OP_CSC_SRC_DATAFMT,
+> -			MSM_FORMAT_IS_YUV(fmt));
+> +		dpu_hw_sspp_setup_opmode(ctx, VIG_OP_CSC_EN | VIG_OP_CSC_SRC_DATAFMT,
+> +					 MSM_FORMAT_IS_YUV(fmt));
+>  	else if (test_bit(DPU_SSPP_CSC_10BIT, &ctx->cap->features))
+> -		_sspp_setup_csc10_opmode(ctx,
+> -			VIG_CSC_10_EN | VIG_CSC_10_SRC_DATAFMT,
+> -			MSM_FORMAT_IS_YUV(fmt));
+> +		dpu_hw_sspp_setup_csc10_opmode(ctx,
+> +					       VIG_CSC_10_EN | VIG_CSC_10_SRC_DATAFMT,
+> +					       MSM_FORMAT_IS_YUV(fmt));
+
+Again, useless whitespace changes.
+
+>  
+>  	DPU_REG_WRITE(c, format_off, src_format);
+>  	DPU_REG_WRITE(c, unpack_pat_off, unpack);
+>  	DPU_REG_WRITE(c, op_mode_off, opmode);
+> -
+
+Why?
+
+>  	/* clear previous UBWC error */
+> -	DPU_REG_WRITE(c, SSPP_UBWC_ERROR_STATUS, BIT(31));
+> +	DPU_REG_WRITE(c, ubwc_err_off, BIT(31));
+>  }
+>  
+>  static void dpu_hw_sspp_setup_pe_config(struct dpu_hw_sspp *ctx,
+> @@ -385,9 +408,9 @@ static void dpu_hw_sspp_setup_pe_config(struct dpu_hw_sspp *ctx,
+>  			tot_req_pixels[3]);
+>  }
+>  
+> -static void _dpu_hw_sspp_setup_scaler3(struct dpu_hw_sspp *ctx,
+> -		struct dpu_hw_scaler3_cfg *scaler3_cfg,
+> -		const struct msm_format *format)
+> +void dpu_hw_sspp_setup_scaler3(struct dpu_hw_sspp *ctx,
+> +			       struct dpu_hw_scaler3_cfg *scaler3_cfg,
+> +			       const struct msm_format *format)
+
+And here...
+
+>  {
+>  	if (!ctx || !scaler3_cfg)
+>  		return;
+> @@ -405,15 +428,11 @@ static void dpu_hw_sspp_setup_rects(struct dpu_sw_pipe *pipe,
+>  		struct dpu_sw_pipe_cfg *cfg)
+>  {
+>  	struct dpu_hw_sspp *ctx = pipe->sspp;
+> -	struct dpu_hw_blk_reg_map *c;
+> -	u32 src_size, src_xy, dst_size, dst_xy;
+>  	u32 src_size_off, src_xy_off, out_size_off, out_xy_off;
+>  
+>  	if (!ctx || !cfg)
+>  		return;
+>  
+> -	c = &ctx->hw;
+> -
+>  	if (pipe->multirect_index == DPU_SSPP_RECT_SOLO ||
+>  	    pipe->multirect_index == DPU_SSPP_RECT_0) {
+>  		src_size_off = SSPP_SRC_SIZE;
+> @@ -427,20 +446,8 @@ static void dpu_hw_sspp_setup_rects(struct dpu_sw_pipe *pipe,
+>  		out_xy_off = SSPP_OUT_XY_REC1;
+>  	}
+>  
+> -
+> -	/* src and dest rect programming */
+> -	src_xy = (cfg->src_rect.y1 << 16) | cfg->src_rect.x1;
+> -	src_size = (drm_rect_height(&cfg->src_rect) << 16) |
+> -		   drm_rect_width(&cfg->src_rect);
+> -	dst_xy = (cfg->dst_rect.y1 << 16) | cfg->dst_rect.x1;
+> -	dst_size = (drm_rect_height(&cfg->dst_rect) << 16) |
+> -		drm_rect_width(&cfg->dst_rect);
+> -
+> -	/* rectangle register programming */
+> -	DPU_REG_WRITE(c, src_size_off, src_size);
+> -	DPU_REG_WRITE(c, src_xy_off, src_xy);
+> -	DPU_REG_WRITE(c, out_size_off, dst_size);
+> -	DPU_REG_WRITE(c, out_xy_off, dst_xy);
+> +	dpu_hw_setup_rects_impl(pipe, cfg, ctx, src_size_off,
+> +				src_xy_off, out_size_off, out_xy_off);
+>  }
+>  
+>  static void dpu_hw_sspp_setup_sourceaddress(struct dpu_sw_pipe *pipe,
+> @@ -497,8 +504,8 @@ static void dpu_hw_sspp_setup_sourceaddress(struct dpu_sw_pipe *pipe,
+>  	DPU_REG_WRITE(&ctx->hw, SSPP_SRC_YSTRIDE1, ystride1);
+>  }
+>  
+> -static void dpu_hw_sspp_setup_csc(struct dpu_hw_sspp *ctx,
+> -		const struct dpu_csc_cfg *data)
+> +void dpu_hw_sspp_setup_csc(struct dpu_hw_sspp *ctx,
+> +			   const struct dpu_csc_cfg *data)
+>  {
+>  	u32 offset;
+>  	bool csc10 = false;
+> @@ -519,21 +526,31 @@ static void dpu_hw_sspp_setup_csc(struct dpu_hw_sspp *ctx,
+>  static void dpu_hw_sspp_setup_solidfill(struct dpu_sw_pipe *pipe, u32 color)
+>  {
+>  	struct dpu_hw_sspp *ctx = pipe->sspp;
+> -	struct dpu_hw_fmt_layout cfg;
+> +	u32 const_clr_off;
+>  
+>  	if (!ctx)
+>  		return;
+>  
+> +	if (pipe->multirect_index == DPU_SSPP_RECT_SOLO ||
+> +	    pipe->multirect_index == DPU_SSPP_RECT_0)
+> +		const_clr_off = SSPP_SRC_CONSTANT_COLOR;
+> +	else
+> +		const_clr_off = SSPP_SRC_CONSTANT_COLOR_REC1;
+> +
+> +	dpu_hw_setup_solidfill_impl(pipe, color, ctx, const_clr_off);
+> +}
+> +
+> +void dpu_hw_setup_solidfill_impl(struct dpu_sw_pipe *pipe,
+> +				 u32 color, struct dpu_hw_sspp *ctx,
+> +				 u32 const_clr_off)
+> +{
+> +	struct dpu_hw_fmt_layout cfg;
+> +
+>  	/* cleanup source addresses */
+>  	memset(&cfg, 0, sizeof(cfg));
+>  	ctx->ops.setup_sourceaddress(pipe, &cfg);
+>  
+> -	if (pipe->multirect_index == DPU_SSPP_RECT_SOLO ||
+> -	    pipe->multirect_index == DPU_SSPP_RECT_0)
+> -		DPU_REG_WRITE(&ctx->hw, SSPP_SRC_CONSTANT_COLOR, color);
+> -	else
+> -		DPU_REG_WRITE(&ctx->hw, SSPP_SRC_CONSTANT_COLOR_REC1,
+> -				color);
+> +	DPU_REG_WRITE(&ctx->hw, const_clr_off, color);
+>  }
+>  
+>  static void dpu_hw_sspp_setup_qos_lut(struct dpu_hw_sspp *ctx,
+> @@ -547,14 +564,20 @@ static void dpu_hw_sspp_setup_qos_lut(struct dpu_hw_sspp *ctx,
+>  			      cfg);
+>  }
+>  
+> +void dpu_hw_sspp_setup_qos_ctrl_impl(struct dpu_hw_sspp *ctx,
+> +				     bool danger_safe_en, u32 ctrl_off)
+> +{
+> +	DPU_REG_WRITE(&ctx->hw, ctrl_off,
+> +		      danger_safe_en ? SSPP_QOS_CTRL_DANGER_SAFE_EN : 0);
+> +}
+> +
+>  static void dpu_hw_sspp_setup_qos_ctrl(struct dpu_hw_sspp *ctx,
+>  				       bool danger_safe_en)
+>  {
+>  	if (!ctx)
+>  		return;
+>  
+> -	DPU_REG_WRITE(&ctx->hw, SSPP_QOS_CTRL,
+> -		      danger_safe_en ? SSPP_QOS_CTRL_DANGER_SAFE_EN : 0);
+> +	dpu_hw_sspp_setup_qos_ctrl_impl(ctx, danger_safe_en, SSPP_QOS_CTRL);
+>  }
+>  
+>  static void dpu_hw_sspp_setup_cdp(struct dpu_sw_pipe *pipe,
+> @@ -609,7 +632,7 @@ static void _setup_layer_ops(struct dpu_hw_sspp *c,
+>  		c->ops.setup_multirect = dpu_hw_sspp_setup_multirect;
+>  
+>  	if (test_bit(DPU_SSPP_SCALER_QSEED3_COMPATIBLE, &features))
+> -		c->ops.setup_scaler = _dpu_hw_sspp_setup_scaler3;
+> +		c->ops.setup_scaler = dpu_hw_sspp_setup_scaler3;
+>  
+>  	if (test_bit(DPU_SSPP_CDP, &features))
+>  		c->ops.setup_cdp = dpu_hw_sspp_setup_cdp;
+> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_sspp.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_sspp.h
+> index bdac5c04bf79..c6b19cb4d158 100644
+> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_sspp.h
+> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_sspp.h
+> @@ -331,5 +331,57 @@ struct dpu_hw_sspp *dpu_hw_sspp_init(struct drm_device *dev,
+>  int _dpu_hw_sspp_init_debugfs(struct dpu_hw_sspp *hw_pipe, struct dpu_kms *kms,
+>  			      struct dentry *entry);
+>  
+> +void dpu_hw_sspp_setup_opmode(struct dpu_hw_sspp *ctx,
+> +			      u32 mask, u8 en);
+> +
+> +void dpu_hw_sspp_setup_csc10_opmode(struct dpu_hw_sspp *ctx,
+> +				    u32 mask, u8 en);
+> +
+> +void dpu_hw_sspp_setup_scaler3(struct dpu_hw_sspp *ctx,
+> +			       struct dpu_hw_scaler3_cfg *scaler3_cfg,
+> +			       const struct msm_format *format);
+> +
+> +void dpu_hw_sspp_setup_csc(struct dpu_hw_sspp *ctx,
+> +			   const struct dpu_csc_cfg *data);
+> +
+> +void dpu_hw_setup_multirect_impl(struct dpu_sw_pipe *pipe,
+> +				 struct dpu_hw_sspp *ctx,
+> +				 u32 op_mode_off);
+> +
+> +void dpu_hw_setup_format_impl(struct dpu_sw_pipe *pipe, const struct msm_format *fmt,
+> +			      u32 flags, struct dpu_hw_sspp *ctx,
+> +			      u32 op_mode_off, u32 unpack_pat_off, u32 format_off,
+> +			      u32 ubwc_ctrl_off, u32 ubwc_err_off);
+> +
+> +static inline void dpu_hw_setup_rects_impl(struct dpu_sw_pipe *pipe, struct dpu_sw_pipe_cfg *cfg,
+> +					   struct dpu_hw_sspp *ctx, u32 src_size_off,
+> +					   u32 src_xy_off, u32 out_size_off, u32 out_xy_off)
+> +{
+> +	struct dpu_hw_blk_reg_map *c;
+> +	u32 src_size, src_xy, dst_size, dst_xy;
+> +
+> +	c = &ctx->hw;
+> +
+> +	/* src and dest rect programming */
+> +	src_xy = (cfg->src_rect.y1 << 16) | cfg->src_rect.x1;
+> +	src_size = (drm_rect_height(&cfg->src_rect) << 16) |
+> +		   drm_rect_width(&cfg->src_rect);
+> +	dst_xy = (cfg->dst_rect.y1 << 16) | cfg->dst_rect.x1;
+> +	dst_size = (drm_rect_height(&cfg->dst_rect) << 16) |
+> +		drm_rect_width(&cfg->dst_rect);
+> +
+> +	/* rectangle register programming */
+> +	DPU_REG_WRITE(c, src_size_off, src_size);
+> +	DPU_REG_WRITE(c, src_xy_off, src_xy);
+> +	DPU_REG_WRITE(c, out_size_off, dst_size);
+> +	DPU_REG_WRITE(c, out_xy_off, dst_xy);
+> +}
+> +
+> +void dpu_hw_setup_solidfill_impl(struct dpu_sw_pipe *pipe,
+> +				 u32 color, struct dpu_hw_sspp *ctx, u32 const_clr_off);
+> +
+> +void dpu_hw_sspp_setup_qos_ctrl_impl(struct dpu_hw_sspp *ctx,
+> +				     bool danger_safe_en, u32 ctrl_off);
+> +
+>  #endif /*_DPU_HW_SSPP_H */
+>  
+> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_util.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_util.c
+> index 486be346d40d..3cf22ec62792 100644
+> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_util.c
+> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_util.c
+> @@ -81,6 +81,13 @@ static u32 dpu_hw_util_log_mask = DPU_DBG_MASK_NONE;
+>  #define QOS_CREQ_LUT_0                    0x14
+>  #define QOS_CREQ_LUT_1                    0x18
+>  
+> +/* CMN_QOS_LUT */
+> +#define SSPP_CMN_QOS_CTRL                      0x28
+> +#define SSPP_CMN_DANGER_LUT                    0x2c
+> +#define SSPP_CMN_SAFE_LUT                      0x30
+> +#define SSPP_CMN_CREQ_LUT_0                    0x34
+> +#define SSPP_CMN_CREQ_LUT_1                    0x38
+> +
+>  /* QOS_QOS_CTRL */
+>  #define QOS_QOS_CTRL_DANGER_SAFE_EN       BIT(0)
+>  #define QOS_QOS_CTRL_DANGER_VBLANK_MASK   GENMASK(5, 4)
+> @@ -475,6 +482,17 @@ void _dpu_hw_setup_qos_lut(struct dpu_hw_blk_reg_map *c, u32 offset,
+>  		      cfg->danger_safe_en ? QOS_QOS_CTRL_DANGER_SAFE_EN : 0);
+>  }
+>  
+> +void _dpu_hw_setup_qos_lut_v13(struct dpu_hw_blk_reg_map *c,
+> +			       const struct dpu_hw_qos_cfg *cfg)
+
+It's definitely not a part of refactoring. Why is it a part of this
+patch?
+
+> +{
+> +	DPU_REG_WRITE(c, SSPP_CMN_DANGER_LUT, cfg->danger_lut);
+> +	DPU_REG_WRITE(c, SSPP_CMN_SAFE_LUT, cfg->safe_lut);
+> +	DPU_REG_WRITE(c, SSPP_CMN_CREQ_LUT_0, cfg->creq_lut);
+> +	DPU_REG_WRITE(c, SSPP_CMN_CREQ_LUT_1, cfg->creq_lut >> 32);
+> +	DPU_REG_WRITE(c, SSPP_CMN_QOS_CTRL,
+> +		      cfg->danger_safe_en ? QOS_QOS_CTRL_DANGER_SAFE_EN : 0);
+> +}
+> +
+>  /*
+>   * note: Aside from encoders, input_sel should be set to 0x0 by default
+>   */
+> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_util.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_util.h
+> index 67b08e99335d..1822ac699757 100644
+> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_util.h
+> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_util.h
+> @@ -360,6 +360,9 @@ void _dpu_hw_setup_qos_lut(struct dpu_hw_blk_reg_map *c, u32 offset,
+>  			   bool qos_8lvl,
+>  			   const struct dpu_hw_qos_cfg *cfg);
+>  
+> +void _dpu_hw_setup_qos_lut_v13(struct dpu_hw_blk_reg_map *c,
+> +			       const struct dpu_hw_qos_cfg *cfg);
+> +
+>  void dpu_hw_setup_misr(struct dpu_hw_blk_reg_map *c,
+>  		u32 misr_ctrl_offset, u8 input_sel);
+>  
+> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_wb.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_wb.c
+> index 478a091aeccf..006dcc4a0dcc 100644
+> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_wb.c
+> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_wb.c
+> @@ -148,6 +148,15 @@ static void dpu_hw_wb_setup_qos_lut(struct dpu_hw_wb *ctx,
+>  			      cfg);
+>  }
+>  
+> +static void dpu_hw_wb_setup_qos_lut_v13(struct dpu_hw_wb *ctx,
+> +					struct dpu_hw_qos_cfg *cfg)
+> +{
+> +	if (!ctx || !cfg)
+> +		return;
+> +
+> +	_dpu_hw_setup_qos_lut_v13(&ctx->hw, cfg);
+> +}
+> +
+>  static void dpu_hw_wb_setup_cdp(struct dpu_hw_wb *ctx,
+>  				const struct msm_format *fmt,
+>  				bool enable)
+> @@ -202,8 +211,12 @@ static void _setup_wb_ops(struct dpu_hw_wb_ops *ops,
+>  	if (test_bit(DPU_WB_XY_ROI_OFFSET, &features))
+>  		ops->setup_roi = dpu_hw_wb_roi;
+>  
+> -	if (test_bit(DPU_WB_QOS, &features))
+> -		ops->setup_qos_lut = dpu_hw_wb_setup_qos_lut;
+> +	if (test_bit(DPU_WB_QOS, &features)) {
+> +		if (mdss_rev->core_major_ver >= 13)
+> +			ops->setup_qos_lut = dpu_hw_wb_setup_qos_lut_v13;
+> +		else
+> +			ops->setup_qos_lut = dpu_hw_wb_setup_qos_lut;
+> +	}
+>  
+>  	if (test_bit(DPU_WB_CDP, &features))
+>  		ops->setup_cdp = dpu_hw_wb_setup_cdp;
+> -- 
+> 2.34.1
 > 
-> 
-> Best regards,
-> Krzysztof
 
 -- 
-David Heidelberg
-
+With best wishes
+Dmitry
 
