@@ -1,106 +1,105 @@
-Return-Path: <devicetree+bounces-246762-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246763-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B34DCBFB21
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 21:11:55 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55EB7CBFBA0
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 21:21:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 1C213301CD35
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 20:11:15 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6C4C7303273D
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 20:19:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF5BB283CB5;
-	Mon, 15 Dec 2025 20:11:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85B9C30E83F;
+	Mon, 15 Dec 2025 20:19:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jOqi23tZ"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="oo+FxrqY";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="cPUX6py7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8298225408
-	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 20:11:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2D82207A38
+	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 20:19:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765829472; cv=none; b=jTcEzJO8klCNeS9eqeMOgGx1xGQLSl6Dkn8OdpXvEHi8hP3kHYvgZmGp/EI4wZhyc3OGLfNVBLNxK898FGIu1Nh+H33WgDtHxj+yxGJoyJJnIa5/4tpKLClTcbpIeVtV6W9yO6LYnKjhW9Zr2ceKQ9Iy+BsDzugb8TT6V+mxHWA=
+	t=1765829968; cv=none; b=nEKVZMM4aoHPxG2E/OJUupmiNkRwXyo7l3v1Vly5BE3EfzVXpq7MwZEa3acrUgSwrI7mNHbLupClGShUZ52az5yA9+PWqjwAh7pqxot97YhImSE3pg/E3F7htVW2rdzdRR3cvwRbe8pR07EyNMHOR8o7Lp1t5dHpT8RmL1iq0Ac=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765829472; c=relaxed/simple;
-	bh=bZS2d4r6+t0avva4udbs7u4lgZ+/m7V0Af/OnBnRGOE=;
+	s=arc-20240116; t=1765829968; c=relaxed/simple;
+	bh=ZctggFCKGNPdOVeNvoahy6lhLTD5GnVrJTESbZ2zFrg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WJyvnX1nrSmb+6cG0q/N9ngVblUrborUB8ZQB6sY49TBjsq+QqZl9QEDsLVRFi1vhohar/DjJX9nc+kVql/R74ls+f3yhfHNTKWZMuMySn6J3027V0+EmgqOC9hScqff54xHN635UAcnXKdXnHKtqgym/HkeQ3LrQoC/DS9A2uY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jOqi23tZ; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-477632b0621so28032965e9.2
-        for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 12:11:10 -0800 (PST)
+	 Content-Type:Content-Disposition:In-Reply-To; b=bWVduCTdff99JZuYBRxQOltHwK6+nzqH+8jq9dYiJrVzMlpErU6amtdShcPp2D9Tp/YQS3N6u6ij5mOYGD/La8tBGhnyeahYXM9DDLGakNhQFPz+HyDtqTbjHPibg6OVpPvImeKuOJio5sPineoutuA8rjNRnIOBLCkUkarKKrI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=oo+FxrqY; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=cPUX6py7; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BFBT2iW189633
+	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 20:19:26 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=TT1d0umxtClSU97VLqt24Auu
+	oQHZRtR4IuDHXfMJgmU=; b=oo+FxrqYaWe59oSZjqGDjlrKUHn4+yCsEiH+eDUD
+	q2J/7JqAuZajXAACZYYWYehxd6dCUAKBPATODxPtEIZliQW20/PRzL8RetAZw1dG
+	dLpogUMYM6eA8ZS+3dWG4xjrM0x9BIaj3su58n+g5gT6ygokYEHOQi3E0LePNJaH
+	JZbBNFKgp753VyQqYySt439nISiCYiAqo//I/1NKPE91hZ4zT1XGM3Rd7pI75r6b
+	vPepr04AShaY4RfDDa35q+r9Es2KsVCMTstb19DHuTTIP6KY96Lfzx4Dr6Buih/G
+	UDKKke0qsh560RrbeDktMaOBl5+drSOTV5RGbvd64ZnVbA==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b2hgasfxx-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 20:19:25 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4ee416413a8so45461621cf.1
+        for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 12:19:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1765829469; x=1766434269; darn=vger.kernel.org;
+        d=oss.qualcomm.com; s=google; t=1765829965; x=1766434765; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=NVHWp8cheEcClOBV4c/zxK94NkQEphirpcQRQ+Yuj0w=;
-        b=jOqi23tZjhnWYfANSp7aHqR9h4Cl2UVq2++5YDlTqyeRgZO5FA/IFliNK5HHPlpnk8
-         XxYCC457LWPfw5NrA8tJJm+SXRShgSyveksM9ZhgzpFe2fJ2kdPejjKTAMMWAnASEE5/
-         0pKHii+nZK0jdeeh0PpR2+utgrSYWpX9Zk79gJIyZvcuzMoooiPr3pHICJ4Qiz7Q1OEF
-         filoKxPXuFLH0WRyCHQcYfClsidBH8+ehN33+KKFxc6HXAuWBK1f6fQJPUrnto1oDgKw
-         0fNkrkHJsIgrt14qytMwFg68TyckD/qOZXzFLWU6ZbIHW4TdON4pNKx0xhgIZdgRDrTt
-         bJ2g==
+        bh=TT1d0umxtClSU97VLqt24AuuoQHZRtR4IuDHXfMJgmU=;
+        b=cPUX6py7NJouTpFxiuL9KWAcOwaDH6iUvj4JMObiGz2kWqWmr1WxW+xoGoyyDNhFVP
+         gWpFm/p5xD2tpNj7Ec/5yUMBHFsgzIvAbVuhIrlB/0iw6CzpN1MSXeiw/Wzjrf8ruWlG
+         lssEDUfbKqQUumayJ4gBeVPc8clXupmSIsI/d+F0xo0ca28Cm/w9Wd0HRxy6C5LNMeR0
+         JwGBxEdyW7078ivBJWJzSLtoF57UK9sp857Duyjp0sEQxNwe8uH/Ryy4Gsq4WGZh0wgY
+         mZ35Nuf/GcV4avoJXToF3BC+Ztam9b+Bq2fJGJKVS/y9HLyY80cKVKMfdWozKY8i3zb1
+         gj1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765829469; x=1766434269;
+        d=1e100.net; s=20230601; t=1765829965; x=1766434765;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=NVHWp8cheEcClOBV4c/zxK94NkQEphirpcQRQ+Yuj0w=;
-        b=nDhccJ9tHdznRPe7f9M6yyvyY7f/P1I8QxBBq47RAV7FS720JuZgDvx1xSUOEZ6AqF
-         SYVsfncf/veKQWHP3I13cLHK5a4Cmy30byVhkrEqm/jysPUplmrEy2LQ/GKjMIwjfYEv
-         vAvt2a7cvXaqeSn2Zp0+PBzb019n2PtKzSE4tNFwqp1V110qOMTO3Wjx/gHof58Wq3UQ
-         k/nAQmD57d8MqUSzGBL3Lh+jN/BljRU2wlwcsouWl3p3BWZhAXXXGhzDkpiAU30lKzlq
-         LkAbiHPZerJGYfTNSWu4xV0pBMd5A/X6wR78VDjbDjj0Qj1l/F362VxSawK2DcEqtP0o
-         B7/A==
-X-Forwarded-Encrypted: i=1; AJvYcCXopubQf6nEu3+rRPWUIfYtgzU+X8ArPdRd13Kt/TiSLmOjxJdA+FtiQ6xb2BuYWGj4hQGqkD16kUVy@vger.kernel.org
-X-Gm-Message-State: AOJu0YyHj4qwMvY03S6r5QHUebKms+zsLscFxgte3d8/87goXBPrMnXS
-	MJdA9wAJVqRGc0pBkBF8qIGJigSn+atWpQy0NB3pejuLxMmS9QiBHI0Mur0Iihu44TM=
-X-Gm-Gg: AY/fxX5AeV8fJqIJL/ZaXcxMBvCKCHzL0Sqyb4K3ALr0591Z0baP+uZ7EGfHe0zo3CJ
-	evK0YDbZohU2gsMeCNo9BW9JFOnAc1xSZp1o0f0ttT8fPs4yGhPVqPjJtf3E02oz4qqo4mVUep2
-	t5zoeKudLuNMYn1jnpt5esh3k1U8QFr4SmVJ6Uga45Rz5xLmdsMmJh1bzixOxJlrDP+GMbxn1rm
-	PgUAeajZRv/LVkyz2cFkKlVHmnP4pqiApdxMGWgfPmq9FU8OE+nOdtURHOsGOuGGPRq/aEQ9TtY
-	g7vW6bExLYe6qwLJTyHfIMYshgwDvIre8yZGrxX8rU5gqIflSTso5X5DoMVdAlXwShpUaa6SNEE
-	CcDqe2Z0UBETqvB8wHkreTIXpdzwOanHkTFeZYquMGXp53+wwgfB+hiptvL8l3ekIUgwQJNR2Ck
-	EoMycUpnwJOc/IYwpw
-X-Google-Smtp-Source: AGHT+IFzTdgd8HuBCRpheWEKJMhw6vXCy8KxXaScp0+GwrnVXW68cCuyCfDLEuzw7wX+ZV30A2XRQg==
-X-Received: by 2002:a05:600c:46c4:b0:46e:59bd:f7d3 with SMTP id 5b1f17b1804b1-47a8f9046fcmr137755605e9.20.1765829468100;
-        Mon, 15 Dec 2025 12:11:08 -0800 (PST)
-Received: from localhost ([196.207.164.177])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47a8f4ace61sm200864155e9.7.2025.12.15.12.11.06
+        bh=TT1d0umxtClSU97VLqt24AuuoQHZRtR4IuDHXfMJgmU=;
+        b=owQjjK/emdSNWvRDkRPYR59cjgPBrLFW/lO5Q0z4FeGKy+vJKJ8xUjLdhjyfndH1VK
+         gH4Cu95PZ/f/uBsMUM5LP/fBB7B96d5DADUfWqBf/I4ItermUty2gZj5PyEr/yuFZiJe
+         CO1QCNfbGHNDUCuCFAG6mI9b5h5sjwVfiZ289NlGiR+m7jAjnW7StuCPNH/RqvRzXyZW
+         T9E3azivRnuxDfOXo0RzLMaGT14gkYO3elE2zZwFHWjAWyBfWD2jurcbzwDD8AbtgG+0
+         tdCRVqT/1Ln6dyYK8IeQOy+v3u5w7hKCwstjmmKAFXOMnEQQFtdkbrzPSwgp/+dLkccR
+         DXBg==
+X-Forwarded-Encrypted: i=1; AJvYcCUB95RIt7JkJxsYlnDxS0s8aNGWwh23tpwTw++k0pGT3lLWfZ2QAgza9L/DEA46eIXGhMCV1nYJMetd@vger.kernel.org
+X-Gm-Message-State: AOJu0Yza8SgWxc3qeJvFMPgl7irA4FFCyYPRRagfYTd8pT7IEOUnQOdh
+	jYTdBOQvC2nz7vZzMJziswxrKebnI8Ik9Yrmhd//GJiNYYRoq/8heXXuyIkGg7k7JOtBPCXcZC5
+	M1A4GCBvWNlv4a+F60kXL4OPUhyzUcKe2npq5Gh6LYQBe1KJqbNDjvdAKIu2cetyY
+X-Gm-Gg: AY/fxX53/WiHdbT10cyKT/TB8el/yd7COAJbGVcTKknvcxrFdEULBBaN4MMnPoiCmKV
+	/z5nLcV09UgGIZMlSU7mPkhY/cNloJA+eM0mGjb9I7Ft/yXS3SFF0djerrqOUfdN7jhSQ8UiFxw
+	NZu0jlRB1v6Qf0P9i5iHVE98XSryDSCpdmJ+8xySGHvKWSE2UD32xMvKQibRJKHdqo0TDPvVcN3
+	/kCMVzc8ErvH7Rel7YLPEyh84oYXD9d2Fqq0NEJaltkFQpkwwX063NQ88TuiM2HxpVx+cv3BKZE
+	xqtCoHWVrOcc56d7mafREE9H5cp116Su2RFv4SpULfOeNZN/3Tke0ZO5CnbGKiY6gfV18cEMM0Y
+	7nfTSDpbV2t5ZU3m0OH5UlIrCoMIZzvRl/Bxqq94/OqJ71BbXxACVOvdHTl7T4xKEY9dFzUO465
+	RJOFmlp5BPmL9vPM7uzFoI9Lc=
+X-Received: by 2002:ac8:58cb:0:b0:4e8:9920:be58 with SMTP id d75a77b69052e-4f1d01731admr166123791cf.0.1765829965171;
+        Mon, 15 Dec 2025 12:19:25 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFYJEfX+zyhyh7P4YyfpYutO7MWGAMPIszFLOtP6Q5AB6qwEWt1FE10FnaLONq81p+uNug+bg==
+X-Received: by 2002:ac8:58cb:0:b0:4e8:9920:be58 with SMTP id d75a77b69052e-4f1d01731admr166123181cf.0.1765829964435;
+        Mon, 15 Dec 2025 12:19:24 -0800 (PST)
+Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-37fdee14645sm31330941fa.46.2025.12.15.12.19.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Dec 2025 12:11:07 -0800 (PST)
-Date: Mon, 15 Dec 2025 23:11:03 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Chester Lin <chester62515@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"David S. Miller" <davem@davemloft.net>, devicetree@vger.kernel.org,
-	Eric Dumazet <edumazet@google.com>,
-	Fabio Estevam <festevam@gmail.com>,
-	Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
-	imx@lists.linux.dev, Jakub Kicinski <kuba@kernel.org>,
-	Jan Petrous <jan.petrous@oss.nxp.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Lee Jones <lee@kernel.org>, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	Matthias Brugger <mbrugger@suse.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, netdev@vger.kernel.org,
-	NXP S32 Linux Team <s32@nxp.com>, Paolo Abeni <pabeni@redhat.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>, linaro-s32@linaro.org
-Subject: Re: [PATCH v2 0/4] s32g: Use a syscon for GPR
-Message-ID: <aUBrV2_Iv4oTPkC4@stanley.mountain>
-References: <cover.1765806521.git.dan.carpenter@linaro.org>
- <aUAvwRmIZBC0W6ql@lizhi-Precision-Tower-5810>
- <aUBUkuLf7NHtLSl1@stanley.mountain>
- <aUBha2/xiZsIF/o5@lizhi-Precision-Tower-5810>
+        Mon, 15 Dec 2025 12:19:23 -0800 (PST)
+Date: Mon, 15 Dec 2025 22:19:22 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
+Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: lemans: Enable cpufreq cooling devices
+Message-ID: <trajn276nneqmpun5zh3w54mfglf64vl7yea2n5hzqq5skxsqf@vckpmhfchcg3>
+References: <20251215045451.3150894-1-gaurav.kohli@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -109,87 +108,41 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <aUBha2/xiZsIF/o5@lizhi-Precision-Tower-5810>
+In-Reply-To: <20251215045451.3150894-1-gaurav.kohli@oss.qualcomm.com>
+X-Proofpoint-GUID: WbaJvACzCBfuEV4_AhQMjkRPrftXkXMw
+X-Proofpoint-ORIG-GUID: WbaJvACzCBfuEV4_AhQMjkRPrftXkXMw
+X-Authority-Analysis: v=2.4 cv=GpxPO01C c=1 sm=1 tr=0 ts=69406d4d cx=c_pps
+ a=JbAStetqSzwMeJznSMzCyw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=EUspDBNiAAAA:8 a=we9lbk642uJVcpOj0xQA:9 a=CjuIK1q_8ugA:10
+ a=uxP6HrT_eTzRwkO_Te1X:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjE1MDE3NSBTYWx0ZWRfX6b2Nl8FeRKdm
+ JyOiMTAl+TNM7HJt/h72FZnoGKgA3K5UsJV3+1+gut2DAnwXMqhZL1n+Hy4KSxxYz73XkceGR0u
+ Yt2lAfBbwNTGWTevHeANqPGAEYEUMcOCJy0Se/Vxh0n2m0s0Q5NC6muz9KZ1aO9DaOgkMulZwxy
+ cO1oZp5kz1SXSEXCqtkYxx7EwoVAvwYG5oUSN1BYYwg87tUppbrdZLrmmf2huXp+RVJ7zio75/4
+ M2KLZ1+6LeIyNhIzyDjudbirMBZzJpFyIXCpRyGv2XLR11KlAcQfhbaWwgUZOr6bngVQZC3Hl55
+ ETiL303PFQVBN7l6kR0E689xPPQfDmGDZYHcEyPLLACZ3STaLw7c2Td1psl1XCFs+ZWnrHRDHqf
+ ty6vRLMs4jExMHT1qEPIwycMQ5OmWw==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-15_05,2025-12-15_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 phishscore=0 impostorscore=0 spamscore=0 bulkscore=0
+ lowpriorityscore=0 adultscore=0 suspectscore=0 clxscore=1015 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512150175
 
-On Mon, Dec 15, 2025 at 02:28:43PM -0500, Frank Li wrote:
-> On Mon, Dec 15, 2025 at 09:33:54PM +0300, Dan Carpenter wrote:
-> > On Mon, Dec 15, 2025 at 10:56:49AM -0500, Frank Li wrote:
-> > > On Mon, Dec 15, 2025 at 05:41:43PM +0300, Dan Carpenter wrote:
-> > > > The s32g devices have a GPR register region which holds a number of
-> > > > miscellaneous registers.  Currently only the stmmac/dwmac-s32.c uses
-> > > > anything from there and we just add a line to the device tree to
-> > > > access that GMAC_0_CTRL_STS register:
-> > > >
-> > > >                         reg = <0x4033c000 0x2000>, /* gmac IP */
-> > > >                               <0x4007c004 0x4>;    /* GMAC_0_CTRL_STS */
-> > > >
-> > > > We still have to maintain backwards compatibility to this format,
-> > > > of course, but it would be better to access these through a syscon.
-> > > > First of all, putting all the registers together is more organized
-> > > > and shows how the hardware actually is implemented.  Secondly, in
-> > > > some versions of this chipset those registers can only be accessed
-> > > > via SCMI, if the registers aren't grouped together each driver will
-> > > > have to create a whole lot of if then statements to access it via
-> > > > IOMEM or via SCMI,
-> > >
-> > > Does SCMI work as regmap? syscon look likes simple, but missed abstract
-> > > in overall.
-> > >
-> >
-> > The SCMI part of this is pretty complicated and needs discussion.  It
-> > might be that it requires a vendor extension.  Right now, the out of
-> > tree code uses a nvmem vendor extension but that probably won't get
-> > merged upstream.
-> >
-> > But in theory, it's fairly simple, you can write a regmap driver and
-> > register it as a syscon and everything that was accessing nxp,phy-sel
-> > accesses the same register but over SCMI.
+On Mon, Dec 15, 2025 at 10:24:51AM +0530, Gaurav Kohli wrote:
+> Add cooling-cells property to the CPU nodes to support cpufreq
+> cooling devices.
 > 
-> nxp,phy-sel is not standard API. Driver access raw register value. such
-> as write 1 to offset 0x100.
-> 
-> After change to SCMI, which may mapped to difference command. Even change
-> to other SOC, value and offset also need be changed. It is not standilzed
-> as what you expected.
-
-We're writing to an offset in a syscon.  Right now the device tree
-says that the syscon is an MMIO syscon.  But for SCMI devices we
-would point the phandle to a custom syscon.  The phandle and the offset
-would stay the same, but how the syscon is implemented would change.
-
-> 
-> >
-> > > You still use regmap by use MMIO. /* GMAC_0_CTRL_STS */
-> > >
-> > > regmap = devm_regmap_init_mmio(dev, sts_offset, &regmap_config);
-> > >
-> >
-> > You can use have an MMIO syscon, or you can create a custom driver
-> > and register it as a syscon using of_syscon_register_regmap().
-> 
-> My means is that it is not necessary to create nxp,phy-sel, especially
-> there already have <0x4007c004 0x4>;    /* GMAC_0_CTRL_STS */
+> Signed-off-by: Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
 > 
 
-Right now the out of tree dwmac-s32cc.c driver does something like
-this:
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 
-    89          if (gmac->use_nvmem) {
-    90                  ret = write_nvmem_cell(gmac->dev, "gmac_phy_intf_sel", intf_sel);
-    91                  if (ret)
-    92                          return ret;
-    93          } else {
-    94                  writel(intf_sel, gmac->ctrl_sts);
-    95          }
 
-Which is quite complicated, but with a syscon, then it's just:
-
-	regmap_write(gmac->sts_regmap, gmac->sts_offset, S32_PHY_INTF_SEL_RGMII);
-
-Even without SCMI, the hardware has all these registers grouped together
-it just feels cleaner to group them together in the device tree as well.
-
-regards,
-dan carpenter
-
+-- 
+With best wishes
+Dmitry
 
