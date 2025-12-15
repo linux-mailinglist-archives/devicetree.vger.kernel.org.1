@@ -1,75 +1,77 @@
-Return-Path: <devicetree+bounces-246695-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246696-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15F1ECBEF75
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 17:44:04 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66349CBEFAB
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 17:45:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7BCE2304FEB8
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 16:38:34 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 37FA530647BE
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 16:38:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 840D9315765;
-	Mon, 15 Dec 2025 16:38:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1207F310629;
+	Mon, 15 Dec 2025 16:38:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sartura.hr header.i=@sartura.hr header.b="AIWJvlhh"
+	dkim=pass (2048-bit key) header.d=sartura.hr header.i=@sartura.hr header.b="YnPx5LAD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BD4130C61B
-	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 16:38:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BE3B311C17
+	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 16:38:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765816713; cv=none; b=nu3Dwwy6l7KU7ezB/b+XCOQx3+oRMKX9wd1t3C0QrKKCysOaB0E5CF0B4LCRarys7q0QEs/3pJoRaWP7qJfsmloy/Y6AX5lRaCYUALNNPYmuaT/gmV6u4W+CN/7JmKmCe+wOaaVrHw3CknH1fZhlWyptqMxPN4BvdMdItu5SMzk=
+	t=1765816717; cv=none; b=EHT0ikDrLBpfFJJTEv97QghVpKQe0AbsaZ0vu2UXnZbHCs6u31aIEqd0EA9Sq5dDqngAgCWl16C3Tf71U8h/agz++no/tZXpWxJUI4b8m8vOFAvF7hq1dcMCbvDWSddxnvSYppsSsty7CGuWZdGCIwIX6tww5VVQT9HVi8uPZXs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765816713; c=relaxed/simple;
-	bh=k/Yd1BmFzU0e9UFcJv9URIkTbmDEVBM0hOo+JTGIPAg=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ZMccETcEl0Czv3Q8wUI9O2KYQLv6rc8hNe4YkndRKTZL4R2tpYnEe+o9RkaH5y7jS4l1fUEGV7c2LUCYixHUh4OK39oZ24C3IZYefh+rpnhoRtZ9mX36+RTJnIO21Ezvv5ixUgh8eR/mCJHGBxYtXbcY2KlMu+QfRcAQwq6KW7o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sartura.hr; spf=pass smtp.mailfrom=sartura.hr; dkim=pass (2048-bit key) header.d=sartura.hr header.i=@sartura.hr header.b=AIWJvlhh; arc=none smtp.client-ip=209.85.128.49
+	s=arc-20240116; t=1765816717; c=relaxed/simple;
+	bh=YtDrhz214maGpV2hZoz5P9MBOOxn5+fyXOlqcl1OMZc=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=JPi+Rk1+lZwsAKWuK0GTaxtbL0pJMxy4j5vigd8stDwp/hgE52NNBxKtR6XOS3Q+r2T778uoSpKrnYsTezxZ/a9nMjVgfOG1tMDP+YZDBolhcsx0ipyuJcuwflsRon6M0mEUqwsYhfwLRkTU1PsmLn4+BXRu1fMMABt5e9D0o70=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sartura.hr; spf=pass smtp.mailfrom=sartura.hr; dkim=pass (2048-bit key) header.d=sartura.hr header.i=@sartura.hr header.b=YnPx5LAD; arc=none smtp.client-ip=209.85.128.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sartura.hr
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sartura.hr
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-47796a837c7so26841805e9.0
-        for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 08:38:30 -0800 (PST)
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-4779cc419b2so38774585e9.3
+        for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 08:38:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura.hr; s=sartura; t=1765816709; x=1766421509; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=cnKll+Mu3yr6wHuUg3E47hI29XfbMlTNI5VvcSPHEnI=;
-        b=AIWJvlhhcWl5hbSyydkjLe/GDVS3V4vTDb4qeNWdR80M81ODF67qfM5mpLQNIjN2zg
-         Cg0N+4vq4jQXHdnYY3svgMl/T49I5Zrp29STPCUNk6JrOin56BtaqbkiwBbaqR3OEZxD
-         49isbVf+h4T2y7jhcwZgxNVTn28fbsNDx6pSx03mQF/0PDPnwg/ClnbgMkoHgXwi33ES
-         l4rcR55YPGa4n54zK4ReHi/Fp9QkdZ9iXcPVs3V1UJHq0sTlTOTD31QjCOJN1tBd4HdH
-         ScnT8mVHvKhb7KcWLzK4aDi21gN7q6e+xh5Vf/QLRwsO8/PdYTmcByG2duRS9HvdtUPv
-         m4cQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765816709; x=1766421509;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=sartura.hr; s=sartura; t=1765816712; x=1766421512; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=cnKll+Mu3yr6wHuUg3E47hI29XfbMlTNI5VvcSPHEnI=;
-        b=gvyxtEYEBpd1q7OtUMWIWucUgu3GFI7mXYhrC8/gL+rVIhPkBkcJAOt2bL4rITCkba
-         pxRTfmFP54FZuZO3IQTI6X9sMzI7n1HfRu16U7BQ+5UVS84I+8hcm/YEMjxl+RiYbzjD
-         RJd8IEb4BaM1bWX+kGP5lrPEnTxHhO7yPBeWyCj7/YQb3bFDvFNgeTau/ZO6cnool7Tx
-         vyiLkSomdR5kPoNhQTX5NcbHN44zcXlTMjZLQgC6IAoM33w90IFQE7fOFJo54GDQxTun
-         D3uo/pkWfjxVlFvJ7xitF/JKQbJYyAJ3GJNmdF+IXFSBnRtOs1wN4OKTwFxKCN6A8t/w
-         0fSw==
-X-Forwarded-Encrypted: i=1; AJvYcCXMHnq4RHbtxPRKbMTsmbMndoSbiRNMBK4YDj6xFuwtGIzNWsZgyEivr43DfSqoeCscOeLwo8xP9gSO@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyys3RK4Yf0rQiwY5ddV+Z7jJmveq8kDqx5LfRfgocu7Xb+m7mi
-	X/rZqcRcLQh6Y8Yq6rIe2l8Qxf2ThAxlkMGKq2Xdotx9MyOk+sApiqNn1zmU2V89Tts=
-X-Gm-Gg: AY/fxX5Mlljkg2rw5WLphph8d87JXSZv6vE1qo42nev2ib3sJ4IuRfRjCxmltEqL01C
-	KvtabzSAzhvKKR0QdFf+VKMlUkdCtWctEeKg8QJRjcrxx/zUv2It5Yz2cNaNNQcmd/jsEOvYKFg
-	C9e9UtLx57RwvFu5G0aIUalaWF6a6KwcFYZreAXspA1jyM6BXcXy6cmcRq1dCsDoCpo3Aj1FsOd
-	9vsByzlUvwKhcIpCLYcN1lwmbbV8XfDvjcPG4HzK+oXWHTG6Srq1MZMAzQymFDyk4SAy32dPigY
-	5t0HAE0WED7R8hyRtpU7XNtiaeaFO6ClcKnhn++yXzVHewZtc4z28QPFyG+8YHRxKDeNcC7bHxU
-	sy2B8iI5km4Ne6Bsh4r+JCEtHotsF6FtUGv0/rLbIYohe1DZBQTd6rr4Ub7dZdHwW72RtfNRtGO
-	HW65eB0wAaMnwQ2wcumHO3TyKKPaokGZZS6TK/Gw6xK6Xr
-X-Google-Smtp-Source: AGHT+IHqk87hRgFNW+4zdWPZBEuhhkRVJA1LnAloDmFeZHxaQu5P+L96TkAMIyaxKGjp4sqU43QQWQ==
-X-Received: by 2002:a05:600c:a086:b0:471:1774:3003 with SMTP id 5b1f17b1804b1-47a8f90fefamr116081975e9.29.1765816709336;
-        Mon, 15 Dec 2025 08:38:29 -0800 (PST)
+        bh=XOr56XFFvJYItbaYZCF01MB/OVR35Ya4WEl16UdXyiE=;
+        b=YnPx5LADHooQfHmE6ykE1da16k0NjskImATy7uqlFvTBNvCCQH2WAT0l49qLplLOaM
+         J5jbVuV6MDQ031Uof1vE++YZQMfRdffMXKYB7YxOXfCSj/7Zpt1IEwEXOCiP0+l466k9
+         6tqcY4fC35uQYdlAPDqfgt7jC0COjonwLDwDZFVdSd90XPWey6Zo9NopDkBerGdhosG6
+         kx2v/uqWGu83kPNLUOU0SpJrR3qAYVzyPcOeMvhOC0uXq7QnT8DWUXDtyBcYsVyLeERS
+         z+x/pwLGeLLxUQ0rzWmjr33izxdxv4JS7tBIlFSFFJR+i+zwfU3ab00QiVnqoWHy4iSe
+         iZUQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765816712; x=1766421512;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=XOr56XFFvJYItbaYZCF01MB/OVR35Ya4WEl16UdXyiE=;
+        b=VvVvmLf79wDd88thDhTYTvhe++WNfef5QVfp8Eo6JcYNpVpUMXSS/18AzT/kYVYAEN
+         9AGyzBnNaz/YHcJ5WdJnFfmphwqgrzFy9Wl5r0vqzpLTBlR3YLKF3Uk8mrUG3kGb1WFm
+         kaYXY2D9x9pNOj1kK6+9kSe2TqeqTQuEFIlOENJ3A0ZJrprfG97wlnADVqZmIYfDKF8p
+         IDZ1Y9k00u/dy1UYQtKwr7GvjTUTy77UUyjAxFgyfBcz5c9M7rzHlnsxiSbqfA9STYAo
+         qCJ3iMi4qXKUtyfzP3twNNyvMhCOMO3inoZoCC46yxHjasGON8NZuXqqHyG6Yp2rkTYW
+         lcWA==
+X-Forwarded-Encrypted: i=1; AJvYcCVtkArVVa4mHF88BPs5uf0P0NDzkVuVmGRGGA4b+ZLPvAZXSjGwHiokveFr05ZPipW2iyUPeyt3JGli@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz7IsZaT3B8ibWVhcJDXa9X2GZN3R2krWjmrICynf31Uw0U0A2x
+	APBL0mRWYadvYPDOfM1vEgftOwpanWklyG64v6AmBeeHVt0wTqaaxvkbM5UCS+6DjJE=
+X-Gm-Gg: AY/fxX6mPjDgHOaPhKQ35EzQABpzCF1hNzEm9FD4JFvjixLho8/QH6G1JkVbZlXU+Gx
+	fQJr7Bm4aAC99L/VNBVtGXWtS3LsFaeaUyzLm/GmGpVycmrIdyAs7o7qE8vKM98B21bIro9muEq
+	vP8oYcQX/S1ZIIF0ZWz/76/ebUtiY1Tnpgvj9TPP2/PSRmF5qV7j0eKDBKKUChOqW+RePhS8hvi
+	ELMLjJQrLTqQ0nc6ThER8HUydPYVoebt3GjWxgsAq+YNYHqrRK04Etr64AzRb3dWX8fx2g6QIvG
+	3is66RjB46nVlRQa2xxCkWcaPvWHpmR6VLfmCN6Vo6R6lLADJtNB1eYS6ZKoqKwR9TyAnq6f9XI
+	XQApBWLP0UfEjzOQ6MDmoff/O9esPIevyeWTbXrjOP5KXEneVvHsfomD3TMZYzGyIzqNIHv4/Q/
+	uzoxTAosoRLH4S75N25FLI1WOwCv131yqs2ov4EoC60gKRrrpO/wYJygA=
+X-Google-Smtp-Source: AGHT+IFeCHS7YG9Ek+7zJu3i6olxUvaN+c10eLM1oMJBARdN2+vi1MoaN/SefG9EfAqWjo+NykYUoQ==
+X-Received: by 2002:a05:600c:4f86:b0:46e:4586:57e4 with SMTP id 5b1f17b1804b1-47a8f9057fdmr118534745e9.24.1765816711687;
+        Mon, 15 Dec 2025 08:38:31 -0800 (PST)
 Received: from fedora (cpezg-94-253-146-254-cbl.xnet.hr. [94.253.146.254])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-47a8f74b44csm192209725e9.3.2025.12.15.08.38.27
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-47a8f74b44csm192209725e9.3.2025.12.15.08.38.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Dec 2025 08:38:28 -0800 (PST)
+        Mon, 15 Dec 2025 08:38:31 -0800 (PST)
 From: Robert Marko <robert.marko@sartura.hr>
 To: robh@kernel.org,
 	krzk+dt@kernel.org,
@@ -122,10 +124,12 @@ To: robh@kernel.org,
 	mwalle@kernel.org
 Cc: luka.perkov@sartura.hr,
 	Robert Marko <robert.marko@sartura.hr>
-Subject: [PATCH v2 01/19] include: dt-bindings: add LAN969x clock bindings
-Date: Mon, 15 Dec 2025 17:35:18 +0100
-Message-ID: <20251215163820.1584926-1-robert.marko@sartura.hr>
+Subject: [PATCH v2 02/19] dt-bindings: usb: Add Microchip LAN969x support
+Date: Mon, 15 Dec 2025 17:35:19 +0100
+Message-ID: <20251215163820.1584926-2-robert.marko@sartura.hr>
 X-Mailer: git-send-email 2.52.0
+In-Reply-To: <20251215163820.1584926-1-robert.marko@sartura.hr>
+References: <20251215163820.1584926-1-robert.marko@sartura.hr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -134,47 +138,92 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add the required LAN969x clock bindings.
+Microchip LAN969x has DWC3 compatible controller, though limited to 2.0(HS)
+speed, so document it.
 
 Signed-off-by: Robert Marko <robert.marko@sartura.hr>
 ---
 Changes in v2:
-* Rename file to microchip,lan9691.h
+* Fix example indentation
 
- include/dt-bindings/clock/microchip,lan9691.h | 24 +++++++++++++++++++
- 1 file changed, 24 insertions(+)
- create mode 100644 include/dt-bindings/clock/microchip,lan9691.h
+ .../bindings/usb/microchip,lan9691-dwc3.yaml  | 68 +++++++++++++++++++
+ 1 file changed, 68 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/usb/microchip,lan9691-dwc3.yaml
 
-diff --git a/include/dt-bindings/clock/microchip,lan9691.h b/include/dt-bindings/clock/microchip,lan9691.h
+diff --git a/Documentation/devicetree/bindings/usb/microchip,lan9691-dwc3.yaml b/Documentation/devicetree/bindings/usb/microchip,lan9691-dwc3.yaml
 new file mode 100644
-index 000000000000..260370c2b238
+index 000000000000..6b49ef0a6bdd
 --- /dev/null
-+++ b/include/dt-bindings/clock/microchip,lan9691.h
-@@ -0,0 +1,24 @@
-+/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
++++ b/Documentation/devicetree/bindings/usb/microchip,lan9691-dwc3.yaml
+@@ -0,0 +1,68 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/usb/microchip,lan9691-dwc3.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+#ifndef _DT_BINDINGS_CLK_LAN9691_H
-+#define _DT_BINDINGS_CLK_LAN9691_H
++title: Microchip LAN969x SuperSpeed DWC3 USB SoC controller
 +
-+#define GCK_ID_QSPI0		0
-+#define GCK_ID_QSPI2		1
-+#define GCK_ID_SDMMC0		2
-+#define GCK_ID_SDMMC1		3
-+#define GCK_ID_MCAN0		4
-+#define GCK_ID_MCAN1		5
-+#define GCK_ID_FLEXCOM0		6
-+#define GCK_ID_FLEXCOM1		7
-+#define GCK_ID_FLEXCOM2		8
-+#define GCK_ID_FLEXCOM3		9
-+#define GCK_ID_TIMER		10
-+#define GCK_ID_USB_REFCLK	11
++maintainers:
++  - Robert Marko <robert.marko@sartura.hr>
 +
-+/* Gate clocks */
-+#define GCK_GATE_USB_DRD	12
-+#define GCK_GATE_MCRAMC		13
-+#define GCK_GATE_HMATRIX	14
++select:
++  properties:
++    compatible:
++      contains:
++        enum:
++          - microchip,lan9691-dwc3
++  required:
++    - compatible
 +
-+#endif
++properties:
++  compatible:
++    items:
++      - enum:
++          - microchip,lan9691-dwc3
++      - const: snps,dwc3
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    items:
++      - description: Gated USB DRD clock
++      - description: Controller reference clock
++
++  clock-names:
++    items:
++      - const: bus_early
++      - const: ref
++
++unevaluatedProperties: false
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - clock-names
++
++allOf:
++  - $ref: snps,dwc3.yaml#
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/clock/microchip,lan9691.h>
++
++    usb@300000 {
++        compatible = "microchip,lan9691-dwc3", "snps,dwc3";
++        reg = <0x300000 0x80000>;
++        interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>;
++        clocks = <&clks GCK_GATE_USB_DRD>,
++                 <&clks GCK_ID_USB_REFCLK>;
++        clock-names = "bus_early", "ref";
++    };
 -- 
 2.52.0
 
