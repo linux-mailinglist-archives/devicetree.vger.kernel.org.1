@@ -1,55 +1,53 @@
-Return-Path: <devicetree+bounces-246803-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246804-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F297FCBFEE2
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 22:29:46 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5309CBFF2E
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 22:35:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 196B13018260
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 21:29:40 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 375B03014583
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 21:30:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DE34338F26;
-	Mon, 15 Dec 2025 21:29:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F44832A3D4;
+	Mon, 15 Dec 2025 21:30:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rcjvkXoo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JLc2GHJv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CED883376A7;
-	Mon, 15 Dec 2025 21:29:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 482BE30AD11;
+	Mon, 15 Dec 2025 21:30:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765834178; cv=none; b=gKo3KLLNB7p7MGEjIPrEy8/ZyWmkByFg2FUOGkzneVSJoRe424wZr6eteiGw4WJwpWnkLUWwCyO+3eMUYhsgazg+6kbCoNu8yPJoKecHvrKvYnRnCWWzNYj6tS1pUijxTySfT7jbtM5878j4V1zvb1t9LbgTFezeQW/0rfT15Ow=
+	t=1765834229; cv=none; b=RfQPFpYWa9YdIDX1hTB9DfkXcv+oXPpzuJ5RqySCNy0/xdqPCgwYOryVQuVCZzSCsz7/29NVTAqYHYmqhrAcGKXT77aL2KK/A/ONwt6bbnxKign9bDtGbXv5CfNhfHlVf96C0IyG7FS54ziK7ilr6LdBb8XZJYoEK8sevT7YJxg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765834178; c=relaxed/simple;
-	bh=f66aDebDMOyvBBG4UY1pel21ioLx+nJ9RAjyW465PKQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=N4It5pj0c9X2XGBa6phGrFUj5/OmNLynvRPbvljQ0vfacY9t13v261nfyWOHbMIeq+STQ7eK6vjvjFXTMYNCbFyf09ks9k4q+H0RSfycJGkwoMhffUESCVeRmDgcW27r1nmK/DlaKCXRDrxhe80ilhUlDA8EThlWbcmjf6Bk+fw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rcjvkXoo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4EE40C4CEF5;
-	Mon, 15 Dec 2025 21:29:38 +0000 (UTC)
+	s=arc-20240116; t=1765834229; c=relaxed/simple;
+	bh=CrgPu0plMXLmrnLAcuh4XDVEnwJ+nVeUShY/6oynE/Q=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=T3nLsAFpCpcWzLjDVfj6ColR69XVqs/lV42mofGt5BAG2u43Or4sTZXlucSOQ3FNo8ibJrY1uGywqpcqIRze37QrQSccyC0Dz6r3TF9iTHhfWc0FSCXARN/aMmWbPI0r88YMLuOnQP5jCYRLC6b86Qw7DgMmEgPw+7qpNXI+QLs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JLc2GHJv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9EE08C4CEF5;
+	Mon, 15 Dec 2025 21:30:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765834178;
-	bh=f66aDebDMOyvBBG4UY1pel21ioLx+nJ9RAjyW465PKQ=;
+	s=k20201202; t=1765834228;
+	bh=CrgPu0plMXLmrnLAcuh4XDVEnwJ+nVeUShY/6oynE/Q=;
 	h=From:To:Cc:Subject:Date:From;
-	b=rcjvkXoofAITZ2X5CjahrM642ACtDytwJ/UcGupJaWyw1eFCZrQuJcJbIHq54Y+cd
-	 ynrVRLBK0wJ4Z+LcUqrdfTxsGfubIhd0pARtdBgL6uD5hISpf2EMzumLgXl2qcnHln
-	 BEyk6k7uC0AKox7Ecs8tlfWZSyWZ1zMX3hLwKe7s15sl3ZVlRL7YnCjEc8y0fxxaUW
-	 DmtMA+059xR7GemypXNll6+n78M32q4Q8Ufh0hmd/33tR+jUX49zWXKlmAezbvbgEx
-	 xfOp/YjeohlVGsTIBAyQedFr7vufU+Q7Q7ugUayHIUpWKelueMkC1I9oVEbnsYIqos
-	 F0eDrbROyQSPA==
+	b=JLc2GHJvCVpWibVzRkpwjgjichzDIKiUd7lw/U2mmIeCO8R2XyL0zdZcoGFtZm84a
+	 bsL/4uxi40BVJ9GSdxSJtHcR7i3YZPcy2vFhHYVQbpEgT6QwRAMCjJ0+uC0qMpu7zd
+	 90ZLF/Zkz/peZduG+g7DMfcHFS/qaI9i0qQtRcMViOyiu6BFbElLf/mUUc6IK65Kke
+	 z5LHYNpZDVKoBiUT0ZlqTRlrvkFAfAQtYuSna26ugF0/z6l0X6mwAZqrqlNSbpLdm3
+	 H6Weld3VEGGJ8TfHSx3ifl37N8H03EBsqVuiVA3Io7K/X8rxuMa92GBSeimmrnK/wA
+	 82vsYdt/HgZpg==
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Linus Walleij <linusw@kernel.org>,
+To: Robert Richter <rric@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sudeep Holla <sudeep.holla@arm.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>,
-	linux-arm-kernel@lists.infradead.org,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: arm,vexpress-juno: Allow interrupt-map properties in bus node
-Date: Mon, 15 Dec 2025 15:29:32 -0600
-Message-ID: <20251215212932.3324144-1-robh@kernel.org>
+Subject: [PATCH] dt-bindings: arm: Drop obsolete brcm,vulcan-soc binding
+Date: Mon, 15 Dec 2025 15:30:21 -0600
+Message-ID: <20251215213022.3325133-1-robh@kernel.org>
 X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -59,30 +57,45 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Allow interrupt-map properties which are already used in the bus node.
+The Cavium ThunderX2 aka Broadcom Vulcan doesn't use DT, but ACPI, so drop
+the SoC binding.
 
 Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 ---
- .../devicetree/bindings/arm/arm,vexpress-juno.yaml          | 6 ++++++
- 1 file changed, 6 insertions(+)
+ .../bindings/arm/bcm/brcm,vulcan-soc.yaml     | 24 -------------------
+ 1 file changed, 24 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/arm/bcm/brcm,vulcan-soc.yaml
 
-diff --git a/Documentation/devicetree/bindings/arm/arm,vexpress-juno.yaml b/Documentation/devicetree/bindings/arm/arm,vexpress-juno.yaml
-index 4cdca5320544..eae558c2758b 100644
---- a/Documentation/devicetree/bindings/arm/arm,vexpress-juno.yaml
-+++ b/Documentation/devicetree/bindings/arm/arm,vexpress-juno.yaml
-@@ -157,6 +157,12 @@ patternProperties:
-               - const: simple-bus
-           - const: simple-bus
- 
-+      "#interrupt-cells":
-+        const: 1
-+
-+      interrupt-map: true
-+      interrupt-map-mask: true
-+
-     patternProperties:
-       '^motherboard-bus@':
-         type: object
+diff --git a/Documentation/devicetree/bindings/arm/bcm/brcm,vulcan-soc.yaml b/Documentation/devicetree/bindings/arm/bcm/brcm,vulcan-soc.yaml
+deleted file mode 100644
+index 3f441352fbf0..000000000000
+--- a/Documentation/devicetree/bindings/arm/bcm/brcm,vulcan-soc.yaml
++++ /dev/null
+@@ -1,24 +0,0 @@
+-# SPDX-License-Identifier: GPL-2.0
+-%YAML 1.2
+----
+-$id: http://devicetree.org/schemas/arm/bcm/brcm,vulcan-soc.yaml#
+-$schema: http://devicetree.org/meta-schemas/core.yaml#
+-
+-title: Broadcom Vulcan
+-
+-maintainers:
+-  - Robert Richter <rrichter@marvell.com>
+-
+-properties:
+-  $nodename:
+-    const: '/'
+-  compatible:
+-    items:
+-      - enum:
+-          - brcm,vulcan-eval
+-          - cavium,thunderx2-cn9900
+-      - const: brcm,vulcan-soc
+-
+-additionalProperties: true
+-
+-...
 -- 
 2.51.0
 
