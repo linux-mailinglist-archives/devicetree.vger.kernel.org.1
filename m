@@ -1,52 +1,52 @@
-Return-Path: <devicetree+bounces-246744-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246745-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB745CBF78B
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 19:53:53 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71684CBF7AD
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 20:07:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 8252A300AC52
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 18:53:52 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 4E2DC3019AE8
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 19:07:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64C51325707;
-	Mon, 15 Dec 2025 18:53:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0301230E849;
+	Mon, 15 Dec 2025 19:07:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="KvaC/607"
+	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="WHUcKiNP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from ixit.cz (ip-94-112-25-9.bb.vodafone.cz [94.112.25.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7DDC26D4DF;
-	Mon, 15 Dec 2025 18:53:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D39EF30C611;
+	Mon, 15 Dec 2025 19:07:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.112.25.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765824831; cv=none; b=oHnlIWdDK9kejMVlqory5lS8wMRX3ZwphTLNU+RHle4kiv2gqBsrWfZVXcGOvUF7iJEBOYr3vKOooJcNdXxFFepBvngzZdhCUBsghSLHKkBCtKo5nn37QzQ+UsyBSUL2TJfRtIdtjzMFl/M10PRGSoxVsPV3/VS5zRrgB8A7PTs=
+	t=1765825637; cv=none; b=biQ8sZ5WoNe2ZijWFFubHzJ0ec2dWL2I1FA3mqFXEOhbl5fm2svHvUlK8PTbvDOo+KQM/gatWctaDx2+ioiPFVexckLcyIVNCqQALijQ4Fz6zkLGMKzvZMWEPD8beq7/OI5FQwFD1ae0lY1XuXGkNHTbY8IUAyYZiu3ga1JJLhY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765824831; c=relaxed/simple;
-	bh=jdomaAaS9ijrM+IJ4dGcHfhGPKYNUFXl7Py3F57Vs18=;
+	s=arc-20240116; t=1765825637; c=relaxed/simple;
+	bh=BGvVi7h5HlrJiR8i7zg92109SYIc9RbiqEtNIZovyyk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nwVJSUcERSUIjUCes5StPZtwspBAKR08ytmnENATS9vWvYYuLBTpTQGi1Vf/FbxffzTGwRDHVI4z3d8lKWPKKOgmyEWoUeksQjRlJDpLEFxZVNc6tojKyXorPyMxfNk6n64tvIFBG7xBXbyiMpKCqh5c0lVYucWjitwyXvoVL4w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=KvaC/607; arc=none smtp.client-ip=94.112.25.9
+	 In-Reply-To:Content-Type; b=MT6ukdhpJOwFo/NJ7YMq18cucHr2FJ21MoOJB/vzJ6B6AQj377bZplbO6vj5Eg1p0piLJpckZ5m5iQth4ffXmVfNHum/Z93JemNHFjBdK7dTu8GDzQEv4QadWo0+MxQyaOglOFc70lRHyOL164DqSEPk3CMwcfefGZYNtkRZ2Os=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=WHUcKiNP; arc=none smtp.client-ip=94.112.25.9
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
 Received: from [172.16.12.102] (89-24-64-24.customers.tmcz.cz [89.24.64.24])
 	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange x25519)
+	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
 	(No client certificate requested)
-	by ixit.cz (Postfix) with ESMTPSA id 58E2D53410C1;
-	Mon, 15 Dec 2025 19:53:39 +0100 (CET)
+	by ixit.cz (Postfix) with ESMTPSA id E01785341181;
+	Mon, 15 Dec 2025 20:07:10 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-	t=1765824819;
+	t=1765825631;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=3RptwkM6xp9cJa34frcDFqgOWKE/ckK3f5Wc3OJ+TS0=;
-	b=KvaC/607C3U7MqilyvB3zAYnNegJ7MIQA8SdUKqP5VJiaRqZeNdnde7S6+RN/5lxnOBcpV
-	t0WTvafZc/a4tWna+L30FQVxCn0sl2vgOJftFXGsws12lHWLklD0JGZQxPCZc7nDez3AJv
-	UlZ9tZIFsm3oxqdHC2TZ7HddPRFADOc=
-Message-ID: <c62d6c99-0c8d-40e5-95fc-ae73ecaca926@ixit.cz>
-Date: Mon, 15 Dec 2025 19:53:37 +0100
+	bh=xuhlA8p+Ni1MwniXNxJtMYuoqPjY8OXIv/XxkVkgASY=;
+	b=WHUcKiNPNgmrm/bmNIJ82QrMqpSUnGc9R3EUhaHNgI8ErR87UY7mcasoLlwUDLXbvw36cJ
+	3cHBBg9ikWlzsLK9woIxdZIexYumT2Cm7KIcq9IC8L/JbutRs79WOd5Mz3r+zsNnS/6Cyd
+	oOsK4S9tRRZ/McXuO774ROPXawHADU8=
+Message-ID: <e3590c98-785f-4774-bb57-04c65cf12d21@ixit.cz>
+Date: Mon, 15 Dec 2025 20:07:09 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -54,16 +54,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/3] ARM: dts: exynos: Add Google Manta (Nexus 10)
-To: Lukas Timmermann <linux@timmermann.space>,
- Krzysztof Kozlowski <krzk@kernel.org>, Alim Akhtar
- <alim.akhtar@samsung.com>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Russell King <linux@armlinux.org.uk>
-Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- phone-devel@vger.kernel.org, Alexandre Marquet <tb@a-marquet.fr>
-References: <20251215-lat3st-staging-v3-0-2e4914b64dd8@timmermann.space>
- <20251215-lat3st-staging-v3-2-2e4914b64dd8@timmermann.space>
+Subject: Re: [PATCH] arm64: dts: qcom: sdm845-tama: Keep labibb on, so kernel
+ can disable it
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20251202-tama-labibb-v1-1-f8f3fda53d1d@ixit.cz>
+ <ed0bdcae-6fa1-48a4-9618-e0ac09097f9e@oss.qualcomm.com>
 Content-Language: en-US
 From: David Heidelberg <david@ixit.cz>
 Autocrypt: addr=david@ixit.cz; keydata=
@@ -109,578 +109,41 @@ Autocrypt: addr=david@ixit.cz; keydata=
  zRKcgRumz2Tc1ouHj6qINlzEe3a5ldctIn/dvR1l2Ko7GBTG+VGp9U5NOAEkGpxHG9yg6eeY
  fFYnMme51H/HKiyUlFiE3yd5LSmv8Dhbf+vsI4x6BOOOq4Iyop/Exavj1owGxW0hpdUGcCl1
  ovlwVPO/6l/XLAmSGwdnGqok5eGZQzSst0tj9RC9O0dXO1TZocOsf0tJ8dR2egX4kxM=
-In-Reply-To: <20251215-lat3st-staging-v3-2-2e4914b64dd8@timmermann.space>
+In-Reply-To: <ed0bdcae-6fa1-48a4-9618-e0ac09097f9e@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Hello Lucas,
-
-thanks for the sending Nexus 10 upstream, see few nitpicks below:
-
-On 15/12/2025 16:05, Lukas Timmermann wrote:
-> From: Alexandre Marquet <tb@a-marquet.fr>
+On 02/12/2025 13:55, Konrad Dybcio wrote:
+> On 12/2/25 12:31 PM, David Heidelberg via B4 Relay wrote:
+>> From: David Heidelberg <david@ixit.cz>
+>>
+>> In case if they were enabled by the bootloader as part of some
+>> reference/common routine and left hanging. Linux will switch them off if
+>> they're never used.
+>>
+>> Discussion about it can be found here:
+>>    https://lore.kernel.org/all/20251130-oneplus-labibb-v1-1-bb3653e43120@ixit.cz/
+>>
+>> Fixes: 5dcc6587fde2 ("arm64: dts: qcom: sdm845-tama: Add display nodes")
+>> Suggested-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+>> Signed-off-by: David Heidelberg <david@ixit.cz>
+>> ---
 > 
-> Manta is the code name for Google Nexus 10, and was manufactured by
-> Samsung with their Exynos5250 SoC.
-> This patch adds initial device-tree file for this board.
+> Perhaps "keeping it on" is a little bit unfortunate in that the wording
+> collides with keeping the regulator's output enabled, but anyway
 > 
-> Signed-off-by: Alexandre Marquet <tb@a-marquet.fr>
-> Co-developed-by: Lukas Timmermann <linux@timmermann.space>
-> Signed-off-by: Lukas Timmermann <linux@timmermann.space>
-> ---
->   arch/arm/boot/dts/samsung/Makefile             |   1 +
->   arch/arm/boot/dts/samsung/exynos5250-manta.dts | 511 +++++++++++++++++++++++++
->   2 files changed, 512 insertions(+)
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+
+So, friend fixed tama-akatsuki against -next tree and having labibb 
+nodes there crashes the kernel, so it seems disabling labibb had some 
+reason.
+
+So, please do not merge until figured out!
+
+David
+
 > 
-> diff --git a/arch/arm/boot/dts/samsung/Makefile b/arch/arm/boot/dts/samsung/Makefile
-> index 7becf36656b1..e0143ee8c82d 100644
-> --- a/arch/arm/boot/dts/samsung/Makefile
-> +++ b/arch/arm/boot/dts/samsung/Makefile
-> @@ -26,6 +26,7 @@ dtb-$(CONFIG_ARCH_EXYNOS4) += \
->   	exynos4412-trats2.dtb
->   dtb-$(CONFIG_ARCH_EXYNOS5) += \
->   	exynos5250-arndale.dtb \
-> +	exynos5250-manta.dtb \
->   	exynos5250-smdk5250.dtb \
->   	exynos5250-snow.dtb \
->   	exynos5250-snow-rev5.dtb \
-> diff --git a/arch/arm/boot/dts/samsung/exynos5250-manta.dts b/arch/arm/boot/dts/samsung/exynos5250-manta.dts
-> new file mode 100644
-> index 000000000000..0f006590576c
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/samsung/exynos5250-manta.dts
-> @@ -0,0 +1,511 @@
-> +// SPDX-License-Identifier: GPL-2.0
-
-you could use here modern SPDX I guess (GPL-2.0-only)
-
-> +/*
-> + * Google Manta (Nexus 10) board device tree source
-> + *
-> + * Copyright (c) 2023-2025 Alexandre Marquet
-> + * Copyright (c) 2025 Lukas Timmermann
-> + */
-> +
-> +/dts-v1/;
-> +#include <dt-bindings/leds/common.h>
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/clock/maxim,max77686.h>
-> +#include <dt-bindings/input/linux-event-codes.h>
-> +#include "exynos-pinctrl.h"
-> +#include "exynos5250.dtsi"
-> +#include "exynos-mfc-reserved-memory.dtsi"
-> +
-> +/ {
-> +	model = "Google Nexus 10";
-> +	compatible = "google,manta", "samsung,exynos5250", "samsung,exynos5";
-> +
-> +	aliases {
-> +		mmc0 = &mmc_0; /* eMMC */
-> +		mmc1 = &mmc_1; /* WiFi */
-> +	};
-> +
-> +	bmp180_vdda_reg: regulator-bmp180-vdda {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "BMP180_VDDA";
-> +	};
-something-something-regulator (all occurences within the DTS)
-
-> +
-> +	bmp180_vddd_reg: regulator-bmp180-vddd {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "BMP180_VDDD";
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = &serial_2;
-> +	};
-> +
-> +	fixed-rate-clocks {
-> +		xxti {
-> +			compatible = "samsung,clock-xxti";
-> +			clock-frequency = <24000000>;
-> +		};
-> +	};
-> +
-> +	gpio-keys {
-> +		compatible = "gpio-keys";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&gpio_keys>;
-> +
-> +		key-down {
-> +			gpios = <&gpx2 1 GPIO_ACTIVE_LOW>;
-> +			linux,code = <KEY_VOLUMEDOWN>;
-> +			label = "volume down";
-> +			debounce-interval = <5>;
-> +		};
-> +
-> +		key-up {
-> +			gpios = <&gpx2 0 GPIO_ACTIVE_LOW>;
-> +			linux,code = <KEY_VOLUMEUP>;
-> +			label = "volume up";
-> +			debounce-interval = <5>;
-> +		};
-> +
-> +		key-power {
-> +			gpios = <&gpx2 7 GPIO_ACTIVE_LOW>;
-> +			linux,code = <KEY_POWER>;
-> +			label = "power";
-> +			debounce-interval = <5>;
-> +			wakeup-source;
-> +		};
-> +
-> +		lid-switch {
-> +			label = "Lid";
-> +			gpios = <&gpx1 3 GPIO_ACTIVE_LOW>;
-> +			linux,input-type = <5>; /* EV_SW */
-> +			linux,code = <0>; /* SW_LID */
-> +			debounce-interval = <10>;
-> +			wakeup-source;
-> +		};
-> +	};
-> +
-> +	multi-led {
-> +		compatible = "leds-group-multicolor";
-> +		color = <LED_COLOR_ID_RGB>;
-> +		function = LED_FUNCTION_STATUS;
-> +		leds = <&status_red>, <&status_green>, <&status_blue>, <&status_white>;
-> +	};
-> +
-> +	pwrseq: mmc1-pwrseq {
-> +		compatible = "mmc-pwrseq-simple";
-> +		reset-gpios = <&gpv1 0 GPIO_ACTIVE_LOW>;
-> +		pinctrl-0 = <&wlan_pmena>;
-> +		pinctrl-names = "default";
-> +		clocks = <&max77686 MAX77686_CLK_PMIC>;
-> +		clock-names = "ext_clock";
-> +		post-power-on-delay-ms = <300>;
-> +		power-off-delay-us = <50>;
-> +	};
-> +
-> +	firmware@203f000 {
-> +		compatible = "samsung,secure-firmware";
-> +		reg = <0x0204efff 0x1000>;
-> +	};
-> +
-> +	memory@40000000 {
-> +		device_type = "memory";
-> +		reg = <0x40000000 0x20000000>,
-> +		      <0x60000000 0x20000000>,
-> +		      <0x80000000 0x20000000>,
-> +		      <0xa0000000 0x1ff00000>;
-> +	};
-> +};
-> +
-> +&clock {
-> +	assigned-clocks = <&clock CLK_FOUT_APLL>;
-> +	assigned-clock-rates = <1000000000>;
-> +};
-> +
-> +&cpu0 {
-> +	cpu0-supply = <&buck2_reg>;
-> +};
-> +
-> +&ehci {
-> +	status = "disabled";
-> +};
-> +
-> +&i2c_0 {
-> +	status = "okay";
-
-status should be before first sub-node (none in this case), with 
-preceding newline, please change all occurences
-
-
-> +	samsung,i2c-sda-delay = <100>;
-> +	samsung,i2c-slave-addr = <0x10>;
-> +};
-> +
-> +&i2c_1 {
-> +	status = "okay";
-> +
-> +	pressure@77 {
-> +		compatible = "bosch,bmp180";
-> +		reg = <0x77>;
-> +		vddd-supply = <&bmp180_vddd_reg>;
-> +		vdda-supply = <&bmp180_vdda_reg>;
-> +	};
-> +
-> +	imu@68 {
-> +		compatible = "invensense,mpu6050";
-> +		reg = <0x68>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&acc_int>;
-> +		interrupt-parent = <&gpx1>;
-> +		interrupts = <4 IRQ_TYPE_EDGE_RISING>;
-> +		mount-matrix = "0",  "-1",  "0",
-> +				"-1",  "0",  "0",
-> +				"0",  "0", "-1";
-> +
-> +		i2c-gate {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			magnetometer@c {
-> +				compatible = "asahi-kasei,ak8963";
-> +				reg = <0x0c>;
-> +				pinctrl-names = "default";
-> +				pinctrl-0 = <&msense_rst>;
-> +				mount-matrix = "-1",  "0",  "0",
-> +						"0",  "1",  "0",
-> +						"0",  "0", "-1";
-> +			};
-> +		};
-> +	};
-> +
-> +	led-controller@42 {
-> +		compatible = "ams,as3668";
-> +		reg = <0x42>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		status_red: led@0 {
-> +			reg = <0x0>;
-> +			function = LED_FUNCTION_STATUS;
-> +			color = <LED_COLOR_ID_RED>;
-> +		};
-> +
-> +		status_green: led@1 {
-> +			reg = <0x1>;
-> +			function = LED_FUNCTION_STATUS;
-> +			color = <LED_COLOR_ID_GREEN>;
-> +		};
-> +
-> +		status_blue: led@2 {
-> +			reg = <0x2>;
-> +			function = LED_FUNCTION_STATUS;
-> +			color = <LED_COLOR_ID_BLUE>;
-> +		};
-> +
-> +		status_white: led@3 {
-> +			reg = <0x3>;
-> +			function = LED_FUNCTION_STATUS;
-> +			color = <LED_COLOR_ID_WHITE>;
-> +		};
-> +	};
-> +};
-> +
-> +&i2c_2 {
-> +	status = "okay";
-> +
-> +	light-sensor@23 {
-> +		compatible = "rohm,bh1721";
-> +		reg = <0x23>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&bh1721fvc_reset>;
-> +		reset-gpios = <&gph1 2 GPIO_ACTIVE_LOW>;
-> +	};
-> +
-> +	onewire@18 {
-> +		compatible = "maxim,ds2484";
-> +		reg = <0x18>;
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&onewire_sleep>;
-> +	};
-> +};
-> +
-> +&i2c_5 {
-> +	status = "okay";
-> +	samsung,i2c-sda-delay = <100>;
-> +
-> +	max77686: pmic@9 {
-> +		compatible = "maxim,max77686";
-> +		reg = <0x09>;
-> +		interrupt-parent = <&gpx0>;
-> +		interrupts = <2 IRQ_TYPE_LEVEL_LOW>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&max77686_irq>;
-> +		#clock-cells = <1>;
-> +		wakeup-source;
-> +
-> +		voltage-regulators {
-> +			ldo3_reg: LDO3 {
-> +				regulator-name = "VCC_1.8V_AP";
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <1800000>;
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +			};
-> +			ldo8_reg: LDO8 {
-> +				regulator-name = "VMIPI_1.0V";
-> +				regulator-min-microvolt = <1000000>;
-> +				regulator-max-microvolt = <1000000>;
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +			};
-> +			ldo9_reg: LDO9 {
-> +				regulator-name = "TOUCH_VDD_1.8V";
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <1800000>;
-> +			};
-> +			ldo10_reg: LDO10 {
-> +				regulator-name = "VMIPI_1.8V";
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <1800000>;
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +			};
-> +			ldo12_reg: LDO12 {
-> +				regulator-name = "VUOTG_3.0V";
-> +				regulator-min-microvolt = <3000000>;
-> +				regulator-max-microvolt = <3000000>;
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +			};
-> +			ldo15_reg: LDO15 {
-> +				regulator-name = "VHSIC_1.0V";
-> +				regulator-min-microvolt = <1000000>;
-> +				regulator-max-microvolt = <1000000>;
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +			};
-> +			ldo16_reg: LDO16 {
-> +				regulator-name = "VHSIC_1.8V";
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <1800000>;
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +			};
-> +			ldo17_reg: LDO17 {
-> +				regulator-name = "5M_CORE_1.5V";
-> +				regulator-min-microvolt = <1500000>;
-> +				regulator-max-microvolt = <1500000>;
-> +			};
-> +			ldo18_reg: LDO18 {
-> +				regulator-name = "CAM_IO_1.8V";
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <1800000>;
-> +			};
-> +			ldo19_reg: LDO19 {
-> +				regulator-name = "VT_CAM_1.8V";
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <1800000>;
-> +			};
-> +			ldo20_reg: LDO20 {
-> +				regulator-name = "TA_CHECK_1.35V";
-> +				regulator-min-microvolt = <1350000>;
-> +				regulator-max-microvolt = <1350000>;
-> +			};
-> +			ldo23_reg: LDO23 {
-> +				regulator-name = "TSP_AVDD_2.8V";
-> +				regulator-min-microvolt = <2800000>;
-> +				regulator-max-microvolt = <2800000>;
-> +			};
-> +			ldo24_reg: LDO24 {
-> +				regulator-name = "CAM_AF_2.8V";
-> +				regulator-min-microvolt = <2800000>;
-> +				regulator-max-microvolt = <2800000>;
-> +			};
-> +			ldo25_reg: LDO25 {
-> +				regulator-name = "VADC_3.3V";
-> +				regulator-min-microvolt = <3300000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +			};
-> +			buck1_reg: BUCK1 {
-> +				regulator-name = "vdd_mif";
-> +				regulator-min-microvolt = <850000>;
-> +				regulator-max-microvolt = <1200000>;
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +			};
-> +			buck2_reg: BUCK2 {
-> +				regulator-name = "vdd_arm";
-> +				regulator-min-microvolt = <850000>;
-> +				regulator-max-microvolt = <1200000>;
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +			};
-> +			buck3_reg: BUCK3 {
-> +				regulator-name = "vdd_int";
-> +				regulator-min-microvolt = <850000>;
-> +				regulator-max-microvolt = <1200000>;
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +			};
-> +			buck4_reg: BUCK4 {
-> +				regulator-name = "vdd_g3d";
-> +				regulator-min-microvolt = <850000>;
-> +				regulator-max-microvolt = <1200000>;
-> +				regulator-boot-on;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&mali {
-> +	status = "okay";
-> +	mali-supply = <&buck4_reg>;
-> +};
-> +
-> +&mixer {
-> +	status = "okay";
-> +};
-> +
-> +/* eMMC */
-> +&mmc_0 {
-> +	status = "okay";
-> +	non-removable;
-> +	max-frequency = <200000000>;
-> +	sd-uhs-ddr50;
-> +	mmc-ddr-1_8v;
-> +	cap-mmc-hw-reset;
-> +	mmc-hs200-1_8v;
-> +	bus-width = <8>;
-> +	card-detect-delay = <200>;
-> +	samsung,dw-mshc-ciu-div = <3>;
-> +	samsung,dw-mshc-sdr-timing = <1 2>;
-> +	samsung,dw-mshc-ddr-timing = <2 3>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&sd0_clk &sd0_cmd &sd0_bus4 &sd0_bus8>;
-> +};
-> +
-> +/* WiFi */
-> +&mmc_1 {
-> +	status = "okay";
-> +	non-removable;
-> +	max-frequency = <100000000>;
-> +	sd-uhs-sdr50;
-> +	cap-sd-highspeed;
-> +	keep-power-in-suspend;
-> +	bus-width = <4>;
-> +	card-detect-delay = <0>;
-> +	samsung,dw-mshc-ciu-div = <3>;
-> +	samsung,dw-mshc-sdr-timing = <2 4>;
-> +	samsung,dw-mshc-ddr-timing = <2 3>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&sd1_clk &sd1_cmd &sd1_bus4>;
-> +	mmc-pwrseq = <&pwrseq>;
-> +
-> +	wifi@1 {
-> +		compatible = "brcm,bcm4330-fmac", "brcm,bcm4329-fmac";
-> +		reg = <1>;
-> +		interrupt-parent = <&gpx2>;
-> +		interrupts = <5 IRQ_TYPE_NONE>;
-> +		interrupt-names = "host-wake";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&wlan_irq>;
-> +	};
-> +};
-> +
-> +&ohci {
-> +	status = "disabled";
-> +};
-> +
-> +&pinctrl_0 {
-> +	acc_int: acc-int-pins {
-> +		samsung,pins = "gpx1-4";
-> +		samsung,pin-function = <EXYNOS_PIN_FUNC_EINT>;
-> +		samsung,pin-pud = <EXYNOS_PIN_PULL_UP>;
-> +	};
-> +
-> +	max77686_irq: max77686-irq-pins {
-> +		samsung,pins = "gpx0-2";
-> +		samsung,pin-function = <EXYNOS_PIN_FUNC_F>;
-> +		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
-> +		samsung,pin-drv = <EXYNOS4_PIN_DRV_LV1>;
-> +	};
-
-missing newlines (everywhere below)
-
-> +	gpio_keys: gpio-keys-pins-pins {
-> +		samsung,pins = "gpx2-0", "gpx2-1", "gpx2-7", "gpx1-3";
-> +		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
-> +	};
-> +	wlan_irq: wlan-irq-pins {
-> +		samsung,pins = "gpx2-5";
-> +		samsung,pin-function = <EXYNOS_PIN_FUNC_INPUT>;
-> +		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
-> +		samsung,pin-drv = <EXYNOS4_PIN_DRV_LV3>;
-> +	};
-> +};
-> +
-> +&pinctrl_1 {
-> +	bh1721fvc_reset: bh1721fvc-reset-pins {
-> +		samsung,pins = "gph1-2";
-> +		samsung,pin-function = <EXYNOS_PIN_FUNC_OUTPUT>;
-> +		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
-> +	};
-> +	msense_rst: msense-rst-pins {
-> +		samsung,pins = "gpg2-0";
-> +		samsung,pin-function = <EXYNOS_PIN_FUNC_OUTPUT>;
-> +	};
-> +	onewire_sleep: onewire-sleep-pins {
-> +		samsung,pins = "gpg0-0";
-> +		samsung,pin-function = <EXYNOS_PIN_FUNC_OUTPUT>;
-> +		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
-> +		samsung,pin-con-pdn = <EXYNOS_PIN_PDN_INPUT>;
-> +		samsung,pin-pud-pdn = <EXYNOS_PIN_PULL_NONE>;
-> +	};
-> +};
-> +
-> +&pinctrl_2 {
-> +	wlan_pmena: wlan-pmena-pins {
-> +		samsung,pins = "gpv1-0";
-> +		samsung,pin-function = <EXYNOS_PIN_FUNC_OUTPUT>;
-> +		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
-> +		samsung,pin-drv = <EXYNOS4_PIN_DRV_LV3>;
-> +		samsung,pin-con-pdn = <EXYNOS_PIN_PDN_PREV>;
-> +		samsung,pin-val = <0>;
-> +	};
-> +};
-> +
-> +&pmu_system_controller {
-> +	assigned-clocks = <&pmu_system_controller 0>;
-> +	assigned-clock-parents = <&clock CLK_FIN_PLL>;
-> +};
-> +
-> +&sd1_bus4 {
-> +	samsung,pin-con-pdn = <EXYNOS_PIN_PDN_INPUT>;
-> +	samsung,pin-pud-pdn = <EXYNOS_PIN_PULL_NONE>;
-> +};
-> +
-> +&sd1_cmd {
-> +	samsung,pin-con-pdn = <EXYNOS_PIN_PDN_INPUT>;
-> +	samsung,pin-pud-pdn = <EXYNOS_PIN_PULL_NONE>;
-> +};
-> +
-> +/* Bluetooth */
-> +&serial_0 {
-> +	status = "disabled";
-> +};
-> +
-> +&serial_1 {
-> +	pinctrl-names = "default", "flow-control";
-> +	pinctrl-0 = <&uart1_data>;
-> +	pinctrl-1 = <&uart1_data>, <&uart1_fctl>;
-
-pinctrl-name follow after last pinctrl- entry.
-
-> +};
-> +
-> +&serial_2 {
-> +	pinctrl-names = "default", "flow-control";
-> +	pinctrl-0 = <&uart2_data>;
-> +	pinctrl-1 = <&uart2_data>, <&uart2_fctl>;
-
-same
-
-> +};
-> +
-> +&usbdrd {
-> +	status = "disabled";
-> +};
-> +
-> +&usbdrd_dwc3 {
-> +	status = "disabled";
-> +};
-> +
-> +&usbdrd_phy {
-> +	status = "disabled";
-> +};
-> 
+> Konrad
 
 -- 
 David Heidelberg
