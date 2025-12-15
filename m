@@ -1,59 +1,56 @@
-Return-Path: <devicetree+bounces-246786-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246787-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C897CBFEB2
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 22:26:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E6FE5CBFEC4
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 22:27:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8B5E5301EC5C
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 21:25:04 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 01EF53051637
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 21:25:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55EB6328257;
-	Mon, 15 Dec 2025 21:25:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 595BA30DD35;
+	Mon, 15 Dec 2025 21:25:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QPAgoKHw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PSrHjL1N"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27220325719;
-	Mon, 15 Dec 2025 21:25:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EFB132694E;
+	Mon, 15 Dec 2025 21:25:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765833903; cv=none; b=t1oQ70D2IaqHuIIcxROvfw5l7XRneVW2iL2xLay65p3+u2Eucv66abEcRRrnuUvsS21MooGLCRAFG5/MHwA5x6k4JprD4eqm2S4hmoTKglsKEN+LIEq2aXXYcO+fP3ZJpYZDPRmIFIYUezw0UvOolfwuwnGWO/BmsuhIZXK20cM=
+	t=1765833913; cv=none; b=RIrO8XkL4gY8w3tEc6KhQNLjdN/hUPtJzyJE3u4JX6xNs2diEYVNUlHDWMyJfNA8iRy82oQ0GXJkxG8B9rHfDwnYdoRuIpS+B7/2iYZisPOh2tsu3pOSfoDsecf303YS94XJF380/4Ddse+HxiuCR2LVFbTRlkytcszwERvvqRg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765833903; c=relaxed/simple;
-	bh=M7UaQpz4jW3hjZgi/W6Zm+fYN8tvjLjDw0dBDQ15e5w=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Iu8eP+mq7EHy1mDzjcoAPY1Dh+8SyUrzMYoD3+ZFUC49P0E5ochdazF8x38aSn1EJ4uZB/WMXwdp76d4dTXxmtgMeNivp7k07UUc5Xlf/2x5kG5cuePr6JmB77Ex49XRRmoiHzy9Lm8eP4Z5kdPe4P4IvTFza3p4DoRwycHv94k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QPAgoKHw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70BC6C4CEF5;
-	Mon, 15 Dec 2025 21:25:02 +0000 (UTC)
+	s=arc-20240116; t=1765833913; c=relaxed/simple;
+	bh=V7dIumNmjYaERbd0MD+B76a5NTQazRSqsfPFCXAda8M=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ol5RE+jfwlsWWb/IEg4nZVE9z/ewSugO+lJh9cSMpxoYIEzyGrcomJBMdtiivVWYad3gV9EjaxN51c61yuw2jT1+oxwfMxqugYIpx7u6GaqOYPorovbHmZ1rJmR+ZxxjZHlMWxw/bRkaGOR5FnjkHB0rTFErXYR02ij5E1v3gpY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PSrHjL1N; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82340C4CEF5;
+	Mon, 15 Dec 2025 21:25:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765833902;
-	bh=M7UaQpz4jW3hjZgi/W6Zm+fYN8tvjLjDw0dBDQ15e5w=;
+	s=k20201202; t=1765833912;
+	bh=V7dIumNmjYaERbd0MD+B76a5NTQazRSqsfPFCXAda8M=;
 	h=From:To:Cc:Subject:Date:From;
-	b=QPAgoKHwzAjngSr7dD6jsQOt83/ddfFyPv3JcLp+nD1FckJI4CvnsyH0ZFgpTjLGO
-	 jfE4lyFoG8jArUnY7vEDdQE6T+20LPtjWSTBMmY29CCKSXb5xrIjgFPf2o62+pOd2c
-	 +2PukrEpvdz3LXC0iCGsKFcg0GTdRVlrW17CyZlcmLAhEuQGAtfP6QBhJi4d3SBs1u
-	 syk5UyqDf4svXhMQPj9igK//9DxQRDmG4uyBItLv/u/lPXbFjtohbta+HjW4iN04O+
-	 8pl0CUlAXHnkNbIBRdfszk6wuHABre1hLkIHEu7cWahjP6Q+VCoDxFa/R79kzlB9YR
-	 s0/p09t4Jog9w==
+	b=PSrHjL1NyaKYOCJLAbtqICw5Fa70sDSRWppz77LxTSMugaTuUuiMUbz1g/iuhYzX6
+	 S2IiiiPYs/iguAMH+79tsAVkw0uuwGvDoTOgsq7ph06TP5zUeuS7SbfjyWRI1bjcEI
+	 2QPnYf3pKy6nBBKJIfH0epLKaDP/x5FmKTtXofUzqCwD77DA2MkDtHNFf3P5q5FUo6
+	 e5P2sI/mXeRN6WTF/R2YRYWpMZG/StrYOGBp/cdFFWZIXO3W+5oxg1FlU7qAEma3Gt
+	 eJx+jZBgXj1G/LTljEYFrown1KAQbnej04ETwGVYsMztcoreRF5MC0yxqHelMClHEV
+	 vTsBbNrrFGwpA==
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
+	Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
 	Masami Hiramatsu <mhiramat@kernel.org>
-Cc: linux-pci@vger.kernel.org,
+Cc: linux-usb@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: PCI: socionext,uniphier-pcie: Fix interrupt controller node name
-Date: Mon, 15 Dec 2025 15:24:56 -0600
-Message-ID: <20251215212456.3317558-1-robh@kernel.org>
+Subject: [PATCH] dt-bindings: usb: Add Socionext Uniphier DWC3 controller
+Date: Mon, 15 Dec 2025 15:25:06 -0600
+Message-ID: <20251215212507.3317805-1-robh@kernel.org>
 X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -63,36 +60,111 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The child node name in use by .dts files and the driver is
-"legacy-interrupt-controller", not "interrupt-controller".
+The Socionext Uniphier DWC3 controller binding is already in use, but
+undocumented. It's a straight-forward binding similar to other DWC3
+bindings.
 
 Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 ---
- .../devicetree/bindings/pci/socionext,uniphier-pcie.yaml      | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../bindings/usb/socionext,uniphier-dwc3.yaml | 89 +++++++++++++++++++
+ 1 file changed, 89 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/usb/socionext,uniphier-dwc3.yaml
 
-diff --git a/Documentation/devicetree/bindings/pci/socionext,uniphier-pcie.yaml b/Documentation/devicetree/bindings/pci/socionext,uniphier-pcie.yaml
-index c07b0ed51613..8a2f1eef51bd 100644
---- a/Documentation/devicetree/bindings/pci/socionext,uniphier-pcie.yaml
-+++ b/Documentation/devicetree/bindings/pci/socionext,uniphier-pcie.yaml
-@@ -51,7 +51,7 @@ properties:
-   phy-names:
-     const: pcie-phy
- 
--  interrupt-controller:
-+  legacy-interrupt-controller:
-     type: object
-     additionalProperties: false
- 
-@@ -111,7 +111,7 @@ examples:
-                         <0 0 0  3  &pcie_intc 2>,
-                         <0 0 0  4  &pcie_intc 3>;
- 
--        pcie_intc: interrupt-controller {
-+        pcie_intc: legacy-interrupt-controller {
-             #address-cells = <0>;
-             interrupt-controller;
-             #interrupt-cells = <1>;
+diff --git a/Documentation/devicetree/bindings/usb/socionext,uniphier-dwc3.yaml b/Documentation/devicetree/bindings/usb/socionext,uniphier-dwc3.yaml
+new file mode 100644
+index 000000000000..892ae3458c1b
+--- /dev/null
++++ b/Documentation/devicetree/bindings/usb/socionext,uniphier-dwc3.yaml
+@@ -0,0 +1,89 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/usb/socionext,uniphier-dwc3.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Socionext Uniphier SuperSpeed DWC3 USB SoC controller
++
++maintainers:
++  - Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
++  - Masami Hiramatsu <mhiramat@kernel.org>
++
++select:
++  properties:
++    compatible:
++      contains:
++        const: socionext,uniphier-dwc3
++  required:
++    - compatible
++
++properties:
++  compatible:
++    items:
++      - const: socionext,uniphier-dwc3
++      - const: snps,dwc3
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    minItems: 1
++    items:
++      - description: Host or single combined interrupt
++      - description: Peripheral interrupt
++
++  interrupt-names:
++    minItems: 1
++    items:
++      - enum:
++          - dwc_usb3
++          - host
++      - const: peripheral
++
++  clocks:
++    maxItems: 3
++
++  clock-names:
++    items:
++      - const: ref
++      - const: bus_early
++      - const: suspend
++
++  phys:
++    description: 1 to 4 HighSpeed PHYs followed by 1 or 2 SuperSpeed PHYs
++    minItems: 2
++    maxItems: 6
++
++  resets:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - clock-names
++  - phys
++
++unevaluatedProperties: false
++
++allOf:
++  - $ref: snps,dwc3.yaml#
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    usb@65a00000 {
++        compatible = "socionext,uniphier-dwc3", "snps,dwc3";
++        reg = <0x65a00000 0xcd00>;
++        interrupt-names = "dwc_usb3";
++        interrupts = <GIC_SPI 134 IRQ_TYPE_LEVEL_HIGH>;
++        clock-names = "ref", "bus_early", "suspend";
++        clocks = <&sys_clk 12>, <&sys_clk 12>, <&sys_clk 12>;
++        resets = <&usb0_rst 15>;
++        phys = <&usb0_hsphy0>, <&usb0_hsphy1>,
++               <&usb0_ssphy0>, <&usb0_ssphy1>;
++        dr_mode = "host";
++    };
 -- 
 2.51.0
 
