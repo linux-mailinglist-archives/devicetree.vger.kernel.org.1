@@ -1,209 +1,210 @@
-Return-Path: <devicetree+bounces-246442-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246426-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4009FCBCDFD
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 08:58:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F065CBCC73
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 08:35:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AE8BE303526A
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 07:55:56 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5EDE23007C67
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 07:35:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61D09330D3B;
-	Mon, 15 Dec 2025 07:33:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B943A328B7D;
+	Mon, 15 Dec 2025 07:30:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="olPnYGzD"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DLfquJmP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5D38330D32;
-	Mon, 15 Dec 2025 07:33:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2433328B5F
+	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 07:30:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765784034; cv=none; b=JOv54vkzwlZGxLg0kNJ/dw3sVJUoiCEPRGOcZRFQs+frxTHq1DvPnbzix4NwJMbCMiq4foorBGs56KU9eB5r2oThxogM44a6Gtj6Z7Cz6w85kLiPsZV9hmpoCbZ+3Qdj+FOS/MKdEFs90yoUZ9Jkns5TzkIGFkkB13j0q/MJ2EM=
+	t=1765783828; cv=none; b=Hz1rfm1y+AIhz0uNMPuE7h6q6fpSsMA/ManX7JHsi32hXh6PV8grVvvgqNn3ymDJWxvwrjWQvLUp9YC9nHWCB95XPIHoeF+AeO4ahcmB4JCzYgIjr9gnMjU6HTKWiRty6p4oym/Es7iqCypPGr6ndeIFVpPEaNJxtVXvV2QL5+Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765784034; c=relaxed/simple;
-	bh=jleOSP7Tgn+ABBAUO5yDEWHMZfB1w2yN56IEROvhqXw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=PbqyJGeUQ9AeWfAW+/e8SGUgaL3J3jRfSlHcEEGBG1CRLVVPe5Xc9j8nxDUAeXAXM92GQD4AAFk0ZnUr9Di2oPgzcrA94bOliuhxPREutuAy3wTOUW4JHgYCqz/jeAan2HRD9O+fOwwBN/8sTDHjkLrp+ca0u7lsfh5tRzrAlUw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=olPnYGzD; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from mail.ideasonboard.com (unknown [223.190.82.135])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 80783581;
-	Mon, 15 Dec 2025 08:33:46 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1765784027;
-	bh=jleOSP7Tgn+ABBAUO5yDEWHMZfB1w2yN56IEROvhqXw=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=olPnYGzDTuzmLpHhWgJHuNtcWU8TeGYUcM+eXhCBEt/NP5Eet++EKU1GQfwVhDcq0
-	 QPBBef+BIjOlOZQx8pCz+zNwSaycJ6n0NmPzqD62RaZzd16KfNuM/Y7fhgh+JAAJPI
-	 M4EcWT8s/uBVNeh6pIOoB0wcc0+s0/HglrbOjs14=
-From: Jai Luthra <jai.luthra@ideasonboard.com>
-Date: Mon, 15 Dec 2025 12:58:12 +0530
-Subject: [PATCH v3 16/16] media: i2c: ov5647: Add V4L2_CID_LINK_FREQUENCY
- control
+	s=arc-20240116; t=1765783828; c=relaxed/simple;
+	bh=ny2OD9BiO7SHTpHigNLl/XImUrXL4VCXAvUSIHW8BGk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bFiRVxRo6wc2PjyAaWYVXy9z1nph6h0QExXI0vkQKMeL1/CI1hMxqNpT7w1JQUmRMxdiqqyC8JT8P8ZGk/s7cHiWbP8JJsdJO1RZrMt5smfgPW6lzMRWzilzo/35BrUrwgAC1PqOgQ034WstuhA9oLjjA8d2qs1bqtUshbTEIS0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DLfquJmP; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-477aa218f20so19739855e9.0
+        for <devicetree@vger.kernel.org>; Sun, 14 Dec 2025 23:30:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1765783825; x=1766388625; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=R1Xd5pQpDiVW5fKbBbRiS4/q3sr+HKaLlW1Eq/UI+9o=;
+        b=DLfquJmPnJMVuFRtn4oBWUX7s3WxUFm7ZjlmW1HXETicMMjSlilhnYNl0NlBQX8m/C
+         2TMN8QRR2rOQ91aYOqt5zShn7Ri0DsymP/1OlPlrQ6pACK1EpgKvmnNQw1zY68Z2Ua8D
+         jBmVf8M4AtDDDI5ItZkmgL2j3L3eKMF/9wXBPa8Izw+vdhsDfvnKWeUuu2Md/ob5aZ7S
+         8X6cmRX+x/sUr5ZwyDyrUZHwZeRAUyp/DGHvvh4h+UBWjjRgaaJCe9hHqgnKd0aLZSD7
+         Ht3+lfPoLdZcBsfPIeBHaEtUnXkhVNaY1ROgDzCRn/UjoW4dbVLqDpOSr2y7NW14Kn0F
+         v46A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765783825; x=1766388625;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=R1Xd5pQpDiVW5fKbBbRiS4/q3sr+HKaLlW1Eq/UI+9o=;
+        b=kO52VUPg7qB1JdcUx/0GyOiLvOaWLj2vPPg4+y3UfJ2ua6GV3sMcxQTbHwsh6S5uVu
+         x8czOW8FSNuhkDxz8CyGUNdlIVb5ZvkMCvlnVJUtzJYNlljRyJShXN4w7hNcFXzwsPK8
+         C3U+cX2Nbfk+wKni6rbqdClwPsCeofh8Ja+K+xmc2Jhh+0ltfSf15LjQ8Lf7VHKZ7LTO
+         xetB3q1QAvnIyJNe3aeDk0qTTCe7Ge/KIdlRwiihnhvebJEL/0ImoRtddUy6L3S4KIUx
+         BxahaxrrB1jBl1V4EpQ13hrP9lz8mMXhDujAdCnF6c4X7vo/RhRyijvbH1VwIwVX5/e/
+         k8yg==
+X-Forwarded-Encrypted: i=1; AJvYcCXNWs3SsypWti0GO69zFE+QYTTzaifDLNwyvlFEIz0sRhoFSi40jEXzHYai6FMiXh3LEaEAmxxFYRFR@vger.kernel.org
+X-Gm-Message-State: AOJu0YxYyIUm7TBbS2NQ7yDLjC4YmhJAx9+6ftTJ9qCUZwXQpoeOQCMA
+	H+HTmGP/4S2MlKTPTgNBdXkWoyFSfQs/X90H8rEcqrYML7X+koqlbaK/vGqNgg==
+X-Gm-Gg: AY/fxX5SwX7ky+9IoJdC38tPeN6Ubvxq4Ee1VlCYWcsSKGvyAVIxKQquYvWlxoU159X
+	AMuYjyARqrdsvEAvZPwn6Qxo0NxYEokZQUbWkB4YlnoY95kKBZ+YW5rvmMmBzY+VrhGS//4PNpV
+	ADiq97rGhZ14xffgcNi4Rm1PJmeL6Y7NSBliZR3jq8rwLssnTR76zHt7D5LVKHv6XMcIhWNKGIe
+	B4ztqI2TDPj0hEMRDTdfeodpkVNW4skQayNWD/FpwDc332TrvvwNGhSYWaLnlndSVTPx5NGA9WH
+	kyeQgZAkYJCtP7tHBMiTQGRlIMy8sGro3KeNZpFDQGiU2bFqdZhadZHGN73fYJjf6gXdmm9rD3o
+	hiEnBsNMRTecVtBTZecjBDBUyqNJf4gfgBnGzaSZZ2Ot9+gF6TbGyoVn/rMqox96yUmUC6uXIVe
+	X9+sHuWCcqTX6NqHU9KsiGfNpo5ECrMONbSN9CefwqRn0/t0qOn9cI6lWN8A5huN2F
+X-Google-Smtp-Source: AGHT+IHZi4YEyjXSh3+xr8wfS4Ptfco/QiJmJQcOuGES3JsEx8a6lhUx7zm74MVICNiYUDhJ7dAdnA==
+X-Received: by 2002:a05:600c:6090:b0:477:a21c:2066 with SMTP id 5b1f17b1804b1-47a8f8a7efdmr89529355e9.5.1765783824606;
+        Sun, 14 Dec 2025 23:30:24 -0800 (PST)
+Received: from localhost (brnt-04-b2-v4wan-170138-cust2432.vm7.cable.virginm.net. [94.175.9.129])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-430f280cf30sm13151751f8f.3.2025.12.14.23.30.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 14 Dec 2025 23:30:23 -0800 (PST)
+Date: Mon, 15 Dec 2025 07:30:22 +0000
+From: Stafford Horne <shorne@gmail.com>
+To: LKML <linux-kernel@vger.kernel.org>
+Cc: Linux OpenRISC <linux-openrisc@vger.kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Jonas Bonn <jonas@southpole.se>,
+	Stefan Kristiansson <stefan.kristiansson@saunalahti.fi>,
+	Masahiro Yamada <masahiroy@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH 4/5] openrisc: dts: Split simple smp dts to dts and dtsi
+Message-ID: <aT-5DoreXbGm_QMn@antec>
+References: <20251214180158.3955285-1-shorne@gmail.com>
+ <20251214180158.3955285-5-shorne@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251215-b4-rpi-ov5647-v3-16-4c25e3c883b2@ideasonboard.com>
-References: <20251215-b4-rpi-ov5647-v3-0-4c25e3c883b2@ideasonboard.com>
-In-Reply-To: <20251215-b4-rpi-ov5647-v3-0-4c25e3c883b2@ideasonboard.com>
-To: Sakari Ailus <sakari.ailus@linux.intel.com>, 
- Dave Stevenson <dave.stevenson@raspberrypi.com>, 
- Jacopo Mondi <jacopo@jmondi.org>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Naushir Patuck <naush@raspberrypi.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, 
- Mauro Carvalho Chehab <mchehab+huawei@kernel.org>, 
- Kieran Bingham <kieran.bingham@ideasonboard.com>, 
- David Plowman <david.plowman@raspberrypi.com>, 
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
- Peter Robinson <pbrobinson@gmail.com>, Stefan Wahren <wahrenst@gmx.net>, 
- "Ivan T. Ivanov" <iivanov@suse.de>, 
- Jacopo Mondi <jacopo.mondi@ideasonboard.com>, 
- Jai Luthra <jai.luthra@ideasonboard.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3722;
- i=jai.luthra@ideasonboard.com; h=from:subject:message-id;
- bh=2m5uFJslIvUHVycELyZ6k66Dl7YGPmVx+HUrjjEpWJg=;
- b=owEBbQKS/ZANAwAKAUPekfkkmnFFAcsmYgBpP7jmbCCsTLxJ2HbG6Ze4aezrBB0RDqUh22sU2
- 5RhD/EAMdmJAjMEAAEKAB0WIQRN4NgY5dV16NRar8VD3pH5JJpxRQUCaT+45gAKCRBD3pH5JJpx
- Ra7dEACusKi7XrNPehosGzHDbFO/gMRgTXXNA0+z4nZMf1OQ6KZCYlYVLbvjDmYYkPAELsQzewg
- 0M9PPdwdrW2q03UhyBXjv4QGfeHc2xR9s7eSg532IJ04k1tgrkmCqkOXnp7bdGUtMLm8iCNXUae
- 29pWEc6KiqhNTtMPMOy9i3vdHzSvDw9GAvQJJq+SDfGiIfU/IsaFgpkHUjgx/E25LOPhjp9iDif
- CMcUAkXM8B29YyVcq36vOJmrHlf7RQ5J6xlwnOjK360mSqwR+Z+XFuwPaurdKNhG7yGbxGpcfDl
- VKcmmVEEMX3jwC88qU36f94sI67AE4CvllZfDBANEOfe5H0YwA00FhYFMhUFgtqiqC8fMLFJQup
- XC6f28RDu9uR9JWBc8PCmAzUuCkU5AZP/rNtdy5QXnOeodOn4Rsjqu4AZTEFlxKg9rLZrfd+F66
- dazM3kO+IEcebuePDi67jI4yIeguK958WVtky+lLFpsreH9NTDVsKFWsl6jvvZys3ClnHo9t/Vu
- m+8V1I692UOBIsqP8+sjQz5tnK8iE2VmHLwk/N2WyNi9vzut8ihtJArM3jQExsOp8ekcrZT116V
- wCBeXfxbZQtEl9eUvDlBQpXj64rr1zNbyaLbIB8sGm6maG/R8nirqw6YmJbTqyeZDerUR3Ho51p
- mH++yjlvegsprcg==
-X-Developer-Key: i=jai.luthra@ideasonboard.com; a=openpgp;
- fpr=4DE0D818E5D575E8D45AAFC543DE91F9249A7145
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251214180158.3955285-5-shorne@gmail.com>
 
-From: Dave Stevenson <dave.stevenson@raspberrypi.com>
+On Sun, Dec 14, 2025 at 06:01:44PM +0000, Stafford Horne wrote:
+> Split out the common memory, CPU and PIC definitions of the simple SMP
+> system to a DTSI file which we will later use for our De0 Nano multicore
+> board device tree.  We also take this opportunity to swich underscores
+> to dashes as that seems to be the more common convention for DTS files.
+> 
+> Signed-off-by: Stafford Horne <shorne@gmail.com>
+> ---
+>  arch/openrisc/boot/dts/simple-smp.dts         | 25 +++++++++++++++++++
+>  .../dts/{simple_smp.dts => simple-smp.dtsi}   | 12 ++++-----
+>  arch/openrisc/configs/simple_smp_defconfig    |  2 +-
+>  3 files changed, 32 insertions(+), 7 deletions(-)
+>  create mode 100644 arch/openrisc/boot/dts/simple-smp.dts
+>  rename arch/openrisc/boot/dts/{simple_smp.dts => simple-smp.dtsi} (89%)
+> 
+> diff --git a/arch/openrisc/boot/dts/simple-smp.dts b/arch/openrisc/boot/dts/simple-smp.dts
+> new file mode 100644
+> index 000000000000..174c2613c419
+> --- /dev/null
+> +++ b/arch/openrisc/boot/dts/simple-smp.dts
+> @@ -0,0 +1,25 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +
+> +/dts-v1/;
+> +
+> +#include "simple_smp.dtsi"
 
-The link frequency can vary between modes, so add it as a
-control.
+This should be simple-smp.dtsi.
 
-Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
-Signed-off-by: Jai Luthra <jai.luthra@ideasonboard.com>
----
- drivers/media/i2c/ov5647.c | 27 +++++++++++++++++++++++++--
- 1 file changed, 25 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/media/i2c/ov5647.c b/drivers/media/i2c/ov5647.c
-index 02d751967ab2c4a8dbe4a504738c2c0b36b6cb68..761eb22f53244b6883439f1eda7940b30bed1146 100644
---- a/drivers/media/i2c/ov5647.c
-+++ b/drivers/media/i2c/ov5647.c
-@@ -97,6 +97,13 @@ static const char * const ov5647_supply_names[] = {
- 
- #define OV5647_NUM_SUPPLIES ARRAY_SIZE(ov5647_supply_names)
- 
-+#define FREQ_INDEX_FULL		0
-+#define FREQ_INDEX_VGA		1
-+static const s64 ov5647_link_freqs[] = {
-+	[FREQ_INDEX_FULL]	= 218750000,
-+	[FREQ_INDEX_VGA]	= 208333000,
-+};
-+
- struct regval_list {
- 	u16 addr;
- 	u8 data;
-@@ -106,6 +113,7 @@ struct ov5647_mode {
- 	struct v4l2_mbus_framefmt	format;
- 	struct v4l2_rect		crop;
- 	u64				pixel_rate;
-+	unsigned int			link_freq_index;
- 	int				hts;
- 	int				vts;
- 	const struct regval_list	*reg_list;
-@@ -128,6 +136,7 @@ struct ov5647 {
- 	struct v4l2_ctrl		*exposure;
- 	struct v4l2_ctrl		*hflip;
- 	struct v4l2_ctrl		*vflip;
-+	struct v4l2_ctrl		*link_freq;
- };
- 
- static inline struct ov5647 *to_sensor(struct v4l2_subdev *sd)
-@@ -376,6 +385,7 @@ static const struct ov5647_mode ov5647_modes[] = {
- 			.height		= 1944
- 		},
- 		.pixel_rate	= 87500000,
-+		.link_freq_index = FREQ_INDEX_FULL,
- 		.hts		= 2844,
- 		.vts		= 0x7b0,
- 		.reg_list	= ov5647_2592x1944_10bpp,
-@@ -397,6 +407,7 @@ static const struct ov5647_mode ov5647_modes[] = {
- 			.height		= 1080,
- 		},
- 		.pixel_rate	= 87500000,
-+		.link_freq_index = FREQ_INDEX_FULL,
- 		.hts		= 2416,
- 		.vts		= 0x450,
- 		.reg_list	= ov5647_1080p30_10bpp,
-@@ -418,6 +429,7 @@ static const struct ov5647_mode ov5647_modes[] = {
- 			.height		= 1944,
- 		},
- 		.pixel_rate	= 87500000,
-+		.link_freq_index = FREQ_INDEX_FULL,
- 		.hts		= 1896,
- 		.vts		= 0x59b,
- 		.reg_list	= ov5647_2x2binned_10bpp,
-@@ -438,7 +450,8 @@ static const struct ov5647_mode ov5647_modes[] = {
- 			.width		= 2560,
- 			.height		= 1920,
- 		},
--		.pixel_rate	= 55000000,
-+		.pixel_rate	= 58333000,
-+		.link_freq_index = FREQ_INDEX_VGA,
- 		.hts		= 1852,
- 		.vts		= 0x1f8,
- 		.reg_list	= ov5647_640x480_10bpp,
-@@ -927,6 +940,8 @@ static int ov5647_set_pad_fmt(struct v4l2_subdev *sd,
- 					 sensor->exposure->minimum,
- 					 exposure_max, sensor->exposure->step,
- 					 exposure_def);
-+
-+		__v4l2_ctrl_s_ctrl(sensor->link_freq, mode->link_freq_index);
- 	}
- 	*fmt = mode->format;
- 	/* The code we pass back must reflect the current h/vflips. */
-@@ -1231,7 +1246,7 @@ static int ov5647_init_controls(struct ov5647 *sensor)
- 	int hblank, exposure_max, exposure_def;
- 	struct device *dev = &client->dev;
- 
--	v4l2_ctrl_handler_init(&sensor->ctrls, 13);
-+	v4l2_ctrl_handler_init(&sensor->ctrls, 14);
- 
- 	v4l2_ctrl_new_std(&sensor->ctrls, &ov5647_ctrl_ops,
- 			  V4L2_CID_AUTOGAIN, 0, 1, 1, 0);
-@@ -1287,6 +1302,14 @@ static int ov5647_init_controls(struct ov5647 *sensor)
- 	sensor->vflip = v4l2_ctrl_new_std(&sensor->ctrls, &ov5647_ctrl_ops,
- 					  V4L2_CID_VFLIP, 0, 1, 1, 0);
- 
-+	sensor->link_freq =
-+		v4l2_ctrl_new_int_menu(&sensor->ctrls, NULL, V4L2_CID_LINK_FREQ,
-+				       ARRAY_SIZE(ov5647_link_freqs) - 1,
-+				       sensor->mode->link_freq_index,
-+				       ov5647_link_freqs);
-+	if (sensor->link_freq)
-+		sensor->link_freq->flags |= V4L2_CTRL_FLAG_READ_ONLY;
-+
- 	v4l2_fwnode_device_parse(dev, &props);
- 
- 	v4l2_ctrl_new_fwnode_properties(&sensor->ctrls, &ov5647_ctrl_ops,
-
--- 
-2.52.0
-
+> +
+> +/ {
+> +	model = "Simple SMP Board";
+> +};
+> +
+> +&cpu0 {
+> +	clock-frequency = <20000000>;
+> +};
+> +
+> +&cpu1 {
+> +	clock-frequency = <20000000>;
+> +};
+> +
+> +&serial0 {
+> +	clock-frequency = <20000000>;
+> +};
+> +
+> +&enet0 {
+> +	status = "okay";
+> +};
+> diff --git a/arch/openrisc/boot/dts/simple_smp.dts b/arch/openrisc/boot/dts/simple-smp.dtsi
+> similarity index 89%
+> rename from arch/openrisc/boot/dts/simple_smp.dts
+> rename to arch/openrisc/boot/dts/simple-smp.dtsi
+> index 71af0e117bfe..92770bb6fcf7 100644
+> --- a/arch/openrisc/boot/dts/simple_smp.dts
+> +++ b/arch/openrisc/boot/dts/simple-smp.dtsi
+> @@ -1,4 +1,3 @@
+> -/dts-v1/;
+>  / {
+>  	compatible = "opencores,or1ksim";
+>  	#address-cells = <1>;
+> @@ -22,15 +21,15 @@ memory@0 {
+>  	cpus {
+>  		#address-cells = <1>;
+>  		#size-cells = <0>;
+> -		cpu@0 {
+> +		cpu0: cpu@0 {
+>  			compatible = "opencores,or1200-rtlsvn481";
+>  			reg = <0>;
+> -			clock-frequency = <20000000>;
+> +			clock-frequency = <0>;
+>  		};
+> -		cpu@1 {
+> +		cpu1: cpu@1 {
+>  			compatible = "opencores,or1200-rtlsvn481";
+>  			reg = <1>;
+> -			clock-frequency = <20000000>;
+> +			clock-frequency = <0>;
+>  		};
+>  	};
+>  
+> @@ -57,7 +56,7 @@ serial0: serial@90000000 {
+>  		compatible = "opencores,uart16550-rtlsvn105", "ns16550a";
+>  		reg = <0x90000000 0x100>;
+>  		interrupts = <2>;
+> -		clock-frequency = <20000000>;
+> +		clock-frequency = <0>;
+>  	};
+>  
+>  	enet0: ethoc@92000000 {
+> @@ -65,5 +64,6 @@ enet0: ethoc@92000000 {
+>  		reg = <0x92000000 0x800>;
+>  		interrupts = <4>;
+>  		big-endian;
+> +		status = "disabled";
+>  	};
+>  };
+> diff --git a/arch/openrisc/configs/simple_smp_defconfig b/arch/openrisc/configs/simple_smp_defconfig
+> index 6008e824d31c..db77c795225e 100644
+> --- a/arch/openrisc/configs/simple_smp_defconfig
+> +++ b/arch/openrisc/configs/simple_smp_defconfig
+> @@ -20,7 +20,7 @@ CONFIG_SLUB=y
+>  CONFIG_SLUB_TINY=y
+>  CONFIG_MODULES=y
+>  # CONFIG_BLOCK is not set
+> -CONFIG_BUILTIN_DTB_NAME="simple_smp"
+> +CONFIG_BUILTIN_DTB_NAME="simple-smp"
+>  CONFIG_SMP=y
+>  CONFIG_HZ_100=y
+>  CONFIG_OPENRISC_HAVE_SHADOW_GPRS=y
+> -- 
+> 2.51.0
+> 
 
