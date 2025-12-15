@@ -1,54 +1,51 @@
-Return-Path: <devicetree+bounces-246789-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246790-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B881FCBFEDC
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 22:29:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F144CBFEE3
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 22:29:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5FC63305CF23
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 21:25:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0209D305F7DC
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 21:25:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4028E325719;
-	Mon, 15 Dec 2025 21:25:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F24C2328616;
+	Mon, 15 Dec 2025 21:25:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UW5Yk+rD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h88sXrst"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1306B3242A3;
-	Mon, 15 Dec 2025 21:25:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CACAF327BFC;
+	Mon, 15 Dec 2025 21:25:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765833930; cv=none; b=Ap6QTBP0ZNwhRfJIrU0qIb2ysFSuJH1YVjjpHYDExpHYuCSmvhD8MGBd7p1kthcbkaWf2ahRJ/b2OBGIpJAw5j6J9sT5qULCYpYGMV1fBQsWc+UyixGmbl0PLytRE+/CELDQOXjXpCQ4iLMO1CTGkoUHGEu5zP9owNGbqpCxqTw=
+	t=1765833940; cv=none; b=VUiE/kqeKkCL2iqkw2ahAOi27QI7dmNQzCcV48m8LKVVL2Yu/vJ2tWoLwYHh8Fw9q42GZ5Y3KlYvFFuZ2XCkF7ubexUd5rM632jEyr29n0JfPcUMm8GWfipLqUY4IaTSUBfDZ98TtUt0w8LftuQEUpTCrZTSxA6Mh/g4UFgeaMk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765833930; c=relaxed/simple;
-	bh=A//1Ln9CY1YqYbup5fuROZMVur0HtV9hrTy3DkMitho=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Yvfn8OYXcqvfuvMXtcHCVdS6OD8cOqKnhBRf6veTlhGDY7Qw+kyUdQqNaJFmnLHnx2N/0aKi87y9T0R4HuKawlyA9fZL7hzIBBdc8YPhGdlgCcHgfwW0LC6RfLGRf4OYgrQ7dLZ2XJNoAKMM27FpxCxUxLBLTgAII/Temwc2eeY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UW5Yk+rD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 75BEEC4CEF5;
-	Mon, 15 Dec 2025 21:25:29 +0000 (UTC)
+	s=arc-20240116; t=1765833940; c=relaxed/simple;
+	bh=J9wdd5tpF3UGdR3WSIUx11uFdRHcuMOXGN8AZOmtX70=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Srz+aaQkZ0iENnXvssIcR6g2RCdJ+b89HwWyVWIgitWlnDqCdPn/hOAAgHiZ2Iy0EvzazwDXHXvs7pRZ6HzSlTuHwpGbb+OgTBYlXiV/viWnE33WVFBtbu5Hqtbd0eFqPLfHJF9xcirAb45cJi8oBYYUKZCwmOWRjLU/KTVtLiQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h88sXrst; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8071AC4CEF5;
+	Mon, 15 Dec 2025 21:25:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765833929;
-	bh=A//1Ln9CY1YqYbup5fuROZMVur0HtV9hrTy3DkMitho=;
+	s=k20201202; t=1765833940;
+	bh=J9wdd5tpF3UGdR3WSIUx11uFdRHcuMOXGN8AZOmtX70=;
 	h=From:To:Cc:Subject:Date:From;
-	b=UW5Yk+rD+ij/i72Hc17ycUeVAtg1nK5wD8LOLs2lj6ApW9v28DidR9HEw/deIfyFb
-	 oN4N55JFAglcLFy1JsJL4v/gr/TmXVs1OqKO/v2YpkDZYi53OXuzWnD7gGBgXPw2WT
-	 wFVPxcUTwD3AAowxP+U1a8vqWDCVZhqyMuSOG3xOQ3VeFvYcy7Z7H0TJk9CVMB52EV
-	 0ft+ma1Q6zqxInRWih51EwJd9CnXLlUMX1Z+2GPK7B0EmwsYGqLrN5oRZUikPQw0qH
-	 IDBkEw285VrIzy/YRQF04WTLIVtX8kuUZKIvPXSvD8fcvUKdoNKJipYcNm4DOY1a2c
-	 Y5+iPLsX9nFFw==
+	b=h88sXrstIvkb0QF3HZUIWenomgwQwElgWLwI8kD+KdzTxYKwfOi2MxA5vfOseNR1x
+	 dUwMWmSc03FLPOd2FZf35dNtySGbEguoBG+ljkTZrTd3g3nrMR1k9qjb/ajtFKjUB7
+	 gbDr1I9gE+wxEfTbi5OQfuGL4gTNjVt/2Gbj9iF9BFIlG9GoujQrspZH6zDUmcSFTx
+	 +MWisW0cARvNE2aSXBFz+yBma+obJTY1NpfRU5gbrr7laauqVUO/xyyIsSmNeoDR6N
+	 wl8N78B5qkvB/hmFiPPAIl6Rtwo2XZTrG/ZGfo+dLOVErgNSYfUf0NWj4uZ3bS104R
+	 N0zP9Iux0Ifrw==
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bastian Hecht <hechtb@gmail.com>
-Cc: linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org,
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: input: touchscreen: sitronix,st1232: Add Sitronix ST1624
-Date: Mon, 15 Dec 2025 15:25:24 -0600
-Message-ID: <20251215212524.3318311-1-robh@kernel.org>
+Subject: [PATCH] dt-bindings: trivial-devices: Add socionext,uniphier-smpctrl
+Date: Mon, 15 Dec 2025 15:25:32 -0600
+Message-ID: <20251215212532.3318546-1-robh@kernel.org>
 X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -58,34 +55,27 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add the Sitronix ST1624 which is compatible with ST1633.
+The "socionext,uniphier-smpctrl" binding is just a "compatible" and
+"reg" entry, so add it to trivial-devices.yaml.
 
 Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 ---
- .../bindings/input/touchscreen/sitronix,st1232.yaml    | 10 +++++++---
- 1 file changed, 7 insertions(+), 3 deletions(-)
+ Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/sitronix,st1232.yaml b/Documentation/devicetree/bindings/input/touchscreen/sitronix,st1232.yaml
-index e7ee7a0d74c4..978afaa4fcef 100644
---- a/Documentation/devicetree/bindings/input/touchscreen/sitronix,st1232.yaml
-+++ b/Documentation/devicetree/bindings/input/touchscreen/sitronix,st1232.yaml
-@@ -14,9 +14,13 @@ allOf:
- 
- properties:
-   compatible:
--    enum:
--      - sitronix,st1232
--      - sitronix,st1633
-+    oneOf:
-+      - enum:
-+          - sitronix,st1232
-+          - sitronix,st1633
-+      - items:
-+          - const: sitronix,st1624
-+          - const: sitronix,st1633
- 
-   reg:
-     maxItems: 1
+diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+index d0f7dbf15d6f..1b356cb674d2 100644
+--- a/Documentation/devicetree/bindings/trivial-devices.yaml
++++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+@@ -414,6 +414,8 @@ properties:
+           - smsc,emc6d103
+             # Temperature sensor with integrated fan control
+           - smsc,emc6d103s
++            # Socionext Uniphier SMP control registers
++          - socionext,uniphier-smpctrl
+             # SparkFun Qwiic Joystick (COM-15168) with i2c interface
+           - sparkfun,qwiic-joystick
+             # Sierra Wireless mangOH Green SPI IoT interface
 -- 
 2.51.0
 
