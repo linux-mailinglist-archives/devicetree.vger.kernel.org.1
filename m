@@ -1,64 +1,68 @@
-Return-Path: <devicetree+bounces-246533-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246536-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C4B8CBD95F
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 12:47:44 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 861D5CBD967
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 12:48:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id BD24F300722E
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 11:47:42 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id CF46D3017885
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 11:47:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF7FC3358B2;
-	Mon, 15 Dec 2025 11:47:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1807B3358B9;
+	Mon, 15 Dec 2025 11:47:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="F/p1CudF"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="hud35EVi"
 X-Original-To: devicetree@vger.kernel.org
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D2563358AE;
-	Mon, 15 Dec 2025 11:47:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D4883358B5;
+	Mon, 15 Dec 2025 11:47:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765799261; cv=none; b=YewQ+IGXupynRrpKdRMVo58rAo1uSzF7kAJH62lSOzfJrJQFEhT0H52SBbYemvRBzwE4wBERTO2b+GHWjAfgpYS1Pgy2l2fJ7zyHysUCIoU9TP0F9XyYJMCul2i3aWwuiNH8h3B3KrHG4FcDgKzh0N4aoExi7eeRVXXhnYiLWSM=
+	t=1765799278; cv=none; b=cELQOzcQFfET0eJpszD6vakmx1EKL+8XrnrVkuUA7YX4AjlkSriVxNE2L9bhZR8uNAxZK89ER4mNTjQsiviQRyCt3b7B5MhEZ3NcNEed18Hs4KvOKhbvb7GBfuWtBlm1Hv2t2p2ZzSDFkUHZ+Dvc4R14IKF87ta13uzwWOTtgEo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765799261; c=relaxed/simple;
-	bh=yw2VuJJS51jqUsO1HHm5k6jskexaHPcw9TFgjrwhmB8=;
+	s=arc-20240116; t=1765799278; c=relaxed/simple;
+	bh=Bg12JH6ED5Ml7gcajE6ytN/UBoDZOb6LMFHhuGTEkHc=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=krrxHws7g4YbX1pevtH9C28z2lVxS5GTJml+SF/adFne83lXTKun8rkcjKXnefx/apUvg3EVSldCR6hdxxJKnUOpsrRLk0qi9qsTK4jXiGpLMoPjp1gyYuTGHJqHEMv07FALHHj5PrZr7TbOkvCCBN2onHN4YZqLu45yopPWpK8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=F/p1CudF; arc=none smtp.client-ip=185.11.138.130
+	 MIME-Version:Content-Type; b=q8G4vmK3/omFPgw9OVY6orAZ09iYqQobf8zU35hpHinlSqxQ6Jqs5Zbksq76TF5vybGMPPxlujgEaJrgco4X6n0N2seQ19Q7H1ZAz4N83AYtPkEpBR6YGb8oKwFkBYkacbqaLnahqwFuvjPvzqfi8ICfdq/8qigzSoAM334LbL4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=hud35EVi; arc=none smtp.client-ip=185.11.138.130
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
 	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
 	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=8VsYkPqVn11djoNpxIXUqfR5nF0llqUA37rnKhEinx4=; b=F/p1CudFDrVHOofWOv20shOQyS
-	f0fpEFf5Fa6wJ4KVenEC6dVqcRKJ3rav/K9qlM5OGR02NhAqcPHKZSqkeZ1tw3PKYAbgP0clLvzKk
-	wlgCUYQ4wh59jNqetJMkzXa/T7IiRHGrrMaczWlkcG6Cici4HRw8LtN0mOMSJEDc+1aH8mo4LnHit
-	2FBKXUc7WsrnhvxpErJ8m3rhJyhehz8yuc6DVnsE30myirz8/CUQkZnJiEqbSPNltUuAAOnpHQyB9
-	oNOOl9Y2qTe/wH4fzWXUDNcdMHsG5aFMaRnjhnBmgtyA50aCuOHN3hFigkk0sIsUZUmtDWuGSysEs
-	+UbZ1pCQ==;
+	bh=Zn/uhcRYE9P5t+xoL0MI1jmstVKavxgMn3GHiQkhybw=; b=hud35EViFGxZ44fZq/v+HIIQPc
+	dTRWejKOXGyjBVZYEnUaTWVXrXqNNvaXb0ZOjA9g56ZKi0xzkx3dU0esoYNKQQMZfZdcX4c8xIYQE
+	qiaoTd+1Ed94OHM37OruzmwCxKQPmc5FDDKsC65nkd4K72GpiHX/8mkrMFWQdLm4KEFjaazyDYCLR
+	fwHjpWRGKy9Az61I/7fQ12RroiyyZDrNYwwu5O9UnAzxLDR6nmVPbuQNo6NHS4UxKLYo2cfawOxme
+	M1X7l8myTK0zzAYxzRKaJjrUwcHm35eqrsvmJ+zWnfkVzFnumdBzKA+t8t3i+3YhlXxnUW7fbzps/
+	faLM5GlQ==;
 Received: from [192.76.154.237] (helo=phil.dip.tu-dresden.de)
 	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <heiko@sntech.de>)
-	id 1vV739-0000On-NN; Mon, 15 Dec 2025 12:47:35 +0100
+	id 1vV73A-0000On-2C; Mon, 15 Dec 2025 12:47:36 +0100
 From: Heiko Stuebner <heiko@sntech.de>
-To: Rob Herring <robh@kernel.org>,
+To: Conor Dooley <conor+dt@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alexey Charkov <alchark@gmail.com>
+	Rob Herring <robh@kernel.org>,
+	Jianfeng Liu <liujianfeng1994@gmail.com>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+	Andy Yan <andy.yan@rock-chips.com>,
+	Torsten Duwe <duwe@lst.de>
 Cc: Heiko Stuebner <heiko@sntech.de>,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-rockchip@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] arm64: dts: rockchip: Add overlay for the PCIe slot on RK3576 EVB1
-Date: Mon, 15 Dec 2025 12:47:30 +0100
-Message-ID: <176579924021.1404176.5086927047208846310.b4-ty@sntech.de>
+Subject: Re: [PATCH] arm64: dts: rockchip: enable SPDIF audio on Rock 5 ITX
+Date: Mon, 15 Dec 2025 12:47:31 +0100
+Message-ID: <176579924017.1404176.3512598682044953071.b4-ty@sntech.de>
 X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20251202-evb1-pcie1-v2-1-810693b1b72f@gmail.com>
-References: <20251202-evb1-pcie1-v2-1-810693b1b72f@gmail.com>
+In-Reply-To: <20251124183056.B853068C4E@verein.lst.de>
+References: <20251124183056.B853068C4E@verein.lst.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,22 +73,17 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Tue, 02 Dec 2025 13:54:31 +0400, Alexey Charkov wrote:
-> Rockchip RK3576 EVB1 has an onboard PCIe slot (PCIe 2.1, x4 mechanically,
-> x1 electrically), but it shares pins and PHY with the only USB3 Type-A
-> port.
+On Mon, 24 Nov 2025 19:30:56 +0100, Torsten Duwe wrote:
+> The Rock5 ITX has an S/PDIF (TOSLINK) socket in its I/O-shield, whose
+> TX signal is wired to GPIO4 C1. Activate SPDIF TX unit 1 and select
+> the proper pinmux (M2).
 > 
-> There is a physical switch next to the slot to transfer respective pins
-> connection from the USB3 port to the PCIe slot, but apart from flipping
-> the switch one must also disable the USB3 host controller to prevent it
-> from claiming the PHY before the PCIe slot can become usable.
 > 
-> [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: rockchip: Add overlay for the PCIe slot on RK3576 EVB1
-      commit: 47b5d3697f6b9f53a0db30a99656a2f8f919e246
+[1/1] arm64: dts: rockchip: enable SPDIF audio on Rock 5 ITX
+      commit: 2cc30da80a28a8a5d1337230c3586eb2f9580120
 
 Best regards,
 -- 
