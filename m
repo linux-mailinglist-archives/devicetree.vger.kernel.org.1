@@ -1,114 +1,106 @@
-Return-Path: <devicetree+bounces-246761-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246762-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id B84D7CBFB24
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 21:12:08 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B34DCBFB21
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 21:11:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 47AFD30204AC
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 20:08:31 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 1C213301CD35
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 20:11:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56B842E7BCA;
-	Mon, 15 Dec 2025 20:08:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF5BB283CB5;
+	Mon, 15 Dec 2025 20:11:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="lFLcJktV";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="VIpJ1Aub"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jOqi23tZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C17C230BDF
-	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 20:08:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8298225408
+	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 20:11:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765829310; cv=none; b=Y4BJ4x3V6gDlPCLhhpQI8OwX3s8ss7RO1g/uc+gC6kRKNrabRRweuUATZbq9pZusg0cHRgwSM0SIb4Y1UKBX7dR/il2ZYzizLb4f3s/OzPrq+IGAG283S2tCBp75Ilr02h7DUQeTBfyUM14dIfmS27c4m9mC6q6NYXtvaiwiu+4=
+	t=1765829472; cv=none; b=jTcEzJO8klCNeS9eqeMOgGx1xGQLSl6Dkn8OdpXvEHi8hP3kHYvgZmGp/EI4wZhyc3OGLfNVBLNxK898FGIu1Nh+H33WgDtHxj+yxGJoyJJnIa5/4tpKLClTcbpIeVtV6W9yO6LYnKjhW9Zr2ceKQ9Iy+BsDzugb8TT6V+mxHWA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765829310; c=relaxed/simple;
-	bh=MZbiHcGRp8Db8D3kKXSbxFd0lb4fdZ6I6nRmpDvbRSE=;
+	s=arc-20240116; t=1765829472; c=relaxed/simple;
+	bh=bZS2d4r6+t0avva4udbs7u4lgZ+/m7V0Af/OnBnRGOE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=T0EhFX7kKNGIiz2N2u1QX4MXTw0xZUFK5O5snpEQJAwamIm11brT9LkIMi7YXL7hEDk5+CHAJ/Fct2kG6lQX0JLSI6JGoTo7QI+rMQGixlgGEPSUOy5vdOtgkYNQVrzb8UyfmTiUdnzrOajWPfaK7b1sI/rmYv0EdcBEWexo1Oo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=lFLcJktV; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=VIpJ1Aub; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BFI0n0M1682791
-	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 20:08:27 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=wLpY6r+77aTfEEKFwAtfiX1M
-	lApcWe4XaD8rl58R34Y=; b=lFLcJktVpIE9M1bvN/uGIEyXbof44pTiNuD/qsr8
-	LlFgn1DMu2kbXnhAMDzp7Bjthlbu9t1RXUATJXEr5wk8qyPZCMF4UsJ2s2udqrga
-	k00VpcNuGu4uqKsw0Wca3so4JyQ4L0dya/Yunb+rHRMe5mA7k3+e1EbUPneG7cUP
-	v7omoS0ndeSNKvPD3u9FQKA/lvKRW3TCu5Ro/h7iPgxCzW+q7pRqanjDXWXlyeCe
-	r7qfhtd/JLteNgsyxDv9xTakYir1dOGciiBI+ciaBbNFcmgiYg/8x5D71iRH7CkO
-	8IuyHBNS9ZgyFGEnEdqmp+g+/byah6vfTtX647+foHHOIQ==
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b2q7tgafk-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 20:08:26 +0000 (GMT)
-Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4ed6855557aso78758201cf.1
-        for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 12:08:26 -0800 (PST)
+	 Content-Type:Content-Disposition:In-Reply-To; b=WJyvnX1nrSmb+6cG0q/N9ngVblUrborUB8ZQB6sY49TBjsq+QqZl9QEDsLVRFi1vhohar/DjJX9nc+kVql/R74ls+f3yhfHNTKWZMuMySn6J3027V0+EmgqOC9hScqff54xHN635UAcnXKdXnHKtqgym/HkeQ3LrQoC/DS9A2uY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jOqi23tZ; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-477632b0621so28032965e9.2
+        for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 12:11:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1765829306; x=1766434106; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1765829469; x=1766434269; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=wLpY6r+77aTfEEKFwAtfiX1MlApcWe4XaD8rl58R34Y=;
-        b=VIpJ1Aubhnf8l1+2dIVZCtG6FG3+fFKmRSL+2FkBpyZInHUwe8vciNoF9b6KB1fiLC
-         Z6hAtGOmpIlmmEs/XmLmybrdRdsypILkG3XZxi4co9CQEe+YkixPiegGx8iS4WdKRJK+
-         BxAuXEWPgfr/ygoMyZOuWaGaqrjnohFggD9yEK4cfnq+aYjfHmdANXLKXKJIGdDhSiSC
-         VCvyZu+sZEdmrKV2YtfnQAwfOe8KRhNLkHoSLESmtibDpCuhuITuMgEPkEaUAPdfXOWV
-         xhhzD9P0XiHv7+A3Rm/uWOEn5KsOGEuACQ+FB+dtlb71CvZQEynGWkrVpdUbNQVf2jXm
-         MzrQ==
+        bh=NVHWp8cheEcClOBV4c/zxK94NkQEphirpcQRQ+Yuj0w=;
+        b=jOqi23tZjhnWYfANSp7aHqR9h4Cl2UVq2++5YDlTqyeRgZO5FA/IFliNK5HHPlpnk8
+         XxYCC457LWPfw5NrA8tJJm+SXRShgSyveksM9ZhgzpFe2fJ2kdPejjKTAMMWAnASEE5/
+         0pKHii+nZK0jdeeh0PpR2+utgrSYWpX9Zk79gJIyZvcuzMoooiPr3pHICJ4Qiz7Q1OEF
+         filoKxPXuFLH0WRyCHQcYfClsidBH8+ehN33+KKFxc6HXAuWBK1f6fQJPUrnto1oDgKw
+         0fNkrkHJsIgrt14qytMwFg68TyckD/qOZXzFLWU6ZbIHW4TdON4pNKx0xhgIZdgRDrTt
+         bJ2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765829306; x=1766434106;
+        d=1e100.net; s=20230601; t=1765829469; x=1766434269;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=wLpY6r+77aTfEEKFwAtfiX1MlApcWe4XaD8rl58R34Y=;
-        b=YL0StJnTIoIWyL1XJG6w6QeI0TcbDALM7IzPgsmlAlWXdAl0utpGpCDKqsk0wN7ydl
-         +G9Bd1WSQaceLqnAhJg1zWTy/ptX5UfN7x8EqHHNUX5vy3JT5x6GyJusz5dq7mXjgoy9
-         PTMdogNkaiqQUwhBSAU/I+XMI2+lznXDP+xAa0Tav3Kpxf9Zir6b9IDh9b5SAfVFiFys
-         7TapZ9HinfFnTB0NQZ29cY8nt2rJw2rGt9emujwlWtBVB+kE4JRytPpUtG2I/ebFO4Rx
-         kZb119gGIT+FE9HFbWAnqGo25jnSSDCZNl35yVsy7qY+iGZap9tIoK5OOT/GtMi35kzA
-         5Tjg==
-X-Forwarded-Encrypted: i=1; AJvYcCUuJNlvzecEQyTRxSoJuCuIg1n3CpM2eOaKlOLsBBQZcQcU8PnJPQAHxJAMWxT/tqGyH6p67elBlpLz@vger.kernel.org
-X-Gm-Message-State: AOJu0YzIQWJEoT6lxQs0GjZzqjJWy6NjaPz3aXfcRpe+RTYe6QzW7+BI
-	o+GpWRa5PTEw/oKLDm2/H0h187v67sDb61jN0EPA4t8OV2I0MHC0l8fjaf3Exuq05oc0/LcYxYp
-	15bjqqb/3zFGeIFEPl1ULxDq5pVIwFwjzqbiAnEsZ0lLvS+wHgxPNdQWJKYz7ktvI
-X-Gm-Gg: AY/fxX6nJCwERKmeMJZhtJuP/srcqUfCs5zLabWy9sdsIeN/aMjqYMbFOF3ciTHBqcZ
-	XgDSrGFVvYuAFEj8BsarfhAF6ysBRM09bT7to6He3QeW+0epKNPOdIS+rfir8lv6OsY3fG/Lk6C
-	GIcSFyWg4R1NRW0yv9zJkO9TQieuqbIlVZyezz0xniC1gD1gD9wdK5GWXJKhDMLPYuEKLcGpA6z
-	0uUx5gvEse+5IJCqzqcPiQvfPh8svZV7KqzQUgrB0rsGX7rCU8l07pp+vnUdHOr6YxIcZxDdSLf
-	Sxt8f9XtoKT2d67e9uLGMEX9o+qGBlobNb0jPCBAeLdz+fRWrD4FrVB0LIGKNzcG13N0UuwC+SY
-	vtrusRtqOny873RG6HbDvrfmWYRsYCrY4HMO5snaMiiSPEd3xu9Xmkbc38t3nfVUrmVBpnW7S7z
-	nZH0KCJbegoGk0ibbJnSt47/o=
-X-Received: by 2002:a05:622a:1912:b0:4e8:916f:9716 with SMTP id d75a77b69052e-4f1bfe64d2dmr241799511cf.36.1765829305926;
-        Mon, 15 Dec 2025 12:08:25 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFLWwZ9cz7Lj46fGCEyopKb/cQPg81WGyMRBT2K2brlKyQeeyzNF3rvYNBZ3xEpinp5Vh9jYA==
-X-Received: by 2002:a05:622a:1912:b0:4e8:916f:9716 with SMTP id d75a77b69052e-4f1bfe64d2dmr241798591cf.36.1765829305155;
-        Mon, 15 Dec 2025 12:08:25 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5990da5dcdcsm97008e87.73.2025.12.15.12.08.24
+        bh=NVHWp8cheEcClOBV4c/zxK94NkQEphirpcQRQ+Yuj0w=;
+        b=nDhccJ9tHdznRPe7f9M6yyvyY7f/P1I8QxBBq47RAV7FS720JuZgDvx1xSUOEZ6AqF
+         SYVsfncf/veKQWHP3I13cLHK5a4Cmy30byVhkrEqm/jysPUplmrEy2LQ/GKjMIwjfYEv
+         vAvt2a7cvXaqeSn2Zp0+PBzb019n2PtKzSE4tNFwqp1V110qOMTO3Wjx/gHof58Wq3UQ
+         k/nAQmD57d8MqUSzGBL3Lh+jN/BljRU2wlwcsouWl3p3BWZhAXXXGhzDkpiAU30lKzlq
+         LkAbiHPZerJGYfTNSWu4xV0pBMd5A/X6wR78VDjbDjj0Qj1l/F362VxSawK2DcEqtP0o
+         B7/A==
+X-Forwarded-Encrypted: i=1; AJvYcCXopubQf6nEu3+rRPWUIfYtgzU+X8ArPdRd13Kt/TiSLmOjxJdA+FtiQ6xb2BuYWGj4hQGqkD16kUVy@vger.kernel.org
+X-Gm-Message-State: AOJu0YyHj4qwMvY03S6r5QHUebKms+zsLscFxgte3d8/87goXBPrMnXS
+	MJdA9wAJVqRGc0pBkBF8qIGJigSn+atWpQy0NB3pejuLxMmS9QiBHI0Mur0Iihu44TM=
+X-Gm-Gg: AY/fxX5AeV8fJqIJL/ZaXcxMBvCKCHzL0Sqyb4K3ALr0591Z0baP+uZ7EGfHe0zo3CJ
+	evK0YDbZohU2gsMeCNo9BW9JFOnAc1xSZp1o0f0ttT8fPs4yGhPVqPjJtf3E02oz4qqo4mVUep2
+	t5zoeKudLuNMYn1jnpt5esh3k1U8QFr4SmVJ6Uga45Rz5xLmdsMmJh1bzixOxJlrDP+GMbxn1rm
+	PgUAeajZRv/LVkyz2cFkKlVHmnP4pqiApdxMGWgfPmq9FU8OE+nOdtURHOsGOuGGPRq/aEQ9TtY
+	g7vW6bExLYe6qwLJTyHfIMYshgwDvIre8yZGrxX8rU5gqIflSTso5X5DoMVdAlXwShpUaa6SNEE
+	CcDqe2Z0UBETqvB8wHkreTIXpdzwOanHkTFeZYquMGXp53+wwgfB+hiptvL8l3ekIUgwQJNR2Ck
+	EoMycUpnwJOc/IYwpw
+X-Google-Smtp-Source: AGHT+IFzTdgd8HuBCRpheWEKJMhw6vXCy8KxXaScp0+GwrnVXW68cCuyCfDLEuzw7wX+ZV30A2XRQg==
+X-Received: by 2002:a05:600c:46c4:b0:46e:59bd:f7d3 with SMTP id 5b1f17b1804b1-47a8f9046fcmr137755605e9.20.1765829468100;
+        Mon, 15 Dec 2025 12:11:08 -0800 (PST)
+Received: from localhost ([196.207.164.177])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47a8f4ace61sm200864155e9.7.2025.12.15.12.11.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Dec 2025 12:08:24 -0800 (PST)
-Date: Mon, 15 Dec 2025 22:08:22 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: yuanjie yang <yuanjie.yang@oss.qualcomm.com>
-Cc: robin.clark@oss.qualcomm.com, lumag@kernel.org, abhinav.kumar@linux.dev,
-        jesszhan0024@gmail.com, sean@poorly.run, marijn.suijten@somainline.org,
-        airlied@gmail.com, simona@ffwll.ch, maarten.lankhorst@linux.intel.com,
-        mripard@kernel.org, tzimmermann@suse.de, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, neil.armstrong@linaro.org,
-        yongxing.mou@oss.qualcomm.com, konrad.dybcio@oss.qualcomm.com,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, tingwei.zhang@oss.qualcomm.com,
-        aiqun.yu@oss.qualcomm.com
-Subject: Re: [PATCH v3 10/11] drm/msm/dpu: Refactor SSPP to compatible DPU
- 13.0.0
-Message-ID: <pzwgxqdlpmrbylguvzwypry3fix6wi7kxu3jlv3yzdtb3unnrf@wfzvuhvhmue5>
-References: <20251215083854.577-1-yuanjie.yang@oss.qualcomm.com>
- <20251215083854.577-11-yuanjie.yang@oss.qualcomm.com>
+        Mon, 15 Dec 2025 12:11:07 -0800 (PST)
+Date: Mon, 15 Dec 2025 23:11:03 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Chester Lin <chester62515@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"David S. Miller" <davem@davemloft.net>, devicetree@vger.kernel.org,
+	Eric Dumazet <edumazet@google.com>,
+	Fabio Estevam <festevam@gmail.com>,
+	Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
+	imx@lists.linux.dev, Jakub Kicinski <kuba@kernel.org>,
+	Jan Petrous <jan.petrous@oss.nxp.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Lee Jones <lee@kernel.org>, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	Matthias Brugger <mbrugger@suse.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, netdev@vger.kernel.org,
+	NXP S32 Linux Team <s32@nxp.com>, Paolo Abeni <pabeni@redhat.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>, linaro-s32@linaro.org
+Subject: Re: [PATCH v2 0/4] s32g: Use a syscon for GPR
+Message-ID: <aUBrV2_Iv4oTPkC4@stanley.mountain>
+References: <cover.1765806521.git.dan.carpenter@linaro.org>
+ <aUAvwRmIZBC0W6ql@lizhi-Precision-Tower-5810>
+ <aUBUkuLf7NHtLSl1@stanley.mountain>
+ <aUBha2/xiZsIF/o5@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -117,572 +109,87 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251215083854.577-11-yuanjie.yang@oss.qualcomm.com>
-X-Proofpoint-GUID: vIxVcasOazEXKwjedUwX-nxixMARu6B8
-X-Proofpoint-ORIG-GUID: vIxVcasOazEXKwjedUwX-nxixMARu6B8
-X-Authority-Analysis: v=2.4 cv=Qo1THFyd c=1 sm=1 tr=0 ts=69406aba cx=c_pps
- a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=tuPIilvrXhUzXokbONcA:9 a=CjuIK1q_8ugA:10
- a=dawVfQjAaf238kedN5IG:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjE1MDE3MyBTYWx0ZWRfX05lNaPxlxpXp
- B5PKoGedzjAdfH2XY3q1Wehw2C/urmQQx9Q1wS2prPwLeT/aYIQ5Hjxsi8KySwwJ3dhIB2X/n0c
- FV9jNedOouELZUtwrwd5DBcKPkgVvziM0LNtPVSx156jbHQULGYt3cbxOKXsN1VkEE2fUvSdVgo
- zxZHG148gdNRI+ppGBTcvKr/AEiSTG9VSxZIKY8LOz7Kx29x5xSvvRFAIw8MCGrPz/4bRXWX9jW
- MEuYs3Ez6SMtKCC01k8qapQWqL9uIJrRLnHu/4IrWjJW1W2eEBQbRcc8db11J/dxflnXhwv3rYM
- jo96YZ+hNKaVaYGxS4Z1wesd0VLureT0QpajEuqY8mT9fEuzkIaZq/w+Ylf7wqjytB5Sz6gxqX5
- /qbcFeOx35w+rXkmiaJVwfdw70X0Mg==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-15_05,2025-12-15_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 spamscore=0 adultscore=0 phishscore=0 bulkscore=0
- clxscore=1015 lowpriorityscore=0 suspectscore=0 impostorscore=0
- priorityscore=1501 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
- definitions=main-2512150173
+In-Reply-To: <aUBha2/xiZsIF/o5@lizhi-Precision-Tower-5810>
 
-On Mon, Dec 15, 2025 at 04:38:53PM +0800, yuanjie yang wrote:
-> From: Yuanjie Yang <yuanjie.yang@oss.qualcomm.com>
+On Mon, Dec 15, 2025 at 02:28:43PM -0500, Frank Li wrote:
+> On Mon, Dec 15, 2025 at 09:33:54PM +0300, Dan Carpenter wrote:
+> > On Mon, Dec 15, 2025 at 10:56:49AM -0500, Frank Li wrote:
+> > > On Mon, Dec 15, 2025 at 05:41:43PM +0300, Dan Carpenter wrote:
+> > > > The s32g devices have a GPR register region which holds a number of
+> > > > miscellaneous registers.  Currently only the stmmac/dwmac-s32.c uses
+> > > > anything from there and we just add a line to the device tree to
+> > > > access that GMAC_0_CTRL_STS register:
+> > > >
+> > > >                         reg = <0x4033c000 0x2000>, /* gmac IP */
+> > > >                               <0x4007c004 0x4>;    /* GMAC_0_CTRL_STS */
+> > > >
+> > > > We still have to maintain backwards compatibility to this format,
+> > > > of course, but it would be better to access these through a syscon.
+> > > > First of all, putting all the registers together is more organized
+> > > > and shows how the hardware actually is implemented.  Secondly, in
+> > > > some versions of this chipset those registers can only be accessed
+> > > > via SCMI, if the registers aren't grouped together each driver will
+> > > > have to create a whole lot of if then statements to access it via
+> > > > IOMEM or via SCMI,
+> > >
+> > > Does SCMI work as regmap? syscon look likes simple, but missed abstract
+> > > in overall.
+> > >
+> >
+> > The SCMI part of this is pretty complicated and needs discussion.  It
+> > might be that it requires a vendor extension.  Right now, the out of
+> > tree code uses a nvmem vendor extension but that probably won't get
+> > merged upstream.
+> >
+> > But in theory, it's fairly simple, you can write a regmap driver and
+> > register it as a syscon and everything that was accessing nxp,phy-sel
+> > accesses the same register but over SCMI.
 > 
-> DPU version 13.0.0 introduces structural changes including
-> register additions, removals, and relocations.
+> nxp,phy-sel is not standard API. Driver access raw register value. such
+> as write 1 to offset 0x100.
 > 
-> Refactor SSPP-related code to be compatible with DPU 13.0.0
-> modifications.
+> After change to SCMI, which may mapped to difference command. Even change
+> to other SOC, value and offset also need be changed. It is not standilzed
+> as what you expected.
+
+We're writing to an offset in a syscon.  Right now the device tree
+says that the syscon is an MMIO syscon.  But for SCMI devices we
+would point the phandle to a custom syscon.  The phandle and the offset
+would stay the same, but how the syscon is implemented would change.
+
 > 
-> Co-developed-by: Yongxing Mou <yongxing.mou@oss.qualcomm.com>
-> Signed-off-by: Yongxing Mou <yongxing.mou@oss.qualcomm.com>
-> Signed-off-by: Yuanjie Yang <yuanjie.yang@oss.qualcomm.com>
-> ---
-
-We've fixed the order of the interrupts patch. Now you are adding SSPP
-customization for 13.x _after_ adding the first 13.x support. Is that
-supposed to work?
-
->  .../gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h    |  15 +-
->  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_sspp.c   | 155 ++++++++++--------
->  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_sspp.h   |  52 ++++++
->  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_util.c   |  18 ++
->  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_util.h   |   3 +
->  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_wb.c     |  17 +-
->  6 files changed, 191 insertions(+), 69 deletions(-)
+> >
+> > > You still use regmap by use MMIO. /* GMAC_0_CTRL_STS */
+> > >
+> > > regmap = devm_regmap_init_mmio(dev, sts_offset, &regmap_config);
+> > >
+> >
+> > You can use have an MMIO syscon, or you can create a custom driver
+> > and register it as a syscon using of_syscon_register_regmap().
 > 
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
-> index 0eb7cdf82ff9..f2aba9bdfcd3 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
-> @@ -208,6 +208,18 @@ struct dpu_dsc_blk {
->  	u32 len;
->  };
->  
-> +/**
-> + * struct dpu_sspp_v13_rec_blk - SSPP REC sub-blk information
-> + * @name: string name for debug purposes
-> + * @base: offset of this sub-block relative to the block offset
-> + * @len: register block length of this sub-block
-> + */
-> +struct dpu_sspp_v13_rec_blk {
-> +	char name[DPU_HW_BLK_NAME_LEN];
-> +	u32 base;
-> +	u32 len;
-> +};
-> +
->  /**
->   * enum dpu_qos_lut_usage - define QoS LUT use cases
->   */
-> @@ -294,7 +306,8 @@ struct dpu_sspp_sub_blks {
->  	u32 qseed_ver;
->  	struct dpu_scaler_blk scaler_blk;
->  	struct dpu_pp_blk csc_blk;
-> -
-> +	struct dpu_sspp_v13_rec_blk sspp_rec0_blk;
-> +	struct dpu_sspp_v13_rec_blk sspp_rec1_blk;
-
-Empty line afterwards.
-
->  	const u32 *format_list;
->  	u32 num_formats;
->  	const struct dpu_rotation_cfg *rotation_cfg;
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_sspp.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_sspp.c
-> index 6f1fc790ad6d..7ed28009c463 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_sspp.c
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_sspp.c
-> @@ -145,11 +145,18 @@
->  static void dpu_hw_sspp_setup_multirect(struct dpu_sw_pipe *pipe)
->  {
->  	struct dpu_hw_sspp *ctx = pipe->sspp;
-> -	u32 mode_mask;
->  
->  	if (!ctx)
->  		return;
->  
-> +	dpu_hw_setup_multirect_impl(pipe, ctx, SSPP_MULTIRECT_OPMODE);
-> +}
-> +
-> +void dpu_hw_setup_multirect_impl(struct dpu_sw_pipe *pipe,
-> +				 struct dpu_hw_sspp *ctx, u32 op_mode_off)
-> +{
-> +	u32 mode_mask;
-> +
->  	if (pipe->multirect_index == DPU_SSPP_RECT_SOLO) {
->  		/**
->  		 * if rect index is RECT_SOLO, we cannot expect a
-> @@ -158,7 +165,7 @@ static void dpu_hw_sspp_setup_multirect(struct dpu_sw_pipe *pipe)
->  		 */
->  		mode_mask = 0;
->  	} else {
-> -		mode_mask = DPU_REG_READ(&ctx->hw, SSPP_MULTIRECT_OPMODE);
-> +		mode_mask = DPU_REG_READ(&ctx->hw, op_mode_off);
->  		mode_mask |= pipe->multirect_index;
->  		if (pipe->multirect_mode == DPU_SSPP_MULTIRECT_TIME_MX)
->  			mode_mask |= BIT(2);
-> @@ -166,11 +173,11 @@ static void dpu_hw_sspp_setup_multirect(struct dpu_sw_pipe *pipe)
->  			mode_mask &= ~BIT(2);
->  	}
->  
-> -	DPU_REG_WRITE(&ctx->hw, SSPP_MULTIRECT_OPMODE, mode_mask);
-> +	DPU_REG_WRITE(&ctx->hw, op_mode_off, mode_mask);
->  }
->  
-> -static void _sspp_setup_opmode(struct dpu_hw_sspp *ctx,
-> -		u32 mask, u8 en)
-> +void dpu_hw_sspp_setup_opmode(struct dpu_hw_sspp *ctx,
-> +			      u32 mask, u8 en)
->  {
->  	const struct dpu_sspp_sub_blks *sblk = ctx->cap->sblk;
->  	u32 opmode;
-> @@ -189,8 +196,8 @@ static void _sspp_setup_opmode(struct dpu_hw_sspp *ctx,
->  	DPU_REG_WRITE(&ctx->hw, sblk->scaler_blk.base + SSPP_VIG_OP_MODE, opmode);
->  }
->  
-> -static void _sspp_setup_csc10_opmode(struct dpu_hw_sspp *ctx,
-> -		u32 mask, u8 en)
-> +void dpu_hw_sspp_setup_csc10_opmode(struct dpu_hw_sspp *ctx,
-> +				    u32 mask, u8 en)
->  {
->  	const struct dpu_sspp_sub_blks *sblk = ctx->cap->sblk;
->  	u32 opmode;
-> @@ -211,10 +218,6 @@ static void dpu_hw_sspp_setup_format(struct dpu_sw_pipe *pipe,
->  		const struct msm_format *fmt, u32 flags)
->  {
->  	struct dpu_hw_sspp *ctx = pipe->sspp;
-> -	struct dpu_hw_blk_reg_map *c;
-> -	u32 chroma_samp, unpack, src_format;
-> -	u32 opmode = 0;
-> -	u32 fast_clear = 0;
->  	u32 op_mode_off, unpack_pat_off, format_off;
->  
->  	if (!ctx || !fmt)
-> @@ -231,7 +234,25 @@ static void dpu_hw_sspp_setup_format(struct dpu_sw_pipe *pipe,
->  		format_off = SSPP_SRC_FORMAT_REC1;
->  	}
->  
-> +	dpu_hw_setup_format_impl(pipe, fmt, flags, ctx, op_mode_off,
-> +				 unpack_pat_off, format_off,
-> +				 SSPP_UBWC_STATIC_CTRL, SSPP_UBWC_ERROR_STATUS);
-> +}
-> +
-> +void dpu_hw_setup_format_impl(struct dpu_sw_pipe *pipe, const struct msm_format *fmt,
-> +			      u32 flags, struct dpu_hw_sspp *ctx, u32 op_mode_off,
-> +			      u32 unpack_pat_off, u32 format_off, u32 ubwc_ctrl_off,
-> +			      u32 ubwc_err_off)
-> +{
-> +	struct dpu_hw_blk_reg_map *c;
-> +	u32 chroma_samp, unpack, src_format;
-> +	u32 opmode;
-> +	u32 fast_clear;
-> +	u8 core_major_ver;
-> +
->  	c = &ctx->hw;
-> +	core_major_ver = ctx->mdss_ver->core_major_ver;
-> +
->  	opmode = DPU_REG_READ(c, op_mode_off);
->  	opmode &= ~(MDSS_MDP_OP_FLIP_LR | MDSS_MDP_OP_FLIP_UD |
->  			MDSS_MDP_OP_BWC_EN | MDSS_MDP_OP_PE_OVERRIDE);
-> @@ -273,31 +294,34 @@ static void dpu_hw_sspp_setup_format(struct dpu_sw_pipe *pipe,
->  		if (MSM_FORMAT_IS_UBWC(fmt))
->  			opmode |= MDSS_MDP_OP_BWC_EN;
->  		src_format |= (fmt->fetch_mode & 3) << 30; /*FRAME_FORMAT */
-> -		DPU_REG_WRITE(c, SSPP_FETCH_CONFIG,
-> -			DPU_FETCH_CONFIG_RESET_VALUE |
-> -			ctx->ubwc->highest_bank_bit << 18);
-> +
-> +		if (core_major_ver < 13)
-> +			DPU_REG_WRITE(c, SSPP_FETCH_CONFIG,
-> +				      DPU_FETCH_CONFIG_RESET_VALUE |
-> +				      ctx->ubwc->highest_bank_bit << 18);
-> +
-
-This is not refactoring. Drop the conditions.
-
->  		switch (ctx->ubwc->ubwc_enc_version) {
->  		case UBWC_1_0:
->  			fast_clear = fmt->alpha_enable ? BIT(31) : 0;
-> -			DPU_REG_WRITE(c, SSPP_UBWC_STATIC_CTRL,
-> -					fast_clear | (ctx->ubwc->ubwc_swizzle & 0x1) |
-> -					BIT(8) |
-> -					(ctx->ubwc->highest_bank_bit << 4));
-> +			DPU_REG_WRITE(c, ubwc_ctrl_off,
-> +				      fast_clear | (ctx->ubwc->ubwc_swizzle & 0x1) |
-> +				      BIT(8) |
-> +				     (ctx->ubwc->highest_bank_bit << 4));
-
-I have asked to drop unrelated changes. You didn't. Why? You are
-changing whitespaces for no reason. It's just a noise which hides the
-actual change here.
-
->  			break;
->  		case UBWC_2_0:
->  			fast_clear = fmt->alpha_enable ? BIT(31) : 0;
-> -			DPU_REG_WRITE(c, SSPP_UBWC_STATIC_CTRL,
-> -					fast_clear | (ctx->ubwc->ubwc_swizzle) |
-> -					(ctx->ubwc->highest_bank_bit << 4));
-> +			DPU_REG_WRITE(c, ubwc_ctrl_off,
-> +				      fast_clear | (ctx->ubwc->ubwc_swizzle) |
-> +				     (ctx->ubwc->highest_bank_bit << 4));
->  			break;
->  		case UBWC_3_0:
-> -			DPU_REG_WRITE(c, SSPP_UBWC_STATIC_CTRL,
-> -					BIT(30) | (ctx->ubwc->ubwc_swizzle) |
-> -					(ctx->ubwc->highest_bank_bit << 4));
-> +			DPU_REG_WRITE(c, ubwc_ctrl_off,
-> +				      BIT(30) | (ctx->ubwc->ubwc_swizzle) |
-> +				     (ctx->ubwc->highest_bank_bit << 4));
->  			break;
->  		case UBWC_4_0:
-> -			DPU_REG_WRITE(c, SSPP_UBWC_STATIC_CTRL,
-> -					MSM_FORMAT_IS_YUV(fmt) ? 0 : BIT(30));
-> +			DPU_REG_WRITE(c, ubwc_ctrl_off,
-> +				      MSM_FORMAT_IS_YUV(fmt) ? 0 : BIT(30));
->  			break;
->  		}
->  	}
-> @@ -313,19 +337,18 @@ static void dpu_hw_sspp_setup_format(struct dpu_sw_pipe *pipe,
->  
->  	/* update scaler opmode, if appropriate */
->  	if (test_bit(DPU_SSPP_CSC, &ctx->cap->features))
-> -		_sspp_setup_opmode(ctx, VIG_OP_CSC_EN | VIG_OP_CSC_SRC_DATAFMT,
-> -			MSM_FORMAT_IS_YUV(fmt));
-> +		dpu_hw_sspp_setup_opmode(ctx, VIG_OP_CSC_EN | VIG_OP_CSC_SRC_DATAFMT,
-> +					 MSM_FORMAT_IS_YUV(fmt));
->  	else if (test_bit(DPU_SSPP_CSC_10BIT, &ctx->cap->features))
-> -		_sspp_setup_csc10_opmode(ctx,
-> -			VIG_CSC_10_EN | VIG_CSC_10_SRC_DATAFMT,
-> -			MSM_FORMAT_IS_YUV(fmt));
-> +		dpu_hw_sspp_setup_csc10_opmode(ctx,
-> +					       VIG_CSC_10_EN | VIG_CSC_10_SRC_DATAFMT,
-> +					       MSM_FORMAT_IS_YUV(fmt));
-
-Again, useless whitespace changes.
-
->  
->  	DPU_REG_WRITE(c, format_off, src_format);
->  	DPU_REG_WRITE(c, unpack_pat_off, unpack);
->  	DPU_REG_WRITE(c, op_mode_off, opmode);
-> -
-
-Why?
-
->  	/* clear previous UBWC error */
-> -	DPU_REG_WRITE(c, SSPP_UBWC_ERROR_STATUS, BIT(31));
-> +	DPU_REG_WRITE(c, ubwc_err_off, BIT(31));
->  }
->  
->  static void dpu_hw_sspp_setup_pe_config(struct dpu_hw_sspp *ctx,
-> @@ -385,9 +408,9 @@ static void dpu_hw_sspp_setup_pe_config(struct dpu_hw_sspp *ctx,
->  			tot_req_pixels[3]);
->  }
->  
-> -static void _dpu_hw_sspp_setup_scaler3(struct dpu_hw_sspp *ctx,
-> -		struct dpu_hw_scaler3_cfg *scaler3_cfg,
-> -		const struct msm_format *format)
-> +void dpu_hw_sspp_setup_scaler3(struct dpu_hw_sspp *ctx,
-> +			       struct dpu_hw_scaler3_cfg *scaler3_cfg,
-> +			       const struct msm_format *format)
-
-And here...
-
->  {
->  	if (!ctx || !scaler3_cfg)
->  		return;
-> @@ -405,15 +428,11 @@ static void dpu_hw_sspp_setup_rects(struct dpu_sw_pipe *pipe,
->  		struct dpu_sw_pipe_cfg *cfg)
->  {
->  	struct dpu_hw_sspp *ctx = pipe->sspp;
-> -	struct dpu_hw_blk_reg_map *c;
-> -	u32 src_size, src_xy, dst_size, dst_xy;
->  	u32 src_size_off, src_xy_off, out_size_off, out_xy_off;
->  
->  	if (!ctx || !cfg)
->  		return;
->  
-> -	c = &ctx->hw;
-> -
->  	if (pipe->multirect_index == DPU_SSPP_RECT_SOLO ||
->  	    pipe->multirect_index == DPU_SSPP_RECT_0) {
->  		src_size_off = SSPP_SRC_SIZE;
-> @@ -427,20 +446,8 @@ static void dpu_hw_sspp_setup_rects(struct dpu_sw_pipe *pipe,
->  		out_xy_off = SSPP_OUT_XY_REC1;
->  	}
->  
-> -
-> -	/* src and dest rect programming */
-> -	src_xy = (cfg->src_rect.y1 << 16) | cfg->src_rect.x1;
-> -	src_size = (drm_rect_height(&cfg->src_rect) << 16) |
-> -		   drm_rect_width(&cfg->src_rect);
-> -	dst_xy = (cfg->dst_rect.y1 << 16) | cfg->dst_rect.x1;
-> -	dst_size = (drm_rect_height(&cfg->dst_rect) << 16) |
-> -		drm_rect_width(&cfg->dst_rect);
-> -
-> -	/* rectangle register programming */
-> -	DPU_REG_WRITE(c, src_size_off, src_size);
-> -	DPU_REG_WRITE(c, src_xy_off, src_xy);
-> -	DPU_REG_WRITE(c, out_size_off, dst_size);
-> -	DPU_REG_WRITE(c, out_xy_off, dst_xy);
-> +	dpu_hw_setup_rects_impl(pipe, cfg, ctx, src_size_off,
-> +				src_xy_off, out_size_off, out_xy_off);
->  }
->  
->  static void dpu_hw_sspp_setup_sourceaddress(struct dpu_sw_pipe *pipe,
-> @@ -497,8 +504,8 @@ static void dpu_hw_sspp_setup_sourceaddress(struct dpu_sw_pipe *pipe,
->  	DPU_REG_WRITE(&ctx->hw, SSPP_SRC_YSTRIDE1, ystride1);
->  }
->  
-> -static void dpu_hw_sspp_setup_csc(struct dpu_hw_sspp *ctx,
-> -		const struct dpu_csc_cfg *data)
-> +void dpu_hw_sspp_setup_csc(struct dpu_hw_sspp *ctx,
-> +			   const struct dpu_csc_cfg *data)
->  {
->  	u32 offset;
->  	bool csc10 = false;
-> @@ -519,21 +526,31 @@ static void dpu_hw_sspp_setup_csc(struct dpu_hw_sspp *ctx,
->  static void dpu_hw_sspp_setup_solidfill(struct dpu_sw_pipe *pipe, u32 color)
->  {
->  	struct dpu_hw_sspp *ctx = pipe->sspp;
-> -	struct dpu_hw_fmt_layout cfg;
-> +	u32 const_clr_off;
->  
->  	if (!ctx)
->  		return;
->  
-> +	if (pipe->multirect_index == DPU_SSPP_RECT_SOLO ||
-> +	    pipe->multirect_index == DPU_SSPP_RECT_0)
-> +		const_clr_off = SSPP_SRC_CONSTANT_COLOR;
-> +	else
-> +		const_clr_off = SSPP_SRC_CONSTANT_COLOR_REC1;
-> +
-> +	dpu_hw_setup_solidfill_impl(pipe, color, ctx, const_clr_off);
-> +}
-> +
-> +void dpu_hw_setup_solidfill_impl(struct dpu_sw_pipe *pipe,
-> +				 u32 color, struct dpu_hw_sspp *ctx,
-> +				 u32 const_clr_off)
-> +{
-> +	struct dpu_hw_fmt_layout cfg;
-> +
->  	/* cleanup source addresses */
->  	memset(&cfg, 0, sizeof(cfg));
->  	ctx->ops.setup_sourceaddress(pipe, &cfg);
->  
-> -	if (pipe->multirect_index == DPU_SSPP_RECT_SOLO ||
-> -	    pipe->multirect_index == DPU_SSPP_RECT_0)
-> -		DPU_REG_WRITE(&ctx->hw, SSPP_SRC_CONSTANT_COLOR, color);
-> -	else
-> -		DPU_REG_WRITE(&ctx->hw, SSPP_SRC_CONSTANT_COLOR_REC1,
-> -				color);
-> +	DPU_REG_WRITE(&ctx->hw, const_clr_off, color);
->  }
->  
->  static void dpu_hw_sspp_setup_qos_lut(struct dpu_hw_sspp *ctx,
-> @@ -547,14 +564,20 @@ static void dpu_hw_sspp_setup_qos_lut(struct dpu_hw_sspp *ctx,
->  			      cfg);
->  }
->  
-> +void dpu_hw_sspp_setup_qos_ctrl_impl(struct dpu_hw_sspp *ctx,
-> +				     bool danger_safe_en, u32 ctrl_off)
-> +{
-> +	DPU_REG_WRITE(&ctx->hw, ctrl_off,
-> +		      danger_safe_en ? SSPP_QOS_CTRL_DANGER_SAFE_EN : 0);
-> +}
-> +
->  static void dpu_hw_sspp_setup_qos_ctrl(struct dpu_hw_sspp *ctx,
->  				       bool danger_safe_en)
->  {
->  	if (!ctx)
->  		return;
->  
-> -	DPU_REG_WRITE(&ctx->hw, SSPP_QOS_CTRL,
-> -		      danger_safe_en ? SSPP_QOS_CTRL_DANGER_SAFE_EN : 0);
-> +	dpu_hw_sspp_setup_qos_ctrl_impl(ctx, danger_safe_en, SSPP_QOS_CTRL);
->  }
->  
->  static void dpu_hw_sspp_setup_cdp(struct dpu_sw_pipe *pipe,
-> @@ -609,7 +632,7 @@ static void _setup_layer_ops(struct dpu_hw_sspp *c,
->  		c->ops.setup_multirect = dpu_hw_sspp_setup_multirect;
->  
->  	if (test_bit(DPU_SSPP_SCALER_QSEED3_COMPATIBLE, &features))
-> -		c->ops.setup_scaler = _dpu_hw_sspp_setup_scaler3;
-> +		c->ops.setup_scaler = dpu_hw_sspp_setup_scaler3;
->  
->  	if (test_bit(DPU_SSPP_CDP, &features))
->  		c->ops.setup_cdp = dpu_hw_sspp_setup_cdp;
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_sspp.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_sspp.h
-> index bdac5c04bf79..c6b19cb4d158 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_sspp.h
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_sspp.h
-> @@ -331,5 +331,57 @@ struct dpu_hw_sspp *dpu_hw_sspp_init(struct drm_device *dev,
->  int _dpu_hw_sspp_init_debugfs(struct dpu_hw_sspp *hw_pipe, struct dpu_kms *kms,
->  			      struct dentry *entry);
->  
-> +void dpu_hw_sspp_setup_opmode(struct dpu_hw_sspp *ctx,
-> +			      u32 mask, u8 en);
-> +
-> +void dpu_hw_sspp_setup_csc10_opmode(struct dpu_hw_sspp *ctx,
-> +				    u32 mask, u8 en);
-> +
-> +void dpu_hw_sspp_setup_scaler3(struct dpu_hw_sspp *ctx,
-> +			       struct dpu_hw_scaler3_cfg *scaler3_cfg,
-> +			       const struct msm_format *format);
-> +
-> +void dpu_hw_sspp_setup_csc(struct dpu_hw_sspp *ctx,
-> +			   const struct dpu_csc_cfg *data);
-> +
-> +void dpu_hw_setup_multirect_impl(struct dpu_sw_pipe *pipe,
-> +				 struct dpu_hw_sspp *ctx,
-> +				 u32 op_mode_off);
-> +
-> +void dpu_hw_setup_format_impl(struct dpu_sw_pipe *pipe, const struct msm_format *fmt,
-> +			      u32 flags, struct dpu_hw_sspp *ctx,
-> +			      u32 op_mode_off, u32 unpack_pat_off, u32 format_off,
-> +			      u32 ubwc_ctrl_off, u32 ubwc_err_off);
-> +
-> +static inline void dpu_hw_setup_rects_impl(struct dpu_sw_pipe *pipe, struct dpu_sw_pipe_cfg *cfg,
-> +					   struct dpu_hw_sspp *ctx, u32 src_size_off,
-> +					   u32 src_xy_off, u32 out_size_off, u32 out_xy_off)
-> +{
-> +	struct dpu_hw_blk_reg_map *c;
-> +	u32 src_size, src_xy, dst_size, dst_xy;
-> +
-> +	c = &ctx->hw;
-> +
-> +	/* src and dest rect programming */
-> +	src_xy = (cfg->src_rect.y1 << 16) | cfg->src_rect.x1;
-> +	src_size = (drm_rect_height(&cfg->src_rect) << 16) |
-> +		   drm_rect_width(&cfg->src_rect);
-> +	dst_xy = (cfg->dst_rect.y1 << 16) | cfg->dst_rect.x1;
-> +	dst_size = (drm_rect_height(&cfg->dst_rect) << 16) |
-> +		drm_rect_width(&cfg->dst_rect);
-> +
-> +	/* rectangle register programming */
-> +	DPU_REG_WRITE(c, src_size_off, src_size);
-> +	DPU_REG_WRITE(c, src_xy_off, src_xy);
-> +	DPU_REG_WRITE(c, out_size_off, dst_size);
-> +	DPU_REG_WRITE(c, out_xy_off, dst_xy);
-> +}
-> +
-> +void dpu_hw_setup_solidfill_impl(struct dpu_sw_pipe *pipe,
-> +				 u32 color, struct dpu_hw_sspp *ctx, u32 const_clr_off);
-> +
-> +void dpu_hw_sspp_setup_qos_ctrl_impl(struct dpu_hw_sspp *ctx,
-> +				     bool danger_safe_en, u32 ctrl_off);
-> +
->  #endif /*_DPU_HW_SSPP_H */
->  
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_util.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_util.c
-> index 486be346d40d..3cf22ec62792 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_util.c
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_util.c
-> @@ -81,6 +81,13 @@ static u32 dpu_hw_util_log_mask = DPU_DBG_MASK_NONE;
->  #define QOS_CREQ_LUT_0                    0x14
->  #define QOS_CREQ_LUT_1                    0x18
->  
-> +/* CMN_QOS_LUT */
-> +#define SSPP_CMN_QOS_CTRL                      0x28
-> +#define SSPP_CMN_DANGER_LUT                    0x2c
-> +#define SSPP_CMN_SAFE_LUT                      0x30
-> +#define SSPP_CMN_CREQ_LUT_0                    0x34
-> +#define SSPP_CMN_CREQ_LUT_1                    0x38
-> +
->  /* QOS_QOS_CTRL */
->  #define QOS_QOS_CTRL_DANGER_SAFE_EN       BIT(0)
->  #define QOS_QOS_CTRL_DANGER_VBLANK_MASK   GENMASK(5, 4)
-> @@ -475,6 +482,17 @@ void _dpu_hw_setup_qos_lut(struct dpu_hw_blk_reg_map *c, u32 offset,
->  		      cfg->danger_safe_en ? QOS_QOS_CTRL_DANGER_SAFE_EN : 0);
->  }
->  
-> +void _dpu_hw_setup_qos_lut_v13(struct dpu_hw_blk_reg_map *c,
-> +			       const struct dpu_hw_qos_cfg *cfg)
-
-It's definitely not a part of refactoring. Why is it a part of this
-patch?
-
-> +{
-> +	DPU_REG_WRITE(c, SSPP_CMN_DANGER_LUT, cfg->danger_lut);
-> +	DPU_REG_WRITE(c, SSPP_CMN_SAFE_LUT, cfg->safe_lut);
-> +	DPU_REG_WRITE(c, SSPP_CMN_CREQ_LUT_0, cfg->creq_lut);
-> +	DPU_REG_WRITE(c, SSPP_CMN_CREQ_LUT_1, cfg->creq_lut >> 32);
-> +	DPU_REG_WRITE(c, SSPP_CMN_QOS_CTRL,
-> +		      cfg->danger_safe_en ? QOS_QOS_CTRL_DANGER_SAFE_EN : 0);
-> +}
-> +
->  /*
->   * note: Aside from encoders, input_sel should be set to 0x0 by default
->   */
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_util.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_util.h
-> index 67b08e99335d..1822ac699757 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_util.h
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_util.h
-> @@ -360,6 +360,9 @@ void _dpu_hw_setup_qos_lut(struct dpu_hw_blk_reg_map *c, u32 offset,
->  			   bool qos_8lvl,
->  			   const struct dpu_hw_qos_cfg *cfg);
->  
-> +void _dpu_hw_setup_qos_lut_v13(struct dpu_hw_blk_reg_map *c,
-> +			       const struct dpu_hw_qos_cfg *cfg);
-> +
->  void dpu_hw_setup_misr(struct dpu_hw_blk_reg_map *c,
->  		u32 misr_ctrl_offset, u8 input_sel);
->  
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_wb.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_wb.c
-> index 478a091aeccf..006dcc4a0dcc 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_wb.c
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_wb.c
-> @@ -148,6 +148,15 @@ static void dpu_hw_wb_setup_qos_lut(struct dpu_hw_wb *ctx,
->  			      cfg);
->  }
->  
-> +static void dpu_hw_wb_setup_qos_lut_v13(struct dpu_hw_wb *ctx,
-> +					struct dpu_hw_qos_cfg *cfg)
-> +{
-> +	if (!ctx || !cfg)
-> +		return;
-> +
-> +	_dpu_hw_setup_qos_lut_v13(&ctx->hw, cfg);
-> +}
-> +
->  static void dpu_hw_wb_setup_cdp(struct dpu_hw_wb *ctx,
->  				const struct msm_format *fmt,
->  				bool enable)
-> @@ -202,8 +211,12 @@ static void _setup_wb_ops(struct dpu_hw_wb_ops *ops,
->  	if (test_bit(DPU_WB_XY_ROI_OFFSET, &features))
->  		ops->setup_roi = dpu_hw_wb_roi;
->  
-> -	if (test_bit(DPU_WB_QOS, &features))
-> -		ops->setup_qos_lut = dpu_hw_wb_setup_qos_lut;
-> +	if (test_bit(DPU_WB_QOS, &features)) {
-> +		if (mdss_rev->core_major_ver >= 13)
-> +			ops->setup_qos_lut = dpu_hw_wb_setup_qos_lut_v13;
-> +		else
-> +			ops->setup_qos_lut = dpu_hw_wb_setup_qos_lut;
-> +	}
->  
->  	if (test_bit(DPU_WB_CDP, &features))
->  		ops->setup_cdp = dpu_hw_wb_setup_cdp;
-> -- 
-> 2.34.1
+> My means is that it is not necessary to create nxp,phy-sel, especially
+> there already have <0x4007c004 0x4>;    /* GMAC_0_CTRL_STS */
 > 
 
--- 
-With best wishes
-Dmitry
+Right now the out of tree dwmac-s32cc.c driver does something like
+this:
+
+    89          if (gmac->use_nvmem) {
+    90                  ret = write_nvmem_cell(gmac->dev, "gmac_phy_intf_sel", intf_sel);
+    91                  if (ret)
+    92                          return ret;
+    93          } else {
+    94                  writel(intf_sel, gmac->ctrl_sts);
+    95          }
+
+Which is quite complicated, but with a syscon, then it's just:
+
+	regmap_write(gmac->sts_regmap, gmac->sts_offset, S32_PHY_INTF_SEL_RGMII);
+
+Even without SCMI, the hardware has all these registers grouped together
+it just feels cleaner to group them together in the device tree as well.
+
+regards,
+dan carpenter
+
 
