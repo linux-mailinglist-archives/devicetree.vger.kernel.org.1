@@ -1,125 +1,96 @@
-Return-Path: <devicetree+bounces-246621-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246622-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA675CBE50E
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 15:36:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F8A5CBEC9A
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 16:56:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 54FA3303C9F9
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 14:32:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1989C305833D
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 15:50:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F1843321CA;
-	Mon, 15 Dec 2025 13:59:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28FDB311956;
+	Mon, 15 Dec 2025 14:03:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZSKRkvrJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Eqn+25td"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4388B3321C5;
-	Mon, 15 Dec 2025 13:59:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F05CC3115B8;
+	Mon, 15 Dec 2025 14:03:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765807174; cv=none; b=TycpiE9Ez8sgYy176kutFq0bntcNzS89wvMdwPL4D45DQaCWgIQ3baCJH4XNkuI1wLhZ5laGV3sMT+uDGFvUWogxsmlxoI6zuR/eeEJYsBWQvCOolMULfNoCtHZp5A45P7zSIMYFikuP/Ya2qfe4VHBv7kerTMkv26N5YU5UXzE=
+	t=1765807414; cv=none; b=C0Yc6DtXrq1OY13gdArrLXhD/LyOCrfPqzy+25E2YFPnd9keg760UxG2oLMAgeEg7vMjAajl9S5IC0fYq+FyByVf91lnIBfrOPTk4w67czR1ESHY8+zEkKUMmwX55O3mpgPyT5TQEq5vnXiP1HnGv9tUmGZSyT9u2XidDrgiio8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765807174; c=relaxed/simple;
-	bh=mUdPC/Zc8jOj+LQYMtJZ0IsCJFmwN6mnkenGPRzbU6c=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=FIXdDTchHcM0UDxL2jZnFfFfW5M/tMlLcg69bQtyz6V93WiJ5mjJk6gx9aFHICbAnWZOD8KNEL6z5ILlV6bz5nzY3mlUpsTrEy2QQKmf83+SWvO8XWYkSuA5RBpK8YGC+ZuUOKjMG6HOmx9SNtUdMBxsmMexuYqF+oNWYsrsT4A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZSKRkvrJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8B0B4C4CEF5;
-	Mon, 15 Dec 2025 13:59:32 +0000 (UTC)
+	s=arc-20240116; t=1765807414; c=relaxed/simple;
+	bh=rFQyuWHfFcZlHMejIvhAa1DF/jOp6uqvkdWv/+Mb6s0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kLNgK1O6EMlTyrlM5g1XZ91+ZiAcu8UAX9G5edktL1JvQso6/LMUhk6ycz9jUU7J5MY8X8EWgqS0G5/u8ppTZFKb4f/0+X2VdeojThwBNgsFpSZXsX931MD2IeBekcIl/uJ5qEJSo7eKx3p1/mMgIhQjULc8hgawcNJ6/z6ZyJY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Eqn+25td; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36D12C4CEF5;
+	Mon, 15 Dec 2025 14:03:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765807174;
-	bh=mUdPC/Zc8jOj+LQYMtJZ0IsCJFmwN6mnkenGPRzbU6c=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=ZSKRkvrJSLy3JMUHG9kXP2Oj5isQuIIEsPOnAu7lX9qP/SyIaksgWPQdb9t1rk4Hz
-	 WyMYDqUp83ieEQcZ0KPTcx6dtoJp3zZ9PyUqTB5n9BeiQ+FNwoQY+f7bkGWL/JeLaT
-	 d2hqwMcOoizEkiM40Yq1LELy1I0+2yS2EvVEuDJzMujcrd4L8oj9c74kWwfHHqoukn
-	 V2JCtApgI1bJVgjMowxh/gQk/UOkK6JxtouZZPf4BnXRmc6tjJMsR1LokPLq5KKsH8
-	 q1aZb+9muIzvUBG8ckq/O0eSdDjw1DTU1Q5XFbRJv8Sn8mMxW3hk2DAPIYt2DXbt/e
-	 c4gqMPz2Plumw==
-From: Mark Brown <broonie@kernel.org>
-To: Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Geert Uytterhoeven <geert+renesas@glider.be>, 
- Magnus Damm <magnus.damm@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
- Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
-Cc: linux-spi@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20251201134229.600817-1-cosmin-gabriel.tanislav.xa@renesas.com>
-References: <20251201134229.600817-1-cosmin-gabriel.tanislav.xa@renesas.com>
-Subject: Re: (subset) [PATCH 00/13] Add DMA support for RZ/T2H RSPI
-Message-Id: <176580717199.161463.3915595459908387302.b4-ty@kernel.org>
-Date: Mon, 15 Dec 2025 22:59:31 +0900
+	s=k20201202; t=1765807413;
+	bh=rFQyuWHfFcZlHMejIvhAa1DF/jOp6uqvkdWv/+Mb6s0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Eqn+25tdHr5Wrrm3Xn8rbqWT7Cdod3hLETZm9Xr8ldxluc3aeOueqyGp5QHgBo4tp
+	 iudPuSduvdNkGWl9ZP4unZ071ajNA3y3RN1diT0GzQ7znJNaCUVfgYZ/jV/o2TkeRc
+	 H2gILEXItKx0IUuWaJk8gz1hQCIzU7AVCWete254A0km3zdQsa4prIUvq0ORAxN7vx
+	 xCHXokOZ0NAXxXlMvyrHR44hS2RFx5BNaATueokHHaVsn99rtLIqrTURa0g8jjIhCL
+	 YTUS3rgQzHofTHnfi7usX+RYStx+7nMXDKAWYeRn8cHAmDOoiJxHkhdH6349TudcnB
+	 4xXdwcFnQQZpA==
+Date: Mon, 15 Dec 2025 08:03:30 -0600
+From: Rob Herring <robh@kernel.org>
+To: Stefan Eichenberger <eichest@gmail.com>
+Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+	kuba@kernel.org, pabeni@redhat.com, krzk+dt@kernel.org,
+	conor+dt@kernel.org, hkallweit1@gmail.com, linux@armlinux.org.uk,
+	geert+renesas@glider.be, ben.dooks@codethink.co.uk,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, francesco.dolcini@toradex.com,
+	rafael.beims@toradex.com,
+	Stefan Eichenberger <stefan.eichenberger@toradex.com>
+Subject: Re: [PATCH net-next v1 2/3] dt-bindings: net: micrel: Add
+ keep-preamble-before-sfd
+Message-ID: <20251215140330.GA2360845-robh@kernel.org>
+References: <20251212084657.29239-1-eichest@gmail.com>
+ <20251212084657.29239-3-eichest@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-47773
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251212084657.29239-3-eichest@gmail.com>
 
-On Mon, 01 Dec 2025 15:42:16 +0200, Cosmin Tanislav wrote:
-> The DMA controller can be used to transfer data to and from the SPI
-> controller without involving the CPU for each word of a SPI transfer.
+On Fri, Dec 12, 2025 at 09:46:17AM +0100, Stefan Eichenberger wrote:
+> From: Stefan Eichenberger <stefan.eichenberger@toradex.com>
 > 
-> Add support for DMA mode, and do some other cleanups while touching the
-> same code.
+> Add a property to activate a Micrel PHY feature that keeps the preamble
+> enabled before the SFD (Start Frame Delimiter) is transmitted.
 > 
-> The dts changes in this series depend on the DMA series [1].
+> This allows to workaround broken Ethernet controllers as found on the
+> NXP i.MX8MP. Specifically, errata ERR050694 that states:
+> ENET_QOS: MAC incorrectly discards the received packets when Preamble
+> Byte does not precede SFD or SMD.
+
+It doesn't really work right if you have to change the DT to work-around 
+a quirk in the kernel. You should have all the information needed 
+already in the DT. The compatible string for the i.MX8MP ethernet 
+controller is not sufficient? 
+
 > 
-> [...]
+> The bit which disables this feature is not documented in the datasheet
+> from Micrel, but has been found by NXP and Micrel following this
+> discussion:
+> https://community.nxp.com/t5/i-MX-Processors/iMX8MP-eqos-not-working-for-10base-t/m-p/2151032
+> 
+> It has been tested on Verdin iMX8MP from Toradex by forcing the PHY to
+> 10MBit. Withouth this property set, no packets are received. With this
+> property set, reception works fine.
 
-Applied to
-
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
-
-Thanks!
-
-[01/13] spi: rzv2h-rspi: fix rzv2h_rspi_transfer_one() indentation
-        commit: fb0140774aff45b8dc326987cc1da89484ecb081
-[02/13] spi: rzv2h-rspi: remove call to spi_finalize_current_transfer()
-        commit: 9e4830b35dc0d522f45e1ec3ee5b1ff1648afe1b
-[03/13] spi: rzv2h-rspi: do not set SPI_TRANS_FAIL_IO
-        commit: 218917659df165cff72439480929e68a6e127b55
-[04/13] spi: rzv2h-rspi: use device-managed APIs
-        commit: b73ac782828f27c2217a17bd26aa8710769f032d
-[05/13] spi: rzv2h-rspi: store RX interrupt in state
-        commit: 28b590bd4c6a051ec61cf286a46a8b14846e6fcf
-[06/13] spi: rzv2h-rspi: set MUST_RX/MUST_TX
-        commit: 6f9026b5a18acdf190d1622831b100aacfca0eb3
-[07/13] spi: rzv2h-rspi: set TX FIFO threshold to 0
-        commit: a886baaaa6e12a9b7d5a9687d11d3b895f1b87c9
-[08/13] spi: rzv2h-rspi: enable TX buffer empty interrupt
-        commit: d49eea07de5851e1b8941ad6b6179be7ec36a986
-[09/13] spi: rzv2h-rspi: split out PIO transfer
-        commit: 1e5e10df8b9be71ca64435cbe7c96b189e5ee293
-[10/13] dt-bindings: spi: renesas,rzv2h-rspi: document optional support for DMA
-        commit: 163345e356722e98ba57cd120787d6e991da7b1d
-[11/13] spi: rzv2h-rspi: add support for DMA mode
-        commit: fa08b566860bca8ebf9300090b85174c34de7ca5
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+What's the impact of just unconditionally setting this bit? Seems like 
+any impact would be minimal given 10MBit is probably pretty rare now.
 
