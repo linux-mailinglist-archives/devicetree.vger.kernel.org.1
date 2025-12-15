@@ -1,68 +1,70 @@
-Return-Path: <devicetree+bounces-246536-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246534-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 861D5CBD967
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 12:48:00 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3086CBD962
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 12:47:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id CF46D3017885
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 11:47:59 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id CBDC8300E0E2
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 11:47:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1807B3358B9;
-	Mon, 15 Dec 2025 11:47:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB2763358C5;
+	Mon, 15 Dec 2025 11:47:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="hud35EVi"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="0s8PwH+o"
 X-Original-To: devicetree@vger.kernel.org
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D4883358B5;
-	Mon, 15 Dec 2025 11:47:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 235FB3358B0;
+	Mon, 15 Dec 2025 11:47:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765799278; cv=none; b=cELQOzcQFfET0eJpszD6vakmx1EKL+8XrnrVkuUA7YX4AjlkSriVxNE2L9bhZR8uNAxZK89ER4mNTjQsiviQRyCt3b7B5MhEZ3NcNEed18Hs4KvOKhbvb7GBfuWtBlm1Hv2t2p2ZzSDFkUHZ+Dvc4R14IKF87ta13uzwWOTtgEo=
+	t=1765799262; cv=none; b=hF4NkgEuXCYPiyXO+AC/gBiKVhC+6tlH34TeskPLdQyZe0+w26mXq5Q+j3u8/Y9gkderAhjndS0vQMqJP8kwOukoVI71/N7E/EibyW2YYwBq3stoAheWCM3XAI/bDJjSOqbZHaS31h+P1/oubYQOjEuufcgO6z9QzngQnhiO+CI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765799278; c=relaxed/simple;
-	bh=Bg12JH6ED5Ml7gcajE6ytN/UBoDZOb6LMFHhuGTEkHc=;
+	s=arc-20240116; t=1765799262; c=relaxed/simple;
+	bh=Tw2PAVErhvPJTWX4i5SviB238yZnY2udyEHylGYsDrk=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=q8G4vmK3/omFPgw9OVY6orAZ09iYqQobf8zU35hpHinlSqxQ6Jqs5Zbksq76TF5vybGMPPxlujgEaJrgco4X6n0N2seQ19Q7H1ZAz4N83AYtPkEpBR6YGb8oKwFkBYkacbqaLnahqwFuvjPvzqfi8ICfdq/8qigzSoAM334LbL4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=hud35EVi; arc=none smtp.client-ip=185.11.138.130
+	 MIME-Version:Content-Type; b=FwWTBreyYdj/nNtYDTCkttrJ511idbSjGNsV2D5PwxFTi7v8jYDKbHjDMuEz/aHdR/wxjj8bi/xM7FmDZfrTFYnqTUPz2js8ux4jutOszzERdYXX4KRG5LAVLQ1nXZjkAoVXVW3EVtW4F3vto6eFZEcO/7PHUAXgxVEEWfSbmtI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=0s8PwH+o; arc=none smtp.client-ip=185.11.138.130
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
 	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
 	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=Zn/uhcRYE9P5t+xoL0MI1jmstVKavxgMn3GHiQkhybw=; b=hud35EViFGxZ44fZq/v+HIIQPc
-	dTRWejKOXGyjBVZYEnUaTWVXrXqNNvaXb0ZOjA9g56ZKi0xzkx3dU0esoYNKQQMZfZdcX4c8xIYQE
-	qiaoTd+1Ed94OHM37OruzmwCxKQPmc5FDDKsC65nkd4K72GpiHX/8mkrMFWQdLm4KEFjaazyDYCLR
-	fwHjpWRGKy9Az61I/7fQ12RroiyyZDrNYwwu5O9UnAzxLDR6nmVPbuQNo6NHS4UxKLYo2cfawOxme
-	M1X7l8myTK0zzAYxzRKaJjrUwcHm35eqrsvmJ+zWnfkVzFnumdBzKA+t8t3i+3YhlXxnUW7fbzps/
-	faLM5GlQ==;
+	bh=qChWII7YU0dPGLuhGx6Hi0lLzxxkedT+0cFWcFxavFw=; b=0s8PwH+oYvtcbINmpprf+s+aF/
+	ET2F7leFesp+2r4coEj3JIW7NhD17zLVhJnZ4Pc71HnOjQmv1R4Ir+yTNJK+iBbk3U0SCgx/81Hn/
+	WWx6L+N6f6UwLjDHPjZR0E1Wj4ZQoz+qKXwGCroTfOZMWsFOc0yq7YBNpBhST3h8HDv6gxcYPJZJk
+	/UQgrJcHwJ08ACoHBcIQL/p8sbSSNfJLmt2nQiFtnzT3vjJfysShvFsH0+jhLXnbA0L102LYFFbRv
+	6nK8UwS5imdNlvNqiiD7QH7kGpZzvrX+bIePchMh9hChgik8v/Cx77O59FNJW8tpIPfRURtNzyz7X
+	wSkOIevg==;
 Received: from [192.76.154.237] (helo=phil.dip.tu-dresden.de)
 	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <heiko@sntech.de>)
-	id 1vV73A-0000On-2C; Mon, 15 Dec 2025 12:47:36 +0100
+	id 1vV73A-0000On-Er; Mon, 15 Dec 2025 12:47:36 +0100
 From: Heiko Stuebner <heiko@sntech.de>
-To: Conor Dooley <conor+dt@kernel.org>,
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Jianfeng Liu <liujianfeng1994@gmail.com>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-	Andy Yan <andy.yan@rock-chips.com>,
-	Torsten Duwe <duwe@lst.de>
+	Conor Dooley <conor+dt@kernel.org>,
+	Rudraksha Gupta <guptarud@gmail.com>
 Cc: Heiko Stuebner <heiko@sntech.de>,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: rockchip: enable SPDIF audio on Rock 5 ITX
-Date: Mon, 15 Dec 2025 12:47:31 +0100
-Message-ID: <176579924017.1404176.3512598682044953071.b4-ty@sntech.de>
+	linux-kernel@vger.kernel.org,
+	phone-devel@vger.kernel.org,
+	Ondrej Jirman <megi@xff.cz>,
+	Martijn Braam <martijn@brixit.nl>,
+	=?UTF-8?q?Kamil=20Trzci=C5=84ski?= <ayufan@ayufan.eu>,
+	Pavel Machek <pavel@ucw.cz>,
+	"Leonardo G. Trombetta" <lgtrombetta@gmx.com>
+Subject: Re: (subset) [PATCH v5 0/4] Upstreaming Pinephone Pro Patches
+Date: Mon, 15 Dec 2025 12:47:32 +0100
+Message-ID: <176579924023.1404176.12391640220645132527.b4-ty@sntech.de>
 X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20251124183056.B853068C4E@verein.lst.de>
-References: <20251124183056.B853068C4E@verein.lst.de>
+In-Reply-To: <20251124-ppp_light_accel_mag_vol-down-v5-0-f9a10a0a50eb@gmail.com>
+References: <20251124-ppp_light_accel_mag_vol-down-v5-0-f9a10a0a50eb@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,17 +75,32 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Mon, 24 Nov 2025 19:30:56 +0100, Torsten Duwe wrote:
-> The Rock5 ITX has an S/PDIF (TOSLINK) socket in its I/O-shield, whose
-> TX signal is wired to GPIO4 C1. Activate SPDIF TX unit 1 and select
-> the proper pinmux (M2).
+On Mon, 24 Nov 2025 19:46:59 -0800, Rudraksha Gupta wrote:
+> Throughout the years, many have contributed to the Pinephone Pro (ppp)
+> development. Unfortunately, these patches are scattered around various
+> repositories in different states.
 > 
+> I will be attempting to upstream these patches. I will start off with the
+> following small series:
+> - Add light/proximity sensor support
+>   - Link: https://codeberg.org/megi/linux/commit/f171bc7013bc7ad3de9af817bfbcbfa548ebe01c
+> - Add accelerometer sensor support
+>   - Link: https://codeberg.org/megi/linux/commit/b0bb7633e073a6760fa213b8c4a78ea2e73c7bf1
+> - Add magnetometer sensor support
+>   - Link: https://codeberg.org/megi/linux/commit/2f7e67f451f16eaf15b81aa1dbdf126d54927d35
+> - Add mount-matrix for magnetometer
+>   - Link: https://codeberg.org/megi/linux/commit/d7cd2eab931e32fa94408a96d73b4e6c0616107a
+> - Fix voltage threshold for volume down key
+>   - Link: https://codeberg.org/megi/linux/commit/7c496a5cc27ed4e38b740f36c2d8b2c62f80ae54
 > 
+> [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: rockchip: enable SPDIF audio on Rock 5 ITX
-      commit: 2cc30da80a28a8a5d1337230c3586eb2f9580120
+[2/4] arm64: dts: rockchip: Add accelerometer sensor to Pinephone Pro
+      commit: abd9bb7ad5bdbbf76316013cda3812c2719a0210
+[4/4] arm64: dts: rockchip: Fix voltage threshold for volume keys for Pinephone Pro
+      commit: 5497ffe305b2ea31ae62d4a311d7cabfb671f54a
 
 Best regards,
 -- 
