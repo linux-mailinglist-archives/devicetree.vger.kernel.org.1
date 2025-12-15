@@ -1,279 +1,168 @@
-Return-Path: <devicetree+bounces-246783-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246784-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30E4ACBFDDD
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 22:08:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A90D3CBFE97
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 22:23:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CC0263013383
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 21:08:10 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 69C4B3043938
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 21:19:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCD892ED860;
-	Mon, 15 Dec 2025 21:08:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99089327C1D;
+	Mon, 15 Dec 2025 21:19:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="dkA2cjkB"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="GhI1TGkk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010014.outbound.protection.outlook.com [52.101.69.14])
+Received: from DM5PR21CU001.outbound.protection.outlook.com (mail-centralusazon11011071.outbound.protection.outlook.com [52.101.62.71])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B02615E97;
-	Mon, 15 Dec 2025 21:08:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 137593595D;
+	Mon, 15 Dec 2025 21:19:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.62.71
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765832888; cv=fail; b=kAOBDzWQsEg8Xql//2+G/zSdQGs4wLkKyTpE35UXZmjmAuLWOgBviguJDjOJVpZu+XmyWlwd8wof0KgpUbGs5hQArB7SbxzJv4naPJwfKfFnyGug4ajeg/p0G0h0sEVD8bhDcX+FF0y/fKFA1BQjvuzB9wTMRyuD/ioV9XBj4s4=
+	t=1765833591; cv=fail; b=f0RVvy4zbAMQ32sC9TVpT524sec1LF2HSfkVO/Ma4s5y061Je9Yr2gIaNh1wjRsk4pP5rHmZrLhlAEOFJ9QOylT7HPMTH116mcMIVed7mR71cLceJ+g4xSEe13LJscJM4lnmathJAsOjq/LuzOxnIGeraHZrFCaUk3DCZ8N92mQ=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765832888; c=relaxed/simple;
-	bh=y/2hz5Ilrl0nJy/IPrlKbTPY261TunebZQZnz3w6VPA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=InOQQ/oXJQxGTzC/qQg24UjLSm+KT6gA14dqfv+7ia7gETmLosievWsytlJo4UKcUr+wJzqFcsEGzOaoh1zE1o7L4lwl4TyiE7CXhAVWK+Sh9PM9ry59Cw6WvQ32kDCvIqmEje2Wfz2d3bYo4pHNTUcZgSGFBqy4zcj8n4NTMg8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=dkA2cjkB; arc=fail smtp.client-ip=52.101.69.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+	s=arc-20240116; t=1765833591; c=relaxed/simple;
+	bh=IJlveeGN0EOndl34aED5oBML70N4GSsXmY/Ef50RHE4=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=EAhsZQGZyTDpN4kvgzZNelhnpZpAvJcuyddILk+DmfYCyttXyBe6ssXnEdb8bKvlPu/L0X6jwWZdoMKD3TKxdy7bAjbKvRy9YUiPsfTKjoMSaOXSyV78pPVnHiTpLvpxyYr2HAkN1vaUpLB1s3qDBYuSl8tx4eVXNC6eKZ9gzuM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=GhI1TGkk; arc=fail smtp.client-ip=52.101.62.71
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=sbMMrPeJTZPglVlzGgKes8VRrUJvIQvnB0E8W62d8dtNu5/e6OoDJHaApLMHF1p0NGaJ/Duynb21wtWWbx5ecLoJoHgGg/nn0MghE/r6rLg04zbWvXiLH+sM6q/0pDmrjiF7AwwSeIimjEoMNsaXEOKKRLHmihGE9hxKaUUrgPu+q1q5GrfEhaKiBJgo6WWNkJKx4bHTxS26xHUEY6rhBzTu1w082W52esnSdmCof75K/p+KhVC38NIHFLSJOOocHAN3Rsr3zONyqueXAJFJpVJbdQl8CwblzoeYpmIXqLJG01waOkJzs6//F5c454BpMlt1wRkwg2giSghoZcvelQ==
+ b=LDbdZ2sIK1erwTnbjrqkOdQfSBTX/XHiP+BE9JJfTny/azX1joe4oi78kv+Rz9NPCpWn4fP0hIWvUsiNwBdcQ1L7fY/nShch4SLQj/hS+bnbdUy60BU4qjZ4tF41bSXh6c4zFMMU8oBSL8eXSTs8HcZryKV8Yy89VkLXfHQ6UiiAj+U2DXV1YXUp2zV6zlm1OeTFklWTuRNH1iS7QeRk4K+9hcAQ6A9f/S3oRR7AKzh5UCRjXgl5eM/Jcc+jgOSdrmPdTaay2ZtNIE2tdE94cQjtwCHxeKcg/gWX99AwWq2oLG/P1vdKF7slrGHrKVtVlPMQM1gUaa30k3ouH86m4w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=S2F8Qqq1NhrA769BZctpSiEEgSkjdMEqKG3dt6WqsZM=;
- b=m2oE6f8nuovGwimKu68WB6PIaI8cnq2RVjH01RI3unLw4foM/VnZXdgZsr5YftFMBFiOB6NxTh3Tnad/PkjXHQ+LEi2kUTu6y+dCXohQckSOTpYxCM5knOlvDcaS0vlzD6hqhN6dWvpIzTw3upIvE0U3wt6D8/zVDyodBuGdJ58fAdOdmvL2TlF4ubpXtpjbL9aHuTvGK7PRtzO+GXOqKOau+vUD/EXEdb4P1YGnuYJu2q/3sdVmeue6Tzq/QGLJIIhtIBlUgt9h2b/W8YJu7dmJrwdbhck+aykZxz0bp4uYz51nlAgFPRO/CWS9sq3r7yBEhTsYaXlDlZnhuHiMmw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ bh=Xy2Yi5gsKQEM/K9n6LEoZR6y9ntNefdeLc3esZmezF4=;
+ b=UKOZSl0nswV/bCUlPaV5hStlsqePy3tAxZTF9ZjcUfxomWuEA7V2YI6J8WSbudxMX8HO5U/ehscnKeHZaRXjtiPaUlFEi9y0aOPZDQmw98d6uw5nCFPO/OC5WB2PrZ0ST9Y61OVrZdmxs87S+9NPibFRx+gpM5pOvSALytaUaVpwruWQlvAqymq012eVwhciHW4UOB3xvOM7NXv1apklzwhyoNSWzuP8rEx4/CvYaNuF1AD9H7FfYR60CAYglNCy9lun7wYtnT2Zy/FqgwHVF905KwRi9Y7g3hXvMR6jed1E5kQm9URDJC/TrAXKwlMQ3fHFVJAEZr9/iypZvnaMNw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.160) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=S2F8Qqq1NhrA769BZctpSiEEgSkjdMEqKG3dt6WqsZM=;
- b=dkA2cjkB4joc6EMS+QLwzCB5dBAgJ3/Ji1i8AeYSbKbzKk9lXi8CavdnewWinNWXn5elcBzs2Axyse2BqSCzotJVTBBUX3j8FRmPd3RXUgjAAZkBUc9uy5yNI0B8NTku4QI4Km3gFIvITvw7p6aMv99LjJRUut7z81t84uPvkEwjI4/s3p/hWrwwi20nCtaqxr3pIksE27+X2kcRtg9VatoX8zOqPq+mzIW8T985Smli+vgnlcCueWO7PSnD+NnIhnSJH67/BowwShpBac6VmYr4wKMasINdQFXSCxhpMa1aLPYNP/ieO4bdqF3/ArS/ueJL64NZEqz44PWY27wIgA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DU2PR04MB8951.eurprd04.prod.outlook.com (2603:10a6:10:2e2::22)
- by DB9PR04MB9473.eurprd04.prod.outlook.com (2603:10a6:10:369::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9412.13; Mon, 15 Dec
- 2025 21:07:59 +0000
-Received: from DU2PR04MB8951.eurprd04.prod.outlook.com
- ([fe80::753c:468d:266:196]) by DU2PR04MB8951.eurprd04.prod.outlook.com
- ([fe80::753c:468d:266:196%4]) with mapi id 15.20.9412.011; Mon, 15 Dec 2025
- 21:07:59 +0000
-Date: Mon, 15 Dec 2025 16:07:48 -0500
-From: Frank Li <Frank.li@nxp.com>
-To: Dan Carpenter <dan.carpenter@linaro.org>
-Cc: Chester Lin <chester62515@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"David S. Miller" <davem@davemloft.net>, devicetree@vger.kernel.org,
-	Eric Dumazet <edumazet@google.com>,
-	Fabio Estevam <festevam@gmail.com>,
-	Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
-	imx@lists.linux.dev, Jakub Kicinski <kuba@kernel.org>,
-	Jan Petrous <jan.petrous@oss.nxp.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Lee Jones <lee@kernel.org>, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	Matthias Brugger <mbrugger@suse.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, netdev@vger.kernel.org,
-	NXP S32 Linux Team <s32@nxp.com>, Paolo Abeni <pabeni@redhat.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>, linaro-s32@linaro.org
-Subject: Re: [PATCH v2 0/4] s32g: Use a syscon for GPR
-Message-ID: <aUB4pFEwmMBzW52T@lizhi-Precision-Tower-5810>
-References: <cover.1765806521.git.dan.carpenter@linaro.org>
- <aUAvwRmIZBC0W6ql@lizhi-Precision-Tower-5810>
- <aUBUkuLf7NHtLSl1@stanley.mountain>
- <aUBha2/xiZsIF/o5@lizhi-Precision-Tower-5810>
- <aUBrV2_Iv4oTPkC4@stanley.mountain>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aUBrV2_Iv4oTPkC4@stanley.mountain>
-X-ClientProxiedBy: SJ0PR13CA0104.namprd13.prod.outlook.com
- (2603:10b6:a03:2c5::19) To DU2PR04MB8951.eurprd04.prod.outlook.com
- (2603:10a6:10:2e2::22)
+ bh=Xy2Yi5gsKQEM/K9n6LEoZR6y9ntNefdeLc3esZmezF4=;
+ b=GhI1TGkkBxQUlgdWfj42F/Yis203Dq0ygNdFkAPbxabHacM6smywtY7hXI0jC1qjA3i+loFrPDFflCoab5duoOEMXiHt6BOfRUZo90nZRZ7//olwgSFtMAjInwErw0BNO5rm4kVbijISR8Qm7GxzocEIwbP39JztFCZg7qQ105L+AtoDxOc4inXwrOrHI/UFmZk49Y9TKz9fhmWSpArQLIr8i97CD6bzUHhEf++CiTri2ymwEVOkFhW+gVUfGieS0XBPhB+8ox6jmzNXKeqexvXIuiu1b+zP1P2hOtYog/foOa2sqpK84E2DaPr2xXSiDWLkx+/taGUsmUELWCatoQ==
+Received: from SJ0PR13CA0109.namprd13.prod.outlook.com (2603:10b6:a03:2c5::24)
+ by DM4PR12MB5962.namprd12.prod.outlook.com (2603:10b6:8:69::7) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9412.13; Mon, 15 Dec 2025 21:19:46 +0000
+Received: from SJ1PEPF00002327.namprd03.prod.outlook.com
+ (2603:10b6:a03:2c5:cafe::66) by SJ0PR13CA0109.outlook.office365.com
+ (2603:10b6:a03:2c5::24) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9434.6 via Frontend Transport; Mon,
+ 15 Dec 2025 21:19:42 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.160) by
+ SJ1PEPF00002327.mail.protection.outlook.com (10.167.242.90) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9434.6 via Frontend Transport; Mon, 15 Dec 2025 21:19:46 +0000
+Received: from rnnvmail203.nvidia.com (10.129.68.9) by mail.nvidia.com
+ (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 15 Dec
+ 2025 13:19:31 -0800
+Received: from rnnvmail201.nvidia.com (10.129.68.8) by rnnvmail203.nvidia.com
+ (10.129.68.9) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 15 Dec
+ 2025 13:19:31 -0800
+Received: from Asurada-Nvidia (10.127.8.12) by mail.nvidia.com (10.129.68.8)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Mon, 15 Dec 2025 13:19:30 -0800
+Date: Mon, 15 Dec 2025 13:19:28 -0800
+From: Nicolin Chen <nicolinc@nvidia.com>
+To: Ashish Mhetre <amhetre@nvidia.com>
+CC: <will@kernel.org>, <robin.murphy@arm.com>, <joro@8bytes.org>,
+	<robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+	<thierry.reding@gmail.com>, <jonathanh@nvidia.com>, <vdumpa@nvidia.com>,
+	<jgg@ziepe.ca>, <linux-arm-kernel@lists.infradead.org>,
+	<iommu@lists.linux.dev>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-tegra@vger.kernel.org>
+Subject: Re: [PATCH V7 3/4] dt-bindings: iommu: Add NVIDIA Tegra CMDQV support
+Message-ID: <aUB7YNiCarEY7Ig7@Asurada-Nvidia>
+References: <20251215064819.3345361-1-amhetre@nvidia.com>
+ <20251215064819.3345361-4-amhetre@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20251215064819.3345361-4-amhetre@nvidia.com>
+X-NV-OnPremToCloud: ExternallySecured
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU2PR04MB8951:EE_|DB9PR04MB9473:EE_
-X-MS-Office365-Filtering-Correlation-Id: 331def00-d5eb-42e0-a85f-08de3c1e06c4
+X-MS-TrafficTypeDiagnostic: SJ1PEPF00002327:EE_|DM4PR12MB5962:EE_
+X-MS-Office365-Filtering-Correlation-Id: a1c10b0e-1b8c-42d1-9d2b-08de3c1fac0a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|19092799006|52116014|7416014|376014|366016|1800799024|38350700014;
+	BCL:0;ARA:13230040|36860700013|376014|1800799024|7416014|82310400026;
 X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?BWZSou2gouEjkIuMPU98GuoPbIPiogYBQcL1/NR8zA7JBLt2XIc3G/jxc0IB?=
- =?us-ascii?Q?xd0CjD40Tf+LmS07Rokzl8ijCrGcSONjWQmLj6fEzwAGNC+0ln0MECj0wPW+?=
- =?us-ascii?Q?Dx4sn6TRCES8SDPCNLF/V+rrxQFAejdxsaTenMsoEs7Q8anSLx97KmTJMe0f?=
- =?us-ascii?Q?yzG/GRB9WEjCgUiBbbbHm+8RYVItzGLgY2MW6bXtYK1JRq3WmyM+nFINq5V0?=
- =?us-ascii?Q?F03USByskPv5qzB2cpbUd6wP7o+tQJE0GToexvwUXLzMYlq2OKBREIF5D6rt?=
- =?us-ascii?Q?2xTID8HHNuJXFSgLPmTkB0+UNox6LwmgsbIpbNdgP5QVb3gtNWLgtB41b5Ik?=
- =?us-ascii?Q?L8+GAYIlitt44+bKgBjlG9E4g65cK3wxOyaMEKOJV2sv7lHQc3TRzjvTmWPD?=
- =?us-ascii?Q?S/yLogyXtCW0X1NuAY4UH+D+AZ8SHWtJTyEWGVrCvsLJiYpa+8YiavRmERWd?=
- =?us-ascii?Q?XM7gj7BBiAvcWI5BWHpDc0tPAmT/LYSg6k0vwyoyNtAfOEdy9PwYSDAdIEF4?=
- =?us-ascii?Q?NrpEOFgh9cS44T5cdKHpoHyUSRtwH264EZ/diLRkA2lAcw1Lt97SM5SdvywA?=
- =?us-ascii?Q?rihffzVZnQh4CZdH/32XoaVry+FRvmzjvIrFPTsvo0k87pqKozX5aD7DMy5A?=
- =?us-ascii?Q?YSEgtivQcUgmNQ/sS+uqp61oVz4029RgkJaEYevCAOecBYxDxeXvU/f4/Hvo?=
- =?us-ascii?Q?+4Xr0vJKlK6oiSljzIm3giFv7RlBI3dn5QyIqK3VcIgORSoGr8/tUFSz94Sb?=
- =?us-ascii?Q?WUmBTSUZRLhLENDg6h8A/Fs4YU2q4MX7JC4ZjnnJcSae9ehj2yXt8rcup9OE?=
- =?us-ascii?Q?hrJGhGEUvw3zIwlQkHrcL+SVmgk+RBAGDfm3edf3GPezYOog3WBjESitz3Kn?=
- =?us-ascii?Q?VDigt9+/DT6T1tt8G7+JJQYODp/WDHMXWcwuXuduP5VsM6LPfzc59dghDiM4?=
- =?us-ascii?Q?K5ZCq55dcORmU7SqHG3IfYSTQlJS1fCXNLyBsPr6QoDzPH1EtGfVnlgP1sXq?=
- =?us-ascii?Q?od2i1Wk7hR1gPzjA9sKNt7EWrok5osVbeN/tD1BQg1YBTYWJh4k1ELmCqFM6?=
- =?us-ascii?Q?uCzXhiCB1Hc+NuCpYzg2W3RqP3pG9QKGh6eosZZKJk6GpYokpG1cvagX+hWr?=
- =?us-ascii?Q?bK8yxoXG9AW2Z7LMX+3SYvX27knkx9zY3IYmNXhKc4FfxHWgh10ED1umm9GJ?=
- =?us-ascii?Q?zpuWFqpV5CKEfqSMM1uwKjFm+ayKEMnXHWEORk+vw6ffnHmqjWua/frUlY13?=
- =?us-ascii?Q?FJ5XFUjRimH8baUmZLwr5/H6QhfSKPsldloeW4S/mQWue6UZVI0VhtKuJL0e?=
- =?us-ascii?Q?i3imYXnuRagAVy+l78cv6zQGWxlyfJqRBE94M/SF9cxIra/obsbMq5bXzett?=
- =?us-ascii?Q?XJMP0ZoiG9bVBciSeQ6+32uyABSEroJwAfsYQfnYX4UdbUnYCKLOF+j6Zzrr?=
- =?us-ascii?Q?HrHUG42f+Vm193RiVvLJgDST9bYdXXxpZpz5e4EeXX0hBSSayG5Km5mgAczq?=
- =?us-ascii?Q?S/6faEYQ61+lIfshP1l/SkQ/a2u+3aO/a4Gd?=
+	=?us-ascii?Q?ClPmm+HEyKioTa1umTUSzxdKMQY9JBHzlLrZ1HybnV6q8NVidGeyiKNaX9HU?=
+ =?us-ascii?Q?hicPT7Y+uqLhW4lmeURVm+MMycEVBd80TRD95vpzH7tFAyF+R5/rWsgexhv0?=
+ =?us-ascii?Q?O2YGe3hCBeBdy6irUm5I5p1JfJZPRLbb3ZBYs+nZge17nKVPmNv+56nu7yZ6?=
+ =?us-ascii?Q?hchbMPCj5/pXawMSl+FqlT32uV9dmVNB+CiD8zxuacTVa7F3N28wtCVwEoJ6?=
+ =?us-ascii?Q?QdpASf7y4rxPb2jd9Axnz8ooR1rSLxrjHsUQyhTvH8zYIWzVJAcBS1kV4i3L?=
+ =?us-ascii?Q?5Dx/rXl9bi0UWiCVgtskGcL7yq8ATd3YyFQjayEN0PFN9fFU12FxrGfqlLhC?=
+ =?us-ascii?Q?JukjfVnu/fsBTZ8+ejuTCPcTfKVpr1VunX++dpCorzXNiAy/HsZGokPZuPsh?=
+ =?us-ascii?Q?I+Dj02FZ3YZn6E3BiifBw1ysdoQjIqrScbobY2ZhXDwWP52Inm9189JK0LWc?=
+ =?us-ascii?Q?VsM1JoUeXJsXz954ORh4iDcx5Xgg/R29TU4Ff/rEUYunlVNT4liZuz8tkAJA?=
+ =?us-ascii?Q?qGxyB993kyxX8nfS+bwWttDKAQkZ4tP0fElQFo8y/NXXDLSuztXao/Rjx1CA?=
+ =?us-ascii?Q?nns2sB1rT/Vz0e5BLnnGpx313iPHjbwhiXC7VrVVaIIIrRKWVIgBObJsk6MB?=
+ =?us-ascii?Q?UyKvetqeYHOULzbw7di/etMYhmDBpDfVu+MlsUxwvpj2ANmGDdKdPaxOqGPI?=
+ =?us-ascii?Q?tk47ex8lY/5okvAvPIud4xoOnY31qnqCF89P75S32tdOzZpFRDVesf9gBbVp?=
+ =?us-ascii?Q?h/pyEEXnR4A3NwIWo+c+AGuPWWfO2d43gpfGEiCM8EUwsMiNB+16r+nbrP2q?=
+ =?us-ascii?Q?0hDw4jZCdX0jZ1XX2mcHKzzC/Sw9n9qCZUHLAtAPOl2HDCQeyXycUKTQru7v?=
+ =?us-ascii?Q?sOUYVc9y7OoYyEgSxAO+XWsOkXgF0zoUttQZrFv/hnKpzB7pWdYO6oZxP6pv?=
+ =?us-ascii?Q?cBy2fA+3KZxdisDH8nJk5WS8qTgSILjuTgC2dY3LtnS660+z2iG7mmmvmuSq?=
+ =?us-ascii?Q?UljalDZI2qeZWCQ3w9gtP6uMTA/cEY5UDOAE7BvEyUPFehg9MxzrzRSeVp2i?=
+ =?us-ascii?Q?/LOAdpaksYGrtj6A2WFtQ+hA95GpN+tOMnKtohJS2vJNuJITD+1QWC2lXnrU?=
+ =?us-ascii?Q?dIfjYO+7Tx5iDalruXxWD6dy1ZGbKgl022MJxDIFE8AqS0KvkIHYBmD8XB7g?=
+ =?us-ascii?Q?TmIajQCagChtBXwk5RbIWGIm9lwe0F3jT08nLd4vlsvncp0DPTiOMIXcpjE/?=
+ =?us-ascii?Q?OT1CAvfaqovufnfao9EFMzD1r/Gx/pgBMNeWratWZu0y95SRiObkJktnMrDj?=
+ =?us-ascii?Q?TIyZhMOKT2JDCt38VjOPf5TGUtD5m9h+PJeCUbQZOj9HSXhS7CJxig7/7blA?=
+ =?us-ascii?Q?C43oSdsGM/R6iDJXhQBMeiglmlRTcCi5lDlKYC796kiuMV5CsF+dMDMG7uu6?=
+ =?us-ascii?Q?zIzNjhaf7e7WaI95VU9B1v0oGuCs9Ji6d0IeCjaVSz1xOBMIfyUXUGF5cBW3?=
+ =?us-ascii?Q?FVpAdpXJ9xJOQl3vXTIzIg6kc+Y4/Mpzt6Vx3qcTbGAOY0Ku19f8Z0iTrSip?=
+ =?us-ascii?Q?VOky4bqIeZ8RWcVVuUw=3D?=
 X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8951.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(52116014)(7416014)(376014)(366016)(1800799024)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?fOi/3Q3YZNj0anBIRr33nX7Zgq7DigqEwR9xdqDwqm1f0Q50CCG0bDhsAZE7?=
- =?us-ascii?Q?BCGIfjK6Gg4xZ7F8UfPqDmF+z7GLhDpEyec4SLgC05hiI2sWdyJeDDtW8D4Q?=
- =?us-ascii?Q?ktaROKq3ZUUCYrERc/DFjWoPtAStEN9AMRku95gkWTKQu5B4LIJnszQHSh7b?=
- =?us-ascii?Q?REk6cNhuPZhWNX7yoL5ymsFK9Iyum4TaKiBnbtJGnqQfZLQpsB9+yMxt1roY?=
- =?us-ascii?Q?AVab0tWBp6CRpibI8AarphSTKE+vsFB0L434Dnul+Ra+IfJy7EwtBqhsP052?=
- =?us-ascii?Q?ORYNp+oZKDKYrufDsQmfKi37J1LRrMYVaANrxsn0RXQMC5VjojkAeZiAlr0+?=
- =?us-ascii?Q?Ye3s6xL0UxFKQ/Gw27EJGIIRWOA3F+PjLoHv+NF9zX10KHZWcTgQo3UJ6Krh?=
- =?us-ascii?Q?I8Te1/67dOSAQMP7hdDSVo0YddeshyLMz5K2V0H8J10iBM6SJpjpn34iTwDU?=
- =?us-ascii?Q?RBKBu00HP7NtszirJgePur5OIp6TMmvg27+usFg49w9myigeFjh9Fs53Bzm3?=
- =?us-ascii?Q?CUbMZ4By35zP/4NAXXnrFFxjrTb5bGxiwmYGR8A+fXjK4zJ60t9fV/PT/dNy?=
- =?us-ascii?Q?wfLQ7IOb/Bd1uIDTqtJY+P0vjNWq01l2TAtqL/xwCZ8HroMhu2laI8y2+Zjo?=
- =?us-ascii?Q?1HfDDHOmQThjXkMvsZ6KWRDFsGi+Awr4hYClt/Id7QjuCURM5U4OUydCraTS?=
- =?us-ascii?Q?LYObJvjAdPjXus/PIShpxxXc6NpFk+Ju2uwvK/eCVz2laz3ZpOKLqGy2lKpx?=
- =?us-ascii?Q?vZtWDV0gBlfnUneCZ5HmNjbr/6DbsGJ5quDuuzifSxTjJmQ60OqeibU3gQBR?=
- =?us-ascii?Q?Z1gZY/FsHqMOkeIwnfHK82JXMfcHLBbXe9fn00Xfy52Qu8ZGk7TW6K8fXS7d?=
- =?us-ascii?Q?6d4EjYvM0uXrr3v4ln+Oec3SHe1eC3+pJT2lvUXcI8pTt2dSeVWtmUbQloGT?=
- =?us-ascii?Q?CdFdaS1g8mtH5Xjpj3PgAZjEmoQZLJFeJTaYrjjj9spr8nOOegkmkeLDqAbg?=
- =?us-ascii?Q?pph24Vo995Q7e9F3JjW28QED6gk4sGALn28hq92ViERXsVEsu0nt4Uuh1vDk?=
- =?us-ascii?Q?wNSXnvv7oc175/44Dh/EpsLGDyKk6NNfGqPk5GDYfuYnkdp8sKpnph1371Gj?=
- =?us-ascii?Q?xoGv/FaNnE96rjn2tWQHi51TgzJ5SI3yOC69WuDXs8dQAXUHwjipTri+Q7ex?=
- =?us-ascii?Q?NYCnUIVV1EhUEUpXl+jLxpNYKx9S3WbxwPcYKc0hrLcGk7jw5t3Onr+RAxS+?=
- =?us-ascii?Q?crU8I+vnPSGyRnvSheKE1/TsIN1EOwd0ByysD69od1wz2j4DryQvm+/HOUlC?=
- =?us-ascii?Q?nxCO31YiMwpiO7R11INRpInh8DHxOfeDHXP6HzIuSY4eTrsatKo7kA/NJPgU?=
- =?us-ascii?Q?YxCzRZ/T7xcOdSLUKGWti7cyIqZtpJQCDZ82SaopcHF+q+2d6dQGa78sB8wB?=
- =?us-ascii?Q?FSaiMlNY5jqAR5+fkoEr5n++xehoSzo1aJNgkSu0Wb+ohYmiWN5qmS0Yr7ex?=
- =?us-ascii?Q?lge1vaAtdU7ZdRZxgTRcF5WlPlF4HZjlrVdSc1S/Ko/a28SHEg2QQJ57vIh5?=
- =?us-ascii?Q?54KguwT5Ikjg4/CRy43l3YAYPjnrAF0EL0FN7vUZ?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 331def00-d5eb-42e0-a85f-08de3c1e06c4
-X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8951.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Dec 2025 21:07:59.7163
+	CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230040)(36860700013)(376014)(1800799024)(7416014)(82310400026);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Dec 2025 21:19:46.0942
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: zJsV7eqyufSl+hkcZBNmYh7+3XuTrT1CepXB7ENFF3zbOjSHei6k/ytRflZ+2rJC7bGNCy8evZXJTcB0vDG3fg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB9473
+X-MS-Exchange-CrossTenant-Network-Message-Id: a1c10b0e-1b8c-42d1-9d2b-08de3c1fac0a
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.160];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SJ1PEPF00002327.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5962
 
-On Mon, Dec 15, 2025 at 11:11:03PM +0300, Dan Carpenter wrote:
-> On Mon, Dec 15, 2025 at 02:28:43PM -0500, Frank Li wrote:
-> > On Mon, Dec 15, 2025 at 09:33:54PM +0300, Dan Carpenter wrote:
-> > > On Mon, Dec 15, 2025 at 10:56:49AM -0500, Frank Li wrote:
-> > > > On Mon, Dec 15, 2025 at 05:41:43PM +0300, Dan Carpenter wrote:
-> > > > > The s32g devices have a GPR register region which holds a number of
-> > > > > miscellaneous registers.  Currently only the stmmac/dwmac-s32.c uses
-> > > > > anything from there and we just add a line to the device tree to
-> > > > > access that GMAC_0_CTRL_STS register:
-> > > > >
-> > > > >                         reg = <0x4033c000 0x2000>, /* gmac IP */
-> > > > >                               <0x4007c004 0x4>;    /* GMAC_0_CTRL_STS */
-> > > > >
-> > > > > We still have to maintain backwards compatibility to this format,
-> > > > > of course, but it would be better to access these through a syscon.
-> > > > > First of all, putting all the registers together is more organized
-> > > > > and shows how the hardware actually is implemented.  Secondly, in
-> > > > > some versions of this chipset those registers can only be accessed
-> > > > > via SCMI, if the registers aren't grouped together each driver will
-> > > > > have to create a whole lot of if then statements to access it via
-> > > > > IOMEM or via SCMI,
-> > > >
-> > > > Does SCMI work as regmap? syscon look likes simple, but missed abstract
-> > > > in overall.
-> > > >
-> > >
-> > > The SCMI part of this is pretty complicated and needs discussion.  It
-> > > might be that it requires a vendor extension.  Right now, the out of
-> > > tree code uses a nvmem vendor extension but that probably won't get
-> > > merged upstream.
-> > >
-> > > But in theory, it's fairly simple, you can write a regmap driver and
-> > > register it as a syscon and everything that was accessing nxp,phy-sel
-> > > accesses the same register but over SCMI.
-> >
-> > nxp,phy-sel is not standard API. Driver access raw register value. such
-> > as write 1 to offset 0x100.
-> >
-> > After change to SCMI, which may mapped to difference command. Even change
-> > to other SOC, value and offset also need be changed. It is not standilzed
-> > as what you expected.
->
-> We're writing to an offset in a syscon.  Right now the device tree
-> says that the syscon is an MMIO syscon.  But for SCMI devices we
-> would point the phandle to a custom syscon.  The phandle and the offset
-> would stay the same, but how the syscon is implemented would change.
+On Mon, Dec 15, 2025 at 06:48:18AM +0000, Ashish Mhetre wrote:
+> The Command Queue Virtualization (CMDQV) hardware is part of the
+> SMMUv3 implementation on NVIDIA Tegra SoCs. It assists in
+> virtualizing the command queue for the SMMU.
+> 
+> Add a new device tree binding document for nvidia,tegra264-cmdqv.
+> 
+> Also update the arm,smmu-v3 binding to include an optional nvidia,cmdqv
+> property. This property is a phandle to the CMDQV device node, allowing
+> the SMMU driver to associate with its corresponding CMDQV instance.
+> Restrict this property usage to Nvidia Tegra264 only.
+> 
+> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+> Signed-off-by: Ashish Mhetre <amhetre@nvidia.com>
 
-Your SCMI syscon driver will convert some private hard code to some
-function, such previous example's '1' as SEL_RGMII. It is hard maintained
-in long term.
-
->
-> >
-> > >
-> > > > You still use regmap by use MMIO. /* GMAC_0_CTRL_STS */
-> > > >
-> > > > regmap = devm_regmap_init_mmio(dev, sts_offset, &regmap_config);
-> > > >
-> > >
-> > > You can use have an MMIO syscon, or you can create a custom driver
-> > > and register it as a syscon using of_syscon_register_regmap().
-> >
-> > My means is that it is not necessary to create nxp,phy-sel, especially
-> > there already have <0x4007c004 0x4>;    /* GMAC_0_CTRL_STS */
-> >
->
-> Right now the out of tree dwmac-s32cc.c driver does something like
-> this:
->
->     89          if (gmac->use_nvmem) {
->     90                  ret = write_nvmem_cell(gmac->dev, "gmac_phy_intf_sel", intf_sel);
->     91                  if (ret)
->     92                          return ret;
->     93          } else {
->     94                  writel(intf_sel, gmac->ctrl_sts);
->     95          }
->
-> Which is quite complicated, but with a syscon, then it's just:
->
-> 	regmap_write(gmac->sts_regmap, gmac->sts_offset, S32_PHY_INTF_SEL_RGMII);
->
-> Even without SCMI, the hardware has all these registers grouped together
-> it just feels cleaner to group them together in the device tree as well.
-
-Why not implement standard phy interface,
-phy_set_mode_ext(PHY_MODE_ETHERNET, RGMII);
-
-For example:  drivers/pci/controller/dwc/pci-imx6.c
-
-In legency platform, it use syscon to set some registers. It becomes mess
-when more platform added.  And it becomes hard to convert because avoid
-break compatibltiy now.
-
-It doesn't become worse since new platforms switched to use standard
-inteface, (phy, reset ...).
-
-Frank
-
->
-> regards,
-> dan carpenter
->
+Acked-by: Nicolin Chen <nicolinc@nvidia.com>
 
