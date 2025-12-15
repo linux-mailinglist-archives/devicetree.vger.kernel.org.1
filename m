@@ -1,222 +1,181 @@
-Return-Path: <devicetree+bounces-246750-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246751-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA42ACBFBC4
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 21:23:52 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C416CBFBBB
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 21:23:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 38C07305A624
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 20:20:52 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 31B93304A8CB
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 20:20:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 974BA3446C5;
-	Mon, 15 Dec 2025 19:33:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E68B34572F;
+	Mon, 15 Dec 2025 19:34:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TDSd2bDG"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hP33xbMo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B0733446AA;
-	Mon, 15 Dec 2025 19:33:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62D203451C8
+	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 19:34:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765827209; cv=none; b=VPWM7ZZ1hbU9ZFYd4/7vDXTNdPWKeEI4jCEia4qOYKRMiuRsnX3vD/rlckz5qIxB+PdVInnHkGkykb4el6qZlH5f7LzwE9xj0aQbZupvlXJ2u98hPZXI/VEKGN6mzLp9a/+t0y6dZX343q+k6m/E1E52RlSA8e04DLMOyytG9SQ=
+	t=1765827285; cv=none; b=V7nmpzTLLdTdcOI6LVL/KO92gsTmDaeaQcBLUgrhMwgabFalFt6tXsCnV9xFTpllFZhp6rbqLcxrv9/HUIQOwfrfSWygCBBAdRVsTDACh2+gsE8qAiS9CSITOIuqWWK10sS+rmZZoMDte/UwJHUMb9d7icvBQO+PuzpCuwbSmgw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765827209; c=relaxed/simple;
-	bh=Xf/Uivn2/05IFaA/e+fqhQihwVLhOLhR1m30cTTyHno=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GImgvA0bGBZDKn5XsEqk0UDL3JNJaKEZBzK4u16r465iNtgRpaaZBYDsSUj6SYT2ZlRYOn00hs7znF/CMFqx97jhOYk+9JSab2IBDTPIicHgadso6LeUqmXUzcuy1Iyr5iui3uzmrmPtYer8BRdOp5MCHqzzUhKufC6wyjtxG7c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TDSd2bDG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73F21C4CEF5;
-	Mon, 15 Dec 2025 19:33:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765827208;
-	bh=Xf/Uivn2/05IFaA/e+fqhQihwVLhOLhR1m30cTTyHno=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=TDSd2bDGVVxpTStolPf4XfKM5vsnraj4PlGN9K/1MRm4lr5MsSOYDxeLm1lh8FMR/
-	 n2bXpNs3Dx8k0brZP/eDsSl+TcSW68ACV8RXbJfSN/BOSoH7ib2PTvwFqxpauuf1U8
-	 dQ7L/madDBUOH9aWSnyI6qzDEr3SQDSWVD1xW74YPKp9arB+rMGVmLPwP9UZRGTIgo
-	 Ep979uz3mdtzNrV9ku/wLODNYc9l41NpX88GmULxxz2LFKJPQ5mLBHcrLPKbrr1kQ4
-	 k2VfmcLKjLcl2i81hlAxz5UgLerJM3kAl7xSY+lpoN+zSNrYUTlAQPGXkwpbTspKeU
-	 iJoSECfAkuQrQ==
-Message-ID: <546ff0cb-a3a2-4fa4-a78b-79c923ed7765@kernel.org>
-Date: Mon, 15 Dec 2025 20:33:24 +0100
+	s=arc-20240116; t=1765827285; c=relaxed/simple;
+	bh=R9rr7JYAlu4ut1klPHqgSod04bJtytEccLyOYIIOoOE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RGcs2OcnopocPsIbfmYsYpXYr6ABL3NmKvhpbTzYxJzDS/wx6oXjJvy9iO1nG+T+iF8k6NiqhFqg0coKn8Pgf99P/UJLIv+87B0kZeiwce+iaQHOAdEa9WZpiBz8cO7PL+9oFn6566Tm06MvnSkuNd3yCKkxgyd+LG1rFxukcNA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hP33xbMo; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-477619f8ae5so29810545e9.3
+        for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 11:34:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1765827282; x=1766432082; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=xvsN36HEjkdkzaTc/2dKVIMfjzjS0gkF6l57K40dHSI=;
+        b=hP33xbMogz6C+7KYeJ4qUY2y/7SUagcVMZnRLJK1gzaibawRUhT66dJ6GpTu/C796Y
+         Rxo4076qBEOjdfB5DJwbxgrMHLQvvtufQvjED7i3vXS3Ksvg1ng44+lrUJVbEudf/kBC
+         asxaA7eMuS4/vMz2Rbkq4R8UjtHx7dpKnTtWFSSn6GHDTl7JhQk+jpZItmTkQGmk+5Zv
+         7rWDGBBe9WY9AoQ6s8qJ0qKABXDHBzLctwmteSMzoMFTftdVivb8eH7mzSsvGQD/PO02
+         3412cSpQ4/Q7Hpop3uUoS4FFZ8vr0HVMsPL2GrnOC7bSp7W/FsyeAyIzC2bbDKEctIoa
+         o+yg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765827282; x=1766432082;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=xvsN36HEjkdkzaTc/2dKVIMfjzjS0gkF6l57K40dHSI=;
+        b=XORVHtidaXPV+KaBtlrf+Ic2C0/j0wUSE/TZHqwBvKKfU7fpxJhNlLObqaplNsDtxc
+         TypiVyUdMf6jn1ECz0MVf9kfe1z6vRRgBo443dLAo5rJ0XvGVtooScrSpX1kmWedbw7D
+         XsoFVp0V9PWLpnbo5DXapZs0YcMxn1jD9sj6XA9zeHYHEM/v5N2uZ4sUy5FwIBSD6VHc
+         IOPnhmN/hL6E72A5MUFKNxi4U/rXSToixg1j6Epw87dIoBMbmKQUv0c7j3w2tvPG8bUl
+         qGx3Z0jHNgxHpclum5O1HOY3RwUZjqoTQvr5ULz8SfMhocu5ZnrECnigq0nMKpM80WTd
+         TYXw==
+X-Forwarded-Encrypted: i=1; AJvYcCWnjvFU2q8HKoxla6ylGPSVXJRmmzZG6+PoV+64KUdCKpNeEGGXGIk/eeD79TfrSV7OoLVZxTPzz9Sw@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz5QMH3aa7zh7KJ2M4Kl22XNjhHZMVBNbkQmxL856wduEvCmHWz
+	eoohCWuD31zvsKs2Z+opli1vETk+xVrBEaexGCTyiyEhji4SpBV6v6T4
+X-Gm-Gg: AY/fxX5XkwMmO5Khz3F/9awHSYjSgvXQddFspZm7j+VcXHRdaPmjnPHrvYqbSUqUbE8
+	m6QqA36HmqIx4SNm5+96SMVE0wuJhdJQG0Eyemoc2r2tjwzSdFKavTUBStIWfuCeV6TB43DZbpQ
+	S/Le5nuE3uS0ZEY+PcTH7izde/Pre2xdvG0PB5K+KNQDa4tSvKLyDFd3D3fa4eHd5q7YZLDbapx
+	M5evPT5XO6G0ScHAbqhcQMKyDC3tXmS7Ub3XGwN/MO+5dLkBYJabu+H0angBRdMqu1NBDlVamp9
+	uyuFGvks6tdKut8v+fe6B/iFXrtU2UW0rKvaRCqlkt66LN+QLDrQU2Bd8ILgXliQHcIHwxfImJD
+	+7FC1hx6ZVoajJzV0Rw6RhRAd44sUUDKss8Ur89BJnaR2/vR6mQCsFj0PVjZkjdznPYNXZEjZgq
+	8241Qk5Urn3m4p1c6dhGfMzS7JQaEV1H8EEj5SLkk4X2I3ITrL/j8PHJnhPyAkaRtk
+X-Google-Smtp-Source: AGHT+IHqMmTrPYwvoqeuDlvMpEDl0MXgKJmnwWH2vCQFY8SiusRi4m3bCAkknOzdZ7YPRYj3LhSsRw==
+X-Received: by 2002:a05:600c:3ba2:b0:477:97ca:b727 with SMTP id 5b1f17b1804b1-47a8f907d9emr138780595e9.19.1765827281485;
+        Mon, 15 Dec 2025 11:34:41 -0800 (PST)
+Received: from localhost (brnt-04-b2-v4wan-170138-cust2432.vm7.cable.virginm.net. [94.175.9.129])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42fbc6e3392sm19493062f8f.13.2025.12.15.11.34.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 15 Dec 2025 11:34:40 -0800 (PST)
+Date: Mon, 15 Dec 2025 19:34:40 +0000
+From: Stafford Horne <shorne@gmail.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: LKML <linux-kernel@vger.kernel.org>,
+	Linux OpenRISC <linux-openrisc@vger.kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/5] dt-bindings: Add compatible string opencores,gpio to
+ gpio-mmio
+Message-ID: <aUBi0Fid8vF-G8Wl@antec>
+References: <20251214180158.3955285-1-shorne@gmail.com>
+ <20251214180158.3955285-2-shorne@gmail.com>
+ <20251215-skillet-perceive-2b564a29ed71@spud>
+ <aUBWMbKLMWO2Wv_B@antec>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/3] ARM: dts: exynos: Add Google Manta (Nexus 10)
-To: David Heidelberg <david@ixit.cz>,
- Lukas Timmermann <linux@timmermann.space>,
- Alim Akhtar <alim.akhtar@samsung.com>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Russell King <linux@armlinux.org.uk>
-Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- phone-devel@vger.kernel.org, Alexandre Marquet <tb@a-marquet.fr>
-References: <20251215-lat3st-staging-v3-0-2e4914b64dd8@timmermann.space>
- <20251215-lat3st-staging-v3-2-2e4914b64dd8@timmermann.space>
- <c62d6c99-0c8d-40e5-95fc-ae73ecaca926@ixit.cz>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <c62d6c99-0c8d-40e5-95fc-ae73ecaca926@ixit.cz>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aUBWMbKLMWO2Wv_B@antec>
 
-On 15/12/2025 19:53, David Heidelberg wrote:
-> Hello Lucas,
+On Mon, Dec 15, 2025 at 06:40:49PM +0000, Stafford Horne wrote:
+> On Mon, Dec 15, 2025 at 04:57:45PM +0000, Conor Dooley wrote:
+> > On Sun, Dec 14, 2025 at 06:01:41PM +0000, Stafford Horne wrote:
+> > > In FPGA Development boards with GPIOs we use the opencores gpio verilog
+> > > rtl.  This is compatible with the gpio-mmio.  Add the compatible string
+> > > to allow as below.
+> > > 
+> > > Example:
+> > > 
+> > >         gpio0: gpio@91000000 {
+> > >                 compatible = "opencores,gpio", "brcm,bcm6345-gpio";
+> > 
+> > What you have done below does not permit this, it only permits
+> > opencores,gpio in isolation.
+> > pw-bot: changes-requested
 > 
-> thanks for the sending Nexus 10 upstream, see few nitpicks below:
+> Understood, I was not familar with the new schema. I was trying to follow what
+> was seen in some other patches, now I see where I went wrong.  I will fix this
+> and use the schema validation tools to verify.
 > 
-> On 15/12/2025 16:05, Lukas Timmermann wrote:
->> From: Alexandre Marquet <tb@a-marquet.fr>
->>
->> Manta is the code name for Google Nexus 10, and was manufactured by
->> Samsung with their Exynos5250 SoC.
->> This patch adds initial device-tree file for this board.
->>
->> Signed-off-by: Alexandre Marquet <tb@a-marquet.fr>
->> Co-developed-by: Lukas Timmermann <linux@timmermann.space>
->> Signed-off-by: Lukas Timmermann <linux@timmermann.space>
->> ---
->>   arch/arm/boot/dts/samsung/Makefile             |   1 +
->>   arch/arm/boot/dts/samsung/exynos5250-manta.dts | 511 +++++++++++++++++++++++++
->>   2 files changed, 512 insertions(+)
->>
->> diff --git a/arch/arm/boot/dts/samsung/Makefile b/arch/arm/boot/dts/samsung/Makefile
->> index 7becf36656b1..e0143ee8c82d 100644
->> --- a/arch/arm/boot/dts/samsung/Makefile
->> +++ b/arch/arm/boot/dts/samsung/Makefile
->> @@ -26,6 +26,7 @@ dtb-$(CONFIG_ARCH_EXYNOS4) += \
->>   	exynos4412-trats2.dtb
->>   dtb-$(CONFIG_ARCH_EXYNOS5) += \
->>   	exynos5250-arndale.dtb \
->> +	exynos5250-manta.dtb \
->>   	exynos5250-smdk5250.dtb \
->>   	exynos5250-snow.dtb \
->>   	exynos5250-snow-rev5.dtb \
->> diff --git a/arch/arm/boot/dts/samsung/exynos5250-manta.dts b/arch/arm/boot/dts/samsung/exynos5250-manta.dts
->> new file mode 100644
->> index 000000000000..0f006590576c
->> --- /dev/null
->> +++ b/arch/arm/boot/dts/samsung/exynos5250-manta.dts
->> @@ -0,0 +1,511 @@
->> +// SPDX-License-Identifier: GPL-2.0
+> Thanks for pointing it out.
+
+I think the below is correct. But, would this be ok to put in one patch?
+
+I do:
+  - Convert compatible from simple enum to oneOf.
+  - Add items: for the openrisc,gpio compatiblity string.
+
+ properties:
+   compatible:
+-    enum:
+-      - brcm,bcm6345-gpio
+-      - ni,169445-nand-gpio
+-      - wd,mbl-gpio # Western Digital MyBook Live memory-mapped GPIO controller
+-      - intel,ixp4xx-expansion-bus-mmio-gpio
++    oneOf:
++      - const: brcm,bcm6345-gpio
++      - const: ni,169445-nand-gpio
++      - const: wd,mbl-gpio # Western Digital MyBook Live memory-mapped GPIO controller
++      - const: intel,ixp4xx-expansion-bus-mmio-gpio
++      - items:
++          - enum:
++              - opencores,gpio
++          - const: brcm,bcm6345-gpio
+
+Thanks,
+
+-Stafford
+
+> > >                 reg = <0x91000000 0x1>, <0x91000001 0x1>;
+> > >                 reg-names = "dat", "dirout";
+> > >                 gpio-controller;
+> > >                 #gpio-cells = <2>;
+> > >                 status = "okay";
+> > >         };
+> > > 
+> > > Link: https://opencores.org/projects/gpio
+> > > Signed-off-by: Stafford Horne <shorne@gmail.com>
+> > > ---
+> > >  Documentation/devicetree/bindings/gpio/gpio-mmio.yaml | 1 +
+> > >  1 file changed, 1 insertion(+)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/gpio/gpio-mmio.yaml b/Documentation/devicetree/bindings/gpio/gpio-mmio.yaml
+> > > index b4d55bf6a285..0490580df19e 100644
+> > > --- a/Documentation/devicetree/bindings/gpio/gpio-mmio.yaml
+> > > +++ b/Documentation/devicetree/bindings/gpio/gpio-mmio.yaml
+> > > @@ -23,6 +23,7 @@ properties:
+> > >        - ni,169445-nand-gpio
+> > >        - wd,mbl-gpio # Western Digital MyBook Live memory-mapped GPIO controller
+> > >        - intel,ixp4xx-expansion-bus-mmio-gpio
+> > > +      - opencores,gpio
+> > >  
+> > >    big-endian: true
+> > >  
+> > > -- 
+> > > 2.51.0
+> > > 
 > 
-> you could use here modern SPDX I guess (GPL-2.0-only)
 > 
->> +/*
->> + * Google Manta (Nexus 10) board device tree source
->> + *
->> + * Copyright (c) 2023-2025 Alexandre Marquet
->> + * Copyright (c) 2025 Lukas Timmermann
->> + */
->> +
->> +/dts-v1/;
->> +#include <dt-bindings/leds/common.h>
->> +#include <dt-bindings/gpio/gpio.h>
->> +#include <dt-bindings/clock/maxim,max77686.h>
->> +#include <dt-bindings/input/linux-event-codes.h>
->> +#include "exynos-pinctrl.h"
->> +#include "exynos5250.dtsi"
->> +#include "exynos-mfc-reserved-memory.dtsi"
->> +
->> +/ {
->> +	model = "Google Nexus 10";
->> +	compatible = "google,manta", "samsung,exynos5250", "samsung,exynos5";
->> +
->> +	aliases {
->> +		mmc0 = &mmc_0; /* eMMC */
->> +		mmc1 = &mmc_1; /* WiFi */
->> +	};
->> +
->> +	bmp180_vdda_reg: regulator-bmp180-vdda {
->> +		compatible = "regulator-fixed";
->> +		regulator-name = "BMP180_VDDA";
->> +	};
-> something-something-regulator (all occurences within the DTS)
-> 
-
-I don't understand this suggestion.
-
->> +
->> +	bmp180_vddd_reg: regulator-bmp180-vddd {
->> +		compatible = "regulator-fixed";
->> +		regulator-name = "BMP180_VDDD";
->> +	};
-
-
-
->> +};
->> +
->> +&clock {
->> +	assigned-clocks = <&clock CLK_FOUT_APLL>;
->> +	assigned-clock-rates = <1000000000>;
->> +};
->> +
->> +&cpu0 {
->> +	cpu0-supply = <&buck2_reg>;
->> +};
->> +
->> +&ehci {
->> +	status = "disabled";
->> +};
->> +
->> +&i2c_0 {
->> +	status = "okay";
-> 
-> status should be before first sub-node (none in this case), with 
-> preceding newline, please change all occurences
-> 
-
-Well yeah, but do you have actually any comment pointing real issues?
-
-
-Best regards,
-Krzysztof
 
