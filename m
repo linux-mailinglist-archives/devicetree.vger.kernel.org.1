@@ -1,297 +1,230 @@
-Return-Path: <devicetree+bounces-246679-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246680-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 868A1CBEE0A
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 17:24:35 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 208C3CBEE1F
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 17:26:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id F13B4302218D
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 16:17:34 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 0E79A3011B1A
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 16:26:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FD6630ACF2;
-	Mon, 15 Dec 2025 16:17:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F268D30FC04;
+	Mon, 15 Dec 2025 16:26:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ao6iCLcQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 900042C21CB
-	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 16:17:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C71952D0C9D;
+	Mon, 15 Dec 2025 16:26:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765815454; cv=none; b=rWVfV7UOmLQoe4qIAwARTb2dvS0stm8NED5+bEHl5aEYGdct4nDHli7FLb9544PmKmbGH9TiCsq2/9O5NZcCkZP0OrT1wWL7Iw2Pt69PJPtG9lr/MKkRw/OSuiEna0UfS4NOVPOa/Hr9wCBTz5NGFp0+DRpSg7Oz3eLH6P8r8Jc=
+	t=1765816015; cv=none; b=UEWeeXh2aabRSZ0HiKYuZxduA85SV6qNbDHqgXHLTNmB56ADWhVq0xqL4qLutz8cD95+F5QfXq6jFzkeTFdQU0F8qq6lwFg8Kp/2FZFJKlQ40mr1giHe1a7dQAPauzRDJDcI6N5uM8TFzxgv1h/7M86qDe9i90ZfTwgpGOyX/Qk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765815454; c=relaxed/simple;
-	bh=SzPagW9Fh2AVlDNi+2ZeC+yFhzNVSW9vQtgvP36s/e4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fd7bRss0uHKXj3SkiDrtb/OeOkckWcWol/4Ki7HO7N3K7kSChJeR697NJbX97G0MP2fnC9RtbG2qi/hNtuHUBuJ1KnTe4xFqCFHGyqqcVMkTyOP0IjYjNqlXTW3TeYNLQnnjxaj2QLJGhhm3ySWf1P6Kkv5hCjvCzI3ug4/2FrY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1vVBG0-0000Xh-53; Mon, 15 Dec 2025 17:17:08 +0100
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1vVBFz-005oIV-0T;
-	Mon, 15 Dec 2025 17:17:07 +0100
-Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1vVBFy-008z7u-30;
-	Mon, 15 Dec 2025 17:17:06 +0100
-Date: Mon, 15 Dec 2025 17:17:06 +0100
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: Liu Ying <victor.liu@nxp.com>, krzk+dt@kernel.org
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v7 1/3] dt-bindings: soc: imx93-media-blk-ctrl: Add PDFC
- subnode to schema and example
-Message-ID: <20251215161706.2ea3wtu3xlwcxxar@pengutronix.de>
-References: <20251202-v6-18-topic-imx93-parallel-display-v7-0-2cce31d64608@pengutronix.de>
- <20251202-v6-18-topic-imx93-parallel-display-v7-1-2cce31d64608@pengutronix.de>
- <705773fc-5aba-4bff-b05e-272e1cd0262c@nxp.com>
+	s=arc-20240116; t=1765816015; c=relaxed/simple;
+	bh=sWaD/Wi0Pr7c62NPFOlUEI21UtdcvelvEmFoM6yLvkg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ll7PSAetqbf/7gbzRcSAyQVE5Ow2eePpZWYPizGLg7cNwjq7kGNuqoJalB+WwA1ZQAQDzpj9dGrGUBmbBLu6np0D34vlIV4WIiKkJ+fyJNTlTObZELiD06y8mEJtF9CkZCxq4mDqUg45wJkGfuZNXMI2wITRt9snd/HDqq+wLzo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ao6iCLcQ; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 205081A21E8;
+	Mon, 15 Dec 2025 16:26:51 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id E532860664;
+	Mon, 15 Dec 2025 16:26:50 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 48200119427B8;
+	Mon, 15 Dec 2025 17:26:39 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1765816006; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding; bh=5rl3KxG+tLZi8rwlgg6ho0S2qSyMdOaglHTZavWHxDs=;
+	b=ao6iCLcQ7Zb0ESFcCTY1UYt3Kv1+M7klLNwtIfyY0W8OrT71Bbdys+YwDu4W2frMF5k932
+	z8We866C9i7DctDtd7SybrbpEWaaEQMAzej227vet0vT5PAM2p9A6DULmocJgSYZymcVLQ
+	rEbP95aFKH+3+M87yv/z3ayVxaUZhcEeb6Af325wuDAdxyf8lFsMG7T6HAgeJ/Wi8yOQbT
+	MF4NIJcIiJ7Mhw3JvQhQVwqjozIkKTue5KTGK/MXYtf1/e5hxQnk5DbfurSBhZVRZQApEt
+	JncPr43EaY1ANpUo3lcyyWvlpxnGJcha9v8WlUmGaWVps8DpDs8rlZEiExiBuQ==
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+Subject: [PATCH v5 0/7] Add generic PHY driver used by MACB/GEM on EyeQ5
+Date: Mon, 15 Dec 2025 17:26:34 +0100
+Message-Id: <20251215-macb-phy-v5-0-a9dfea39da34@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <705773fc-5aba-4bff-b05e-272e1cd0262c@nxp.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIALo2QGkC/23MQQ6CMBCF4auYrq1hBgrUlfcwLtoylSZCCRAiI
+ dzdwsYaWb7JfP/CBuodDex6WlhPkxucb8MQ5xMztWqfxF0VNsMEBSSIvFFG866eOYI2GUFltS5
+ YeO96su69p+6PsGs3jL6f9/IE2/UgMgFPuEVpsbSKCoSb9n58ufZifMO2zIRfCglEFAM1IEASW
+ cir9J+mEQUZ0TRQkqrQBGWu0gOaRRSziGaBSiFMjkKVoIpfuq7rB+TZXT5TAQAA
+X-Change-ID: 20251022-macb-phy-21bc4e1dfbb7
+To: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
+ =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
+ Neil Armstrong <neil.armstrong@linaro.org>
+Cc: linux-mips@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org, 
+ linux-clk@vger.kernel.org, 
+ =?utf-8?q?Beno=C3=AEt_Monin?= <benoit.monin@bootlin.com>, 
+ Tawfik Bayouk <tawfik.bayouk@mobileye.com>, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ Luca Ceresoli <luca.ceresoli@bootlin.com>, 
+ =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, 
+ Conor Dooley <conor.dooley@microchip.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>, Andrew Lunn <andrew@lunn.ch>
+X-Mailer: b4 0.14.3
+X-Last-TLS-Session-Version: TLSv1.3
 
-Hi Liu,
+EyeQ5 SoCs integrate two GEM instances. A system-controller register
+region named "OLB" has some control over the Ethernet PHY integration.
 
-On 25-12-08, Liu Ying wrote:
-> Hi Marco,
-> 
-> On 12/02/2025, Marco Felsch wrote:
-> > From: Liu Ying <victor.liu@nxp.com>
-> > 
-> > i.MX93 SoC mediamix blk-ctrl contains one DISPLAY_MUX register which
-> > configures parallel display format by using the "PARALLEL_DISP_FORMAT"
-> > field. Document the Parallel Display Format Configuration(PDFC) subnode
-> > and add the subnode to example.
-> > 
-> > Signed-off-by: Liu Ying <victor.liu@nxp.com>
-> > [m.felsch@pengutronix.de: port to v6.18-rc1]
-> > [m.felsch@pengutronix.de: add bus-width]
-> > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> > ---
-> >  .../bindings/soc/imx/fsl,imx93-media-blk-ctrl.yaml | 92 ++++++++++++++++++++++
-> >  1 file changed, 92 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctrl.yaml b/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctrl.yaml
-> > index 34aea58094e55365a2f9c86092f637e533f954ff..6e2d86d9341c75108b492bcbabc8a560d8e707cd 100644
-> > --- a/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctrl.yaml
-> > +++ b/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctrl.yaml
-> > @@ -26,6 +26,12 @@ properties:
-> >    reg:
-> >      maxItems: 1
-> >  
-> > +  '#address-cells':
-> > +    const: 1
-> > +
-> > +  '#size-cells':
-> > +    const: 1
-> > +
-> >    '#power-domain-cells':
-> >      const: 1
-> >  
-> > @@ -40,6 +46,60 @@ properties:
-> >      minItems: 8
-> >      maxItems: 10
-> >  
-> > +  bridge@60:
-> 
-> The dependency patch series mentioned in cover letter has two links in it's
-> cover letter.  Reading the patch sets pointed by the two links, we may find
-> Krzysztof's comments - the child nodes of the blk-ctrl should be completely
-> documented.
+Past iterations [0] touched those syscon registers directly from MACB.
+It was a bad idea. Extend the current OLB ecosystem with a new generic
+PHY driver.
+ - OLB is carried by one main platform driver: clk-eyeq.
+ - It instantiates auxiliary devices: reset-eyeq & pinctrl-eyeq5.
+ - We add a new one: phy-eyeq5-eth.
 
-Thanks for pointing this out.
+I always find devicetree the simplest way to understand device
+interactions, so here is a DT overview:
 
-@Krzysztof
-Requesting to add everything seems not feasible if everything added
-should be tested too.
-I don't see why everything should be added in one step, since the base
-.dtsi isn't added in one step too.
-The different devices (parallel-out bridge, DSI bridge, LVDS bridge,
-CSI) logically don't belong together, ableit all device use the same
-syscon as parent.
+    olb: system-controller@e00000 {
+            compatible = "mobileye,eyeq5-olb", "syscon";
+            reg = <0 0xe00000 0x0 0x400>;
+            // ...
+            #reset-cells = <2>;
+            #clock-cells = <1>;
+            #phy-cells = <1>; // <- this is new
+    };
 
-Regards,
-  Marco
+    macb0: ethernet@2a00000 {
+            compatible = "mobileye,eyeq5-gem";
+            phys = <&olb 0>; // <- GEM device consumes the PHY
+            // ...
+    };
 
-> > +    type: object
-> > +    additionalProperties: false
-> > +
-> > +    properties:
-> > +      compatible:
-> > +        const: nxp,imx93-pdfc
-> > +
-> > +      reg:
-> > +        maxItems: 1
-> > +
-> > +      ports:
-> > +        $ref: /schemas/graph.yaml#/properties/ports
-> > +
-> > +        properties:
-> > +          port@0:
-> > +            $ref: /schemas/graph.yaml#/properties/port
-> > +            description: Input port node to receive pixel data.
-> > +
-> > +          port@1:
-> > +            $ref: /schemas/graph.yaml#/$defs/port-base
-> > +            unevaluatedProperties: false
-> > +            description: Output port node to downstream pixel data receivers.
-> > +
-> > +            properties:
-> > +              endpoint:
-> > +                $ref: /schemas/graph.yaml#/$defs/endpoint-base
-> > +                unevaluatedProperties: false
-> > +
-> > +                properties:
-> > +                  bus-width:
-> 
-> In v1-v5, I thought the output bus format can be determined by the sink
-> device(a panel or a bridge) hence properties like bus-width were not needed.
-> But, if this property is really needed, then reference video-interfaces.yaml
-> since bus-width is documented there.  Should we reference bus-type defined
-> in video-interfaces.yaml too?
-> 
-> > +                    enum: [ 16, 18, 24 ]
-> 
-> The PARALLEL_DISP_FORMAT field of DISPLAY_MUX register says this IP supports
-> below formats.  It seems that the enum here may tell RGB888, RGB666 and RGB565.
-> How can we tell RGB555, YCbCr 24 bits and YUV444 then?
-> 
-> 000b RGB888 -> RGB888
-> 001b RGB888 -> RGB666
-> 010b RGB565 -> RGB565
-> 011b RGB555 -> RGB555
-> 100b YUV -> YCbCr 24 bits
-> 101b YUV -> YUV444
-> 
-> > +                    description:
-> > +                      Specify the physical parallel bus width.
-> > +
-> > +                      This property is optional if the display bus-width
-> > +                      matches the SoC bus-width, e.g. a 18-bit RGB666 (display)
-> > +                      is connected and all 18-bit data lanes are muxed to the
-> 
-> Per video-interfaces.yaml, s/data lanes/data lines/.  "data lanes" is a
-> value for MIPI DSI/CSI, afaik.
-> 
-> > +                      parallel-output pads.
-> 
-> How about just saying that this property is optional and by default it's 24?
-> 
-> > +
-> > +                      This property must be set to 18 to cut only the LSBs
-> > +                      instead of the MSBs in case a 24-bit RGB888 display is
-> > +                      connected and only the lower 18-bit data lanes are muxed
-> > +                      to the parallel-output pads.
-> 
-> The __lower__ 18-bit?  Isn't it the __MSB__ 6bit in each color component?
-> 
-> > +
-> > +        required:
-> > +          - port@0
-> > +          - port@1
-> > +
-> > +    required:
-> > +      - compatible
-> > +      - reg
-> > +      - ports
-> > +
-> >  allOf:
-> >    - if:
-> >        properties:
-> > @@ -81,9 +141,12 @@ allOf:
-> >              - const: isi
-> >              - const: csi
-> >              - const: dsi
-> > +
-> >  required:
-> >    - compatible
-> >    - reg
-> > +  - '#address-cells'
-> > +  - '#size-cells'
-> >    - power-domains
-> >    - clocks
-> >    - clock-names
-> > @@ -112,4 +175,33 @@ examples:
-> >                 clock-names = "apb", "axi", "nic", "disp", "cam",
-> >                               "pxp", "lcdif", "isi", "csi", "dsi";
-> >        #power-domain-cells = <1>;
-> > +      #address-cells = <1>;
-> > +      #size-cells = <1>;
-> > +
-> > +      bridge@60 {
-> > +        compatible = "nxp,imx93-pdfc";
-> > +        reg = <0x60 0x4>;
-> > +
-> > +        ports {
-> > +          #address-cells = <1>;
-> > +          #size-cells = <0>;
-> > +
-> > +          port@0 {
-> > +            reg = <0>;
-> > +
-> > +            pdfc_from_lcdif: endpoint {
-> > +              remote-endpoint = <&lcdif_to_pdfc>;
-> > +            };
-> > +          };
-> > +
-> > +          port@1 {
-> > +            reg = <1>;
-> > +
-> > +            pdfc_to_panel: endpoint {
-> > +              remote-endpoint = <&panel_from_pdfc>;
-> > +              bus-width = <18>;
-> > +            };
-> > +          };
-> > +        };
-> > +      };
-> >      };
-> > 
-> 
-> 
-> -- 
-> Regards,
-> Liu Ying
-> 
+    macb1: ethernet@2b00000 {
+            compatible = "mobileye,eyeq5-gem";
+            phys = <&olb 1>; // <- same thing for the second instance
+            // ...
+    };
 
+The Linux MACB driver already consumes a generic PHY for some other
+compatibles, this is nothing new. The MACB series [1] has been merged
+in v6.19-rc1.
+
+--
+
+About merging, Philipp Zabel gave his ACK for [5/7] to go into
+linux-clk. The split is:
+
+ - [PATCH 1/7] dt-bindings: soc: mobileye: OLB is an Ethernet PHY provider on EyeQ5
+   [PATCH 6/7] MIPS: mobileye: eyeq5: add two Cadence GEM Ethernet controllers
+   [PATCH 7/7] MIPS: mobileye: eyeq5-epm: add two Cadence GEM Ethernet PHYs
+   => linux-mips
+
+ - [PATCH 2/7] phy: Add driver for EyeQ5 Ethernet PHY wrapper
+   => linux-phy
+
+ - [PATCH 3/7] clk: eyeq: use the auxiliary device creation helper
+   [PATCH 4/7] clk: eyeq: add EyeQ5 children auxiliary device for generic PHYs
+   [PATCH 5/7] reset: eyeq: drop device_set_of_node_from_dev() done by parent
+   => linux-clk
+
+Have a nice day,
+Thanks!
+Théo
+
+[0]: https://lore.kernel.org/lkml/20250627-macb-v2-15-ff8207d0bb77@bootlin.com/
+[1]: https://lore.kernel.org/lkml/20251022-macb-eyeq5-v2-0-7c140abb0581@bootlin.com/
+
+Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
+---
+Changes in v5:
+- phy-eyeq5-eth:
+  - fix #includes: add delay, gfp_types, module and drop array_size,
+    bug, cleanup, container_of, lockdep, mutex.
+  - eq5_phy_xlate(): avoid magic value, use EQ5_PHY_COUNT.
+  - use dev_err_probe() in error cases of devm_phy_create() and
+    devm_of_phy_provider_register().
+- 3x Reviewed-by: Luca Ceresoli.
+- Add Neil Armstrong to Cc as new PHY subsystem reviewer.
+- Rebase on v6.19-rc1, tested on hardware, no changes.
+- Link to v4: https://lore.kernel.org/r/20251124-macb-phy-v4-0-955c625a81a7@bootlin.com
+
+Changes in v4:
+- Append my SoB to Jerome's patch:
+  [PATCH v4 3/7] clk: eyeq: use the auxiliary device creation helper
+- Rebase on net-next & linux-{clk,mips,phy}. Nothing to report.
+- Link to v3: https://lore.kernel.org/r/20251119-macb-phy-v3-0-e9a7be186a33@bootlin.com
+
+Changes in v3:
+- Take Philipp Zabel's Reviewed-by & Acked-by trailers on reset patch.
+- Take Thomas Bogendoerfer's two Acked-by trailers on DT patches.
+- Rebase on net-next & test on target. Nothing to report.
+- Link to v2: https://lore.kernel.org/r/20251101-macb-phy-v2-0-c1519eef16d3@bootlin.com
+
+Changes in v2:
+- Take Acked-by: Conor Dooley on dt-bindings-patch.
+- s/%ld/%tu/ for printing ptrdiff_t; warnings on 32-bit archs.
+  Reported by NIPA's netdev/build_32bit test.
+  https://patchwork.kernel.org/project/netdevbpf/patch/20251021-macb-eyeq5-v1-7-3b0b5a9d2f85@bootlin.com/
+  https://netdev.bots.linux.dev/static/nipa/1014126/14277857/build_32bit/stderr
+- Link to v1: https://lore.kernel.org/r/20251022-macb-phy-v1-0-f29f28fae721@bootlin.com
+
+Changes since MACB V1:
+- Drop the old "mobileye,olb" properties from DT patches; found while
+  running dtbs_check and dt_binding_check.
+- Drop all patches targeting net-next. That is MACB dt-bindings patch
+  and MACB driver code. See there here [1].
+- Link to v1: https://lore.kernel.org/lkml/20251021-macb-eyeq5-v1-0-3b0b5a9d2f85@bootlin.com/
+
+Past versions of MACB patches:
+ - March 2025: [PATCH net-next 00/13] Support the Cadence MACB/GEM
+   instances on Mobileye EyeQ5 SoCs
+   https://lore.kernel.org/lkml/20250321-macb-v1-0-537b7e37971d@bootlin.com/
+ - June 2025: [PATCH net-next v2 00/18] Support the Cadence MACB/GEM
+   instances on Mobileye EyeQ5 SoCs
+   https://lore.kernel.org/lkml/20250627-macb-v2-0-ff8207d0bb77@bootlin.com/
+ - August 2025: [PATCH net v3 00/16] net: macb: various fixes & cleanup
+   https://lore.kernel.org/lkml/20250808-macb-fixes-v3-0-08f1fcb5179f@bootlin.com/
+
+---
+Jerome Brunet (1):
+      clk: eyeq: use the auxiliary device creation helper
+
+Théo Lebrun (6):
+      dt-bindings: soc: mobileye: OLB is an Ethernet PHY provider on EyeQ5
+      phy: Add driver for EyeQ5 Ethernet PHY wrapper
+      clk: eyeq: add EyeQ5 children auxiliary device for generic PHYs
+      reset: eyeq: drop device_set_of_node_from_dev() done by parent
+      MIPS: mobileye: eyeq5: add two Cadence GEM Ethernet controllers
+      MIPS: mobileye: eyeq5-epm: add two Cadence GEM Ethernet PHYs
+
+ .../bindings/soc/mobileye/mobileye,eyeq5-olb.yaml  |   7 +-
+ MAINTAINERS                                        |   1 +
+ arch/mips/boot/dts/mobileye/eyeq5-epm5.dts         |  26 +++
+ arch/mips/boot/dts/mobileye/eyeq5.dtsi             |  45 ++++
+ drivers/clk/clk-eyeq.c                             |  60 ++---
+ drivers/phy/Kconfig                                |  13 ++
+ drivers/phy/Makefile                               |   1 +
+ drivers/phy/phy-eyeq5-eth.c                        | 249 +++++++++++++++++++++
+ drivers/reset/reset-eyeq.c                         |  24 +-
+ 9 files changed, 358 insertions(+), 68 deletions(-)
+---
+base-commit: 8f0b4cce4481fb22653697cced8d0d04027cb1e8
+change-id: 20251022-macb-phy-21bc4e1dfbb7
+
+Best regards,
 -- 
-#gernperDu 
-#CallMeByMyFirstName
+Théo Lebrun <theo.lebrun@bootlin.com>
 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | https://www.pengutronix.de/ |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-9    |
 
