@@ -1,62 +1,79 @@
-Return-Path: <devicetree+bounces-246382-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246387-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 854B5CBC5C8
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 04:50:07 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id B307CCBC618
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 04:51:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 37DD13002680
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 03:50:06 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 00E78301FF52
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 03:50:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D57D2DBF76;
-	Mon, 15 Dec 2025 03:50:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2229231B83D;
+	Mon, 15 Dec 2025 03:50:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="R2YxZMIW"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="be1LxQPL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6859D2D1303
-	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 03:50:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52E932DBF76;
+	Mon, 15 Dec 2025 03:50:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765770605; cv=none; b=rvYBB26bobq+8ZCAuCw47/20UvYzeKhTwQCEEKqJA+J+5anbEF2Y+cG4NksQxRrdcEeOBkzb2M6doFnUQZ+qas8oCFLsNwUEiYzk2HqgSCws1xueVwa2TARUq+iieBOwaznNVagP1GTTFc/Uj+qddbgpfs6Eq9t1JEObjDnKO24=
+	t=1765770610; cv=none; b=TcyI/hwd9qC/skEBL9yyKOCq7s5xR935tunWpdGdRw7tWgPPxZykuAD8HOpRzUbgEfwwGQy+rL8yBcIjDe3HtNaFG4gtarR+f8LvW7MZq4JqZhx3y1Lz0rrKzZ5jCzu1Z3khC7IuVy2+2vnI1iJSVniisyn6Nt9ScupeoS2WMMU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765770605; c=relaxed/simple;
-	bh=VJE3I2Xk+qKCxSRwgm0lK8W4DsoLUu1HydnnnFe502s=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=fjm8VAN8b6AqTdZvkYpl9oQWzzjMxnuX2El525YD69/uEJu5mgUmDXvNp68A5sU4ceeEeH5c7N/R5KIYrYfpWNB8PVR+PORAXkvqH8J7wFkXZu6WNOkcIYwN22TEqOXHzyMMfeol5gni3dYFYt08nXB1y4JdoKkM5LPh/x22WkQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=R2YxZMIW; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=from:to:cc:subject:date:message-id
-	:in-reply-to:references:mime-version:content-transfer-encoding;
-	 s=k1; bh=9D4UmkpUbWsbGBW/E/iIIqxeFM2OTeNpEaYs4nESBhg=; b=R2YxZM
-	IWzxUwUnrvxk2oH3LVlN79A4Q16Dka/MjGeHyOEyfVKX0prLspo2/DUdTp1fC+5c
-	FVUYG9rnFKBttY+R996vQe0wtrd6PDFYxfOKCAaVCOY0ZNB3ieqaJ0jcrlWU5DzV
-	fu1e4QTFVkVcSlUYc82ksHq/2ycdo+bCV64sF4AbXJipnScZ3n1oxrP59fMGCDI7
-	Y8oOuCB1gyJRhTHBygkP3q7Bd+jlQ8LshN25Y1+fFQNCvlOR/nEQsbZ9Xlb8CD4d
-	Kstu0DW3Dalf8s6/FEcsAZvizZmgFeofX0nu6YyUGVVQpszOQoaCyMoq9fviFaFg
-	0Fw5oS//WbLrYAzw==
-Received: (qmail 822558 invoked from network); 15 Dec 2025 04:49:57 +0100
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 15 Dec 2025 04:49:57 +0100
-X-UD-Smtp-Session: l3s3148p1@8pOngPVFiJfN3IHs
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: linux-renesas-soc@vger.kernel.org
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org
-Subject: [PATCH 6/6] arm64: dts: renesas: r8a779h0: Add WWDT nodes
-Date: Mon, 15 Dec 2025 12:47:20 +0900
-Message-ID: <20251215034715.3406-14-wsa+renesas@sang-engineering.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20251215034715.3406-8-wsa+renesas@sang-engineering.com>
-References: <20251215034715.3406-8-wsa+renesas@sang-engineering.com>
+	s=arc-20240116; t=1765770610; c=relaxed/simple;
+	bh=nLli6r+BLSyXaVoyr9+pqYbOzsTpUEnpJ5mU8tZecOg=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=sKreMrhTef5cCatm4ZTpNIzROi8qdKF30C+AyWz3IcCiGYRitGUThJPPJ9NMcqNTFpoMyIbZ7hEXuPEeN9Jy5se2KZOV74uD7D4vT3X5BB4ItWza0KBed4ZaXYJdMa2/WHMhAblqWQZL+BzpGO/DbBOmAhrPD3nLyojyRokdz4k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=be1LxQPL; arc=none smtp.client-ip=60.244.123.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 1cb52f38d96911f0b2bf0b349165d6e0-20251215
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=IIh5JOQFkFZinjDskp0Z+lFWW/2TCih0jqb8pD5/rCc=;
+	b=be1LxQPLHohDJQk1OgGl8l6H02zijTyZn2FJHB7N/fdPO4gSWzXYsBHhZgh7uTGqVjFdA4bBF3a9GaUgjZiyfVNCBOAnVg5oaKJrXEa1269wZ4NkXcyqOFGvnuiU4FDb218/ALyKcNr/reo5wYsXw839xPNfsDNGdTAoIFEeUcM=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.6,REQID:1da73031-b37b-43f1-915b-8bd73b0bdcaa,IP:0,UR
+	L:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
+	elease,TS:0
+X-CID-META: VersionHash:a9d874c,CLOUDID:3cd0c402-1fa9-44eb-b231-4afc61466396,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102|836|888|898,TC:-5,Content:0|15|5
+	0,EDM:-3,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OS
+	A:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: 1cb52f38d96911f0b2bf0b349165d6e0-20251215
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
+	(envelope-from <irving-ch.lin@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1488152436; Mon, 15 Dec 2025 11:49:52 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ MTKMBS14N1.mediatek.inc (172.21.101.75) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.26; Mon, 15 Dec 2025 11:49:50 +0800
+Received: from mtksitap99.mediatek.inc (10.233.130.16) by
+ mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.2562.29 via Frontend Transport; Mon, 15 Dec 2025 11:49:50 +0800
+From: irving.ch.lin <irving-ch.lin@mediatek.com>
+To: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+	<sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+	<matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Ulf Hansson
+	<ulf.hansson@linaro.org>, Richard Cochran <richardcochran@gmail.com>
+CC: Qiqi Wang <qiqi.wang@mediatek.com>, <linux-clk@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
+	<linux-pm@vger.kernel.org>, <netdev@vger.kernel.org>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>,
+	<sirius.wang@mediatek.com>, <vince-wl.liu@mediatek.com>,
+	<jh.hsu@mediatek.com>, <irving-ch.lin@mediatek.com>
+Subject: [PATCH v4 00/21] Add support for MT8189 clock/power controller
+Date: Mon, 15 Dec 2025 11:49:09 +0800
+Message-ID: <20251215034944.2973003-1-irving-ch.lin@mediatek.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,136 +81,115 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
----
- arch/arm64/boot/dts/renesas/r8a779h0.dtsi | 112 ++++++++++++++++++++++
- 1 file changed, 112 insertions(+)
+From: Irving-CH Lin <irving-ch.lin@mediatek.com>
 
-diff --git a/arch/arm64/boot/dts/renesas/r8a779h0.dtsi b/arch/arm64/boot/dts/renesas/r8a779h0.dtsi
-index 4dc0e5304f72..74bc4c4854ec 100644
---- a/arch/arm64/boot/dts/renesas/r8a779h0.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a779h0.dtsi
-@@ -2183,6 +2183,118 @@ port@1 {
- 			};
- 		};
- 
-+		wwdt0: watchdog@ffc90000 {
-+			compatible = "renesas,r8a779h0-wwdt",
-+				     "renesas,rcar-gen4-wwdt";
-+			reg = <0 0xffc90000 0 0x10>;
-+			interrupts = <GIC_SPI 310 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 311 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "pretimeout", "error";
-+			clocks = <&cpg CPG_CORE R8A779H0_CLK_R>,
-+				 <&cpg CPG_CORE R8A779H0_CLK_SASYNCRT>;
-+			clock-names = "cnt", "bus";
-+			power-domains = <&sysc R8A779H0_PD_ALWAYS_ON>;
-+			resets = <&cpg 1200>;
-+			reset-names = "cnt";
-+			status = "disabled";
-+		};
-+
-+		wwdt1: watchdog@ffca0000 {
-+			compatible = "renesas,r8a779h0-wwdt",
-+				     "renesas,rcar-gen4-wwdt";
-+			reg = <0 0xffca0000 0 0x10>;
-+			interrupts = <GIC_SPI 312 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 313 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "pretimeout", "error";
-+			clocks = <&cpg CPG_CORE R8A779H0_CLK_R>,
-+				 <&cpg CPG_CORE R8A779H0_CLK_SASYNCRT>;
-+			clock-names = "cnt", "bus";
-+			power-domains = <&sysc R8A779H0_PD_ALWAYS_ON>;
-+			resets = <&cpg 1201>;
-+			reset-names = "cnt";
-+			status = "disabled";
-+		};
-+
-+		wwdt2: watchdog@ffcb0000 {
-+			compatible = "renesas,r8a779h0-wwdt",
-+				     "renesas,rcar-gen4-wwdt";
-+			reg = <0 0xffcb0000 0 0x10>;
-+			interrupts = <GIC_SPI 314 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 315 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "pretimeout", "error";
-+			clocks = <&cpg CPG_CORE R8A779H0_CLK_R>,
-+				 <&cpg CPG_CORE R8A779H0_CLK_SASYNCRT>;
-+			clock-names = "cnt", "bus";
-+			power-domains = <&sysc R8A779H0_PD_ALWAYS_ON>;
-+			resets = <&cpg 1202>;
-+			reset-names = "cnt";
-+			status = "disabled";
-+		};
-+
-+		wwdt3: watchdog@ffcc0000 {
-+			compatible = "renesas,r8a779h0-wwdt",
-+				     "renesas,rcar-gen4-wwdt";
-+			reg = <0 0xffcc0000 0 0x10>;
-+			interrupts = <GIC_SPI 316 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 317 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "pretimeout", "error";
-+			clocks = <&cpg CPG_CORE R8A779H0_CLK_R>,
-+				 <&cpg CPG_CORE R8A779H0_CLK_SASYNCRT>;
-+			clock-names = "cnt", "bus";
-+			power-domains = <&sysc R8A779H0_PD_ALWAYS_ON>;
-+			resets = <&cpg 1203>;
-+			reset-names = "cnt";
-+			status = "disabled";
-+		};
-+
-+		wwdt4: watchdog@ffcf0000 {
-+			compatible = "renesas,r8a779h0-wwdt",
-+				     "renesas,rcar-gen4-wwdt";
-+			reg = <0 0xffcf0000 0 0x10>;
-+			interrupts = <GIC_SPI 318 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 319 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "pretimeout", "error";
-+			clocks = <&cpg CPG_CORE R8A779H0_CLK_R>,
-+				 <&cpg CPG_CORE R8A779H0_CLK_SASYNCRT>;
-+			clock-names = "cnt", "bus";
-+			power-domains = <&sysc R8A779H0_PD_ALWAYS_ON>;
-+			resets = <&cpg 1204>;
-+			reset-names = "cnt";
-+			status = "disabled";
-+		};
-+
-+		wwdt5: watchdog@ffef0000 {
-+			compatible = "renesas,r8a779h0-wwdt",
-+				     "renesas,rcar-gen4-wwdt";
-+			reg = <0 0xffef0000 0 0x10>;
-+			interrupts = <GIC_SPI 320 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 321 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "pretimeout", "error";
-+			clocks = <&cpg CPG_CORE R8A779H0_CLK_R>,
-+				 <&cpg CPG_CORE R8A779H0_CLK_SASYNCRT>;
-+			clock-names = "cnt", "bus";
-+			power-domains = <&sysc R8A779H0_PD_ALWAYS_ON>;
-+			resets = <&cpg 1205>;
-+			reset-names = "cnt";
-+			status = "disabled";
-+		};
-+
-+		wwdt6: watchdog@fff10000 {
-+			compatible = "renesas,r8a779h0-wwdt",
-+				     "renesas,rcar-gen4-wwdt";
-+			reg = <0 0xfff10000 0 0x10>;
-+			interrupts = <GIC_SPI 322 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 323 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "pretimeout", "error";
-+			clocks = <&cpg CPG_CORE R8A779H0_CLK_R>,
-+				 <&cpg CPG_CORE R8A779H0_CLK_SASYNCRT>;
-+			clock-names = "cnt", "bus";
-+			power-domains = <&sysc R8A779H0_PD_ALWAYS_ON>;
-+			resets = <&cpg 1206>;
-+			reset-names = "cnt";
-+			status = "disabled";
-+		};
-+
- 		prr: chipid@fff00044 {
- 			compatible = "renesas,prr";
- 			reg = <0 0xfff00044 0 4>;
+Changes since v4:
+- Fix dt_binding_check warning.
+- Check prepare_enable before set_parent to ensure our reference clock is ready.
+- Enable fhctl in apmixed driver.
+- Refine clock drivers: 
+  - Change subsys name, regs base/size (clock related part, instead of whole subsys).
+  - Simply code with GATE_MTK macro.
+  - Add MODULE_DEVICE_TABLE, MODULE_DESCRIPTION
+  - Register remove callback mtk_clk_simple_remove.
+  - Remove most of CLK_OPS_PARENT_ENABLE and CLK_IGNORE_UNUSED which may block bringup,
+      but some subsys will power off before we disable unused clocks, so still need here.  
+
+changes since v3:
+- Add power-controller dt-schema to mediatek,power-controller.yaml.
+- Separates clock commit to small parts (by sub-system).
+- Change to mtk-pm-domains for new MTK pm framework.
+
+changes since v2:
+- Fix dt-schema checking fails
+- Merge dt-binding files and dt-schema files into one patch.
+- Add vendor information to dt-binding file name.
+- Remove NR define in dt-binding header.
+- Add struct member description.
+
+  This series add support for the clock and power controllers
+of MediaTek's new SoC, MT8189. With these changes,
+other modules can easily manage clock and power resources
+using standard Linux APIs, such as the Common Clock Framework (CCF)
+and pm_runtime on MT8189 platform.
+
+Irving-CH Lin (21):
+  dt-bindings: clock: mediatek: Add MT8189 clock definitions
+  dt-bindings: power: mediatek: Add MT8189 power domain definitions
+  clk: mediatek: clk-mux: Make sure bypass clk enabled while setting MFG
+    rate
+  clk: mediatek: Add MT8189 apmixedsys clock support
+  clk: mediatek: Add MT8189 topckgen clock support
+  clk: mediatek: Add MT8189 vlpckgen clock support
+  clk: mediatek: Add MT8189 vlpcfg clock support
+  clk: mediatek: Add MT8189 bus clock support
+  clk: mediatek: Add MT8189 cam clock support
+  clk: mediatek: Add MT8189 dbgao clock support
+  clk: mediatek: Add MT8189 dvfsrc clock support
+  clk: mediatek: Add MT8189 i2c clock support
+  clk: mediatek: Add MT8189 img clock support
+  clk: mediatek: Add MT8189 mdp clock support
+  clk: mediatek: Add MT8189 mfg clock support
+  clk: mediatek: Add MT8189 dispsys clock support
+  clk: mediatek: Add MT8189 scp clock support
+  clk: mediatek: Add MT8189 ufs clock support
+  clk: mediatek: Add MT8189 vcodec clock support
+  pmdomain: mediatek: Add bus protect control flow for MT8189
+  pmdomain: mediatek: Add power domain driver for MT8189 SoC
+
+ .../bindings/clock/mediatek,mt8189-clock.yaml |   90 ++
+ .../clock/mediatek,mt8189-sys-clock.yaml      |   58 +
+ .../power/mediatek,power-controller.yaml      |    1 +
+ drivers/clk/mediatek/Kconfig                  |  146 +++
+ drivers/clk/mediatek/Makefile                 |   14 +
+ drivers/clk/mediatek/clk-mt8189-apmixedsys.c  |  192 ++++
+ drivers/clk/mediatek/clk-mt8189-bus.c         |  196 ++++
+ drivers/clk/mediatek/clk-mt8189-cam.c         |  108 ++
+ drivers/clk/mediatek/clk-mt8189-dbgao.c       |   94 ++
+ drivers/clk/mediatek/clk-mt8189-dispsys.c     |  172 +++
+ drivers/clk/mediatek/clk-mt8189-dvfsrc.c      |   54 +
+ drivers/clk/mediatek/clk-mt8189-iic.c         |  118 ++
+ drivers/clk/mediatek/clk-mt8189-img.c         |  107 ++
+ drivers/clk/mediatek/clk-mt8189-mdpsys.c      |   91 ++
+ drivers/clk/mediatek/clk-mt8189-mfg.c         |   53 +
+ drivers/clk/mediatek/clk-mt8189-scp.c         |   73 ++
+ drivers/clk/mediatek/clk-mt8189-topckgen.c    | 1020 +++++++++++++++++
+ drivers/clk/mediatek/clk-mt8189-ufs.c         |   89 ++
+ drivers/clk/mediatek/clk-mt8189-vcodec.c      |   93 ++
+ drivers/clk/mediatek/clk-mt8189-vlpcfg.c      |  111 ++
+ drivers/clk/mediatek/clk-mt8189-vlpckgen.c    |  280 +++++
+ drivers/clk/mediatek/clk-mux.c                |    9 +-
+ drivers/pmdomain/mediatek/mt8189-pm-domains.h |  485 ++++++++
+ drivers/pmdomain/mediatek/mtk-pm-domains.c    |   36 +-
+ drivers/pmdomain/mediatek/mtk-pm-domains.h    |    5 +
+ .../dt-bindings/clock/mediatek,mt8189-clk.h   |  580 ++++++++++
+ .../dt-bindings/power/mediatek,mt8189-power.h |   38 +
+ 27 files changed, 4306 insertions(+), 7 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt8189-clock.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt8189-sys-clock.yaml
+ create mode 100644 drivers/clk/mediatek/clk-mt8189-apmixedsys.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8189-bus.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8189-cam.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8189-dbgao.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8189-dispsys.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8189-dvfsrc.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8189-iic.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8189-img.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8189-mdpsys.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8189-mfg.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8189-scp.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8189-topckgen.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8189-ufs.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8189-vcodec.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8189-vlpcfg.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8189-vlpckgen.c
+ create mode 100644 drivers/pmdomain/mediatek/mt8189-pm-domains.h
+ create mode 100644 include/dt-bindings/clock/mediatek,mt8189-clk.h
+ create mode 100644 include/dt-bindings/power/mediatek,mt8189-power.h
+
 -- 
-2.47.3
+2.45.2
 
 
