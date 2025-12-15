@@ -1,135 +1,259 @@
-Return-Path: <devicetree+bounces-246594-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246595-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19110CBDFF8
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 14:19:57 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 144E8CBE01F
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 14:20:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 8B688301A6D9
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 13:19:56 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 1C1F030120D9
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 13:20:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E27AF2F4A19;
-	Mon, 15 Dec 2025 13:19:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C50EB314D0D;
+	Mon, 15 Dec 2025 13:20:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Hb9tVV5p"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="r3yt0s1Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out-173.mta1.migadu.com (out-173.mta1.migadu.com [95.215.58.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE00A2E11D2
-	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 13:19:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9DB2314A90
+	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 13:20:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765804794; cv=none; b=Qvgj67F3M8xuLI394kdyHYCi6TV/OWnRDyPoONQVKQGryaX/P/+BWzvVLc2W5prZbPEclU0pcD4nQjEB3r7EK9txYbVpcpMg+qdkDSp0pn89SgzreyrjPjV6X4mLTv22bkqrYWN//pzlcYqz9YnBx4MLsHk74g1Cf43hRvAAS9o=
+	t=1765804804; cv=none; b=u5JaUJOXMl3BMtDxRYxQhcoSfnp3G7MmrO5inpK8lruROynuaVDVcoZkFmHQGPGSigQ+Gjcb+KA011ZUiHNvIZh8WE8cxekH2uW5kjoiJ3xG7EWKAepRgcn0ezbWjFbSo051CeFZG/ZTduGVDoWl/dLKqUgyV7gus2fwJsvhaQQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765804794; c=relaxed/simple;
-	bh=hfkZKQ6kZ2ALUO3EknwHIRe/aZmDZKnZ6J+bcZnhcKg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=S7Z6UctyCqTlng4YAE7wV0IbP7uBJiZ1HNpr7c7YtXz4KFppp3yXTu2q89OYQkK6N1YAr8coPNxqMCromEL5XkRiFFz7Ujypw5b4DR0XQbM/rAAJJZWYFUVnSoYOMc2vP1v5vSEfi/r+A47+dlWgtLnGEYu1xQVU9yn14c+8OaU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Hb9tVV5p; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44B2CC2BC87
-	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 13:19:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765804794;
-	bh=hfkZKQ6kZ2ALUO3EknwHIRe/aZmDZKnZ6J+bcZnhcKg=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=Hb9tVV5pS2WD0fwqXbl2W6+Ngcy7NOS7lrVcZ2hJH2Udne0Q+Jeh7cFCKdBqvdHVZ
-	 b+DSXt7kJuQzgi3T2sD3CrV6x5uRxJg4loWnb76m5WqfC+C47xCivGbSrW8bvqAW7R
-	 KsuEoefteQmZ9xPPuiBy70+Ay9VuUk3cvreKJ/+mAk2Ws7Ija8KOmW35uhYq+jWQ7/
-	 /Ab4b96d1RCH6PTLPoIrlQn/2yeOuaRYORTYPA7s2p0p1ilbcEGAinH8hV08h2Imc8
-	 RR9P0w1ajpw6xUivrS5lvV8MDe9Y0YiMSPalphPMr+iFZJuNFfOeINETLa5hH7u+wf
-	 veKXXf+BbG2MQ==
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-b73a9592fb8so743176466b.1
-        for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 05:19:54 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXHV9stkqgk12NdD5K5s4vy7/oQysn1qOoM+N2QAMSY5B1lL94GhvIzP5AVkDv46wDiM3C6er56LrIQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxQdWiqowxLYg1h6knBSfkGeWqvtaZBV5Mrh2/FJPZ4xA6ZLtFI
-	DQj9Yn9GqHHHkrBu56M0WjLEqHstyvcJEsVfU7CA5B0ffIKVQsVgQWevFDwR1uClHRFDurl2v68
-	ruE1d5lkW+R1cxJmlQcMc56F4KBuhhQ==
-X-Google-Smtp-Source: AGHT+IEaZQIxv7Nl2cgSuGF+MuRz1tulODHXJWPXvk9aG3zDlBRYLjWOqhmBRmgFkMwWOyy+FjF6ofGRGpyNQ/ZT4I0=
-X-Received: by 2002:a17:907:3da1:b0:b6d:5dbb:a1e1 with SMTP id
- a640c23a62f3a-b7d2166d01bmr1197208266b.5.1765804792671; Mon, 15 Dec 2025
- 05:19:52 -0800 (PST)
+	s=arc-20240116; t=1765804804; c=relaxed/simple;
+	bh=MQxz/VVrQOno5+xWQBjl3n9rZ9fpWrdNpYf6+2hU0Ks=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YN6+Z/v4gwYFQrAX77UMRpLRjbbEHj15HRm8lub1ZxrE2kedjA4KeTstazwQjY1mNEf1Pw7QOTgr4YbUjZDfJxMHJNlNY+kvTAjPDoYs39ng8Egan/JBTxXTnUS/B6t/g8lwo9WfR/I9zqTEl8duJg77XhSqYiPgrBkER1j0KwE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=r3yt0s1Z; arc=none smtp.client-ip=95.215.58.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Date: Mon, 15 Dec 2025 15:19:53 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1765804801; h=from:from:reply-to:reply-to:subject:subject:date:date:
+	 message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+	 content-type:content-type:in-reply-to:in-reply-to:  references:references;
+	bh=8beh+1As4+/yiHzHXQqoA2vA0JOyCQuirQ/FqKxbaHM=;
+	b=r3yt0s1ZQxFUvo5dH3WqcbVgQGJEs7fAcaCtBBZJmdlyVJZzgqI6xOSh6Fh2dPdG6HasEb
+	y6CBkGVkHo+ETahnqSIbVoqZSrds7LNqceyym4kVz8pAronAQl2QhBlZK4eZ7fW1I2KhFE
+	YDsXRmMBa607K3KSjKHPxOZR5rKkey0=
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Matti Vaittinen <matti.vaittinen@linux.dev>
+To: Matti Vaittinen <mazziesaccount@gmail.com>,
+	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sebastian Reichel <sre@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Matti Vaittinen <mazziesaccount@gmail.com>,
+	Linus Walleij <linusw@kernel.org>,
+	Bartosz Golaszewski <brgl@kernel.org>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+	linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-rtc@vger.kernel.org, Andreas Kemnade <andreas@kemnade.info>
+Subject: [PATCH RESEND v6 10/17] regulator: bd71828: rename IC specific
+ entities
+Message-ID: <df5c98c6392c3b52cd41e3d98d60b65a1585b2dd.1765804226.git.mazziesaccount@gmail.com>
+Reply-To: Matti Vaittinen <mazziesaccount@gmail.com>
+References: <cover.1765804226.git.mazziesaccount@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251212203226.458694-1-robh@kernel.org> <20251213062037.GA30577@pendragon.ideasonboard.com>
- <CAMuHMdU3xB4sU2tb9B9Pt+D2E_ZNEyRd0e=vQr8fBgOaa7AuNQ@mail.gmail.com>
-In-Reply-To: <CAMuHMdU3xB4sU2tb9B9Pt+D2E_ZNEyRd0e=vQr8fBgOaa7AuNQ@mail.gmail.com>
-From: Rob Herring <robh@kernel.org>
-Date: Mon, 15 Dec 2025 07:19:41 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJk1PfEuH6VeMkoZdU7v5AsfdhWczLj0uVx=5qWt_OJWw@mail.gmail.com>
-X-Gm-Features: AQt7F2qwO9NiBuvX_Una9RRaSneSTL_STJujyvrpd_lUymxYdlVXx_-EtD3jA-s
-Message-ID: <CAL_JsqJk1PfEuH6VeMkoZdU7v5AsfdhWczLj0uVx=5qWt_OJWw@mail.gmail.com>
-Subject: Re: [PATCH] arm/arm64: dts: renesas: Drop unused .dtsi
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Magnus Damm <magnus.damm@gmail.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="v8ZCz3Tats+MR36x"
+Content-Disposition: inline
+In-Reply-To: <cover.1765804226.git.mazziesaccount@gmail.com>
+X-Migadu-Flow: FLOW_OUT
+
+
+--v8ZCz3Tats+MR36x
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Dec 15, 2025 at 3:02=E2=80=AFAM Geert Uytterhoeven <geert@linux-m68=
-k.org> wrote:
->
-> Hi Rob,
->
-> On Sat, 13 Dec 2025 at 07:20, Laurent Pinchart
-> <laurent.pinchart@ideasonboard.com> wrote:
-> > On Fri, Dec 12, 2025 at 02:32:07PM -0600, Rob Herring (Arm) wrote:
-> > > These .dtsi files are not included anywhere in the tree and can't be
-> > > tested.
-> > >
-> > > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
->
-> Thanks for your patch!
->
-> > >  arch/arm64/boot/dts/renesas/r8a779m0.dtsi     |  12 -
-> > >  arch/arm64/boot/dts/renesas/r8a779m2.dtsi     |  12 -
-> > >  arch/arm64/boot/dts/renesas/r8a779m4.dtsi     |  12 -
-> > >  arch/arm64/boot/dts/renesas/r8a779m6.dtsi     |  12 -
-> > >  arch/arm64/boot/dts/renesas/r8a779m7.dtsi     |  12 -
-> > >  arch/arm64/boot/dts/renesas/r8a779m8.dtsi     |  17 -
-> > >  arch/arm64/boot/dts/renesas/r8a779mb.dtsi     |  12 -
-> > >  arch/arm64/boot/dts/renesas/r9a07g044c1.dtsi  |  25 --
-> > >  arch/arm64/boot/dts/renesas/r9a07g044l1.dtsi  |  18 -
-> > >  arch/arm64/boot/dts/renesas/r9a07g054l1.dtsi  |  18 -
-> > >  arch/arm64/boot/dts/renesas/r9a09g047e37.dtsi |  18 -
-> >
-> > I'll let Geert comment on this :-)
->
-> While I do understand your point, these might be used by customers of
-> the SoCs.  Hence they can be considered part of the "stable DT ABI",
-> and removing them can cause issues downstream.
+=46rom: Matti Vaittinen <mazziesaccount@gmail.com>
 
-DTBs are the ABI, not .dtsi. The compatible in these is not validated
-and isn't valid. We could simply restructure .dtsi files in a way that
-breaks downstream and wouldn't give it a second thought.
+The new ROHM BD72720 PMIC has similarities with the BD71828. It makes
+sense to support the regulator control for both PMICs using the same
+driver. It is often more clear to have the IC specific functions and
+globals named starting with the chip-name. So, as a preparatory step,
+prefix the BD71828 specific functions and globals with the bd71828.
 
-> At least for the r8a779m* parts, I do have local patches in my tree,
-> so I would notice any future build breakages (most files are rather
-> simple, so unlikely to break, though).
-> Shall we just upstream .dts files using these .dtsi files (cfr. the
-> existing arch/arm64/boot/dts/renesas/r8a779m*dts)? AFAIK none of
-> the missing board/SoC-combos actually exist as products, but someone
-> might create one locally by replacing the SoC on an existing board,
-> as they are pin-compatible variants.
+It would be tempting to try also removing the chip ID from those
+functions which will be common for both PMICs. I have bad experiences on
+this as it tends to lead to problems when yet another IC is being
+supported with the same driver, and we will have some functions used for
+all, some for two of the three, and some for just one. At this point
+I used to start inventing wildcards like BD718XX or BD7272X. This
+approach is pretty much always failing as we tend to eventually have
+something like BD73900 - where all the wildcard stuff will break down.
 
-You probably could restructure these where you include the subset
-.dtsi and then add nodes rather than delete them. For the ones that
-just override the compatible with an invalid value that has to be
-overridden by the board dts anyways, there's little value to them.
-Just drop them or add a proper board.
+So, my approach these days is to:
+ - keep the original chip-id prefix for anything that had it already
+   (and avoid the churn).
+ - use same prefix for all things that are used by multiple ICs -
+   typically the chip-ID of the first chip. This typically matches also
+   the driver and file names.
+ - use specific chip-ID as a prefix for anything which is specific to
+   just one chip.
 
-> There is a similar story for the r9a0* parts: they are variants with
-> less CPU cores, which may end up in actual products.  We could add
-> .dts files using them, to make sure no build breakage is introduced.
+As a preparatory step to adding the BD72720, add bd71828 prefix to all
+commonly usable functions and globals.
 
-If these are all just binned parts, I would not have separate SoC
-compatibles for them.
+Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+Acked-by: Mark Brown <broonie@kernel.org>
 
-Rob
+---
+Revision history:
+ RFCv1 =3D>:
+ - No changes
+No functional changes intended.
+---
+ drivers/regulator/bd71828-regulator.c | 32 +++++++++++++--------------
+ 1 file changed, 16 insertions(+), 16 deletions(-)
+
+diff --git a/drivers/regulator/bd71828-regulator.c b/drivers/regulator/bd71=
+828-regulator.c
+index 87de87793fa1..8c006bff89a8 100644
+--- a/drivers/regulator/bd71828-regulator.c
++++ b/drivers/regulator/bd71828-regulator.c
+@@ -28,7 +28,7 @@ struct bd71828_regulator_data {
+ 	int reg_init_amnt;
+ };
+=20
+-static const struct reg_init buck1_inits[] =3D {
++static const struct reg_init bd71828_buck1_inits[] =3D {
+ 	/*
+ 	 * DVS Buck voltages can be changed by register values or via GPIO.
+ 	 * Use register accesses by default.
+@@ -40,7 +40,7 @@ static const struct reg_init buck1_inits[] =3D {
+ 	},
+ };
+=20
+-static const struct reg_init buck2_inits[] =3D {
++static const struct reg_init bd71828_buck2_inits[] =3D {
+ 	{
+ 		.reg =3D BD71828_REG_PS_CTRL_1,
+ 		.mask =3D BD71828_MASK_DVS_BUCK2_CTRL,
+@@ -48,7 +48,7 @@ static const struct reg_init buck2_inits[] =3D {
+ 	},
+ };
+=20
+-static const struct reg_init buck6_inits[] =3D {
++static const struct reg_init bd71828_buck6_inits[] =3D {
+ 	{
+ 		.reg =3D BD71828_REG_PS_CTRL_1,
+ 		.mask =3D BD71828_MASK_DVS_BUCK6_CTRL,
+@@ -56,7 +56,7 @@ static const struct reg_init buck6_inits[] =3D {
+ 	},
+ };
+=20
+-static const struct reg_init buck7_inits[] =3D {
++static const struct reg_init bd71828_buck7_inits[] =3D {
+ 	{
+ 		.reg =3D BD71828_REG_PS_CTRL_1,
+ 		.mask =3D BD71828_MASK_DVS_BUCK7_CTRL,
+@@ -102,9 +102,9 @@ static int buck_set_hw_dvs_levels(struct device_node *n=
+p,
+ 	return rohm_regulator_set_dvs_levels(&data->dvs, np, desc, cfg->regmap);
+ }
+=20
+-static int ldo6_parse_dt(struct device_node *np,
+-			 const struct regulator_desc *desc,
+-			 struct regulator_config *cfg)
++static int bd71828_ldo6_parse_dt(struct device_node *np,
++				 const struct regulator_desc *desc,
++				 struct regulator_config *cfg)
+ {
+ 	int ret, i;
+ 	uint32_t uv =3D 0;
+@@ -212,8 +212,8 @@ static const struct bd71828_regulator_data bd71828_rdat=
+a[] =3D {
+ 			 */
+ 			.lpsr_on_mask =3D BD71828_MASK_LPSR_EN,
+ 		},
+-		.reg_inits =3D buck1_inits,
+-		.reg_init_amnt =3D ARRAY_SIZE(buck1_inits),
++		.reg_inits =3D bd71828_buck1_inits,
++		.reg_init_amnt =3D ARRAY_SIZE(bd71828_buck1_inits),
+ 	},
+ 	{
+ 		.desc =3D {
+@@ -253,8 +253,8 @@ static const struct bd71828_regulator_data bd71828_rdat=
+a[] =3D {
+ 			.lpsr_reg =3D BD71828_REG_BUCK2_SUSP_VOLT,
+ 			.lpsr_mask =3D BD71828_MASK_BUCK1267_VOLT,
+ 		},
+-		.reg_inits =3D buck2_inits,
+-		.reg_init_amnt =3D ARRAY_SIZE(buck2_inits),
++		.reg_inits =3D bd71828_buck2_inits,
++		.reg_init_amnt =3D ARRAY_SIZE(bd71828_buck2_inits),
+ 	},
+ 	{
+ 		.desc =3D {
+@@ -399,8 +399,8 @@ static const struct bd71828_regulator_data bd71828_rdat=
+a[] =3D {
+ 			.lpsr_reg =3D BD71828_REG_BUCK6_SUSP_VOLT,
+ 			.lpsr_mask =3D BD71828_MASK_BUCK1267_VOLT,
+ 		},
+-		.reg_inits =3D buck6_inits,
+-		.reg_init_amnt =3D ARRAY_SIZE(buck6_inits),
++		.reg_inits =3D bd71828_buck6_inits,
++		.reg_init_amnt =3D ARRAY_SIZE(bd71828_buck6_inits),
+ 	},
+ 	{
+ 		.desc =3D {
+@@ -440,8 +440,8 @@ static const struct bd71828_regulator_data bd71828_rdat=
+a[] =3D {
+ 			.lpsr_reg =3D BD71828_REG_BUCK7_SUSP_VOLT,
+ 			.lpsr_mask =3D BD71828_MASK_BUCK1267_VOLT,
+ 		},
+-		.reg_inits =3D buck7_inits,
+-		.reg_init_amnt =3D ARRAY_SIZE(buck7_inits),
++		.reg_inits =3D bd71828_buck7_inits,
++		.reg_init_amnt =3D ARRAY_SIZE(bd71828_buck7_inits),
+ 	},
+ 	{
+ 		.desc =3D {
+@@ -633,7 +633,7 @@ static const struct bd71828_regulator_data bd71828_rdat=
+a[] =3D {
+ 			 * LDO6 only supports enable/disable for all states.
+ 			 * Voltage for LDO6 is fixed.
+ 			 */
+-			.of_parse_cb =3D ldo6_parse_dt,
++			.of_parse_cb =3D bd71828_ldo6_parse_dt,
+ 		},
+ 	}, {
+ 		.desc =3D {
+--=20
+2.52.0
+
+
+--v8ZCz3Tats+MR36x
+Content-Type: application/pgp-signature; name=signature.asc
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCgAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmlACvkACgkQeFA3/03a
+ocW85Qf/SetuLvOuUw80xqEqOrs9A2S2YJPCLc9vvJcRUycTl50tFQkXfMGooS8f
+/BBmvjBbBBAv6t8dbOvUb8rJ/bsPYokvQi79Co9y9hX55VjsJ6y204wOM7Hom17n
+P87fFmb2WYhPmbjUImRKWm/Sjp51QgZE5ci1LDBwDBKd0FF5z6cp7lb+9pyxkWRQ
+9QUOqvMXSf8HXKIRl7AUAhz5X/C/wR39+BgFoPIQiZoHYpb2rkeFDWYYsrM5rydj
+wLjB6xuZY0a9nRT9yx8pB3UapWV0uxsRJeVc0pqmkUorHQeiEQHwEQKOj2+koSra
+O6aAYVu/LVbf6urLCbioec53aWAR7A==
+=QvcH
+-----END PGP SIGNATURE-----
+
+--v8ZCz3Tats+MR36x--
 
