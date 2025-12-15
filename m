@@ -1,147 +1,306 @@
-Return-Path: <devicetree+bounces-246614-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246615-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 307A5CBE23D
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 14:51:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4349CCBE26A
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 14:57:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 1BA77300CCD1
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 13:51:58 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 3BC36300C346
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 13:57:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48F152D0C9D;
-	Mon, 15 Dec 2025 13:51:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 365C229D295;
+	Mon, 15 Dec 2025 13:57:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="NhK2Bxa5"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="VBEweZZJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+Received: from PH8PR06CU001.outbound.protection.outlook.com (mail-westus3azon11012003.outbound.protection.outlook.com [40.107.209.3])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D629274B40
-	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 13:51:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765806717; cv=none; b=Ys/OF/LM9kg23DJCkvj64Mw9xu1LPmXDtmKYr/mB4P6COpUOhACi3sJQKnpfwtS5yGVI5o941conFqfxEIPrl2t55yCpTrEn253ToHPlfvIPbAWo34Qud+N28JITiAYTfwDfvWgMO/0sAMNEZVSIljYd17khtJlHrUUy4Lzh53o=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765806717; c=relaxed/simple;
-	bh=/bRyiyFmxa4EQkt3MeAqRBCxND5JIxEQAj6OxA7WLeM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QQ5v5pGF8MgOokckS9F3awfbVuL9cjZhtUvsUOApeAuTG/MFHuFU28OH/YSxCi0hkA9uqhmvPGk1f7+JInxUFjCO03DSwLZSY6LM7yHWfpYbvQqP9AkYH21s+Bbr1DZuI2BkibvtDHPF3UpM+2vLXu1aPDXavQER6luyAdY99Ac=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=NhK2Bxa5; arc=none smtp.client-ip=170.10.129.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1765806714;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=5xOfSsOHTJVPT/asFcBzsToAdyh5F43Xil3FQ+PqXO4=;
-	b=NhK2Bxa5oZZPUwDgZ6xzPAqAaMwx/EE9n0cZ350MN4qV10JNeLFUAKEtBySnTqvB6skzlg
-	wa/do04f85m3CzuanWDSGQWezwucn5Yv/VYeicCcbOl8ltL9OmR1IUum3pgKv2rNDp6wEI
-	MtyBwS6GUp2BzUswhujDYYlUk/6bC2Y=
-Received: from mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-537-EpkNGB0SNJqMAM5A8UhPHw-1; Mon,
- 15 Dec 2025 08:51:51 -0500
-X-MC-Unique: EpkNGB0SNJqMAM5A8UhPHw-1
-X-Mimecast-MFC-AGG-ID: EpkNGB0SNJqMAM5A8UhPHw_1765806708
-Received: from mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.111])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id AD1AC1800624;
-	Mon, 15 Dec 2025 13:51:46 +0000 (UTC)
-Received: from [10.44.34.139] (unknown [10.44.34.139])
-	by mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 86067180045B;
-	Mon, 15 Dec 2025 13:51:38 +0000 (UTC)
-Message-ID: <eee9be12-603d-4e8e-92f8-e76728974313@redhat.com>
-Date: Mon, 15 Dec 2025 14:51:36 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 666492DC338;
+	Mon, 15 Dec 2025 13:57:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.209.3
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1765807039; cv=fail; b=Y32Km0rI4+2zzhRMHwWBNVDBzjnfciUd2Yag2ehcJBdq4/zgL5OiXd2GTdzzjhHf+akxVtgVkPLC2zwqJW6ClXAA3MfI9dl8KVRgKTRpVARZslrmrx1R4qYNoLsErNCBXC/WFbqlvCf//L2diap7GpbkXXLhzpDEMeZTQ7jLjMQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1765807039; c=relaxed/simple;
+	bh=fFCiRI2YW3BoVNWUHC66Q1CenI7bnU4NYrauhkBrZ+s=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PkcNLG40Roe4jhyvm59BH5KP/sYFMHXnW538TcP3K1Nb898G7GwaUCRAy6tK9z4JSwELUn8ziMm6uqiJOoiVUkldR6SxCQJBcY2tDJpElkAvDd3F+kNHw/kwUN6RHbCiBndpJMnY8t7og+v7zlQrqm6SHJMslTtJ0EXnQcD0/MY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=VBEweZZJ; arc=fail smtp.client-ip=40.107.209.3
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=FZZYE5Fp0ZjHfHqLy4XA19ItgqTUgGU+PHZhkv1dlMyDrYHnWdITteKKkq6kg+6gj8mOcqlPbwW0LaipSzNwn0iclV7UgarsEX4lfl8pmzBw/mrYT8oiGShDOFO4FMkJiHxsx3fEjo7ep0BJ/BnaOu9OE44uTg/lydOO7iRY2jQ/H3P25IyyrpbBKm6TF/tS027TaGRm5yjRUHY3yUnPSG0ViOQ7qJjuP30kvbf6nlzmBYSJwK3IjmnYZX8dfEjByJo3u54pL7HP++SLU6pfaSaAfmZTJR7YnL+PmP4VwG/Q23HL3NZ7/rcOggChfHR12dG94x/C4ruDzqOG7wu/lA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=+Lgf0+dBjBLhqx3Qaz1kPwYLmZyS25oIhcJijwq4eV4=;
+ b=BoJOAvP7Pmt66we3LEnIltqVHFuSwyCEdK/biwFy2RPgLHu0R+ITCegSSPkLuar1cH233CgKMbwkJkHGv6NU6J/WA69NAKS1iMZRao0ZLQVlE82rG+V357QWTFRDxmrR9RGzfj2BQSyopwcZUAFdnEFB3V5auWgzDwpHLVJyRQL0iIdIlLX0ZdreowkH1eMcDRdCPufGItgEEnpvluBjqkWL2ncmo2bsOSkT7oZtQTzOsr8Nmeb6tyRXddfz1JXkR/wEhM77wqbhVWXsNChnNHPihKqr3m7Pr38FGK0ZrYocJbhUT/2X+jaZmFyOJsiY3sa4LLdwS/IFyI3SpgtazQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.23.194) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+Lgf0+dBjBLhqx3Qaz1kPwYLmZyS25oIhcJijwq4eV4=;
+ b=VBEweZZJpJWYorZNigVLd/Qn9yx21N25K+bw2HP8cabt2mNAMP/MKhljHnJwFOsXIuX57rPhallYSzlQ/Y54GB12UrLNjrpeeketSORn+VL5US+CSav++DCbieC8o6uXJmfMctcoi6CtnbC7oBUP4ewZNQ5cCGFu6IXUEEsings=
+Received: from BN0PR10CA0010.namprd10.prod.outlook.com (2603:10b6:408:143::14)
+ by MW4PR10MB6348.namprd10.prod.outlook.com (2603:10b6:303:1ea::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9412.13; Mon, 15 Dec
+ 2025 13:57:13 +0000
+Received: from BN1PEPF00004684.namprd03.prod.outlook.com
+ (2603:10b6:408:143:cafe::e6) by BN0PR10CA0010.outlook.office365.com
+ (2603:10b6:408:143::14) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9412.13 via Frontend Transport; Mon,
+ 15 Dec 2025 13:56:38 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.194)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.23.194 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.23.194; helo=lewvzet200.ext.ti.com; pr=C
+Received: from lewvzet200.ext.ti.com (198.47.23.194) by
+ BN1PEPF00004684.mail.protection.outlook.com (10.167.243.90) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9434.6 via Frontend Transport; Mon, 15 Dec 2025 13:57:12 +0000
+Received: from DLEE214.ent.ti.com (157.170.170.117) by lewvzet200.ext.ti.com
+ (10.4.14.103) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 15 Dec
+ 2025 07:57:08 -0600
+Received: from DLEE208.ent.ti.com (157.170.170.97) by DLEE214.ent.ti.com
+ (157.170.170.117) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 15 Dec
+ 2025 07:57:08 -0600
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE208.ent.ti.com
+ (157.170.170.97) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Mon, 15 Dec 2025 07:57:08 -0600
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5BFDv87K2462386;
+	Mon, 15 Dec 2025 07:57:08 -0600
+Date: Mon, 15 Dec 2025 07:57:08 -0600
+From: Nishanth Menon <nm@ti.com>
+To: Anshul Dalal <anshuld@ti.com>
+CC: Tero Kristo <kristo@kernel.org>, Santosh Shilimkar <ssantosh@kernel.org>,
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>,
+	<linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, Vignesh Raghavendra <vigneshr@ti.com>
+Subject: Re: [PATCH v5] dt-bindings: arm: keystone: add boot_* mboxes to
+ ti,sci
+Message-ID: <20251215135708.ij5e7jr3binzmlbf@panda>
+References: <20251215-k3_syscon_add_boot_mailboxes-v5-1-5a8fe567fd31@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC net-next 02/13] dpll: Allow registering pin with
- firmware node
-To: Jiri Pirko <jiri@resnulli.us>
-Cc: netdev@vger.kernel.org, Andrew Lunn <andrew+netdev@lunn.ch>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Vadim Fedorenko <vadim.fedorenko@linux.dev>,
- Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
- Grzegorz Nitka <grzegorz.nitka@intel.com>, Petr Oros <poros@redhat.com>,
- Michal Schmidt <mschmidt@redhat.com>,
- Prathosh Satish <Prathosh.Satish@microchip.com>,
- Tony Nguyen <anthony.l.nguyen@intel.com>,
- Przemek Kitszel <przemyslaw.kitszel@intel.com>,
- Saeed Mahameed <saeedm@nvidia.com>, Leon Romanovsky <leon@kernel.org>,
- Tariq Toukan <tariqt@nvidia.com>, Mark Bloch <mbloch@nvidia.com>,
- Richard Cochran <richardcochran@gmail.com>,
- Jonathan Lemon <jonathan.lemon@gmail.com>, Simon Horman <horms@kernel.org>,
- Alexander Lobakin <aleksander.lobakin@intel.com>,
- Willem de Bruijn <willemb@google.com>, Stefan Wahren <wahrenst@gmx.net>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- intel-wired-lan@lists.osuosl.org, linux-rdma@vger.kernel.org
-References: <20251211194756.234043-1-ivecera@redhat.com>
- <20251211194756.234043-3-ivecera@redhat.com>
- <ahyyksqki6bas5rqngd735k4fmoeaj7l2a7lazm43ky3lj6ero@567g2ijcpekp>
- <3E2869EC-61B3-40DA-98E2-CD9543424468@redhat.com>
- <tawd6udewifjeoymxkfkapxgcgfviixb4zgcjnplycigk5ffws@rdymwt2hknsl>
-Content-Language: en-US
-From: Ivan Vecera <ivecera@redhat.com>
-In-Reply-To: <tawd6udewifjeoymxkfkapxgcgfviixb4zgcjnplycigk5ffws@rdymwt2hknsl>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.111
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20251215-k3_syscon_add_boot_mailboxes-v5-1-5a8fe567fd31@ti.com>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN1PEPF00004684:EE_|MW4PR10MB6348:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1c270e60-7e67-4748-f939-08de3be1d8d4
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|36860700013|82310400026|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?oWKNvOciI5owGF74xHUyaMwJXshfjHTAZyVHPLFEb/dPUiGw1kovpNawJkGL?=
+ =?us-ascii?Q?/kFE/nKceZWBCVr+2OnIDhunfRFSizcF05PnG+wYD+PxN7TdzqsvL7U1+V/0?=
+ =?us-ascii?Q?+w/Rlg/G8fMQhsWG2E4N7lI1aqts/5VQP5vO0zGn9or0G0EkbtUzwRj4nRVU?=
+ =?us-ascii?Q?9Jt8SMgn5wI2t2qmlevIhGhTIT9sDd7y7mwDfzpc4WVFDEy8SEcxBS8/oOMJ?=
+ =?us-ascii?Q?wKg+EOmL+LxlvSUVozvtZgvr3Zw8s4eO4BsuJe+KtqetPDzRVwt7mqVmoGDq?=
+ =?us-ascii?Q?AFxJrlYDB37cWHUtSamk9/+LxGVqBGAWV2lrtQAtOyvMpVEoCLHyxuIaptM8?=
+ =?us-ascii?Q?0z54G/S0EWfrcHEB0uyL3+FeNWZ70j5hNJVN/RBtutPB3RAQKuEusCBzcP/f?=
+ =?us-ascii?Q?rPNPcZiQnJElzd90BxblrdXt7ixrVgTAueqZ3r2sJ8w17V4kq/50jrruvxHY?=
+ =?us-ascii?Q?q4u112pfDN4qKHFTXkAOoIqsrgIvSDnSZeKSE/b7Xbs7GbjzEsu1DOBeX+Wa?=
+ =?us-ascii?Q?W5QX5UJzClNUAV+tcPkaEbSCKyPcqbfrNYg1qV0adDRQD0xP6Loxgi54rzEn?=
+ =?us-ascii?Q?HDN8rCDjFFZXG4pQHSP2espCWz3o7UDLRz8/gqBWYj8qnyIAaiTt1m3gegaT?=
+ =?us-ascii?Q?O3hRWr+GdEI0jA5f/Gu4vE+DuH2YkutAun+Yw5NOT9wEwzHFAci7uGgX/PFl?=
+ =?us-ascii?Q?Y0grQlSovxdg9CNaIMAhq9nVDsQXa/wM9feEQa7xAG4/0UPGbjpZzTTlrG2X?=
+ =?us-ascii?Q?QDc8zUX60WtpURMnJMmVZTuhwm2RYdvViIA0qecfM7ayhT3IXq9DJjKNnjOy?=
+ =?us-ascii?Q?918R3FeJh/3KxxkRIevQMANCj/CaLcmlkCC8FkI9dQe6dj8aQlOzi4XAQvzK?=
+ =?us-ascii?Q?jNHP2Xvcz5TQuVkF39ZpMiXa9v3C83Rz/cJLuP2HXCJnWkz0I83ZbVLbunXV?=
+ =?us-ascii?Q?elxeP2t1uyhblZ+d4nFcacPJAp4eJ8owrox/6t8wYqI5vg/5DbFAUlcczL8e?=
+ =?us-ascii?Q?bt3EPEtN5z45+GKZZX5Gz9ietY3QrjQaYyNvnHzj4ojYi+SzXBbiXWPPGrf3?=
+ =?us-ascii?Q?91wW7araly1PcgLokFt0SuesEGBC6/KWlDexRNfn+Q/He02GxeKMPSB3QVyW?=
+ =?us-ascii?Q?+WRSnajNC7jPgyGI6TzpoN23nEyjs05N5oF+pkgJWxx1BeSDkBnfHOmWzrwX?=
+ =?us-ascii?Q?YsO4PTOofYSvytM7ZVGVXnTPEaKVUHpE6S3V2M+3sGlkSjAN6L0hXr7j82hc?=
+ =?us-ascii?Q?YjgUc4jDaE4dgo5Q91BYuMqQqwGFFPMFTKMOu9SqKdwTdqQ6CKssB/0/6IbK?=
+ =?us-ascii?Q?OoYan022Rme+xmVCod+nOaLwPpdA2AuB6e4s0q7XLJqc05TJqP6TVuuFNlji?=
+ =?us-ascii?Q?hNZzXVzfmFSBqwgxWU1mbl8jwVvyGibtVqkjEqHxSbZTT8O5dcEI634ck8xP?=
+ =?us-ascii?Q?pJ9hOkeJRu7kB7QN7S+CKJALNhAyTSKxkeBMq9qXDUi6jZ5Ddz3R1SLjfWO4?=
+ =?us-ascii?Q?bXwQM5E35TxQx6DC5D9FlwkVKcoGpLZYr5AHHLzCmvZY1GROPxATmqayMcwq?=
+ =?us-ascii?Q?57N3pq59tb023O8LYm0=3D?=
+X-Forefront-Antispam-Report:
+	CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(36860700013)(82310400026)(1800799024);DIR:OUT;SFP:1101;
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Dec 2025 13:57:12.3926
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1c270e60-7e67-4748-f939-08de3be1d8d4
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.194];Helo=[lewvzet200.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	BN1PEPF00004684.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR10MB6348
 
-On 12/15/25 2:08 PM, Jiri Pirko wrote:
-> Sun, Dec 14, 2025 at 08:35:01PM +0100, ivecera@redhat.com wrote:
->>
->>
->> On December 12, 2025 12:25:12 PM GMT+01:00, Jiri Pirko <jiri@resnulli.us> wrote:
->>> Thu, Dec 11, 2025 at 08:47:45PM +0100, ivecera@redhat.com wrote:
->>>
->>> [..]
->>>
->>>> @@ -559,7 +563,8 @@ EXPORT_SYMBOL(dpll_netdev_pin_clear);
->>>>   */
->>>> struct dpll_pin *
->>>> dpll_pin_get(u64 clock_id, u32 pin_idx, struct module *module,
->>>> -	     const struct dpll_pin_properties *prop)
->>>> +	     const struct dpll_pin_properties *prop,
->>>> +	     struct fwnode_handle *fwnode)
->>>> {
->>>> 	struct dpll_pin *pos, *ret = NULL;
->>>> 	unsigned long i;
->>>> @@ -568,14 +573,15 @@ dpll_pin_get(u64 clock_id, u32 pin_idx, struct module *module,
->>>> 	xa_for_each(&dpll_pin_xa, i, pos) {
->>>> 		if (pos->clock_id == clock_id &&
->>>> 		    pos->pin_idx == pin_idx &&
->>>> -		    pos->module == module) {
->>>> +		    pos->module == module &&
->>>> +		    pos->fwnode == fwnode) {
->>>
->>> Is fwnode part of the key? Doesn't look to me like that. Then you can
->>> have a simple helper to set fwnode on struct dpll_pin *, and leave
->>> dpll_pin_get() out of this, no?
->>
->> IMHO yes, because particular fwnode identifies exact dpll pin, so
->> I think it should be a part of the key.
+On 11:38-20251215, Anshul Dalal wrote:
+> The bootloader on K3 devices makes use of mailboxes as per the ROM spec
+> which might be different than one's available to the kernel (firmware
+> spec).
 > 
-> The key items serve for userspace identification purposes as well. For
-> that, fwnode is non-sense.
-> fwnode identifies exact pin, that is nice. But is it the only
-> differentiator among other key items? I don't expect so.
+> Therefore, this patch adds the missing mailbox entries to the DT binding
+> if the matching compatible is ti,am654-sci to represent the mailboxes
+> exposed by the hardware during boot for the purpose of loading the
+> firmware. The newly added mboxes are made optional by keeping minItems
+> as 2 to remain compliant with existing device-trees.
+> 
+> Signed-off-by: Anshul Dalal <anshuld@ti.com>
+> ---
+> Changes in v5:
+> - Added commit description for the optional mailboxes
+> - Link to v4: https://lore.kernel.org/r/20251205-k3_syscon_add_boot_mailboxes-v4-1-8e216fb88941@ti.com
+> 
+> Changes in v4:
+> - Make new boot_* mboxes conditional on ti,am654-sci compatible
+> - Link to v3: https://lore.kernel.org/r/20251112-k3_syscon_add_boot_mailboxes-v3-1-66155a4236dc@ti.com
+> 
+> Changes in v3:
+> - Drop [1/2] of the last patch series
+> - Update existing example with boot_* mailboxes instead of adding a new one
+> - Link to v2: https://lore.kernel.org/r/20251112-k3_syscon_add_boot_mailboxes-v2-0-aebc1e47b391@ti.com
+> 
+> Changes in v2:
+> - Remove maxItems entry
+> - Remove RFC tag from patch (added by mistake in v1)
+> - Document the new mailboxes in mboxes instead of mbox-names
+> - Provide example with all the mailboxes set
+> - Update commit title to have "ti,sci"
+> - Split into two patches
+> - Link to v1: https://lore.kernel.org/r/20251111-k3_syscon_add_boot_mailboxes-v1-1-529a27f21076@ti.com
+> ---
+>  .../devicetree/bindings/arm/keystone/ti,sci.yaml   | 50 +++++++++++++++++++---
+>  1 file changed, 43 insertions(+), 7 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml b/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml
+> index 25a2b42105e5..d9eb2a81e539 100644
+> --- a/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml
+> +++ b/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml
+> @@ -51,15 +51,15 @@ properties:
+>      minItems: 1
+>  
+>    mbox-names:
+> +    minItems: 2
+> +    maxItems: 6
+>      description: |
+>        Specifies the mailboxes used to communicate with TI-SCI Controller
+>        made available from TI-SCI controller.
+> -    items:
+> -      - const: rx
+> -      - const: tx
+>  
+>    mboxes:
+>      minItems: 2
+> +    maxItems: 6
+>  
+>    ti,host-id:
+>      $ref: /schemas/types.yaml#/definitions/uint32
+> @@ -79,6 +79,42 @@ properties:
+>      type: object
+>      $ref: /schemas/reset/ti,sci-reset.yaml#
+>  
+> +if:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        const: ti,am654-sci
+> +then:
+> +  properties:
+> +    mbox-names:
+> +      minItems: 2
+> +      items:
+> +        - const: rx
+> +        - const: tx
+> +        - const: notify
+> +        - const: boot_rx
+> +        - const: boot_tx
+> +        - const: boot_notify
+> +    mboxes:
+> +      minItems: 2
+> +      items:
+> +        - description: RX thread
+> +        - description: TX thread
+> +        - description: Notify thread
+> +        - description: boot stage RX thread
+> +        - description: boot stage TX thread
+> +        - description: boot stage Notify thread
+> +else:
+> +  properties:
+> +    mbox-names:
+> +      items:
+> +        - const: rx
+> +        - const: tx
+> +    mboxes:
+> +      items:
+> +        - description: RX thread
+> +        - description: TX thread
+> +
+>  required:
+>    - compatible
+>    - mbox-names
+> @@ -99,11 +135,11 @@ examples:
+>  
+>    - |
+>      dmsc: system-controller@44083000 {
+> -      compatible = "ti,k2g-sci";
+> +      compatible = "ti,am654-sci";
+>        ti,host-id = <12>;
+> -      mbox-names = "rx", "tx";
+> -      mboxes = <&secure_proxy_main 11>,
+> -               <&secure_proxy_main 13>;
+> +      mbox-names = "rx", "tx", "notify", "boot_rx", "boot_tx";
+> +      mboxes= <&secure_proxy_mcu 6>, <&secure_proxy_mcu 8>,
+> +        <&secure_proxy_mcu 5>, <&secure_proxy_mcu 5>, <&secure_proxy_mcu 4>;
+>        reg-names = "debug_messages";
+>        reg = <0x44083000 0x1000>;
 
- From this point of view, not. I will not touch dpll_pin_get() and rather
-use new helper like dpll_pin_fwnode_set(), ok?
+Please add a different example for am654, i want to make sure k2g still
+continues to be checked.
 
-Thanks,
-Ivan
+That said, AM62 series of devices do not use notification pipe for
+standard communication. So, the schema will break for those.
 
+in summary:
+k2g: rx, tx
+am654, j721e, j721s2, j7200, j784s4, .. : rx, tx, notify, boot_rx,
+boot_tx, boot_notify
+am625, am62p ..: rx, tx, boot_rx, boot_tx, boot_notify
+
+we will need three examples, and will need to add am62x series as one
+additional compatible.
+
+Though we could play a trick by reordering as follows to handle superset
+of am62 and am65 series as follows, but I do prefer explicitly handling
+them:
+
+   - const: rx
+   - const: tx
+   - const: boot_rx
+   - const: boot_tx
+   - const: notify
+   - const: boot_notify
+
+
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+https://ti.com/opensource
 
