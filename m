@@ -1,96 +1,185 @@
-Return-Path: <devicetree+bounces-246622-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246623-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F8A5CBEC9A
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 16:56:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C3F5CBE604
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 15:47:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1989C305833D
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 15:50:47 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 192F0303AE8F
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 14:41:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28FDB311956;
-	Mon, 15 Dec 2025 14:03:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D31B83396F1;
+	Mon, 15 Dec 2025 14:04:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Eqn+25td"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dLT6GV62"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F05CC3115B8;
-	Mon, 15 Dec 2025 14:03:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19F5B338F36
+	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 14:04:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765807414; cv=none; b=C0Yc6DtXrq1OY13gdArrLXhD/LyOCrfPqzy+25E2YFPnd9keg760UxG2oLMAgeEg7vMjAajl9S5IC0fYq+FyByVf91lnIBfrOPTk4w67czR1ESHY8+zEkKUMmwX55O3mpgPyT5TQEq5vnXiP1HnGv9tUmGZSyT9u2XidDrgiio8=
+	t=1765807495; cv=none; b=StTrZ5aojO+JV7le89Q1nBR14CGkGhjBJkMhcdzVhz/L1kM4Vg6OIfsn1LRTqB2Xt9f863K7mgcZyZ6NqTEAKXbZLXss0e5SbSd8KJmAqUaeQjo+YLuhE/24k2RMyOEeF/W8sV/w4FullEw8LHM+u8geWQ9jPHBCSdNVJsdDehE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765807414; c=relaxed/simple;
-	bh=rFQyuWHfFcZlHMejIvhAa1DF/jOp6uqvkdWv/+Mb6s0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kLNgK1O6EMlTyrlM5g1XZ91+ZiAcu8UAX9G5edktL1JvQso6/LMUhk6ycz9jUU7J5MY8X8EWgqS0G5/u8ppTZFKb4f/0+X2VdeojThwBNgsFpSZXsX931MD2IeBekcIl/uJ5qEJSo7eKx3p1/mMgIhQjULc8hgawcNJ6/z6ZyJY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Eqn+25td; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36D12C4CEF5;
-	Mon, 15 Dec 2025 14:03:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765807413;
-	bh=rFQyuWHfFcZlHMejIvhAa1DF/jOp6uqvkdWv/+Mb6s0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Eqn+25tdHr5Wrrm3Xn8rbqWT7Cdod3hLETZm9Xr8ldxluc3aeOueqyGp5QHgBo4tp
-	 iudPuSduvdNkGWl9ZP4unZ071ajNA3y3RN1diT0GzQ7znJNaCUVfgYZ/jV/o2TkeRc
-	 H2gILEXItKx0IUuWaJk8gz1hQCIzU7AVCWete254A0km3zdQsa4prIUvq0ORAxN7vx
-	 xCHXokOZ0NAXxXlMvyrHR44hS2RFx5BNaATueokHHaVsn99rtLIqrTURa0g8jjIhCL
-	 YTUS3rgQzHofTHnfi7usX+RYStx+7nMXDKAWYeRn8cHAmDOoiJxHkhdH6349TudcnB
-	 4xXdwcFnQQZpA==
-Date: Mon, 15 Dec 2025 08:03:30 -0600
-From: Rob Herring <robh@kernel.org>
-To: Stefan Eichenberger <eichest@gmail.com>
-Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
-	kuba@kernel.org, pabeni@redhat.com, krzk+dt@kernel.org,
-	conor+dt@kernel.org, hkallweit1@gmail.com, linux@armlinux.org.uk,
-	geert+renesas@glider.be, ben.dooks@codethink.co.uk,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, francesco.dolcini@toradex.com,
-	rafael.beims@toradex.com,
-	Stefan Eichenberger <stefan.eichenberger@toradex.com>
-Subject: Re: [PATCH net-next v1 2/3] dt-bindings: net: micrel: Add
- keep-preamble-before-sfd
-Message-ID: <20251215140330.GA2360845-robh@kernel.org>
-References: <20251212084657.29239-1-eichest@gmail.com>
- <20251212084657.29239-3-eichest@gmail.com>
+	s=arc-20240116; t=1765807495; c=relaxed/simple;
+	bh=KI9QIWcad/B9ZjYeffUF4N7PpYb0fDIpzH9w8RVTAyc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=L2rBDwNwfo4jgL/FI5rEWPU8WJWV/VA3TD6LRTDk4F/GKjTkfE+hiPb32juO/Uo9XHQ+jz0hWhUFsmYBo5T/ACH81DeomNWpnS7/6kGla+vyZc8j84s9QLudasjMURHPgRKY5piOVJswzZyh8aTvXtKi/Qw9HdGlN8w1rJ9b5Lk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dLT6GV62; arc=none smtp.client-ip=209.85.214.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-29f1bc40b35so49648565ad.2
+        for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 06:04:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1765807493; x=1766412293; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=eiURzUZDdB4fxsl1ptJaHGccRecrpuUcKuZLpsQ1g5U=;
+        b=dLT6GV62XPJqC3P1M1WXu15g5BNPw68iYdTSehV2oSEyp6eKeByNbqqba77ale8WYw
+         zWYXla8p6sE+E1miUzmDn0iFZM2ow1d9QODCNqQTG4RlUOPpsviLjHZ2rLS88SIoJSJN
+         AcTiOB0g0x8TBDLl3+hhcIwgpKXTyzLO6yhlafGeMJIzadVStML+JAmrMOmGipdGXDC1
+         EN7lM4ce2FQoUOGFFNbEBuW2EOBeEZFv7PG5mjr87P81w8eUOmjUisX3hA/n/GEZLr2m
+         fwD2nD2WBaK7WHA44zvVLQ1de0tsW/VrJraTQzK/YYRr+4dZrcfX9H9IWIyr3WFxMuIB
+         Seng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765807493; x=1766412293;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=eiURzUZDdB4fxsl1ptJaHGccRecrpuUcKuZLpsQ1g5U=;
+        b=iiUfkNe3XhRpRSq38bP3bBM2PhEKQuIsUJCZB2G4SG8kKGVL0/sCyrwajw1XD6qMHF
+         D5xJK9BBflMSsPbcDRnKK+zMek8IBTQFCxz6GYJGjt0/76aQIAofF81i545RkdEEwSe2
+         hefht1/ymI5Pob06SSJVzUJtXnF3BswD2wfwIVECyWKR++3bVfB6GA7p+H897AOYTV7Z
+         4dO7NXRLAgHd+bArwBgQNSEjz34v0eEGAVQ2ORm1sesiVAGiBQJrABE4b2/oHWBVnQUI
+         WPvUYU5uPCM3L6Awhxs3jFXu+Yx2r1yT1Yg0WjA3Yjw3l5ZyGarGOzkkxb7eU4FF3EuW
+         4TUw==
+X-Forwarded-Encrypted: i=1; AJvYcCVXteTl+pKt34Psgpk+I908co8nOpeQmuuMfs+8byKvXjFSR5FLWoIrducTIOZBggHfekF3+O7hZqf6@vger.kernel.org
+X-Gm-Message-State: AOJu0YzqBsyZfWUJTfKPIangAC4JsM+3G0cVM7waaypZQNv8td4DD72z
+	OLw01gdO35NYKvjlILwzUW+Yb+UwqnIgJlzqJuHOPtE8fpjlBaTX4Pei
+X-Gm-Gg: AY/fxX4skuhZuxkH2ea61xK7FowuG/UPQjJgXaOX37K/hC8ezD+u3u1FVyjaIc4ahAt
+	jcLTKw7PV+5KWtrxB08Re/gYo4+7+BIfYewPwzrypQ2qyPglZTQJpXrZas/zPLCLmMs4ZVEs2Ba
+	aTvZ7jOUYcFKwwoH9jDvBpKNM+/eq4wRkb98c9fcJnHAbZ3FRQu9Kv+MOPoDnIRFeQ+XLasJkwH
+	0XSCIiAX1viShJYX1Bctwwq8Pu1rVFfpYgtxwAwv3DOYKi9A6mObuiX726aKL71DZ+T785w5+AO
+	412ubi4nVxvXil/LXS81WI9JlJygUcHCL4Cr1ANFhJDOZhxQ9t4nNL5i9lat5P/j96/tOz0hyaV
+	vUZBums2oNxoHj/Ggf9GmH54RJLq2LrRBbXARo4nBAPCVeYYTjhZEF7PeW2wUhblKB9GCEoSTpC
+	TKJ50oaGsEkcYfKI0OsBl7nq6SdFgrJgjEW0D6pHHVcj06hxtqRSnjyJEkvX4=
+X-Google-Smtp-Source: AGHT+IGRL20LoecJ6pn1jdufZiNAGa9JtUlJUvG+45A3c3rMqwURCEs7Wewuin0iwJX6orhOUQMjxg==
+X-Received: by 2002:a17:902:c94a:b0:2a1:deb:c46c with SMTP id d9443c01a7336-2a10debc778mr23305005ad.44.1765807493228;
+        Mon, 15 Dec 2025 06:04:53 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29eea06b651sm137028605ad.94.2025.12.15.06.04.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 15 Dec 2025 06:04:52 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <94e647ec-3cd4-4475-b064-064916cf83bd@roeck-us.net>
+Date: Mon, 15 Dec 2025 06:04:50 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251212084657.29239-3-eichest@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/3] hwmon: ltc4283: Add support for the LTC4283 Swap
+ Controller
+To: Tomas Melin <tomas.melin@vaisala.com>, nuno.sa@analog.com,
+ linux-hwmon@vger.kernel.org, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-doc@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>,
+ Jonathan Corbet <corbet@lwn.net>, Linus Walleij <linus.walleij@linaro.org>,
+ Bartosz Golaszewski <brgl@bgdev.pl>
+References: <20251204-ltc4283-support-v4-0-db0197fd7984@analog.com>
+ <20251204-ltc4283-support-v4-2-db0197fd7984@analog.com>
+ <c655d548-85be-4c42-a802-d9342ea90aed@vaisala.com>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
+In-Reply-To: <c655d548-85be-4c42-a802-d9342ea90aed@vaisala.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Fri, Dec 12, 2025 at 09:46:17AM +0100, Stefan Eichenberger wrote:
-> From: Stefan Eichenberger <stefan.eichenberger@toradex.com>
+On 12/15/25 00:20, Tomas Melin wrote:
+> Hi,
 > 
-> Add a property to activate a Micrel PHY feature that keeps the preamble
-> enabled before the SFD (Start Frame Delimiter) is transmitted.
+> On 04/12/2025 18:15, Nuno Sá via B4 Relay wrote:
+>> From: Nuno Sá <nuno.sa@analog.com>
+>>
+>> Support the LTC4283 How Swap Controller. The device features programmable
 > 
-> This allows to workaround broken Ethernet controllers as found on the
-> NXP i.MX8MP. Specifically, errata ERR050694 that states:
-> ENET_QOS: MAC incorrectly discards the received packets when Preamble
-> Byte does not precede SFD or SMD.
+> I think You mean hot swap controller?
+> 
+>> current limit with foldback and independently adjustable inrush current to
+>> optimize the MOSFET safe operating area (SOA). The SOA timer limits MOSFET
+>> temperature rise for reliable protection against overstresses.
+>>
+>> An I2C interface and onboard ADC allow monitoring of board current,
+>> voltage, power, energy, and fault status.
+>>
+>> Signed-off-by: Nuno Sá <nuno.sa@analog.com>
+>> ---
+>>   Documentation/hwmon/index.rst   |    1 +
+>>   Documentation/hwmon/ltc4283.rst |  266 ++++++
+>>   MAINTAINERS                     |    1 +
+>>   drivers/hwmon/Kconfig           |   12 +
+>>   drivers/hwmon/Makefile          |    1 +
+>>   drivers/hwmon/ltc4283.c         | 1719 +++++++++++++++++++++++++++++++++++++++
+>>   6 files changed, 2000 insertions(+)
+>>
+> 
+> This is quite a big patch, I wonder would it ease review to try to add a
+> minimalistic implementation and after that add new features one by one...
+> 
 
-It doesn't really work right if you have to change the DT to work-around 
-a quirk in the kernel. You should have all the information needed 
-already in the DT. The compatible string for the i.MX8MP ethernet 
-controller is not sufficient? 
+Please don't. I'll end up being the one person who will have to review it,
+and those piece by piece driver submissions often end up taking much more time
+to review than a single patch because the initial pieces miss the big picture.
 
-> 
-> The bit which disables this feature is not documented in the datasheet
-> from Micrel, but has been found by NXP and Micrel following this
-> discussion:
-> https://community.nxp.com/t5/i-MX-Processors/iMX8MP-eqos-not-working-for-10base-t/m-p/2151032
-> 
-> It has been tested on Verdin iMX8MP from Toradex by forcing the PHY to
-> 10MBit. Withouth this property set, no packets are received. With this
-> property set, reception works fine.
+Guenter
 
-What's the impact of just unconditionally setting this bit? Seems like 
-any impact would be minimal given 10MBit is probably pretty rare now.
 
