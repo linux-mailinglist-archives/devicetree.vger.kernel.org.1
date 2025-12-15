@@ -1,77 +1,77 @@
-Return-Path: <devicetree+bounces-246448-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246449-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84081CBCE3D
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 09:00:57 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B587CBCE4B
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 09:01:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 9191B300461C
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 08:00:25 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 25A92300AB27
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 08:01:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20A1132B9A2;
-	Mon, 15 Dec 2025 08:00:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A82CE32BF20;
+	Mon, 15 Dec 2025 08:00:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hJlq8Ycg"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="W2qFYxlI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
+Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80753329E6D
-	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 08:00:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5231132B9AA
+	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 08:00:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765785609; cv=none; b=tjaC4669gm/phayoPenlhnhjG/3B0PdFvHm+lVZ4r+Ja57K+X2lkdPXS9GriMaJ6y/zBWAfR7HAuwb/UNGR5FdRfE1VGZy/Tr8GiDJRDmN6a1Ao/WM5SysBN52yEtE3wnrRpBbiygTlVEVrQM819HPa4SnkP2CWzckJA996gypc=
+	t=1765785611; cv=none; b=MN9hPKWJu73fkKbNw9DVTsYy3zEHpvRD/0TpUGThopz4lPq7Pk/bLJ6NByXKH2hPlZIpv6yzOC2/4TFV0Gvv3ccYF3anzdPp/2Zr+HO2KhsWtxmuRxEtkRu2L6g5la9wGoYJucGRlmDvMSkK01/hJhBT0KkqDDcyq9qJLOGL/Xo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765785609; c=relaxed/simple;
-	bh=HPtm98uKiMslXOH21fQlQh3p66ZVT1qfIbtBz84LhxY=;
+	s=arc-20240116; t=1765785611; c=relaxed/simple;
+	bh=QCz6aFbAKxYNVGwc04303xaq8oUpPnl7l7rMqJKXeEU=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=AHzEfI1azz/uwgyBppvKB/7Sfa3gsC7mvauWBjtyCpYtg3dzewiuWJTYHmojKmi0X8cxJdh0OiLb74FsBATOfiRyo5I3cxfFmen+Tm9RZkBGLvvPuNDcrrXnRknLEOmEbsLb4eR8uBLzbrxPAuBMRGgmbHlCukxkaUyq6Iwa6uM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hJlq8Ycg; arc=none smtp.client-ip=209.85.214.181
+	 MIME-Version; b=g2CpUwQOy4v4b0OmWfjKr26J9076ia3TsWn6TLsA2rBMF/GGiitstWpFT6u3rCw58jg9rre6QyTbB13BNrOcxHin4f53MNC/GMuuA+HKzL/yJ3i++B43cwKQIdbTvkN3HZ2MN0YfJpV6EcCNuOmcpwSNxPAMhqUBdzUcjbeJ/lY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=W2qFYxlI; arc=none smtp.client-ip=209.85.216.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-2a09757004cso18546295ad.3
-        for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 00:00:06 -0800 (PST)
+Received: by mail-pj1-f49.google.com with SMTP id 98e67ed59e1d1-34be2be4b7cso1474550a91.3
+        for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 00:00:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1765785606; x=1766390406; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1765785608; x=1766390408; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=mn+zeiFRKpp0z4XzuVGxMSjaFqAtsY1VIsxWUC+ubCI=;
-        b=hJlq8YcgwhVul+Od3n3QEU1EID2gYQG4bIuogMDswZe6MO3UC0XbHEdUxK4Oov/m6Z
-         E+oFFI/Q6rXwXqXEcJjLTBbkOrMsNycGNkbQvsn135NLLLsCZV0KIT1sVSRADORAaLmU
-         NKtchW+CjZFoh4HvJT3b4PiKdYgkjCrOwgbhaDMFpMRQmJTRJ30FTXC6Kgu3t8qgOTiu
-         cPOTCCjJ58Y2N8ZWoMcCGwTB2skRWUogiLyQruUABGgsCrX2GdNtsrKEJz0G5Dp0pg1/
-         R49cWPha7BCbt/BLpzNtsJcGFMi79ieDQhkKsB9Dhg1VgEU6nfSCqu+lPNxRjZ+WpiSO
-         rm2A==
+        bh=7tSlML4uKCCHRjDgUuA5+Z7+nq0n6j206qyzOtMJBNM=;
+        b=W2qFYxlIY7Oolf+Uhey01GwQjGsU7XOoLW3+3VF4qCN2Ww36oATuSXc3iYsX81WG4S
+         AdlzlLm8IXTsTG4xoHhBdt9Dyiz4mtj73X3bnacuWAu5GjkqKLPB8kWcYWESQtWfr300
+         h8VYA5GjU6wsbMNfGi68rLqpFRX7PI3j+C53k+N7hYLGer3C//emU35+UvEX0isiYtTX
+         T5SHEyt6A9OhUM1oPcVMhon17LAQ6G8AfMCG2rvyHFSS/tXuglt7VCS6/iYZ/Fapryxq
+         F03JiaHx9qSyVKUix4+tZz7QJbSt8tJ1eAuUw08FKOJjahmT2wnlPBK39BvZNN4UEUcn
+         23mw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765785606; x=1766390406;
+        d=1e100.net; s=20230601; t=1765785608; x=1766390408;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=mn+zeiFRKpp0z4XzuVGxMSjaFqAtsY1VIsxWUC+ubCI=;
-        b=UsxGbl024vaUq4yo2ChNPsvVdkgpXKtVvI5OKDMxvv8SO4+GPqfuhQ1zC4n7igwL+h
-         do8aunM0YAXiMv4AXKd7AqOoWV0Vpb+FKtIh3rSeiw4/gqVosq5wfSrXDzoxzumb9pIA
-         48UlO59TQHxlDtcwg77+6LiE5xennO5/U7VfidUP2Bx/M11ScTFEl7ZHfX0OIet8JrM0
-         tmRvCxcoMjhVQ+SEb3An9OoNTdYUejo1twvX8ShkRz31mZjOyrQq/7ebfiXLtXj5fIBk
-         zEbmfzitWsDSR/yBNbMNQ9puFM4eBFk41H63PWnAvBFYEvqxQ7PR51iTSLLMLI60LAAB
-         E/3A==
-X-Forwarded-Encrypted: i=1; AJvYcCV/fMP5VdXSrC5Niwv1xQv85us4CKJbCMSq2WHVEPz5y3k+caGM/1cS9w/rjFzBO8wX7nec21zzEAzm@vger.kernel.org
-X-Gm-Message-State: AOJu0YxaAC1+nCUUkEDdSGCFb0YpIdoT/U8oPmwiRrx+dQ7GJh2/faz2
-	Z/RRLXr44a/OfHf9GqYVf3S0zJcYSw1qAhuypz/bG5FVcTUzpeLMQPDf
-X-Gm-Gg: AY/fxX4UchS4hVpELD57hJOFPc6eWbhgvvUEDzwFP++4u27AStikc1pW4hgE2qOfi7m
-	w4iJXnQgZ9VkoKbNmYxyjYNdMhGDaRwRWgr0giN7nu5D7dWbVXxWOKjD/ctzMNp4CDOx12IfZW+
-	q1Rv1p6qT4Czivc1lLaw+/2dBGXf78+SwQwSHXWnuGhvVw4FdPFjZeloABCMMkCDrSxKyTo7vai
-	sKXYfozXJmWjPD3vzt61T75AroGBMH1eTIvStuz6bF1Xb4dgfpZE4EH9BberR924fFb8fnujQAr
-	7h3LAXPor/iwIkaZOLJJ+syvc9lw4UdgWA37g47lyYREdmysnYSfn0FyJ/lzs8pgL0N2o7DjbEU
-	9Epr1Usw2if25umwlT1NP63i0NUOnnSe6S8BZiyDvbDCDzyKmh1z3OkfRrFLv/FfekNnYi/dtNS
-	pCThidx7B+XRM=
-X-Google-Smtp-Source: AGHT+IEq2Sf+p9p2X7o3MuL0JatpUn4zPBXWnM3wP3V5EAP3Px6RiLHWn2wyvNZb/sW0cyMzORYkFQ==
-X-Received: by 2002:a05:7022:ec4:b0:11b:a8e3:8468 with SMTP id a92af1059eb24-11f34c30240mr7883689c88.33.1765785605501;
-        Mon, 15 Dec 2025 00:00:05 -0800 (PST)
+        bh=7tSlML4uKCCHRjDgUuA5+Z7+nq0n6j206qyzOtMJBNM=;
+        b=qGC6Ioetm5JAO+q8O4QuIo8fObRNWdAfZ+9rPIS7/xG/8qHCj8ufcRzvH02u8zOd86
+         0auzPGKtSkQkeVDQUmnSJ8syKzMW7dPamNCl7wVV5SWtDkB+yr/HmqjuLssJPROKPo26
+         v9aESlf2mCxCda+A6XSkVSiRGVEFPDib5qH6nxEONX+UhfckF0ejpaBLGrBJaPoZ9UJr
+         k1vxBO182+WcOel7weKDfOhekOTIaQfzDx+LxEDQsnhYWke76wFWccgrnzGG0BGLuOZN
+         5cUZrhOlOpqj53KPZlXY8G3n0iCCbMuJIiDo6VBXL0nbXGJKnT1w0mORD4jRAudSwIjE
+         hN/w==
+X-Forwarded-Encrypted: i=1; AJvYcCWkjKTm52/EBM/OFkEkx5vtxs1ykO8I7SQqufWmErMdfkC3yM3p4bkLPGh5a20ntgXAsbEXl1ci4aJR@vger.kernel.org
+X-Gm-Message-State: AOJu0YzuN85mLciAcz6HJaIRq41FwDXxJyr71ATGma1Sj65CBkIyqWt9
+	1GhIHkjvOjJW1Bn+NBee/TRt/GkaxuV0c1CUALBDoji0bbvhSV+PZuCs
+X-Gm-Gg: AY/fxX5WlHn39ZLd9cZ9SIqnzJqlHCVk1bUsVNCUl4IkwUdU7yUAEhWKrn2QJrwjv3k
+	gXGApgznUr2KAk+z+r2NJ3lQG2KIE49YF0GVLAcONTG7fKni3Z5pak0tOR20zTjYvnUzZu1cxlI
+	xHvc89710j3TUsXKDPAC2S7kXd3M+lfx817rXX0YgBv3ByIfraUqdyx+N/oNNPgISrwd7JUeeNx
+	6+6j3g2sOQ1xTyyxqBH416cHrimKnNtNyOxy9MlM+OEsfq7k4CSjzoZq0jdggHmfnedtr6gBr5x
+	rPsH/Z9IjY+37Y+if1wzEwHjCuaBLM7OcmUBhGZ0lhMno1oadc12rCwgxjQ0Cv6uvpFU/aF/mT9
+	Y95Qf46KE8iFL44CkKF63Qt365pT5Op3nBTcTOP71ZDb1ff1PdXdD+iCRmYSMkDwV1Q6tAQ3/nm
+	D69861h3KiTwc=
+X-Google-Smtp-Source: AGHT+IHvfP5fbQNkStJwNn99uM97HKzJkrR2L4hGBv1RulgL1zBQt7w33jX/ynI+qGQSHpIEgrwTOg==
+X-Received: by 2002:a05:7022:7f03:b0:11c:fe15:f66d with SMTP id a92af1059eb24-11f349c5bbdmr5406985c88.17.1765785607633;
+        Mon, 15 Dec 2025 00:00:07 -0800 (PST)
 Received: from fedora ([172.59.162.202])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-11f2e2ff624sm43637473c88.12.2025.12.15.00.00.04
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-11f2e2ff624sm43637473c88.12.2025.12.15.00.00.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Dec 2025 00:00:05 -0800 (PST)
+        Mon, 15 Dec 2025 00:00:07 -0800 (PST)
 From: Alex Tran <alex.t.tran@gmail.com>
 To: Mauro Carvalho Chehab <mchehab@kernel.org>
 Cc: Rob Herring <robh@kernel.org>,
@@ -84,9 +84,9 @@ Cc: Rob Herring <robh@kernel.org>,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Alex Tran <alex.t.tran@gmail.com>
-Subject: [PATCH v2 3/4] media: platform: ti: omap3isp: isp: read crc configuration from device tree for CCP2
-Date: Sun, 14 Dec 2025 23:58:34 -0800
-Message-ID: <8b91902b1aea867a67aa5679710812650fa2987a.1765782992.git.alex.t.tran@gmail.com>
+Subject: [PATCH v2 4/4] dt-bindings: media: omap3isp: document missing crc as optional property
+Date: Sun, 14 Dec 2025 23:58:35 -0800
+Message-ID: <99fea6935f255661a2c41adc11ba5f85d17e3bf4.1765782992.git.alex.t.tran@gmail.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <cover.1765782992.git.alex.t.tran@gmail.com>
 References: <cover.1765782992.git.alex.t.tran@gmail.com>
@@ -98,31 +98,298 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Allow CCP2 receiver to read the crc configuration from the device tree.
-Default value of 1 is used to maintain backward compatibility with
-existing device trees that don't specify the crc property.
+Convert the OMAP3 ISP device tree binding from TXT format to YAML.
+Add the optional crc property to the endpoint node for the omap3isp
+receiver. This property enables CRC checksums for the bus and was added to
+match the new driver support for reading it from the device tree.
 
 Signed-off-by: Alex Tran <alex.t.tran@gmail.com>
 ---
- drivers/media/platform/ti/omap3isp/isp.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ .../devicetree/bindings/media/ti,omap3isp.txt |  71 -------
+ .../bindings/media/ti,omap3isp.yaml           | 196 ++++++++++++++++++
+ 2 files changed, 196 insertions(+), 71 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/media/ti,omap3isp.txt
+ create mode 100644 Documentation/devicetree/bindings/media/ti,omap3isp.yaml
 
-diff --git a/drivers/media/platform/ti/omap3isp/isp.c b/drivers/media/platform/ti/omap3isp/isp.c
-index 8ac2bdcdf..cd10589ed 100644
---- a/drivers/media/platform/ti/omap3isp/isp.c
-+++ b/drivers/media/platform/ti/omap3isp/isp.c
-@@ -2102,7 +2102,10 @@ static void isp_parse_of_csi1_endpoint(struct device *dev,
- 	buscfg->bus.ccp2.ccp2_mode = vep->bus_type == V4L2_MBUS_CCP2;
- 	buscfg->bus.ccp2.vp_clk_pol = 1;
- 
--	buscfg->bus.ccp2.crc = 1;
-+	u32 use_crc = 1;
+diff --git a/Documentation/devicetree/bindings/media/ti,omap3isp.txt b/Documentation/devicetree/bindings/media/ti,omap3isp.txt
+deleted file mode 100644
+index ac23de855..000000000
+--- a/Documentation/devicetree/bindings/media/ti,omap3isp.txt
++++ /dev/null
+@@ -1,71 +0,0 @@
+-OMAP 3 ISP Device Tree bindings
+-===============================
+-
+-The DT definitions can be found in include/dt-bindings/media/omap3-isp.h.
+-
+-Required properties
+-===================
+-
+-compatible	: must contain "ti,omap3-isp"
+-
+-reg		: the two registers sets (physical address and length) for the
+-		  ISP. The first set contains the core ISP registers up to
+-		  the end of the SBL block. The second set contains the
+-		  CSI PHYs and receivers registers.
+-interrupts	: the ISP interrupt specifier
+-iommus		: phandle and IOMMU specifier for the IOMMU that serves the ISP
+-syscon		: the phandle and register offset to the Complex I/O or CSI-PHY
+-		  register
+-ti,phy-type	: 0 -- OMAP3ISP_PHY_TYPE_COMPLEX_IO (e.g. 3430)
+-		  1 -- OMAP3ISP_PHY_TYPE_CSIPHY (e.g. 3630)
+-#clock-cells	: Must be 1 --- the ISP provides two external clocks,
+-		  cam_xclka and cam_xclkb, at indices 0 and 1,
+-		  respectively. Please find more information on common
+-		  clock bindings in ../clock/clock-bindings.txt.
+-
+-Port nodes (optional)
+----------------------
+-
+-More documentation on these bindings is available in
+-video-interfaces.txt in the same directory.
+-
+-reg		: The interface:
+-		  0 - parallel (CCDC)
+-		  1 - CSIPHY1 -- CSI2C / CCP2B on 3630;
+-		      CSI1 -- CSIb on 3430
+-		  2 - CSIPHY2 -- CSI2A / CCP2B on 3630;
+-		      CSI2 -- CSIa on 3430
+-
+-Optional properties
+-===================
+-
+-vdd-csiphy1-supply : voltage supply of the CSI-2 PHY 1
+-vdd-csiphy2-supply : voltage supply of the CSI-2 PHY 2
+-
+-Endpoint nodes
+---------------
+-
+-lane-polarities	: lane polarity (required on CSI-2)
+-		  0 -- not inverted; 1 -- inverted
+-data-lanes	: an array of data lanes from 1 to 3. The length can
+-		  be either 1 or 2. (required on CSI-2)
+-clock-lanes	: the clock lane (from 1 to 3). (required on CSI-2)
+-
+-
+-Example
+-=======
+-
+-		isp@480bc000 {
+-			compatible = "ti,omap3-isp";
+-			reg = <0x480bc000 0x12fc
+-			       0x480bd800 0x0600>;
+-			interrupts = <24>;
+-			iommus = <&mmu_isp>;
+-			syscon = <&scm_conf 0x2f0>;
+-			ti,phy-type = <OMAP3ISP_PHY_TYPE_CSIPHY>;
+-			#clock-cells = <1>;
+-			ports {
+-				#address-cells = <1>;
+-				#size-cells = <0>;
+-			};
+-		};
+diff --git a/Documentation/devicetree/bindings/media/ti,omap3isp.yaml b/Documentation/devicetree/bindings/media/ti,omap3isp.yaml
+new file mode 100644
+index 000000000..b86c3aa71
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/ti,omap3isp.yaml
+@@ -0,0 +1,196 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/ti,omap3isp.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+	fwnode_property_read_u32(vep->base.local_fwnode, "crc", &use_crc);
-+	buscfg->bus.ccp2.crc = use_crc;
- }
- 
- static struct {
++title: Texas Instruments OMAP 3 Image Signal Processor (ISP)
++
++maintainers:
++  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
++  - Sakari Ailus <sakari.ailus@iki.fi>
++
++description:
++  The OMAP 3 ISP is an image signal processor present in OMAP 3 SoCs.
++
++properties:
++  compatible:
++    const: ti,omap3-isp
++
++  reg:
++    items:
++      - description: Core ISP registers up to the end of the SBL block
++      - description: CSI PHYs and receivers registers
++
++  interrupts:
++    maxItems: 1
++    description: the ISP interrupt specifier
++
++  iommus:
++    maxItems: 1
++    description: phandle and IOMMU specifier for the IOMMU that serves the ISP
++
++  syscon:
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++    items:
++      - items:
++          - description: phandle to System Control Module
++          - description: register offset to Complex I/O or CSI-PHY register
++    description:
++      Phandle and register offset to the Complex I/O or CSI-PHY register
++
++  ti,phy-type:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [0, 1]
++    description:
++      0 - OMAP3ISP_PHY_TYPE_COMPLEX_IO (e.g. OMAP 3430)
++      1 - OMAP3ISP_PHY_TYPE_CSIPHY (e.g. OMAP 3630)
++
++  '#clock-cells':
++    const: 1
++    description:
++      The ISP provides two external clocks, cam_xclka and cam_xclkb,
++      at indices 0 and 1 respectively.
++
++  vdd-csiphy1-supply:
++    description: Voltage supply of the CSI-2 PHY 1
++
++  vdd-csiphy2-supply:
++    description: Voltage supply of the CSI-2 PHY 2
++
++  ports:
++    $ref: /schemas/graph.yaml#/properties/ports
++
++    properties:
++      port@0:
++        $ref: /schemas/graph.yaml#/$defs/port-base
++        unevaluatedProperties: false
++        description: Parallel (CCDC) interface
++
++        properties:
++          endpoint:
++            $ref: /schemas/media/video-interfaces.yaml#
++            unevaluatedProperties: false
++
++      port@1:
++        $ref: /schemas/graph.yaml#/$defs/port-base
++        unevaluatedProperties: false
++        description: |
++          CSIPHY1 interface:
++            OMAP 3630: CSI2C / CCP2B
++            OMAP 3430: CSI1 (CSIb)
++
++        properties:
++          endpoint:
++            $ref: /schemas/media/video-interfaces.yaml#
++            unevaluatedProperties: false
++
++            properties:
++              lane-polarities:
++                description: |
++                  The lane polarity (required on CSI-2):
++                    0 - not inverted
++                    1 - inverted
++                minItems: 2
++                maxItems: 3
++                items:
++                  enum: [0, 1]
++
++              data-lanes:
++                description: Data lanes (required on CSI-2)
++                minItems: 1
++                maxItems: 2
++                items:
++                  minimum: 1
++                  maximum: 3
++
++              clock-lanes:
++                description: The clock lane (required on CSI-2)
++                maxItems: 1
++                items:
++                  minimum: 1
++                  maximum: 3
++
++              crc:
++                $ref: /schemas/types.yaml#/definitions/uint32
++                enum: [0, 1]
++                default: 1
++                description:
++                  Enable CRC checksums.
++
++      port@2:
++        $ref: /schemas/graph.yaml#/$defs/port-base
++        unevaluatedProperties: false
++        description: |
++          CSIPHY2 interface:
++            OMAP 3630: CSI2A / CCP2B
++            OMAP 3430: CSI2 (CSIa)
++
++        properties:
++          endpoint:
++            $ref: /schemas/media/video-interfaces.yaml#
++            unevaluatedProperties: false
++
++            properties:
++              lane-polarities:
++                description: |
++                  The lane polarity (required on CSI-2):
++                    0 - not inverted
++                    1 - inverted
++                minItems: 2
++                maxItems: 3
++                items:
++                  enum: [0, 1]
++
++              data-lanes:
++                description: Data lanes (required on CSI-2)
++                minItems: 1
++                maxItems: 2
++                items:
++                  minimum: 1
++                  maximum: 3
++
++              clock-lanes:
++                description: The clock lane (required on CSI-2)
++                maxItems: 1
++                items:
++                  minimum: 1
++                  maximum: 3
++
++              crc:
++                $ref: /schemas/types.yaml#/definitions/uint32
++                enum: [0, 1]
++                default: 1
++                description:
++                  Enable CRC checksums.
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - iommus
++  - syscon
++  - ti,phy-type
++  - '#clock-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/media/omap3-isp.h>
++
++    isp@480bc000 {
++        compatible = "ti,omap3-isp";
++        reg = <0x480bc000 0x12fc>,
++              <0x480bd800 0x0600>;
++        interrupts = <24>;
++        iommus = <&mmu_isp>;
++        syscon = <&scm_conf 0x2f0>;
++        ti,phy-type = <OMAP3ISP_PHY_TYPE_CSIPHY>;
++        #clock-cells = <1>;
++
++        ports {
++            #address-cells = <1>;
++            #size-cells = <0>;
++        };
++    };
 -- 
 2.51.0
 
