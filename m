@@ -1,205 +1,158 @@
-Return-Path: <devicetree+bounces-246513-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246514-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09C40CBD58A
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 11:20:12 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66070CBD5ED
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 11:34:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6794C3012BC8
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 10:20:08 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2E7AE30102AF
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 10:34:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A16A32ED4D;
-	Mon, 15 Dec 2025 10:20:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6602F31579B;
+	Mon, 15 Dec 2025 10:34:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="gl1K13a8";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="iG7jRi2m"
+	dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b="S/AQXcF3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6DBE31AAAD
-	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 10:20:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 703002E0938;
+	Mon, 15 Dec 2025 10:34:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.75.126.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765794007; cv=none; b=KE4EhcQ0o2rv32l6whoLW5GzkVYnB/xcxGr3lh7KgVn103woHExIMalBY4OUSW0E4i5srQTPdOIqvaMZmWUiUhUJan4iiBhk6ixB00q4LanPi1yyhtvQEIWIAbct0/ZjeFqv1JFM255/k2K7gMG2w+DXl4CNtYWT+t47GRPXjLY=
+	t=1765794889; cv=none; b=HU738umWgH5AP5X+atxQ2GS+mLolQ/yQZpAD10xXyF9m0+zqUMx1zXOXtR0P3hxXjjK9rFQhVrxRgHjTS8KptP9EX0doquSKADwTtbwpmhoXuH1pRVdVO9TB3zJsk9d33EvHpzVVZdenxJ60g4Fclo4ZxT+fftPuYIBjs4sjNCw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765794007; c=relaxed/simple;
-	bh=jID5Pz1lOsMNr/jj6hGmzihO+1/O/EeDCusP1DKWUKg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=LiOq/uvn/Do3XnzCoIPLeD2rh+XCGW9jNa4+5lnSLDh9QddYh8OhHTYfPT74ISf6LqaE/kDTealXryp/ezZwb81mRWFv6g4+BFecPB54Qsxl2SlXJirMBurss0aS8g13F35wo843O9P+7pQB5kTFcQOyCNMf2+jR9wZ1bbUd1Eg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=gl1K13a8; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=iG7jRi2m; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BFACVYd280540
-	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 10:20:04 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	jID5Pz1lOsMNr/jj6hGmzihO+1/O/EeDCusP1DKWUKg=; b=gl1K13a8g/HDUY4K
-	9hrqu87WbCt92TW2tLc+66uDeKjoNSBJ/w+svmUUeKHj4V41A/38IU/72N1xC8E+
-	XuOzbcV8YpLmdduhmFuiK/RpxB0Briih6TCzZTaxWuz6IG5gh6xb7j2FKfn+CYC9
-	p/Bmb0SS3a0jeoC8QP9AvVp2+pgb+ecOhz8ErNtmMzcCky1jr0d5urnyHczqYnMa
-	WhksO0PJFfYKiaHM/9CqcCqogZdxK1BccId1TMDsDyPANOpSvS8EhCI7pbikRxke
-	v1SQkNTbVFGBbz9xN3BGbiHvNbjAeghcr2QlS0QDnBIpo3AnsGkf1QsQKEx1RPN+
-	6E2A/Q==
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b119am3gs-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 10:20:04 +0000 (GMT)
-Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4ed6855557aso66492171cf.1
-        for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 02:20:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1765794003; x=1766398803; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jID5Pz1lOsMNr/jj6hGmzihO+1/O/EeDCusP1DKWUKg=;
-        b=iG7jRi2mRSzgaRzb2AJangMDVBLAkCjP6cd3u/lREB62TU5yYnPAkxGmIWPMmUWUdA
-         vIpoF1+ID8LmCz3WDlN7DEAs2yLhNQPxNjrbx5qdnVieXtKhnUTAy4u/XgjicXcqS6nt
-         cHBXfbMve6qG37NNwNjP95CyL1Uj0qjLLw8fABIwNhi8s+n8+D9RlwGru9DAbyWKLm8R
-         SR31+8KrsiwIgUFMGFrW3GjeGScvpee8iXeDmgpW8D8GYmr74LVbI3rgTnDchnHZBJ16
-         c0q8CH+j5KekSsNRcpaExw1zFG7PodViAneFLIaZmyDN6r0XkWGbA3ESzEGyEiZP7Fcm
-         ozmA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765794003; x=1766398803;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=jID5Pz1lOsMNr/jj6hGmzihO+1/O/EeDCusP1DKWUKg=;
-        b=LXpSXNEw/+6v94ZDqG51xkgGAGnTrIRntYCtYcjwiR8+QSxGqbRvVHojUnS4vwItZd
-         n3cVrxq/qoKYC8kJ1S0zNUXOOJtWnebaBl6zopTt4o+ZYp2j/r105P4YtT81CMqjlx+Z
-         sA7KorKT+RmTmb+FWU1/1sMbDvgj7k+ZiVAiB0RvJyIoe6UM/DW4FBdzkP9VYO4ja8n0
-         kWTJHISoHQrDZp7ZxSmOUf0JqwX59Hp/k6X811P4FhHEglOpwF2/H/900ft4Zi5KqJQO
-         yI+l+x599XZyn2CrG8d7wGQOxGdO5xG1fpU/mmozQUIkFLPNIuYHTiYerZN84jQb4iYe
-         mH8A==
-X-Forwarded-Encrypted: i=1; AJvYcCWQoz4O4SpXXBVQfhUiKy9YB8LpnQSPJ1VFEPtUQigeh4xdDbRN9u60f4Ki4+M5x7bLPYehaRiK58WU@vger.kernel.org
-X-Gm-Message-State: AOJu0YyDWx52HEax8YK/TJYNSRum0T+3Nzlf0x5aV04vvS+seBe2hOny
-	MBfyjYRmF2y3WQ57aEyrB/SVY9GWSrt3Z5RNKRLNMvCXYrmK71ysN0LxNKVhT4SaMMb8ychlwuK
-	LX32j7pc9qs7eoVWWaC9b1aFSyWTeRs3GU3IHveYdEHSDlR8vOTslVpsUL31VrflUmufjQyl3Pw
-	tiIsDAe6XJEBv7DohpndhgCbk5nklCiJnwaCjTMyg=
-X-Gm-Gg: AY/fxX6y/swJdUKBfc0puHcF2r5DiyWq6pyEOqQDCaG9iwSXJen0qnpDF0WgYF3A0Ky
-	vB0uYW+1grm9PNWq7VDjICGI3yCwq9u+/s6bBBnjGn9F8k3Ih3k9pllb7rt4enBzMDRQGeQoN9r
-	nTElYIIdH7Ho5xbT0er2058LFwS89zutvwKeu5oofWj7F6R3FdmR9OBMQ/bA6ROrd1Y16MvyfHS
-	XRo6l8f62eD1qR3oUNLF3TD4So=
-X-Received: by 2002:ac8:5fd0:0:b0:4ee:4656:54e8 with SMTP id d75a77b69052e-4f1bfc3630emr186116961cf.26.1765794003406;
-        Mon, 15 Dec 2025 02:20:03 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IE8mhGrBkSzNkF4DzliVe9C5Ih47UYoftQT1OIJpUJ0UK/dVB428Rb7JSrvxDavz+aDwBYcQC7+v0amRRk6wPo=
-X-Received: by 2002:ac8:5fd0:0:b0:4ee:4656:54e8 with SMTP id
- d75a77b69052e-4f1bfc3630emr186116751cf.26.1765794002970; Mon, 15 Dec 2025
- 02:20:02 -0800 (PST)
+	s=arc-20240116; t=1765794889; c=relaxed/simple;
+	bh=tQBgCb7ikzOmnvItGqntAV1a3R1NgbI6Mo7aHY68sjE=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=bHg9LKPx+LM7jTkaPYtEWzmQNCDNdI6XbtWOHqxNXMs5U8iwnMN151QzsA5gGxHrdlIJVnwvWNWKrPRBqQwjrvUnQwdQ0HlBoPwUnVhD6N3lYBVXUI/mEKfiKGwWyv31OQdnwC6+h3HkTmMEpt8ugTGoQGB56rIXLgBkQzLRfRc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com; spf=pass smtp.mailfrom=realtek.com; dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b=S/AQXcF3; arc=none smtp.client-ip=211.75.126.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=realtek.com
+X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 5BFAVwvL61656927, This message is accepted by code: ctloc85258
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=realtek.com; s=dkim;
+	t=1765794718; bh=WwL08DBtUA04m9uzunJbXUc8Llp3YbCg4yfS44lD4Ls=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:
+	 Content-Transfer-Encoding:Content-Type;
+	b=S/AQXcF3A3Hh5iIs/mQRi0b8zMDKvvx+Eu3n0dfeRX+1YRIL2Jrvb/ISiT/jvBkXP
+	 hI66GYn1xUH/IOUiG4sIbfFuCzoMqaDSL5IANLWc+LCV5+bdVAnSZrLP2kGIYGiOGV
+	 93uMRxMIwRr6ttBraOU7KEQiw+xw8IZrwHboJzhJLm1NlzaOf11fUhX6mvv5f9ZX9R
+	 UWe3tBd2ARyiF8drKZJXHslFqB7QfYBHxVhHiFlxGOyryaDge5sRPlwy++VMoJTwHC
+	 EMWbUFXAV2Js94Yk8LHmAPSa6YYvTHanafzBZPbR+qmrD8HWjpkSvzIyC6gjvqVgxQ
+	 034GLCnbPtqAQ==
+Received: from mail.realtek.com (rtkexhmbs02.realtek.com.tw[172.21.6.41])
+	by rtits2.realtek.com.tw (8.15.2/3.21/5.94) with ESMTPS id 5BFAVwvL61656927
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Mon, 15 Dec 2025 18:31:58 +0800
+Received: from RTKEXHMBS06.realtek.com.tw (10.21.1.56) by
+ RTKEXHMBS02.realtek.com.tw (172.21.6.41) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.10; Mon, 15 Dec 2025 18:31:58 +0800
+Received: from RTKEXHMBS03.realtek.com.tw (10.21.1.53) by
+ RTKEXHMBS06.realtek.com.tw (10.21.1.56) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.27; Mon, 15 Dec 2025 18:31:57 +0800
+Received: from cn1dhc-k02 (172.21.252.101) by RTKEXHMBS03.realtek.com.tw
+ (10.21.1.53) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
+ Transport; Mon, 15 Dec 2025 18:31:57 +0800
+From: Yu-Chun Lin <eleanor.lin@realtek.com>
+To: <afaerber@suse.de>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <james.tai@realtek.com>
+CC: <linux-arm-kernel@lists.infradead.org>,
+        <linux-realtek-soc@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <cy.huang@realtek.com>,
+        <stanley_chang@realtek.com>, <eleanor.lin@realtek.com>
+Subject: [PATCH v3 0/2 RESEND] arm64: dts: Add support for Kent SoC family
+Date: Mon, 15 Dec 2025 18:31:55 +0800
+Message-ID: <20251215103157.27039-1-eleanor.lin@realtek.com>
+X-Mailer: git-send-email 2.50.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251114133822.434171-1-loic.poulain@oss.qualcomm.com>
- <20251114133822.434171-2-loic.poulain@oss.qualcomm.com> <aRtbwK0Afo50Lh0B@kekkonen.localdomain>
- <CAFEp6-1Tdmr5v0r+q0qeOG6qqA-hiBaF1iTEcmhBA0oTjLgbgg@mail.gmail.com> <aT_Xc6LR161QBRFp@kekkonen.localdomain>
-In-Reply-To: <aT_Xc6LR161QBRFp@kekkonen.localdomain>
-From: Loic Poulain <loic.poulain@oss.qualcomm.com>
-Date: Mon, 15 Dec 2025 11:19:51 +0100
-X-Gm-Features: AQt7F2qdW4Ea6_Bf65KtP4LW034t4fYmN6BR8N3RGUwgap-ZkP7eo7ApOSFvSKM
-Message-ID: <CAFEp6-2PP0ufge0RXTrE2Nrn_sLCN5erokxpJsuGeHq7ZEZ83g@mail.gmail.com>
-Subject: Re: [PATCH v3 1/4] media: i2c: ov9282: Fix reset-gpio logical state
-To: Sakari Ailus <sakari.ailus@linux.intel.com>, krzk+dt@kernel.org
-Cc: andersson@kernel.org, konradybcio@kernel.org,
-        dave.stevenson@raspberrypi.com, robh@kernel.org, conor+dt@kernel.org,
-        mchehab@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-media@vger.kernel.org,
-        laurent.pinchart@ideasonboard.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Authority-Analysis: v=2.4 cv=ftPRpV4f c=1 sm=1 tr=0 ts=693fe0d4 cx=c_pps
- a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10
- a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22 a=QyXUC8HyAAAA:8
- a=LUmOBNcdo5ogea7qYVEA:9 a=QEXdDO2ut3YA:10 a=dawVfQjAaf238kedN5IG:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjE1MDA4NiBTYWx0ZWRfX4FsaSUcdoMzq
- Zgx1uYfrL6snEgJhNUCU5GtJrscaGo/XWctD2/TmaUQVkd41xC1SSpodEt7nDStKd5LJnUp4NJD
- U4UQk/c3nUTCNrCZylaF/AzAsWUVnR6u0YQSfT0kPc17p+MasHr5+KJExPqXmLk5Vo+182SjUMh
- snw+oYnyy3yM+QHwtOEOy/EB86Dbv7wd1j+cWhmBrdB7K648gZM/9xPykC8k7pIqBVFL9e/1GYg
- e7QCissWxtlhpKub6G7fJy9oHxJPfjmvEjQzUaXy5lDobsepWmiubKjILudoKeGdc+FCv6oaJv+
- D3fo5Otlhd6iLIE8R3cMrVKoaN/jaYCZoce6jrMs2rLbBleHRt+8gu9dqdtVYBLVA1G+JHfzZdL
- h3exDV1KlEvtv6/ltpWER+wb8ftuPA==
-X-Proofpoint-ORIG-GUID: 63Pmup5d3TODRDxnEbbkHQJ33LQvtdsy
-X-Proofpoint-GUID: 63Pmup5d3TODRDxnEbbkHQJ33LQvtdsy
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-15_02,2025-12-15_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 priorityscore=1501 spamscore=0 suspectscore=0 phishscore=0
- clxscore=1015 bulkscore=0 malwarescore=0 impostorscore=0 lowpriorityscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512150086
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-On Mon, Dec 15, 2025 at 10:40=E2=80=AFAM Sakari Ailus
-<sakari.ailus@linux.intel.com> wrote:
->
-> Hi Loic,
->
-> On Mon, Dec 15, 2025 at 10:35:15AM +0100, Loic Poulain wrote:
-> > Hi Sakari,
-> >
-> > On Mon, Nov 17, 2025 at 6:30=E2=80=AFPM Sakari Ailus
-> > <sakari.ailus@linux.intel.com> wrote:
-> > >
-> > > Hi Loic,
-> > >
-> > > On Fri, Nov 14, 2025 at 02:38:19PM +0100, Loic Poulain wrote:
-> > > > Ensure reset state is low in the power-on state and high in the
-> > > > power-off state (assert reset). Note that the polarity is abstracte=
-d
-> > > > by the GPIO subsystem, so the logic level reflects the intended res=
-et
-> > > > behavior.
-> > >
-> > > That's an interesting approach to fix DTS gone systematically wrong.
-> > >
-> > > I was thinking of the drivers that have this issue, too, but I would =
-have
-> > > introduced a new GPIO under a different name (many sensors use "enabl=
-e",
-> > > too). Any thoughts?
-> >
-> > Apologies for missing your point earlier. We can=E2=80=99t really name =
-it
-> > enable, as it performs the opposite function and that would be
-> > confusing in the device tree description. A property like reset2 would
-> > be more accurate, but I suspect such a binding wouldn=E2=80=99t be acce=
-ptable
-> > from a device tree/bindings perspective.
->
-> Many sensor datasheets document a pin called "xshutdown" or alike. That's
-> not exactly "reset" or "enable" but it can be mapped to either and this c=
-an
-> be seen in the existing bindings. The polarity is effectively the opposit=
-e,
-> yes, but does that matter?
+Hello,
 
-I assume naming a pin 'xshutdown' or 'xreset' indicates that its
-polarity is inverted at the driver level, the driver interprets the
-shutdown or reset function as being active when the logical level is 0
-(low), as they actually incorrectly do for the 'reset' gpio.
+This patch series adds initial Device Tree support for Realtek's Kent SoC
+family, including the RTD1501S, RTD1861B, and RTD1920S variants with their
+respective evaluation boards.
 
-From the driver=E2=80=99s perspective, this naming convention is acceptable=
-;
-however, it causes the devicetree description to slightly diverge from
-the datasheet and leaves the reset property effectively inverted (and
-therefore incorrect).
+The series includes:
 
-Honestly, in this specific case, the simplest solution would be to fix
-the driver, since there is currently no upstream devicetree using this
-sensor. That would technically break backward compatibility for any
-out-of-tree DTS (if they exist), but those would have been incorrect
-in the first place.
+1. Adds compatible strings for the Kent family.
+2. Add Device Tree files for the Kent SoC, TD1501S Phantom EVB (8GB),
+RTD1861B Krypton EVB (8GB), and RTD1920S Smallville EVB (4GB).
 
-But yes, this seems like a good opportunity to discuss and define a
-more general approach that can be applied to other drivers with
-similar polarity or naming issues.
+The patches have been validated with 'make dtbs_check' and
+'dt_binding_check' to ensure compliance with DT schema and successful
+compilation.
 
-Krzysztof, any thoughts?
+Cheers,
+Yu-Chun
 
-Regards,
-Loic
+Signed-off-by: Yu-Chun Lin <eleanor.lin@realtek.com>
+---
+Changes in v3:
+
+- Drop the dt-bindings patch (realtek,misc.yaml)
+- Drop 'iso: syscon@7000' node and and re-parent the UART directly to rbus
+- Change all dts/dtsi to license: GPL-2.0
+- Drop all custom bootargs
+
+V2: https://lore.kernel.org/lkml/20251113123009.26568-1-eleanor.lin@realtek.com/
+
+Changes in v2:
+
+[PATCH v2 1/3]
+- Fix YAML syntax: remove duplicate blank lines
+- Validated with 'make dt_binding_check'
+
+[PATCH v2 2/3]
+- Rename: realtek,iso-system.yaml -> realtek,misc.yaml
+- Improve description and example: show child node (UART)
+
+[PATCH v2 3/3]
+- Reorder Makefile targets to alphabetical order.
+- Rename node: use generic names ('arch_timer' -> 'timer', 'reg-bus' -> 'bus')
+- Fix node naming and hex format (remove leading zeros)
+- Inline overlay nodes directly into .dtsi
+- Reorder properties: ranges after reg
+- Remove unnecessary status and custom bootargs
+
+V1: https://lore.kernel.org/lkml/20251105104452.6336-1-eleanor.lin@realtek.com/
+
+Yu-Chun Lin (2):
+  dt-bindings: arm: realtek: Add Kent Soc family compatibles
+  arm64: dts: realtek: Add Kent SoC and EVB device trees
+
+ .../devicetree/bindings/arm/realtek.yaml      |  42 +++--
+ arch/arm64/boot/dts/realtek/Makefile          |   7 +-
+ arch/arm64/boot/dts/realtek/kent.dtsi         | 166 ++++++++++++++++++
+ arch/arm64/boot/dts/realtek/rtd1501.dtsi      |  12 ++
+ .../boot/dts/realtek/rtd1501s-phantom-8gb.dts |  25 +++
+ .../boot/dts/realtek/rtd1501s-phantom.dtsi    | 118 +++++++++++++
+ arch/arm64/boot/dts/realtek/rtd1861.dtsi      |  12 ++
+ .../boot/dts/realtek/rtd1861b-krypton-8gb.dts |  25 +++
+ .../boot/dts/realtek/rtd1861b-krypton.dtsi    |  72 ++++++++
+ arch/arm64/boot/dts/realtek/rtd1920.dtsi      |  12 ++
+ .../dts/realtek/rtd1920s-smallville-4gb.dts   |  23 +++
+ .../boot/dts/realtek/rtd1920s-smallville.dtsi | 128 ++++++++++++++
+ 12 files changed, 626 insertions(+), 16 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/realtek/kent.dtsi
+ create mode 100644 arch/arm64/boot/dts/realtek/rtd1501.dtsi
+ create mode 100644 arch/arm64/boot/dts/realtek/rtd1501s-phantom-8gb.dts
+ create mode 100644 arch/arm64/boot/dts/realtek/rtd1501s-phantom.dtsi
+ create mode 100644 arch/arm64/boot/dts/realtek/rtd1861.dtsi
+ create mode 100644 arch/arm64/boot/dts/realtek/rtd1861b-krypton-8gb.dts
+ create mode 100644 arch/arm64/boot/dts/realtek/rtd1861b-krypton.dtsi
+ create mode 100644 arch/arm64/boot/dts/realtek/rtd1920.dtsi
+ create mode 100644 arch/arm64/boot/dts/realtek/rtd1920s-smallville-4gb.dts
+ create mode 100644 arch/arm64/boot/dts/realtek/rtd1920s-smallville.dtsi
+
+-- 
+2.34.1
+
 
