@@ -1,349 +1,141 @@
-Return-Path: <devicetree+bounces-246450-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246452-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16902CBCE75
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 09:03:11 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A59B5CBCEF2
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 09:15:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 0D2143007CAD
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 08:03:10 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id F19B53018952
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 08:13:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD4F1328245;
-	Mon, 15 Dec 2025 08:03:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F643328247;
+	Mon, 15 Dec 2025 08:13:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="DYY7LrTx"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="knF4U/2U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CH5PR02CU005.outbound.protection.outlook.com (mail-northcentralusazon11012017.outbound.protection.outlook.com [40.107.200.17])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26F03313E38;
-	Mon, 15 Dec 2025 08:03:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.200.17
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765785787; cv=fail; b=nftCCTfeK+2FPQNdmrCDpM3nvzDP3lEYJDU44NzVGkY1FM7+GGrkIjZQR8DqMTL3chFW5x8vidRT6/uhZ6AIfXiakyVSntg+hOFoWjyDzVhq8MDHKRms+UF96SnCl5BimY6Bb1WrUwRZgaQ6S7sUnxP32t6yDZXBPpbkXCHqMkA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765785787; c=relaxed/simple;
-	bh=Q+lZOvraJYf5HU7Y+FjZhNAxpbC8L+IU09PvNY8Fz8Y=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=Bq9YNzPgyoL1sewfbX96AgCtVzyv6NkCr3Ip4RYdwi7M0X1CsWhJMQ4oz1QM7Ahtb5cK33EKlRnhSW4zxrF+yt4flTP8RNUKctiGa00464CaX4Zkm9W9cwkwezf71JN8DpD70nh3IfGjVVKdOLadj9bZntSDQ/IDTSc0ZesPpPE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=DYY7LrTx; arc=fail smtp.client-ip=40.107.200.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=jOQOGl6P1CB9kF5DQqOpKctf5IexQTM9tWTKkmbr+773O2XySg1kZN/Kk9N2ejIop63dJI2r4JLl8MZ6ry7yalSEY2bdyevOFjV/o5Hdp7S1XKeSBiFiIGjUNXiSaV78vshLVgdubPfKXysp8OWIwRdGm3F/GGGxsrd3BJMaCSmU1bGOK2mTxTN1Fk4djfiUXNYpusyDTJszQI/Tvmg162J2iDPgs46wcwPP206FuGOcj8RLIQ9+eI2jSaakErxUVZKKbz+S2h/yBtVHjbt4wbQ1ZCHJxfRPML8/ASaPw19bkp8Mag/hk8D+ZDZ91mVpD5v6Wa2MhQqqh4RTuqI71Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=P3VrK7KPegpNhAz8VTqec0oNVZw5AliWZfy+Bp7Qso8=;
- b=fN2XZTr4r+6GoMPtDFXPx4utrrfqMiB9YuXZovTOmKtVDVGbLFFerGxBlJBX+toiF59qeVmY8EsO8UCJxALxlBr7wGimlRrTbic0bEx0/38NIN3Sin8oavohd01bGiesZOXs1+VsS7eWoYTtTDlG/vxmsAYSj8jgnLHlbZSWlcmAnLzbPf8kSEDL8K6Mg7z9nCaVEuiN4fUj0BSZCTw7DlzKhSMDep9qj1r1BXoJPhPTHw8CASPsak6I4mWnQOKY4yB7kHID1padPk7AAN9czQckmm2MyNwCk1fqoig1HNVTmir0/lRSm92E0bbenQuo+QEY1mtBgfYTVEe9QEnPBA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=P3VrK7KPegpNhAz8VTqec0oNVZw5AliWZfy+Bp7Qso8=;
- b=DYY7LrTxIxwnRnXpazSW5iejzTVSd8NcNajuRwfs6rtL9JoudtYohxmLy13y2B7vLW4T6T8SJr5HSDO/UW9JB3vD8ng9X15MNBklTJn6VdC0zEXnYRS7I/TEVu7LWK7zo4HLJE4gI0aysHMB94jnzgOgtV+gXzqWrQWyJ/YyqlM=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from SJ2PR12MB8109.namprd12.prod.outlook.com (2603:10b6:a03:4f5::8)
- by MW4PR12MB6924.namprd12.prod.outlook.com (2603:10b6:303:207::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9412.13; Mon, 15 Dec
- 2025 08:03:00 +0000
-Received: from SJ2PR12MB8109.namprd12.prod.outlook.com
- ([fe80::7f35:efe7:5e82:5e30]) by SJ2PR12MB8109.namprd12.prod.outlook.com
- ([fe80::7f35:efe7:5e82:5e30%4]) with mapi id 15.20.9412.005; Mon, 15 Dec 2025
- 08:03:00 +0000
-Message-ID: <27c2e287-949e-4ae5-a818-49f6d61cba5c@amd.com>
-Date: Mon, 15 Dec 2025 09:02:53 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/1] arm64: dts: xilinx: fix zynqmp opp-table-cpu
-To: Neal Frager <neal.frager@amd.com>, gregkh@linuxfoundation.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, git@amd.com
-Cc: jguittet@witekio.com, jay.buddhabhatti@amd.com,
- arun.balaji.kannan@amd.com, senthilnathan.thangaraj@amd.com,
- thomas.hommel@emerson.com, micheal.saleab@amd.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, peter@korsgaard.com
-References: <20251111070555.1169130-1-neal.frager@amd.com>
-Content-Language: en-US
-From: Michal Simek <michal.simek@amd.com>
-Autocrypt: addr=michal.simek@amd.com; keydata=
- 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
- mpwx1d8=
-In-Reply-To: <20251111070555.1169130-1-neal.frager@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PH7P220CA0121.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:510:327::10) To SJ2PR12MB8109.namprd12.prod.outlook.com
- (2603:10b6:a03:4f5::8)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A15931AA90;
+	Mon, 15 Dec 2025 08:13:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1765786431; cv=none; b=CA6j1YsSTSnsXP4inKFdDl94q9R8PF5a3eLVjiO+BrbfWx+IXNNkwQf/qGhP8Ni0nvTscZxg47gE96Ci9b2SlCE1DecCwQ0PeXMK5t4fVHnb607seUbsIPu6+fuInjLnjpQpi1515aCPEhYAoCUDO6Df4xnqZe57LGlTiGkDa7I=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1765786431; c=relaxed/simple;
+	bh=L01juhGPCRAjIJAl/rDM2Rt2jeh0b7dQoFypbdG3HUc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ozt0MiVG5qqfEFsWHljqQ/AgA9KTpqziGsNFAD/44z6avtQ/nkV8fi6BijTy2oF0JgTUSf1mA2mXW0kf1lznVCcuXjC+rjIAbQbYrxf30dE9iBXMUNRj/JZwST2aAM6QskFYhjsOxiMDBekdiTzLlc9XnaK7zBNGW9BufRKtjhg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=knF4U/2U; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from ideasonboard.com (mob-5-90-49-39.net.vodafone.it [5.90.49.39])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id E1071465;
+	Mon, 15 Dec 2025 09:13:41 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1765786422;
+	bh=L01juhGPCRAjIJAl/rDM2Rt2jeh0b7dQoFypbdG3HUc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=knF4U/2U2fAKlFpuoLBDnjGh0ntyECV5Uo8uoLBY4hVt+9HFZOo8o2pjrO3accCLL
+	 h1ON5erK4zJsig3HrYNiMdApUl3Gc1iW/x3neledYa5AJx2nhSvB0lwApnTM4hcIeT
+	 xT8RkWSj1VtuQtSsedqzL11OFd7kZLbA8jpItSMc=
+Date: Mon, 15 Dec 2025 09:13:43 +0100
+From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: "Rob Herring (Arm)" <robh@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+Subject: Re: [PATCH] arm/arm64: dts: renesas: Drop unused .dtsi
+Message-ID: <ido6swynjwlxv6xynspvltxaxuryiavjvssuuzga5ypfruerkw@56tbp4bn7mom>
+References: <20251212203226.458694-1-robh@kernel.org>
+ <20251213062037.GA30577@pendragon.ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ2PR12MB8109:EE_|MW4PR12MB6924:EE_
-X-MS-Office365-Filtering-Correlation-Id: ef52ad93-4321-4b59-0ce9-08de3bb05d49
-X-LD-Processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|7416014|366016|376014;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?RTRlVnloRGF5WWdiVEg3SW1WUW5NeEJqYkVVbHp4VDJWQURUUnI1ZXBvQ1VZ?=
- =?utf-8?B?YXhKMGgyR3hMSWJsYnpYbDFKLzhmOCtqdFNwM25GTjlqWm1vVU9ZQ1lqeDB0?=
- =?utf-8?B?YVF0T0EvVGxQVnQ1bmZId2RRcWhSVi83UWNlY2c1UnRWUmZ2eVRETjNjM3o5?=
- =?utf-8?B?VXZOVk9Ua0xyN3EyOG9LdUxyMzlENjRGZ2Z3TlhzVjhTaE53dmZrTHUraXB1?=
- =?utf-8?B?MEJNOGtTUW52WkFDQUxENHEzVHA3Sm05QXVpVUNXUURIeHNxcmNLczh3WUtH?=
- =?utf-8?B?bXlxSHFHZU1CZ1N0QW5lbXZvZUloY2FzUHRhcVV5TzUrbm4veWZzejh3OFNQ?=
- =?utf-8?B?cmdFaVNvMGdieTZSdGN6bk1ZK3ZaVGFVTjY4Y0xBMGV1WHIyZmpFZWUzYVpa?=
- =?utf-8?B?V3dJWFFIUFhwUDBrK0VlWnFxZUQyak9qcEtjQ3VVWkhWT3ZjblB2NHBCOEln?=
- =?utf-8?B?eE1xcm9qaHRSdmZBd3cwL3FtZDBQMXByL1BoUkJYRnhFTGlFTnpjWTFUV3Za?=
- =?utf-8?B?eWpIY2FucGpjZk91QWNGYVVKTllBc1BLRXNQM0N5MXM4LzdGc0srQUNXdGpq?=
- =?utf-8?B?NFNBVkNPdy9JeGdhMElwWWdReDBJLysxNmdWZzgra0luNk9kQWNoOUY3a09o?=
- =?utf-8?B?d0FzdzBhWjVkdkFJenkrRk5adzBFYzduTnlLZVpMOFhxemFRN2FDdlNuK1Vt?=
- =?utf-8?B?d3RMZndSN092YS9TRFdUdnJWNXFwbWNpanpJRWp4V1JLVzk4L0JnYmhUaHU5?=
- =?utf-8?B?WHBPcWpQQ05UMFRHYk5VYVkrQ0NFM3VrZWdhMFJURGREMU5ib0pDTXBsbGFU?=
- =?utf-8?B?UHlTWEVkbmMrcG93ZXc2eTViaWpvdDBZTTVSYUVkaU5odGJLNXowbmVJUGti?=
- =?utf-8?B?L1R0QmNQcWlUWkdBMnVubnp2UVZONWVKZDJSZ1pmdHBTTkZRTldTSFg5NjR4?=
- =?utf-8?B?Vy84ZXREcy9hQkJ1NVh5MWlYUEd2TTlPVGdiUEU0QnlFK0xVQnZmcDliQzFr?=
- =?utf-8?B?RzdYNzZyclk0TGswdVd2WmhPNERIZkdyNlNKTUR5ZFk3dUVGMzRmZENyUGNC?=
- =?utf-8?B?enpiMmJVNWNKUWRDV0F4MmxUVHJmek1sZTV4SDF4OTAvOE5la1p5SWJFcks2?=
- =?utf-8?B?V1BxLzdnQlJSTHFMVk9WVmlpcXk0c1pDSlVJSkZ6dnhCMFZZT3pNNjVRZUcr?=
- =?utf-8?B?MzVZSjhIYXJuTU9GWExlcUVzbUhhTXJoSEM4STJ3eU4zZUxkWk85VnN0MDJW?=
- =?utf-8?B?VGF1S0pncmpKODgwU0R5RWMzVlZ2bWVQYkhoK005aSsrdG5Qck1vdWpZMFZW?=
- =?utf-8?B?V3hLR0o2UU05bXhUa0l4QjdaZmwxZW1Bb2UxdEN6ZHFEVUJ2M05BOVljVysy?=
- =?utf-8?B?dlpvQWZRV3V3L2MwYlBick5ZM25iQk5GQ2pIUk1CVWl3eVZ0RUQxVG5ITFhT?=
- =?utf-8?B?VkhSSjczOWJiK2tyc3U2UUV5UEkvb2t2Z2UzMHRlT2s4cU12RDdzb3o2Ykdt?=
- =?utf-8?B?UGl0WFBET0ZzNVFYbzVYWktvaXlJRVZjU0NhQTdRVEkwRnFhM3dBMVduNTI5?=
- =?utf-8?B?RnJyL09mS0lUMEdzYVlyS1d5N1VOSWpCWitCallxU204amFaNzZ3QzU4cU9L?=
- =?utf-8?B?RDZQdzVEbFFxNjlkeUlqT05adlNzZTN5N005RzBzbVEyTldrck9SMnYrWUpO?=
- =?utf-8?B?ZWtRaStGWjZ5RThjWkxFV0hlOHRVRTNQMTRGTXZMUkJOQmZVTWFJYmVjY2c1?=
- =?utf-8?B?UDRkNEw1WTREY0FLOWI4Rm45eGcvR2NBRjNKWjhlbXk5R1VZTEFSRU9yelpZ?=
- =?utf-8?B?aDBMWHVBcUt3eTJpSmZiT3RHVEt0c1VhaU8vVEpsUStkcGFIU1dJM00wTDgr?=
- =?utf-8?B?d1BlaDhmYlJMUlZISHJUL25hMTVETDlzTlRWTGc5VHpCcDZEQmhZaXBDd1hy?=
- =?utf-8?B?S3VVZkJ2Yjh0QmhwbnNWNFRrWVV1WlM1Z2paei9aQnVOQVpmWHoxdU5LTGRR?=
- =?utf-8?B?M1k1Uk5pZzhBPT0=?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ2PR12MB8109.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(366016)(376014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?OVA2VlFnNis5eHV6dTNTS1ZpS2RORFFpYzBZeGJidlRhUUprOWpKMmttbCtu?=
- =?utf-8?B?Ti8reGJQc2dTNjVYYStnMGdaSThvVmg5YWxsNDRjOFgyd01WWXdtZnlFNk5K?=
- =?utf-8?B?algvV00yUUZFd1U4MFpGNXpxZE5mMjFSODk5V2l0OHN6ekRTS0FUR3lFenNy?=
- =?utf-8?B?MGdDd2ZWK29HTUtUdndObk51eWpkMXdhWUk5NDhjVURJVUtmVG1Fcnlzam1v?=
- =?utf-8?B?SHJqVWtxQ1VPekIrdFhqdDhQN0tFTVdGcmZDdVhPUTF2NGNuSGFoZVFjZXpI?=
- =?utf-8?B?RysyTHBFc0lQYzB4b3FjYktBc2ZoekFuUDVIZEhRNUdXdDQySi9xQmo5cXVl?=
- =?utf-8?B?Y1Zrcmc1cyt0MGwzWXRvaVJaMHZnUnRSanhLN3FISXVtZElwUXhUYmNvM21Q?=
- =?utf-8?B?aEgva3JNQjNRS1oycDd1ZnZtQ2pRenNDeERjOVFuYW91NjBXY20xVE94am8w?=
- =?utf-8?B?bE5HaWhITzJXa2hhQ3B5RjdUd0kzdnlmc21hNXAzc1RmZmU1UndWcCtFRG4x?=
- =?utf-8?B?RnhSRlllbStVSWJkSlJWSjVzelJpVndPbXNJS2NJN3R4eVZiNEZUU1lsTFJw?=
- =?utf-8?B?L2VEMHUrV21uVkFtSmNNK2ZsdmdyTWkwUVJabUhQbDBPVHFJdzFBZTlOcXRi?=
- =?utf-8?B?ZlRZZHZTVThnMnQ3ZUZZdjAwVFE0T1N2ZnhUeGtWUUs0UHNpMVRoYkxmM3Jp?=
- =?utf-8?B?OUF2RDJQcVRtcjhwd1V2cDRRT1VwUFltcWRpaDdSWjFlSkV5VFJjZ1dVVmRj?=
- =?utf-8?B?eDlWOFdqVzM3MEdiMk9VdncrU3NrYTVhRWRNTXBGbjRPMFJEUW1mbytpS1g4?=
- =?utf-8?B?RmljSmlnSHRUbmxIaDFJNi85Zk9UcDRKcmw1bG5Mcnc2d2llWk1RdGtneCtT?=
- =?utf-8?B?SzhldFpyQ3hMY2JoaWx3RlpITjlxam1jTGYwV3JReUIyUzgrUitpRWZ2TmVn?=
- =?utf-8?B?UUg3c3l2K2M1all3ZlNUT2h5V0t0L0FGVlpIU1dEK3djamJ4OW5UNVFZVS9W?=
- =?utf-8?B?RHN3SllLNHh2eXoxck5saXJKU3hEakovZFdtRXJHRDlJaWQzZDFHN2ErUm1D?=
- =?utf-8?B?SThuOW5RZ1pyUEJmMFdJbExjdVVvbjBLVTdZMVlrSDM4UXJ3OUFOWFlEYjJx?=
- =?utf-8?B?R0RTWU1LbkFkMHNkMFN3VmZicXJpUXJzU0dkdk5vT0xYcjE2UkV1U2hSTUxt?=
- =?utf-8?B?RHE1VmxWS0hxbE1QamFKb2ZNNmZpd2dzNlR3bG5pRGtwUldoUE1udi9ILzRo?=
- =?utf-8?B?bXoybHpybXlSeHc1czZkb09rUmlFbVhITDZsdzFWUk45Ty9BMEJlaVFvUU96?=
- =?utf-8?B?SHRZNEZLSHZPUy9laEVES3Z6elNtMDZSS1hFY295Y0E3cnMxQ2RUWjhZQTcy?=
- =?utf-8?B?MWQzSnlHa0d1cmcwQ05XM1ovR2JuNWhWWkFIR3djcjVUZTh3TmZ4MWRMOEdQ?=
- =?utf-8?B?MkZsTlNiclJ6YW5jS2VjWjNmcWlnOFlGelpDNy9wc09zWkVQUkpuNW1BbjJq?=
- =?utf-8?B?dXpBNi81OVJkdkRGTWJnOFZMYW9QWVo5Q1NBZlRRMklMMEl6QkFpclNncGxu?=
- =?utf-8?B?dGpjYUxZTDJLZk9rRjlOdi93Y0pjTStjblpubklacFA1L2didENCTEJQZDVB?=
- =?utf-8?B?di9VMks3M0lrR2JRVFZ4R3hCc1lDUkF0WlZkMnBBRXk4TUZBdFNKU3U3VnR2?=
- =?utf-8?B?WGJ6T1Nma1hnbFVCbXJhUnN6RlhLdGovaWlyMkZjSTVESENHYVVOWEFYaElP?=
- =?utf-8?B?Q3lWNHRHeEtuQmZvUUFMcnNxR25uYXh1U2ZNbmcwTEx5WVBnMDFBdW1HVFdj?=
- =?utf-8?B?UFlLcG1BUGdGV1V4ZUFMb0JGUmY0QUNlcktpbWk0SlVSRVJIWDlOQm15VWxo?=
- =?utf-8?B?NmJOQXpSSlJHa1ZnRmFpME5xeXpzK2hSV0NXeWNPbmtYL2F6TEkvQld5STVG?=
- =?utf-8?B?L2cxbWMrYTU0dUt1QWNYSmRVMUNMVXdsV3NIZGxHdE9wQU1taHJXVU1ZcEJz?=
- =?utf-8?B?WDUxOXlzSjFndnJtV2hURkVveW12b3ErY3RyRzVDbUhuVk90TkQ4L0pBS3VU?=
- =?utf-8?B?dnAzS25lM056SmdKV0N1Nnd6MWFyNFgwYTN3M0g4a0tldGROVDV4cDh6Q3pP?=
- =?utf-8?Q?DRTjPORm0PXqsh0C6vGNwEHp8?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ef52ad93-4321-4b59-0ce9-08de3bb05d49
-X-MS-Exchange-CrossTenant-AuthSource: SJ2PR12MB8109.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Dec 2025 08:02:59.9582
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: DVxpzpPLqNiOz/+HEY1McswnQBPAOc9SxWKhoV3R0qZnSoYkLo5ZacGbemwayIPK
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB6924
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20251213062037.GA30577@pendragon.ideasonboard.com>
+
+Hi Laurent, Rob
+
+On Sat, Dec 13, 2025 at 03:20:37PM +0900, Laurent Pinchart wrote:
+> Hi Rob,
+>
+> CC'ing Jacopo.
+>
+> On Fri, Dec 12, 2025 at 02:32:07PM -0600, Rob Herring (Arm) wrote:
+> > These .dtsi files are not included anywhere in the tree and can't be
+> > tested.
+> >
+> > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> > ---
+> >  .../renesas/gr-peach-audiocamerashield.dtsi   |  75 ----
+>
+> Jacopo, any opinion on this ? Should it be conevrted to an overlay, or
+> dropped ?
+>
+
+Running Linux in the 10MB SRAM of the GR-Peach using XIP was
+challenging enough and I don't have an easy access to that setup
+anymore.
+
+I think we can drop this one, and resubmit as a .dtso eventually, if
+anyone ever needs it
+
+Acked-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+
+Thanks
+  j
 
 
-
-On 11/11/25 08:05, Neal Frager wrote:
-> Since the following commit, the zynqmp clk driver uses the common
-> divider_round_rate() when determining the appropriate clock divider for a
-> requested clock frequency:
-> https://github.com/torvalds/linux/commit/1fe15be1fb613534ecbac5f8c3f8744f757d237d
-> 
-> This means that all the calculations will be in kHz when determining the
-> appropriate clock divider for a given cpufreq request. The problem with this
-> is that the zynqmp.dtsi and zynqmp-clk-ccf.dtsi files have frequency
-> definitions in Hz, so when dividing requested values in kHz, errors can occur
-> with the rounding.
-> 
-> For example, the current pss_ref_clk frequency is 33333333 Hz which generates
-> a cpufreq parent clock frequency of 1199999988 Hz which is the same as the
-> highest opp-table-cpu frequency in the zynqmp.dtsi.
-> 
-> But if a user requests the value 1199999 kHz as recommended in the available
-> frequencies:
-> 
-> root@zynqmp:/sys/kernel/tracing# cat /sys/devices/system/cpu/cpufreq/policy0/scaling_available_frequencies
-> 299999 399999 599999 1199999
-> root@zynqmp:/ # echo 1199999 > /sys/devices/system/cpu/cpufreq/policy0/scaling_setspeed
-> 
-> The calculation will be:
-> 1199999988 / 1199999000 = 1.000001
-> 
-> This will get rounded up to a divider value of 2 giving the following result.
-> 
-> root@zynqmp:/ # cat /sys/devices/system/cpu/cpufreq/policy0/cpuinfo_cur_freq
-> 599999
-> 
-> Also, if a user tries to work around this calculation by using any larger
-> values, it still will not fix the problem because the driver will use the
-> largest opp in kHz which leads to the same calculation error.
-> 
-> User requests 1200000
-> root@zynqmp:/ # echo 1200000 > /sys/devices/system/cpu/cpufreq/policy0/scaling_setspeed
-> 
-> Driver converts any value greater than 1199999 to the largest opp which is
-> 1199999 and then calculates the divider value with the same calculation.
-> 
-> The calculation will still be:
-> 1199999988 / 1199999000 = 1.000001
-> 
-> This will get rounded up to a divider value of 2 giving the following result.
-> 
-> root@zynqmp:/ # cat /sys/devices/system/cpu/cpufreq/policy0/cpuinfo_cur_freq
-> 599999
-> 
-> This means there is no way to configure the zynqmp for the fastest opp using
-> the current dtsi files.
-> 
-> To fix this issue, this patch updates the zynqmp opp-table-cpu and
-> pss_ref_clk, so the clock rates are calculated correctly.
-> 
-> root@zynqmp:/sys/kernel/tracing# cat /sys/devices/system/cpu/cpufreq/policy0/scaling_available_frequencies
-> 300000 400000 600000 1200000
-> root@zynqmp:/ # echo 1200000 > /sys/devices/system/cpu/cpufreq/policy0/scaling_setspeed
-> root@zynqmp:/ # cat /sys/devices/system/cpu/cpufreq/policy0/cpuinfo_cur_freq
-> 1200000
-> 
-> Signed-off-by: Neal Frager <neal.frager@amd.com>
-> ---
-> V1->V2:
-> - The clock-latency-ns and opp-microvolt values did not change, so simplify
->    the patch by only changing the opp-hz values in decimal format.
-> V2->V3:
-> - Improved commit explanation
-> - Added pss_ref_clk frequency change to the patch
-> ---
->   arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi |  2 +-
->   arch/arm64/boot/dts/xilinx/zynqmp.dtsi         | 16 ++++++++--------
->   2 files changed, 9 insertions(+), 9 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
-> index 52e122fc7c9e..482f432ba7f3 100644
-> --- a/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
-> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
-> @@ -14,7 +14,7 @@ pss_ref_clk: pss-ref-clk {
->   		bootph-all;
->   		compatible = "fixed-clock";
->   		#clock-cells = <0>;
-> -		clock-frequency = <33333333>;
-> +		clock-frequency = <33333000>;
->   		clock-output-names = "pss_ref_clk";
->   	};
->   
-> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-> index 938b014ca923..dd9bd39f61e8 100644
-> --- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-> +++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-> @@ -103,23 +103,23 @@ CPU_SLEEP_0: cpu-sleep-0 {
->   	cpu_opp_table: opp-table-cpu {
->   		compatible = "operating-points-v2";
->   		opp-shared;
-> -		opp00 {
-> -			opp-hz = /bits/ 64 <1199999988>;
-> +		opp-1200000000 {
-> +			opp-hz = /bits/ 64 <1200000000>;
->   			opp-microvolt = <1000000>;
->   			clock-latency-ns = <500000>;
->   		};
-> -		opp01 {
-> -			opp-hz = /bits/ 64 <599999994>;
-> +		opp-600000000 {
-> +			opp-hz = /bits/ 64 <600000000>;
->   			opp-microvolt = <1000000>;
->   			clock-latency-ns = <500000>;
->   		};
-> -		opp02 {
-> -			opp-hz = /bits/ 64 <399999996>;
-> +		opp-400000000 {
-> +			opp-hz = /bits/ 64 <400000000>;
->   			opp-microvolt = <1000000>;
->   			clock-latency-ns = <500000>;
->   		};
-> -		opp03 {
-> -			opp-hz = /bits/ 64 <299999997>;
-> +		opp-300000000 {
-> +			opp-hz = /bits/ 64 <300000000>;
->   			opp-microvolt = <1000000>;
->   			clock-latency-ns = <500000>;
->   		};
-
-Applied.
-M
+> >  .../dts/renesas/r8a77xx-aa121td01-panel.dtsi  |  39 --
+>
+> I don't have access to this panel any more. I'm fine dropping this
+> .dtsi, it can always be resurrected and converted to an overlay if
+> someone needs it.
+>
+> >  arch/arm64/boot/dts/renesas/gmsl-cameras.dtsi | 332 ------------------
+>
+> This would be nice to turn into an overlay, but I'm not sure anyone
+> still cares.
+>
+> >  arch/arm64/boot/dts/renesas/r8a779m0.dtsi     |  12 -
+> >  arch/arm64/boot/dts/renesas/r8a779m2.dtsi     |  12 -
+> >  arch/arm64/boot/dts/renesas/r8a779m4.dtsi     |  12 -
+> >  arch/arm64/boot/dts/renesas/r8a779m6.dtsi     |  12 -
+> >  arch/arm64/boot/dts/renesas/r8a779m7.dtsi     |  12 -
+> >  arch/arm64/boot/dts/renesas/r8a779m8.dtsi     |  17 -
+> >  arch/arm64/boot/dts/renesas/r8a779mb.dtsi     |  12 -
+> >  arch/arm64/boot/dts/renesas/r9a07g044c1.dtsi  |  25 --
+> >  arch/arm64/boot/dts/renesas/r9a07g044l1.dtsi  |  18 -
+> >  arch/arm64/boot/dts/renesas/r9a07g054l1.dtsi  |  18 -
+> >  arch/arm64/boot/dts/renesas/r9a09g047e37.dtsi |  18 -
+>
+> I'll let Geert comment on this :-)
+>
+> >  14 files changed, 614 deletions(-)
+> >  delete mode 100644 arch/arm/boot/dts/renesas/gr-peach-audiocamerashield.dtsi
+> >  delete mode 100644 arch/arm/boot/dts/renesas/r8a77xx-aa121td01-panel.dtsi
+> >  delete mode 100644 arch/arm64/boot/dts/renesas/gmsl-cameras.dtsi
+> >  delete mode 100644 arch/arm64/boot/dts/renesas/r8a779m0.dtsi
+> >  delete mode 100644 arch/arm64/boot/dts/renesas/r8a779m2.dtsi
+> >  delete mode 100644 arch/arm64/boot/dts/renesas/r8a779m4.dtsi
+> >  delete mode 100644 arch/arm64/boot/dts/renesas/r8a779m6.dtsi
+> >  delete mode 100644 arch/arm64/boot/dts/renesas/r8a779m7.dtsi
+> >  delete mode 100644 arch/arm64/boot/dts/renesas/r8a779m8.dtsi
+> >  delete mode 100644 arch/arm64/boot/dts/renesas/r8a779mb.dtsi
+> >  delete mode 100644 arch/arm64/boot/dts/renesas/r9a07g044c1.dtsi
+> >  delete mode 100644 arch/arm64/boot/dts/renesas/r9a07g044l1.dtsi
+> >  delete mode 100644 arch/arm64/boot/dts/renesas/r9a07g054l1.dtsi
+> >  delete mode 100644 arch/arm64/boot/dts/renesas/r9a09g047e37.dtsi
+>
+> --
+> Regards,
+>
+> Laurent Pinchart
 
