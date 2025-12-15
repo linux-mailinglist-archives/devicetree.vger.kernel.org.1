@@ -1,358 +1,149 @@
-Return-Path: <devicetree+bounces-246625-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246626-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 468FDCBE3C1
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 15:17:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D3CFACBEA21
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 16:27:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C224C301698F
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 14:14:27 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9D700306579A
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 15:16:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6197830595C;
-	Mon, 15 Dec 2025 14:10:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62F983164B0;
+	Mon, 15 Dec 2025 14:16:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="klnF1sau"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fxJlDgRi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A57B72F261C;
-	Mon, 15 Dec 2025 14:10:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=198.175.65.21
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765807855; cv=fail; b=r+fhAl3APNkBZXlI9OAB8hdJpyfNoZ6Bo5zrgx1PF0LV+NtKNIzNcZv2w0RsWbcWMT9rIQTXbTJsOgmOJrTPsf3y+maWx4Nx5uQfW4epyhzLhEwpaZ4B/k0kvB7Mr++w5APQ2oNt5z0YxklUlTLh2gGknd5MzKtcSz/49s+0pq4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765807855; c=relaxed/simple;
-	bh=Oh2Bg+is70hli9SXLfLfCf9bchAgvH+tzWRS+3C7CVE=;
-	h=Message-ID:Date:Subject:To:References:From:CC:In-Reply-To:
-	 Content-Type:MIME-Version; b=mqraKBlcbaLMQsqDhNSYfPvNRHSacSuU0m28UGjdYVXxIlSNmowNbfzhFQTnodR8Ah5alN3MtrumxKCg1uGVevtNSSkkPCE7y4YtRLZ+pfGUcQLwx8UzxcVmJBwz1VTrMvXLchVjxnqFOLIKwAfl8HV1RRqYikyGcL9NjpjMtTo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=klnF1sau; arc=fail smtp.client-ip=198.175.65.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1765807854; x=1797343854;
-  h=message-id:date:subject:to:references:from:cc:
-   in-reply-to:content-transfer-encoding:mime-version;
-  bh=Oh2Bg+is70hli9SXLfLfCf9bchAgvH+tzWRS+3C7CVE=;
-  b=klnF1sauK9/HQJQ0rlBNsFiEylKHzoOUk/8ywmfvdtiwF0CTk/Tbka2G
-   73mA5i8cFMRp0SSUXyQiED/q71hcJs108QU1FDCQN5NQ6vLv6fTguTOlc
-   avSoJK/VyhojtROUJQ/kHtyP4SEiWW4+iGJWBRmD8jDUl5/mSVD3Gt+nv
-   HqYmnSJ30jPFmpbwiBpfI62wtWPPd5VQG8w0OGmp2EIcgTDbme82bmkPs
-   lDqCx9pbL2/vEYOgE3/+/tLtT2gCsnUMB52l7ahDh9o2ai7nofJw+g6Md
-   q50PmVm6qGmplflacMbYVLnuj8ZyyL3t0ey8URQPkLp5qml2l9WhDvmbJ
-   Q==;
-X-CSE-ConnectionGUID: /N0OtU43QbmPkYLtcS6dQg==
-X-CSE-MsgGUID: 7SPqwl96TDmyj+9xu3dNgA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11635"; a="67646024"
-X-IronPort-AV: E=Sophos;i="6.20,256,1758610800"; 
-   d="scan'208";a="67646024"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Dec 2025 06:10:53 -0800
-X-CSE-ConnectionGUID: +yJSsHk2SoCVBFRD7mGedQ==
-X-CSE-MsgGUID: HTJ4T2V3S3GzNICFXZFsNw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,150,1763452800"; 
-   d="scan'208";a="197782232"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
-  by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Dec 2025 06:10:52 -0800
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Mon, 15 Dec 2025 06:10:52 -0800
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29 via Frontend Transport; Mon, 15 Dec 2025 06:10:52 -0800
-Received: from CY3PR05CU001.outbound.protection.outlook.com (40.93.201.65) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Mon, 15 Dec 2025 06:10:51 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=yCTYX8CpFenqEaxeakY801zUATldgoEOU8ZX7F2BNY3PkxOBLNABUrlZGlEjiN8CRuu7Ly8x6ZDlZRPUGNT5rfhBA5ILotriaEVDF/aAVWNz3p7nEqWk/L4yTdNWX0AOgqc0qqFIjOtZrFZ8znccJ9cAUFPkjU3SB1UY5G9Q4xHrRmT62vWCVSF89yn+Ygm6YHox7DzZ0wtABkVvVanqF6vKrk3txJxQsiJjI2lv8Wsf2kIMUPSvrrFSQ7g1Dhi5voUS4NqzVIJt1mCbYr0RrMryMVDnjnKGL5rHARh3pNi9AjkVRGm7jTsJUDtqrl4QnNqcqfGg3VT7UbhzeePGcg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=JjCvEEEBqv/mR+o/PuyaO6e6RLeIAvUFQoMaRzgCK+k=;
- b=vcJKYfCb+L7EqMmumVdF1buw+74/ohCMG+sBox4359xZ+VExFeGUjI2p4MBP6VQSor1uIpsYYaRw2CwuLU6O4ikV2VMWYjvSoqVDy/+aGpafOD13MDUKMvwKYb/3fhR31PX21gK+W6dveOphB3Pm339wcFBCgRN1rYYB2deptIRA/Yuq0x/gUSHMEfj7F/x1VcWEKCr1/bsCtucaDxtI+OFGYNTxucSD0/Faskp1JKd/s5CDEpb81QbQSTofB3h0vNOCDen/B7bavxnhznCwBUtAmc5hs4octPd9MPO+2rEFMJpu5zejITWrGnt9k+JqrH0xXFL816PU7wdPqsZFqA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN6PR11MB8102.namprd11.prod.outlook.com (2603:10b6:208:46d::9)
- by DM4PR11MB6093.namprd11.prod.outlook.com (2603:10b6:8:b0::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9412.13; Mon, 15 Dec
- 2025 14:10:48 +0000
-Received: from MN6PR11MB8102.namprd11.prod.outlook.com
- ([fe80::15b2:ee05:2ae7:cfd6]) by MN6PR11MB8102.namprd11.prod.outlook.com
- ([fe80::15b2:ee05:2ae7:cfd6%6]) with mapi id 15.20.9412.011; Mon, 15 Dec 2025
- 14:10:48 +0000
-Message-ID: <7204d8f7-6482-4217-998f-2788d55f4235@intel.com>
-Date: Mon, 15 Dec 2025 15:10:39 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC net-next 06/13] dpll: Support dynamic pin index
- allocation
-To: Ivan Vecera <ivecera@redhat.com>
-References: <20251211194756.234043-1-ivecera@redhat.com>
- <20251211194756.234043-7-ivecera@redhat.com>
-From: Przemek Kitszel <przemyslaw.kitszel@intel.com>
-Content-Language: en-US
-CC: <netdev@vger.kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>, "David S.
- Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, "Jakub
- Kicinski" <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
-	"Arkadiusz Kubalewski" <arkadiusz.kubalewski@intel.com>, Grzegorz Nitka
-	<grzegorz.nitka@intel.com>, Jiri Pirko <jiri@resnulli.us>, Petr Oros
-	<poros@redhat.com>, Michal Schmidt <mschmidt@redhat.com>, Prathosh Satish
-	<Prathosh.Satish@microchip.com>, Tony Nguyen <anthony.l.nguyen@intel.com>,
-	Saeed Mahameed <saeedm@nvidia.com>, Leon Romanovsky <leon@kernel.org>, "Tariq
- Toukan" <tariqt@nvidia.com>, Mark Bloch <mbloch@nvidia.com>, Richard Cochran
-	<richardcochran@gmail.com>, Jonathan Lemon <jonathan.lemon@gmail.com>, "Simon
- Horman" <horms@kernel.org>, Alexander Lobakin <aleksander.lobakin@intel.com>,
-	Willem de Bruijn <willemb@google.com>, Stefan Wahren <wahrenst@gmx.net>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<intel-wired-lan@lists.osuosl.org>, <linux-rdma@vger.kernel.org>
-In-Reply-To: <20251211194756.234043-7-ivecera@redhat.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: DU7P250CA0002.EURP250.PROD.OUTLOOK.COM
- (2603:10a6:10:54f::15) To MN6PR11MB8102.namprd11.prod.outlook.com
- (2603:10b6:208:46d::9)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5468F2FFDDC
+	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 14:16:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1765808177; cv=none; b=rMOyGbAuWoxjH+QwrrzJK0UbvAs13j8UP0sKLEbXF/M02W1kvwEEya9yGTdMgunkPe5SDT6Am89g+rL03hsz4YwUdRi0ksoaHwajTqdSntst865qbRm2bLWD+C5R74dTeH+SB0tDwCDszJXRZj8cFWo2AyvDcoKNiEvDn18Pt0M=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1765808177; c=relaxed/simple;
+	bh=i37Ne7uHL/y4kp6pZyX/ySd/DfSKUARKKWMR9IDTZkU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=rLwW69HQS0zOlO1brAqR8k/7fkP/Za5Mqy1aArD/CI9KoUeKdLJlPa+Tx7UnKtFUV/MwzFv+HkXKtAWOByxiYrMC25PqDFXgOOOnVSZWXhUBH0GN7KFV2xAbKxXzIND9pcBQmXdJSTLScuuu/IG++kqpH/2dGd2yRmCtCTs3Qh8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fxJlDgRi; arc=none smtp.client-ip=209.85.210.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-7b8bbf16b71so3670923b3a.2
+        for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 06:16:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1765808171; x=1766412971; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=aqcyxQ6AG4Chn3aVf8oO4S4Fgo01WzKngrtkHDhk3Yw=;
+        b=fxJlDgRiNAVqWADAbe3W8kbU5Qa68ZHGFh42sjC9ElCVd2IS9J151SPd1IUtfqEtIn
+         S0Miw6eFBVJuHsH16Kfu5fAtrwotNBsXnMezqeciClOrR+c+3N7JL+0f0M+5idc209s6
+         FNot2Q9Mq4JGeg8NrIHdkx/8RVV6tdFGHxct0A6d0dBXViaVnUB/Nn08eGTk5Og0qikZ
+         Li5HTiRyf+ZoBT9oWytcy/iVuw+AA3xOq4/NJs7uJJaYO2x3WO49DZ31n5KliTFr1FE1
+         P2jlTSiLLNPkBKMn8zma/GqXQfKrwHHiAxzA8ctVWKxG4vOyW+9oR7v3pEdiNm03TlUE
+         cFvQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765808171; x=1766412971;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=aqcyxQ6AG4Chn3aVf8oO4S4Fgo01WzKngrtkHDhk3Yw=;
+        b=qkjHxL5szoTlMiP+sckCGUtJHg90xapsZdufugn3ntAGDPwT3FyUrKYM3t7HgbW2CL
+         SgQWYikPUXN3fSCwvET4ju7SqpDHHuce86OdPfLRd3HOHjFiijOlY4BNDTo+rfaW0Z9t
+         c1JmY9kE0t6DJWGjHKzSogdoOfw9sdnIVtsFlnkeUL0c3XDvtJ+AZH61qlrZNzy3Dl5a
+         7z0PL5veWYpgfzIO1M0k7vN1dT08B9cX1eLq5Vi8rGbJw7pRYsXSe47aesYbx57LKpoa
+         4VmQ4uj/X0+WlzwOIxMVlkAWXq1xLMlR6l0Tr5fajK80BySU06v6RMBQMik0hSX/IQ3Y
+         BrVw==
+X-Forwarded-Encrypted: i=1; AJvYcCXdKHx0puAZA7BJb2dMABISt4fNlevFYqYV1QOrU0PDNJgE+i3pHlolwlmRVBKPhoF6BsksgmTKoBNE@vger.kernel.org
+X-Gm-Message-State: AOJu0YykS0tYuTVYXQ2IyHGpO2G81/dzeU8h69GTd1X20bk/Xrv7jF7u
+	Rp+OJv7gVr00d85lRTOIal+Jrvam+ZFArH4QvFb8/YM27ch5hC5noZqM
+X-Gm-Gg: AY/fxX61kgHbjRkyNOC2rWnmqCV3t2DgNouWZdGSuqHr1xNa/s7GWGGoSKJ0WWvR+PL
+	VAuT22AsT8nJM0qFMSqyFBteluMQPuuI5qhGpZC2ixHbsjZxpTuac6w9hKOy/FjfsRdnFWp1Rcz
+	W2lyvvfQenyf9z5OEXX4GMckqUYzZnx/MwEcXrnjtMalgDH5HpANaHdueHWdmpjqiQMsK9fyaI3
+	nTcFPJRf7/8QFcEVaVdrNSmRXCSRaxw7Ypnli4WZK1ItXsrNZbi63Et6r0XBsENrfUDH8N4eAK8
+	IX08HlzPXAqVwge7+MeK385sqbCDZEe/hJ9PxVnQzYKaRpPmHfY0f/CTxuWq6qriIqCPSa/n3XZ
+	dHn+J8oapULDeV8omNgBwHZA5+vx7bT+pSv9tecEn6QSRyMzzAZ/Xl4BPkcgyDZ3GA8lA9qsgJi
+	AMVApx+w==
+X-Google-Smtp-Source: AGHT+IHzU7O4bBwW+r0bzOaaR59QHp7R8Qe7T7RCV80z/qUtmi5w0XidJGu/xJXthigLDAzj67uUbA==
+X-Received: by 2002:a05:6a21:3283:b0:341:5935:e212 with SMTP id adf61e73a8af0-369b4836e53mr11108196637.18.1765808171097;
+        Mon, 15 Dec 2025 06:16:11 -0800 (PST)
+Received: from rockpi-5b ([45.112.0.8])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7f4c2772a51sm12938189b3a.17.2025.12.15.06.16.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 15 Dec 2025 06:16:10 -0800 (PST)
+From: Anand Moon <linux.amoon@gmail.com>
+To: Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	linux-pci@vger.kernel.org (open list:PCI SUBSYSTEM),
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-tegra@vger.kernel.org (open list:TEGRA ARCHITECTURE SUPPORT),
+	linux-kernel@vger.kernel.org (open list)
+Cc: Anand Moon <linux.amoon@gmail.com>,
+	Mikko Perttunen <mperttunen@nvidia.com>
+Subject: [PATCH v2 0/4] PCI: tegra: A couple of cleanups
+Date: Mon, 15 Dec 2025 19:45:33 +0530
+Message-ID: <20251215141603.6749-1-linux.amoon@gmail.com>
+X-Mailer: git-send-email 2.50.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN6PR11MB8102:EE_|DM4PR11MB6093:EE_
-X-MS-Office365-Filtering-Correlation-Id: 81a11feb-c434-4655-80aa-08de3be3be69
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|366016|376014|1800799024|7053199007;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?YjgzTFJtaCtiRnpOVDgzNGZranovZ3hLVnR4bEdBdXBrRXMxZkVjMGRNVlQv?=
- =?utf-8?B?MXhmcVo0akVqUlZQTHgyeHZidzAycVNMK2RCbWJRL1c3SSt5enhQMUZXUzdD?=
- =?utf-8?B?enN0ajVHa25EYXlCdFUya04wQ2NzM05oYXVyQ1V2UG5YMjJpWng1NldHb0dY?=
- =?utf-8?B?bnArbE5oWE1ZUHNlQ2JKWVF6ZXlRRUlnR1ZUT1BZSXBaeGQ0S1czeHZKdEtv?=
- =?utf-8?B?MEVzQnR6OHNEeTlPUEdJZFhicWpodThyUzhKZEZwcCt2Nk1ZRHBlaCs0dFQ3?=
- =?utf-8?B?UktYMldmRkg1dXJIQlRPenRDamJ3VWdjSGNHVzZVNm5hS3NzMi9jdmpDRlZp?=
- =?utf-8?B?NzlKV1ZsbGprTHRYMEVxS2ZnNUh3NWpuMDg2WDhNaWVTM2JtZlJCZXNNUlBh?=
- =?utf-8?B?RWVUWlFxeldrQzVmdXdiT20zZUVOQnpabHlLeFozQzIrS1VlQ2s3UkxwZzhs?=
- =?utf-8?B?M1JhZzlHazVUUEF3MnpjZWgycSttanNNVUV5dTdqd2IxbG9YUEorc1lVdUpx?=
- =?utf-8?B?ZkZSWTlJWkQ0a2hWSDcxRDdFTnRjUFREVlpwMFY4S1VEeFV0ZHBGUlk5RG00?=
- =?utf-8?B?UkVtNmVTU2hPY2dBc2RKYTlXVGJRRXBKbmFRWkg1VGROT0dpb2U0a1AwOW1m?=
- =?utf-8?B?NGttUklOdms4R1JSZlJKQ1FYWVAyOHVNNmd1S09DSjdXekhRV0l1dlR5dHhl?=
- =?utf-8?B?dWtLQ3BWYXJyTnpId01kNHJjSU9EbkFQMFBhZU9ybG5ucUZUU2s4S2d5U21G?=
- =?utf-8?B?NTFJb3A5SG1JVzM3ankvQUFjMmRVU2JXUllYcXFzS1dUQzZLU1hhN1E3MTkz?=
- =?utf-8?B?WGh5aXdGNDkrb3VkWWY5czdBK29FaGt1anZNSHc1WjdOd0hTdXhGckY1MVBs?=
- =?utf-8?B?UGZsR0ZvQ1FQeXRKbnJ2dmdNUUpBUWs2bzVDRFMrMmxwVDI2cDlsKzEyQVh3?=
- =?utf-8?B?UG44eUFJYW5sb3VWNTlab1ptcFNwNzhBeWVyTGdES2VsMGNWNUR0S2NPQzZY?=
- =?utf-8?B?cHdJSnRZWVNST01RazRNMmpjWm1UQmpoV04rYnd2N2ZKZ1dyVEZpSEZlS1Fz?=
- =?utf-8?B?N0xmd2hsSEw5UEZCdElmajhhWlNxREE1QS9NTXdrbVpRc0s0aE03KzBNMS9I?=
- =?utf-8?B?RlJzU0RuQlV3b0RGdGJOQXJqVHpidlRHRE90RHgwdjBBZ3REeEU2QzU3TGxY?=
- =?utf-8?B?dmVHSG5aV3hhS1RDUStxak5XZElqMG1UdVRXM2Rrdmhta3JHZUtaMjYyWnZj?=
- =?utf-8?B?U2Noc01rMFpob1E1RzVnSGVsWXgyQjZEeUJXQzY3UE1rWEd4enBNYUhteUZr?=
- =?utf-8?B?RjlhTGFVa0RNaW5YWHF6QlJ0b2tiVmFrR29NeTFzbkE0K3UvWDdZTGszT1p3?=
- =?utf-8?B?UUNoeXUzUXZqRmY3QWZYY1JUVy9QaGlEMG1LdGMzdlJjZk51RFovL00wenBy?=
- =?utf-8?B?eVZaeVRjeGd2eUltMUtUZ3BXcUlZUmFSRGloWnQyRGxXMVhaNDV1RDhieTU2?=
- =?utf-8?B?TDlCZ2JRRk9DMDRRaW1ldEZDcjFCN1cxWjcvYk5qRWRIMlNHVVozZWx0OVNT?=
- =?utf-8?B?cTg5Slc4dWU1THZYcDdSdVRNZDI0MUhrTFJ5WlZCZEdoUUo2S1E3MjVTT1VJ?=
- =?utf-8?B?R1pWNjhXVWJDeWZ6S0RTZkJVZFlMNXpBY0JjMnVzdXh0Skw4R0lwTjM5cUhQ?=
- =?utf-8?B?ZmNVekVJeFMzVEdybzU3VFEyV2lpbVd3NjVtMEk5MDJoSzdMV2ZHZm8yZTRa?=
- =?utf-8?B?YnFtRko4MUZ6TkI5K21XdE1FWThFNU9DZFplSWdKaFBkYVFjdmNXSmRjbmVw?=
- =?utf-8?B?RXFNN25MZUlxZWJnUjFrSGM3V2JHa3c4ZkVXY0JIaUZDd2NYMTNveXkyckpB?=
- =?utf-8?B?bE50RWVSd2NBTSt1K3dtSUlNMGtmem81OWNSemdKT1p1cUJVQjZNaW9TRjRt?=
- =?utf-8?Q?NZ72a5Oxcahvcvf4v9rUmUxfll1VmKsr?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN6PR11MB8102.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(366016)(376014)(1800799024)(7053199007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bktxSW5TQTdCcHFVakdCZjhGWHduQkhBelIyWW1DRGh3R3JDNHVJV2lpcWw5?=
- =?utf-8?B?VUJCSXAyV1ZvQ0hmdFA4VUlBMDU0Nm84eU9VeDNNWkw2MGtYNkZDSStidzMr?=
- =?utf-8?B?MlBJTWUyUzB0aWE5YVI2OUl0UU1IYmVnNXQ0TWU5empSUldSK0pKOFpiUzZO?=
- =?utf-8?B?YllZdGRIQ3hiNGNhY1V6K2R2YUxVc3U2bUR3NnRqS2lLbVRKZXBBbmJTNGpK?=
- =?utf-8?B?Smo3NXR3bHJsM2V2VWV6bUlJU2NKQ0tQWWRrcE1lZVEzODgrRGNHdksrVi9T?=
- =?utf-8?B?TjQ3dlhJRjlrOVJ1cnBUeTdoS0xzK0JsdHBIczVqZmRkdnZFNlVjeWNqSEQ1?=
- =?utf-8?B?N0k1bk9GZzhUbjF0cTkvQU96MzAxUndKb1dZbk4zL2dRTXBETE1waWJuUWtJ?=
- =?utf-8?B?OUw0UjRYbkR2ZUxLamFOZWwzNzgyLzEyR2RrdUhXcE16NEZtRlYrbThBVFlz?=
- =?utf-8?B?N1Yzb0NXdlFKV0xRTHlJQnIvNThVdzNjUi9BMWhjVENyTzZWZFRycnpjTllZ?=
- =?utf-8?B?VklkMXZzV0JTOWU3MlhvT0duMUJUVVVJeVJtMmQybjJTU1IrRXdNbU4vOUZw?=
- =?utf-8?B?NUdac1FEd2dRaFdwYWRGY1VqSWVsSHdEYVVnKzhsclF5clVYRVNPaHFzcFhD?=
- =?utf-8?B?U0kzVVVIQnNMMnp5WTV0UEh3eVoxTEV1RXRwRjlSMVZlWVRuRkd4b0p0ZGVT?=
- =?utf-8?B?Q3AvMlFTNEdyWk1LRUpyRzY4eXVvUzdaYXN1ZXIvL3pWMitEN2JiUC8xMUJU?=
- =?utf-8?B?d2FDN2VSWVNJZUNJdGtaUmtzTEgwSGlqY2FqVmF2Z3U1cXZsOEY0OENVbEZM?=
- =?utf-8?B?NDhuSWJSNlF4ZHNxMHpNNE9wYjlieGRERVoyWlZuS09MU1k1NlVackdnUnlx?=
- =?utf-8?B?dU91V2lRRlZaSlJBSWdyQllsTyszaWYxS2I1OFhyVWNMS00rOVJZUUxHZzJO?=
- =?utf-8?B?eUFvMjF3bk1zb3ZTb3VzcnJNclB3dTBJREVlMHUwZlVMR2I1b1hSRHJnN3RR?=
- =?utf-8?B?QXVjK0hsYXB0SDZjR3VFei9NTzgxRGIyUlZUSE5mQUczOTZLWUpwanU2L1hv?=
- =?utf-8?B?NFc3YUFMaEp5SWx6QUxoWVlHYWx5dG1rWkZIWXVyb0d0UzlVRmp1S0lPYXBH?=
- =?utf-8?B?SjFscVNQSG5tNXVHaXo0bjRDZHBBOXB4Qld4am1NYlJrcW9CRVk1c2o3T3Z2?=
- =?utf-8?B?cGxtMlhqTnlTMmpQMVRoUzFzd0hiVWJRMVNDUDFsa2xvdnBJUXFWaFF0Y3FF?=
- =?utf-8?B?U09waDZFSjFRUm5ldVFxdTRST1JScTJ0WXArc3lmNk0vcGdhZzBtU0lXandk?=
- =?utf-8?B?TmkzK1BsSldGS2J3TXZhbEdPdTE3UGkwSVBkVXA3YnFIYTJrSkIySnQ1UG9U?=
- =?utf-8?B?MkIvQUQweE9SNytjYUxaVmxndVJuK2ZRZjB0NVNnK3V3K0hvYTNPWnIwS0JW?=
- =?utf-8?B?VDlFOGZGb0ViY0g4LzdnUEMvS2wvTTVkQTFrdUFvVkxiTU5BZ0FBaitYaGlE?=
- =?utf-8?B?Q0hiWUlJZXFLa0k4cm1jeDZ5STlHOVhjMUJYd29KSkVKdTgrbDRWT3pnZ05x?=
- =?utf-8?B?ZkpPUFc2c0Q0VVdraCtvcnliTUZoeG9nMnRnZ0ZMVzd5VlhiRkxRN0FYaFRo?=
- =?utf-8?B?ZVhoaURQZXFlZDFua0lYWXpTZEdWWFBqam5ubmE4MVRkQVpmOVIrRkdEN2pl?=
- =?utf-8?B?TzI0Z1ZZVHE4bDhYNE91Q25mK0NvR2JNcEtoSW1POFFMWEg1RVd6Mk1DMUs4?=
- =?utf-8?B?M0FDa0JrQlZzdXgxaHlGK0cwTHdnZ2NxdlZHVGN3SnJZNGhZNVlKblVrakkz?=
- =?utf-8?B?ei8zSkpYOS95WlRKaHJVWHdSbUNPeDdBRzlaMDMyM3NZWUNJY09uZVkzUzhj?=
- =?utf-8?B?ODI0a2MzUjIvRUdtb3RZRTRIbCtmT2xCQ3FnUUF3KzRsZnQ5ejlIcXkvV3M5?=
- =?utf-8?B?ZVh6YUZRY1lVQ3lVK3RxdlBDVXQxZzduYzBwVXhBdjFXUmt0U3Q0VStPYXUr?=
- =?utf-8?B?NUJEMUVmVlFvb0d2SngwZkhzOVAxc1hZS09PTVFTNUh5dkg0T01OWkllWXhV?=
- =?utf-8?B?RnhGL05ZWDdVckRsRTNXaGhWRXVXbzlyYWZha1J1T1d1YWI2SnpVSkhFWGE0?=
- =?utf-8?B?Z0xaS3dOaml3T2kzQkdPblExQVFFSFJ1ZUVXcWg0cnlOTGlWNi85WHVueVVE?=
- =?utf-8?Q?c334+Wh15H8jTQN6zBOnJ88=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 81a11feb-c434-4655-80aa-08de3be3be69
-X-MS-Exchange-CrossTenant-AuthSource: MN6PR11MB8102.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Dec 2025 14:10:47.4180
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: jwQ6qB5v2Q3EuOSJ3zljni8U7bmhx5SAaIaNa4SxUJrRBQFX+6lTHOAg+8BtRy+Sn0he2lwKs5YWEYDHkc1T0UtjCJ+Sq6mRIEr1ZmO6dTE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6093
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 8bit
 
-On 12/11/25 20:47, Ivan Vecera wrote:
-> Allow drivers to register DPLL pins without manually specifying a pin
-> index.
-> 
-> Currently, drivers must provide a unique pin index when calling
-> dpll_pin_get(). This works well for hardware-mapped pins but creates
-> friction for drivers handling virtual pins or those without a strict
-> hardware indexing scheme.
+Hi All,
 
-wouldn't it be better to just switch everything to allocated IDs?
+This small series provides two cleanup patches for the Tegra PCIe driver.
+The overall goal is to replace custom, open-coded logic with standard
+kernel helper functions.
 
-> 
-> Introduce DPLL_PIN_IDX_UNSPEC (U32_MAX). When a driver passes this
-> value as the pin index:
-> 1. The core allocates a unique index using an IDA
-> 2. The allocated index is mapped to a range starting above `INT_MAX`
-> 
-> This separation ensures that dynamically allocated indices never collide
-> with standard driver-provided hardware indices, which are assumed to be
-> within the `0` to `INT_MAX` range. The index is automatically freed when
-> the pin is released in dpll_pin_put().
-> 
-> Signed-off-by: Ivan Vecera <ivecera@redhat.com>
-> ---
->   drivers/dpll/dpll_core.c | 48 ++++++++++++++++++++++++++++++++++++++--
->   include/linux/dpll.h     |  2 ++
->   2 files changed, 48 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/dpll/dpll_core.c b/drivers/dpll/dpll_core.c
-> index fecc3d97acf5b..79f60e0de27ac 100644
-> --- a/drivers/dpll/dpll_core.c
-> +++ b/drivers/dpll/dpll_core.c
-> @@ -10,6 +10,7 @@
->   
->   #include <linux/device.h>
->   #include <linux/err.h>
-> +#include <linux/idr.h>
->   #include <linux/property.h>
->   #include <linux/slab.h>
->   #include <linux/string.h>
-> @@ -24,6 +25,7 @@ DEFINE_XARRAY_FLAGS(dpll_device_xa, XA_FLAGS_ALLOC);
->   DEFINE_XARRAY_FLAGS(dpll_pin_xa, XA_FLAGS_ALLOC);
->   
->   static RAW_NOTIFIER_HEAD(dpll_notifier_chain);
-> +static DEFINE_IDA(dpll_pin_idx_ida);
->   
->   static u32 dpll_device_xa_id;
->   static u32 dpll_pin_xa_id;
-> @@ -468,6 +470,36 @@ void dpll_device_unregister(struct dpll_device *dpll,
->   }
->   EXPORT_SYMBOL_GPL(dpll_device_unregister);
->   
-> +static int dpll_pin_idx_alloc(u32 *pin_idx)
-> +{
-> +	int ret;
-> +
-> +	if (!pin_idx)
-> +		return -EINVAL;
-> +
-> +	/* Alloc unique number from IDA. Number belongs to <0, INT_MAX> range */
-> +	ret = ida_alloc(&dpll_pin_idx_ida, GFP_KERNEL);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	/* Map the value to dynamic pin index range <INT_MAX+1, U32_MAX> */
-> +	*pin_idx = (u32)ret + INT_MAX + 1;
-> +
-> +	return 0;
-> +}
-> +
-> +static void dpll_pin_idx_free(u32 pin_idx)
-> +{
-> +	if (pin_idx <= INT_MAX)
-> +		return; /* Not a dynamic pin index */
-> +
-> +	/* Map the index value from dynamic pin index range to IDA range and
-> +	 * free it.
-> +	 */
-> +	pin_idx -= INT_MAX - 1;
-> +	ida_free(&dpll_pin_idx_ida, pin_idx);
-> +}
-> +
->   static void dpll_pin_prop_free(struct dpll_pin_properties *prop)
->   {
->   	kfree(prop->package_label);
-> @@ -526,9 +558,18 @@ dpll_pin_alloc(u64 clock_id, u32 pin_idx, struct module *module,
->   	struct dpll_pin *pin;
->   	int ret;
->   
-> +	if (pin_idx == DPLL_PIN_IDX_UNSPEC) {
-> +		ret = dpll_pin_idx_alloc(&pin_idx);
-> +		if (ret)
-> +			return ERR_PTR(ret);
-> +	} else if (pin_idx > INT_MAX) {
-> +		return ERR_PTR(-EINVAL);
-> +	}
->   	pin = kzalloc(sizeof(*pin), GFP_KERNEL);
-> -	if (!pin)
-> -		return ERR_PTR(-ENOMEM);
-> +	if (!pin) {
-> +		ret = -ENOMEM;
-> +		goto err_pin_alloc;
-> +	}
->   	pin->pin_idx = pin_idx;
->   	pin->clock_id = clock_id;
->   	pin->module = module;
-> @@ -557,6 +598,8 @@ dpll_pin_alloc(u64 clock_id, u32 pin_idx, struct module *module,
->   	dpll_pin_prop_free(&pin->prop);
->   err_pin_prop:
->   	kfree(pin);
-> +err_pin_alloc:
-> +	dpll_pin_idx_free(pin_idx);
->   	return ERR_PTR(ret);
->   }
->   
-> @@ -663,6 +706,7 @@ void dpll_pin_put(struct dpll_pin *pin)
->   		xa_destroy(&pin->ref_sync_pins);
->   		dpll_pin_prop_free(&pin->prop);
->   		fwnode_handle_put(pin->fwnode);
-> +		dpll_pin_idx_free(pin->pin_idx);
->   		kfree_rcu(pin, rcu);
->   	}
->   	mutex_unlock(&dpll_lock);
-> diff --git a/include/linux/dpll.h b/include/linux/dpll.h
-> index 441afb90d2a29..8aa1df38ce563 100644
-> --- a/include/linux/dpll.h
-> +++ b/include/linux/dpll.h
-> @@ -235,6 +235,8 @@ int dpll_device_register(struct dpll_device *dpll, enum dpll_type type,
->   void dpll_device_unregister(struct dpll_device *dpll,
->   			    const struct dpll_device_ops *ops, void *priv);
->   
-> +#define DPLL_PIN_IDX_UNSPEC	U32_MAX
-> +
->   struct dpll_pin *
->   dpll_pin_get(u64 clock_id, u32 dev_driver_id, struct module *module,
->   	     const struct dpll_pin_properties *prop,
+These changes improve the driver's readability and maintainability by
+everaging modern, well-tested APIs for clock management and register
+polling.
+
+v2: Fix the DT binding for nvidia,tegra-pcie.yaml
+    switch back to devm_clk_bulk_get_all to get all the clocks
+    improve the commit message.
+
+v1 Added new devicetree binding nvidia,tegra-pcie.yaml file.
+   Switch from devm_clk_bulk_get_all() -> devm_clk_bulk_get() api.
+   Fixed checkpatch warnings.
+
+Tested on Jetson Nano 4 GB ram.
+
+jetson-nano:~$ lspci -tvv
+-[0000:00]-+-01.0-[01]----00.0  Intel Corporation Wireless 8265 / 8275
+           \-02.0-[02]----00.0  Realtek Semiconductor Co., Ltd. RTL8111/8168/8211/8411 PCI Express Gigabit Ethernet Controller
+
+v1:   https://lore.kernel.org/linux-tegra/20250926072905.126737-1-linux.amoon@gmail.com/
+RFC : https://lore.kernel.org/linux-tegra/20250831190055.7952-2-linux.amoon@gmail.com/
+
+Thanks
+-Anand
+
+Anand Moon (4):
+  dt-bindings: PCI: Convert nvidia,tegra-pcie to DT schema
+  PCI: tegra: Simplify clock handling by using clk_bulk*() functions
+  PCI: tegra: Use readl_poll_timeout() for link status polling
+  PCI: tegra: Use BIT() and GENMASK() macros for register definitions
+
+ .../bindings/pci/nvidia,tegra-pcie.yaml       | 380 ++++++++++
+ .../bindings/pci/nvidia,tegra20-pcie.txt      | 670 ------------------
+ drivers/pci/controller/pci-tegra.c            | 237 +++----
+ 3 files changed, 471 insertions(+), 816 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pci/nvidia,tegra-pcie.yaml
+ delete mode 100644 Documentation/devicetree/bindings/pci/nvidia,tegra20-pcie.txt
+
+
+base-commit: 8f0b4cce4481fb22653697cced8d0d04027cb1e8
+-- 
+2.50.1
 
 
