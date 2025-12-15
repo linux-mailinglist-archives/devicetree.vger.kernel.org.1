@@ -1,396 +1,289 @@
-Return-Path: <devicetree+bounces-246449-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246451-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B587CBCE4B
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 09:01:23 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06063CBCEB2
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 09:09:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 25A92300AB27
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 08:01:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1F2CC30249ED
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 08:03:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A82CE32BF20;
-	Mon, 15 Dec 2025 08:00:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E828C328B43;
+	Mon, 15 Dec 2025 08:03:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="W2qFYxlI"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="YMsG2fhm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from CH1PR05CU001.outbound.protection.outlook.com (mail-northcentralusazon11010053.outbound.protection.outlook.com [52.101.193.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5231132B9AA
-	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 08:00:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.49
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765785611; cv=none; b=MN9hPKWJu73fkKbNw9DVTsYy3zEHpvRD/0TpUGThopz4lPq7Pk/bLJ6NByXKH2hPlZIpv6yzOC2/4TFV0Gvv3ccYF3anzdPp/2Zr+HO2KhsWtxmuRxEtkRu2L6g5la9wGoYJucGRlmDvMSkK01/hJhBT0KkqDDcyq9qJLOGL/Xo=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765785611; c=relaxed/simple;
-	bh=QCz6aFbAKxYNVGwc04303xaq8oUpPnl7l7rMqJKXeEU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=g2CpUwQOy4v4b0OmWfjKr26J9076ia3TsWn6TLsA2rBMF/GGiitstWpFT6u3rCw58jg9rre6QyTbB13BNrOcxHin4f53MNC/GMuuA+HKzL/yJ3i++B43cwKQIdbTvkN3HZ2MN0YfJpV6EcCNuOmcpwSNxPAMhqUBdzUcjbeJ/lY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=W2qFYxlI; arc=none smtp.client-ip=209.85.216.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f49.google.com with SMTP id 98e67ed59e1d1-34be2be4b7cso1474550a91.3
-        for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 00:00:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1765785608; x=1766390408; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7tSlML4uKCCHRjDgUuA5+Z7+nq0n6j206qyzOtMJBNM=;
-        b=W2qFYxlIY7Oolf+Uhey01GwQjGsU7XOoLW3+3VF4qCN2Ww36oATuSXc3iYsX81WG4S
-         AdlzlLm8IXTsTG4xoHhBdt9Dyiz4mtj73X3bnacuWAu5GjkqKLPB8kWcYWESQtWfr300
-         h8VYA5GjU6wsbMNfGi68rLqpFRX7PI3j+C53k+N7hYLGer3C//emU35+UvEX0isiYtTX
-         T5SHEyt6A9OhUM1oPcVMhon17LAQ6G8AfMCG2rvyHFSS/tXuglt7VCS6/iYZ/Fapryxq
-         F03JiaHx9qSyVKUix4+tZz7QJbSt8tJ1eAuUw08FKOJjahmT2wnlPBK39BvZNN4UEUcn
-         23mw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765785608; x=1766390408;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=7tSlML4uKCCHRjDgUuA5+Z7+nq0n6j206qyzOtMJBNM=;
-        b=qGC6Ioetm5JAO+q8O4QuIo8fObRNWdAfZ+9rPIS7/xG/8qHCj8ufcRzvH02u8zOd86
-         0auzPGKtSkQkeVDQUmnSJ8syKzMW7dPamNCl7wVV5SWtDkB+yr/HmqjuLssJPROKPo26
-         v9aESlf2mCxCda+A6XSkVSiRGVEFPDib5qH6nxEONX+UhfckF0ejpaBLGrBJaPoZ9UJr
-         k1vxBO182+WcOel7weKDfOhekOTIaQfzDx+LxEDQsnhYWke76wFWccgrnzGG0BGLuOZN
-         5cUZrhOlOpqj53KPZlXY8G3n0iCCbMuJIiDo6VBXL0nbXGJKnT1w0mORD4jRAudSwIjE
-         hN/w==
-X-Forwarded-Encrypted: i=1; AJvYcCWkjKTm52/EBM/OFkEkx5vtxs1ykO8I7SQqufWmErMdfkC3yM3p4bkLPGh5a20ntgXAsbEXl1ci4aJR@vger.kernel.org
-X-Gm-Message-State: AOJu0YzuN85mLciAcz6HJaIRq41FwDXxJyr71ATGma1Sj65CBkIyqWt9
-	1GhIHkjvOjJW1Bn+NBee/TRt/GkaxuV0c1CUALBDoji0bbvhSV+PZuCs
-X-Gm-Gg: AY/fxX5WlHn39ZLd9cZ9SIqnzJqlHCVk1bUsVNCUl4IkwUdU7yUAEhWKrn2QJrwjv3k
-	gXGApgznUr2KAk+z+r2NJ3lQG2KIE49YF0GVLAcONTG7fKni3Z5pak0tOR20zTjYvnUzZu1cxlI
-	xHvc89710j3TUsXKDPAC2S7kXd3M+lfx817rXX0YgBv3ByIfraUqdyx+N/oNNPgISrwd7JUeeNx
-	6+6j3g2sOQ1xTyyxqBH416cHrimKnNtNyOxy9MlM+OEsfq7k4CSjzoZq0jdggHmfnedtr6gBr5x
-	rPsH/Z9IjY+37Y+if1wzEwHjCuaBLM7OcmUBhGZ0lhMno1oadc12rCwgxjQ0Cv6uvpFU/aF/mT9
-	Y95Qf46KE8iFL44CkKF63Qt365pT5Op3nBTcTOP71ZDb1ff1PdXdD+iCRmYSMkDwV1Q6tAQ3/nm
-	D69861h3KiTwc=
-X-Google-Smtp-Source: AGHT+IHvfP5fbQNkStJwNn99uM97HKzJkrR2L4hGBv1RulgL1zBQt7w33jX/ynI+qGQSHpIEgrwTOg==
-X-Received: by 2002:a05:7022:7f03:b0:11c:fe15:f66d with SMTP id a92af1059eb24-11f349c5bbdmr5406985c88.17.1765785607633;
-        Mon, 15 Dec 2025 00:00:07 -0800 (PST)
-Received: from fedora ([172.59.162.202])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-11f2e2ff624sm43637473c88.12.2025.12.15.00.00.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Dec 2025 00:00:07 -0800 (PST)
-From: Alex Tran <alex.t.tran@gmail.com>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Pavel Machek <pavel@kernel.org>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Alex Tran <alex.t.tran@gmail.com>
-Subject: [PATCH v2 4/4] dt-bindings: media: omap3isp: document missing crc as optional property
-Date: Sun, 14 Dec 2025 23:58:35 -0800
-Message-ID: <99fea6935f255661a2c41adc11ba5f85d17e3bf4.1765782992.git.alex.t.tran@gmail.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <cover.1765782992.git.alex.t.tran@gmail.com>
-References: <cover.1765782992.git.alex.t.tran@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B4C0329E7A;
+	Mon, 15 Dec 2025 08:03:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.193.53
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1765785792; cv=fail; b=HRQkq5zohUGweQGEyXHA38RYQn1XIZmn4lahD10R9L7/XyatC7BUoGrnPIdMHZE0JDKWXdR0Alpkx/a1KEqNTYHMl9ppzAwfnunZNLxbjhR2Ur6ThJcCIbyrM0LpVpi19HpHuFpBYXAB0NFtTIJinbQ3uYEvaKTNyisAI0scmic=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1765785792; c=relaxed/simple;
+	bh=LcPwRbHDsR6qcSO7UTZv7wizt4r5xoe2DgKwnHLqqXo=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=HFTU18gzzdoaowDgLZMsLRJRp7BAI3lqNrAKb1t3u6mPt0NdydG88Yo52bwwEVGwDFBY5ym5zZ/B1d1S7ctzK5DT/XzqUXtjU6z6V05pHSf3a0Cn+f0X23ynyqhQnUKlAGoKGVa5qoTwyZi8yJtITNJ/8PvZGkWDbLge7qr4KDU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=YMsG2fhm; arc=fail smtp.client-ip=52.101.193.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=WmxDgb9BzLr00edWqjzyB8QqDvA3XQasBMTvgrcJc/Ms4Ll8qo0zXQGwqZmoErPRQUsTHqWLMZQl9sF8sfbkE17VrRvyaEh80RKWYaCrZakAcKTgNViDdqFWu8KF7oxlGjeOmGZWR7iWXGze8pI43265Llk6uoTW7O27q+8d6/YndfX4+8pFEjWPppZbP8AOotiPxV+aETdP+c2a1Ksdtz4TFq451g0ndJekdROpBWiGlwleEjoeLh/PxXRaPkHcrOFhsPgA5Ueqc0oT6t2KXG3QuoBGXnjik+c5hFDycvfxrxGuhF2VUc5IwvYHM/ep4ETnWc2QhgFCXrrfZUSGHA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=FGdmC3TrE+O4pj5mdRtlfEFF0vFS/whiIZkS0sdoS7M=;
+ b=kfaIYj0jpeSIcLjTE3rpsxUKnnjn/Et+zfCkMDKgMWDeiWZWixElf3BkxIK2cCqU8LS2RfjcHS0NtvsAYqWbTVwsj8SUOAfietg7vXySKy1drymsa9SjdEr7HUGf2oLprgqYe4TXN4amwDTGd62OL5o3E0J732VyTo90DyQ/RR1DDBMb1+8PnebR2BOYjOZ7Bg09xlFhdyLJJxC5htTCZnmztUdGVj114sl6mWUV9ZzGBVWgFgWNPQXtqluy/tEwKox+hlzzcQBk0sm7pNSe7nmiivPTToEMob8zTA806WdnGVvIrgBOsGMedml1titmWo7c6r+UmEE4pU/CFU2fWA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=FGdmC3TrE+O4pj5mdRtlfEFF0vFS/whiIZkS0sdoS7M=;
+ b=YMsG2fhmL4DLi0zz7IW3HAD2QBHyDr47XEnDg3JEEa+43NyF0OgWdTVPUP9o+9bw2DK/PKiwjmd7VFAoMP2FjOGTm4f0nWtTs63K+2DqgwddlWPify0OHSgOgz2Kaj81Hs0RpH02PZJczBCHpEY33/XPsCiHKO4wuzIg+3uwMOk=
+Received: from SJ0PR03CA0001.namprd03.prod.outlook.com (2603:10b6:a03:33a::6)
+ by DS7PR12MB8231.namprd12.prod.outlook.com (2603:10b6:8:db::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9412.13; Mon, 15 Dec
+ 2025 08:03:07 +0000
+Received: from SJ5PEPF00000209.namprd05.prod.outlook.com
+ (2603:10b6:a03:33a:cafe::f2) by SJ0PR03CA0001.outlook.office365.com
+ (2603:10b6:a03:33a::6) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9388.15 via Frontend Transport; Mon,
+ 15 Dec 2025 08:03:07 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ SJ5PEPF00000209.mail.protection.outlook.com (10.167.244.42) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9434.6 via Frontend Transport; Mon, 15 Dec 2025 08:03:07 +0000
+Received: from satlexmb10.amd.com (10.181.42.219) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Mon, 15 Dec
+ 2025 02:02:19 -0600
+Received: from satlexmb07.amd.com (10.181.42.216) by satlexmb10.amd.com
+ (10.181.42.219) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Mon, 15 Dec
+ 2025 02:02:18 -0600
+Received: from localhost (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17 via Frontend
+ Transport; Mon, 15 Dec 2025 00:02:17 -0800
+From: Michal Simek <michal.simek@amd.com>
+To: <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
+	<michal.simek@amd.com>, <git@amd.com>
+CC: Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, "open list:OPEN FIRMWARE
+ AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, "moderated
+ list:ARM/ZYNQ ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>
+Subject: [PATCH] arm64: zynqmp: Remove ina260 IIO description
+Date: Mon, 15 Dec 2025 09:02:05 +0100
+Message-ID: <7e57f76deca9e73be3fcb914aed119f567c9bf8a.1765785722.git.michal.simek@amd.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4651; i=michal.simek@amd.com; h=from:subject:message-id; bh=LcPwRbHDsR6qcSO7UTZv7wizt4r5xoe2DgKwnHLqqXo=; b=owGbwMvMwCG2mv3fB7+vgl8ZT6slMWTaH6i/Vvk2eJ7qrIl8xTsilTcVKt74dvDVo8k9D1LsH x26aSuzqaOUhUGMg0FWTJFlOpOOw5pv15aKLY/Mh5nDygQyhIGLUwAm0tTF8N81Ze9aqYovwd+4 7Y4FzT718Pqna9KSP482vrmewb47VGUpw38n3sAHfFtPPttTuPDFOr3IQ2ruT2WWzpuoV1lRW2+ SuZ4XAA==
+X-Developer-Key: i=michal.simek@amd.com; a=openpgp; fpr=67350C9BF5CCEE9B5364356A377C7F21FE3D1F91
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ5PEPF00000209:EE_|DS7PR12MB8231:EE_
+X-MS-Office365-Filtering-Correlation-Id: ce9c97cc-36c2-44b0-7f09-08de3bb061af
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|36860700013|82310400026|1800799024|13003099007;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?zSwThxZtEZZxTF3LGKvxO/w64hTQZNE3dODp/9sb5OeaYFAWIbQibe28kr8v?=
+ =?us-ascii?Q?hA0qA8a1yzZhYhU8Vw/DESl1A8OKf7ebJxZDKziqRWYdJHdR26qmB3+mt73U?=
+ =?us-ascii?Q?B3/nUK62g79JCbUyTzJlx2F+nShK7OALBnDFjZfqrsmKhhb8i/to0Mvr3RTz?=
+ =?us-ascii?Q?b4Q1FPRfEM7rsk4cP0Y+aTln29NclATEv6C22WrTNLx8yBhpw0BpyEZ3Bc7s?=
+ =?us-ascii?Q?lXlpCCTUV9ipf73la4C2vr+wVzF3IZD1JC2royVNI/8ZKJBNrvi7FS/eTZtk?=
+ =?us-ascii?Q?qQFR8pdH67y2cJkcsw1XjdLzSMQa1Gs/70Eduupc84PpLKEFBjowGjdmMlaH?=
+ =?us-ascii?Q?dxG9LnSnt5sSoIEOPvLNMrIWA3Pd1jGzFa4ld5xoSzMviGj3SWZg04PF97WK?=
+ =?us-ascii?Q?I2m8dfiPoIAGPqB+DVc1lbJJ5qew8jwcSMEyEA95AsvRZ7PMJgC1UPIdU+6k?=
+ =?us-ascii?Q?8XZkSO0IV4AhxuwRxjFDspPyR7dYnPn9OHonD6KVOfUTY7xjHPC32PZXQDfP?=
+ =?us-ascii?Q?SSAHXuK2LqR44/zEPJVJ87MzXBLtvg4Llt4cm2bFfnwJ0mgO1eYn40CYiUlM?=
+ =?us-ascii?Q?Z3uR9EYl8m/s9BjTj9WjcbKeRC6mmkBhhDzobU2UuXJnP7d5X5uxmbRcd8Kp?=
+ =?us-ascii?Q?6ufldZR5Ify+W/QlXOv4NnPcOr77UBardc2y41V3CGDP81XwtceNDOH7GMbw?=
+ =?us-ascii?Q?giCb8PLFEfC+Gxmn/QGjo2Me04/fK3TodFZfZfOJfpKWDYCHA7/XiefK+DpP?=
+ =?us-ascii?Q?nyQKQpTfkL4zTANo9EFVkvRtJNxF6rlN7CSwPNyEHF1YJYslp2U7+RCEmVll?=
+ =?us-ascii?Q?lqYMcR5QgctS6Yye4eW6sprNDuAP7+mbETagz4UyM1uU5nj8r0sISAbkIQ36?=
+ =?us-ascii?Q?us9m6G191uaHm9sJtHnzBT++U3iNwLud24NhVBg3Ldm9mwJ4Loa4a5Wmhrqw?=
+ =?us-ascii?Q?jmaBHjxvis9P4l/BfBkoFcIZWPqm29IBo3sIiyalKsB1QXKoNvEMxsAzse9/?=
+ =?us-ascii?Q?YvmBGI3yRF+vPnIagTahZl/WYeLbWWmeIJxgmg0tIiPAQCVCg1hQwN4WZ6oF?=
+ =?us-ascii?Q?8hMKi4GvJgx1RA+AYgvpj4BkJIubkWGQmdRgehfSE+roNqNQNDIiB15+QwuF?=
+ =?us-ascii?Q?fCWD1C3ZpuyCAoaKvEtqSZeADHW1IA5eKlcAfdNNsUmHx8O3XriMmA8jGs7J?=
+ =?us-ascii?Q?ueaAwc7U7X2MsikeNQYfaJaO75f0n+3ZzIcuqo2uVv6REQjExnDGKK3W24wo?=
+ =?us-ascii?Q?zg2zgu4A2Hv+OW1YqfZ+KjeY5RFJRDwyj1aGO/eOJJpvcMaz9/UWKJYImQiX?=
+ =?us-ascii?Q?OIgAPtBsM9VHQ8/HfeTZ6gOCyUNHblSBCbq+9l4KfMUb6FbVg3HIVM/Hh52b?=
+ =?us-ascii?Q?f6Vsol0z5RaOi4e5M0YogjanH/+T6co+/WJNG0jbviu+KmY/0eKUKpQNDVsN?=
+ =?us-ascii?Q?QWH3eQNOKKfj7Gia/xdVXtYgCHOXbhcutzU94g2/ISXCU2G5+2th5pzM25UC?=
+ =?us-ascii?Q?qLz8zhWMfOFsiwX/9a65OmTei640Z/Ic6iFBx3iDC6ahKiEZxas8cTOE/TK/?=
+ =?us-ascii?Q?4KBQT1eHerjmCEtIrAM=3D?=
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb07.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(36860700013)(82310400026)(1800799024)(13003099007);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Dec 2025 08:03:07.1274
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ce9c97cc-36c2-44b0-7f09-08de3bb061af
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SJ5PEPF00000209.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB8231
 
-Convert the OMAP3 ISP device tree binding from TXT format to YAML.
-Add the optional crc property to the endpoint node for the omap3isp
-receiver. This property enables CRC checksums for the bus and was added to
-match the new driver support for reading it from the device tree.
+Kernel has only hwmon driver that's why there is no reason to wire iio to
+hwmon converter which was describing out of tree ina260 IIO.
 
-Signed-off-by: Alex Tran <alex.t.tran@gmail.com>
+Signed-off-by: Michal Simek <michal.simek@amd.com>
 ---
- .../devicetree/bindings/media/ti,omap3isp.txt |  71 -------
- .../bindings/media/ti,omap3isp.yaml           | 196 ++++++++++++++++++
- 2 files changed, 196 insertions(+), 71 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/media/ti,omap3isp.txt
- create mode 100644 Documentation/devicetree/bindings/media/ti,omap3isp.yaml
 
-diff --git a/Documentation/devicetree/bindings/media/ti,omap3isp.txt b/Documentation/devicetree/bindings/media/ti,omap3isp.txt
-deleted file mode 100644
-index ac23de855..000000000
---- a/Documentation/devicetree/bindings/media/ti,omap3isp.txt
-+++ /dev/null
-@@ -1,71 +0,0 @@
--OMAP 3 ISP Device Tree bindings
--===============================
+Upstreaming of ina260 IIO driver was tried here.
+https://lore.kernel.org/all/20210322105056.30571-1-raviteja.narayanam@xilinx.com/
+---
+ arch/arm64/boot/dts/xilinx/zynqmp-sck-kd-g-revA.dtso | 6 ------
+ arch/arm64/boot/dts/xilinx/zynqmp-sck-kr-g-revA.dtso | 6 ------
+ arch/arm64/boot/dts/xilinx/zynqmp-sck-kr-g-revB.dtso | 6 ------
+ arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso | 6 ------
+ arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso | 6 ------
+ 5 files changed, 30 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kd-g-revA.dtso b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kd-g-revA.dtso
+index 02be5e1e8686..832dc5ab2458 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kd-g-revA.dtso
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kd-g-revA.dtso
+@@ -26,11 +26,6 @@ aliases {
+ 		ethernet0 = "/axi/ethernet@ff0c0000"; /* &gem1 */
+ 	};
+ 
+-	ina260-u3 {
+-		compatible = "iio-hwmon";
+-		io-channels = <&u3 0>, <&u3 1>, <&u3 2>;
+-	};
 -
--The DT definitions can be found in include/dt-bindings/media/omap3-isp.h.
+ 	clk_26: clock2 { /* u17 - USB */
+ 		compatible = "fixed-clock";
+ 		#clock-cells = <0>;
+@@ -67,7 +62,6 @@ &i2c1 { /* I2C_SCK C26/C27 - MIO from SOM */
+ 
+ 	u3: ina260@40 { /* u3 */
+ 		compatible = "ti,ina260";
+-		#io-channel-cells = <1>;
+ 		label = "ina260-u14";
+ 		reg = <0x40>;
+ 	};
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kr-g-revA.dtso b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kr-g-revA.dtso
+index b92dcb86e87e..b88efcce0162 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kr-g-revA.dtso
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kr-g-revA.dtso
+@@ -25,11 +25,6 @@ aliases {
+ 		ethernet1 = "/axi/ethernet@ff0c0000"; /* &gem1 */
+ 	};
+ 
+-	ina260-u14 {
+-		compatible = "iio-hwmon";
+-		io-channels = <&u14 0>, <&u14 1>, <&u14 2>;
+-	};
 -
--Required properties
--===================
+ 	clk_27: clock0 { /* u86 - DP */
+ 		compatible = "fixed-clock";
+ 		#clock-cells = <0>;
+@@ -95,7 +90,6 @@ &i2c1 { /* I2C_SCK C26/C27 - MIO from SOM */
+ 
+ 	u14: ina260@40 { /* u14 */
+ 		compatible = "ti,ina260";
+-		#io-channel-cells = <1>;
+ 		label = "ina260-u14";
+ 		reg = <0x40>;
+ 	};
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kr-g-revB.dtso b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kr-g-revB.dtso
+index 99ad220d13d6..817797b21679 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kr-g-revB.dtso
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kr-g-revB.dtso
+@@ -25,11 +25,6 @@ aliases {
+ 		ethernet1 = "/axi/ethernet@ff0c0000"; /* &gem1 */
+ 	};
+ 
+-	ina260-u14 {
+-		compatible = "iio-hwmon";
+-		io-channels = <&u14 0>, <&u14 1>, <&u14 2>;
+-	};
 -
--compatible	: must contain "ti,omap3-isp"
+ 	clk_125: clock0 { /* u87 - GEM0/1 */
+ 		compatible = "fixed-clock";
+ 		#clock-cells = <0>;
+@@ -96,7 +91,6 @@ &i2c1 { /* I2C_SCK C26/C27 - MIO from SOM */
+ 
+ 	u14: ina260@40 { /* u14 */
+ 		compatible = "ti,ina260";
+-		#io-channel-cells = <1>;
+ 		label = "ina260-u14";
+ 		reg = <0x40>;
+ 	};
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso
+index d7351a17d3e8..923a70d750bf 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revA.dtso
+@@ -32,11 +32,6 @@ aliases {
+ 		ethernet0 = "/axi/ethernet@ff0e0000"; /* &gem3 */
+ 	};
+ 
+-	ina260-u14 {
+-		compatible = "iio-hwmon";
+-		io-channels = <&u14 0>, <&u14 1>, <&u14 2>;
+-	};
 -
--reg		: the two registers sets (physical address and length) for the
--		  ISP. The first set contains the core ISP registers up to
--		  the end of the SBL block. The second set contains the
--		  CSI PHYs and receivers registers.
--interrupts	: the ISP interrupt specifier
--iommus		: phandle and IOMMU specifier for the IOMMU that serves the ISP
--syscon		: the phandle and register offset to the Complex I/O or CSI-PHY
--		  register
--ti,phy-type	: 0 -- OMAP3ISP_PHY_TYPE_COMPLEX_IO (e.g. 3430)
--		  1 -- OMAP3ISP_PHY_TYPE_CSIPHY (e.g. 3630)
--#clock-cells	: Must be 1 --- the ISP provides two external clocks,
--		  cam_xclka and cam_xclkb, at indices 0 and 1,
--		  respectively. Please find more information on common
--		  clock bindings in ../clock/clock-bindings.txt.
+ 	si5332_0: si5332-0 { /* u17 */
+ 		compatible = "fixed-clock";
+ 		#clock-cells = <0>;
+@@ -96,7 +91,6 @@ &i2c1 { /* I2C_SCK C23/C24 - MIO from SOM */
+ 
+ 	u14: ina260@40 { /* u14 */
+ 		compatible = "ti,ina260";
+-		#io-channel-cells = <1>;
+ 		label = "ina260-u14";
+ 		reg = <0x40>;
+ 	};
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso
+index a4ae37ebaccf..563e750b0e08 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kv-g-revB.dtso
+@@ -27,11 +27,6 @@ aliases {
+ 		ethernet0 = "/axi/ethernet@ff0e0000"; /* &gem3 */
+ 	};
+ 
+-	ina260-u14 {
+-		compatible = "iio-hwmon";
+-		io-channels = <&u14 0>, <&u14 1>, <&u14 2>;
+-	};
 -
--Port nodes (optional)
-----------------------
--
--More documentation on these bindings is available in
--video-interfaces.txt in the same directory.
--
--reg		: The interface:
--		  0 - parallel (CCDC)
--		  1 - CSIPHY1 -- CSI2C / CCP2B on 3630;
--		      CSI1 -- CSIb on 3430
--		  2 - CSIPHY2 -- CSI2A / CCP2B on 3630;
--		      CSI2 -- CSIa on 3430
--
--Optional properties
--===================
--
--vdd-csiphy1-supply : voltage supply of the CSI-2 PHY 1
--vdd-csiphy2-supply : voltage supply of the CSI-2 PHY 2
--
--Endpoint nodes
----------------
--
--lane-polarities	: lane polarity (required on CSI-2)
--		  0 -- not inverted; 1 -- inverted
--data-lanes	: an array of data lanes from 1 to 3. The length can
--		  be either 1 or 2. (required on CSI-2)
--clock-lanes	: the clock lane (from 1 to 3). (required on CSI-2)
--
--
--Example
--=======
--
--		isp@480bc000 {
--			compatible = "ti,omap3-isp";
--			reg = <0x480bc000 0x12fc
--			       0x480bd800 0x0600>;
--			interrupts = <24>;
--			iommus = <&mmu_isp>;
--			syscon = <&scm_conf 0x2f0>;
--			ti,phy-type = <OMAP3ISP_PHY_TYPE_CSIPHY>;
--			#clock-cells = <1>;
--			ports {
--				#address-cells = <1>;
--				#size-cells = <0>;
--			};
--		};
-diff --git a/Documentation/devicetree/bindings/media/ti,omap3isp.yaml b/Documentation/devicetree/bindings/media/ti,omap3isp.yaml
-new file mode 100644
-index 000000000..b86c3aa71
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/ti,omap3isp.yaml
-@@ -0,0 +1,196 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/ti,omap3isp.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Texas Instruments OMAP 3 Image Signal Processor (ISP)
-+
-+maintainers:
-+  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-+  - Sakari Ailus <sakari.ailus@iki.fi>
-+
-+description:
-+  The OMAP 3 ISP is an image signal processor present in OMAP 3 SoCs.
-+
-+properties:
-+  compatible:
-+    const: ti,omap3-isp
-+
-+  reg:
-+    items:
-+      - description: Core ISP registers up to the end of the SBL block
-+      - description: CSI PHYs and receivers registers
-+
-+  interrupts:
-+    maxItems: 1
-+    description: the ISP interrupt specifier
-+
-+  iommus:
-+    maxItems: 1
-+    description: phandle and IOMMU specifier for the IOMMU that serves the ISP
-+
-+  syscon:
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    items:
-+      - items:
-+          - description: phandle to System Control Module
-+          - description: register offset to Complex I/O or CSI-PHY register
-+    description:
-+      Phandle and register offset to the Complex I/O or CSI-PHY register
-+
-+  ti,phy-type:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [0, 1]
-+    description:
-+      0 - OMAP3ISP_PHY_TYPE_COMPLEX_IO (e.g. OMAP 3430)
-+      1 - OMAP3ISP_PHY_TYPE_CSIPHY (e.g. OMAP 3630)
-+
-+  '#clock-cells':
-+    const: 1
-+    description:
-+      The ISP provides two external clocks, cam_xclka and cam_xclkb,
-+      at indices 0 and 1 respectively.
-+
-+  vdd-csiphy1-supply:
-+    description: Voltage supply of the CSI-2 PHY 1
-+
-+  vdd-csiphy2-supply:
-+    description: Voltage supply of the CSI-2 PHY 2
-+
-+  ports:
-+    $ref: /schemas/graph.yaml#/properties/ports
-+
-+    properties:
-+      port@0:
-+        $ref: /schemas/graph.yaml#/$defs/port-base
-+        unevaluatedProperties: false
-+        description: Parallel (CCDC) interface
-+
-+        properties:
-+          endpoint:
-+            $ref: /schemas/media/video-interfaces.yaml#
-+            unevaluatedProperties: false
-+
-+      port@1:
-+        $ref: /schemas/graph.yaml#/$defs/port-base
-+        unevaluatedProperties: false
-+        description: |
-+          CSIPHY1 interface:
-+            OMAP 3630: CSI2C / CCP2B
-+            OMAP 3430: CSI1 (CSIb)
-+
-+        properties:
-+          endpoint:
-+            $ref: /schemas/media/video-interfaces.yaml#
-+            unevaluatedProperties: false
-+
-+            properties:
-+              lane-polarities:
-+                description: |
-+                  The lane polarity (required on CSI-2):
-+                    0 - not inverted
-+                    1 - inverted
-+                minItems: 2
-+                maxItems: 3
-+                items:
-+                  enum: [0, 1]
-+
-+              data-lanes:
-+                description: Data lanes (required on CSI-2)
-+                minItems: 1
-+                maxItems: 2
-+                items:
-+                  minimum: 1
-+                  maximum: 3
-+
-+              clock-lanes:
-+                description: The clock lane (required on CSI-2)
-+                maxItems: 1
-+                items:
-+                  minimum: 1
-+                  maximum: 3
-+
-+              crc:
-+                $ref: /schemas/types.yaml#/definitions/uint32
-+                enum: [0, 1]
-+                default: 1
-+                description:
-+                  Enable CRC checksums.
-+
-+      port@2:
-+        $ref: /schemas/graph.yaml#/$defs/port-base
-+        unevaluatedProperties: false
-+        description: |
-+          CSIPHY2 interface:
-+            OMAP 3630: CSI2A / CCP2B
-+            OMAP 3430: CSI2 (CSIa)
-+
-+        properties:
-+          endpoint:
-+            $ref: /schemas/media/video-interfaces.yaml#
-+            unevaluatedProperties: false
-+
-+            properties:
-+              lane-polarities:
-+                description: |
-+                  The lane polarity (required on CSI-2):
-+                    0 - not inverted
-+                    1 - inverted
-+                minItems: 2
-+                maxItems: 3
-+                items:
-+                  enum: [0, 1]
-+
-+              data-lanes:
-+                description: Data lanes (required on CSI-2)
-+                minItems: 1
-+                maxItems: 2
-+                items:
-+                  minimum: 1
-+                  maximum: 3
-+
-+              clock-lanes:
-+                description: The clock lane (required on CSI-2)
-+                maxItems: 1
-+                items:
-+                  minimum: 1
-+                  maximum: 3
-+
-+              crc:
-+                $ref: /schemas/types.yaml#/definitions/uint32
-+                enum: [0, 1]
-+                default: 1
-+                description:
-+                  Enable CRC checksums.
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - iommus
-+  - syscon
-+  - ti,phy-type
-+  - '#clock-cells'
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/media/omap3-isp.h>
-+
-+    isp@480bc000 {
-+        compatible = "ti,omap3-isp";
-+        reg = <0x480bc000 0x12fc>,
-+              <0x480bd800 0x0600>;
-+        interrupts = <24>;
-+        iommus = <&mmu_isp>;
-+        syscon = <&scm_conf 0x2f0>;
-+        ti,phy-type = <OMAP3ISP_PHY_TYPE_CSIPHY>;
-+        #clock-cells = <1>;
-+
-+        ports {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+        };
-+    };
+ 	si5332_0: si5332-0 { /* u17 */
+ 		compatible = "fixed-clock";
+ 		#clock-cells = <0>;
+@@ -92,7 +87,6 @@ &i2c1 { /* I2C_SCK C23/C24 - MIO from SOM */
+ 
+ 	u14: ina260@40 { /* u14 */
+ 		compatible = "ti,ina260";
+-		#io-channel-cells = <1>;
+ 		label = "ina260-u14";
+ 		reg = <0x40>;
+ 	};
 -- 
-2.51.0
+2.43.0
 
+base-commit: 138cb5c1bc67058542ea83109dd6e2d0d2451528
 
