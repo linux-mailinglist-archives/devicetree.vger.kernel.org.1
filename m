@@ -1,120 +1,108 @@
-Return-Path: <devicetree+bounces-246810-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246811-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F138CC0012
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 22:45:32 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C393CC007A
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 22:49:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D0E71306EDB6
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 21:40:54 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 9017A300925A
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 21:48:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95C36326957;
-	Mon, 15 Dec 2025 21:40:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A0CA328B76;
+	Mon, 15 Dec 2025 21:48:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qJFBVJaC"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="qtsMobJ8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4663E283CB5;
-	Mon, 15 Dec 2025 21:40:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1D1A30AD11;
+	Mon, 15 Dec 2025 21:48:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765834853; cv=none; b=l4BVOQWB7e7Z+OugWCJfnO1HqpMesY2FiKYMB8pT+1Ml8KUheNRCO5YZkCUHRVyJ/h55YOWLNW/s82SpmvlG4+5oLF144UC5Oi9NnuFMeXc3+kUhP8ackpR/ZphNT3cPZOmjJqqBAKhGjP9vTG2uNNQDLhPb3EzZHCGx/Ea/tcA=
+	t=1765835284; cv=none; b=aeIzjoIdIHgPwi6HG+w43O8TTPvg6MOTthWaKHLKmZ3nhqqnNsLcOPeoTnYmSkdZI1fXsXDJifccJrQAYkFOQmU/+yw8AwsUfxveogvxaoBeCLSC/o4O6/KetqJVABHiTOy1+vUjoohOJesd3Ez4EN3sUjutD0A9DddoyJYDwE8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765834853; c=relaxed/simple;
-	bh=8+QhW2cFWJDaIsuT5yDSI4nyUtquLCwiDgHnqtP3F00=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:To:From:Subject:
-	 References:In-Reply-To; b=iZa8a7r+2ylEoXN/5AMjvVHz+9Ocf5w3clQGeqvOoL6mU6WaxQPrufYZ6bmS0TTyy0qv1XHS+IX4Jjp9r7x4HS+Yru/w75me2GbY0seOLoSjNuANpxYIhUgPWfnUtkuUDJnjrHQLol4NXiGRvslMzo0SMqZwm2ACrDUOeawsdkU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qJFBVJaC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C486BC4CEF5;
-	Mon, 15 Dec 2025 21:40:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765834852;
-	bh=8+QhW2cFWJDaIsuT5yDSI4nyUtquLCwiDgHnqtP3F00=;
-	h=Date:Cc:To:From:Subject:References:In-Reply-To:From;
-	b=qJFBVJaC0an3Wy7ck/NW3yKgi9jI3ce1I7gVQW8XUmK+OrJgE8FAW+WL7g4D9LvFe
-	 /YXSYPoFx2CSzUrpqi11o2qDr8G6z/1Di0ZaklBXTyTMLUzpgYiEXa6CG+nuC9aEPB
-	 oPLpWQpGwbvBrApASVSXJtWBeD5j9+j8eCEqoYfQukbOTAQU4/7mRVkdeQh7josQjH
-	 EqqCHJPOqdShwjRa6dHuASX87J1if9DJv4RbmhpyPx7LNZQF9y9tpD3TU8/KUvv9Fl
-	 o6XLqSg9GmBVn/+MChjQ3SmuTHxo55lUfl8ovjSyyVqKmJtl1P2uKHl4dlIN5739w4
-	 bHhzsM+PVC1lg==
+	s=arc-20240116; t=1765835284; c=relaxed/simple;
+	bh=jGNY3vhgOcACpFtEGs3d2xDYluReNIwWHSPKQTjCp6Q=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ixby0VVtARMtafqZCEUbn55wniPBNyKezZgMGwZeX1ZqdlP+Cjl5D8E8rWzmsUsigbHPHP5HXnrhKBjlCOst54j/C559vTEHDDJq4ibais2gIWho7i7pd4DYGmysCFQyl5wte7YizSRaCcx5CXB/34+uBdfcTK3YpI95FcYjVXE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=qtsMobJ8; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
+	bh=OI1MY4kOzgLcU2iIDea7bQ2I0yRp8F1R+dwEE1LToL8=; b=qtsMobJ81loav8R/ZLTl3g8U1R
+	L2p+F7xhPDfocdnt+ksIho08Wf/uA8kiKZoc9oe+GmwipM8X4W/cOGhVhXb/TxLCdS44J3cbq3HdL
+	wU9DU4mrnDwLovhiHhVDAlziOkk30fvlqhYskGn2HIwN5ExSSokSJRP959789FdLPOf5MInF5i6JA
+	fbIlsb6GrPBhrRg0a+9V3ZMz1ut2RGdejRQR89FtifAaFIMNRahTtxwRJRA1gii+Bb+Z+aW+5V6Kw
+	DiRYPdNFKgnsMT+CcXTTfeZcDxTX3GMWr0x6C9zKuYQujZ+jAK+i5wS4Y/H1WOhhD4AEyturWb5eC
+	oBnGTi2Q==;
+Received: from i53875adc.versanet.de ([83.135.90.220] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1vVGQ8-0006sg-2B; Mon, 15 Dec 2025 22:47:56 +0100
+From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
+To:
+ Martin =?UTF-8?B?SG9sb3Zza8O9IChQcm9iYWJseSBOb3RoaW5nIHMuci5vLiAp?=
+ <mh@probably.group>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: rockchip: enable dual 2.5GbE on Rock 5T
+Date: Mon, 15 Dec 2025 22:47:55 +0100
+Message-ID: <2080394.PIDvDuAF1L@diego>
+In-Reply-To: <176580661874.1441131.12947657582985645446.b4-ty@sntech.de>
+References:
+ <96516D1F-9787-47FE-A67E-4745D11D9207@probably.group>
+ <176580661874.1441131.12947657582985645446.b4-ty@sntech.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
+MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 15 Dec 2025 22:40:36 +0100
-Message-Id: <DEZ47GQSH2NC.UBRRY2WDHUJJ@kernel.org>
-Cc: <rust-for-linux@vger.kernel.org>, <linux-kernel@vger.kernel.org>, "Greg
- Kroah-Hartman" <gregkh@linuxfoundation.org>, "Dave Ertman"
- <david.m.ertman@intel.com>, "Ira Weiny" <ira.weiny@intel.com>, "Leon
- Romanovsky" <leon@kernel.org>, "Peter Zijlstra" <peterz@infradead.org>,
- "Boqun Feng" <boqun.feng@gmail.com>, "Elle Rhumsaa"
- <elle@weathered-steel.dev>, "Carlos Llamas" <cmllamas@google.com>, "Yury
- Norov" <yury.norov@gmail.com>, "Andreas Hindborg" <a.hindborg@kernel.org>,
- <linux-block@vger.kernel.org>, "FUJITA Tomonori"
- <fujita.tomonori@gmail.com>, "Miguel Ojeda" <ojeda@kernel.org>, "Michael
- Turquette" <mturquette@baylibre.com>, "Stephen Boyd" <sboyd@kernel.org>,
- <linux-clk@vger.kernel.org>, "Benno Lossin" <lossin@kernel.org>, "Thomas
- Gleixner" <tglx@linutronix.de>, "Rafael J. Wysocki" <rafael@kernel.org>,
- "Viresh Kumar" <viresh.kumar@linaro.org>, <linux-pm@vger.kernel.org>, "Paul
- Moore" <paul@paul-moore.com>, "Serge Hallyn" <sergeh@kernel.org>,
- <linux-security-module@vger.kernel.org>, "Daniel Almeida"
- <daniel.almeida@collabora.com>, "Abdiel Janulgue"
- <abdiel.janulgue@gmail.com>, "Robin Murphy" <robin.murphy@arm.com>, "Lyude
- Paul" <lyude@redhat.com>, "Alexander Viro" <viro@zeniv.linux.org.uk>,
- "Christian Brauner" <brauner@kernel.org>, "Jan Kara" <jack@suse.cz>,
- <linux-fsdevel@vger.kernel.org>, "Josh Poimboeuf" <jpoimboe@kernel.org>,
- "Jason Baron" <jbaron@akamai.com>, "Steven Rostedt" <rostedt@goodmis.org>,
- "Ard Biesheuvel" <ardb@kernel.org>, "Brendan Higgins"
- <brendan.higgins@linux.dev>, "David Gow" <davidgow@google.com>, "Rae Moar"
- <rmoar@google.com>, <linux-kselftest@vger.kernel.org>, "Andrew Morton"
- <akpm@linux-foundation.org>, "Liam R. Howlett" <Liam.Howlett@oracle.com>,
- "Andrew Ballance" <andrewjballance@gmail.com>,
- <maple-tree@lists.infradead.org>, <linux-mm@kvack.org>, "Lorenzo Stoakes"
- <lorenzo.stoakes@oracle.com>, "Uladzislau Rezki" <urezki@gmail.com>,
- "Vitaly Wool" <vitaly.wool@konsulko.se>, "Rob Herring" <robh@kernel.org>,
- "Saravana Kannan" <saravanak@google.com>, <devicetree@vger.kernel.org>,
- "Bjorn Helgaas" <bhelgaas@google.com>,
- =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
- <linux-pci@vger.kernel.org>, "Remo Senekowitsch" <remo@buenzli.dev>, "Paul
- E. McKenney" <paulmck@kernel.org>, <rcu@vger.kernel.org>, "Will Deacon"
- <will@kernel.org>, "Fiona Behrens" <me@kloenk.dev>, "Gary Guo"
- <gary@garyguo.net>, "Liam Girdwood" <lgirdwood@gmail.com>, "Mark Brown"
- <broonie@kernel.org>, "Alexandre Courbot" <acourbot@nvidia.com>, "Vlastimil
- Babka" <vbabka@suse.cz>, "Christoph Lameter" <cl@gentwo.org>, "David
- Rientjes" <rientjes@google.com>, "Ingo Molnar" <mingo@redhat.com>, "Waiman
- Long" <longman@redhat.com>, "Mitchell Levy" <levymitchell0@gmail.com>,
- "Frederic Weisbecker" <frederic@kernel.org>, "Anna-Maria Behnsen"
- <anna-maria@linutronix.de>, "John Stultz" <jstultz@google.com>,
- <linux-usb@vger.kernel.org>, "Tejun Heo" <tj@kernel.org>, "Lai Jiangshan"
- <jiangshanlai@gmail.com>, "Matthew Wilcox" <willy@infradead.org>, "Tamir
- Duberstein" <tamird@gmail.com>
-To: "Alice Ryhl" <aliceryhl@google.com>
-From: "Danilo Krummrich" <dakr@kernel.org>
-Subject: Re: [PATCH 00/46] Allow inlining C helpers into Rust when using LTO
-References: <20251202-define-rust-helper-v1-0-a2e13cbc17a6@google.com>
-In-Reply-To: <20251202-define-rust-helper-v1-0-a2e13cbc17a6@google.com>
+Content-Type: text/plain; charset="utf-8"
 
-On Tue Dec 2, 2025 at 8:37 PM CET, Alice Ryhl wrote:
+Am Montag, 15. Dezember 2025, 14:51:03 Mitteleurop=C3=A4ische Normalzeit sc=
+hrieb Heiko Stuebner:
+>=20
+> On Fri, 12 Dec 2025 17:23:35 +0100, "Martin Holovsk=C3=BD (Probably Nothi=
+ng s.r.o. )" wrote:
+> > The Radxa Rock 5T board features two RTL8125B 2.5GbE Ethernet controlle=
+rs
+> > connected via PCIe lanes pcie2x1l0 (fe170000) and pcie2x1l2 (fe190000).
+> > Currently only one interface is functional because the PCIe controller
+> > nodes lack the necessary reset GPIO configuration.
+> >=20
+> > Without the reset-gpios property, the RTL8125B PHYs remain in reset sta=
+te
+> > and are not enumerated by the PCIe bus. This results in only one Ethern=
+et
+> > interface being detected, or none at all depending on U-Boot initializa=
+tion.
+> >=20
+> > [...]
+>=20
+> Applied, thanks!
+>=20
+> [1/1] arm64: dts: rockchip: enable dual 2.5GbE on Rock 5T
+>       commit: 96029ffeccf677b1e4baa98f30909a83a485b6d7
+>=20
+> I've resorted both the pcie phandles as well as the pinctrl entries
+> pcie2-0 comes before pcie2-1 etc :-) .
 
-Applied to driver-core-testing, thanks!
+and dropped again.
 
-> Alice Ryhl (46):
->       rust: auxiliary: add __rust_helper to helpers
->       rust: device: add __rust_helper to helpers
->       rust: dma: add __rust_helper to helpers
->       rust: io: add __rust_helper to helpers
->       rust: irq: add __rust_helper to helpers
->       rust: pci: add __rust_helper to helpers
+Please resend this patch with a proper Signed-off-by line, as stated
+by the developers certificate of origin.
 
-        [ Consider latest helper additions. - Danilo ]
+Also, what is this probably nothing s.r.o?
 
->       rust: platform: add __rust_helper to helpers
->       rust: property: add __rust_helper to helpers
->       rust: scatterlist: add __rust_helper to helpers
+Heiko
+
+
 
