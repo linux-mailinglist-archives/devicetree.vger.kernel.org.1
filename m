@@ -1,175 +1,206 @@
-Return-Path: <devicetree+bounces-246603-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246604-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 630D5CBE1B2
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 14:41:15 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E3ECCBE0BB
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 14:24:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CED8B307B086
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 13:32:11 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id F0A063007193
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 13:22:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A53E4330D54;
-	Mon, 15 Dec 2025 13:22:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD9E3331A4F;
+	Mon, 15 Dec 2025 13:22:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CZI+sL+1"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="YUzZ12lg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com [209.85.216.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from BN1PR04CU002.outbound.protection.outlook.com (mail-eastus2azon11010000.outbound.protection.outlook.com [52.101.56.0])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A53930E0FA
-	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 13:22:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.51
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765804925; cv=none; b=pte+aqArRwpa7kGDm1iEakf7LNrf5EB/Kiy9bvECh2WUC5CPpH/z0fCogVjjuAT3RN2mPFbjgfaG6hHKcrxEwdkqUI7L/45sH/Ex8WRyDJv0ikFrmp3zJ4ek4ypclErO/kliM0HC2p/xRM56Egztzr2l+PR2YxzSWIFGcWBg3Ko=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765804925; c=relaxed/simple;
-	bh=Onw8Vj/aDi3C22Ax82mPzLYQUuwXBUMjVocKxST25sU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pt21yXLZpzqXTwfrtTHnYv/K/eqKgsnZARQ/uf1BWs6bDEDpgdbcvvdlS0UYqczAyob+UGr651dU0df3xKIw4oQkah2Z8zeFkWKNI9DkClL8b6LGKczXPK2/DekIHEPn5uIR91ycm+EYsokuyB2wZySkURvlN81GJgROHwaoWEs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CZI+sL+1; arc=none smtp.client-ip=209.85.216.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f51.google.com with SMTP id 98e67ed59e1d1-34c565b888dso1667385a91.0
-        for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 05:22:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1765804923; x=1766409723; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=XFQclEnkXOaGEQB1i5aZAavoFZmjLHt34fVvrMxQ7/0=;
-        b=CZI+sL+1ovOsqaLU2+bZVqGF+P0/VNFjhDxkMZXxxzi0uHIHRqmYYVOYp6MHrIGkFe
-         uK4XHR+y+qhRGFON8pfgW6/30AR51K2jaXCuDH3R1PsdmxeEgT/yjmUjrH5BbIDm8BOX
-         4e9HDdyQ0H5KzgCxXpsvUCHnvnqfsxICEkGXr17bqPbjwTI/kuhJ5Y7A4x7QFldRhhJd
-         5aISL252WWDBR0CJxWBxk/JKo84b5DGYcYK1LfEWZaloiIxMf8q0Pn7mfokNOLDA2d+S
-         ai6UKWKpyjf+3N0Ui5r7IPx/YzYwg6nUJ5fOFihMATHkpaJAgzXs63Ly2/Fh8zFbynJB
-         eXxQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765804923; x=1766409723;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=XFQclEnkXOaGEQB1i5aZAavoFZmjLHt34fVvrMxQ7/0=;
-        b=VfhzhGVD0xxhG/e9tvvCFXVY4CpCpuHrHzBTgL1IGIqalfl2rQfIeDlWRVZjdaTWqn
-         +jg2E9dmgZ2WmpAHFP1h07Qupxks1voz+fblymY3OOq1jTapAy39yaD/4J3AHbdicmUJ
-         Xv99efmtVoFt4ZjDSrB/O8gYnE2/ETFv7yVIMZHmJC3ez4Qb4TVnAYWc+hdLriMm3+Lh
-         Q3XeKxhrdQ91yNpGzwpSwN6Xsyz3BQ4RyoWdHyiBQuFZ6v58+546OuPnC5NUGQ8qM+No
-         w7DXjQ58M3ml3biyo/evirlNQ8zA57Dw7gIBAfWXfV5t7z9cA5DT4VNiZTUxe91yyMb5
-         cZcQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWSOpXLF1xnbh6YootvTIOBhH0AheKXwDuQu5Hkuzpce9XF201RmW9VoelmAuTQ7urSJrKTjkkae2aT@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz+lqyFcEbj8AIaTaMum3j7imrnWk+/VySFq8hbftk6JbuEgleN
-	qN5gEFCmFy1dRjRZuulr3vjt5Gj9zPL9WkPnJ6jzBuYTmr0vctNNt1ma
-X-Gm-Gg: AY/fxX7SY0DbIeA+msiO4CrWtfStBPNY9W6gwNGxzw4OvRKs3u9FhSh2jgrmFx4WNZO
-	rVVqLEp7p+ZB211r8sVPStLma7sswjOA1xUE9dries6HLkBlzZ8g0uxU7KfTXQrWML3s9yWhR3c
-	tmNMZOKibhwz3RrEs/n87FglWLwA7ye02MmLouC/jeUaAbBu8maA9F3R2CltRQSMbfeNqUjjfFv
-	//2doB0gub5tDkiDCmMprWn05QkroLwZ6cHcv/7cabQoviyLlORt5j2ltElIWC9kqwzzE3nxUHO
-	gtSpOqO99sGZZqD9v5M3Dq8vUapDvwxyyn2aVhiXZQYnXCX4pt0tQJCTPMCQQuNiGORZeXYsgF8
-	mIFgMyZrptcBoCJ+MGc9c1In7hdzGDtaFncI3SV3TJDFJGp18cRy/+XBeKNJ8fY2ZXP9A2vvGdJ
-	suoP9UbbCOYZVLOl730uPT6QeNNhLH1Krpb/w=
-X-Google-Smtp-Source: AGHT+IHbaYhxvypHifIExhwZd3l2/ucRgBsyGvQHV3xb8nXjQoVtyds84IM8xW/n7EfLN2sBoGgpmw==
-X-Received: by 2002:a17:90b:28cd:b0:340:d578:f299 with SMTP id 98e67ed59e1d1-34abd6cde3emr8712572a91.3.1765804922630;
-        Mon, 15 Dec 2025 05:22:02 -0800 (PST)
-Received: from [172.16.20.12] ([136.226.244.245])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-34abe129a87sm9137934a91.0.2025.12.15.05.21.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Dec 2025 05:22:02 -0800 (PST)
-Message-ID: <d9a91359-74a9-46ba-98eb-66f8b027bae6@gmail.com>
-Date: Mon, 15 Dec 2025 18:52:30 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87EBA331A45;
+	Mon, 15 Dec 2025 13:22:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.56.0
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1765804978; cv=fail; b=nW3gmR+Z9VHBr/EIbA9yX7Ui8AUG4zXNukg/BJS8ImuQkMzBr7KR1e2s3tWSw6edTzGt3eVKq+77GCH5iY/hl2P0o+dL7L0Gftn0eY+96Z4df0VWOmENPE0xjk8d2ulIX9JfZdiSe42zFNkiVaTAyLycIbY+XYaY0FwGjGPH7KI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1765804978; c=relaxed/simple;
+	bh=+paEKb0lbh9aMgVjjXgjGM8ZUotX13dVP5htYo5zKyI=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=dGUikEvz0QbSa/mHDXNYW+lF0zwuSX8/KWSYvD7mU+3kR9U0FsoovNy/WFFpp2z46IMGjjQWEm4dM83keHN/Yq7o2EFxT+tZvVdmWws7iiIkTimOLTLU2x0dLGuoeZ3iqZYWsMJOHblh609BViQvnhajaPQHR6qBoy4pujlCBVw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=YUzZ12lg; arc=fail smtp.client-ip=52.101.56.0
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=nOJyh1ygFUepp5t2mza0EA+94daUZZfSj0KZhSFyct0y+rp5Oyhp76Lu6zTdYg2r5nsqrh6jeKE9S05sm8tDJ51qB63U/Ri1dWv60Zn6k2nnFo90DrWmDnZGmdCBRcDiaeIREG7vi23WLJxKcGx++PZfTn02SRLgzAbKQLpMe0b1cvjWvodrcGBaxsdQ6NQJAtv2sXKArHkDLW7VIwdQb3vv2SNNOLzDWKTPsl0SdU2ZE7gG508FlEAbNNcFx+NHXdmGubDKxXZlHtHV2IWERl7SijbiKNi4sAGbkH9VlXVHrl/176CIblodkgQVA5P1GVbF52CnRgX3OY+fphfcDg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=QF/nYVSLTT8AubA2AKelKbfjw2P+3+qJYblna1T2Z9Y=;
+ b=IDrCWWWj56xaaXASLUoj1NamNo+ror3e31CodFXng0qGdImOo9SK3lKJSTsccNRvCQYE2LO866K98qj4n4DzPtrojcqGfL3evpQj33YNRInDLEUgrIWecaXH6f3nUii/IScsyk1COzNawbJ+5xjSX1XebSpJz2ZDtwO7dpOjY9mkVpXrhqLByUGQ2OZqbIcd3WE+RPMnDmAxhpSG1qzMsKXv4inQIFXDKH9JfDW9FjsKr+9C86A5PIyLtFBZk7h3YZBzWTrwJ7YfeSGr2EHQTHtlShAjtM1sFYaPuXroeBwRh3zC3qB/Zpm0/luWfWcxsVX9hU/Zmal222tf6b+RqQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.23.194) smtp.rcpttodomain=lists.phytec.de smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=QF/nYVSLTT8AubA2AKelKbfjw2P+3+qJYblna1T2Z9Y=;
+ b=YUzZ12lgeEMCtZ3/zjL6g7DtSaJZnc4SN1TvITLVzMHASfi+Co0Wk+/zycn51WVE7f43pTupPHbbsx+MqKFlTKjy9TFnyJ0ob/J58HQZH86iG1w3CHawlYpiWn8FsHRnCm8eymWdC4He0JMeUO7ydwv4/VwVdRMuI6h7Eo2f3yk=
+Received: from CH0PR03CA0087.namprd03.prod.outlook.com (2603:10b6:610:cc::32)
+ by SN7PR10MB6643.namprd10.prod.outlook.com (2603:10b6:806:2ae::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9412.13; Mon, 15 Dec
+ 2025 13:22:52 +0000
+Received: from CH1PEPF0000AD80.namprd04.prod.outlook.com
+ (2603:10b6:610:cc:cafe::8e) by CH0PR03CA0087.outlook.office365.com
+ (2603:10b6:610:cc::32) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9412.13 via Frontend Transport; Mon,
+ 15 Dec 2025 13:22:52 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.194)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.23.194 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.23.194; helo=lewvzet200.ext.ti.com; pr=C
+Received: from lewvzet200.ext.ti.com (198.47.23.194) by
+ CH1PEPF0000AD80.mail.protection.outlook.com (10.167.244.90) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9434.6 via Frontend Transport; Mon, 15 Dec 2025 13:22:51 +0000
+Received: from DLEE208.ent.ti.com (157.170.170.97) by lewvzet200.ext.ti.com
+ (10.4.14.103) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 15 Dec
+ 2025 07:22:51 -0600
+Received: from DLEE210.ent.ti.com (157.170.170.112) by DLEE208.ent.ti.com
+ (157.170.170.97) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 15 Dec
+ 2025 07:22:51 -0600
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE210.ent.ti.com
+ (157.170.170.112) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Mon, 15 Dec 2025 07:22:51 -0600
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5BFDMppT2423716;
+	Mon, 15 Dec 2025 07:22:51 -0600
+From: Nishanth Menon <nm@ti.com>
+To: <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <ggiordano@phytec.com>,
+	<d.schultz@phytec.de>, <rogerq@kernel.org>, Wadim Egorov <w.egorov@phytec.de>
+CC: Nishanth Menon <nm@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<upstream@lists.phytec.de>
+Subject: Re: [PATCH v2 1/3] arm64: dts: ti: k3-am642-phyboard-electra-peb-c-010: Fix icssg-prueth schema warning
+Date: Mon, 15 Dec 2025 07:22:49 -0600
+Message-ID: <176580496018.1685064.13129316484547928618.b4-ty@ti.com>
+X-Mailer: git-send-email 2.47.0
+In-Reply-To: <20251127122733.2523367-1-w.egorov@phytec.de>
+References: <20251127122733.2523367-1-w.egorov@phytec.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 2/2] arm64: dts: qcom: talos-evk: Add support for
- QCS615 talos evk board
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20251107105735.1491273-1-tessolveupstream@gmail.com>
- <20251107105735.1491273-3-tessolveupstream@gmail.com>
- <badmoityubqmjsxune27vrh2e6htwkhvnak4uj7iiixnxhjpkm@qi56e6kilyt2>
- <db3edb31-4a1c-4512-ac46-ca3b4e9f187e@gmail.com>
- <CAO9ioeUVx_qf3no9aLgZ3OQQPQ7nG-2aTx8SHaEN5DUf02USWA@mail.gmail.com>
- <9b0c7cac-3577-4190-883b-7de26790b8bc@gmail.com>
- <luhtzwbic5a6a4tl5coa2zv3jxoo5f6sab7gv4gcxpubv3ioye@h7xlfx2bxcgr>
-Content-Language: en-US
-From: tessolveupstream@gmail.com
-In-Reply-To: <luhtzwbic5a6a4tl5coa2zv3jxoo5f6sab7gv4gcxpubv3ioye@h7xlfx2bxcgr>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH1PEPF0000AD80:EE_|SN7PR10MB6643:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9cdb7baf-df54-4682-52a1-08de3bdd0ca3
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|7416014|376014|36860700013|82310400026|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?RDNaeEZMRUV1R2VQRnNzbHRybUZ4SnpiY2xnaDUySk5CaG56ZUhwS3hOakln?=
+ =?utf-8?B?cWZWY1AyS0xpc0FNdTRVc1p1T3kzcUl5Qm5WZGtyRHFjQTBqTnJGTlB6STdP?=
+ =?utf-8?B?Y1hWOElCdFNrQTBZcVpnbE1DT21OQ2t1bDZRM3NDUmh3MjBxY3dTR2JaSjFD?=
+ =?utf-8?B?YTByRmJPUE9hTTdWOFFKOUVyMTU3VFNla3VPV25yQ2RVMHQ2Sm1SUTVOTzJO?=
+ =?utf-8?B?ZGZFQ21ubSt3T01HbFUwNDRveFcxbm13Sm45RFF0bnpLVGxzUGllZ1NFdU42?=
+ =?utf-8?B?cldCYXp4aWJ3TTh3MFJrVndxbmgxM0RWRjlqL29kNmpURElvMlpXeWJTTUIr?=
+ =?utf-8?B?dzd1QUZzVFk1VTYvOTRuOFZOVUIrUVFHektTMDk1YktGTThia1hSTjRvYkpk?=
+ =?utf-8?B?VTVVYm1PWGdRMnN3R09GZ0o1Q2hEaG85TDFYUDdkQWVkUUd2TDJGb29HdWRE?=
+ =?utf-8?B?aHhKWEp5Qm5Welk1cFJuZWxYU0RlUkRIbGhHdS93cVovWXpGVWhxbS9nRll0?=
+ =?utf-8?B?dnFxT1E4TDRITnhVdEZWa3ZaWTVMenY3bGJGdnQvZXVXVTVYQTRzR3NMcGpl?=
+ =?utf-8?B?ZnNhZ1c4bC9GZGV6bWM3ZFhKVFJpdmJBNmt5R0hDUGdWYlp5SGkrSTg4VEhH?=
+ =?utf-8?B?QW4zT09lZUFUTjNleklxK296TjhjZk9zdldWK1gxa0lKY2NLTXl0bHVYTk9L?=
+ =?utf-8?B?ZGZxS2dQa1NxM0JCVEJSR1lPcUpUeXJaOVJ6dGNzN0o0aURnSnlCSmZmWkxH?=
+ =?utf-8?B?dlVBUXVRS1Zid3V4V3dzb1RRbWVwa1ZtUVpyamZmVjJ0a09sbWlpVTdkSitn?=
+ =?utf-8?B?SHU4S3c4RFZVVXk0aWRNcGdBVUcxa3h6bG12Snp5cHhQVS9EUExmdHpKL0oz?=
+ =?utf-8?B?T3pXZkRLdDVhUjZQL0VpaWp3VzZMMjJwakRtbmEwcVZjQnVPNVJENWtTcytJ?=
+ =?utf-8?B?R0dHL1A3cCtBT1dsdUJRMlovYW4waGRPVWFGOEZkdE9RMG9ERXdTTXoxS3hO?=
+ =?utf-8?B?K2l4MHRBZmo5cGJqZVNsTmIwdjBYcVc5UGxNdXBJVlY3MjFGNFlFRVI5RTNG?=
+ =?utf-8?B?QXJ1OE1kTDR6VXMvZmh1WnJXUzFjbEl0UEkrQnk3NTEreE02OWU2M1pBMHNi?=
+ =?utf-8?B?dmFzOTJtM2JXMjVzSjZvRk11ZU5kQWdKc2NjN08xcUpSbzBNdjJZdWduMlBE?=
+ =?utf-8?B?N3BHUjNQUnVZRXZmdFgxYUVMcjhvRld2VjVWcmxvbHZ3OWFUMGpsZ3pRV3k2?=
+ =?utf-8?B?dUhpaXRaWkxzZnJza2F0TjY5N3dhbVNna0JtTVZFNkhXVWYxMzV0dDYvLzM0?=
+ =?utf-8?B?Rjg0WTVQZGFYcSsrdXJpUk5ySEczd2NTNXc0K3M4KzNXSjZQWTdCckphSEd5?=
+ =?utf-8?B?anpWWVVSSXhzeFRGb2w3cFBVN3BqdWxBVnFDdXZtTTJBR1J3NnpoaHJBTmdw?=
+ =?utf-8?B?RllVVHh2STdhbHZLMlYvelZxYTVLNGJBTlh6aHVUMmZkVCs4QUZ3VERoS2E2?=
+ =?utf-8?B?UjhENDc3OCtVaXVFMlBQZFUwb3gxK2VGUUIvOGRmS0kwMDBSSkNOemswSlNL?=
+ =?utf-8?B?Y1k4M3lLcS9tSEFveVBjd25SbUlGaU1IeHB2UjNvbElSN24vdFlMRGRXci9V?=
+ =?utf-8?B?ZEFhWlpuV2ZuUFBRUnFLcFJsRmVuT3Bydk5yWGdrTVVjU01Pb2lBRCtTLzdG?=
+ =?utf-8?B?R3RnNUFuc01tQldlbnN0ZEcydkNwN1JuQS90OVBkNzU5WWdxLzc4WkNHck4y?=
+ =?utf-8?B?UjhtcUJVelROL0VwWHU1bU5XNi9PZVBuUmc2RER3UGxxbElSVGRNMDk2OVpC?=
+ =?utf-8?B?bmxzcUE0VTZjMUZ3VE5HckN4cHphazBPdTV0Z0Q2VHdCWitrYkVlM3pYZk14?=
+ =?utf-8?B?U3ZVL0dZSVQxT3JqNEFIWTBUUUxnZ2tOc2FXRWVpV0xKaHBLT2RRVGFPZ0ZG?=
+ =?utf-8?B?UFFMeWlKWFVrMXBPOHFCQXY3MitWbTBRRjRpVDJzcGlvZm1kNmE1TTFLb3BV?=
+ =?utf-8?B?N3Iydms2Y0RUWHg1OC9BRzMyNTNFYUM4aXlVaVVLV0tldjY0THliWlpOaWJs?=
+ =?utf-8?B?NXVsL2IvWDNzRElzSExyckdEK3RBb0RKbEQxZTNMR292aGlRTjFMQTBUekp5?=
+ =?utf-8?Q?IasY=3D?=
+X-Forefront-Antispam-Report:
+	CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(7416014)(376014)(36860700013)(82310400026)(1800799024);DIR:OUT;SFP:1101;
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Dec 2025 13:22:51.8051
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9cdb7baf-df54-4682-52a1-08de3bdd0ca3
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.194];Helo=[lewvzet200.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	CH1PEPF0000AD80.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR10MB6643
 
+Hi Wadim Egorov,
 
-
-On 06-12-2025 08:13, Dmitry Baryshkov wrote:
-> On Fri, Dec 05, 2025 at 10:58:56AM +0530, Anusha Ajithkumar wrote:
->>
->>
->> On 03-12-2025 02:36, Dmitry Baryshkov wrote:
->>> On Tue, 18 Nov 2025 at 12:16, <tessolveupstream@gmail.com> wrote:
->>>>
->>>>
->>>>
->>>> On 14-11-2025 01:38, Dmitry Baryshkov wrote:
->>>>> On Fri, Nov 07, 2025 at 04:27:35PM +0530, Sudarshan Shetty wrote:
->>>
->>>>>> +
->>>>>> +&uart0 {
->>>>>> +    status = "okay";
->>>>>> +};
->>>>>> +
->>>>>> +&usb_1_hsphy {
->>>>>> +    vdd-supply = <&vreg_l5a>;
->>>>>> +    vdda-pll-supply = <&vreg_l12a>;
->>>>>> +    vdda-phy-dpdm-supply = <&vreg_l13a>;
->>>>>> +
->>>>>> +    status = "okay";
->>>>>> +};
->>>>>> +
->>>>>> +&usb_qmpphy {
->>>>>> +    vdda-phy-supply = <&vreg_l5a>;
->>>>>> +    vdda-pll-supply = <&vreg_l12a>;
->>>>>> +
->>>>>> +    status = "okay";
->>>>>> +};
->>>>>> +
->>>>>> +&usb_1 {
->>>>>> +    status = "okay";
->>>>>> +};
->>>>>> +
->>>>>> +&usb_1_dwc3 {
->>>>>> +    dr_mode = "host";
->>>>>> +};
->>>>>> +
->>>>>> +&usb_hsphy_2 {
->>>>>
->>>>> So, the labels are usb_1_hsphy, but usb_hsphy_2? That's not logical,
->>>>> please fix one of them. Then please fix the order of nodes here.
->>>>
->>>> The node names come directly from the included talos.dtsi, where they
->>>> are defined as usb_1_hsphy & usb_hsphy_2.
->>>> To avoid breaking inherited definitions, we kept the same labels
->>>> in our board DTS.
->>>
->>> Please fix them in the base DT.
->>>
->>
->> The inconsistent naming originates from talos.dtsi, which is 
->> outside the scope of this patch series. Modifying these labels 
->> in our board DTS would break the inherited node references 
->> from talos.dtsi. >> However, I will reorder the nodes so they appear in a logical and
+On Thu, 27 Nov 2025 13:27:31 +0100, Wadim Egorov wrote:
+> Reduce length of dma-names and dmas properties for icssg1-ethernet
+> node to comply with ti,icssg-prueth schema constraints. The previous
+> entries exceeded the allowed count and triggered dtschema warnings
+> during validation.
 > 
-> Please fix the base DT. There is no such thing as "out of scope".
 > 
 
-Okay, will take care in the next patch.
->>>> consistent sequence.
->>>
->>> This is a prerequisite, no questions.
->>>
->>
-> 
+I have applied the following to branch ti-k3-dts-next on [1].
+Thank you!
+
+[1/3] arm64: dts: ti: k3-am642-phyboard-electra-peb-c-010: Fix icssg-prueth schema warning
+      commit: 05bbe52d0be5637dcd3c880348e3688f7ec64eb7
+[2/3] arm64: dts: ti: k3-am642-phyboard-electra-x27-gpio1-spi1-uart3: Fix schema warnings
+      commit: d876bb9353d87dee0ae620300106e8def189c785
+[3/3] arm64: dts: ti: k3-am62-lp-sk-nand: Rename pinctrls to fix schema warnings
+      commit: cf5e8adebe77917a4cc95e43e461cdbd857591ce
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+https://ti.com/opensource
 
 
