@@ -1,210 +1,256 @@
-Return-Path: <devicetree+bounces-246484-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246480-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD2DFCBD203
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 10:16:51 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16823CBD1DF
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 10:16:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D240B3026A8A
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 09:15:51 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 5910F3012EEE
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 09:16:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5278832F748;
-	Mon, 15 Dec 2025 09:07:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18FC532C92C;
+	Mon, 15 Dec 2025 09:07:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="r6SoDPVJ"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="nmByw0ZY";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="h8tpeyRC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6ED6832ED2E;
-	Mon, 15 Dec 2025 09:07:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C2D632C326
+	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 09:07:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765789662; cv=none; b=sttygMFhyJ51V7S2lG8uJX8EzQolLnPNxmUdPkCk9Qrwd1E0LMAbiSzPDc8LJl1Az5AcAgHidYf5idVEyflGSUzW5YJEtUoQOllKHuRtUBiBnhrGWd2w9pH9SudIU7+iIAHp+zP7eyd4MC4AlxjtlWTnAkQV+xI7F0HSudhptBc=
+	t=1765789657; cv=none; b=llfQMFoOlZ5sNkGYI98YfS7ntfpmreStu4zP6iRsb/Zj/DbXfp7xQwlXa7Tq3oVTIr2IB270mXsiaXtjMuPqG+5jk8bO7JFnZSKgtXzHDg7n515CXYrVLCuJLSMfQhq1hEz1/IbmBf340MhM5EhKc1PEp6ZxGIirzz8Ho0DxiTM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765789662; c=relaxed/simple;
-	bh=w6l2xTMrISfCv+/Rqd1HY2hTKwEw5rskWfaAAH/PZME=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=gslXrQoHPMQg8q7GKCShtQQyxX1csuuyyAWdhduxs0kLEmMR7KecRLp6qNhek8pXTDt9zYiYDCo07Vl2I8Wv3p2brYVrUbpljRMmbPcI0mX7kZbGBBSq9PTHwQQLQTw0W1vwQ8VDcxOHxRkdFvX+DD+FS1ULGeF7WXRhAnaMowY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=r6SoDPVJ; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1765789660; x=1797325660;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=w6l2xTMrISfCv+/Rqd1HY2hTKwEw5rskWfaAAH/PZME=;
-  b=r6SoDPVJnVimVnxOwryAwZDVggy3IvjqZE1NBgBMP11N026OuqsBOBdK
-   W/4KyFr/QjRKH5Qcu9Em6U//+BhcB1Llv2vCtU58w7umYBxi1KXRfHH94
-   e0FJbiojttm8l03hHC+1fLOsx7Y7l6D1+YoSWZT4Tkg9gyKxkXrxz/j9H
-   OS6Z7loXXvh67n1epOY+W/pctJN+Vnxqc6AIE/G/czSUn6s+Qn7E7BtBk
-   AcBqzCk6vABiu5swW3sQ2XJENNC4YWbdKnGfqyyUaOpe71S4MCKqWU1Mq
-   zfY6VdAQWzGdVzPajUgKFLXra0y+Xlx4SekPvxKwdfrazR/nh06u0xui4
-   Q==;
-X-CSE-ConnectionGUID: PcTJoc4CSZSXBJPpFg6KMg==
-X-CSE-MsgGUID: 9O2qFZp1QHqau2RZELyEfg==
-X-IronPort-AV: E=Sophos;i="6.21,150,1763449200"; 
-   d="scan'208";a="217865850"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 15 Dec 2025 02:07:37 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.58; Mon, 15 Dec 2025 02:07:20 -0700
-Received: from che-lt-i67131.microchip.com (10.10.85.11) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.2507.58 via Frontend Transport; Mon, 15 Dec 2025 02:07:12 -0700
-From: Manikandan Muralidharan <manikandan.m@microchip.com>
-To: <lee@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <nicolas.ferre@microchip.com>,
-	<alexandre.belloni@bootlin.com>, <claudiu.beznea@tuxon.dev>,
-	<manikandan.m@microchip.com>, <dharma.b@microchip.com>,
-	<maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
-	<tzimmermann@suse.de>, <airlied@gmail.com>, <simona@ffwll.ch>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>
-CC: Ryan Wanner <Ryan.Wanner@microchip.com>
-Subject: [PATCH 2/2] drm: atmel-hlcdc: add LCD controller layer definition for sama7d65
-Date: Mon, 15 Dec 2025 14:36:39 +0530
-Message-ID: <20251215090639.346288-2-manikandan.m@microchip.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20251215090639.346288-1-manikandan.m@microchip.com>
-References: <20251215090639.346288-1-manikandan.m@microchip.com>
+	s=arc-20240116; t=1765789657; c=relaxed/simple;
+	bh=HsVd0+ZsludRLKdBPavQwwwUogi0DIXtCeR7VoJqTbY=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=YwtcUWQpNnzpVnABB0DWCEzF5quUxTlrjFWtWcD40HO+rvDtcZmU4w/K2BidDojdWHfuWrJNF7P5MWTMLDPZPaztF+Es8IvNJiMkDJQi7+KfM/C4AorY822kkTvm0XW0vJusX0K7rUbgvCowko3GeMMSnSOsHV0GGDq3MDUSMng=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=nmByw0ZY; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=h8tpeyRC; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BF7a34t1646555
+	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 09:07:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=CVomacDz+jTUVRA16wHHJ8
+	YMg5YJ03X/LquXvi2T+6k=; b=nmByw0ZY+k74+/EK0DQ2FxVqAzdD7ZF0+pVUOG
+	i6KP5rSVL9MZ2aobWJ/BbnwbxD37YrQl8dkJM8WySCimKmhhsZorvxwezDjJ82JI
+	wpWJNX+P5LEHuuPSlvEI4oOI5J2xEpil6fOtJxx9Fye76Lhhoet9snAuOE991k+m
+	PqWdZF59CMJ9acrVdMUtD1deW6vPwD4eAYK/z6i+TAaoC09KYEsrCnLs/aJBe8QQ
+	pl/7oKZbNTSoy1Pmq/MsZTK9TNzsdVLEFkk739/YAis0AeI7Ek7XDHmwVw4j0BAB
+	27iICLi1L0PNVVl5jl+4Rp/DnpxNJjd68urBXYZyyi8BxfIA==
+Received: from mail-pg1-f198.google.com (mail-pg1-f198.google.com [209.85.215.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b1771ufp2-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 09:07:34 +0000 (GMT)
+Received: by mail-pg1-f198.google.com with SMTP id 41be03b00d2f7-b993eb2701bso3218891a12.0
+        for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 01:07:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1765789654; x=1766394454; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=CVomacDz+jTUVRA16wHHJ8YMg5YJ03X/LquXvi2T+6k=;
+        b=h8tpeyRCa1Aig6wWPpO+Mbq6XjSawyvu4dbnJzCo9zH1A/56hETUgykYw8m02SDkX2
+         BcUktExJdsPyLgOUN/FGh3zcsf7+HyjSa694BOJihgp5QE8CWv7Y0Kiu7pPEyx5Cz4Dr
+         m2/yORnBQ8KiYktsQXSenuGfGAK2KN+9+N1OAmYWDU1nqNjF+CmpOdqZlqKg0hqvh/4A
+         RQbLIuGUqgBecKjmmek83UlBAQBSRmGaGe8IOPqi/uB663rixv0TW47LLLR8OosylrWO
+         iV9OeecRc0VEpiDVEz+hymYQF2LC6+zOi+Ku4FFOt4kKt6sCvpPStpeHignJMd7CROJs
+         5lJQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765789654; x=1766394454;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=CVomacDz+jTUVRA16wHHJ8YMg5YJ03X/LquXvi2T+6k=;
+        b=c3FB1orpPplRO3pmYc3IS8J5p+rb+gIfpos/kk24lXt6vapCWiXBu1Elu4uCCd97Si
+         E6vEWI8CVNP2mGXOkNkkwQEAvNYM15xHnhg0kiKldqBmj5de0/9UbotzNIV9r5XO2ZyA
+         3aCBhXHtiUwIxQbU7O/MWwRwi17iVR8TbFZSLiInQfLgg1p1R2kEyn1rSJI40jSSX+fS
+         YbNYu77hSatCQASchpNRDRckpZqmC7g2+zERIU/lqYA8e7FEsJrDe+3WhB9SU5ZTxiXC
+         BpUXJfKuU/0mWjIrqjpWYc7BBbr9nHfPjMDsviTia7jrgXG/Vd+qz+JBPbO3NzTUmiPO
+         U9Bw==
+X-Forwarded-Encrypted: i=1; AJvYcCWmUkpQGleUBO9gLxbZdsel49Z25FtrUCnkIQ24nTj+fS20xOuvVKbcXKf4wXoa14jfsOdYVxcYOKkR@vger.kernel.org
+X-Gm-Message-State: AOJu0YytG0BXJiriKSZsQ9EY/p44t4arIS2GVJfJ3Kb/GxdjiUQL97Gy
+	LxFV3NPxxJiuPK9vOPhgIdv2Ew19xT1M7bGvPqAU0MENqOAos7o8ltT7txUQqb6XcLo7pB37q+p
+	nS4QXfStigc9T04A1nLZHQaE/VQZ90NgqWlOoYvnoDlaY0b0Fa9d1LtAM+DfeWk7W
+X-Gm-Gg: AY/fxX6Iv1rn5QvwlPJAmrAL4gVrdcc95mbh5KdGfpn6oIXqi6bhNETHZJWGXZeJxh6
+	bF62M/keiXqvQXWsBh2ui/fcAJZt5YD+Wp6fCq+l7QOW724YCDvK3biqw7BSumrZNBp4ehVqEDW
+	/OMrjiKl+mvbLxCDle9sl+tTqK1p6HLeWzPisMa+QBdr6GAzShGvEth+5A2tQLhZ7CqzIDNzqXu
+	Na5Qwssc/6BI5HPH2VJQOvjrhqzD9m7GEe7t8RGBanAAZwtLVeutIdUJIst3EKI9UF2SXSEFWFe
+	W/Yc1T36UA8AbxqL5cvTTx5NHcN+0RB+jBl6s5I87o19PDgVGgCi8aCSNLS9XIWHd6tOgQugI02
+	OgmdRX+msEiPrmB3qI5jmiv1ImM+VTZfLU/NN4TzmGBH+yC2ETSW2lZ8MXkgF
+X-Received: by 2002:a05:7301:2e32:b0:2a4:7cb9:b7da with SMTP id 5a478bee46e88-2ac303a39f1mr6279608eec.25.1765789653575;
+        Mon, 15 Dec 2025 01:07:33 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IG/SAHT8Ytx4P0NslkI8VVzhLetyY4xbZOEyA6uOZdbqyTzxiSQf0PxBkBKA5HTE9XUvmW7kg==
+X-Received: by 2002:a05:7301:2e32:b0:2a4:7cb9:b7da with SMTP id 5a478bee46e88-2ac303a39f1mr6279584eec.25.1765789652960;
+        Mon, 15 Dec 2025 01:07:32 -0800 (PST)
+Received: from hu-jingyw-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2ac3c13d60bsm15439671eec.0.2025.12.15.01.07.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 15 Dec 2025 01:07:32 -0800 (PST)
+From: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+Subject: [PATCH v4 0/5] arm64: dts: qcom: Introduce Kaanapali platform
+ device tree
+Date: Mon, 15 Dec 2025 01:07:20 -0800
+Message-Id: <20251215-knp-dts-v4-0-1541bebeb89f@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMjPP2kC/3WSzWrkMBCEX2XweRXUklqWfMp7LEto/XgsktiO5
+ ZiEkHfftidksjB7ETT0V6Uq6aOpeSm5Nt3po1nyVmqZRh7Mr1MTBxrPWZTEc6OkQlDSiMdxFmm
+ twlCyMkOL1mDD2/OS+/J2KP3+w3OgmkVYaIzDzjOr97Wh1HVa3g+/DfblQ1p6dZXeQEih+xSiC
+ T5DgPup1ruXV3qK0/PzHR/N7rCpb/yfm22KcfQ2Oe1dtEn/B9c/cJBXXDPuUkyoeokY1Q388xJ
+ 4yS+v3Nh6SX0trDsdqiwrzjE+PBKNNNNT2bUpeMggLYZkuu1SHa1xODBJCaXso0FeMeRawxnAQ
+ UDK6Mk42waCGJqfz/PlJtltzzCnKLTHzJlkAuw77unGOuyFf19sjiWLeXgXGrx1QQXlwXabuU3
+ qw6hOUYQypjKehbdZtZ5b61P+wo4PsFdWVv5PhNbqKE0ItvWWXRwSYO4ptK1JhC7q1gFytZ9/A
+ cBFuUqUAgAA
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
+        trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
+        Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Tengfei Fan <tengfei.fan@oss.qualcomm.com>
+X-Mailer: b4 0.15-dev-99b12
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1765789652; l=4540;
+ i=jingyi.wang@oss.qualcomm.com; s=20250911; h=from:subject:message-id;
+ bh=HsVd0+ZsludRLKdBPavQwwwUogi0DIXtCeR7VoJqTbY=;
+ b=oI6YQtGZXqCrKD+8KI4YGLQpXy7I1rL/X6aQLa1YB28NdE0FEd3wpmWyUHJIQMl6QJHDvQIv6
+ aSgYrabcOhrDo1PeR3+livOAOMySojSkP1HJSIvCjMcp+18afEw7rT8
+X-Developer-Key: i=jingyi.wang@oss.qualcomm.com; a=ed25519;
+ pk=PSoHZ6KbUss3IW8FPRVMHMK0Jkkr/jV347mBYJO3iLo=
+X-Authority-Analysis: v=2.4 cv=Q6vfIo2a c=1 sm=1 tr=0 ts=693fcfd6 cx=c_pps
+ a=Qgeoaf8Lrialg5Z894R3/Q==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=VwQbUJbxAAAA:8
+ a=gM0UU-Ftw_ySWOd6apUA:9 a=QEXdDO2ut3YA:10 a=x9snwWr2DeNwDh03kgHS:22
+X-Proofpoint-ORIG-GUID: x1ovurAKnI2o8GJA-vBF0gImL0iQVIX-
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjE1MDA3NiBTYWx0ZWRfX4IcW73E2QOsd
+ IAXvYJexELLvKQ99BLKKL57ZPOMTnUQyjz0cevHgy7ULxp00rORTsBwgPGl0zMPD07rXVdV0kI4
+ 93M9DcFEgOGmUkiWTzWd+ZrufUmD8j5R0OzztNL76pl8kESwnunXYxrM0TpQCHhUShTVW8OhYNu
+ LjEQkQKBuqe8e2GZtb+dnm7If3DhOUPtfo+lNwgjIrATDd5dzOH5JF2OcYNTdjDltBPGjv72awz
+ UhheXKMPf5RdKRxnT9bEQK+ssSiZG5qEN83JoWYmQc09HXCyKv2io3fZfn79Qzbzeyl4AX965qr
+ v1YNgln6rXDQeaQWOHUDJlOQKZJ9ugqrAwiQ1aV7/MHm1rBaDR/PrA01wLHoO4MCFGIW7uHC0yh
+ 2a0wFEUx/oAjNax7Um1D1iCBZJHyvQ==
+X-Proofpoint-GUID: x1ovurAKnI2o8GJA-vBF0gImL0iQVIX-
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-15_01,2025-12-15_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 clxscore=1015 bulkscore=0 malwarescore=0 suspectscore=0
+ adultscore=0 impostorscore=0 lowpriorityscore=0 priorityscore=1501
+ phishscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
+ definitions=main-2512150076
 
-From: Ryan Wanner <Ryan.Wanner@microchip.com>
+Introduce the Device Tree for the recently announced Snapdragon SoC from Qualcomm:
+https://www.qualcomm.com/products/mobile/snapdragon/smartphones/snapdragon-8-series-mobile-platforms/snapdragon-8-elite-gen-5
 
-Add the LCD controller layer definition and atmel_hlcdc_of_match
-entry for sama7d65.
+Add device trees for the Kaanapali SoC, MTP (Mobile Test Platform) and
+QRD (Qualcomm Reference Device), along with the corresponding defconfig
+and binding, providing initial support to boot to UART shell with UFS
+enabled.
 
-Signed-off-by: Ryan Wanner <Ryan.Wanner@microchip.com>
-Signed-off-by: Manikandan Muralidharan <manikandan.m@microchip.com>
+Features added and enabled:
+- CPUs with PSCI idle states and cpufreq
+- Interrupt-controller with PDC wakeup support
+- Timers, TCSR Clock Controllers
+- Reserved Shared memory
+- GCC and RPMHCC
+- TLMM
+- Interconnect with CPU BWMONs
+- QuP with UART
+- SMMU
+- RPMhPD and regulator
+- UFS with inline crypto engine (ICE)
+- LLCC
+- Watchdog
+- SD Card
+- PCIe(enabled on MTP board only)
+
+build dependency:
+- gcc: https://lore.kernel.org/all/20251209-gcc_kaanapali-v3-v5-0-3af118262289@oss.qualcomm.com/ - reviewed
+- ipcc: https://lore.kernel.org/all/20251031-knp-ipcc-v3-0-62ffb4168dff@oss.qualcomm.com/ - reviewed
+binding dependency:
+- pdc: https://lore.kernel.org/all/20251021-knp-pdc-v2-1-a38767f5bb8e@oss.qualcomm.com/ - reviewed
+- pcie: https://lore.kernel.org/all/20251124-kaanapali-pcie-phy-v4-0-d04ee9cca83b@oss.qualcomm.com/ - reviewed
+- imem: https://lore.kernel.org/all/20251123-knp-soc-binding-v4-1-42b349a66c59@oss.qualcomm.com/ - acked
+
+For CPU compatible naming, there is one discussion which is not specific to Kaanapali:
+https://lore.kernel.org/all/20251119-oryon-binding-v1-1-f79a101b0391@oss.qualcomm.com/
+So it should not block Kaanapali and we keep the "cpu,oryon" compatible here.
+
+Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
 ---
- drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c | 81 ++++++++++++++++++++
- drivers/mfd/atmel-hlcdc.c                    |  1 +
- 2 files changed, 82 insertions(+)
+Changes in v4:
+- fix node names in reserved memory
+- standardize the coding style of 0(0x0 for address, 0x00 for pcie bus range)
+- Link to v3: https://lore.kernel.org/r/20251210-knp-dts-v3-0-8dcd52f055c2@oss.qualcomm.com
 
-diff --git a/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c b/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c
-index dd70894c8f38..9c18c6841e2a 100644
---- a/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c
-+++ b/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c
-@@ -566,6 +566,83 @@ static const struct atmel_hlcdc_dc_desc atmel_xlcdc_dc_sam9x75 = {
- 	.ops = &atmel_xlcdc_ops,
- };
- 
-+static const struct atmel_hlcdc_layer_desc atmel_xlcdc_sama7d65_layers[] = {
-+	{
-+		.name = "base",
-+		.formats = &atmel_hlcdc_plane_rgb_formats,
-+		.regs_offset = 0x60,
-+		.id = 0,
-+		.type = ATMEL_HLCDC_BASE_LAYER,
-+		.cfgs_offset = 0x1c,
-+		.layout = {
-+			.xstride = { 2 },
-+			.default_color = 3,
-+			.general_config = 4,
-+			.disc_pos = 5,
-+			.disc_size = 6,
-+		},
-+		.clut_offset = 0x700,
-+	},
-+	{
-+		.name = "overlay1",
-+		.formats = &atmel_hlcdc_plane_rgb_formats,
-+		.regs_offset = 0x160,
-+		.id = 1,
-+		.type = ATMEL_HLCDC_OVERLAY_LAYER,
-+		.cfgs_offset = 0x1c,
-+		.layout = {
-+			.pos = 2,
-+			.size = 3,
-+			.xstride = { 4 },
-+			.pstride = { 5 },
-+			.default_color = 6,
-+			.chroma_key = 7,
-+			.chroma_key_mask = 8,
-+			.general_config = 9,
-+		},
-+		.clut_offset = 0xb00,
-+	},
-+	{
-+		.name = "high-end-overlay",
-+		.formats = &atmel_hlcdc_plane_rgb_and_yuv_formats,
-+		.regs_offset = 0x360,
-+		.id = 2,
-+		.type = ATMEL_HLCDC_OVERLAY_LAYER,
-+		.cfgs_offset = 0x30,
-+		.layout = {
-+			.pos = 2,
-+			.size = 3,
-+			.memsize = 4,
-+			.xstride = { 5, 7 },
-+			.pstride = { 6, 8 },
-+			.default_color = 9,
-+			.chroma_key = 10,
-+			.chroma_key_mask = 11,
-+			.general_config = 12,
-+			.csc = 16,
-+			.scaler_config = 23,
-+			.vxs_config = 30,
-+			.hxs_config = 31,
-+		},
-+		.clut_offset = 0x1300,
-+	},
-+};
-+
-+static const struct atmel_hlcdc_dc_desc atmel_xlcdc_dc_sama7d65 = {
-+	.min_width = 0,
-+	.min_height = 0,
-+	.max_width = 2048,
-+	.max_height = 2048,
-+	.max_spw = 0x3ff,
-+	.max_vpw = 0x3ff,
-+	.max_hpw = 0x3ff,
-+	.fixed_clksrc = false,
-+	.is_xlcdc = true,
-+	.nlayers = ARRAY_SIZE(atmel_xlcdc_sama7d65_layers),
-+	.layers = atmel_xlcdc_sama7d65_layers,
-+	.ops = &atmel_xlcdc_ops,
-+};
-+
- static const struct of_device_id atmel_hlcdc_of_match[] = {
- 	{
- 		.compatible = "atmel,at91sam9n12-hlcdc",
-@@ -595,6 +672,10 @@ static const struct of_device_id atmel_hlcdc_of_match[] = {
- 		.compatible = "microchip,sam9x75-xlcdc",
- 		.data = &atmel_xlcdc_dc_sam9x75,
- 	},
-+	{
-+		.compatible = "microchip,sama7d65-xlcdc",
-+		.data = &atmel_xlcdc_dc_sama7d65,
-+	},
- 	{ /* sentinel */ },
- };
- MODULE_DEVICE_TABLE(of, atmel_hlcdc_of_match);
-diff --git a/drivers/mfd/atmel-hlcdc.c b/drivers/mfd/atmel-hlcdc.c
-index 4c4e35d404f3..c3f3d39bf584 100644
---- a/drivers/mfd/atmel-hlcdc.c
-+++ b/drivers/mfd/atmel-hlcdc.c
-@@ -140,6 +140,7 @@ static const struct of_device_id atmel_hlcdc_match[] = {
- 	{ .compatible = "atmel,sama5d4-hlcdc" },
- 	{ .compatible = "microchip,sam9x60-hlcdc" },
- 	{ .compatible = "microchip,sam9x75-xlcdc" },
-+	{ .compatible = "microchip,sama7d65-xlcdc" },
- 	{ /* sentinel */ },
- };
- MODULE_DEVICE_TABLE(of, atmel_hlcdc_match);
+Changes in v3:
+- link bi_tcxo_ao_div2 to gcc node - Dmitry
+- fix underscores in node names - Dmitry
+- add reviewed-by tag
+- Link to v2: https://lore.kernel.org/r/20251204-knp-dts-v2-0-596d8398c6d3@oss.qualcomm.com
+
+Changes in v2:
+- reorganize patch, merge initial features in one patch
+- update UFS clocks in GCC
+- fix nodes order in boards
+- enable CLK_KAANAPALI_TCSRCC for clk driver change
+- merge tcsr and tcsrcc nodes
+- change imem fallback to "mmio-sram"
+- minor code style fixup
+- Link to v1: https://lore.kernel.org/r/20250924-knp-dts-v1-0-3fdbc4b9e1b1@oss.qualcomm.com
+
+---
+Jingyi Wang (5):
+      dt-bindings: arm: qcom: Document Kaanapali SoC and its reference boards
+      arm64: defconfig: enable clocks, interconnect and pinctrl for Qualcomm Kaanapali
+      arm64: dts: qcom: Introduce Kaanapali SoC
+      arm64: dts: qcom: kaanapali: Add base MTP board
+      arm64: dts: qcom: kaanapali: Add base QRD board
+
+ Documentation/devicetree/bindings/arm/qcom.yaml |    6 +
+ arch/arm64/boot/dts/qcom/Makefile               |    2 +
+ arch/arm64/boot/dts/qcom/kaanapali-mtp.dts      |  754 +++++++++++
+ arch/arm64/boot/dts/qcom/kaanapali-qrd.dts      |  712 ++++++++++
+ arch/arm64/boot/dts/qcom/kaanapali.dtsi         | 1606 +++++++++++++++++++++++
+ arch/arm64/configs/defconfig                    |    4 +
+ 6 files changed, 3084 insertions(+)
+---
+base-commit: 4a5663c04bb679631985a15efab774da58c37815
+change-id: 20251204-knp-dts-4ad60e175645
+prerequisite-change-id: 20251121-gcc_kaanapali-v3-ab91e1065bd4:v5
+prerequisite-patch-id: 9a9cd779ee23419a023893f357decbe09da1e42f
+prerequisite-patch-id: 884f356ecd7f8046636174f56a6485a4be2e5cce
+prerequisite-patch-id: 0baee9ea7681fe6b4ab1c69f1e087427ad0050e9
+prerequisite-patch-id: a7ee79adf85ce9c5aedca168a561a9560fa59b44
+prerequisite-patch-id: 0ad500fc45e104a874839181b5ae59a4867ba1cb
+prerequisite-change-id: 20251021-knp-pdc-395e2100d15f:v2
+prerequisite-patch-id: 91797dc6f0e455a546d73254df87fc0ca22aa142
+prerequisite-change-id: 20251124-kaanapali-pcie-phy-31968b2b2916:v4
+prerequisite-patch-id: 265d61c5de05beea27297c10299239faeef55816
+prerequisite-patch-id: 94e3936a21c0e19e5f1990a5cddcb1474b9adc95
+prerequisite-patch-id: 69f436a719908a2210b4a4074a0b92bdfef2efd3
+prerequisite-patch-id: f0c39c4a4de3b45a66ec8916e8d86a8ad059ade8
+prerequisite-patch-id: 389060752aa271d1016ec115f19c0edfd1f831f6
+prerequisite-change-id: 20251123-knp-soc-binding-96e2798dcfde:v4
+prerequisite-patch-id: 789208c9126c28643c289754cab1681ef3bd396e
+
+Best regards,
 -- 
-2.25.1
+Jingyi Wang <jingyi.wang@oss.qualcomm.com>
 
 
