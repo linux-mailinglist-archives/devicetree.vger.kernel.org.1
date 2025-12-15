@@ -1,250 +1,535 @@
-Return-Path: <devicetree+bounces-246676-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246677-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F365CBED67
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 17:11:00 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38393CBED8C
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 17:13:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id A69013001623
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 16:10:59 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 9FDDB3011013
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 16:13:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 430B330CDB6;
-	Mon, 15 Dec 2025 16:10:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAABD328625;
+	Mon, 15 Dec 2025 16:13:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="ltya1uW5"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JUULvy7a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from BYAPR05CU005.outbound.protection.outlook.com (mail-westusazon11010013.outbound.protection.outlook.com [52.101.85.13])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B611A274641;
-	Mon, 15 Dec 2025 16:10:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.85.13
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765815058; cv=fail; b=tx1Fo/KlYUkS7W+fcG+L9WvQ27Kx21VGxytWwGEqP51xLt4hvFazxVfCWqROorzfoV4YrQEUs46TLHvn045acWsdt+r4heos1TfVYXvHaaAOds/6isHmQj0hIapsFdbrU+KfeDSeMeJTE3Rr3S5d5fIGG2aSKFae7MJ+5w9CNBs=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765815058; c=relaxed/simple;
-	bh=lZznG6QcsRud1xRCZJxWM1dhOpJRfFSjiqLdTPz581s=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=BvVKuy9qwB8g4NragD9Gyxv0QaCzZFRTSfyB8D+NvM+4He6LrMEVJGhNrhhB2A5GRaVD3De72Dg19KkP9fnJCPopOzC3N0+RqR0D/m8ek2m2duoPajy8Se2J/+aLYA/fVGYfs0TWEf6qiUfwUhDXA+CDoD4Zui2KMsp72smOPQc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=ltya1uW5; arc=fail smtp.client-ip=52.101.85.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Nkgim0aHO3JxGXxbPCi+ntqVNyoonliDuKDHTXr/A+BITOHyywydB/cgzMbGnw/7cREy24NfT2nSBFeHbEYlKptQPtHjjlAdoxfmUASJauYk1vQbGsAtAzqtVEXerYQXUb7P8Ds8ZQ1b08sjSU+S7By1vdkp6G+9M+Eq09YwupGXxrInKERUpw96+sDpKv6hAQZ22RHks0PIlTMqQrt4sFdQMJct7GL96jkBHfYiBY+we4Lzzscqe887No205bVpZLijid9lYN5lNmDJw1Baju3A+1C+xfe4y1r14ouo6ok25W0LPDCH1B4p6FT9VAPWgHvlexGZdDRBSDtIt5Rg0g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2cc0NU93S6jLFBaPYoZxKvRoMpHd71A0esMlkssjO4s=;
- b=m0w026jE5VfVQOjMXPs9Dzk2VflwbLnvjaES2z0kqbRG08KiDVom5uH8oLxJdrtQaEOuzmjXjHmK3Bpu/ArSHRba4wCUYwrewBWYeswb3HjjNX5M9hfMgCZ0aMQMMzyTzwyUP4w1qV+LJq7bsuLW/x8m4067mDrtzy3/hgc2E6j+BdfvcDwNPK2K5GtPRPOZhVna34tgtHw0VuPufF4szXIek7dIaaTXBzP8Y+omg9CAiGiy042bcIfFMMGzdB4WljFwmgK5Ot6Enn1//3SPyQU9W5Kx5nOpZGTIDGPAP9RdfXLCL470E06a66Qhs90k2yD4znd3NmMTHP3RiO1XDw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2cc0NU93S6jLFBaPYoZxKvRoMpHd71A0esMlkssjO4s=;
- b=ltya1uW5zhIrkYbg93Xdx23WsAgeboZ1QHhq4YPgLU7zSRXIjJKCshG8hrir35SWyYEwuuXiMWSkVabyVa7dt6/AzGuYmTnV+zBH64PxGCCQXvF4e4ayibN3qVoW9SueUDE+t4a5u9WAQwEzmxnagEhLL0h0p+gJHGAaRCVWTTI=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from SJ2PR12MB8109.namprd12.prod.outlook.com (2603:10b6:a03:4f5::8)
- by DM6PR12MB4156.namprd12.prod.outlook.com (2603:10b6:5:218::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9412.13; Mon, 15 Dec
- 2025 16:10:53 +0000
-Received: from SJ2PR12MB8109.namprd12.prod.outlook.com
- ([fe80::7f35:efe7:5e82:5e30]) by SJ2PR12MB8109.namprd12.prod.outlook.com
- ([fe80::7f35:efe7:5e82:5e30%4]) with mapi id 15.20.9412.005; Mon, 15 Dec 2025
- 16:10:53 +0000
-Message-ID: <7e82a871-0234-409a-8fd3-a548cbb789e8@amd.com>
-Date: Mon, 15 Dec 2025 17:10:42 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] Revert "arm64: zynqmp: Add an OP-TEE node to the device
- tree"
-To: Tomas Melin <tomas.melin@vaisala.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20251125-revert-zynqmp-optee-v1-1-d2ce4c0fcaf6@vaisala.com>
- <88b72343-e86f-4b13-adcc-ba09683eb898@amd.com>
- <199062ba-9a0d-40ae-ac8c-0fbed5615cf8@vaisala.com>
- <3654c600-553f-429a-8bec-1add7f6eb5c6@vaisala.com>
- <db79cd4a-548d-46f1-b498-aac82ca53010@amd.com>
- <0435af95-a3bc-4ec7-b07b-bdec42f25c56@vaisala.com>
-Content-Language: en-US
-From: Michal Simek <michal.simek@amd.com>
-Autocrypt: addr=michal.simek@amd.com; keydata=
- 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
- mpwx1d8=
-In-Reply-To: <0435af95-a3bc-4ec7-b07b-bdec42f25c56@vaisala.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: VI1PR07CA0237.eurprd07.prod.outlook.com
- (2603:10a6:802:58::40) To SJ2PR12MB8109.namprd12.prod.outlook.com
- (2603:10b6:a03:4f5::8)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8217F32C303
+	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 16:13:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1765815224; cv=none; b=J9ptdOl9P0aaSKpzsxF0Nb3/hwdVKsUm+prL1F82fzHMqH/780nLh9G3GT+REZVO46y/c1iV66YdI/u2qn4CaQZ+O4yG/bk69WC+X7GICV7j1RIN2v7SX70bMxsNBDQLlsuqaTNyYmelECSkqt2YeLKLcQchbL7tcW1R1zYoz2M=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1765815224; c=relaxed/simple;
+	bh=dyJh6jTCycHSpnVG6c2byQ9jBR4rd4vVjHaJTGmI4rE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=eKL1zefmhvxL/tKPClHfMTNnWS2TFflYwaGPJ0nzxCcKOu4n3OEUJz4PdllsqMmr98MJ+0zX8sCg9vkY9+x0eu6vgOX2pT+Xht5kgx9av574A7WQPRHr5n6Q4Vxh7IBM7VXWcs26kNQBNI2OxxWbWSbw6Hg3KXGXD1wl0GEA+Nw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JUULvy7a; arc=none smtp.client-ip=209.85.214.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-2a081c163b0so23836195ad.0
+        for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 08:13:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1765815220; x=1766420020; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=7fId0lhvm1S81P4bIACdgw9yr/FbrBNvla1Qa1ypUcM=;
+        b=JUULvy7ac8WaEALwHcHtimQa4fI38qepLcqZ8FQaAw3H28HNAcKz1as2osjsyVRIeo
+         a9s3Etl4OnKzq+ahq7NrTOh5pEbFAAkI9/XO/hZB7tnV2y3aM6LM0zbEXnrRWfKlO1ku
+         Q0aVVRdgsKz+ucZoN+UVgJlNfbC2IOel8W5gMgKjhrNyB4ZoFy1EVzWEysbZEzi8oJjv
+         FbIgXGKPgKCmIYwu1zld1Jo9rwd7JFkuJrZsRbc6Q2FFV/lwl6rsYCFPePEvb4iRDVTq
+         42ut2iPcdznKNSUcG4xlMb0ANhctsQaTH/xWVBR1VuEGz4oIPFjykcP8FznD2o0g4Qz9
+         Zt1g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765815220; x=1766420020;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7fId0lhvm1S81P4bIACdgw9yr/FbrBNvla1Qa1ypUcM=;
+        b=oS3asrPPcjnY8upfHKdAlWAYSjuwIumIZXkh/UPKLHuSgV3Tz5BrHmLp2/O0jMZyVK
+         o17aguxvLpZAI/P6jO5ZtJfTOFJDYoJWOSZTKmDFrLJAA0p78HM/drgcN0qMLMMXn5lH
+         Imn2awf3GRSDP0bXNgFqoxd6HxouJneKXlxIK5T4/hzgECGQ1mRw4lT5xFIkwadIrXpO
+         ZFj+d+DLxZWQc67Jiuo/5a32ri+QSoaZ+gD0+JvzOXHtcDs+Q1S3KZBnyjEVQoywF3D1
+         AEhHaHz+9YzjQji0yTDbaTl3AHXYYuFEfzMN6g1yFsfrUhj2ylOzsqz1NA4FFRgDnzkq
+         kPmg==
+X-Forwarded-Encrypted: i=1; AJvYcCV/s/wgVKY2qTG4oYskyjgwbOnwEnaKZh2yF2nRL/xPqd8sDmZd7DtbbyAwEUqL6n3muxj678hZr8YK@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywlj4fxQvzKaE2YxFdYS2iuICpGuRcNpvbSl8oygwVpfamymOXe
+	tBGThQalXQKYY8L031lqEZ2v4lR8QPbGbHiss6PWUhCfN6mCXF/zBIkN
+X-Gm-Gg: AY/fxX5zJsZJWm95YAJY/hC24ifXOcDU6n2Q8NUfo0s53Du2cmi7TCHqIpe+j6DQCoi
+	E1y7H0VdE+f7SLcladEoOVVmcA/riV0mFL+NHKNmuvJvBvdhjilR9GqSc3kXfiW0Xzn9N0hKTKP
+	tkqAupk/RriIqjDoY7mfZ8SvJECJJJN22dHEn/WLW9H+DOjCl6AiJGE2K6NAQPXhgMRIl46pHfo
+	9cum0pC7ilGGujpvMCWPAUPrbDmWnAEFzG2OSJzWzWRU3NgIabcyVumLEyBrcTEbqHnNt4G3fQD
+	j7XTpUSoRraq9SaOsdFngPYmR4MOe1AwXE12a9BXCl+IhhGItjrrRBeeSUJjfGNy7UYYyDnN7NL
+	M7/uduYRC5grJoH69BOHL2BBZtPgheSDfqE/ApWQlU8jDmI5RUGhfKm+FYv7HFJb/PlN5BaEVqE
+	bxs/Fmjd5Fu8kGiM+jCFw2QmhglRzYpIdsL71vu8AnHIoWvOD+rlq0svSNnkrwaF4=
+X-Google-Smtp-Source: AGHT+IGKVI2uUcG84ntZ6HPHY0u123NhKguBup5/oVCmIgvlmMaHwQXFhwE+EQgWKzMVswfc8ArD7Q==
+X-Received: by 2002:a17:903:38c7:b0:2a0:d629:9032 with SMTP id d9443c01a7336-2a0d629942fmr53752535ad.3.1765815219978;
+        Mon, 15 Dec 2025 08:13:39 -0800 (PST)
+Received: from ?IPV6:2402:e280:21d3:2:50bc:8636:2ee8:5158? ([2402:e280:21d3:2:50bc:8636:2ee8:5158])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a0ad49454csm62079025ad.10.2025.12.15.08.13.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 15 Dec 2025 08:13:39 -0800 (PST)
+Message-ID: <8e2c73ca-3746-4b2a-9d85-c12b51a69059@gmail.com>
+Date: Mon, 15 Dec 2025 21:43:33 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ2PR12MB8109:EE_|DM6PR12MB4156:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3b7fbf47-e9db-45ec-0f7c-08de3bf485ac
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?N2o0OG9lZEp3dFVQRlQxYVk1N0JaVWdicG1wR3QrVGFTZ0VJbEhmcVlScEFD?=
- =?utf-8?B?NDJRZHNtVk0vVXh1eVJtVmd5WWM1alJqMDVhM015aDVzY2tZdExad0FuVzFU?=
- =?utf-8?B?RnI2cHUzeWNTVzQ4cUNRemcrQUpzb3kxTUR5NUJQNWhvRGczQkFOR2JxWU9X?=
- =?utf-8?B?dVAxS1lLTnFkSE5iZzYwbGZZNDNiSHYyTjkzSlFNWHc2SktPanFScEFxelJv?=
- =?utf-8?B?VFgzWGU5YjFsNmNJMFdHc0tMWlBoYkh4M1RVVjBkUndrTDkyNTgxeUI5L1FO?=
- =?utf-8?B?YXNFQkpNUFl3bnJPZ1lzWnBxQUtOYlZLVmppTGFzUzVqWmg1cW8rSUJNTTll?=
- =?utf-8?B?RU1TZ1gvbEFIdStvSkJCQzBjSkZPaSszK2dxd3Fic0NmWXVWM1FSaituVnNy?=
- =?utf-8?B?MWR1emQ2Y1JuQ2ZDWjkzNnEwcEI5eDhYMUo5V2hEV29rYlVGSEJmOWZmbFJH?=
- =?utf-8?B?bXV5MmlxR3pmR2lyM1FRNVB1ck1CU2FSWUR3Rktvc2UwK3JtK0NTV090MW9S?=
- =?utf-8?B?OWpERWY4WTJHSk92ZjV1UEIzaUYzV2dVa0w3aXdmTVkzOGdhYnZDNmJqTjJr?=
- =?utf-8?B?OC9NczVSdkd6WnAwZHdZZDJlblcyZnRIbjhGalpVZWFUTFRUSEhxUUpBcVYr?=
- =?utf-8?B?aTdMdUFLbm1uY0NSREFUMlFKKzhUb0xUaFRmUlgrd2tUTjVxMlpCV2JNdkVS?=
- =?utf-8?B?Wm40V0w2dno0ZTVIRXRnaVhmWVd5ZW45ZFpWMkd6WUQwUkxlK044MGJtZjlY?=
- =?utf-8?B?NnhOV29KRlVrc0JjNlVmSGFTVlRvbStSVUNuV0NXTXQyMkZwQ3JMSHhQZ3ZT?=
- =?utf-8?B?ZVFWZU5SUk43Z1poaXlzTWJ2N2pzQythWUxzWEtMd1l0cjV5K0FtTmEzZTdU?=
- =?utf-8?B?OTJhY3VyM2c4cGVUOEVOL2RKaHQ5VXBkSXo2WjEwa2NEVmNIYW0rVERoakp1?=
- =?utf-8?B?dy9xK09INWkweUVibEx3dUxmTlIzL014WDdMeEJCRHd4c1ZMVmQyMVNhdXdj?=
- =?utf-8?B?c2lndDloYUFRYWlieWJ2UXdJSG9ndE9nbzRMeHB6eElzS2x1bDhiYzlJUjdW?=
- =?utf-8?B?RDZKUUVLNTc0V2hYRnhkSklFZHJWc3hFM1RzQ2daN0dNUS9zbWVSTWVIWEVI?=
- =?utf-8?B?ZWwveU5zNjBMaysxYzVYVWVzWEpRek50cjF6bzdxRGtaeUVPbkdIRW1XT2F6?=
- =?utf-8?B?aVh0bUFpYzhRUTVzUjVtZVE2RWppclFaV0dxQThyUHhpVy9QdXAxejNDdk82?=
- =?utf-8?B?RXBRcElGWnpLZVlzdWFNMk1BbWtyem9pMng5ZHlGTWJKbzNPaS81Z1Nyc25o?=
- =?utf-8?B?OVRFZGtxWnd3SUhXbmpnT012bjVQVmllZElZUzQvSGxBUDdKRGFSQjVwK0VK?=
- =?utf-8?B?dGxkc1pwckdlMDd5QzZDWTBvUndXMUM0TDNsNGJzT1RpUnl4YUJrTWFLOEQ0?=
- =?utf-8?B?ME9XTE9wV0ttempUTUtuZ05NL2xYQ09uRlBacnJZUXBneUpNeDV1NEZQRnNh?=
- =?utf-8?B?V0RiaWI5MXhGcS9MT1lxb1Ayd1NwaUltMndCUmZuT2lIVFNnaUNBYjNZUW9C?=
- =?utf-8?B?ejllb0VPYUxINitmTWVheVNjSzlQeTIyNnFtTGRuZmdMTC9GanE4TDl1SWhL?=
- =?utf-8?B?b0ttc2c0Q0ZrQ3VYdTlJcUdGWENSYXg1L0NhNHh5NFJFR1k3ZlYrUGJUY1VL?=
- =?utf-8?B?dThwbCt5dHZIak50cy8xMVF4TTdPWGF2VUpKbkcxVmF3Q3FsUU9DK0VaME16?=
- =?utf-8?B?TmNTNkJxQ0owWWRHeERkTnEvNUJ3WnIyZTdWNjdTZ3NmRGJZYXQ0dlVrWXNk?=
- =?utf-8?B?WEE2SHkrUmhDSlhqNW1GT3lnMVBMVkQyVmRiY2hBTVNZT0hQa203NGFHRDZy?=
- =?utf-8?B?VGhBSFhqSVJpcTVTTGg5R1p6TVdEb0NYMTZjcCtKMUNHZnV0S1RsWnJPOGUv?=
- =?utf-8?Q?zENW+elAx4928jG/QY7Vq5x/6KtsVY0j?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ2PR12MB8109.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(1800799024);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?ckRzZmRUeHF1ckdKTDdodmhEZ3doM0F2R2l0Mlp2eERISjIrUVpuNFBSQmky?=
- =?utf-8?B?eDhacnhxbEkwUUlZdlc2WWU5SzRXb2srWDFWZTE0Mm1mdVVIRStqckRBRkRX?=
- =?utf-8?B?VEZpVUZjcy9LU3E2RUpITjdmSG5DbTd2Vlh2SitNWFZJUkNWa2srKzhsNy93?=
- =?utf-8?B?OEdUalprYUNqNkNXd3I0Rk96MjIwM1l5VlFjRG1nRFhiTk0raUgxV2RLYzFq?=
- =?utf-8?B?Z0txQ081bThBSktQeGdzM0xjNER5MFVXVXhnL29NYU16QTVXVmtNR2xsWUc5?=
- =?utf-8?B?b2JEbVpxMHhVclJ1RWd6RjFqZ2c4WGttMmMwaTBwcnN1K3lHR2dvb2JPZk9C?=
- =?utf-8?B?YlV3UGJUYW9xVFpjUDJ1UWwzVE9DTmlQSkhHZ0RFeTFPNElkVWkwQlhPRU1o?=
- =?utf-8?B?U281UExrNnJqaU5kRktaci9adXZyY2ozQVRnL3BKT1plUGVpaklDRWJBUENR?=
- =?utf-8?B?UWZyTU1lclozV29WcUZBdnFoSGRIcHgrZzhkZXhidG12Rk00R2ptSlI4S016?=
- =?utf-8?B?UFhEakQrS2JNdVVibzhETnE3dlhwbDlwTXAyWE1sM3RncG1aeGNwWXowaTl4?=
- =?utf-8?B?Um92VVBzc1JuaTJNbmZpMUNtTUM1dHlDWHkzM0Z3SkQwLzVJS0kvdDg0TitQ?=
- =?utf-8?B?NWtFZHZ0amE3c01GN0ROMjBDQXhnQkgzNWQxR0U4ZGhKQ0tTSzl1SWptcnVu?=
- =?utf-8?B?a2J0ZnQ3ck10TzEweG5naXdHcDB6akRsa0xWSG5wWC9IaGVQMml6TUhvQnVK?=
- =?utf-8?B?V0Y4ZFh2MWRRb1ExSDNpY3VYaG90S1JKQUNnTXIxOGpnZjQyTENFODMwZ1du?=
- =?utf-8?B?Nld6L1BqUUVPVVZMMVNZMmRDVXZpbS80Nkg0UU5tWFJwc291ZVgxa0lKQytq?=
- =?utf-8?B?cDQ1SUdGckJkd0hzeUJlYnhENlZUbkUzRnptbWdMSjM2OU9oVUtxeVUwUSt2?=
- =?utf-8?B?c1k4ZWpTYXQrT2NRblk3MWFnbzhLMC9sNFdxM0I2OTcreVFHb0RCYUJxRS9o?=
- =?utf-8?B?SHBLdVRzZnh2TS9yQWxSZUJmMFkrV1laZXg2T3o1aDdoZXNkWG9NaHpkaXov?=
- =?utf-8?B?dXJYYVNhMGlLUTVSVFNBdnU2REFmbU5DYlNBOTRMZEtneEFwdWdTNVJySlVX?=
- =?utf-8?B?bmdmUkdscTd0aVkzRkp0emVkQzFnZGcyWGtaQktBNHJOR2NzUytOeW9mZkI2?=
- =?utf-8?B?OGUvMjVtK2ExKyt1aWxDZmEzZmhiaVpINHM4QTR5aWo5d0pjSXlwN2dROVFq?=
- =?utf-8?B?ZWc4L3NGb21wc3Z6eVhjUktnalVQZWdFOFBjUXpPbHo0Z2FWY3BTZDVSMU85?=
- =?utf-8?B?bFdYSzgzU1Y2WDU1N0ZIZ3ZiYkdBUkxUNVFXTU5PeFBlUnFvMHVMS05RZUIx?=
- =?utf-8?B?UXArcDNvN0NJZFIvd1FxNmdVNzYydE53V2tDb1F5MVhrZDV2RmdVK3NiK3RF?=
- =?utf-8?B?SVMwTi9KbGlGRzhPcnBNdlhER1ZQS1BUL0pncXNySk1FVWdPdnZEVVRPaUo3?=
- =?utf-8?B?UmYySlQrS09hcmVFQXFlbStuWHJXV0h1dzBKVjQ3Q2JqcnNvakcvMVNNVHJ3?=
- =?utf-8?B?Wlp3Nkk5K1ZxTCtTbVdQbUNCMHYra3QwcFAyWVlVNmVIS01GK3JRRzZ5eHJi?=
- =?utf-8?B?T2NyYXpqb1JVbWoyOGpOcE40eUs3cnVVM3JreTIxZ09ONlFybWdOaU0xZDJu?=
- =?utf-8?B?N0wvVmlVNENSc0ZBaVJvWTF1YWRvTlIxdHFsZTc5OW5jTFZ0U00vdWpUZzhl?=
- =?utf-8?B?YlB5OVdlU3A3MkNXZ016b3JXUU5NMmdSWndtcExKbVJKRDR5YmN2MTFhTVBq?=
- =?utf-8?B?aDNIWXAzNlJZNVJ0WUZ2SFlubDBZZHA1aG8zTjhWd2VlWkg0U04yVnJ5VHlM?=
- =?utf-8?B?WmZRaW5wS3FlT0JkRGxMMWVPb3pPZ2o3Z29ISWFxcmN4RjdYcDJvbnYwQUZt?=
- =?utf-8?B?bFZOQTdVR05TQ3VVc2dpaDhLZW9BQmFsVERZWVByVXcyaVpXZnR0NlFjeGJm?=
- =?utf-8?B?cHdMSFRDRHlIVFpkZ1d1M2F4ZFdSSmpIajIrZHNhUm56R05xdXo4NzhFMzBj?=
- =?utf-8?B?b0R1ZnhvckNVekhic1g3Kzc3TVBvcktLR05HRmFwc3dRQ1lKWUxqWGtJTEhF?=
- =?utf-8?Q?1j/BanHV9Tx5dDlFQEcYMd6pV?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3b7fbf47-e9db-45ec-0f7c-08de3bf485ac
-X-MS-Exchange-CrossTenant-AuthSource: SJ2PR12MB8109.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Dec 2025 16:10:53.6167
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: GgSkhyXMMBJgu2Q83J4gM7Dowhcr5H51Gq8k6dlwLhHv/897ktYQ45HNkP276hfZ
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4156
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] iio: adc: Add support for TI ADS1120
+To: David Lechner <dlechner@baylibre.com>, jic23@kernel.org
+Cc: nuno.sa@analog.com, andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20251109141119.561756-1-ajithanandhan0406@gmail.com>
+ <20251109141119.561756-3-ajithanandhan0406@gmail.com>
+ <5f15284b-159b-4860-b58b-35c624e2539f@baylibre.com>
+Content-Language: en-US
+From: Ajith Anandhan <ajithanandhan0406@gmail.com>
+In-Reply-To: <5f15284b-159b-4860-b58b-35c624e2539f@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-
-
-On 12/15/25 16:43, Tomas Melin wrote:
-> Hi,
-> 
-> On 15/12/2025 17:21, Michal Simek wrote:
->> Hi,
+On 11/18/25 7:34 PM, David Lechner wrote:
+> On 11/9/25 8:11 AM, Ajith Anandhan wrote:
+>> Add driver for the Texas Instruments ADS1120, a precision 16-bit
+>> analog-to-digital converter with an SPI interface.
 >>
->> On 12/12/25 13:09, Tomas Melin wrote:
->>> Hi,
->>>
->>> Is there some more specific information I can provide regarding this patch?
->>
->> I am trying to identify U-Boot code (2026.01-rc4) which does what you have
->> described in the commit message but I can't find it out.
->> Can you please point me directly to file, line number where that described logic
->> is skipped?
-> 
-> Please check lib/optee/optee.c, in particular lines 128 ->
-> Target dt being linux kernel devicetree where the reserved-memory nodes
-> are automatically injected. When node is already there, it bails out early.
+> ...
+>
+>> +#define ADS1120_CFG0_GAIN_MASK		GENMASK(3, 1)
+>> +#define ADS1120_CFG0_GAIN_1		0
+>> +#define ADS1120_CFG0_GAIN_2		1
+>> +#define ADS1120_CFG0_GAIN_4		2
+>> +#define ADS1120_CFG0_GAIN_8		3
+>> +#define ADS1120_CFG0_GAIN_16		4
+>> +#define ADS1120_CFG0_GAIN_32		5
+>> +#define ADS1120_CFG0_GAIN_64		6
+>> +#define ADS1120_CFG0_GAIN_128		7
+> We could avoid these macros by just doing ilog2(gain).
 
-I don't really mind that's why applied.
 
-Thanks,
-Michal
+I understand your concern about unused macros. I've kept them for 
+documentation purposes as they map directly to the datasheet register 
+definitions, which makes it easier to verify correctness against 
+hardware specs also I'd prefer to keep it like this since it give more 
+readability Shall i keep this as it is for this initial version?
+
+>> +
+>> +#define ADS1120_CFG0_PGA_BYPASS		BIT(0)
+>> +
+>> +/* Config Register 1 bit definitions */
+>> +#define ADS1120_CFG1_DR_MASK		GENMASK(7, 5)
+>> +#define ADS1120_CFG1_DR_20SPS		0
+>> +#define ADS1120_CFG1_DR_45SPS		1
+>> +#define ADS1120_CFG1_DR_90SPS		2
+>> +#define ADS1120_CFG1_DR_175SPS		3
+>> +#define ADS1120_CFG1_DR_330SPS		4
+>> +#define ADS1120_CFG1_DR_600SPS		5
+>> +#define ADS1120_CFG1_DR_1000SPS		6
+> I would avoid writing macros for values we don't use yet. For example,
+> it may make more sense to have a lookup table when it comes to actually
+> implementing something that uses this.
+>
+> Same applies to the rest below.
+>
+>> +
+>> +#define ADS1120_CFG1_MODE_MASK		GENMASK(4, 3)
+>> +#define ADS1120_CFG1_MODE_NORMAL	0
+>> +#define ADS1120_CFG1_MODE_DUTY		1
+>> +#define ADS1120_CFG1_MODE_TURBO		2
+>> +
+>> +#define ADS1120_CFG1_CM_MASK		BIT(2)
+>> +#define ADS1120_CFG1_CM_SINGLE		0
+>> +#define ADS1120_CFG1_CM_CONTINUOUS	1
+>> +
+>> +#define ADS1120_CFG1_TS_EN		BIT(1)
+>> +#define ADS1120_CFG1_BCS_EN		BIT(0)
+>> +
+>> +/* Config Register 2 bit definitions */
+>> +#define ADS1120_CFG2_VREF_MASK		GENMASK(7, 6)
+>> +#define ADS1120_CFG2_VREF_INTERNAL	0
+>> +#define ADS1120_CFG2_VREF_EXT_REFP0	1
+>> +#define ADS1120_CFG2_VREF_EXT_AIN0	2
+>> +#define ADS1120_CFG2_VREF_AVDD		3
+>> +
+>> +#define ADS1120_CFG2_REJECT_MASK	GENMASK(5, 4)
+>> +#define ADS1120_CFG2_REJECT_OFF		0
+>> +#define ADS1120_CFG2_REJECT_50_60	1
+>> +#define ADS1120_CFG2_REJECT_50		2
+>> +#define ADS1120_CFG2_REJECT_60		3
+>> +
+>> +#define ADS1120_CFG2_PSW_EN		BIT(3)
+>> +
+>> +#define ADS1120_CFG2_IDAC_MASK		GENMASK(2, 0)
+>> +#define ADS1120_CFG2_IDAC_OFF		0
+>> +#define ADS1120_CFG2_IDAC_10UA		1
+>> +#define ADS1120_CFG2_IDAC_50UA		2
+>> +#define ADS1120_CFG2_IDAC_100UA		3
+>> +#define ADS1120_CFG2_IDAC_250UA		4
+>> +#define ADS1120_CFG2_IDAC_500UA		5
+>> +#define ADS1120_CFG2_IDAC_1000UA	6
+>> +#define ADS1120_CFG2_IDAC_1500UA	7
+>> +
+>> +/* Config Register 3 bit definitions */
+>> +#define ADS1120_CFG3_IDAC1_MASK		GENMASK(7, 5)
+>> +#define ADS1120_CFG3_IDAC1_DISABLED	0
+>> +#define ADS1120_CFG3_IDAC1_AIN0		1
+>> +#define ADS1120_CFG3_IDAC1_AIN1		2
+>> +#define ADS1120_CFG3_IDAC1_AIN2		3
+>> +#define ADS1120_CFG3_IDAC1_AIN3		4
+>> +#define ADS1120_CFG3_IDAC1_REFP0	5
+>> +#define ADS1120_CFG3_IDAC1_REFN0	6
+>> +
+>> +#define ADS1120_CFG3_IDAC2_MASK		GENMASK(4, 2)
+>> +#define ADS1120_CFG3_IDAC2_DISABLED	0
+>> +#define ADS1120_CFG3_IDAC2_AIN0		1
+>> +#define ADS1120_CFG3_IDAC2_AIN1		2
+>> +#define ADS1120_CFG3_IDAC2_AIN2		3
+>> +#define ADS1120_CFG3_IDAC2_AIN3		4
+>> +#define ADS1120_CFG3_IDAC2_REFP0	5
+>> +#define ADS1120_CFG3_IDAC2_REFN0	6
+>> +
+>> +#define ADS1120_CFG3_DRDYM_MASK		BIT(1)
+>> +#define ADS1120_CFG3_DRDYM_DRDY_ONLY	0
+>> +#define ADS1120_CFG3_DRDYM_BOTH		1
+>> +
+>> +/* Conversion time for 20 SPS */
+>> +#define ADS1120_CONV_TIME_MS		51
+>> +
+>> +/* Internal reference voltage in millivolts */
+>> +#define ADS1120_VREF_INTERNAL_MV	2048
+>> +
+>> +
+>> +struct ads1120_state {
+>> +	struct spi_device	*spi;
+>> +	struct regmap		*regmap;
+>> +	/*
+>> +	 * Protects chip configuration and ADC reads to ensure
+>> +	 * consistent channel/gain settings during conversions.
+>> +	 */
+>> +	struct mutex		lock;
+>> +
+>> +	int vref_mv;
+>> +
+>> +	/* DMA-safe buffer for SPI transfers */
+>> +	u8 data[4] __aligned(IIO_DMA_MINALIGN);
+>> +};
+>> +
+>> +
+>> +static const int ads1120_gain_values[] = { 1, 2, 4, 8, 16, 32, 64, 128 };
+>> +static const int ads1120_low_gain_values[] = { 1, 2, 4 };
+>> +
+>> +/* Differential channel macro */
+>> +#define ADS1120_DIFF_CHANNEL(index, chan1, chan2)		\
+>> +{								\
+>> +	.type = IIO_VOLTAGE,					\
+>> +	.indexed = 1,						\
+>> +	.channel = chan1,					\
+>> +	.channel2 = chan2,					\
+>> +	.differential = 1,					\
+>> +	.address = index,					\
+>> +	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |		\
+>> +			      BIT(IIO_CHAN_INFO_SCALE),		\
+>> +	.info_mask_separate_available = BIT(IIO_CHAN_INFO_SCALE), \
+>> +}
+>> +
+>> +/* Single-ended channel macro */
+>> +#define ADS1120_SINGLE_CHANNEL(index, chan)			\
+>> +{								\
+>> +	.type = IIO_VOLTAGE,					\
+>> +	.indexed = 1,						\
+>> +	.channel = chan,					\
+>> +	.address = index,					\
+>> +	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |		\
+>> +			      BIT(IIO_CHAN_INFO_SCALE),		\
+>> +	.info_mask_separate_available = BIT(IIO_CHAN_INFO_SCALE), \
+>> +}
+>> +
+>> +/* Diagnostic channel macro */
+>> +#define ADS1120_DIAG_CHANNEL(index, label)			\
+>> +{								\
+>> +	.type = IIO_VOLTAGE,					\
+>> +	.indexed = 1,						\
+>> +	.channel = index,					\
+>> +	.address = index,					\
+>> +	.extend_name = label,					\
+>> +	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |		\
+>> +			      BIT(IIO_CHAN_INFO_SCALE),		\
+>> +	.info_mask_separate_available = BIT(IIO_CHAN_INFO_SCALE), \
+>> +}
+>> +
+>> +static const struct iio_chan_spec ads1120_channels[] = {
+>> +	/* Differential inputs */
+>> +	ADS1120_DIFF_CHANNEL(ADS1120_CFG0_MUX_AIN0_AIN1, 0, 1),
+>> +	ADS1120_DIFF_CHANNEL(ADS1120_CFG0_MUX_AIN0_AIN2, 0, 2),
+>> +	ADS1120_DIFF_CHANNEL(ADS1120_CFG0_MUX_AIN0_AIN3, 0, 3),
+>> +	ADS1120_DIFF_CHANNEL(ADS1120_CFG0_MUX_AIN1_AIN2, 1, 2),
+>> +	ADS1120_DIFF_CHANNEL(ADS1120_CFG0_MUX_AIN1_AIN3, 1, 3),
+>> +	ADS1120_DIFF_CHANNEL(ADS1120_CFG0_MUX_AIN2_AIN3, 2, 3),
+>> +	ADS1120_DIFF_CHANNEL(ADS1120_CFG0_MUX_AIN1_AIN0, 1, 0),
+>> +	ADS1120_DIFF_CHANNEL(ADS1120_CFG0_MUX_AIN3_AIN2, 3, 2),
+>> +	/* Single-ended inputs */
+>> +	ADS1120_SINGLE_CHANNEL(ADS1120_CFG0_MUX_AIN0_AVSS, 0),
+>> +	ADS1120_SINGLE_CHANNEL(ADS1120_CFG0_MUX_AIN1_AVSS, 1),
+>> +	ADS1120_SINGLE_CHANNEL(ADS1120_CFG0_MUX_AIN2_AVSS, 2),
+>> +	ADS1120_SINGLE_CHANNEL(ADS1120_CFG0_MUX_AIN3_AVSS, 3),
+>> +	/* Diagnostic inputs */
+>> +	ADS1120_DIAG_CHANNEL(ADS1120_CFG0_MUX_REFP_REFN_4, "ref_div4"),
+>> +	ADS1120_DIAG_CHANNEL(ADS1120_CFG0_MUX_AVDD_AVSS_4, "avdd_div4"),
+>> +	ADS1120_DIAG_CHANNEL(ADS1120_CFG0_MUX_SHORTED, "shorted"),
+>> +};
+> Usually we don't make macros for the index. When it comes to adding
+> buffer support, having the macros makes it harder to see which scan_index
+> belongs to which channel. And if buffer support is planned for later,
+> it would make sense to use .scan_index instead of .address to avoid
+> duplicating that info later.
+>
+>
+>> +static int ads1120_set_gain(struct ads1120_state *st, int gain_val)
+>> +{
+>> +	int i;
+>> +
+>> +	for (i = 0; i < ARRAY_SIZE(ads1120_gain_values); i++) {
+>> +		if (ads1120_gain_values[i] == gain_val)
+>> +			break;
+>> +	}
+>> +
+>> +	if (i == ARRAY_SIZE(ads1120_gain_values))
+>> +		return -EINVAL;
+> Since there is only one gain register, we should store this in a
+> per-channel variable, then set the gain in the register in
+> ads1120_set_mux() instead (and it would make sense to rename
+> that function as well to something like ads1120_configure_channel()).
+
+
+I've implemented a global gain that applies to all channels 
+forsimplicity. I planed to add
+
+  per-channel gain storage in the later patches.
+
+>
+>> +
+>> +	return regmap_update_bits(st->regmap, ADS1120_REG_CONFIG0,
+>> +				  ADS1120_CFG0_GAIN_MASK,
+>> +				  FIELD_PREP(ADS1120_CFG0_GAIN_MASK, i));
+>> +}
+>> +
+> ...
+>
+>> +static int ads1120_read_raw(struct iio_dev *indio_dev,
+>> +			    struct iio_chan_spec const *chan,
+>> +			    int *val, int *val2, long mask)
+>> +{
+>> +	struct ads1120_state *st = iio_priv(indio_dev);
+>> +	int ret, gain;
+>> +
+>> +	switch (mask) {
+>> +	case IIO_CHAN_INFO_RAW:
+>> +		guard(mutex)(&st->lock);
+>> +		ret = ads1120_read_measurement(st, chan, val);
+>> +		if (ret)
+>> +			return ret;
+>> +		return IIO_VAL_INT;
+>> +
+>> +	case IIO_CHAN_INFO_SCALE:
+>> +		/*
+>> +		 * Scale = Vref / (gain * 2^15)
+>> +		 * Return in format: val / 2^val2
+>> +		 */
+>> +		gain = ads1120_get_gain(st);
+>> +		if (gain < 0)
+>> +			return gain;
+>> +
+>> +		*val = st->vref_mv;
+>> +		*val2 = gain * 15;
+> I think this would need to be `*val2 = ilog2(gain) + 15`.
+>
+>> +		return IIO_VAL_FRACTIONAL_LOG2;
+>> +
+>> +	default:
+>> +		return -EINVAL;
+>> +	}
+>> +}
+>> +
+>
+>
+>> +
+>> +/* Regmap read function for ADS1120 */
+>> +static int ads1120_regmap_read(void *context, const void *reg_buf,
+>> +			       size_t reg_size, void *val_buf, size_t val_size)
+>> +{
+>> +	struct ads1120_state *st = context;
+>> +	u8 reg = *(u8 *)reg_buf;
+>> +	u8 *val = val_buf;
+>> +	int ret;
+>> +	struct spi_transfer xfer[2] = {
+>> +		{
+>> +			.tx_buf = st->data,
+>> +			.len = 1,
+>> +		}, {
+>> +			.rx_buf = val,
+>> +			.len = val_size,
+>> +		}
+>> +	};
+>> +
+>> +	if (reg > ADS1120_REG_CONFIG3)
+>> +		return -EINVAL;
+> This check should not be needed because of .maxregister.
+>
+>> +
+>> +	/* RREG command: 0010rr00 where rr is register address */
+>> +	st->data[0] = ADS1120_CMD_RREG | (reg << 2);
+>> +
+>> +	ret = spi_sync_transfer(st->spi, xfer, ARRAY_SIZE(xfer));
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +/* Regmap write function for ADS1120 */
+>> +static int ads1120_regmap_write(void *context, const void *data, size_t count)
+>> +{
+>> +	struct ads1120_state *st = context;
+>> +	const u8 *buf = data;
+>> +
+>> +	if (count != 2)
+>> +		return -EINVAL;
+>> +
+>> +	/* WREG command: 0100rr00 where rr is register address */
+>> +	st->data[0] = ADS1120_CMD_WREG | (buf[0] << 2);
+>> +	st->data[1] = buf[1];
+>> +
+>> +	return spi_write(st->spi, st->data, 2);
+>> +}
+> I don't see anyting unusal about these read/write functions. We should
+> be able to use the existing spi_regmap with the proper configuration
+> instead of making a custom regmap_bus.
+
+
+    The ADS1120 needs register address shifted by 2 bits
+    in command byte (reg << 2). I couldn't find a way to do this with 
+standard
+    SPI regmap. If there's a configuration I'm missing, please point me 
+to it and I'll gladly simplify.
+
+
+>> +
+>> +static const struct regmap_bus ads1120_regmap_bus = {
+>> +	.read = ads1120_regmap_read,
+>> +	.write = ads1120_regmap_write,
+>> +	.reg_format_endian_default = REGMAP_ENDIAN_BIG,
+>> +	.val_format_endian_default = REGMAP_ENDIAN_BIG,
+>> +};
+>> +
+>> +static const struct regmap_config ads1120_regmap_config = {
+>> +	.reg_bits = 8,
+>> +	.val_bits = 8,
+>> +	.max_register = ADS1120_REG_CONFIG3,
+>> +	.cache_type = REGCACHE_FLAT,
+>> +};
+>> +
+>> +static int ads1120_init(struct ads1120_state *st)
+>> +{
+>> +	int ret;
+> It's just a few extra lines to turn on the avdd supply here before
+> resettting.
+>
+>> +
+>> +	ret = ads1120_reset(st);
+>> +	if (ret)
+>> +		return dev_err_probe(&st->spi->dev, ret,
+>> +					"Failed to reset device\n");
+>> +
+>> +	/*
+>> +	 * Configure Register 0:
+>> +	 * - Input MUX: AIN0/AVSS
+>> +	 * - Gain: 1
+>> +	 * - PGA bypass enabled. When gain is set > 4, this bit is
+>> +	 *   automatically ignored by the hardware and PGA is enabled,
+>> +	 *   so it's safe to leave it set.
+>> +	 */
+>> +	ret = regmap_write(st->regmap, ADS1120_REG_CONFIG0,
+>> +			   FIELD_PREP(ADS1120_CFG0_MUX_MASK,
+>> +				      ADS1120_CFG0_MUX_AIN0_AVSS) |
+>> +			   FIELD_PREP(ADS1120_CFG0_GAIN_MASK,
+>> +				      ADS1120_CFG0_GAIN_1) |
+>> +			   ADS1120_CFG0_PGA_BYPASS);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	/*
+>> +	 * Configure Register 1:
+>> +	 * - Data rate: 20 SPS (for single-shot mode)
+>> +	 * - Operating mode: Normal
+>> +	 * - Conversion mode: Single-shot
+>> +	 * - Temperature sensor: Disabled
+>> +	 * - Burnout current: Disabled
+>> +	 */
+>> +	ret = regmap_write(st->regmap, ADS1120_REG_CONFIG1,
+>> +			   FIELD_PREP(ADS1120_CFG1_DR_MASK,
+>> +				      ADS1120_CFG1_DR_20SPS) |
+>> +			   FIELD_PREP(ADS1120_CFG1_MODE_MASK,
+>> +				      ADS1120_CFG1_MODE_NORMAL) |
+>> +			   FIELD_PREP(ADS1120_CFG1_CM_MASK,
+>> +				      ADS1120_CFG1_CM_SINGLE) |
+>> +			   FIELD_PREP(ADS1120_CFG1_TS_EN, 0) |
+>> +			   FIELD_PREP(ADS1120_CFG1_BCS_EN, 0));
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	/*
+>> +	 * Configure Register 2:
+>> +	 * - Voltage reference: Internal 2.048V
+>> +	 * - 50/60Hz rejection: Off
+>> +	 * - Power switch: Disabled
+>> +	 * - IDAC current: Off
+>> +	 */
+>> +	ret = regmap_write(st->regmap, ADS1120_REG_CONFIG2,
+>> +			   FIELD_PREP(ADS1120_CFG2_VREF_MASK,
+>> +				      ADS1120_CFG2_VREF_INTERNAL) |
+>> +			   FIELD_PREP(ADS1120_CFG2_REJECT_MASK,
+>> +				      ADS1120_CFG2_REJECT_OFF) |
+>> +			   FIELD_PREP(ADS1120_CFG2_PSW_EN, 0) |
+>> +			   FIELD_PREP(ADS1120_CFG2_IDAC_MASK,
+>> +				      ADS1120_CFG2_IDAC_OFF));
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	/*
+>> +	 * Configure Register 3:
+>> +	 * - IDAC1: Disabled
+>> +	 * - IDAC2: Disabled
+>> +	 * - DRDY mode: Only reflects data ready status
+>> +	 */
+>> +	ret = regmap_write(st->regmap, ADS1120_REG_CONFIG3,
+>> +			   FIELD_PREP(ADS1120_CFG3_IDAC1_MASK,
+>> +				      ADS1120_CFG3_IDAC1_DISABLED) |
+>> +			   FIELD_PREP(ADS1120_CFG3_IDAC2_MASK,
+>> +				      ADS1120_CFG3_IDAC2_DISABLED) |
+>> +			   FIELD_PREP(ADS1120_CFG3_DRDYM_MASK,
+>> +				      ADS1120_CFG3_DRDYM_DRDY_ONLY));
+>> +	if (ret)
+>> +		return ret;
+>> +
+> If we want to wait for a later patch to support external reference,
+> I would consider to check for the devicetree properties here and
+> print a warning that they aren't supported if present. Maybe others
+> think that is too much noise though? Especially if you plan to add
+> it soon.
+>
+>> +	st->vref_mv = ADS1120_VREF_INTERNAL_MV;
+>> +
+>> +	return 0;
+>> +}
+>> +
 
 
 
