@@ -1,56 +1,60 @@
-Return-Path: <devicetree+bounces-246796-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246797-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABC46CBFF3A
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 22:36:16 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45C82CBFF88
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 22:38:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 9F4D33005023
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 21:35:58 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id ADEF7305F392
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 21:35:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0063D31D371;
-	Mon, 15 Dec 2025 21:27:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6A213321C5;
+	Mon, 15 Dec 2025 21:27:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oFjaieZf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o8yAJZps"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD1E730C611;
-	Mon, 15 Dec 2025 21:27:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AFD73321A5;
+	Mon, 15 Dec 2025 21:27:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765834026; cv=none; b=DaxI9tyGosauR0F4qhFEj3gAk+X6gcCrXiWfknzZuSXrstWXaTcvT9+O1VBq/LrL6dWWr2GGE6I8H9bRVCickC0pr0yuXAIh1lIwd374BiokqHkT7wkTOX4PwrcIknGNUKScUiGICas3bt2CXt2nIYXpVkYVkzG6gOJxsnWB78U=
+	t=1765834045; cv=none; b=mweiQWNARTROJQfaqvHSa/QaOF9V4KSgI3LisWlmQCWNeAQSQOrnKapODAYtnamIwYVt11USQVE2FszC0x4MwTMdnj1fs7Nw86ZTDpkHy10lSAQhJz55FHdEbqo3gItT5YYV82EwKy9v7m0c5epLph3SYfmUQ5Qfn1lt4+FDV1E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765834026; c=relaxed/simple;
-	bh=ksO7t38lHNhsA2pzzobpl6s+Z69+v/dzbkND9pR8gN4=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=BSzDgGlHLaQaX0YoyQSU5c7iFQiED+sMwC04gYhomSrXugX5PJxpaBso/hNX0EY4cpEl97K02adVKvNrpvze03MSzeIDWFdTtAnzRJwe54BcuMI3PBH5kDcmpvvjGZrOJWbse0P1vAoKQNnM7Vg5eTt6vPe7UcsprNVC25Qm2mw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oFjaieZf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88BDDC4CEF5;
-	Mon, 15 Dec 2025 21:27:06 +0000 (UTC)
+	s=arc-20240116; t=1765834045; c=relaxed/simple;
+	bh=IzqKoMi5RgZrH2DZaAzHWJ685mdEDrK+K9zMn3iogdI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=UDhUaEf+yLt9dL374OLKUfP/oQAeLmCVimVe+N13Ie50PjpKFZ1RK5/ALluQHyuD/JyM/Q08LqUgdLFSMAKTpsiVXr4jxVix5lej63BpGNeFc68PVx3qQaA2vQszQ4Aka0xHcFNrnrlQu4vPMnteMs+jf77WFLNj5Mk+hRIgzcg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o8yAJZps; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50D5DC4CEF5;
+	Mon, 15 Dec 2025 21:27:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765834026;
-	bh=ksO7t38lHNhsA2pzzobpl6s+Z69+v/dzbkND9pR8gN4=;
+	s=k20201202; t=1765834045;
+	bh=IzqKoMi5RgZrH2DZaAzHWJ685mdEDrK+K9zMn3iogdI=;
 	h=From:To:Cc:Subject:Date:From;
-	b=oFjaieZf5e2XHuOqzdwVYbvycw+ge2R0jF1QOMKdAkV+s2YNgyHAi5+XA0ZgQi3Fw
-	 JtQlscIa2D12MTvsnGBxVanJZRi4jpCbVrIjKSRPztFFoI9oOOhfIUHTYFEaCvUVWN
-	 C/x8st5nzeJwFlCJADf3yc1jR9yF3t9oBgUOQB+t5nLICg03Yd8K9YbxVIEfosKR0e
-	 OigtU8Ie90RFCnshKgXHjxaZZ8weRhizWVSGGvs1XEJbF1CdSP0+Wywxf6jVhxZjkh
-	 n6YeEGjt/MrHBMbt97NdkCbfMsBXB4l2LbqV/L+NFxtDGS+FRIM6v1XXkSURK/aM28
-	 YAqm1NWbrIIoQ==
+	b=o8yAJZps4MWyd1uugAb70aN7FA53Edg/dgjRHkxz0Y1fxL7uGwqe9bD84vhRkC/Ey
+	 oue47A+54Z1GGjQsWlQTK9sf7jSuvlYYmRW7GREhDWLAYAmLPGFtX3Bbhji5m18l29
+	 p5vW0fz4DLxLcY/GnuA9gD9OpfFdokBo4X0mqrk3Gphl0r3eXHJMzNxx19Oln0GqFE
+	 dJSuakbhcrEP17LLoUkTk8Add9D6dCFhRCwC7ushqp1FuvkyK6+lSY2mceN1tZSfPF
+	 bHEoH4/Sgd+CCuhVQf8iqmF1ti/PjTc7TxISZV8Qvm6cyUuxzIQTDwMIwtpkNURR0q
+	 VuH4BZE4YYvfg==
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+To: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Gatien Chevallier <gatien.chevallier@foss.st.com>
-Cc: devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
+	Florian Fainelli <f.fainelli@gmail.com>
+Cc: netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: bus: stm32mp25-rifsc: Allow 2 size cells
-Date: Mon, 15 Dec 2025 15:26:59 -0600
-Message-ID: <20251215212700.3320634-1-robh@kernel.org>
+Subject: [PATCH] dt-bindings: net: brcm,amac: Allow "dma-coherent" property
+Date: Mon, 15 Dec 2025 15:27:08 -0600
+Message-ID: <20251215212709.3320889-1-robh@kernel.org>
 X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -60,27 +64,27 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-There are users already with 2 size cells, and there's no reason to not
-support that.
+The Broadcom AMAC controller is DMA coherent on some platforms, so allow
+the dma-coherent property.
 
 Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 ---
- Documentation/devicetree/bindings/bus/st,stm32mp25-rifsc.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ Documentation/devicetree/bindings/net/brcm,amac.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/bus/st,stm32mp25-rifsc.yaml b/Documentation/devicetree/bindings/bus/st,stm32mp25-rifsc.yaml
-index 4d19917ad2c3..c6280c8c54a3 100644
---- a/Documentation/devicetree/bindings/bus/st,stm32mp25-rifsc.yaml
-+++ b/Documentation/devicetree/bindings/bus/st,stm32mp25-rifsc.yaml
-@@ -54,7 +54,7 @@ properties:
-     const: 1
+diff --git a/Documentation/devicetree/bindings/net/brcm,amac.yaml b/Documentation/devicetree/bindings/net/brcm,amac.yaml
+index 210fb29c4e7b..be1bf07985e4 100644
+--- a/Documentation/devicetree/bindings/net/brcm,amac.yaml
++++ b/Documentation/devicetree/bindings/net/brcm,amac.yaml
+@@ -73,6 +73,8 @@ properties:
+       - const: idm_base
+       - const: nicpm_base
  
-   "#size-cells":
--    const: 1
-+    enum: [ 1, 2 ]
++  dma-coherent: true
++
+ unevaluatedProperties: false
  
-   ranges: true
- 
+ examples:
 -- 
 2.51.0
 
