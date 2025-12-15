@@ -1,119 +1,427 @@
-Return-Path: <devicetree+bounces-246724-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246714-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E0D0CBF321
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 18:16:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AA063CBF18C
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 18:04:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C55CF302C4CF
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 17:05:15 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1EEAA309B36E
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 16:56:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24CB5329E42;
-	Mon, 15 Dec 2025 17:05:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBD613370FF;
+	Mon, 15 Dec 2025 16:48:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-42ae.mail.infomaniak.ch (smtp-42ae.mail.infomaniak.ch [84.16.66.174])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49D6128B3E2
-	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 17:05:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=84.16.66.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9C1C2877E3
+	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 16:48:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765818315; cv=none; b=L4ZYo1x1Ex3lZB4gmulBb8o+fo+by3lVBD7IP/ejZ7m+SgXNz47pkc+xULH6f72VQXMe6CIrbsg3qGeDZLSC2trB98UTUMel/leBcF4/SCZIRCTY6m95xBJr/OSnUzcLxlV6WeqYCZzYfYJxh8ugOujOrdKevI1yOEAG0Yp5Q7s=
+	t=1765817312; cv=none; b=DJnm0mj8idI0PJn5nJxSBQxHY+hXNcYr/9YaVdJJXYsmbOezWDkojQxcRfvXn40n3yzqBpMR5p2UaOh/BRgoeAxI1vTFEoy4tOxTFn0LbmTtaq0RnPunCS3zK5fXEmCA5+N20OsQao/ApfiYbJnxWU40R/570QEVOEYs9UhkRns=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765818315; c=relaxed/simple;
-	bh=KnKjjGyy5oiElHceVx9Q+yjPqUm+QFl9fOYbN4GMrA0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=GaVgwFTdx0jMmCYWdn4nk+Ec4B8xF1efhfuAa8W4X3Sj1d8XkGJplaDqOKOPdMGZ7iMXTxuSMJ4iZgc01E3Vi2Lx/+CD2BvDlRxaLhqoL59hGZ/wyL0qyfvlDBptnZMd3MNrqbTemO2yJhF6bmVg3PevhnAVjlsBwRAoe9R+a7Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net; spf=pass smtp.mailfrom=0leil.net; arc=none smtp.client-ip=84.16.66.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=0leil.net
-Received: from smtp-3-0000.mail.infomaniak.ch (unknown [IPv6:2001:1600:4:17::246b])
-	by smtp-3-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4dVQtf6cv1zTkg;
-	Mon, 15 Dec 2025 17:46:18 +0100 (CET)
-Received: from unknown by smtp-3-0000.mail.infomaniak.ch (Postfix) with ESMTPA id 4dVQtf0KpFz6NJ;
-	Mon, 15 Dec 2025 17:46:17 +0100 (CET)
-From: Quentin Schulz <foss+kernel@0leil.net>
-Date: Mon, 15 Dec 2025 17:45:56 +0100
-Subject: [PATCH] arm64: dts: rockchip: fix unit-address for RK3588 NPU's
- core1 and core2's IOMMU
+	s=arc-20240116; t=1765817312; c=relaxed/simple;
+	bh=iegucxP0t41opnyim+jwV3GBK1a8WA8rlpfirXQK4TI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mpclAed0NCVFYVdZzfgvMcfUu/i0CAoA1JHnFkWXCt7ZV3Z23+iwqCfpuTIUca6Iu+rxhgEO9MTCPLgfhuoPDcm85wr4IUtOYFsRBEdKiHF+d/5zjgXEKLg5/BTI7BmDlnXO6JvWBUBuS+yBLWjFGwFxsXv8OyhrM5cO0a2hwpw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1vVBjp-00040g-3n; Mon, 15 Dec 2025 17:47:57 +0100
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1vVBjm-005oRd-2i;
+	Mon, 15 Dec 2025 17:47:54 +0100
+Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1vVBjm-008zIy-2B;
+	Mon, 15 Dec 2025 17:47:54 +0100
+Date: Mon, 15 Dec 2025 17:47:54 +0100
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: Liu Ying <victor.liu@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v7 2/3] drm/bridge: imx: Add i.MX93 parallel display
+ format configuration support
+Message-ID: <20251215164754.5amfk7hasaol7tdt@pengutronix.de>
+References: <20251202-v6-18-topic-imx93-parallel-display-v7-0-2cce31d64608@pengutronix.de>
+ <20251202-v6-18-topic-imx93-parallel-display-v7-2-2cce31d64608@pengutronix.de>
+ <f53be351-e059-4a71-bbbd-7a893e954169@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251215-npu-dt-node-address-v1-1-840093e8a2bf@cherry.de>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/x3MQQqFMAxF0a1Ixj9giyK6FXFQzVMzqdLoRxD3b
- nF4BvfeZEgKo664KeGvplvMcL+CpjXEBaySTb70tfOu5rifLAfHTcBBJMGMm3FGGCsvAS3lck+
- Y9fqu/fA8L8QN/89lAAAA
-X-Change-ID: 20251215-npu-dt-node-address-7bfeab42dae9
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Tomeu Vizoso <tomeu@tomeuvizoso.net>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Quentin Schulz <quentin.schulz@cherry.de>, stable@vger.kernel.org
-X-Mailer: b4 0.14.3
-X-Infomaniak-Routing: alpha
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f53be351-e059-4a71-bbbd-7a893e954169@nxp.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-From: Quentin Schulz <quentin.schulz@cherry.de>
+Hi,
 
-The Device Tree specification specifies[1] that
+On 25-12-08, Liu Ying wrote:
+> Hi Marco,
+> 
+> On 12/02/2025, Marco Felsch wrote:
+> > From: Liu Ying <victor.liu@nxp.com>
+> > 
+> > NXP i.MX93 mediamix blk-ctrl contains one DISPLAY_MUX register which
+> > configures parallel display format by using the "PARALLEL_DISP_FORMAT"
+> > field. Add a DRM bridge driver to support the display format configuration.
+> > 
+> > Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> > [m.felsch@pengutronix.de: port to v6.18-rc1]
+> > [m.felsch@pengutronix.de: add review feedback (Alexander)]
+> > [m.felsch@pengutronix.de: fix to short Kconfig description (checkpath)]
+> > [m.felsch@pengutronix.de: use "GPL" instead of "GPL v2" (checkpatch)]
+> > [m.felsch@pengutronix.de: make use of reg property]
+> > [m.felsch@pengutronix.de: add bus-width support]
+> > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> > ---
+> >  drivers/gpu/drm/bridge/imx/Kconfig      |  11 ++
+> >  drivers/gpu/drm/bridge/imx/Makefile     |   1 +
+> >  drivers/gpu/drm/bridge/imx/imx93-pdfc.c | 227 ++++++++++++++++++++++++++++++++
+> >  3 files changed, 239 insertions(+)
+> > 
+> > diff --git a/drivers/gpu/drm/bridge/imx/Kconfig b/drivers/gpu/drm/bridge/imx/Kconfig
+> > index 9a480c6abb856276df9b71d23b39a43b3a9c542d..28fd7a00473a0ec50bf0ffb5d50972abc209ceec 100644
+> > --- a/drivers/gpu/drm/bridge/imx/Kconfig
+> > +++ b/drivers/gpu/drm/bridge/imx/Kconfig
+> > @@ -88,4 +88,15 @@ config DRM_IMX93_MIPI_DSI
+> >  	  Choose this to enable MIPI DSI controller found in Freescale i.MX93
+> >  	  processor.
+> >  
+> > +config DRM_IMX93_PARALLEL_DISP_FMT_CONFIG
+> > +	tristate "NXP i.MX91/i.MX93 parallel display format configuration"
+> > +	depends on OF
+> > +	select DRM_KMS_HELPER
+> > +	help
+> > +	  On i.MX93 and i.MX91 SoCs the parallel display format output is
+> > +	  controlled via the MEDIAMIX BLK-CTRL DISPLAY_MUX.
+> > +
+> > +	  Say 'Y' or 'M' if you use the parallel display output path on a
+> > +	  i.MX93 or i.MX91 SoC.
+> > +
+> >  endif # ARCH_MXC || COMPILE_TEST
+> > diff --git a/drivers/gpu/drm/bridge/imx/Makefile b/drivers/gpu/drm/bridge/imx/Makefile
+> > index dd5d4858480663bade98bd58039d1cb6f8aa18da..f4ccc5cbef72a576443d5fecf666b76dfba8aa94 100644
+> > --- a/drivers/gpu/drm/bridge/imx/Makefile
+> > +++ b/drivers/gpu/drm/bridge/imx/Makefile
+> > @@ -8,3 +8,4 @@ obj-$(CONFIG_DRM_IMX8QXP_PIXEL_COMBINER) += imx8qxp-pixel-combiner.o
+> >  obj-$(CONFIG_DRM_IMX8QXP_PIXEL_LINK) += imx8qxp-pixel-link.o
+> >  obj-$(CONFIG_DRM_IMX8QXP_PIXEL_LINK_TO_DPI) += imx8qxp-pxl2dpi.o
+> >  obj-$(CONFIG_DRM_IMX93_MIPI_DSI) += imx93-mipi-dsi.o
+> > +obj-$(CONFIG_DRM_IMX93_PARALLEL_DISP_FMT_CONFIG) += imx93-pdfc.o
+> > diff --git a/drivers/gpu/drm/bridge/imx/imx93-pdfc.c b/drivers/gpu/drm/bridge/imx/imx93-pdfc.c
+> > new file mode 100644
+> > index 0000000000000000000000000000000000000000..624389def0ac3f24158edc64a8913375a4cc2f12
+> > --- /dev/null
+> > +++ b/drivers/gpu/drm/bridge/imx/imx93-pdfc.c
+> > @@ -0,0 +1,227 @@
+> > +// SPDX-License-Identifier: GPL-2.0+
+> > +
+> > +/*
+> > + * Copyright 2022-2025 NXP
+> > + */
+> > +
+> > +#include <linux/bitfield.h>
+> > +#include <linux/bits.h>
+> > +#include <linux/media-bus-format.h>
+> > +#include <linux/mfd/syscon.h>
+> > +#include <linux/module.h>
+> > +#include <linux/of.h>
+> > +#include <linux/of_address.h>
+> > +#include <linux/of_graph.h>
+> > +#include <linux/platform_device.h>
+> > +#include <linux/regmap.h>
+> > +
+> > +#include <drm/drm_atomic_state_helper.h>
+> > +#include <drm/drm_bridge.h>
+> > +#include <drm/drm_print.h>
+> 
+> Drop this header file if you won't use DRM_DEV_DEBUG_DRIVER() in v5.
 
-"""
-Each node in the devicetree is named according to the following
-convention:
-	node-name@unit-address
-[...]
-The unit-address must match the first address specified in the reg
-property of the node.
-"""
+Sure.
 
-The first address in the reg property is fdaXa000 and not fdaX9000. This
-is likely a copy-paste error as the IOMMU for core0 has two entries in
-the reg property, the first one being fdab9000 and the second fdaba000.
+> > +#define PARALLEL_DISP_FORMAT		GENMASK(10, 8)
+> > +#define FORMAT_RGB888_TO_RGB888		FIELD_PREP(PARALLEL_DISP_FORMAT, 0)
+> > +#define FORMAT_RGB888_TO_RGB666		FIELD_PREP(PARALLEL_DISP_FORMAT, 1)
+> > +#define FORMAT_RGB565_TO_RGB565		FIELD_PREP(PARALLEL_DISP_FORMAT, 2)
+> > +
+> > +struct imx93_pdfc {
+> > +	struct drm_bridge bridge;
+> > +	struct drm_bridge *next_bridge;
+> > +	struct device *dev;
+> > +	struct regmap *regmap;
+> > +	u64 disp_mux_reg_off;
+> > +	u32 phy_bus_width;
+> > +};
+> > +
+> > +static int
+> > +imx93_pdfc_bridge_attach(struct drm_bridge *bridge, struct drm_encoder *encoder,
+> > +			 enum drm_bridge_attach_flags flags)
+> > +{
+> > +	struct imx93_pdfc *pdfc = bridge->driver_private;
+> > +
+> > +	return drm_bridge_attach(bridge->encoder, pdfc->next_bridge, bridge, flags);
+> > +}
+> > +
+> > +static void imx93_pdfc_bridge_atomic_enable(struct drm_bridge *bridge,
+> > +					    struct drm_atomic_state *state)
+> > +{
+> > +	struct imx93_pdfc *pdfc = bridge->driver_private;
+> > +	const struct drm_bridge_state *bridge_state;
+> > +	unsigned int mask = PARALLEL_DISP_FORMAT;
+> > +	unsigned int val;
+> > +
+> > +	bridge_state = drm_atomic_get_new_bridge_state(state, bridge);
+> > +
+> > +	switch (bridge_state->output_bus_cfg.format) {
+> > +	case MEDIA_BUS_FMT_RGB888_1X24:
+> > +		val = FORMAT_RGB888_TO_RGB888;
+> > +		if (pdfc->phy_bus_width == 18) {
+> > +			/*
+> > +			 * Can be valid if physical bus limitation exist,
+> 
+> s/exist/exists/
 
-Let's fix this oversight to match what the spec is expecting.
+Thanks
 
-[1] https://github.com/devicetree-org/devicetree-specification/releases/download/v0.4/devicetree-specification-v0.4.pdf 2.2.1 Node Names
+> > +			 * therefore use dev_dbg().
+> > +			 */
+> > +			dev_dbg(pdfc->dev, "Truncate two LSBs from each color\n");
+> > +			val = FORMAT_RGB888_TO_RGB666;
+> > +		}
+> > +		break;
+> > +	case MEDIA_BUS_FMT_RGB666_1X18:
+> > +		val = FORMAT_RGB888_TO_RGB666;
+> > +		break;
+> > +	case MEDIA_BUS_FMT_RGB565_1X16:
+> > +		val = FORMAT_RGB565_TO_RGB565;
+> > +		break;
+> > +	}
+> > +
+> > +	regmap_update_bits(pdfc->regmap, pdfc->disp_mux_reg_off, mask, val);
+> > +}
+> > +
+> > +static const u32 imx93_pdfc_bus_output_fmts[] = {
+> > +	MEDIA_BUS_FMT_RGB888_1X24,
+> > +	MEDIA_BUS_FMT_RGB666_1X18,
+> > +	MEDIA_BUS_FMT_RGB565_1X16,
+> > +	MEDIA_BUS_FMT_FIXED
+> > +};
+> > +
+> > +static bool imx93_pdfc_bus_output_fmt_supported(u32 fmt)
+> > +{
+> > +	int i;
+> > +
+> > +	for (i = 0; i < ARRAY_SIZE(imx93_pdfc_bus_output_fmts); i++) {
+> > +		if (imx93_pdfc_bus_output_fmts[i] == fmt)
+> > +			return true;
+> > +	}
+> > +
+> > +	return false;
+> > +}
+> > +
+> > +static u32 *
+> > +imx93_pdfc_bridge_atomic_get_input_bus_fmts(struct drm_bridge *bridge,
+> > +					    struct drm_bridge_state *bridge_state,
+> > +					    struct drm_crtc_state *crtc_state,
+> > +					    struct drm_connector_state *conn_state,
+> > +					    u32 output_fmt,
+> > +					    unsigned int *num_input_fmts)
+> > +{
+> > +	u32 *input_fmts;
+> > +
+> > +	*num_input_fmts = 0;
+> > +
+> > +	if (!imx93_pdfc_bus_output_fmt_supported(output_fmt))
+> > +		return NULL;
+> > +
+> > +	input_fmts = kmalloc(sizeof(*input_fmts), GFP_KERNEL);
+> > +	if (!input_fmts)
+> > +		return NULL;
+> > +
+> > +	switch (output_fmt) {
+> > +	case MEDIA_BUS_FMT_RGB888_1X24:
+> > +	case MEDIA_BUS_FMT_RGB565_1X16:
+> > +		input_fmts[0] = output_fmt;
+> > +		break;
+> > +	case MEDIA_BUS_FMT_RGB666_1X18:
+> > +	case MEDIA_BUS_FMT_FIXED:
+> > +		input_fmts[0] = MEDIA_BUS_FMT_RGB888_1X24;
+> > +		break;
+> > +	}
+> > +
+> > +	*num_input_fmts = 1;
+> > +
+> > +	return input_fmts;
+> > +}
+> > +
+> > +static int imx93_pdfc_bridge_atomic_check(struct drm_bridge *bridge,
+> > +					  struct drm_bridge_state *bridge_state,
+> > +					  struct drm_crtc_state *crtc_state,
+> > +					  struct drm_connector_state *conn_state)
+> > +{
+> > +	struct imx93_pdfc *pdfc = bridge->driver_private;
+> > +
+> > +	switch (bridge_state->output_bus_cfg.format) {
+> > +	case MEDIA_BUS_FMT_RGB888_1X24:
+> > +	case MEDIA_BUS_FMT_RGB666_1X18:
+> > +	case MEDIA_BUS_FMT_RGB565_1X16:
+> 
+> The case MEDIA_BUS_FMT_FIXED is also valid.
 
-Fixes: a31dfc060a74 ("arm64: dts: rockchip: Add nodes for NPU and its MMU to rk3588-base")
-Cc: stable@vger.kernel.org
-Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
----
- arch/arm64/boot/dts/rockchip/rk3588-base.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Good point, I think we should drop this from the
+imx93_pdfc_bus_output_fmts completely since we know that only prallel panels
+with an actual format can be attached to this bridge.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-index 2a79217930206..7ab12d1054a73 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-@@ -1200,7 +1200,7 @@ rknn_core_1: npu@fdac0000 {
- 		status = "disabled";
- 	};
- 
--	rknn_mmu_1: iommu@fdac9000 {
-+	rknn_mmu_1: iommu@fdaca000 {
- 		compatible = "rockchip,rk3588-iommu", "rockchip,rk3568-iommu";
- 		reg = <0x0 0xfdaca000 0x0 0x100>;
- 		interrupts = <GIC_SPI 111 IRQ_TYPE_LEVEL_HIGH 0>;
-@@ -1230,7 +1230,7 @@ rknn_core_2: npu@fdad0000 {
- 		status = "disabled";
- 	};
- 
--	rknn_mmu_2: iommu@fdad9000 {
-+	rknn_mmu_2: iommu@fdada000 {
- 		compatible = "rockchip,rk3588-iommu", "rockchip,rk3568-iommu";
- 		reg = <0x0 0xfdada000 0x0 0x100>;
- 		interrupts = <GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH 0>;
+> > +		return 0;
+> > +	default:
+> > +		dev_warn(pdfc->dev, "Unsupported output bus format: 0x%x\n",
+> > +			 bridge_state->output_bus_cfg.format);
+> > +		return -EINVAL;
+> > +	}
+> > +}
+> > +
+> > +static const struct drm_bridge_funcs funcs = {
+> > +	.attach			= imx93_pdfc_bridge_attach,
+> > +	.atomic_enable		= imx93_pdfc_bridge_atomic_enable,
+> > +	.atomic_duplicate_state	= drm_atomic_helper_bridge_duplicate_state,
+> > +	.atomic_destroy_state	= drm_atomic_helper_bridge_destroy_state,
+> > +	.atomic_get_input_bus_fmts	= imx93_pdfc_bridge_atomic_get_input_bus_fmts,
+> > +	.atomic_check		= imx93_pdfc_bridge_atomic_check,
+> > +	.atomic_reset		= drm_atomic_helper_bridge_reset,
+> > +};
+> > +
+> > +static int imx93_pdfc_bridge_probe(struct platform_device *pdev)
+> > +{
+> > +	struct device *dev = &pdev->dev;
+> > +	struct imx93_pdfc *pdfc;
+> > +	struct device_node *ep;
+> > +	int err;
+> > +
+> > +	pdfc = devm_drm_bridge_alloc(dev, struct imx93_pdfc, bridge, &funcs);
+> > +	if (IS_ERR(pdfc))
+> > +		return PTR_ERR(pdfc);
+> > +
+> > +	pdfc->regmap = syscon_node_to_regmap(dev->of_node->parent);
+> > +	if (IS_ERR(pdfc->regmap))
+> > +		return dev_err_probe(dev, PTR_ERR(pdfc->regmap),
+> > +				     "failed to get regmap\n");
+> > +
+> > +	err = of_property_read_reg(dev->of_node, 0, &pdfc->disp_mux_reg_off, NULL);
+> > +	if (err)
+> > +		return dev_err_probe(dev, err,
+> > +				     "failed to get display-mux reg\n");
+> > +
+> > +	/* No limits per default */
+> > +	pdfc->phy_bus_width = 24;
+> > +
+> > +	/* Get output ep (port1/endpoint0) */
+> > +	ep = of_graph_get_endpoint_by_regs(dev->of_node, 1, 0);
+> 
+> Nit: DT binding just defines endpoint not endpoint0, so set the reg parameter
+> to -1.
 
----
-base-commit: a619746d25c8adafe294777cc98c47a09759b3ed
-change-id: 20251215-npu-dt-node-address-7bfeab42dae9
+Good point, thanks.
 
-Best regards,
+> > +	if (ep) {
+> > +		err = of_property_read_u32(ep, "bus-width", &pdfc->phy_bus_width);
+> > +		of_node_put(ep);
+> > +
+> > +		/* bus-width is optional but it must have valid data if present */
+> > +		if (err && err != -EINVAL)
+> > +			return dev_err_probe(dev, err,
+> > +					     "failed to query bus-width\n");
+> > +	}
+> > +
+> > +	pdfc->next_bridge = devm_drm_of_get_bridge(dev, dev->of_node, 1, 0);
+> > +	if (IS_ERR(pdfc->next_bridge))
+> > +		return dev_err_probe(dev, PTR_ERR(pdfc->next_bridge),
+> > +				     "failed to get next bridge\n");
+> > +
+> > +	pdfc->dev = dev;
+> > +	pdfc->bridge.driver_private = pdfc;
+> > +	pdfc->bridge.of_node = dev->of_node;
+> > +	pdfc->bridge.type = DRM_MODE_CONNECTOR_DPI;
+> > +
+> > +	return devm_drm_bridge_add(dev, &pdfc->bridge);
+> > +}
+> > +
+> > +static const struct of_device_id imx93_pdfc_dt_ids[] = {
+> > +	{ .compatible = "nxp,imx93-pdfc", },
+> 
+> The cover letter and Kconfig say that both i.MX91 and i.MX93 are supported,
+> so need an additional compatible string for i.MX91?
+
+I don't think so, according the imx91_93_common.dtsi, there are a lot
+IPs which are shared between the i.MX91 and the i.MX93, even the clock
+defines.
+
+Thanks for the review.
+
+Regards,
+  Marco
+
+
+> 
+> > +	{ /* sentinel */ }
+> > +};
+> > +MODULE_DEVICE_TABLE(of, imx93_pdfc_dt_ids);
+> > +
+> > +static struct platform_driver imx93_pdfc_bridge_driver = {
+> > +	.probe	= imx93_pdfc_bridge_probe,
+> > +	.driver	= {
+> > +		.of_match_table = imx93_pdfc_dt_ids,
+> > +		.name = "imx93_pdfc",
+> > +	},
+> > +};
+> > +module_platform_driver(imx93_pdfc_bridge_driver);
+> > +
+> > +MODULE_DESCRIPTION("NXP i.MX93 parallel display format configuration driver");
+> > +MODULE_AUTHOR("Liu Ying <victor.liu@nxp.com>");
+> > +MODULE_LICENSE("GPL");
+> > 
+> 
+> 
+> -- 
+> Regards,
+> Liu Ying
+> 
+
 -- 
-Quentin Schulz <quentin.schulz@cherry.de>
+#gernperDu 
+#CallMeByMyFirstName
 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | https://www.pengutronix.de/ |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-9    |
 
