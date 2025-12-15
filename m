@@ -1,94 +1,92 @@
-Return-Path: <devicetree+bounces-246808-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246809-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A279CBFF76
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 22:38:08 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CADDCBFFFD
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 22:44:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 39E59301B609
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 21:38:06 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AFD4830572FE
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 21:38:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90BF0328B5B;
-	Mon, 15 Dec 2025 21:38:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BCB9322B83;
+	Mon, 15 Dec 2025 21:38:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="YNSd0XPV"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="NkV4WCtW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f227.google.com (mail-pl1-f227.google.com [209.85.214.227])
+Received: from mail-yw1-f228.google.com (mail-yw1-f228.google.com [209.85.128.228])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C311226B74A
-	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 21:38:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.227
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D63893090E2
+	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 21:38:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.228
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765834684; cv=none; b=pV6b20zIwZuhoNQ8yxjNJfme5YqtUYWUw856rXXSkjFStsb7vUdPOk6YDbYVSaNHR/BUAe2uCA6u+0jCRW2SS4h6g7KuyNnOMVFUDoEZxj+Vq1bBG/K+6x7cBxzAZE7lqkxib4aUMXqgf+8t1DMpcBb7EHlX/I0DN73T0rOpdUg=
+	t=1765834699; cv=none; b=CkqIGmBtq2CuJzUjg30t47qaNTQRUYsPkTsygFiytnyyQzpZll7Fdj2YWvd6mjLl8D0A8jyD4nAcIXaYRgX4e/ci13lt4TOGzmiaMEkJ9M81vNk9Ku7C1SQZONlUj2Q1dduPbQE0DKXohEX06pWk8Wxg/VSY9ahT3SwjLHVPvlw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765834684; c=relaxed/simple;
-	bh=lQRPuDINrKcEybKINcje3EVQa/wcgXqMSsP7lzTu2AM=;
+	s=arc-20240116; t=1765834699; c=relaxed/simple;
+	bh=QgbdFkTQrCM+SjuD74b1Txu5Xq8JkTTQAIUVnKQIryI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NeLl7FUqTXlfPo63VU0W7PW8QN/EN3/rxlYfyy0p5WUVpHiiqnfNTsURqH9pbjCXm4V04bEoUd3X/jAruLVc/U/vNU01twtZLX/DpdI4pKm7VfV1goqzJ1ju0aoVFxF38UbKTi7/lJwrx1ZyyN2R2I8sEcwIcF6BHX/TlpIjMgE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=YNSd0XPV; arc=none smtp.client-ip=209.85.214.227
+	 In-Reply-To:Content-Type; b=GIlj5Nvhh4zwtS/ufp2Ot/T6zAf9IZcBoCcUDNTzz7xHPgBF25YZE0YGx/zZuoAppoWyAeE1W0QU87OOKbzhpyJw5Rt7OD8CHYTwx5N9hIZnXFSoEoEjexas15KTdxfA1RRTHAyCPP8q/TvSCDcPtDHyT2kOKl8CNmzNbvMJDWE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=NkV4WCtW; arc=none smtp.client-ip=209.85.128.228
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=broadcom.com
 Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-pl1-f227.google.com with SMTP id d9443c01a7336-2a0eaf55d58so8554885ad.1
-        for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 13:38:02 -0800 (PST)
+Received: by mail-yw1-f228.google.com with SMTP id 00721157ae682-78d6a3c3b77so42070127b3.0
+        for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 13:38:17 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765834682; x=1766439482;
+        d=1e100.net; s=20230601; t=1765834697; x=1766439497;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:dkim-signature:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=WDtbqIG7+Eh3r+44039T7Pz3MN5wwnQSOfutcxi0ME8=;
-        b=sLTXMhfnU7VKDC6N057G1Jd3CrrecqroPTORKz6mAx07jIf0q62P6de656RT9rjUtW
-         abwIlxOjRQCvhTolbLbsTZ3fNzN47f8VCnZy+k7ceBZtbXtUbjhA2p/7c8FEEcA4DcF+
-         EhM4w9+77+uA0hGsHNWiRQl0eD/Z4oyaNI0NB5dmGKe9KjcDEF/kBhFnpowoWw4qjr0R
-         tgNrOUgrn/6b1CmbHGUZwFW/i+6WcuuiDvTRH1idfRCVNR5ieO9N74L4F2nU47UmlIu+
-         ENNWEiaFbMK05UqnVge9yXMpytC71qR4btTOk4hz1X/kUXnrbb8NAQYV/V//6uLYhRkH
-         h+oA==
-X-Forwarded-Encrypted: i=1; AJvYcCW+NRenl2KZ9ARBHhUwdWtOczWxQV23eAB9ELWB/44F/yo7flbQA/7VYKbYfSzV+qH3vRpipE5N/oNE@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx3z41qONCi0qwGM1tkJ18z2/AAg7EarQ8hGxScHutOl1agZuOy
-	2EpgdORJCcMut9QMQLknCyfGM455znhZ5QQlvbHliV7YDzXzgt+Ece/v+iVbJLxt2DCfw3OOTTu
-	WbXWFjlepSRkRznUxZV+eS9mCJD0UH3gQcuVHrFYftFPAU4m1aVBzgRXyyXhvYZbjmBbCqPsIWl
-	E5BdOtvbYviZl4yjSbiXBkrVJ5hrupff/b45OvZs1HwIAes/hX8Ly3zNVOYGpv/TAaP5JEy7feh
-	JBLq9rzjBXxCI4SUDqd9Q==
-X-Gm-Gg: AY/fxX4mZFi96Ja4mU/P0lPHdeDhZuCyToWciBHOXbDPliBZOmEA+9SWXFGEFRXc+TB
-	G7yDQk8eELGVssflXg/j6TClbL2rqQqESa7sdNKqvUBMxXRo6Y+s2pAeNCmbWhjr/VHsTOeBFX0
-	O6f0NWvyf/RUZEEO700/xqmegHDVMGQVIQa3nQCddL9XOofqjSbP/idXusqk03jwba+eIUY08yM
-	F0BuEz58kh5VpwsvozRReSW5THT6hDpaVNy0HJnsEPOzR/51/ZlzYWJ1kZueUYJzsUnRPRgFLCk
-	b+QjA3S+VeU05cVaIdiBRVl6qxyI1a3jPXCX3qPwvOpW0YfD1EvyvXNf4OmABGUPDVzTn2KAi3I
-	wbayvRpeOFngUm4U1F7UAwqyoJo00r2tTqF+8NGa/WHTNdz+TyCCMNhCEVTowf49c1AtsRtmZjA
-	tlhAQpG+C99qLMvKX4MMZ6XuoGS+aAdy9dn3uyUTVDQpiHsjT0ZQ==
-X-Google-Smtp-Source: AGHT+IHWMA+czSOKDxOoaIjxceohUWkwbo21TrLz5UAJYrJMuBtKjByMSEDgV3GlDLGN+8cLdV/oN/Vkggys
-X-Received: by 2002:a17:903:320a:b0:295:55fc:67a0 with SMTP id d9443c01a7336-29eee9f2be6mr173592845ad.2.1765834682047;
-        Mon, 15 Dec 2025 13:38:02 -0800 (PST)
+        bh=nAzhZfnq+Y+umpS+zHh9k29x4I1swYKfU58uwPItIqk=;
+        b=f9L8fPhBSmuD0m+wtKh+3N38VXh+SswX4HyMlqenwAFmj2bJ+rEsBWcbF5ZXL1VGQC
+         4hjMlhkEDmYITrai4ViXhBvH1ht3Hdha+hvhJ1o9vmTvOu2M7Nmk7jdY9WGo3kBud1lE
+         VNUCGCZiKc9HEJLW9lhPhZEyis7jfb8DBbyvVMceXbBfd+WiQfbbFak/NHhLOrdxkAMO
+         Y9GN4qee4iCAIrBvcg9nkvWYJpEKF9RPGudahJrZhj0MHwDFt1n4UQY+lnGUu0/A9Ycs
+         Sa3MMobndrsEJkQaeiB9d0NYLzL9to3vUM7rUKZubsC1zf53/9QPwV748H18RdGeFHy5
+         8onw==
+X-Gm-Message-State: AOJu0YwewcX6adkHa5RpvWLDCynQd+Rt3yZP+7AMKFsJ+292A8Ak/JG4
+	MIYajsKNXiZNE70fkxOtIB7SOIGPUnnO9qWfd+fip7lkVewvej4NfOO577wsMDfvqGGkAWFN+Ly
+	6VA2PuqQjcy9wMxx7eZrDGEbObzgClvV9IIHLGELeW/KFtRzrW36HvHHXvaBJwKHQ6IV3I/EURw
+	A1C+N66++WycdnPfejFRJYMCtPsQG8UGf9Dz8VGmC6fYOxWf/JtsfJvujfuLEfJXnT+XTziQnPB
+	uqhggJ5PTy+H41AUoHIFg==
+X-Gm-Gg: AY/fxX7WOSW2mSethY0JhNOi6WIqKihoAqNnbHzYFniHuGqqTjIu7q4XJTZg97mE8b/
+	h3PvOpcQx+Qw9EZ3OuSwnkt00htAXtcHKJpTkRGUxtxiGACmQIS1tMBllpOUa0SE5xH5TGGjXf7
+	98ibU5Z/zykGXoy9f+4eA4Me/oO0V79O+9w/SvqeTZ6PTbeNV/v9GscoDh3o8OG6OwIhvMZprJX
+	fye0qd4eur27Ymj8eg3ALM258gq2Tqk54hBeZlM97kSWlziL8wCzc9m/rdaeh+pLYZ4ce8vtE9e
+	mCfwpcCgvHK3TMmgSg4xEdtk9sF3TWIBNj1AoJdH3wSaGHor8Yo/Op9CVCZ6hj9wuEndhR4QyqK
+	XZ8F8D2cc6AQ2yLcuK7ZY6XnMTvXP9mYSg6S1IL8r3dbbP3YW2Dciri+9mcCLJP4xtMw1PxzOOj
+	qVvVMjKzvLq0v8rE8BfCdOIgSVoCPbRL8j3w2iqqmJnuwrLN43nQ==
+X-Google-Smtp-Source: AGHT+IGidbtpwmX3tJBp+gScUjfNJkfpzfWG1332nwKCqnaqqljQbf/0tpfmHVpVS48YWR8GnSsFNwKJt3x5
+X-Received: by 2002:a05:690e:1283:b0:646:5127:a024 with SMTP id 956f58d0204a3-6465127c78emr128996d50.7.1765834696752;
+        Mon, 15 Dec 2025 13:38:16 -0800 (PST)
 Received: from smtp-us-east1-p01-i01-si01.dlp.protect.broadcom.com (address-144-49-247-19.dlp.protect.broadcom.com. [144.49.247.19])
-        by smtp-relay.gmail.com with ESMTPS id d9443c01a7336-2a0ef53a675sm6391155ad.11.2025.12.15.13.38.01
+        by smtp-relay.gmail.com with ESMTPS id 956f58d0204a3-64477d34ad9sm1632731d50.3.2025.12.15.13.38.16
         for <devicetree@vger.kernel.org>
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 15 Dec 2025 13:38:02 -0800 (PST)
+        Mon, 15 Dec 2025 13:38:16 -0800 (PST)
 X-Relaying-Domain: broadcom.com
 X-CFilter-Loop: Reflected
-Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4edad69b4e8so78256221cf.1
-        for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 13:38:01 -0800 (PST)
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4ee0488e746so87466721cf.0
+        for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 13:38:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1765834681; x=1766439481; darn=vger.kernel.org;
+        d=broadcom.com; s=google; t=1765834696; x=1766439496; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=WDtbqIG7+Eh3r+44039T7Pz3MN5wwnQSOfutcxi0ME8=;
-        b=YNSd0XPVnbhC0VFfSVcCv5TlaNqMUn1dN3/jc+/UNDCi22gP422VKOF+808KdnuvWA
-         lNd8gZ1Xbn9fmmzMwID2cD77gf6x0AzE3+gRt0Q3WeY0HZBZOT+mCtIX+m2s2TlgVI3f
-         uGyEIbHY/ktZ5WwfvjF1FAWhSZ8cI/uT/GSaY=
-X-Forwarded-Encrypted: i=1; AJvYcCUGKTQHDnYrZYTDFguttJGwBic8EA+mPvSDL/gCs2O/2A0Fr6+3EDZvB3ZMYjcK0fxQGJM8j9WlIimu@vger.kernel.org
-X-Received: by 2002:ac8:5a0b:0:b0:4f1:af84:387a with SMTP id d75a77b69052e-4f1bfb9d159mr211751961cf.5.1765834680683;
-        Mon, 15 Dec 2025 13:38:00 -0800 (PST)
-X-Received: by 2002:ac8:5a0b:0:b0:4f1:af84:387a with SMTP id d75a77b69052e-4f1bfb9d159mr211751661cf.5.1765834680115;
-        Mon, 15 Dec 2025 13:38:00 -0800 (PST)
+        bh=nAzhZfnq+Y+umpS+zHh9k29x4I1swYKfU58uwPItIqk=;
+        b=NkV4WCtW+XLjrJ+D7FGn8co65E8KyLZ9yqH349uVipSQVIajmI9Ah8Jrjo3wVLtrJ4
+         F2dwG7zpD/ElTEKN8DhCpdemA0gvqPaFGyW0vozhWymMfexYWUl3J1i41fPr92aBWQ4J
+         Sz24jfUWCNxivECGK223x1mknF861oQL7LJ6E=
+X-Received: by 2002:ac8:5f06:0:b0:4ed:ae94:5f5b with SMTP id d75a77b69052e-4f1bfb9be98mr222583411cf.8.1765834696100;
+        Mon, 15 Dec 2025 13:38:16 -0800 (PST)
+X-Received: by 2002:ac8:5f06:0:b0:4ed:ae94:5f5b with SMTP id d75a77b69052e-4f1bfb9be98mr222583101cf.8.1765834695659;
+        Mon, 15 Dec 2025 13:38:15 -0800 (PST)
 Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-889a85eaac7sm58926146d6.45.2025.12.15.13.37.58
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-4f345902748sm3725431cf.0.2025.12.15.13.38.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Dec 2025 13:37:59 -0800 (PST)
-Message-ID: <ddbf78c7-539c-42d9-b3dc-0d51ab52e2d2@broadcom.com>
-Date: Mon, 15 Dec 2025 13:37:57 -0800
+        Mon, 15 Dec 2025 13:38:14 -0800 (PST)
+Message-ID: <f14247e3-3c9c-47b9-b912-6eb4a4d34412@broadcom.com>
+Date: Mon, 15 Dec 2025 13:38:11 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -96,18 +94,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: i2c: brcm,iproc-i2c: Allow 2 reg entries for
- brcm,iproc-nic-i2c
-To: "Rob Herring (Arm)" <robh@kernel.org>, Andi Shyti
- <andi.shyti@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
+Subject: Re: [PATCH] dt-bindings: raspberrypi,bcm2835-firmware: Add 'power'
+ and gpio-hog nodes
+To: "Rob Herring (Arm)" <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
  Scott Branden <sbranden@broadcom.com>,
  Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
- <rafal@milecki.pl>
-Cc: linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+ <bcm-kernel-feedback-list@broadcom.com>, Eric Anholt <eric@anholt.net>,
+ Stefan Wahren <wahrenst@gmx.net>
+Cc: devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
  linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20251215212805.3322218-1-robh@kernel.org>
+References: <20251215212554.3319105-1-robh@kernel.org>
 Content-Language: en-US, fr-FR
 From: Florian Fainelli <florian.fainelli@broadcom.com>
 Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
@@ -142,17 +140,16 @@ Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
  MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
  7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
  95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
-In-Reply-To: <20251215212805.3322218-1-robh@kernel.org>
+In-Reply-To: <20251215212554.3319105-1-robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-DetectorID-Processed: b00c1d49-9d2e-4205-b15f-d015386d3d5e
 
-On 12/15/25 13:28, 'Rob Herring (Arm)' via BCM-KERNEL-FEEDBACK-LIST,PDL 
-wrote:
-> The brcm,iproc-nic-i2c variant has 2 reg entries.
-> 
-> The second one is related to the brcm,ape-hsls-addr-mask property, but it's
-> not clear what a proper description would be.
+On 12/15/25 13:25, Rob Herring (Arm) wrote:
+> Add missing child nodes for the RaspberryPi firmware. The firmware
+> implements a power domain provider in a 'power' node. GPIO hog nodes are
+> also supported, but the node name pattern was wrong and failed to match
+> them.
 > 
 > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 
