@@ -1,148 +1,205 @@
-Return-Path: <devicetree+bounces-246763-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246764-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55EB7CBFBA0
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 21:21:13 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B447CBFC06
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 21:31:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6C4C7303273D
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 20:19:29 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 00866301BCA9
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 20:31:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85B9C30E83F;
-	Mon, 15 Dec 2025 20:19:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E00231F12F8;
+	Mon, 15 Dec 2025 20:30:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="oo+FxrqY";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="cPUX6py7"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="AQAcLUCT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2D82207A38
-	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 20:19:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC331227EA7
+	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 20:30:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765829968; cv=none; b=nEKVZMM4aoHPxG2E/OJUupmiNkRwXyo7l3v1Vly5BE3EfzVXpq7MwZEa3acrUgSwrI7mNHbLupClGShUZ52az5yA9+PWqjwAh7pqxot97YhImSE3pg/E3F7htVW2rdzdRR3cvwRbe8pR07EyNMHOR8o7Lp1t5dHpT8RmL1iq0Ac=
+	t=1765830659; cv=none; b=rHCdy3qJuBrVQ6KwwZQ7x1CUePzDftJlsEGOVhyUCMFOh1dT2Wek8sECeR7s27Ff4dDqwtgwUPFPh85lHG8bW4kez3fvGFGCBeb28RTrodi1DU7pURD+ka/ozc9GVA88zshXR9HGWlXEsIEB/mw4xzblwvhfqGBVuh1eBDybvDI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765829968; c=relaxed/simple;
-	bh=ZctggFCKGNPdOVeNvoahy6lhLTD5GnVrJTESbZ2zFrg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bWVduCTdff99JZuYBRxQOltHwK6+nzqH+8jq9dYiJrVzMlpErU6amtdShcPp2D9Tp/YQS3N6u6ij5mOYGD/La8tBGhnyeahYXM9DDLGakNhQFPz+HyDtqTbjHPibg6OVpPvImeKuOJio5sPineoutuA8rjNRnIOBLCkUkarKKrI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=oo+FxrqY; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=cPUX6py7; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BFBT2iW189633
-	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 20:19:26 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=TT1d0umxtClSU97VLqt24Auu
-	oQHZRtR4IuDHXfMJgmU=; b=oo+FxrqYaWe59oSZjqGDjlrKUHn4+yCsEiH+eDUD
-	q2J/7JqAuZajXAACZYYWYehxd6dCUAKBPATODxPtEIZliQW20/PRzL8RetAZw1dG
-	dLpogUMYM6eA8ZS+3dWG4xjrM0x9BIaj3su58n+g5gT6ygokYEHOQi3E0LePNJaH
-	JZbBNFKgp753VyQqYySt439nISiCYiAqo//I/1NKPE91hZ4zT1XGM3Rd7pI75r6b
-	vPepr04AShaY4RfDDa35q+r9Es2KsVCMTstb19DHuTTIP6KY96Lfzx4Dr6Buih/G
-	UDKKke0qsh560RrbeDktMaOBl5+drSOTV5RGbvd64ZnVbA==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b2hgasfxx-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 20:19:25 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4ee416413a8so45461621cf.1
-        for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 12:19:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1765829965; x=1766434765; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=TT1d0umxtClSU97VLqt24AuuoQHZRtR4IuDHXfMJgmU=;
-        b=cPUX6py7NJouTpFxiuL9KWAcOwaDH6iUvj4JMObiGz2kWqWmr1WxW+xoGoyyDNhFVP
-         gWpFm/p5xD2tpNj7Ec/5yUMBHFsgzIvAbVuhIrlB/0iw6CzpN1MSXeiw/Wzjrf8ruWlG
-         lssEDUfbKqQUumayJ4gBeVPc8clXupmSIsI/d+F0xo0ca28Cm/w9Wd0HRxy6C5LNMeR0
-         JwGBxEdyW7078ivBJWJzSLtoF57UK9sp857Duyjp0sEQxNwe8uH/Ryy4Gsq4WGZh0wgY
-         mZ35Nuf/GcV4avoJXToF3BC+Ztam9b+Bq2fJGJKVS/y9HLyY80cKVKMfdWozKY8i3zb1
-         gj1g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765829965; x=1766434765;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=TT1d0umxtClSU97VLqt24AuuoQHZRtR4IuDHXfMJgmU=;
-        b=owQjjK/emdSNWvRDkRPYR59cjgPBrLFW/lO5Q0z4FeGKy+vJKJ8xUjLdhjyfndH1VK
-         gH4Cu95PZ/f/uBsMUM5LP/fBB7B96d5DADUfWqBf/I4ItermUty2gZj5PyEr/yuFZiJe
-         CO1QCNfbGHNDUCuCFAG6mI9b5h5sjwVfiZ289NlGiR+m7jAjnW7StuCPNH/RqvRzXyZW
-         T9E3azivRnuxDfOXo0RzLMaGT14gkYO3elE2zZwFHWjAWyBfWD2jurcbzwDD8AbtgG+0
-         tdCRVqT/1Ln6dyYK8IeQOy+v3u5w7hKCwstjmmKAFXOMnEQQFtdkbrzPSwgp/+dLkccR
-         DXBg==
-X-Forwarded-Encrypted: i=1; AJvYcCUB95RIt7JkJxsYlnDxS0s8aNGWwh23tpwTw++k0pGT3lLWfZ2QAgza9L/DEA46eIXGhMCV1nYJMetd@vger.kernel.org
-X-Gm-Message-State: AOJu0Yza8SgWxc3qeJvFMPgl7irA4FFCyYPRRagfYTd8pT7IEOUnQOdh
-	jYTdBOQvC2nz7vZzMJziswxrKebnI8Ik9Yrmhd//GJiNYYRoq/8heXXuyIkGg7k7JOtBPCXcZC5
-	M1A4GCBvWNlv4a+F60kXL4OPUhyzUcKe2npq5Gh6LYQBe1KJqbNDjvdAKIu2cetyY
-X-Gm-Gg: AY/fxX53/WiHdbT10cyKT/TB8el/yd7COAJbGVcTKknvcxrFdEULBBaN4MMnPoiCmKV
-	/z5nLcV09UgGIZMlSU7mPkhY/cNloJA+eM0mGjb9I7Ft/yXS3SFF0djerrqOUfdN7jhSQ8UiFxw
-	NZu0jlRB1v6Qf0P9i5iHVE98XSryDSCpdmJ+8xySGHvKWSE2UD32xMvKQibRJKHdqo0TDPvVcN3
-	/kCMVzc8ErvH7Rel7YLPEyh84oYXD9d2Fqq0NEJaltkFQpkwwX063NQ88TuiM2HxpVx+cv3BKZE
-	xqtCoHWVrOcc56d7mafREE9H5cp116Su2RFv4SpULfOeNZN/3Tke0ZO5CnbGKiY6gfV18cEMM0Y
-	7nfTSDpbV2t5ZU3m0OH5UlIrCoMIZzvRl/Bxqq94/OqJ71BbXxACVOvdHTl7T4xKEY9dFzUO465
-	RJOFmlp5BPmL9vPM7uzFoI9Lc=
-X-Received: by 2002:ac8:58cb:0:b0:4e8:9920:be58 with SMTP id d75a77b69052e-4f1d01731admr166123791cf.0.1765829965171;
-        Mon, 15 Dec 2025 12:19:25 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFYJEfX+zyhyh7P4YyfpYutO7MWGAMPIszFLOtP6Q5AB6qwEWt1FE10FnaLONq81p+uNug+bg==
-X-Received: by 2002:ac8:58cb:0:b0:4e8:9920:be58 with SMTP id d75a77b69052e-4f1d01731admr166123181cf.0.1765829964435;
-        Mon, 15 Dec 2025 12:19:24 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-37fdee14645sm31330941fa.46.2025.12.15.12.19.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Dec 2025 12:19:23 -0800 (PST)
-Date: Mon, 15 Dec 2025 22:19:22 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: lemans: Enable cpufreq cooling devices
-Message-ID: <trajn276nneqmpun5zh3w54mfglf64vl7yea2n5hzqq5skxsqf@vckpmhfchcg3>
-References: <20251215045451.3150894-1-gaurav.kohli@oss.qualcomm.com>
+	s=arc-20240116; t=1765830659; c=relaxed/simple;
+	bh=SHZt1xLw1ZmPdp57TFJNx25aVwMtAQfw8AmycOD6hIg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=rist4JtdRwYoLY+BDPGFuR6UGbH9bK7CIoCmZouZBRxnMc0MEKpGVp7KQPMRvCRr1Uwl3RK7caaKZWAl91y1Wm0QYP1E3ON2DpshUKVk8k6Rxj6BbEwz7MSROxBMAdGS5GwaB6wrJFCiRWPRxAztokbgdid8KSKY0oEDii8887g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=AQAcLUCT; arc=none smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1765830656;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=kFKP1wRB7MG8FdwSMPJtMRcQY82d/F+Hn/PXu/Kymsk=;
+	b=AQAcLUCTbi9q0yjBRlcfu7msV12FxSIFCi5j1m8nj2PkQFWQ1cDXgOF2Nr/z6I6ABRG7oC
+	A4eDU9c4bpOtYzTR7Ki+HSOFK+GWgaSuFvjeqkoGkXtgBwV9dfdQ6YKKKF0Us5pWXd2Xk3
+	+gfMKggfoQ6yVaE3haHlE+PiJZTIEkg=
+Received: from mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-295-fV4hTD3GOUeULQgWq9f_sw-1; Mon,
+ 15 Dec 2025 15:30:53 -0500
+X-MC-Unique: fV4hTD3GOUeULQgWq9f_sw-1
+X-Mimecast-MFC-AGG-ID: fV4hTD3GOUeULQgWq9f_sw_1765830649
+Received: from mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.4])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 30D6218002ED;
+	Mon, 15 Dec 2025 20:30:49 +0000 (UTC)
+Received: from p16v.redhat.com (unknown [10.45.224.214])
+	by mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id C414630001A8;
+	Mon, 15 Dec 2025 20:30:38 +0000 (UTC)
+From: Ivan Vecera <ivecera@redhat.com>
+To: netdev@vger.kernel.org
+Cc: Alexander Lobakin <aleksander.lobakin@intel.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Grzegorz Nitka <grzegorz.nitka@intel.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Jiri Pirko <jiri@resnulli.us>,
+	Jonathan Lemon <jonathan.lemon@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Leon Romanovsky <leon@kernel.org>,
+	Mark Bloch <mbloch@nvidia.com>,
+	Michal Schmidt <mschmidt@redhat.com>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Petr Oros <poros@redhat.com>,
+	Prathosh Satish <Prathosh.Satish@microchip.com>,
+	Przemek Kitszel <przemyslaw.kitszel@intel.com>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Saeed Mahameed <saeedm@nvidia.com>,
+	Simon Horman <horms@kernel.org>,
+	Stefan Wahren <wahrenst@gmx.net>,
+	Tariq Toukan <tariqt@nvidia.com>,
+	Tony Nguyen <anthony.l.nguyen@intel.com>,
+	Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+	Willem de Bruijn <willemb@google.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	intel-wired-lan@lists.osuosl.org,
+	linux-rdma@vger.kernel.org
+Subject: [PATCH RFC net-next v2 00/13] dpll: Core improvements and ice E825-C SyncE support
+Date: Mon, 15 Dec 2025 21:30:25 +0100
+Message-ID: <20251215203037.1324945-1-ivecera@redhat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251215045451.3150894-1-gaurav.kohli@oss.qualcomm.com>
-X-Proofpoint-GUID: WbaJvACzCBfuEV4_AhQMjkRPrftXkXMw
-X-Proofpoint-ORIG-GUID: WbaJvACzCBfuEV4_AhQMjkRPrftXkXMw
-X-Authority-Analysis: v=2.4 cv=GpxPO01C c=1 sm=1 tr=0 ts=69406d4d cx=c_pps
- a=JbAStetqSzwMeJznSMzCyw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=EUspDBNiAAAA:8 a=we9lbk642uJVcpOj0xQA:9 a=CjuIK1q_8ugA:10
- a=uxP6HrT_eTzRwkO_Te1X:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjE1MDE3NSBTYWx0ZWRfX6b2Nl8FeRKdm
- JyOiMTAl+TNM7HJt/h72FZnoGKgA3K5UsJV3+1+gut2DAnwXMqhZL1n+Hy4KSxxYz73XkceGR0u
- Yt2lAfBbwNTGWTevHeANqPGAEYEUMcOCJy0Se/Vxh0n2m0s0Q5NC6muz9KZ1aO9DaOgkMulZwxy
- cO1oZp5kz1SXSEXCqtkYxx7EwoVAvwYG5oUSN1BYYwg87tUppbrdZLrmmf2huXp+RVJ7zio75/4
- M2KLZ1+6LeIyNhIzyDjudbirMBZzJpFyIXCpRyGv2XLR11KlAcQfhbaWwgUZOr6bngVQZC3Hl55
- ETiL303PFQVBN7l6kR0E689xPPQfDmGDZYHcEyPLLACZ3STaLw7c2Td1psl1XCFs+ZWnrHRDHqf
- ty6vRLMs4jExMHT1qEPIwycMQ5OmWw==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-15_05,2025-12-15_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 phishscore=0 impostorscore=0 spamscore=0 bulkscore=0
- lowpriorityscore=0 adultscore=0 suspectscore=0 clxscore=1015 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512150175
+Content-Transfer-Encoding: 8bit
+X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.4
 
-On Mon, Dec 15, 2025 at 10:24:51AM +0530, Gaurav Kohli wrote:
-> Add cooling-cells property to the CPU nodes to support cpufreq
-> cooling devices.
-> 
-> Signed-off-by: Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
-> 
+This series introduces Synchronous Ethernet (SyncE) support for
+the Intel E825-C Ethernet controller. Unlike previous generations where
+DPLL connections were implicitly assumed, the E825-C architecture relies
+on the platform firmware to describe the physical connections between
+the network controller and external DPLLs (such as the ZL3073x).
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To accommodate this, the series extends the DPLL subsystem to support
+firmware node (fwnode) associations, asynchronous discovery via notifiers,
+and dynamic pin management. Additionally, a significant refactor of
+the DPLL reference counting logic is included to ensure robustness and
+debuggability.
 
+DPLL Core Extensions:
+* Firmware Node Support: Pins can now be registered with an associated
+  struct fwnode_handle. This allows consumer drivers to lookup pins based
+  on device properties (dpll-pins).
+* Asynchronous Notifiers: A raw notifier chain is added to the DPLL core.
+  This allows the network driver (ice driver in this series) to subscribe
+  to events and react when the platform DPLL driver registers the parent
+  pins, resolving probe ordering dependencies.
+* Dynamic Indexing: Drivers can now request DPLL_PIN_IDX_UNSPEC to have
+  the core automatically allocate a unique pin index, simplifying driver
+  implementation for virtual or non-indexed pins.
+
+Reference Counting & Debugging:
+* Refactor: The reference counting logic in the core is consolidated.
+  Internal list management helpers now automatically handle hold/put
+  operations, removing fragile open-coded logic in the registration paths.
+* Duplicate Checks: The core now strictly rejects duplicate registration
+  attempts for the same pin/device context.
+* Reference Tracking: A new Kconfig option DPLL_REFCNT_TRACKER is added
+  (using the kernel's REF_TRACKER infrastructure). This allows developers
+  to instrument and debug reference leaks by recording stack traces for
+  every get/put operation.
+
+Driver Updates:
+* zl3073x: Updated to register pins with their firmware nodes and support
+  the 'mux' pin type.
+* ice: Implements the E825-C specific hardware configuration for SyncE
+  (CGU registers). It utilizes the new notifier and fwnode APIs to
+  dynamically discover and attach to the platform DPLLs.
+
+Patch Summary:
+* Patch 1-3:
+  DT bindings and helper functions for finding DPLL pins via fwnode.
+* Patch 4:
+  Updates zl3073x to register pins with fwnode.
+* Patch 5-6:
+  Adds notifiers and dynamic pin index allocation to DPLL core.
+* Patch 7:
+  Adds 'mux' pin type support to zl3073x.
+* Patch 8-9:
+  Refactors DPLL core refcounting and adds duplicate registration checks.
+* Patch 10-11:
+  Adds REF_TRACKER infrastructure and updates existing drivers to support it.
+* Patch 12:
+  Implements the E825-C SyncE logic in the ice driver using the new
+  infrastructure.
+
+Arkadiusz Kubalewski (1):
+  ice: dpll: Support E825-C SyncE and dynamic pin discovery
+
+Ivan Vecera (10):
+  dt-bindings: net: ethernet-controller: Add DPLL pin properties
+  dpll: Allow associating dpll pin with a firmware node
+  net: eth: Add helpers to find DPLL pin firmware node
+  dpll: zl3073x: Associate pin with fwnode handle
+  dpll: Support dynamic pin index allocation
+  dpll: zl3073x: Add support for mux pin type
+  dpll: Enhance and consolidate reference counting logic
+  dpll: Prevent duplicate registrations
+  dpll: Add reference count tracking support
+  drivers: Add support for DPLL reference count tracking
+
+Petr Oros (1):
+  dpll: Add notifier chain for dpll events
+
+ .../bindings/net/ethernet-controller.yaml     |  13 +
+ drivers/dpll/Kconfig                          |  15 +
+ drivers/dpll/dpll_core.c                      | 296 +++++-
+ drivers/dpll/dpll_core.h                      |  11 +
+ drivers/dpll/dpll_netlink.c                   |   6 +
+ drivers/dpll/zl3073x/dpll.c                   |  14 +-
+ drivers/dpll/zl3073x/dpll.h                   |   1 +
+ drivers/dpll/zl3073x/prop.c                   |   2 +
+ drivers/net/ethernet/intel/ice/ice_dpll.c     | 977 ++++++++++++++++--
+ drivers/net/ethernet/intel/ice/ice_dpll.h     |  33 +
+ drivers/net/ethernet/intel/ice/ice_lib.c      |   3 +
+ drivers/net/ethernet/intel/ice/ice_ptp.c      |  29 +
+ drivers/net/ethernet/intel/ice/ice_ptp_hw.c   |   9 +-
+ drivers/net/ethernet/intel/ice/ice_ptp_hw.h   |   1 +
+ drivers/net/ethernet/intel/ice/ice_tspll.c    | 223 ++++
+ drivers/net/ethernet/intel/ice/ice_tspll.h    |  14 +-
+ drivers/net/ethernet/intel/ice/ice_type.h     |   6 +
+ .../net/ethernet/mellanox/mlx5/core/dpll.c    |  16 +-
+ drivers/ptp/ptp_ocp.c                         |  18 +-
+ include/linux/dpll.h                          |  59 +-
+ include/linux/etherdevice.h                   |   4 +
+ net/ethernet/eth.c                            |  20 +
+ 22 files changed, 1614 insertions(+), 156 deletions(-)
 
 -- 
-With best wishes
-Dmitry
+2.51.2
+
 
