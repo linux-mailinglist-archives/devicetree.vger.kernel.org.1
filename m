@@ -1,138 +1,157 @@
-Return-Path: <devicetree+bounces-246355-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246360-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02BC8CBC1DB
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 00:53:26 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7018CBC241
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 01:26:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 2E911300C8E5
-	for <lists+devicetree@lfdr.de>; Sun, 14 Dec 2025 23:53:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8B3E730038D5
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 00:26:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B674329C35A;
-	Sun, 14 Dec 2025 23:53:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aLx/by4D"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B4A22E8DFD;
+	Mon, 15 Dec 2025 00:26:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f171.google.com (mail-vk1-f171.google.com [209.85.221.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16620286417
-	for <devicetree@vger.kernel.org>; Sun, 14 Dec 2025 23:53:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AC0F288C2C;
+	Mon, 15 Dec 2025 00:26:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765756404; cv=none; b=kJo84gR2184I27Tpiam6WPUOGWR2S4i2XINzA4k1yoWt2EYbNydbj49kw9sGCDAsqZ6WWV+asFUObYjNFv4gscjqFYAEWYrUaddB1kfIi04wEuKQRy8jb5i24v1nsRblYZBqEAEQmiZH80rVcYlQNLiXrxCd6WnAqPix4XlAMSU=
+	t=1765758415; cv=none; b=PGn8EHLYN/BZf+7W+ObCvFvZwnmfh9arvNzs5nyxN4Hh0Kz2XhaVYEA3iHMQknd4rTzH/ajpdNWiuk0ltbGx0EGVnp0ut8OlFlAD3mM/XZsE2DPQ5kIsk63g1ZrXAsH8sNaISYZkqB0WZHpO0UGad1n3GlS36HZiSuuOEt5beuM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765756404; c=relaxed/simple;
-	bh=imomqWpqkx+6bjRUCXg45LFde/m/ON6xIRymtOfup9U=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=KQsIXnbkEaxMN8hVGPyCoLvZmHg21IpFdI0ldCe08XNOTZHYh5o/OJHtsgy4LOmyYT5Gfh0eydnVVL5FBs7IgZ6yYsjaSLx/rpbf8NkbrbDwFpzFrxSr8RwFmPUNWVoKbkMpFGqPCqnXuJJ8CsDLy1HYUZ/EVdqTe8thgbrJdRc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aLx/by4D; arc=none smtp.client-ip=209.85.221.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f171.google.com with SMTP id 71dfb90a1353d-55b09f54e98so895570e0c.1
-        for <devicetree@vger.kernel.org>; Sun, 14 Dec 2025 15:53:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1765756402; x=1766361202; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=imomqWpqkx+6bjRUCXg45LFde/m/ON6xIRymtOfup9U=;
-        b=aLx/by4DSNPUTIIAxfOjwNm5epKzulUATUZjVFYcZAopTYmCzNqX3EHp1uvwV97ToP
-         Fuo2ARJUnfIatMPD3J/eG7VIVZZXfj098g0fWqZQHVqkygaQ3ANNCzfyzjCbtK2zLXXR
-         PGrNMTuv4/DTVPZTDsozIKxIo2uvZTct/Sq8zvjwicG5vMcs5LYbLNfNkg0QX+Z17R3J
-         TT+0n6Fd/4p7wB1zuGCEIWFzfZFMYQbawYhgQ0UxuWN+a3Dn12bS08z4RDphCMUlQXoU
-         btZHSK9R9ciarE3dON/58ONd27nj2/ocYUaUDLUnbtQ/vxDeoEUl7HcwJasvM7VXFnNv
-         RN9Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765756402; x=1766361202;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-gg:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=imomqWpqkx+6bjRUCXg45LFde/m/ON6xIRymtOfup9U=;
-        b=WKTlT/E70fE/1z7B9c8qPlu9Q669CkeL64f3odEVcknElm9URwanB13drZovbUpR18
-         wjvs2yQPbmLcmMSPcxOmpz1Pya3lY6UEaerOUObORU+Yj4p21U1ZTh+8kVRsuluw21Ha
-         OHgJKKIhzXNjE68OvOgGdrhp5hNgkf3V4cew/OU2B3V8GSnmy0h+TzP/rU+m3QzAJ+Ut
-         Vn6vftSm8wjMxK4OGyrXrqrR+C9hIB7DVeJozAMNAHel7jIouiBFpHYjUHHCMBhQuhcW
-         Kg4IVv7JB+Izww+Nw0GJpOztiTVqAY+CLJSxy/sQyvGNqy1v+xcAIqhtSZn4zjuwiLsx
-         6EBA==
-X-Forwarded-Encrypted: i=1; AJvYcCWRqIt7CNfdU54e4cW3+e61Dz/EHrEVQC2mfuRUU1nug/YdO4A+DaGKbrxDbot7JocEQ3w7guHJGC64@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx2OdJdUs8+qx5glDveYi5YKRChRd8FOXGZcG2bNi2imADI2S28
-	80YlRMw+YmOP4xJb/ywM1RnhUfor5QF9GJKf4aqFUm7+WbEgs6U5AWqi
-X-Gm-Gg: AY/fxX4SQuY7zrmZyqyMbl4ajHeRIVW/N1q4BnCsGuvvCDV/QnjPFNY0rN8dpf39kAq
-	2PTyhSpp+HyDPyWwSt8itzY/ZdTaTx3d2FQI7TxwD+g5faMKkt296dOVxbe0h+381Cx4nhg5/lx
-	T+k7saVMLn02iVIiUsP5bP4STPKL6I+txRXKI+yawJNxvLprymnrhsIkI/Ly39U9/0fIKWgI9Z9
-	UlY9koCTkULL0G1GC2au2m/Y19dhFidWYODFZjMYCNPPldpKIpSdBL1oDvw2PWT2i4lVEw6bI/u
-	QYzVOD9KatP8ry7PMehPFsF1klYrv49+E/RtnzZvAGednpWpBO8hzlLD010oGZeLdSsc/oad748
-	p+3lQrk3keuyJYj4IU/9TIRCTICt5gjFqZPfXxki0tNMqwoZhl4MeWMYg7HQ7S/xt9M2d5OvnhV
-	J9n8pr
-X-Google-Smtp-Source: AGHT+IEoqQCjZSwLiCqkVJ07lox30kIA6ldc1LVKWm44vuHifiI/AUWhZSeSHNiSZdDgEAi1bOnPUA==
-X-Received: by 2002:a05:6122:458b:b0:55b:305b:4e27 with SMTP id 71dfb90a1353d-55fed66a7b0mr3186745e0c.19.1765756402003;
-        Sun, 14 Dec 2025 15:53:22 -0800 (PST)
-Received: from localhost ([2800:bf0:82:11a2:c6ad:1d0e:15de:a612])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-55fdc638a23sm5590944e0c.8.2025.12.14.15.53.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 14 Dec 2025 15:53:21 -0800 (PST)
+	s=arc-20240116; t=1765758415; c=relaxed/simple;
+	bh=u35lqsNDh0hGEaRE+XE6Hhfpn4HUkb37YMhZXeV8vMI=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=CF7YTnJV2rQPbajP2fIVk9mxkUK07LYe7CDEyXBfL+68WYlJgOfTalCmv6bthQzDP1Nn4JWETti5spLo3TQcPn1Nr9hgALYdjdrK+ABf5tKRCCtyHOTTGWte5xzxoAhvSeff4JHIj4upnzqbSZLrz56OphWVNaqEvYziMHCaMqE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.99)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1vUwBG-000000002IO-2Ysp;
+	Mon, 15 Dec 2025 00:11:14 +0000
+Date: Mon, 15 Dec 2025 00:11:10 +0000
+From: Daniel Golle <daniel@makrotopia.org>
+To: Daniel Golle <daniel@makrotopia.org>, Andrew Lunn <andrew@lunn.ch>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Simon Horman <horms@kernel.org>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: Frank Wunderlich <frankwu@gmx.de>, Chad Monroe <chad@monroe.io>,
+	Cezary Wilmanski <cezary.wilmanski@adtran.com>,
+	Avinash Jayaraman <ajayaraman@maxlinear.com>,
+	Bing tao Xu <bxu@maxlinear.com>, Liang Xu <lxu@maxlinear.com>,
+	Juraj Povazanec <jpovazanec@maxlinear.com>,
+	"Fanni (Fang-Yi) Chan" <fchan@maxlinear.com>,
+	"Benny (Ying-Tsan) Weng" <yweng@maxlinear.com>,
+	"Livia M. Rosu" <lrosu@maxlinear.com>,
+	John Crispin <john@phrozen.org>
+Subject: [PATCH RFC net-next v3 0/4] net: dsa: initial support for MaxLinear
+ MxL862xx switches
+Message-ID: <cover.1765757027.git.daniel@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Sun, 14 Dec 2025 18:53:19 -0500
-Message-Id: <DEYCEJB4SWZ3.13MX1YUFLI1QI@gmail.com>
-Cc: "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
- <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Tobias
- Sperling" <tobias.sperling@softing.com>, "David Lechner"
- <dlechner@baylibre.com>, =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- "Andy Shevchenko" <andy@kernel.org>, <linux-iio@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, "Jonathan
- Cameron" <Jonathan.Cameron@huawei.com>
-Subject: Re: [PATCH v8 2/2] iio: adc: Add ti-ads1018 driver
-From: "Kurt Borja" <kuurtb@gmail.com>
-To: "Jonathan Cameron" <jic23@kernel.org>, "Kurt Borja" <kuurtb@gmail.com>
-X-Mailer: aerc 0.21.0-0-g5549850facc2
-References: <20251211-ads1x18-v8-0-5cd12ac556da@gmail.com>
- <20251211-ads1x18-v8-2-5cd12ac556da@gmail.com>
- <20251214144839.2eec58f9@jic23-huawei>
-In-Reply-To: <20251214144839.2eec58f9@jic23-huawei>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On Sun Dec 14, 2025 at 9:48 AM -05, Jonathan Cameron wrote:
-> On Thu, 11 Dec 2025 23:25:44 -0500
-> Kurt Borja <kuurtb@gmail.com> wrote:
->
->> Add ti-ads1018 driver for Texas Instruments ADS1018 and ADS1118 SPI
->> analog-to-digital converters.
->>=20
->> This chips' MOSI pin is shared with a data-ready interrupt. Defining
->> this interrupt in devicetree is optional, therefore we only create an
->> IIO trigger if one is found.
->>=20
->> Handling this interrupt requires some considerations. When enabling the
->> trigger the CS line is tied low (active), thus we need to hold
->> spi_bus_lock() too, to avoid state corruption. This is done inside the
->> set_trigger_state() callback, to let users use other triggers without
->> wasting a bus lock.
->>=20
->> Reviewed-by: Andy Shevchenko <andy@kernel.org>
->> Signed-off-by: Kurt Borja <kuurtb@gmail.com>
->
-> Hi Kurt,=20
->
-> A couple of minor formatting things. All trivial so I tweaked whilst
-> applying. Applied to the testing branch of iio.git. I'll rebase that
-> on rc1 once available then push out as togreg for linux-next to pick
-> it up.
->
-> Thanks,
->
-> Jonathan
+Hi,
 
-Hi Jonathan,
+This series adds very basic DSA support for the MaxLinear MxL86252
+(5 PHY ports) and MxL86282 (8 PHY ports) switches. The intent is to
+validate and get feedback on the overall approach and driver structure,
+especially the firmware-mediated host interface.
 
-Thank you, Andy and David for your guidance (and the little tweaks) :)
+MxL862xx integrates a firmware running on an embedded processor (Zephyr
+RTOS). Host interaction uses a simple API transported over MDIO/MMD.
+This series includes only what's needed to pass traffic between user
+ports and the CPU port: relayed MDIO to internal PHYs, basic port
+enable/disable, and CPU-port special tagging.
 
---=20
- ~ Kurt
+Thanks for taking a look.
+
+Changes since RFC v2
+1/4, 2/4, 3/4: unchanged
+
+4/4 net: dsa: add basic initial driver for MxL862xx switches
+ * fix return value being uninitialized on error in mxl862xx_api_wrap()
+ * add missing description in kerneldoc comment of
+   struct mxl862xx_ss_sp_tag
+
+Changes since initial RFC
+
+1/4 dt-bindings: net: dsa: add bindings for MaxLinear MxL862xx
+ * better description in dt-bindings doc
+
+2/4 net: dsa: add tag formats for MxL862xx switches
+ * make sure all tag fields are initialized
+
+3/4 net: mdio: add unlocked mdiodev C45 bus accessors
+ * new patch
+
+4/4 net: dsa: add basic initial driver for MxL862xx switches
+ * make use of struct mdio_device
+ * add phylink_mac_ops stubs
+ * drop leftover nonsense from mxl862xx_phylink_get_caps()
+ * fix endian conversions
+ * use __le32 instead of enum types in over-the-wire structs
+ * use existing MDIO_* macros whenever possible
+ * simplify API constants to be more readable
+ * use readx_poll_timeout instead of open-coding poll timeout loop
+ * add mxl862xx_reg_read() and mxl862xx_reg_write() helpers
+ * demystify error codes returned by the firmware
+ * add #defines for mxl862xx_ss_sp_tag member values
+ * move reset to dedicated function, clarify magic number being the
+   reset command ID
+
+Daniel Golle (4):
+  dt-bindings: net: dsa: add bindings for MaxLinear MxL862xx
+  net: dsa: add tag formats for MxL862xx switches
+  net: mdio: add unlocked mdiodev C45 bus accessors
+  net: dsa: add basic initial driver for MxL862xx switches
+
+ .../bindings/net/dsa/maxlinear,mxl862xx.yaml  | 162 ++++++++
+ MAINTAINERS                                   |   8 +
+ drivers/net/dsa/Kconfig                       |   2 +
+ drivers/net/dsa/Makefile                      |   1 +
+ drivers/net/dsa/mxl862xx/Kconfig              |  12 +
+ drivers/net/dsa/mxl862xx/Makefile             |   3 +
+ drivers/net/dsa/mxl862xx/mxl862xx-api.h       | 118 ++++++
+ drivers/net/dsa/mxl862xx/mxl862xx-cmd.h       |  28 ++
+ drivers/net/dsa/mxl862xx/mxl862xx-host.c      | 230 +++++++++++
+ drivers/net/dsa/mxl862xx/mxl862xx-host.h      |   4 +
+ drivers/net/dsa/mxl862xx/mxl862xx.c           | 361 ++++++++++++++++++
+ drivers/net/dsa/mxl862xx/mxl862xx.h           |  24 ++
+ include/linux/mdio.h                          |  13 +
+ include/net/dsa.h                             |   2 +
+ net/dsa/Kconfig                               |   7 +
+ net/dsa/Makefile                              |   1 +
+ net/dsa/tag_mxl862xx.c                        | 113 ++++++
+ 17 files changed, 1089 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/dsa/maxlinear,mxl862xx.yaml
+ create mode 100644 drivers/net/dsa/mxl862xx/Kconfig
+ create mode 100644 drivers/net/dsa/mxl862xx/Makefile
+ create mode 100644 drivers/net/dsa/mxl862xx/mxl862xx-api.h
+ create mode 100644 drivers/net/dsa/mxl862xx/mxl862xx-cmd.h
+ create mode 100644 drivers/net/dsa/mxl862xx/mxl862xx-host.c
+ create mode 100644 drivers/net/dsa/mxl862xx/mxl862xx-host.h
+ create mode 100644 drivers/net/dsa/mxl862xx/mxl862xx.c
+ create mode 100644 drivers/net/dsa/mxl862xx/mxl862xx.h
+ create mode 100644 net/dsa/tag_mxl862xx.c
+
+-- 
+2.52.0
 
