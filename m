@@ -1,169 +1,327 @@
-Return-Path: <devicetree+bounces-246633-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246634-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B53BCBE612
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 15:49:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 084E3CBE60D
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 15:48:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 15AB73043914
+	by sea.lore.kernel.org (Postfix) with ESMTP id CFEA330B2E82
 	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 14:42:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E84CC32C93F;
-	Mon, 15 Dec 2025 14:28:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0CD233B6FB;
+	Mon, 15 Dec 2025 14:28:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PCVml93r"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="QN0EXLfn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB7E932936D;
-	Mon, 15 Dec 2025 14:28:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A2E233ADBD;
+	Mon, 15 Dec 2025 14:28:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765808904; cv=none; b=cMToac/izdHDTYxSzrMrLbASC4CxC3kM5SOeu4hirPSbgi3Ar7OWfT6neG2gWgi64XriMNNvjzTEH/RUhVL6+40KQZ6Kg9huF2tOUTbIoIfuYMmEWnpBCA7b3GjiDytgEucZclAOFJL9C/B6E3uxZsWXLj3C3+0Tm+xDh5UuRwM=
+	t=1765808937; cv=none; b=XsAlotLu7NyrjnOpAh6I7fOV5QiqPCO9TPmroOLExtQ3tgp3jSBTCvTL7j5A0ZmD0qXeAO+4zGmlPUQcrQo82J/aGIFxW8oK+FuglrYOtro3Rh3fG7JBNaDZt1oWZvw6hCmKKRwyix1ifOzOjhVcy2zE+t9DblySK589lz2/fO0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765808904; c=relaxed/simple;
-	bh=DGbhxhBCi2P25vodMBSXEvwNQHtgyOMT7/HM9huN1xU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Orq1ahdCSGBBZUfrMZwDdUFHLepRnKDm4zEHgi7CU3h1BNjMc+EgdB6gtCUqDiS+fVWzcK3RPLMW9nxTouhrpSUqZSFsJxgxFCj/pfMztDvs2Eq/WU8pI82crOYzDgyUIyYghFrMmGRC1wbdQ3WgzosXo3j8isvGRsF3u1fqkVM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PCVml93r; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA2D1C4CEF5;
-	Mon, 15 Dec 2025 14:28:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765808904;
-	bh=DGbhxhBCi2P25vodMBSXEvwNQHtgyOMT7/HM9huN1xU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PCVml93rYj19A2rcJyWtm0rNAD2ud2zXyzXWmwc02QF98zZ+mCIgwwGTE4jnvPcle
-	 C4F2eskrG2j3WDF2mVeUzZQa1GDcK/Gqyl7F/sX7L8xMYQI5QVn3C74NcMMbHo2w+E
-	 toG37s0VED1bvrJ1QVmbLVw8j6DfdKaw24Q2b/WeT1NHSLQIFFQvCojJHB7os7AKJb
-	 hff8GVrksvShAFF4d4zwRcZenq3flScGMg0FCURx4wvKgEPXrXkxXKVrSuGKFdBtC+
-	 EZCSMp6sQr1n7G6LgIvGj+koLmvVPvcsDOdtqvWq/9AqyXRkNoJp2zrqfykomGaCoT
-	 gIHvgyrvE561g==
-Date: Mon, 15 Dec 2025 14:28:17 +0000
-From: Simon Horman <horms@kernel.org>
-To: Daniel Golle <daniel@makrotopia.org>
-Cc: Andrew Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	s=arc-20240116; t=1765808937; c=relaxed/simple;
+	bh=plEMs9As68eGoG47QQ4ZErUKAxjyIZSUj604/YGX4YI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=WKXlf0Qkwe2qBAGchMQAZV+9i3SpCQGhwY6V3NQie9bimmIqhu6EhOuVnmw5kenSD8DJ3tkCee6UHUiIl8NQ4nWihWchL/YJjDY23t1Z083nNgoTYvBc6DEEzpqJUTsEFobVE/SJNbDzsUJNBgTtgj8FvCouHDITzQOMYgrtJ5k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=QN0EXLfn; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id DE3E5C19D1C;
+	Mon, 15 Dec 2025 14:28:28 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 2B8CA60664;
+	Mon, 15 Dec 2025 14:28:53 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id C509C119421A4;
+	Mon, 15 Dec 2025 15:28:48 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1765808932; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding; bh=7VAhU5Fa2gp4Ls0yekahh9p8eZur4e+Cg6iC0NYpQks=;
+	b=QN0EXLfnZPDRORHO2LE9kKBtx7XM41Epku6T7awvmEUYw96an8uYMyIJ+ujOtiGp8xSxHs
+	5KmiUvFPw0UfhuH6FeHQCi3YSC/YT2BSAUvh7xnhYBtMKP08A7rDiy07ztqSYUganK4xn9
+	vDAhlV/g6MK92LZZf9MmJs/AKp8B/LNt8Dcs93qlUqYdmuKq8AY687ohqR8mbiGRKoFbUZ
+	SHTFRmxbBAHmXCbvXDn1zKuSOizxWxKGBq0myKlej7wQuHVWuGNrAlnz3wRIvheChlnQju
+	sUJiT2+e4oTUrWNudRgt/ul4xHJzMEk3BnyXfBq/kwyTy7nXDyaQG4C8mh4MxQ==
+From: "Herve Codina (Schneider Electric)" <herve.codina@bootlin.com>
+To: Thomas Gleixner <tglx@linutronix.de>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Frank Wunderlich <frankwu@gmx.de>, Chad Monroe <chad@monroe.io>,
-	Cezary Wilmanski <cezary.wilmanski@adtran.com>,
-	Avinash Jayaraman <ajayaraman@maxlinear.com>,
-	Bing tao Xu <bxu@maxlinear.com>, Liang Xu <lxu@maxlinear.com>,
-	Juraj Povazanec <jpovazanec@maxlinear.com>,
-	"Fanni (Fang-Yi) Chan" <fchan@maxlinear.com>,
-	"Benny (Ying-Tsan) Weng" <yweng@maxlinear.com>,
-	"Livia M. Rosu" <lrosu@maxlinear.com>,
-	John Crispin <john@phrozen.org>
-Subject: Re: [PATCH RFC net-next v3 2/4] net: dsa: add tag formats for
- MxL862xx switches
-Message-ID: <aUAbAWUWUyJqACoz@horms.kernel.org>
-References: <cover.1765757027.git.daniel@makrotopia.org>
- <de01f08a3c99921d439bc15eeafd94e759688554.1765757027.git.daniel@makrotopia.org>
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Saravana Kannan <saravanak@google.com>,
+	Herve Codina <herve.codina@bootlin.com>
+Cc: linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Pascal Eberhard <pascal.eberhard@se.com>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: [PATCH v7 0/8] gpio: renesas: Add support for GPIO and related interrupts in RZ/N1 SoC
+Date: Mon, 15 Dec 2025 15:28:22 +0100
+Message-ID: <20251215142836.167101-1-herve.codina@bootlin.com>
+X-Mailer: git-send-email 2.52.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <de01f08a3c99921d439bc15eeafd94e759688554.1765757027.git.daniel@makrotopia.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Mon, Dec 15, 2025 at 12:11:43AM +0000, Daniel Golle wrote:
+Hi,
 
-...
+This series adds support for GPIO and GPIO IRQ mux available in the
+RZ/N1 SoCs.
 
-> diff --git a/net/dsa/tag_mxl862xx.c b/net/dsa/tag_mxl862xx.c
-> new file mode 100644
-> index 0000000000000..9c5e5f90dcb63
-> --- /dev/null
-> +++ b/net/dsa/tag_mxl862xx.c
-> @@ -0,0 +1,113 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
-> +/*
-> + * DSA Special Tag for MaxLinear 862xx switch chips
-> + *
-> + * Copyright (C) 2025 Daniel Golle <daniel@makrotopia.org>
-> + * Copyright (C) 2024 MaxLinear Inc.
-> + */
-> +
-> +#include <linux/bitops.h>
-> +#include <linux/etherdevice.h>
-> +#include <linux/skbuff.h>
-> +#include <net/dsa.h>
-> +#include "tag.h"
-> +
-> +#define MXL862_NAME	"mxl862xx"
-> +
-> +/* To define the outgoing port and to discover the incoming port a special
-> + * tag is used by the GSW1xx.
-> + *
-> + *       Dest MAC       Src MAC    special TAG        EtherType
-> + * ...| 1 2 3 4 5 6 | 1 2 3 4 5 6 | 1 2 3 4 5 6 7 8 | 1 2 |...
-> + *                                |<--------------->|
-> + */
-> +
-> +#define MXL862_HEADER_LEN 8
-> +
-> +/* Byte 7 */
-> +#define MXL862_IGP_EGP GENMASK(3, 0)
-> +
-> +static struct sk_buff *mxl862_tag_xmit(struct sk_buff *skb,
-> +				       struct net_device *dev)
-> +{
-> +	struct dsa_port *dp = dsa_user_to_port(dev);
-> +	struct dsa_port *cpu_dp = dp->cpu_dp;
-> +	unsigned int cpu_port = cpu_dp->index + 1;
-> +	unsigned int usr_port = dp->index + 1;
-> +	__be16 *mxl862_tag;
+The first patches in this series are related to a new helper introduced
+to parse an interrupt-map property.
+  - patch 1: Introduce the helper (for_each_of_imap_item)
+  - patch 2: Add a unittest for the new helper
+  - patch 3 and 4: convert existing drivers to use this new helper
 
-Hi Daniel,
+Patch 5 adds support for GPIO (device-tree description)
 
-Please arrange local variables in reverse xmas tree order.
-Even if it means separating declaration and initialisation.
+The last patches (6, 7 and 8) of the series are related to GPIO
+interrupts and GPIO IRQ multiplexer.
 
-FWIIW, I would probably go for:
+In the RZ/N1 SoCs, GPIO interrupts are wired to a GPIO IRQ multiplexer.
 
-	struct dsa_port *dp = dsa_user_to_port(dev);
-	struct dsa_port *cpu_dp = dp->cpu_dp;
-	unsigned int cpu_port, usr_port;
-	__be16 *mxl862_tag;
+This multiplexer does nothing but select 8 GPIO IRQ lines out of the 96
+available to wire them to the GIC input lines.
 
-	cpu_port = cpu_dp->index + 1;
-	usr_port = dp->index + 1;
+One upstreaming attempt have been done previously by Phil Edworthy [1]
+but the series has never been applied.
 
-> +
-> +	if (!skb)
-> +		return skb;
-> +
-> +	/* provide additional space 'MXL862_HEADER_LEN' bytes */
-> +	skb_push(skb, MXL862_HEADER_LEN);
-> +
-> +	/* shift MAC address to the beginnig of the enlarged buffer,
+Based on my understanding, I have fully reworked the driver proposed by
+Phil and removed the IRQ domain. Indeed, the device doesn't handle
+interrupts. It just routes signals.
 
-s/beginnig/beginning/
+Also, as an interrupt-map property is used, the driver cannot be
+involved as an interrupt controller itself. It is a nexus node.
 
-> +	 * releasing the space required for DSA tag (between MAC address and
-> +	 * Ethertype)
-> +	 */
-> +	dsa_alloc_etype_header(skb, MXL862_HEADER_LEN);
-> +
-> +	/* special tag ingress */
-> +	mxl862_tag = dsa_etype_header_pos_tx(skb);
-> +	mxl862_tag[0] = htons(ETH_P_MXLGSW);
-> +	mxl862_tag[1] = 0;
-> +	mxl862_tag[2] = htons(usr_port + 16 - cpu_port);
-> +	mxl862_tag[3] = htons(FIELD_PREP(MXL862_IGP_EGP, cpu_port));
-> +
-> +	return skb;
-> +}
+With that in mind,
+  - Patch 6 is related to the irq-mux binding.
 
-...
+  - Patch 7 introduces the irq-mux driver.
+    This driver uses the 'for_each_of_imap_item' helper introduced
+    previously. Indeed, the lines routing is defined by the
+    interrupt-map property and the driver needs to set registers to
+    apply this routing.
+
+  - Patch 8 is the RZ/N1 device-tree description update to have the
+    support for the GPIO interrupts.
+
+[1] https://lore.kernel.org/all/20190219155511.28507-1-phil.edworthy@renesas.com/
+
+Best regards,
+Hervé
+
+Changes v6 -> v7
+  v6: https://lore.kernel.org/all/20251027123601.77216-1-herve.codina@bootlin.com/
+
+  Rebase on top of v6.19-rc1.
+
+  Patches 1 to 4 :
+   - Add 'Reviewed-by: Linus Walleij'.
+
+  Patch 5:
+   - Fix a typo (Synopsys) in commit log.
+   - GPIO controllers enabled by default.
+   - Move "reg" just below "compatible".
+   - Add 'Reviewed-by: Linus Walleij'.
+   - Add 'Reviewed-by: Geert Uytterhoeven'.
+
+  Patch 6:
+   - Add 'Reviewed-by: Linus Walleij'.
+   - Add 'Reviewed-by: Geert Uytterhoeven'.
+
+  Patch 7:
+   - Enable RZN1_IRQMUX only if GPIO_DWAPB is enabled.
+   - Move a 'if' condition to a single line.
+   - Print the output line index in the 'already defined' error message.
+   - Move rzn1_irqmux_setup() code directly into rzn1_irqmux_probe().
+   - Add 'Reviewed-by: Linus Walleij'.
+   - Add 'Tested-by: Wolfram Sang'.
+   - Add 'Reviewed-by: Wolfram Sang'.
+   - Add 'Reviewed-by: Geert Uytterhoeven'.
+
+  Patch 8:
+   - Remove unneeded spaces.
+   - Add 'Reviewed-by: Linus Walleij'
+   - Add 'Reviewed-by: Wolfram Sang'
+   - Add 'Reviewed-by: Geert Uytterhoeven'
+
+Changes v5 -> v6
+  v5: https://lore.kernel.org/lkml/20251020080648.13452-1-herve.codina@bootlin.com/
+
+  Patches 1 and 2:
+    Add 'Reviewed-by: Rob Herring'
+
+  Patches 3, and 5:
+    No changes
+
+  Patch 6:
+    Add 'Reviewed-by: Rob Herring'
+
+  Patch 7:
+    Remove an unneeded TAB in Makefile.
+    Use RZN1_IRQMUX_GIC_SPI_BASE and RZN1_IRQMUX_NUM_OUTPUTS to replace
+    the irq/output mapping table.
+    Use DECLARE_BITMAP().
+
+  Patch 8:
+    No changes
+
+Changes v4 -> v5
+  v4: https://lore.kernel.org/lkml/20250922152640.154092-1-herve.codina@bootlin.com/
+
+  Rebase on top of v6.18-rc1
+
+  Patches 1 to 3:
+    No changes
+
+  Patch 4:
+    Fix conflict.
+    Add 'Tested-by: Wolfram Sang'.
+
+  Patch 5:
+    Add 'Reviewed-by: Bartosz Golaszewski'.
+
+  Patch 6:
+    Add 'Reviewed-by: Wolfram Sang'.
+
+  Patch 7:
+    Add a missing 'const' qualifier.
+    Remove an unneeded dev_err_probe() call.
+    Add a check to avoid setting the same output line multiple times.
+
+  Patch 8:
+    Update comment
+    Add 'Reviewed-by: Bartosz Golaszewski'
+
+Changes v3 -> v4
+  v3: https://lore.kernel.org/lkml/20250918104009.94754-1-herve.codina@bootlin.com/
+
+  Patch 1:
+    - Add 'Tested-by: Wolfram Sang'
+
+  Patch 2..5:
+    - No changes
+
+  Patch 6:
+    - Add minItems and maxItems
+    - Update the 'interrup-map' description
+
+  Patch 7:
+    - Use rzn1_irqmux prefix instead of irqmux.
+    - Introduce rzn1_irqmux_output_lines[] to give the mapping between
+      the interrupt output line index and the GIC controller interrupt
+      number.
+    - Remove of_irq_count() call and related checks
+
+  Patch 8:
+    - Describe the irq mux node using a reduced (one item) interrupt-map
+      property.
+
+Changes v2 -> v3
+  v2: https://lore.kernel.org/lkml/20250909120041.154459-1-herve.codina@bootlin.com/
+
+  Reordered patches as suggested by Thomas Gleixner.
+
+  Patch 1: (3 in v2)
+    - Replace a wrong 'extern' by 'static inline' in of_irq.h  (detected
+      by test robots)
+
+  Patch 2: (4 in v2)
+  Patch 3: (5 in v2)
+  Patch 4: (6 in v2)
+    - No changes
+
+  Patch 5: (1 in v2)
+    - Add 'Reviewed-by: Wolfram Sang'
+    - Add 'Tested-by: Wolfram Sang'
+
+  Patch 6: (2 in v2)
+    - Add '#address-cells = <0>;' in the interrupt-controller node
+      present in the example.
+
+  Patch 7:
+  Patch 8:
+    - No changes
+
+Changes v1 -> v2
+  v1: https://lore.kernel.org/lkml/20250725152618.32886-1-herve.codina@bootlin.com/
+
+  Rebase on top of v6.17-rc5
+
+  Patch 1 in v1
+    - Removed in v2 (no need for RZ/N1 compatible strings).
+
+  Patch 1 (2 in v1)
+    - Fix node names (issue reported by Rob's bot)
+    - Fix compatible RZ/N1 compatible strings
+    - Removed undocumented and unused 'bank-name' properties
+
+  Patch 2 (3 in v1)
+   - Remove 'interrupts' property
+   - Update 'interrupt-map' description
+
+  Patch 3 (4 in v1)
+   - Rework of_irq_foreach_imap() to provide the for_each_of_imap_item
+     iterator (similar to for_each_of_range)
+
+  Patch 4 (new in v2)
+   - Add a unittest for for_each_of_imap_item
+
+  Patch 5 (new in v2)
+   - Convert irqchip/ls-extirq to use for_each_of_imap_item
+
+  Patch 6 (new in v2)
+   - Convert irqchip/renesas-rza1 to use for_each_of_imap_item
+
+  Patch 7 (5 in v1)
+   - Use for_each_of_imap_item
+   - Remove 'interrupts' property usage
+
+  Patch 8 (6 in v1)
+   - Remove 'interrupts' property
+
+Herve Codina (Schneider Electric) (8):
+  of/irq: Introduce for_each_of_imap_item
+  of: unittest: Add a test case for for_each_of_imap_item iterator
+  irqchip/ls-extirq: Use for_each_of_imap_item iterator
+  irqchip/renesas-rza1: Use for_each_of_imap_item iterator
+  ARM: dts: r9a06g032: Add GPIO controllers
+  dt-bindings: soc: renesas: Add the Renesas RZ/N1 GPIO Interrupt
+    Multiplexer
+  soc: renesas: Add support for Renesas RZ/N1 GPIO Interrupt Multiplexer
+  ARM: dts: r9a06g032: Add support for GPIO interrupts
+
+ .../soc/renesas/renesas,rzn1-gpioirqmux.yaml  |  87 ++++++++++
+ arch/arm/boot/dts/renesas/r9a06g032.dtsi      | 159 ++++++++++++++++++
+ drivers/irqchip/irq-ls-extirq.c               |  47 ++----
+ drivers/irqchip/irq-renesas-rza1.c            |  43 ++---
+ drivers/of/irq.c                              |  70 ++++++++
+ .../of/unittest-data/tests-interrupts.dtsi    |   9 +
+ drivers/of/unittest.c                         | 116 +++++++++++++
+ drivers/soc/renesas/Kconfig                   |   4 +
+ drivers/soc/renesas/Makefile                  |   1 +
+ drivers/soc/renesas/rzn1_irqmux.c             | 127 ++++++++++++++
+ include/linux/of_irq.h                        |  41 ++++-
+ 11 files changed, 646 insertions(+), 58 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/soc/renesas/renesas,rzn1-gpioirqmux.yaml
+ create mode 100644 drivers/soc/renesas/rzn1_irqmux.c
+
+-- 
+2.52.0
+
 
