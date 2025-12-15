@@ -1,112 +1,272 @@
-Return-Path: <devicetree+bounces-246736-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246737-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3262CBF50C
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 18:54:01 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C5ECCBF530
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 18:57:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 752913018F59
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 17:51:43 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7BD0030124D2
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 17:55:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 968A73254B8;
-	Mon, 15 Dec 2025 17:51:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=svanheule.net header.i=@svanheule.net header.b="dAS0FWam"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 635A9322B8E;
+	Mon, 15 Dec 2025 17:55:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from polaris.svanheule.net (polaris.svanheule.net [84.16.241.116])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B69E324704
-	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 17:51:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=84.16.241.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 866DB322C63
+	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 17:55:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765821096; cv=none; b=OjrORqCn19couo5eBsrM2YT5Zv+FUAtSDIlBQ2T+o4oeZxrBIL1KIiEplk0bqh+HhSSLunVmQ1E4D5EKGJMt4KFysPpbt45hkGrVZKuJ5/J6tW1FLQHBbEGT3ievYkFLe1wsCZDGfyEy2OyygABm/vweC1RSifoTcI5aFcHvweQ=
+	t=1765821308; cv=none; b=ss8leCwJd3Nib+kRgE5/a5EpnEH5YX0guSmBr6t9JKGF/e5AOEdU+0FlqKnxjXNkai/1OvEDjr+qHpf8tXgWfMxqHubtVlreHQzZtHM0R20SoPknkJp7b6HZZ1wgxyguyh4bEl3u2m0KpHhVDDrUWsYy9Wc8369puZEiL4wkBOk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765821096; c=relaxed/simple;
-	bh=OMBjumZfPZOkHIbUa00uG1t2OyMoQw4hQhX9sXpxidk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=OCeAg66zrsPfm2IrprWathStvIlsGvhkTpx+zSj5mKEzqL+PEpnZWs2ztGnzq0u4gxPNakAm42si5cVfDQFh1Z3nRez4Quz/h5Nt86k1QJBruC90nr/E72prQhtB2S2j549mRwG59iArs6dTqfQ5qdor+H2VGP/7rCn/NWJ/Y4w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svanheule.net; spf=pass smtp.mailfrom=svanheule.net; dkim=pass (2048-bit key) header.d=svanheule.net header.i=@svanheule.net header.b=dAS0FWam; arc=none smtp.client-ip=84.16.241.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svanheule.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=svanheule.net
-Received: from terra.vega.svanheule.net (2a02-1812-162c-8f00-1e2d-b404-3319-eba8.ip6.access.telenet.be [IPv6:2a02:1812:162c:8f00:1e2d:b404:3319:eba8])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sander@svanheule.net)
-	by polaris.svanheule.net (Postfix) with ESMTPSA id 068806B1FA8;
-	Mon, 15 Dec 2025 18:51:25 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
-	s=mail1707; t=1765821085;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=zYHl0cckTMDsYyUvY6SsUbK63A6J0gTMMaV4kaaWOBg=;
-	b=dAS0FWamLr5KGQVyIgZo99X2WE8m/IFkuyOny14wslRBzbIJANJMQRCI2A/IjyWyxZU9P6
-	fNESpBaUtH83/V1yolRm0YZJGpsqm2RVxoEElruRstjnsoOeUaCCutrxPzUfIx9yQAdPtI
-	hEM+xaDX4B/5WSkB+9e8C79lpjS4G5M+FCAosNExy9gl073/nsr2NikmkjPKX2mC9ASX0C
-	ZHtSHp/jO1+wTuSBJwYKdJbGEZs5U4Ux2uBnv9i4Gk1Hs7J0MVh7yyWcHblWWS5c7nt7Ii
-	WD81nnnZrgfGVaNuobTX/93N7upbShTRxjsG7BoR243tw7Lc0fonXS8Xph0MhA==
-From: Sander Vanheule <sander@svanheule.net>
-To: Lee Jones <lee@kernel.org>,
-	Pavel Machek <pavel@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Michael Walle <mwalle@kernel.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	Sander Vanheule <sander@svanheule.net>
-Subject: [PATCH v9 6/6] MAINTAINERS: Add RTL8231 MFD driver
-Date: Mon, 15 Dec 2025 18:51:14 +0100
-Message-ID: <20251215175115.135294-7-sander@svanheule.net>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20251215175115.135294-1-sander@svanheule.net>
-References: <20251215175115.135294-1-sander@svanheule.net>
+	s=arc-20240116; t=1765821308; c=relaxed/simple;
+	bh=GTaW+XvsdkO2Idj8GXyJdp5YyYY3L96qi+MP2B7w5rQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ElUbVfzEXJdo9ANrSNkj2mRy9+H8/8zIAUH27XhaucwxIwq8T+hia3F4/cUIpzf1XebqhtTBGAaWondho4/RyU3ltBSJW1CdkmxUI2W0kOa/o0bux8FBUcdkLHtt80ld8uxcKmCHO3cDMGE2ZZBlCoZ60tMJIrBBj/kU9Pag25I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1vVCmL-00053K-QB; Mon, 15 Dec 2025 18:54:37 +0100
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1vVCmK-005osn-1G;
+	Mon, 15 Dec 2025 18:54:36 +0100
+Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1vVCmK-008zqO-0i;
+	Mon, 15 Dec 2025 18:54:36 +0100
+Date: Mon, 15 Dec 2025 18:54:36 +0100
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: Liu Ying <victor.liu@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v7 1/3] dt-bindings: soc: imx93-media-blk-ctrl: Add PDFC
+ subnode to schema and example
+Message-ID: <20251215175436.wwlgzxionq55zu27@pengutronix.de>
+References: <20251202-v6-18-topic-imx93-parallel-display-v7-0-2cce31d64608@pengutronix.de>
+ <20251202-v6-18-topic-imx93-parallel-display-v7-1-2cce31d64608@pengutronix.de>
+ <705773fc-5aba-4bff-b05e-272e1cd0262c@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <705773fc-5aba-4bff-b05e-272e1cd0262c@nxp.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Add the files associated with the RTL8231 support, and list Sander
-Vanheule (myself) as maintainer.
+Hi Liu,
 
-Signed-off-by: Sander Vanheule <sander@svanheule.net>
----
- MAINTAINERS | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+sorry I didn't fully answer you please see below.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 5b11839cba9d..f07803adeff1 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -21962,6 +21962,16 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/watchdog/realtek,otto-wdt.yaml
- F:	drivers/watchdog/realtek_otto_wdt.c
- 
-+REALTEK RTL8231 MFD DRIVER
-+M:	Sander Vanheule <sander@svanheule.net>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/leds/realtek,rtl8231-leds.yaml
-+F:	Documentation/devicetree/bindings/mfd/realtek,rtl8231.yaml
-+F:	drivers/leds/leds-rtl8231.c
-+F:	drivers/mfd/rtl8231.c
-+F:	drivers/pinctrl/pinctrl-rtl8231.c
-+F:	include/linux/mfd/rtl8231.h
-+
- REALTEK RTL83xx SMI DSA ROUTER CHIPS
- M:	Linus Walleij <linusw@kernel.org>
- M:	Alvin Šipraga <alsi@bang-olufsen.dk>
+On 25-12-08, Liu Ying wrote:
+> Hi Marco,
+> 
+> On 12/02/2025, Marco Felsch wrote:
+> > From: Liu Ying <victor.liu@nxp.com>
+> > 
+> > i.MX93 SoC mediamix blk-ctrl contains one DISPLAY_MUX register which
+> > configures parallel display format by using the "PARALLEL_DISP_FORMAT"
+> > field. Document the Parallel Display Format Configuration(PDFC) subnode
+> > and add the subnode to example.
+> > 
+> > Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> > [m.felsch@pengutronix.de: port to v6.18-rc1]
+> > [m.felsch@pengutronix.de: add bus-width]
+> > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> > ---
+> >  .../bindings/soc/imx/fsl,imx93-media-blk-ctrl.yaml | 92 ++++++++++++++++++++++
+> >  1 file changed, 92 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctrl.yaml b/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctrl.yaml
+> > index 34aea58094e55365a2f9c86092f637e533f954ff..6e2d86d9341c75108b492bcbabc8a560d8e707cd 100644
+> > --- a/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctrl.yaml
+> > +++ b/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctrl.yaml
+> > @@ -26,6 +26,12 @@ properties:
+> >    reg:
+> >      maxItems: 1
+
+...
+
+> > +            properties:
+> > +              endpoint:
+> > +                $ref: /schemas/graph.yaml#/$defs/endpoint-base
+> > +                unevaluatedProperties: false
+> > +
+> > +                properties:
+> > +                  bus-width:
+> 
+> In v1-v5, I thought the output bus format can be determined by the sink
+> device(a panel or a bridge) hence properties like bus-width were not needed.
+> But, if this property is really needed, then reference video-interfaces.yaml
+> since bus-width is documented there.  Should we reference bus-type defined
+> in video-interfaces.yaml too?
+
+You're right, the bus-width should be determined by the connected panel.
+But there are cases where a 24-bit panel is connected but only the lower
+18-bits are muxed. I added the bus-width property to handle this case.
+In the end most users don't have to specify this since the correct
+bus-width is coming from the panel bus-fmt.
+
+> > +                    enum: [ 16, 18, 24 ]
+> 
+> The PARALLEL_DISP_FORMAT field of DISPLAY_MUX register says this IP supports
+> below formats.  It seems that the enum here may tell RGB888, RGB666 and RGB565.
+> How can we tell RGB555, YCbCr 24 bits and YUV444 then?
+> 
+> 000b RGB888 -> RGB888
+> 001b RGB888 -> RGB666
+> 010b RGB565 -> RGB565
+> 011b RGB555 -> RGB555
+> 100b YUV -> YCbCr 24 bits
+> 101b YUV -> YUV444
+
+This enum is about the physical bus width. RGB565 == 16-bit, YUV ==
+24-bit.
+
+That said, I don't think that you need to specify the bus-fmt since this
+is coming from the panel. As said above, my itension with the bus-width
+property is to provide integrators (dts-writers) a possibility to limit
+the physical available bus width.
+
+> > +                    description:
+> > +                      Specify the physical parallel bus width.
+> > +
+> > +                      This property is optional if the display bus-width
+> > +                      matches the SoC bus-width, e.g. a 18-bit RGB666 (display)
+> > +                      is connected and all 18-bit data lanes are muxed to the
+> 
+> Per video-interfaces.yaml, s/data lanes/data lines/.  "data lanes" is a
+> value for MIPI DSI/CSI, afaik.
+
+I can go with "lines" if this is the preferred naming convention for
+DRM.
+
+> > +                      parallel-output pads.
+> 
+> How about just saying that this property is optional and by default it's 24?
+
+I wanted to make it clear what this property does.
+
+> > +                      This property must be set to 18 to cut only the LSBs
+> > +                      instead of the MSBs in case a 24-bit RGB888 display is
+> > +                      connected and only the lower 18-bit data lanes are muxed
+> > +                      to the parallel-output pads.
+> 
+> The __lower__ 18-bit?  Isn't it the __MSB__ 6bit in each color component?
+
+No, the LSB are cut, this is why it's so important to use this property
+if you connected a external 24-bit display to the lower data
+lines[17-0].
+
+If you don't specify this property, the MSBs are cut/lost which is far
+worse than using the LSB information.
+
+Regards,
+  Marco
+
+> > +
+> > +        required:
+> > +          - port@0
+> > +          - port@1
+> > +
+> > +    required:
+> > +      - compatible
+> > +      - reg
+> > +      - ports
+> > +
+> >  allOf:
+> >    - if:
+> >        properties:
+> > @@ -81,9 +141,12 @@ allOf:
+> >              - const: isi
+> >              - const: csi
+> >              - const: dsi
+> > +
+> >  required:
+> >    - compatible
+> >    - reg
+> > +  - '#address-cells'
+> > +  - '#size-cells'
+> >    - power-domains
+> >    - clocks
+> >    - clock-names
+> > @@ -112,4 +175,33 @@ examples:
+> >                 clock-names = "apb", "axi", "nic", "disp", "cam",
+> >                               "pxp", "lcdif", "isi", "csi", "dsi";
+> >        #power-domain-cells = <1>;
+> > +      #address-cells = <1>;
+> > +      #size-cells = <1>;
+> > +
+> > +      bridge@60 {
+> > +        compatible = "nxp,imx93-pdfc";
+> > +        reg = <0x60 0x4>;
+> > +
+> > +        ports {
+> > +          #address-cells = <1>;
+> > +          #size-cells = <0>;
+> > +
+> > +          port@0 {
+> > +            reg = <0>;
+> > +
+> > +            pdfc_from_lcdif: endpoint {
+> > +              remote-endpoint = <&lcdif_to_pdfc>;
+> > +            };
+> > +          };
+> > +
+> > +          port@1 {
+> > +            reg = <1>;
+> > +
+> > +            pdfc_to_panel: endpoint {
+> > +              remote-endpoint = <&panel_from_pdfc>;
+> > +              bus-width = <18>;
+> > +            };
+> > +          };
+> > +        };
+> > +      };
+> >      };
+> > 
+> 
+> 
+> -- 
+> Regards,
+> Liu Ying
+> 
+
 -- 
-2.52.0
+#gernperDu 
+#CallMeByMyFirstName
 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | https://www.pengutronix.de/ |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-9    |
 
