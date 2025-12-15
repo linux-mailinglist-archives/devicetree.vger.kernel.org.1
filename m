@@ -1,209 +1,207 @@
-Return-Path: <devicetree+bounces-246405-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246406-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7205CBC6EE
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 05:02:30 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CB8CCBC862
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 05:57:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id CDC92300A6D5
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 04:01:56 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 82051302378F
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 04:55:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFB4F32A3F9;
-	Mon, 15 Dec 2025 03:51:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2295631ED90;
+	Mon, 15 Dec 2025 04:55:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="O1Z1rHbR"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Gd4Cx1lM";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="N0IcB4qF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81C6F329E6E;
-	Mon, 15 Dec 2025 03:51:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B94831280D
+	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 04:55:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765770718; cv=none; b=NT2EVkW7CbLsVBVgZn5zQGyf7Mv/SpAeky3zrZUQQg91DCR2Eyq3l5TaNSTGT0NDyo4Zjw/cNX1/l4Q0UBdHEjBmw47pd1JZFhIUs86tQkXOv/eEjIHQ9u+HkEPMiN+4xpFJ4Pahq+xo890zmd/n2UjhqLfqKGlwNM7fUfQfBGk=
+	t=1765774503; cv=none; b=RIvlDH5gsAaLUGGL71xOrSStu8WUMNUK1BvDCF+eAFNgYVieoUHAqVzddQ4xxCwoJIVJtX9aNot0j89i0Gdvc+rIzqIdI7BBMpkPeRPZg3x4y6BaJ1DxX559iEkoP4j9hKPJBVtiXS+Y+4KeJg60kSUemDf8mbOlLei3WkdiEXk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765770718; c=relaxed/simple;
-	bh=Tv+6WHQtcQWkl905f+3Iu7W12IYA8HG6+Bx0cStnWM0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YkfTuc7JODRqW4GrwZJ+o2o2yOMJFAiK5wEE5kDfdch+2L4Jyd4lCyKSKeuoEOjD1xairh+zgib64tFghi0/ytweOaRkpK+P+1m8IFt9h7eaGZoy1qVnvCn1L602n5VPUol6SKe2LGkXgVRkbIMZpEcxQ10aV/Imls/siMAvtes=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=O1Z1rHbR; arc=none smtp.client-ip=198.175.65.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1765770717; x=1797306717;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Tv+6WHQtcQWkl905f+3Iu7W12IYA8HG6+Bx0cStnWM0=;
-  b=O1Z1rHbRlj4zvAX2XtdlAC/KWe5M4Zju0MuhaHdjgQGWHf6E5ioChNNm
-   nRJ+/hgzKpui3P9Wb9FcCUfS/MXnERrqJ5LJdCIKoVy98e4x5oGadvws6
-   94Cxrd1Dllwjr2Ttqm2r9ZkZZXWB7QwLX0LXR3ksJkIRdK41vaSTldeK3
-   XlZ+Pd04rqqRyxTsH03Ebwphapo5Bldsoh8rdCqHg+MhY6BFlmnXyNI4U
-   o2dqV9PgmpyBHGktlb6x+ZkwUnk5MctXhQNx1NKoajWhxlW/6/W/eYo9X
-   JlnNHmZOibu1HzRbJal0QOjEYZHpJ117cf3DdxaWVjNupm5KnM0mEmC5d
-   w==;
-X-CSE-ConnectionGUID: 1jrTmDv+RzezZVutljJsAQ==
-X-CSE-MsgGUID: YqO2WcOpT7ysUAoWuxDilQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11642"; a="67546367"
-X-IronPort-AV: E=Sophos;i="6.21,150,1763452800"; 
-   d="scan'208";a="67546367"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
-  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Dec 2025 19:51:56 -0800
-X-CSE-ConnectionGUID: lYLPdDnXST+jKbZOghK46Q==
-X-CSE-MsgGUID: 3KULLt40RoW4AAvitoKi5g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,150,1763452800"; 
-   d="scan'208";a="197382913"
-Received: from igk-lkp-server01.igk.intel.com (HELO 8a0c053bdd2a) ([10.211.93.152])
-  by orviesa009.jf.intel.com with ESMTP; 14 Dec 2025 19:51:53 -0800
-Received: from kbuild by 8a0c053bdd2a with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vUzck-000000002Ye-2ivA;
-	Mon, 15 Dec 2025 03:51:50 +0000
-Date: Mon, 15 Dec 2025 04:51:39 +0100
-From: kernel test robot <lkp@intel.com>
-To: Pankaj Gupta <pankaj.gupta@nxp.com>, Jonathan Corbet <corbet@lwn.net>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: oe-kbuild-all@lists.linux.dev, linux-doc@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v21 1/7] Documentation/firmware: add imx/se to
- other_interfaces
-Message-ID: <202512150427.Kc14BEvI-lkp@intel.com>
-References: <20251212-imx-se-if-v21-1-ee7d6052d848@nxp.com>
+	s=arc-20240116; t=1765774503; c=relaxed/simple;
+	bh=OtI43I9uh5Dxj4J6JYHv+KXNtGFs6aWMCpVLpoCkE6U=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=eXP1COzEBOG7tROo+1oHbbM4IG/w6kqZmamVb5yRZSpwl3AaTsnEteLdmMQxeiOt26/RchNRmODcihz0Wd85FPrZ528GVrzlPAGn3LLS0RQNW3M6HdtpN5UrYUVHpIOJkrU2atcnoHdZN+c2GEdv45ZE9DL3UMxDikIqu+HQFow=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Gd4Cx1lM; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=N0IcB4qF; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BEMS0fG3264681
+	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 04:55:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=XCRRoZX5HFKwk0TtzOQqIO+LFtD6GUuisWM
+	F/z8xudo=; b=Gd4Cx1lMtf3MaMJDukQb/83yDPwwIPCoTwjAb3eUG1yiHp0eLY1
+	vbBB65Zs3joFElIkKvTVIfODlpujZt6LlzWc50kn7Hnrrc0PQHAotGpyWR8NCX7l
+	fWp9cPx4t6WTeW9Ue9Cynztg2WuBkyLyO/gO1eZmZaxThgPkBt5UEC37McPJ7uJp
+	dxbo8VATTmjVeuJ0HwmivHoAJ+ETFYHVjawLxFPcbV5FoybgzQb3X++9/4xMsVNw
+	qHN4F7HTB6Uq1gqufkbUORt0X5Osswy+w4PRtxQ3eyWp0MVfOClF21n6hxdqEi46
+	OV1NeASkoUlBPY8uYTodzILylvV/iXhlSLg==
+Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com [209.85.210.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b11dsb66y-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 04:54:59 +0000 (GMT)
+Received: by mail-pf1-f197.google.com with SMTP id d2e1a72fcca58-7e1738754c7so2180974b3a.1
+        for <devicetree@vger.kernel.org>; Sun, 14 Dec 2025 20:54:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1765774499; x=1766379299; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=XCRRoZX5HFKwk0TtzOQqIO+LFtD6GUuisWMF/z8xudo=;
+        b=N0IcB4qF0bT0H7vZSADW2nWuewyzoZTFuYJeKJvzJ+SFy3qZdBYr6XIRvB+InHxa6z
+         iTBgdEVPpkKDYecMOsb29fd0ghbyNcOQMw6Qk6NuiCpoBx0yC6FKv948Hg74e/z1L3or
+         twTpS4KXasTULXNMtFn34uBJLqXbToj3zMDGGyetxN1pCVrLFBhZXJ4Wu1TJyEkX4p1T
+         9QAi1Ro9NRA/Qnt6qcajZ5LrnKcHIsJWB2uXQA/hckKdGMGQCQPAjDBuo8nYQCmGmMTt
+         v5Pkte+Y9Rh144r0xvlvgyj9m9M2qyKMqIjH+qfne3tD5n5XHht965w0S5D4AmKn2VaQ
+         lKtQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765774499; x=1766379299;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=XCRRoZX5HFKwk0TtzOQqIO+LFtD6GUuisWMF/z8xudo=;
+        b=Ylb3X7VZECdyBZHNryWcWg6L7Mm76pcdtRmoBz2ph2mQLhzt3RM05I0yFeUOocdY5j
+         0T3KsreqlUVLXU26LMGMrU8d5jgxweuR2SmNKAHRa9yNsnKiIWKtCYJuzuxzev8umvku
+         K5TOwkBZykJQ1jb8AJkRQMUvplWFu11CgGXtGLNVblVNz7fD7UT52V6szLZzXXET1/ot
+         683n/CpjvncvcBRzUpf32DiKfVkqrAxp6mQXxN/ZuPjeHtOnq/8sqqDJF2i8dcTQLDxF
+         qyVDyJas6JIQXTkImQRAa79YJGatdcMoEy4oK63TNtbfcKCd0Ap4XYlp4b8rb7e65UYe
+         RaGw==
+X-Forwarded-Encrypted: i=1; AJvYcCU2mCIwxeY1lnFqoD5nAentJMfVYQSmuTVmu2vhdRH4y+WUT8y7wRXUSXeIdFFr9onV5Pvs85iy0HDp@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy4mE9gX+YvXxYz0s5y62kPnzpLWELF9aAVny2NUUv7d2beAml5
+	prrP3jttD2z3P2AHxO3frBdhVJ6jAvGLGVAjHroxdjwgN1M7oyupOINbi4KWbLp26Dq/Lq8b/MO
+	CMEHDGjGX1HzIZWRuAtaKY9t/EPpEBdfvHRNA3YniKNNdcfH7PpqBOOIfo5DEGgMJ
+X-Gm-Gg: AY/fxX5j7YtsqiFU6VjhLYMMB8ONAWLgNMS0BD8R0RjaAVp37qhtnzI86SBu7EgksMP
+	r6nCIKKUIrT7WxVXqAN0Tl/OPoQbVTRuUu5KOMADx5xyyxjSJDSS+w4IuHXBz/sO7XkeHEud2II
+	ux8UIaZRDSXHmsylnvvhjUk/BZHXBQ+F5R77UeOyJu7eMWLvZlmYWxOSqCwcKCK6oHORRx2M4nB
+	LfvTCEsRtVl2xa30VRIoeW9i8R1egmUFHJkJkirfgAruPquL6UXFBQw6XZErB9Myrwog5pqU77y
+	HVRC6YGVw2qtsQptgtaxS/Rd4Ee3lTxh97N7CVyoFPLhnmGE+AyoRtHgsmhuVN9gonF+TZ1OHyR
+	7ZVC+bXNhwRCjdknQ7TS5uFRcavOxo5iQNm0HFCc=
+X-Received: by 2002:a05:6a00:6ca1:b0:7ad:1907:5756 with SMTP id d2e1a72fcca58-7f667936b06mr11473320b3a.12.1765774498649;
+        Sun, 14 Dec 2025 20:54:58 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHjX9StN1jhhvvUIZ1mWxtutuPbVNNSt7BZMg2/9K4HOgGDP2M7J+aTFxEJGdC2uHG+izMDag==
+X-Received: by 2002:a05:6a00:6ca1:b0:7ad:1907:5756 with SMTP id d2e1a72fcca58-7f667936b06mr11473288b3a.12.1765774498159;
+        Sun, 14 Dec 2025 20:54:58 -0800 (PST)
+Received: from hu-gkohli-hyd.qualcomm.com ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7f4c4aa91d0sm11190997b3a.32.2025.12.14.20.54.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 14 Dec 2025 20:54:57 -0800 (PST)
+From: Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
+To: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
+Subject: [PATCH] arm64: dts: qcom: lemans: Enable cpufreq cooling devices
+Date: Mon, 15 Dec 2025 10:24:51 +0530
+Message-Id: <20251215045451.3150894-1-gaurav.kohli@oss.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251212-imx-se-if-v21-1-ee7d6052d848@nxp.com>
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: AZlK4ezFFFhjWLbSqYlkuUREm_svKaCd
+X-Proofpoint-ORIG-GUID: AZlK4ezFFFhjWLbSqYlkuUREm_svKaCd
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjE1MDA0MiBTYWx0ZWRfX115Y1QNdT3vr
+ ty/9laELiv3EuxQYWIGtsk9taB2iR3NdjcPTCQnEVreL2RJQN9bqqRwiyaYlbXDDUpq3qVqUV/U
+ PWPxsSe/+iy9Im8Dtsk9zwOjb/MSKbMtOUAnrQE+bhl2bC4tqcSr4B59H4+iJ3w+RQKp2Qf5bYB
+ rn/6EUQcJzuSSSMOjUywen4uT1k7yhRisA+QcEuTB5oFsUrbzT0jMLDfRY8efqAZuuQIQ/JX9Gq
+ UQjJ0IuC6FyymY50+mxWjZTrm3TM+WikJmait8M5fhgAsxkTpD9XvTRjJWG+MbI6RoHEBGNq+PJ
+ +48zz342e3Mx9RQ6n21ELSQQc9j6FVq0AknZ+sWdAHGBG3X71pDePRl7DXLdhWtWQh1st3/UitK
+ 1ucSbva6edim4itfaSiMBfzxrrYbCg==
+X-Authority-Analysis: v=2.4 cv=cfLfb3DM c=1 sm=1 tr=0 ts=693f94a3 cx=c_pps
+ a=rEQLjTOiSrHUhVqRoksmgQ==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=EUspDBNiAAAA:8 a=ZDMc2YS8df6EeW9c3AUA:9 a=2VI0MkxyNR6bbpdq8BZq:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-14_07,2025-12-15_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 lowpriorityscore=0 clxscore=1015 adultscore=0 impostorscore=0
+ priorityscore=1501 suspectscore=0 phishscore=0 malwarescore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512150042
 
-Hi Pankaj,
+Add cooling-cells property to the CPU nodes to support cpufreq
+cooling devices.
 
-kernel test robot noticed the following build warnings:
+Signed-off-by: Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
 
-[auto build test WARNING on 4a26e7032d7d57c998598c08a034872d6f0d3945]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Pankaj-Gupta/Documentation-firmware-add-imx-se-to-other_interfaces/20251212-172535
-base:   4a26e7032d7d57c998598c08a034872d6f0d3945
-patch link:    https://lore.kernel.org/r/20251212-imx-se-if-v21-1-ee7d6052d848%40nxp.com
-patch subject: [PATCH v21 1/7] Documentation/firmware: add imx/se to other_interfaces
-reproduce: (https://download.01.org/0day-ci/archive/20251215/202512150427.Kc14BEvI-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202512150427.Kc14BEvI-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   ERROR: Cannot find file ./include/linux/firmware/intel/stratix10-svc-client.h
-   WARNING: No kernel-doc for file ./include/linux/firmware/intel/stratix10-svc-client.h
-   Documentation/driver-api/firmware/other_interfaces.rst:60: ERROR: Unexpected indentation. [docutils]
-   Documentation/driver-api/firmware/other_interfaces.rst:103: ERROR: Unexpected indentation. [docutils]
-   Documentation/driver-api/firmware/other_interfaces.rst:115: ERROR: Unexpected indentation. [docutils]
->> Documentation/driver-api/firmware/other_interfaces.rst:116: WARNING: Blank line required after table. [docutils]
->> Documentation/driver-api/firmware/other_interfaces.rst:140: WARNING: Bullet list ends without a blank line; unexpected unindent. [docutils]
-   ERROR: Cannot find file ./drivers/firmware/imx/se_fw.c
-   ERROR: Cannot find file ./drivers/firmware/imx/se_fw.c
-   WARNING: No kernel-doc for file ./drivers/firmware/imx/se_fw.c
-   ERROR: Cannot find file ./include/linux/fpga/fpga-bridge.h
-   WARNING: No kernel-doc for file ./include/linux/fpga/fpga-bridge.h
-
-
-vim +116 Documentation/driver-api/firmware/other_interfaces.rst
-
-    94	
-    95	::
-    96	   +--------------------------------------------+
-    97	   |            Character Device(C_DEV)         |
-    98	   |                                            |
-    99	   |   +---------+ +---------+     +---------+  |
-   100	   |   | misc #1 | | misc #2 | ... | misc #n |  |
-   101	   |   |  dev    | |  dev    |     | dev     |  |
-   102	   |   +---------+ +---------+     +---------+  |
-   103	   |        +-------------------------+         |
-   104	   |        | Misc. Dev Synchr. Logic |         |
-   105	   |        +-------------------------+         |
-   106	   |                                            |
-   107	   +--------------------------------------------+
-   108	
-   109	   +--------------------------------------------+
-   110	   |               Service Layer                |
-   111	   |                                            |
-   112	   |      +-----------------------------+       |
-   113	   |      | Message Serialization Logic |       |
-   114	   |      +-----------------------------+       |
-   115	   |          +---------------+                 |
- > 116	   |          |  imx-mailbox  |                 |
-   117	   |          |   mailbox.c   |                 |
-   118	   |          +---------------+                 |
-   119	   |                                            |
-   120	   +--------------------------------------------+
-   121	
-   122	- service layer:
-   123	  This layer is responsible for ensuring the communication protocol that is defined
-   124	  for communication with firmware.
-   125	
-   126	  FW Communication protocol ensures two things:
-   127	  - Serializing the messages to be sent over an MU.
-   128	
-   129	  - FW can handle one command message at a time.
-   130	
-   131	- c_dev:
-   132	  This layer offers character device contexts, created as '/dev/<se>_mux_chx'.
-   133	  Using these multiple device contexts that are getting multiplexed over a single MU,
-   134	  userspace application(s) can call fops like write/read to send the command message,
-   135	  and read back the command response message to/from Firmware.
-   136	  fops like read & write use the above defined service layer API(s) to communicate with
-   137	  Firmware.
-   138	
-   139	  Misc-device(/dev/<se>_mux_chn) synchronization protocol:
- > 140	::
-   141	
-   142	                                Non-Secure               +   Secure
-   143	                                                         |
-   144	                                                         |
-   145	                  +---------+      +-------------+       |
-   146	                  | se_fw.c +<---->+imx-mailbox.c|       |
-   147	                  |         |      |  mailbox.c  +<-->+------+    +------+
-   148	                  +---+-----+      +-------------+    | MU X +<-->+ ELE |
-   149	                      |                               +------+    +------+
-   150	                      +----------------+                 |
-   151	                      |                |                 |
-   152	                      v                v                 |
-   153	                  logical           logical              |
-   154	                  receiver          waiter               |
-   155	                     +                 +                 |
-   156	                     |                 |                 |
-   157	                     |                 |                 |
-   158	                     |            +----+------+          |
-   159	                     |            |           |          |
-   160	                     |            |           |          |
-   161	              device_ctx     device_ctx     device_ctx   |
-   162	                                                         |
-   163	                User 0        User 1       User Y        |
-   164	                +------+      +------+     +------+      |
-   165	                |misc.c|      |misc.c|     |misc.c|      |
-   166	 kernel space   +------+      +------+     +------+      |
-   167	                                                         |
-   168	 +------------------------------------------------------ |
-   169	                    |             |           |          |
-   170	 userspace     /dev/ele_muXch0    |           |          |
-   171	                          /dev/ele_muXch1     |          |
-   172	                                        /dev/ele_muXchY  |
-   173	                                                         |
-   174	
-
+diff --git a/arch/arm64/boot/dts/qcom/lemans.dtsi b/arch/arm64/boot/dts/qcom/lemans.dtsi
+index f80f9b950ed5..24f6ef430320 100644
+--- a/arch/arm64/boot/dts/qcom/lemans.dtsi
++++ b/arch/arm64/boot/dts/qcom/lemans.dtsi
+@@ -55,6 +55,7 @@ cpu0: cpu@0 {
+ 			qcom,freq-domain = <&cpufreq_hw 0>;
+ 			next-level-cache = <&l2_0>;
+ 			capacity-dmips-mhz = <1024>;
++			#cooling-cells = <2>;
+ 			dynamic-power-coefficient = <100>;
+ 			operating-points-v2 = <&cpu0_opp_table>;
+ 			interconnects = <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
+@@ -84,6 +85,7 @@ cpu1: cpu@100 {
+ 			qcom,freq-domain = <&cpufreq_hw 0>;
+ 			next-level-cache = <&l2_1>;
+ 			capacity-dmips-mhz = <1024>;
++			#cooling-cells = <2>;
+ 			dynamic-power-coefficient = <100>;
+ 			operating-points-v2 = <&cpu0_opp_table>;
+ 			interconnects = <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
+@@ -108,6 +110,7 @@ cpu2: cpu@200 {
+ 			qcom,freq-domain = <&cpufreq_hw 0>;
+ 			next-level-cache = <&l2_2>;
+ 			capacity-dmips-mhz = <1024>;
++			#cooling-cells = <2>;
+ 			dynamic-power-coefficient = <100>;
+ 			operating-points-v2 = <&cpu0_opp_table>;
+ 			interconnects = <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
+@@ -132,6 +135,7 @@ cpu3: cpu@300 {
+ 			qcom,freq-domain = <&cpufreq_hw 0>;
+ 			next-level-cache = <&l2_3>;
+ 			capacity-dmips-mhz = <1024>;
++			#cooling-cells = <2>;
+ 			dynamic-power-coefficient = <100>;
+ 			operating-points-v2 = <&cpu0_opp_table>;
+ 			interconnects = <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
+@@ -156,6 +160,7 @@ cpu4: cpu@10000 {
+ 			qcom,freq-domain = <&cpufreq_hw 1>;
+ 			next-level-cache = <&l2_4>;
+ 			capacity-dmips-mhz = <1024>;
++			#cooling-cells = <2>;
+ 			dynamic-power-coefficient = <100>;
+ 			operating-points-v2 = <&cpu4_opp_table>;
+ 			interconnects = <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
+@@ -186,6 +191,7 @@ cpu5: cpu@10100 {
+ 			qcom,freq-domain = <&cpufreq_hw 1>;
+ 			next-level-cache = <&l2_5>;
+ 			capacity-dmips-mhz = <1024>;
++			#cooling-cells = <2>;
+ 			dynamic-power-coefficient = <100>;
+ 			operating-points-v2 = <&cpu4_opp_table>;
+ 			interconnects = <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
+@@ -210,6 +216,7 @@ cpu6: cpu@10200 {
+ 			qcom,freq-domain = <&cpufreq_hw 1>;
+ 			next-level-cache = <&l2_6>;
+ 			capacity-dmips-mhz = <1024>;
++			#cooling-cells = <2>;
+ 			dynamic-power-coefficient = <100>;
+ 			operating-points-v2 = <&cpu4_opp_table>;
+ 			interconnects = <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
+@@ -234,6 +241,7 @@ cpu7: cpu@10300 {
+ 			qcom,freq-domain = <&cpufreq_hw 1>;
+ 			next-level-cache = <&l2_7>;
+ 			capacity-dmips-mhz = <1024>;
++			#cooling-cells = <2>;
+ 			dynamic-power-coefficient = <100>;
+ 			operating-points-v2 = <&cpu4_opp_table>;
+ 			interconnects = <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.34.1
+
 
