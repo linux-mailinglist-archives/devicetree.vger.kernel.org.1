@@ -1,174 +1,104 @@
-Return-Path: <devicetree+bounces-246649-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246650-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09616CBE68F
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 15:52:44 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CD00CBEA0F
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 16:26:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C15AD30221B0
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 14:49:39 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3E6B930B3A23
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 15:15:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBEEB34A796;
-	Mon, 15 Dec 2025 14:49:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aBfgKRJ/"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E04351A83F9;
+	Mon, 15 Dec 2025 15:05:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 681C43B8D5E
-	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 14:49:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F877314D0E;
+	Mon, 15 Dec 2025 15:05:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.151
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765810178; cv=none; b=l293IlSnIHliPXufJaKlCRaFZduGgl/jR+XvobsBTrJg0kdD/HZkFhwS1JVQJKHjlkMLD5Q3gocPcct1xnPDe3720/8UZivlGl/Eg/AK4RWwG3L6vhF19pdwoEYQWdLnQ7Bx8yYUvAJTGRNZzKAJFz8I+Ui7BGZShRln59AfMFc=
+	t=1765811148; cv=none; b=CV+ztKNPr11mNovoGpwRaHuk1aZUmXPgzPTRAWxCT9U6n3A9zfZ+fn5qRBLDysEy4fOJfhLoFj9VjKajJ24Zm9SOorQcr0wgucw5LfEUs/jXWeW7eJd36KNNGmZUxMpb2H/DwBoj+yVc1sYw3q07NdjPeeTRwd5k0lPZe+JQXqk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765810178; c=relaxed/simple;
-	bh=/m+knTh0E1M2rZ0Z8fiBqCyqvapY0NF86oC76d3XA1s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UtFgMpbbaYhwL0cuy8ChASVzg8PeERFMN5N+Q1LkaMUuQPti2NZ8lQGFAqwF7i7q8erHr5rydpYzMn9N1H098hzlUgSG+z5jmVXjq3qfuJG70xPnFz5rUhk8ZBgSKSB1lmyZSmvJzu1LMzK3QWqK4wwtdC32KNVyKmL6za56njg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aBfgKRJ/; arc=none smtp.client-ip=209.85.210.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-7bc0cd6a13aso1967830b3a.0
-        for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 06:49:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1765810175; x=1766414975; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=5wMsSg+3EyGIctnEV/0UUxXYttTh9TK1dkuUNFrw/h0=;
-        b=aBfgKRJ/nDzY+4Oh5cv6gGFBY6XvgpwLMwzSqG2Bgzz8ecyPts8nVbwcytfpc0IeSd
-         0P5+dQW5Sgrbt9wKPrt4j4g5Wpfognhgkzy0Xlsa6iK+lmBwA7eKWo6MRs+qPUaYZy4f
-         Fr6yf3KdaeeL5TDX51uHlePoYJyHzuhtcWtO1JcvaJEAtKPJWZO1Sng2qsdRlL7gnCZ7
-         iEU29voX4FAxkuaSanF+3ZqsNB/t5ePa1nzwDkVUALcRmLuNL1pDUuZtf/eE/6cCtm6y
-         d+ga1ZP8RmDvPWzt38Q1aYr0mdbWahZ9hZEGq2+ht+zVrHCrolZf2ScsBBwsPrZIRcxq
-         049Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765810175; x=1766414975;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=5wMsSg+3EyGIctnEV/0UUxXYttTh9TK1dkuUNFrw/h0=;
-        b=j9U5WfdcoiUOl5YI2wQsHTiN3YnZ+oh3XzSaIDYdZkwSywUet8Vav93tL1qvE1ZOQ/
-         /dbh/pFJKzw5AoRyzkoVkkkCtYUG0Da4BU3ORz9REKuKjwYXvw7at9ih7WmF47wWlrGz
-         cT0qrC03p+MUOcBkHsGuLAydSh0WIXXICyFQCcpzCWs/Wgo7YZzH7Tevuj6SRfmSLxS2
-         gU9ajpWf38Fw8Z1scii+HnQRqtzEGYES6tRgdTwgPt04WyB6c4YAqKg/zdF+tdlc4wT7
-         6RoQjrdXl1vL2TPExR0yrG6b1g79ogjdSEfX7NBMTDVyFV1wbabZO3DnpIPFa7abnNW+
-         T10Q==
-X-Forwarded-Encrypted: i=1; AJvYcCW+F0AZDOcMI1/Fv30UiEqA50aXvMI11h0U/HyDUzaYIjwXhZIpXH9tkAa4XdNqIvLrWHjXcG3OVCqQ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz73Kthm8Y7RxIuRGMUujr884WYvDw9JTm0qL7WOZcdcYYxZk73
-	GWzWiGGQ8MnQ0wPxSbm6pSMqvOUm03vRTpCESj+jc4e6EmngKu339kmC
-X-Gm-Gg: AY/fxX7LcQ3ImK8ELgNeQFqTUj6qTQOHEzE4XvCj4lARIFv+2rCqSZTa1AQ6W8yumpI
-	zrMkF1qeV5Rq5g9H3tqT4E5MQyDvXbTkyklwDxiuajjQfejg5shLezvWaAO6n/OQ8FT56HZqQiL
-	VIyT7CE+TObTS6k0tb8ZmWxM5VaYpRiuZg1dx/fev4FtC+dyjUu0yXeABGvm/6D9Ae16d1Om+1R
-	epiLSoitXUm3eTQEVd3RsvPwcKxhgzeJVYY0CnDd/NcZY4eL2WMESn/v8FNXlJVfVN23JAFvQ3k
-	oiyoHRR2A90Wewrcc2Xnw88FhHxdZ47LPZKNVSYPbaPj2Q0TNwE9G5WBTSfqFuZxAtJIJd7UDvR
-	v6ZEqjlzmphpjRy2vs9mpjl5oxnZC8Dr3kChe2Iw8auecmQ3LQkGB2bjhYt0M5K07EAmPu1Tvpp
-	hWyF/wAAYOmQLKkYD5rRjXn1lJHvp/mmW1GwQWmLBScF3vmhGpE8/oeSmR+lkV1hrqlBoD62o3q
-	Q==
-X-Google-Smtp-Source: AGHT+IGW1vL32/koMdZGp73rOzt+sAsrioh2S+qAIg+6TbUn3VCos+ZSPJ+Ot3qZlswrzqKctOrZHg==
-X-Received: by 2002:a05:6a20:12c2:b0:35f:5fc4:d892 with SMTP id adf61e73a8af0-369aa15fb58mr10832984637.19.1765810174507;
-        Mon, 15 Dec 2025 06:49:34 -0800 (PST)
-Received: from ?IPV6:2402:e280:21d3:2:50bc:8636:2ee8:5158? ([2402:e280:21d3:2:50bc:8636:2ee8:5158])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c0c2ad5663dsm13293460a12.17.2025.12.15.06.49.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Dec 2025 06:49:34 -0800 (PST)
-Message-ID: <d25b91b2-20c2-492a-b056-bf3bdaf4494a@gmail.com>
-Date: Mon, 15 Dec 2025 20:19:27 +0530
+	s=arc-20240116; t=1765811148; c=relaxed/simple;
+	bh=r3suQozgcCgmmzPjxsON2tfMubesauxQ51FUd0nhCDQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=LCFuGWNq8lUiD7Yj+oBGUZFjEpzPwe/3tUpIbPMICq+P+YBqDqU66uhkepdHDUpXoC5SLHBZhNULrKCb6QvGZ1Djqpcrw5BT4BR7SL5Y/vRIOf3UFzMUac6W8Ukrlml0mma1G8EehDgW5BUZqmy+Org5JOu6vkS0KIDXKA7EvOs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=timmermann.space; spf=pass smtp.mailfrom=timmermann.space; arc=none smtp.client-ip=80.241.56.151
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=timmermann.space
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=timmermann.space
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4dVNfT20K4z9ss9;
+	Mon, 15 Dec 2025 16:05:37 +0100 (CET)
+From: Lukas Timmermann <linux@timmermann.space>
+Subject: [PATCH v3 0/3] Add support for exynos5250-manta (Google Nexus 10)
+Date: Mon, 15 Dec 2025 16:05:21 +0100
+Message-Id: <20251215-lat3st-staging-v3-0-2e4914b64dd8@timmermann.space>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: iio: adc: Add TI ADS1120 binding
-To: David Lechner <dlechner@baylibre.com>, Jonathan Cameron <jic23@kernel.org>
-Cc: nuno.sa@analog.com, andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20251109141119.561756-1-ajithanandhan0406@gmail.com>
- <20251109141119.561756-2-ajithanandhan0406@gmail.com>
- <20251115183144.15b3e236@jic23-huawei>
- <5cb6243e-f47b-48dc-9f43-299cde632e08@baylibre.com>
-Content-Language: en-US
-From: Ajith Anandhan <ajithanandhan0406@gmail.com>
-In-Reply-To: <5cb6243e-f47b-48dc-9f43-299cde632e08@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIALEjQGkC/x3MTQqAIBBA4avIrBNSsb+rRAvJyQbCwpEIwrsnL
+ b/Fey8wJkKGSbyQ8CamM1aYRsC6uxhQkq8G3WqrtLLycNlwlpxdoBikH9dRd35wvd2gRlfCjZ5
+ /OC+lfBhQT4BgAAAA
+X-Change-ID: 20251215-lat3st-staging-d9c926d8a75f
+To: Krzysztof Kozlowski <krzk@kernel.org>, 
+ Alim Akhtar <alim.akhtar@samsung.com>, Rob Herring <robh@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Russell King <linux@armlinux.org.uk>
+Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ phone-devel@vger.kernel.org, Lukas Timmermann <linux@timmermann.space>, 
+ Alexandre Marquet <tb@a-marquet.fr>
 
-On 11/18/25 5:49 AM, David Lechner wrote:
-> On 11/15/25 12:31 PM, Jonathan Cameron wrote:
->> On Sun,  9 Nov 2025 19:41:18 +0530
->> Ajith Anandhan <ajithanandhan0406@gmail.com> wrote:
->>
->>> Add device tree binding documentation for the Texas Instruments
->>> ADS1120.
->>>
->>> The binding defines required properties like compatible, reg, and
->>> SPI configuration parameters.
->>>
->>> Signed-off-by: Ajith Anandhan <ajithanandhan0406@gmail.com>
->>> ---
->>>   .../bindings/iio/adc/ti,ads1120.yaml          | 109 ++++++++++++++++++
->>>   1 file changed, 109 insertions(+)
->>>   create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,ads1120.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/iio/adc/ti,ads1120.yaml b/Documentation/devicetree/bindings/iio/adc/ti,ads1120.yaml
->>> new file mode 100644
->>> index 000000000..2449094af
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/iio/adc/ti,ads1120.yaml
->>>
->>> +
->>> +  vref-supply:
->>> +    description: |
->>> +      Optional external voltage reference. Can be connected to either
->>> +      REFP0/REFN0 or REFP1/REFN1 pins. If not supplied, the internal
->>> +      2.048V reference is used.
->> How do you know which set of inputs is used?  Looks like a register
->> needs to be programmed to pick between them.
-> I would just make two supply properties for this, ref0-supply and ref1-supply
+This patch series adds initial support for the google-manta board, known
+as Google Nexus 10 to users. The device is powered by
+the Exynos 5250 SoC. The bindings for the notification led are already 
+in the kernel mailing list, got recently applied and can be found here:
+https://lore.kernel.org/linux-leds/20251125114015.355487-1-linux@timmermann.space/
 
+The first two patches add the necessary device tree files and
+bindings, while the last patch makes a small modification to
+allow CPU1 to boot, as it requires a call to it's underlying firmware.
 
-Hi Jonathan and David Thanks for the review,
+This first iteration only provides basic support to get the board
+up and running and usable via UART and with WiFi support. We will upstream additional 
+features in future patches. All patches have been tested on real hardware.
 
-That makes sense! I'll change the binding to use two separate properties:
+Changes in v3:
+ - Added a better patch description for firmware patch. (@krzk)
+ - Reorganized nodes in DT. (@krzk)
+ - Fixed memory node to use separate entries. (@krzk)
+ - Renamed pwrseq node. (@krzk)
+ - Fixed firmware checking for old dt compatible string. (@pavel)
+ - Link to v2: https://lore.kernel.org/all/20251125-google-manta-v2-0-0f097cfff39c@timmermann.space/
+Changes in v2:
+ - Renamed to google-manta (@krzk)
+ - Link to v1: https://lore.kernel.org/all/20251120144018.961604-2-linux@timmermann.space/
 
-        - ref0-supply: for REFP0/REFN0 pins
+Signed-off-by: Lukas Timmermann <linux@timmermann.space>
+---
+Alexandre Marquet (3):
+      dt-bindings: ARM: samsung: Add Google Manta (Nexus 10)
+      ARM: dts: exynos: Add Google Manta (Nexus 10)
+      ARM: samsung: exynos5250: Allow CPU1 to boot
 
-        - ref1-supply: for REFP1/REFN1 pins
+ .../bindings/arm/samsung/samsung-boards.yaml       |   1 +
+ arch/arm/boot/dts/samsung/Makefile                 |   1 +
+ arch/arm/boot/dts/samsung/exynos5250-manta.dts     | 511 +++++++++++++++++++++
+ arch/arm/mach-exynos/firmware.c                    |   4 +-
+ 4 files changed, 515 insertions(+), 2 deletions(-)
+---
+base-commit: d5f0e9098499869354aacb5b080f602f0399d396
+change-id: 20251215-lat3st-staging-d9c926d8a75f
 
-
->>> +
->>> +  ti,avdd-is-ref:
->>> +    type: boolean
->>> +    description: |
->>> +      If present, indicates that the AVDD supply voltage is of sufficient
->>> +      quality and stability to be used as the voltage reference instead of
->>> +      the internal reference. This allows the driver to select AVDD as the
->>> +      reference source for potentially better performance.
->> This one is interesting as I don't recall anyone arguing this made
->> sense before.  In what way better performance?  Are their boards out
->> there where this definitely makes sense to do?
->>
-> Seems harmless to have the property even if no one ever uses it. But I would
-> be curious to know the answers to those questions too.
-
-
-I included this property based on the datasheet mentioning AVDD as a 
-possible reference source, butit doesn't claim this provides better 
-performance, and I don't currently have a specific use case or hardware 
-design that requires it.
-
-How to proceed ? Need your valuable suggestions.
-
-
-BR,
-
-Ajith.
-
->
+Best regards,
+-- 
+Lukas Timmermann <linux@timmermann.space>
 
 
