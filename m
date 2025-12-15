@@ -1,151 +1,82 @@
-Return-Path: <devicetree+bounces-246745-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246746-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71684CBF7AD
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 20:07:22 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E3ECCBF806
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 20:14:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 4E2DC3019AE8
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 19:07:19 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 75E0530019C4
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 19:14:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0301230E849;
-	Mon, 15 Dec 2025 19:07:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D31F23246F1;
+	Mon, 15 Dec 2025 19:14:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="WHUcKiNP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IYFumXxM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ixit.cz (ip-94-112-25-9.bb.vodafone.cz [94.112.25.9])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D39EF30C611;
-	Mon, 15 Dec 2025 19:07:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.112.25.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4CAB2EC09B;
+	Mon, 15 Dec 2025 19:14:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765825637; cv=none; b=biQ8sZ5WoNe2ZijWFFubHzJ0ec2dWL2I1FA3mqFXEOhbl5fm2svHvUlK8PTbvDOo+KQM/gatWctaDx2+ioiPFVexckLcyIVNCqQALijQ4Fz6zkLGMKzvZMWEPD8beq7/OI5FQwFD1ae0lY1XuXGkNHTbY8IUAyYZiu3ga1JJLhY=
+	t=1765826066; cv=none; b=iF9Rc+LKtJB1bFxKzyIVZff1AE3hyYKlZMWiNW/6hEju7GiZCQGXhKP2SGzLoq+lr3EUGdC8Ztv3YAk9EmosavyB4RYSvgxIxUUcP9/bdaigzUuBYrvqUYfj/ETJy484UGaZzB5xfevhsj6mRQXc31iDnsDj0jRcsGwHqlQmJtI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765825637; c=relaxed/simple;
-	bh=BGvVi7h5HlrJiR8i7zg92109SYIc9RbiqEtNIZovyyk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MT6ukdhpJOwFo/NJ7YMq18cucHr2FJ21MoOJB/vzJ6B6AQj377bZplbO6vj5Eg1p0piLJpckZ5m5iQth4ffXmVfNHum/Z93JemNHFjBdK7dTu8GDzQEv4QadWo0+MxQyaOglOFc70lRHyOL164DqSEPk3CMwcfefGZYNtkRZ2Os=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=WHUcKiNP; arc=none smtp.client-ip=94.112.25.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
-Received: from [172.16.12.102] (89-24-64-24.customers.tmcz.cz [89.24.64.24])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by ixit.cz (Postfix) with ESMTPSA id E01785341181;
-	Mon, 15 Dec 2025 20:07:10 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-	t=1765825631;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=xuhlA8p+Ni1MwniXNxJtMYuoqPjY8OXIv/XxkVkgASY=;
-	b=WHUcKiNPNgmrm/bmNIJ82QrMqpSUnGc9R3EUhaHNgI8ErR87UY7mcasoLlwUDLXbvw36cJ
-	3cHBBg9ikWlzsLK9woIxdZIexYumT2Cm7KIcq9IC8L/JbutRs79WOd5Mz3r+zsNnS/6Cyd
-	oOsK4S9tRRZ/McXuO774ROPXawHADU8=
-Message-ID: <e3590c98-785f-4774-bb57-04c65cf12d21@ixit.cz>
-Date: Mon, 15 Dec 2025 20:07:09 +0100
+	s=arc-20240116; t=1765826066; c=relaxed/simple;
+	bh=9rvLSo2yKTIwGfUGdix4nanCBukssgm+DdLeThllV9c=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=kW1C8NXb5YE62x9NMGCuqdUxa3wCEAsFwTumIFThcr7sGuo0/RmUCZcCSwaZxp21+GLZuqVUWFOfyhjTPsgBHWIjKnSGIIB9Bq4Foo2ymKTfIyhhQc8B3/TXf/xyCaksTyq4Sg850GPuqwHkErPUdIiGLkd/NMquShM8PWd1DFM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IYFumXxM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07EC8C116B1;
+	Mon, 15 Dec 2025 19:14:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1765826066;
+	bh=9rvLSo2yKTIwGfUGdix4nanCBukssgm+DdLeThllV9c=;
+	h=From:To:Cc:Subject:Date:From;
+	b=IYFumXxMh4H7BcmUFgFMwbneaCz3Dqjq7GlXL8H9PW2jwCAYCijt6XPSf2TYN4OaH
+	 EBXQCtNOalyvDUFkQy/aHqKwUWrFMlqqVhsFROJA4NGSB6eEPXUNFFT37ioEwKu9P0
+	 cFzdoxRSmDjfRm8nHy8rr1sGV4Vz9xLcdMzCPYXLwnj1j4dffeTeCSol3mB2kN9aal
+	 oXqEhs2h5+SV6BrPm3faX9nLZ6nnx39UpS1FOF6uvap9+PvUv6RjbjyCX4sezMluwR
+	 JGap9W9tGzQEUcIzSuTfTkE9qSosIxDMaLhUv6q5avEOneZ4fth7seOvZ8gNS5Jep9
+	 qFE57r4TCGuSA==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: devicetree@vger.kernel.org
+Cc: Nathan Chancellor <nathan@kernel.org>,
+	Nicolas Schier <nsc@kernel.org>,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] MAINTAINERS: Add Makefile.dtb* to DT maintainers
+Date: Mon, 15 Dec 2025 13:14:20 -0600
+Message-ID: <20251215191421.3137362-1-robh@kernel.org>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: sdm845-tama: Keep labibb on, so kernel
- can disable it
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20251202-tama-labibb-v1-1-f8f3fda53d1d@ixit.cz>
- <ed0bdcae-6fa1-48a4-9618-e0ac09097f9e@oss.qualcomm.com>
-Content-Language: en-US
-From: David Heidelberg <david@ixit.cz>
-Autocrypt: addr=david@ixit.cz; keydata=
- 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
-In-Reply-To: <ed0bdcae-6fa1-48a4-9618-e0ac09097f9e@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 02/12/2025 13:55, Konrad Dybcio wrote:
-> On 12/2/25 12:31 PM, David Heidelberg via B4 Relay wrote:
->> From: David Heidelberg <david@ixit.cz>
->>
->> In case if they were enabled by the bootloader as part of some
->> reference/common routine and left hanging. Linux will switch them off if
->> they're never used.
->>
->> Discussion about it can be found here:
->>    https://lore.kernel.org/all/20251130-oneplus-labibb-v1-1-bb3653e43120@ixit.cz/
->>
->> Fixes: 5dcc6587fde2 ("arm64: dts: qcom: sdm845-tama: Add display nodes")
->> Suggested-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
->> Signed-off-by: David Heidelberg <david@ixit.cz>
->> ---
-> 
-> Perhaps "keeping it on" is a little bit unfortunate in that the wording
-> collides with keeping the regulator's output enabled, but anyway
-> 
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Since the DT related parts of kbuild are now split out to separate
+makefiles, list them in the DT maintainer section so they don't fall
+thru the cracks.
 
-So, friend fixed tama-akatsuki against -next tree and having labibb 
-nodes there crashes the kernel, so it seems disabling labibb had some 
-reason.
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+---
+ MAINTAINERS | 1 +
+ 1 file changed, 1 insertion(+)
 
-So, please do not merge until figured out!
-
-David
-
-> 
-> Konrad
-
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 5b11839cba9d..cfd00518df3c 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -19557,6 +19557,7 @@ F:	include/linux/of*.h
+ F:	rust/helpers/of.c
+ F:	rust/kernel/of.rs
+ F:	scripts/dtc/
++F:	scripts/Makefile.dtb*
+ F:	tools/testing/selftests/dt/
+ K:	of_overlay_notifier_
+ K:	of_overlay_fdt_apply
 -- 
-David Heidelberg
+2.51.0
 
 
