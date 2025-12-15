@@ -1,161 +1,275 @@
-Return-Path: <devicetree+bounces-246508-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246509-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADF63CBD42F
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 10:48:21 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15C9ECBD4D4
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 11:00:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id C31993019E32
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 09:48:13 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D24D030034AC
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 10:00:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AD693161AB;
-	Mon, 15 Dec 2025 09:48:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OyZQEkht"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0352B329E67;
+	Mon, 15 Dec 2025 10:00:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 842E031577B
-	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 09:47:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+Received: from zg8tmja2lje4os43os4xodqa.icoremail.net (zg8tmja2lje4os43os4xodqa.icoremail.net [206.189.79.184])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B45EB329379;
+	Mon, 15 Dec 2025 10:00:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=206.189.79.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765792081; cv=none; b=l7U+vAs4YYwTuYwypLABGPfTN01VcEBTZQmJeFkoZYl149uqva/91gW09RUrlY1J29GtxxD24U0o+uGsPmg+wkSl8IDUfYLf+bnV3Ln99uNy6DyOTW7U9s5Skaj6AFioxNwRaIjCd9ybqe5c4CCSYGikHO9Uw1CU0A6tOzKr8YY=
+	t=1765792814; cv=none; b=JScM+LXvwsFhvpXxr+ojx98rgZn2aOg6lxm6Czcc5n33ed7Sr3s73L3gca1LUMiyU5wuqQ2k9kvUWYNZjcwLUsfMA5++qfebGXO6tDWXnYse1z+qCXOGJvtsZ0Sk1yXPQdR4Y93lCZpfQmoIlTRXs8rs79FmMMYwew/emqCKal8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765792081; c=relaxed/simple;
-	bh=sExmmnvYaPANXPnzO5I3PgHRYBCnpqGofgWH94UH1sM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ii6KMWdrK5JETZxDvgWtXxPr3EH6j3/Q1GzC1Cyeap3yOZmXhdOTOWidvtcPC7RVNO4Hbu9jIyVeq4ZXoIz+kI6Ld1syIwyi6VxqtXW8ihdEsRSN17ArAIf/9AGDEi3Xc7dl5XQw22vPzi25iB3CR1Dr6aKiTmnsobviMXxDvB4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OyZQEkht; arc=none smtp.client-ip=209.85.167.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-5957db5bdedso4164523e87.2
-        for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 01:47:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1765792075; x=1766396875; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=g554CpaKOJYrfnF3kgR3vkqE8z4cQfcBTMePardbJIE=;
-        b=OyZQEkht4zPZLqkKq+M5jxiThHeVfWvwEYhCyefTbYUw3JxzNysv7YtyTaduXMTKxr
-         9kQE8Pj08tFqz1dkHmaJ11tCBWsx/YE7Ioxv8QSJeBu6DBdJWPeA/HTqvTvSzVJF+wsV
-         xW8FARHaqZfJaBpKI8qd/ZS4iRXf4uQ3dt1YJmsSqtzcLeXUwPWtPyZyHsSl5p4K0feE
-         ncgmE0V6Ma2K/Q3WaEhfVoc1cZGKbIH39xtRHmPaqLXVCcseMePbSqFRePBuxVE5Wj4T
-         hozBCoqAzqNjpyTKB2geIa5Ma31MlHRmH10boLHqwxjGOM1icwQQbYzOAvbhd5oU5y/9
-         vpbQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765792075; x=1766396875;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=g554CpaKOJYrfnF3kgR3vkqE8z4cQfcBTMePardbJIE=;
-        b=kr5R85PASHKbBHSypPNushFKJOhbPt3ft2RaoX8vAZXK8DcZdIillu0L0zaU55HHPZ
-         1voJ6ipylev6cTHdtXVd6cV/6xKRZICeGMSvEUD0mwEZnjDhp4rI1wVzr+gfq4oqBHXY
-         //zmMgCx0fX4SNNBCpYzp/n67xysXYc3TCfTrssk1n6Nik58UfHJRfNSTdxOnPxFy13U
-         /pMZZqoWuWP8jMOrv4FU6BTTVZx5TtIPtb775h2Seu+AunrlY4r13UZRectifsny6btE
-         W8Pwy2itnF22hkaOQ81KE2A8Tos5j7mv84QzximIdFbhxFto5f76yrrC4cSAa/QgZv7G
-         z7/w==
-X-Forwarded-Encrypted: i=1; AJvYcCXuenLVClZoG30VH8I4u3DCha1ShFieRc3TB8eLgx19RPU9LGremDHS6ffNO1ZsE/NXuTyxZjAurb1q@vger.kernel.org
-X-Gm-Message-State: AOJu0YxWQGZPKbnlH35uylvewtCkdePja7Ojbjpgkkf1ZxM6+kVjrPeg
-	VEgdOVl+5/8JWUUH43mu8GYKbpF6GHPTOpzO5x4sL/M0ivcZq3ad7cKb
-X-Gm-Gg: AY/fxX6IzBBWhOegjwMGiu6500jCeAf18hKwK+GJHj/Vm+oYZoXhhwwmiNRVJjy3xEK
-	TL3cuR7S8h4xbSoR5Lq0vvPUTIQhDws9HUDg5t1V5Pkt+dOaUd8sTPBEMca2p9W7Iy+/JFx+eVS
-	0CJEGmR4ttrJ0Q2AKksRZkV5NspdUUp1ShCD3kt1E89JdU1eoBHLAjs4wUdfY4D2/wzTLQOcyJv
-	HvxfNLl+Vfmn4Lbb2HV87h/ZgRVi24G1CXoJmiCo0HNztxA2qIXzjM/uVgEn+qZym8HVpUpADPV
-	cfcZPAlY7++hdehHLHm2mZmljc/8ggK1vDZM9jqDlKT95+aM73XqqhThJN1UlS8faI2brT3K1nH
-	vvK2dmK/gpH9fOWxyObKJI25+ZLMTi9Af3InEnFSbbqJC5H+J+Gc7zTxeWXhjz+i7yO1GmtWOdI
-	XGaGAzjY0qRF+YiD1/qehhdOnMu4EqCMaFng+wajdWcczQMtRm86wO5Lqn
-X-Google-Smtp-Source: AGHT+IHq6/ltwcpwzlMuZ4ctniBxHUBG6W9nDfRQn41gCXLc1DmWlN5fsdQeqKb8QAQRFt4aosqehQ==
-X-Received: by 2002:a05:6512:15a8:b0:57c:2474:371f with SMTP id 2adb3069b0e04-598faa7c05amr3191323e87.45.1765792074446;
-        Mon, 15 Dec 2025 01:47:54 -0800 (PST)
-Received: from [192.168.1.168] (83-233-6-197.cust.bredband2.com. [83.233.6.197])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-598f2f37ae8sm5397546e87.15.2025.12.15.01.47.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Dec 2025 01:47:53 -0800 (PST)
-From: Marcus Folkesson <marcus.folkesson@gmail.com>
-Date: Mon, 15 Dec 2025 10:46:49 +0100
-Subject: [PATCH v3 7/7] dt-bindings: display: sitronix,st7571: add example
- for SPI
+	s=arc-20240116; t=1765792814; c=relaxed/simple;
+	bh=ytwQxqlX9vm3S6/+q4uD8ooGPQtTMot2B9RGAP6ky24=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=oX45mUsf647pSIUYFzk1l3qLh68ux09e08UEJxsA+0WNYOOa3l99HQ4BtLqMRBNUtPw9rxaf+GRrD8u4Umrf0KbPxCwL/xPBvn/djaF32tgdZCr7zggW1fn5IwGXFoXVYkpBoGdJD8AGVn5s2tibxDP3BwT33YGSAdBOKyC3v9o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=206.189.79.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
+Received: from E0004758DT.eswin.cn (unknown [10.12.96.83])
+	by app2 (Coremail) with SMTP id TQJkCgCn6awD3D9pc5OFAA--.62378S2;
+	Mon, 15 Dec 2025 17:59:33 +0800 (CST)
+From: zhangsenchuan@eswincomputing.com
+To: bhelgaas@google.com,
+	mani@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	lpieralisi@kernel.org,
+	kwilczynski@kernel.org,
+	robh@kernel.org,
+	p.zabel@pengutronix.de,
+	jingoohan1@gmail.com,
+	gustavo.pimentel@synopsys.com,
+	linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	christian.bruel@foss.st.com,
+	mayank.rana@oss.qualcomm.com,
+	shradha.t@samsung.com,
+	krishna.chundru@oss.qualcomm.com,
+	thippeswamy.havalige@amd.com,
+	inochiama@gmail.com,
+	Frank.li@nxp.com
+Cc: ningyu@eswincomputing.com,
+	linmin@eswincomputing.com,
+	pinkesh.vaghela@einfochips.com,
+	ouyanghui@eswincomputing.com,
+	Senchuan Zhang <zhangsenchuan@eswincomputing.com>
+Subject: [PATCH v8 0/2] Add driver support for Eswin EIC7700 SoC PCIe controller
+Date: Mon, 15 Dec 2025 17:59:28 +0800
+Message-ID: <20251215095928.1712-1-zhangsenchuan@eswincomputing.com>
+X-Mailer: git-send-email 2.49.0.windows.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251215-st7571-split-v3-7-d5f3205c3138@gmail.com>
-References: <20251215-st7571-split-v3-0-d5f3205c3138@gmail.com>
-In-Reply-To: <20251215-st7571-split-v3-0-d5f3205c3138@gmail.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Javier Martinez Canillas <javierm@redhat.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, Marcus Folkesson <marcus.folkesson@gmail.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1230;
- i=marcus.folkesson@gmail.com; h=from:subject:message-id;
- bh=sExmmnvYaPANXPnzO5I3PgHRYBCnpqGofgWH94UH1sM=;
- b=owEBbQKS/ZANAwAKAYiATm9ZXVIyAcsmYgBpP9k4iLYRf6pbd/ZVDpkkKqBsnqpGyKf2nvXlG
- MFX9dXbKrWJAjMEAAEKAB0WIQQFUaLotmy1TWTBLGWIgE5vWV1SMgUCaT/ZOAAKCRCIgE5vWV1S
- MtEHEADAyrbyRjTklwJ/2m4/bO/eCRWhZBtPQmDhuDWmBUAM2z2hP3rz7synGw57lPV7QFHRDx0
- UVUCKPOkIhOINM89+J5vdWaINjQkUoH95xpE4pHbC/yb9EX61NRD7vbbZF5AR8ig172tl/aWQVd
- n8rEIpJ9437Z7xAeBWlXEAT6xIVCpNxzVSpx2o27r86fgV4UibqTBupm1R2P2zfMcBXyuoaLhdP
- B7UpKhBskDXWgDtsQAODYw6BVlxE7gPe+Ae7Flmi6G5zreW+3sjHva+ZDJlut3gt0PKikHCV5h9
- i8lx3ulXeuEZYGBMT3lDtMibfValJWbScFpfxCgcP0c0Z080TJUrHzA0KLaCcNddkj4YZfBuPmQ
- A4J1ZKFKyYQ3RKRaRqxiv5bL+gcc41pn7jHXCWuBO8M2oEleVG+5RMeWnAObLZ6Z7pYiVZIU4I1
- slQNpnuorO/nGNE+IsW3TxYADGynRuM6Dy0+YfvcvU6VCUVkJ+zCr+feR2+IXSeqLahE3VzgaTm
- KaC4cbxM+ksOfTGlrLrmqk4SgMpCcuNq9TDxG62ZSXDUUnsz9Nam8/DpJN4eO0JsTENb8WyGE6u
- d1vsqxp9+jALYz88+Ese96rDqGr6PdP27JJm+WvY0qunbIwot3WYxbU5usRNi8fEj3PzNsPMyEB
- 6aA8xZgDS25XnLw==
-X-Developer-Key: i=marcus.folkesson@gmail.com; a=openpgp;
- fpr=AB91D46C7E0F6E6FB2AB640EC0FE25D598F6C127
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:TQJkCgCn6awD3D9pc5OFAA--.62378S2
+X-Coremail-Antispam: 1UD129KBjvJXoW3AryfGw47tw45CFyftryUtrb_yoWfKr1Upa
+	yvkFWj9rn8Xr1xZrs7AF4F9F4fXan8ZFy5Cw1xW34UZa12q3s7tryvkFW3tasrArZxZrWF
+	vF42qan0kF4DAFDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUBv14x267AKxVW5JVWrJwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26w1j6s0DM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
+	JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
+	CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
+	2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
+	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
+	Y2ka0xkIwI1lw4CEc2x0rVAKj4xxMxkF7I0En4kS14v26r4a6rW5MxkIecxEwVCm-wCF04
+	k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18
+	MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr4
+	1lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1l
+	IxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4
+	A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x0pRkwIhUUUUU=
+X-CM-SenderInfo: x2kd0wpvhquxxxdqqvxvzl0uprps33xlqjhudrp/
 
-Add example for using st7571 with SPI.
+From: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
 
-Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
----
- .../bindings/display/sitronix,st7571.yaml          | 25 ++++++++++++++++++++++
- 1 file changed, 25 insertions(+)
+Changes in v8:
+- Updates: eswin,eic7700-pcie.yaml
+  - None
 
-diff --git a/Documentation/devicetree/bindings/display/sitronix,st7571.yaml b/Documentation/devicetree/bindings/display/sitronix,st7571.yaml
-index b83721eb4b7f..1931a47c4217 100644
---- a/Documentation/devicetree/bindings/display/sitronix,st7571.yaml
-+++ b/Documentation/devicetree/bindings/display/sitronix,st7571.yaml
-@@ -76,3 +76,28 @@ examples:
-         };
-       };
-     };
-+
-+    spi {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      display@0 {
-+        compatible = "sitronix,st7571";
-+        reg = <0>;
-+        reset-gpios = <&gpio0 3 GPIO_ACTIVE_LOW>;
-+        width-mm = <37>;
-+        height-mm = <27>;
-+
-+        panel-timing {
-+          hactive = <128>;
-+          vactive = <96>;
-+          hback-porch = <0>;
-+          vback-porch = <0>;
-+          clock-frequency = <0>;
-+          hfront-porch = <0>;
-+          hsync-len = <0>;
-+          vfront-porch = <0>;
-+          vsync-len = <0>;
-+        };
-+      };
-+    };
+- Updates: pcie-eic7700.c
+  - Remove dw_pcie_suspend_noirq/dw_pcie_resume_noirq API and add a
+    comment, and remove .deinit.
+  - Remove no_pme_handshake flag.
+  - Add dw_pcie_dbi_ro_wr_en/dw_pcie_dbi_ro_wr_dis API.
+  - Add eic7700_pcie_assert helper function.
+  - Update NOIRQ_SYSTEM_SLEEP_PM_OPS to DEFINE_NOIRQ_DEV_PM_OPS.
+- Link to V7: https://lore.kernel.org/all/20251202090225.1602-1-zhangsenchuan@eswincomputing.com/
 
--- 
-2.51.2
+Changes in v7:
+- Updates: eswin,eic7700-pcie.yaml
+  - None
+
+- Updates: pcie-eic7700.c
+  - Update "config PCIE_EIC7700" bool to tristate.
+  - Remove fix MSI-X code, depend on new commit [1].
+  - Add set no_pme_handshake flag.
+  - Update -EINVAL to -ENODATA and add PM runtime function.
+  - Add ".probe_type = PROBE_PREFER_ASYNCHRONOUS,".
+  - Update eic7700_pcie_perst_deassert function name to
+    eic7700_pcie_perst_reset.
+  - Update readw to dw_pcie_readw_dbi function.
+  - Add comments above reset_control_bulk_deassert function.
+
+- Updates: pcie-designware.h pcie-designware-host.c
+ -  The ESWIN EIC7700 SoC lacks hardware support for the L2/L3 low-power
+    link states. It cannot enter the L2/L3 ready state through the
+    PME_Turn_Off/PME_To_Ack handshake protocol. To address this, add a
+    no_pme_handshake flag skip PME_Turn_Off broadcast and link state check
+    code, other driver can reuse this flag if meet the similar situation.
+- Link to V6: https://lore.kernel.org/linux-pci/20251120101018.1477-1-zhangsenchuan@eswincomputing.com/
+- Link to: https://lore.kernel.org/linux-pci/20251109-remove_cap-v1-3-2208f46f4dc2@oss.qualcomm.com/ [1]
+
+Changes in v6:
+- Updates: eswin,eic7700-pcie.yaml
+  - Add Reviewed-by: Rob Herring (Arm) <robh@kernel.org>.
+
+- Updates: pcie-eic7700.c
+  - Remove pci_root_ports_have_device function judgment during suspend.
+  - Remove eic7700_pcie_pme_turn_off and eic7700_pcie_get_ltssm function.
+  - Add set no_suspport_L2 flag.
+
+- Updates: pcie-designware.h pcie-designware-host.c
+ - The ESWIN EIC7700 soc does not support enter L2 link state. Therefore
+   add no_suspport_L2 flag skip PME_Turn_Off broadcast and link state
+   check code, other driver can reuse this flag if meet the similar
+   situation.
+- Link to V5: https://lore.kernel.org/all/20251110090716.1392-1-zhangsenchuan@eswincomputing.com/
+- Link to: https://lore.kernel.org/all/e7plmtwtkkd4ymrt2hkztcqdx4ugfjk64oksjyf6lpi2oui53d@vhuo5occyref/
+
+Changes in v5:
+- Updates: eswin,eic7700-pcie.yaml
+  - Modify reg-names: update mgmt to elbi.
+  - Modify clock-names: update pclk to phy_reg.
+  - Modify reset-names: update powerup to pwr.
+  - Remove powerup modify in "snps,dw-pcie-common.yaml" file.
+
+- Updates: pcie-eic7700.c
+  - Update the driver submission comment, mention EIC7700 in the
+    "config PCIE_EIC7700" and in the driver title.
+  - Update some comments, for examples: "s/PME_TURN_OFF/PME_Turn_Off/",
+    "s/INTX/INTx/", "s/PERST/PERST#/", "s/perst/PERST#/", "s/id/ID/".
+  - Update "struct *_pcie" name and function name, add the eic7700 prefix.
+  - Use PCIEELBI_CTRL0_DEV_TYPE macro and update comment, use FIELD_PREP.
+  - Add eic7700_pcie_data pointer in struct eic7700_pcie.
+  - Update .deinit callback function name and removed the dw_pcie_link_up
+    judgment, add pci_root_ports_have_device function judgment.
+  - Remove devm_platform_ioremap_resource_byname function get mgmt, use
+    platform_get_resource_byname function get elbi in "pcie-designware.c".
+  - Update of_reset_control_get to of_reset_control_get_exclusive, use
+    devm_reset_control_bulk_get_exclusive function get resets, update use
+    reset_control_bulk_assert/reset_control_bulk_deassert function.
+- Link to V4: https://lore.kernel.org/all/20251030082900.1304-1-zhangsenchuan@eswincomputing.com/
+- Link to https://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git/tree/?h=controller/dwc
+
+Changes in v4:
+- Updates: eswin,eic7700-pcie.yaml
+  - Use snps,dw-pcie.yaml instead pci-host-bridge.yaml.
+
+- Updates: snps,dw-pcie-common.yaml
+  - Add powerup reset property, our powerup property is somewhat different
+    from the general attributes defined by Synopsys DWC binding.
+
+- Updates: pcie-eic7700.c
+  - Update the driver submission comment.
+  - Alphabetize so the menuconfig entries remain sorted by vendor.
+  - Update use PCI_CAP_LIST_NEXT_MASK macro.
+  - Use readl_poll_timeout function.
+  - Update eswin_pcie_suspend/eswin_pcie_resume name to
+    eswin_pcie_suspend_noirq/eswin_pcie_resume_noirq.
+  - PM use dw_pcie_suspend_noirq and dw_pcie_resume_noirq function and add
+    eswin_pcie_get_ltssm, eswin_pcie_pme_turn_off, eswin_pcie_host_exit
+    function adapt to PM.
+- Link to V3: https://lore.kernel.org/linux-pci/20250923120946.1218-1-zhangsenchuan@eswincomputing.com/
+
+Changes in v3:
+- Updates: eswin,eic7700-pcie.yaml
+  - Based on the last patch yaml file, devicetree separates the root port
+    node, changing it significantly. Therefore, "Reviewed-by: Krzysztof
+    Kozlowski <krzysztof.kozlowski@linaro.org>" is not added.
+  - Clock and reset drivers are under review. In yaml, macro definitions
+    used in clock and reset can only be replaced by constant values.
+  - Move the num-lanes and perst resets to the PCIe Root Port node, make
+    it easier to support multiple Root Ports in future versions of the
+    hardware.
+  - Update the num-lanes attribute and modify define num-lanes as decimal.
+  - Optimize the ranges attribute and clear the relocatable flag (bit 31)
+    for any regions.
+  - Update comment: inte~inth are actual interrupts and these names align
+    with the interrupt names in the hardware IP, inte~inth interrupts
+    corresponds to Deassert_INTA~Deassert_INTD.
+  - Add Signed-off-by: Yanghui Ou <ouyanghui@eswincomputing.com>.
+
+- Updates: pcie-eic7700.c
+  - Update the submission comment and add DWC IP revision, data rate, lane
+    information.
+  - Optimize the "config PCIE_EIC7700" configuration.
+  - Optimize the macro definition, add bitfield definition for the mask,
+    and remove redundant comments. optimize comments, make use of 80
+    columns for comments.
+  - Use the dw_pcie_find_capability function to obtain the offset by
+    traversing the function list.
+  - Remove the sets MPS code and configure it by PCI core.
+  - Alphabetize so the menuconfig entries remain sorted by vendor.
+  - Configure ESWIN VID:DID for Root Port as the default values are
+	invalid,and remove the redundant lane config.
+  - Use reverse Xmas order for all local variables in this driver
+  - Hardware doesn't support MSI-X but it advertises MSI-X capability, set
+    a flag and clear it conditionally.
+  - Resets are all necessary, Update the interface function for resets.
+  - Since driver does not depend on any parent to power on any resource,
+    the pm runtime related functions are removed.
+  - Remove "eswin_pcie_shutdown" function, our comment on the shutdown
+    function is incorrect. Moreover, when the host powers reboots,it will
+    enter the shutdown function, we are using host reset and do not need
+    to assert perst. Therefore, the shutdown function is not necessary.
+  - remove "eswin_pcie_remove", because it is not safe to remove it during
+    runtime, and this driver has been modified to builtin_platform_driver
+    and does not support hot plugging, therefore, the remove function is
+    not needed.
+  - The Suspend function adds link state judgment, and for controllers
+    with active devices, resources cannot be turned off.
+  - Add Signed-off-by: Yanghui Ou <ouyanghui@eswincomputing.com>.
+- Link to V2: https://lore.kernel.org/linux-pci/20250829082021.49-1-zhangsenchuan@eswincomputing.com/
+
+Changes in v2:
+- Updates: eswin,eic7700-pcie.yaml
+  - Optimize the naming of "clock-names" and "reset-names".
+  - Add a reference to "$ref: /schemas/pci/pci-host-bridge.yaml#".
+    (The name of the reset attribute in the "snps,dw-pcie-common.yaml"
+    file is different from our reset attribute and "snps,dw-pcie.yaml"
+    file cannot be directly referenced)
+  - Follow DTS coding style to optimize yaml attributes.
+  - Remove status = "disabled" from yaml.
+
+- Updates: pcie-eic7700.c
+  - Remove unnecessary imported header files.
+  - Use dev_err instead of pr_err and remove the WARN_ON function.
+  - The eswin_evb_socket_power_on function is removed and not supported.
+  - The eswin_pcie_remove function is placed after the probe function.
+  - Optimize function alignment.
+  - Manage the clock using the devm_clk_bulk_get_all_enabled function.
+  - Handle the release of resources after the dw_pcie_host_init function
+    call fails.
+  - Remove the dev_dbg function and remove __exit_p.
+  - Add support for the system pm function.
+- Link to V1: https://lore.kernel.org/all/20250516094057.1300-1-zhangsenchuan@eswincomputing.com/
+
+Senchuan Zhang (2):
+  dt-bindings: PCI: eic7700: Add Eswin PCIe host controller
+  PCI: eic7700: Add Eswin PCIe host controller driver
+
+ .../bindings/pci/eswin,eic7700-pcie.yaml      | 167 ++++++++
+ drivers/pci/controller/dwc/Kconfig            |  11 +
+ drivers/pci/controller/dwc/Makefile           |   1 +
+ drivers/pci/controller/dwc/pcie-eic7700.c     | 391 ++++++++++++++++++
+ 4 files changed, 570 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pci/eswin,eic7700-pcie.yaml
+ create mode 100644 drivers/pci/controller/dwc/pcie-eic7700.c
+
+--
+2.25.1
 
 
