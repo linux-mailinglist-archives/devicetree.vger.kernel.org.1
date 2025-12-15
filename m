@@ -1,252 +1,212 @@
-Return-Path: <devicetree+bounces-246583-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246584-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82960CBDF6A
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 14:15:26 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C039CBDF98
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 14:17:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 205FE305935A
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 13:09:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C9DDB3012DF4
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 13:17:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C22E52D2488;
-	Mon, 15 Dec 2025 13:09:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6E452DAFBE;
+	Mon, 15 Dec 2025 13:17:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="kUuHb2Ii"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="GnLwksGI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out-171.mta0.migadu.com (out-171.mta0.migadu.com [91.218.175.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B31252D77F5
-	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 13:09:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28F532877E3;
+	Mon, 15 Dec 2025 13:17:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765804170; cv=none; b=PCZBSzS16bxDz7MB1I8AhxSgIJLaKkotibMLB7HR+NPCApd5VmBlvmHgvLPGCf2owFw4F4xmayNdT2RtbU5hlfyQMc866uF7QRc0Q+NggPoGf/oKS7oFcuXrKECHFRHLx3ulZTu1YOb+BvDZuXPI/YynSfm+13t9VlqY3cpj8ck=
+	t=1765804633; cv=none; b=ETMcBmxzaSBZfSb4LEFO3j66O8HguXEveDQnqURx9J//dfy0EFKMmUYn+7qfy3ew+gX9+pxMWpj7qU254eg35D//TGgozbkyKoiaxYitWRxSg4dwW0ri+EdTdjzX8z99x5yDCJT9rMXnaFmU0srm85OuCBB9HQsSptVZcADJmIo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765804170; c=relaxed/simple;
-	bh=htT2w6l3gT1BhEWxPoOuIIkxt113epopi+xlKxAqEYk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PWj9Yu8pS6r9Zn9DiOpcu0/s6TC/Pa/PiGvHTgCDrHMgSDfx+LwYGnBnKo1gQxbTrBrorNy/BAmRMTgByilsXpQTblZky665OtfjDrPaXAP8snka2zrItOSqGlCleWqWCHLLm2Zay2d0hviU8Ir24P3hNFHY0VXW5Py/bR3KDi4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=kUuHb2Ii; arc=none smtp.client-ip=209.85.221.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-42fb2314f52so1519328f8f.0
-        for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 05:09:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1765804167; x=1766408967; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=M4qyctUX7vU1W8pSxvEcJ1tR+43BtQPWPVTKPDH9E2M=;
-        b=kUuHb2Iii/+nvVsTgYfmnyUmr8L+uuctEyISmztwpQ0FOxzrWqVLobOwWGV51mdAo6
-         sXqc63B5fpkVJsG21fGHDOCDVepbkd3p25FCB6+XrMrSejdRMKD4I8ebCt8CQqi5uM9M
-         i9csx2BVWoSGdri3pK1n/FXdiMukBplAVCf10=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765804167; x=1766408967;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=M4qyctUX7vU1W8pSxvEcJ1tR+43BtQPWPVTKPDH9E2M=;
-        b=kFSjSAIPGMVPZZ2qPgU73HAKsBtboSFca+WkqmsL+p/d9GtxQwQkDrmE0oAAbx9Tdj
-         xIudWLkM2SbN3Lr9Gf+4d1aARwOa7hcjc+GDqkyo6jObt4xMlrSP8ryYGRW7fx8HS0Wx
-         u4GmJfaCFlKEwgY5h4rW8s6oLE2EF6jj+U8viUwJJUX9IIU9heImfhq0M6JCGzJLmKT+
-         QrtR7/YGpuxIdrDW2SD5ufqS+qBWx5TSJ1AOVBUvnUZ61SyFanw4Cr+vejOX+byBj0+P
-         lWs+3SbBt99GALv/FSp8GTCfICiXmB9uFEy8M4bG/5AU48YLXQIo2FJnUsJPJtiHmh9/
-         iHSw==
-X-Forwarded-Encrypted: i=1; AJvYcCXbQaCK/YbkO7zCvMMUC0Qv4Q1o9VrLvHN2ibyXQDFcUeNs9OGCufC5/wEkyUAkyupjz9xHyVcm/5lW@vger.kernel.org
-X-Gm-Message-State: AOJu0YyRoy/Rqs3AsCIY8l1xWAB/3MtTQoIuXatinxpa2E/tC4vqQAMr
-	YNXa6cz2ZBzbSaGWEwbkphYtlf3e7NNTuAKLhA8dV37pIJfGQoaRu1dPoQfIxhB07A==
-X-Gm-Gg: AY/fxX6UO9iUdmMNi8akurrTw6WZA5BYip2Fn6dFI8naRhvR7booZAk7vNPPKW6C7sR
-	Z/EP7V5Jig7vsB3rYSBw9pWIQeZQ0kAhalzVWZDxhwcTiak1aZ5QORvtMnanRhNhEqF/4hHkfkO
-	NrB7rQD+qPIsU4OZTnGznfF9OBFKiUoduJjcPrvgsgjDj4EzC3k8rDHNmgbA3KFAYijB/RWta36
-	rTC5PeYOc+FQtb+Dp3PzSnG5PIN0RBDFbc66ds+rXXm7lsZBleXQApppRLGqjcDetQwy6xhpl5p
-	6+mxbEh7owDzl9efTMgfK8Ia5w2VqZfvrKEYBuJn1p3vG62c5TMtV/XJHbLs5uTC+2330Umlq09
-	DYPtb3VCgRTk9L7Kt6y/e2OYhpwcsXGph0pVe1sLTQ3QhAcwcC5UfUrR1E0Kw+yBwt+yaJIVbrU
-	zOai7mgodlGTRfKVu/Nw==
-X-Google-Smtp-Source: AGHT+IHxUjIM6pOJsp7j/o99Vq4T5LCbQu9SoxxJURH/po4ld/NsNTEpHIlESpdoGRU4OR27kBc92g==
-X-Received: by 2002:a05:6000:4383:b0:430:f182:788f with SMTP id ffacd0b85a97d-430f1827ae9mr8904843f8f.21.1765804167048;
-        Mon, 15 Dec 2025 05:09:27 -0800 (PST)
-Received: from google.com ([37.228.206.31])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-430f6e78a7csm11582854f8f.34.2025.12.15.05.09.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Dec 2025 05:09:26 -0800 (PST)
-Date: Mon, 15 Dec 2025 13:09:24 +0000
-From: Fabio Baltieri <fabiobaltieri@chromium.org>
-To: Simon Glass <sjg@chromium.org>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	s=arc-20240116; t=1765804633; c=relaxed/simple;
+	bh=t+3/rBH8Fou7YH7QS+lXRreFqP+9OwpFHCCxzxu16JE=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=G1AtE3X8omE7x22d84I966HK2DkjEfXNS7rJgn+MdwOysShpS0d6wZEXayvFm1O+SuAK2oO+g2iKd7cJU2K7VaFD4cHChLyu2E6xuDyrf01R1bqYC3iSVSiYN07Zg645VOedJoJjdtldcJZzRmGZThj+GMHoVreI5kRZ69UedqU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=GnLwksGI; arc=none smtp.client-ip=91.218.175.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Date: Mon, 15 Dec 2025 15:16:41 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1765804612; h=from:from:reply-to:reply-to:subject:subject:date:date:
+	 message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+	 content-type:content-type; bh=WiDNFAxR5yiVwu+hAtbQBY28p8F8f+gFH61h9WqQhIo=;
+	b=GnLwksGIPDesCnH5nLgzqbszxAc83W9+2jFI9EeJ23KcYY3MPN/RZqRYRp3wxqjBVKThnW
+	d0GMoVbLfZ2uwxsKyNMpxRjmg5ZkFUxMpGNxof3KJNi4Hpvlw59D9WtPC8nmDOUqm+whn0
+	fWJHCjchn8dFDflUHsGH9XCA/xdhL1A=
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Matti Vaittinen <matti.vaittinen@linux.dev>
+To: Matti Vaittinen <mazziesaccount@gmail.com>,
+	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Benson Leung <bleung@chromium.org>,
-	Guenter Roeck <groeck@chromium.org>,
-	Tzung-Bi Shih <tzungbi@kernel.org>, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org, chrome-platform@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 2/3] Input: cros_ec_keyb: add function key support
-Message-ID: <aUAIhNMTPQVl3b4W@google.com>
-References: <20251209154706.529784-1-fabiobaltieri@chromium.org>
- <20251209154706.529784-3-fabiobaltieri@chromium.org>
- <CAFLszThUU4hfb4vY4mmGHQadRKThG3e=9cAKRy_ampKwA_XNcA@mail.gmail.com>
+	Sebastian Reichel <sre@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Matti Vaittinen <mazziesaccount@gmail.com>,
+	Linus Walleij <linusw@kernel.org>,
+	Bartosz Golaszewski <brgl@kernel.org>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+	linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-rtc@vger.kernel.org, Andreas Kemnade <andreas@kemnade.info>
+Subject: [PATCH RESEND v6 00/17] Support ROHM BD72720 PMIC
+Message-ID: <cover.1765804226.git.mazziesaccount@gmail.com>
+Reply-To: Matti Vaittinen <mazziesaccount@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="6ZIbSEWw5sj//Cs4"
+Content-Disposition: inline
+X-Migadu-Flow: FLOW_OUT
+
+
+--6ZIbSEWw5sj//Cs4
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAFLszThUU4hfb4vY4mmGHQadRKThG3e=9cAKRy_ampKwA_XNcA@mail.gmail.com>
+Content-Transfer-Encoding: quoted-printable
 
-Hey Simon,
+Resending the v6
 
-On Thu, Dec 11, 2025 at 06:29:01AM -0700, Simon Glass wrote:
-> > @@ -44,6 +52,13 @@
-> >   * @bs_idev: The input device for non-matrix buttons and switches (or NULL).
-> >   * @notifier: interrupt event notifier for transport devices
-> >   * @vdata: vivaldi function row data
-> > + * @fn_key: coordinate of the function key
-> > + * @fn_keymap: array of coordinate and codes for the function keys
-> > + * @fn_keymap_len: number of entries in the fn_keymap array
-> > + * @fn_key_status: active function keys bitmap
-> > + * @normal_key_status: active normal keys bitmap
-> > + * @fn_key_pressed: tracks the function key status
-> > + * @fn_key_triggered: tracks where any function key fired
-> >   */
-> >  struct cros_ec_keyb {
-> >         unsigned int rows;
-> > @@ -61,6 +76,14 @@ struct cros_ec_keyb {
-> >         struct notifier_block notifier;
-> >
-> >         struct vivaldi_data vdata;
-> > +
-> > +       uint32_t fn_key;
-> 
-> Normally we use u32/u8 these days
+Series is same as v6 _except_ being rebased on v6.19-rc1 - and adding rb
+tags which were replied to v6.
 
-Okay, I did notice the file was a bit of a mix, I'll change them in v2.
+The ROHM BD72720 is a new power management IC for portable, battery
+powered devices. It integrates 10 BUCKs and 11 LDOs, RTC, charger, LEDs,
+GPIOs and a clock gate. To me the BD72720 seems like a successor to the
+BD71828 and BD71815 PMICs.
 
-> 
-> > +       uint32_t *fn_keymap;
-> > +       int fn_keymap_len;
-> > +       uint32_t fn_key_status;
-> > +       uint8_t normal_key_status[CROS_EC_KEYBOARD_COLS_MAX];
-> > +       bool fn_key_pressed;
-> > +       bool fn_key_triggered;
-> >  };
-> >
-> >  /**
-> > @@ -166,16 +189,108 @@ static bool cros_ec_keyb_has_ghosting(struct cros_ec_keyb *ckdev, uint8_t *buf)
-> >         return false;
-> >  }
-> >
-> > +static bool cros_ec_key_is(int row, int col, uint32_t key)
-> > +{
-> > +       if (row == KEY_ROW(key) && col == KEY_COL(key))
-> > +               return true;
-> > +
-> > +       return false;
-> > +}
-> > +
-> > +static void cros_ec_keyb_process_one(struct cros_ec_keyb *ckdev,
-> > +                                    int row, int col, bool state)
-> > +{
-> > +       struct input_dev *idev = ckdev->idev;
-> > +       const unsigned short *keycodes = idev->keycode;
-> > +       int pos = MATRIX_SCAN_CODE(row, col, ckdev->row_shift);
-> > +       unsigned int code = keycodes[pos];
-> > +
-> > +       dev_dbg(ckdev->dev, "changed: [r%d c%d]: byte %02x\n", row, col, state);
-> > +
-> > +       if (ckdev->fn_keymap) {
-> > +               if (cros_ec_key_is(row, col, ckdev->fn_key)) {
-> > +                       ckdev->fn_key_pressed = state;
-> > +
-> > +                       if (state) {
-> > +                               ckdev->fn_key_triggered = false;
-> > +                       } else if (!ckdev->fn_key_triggered) {
-> > +                               /*
-> > +                                * Send the original code if nothing else has
-> > +                                * been pressed together with Fn.
-> > +                                */
-> > +                               input_event(idev, EV_MSC, MSC_SCAN, pos);
-> > +                               input_report_key(idev, code, true);
-> > +                               input_sync(ckdev->idev);
-> 
-> What is this function? I might be missing a patch?
+This series depends on
+5bff79dad20a ("power: supply: Add bd718(15/28/78) charger driver")
+which is in power-supply tree, for-next. Thus, the series is based on
+it.
 
-input_sync? it sends an EV_SYN, been there from the start, though I
-noticed I miss one two lines below, was relying on the rest of the
-function to send it but I changed the logic at some point and broke that
-path, will fix that.
+The testing since v4 has suffered some hardware-issues after I
+accidentally enabled charging while the PMIC's battery pin was connected
+to the I/O domain. Some heat was generated, not terribly lot smoke
+though...
 
-> 
-> > +
-> > +                               input_event(idev, EV_MSC, MSC_SCAN, pos);
-> > +                               input_report_key(idev, code, false);
-> > +                       }
-> > +
-> > +                       return;
-> > +               }
-> > +
-> > +               if (!state) {
-> > +                       /* Key release, may need to release the Fn code */
-> > +                       for (int i = 0; i < ckdev->fn_keymap_len; i++) {
-> > +                               if (!cros_ec_key_is(row, col,
-> > +                                                   ckdev->fn_keymap[i]))
-> > +                                       continue;
-> > +
-> > +                               if ((ckdev->fn_key_status & BIT(i)) == 0)
-> > +                                       continue;
-> > +
-> > +                               code = KEY_VAL(ckdev->fn_keymap[i]);
-> > +                               ckdev->fn_key_status &= ~BIT(i);
-> > +
-> > +                               input_event(idev, EV_MSC, MSC_SCAN, pos);
-> > +                               input_report_key(idev, code, state);
-> > +
-> > +                               return;
-> > +                       }
-> > +
-> > +                       if ((ckdev->normal_key_status[col] & BIT(row)) == 0)
-> > +                               /* Discard, key press code was not sent */
-> > +                               return;
-> > +               } else if (ckdev->fn_key_pressed) {
-> > +                       /* Key press while holding Fn */
-> > +                       ckdev->fn_key_triggered = true;
-> > +
-> > +                       for (int i = 0; i < ckdev->fn_keymap_len; i++) {
-> > +                               if (!cros_ec_key_is(row, col,
-> > +                                                   ckdev->fn_keymap[i]))
-> > +                                       continue;
-> > +
-> > +                               code = KEY_VAL(ckdev->fn_keymap[i]);
-> > +                               ckdev->fn_key_status |= BIT(i);
-> > +
-> > +                               input_event(idev, EV_MSC, MSC_SCAN, pos);
-> > +                               input_report_key(idev, code, state);
-> > +
-> > +                               return;
-> > +                       }
-> > +
-> > +                       /* Do not emit a code if the key is not mapped */
-> > +                       return;
-> > +               }
-> > +       }
-> 
-> I think this function could do with splitting a bit
+After the incident I've had occasional I2C failures. I, however, suspect
+the root cause is HW damage in I/O lines.
 
-Yeah, I don't love it either but there's a lot of logic intertwined in
-there, tried to split it myself and ended up breaking stuff, the logic
-for the fn key itsel though can go that's a good 16 lines, I'll start
-with that, send a v2 and then go from there.
+Revision history:
+  v6 resend:
+  - Rebased on v6.19-rc1 and collected rb-tags from v6.
 
-> Can the sandbox driver support this too?
+  v5 =3D> v6:
+  - MFD fixes as suggested by Lee
+    - Styling mostly
+    - New patch to Fix comment style for MFD driver
+  More accurate changelog in individual patches
 
-Not sure what you are referring to, can you give me a pointer?
+  v4 =3D> v5:
+  - dt-binding fixes as discussed in v4 reviews.
+    - Drop rohm,vdr-battery.yaml and add vdr properties to battery.yaml
+    - Drop 'rohm,' -vendor-prefix from vdr properties
+  - Link to v4:
+    https://lore.kernel.org/all/cover.1763022807.git.mazziesaccount@gmail.c=
+om/
+  More accurate changelog in individual patches
 
-Hey thanks for the review, good to hear from you. :-)
+  v3 =3D> v4:
+  - dt-binding fixes to the BD72720 MFD example and regulator bindings
+  More accurate changelog in individual patches
 
-Cheers,
-Fabio
+  v2 =3D> v3:
+  - rebased to power-supply/for-next as dependencies are merged to there
+  - plenty of dt-binding changes as suggested by reviewers
+  - add new patch to better document existing 'trickle-charging' property
+  More accurate changelog in individual patches
 
--- 
-Fabio Baltieri
+  RFCv1 =3D> v2:
+  - Drop RFC status
+  - Use stacked regmaps to hide secondary map from the sub-drivers
+  - Quite a few styling fixes and improvements as suggested by
+    reviewers. More accurate changelog in individual patches.
+  - Link to v1:
+    https://lore.kernel.org/all/cover.1759824376.git.mazziesaccount@gmail.c=
+om/
+
+---
+
+Matti Vaittinen (17):
+  dt-bindings: regulator: ROHM BD72720
+  dt-bindings: battery: Clarify trickle-charge
+  dt-bindings: battery: Add trickle-charge upper limit
+  dt-bindings: battery: Voltage drop properties
+  dt-bindings: mfd: ROHM BD72720
+  dt-bindings: leds: bd72720: Add BD72720
+  mfd: rohm-bd71828: Use regmap_reg_range()
+  mfd: rohm-bd71828: Use standard file header format
+  mfd: rohm-bd71828: Support ROHM BD72720
+  regulator: bd71828: rename IC specific entities
+  regulator: bd71828: Support ROHM BD72720
+  gpio: Support ROHM BD72720 gpios
+  clk: clk-bd718x7: Support BD72720 clk gate
+  rtc: bd70528: Support BD72720 rtc
+  power: supply: bd71828: Support wider register addresses
+  power: supply: bd71828-power: Support ROHM BD72720
+  MAINTAINERS: Add ROHM BD72720 PMIC
+
+ .../bindings/leds/rohm,bd71828-leds.yaml      |    7 +-
+ .../bindings/mfd/rohm,bd72720-pmic.yaml       |  339 ++++++
+ .../bindings/power/supply/battery.yaml        |   33 +-
+ .../regulator/rohm,bd72720-regulator.yaml     |  148 +++
+ MAINTAINERS                                   |    2 +
+ drivers/clk/Kconfig                           |    4 +-
+ drivers/clk/clk-bd718x7.c                     |   10 +-
+ drivers/gpio/Kconfig                          |    9 +
+ drivers/gpio/Makefile                         |    1 +
+ drivers/gpio/gpio-bd72720.c                   |  281 +++++
+ drivers/mfd/Kconfig                           |   18 +-
+ drivers/mfd/rohm-bd71828.c                    |  555 ++++++++-
+ drivers/power/supply/bd71828-power.c          |  160 ++-
+ drivers/regulator/Kconfig                     |    8 +-
+ drivers/regulator/bd71828-regulator.c         | 1025 ++++++++++++++++-
+ drivers/rtc/Kconfig                           |    3 +-
+ drivers/rtc/rtc-bd70528.c                     |   21 +-
+ include/linux/mfd/rohm-bd72720.h              |  634 ++++++++++
+ include/linux/mfd/rohm-generic.h              |    1 +
+ 19 files changed, 3127 insertions(+), 132 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mfd/rohm,bd72720-pmic=
+=2Eyaml
+ create mode 100644 Documentation/devicetree/bindings/regulator/rohm,bd7272=
+0-regulator.yaml
+ create mode 100644 drivers/gpio/gpio-bd72720.c
+ create mode 100644 include/linux/mfd/rohm-bd72720.h
+
+
+base-commit: 8f0b4cce4481fb22653697cced8d0d04027cb1e8
+--=20
+2.52.0
+
+
+--6ZIbSEWw5sj//Cs4
+Content-Type: application/pgp-signature; name=signature.asc
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCgAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmlACjQACgkQeFA3/03a
+ocVvXAf/aLg1mLcDMQctdZXd7r8pJ+3IdKs/8MIgXbLFX7s5jdJQe0eKVKmVjxpT
+irXNoLXsm/9rr9isLWL3cw7Mp43js/nt8XHEODlhnUR3X0xgqziT1WYFQQrFZHP0
+Vji6T+4dPH26Rf5Im1Sj38pl7mujbmKrqjtcfX5SCxAg8mUzm7BWdZVoNfyj1VbH
+IAPtHGngvqBPH3E17qFo7ki24BNFHQsn7rj5PKFAVFDpHL/A5m9MlaUXhlb5AKxA
+3/eawVNqe5+D/OvamKViZ0JAxdTxwc/d1oW3tSy0hYPsEHkqKmQPDokjuBZo+wfx
+YRBJk5U3v2ciuwq4SBuy/VzH9xw55w==
+=1Nk1
+-----END PGP SIGNATURE-----
+
+--6ZIbSEWw5sj//Cs4--
 
