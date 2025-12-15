@@ -1,185 +1,160 @@
-Return-Path: <devicetree+bounces-246623-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246624-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C3F5CBE604
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 15:47:42 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1E1DCBE31E
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 15:10:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 192F0303AE8F
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 14:41:30 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 583A6300446A
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 14:10:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D31B83396F1;
-	Mon, 15 Dec 2025 14:04:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9609C33A038;
+	Mon, 15 Dec 2025 14:09:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dLT6GV62"
+	dkim=pass (2048-bit key) header.d=resnulli-us.20230601.gappssmtp.com header.i=@resnulli-us.20230601.gappssmtp.com header.b="mY6XLWLm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19F5B338F36
-	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 14:04:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C92D1F5820
+	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 14:09:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765807495; cv=none; b=StTrZ5aojO+JV7le89Q1nBR14CGkGhjBJkMhcdzVhz/L1kM4Vg6OIfsn1LRTqB2Xt9f863K7mgcZyZ6NqTEAKXbZLXss0e5SbSd8KJmAqUaeQjo+YLuhE/24k2RMyOEeF/W8sV/w4FullEw8LHM+u8geWQ9jPHBCSdNVJsdDehE=
+	t=1765807790; cv=none; b=owQFrgWRNB5OD0uXVE/aVfTADKX0JQSYMORgVm9LqvHq8sl0al9KIqjVo9OUVb4BblSXZ8DtTtnU5au7whUWzos/qQ616qiMgaaPDfiqyyYMzGs3Ql/Qeu0qzKCxhyBUf2kRWAaWsO+oMiqlNxINxa34GTEvVDuU1EdP0Fcxt58=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765807495; c=relaxed/simple;
-	bh=KI9QIWcad/B9ZjYeffUF4N7PpYb0fDIpzH9w8RVTAyc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=L2rBDwNwfo4jgL/FI5rEWPU8WJWV/VA3TD6LRTDk4F/GKjTkfE+hiPb32juO/Uo9XHQ+jz0hWhUFsmYBo5T/ACH81DeomNWpnS7/6kGla+vyZc8j84s9QLudasjMURHPgRKY5piOVJswzZyh8aTvXtKi/Qw9HdGlN8w1rJ9b5Lk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dLT6GV62; arc=none smtp.client-ip=209.85.214.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-29f1bc40b35so49648565ad.2
-        for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 06:04:53 -0800 (PST)
+	s=arc-20240116; t=1765807790; c=relaxed/simple;
+	bh=a5hF4QBR+ZhlAFZc1a4Tnj7bIyil6UNwxw/cBS7TTfk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bEvF3DUC5xp0AcEx4vxZ5arLELre7Qt+FwuXlDyGqbCFZXxRQeswX8oDX2Q0YxWwSGOQNh4S9CGTXjwfkSGkKPZeBMA7T4gRVDjp1A6k+fBvBCNNGRNE3wzyqCbI0UdK34v3/gf5OvAWP9JgPLlWXPzP8WSAuVmMmR9EEteQb7g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=resnulli.us; spf=none smtp.mailfrom=resnulli.us; dkim=pass (2048-bit key) header.d=resnulli-us.20230601.gappssmtp.com header.i=@resnulli-us.20230601.gappssmtp.com header.b=mY6XLWLm; arc=none smtp.client-ip=209.85.128.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=resnulli.us
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=resnulli.us
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-477a2ab455fso38559755e9.3
+        for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 06:09:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1765807493; x=1766412293; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=eiURzUZDdB4fxsl1ptJaHGccRecrpuUcKuZLpsQ1g5U=;
-        b=dLT6GV62XPJqC3P1M1WXu15g5BNPw68iYdTSehV2oSEyp6eKeByNbqqba77ale8WYw
-         zWYXla8p6sE+E1miUzmDn0iFZM2ow1d9QODCNqQTG4RlUOPpsviLjHZ2rLS88SIoJSJN
-         AcTiOB0g0x8TBDLl3+hhcIwgpKXTyzLO6yhlafGeMJIzadVStML+JAmrMOmGipdGXDC1
-         EN7lM4ce2FQoUOGFFNbEBuW2EOBeEZFv7PG5mjr87P81w8eUOmjUisX3hA/n/GEZLr2m
-         fwD2nD2WBaK7WHA44zvVLQ1de0tsW/VrJraTQzK/YYRr+4dZrcfX9H9IWIyr3WFxMuIB
-         Seng==
+        d=resnulli-us.20230601.gappssmtp.com; s=20230601; t=1765807783; x=1766412583; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=oc/35n7eOAP8pFt55syhr1wbpjAJtoSwVCMNoOaa6ls=;
+        b=mY6XLWLmOjwPh1HcltXU1I9yEOOx9shXwvGhp+uyoBeTLT+o2P5RjrZDvhyvgKG7v1
+         EfznDC0/REn7YEd/VKbtaJHjA8NNGnClDuoB8OALi/9G0LvmgkSwt6fCiySrtsO1a680
+         D3nJ8w1vqwobT/CzvnFNhllqb5fWu2nSKKBDcWud5Hj3EW4c3wj4bpNNk9leudWTRmGj
+         aJR+WS5Xb9jtj36uSurGgInmn03tAsd5TL5KfvaV12Ap6Xtso2/KFIxz5GcS5UWW4yUu
+         +j/9Ci0j/xPGYaZ21xH85e7LhPQnlXtTJ2QcbHiBHfGMCpvb53LRgbBCtn7verGqP9jf
+         yj2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765807493; x=1766412293;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-gg:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1765807783; x=1766412583;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=eiURzUZDdB4fxsl1ptJaHGccRecrpuUcKuZLpsQ1g5U=;
-        b=iiUfkNe3XhRpRSq38bP3bBM2PhEKQuIsUJCZB2G4SG8kKGVL0/sCyrwajw1XD6qMHF
-         D5xJK9BBflMSsPbcDRnKK+zMek8IBTQFCxz6GYJGjt0/76aQIAofF81i545RkdEEwSe2
-         hefht1/ymI5Pob06SSJVzUJtXnF3BswD2wfwIVECyWKR++3bVfB6GA7p+H897AOYTV7Z
-         4dO7NXRLAgHd+bArwBgQNSEjz34v0eEGAVQ2ORm1sesiVAGiBQJrABE4b2/oHWBVnQUI
-         WPvUYU5uPCM3L6Awhxs3jFXu+Yx2r1yT1Yg0WjA3Yjw3l5ZyGarGOzkkxb7eU4FF3EuW
-         4TUw==
-X-Forwarded-Encrypted: i=1; AJvYcCVXteTl+pKt34Psgpk+I908co8nOpeQmuuMfs+8byKvXjFSR5FLWoIrducTIOZBggHfekF3+O7hZqf6@vger.kernel.org
-X-Gm-Message-State: AOJu0YzqBsyZfWUJTfKPIangAC4JsM+3G0cVM7waaypZQNv8td4DD72z
-	OLw01gdO35NYKvjlILwzUW+Yb+UwqnIgJlzqJuHOPtE8fpjlBaTX4Pei
-X-Gm-Gg: AY/fxX4skuhZuxkH2ea61xK7FowuG/UPQjJgXaOX37K/hC8ezD+u3u1FVyjaIc4ahAt
-	jcLTKw7PV+5KWtrxB08Re/gYo4+7+BIfYewPwzrypQ2qyPglZTQJpXrZas/zPLCLmMs4ZVEs2Ba
-	aTvZ7jOUYcFKwwoH9jDvBpKNM+/eq4wRkb98c9fcJnHAbZ3FRQu9Kv+MOPoDnIRFeQ+XLasJkwH
-	0XSCIiAX1viShJYX1Bctwwq8Pu1rVFfpYgtxwAwv3DOYKi9A6mObuiX726aKL71DZ+T785w5+AO
-	412ubi4nVxvXil/LXS81WI9JlJygUcHCL4Cr1ANFhJDOZhxQ9t4nNL5i9lat5P/j96/tOz0hyaV
-	vUZBums2oNxoHj/Ggf9GmH54RJLq2LrRBbXARo4nBAPCVeYYTjhZEF7PeW2wUhblKB9GCEoSTpC
-	TKJ50oaGsEkcYfKI0OsBl7nq6SdFgrJgjEW0D6pHHVcj06hxtqRSnjyJEkvX4=
-X-Google-Smtp-Source: AGHT+IGRL20LoecJ6pn1jdufZiNAGa9JtUlJUvG+45A3c3rMqwURCEs7Wewuin0iwJX6orhOUQMjxg==
-X-Received: by 2002:a17:902:c94a:b0:2a1:deb:c46c with SMTP id d9443c01a7336-2a10debc778mr23305005ad.44.1765807493228;
-        Mon, 15 Dec 2025 06:04:53 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29eea06b651sm137028605ad.94.2025.12.15.06.04.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Dec 2025 06:04:52 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <94e647ec-3cd4-4475-b064-064916cf83bd@roeck-us.net>
-Date: Mon, 15 Dec 2025 06:04:50 -0800
+        bh=oc/35n7eOAP8pFt55syhr1wbpjAJtoSwVCMNoOaa6ls=;
+        b=tdOWQpWCBJiXCMaLiL6p9rwkvqCbv57eC3nwjVOiXjpydY9YBwV5F+gJzzH6yrj9GK
+         J1TNv3THWHhkFZgt28Z9LaJ4PJ+PNBZzbBCMWsp2TWUAJeYWccze6FOgCfQSr5scGOKW
+         arLUIQsF93KGRlbwC4XJ2kSq1c1KuFHnpnEDvz00wvJIAEUKd2SQxJ5ftiiZwFQes5jc
+         /tvX6B51ehfdlVqILOnGJ3FvyIQR4wCiMdQItOdxysqIJJVYZ0U6zVT0Av3siNb9gGzV
+         ECa32fhQ5z73W3GNUatWATMnr2FkcebKqLOV9LVKyEoQa8bLO+pK4VtxEJoIEGPESoJD
+         sr0g==
+X-Forwarded-Encrypted: i=1; AJvYcCVoLuoXj8tWFoGoL7uUlDNLHS5oY0IdCBW+KL0smeklVMDVn+gPkYhmo4zoTwmsof85xRVEMYDrmBTr@vger.kernel.org
+X-Gm-Message-State: AOJu0YymFToza7i3RIUC4jrIpUIM4mjkrdJCTs7A8RQYYT+4L5Q0ZKWB
+	9b0j6XX1ZkmDJ+fo0/eAMcT/2gm1Y64nZvf75CDgnm2osN8kDJykxMCLfgrr6GKYnNQ=
+X-Gm-Gg: AY/fxX7GHCxRRMjpV3JFxUTKhGykS877UXxivFxuuosl9xvRvPGnfrIAJoyPZCbWyju
+	WQBTwPaMuR3y8aQQ5c6LQbEcKpV3Nle08vBN7cJWG8uoApx7SFSXfgI53XSEChTKek3O4VA9l9A
+	SIOIDDCb2VhOWEd7lGBVQR7RWObJ1owkwxj7EMwJdchGRADY01od5i1f3wnPMesOnkOigYRhfWb
+	Mj9CxICNFAFqMzFsZ4yd+rsjXy9LsGPKjz90+P79TSQxmkME/Umx1qz1wd+/Ylot08VzgfQlTrI
+	yRahCVTSnR/UNY5knIihdAnW3eUSuPdx0T9pEdgdQnGUNdQWynZR7fhMK539gDWp5t58n1+/bxP
+	Rk0HLVrnJPCMEvr7oH0mY2N2xnGEV/tsIVFM9ivi7XWzgUQZDEXBode1EMS7Ww8t0Os6icKaSNn
+	Cc3CAwctTs6i3APBT0Qz3EmxE=
+X-Google-Smtp-Source: AGHT+IFJ7XhIHXbaOzx1TEAlEfyUnyEwSWzsivaISUhktsBUoRVHQJCmyr0qoXUugUvu/YlkS2NEog==
+X-Received: by 2002:a05:600c:3e85:b0:477:9d54:58d7 with SMTP id 5b1f17b1804b1-47a8f90cffemr109935815e9.29.1765807782193;
+        Mon, 15 Dec 2025 06:09:42 -0800 (PST)
+Received: from FV6GYCPJ69 ([140.209.217.211])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47a8f74b17bsm192749655e9.2.2025.12.15.06.09.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 15 Dec 2025 06:09:41 -0800 (PST)
+Date: Mon, 15 Dec 2025 15:09:37 +0100
+From: Jiri Pirko <jiri@resnulli.us>
+To: Ivan Vecera <ivecera@redhat.com>
+Cc: netdev@vger.kernel.org, Andrew Lunn <andrew+netdev@lunn.ch>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Vadim Fedorenko <vadim.fedorenko@linux.dev>, Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>, 
+	Grzegorz Nitka <grzegorz.nitka@intel.com>, Petr Oros <poros@redhat.com>, 
+	Michal Schmidt <mschmidt@redhat.com>, Prathosh Satish <Prathosh.Satish@microchip.com>, 
+	Tony Nguyen <anthony.l.nguyen@intel.com>, Przemek Kitszel <przemyslaw.kitszel@intel.com>, 
+	Saeed Mahameed <saeedm@nvidia.com>, Leon Romanovsky <leon@kernel.org>, 
+	Tariq Toukan <tariqt@nvidia.com>, Mark Bloch <mbloch@nvidia.com>, 
+	Richard Cochran <richardcochran@gmail.com>, Jonathan Lemon <jonathan.lemon@gmail.com>, 
+	Simon Horman <horms@kernel.org>, Alexander Lobakin <aleksander.lobakin@intel.com>, 
+	Willem de Bruijn <willemb@google.com>, Stefan Wahren <wahrenst@gmx.net>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, intel-wired-lan@lists.osuosl.org, linux-rdma@vger.kernel.org
+Subject: Re: [PATCH RFC net-next 02/13] dpll: Allow registering pin with
+ firmware node
+Message-ID: <dssuif6sbx7zp6pkk6divo4qceyopcq4rijkvqu7wmtqegucnd@etq3m2vvolo4>
+References: <20251211194756.234043-1-ivecera@redhat.com>
+ <20251211194756.234043-3-ivecera@redhat.com>
+ <ahyyksqki6bas5rqngd735k4fmoeaj7l2a7lazm43ky3lj6ero@567g2ijcpekp>
+ <3E2869EC-61B3-40DA-98E2-CD9543424468@redhat.com>
+ <tawd6udewifjeoymxkfkapxgcgfviixb4zgcjnplycigk5ffws@rdymwt2hknsl>
+ <eee9be12-603d-4e8e-92f8-e76728974313@redhat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/3] hwmon: ltc4283: Add support for the LTC4283 Swap
- Controller
-To: Tomas Melin <tomas.melin@vaisala.com>, nuno.sa@analog.com,
- linux-hwmon@vger.kernel.org, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-doc@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>,
- Jonathan Corbet <corbet@lwn.net>, Linus Walleij <linus.walleij@linaro.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>
-References: <20251204-ltc4283-support-v4-0-db0197fd7984@analog.com>
- <20251204-ltc4283-support-v4-2-db0197fd7984@analog.com>
- <c655d548-85be-4c42-a802-d9342ea90aed@vaisala.com>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <c655d548-85be-4c42-a802-d9342ea90aed@vaisala.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <eee9be12-603d-4e8e-92f8-e76728974313@redhat.com>
 
-On 12/15/25 00:20, Tomas Melin wrote:
-> Hi,
-> 
-> On 04/12/2025 18:15, Nuno Sá via B4 Relay wrote:
->> From: Nuno Sá <nuno.sa@analog.com>
->>
->> Support the LTC4283 How Swap Controller. The device features programmable
-> 
-> I think You mean hot swap controller?
-> 
->> current limit with foldback and independently adjustable inrush current to
->> optimize the MOSFET safe operating area (SOA). The SOA timer limits MOSFET
->> temperature rise for reliable protection against overstresses.
->>
->> An I2C interface and onboard ADC allow monitoring of board current,
->> voltage, power, energy, and fault status.
->>
->> Signed-off-by: Nuno Sá <nuno.sa@analog.com>
->> ---
->>   Documentation/hwmon/index.rst   |    1 +
->>   Documentation/hwmon/ltc4283.rst |  266 ++++++
->>   MAINTAINERS                     |    1 +
->>   drivers/hwmon/Kconfig           |   12 +
->>   drivers/hwmon/Makefile          |    1 +
->>   drivers/hwmon/ltc4283.c         | 1719 +++++++++++++++++++++++++++++++++++++++
->>   6 files changed, 2000 insertions(+)
->>
-> 
-> This is quite a big patch, I wonder would it ease review to try to add a
-> minimalistic implementation and after that add new features one by one...
-> 
+Mon, Dec 15, 2025 at 02:51:36PM +0100, ivecera@redhat.com wrote:
+>On 12/15/25 2:08 PM, Jiri Pirko wrote:
+>> Sun, Dec 14, 2025 at 08:35:01PM +0100, ivecera@redhat.com wrote:
+>> > 
+>> > 
+>> > On December 12, 2025 12:25:12 PM GMT+01:00, Jiri Pirko <jiri@resnulli.us> wrote:
+>> > > Thu, Dec 11, 2025 at 08:47:45PM +0100, ivecera@redhat.com wrote:
+>> > > 
+>> > > [..]
+>> > > 
+>> > > > @@ -559,7 +563,8 @@ EXPORT_SYMBOL(dpll_netdev_pin_clear);
+>> > > >   */
+>> > > > struct dpll_pin *
+>> > > > dpll_pin_get(u64 clock_id, u32 pin_idx, struct module *module,
+>> > > > -	     const struct dpll_pin_properties *prop)
+>> > > > +	     const struct dpll_pin_properties *prop,
+>> > > > +	     struct fwnode_handle *fwnode)
+>> > > > {
+>> > > > 	struct dpll_pin *pos, *ret = NULL;
+>> > > > 	unsigned long i;
+>> > > > @@ -568,14 +573,15 @@ dpll_pin_get(u64 clock_id, u32 pin_idx, struct module *module,
+>> > > > 	xa_for_each(&dpll_pin_xa, i, pos) {
+>> > > > 		if (pos->clock_id == clock_id &&
+>> > > > 		    pos->pin_idx == pin_idx &&
+>> > > > -		    pos->module == module) {
+>> > > > +		    pos->module == module &&
+>> > > > +		    pos->fwnode == fwnode) {
+>> > > 
+>> > > Is fwnode part of the key? Doesn't look to me like that. Then you can
+>> > > have a simple helper to set fwnode on struct dpll_pin *, and leave
+>> > > dpll_pin_get() out of this, no?
+>> > 
+>> > IMHO yes, because particular fwnode identifies exact dpll pin, so
+>> > I think it should be a part of the key.
+>> 
+>> The key items serve for userspace identification purposes as well. For
+>> that, fwnode is non-sense.
+>> fwnode identifies exact pin, that is nice. But is it the only
+>> differentiator among other key items? I don't expect so.
+>
+>From this point of view, not. I will not touch dpll_pin_get() and rather
+>use new helper like dpll_pin_fwnode_set(), ok?
 
-Please don't. I'll end up being the one person who will have to review it,
-and those piece by piece driver submissions often end up taking much more time
-to review than a single patch because the initial pieces miss the big picture.
+Yes please. Thanks!
 
-Guenter
 
+>
+>Thanks,
+>Ivan
+>
 
