@@ -1,130 +1,141 @@
-Return-Path: <devicetree+bounces-246673-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246674-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2AB3CBECE3
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 16:58:44 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22399CBED00
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 17:00:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id DD22E30115ED
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 15:58:41 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B6483302E950
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 15:59:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD26731AF38;
-	Mon, 15 Dec 2025 15:58:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEAED330D36;
+	Mon, 15 Dec 2025 15:58:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kFgDYCUD"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="g4aS1b0M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C17BC30FC35
-	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 15:58:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94ACC31076A
+	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 15:58:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765814301; cv=none; b=AJOWo4tYrHGtgqTAqjEHCatPZsgIEqvqr58O5q9vxsTu8auU6yq4ik1oOpvwJqoh7ljl6SqThMCznWEh0SxAV6/hnZLmn5XLYfq5TxOymjYpxptJ+ooh+1OTuSFTdXycYFZj5b/0LFRfrsL0oMD/vcQITWslymj1K66t7eJCoPI=
+	t=1765814320; cv=none; b=DRENoOna86JufftsoduNF8iamMv35GLMpbiuARX5ZkTxGxWa3TmwpxxponVKNo0othMHdThhGFk8v2fDl5+5eIBNWBDjXjZO7Ki8NvTPhoalC0UCib/K4OecVVaxBN1MkLH8UvI6s8tl31S7IGMSdsDq/pA9kRb0h+MihpMZWDI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765814301; c=relaxed/simple;
-	bh=SXNHwmt4IY8mD5pE4WSrMi6z+GqRjpGucvBnGaDk3bU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=F3ahjnuciMd9dOH26oLtYHv4K79yZSEnaSbOC+TQRMMyz87kVGRlHV1QVp9jLrusMN442bOoPBP+N4JlvQdQLJofNYESrNQN769NDrDM0ojA6DBRYAAjZrVVn8vXOKGISCZPkCThheSHFuIL7F5DiqIkQ17Id7cVTrV37kOzlb4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kFgDYCUD; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-477563e28a3so27713055e9.1
-        for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 07:58:18 -0800 (PST)
+	s=arc-20240116; t=1765814320; c=relaxed/simple;
+	bh=eRv7AfNkcTJVknA4Das5S0e6Q7KjBZJ1udFtKIBB6d0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=K8sxzA2wMaEg1vV9XXKXOaejm3KmJMZBbVxpeQ8/lsBT9WZa44xtaaaqXQquxCy/ULkcDUIdcBGlVp1fg1LvDvqh5LkNy3oWlxKaHRNI9mzSN+sKvYBa1agUSJV525Js6M7722zsUifGifHW3LJvlZO0aNPlHDUUtABWkuxqxFg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=g4aS1b0M; arc=none smtp.client-ip=209.85.210.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ot1-f42.google.com with SMTP id 46e09a7af769-7c6e815310aso2703131a34.0
+        for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 07:58:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1765814297; x=1766419097; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=j5xnr554TtYoRpbiQVpIVqZ94ylKVMynqnLIjhVFhbc=;
-        b=kFgDYCUD2sXlFAQUXp/+muBWkya3XdNA4bOLRoB/uY0Ju2OX3RjOVTSYR0yvywx8+i
-         4ykFclRrd55XpJUPCSpoRvHRX2lMXZ9HOObvfJnxsMjNC5xFiifutiduVD0+xhzXgE8j
-         SuEB20q6lwRYu90QKrK4mNUrGg0mCV3WdVin8qMZyhfaUcglpW2HC1OVKLVAETtO+xiD
-         InoDP2VWDTrnhx7aoZEkYSFyYgVq7QL+8cCooaSearV9yNQq9+CgFjh+sKRtW45WbUUM
-         waCS32iYOYwa15i6Zd4h7to6jgEq5bPtpwSAvOX9Wg5rO9AJG3a3/i3s52ulSjMqzAlr
-         BR8Q==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1765814318; x=1766419118; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=FAg1Z81+fT0z4IQz8r+6XMjGkoDKjdatvxs7gjb/AyE=;
+        b=g4aS1b0MfzxkEphC3luwnUZQ8geoJEq1q9F9xEz8iuIGI+Ao4Qve/zhCdxWBaQ/NbS
+         hqtwMoiltyGOoofsoed0WPjoxlpawHUyQxT7urm0EE+CYvH6SULLic55fCfEYSW7daGV
+         O8g5FsS1oLuJKx234L/lBl40CxmY/hkT2oNBI+D5PqMJyEP78zuk5zJt1J1ZpQYJ5lKM
+         WxcWBOSYAjhDTGHTbSCgq9Sc+dFBBKF/hIi4ejc2mhiES1lBlJvkqCXgsI7vHgMaBm38
+         iXR9PnS+DC9z4C6AtgRKH3R1MrJ/iLcntEfocOGSri8G20pnPtdJEhuAuqN7J/cIh4b2
+         m5jw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765814297; x=1766419097;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=j5xnr554TtYoRpbiQVpIVqZ94ylKVMynqnLIjhVFhbc=;
-        b=Bzv2YJUSNTHBv+rW478w2Dq5gpFK0KQUV9oNRC0XV/aEz7gdB3tbeRz6lzKl+k0bsF
-         jDfVtwo73+p2WoEGoP0ORqXz3pGPv0jRChUfvvolb9eMQhwiVILuM4g2d0BdVr39v0Am
-         lEpSm0rbiog8fVxtv5CxHnUheXumbgt6W30TWDZX8yfQz5NkZV2QjfjBmqqDV7AWvXSa
-         LJ3LMwgSmNwiXNFjy3hXWQv3hBFuVogWm/MYw+a/qHZkPEufgxGg9yfwEn/13G2WnUcM
-         uWR0Twjip9VoODK507LR5llMEvHoUvhbo0nTZnB6OxL331Jg5D3XvHpWWJrYAAfqnZRy
-         FxgQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVmqyJsVK56TMHD2NNfqY79pCN9oaPyZEtNWOTEPCHtZMd6v29AWn/Ww/oDMOkADFsXdWjujs6sNQeN@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw9p8+jjxlH14qs8J5EQqSGWD5JuxRpIQcnSNJVRs+Pq+Z7FlYo
-	gZOalALDnecsl4fbyuP2ZpKZIcOgyXgUwcca9aUizOjrlCRaPEoozHuZ
-X-Gm-Gg: AY/fxX4VhCRAigxRu8O+3+JZp6IiOkvtJuKxFhaQAHWKmInL5Duijl+ZTxVIqMQga+7
-	Yqwcl6AHERTc0XdNO8jGD7S73Rw2xodIMTzwltFQcwa929wuCy9jHETVWsTGOYJ86SNvcv6FwJw
-	8JzfuMCg/stRGoJsh+gapI7tkYOgfZ0/733nPNe8S294CgA9lHbe2bflieHdmnB/cmO4SdW6rq4
-	Te0CdOFXrZ1BNl3DzANFOj6m6TTMDIbc6BE1vbpCITWmTcGRKTV/HmKGKLqytMufc2e5PjThYYQ
-	K7MD/yJQc5wXhvkYlXogvUq17DUKdoFCWPGKgwCGXxnwz7ixPxdhyOIa/9CRpmII5U0Uv2n41jN
-	8SXPEw0MO/qYzJM+PdP072VZffG0wsqurLxD22UzCMEhmNY7hg3luQQdQQKk2lmQ0ZvChOGmpfZ
-	fwHYxmUS1vxNgrA4s2Kajepxb8lZLsCI8Ese9KIbDtjpZegltUEIEMEA==
-X-Google-Smtp-Source: AGHT+IHg35WoITkMiGDualxHoa4S7x3nYKLJdG+oJFRoF7ngTCh3uk/xv1zFZFYVRyvKfVEk7l8FKQ==
-X-Received: by 2002:a05:600c:529b:b0:475:d9de:952e with SMTP id 5b1f17b1804b1-47a8f09428fmr129477115e9.1.1765814297020;
-        Mon, 15 Dec 2025 07:58:17 -0800 (PST)
-Received: from ipedrosa-thinkpadx1carbongen12.rmtes.csb ([67.218.238.173])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47a8f3a1be5sm70209665e9.1.2025.12.15.07.58.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Dec 2025 07:58:16 -0800 (PST)
-From: Iker Pedrosa <ikerpedrosam@gmail.com>
-Date: Mon, 15 Dec 2025 16:57:56 +0100
-Subject: [PATCH v7 3/3] MAINTAINERS: Add entry for Sitronix ST7920 driver
+        d=1e100.net; s=20230601; t=1765814318; x=1766419118;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=FAg1Z81+fT0z4IQz8r+6XMjGkoDKjdatvxs7gjb/AyE=;
+        b=IeCUjh97qgcTUEM3BWpWax+Z3I3cNzfm6hJy0WyU+sH7QOarLQheyZEtuOVHYYQaoF
+         occt+/3u17Jnec49XIqE7UQ9pN7uAnSZMiB+7abFkGvAwcfpqDwneieerKtNGRiohNwA
+         F9RB3WOWmjfQX4xptRsj0uBZYAbziOYO874U0GVAk82IvAqbO3vir8pmf2Yt0dnEd6Hy
+         5Ktb63R4K9B6aZeHzCV3ry0g+bL2ipGBDIZRw/JA5J+IAa8qieF9M+UhtW1//nvYiwa7
+         5iMIblNyQjANou/qe3D2cGnivzsA1NmBSRFuIsmDI2N5yXN8AS49Ykd7rPKYGUerl/L2
+         lZTg==
+X-Forwarded-Encrypted: i=1; AJvYcCUmkU3lDGcvkQr44nvrsBW73iZVO/d1wAM0YsVexh7FAWvYrnouOGT1v2h2Hv3fhJQOJqKj5KB4R/u2@vger.kernel.org
+X-Gm-Message-State: AOJu0YyKHGKUIwvBQKkuoQ3SiFp9iZJ68ghN5vndephBUvUsdd0p9MsH
+	gGCprPfVPykeeQ/uSJwIh4Qy/Kxs7syO9TaAkTqDraxOHV9TsDIcj+7028xPMXbkMN0=
+X-Gm-Gg: AY/fxX6zelgWUrv0pEw5F9OAlPbG5RCzOfe6V9cv9DkgaUwKu4bjTe1VH9AKxHPgQC8
+	Kt8BpTQJQ6OB4pOZsAu8UnmK7h0knVDt2+kSm99UOgZ5Vsknp2pCLbqzoDoksRFN3JaImR0fv/m
+	tlBklpHtKtSv1t1MGjNRK0pl29JmL+2J46twD34RgQJPYh0a18kFEuOjRZJyHkbRtubuC0WKH40
+	GsFAx1DlahpM73WDyW56So+ZHGW0gwqUBSgCgCP5ozNGQ31ZEB0L58rrYM3g3TjnP6EavEx/Tfg
+	xAmB9Er7BJWjtCoQ1qmbQLWMzF1DWTPiYQaw3cg5bzVh7TeR44hmuGGbdw2lwys5RlB7ULfgdAL
+	XBiJg6fNMgNmsRoUB9D/pFi/vRC3MC746gHak1pCMtlrbeyrF1a4TTgu7wOVt/nxwGdUUfr94e8
+	+L48mgOPvsEuGwNgmPl/TtJxkuC6Oo/KreTi/MfS/pbbdEoa2pCkQqS0zotAm7li7fys6QSk8=
+X-Google-Smtp-Source: AGHT+IErjR8OzAEn6sK+72q9AhulVm00s3z7ntoS+Df2bMmfuqscJ9cXWsujF6in7Q1hr5h3VM3W0g==
+X-Received: by 2002:a05:6830:67ff:b0:7c7:6219:6852 with SMTP id 46e09a7af769-7cae8381a11mr5824150a34.28.1765814317789;
+        Mon, 15 Dec 2025 07:58:37 -0800 (PST)
+Received: from ?IPV6:2600:8803:e7e4:500:1635:b560:bfdd:f758? ([2600:8803:e7e4:500:1635:b560:bfdd:f758])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7cadb1ff4desm10030529a34.7.2025.12.15.07.58.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 15 Dec 2025 07:58:37 -0800 (PST)
+Message-ID: <8ef3fbd1-b746-4379-b615-e3034ec8f39e@baylibre.com>
+Date: Mon, 15 Dec 2025 09:58:36 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251215-st7920-v7-3-36771009ec01@gmail.com>
-References: <20251215-st7920-v7-0-36771009ec01@gmail.com>
-In-Reply-To: <20251215-st7920-v7-0-36771009ec01@gmail.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Javier Martinez Canillas <javierm@redhat.com>, 
- Iker Pedrosa <ikerpedrosam@gmail.com>
-Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- devicetree@vger.kernel.org
-X-Mailer: b4 0.14.2
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] dt-bindings: iio: adc: Add TI ADS1120 binding
+To: Ajith Anandhan <ajithanandhan0406@gmail.com>,
+ Jonathan Cameron <jic23@kernel.org>
+Cc: nuno.sa@analog.com, andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20251109141119.561756-1-ajithanandhan0406@gmail.com>
+ <20251109141119.561756-2-ajithanandhan0406@gmail.com>
+ <20251115183144.15b3e236@jic23-huawei>
+ <5cb6243e-f47b-48dc-9f43-299cde632e08@baylibre.com>
+ <d25b91b2-20c2-492a-b056-bf3bdaf4494a@gmail.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <d25b91b2-20c2-492a-b056-bf3bdaf4494a@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Add Iker as ST7920 driver maintainer.
+On 12/15/25 8:49 AM, Ajith Anandhan wrote:
+> On 11/18/25 5:49 AM, David Lechner wrote:
+>> On 11/15/25 12:31 PM, Jonathan Cameron wrote:
+>>> On Sun,  9 Nov 2025 19:41:18 +0530
+>>> Ajith Anandhan <ajithanandhan0406@gmail.com> wrote:
+>>>
 
-Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
-Signed-off-by: Iker Pedrosa <ikerpedrosam@gmail.com>
----
- MAINTAINERS | 7 +++++++
- 1 file changed, 7 insertions(+)
+...
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 5ddf37f0acc960039422ef988cadfa7176972fc5..79b8a277e38b55ebcff05450d6c565c0d87c6b51 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -7861,6 +7861,13 @@ T:	git https://gitlab.freedesktop.org/drm/misc/kernel.git
- F:	Documentation/devicetree/bindings/display/sitronix,st7735r.yaml
- F:	drivers/gpu/drm/sitronix/st7735r.c
- 
-+DRM DRIVER FOR SITRONIX ST7920 LCD DISPLAYS
-+M:	Iker Pedrosa <ikerpedrosam@gmail.com>
-+S:	Maintained
-+T:	git https://gitlab.freedesktop.org/drm/misc/kernel.git
-+F:	Documentation/devicetree/bindings/display/sitronix,st7920.yaml
-+F:	drivers/gpu/drm/sitronix/st7920.c
-+
- DRM DRIVER FOR SOLOMON SSD130X OLED DISPLAYS
- M:	Javier Martinez Canillas <javierm@redhat.com>
- S:	Maintained
+>>>> +
+>>>> +  ti,avdd-is-ref:
+>>>> +    type: boolean
+>>>> +    description: |
+>>>> +      If present, indicates that the AVDD supply voltage is of sufficient
+>>>> +      quality and stability to be used as the voltage reference instead of
+>>>> +      the internal reference. This allows the driver to select AVDD as the
+>>>> +      reference source for potentially better performance.
+>>> This one is interesting as I don't recall anyone arguing this made
+>>> sense before.  In what way better performance?  Are their boards out
+>>> there where this definitely makes sense to do?
+>>>
+>> Seems harmless to have the property even if no one ever uses it. But I would
+>> be curious to know the answers to those questions too.
+> 
+> 
+> I included this property based on the datasheet mentioning AVDD as a possible reference source, butit doesn't claim this provides better performance, and I don't currently have a specific use case or hardware design that requires it.
+> 
+> How to proceed ? Need your valuable suggestions.
+> 
+> 
+> BR,
+> 
+> Ajith.
+> 
+>>
+> 
 
--- 
-2.52.0
-
+It sounds like it is unlikely to be used in practice, so I won't
+object if you want to drop it to keep things simple.
 
