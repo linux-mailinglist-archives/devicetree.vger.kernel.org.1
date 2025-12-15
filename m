@@ -1,163 +1,126 @@
-Return-Path: <devicetree+bounces-246739-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246740-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D77FCBF63D
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 19:16:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FD6FCBF671
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 19:21:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E564E3058FAB
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 18:09:42 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5624330124F0
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 18:15:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18234338922;
-	Mon, 15 Dec 2025 18:09:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA4373254BA;
+	Mon, 15 Dec 2025 18:15:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mzOopvwP"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="a5/gTm2q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7C4C338582;
-	Mon, 15 Dec 2025 18:09:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D7863254AA
+	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 18:15:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765822182; cv=none; b=SkD4Ve5BLfiefMrSz8d+o9sVMmG1GcB+9gFJnO3qzvYpjGnXYRqWb4uOFQConu+RwY33T6GLkV4GiZ5eejj3EpXP0juw6e53qdpsY9TYqy2kwNVXHtDhWmOKJbsxVdlNPy+TVF0UPsad9VN/nDcH7LXbnAzNyMMe+jpSDTgsoPQ=
+	t=1765822550; cv=none; b=ZUh703b+3g38G9vtTNFkS1X2U5WZx1nUpJ4lTn/zkjhjin3FmvfIyAnnI/yUzSGW14vwNLitUXtqZIXfhJ9hxAYadcFBKvCII/bz8LXU4zC4EcZPhqDc6iI/gkdSghpXsbiT1pSc17Tvgk/3Vb9VxaNF7e7OeTvOhj5M5/oyXuM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765822182; c=relaxed/simple;
-	bh=sJ0PanZdlGRt6sE05Z//hl9xXWQ8gP2sHeCPp+9cNxU=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=pdRWd1G/MhKXdzpIG7oBkrMjVgQc/ifzY69ZV7AJ3iLhGER/mHksktdfA8SHpiKShcy/JUDIGASCtCMP2uhkLjvI8mdLaz1A7d4ERWbZ8CC/eVD/cZ0QvpecNf+dIelkBj8H4fG/5YNuzE1ixbXSvOC8q5o+SE5L44e5I8f4r98=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mzOopvwP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15912C4CEF5;
-	Mon, 15 Dec 2025 18:09:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765822181;
-	bh=sJ0PanZdlGRt6sE05Z//hl9xXWQ8gP2sHeCPp+9cNxU=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=mzOopvwPU06fZET1fGgc81omur+ilBqKE/gwOHBKK2/m+tqXHJ/fPogQbHHDBSDqY
-	 k2I2Gk2eZKPb1QMeM/woGiSgPimAA7KT7pBj1ODgKIAB4CO6nEvrnxaqvzkoSPHnDg
-	 WaXrXRxMt+JZgW5547zfjtIGTvFlewpbxg9Jzrael5Utudzwg7f4tDGt9mzN+9jEqC
-	 c6ehZ1pN+53tCpdcipvNKNAdAc9Kn39/ttnjctzlnw2qhj0qsEDieOk3TqAb2F0zLR
-	 f4vTiDRuzKardG6Bg3z+IoVlHpmaIFtUSeh6ZmhQe5fSgcyjeWmVI9L1MDjvJB/lEp
-	 3Ok0ToWxDdbWQ==
-Date: Mon, 15 Dec 2025 12:09:39 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1765822550; c=relaxed/simple;
+	bh=c/PjK3MK1keVLcHji+RqTLxS8TEtW+tU/vQ1gsPWmFw=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:To:From:Subject:
+	 References:In-Reply-To; b=UYVPiveiDv6bpsaBAKG0mTXRh/5QbR8ukcJisko5yw4VFNAUYjiBfOdwEG53RE5+7+SiUNTkFAFE5jIASupYWGDUPiXBValC31OviuOtlURvyWvtxIIU9k6v7Snt9YvNN38LHWf/NdGM3x5i/n6Tptn7QV2Pr1aCCPSqhUvx3qA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=a5/gTm2q; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 05041C19D20;
+	Mon, 15 Dec 2025 18:15:22 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 4FA7160664;
+	Mon, 15 Dec 2025 18:15:46 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 9381311940441;
+	Mon, 15 Dec 2025 19:15:40 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1765822545; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=2me3Ljn4gfmMgfkqKAj40oeX1P+gfTzAJLA5BMsltrI=;
+	b=a5/gTm2qjBEjpF77m0/AebIsh0AMWFDxUBJndGfo8gqphxBM/xne0JolHsTWrIWoBW4uFF
+	zkQUxQaqPH7c3Jcc9x8rV1LEHNjEmY0HhlR/LTOePWxQaPj3lglMC1kL50xCGNNu/NuWjj
+	VbD1K3vFp2sDbpBtxvsVrAEG+sOespBORcsI1E/BP2XR2qo81EjpObRpNs9Mulv3NxKYXk
+	IDU5LMofzpB4Y3KF0lLcoYY9c3j5d71qTM2XcrriiI+6brLfFHstUNIfUVxDF5MbVnN8Z0
+	5n7Ji6HtLVAsEkyZth6KveMNi24V/BWnPDlRXywh+3yPeFjXphK8+KUrd9RW/g==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Chester Lin <chester62515@gmail.com>, 
- Matthias Brugger <mbrugger@suse.com>, 
- Alexandre Torgue <alexandre.torgue@foss.st.com>, 
- linux-arm-kernel@lists.infradead.org, Shawn Guo <shawnguo@kernel.org>, 
- Paolo Abeni <pabeni@redhat.com>, "David S. Miller" <davem@davemloft.net>, 
- linux-kernel@vger.kernel.org, NXP S32 Linux Team <s32@nxp.com>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- linux-stm32@st-md-mailman.stormreply.com, 
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, netdev@vger.kernel.org, 
- Eric Dumazet <edumazet@google.com>, devicetree@vger.kernel.org, 
- Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
- Andrew Lunn <andrew+netdev@lunn.ch>, Jakub Kicinski <kuba@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, imx@lists.linux.dev, 
- Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>, 
- Conor Dooley <conor+dt@kernel.org>
-To: "Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>
-In-Reply-To: <20251214-dwmac_multi_irq-v1-2-36562ab0e9f7@oss.nxp.com>
-References: <20251214-dwmac_multi_irq-v1-0-36562ab0e9f7@oss.nxp.com>
- <20251214-dwmac_multi_irq-v1-2-36562ab0e9f7@oss.nxp.com>
-Message-Id: <176582217911.3066791.4926710165988218857.robh@kernel.org>
-Subject: Re: [PATCH RFC 2/4] dt-bindings: net: nxp,s32-dwmac: Declare
- per-queue interrupts
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Mon, 15 Dec 2025 19:15:38 +0100
+Message-Id: <DEYZUJHYWKF7.1D7N8XSD46NKC@bootlin.com>
+Cc: <linux-mips@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+ <linux-clk@vger.kernel.org>, =?utf-8?q?Beno=C3=AEt_Monin?=
+ <benoit.monin@bootlin.com>, "Maxime Chevallier"
+ <maxime.chevallier@bootlin.com>, "Tawfik Bayouk"
+ <tawfik.bayouk@mobileye.com>, "Thomas Petazzoni"
+ <thomas.petazzoni@bootlin.com>
+To: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, "Vladimir
+ Kondratiev" <vladimir.kondratiev@mobileye.com>,
+ =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, "Rob
+ Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>, "Vinod Koul" <vkoul@kernel.org>,
+ "Kishon Vijay Abraham I" <kishon@kernel.org>, "Michael Turquette"
+ <mturquette@baylibre.com>, "Stephen Boyd" <sboyd@kernel.org>, "Philipp
+ Zabel" <p.zabel@pengutronix.de>, "Thomas Bogendoerfer"
+ <tsbogend@alpha.franken.de>
+From: "Luca Ceresoli" <luca.ceresoli@bootlin.com>
+Subject: Re: [PATCH v4 2/7] phy: Add driver for EyeQ5 Ethernet PHY wrapper
+X-Mailer: aerc 0.20.1
+References: <20251124-macb-phy-v4-0-955c625a81a7@bootlin.com>
+ <20251124-macb-phy-v4-2-955c625a81a7@bootlin.com>
+ <DEUNYYW0Y23E.2SA0SOCS99NA0@bootlin.com>
+ <DEYVVCWBOZSH.2ZY41YCHLS8FU@bootlin.com>
+ <DEYVXJI90AA7.KPDEQCNZOOXI@bootlin.com>
+ <DEYXM6CGJULV.1KKA37ZLEIW1K@bootlin.com>
+In-Reply-To: <DEYXM6CGJULV.1KKA37ZLEIW1K@bootlin.com>
+X-Last-TLS-Session-Version: TLSv1.3
 
+Hi Th=C3=A9o,
 
-On Sun, 14 Dec 2025 23:15:38 +0100, Jan Petrous (OSS) wrote:
-> The DWMAC IP on supported SoCs has connected queue-based IRQ lines.
-> 
-> Signed-off-by: Jan Petrous (OSS) <jan.petrous@oss.nxp.com>
-> ---
->  .../devicetree/bindings/net/nxp,s32-dwmac.yaml     | 40 +++++++++++++++++++---
->  1 file changed, 36 insertions(+), 4 deletions(-)
-> 
+On Mon Dec 15, 2025 at 5:30 PM CET, Th=C3=A9o Lebrun wrote:
+> On Mon Dec 15, 2025 at 4:11 PM CET, Luca Ceresoli wrote:
+>> On Mon Dec 15, 2025 at 4:08 PM CET, Th=C3=A9o Lebrun wrote:
+>>> On Wed Dec 10, 2025 at 5:06 PM CET, Luca Ceresoli wrote:
+>>>> On Mon Nov 24, 2025 at 3:41 PM CET, Th=C3=A9o Lebrun wrote:
+>>>>> +	provider =3D devm_of_phy_provider_register(dev, eq5_phy_xlate);
+>>>>> +	if (IS_ERR(provider)) {
+>>>>> +		dev_err(dev, "registering provider failed\n");
+>>>>> +		return PTR_ERR(provider);
+>>>>> +	}
+>>>>
+>>>> As above, why not dev_err_probe()?
+>>>
+>>> Good idea once again.
+>>>
+>>>> Other than the above minor issues, LGTM. This driver looks cleanly
+>>>> implemented.
+>>>
+>>> Thanks for the review. Does that imply I can append your Rb trailer?
+>>
+>> If you apply all the changes I have mention, yes, but in doubt you can
+>> avoid it and I'll review your next version. Re-reviewing is much faster
+>> than reviewing the first time (last famous words).
+>
+> I've taken the Rb trailer, hoping everything is to your taste.
+>
+> https://lore.kernel.org/lkml/20251215-macb-phy-v5-0-a9dfea39da34@bootlin.=
+com/
 
-My bot found errors running 'make dt_binding_check' on your patch:
+I checked the delta, looks correct, R-by confirmed.
 
-yamllint warnings/errors:
+Luca
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml: ignoring, error in schema: properties: interrupt-names
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml: properties:interrupt-names: [{'items': [{'const': 'macirq'}, {'const': 'rx-queue-0'}, {'const': 'tx-queue-0'}, {'const': 'rx-queue-1'}, {'const': 'tx-queue-1'}, {'const': 'rx-queue-2'}, {'const': 'tx-queue-2'}, {'const': 'rx-queue-3'}, {'const': 'tx-queue-3'}, {'const': 'rx-queue-4'}, {'const': 'tx-queue-4'}]}] is not of type 'object', 'boolean'
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml: properties:interrupt-names: [{'items': [{'const': 'macirq'}, {'const': 'rx-queue-0'}, {'const': 'tx-queue-0'}, {'const': 'rx-queue-1'}, {'const': 'tx-queue-1'}, {'const': 'rx-queue-2'}, {'const': 'tx-queue-2'}, {'const': 'rx-queue-3'}, {'const': 'tx-queue-3'}, {'const': 'rx-queue-4'}, {'const': 'tx-queue-4'}]}] is not of type 'object', 'boolean'
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml: properties:interrupt-names: [{'items': [{'const': 'macirq'}, {'const': 'rx-queue-0'}, {'const': 'tx-queue-0'}, {'const': 'rx-queue-1'}, {'const': 'tx-queue-1'}, {'const': 'rx-queue-2'}, {'const': 'tx-queue-2'}, {'const': 'rx-queue-3'}, {'const': 'tx-queue-3'}, {'const': 'rx-queue-4'}, {'const': 'tx-queue-4'}]}] is not of type 'object', 'boolean'
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml: properties:interrupt-names: [{'items': [{'const': 'macirq'}, {'const': 'rx-queue-0'}, {'const': 'tx-queue-0'}, {'const': 'rx-queue-1'}, {'const': 'tx-queue-1'}, {'const': 'rx-queue-2'}, {'const': 'tx-queue-2'}, {'const': 'rx-queue-3'}, {'const': 'tx-queue-3'}, {'const': 'rx-queue-4'}, {'const': 'tx-queue-4'}]}] is not of type 'object', 'boolean'
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml: properties:interrupt-names: [{'items': [{'const': 'macirq'}, {'const': 'rx-queue-0'}, {'const': 'tx-queue-0'}, {'const': 'rx-queue-1'}, {'const': 'tx-queue-1'}, {'const': 'rx-queue-2'}, {'const': 'tx-queue-2'}, {'const': 'rx-queue-3'}, {'const': 'tx-queue-3'}, {'const': 'rx-queue-4'}, {'const': 'tx-queue-4'}]}] is not of type 'object', 'boolean'
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml: properties:interrupt-names: [{'items': [{'const': 'macirq'}, {'const': 'rx-queue-0'}, {'const': 'tx-queue-0'}, {'const': 'rx-queue-1'}, {'const': 'tx-queue-1'}, {'const': 'rx-queue-2'}, {'const': 'tx-queue-2'}, {'const': 'rx-queue-3'}, {'const': 'tx-queue-3'}, {'const': 'rx-queue-4'}, {'const': 'tx-queue-4'}]}] is not of type 'object', 'boolean'
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml: properties:interrupt-names: [{'items': [{'const': 'macirq'}, {'const': 'rx-queue-0'}, {'const': 'tx-queue-0'}, {'const': 'rx-queue-1'}, {'const': 'tx-queue-1'}, {'const': 'rx-queue-2'}, {'const': 'tx-queue-2'}, {'const': 'rx-queue-3'}, {'const': 'tx-queue-3'}, {'const': 'rx-queue-4'}, {'const': 'tx-queue-4'}]}] is not of type 'object', 'boolean'
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml: properties:interrupt-names: [{'items': [{'const': 'macirq'}, {'const': 'rx-queue-0'}, {'const': 'tx-queue-0'}, {'const': 'rx-queue-1'}, {'const': 'tx-queue-1'}, {'const': 'rx-queue-2'}, {'const': 'tx-queue-2'}, {'const': 'rx-queue-3'}, {'const': 'tx-queue-3'}, {'const': 'rx-queue-4'}, {'const': 'tx-queue-4'}]}] is not of type 'object', 'boolean'
-Traceback (most recent call last):
-  File "/usr/local/bin/dt-doc-validate", line 8, in <module>
-    sys.exit(main())
-             ~~~~^^
-  File "/usr/local/lib/python3.13/dist-packages/dtschema/doc_validate.py", line 66, in main
-    ret |= check_doc(f)
-           ~~~~~~~~~^^^
-  File "/usr/local/lib/python3.13/dist-packages/dtschema/doc_validate.py", line 37, in check_doc
-    dtsch.check_schema_refs()
-    ~~~~~~~~~~~~~~~~~~~~~~~^^
-  File "/usr/local/lib/python3.13/dist-packages/dtschema/schema.py", line 241, in check_schema_refs
-    self._check_schema_refs(resolver, self)
-    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.13/dist-packages/dtschema/schema.py", line 212, in _check_schema_refs
-    self._check_schema_refs(resolver, v, parent=k, is_common=is_common,
-    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-                            has_constraint=has_constraint)
-                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.13/dist-packages/dtschema/schema.py", line 216, in _check_schema_refs
-    self._check_schema_refs(resolver, schema[i], parent=parent, is_common=is_common,
-    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-                            has_constraint=has_constraint)
-                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.13/dist-packages/dtschema/schema.py", line 203, in _check_schema_refs
-    ref_sch = resolver.lookup(schema['$ref']).contents
-              ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.13/dist-packages/referencing/_core.py", line 682, in lookup
-    retrieved = self._registry.get_or_retrieve(uri)
-  File "/usr/local/lib/python3.13/dist-packages/referencing/_core.py", line 422, in get_or_retrieve
-    registry = self.crawl()
-  File "/usr/local/lib/python3.13/dist-packages/referencing/_core.py", line 500, in crawl
-    id = resource.id()
-  File "/usr/local/lib/python3.13/dist-packages/referencing/_core.py", line 231, in id
-    id = self._specification.id_of(self.contents)
-  File "/usr/local/lib/python3.13/dist-packages/referencing/jsonschema.py", line 50, in _dollar_id
-    return contents.get("$id")
-           ^^^^^^^^^^^^
-AttributeError: 'list' object has no attribute 'get'
-Lexical error: Documentation/devicetree/bindings/net/nxp,s32-dwmac.example.dts:58.13-17 Unexpected 'snps'
-Error: Documentation/devicetree/bindings/net/nxp,s32-dwmac.example.dts:58.13-17 syntax error
-FATAL ERROR: Unable to parse input tree
-make[2]: *** [scripts/Makefile.dtbs:141: Documentation/devicetree/bindings/net/nxp,s32-dwmac.example.dtb] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1559: dt_binding_check] Error 2
-make: *** [Makefile:248: __sub-make] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.kernel.org/project/devicetree/patch/20251214-dwmac_multi_irq-v1-2-36562ab0e9f7@oss.nxp.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+--
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
