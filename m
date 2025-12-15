@@ -1,108 +1,103 @@
-Return-Path: <devicetree+bounces-246811-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246812-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C393CC007A
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 22:49:09 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FBA9CC025D
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 00:03:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 9017A300925A
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 21:48:30 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 9565A301EF16
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 23:03:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A0CA328B76;
-	Mon, 15 Dec 2025 21:48:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 424CF328B52;
+	Mon, 15 Dec 2025 23:03:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="qtsMobJ8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="muqowXvn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1D1A30AD11;
-	Mon, 15 Dec 2025 21:48:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 162462EF64C;
+	Mon, 15 Dec 2025 23:03:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765835284; cv=none; b=aeIzjoIdIHgPwi6HG+w43O8TTPvg6MOTthWaKHLKmZ3nhqqnNsLcOPeoTnYmSkdZI1fXsXDJifccJrQAYkFOQmU/+yw8AwsUfxveogvxaoBeCLSC/o4O6/KetqJVABHiTOy1+vUjoohOJesd3Ez4EN3sUjutD0A9DddoyJYDwE8=
+	t=1765839809; cv=none; b=iccfumScVnDPrGAUI2JXJwUyZNvA6kXyXKXR8MrEg4NCPP/QAQTtVG2khDIeWvigQTe0r8rk8CH2fI7YGoW2KGITHJSA7pYRYaLzjwjTfwAYJfPoCJMPaP9LBb9xGNpf+GczWqLvNKfsVOjHW6Oa/Jal/XT/T5gPsfNrkStZ6BY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765835284; c=relaxed/simple;
-	bh=jGNY3vhgOcACpFtEGs3d2xDYluReNIwWHSPKQTjCp6Q=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ixby0VVtARMtafqZCEUbn55wniPBNyKezZgMGwZeX1ZqdlP+Cjl5D8E8rWzmsUsigbHPHP5HXnrhKBjlCOst54j/C559vTEHDDJq4ibais2gIWho7i7pd4DYGmysCFQyl5wte7YizSRaCcx5CXB/34+uBdfcTK3YpI95FcYjVXE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=qtsMobJ8; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=OI1MY4kOzgLcU2iIDea7bQ2I0yRp8F1R+dwEE1LToL8=; b=qtsMobJ81loav8R/ZLTl3g8U1R
-	L2p+F7xhPDfocdnt+ksIho08Wf/uA8kiKZoc9oe+GmwipM8X4W/cOGhVhXb/TxLCdS44J3cbq3HdL
-	wU9DU4mrnDwLovhiHhVDAlziOkk30fvlqhYskGn2HIwN5ExSSokSJRP959789FdLPOf5MInF5i6JA
-	fbIlsb6GrPBhrRg0a+9V3ZMz1ut2RGdejRQR89FtifAaFIMNRahTtxwRJRA1gii+Bb+Z+aW+5V6Kw
-	DiRYPdNFKgnsMT+CcXTTfeZcDxTX3GMWr0x6C9zKuYQujZ+jAK+i5wS4Y/H1WOhhD4AEyturWb5eC
-	oBnGTi2Q==;
-Received: from i53875adc.versanet.de ([83.135.90.220] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1vVGQ8-0006sg-2B; Mon, 15 Dec 2025 22:47:56 +0100
-From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
-To:
- Martin =?UTF-8?B?SG9sb3Zza8O9IChQcm9iYWJseSBOb3RoaW5nIHMuci5vLiAp?=
- <mh@probably.group>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: rockchip: enable dual 2.5GbE on Rock 5T
-Date: Mon, 15 Dec 2025 22:47:55 +0100
-Message-ID: <2080394.PIDvDuAF1L@diego>
-In-Reply-To: <176580661874.1441131.12947657582985645446.b4-ty@sntech.de>
-References:
- <96516D1F-9787-47FE-A67E-4745D11D9207@probably.group>
- <176580661874.1441131.12947657582985645446.b4-ty@sntech.de>
+	s=arc-20240116; t=1765839809; c=relaxed/simple;
+	bh=6dtfRcJwS64d/mOYJ01AB+IB6alrj85sRjzS2GkfUG4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=iKiLaIKiBNnJ9I62fnnWi2rsYFpdR/gPk9bq5O0/hZoP0kkG1zmFEYVNN5EUPVhdUD0+qjA7O0r2juGeB+fXENVC+iQU0k7ISXHLA1CwB60aNrIr3BATG27kfwc/5MPZIgHADAVYXOGHiu0gQj/IWfjKEzvxNPO4d1q5ZFzTxt4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=muqowXvn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78939C19421;
+	Mon, 15 Dec 2025 23:03:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1765839808;
+	bh=6dtfRcJwS64d/mOYJ01AB+IB6alrj85sRjzS2GkfUG4=;
+	h=From:To:Cc:Subject:Date:From;
+	b=muqowXvnI5GBGBXf8Dtih9brZLrWO25ZLJKjavi9olUk65t7q7IXBg/PITqCrJ9hu
+	 RO0CyOOvt8kY9ZmK2p6+xo6tDXmGg1RYf54LRHlnBaXdlUjgYc7oKn1GXCXIpCjurN
+	 axk2ItNe6eOOls3AgXZM7EmXSxGvCxH7bP5zgLzgaaLOP08u9OpkhjkuZ4VbXRhtgz
+	 L12BGt7AypgbRUz0PE+g5KXM2xNqrtebmgW8jnHDhrgp2QYlVyW47Gkqf/eiLr3LM8
+	 Oobvwxd35mR8xq8i9SEI00i+nFAo/WjhVfQuOvao4o/xJY7SFweLRV4lc/qMmvAFUC
+	 5KF4vV4PlZP+A==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Mark Brown <broonie@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] spi: dt-bindings: snps,dw-abp-ssi: Allow up to 16 chip-selects
+Date: Mon, 15 Dec 2025 17:03:22 -0600
+Message-ID: <20251215230323.3634112-1-robh@kernel.org>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-Am Montag, 15. Dezember 2025, 14:51:03 Mitteleurop=C3=A4ische Normalzeit sc=
-hrieb Heiko Stuebner:
->=20
-> On Fri, 12 Dec 2025 17:23:35 +0100, "Martin Holovsk=C3=BD (Probably Nothi=
-ng s.r.o. )" wrote:
-> > The Radxa Rock 5T board features two RTL8125B 2.5GbE Ethernet controlle=
-rs
-> > connected via PCIe lanes pcie2x1l0 (fe170000) and pcie2x1l2 (fe190000).
-> > Currently only one interface is functional because the PCIe controller
-> > nodes lack the necessary reset GPIO configuration.
-> >=20
-> > Without the reset-gpios property, the RTL8125B PHYs remain in reset sta=
-te
-> > and are not enumerated by the PCIe bus. This results in only one Ethern=
-et
-> > interface being detected, or none at all depending on U-Boot initializa=
-tion.
-> >=20
-> > [...]
->=20
-> Applied, thanks!
->=20
-> [1/1] arm64: dts: rockchip: enable dual 2.5GbE on Rock 5T
->       commit: 96029ffeccf677b1e4baa98f30909a83a485b6d7
->=20
-> I've resorted both the pcie phandles as well as the pinctrl entries
-> pcie2-0 comes before pcie2-1 etc :-) .
+At least the Microchip Sparx5 supports up to 16 chip-selects, so
+increase the maximum. The pattern for the child unit-address was
+unconstrained, so update it to match the maximum number of
+chip-selects.
 
-and dropped again.
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+---
+ Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-Please resend this patch with a proper Signed-off-by line, as stated
-by the developers certificate of origin.
-
-Also, what is this probably nothing s.r.o?
-
-Heiko
-
+diff --git a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
+index 5c87fc8a845d..81838577cf9c 100644
+--- a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
++++ b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
+@@ -121,7 +121,7 @@ properties:
+   num-cs:
+     default: 4
+     minimum: 1
+-    maximum: 4
++    maximum: 16
+ 
+   dmas:
+     items:
+@@ -153,14 +153,14 @@ properties:
+       provides an interface to override the native DWC SSI CS control.
+ 
+ patternProperties:
+-  "@[0-9a-f]+$":
++  "@[0-9a-f]$":
+     type: object
+     additionalProperties: true
+ 
+     properties:
+       reg:
+         minimum: 0
+-        maximum: 3
++        maximum: 0xf
+ 
+ unevaluatedProperties: false
+ 
+-- 
+2.51.0
 
 
