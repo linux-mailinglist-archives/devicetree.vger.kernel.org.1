@@ -1,138 +1,175 @@
-Return-Path: <devicetree+bounces-246602-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246603-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D8DDCBE127
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 14:31:06 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 630D5CBE1B2
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 14:41:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id DF53E300AC42
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 13:30:57 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CED8B307B086
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 13:32:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E76333121E;
-	Mon, 15 Dec 2025 13:21:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A53E4330D54;
+	Mon, 15 Dec 2025 13:22:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="Tnyivrbu"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CZI+sL+1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-184.mta0.migadu.com (out-184.mta0.migadu.com [91.218.175.184])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com [209.85.216.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26F8633032F
-	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 13:21:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.184
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A53930E0FA
+	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 13:22:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765804914; cv=none; b=LXn7QQjSEV3UxryhG2BVykSe6U5P02U34FDDJJxGHXqnQG22wQYgQpOQDpjzzMBcy4CQ2zPM7CKFquoaD5sqOTXYPlcV3FcKMZ5g92gpTXWQQr/k5g+j+lZKAPdTMbVecEUj4Z5kg2EmQiI97Yq96GIXWCiq6ej19u0WzBXWfBE=
+	t=1765804925; cv=none; b=pte+aqArRwpa7kGDm1iEakf7LNrf5EB/Kiy9bvECh2WUC5CPpH/z0fCogVjjuAT3RN2mPFbjgfaG6hHKcrxEwdkqUI7L/45sH/Ex8WRyDJv0ikFrmp3zJ4ek4ypclErO/kliM0HC2p/xRM56Egztzr2l+PR2YxzSWIFGcWBg3Ko=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765804914; c=relaxed/simple;
-	bh=vPWIHJgvuyZntPcHKutsm4gR3Vu9+6sz6G/M/qLZZH0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bK/J8lOY9vFk6fZs/HkPZzdDJ9d1xcBl4dzEmwjDfqK9TksqylkbemzEHnNNV5ZNi+rXTw/zLdDx8tvLXxxCfrxkvfLs2Jv426zk1yk/KLB9idGnAr+EwO0KD/mMxnbrpRyVoJldjGn1wdEeytpInctGF/YD2QNtovg8nCeidCM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=Tnyivrbu; arc=none smtp.client-ip=91.218.175.184
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-Date: Mon, 15 Dec 2025 15:21:37 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1765804905; h=from:from:reply-to:reply-to:subject:subject:date:date:
-	 message-id:message-id:to:to:cc:cc:mime-version:mime-version:
-	 content-type:content-type:in-reply-to:in-reply-to:  references:references;
-	bh=vcnIqBfflnReGqKpBGCiBXZVXaCXsmm2BvlikGCZ79w=;
-	b=TnyivrbuSO8Au06YcmDqK2hRNo3r0/q3pAvE3ZrkZ/4DwoWgvHfeMMRMRVOUvO8bYe3Pto
-	mb5TnGNL+lAvjVh7pTRF/pgqkW6tDE3iiybMpDpkJ5ujUA0B082jO0x65UmJ/YSAwWXcRG
-	D3pi5/9D+IriC2JhaNTr02+SMa0nYQ8=
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Matti Vaittinen <matti.vaittinen@linux.dev>
-To: Matti Vaittinen <mazziesaccount@gmail.com>,
-	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Cc: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sebastian Reichel <sre@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Matti Vaittinen <mazziesaccount@gmail.com>,
-	Linus Walleij <linusw@kernel.org>,
-	Bartosz Golaszewski <brgl@kernel.org>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-	linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-rtc@vger.kernel.org, Andreas Kemnade <andreas@kemnade.info>
-Subject: [PATCH RESEND v6 17/17] MAINTAINERS: Add ROHM BD72720 PMIC
-Message-ID: <5ab04df42d8fddab4c2b0b86414314c6bb815ffd.1765804226.git.mazziesaccount@gmail.com>
-Reply-To: Matti Vaittinen <mazziesaccount@gmail.com>
-References: <cover.1765804226.git.mazziesaccount@gmail.com>
+	s=arc-20240116; t=1765804925; c=relaxed/simple;
+	bh=Onw8Vj/aDi3C22Ax82mPzLYQUuwXBUMjVocKxST25sU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pt21yXLZpzqXTwfrtTHnYv/K/eqKgsnZARQ/uf1BWs6bDEDpgdbcvvdlS0UYqczAyob+UGr651dU0df3xKIw4oQkah2Z8zeFkWKNI9DkClL8b6LGKczXPK2/DekIHEPn5uIR91ycm+EYsokuyB2wZySkURvlN81GJgROHwaoWEs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CZI+sL+1; arc=none smtp.client-ip=209.85.216.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f51.google.com with SMTP id 98e67ed59e1d1-34c565b888dso1667385a91.0
+        for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 05:22:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1765804923; x=1766409723; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=XFQclEnkXOaGEQB1i5aZAavoFZmjLHt34fVvrMxQ7/0=;
+        b=CZI+sL+1ovOsqaLU2+bZVqGF+P0/VNFjhDxkMZXxxzi0uHIHRqmYYVOYp6MHrIGkFe
+         uK4XHR+y+qhRGFON8pfgW6/30AR51K2jaXCuDH3R1PsdmxeEgT/yjmUjrH5BbIDm8BOX
+         4e9HDdyQ0H5KzgCxXpsvUCHnvnqfsxICEkGXr17bqPbjwTI/kuhJ5Y7A4x7QFldRhhJd
+         5aISL252WWDBR0CJxWBxk/JKo84b5DGYcYK1LfEWZaloiIxMf8q0Pn7mfokNOLDA2d+S
+         ai6UKWKpyjf+3N0Ui5r7IPx/YzYwg6nUJ5fOFihMATHkpaJAgzXs63Ly2/Fh8zFbynJB
+         eXxQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765804923; x=1766409723;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=XFQclEnkXOaGEQB1i5aZAavoFZmjLHt34fVvrMxQ7/0=;
+        b=VfhzhGVD0xxhG/e9tvvCFXVY4CpCpuHrHzBTgL1IGIqalfl2rQfIeDlWRVZjdaTWqn
+         +jg2E9dmgZ2WmpAHFP1h07Qupxks1voz+fblymY3OOq1jTapAy39yaD/4J3AHbdicmUJ
+         Xv99efmtVoFt4ZjDSrB/O8gYnE2/ETFv7yVIMZHmJC3ez4Qb4TVnAYWc+hdLriMm3+Lh
+         Q3XeKxhrdQ91yNpGzwpSwN6Xsyz3BQ4RyoWdHyiBQuFZ6v58+546OuPnC5NUGQ8qM+No
+         w7DXjQ58M3ml3biyo/evirlNQ8zA57Dw7gIBAfWXfV5t7z9cA5DT4VNiZTUxe91yyMb5
+         cZcQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWSOpXLF1xnbh6YootvTIOBhH0AheKXwDuQu5Hkuzpce9XF201RmW9VoelmAuTQ7urSJrKTjkkae2aT@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz+lqyFcEbj8AIaTaMum3j7imrnWk+/VySFq8hbftk6JbuEgleN
+	qN5gEFCmFy1dRjRZuulr3vjt5Gj9zPL9WkPnJ6jzBuYTmr0vctNNt1ma
+X-Gm-Gg: AY/fxX7SY0DbIeA+msiO4CrWtfStBPNY9W6gwNGxzw4OvRKs3u9FhSh2jgrmFx4WNZO
+	rVVqLEp7p+ZB211r8sVPStLma7sswjOA1xUE9dries6HLkBlzZ8g0uxU7KfTXQrWML3s9yWhR3c
+	tmNMZOKibhwz3RrEs/n87FglWLwA7ye02MmLouC/jeUaAbBu8maA9F3R2CltRQSMbfeNqUjjfFv
+	//2doB0gub5tDkiDCmMprWn05QkroLwZ6cHcv/7cabQoviyLlORt5j2ltElIWC9kqwzzE3nxUHO
+	gtSpOqO99sGZZqD9v5M3Dq8vUapDvwxyyn2aVhiXZQYnXCX4pt0tQJCTPMCQQuNiGORZeXYsgF8
+	mIFgMyZrptcBoCJ+MGc9c1In7hdzGDtaFncI3SV3TJDFJGp18cRy/+XBeKNJ8fY2ZXP9A2vvGdJ
+	suoP9UbbCOYZVLOl730uPT6QeNNhLH1Krpb/w=
+X-Google-Smtp-Source: AGHT+IHbaYhxvypHifIExhwZd3l2/ucRgBsyGvQHV3xb8nXjQoVtyds84IM8xW/n7EfLN2sBoGgpmw==
+X-Received: by 2002:a17:90b:28cd:b0:340:d578:f299 with SMTP id 98e67ed59e1d1-34abd6cde3emr8712572a91.3.1765804922630;
+        Mon, 15 Dec 2025 05:22:02 -0800 (PST)
+Received: from [172.16.20.12] ([136.226.244.245])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-34abe129a87sm9137934a91.0.2025.12.15.05.21.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 15 Dec 2025 05:22:02 -0800 (PST)
+Message-ID: <d9a91359-74a9-46ba-98eb-66f8b027bae6@gmail.com>
+Date: Mon, 15 Dec 2025 18:52:30 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="zYadpP6xVjNNkn6C"
-Content-Disposition: inline
-In-Reply-To: <cover.1765804226.git.mazziesaccount@gmail.com>
-X-Migadu-Flow: FLOW_OUT
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 2/2] arm64: dts: qcom: talos-evk: Add support for
+ QCS615 talos evk board
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20251107105735.1491273-1-tessolveupstream@gmail.com>
+ <20251107105735.1491273-3-tessolveupstream@gmail.com>
+ <badmoityubqmjsxune27vrh2e6htwkhvnak4uj7iiixnxhjpkm@qi56e6kilyt2>
+ <db3edb31-4a1c-4512-ac46-ca3b4e9f187e@gmail.com>
+ <CAO9ioeUVx_qf3no9aLgZ3OQQPQ7nG-2aTx8SHaEN5DUf02USWA@mail.gmail.com>
+ <9b0c7cac-3577-4190-883b-7de26790b8bc@gmail.com>
+ <luhtzwbic5a6a4tl5coa2zv3jxoo5f6sab7gv4gcxpubv3ioye@h7xlfx2bxcgr>
+Content-Language: en-US
+From: tessolveupstream@gmail.com
+In-Reply-To: <luhtzwbic5a6a4tl5coa2zv3jxoo5f6sab7gv4gcxpubv3ioye@h7xlfx2bxcgr>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
 
---zYadpP6xVjNNkn6C
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-=46rom: Matti Vaittinen <mazziesaccount@gmail.com>
+On 06-12-2025 08:13, Dmitry Baryshkov wrote:
+> On Fri, Dec 05, 2025 at 10:58:56AM +0530, Anusha Ajithkumar wrote:
+>>
+>>
+>> On 03-12-2025 02:36, Dmitry Baryshkov wrote:
+>>> On Tue, 18 Nov 2025 at 12:16, <tessolveupstream@gmail.com> wrote:
+>>>>
+>>>>
+>>>>
+>>>> On 14-11-2025 01:38, Dmitry Baryshkov wrote:
+>>>>> On Fri, Nov 07, 2025 at 04:27:35PM +0530, Sudarshan Shetty wrote:
+>>>
+>>>>>> +
+>>>>>> +&uart0 {
+>>>>>> +    status = "okay";
+>>>>>> +};
+>>>>>> +
+>>>>>> +&usb_1_hsphy {
+>>>>>> +    vdd-supply = <&vreg_l5a>;
+>>>>>> +    vdda-pll-supply = <&vreg_l12a>;
+>>>>>> +    vdda-phy-dpdm-supply = <&vreg_l13a>;
+>>>>>> +
+>>>>>> +    status = "okay";
+>>>>>> +};
+>>>>>> +
+>>>>>> +&usb_qmpphy {
+>>>>>> +    vdda-phy-supply = <&vreg_l5a>;
+>>>>>> +    vdda-pll-supply = <&vreg_l12a>;
+>>>>>> +
+>>>>>> +    status = "okay";
+>>>>>> +};
+>>>>>> +
+>>>>>> +&usb_1 {
+>>>>>> +    status = "okay";
+>>>>>> +};
+>>>>>> +
+>>>>>> +&usb_1_dwc3 {
+>>>>>> +    dr_mode = "host";
+>>>>>> +};
+>>>>>> +
+>>>>>> +&usb_hsphy_2 {
+>>>>>
+>>>>> So, the labels are usb_1_hsphy, but usb_hsphy_2? That's not logical,
+>>>>> please fix one of them. Then please fix the order of nodes here.
+>>>>
+>>>> The node names come directly from the included talos.dtsi, where they
+>>>> are defined as usb_1_hsphy & usb_hsphy_2.
+>>>> To avoid breaking inherited definitions, we kept the same labels
+>>>> in our board DTS.
+>>>
+>>> Please fix them in the base DT.
+>>>
+>>
+>> The inconsistent naming originates from talos.dtsi, which is 
+>> outside the scope of this patch series. Modifying these labels 
+>> in our board DTS would break the inherited node references 
+>> from talos.dtsi. >> However, I will reorder the nodes so they appear in a logical and
+> 
+> Please fix the base DT. There is no such thing as "out of scope".
+> 
 
-Add the ROHM BD72720 PMIC driver files to be maintained by undersigned.
+Okay, will take care in the next patch.
+>>>> consistent sequence.
+>>>
+>>> This is a prerequisite, no questions.
+>>>
+>>
+> 
 
-Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
-
----
-Revision history:
- RFCv1 =3D>:
- - No changes
----
- MAINTAINERS | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 5b11839cba9d..23bf05492d34 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -22745,6 +22745,7 @@ S:	Supported
- F:	drivers/clk/clk-bd718x7.c
- F:	drivers/gpio/gpio-bd71815.c
- F:	drivers/gpio/gpio-bd71828.c
-+F:	drivers/gpio/gpio-bd72720.c
- F:	drivers/mfd/rohm-bd71828.c
- F:	drivers/mfd/rohm-bd718x7.c
- F:	drivers/mfd/rohm-bd9576.c
-@@ -22761,6 +22762,7 @@ F:	drivers/watchdog/bd96801_wdt.c
- F:	include/linux/mfd/rohm-bd71815.h
- F:	include/linux/mfd/rohm-bd71828.h
- F:	include/linux/mfd/rohm-bd718x7.h
-+F:	include/linux/mfd/rohm-bd72720.h
- F:	include/linux/mfd/rohm-bd957x.h
- F:	include/linux/mfd/rohm-bd96801.h
- F:	include/linux/mfd/rohm-bd96802.h
---=20
-2.52.0
-
-
---zYadpP6xVjNNkn6C
-Content-Type: application/pgp-signature; name=signature.asc
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCgAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmlAC2EACgkQeFA3/03a
-ocWHEQf+MyWk+4NYJp9XB4SNaIF1lJbbxyQOItGP79yR6deXNP7IV04DiGzOX4un
-6UkHpEBO9UeUxGYdmxLEOKpCuJmmTD2C2lvjkxxW9W7kRNsHZJdLIO/Uk4Ce+U7T
-RkhIe8X3OdTAZ0lrRwEEykdggAZgUog/EM+HH6SWj2Ag0U+F4VtghyQUbrMfaew/
-aLfAcqepXOZ1Wdz17MOJIOAxSp6fEhBRuO2ZL5n5XJie3fmF3UG7zE4d1sRHmTHW
-MEbQfjKHErROBliOloLtkdXM6Fj/t6w9ubOfShpt3FYpTOXuAw+M0x0PS0uZB3p0
-4EKUyj/d26WaqGAe+w+wdBRzT9buWA==
-=v5Zo
------END PGP SIGNATURE-----
-
---zYadpP6xVjNNkn6C--
 
