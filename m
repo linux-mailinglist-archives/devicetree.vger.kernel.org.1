@@ -1,54 +1,58 @@
-Return-Path: <devicetree+bounces-246800-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246801-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74F99CBFF1F
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 22:33:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EEBCCBFF13
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 22:33:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4D647302489A
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 21:28:03 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BDF473058F8B
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 21:28:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83E8C337BA3;
-	Mon, 15 Dec 2025 21:28:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83CF533890E;
+	Mon, 15 Dec 2025 21:28:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pYvONRxp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NMNMYp94"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 588D7337B9F;
-	Mon, 15 Dec 2025 21:28:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48E85338580;
+	Mon, 15 Dec 2025 21:28:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765834080; cv=none; b=hxnlgLO4mrw1dskpqgAdfEL/mJNJs1G8K2sePH1EAoytU1t7QYZdiL4AcbiXx2CyVLpYCkHOINymOQz8pdKyzTFpGOUvKoGdN3rC6nQj7/X9K+uD4PeRe4DNEJbGP/73JY3ZialxTZHKzEQfDX+cYGLGGAK+dUFLGhUsPKCQuNw=
+	t=1765834093; cv=none; b=o0uvVEqVHCyoD91b0hYel4ZQgSlfZeF1zkKL99bw1HtPoppIkX0UNKIImX0skuqpxwUX/MDcx1vjw7Xcp611puNxNfKmDAwS8dFJPBk5g8XyoGGNKl+I7ziMpbgwZ5+igyafkRBGtnCGqiC5hJKeg97kFZcYgdosqDCMapndpLc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765834080; c=relaxed/simple;
-	bh=n5vgBgys/+Y+mTrRSIRDd9uwfaaHxjSoUs4hAura+JE=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=TqfLpeTHyn5GHA1zv72j9mwLUZzIwiJMT6rH5bT6UTgoCZ2zWdzJkx29ONuVR+MtqBnB9U4nm5oZOvK9zKEoBjjeBTa2yz7A3pkMRnjjzzMBwx9Yg2gCDCh4vldJGD1u54TDO/d3JLZrY+Wdtco/Yye1CfefUbwHpKJipaFm3ZQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pYvONRxp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BEE68C4CEF5;
-	Mon, 15 Dec 2025 21:27:59 +0000 (UTC)
+	s=arc-20240116; t=1765834093; c=relaxed/simple;
+	bh=MwEPe6yOtotUQ0GRK4y2j5mze7HbrjZNWC8je5U2g4A=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=taO9/r4LaaD/7e5c5X+Gbk8npEEMvpUSZTntblvpSfi+FnA1XsNXDfCoDlvd/ofXLGOdhmPV8Ke9QqeS/uZB+G+ElLOBLhZfzKiPuZRRK0k18TCNVzb7ZJnOnjsqqMeJ8w+GlOtCPNuxs4Nz33fNQGikScwJVbgLiYdvOSk54mw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NMNMYp94; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03545C4CEF5;
+	Mon, 15 Dec 2025 21:28:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765834079;
-	bh=n5vgBgys/+Y+mTrRSIRDd9uwfaaHxjSoUs4hAura+JE=;
+	s=k20201202; t=1765834093;
+	bh=MwEPe6yOtotUQ0GRK4y2j5mze7HbrjZNWC8je5U2g4A=;
 	h=From:To:Cc:Subject:Date:From;
-	b=pYvONRxpduLtiaekziw8bxTvTcvh4fwmMzcWRIIhbyUHj6JkifN2U6ag4Zjo5tqbj
-	 6WwdGnpKbdVZsLC6XAvwwgMWvVu/3zAoAXU3s6jwPDun3ZjHji2zwh9n+KuMVwufaQ
-	 GVM1Bp+w4wFi3Ex6eBn8sP+bZ6+q8p9LmmK0RfPlcyRAr1oQe/MnatJBrtHdjBM9xA
-	 5EDE9Hg1rRRrXSAxb9f6WkNRk4R4K7OvFc2G6ErN3kLO0H0hpap3hIor9Hv0RuFOrc
-	 Yc+CU4cSokyLGQIDrfwOgEU2krQend97AMHXNZLLF1p3RMkv8MKDcQIR9Yoks9q9jO
-	 R76gEQTpbj75w==
+	b=NMNMYp94q3rH02CLHtiICX4yi2SW3CvsA9RB0BVOaoPypPzYeGLxD9YTdO8dLJ/Xz
+	 zANEhXvJS3ikKvKMzRJdTlYXKfgTuq98Q4iL43IGeYuChH5/VffYjp+EuwvO/rG0/D
+	 ps6+N3X7L+Lqxbpovqf9oBd6OO6Xys+qkgdwD9+KdevYiRSym3goCVBSpxJaC38Cfp
+	 7TEg5ew4/RR5IjwrBciHfMUyn/GBbKEEVuxU1wedYwqUQuG1ioTjzbRiFhDf3aV8ih
+	 8xBlVxdyCb8kHbZi0Rf6+1ch9RvNJDRK00D8x+GEG9oCQoYV5J/BqNwP+jYSZcGJOO
+	 rwBhjzqREnkDw==
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Ulf Hansson <ulf.hansson@linaro.org>,
+To: Andi Shyti <andi.shyti@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Adrian Hunter <adrian.hunter@intel.com>
-Cc: linux-mmc@vger.kernel.org,
+	Ray Jui <rjui@broadcom.com>,
+	Scott Branden <sbranden@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Cc: linux-i2c@vger.kernel.org,
 	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: mmc: arasan,sdhci: Allow "dma-coherent" property
-Date: Mon, 15 Dec 2025 15:27:50 -0600
-Message-ID: <20251215212751.3321878-1-robh@kernel.org>
+Subject: [PATCH] dt-bindings: i2c: brcm,iproc-i2c: Allow 2 reg entries for brcm,iproc-nic-i2c
+Date: Mon, 15 Dec 2025 15:28:05 -0600
+Message-ID: <20251215212805.3322218-1-robh@kernel.org>
 X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -58,28 +62,46 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The Arasan SDHCI controller is DMA coherent on the APM merlin SoC, so allow
-the dma-coherent property. No reason implementations can't also be coherent
-and there's not an SoC specific compatible, so allow it on any platform.
+The brcm,iproc-nic-i2c variant has 2 reg entries.
+
+The second one is related to the brcm,ape-hsls-addr-mask property, but it's
+not clear what a proper description would be.
 
 Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 ---
- Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ .../devicetree/bindings/i2c/brcm,iproc-i2c.yaml        | 10 +++++++++-
+ 1 file changed, 9 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml b/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
-index 8e79de97b242..d6b6fa6dcffb 100644
---- a/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
-+++ b/Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml
-@@ -121,6 +121,8 @@ properties:
-       - const: clk_ahb
-       - const: gate
+diff --git a/Documentation/devicetree/bindings/i2c/brcm,iproc-i2c.yaml b/Documentation/devicetree/bindings/i2c/brcm,iproc-i2c.yaml
+index 2aa75b7add7b..daa70a8500e9 100644
+--- a/Documentation/devicetree/bindings/i2c/brcm,iproc-i2c.yaml
++++ b/Documentation/devicetree/bindings/i2c/brcm,iproc-i2c.yaml
+@@ -16,7 +16,8 @@ properties:
+       - brcm,iproc-nic-i2c
  
-+  dma-coherent: true
-+
-   interrupts:
-     minItems: 1
-     maxItems: 2
+   reg:
+-    maxItems: 1
++    minItems: 1
++    maxItems: 2
+ 
+   clock-frequency:
+     enum: [ 100000, 400000 ]
+@@ -41,8 +42,15 @@ allOf:
+           contains:
+             const: brcm,iproc-nic-i2c
+     then:
++      properties:
++        reg:
++          minItems: 2
+       required:
+         - brcm,ape-hsls-addr-mask
++    else:
++      properties:
++        reg:
++          maxItems: 1
+ 
+ unevaluatedProperties: false
+ 
 -- 
 2.51.0
 
