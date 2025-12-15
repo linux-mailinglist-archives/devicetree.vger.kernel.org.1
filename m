@@ -1,130 +1,132 @@
-Return-Path: <devicetree+bounces-246720-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246721-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAEE3CBF1B0
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 18:05:53 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EF72CBF1A4
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 18:05:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 90808301597E
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 17:05:50 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C5C3A3029BB3
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 16:57:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4C553358BC;
-	Mon, 15 Dec 2025 16:57:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B65832ABE1;
+	Mon, 15 Dec 2025 16:57:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FB7kETwe"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="om7Amasb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f175.google.com (mail-vk1-f175.google.com [209.85.221.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD499335540
-	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 16:57:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48D4C314A79;
+	Mon, 15 Dec 2025 16:57:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765817842; cv=none; b=nnJstEUorxDNKBFrRJtYmImMrQ2z2NlwA+WGUXjD3Ri3uvXXbUQPU5Q+vP329AH5x2BrA1GUYv9gNFyWqbSPH1nhD+cBvFBxFBE6NnotX+Ln+wjwwvRb+9lcJffC0pF6/6AIOElpNax3zpCZs5y/KH/bfvjHWH1MnTt7Tqgq+q4=
+	t=1765817870; cv=none; b=eosZwefXz4FSHXKta9Q4tOJ3e0mJzQsvWBfzJmIvoVCebWWnvBC16ihrVCjX541875DLPhYEzVP6XdUVzL59XD2+YY72VmzYF8N/gtQXPb/yEyZ4X4hqFyRCI9APgwmyXrYFZH/R0qfVhB72Ihk3UAIBnmPUMQB1J2JTvphGAzc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765817842; c=relaxed/simple;
-	bh=iRP8tmXMtbl9jHWOwI2GLvhWvQ/O/bSRM3cgmpbaHUs=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=a6ULA4Qyfye/KjntnqHdiiwTDbQD4KaeM4nQV/cgJDKE8H+5HUH6ZfOIBXpkRCYkyWq6lq7Ft3cOxNnslRWpH7FeUL5EpI6Z4Fl3CMfNssMO+tdhjsfF46iFS9PqmoxNhXzZTuyOLcJcCi2gMaaor51MEbFu7tuIqkr1shy96gY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FB7kETwe; arc=none smtp.client-ip=209.85.221.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f175.google.com with SMTP id 71dfb90a1353d-55cda719128so839070e0c.0
-        for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 08:57:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1765817839; x=1766422639; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=iRP8tmXMtbl9jHWOwI2GLvhWvQ/O/bSRM3cgmpbaHUs=;
-        b=FB7kETweaUAfFoEQhSPoAX9dg58gxEoHkaalNMFVVKugQ4PYBECkoaf99sOQJGNsfO
-         ncHus001qiBs8zwQK6EpiuZoI1wqVoVYhlcouUMr5TcmfPOJpa4+jMJKm4f1GWYjn5/4
-         Gx1jqBt/LbQe/ma2KccrY6x58Ljr6093MzJX/RGOo46qfueB/f2IuwoGPNL3i3GG77TJ
-         klQYp+SAny5QAZqpedSlntCHjtiBjdDymqd0kCA8GW2P4lx5gUqqK+lNcFwD84S1hzUV
-         k2KR3WKtHlVU9ox7Y5gtBW7i5g/vZwobNEB4hEJ33dwtP+6QlKrnD1FKujFuQ8DWk2KT
-         wESw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765817839; x=1766422639;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-gg:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=iRP8tmXMtbl9jHWOwI2GLvhWvQ/O/bSRM3cgmpbaHUs=;
-        b=ZrD3J/bFiT2mmC/Cxi/+kthdc53chkin9eS+NYKp9QwZ0bxnDU6xzMJ8MB6L4lw4Uc
-         Zy+YOmpxoZEf2bqDYjUft5bPlp0WPwMjnvtaaWBfQ9zQKLFIkSQXZhioADLIw1KrD3TM
-         aymBA8ycf8TbT9Jfm9HUNlu9nE7ZVsWK0pzjC2ScgGDlAs0WZkL3LjAlHus1948783k3
-         XPdsCoXumnETBCThhdHEljddpOFSFhsFemYdcIKN6WcLmQznOlCymGrC30Dfiu7/di2m
-         EWwk66PhhoKw4Kc8+D3nXIVagBYfUsgC156OtSzNlcvbx0FBVXrAoQEkqi/W2CLqSFFm
-         /PFA==
-X-Forwarded-Encrypted: i=1; AJvYcCWuFopihuC0usI3EGm46gfxQeTMRDJ/XnoYRj9WePhdAE7LfG6DOTL1pwY2siGulUwl8ujiIFFTYIFp@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy6BaBYUmwrgSaa78pcf5Q63zg/gtDqmm87Gk3lepc8HbnMPJkx
-	EieVlj9VqGGz9LDILBNXjbLeL62LB9dzRlUHBDi2g0wcEAg3hUGAXjw84HnxHw==
-X-Gm-Gg: AY/fxX7rz85D+PN7ArxGn+TL1GU9kIWhdhDP4ErGBxBjqFVWuvvsdFYjAnxiTjkE8LC
-	rVC+c6cm9rBTcK4tz7w0u9i3cSG0HQ3cDQP3Mza64kAyOZMDsYBGSsURt2OWduB1huAxaJePIFG
-	eBN2vpOk/POlbdVm9Ig06J89f7UUhvZSpUbpZn1vrRKa+675Ps32s3/AwXHbviFtSq6Kl13Nn9f
-	zKJgS+ERQDYiui3u0lxeJM0uWeMaCaksj5aKP9enWexajFW53layyFLE7BYyIIgoUCkv2wYeadJ
-	PkMz5cNc7ToEOiBQsQhM1vxVGNXPKyztoyYEMa2Btw7B/k2dLRph9USgZt7TOamHIX4hxjDOdex
-	XyAyuUbrVP1+rSiRfu3Ao66e4kooHLHQFrP76ww8rmsQ8IG6MRl+zr9i7N13Hq68vEORxFIngLO
-	BaAnrOjg==
-X-Google-Smtp-Source: AGHT+IF0duYtbh6rimYipQ0gT9A2nPffn1c0ynYhlc+imPFc3cMR0Hl8XDCUZSrigOtwFreaQRoBYA==
-X-Received: by 2002:a05:6122:2228:b0:559:6723:628c with SMTP id 71dfb90a1353d-55fed643c05mr3394845e0c.16.1765817839601;
-        Mon, 15 Dec 2025 08:57:19 -0800 (PST)
-Received: from localhost ([2800:bf0:4580:3149:7d4:54b1:c444:6f2f])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-55fdc739e8bsm6595964e0c.15.2025.12.15.08.57.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Dec 2025 08:57:19 -0800 (PST)
+	s=arc-20240116; t=1765817870; c=relaxed/simple;
+	bh=SgLS/ANrRVlpnUEOwB1p5hcDPAOgfBmKArBaS7U2zyk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=k4DjrX/JodgqYPpbmWVetrlrFL0KJwgnfl4T1k0TJYuzoyz8bxNjep04z5Y31uVLm4E24RzQ/1cFZAU+x82IlQDivgNae4LI+NlEvGT7+E/OZ14kzyoanGm/WyZ6Zt6evRb5JFDt2VGSeUkouEIfFBrpc9V7E0rnvw5PpclG2YM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=om7Amasb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D045CC4CEF5;
+	Mon, 15 Dec 2025 16:57:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1765817869;
+	bh=SgLS/ANrRVlpnUEOwB1p5hcDPAOgfBmKArBaS7U2zyk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=om7AmasbxAaw0I5/gGKkCdAuXEIeDEUAe8b17Fx3QHqdFO3v4Y0fliNorW0Bhp2CF
+	 Djj13oVRiWwoQR5/Qzm4OjrLt8ZXAkpSkA58EM+IHRuUdL9kVm2c9fd636Tw+0v/lY
+	 RXVR5zGRVbW0RtYxd5UFlZj9Gu5nnJbanjM2HwkapRtR8GNUCQHl19Izpti1oXlTNy
+	 F9zsbmbo5b9r0hImPQpg80dyiUFZY1LjJ5qoJ6rbasr8kMkkb9ii39tLa680VitLEm
+	 Ncy4Hd60z1ej4wPj0fWEbtH1AKHS5Ai/FQat9zP6xirOELTXWlqDpBGmq7qlo4Jt3T
+	 UZ8VOmrF//1jg==
+Date: Mon, 15 Dec 2025 16:57:45 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Stafford Horne <shorne@gmail.com>
+Cc: LKML <linux-kernel@vger.kernel.org>,
+	Linux OpenRISC <linux-openrisc@vger.kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/5] dt-bindings: Add compatible string opencores,gpio to
+ gpio-mmio
+Message-ID: <20251215-skillet-perceive-2b564a29ed71@spud>
+References: <20251214180158.3955285-1-shorne@gmail.com>
+ <20251214180158.3955285-2-shorne@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="hCJub4guA5h1GUdJ"
+Content-Disposition: inline
+In-Reply-To: <20251214180158.3955285-2-shorne@gmail.com>
+
+
+--hCJub4guA5h1GUdJ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 15 Dec 2025 11:57:16 -0500
-Message-Id: <DEYY6JGHSTQ9.1NAQUNJVP55A0@gmail.com>
-Cc: =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, "Andy Shevchenko"
- <andy@kernel.org>, <linux-iio@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, "Jonathan
- Cameron" <Jonathan.Cameron@huawei.com>, "Krzysztof Kozlowski"
- <krzysztof.kozlowski@oss.qualcomm.com>
-Subject: Re: [PATCH v8 0/2] iio: Add support for TI ADS1X18 ADCs
-From: "Kurt Borja" <kuurtb@gmail.com>
-To: "David Lechner" <dlechner@baylibre.com>, "Kurt Borja"
- <kuurtb@gmail.com>, "Jonathan Cameron" <jic23@kernel.org>, "Rob Herring"
- <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, "Tobias Sperling"
- <tobias.sperling@softing.com>
-X-Mailer: aerc 0.21.0-0-g5549850facc2
-References: <20251211-ads1x18-v8-0-5cd12ac556da@gmail.com>
- <9b73421e-d08b-4480-ab28-5ff5a845e264@baylibre.com>
-In-Reply-To: <9b73421e-d08b-4480-ab28-5ff5a845e264@baylibre.com>
 
-On Mon Dec 15, 2025 at 10:56 AM -05, David Lechner wrote:
-> On 12/11/25 10:25 PM, Kurt Borja wrote:
->> Hi,
->>=20
->> This series adds a new driver for TI ADS1X18 SPI devices.
->>=20
->> This is my first time contributing to the IIO subsystem and making
->> dt-bindings documentation, so (don't) go easy on me :p.
->>=20
->> As explained in Patch 2 changelog, the DRDY interrupt line is shared
->> with the MOSI pin. This awkward quirk is also found on some Analog
->> Devices sigma-delta SPI ADCs, so the interrupt and trigger design is
->> inspired by those.
->>=20
->> Thank you in advance for your reviews.
->>=20
->> Signed-off-by: Kurt Borja <kuurtb@gmail.com>
->> ---
->
-> I had a few minor comments on the driver, but nothing serious.
->
-> Reviewed-by: David Lechner <dlechner@baylibre.com>
+On Sun, Dec 14, 2025 at 06:01:41PM +0000, Stafford Horne wrote:
+> In FPGA Development boards with GPIOs we use the opencores gpio verilog
+> rtl.  This is compatible with the gpio-mmio.  Add the compatible string
+> to allow as below.
+>=20
+> Example:
+>=20
+>         gpio0: gpio@91000000 {
+>                 compatible =3D "opencores,gpio", "brcm,bcm6345-gpio";
 
-Thank you, David!
+What you have done below does not permit this, it only permits
+opencores,gpio in isolation.
+pw-bot: changes-requested
 
---=20
-Thanks,
- ~ Kurt
+>                 reg =3D <0x91000000 0x1>, <0x91000001 0x1>;
+>                 reg-names =3D "dat", "dirout";
+>                 gpio-controller;
+>                 #gpio-cells =3D <2>;
+>                 status =3D "okay";
+>         };
+>=20
+> Link: https://opencores.org/projects/gpio
+> Signed-off-by: Stafford Horne <shorne@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/gpio/gpio-mmio.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/gpio/gpio-mmio.yaml b/Docu=
+mentation/devicetree/bindings/gpio/gpio-mmio.yaml
+> index b4d55bf6a285..0490580df19e 100644
+> --- a/Documentation/devicetree/bindings/gpio/gpio-mmio.yaml
+> +++ b/Documentation/devicetree/bindings/gpio/gpio-mmio.yaml
+> @@ -23,6 +23,7 @@ properties:
+>        - ni,169445-nand-gpio
+>        - wd,mbl-gpio # Western Digital MyBook Live memory-mapped GPIO con=
+troller
+>        - intel,ixp4xx-expansion-bus-mmio-gpio
+> +      - opencores,gpio
+> =20
+>    big-endian: true
+> =20
+> --=20
+> 2.51.0
+>=20
+
+--hCJub4guA5h1GUdJ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaUA9/QAKCRB4tDGHoIJi
+0t/TAQDBFZJqiD8sF0fIRoGIM15mzcD4JOHWG2CkFfH3s11/XgEAiXh2/9JDMpcA
+yuyf/eZw+zXGHSep5v7xawMQr0Gt+AY=
+=JiOe
+-----END PGP SIGNATURE-----
+
+--hCJub4guA5h1GUdJ--
 
