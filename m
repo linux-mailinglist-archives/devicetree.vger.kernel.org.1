@@ -1,578 +1,158 @@
-Return-Path: <devicetree+bounces-246575-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246580-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5E5ACBDE08
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 13:50:49 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57CD9CBDEE9
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 14:03:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id BE7933002A53
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 12:50:48 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D2CE6301B822
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 12:57:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B01423148CC;
-	Mon, 15 Dec 2025 12:42:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5E3526D4C7;
+	Mon, 15 Dec 2025 12:57:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XsRLtCEm"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="Rz5QyBm+";
+	dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b="I6pwyA5w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4163A2F2616;
-	Mon, 15 Dec 2025 12:42:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF16B242D7C
+	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 12:57:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765802546; cv=none; b=chMXUtT9wc7bHFsR305WMVj3dp49nU+YZZry7GhWKz0T/ci6NlV1EmKQHtAvt8jw+DaHxS9T6orrUEHa6hFG2O+h/qutVE/xS+gWD+c1VJiLm8qgB4Z97KGiwX5XWPHSoIKgcj+LCaGkuF7wXLb4mO5Vb/9u55dKTuyL3bpHX/U=
+	t=1765803456; cv=none; b=XUMVZ9sGG5vABIo81SNWZMQLxvmhdVOLvadW2v/KpP6GQXUby79piPxYUyB0qvKuCybnPdufKWXM8PxcPyOH5TYwdUB+t5Kb0ftknlOo/BAJj0U5HjQWMLSxmS/bBDR5hAie6jIaqahx6jW2RO7j1i7Wq0dfrqYmU6JC3OG7ks0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765802546; c=relaxed/simple;
-	bh=Iz6V6PWUwu+QGmdkLwwDsv515c+j0B7QKQvLTh1nias=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Ga5b2qMvOQX8I2PfJMwlA8Ihs2Bd0QcQIZyk78YpQrasmQDzFsFg0WpeO2ucgoIxq2A3G1vb/CnrSHFXOWyhmCK+LpzLuY1qlAPjuXwbeE52vYaS/8qjG3x7UcosMnwjZ7wQcEElMIgS0UM0neFURw/ZizJyNpkVXbKY09zspRg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XsRLtCEm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 1E8CFC4CEF5;
-	Mon, 15 Dec 2025 12:42:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765802546;
-	bh=Iz6V6PWUwu+QGmdkLwwDsv515c+j0B7QKQvLTh1nias=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=XsRLtCEmSKvvW4+dew6fVvOOGpm7ZRMaVW5jGd6Sp86NfQQy2xwdQh69GQarW+dXX
-	 HrNmfDyqBhO80PqWOkxiMHSWvukeW8gPYdPrxxYJXm+K1wySrZHs0vjy0+hhuYAILW
-	 3Kp3GL2Z5YVjqUiG12NHAtw2YQ1NA1Q+itFAlfr3hYXJlzCJW76A75NBDMrXXN4DqR
-	 rLJh0tWXmRjVKyr2TRMjiArxP09VikVcfi4TlxbQfkUdisQqof1Y3J0hIhLGzRYMh9
-	 p3Irvkv2ysqytPv81aCqAML1HSDUIVB3ZKdR1lqDrsuxr+lpURYw2/2YERA19j1WC3
-	 NEGBsyiTqrqzQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 15CA0D5B16F;
-	Mon, 15 Dec 2025 12:42:26 +0000 (UTC)
-From: Xiangxu Yin via B4 Relay <devnull+xiangxu.yin.oss.qualcomm.com@kernel.org>
-Date: Mon, 15 Dec 2025 20:42:08 +0800
-Subject: [PATCH v8 12/12] phy: qcom: qmp-usbc: Add QCS615 USB/DP PHY config
- and DP mode support
+	s=arc-20240116; t=1765803456; c=relaxed/simple;
+	bh=+lw3HfHLbETcvVXnCt8pXqolyJdrk9RCXahwIkyW0KI=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=HL1A1WXG23s2U9b2kYY96QnEVstzjqgaSpHdCpl1VOsB/MZM1AE43B+97JII3TRvdXwcXLhXrXxzkNPj9/e4o/XGSHyoAE2uPLl/0oF9mWDlSv2k+r0Wm4YtuacSRH4qtKDVuA13UG2+MOGepHO6kkTZctOprOj9jlsaNbyeCTg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=Rz5QyBm+; dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b=I6pwyA5w; arc=none smtp.client-ip=170.10.133.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1765803452;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=DJPuhd80iTSF+OO5gKXbsXNzHvhZFugxRejPAvwRung=;
+	b=Rz5QyBm+K+0+l3L1xuDFCVO92hj/on9ncRDU998YPlK/iMuzNYvKWUpYLq4hoXchfHkgCz
+	q5BnK0cmSA+K6nRi7+98ypIJ6l3ZGPtMcxMq0fvlUBd4H26VAUi89Uv4xsi3Y6xA1+QzyR
+	oW0ba/wgsr+ZaZBNVtWJJT2tVVsVDAI=
+Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com
+ [209.85.221.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-562-JKhzscpwNIW159IlL7vflQ-1; Mon, 15 Dec 2025 07:57:31 -0500
+X-MC-Unique: JKhzscpwNIW159IlL7vflQ-1
+X-Mimecast-MFC-AGG-ID: JKhzscpwNIW159IlL7vflQ_1765803450
+Received: by mail-wr1-f72.google.com with SMTP id ffacd0b85a97d-430fc83f58dso458661f8f.2
+        for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 04:57:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=redhat.com; s=google; t=1765803449; x=1766408249; darn=vger.kernel.org;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=DJPuhd80iTSF+OO5gKXbsXNzHvhZFugxRejPAvwRung=;
+        b=I6pwyA5wKqVr0Hf0mqLQnWmrl1JCIeY6M1jUz6Dcp61ar0m2hlVWNTsVRbpzb9CatH
+         aPz6HN+n6ZuqvF2HtN9y+Dovr+Vy+fFKNPqYaWOK4HK9KD35y/J9m2mDfhZKu296yvu2
+         eQwRnGnZAwEXYB/Q8zq3klTMYm9axCD352VlRrX5HO6jueaDG+tDHZPWfeqHqj8FR9Q6
+         srTwy0m7i5m9E3QDrp9DCiaLIp6jjguwLPo5jFe2Ll08E1lqyGaY8nxNxxiaR9V2VE2O
+         /GMUJUB8bRoqB4u81YwTFsA+CoC+ZuV3RCfNfV80DC5Z1KGQcdCt68EtVNNsm2qLgOKT
+         QLVQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765803449; x=1766408249;
+        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
+         :from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=DJPuhd80iTSF+OO5gKXbsXNzHvhZFugxRejPAvwRung=;
+        b=ItEZfeUDSUFShmHaBAsnCydQbexFUAjNz/JZTZmAE4sD3//lCa2n9JcBEXXnaC8Ktu
+         9nQCdFmKpL8EhVGGTGH1NJ8pEaVOP2dzl0I+OWAU3f++j0KD55N1m+4OR5jwZNFoCzjp
+         9JiJQ3DebAZs1L5K1w7D8mg8bf8MwED9aJc6/cmOo20w3eMsdJh6rI1jfIiu9PSmq2eo
+         YP/87DVpRi62XFT1bVRdicm7i9RpNjaj78skDEI1hvMsSOX59lL0y0yjlcI5iOdDccSh
+         4SOch5C8vzWsjxo3obJaEKStD106r1ghxUJapytoM2bt7Cj8z+0sYsN7OQ9OAryvE+ZA
+         scog==
+X-Forwarded-Encrypted: i=1; AJvYcCVUprE/h8Yt/j7kkv7nLxaU58EaXmIOz1rTM8gNHJGqhmdu+FIJvzrQbd5Zb4huOyzc6T0A5V2Lr4Rr@vger.kernel.org
+X-Gm-Message-State: AOJu0YxF2OICNw+ChgBlGDV+OdqhyFK/xCCgY43N66sp+NgtwiLzPV33
+	AuobuVm2M9I0giCWjxnSKd1sEDFowCUEhEqREXlehlafvUB5+b/GFzBIm8KbgK03/rwfaQA5izw
+	3tg4p9wyOMl8O+ul/TLuClN0UgRO1IKc6oQqvemn6iO6f63c2XKijBQDNae/fHNmAkiPmr+Vb9V
+	cb
+X-Gm-Gg: AY/fxX756Edq05g8QCF2CoJp8dij5FaR17T3RHltKay9ekYLwoKqBALbJKiu740g3KY
+	QuJrDBsX1mQ0s+e0gVk4j5/YsIKFHLyQDyegkTYdKz8C7j1elsBdma7xvijz7Z+dnMMsX1+F3wa
+	byLQFrO+NmMUVIJNwKwwfQsd8tU5N2Y0aaF62jMOlVLF9jIgEAR09KC1s5mI5cFdXy6RgQksGIK
+	cbK1FgOs1wPmebITNsAZXhtUFA9nAOjsFV7BYwYLfe2DJpmfo2z90v55C4hIbAQ03JatTcej1V7
+	qwNXfsPji7KUomJhIYEB7mXev/tK9hpDGziV3SPYGAmLEOgV+XTSREu+ppg727uytnR+ujGkfXj
+	AsWl8viSA8koNNJWqmRVfflA53vWOTL5IN8YitooORReHHtA0/zXVjnA30XdqsMPv+/Kum7RfAP
+	aKcGk=
+X-Received: by 2002:a05:6000:2f81:b0:42b:3062:c647 with SMTP id ffacd0b85a97d-42fb44b7718mr9423839f8f.21.1765803449363;
+        Mon, 15 Dec 2025 04:57:29 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IH5Zv0vhReJo51vrrwa+7wzPN1PGO8Bh6Thhn0xc2h920KOWnaqhooUP4kpjy6aaSzbAIad0Q==
+X-Received: by 2002:a05:6000:2f81:b0:42b:3062:c647 with SMTP id ffacd0b85a97d-42fb44b7718mr9423809f8f.21.1765803448948;
+        Mon, 15 Dec 2025 04:57:28 -0800 (PST)
+Received: from localhost (red-hat-inc.vlan560.asr1.mad1.gblx.net. [159.63.51.90])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42ff626b591sm16734579f8f.15.2025.12.15.04.57.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 15 Dec 2025 04:57:28 -0800 (PST)
+From: Javier Martinez Canillas <javierm@redhat.com>
+To: Marcus Folkesson <marcus.folkesson@gmail.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, Marcus Folkesson <marcus.folkesson@gmail.com>
+Subject: Re: [PATCH v3 0/7] drm/sitronix/st7571: split up driver to support
+ both I2C and SPI
+In-Reply-To: <20251215-st7571-split-v3-0-d5f3205c3138@gmail.com>
+References: <20251215-st7571-split-v3-0-d5f3205c3138@gmail.com>
+Date: Mon, 15 Dec 2025 13:57:27 +0100
+Message-ID: <87tsxrkimg.fsf@ocarina.mail-host-address-is-not-set>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251215-add-displayport-support-for-qcs615-platform-v8-12-cbc72c88a44e@oss.qualcomm.com>
-References: <20251215-add-displayport-support-for-qcs615-platform-v8-0-cbc72c88a44e@oss.qualcomm.com>
-In-Reply-To: <20251215-add-displayport-support-for-qcs615-platform-v8-0-cbc72c88a44e@oss.qualcomm.com>
-To: Vinod Koul <vkoul@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- fange.zhang@oss.qualcomm.com, yongxing.mou@oss.qualcomm.com, 
- li.liu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, 
- Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1765802543; l=17185;
- i=xiangxu.yin@oss.qualcomm.com; s=20241125; h=from:subject:message-id;
- bh=AitIfH7m+nEawI9lh0FW677FK38HTsyWQc7K8BMhHH8=;
- b=IH8CN3kZfNlfLNQoSZem++bBFfQ9yvq1cQQhDX7J5WWP5R6Ouz+YVVlK0fRj3X5CygEn1QtXu
- qwbROL6NMrqCj8mHyy1iWPPFjO9/O4JeN1HKSkt5HBJPj51WHZXyrkX
-X-Developer-Key: i=xiangxu.yin@oss.qualcomm.com; a=ed25519;
- pk=F1TwipJzpywfbt3n/RPi4l/A4AVF+QC89XzCHgZYaOc=
-X-Endpoint-Received: by B4 Relay for xiangxu.yin@oss.qualcomm.com/20241125
- with auth_id=542
-X-Original-From: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
-Reply-To: xiangxu.yin@oss.qualcomm.com
+Content-Type: text/plain
 
-From: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
+Marcus Folkesson <marcus.folkesson@gmail.com> writes:
 
-Add QCS615-specific configuration for USB/DP PHY, including DP init
-routines, voltage swing tables, and platform data. Add compatible
-"qcs615-qmp-usb3-dp-phy".
+Hello Marcus,
 
-Note: SW_PORTSELECT handling for orientation flip is not implemented
-due to QCS615 fixed-orientation design and non-standard lane mapping.
+> This series splits up the driver and finally implements
+> support for ST7571/ST7561 connected to a SPI bus.
+>
+> I've not tested the SPI interface myself as I lack HW, but the
+> implementation should be okay from what I've read in the datasheet.
+>
+> Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
+> ---
+> Changes in v3:
+> - Add SPI example to the bindings doc (Thanks Javier)
+> - Select REGMAP rather than REGMAP_I2C (Thanks Javier)
+> - Fix gramatical errors in patch description (Thanks Javier)
+> - Link to v2: https://lore.kernel.org/r/20251027-st7571-split-v2-0-8352fb278d21@gmail.com
+>
+> Changes in v2:
+> - Add MODULE_IMPORT_NS to st7571-i2c.c st7571-spi.c (Kernel test robot)
+> - Link to v1: https://lore.kernel.org/r/20251024-st7571-split-v1-0-d3092b98130f@gmail.com
+>
+> ---
+> Marcus Folkesson (7):
+>       drm/sitronix/st7571-i2c: rename 'struct drm_device' in st7571_device
+>       drm/sitronix/st7571-i2c: add 'struct device' to st7571_device
+>       drm/sitronix/st7571-i2c: move common structures to st7571.h
+>       drm/sitronix/st7571-i2c: make probe independent of hw interface
+>       drm/sitronix/st7571: split up the driver into a common and an i2c part
+>       drm/sitronix/st7571-spi: add support for SPI interface
+>       dt-bindings: display: sitronix,st7571: add example for SPI
+>
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Signed-off-by: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
----
- drivers/phy/qualcomm/phy-qcom-qmp-usbc.c | 413 +++++++++++++++++++++++++++++++
- 1 file changed, 413 insertions(+)
-
-diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-usbc.c b/drivers/phy/qualcomm/phy-qcom-qmp-usbc.c
-index b1a2380401ff..14feb77789b3 100644
---- a/drivers/phy/qualcomm/phy-qcom-qmp-usbc.c
-+++ b/drivers/phy/qualcomm/phy-qcom-qmp-usbc.c
-@@ -30,6 +30,7 @@
- #include "phy-qcom-qmp-pcs-misc-v3.h"
- 
- #include "phy-qcom-qmp-dp-phy.h"
-+#include "phy-qcom-qmp-dp-phy-v2.h"
- 
- #define PHY_INIT_COMPLETE_TIMEOUT		10000
- #define SW_PORTSELECT_VAL			BIT(0)
-@@ -289,6 +290,83 @@ static const struct qmp_phy_init_tbl qcm2290_usb3_pcs_tbl[] = {
- 	QMP_PHY_INIT_CFG(QPHY_V3_PCS_RX_SIGDET_LVL, 0x88),
- };
- 
-+static const struct qmp_phy_init_tbl qmp_v2_dp_serdes_tbl[] = {
-+	QMP_PHY_INIT_CFG(QSERDES_COM_SVS_MODE_CLK_SEL, 0x01),
-+	QMP_PHY_INIT_CFG(QSERDES_COM_SYSCLK_EN_SEL, 0x37),
-+	QMP_PHY_INIT_CFG(QSERDES_COM_CLK_SELECT, 0x00),
-+	QMP_PHY_INIT_CFG(QSERDES_COM_SYS_CLK_CTRL, 0x06),
-+	QMP_PHY_INIT_CFG(QSERDES_COM_BIAS_EN_CLKBUFLR_EN, 0x3f),
-+	QMP_PHY_INIT_CFG(QSERDES_COM_CLK_ENABLE1, 0x0e),
-+	QMP_PHY_INIT_CFG(QSERDES_COM_BG_CTRL, 0x0f),
-+	QMP_PHY_INIT_CFG(QSERDES_COM_SYSCLK_BUF_ENABLE, 0x06),
-+	QMP_PHY_INIT_CFG(QSERDES_COM_CLK_SELECT, 0x30),
-+	QMP_PHY_INIT_CFG(QSERDES_COM_PLL_IVCO, 0x0f),
-+	QMP_PHY_INIT_CFG(QSERDES_COM_PLL_CCTRL_MODE0, 0x28),
-+	QMP_PHY_INIT_CFG(QSERDES_COM_PLL_RCTRL_MODE0, 0x16),
-+	QMP_PHY_INIT_CFG(QSERDES_COM_CP_CTRL_MODE0, 0x0b),
-+	QMP_PHY_INIT_CFG(QSERDES_COM_INTEGLOOP_GAIN0_MODE0, 0x40),
-+	QMP_PHY_INIT_CFG(QSERDES_COM_INTEGLOOP_GAIN1_MODE0, 0x00),
-+	QMP_PHY_INIT_CFG(QSERDES_COM_VCO_TUNE_MAP, 0x00),
-+	QMP_PHY_INIT_CFG(QSERDES_COM_BG_TIMER, 0x08),
-+	QMP_PHY_INIT_CFG(QSERDES_COM_CORECLK_DIV, 0x05),
-+	QMP_PHY_INIT_CFG(QSERDES_COM_VCO_TUNE_CTRL, 0x00),
-+	QMP_PHY_INIT_CFG(QSERDES_COM_VCO_TUNE1_MODE0, 0x00),
-+	QMP_PHY_INIT_CFG(QSERDES_COM_VCO_TUNE2_MODE0, 0x00),
-+	QMP_PHY_INIT_CFG(QSERDES_COM_VCO_TUNE_CTRL, 0x00),
-+	QMP_PHY_INIT_CFG(QSERDES_COM_CORE_CLK_EN, 0x0f),
-+	QMP_PHY_INIT_CFG(QSERDES_COM_CMN_CONFIG, 0x02),
-+};
-+
-+static const struct qmp_phy_init_tbl qmp_v2_dp_serdes_tbl_rbr[] = {
-+	QMP_PHY_INIT_CFG(QSERDES_COM_HSCLK_SEL, 0x2c),
-+	QMP_PHY_INIT_CFG(QSERDES_COM_DEC_START_MODE0, 0x69),
-+	QMP_PHY_INIT_CFG(QSERDES_COM_DIV_FRAC_START1_MODE0, 0x00),
-+	QMP_PHY_INIT_CFG(QSERDES_COM_DIV_FRAC_START2_MODE0, 0x80),
-+	QMP_PHY_INIT_CFG(QSERDES_COM_DIV_FRAC_START3_MODE0, 0x07),
-+	QMP_PHY_INIT_CFG(QSERDES_COM_LOCK_CMP1_MODE0, 0xbf),
-+	QMP_PHY_INIT_CFG(QSERDES_COM_LOCK_CMP2_MODE0, 0x21),
-+	QMP_PHY_INIT_CFG(QSERDES_COM_LOCK_CMP3_MODE0, 0x00),
-+};
-+
-+static const struct qmp_phy_init_tbl qmp_v2_dp_serdes_tbl_hbr[] = {
-+	QMP_PHY_INIT_CFG(QSERDES_COM_HSCLK_SEL, 0x24),
-+	QMP_PHY_INIT_CFG(QSERDES_COM_DEC_START_MODE0, 0x69),
-+	QMP_PHY_INIT_CFG(QSERDES_COM_DIV_FRAC_START1_MODE0, 0x00),
-+	QMP_PHY_INIT_CFG(QSERDES_COM_DIV_FRAC_START2_MODE0, 0x80),
-+	QMP_PHY_INIT_CFG(QSERDES_COM_DIV_FRAC_START3_MODE0, 0x07),
-+	QMP_PHY_INIT_CFG(QSERDES_COM_LOCK_CMP1_MODE0, 0x3f),
-+	QMP_PHY_INIT_CFG(QSERDES_COM_LOCK_CMP2_MODE0, 0x38),
-+	QMP_PHY_INIT_CFG(QSERDES_COM_LOCK_CMP3_MODE0, 0x00),
-+};
-+
-+static const struct qmp_phy_init_tbl qmp_v2_dp_serdes_tbl_hbr2[] = {
-+	QMP_PHY_INIT_CFG(QSERDES_COM_HSCLK_SEL, 0x20),
-+	QMP_PHY_INIT_CFG(QSERDES_COM_DEC_START_MODE0, 0x8c),
-+	QMP_PHY_INIT_CFG(QSERDES_COM_DIV_FRAC_START1_MODE0, 0x00),
-+	QMP_PHY_INIT_CFG(QSERDES_COM_DIV_FRAC_START2_MODE0, 0x00),
-+	QMP_PHY_INIT_CFG(QSERDES_COM_DIV_FRAC_START3_MODE0, 0x0a),
-+	QMP_PHY_INIT_CFG(QSERDES_COM_LOCK_CMP1_MODE0, 0x7f),
-+	QMP_PHY_INIT_CFG(QSERDES_COM_LOCK_CMP2_MODE0, 0x70),
-+	QMP_PHY_INIT_CFG(QSERDES_COM_LOCK_CMP3_MODE0, 0x00),
-+};
-+
-+static const struct qmp_phy_init_tbl qmp_v2_dp_tx_tbl[] = {
-+	QMP_PHY_INIT_CFG(QSERDES_V2_TX_TRANSCEIVER_BIAS_EN, 0x1a),
-+	QMP_PHY_INIT_CFG(QSERDES_V2_TX_VMODE_CTRL1, 0x40),
-+	QMP_PHY_INIT_CFG(QSERDES_V2_TX_PRE_STALL_LDO_BOOST_EN, 0x30),
-+	QMP_PHY_INIT_CFG(QSERDES_V2_TX_INTERFACE_SELECT, 0x3d),
-+	QMP_PHY_INIT_CFG(QSERDES_V2_TX_CLKBUF_ENABLE, 0x0f),
-+	QMP_PHY_INIT_CFG(QSERDES_V2_TX_RESET_TSYNC_EN, 0x03),
-+	QMP_PHY_INIT_CFG(QSERDES_V2_TX_TRAN_DRVR_EMP_EN, 0x03),
-+	QMP_PHY_INIT_CFG(QSERDES_V2_TX_PARRATE_REC_DETECT_IDLE_EN, 0x00),
-+	QMP_PHY_INIT_CFG(QSERDES_V2_TX_TX_INTERFACE_MODE, 0x00),
-+	QMP_PHY_INIT_CFG(QSERDES_V2_TX_TX_EMP_POST1_LVL, 0x2b),
-+	QMP_PHY_INIT_CFG(QSERDES_V2_TX_TX_DRV_LVL, 0x2f),
-+	QMP_PHY_INIT_CFG(QSERDES_V2_TX_TX_BAND, 0x4),
-+	QMP_PHY_INIT_CFG(QSERDES_V2_TX_RES_CODE_LANE_OFFSET_TX, 0x12),
-+	QMP_PHY_INIT_CFG(QSERDES_V2_TX_RES_CODE_LANE_OFFSET_RX, 0x12),
-+};
-+
- struct qmp_usbc_offsets {
- 	u16 serdes;
- 	u16 pcs;
-@@ -434,6 +512,10 @@ static const char * const usb3phy_reset_l[] = {
- 	"phy_phy", "phy",
- };
- 
-+static const char * const usb3dpphy_reset_l[] = {
-+	"phy_phy", "dp_phy",
-+};
-+
- static const struct regulator_bulk_data qmp_phy_msm8998_vreg_l[] = {
- 	{ .supply = "vdda-phy", .init_load_uA = 68600 },
- 	{ .supply = "vdda-pll", .init_load_uA = 14200 },
-@@ -459,6 +541,34 @@ static const struct qmp_usbc_offsets qmp_usbc_offsets_v3_qcm2290 = {
- 	.rx2		= 0x800,
- };
- 
-+static const struct qmp_usbc_offsets qmp_usbc_usb3dp_offsets_qcs615 = {
-+	.serdes		= 0x0,
-+	.pcs		= 0xc00,
-+	.pcs_misc	= 0xa00,
-+	.tx		= 0x200,
-+	.rx		= 0x400,
-+	.tx2		= 0x600,
-+	.rx2		= 0x800,
-+	.dp_serdes	= 0x1c00,
-+	.dp_txa		= 0x1400,
-+	.dp_txb		= 0x1800,
-+	.dp_dp_phy	= 0x1000,
-+};
-+
-+static const u8 qmp_v2_dp_pre_emphasis_hbr2_rbr[4][4] = {
-+	{0x00, 0x0b, 0x12, 0xff},
-+	{0x00, 0x0a, 0x12, 0xff},
-+	{0x00, 0x0c, 0xff, 0xff},
-+	{0xff, 0xff, 0xff, 0xff}
-+};
-+
-+static const u8 qmp_v2_dp_voltage_swing_hbr2_rbr[4][4] = {
-+	{0x07, 0x0f, 0x14, 0xff},
-+	{0x11, 0x1d, 0x1f, 0xff},
-+	{0x18, 0x1f, 0xff, 0xff},
-+	{0xff, 0xff, 0xff, 0xff}
-+};
-+
- static const struct qmp_phy_cfg msm8998_usb3phy_cfg = {
- 	.offsets		= &qmp_usbc_offsets_v3_qcm2290,
- 
-@@ -531,6 +641,51 @@ static const struct qmp_phy_cfg qcs615_usb3phy_cfg = {
- 	.regs			= qmp_v3_usb3phy_regs_layout_qcm2290,
- };
- 
-+static void qmp_v2_dp_aux_init(struct qmp_usbc *qmp);
-+static void qmp_v2_configure_dp_tx(struct qmp_usbc *qmp);
-+static int qmp_v2_configure_dp_phy(struct qmp_usbc *qmp);
-+static int qmp_v2_calibrate_dp_phy(struct qmp_usbc *qmp);
-+
-+static const struct qmp_phy_cfg qcs615_usb3dp_phy_cfg = {
-+	.offsets		= &qmp_usbc_usb3dp_offsets_qcs615,
-+
-+	.serdes_tbl		= qcm2290_usb3_serdes_tbl,
-+	.serdes_tbl_num		= ARRAY_SIZE(qcm2290_usb3_serdes_tbl),
-+	.tx_tbl			= qcm2290_usb3_tx_tbl,
-+	.tx_tbl_num		= ARRAY_SIZE(qcm2290_usb3_tx_tbl),
-+	.rx_tbl			= qcm2290_usb3_rx_tbl,
-+	.rx_tbl_num		= ARRAY_SIZE(qcm2290_usb3_rx_tbl),
-+	.pcs_tbl		= qcm2290_usb3_pcs_tbl,
-+	.pcs_tbl_num		= ARRAY_SIZE(qcm2290_usb3_pcs_tbl),
-+
-+	.regs			= qmp_v3_usb3phy_regs_layout_qcm2290,
-+
-+	.dp_serdes_tbl		= qmp_v2_dp_serdes_tbl,
-+	.dp_serdes_tbl_num	= ARRAY_SIZE(qmp_v2_dp_serdes_tbl),
-+	.dp_tx_tbl		= qmp_v2_dp_tx_tbl,
-+	.dp_tx_tbl_num		= ARRAY_SIZE(qmp_v2_dp_tx_tbl),
-+
-+	.serdes_tbl_rbr		= qmp_v2_dp_serdes_tbl_rbr,
-+	.serdes_tbl_rbr_num	= ARRAY_SIZE(qmp_v2_dp_serdes_tbl_rbr),
-+	.serdes_tbl_hbr		= qmp_v2_dp_serdes_tbl_hbr,
-+	.serdes_tbl_hbr_num	= ARRAY_SIZE(qmp_v2_dp_serdes_tbl_hbr),
-+	.serdes_tbl_hbr2	= qmp_v2_dp_serdes_tbl_hbr2,
-+	.serdes_tbl_hbr2_num	= ARRAY_SIZE(qmp_v2_dp_serdes_tbl_hbr2),
-+
-+	.swing_tbl		= &qmp_v2_dp_voltage_swing_hbr2_rbr,
-+	.pre_emphasis_tbl	= &qmp_v2_dp_pre_emphasis_hbr2_rbr,
-+
-+	.dp_aux_init		= qmp_v2_dp_aux_init,
-+	.configure_dp_tx	= qmp_v2_configure_dp_tx,
-+	.configure_dp_phy	= qmp_v2_configure_dp_phy,
-+	.calibrate_dp_phy	= qmp_v2_calibrate_dp_phy,
-+
-+	.reset_list		= usb3dpphy_reset_l,
-+	.num_resets		= ARRAY_SIZE(usb3dpphy_reset_l),
-+	.vreg_list		= qmp_phy_qcs615_vreg_l,
-+	.num_vregs		= ARRAY_SIZE(qmp_phy_qcs615_vreg_l),
-+};
-+
- static void qmp_usbc_set_phy_mode(struct qmp_usbc *qmp, bool is_dp)
- {
- 	if (qmp->tcsr_map && qmp->dp_phy_mode_reg)
-@@ -589,6 +744,253 @@ static int qmp_usbc_com_exit(struct phy *phy)
- 	return 0;
- }
- 
-+static void qmp_v2_dp_aux_init(struct qmp_usbc *qmp)
-+{
-+	writel(DP_PHY_PD_CTL_AUX_PWRDN |
-+	       DP_PHY_PD_CTL_LANE_0_1_PWRDN | DP_PHY_PD_CTL_LANE_2_3_PWRDN |
-+	       DP_PHY_PD_CTL_PLL_PWRDN,
-+	       qmp->dp_dp_phy + QSERDES_DP_PHY_PD_CTL);
-+
-+	writel(DP_PHY_PD_CTL_PWRDN | DP_PHY_PD_CTL_AUX_PWRDN |
-+	       DP_PHY_PD_CTL_LANE_0_1_PWRDN | DP_PHY_PD_CTL_LANE_2_3_PWRDN |
-+	       DP_PHY_PD_CTL_PLL_PWRDN,
-+	       qmp->dp_dp_phy + QSERDES_DP_PHY_PD_CTL);
-+
-+	writel(0x00, qmp->dp_dp_phy + QSERDES_DP_PHY_AUX_CFG0);
-+	writel(0x13, qmp->dp_dp_phy + QSERDES_DP_PHY_AUX_CFG1);
-+	writel(0x00, qmp->dp_dp_phy + QSERDES_DP_PHY_AUX_CFG2);
-+	writel(0x00, qmp->dp_dp_phy + QSERDES_DP_PHY_AUX_CFG3);
-+	writel(0x0a, qmp->dp_dp_phy + QSERDES_DP_PHY_AUX_CFG4);
-+	writel(0x26, qmp->dp_dp_phy + QSERDES_DP_PHY_AUX_CFG5);
-+	writel(0x0a, qmp->dp_dp_phy + QSERDES_DP_PHY_AUX_CFG6);
-+	writel(0x03, qmp->dp_dp_phy + QSERDES_DP_PHY_AUX_CFG7);
-+	writel(0xbb, qmp->dp_dp_phy + QSERDES_DP_PHY_AUX_CFG8);
-+	writel(0x03, qmp->dp_dp_phy + QSERDES_DP_PHY_AUX_CFG9);
-+	qmp->dp_aux_cfg = 0;
-+
-+	writel(PHY_AUX_STOP_ERR_MASK | PHY_AUX_DEC_ERR_MASK |
-+	       PHY_AUX_SYNC_ERR_MASK | PHY_AUX_ALIGN_ERR_MASK |
-+	       PHY_AUX_REQ_ERR_MASK,
-+	       qmp->dp_dp_phy + QSERDES_V2_DP_PHY_AUX_INTERRUPT_MASK);
-+}
-+
-+static int qmp_v2_configure_dp_swing(struct qmp_usbc *qmp)
-+{
-+	const struct qmp_phy_cfg *cfg = qmp->cfg;
-+	const struct phy_configure_opts_dp *dp_opts = &qmp->dp_opts;
-+	void __iomem *tx = qmp->dp_tx;
-+	void __iomem *tx2 = qmp->dp_tx2;
-+	unsigned int v_level = 0, p_level = 0;
-+	u8 voltage_swing_cfg, pre_emphasis_cfg;
-+	int i;
-+
-+	if (dp_opts->lanes > 4) {
-+		dev_err(qmp->dev, "Invalid lane_num(%d)\n", dp_opts->lanes);
-+		return -EINVAL;
-+	}
-+
-+	for (i = 0; i < dp_opts->lanes; i++) {
-+		v_level = max(v_level, dp_opts->voltage[i]);
-+		p_level = max(p_level, dp_opts->pre[i]);
-+	}
-+
-+	if (v_level > 4 || p_level > 4) {
-+		dev_err(qmp->dev, "Invalid v(%d) | p(%d) level)\n",
-+			v_level, p_level);
-+		return -EINVAL;
-+	}
-+
-+	voltage_swing_cfg = (*cfg->swing_tbl)[v_level][p_level];
-+	pre_emphasis_cfg = (*cfg->pre_emphasis_tbl)[v_level][p_level];
-+
-+	voltage_swing_cfg |= DP_PHY_TXn_TX_DRV_LVL_MUX_EN;
-+	pre_emphasis_cfg |= DP_PHY_TXn_TX_EMP_POST1_LVL_MUX_EN;
-+
-+	if (voltage_swing_cfg == 0xff && pre_emphasis_cfg == 0xff)
-+		return -EINVAL;
-+
-+	writel(voltage_swing_cfg, tx + QSERDES_V2_TX_TX_DRV_LVL);
-+	writel(pre_emphasis_cfg, tx + QSERDES_V2_TX_TX_EMP_POST1_LVL);
-+	writel(voltage_swing_cfg, tx2 + QSERDES_V2_TX_TX_DRV_LVL);
-+	writel(pre_emphasis_cfg, tx2 + QSERDES_V2_TX_TX_EMP_POST1_LVL);
-+
-+	return 0;
-+}
-+
-+static void qmp_usbc_configure_dp_mode(struct qmp_usbc *qmp)
-+{
-+	bool reverse = (qmp->orientation == TYPEC_ORIENTATION_REVERSE);
-+	u32 val;
-+
-+	val = DP_PHY_PD_CTL_PWRDN | DP_PHY_PD_CTL_AUX_PWRDN |
-+	      DP_PHY_PD_CTL_PLL_PWRDN | DP_PHY_PD_CTL_LANE_0_1_PWRDN | DP_PHY_PD_CTL_LANE_2_3_PWRDN;
-+
-+	writel(val, qmp->dp_dp_phy + QSERDES_DP_PHY_PD_CTL);
-+
-+	if (reverse)
-+		writel(0xc9, qmp->dp_dp_phy + QSERDES_DP_PHY_MODE);
-+	else
-+		writel(0xd9, qmp->dp_dp_phy + QSERDES_DP_PHY_MODE);
-+}
-+
-+static int qmp_usbc_configure_dp_clocks(struct qmp_usbc *qmp)
-+{
-+	const struct phy_configure_opts_dp *dp_opts = &qmp->dp_opts;
-+	u32 phy_vco_div;
-+	unsigned long pixel_freq;
-+
-+	switch (dp_opts->link_rate) {
-+	case 1620:
-+		phy_vco_div = 0x1;
-+		pixel_freq = 1620000000UL / 2;
-+		break;
-+	case 2700:
-+		phy_vco_div = 0x1;
-+		pixel_freq = 2700000000UL / 2;
-+		break;
-+	case 5400:
-+		phy_vco_div = 0x2;
-+		pixel_freq = 5400000000UL / 4;
-+		break;
-+	default:
-+		dev_err(qmp->dev, "link rate:%d not supported\n", dp_opts->link_rate);
-+		return -EINVAL;
-+	}
-+	writel(phy_vco_div, qmp->dp_dp_phy + QSERDES_V2_DP_PHY_VCO_DIV);
-+
-+	clk_set_rate(qmp->dp_link_hw.clk, dp_opts->link_rate * 100000);
-+	clk_set_rate(qmp->dp_pixel_hw.clk, pixel_freq);
-+
-+	return 0;
-+}
-+
-+static void qmp_v2_configure_dp_tx(struct qmp_usbc *qmp)
-+{
-+	const struct phy_configure_opts_dp *dp_opts = &qmp->dp_opts;
-+	void __iomem *tx = qmp->dp_tx;
-+	void __iomem *tx2 = qmp->dp_tx2;
-+
-+	/* program default setting first */
-+	writel(0x2a, tx + QSERDES_V2_TX_TX_DRV_LVL);
-+	writel(0x20, tx + QSERDES_V2_TX_TX_EMP_POST1_LVL);
-+	writel(0x2a, tx2 + QSERDES_V2_TX_TX_DRV_LVL);
-+	writel(0x20, tx2 + QSERDES_V2_TX_TX_EMP_POST1_LVL);
-+
-+	if (dp_opts->link_rate >= 2700) {
-+		writel(0xc4, tx + QSERDES_V2_TX_LANE_MODE_1);
-+		writel(0xc4, tx2 + QSERDES_V2_TX_LANE_MODE_1);
-+	} else {
-+		writel(0xc6, tx + QSERDES_V2_TX_LANE_MODE_1);
-+		writel(0xc6, tx2 + QSERDES_V2_TX_LANE_MODE_1);
-+	}
-+
-+	qmp_v2_configure_dp_swing(qmp);
-+}
-+
-+static int qmp_v2_configure_dp_phy(struct qmp_usbc *qmp)
-+{
-+	u32 status;
-+	int ret;
-+
-+	qmp_usbc_configure_dp_mode(qmp);
-+
-+	writel(0x05, qmp->dp_dp_phy + QSERDES_V2_DP_PHY_TX0_TX1_LANE_CTL);
-+	writel(0x05, qmp->dp_dp_phy + QSERDES_V2_DP_PHY_TX2_TX3_LANE_CTL);
-+
-+	ret = qmp_usbc_configure_dp_clocks(qmp);
-+	if (ret)
-+		return ret;
-+
-+	writel(0x01, qmp->dp_dp_phy + QSERDES_DP_PHY_CFG);
-+	writel(0x05, qmp->dp_dp_phy + QSERDES_DP_PHY_CFG);
-+	writel(0x01, qmp->dp_dp_phy + QSERDES_DP_PHY_CFG);
-+	writel(0x09, qmp->dp_dp_phy + QSERDES_DP_PHY_CFG);
-+
-+	writel(0x20, qmp->dp_serdes + QSERDES_COM_RESETSM_CNTRL);
-+
-+	if (readl_poll_timeout(qmp->dp_serdes + QSERDES_COM_C_READY_STATUS,
-+			       status,
-+			       ((status & BIT(0)) > 0),
-+			       500,
-+			       10000)) {
-+		dev_err(qmp->dev, "C_READY not ready\n");
-+		return -ETIMEDOUT;
-+	}
-+
-+	if (readl_poll_timeout(qmp->dp_serdes + QSERDES_COM_CMN_STATUS,
-+			       status,
-+			       ((status & BIT(0)) > 0),
-+			       500,
-+			       10000)){
-+		dev_err(qmp->dev, "FREQ_DONE not ready\n");
-+		return -ETIMEDOUT;
-+	}
-+
-+	if (readl_poll_timeout(qmp->dp_serdes + QSERDES_COM_CMN_STATUS,
-+			       status,
-+			       ((status & BIT(1)) > 0),
-+			       500,
-+			       10000)){
-+		dev_err(qmp->dev, "PLL_LOCKED not ready\n");
-+		return -ETIMEDOUT;
-+	}
-+
-+	writel(0x19, qmp->dp_dp_phy + QSERDES_DP_PHY_CFG);
-+
-+	if (readl_poll_timeout(qmp->dp_dp_phy + QSERDES_V2_DP_PHY_STATUS,
-+			       status,
-+			       ((status & BIT(0)) > 0),
-+			       500,
-+			       10000)){
-+		dev_err(qmp->dev, "TSYNC_DONE not ready\n");
-+		return -ETIMEDOUT;
-+	}
-+
-+	if (readl_poll_timeout(qmp->dp_dp_phy + QSERDES_V2_DP_PHY_STATUS,
-+			       status,
-+			       ((status & BIT(1)) > 0),
-+			       500,
-+			       10000)){
-+		dev_err(qmp->dev, "PHY_READY not ready\n");
-+		return -ETIMEDOUT;
-+	}
-+
-+	writel(0x3f, qmp->dp_tx + QSERDES_V2_TX_TRANSCEIVER_BIAS_EN);
-+	writel(0x10, qmp->dp_tx + QSERDES_V2_TX_HIGHZ_DRVR_EN);
-+	writel(0x0a, qmp->dp_tx + QSERDES_V2_TX_TX_POL_INV);
-+	writel(0x3f, qmp->dp_tx2 + QSERDES_V2_TX_TRANSCEIVER_BIAS_EN);
-+	writel(0x10, qmp->dp_tx2 + QSERDES_V2_TX_HIGHZ_DRVR_EN);
-+	writel(0x0a, qmp->dp_tx2 + QSERDES_V2_TX_TX_POL_INV);
-+
-+	writel(0x18, qmp->dp_dp_phy + QSERDES_DP_PHY_CFG);
-+	writel(0x19, qmp->dp_dp_phy + QSERDES_DP_PHY_CFG);
-+
-+	if (readl_poll_timeout(qmp->dp_dp_phy + QSERDES_V2_DP_PHY_STATUS,
-+			       status,
-+			       ((status & BIT(1)) > 0),
-+			       500,
-+			       10000)){
-+		dev_err(qmp->dev, "PHY_READY not ready\n");
-+		return -ETIMEDOUT;
-+	}
-+
-+	return 0;
-+}
-+
-+static int qmp_v2_calibrate_dp_phy(struct qmp_usbc *qmp)
-+{
-+	static const u8 cfg1_settings[] = {0x13, 0x23, 0x1d};
-+	u8 val;
-+
-+	qmp->dp_aux_cfg++;
-+	qmp->dp_aux_cfg %= ARRAY_SIZE(cfg1_settings);
-+	val = cfg1_settings[qmp->dp_aux_cfg];
-+
-+	writel(val, qmp->dp_dp_phy + QSERDES_DP_PHY_AUX_CFG1);
-+
-+	return 0;
-+}
-+
- static int qmp_usbc_usb_power_on(struct phy *phy)
- {
- 	struct qmp_usbc *qmp = phy_get_drvdata(phy);
-@@ -855,6 +1257,14 @@ static int qmp_usbc_dp_power_on(struct phy *phy)
- 	void __iomem *tx = qmp->dp_tx;
- 	void __iomem *tx2 = qmp->dp_tx2;
- 
-+	/*
-+	 * FIXME: SW_PORTSELECT handling for DP orientation flip is not implemented.
-+	 * Expected:
-+	 * - For standard lane mapping: configure SW_PORTSELECT in QSERDES_DP_PHY_CFG_1.
-+	 * - For non-standard mapping: pass orientation to dp_ctrl and handle flip
-+	 *   via logical2physical lane remapping.
-+	 */
-+
- 	mutex_lock(&qmp->phy_mutex);
- 
- 	qmp_usbc_dp_serdes_init(qmp);
-@@ -1600,6 +2010,9 @@ static const struct of_device_id qmp_usbc_of_match_table[] = {
- 	}, {
- 		.compatible = "qcom,qcm2290-qmp-usb3-phy",
- 		.data = &qcm2290_usb3phy_cfg,
-+	}, {
-+		.compatible = "qcom,qcs615-qmp-usb3-dp-phy",
-+		.data =  &qcs615_usb3dp_phy_cfg,
- 	}, {
- 		.compatible = "qcom,qcs615-qmp-usb3-phy",
- 		.data = &qcs615_usb3phy_cfg,
+Pushed to drm-misc (drm-misc-next). Thanks!
 
 -- 
-2.34.1
+Best regards,
 
+Javier Martinez Canillas
+Core Platforms
+Red Hat
 
 
