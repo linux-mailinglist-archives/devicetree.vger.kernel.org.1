@@ -1,427 +1,204 @@
-Return-Path: <devicetree+bounces-246714-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246715-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA063CBF18C
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 18:04:07 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A5FFCBF113
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 17:57:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1EEAA309B36E
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 16:56:04 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 4C7FB301597D
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 16:56:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBD613370FF;
-	Mon, 15 Dec 2025 16:48:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6657C338F24;
+	Mon, 15 Dec 2025 16:49:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="A2Wx+rL7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com [209.85.216.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9C1C2877E3
-	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 16:48:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D75DA33893E
+	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 16:49:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765817312; cv=none; b=DJnm0mj8idI0PJn5nJxSBQxHY+hXNcYr/9YaVdJJXYsmbOezWDkojQxcRfvXn40n3yzqBpMR5p2UaOh/BRgoeAxI1vTFEoy4tOxTFn0LbmTtaq0RnPunCS3zK5fXEmCA5+N20OsQao/ApfiYbJnxWU40R/570QEVOEYs9UhkRns=
+	t=1765817393; cv=none; b=eq3TQr2pIYokAKQApaR+kNw5OHCQ1rjeKN/s4GNtuSAz6jzaNxF8CBisGJCRM+ARv2J8rYwRweBPsJvcdRdhBagCQVYWJp7+1QqQX8lZeIn/j5D+yXZJH26wRoao8zQFUaWOyS4NMRiR/K3uSh1XLAUkUsOvQj+xVioDKMeTJ7s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765817312; c=relaxed/simple;
-	bh=iegucxP0t41opnyim+jwV3GBK1a8WA8rlpfirXQK4TI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mpclAed0NCVFYVdZzfgvMcfUu/i0CAoA1JHnFkWXCt7ZV3Z23+iwqCfpuTIUca6Iu+rxhgEO9MTCPLgfhuoPDcm85wr4IUtOYFsRBEdKiHF+d/5zjgXEKLg5/BTI7BmDlnXO6JvWBUBuS+yBLWjFGwFxsXv8OyhrM5cO0a2hwpw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1vVBjp-00040g-3n; Mon, 15 Dec 2025 17:47:57 +0100
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1vVBjm-005oRd-2i;
-	Mon, 15 Dec 2025 17:47:54 +0100
-Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1vVBjm-008zIy-2B;
-	Mon, 15 Dec 2025 17:47:54 +0100
-Date: Mon, 15 Dec 2025 17:47:54 +0100
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: Liu Ying <victor.liu@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v7 2/3] drm/bridge: imx: Add i.MX93 parallel display
- format configuration support
-Message-ID: <20251215164754.5amfk7hasaol7tdt@pengutronix.de>
-References: <20251202-v6-18-topic-imx93-parallel-display-v7-0-2cce31d64608@pengutronix.de>
- <20251202-v6-18-topic-imx93-parallel-display-v7-2-2cce31d64608@pengutronix.de>
- <f53be351-e059-4a71-bbbd-7a893e954169@nxp.com>
+	s=arc-20240116; t=1765817393; c=relaxed/simple;
+	bh=OnaSvsbrFawYoJrmCuPvnY92dkVLdEtB2GpkvjducHI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=h9ZS3uZzoxzjZsnkLrI0Fu5YNndDFpk42DZWQjjOCKRAMKHIo1h1gYS9UOIf++gq7g1864QBXJePIQxL9+rclzwbtu2cZSptdSh12hhiDP9jCaady2aVX8MsE0rrPkX2IG5i5wFqREyhkpXaI7d3HAmePQKI2k+kmbddnAAmToQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=A2Wx+rL7; arc=none smtp.client-ip=209.85.216.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f51.google.com with SMTP id 98e67ed59e1d1-34c84dc332cso1478128a91.0
+        for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 08:49:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1765817391; x=1766422191; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=BRxCZc0RERtp6MwAUFiJy+nvlEetcpGB/5LKifbnMZg=;
+        b=A2Wx+rL78dbfnRDyupF6x1Mv0sk/ZMrJcnVuQqSvN9w/QMe52PT2+GnLwtEQdu6GIk
+         y+tyhr4PJR6wZ55p4TS2GOBk/Rfv/7QzU9qbDowm7szLSTKPcuW8zDb5ixUqHS0Z7ar7
+         D8wxwAy2UfxUbEmbrqpmb+t6DzMnGCLiDQxQRgTbLuxDMhyFgBdMvAmNvHVsRjsHjfOk
+         DzxKBoVl2wsQxTSmzd72RkYaeH5qyhPmtpSfpf3upiiIDg0nbpMOvDwjbiC0SHvdNsvv
+         /5eqhZS0ciFbHKej2vCQlq9gPLfUYAH6jBrwAVU2jOCc9nq77ox1YevsKqCdxiN57FzJ
+         +RZg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765817391; x=1766422191;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BRxCZc0RERtp6MwAUFiJy+nvlEetcpGB/5LKifbnMZg=;
+        b=TedUZ6/qKg1v2XjfrwxlYkAHuqgs49650mw9AISRUpJS2amL/+jb3o4xW621DNHUo8
+         SF8zqZgO5zyv2slQN+sj/+PobsS7HMSUPN6Rhgbee9rScsIM3F1pJWZCCg/X4VusiKm0
+         HwJYhcLvklW4cqEZ7hc4gxOdWM0seDkRWUv6bUMwqozcC2BflaI0+Z/d25dy4UERAigB
+         Xo8VK9EHawyN9c6E2xy7xF6wompSXdjYcWlYlYSwu+m6FMY1YZzfTvuN2mldNjr3ZnEP
+         gsxez8eCcDuFW3coitQoLimHnK0RPgZD+uWkSMFhLLILRLd/Djp8RU0+tRxCNtzUQ3QQ
+         7bMQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVIZwnKhhYpBTzgwT7PEEBzSlH3drMFrcNwPKVW2Z3N5Qju+k+GdjXQ3KYjDGIoQCLgwYOmoB51PzF9@vger.kernel.org
+X-Gm-Message-State: AOJu0YzEyt/UV0WkxqkJ9pfRlgE+seZs8x8ysexXJ4V4pkhX8td7sJ3K
+	v2+1j2EbXYpIw/M6NpkTsMFBQSDqACcK6s8rFHePcwpr9P97IhaXv5Rq
+X-Gm-Gg: AY/fxX7eGyiUWxGr9jRSxG7hKTK7QsiHmNEh6tCeMIIT0MOB1GJ5kGytEmY5rr3H2Tl
+	0hwuyaJCYWA3ZBHFkZ+05K48Uu/lBycR7qFancL7SiHoA7/jA+bB8OMu3JsWAmz2pSFUwxzS/VC
+	IHE4mqbXzBwVwgio7T/PaUxtJ6XTfrG2/4uEsoC0+NyuhHOvA184l/l0C7nFNKQ6xUjK675wsyz
+	c+rdc2ZIhMz0Dw2N9AdPP/he7cfBgOU2nQVD5MjKCMVntb27PXtUoG+7QHefVbvpC+PJ5zlPEhA
+	Sz+xp2l/yhDDFKtzFCyULS179nzinKG7Bh5xbpvWzcT6JH6sYeAPb+Z4pDRIlUMzVysyAxYhwLK
+	p1jSGYb/RO3n0pHUutSb4jEL2VKSC4s+76qmlCz0IGnMKgWJjvyBfRhjm6vBm96pYhf6Tm5JHRs
+	r7PDOyaIUbqZwBe/NellRCCreOGuYf+e8RNdMTLDchCdbpVyQZA2ZMcIdqM6ZS+EA=
+X-Google-Smtp-Source: AGHT+IH9dTy3bU8XxsBecCtz3enUq/W5wgMv2jek5vWbdOPlbYE52lk3Dvv5oVlerX1L3hBKP6KAsA==
+X-Received: by 2002:a17:90b:510b:b0:349:8116:a2d8 with SMTP id 98e67ed59e1d1-34abd6c03eamr10683090a91.7.1765817391167;
+        Mon, 15 Dec 2025 08:49:51 -0800 (PST)
+Received: from ?IPV6:2402:e280:21d3:2:50bc:8636:2ee8:5158? ([2402:e280:21d3:2:50bc:8636:2ee8:5158])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-34abe129a87sm9537784a91.0.2025.12.15.08.49.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 15 Dec 2025 08:49:50 -0800 (PST)
+Message-ID: <15106906-3bcc-4187-87d9-c838fe99b583@gmail.com>
+Date: Mon, 15 Dec 2025 22:19:44 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <f53be351-e059-4a71-bbbd-7a893e954169@nxp.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] iio: adc: Add support for TI ADS1120
+To: David Lechner <dlechner@baylibre.com>, jic23@kernel.org
+Cc: nuno.sa@analog.com, andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20251109141119.561756-1-ajithanandhan0406@gmail.com>
+ <20251109141119.561756-3-ajithanandhan0406@gmail.com>
+ <5f15284b-159b-4860-b58b-35c624e2539f@baylibre.com>
+ <8e2c73ca-3746-4b2a-9d85-c12b51a69059@gmail.com>
+ <8ad18de5-53cd-49ba-8e84-1e8c7e5bd627@baylibre.com>
+Content-Language: en-US
+From: Ajith Anandhan <ajithanandhan0406@gmail.com>
+In-Reply-To: <8ad18de5-53cd-49ba-8e84-1e8c7e5bd627@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi,
+On 12/15/25 10:06 PM, David Lechner wrote:
+> On 12/15/25 10:13 AM, Ajith Anandhan wrote:
+>> On 11/18/25 7:34 PM, David Lechner wrote:
+>>> On 11/9/25 8:11 AM, Ajith Anandhan wrote:
+>>>> Add driver for the Texas Instruments ADS1120, a precision 16-bit
+>>>> analog-to-digital converter with an SPI interface.
+>>>>
+>>> ...
+>>>
+>>>> +#define ADS1120_CFG0_GAIN_MASK        GENMASK(3, 1)
+>>>> +#define ADS1120_CFG0_GAIN_1        0
+>>>> +#define ADS1120_CFG0_GAIN_2        1
+>>>> +#define ADS1120_CFG0_GAIN_4        2
+>>>> +#define ADS1120_CFG0_GAIN_8        3
+>>>> +#define ADS1120_CFG0_GAIN_16        4
+>>>> +#define ADS1120_CFG0_GAIN_32        5
+>>>> +#define ADS1120_CFG0_GAIN_64        6
+>>>> +#define ADS1120_CFG0_GAIN_128        7
+>>> We could avoid these macros by just doing ilog2(gain).
+>>
+>> I understand your concern about unused macros. I've kept them for documentation purposes as they map directly to the datasheet register definitions, which makes it easier to verify correctness against hardware specs also I'd prefer to keep it like this since it give more readability Shall i keep this as it is for this initial version?
+> I would argue that if they aren't being used then omitting them would
+> save us the time of having to verify the correctness in the first place.
+>
+I understand your concern about unused macros. This was suggested by 
+Jonathan earlier.
 
-On 25-12-08, Liu Ying wrote:
-> Hi Marco,
-> 
-> On 12/02/2025, Marco Felsch wrote:
-> > From: Liu Ying <victor.liu@nxp.com>
-> > 
-> > NXP i.MX93 mediamix blk-ctrl contains one DISPLAY_MUX register which
-> > configures parallel display format by using the "PARALLEL_DISP_FORMAT"
-> > field. Add a DRM bridge driver to support the display format configuration.
-> > 
-> > Signed-off-by: Liu Ying <victor.liu@nxp.com>
-> > [m.felsch@pengutronix.de: port to v6.18-rc1]
-> > [m.felsch@pengutronix.de: add review feedback (Alexander)]
-> > [m.felsch@pengutronix.de: fix to short Kconfig description (checkpath)]
-> > [m.felsch@pengutronix.de: use "GPL" instead of "GPL v2" (checkpatch)]
-> > [m.felsch@pengutronix.de: make use of reg property]
-> > [m.felsch@pengutronix.de: add bus-width support]
-> > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> > ---
-> >  drivers/gpu/drm/bridge/imx/Kconfig      |  11 ++
-> >  drivers/gpu/drm/bridge/imx/Makefile     |   1 +
-> >  drivers/gpu/drm/bridge/imx/imx93-pdfc.c | 227 ++++++++++++++++++++++++++++++++
-> >  3 files changed, 239 insertions(+)
-> > 
-> > diff --git a/drivers/gpu/drm/bridge/imx/Kconfig b/drivers/gpu/drm/bridge/imx/Kconfig
-> > index 9a480c6abb856276df9b71d23b39a43b3a9c542d..28fd7a00473a0ec50bf0ffb5d50972abc209ceec 100644
-> > --- a/drivers/gpu/drm/bridge/imx/Kconfig
-> > +++ b/drivers/gpu/drm/bridge/imx/Kconfig
-> > @@ -88,4 +88,15 @@ config DRM_IMX93_MIPI_DSI
-> >  	  Choose this to enable MIPI DSI controller found in Freescale i.MX93
-> >  	  processor.
-> >  
-> > +config DRM_IMX93_PARALLEL_DISP_FMT_CONFIG
-> > +	tristate "NXP i.MX91/i.MX93 parallel display format configuration"
-> > +	depends on OF
-> > +	select DRM_KMS_HELPER
-> > +	help
-> > +	  On i.MX93 and i.MX91 SoCs the parallel display format output is
-> > +	  controlled via the MEDIAMIX BLK-CTRL DISPLAY_MUX.
-> > +
-> > +	  Say 'Y' or 'M' if you use the parallel display output path on a
-> > +	  i.MX93 or i.MX91 SoC.
-> > +
-> >  endif # ARCH_MXC || COMPILE_TEST
-> > diff --git a/drivers/gpu/drm/bridge/imx/Makefile b/drivers/gpu/drm/bridge/imx/Makefile
-> > index dd5d4858480663bade98bd58039d1cb6f8aa18da..f4ccc5cbef72a576443d5fecf666b76dfba8aa94 100644
-> > --- a/drivers/gpu/drm/bridge/imx/Makefile
-> > +++ b/drivers/gpu/drm/bridge/imx/Makefile
-> > @@ -8,3 +8,4 @@ obj-$(CONFIG_DRM_IMX8QXP_PIXEL_COMBINER) += imx8qxp-pixel-combiner.o
-> >  obj-$(CONFIG_DRM_IMX8QXP_PIXEL_LINK) += imx8qxp-pixel-link.o
-> >  obj-$(CONFIG_DRM_IMX8QXP_PIXEL_LINK_TO_DPI) += imx8qxp-pxl2dpi.o
-> >  obj-$(CONFIG_DRM_IMX93_MIPI_DSI) += imx93-mipi-dsi.o
-> > +obj-$(CONFIG_DRM_IMX93_PARALLEL_DISP_FMT_CONFIG) += imx93-pdfc.o
-> > diff --git a/drivers/gpu/drm/bridge/imx/imx93-pdfc.c b/drivers/gpu/drm/bridge/imx/imx93-pdfc.c
-> > new file mode 100644
-> > index 0000000000000000000000000000000000000000..624389def0ac3f24158edc64a8913375a4cc2f12
-> > --- /dev/null
-> > +++ b/drivers/gpu/drm/bridge/imx/imx93-pdfc.c
-> > @@ -0,0 +1,227 @@
-> > +// SPDX-License-Identifier: GPL-2.0+
-> > +
-> > +/*
-> > + * Copyright 2022-2025 NXP
-> > + */
-> > +
-> > +#include <linux/bitfield.h>
-> > +#include <linux/bits.h>
-> > +#include <linux/media-bus-format.h>
-> > +#include <linux/mfd/syscon.h>
-> > +#include <linux/module.h>
-> > +#include <linux/of.h>
-> > +#include <linux/of_address.h>
-> > +#include <linux/of_graph.h>
-> > +#include <linux/platform_device.h>
-> > +#include <linux/regmap.h>
-> > +
-> > +#include <drm/drm_atomic_state_helper.h>
-> > +#include <drm/drm_bridge.h>
-> > +#include <drm/drm_print.h>
-> 
-> Drop this header file if you won't use DRM_DEV_DEBUG_DRIVER() in v5.
+I’m fine with removing the unused macros if that is preferred. Please 
+let me know how you’d like me to proceed.
 
-Sure.
-
-> > +#define PARALLEL_DISP_FORMAT		GENMASK(10, 8)
-> > +#define FORMAT_RGB888_TO_RGB888		FIELD_PREP(PARALLEL_DISP_FORMAT, 0)
-> > +#define FORMAT_RGB888_TO_RGB666		FIELD_PREP(PARALLEL_DISP_FORMAT, 1)
-> > +#define FORMAT_RGB565_TO_RGB565		FIELD_PREP(PARALLEL_DISP_FORMAT, 2)
-> > +
-> > +struct imx93_pdfc {
-> > +	struct drm_bridge bridge;
-> > +	struct drm_bridge *next_bridge;
-> > +	struct device *dev;
-> > +	struct regmap *regmap;
-> > +	u64 disp_mux_reg_off;
-> > +	u32 phy_bus_width;
-> > +};
-> > +
-> > +static int
-> > +imx93_pdfc_bridge_attach(struct drm_bridge *bridge, struct drm_encoder *encoder,
-> > +			 enum drm_bridge_attach_flags flags)
-> > +{
-> > +	struct imx93_pdfc *pdfc = bridge->driver_private;
-> > +
-> > +	return drm_bridge_attach(bridge->encoder, pdfc->next_bridge, bridge, flags);
-> > +}
-> > +
-> > +static void imx93_pdfc_bridge_atomic_enable(struct drm_bridge *bridge,
-> > +					    struct drm_atomic_state *state)
-> > +{
-> > +	struct imx93_pdfc *pdfc = bridge->driver_private;
-> > +	const struct drm_bridge_state *bridge_state;
-> > +	unsigned int mask = PARALLEL_DISP_FORMAT;
-> > +	unsigned int val;
-> > +
-> > +	bridge_state = drm_atomic_get_new_bridge_state(state, bridge);
-> > +
-> > +	switch (bridge_state->output_bus_cfg.format) {
-> > +	case MEDIA_BUS_FMT_RGB888_1X24:
-> > +		val = FORMAT_RGB888_TO_RGB888;
-> > +		if (pdfc->phy_bus_width == 18) {
-> > +			/*
-> > +			 * Can be valid if physical bus limitation exist,
-> 
-> s/exist/exists/
-
-Thanks
-
-> > +			 * therefore use dev_dbg().
-> > +			 */
-> > +			dev_dbg(pdfc->dev, "Truncate two LSBs from each color\n");
-> > +			val = FORMAT_RGB888_TO_RGB666;
-> > +		}
-> > +		break;
-> > +	case MEDIA_BUS_FMT_RGB666_1X18:
-> > +		val = FORMAT_RGB888_TO_RGB666;
-> > +		break;
-> > +	case MEDIA_BUS_FMT_RGB565_1X16:
-> > +		val = FORMAT_RGB565_TO_RGB565;
-> > +		break;
-> > +	}
-> > +
-> > +	regmap_update_bits(pdfc->regmap, pdfc->disp_mux_reg_off, mask, val);
-> > +}
-> > +
-> > +static const u32 imx93_pdfc_bus_output_fmts[] = {
-> > +	MEDIA_BUS_FMT_RGB888_1X24,
-> > +	MEDIA_BUS_FMT_RGB666_1X18,
-> > +	MEDIA_BUS_FMT_RGB565_1X16,
-> > +	MEDIA_BUS_FMT_FIXED
-> > +};
-> > +
-> > +static bool imx93_pdfc_bus_output_fmt_supported(u32 fmt)
-> > +{
-> > +	int i;
-> > +
-> > +	for (i = 0; i < ARRAY_SIZE(imx93_pdfc_bus_output_fmts); i++) {
-> > +		if (imx93_pdfc_bus_output_fmts[i] == fmt)
-> > +			return true;
-> > +	}
-> > +
-> > +	return false;
-> > +}
-> > +
-> > +static u32 *
-> > +imx93_pdfc_bridge_atomic_get_input_bus_fmts(struct drm_bridge *bridge,
-> > +					    struct drm_bridge_state *bridge_state,
-> > +					    struct drm_crtc_state *crtc_state,
-> > +					    struct drm_connector_state *conn_state,
-> > +					    u32 output_fmt,
-> > +					    unsigned int *num_input_fmts)
-> > +{
-> > +	u32 *input_fmts;
-> > +
-> > +	*num_input_fmts = 0;
-> > +
-> > +	if (!imx93_pdfc_bus_output_fmt_supported(output_fmt))
-> > +		return NULL;
-> > +
-> > +	input_fmts = kmalloc(sizeof(*input_fmts), GFP_KERNEL);
-> > +	if (!input_fmts)
-> > +		return NULL;
-> > +
-> > +	switch (output_fmt) {
-> > +	case MEDIA_BUS_FMT_RGB888_1X24:
-> > +	case MEDIA_BUS_FMT_RGB565_1X16:
-> > +		input_fmts[0] = output_fmt;
-> > +		break;
-> > +	case MEDIA_BUS_FMT_RGB666_1X18:
-> > +	case MEDIA_BUS_FMT_FIXED:
-> > +		input_fmts[0] = MEDIA_BUS_FMT_RGB888_1X24;
-> > +		break;
-> > +	}
-> > +
-> > +	*num_input_fmts = 1;
-> > +
-> > +	return input_fmts;
-> > +}
-> > +
-> > +static int imx93_pdfc_bridge_atomic_check(struct drm_bridge *bridge,
-> > +					  struct drm_bridge_state *bridge_state,
-> > +					  struct drm_crtc_state *crtc_state,
-> > +					  struct drm_connector_state *conn_state)
-> > +{
-> > +	struct imx93_pdfc *pdfc = bridge->driver_private;
-> > +
-> > +	switch (bridge_state->output_bus_cfg.format) {
-> > +	case MEDIA_BUS_FMT_RGB888_1X24:
-> > +	case MEDIA_BUS_FMT_RGB666_1X18:
-> > +	case MEDIA_BUS_FMT_RGB565_1X16:
-> 
-> The case MEDIA_BUS_FMT_FIXED is also valid.
-
-Good point, I think we should drop this from the
-imx93_pdfc_bus_output_fmts completely since we know that only prallel panels
-with an actual format can be attached to this bridge.
-
-> > +		return 0;
-> > +	default:
-> > +		dev_warn(pdfc->dev, "Unsupported output bus format: 0x%x\n",
-> > +			 bridge_state->output_bus_cfg.format);
-> > +		return -EINVAL;
-> > +	}
-> > +}
-> > +
-> > +static const struct drm_bridge_funcs funcs = {
-> > +	.attach			= imx93_pdfc_bridge_attach,
-> > +	.atomic_enable		= imx93_pdfc_bridge_atomic_enable,
-> > +	.atomic_duplicate_state	= drm_atomic_helper_bridge_duplicate_state,
-> > +	.atomic_destroy_state	= drm_atomic_helper_bridge_destroy_state,
-> > +	.atomic_get_input_bus_fmts	= imx93_pdfc_bridge_atomic_get_input_bus_fmts,
-> > +	.atomic_check		= imx93_pdfc_bridge_atomic_check,
-> > +	.atomic_reset		= drm_atomic_helper_bridge_reset,
-> > +};
-> > +
-> > +static int imx93_pdfc_bridge_probe(struct platform_device *pdev)
-> > +{
-> > +	struct device *dev = &pdev->dev;
-> > +	struct imx93_pdfc *pdfc;
-> > +	struct device_node *ep;
-> > +	int err;
-> > +
-> > +	pdfc = devm_drm_bridge_alloc(dev, struct imx93_pdfc, bridge, &funcs);
-> > +	if (IS_ERR(pdfc))
-> > +		return PTR_ERR(pdfc);
-> > +
-> > +	pdfc->regmap = syscon_node_to_regmap(dev->of_node->parent);
-> > +	if (IS_ERR(pdfc->regmap))
-> > +		return dev_err_probe(dev, PTR_ERR(pdfc->regmap),
-> > +				     "failed to get regmap\n");
-> > +
-> > +	err = of_property_read_reg(dev->of_node, 0, &pdfc->disp_mux_reg_off, NULL);
-> > +	if (err)
-> > +		return dev_err_probe(dev, err,
-> > +				     "failed to get display-mux reg\n");
-> > +
-> > +	/* No limits per default */
-> > +	pdfc->phy_bus_width = 24;
-> > +
-> > +	/* Get output ep (port1/endpoint0) */
-> > +	ep = of_graph_get_endpoint_by_regs(dev->of_node, 1, 0);
-> 
-> Nit: DT binding just defines endpoint not endpoint0, so set the reg parameter
-> to -1.
-
-Good point, thanks.
-
-> > +	if (ep) {
-> > +		err = of_property_read_u32(ep, "bus-width", &pdfc->phy_bus_width);
-> > +		of_node_put(ep);
-> > +
-> > +		/* bus-width is optional but it must have valid data if present */
-> > +		if (err && err != -EINVAL)
-> > +			return dev_err_probe(dev, err,
-> > +					     "failed to query bus-width\n");
-> > +	}
-> > +
-> > +	pdfc->next_bridge = devm_drm_of_get_bridge(dev, dev->of_node, 1, 0);
-> > +	if (IS_ERR(pdfc->next_bridge))
-> > +		return dev_err_probe(dev, PTR_ERR(pdfc->next_bridge),
-> > +				     "failed to get next bridge\n");
-> > +
-> > +	pdfc->dev = dev;
-> > +	pdfc->bridge.driver_private = pdfc;
-> > +	pdfc->bridge.of_node = dev->of_node;
-> > +	pdfc->bridge.type = DRM_MODE_CONNECTOR_DPI;
-> > +
-> > +	return devm_drm_bridge_add(dev, &pdfc->bridge);
-> > +}
-> > +
-> > +static const struct of_device_id imx93_pdfc_dt_ids[] = {
-> > +	{ .compatible = "nxp,imx93-pdfc", },
-> 
-> The cover letter and Kconfig say that both i.MX91 and i.MX93 are supported,
-> so need an additional compatible string for i.MX91?
-
-I don't think so, according the imx91_93_common.dtsi, there are a lot
-IPs which are shared between the i.MX91 and the i.MX93, even the clock
-defines.
-
-Thanks for the review.
-
-Regards,
-  Marco
+>>>> +static int ads1120_set_gain(struct ads1120_state *st, int gain_val)
+>>>> +{
+>>>> +    int i;
+>>>> +
+>>>> +    for (i = 0; i < ARRAY_SIZE(ads1120_gain_values); i++) {
+>>>> +        if (ads1120_gain_values[i] == gain_val)
+>>>> +            break;
+>>>> +    }
+>>>> +
+>>>> +    if (i == ARRAY_SIZE(ads1120_gain_values))
+>>>> +        return -EINVAL;
+>>> Since there is only one gain register, we should store this in a
+>>> per-channel variable, then set the gain in the register in
+>>> ads1120_set_mux() instead (and it would make sense to rename
+>>> that function as well to something like ads1120_configure_channel()).
+>>
+>> I've implemented a global gain that applies to all channels for simplicity. I planed to add
+>>
+>>   per-channel gain storage in the later patches.
+>>
+> OK. Just mention this in the commit message.
+>
+>
+>>>> +/* Regmap write function for ADS1120 */
+>>>> +static int ads1120_regmap_write(void *context, const void *data, size_t count)
+>>>> +{
+>>>> +    struct ads1120_state *st = context;
+>>>> +    const u8 *buf = data;
+>>>> +
+>>>> +    if (count != 2)
+>>>> +        return -EINVAL;
+>>>> +
+>>>> +    /* WREG command: 0100rr00 where rr is register address */
+>>>> +    st->data[0] = ADS1120_CMD_WREG | (buf[0] << 2);
+>>>> +    st->data[1] = buf[1];
+>>>> +
+>>>> +    return spi_write(st->spi, st->data, 2);
+>>>> +}
+>>> I don't see anyting unusal about these read/write functions. We should
+>>> be able to use the existing spi_regmap with the proper configuration
+>>> instead of making a custom regmap_bus.
+>>
+>>     The ADS1120 needs register address shifted by 2 bits
+>>     in command byte (reg << 2). I couldn't find a way to do this with standard
+>>     SPI regmap. If there's a configuration I'm missing, please point me to it and I'll gladly simplify.
+>>
+>>
+> I think you are looking for reg_shift in struct regmap_config.
 
 
-> 
-> > +	{ /* sentinel */ }
-> > +};
-> > +MODULE_DEVICE_TABLE(of, imx93_pdfc_dt_ids);
-> > +
-> > +static struct platform_driver imx93_pdfc_bridge_driver = {
-> > +	.probe	= imx93_pdfc_bridge_probe,
-> > +	.driver	= {
-> > +		.of_match_table = imx93_pdfc_dt_ids,
-> > +		.name = "imx93_pdfc",
-> > +	},
-> > +};
-> > +module_platform_driver(imx93_pdfc_bridge_driver);
-> > +
-> > +MODULE_DESCRIPTION("NXP i.MX93 parallel display format configuration driver");
-> > +MODULE_AUTHOR("Liu Ying <victor.liu@nxp.com>");
-> > +MODULE_LICENSE("GPL");
-> > 
-> 
-> 
-> -- 
-> Regards,
-> Liu Ying
-> 
 
--- 
-#gernperDu 
-#CallMeByMyFirstName
 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | https://www.pengutronix.de/ |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-9    |
+Thanks for the pointer.
+
+I did look at reg_shift, but it doesn’t fit this device. With .reg_shift 
+= 2, regmap would send only (reg << 2) (e.g. 0x0c for reg 3).
+
+The ADS1120 requires the command byte to be CMD | (reg << 2) (e.g. 0x20 
+| 0x0c = 0x2c for an RREG of reg 3).
+
+Similarly,
+
+  .read_flag_mask would produce reg | mask (e.g. 0x03 | 0x20 = 0x23), 
+which is also not the required format.
+
+Unless I’m missing a regmap configuration that can generate (reg << 2) | 
+CMD as a single byte,
+
+a custom regmap bus seems necessary here. Please let me know if there is 
+a way to express this with standard regmap-spi.
+
+
+
 
