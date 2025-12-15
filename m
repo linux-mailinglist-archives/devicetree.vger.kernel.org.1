@@ -1,133 +1,175 @@
-Return-Path: <devicetree+bounces-246538-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246539-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3ED6ACBDA8B
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 13:00:01 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0A8FCBDAB8
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 13:01:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id DBF8030006FF
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 11:59:58 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E3A48300F183
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 12:00:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D3A52D249A;
-	Mon, 15 Dec 2025 11:59:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0A1D32C926;
+	Mon, 15 Dec 2025 12:00:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OhQosFvO"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="hYdenIh/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 506603FFD;
-	Mon, 15 Dec 2025 11:59:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B070328B69;
+	Mon, 15 Dec 2025 12:00:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765799997; cv=none; b=N3LKeg+MfBDE0Y9rR2pPLOGbv4rvSGrmavEprEtE5/Jm5fE9zvwfh5jN6WHdPik/i3ukCL+oR4fYhAU4zZhAAZ/sCEZCYyLSAMTE8zGG6zTuLIbb9pslK6SrJb3MT5vlLCDwTOOgVXCvIvodZH2JAs4DBA8MRoJqJSLRNnXd1Nw=
+	t=1765800029; cv=none; b=QOY/oVY9kaVquTpzii+gX8vNH/cFS1E2YgXWjIQTV2m87sqevq+F4EofNuQ0vyCRqNMhgrxLctL1n6FAAKL0X91ZpKMSQPaI/uq1bVaBYAvmrriZEl+qe/E2TPeQ3std25AFr1pKcVoak+7sKK9NbmF90co1Fnsq73ZfzL4tNW4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765799997; c=relaxed/simple;
-	bh=cQKBmEKQ9nrmE5MHibB3SHTdprjq4BhjR9kHqQ9t+qk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gmpbAAqgcIepZqo93PLHfBUNNwuxpTwiwx+xIoc6jGxIX1u6KqeedyiPoyGFf4+Wd2cmca9oMKxf7jAfjp0ePw3fq0+CI1GMYj9GCKhu8TIVnG3KABWdJ3V0qsqEZ3L4f0nr+xkIfwgsgmGTYZUmTf0KoOSVMbF9u/sJrDcWffY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OhQosFvO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3788C4CEF5;
-	Mon, 15 Dec 2025 11:59:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765799997;
-	bh=cQKBmEKQ9nrmE5MHibB3SHTdprjq4BhjR9kHqQ9t+qk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=OhQosFvOrtD3JD67dxD6MtzQ/XvxmtNrsD6drHZpdaaq0WRSHzTbnynFRGc+l+Gml
-	 eegh9TnvG5Y4BaScxSuy6GtPcYuQ1GVBzj9d1AAwG1FjXaT7N5atwp+D7F4WRwiuWE
-	 CAlvouGnRicvA9JKpV+lpU/PdiOxbL0cHDHN0VRFC8eI6U1CDX5Lq2yuzv6+refMXi
-	 9UPjRq9YoosGVcPCXTSMlJ6UAosArSnRAmof6G8Vit7xfllmaRLg0HHRHhODR/NJ1/
-	 eHxbnF0MSLx0DdIKE5Ga//Wz2i2dmrbRpqybvbB3bCIFQV+IawSnPoYgb4alBy9kta
-	 g4K+77vY/4q8g==
-Message-ID: <31617f79-4cdb-4c8f-89f5-8ca1a3b3d054@kernel.org>
-Date: Mon, 15 Dec 2025 12:59:49 +0100
+	s=arc-20240116; t=1765800029; c=relaxed/simple;
+	bh=NZqDXQNAGh+ZTKsjM1AQXCXvMCaUjZQX6R3y5J6YkM0=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=ggjqYX/x4F9OUXkYJOScdIP/C4SeOmyfcsNhmCXlIWWHtXYW1GXPQ7PREyQYm2yb13jB+WStG/JawbvZSeEpPF242kDV5vDhvr6od/iJ292qkt7+Pj2vpnty8aVqlxelxkUgCRaYdE6kLyZQ+QABXoXXleDz0CqYBogSRnp5sDc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=hYdenIh/; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BFANtJ5291223;
+	Mon, 15 Dec 2025 12:00:20 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=XltOpTHTpyqi8HSY2T53DiJtYHbO59j+jp+
+	xDVU5pl0=; b=hYdenIh/PKE1Zk04t5a8pgfvTnu6rMbdqmgFq+J1LtrDNIpeE/a
+	aWKuLJPzkO0d42+xXnqGR3eoMdtySsOTYdKxno+cfEUQJQVHwn4xc5XnzXO3kyqm
+	qe20pLCLwRIZc1ES/UMKxrYls0Nr5U9bXvyngeCg6zw1fplvtXzBf/mZVC5MHomb
+	10frf9r04cRTKsmvbM0VmmShw4TdTLpbXdbQ5NRH9vfLG+u3KFoLDJtF4IAOXnKB
+	5XcYh+h8804sIJG3ex8EV2f+lLkcLzEpFlxzkNrSwqhpUofBro2iCw9zuk7Os5YX
+	ZuWxM1/xmtD3L2+fR5T6+MG9QdPdPZ/1dSA==
+Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b119u4ff6-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 15 Dec 2025 12:00:20 +0000 (GMT)
+Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 5BFC0FhE029028;
+	Mon, 15 Dec 2025 12:00:15 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 4b117kxe1h-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 15 Dec 2025 12:00:15 +0000
+Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 5BFC0F4C029022;
+	Mon, 15 Dec 2025 12:00:15 GMT
+Received: from hu-devc-hyd-u22-c.qualcomm.com (hu-rampraka-hyd.qualcomm.com [10.147.247.88])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 5BFC0FMk029014
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 15 Dec 2025 12:00:15 +0000
+Received: by hu-devc-hyd-u22-c.qualcomm.com (Postfix, from userid 2305851)
+	id 2F8675CE; Mon, 15 Dec 2025 17:30:14 +0530 (+0530)
+From: Ram Prakash Gupta <quic_rampraka@quicinc.com>
+To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Adrian Hunter <adrian.hunter@intel.com>
+Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        dmitry.baryshkov@oss.qualcomm.com, quic_rampraka@quicinc.com,
+        quic_pragalla@quicinc.com, quic_sayalil@quicinc.com,
+        quic_nitirawa@quicinc.com, quic_bhaskarv@quicinc.com,
+        kernel@oss.qualcomm.com
+Subject: [PATCH v6 0/5] mmc: sdhci-msm: Rectify DLL programming sequence
+Date: Mon, 15 Dec 2025 17:30:04 +0530
+Message-Id: <20251215120009.3877889-1-quic_rampraka@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: arm: fsl: Add FRDM-IMX91S board
-To: Yanan Yang <yanan.yang@nxp.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- qijian.guo@nxp.com, justin.jiang@nxp.com
-References: <20251215-imx91s-frdm-v2-0-87996bdaa59c@nxp.com>
- <20251215-imx91s-frdm-v2-1-87996bdaa59c@nxp.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251215-imx91s-frdm-v2-1-87996bdaa59c@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: cPxk_Dl3HAtlI4XUZ3Cv18wUk-mBuXlS
+X-Proofpoint-ORIG-GUID: cPxk_Dl3HAtlI4XUZ3Cv18wUk-mBuXlS
+X-Authority-Analysis: v=2.4 cv=Ddsaa/tW c=1 sm=1 tr=0 ts=693ff854 cx=c_pps
+ a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
+ a=wP3pNCr1ah4A:10 a=VkNPw1HP01LnGYTKEx00:22 a=wlp7FQNLwHqLWPUUYAUA:9
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjE1MDEwNCBTYWx0ZWRfX/dh6VEwsEkDB
+ T7qJMTOfoNsibDPlTOmGJe7RfKFG00IyAXtdu6SHuf3IoQTdDbTqOzOvf6gSQBiQk6ss2/b3Acr
+ TzxuM1icIWktSpCHuuIAetfcg6Oruds42xXbRFVFchWD024xTWb/5z06egwJ3JnYq0MVdxV2EeV
+ LmCCYQWH/KbSTAD9uzMLGJ7SvQ5L0Gpgzcms6uA2xjla/9OlU5btmXAgg7GJSY1zTo8ITR8+U3+
+ ELtnNffJBaPLQVYXRBilEIs2LyT2uM5ZvB6thdEjXcc+QAxzDRnUSrzsHTzUZJbrbhyil2u53Dm
+ Pw0usV/MNHYgEDJzEhe0SiAmBjoXDVPohZO1rNkWEHqZJsQYAfOSz6S8/DXNquua1FdJsCCKfej
+ QKFVd7MszQcnWaRfRIez8mGdmLYdMg==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-15_02,2025-12-15_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 clxscore=1015 phishscore=0 priorityscore=1501 suspectscore=0
+ adultscore=0 malwarescore=0 impostorscore=0 lowpriorityscore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512150104
 
-On 15/12/2025 09:42, Yanan Yang wrote:
-> Add DT compatible string for NXP FRDM-IMX91S board
-> 
-> The FRDM-IMX91S is a low-cost, compact development board based on the
-> i.MX91 applications processor. It is a cost-optimized variant of the
-> FRDM-IMX91 board, with notable hardware differences requiring a separate
-> DTS:
-> - 512MB LPDDR4 (FRDM-IMX91 uses 1GB)
-> - 256MB FlexSPI-NAND (FRDM-IMX91 uses 8GB eMMC)
-> - Single GbE port (FRDM-IMX91 has dual GbE)
-> - PMIC PF9453 (FRDM-IMX91 uses PCA9451A)
-> 
-> Signed-off-by: Yanan Yang <yanan.yang@nxp.com>
-> 
+With the current DLL sequence stability issues are seen in
+HS400 and HS200 mode for data transfers.
 
+Rectify the DLL programming sequence as per latest hardware
+programming guide and also incorporate support for HS200 and
+HS400 DLL settings using the device tree.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Changes from v5:
+1. Addressed Adrian Hunter's comments:
+   a. SDHCI_HS400_TUNING flag handling
+   b. Use of readl_relaxed_poll_timeout api instead of loop.
+   c. Reording of variables.
+2. Krzysztof's request for DTS user.
 
+Changes from v4:
+1. Addressed Rob Herrirng & Konrad Dybcio comments:
+   a. Regarding naming of dt entry.
+2. Addressed Adrian Hunter comments:
+   a. Regarding parsing of dt and storing variable in driver.
+3. Additional change:
+   a. Changes in patch 4/4 according to parsing change.
 
-Best regards,
-Krzysztof
+Changes from v3:
+1. Addressed Dmitry Baryshkov comments:
+   a. Regarding clk division by in V2 patchset
+2. Addressed Konrad Dybcio comments:
+   a. Renaming of parameters
+   b. Memory allocation
+   c. couldn't address __free, as didn't fit here
+3. Addressed Krzysztof Kozlowsk comment:
+   a. Regarding the dt binding
+   b. commit message to reflect the need of dt
+4. Additional change:
+   a. DT parsing logic
+   b. Maintain backward compatibility
+
+Changes from v2:
+1. Addressed Dmitry Baryshkov comments:
+   a. Regarding TCXO frequency.
+   b. Regarding clock rate.
+   c. regarding checkpatch.
+
+Changes from v1:
+1. Addressed Tengfei Fan comment, added missing semicolocon
+   in sdhci_msm_host structure.
+
+Ram Prakash Gupta (1):
+  arm64: dts: qcom: Add sdhc dll-presets
+
+Sachin Gupta (4):
+  dt-bindings: mmc: Add dll-presets values for HS400 and HS200 modes
+  mmc: sdhci-msm: Add core_major, minor to msm_host structure
+  mmc: sdhci-msm: Add Device tree parsing logic for DLL settings
+  mmc: sdhci-msm: Rectify DLL programming sequence for SDCC
+
+ .../devicetree/bindings/mmc/sdhci-msm.yaml    |   5 +
+ arch/arm64/boot/dts/qcom/qdu1000.dtsi         |   4 +-
+ drivers/mmc/host/sdhci-msm.c                  | 324 +++++++++++++++++-
+ 3 files changed, 314 insertions(+), 19 deletions(-)
+
+-- 
+2.34.1
+
 
