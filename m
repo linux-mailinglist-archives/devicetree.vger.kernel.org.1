@@ -1,500 +1,172 @@
-Return-Path: <devicetree+bounces-246522-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246524-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id F11EACBD6E1
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 12:01:12 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A1CFCBD707
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 12:04:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1105230169A6
-	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 10:59:49 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 980EF3011EF1
+	for <lists+devicetree@lfdr.de>; Mon, 15 Dec 2025 11:04:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C7EE327BE0;
-	Mon, 15 Dec 2025 10:59:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A2BE32ABDB;
+	Mon, 15 Dec 2025 11:04:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="LtocB77x";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="imPM3mpd"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BB2qxLmQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f41.google.com (mail-qv1-f41.google.com [209.85.219.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2642E2E8E09
-	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 10:59:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A25E315D48
+	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 11:04:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765796387; cv=none; b=url/wdopy8MEza9qhcAW69e/Z7whhcHzF7XCJwm38RVkxujMWCdGTq9JLMQziPLXX9FmLNcpQHB3olTrN7Mc5CLhBhuyM8WJiMxSF0PihNelC8qGn1v1oOihAqdadjBw1v0k8y1whDhNS8DWEOosOvNhgsacWI3FJRZvMtqXQKI=
+	t=1765796643; cv=none; b=T5pS43S5fQXyFTcRawQ1qanJisfjAmJj8lJMfbexNGzG/zggPVy9FF0v66ErQ3QqgxWmaO6N1WvHCTKklZZe6+O07piDOkIwX9DYO0DAHoQgrhtTXnjw1VjskxojfAN/b9c4p6JdTLHU2Bf+IJRTaMFhDMVg6/OuwC9PtNjnXB8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765796387; c=relaxed/simple;
-	bh=u9QBX+dJeL3okI8E78KFxq80Faq/zXrxythkCeA7nKQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=n+OnmeeChS78lOCpmSPcFqpBk6IeGz/6DBdNEeN2XpCBsvQuMZmzvYvTn2LPyeIrwy18j7hUIUKtij6mv/dUgkztzKjAUZrRB6wdp2m/vp0+c3W40a1+HPpQMhmeOxNlnBpkwsEUd8pkaIixjIwa/XQGx/2aeYmBcRpuscyyXaE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=LtocB77x; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=imPM3mpd; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BFAO6ng866262
-	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 10:59:44 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=T4oJ6gt4KKdX8ijefE9IVE
-	ZIaaawKYY+XmHBrnNPb48=; b=LtocB77x08TngaHkuEsXtu9y0qUuYIIO/cUsVB
-	Hpp/gRecRJw/dmtQ/fIR9tP36Tq5GmMusd9E28g5DmaM3/wXhcu6ZZBDGEQQ0IMQ
-	BkBSG/FVHHbwOI7ZIH89fGul83aLeycM58HcSTwoimBnzHTBUCmzrCnfo+Qn6uXB
-	HietvAUSESS0WjTLv0P3h0AG6zWXyamIk3jV/Z/FrXvUtzBfNCA0WhFuhx9B5fgm
-	l1Tci/sijtgn5L3b4ED4Hf3fw0h2P0A0mDbDJeHN9D4Hj543G2A9SHtnpidP+RiH
-	HZ/vvGkK92/vAmO2VnZiHqYg533AZF/JS58FcCNtidFJqmQQ==
-Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b11avm7y7-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 10:59:43 +0000 (GMT)
-Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-29da1ea0b97so87606035ad.3
-        for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 02:59:43 -0800 (PST)
+	s=arc-20240116; t=1765796643; c=relaxed/simple;
+	bh=C0yWRkCJWAnUZ9aVqQYR6Eg1NP8zeZ6hWqVwaupvUPA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=C8PmDb5Z7WdTgOxfOX4eLyFL57O5Udy2Lxccb4O6QBcP1iN4aYIG/lGBuCBP44yIn1EdkhDWUnaAxUcGHnRyop1stoQQ/PrpFqbNAJLqNncqzkhRt8c9cz9pC70NskYpNdVl83NBCs+lsd5iWPSL7zev3pW2agBZoOTYgPgRx58=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=BB2qxLmQ; arc=none smtp.client-ip=209.85.219.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-qv1-f41.google.com with SMTP id 6a1803df08f44-88888d80590so3095196d6.3
+        for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 03:04:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1765796383; x=1766401183; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=T4oJ6gt4KKdX8ijefE9IVEZIaaawKYY+XmHBrnNPb48=;
-        b=imPM3mpd7Kkxsozg26xZ1n6r3t6AjsoYFIgq1SW/6zDBzl+JjcqzziVwDLBrsetBcH
-         gh2j0texZ/+nNI/dEJzBLwJw6485qxCfZoOSAfIJMOKafURd+kCYG1QDUf6jEmPM5wl/
-         /t99GB6Zm4Y00BYTiEeofa2durCoJxi7g2LAyc4VSY4jCX+VGIO41Z0D8ZFBTO8Oys+T
-         /HYxcvLj0ps3bprSWqgzTJv6AD9J/fAKEfgSWJtlZhgyFyz8rN2bEZQCsHJXkp1VO3/e
-         UI0PyMO9Z6IkthJcUbdR47TkbCTCxzIJ0nQZjD1jFTmcznSmzFe6sTbHstRF+LpLuj0v
-         KHJw==
+        d=linaro.org; s=google; t=1765796639; x=1766401439; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=cSDo6jz1KfR8x2xQj2Xi0AZoqdKCXUhtN1yJ6/bnb5k=;
+        b=BB2qxLmQMP4N/on/Hvl5qQRWatqg8o2tfoVAPlY8cH1VE39iGUsn1u9tKGJSH4v1mL
+         phaWhOyDV5TZ0klreBwP6SmqBaMIeKaJaQxGIpfI0W4SxX+9KzN+7xq3JH7mY4IMhSAN
+         TZ2NGZZFrvFi6mrShdsigSpozc9MFVx1XcpXM/pMoNsBXdB1CBHfF8hyxjCTQKajklat
+         dthlKl+vbCgJNGr6h6j1H7+J/x/OB1qoqAer7cdtWJPtysk71EIAI4atNaZDBX1rk3Oz
+         9/YpQEryT7A4rbq3YYyNv/XGw1GU9fwWYDXLiqZXNnOtzmVbIG4liE0nX3+IJgJpeSdk
+         YDYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765796383; x=1766401183;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=T4oJ6gt4KKdX8ijefE9IVEZIaaawKYY+XmHBrnNPb48=;
-        b=we9CGj1OYDD8cEXSqb9/kHFKghEMzimOnWsb/cUZnWzt2cjrgjF7zQXSZJAI7C3B2y
-         bGIstNHrE1dBnEQ8mgp9UsSGxbjJs4/MJKTBdsnoLBq3QaL46U4sR1sQlf3BbxC7aHzN
-         1mhqv9AHiPLwQT6+PuALXbudk1YfzfkG6Wtct+NWOcR8d4TBQECfwIY6W8aWJNvloCBa
-         F99UUBx6Jm3f6aMBvKmz8fzjR55TctBGALjQDuum+ZwG+02GD+SclLzS5a+5SmPU36et
-         aJDnyCRFizlU3U6eJg/fv+cRALjdc4UAD3jtlxPPHvJW1lDoiDaj/FEwP7odBbvY9z4s
-         q1qg==
-X-Forwarded-Encrypted: i=1; AJvYcCXRIYSxc9pFiB+lqTJINRkJHI/LsnJuzXUYiSf5rU2wDBg55nO8fPSWSGwZsmxergJyjsdCQSkYx0Lu@vger.kernel.org
-X-Gm-Message-State: AOJu0YxIiYArTQOQFSmTVh2lGgbxZI8IWHx2otYRJmZ5rqdFO1EHfp0q
-	rC5CFG6ewS4uc81w1NXAeMCwQun9wgdQtt7nLiJ6wQgqoxQG4M52EWJcsAWhjDWOmegMO9eyN/v
-	NwkFg1C4dT4XP02uOYn8DsQaT7JktMhKvAekDkSjq0rh3+qp2yZkmVhQGKWuuwL5Z
-X-Gm-Gg: AY/fxX5RfVhosV4JkxvePy5UPwoDSy/WBkEQelo3uqysr9fm18bj79fmspXzXrWzJXo
-	zdrJAXbT/InqQjrXvHRUNb43jpcG+0DQywDub7S/KsPGjjT4bhWF0c5f0UotKjlyZLsogshFXGk
-	HCJ8zSsjzANytiEt65pYU0VZCJY/I25c9pk8iM+3Fssa3bZZocHgrGH+kcBIY6fcHRW7ooNcFHZ
-	0p4TvTJUZg7jLYJnG3DoqFvOnDz43r8AKvLN04ZXfN+WM9+4BGJ6CV0xkVGrrS4UYJUbQUKHaEp
-	PGdLtvfstleQuBNHpdXsMyogF29yTSTLmucvdf1JD6y3lo0HXfAGzHXZHAGow49Ho5+ssRVrXs5
-	cDPbs45Jn19UMOmixcWvkaz1HKrW6
-X-Received: by 2002:a17:903:384f:b0:2a0:d629:9035 with SMTP id d9443c01a7336-2a0d62993c0mr40867795ad.3.1765796382862;
-        Mon, 15 Dec 2025 02:59:42 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGbqVQCNdG9KO1XpeBkzkOGUd3HzF41bQvpMq9Yn//l+gdRpx2LP5NHbQ9FhTfeU1Z+Kbk6vw==
-X-Received: by 2002:a17:903:384f:b0:2a0:d629:9035 with SMTP id d9443c01a7336-2a0d62993c0mr40867485ad.3.1765796382254;
-        Mon, 15 Dec 2025 02:59:42 -0800 (PST)
-Received: from codeaurora.org ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29ee9d50f9fsm128838345ad.44.2025.12.15.02.59.39
+        d=1e100.net; s=20230601; t=1765796639; x=1766401439;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=cSDo6jz1KfR8x2xQj2Xi0AZoqdKCXUhtN1yJ6/bnb5k=;
+        b=VR7By99MeOWaNRlbTXNVP1ehM5k769ytAZnhGhMGW5z61pyuNfb1jQd6rwHsTp2+oh
+         tUyQPa78ZDhpdCE/fwyZmQzrEx9ofU/DpSYDwRWE+2OyXEZ88OfRmxUnzzweN5+diOAF
+         NAYyShlO5RTDUz5LeE//WrJ+uVUiXejl713QQTAAtcQPuqmRmnYkXfzvUpsx2LiqcRqL
+         D2M7VZ5iczloml6ZN61QFivwKYBmyZSp9Vlgn+lFx//luP8SEy+mafOoS6I0KvI9UGX8
+         FmmSNSqdrO1kjFsGnnL+RxHbkfO33zQ6Xyn3wtaU0D82s6iNnOz4yt613Uml0YZQ7itU
+         COBQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXIepg95fiQdlinQ1cyWkvpiRV8QRefL6f1ooyNZtmnyvBZX6wh6dlqkX9e84RvukpU5uvmMubNRye0@vger.kernel.org
+X-Gm-Message-State: AOJu0YwgB2GQTurnxQUdkZs9YwEDJJq2TFfDLc4R3L1eo1yNBQ0harW6
+	/6H1trbFXgqoquU1PC31GfUOSEJ0ae/s+99CtO+vegN7txKcs8hx8ebT/9WvxrCwQIQrqZJ5Y/O
+	O67E3
+X-Gm-Gg: AY/fxX6k4zIcYdfY15ZHBEI+aeue9V5MArW5SzdOST+OxYusSCH/9zZsyRT4Gk3baZP
+	AoyrYmhBynw5bUB58Foi7gbe/+w0kug6CGyC6znUnjqPJaLO936gFNHhYBv3oyi/OB12jZSWsLq
+	ih7dqWmALtMVEIAzHv/xig0KO7MXfSwYckgjtPNXMh/zAJ/jlKNnJgNHquvG0QyhUqxPkmvIIwS
+	34qeYVZ/V10unrGco7ffJt7ZSkf2X10SNAoDshGn52RlzFTVj8FKB/OD4kaqSabt8Xkb8/dq/zR
+	hFlpMKgVvJFRWhChmI6tCKHrXpcstQM6hq7xp6FvFYx9fIByKdLB2zRPLCOSsPihcI6DWsU7x+m
+	zmRcmEp+oXuNY+TQTPdzACzmWbjZAk9+41Ul5S1s5xcRTBNhToiw75mFMHi9NeINa6FrJFion/W
+	U7AnBCDLU706rVCcRMENuqT5GgJJo=
+X-Google-Smtp-Source: AGHT+IH2GuS1S7AkjP0vDORe6yuPxMlX8bc9q8EfoO0YiGtEfV6xDMqm1UzyQj1c6BZCLpH7j0FH7g==
+X-Received: by 2002:a05:6214:5287:b0:888:201e:57c7 with SMTP id 6a1803df08f44-8887dfeddaamr142209466d6.5.1765796639203;
+        Mon, 15 Dec 2025 03:03:59 -0800 (PST)
+Received: from localhost ([196.207.164.177])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-88993b6a80fsm48360486d6.18.2025.12.15.03.03.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Dec 2025 02:59:41 -0800 (PST)
-From: Manaf Meethalavalappu Pallikunhi <manaf.pallikunhi@oss.qualcomm.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Manaf Meethalavalappu Pallikunhi <manaf.pallikunhi@oss.qualcomm.com>
-Subject: [PATCH] arm64: dts: qcom: qcs6490-rb3gen2: Adjust tsens thermal zone configuration
-Date: Mon, 15 Dec 2025 16:29:34 +0530
-Message-ID: <20251215105934.2428987-1-manaf.pallikunhi@oss.qualcomm.com>
-X-Mailer: git-send-email 2.43.0
+        Mon, 15 Dec 2025 03:03:58 -0800 (PST)
+Date: Mon, 15 Dec 2025 14:03:54 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Jan Petrous <jan.petrous@oss.nxp.com>, s32@nxp.com,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linaro-s32@linaro.org
+Subject: Re: [PATCH 3/4] dt-bindings: net: nxp,s32-dwmac: Use the GPR syscon
+Message-ID: <aT_rGgjpCiWp349A@stanley.mountain>
+References: <cover.1764592300.git.dan.carpenter@linaro.org>
+ <333487ea3d23699c7953524cda082813ac4d7be3.1764592300.git.dan.carpenter@linaro.org>
+ <16bb96e9-c632-457c-8179-82c17bd2a685@kernel.org>
+ <aT_p_aGfBpyEOC3M@stanley.mountain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjE1MDA5MyBTYWx0ZWRfX3xoQgSUzZvIv
- FbAlMc63ag+nQW+3pKgUxWGM9c2Xkfgr/VcOFYK+wfSpwKKzOPh9KEQuHUgGs4Iz5YPqeBe4xTJ
- hjbwGmw7ZZupyNJG6QVTnbeCTbWk4IqgrfzOh0RTJXeHyFLEah4sQWN9SoMuqLceEnaEWRKew64
- +wYJmf/v/LVI71QAmN8RRnk6PdyeF0hfDyEmSgZ0WOr9MU9K13BbpzdztyKTMfUCitbM/4Mgz3A
- Kl5GckNcI30y1iZ18kT9xHnUA0hHzL/Nhy3CBOH8l2NHaS8UL/15ejFqCcQ7rKoV6SnQyF+V0iH
- 8B4B/NGWPlwJsDwzF74snLpJuB9G4zwFYMP24Olewppx0qhjiejWGPKfxcTpR3bnZNtPKmNLfYY
- 94oNJLtU/D1mRYgXmlTLeNgQEAsGqg==
-X-Proofpoint-GUID: SfSFa0shQIHGde3ctZDoCBBMQVUQ4ibR
-X-Authority-Analysis: v=2.4 cv=PJQCOPqC c=1 sm=1 tr=0 ts=693fea1f cx=c_pps
- a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=w0Yfo3i1lgJA89rflR8A:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=GvdueXVYPmCkWapjIL-Q:22
-X-Proofpoint-ORIG-GUID: SfSFa0shQIHGde3ctZDoCBBMQVUQ4ibR
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-15_02,2025-12-15_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 impostorscore=0 suspectscore=0 adultscore=0 priorityscore=1501
- bulkscore=0 spamscore=0 phishscore=0 malwarescore=0 lowpriorityscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512150093
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aT_p_aGfBpyEOC3M@stanley.mountain>
 
-The QCS6490 rb3gen2 board uses the same Qualcomm QCM6490 platform
-but has a different thermal junction temperature specification
-due to package-level differences.
+On Mon, Dec 15, 2025 at 01:59:09PM +0300, Dan Carpenter wrote:
+> On Mon, Dec 01, 2025 at 06:33:07PM +0100, Krzysztof Kozlowski wrote:
+> > On 01/12/2025 14:08, Dan Carpenter wrote:
+> > > The S32 chipset has a GPR region which has a miscellaneous registers
+> > > including the GMAC_0_CTRL_STS register.  Originally this code accessed
+> > > that register in a sort of ad-hoc way, but we want to access it using
+> > > the syscon interface.
+> > > 
+> > > We still need to maintain the old method of accessing the GMAC register
+> > > but using a syscon will let us access other registers more cleanly.
+> > > 
+> > > Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
+> > > ---
+> > >  Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml | 6 ++++++
+> > >  1 file changed, 6 insertions(+)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml b/Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml
+> > > index 2b8b74c5feec..17f6c50dca03 100644
+> > > --- a/Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml
+> > > +++ b/Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml
+> > > @@ -32,6 +32,11 @@ properties:
+> > >        - description: Main GMAC registers
+> > >        - description: GMAC PHY mode control register
+> > >  
+> > > +  phy-sel:
+> > 
+> > Missing vendor prefix.
+> > 
+> > > +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> > > +    items:
+> > > +      - description: The offset into the s32 GPR syscon
+> > 
+> > No, first item is not the offset but the phandle. You need syntax like here:
+> > 
+> > https://elixir.bootlin.com/linux/v5.18-rc1/source/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml#L42
+> > 
+> > The description of the first item (unlike in example above) should say
+> > what is the purpose, how this device is using GPR region, what is it
+> > needed for.
+> 
+> I had to do it a bit differently from the exynos-usi.yaml code.  When I
+> tried it that way I got the following warning that the "phy-sel" wasn't
+> a common suffix and it doesn't have a description.
+> 
+> $ make dt_binding_check DT_SCHEMA_FILES=net/nxp,s32-dwmac.yaml
+>   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+>   CHKDT   ./Documentation/devicetree/bindings
+> /home/dcarpenter/progs/kernel/nxp_gpr/Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml: properties:nxp,phy-sel: 'anyOf' conditional failed, one must be fixed:
+>         'description' is a dependency of '$ref'
+>         '/schemas/types.yaml#/definitions/phandle-array' does not match '^#/(definitions|\\$defs)/'
+>                 hint: A vendor property can have a $ref to a a $defs schema
+>         hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
+>         from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
+>   LINT    ./Documentation/devicetree/bindings
+>   DTEX    Documentation/devicetree/bindings/net/nxp,s32-dwmac.example.dts
+>   DTC [C] Documentation/devicetree/bindings/net/nxp,s32-dwmac.example.dtb
+> 
+> The exynos-usi.yaml file doesn't generate a warning like that and I wasn't
+> able to figure out why that is.
 
-Update passive/hot trip thresholds to 105°C and critical trip
-thresholds to 115°C for various subsystem TSENS sensors.
+Oh, crap.  I'm an idiot.  I've been staring at this for an embarrassing
+long time, and I didn't see that the exynos-usi.yaml has a description
+after the - items description.  And then I send this and I immediately
+see it.  :/
 
-Disable CPU cooling maps for CPU TSENS since CPU thermal mitigation
-is handled automatically in hardware on this board.
-
-Signed-off-by: Manaf Meethalavalappu Pallikunhi <manaf.pallikunhi@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 334 +++++++++++++++++++
- 1 file changed, 334 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-index f29a352b0288..a7e62e3845a6 100644
---- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-+++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-@@ -1081,6 +1081,340 @@ right_spkr: speaker@0,2 {
- 	};
- };
- 
-+&thermal_zones {
-+	cpu0-thermal {
-+		trips {
-+			/delete-node/ trip-point0;
-+			/delete-node/ trip-point1;
-+
-+			cpu-crit {
-+				temperature = <115000>;
-+			};
-+		};
-+
-+		/delete-node/ cooling-maps;
-+	};
-+
-+	cpu1-thermal {
-+		trips {
-+			/delete-node/ trip-point0;
-+			/delete-node/ trip-point1;
-+
-+			cpu-crit {
-+				temperature = <115000>;
-+			};
-+		};
-+
-+		/delete-node/ cooling-maps;
-+	};
-+
-+	cpu2-thermal {
-+		trips {
-+			/delete-node/ trip-point0;
-+			/delete-node/ trip-point1;
-+
-+			cpu-crit {
-+				temperature = <115000>;
-+			};
-+		};
-+
-+		/delete-node/ cooling-maps;
-+	};
-+
-+	cpu3-thermal {
-+		trips {
-+			/delete-node/ trip-point0;
-+			/delete-node/ trip-point1;
-+
-+			cpu-crit {
-+				temperature = <115000>;
-+			};
-+		};
-+
-+		/delete-node/ cooling-maps;
-+	};
-+
-+	cpu4-thermal {
-+		trips {
-+			/delete-node/ trip-point0;
-+			/delete-node/ trip-point1;
-+
-+			cpu-crit {
-+				temperature = <115000>;
-+			};
-+		};
-+
-+		/delete-node/ cooling-maps;
-+	};
-+
-+	cpu5-thermal {
-+		trips {
-+			/delete-node/ trip-point0;
-+			/delete-node/ trip-point1;
-+
-+			cpu-crit {
-+				temperature = <115000>;
-+			};
-+		};
-+
-+		/delete-node/ cooling-maps;
-+	};
-+
-+	cpu6-thermal {
-+		trips {
-+			/delete-node/ trip-point0;
-+			/delete-node/ trip-point1;
-+
-+			cpu-crit {
-+				temperature = <115000>;
-+			};
-+		};
-+
-+		/delete-node/ cooling-maps;
-+	};
-+
-+	cpu7-thermal {
-+		trips {
-+			/delete-node/ trip-point0;
-+			/delete-node/ trip-point1;
-+
-+			cpu-crit {
-+				temperature = <115000>;
-+			};
-+		};
-+
-+		/delete-node/ cooling-maps;
-+	};
-+
-+	cpu8-thermal {
-+		trips {
-+			/delete-node/ trip-point0;
-+			/delete-node/ trip-point1;
-+
-+			cpu-crit {
-+				temperature = <115000>;
-+			};
-+		};
-+
-+		/delete-node/ cooling-maps;
-+	};
-+
-+	cpu9-thermal {
-+		trips {
-+			/delete-node/ trip-point0;
-+			/delete-node/ trip-point1;
-+
-+			cpu-crit {
-+				temperature = <115000>;
-+			};
-+		};
-+
-+		/delete-node/ cooling-maps;
-+	};
-+
-+	cpu10-thermal {
-+		trips {
-+			/delete-node/ trip-point0;
-+			/delete-node/ trip-point1;
-+
-+			cpu-crit {
-+				temperature = <115000>;
-+			};
-+		};
-+
-+		/delete-node/ cooling-maps;
-+	};
-+
-+	cpu11-thermal {
-+		trips {
-+			/delete-node/ trip-point0;
-+			/delete-node/ trip-point1;
-+
-+			cpu-crit {
-+				temperature = <115000>;
-+			};
-+		};
-+
-+		/delete-node/ cooling-maps;
-+	};
-+
-+	aoss0-thermal {
-+		trips {
-+			trip-point0 {
-+				temperature = <105000>;
-+			};
-+
-+			aoss0-crit {
-+				temperature = <115000>;
-+			};
-+		};
-+	};
-+
-+	aoss1-thermal {
-+		trips {
-+			trip-point0 {
-+				temperature = <105000>;
-+			};
-+
-+			aoss1-crit {
-+				temperature = <115000>;
-+			};
-+		};
-+	};
-+
-+	cpuss0-thermal {
-+		trips {
-+			/delete-node/ trip-point0;
-+
-+			cluster0-crit {
-+				temperature = <115000>;
-+			};
-+		};
-+	};
-+
-+	cpuss1-thermal {
-+		trips {
-+			/delete-node/ trip-point0;
-+
-+			cluster0-crit {
-+				temperature = <115000>;
-+			};
-+		};
-+	};
-+
-+	gpuss0-thermal {
-+		trips {
-+			trip-point0 {
-+				temperature = <105000>;
-+			};
-+
-+			gpuss0-crit {
-+				temperature = <115000>;
-+			};
-+		};
-+	};
-+
-+	gpuss1-thermal {
-+		trips {
-+			trip-point0 {
-+				temperature = <105000>;
-+			};
-+
-+			gpuss1-crit {
-+				temperature = <115000>;
-+			};
-+		};
-+	};
-+
-+	nspss0-thermal {
-+		trips {
-+			trip-point0 {
-+				temperature = <105000>;
-+			};
-+
-+			nspss0-crit {
-+				temperature = <115000>;
-+			};
-+		};
-+	};
-+
-+	nspss1-thermal {
-+		trips {
-+			trip-point0 {
-+				temperature = <105000>;
-+			};
-+
-+			nspss1-crit {
-+				temperature = <115000>;
-+			};
-+		};
-+	};
-+
-+	video-thermal {
-+		trips {
-+			trip-point0 {
-+				temperature = <105000>;
-+			};
-+
-+			video-crit {
-+				temperature = <115000>;
-+			};
-+		};
-+	};
-+
-+	ddr-thermal {
-+		trips {
-+			trip-point0 {
-+				temperature = <105000>;
-+			};
-+
-+			ddr-crit {
-+				temperature = <115000>;
-+			};
-+		};
-+	};
-+
-+	mdmss0-thermal {
-+		trips {
-+			trip-point0 {
-+				temperature = <105000>;
-+			};
-+
-+			mdmss0-crit {
-+				temperature = <115000>;
-+			};
-+		};
-+	};
-+
-+	mdmss1-thermal {
-+		trips {
-+			trip-point0 {
-+				temperature = <105000>;
-+			};
-+
-+			mdmss1-crit {
-+				temperature = <115000>;
-+			};
-+		};
-+	};
-+
-+	mdmss2-thermal {
-+		trips {
-+			trip-point0 {
-+				temperature = <105000>;
-+			};
-+
-+			mdmss2-crit {
-+				temperature = <115000>;
-+			};
-+		};
-+	};
-+
-+	mdmss3-thermal {
-+		trips {
-+			trip-point0 {
-+				temperature = <105000>;
-+			};
-+
-+			mdmss3-crit {
-+				temperature = <115000>;
-+			};
-+		};
-+	};
-+
-+	camera0-thermal {
-+		trips {
-+			trip-point0 {
-+				temperature = <105000>;
-+			};
-+
-+			camera0-crit {
-+				temperature = <115000>;
-+			};
-+		};
-+	};
-+};
-+
- &tlmm {
- 	gpio-reserved-ranges = <32 2>, /* ADSP */
- 			       <48 4>; /* NFC */
--- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+regards,
+dan carpenter
 
 
