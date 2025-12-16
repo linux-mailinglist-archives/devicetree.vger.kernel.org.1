@@ -1,1422 +1,167 @@
-Return-Path: <devicetree+bounces-247101-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246990-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA57FCC43D2
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 17:21:52 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22DD6CC3333
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 14:26:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 21165305ADD9
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 16:17:55 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id ED8B3305BED3
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 13:23:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12C7D2D661C;
-	Tue, 16 Dec 2025 16:17:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9C2F3612CA;
+	Tue, 16 Dec 2025 12:08:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="c8T9pyQ5"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="KHtFUFi8";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="RugadaPJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAD8A2D7DD1;
-	Tue, 16 Dec 2025 16:17:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 675B13612C8
+	for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 12:08:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765901874; cv=none; b=NFc3vASRZtFH2f8feDWOLGIxD0ciXDzgEe/MEGTmON34MUnvoIY4x/Y2t69ZHOgYxxr0lasl6CEjlhTE+pNrQZ/nb5S6stjLHSjn6+0DQi9MAbNVfJovg8AA4Z7oz+o9nfQvZ+fXfHMEEGypCLxyg0trg4+ZTrW8+jbXARyTw+c=
+	t=1765886888; cv=none; b=WKZOuj6DAgd3C+d+IcXpdrRCeNIxS6E2bJ2gXVZH+KKhF4rlf3qvD+Fxaq/+6T+sgj7OlsA/BqWOe9mprDOxX5r8Z5VHLZaLsc23cZ/9dJGJuwNS3qvOeauj+QQ62xGaQDdz5c7g3JR9SMR8JXn+HFSWQt7RMZ6WGtQZPvz07fc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765901874; c=relaxed/simple;
-	bh=uo1wBk7tGmbm3E0QtTG0KibQTJU/0fefWHMbHhg+aV0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=ENYUG5bDJvJzW04denbHLnvRL9uKPj3kUvdeMSrz5S3kJ4gTc8P7HTfleYyJ0l5zqN2PzgGSDgvPbno6FTHiOSRNfNNEQty1on2K7egVBL2U/RdmPWeYfkGVVtjDmMtLffk+xYFoOaUnWEkXphr+RfuhuqXhrHsFt1HxZSHTsNk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=c8T9pyQ5; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1765901871; x=1797437871;
-  h=from:date:subject:mime-version:content-transfer-encoding:
-   message-id:references:in-reply-to:to:cc;
-  bh=uo1wBk7tGmbm3E0QtTG0KibQTJU/0fefWHMbHhg+aV0=;
-  b=c8T9pyQ5RFZLxACAeWGNQaOJBgZocU1kD6QGB/hFHiluZ2z0Aok1PpuZ
-   0U9/TGR3aqb6kwYVufSSeDBfQfxH7OsnTR/Pk2IBwJXSMWYKNEdEBHvpf
-   WXurdBVP8nCBtlc73dlywauDcOIo74iATCPNOzFk27e/r286NUYEqtzV/
-   avUnCfMk83tE2XJia1Um8HVoAPi0KlNtuY+0r9Cc8z6CX9DaO7dGrHKpb
-   ck4tZBYF0zxVYy4RFsdSVJXmbcqvSbCt1EjA894eI62GVpA7S1yT0g4t0
-   ASagx49nyoJu3I0wLOwy1p1gtaTDz3gxV7UJvaKUPRuitFo4Agh3N8TX5
-   g==;
-X-CSE-ConnectionGUID: /U12bD3cQVewC+xXEOZP/Q==
-X-CSE-MsgGUID: QdA8pJbeT1GeWpKVMNEEKw==
-X-IronPort-AV: E=Sophos;i="6.21,153,1763449200"; 
-   d="scan'208";a="281989806"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Dec 2025 09:17:44 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.87.71) by
- chn-vm-ex3.mchp-main.com (10.10.87.32) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.2.2562.29; Tue, 16 Dec 2025 09:17:13 -0700
-Received: from [127.0.1.1] (10.10.85.11) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server id 15.1.2507.58 via Frontend
- Transport; Tue, 16 Dec 2025 09:17:10 -0700
-From: Ariana Lazar <ariana.lazar@microchip.com>
-Date: Tue, 16 Dec 2025 14:05:51 +0200
-Subject: [PATCH v4 2/2] iio: dac: adding support for Microchip MCP47FEB02
+	s=arc-20240116; t=1765886888; c=relaxed/simple;
+	bh=H9abZfOkYQts6D4SGcICwKtFQofYukdrYeyR6tT4CQI=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=cnrKXr2LE3NK7i2mBO7s6aWm9gLDkQ/i6NOK1Rgt0MAjjCf3X8jvD0qNTMNf49OVXYurEsQKCQeVNPxQ0VYMZDdszeHDPWMibSvbeq8aZHxmUkqbSrb4bf+hec3A1rBRTAX+vE5sYXB1A4MNKF+x71QcVZ701ZIw3YKR3PM3OPc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=KHtFUFi8; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=RugadaPJ; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BG9bgQI2516277
+	for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 12:08:06 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=0TtjIbhvpwUJJPB/dQ889ENI1wVn4pYy08t
+	WsWt09M0=; b=KHtFUFi80kNircPvQpnVELjl7Y6bZszGYW8aLftHETg+0VtCaHJ
+	ijKUpx6LBDM2aE2EgsVPRtT0eMXXjoU8lfCQJFQgYAQoxEymjnxkbjmDTuJxSF28
+	sumIvHCIzLW4JOez5uoTD0jBJpymdJvAjUGF/so/kWIs4C44tQa5Pto5xiiVT0pV
+	Gvx5UE2OfCjhzuBJVXg7q0TcCsQS0Xf9prpfZuF9HSdIqcZT84LblCtNTf+Eusel
+	zZXKK9m3jbjStUo0JchDpsuL9TFH8uvSF+RGCI1oHm6phtEF8vITAns60CBcTT8v
+	iOdgyas9ZAFmILU4RsEx0MA9HMrZPtGcxXQ==
+Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b34y80hvh-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 12:08:06 +0000 (GMT)
+Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-2a0f47c0e60so49108195ad.3
+        for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 04:08:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1765886886; x=1766491686; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=0TtjIbhvpwUJJPB/dQ889ENI1wVn4pYy08tWsWt09M0=;
+        b=RugadaPJzeClGD2nxlEjYBWmJcUR0YABpRN7fyhpPMjice0MgHS0KIbAbvBLmpwo4G
+         sd2bypiGx8TeKPhABPuD6Kp/cckYGpY4EshXkQ5vk4c+Aco6KL5fq6ynp0ZjWroKLx3o
+         J93hNxP0RY87VZdifdM673NPEFjX5xDHe79hfADOVakrqVYCmczfjfuRd8PzLT7ef//J
+         Qd7nw2UI7qUCE8aaorWWWvRLuNOj2tTq4iDawFoCxEx9oQrQDgrVtNkrOr3rCyXnENsn
+         7B5lWeqnkQ/7974SxbHbRVcWEBrQspXvvDYPtdwwi1qcXIbmDv2DTSW/jCEdGMSaen4y
+         kQ0A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765886886; x=1766491686;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0TtjIbhvpwUJJPB/dQ889ENI1wVn4pYy08tWsWt09M0=;
+        b=H8SQxVTL7Ezc/gDGzt5Wr+/lN2UGgJpvXKb4gfi/4Pcn3oywyEZRLbwLIXpz+wIeuB
+         bfnziU2GNTfbQkMW20DkVjEJmCfCac4JaKSVpiQT/QLh/WAZh6xylPbwV7cXWS0d26o3
+         3Q5pzezORkhCEo7ZjXhfP0Vby3PhIYXxzCo+kbAgtYKNnIr12lrXa3QzJZwFsqkI0Fk5
+         1jzYNtPgG7POXBok5sDK4QAZDNTbV42cMelFLO3vqn9L3dnSq9TOzzui6dcn8iC98zkZ
+         8o/2E6gpehsYVvVATTzO0w9UBDDn0W8wN8/IzgdaPbroMtijp3dEw/8qAqGNcDCh1wBj
+         jKjA==
+X-Forwarded-Encrypted: i=1; AJvYcCWevulvT27sKqgKQrHZ1ZQiLBeoSDhil451kAJE6HDL6SAbHTbsudiyD6sFCv0a66EJzQPLoLgqhw+0@vger.kernel.org
+X-Gm-Message-State: AOJu0YxGbckEAjCIZR2ulELXwlzQQv+P36MThkMkhcKPb8Kl/O91PuBf
+	0+XLUHHzmO5AW+Tpjvh51iAIGaMHhC0pCkkmo5jmFP8qpabB0b8zg/539vd/SMPsg14zV4GyLIF
+	COSWikAxs799Eu6JnQ+lTX29xGJGbWPvHQ8AVmMSwz2zBc9cEaWkYLbVWzOWuwPds
+X-Gm-Gg: AY/fxX4TWHtywz9+jhhK9MeBENDYmOYEBS14uop/u6JmTDK/TeVr/XsSn+0iSxvpkpb
+	Co6uvE8nSLDM5TgMFod+/7rCJOxajHphOBCMOKk/G8bqUl+8awj1p5tH9SB42+tHnw32tWiI1ps
+	cmJztkzYjnI38Lt5ax5luS0sOgcGfLbxih7BuN2++MyNoNmtM9m4dM0EeUX/XD7mV1mFp6mG1JP
+	L5SRqfQik9etdYy8LQWS8v3RGPTcnsSfMt/SDBgxHhRYullNOes0wYW/AoNrD0FZbmenoOuKACC
+	q0//Bi1AHpNBvzMQH0azThA1/ZpyMg7ahbHDFWWj+ZldMQLtjXRPbYZSyNi/SSv2TcRxuZmNky2
+	yr1QpELuWhGhY7CagogM+O8nFneGOy81m5Cezt7s/qI0=
+X-Received: by 2002:a17:902:cf03:b0:2a0:bb05:df4f with SMTP id d9443c01a7336-2a0bb05e314mr83402825ad.44.1765886885888;
+        Tue, 16 Dec 2025 04:08:05 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFiw6zSvfczmhqR9lmIDcnmAukNtHBZazConwujUupumT2t8wOfkgbilHRFxoLYk9MMrzDSSw==
+X-Received: by 2002:a17:902:cf03:b0:2a0:bb05:df4f with SMTP id d9443c01a7336-2a0bb05e314mr83402605ad.44.1765886885453;
+        Tue, 16 Dec 2025 04:08:05 -0800 (PST)
+Received: from hu-swatagar-hyd.qualcomm.com ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a110f6374asm48568695ad.63.2025.12.16.04.08.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Dec 2025 04:08:04 -0800 (PST)
+From: Swati Agarwal <swati.agarwal@oss.qualcomm.com>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Icenowy Zheng <uwu@icenowy.me>,
+        =?UTF-8?q?J=20=2E=20Neusch=C3=A4fer?= <j.ne@posteo.net>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Jens Glathe <jens.glathe@oldschoolsolutions.biz>,
+        Mike Looijmans <mike.looijmans@topic.nl>,
+        Pin-yen Lin <treapking@chromium.org>,
+        Catalin Popescu <catalin.popescu@leica-geosystems.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Swati Agarwal <swati.agarwal@oss.qualcomm.com>
+Subject: [PATCH v2 0/4] Enable USB1 controller in host mode
+Date: Tue, 16 Dec 2025 17:37:45 +0530
+Message-Id: <20251216120749.94007-1-swati.agarwal@oss.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-ID: <20251216-mcp47feb02-v4-2-4b687094ff90@microchip.com>
-References: <20251216-mcp47feb02-v4-0-4b687094ff90@microchip.com>
-In-Reply-To: <20251216-mcp47feb02-v4-0-4b687094ff90@microchip.com>
-To: Ariana Lazar <ariana.lazar@microchip.com>, Jonathan Cameron
-	<jic23@kernel.org>, David Lechner <dlechner@baylibre.com>,
-	=?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, Andy Shevchenko
-	<andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-CC: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1765886754; l=43679;
- i=ariana.lazar@microchip.com; s=20250825; h=from:subject:message-id;
- bh=uo1wBk7tGmbm3E0QtTG0KibQTJU/0fefWHMbHhg+aV0=;
- b=mziQRuNcTcVQ4Z2Vg80DG1c+vm33nzXiP3hgnO+MrZJgTKYQKlLZztIQlqUR431/bLrp6UTPu
- 4N5T31y4pzgBo6kWegMY2/WAD20c0VJaIBL9DTrWND6E34NtWMo1KIN
-X-Developer-Key: i=ariana.lazar@microchip.com; a=ed25519;
- pk=jmvf1fSxcnzZmXfITM3L94IwutM+wqA1POQHiYyD6Dk=
+X-Authority-Analysis: v=2.4 cv=LrCfC3dc c=1 sm=1 tr=0 ts=69414ba6 cx=c_pps
+ a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=T81NLgZPhjG5DizPKtsA:9
+ a=GvdueXVYPmCkWapjIL-Q:22
+X-Proofpoint-ORIG-GUID: cKj20IcKinagSL3HUSnJkV6xzh_8htfU
+X-Proofpoint-GUID: cKj20IcKinagSL3HUSnJkV6xzh_8htfU
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjE2MDEwMyBTYWx0ZWRfX+SlZO0QXDk73
+ Wq8PbncQYnJ+jFXg8E40AZoIQSVdcD+qpfv8KPL4eR5Q4TpMcT8kd0JOvzCK9orSlY8EoXDISVC
+ 5RvPDTUSxmErAsUMLgcheGZ3T3aUzhZF1jJpiFr2Tif/tuzyu9ZaaQOP5vxJLH0w2raJKI7IEYs
+ bgVJAIXpaguCtp45Ct4Co0zZXcVoUlREUWcOqCtA5MmLKHcmXoqSGW8k7fiYyAhYerlvMZ6E+ag
+ rSIlZThW/HFa1L1X8m9BsZeB9v8doM3tzKbJLd80+FXQu4VGCRt3S/pKh3ySfYju5Qy0FFfSACa
+ hM2CXL6k1/lrR9S6Z+89ul2sbL+iAPxDpjG5kxnf4DE7rnFDWnVEmV4qUD3KGDYr7YymnKa6oYo
+ JLMgPYal2WqatG6byf+rh7Rf5vdlfg==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-16_02,2025-12-15_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 adultscore=0 suspectscore=0 lowpriorityscore=0 spamscore=0
+ priorityscore=1501 bulkscore=0 clxscore=1015 impostorscore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512160103
 
-This is the iio driver for Microchip MCP47F(E/V)B(0/1/2)1,
-MCP47F(E/V)B(0/1/2)2, MCP47F(E/V)B(0/1/2)4 and MCP47F(E/V)B(0/1/2)8 series
-of buffered voltage output Digital-to-Analog Converters with nonvolatile or
-volatile memory and an I2C Interface.
+Enable USB1 controller in host mode on EVK platforms.
 
-The families support up to 8 output channels.
+changes in v2:
+Added Genesys Logic GL3590 hub support.
+Renamed hd3ss3220_ instance for primary port controller.
 
-The devices can be 8-bit, 10-bit and 12-bit.
+Link to v1:
+https://lore.kernel.org/all/20251203-swati-v1-1-250efcb4e6a7@oss.qualcomm.com/
 
-Signed-off-by: Ariana Lazar <ariana.lazar@microchip.com>
----
- MAINTAINERS                  |    1 +
- drivers/iio/dac/Kconfig      |   20 +
- drivers/iio/dac/Makefile     |    1 +
- drivers/iio/dac/mcp47feb02.c | 1251 ++++++++++++++++++++++++++++++++++++++++++
- 4 files changed, 1273 insertions(+)
+Swati Agarwal (4):
+  dt-bindings: usb: Add binding for Genesys Logic GL3590 hub
+  usb: misc: onboard_usb_hub: Add Genesys Logic GL3590 hub support
+  arm64: dts: qcom: lemans-evk: Rename hd3ss3220_ instance for primary
+    port controller
+  arm64: dts: qcom: lemans-evk: Enable USB1 controller for host mode
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 6f51890cfc3081bc49c08fddc8af526c1ecc8d72..0f97f90ac2f492895d27da86d831df83cb402516 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -14943,6 +14943,7 @@ M:	Ariana Lazar <ariana.lazar@microchip.com>
- L:	linux-iio@vger.kernel.org
- S:	Supported
- F:	Documentation/devicetree/bindings/iio/dac/microchip,mcp47feb02.yaml
-+F:	drivers/iio/dac/mcp47feb02.c
- 
- MCP4821 DAC DRIVER
- M:	Anshul Dalal <anshulusr@gmail.com>
-diff --git a/drivers/iio/dac/Kconfig b/drivers/iio/dac/Kconfig
-index e0996dc014a3d538ab6b4e0d50ff54ede50f1527..c88abdeb84d428bd5750a10956cf9305168e43d6 100644
---- a/drivers/iio/dac/Kconfig
-+++ b/drivers/iio/dac/Kconfig
-@@ -509,6 +509,26 @@ config MCP4728
- 	  To compile this driver as a module, choose M here: the module
- 	  will be called mcp4728.
- 
-+config MCP47FEB02
-+	tristate "MCP47F(E/V)B01/02/04/08/11/12/14/18/21/22/24/28 DAC driver"
-+	depends on I2C
-+	help
-+	  Say yes here if you want to build the driver for the Microchip:
-+	  - 8-bit DAC:
-+	    MCP47FEB01, MCP47FEB02, MCP47FEB04, MCP47FEB08,
-+	    MCP47FVB01, MCP47FVB02, MCP47FVB04, MCP47FVB08
-+	  - 10-bit DAC:
-+	    MCP47FEB11, MCP47FEB12, MCP47FEB14, MCP47FEB18,
-+	    MCP47FVB11, MCP47FVB12, MCP47FVB14, MCP47FVB18
-+	  - 12-bit DAC:
-+	    MCP47FEB21, MCP47FEB22, MCP47FEB24, MCP47FEB28,
-+	    MCP47FVB21, MCP47FVB22, MCP47FVB24, MCP47FVB28
-+	  having 1 to 8 channels, 8/10/12-bit digital-to-analog converter
-+	  (DAC) with I2C interface.
-+
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called mcp47feb02.
-+
- config MCP4821
- 	tristate "MCP4801/02/11/12/21/22 DAC driver"
- 	depends on SPI
-diff --git a/drivers/iio/dac/Makefile b/drivers/iio/dac/Makefile
-index 3684cd52b7fa9bc0ad9f855323dcbb2e4965c404..d633a6440fc4b9aba7d8b1c209b6dcd05cd982dd 100644
---- a/drivers/iio/dac/Makefile
-+++ b/drivers/iio/dac/Makefile
-@@ -50,6 +50,7 @@ obj-$(CONFIG_MAX5522) += max5522.o
- obj-$(CONFIG_MAX5821) += max5821.o
- obj-$(CONFIG_MCP4725) += mcp4725.o
- obj-$(CONFIG_MCP4728) += mcp4728.o
-+obj-$(CONFIG_MCP47FEB02) += mcp47feb02.o
- obj-$(CONFIG_MCP4821) += mcp4821.o
- obj-$(CONFIG_MCP4922) += mcp4922.o
- obj-$(CONFIG_STM32_DAC_CORE) += stm32-dac-core.o
-diff --git a/drivers/iio/dac/mcp47feb02.c b/drivers/iio/dac/mcp47feb02.c
-new file mode 100644
-index 0000000000000000000000000000000000000000..c04f3b72b1b1fc303b1bde63c281aade8a67b2f9
---- /dev/null
-+++ b/drivers/iio/dac/mcp47feb02.c
-@@ -0,0 +1,1251 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * IIO driver for MCP47FEB02 Multi-Channel DAC with I2C interface
-+ *
-+ * Copyright (C) 2025 Microchip Technology Inc. and its subsidiaries
-+ *
-+ * Author: Ariana Lazar <ariana.lazar@microchip.com>
-+ *
-+ * Datasheet links:
-+ * [MCP47FEBxx] https://ww1.microchip.com/downloads/aemDocuments/documents/OTH/ProductDocuments/DataSheets/20005375A.pdf
-+ * [MCP47FVBxx] https://ww1.microchip.com/downloads/aemDocuments/documents/OTH/ProductDocuments/DataSheets/20005405A.pdf
-+ * [MCP47FxBx4/8] https://ww1.microchip.com/downloads/aemDocuments/documents/MSLD/ProductDocuments/DataSheets/MCP47FXBX48-Data-Sheet-DS200006368A.pdf
-+ */
-+#include <linux/array_size.h>
-+#include <linux/bits.h>
-+#include <linux/bitfield.h>
-+#include <linux/delay.h>
-+#include <linux/err.h>
-+#include <linux/i2c.h>
-+#include <linux/iio/iio.h>
-+#include <linux/iio/sysfs.h>
-+#include <linux/kstrtox.h>
-+#include <linux/module.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/mutex.h>
-+#include <linux/property.h>
-+#include <linux/regmap.h>
-+#include <linux/regulator/consumer.h>
-+#include <linux/time64.h>
-+#include <linux/types.h>
-+#include <linux/units.h>
-+
-+/* Register addresses must be left shifted with 3 positions in order to append command mask */
-+#define MCP47FEB02_DAC0_REG_ADDR			0x00
-+#define MCP47FEB02_VREF_REG_ADDR			0x40
-+#define MCP47FEB02_POWER_DOWN_REG_ADDR			0x48
-+#define MCP47FEB02_DAC_CTRL_MASK			GENMASK(1, 0)
-+
-+#define MCP47FEB02_GAIN_CTRL_STATUS_REG_ADDR		0x50
-+#define MCP47FEB02_GAIN_BIT_MASK			BIT(0)
-+#define MCP47FEB02_GAIN_BIT_STATUS_EEWA_MASK		BIT(6)
-+#define MCP47FEB02_GAIN_BITS_MASK			GENMASK(15, 8)
-+
-+#define MCP47FEB02_WIPERLOCK_STATUS_REG_ADDR		0x58
-+
-+#define MCP47FEB02_NV_DAC0_REG_ADDR			0x80
-+#define MCP47FEB02_NV_VREF_REG_ADDR			0xC0
-+#define MCP47FEB02_NV_POWER_DOWN_REG_ADDR		0xC8
-+#define MCP47FEB02_NV_GAIN_CTRL_I2C_SLAVE_REG_ADDR	0xD0
-+#define MCP47FEB02_NV_I2C_SLAVE_ADDR_MASK		GENMASK(7, 0)
-+
-+/* Voltage reference, Power-Down control register and DAC Wiperlock status register fields */
-+#define DAC_CTRL_MASK(ch)				(GENMASK(1, 0) << (2 * (ch)))
-+#define DAC_CTRL_VAL(ch, val)				((val) << (2 * (ch)))
-+
-+/* Gain Control and I2C Slave Address Reguster fields */
-+#define DAC_GAIN_MASK(ch)				(BIT(0) << (8 + (ch)))
-+#define DAC_GAIN_VAL(ch, val)				((val) << (8 + (ch)))
-+
-+#define REG_ADDR(reg)					((reg) << 3)
-+#define NV_REG_ADDR(reg)				((NV_DAC_ADDR_OFFSET + (reg)) << 3)
-+#define READFLAG_MASK					GENMASK(2, 1)
-+
-+#define MCP47FEB02_MAX_CH				8
-+#define MCP47FEB02_MAX_SCALES_CH			3
-+#define MCP47FEB02_DAC_WIPER_UNLOCKED			0
-+#define MCP47FEB02_NORMAL_OPERATION			0
-+#define MCP47FEB02_INTERNAL_BAND_GAP_mV			2440
-+#define NV_DAC_ADDR_OFFSET				0x10
-+
-+enum mcp47feb02_vref_mode {
-+	MCP47FEB02_VREF_VDD = 0,
-+	MCP47FEB02_INTERNAL_BAND_GAP = 1,
-+	MCP47FEB02_EXTERNAL_VREF_UNBUFFERED = 2,
-+	MCP47FEB02_EXTERNAL_VREF_BUFFERED = 3,
-+};
-+
-+enum mcp47feb02_scale {
-+	MCP47FEB02_SCALE_VDD = 0,
-+	MCP47FEB02_SCALE_GAIN_X1 = 1,
-+	MCP47FEB02_SCALE_GAIN_X2 = 2,
-+};
-+
-+enum mcp47feb02_gain_bit_mode {
-+	MCP47FEB02_GAIN_BIT_X1 = 0,
-+	MCP47FEB02_GAIN_BIT_X2 = 1,
-+};
-+
-+static const char * const mcp47feb02_powerdown_modes[] = {
-+	"1kohm_to_gnd",
-+	"100kohm_to_gnd",
-+	"open_circuit",
-+};
-+
-+/**
-+ * struct mcp47feb02_features - chip specific data
-+ * @name: device name
-+ * @phys_channels: number of hardware channels
-+ * @resolution: DAC resolution
-+ * @have_ext_vref1: does the hardware have an the second external voltage reference?
-+ * @have_eeprom: does the hardware have an internal eeprom?
-+ */
-+struct mcp47feb02_features {
-+	const char *name;
-+	unsigned int phys_channels;
-+	unsigned int resolution;
-+	bool have_ext_vref1;
-+	bool have_eeprom;
-+};
-+
-+static const struct mcp47feb02_features mcp47feb01_chip_features = {
-+	.name = "mcp47feb01",
-+	.phys_channels = 1,
-+	.resolution = 8,
-+	.have_ext_vref1 = false,
-+	.have_eeprom = true,
-+};
-+
-+static const struct mcp47feb02_features mcp47feb02_chip_features = {
-+	.name = "mcp47feb02",
-+	.phys_channels = 2,
-+	.resolution = 8,
-+	.have_ext_vref1 = false,
-+	.have_eeprom = true,
-+};
-+
-+static const struct mcp47feb02_features mcp47feb04_chip_features = {
-+	.name = "mcp47feb04",
-+	.phys_channels = 4,
-+	.resolution = 8,
-+	.have_ext_vref1 = true,
-+	.have_eeprom = true,
-+};
-+
-+static const struct mcp47feb02_features mcp47feb08_chip_features = {
-+	.name = "mcp47feb08",
-+	.phys_channels = 8,
-+	.resolution = 8,
-+	.have_ext_vref1 = true,
-+	.have_eeprom = true,
-+};
-+
-+static const struct mcp47feb02_features mcp47feb11_chip_features = {
-+	.name = "mcp47feb11",
-+	.phys_channels = 1,
-+	.resolution = 10,
-+	.have_ext_vref1 = false,
-+	.have_eeprom = true,
-+};
-+
-+static const struct mcp47feb02_features mcp47feb12_chip_features = {
-+	.name = "mcp47feb12",
-+	.phys_channels = 2,
-+	.resolution = 10,
-+	.have_ext_vref1 = false,
-+	.have_eeprom = true,
-+};
-+
-+static const struct mcp47feb02_features mcp47feb14_chip_features = {
-+	.name = "mcp47feb14",
-+	.phys_channels = 4,
-+	.resolution = 10,
-+	.have_ext_vref1 = true,
-+	.have_eeprom = true,
-+};
-+
-+static const struct mcp47feb02_features mcp47feb18_chip_features = {
-+	.name = "mcp47feb18",
-+	.phys_channels = 8,
-+	.resolution = 10,
-+	.have_ext_vref1 = true,
-+	.have_eeprom = true,
-+};
-+
-+static const struct mcp47feb02_features mcp47feb21_chip_features = {
-+	.name = "mcp47feb21",
-+	.phys_channels = 1,
-+	.resolution = 12,
-+	.have_ext_vref1 = false,
-+	.have_eeprom = true,
-+};
-+
-+static const struct mcp47feb02_features mcp47feb22_chip_features = {
-+	.name = "mcp47feb22",
-+	.phys_channels = 2,
-+	.resolution = 12,
-+	.have_ext_vref1 = false,
-+	.have_eeprom = true,
-+};
-+
-+static const struct mcp47feb02_features mcp47feb24_chip_features = {
-+	.name = "mcp47feb24",
-+	.phys_channels = 4,
-+	.resolution = 12,
-+	.have_ext_vref1 = true,
-+	.have_eeprom = true,
-+};
-+
-+static const struct mcp47feb02_features mcp47feb28_chip_features = {
-+	.name = "mcp47feb28",
-+	.phys_channels = 8,
-+	.resolution = 12,
-+	.have_ext_vref1 = true,
-+	.have_eeprom = true,
-+};
-+
-+static const struct mcp47feb02_features mcp47fvb01_chip_features = {
-+	.name = "mcp47fvb01",
-+	.phys_channels = 1,
-+	.resolution = 8,
-+	.have_ext_vref1 = false,
-+	.have_eeprom = false,
-+};
-+
-+static const struct mcp47feb02_features mcp47fvb02_chip_features = {
-+	.name = "mcp47fvb02",
-+	.phys_channels = 2,
-+	.resolution = 8,
-+	.have_ext_vref1 = false,
-+	.have_eeprom = false,
-+};
-+
-+static const struct mcp47feb02_features mcp47fvb04_chip_features = {
-+	.name = "mcp47fvb04",
-+	.phys_channels = 4,
-+	.resolution = 8,
-+	.have_ext_vref1 = true,
-+	.have_eeprom = false,
-+};
-+
-+static const struct mcp47feb02_features mcp47fvb08_chip_features = {
-+	.name = "mcp47fvb08",
-+	.phys_channels = 8,
-+	.resolution = 8,
-+	.have_ext_vref1 = true,
-+	.have_eeprom = false,
-+};
-+
-+static const struct mcp47feb02_features mcp47fvb11_chip_features = {
-+	.name = "mcp47fvb11",
-+	.phys_channels = 1,
-+	.resolution = 10,
-+	.have_ext_vref1 = false,
-+	.have_eeprom = false,
-+};
-+
-+static const struct mcp47feb02_features mcp47fvb12_chip_features = {
-+	.name = "mcp47fvb12",
-+	.phys_channels = 2,
-+	.resolution = 10,
-+	.have_ext_vref1 = false,
-+	.have_eeprom = false,
-+};
-+
-+static const struct mcp47feb02_features mcp47fvb14_chip_features = {
-+	.name = "mcp47fvb14",
-+	.phys_channels = 4,
-+	.resolution = 10,
-+	.have_ext_vref1 = true,
-+	.have_eeprom = false,
-+};
-+
-+static const struct mcp47feb02_features mcp47fvb18_chip_features = {
-+	.name = "mcp47fvb18",
-+	.phys_channels = 8,
-+	.resolution = 10,
-+	.have_ext_vref1 = true,
-+	.have_eeprom = false,
-+};
-+
-+static const struct mcp47feb02_features mcp47fvb21_chip_features = {
-+	.name = "mcp47fvb21",
-+	.phys_channels = 1,
-+	.resolution = 12,
-+	.have_ext_vref1 = false,
-+	.have_eeprom = false,
-+};
-+
-+static const struct mcp47feb02_features mcp47fvb22_chip_features = {
-+	.name = "mcp47fvb22",
-+	.phys_channels = 2,
-+	.resolution = 12,
-+	.have_ext_vref1 = false,
-+	.have_eeprom = false,
-+};
-+
-+static const struct mcp47feb02_features mcp47fvb24_chip_features = {
-+	.name = "mcp47fvb24",
-+	.phys_channels = 4,
-+	.resolution = 12,
-+	.have_ext_vref1 = true,
-+	.have_eeprom = false,
-+};
-+
-+static const struct mcp47feb02_features mcp47fvb28_chip_features = {
-+	.name = "mcp47fvb28",
-+	.phys_channels = 8,
-+	.resolution = 12,
-+	.have_ext_vref1 = true,
-+	.have_eeprom = false,
-+};
-+
-+/**
-+ * struct mcp47feb02_channel_data - channel configuration
-+ * @ref_mode: chosen voltage for reference
-+ * @use_2x_gain: output driver gain control
-+ * @powerdown: is false if the channel is in normal operation mode
-+ * @powerdown_mode: selected power-down mode
-+ * @dac_data: dac value
-+ */
-+struct mcp47feb02_channel_data {
-+	u8 ref_mode;
-+	bool use_2x_gain;
-+	bool powerdown;
-+	u8 powerdown_mode;
-+	u16 dac_data;
-+};
-+
-+/**
-+ * struct mcp47feb02_data - chip configuration
-+ * @chdata: options configured for each channel on the device
-+ * @lock: prevents concurrent reads/writes to driver's state members
-+ * @chip_features: pointer to features struct
-+ * @scale_1: scales set on channels that are based on Vref1
-+ * @scale: scales set on channels that are based on Vref/Vref0
-+ * @active_channels_mask: enabled channels
-+ * @client: the i2c-client attached to the device
-+ * @regmap: regmap for directly accessing device register
-+ * @vref1_buffered: Vref1 buffer is enabled
-+ * @vref_buffered: Vref/Vref0 buffer is enabled
-+ * @phys_channels: physical channels on the device
-+ * @labels: table with channels labels
-+ * @use_vref1: vref1-supply is defined
-+ * @use_vref: vref-supply is defined
-+ */
-+struct mcp47feb02_data {
-+	struct mcp47feb02_channel_data chdata[MCP47FEB02_MAX_CH];
-+	struct mutex lock; /* prevents concurrent reads/writes to driver's state members */
-+	const struct mcp47feb02_features *chip_features;
-+	int scale_1[2 * MCP47FEB02_MAX_SCALES_CH];
-+	int scale[2 * MCP47FEB02_MAX_SCALES_CH];
-+	unsigned long active_channels_mask;
-+	struct regmap *regmap;
-+	bool vref1_buffered;
-+	bool vref_buffered;
-+	u16 phys_channels;
-+	const char *labels[MCP47FEB02_MAX_CH];
-+	bool use_vref1;
-+	bool use_vref;
-+};
-+
-+static const struct regmap_range mcp47feb02_readable_ranges[] = {
-+	regmap_reg_range(MCP47FEB02_DAC0_REG_ADDR, MCP47FEB02_WIPERLOCK_STATUS_REG_ADDR),
-+	regmap_reg_range(MCP47FEB02_NV_DAC0_REG_ADDR, MCP47FEB02_NV_GAIN_CTRL_I2C_SLAVE_REG_ADDR),
-+};
-+
-+static const struct regmap_range mcp47feb02_writable_ranges[] = {
-+	regmap_reg_range(MCP47FEB02_DAC0_REG_ADDR, MCP47FEB02_WIPERLOCK_STATUS_REG_ADDR),
-+	regmap_reg_range(MCP47FEB02_NV_DAC0_REG_ADDR, MCP47FEB02_NV_GAIN_CTRL_I2C_SLAVE_REG_ADDR),
-+};
-+
-+static const struct regmap_range mcp47feb02_volatile_ranges[] = {
-+	regmap_reg_range(MCP47FEB02_DAC0_REG_ADDR, MCP47FEB02_WIPERLOCK_STATUS_REG_ADDR),
-+	regmap_reg_range(MCP47FEB02_NV_DAC0_REG_ADDR, MCP47FEB02_NV_GAIN_CTRL_I2C_SLAVE_REG_ADDR),
-+	regmap_reg_range(MCP47FEB02_DAC0_REG_ADDR, MCP47FEB02_WIPERLOCK_STATUS_REG_ADDR),
-+	regmap_reg_range(MCP47FEB02_NV_DAC0_REG_ADDR, MCP47FEB02_NV_GAIN_CTRL_I2C_SLAVE_REG_ADDR),
-+};
-+
-+static const struct regmap_access_table mcp47feb02_readable_table = {
-+	.yes_ranges = mcp47feb02_readable_ranges,
-+	.n_yes_ranges = ARRAY_SIZE(mcp47feb02_readable_ranges),
-+};
-+
-+static const struct regmap_access_table mcp47feb02_writable_table = {
-+	.yes_ranges = mcp47feb02_writable_ranges,
-+	.n_yes_ranges = ARRAY_SIZE(mcp47feb02_writable_ranges),
-+};
-+
-+static const struct regmap_access_table mcp47feb02_volatile_table = {
-+	.yes_ranges = mcp47feb02_volatile_ranges,
-+	.n_yes_ranges = ARRAY_SIZE(mcp47feb02_volatile_ranges),
-+};
-+
-+static const struct regmap_config mcp47feb02_regmap_config = {
-+	.name = "mcp47feb02_regmap",
-+	.reg_bits = 8,
-+	.val_bits = 16,
-+	.rd_table = &mcp47feb02_readable_table,
-+	.wr_table = &mcp47feb02_writable_table,
-+	.volatile_table = &mcp47feb02_volatile_table,
-+	.max_register = MCP47FEB02_NV_GAIN_CTRL_I2C_SLAVE_REG_ADDR,
-+	.read_flag_mask = READFLAG_MASK,
-+	.cache_type = REGCACHE_MAPLE,
-+	.val_format_endian = REGMAP_ENDIAN_BIG,
-+};
-+
-+/* For devices that doesn't have nonvolatile memory */
-+static const struct regmap_range mcp47fvb02_readable_ranges[] = {
-+	regmap_reg_range(MCP47FEB02_DAC0_REG_ADDR, MCP47FEB02_WIPERLOCK_STATUS_REG_ADDR),
-+};
-+
-+static const struct regmap_range mcp47fvb02_writable_ranges[] = {
-+	regmap_reg_range(MCP47FEB02_DAC0_REG_ADDR, MCP47FEB02_WIPERLOCK_STATUS_REG_ADDR),
-+};
-+
-+static const struct regmap_range mcp47fvb02_volatile_ranges[] = {
-+	regmap_reg_range(MCP47FEB02_DAC0_REG_ADDR, MCP47FEB02_WIPERLOCK_STATUS_REG_ADDR),
-+	regmap_reg_range(MCP47FEB02_DAC0_REG_ADDR, MCP47FEB02_WIPERLOCK_STATUS_REG_ADDR),
-+};
-+
-+static const struct regmap_access_table mcp47fvb02_readable_table = {
-+	.yes_ranges = mcp47fvb02_readable_ranges,
-+	.n_yes_ranges = ARRAY_SIZE(mcp47fvb02_readable_ranges),
-+};
-+
-+static const struct regmap_access_table mcp47fvb02_writable_table = {
-+	.yes_ranges = mcp47fvb02_writable_ranges,
-+	.n_yes_ranges = ARRAY_SIZE(mcp47fvb02_writable_ranges),
-+};
-+
-+static const struct regmap_access_table mcp47fvb02_volatile_table = {
-+	.yes_ranges = mcp47fvb02_volatile_ranges,
-+	.n_yes_ranges = ARRAY_SIZE(mcp47fvb02_volatile_ranges),
-+};
-+
-+static const struct regmap_config mcp47fvb02_regmap_config = {
-+	.name = "mcp47fvb02_regmap",
-+	.reg_bits = 8,
-+	.val_bits = 16,
-+	.rd_table = &mcp47fvb02_readable_table,
-+	.wr_table = &mcp47fvb02_writable_table,
-+	.volatile_table = &mcp47fvb02_volatile_table,
-+	.max_register = MCP47FEB02_WIPERLOCK_STATUS_REG_ADDR,
-+	.read_flag_mask = READFLAG_MASK,
-+	.cache_type = REGCACHE_MAPLE,
-+	.val_format_endian = REGMAP_ENDIAN_BIG,
-+};
-+
-+static int mcp47feb02_write_to_eeprom(struct mcp47feb02_data *data, unsigned int reg,
-+				      unsigned int val)
-+{
-+	int eewa_val, ret;
-+
-+	/*
-+	 * Wait until the currently occurring EEPROM Write Cycle is completed.
-+	 * Only serial commands to the volatile memory are allowed.
-+	 */
-+	guard(mutex)(&data->lock);
-+
-+	ret = regmap_read_poll_timeout(data->regmap, MCP47FEB02_GAIN_CTRL_STATUS_REG_ADDR,
-+				       eewa_val,
-+				       !(eewa_val & MCP47FEB02_GAIN_BIT_STATUS_EEWA_MASK),
-+				       USEC_PER_MSEC, USEC_PER_MSEC * 5);
-+	if (ret)
-+		return ret;
-+
-+	return regmap_write(data->regmap, reg, val);
-+}
-+
-+static ssize_t store_eeprom_store(struct device *dev, struct device_attribute *attr,
-+				  const char *buf, size_t len)
-+{
-+	struct mcp47feb02_data *data = iio_priv(dev_to_iio_dev(dev));
-+	unsigned int i, val, val1, eewa_val;
-+	bool state;
-+	int ret;
-+
-+	ret = kstrtobool(buf, &state);
-+	if (ret)
-+		return ret;
-+
-+	if (!state)
-+		return 0;
-+
-+	/*
-+	 * Verify DAC Wiper and DAC Configuration are unlocked. If both are disabled,
-+	 * writing to EEPROM is available.
-+	 */
-+	ret = regmap_read(data->regmap, MCP47FEB02_WIPERLOCK_STATUS_REG_ADDR, &val);
-+	if (ret)
-+		return ret;
-+
-+	if (val) {
-+		dev_err(dev, "DAC Wiper and DAC Configuration not are unlocked.\n");
-+		return -EINVAL;
-+	}
-+
-+	for_each_set_bit(i, &data->active_channels_mask, data->phys_channels) {
-+		ret = mcp47feb02_write_to_eeprom(data, NV_REG_ADDR(i),
-+						 data->chdata[i].dac_data);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	ret = regmap_read(data->regmap, MCP47FEB02_VREF_REG_ADDR, &val);
-+	if (ret)
-+		return ret;
-+
-+	ret = mcp47feb02_write_to_eeprom(data, MCP47FEB02_NV_VREF_REG_ADDR, val);
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_read(data->regmap, MCP47FEB02_POWER_DOWN_REG_ADDR, &val);
-+	if (ret)
-+		return ret;
-+
-+	ret = mcp47feb02_write_to_eeprom(data, MCP47FEB02_NV_POWER_DOWN_REG_ADDR, val);
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_read_poll_timeout(data->regmap, MCP47FEB02_GAIN_CTRL_STATUS_REG_ADDR, eewa_val,
-+				       !(eewa_val & MCP47FEB02_GAIN_BIT_STATUS_EEWA_MASK),
-+				       USEC_PER_MSEC, USEC_PER_MSEC * 5);
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_read(data->regmap, MCP47FEB02_NV_GAIN_CTRL_I2C_SLAVE_REG_ADDR, &val);
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_read(data->regmap, MCP47FEB02_GAIN_CTRL_STATUS_REG_ADDR, &val1);
-+	if (ret)
-+		return ret;
-+
-+	ret = mcp47feb02_write_to_eeprom(data, MCP47FEB02_NV_GAIN_CTRL_I2C_SLAVE_REG_ADDR,
-+					 (val1 & MCP47FEB02_GAIN_BITS_MASK) |
-+					 (val & MCP47FEB02_NV_I2C_SLAVE_ADDR_MASK));
-+	if (ret)
-+		return ret;
-+
-+	return len;
-+}
-+
-+static IIO_DEVICE_ATTR_WO(store_eeprom, 0);
-+
-+static struct attribute *mcp47feb02_attributes[] = {
-+	&iio_dev_attr_store_eeprom.dev_attr.attr,
-+	NULL
-+};
-+
-+static const struct attribute_group mcp47feb02_attribute_group = {
-+	.attrs = mcp47feb02_attributes,
-+};
-+
-+static int mcp47feb02_suspend(struct device *dev)
-+{
-+	struct iio_dev *indio_dev = dev_get_drvdata(dev);
-+	struct mcp47feb02_data *data = iio_priv(indio_dev);
-+	int ret;
-+	u8 ch;
-+
-+	guard(mutex)(&data->lock);
-+
-+	for_each_set_bit(ch, &data->active_channels_mask, data->phys_channels) {
-+		u8 pd_mode;
-+
-+		data->chdata[ch].powerdown = true;
-+		pd_mode = data->chdata[ch].powerdown_mode + 1;
-+		ret = regmap_update_bits(data->regmap, MCP47FEB02_POWER_DOWN_REG_ADDR,
-+					 DAC_CTRL_MASK(ch), DAC_CTRL_VAL(ch, pd_mode));
-+		if (ret)
-+			return ret;
-+
-+		ret = regmap_write(data->regmap, REG_ADDR(ch), data->chdata[ch].dac_data);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static int mcp47feb02_resume(struct device *dev)
-+{
-+	struct iio_dev *indio_dev = dev_get_drvdata(dev);
-+	struct mcp47feb02_data *data = iio_priv(indio_dev);
-+	u8 ch;
-+
-+	guard(mutex)(&data->lock);
-+
-+	for_each_set_bit(ch, &data->active_channels_mask, data->phys_channels) {
-+		u8 pd_mode;
-+		int ret;
-+
-+		data->chdata[ch].powerdown = false;
-+		pd_mode = data->chdata[ch].powerdown_mode + 1;
-+
-+		ret = regmap_write(data->regmap, REG_ADDR(ch), data->chdata[ch].dac_data);
-+		if (ret)
-+			return ret;
-+
-+		ret = regmap_update_bits(data->regmap, MCP47FEB02_VREF_REG_ADDR,
-+					 DAC_CTRL_MASK(ch), DAC_CTRL_VAL(ch, pd_mode));
-+		if (ret)
-+			return ret;
-+
-+		ret = regmap_update_bits(data->regmap, MCP47FEB02_GAIN_CTRL_STATUS_REG_ADDR,
-+					 DAC_GAIN_MASK(ch),
-+					 DAC_GAIN_VAL(ch, data->chdata[ch].use_2x_gain));
-+		if (ret)
-+			return ret;
-+
-+		ret = regmap_update_bits(data->regmap, MCP47FEB02_POWER_DOWN_REG_ADDR,
-+					 DAC_CTRL_MASK(ch),
-+					 DAC_CTRL_VAL(ch, MCP47FEB02_NORMAL_OPERATION));
-+		if (ret)
-+			return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static int mcp47feb02_get_powerdown_mode(struct iio_dev *indio_dev,
-+					 const struct iio_chan_spec *chan)
-+{
-+	struct mcp47feb02_data *data = iio_priv(indio_dev);
-+
-+	return data->chdata[chan->address].powerdown_mode;
-+}
-+
-+static int mcp47feb02_set_powerdown_mode(struct iio_dev *indio_dev, const struct iio_chan_spec *ch,
-+					 unsigned int mode)
-+{
-+	struct mcp47feb02_data *data = iio_priv(indio_dev);
-+
-+	data->chdata[ch->address].powerdown_mode = mode;
-+
-+	return 0;
-+}
-+
-+static ssize_t mcp47feb02_read_powerdown(struct iio_dev *indio_dev, uintptr_t private,
-+					 const struct iio_chan_spec *ch, char *buf)
-+{
-+	struct mcp47feb02_data *data = iio_priv(indio_dev);
-+
-+	/* Print if channel is in a power-down mode or not */
-+	return sysfs_emit(buf, "%d\n", data->chdata[ch->address].powerdown);
-+}
-+
-+static ssize_t mcp47feb02_write_powerdown(struct iio_dev *indio_dev, uintptr_t private,
-+					  const struct iio_chan_spec *ch, const char *buf,
-+					  size_t len)
-+{
-+	struct mcp47feb02_data *data = iio_priv(indio_dev);
-+	u32 reg = ch->address;
-+	u8 tmp_pd_mode;
-+	bool state;
-+	int ret;
-+
-+	guard(mutex)(&data->lock);
-+
-+	ret = kstrtobool(buf, &state);
-+	if (ret)
-+		return ret;
-+
-+	/*
-+	 * Set the channel to the specified power-down mode. Exiting power-down mode
-+	 * requires writing normal operation mode (0) to the channel-specific register bits.
-+	 */
-+	tmp_pd_mode = state ? (data->chdata[reg].powerdown_mode + 1) : MCP47FEB02_NORMAL_OPERATION;
-+	ret = regmap_update_bits(data->regmap, MCP47FEB02_POWER_DOWN_REG_ADDR,
-+				 DAC_CTRL_MASK(reg), DAC_CTRL_VAL(reg, tmp_pd_mode));
-+	if (ret)
-+		return ret;
-+
-+	data->chdata[reg].powerdown = state;
-+
-+	return len;
-+}
-+
-+static DEFINE_SIMPLE_DEV_PM_OPS(mcp47feb02_pm_ops, mcp47feb02_suspend, mcp47feb02_resume);
-+
-+static const struct iio_enum mcp47febxx_powerdown_mode_enum = {
-+	.items = mcp47feb02_powerdown_modes,
-+	.num_items = ARRAY_SIZE(mcp47feb02_powerdown_modes),
-+	.get = mcp47feb02_get_powerdown_mode,
-+	.set = mcp47feb02_set_powerdown_mode,
-+};
-+
-+static const struct iio_chan_spec_ext_info mcp47feb02_ext_info[] = {
-+	{
-+		.name = "powerdown",
-+		.read = mcp47feb02_read_powerdown,
-+		.write = mcp47feb02_write_powerdown,
-+		.shared = IIO_SEPARATE,
-+	},
-+	IIO_ENUM("powerdown_mode", IIO_SEPARATE, &mcp47febxx_powerdown_mode_enum),
-+	IIO_ENUM_AVAILABLE("powerdown_mode", IIO_SHARED_BY_TYPE, &mcp47febxx_powerdown_mode_enum),
-+	{ }
-+};
-+
-+static const struct iio_chan_spec mcp47febxx_ch_template = {
-+	.type = IIO_VOLTAGE,
-+	.output = 1,
-+	.indexed = 1,
-+	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) | BIT(IIO_CHAN_INFO_SCALE),
-+	.info_mask_separate_available = BIT(IIO_CHAN_INFO_SCALE),
-+	.ext_info = mcp47feb02_ext_info,
-+};
-+
-+static void mcp47feb02_init_scale(struct mcp47feb02_data *data, enum mcp47feb02_scale scale,
-+				  int vref_mV, int scale_avail[])
-+{
-+	u32 value_micro, value_int;
-+	u64 tmp;
-+
-+	/* vref_mV should not be negative */
-+	tmp = (u64)vref_mV * MICRO >> data->chip_features->resolution;
-+	value_int = div_u64_rem(tmp, MICRO, &value_micro);
-+	scale_avail[scale * 2] = value_int;
-+	scale_avail[scale * 2 + 1] = value_micro;
-+}
-+
-+static int mcp47feb02_init_scales_avail(struct mcp47feb02_data *data, int vdd_mV,
-+					int vref_mV, int vref1_mV)
-+{
-+	struct device *dev = regmap_get_device(data->regmap);
-+	int tmp_vref;
-+
-+	mcp47feb02_init_scale(data, MCP47FEB02_SCALE_VDD, vdd_mV, data->scale);
-+
-+	if (data->use_vref)
-+		tmp_vref = vref_mV;
-+	else
-+		tmp_vref = MCP47FEB02_INTERNAL_BAND_GAP_mV;
-+
-+	mcp47feb02_init_scale(data, MCP47FEB02_SCALE_GAIN_X1, tmp_vref, data->scale);
-+	mcp47feb02_init_scale(data, MCP47FEB02_SCALE_GAIN_X2, tmp_vref * 2, data->scale);
-+
-+	if (data->phys_channels >= 4) {
-+		mcp47feb02_init_scale(data, MCP47FEB02_SCALE_VDD, vdd_mV, data->scale_1);
-+
-+		if (data->use_vref1 && vref1_mV <= 0)
-+			return dev_err_probe(dev, vref1_mV, "Invalid voltage for Vref1\n");
-+
-+		if (data->use_vref1)
-+			tmp_vref = vref1_mV;
-+		else
-+			tmp_vref = MCP47FEB02_INTERNAL_BAND_GAP_mV;
-+
-+		mcp47feb02_init_scale(data, MCP47FEB02_SCALE_GAIN_X1,
-+				      tmp_vref, data->scale_1);
-+		mcp47feb02_init_scale(data, MCP47FEB02_SCALE_GAIN_X2,
-+				      tmp_vref * 2, data->scale_1);
-+	}
-+
-+	return 0;
-+}
-+
-+static int mcp47feb02_read_avail(struct iio_dev *indio_dev, struct iio_chan_spec const *ch,
-+				 const int **vals, int *type, int *length, long info)
-+{
-+	struct mcp47feb02_data *data = iio_priv(indio_dev);
-+
-+	switch (info) {
-+	case IIO_CHAN_INFO_SCALE:
-+		switch (ch->type) {
-+		case IIO_VOLTAGE:
-+			if (data->phys_channels >= 4 && (ch->address % 2))
-+				*vals = data->scale_1;
-+			else
-+				*vals = data->scale;
-+
-+			*length = 2 * MCP47FEB02_MAX_SCALES_CH;
-+			*type = IIO_VAL_INT_PLUS_MICRO;
-+			return IIO_AVAIL_LIST;
-+		default:
-+			return -EINVAL;
-+		}
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static void mcp47feb02_get_scale(int ch, struct mcp47feb02_data *data, int *val, int *val2)
-+{
-+	enum mcp47feb02_scale current_scale;
-+
-+	if (data->chdata[ch].ref_mode == MCP47FEB02_VREF_VDD)
-+		current_scale = MCP47FEB02_SCALE_VDD;
-+	else if (data->chdata[ch].use_2x_gain)
-+		current_scale = MCP47FEB02_SCALE_GAIN_X2;
-+	else
-+		current_scale = MCP47FEB02_SCALE_GAIN_X1;
-+
-+	if (data->phys_channels >= 4 && (ch % 2)) {
-+		*val = data->scale_1[current_scale * 2];
-+		*val2 = data->scale_1[current_scale * 2 + 1];
-+	} else {
-+		*val = data->scale[current_scale * 2];
-+		*val2 = data->scale[current_scale * 2 + 1];
-+	}
-+}
-+
-+static int mcp47feb02_check_scale(struct mcp47feb02_data *data, int val, int val2, int scale[])
-+{
-+	unsigned int i;
-+
-+	for (i = 0; i < MCP47FEB02_MAX_SCALES_CH; i++) {
-+		if (scale[i * 2] == val && scale[i * 2 + 1] == val2)
-+			return i;
-+	}
-+
-+	return -EINVAL;
-+}
-+
-+static int mcp47feb02_ch_scale(struct mcp47feb02_data *data, int ch, int scale)
-+{
-+	int tmp_val, ret;
-+
-+	if (scale == MCP47FEB02_SCALE_VDD) {
-+		tmp_val = MCP47FEB02_VREF_VDD;
-+	} else if (data->phys_channels >= 4 && (ch % 2)) {
-+		if (data->use_vref1) {
-+			if (data->vref1_buffered)
-+				tmp_val = MCP47FEB02_EXTERNAL_VREF_BUFFERED;
-+			else
-+				tmp_val = MCP47FEB02_EXTERNAL_VREF_UNBUFFERED;
-+		} else {
-+			tmp_val = MCP47FEB02_INTERNAL_BAND_GAP;
-+		}
-+	} else if (data->use_vref) {
-+		if (data->vref_buffered)
-+			tmp_val = MCP47FEB02_EXTERNAL_VREF_BUFFERED;
-+		else
-+			tmp_val = MCP47FEB02_EXTERNAL_VREF_UNBUFFERED;
-+	} else {
-+		tmp_val = MCP47FEB02_INTERNAL_BAND_GAP;
-+	}
-+
-+	ret = regmap_update_bits(data->regmap, MCP47FEB02_VREF_REG_ADDR,
-+				 DAC_CTRL_MASK(ch), DAC_CTRL_VAL(ch, tmp_val));
-+	if (ret)
-+		return ret;
-+
-+	data->chdata[ch].ref_mode = tmp_val;
-+
-+	return 0;
-+}
-+
-+/*
-+ * Setting the scale in order to choose between VDD and (Vref or Band Gap) from the user
-+ * space. The VREF pin is either an input or an output, therefore the user cannot
-+ * simultaneously connect an external voltage reference to the pin and select the
-+ * internal Band Gap.
-+ * When the DAC’s voltage reference is configured as the VREF pin, the pin is an input.
-+ * When the DAC’s voltage reference is configured as the internal Band Gap,
-+ * the VREF pin is an output.
-+ * If Vref/Vref1 voltage is not available, then the internal Band Gap will be used
-+ * to calculate the values for the scale.
-+ */
-+static int mcp47feb02_set_scale(struct mcp47feb02_data *data, int ch, int scale)
-+{
-+	int tmp_val, ret;
-+
-+	ret = mcp47feb02_ch_scale(data, ch, scale);
-+	if (ret)
-+		return ret;
-+
-+	if (scale == MCP47FEB02_SCALE_GAIN_X2)
-+		tmp_val = MCP47FEB02_GAIN_BIT_X2;
-+	else
-+		tmp_val = MCP47FEB02_GAIN_BIT_X1;
-+
-+	ret = regmap_update_bits(data->regmap, MCP47FEB02_GAIN_CTRL_STATUS_REG_ADDR,
-+				 DAC_GAIN_MASK(ch), DAC_GAIN_VAL(ch, tmp_val));
-+	if (ret)
-+		return ret;
-+
-+	data->chdata[ch].use_2x_gain = tmp_val;
-+
-+	return 0;
-+}
-+
-+static int mcp47feb02_read_raw(struct iio_dev *indio_dev, struct iio_chan_spec const *ch,
-+			       int *val, int *val2, long mask)
-+{
-+	struct mcp47feb02_data *data = iio_priv(indio_dev);
-+	int ret;
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_RAW:
-+		ret = regmap_read(data->regmap, REG_ADDR(ch->address), val);
-+		if (ret)
-+			return ret;
-+		return IIO_VAL_INT;
-+	case IIO_CHAN_INFO_SCALE:
-+		mcp47feb02_get_scale(ch->address, data, val, val2);
-+		return IIO_VAL_INT_PLUS_MICRO;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int mcp47feb02_write_raw(struct iio_dev *indio_dev, struct iio_chan_spec const *ch,
-+				int val, int val2, long mask)
-+{
-+	struct mcp47feb02_data *data = iio_priv(indio_dev);
-+	int *tmp_scale, ret;
-+
-+	guard(mutex)(&data->lock);
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_RAW:
-+		ret = regmap_write(data->regmap, REG_ADDR(ch->address), val);
-+		if (ret)
-+			return ret;
-+
-+		data->chdata[ch->address].dac_data = val;
-+		return 0;
-+	case IIO_CHAN_INFO_SCALE:
-+		if (data->phys_channels >= 4 && (ch->address % 2))
-+			tmp_scale = data->scale_1;
-+		else
-+			tmp_scale = data->scale;
-+
-+		ret = mcp47feb02_check_scale(data, val, val2, tmp_scale);
-+		if (ret < 0)
-+			return ret;
-+
-+		return mcp47feb02_set_scale(data, ch->address, ret);
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int mcp47feb02_read_label(struct iio_dev *indio_dev, struct iio_chan_spec const *ch,
-+				 char *label)
-+{
-+	struct mcp47feb02_data *data = iio_priv(indio_dev);
-+
-+	return sysfs_emit(label, "%s\n", data->labels[ch->address]);
-+}
-+
-+static const struct iio_info mcp47feb02_info = {
-+	.read_raw = mcp47feb02_read_raw,
-+	.write_raw = mcp47feb02_write_raw,
-+	.read_label = mcp47feb02_read_label,
-+	.read_avail = &mcp47feb02_read_avail,
-+	.attrs = &mcp47feb02_attribute_group,
-+};
-+
-+static const struct iio_info mcp47fvb02_info = {
-+	.read_raw = mcp47feb02_read_raw,
-+	.write_raw = mcp47feb02_write_raw,
-+	.read_label = mcp47feb02_read_label,
-+	.read_avail = &mcp47feb02_read_avail,
-+};
-+
-+static int mcp47feb02_parse_fw(struct iio_dev *indio_dev,
-+			       const struct mcp47feb02_features *chip_features)
-+{
-+	struct iio_chan_spec chanspec = mcp47febxx_ch_template;
-+	struct mcp47feb02_data *data = iio_priv(indio_dev);
-+	struct device *dev = regmap_get_device(data->regmap);
-+	struct iio_chan_spec *channels;
-+	u32 num_channels;
-+	u8 chan_idx = 0;
-+
-+	guard(mutex)(&data->lock);
-+
-+	num_channels = device_get_child_node_count(dev);
-+	if (num_channels > chip_features->phys_channels)
-+		return dev_err_probe(dev, -EINVAL, "More channels than the chip supports\n");
-+
-+	if (!num_channels)
-+		return dev_err_probe(dev, -EINVAL, "No channel specified in the devicetree.\n");
-+
-+	channels = devm_kcalloc(dev, num_channels, sizeof(*channels), GFP_KERNEL);
-+	if (!channels)
-+		return -ENOMEM;
-+
-+	device_for_each_child_node_scoped(dev, child) {
-+		u32 reg = 0;
-+		int ret;
-+
-+		ret = fwnode_property_read_u32(child, "reg", &reg);
-+		if (ret)
-+			return dev_err_probe(dev, ret, "Invalid channel number\n");
-+
-+		if (reg >= chip_features->phys_channels)
-+			return dev_err_probe(dev, -EINVAL,
-+					     "The index of the channels does not match the chip\n");
-+
-+		set_bit(reg, &data->active_channels_mask);
-+
-+		ret = fwnode_property_read_string(child, "label", &data->labels[reg]);
-+		if (ret)
-+			return dev_err_probe(dev, ret, "%pfw: invalid label\n",
-+					     fwnode_get_name(child));
-+
-+		chanspec.address = reg;
-+		chanspec.channel = reg;
-+		channels[chan_idx] = chanspec;
-+		chan_idx++;
-+	}
-+
-+	indio_dev->num_channels = num_channels;
-+	indio_dev->channels = channels;
-+	indio_dev->modes = INDIO_DIRECT_MODE;
-+	data->phys_channels = chip_features->phys_channels;
-+
-+	data->vref_buffered = device_property_read_bool(dev, "microchip,vref-buffered");
-+
-+	if (chip_features->have_ext_vref1)
-+		data->vref1_buffered = device_property_read_bool(dev, "microchip,vref1-buffered");
-+
-+	return 0;
-+}
-+
-+static int mcp47feb02_init_ctrl_regs(struct mcp47feb02_data *data)
-+{
-+	unsigned int i, vref_ch, gain_ch, pd_ch;
-+	int ret;
-+
-+	ret = regmap_read(data->regmap, MCP47FEB02_VREF_REG_ADDR, &vref_ch);
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_read(data->regmap, MCP47FEB02_GAIN_CTRL_STATUS_REG_ADDR, &gain_ch);
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_read(data->regmap, MCP47FEB02_POWER_DOWN_REG_ADDR, &pd_ch);
-+	if (ret)
-+		return ret;
-+
-+	gain_ch = gain_ch & MCP47FEB02_GAIN_BITS_MASK;
-+	for_each_set_bit(i, &data->active_channels_mask, data->phys_channels) {
-+		struct device *dev = regmap_get_device(data->regmap);
-+		unsigned int pd_tmp;
-+
-+		data->chdata[i].ref_mode = (vref_ch >> (2 * i)) & MCP47FEB02_DAC_CTRL_MASK;
-+		data->chdata[i].use_2x_gain = (gain_ch >> i)  & MCP47FEB02_GAIN_BIT_MASK;
-+
-+		/*
-+		 * Inform the user that the current voltage reference read from the volatile
-+		 * register of the chip is different from the one specified in the device tree.
-+		 * Considering that the user cannot have an external voltage reference connected
-+		 * to the pin and select the internal Band Gap at the same time, in order to avoid
-+		 * miscofiguring the reference voltage, the volatile register will not be written.
-+		 * In order to overwrite the setting from volatile register with the one from the
-+		 * device tree, the user needs to write the chosen scale.
-+		 */
-+		switch (data->chdata[i].ref_mode) {
-+		case MCP47FEB02_INTERNAL_BAND_GAP:
-+			if (data->phys_channels >= 4 && (i % 2) && data->use_vref1) {
-+				dev_dbg(dev, "ch[%u]: was configured to use internal band gap", i);
-+				dev_dbg(dev, "ch[%u]: reference voltage set to VREF1", i);
-+				break;
-+			}
-+			if ((data->phys_channels < 4 || (data->phys_channels >= 4 && !(i % 2))) &&
-+			    data->use_vref) {
-+				dev_dbg(dev, "ch[%u]: was configured to use internal band gap", i);
-+				dev_dbg(dev, "ch[%u]: reference voltage set to VREF", i);
-+				break;
-+			}
-+			break;
-+		case MCP47FEB02_EXTERNAL_VREF_UNBUFFERED:
-+		case MCP47FEB02_EXTERNAL_VREF_BUFFERED:
-+			if (data->phys_channels >= 4 && (i % 2) && !data->use_vref1) {
-+				dev_dbg(dev, "ch[%u]: was configured to use VREF1", i);
-+				dev_dbg(dev,
-+					"ch[%u]: reference voltage set to internal band gap", i);
-+				break;
-+			}
-+			if ((data->phys_channels < 4 || (data->phys_channels >= 4 && !(i % 2))) &&
-+			    !data->use_vref) {
-+				dev_dbg(dev, "ch[%u]: was configured to use VREF", i);
-+				dev_dbg(dev,
-+					"ch[%u]: reference voltage set to internal band gap", i);
-+				break;
-+			}
-+			break;
-+		}
-+
-+		pd_tmp = (pd_ch >> (2 * i)) & MCP47FEB02_DAC_CTRL_MASK;
-+		data->chdata[i].powerdown_mode = pd_tmp ? (pd_tmp - 1) : pd_tmp;
-+		data->chdata[i].powerdown = !!(data->chdata[i].powerdown_mode);
-+	}
-+
-+	return 0;
-+}
-+
-+static int mcp47feb02_init_ch_scales(struct mcp47feb02_data *data, int vdd_mV,
-+				     int vref_mV, int vref1_mV)
-+{
-+	unsigned int i;
-+
-+	for_each_set_bit(i, &data->active_channels_mask, data->phys_channels) {
-+		struct device *dev = regmap_get_device(data->regmap);
-+		int ret;
-+
-+		ret = mcp47feb02_init_scales_avail(data, vdd_mV, vref_mV, vref1_mV);
-+		if (ret)
-+			return dev_err_probe(dev, ret, "failed to init scales for ch %u\n", i);
-+	}
-+
-+	return 0;
-+}
-+
-+static int mcp47feb02_probe(struct i2c_client *client)
-+{
-+	const struct mcp47feb02_features *chip_features;
-+	struct device *dev = &client->dev;
-+	struct mcp47feb02_data *data;
-+	struct iio_dev *indio_dev;
-+	int vref1_mV = 0;
-+	int vref_mV = 0;
-+	int vdd_mV;
-+	int ret;
-+
-+	indio_dev = devm_iio_device_alloc(dev, sizeof(*data));
-+	if (!indio_dev)
-+		return -ENOMEM;
-+
-+	data = iio_priv(indio_dev);
-+	chip_features = i2c_get_match_data(client);
-+	if (!chip_features)
-+		return -EINVAL;
-+
-+	data->chip_features = chip_features;
-+
-+	if (chip_features->have_eeprom) {
-+		data->regmap = devm_regmap_init_i2c(client, &mcp47feb02_regmap_config);
-+		indio_dev->info = &mcp47feb02_info;
-+	} else {
-+		data->regmap = devm_regmap_init_i2c(client, &mcp47fvb02_regmap_config);
-+		indio_dev->info = &mcp47fvb02_info;
-+	}
-+	if (IS_ERR(data->regmap))
-+		return dev_err_probe(dev, PTR_ERR(data->regmap), "Error initializing i2c regmap\n");
-+
-+	indio_dev->name = chip_features->name;
-+
-+	ret = mcp47feb02_parse_fw(indio_dev, chip_features);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Error parsing firmware data\n");
-+
-+	ret = devm_mutex_init(dev, &data->lock);
-+	if (ret)
-+		return ret;
-+
-+	ret = devm_regulator_get_enable_read_voltage(dev, "vdd");
-+	if (ret < 0)
-+		return ret;
-+
-+	vdd_mV = ret / MILLI;
-+
-+	ret = devm_regulator_get_enable_read_voltage(dev, "vref");
-+	if (ret > 0) {
-+		vref_mV = ret / MILLI;
-+		data->use_vref = true;
-+	} else {
-+		dev_dbg(dev, "using internal band gap as voltage reference.\n");
-+		dev_dbg(dev, "Vref is unavailable.\n");
-+	}
-+
-+	if (chip_features->have_ext_vref1) {
-+		ret = devm_regulator_get_enable_read_voltage(dev, "vref1");
-+		if (ret > 0) {
-+			vref1_mV = ret / MILLI;
-+			data->use_vref1 = true;
-+		} else {
-+			dev_dbg(dev, "using internal band gap as voltage reference 1.\n");
-+			dev_dbg(dev, "Vref1 is unavailable.\n");
-+		}
-+	}
-+
-+	ret = mcp47feb02_init_ctrl_regs(data);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Error initialising vref register\n");
-+
-+	ret = mcp47feb02_init_ch_scales(data, vdd_mV, vref_mV, vref1_mV);
-+	if (ret)
-+		return ret;
-+
-+	return devm_iio_device_register(dev, indio_dev);
-+}
-+
-+static const struct i2c_device_id mcp47feb02_id[] = {
-+	{ "mcp47feb01", (kernel_ulong_t)&mcp47feb01_chip_features },
-+	{ "mcp47feb02", (kernel_ulong_t)&mcp47feb02_chip_features },
-+	{ "mcp47feb04", (kernel_ulong_t)&mcp47feb04_chip_features },
-+	{ "mcp47feb08", (kernel_ulong_t)&mcp47feb08_chip_features },
-+	{ "mcp47feb11", (kernel_ulong_t)&mcp47feb11_chip_features },
-+	{ "mcp47feb12", (kernel_ulong_t)&mcp47feb12_chip_features },
-+	{ "mcp47feb14", (kernel_ulong_t)&mcp47feb14_chip_features },
-+	{ "mcp47feb18", (kernel_ulong_t)&mcp47feb18_chip_features },
-+	{ "mcp47feb21", (kernel_ulong_t)&mcp47feb21_chip_features },
-+	{ "mcp47feb22", (kernel_ulong_t)&mcp47feb22_chip_features },
-+	{ "mcp47feb24", (kernel_ulong_t)&mcp47feb24_chip_features },
-+	{ "mcp47feb28", (kernel_ulong_t)&mcp47feb28_chip_features },
-+	{ "mcp47fvb01", (kernel_ulong_t)&mcp47fvb01_chip_features },
-+	{ "mcp47fvb02", (kernel_ulong_t)&mcp47fvb02_chip_features },
-+	{ "mcp47fvb04", (kernel_ulong_t)&mcp47fvb04_chip_features },
-+	{ "mcp47fvb08", (kernel_ulong_t)&mcp47fvb08_chip_features },
-+	{ "mcp47fvb11", (kernel_ulong_t)&mcp47fvb11_chip_features },
-+	{ "mcp47fvb12", (kernel_ulong_t)&mcp47fvb12_chip_features },
-+	{ "mcp47fvb14", (kernel_ulong_t)&mcp47fvb14_chip_features },
-+	{ "mcp47fvb18", (kernel_ulong_t)&mcp47fvb18_chip_features },
-+	{ "mcp47fvb21", (kernel_ulong_t)&mcp47fvb21_chip_features },
-+	{ "mcp47fvb22", (kernel_ulong_t)&mcp47fvb22_chip_features },
-+	{ "mcp47fvb24", (kernel_ulong_t)&mcp47fvb24_chip_features },
-+	{ "mcp47fvb28", (kernel_ulong_t)&mcp47fvb28_chip_features },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(i2c, mcp47feb02_id);
-+
-+static const struct of_device_id mcp47feb02_of_match[] = {
-+	{ .compatible = "microchip,mcp47feb01", .data = &mcp47feb01_chip_features },
-+	{ .compatible = "microchip,mcp47feb02", .data = &mcp47feb02_chip_features },
-+	{ .compatible = "microchip,mcp47feb04", .data = &mcp47feb04_chip_features },
-+	{ .compatible = "microchip,mcp47feb08", .data = &mcp47feb08_chip_features },
-+	{ .compatible = "microchip,mcp47feb11", .data = &mcp47feb11_chip_features },
-+	{ .compatible = "microchip,mcp47feb12", .data = &mcp47feb12_chip_features },
-+	{ .compatible = "microchip,mcp47feb14", .data = &mcp47feb14_chip_features },
-+	{ .compatible = "microchip,mcp47feb18", .data = &mcp47feb18_chip_features },
-+	{ .compatible = "microchip,mcp47feb21", .data = &mcp47feb21_chip_features },
-+	{ .compatible = "microchip,mcp47feb22", .data = &mcp47feb22_chip_features },
-+	{ .compatible = "microchip,mcp47feb24", .data = &mcp47feb24_chip_features },
-+	{ .compatible = "microchip,mcp47feb28", .data = &mcp47feb28_chip_features },
-+	{ .compatible = "microchip,mcp47fvb01", .data = &mcp47fvb01_chip_features },
-+	{ .compatible = "microchip,mcp47fvb02", .data = &mcp47fvb02_chip_features },
-+	{ .compatible = "microchip,mcp47fvb04", .data = &mcp47fvb04_chip_features },
-+	{ .compatible = "microchip,mcp47fvb08", .data = &mcp47fvb08_chip_features },
-+	{ .compatible = "microchip,mcp47fvb11", .data = &mcp47fvb11_chip_features },
-+	{ .compatible = "microchip,mcp47fvb12", .data = &mcp47fvb12_chip_features },
-+	{ .compatible = "microchip,mcp47fvb14",	.data = &mcp47fvb14_chip_features },
-+	{ .compatible = "microchip,mcp47fvb18", .data = &mcp47fvb18_chip_features },
-+	{ .compatible = "microchip,mcp47fvb21", .data = &mcp47fvb21_chip_features },
-+	{ .compatible = "microchip,mcp47fvb22", .data = &mcp47fvb22_chip_features },
-+	{ .compatible = "microchip,mcp47fvb24", .data = &mcp47fvb24_chip_features },
-+	{ .compatible = "microchip,mcp47fvb28", .data = &mcp47fvb28_chip_features },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, mcp47feb02_of_match);
-+
-+static struct i2c_driver mcp47feb02_driver = {
-+	.driver = {
-+		.name	= "mcp47feb02",
-+		.of_match_table = mcp47feb02_of_match,
-+		.pm	= pm_sleep_ptr(&mcp47feb02_pm_ops),
-+	},
-+	.probe		= mcp47feb02_probe,
-+	.id_table	= mcp47feb02_id,
-+};
-+module_i2c_driver(mcp47feb02_driver);
-+
-+MODULE_AUTHOR("Ariana Lazar <ariana.lazar@microchip.com>");
-+MODULE_DESCRIPTION("IIO driver for MCP47FEB02 Multi-Channel DAC with I2C interface");
-+MODULE_LICENSE("GPL");
+ .../bindings/usb/genesys,gl850g.yaml          |   1 +
+ arch/arm64/boot/dts/qcom/lemans-evk.dts       | 167 +++++++++++++++++-
+ drivers/usb/misc/onboard_usb_dev.c            |   1 +
+ drivers/usb/misc/onboard_usb_dev.h            |   1 +
+ 4 files changed, 166 insertions(+), 4 deletions(-)
 
 -- 
-2.43.0
+2.34.1
 
 
