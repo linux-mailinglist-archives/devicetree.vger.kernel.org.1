@@ -1,80 +1,80 @@
-Return-Path: <devicetree+bounces-246906-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246907-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD104CC14B4
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 08:25:12 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D052CC14C9
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 08:27:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8DA643007EEF
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 07:21:35 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 2D9A6302D4D5
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 07:27:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38BAE30EF80;
-	Tue, 16 Dec 2025 07:21:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E36533A714;
+	Tue, 16 Dec 2025 07:27:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DuU7B8mX"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lm5xSb2X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51E022BE7BE
-	for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 07:21:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2863E33A6EF
+	for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 07:27:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765869694; cv=none; b=nIaM/vpQo4zKbCLrOLyyaPenEREjhREjKQl2B/TiUrj4iK2iBo8hNzzdTZT1tKazPo1XzRyCRfc/dafy5jEIFy8MFBaKUniFeKtvn1KHkikqjtBVNeykuYHg0MkzsHZQvM8pBjrw5TBloRiP+jGIVLqfPdNiV5e4ucTjhzfZ6Xk=
+	t=1765870041; cv=none; b=oVohfX1woxCvHPTxMcKreTi7V0hDKhAWeS4g7v4wcNa0Eez/gt+HxoRp4YvsMcWkGNqPtii/qP4Z8tLgLjxhq/fBs5h2tau4vVFDbyThkX2bmyfNGGsvTJoFYgBFovDTciA3ucsFId2Lhv2gWeW2fS6b2PqaI1i4MzL1UqTWjeY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765869694; c=relaxed/simple;
-	bh=G5CtVkCS+s6XV5UMl94LB7FGabE300CSqt8QE5xdzLs=;
+	s=arc-20240116; t=1765870041; c=relaxed/simple;
+	bh=0kPUYHQ/G4RfpscPzI7pr0OmdhWbcBqqBUxeWAMHLZc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EMaLwDVkhAHu/s9I/mqJ82FLVH5f87MtfTbKtq9cdFo7KlpbsW3FEkWeQViRji7XcLZiIIG2ZGq7f2d7DR/QAxiKpRrMBmFEOzhBRlgiGk6ghgsFMHjs8quBfTaRVGhCiCiqMHHVpFkroAhCA2Ti1y/hVKP8piG3kU/ZlqQBTc0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DuU7B8mX; arc=none smtp.client-ip=209.85.208.177
+	 In-Reply-To:Content-Type; b=Ai+tsPUXc/rZRcMPwZPerbhWW6j7fQKS5DqoyxM4gvuU797GoHwcwqkTVPsLNAJl+R0f82Yr97aPHbcKqYGs1+GiFSRtV39kY0tgUJxSYZ5lfL76Tx/8GnqjgFLD7RoAI3j7TrZR7D8xFOf+nn4m5Fc/RzGgoNlAimYjl1PANik=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lm5xSb2X; arc=none smtp.client-ip=209.85.214.175
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-37a33bd356fso3578331fa.2
-        for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 23:21:29 -0800 (PST)
+Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-2a12ed4d205so7866815ad.0
+        for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 23:27:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1765869687; x=1766474487; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1765870037; x=1766474837; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=j2DcE5/95zKMGcm5PK6kvg2lmrYchM0TUglmEw2Vw9w=;
-        b=DuU7B8mXhje00U2x/Hey97mT6ZarjTVvzpPOY8pTEmvlhYFEbpSMCLCdN+ag4R9D6j
-         4VSYNYpyAVyh+AEwhHDpXBM+EVzo4/RUM3T/FqA9/8W7W4et6YFiTGDf1afMR3/det7K
-         7ihGlfeXZtVt3vXOFCbNSyA2wX78r08ZyOnMIrWjuWFbxm+TB003SJojYTRVvQ82bEqw
-         OaewxFbu8RFh7LDMATCbXntbV4QJa5cEdpPScsI0dYiIUmjf9O8+t8BBJykk633BxjG1
-         haKmgjHnKdd6S1RxDm/E6Lzj2cinWY35cCcWzP1fpMiohKE2EHaMEwj6Rvu1664Mkgs6
-         hkWA==
+        bh=PJCA2xXmtdABe9cuOOw6HKVAFYxYWKkv6zuIQkQSiJk=;
+        b=lm5xSb2XbgVJJua1CVQR22c9ySMunRfdv1obZuP3q9tqFUszoVK2AI81SnQikH6oQo
+         MtZz3tXiWDkspnAJG9pRyQ4Ltm06lq4i0Y/1r6nrQ7n4NUfmCokCI9OJPNpEk+hVlTjr
+         XtN9sbaOTK5KT0dqsURNXid7bpMHi3fCUu0lY49pRKjE2znj9nJwumsy+1PDrz2nnb/l
+         4qpvGvPntnl1xo+o7Y4hi81Lvd+3SOYfrOEWvRsh6zm87jsFXDWgQIMlAfslkwc275NP
+         L8+hfzcADz4BBx0QSc8lGEPh4F8coTr0wJC7uaehXSjP/n37CM9ALb0Izpzc84CUHXKo
+         sm/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765869687; x=1766474487;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1765870037; x=1766474837;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=j2DcE5/95zKMGcm5PK6kvg2lmrYchM0TUglmEw2Vw9w=;
-        b=O0ayNexn3aux2DhzZqM+nleGYa2U+4uz14YfShDnWgfAok0rt7T07mfHwD4k7LsCwr
-         3qaXWY46IqLmxxrEhzxhXgwTArdZaBuq0D4bmwd3hEBbf8tSJALrZFdkj+Qb2nE1Wn2k
-         WVR6oce1YVE6FSaZ+j00vLS/tzmCw8/rhruaFTE9UwmLH0iwViNoz6WWkG6aK84wtpO1
-         mPx95/e+Sn8dTf3UkqP5WYLRe1jzvRDM6xXrNiA8Xmthpib53SKKJPhukXKZpfVvp+e5
-         D2d980pYqnh/NsxWw6jGJaNMhqbAu6n5s9vzXiFL6oi1vK476epW5sP5ZqOmof2PhBhe
-         30rQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUz1qka1fhTzRBtj8BQ590gSVUCNJUsPKE5EqjO5rUfN7q5HMP6K0/TG3sOpDPZ72EILrLNppf4d6zH@vger.kernel.org
-X-Gm-Message-State: AOJu0YxSiJbCLktfvQX2RkrWFJuXngTdy8WuBb/frbGWaziEdSESRif1
-	Ev0BzkxZKjts67o0eOKDcvxBtLpjOmsddI3mH/AEJbYhIpJIC27lXzNFY3tpqI6gU4A=
-X-Gm-Gg: AY/fxX7KMCQ+VBbmlZlVQapj2CV3+H75Ca9Fr6zSRycJintwiNiIvHhf6HSDIV+0uwI
-	rcEYeu7otQGAJu6W1ILyTu18dAheMTFArOmGfDjXnsTRP1cA4hH0R4IV/gFF8MyzBm0xiNR/trN
-	e1BYDMloboU2Cy8X/CbUITJuVev5nwaZ5zcOq1zm1P/SVdH9XYijPtW8owWIJ7EQZ/1KJucGzeG
-	OhN0pSpjg/YKg2m64n646JwQnJ7yT0fl4GJq9iMXX85el6k3R6tTG9gNgy85Feq6rLwPLFCVx/W
-	FUS25QsvUHLHjniKAUHuwnUDD+4tdv9TOo+xw17RAwGRB5dG5JX36L13dhFcOoYr1RvKKDSXDIC
-	lyjR6dQlNe4kNBs8irv//bPDyptdijQ5Cyv8JPBA632xQU+Cqa/ybpotK8S/XdAtz2n/dOc5z1B
-	xgRBcc4YLhMxLPnN/QjiO8+/gi4gjjJNnSewMnqUeemkcGxEGIwzIu8FrdjF3lzC20kQ==
-X-Google-Smtp-Source: AGHT+IHNMgsgp9u2yPWPCiPcD2bTZmOe3omll5Q5NDvnxjcWG7cZCuUSmQe6KNVWP+5AylmWofEkEg==
-X-Received: by 2002:a05:6512:3d1b:b0:597:d7d6:398d with SMTP id 2adb3069b0e04-598faa01850mr2816802e87.2.1765869687301;
-        Mon, 15 Dec 2025 23:21:27 -0800 (PST)
-Received: from [192.168.1.100] (91-159-24-186.elisa-laajakaista.fi. [91.159.24.186])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5990da79110sm613437e87.101.2025.12.15.23.21.25
+        bh=PJCA2xXmtdABe9cuOOw6HKVAFYxYWKkv6zuIQkQSiJk=;
+        b=RhrbYThR9VFLqNpioMdubEGL+vzdXlyMGkosJk5W4SmV+F5b2ueYYIblKIl8+cx3cy
+         Wi3q9DJj1kNFrXA/0z2mX8LlwX1Jr6a1fFybQQW4sL46FykLUUNV1Kc+a/lfW2MQh1WL
+         Gv//8WjAxaM6JVZ3z5RbbUk6PLb6JlXf4e7gXowkdIHTTdSv97B+E+WJso4zu/EGmpR9
+         8ujrh1q/vYjpm47bCOeJhPaL4GqOy/npBeY0cDqrLlT2fhjqz3YwULC218DeG0OaOH9d
+         xD617DKpLQOMvrlA+VCOlknHUAANvNe9vrq31nzB/rVEONJU0zuE+qigdW/15bvkcWAT
+         tkFA==
+X-Forwarded-Encrypted: i=1; AJvYcCXGpBh4R7hPEsHGUruzhKhtn+/a1oRlh/xeKHQl0rdfeWZtThDNeX8wnxv30rZz+52bRyIXAdrV1bOy@vger.kernel.org
+X-Gm-Message-State: AOJu0YwThEavqC4uTC3g37XHQtl0ckmg7HyoUzZ+OwioDYwfo3F0CrKO
+	pEP6IyOtX3GwwetgNZdTVQZiAQ3Ti86pK7K4XmgOdGqC6N0jCCeMxF4jylztXLAfaEw=
+X-Gm-Gg: AY/fxX6TnCUwKLINsfc5VYw1RzXHNOuNdk77a7GvI9QWzpAwW+yhMz8w14Nu06OPO18
+	3hNCQi4KIbese1bZ8UIwC73kJeNue6+EEH4qPp7n9FNt9mIMnsVaKpzlGuEKE5Fssz/Q/JKNbea
+	YYQC4L6LPXnVAKwA1/PIzryAP559LBCzX8UGJht4E7D1ythhTKhzdmlUcUr7dzd6uZPVC7T04fx
+	3osl/SGDCVtAI8+pcHVriXmPey+zrBnAjha1BcYzPkmIPZn8hKiqvz0sV05rjt2Z3sO4IegE42m
+	dWlWcCa2FIRfGLToxSKUTFZkE2Y4P7Gm23O8cFL7Y7Xy458iVuA6BeWBMlGxQKvPBiKnSgPvZgR
+	5qnEhboYlZvw5lqhlbs2CYrMzWuqnai+shTa1rSc3lajWDsl1mIiHFDPqV3nxxCgE9+fuKSFcIj
+	XuLVHlhsBbq6rJBlVbzWBe0QCknM14GZ37yQyvohmMQ4VD62XsoE4ytw==
+X-Google-Smtp-Source: AGHT+IG0XHPlxrZ19+Thmc35PPwHSeilDW9jn34WiJoQPAtDXf3ILNz55k3pKMcPVzcVte7yg4mphg==
+X-Received: by 2002:a17:902:ea0b:b0:297:dabf:9900 with SMTP id d9443c01a7336-29f23bde313mr144794935ad.0.1765870036820;
+        Mon, 15 Dec 2025 23:27:16 -0800 (PST)
+Received: from [192.168.10.197] (14-201-17-74.static.tpgi.com.au. [14.201.17.74])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29ee9b36a80sm155735495ad.19.2025.12.15.23.27.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Dec 2025 23:21:26 -0800 (PST)
-Message-ID: <87815e05-737a-4051-b139-499f388cc144@linaro.org>
-Date: Tue, 16 Dec 2025 09:21:24 +0200
+        Mon, 15 Dec 2025 23:27:16 -0800 (PST)
+Message-ID: <93297eb0-1ad4-40ba-9438-ac02aa6b1d6b@linaro.org>
+Date: Tue, 16 Dec 2025 09:27:03 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,68 +82,186 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 3/5] arm64: dts: qcom: monaco: Add camera MCLK pinctrl
-Content-Language: ru-RU
-To: Nihal Kumar Gupta <quic_nihalkum@quicinc.com>,
- bryan.odonoghue@linaro.org, mchehab@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, andersson@kernel.org,
- konradybcio@kernel.org, hverkuil-cisco@xs4all.nl,
- cros-qcom-dts-watchers@chromium.org, catalin.marinas@arm.com, will@kernel.org
-Cc: linux-arm-kernel@lists.infradead.org, quic_svankada@quicinc.com,
- linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20251216062223.2474216-1-quic_nihalkum@quicinc.com>
- <20251216062223.2474216-4-quic_nihalkum@quicinc.com>
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <20251216062223.2474216-4-quic_nihalkum@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Subject: Re: [PATCH 00/26] Introduce meminspect
+To: Randy Dunlap <rdunlap@infradead.org>, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-mm@kvack.org, tglx@linutronix.de,
+ andersson@kernel.org, pmladek@suse.com, corbet@lwn.net, david@redhat.com,
+ mhocko@suse.com, linux-debuggers@vger.kernel.org,
+ "kees@kernel.org" <kees@kernel.org>
+Cc: tudor.ambarus@linaro.org, mukesh.ojha@oss.qualcomm.com,
+ linux-arm-kernel@lists.infradead.org, linux-hardening@vger.kernel.org,
+ jonechou@google.com, rostedt@goodmis.org, linux-doc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+ linux-arch@vger.kernel.org, tony.luck@intel.com, kees@kernel.org,
+ Trilok Soni <tsoni@quicinc.com>, Kaushal Kumar <kaushalk@qti.qualcomm.com>,
+ Shiraz Hashim <shashim@qti.qualcomm.com>,
+ Peter Griffin <peter.griffin@linaro.org>, stephen.s.brennan@oracle.com,
+ Will McVicker <willmcvicker@google.com>,
+ "stefan.schmidt@linaro.org" <stefan.schmidt@linaro.org>
+References: <20251119154427.1033475-1-eugen.hristev@linaro.org>
+ <bf00eec5-e9fe-41df-b758-7601815b24a0@linaro.org>
+ <5903a8e1-71c6-4546-ac50-35effa078dda@infradead.org>
+ <c3db6ccd-dfc7-4a6a-82b7-3d615f8cab4f@linaro.org>
+ <b74aef93-9138-413a-8327-36c746d67e10@infradead.org>
+ <93682055-4a6d-4098-b74f-afef735d1699@infradead.org>
+From: Eugen Hristev <eugen.hristev@linaro.org>
+Content-Language: en-US
+In-Reply-To: <93682055-4a6d-4098-b74f-afef735d1699@infradead.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 12/16/25 08:22, Nihal Kumar Gupta wrote:
-> Define pinctrl definitions to enable camera master clocks on Monaco.
-> 
-> Signed-off-by: Nihal Kumar Gupta <quic_nihalkum@quicinc.com>
-> Signed-off-by: Vikram Sharma <quic_vikramsa@quicinc.com>
-> ---
->   arch/arm64/boot/dts/qcom/monaco.dtsi | 21 +++++++++++++++++++++
->   1 file changed, 21 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/monaco.dtsi b/arch/arm64/boot/dts/qcom/monaco.dtsi
-> index 4b2d8a449b00..ace09239d167 100644
-> --- a/arch/arm64/boot/dts/qcom/monaco.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/monaco.dtsi
-> @@ -5182,6 +5182,27 @@ tlmm: pinctrl@f100000 {
->   			#interrupt-cells = <2>;
->   			wakeup-parent = <&pdc>;
->   
-> +			cam0_default: cam0-default-state {
-> +				pins = "gpio67";
-> +				function = "cam_mclk";
-> +				drive-strength = <2>;
-> +				bias-disable;
-> +			};
-> +
-> +			cam1_default: cam1-default-state {
-> +				pins = "gpio68";
-> +				function = "cam_mclk";
-> +				drive-strength = <2>;
-> +				bias-disable;
-> +			};
-> +
-> +			cam2_default: cam2-default-state {
-> +				pins = "gpio69";
-> +				function = "cam_mclk";
-> +				drive-strength = <2>;
-> +				bias-disable;
-> +			};
-> +
->   			cci0_0_default: cci0-0-default-state {
->   				sda-pins {
->   					pins = "gpio57";
 
-Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
 
--- 
-Best wishes,
-Vladimir
+On 12/16/25 09:00, Randy Dunlap wrote:
+> 
+> 
+> On 12/15/25 10:54 PM, Randy Dunlap wrote:
+>>
+>>
+>> On 12/12/25 11:22 PM, Eugen Hristev wrote:
+>>>
+>>>
+>>> On 12/13/25 08:57, Randy Dunlap wrote:
+>>>> Hi,
+>>>>
+>>>> On 12/12/25 10:48 PM, Eugen Hristev wrote:
+>>>>>
+>>>>>
+>>>>> On 11/19/25 17:44, Eugen Hristev wrote:
+>>>>>> meminspect is a mechanism which allows the kernel to mark specific memory
+>>>>>> areas for memory dumping or specific inspection, statistics, usage.
+>>>>>> Once regions are marked, meminspect keeps an internal list with the regions
+>>>>>> in a dedicated table.
+>>>>>
+>>>>> [...]
+>>>>>
+>>>>>
+>>>>>> I will present this version at Plumbers conference in Tokyo on December 13th:
+>>>>>> https://lpc.events/event/19/contributions/2080/
+>>>>>> I am eager to discuss it there face to face.
+>>>>>
+>>>>> Summary of the discussions at LPC talk on Dec 13th:
+>>>>>
+>>>>> One main idea on the static variables annotation was to do some linker
+>>>>> magic, to create a list of variables in the tree, that would be parsed
+>>>>> by some script, the addresses and sizes would be then stored into the
+>>>>> dedicated section at the script level, without having any C code change.
+>>>>> Pros: no C code change, Cons: it would be hidden/masked from the code,
+>>>>> easy to miss out, which might lead to people's variables being annotated
+>>>>> without them knowing
+>>>>>
+>>>>> Another idea was to have variables directly stored in a dedicated
+>>>>> section which would be added to the table.
+>>>>> e.g. static int __attribute(section (...)) nr_irqs;
+>>>>> Pros: no more meminspect section Cons: have to keep all interesting
+>>>>> variables in a separate section, which might not be okay for everyone.
+>>>>>
+>>>>> On dynamic memory, the memblock flag marking did not receive any obvious
+>>>>> NAKs.
+>>>>>
+>>>>> On dynamic memory that is bigger in size than one page, as the table
+>>>>> entries are registered by virtual address, this would be non-contiguous
+>>>>> in physical memory. How is this solved?
+>>>>> -> At the moment it's left for the consumer drivers to handle this
+>>>>> situation. If the region is a VA and the size > PAGE_SIZE, then the
+>>>>> driver needs to handle the way it handles it. Maybe the driver that
+>>>>> parses the entry needs to convert it into multiple contiguous entries,
+>>>>> or just have virtual address is enough. The inspection table does not
+>>>>> enforce or limit the entries to contiguous entries only.
+>>>>>
+>>>>> On the traverse/notifier system, the implementation did not receive any
+>>>>> obvious NAKs
+>>>>>
+>>>>> General comments:
+>>>>>
+>>>>> Trilok Soni from Qualcomm mentioned they will be using this into their
+>>>>> software deliveries in production.
+>>>>>
+>>>>> Someone suggested to have some mechanism to block specific data from
+>>>>> being added to the inspection table as being sensitive non-inspectable
+>>>>> data.
+>>>>> [Eugen]: Still have to figure out how that could be done. Stuff is not
+>>>>> being added to the table by default.
+>>>>>
+>>>>> Another comment was about what use case there is in mind, is this for
+>>>>> servers, or for confidential computing, because each different use case
+>>>>> might have different requirements, like ignoring some regions is an
+>>>>> option in one case, but bloating the table in another case might not be
+>>>>> fine.
+>>>>> [Eugen]: The meminspect scenario should cover all cases and not be too
+>>>>> specific. If it is generic enough and customizable enough to care for
+>>>>> everyone's needs then I consider it being a success. It should not
+>>>>> specialize in neither of these two different cases, but rather be
+>>>>> tailored by each use case to provide the mandatory requirements for that
+>>>>> case.
+>>>>>
+>>>>> Another comment mentioned that this usecase does not apply to many
+>>>>> people due to firmware or specific hardware needed.
+>>>>> [Eugen]: one interesting proposed usecase is to have a pstore
+>>>>> driver/implementation that would traverse the inspection table at panic
+>>>>> handler time, then gather data from there to store in the pstore
+>>>>> (ramoops, mtdoops or whatever backend) and have it available to the
+>>>>> userspace after reboot. This would be a nice use case that does not
+>>>>> require firmware nor specific hardware, just pstore backend support.
+>>>>>
+>>>>> Ending note was whether this implementation is going in a good direction
+>>>>> and what would be the way to having it moving upstream.
+>>>>>
+>>>>> Thanks everyone who attended and came up with ideas and comments.
+>>>>> There are a few comments which I may have missed, so please feel free to
+>>>>> reply to this email to start a discussion thread on the topic you are
+>>>>> interested in.
+>>>>>
+>>>>> Eugen
+>>>>>
+>>>>
+>>>> Maybe you or someone else has already mentioned this. If so, sorry I missed it.
+>>>>
+>>>> How does this compare or contrast to VMCOREINFO?
+>>>>
+>>>> thanks.
+>>>
+>>> This inspection table could be created in an VMCOREINFO way, the patch
+>>> series here[1] is something that would fit it best .
+>>>
+>>> The drawbacks are :
+>>> some static variables have to be registered to VMCOREINFO in their file
+>>> of residence. This means including vmcoreinfo header and adding
+>>> functions/code there, and everywhere that would be needed , or , the
+>>> variables have to be un-static'ed , which is a no-go.
+>>> This received more negative opinions on that particular patch series.
+>>> The annotation idea seemed cleaner and simpler, and more generic.
+>>>
+>>> We could add more and more entries to the vmcoreinfo table, but that
+>>> would mean expanding it a lot, which it would maybe defy its purpose,
+>>> and be getting too big, especially for the cases where custom drivers
+>>> would like to register data.
+>>>
+>>> How I see it, is that maybe the vmcoreinfo init function, could also
+>>> parse the inspection table and create more entries if that is needed.
+>>> So somehow memory inspection is a superset or generalization , while
+>>> VMCOREINFO is a more particular use case that would fit here.
+>>>
+>>> Do you think of some better way to integrate the meminspect table into
+>>> VMCOREINFO ?
+>>
+>> No, I just wanted to make sure that you or someone had looked into that.
+>> Thanks for your summary.
+> 
+> Although you copied Stephen Brennan on this, I think it would be a good idea
+> to copy the linux-debuggers@vger.kernel.org mailing list also to see if
+> there are any other comments about it. [now done]
+
+Thanks . I copied Stephen because we had a discussion at LPC at his talk
+and he also attended my talk.
+
+I also had a nice talk with Kees Cook and he was very interested in
+having pstore as a backend for meminspect. (copied now as well)
+
+> 
+>>> [1]
+>>> https://lore.kernel.org/all/20250912150855.2901211-1-eugen.hristev@linaro.org/
+>>
+> 
+
 
