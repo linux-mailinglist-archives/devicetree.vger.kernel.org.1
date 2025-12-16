@@ -1,149 +1,109 @@
-Return-Path: <devicetree+bounces-247154-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247155-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8023ACC4E6A
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 19:33:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 44900CC4ED3
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 19:39:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 772A43056563
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 18:30:18 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E637D3042811
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 18:38:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 010ED33B958;
-	Tue, 16 Dec 2025 18:30:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0B3B32D451;
+	Tue, 16 Dec 2025 18:38:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Cwrm8Sld"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eWKlZqzU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEBE52BFC60
-	for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 18:30:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60ECE8634C;
+	Tue, 16 Dec 2025 18:38:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765909817; cv=none; b=WuAw5C+nW9UjnC8Hd4C400egcXh+AXrlPtiZ3CNFWfZ+f4x3TeMGQqibAfY89ZwIn4tEJP24uulxUcMyOrAt07MvvOQaX104rbuvdFXaRVxw0/vAoIes4jJFFnYE/wF7EJkqyJOW+XinGxZp0C5t1JrCtx+5v+8acV3ulw9LCJ0=
+	t=1765910292; cv=none; b=Ikm65lej3kTTVHtaha1cc64FSYc1OodqGzfHSk0x+4egVZLQzT7YsUdX7+7KGxA1P0lSq4ytXkfP64oqRojBBbWkMCWL6CgZOGAMFCM2kLy9oNjjuCAmPudY7FoVD+M8CCE8HBNFi38bU3V8YvE+Hwq7iw+yMzuDTOXP+JYCaro=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765909817; c=relaxed/simple;
-	bh=/QX1+siljLhXuETEqMly+imYqZN+VvoqR7nTfdr+yXo=;
+	s=arc-20240116; t=1765910292; c=relaxed/simple;
+	bh=uUu6H5TYAhD221JmNAoBMSiDEB9CQuEi4+EAEOm/oMQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=idGkEgi0bIOnxW0i1Xs7YmByjSNjmCfBdFS5mO5St+OV3n2Dw/LS73L2G38Rg2lvkeRRf1Mkyuyh6J7J3kwdQCUt0E0cq/MVBKXe6wlTGGqKtfoV9wJ3Y46T3c6JWGQsa5CwTEmdJmnLLNJRZfkS1HLawE4A6+jGr41U+38ppRo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Cwrm8Sld; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-477632d9326so30062725e9.1
-        for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 10:30:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1765909813; x=1766514613; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=O2qwyKoiSE4y0S7R/sYbAU8Ep9J/DNr0jxtlpXQRjF8=;
-        b=Cwrm8SldF2gSQUsvPOPiroVHw61dCrfsACHy8I854U4ByeuCe60bSLFKsc715Jm+oG
-         P4A/4dOns7Pj9NJ+fbIHhqrQTEdfZukbFsKXH8XddQy69nBFE0omto7hgKhr4U7P/fx7
-         tAIGTCrwqBkUgosO4X9edB9L0qmoBNXOokCss0f2CjJSD1USbncYOVEf86I8gcqjkkUX
-         W/TbST1mjQPf3ic9J4e6dOyuccN+EEh6m7kN84EAhxg+sDtchs1CkuINSP9OncElWdpH
-         caFu9TBTmw4nuVomtNIVE+shYlFnCFeWwXir1yXWhV0bYgV0lZIGXHvOnnbS1syb7Pix
-         8Qvg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765909813; x=1766514613;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=O2qwyKoiSE4y0S7R/sYbAU8Ep9J/DNr0jxtlpXQRjF8=;
-        b=EzYbr2y/G3rdibcTRAxn94leuXey7/W3xzw66JflitVJgjOmJs5YbDzGD5ePE8PSJb
-         UVYKBnjTKKUYe2I4b+GlimQxElxtpPy5JwdgizNQ1D5zxSM4ocXwbPPmf4tmtcidCMzm
-         TAl9TVMODqW8wHdal00BAd1U2JVkMLjJ3Tzkcy7XjOxFFq3yP0D2VSECy3qQnZsHAn6h
-         XR8WBkKl/HTdp2PeKvCWH5z3kFNNMZWVaeXfwRdQqs+CPqS6tprnXSpv02A8yBPzI+Cx
-         m4FWtTuVKU0gTFIP2NKfJgyp0ePWG36mXP4iJd/3a48nT3KNyhJbAYiBmvu6150KxQ8s
-         VPcw==
-X-Forwarded-Encrypted: i=1; AJvYcCWiL8U0gtwLGQu/piXLyIVOROFc3cnqpvbamNgALYZEkMlFnGcSd/kGMiWzCAdH6K86JTzQnda7psDQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YzSZH+HjHqe7V46aVJ8/Q/gBg/dwHwGPJmc87Ry+qXS8LgYEyT0
-	brqTUd6o81zRe79DGK5h2cFNnkz4jjFOF1jWDEhaRL37PTVZGf8KRuGTUqri1eL0nKA=
-X-Gm-Gg: AY/fxX6emiz0JmTbTYtKdzqc5qr0qUt5XQM6QqhMriQ526QmInTD+bImRoKi9TtL1XQ
-	u+ZN6HPT2ZqR7DCfTG27wEAk6DkquJfUzl8dEa2t/k9cC/as4pVx70g2FipsUa8V1yPh3O3lsGK
-	JLhHbH3C4rGXK19NXCu+/zLgERs5Jo8FkAWkfgOGJMOCjHuVXGVSedhlx9pkCRFP51QVovTgXrm
-	CRvZ9nk/ssKfEdsYkeLDsGs8K1SEcm2AlLxe9fo0bxcpnVq+SgWQHt+paBTqp8Znl109z9xxZhs
-	dkqkiPSYqEQsKcZ5gr1XT1cMxSNg5D+cvBIocqmsxV0DXO9PSaNxH4SwFyO1/Xocfta+Js3xPO/
-	/ze5Wz5rdOliH2pzZxqek6mLdfglE09N1Wxy2FWEaKVOT/3ZmrDK/SsBCb2/Q4ECppRZWB+TP+d
-	kzuthk1FP3sx+5e2DW
-X-Google-Smtp-Source: AGHT+IF+nY/k4C/6P18u9JysznJj/Z5B3Y6A+1aqCm2cbh7pc65+FeNcv1ODeP4J/8ke38+irCHPGg==
-X-Received: by 2002:a05:600c:45c9:b0:479:3a87:2eeb with SMTP id 5b1f17b1804b1-47a8f91515amr130008935e9.37.1765909812657;
-        Tue, 16 Dec 2025 10:30:12 -0800 (PST)
-Received: from localhost ([196.207.164.177])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47bdc23c2b0sm2187435e9.15.2025.12.16.10.30.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Dec 2025 10:30:12 -0800 (PST)
-Date: Tue, 16 Dec 2025 21:30:08 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Chester Lin <chester62515@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"David S. Miller" <davem@davemloft.net>, devicetree@vger.kernel.org,
-	Eric Dumazet <edumazet@google.com>,
-	Fabio Estevam <festevam@gmail.com>,
-	Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
-	imx@lists.linux.dev, Jakub Kicinski <kuba@kernel.org>,
-	Jan Petrous <jan.petrous@oss.nxp.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Lee Jones <lee@kernel.org>, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	Matthias Brugger <mbrugger@suse.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, netdev@vger.kernel.org,
-	NXP S32 Linux Team <s32@nxp.com>, Paolo Abeni <pabeni@redhat.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>, linaro-s32@linaro.org
-Subject: Re: [PATCH v2 0/4] s32g: Use a syscon for GPR
-Message-ID: <aUGlMP7J19L_AHF2@stanley.mountain>
-References: <cover.1765806521.git.dan.carpenter@linaro.org>
- <aUAvwRmIZBC0W6ql@lizhi-Precision-Tower-5810>
- <aUBUkuLf7NHtLSl1@stanley.mountain>
- <aUBha2/xiZsIF/o5@lizhi-Precision-Tower-5810>
- <aUBrV2_Iv4oTPkC4@stanley.mountain>
- <aUB4pFEwmMBzW52T@lizhi-Precision-Tower-5810>
- <aUEQkuzSZXFs5nqr@stanley.mountain>
- <aUFvvmDUai9QrhZ2@lizhi-Precision-Tower-5810>
+	 Content-Type:Content-Disposition:In-Reply-To; b=TgFF86nC0r2KG7kJWRBbSan5pkrnwCGH8nju+hZq13b66EPgknMgYsMOxKzlKDd2IHkC+VcjV/8kolsiH8jAHBZl38TTWH38gDR+OXgrZIkbo/P/9gwIYoBkcxGA9qoWh1ylKDLWztFdHCa1Pfj6K5IQ1kY+kSyDWwitUizQfKg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eWKlZqzU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 073EFC4CEFB;
+	Tue, 16 Dec 2025 18:38:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1765910291;
+	bh=uUu6H5TYAhD221JmNAoBMSiDEB9CQuEi4+EAEOm/oMQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=eWKlZqzUJnT2BfO9u3DodIh4+Wj1NVasmxtxn1ivfXxFfaAzXVe1bFTOXFUIKQe71
+	 VB6VqPjTAneOcWmZ3napgB1N3NLQLu4i3tvaqbPOthdDABHOr0WKI63MKoLfSdtc7M
+	 1TEnnHtzsaXe6M1aFpkDmMjLq+d4rAafLAkJzEm8Fwv1Z/VezYQEqoyfycVEsSOJ8M
+	 tQwuoIj5p/+V1nRvBL+adGM1cH0uej5DlH/Uujoz+sy8hN8xVb1X0gLEQaJ/H5wNCn
+	 eTaHYtJPJHX/LObWi9uFOscvXUjaHDOg/LUPkPvEKUTS2IOyMSlpLAAeUiZZBlFZC1
+	 y9pH2riWjd+OA==
+Date: Tue, 16 Dec 2025 18:38:00 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Robert Marko <robert.marko@sartura.hr>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
+	claudiu.beznea@tuxon.dev, Steen.Hegelund@microchip.com,
+	daniel.machon@microchip.com, UNGLinuxDriver@microchip.com,
+	herbert@gondor.apana.org.au, davem@davemloft.net, vkoul@kernel.org,
+	linux@roeck-us.net, andi.shyti@kernel.org, lee@kernel.org,
+	andrew+netdev@lunn.ch, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, linusw@kernel.org, olivia@selenic.com,
+	radu_nicolae.pirea@upb.ro, richard.genoud@bootlin.com,
+	gregkh@linuxfoundation.org, jirislaby@kernel.org,
+	mturquette@baylibre.com, sboyd@kernel.org, richardcochran@gmail.com,
+	wsa+renesas@sang-engineering.com, romain.sioen@microchip.com,
+	Ryan.Wanner@microchip.com, lars.povlsen@microchip.com,
+	tudor.ambarus@linaro.org, charan.pedumuru@microchip.com,
+	kavyasree.kotagiri@microchip.com, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-crypto@vger.kernel.org, dmaengine@vger.kernel.org,
+	linux-hwmon@vger.kernel.org, linux-i2c@vger.kernel.org,
+	netdev@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-spi@vger.kernel.org, linux-serial@vger.kernel.org,
+	linux-usb@vger.kernel.org, linux-clk@vger.kernel.org,
+	mwalle@kernel.org, luka.perkov@sartura.hr
+Subject: Re: [PATCH v2 06/19] dt-bindings: mfd: atmel,sama5d2-flexcom: add
+ microchip,lan9691-flexcom
+Message-ID: <20251216-fantastic-ignore-d1e06f5b222b@spud>
+References: <20251215163820.1584926-1-robert.marko@sartura.hr>
+ <20251215163820.1584926-6-robert.marko@sartura.hr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="9ZFytLnJNcL8quyY"
+Content-Disposition: inline
+In-Reply-To: <20251215163820.1584926-6-robert.marko@sartura.hr>
+
+
+--9ZFytLnJNcL8quyY
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <aUFvvmDUai9QrhZ2@lizhi-Precision-Tower-5810>
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Dec 16, 2025 at 09:42:06AM -0500, Frank Li wrote:
-> > >
-> > > Why not implement standard phy interface,
-> > > phy_set_mode_ext(PHY_MODE_ETHERNET, RGMII);
-> > >
-> > > For example:  drivers/pci/controller/dwc/pci-imx6.c
-> > >
-> > > In legency platform, it use syscon to set some registers. It becomes mess
-> > > when more platform added.  And it becomes hard to convert because avoid
-> > > break compatibltiy now.
-> > >
-> > > It doesn't become worse since new platforms switched to use standard
-> > > inteface, (phy, reset ...).
-> > >
-> >
-> > This happens below that layer, this is just saying where the registers
-> > are found.  The GMAC_0_CTRL_STS is just one register in the GPR region,
-> > most of the others are unrelated to PHY.
-> 
-> The other register should work as other function's providor with mfd.
-> 
+On Mon, Dec 15, 2025 at 05:35:23PM +0100, Robert Marko wrote:
+> Add binding documentation for Microchip LAN969x.
+>=20
+> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
 
-Syscons are a really standard way to do register accesses.  The
-pci-imx6.c driver you mentioned earlier does it that way...  The only
-thing which my code does differently is I put the offset into the
-phandle, but that's not so unusual and it's arguably a cleaner way
-because now both the base address and offset are in the same file.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+pw-bot: not-applicable
 
-regards,
-dan carpenter
+--9ZFytLnJNcL8quyY
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaUGnCAAKCRB4tDGHoIJi
+0rulAQCH83EvFae7mxsfxlbl4ZzO5pUzpCq1+qXYzRQa3cWmMAD5AYxP7uMKIeQ5
+x+oTNJr64FUUjUes0W6yjNhHEwSXxgc=
+=UM+s
+-----END PGP SIGNATURE-----
+
+--9ZFytLnJNcL8quyY--
 
