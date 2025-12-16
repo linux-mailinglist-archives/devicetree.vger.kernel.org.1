@@ -1,137 +1,224 @@
-Return-Path: <devicetree+bounces-246937-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246938-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDB9FCC1984
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 09:36:21 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F1CCCC1954
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 09:32:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 63F3E30319A1
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 08:31:25 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 5C389300BAD6
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 08:32:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D509430F928;
-	Tue, 16 Dec 2025 08:31:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C482230FF20;
+	Tue, 16 Dec 2025 08:32:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dPUTvZsQ"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="Nw0Vvh+7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED5AF2E11BC
-	for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 08:31:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765873882; cv=none; b=QBIix5h7VjKXjWrIfGAx3eb+mFStDbXlQzemmnO1/3yHj+EN88gg9kMszduI33Bcw4pldkIwe2hvCYTye0/2Wt8y0FSGi9/6AFKsBHCAe0gjIruLSI2wgurz/YXwz4ppKxIcgxDpgQyBHknEpiGfZ88a//KHa1t5ShPcsZp3KDw=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765873882; c=relaxed/simple;
-	bh=Ne8lJ2W9R9L98LT3IXnbXQmyBQHpIK5exT1M5+MN3nc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=lf0QIoqryWFqAS74OtlPZWucF3vu21QOXH2dNHBclOiSKm/YD6Cr34WDKWuhpHvsaytI0DA7yvSn7sxa9Efrc2qDGIG7WJDB+V18NuM8N/6HOeXyEOZxkIv6HwQBIFbwMS3Pj7LfCDmUX0zLCNOjQsscqerXtw7YTtiSLmo7og0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dPUTvZsQ; arc=none smtp.client-ip=209.85.218.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-b734fcbf1e3so884294066b.3
-        for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 00:31:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1765873875; x=1766478675; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GQojXGe1Xon9EVHvdwzM1mIfwrJqJkUgQsQeeW7RD5g=;
-        b=dPUTvZsQe8fYWGyydhkf1cvyneHSrfKljJFuGuXcfWiuKNxU+LNiaWBih7LNQfAJzx
-         QrzOHzgL8hjUjRpxCOlPVReqy/IF8lD8hBOxM7DxoCsZLLwDuKcxrJhYoXSfFnHpnWLC
-         80s7AFuoZoYu0MBNrlNeiezqUyk+sib1FNkLjIuJQoUo+O8MmKuYbciVQ0QaQm7u43ay
-         xFqfTH4sOrzGmeM8TDToNFl0MziS3Rw+pWoSNO1kfpbHct4Tw+fAFRMWs09GRrI2hS8O
-         YHB8s/txHKzDBP0BGDr+GTbkRpPhVSn6E8BafnVyDakquuqPFYoA6KvxTBPbJC2cwaJs
-         BkrQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765873875; x=1766478675;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=GQojXGe1Xon9EVHvdwzM1mIfwrJqJkUgQsQeeW7RD5g=;
-        b=XX40WFjSS8UfJ6Jz6x8xg5IiQfAPyT56T/RLNGEWSyZ4kU3wLwft48z4q0zonkFv7u
-         K1CJhJiDk8TH+k30qD8fsKpUZR1U0ClwJQ0Gf+B+0r/OJXqo4dwCNCAmQd9d4mPBdq7g
-         7gwIlatQHEp7srf41FvwaqMNJGtCXubyQZBtRfdVxwXW9wWdPyZnXXdQe+S8mm+wYMhq
-         K0//6zrzDl0wvA8KCGqDQ+MfGgFtNEInjU3XldWmQBGLXG84TBI2bASCWzAW9REabHVz
-         pGkmiQyJPEp2oPiy6BZlUywOirBc1ikgUrH9Qxa2QL8dQAOUxSpjZE0zS4wcDt4ofY3b
-         oU1A==
-X-Forwarded-Encrypted: i=1; AJvYcCW8iDsHZkfOiT04ngdL6HdVHLjDcXbGKp1/aaaLxSa0JlqPQaE7i+cTF8eI7jYplRjkMBjnNajkg3RT@vger.kernel.org
-X-Gm-Message-State: AOJu0YzZP4ocx6m8z7QVj34rj8vT72LH4F7sZNqbQLsFmQVqOwJkh+Pd
-	7xkVhS6tntUQ5256cxPZ+RFPK34XPcyXvnguP2awalALSYuQxbKhF+WlKBtc2/jlaUP9a9X0a+J
-	BLDB9fp923OmTARtJLuN2rXj8P/nMIwI=
-X-Gm-Gg: AY/fxX5CpREcxfUfTa06w41jh2Xahqv90MsOeuYKkDDIyyKDgVMM4wOejabYiEnaoQQ
-	7GYLwNo59CZCDpNNiFwXj7h4Wm96JvzTwmQWelSDOD6SaccSSjf5fih61X7wJCJgNTDj9im5oLl
-	bHzqWGNQI56nfJD2HXjrijgzW9/a2QYwpvMR6cK4u/i+lABOdklBm4wGhEup4KmqXv9B0mPYCgQ
-	lnRCX65dsbIyEqrWNqmqGL8P6yRoABcdbyEvtQGxJH/jYUuIEHS1Myo0GSFL4IFMcePpG3Ntw==
-X-Google-Smtp-Source: AGHT+IF9oQk2FiXL5zw3SFPOMjxnMAfpDixNAE5HmYPi/w8LYep12XKMVrteyQ+sNlIsL0XbXIk47PaTSEnkkhrP/LE=
-X-Received: by 2002:a17:907:2dab:b0:b71:29f7:47dd with SMTP id
- a640c23a62f3a-b7d23a61d28mr1488792866b.46.1765873874874; Tue, 16 Dec 2025
- 00:31:14 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCCEE30EF6C;
+	Tue, 16 Dec 2025 08:32:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=185.132.182.106
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1765873966; cv=fail; b=PSz/nAgwx13ghLH2RMrxg462978SPxrDxIVttsmd5zblN94MqRsRFdDaLsyXZrBJ+KBDN6R5skkSj5FZmkNKAjKHpGwD8W0Lob9Z4YoMUnSIPOzbjxQJDDr+JN+zJVGwQ7iNInm5t2tLYj8TqQ3p0iOVG/WXM6A+afXqz3xBaao=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1765873966; c=relaxed/simple;
+	bh=qKRxNEGm00PWycgYDLltzWAHvqUkkIwUqvI2sSvWub4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=GnzjgRUS4ieFpSFeI4NW76Ox5cuKsdwyGarZNiAOmpb5tCBfgohtE3ygkrZkoxUmuXDkJPO39TnYW5K20UHNr0zlcztMzBNnXloWsvl4IuLAf3pP1vOToJu+fAxFDjdD4L+cCIEJrvKH2jiEFJ9u0CVd8ym3tN2pBQokQrES1Gw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=Nw0Vvh+7; arc=fail smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BG8Tw21959926;
+	Tue, 16 Dec 2025 09:32:27 +0100
+Received: from gvxpr05cu001.outbound.protection.outlook.com (mail-swedencentralazon11013050.outbound.protection.outlook.com [52.101.83.50])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 4b11dx98e0-1
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+	Tue, 16 Dec 2025 09:32:27 +0100 (CET)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=wsCXLxNab4e6ALKsenSkSMgfyzaKOckOwU7oOonZlol/AFeZ6bO8MzpTJ1asCT1VoJhlzsS6cQfwafzIFR+NM5ZQO4KwQuMv8z8fnyQ9+GkrE+CLGUSNkD0cjyqkGxpdOafexpYgYobAKj/CkdfVUhlwHrOAb5Kbi5B1vBqHjLrS6iYZTywItvRa3XsUnZhiAQYdm8LPpzKBSdksP0K5emkrrP0Z92R251n0QErW1WnmJ6KwVqPjclcHwF/CghPuz3vR84ij8tjJ+iZq/vmzGw/GLt4WJLPMXc81m5lAxdh9gRFaTgpRMAmriZH1H7JgBrKeMjI1dCazBZ59ErvOyQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=VIKj+Jq7PYV/kCHx7Ty7QLOqq6O+Bm+Gy+IzQxg9I4A=;
+ b=fVH7iahEU0Qov1wkd/+esBjYZqs5eZKW3FrjUXMW6iKKjCXBnzPKtiEl03+EHSPScjnkfOo086ZKlWTp3fT2yPIQ6kPfVcbwpTFSElIN9opucPmvGNIgOBPZAU/oxUn7daQSO8exuFbJ1xWT7QCc4gHEwNpck7NFF57FOgj7Yid51nMk5srSaapGt/sXP44rkoE9ZiIUv6gZ8SURoxBJLh+hhZGdPxd1IYueOdjwkM7gAJ2Ur3UXs/r4QaMUvx1sN599f4P9fktagIa7Q+2VeTVB4XspsBe9UgmYImyGOvuu+AwYegWJPMs8Gua5dvrc4dLugdB0qtXN5tR8kTCyZg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 164.130.1.60) smtp.rcpttodomain=kernel.org smtp.mailfrom=foss.st.com;
+ dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=VIKj+Jq7PYV/kCHx7Ty7QLOqq6O+Bm+Gy+IzQxg9I4A=;
+ b=Nw0Vvh+79u+DRTL+pXn0Mija/gGwcR7kUQKhIIQmilrtPUsRYiq95hw/zmoNy6FcV8cWQQWr7DihnYQfoYbZyQlzIGUXx51+xIxIZfY/d/0sgobhfH4NzTXQob8iuixHSHIRDicyXNl3zGV0i/lQKM4fAKbQXb9nm+rNyr3c+mZSjmR1R+yUbC9l92r+bv+blzpYPC25ploquZQRiEr9OupEvyLzajgEjEh11yQgAY+/r3jMmfr7tB/x5KZguQm42GZIfSIlAxy1yUSvTpu/mn/Wai73MbG1nnBMhZbIPTgXzYef38XGFL3c2YQoTI5xmk3eyWdKxWCwlK6czTW8Ng==
+Received: from DU6P191CA0011.EURP191.PROD.OUTLOOK.COM (2603:10a6:10:540::25)
+ by PRAPR10MB5347.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:102:299::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9412.13; Tue, 16 Dec
+ 2025 08:32:23 +0000
+Received: from DU2PEPF0001E9C4.eurprd03.prod.outlook.com
+ (2603:10a6:10:540:cafe::dd) by DU6P191CA0011.outlook.office365.com
+ (2603:10a6:10:540::25) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9412.13 via Frontend Transport; Tue,
+ 16 Dec 2025 08:32:17 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 164.130.1.60)
+ smtp.mailfrom=foss.st.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=none header.from=foss.st.com;
+Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
+ designate 164.130.1.60 as permitted sender) receiver=protection.outlook.com;
+ client-ip=164.130.1.60; helo=smtpO365.st.com;
+Received: from smtpO365.st.com (164.130.1.60) by
+ DU2PEPF0001E9C4.mail.protection.outlook.com (10.167.8.73) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9434.6 via Frontend Transport; Tue, 16 Dec 2025 08:32:23 +0000
+Received: from STKDAG1NODE2.st.com (10.75.128.133) by smtpO365.st.com
+ (10.250.44.72) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 16 Dec
+ 2025 09:33:01 +0100
+Received: from [10.48.87.4] (10.48.87.4) by STKDAG1NODE2.st.com
+ (10.75.128.133) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 16 Dec
+ 2025 09:32:16 +0100
+Message-ID: <81ec27d5-1839-4a8d-9b7e-08ac49335503@foss.st.com>
+Date: Tue, 16 Dec 2025 09:32:16 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1763018288.git.zhoubinbin@loongson.cn>
-In-Reply-To: <cover.1763018288.git.zhoubinbin@loongson.cn>
-From: Binbin Zhou <zhoubb.aaron@gmail.com>
-Date: Tue, 16 Dec 2025 16:31:03 +0800
-X-Gm-Features: AQt7F2oYbSmMbrluLzV8GzEoG22ADpKx58O5i82UYBt5JYEe8XjPc_KZEsh9Cl0
-Message-ID: <CAMpQs4+W+kLbbm2ELpLbZEFq0mK-x0ftLYJ+xd3MM1uDz+DUuA@mail.gmail.com>
-Subject: Re: [PATCH 0/2] i2c: Add Loongson-2K0300 I2C controller support
-To: Binbin Zhou <zhoubinbin@loongson.cn>
-Cc: Huacai Chen <chenhuacai@loongson.cn>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Andi Shyti <andi.shyti@kernel.org>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
-	linux-i2c@vger.kernel.org, Huacai Chen <chenhuacai@kernel.org>, 
-	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: bus: stm32mp25-rifsc: Allow 2 size cells
+To: "Rob Herring (Arm)" <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>
+CC: <devicetree@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20251215212700.3320634-1-robh@kernel.org>
+Content-Language: en-US
+From: Gatien CHEVALLIER <gatien.chevallier@foss.st.com>
+In-Reply-To: <20251215212700.3320634-1-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: STKCAS1NODE1.st.com (10.75.128.134) To STKDAG1NODE2.st.com
+ (10.75.128.133)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU2PEPF0001E9C4:EE_|PRAPR10MB5347:EE_
+X-MS-Office365-Filtering-Correlation-Id: a03f2bd5-79a0-4e4b-3dde-08de3c7da2b8
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|36860700013|82310400026|1800799024|7053199007;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?RWdqKy96QTVqak13MDJuVFo0Sm5nVWZ4OU0wb28zQTlHZGs2SHFabGladnBN?=
+ =?utf-8?B?WHE2UkNIUGJIL1oyK1p5Tk0xU0JicTVEVVV1MUFQSEx3a3pUNzhoY0FGZjNF?=
+ =?utf-8?B?ZExIaUpRK1MxWXFsYkVqVW1WMi9pZDBwalVXRUVXQnlZR2s1aHNzMUNiUnU1?=
+ =?utf-8?B?aDYzYk05eXhrbnlIa1hYb1g5ZFB0M1p1clJyc29SMXJEaEpucXpjM3M2SXNj?=
+ =?utf-8?B?VmZlaEJ5TkFUMWkrZmtoZDRWVUdmcXBIM3ZYUDY3WmZzVlVUOGwzQ0VzL2cv?=
+ =?utf-8?B?QmtYYnRZRkFoenRiZHZ3UjJRYk1vMEZ5ZzEvak5yOUdXSCtDdS93UjRIWThV?=
+ =?utf-8?B?ODE2cE1JYVF5ZWxPSlBSejdwcHg2QktsQ1h4dWtLcTVsaFllckhnbTRWdGJF?=
+ =?utf-8?B?c2JsamxqK2FGajhla0xGdFJhd1FFTlRjRU5lU2QwT3FBWlBJNTBMNy9oOG9l?=
+ =?utf-8?B?WEYxVUhxY3ZKWlpZNi9LQ29nOVRoUlB1ZEd0WCtwRXBVL3VsRGtPUDFUazln?=
+ =?utf-8?B?WnlXYVRXM0RKbDF6OUVCdlRUVWJyKzZqTENUWlZiT3hXNTU3QUJuQlZENUpo?=
+ =?utf-8?B?VS9panc5cDI0RS9lMzY1L3pqRnFJVERnaHplZk5xaXpYVnVQemhmRmxCZ3Iy?=
+ =?utf-8?B?NkY0MGQ0V0JMV2p4TDB4d3ppWlYvOVN1a1J5UmNRbUgxTG9wTjZMcjU0Z01U?=
+ =?utf-8?B?cTcyK3FrRzJlaGFheUJDTGNrem13cjNCTmpnKzNkRWRpM3BPNW92T3QvRXow?=
+ =?utf-8?B?dERML2pId1dnSk94QldBZ0pua2lWS1M2dHFSMjNZT3E5dVEvTGVpTFFXcGpI?=
+ =?utf-8?B?aHcwWnI2bSszaUlieFZhTUd6Wm9tM2NyREgycG5GSFZpMWJkM00veXAyeGpS?=
+ =?utf-8?B?aWFOa2lEb2VCZnljWEsyK3EwNjExMXZOS0c3OE9RV2FPK0xLYm9MdVpPSGs5?=
+ =?utf-8?B?dlZJeGZOQy84cmd2cnQraEdlWHFUWHROM3hxZ09LM2w5dG9sSGVWbGpBNm1h?=
+ =?utf-8?B?bGIyNENINGRXRlp5ZnpNVWpzOGcvNDdtV251T3U4bmxvODd1R0FvT1dZcmJa?=
+ =?utf-8?B?dGRsUUtkREJoT0JFbHdrbVNtd0lPdll5amlHbFZSeGdpNFA5RXB2YUpCSTNZ?=
+ =?utf-8?B?MGRrVnZRWmNBUjBCNzdlWVdSWkRsNWIxdHRxSS95NGROYXZEL2xpYXZjZGQv?=
+ =?utf-8?B?OG5LTStqWFBLanF2OEtUd0JWcGxzUjdMT1ZsK2ZMaGdrVjU3VFk5Sm1wM2Z6?=
+ =?utf-8?B?bWFQaXU3NFNWSTJZL2tHSGpuVFpidzlEYVJaSDVpOUpTZUFtMGorZzlZc3RS?=
+ =?utf-8?B?ZjdOOGhURVcwTkZKWTJPVlBiVVBzbUprWEc3MkZYS1RoTXIvL2l0S083MVhN?=
+ =?utf-8?B?Rk5ycEhyME1mdnUyMnNiQ2NvdXZFTENVdHRIZnhSQjNyWkdQc1Z5aEtpZDRi?=
+ =?utf-8?B?azRzTnZSeFBMbTE5STgyb3crY21OT0EzcHVTUW1lbDhVOVFOeEFYMHEwNi85?=
+ =?utf-8?B?M1JBOFRkeEVMbGpsT2U5bjJ2azdBZ25VcTJFb05vZHhrU2YvWXBNMkY5Tk5o?=
+ =?utf-8?B?N2FhTVhCNzNzUTA1dUNBdThPeGZ4Z1RNYU9nK0lNNnZJdlVTK1hkL3FoVGto?=
+ =?utf-8?B?bmNHRzMveEZkZGs1MGgyTFNHYlZFZUZiR3V5enVwdDVXNWNqT2tUTzN4M2Fa?=
+ =?utf-8?B?cVdEaG5zSmozeitJbUVURGp4ZXlWTjlURWJvMUZEOWhDNWd6dlArZlNnL2pI?=
+ =?utf-8?B?U09yZ1JJOTFKWVdDSTJ1UGpHZnJiUXkzSFVGY3pqbEUxeXp4Sk1icU5WM0Yz?=
+ =?utf-8?B?U1IwUE1QMUNTSEFUUUhXTktEeW4xQWo4MEZwek1vNEljU1liZ2kycUN0YldH?=
+ =?utf-8?B?cVFzMXIxc09UZy9PV2Z1bmtxKytWRE1wZE1JcGFIR2Y5dnpPSGVxMHdCRXgx?=
+ =?utf-8?B?WFVsYzBDN0FyVy93MXBRQnpONStUZUhRbXNWTkVydmZ1YnNMNlhNUVhjRzUv?=
+ =?utf-8?B?YWl2RG10WTJOU1Y2ZFNFN3poNk13Ynk3VWprTXN6TXRuOXF0ajJFOUpMaHBx?=
+ =?utf-8?B?QkY0SmE2cHJHVnBhZmtGdnNsclRERzNqS1lCbXNJRUJGMHhOeERtanB2VXha?=
+ =?utf-8?Q?AMWo=3D?=
+X-Forefront-Antispam-Report:
+	CIP:164.130.1.60;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(36860700013)(82310400026)(1800799024)(7053199007);DIR:OUT;SFP:1101;
+X-OriginatorOrg: foss.st.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Dec 2025 08:32:23.0573
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a03f2bd5-79a0-4e4b-3dde-08de3c7da2b8
+X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.60];Helo=[smtpO365.st.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DU2PEPF0001E9C4.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PRAPR10MB5347
+X-Authority-Analysis: v=2.4 cv=PLsCOPqC c=1 sm=1 tr=0 ts=6941191b cx=c_pps
+ a=sIonJkpHxZAhLrw2Sah9ew==:117 a=uCuRqK4WZKO1kjFMGfU4lQ==:17
+ a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19 a=ODy6o3KmhwcA:10 a=IkcTkHD0fZMA:10
+ a=wP3pNCr1ah4A:10 a=s63m1ICgrNkA:10 a=KrXZwBdWH7kA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=8b9GpE9nAAAA:8
+ a=9lhQ-HanZ_CRFmILVmEA:9 a=QEXdDO2ut3YA:10 a=T3LWEMljR5ZiDmsYVIUa:22
+X-Proofpoint-GUID: FCmmfwbmZWZIdtjuhnIK8iXB_VIAtp96
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjE2MDA3MCBTYWx0ZWRfX6E+387L5ypip
+ 35VmuNj9a2EuuBqgpeGw7HPNe5M5gNuCm2b4qxg+frgFC2K9/SRYT4rGGTiEZmBwf9sdqZUBe1q
+ xrA9q3oYL+nh/SZYAOX2WNI2tDpaROCClVsgBa//Os/3rRaWw0baO31SrM6s6ZZoLLsihJNvpx+
+ 5ExQV74lflUKf9Mgij8wpBJ9+TK/jdvKvq+zTl3q6SN3mpmRsv5FzyKCoxv7uvgic/yQvFK65uw
+ BKER4Se1rS2KU0OQk7er/V1nr/7TVOsfW/hlr24/qm9KzbW4Etc48taYxGuoDC+3wq/zd+TVZXW
+ UQJLZTdVypqiQ3McIEakkGaavl0VarCi25DII1e5oVm1RBPRpqlK5Odum9MRqDSgPTTItq8CskE
+ m1QYie1aAkKed+wjv1i0D7DxgE1DtA==
+X-Proofpoint-ORIG-GUID: FCmmfwbmZWZIdtjuhnIK8iXB_VIAtp96
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-16_01,2025-12-15_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0
+ bulkscore=0 malwarescore=0 impostorscore=0 phishscore=0 spamscore=0
+ lowpriorityscore=0 priorityscore=1501 clxscore=1015 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512160070
 
-Hi all:
 
-On Thu, Nov 13, 2025 at 4:48=E2=80=AFPM Binbin Zhou <zhoubinbin@loongson.cn=
-> wrote:
->
-> Hi all:
->
-> This patch set describes the I2C controller integrated into the Loongson-=
-2K0300 chip.
->
-> It has a significantly different design from the previous I2C controller =
-(i2c-ls2x),
-> such as support for master-slave transfer mode, and DMA transfers (implem=
-entation
-> in progress), etc. Therefore, we try to name it i2c-ls2x-v2.
->
-> Therefore we try to name it i2c-ls2x-v2.
->
-> Thanks.
->
-> Binbin Zhou (2):
->   dt-bindings: i2c: loongson,ls2x: Add ls2k0300-i2c compatible
->   i2c: ls2x-v2: Add driver for Loongson-2K0300 I2C controller
 
-Gentle ping.
-Any comments about this patchset ?
+On 12/15/25 22:26, Rob Herring (Arm) wrote:
+> There are users already with 2 size cells, and there's no reason to not
+> support that.
+> 
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> ---
+>   Documentation/devicetree/bindings/bus/st,stm32mp25-rifsc.yaml | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/bus/st,stm32mp25-rifsc.yaml b/Documentation/devicetree/bindings/bus/st,stm32mp25-rifsc.yaml
+> index 4d19917ad2c3..c6280c8c54a3 100644
+> --- a/Documentation/devicetree/bindings/bus/st,stm32mp25-rifsc.yaml
+> +++ b/Documentation/devicetree/bindings/bus/st,stm32mp25-rifsc.yaml
+> @@ -54,7 +54,7 @@ properties:
+>       const: 1
+>   
+>     "#size-cells":
+> -    const: 1
+> +    enum: [ 1, 2 ]
+>   
+>     ranges: true
+>   
 
->
->  .../bindings/i2c/loongson,ls2x-i2c.yaml       |   1 +
->  MAINTAINERS                                   |   1 +
->  drivers/i2c/busses/Kconfig                    |  10 +
->  drivers/i2c/busses/Makefile                   |   1 +
->  drivers/i2c/busses/i2c-ls2x-v2.c              | 513 ++++++++++++++++++
->  5 files changed, 526 insertions(+)
->  create mode 100644 drivers/i2c/busses/i2c-ls2x-v2.c
->
->
-> base-commit: e9a6fb0bcdd7609be6969112f3fbfcce3b1d4a7c
-> --
-> 2.47.3
->
+Hello Rob,
 
---
-Thanks.
-Binbin
+Thank you!
+
+Reviewed-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
+
+Gatien
 
