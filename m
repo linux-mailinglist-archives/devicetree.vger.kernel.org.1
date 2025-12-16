@@ -1,174 +1,134 @@
-Return-Path: <devicetree+bounces-247030-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247031-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id A31B8CC313D
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 14:09:35 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94731CC33B1
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 14:30:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 6EE97303EF99
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 13:08:33 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id F291F30343C6
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 13:24:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AA2C3563D8;
-	Tue, 16 Dec 2025 13:00:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA0AF350A24;
+	Tue, 16 Dec 2025 13:11:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="WcKTp9jV";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="MKf5qMCK";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="khe3Lupb";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="uuBBJWHw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fFwjwqyl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A7C635581D
-	for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 13:00:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89538354AF1;
+	Tue, 16 Dec 2025 13:11:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765890050; cv=none; b=ma7Bc7lc1osBQOahcXa0oDanS/ysNU3A9kh0yFNWS2RjbZaN8Z895qAeEJ0JcBathaww6iTJcjsIkPasCKJ59j/No3Sj0NliIOpi7uThTNrMzD3vP1xj7eUCVw+Wzp5np7n2hPF2jBICtmiYzRSUU1J2iAh0ses2JuV5G7DXV5c=
+	t=1765890711; cv=none; b=JJqjVcrzVs6ePmYLduXmlxXfnRcZNuN0e89qpUznwgkDPFJjFeqn3DZV3e2pdY4I/B+RgMHli6ReqCEZZkb0za/mqCIUgP38fP/PQzSYY7TkWxFRn3XytXs9fllG6I7M+3pEXFGU6q457V8W8/fOATc9Mp1YGcxGL4ropPps7rE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765890050; c=relaxed/simple;
-	bh=iQBFDWwef80LR5+luiz5ytPLcDzHlOj5h4YwPBNOX5U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tsm9INwBjh8E4UsssOe5qoneOhqJNu+cw0Dg0LS27D/ScDspWWZ6azIULoawRcqeyzbAhKfxRYg72i4fxc+uLL6mL+8sZjChggTa2zzMdIQX0wMHyJSbWYSCJbRE3f9tr9pkOYofBKtajOGeRUkrKtojS3vcGw07bpLkSYbmlLI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=WcKTp9jV; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=MKf5qMCK; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=khe3Lupb; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=uuBBJWHw; arc=none smtp.client-ip=195.135.223.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [IPv6:2a07:de40:b281:104:10:150:64:97])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-out2.suse.de (Postfix) with ESMTPS id 600455BCD2;
-	Tue, 16 Dec 2025 13:00:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1765890045; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=0FlmFMFG8z9tp2PIyRR+od1etRA+qYa6YsLRDcg0vsI=;
-	b=WcKTp9jV6ypdwb1YpmuArdGB0TdBpfTQi4MQvOUd8SbW6lxJlH5fLa9xd6dCLsUSzvqvKi
-	Wfub2UVDi/6Ii1Rcx4IWSJXWtOzys6irCD9kXoJA5wS1t9SDLihV/N/niQGU3c50SelzKf
-	iz/M8OlHe3R5bXMAdcX1DpU+3IIbFg0=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1765890045;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=0FlmFMFG8z9tp2PIyRR+od1etRA+qYa6YsLRDcg0vsI=;
-	b=MKf5qMCKH7Gp8rBI7KmgriIAJ2Z/eGoKy/r7hez2/+QkcMQl/WqIVQ95WoUzlz7uQRc04J
-	bpTOAMdld7UQd7Dw==
-Authentication-Results: smtp-out2.suse.de;
-	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=khe3Lupb;
-	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=uuBBJWHw
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1765890044; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=0FlmFMFG8z9tp2PIyRR+od1etRA+qYa6YsLRDcg0vsI=;
-	b=khe3LupbGRUn3uWTIMA1i0VYHLXhJ1GZf3alY6iBbXAzAZVUECVnewm7fWudpWf9okIp1u
-	u+P28qFVQzPQ/sE5yaZ6QVzDYLpD3BA0UrIh8ax2aPRRPUsxoVv0bxbYmCowRsQk8VVlnn
-	5pkiN9UKASgLZix+nX2+AVo1pGrnPB0=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1765890044;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=0FlmFMFG8z9tp2PIyRR+od1etRA+qYa6YsLRDcg0vsI=;
-	b=uuBBJWHwLtlLveYFSpnrriSUi2Klz7bqzA4FfbRxYWkeWLnBts2MXO28uEoKl2RYEtPaGC
-	yRdqK4wVapxQTKCA==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 6E4AC3EA63;
-	Tue, 16 Dec 2025 13:00:43 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id twmoGPtXQWnLeQAAD6G6ig
-	(envelope-from <svarbanov@suse.de>); Tue, 16 Dec 2025 13:00:43 +0000
-Message-ID: <189702e0-e6f0-44c5-bed6-eef058d90b76@suse.de>
-Date: Tue, 16 Dec 2025 15:00:42 +0200
+	s=arc-20240116; t=1765890711; c=relaxed/simple;
+	bh=uK7rtQd0fuH8HIq2iyTTKTpcKJsEkMoXU53XE1O8rzg=;
+	h=From:Date:Content-Type:MIME-Version:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=WjqNvnPVSnnLYiNDt9GKiqMAKsWDOG/gLl3KPDJ8QB7RZCSLCzVw1Z6uGsIVJrJKVreTbmuj7Kx7qRtlcKRDF6le3uEkRXGbxKKR7iHhCIHBTZ7EQqDQ9Jn1go3aD7Zm0KsRDqI/fv5sK2ufufz8docbp0UhoOQH0To2SvwJUOw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fFwjwqyl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB05BC19423;
+	Tue, 16 Dec 2025 13:11:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1765890711;
+	bh=uK7rtQd0fuH8HIq2iyTTKTpcKJsEkMoXU53XE1O8rzg=;
+	h=From:Date:Cc:To:In-Reply-To:References:Subject:From;
+	b=fFwjwqyl4XciRQVPx8XogJowdRcsdYKb/ioKdv1BlYgi1o+jrg3aT4TAjJOxcokcI
+	 QsSoL7E/aTwp0Xx89fUuxiHPnEWOL+3YP75h9bjRELSdSMWlSEQ92eq4Dd4ceSznxM
+	 FA0++iF6bDiu+t9pjncqus1HTUPK3svYbIJYzU9lKuMSr/WEguQljrDJAZRNzhNg42
+	 v7hCHoWhSvks4wsNhavYOp/zj1CynIbu8P4b+tzQRYE66RX9T0NwB8sBSiXWwnDEBo
+	 MIlWjd8LzSrypRzNesJoMN6k5blOrxuig+/T5bgwizw08Jd3RqQ5mQlMx9Ug7dba8M
+	 js45kMZa3qkiw==
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 16 Dec 2025 07:11:49 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 4/4] arm64: dts: broadcom: bcm2712: Add watchdog DT
- node
-To: Florian Fainelli <florian.fainelli@broadcom.com>,
- bcm-kernel-feedback-list@broadcom.com, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rpi-kernel@lists.infradead.org, linux-pm@vger.kernel.org
-Cc: Florian Fainelli <f.fainelli@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
- Scott Branden <sbranden@broadcom.com>, Lee Jones <lee@kernel.org>,
- Ulf Hansson <ulf.hansson@linaro.org>,
- Willow Cunningham <willow.e.cunningham@gmail.com>,
- Stefan Wahren <wahrenst@gmx.net>, Saenz Julienne <nsaenz@kernel.org>,
- Andrea della Porta <andrea.porta@suse.com>,
- Phil Elwell <phil@raspberrypi.com>, Jonathan Bell
- <jonathan@raspberrypi.com>, Dave Stevenson <dave.stevenson@raspberrypi.com>
-References: <20251031183309.1163384-1-svarbanov@suse.de>
- <20251031183309.1163384-5-svarbanov@suse.de>
- <20251105165553.3910996-1-florian.fainelli@broadcom.com>
-Content-Language: en-US
-From: Stanimir Varbanov <svarbanov@suse.de>
-In-Reply-To: <20251105165553.3910996-1-florian.fainelli@broadcom.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Flag: NO
-X-Spam-Score: -3.01
-X-Rspamd-Queue-Id: 600455BCD2
-X-Spamd-Result: default: False [-3.01 / 50.00];
-	BAYES_HAM(-3.00)[100.00%];
-	SUSPICIOUS_RECIPS(1.50)[];
-	NEURAL_HAM_LONG(-1.00)[-1.000];
-	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	NEURAL_HAM_SHORT(-0.20)[-1.000];
-	MIME_GOOD(-0.10)[text/plain];
-	MX_GOOD(-0.01)[];
-	TO_MATCH_ENVRCPT_ALL(0.00)[];
-	FREEMAIL_ENVRCPT(0.00)[gmail.com,gmx.net];
-	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	ARC_NA(0.00)[];
-	FUZZY_RATELIMITED(0.00)[rspamd.com];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,broadcom.com,linaro.org,gmx.net,suse.com,raspberrypi.com];
-	RCVD_TLS_ALL(0.00)[];
-	DKIM_TRACE(0.00)[suse.de:+];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_EQ_ENVFROM(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:rdns,imap1.dmz-prg2.suse.org:helo,suse.de:mid,suse.de:dkim,suse.de:email];
-	DWL_DNSWL_BLOCKED(0.00)[suse.de:dkim];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[dt];
-	SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:97:from]
-X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
-X-Rspamd-Action: no action
-X-Spam-Level: 
+Cc: netdev@vger.kernel.org, linusw@kernel.org, vkoul@kernel.org, 
+ pabeni@redhat.com, jirislaby@kernel.org, lars.povlsen@microchip.com, 
+ linux-arm-kernel@lists.infradead.org, claudiu.beznea@tuxon.dev, 
+ kuba@kernel.org, mturquette@baylibre.com, Steen.Hegelund@microchip.com, 
+ mwalle@kernel.org, tudor.ambarus@linaro.org, devicetree@vger.kernel.org, 
+ UNGLinuxDriver@microchip.com, edumazet@google.com, 
+ linux-clk@vger.kernel.org, andi.shyti@kernel.org, olivia@selenic.com, 
+ conor+dt@kernel.org, luka.perkov@sartura.hr, richard.genoud@bootlin.com, 
+ linux-hwmon@vger.kernel.org, krzk+dt@kernel.org, 
+ wsa+renesas@sang-engineering.com, Ryan.Wanner@microchip.com, 
+ linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, 
+ alexandre.belloni@bootlin.com, lee@kernel.org, linux@roeck-us.net, 
+ davem@davemloft.net, gregkh@linuxfoundation.org, 
+ kavyasree.kotagiri@microchip.com, nicolas.ferre@microchip.com, 
+ andrew+netdev@lunn.ch, romain.sioen@microchip.com, sboyd@kernel.org, 
+ linux-gpio@vger.kernel.org, linux-spi@vger.kernel.org, 
+ linux-serial@vger.kernel.org, daniel.machon@microchip.com, 
+ dmaengine@vger.kernel.org, richardcochran@gmail.com, 
+ herbert@gondor.apana.org.au, charan.pedumuru@microchip.com, 
+ linux-crypto@vger.kernel.org, linux-i2c@vger.kernel.org, 
+ radu_nicolae.pirea@upb.ro
+To: Robert Marko <robert.marko@sartura.hr>
+In-Reply-To: <20251215163820.1584926-1-robert.marko@sartura.hr>
+References: <20251215163820.1584926-1-robert.marko@sartura.hr>
+Message-Id: <176589052274.1815136.7513475493879599819.robh@kernel.org>
+Subject: Re: [PATCH v2 01/19] include: dt-bindings: add LAN969x clock
+ bindings
 
-Hi Florian,
 
-On 11/5/25 6:55 PM, Florian Fainelli wrote:
-> From: Florian Fainelli <f.fainelli@gmail.com>
+On Mon, 15 Dec 2025 17:35:18 +0100, Robert Marko wrote:
+> Add the required LAN969x clock bindings.
 > 
-> On Fri, 31 Oct 2025 20:33:09 +0200, Stanimir Varbanov <svarbanov@suse.de> wrote:
->> Add watchdog device-tree node for bcm2712 SoC.
->>
->> Signed-off-by: Stanimir Varbanov <svarbanov@suse.de>
->> ---
+> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+> ---
+> Changes in v2:
+> * Rename file to microchip,lan9691.h
 > 
-> Applied to https://github.com/Broadcom/stblinux/commits/devicetree-arm64/next, thanks!
+>  include/dt-bindings/clock/microchip,lan9691.h | 24 +++++++++++++++++++
+>  1 file changed, 24 insertions(+)
+>  create mode 100644 include/dt-bindings/clock/microchip,lan9691.h
+> 
 
-For some reason this is not part of v6.19-rc1.
 
-~Stan
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
+
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
+
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+This patch series was applied (using b4) to base:
+ Base: attempting to guess base-commit...
+ Base: tags/next-20251215 (best guess, 14/15 blobs matched)
+ Base: tags/next-20251215 (use --merge-base to override)
+
+If this is not the correct base, please add 'base-commit' tag
+(or use b4 which does this automatically)
+
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/microchip/' for 20251215163820.1584926-1-robert.marko@sartura.hr:
+
+arch/arm64/boot/dts/microchip/sparx5_pcb135_emmc.dtb: / (microchip,sparx5-pcb135): compatible: ['microchip,sparx5-pcb135', 'microchip,sparx5'] is valid under each of {'items': [{'const': 'microchip,sparx5-pcb135'}, {'const': 'microchip,sparx5'}], 'maxItems': 2, 'minItems': 2, 'type': 'array'}, {}
+	from schema $id: http://devicetree.org/schemas/arm/microchip.yaml
+arch/arm64/boot/dts/microchip/sparx5_pcb135.dtb: / (microchip,sparx5-pcb135): compatible: ['microchip,sparx5-pcb135', 'microchip,sparx5'] is valid under each of {'items': [{'const': 'microchip,sparx5-pcb135'}, {'const': 'microchip,sparx5'}], 'maxItems': 2, 'minItems': 2, 'type': 'array'}, {}
+	from schema $id: http://devicetree.org/schemas/arm/microchip.yaml
+arch/arm64/boot/dts/microchip/sparx5_pcb134.dtb: / (microchip,sparx5-pcb134): compatible: ['microchip,sparx5-pcb134', 'microchip,sparx5'] is valid under each of {'items': [{'const': 'microchip,sparx5-pcb134'}, {'const': 'microchip,sparx5'}], 'maxItems': 2, 'minItems': 2, 'type': 'array'}, {}
+	from schema $id: http://devicetree.org/schemas/arm/microchip.yaml
+arch/arm64/boot/dts/microchip/sparx5_pcb134_emmc.dtb: / (microchip,sparx5-pcb134): compatible: ['microchip,sparx5-pcb134', 'microchip,sparx5'] is valid under each of {'items': [{'const': 'microchip,sparx5-pcb134'}, {'const': 'microchip,sparx5'}], 'maxItems': 2, 'minItems': 2, 'type': 'array'}, {}
+	from schema $id: http://devicetree.org/schemas/arm/microchip.yaml
+arch/arm64/boot/dts/microchip/sparx5_pcb125.dtb: / (microchip,sparx5-pcb125): compatible: ['microchip,sparx5-pcb125', 'microchip,sparx5'] is valid under each of {'items': [{'const': 'microchip,sparx5-pcb125'}, {'const': 'microchip,sparx5'}], 'maxItems': 2, 'minItems': 2, 'type': 'array'}, {}
+	from schema $id: http://devicetree.org/schemas/arm/microchip.yaml
+
+
+
+
+
 
