@@ -1,257 +1,190 @@
-Return-Path: <devicetree+bounces-246821-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246822-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6665CC0756
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 02:29:01 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77CD3CC080E
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 02:50:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7A51A3007613
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 01:28:47 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CC26A301515C
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 01:50:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2FAC26D4C7;
-	Tue, 16 Dec 2025 01:28:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="t5jDhLsg"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9064E263C8F;
+	Tue, 16 Dec 2025 01:50:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f193.google.com (mail-lj1-f193.google.com [209.85.208.193])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E15742222D2
-	for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 01:28:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBD3D1487F6;
+	Tue, 16 Dec 2025 01:50:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765848526; cv=none; b=nq052Jxdr9qO1gQdYbihHVbPv5l8IKMsMS/gy+v0+TFA19XWg6ln1iZckQmUsOp8uGqmlL46iE58SV0XHp2nh/pud7COeEdjB4ZRRwwvQlVrCM+kQO+VYJ9awXAHfc1QQfW6rbry12f8+Msmr21pIxVfgWy81UbYm82K5bpimv8=
+	t=1765849811; cv=none; b=u5XxlxwyCzxnPtHileDGa4szE626M4BqO1eEgHwsvENaCXpS6tR3b9QhCWaLx9Xpgl6NdYI8MPN6W+DAKKjQRx8N59HKf1qc9SLqB2Bp0dBdgAmjgE6emojvkfILVSuEV7TSTUk2S1s+MshBW41Zpd4VkjCDBF7OMaSazayWQKk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765848526; c=relaxed/simple;
-	bh=hJQUyd/Tffm4SCpUfbJx2EUwKEwz+GfXfQplQOV4Cwc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dsFm5sFso4NrHEOrxjERsCU5O1R5BlR42yy+5ci/lTxBPVr0W2tuQKoz1jS1pU5OG2GHqC6eVZkbqgondU6LVwnTp+OGsAamqRbZks2swy/q1Km4cinEKR9CsbVsebiX/MzWdEhFkpk/ujuZp5Ds/CbTwCyzwac+peXx8amLTkM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=t5jDhLsg; arc=none smtp.client-ip=209.85.208.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f193.google.com with SMTP id 38308e7fff4ca-37baf2d159bso8936411fa.3
-        for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 17:28:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1765848523; x=1766453323; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VoJUokXplFCLaNhrWfSaomcCO83EZ2+r6h6vZ/nLX9k=;
-        b=t5jDhLsgEA/rYzJhUflhqs0LBDv3oknYr3gYAVKml1h5BtX9Y3Nzv7sB4hCLc/KY3M
-         1Soz5w6tGXad08wVZTm3HnPHQXqBdMN8OpvqBZqwcGmS76YFEal/BlnrJ611LuBMsFR3
-         +YIZODWtWa6pPYaxcEndzI4SJma5w/0TRwVXWZ0DX2CN9mFToKLaH3CryF1EoJVS5RUM
-         E9uJpBqb7kUVQCnEegos9iguzzEZgoBzDgQS3t67f7H5GZ7PFYJDX41lTbYaDJO4i4pd
-         jm/KQAwxLGI8KWDkzn46TnQpSPbdTe5THDFuxtZ0C9fHvpLPGGpkTDSaZQkUtJ9gAhww
-         46Lw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765848523; x=1766453323;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-gg:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=VoJUokXplFCLaNhrWfSaomcCO83EZ2+r6h6vZ/nLX9k=;
-        b=iJfHHOnPthgC17sEAGepkQmKpBIK28NZWP6S+scfMTzUGupTmJp5bApADJMyFk9T65
-         qOTWcyBFaZOHDLGvw5Dzy6kKy5uOWrwznSBwpKUGoHDa5jWKpi7QZ+Pz03HsYnGSMQl6
-         cKRNeUZwRrnHgW93O/OgdPSfDmK9uHwf2AqM+O6flhqZqrv1l6PgaepInBlbYsDkt30T
-         ioBWNf0NjGyZAiEXS7abWjooY5z8QjCEqzh/sEIDaD/LlFCzl/aUWL7fAxC1rnDymFgz
-         DQlWJiRaO9ytWQijv16aLoUsy9Y4Fdib7LB9AgQVzxuw2x5JOJu2XfwMbpkYIcnFHvRs
-         JAuw==
-X-Forwarded-Encrypted: i=1; AJvYcCVt+rRN8m071ld8KoFDRgy6IQAEk720vykJsePy3Jh9gWA+XbddjOEw0jGt5zeUSbfUy9pyem5lXE9M@vger.kernel.org
-X-Gm-Message-State: AOJu0YwNBiYGlgPPzHpFMjdakA1I81+HKZTGjHg04Z2xP7UMd2CwwI0/
-	IoGwDy54l3PwZFuqIzFwCQjyZA7Fu2/MqVnA+FzF6gJDsnhDE8a6CP/llTRbRFIILuE=
-X-Gm-Gg: AY/fxX4iIYOz/HNcWgclk/DZwxwj6ImsFIPby4tQTYhrD2ka9KdL7efSJigMvqMIl+8
-	fRRAxBtmYmwYk6lJL6loPntlZxofN6XAS0YjzhrjXVkGBbNFvyD8/7zsGKs040Nk6ElRk2/gQdz
-	tgeVFl/papQ05cZpBHh0u3b+ZUqsTdAc/eeDNUZpXqVo7lRRTLvzTsr2gKBa2w9Ly+rmkv9ekZQ
-	whvXCSYkusq3hoO7lKMPvJtaa+cfvSrW3JGA9BPyEtoeXJwLKU7zNwx6dXIWWG7sEwDbS7eNNPq
-	3+30JP9e1uSQYTg6sK5v0CuR0Ht6wQH+3retO0VqPdNC7bLZLbqefEHIY+7gc4InSTaknbpwUlF
-	IUVe3KRdMw0xajQa/KIpbYghfA/NNPE0FkVCNqCMb28f/96ZvKOHpxdFXsV3caTbfcCZ17/xOYC
-	zWgyeZ4z25LwjB9ZRJ5ZVua2tTQ8bwiR8OSkNn1gbuXK/QD+wk5yT+S4S+OS731TbJeg==
-X-Google-Smtp-Source: AGHT+IHC8WNjiPU6d4sbijzNDiCXOegmWUkXuJiGVWiO79To/fTnH5v2SJuBpVOneaerqNjbtzcoAA==
-X-Received: by 2002:a05:651c:2122:b0:37f:aa44:2d2c with SMTP id 38308e7fff4ca-37fd08cfc7cmr20712321fa.6.1765848522995;
-        Mon, 15 Dec 2025 17:28:42 -0800 (PST)
-Received: from [192.168.1.100] (91-159-24-186.elisa-laajakaista.fi. [91.159.24.186])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-37fdee05961sm31751041fa.44.2025.12.15.17.28.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Dec 2025 17:28:41 -0800 (PST)
-Message-ID: <ea9371e6-f986-46df-9200-b2f009c09773@linaro.org>
-Date: Tue, 16 Dec 2025 03:28:39 +0200
+	s=arc-20240116; t=1765849811; c=relaxed/simple;
+	bh=cJwhKYW1mmF+nLh+Mx/yy2wJXAjZzNw2SxwR3VWI+Sw=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=bcQO77Yc5vBh3QLbZ9l2IH9sxDOtf/mGFb2htKGiyXrZxRoh7kCt7Ft6cwuM4D05lE8Ih5e4l7uVLTgpKm3DBtszWhjl0SEDniZHqu9IhPXnkZbgNPPFAI80TokRFTVj+S2p9SPT4A0kuXRfoJultuY0pSbAPNbNh1Ms9Rt3VUg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
+Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Tue, 16 Dec
+ 2025 09:50:00 +0800
+Received: from [127.0.1.1] (192.168.10.13) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
+ Transport; Tue, 16 Dec 2025 09:50:00 +0800
+From: Jacky Chou <jacky_chou@aspeedtech.com>
+Subject: [PATCH v7 0/7] Add ASPEED PCIe Root Complex support
+Date: Tue, 16 Dec 2025 09:49:59 +0800
+Message-ID: <20251216-upstream_pcie_rc-v7-0-4aeb0f53c4ce@aspeedtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] dt-bindings: media: i2c: Add os05b10 sensor
-To: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>, robh@kernel.org,
- krzk+dt@kernel.org, sakari.ailus@linux.intel.com
-Cc: Elgin Perumbilly <elgin.perumbilly@siliconsignals.io>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Hans Verkuil <hverkuil@kernel.org>,
- Hans de Goede <hansg@kernel.org>, Mehdi Djait <mehdi.djait@linux.intel.com>,
- Arnd Bergmann <arnd@arndb.de>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- =?UTF-8?Q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>,
- Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
- Sylvain Petinot <sylvain.petinot@foss.st.com>,
- Dongcheng Yan <dongcheng.yan@intel.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Jingjing Xiong <jingjing.xiong@intel.com>,
- Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20251215153932.46276-1-himanshu.bhavani@siliconsignals.io>
- <20251215153932.46276-2-himanshu.bhavani@siliconsignals.io>
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <20251215153932.46276-2-himanshu.bhavani@siliconsignals.io>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMe6QGkC/43QQWrDMBCF4asErSszo/FIcle9RylGlpVaLYmN5
+ JiG4LtXyaJeJJAun+D7B3QROaQYsnjdXUQKS8xxPJZhXnbCD+74GWTsyxYKFCMCydOU5xTcoZ1
+ 8DG3y0tY1G276ziKJwqYU9vHnlnz/KHuIeR7T+XZhwevrLQYaCYgAsCJk0mQkyi/nv8+tH8bTm
+ 8tTCP0c/FD58SCupUVt2iAD1aSgUsxk/6Np0w0gMDdKVVg0MzzX9Z9GUAYatoortIgan2PeMKK
+ 5/8OFJciudthYNtr5/cOK3ioK8EFFl4r11gJ41h3qu8q6rr+L85hu8gEAAA==
+X-Change-ID: 20251103-upstream_pcie_rc-8445759db813
+To: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, "Andrew
+ Jeffery" <andrew@codeconstruct.com.au>, Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	=?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, "Manivannan
+ Sadhasivam" <mani@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>, Neil Armstrong
+	<neil.armstrong@linaro.org>
+CC: <linux-aspeed@lists.ozlabs.org>, <linux-pci@vger.kernel.org>,
+	<linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	Andrew Jeffery <andrew@aj.id.au>, <openbmc@lists.ozlabs.org>,
+	<linux-gpio@vger.kernel.org>, Jacky Chou <jacky_chou@aspeedtech.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1765849800; l=5397;
+ i=jacky_chou@aspeedtech.com; s=20251031; h=from:subject:message-id;
+ bh=cJwhKYW1mmF+nLh+Mx/yy2wJXAjZzNw2SxwR3VWI+Sw=;
+ b=3J44svCb+SFxYbW4PGjsRszZw90/97HE2keEtgn1pIzkD+ujyFhSIgcg+p2up1Vuciv7OLd2Y
+ uay+YUp3FkDCJG+wnPwpHVxGTrNYfjgGn6NCLm0JVtlr7kyfCUZcrfz
+X-Developer-Key: i=jacky_chou@aspeedtech.com; a=ed25519;
+ pk=8XBx7KFM1drEsfCXTH9QC2lbMlGU4XwJTA6Jt9Mabdo=
 
-On 12/15/25 17:39, Himanshu Bhavani wrote:
-> From: Elgin Perumbilly <elgin.perumbilly@siliconsignals.io>
-> 
-> Add bindings for Omnivision OS05B10 sensor.
-> 
-> Add MAINTAINERS entry for Omnivision OS05B10 binding documentation
-> 
-> Signed-off-by: Elgin Perumbilly <elgin.perumbilly@siliconsignals.io>
-> Signed-off-by: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>
-> ---
->   .../bindings/media/i2c/ovti,os05b10.yaml      | 103 ++++++++++++++++++
->   MAINTAINERS                                   |   7 ++
->   2 files changed, 110 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,os05b10.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,os05b10.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,os05b10.yaml
-> new file mode 100644
-> index 000000000000..b76771d81851
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,os05b10.yaml
-> @@ -0,0 +1,103 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/i2c/ovti,os05b10.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: OmniVision OS05B10 Image Sensor
-> +
-> +maintainers:
-> +  - Elgin Perumbilly <elgin.perumbilly@siliconsignals.io>
-> +
-> +description:
-> +  The OmniVision OS05B10 is a 5MP (2592x1944) color CMOS image sensor controlled
-> +  through an I2C-compatible SCCB bus. it outputs RAW10/RAW12 format and uses a
-> +  1/2.78" optical format.
-> +
-> +properties:
-> +  compatible:
-> +    const: ovti,os05b10
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: XCLK clock
-> +
-> +  avdd-supply:
-> +    description: Analog Domain Power Supply (2.8v)
-> +
-> +  dovdd-supply:
-> +    description: I/O Domain Power Supply (1.8v)
-> +
-> +  dvdd-supply:
-> +    description: Digital Domain Power Supply (1.2v)
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +    description: Reset Pin GPIO Control (active low)
-> +
-> +  port:
-> +    description: MIPI CSI-2 transmitter port
-> +    $ref: /schemas/graph.yaml#/$defs/port-base
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      endpoint:
-> +        $ref: /schemas/media/video-interfaces.yaml#
-> +        unevaluatedProperties: false
-> +
-> +        properties:
-> +          data-lanes:
-> +            oneOf:
-> +              - items:
-> +                  - const: 1
-> +                  - const: 2
-> +                  - const: 3
-> +                  - const: 4
-> +              - items:
-> +                  - const: 1
-> +                  - const: 2
-> +        required:
-> +          - data-lanes
-> +          - link-frequencies
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - avdd-supply
-> +  - dovdd-supply
-> +  - dvdd-supply
-> +  - port
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        camera-sensor@36 {
-> +            compatible = "ovti,os05b10";
-> +            reg = <0x36>;
-> +            clocks = <&os05b10_clk>;
-> +            reset-gpios = <&gpio1 7 GPIO_ACTIVE_LOW>;
-> +
-> +            avdd-supply = <&os05b10_avdd_2v8>;
-> +            dvdd-supply = <&os05b10_dvdd_1v2>;
-> +            dovdd-supply = <&os05b10_dovdd_1v8>;
-> +
-> +            port {
-> +                cam_out: endpoint {
-> +                    remote-endpoint = <&mipi_in_cam>;
-> +                    data-lanes = <1 2 3 4>;
-> +                    link-frequencies = /bits/ 64 <600000000>;
-> +                };
-> +            };
-> +        };
-> +    };
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 663e86eb9ff1..c85915d5d20e 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -19234,6 +19234,13 @@ T:	git git://linuxtv.org/media_tree.git
->   F:	Documentation/devicetree/bindings/media/i2c/ovti,og0ve1b.yaml
->   F:	drivers/media/i2c/og0ve1b.c
-> 
-> +OMNIVISION OS05B10 SENSOR DRIVER
-> +M:	Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>
-> +M:	Elgin Perumbilly <elgin.perumbilly@siliconsignals.io>
-> +L:	linux-media@vger.kernel.org
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/media/i2c/ovti,os05b10.yaml
-> +
->   OMNIVISION OV01A10 SENSOR DRIVER
->   M:	Bingbu Cao <bingbu.cao@intel.com>
->   L:	linux-media@vger.kernel.org
+This patch series adds support for the ASPEED PCIe Root Complex,
+including device tree bindings, pinctrl support, and the PCIe host controller
+driver. The patches introduce the necessary device tree nodes, pinmux groups,
+and driver implementation to enable PCIe functionality on ASPEED platforms.
+Currently, the ASPEED PCIe Root Complex only supports a single port.
 
-Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Summary of changes:
+- Add device tree binding documents for ASPEED PCIe PHY and PCIe RC
+- Update MAINTAINERS for new bindings and driver
+- Implement ASPEED PCIe PHY driver
+- Implement ASPEED PCIe Root Complex host controller driver
 
+This series has been tested on AST2600/AST2700 platforms and enables PCIe device
+enumeration and operation.
+
+Signed-off-by: Jacky Chou <jacky_chou@aspeedtech.com>
+---
+Changes in v7:
+- Add PCIe port into aspeed,ast2600-pci.yaml.
+- Remove aspeed_pcie_init_ports() and merge aspeed_pcie_port_init() to
+  aspeed_pcie_parse_port()
+- Refactor aspeed remap pcie addr to aspeed_pcie_map_ranges()
+- Link to v6: https://lore.kernel.org/r/20251201-upstream_pcie_rc-v6-0-8c8800c56b16@aspeedtech.com
+
+Changes in v6:
+- Refer to pci-cpi-bridge.yaml to update aspeed,ast2600-pcie.yaml and
+  the pcie node of aspeed-g6.dtsi.
+- 'dt-bindings: pinctrl: aspeed,ast2600-pinctrl: Add PCIe RC PERST#
+  group' have applied, remove it from this version.
+- Adjust the defnitions in pci.h. 
+- Link to v5: https://lore.kernel.org/r/20251117-upstream_pcie_rc-v5-0-b4a198576acf@aspeedtech.com
+
+Changes in v5:
+- Remove legacy-interrupt-controller and the INTx points to pcie node itself.
+- Correct bar mapping description and implementation to PCIe address
+  configuration in pcie-aspeed.c driver.
+- Link to v4: https://lore.kernel.org/r/20251027095825.181161-1-jacky_chou@aspeedtech.com/
+
+Changes in v4:
+- Remove aspeed,ast2700-pcie-cfg.yaml
+- Add more descriptions for AST2600 PCIe RC in aspeed,ast2600-pcie.yaml
+- Change interrupt-controller to legacy-interrupt-controller in yaml
+  and dtsi
+- Remove msi-parent property in yaml and dtsi
+- Modify the bus range to starting from 0x00 in aspeed-g6.dtsi
+- Fixed the typo on MODULE_DEVICE_TABLE() in phy-aspeed-pcie.c
+- Add PCIE_CPL_STS_SUCCESS definition in pci/pci.h
+- Add prefix ASPEED_ for register definition in RC driver
+- Add a flag to indicate clear msi status twice for AST2700 workaround
+- Remove getting domain number
+- Remove scanning AST2600 HOST bridge on device number 0
+- Remove all codes about CONFIG_PCI_MSI
+- Get root but number from resouce list by IORESOURCE_BUS
+- Change module_platform_driver to builtin_platform_driver
+- Link to v3: https://lore.kernel.org/r/20250901055922.1553550-1-jacky_chou@aspeedtech.com/
+
+Changes in v3:
+- Add ASPEED PCIe PHY driver
+- Remove the aspeed,pciecfg property from AST2600 RC node, merged into RC node
+- Update the binding doc for aspeed,ast2700-pcie-cfg to reflect the changes
+- Update the binding doc for aspeed,ast2600-pcie to reflect the changes
+- Update the binding doc for aspeed,ast2600-pinctrl to reflect the changes
+- Update the device tree source to reflect the changes
+- Adjusted the use of mutex in RC drivers to use GRAND
+- Updated from reviewer comments
+- Link to v2: https://lore.kernel.org/r/20250715034320.2553837-1-jacky_chou@aspeedtech.com/
+
+Changes in v2:
+- Moved ASPEED PCIe PHY yaml binding to `soc/aspeed` directory and
+  changed it as syscon
+- Added `MAINTAINERS` entry for the new PCIe RC driver
+- Updated device tree bindings to reflect the new structure
+- Refactored configuration read and write functions to main bus and
+  child bus ops
+- Refactored initialization to implement multiple ports support
+- Added PCIe FMT and TYPE definitions for TLP header in
+  `include/uapi/linux/pci_regs.h`
+- Updated from reviewer comments
+- Link to v1: https://lore.kernel.org/r/20250613033001.3153637-1-jacky_chou@aspeedtech.com/
+
+---
+Jacky Chou (7):
+      dt-bindings: phy: aspeed: Add ASPEED PCIe PHY
+      dt-bindings: PCI: Add ASPEED PCIe RC support
+      ARM: dts: aspeed-g6: Add PCIe RC and PCIe PHY node
+      PHY: aspeed: Add ASPEED PCIe PHY driver
+      PCI: Add FMT, TYPE and CPL status definition for TLP header
+      PCI: aspeed: Add ASPEED PCIe RC driver
+      MAINTAINERS: Add ASPEED PCIe RC driver
+
+ .../bindings/pci/aspeed,ast2600-pcie.yaml          |  182 ++++
+ .../bindings/phy/aspeed,ast2600-pcie-phy.yaml      |   42 +
+ MAINTAINERS                                        |   12 +
+ arch/arm/boot/dts/aspeed/aspeed-g6-pinctrl.dtsi    |    5 +
+ arch/arm/boot/dts/aspeed/aspeed-g6.dtsi            |   51 +
+ drivers/pci/controller/Kconfig                     |   16 +
+ drivers/pci/controller/Makefile                    |    1 +
+ drivers/pci/controller/pcie-aspeed.c               | 1111 ++++++++++++++++++++
+ drivers/pci/pci.h                                  |   15 +
+ drivers/phy/Kconfig                                |    1 +
+ drivers/phy/Makefile                               |    1 +
+ drivers/phy/aspeed/Kconfig                         |   15 +
+ drivers/phy/aspeed/Makefile                        |    2 +
+ drivers/phy/aspeed/phy-aspeed-pcie.c               |  209 ++++
+ 14 files changed, 1663 insertions(+)
+---
+base-commit: 50455515d2364d7f4397b9db98515a1028558295
+change-id: 20251103-upstream_pcie_rc-8445759db813
+
+Best regards,
 -- 
-Best wishes,
-Vladimir
+Jacky Chou <jacky_chou@aspeedtech.com>
+
 
