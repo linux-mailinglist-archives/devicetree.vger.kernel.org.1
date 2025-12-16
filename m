@@ -1,169 +1,109 @@
-Return-Path: <devicetree+bounces-247085-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247086-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CB7ECC40A1
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 16:47:48 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7ED19CC40A4
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 16:47:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CEA413061A69
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 15:44:19 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id DD28B301E38B
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 15:46:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7B0934B417;
-	Tue, 16 Dec 2025 15:35:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80A0B1F5820;
+	Tue, 16 Dec 2025 15:44:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DTNTWkXp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tEpMjfb9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8640534B194;
-	Tue, 16 Dec 2025 15:35:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 544A73BB40;
+	Tue, 16 Dec 2025 15:44:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765899329; cv=none; b=DVsDvpZ9iFAEwn2trd6zZJjCn5/WBgyPCuL5W8IbAT3fLJA1Lv8rokWmP6nnhbnAr4C9jvkyU2QRjJAl500SokNJTEJ2WbsRr0qsmSaRay1gY7VdT/CQvqA8AGBRJp0uXsIl51u9w26Jw/TV9swtYkH1Rmp77Z0AeE6W+zmcNGc=
+	t=1765899857; cv=none; b=mVqmc2o8lTS3hZ3gQu0mV44mSZpusKHpmWxCshaSHE66EGy/QC3nYV0LmnybZkQq5JGlmVrYSkw90pyvadPZkvV2n+KmJbrapdAiTSqHBDn2TYPNByq9+BFgq6ooJ22lxt/z08q7FvI0hnOgDJWmA4khmm5T3B973KSAvym5qco=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765899329; c=relaxed/simple;
-	bh=ogz6DU6yHeTIS19hmTjn7eKrxbGw0a8WOL02t8Hhp1s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=soJgiqdQreEi53P/mn5iNaRY+Qz8SB2qy1DPBBcDL+u6lriSmod2MpdH6nk80RUjbitVXpeSF4kfgmYCpNA3+5gm2gVzWZnAWFI4+Z95mFy19tVhmtsRhNPNoJSQrvsgIofmD8CYENQIi6+kEGoPAXlDf+hxOZxigxJVE9DrsNA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DTNTWkXp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD9BBC4CEF1;
-	Tue, 16 Dec 2025 15:35:23 +0000 (UTC)
+	s=arc-20240116; t=1765899857; c=relaxed/simple;
+	bh=5FCtWKu4gSPyAonL0m0zznCMC+guvfyTLTTvXhmL8WA=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=DzETxUse4AjaH/YYTwaMt2a332tJzPxsyV+0G0bEYBCIShTES85RKyRUYZGoWlW3Hs1vqQvVUOLK23/voJ7ygpdgZVXqw5IeBepJ0I/9ZNaUJ4KvRuDQ+OnV/V5iBWnP/wWvHG+PkjljiUvCAERyqqVyL1XqA++AZpzE5e0iyhs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tEpMjfb9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04171C4CEF1;
+	Tue, 16 Dec 2025 15:44:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765899329;
-	bh=ogz6DU6yHeTIS19hmTjn7eKrxbGw0a8WOL02t8Hhp1s=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=DTNTWkXpW9maNa6neQuNcscwLT24F+1ne21G8qSOJBnJ9jiHzQng4U8ursF4w0JmN
-	 gtFcs6bWu3xiSAz2c9CGm8pvU5Ve8Yt563YhATSlf/FZ07Q0Q6VkNFy500YkLkPLU1
-	 eUHnCZ/8lyFQb6gvjWJ9sICbKaKxoQb8RO3WKDFCOIhEZsOAqBK5AYKLLQepwmlO42
-	 MV950LyOSEiQEpPDr4xMcvaYYFT61twr4OdrS08dNEhZvsO0iBru+iNA5cFa769OtV
-	 UUSVztPFqQJADhFxAK6PRWi9MfUqXp+rSmlYNquLUP7XTLie/zOt9c0KujvWjeWPkv
-	 V/cOBKvOhbdig==
-Message-ID: <b0857d3b-5b82-47c1-8415-ec9b2046e704@kernel.org>
-Date: Tue, 16 Dec 2025 16:35:22 +0100
+	s=k20201202; t=1765899857;
+	bh=5FCtWKu4gSPyAonL0m0zznCMC+guvfyTLTTvXhmL8WA=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=tEpMjfb9GWfRRhPdxOIJMXHcRFAHwmC7zhL96Uu8qx+M2D5EHDd2u+y/zwoW74rGe
+	 a+SfB0xzOdAeadMTQS8OpzypNzOht01ZAYy32TC/Iz6Zaggmb+SoUuUmjCoEb+V5GT
+	 ujjHqPWYedSwPL8BzcEI5ld5JWY6+fNI5QudhFaFFaOeOlWkXWRJCUKtVR7ppwKjCa
+	 4HFpl7pukWPYaakGCP1dm7fFBWJm0S/4IhrOlpi+5wRXoihqlmP57YKVLNI6EaFG8Z
+	 7hRKt/L6PHHmmeGK04QfhfvKpJHt0vFmQlggIhNJRM0/pP7eofupAaJ5aJlXcsMih7
+	 8f5OwD87pRvCg==
+Date: Tue, 16 Dec 2025 09:44:14 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 7/8] riscv: dts: spacemit: add initial device tree of
- SpacemiT K3 SoC
-To: Guodong Xu <guodong@riscstar.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>, Yixun Lan <dlan@gentoo.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>,
- Thomas Gleixner <tglx@linutronix.de>,
- Samuel Holland <samuel.holland@sifive.com>, Anup Patel
- <anup@brainfault.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>,
- Yangyu Chen <cyy@cyyself.name>
-Cc: Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@sifive.com>, Conor Dooley <conor@kernel.org>,
- Heinrich Schuchardt <xypron.glpk@gmx.de>,
- Kevin Meng Zhang <zhangmeng.kevin@linux.spacemit.com>,
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
- linux-kernel@vger.kernel.org, spacemit@lists.linux.dev,
- linux-serial@vger.kernel.org
-References: <20251216-k3-basic-dt-v1-0-a0d256c9dc92@riscstar.com>
- <20251216-k3-basic-dt-v1-7-a0d256c9dc92@riscstar.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251216-k3-basic-dt-v1-7-a0d256c9dc92@riscstar.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Bartosz Golaszewski <brgl@bgdev.pl>, devicetree@vger.kernel.org, 
+ tao.huang@rock-chips.com, Linus Walleij <linus.walleij@linaro.org>, 
+ linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+ Heiko Stuebner <heiko@sntech.de>, linux-gpio@vger.kernel.org, 
+ Conor Dooley <conor+dt@kernel.org>
+To: Ye Zhang <ye.zhang@rock-chips.com>
+In-Reply-To: <20251216112053.1927852-7-ye.zhang@rock-chips.com>
+References: <20251216112053.1927852-1-ye.zhang@rock-chips.com>
+ <20251216112053.1927852-7-ye.zhang@rock-chips.com>
+Message-Id: <176589985437.2528677.5118158763336562885.robh@kernel.org>
+Subject: Re: [PATCH v3 6/7] dt-bindings: pinctrl: rockchip: Add RMIO
+ controller binding
 
-On 16/12/2025 14:32, Guodong Xu wrote:
-> SpacemiT K3 is equipped with 8 X100 cores, which are RVA23 compliant.
-> Add nodes of uarts, timer and interrupt-controllers.
+
+On Tue, 16 Dec 2025 19:20:52 +0800, Ye Zhang wrote:
+> 1. Add header file with constants for RMIO function IDs for the Rockchip
+> RK3506 SoC.
+> 2. Add device tree binding for the RMIO (Rockchip Matrix I/O) controller
+> which is a sub-device of the main pinctrl on some Rockchip SoCs.
 > 
-> Signed-off-by: Guodong Xu <guodong@riscstar.com>
+> Signed-off-by: Ye Zhang <ye.zhang@rock-chips.com>
 > ---
->  arch/riscv/boot/dts/spacemit/k3.dtsi | 529 +++++++++++++++++++++++++++++++++++
->  1 file changed, 529 insertions(+)
+>  .../bindings/pinctrl/rockchip,pinctrl.yaml    |   9 ++
+>  .../bindings/pinctrl/rockchip,rmio.yaml       | 106 +++++++++++++++++
+>  .../pinctrl/rockchip,rk3506-rmio.h            | 109 ++++++++++++++++++
+>  3 files changed, 224 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/rockchip,rmio.yaml
+>  create mode 100644 include/dt-bindings/pinctrl/rockchip,rk3506-rmio.h
 > 
-> diff --git a/arch/riscv/boot/dts/spacemit/k3.dtsi b/arch/riscv/boot/dts/spacemit/k3.dtsi
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..cb27b790716fdd6dc2bc89c28dd2588a596a5af9
-> --- /dev/null
-> +++ b/arch/riscv/boot/dts/spacemit/k3.dtsi
-> @@ -0,0 +1,529 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> +/*
-> + * Copyright (c) 2025 SpacemiT (Hangzhou) Technology Co. Ltd
-> + * Copyright (c) 2025 Guodong Xu <guodong@riscstar.com>
-> + */
-> +
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +/dts-v1/;
-> +
-> +/ {
-> +	#address-cells = <2>;
-> +	#size-cells = <2>;
-> +	model = "SpacemiT K3";
-> +	compatible = "spacemit,k3";
-> +
-> +	aliases {
-> +		serial0 = &uart0;
-> +		serial2 = &uart2;
-> +		serial3 = &uart3;
-> +		serial4 = &uart4;
-> +		serial5 = &uart5;
-> +		serial6 = &uart6;
-> +		serial7 = &uart7;
-> +		serial8 = &uart8;
-> +		serial9 = &uart9;
-> +		serial10 = &uart10;
 
-These are not properties of the soc, but the board DTS.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Best regards,
-Krzysztof
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml:88:11: [error] string value is redundantly quoted with any quotes (quoted-strings)
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/rockchip,rmio.example.dtb: rmio (rockchip,rk3506-rmio): compatible: ['rockchip,rk3506-rmio', 'rockchip,rmio'] is not of type 'object'
+	from schema $id: http://devicetree.org/schemas/pinctrl/rockchip,rmio.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.kernel.org/project/devicetree/patch/20251216112053.1927852-7-ye.zhang@rock-chips.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
