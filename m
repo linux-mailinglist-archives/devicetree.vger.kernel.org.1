@@ -1,246 +1,189 @@
-Return-Path: <devicetree+bounces-246933-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246934-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51AAACC18D0
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 09:28:01 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D481CC1903
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 09:29:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id CABE03010E58
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 08:22:53 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7A237305034E
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 08:25:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D9583431E3;
-	Tue, 16 Dec 2025 08:22:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B50C533A018;
+	Tue, 16 Dec 2025 08:25:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gocontrollcom.onmicrosoft.com header.i=@gocontrollcom.onmicrosoft.com header.b="KKu2aSI+"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="cui2aSIP";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Dc60way4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11023131.outbound.protection.outlook.com [40.107.159.131])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD89B33D6EF;
-	Tue, 16 Dec 2025 08:22:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.131
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765873371; cv=fail; b=HpXx2E8b0a36A495p5X+JTdSP+UpC6AWn8VQOO0qahyBL7AeArplftdOmQQNhg+XFwqbDLc+pG6hGmHlSCbGn2bfhRxNwO1dWxIFj+DWyc+Sumslbjws6NO2qgexPzsHUlwuiSVoOLdFvxyiJ8W92081QLNsDHuLpX42944VTok=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765873371; c=relaxed/simple;
-	bh=R0aAh9hW2wvvkVTNa9cwa3VnZl0oqQezxjGZ3HsZ1tM=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=WYZrCBQ0CxLUWSFxvBxp3Hltnqlcuh/stOO2reqoaNCO+Twe1y4p4yT7IhLLpJhmdPMWACB3SyXRbOqVSpfSu61J4FSJDOJORcjPp/2CPE0g4to8X83KtF/BcLGOu+LM6qZbtYAsR1lbI8K64T3KHgvzTAbXBs6u8sEMesbQTcI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gocontroll.com; spf=pass smtp.mailfrom=gocontroll.com; dkim=pass (2048-bit key) header.d=gocontrollcom.onmicrosoft.com header.i=@gocontrollcom.onmicrosoft.com header.b=KKu2aSI+; arc=fail smtp.client-ip=40.107.159.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gocontroll.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gocontroll.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=pVzPdImY52wAcvZej6c2k642Zwqc4DRoFudiI0bySiyPrfpxmpnINpTk4fRd/6Lrb7aj3AShqNRsrxn+UZiz5GE1VKHRepIe8DpndTwbiyJNvkvVvha8ptlcn070W0FfL2HDoaPxtEvXs+9NcKtxN2X2rTJ/8Pi2yAGqLKjzlSfMylHFz1GFRKm1+hA3XJXpYN4adtEOqtH7Zco55i8rBZo/+DHwKDKE/Z/x0LUhBfg04mlQkrEjenvYatZfY1H2kNAXPHKDCKJ45mEHTNT+KsyOup5Nf7tHNutJq33FoenXAPBLHp1Jga7WwehKgHixvH1gGsBvj4/YS1LpZ2e8sw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SBPirJP9BMltC+GujqIsXQoaR1gomu0P7FrdVwd3oV8=;
- b=MRNGwCMEM+M8peuF0z4VtikdtZgAoiai6DmKo4L+QKmoblql6MqAlwePH5AnTl6sIqBezhp+W5ioA/y2WGZ86b6Q2O6kbQxia3hJO4fe9NGNrJQa/J70joPcRo38ZVHrf4BbkFuSAGc5C51s6932Q8iN7WbCy8pkovNTBko+KgnklKTnvB+o9cFcOFIVmqD+0l+X7lJemXd3Q5NfPMG97j5f62DuyJgvefsKMSWuUIOfX/8msdu0LpurWjLYZyXky+GETuZO+v4mn6KeSwKvz/2dH32KMOvFJ9ESkPA/0LkVKaRiPus5f6o7s+QH9eAORP1p1L+yxkCldRSHmcSedg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=gocontroll.com; dmarc=pass action=none
- header.from=gocontroll.com; dkim=pass header.d=gocontroll.com; arc=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 016E31CD1E4
+	for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 08:25:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1765873525; cv=none; b=eA9DYp8+IF0siahIJPaWZRlKDbnDhmxBq+MPuiq8k3zUnkNmY0lueOTguYHHze8OD5eS0t7sE5EohKy3p+gJIkaedSqSFL5wfkPgy7dlOcAHRtH1D1Q87TB+5M1DpEzTQnhv4CVwyBvvBPdkyFSuhwWR/UZ42CWgXgv0jbeQJwg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1765873525; c=relaxed/simple;
+	bh=X+Wi/7dfYFuQjLETokYHwl55pAtRQD39RkfFKO3yGwg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=i1y0ZNJ7ScdWQqGugZoR2YnIbakVk383S1br4IiBAj37ZAbVj+f5Ml0IztJGp2X+7mtiOT3cAlX5v05RXuA+GMS53glVy3UH5PVJOndtq7uzAfbon5cRDKQlLI79VVWnJ4LEX89ep6a2jdLhm2ycapOkmiryjzoewAUt6J5fT5w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=cui2aSIP; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Dc60way4; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BG82xE01268953
+	for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 08:25:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=oyaTY0kBanBmC4VLaFLugg
+	ssvQQcgigTDjGjs2S/ih8=; b=cui2aSIPoNTOhQgZ804MoSlo1FUN74naoydohp
+	vvHstMoLVtGhKUmSKwoFWgS4g2S4mrV/F2ZrnW6sIAKMkoBSqcn8+SKmuKlB8ysK
+	7gd0z7jvebW8kbgZD7ErKfgZCjVkmZ4Xn2Pz4HC5YCvH/toQmN8K9IXPbNO1tfX7
+	BkkHXx74bIy/2fi7gSHE0Ov2n2v7S0hfPftwcHtCwQ8wnsfr2kcInzGh+3ukUaiF
+	w9DMorHD4Kh2u/XZIcuu5GZ4jeAZJgil9FYiv/NDF07ENCTSCQIu9GUuFjN7mn4I
+	qy6d6L/h//i440zWBOuFCPKnFQFNa3CdMzwYaqaLuheqm7sg==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b2p46jyf2-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 08:25:21 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4ee3dfe072dso112073631cf.2
+        for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 00:25:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gocontrollcom.onmicrosoft.com; s=selector1-gocontrollcom-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SBPirJP9BMltC+GujqIsXQoaR1gomu0P7FrdVwd3oV8=;
- b=KKu2aSI+CwvXMiwhrd+HtpBhDZM+we+rB1a6T7epSiyETp9QphgL5eKo6tRY9Xa+kZTdqtsVMwSrWm/WJeX5WEXpltt13UUWHer5dhMxYwHks5pZDt6txC0bMcBKE5IiiLbWoolSgc/5k5LHYEsQOXaDFwcEkopzauLAjdU5x8AzNINpKgmQTwxFKUtUfnGLFyyq65XHIP6vO14yCRfHbVeR58nsmNu0rlZ0JgCpKI8RvklBMYRZ0IKYwP+4B2fTU9xhXYlrcK4E54ALVu3vCiXKGtE5pmnXiH/z3mIhoEyXdbh3SgV8lrmCK6pBgqgCjFKP1475vlgQcCYzZ/zKDg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=gocontroll.com;
-Received: from VI0PR04MB11748.eurprd04.prod.outlook.com (2603:10a6:800:2eb::6)
- by DB9PR04MB8284.eurprd04.prod.outlook.com (2603:10a6:10:25e::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9412.13; Tue, 16 Dec
- 2025 08:22:41 +0000
-Received: from VI0PR04MB11748.eurprd04.prod.outlook.com
- ([fe80::5a4c:391:3df:9ffd]) by VI0PR04MB11748.eurprd04.prod.outlook.com
- ([fe80::5a4c:391:3df:9ffd%6]) with mapi id 15.20.9412.011; Tue, 16 Dec 2025
- 08:22:41 +0000
-Message-ID: <f1e63d1a-e111-46e0-b615-3780391661d6@gocontroll.com>
-Date: Tue, 16 Dec 2025 09:22:28 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 0/5] arm64: dts: freescale: add support for the
- GOcontroll Moduline IV/Mini
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>,
- Matti Vaittinen <mazziesaccount@gmail.com>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- Conor Dooley <conor.dooley@microchip.com>
-References: <20251117-mini_iv-v4-0-5aa63832f51a@gocontroll.com>
-Content-Language: en-US
-From: Maud Spierings <maudspierings@gocontroll.com>
-In-Reply-To: <20251117-mini_iv-v4-0-5aa63832f51a@gocontroll.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: AS4P191CA0012.EURP191.PROD.OUTLOOK.COM
- (2603:10a6:20b:5d5::11) To VI0PR04MB11748.eurprd04.prod.outlook.com
- (2603:10a6:800:2eb::6)
+        d=oss.qualcomm.com; s=google; t=1765873520; x=1766478320; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=oyaTY0kBanBmC4VLaFLuggssvQQcgigTDjGjs2S/ih8=;
+        b=Dc60way4bu6+uSUv53246tY2dOLFBOdfMedN+/z89dhf5T2lubUZPeBviGMk07ksm/
+         wtVw60lKhwqPAiZvVdwSCBjrrejWbNd+Bk6m/I16Z5/3PwhhmDo/YIMHnDsr8UsknHYy
+         bpgQHaqLyFn6aOL5d8BQ6Dh+dtS884jDRrWXpYcBBRUTXCFr6gkhwJ89z8roFIxbhiQW
+         Lq95fsJB5kogkEci/5a4FGpYsw0TRUeaYHqaH0JxcCvwbFRCJj1b7GsmwRe5FQAzjjEm
+         8gxm9nuFOLoyAG4ZG+MeOMrLDj/xUA/nxXnN3a/ElB2NjyR/iJuDKcECaYF9N8fEaWJq
+         AfOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765873520; x=1766478320;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=oyaTY0kBanBmC4VLaFLuggssvQQcgigTDjGjs2S/ih8=;
+        b=ToyFn+XymykdyeWP0vuZbrxUZuO+dtkCmXQnFjVJBKJdY3l+AUttGiWYTgn87UwFhx
+         8LFhsjIRnlq9IOrc0TPzPARkrWENoa3oFURnmdRhrMub8qMY43uk+CqSgYvVT9EScmlY
+         +N6dMu2pXJ5rx8Y0PogGs0f17Zo/HxhqhFkkEtTRyhD1I1y3n0Ij1jWk/OCROywyTLlC
+         BcwiNzWJGZAkL4xN4lM0ohQEyhEb48us05rHYjix3smHxl+HQDw1J6V9jRl8+12kM3ui
+         aW/4ZQP2tlZ9pG6hhQOdvTd1DDi4mEEIOsSWljQWOz+vTpdAHKEEnSzO1NNlm0eeUqlB
+         gcRg==
+X-Forwarded-Encrypted: i=1; AJvYcCWk8MVn/rMK4FVjM7c/cUWZQQvcNDTy6TfnBYnEbN+n/II6LKIjHoNP9qUP5xVApBzhfiBgdUZRtsYn@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy88vxMyuSGxD6vBuiPxCqjzw0jxVPKf/Mi6Z870kX/1z5kmttK
+	Db3RkSVJgSBehV1L5eIQ6EQI0Uv0y/4t0gaTf8mLYXoPcVkfZqJF2XUaN5O6eVKvc3NJNpUxGrh
+	EuuS/XlwOkoxFy3lJiXZO3YFMerAs0VHFzvCOx3/Shv8xaLTw4pJPCAvSM0ufopw6
+X-Gm-Gg: AY/fxX4Io/2wH86jCuvAn4NhX4+lA1ILFxsCues8aBjU8bjis8SxiRH2ezJlD+Tdybo
+	SNjIVNjHiHvsnIxsTWyRJkwD4IWg8dStvSvD0LnI159WhVpVIM6BhCL8lggNNbWWYNI4Do15BLY
+	bmbu2YCH4EHv5O0q7Xe5MJfkQHE7dS82eQeFZmt8XT8WYqra50nyl0hf85PPnopPxx9LFF2K2bB
+	97Bfr5ilA8A+PLSdvCxiiowOLg3Re9Qq+FoNGIr0qVB3QIsYBdeAKOj8wfplYFYUbrIP/1Eggl3
+	NiNwltyxz4YFQBLCOSQuB+ofhFcWw0uY7BveinXOA9zn+gwUAUtgZPFG/AXEcD+9wAIGg8lff4v
+	SrgfHcrCzwGrOBZM=
+X-Received: by 2002:a05:622a:124a:b0:4ee:5aa:9c26 with SMTP id d75a77b69052e-4f1d060ee27mr177541851cf.55.1765873520307;
+        Tue, 16 Dec 2025 00:25:20 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGZLjYQHWWjOBFVoqLKEI6xhAvdwz8gex573C8G2rYnDfL09RnGGOU7r1VAReLBY0wXhN+jYw==
+X-Received: by 2002:a05:622a:124a:b0:4ee:5aa:9c26 with SMTP id d75a77b69052e-4f1d060ee27mr177541711cf.55.1765873519776;
+        Tue, 16 Dec 2025 00:25:19 -0800 (PST)
+Received: from hackbox.lan ([86.121.7.169])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6498210fceasm15134381a12.24.2025.12.16.00.25.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Dec 2025 00:25:19 -0800 (PST)
+From: Abel Vesa <abel.vesa@oss.qualcomm.com>
+Subject: [PATCH v2 0/2] phy: qcom: qmp-pcie: Add support for Glymur PCIe
+ Gen4x2 PHY
+Date: Tue, 16 Dec 2025 10:25:03 +0200
+Message-Id: <20251216-phy-qcom-pcie-add-glymur-v2-0-566a75672599@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: VI0PR04MB11748:EE_|DB9PR04MB8284:EE_
-X-MS-Office365-Filtering-Correlation-Id: da7f035a-80ce-4b8c-3062-08de3c7c47d3
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|10070799003|376014|7416014|366016|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?RU1YdURnME5rMDJCRmdINGFkM2tJVE9VMTQ1YUVycjMwU2NjaUxIdTcrU2dl?=
- =?utf-8?B?Yi81cUpmMHNJYUdsSzZnS1o2RWhXRThObkJYQTFsMTJZSDNEOVlKK1BPbmNo?=
- =?utf-8?B?RGtLeDdmSU5lZ1dPMUdUNVBiTS9kdFVWL1MvOTE0RGFJWExMR1N4M2lqRUlR?=
- =?utf-8?B?YStZUXdMbVU4WDA0aHRHSURXN3ZMVzllbXE2d0xVUmd1dFl6Yk4zOUo0WG5H?=
- =?utf-8?B?NVJpOG15YUxlakhVeWVtaG96aUpiR3ZIUGZidi95VjNnam5BTW5LYXhVSG1J?=
- =?utf-8?B?S2o1UnJ6VUM5blMyWWx5TC9RSlZWNHhjdWVxVG5QWDBJVCtONU4wd1FBS2dZ?=
- =?utf-8?B?ZXdhUUZjbUVTNWRJazZMZ0gzbWVvbEpOeCs0VGlSWWFxOXRzU0tuUWJNQU8r?=
- =?utf-8?B?b1NGcEJYOUVxSHltdFBLVkJjQkE4WGUrdmdFWldvWENTN1RRV3lwdGNwblFy?=
- =?utf-8?B?ZFA3Y0ZCWnpkcjNNc2NOalIzVEFtcitkeU0yRjV5T0RrbG9UWi8xc21RbWlP?=
- =?utf-8?B?UC9TeUx0cERuRUkyUGF0TldDTHVGdXAyVHNYd05JNDcyaGVSMjlyMFRuQU1q?=
- =?utf-8?B?aHRFVWtkUEZleWJCczcreitWb21CbU5kdk0za0YvNXpkNll5NW1QcENNV1p6?=
- =?utf-8?B?d3A0SVgxTkVoTTZnYjlVNzdEOTRscFlLL3crNEszbXQvU3dwVlVMaHNxNkZT?=
- =?utf-8?B?SitoRmJDODk3SHhGSmNDYTJOajVqSzRucDExY3hCRlNyT0tnaVluWTByeXFT?=
- =?utf-8?B?dzMrUnJLZXA1Z2N6QXBnNU96U2dxQ1M3b0czVlJrWjdObzlGTVRpRDBjY0dm?=
- =?utf-8?B?OEVsSzBVSGhpTi9nWnNoRjN0bFlzZEhtVUt1alJwbStzUUhXZEN4L0xhSWJ0?=
- =?utf-8?B?RmgrNGdiamxVUTlBZ0tQVTRVS1FIZko0UFhPU3NLbmNmd0tFKzA0R3hrS1VU?=
- =?utf-8?B?YUl0MVRya2NmdUluU1dnbGd6VHNiMG53UFNKQjV4SUxwMXIxTG5yUkh5TG5q?=
- =?utf-8?B?UTVBK2ZmYzdhRSsyNHpoM1FoaEMwcFA1djBNcmhiUXFJdDZmR3d2OEUrOGZh?=
- =?utf-8?B?SUQ5UHU3eTJlckRVMGRiSTFETFJVcGFTU1ZZQmpkZ2EwNXdiQjU3NlliaXVr?=
- =?utf-8?B?eFBmT2xCbWRiYUVzUVhFaHBGMTl0MmE0QUlYYmk1U0F5Z25URGNrZ3NaSFBh?=
- =?utf-8?B?TVN2MjRzb2RjMGNWQnVDbDZrLzc5TFJ1blFqeWZqMjBGb1VRUXVBMTJ3TS9l?=
- =?utf-8?B?SnNKemx0anVjSmFDcFpacUJ1eFNGajc2b1JMaFdVSTBiV041NlcrUWtpNFU0?=
- =?utf-8?B?RFB0YWhxVjM1WkhzSWsxSEYvc3pSMzZXdGhLQ3JZTVFUdlBUTFlOV3l4YVlZ?=
- =?utf-8?B?ejZ2bmE5b0NSWVZmYXZFYnpRUUVRSGt0T0xnRGUyeHhhMUVvZWNIVitLTTg1?=
- =?utf-8?B?bnFCb1ovQVNzaElsU2dLdU1hejRZZCtXRkF2dHlKd1NudEFCZW9Dd1BqeUJ4?=
- =?utf-8?B?YUkvSDRDbWFjSVdCemovK1ZDYllJRlQyTnd1UTRyd2lUVllJSmNvNTFubnEv?=
- =?utf-8?B?cFBQR2RvSStYK3JHZGVwWHZCRW5TTitmSVdSclMyTUxYTjRsM3NLMjM4WFlO?=
- =?utf-8?B?dDBTb0g3ZzM5bkczdldYZFF5QjZIZ3J1THYrWFArQ1R6aTBDVEJGNE85empX?=
- =?utf-8?B?TmhkRG5EWVJNaUR1dzNTYUVKcHA2R0E2cldMR3RkV2RXRTNBVjNnWXB0UWQz?=
- =?utf-8?B?V2pnT1BVaEFlcXRQVlZNQkJNK1R1bFNxSm15cjBzMXJJdlJQY1prZXAvUHNS?=
- =?utf-8?B?eUdsNTJ4TzkrRjdUd240bHFwZTVzZDc4N1ZqQWtjeEI0MXRwcWdacmN6MTdO?=
- =?utf-8?B?Q1h5QjRuWDZHQjdaL1lFdXJ3djVLaWNEdDJGQnI5WTNrU1ZBYU4ySXZ0VXlE?=
- =?utf-8?B?UWxPSHh4MXdZOWxaeTc0RnpvSkpqZlpzQkRQMU9sZnJSNTNZcGNmMTYvZUw3?=
- =?utf-8?B?aWM0VERMWFptYkhLZlZkZjU1WWhZcEhwbWk1OE16em9lbTh4c3pibFc4blMw?=
- =?utf-8?Q?g4nEo4?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI0PR04MB11748.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(10070799003)(376014)(7416014)(366016)(921020);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?OE8wemgzMkw1WmRVMzBEWnliTlRoRUNpYmU2dURKMEU4Y1V6K3lxTUtWTmlP?=
- =?utf-8?B?QjlVdHJNOGpnOXBCck9wODFiaHdjbGg5a1hhdHQ4d2FoNDNDZHByZGJXR0tq?=
- =?utf-8?B?YTBpb0pHL0NtVUJLMmczbm41VFBlNDcvTkxKV3VlVHJrNWNpeTlrY2xkM1Yx?=
- =?utf-8?B?RlFxNC9vMFJELzcvQ0RiUGpwV3BDKzdMMXc0dDE4cG04cUhmcGZ2d0ZqYlRN?=
- =?utf-8?B?aGNpeXZyUzNLOWxwZ1I3WFVDRHNoU1oyVHpQNzE3QVM0ZWNxM3FzbGlFbzB0?=
- =?utf-8?B?TXNXeWNPYzl1OHhrRmR1cW90MVpHbTJldDlOVE9COXJ3U3Z2cWZHUkp4b1ht?=
- =?utf-8?B?SEZPVUVDZlRhRDVhTlZtQ1ZHeEtoa0lwYW1GYkk5MU5HUFh1TVZ4UmhqRVdh?=
- =?utf-8?B?R3JreWdxOFdIbEZXUFY2dElUcyt6am83UDF0L201OEs3ZGNuK3g4NXZ5akpi?=
- =?utf-8?B?YVZ1eGt2TGpqNG9Ia1hFNXdMb25MMm9HYjJCb3RmYjc1NUVNNUlHTXBqTFN0?=
- =?utf-8?B?RTJibmdkeStLL1ZTTWZWWTlQL3VVRGgwaEFFcWhRb1laK09zQXd3bU9QSTZa?=
- =?utf-8?B?cG9JL3M4UWtNK3R1SCs2NzZpT1NTMFh6SU1aYWJwY1RZRG1OdE1lR1VINExV?=
- =?utf-8?B?azIvUlBkd3dBcXhhVjgxUnVVcDNSa2JaaUpiZWNEMFg1bThaSUsvQTQzNjRJ?=
- =?utf-8?B?SkdwY0xDdGZGdTZ0ZjhFeVRWN29yVlRDVEdDUjgyc1E5WS9scUxtTHRFS3RU?=
- =?utf-8?B?bUpRTWRPa2pCT3hKRFZxZ202elVJZy9kQjdYUWZIbUZ5aFZmcDlzV0hORE8y?=
- =?utf-8?B?czhFYmpJRWgrbU9ZSS9PazFZU0gwNkpJRFhlVWdsODl0NTg2djg5cmdhTkk3?=
- =?utf-8?B?Mk5DR3BHMnI3V1pHc1ZMN0lrOTlqR1JpY1BKZmhLWTJJS1FsM05TOWF4bm9x?=
- =?utf-8?B?bU5Jemd6Q1ZtWnd4QUttNE9YSE1kYlNOeUtJTzhjelFZRWZUWnFKTE8rc0V6?=
- =?utf-8?B?VW5iVE13M1ROd2tuL3RQaFIzbnJzbjEwSG1DNnc0TDczdlpaT0J6RkVDY0Y5?=
- =?utf-8?B?WHhQNkFzdTcvNnRXQlUvZTJ6aExyRWo5c29uMzRVTXBoMnM5QzFQRVFVWjMx?=
- =?utf-8?B?a3ZKUTYrSTR0dzNQVEs3MU1KU2ZUUHk4a3NFLzYvTittLzUrdVB3TzVWbjdi?=
- =?utf-8?B?Q1ZoZS8vM292bWh6SVd2TFV3Ris3L1Z1dUpQWW0wZ09KS3hHY09NV29DUmll?=
- =?utf-8?B?NHpzWGRlbVZRZHEwWmZ6UnRzMzlUKzc4RVZwOEt6aUVESFJqdytaOVpNeEpx?=
- =?utf-8?B?OFh1NlB2ZnEyQUozbUh5TlpwVEpCYUc5NWlmRklXQ1FyQ2ZTYnUraS95emtF?=
- =?utf-8?B?T3NhMHFacER1QXloOWtyWkpKMW1ucU5EZTRBdkd4SnEvbHhkREZRVXdDVjMx?=
- =?utf-8?B?QjJNZzNNSC81dTQyQkhZazhlWkZaTkV0WmxPODgzQUVwU2lyREllTWRpVXRx?=
- =?utf-8?B?aDJlRjN1d05uTlFLRnlQVkFzdnNQNGgrNDJiZitKWUUyT0UrZERsaVhlM201?=
- =?utf-8?B?ajBEVjBSZVkwNWFIUDNydERYSkJMaEhXYzJSeks0RzdSWjIyYitaQ1VXak1q?=
- =?utf-8?B?bmhKT0dsc3JFd09LOTJLL3daeXRoUjk3N0tXc0Vnak0zYUQwaXRaeW03bjhO?=
- =?utf-8?B?ak1RRGpDUGd4ODdmWUVYZmo5cytqTkVLb2IzTFJKVVVnbllwbmVSS1h0SWxu?=
- =?utf-8?B?UXoyMlJFRjlOWFlmMUFPRWkzT3FvSzNjMkYyb1I0RFNXQm0zSjVuaVJXMnN3?=
- =?utf-8?B?UTVpSGVIZStxMWhLS2RzVTVPcmZOWFhOb2hza3BHZFFKR21SY1FxTk9JWXVC?=
- =?utf-8?B?NTBpRnpxeCs4Y1VrTVlDbk9CSUhKVWppRHhtUi9XcGhJQmFEdjRaZGlqakht?=
- =?utf-8?B?aEtFQWdTcWF3aS84UkltUTJGMDJXN3EybkhoeDhCSFlHYXRUN3RsdmZXSmJQ?=
- =?utf-8?B?SGFRK0VSVEZTQldaT2hOcWFLN2RpU05oUUs2TG5XSmNHOERFSGR0ZVplWFhv?=
- =?utf-8?B?U1lwQWYySGIvcVRGWG01ZUdWelpmelpnTWdaUzNyVWtjdWZsUTFBNmNiYTJC?=
- =?utf-8?B?NmtZcWVjcVVTRXFIYzZ1M2hUWWRYNU9MUHMrYXErM3E4eG5icDYzekFrSGls?=
- =?utf-8?B?OFpFR2hVWGVaUzIwaGxXdG1MeFRNS2E0dkNaMERQSE0vcUNPNnRiM2kyaDBV?=
- =?utf-8?B?eXZSWGlTMExyV2RHVE9NRnI0OU5BPT0=?=
-X-OriginatorOrg: gocontroll.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: da7f035a-80ce-4b8c-3062-08de3c7c47d3
-X-MS-Exchange-CrossTenant-AuthSource: VI0PR04MB11748.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Dec 2025 08:22:41.3149
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 4c8512ff-bac0-4d26-919a-ee6a4cecfc9d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 9wUN8I8mevCji4NJA7tYWrOwNG4c+kFR0NxdAcCyrAzmrOuNbZDbdQ2ib0TD7oD0HpmBVJmAkoziioXfUgkxh6+7fSnjC91E4waZSx43fdg=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB8284
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAF8XQWkC/42NSw6CQBAFr0J6bZtpECKuvIdhMc4HOgEGepRIC
+ Hd35AQuq5JXb4PohF2EW7aBuIUjhzFBfsrAdHpsHbJNDLnKS1JU4tStOJsw4GTYobYW234d3oK
+ qrp6VrUvy2kCaT+I8f470o0nccXwFWY+nhX72j+hCqJC0v3pLF6+K4t7zqCWcg7TQ7Pv+BUFRM
+ BTBAAAA
+X-Change-ID: 20251015-phy-qcom-pcie-add-glymur-096b6d951fac
+To: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Wenbin Yao <wenbin.yao@oss.qualcomm.com>, linux-arm-msm@vger.kernel.org,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Abel Vesa <abelvesa@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+X-Mailer: b4 0.15-dev-47773
+X-Developer-Signature: v=1; a=openpgp-sha256; l=965;
+ i=abel.vesa@oss.qualcomm.com; h=from:subject:message-id;
+ bh=X+Wi/7dfYFuQjLETokYHwl55pAtRQD39RkfFKO3yGwg=;
+ b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBpQRdhheuvPn5TFdQkL+Sq3gVQamzhs5ELdjXdk
+ D8g/PcARZOJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCaUEXYQAKCRAbX0TJAJUV
+ VrMqD/92rCTQwllXb+RrYwrczOPKXjE/M5hJ3weNGf6hUcZgDMOeoG323xl4OjbHzuOke7uxTVC
+ W+/NQIAO+CY3E55Ry63drpjmYLtdBGbnPHI0YnxE9PALAL3GmO14W+GJQPoDqKL4nKeLTTFhfC8
+ 5jbtBhjJLJKY/DBEFckVL6Ogo1772CCaKbic+3kPYd/XqBVGFG0AWUOVDpX2t9Eg5UJeWpeVBx2
+ qzWspPkCadG30o7TWir/i1NWcy1eriRr/BoloLWCMSmmh3AisBY8dGqE0hY+a/mhwsbK4ya8Ib5
+ EWrlnNCggkf7NEM4rdqZmOcyr9toKTnUatLtUPHWnAC5iavY4mv6VvzJXAM0Gl/YhHIZwjSeuCT
+ 53qUnwM+1Oxy79/m1x7ZelM72OS1609lHdI0/imWQDNxn7I04katAzrEieMXeTwOb9e3+eBB230
+ E0yFFpWIvcYnCLXlPm0A8nQoJ48HKrm3p4vC9Cecl66gQfi/MjX6EMqtcTFgUN1vINGHx4KdQ5G
+ Col+12mhXsTg6ThGdT6rwXvA5FCMk8LRd/hr45PB5eaTIwa9c5JNnHf2D+JlKkTzXtOhyjIM5DS
+ cduvX5llJpmqXju52BiuIP2VDtwOec9tIED8qXQagTRhsLT3o6T16VAUHibFDWW7obX8S19RS8Y
+ dR6a7z5EOPSPalA==
+X-Developer-Key: i=abel.vesa@oss.qualcomm.com; a=openpgp;
+ fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
+X-Proofpoint-ORIG-GUID: crFzYCRqwqHceXStJ_BbYnmD7_bXSKNM
+X-Proofpoint-GUID: crFzYCRqwqHceXStJ_BbYnmD7_bXSKNM
+X-Authority-Analysis: v=2.4 cv=TcybdBQh c=1 sm=1 tr=0 ts=69411771 cx=c_pps
+ a=WeENfcodrlLV9YRTxbY/uA==:117 a=DdBtMnqNxkYIvXj6ev4VzQ==:17
+ a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8
+ a=LUK--ORpqSMM-KfJUm8A:9 a=QEXdDO2ut3YA:10 a=kacYvNCVWA4VmyqE58fU:22
+ a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjE2MDA2OSBTYWx0ZWRfX3eRSYWeoevMH
+ 09Y8dfLI2GOxYVkzymF5x4o5BeeCRMi2rKId1duBTJKDsYAmUuHQWLkUAuDSuPQ5WtofBUntMk8
+ 1SQ5qotJNbev3B9wkl6QVc7FgyTUWYcWK9l7lQ3a1zSMKlNFZYAREkZv/i/kvbkFtgX6+x43vPR
+ RJ7DCMQS67lQg6m40RNbSeCjiTzDW/FRrcbquE6S41kCJTuYC2VZBQhDDqcnf0oT5FRHUDfUwN0
+ W/ItF0hCIBxC8E1NOy6eG/UyL3e0QC4EQEz/+IVpjZ+kkbb0TyxK14uM+hjnbaTo04txdnjlGfm
+ t9M7iCVSdu2v3wSoCkmLk3jWXNsqzw3Car6/epXz+IKecs8PmIx/QLv2sdP5HuDtYrRDjyOzVh9
+ sCKb9mvtE+MwdjjcFF/9mFjklWAIFQ==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-16_01,2025-12-15_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 spamscore=0 lowpriorityscore=0 adultscore=0 malwarescore=0
+ priorityscore=1501 suspectscore=0 clxscore=1015 impostorscore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512160069
 
-Gentle ping after a month of inactivity.
+The Glymur platform comes with two PCIe Gen4 2-lanes controllers.
 
-Kind regards,
-Maud
+Add support for their PHYs and document the compatible.
 
-On 11/17/25 16:01, Maud Spierings via B4 Relay wrote:
-> Add initial support for the Moduline IV and Moduline Mini embedded
-> controllers.
-> 
-> These systems are powered by the Ka-Ro Electronics tx8m-1610 COM, which
-> features an imx8mm SoC.
-> 
-> Signed-off-by: Maud Spierings <maudspierings@gocontroll.com>
-> ---
-> Changes in v4:
-> - Fix BUCK6 property order
-> - Change the BUCK6 min/max voltage to match the dram specs (Lothar)
-> - Make it clear that the two systems are based on a SoM in commit
->    message of the dt-bindings (Conor)
-> - Drop merged PMIC fix (Matti, Mark)
-> - Link to v3: https://lore.kernel.org/r/20251030-mini_iv-v3-0-ef56c4d9f219@gocontroll.com
-> 
-> Changes in v3:
-> - Add patch fixing the pmic driver
-> - Use the proper feedback properties for BUCK6
-> - Slightly rework the compatibles, acked by conor dropped
-> - Add missing CAN interface supplies, remove the leftover comment
-> - Add missing vled-supply
-> - Add missing ethernet phy interrupt (doesn't work)
-> - Fix the cs-gpios properties in all spi interfaces
-> - Fix the order of properties in all spi interfaces
-> - Remove unused labels for regulators of the PMIC
-> - Link to v2: https://lore.kernel.org/r/20251022-mini_iv-v2-0-20af8f9aac14@gocontroll.com
-> 
-> Changes in v2:
-> - Fix allignment issue in imx8mm-tx8m-1610.dtsi (fec1)
-> - Move phy-reset into fec (works better in barebox)
-> - Make the gpio-line-names groups of four on every line
-> - Link to v1: https://lore.kernel.org/r/20251009-mini_iv-v1-0-f3889c492457@gocontroll.com
-> 
-> ---
-> Maud Spierings (5):
->        dt-bindings: arm: fsl: Add GOcontroll Moduline IV/Mini
->        arm64: dts: imx8mm: Add pinctrl config definitions
->        arm64: dts: freescale: add Ka-Ro Electronics tx8m-1610 COM
->        arm64: dts: freescale: Add the GOcontroll Moduline IV
->        arm64: dts: freescale: Add the GOcontroll Moduline Mini
-> 
->   Documentation/devicetree/bindings/arm/fsl.yaml     |   8 +
->   arch/arm64/boot/dts/freescale/Makefile             |   3 +
->   arch/arm64/boot/dts/freescale/imx8mm-pinfunc.h     |  33 +
->   .../imx8mm-tx8m-1610-moduline-iv-306-d.dts         | 800 +++++++++++++++++++++
->   .../imx8mm-tx8m-1610-moduline-mini-111.dts         | 688 ++++++++++++++++++
->   .../arm64/boot/dts/freescale/imx8mm-tx8m-1610.dtsi | 444 ++++++++++++
->   6 files changed, 1976 insertions(+)
-> ---
-> base-commit: 7c3ba4249a3604477ea9c077e10089ba7ddcaa03
-> change-id: 20251009-mini_iv-a05e5c2c1223
-> 
-> Best regards,
+Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+---
+Changes in v2:
+- Rebased on next-20251215 
+- Dropped dependency since it was merged.
+- Picked up Krzysztof's R-b tag for the bindings patch.
+- Link to v1: https://lore.kernel.org/r/20251015-phy-qcom-pcie-add-glymur-v1-0-1af8fd14f033@linaro.org
+
+---
+Abel Vesa (2):
+      dt-bindings: phy: sc8280xp-qmp-pcie: Document Glymur PCIe Gen4 2-lanes PHY
+      phy: qcom: qmp-pcie: Add support for Glymur PCIe Gen4x2 PHY
+
+ .../bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml   |  3 ++
+ drivers/phy/qualcomm/phy-qcom-qmp-pcie.c           | 34 ++++++++++++++++++++++
+ 2 files changed, 37 insertions(+)
+---
+base-commit: 4a5663c04bb679631985a15efab774da58c37815
+change-id: 20251015-phy-qcom-pcie-add-glymur-096b6d951fac
+
+Best regards,
+--  
+Abel Vesa <abel.vesa@oss.qualcomm.com>
 
 
