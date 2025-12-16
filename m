@@ -1,103 +1,132 @@
-Return-Path: <devicetree+bounces-247152-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247153-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E4A4CC4E5E
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 19:32:42 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66767CC4D74
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 19:21:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 01DA430C3414
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 18:28:55 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 983EE30287EE
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 18:21:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77B2E347BB4;
-	Tue, 16 Dec 2025 18:06:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gg8flxg7"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EC33346AC7;
+	Tue, 16 Dec 2025 18:21:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31F98346FC6;
-	Tue, 16 Dec 2025 18:06:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFAF3346AC3;
+	Tue, 16 Dec 2025 18:21:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765908381; cv=none; b=GjhQNaNusFXXFwrpzVpQwkNjydDZmtUVfYft473WzBgPmwjL2hfXrWfmxmcBp3wi3XA1qt/F8QO+z/qIjKWFcQgyerd3NOzhIWTQh8O2PLyTBMz6o8Ev/zPUBNKSUqnZ3GB+l9zTN/jZT4izTBuUQ884A4Xo8vFaOji7cIljpKE=
+	t=1765909280; cv=none; b=Kw15tAYUDAy9IOAPgywIHVDZEpkhhN8gSS2eG4AsfuGQHSu7VMvTeBAVYpWirGpTMF6tk81WjSJWx5zW1PNh7k9t+vyOc9bYyouQYh6WYEWaE6UxJsJSBW+6Q6jp1TfI05SJxh+NK1YnvuX3insnA3/vFaK9qUXaPdwtgA5d7/Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765908381; c=relaxed/simple;
-	bh=Vk4PbbceALGPz0CzuqlPGpdBVd4ii+3seXY2QzMFCss=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=e99bfVQwyk7CKRPvDutX4z+fVOMQpKwIcOg6nUfGmPoFKFsh2lzc7mNURCoyFCvAQMXtN2J6rsTrlOJrsI2bjHABorfup6vM5KNxO+A59DXHOsXJzNiTLhOQ6QjdIAisBZX5Lf6D9BWfr17rNgoIDzFRh0dJcJvOinF5l6Gy8nc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gg8flxg7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0ED6FC4CEF1;
-	Tue, 16 Dec 2025 18:06:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765908380;
-	bh=Vk4PbbceALGPz0CzuqlPGpdBVd4ii+3seXY2QzMFCss=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Gg8flxg7V4q8ARtnZvyjCnU8dbvmE3HGVzVoaIxbgsZkV5pP23vNUM8jqV5MqB69W
-	 VFk6c7k8Ckwv/nDF1Zgpw12RpnDgVolFpe3k9XCHAwQfqV+i+G2uCnVFH4WhrZesAZ
-	 7//KAX0Fq0+/tNibhS3O52jbYKstf35b7KTKCaK7m/UhgY0zHtv1OVCbBNhvt2SEN1
-	 84jeuqOZGfklx/JkhWrWdPswXbshxOAM8/DGuL5Q5BlKwmZ1GswQRsDSw8vOjgeGvC
-	 ytF8ZhMCnSv3C418GMvbQu5MuxBHKC0Mzdbj8q5VQpipEyXRm++zNL/vltF2la3DWE
-	 VfSU5RejHM/7Q==
-Date: Tue, 16 Dec 2025 18:06:09 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Robert Marko <robert.marko@sartura.hr>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
-	claudiu.beznea@tuxon.dev, Steen.Hegelund@microchip.com,
-	daniel.machon@microchip.com, UNGLinuxDriver@microchip.com,
-	herbert@gondor.apana.org.au, davem@davemloft.net, vkoul@kernel.org,
-	linux@roeck-us.net, andi.shyti@kernel.org, lee@kernel.org,
-	andrew+netdev@lunn.ch, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, linusw@kernel.org, olivia@selenic.com,
-	radu_nicolae.pirea@upb.ro, richard.genoud@bootlin.com,
-	gregkh@linuxfoundation.org, jirislaby@kernel.org,
-	mturquette@baylibre.com, sboyd@kernel.org, richardcochran@gmail.com,
-	wsa+renesas@sang-engineering.com, romain.sioen@microchip.com,
-	Ryan.Wanner@microchip.com, lars.povlsen@microchip.com,
-	tudor.ambarus@linaro.org, charan.pedumuru@microchip.com,
-	kavyasree.kotagiri@microchip.com, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-crypto@vger.kernel.org, dmaengine@vger.kernel.org,
-	linux-hwmon@vger.kernel.org, linux-i2c@vger.kernel.org,
-	netdev@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-spi@vger.kernel.org, linux-serial@vger.kernel.org,
-	linux-usb@vger.kernel.org, linux-clk@vger.kernel.org,
-	mwalle@kernel.org, luka.perkov@sartura.hr
-Subject: Re: [PATCH v2 07/19] dt-bindings: serial: atmel,at91-usart: add
- microchip,lan9691-usart
-Message-ID: <20251216-sulfur-growl-ca451d845a5d@spud>
-References: <20251215163820.1584926-1-robert.marko@sartura.hr>
- <20251215163820.1584926-7-robert.marko@sartura.hr>
+	s=arc-20240116; t=1765909280; c=relaxed/simple;
+	bh=Wfcu7573yc2ab5v6nKY8wi70XO8aiefr4nBDJ9aNgPQ=;
+	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Ie7/ANX0hBZ14hJOk6zh4NzUxvtGgdXQzO/7sKF94aiPuDRtLf2TeqRylsAOadNGfKShm45ZXMR2eOnOX3/svBGzozmOJL62RyxQqbcfomY9bnd8C2ddAliSUfz54okqvijxg1xj1VKml/0iwssM1AYwlsJuTUH3xSGFW08ntig=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.224.150])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTPS id 4dW4x5134fzJ46CH;
+	Wed, 17 Dec 2025 02:20:41 +0800 (CST)
+Received: from dubpeml100005.china.huawei.com (unknown [7.214.146.113])
+	by mail.maildlp.com (Postfix) with ESMTPS id 3CE9A40539;
+	Wed, 17 Dec 2025 02:21:09 +0800 (CST)
+Received: from localhost (10.203.177.15) by dubpeml100005.china.huawei.com
+ (7.214.146.113) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.36; Tue, 16 Dec
+ 2025 18:21:08 +0000
+Date: Tue, 16 Dec 2025 18:21:06 +0000
+From: Jonathan Cameron <jonathan.cameron@huawei.com>
+To: David Lechner <dlechner@baylibre.com>
+CC: Kurt Borja <kuurtb@gmail.com>, Jonathan Cameron <jic23@kernel.org>, "Rob
+ Herring" <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, Tobias Sperling <tobias.sperling@softing.com>,
+	Nuno =?ISO-8859-1?Q?S=E1?= <nuno.sa@analog.com>, Andy Shevchenko
+	<andy@kernel.org>, <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v8 2/2] iio: adc: Add ti-ads1018 driver
+Message-ID: <20251216182106.000051c3@huawei.com>
+In-Reply-To: <bef2e71c-fd76-4e73-9e53-422f9fa96757@baylibre.com>
+References: <20251211-ads1x18-v8-0-5cd12ac556da@gmail.com>
+	<20251211-ads1x18-v8-2-5cd12ac556da@gmail.com>
+	<064e059b-5c86-4c41-8de8-b6a728361fd3@baylibre.com>
+	<DEYY46ZUJQ35.YBNYWLGZMRYA@gmail.com>
+	<bef2e71c-fd76-4e73-9e53-422f9fa96757@baylibre.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="nWQJu7IR7o2M7HAi"
-Content-Disposition: inline
-In-Reply-To: <20251215163820.1584926-7-robert.marko@sartura.hr>
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: lhrpeml500010.china.huawei.com (7.191.174.240) To
+ dubpeml100005.china.huawei.com (7.214.146.113)
 
+On Mon, 15 Dec 2025 12:09:31 -0600
+David Lechner <dlechner@baylibre.com> wrote:
 
---nWQJu7IR7o2M7HAi
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+> On 12/15/25 10:54 AM, Kurt Borja wrote:
+> > On Mon Dec 15, 2025 at 10:55 AM -05, David Lechner wrote:  
+> >> On 12/11/25 10:25 PM, Kurt Borja wrote:  
+> >>> Add ti-ads1018 driver for Texas Instruments ADS1018 and ADS1118 SPI
+> >>> analog-to-digital converters.
+> >>>  
+> 
+> ...
+> 
+> >>> +static irqreturn_t ads1018_trigger_handler(int irq, void *p)
+> >>> +{
+> >>> +	struct iio_poll_func *pf = p;
+> >>> +	struct iio_dev *indio_dev = pf->indio_dev;
+> >>> +	struct ads1018 *ads1018 = iio_priv(indio_dev);
+> >>> +	struct {
+> >>> +		__be16 conv;
+> >>> +		aligned_s64 ts;
+> >>> +	} scan = {};
+> >>> +	int ret;
+> >>> +  
+> >>
+> >>  
+> >>> +	if (iio_device_claim_buffer_mode(indio_dev))
+> >>> +		goto out_notify_done;  
+> >>
+> >> This should not be needed. It should not be possible to
+> >> exit buffer mode without triggers being stopped first.
+> >> (No other driver is doing this.)  
+> > 
+> > Previously I had my own lock here because ads1018_spi_read_exclusive()
+> > needs locking.  
+> 
+> What exactly are we protecting against here? I.e. give side-by-side
+> lists of possible concurrent function calls where there could be a
+> problem.
+> 
+> Any call to iio_device_claim_direct() will already fail without
+> calling iio_device_claim_buffer_mode() here. And since this is
+> an interrupt handler, we don't have to worry about reentrancy (it
+> can't be called again until the previous call returns). And nowhere
+> else in the driver is calling iio_device_claim_buffer_mode(). So
+> calling it here doesn't actually add any protection AFAICT.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-pw-bot: not-applicable
+Agreed we shouldn't need this. Given these comment and my lazy nature,
+Kurt, would you mind spinning a patch on top of this series that I can
+squash with it on my tree?  That should be easier to review than
+a full v9.  If you prefer a v9 of the whole thing, that would be fine too.
 
---nWQJu7IR7o2M7HAi
-Content-Type: application/pgp-signature; name="signature.asc"
+Thanks,
 
------BEGIN PGP SIGNATURE-----
+Jonathan
+> 
+> > I dropped it per your suggestion in v1 I believe, but
+> > given the discussion in the cleanup.h series I was thinking in bringing
+> > it back.
+> > 
+> > But yes, the scope can be adjusted too.
+> >   
+> 
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaUGfkQAKCRB4tDGHoIJi
-0moRAQCqSaatI61iIIQ9uyMZ6xfS7aRicQkD674VJq8tbj4GEgEAxcYLkTfCetQr
-MhTj9BGTs2f+HLwIcr5hTiAm78BZkAo=
-=MAdl
------END PGP SIGNATURE-----
-
---nWQJu7IR7o2M7HAi--
 
