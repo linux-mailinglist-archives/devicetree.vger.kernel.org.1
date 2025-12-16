@@ -1,229 +1,118 @@
-Return-Path: <devicetree+bounces-246959-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246960-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B00FCC1EC4
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 11:15:34 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 281CDCC1F34
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 11:23:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 605983027D92
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 10:15:05 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D1460300BB94
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 10:23:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70784332EB9;
-	Tue, 16 Dec 2025 10:15:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A038C32E143;
+	Tue, 16 Dec 2025 10:23:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ziyao.cc header.i=@ziyao.cc header.b="WBalnqKO"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="d9i9zfq6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail55.out.titan.email (mail55.out.titan.email [34.227.236.38])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f68.google.com (mail-wm1-f68.google.com [209.85.128.68])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92ED032E13C
-	for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 10:15:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=34.227.236.38
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE8DD319852
+	for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 10:23:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.68
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765880104; cv=none; b=Jb/KW21R8n+AJFrZjpQsB7IAvBh4kQR8ZVt92D+fP+SgP7n/2uXugxo0mYl164SGuILUjiT22voOS+SRBWM07VmNtNUXWU/Jyo3vm4XqzYrverM8uaMwcgbAZ5ZVk95XR5NNWSLBOK6qmIQnW91k6wn16ajYMdJZ3waqg4J0FO4=
+	t=1765880591; cv=none; b=BtdebudaqnV7tlorXmMnu1jVvvT6PZyfAfPGVQSUG92DKZVqwyj12qLdisdWD/UAbIjrGI9yDr73lU25Zl/eGJilX3VqpL8Ui4QZzz5l5XVKp66mjCOwibFNiLCySToCv4TOONxQ64oBBtKtu1b1KJZts6nADWrVJiENgnfSXiA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765880104; c=relaxed/simple;
-	bh=cPeanqZJkqu/FnYcumzArXWQTq8YNvwlugJh19yoXsY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CemEMspJYWI/i+EejgZMzRDn/87GnXwqf4wiNGgYWMOLw404OC02JHqObV/gixG4WPzttPMvpKI0ycuK2+wAtoU/gmo9V/gwzvWaW88cfwmDwT3/oM6Afg3IJOdQKMx83i6Q4JhzPeCxeIBAsqSWRmSjf9Jg7miNgVlc2UkMIE4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ziyao.cc; spf=pass smtp.mailfrom=ziyao.cc; dkim=pass (1024-bit key) header.d=ziyao.cc header.i=@ziyao.cc header.b=WBalnqKO; arc=none smtp.client-ip=34.227.236.38
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ziyao.cc
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziyao.cc
-Received: from localhost (localhost [127.0.0.1])
-	by smtp-out.flockmail.com (Postfix) with ESMTP id 4dVt8c21w0z2xDS;
-	Tue, 16 Dec 2025 10:14:56 +0000 (UTC)
-DKIM-Signature: a=rsa-sha256; bh=JRYE7dZuS1EyQE3Ha8bBcmdg8NdStYsYqAqgvc7/9LQ=;
-	c=relaxed/relaxed; d=ziyao.cc;
-	h=to:subject:mime-version:date:from:cc:references:message-id:in-reply-to:from:to:cc:subject:date:message-id:in-reply-to:references:reply-to;
-	q=dns/txt; s=titan1; t=1765880096; v=1;
-	b=WBalnqKOAoW25sYUqwKYrlMbSyNNpXVqfN7EF7jhqOVe2E3s1L4qYp4hr7pvThV7RcIdx4ay
-	qtxtoxalS0/L8qkNry2nOh17pDBVHzE1GR4bkumqnoDBYEe6T0Bau7/Ccb4SMW/lEc2jvpG92US
-	+KYseHiJnFFN6d/cJtmibi1U=
-Received: from pie (unknown [117.171.66.90])
-	by smtp-out.flockmail.com (Postfix) with ESMTPA id 4dVt8T6kbgz2xDl;
-	Tue, 16 Dec 2025 10:14:49 +0000 (UTC)
-Date: Tue, 16 Dec 2025 10:14:46 +0000
-Feedback-ID: :me@ziyao.cc:ziyao.cc:flockmailId
-From: Yao Zi <me@ziyao.cc>
-To: wayne <shuweiwoo@163.com>, "Rafael J. Wysocki" <rafael@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>
-Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] thermal: spacemit: k1: Add thermal sensor support
-Message-ID: <aUExFjJJh0rrRCdV@pie>
-References: <20251216-patchv2-k1-thermal-v1-0-d4b31fe9c904@163.com>
- <20251216-patchv2-k1-thermal-v1-2-d4b31fe9c904@163.com>
- <aUDc-o63KJpY8xLG@pie>
- <68620b24-256f-4032-8bc0-911d94bfb616@163.com>
+	s=arc-20240116; t=1765880591; c=relaxed/simple;
+	bh=Dvmr/QNqhE/E0wa6WZQHpZU3lnvizMSDqcgLKup3gdQ=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=GIzTEcnt1hg6hR3OcTcoywu0iJrC+LlLy8afTlL1A1PGCoRqB/IRJ35SkLsPvyFaPAqSU3PBcZlEguBfIITOHXFkyE6n8+YK7pTiBLFY9+AYnPOzUTqlZYgfYJJoRfko2LEVWm+yVc1ZUEcN7Ym+7cmQMRmFg/T5/tNtjiNijRU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=d9i9zfq6; arc=none smtp.client-ip=209.85.128.68
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f68.google.com with SMTP id 5b1f17b1804b1-4775ae5684fso19435075e9.1
+        for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 02:23:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1765880588; x=1766485388; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=NX/BjIYz9x7aAJdudv3dAY9wtSDhtVkvwARFOcwrepA=;
+        b=d9i9zfq6+0twgQ4LIkOBRJz9vEZTE2BpVfy5CNviFiAd8REoiU9dhUBfpwgBqCehqE
+         6MVjrNafpJsQ7IWLDZXzfkcJI1cMz/7414Her7r+JeWe4IQYWCWdnoRKrZHv1nCw/OY9
+         wG/+ErKwyWKFMmYNIpSAdEAPxllK5VIXOb4+pHOnWBoXIAPZr/hUxKSV250mHuBHYhce
+         UY5VMVt/E9ujlu4AFBKLbziFIElDrOjtj6wawx/ZAH4VabXhq6qaF6EsFhX/04M5kzsR
+         4ed8NMj/ZCMWCSEWcXLWXniW40QMBWTvSmxRtTsWF0GeK48kRUdSe5fsedCbwb3/L8De
+         Rxiw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765880588; x=1766485388;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=NX/BjIYz9x7aAJdudv3dAY9wtSDhtVkvwARFOcwrepA=;
+        b=ScMuxdcP8JJDVxkb0cPiIEjIHfCgFZwfEsJH/SvYXScx/kXS9m0gPoWYOi3feOT9r5
+         Xh2KQ5rhuMREvkg2L3WzsmNW5H63qHOC8HIKpis4cQTf10fkHm4+a3koYJlJZgpshg1p
+         rHfiYDT94wKP+0bE23OJF76rUM8AI9QFThNvlagqS8p33vNBaDHeEADbtBl6V++oxEAd
+         mn2CMPdxCEPmARqm8fh+rbg7GsfSItST7SLQKPdqjd6cLTMWJa1BlP5LAWt3N9ZQ7o2r
+         NTTUwvHWF8hQz/6lpZxXscVnC7pPQfB4jGxEnlWMFRMWIP/aANNxWZZwO6ijV/tnW65f
+         QB4A==
+X-Forwarded-Encrypted: i=1; AJvYcCVkqOQ3z7vjMzdqS7cEnwtcf1yEYitRJWOSKOybLxQCj5N9g78I1qP9id0v4YHXSaE88z1kPbLedIZe@vger.kernel.org
+X-Gm-Message-State: AOJu0YwwoDj+2dQlUa70n8Y/94IMXsU1heqkaR6v+zlRvnOHPp1zGPgO
+	3vDjzKY3T6qlTQqLtkX1qx0IBxzY5DqEf+Ey/eTL1ZheEXAnLfk7V/h5wHVGQt47AaY=
+X-Gm-Gg: AY/fxX7zA1qx4C5zEI8oP5Kmpor5SrKPImQF4EpJy9u/wsDQpxSTYHa1nOOC6g8atcb
+	K60hRzHA5rySN2ei84RxNTCH1XNID9a/cJmuETFyORRhpRKqiOze0OkY0NmTNNDln9fxk/PATFD
+	uQ+EwYh506dCPRaxFAH310D3WVQ7An22UCsOQ6TgCAP4AzsAL9RrAIalkaQUQbEFP8lUs1SK8GJ
+	923bALpT9wEirxS0Gbyji6uif6HQyDQUSTVCeAG+PMFMR8T2k2JqZX0/Tz6a9bCK3lsP4mjqy/r
+	Lr9nMXKqpaBCipwy5N2HinbVp9miBaAnRi04YOEE+AzlPcGas8/gKSYmq4x8su/sEVTJ46YzykX
+	vLSacNgjbDXtSQib01uikDuLys4JxTV/gQQ8roe8Xv36RRLt5FCYsA0AfFXSMPqAqbShZUNolpD
+	/2AJW8tysCuFP0xAXgjxDg++K/PYO09sU=
+X-Google-Smtp-Source: AGHT+IGiEubYcTgOYBi8mqSAy1isygDjzTiDJgnd7uGUl77AkoVoZN4wTT6z/CWXEpGiH8gd5MBpTg==
+X-Received: by 2002:a05:600c:6290:b0:477:55ce:f3c2 with SMTP id 5b1f17b1804b1-47a8f8cdc9dmr134843895e9.14.1765880587826;
+        Tue, 16 Dec 2025 02:23:07 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-430f984a268sm14996292f8f.1.2025.12.16.02.23.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Dec 2025 02:23:07 -0800 (PST)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+To: Jessica Zhang <jesszhan0024@gmail.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, David Heidelberg <david@ixit.cz>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <20251106-dt-s6e3fc2x01-v2-1-deb87727152e@ixit.cz>
+References: <20251106-dt-s6e3fc2x01-v2-1-deb87727152e@ixit.cz>
+Subject: Re: [PATCH v2] dt-bindings: panel: s6e3fc2x01: Sort and remove
+ unnecessary properties
+Message-Id: <176588058666.2230787.17118306826413529829.b4-ty@linaro.org>
+Date: Tue, 16 Dec 2025 11:23:06 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <68620b24-256f-4032-8bc0-911d94bfb616@163.com>
-X-F-Verdict: SPFVALID
-X-Titan-Src-Out: 1765880096091703187.27573.8248559529016179629@prod-use1-smtp-out1001.
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.4 cv=TPG/S0la c=1 sm=1 tr=0 ts=69413120
-	a=rBp+3XZz9uO5KTvnfbZ58A==:117 a=rBp+3XZz9uO5KTvnfbZ58A==:17
-	a=kj9zAlcOel0A:10 a=MKtGQD3n3ToA:10 a=CEWIc4RMnpUA:10 a=VwQbUJbxAAAA:8
-	a=7mOBRU54AAAA:8 a=Byx-y9mGAAAA:8 a=aEzJoT4k0w9bqF-TWZ8A:9
-	a=CjuIK1q_8ugA:10 a=wa9RWnbW_A1YIeRBVszw:22 a=3z85VNIBY5UIEeAh_hcH:22
-	a=NWVoK91CQySWRX1oVYDe:22
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.3
 
-On Tue, Dec 16, 2025 at 05:31:06PM +0800, wayne wrote:
-> |On 2025/12/16 12:16, |Yao Zi wrote:
-> 
-> > On Tue, Dec 16, 2025 at 10:00:36AM +0800, Shuwei Wu wrote:
-> > > The thermal sensor on K1 supports monitoring five temperature zones.
-> > > The driver registers these sensors with the thermal framework
-> > > and supports standard operations:
-> > > - Reading temperature (millidegree Celsius)
-> > > - Setting high/low thresholds for interrupts
-> > > 
-> > > Signed-off-by: Shuwei Wu <shuweiwoo@163.com>
-> > > ---
-> > > Changes in v2:
-> > > - Rename k1_thermal.c to k1_tsensor.c for better hardware alignment
-> > > - Move driver to drivers/thermal/spacemit/
-> > > - Add Kconfig/Makefile for spacemit and update top-level build files
-> > > - Refactor names, style, code alignment, and comments
-> > > - Simplify probe and error handling
-> > > ---
-> > >   drivers/thermal/Kconfig               |   2 +
-> > >   drivers/thermal/Makefile              |   1 +
-> > >   drivers/thermal/spacemit/Kconfig      |  19 +++
-> > >   drivers/thermal/spacemit/Makefile     |   3 +
-> > >   drivers/thermal/spacemit/k1_tsensor.c | 283 ++++++++++++++++++++++++++++++++++
-> > >   5 files changed, 308 insertions(+)
-> > > diff --git a/drivers/thermal/spacemit/k1_tsensor.c b/drivers/thermal/spacemit/k1_tsensor.c
-> > > new file mode 100644
-> > > index 0000000000000000000000000000000000000000..f164754e807ddd311c8cf98bcc074fd580514aa2
-> > > --- /dev/null
-> > > +++ b/drivers/thermal/spacemit/k1_tsensor.c
-> > ...
-> > 
-> > > +static void k1_tsensor_init(struct k1_tsensor *ts)
-> > > +{
-> > Configuration of K1_TSU_PCTRL2 (offset 0x04) is removed in this
-> > revision, but why? Isn't it necessary for the sensor to function?
-> > 
-> > And you didn't ask my question raised in v1 about the source of 24MHz
-> > clock. I still suspect whether the binding is complete or not.
-> 
-> Thank you for pointing this out, and I apologize for not addressing your
-> question
-> 
-> about the 24MHz clock earlier.
-> 
-> In v1, I referenced the vendor's implementation, though their device tree
-> 
-> did not specify this clock for the thermal node.
-> 
-> After your review, I revisited the SpacemiT K1 clock tree published by the
-> vendor,
-> 
-> and found that TSENSOR relies only on the APBC clock, which in turn is
-> ultimately
-> 
-> sourced from the 24MHz crystal via the PLL.
-> 
-> Disabling the 24MHz clock for the syscon_apbc node in the device tree had no
-> impact
-> 
-> on TSENSOR operation in my testing, so I did not include it in the binding.
-> 
-> As for the PCTRL2 configuration, I confirmed that its default value after
-> reset is zero,
-> 
-> and changing its configuration had no effect on the temperature sensor's
-> behavior.
-> 
-> This led me to remove the PCTRL2 configuration code in v2.
+Hi,
 
-Thanks, this is a reasonable answer to me.
-
-> > > +	u32 val;
-> > > +
-> > > +	/* Disable all the interrupts */
-> > > +	writel(0xffffffff, ts->base + K1_TSENSOR_INT_EN_REG);
-> > > +
-> > > +	/* Configure ADC sampling time and filter period */
-> > > +	val = readl(ts->base + K1_TSENSOR_TIME_REG);
-> > > +	val &= ~K1_TSENSOR_TIME_MASK;
-> > > +	val |= K1_TSENSOR_TIME_FILTER_PERIOD |
-> > > +		K1_TSENSOR_TIME_ADC_CNT_RST |
-> > > +		K1_TSENSOR_TIME_WAIT_REF_CNT;
-> > It's more natural to align K1_TSENSOR_TIME_ADC_CNT_RST and other
-> > following constants with K1_TSENSOR_TIME_FILTER_PERIOD. This applies for
-> > other multiple-line assignments, too.
-> > 
-> > ...
-> > 
-> > > +static int k1_tsensor_probe(struct platform_device *pdev)
-> > > +{
-> > ...
-> > 
-> > > +	for (i = 0; i < MAX_SENSOR_NUMBER; ++i) {
-> > > +		ts->ch[i].id = i;
-> > > +		ts->ch[i].ts = ts;
-> > > +		ts->ch[i].tzd = devm_thermal_of_zone_register(dev, i, ts->ch + i, &k1_tsensor_ops);
-> > > +		if (IS_ERR(ts->ch[i].tzd))
-> > > +			return PTR_ERR(ts->ch[i].tzd);
-> > Would emitting a error message with dev_err_probe() help here?
-> 
-> In v1, the reviewer mentioned that it is no need to print extra error
-> message.
-> 
-> See:
-> 
-> https://lore.kernel.org/spacemit/20251127225848-GYA1797866@gentoo.org/T/#mc335bea36323d2d8b3afb09aa40c9c7160440d39
-
-Oops, yeah, I definitely read this link before, but forgot it. So
-keeping it as-is is okay.
-
-> > > +
-> > > +		/* Attach sysfs hwmon attributes for userspace monitoring */
-> > > +		ret = devm_thermal_add_hwmon_sysfs(dev, ts->ch[i].tzd);
-> > > +		if (ret)
-> > > +			dev_warn(dev, "Failed to add hwmon sysfs attributes\n");
-> > > +
-> > > +		k1_tsensor_enable_irq(ts->ch + i);
-> > > +	}
-> > > +
-> > > +	irq = platform_get_irq(pdev, 0);
-> > > +	if (irq < 0)
-> > > +		return irq;
-> > Same as the above question.
-> Ditto.
-> > > +	ret = devm_request_threaded_irq(dev, irq, NULL,
-> > > +					k1_tsensor_irq_thread,
-> > > +					IRQF_ONESHOT, "k1_tsensor", ts);
-> > > +	if (ret < 0)
-> > > +		return ret;
-> > Same as above.
-> Ditto.
-> > Besides these questions, the driver itself looks pretty nice to me :)
-> > 
-> > Best regards,
-> > Yao Zi
-> 
-> |Please let me know if you need further details or test results. Thank you
-> for reviewing my patch. Best regards, Shuwei Wu|
+On Thu, 06 Nov 2025 11:53:40 +0100, David Heidelberg wrote:
+> Properties are now sorted, reset-gpio and port property dropped because
+> they are already accepted here as part of panel-common and usage of
+> unevaluatedProperties.
 > 
 > 
 
-Regards,
-Yao Zi
+Thanks, Applied to https://gitlab.freedesktop.org/drm/misc/kernel.git (drm-misc-next)
+
+[1/1] dt-bindings: panel: s6e3fc2x01: Sort and remove unnecessary properties
+      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/2c96689038aeea99c18a95b66dd5a171a07eaab2
+
+-- 
+Neil
+
 
