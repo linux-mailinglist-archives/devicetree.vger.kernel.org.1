@@ -1,127 +1,144 @@
-Return-Path: <devicetree+bounces-247104-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247105-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60D99CC44D1
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 17:31:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 94AE6CC4567
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 17:38:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 8AA4330509B9
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 16:26:07 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 9A01B309B62C
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 16:30:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5619225BF13;
-	Tue, 16 Dec 2025 16:26:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 969182D6407;
+	Tue, 16 Dec 2025 16:29:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jK7XiMJ3"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="JdmxJGyQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A2D72BE639;
-	Tue, 16 Dec 2025 16:26:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E9DE2652AF;
+	Tue, 16 Dec 2025 16:29:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765902361; cv=none; b=u9kerjA5o8cEeTl+2WZ/aWZ2LLV+x4vCajGoQ/MUC1n+FLy0VPl7Yy/+ZzdiV4GOvfXq1h8Wd0EZs+7C2CfFcEiaP6rEe/Fv+KGIb/utzKxA34clwccmJ8BeKin2lLPPAISwVQeGtPYbgFD3Osr9qah6+AJagT0Vy9iiUtFsxzk=
+	t=1765902547; cv=none; b=VJLCna0TorcaFGEF/r7mXzuaxydgP1p6FLn7OTAE1pvgnsoqU5NYl9VMccPpUQOQmPli5sxihgonZlSGTefYw4HDCxv/RUWCvyvreCR5nR8+H5mUbWKdV2MaGC/2Itdwg+8eaF/FjEY7AB5sJnufIn3v+cciFMDCGtmuRz0JUgc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765902361; c=relaxed/simple;
-	bh=lxpBfHrm7DeD64JXpi3PhAhdLR39AZhAi4/P2edxwSk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HmK/U6FA11e9PmCV3LLz9YFxIL2q9JD7sqH8yxQVbIfTcn2YoCUWfmts0uhrFocM8kzdtrnT/u6+yuIXTi9Ct7vXc0HXNha8YFSi/Iv8QMW8FMs8Ed1sWNkiLYjWrDSl2mkh4TzUecWelT2AyX48NMh0C1/KTajW4OmWFpO4bQs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jK7XiMJ3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A117BC19422;
-	Tue, 16 Dec 2025 16:25:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765902361;
-	bh=lxpBfHrm7DeD64JXpi3PhAhdLR39AZhAi4/P2edxwSk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=jK7XiMJ3HiOr3msyJcP0L+zzbmyBIAH/ShFEdgDiMlZC8/JhWyyX1rMooWpph2pLv
-	 oybbUG3FB5yo3GwuPLzPFkZoe+QivmEjaEfhldWgw98WpPVnkpJuQiClugWGTRH8xJ
-	 goCvuz8PDOK9kPmfUpvMeMaYzBNOC5xb+CwOuD6J0cOPYletai8aGjUF5SCenw9dfJ
-	 YvR/PBbKI2wdtgcZmi+pId40qOtcaIb7g/eKEyJt6OGDgOJ3942fyzzBJ+JUc3x4fH
-	 RkGgidn6IBq+V6itXKCH2SSPfVyVEceDi3KQYb9sIB0Q0d2w2ayTNmkQLdDMpwFven
-	 OOH0pr2xKHKsQ==
-Message-ID: <2589f9de-cb75-445b-b6ed-0773f972e845@kernel.org>
-Date: Tue, 16 Dec 2025 17:25:56 +0100
+	s=arc-20240116; t=1765902547; c=relaxed/simple;
+	bh=2Q+qK2NqcPX9cbzhyXO64+yCRyf/DbYINlYSrayO9q0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZYjGxfWm6uLfREkpzCUdAhW4dtPFh81MzIjEXyqueu4TWs8+HdTxQKDqpDhr6x4vNQBKVr5g7hE6/QvQ3UXGxkbCLssanjZsWz7Q5OdftqCiiBdO99G+fTIVXwbgMtJKEE+g47Dmgx136Ul7w5WdAwUW1SWVay8D/jM+2Q790pk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=JdmxJGyQ; arc=none smtp.client-ip=185.246.85.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 50B7E4E41C2A;
+	Tue, 16 Dec 2025 16:29:02 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 150F96071C;
+	Tue, 16 Dec 2025 16:29:02 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B6A63119A9036;
+	Tue, 16 Dec 2025 17:28:41 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1765902535; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 in-reply-to:references; bh=WDH8v49meu1cbdbqCsHVd8Ol6TU4lh3FhMKZUYOzIyw=;
+	b=JdmxJGyQPl89ZvAe+i5sgqoeA7jQmxJWnBAIHwZxcehomzVI9qb40ttSy9cx0wRqbThzlq
+	lHAyEaQZl2k3DPsEQjC65K+IuLFg7sKNjqiBePyTq7VviJcrRHiM9bN2eMTapQXooL3Lmu
+	joBBSrhkICZtvT6a/2rKkS5eNphmHSGwgOESA/7qal3nmlbmOmLz+W6tugpU9vkYI95Zr+
+	oxUYy7GXXT1YkRVynXnWByxfKZ94QxEpAfuHNh8d9Ac3oWCQsqX4988ORYKqvM0U/YQqfL
+	3mBQCk3ssFunMThFAA4+VRHjyfUtDGefOn2sRBJLRZ0Frk8p1CsW+dFfmlCeIg==
+Date: Tue, 16 Dec 2025 17:28:41 +0100
+From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+To: Robert Marko <robert.marko@sartura.hr>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	nicolas.ferre@microchip.com, claudiu.beznea@tuxon.dev,
+	Steen.Hegelund@microchip.com, daniel.machon@microchip.com,
+	UNGLinuxDriver@microchip.com, herbert@gondor.apana.org.au,
+	davem@davemloft.net, vkoul@kernel.org, linux@roeck-us.net,
+	andi.shyti@kernel.org, lee@kernel.org, andrew+netdev@lunn.ch,
+	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+	linusw@kernel.org, olivia@selenic.com, radu_nicolae.pirea@upb.ro,
+	richard.genoud@bootlin.com, gregkh@linuxfoundation.org,
+	jirislaby@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+	richardcochran@gmail.com, wsa+renesas@sang-engineering.com,
+	romain.sioen@microchip.com, Ryan.Wanner@microchip.com,
+	lars.povlsen@microchip.com, tudor.ambarus@linaro.org,
+	charan.pedumuru@microchip.com, kavyasree.kotagiri@microchip.com,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, linux-crypto@vger.kernel.org,
+	dmaengine@vger.kernel.org, linux-hwmon@vger.kernel.org,
+	linux-i2c@vger.kernel.org, netdev@vger.kernel.org,
+	linux-gpio@vger.kernel.org, linux-spi@vger.kernel.org,
+	linux-serial@vger.kernel.org, linux-usb@vger.kernel.org,
+	linux-clk@vger.kernel.org, mwalle@kernel.org,
+	luka.perkov@sartura.hr
+Subject: Re: [PATCH v2 04/19] dt-bindings: arm: move AT91 to generic
+ Microchip binding
+Message-ID: <202512161628415e9896d1@mail.local>
+References: <20251215163820.1584926-1-robert.marko@sartura.hr>
+ <20251215163820.1584926-4-robert.marko@sartura.hr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 7/7] LoongArch: dts: loongson-2k1000: Fix i2c-gpio node
- names
-To: Binbin Zhou <zhoubinbin@loongson.cn>, Yao Zi <me@ziyao.cc>,
- Binbin Zhou <zhoubb.aaron@gmail.com>, Huacai Chen <chenhuacai@loongson.cn>,
- Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Huacai Chen <chenhuacai@kernel.org>, Xuerui Wang <kernel@xen0n.name>,
- loongarch@lists.linux.dev, devicetree@vger.kernel.org
-References: <cover.1765778124.git.zhoubinbin@loongson.cn>
- <9684ae4e58fd1e9768cccf6e3ae730eff46fb29c.1765778124.git.zhoubinbin@loongson.cn>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <9684ae4e58fd1e9768cccf6e3ae730eff46fb29c.1765778124.git.zhoubinbin@loongson.cn>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251215163820.1584926-4-robert.marko@sartura.hr>
+X-Last-TLS-Session-Version: TLSv1.3
 
-On 16/12/2025 08:56, Binbin Zhou wrote:
-> From: Binbin Zhou <zhoubb.aaron@gmail.com>
+On 15/12/2025 17:35:21+0100, Robert Marko wrote:
+> Create a new binding file named microchip.yaml, to which all Microchip
+> based devices will be moved to.
 > 
-> The binding wants the node to be named "i2c-number", alternatively
-> "i2c@address", but those are named "i2c-gpio-number" instead.
+> Start by moving AT91, next will be SparX-5.
 
-i2c@address is wrong here, don't mention it.
+Both lines of SoCs are designed by different business units and are
+wildly different and while both business units are currently owned by
+the same company, there are no guarantees this will stay this way so I
+would simply avoid merging both.
+
 > 
-> Rename those to i2c-0, i2c-1 to adhere to the binding and suppress
-> dtbs_check warnings.
+> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+> ---
+>  .../bindings/arm/{atmel-at91.yaml => microchip.yaml}       | 7 ++-----
+>  1 file changed, 2 insertions(+), 5 deletions(-)
+>  rename Documentation/devicetree/bindings/arm/{atmel-at91.yaml => microchip.yaml} (98%)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/atmel-at91.yaml b/Documentation/devicetree/bindings/arm/microchip.yaml
+> similarity index 98%
+> rename from Documentation/devicetree/bindings/arm/atmel-at91.yaml
+> rename to Documentation/devicetree/bindings/arm/microchip.yaml
+> index 88edca9b84d2..3c76f5b585fc 100644
+> --- a/Documentation/devicetree/bindings/arm/atmel-at91.yaml
+> +++ b/Documentation/devicetree/bindings/arm/microchip.yaml
+> @@ -1,19 +1,16 @@
+>  # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>  %YAML 1.2
+>  ---
+> -$id: http://devicetree.org/schemas/arm/atmel-at91.yaml#
+> +$id: http://devicetree.org/schemas/arm/microchip.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  
+> -title: Atmel AT91.
+> +title: Microchip platforms
+>  
+>  maintainers:
+>    - Alexandre Belloni <alexandre.belloni@bootlin.com>
+>    - Claudiu Beznea <claudiu.beznea@microchip.com>
+>    - Nicolas Ferre <nicolas.ferre@microchip.com>
+>  
+> -description: |
+> -  Boards with a SoC of the Atmel AT91 or SMART family shall have the following
+> -
+>  properties:
+>    $nodename:
+>      const: '/'
+> -- 
+> 2.52.0
+> 
 
-With fixed commit msg:
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-
-Best regards,
-Krzysztof
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
