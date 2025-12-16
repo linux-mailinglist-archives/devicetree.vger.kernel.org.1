@@ -1,191 +1,101 @@
-Return-Path: <devicetree+bounces-247014-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247016-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D73CCC3941
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 15:29:34 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F986CC30DD
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 14:06:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E36063048F57
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 14:24:23 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9ED3A3023794
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 12:40:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33F2B363C7A;
-	Tue, 16 Dec 2025 12:31:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12FBD39B6B4;
+	Tue, 16 Dec 2025 12:37:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gbdjEghI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aR3wVGMD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA48B387B3C;
-	Tue, 16 Dec 2025 12:31:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB1C739B6AA;
+	Tue, 16 Dec 2025 12:37:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765888304; cv=none; b=FATTcOXhZlPtD2l9dpBAmbNC3Y98Jx/VM3IChQMOGtNhEvr1F02qeJwa+74vEV/k+6wY8uAYnPFjDP2Sbnm0J8yeYj4slCuc802uzptCzAlfCiOmoL0RcfaoR63Poke+2C2Vr5BdM57RlS806pOwqsmqSEphzCXGdCTydSqCMtc=
+	t=1765888653; cv=none; b=BIfdhy7U8k52VMNhQ91oTOgvYgN47nsS3FN/FI9EI0CRxXw901cnl/V9FtgAqQ2ZvBas6B2NfClINYYdIuW2VDAQLlBDgwrIb9wuKQ532aRqj282e1zKo3CB6lBZcpMISKkjN9DVL39pvYeOsaPJRVE0y8QfHoqolTpX1jZM6zg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765888304; c=relaxed/simple;
-	bh=oIcj7gxRphXjuqHHm38sS9faS0qO68es9rdYHIV7pTU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VsuT90tIcq/U2CR/nYiM3//N0RjAlUF2cuCtbPAINfBz87YWRn0FJWfObrL/AjJyj0UZB+mzUgUuv9RwVjYMt0GZW5RUyQSgWpIpujUBMTXRB6OBY8ftpv9FCtC44aCeVolY6IRT6mhqEOxeFHNEwtm4yEI51zM7ZzJRI2/Q2bM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gbdjEghI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9D9DC19422;
-	Tue, 16 Dec 2025 12:31:39 +0000 (UTC)
+	s=arc-20240116; t=1765888653; c=relaxed/simple;
+	bh=w1qYW2xmXgVfXXGeFISdHirQ14dBGp+01Z84bmcAoxw=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=L5tai7oNR1bLeue4Lfm16EVXy4VdHfmWAsvnjF8jnoOthLk1pYs8Gc4mRNUTS3ApU/EY47GnSpql3kGXiABC2wos9wjBcqBnyEY5kpI625ZJz/ywcSrWKq5QtxpZCQWF8tjgR+ODuSZrWRH819VNboxZQJq5c49LNViMqnbMBu8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aR3wVGMD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD50CC4CEF1;
+	Tue, 16 Dec 2025 12:37:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765888303;
-	bh=oIcj7gxRphXjuqHHm38sS9faS0qO68es9rdYHIV7pTU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=gbdjEghIaHP4eO7hFksOKinAuOAcAujpJsQyEjLphOjhtnYXQ299jebMN0ayPNacB
-	 aU0OFmdxieLh4mYb3rS2zPJfHf+5wcqbrfnwscDfj+shQ2ZOdkYXZqZmZvxItGdSwI
-	 utspDHGk33Js1S4tsXBz9TaojZopUXSwIIz+2dlSYoWZcfMibonhRu8iV0UkqFNY1W
-	 iEwvC5zaZwZoOAhxEAZxT59qdeZ7IEEzvvh7WXMsSYYiZL6dduGVycoFSpk1PSgPHK
-	 D1XkFF382KC9Id79bys3U3ehRIvkYGRcN4bw/WFWkneHdpbrwn26B0DG0OyiCfJrO8
-	 kRnBRdyFZbesw==
-Message-ID: <58fa4a36-f931-418a-9f0a-47069f7086df@kernel.org>
-Date: Tue, 16 Dec 2025 12:31:37 +0000
+	s=k20201202; t=1765888652;
+	bh=w1qYW2xmXgVfXXGeFISdHirQ14dBGp+01Z84bmcAoxw=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=aR3wVGMDzNnIcKBOOE+/MF8FuwhIksnbhTapQBBhtqZTjhlO6x+KDxt4u7wGbRWBR
+	 uIQGNnaOL1iJ6rj+u9ahs7nPsz7TyD8OD5xoRWm556DnhXi6uqhHyv48g19GovYZyf
+	 +m7r7OrR/U5DziC0c02H5N4W7n3tho9s9qFCJoJxtaxgD3zmjAEPlDVhjC2pUX+I3W
+	 TPeor9o3wMi6y0HglB/kEQLUwwqu9oenAfdpokaG5IjzfCfuUPTait/g8wp7lr5UdT
+	 LnPVTqwgHpBylqiT3FYlEG3wede2hrslhhEgkl3t7efJEDN+YTgBP1+GZXhSeukbtM
+	 hKJnAm77V8CXQ==
+From: Sven Peter <sven@kernel.org>
+To: Janne Grunau <j@jannau.net>,
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Neal Gompa <neal@gompa.dev>,
+	Lee Jones <lee@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	James Calligeros <jcalligeros99@gmail.com>
+Cc: Sven Peter <sven@kernel.org>,
+	asahi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-rtc@vger.kernel.org,
+	linux-hwmon@vger.kernel.org,
+	linux-input@vger.kernel.org,
+	linux-doc@vger.kernel.org,
+	Hector Martin <marcan@marcan.st>
+Subject: Re: (subset) [PATCH v6 0/7] mfd: macsmc: add rtc, hwmon and hid subdevices
+Date: Tue, 16 Dec 2025 13:37:12 +0100
+Message-ID: <176588840252.31586.16326303552542183142.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.50.1
+In-Reply-To: <20251215-macsmc-subdevs-v6-0-0518cb5f28ae@gmail.com>
+References: <20251215-macsmc-subdevs-v6-0-0518cb5f28ae@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] media: dt-bindings: Update camss VDDA PHY supply
- description
-To: david@ixit.cz, Robert Foss <rfoss@kernel.org>,
- Todor Tomov <todor.too@gmail.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Vikram Sharma <quic_vikramsa@quicinc.com>,
- Kapatrala Syed <akapatra@quicinc.com>,
- Hariram Purushothaman <hariramp@quicinc.com>,
- Richard Acayan <mailingradian@gmail.com>, Hans Verkuil
- <hverkuil@kernel.org>, Depeng Shao <quic_depengs@quicinc.com>
-Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- phone-devel@vger.kernel.org
-References: <20251216-docs-camss-fixes-v3-0-c238b6810771@ixit.cz>
- <gyLLwnJT7mfY4NyW6TOWv3lj3JHA3A8QOFn2HW_eElrRWXs7FlEyBQMRCRvoMpY2_zfNhns6y7EhLA3IM4msAQ==@protonmail.internalid>
- <20251216-docs-camss-fixes-v3-2-c238b6810771@ixit.cz>
-From: Bryan O'Donoghue <bod@kernel.org>
-Content-Language: en-US
-In-Reply-To: <20251216-docs-camss-fixes-v3-2-c238b6810771@ixit.cz>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On 16/12/2025 12:24, David Heidelberg via B4 Relay wrote:
-> From: David Heidelberg <david@ixit.cz>
+On Mon, 15 Dec 2025 19:37:44 +1000, James Calligeros wrote:
+> This series adds support for the remaining SMC subdevices. These are the
+> RTC, hwmon, and HID devices. They are being submitted together as the RTC
+> and hwmon drivers both require changes to the SMC DT schema.
 > 
-> Usually, the supply is around 0.875 - 0.88 V. Include the information
-> same as is already done for more recent camss dt-bindings.
+> The RTC driver is responsible for getting and setting the system clock,
+> and requires an NVMEM cell. This series replaces Sven's original RTC driver
+> submission [1].
 > 
-> Signed-off-by: David Heidelberg <david@ixit.cz>
-> ---
->   Documentation/devicetree/bindings/media/qcom,sa8775p-camss.yaml  | 2 +-
->   Documentation/devicetree/bindings/media/qcom,sc7280-camss.yaml   | 2 +-
->   Documentation/devicetree/bindings/media/qcom,sc8280xp-camss.yaml | 2 +-
->   Documentation/devicetree/bindings/media/qcom,sdm670-camss.yaml   | 2 +-
->   Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml   | 2 +-
->   Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml   | 2 +-
->   Documentation/devicetree/bindings/media/qcom,sm8550-camss.yaml   | 2 +-
->   7 files changed, 7 insertions(+), 7 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/qcom,sa8775p-camss.yaml b/Documentation/devicetree/bindings/media/qcom,sa8775p-camss.yaml
-> index 4986d18d1a2da..5c47a2cf220fb 100644
-> --- a/Documentation/devicetree/bindings/media/qcom,sa8775p-camss.yaml
-> +++ b/Documentation/devicetree/bindings/media/qcom,sa8775p-camss.yaml
-> @@ -126,7 +126,7 @@ properties:
-> 
->     vdda-phy-supply:
->       description:
-> -      Phandle to a regulator supply to PHY core block.
-> +      0.88V regulator supply to CSIPHY IP blocks.
-> 
->     vdda-pll-supply:
->       description:
-> diff --git a/Documentation/devicetree/bindings/media/qcom,sc7280-camss.yaml b/Documentation/devicetree/bindings/media/qcom,sc7280-camss.yaml
-> index e4b0b7ffdc336..7d180e9cb6fa9 100644
-> --- a/Documentation/devicetree/bindings/media/qcom,sc7280-camss.yaml
-> +++ b/Documentation/devicetree/bindings/media/qcom,sc7280-camss.yaml
-> @@ -125,7 +125,7 @@ properties:
-> 
->     vdda-phy-supply:
->       description:
-> -      Phandle to a regulator supply to PHY core block.
-> +      0.88V regulator supply to CSIPHY IP blocks.
-> 
->     vdda-pll-supply:
->       description:
-> diff --git a/Documentation/devicetree/bindings/media/qcom,sc8280xp-camss.yaml b/Documentation/devicetree/bindings/media/qcom,sc8280xp-camss.yaml
-> index 9cba6e0819fb1..cd5e4948b97fc 100644
-> --- a/Documentation/devicetree/bindings/media/qcom,sc8280xp-camss.yaml
-> +++ b/Documentation/devicetree/bindings/media/qcom,sc8280xp-camss.yaml
-> @@ -264,7 +264,7 @@ properties:
-> 
->     vdda-phy-supply:
->       description:
-> -      Phandle to a regulator supply to PHY core block.
-> +      0.88V regulator supply to CSIPHY IP blocks.
-> 
->     vdda-pll-supply:
->       description:
-> diff --git a/Documentation/devicetree/bindings/media/qcom,sdm670-camss.yaml b/Documentation/devicetree/bindings/media/qcom,sdm670-camss.yaml
-> index 61222839556bd..56346b650d21e 100644
-> --- a/Documentation/devicetree/bindings/media/qcom,sdm670-camss.yaml
-> +++ b/Documentation/devicetree/bindings/media/qcom,sdm670-camss.yaml
-> @@ -91,7 +91,7 @@ properties:
-> 
->     vdda-phy-supply:
->       description:
-> -      Phandle to a regulator supply to PHY core block.
-> +      0.88V regulator supply to CSIPHY IP blocks.
-> 
->     vdda-pll-supply:
->       description:
-> diff --git a/Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml b/Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml
-> index 03b9b34460b0a..008a739a0018a 100644
-> --- a/Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml
-> +++ b/Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml
-> @@ -207,7 +207,7 @@ properties:
-> 
->     vdda-phy-supply:
->       description:
-> -      Phandle to a regulator supply to PHY core block.
-> +      0.88V regulator supply to CSIPHY IP blocks.
-> 
->     vdda-pll-supply:
->       description:
-> diff --git a/Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml b/Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml
-> index acf9c54682107..db5029d521291 100644
-> --- a/Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml
-> +++ b/Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml
-> @@ -296,7 +296,7 @@ properties:
-> 
->     vdda-phy-supply:
->       description:
-> -      Phandle to a regulator supply to PHY core block.
-> +      0.88V regulator supply to CSIPHY IP blocks.
-> 
->     vdda-pll-supply:
->       description:
-> diff --git a/Documentation/devicetree/bindings/media/qcom,sm8550-camss.yaml b/Documentation/devicetree/bindings/media/qcom,sm8550-camss.yaml
-> index cd34f14916b42..ebf82a8c423bc 100644
-> --- a/Documentation/devicetree/bindings/media/qcom,sm8550-camss.yaml
-> +++ b/Documentation/devicetree/bindings/media/qcom,sm8550-camss.yaml
-> @@ -134,7 +134,7 @@ properties:
-> 
->     vdda-phy-supply:
->       description:
-> -      Phandle to a regulator supply to PHY core block.
-> +      0.88V regulator supply to CSIPHY IP blocks.
-> 
->     vdda-pll-supply:
->       description:
-> 
-> --
-> 2.51.0
-> 
-> 
+> [...]
 
-Reviewed-by: Bryan O'Donoghue <bod@kernel.org>
+Applied to local tree (apple-soc/dt-6.20), thanks!
+
+[6/7] arm64: dts: apple: t8103,t60xx,t8112: Add SMC RTC node
+      https://github.com/AsahiLinux/linux/commit/faf317d4c705
+
+Best regards,
+-- 
+Sven Peter <sven@kernel.org>
+
 
