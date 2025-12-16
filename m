@@ -1,101 +1,186 @@
-Return-Path: <devicetree+bounces-247016-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247017-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F986CC30DD
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 14:06:27 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2D26CC3935
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 15:29:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9ED3A3023794
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 12:40:13 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5D00630C10CE
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 14:24:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12FBD39B6B4;
-	Tue, 16 Dec 2025 12:37:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BA12389F64;
+	Tue, 16 Dec 2025 12:41:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aR3wVGMD"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="iTAMUgB2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB1C739B6AA;
-	Tue, 16 Dec 2025 12:37:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56364389F47;
+	Tue, 16 Dec 2025 12:41:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765888653; cv=none; b=BIfdhy7U8k52VMNhQ91oTOgvYgN47nsS3FN/FI9EI0CRxXw901cnl/V9FtgAqQ2ZvBas6B2NfClINYYdIuW2VDAQLlBDgwrIb9wuKQ532aRqj282e1zKo3CB6lBZcpMISKkjN9DVL39pvYeOsaPJRVE0y8QfHoqolTpX1jZM6zg=
+	t=1765888912; cv=none; b=XZKRJnBtllgZS+nosXeRidvAd2hL4/DE+mP6FlV6YCwAHCSmEWR0vaZXVtRVtIKTLlTvvyYYxYzWa3J7tUMOu/Qbhiw8BTtfSFK13P0GBiCm5CYuymvm5MpSkQ+RIhzjSConJk8PTsMzvR8ODMvRbVX9nBI69eKinAI4EADR8Eo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765888653; c=relaxed/simple;
-	bh=w1qYW2xmXgVfXXGeFISdHirQ14dBGp+01Z84bmcAoxw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=L5tai7oNR1bLeue4Lfm16EVXy4VdHfmWAsvnjF8jnoOthLk1pYs8Gc4mRNUTS3ApU/EY47GnSpql3kGXiABC2wos9wjBcqBnyEY5kpI625ZJz/ywcSrWKq5QtxpZCQWF8tjgR+ODuSZrWRH819VNboxZQJq5c49LNViMqnbMBu8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aR3wVGMD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD50CC4CEF1;
-	Tue, 16 Dec 2025 12:37:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765888652;
-	bh=w1qYW2xmXgVfXXGeFISdHirQ14dBGp+01Z84bmcAoxw=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=aR3wVGMDzNnIcKBOOE+/MF8FuwhIksnbhTapQBBhtqZTjhlO6x+KDxt4u7wGbRWBR
-	 uIQGNnaOL1iJ6rj+u9ahs7nPsz7TyD8OD5xoRWm556DnhXi6uqhHyv48g19GovYZyf
-	 +m7r7OrR/U5DziC0c02H5N4W7n3tho9s9qFCJoJxtaxgD3zmjAEPlDVhjC2pUX+I3W
-	 TPeor9o3wMi6y0HglB/kEQLUwwqu9oenAfdpokaG5IjzfCfuUPTait/g8wp7lr5UdT
-	 LnPVTqwgHpBylqiT3FYlEG3wede2hrslhhEgkl3t7efJEDN+YTgBP1+GZXhSeukbtM
-	 hKJnAm77V8CXQ==
-From: Sven Peter <sven@kernel.org>
-To: Janne Grunau <j@jannau.net>,
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Neal Gompa <neal@gompa.dev>,
-	Lee Jones <lee@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	James Calligeros <jcalligeros99@gmail.com>
-Cc: Sven Peter <sven@kernel.org>,
-	asahi@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-rtc@vger.kernel.org,
-	linux-hwmon@vger.kernel.org,
-	linux-input@vger.kernel.org,
-	linux-doc@vger.kernel.org,
-	Hector Martin <marcan@marcan.st>
-Subject: Re: (subset) [PATCH v6 0/7] mfd: macsmc: add rtc, hwmon and hid subdevices
-Date: Tue, 16 Dec 2025 13:37:12 +0100
-Message-ID: <176588840252.31586.16326303552542183142.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20251215-macsmc-subdevs-v6-0-0518cb5f28ae@gmail.com>
-References: <20251215-macsmc-subdevs-v6-0-0518cb5f28ae@gmail.com>
+	s=arc-20240116; t=1765888912; c=relaxed/simple;
+	bh=igrJz5IinChEf0Wu0wHbZqglxEYnsfwu7dVCfo/cw+8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=O8pM6M1Ot7pS6gFbLuIJtZStDPs4/jrT8QJ8/lgiIuLqoRRca3gqcK54JfwwXxoI1wMSDncM3EeUa3lAl3oZ5//la9AChjTwPAWjh5Omf1EMbuHoHQQc4kM+04G2j/sR7sLB/BSGv851trPgYIo8BOuMQYderq1rPvsTteZi/gw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=iTAMUgB2; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BG8JWcU2573384;
+	Tue, 16 Dec 2025 12:41:45 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	0FTGuXM3b9FxQwSObO8nfqIcI9r4fRozBYs52eN1tbI=; b=iTAMUgB2kPMXvM4o
+	zUgYfEdZHtqD4q4RxYT9bz7XArGGrZoiOFt9k7flAHe6TXhscbDQ9uiKdVvfyONc
+	Zy53QnADPXtoAFV382hXxhoyc66ssjsCCadJn2YKbeP70Dd7jOrDasSTAf6tsg4E
+	hjqbBg0dK6LEkIC7AKKe74LeCnlZgxHnOM1qiaxkj6jphnxPm4UNhyycpkH4upFo
+	U7i5VK+/s2Iak6s71JLilcftqbo1AD9C65OO66WuwT2mN69FtwpDbAUoE4oYArSS
+	5jg/oStWcfxSfNY96Rci5xvfWVnt4bqBYV3nf+6OVvnuomXjVWCDPUKrH6KjOxqz
+	UjDMHg==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b33ths2ta-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 16 Dec 2025 12:41:45 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5BGCfie7012514
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 16 Dec 2025 12:41:44 GMT
+Received: from [10.217.216.18] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 16 Dec
+ 2025 04:41:37 -0800
+Message-ID: <b98eb114-6967-4ac4-8b4d-936966a58171@quicinc.com>
+Date: Tue, 16 Dec 2025 18:11:32 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 2/5] arm64: dts: qcom: Add sdhc dll-presets
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Ulf Hansson
+	<ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Adrian Hunter
+	<adrian.hunter@intel.com>
+CC: <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <dmitry.baryshkov@oss.qualcomm.com>, <quic_pragalla@quicinc.com>,
+        <quic_sayalil@quicinc.com>, <quic_nitirawa@quicinc.com>,
+        <quic_bhaskarv@quicinc.com>, <kernel@oss.qualcomm.com>
+References: <20251215120009.3877889-1-quic_rampraka@quicinc.com>
+ <20251215120009.3877889-3-quic_rampraka@quicinc.com>
+ <0f7c0d5c-7f77-4669-9648-62d008f15b1c@kernel.org>
+ <9f5fcce3-b9c0-4aae-b4e0-10475eb5ec9e@kernel.org>
+Content-Language: en-US
+From: Ram Prakash Gupta <quic_rampraka@quicinc.com>
+In-Reply-To: <9f5fcce3-b9c0-4aae-b4e0-10475eb5ec9e@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=ZIPaWH7b c=1 sm=1 tr=0 ts=69415389 cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8
+ a=uJt1xlEP9UPP1VlBNB4A:9 a=QEXdDO2ut3YA:10 a=i6qsmYmKKdoA:10
+ a=csto0wWSG80A:10 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: yyXCEZaQFimc34Z3ujFBiZdvSLQhaT16
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjE2MDEwNiBTYWx0ZWRfX2W5aRin6k0T/
+ 7IkLVpV9Ts9v7/1bPWsJFR1c10WCAzizp5RaQGR+xVaRzx0dr9TAQFtYmbz4s76e+e1HhvBO1vq
+ H/E1FLiaG/2cuwKiw6hmVz9Ooqds/uxxcIotFApYOE5I319D4mYyEb+Ip/s9CbG+J2aFibaGWKm
+ 8HkWo9ACVCF2ooWXXxl5HsgvftY6orv3zZY6Hpm56EWeW5wPw6JQAaPVNTm72+BzZUrkwG7jaD/
+ KVTptmeaCwHHEE8B/apP90NuabO6KrKfspPwOw9eELaphq9t8fzsWfPbjj/Qll15rbYUhQdnoPu
+ uivBEFkWPjurujMqhBDMi8vRDw98lVfDB0BgQNBdoVMhml7nZV6PGRt0DwwHbGhCjO8tIrz5odZ
+ 6TDUjjmFz4MN5OFqOHVpr1wUEa2WMw==
+X-Proofpoint-ORIG-GUID: yyXCEZaQFimc34Z3ujFBiZdvSLQhaT16
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-16_02,2025-12-16_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 bulkscore=0 malwarescore=0 lowpriorityscore=0 phishscore=0
+ spamscore=0 priorityscore=1501 adultscore=0 clxscore=1015 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512160106
 
-On Mon, 15 Dec 2025 19:37:44 +1000, James Calligeros wrote:
-> This series adds support for the remaining SMC subdevices. These are the
-> RTC, hwmon, and HID devices. They are being submitted together as the RTC
-> and hwmon drivers both require changes to the SMC DT schema.
-> 
-> The RTC driver is responsible for getting and setting the system clock,
-> and requires an NVMEM cell. This series replaces Sven's original RTC driver
-> submission [1].
-> 
-> [...]
 
-Applied to local tree (apple-soc/dt-6.20), thanks!
+On 12/15/2025 5:37 PM, Krzysztof Kozlowski wrote:
+> On 15/12/2025 13:05, Krzysztof Kozlowski wrote:
+>> On 15/12/2025 13:00, Ram Prakash Gupta wrote:
+>>> Add sdhc dll-presets for qdu1000 target.
+>>>
+>>> Signed-off-by: Ram Prakash Gupta <quic_rampraka@quicinc.com>
+>>> ---
+>>>  arch/arm64/boot/dts/qcom/qdu1000.dtsi | 4 ++--
+>>>  1 file changed, 2 insertions(+), 2 deletions(-)
+>> Please use subject prefixes matching the subsystem. You can get them for
+>> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+>> your patch is touching. For bindings, the preferred subjects are
+>> explained here:
+>> https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
 
-[6/7] arm64: dts: apple: t8103,t60xx,t8112: Add SMC RTC node
-      https://github.com/AsahiLinux/linux/commit/faf317d4c705
+sure I missed to add qdu1000:, will add in subject.
 
-Best regards,
--- 
-Sven Peter <sven@kernel.org>
+>>> diff --git a/arch/arm64/boot/dts/qcom/qdu1000.dtsi b/arch/arm64/boot/dts/qcom/qdu1000.dtsi
+>>> index 846e5e5899aa..bc31504d5c8c 100644
+>>> --- a/arch/arm64/boot/dts/qcom/qdu1000.dtsi
+>>> +++ b/arch/arm64/boot/dts/qcom/qdu1000.dtsi
+>>> @@ -912,8 +912,8 @@ sdhc: mmc@8804000 {
+>>>  
+>>>  			bus-width = <8>;
+>>>  
+>>> -			qcom,dll-config = <0x0007642c>;
+>>> -			qcom,ddr-config = <0x80040868>;
+>>> +			qcom,dll-presets = <0x000F64EC 0x0 0x01	0x2C010800 0x80040868>,
+>>> +					   <0x0007642C 0x0 0x10 0x2C010800 0x80040868>;
+>>
+>> That's non-bisectable. You just broke the users of this DTS. Also, case
+>> change is not explained and your binding said nothing about deprecating
+>> other properties.
+
+right I will update the sequence of dt as last change in the series.
+
+I couldn't get "case change is not explained" but I guess ask is for
+explanation why is this change needed. As the soc is using artanis
+dll, it needs to have 3 more register values as presets. So in total
+2 arrays, for HS400 and HS200, are passed each having 5 elements,
+DLL_CONFIG, DLL_CONFIG_2, DLL_CONFIG_3, DLL_USER_CTRL & DDR_CONFIG.
+Without these sampling of data would not be optimal and might lead
+to CRC errors.
+
+The existing qcom,dll-config or qcom-ddr-config are not deprecated,
+as upcoming soc could still be non-artanis and only dll-config and
+ddr-config might be needed. But since it was added earlier in qdu1000,
+removing it now as the code change is pushed into driver to support
+dll-presets.
+
+with QDU1000 there were instance of CRC errors and to fix dll-presets
+is used instead of qcom,dll-config & qcom,ddr-config.
+
+I will update the binding as well with more details.
+
+>
+> Also, your binding said 10 items, not two.
+>
+>
+> Best regards,
+> Krzysztof
+
+Sorry I mistook the elements of array with Items. Will update in binding
+to 2 items.
 
 
