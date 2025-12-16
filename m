@@ -1,116 +1,104 @@
-Return-Path: <devicetree+bounces-246925-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246926-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BD47CC1681
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 08:58:11 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75D4ECC18DF
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 09:28:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id B14973022826
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 07:57:37 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id E892C300F9D0
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 08:28:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C0DE338922;
-	Tue, 16 Dec 2025 07:57:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55BA3347FE2;
+	Tue, 16 Dec 2025 08:03:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aMkSjah8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E0972EB5D4
-	for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 07:57:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2784A347FD7;
+	Tue, 16 Dec 2025 08:03:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765871837; cv=none; b=kPUi0Pid73Ujm4rmcpbFoJ979timhlL15HWiI5vmgX2Oj8Q3B7e+c9FMZofwZBFFkGa5ZSS7fyyL6W1OXv8YX2uiS0oM/xUiFZJ2bz+qZtutBAwgACHYdpnWQHN0htLnC7m9ooA247y92jkX+/6fAKMHEgs+OLh+Qu/tx74FOVY=
+	t=1765872201; cv=none; b=gk2ywLjzUIVATq2sPWcSXSa7DC3No5iNPqp7JU8zCU7xNoazhFfBQxzWZNIG5acZsTTweJknmx4hYtJtlM9ptgW4lffhBcrWI89A/nptWC5wif1rdocdyG1M0jTtsC0jGcuYgXSXN6QA1MHWpQPUi+e3UZG5kUhKT9b6tEtNNiA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765871837; c=relaxed/simple;
-	bh=0LmcAMbK36Sq530M+cn8+WYGFHLFf3hif0at1oaHqvc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Leeta25m+eKvV37+vRbzZqoblWHMasvGkM94hgBgoIvWyjFlcxp8cDx6a2lGXfglh2g3j/NjMVu6TW+NxAwalMrl1/YDtNQESDnUNQMsFjWVk9O07bJKkC0Yvz4LoaCkNubBYdr3g2DXfXAk/5Ml5WCi2FAKQckaREf1IOt325E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
-Received: from loongson.cn (unknown [223.64.68.219])
-	by gateway (Coremail) with SMTP id _____8Cx7tLVEEFpR5guAA--.29538S3;
-	Tue, 16 Dec 2025 15:57:09 +0800 (CST)
-Received: from localhost.localdomain (unknown [223.64.68.219])
-	by front1 (Coremail) with SMTP id qMiowJDxaeDTEEFpfWEAAA--.2425S2;
-	Tue, 16 Dec 2025 15:57:09 +0800 (CST)
-From: Binbin Zhou <zhoubinbin@loongson.cn>
-To: Yao Zi <me@ziyao.cc>,
-	Binbin Zhou <zhoubb.aaron@gmail.com>,
-	Huacai Chen <chenhuacai@loongson.cn>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Huacai Chen <chenhuacai@kernel.org>,
-	Xuerui Wang <kernel@xen0n.name>,
-	loongarch@lists.linux.dev,
-	devicetree@vger.kernel.org
-Subject: [PATCH 7/7] LoongArch: dts: loongson-2k1000: Fix i2c-gpio node names
-Date: Tue, 16 Dec 2025 15:56:59 +0800
-Message-ID: <9684ae4e58fd1e9768cccf6e3ae730eff46fb29c.1765778124.git.zhoubinbin@loongson.cn>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <cover.1765778124.git.zhoubinbin@loongson.cn>
-References: <cover.1765778124.git.zhoubinbin@loongson.cn>
+	s=arc-20240116; t=1765872201; c=relaxed/simple;
+	bh=5OeYvXMSFntRvGG5qfE6GBqZZ5Co1CPYfzo/K+UvU6w=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=rKoGdXwvsw0l76bK+OXwFpE4RaW9FhdfXK1szs6xYOYUukzKI8qEh0tl96ADT/XVqpdIz5DiqrGDcIxazq5CORJShRadSiRBOWPCiBjzxUV6IOA1MOgiFyopycnl8WSWMJmRSn2LywLimv+FxkQw0xMZjVPgg3Fcdg15P+WmNGs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aMkSjah8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 91513C113D0;
+	Tue, 16 Dec 2025 08:03:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1765872200;
+	bh=5OeYvXMSFntRvGG5qfE6GBqZZ5Co1CPYfzo/K+UvU6w=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=aMkSjah8vnsdLaFUzroWf0jvqN1ZvuIuEICVU7DNc7L9zybmy2P5Gb3y6/NCee6iX
+	 oUj1+003mOAtr5NRXY+QSS784eo4dcFYJI9OPFiYICGHr0eFW0GkmP2MZK3uF7IkyE
+	 3x6+ie6pTkTU75mqFfKXCMlnjvcPVFNfKlkZLbNcljn+I3M4BHmWDq4vXbeDRuIO/n
+	 aC/12ae1uID564LQ2Lm8Kys/LLXSWzx7wjzjiZHEqeUsoJwj5fdoePgVh0jcz/SIaF
+	 3nCT2Ml6RDq8oKvCgmPOVs1sV8QIqZuk6MWZqlmCk35Ch+qhoi8RC/f8okjwlJ82i6
+	 pA+D9yuIXyp9g==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 687B9D5B16C;
+	Tue, 16 Dec 2025 08:03:20 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Subject: [PATCH 0/3] Add Amlogic general DMA
+Date: Tue, 16 Dec 2025 08:03:16 +0000
+Message-Id: <20251216-amlogic-dma-v1-0-e289e57e96a7@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:qMiowJDxaeDTEEFpfWEAAA--.2425S2
-X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/1tbiAgESCGlA9JgB+QAAsk
-X-Coremail-Antispam: 1Uk129KBj93XoWruFWfArW5Gw4fZr15KFWDWrX_yoW8JrWkpa
-	ya9wn7tFs5Grnagr1DtFyjvr48AFykJr4vgF4rGrW8uanIqr1jyr1rJrnaqF4rW3ySq3yF
-	gryrur9FkanrAagCm3ZEXasCq-sJn29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7KY7ZEXa
-	sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
-	0xBIdaVrnRJUUUvqb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
-	IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
-	e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Ar0_tr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
-	0_Cr0_Gr1UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIEc7CjxVAF
-	wI0_Gr1j6F4UJwAS0I0E0xvYzxvE52x082IY62kv0487Mc804VCY07AIYIkI8VC2zVCFFI
-	0UMc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWrXVW3AwAv7VC2z280
-	aVAFwI0_Gr0_Cr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcxkI7VAKI48JMxAIw28Icx
-	kI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r4UMxCIbckI1I0E14v26r126r1DMI8I3I0E
-	5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtV
-	W8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26F1j6w1UMIIF0xvE2Ix0cI8IcVCY
-	1x0267AKxVWxJVW8Jr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14
-	v26r4j6F4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x
-	07jxKsUUUUUU=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEQSQWkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1NDI0NT3cTcnPz0zGTdlNxEXXNLE3PzFNPkFCMzEyWgjoKi1LTMCrBp0bG
+ 1tQAShWYnXQAAAA==
+X-Change-ID: 20251215-amlogic-dma-79477d5cd264
+To: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Kees Cook <kees@kernel.org>, 
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>
+Cc: linux-amlogic@lists.infradead.org, dmaengine@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-hardening@vger.kernel.org, Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1765872198; l=826;
+ i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
+ bh=5OeYvXMSFntRvGG5qfE6GBqZZ5Co1CPYfzo/K+UvU6w=;
+ b=wWM4MMb1w1IBw2bhpp5tF6jlfbiSZWVDh/2dF4DWMbv9j6YXf0iFkErQOd59LS4px15OCDLq6
+ r7c5aLSdljMBKVGwXcMBrmumCstimx/SqopZrkCoRZLQWYEzlw7Ci2p
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
+ auth_id=578
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Reply-To: xianwei.zhao@amlogic.com
 
-From: Binbin Zhou <zhoubb.aaron@gmail.com>
+Add DMA driver and bindigns for the Amlogic SoCs.
 
-The binding wants the node to be named "i2c-number", alternatively
-"i2c@address", but those are named "i2c-gpio-number" instead.
-
-Rename those to i2c-0, i2c-1 to adhere to the binding and suppress
-dtbs_check warnings.
-
-Signed-off-by: Binbin Zhou <zhoubb.aaron@gmail.com>
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 ---
- arch/loongarch/boot/dts/loongson-2k1000.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Xianwei Zhao (3):
+      dt-bindings: dma: Add Amlogic general DMA
+      dma: amlogic: Add general DMA driver for SoCs
+      MAINTAINERS: Add an entry for Amlogic DMA driver
 
-diff --git a/arch/loongarch/boot/dts/loongson-2k1000.dtsi b/arch/loongarch/boot/dts/loongson-2k1000.dtsi
-index fa1c000fd3e0..f70b245c8bc4 100644
---- a/arch/loongarch/boot/dts/loongson-2k1000.dtsi
-+++ b/arch/loongarch/boot/dts/loongson-2k1000.dtsi
-@@ -46,7 +46,7 @@ cpuintc: interrupt-controller {
- 	};
- 
- 	/* i2c of the dvi eeprom edid */
--	i2c-gpio-0 {
-+	i2c-0 {
- 		compatible = "i2c-gpio";
- 		scl-gpios = <&gpio0 0 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
- 		sda-gpios = <&gpio0 1 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-@@ -57,7 +57,7 @@ i2c-gpio-0 {
- 	};
- 
- 	/* i2c of the eeprom edid */
--	i2c-gpio-1 {
-+	i2c-1 {
- 		compatible = "i2c-gpio";
- 		scl-gpios = <&gpio0 33 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
- 		sda-gpios = <&gpio0 32 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+ .../bindings/dma/amlogic,general-dma.yaml          |  70 +++
+ MAINTAINERS                                        |   7 +
+ drivers/dma/Kconfig                                |   8 +
+ drivers/dma/Makefile                               |   1 +
+ drivers/dma/amlogic-dma.c                          | 567 +++++++++++++++++++++
+ 5 files changed, 653 insertions(+)
+---
+base-commit: 8f0b4cce4481fb22653697cced8d0d04027cb1e8
+change-id: 20251215-amlogic-dma-79477d5cd264
+
+Best regards,
 -- 
-2.47.3
+Xianwei Zhao <xianwei.zhao@amlogic.com>
+
 
 
