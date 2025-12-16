@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-246956-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246957-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18927CC1E01
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 10:56:07 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0E63CC1E1F
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 10:57:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1D633303E646
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 09:53:43 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E9A543004BA2
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 09:57:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5097D33AD94;
-	Tue, 16 Dec 2025 09:53:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 762E733AD94;
+	Tue, 16 Dec 2025 09:57:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PfIdcP+S"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TtlNrDGB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 598262FDC3D
-	for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 09:53:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09B363358A7
+	for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 09:57:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765878822; cv=none; b=ENwKbHgoIdvZCY5Cml9uc09bcKVAspIJc0RAPP7Wm8Ly4AjOc/V/V+gR6BRKztmDEphWOP80P2SH1uV1lpwoEUDC47ULcXXoXNcMHHiSkZA97NtfTCnNpsQND4pk1karY/wAEQjf1E6jtHuMeijBRDEsmgg9QJUqcK/LDFAdL4c=
+	t=1765879030; cv=none; b=fLLwPyNu17uXkBfbBi8YOEFhFWNR9oNDda7IDHTKGRvVhnV/B3cAiVYzqwoYUsIVS0Ja8DvL7uzY+pctqLSgFXx6N41zQQrSfhM44vf6RkQuDgKNBviB/fpqgFhZwJoCkI4jKHwNm02grb6lRSO17ETsXUUPd4x13y0n33+HRwQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765878822; c=relaxed/simple;
-	bh=MxCeYtDtWbOw9wOMfeewsIrFHMqyjFHflXJgbwZYA2s=;
+	s=arc-20240116; t=1765879030; c=relaxed/simple;
+	bh=7R8+JrL5CE10gIK6f6jOXXx5KzYrv/vWx9R/IjxZRNM=;
 	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=ieBA1uEUkfXt3ufERKJvt7j4YLeYMBLlvr8H+KSG6ZdX7YQtg4rCQET0zgmmi0TwnvWQa1t26slyvXnp6YwpNruoO+HAqL0t0ydWu3hv/dQvKcaW8N8sU6y3FOirvuydn2wo8vh+ZjAg87F5hnSbF5T8NXeBGg7c16KZ0OW7RFU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PfIdcP+S; arc=none smtp.client-ip=209.85.128.43
+	 In-Reply-To:Content-Type; b=sgDhPKJAuO5es2o1kF347+gn5a7YwGAAhQnU2y8/j/QaLn9MtJvq+mhLThCvCRJi9dehUet/c/cr4HUR5C9PV/skt7cM3Wlm6/T/AauQiL6hX+gZWcvEoyHws622LipT0YXBttvry/k1tJNTzrfv/cqULdP3dmaCZeKUhrHroNY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TtlNrDGB; arc=none smtp.client-ip=209.85.128.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-477b91680f8so43115215e9.0
-        for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 01:53:40 -0800 (PST)
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-4775e891b5eso19295015e9.2
+        for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 01:57:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1765878819; x=1766483619; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1765879025; x=1766483825; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=B77gVNs+N24W0zy7hh7wrFHCGHcgHUUg1aqdMgvjdak=;
-        b=PfIdcP+SCsL9admPXR/na4/6/69VSYyNUBByt+gkgrTOypQZtM8KB16zr/RCYIwsDg
-         A0Hpv/hd5UX2rzdO6eBrMxOLCtYJSgeNDgkp2kBWPAfQiQgudVANjqYTVpaqg0AijeZM
-         9mogGWvC2APAQnIad6KOY9P9kvD6eAjzB8ShMXaBn3mBPxoy0mBB+z1NYpI4Z7qu7qQp
-         ZiVtueNvv0AvwLfR/rGg7ZB4KAwOxqAvHfVenn9LaID4uuKelq+X3pWRXdnZqbqZCtl3
-         igoD6u2ulbyDKGbg53VlIx8oAGw09Ky8i16Tzy8kpZo5I80QPmOQ6kKz3rwy+T8D7XwL
-         xHgg==
+        bh=NFYaFpKlCe3rxlgalcml8hPx/Y+kjDAMwf63+7Oo6zY=;
+        b=TtlNrDGBqX3Wh2Y7/AChAoRLWIy66qRaOb8SMOg+82DwUG/ObESlP6rO7gWyjk5fi8
+         e6nJ3ktX6DCjxA5l689562h0MGhoB38MPpxdx+9DwzGTRhON9mr78gLbyzJsn3T3hHHz
+         0f1bsZs8PNfmkay7Hze9hxb5AuPz1XKnX0jLeDgePZGlcKow+BBD0Yb43juIH7+HMwc6
+         czisSx0FS4X/4jaN74oMvOXry+BQZcSvvDkWJzch9ncCYFyVog2wG64niC3Lc27is2UG
+         Q7y9kVY+p5Cu/wBBhOSFCZVV/k/sxG0Qax2EQka+k1nEUY1YJlAsSG/3dkpRmdkhNC2M
+         IASg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765878819; x=1766483619;
+        d=1e100.net; s=20230601; t=1765879025; x=1766483825;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=B77gVNs+N24W0zy7hh7wrFHCGHcgHUUg1aqdMgvjdak=;
-        b=u9lOZpD+i7qOFDecjglA8oWjiIsnZyCeNTUuJE4dQpm3DlbF16zdJkwEYRaOEwUbxT
-         n9zSEg2fXJpDwvxgQnQn/SbxWzyDFqPFY0mdHi9ABVCzpahXX1ko8oN0nVn2sGn8NJMz
-         BV8x6a5LHSXYguvhgpfgJ8+J6AGTujITUsk2rxRORLeAn0QEjO8+OmjDQbdzm6eR8WCC
-         FYfe/OkiL6peoBO/SRQjS4m/xbsByKBN/MD9W6EYkiDuUSXvDNm0O+Jjlgu0Y1BtUssi
-         zIxTYxWVOFwWbsEg0wHLRmI7SLpFSKw5n1Tsb4pMP+ZKRgmzwGEZVNkpz/3iEcwQVjBX
-         3lhA==
-X-Forwarded-Encrypted: i=1; AJvYcCVUieXtzsw5W/hrn2sZZr5Eb0ChHv8V0Ivuf5OeHnBIsq/htymvSWq5d7q/F6d9/YHZtrNYvCG1NHOS@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywhvl1N10+5zOJ/xQIASz9Sxe9Gl+HbpJ5pT6ahO2U4qQig2sdS
-	8UGmRTOT8zyPnKTr9xh8H7sCAtJrn1s25+i88HBMnIqu7uiRYpRw64COKQJBPND02w0=
-X-Gm-Gg: AY/fxX7106y+lvU014P70BwzYz5yPtNo5JSxl3NaHZVDiD0mzxO/OTqQX4wqgqB0D1E
-	uTpYczDOy3KUn7pX+QBoqLrl0OSCvs4DoYDeVEn6M1P1f1vb0/DoRtGRArxFRZSt/ac+N+umqd+
-	W5jQWGBuqapJVE0OCUm+jR6ByOrTAyjN15LAASY2SnzKu4V0XEkYqWuKa1gB9IoCrDiI4TIU6Jj
-	JdPpbSZC6wc3i6sfc222HW0TXTbvkKWoHBkqZoRm5uqAKb5HUJk/wh7kd/N78b5thLXzASdWnrt
-	lVWVHMjU9W10+Pxqcb4W7jQPwyijGevj/PQK0Sl19mrgP7q8UKROZ9iMz1v3M4QYekUJU1fm9IL
-	GS0oPjKO7u+//+K7waJHTeZZ49XjawUO0UeKckIymxNy+JdtS1TMAzDTL69rjCo69qY80J3YtLA
-	iTy8EorWEtVkvJ/YqUkXjT8i0TL06Tu6KO9fxrOpaeQ2b5K0PUFau4A3jl7d+OUzA=
-X-Google-Smtp-Source: AGHT+IHhh7eNAvL73sUX53//v2jQskR2Q8o/cn9pMbSxXR/ZXz2pFzXlk7MoGVqsyxZ2xGWvQxnFEQ==
-X-Received: by 2002:a05:600c:1ca0:b0:477:9b35:3e36 with SMTP id 5b1f17b1804b1-47a8f89be82mr154636105e9.2.1765878818536;
-        Tue, 16 Dec 2025 01:53:38 -0800 (PST)
+        bh=NFYaFpKlCe3rxlgalcml8hPx/Y+kjDAMwf63+7Oo6zY=;
+        b=hrQwzepz+ExVUQWi1hp31a9LOYCuNq0RHkKpC6yMa/uYkP+TijHPPccfldCOTWTs1a
+         N4ML1wPT1Sym3yQF53ZEebuwDciZf1cjuaY4O1alSnz1B7bDDmJTTSB/NbRFYkFYoiRd
+         aw8Hahes2tkiCinSDdAtidHmM4TGim3ppeDdFHti4lKoWOO4PcrE3NQh8bjjDaP/7FG3
+         uAs0PdMcHVRVviyhfnQ/HvTrXElx9duq7w2o9r6z1r7DSKusB9J3mw3aMGThnzqJZk3P
+         3bw73F4Zu8Vje2E8SQ4VLP+ihjlST0aVCXX3ImkKO7QBILEJdvuE+R/uWPfSytBHexA0
+         cRgw==
+X-Forwarded-Encrypted: i=1; AJvYcCXpuo/s5H1xQoKopRnWsW/KGlyghb4oygogzS8qsyNMKKZpNYct9zWnwrvUvgw7hxtn5srp1quOIBnc@vger.kernel.org
+X-Gm-Message-State: AOJu0YxOanwbjVJ5vfDaZ0+/e7pPhZPYs+1Kq0ZpoPGpweV1s0WdMoG2
+	HiZIMPSnaXYgtacsv19v2HxatEnVHGKqx7/Mdwxwirb14l9iajBiVMIk4BbTFf2o52k=
+X-Gm-Gg: AY/fxX6yT6iTLxrUIjs/xls3NdztNK1PwDygLMcVeaORPUC/+qWUeSfbkvBA/oyXuZk
+	Zff6lZkrEtkvcSrfpnYrqkwfElOpxnR3qHfPeUGB+FoSLWiGYPbvpe9gLKH2PH7FV/uWuxM5MGl
+	iV0rpO3IGwWvOCgFNbMLOITaZ2ocFGdn5sd50Ap+j7UCxZjVUftSNBaU9guF+1C3WhLj2cLDs7L
+	VbebCaZBqCkrmdYA41wR49M+g3Xsio+0PoGcwB3whpvkh96dYGHm703FO0B3R6AV72LW+6bh5Ed
+	7lRRoW6ANhfhArw1MSBtMvYXJZ7NmTg34pLI7tWp1kqad9FVkkJk442ylLtH48HyQNBjwKRbGXf
+	lXzi3ZwDye469yP1CxlMCP85/Mn5/0SOWLzdz4a+vRP8li08urnyFvHZt1/eexhZGazIQNnD/LR
+	kfdvMD/l2efurBuH+1mL591wmecJfuIMq9zhNv9oDoDhY2mYZAZre7q9tkVHRFk9s=
+X-Google-Smtp-Source: AGHT+IHp/4B919bF0goX8Ptb8Fx0rtJVasiby8l518/I3xdaS9lsIP+maX/ZU6zxMKZ0IGUTBQUjIw==
+X-Received: by 2002:a05:600c:3104:b0:477:af07:dd17 with SMTP id 5b1f17b1804b1-47a8f90634fmr135837985e9.24.1765879024755;
+        Tue, 16 Dec 2025 01:57:04 -0800 (PST)
 Received: from ?IPV6:2a01:e0a:3d9:2080:2913:9c11:b7b9:c6d2? ([2a01:e0a:3d9:2080:2913:9c11:b7b9:c6d2])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-430fb078e56sm13657861f8f.21.2025.12.16.01.53.37
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-430f9339d86sm15060676f8f.29.2025.12.16.01.57.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 Dec 2025 01:53:38 -0800 (PST)
-Message-ID: <6c04c58e-339b-4b5c-a2b4-8a9509612335@linaro.org>
-Date: Tue, 16 Dec 2025 10:53:37 +0100
+        Tue, 16 Dec 2025 01:57:03 -0800 (PST)
+Message-ID: <68b5d663-de9e-4232-9dfb-6773ad552c36@linaro.org>
+Date: Tue, 16 Dec 2025 10:57:02 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,28 +83,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
+From: neil.armstrong@linaro.org
 Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v7 4/8] drm/panel: sw43408: Separate reset sequence into
- own function
-To: david@ixit.cz, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Sumit Semwal <sumit.semwal@linaro.org>,
- Casey Connolly <casey.connolly@linaro.org>,
- Jessica Zhang <jesszhan0024@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Dmitry Baryshkov <lumag@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- Petr Hodina <phodina@protonmail.com>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
- dri-devel@lists.freedesktop.org
-References: <20251214-pixel-3-v7-0-b1c0cf6f224d@ixit.cz>
- <20251214-pixel-3-v7-4-b1c0cf6f224d@ixit.cz>
+Subject: Re: [PATCH RESEND 2/2] drm/panel: simple: Add HannStar HSD156JUW2
+To: Renjun Wang <renjunw0@foxmail.com>, jessica.zhang@oss.qualcomm.com,
+ airlied@gmail.com, simona@ffwll.ch, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, tzimmermann@suse.de, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, thierry.reding@gmail.com,
+ sam@ravnborg.org
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <tencent_D449AE627267BDD68BA41AD80EB3DFB5D407@qq.com>
+ <tencent_FE5819B397B5ECC989623C67A7D68D246907@qq.com>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -131,59 +121,64 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20251214-pixel-3-v7-4-b1c0cf6f224d@ixit.cz>
+In-Reply-To: <tencent_FE5819B397B5ECC989623C67A7D68D246907@qq.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 12/14/25 15:51, David Heidelberg via B4 Relay wrote:
-> From: David Heidelberg <david@ixit.cz>
+On 12/1/25 15:22, Renjun Wang wrote:
+> Add Hannstar HSD156JUW2 15.6" FHD (1920x1080) TFT LCD panel support.
 > 
-> Splitting reset() from prepare() follows clean coding practices and lets
-> us potentially make reset optional in the future for flicker-less
-> takeover from a bootloader or framebuffer driver where the panel is
-> already configured.
-> 
-> Signed-off-by: David Heidelberg <david@ixit.cz>
+> Signed-off-by: Renjun Wang <renjunw0@foxmail.com>
 > ---
->   drivers/gpu/drm/panel/panel-lg-sw43408.c | 17 +++++++++++------
->   1 file changed, 11 insertions(+), 6 deletions(-)
+>   drivers/gpu/drm/panel/panel-simple.c | 28 ++++++++++++++++++++++++++++
+>   1 file changed, 28 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/panel/panel-lg-sw43408.c b/drivers/gpu/drm/panel/panel-lg-sw43408.c
-> index dcca7873acf8e..ed9c7452ea846 100644
-> --- a/drivers/gpu/drm/panel/panel-lg-sw43408.c
-> +++ b/drivers/gpu/drm/panel/panel-lg-sw43408.c
-> @@ -119,6 +119,16 @@ static int sw43408_program(struct drm_panel *panel)
->   	return ctx.accum_err;
->   }
+> diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
+> index 0019de93be1b..057ae6735806 100644
+> --- a/drivers/gpu/drm/panel/panel-simple.c
+> +++ b/drivers/gpu/drm/panel/panel-simple.c
+> @@ -2509,6 +2509,31 @@ static const struct panel_desc hannstar_hsd101pww2 = {
+>   	.connector_type = DRM_MODE_CONNECTOR_LVDS,
+>   };
 >   
-> +static void sw43408_reset(struct sw43408_panel *ctx)
-> +{
-> +	gpiod_set_value(ctx->reset_gpio, 0);
-> +	usleep_range(9000, 10000);
-> +	gpiod_set_value(ctx->reset_gpio, 1);
-> +	usleep_range(1000, 2000);
-> +	gpiod_set_value(ctx->reset_gpio, 0);
-> +	usleep_range(9000, 10000);
-> +}
+> +static const struct display_timing hannstar_hsd156juw2_timing = {
+> +	.pixelclock = { 66000000, 72800000, 80500000 },
+> +	.hactive = { 1920, 1920, 1920 },
+> +	.hfront_porch = { 20, 30, 30 },
+> +	.hback_porch = { 20, 30, 30 },
+> +	.hsync_len = { 50, 60, 90 },
+> +	.vactive = { 1080, 1080, 1080 },
+> +	.vfront_porch = { 1, 2, 4 },
+> +	.vback_porch = { 1, 2, 4 },
+> +	.vsync_len = { 3, 40, 80 },
+> +	.flags = DISPLAY_FLAGS_DE_HIGH,
+> +};
 > +
->   static int sw43408_prepare(struct drm_panel *panel)
->   {
->   	struct sw43408_panel *ctx = to_panel_info(panel);
-> @@ -130,12 +140,7 @@ static int sw43408_prepare(struct drm_panel *panel)
->   
->   	usleep_range(5000, 6000);
->   
-> -	gpiod_set_value(ctx->reset_gpio, 0);
-> -	usleep_range(9000, 10000);
-> -	gpiod_set_value(ctx->reset_gpio, 1);
-> -	usleep_range(1000, 2000);
-> -	gpiod_set_value(ctx->reset_gpio, 0);
-> -	usleep_range(9000, 10000);
-> +	sw43408_reset(ctx);
->   
->   	ret = sw43408_program(panel);
->   	if (ret)
-> 
+> +static const struct panel_desc hannstar_hsd156juw2 = {
+> +	.timings = &hannstar_hsd156juw2_timing,
+> +	.num_timings = 1,
+> +	.bpc = 8,
+> +	.size = {
+> +		.width = 344,
+> +		.height = 194,
+> +	},
+> +	.bus_format = MEDIA_BUS_FMT_RGB888_1X7X4_SPWG,
+> +	.connector_type = DRM_MODE_CONNECTOR_LVDS,
+> +};
+> +
+>   static const struct drm_display_mode hitachi_tx23d38vm0caa_mode = {
+>   	.clock = 33333,
+>   	.hdisplay = 800,
+> @@ -5166,6 +5191,9 @@ static const struct of_device_id platform_of_match[] = {
+>   	}, {
+>   		.compatible = "hannstar,hsd101pww2",
+>   		.data = &hannstar_hsd101pww2,
+> +	}, {
+> +		.compatible = "hannstar,hsd156juw2",
+> +		.data = &hannstar_hsd156juw2,
+>   	}, {
+>   		.compatible = "hit,tx23d38vm0caa",
+>   		.data = &hitachi_tx23d38vm0caa
 
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
