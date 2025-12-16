@@ -1,100 +1,79 @@
-Return-Path: <devicetree+bounces-247116-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247115-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 858EBCC45E8
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 17:43:52 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AD7CCC45A3
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 17:41:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id CF993305069F
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 16:41:33 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 4AA0D302C5D7
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 16:41:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF623314D3A;
-	Tue, 16 Dec 2025 16:41:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E866330F55B;
+	Tue, 16 Dec 2025 16:41:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H9dBlgt7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UTSV+DLO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2A4A2D3A77;
-	Tue, 16 Dec 2025 16:41:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B26A2F260E;
+	Tue, 16 Dec 2025 16:41:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765903290; cv=none; b=Uks6sqdTxyBAJUfg04lunOee6l4ZiTAzbFvbdxNF5tpijy9NuBe32Xgf2iGLoNGKppYmU3THfWLfT8OCvtvpQNCIVCaGsx/oq63R60W+e+8anx1uNEZzpy+zfPNPxRGNIQCR5kJVLHyRT5R1+IecvyaG29T8m7a6cz5iAtI0dyk=
+	t=1765903289; cv=none; b=uxPbqH2xYH5F7kMJKVQcTrt8CJ3UyLpcAkpB5B//mB5ZYqcxHchBM1Kf6Ts/hRE3m4RUdhDvBg7dg3VjutyLpkFzi6pfQDgfFI8MDQAF2i+RBU4IPfcS757DZVrlj2YoDsy1K2PfegmFxFV1KSaHa2brmhJ81jzdkDnl7l38BpY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765903290; c=relaxed/simple;
-	bh=Se/DK8m93a4S91149Yg8i4Gry3opMMWQfbXS3uw4q1Y=;
+	s=arc-20240116; t=1765903289; c=relaxed/simple;
+	bh=glph62P7/Du4L/3zXD5ZSp61IfKb8z3u5NBivwGvyHc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nEZNeklE9481GR8nqvwTDx8vkAizyqiTilhgy5wmq7H5FItVTYvqdpYhXDTe1aWmq/m3gE5F/LgVLIB1fMk5ak8jAtqRJ9X8Lh2QtqdBi3cnK1f28/w8/nnwvfxz3ufOwBPQWT3SVc8CfaWrnAuHMFFztjKUh95297O/wBwqhs0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H9dBlgt7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11611C4CEF1;
-	Tue, 16 Dec 2025 16:41:25 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=W5HPOHNgoF3SKFwtXs7Sgn0UzgbD8zEhdbctAusi3GrXLBw32s2CWY4lPfyhougCmi5E/nrFe0+nxEtgSLXZ8JnGm8M6jXep2fSJ5+yKRGBsae9cMCdvcuOLQ76ZwENyXhCLfQUUuVRzTC1H2keGrdff5ObYI0OJ/IzUJt2vYRI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UTSV+DLO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55EF5C113D0;
+	Tue, 16 Dec 2025 16:41:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765903290;
-	bh=Se/DK8m93a4S91149Yg8i4Gry3opMMWQfbXS3uw4q1Y=;
+	s=k20201202; t=1765903288;
+	bh=glph62P7/Du4L/3zXD5ZSp61IfKb8z3u5NBivwGvyHc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=H9dBlgt7+8r02618IAf+x+IefVeRB44+xlz3X0Pj9ZBBeZm6ENDYcfzDEIobH5YE2
-	 6kYh7UstB7R24S/U+uuNB4uYpKe2FjIbCt+4qpK4mkiir3yQDDc3lfc8FxmT0RX+Mx
-	 0guEUdH0Fp2eriqmAezfH+iS+Gn0SkR9oNVXyoJimVZjrRJzla3TljFoMdMHIDh8pB
-	 pVGZcsASXRkl9DilDaNItuQpKQ5zFSJth9ZkNqW3YMSV6RXmtAcbKIqHnW3IjjqMqE
-	 ayeKXb0LfAwqYvbjIlXZR7fBIEPGGmc9aAxY6sbHuvugKk4G5PULWHHilGAAeAHqD5
-	 dCzrJrV6NudkA==
-Date: Tue, 16 Dec 2025 16:41:23 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Guodong Xu <guodong@riscstar.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Yixun Lan <dlan@gentoo.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Anup Patel <anup@brainfault.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>,
-	Yangyu Chen <cyy@cyyself.name>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@sifive.com>,
-	Heinrich Schuchardt <xypron.glpk@gmx.de>,
-	Kevin Meng Zhang <zhangmeng.kevin@linux.spacemit.com>,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org, spacemit@lists.linux.dev,
-	linux-serial@vger.kernel.org
-Subject: Re: [PATCH 5/8] dt-bindings: serial: 8250: add SpacemiT K3 UART
- compatible
-Message-ID: <20251216-reforest-list-ceb775dc9dbd@spud>
-References: <20251216-k3-basic-dt-v1-0-a0d256c9dc92@riscstar.com>
- <20251216-k3-basic-dt-v1-5-a0d256c9dc92@riscstar.com>
+	b=UTSV+DLObsuIg8F42cTPdSxFgpaSaHhToXwVdstqF3sHCOidUNUBhS68w184Nhqks
+	 s//HVY2Kzi3RWoTBzOve0RRyfroC5brIzvI3RZfl2bdpRMSYLO9i270EXaSMGHQ+gt
+	 eJI8E66Zo4PjdHlSAEe2NhN9ayKou8oQ0pwEh7SKx62R7czgfBVQ7veUq1jEkTlMDQ
+	 XN0ipskMG/x7vaE3ubud0qTrv7aAkdAWXGbU3p7a8ngdoRef9m8t4sor4EgMmAVqvk
+	 zSQKBvD48JP/LWaUQu6Otnw8jFYX1lBIkwUCZ3rJdpZQKEqchIURbgjKmptRW1smDD
+	 mk0ZPEXtUdlGg==
+Date: Tue, 16 Dec 2025 10:41:25 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Gatien Chevallier <gatien.chevallier@foss.st.com>,
+	devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] dt-bindings: bus: stm32mp25-rifsc: Allow 2 size cells
+Message-ID: <176590328507.2607309.18218209388270739835.robh@kernel.org>
+References: <20251215212700.3320634-1-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="DPFQEofot18lifdU"
-Content-Disposition: inline
-In-Reply-To: <20251216-k3-basic-dt-v1-5-a0d256c9dc92@riscstar.com>
-
-
---DPFQEofot18lifdU
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <20251215212700.3320634-1-robh@kernel.org>
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-pw-bot: not-applicable
 
---DPFQEofot18lifdU
-Content-Type: application/pgp-signature; name="signature.asc"
+On Mon, 15 Dec 2025 15:26:59 -0600, Rob Herring (Arm) wrote:
+> There are users already with 2 size cells, and there's no reason to not
+> support that.
+> 
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> ---
+>  Documentation/devicetree/bindings/bus/st,stm32mp25-rifsc.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
 
------BEGIN PGP SIGNATURE-----
+Applied, thanks!
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaUGLswAKCRB4tDGHoIJi
-0g1NAQDL9fx7G+lJVeeNHoBHTDkYugqV7bhsvIgVM3pX/jBY+QEA+emY/EGgQGnT
-Y0ExzgcquFyQ1T6l5rM0hgNUaLylNgc=
-=y5Wj
------END PGP SIGNATURE-----
-
---DPFQEofot18lifdU--
 
