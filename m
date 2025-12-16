@@ -1,247 +1,120 @@
-Return-Path: <devicetree+bounces-246835-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246839-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 702A7CC088B
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 02:53:11 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16949CC08F1
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 03:04:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 3CE87302F19A
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 01:52:28 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 84546301E5BA
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 02:03:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C1DB2C3248;
-	Tue, 16 Dec 2025 01:52:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBAFA2BE7BE;
+	Tue, 16 Dec 2025 02:03:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="aGwF/Jd7"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="ps1CQMlY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013004.outbound.protection.outlook.com [40.107.159.4])
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.2])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16F1D264636;
-	Tue, 16 Dec 2025 01:51:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.4
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765849925; cv=fail; b=FCpgvFlKwqZvEQPI5HLXY4UGi4u8ORC2wc4obmJR4OxBI3AZOwJjWLlA3qUVzzEc+pS2kTOQkr04xSaIQDWgTdgy91Bw4BnlIWKU0F2SdumvYtytNWB/bddEYA2MoUwGNDUalxuOmwd0PDnN/8HUPE9WWmcg+kakJCJf3Wm75jc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765849925; c=relaxed/simple;
-	bh=bdDmrCRazoydn4zTNkq7oeDNQFIwYrhTcIfOZIHzq/Q=;
-	h=From:Date:Subject:Content-Type:Message-Id:References:In-Reply-To:
-	 To:Cc:MIME-Version; b=tp1cx6zCdRNPklVxsjlSuhueCqBS8B06Ps1nme60Lm9QojU2k0bnJoVAt3J7ZtUrskujNuQrdbk9taScP0u00fOCBoxJlrxy8JRO1qTIYbrj909L+xLsqh4IzcVJO4HJj/SPApmjExlxI9EvvtHxL67XF9WGa6U9vapx1b7qAyw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=aGwF/Jd7; arc=fail smtp.client-ip=40.107.159.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=jMmDkRblYkNoKUbWGZ4X2bJrONx2umH9rQt88V+7al8Yj2gHsBCYAPkPhc38m6SZ75HPaU4dFa3DXM8+Xkt/U7W4ImRhXf6YmS7pFk83G3+smP1+nO07j1+lzoysAC49PeJ31rU/OCs/aRkRrIPZvRmkaMkTztwH5LV3D0aEvBMYL4C7HUps9nGRRydcz8ihj44jT4e8/IxJ46nXwqLQKMBc+dY6Km/+gOGXrCZwDcLfuC+m4CsxXNQyyu17ffCQh+eHJeo0v5byOhFQbsinW1B32qiYiQ0E7ci/J0VHq5TamBxhRcsHPaKlHrYpSiiAk6/cLJcw3iRiDYs6+vRpcQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=V8xj7osk5Niy7N1foPGRJomTiUzhLeI4oYL3vzF26D4=;
- b=Ej4ry/KQTp1PEgUdi5l3m+2lSpLiyoSQdbyCepVMCvG5rDJwMqVSkRpG9vePqSiqvRjTn4cF2Jcx69dQX4t+g/p0wulnHuxUfb9QyoqkP64QFRnfUhSlcpOl3lN90e24Zq+hubMmnUU4l0N0rn1MRUjGIXKnJcjexzxmoKmGId/I+BszhSGan/tnLf25YDxJ51AHZeTjMYMdW0s7QY2OVr2eVwJINRT/Db7C6cwFaxgGiEf+UH3JadgHVCQ8ec764151c2dbJ1A5NTBUbbq7s3/amKzYiwOqmeZsuZ7C60rWv59Q5Anm9uCCijtZUYuyBypnwXhuPsGbcYUJENaRFQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=V8xj7osk5Niy7N1foPGRJomTiUzhLeI4oYL3vzF26D4=;
- b=aGwF/Jd7DNSCtvAwL15ia1kY3A/ndpjbc80XV0IfxtjBqhqlc6xwNbyOawLoUEbTNTLJPAc1jQQzUKL1+2AE42FEYTdFGgCLfwKGJ9X1gMjQR9Jj5WnN2hFbafAbSPYftXkYXvLBgDbkvEhy+19FC9Tz5GZ9RqAsySCh2ZehwQXCycbUTMhqlhP4e363ljFwg75ONkJR51h50JAWA88mWkIL/L6aEKwQGQFDqKegP6Dx3YqUCVKUUdhdsQUOLfCDog/tOxkug1lZuOiBos/K20Ujh3eGetmZiKPymD/n3FpdZkKfLbaAeeto/5l9dRuqGPwORP0ApjvnSfqU6Z/M5g==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from PAXPR04MB8459.eurprd04.prod.outlook.com (2603:10a6:102:1da::15)
- by AM0PR04MB6915.eurprd04.prod.outlook.com (2603:10a6:208:187::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9412.13; Tue, 16 Dec
- 2025 01:51:52 +0000
-Received: from PAXPR04MB8459.eurprd04.prod.outlook.com
- ([fe80::165a:30a2:5835:9630]) by PAXPR04MB8459.eurprd04.prod.outlook.com
- ([fe80::165a:30a2:5835:9630%4]) with mapi id 15.20.9412.011; Tue, 16 Dec 2025
- 01:51:52 +0000
-From: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Date: Tue, 16 Dec 2025 09:51:03 +0800
-Subject: [PATCH v4 5/5] remoteproc: imx_rproc: Add support for i.MX95
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251216-imx95-rproc-2025-12-15-v4-5-bf1064ea8daf@nxp.com>
-References: <20251216-imx95-rproc-2025-12-15-v4-0-bf1064ea8daf@nxp.com>
-In-Reply-To: <20251216-imx95-rproc-2025-12-15-v4-0-bf1064ea8daf@nxp.com>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>, 
- Daniel Baluta <daniel.baluta@nxp.com>
-Cc: linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org, 
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
- linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
-X-Mailer: b4 0.14.2
-X-ClientProxiedBy: SG2PR03CA0120.apcprd03.prod.outlook.com
- (2603:1096:4:91::24) To PAXPR04MB8459.eurprd04.prod.outlook.com
- (2603:10a6:102:1da::15)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53DCC2C0F93;
+	Tue, 16 Dec 2025 02:03:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.2
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1765850603; cv=none; b=abZ4ztB0CUFnGL8PEQmq0sHrLEsUkcGoU+UrEjhQKSfq3yVDFPKRBbkipTJ3MdmQ96qmii8arvm+URuVgUCjb9i7J7tVyANm7+hPQBYGYGXtLni6/CSEiRCjt40R04kjnt6/M3uJlkloCVkJvdIGL/qAmctT55BnKzTlp0zMUPw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1765850603; c=relaxed/simple;
+	bh=4JEux+wemjhe5lRBTJMYmOo5JbXHIEj6+c2dZiB74RM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ZMXumIcsD7ltmt2ibQ+BwNzwS+Ku4UovlJYIhNkejPSnTsukgy5U3KnGO78m3+mLiZBsf+AaSl+j5e+XbLNFZpsnc7EFyJf/6jEg0ki2oRI3AqRaoVMjVkRUT1N4/vkHd+69BOhJK6dSWpqLujQubJqumSSGqKJbkjlm/ZkkCqM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=ps1CQMlY; arc=none smtp.client-ip=117.135.210.2
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=From:Subject:Date:Message-Id:MIME-Version:
+	Content-Type:To; bh=O5iu4yIsSO9ZWZlJQVFULBolHuSozJ/OSd+ZcqTsLBc=;
+	b=ps1CQMlYZwgVk3oj5+edqK156CDZtUI9pGrvMF1uF6vjIJxpC87bATBL/2fRun
+	MDB0q98WA0avy5aGORlr/0zzb3gBkhgtldssJTABKPCbWnAEWJ29oct7NN/0HlcC
+	WYTG86EJXD29xaB9mWdQF9VJOsUxlCesFVIH5/rm1Imx8=
+Received: from [192.168.10.1] (unknown [])
+	by gzga-smtp-mtada-g0-1 (Coremail) with SMTP id _____wDXUu97vUBpOmJ5Ag--.29S2;
+	Tue, 16 Dec 2025 10:01:34 +0800 (CST)
+From: Shuwei Wu <shuweiwoo@163.com>
+Subject: [PATCH v2 0/3] thermal: spacemit: Add support for SpacemiT K1 SoC
+ thermal sensor
+Date: Tue, 16 Dec 2025 10:00:34 +0800
+Message-Id: <20251216-patchv2-k1-thermal-v1-0-d4b31fe9c904@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB8459:EE_|AM0PR04MB6915:EE_
-X-MS-Office365-Filtering-Correlation-Id: 17452d5f-ac6a-457b-94ec-08de3c45af4e
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|52116014|7416014|376014|1800799024|19092799006|38350700014|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?a21PN1hNNmVNNlI4Ty9kUGRxVW9jZDZZWVc1Z0g2ckU1VGlqbDFNNmZBbmZ1?=
- =?utf-8?B?RVEyTmlRcFA5ZlBRd0dXaGtoZUNxSjVoRi92SFBTdGpSSC9rNTRoUGx3NURo?=
- =?utf-8?B?YkhSRW4yWVJTcG9pSHhiT1R2TVYyYXZXQUtEVklsQkRBTUlWTFFYU1Ezclk2?=
- =?utf-8?B?dFlyalZ6S3BEcnhBcng2NXpzY2lvNUI5cnd2NDQ0L0N5djNDSFhjdmtoOEFx?=
- =?utf-8?B?WDIzUXphNktxUUg5VEJzQk1iVDBsdjRISFZGYWFPRUZydW50YWl5ZWxVbmV1?=
- =?utf-8?B?TWZLMldZbXlOOHdoQU51Y3lMdXFicDN2M0R5cktESXoxQ1RHdTVtdXBaeEdK?=
- =?utf-8?B?Vy93aHpHTWNrWmFmenpUUHBxdE5lQXNxNFVHdHJsR1crcGVqQ1FxUWNXckRD?=
- =?utf-8?B?TytnVmVSOXFEOTlwbkplL3pBMUFTVEc0dFJXQTZFZmN5anRsd2hkM29acjhT?=
- =?utf-8?B?Q0o0T3Y2Mmk0RjBLUkxyZWVyZUZ1U09QTm9ac1VQZ083UWhIZDk4cThPNkZr?=
- =?utf-8?B?cS9Tak0zL0k2T2c2UlhEb1p3alcyTldieDFGbi9DNjUybDkzZUJ0eEJoVzlH?=
- =?utf-8?B?WU85bFAreHB1Nm5RL2RyWDNFTWZKeS81RFFmQkVqNXU1ME04eW01dUlVcGlU?=
- =?utf-8?B?N3lVUlU5MGtkN0JFZjhSajFTMVRBR09FSHlPYXBhMTlTNkIyaldVcW9kQXBy?=
- =?utf-8?B?UzhwMXd2cDRCYWNJSy9Pb0xZeDVnbDVmR2Jadk5RakVBdUdFbTJ6a1Rod0VI?=
- =?utf-8?B?Y1M2SFN5VSs5bmh1cGxRckxkTjVxZEZ3SFY4RUNiaXRPVlBBd0Y4cDlYck9z?=
- =?utf-8?B?NGhPVVo4SlJtaXRobDlaRWhYZkl5WG1nS1o1TkEwTlJWNmtXZ0x5MEFBZytK?=
- =?utf-8?B?bGUybndGeUpNMnZ6aFhhVm5DMW9ibDM2UmQ3eGpQTkxrQURCVkZGTVQ2eGVm?=
- =?utf-8?B?ejhROFExcnNkQUJMRmZiTXdraVU2TmptVE95Z3ZJbk9Xa003NnI5T1dibWxO?=
- =?utf-8?B?eFhMMENLSkZEZjFvSWlTRVBRSEpxR2NsWGxseVhidmllRXowVkM1Tmk0aVNo?=
- =?utf-8?B?NWxBWWEvT3RMMjluWnFCZXg4SWc1RE8xOStqb0FSc3FLeXZKKzc3enZST1M0?=
- =?utf-8?B?alBKVm54VXNYTDBPNVdPc0wvaVVNcmNZZVg5NmdZdjdOdXhpaUVXUkQxbGha?=
- =?utf-8?B?QjJmZko0TTRHdDVaOGRXRzBhOFBpd0QzM05haUFEMGdUWmx6Rjl3VlZhQzYx?=
- =?utf-8?B?NmdqdHZtSTVWbEUzY0VWMXlrUTNiZjZ1ZVNGSm1UWU1DdGRmWnhxNnNnLzZT?=
- =?utf-8?B?cVBDK2tpeXhqSUdMMEVCUkJJdHc5MDBLSDlmdGdhclhlRHpaMXp0bUQ4Wmhs?=
- =?utf-8?B?ei9ieS9GVkdGMmg2U3cwL0hNNXhEbTZzVXRZL3ptRFN3ZlJsNmdzNzZoelhB?=
- =?utf-8?B?blA0VEcrTVFBelJCaHhPK09GeEFOL0VhRitLZmRuZVNBWmdadWZBZmt4Kytx?=
- =?utf-8?B?WXJJU3pJWlFyL1ZYQUFveWczYzR3TWlTWFNScFVsRFpOV3U0L1dZVXcxQ3N5?=
- =?utf-8?B?ZTV3am9rb2lreTdJcXRWTmdEZUlUTk5Dc25vdmpuQ0wwOVoyWitxQ1owc2RY?=
- =?utf-8?B?MnNmN2RkL29wbUl1YzBNZWtxOCtxM0g2eU9XeUhDSzFBelJyMVE0OE1FUWJt?=
- =?utf-8?B?eWRJYklIMDRVUE04K2YySkllbThIQ1dsUVh5VnJ4UlFBZnRNRUpndE45U3Bm?=
- =?utf-8?B?eWlVd3haZ0FxRDE3WU1FbENjbzgvUUYzYTBIcGt0NWpud09SNnhLRkk3akxX?=
- =?utf-8?B?YnV6c3NxeDVmcnNmN3ArVkJzalNuUmZrOEE2VnB0T2tQanpWSml3MFByZGZ5?=
- =?utf-8?B?c0lYeWtyNnF2cjN0dnBSUm9LZVl1dXhqcTdQN3gvazlhT0Jlc1RPUFkyYVpK?=
- =?utf-8?B?YkwrM3RoVTF3SDJwbXZld1NkQ3N5ZmM1T2ZLK1JvSE5ieVhmN0JkeXBFeDAr?=
- =?utf-8?B?a3lOSTZWVnR1U0YwWThuZjJBa3h3Qk9KeWthaGZvR0I1eHhubUp2T3BwS3ZR?=
- =?utf-8?B?bEpGN2ZaZHdGTEJVZ3RMeUorcmh2cXFYeXQ5Zz09?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8459.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(52116014)(7416014)(376014)(1800799024)(19092799006)(38350700014)(921020);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?cHUrRXlkZFgzcnN3Skk3T3NPU2h4MnF5OU1vOXpFMGdNUk0wdGZFWVZvekNU?=
- =?utf-8?B?L080Z1hSMXQ4YjZTbzA0UWpHbTYxcWdmQVJTNVZpOGNxTDZqcjdSMmRKL0pV?=
- =?utf-8?B?TWpWanNyUG5JbHRHaDVINEQxV3pMR3VaeWJRb1VyS2h5cmlEZSthU2ovbGpZ?=
- =?utf-8?B?VnFCcmxxczdXRXBZUThHSGoxZW1IRHVBUTJWZUFPYlU2ampJWHVFMWpSbjdp?=
- =?utf-8?B?amZVVjFIZi9yOEpML1QxOXNnbXNiSHNvMVlDT0JaWHIyZGVHMC9OUk9lKy9U?=
- =?utf-8?B?ZjJINFpkUllUSHpmWnE3OFFxMHpYYitUS0hGOFJMMy9CSCtOUFAzWStsZGhL?=
- =?utf-8?B?K2ErdW5mUzBHK09Sb2NoUjhIZWxEdW5wTk1zdCtUYmlGQWp5S2U0SVFvVEJ6?=
- =?utf-8?B?ZzhIRmZ3RS9FT2xHU3IrQk43RE5TeC84SUErck5TNlJUdStMMWFtaTVva09j?=
- =?utf-8?B?am9hWlNwV0ZTVUx3WCt2L3M1UG5uT3l5dUFGNjdvODZnVEJDREdOdDdvU3hZ?=
- =?utf-8?B?N05BT3BXMlJYN3J6UFNQWjJOTWhuRE90OXpTUDdJYVhFbUttUDJNL1lYUXhG?=
- =?utf-8?B?UWg4VjkxRWw4NmRMdjFRYkdjVDZxOHg2ZU1neDA5aEZVV1AvbWl5M0J2ZnlF?=
- =?utf-8?B?YmNDM1doQXJTbE5kMTEvYkJIYkhpN1k0Tk16MXZMaCtaVkdZcUJrZTNkOHZW?=
- =?utf-8?B?N2pLYnF0dG1jNU5yV3FEMFl3d1B3VU52QkVnWHNBSzZiOU1hbThsQ3RXNlM5?=
- =?utf-8?B?TG5ZYlN6dTRzQWlieFZFNVphVCtuMXhFV2xmRGUvajlsa3RmSmhaRlhwNGdW?=
- =?utf-8?B?dnczektETmRXY0FIRWcvU0ZCTlFqRUlsMkF1b1dUWUtrV0owRXhRSWpvc2Uw?=
- =?utf-8?B?SEFWMmlzaTlLbHFRTk5YMENUdHFnTzBJSVhUUU84akxlcXA0V2F0cGsxTjht?=
- =?utf-8?B?WkRLWG1HZ0E2TGpaQWZXNUpQSDUyOWkrOEdHT1VjNXdxckxQWFZLMEQ0Sm81?=
- =?utf-8?B?OGU0eUNGKzVzSzJTM1dNelNzV24rSXpYRUs4NG9OeDdkSmVSUWVGelBJa0lh?=
- =?utf-8?B?b2RnMGF2djcrWThTYi9vc2xhMWlxTWFjVmNCVW5tZkw3SWxWb2Y0ZVRoaXlm?=
- =?utf-8?B?Z1FpRzl1OGxuNWNDTEdCUDdTWWRDR2x1M0hoZXNHZmh1OXY4eDZjV0lHNkdL?=
- =?utf-8?B?Nnk4OUU4OFpnRlRpMkxMQ1FqUDl2d0plVWJsdDZENUh6WTFlZ0JQTHNIcjBi?=
- =?utf-8?B?ejdkckdlODdmbllKQm9Hb056aEd1dXBYQ0RJZlphU3Z1eFV1YlVlcDcxaEJj?=
- =?utf-8?B?Uzk0dHJibm1KZ0grY3ZZelMwVjc1MVQwMWxUMGd1Zjk3c0xWS1lzSzg0b0E2?=
- =?utf-8?B?cWp6SG1HT1FwbHFXVmJveVdzb1ZsbDVkV25NbUtNK0p1OW4yVVZtdUtpWm1R?=
- =?utf-8?B?YzZXMWJldExLSmh3QTZxUjFzWFhpZkw1bVBma2hHdWVSMnBaL2lCZHJlS2xT?=
- =?utf-8?B?b1dHNnJORHBMVmpBNHZkcFNybnV6QUlIcFp1TWNIbFZNNDc1UkxTSC9xUnQw?=
- =?utf-8?B?TlVYVWRuV2VxQ09jN2RHQnRWbTkrc1ZNYmVuUVpXWXNQSEY0Qm52Z0VLTDlk?=
- =?utf-8?B?RmExZzJENDhrT0t5WVgzYTVCTUFXY0VnMFV3UWJVRzlnOEtqd2pqR1JoTDJM?=
- =?utf-8?B?SGtFUFFUMHpzU2dXMWVpcGJvdlpxV3FVU0dXcTJhcThDQi85bTd0TlBSNGVU?=
- =?utf-8?B?c3ovekFuTlEwWDkxZ0VybXQ1WlA5VUFRa2VMRzQxdlVhRFZuTlVFNmM5WlNw?=
- =?utf-8?B?bkpoS21QSFRqaXdrcHFMMlU3UllrT251ZWRPc0hxems2RHZ1amg0VnFRSnVq?=
- =?utf-8?B?SUJRSDdCVXQrZ0RBdGhTSWhKVFM5M0JFOStjaDVrOXo5aXk1RkYyMEcrdW03?=
- =?utf-8?B?QVYwdGdTdFdhMTZEcnlhNXl5OTJrbDMxVzdhYkF1TVUxWHM1aEVUdExWd1Az?=
- =?utf-8?B?UUZQcU02b3V3aHR2aUxvYWdLSTdVTHhqWWZ3Ly81MXJWREhQd09Tdnh3ckpM?=
- =?utf-8?B?UWw1MVhrR1BsTnQ3RzZ1enhXMnlTK3FVakljR2ZKTThnM1hiZGE4ZmwyRXFa?=
- =?utf-8?Q?y+E+fUIp8kkPJz4/897w22KV+?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 17452d5f-ac6a-457b-94ec-08de3c45af4e
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8459.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Dec 2025 01:51:52.5913
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ZMSwx7kg2vnrkFtWq6LNZB+ZOhraLQVI7e1gzSzqPcUnKXOT2jD3AEZZJ76e5ZPwWoNpIE1XNVLiSTXD2+DgGA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB6915
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEK9QGkC/x3MQQqEMAxA0atI1hOYRAriVQYXnZja4IxKK0UQ7
+ 25x+Rb/n5A1mWbomxOSFsu2LhX0akCiXyZFG6uB3+yIyeHmd4mFcSbco6a//6EL4du1XRASgRp
+ uSYMdz/QDhWG4rhtSmDr3aAAAAA==
+X-Change-ID: 20251215-patchv2-k1-thermal-5ffb838fc1cc
+To: "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
+ Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
+ Shuwei Wu <shuweiwoo@163.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
+ Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
+ Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>
+Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
+ linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1765850492; l=1390;
+ i=shuweiwoo@163.com; s=20251125; h=from:subject:message-id;
+ bh=4JEux+wemjhe5lRBTJMYmOo5JbXHIEj6+c2dZiB74RM=;
+ b=IBMt8PFGdohtMqhWB2UmoRRcAUFBvDkXtpCpUypHi17BMGo7NcoyJ6EagYHfgnr1dwBZrT80M
+ 2DUUw/J5whNA+TmA6JdliHQpyalK89xB+W/Gj/STy5B/OfzU8fA73x2
+X-Developer-Key: i=shuweiwoo@163.com; a=ed25519;
+ pk=qZs6i2UZnXkmjUrwO5HJxcfpCvgSNrR4dcU5cjtfTSk=
+X-CM-TRANSID:_____wDXUu97vUBpOmJ5Ag--.29S2
+X-Coremail-Antispam: 1Uf129KBjvJXoW7uw43JF4rJr4rKw13GFyDWrg_yoW8JF47pF
+	s8ur95Cr1DGF4xJw4fur1UuFZxtF4rtFy2gr1Igw1YqF15CFy3Jr98try5Xa48Xry3JFyj
+	vrsrGr45CF1qyrJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0pi8sq_UUUUU=
+X-CM-SenderInfo: 5vkx4vplzr0qqrwthudrp/xtbC5B-4h2lAvX+0VQAA3O
 
-From: Peng Fan <peng.fan@nxp.com>
+Introduce support for the on-die thermal sensor found
+on the SpacemiT K1 SoC.
 
-Add imx_rproc_cfg_imx95_m7 and address(TCM and DDR) mapping.
-Add i.MX95 of_device_id entry.
+Include the device tree binding documentation in YAML format, the
+thermal sensor driver implementation, and the device tree changes to
+enable the sensor on K1 SoC.
 
-Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
-Reviewed-by: Frank Li <Frank.Li@nxp.com>
-Signed-off-by: Peng Fan <peng.fan@nxp.com>
 ---
- drivers/remoteproc/imx_rproc.c | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
+Changes in v2:
+- Move driver to drivers/thermal/spacemit/ and update Kconfig/Makefile
+- Address reviewer feedback on style and structure
+- Improve variable naming and comments
+- Link to v1: https://lore.kernel.org/r/20251127-b4-k1-thermal-v1-0-f32ce47b1aba@163.com
 
-diff --git a/drivers/remoteproc/imx_rproc.c b/drivers/remoteproc/imx_rproc.c
-index 55e555f2b5dd63e7d82996437e792a8152c91521..b2d0be0afc995a6c285c8afd4e294f95491ebb7a 100644
---- a/drivers/remoteproc/imx_rproc.c
-+++ b/drivers/remoteproc/imx_rproc.c
-@@ -130,6 +130,18 @@ struct imx_rproc {
- 	u32				flags;
- };
- 
-+static const struct imx_rproc_att imx_rproc_att_imx95_m7[] = {
-+	/* dev addr , sys addr  , size	    , flags */
-+	/* TCM CODE NON-SECURE */
-+	{ 0x00000000, 0x203C0000, 0x00040000, ATT_OWN | ATT_IOMEM },
-+
-+	/* TCM SYS NON-SECURE*/
-+	{ 0x20000000, 0x20400000, 0x00040000, ATT_OWN | ATT_IOMEM },
-+
-+	/* DDR */
-+	{ 0x80000000, 0x80000000, 0x50000000, 0 },
-+};
-+
- static const struct imx_rproc_att imx_rproc_att_imx93[] = {
- 	/* dev addr , sys addr  , size	    , flags */
- 	/* TCM CODE NON-SECURE */
-@@ -1431,6 +1443,15 @@ static const struct imx_rproc_dcfg imx_rproc_cfg_imx93 = {
- 	.flags		= IMX_RPROC_NEED_CLKS,
- };
- 
-+static const struct imx_rproc_dcfg imx_rproc_cfg_imx95_m7 = {
-+	.att		= imx_rproc_att_imx95_m7,
-+	.att_size	= ARRAY_SIZE(imx_rproc_att_imx95_m7),
-+	.ops		= &imx_rproc_ops_sm_lmm,
-+	/* Must align with System Manager Firmware */
-+	.cpuid		= 1, /* Use 1 as cpu id for M7 core */
-+	.lmid		= 1, /* Use 1 as Logical Machine ID where M7 resides */
-+};
-+
- static const struct of_device_id imx_rproc_of_match[] = {
- 	{ .compatible = "fsl,imx7ulp-cm4", .data = &imx_rproc_cfg_imx7ulp },
- 	{ .compatible = "fsl,imx7d-cm4", .data = &imx_rproc_cfg_imx7d },
-@@ -1445,6 +1466,7 @@ static const struct of_device_id imx_rproc_of_match[] = {
- 	{ .compatible = "fsl,imx8qm-cm4", .data = &imx_rproc_cfg_imx8qm },
- 	{ .compatible = "fsl,imx8ulp-cm33", .data = &imx_rproc_cfg_imx8ulp },
- 	{ .compatible = "fsl,imx93-cm33", .data = &imx_rproc_cfg_imx93 },
-+	{ .compatible = "fsl,imx95-cm7", .data = &imx_rproc_cfg_imx95_m7 },
- 	{},
- };
- MODULE_DEVICE_TABLE(of, imx_rproc_of_match);
+---
+Shuwei Wu (3):
+      dt-bindings: thermal: Add SpacemiT K1 thermal sensor
+      thermal: spacemit: k1: Add thermal sensor support
+      riscv: dts: spacemit: Add thermal sensor for K1 SoC
 
+ .../bindings/thermal/spacemit,k1-tsensor.yaml      |  76 ++++++
+ arch/riscv/boot/dts/spacemit/k1.dtsi               | 101 ++++++++
+ drivers/thermal/Kconfig                            |   2 +
+ drivers/thermal/Makefile                           |   1 +
+ drivers/thermal/spacemit/Kconfig                   |  19 ++
+ drivers/thermal/spacemit/Makefile                  |   3 +
+ drivers/thermal/spacemit/k1_tsensor.c              | 283 +++++++++++++++++++++
+ 7 files changed, 485 insertions(+)
+---
+base-commit: 8f0b4cce4481fb22653697cced8d0d04027cb1e8
+change-id: 20251215-patchv2-k1-thermal-5ffb838fc1cc
+
+Best regards,
 -- 
-2.37.1
+Shuwei Wu <shuweiwoo@163.com>
 
 
