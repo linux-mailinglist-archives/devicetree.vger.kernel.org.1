@@ -1,218 +1,168 @@
-Return-Path: <devicetree+bounces-247039-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247041-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FA33CC34D7
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 14:43:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 50EA3CC3540
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 14:47:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 960D730AD695
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 13:38:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5923C306C2C5
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 13:40:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECAA339A124;
-	Tue, 16 Dec 2025 13:31:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1988A3B1D2F;
+	Tue, 16 Dec 2025 13:32:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="pkWd0vBT"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="xmJBiovh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx-relay93-hz2.antispameurope.com (mx-relay93-hz2.antispameurope.com [94.100.136.193])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f193.google.com (mail-pl1-f193.google.com [209.85.214.193])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DD6D398B71
-	for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 13:31:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=94.100.136.193
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765891912; cv=pass; b=a1RgLSE+PoJ2pFZKlCnMcu8IdZ3ZT6xK+hzkU5q8IQbYYwzh2JmAwgewPcg98O+aO2pMStqz5OvDoYGt3cJpLD0luqjBc1cQ4l9Vdn1Bx3QglLd6bKXZGqAGRvo8n7aEbVuDFeTFlcsjtp4jzipNmUHxxaNG7n18CuWVma0q5As=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765891912; c=relaxed/simple;
-	bh=1vcbNES+su2OO2olrrDYQUbPCkKYn8vT4vs9BjA2X9k=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=rLicuyuTnPGxqCfhy7H5395ZKWnvuJX7D6x+Z0OCuOk6tDxFVDZfd2BhvCQI+qD4oRq0OuXj6anlMlOA/lL4gsapFX5tcO+00+OtN4nDzZPFLBm1jvqsKO44PSWUoWzUuShwfLrRo/R6TtMhA4L1X+7BRwi5u83ggiF7+bgu6fQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=pkWd0vBT; arc=pass smtp.client-ip=94.100.136.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-ARC-Authentication-Results: i=1; mx-gate93-hz2.hornetsecurity.com 1; spf=pass
- reason=mailfrom (ip=94.100.132.6, headerfrom=ew.tq-group.com)
- smtp.mailfrom=ew.tq-group.com smtp.helo=smtp-out02-hz1.hornetsecurity.com;
- dmarc=pass header.from=ew.tq-group.com orig.disposition=pass
-ARC-Message-Signature: a=rsa-sha256;
- bh=x9mGmXqHfOmeLgdEOLDPoxQ5MFnm0tlfSuhg2kM00pQ=; c=relaxed/relaxed;
- d=hornetsecurity.com; h=from:to:date:subject:mime-version:; i=1; s=hse1;
- t=1765891884;
- b=tlCv+jTLQCg7nuhFJBphFtZMyA2zTmK/OeNtn7w6QQUg2rJRVkNEZQFESWjk/beRfmWLhNQu
- BsMxrGL5vVApB0TSqSjDRykLCdDkYBHWf5tED7Fs9KPbSsGwCLw+oBt2RtvtpekVtz/Qr9Kyg+D
- oRkduVbErEK2WiDBiglm6SY0hjJJ1f2zkMbWtdfThw7GIVMqPCXq6RLHbP3PVfwVcWaXfaZWnpO
- 2B6kwYWSuWTxZex4YAdCINjsoWouyOsUHmzPigu89xiFREJVeBuLK+R1UVze5qxtys89lJ5imfJ
- a5XlXqdKcL/q8sCriP9PjCvLyh7oeJicBb/s+pTzDXrww==
-ARC-Seal: a=rsa-sha256; cv=none; d=hornetsecurity.com; i=1; s=hse1;
- t=1765891884;
- b=Z6DAbbPZiXvUen+HISPedhrLLUAbxVO94TKYSs0B0HmAhCdbpnokWpUNqSUe9Anw9tK1UBiy
- NDhuHyaprfZkfTeM5INk7g51x5rQ174Hl6PGXvYLSTTOvi6Z9x8I8AJNCxQEQPMj9eg6U1WA6Fu
- nWT84S6vBNcSSsstpmvUsC/mRkfnopEhmQJGt8LRZwmFI0BGZRR58W0hTTtxcUEk2fZJj03fL72
- 8D/kUqYjGaoI1MGEfcKlD7rQaZdE4kbnNtaKn3MwlsIOLRF4t31qa91Tx2xb+sT0G/4MQO4suwk
- Bf3C6HMeZHUrqZZz5KOl2MkbtM87EXAJ8cp3I6z+3Efxg==
-Received: from he-nlb01-hz1.hornetsecurity.com ([94.100.132.6]) by mx-relay93-hz2.antispameurope.com;
- Tue, 16 Dec 2025 14:31:24 +0100
-Received: from steina-w.tq-net.de (host-82-135-125-110.customer.m-online.net [82.135.125.110])
-	(Authenticated sender: alexander.stein@ew.tq-group.com)
-	by smtp-out02-hz1.hornetsecurity.com (Postfix) with ESMTPSA id 56EB55A0F66;
-	Tue, 16 Dec 2025 14:31:16 +0100 (CET)
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: Markus Niebel <Markus.Niebel@ew.tq-group.com>,
-	linux@ew.tq-group.com,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Alexander Stein <alexander.stein@ew.tq-group.com>
-Subject: [PATCH 4/4] arm64: dts: imx8mm-tqma8mqml: fix LDO5 power off
-Date: Tue, 16 Dec 2025 14:31:07 +0100
-Message-ID: <20251216133110.905950-4-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251216133110.905950-1-alexander.stein@ew.tq-group.com>
-References: <20251216133110.905950-1-alexander.stein@ew.tq-group.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 737823B1D1C
+	for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 13:32:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.193
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1765891977; cv=none; b=cy+5nIwJpq6HZW+D+YcqnQjPwp6dRCFPrgY6kehK8FeNQ7IMjsAS4SMm1/yHqHShJcgkgotvLDp8DvSpND271QRe0Dnfabe0Is4+0XupO5MzW31mxOQYk1Pyod654TJfy+Serk+jDk5cpsjajSHi+mLxcg9shM/X4qMqKRaFpt0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1765891977; c=relaxed/simple;
+	bh=pU0oP5/c/7ypY5esHJsYEwlRjlrC/o562rPa9fS6psA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=p8fF/5KsjWqGJZ0bXOUJkTc5GdaWewXQfUb3eB55dhGdPCsU5FGpDDMeE40hy5HR5gGu31N4fxHMnW4O5ryu0ROEFHj9mqg0XsszMlEzrY/vYf+hYqaYxMj2eDdn+9//+gKaD/T3LBvKsSr1D5riji2KzJ8pGjc8DzVD+xPKL2w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=xmJBiovh; arc=none smtp.client-ip=209.85.214.193
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-pl1-f193.google.com with SMTP id d9443c01a7336-2a081c163b0so33189775ad.0
+        for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 05:32:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1765891974; x=1766496774; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=g/JfJQXcFgX18niVnHrsIFrsFHpq0fWX7xoHVIFhehA=;
+        b=xmJBiovhlF6wAgNlJ/xyglkPnnA+dECBnyxFoMVhdRWj6PWVJ9nbgG0ZJjwE7Iau9U
+         L+agjAW02YptT6uSt/E2HJ2idL5yw+8ZOn4XRB4k1BhnErxZw+B3gHKhYI7zH4oM8Yu2
+         TqQZ4s24PYYx2WwF2CEyYYJYd1NMJdjvLyGxZ68AO9GPSNhz7QFx9GxwmrRdwRw4yOpf
+         vGoBP30K6XP8802QUDJuGahcbAnL+7ugPJ8kpnOrbgn+sokwcHz0SLwhH27JXO8ceoD7
+         affumjNeAC/wOMFV1kdhiaWJAlwAAwCC3G1WqumIfw8RIBS1DxHoLrAtgESqKGPEsUjY
+         q1DA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765891974; x=1766496774;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=g/JfJQXcFgX18niVnHrsIFrsFHpq0fWX7xoHVIFhehA=;
+        b=DCTmD2loxGj7fuigO926WXKkcuPDZ90EhDzgqzdWNrGZOagksA2dhYOBoZUxlylr1P
+         lyJgFdUvBCB37mY3dIEC4XSSTr91B0GXdXOxJKnc5jpWKzEJvAG1119zQimyF7ctfiav
+         iGoiwnvLjt+nwc+nHDjMOkr1qHougc9DqB6cv6lCQbyQeznaP1w3GOeOXSlk6uRHeGfY
+         d6iui3FF/5mod7BTCzC8o18ODxYvyRf/+6nMl/lRf63FUK3MO7bUOPSHZ68edk8RG0Ch
+         zK+Xe5aGMKnkoLTrCMpWIG8Qh2Ebn/WVEqCCQjgBmd+RckvNaXmP3d011la0lbyvmdK8
+         vUAw==
+X-Forwarded-Encrypted: i=1; AJvYcCX474DFyEMGrB6eMFYh1iMxd4miXFBf1EDgg3XutV3ek1i0qTJ3E9f1d0okazNv00juaMdwJ4hZpPKd@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxmw0O+VgBwIwxGIXcuDaPDUo6DcHLH5Z1sj1BGWfq5pcZEEpa3
+	tWIir6Bu9h1ex0ibxvImmc7skFPKZrCdb7uoA2X3lZ9rmoSHla6BgDuKsnmX9sGgn1c=
+X-Gm-Gg: AY/fxX54J5PO/jEuBNjc1P/hXq22h2YUT+sSZLlkf/clUuXlObFNUg6LGzqabvTt4EP
+	7SNyf3CBuPjLbCkymVTlRuJ7DRUQDyZBS9Y/earu7Q1jiQ632OY6lhEollxfWq5wppkAzA5pK/G
+	+2ELMlRri36aLEZH7TV+TcFiNb8YoanwIdmc75WyIt7uI1wykYbwonjmeNBtIl5P/HTYtfOXABI
+	zu9LsXAUpo1NwSbAFI5pQhoBWOyWjJKE7lJ0iusZPI4s/7hwRKIGWURkPBpbaimO61R8iw5DQdV
+	u4/hfKngRFgrIRq/NSH+XGEWfxv00g/ICNtTqXlu++ACmFlmAqdSxEia6BzeujsMem/fqS2dUP5
+	Rr/gd4tfWPTgjlUOzOFei2CsdJjJbVj+cYsRxBDPVHoAJUl5s1vEpp3DkoBNzF/C6f5DPz+qxeH
+	qpuyE1tN8YVu6whYj33OcDEOi9NPlrOOJJzXAavC3j2w==
+X-Google-Smtp-Source: AGHT+IHT8YPzl6f7Pnw8yu1d9OLksn7u1Cax08hiwcjf1bsYEfnVPO1K1qwPGMHdLgZugryriieEFw==
+X-Received: by 2002:a17:902:ea0c:b0:2a0:f47c:cfc with SMTP id d9443c01a7336-2a0f47c0e76mr73502685ad.34.1765891973637;
+        Tue, 16 Dec 2025 05:32:53 -0800 (PST)
+Received: from [127.0.1.1] ([2a12:a305:4::4029])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a14625add8sm15829525ad.61.2025.12.16.05.32.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Dec 2025 05:32:53 -0800 (PST)
+From: Guodong Xu <guodong@riscstar.com>
+Subject: [PATCH 0/8] riscv: spacemit: Add SpacemiT K3 SoC and K3 Pico-ITX
+ board
+Date: Tue, 16 Dec 2025 21:32:24 +0800
+Message-Id: <20251216-k3-basic-dt-v1-0-a0d256c9dc92@riscstar.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-cloud-security-sender:alexander.stein@ew.tq-group.com
-X-cloud-security-recipient:devicetree@vger.kernel.org
-X-cloud-security-body-digest:f05457902f37798828b49e9ea5497943
-X-cloud-security-crypt: load encryption module
-X-cloud-security-Mailarchiv: E-Mail archived for: alexander.stein@ew.tq-group.com
-X-cloud-security-Mailarchivtype:outbound
-X-cloud-security-Virusscan:CLEAN
-X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on mx-relay93-hz2.antispameurope.com with 4dVyW90kQLz4QHDJ
-X-cloud-security-connect: he-nlb01-hz1.hornetsecurity.com[94.100.132.6], TLS=1, IP=94.100.132.6
-X-cloud-security-Digest:8607d1a79e30606a7dcee9ac57a97bd3
-X-cloud-security:scantime:2.034
-DKIM-Signature: a=rsa-sha256;
- bh=x9mGmXqHfOmeLgdEOLDPoxQ5MFnm0tlfSuhg2kM00pQ=; c=relaxed/relaxed;
- d=ew.tq-group.com;
- h=content-type:mime-version:subject:from:to:message-id:date; s=hse1;
- t=1765891883; v=1;
- b=pkWd0vBT9XdOvw0ZhOjCrX7MfX8goHbdbKIvXcuY2W3qiRuP2SgU6v28RMONTx6/amk1f9Am
- KMPbP6nA+olGPfY93hbi7kGlozHqyuWhEESSkAGCD/Y0k3ueT1lidlqBiPvE6Gur5j4NuLkQAsZ
- cHgqYDBXsz28YoQrlXHvMmcpIuBupXlWxj6Fykl6x+LwG2BzW8IARgE4dWr5blr3zZwK5OnWLop
- lpohUT/RfT5PQ7quqhChe2DtmgD5XlozmFmaP6rrLoemVV+/uG1P9Wdyxy2VWDCjghw9R3mA8s0
- LLxFkC+j2WGOTozZ48CAS5kz2WytcYjcPLF6wsQbV3dMQ==
+X-B4-Tracking: v=1; b=H4sIAGhfQWkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1NDI0Mz3Wxj3aTE4sxk3ZQS3eQUS1MTAwMzQ0sLSyWgjoKi1LTMCrBp0bG
+ 1tQC0HgM4XQAAAA==
+X-Change-ID: 20251216-k3-basic-dt-cd9540061989
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Alexandre Ghiti <alex@ghiti.fr>, Yixun Lan <dlan@gentoo.org>, 
+ Daniel Lezcano <daniel.lezcano@linaro.org>, 
+ Thomas Gleixner <tglx@linutronix.de>, 
+ Samuel Holland <samuel.holland@sifive.com>, 
+ Anup Patel <anup@brainfault.org>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Jiri Slaby <jirislaby@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>, 
+ Yangyu Chen <cyy@cyyself.name>
+Cc: Paul Walmsley <paul.walmsley@sifive.com>, 
+ Palmer Dabbelt <palmer@sifive.com>, Conor Dooley <conor@kernel.org>, 
+ Heinrich Schuchardt <xypron.glpk@gmx.de>, 
+ Kevin Meng Zhang <zhangmeng.kevin@linux.spacemit.com>, 
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, spacemit@lists.linux.dev, 
+ linux-serial@vger.kernel.org, Guodong Xu <guodong@riscstar.com>
+X-Mailer: b4 0.14.2
 
-From: Markus Niebel <Markus.Niebel@ew.tq-group.com>
+This series introduces basic support for the SpacemiT K3 SoC and the
+K3 Pico-ITX evaluation board.
 
-Fix SD card removal caused by automatic LDO5 power off after boot.
+The SpacemiT K3 is an SoC featuring 8 SpacemiT X100 RISC-V cores.
+The X100 is a 4-issue, out-of-order core compliant with the RVA23
+profile, targeting high-performance scenarios. [1]
 
-To prevent this, add vqmmc regulator for USDHC, using a GPIO-controlled
-regulator that is supplied by LDO5. Since this is implemented on SoM but
-used on baseboards with SD-card interface, implement the functionality
-on SoM part and optionally enable it on baseboards if needed.
+The K3 Pico-ITX is an evaluation board built around the K3 SoC.
 
-Signed-off-by: Markus Niebel <Markus.Niebel@ew.tq-group.com>
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+This series includes:
+ - DT bindings for SpacemiT X100 core, K3 SoC, and Pico-ITX board.
+ - DT bindings for K3 integrated peripherals: CLINT, APLIC, IMSIC, and UART.
+ - Initial Device Tree for K3 SoC and Pico-ITX board.
+
+From an RVA23 profile compliance perspective, the X100 supports all
+mandatory extensions required by RVA23U64 and RVA23S64. Ideally, all
+these extensions should be listed in the 'riscv,isa-extensions' string.
+However, some mandatory extensions (e.g. "ziccif", "sstvecd")
+are not yet supported (listed) by the upstream riscv/extensions.yaml
+binding.
+
+To avoid validation warnings (“Unevaluated properties are not allowed"
+when make dtbs_check W=3) and to prevent the kernel from silently
+dropping unrecognized strings, this series only declares the
+isa-extensions that are currently supported by the kernel bindings.
+
+Link: https://www.spacemit.com/en/spacemit-x100-core/ [1]
+
+Signed-off-by: Guodong Xu <guodong@riscstar.com>
 ---
- .../dts/freescale/imx8mm-tqma8mqml-mba8mx.dts | 13 ++++++-----
- .../boot/dts/freescale/imx8mm-tqma8mqml.dtsi  | 22 +++++++++++++++++++
- 2 files changed, 29 insertions(+), 6 deletions(-)
+Guodong Xu (8):
+      dt-bindings: riscv: add SpacemiT X100 CPU compatible
+      dt-bindings: timer: add SpacemiT K3 CLINT
+      dt-bindings: interrupt-controller: add SpacemiT K3 APLIC
+      dt-bindings: interrupt-controller: add SpacemiT K3 IMSIC
+      dt-bindings: serial: 8250: add SpacemiT K3 UART compatible
+      dt-bindings: riscv: spacemit: add K3 and Pico-ITX board bindings
+      riscv: dts: spacemit: add initial device tree of SpacemiT K3 SoC
+      riscv: dts: spacemit: add SpacemiT K3 Pico-ITX board device tree
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx.dts b/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx.dts
-index b941c8c4f7bb4..8dcc5cbcb8f66 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx.dts
-@@ -101,6 +101,10 @@ &pcie0 {
- 	status = "okay";
- };
- 
-+&reg_usdhc2_vqmmc {
-+	status = "okay";
-+};
-+
- &sai3 {
- 	assigned-clocks = <&clk IMX8MM_CLK_SAI3>;
- 	assigned-clock-parents = <&clk IMX8MM_AUDIO_PLL1_OUT>;
-@@ -276,8 +280,7 @@ pinctrl_usdhc2: usdhc2grp {
- 			   <MX8MM_IOMUXC_SD2_DATA0_USDHC2_DATA0		0x1d4>,
- 			   <MX8MM_IOMUXC_SD2_DATA1_USDHC2_DATA1		0x1d4>,
- 			   <MX8MM_IOMUXC_SD2_DATA2_USDHC2_DATA2		0x1d4>,
--			   <MX8MM_IOMUXC_SD2_DATA3_USDHC2_DATA3		0x1d4>,
--			   <MX8MM_IOMUXC_GPIO1_IO04_USDHC2_VSELECT	0x84>;
-+			   <MX8MM_IOMUXC_SD2_DATA3_USDHC2_DATA3		0x1d4>;
- 	};
- 
- 	pinctrl_usdhc2_100mhz: usdhc2-100mhzgrp {
-@@ -286,8 +289,7 @@ pinctrl_usdhc2_100mhz: usdhc2-100mhzgrp {
- 			   <MX8MM_IOMUXC_SD2_DATA0_USDHC2_DATA0		0x1d4>,
- 			   <MX8MM_IOMUXC_SD2_DATA1_USDHC2_DATA1		0x1d4>,
- 			   <MX8MM_IOMUXC_SD2_DATA2_USDHC2_DATA2		0x1d4>,
--			   <MX8MM_IOMUXC_SD2_DATA3_USDHC2_DATA3		0x1d4>,
--			   <MX8MM_IOMUXC_GPIO1_IO04_USDHC2_VSELECT	0x84>;
-+			   <MX8MM_IOMUXC_SD2_DATA3_USDHC2_DATA3		0x1d4>;
- 	};
- 
- 	pinctrl_usdhc2_200mhz: usdhc2-200mhzgrp {
-@@ -296,7 +298,6 @@ pinctrl_usdhc2_200mhz: usdhc2-200mhzgrp {
- 			   <MX8MM_IOMUXC_SD2_DATA0_USDHC2_DATA0		0x1d4>,
- 			   <MX8MM_IOMUXC_SD2_DATA1_USDHC2_DATA1		0x1d4>,
- 			   <MX8MM_IOMUXC_SD2_DATA2_USDHC2_DATA2		0x1d4>,
--			   <MX8MM_IOMUXC_SD2_DATA3_USDHC2_DATA3		0x1d4>,
--			   <MX8MM_IOMUXC_GPIO1_IO04_USDHC2_VSELECT	0x84>;
-+			   <MX8MM_IOMUXC_SD2_DATA3_USDHC2_DATA3		0x1d4>;
- 	};
- };
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml.dtsi
-index 2e3860a5f4fd2..29b298af0d739 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml.dtsi
-@@ -16,6 +16,20 @@ memory@40000000 {
- 		reg = <0x00000000 0x40000000 0 0x40000000>;
- 	};
- 
-+	reg_usdhc2_vqmmc: regulator-usdhc2-vqmmc {
-+		compatible = "regulator-gpio";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_reg_usdhc2_vqmmc>;
-+		regulator-name = "V_SD2";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <3300000>;
-+		gpios = <&gpio1 4 GPIO_ACTIVE_HIGH>;
-+		states = <1800000 0x1>,
-+			 <3300000 0x0>;
-+		vin-supply = <&ldo5_reg>;
-+		status = "disabled";
-+	};
-+
- 	reserved-memory {
- 		#address-cells = <2>;
- 		#size-cells = <2>;
-@@ -227,6 +241,10 @@ &pcie_phy {
- 	fsl,clkreq-unsupported;
- };
- 
-+&usdhc2 {
-+	vqmmc-supply = <&reg_usdhc2_vqmmc>;
-+};
-+
- &usdhc3 {
- 	pinctrl-names = "default", "state_100mhz", "state_200mhz";
- 	pinctrl-0 = <&pinctrl_usdhc3>;
-@@ -281,6 +299,10 @@ pinctrl_reg_usdhc2_vmmc: regusdhc2vmmcgrp {
- 		fsl,pins = <MX8MM_IOMUXC_SD2_RESET_B_GPIO2_IO19		0x84>;
- 	};
- 
-+	pinctrl_reg_usdhc2_vqmmc: regusdhc2vqmmcgrp {
-+		fsl,pins = <MX8MM_IOMUXC_GPIO1_IO04_GPIO1_IO4		0xc0>;
-+	};
-+
- 	pinctrl_usdhc3: usdhc3grp {
- 		fsl,pins = <MX8MM_IOMUXC_NAND_WE_B_USDHC3_CLK		0x1d4>,
- 			   <MX8MM_IOMUXC_NAND_WP_B_USDHC3_CMD		0x1d2>,
+ .../bindings/interrupt-controller/riscv,aplic.yaml |   1 +
+ .../interrupt-controller/riscv,imsics.yaml         |   1 +
+ Documentation/devicetree/bindings/riscv/cpus.yaml  |   1 +
+ .../devicetree/bindings/riscv/spacemit.yaml        |   6 +-
+ Documentation/devicetree/bindings/serial/8250.yaml |   1 +
+ .../devicetree/bindings/timer/sifive,clint.yaml    |   1 +
+ arch/riscv/boot/dts/spacemit/Makefile              |   1 +
+ arch/riscv/boot/dts/spacemit/k3-pico-itx.dts       |  25 +
+ arch/riscv/boot/dts/spacemit/k3.dtsi               | 529 +++++++++++++++++++++
+ 9 files changed, 565 insertions(+), 1 deletion(-)
+---
+base-commit: 8f0b4cce4481fb22653697cced8d0d04027cb1e8
+change-id: 20251216-k3-basic-dt-cd9540061989
+
+Best regards,
 -- 
-2.43.0
+Guodong Xu <guodong@riscstar.com>
 
 
