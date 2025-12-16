@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-247094-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247095-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24FDCCC4287
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 17:12:37 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8DBFCC41D6
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 17:06:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id DC02D304A59D
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 16:09:59 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4134B302E161
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 16:02:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A116134E748;
-	Tue, 16 Dec 2025 15:58:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 813D919E839;
+	Tue, 16 Dec 2025 16:02:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uzvgoXSx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rFrTuZ86"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5032D34E25C;
-	Tue, 16 Dec 2025 15:58:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D9E63B7A8;
+	Tue, 16 Dec 2025 16:02:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765900717; cv=none; b=MATSwdlDe3jVeu3YScRJfn278oQOJ12kZGwMHZ6dZalHsSHnIXzwd7YsshAmVksxxQaGNLOYO2fQgvrgBModXvJmSXmD0IhjIvCzrFJn42zx4HIeSBqTrhBfEjVssKoWbgVncelAYYf02Pkp8P43nureW6bRPcgdjzUifttIIr4=
+	t=1765900948; cv=none; b=MOj2cfVG86bP2iMeaEbzPbV5fGyNXDk88ZFYaMkX1Abdkra+bvfUFhUqdWiN0BlnnbT5qKtOO9ANCoLAlKlR267MTR6QF7vIHdhqAP3tItld4TqBmbUNUtecnf34pTBg73sTKjB5d63Opb015spMhd4Uk2SDuqzqqroaQdEAnk4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765900717; c=relaxed/simple;
-	bh=FoGkFvPI30UFCJ36SpXYyzKXdoONF4L7CQ41Dk+tn9M=;
+	s=arc-20240116; t=1765900948; c=relaxed/simple;
+	bh=4dgCEM4nTnnn0sFZ8m1aMoo3gsMxbEEftNNJrXbVIlA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=haQ/+1cH1tBZHqgxTcIYBvVoajasgCgdOtjFZbxcXW3IXtCkRxPFk+95ouzqq+eqeNy8byGGoZfY6Cy0+P/DfZuX+fEpXdfL0YDZRqKHzAt4b0MAO7hrOSRQu1jG1ZkZ74oOLfv5r/GI6OArTQAhkeHz+YUtvXsWTqu+wi6RGdU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uzvgoXSx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D5480C113D0;
-	Tue, 16 Dec 2025 15:58:27 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=SaK54N7C0OSbfLqKcSw0PmIHiu+juVZW17g1lUUcMPhBjHY7NOU/ZzFQJfri/hOPgyaCW/McHeH5Mb78ubFSay7bNW8YEtnAtcoquWit7xYc7VYSwUPSEnW9Gf7aMhy4os/DB1brscVgRz9vM5JFh7E+bIcOvT1IBs8y6dVFRx8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rFrTuZ86; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F644C4CEF1;
+	Tue, 16 Dec 2025 16:02:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765900717;
-	bh=FoGkFvPI30UFCJ36SpXYyzKXdoONF4L7CQ41Dk+tn9M=;
+	s=k20201202; t=1765900947;
+	bh=4dgCEM4nTnnn0sFZ8m1aMoo3gsMxbEEftNNJrXbVIlA=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=uzvgoXSx+bQiqW2zigAwzmKLzfTX85z5JXu5vVz4bZQbUQj4TTBICPj5+11WX7QCj
-	 6RvGZXC9LX49G6wsI1gOHCNVOUBCF4dVzdrCFWDQo1U2OLw1/zEBoKVUwT7VxxlfEx
-	 cTUzLYJGJQZRbZhBMFIbx6Hvu2YsxnTufoEdDTvd77JfuvsfDkPLZZOvAR9SRz+Fsg
-	 iHhFnJlDgdWjRucKNaDF3cRI6FzuIyAmgrVw8wgNAelQwwWf0B6ZJn/rggR2JsCerd
-	 /0swZqAarPBkyic7/CvbJCqJcvfWndmKYfGTbCEpQHJy2EbHFUlaqvdvPp2GWibM0A
-	 JhBko8CxoacWw==
-Message-ID: <fe15fcce-865a-4969-9b6f-95920fcaa5c7@kernel.org>
-Date: Tue, 16 Dec 2025 16:58:25 +0100
+	b=rFrTuZ86QqRyQSV08D118p9n5vQ2OyOm5MiEyFd++uezU33AUrwth1Qy1nCHkXJU0
+	 Im+OB3jqWGddoWb7tGoDgefOwseKq4qJnJ5I1+NZ6zz6VXvbLIsRva+OnJ3wI6d44l
+	 t7CgtgjOT9gUFjUuprW0G8r+joVRkeW14S42NNMNf5+7iOdZhRj8ojHjjeBNNJadNx
+	 iK/oN9/wisFa3oN8JNlqFfbwEfGpIFCyT0BzZXmsh5i4CpOYP9Qz90lcw1Uo4WKTCs
+	 6A57ThEZuaO5+QECzQ07ZVfG5GxUCMVGpFtqXr6M0ObNkHST7jCw7wQJRw8Pe7f+D8
+	 39IJ/ntB+1YQg==
+Message-ID: <047e0283-75be-4ce1-b6f4-e500e0a653e8@kernel.org>
+Date: Tue, 16 Dec 2025 17:02:22 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,32 +48,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 05/19] dt-bindings: arm: microchip: move SparX-5 to
- generic Microchip binding
-To: Robert Marko <robert.marko@sartura.hr>, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, nicolas.ferre@microchip.com,
- alexandre.belloni@bootlin.com, claudiu.beznea@tuxon.dev,
- Steen.Hegelund@microchip.com, daniel.machon@microchip.com,
- UNGLinuxDriver@microchip.com, herbert@gondor.apana.org.au,
- davem@davemloft.net, vkoul@kernel.org, linux@roeck-us.net,
- andi.shyti@kernel.org, lee@kernel.org, andrew+netdev@lunn.ch,
- edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, linusw@kernel.org,
- olivia@selenic.com, radu_nicolae.pirea@upb.ro, richard.genoud@bootlin.com,
- gregkh@linuxfoundation.org, jirislaby@kernel.org, mturquette@baylibre.com,
- sboyd@kernel.org, richardcochran@gmail.com,
- wsa+renesas@sang-engineering.com, romain.sioen@microchip.com,
- Ryan.Wanner@microchip.com, lars.povlsen@microchip.com,
- tudor.ambarus@linaro.org, charan.pedumuru@microchip.com,
- kavyasree.kotagiri@microchip.com, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-crypto@vger.kernel.org, dmaengine@vger.kernel.org,
- linux-hwmon@vger.kernel.org, linux-i2c@vger.kernel.org,
- netdev@vger.kernel.org, linux-gpio@vger.kernel.org,
- linux-spi@vger.kernel.org, linux-serial@vger.kernel.org,
- linux-usb@vger.kernel.org, linux-clk@vger.kernel.org, mwalle@kernel.org
-Cc: luka.perkov@sartura.hr
-References: <20251215163820.1584926-1-robert.marko@sartura.hr>
- <20251215163820.1584926-5-robert.marko@sartura.hr>
+Subject: Re: [PATCH v6 2/5] arm64: dts: qcom: Add sdhc dll-presets
+To: Ram Prakash Gupta <quic_rampraka@quicinc.com>,
+ Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Adrian Hunter <adrian.hunter@intel.com>
+Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ dmitry.baryshkov@oss.qualcomm.com, quic_pragalla@quicinc.com,
+ quic_sayalil@quicinc.com, quic_nitirawa@quicinc.com,
+ quic_bhaskarv@quicinc.com, kernel@oss.qualcomm.com
+References: <20251215120009.3877889-1-quic_rampraka@quicinc.com>
+ <20251215120009.3877889-3-quic_rampraka@quicinc.com>
+ <0f7c0d5c-7f77-4669-9648-62d008f15b1c@kernel.org>
+ <9f5fcce3-b9c0-4aae-b4e0-10475eb5ec9e@kernel.org>
+ <b98eb114-6967-4ac4-8b4d-936966a58171@quicinc.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -119,97 +110,57 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251215163820.1584926-5-robert.marko@sartura.hr>
+In-Reply-To: <b98eb114-6967-4ac4-8b4d-936966a58171@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 15/12/2025 17:35, Robert Marko wrote:
-> Now that we have a generic Microchip binding, lets move SparX-5 as well as
-> there is no reason to have specific binding file for each SoC series.
+On 16/12/2025 13:41, Ram Prakash Gupta wrote:
 > 
-> The check for AXI node was dropped.
+> On 12/15/2025 5:37 PM, Krzysztof Kozlowski wrote:
+>> On 15/12/2025 13:05, Krzysztof Kozlowski wrote:
+>>> On 15/12/2025 13:00, Ram Prakash Gupta wrote:
+>>>> Add sdhc dll-presets for qdu1000 target.
+>>>>
+>>>> Signed-off-by: Ram Prakash Gupta <quic_rampraka@quicinc.com>
+>>>> ---
+>>>>  arch/arm64/boot/dts/qcom/qdu1000.dtsi | 4 ++--
+>>>>  1 file changed, 2 insertions(+), 2 deletions(-)
+>>> Please use subject prefixes matching the subsystem. You can get them for
+>>> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+>>> your patch is touching. For bindings, the preferred subjects are
+>>> explained here:
+>>> https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
+> 
+> sure I missed to add qdu1000:, will add in subject.
+> 
+>>>> diff --git a/arch/arm64/boot/dts/qcom/qdu1000.dtsi b/arch/arm64/boot/dts/qcom/qdu1000.dtsi
+>>>> index 846e5e5899aa..bc31504d5c8c 100644
+>>>> --- a/arch/arm64/boot/dts/qcom/qdu1000.dtsi
+>>>> +++ b/arch/arm64/boot/dts/qcom/qdu1000.dtsi
+>>>> @@ -912,8 +912,8 @@ sdhc: mmc@8804000 {
+>>>>  
+>>>>  			bus-width = <8>;
+>>>>  
+>>>> -			qcom,dll-config = <0x0007642c>;
+>>>> -			qcom,ddr-config = <0x80040868>;
+>>>> +			qcom,dll-presets = <0x000F64EC 0x0 0x01	0x2C010800 0x80040868>,
+>>>> +					   <0x0007642C 0x0 0x10 0x2C010800 0x80040868>;
+>>>
+>>> That's non-bisectable. You just broke the users of this DTS. Also, case
+>>> change is not explained and your binding said nothing about deprecating
+>>> other properties.
+> 
+> right I will update the sequence of dt as last change in the series.
 
-Why?
+This will fix nothing. Please read maintainer soc profile how DTS is
+handled. It's still no go, shall I be explicit with NAK?
 
 > 
-> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
-> ---
->  .../bindings/arm/microchip,sparx5.yaml        | 67 -------------------
->  .../devicetree/bindings/arm/microchip.yaml    | 22 ++++++
->  2 files changed, 22 insertions(+), 67 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/arm/microchip,sparx5.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/microchip,sparx5.yaml b/Documentation/devicetree/bindings/arm/microchip,sparx5.yaml
-> deleted file mode 100644
-> index 9a0d54e9799c..000000000000
-> --- a/Documentation/devicetree/bindings/arm/microchip,sparx5.yaml
-> +++ /dev/null
-> @@ -1,67 +0,0 @@
-> -# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> -%YAML 1.2
-> ----
-> -$id: http://devicetree.org/schemas/arm/microchip,sparx5.yaml#
-> -$schema: http://devicetree.org/meta-schemas/core.yaml#
-> -
-> -title: Microchip Sparx5 Boards
-> -
-> -maintainers:
-> -  - Lars Povlsen <lars.povlsen@microchip.com>
-> -
-> -description: |+
-> -   The Microchip Sparx5 SoC is a ARMv8-based used in a family of
-> -   gigabit TSN-capable gigabit switches.
-> -
-> -   The SparX-5 Ethernet switch family provides a rich set of switching
-> -   features such as advanced TCAM-based VLAN and QoS processing
-> -   enabling delivery of differentiated services, and security through
-> -   TCAM-based frame processing using versatile content aware processor
-> -   (VCAP)
-> -
-> -properties:
-> -  $nodename:
-> -    const: '/'
-> -  compatible:
-> -    oneOf:
-> -      - description: The Sparx5 pcb125 board is a modular board,
-> -          which has both spi-nor and eMMC storage. The modular design
-> -          allows for connection of different network ports.
-> -        items:
-> -          - const: microchip,sparx5-pcb125
-> -          - const: microchip,sparx5
-> -
-> -      - description: The Sparx5 pcb134 is a pizzabox form factor
-> -          gigabit switch with 20 SFP ports. It features spi-nor and
-> -          either spi-nand or eMMC storage (mount option).
-> -        items:
-> -          - const: microchip,sparx5-pcb134
-> -          - const: microchip,sparx5
-> -
-> -      - description: The Sparx5 pcb135 is a pizzabox form factor
-> -          gigabit switch with 48+4 Cu ports. It features spi-nor and
-> -          either spi-nand or eMMC storage (mount option).
-> -        items:
-> -          - const: microchip,sparx5-pcb135
-> -          - const: microchip,sparx5
-> -
-> -  axi@600000000:
-> -    type: object
-> -    description: the root node in the Sparx5 platforms must contain
-> -      an axi bus child node. They are always at physical address
-> -      0x600000000 in all the Sparx5 variants.
-> -    properties:
-> -      compatible:
-> -        items:
-> -          - const: simple-bus
-> -
-> -    required:
-> -      - compatible
-> -
-> -required:
-> -  - compatible
-> -  - axi@600000000
+> I couldn't get "case change is not explained" but I guess ask is for
+> explanation why is this change needed. As the soc is using artanis
 
-Nothing explains the rationale for doing this.
+No, why are you making it upper case. What is the preferred style for DTS?
+
 
 Best regards,
 Krzysztof
