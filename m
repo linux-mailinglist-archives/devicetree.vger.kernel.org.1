@@ -1,185 +1,87 @@
-Return-Path: <devicetree+bounces-247196-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247197-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1CC9CC581F
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 00:44:01 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99A83CC5861
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 00:53:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AFB2C300769B
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 23:44:00 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id F4178300CB93
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 23:53:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB672340A46;
-	Tue, 16 Dec 2025 23:43:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="YQZAHAr0"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD306313E00;
+	Tue, 16 Dec 2025 23:53:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.3ffe.de (0001.3ffe.de [159.69.201.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23C22340282
-	for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 23:43:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D785D2AEF5;
+	Tue, 16 Dec 2025 23:53:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.69.201.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765928639; cv=none; b=dLVULblrVJIz8soJbISawYVbyd/PMyZ3j7nPDXzX4J4J01x/ApPqE8Gx0SU3Ds8Esh8O98FFqv7IXqlRiKLHZgwnTO/avyEpV/SvGJXzW/ACUsPT99ycPYdwbwQjSI+fZjEwjxdCyyoRuQBEOm9VC3CaciXHyx8oUy6c4PdDXfk=
+	t=1765929202; cv=none; b=Me4NqsWUo0L1g7h0RvCURhhlEKMWsk9EOrjEJGxcizBVeEi09Gk4Tf40ZpPAgjYBjKSe+Bgb86kohiVxQuQ7audjnAKV4fknwXAbeCbrY5B289SndUHn4I5KQk8eyFUWaiTPrVzksjSJptFan4uVxklTPpvHhQ6LftBnqgRNwEI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765928639; c=relaxed/simple;
-	bh=T6BqMM9/A7isnUVqrD4imU5Gr4AAzjx8kqfQjYKk3o4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=adfTl3Pm1i6zsg70QM0iRJtAkYa3Fe488I15lPXrXwrr6L4Q6J04ylo2r+AQcg7KMHbIzWX6V7dXRz0s/5ciiJ4w5QquAapzTsKhRxZYDk8E1SFtinDACkuKrpbbtZhAco4AYdHGidhFUINBuL/d135YzHnHqO9LPyIMCSAz3+A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com; spf=pass smtp.mailfrom=googlemail.com; dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b=YQZAHAr0; arc=none smtp.client-ip=209.85.214.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=googlemail.com
-Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-2a09d981507so303475ad.1
-        for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 15:43:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1765928637; x=1766533437; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dWQpmZhuHByTsu+CQ3E5sInryvyWTTB+7XX4Qh+8PmQ=;
-        b=YQZAHAr06xzylPJdMaNe2XVx1WM7JPJ0v4Ynnl07r+DTVDE+BjJclmjg3BNDMBIlDH
-         PMdzx/rktkNHzb72OvcXxIO+TV+et6zXalMroELvjEUT1BK3eytHsAfSWrPH4ymkn2do
-         9zBKv4fDMaP6E/KKuGrX2+72pEplbGgoxrHSbOPwyRbMvUQGc2RKdVaVihxEhk/v1tBH
-         maX8LUHdBtcx69UZmVj7dsyRJNexuxzADIszHPPJ5oz76yjQyOOVc1VmtUxAUwZCXqaz
-         VmqQIdCHqq0HamOw+M3lDOBC7/wE4E2Yt2PE4uSXkDMXgaZjtmMgxCtShVaOZkGKyhHq
-         01jA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765928637; x=1766533437;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=dWQpmZhuHByTsu+CQ3E5sInryvyWTTB+7XX4Qh+8PmQ=;
-        b=OTATYIW4CrKptkfACbiyWjXNJFmZy+JunC3O3w4Qg4KHWziwyvALvkAy/3iBVcuOxE
-         i3rIdQYqqyd5q/XH6YL7XSL7pTTgqnWimJ49c+Q/HyC7mrLwSEjHKf1x7gLC6ZjWsyJK
-         hA7GztHYXKAKwmiZogtbSL4n8n+jswqDc2t1VOZjliEaid+/C2c3WyQ/xZ2zUniLm9AU
-         nOxp/j0BuZAksGp6Kl3PPR8pTu3rqZYjILXX6m7nS7JMykKPu0pb8/D7NXL1yBbVi3lu
-         sSpQZJ+tsGr7gt2rBrzEyJeSZcSNrXkA3864k9kMGw1MgVnZ9W5cY4PYyLJtKwtlGWxW
-         dvcA==
-X-Forwarded-Encrypted: i=1; AJvYcCVB6RB5m2ASgapWkq7G7moH6fWD8tlobUY95pNVhWqp7JYfpZuo88fW2g3eT/hMYrPainpOjYIsY/a+@vger.kernel.org
-X-Gm-Message-State: AOJu0YxgV8NeCiNtSuS8bhEokbqGcaSfHOywlnnzeSxqcc5xRvVrXC9m
-	DSDMVltWCzF/Kas6f5fdzeMo2Ei1NmRq566KxZPh8nEFCmN3sR0Dwk9FzN9rKIWEmcjlgPTArpi
-	1kMeBOYWQ/5MIH8Z6bEyFepr68ekRXKs=
-X-Gm-Gg: AY/fxX5JNdsKvccRqUVdDBSY1WsFjfm7Il05Dv4SgrODSHzM14cBXsZfm2xBauBTJnY
-	S8zwJt7aD9HVbTadAvoNA6zJvJuWkiinzaR/KN4NzMoUpmzbykklH/I0/QcElu+N1trbLUBlBYJ
-	bLl2UHeowJRX+mzL1LOnWRy0v9hRl28R4KfBPvEFXDC7QoAVSS6kZ9mCbxWwCv8ApKJ4yF6xxOI
-	2reCu6R/pFNc1ma66w8bWm7cCg1inTJEqYB/z93Au/u/jJffqsCgGLh90ga/NBYEbQ9x2Rz1oBQ
-	e5S1IjicKb6IMoe43S36oneB8oo=
-X-Google-Smtp-Source: AGHT+IFc4SCik6/1a5fdyPdRb57GPQbLhG29WfQBheDtYpWyCEZoAD+X3T4jtRgWy08tQ0KGPuBzfaLM7RFqA70zbTo=
-X-Received: by 2002:a17:903:f8d:b0:294:f6e5:b91a with SMTP id
- d9443c01a7336-29eeea26dadmr221641465ad.13.1765928637355; Tue, 16 Dec 2025
- 15:43:57 -0800 (PST)
+	s=arc-20240116; t=1765929202; c=relaxed/simple;
+	bh=4R5pP+9fNQ621zzG/hIpJ2sC2WnkVrGLlokwDyF6LWM=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:From:To:
+	 References:In-Reply-To; b=ocW8sMFCqVemjrIdun5o0uJN+sYp0BWUqT9DiDj6nBcgdBNFYnWTDpLsXIxDZktMd6ML4joQ1HoYSICRqCNBnsGjw11jBtdUYQdPT1EMHLJfCnHwKO3USyNWOQDhi/xjvMwxIJgrzZlkC/j9VeZ9IaLJt80dSC9xztD1Dluc+Fg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=pass smtp.mailfrom=walle.cc; arc=none smtp.client-ip=159.69.201.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=walle.cc
+Received: from localhost (unknown [IPv6:2a02:810b:4320:1000:4685:ff:fe12:5967])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mail.3ffe.de (Postfix) with ESMTPSA id 189D966;
+	Wed, 17 Dec 2025 00:44:22 +0100 (CET)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20251124-b4-s4-vdec-upstream-v2-0-bdbbce3f11a6@amlogic.com> <20251124-b4-s4-vdec-upstream-v2-1-bdbbce3f11a6@amlogic.com>
-In-Reply-To: <20251124-b4-s4-vdec-upstream-v2-1-bdbbce3f11a6@amlogic.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Wed, 17 Dec 2025 00:43:46 +0100
-X-Gm-Features: AQt7F2q9zUscAc9aUQp2kvq265usXhzgFIJqV1vpvmNAc7x3-P140_1z3fSbVp4
-Message-ID: <CAFBinCDO5UWVEtbOOdMn9vy=0H2Q1hJDKhH+X7i0nMsSsw=wbg@mail.gmail.com>
-Subject: Re: [PATCH RFC v2 1/3] media: dt-bindings: Add Amlogic V4L2 video decoder
-To: zhentao.guo@amlogic.com
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, linux-media@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 17 Dec 2025 00:44:21 +0100
+Message-Id: <DF01GRNQ41ZQ.JP9UG9WD02QL@kernel.org>
+Subject: Re: [PATCH v2 03/19] dt-bindings: arm: AT91: relicense to dual
+ GPL-2.0/BSD-2-Clause
+Cc: <luka.perkov@sartura.hr>
+From: "Michael Walle" <mwalle@kernel.org>
+To: "Robert Marko" <robert.marko@sartura.hr>, <robh@kernel.org>,
+ <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <nicolas.ferre@microchip.com>,
+ <alexandre.belloni@bootlin.com>, <claudiu.beznea@tuxon.dev>,
+ <Steen.Hegelund@microchip.com>, <daniel.machon@microchip.com>,
+ <UNGLinuxDriver@microchip.com>, <herbert@gondor.apana.org.au>,
+ <davem@davemloft.net>, <vkoul@kernel.org>, <linux@roeck-us.net>,
+ <andi.shyti@kernel.org>, <lee@kernel.org>, <andrew+netdev@lunn.ch>,
+ <edumazet@google.com>, <kuba@kernel.org>, <pabeni@redhat.com>,
+ <linusw@kernel.org>, <olivia@selenic.com>, <radu_nicolae.pirea@upb.ro>,
+ <richard.genoud@bootlin.com>, <gregkh@linuxfoundation.org>,
+ <jirislaby@kernel.org>, <mturquette@baylibre.com>, <sboyd@kernel.org>,
+ <richardcochran@gmail.com>, <wsa+renesas@sang-engineering.com>,
+ <romain.sioen@microchip.com>, <Ryan.Wanner@microchip.com>,
+ <lars.povlsen@microchip.com>, <tudor.ambarus@linaro.org>,
+ <charan.pedumuru@microchip.com>, <kavyasree.kotagiri@microchip.com>,
+ <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+ <linux-kernel@vger.kernel.org>, <linux-crypto@vger.kernel.org>,
+ <dmaengine@vger.kernel.org>, <linux-hwmon@vger.kernel.org>,
+ <linux-i2c@vger.kernel.org>, <netdev@vger.kernel.org>,
+ <linux-gpio@vger.kernel.org>, <linux-spi@vger.kernel.org>,
+ <linux-serial@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+ <linux-clk@vger.kernel.org>
+X-Mailer: aerc 0.20.0
+References: <20251215163820.1584926-1-robert.marko@sartura.hr>
+ <20251215163820.1584926-3-robert.marko@sartura.hr>
+In-Reply-To: <20251215163820.1584926-3-robert.marko@sartura.hr>
 
-Hi,
-
-On Mon, Nov 24, 2025 at 4:32=E2=80=AFAM Zhentao Guo via B4 Relay
-<devnull+zhentao.guo.amlogic.com@kernel.org> wrote:
+On Mon Dec 15, 2025 at 5:35 PM CET, Robert Marko wrote:
+> As it is preferred to have bindings dual licensed, lets relicense the AT9=
+1
+> bindings from GPL-2.0 only to GPL-2.0/BSD-2 Clause.
 >
-> From: Zhentao Guo <zhentao.guo@amlogic.com>
->
-> Describe the initial support for the V4L2 stateless video decoder
-> driver used with the Amlogic S4 (S805X2) platform.
->
-> Signed-off-by: Zhentao Guo <zhentao.guo@amlogic.com>
-> ---
->  .../bindings/media/amlogic,s4-vcodec-dec.yaml      | 87 ++++++++++++++++=
-++++++
->  1 file changed, 87 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/media/amlogic,s4-vcodec-de=
-c.yaml b/Documentation/devicetree/bindings/media/amlogic,s4-vcodec-dec.yaml
-> new file mode 100644
-> index 000000000000..401a5a32902e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/amlogic,s4-vcodec-dec.yaml
-> @@ -0,0 +1,87 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (C) 2025 Amlogic, Inc. All rights reserved
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/amlogic,vcodec-dec.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Amlogic Video Decode Accelerator
-> +
-> +maintainers:
-> +  - Zhentao Guo <zhentao.guo@amlogic.com>
-> +
-> +description:
-> +  The Video Decoder Accelerator present on Amlogic SOCs.
-> +  It supports stateless h264 decoding.
-> +
-> +properties:
-> +  compatible:
-> +    const: amlogic,s4-vcodec-dec
-> +
-> +  reg:
-> +    maxItems: 2
-> +
-> +  reg-names:
-> +    items:
-> +      - const: dos
-> +      - const: dmc
-Neil has commented on the driver patch (in v1) to use the existing
-canvas driver.
-The same applies to the binding: you can replace the whole "dmc"
-registers with an "amlogic,canvas" property (see
-Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml for
-an example).
+> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
 
-[...]
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +  - power-domains
-> +  - power-domain-names
-I did a quick:
-$ git grep RESET_DOS
-{include/dt-bindings/reset/amlogic,arch/arm64/boot/dts/amlogic/}*.h
--> that lists DOS reset lines for most (all?) SoCs that were supported
-by the old vdec driver as well as DOS reset lines for the S4 SoC (for
-which you're adding support here).
-If some of those reset lines are wired in hardware to the DOS region
-then you should include them in the binding.
-For reference in case you are not already familiar with it: [0] "[...]
-make bindings complete even if a driver doesn=E2=80=99t support some featur=
-es.
-For example, if a device has an interrupt, then include the
-=E2=80=98interrupts=E2=80=99 property even if the driver is only polled mod=
-e".
-(the same also applies to any additional clocks or power-domains that
-are wired as inputs into the hardware which you have not listed yet as
-they are not needed for the initially supported codecs)
+Acked-by: Michael Walle <mwalle@kernel.org>
 
-
-Best regards,
-Martin
-
-
-[0] https://docs.kernel.org/devicetree/bindings/writing-bindings.html
+-michael
 
