@@ -1,202 +1,195 @@
-Return-Path: <devicetree+bounces-246943-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246944-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FB14CC1A77
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 09:51:16 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C3B4CC1A89
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 09:51:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1BE4330D48F1
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 08:46:11 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E4DC43006F78
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 08:46:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE45930E847;
-	Tue, 16 Dec 2025 08:46:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD7F63385BF;
+	Tue, 16 Dec 2025 08:46:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="mxTydb84"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PsC1Ezil"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D25752C21D9;
-	Tue, 16 Dec 2025 08:46:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE6901C5D77;
+	Tue, 16 Dec 2025 08:46:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765874768; cv=none; b=iUdpkU6af2RjTsmtXm3rTPFSNMuA+1Y2Mv2qjlWUJYvOs4ujBFr0tDv4/v8L3zHVvmwn/d2K3let4MiN1Uv5xhfquen3PqpkTwrpThH3+1/N3EobbVoRDuHZ322S3awtOsgbJ1vxSVFzeuXPRVF0dN1IMvyk+a5LWQ3PZ8lRkMU=
+	t=1765874809; cv=none; b=YWjKhL6I44FTsV5LYF2NWMwrqHkleTXH3qhiWfnF9PuauJlixQQg69wg7tK9KN/kFuBPSx+LF1qVlTq0ftZGDbRv2Zhwkj7kDwfZ4vgNW86kcAntcjH/iiOHs1pdSV34NOgIVq73vXED58WgPkC9Lc8iEaL9L3YTLgMW0oNWmy0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765874768; c=relaxed/simple;
-	bh=WvKKCoEa0Xf+YKwhDRK8rk3OhF5kSbBh/L5JWF+KEaA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=N38A4cABfGaA1nn4j+IVILrdO878KJNxWRLHJ33nGdCO2L68RzG6YjDsIRfAGApLWHpvVxajHhjOqzWmCWWOXnXNKcRGmtAM4UKfsScLG+8dnJU7W5Ez10FgiMP6Ds+It2EBHn7mRc8fR17NpCrrDvYF5TmFY6RKfpPrqBceqdk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=mxTydb84; arc=none smtp.client-ip=185.246.85.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 352714E41C1D;
-	Tue, 16 Dec 2025 08:46:05 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 0BE3D6071C;
-	Tue, 16 Dec 2025 08:46:05 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 725EC119431B1;
-	Tue, 16 Dec 2025 09:45:59 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1765874760; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 in-reply-to:references; bh=UUtrHWyv4v6vu7RvS/BRpoLPRa0mCg5QhZIzTxEkK1s=;
-	b=mxTydb84SutvM0LonxjVbBXUfJPt7SV16yOEBvH3w4cy3owP3Flmtcf23W5KAJVUvRY7LS
-	w72on0TBMhAb/3C4Lnqji5tDk0xT+lNQm5Vi2Zs3SmSPk3t21EnJ5CAdhN6tyUk2+E8pu2
-	r08btwpTTFMh8F/ktLeQ0GG0fSGfL1M6EXIYqbj0nDDQPjhMvNNbwbe4Qj1Gmp8wP2XhmS
-	9U2tUjqzqymMb4D9RaUOku2ELxTTLeTPllwkqnOmV0jKG9tyP2+iLZ2wwyCcaJVYqGchvP
-	+DydRodOVY8Fbo0Md1IvRwUb8U6coIHP7G2/Vn3ea0TjY/mHyNIMQRdMarhsmg==
-Date: Tue, 16 Dec 2025 09:45:59 +0100
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>, kernel@collabora.com,
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v2 2/4] Input: adc-keys - support EV_SW as well, not just
- EV_KEY.
-Message-ID: <202512160845594c145070@mail.local>
-References: <20251215-rock4d-audio-v2-0-82a61de39b4c@collabora.com>
- <20251215-rock4d-audio-v2-2-82a61de39b4c@collabora.com>
+	s=arc-20240116; t=1765874809; c=relaxed/simple;
+	bh=U6AMER3xHbREfz4zPD/+FFhhIS+o9BoU8Nkc/13AIdc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fkG//fTSI+D2erSS7FuJv6jemWMe4PXXDPCEZOjJh+xQNEU+3aRVvvMPPrQJlLVqK1ll0qwkv/RclYPzHUDs8kuu7R1wYWaU57HN2MlasgcJzy5Cw+5hXOrUSIISpRW2lnrAKDzufWlIY+KsB6Xwb5B5xV7XFLxN2XuU0ukL0OA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PsC1Ezil; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B5EE0C113D0;
+	Tue, 16 Dec 2025 08:46:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1765874809;
+	bh=U6AMER3xHbREfz4zPD/+FFhhIS+o9BoU8Nkc/13AIdc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=PsC1Ezilg837+gM/eC8yMnZFcF5N9RetIZBHpkvNt5INBubjkB80mtCOMneHDO02m
+	 AxS1ivh4v1nqFlQP37ewI4SryBcqo2Po9xTSp5pbAVPYiqpjMl7ymrh/tkpRZ7gA5m
+	 8AbQVpfK7GvvdFrzCxxtwZ/0t6cAWRwedAnhP5jFLAd4oUDmaZUwRQz63XC0Gwk+A1
+	 stCvPZ8D1urXIwkiEtV/pAtIoC8iigvL9bGfZjS0grvt0yXxVud37kgITWsy/drC60
+	 46hmHgj6LvM5BfPuEHVDElXwARDICARrykHtwX5SFiU9kCpC70DQu3gXBQr+CY/kWM
+	 9e/JSlnqOH7Ww==
+Message-ID: <176db27e-a689-4de1-898b-527420bf68dc@kernel.org>
+Date: Tue, 16 Dec 2025 09:46:45 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251215-rock4d-audio-v2-2-82a61de39b4c@collabora.com>
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] dma: amlogic: Add general DMA driver for SoCs
+To: xianwei.zhao@amlogic.com, Vinod Koul <vkoul@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Kees Cook <kees@kernel.org>,
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>
+Cc: linux-amlogic@lists.infradead.org, dmaengine@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-hardening@vger.kernel.org
+References: <20251216-amlogic-dma-v1-0-e289e57e96a7@amlogic.com>
+ <20251216-amlogic-dma-v1-2-e289e57e96a7@amlogic.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20251216-amlogic-dma-v1-2-e289e57e96a7@amlogic.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 15/12/2025 13:29:30+0100, Nicolas Frattaroli wrote:
-> Instead of doing something like what gpio-keys is doing, adc-keys
-> hardcodes that all keycodes must be of type EV_KEY.
+On 16/12/2025 09:03, Xianwei Zhao via B4 Relay wrote:
+> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 > 
-> This limits the usefulness of adc-keys, and overcomplicates the code
-> with manual bit-setting logic.
+> Amlogic SoCs include a general-purpose DMA controller that can be used
+> by multiple peripherals, such as I2C PIO and I3C. Each peripheral group
+> is associated with a dedicated DMA channel in hardware.
 > 
-> Instead, refactor the code to read the linux,input-type fwnode property,
-> and get rid of the custom bit setting logic, replacing it with
-> input_set_capability instead. input_report_key is replaced with
-> input_event, which allows us to explicitly pass the type.
-> 
-> Only EV_KEY and EV_SW is allowed at this stage.
-> 
-> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-
-Reviewed-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
-
+> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 > ---
->  drivers/input/keyboard/adc-keys.c | 37 +++++++++++++++++++++++++------------
->  1 file changed, 25 insertions(+), 12 deletions(-)
+>  drivers/dma/Kconfig       |   8 +
+>  drivers/dma/Makefile      |   1 +
+>  drivers/dma/amlogic-dma.c | 567 ++++++++++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 576 insertions(+)
 > 
-> diff --git a/drivers/input/keyboard/adc-keys.c b/drivers/input/keyboard/adc-keys.c
-> index f1753207429d..62376f34f7d0 100644
-> --- a/drivers/input/keyboard/adc-keys.c
-> +++ b/drivers/input/keyboard/adc-keys.c
-> @@ -18,13 +18,15 @@
+> diff --git a/drivers/dma/Kconfig b/drivers/dma/Kconfig
+> index 8bb0a119ecd4..fc7f70e22c22 100644
+> --- a/drivers/dma/Kconfig
+> +++ b/drivers/dma/Kconfig
+> @@ -85,6 +85,14 @@ config AMCC_PPC440SPE_ADMA
+>  	help
+>  	  Enable support for the AMCC PPC440SPe RAID engines.
 >  
->  struct adc_keys_button {
->  	u32 voltage;
-> -	u32 keycode;
-> +	u32 code;
-> +	u32 type;
->  };
->  
->  struct adc_keys_state {
->  	struct iio_channel *channel;
->  	u32 num_keys;
->  	u32 last_key;
-> +	u32 last_type;
->  	u32 keyup_voltage;
->  	const struct adc_keys_button *map;
->  };
-> @@ -34,7 +36,8 @@ static void adc_keys_poll(struct input_dev *input)
->  	struct adc_keys_state *st = input_get_drvdata(input);
->  	int i, value, ret;
->  	u32 diff, closest = 0xffffffff;
-> -	int keycode = 0;
-> +	u32 code = 0;
-> +	u32 type = EV_KEY;
->  
->  	ret = iio_read_channel_processed(st->channel, &value);
->  	if (unlikely(ret < 0)) {
-> @@ -45,22 +48,24 @@ static void adc_keys_poll(struct input_dev *input)
->  			diff = abs(st->map[i].voltage - value);
->  			if (diff < closest) {
->  				closest = diff;
-> -				keycode = st->map[i].keycode;
-> +				code = st->map[i].code;
-> +				type = st->map[i].type;
->  			}
->  		}
->  	}
->  
->  	if (abs(st->keyup_voltage - value) < closest)
-> -		keycode = 0;
-> +		code = 0;
->  
-> -	if (st->last_key && st->last_key != keycode)
-> -		input_report_key(input, st->last_key, 0);
-> +	if (st->last_key && st->last_key != code)
-> +		input_event(input, st->last_type, st->last_key, 0);
->  
-> -	if (keycode)
-> -		input_report_key(input, keycode, 1);
-> +	if (code)
-> +		input_event(input, type, code, 1);
->  
->  	input_sync(input);
-> -	st->last_key = keycode;
-> +	st->last_key = code;
-> +	st->last_type = type;
->  }
->  
->  static int adc_keys_load_keymap(struct device *dev, struct adc_keys_state *st)
-> @@ -88,11 +93,20 @@ static int adc_keys_load_keymap(struct device *dev, struct adc_keys_state *st)
->  		map[i].voltage /= 1000;
->  
->  		if (fwnode_property_read_u32(child, "linux,code",
-> -					     &map[i].keycode)) {
-> +					     &map[i].code)) {
->  			dev_err(dev, "Key with invalid or missing linux,code\n");
->  			return -EINVAL;
->  		}
->  
-> +		if (fwnode_property_read_u32(child, "linux,input-type",
-> +					     &map[i].type))
-> +			map[i].type = EV_KEY;
+> +config AMLOGIC_DMA
+> +	tristate "Amlogic genneral DMA support"
+> +	depends on ARCH_MESON
+
+Missing compile test.
+
+> +	select DMA_ENGINE
+> +	select REGMAP_MMIO
+> +	help
+> +	  Enable support for the Amlogic general DMA engines.
 > +
-> +		if (map[i].type != EV_KEY && map[i].type != EV_SW)
-> +			return dev_err_probe(dev, -EINVAL,
-> +					     "Invalid linux,input-type: 0x%x\n",
-> +					     map[i].type);
+
+
+
 > +
->  		i++;
->  	}
->  
-> @@ -156,9 +170,8 @@ static int adc_keys_probe(struct platform_device *pdev)
->  	input->id.product = 0x0001;
->  	input->id.version = 0x0100;
->  
-> -	__set_bit(EV_KEY, input->evbit);
->  	for (i = 0; i < st->num_keys; i++)
-> -		__set_bit(st->map[i].keycode, input->keybit);
-> +		input_set_capability(input, st->map[i].type, st->map[i].code);
->  
->  	if (device_property_read_bool(dev, "autorepeat"))
->  		__set_bit(EV_REP, input->evbit);
-> 
-> -- 
-> 2.52.0
+> +	ret = of_dma_controller_register(np, aml_of_dma_xlate, aml_dma);
+> +	if (ret)
+> +		return ret;
+> +
+> +	regmap_write(aml_dma->regmap, RCH_INT_MASK, 0xffffffff);
+> +	regmap_write(aml_dma->regmap, WCH_INT_MASK, 0xffffffff);
+> +
+> +	ret = devm_request_irq(&pdev->dev, aml_dma->irq, aml_dma_interrupt_handler,
+> +			       IRQF_SHARED, dev_name(&pdev->dev), aml_dma);
+> +	if (ret)
+> +		return ret;
+> +
+> +	dev_info(aml_dma->dma_device.dev, "initialized\n");
+
+Useless message, drop. This does not look like useful printk message.
+Drivers should be silent on success:
+https://elixir.bootlin.com/linux/v6.15-rc7/source/Documentation/process/coding-style.rst#L913
+https://elixir.bootlin.com/linux/v6.15-rc7/source/Documentation/process/debugging/driver_development_debugging_guide.rst#L79
+
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id aml_dma_ids[] = {
+> +	{ .compatible = "amlogic,general-dma", },
+> +	{},
+> +};
+> +MODULE_DEVICE_TABLE(of, aml_dma_ids);
+> +
+> +static struct platform_driver aml_dma_driver = {
+> +	.probe = aml_dma_probe,
+> +	.driver		= {
+> +		.name	= "aml-dma",
+> +		.of_match_table = aml_dma_ids,
+> +	},
+> +};
+> +
+> +module_platform_driver(aml_dma_driver);
+> +
+> +MODULE_DESCRIPTION("GENERAL DMA driver for Amlogic");
+> +MODULE_AUTHOR("Xianwei Zhao <xianwei.zhao@amlogic.com>");
+> +MODULE_ALIAS("platform:aml-dma");
+> +MODULE_LICENSE("GPL");
 > 
 
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+
+Best regards,
+Krzysztof
 
