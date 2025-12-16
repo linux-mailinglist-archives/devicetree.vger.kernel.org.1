@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-247124-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247125-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2897DCC4817
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 18:00:23 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DFA6CC486B
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 18:03:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1D2F2309D952
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 16:55:14 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A802C30D846E
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 16:56:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FCD43246EE;
-	Tue, 16 Dec 2025 16:55:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A224E324B2E;
+	Tue, 16 Dec 2025 16:56:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sartura.hr header.i=@sartura.hr header.b="ez9Xw+hC"
+	dkim=pass (2048-bit key) header.d=sartura.hr header.i=@sartura.hr header.b="Bci519GM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEF332D6E64
-	for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 16:55:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4E4D3242B4
+	for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 16:56:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765904111; cv=none; b=FDFHrlztq10DCe/Oa+QRyNUXQxZIs5GiA69PRlPjkGdmhYLqOqgAg98nxfPne53xtnbsH8IXj+N+7Q1beLX/EzcGVeWcDVxq+oNK05G7wVnhqADQJVId9Q1EHz1LBc8x4lgZ7OpWhV9Sq4CAioA9bO45Z+ssfzyHVguXW0UZGNM=
+	t=1765904197; cv=none; b=GW3LYWaahrQiCVlyGq7/be+pwmn4E5sTpYusB2pfvwT0Utn2/OTaiYSDRU1f3pOoJzHSq4C7dcEdCQ/aw+OrWSARBDunCJIrn1S7lfLdKrJ2PsLGxyp84JUlGgztaKZicxCxVmnkY/3pGt5qkmazhg3G5Vsd8psdXX3DIzNCaVo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765904111; c=relaxed/simple;
-	bh=UN+I8vzJ8cwqizu/csjxQGAMQDSJQX7rflsi34zqodk=;
+	s=arc-20240116; t=1765904197; c=relaxed/simple;
+	bh=Q8UWsSe4myl6JsHqQXZQYvioe1R/IQ7hZDIpoW4Rb/k=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=HttNJuGVYJm2h7/6ai2PiRZExuGjDHfuTKX34Ow5zqmeibiXMEzHrMg+cpMwoQjvhr+Ln/pFdpG4FH2wfZ1IvmyV8+fXi+8HwUwl7xAyN/ZINJ3r7kWSMz28282aPtu7a85i4U9K1V8o/XJROV1jS9bwpkAjJAGHjUYCNoY6/nA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sartura.hr; spf=pass smtp.mailfrom=sartura.hr; dkim=pass (2048-bit key) header.d=sartura.hr header.i=@sartura.hr header.b=ez9Xw+hC; arc=none smtp.client-ip=209.85.208.44
+	 To:Cc:Content-Type; b=IhvmHwDO37p1R883yL0PiF0p9PK1lG1vDKsEdnbcRgiAoB+9sBoZQcpsOPfXx34zzRFsb6mrkmwtwvfhKOyTsA9ljEN2Bt02mIKEgufXSvQdEzjL4lPWy2BoWiIXb+NGkz4ri/99ZeV+2M2t3cD6b+4QKWi4pOJPMcveqHpmSnw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sartura.hr; spf=pass smtp.mailfrom=sartura.hr; dkim=pass (2048-bit key) header.d=sartura.hr header.i=@sartura.hr header.b=Bci519GM; arc=none smtp.client-ip=209.85.218.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sartura.hr
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sartura.hr
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-640c6577120so6858005a12.1
-        for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 08:55:08 -0800 (PST)
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-b7633027cb2so850983366b.1
+        for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 08:56:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura.hr; s=sartura; t=1765904107; x=1766508907; darn=vger.kernel.org;
+        d=sartura.hr; s=sartura; t=1765904193; x=1766508993; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=UN+I8vzJ8cwqizu/csjxQGAMQDSJQX7rflsi34zqodk=;
-        b=ez9Xw+hCct1myrsDrpo9BeJ5zKvjFtpk0SaqIt4mwiYvGonlK477nfeFk+JDxF+Xuc
-         8TVTQH8l1oaXPyEl0+UM4g1cUyssoGnMCTxvwMWdh7AUPyA/yOUV2sKBmDoUoNIgE1pA
-         5VamXVieCMdH715zfeYeYTUTnwmmeSq2zz6pCLr8xBZwbj/lUWqZRTSJZeWhEzqS8+sk
-         dfiJlVVzRIlbDTCmO1waDiDhWU4b/IovxwXvLmjSi1VcUZomaQuc/E/oDNH2JnbNajhS
-         oWBRtsNnA3yzof/LdWnheuZ3A43EJG2vZGMo+vpl2MXH3h2Ib6Vd5Em8hiILw3Z0Jqr2
-         ARcA==
+        bh=4Do5MSIsK8H3vJghWudLeWsp2L3mzUT53/Ta2p6+bLc=;
+        b=Bci519GMSOtC6TeCoUDyOlRLAMpK1+Q2VT7ZhSiNkVq/sylIitjnbfNXgSikndxl/A
+         cd7NgVtjDoigrZ2hgv+nG6NUMdj4xZwAP7+aJX3C9nC+hC33rShtz/CMMALFyJaKN4gP
+         47aeAH66w7rPn+An+lPnjgC8UK1y82k7RjHk0Laz0mRiKds6qMvdk1ypUkRe4iMFyIa2
+         nURMkz/iL08EItn8+Gi9lzHxP24ZMohsictJ6bIc5meWCnwuCZiRYclWZ+JfO0qLN2T8
+         mz84elWoDZq4kj7Opb6xh5i7WKc8WHHSRMg2pmXihuWhxphd7yhSNHxGPZ2wqxioow8E
+         hjUQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765904107; x=1766508907;
+        d=1e100.net; s=20230601; t=1765904193; x=1766508993;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=UN+I8vzJ8cwqizu/csjxQGAMQDSJQX7rflsi34zqodk=;
-        b=V9pHowtWmx4kKbC18BXjffMRAgIXR1qaGPj+98Io07BT/9FQQyfT/WoGxz9oSHq9FV
-         NeNUu5PlQ1xlRq5t+A9iRD1w7bXYPIOQPUOTwl3PV3DfSoMuJYqSsmqthYa6+zegJpNs
-         DCKENrYIBHIyDvnRMc0+yxWeKmVumGVsLuuCQSJsTXF1SCmgZX+r9jkrBATGxTrJq8CY
-         cuLOrd8KHWq8TakQ5I8GP+o+BZ8vIzj5hiCnqJ2ltHsSJrJvxx1/3qZYJ76ghNwylW3a
-         xd5qd4Z0A+aN+ZbuJonVk5oPeNoexH1nvYHdK6KUyKRvq+zW8glJ77Ew0Rdj0FLjlE9R
-         uOXQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXDnKbsIWCpP94mRlahZdHHdNzb/RPZmzmdPFv8KTaiUz5aUgqHhyzoqG492zNGiEsBG8V532CwqUvo@vger.kernel.org
-X-Gm-Message-State: AOJu0YxPbZNeqHYUgaFVKsVApKF+DOhZ2i6/FLxgE7bLXaNz3sWCWiyy
-	iioG6lx+/3nooMVaBQGcycJbcr/eRRBFrsOvuQFvhAInlUlc/ju8sjLs+T+4JP3lEiw4djqH0ua
-	EWO5Vc9YdO6okEIunvrc5RYN8aCFz88QIM0RlpAGJdQ==
-X-Gm-Gg: AY/fxX4DEe9TKUNSkIJ9shRsZ4MGkOfQhxtTWN/aZmMALuczxXu6wvoaQIXqdIzwH2N
-	NNtdELkJREqgJuS8dy+3X3iPbpa05AUYm1TbduOLaEw89TyM5u81iQ3W6QPfSRQ1y2RwMSbnKoL
-	4H1m1lImONM75GmaC3w6QU1UNLCdsNnh7AHpUJxHxSQwOKcjGGsm7OKWFjmFxyBXH6DM/gu6jnN
-	FawNlTpvl4223LZORICJ2mMNVH+0AoxMKbAMdN703oLFx/eoBT3EwBIip2P/2oG0EMQcskw
-X-Google-Smtp-Source: AGHT+IHss9Bd1xLNKBKVvo2auf8JouoGjNJ+pij6L9GBIFkYaw2yQJkBsu5mTJ8ApxjlWW3ipaEa8krFjlxvR+te8cI=
-X-Received: by 2002:a05:6402:430c:b0:64b:3a8d:8f2f with SMTP id
- 4fb4d7f45d1cf-64b3a8d8f4amr1282460a12.8.1765904105940; Tue, 16 Dec 2025
- 08:55:05 -0800 (PST)
+        bh=4Do5MSIsK8H3vJghWudLeWsp2L3mzUT53/Ta2p6+bLc=;
+        b=mtb97BpCGjBQEZZwaUvLbUST5cy1yOO66Gj3Oc20ype3r3dMUxaIu4Z4Ssjgi/WJp4
+         oDLiGtVq6Uop3j6CbQYYCp+15geG8cKq2TKAiaSnNqr/o8lyJUSuuf3gORoY70MIZYHB
+         AGJUXvAcEva4MhicRxdwXNKHEmmeyukng5lBzEOFY/ObQExLrZujppTr1Y6NSdoptFAm
+         KB6xDHAH6F/+D13c+3NNzJiATsOK5BJR9ULIzmyL17hK8J9CzjllX4yJtERE2HJgcpjE
+         PprOmomTxXFWqt50pGWTzp89F+CeZXcYjeOfvsl+qvsfJ2cgXkeuTODVpzBwKguUK+GZ
+         L/Vw==
+X-Forwarded-Encrypted: i=1; AJvYcCWg2xouqapsYzlwdJuI6BwCnyVvUq9/RAoF6KLpsBKm6dDoLMLngjmur8l7TWUsvK0VfzlsJQmueBdo@vger.kernel.org
+X-Gm-Message-State: AOJu0YzWOChGTDYA1P4Km3bdl84DePTj6cRyFXQGOSNEfb43Tyv9AzKS
+	w/5jsObuEpJXjCYJvJHxk/e0U6k32EwxYXngoeP+Zxnb+IMLO71fpq8bBgxZb74s1/iiZv+zOiL
+	tCXUvGswD0z7wk6qc8ubDkoOPQXAmStP6LFCbPZDZzA==
+X-Gm-Gg: AY/fxX49+s+cftgKyHPThmZnWKbue5fWErSevMId+XeqVSuwiyjQaLmkVz+V3s5qKHD
+	nt7DIjhZ5mj9vt8LazvvyN2KqgUUQxBwUQlIO5t6T+/u9G0OKaIYHO9SxwqrKUkF7GM9GDNG00p
+	mv0xm322PDNwbEe3No9+Mq/xaUZnR0wYaM7D6rnD9W7a5lwxHEifNKeNOGqn8UgpFzb91UfTHHg
+	yNjl9sL7zSSW2msmegGkf78EluG9mXBk0SWCsuGsmlISRLOCG+c7Dri2iK9yXzwP/X9q6jJ
+X-Google-Smtp-Source: AGHT+IEe8IRzlnpv6us5Kh+xr3yaMQ8uOrd9bT9YETlEwP5WNPrUGdjkFlMhzeEA5DOez3HUYl6RwAjZzXtLufIttIA=
+X-Received: by 2002:a17:907:2d28:b0:b72:9961:dc04 with SMTP id
+ a640c23a62f3a-b7d236ff5fbmr1632649866b.28.1765904192972; Tue, 16 Dec 2025
+ 08:56:32 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,23 +74,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 References: <20251215163820.1584926-1-robert.marko@sartura.hr>
- <20251215163820.1584926-4-robert.marko@sartura.hr> <39d5371a-ed3e-4262-9cc9-e76c039f352c@kernel.org>
-In-Reply-To: <39d5371a-ed3e-4262-9cc9-e76c039f352c@kernel.org>
+ <20251215163820.1584926-4-robert.marko@sartura.hr> <202512161628415e9896d1@mail.local>
+In-Reply-To: <202512161628415e9896d1@mail.local>
 From: Robert Marko <robert.marko@sartura.hr>
-Date: Tue, 16 Dec 2025 17:54:55 +0100
-X-Gm-Features: AQt7F2pB7VocjSO0euYm2JMWHk2AXNZHaLhwttYBwdz_DAq0CW2nlyHeH65guEQ
-Message-ID: <CA+HBbNEsXG64L26S-78A4E9dUOnfdtTEQoifiv5Y16_oQeiiHw@mail.gmail.com>
+Date: Tue, 16 Dec 2025 17:56:20 +0100
+X-Gm-Features: AQt7F2rO9yn5Ak9EU9SF12LWH7YDPd4rf09lvsuy-j2tIJy7_yg0e1grszJzZqk
+Message-ID: <CA+HBbNFG+xNokn5VY5G6Cgh41NZ=KteRi0D9c0B15xb77mzv8w@mail.gmail.com>
 Subject: Re: [PATCH v2 04/19] dt-bindings: arm: move AT91 to generic Microchip binding
-To: Krzysztof Kozlowski <krzk@kernel.org>
+To: Alexandre Belloni <alexandre.belloni@bootlin.com>
 Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com, 
-	claudiu.beznea@tuxon.dev, Steen.Hegelund@microchip.com, 
-	daniel.machon@microchip.com, UNGLinuxDriver@microchip.com, 
-	herbert@gondor.apana.org.au, davem@davemloft.net, vkoul@kernel.org, 
-	linux@roeck-us.net, andi.shyti@kernel.org, lee@kernel.org, 
-	andrew+netdev@lunn.ch, edumazet@google.com, kuba@kernel.org, 
-	pabeni@redhat.com, linusw@kernel.org, olivia@selenic.com, 
-	radu_nicolae.pirea@upb.ro, richard.genoud@bootlin.com, 
+	nicolas.ferre@microchip.com, claudiu.beznea@tuxon.dev, 
+	Steen.Hegelund@microchip.com, daniel.machon@microchip.com, 
+	UNGLinuxDriver@microchip.com, herbert@gondor.apana.org.au, 
+	davem@davemloft.net, vkoul@kernel.org, linux@roeck-us.net, 
+	andi.shyti@kernel.org, lee@kernel.org, andrew+netdev@lunn.ch, 
+	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, linusw@kernel.org, 
+	olivia@selenic.com, radu_nicolae.pirea@upb.ro, richard.genoud@bootlin.com, 
 	gregkh@linuxfoundation.org, jirislaby@kernel.org, mturquette@baylibre.com, 
 	sboyd@kernel.org, richardcochran@gmail.com, wsa+renesas@sang-engineering.com, 
 	romain.sioen@microchip.com, Ryan.Wanner@microchip.com, 
@@ -106,24 +105,24 @@ Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Dec 16, 2025 at 4:56=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
+On Tue, Dec 16, 2025 at 5:29=E2=80=AFPM Alexandre Belloni
+<alexandre.belloni@bootlin.com> wrote:
 >
-> On 15/12/2025 17:35, Robert Marko wrote:
+> On 15/12/2025 17:35:21+0100, Robert Marko wrote:
 > > Create a new binding file named microchip.yaml, to which all Microchip
 > > based devices will be moved to.
 > >
 > > Start by moving AT91, next will be SparX-5.
 >
->
-> I don't understand why. Previous layout was correct.
+> Both lines of SoCs are designed by different business units and are
+> wildly different and while both business units are currently owned by
+> the same company, there are no guarantees this will stay this way so I
+> would simply avoid merging both.
 
-Hi Krzysztof,
+Hi Alexandre,
 
-In v1, I sent the LAN969x series as a separate binding, but Conor then
-requested that
-they should be merged into a generic binding, and LAN969x added to the
-generic binding [1].
+The merge was requested by Conor instead of adding a new binding for LAN969=
+x [1]
 
 [1] https://patchwork.kernel.org/project/linux-arm-kernel/patch/20251203122=
 313.1287950-2-robert.marko@sartura.hr/
@@ -132,8 +131,54 @@ Regards,
 Robert
 
 >
-> Best regards,
-> Krzysztof
+> >
+> > Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+> > ---
+> >  .../bindings/arm/{atmel-at91.yaml =3D> microchip.yaml}       | 7 ++---=
+--
+> >  1 file changed, 2 insertions(+), 5 deletions(-)
+> >  rename Documentation/devicetree/bindings/arm/{atmel-at91.yaml =3D> mic=
+rochip.yaml} (98%)
+> >
+> > diff --git a/Documentation/devicetree/bindings/arm/atmel-at91.yaml b/Do=
+cumentation/devicetree/bindings/arm/microchip.yaml
+> > similarity index 98%
+> > rename from Documentation/devicetree/bindings/arm/atmel-at91.yaml
+> > rename to Documentation/devicetree/bindings/arm/microchip.yaml
+> > index 88edca9b84d2..3c76f5b585fc 100644
+> > --- a/Documentation/devicetree/bindings/arm/atmel-at91.yaml
+> > +++ b/Documentation/devicetree/bindings/arm/microchip.yaml
+> > @@ -1,19 +1,16 @@
+> >  # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >  %YAML 1.2
+> >  ---
+> > -$id: http://devicetree.org/schemas/arm/atmel-at91.yaml#
+> > +$id: http://devicetree.org/schemas/arm/microchip.yaml#
+> >  $schema: http://devicetree.org/meta-schemas/core.yaml#
+> >
+> > -title: Atmel AT91.
+> > +title: Microchip platforms
+> >
+> >  maintainers:
+> >    - Alexandre Belloni <alexandre.belloni@bootlin.com>
+> >    - Claudiu Beznea <claudiu.beznea@microchip.com>
+> >    - Nicolas Ferre <nicolas.ferre@microchip.com>
+> >
+> > -description: |
+> > -  Boards with a SoC of the Atmel AT91 or SMART family shall have the f=
+ollowing
+> > -
+> >  properties:
+> >    $nodename:
+> >      const: '/'
+> > --
+> > 2.52.0
+> >
+>
+> --
+> Alexandre Belloni, co-owner and COO, Bootlin
+> Embedded Linux and Kernel engineering
+> https://bootlin.com
 
 
 
