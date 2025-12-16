@@ -1,155 +1,209 @@
-Return-Path: <devicetree+bounces-246941-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246942-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8ABEECC1A5C
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 09:49:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D7A59CC1A6C
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 09:50:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0D89A301D643
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 08:45:28 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E6AE130C9E40
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 08:45:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF917327207;
-	Tue, 16 Dec 2025 08:45:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7504339B3B;
+	Tue, 16 Dec 2025 08:45:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QR7Uiw5V"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="xYYUtRHs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F70D313E2F;
-	Tue, 16 Dec 2025 08:45:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAC49338F2F
+	for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 08:45:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765874727; cv=none; b=VYLjEz3Ow7Yrjzk3eDV5ELAcafhPi5JyTidR7NdQ4ADMV8se1eG3Jy3CpvKDiaWcXRN+oHJYxI9A+SYQSBDWruCtvVjO4KNHpUp2ibnWZcWXvawaUYDOSXgVPaxYfP0qbsnN0u8yCPBwiY+ldW4fW/RjSmWZa8q+2W7bpyNUFFw=
+	t=1765874747; cv=none; b=o3w3dIXyyim79/SDYsvU1RQkPf2W2xT2jfWldtcRUQbxQsufcHTyCapP+elkllFyZMV32GCwnt4+sgXJsF8hf/mj98zBGcvlOEecCh4GTwejMUL5xVKwJXM97QM/GnUrq65kddqcWU00KX1n23ciZlvUHqkSWabVTleVSVRD+fY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765874727; c=relaxed/simple;
-	bh=tvseRd0ZBKVZuxl0/2VvYZVVO718dYCkJYN9IBKiMek=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Xm/uLDwUfDp1rNRSmF7idhOsYk1DWGxyb1OD4KgdF5RMfN8DDvzYylAbwOoAdAuCTMBJsfqz/065Xam+iiHOkJg8GIydUPQTtxopfvuDBKsipUaTbi3SG7f6097QclIuQr+rqAAm3bj8wfxhgtdYlGSY49aZnKV83jU0rThdwZY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QR7Uiw5V; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2840C16AAE;
-	Tue, 16 Dec 2025 08:45:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765874727;
-	bh=tvseRd0ZBKVZuxl0/2VvYZVVO718dYCkJYN9IBKiMek=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=QR7Uiw5VgzfsE7U2kpUwyYuna6qcbU3xhKYDGw7qrT+JaDIQ0b7i73YSGqS77cDNW
-	 UTNhYKC+8o/f77bxcvYPR19JheTOlciBMoIBWrALFiOrqXbOl/JHnuTTQBxlTWJ2nP
-	 yPWNXIn0wJyGOnrZaBiykTUUDy/dAK+mp9lX69iV7gXRwdyWlABYY4KfpOwT+0Ckkt
-	 0evz8jbMl1Gric++TNzBTHxA8gcRJFA/OwUGTGRSG5bcwDk4fK08uKw/n7zoX77mdI
-	 Hp/BD5AlYesfSLHaHF4nRPNzs8LLrjC55iXgDVXsofltBzxK+wwhlmn5ibZGMnog+E
-	 wKxcUd69ZdlPA==
-Message-ID: <83c771e7-f32b-48e4-91ab-d7c3b9746e14@kernel.org>
-Date: Tue, 16 Dec 2025 09:45:22 +0100
+	s=arc-20240116; t=1765874747; c=relaxed/simple;
+	bh=0r+AvBKkTIWPsBeipZp/wmo8VQgBdzoywCh6Xl4+APg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=p+YX99orZ4q0r+vy4xFwM52n35VaJDOXT6tE5jhmH6ePbzmCsH2O/8cmrL30NRiODnX/dSigpm27f7zWYljwbrV5B9skXXDx4+nrAOHa8wYrWsAvHYcuAoTaKKOm/Ks1z5jjVYihbjcUOcpSb3c3D+xd4XVL43p0gC/UKZZ9fXg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=xYYUtRHs; arc=none smtp.client-ip=185.246.85.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 29D184E41C1D;
+	Tue, 16 Dec 2025 08:45:42 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id EAFA16071C;
+	Tue, 16 Dec 2025 08:45:41 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 9815D119431B1;
+	Tue, 16 Dec 2025 09:45:33 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1765874737; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 in-reply-to:references; bh=0i+PsZJan5460ifQCnMp834OOI47NDVIUR3zefRz6YY=;
+	b=xYYUtRHs7TJgRw+tsLJcv3cjv2Ty1F1reYk7QEUZlEKhayOJYyDkMqf44Jv3JCIytIRoyN
+	RvoCCnd9KqTevyLBNsn8TK/gY5cLNaCevOm0BLa2KMhoyPq8grs0kpsI/jdqCpZpa0wyz0
+	/YAEQ2ALx/5ywgDN5PBhEUTYVOHqJ+qczQGggQovANYC19RcGHTHxdHvHwT3D2ktSi48oH
+	5cbdiFXMizWwqMhDCGUib0+AkZGC+xzRrFXBSiTo3yfzvrwwmvhlHhPwejMEHY3W5CW+68
+	VUaaPQU6GYXOA5qHCm7hepYG5+Jk/BnKay3gQiIRG7AdIAuKsiG0UcrMbIbh1g==
+Date: Tue, 16 Dec 2025 09:45:33 +0100
+From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>, kernel@collabora.com,
+	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v2 3/4] Input: adc-keys - Use dev_err_probe in probe
+ function
+Message-ID: <20251216084533c8786b5d@mail.local>
+References: <20251215-rock4d-audio-v2-0-82a61de39b4c@collabora.com>
+ <20251215-rock4d-audio-v2-3-82a61de39b4c@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: dma: Add Amlogic general DMA
-To: xianwei.zhao@amlogic.com, Vinod Koul <vkoul@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Kees Cook <kees@kernel.org>,
- "Gustavo A. R. Silva" <gustavoars@kernel.org>
-Cc: linux-amlogic@lists.infradead.org, dmaengine@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-hardening@vger.kernel.org
-References: <20251216-amlogic-dma-v1-0-e289e57e96a7@amlogic.com>
- <20251216-amlogic-dma-v1-1-e289e57e96a7@amlogic.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251216-amlogic-dma-v1-1-e289e57e96a7@amlogic.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251215-rock4d-audio-v2-3-82a61de39b4c@collabora.com>
+X-Last-TLS-Session-Version: TLSv1.3
 
-On 16/12/2025 09:03, Xianwei Zhao via B4 Relay wrote:
-> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+On 15/12/2025 13:29:31+0100, Nicolas Frattaroli wrote:
+> Rework the probe function, and functions called by the probe function,
+> to use dev_err_probe for error logging.
 > 
-> Add documentation describing the Amlogic general DMA.
+> While at it, also do some minor style cleanups, like not error logging
+> on -ENOMEM and using ! instead of == 0.
 > 
-> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+
+Reviewed-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
+
 > ---
->  .../bindings/dma/amlogic,general-dma.yaml          | 70 ++++++++++++++++++++++
->  1 file changed, 70 insertions(+)
+>  drivers/input/keyboard/adc-keys.c | 53 ++++++++++++++++-----------------------
+>  1 file changed, 21 insertions(+), 32 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/dma/amlogic,general-dma.yaml b/Documentation/devicetree/bindings/dma/amlogic,general-dma.yaml
-> new file mode 100644
-> index 000000000000..8b9cec9b8da0
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/dma/amlogic,general-dma.yaml
-> @@ -0,0 +1,70 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/dma/amlogic,general-dma.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> diff --git a/drivers/input/keyboard/adc-keys.c b/drivers/input/keyboard/adc-keys.c
+> index 62376f34f7d0..6f2ddcecea99 100644
+> --- a/drivers/input/keyboard/adc-keys.c
+> +++ b/drivers/input/keyboard/adc-keys.c
+> @@ -74,10 +74,8 @@ static int adc_keys_load_keymap(struct device *dev, struct adc_keys_state *st)
+>  	int i;
+>  
+>  	st->num_keys = device_get_child_node_count(dev);
+> -	if (st->num_keys == 0) {
+> -		dev_err(dev, "keymap is missing\n");
+> -		return -EINVAL;
+> -	}
+> +	if (!st->num_keys)
+> +		return dev_err_probe(dev, -EINVAL, "keymap is missing\n");
+>  
+>  	map = devm_kmalloc_array(dev, st->num_keys, sizeof(*map), GFP_KERNEL);
+>  	if (!map)
+> @@ -86,17 +84,16 @@ static int adc_keys_load_keymap(struct device *dev, struct adc_keys_state *st)
+>  	i = 0;
+>  	device_for_each_child_node_scoped(dev, child) {
+>  		if (fwnode_property_read_u32(child, "press-threshold-microvolt",
+> -					     &map[i].voltage)) {
+> -			dev_err(dev, "Key with invalid or missing voltage\n");
+> -			return -EINVAL;
+> -		}
+> +					     &map[i].voltage))
+> +			return dev_err_probe(dev, -EINVAL,
+> +					     "Key with invalid or missing voltage\n");
 > +
-> +title: Amlogic general DMA controller
+>  		map[i].voltage /= 1000;
+>  
+>  		if (fwnode_property_read_u32(child, "linux,code",
+> -					     &map[i].code)) {
+> -			dev_err(dev, "Key with invalid or missing linux,code\n");
+> -			return -EINVAL;
+> -		}
+> +					     &map[i].code))
+> +			return dev_err_probe(dev, -EINVAL,
+> +					     "Key with invalid or missing linux,code\n");
+>  
+>  		if (fwnode_property_read_u32(child, "linux,input-type",
+>  					     &map[i].type))
+> @@ -129,7 +126,8 @@ static int adc_keys_probe(struct platform_device *pdev)
+>  
+>  	st->channel = devm_iio_channel_get(dev, "buttons");
+>  	if (IS_ERR(st->channel))
+> -		return PTR_ERR(st->channel);
+> +		return dev_err_probe(dev, PTR_ERR(st->channel),
+> +				     "Could not get iio channel\n");
+>  
+>  	if (!st->channel->indio_dev)
+>  		return -ENXIO;
+> @@ -138,16 +136,13 @@ static int adc_keys_probe(struct platform_device *pdev)
+>  	if (error < 0)
+>  		return error;
+>  
+> -	if (type != IIO_VOLTAGE) {
+> -		dev_err(dev, "Incompatible channel type %d\n", type);
+> -		return -EINVAL;
+> -	}
+> +	if (type != IIO_VOLTAGE)
+> +		return dev_err_probe(dev, -EINVAL, "Incompatible channel type %d\n", type);
+>  
+>  	if (device_property_read_u32(dev, "keyup-threshold-microvolt",
+> -				     &st->keyup_voltage)) {
+> -		dev_err(dev, "Invalid or missing keyup voltage\n");
+> -		return -EINVAL;
+> -	}
+> +				     &st->keyup_voltage))
+> +		return dev_err_probe(dev, -EINVAL, "Invalid or missing keyup voltage\n");
 > +
-> +description: |
-> +  This is a general-purpose peripheral DMA controller. It currently supports
-> +  major peripherals including I2C, I3C, PIO, and CAN-BUS. Transmit and receive
-> +  for the same peripheral use two separate channels, controlled by different
-> +  register sets. I2C and I3C transfer data in 1-byte units, while PIO and
-> +  CAN-BUS transfer data in 4-byte units. From the controller’s perspective,
-> +  there is no significant difference.
-> +
-> +maintainers:
-> +  - Xianwei Zhao <xianwei.zhao@amlogic.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: amlogic,general-dma
+>  	st->keyup_voltage /= 1000;
+>  
+>  	error = adc_keys_load_keymap(dev, st);
+> @@ -155,10 +150,8 @@ static int adc_keys_probe(struct platform_device *pdev)
+>  		return error;
+>  
+>  	input = devm_input_allocate_device(dev);
+> -	if (!input) {
+> -		dev_err(dev, "failed to allocate input device\n");
+> +	if (!input)
+>  		return -ENOMEM;
+> -	}
+>  
+>  	input_set_drvdata(input, st);
+>  
+> @@ -178,19 +171,15 @@ static int adc_keys_probe(struct platform_device *pdev)
+>  
+>  
+>  	error = input_setup_polling(input, adc_keys_poll);
+> -	if (error) {
+> -		dev_err(dev, "Unable to set up polling: %d\n", error);
+> -		return error;
+> -	}
+> +	if (error)
+> +		return dev_err_probe(dev, error, "Unable to set up polling\n");
+>  
+>  	if (!device_property_read_u32(dev, "poll-interval", &value))
+>  		input_set_poll_interval(input, value);
+>  
+>  	error = input_register_device(input);
+> -	if (error) {
+> -		dev_err(dev, "Unable to register input device: %d\n", error);
+> -		return error;
+> -	}
+> +	if (error)
+> +		return dev_err_probe(dev, error, "Unable to register input device\n");
+>  
+>  	return 0;
+>  }
+> 
+> -- 
+> 2.52.0
+> 
 
-I don't know what you mean by "general" but it feels like wildcard, not
-SoC, so that would be a no-go. Read writing bindings or several talks
-about this.
-
-Best regards,
-Krzysztof
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
