@@ -1,212 +1,250 @@
-Return-Path: <devicetree+bounces-247061-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247063-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C92A6CC3A89
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 15:40:39 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCCA5CC386C
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 15:22:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 996E4306D526
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 14:33:43 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id A64F93030D91
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 14:22:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A35F93587D2;
-	Tue, 16 Dec 2025 14:08:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C6F8343208;
+	Tue, 16 Dec 2025 14:22:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PN6hg0GF"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="VjiYlayn";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="fDFx3W0R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dy1-f182.google.com (mail-dy1-f182.google.com [74.125.82.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38B52357A56
-	for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 14:08:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD31224A078
+	for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 14:22:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765894118; cv=none; b=mQW8f4qpQLp2SSeQAr7GFtJiOw/KonVCV+8AB5g2d53gXOdPuGD0T0XLMA801uge8douYBvJOayZfeq7cgXlMYiv/eEUuayhtTNFZrz5WKT7b0ZQI2xIvT2hrjzka0pLZFMADb+RrUyIx3V7vt02NybFp5z2m78wc8ZLRuojddo=
+	t=1765894957; cv=none; b=I5pX2wY090e6kVZYTSFUi8jxiMDRt4+PwrSbXCbQHB4Iv/JrCqIZt3euSfk4tN7ANWZV7L1PrvrrV+h6t3dpLaQUCZReug28QEYoWZZM1oouFgmf11Zc4wXM4fm382QeikmiLHSkCv/H24cvOltE68J553Ekun4NtKqxWvEwTaw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765894118; c=relaxed/simple;
-	bh=9rFMb124gT4wX6Z1BaKIkp+YpYgVU36olQWt2ZjruHY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WgBzxjBUVdUmlqMyQTVN22633rcilR8EaXn9SOBY+ytHxDbCG/IQYfuZx03Y1ujj0LIg1MXKGAlU6pmV+C+pJuYYK2WGQADGsOBAj5nNkXRuC3DkZieZtWSK7MC+lLf3G84xhTWkISRs3arPIk9mM/zRc+wuLe84Nb0MhZM4t1U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PN6hg0GF; arc=none smtp.client-ip=74.125.82.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dy1-f182.google.com with SMTP id 5a478bee46e88-2ae29ddaed9so2311030eec.0
-        for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 06:08:36 -0800 (PST)
+	s=arc-20240116; t=1765894957; c=relaxed/simple;
+	bh=21lQSgX90nhGAXGoIabtkjhGUFu63TTGA+NcJTHAOno=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hFuaeaRh3LDQZ7HJbyYhn2jEtzlX9rUyqDDAGM/2TB5SewUZr45H7Gpe4Ki4RiZbkC2mWjkUFXEGYwYkYcTZ5D+bAFrYNUrHXDjNFReXFZKDYU8S0qoUaLrLqARRQ68+XzG+gCfIcKmcX5YFMtNHElMxTf+mIG6v2OxPmdIgNzw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=VjiYlayn; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=fDFx3W0R; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BGDhdBY3745795
+	for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 14:22:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	156EH/S/vVw7Ol/2OTcRw1i67IcJhD/ch5+/EbHER1Q=; b=VjiYlaynVdQP1jHV
+	TU/Yyx5DIBetkxuBYRvPM5GbxHX9rpSScFY7i/vtkzee/bC7HXAES4+gbUZd0yP7
+	fiQ80d5WXa5svNvFzJvtOWGcnUaBayh4L2ZdPtRdrMthA6ZXMXS53EB3iztr9ySa
+	FCjK3r3w6zng5guRlPv2TAVahRA8JJ76AaBUZ9qcLkUXiqGC+Au8JwZisKiSxpAt
+	G2y4pSRkLQ+WoIngaHPHPlG2DkPLLgRajpLppkjzzoHpcVZktk0YCLqYyWa9A+0t
+	bFVfQxH0tK1czrxT+VXmuGK+/PJC1kWmUm6PmwPV/Ib1ELr/geqNHVkcbh6sXlvD
+	D0qzoA==
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b33xj1ars-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 14:22:34 +0000 (GMT)
+Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4f1aba09639so15396421cf.0
+        for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 06:22:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1765894115; x=1766498915; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=ABDSVD0OZRkLhpM7GVbSEPZkovu4lepBLS40gdoYZS4=;
-        b=PN6hg0GF0Vh9XdQq5NbCEnBauF6sAAYAJvfTlSZFQhpkNT5P8RkZBXPEQBaGDqyvt7
-         doizhy47iicLf67qB6v9cve3ilnhwc5x4kzWbvXOhQqUYcxV3gvr0xdo2Heq/9ejWdtC
-         v6amuJopjlUXmfpDcwAgmw9cgKi3/MqO4CpJhDohj0ihUyHJTPQYItjPlvPCOXFbZKtE
-         djs4LNEyZO47aQRP7GMx4NVLmbN2/qdhLtWcpnWFAcJH/OO4u0DisqZZf7Rsk+qH5r1b
-         5gtNiEbQF8P5QN5GAarDhnVfdsz/KHJx5Bm3E1r+ALXEsIosyHhkS9DACzMiCbiBprXh
-         d58Q==
+        d=oss.qualcomm.com; s=google; t=1765894954; x=1766499754; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=156EH/S/vVw7Ol/2OTcRw1i67IcJhD/ch5+/EbHER1Q=;
+        b=fDFx3W0Rd2AAPU3nP9D+1PbmOF9nuvUy9eYZ973g6VjMWLL9ft17EzryyTEGJKDet7
+         4O51s9PeHgOghENpDwLt2u7M6uYZVpVQD8q+pPCPHtXOG4X/C8a4c9+T4yX07F0vY6Y5
+         LK+dtLQ+wppPIpWgTc6T0ff2wK1x/lXQbBAuP7PNxkdoqYRt5J+xGFR8ZSH3S212SJlm
+         c0cvnkZUBe3aSZ6FlZlMfjZPjfmaf/mdEyMHTteyM6R6PoUIpm940Gyg9s15mDOOe9UF
+         0/gYGyjEFC1CDbCilATx5eB2lqpuBOX5Krqy/b8cwjDt4UAMe+9hJGRBqeuhddZg/HKH
+         Zhrw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765894115; x=1766498915;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ABDSVD0OZRkLhpM7GVbSEPZkovu4lepBLS40gdoYZS4=;
-        b=L/lzE8wLnoGRhf6O+Yk/3z+yLggavvhNS7spcEIuF9bzMayoZHJ28mB5zaO0ilQvqe
-         xY86jNFqHCZk8ECEROhTI0j4k9V2NQDVfIgoc13lyRSAhdCoROwa1GaiGuAeD6A2EUOg
-         ye2zPfgJ8VFmf66JyWGE4ByhThKmF/b9hxhSn5rCfvnuIy2HWKvLnDuTWpiFdfSl+kOZ
-         pRZINX+fnifTU1Jbve708kQaNf4FzHByaLLad0qYMrkXE3RdgHniuRMCUS7bxM7DAxBm
-         bzDyQ09Mu1F1TQNq89v5sSNVCNlkVQPpQ/YRyWuZELXlAn702ztTGxxSO0EbGPowVW8f
-         TqEg==
-X-Forwarded-Encrypted: i=1; AJvYcCUrC9a2cxou8eAJPX8bnWnZ05el6xEhEgjTFnS7eXHVR1dvixSkd5BwxkoPJk9UIWMa3hPlxTcYpHmB@vger.kernel.org
-X-Gm-Message-State: AOJu0YwF3CdvfloVRIaPgyYR0M/zC+ATDWA7t1oA1OUI9P+63tgZge/l
-	B0n66fCmiYC/V8wIWtUIVmcYLA0Ogwm1mQalbJEiFq36X5MNfBzkuRdG
-X-Gm-Gg: AY/fxX4/+PKz05O0W5lJzcqnCmn/iuo9vd6DHSzUt2R+f9ytEwtJXLV6f8WyZmj6xtt
-	+yxXfJsvMIoFcr6dqle0L5F+EOgq4rn37sTGJfZuqXaph0mw4i0HcOgt+w7Nt+AXtZh/llqWSZT
-	RjchiX8h0MkJ8AMVLEGvVXyQL32NtStdPB6z036+hu4Jj+88XRkKLfo46fuIDE1gQ+mxp23gUi3
-	3l5QoSTvB4YWgFFMtuIGZOPexV5CyefQgN8KReMBvM2QOT7sGpfUklb8lGlhEmu8+EkJwiomSjc
-	RdGDGtYiTLfwtkuteVFKY9/fwXBVGG4+Nb2MfEhB5SRscqWyg+yOGBRew2DS7Gya5ka1N+mrLIk
-	G/xNipDygE3L2jDylX9ZRDCDiC7kWZ0yXaWzZJAb2OriXY6ztDf9MQ2+UQJVcJ62Y5+0zYt2+gp
-	4GXVjJ6mhI1+3fFHQAyRA=
-X-Google-Smtp-Source: AGHT+IHut++cYKFHRhXb1H/jKXX0lEIBo0qPaxV41c3ukUPyZmolgjjJxKIEBV8l7YzJaRod0zxYeQ==
-X-Received: by 2002:a05:7301:92c:b0:2a4:50c2:a74c with SMTP id 5a478bee46e88-2ac1c5e0f00mr8160301eec.8.1765894115073;
-        Tue, 16 Dec 2025 06:08:35 -0800 (PST)
-Received: from localhost ([2804:30c:165b:7000:d59:b973:da75:f845])
-        by smtp.gmail.com with UTF8SMTPSA id 5a478bee46e88-2ac190acd01sm39890645eec.1.2025.12.16.06.08.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Dec 2025 06:08:34 -0800 (PST)
-Date: Tue, 16 Dec 2025 11:10:13 -0300
-From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-To: Tomas Borquez <tomasborquez13@gmail.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-staging@lists.linux.dev
-Subject: Re: [RFC PATCH 3/3] dt-bindings: iio: add analog devices
- ad9832/ad9835
-Message-ID: <aUFoRVjoB7BHPTRN@debian-BULLSEYE-live-builder-AMD64>
-References: <20251205202743.10530-1-tomasborquez13@gmail.com>
- <20251205202743.10530-4-tomasborquez13@gmail.com>
+        d=1e100.net; s=20230601; t=1765894954; x=1766499754;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=156EH/S/vVw7Ol/2OTcRw1i67IcJhD/ch5+/EbHER1Q=;
+        b=HfJLyyntYy9b9KaklpdYOZAX9hZOBGqo2CtikleXac9jxnXubyNaJgJ7V2f01vPF1J
+         v//jFHv5+qRyJ4/SiWr3lOG+bWUslJtZqF3mrkRztmn0DKj1v4FQfc5xKAZqpPHY0mbV
+         NNB26Dyb/W82sldt5dIRlQmTnpXy6ysLUm6QNjOw04hj351NBBPAlMoIRkzBULhTWmMJ
+         rW14++pHFmHlME3j1RSKJ84omx4KQ/qHJ0AksAM6PuTXegeseA65OcTDPserSWdtr4M6
+         vHcLPpsuyYz+lpFAPrIgtfJzu3NQRTqmzTbYQx67nuDUrXItQEXZJQqaxQAspigy8ot5
+         w48w==
+X-Forwarded-Encrypted: i=1; AJvYcCXFwGyg8j5IZjjf3D0cVRldu887ktEOvSgKClExaBIuH7EiAHhrHO3eyUmmovxUDBJ3/RonqbUjWMP/@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx5EhTLZ2qnjj56yk3X4fByP8BDFuzCRBxthOLOlyqvHnNle4nI
+	mRhpcjk1LD4ldgIQZY/A2K4QKJoGfo67U5M37ucG6jtkR4zqQA256V7z/P69+jlrIFCdQbzLsyL
+	lxbZUHTw/SZ++hn1VIVi6an8vGDxvdy5u6TaZ9/6pUyYb7WU9Wn2gB5NkowZnPpXd
+X-Gm-Gg: AY/fxX4QAj01hu4O+h6Z27ZNljqA1YB24LJOQl8qFmErdN4les/dHp7MIE5hzw0033d
+	iarJZJXtoHsWbydu1VGWS9/4bAf+L131B3WFT5sbtfFd3xa0Xvvdn/+zFAxylTk6K2y4vNhk1K3
+	GD0A6QGusg5f7+Bkt0pShlpm492ZSqYEjc4crqJnGJnnGZnZhoWx6r89k36mmn5IFC8rFpcAUDk
+	kBFwMHJkzqaMg1ZyKeaB1TBoScI5QyZBKJgnNcLU9/IRNBDE24+wTvZzGtB19eMF4rDVY3ZbBRf
+	bPXi98MlEfW5/Py4P1Az9lN6VmWKQT/KqdyHkfCm0Lw+Y7SD314hirh1Lw4db9QY+U8/jbQpASA
+	YAWxu0ebvZlGez0FzuPkTm377Lw/JySp5CA9c8Wkwx6Cy2DGoOjhrq7NmOEaiaDi1YA==
+X-Received: by 2002:ac8:7d13:0:b0:4f1:be94:a2a8 with SMTP id d75a77b69052e-4f1d016f9e8mr138532021cf.0.1765894953643;
+        Tue, 16 Dec 2025 06:22:33 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGLka2aPm5kcLMw81Glj5wcqGXzKV+fbovovPiWq46VkUyXjutWSMKQIVx5nuNvfrNPXYI43g==
+X-Received: by 2002:ac8:7d13:0:b0:4f1:be94:a2a8 with SMTP id d75a77b69052e-4f1d016f9e8mr138531681cf.0.1765894953151;
+        Tue, 16 Dec 2025 06:22:33 -0800 (PST)
+Received: from [192.168.119.72] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b7cfa29e060sm1739241466b.2.2025.12.16.06.22.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 16 Dec 2025 06:22:32 -0800 (PST)
+Message-ID: <821a7dc3-7b00-40d1-9332-ef57ad22f9ca@oss.qualcomm.com>
+Date: Tue, 16 Dec 2025 15:22:30 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251205202743.10530-4-tomasborquez13@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] ARM: dts: qcom: msm8960: expressatt Add PWM vibrator
+To: guptarud@gmail.com, Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20251211-expressatt-vibrator-v1-1-41bdc47217b2@gmail.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20251211-expressatt-vibrator-v1-1-41bdc47217b2@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: zMHdOr_psNCkRU3r9Aa0djO1bN0Jfs-v
+X-Proofpoint-GUID: zMHdOr_psNCkRU3r9Aa0djO1bN0Jfs-v
+X-Authority-Analysis: v=2.4 cv=KtNAGGWN c=1 sm=1 tr=0 ts=69416b2a cx=c_pps
+ a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=OQN141zOAAAA:20 a=pGLkceISAAAA:8
+ a=t16J-YH1rFAZ6FeKiOcA:9 a=QEXdDO2ut3YA:10 a=dawVfQjAaf238kedN5IG:22
+ a=bA3UWDv6hWIuX7UZL3qL:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjE2MDEyMyBTYWx0ZWRfX4mRWVVkI/0y6
+ 5RK1f0LQj5Fs7NZ0lP9P8ErdN/ESoQRvBQBdr/V5Xh1HdxJv+CRk+UVuSJ+DdiZq0rzcAn3ZtMU
+ 5EAFVDYcG7dwIkv1OpVPIxnhGKv3biS+G3uCF9g+sBN3QmNRrUzoZKL2ePM09rIWc83guVx/2UT
+ YdipYPKcedQw287b3pHUCiuCe8d8K2AZCZbDsCwgdOIDAjMZxo3bsVdY9XWXWgxYR9ffYE7kx6H
+ qfBpQ3tuc1B5n6emcdKHOQX8OuL2BZ9UxDrhRF6Ba2PRZs4uPMDx13I3bl2U+CQB0+/CdwFOp2c
+ PNkOAjQVxajBSlfZ9/wu9jSpvbi58VzNWEV4MzbLFYrPmnWjIW469lBt7Mvq4y3sQeuzSpIh0rI
+ HSdZwWTJQGDNMPYu6AYVshHHe8W/6A==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-16_02,2025-12-16_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 clxscore=1015 suspectscore=0 bulkscore=0 adultscore=0
+ spamscore=0 malwarescore=0 priorityscore=1501 impostorscore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512160123
 
-Hi Tomas,
-
-Overall, the dt doc looks good to me.
-In addition to comments from other reviewers, I have one suggestion related to
-the SPI mode.
-
-On 12/05, Tomas Borquez wrote:
-> Add devicetree binding documentation for the AD9832 and AD9835
-> Digital Synthesizer chips.
+On 12/11/25 11:23 AM, Rudraksha Gupta via B4 Relay wrote:
+> From: Rudraksha Gupta <guptarud@gmail.com>
 > 
-> Signed-off-by: Tomas Borquez <tomasborquez13@gmail.com>
+> Add a pwm-vibrator to expressatt. Currently this vibrates only at 100%
+> 
+> Signed-off-by: Rudraksha Gupta <guptarud@gmail.com>
 > ---
->  .../bindings/iio/frequency/adi,ad9832.yaml    | 65 +++++++++++++++++++
->  1 file changed, 65 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/frequency/adi,ad9832.yaml
+> Add a pwm-vibrator to expressatt. Currently this vibrates only at 100%
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/frequency/adi,ad9832.yaml b/Documentation/devicetree/bindings/iio/frequency/adi,ad9832.yaml
-> new file mode 100644
-> index 0000000000..f14e054ab2
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/frequency/adi,ad9832.yaml
-> @@ -0,0 +1,65 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/frequency/adi,ad9832.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Analog Devices AD9832/AD9835 Direct Digital Synthesizer
-> +
-> +maintainers:
-> +  - Michael Hennerich <michael.hennerich@analog.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - adi,ad9832
-> +      - adi,ad9835
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  spi-max-frequency:
-> +    maximum: 20000000
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    const: mclk
-> +
-> +  avdd-supply:
-> +    description: Analog power supply.
-> +
-> +  dvdd-supply:
-> +    description: Digital power supply.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - avdd-supply
-> +  - dvdd-supply
-> +
-> +allOf:
-> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-Specify that the device operates either in SPI mode 1 or SPI mode 2.
-See [1, 2, 3] for reference.
-  - oneOf:
-      - required: [spi-cpha]
-        properties:
-          spi-cpol: false
-      - required: [spi-cpol]
-        properties:
-          spi-cpha: false
-
-[1]: https://www.analog.com/en/resources/app-notes/an-1248.html
-[2]: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/spi/spi-summary.rst?h=v6.19-rc1
-[3]: https://youtu.be/MV8Sy6jGUIE?t=611
-
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    spi {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        dds@0 {
-> +            compatible = "adi,ad9832";
-> +            reg = <0>;
-> +            spi-max-frequency = <20000000>;
-
-            spi-cpha;
-
-> +            clocks = <&dds_clk>;
-> +            clock-names = "mclk";
-> +            avdd-supply = <&avdd_reg>;
-> +            dvdd-supply = <&dvdd_reg>;
-> +        };
-> +    };
-> +...
-> -- 
-> 2.43.0
+> Link:
+> - https://github.com/LineageOS/android_kernel_samsung_d2/blob/stable/cm-12.0-YNG4N/arch/arm/mach-msm/board-express.c#L1767
+> - https://github.com/LineageOS/android_kernel_samsung_d2/blob/stable/cm-12.0-YNG4N/drivers/motor/Makefile#L5
 > 
+> Test:
+> =====================
+> samsung-expressatt:~$ dmesg | grep vibra
+> [   79.892226] input: pwm-vibrator as /devices/platform/vibrator/input/input4
+> samsung-expressatt:~$ fftest /dev/input/event4 
+> Force feedback test program.
+> HOLD FIRMLY YOUR WHEEL OR JOYSTICK TO PREVENT DAMAGES
 > 
+> Device /dev/input/event4 opened
+> Features:
+>   * Absolute axes: 
+>     [00 00 00 00 00 00 00 00 ]
+>   * Relative axes: 
+>     [00 00 ]
+>   * Force feedback effects types: Periodic, Rumble, Gain, 
+>     Force feedback periodic effects: Square, Triangle, Sine, 
+>     [00 00 00 00 00 00 00 00 00 00 03 07 01 00 00 00 ]
+>   * Number of simultaneous effects: 16
+> 
+> Setting master gain to 75% ... OK
+> Uploading effect #0 (Periodic sinusoidal) ... OK (id 0)
+> Uploading effect #1 (Constant) ... Error: Invalid argument
+> Uploading effect #2 (Spring) ... Error: Invalid argument
+> Uploading effect #3 (Damper) ... Error: Invalid argument
+
+Looks like this is because GP1_CLK does not implement .set_duty_cycle..
+
+The downstream driver you linked to does so in a terribly hacky way
+(from the vibrator driver and not the clock driver):
+
+https://github.com/LineageOS/android_kernel_samsung_d2/blob/cm-14.1/drivers/motor/immvibespi.c#L53
+
+Upstream, we have an implementation for clk_rcg*2*_ops, whereas 8960
+uses clk_rcg_ops.
+
+They look very similar though, perhaps you can hack it up..
+
+One thing to note is that you're passing GP1_CLK to the clk-pwm (as
+you should), but we need to do clk_set_duty_cycle on its parent,
+GP1_CLK*_SRC*. The framework will take care of this:
+
+```
+--- drivers/clk/clk.c
+	if (!core->ops->get_duty_cycle)
+		return clk_core_update_duty_cycle_parent_nolock(core);
+```
+
+so long as you add CLK_DUTY_CYCLE_PARENT to the child
+
+[...]
+> +	/* TODO: Vary the frequency besides being 0% or 100% */
+> +	vibrator {
+> +		compatible = "pwm-vibrator";
+> +		pwms = <&gp1_pwm 0 54347 0>;  /* ~18.4 kHz */
+> +		pwm-names = "enable";
+> +		enable-gpios = <&pm8921_gpio 4 GPIO_ACTIVE_HIGH>;
+> +		vcc-supply = <&vdd_haptics>;
+> +
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&vib_pwm_gpio>;
+
+pinctrl-n
+pinctrl-names
+
+please, both occurences
+
+> +	};
+> +
+> +	vdd_haptics: vdd-haptics-regulator {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vdd_haptics";
+> +		gpio = <&tlmm 47 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +		regulator-boot-on;
+> +
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&haptics_pwr_en>;
+> +	};
+>  };
+>  
+>  &gsbi2 {
+> @@ -241,6 +270,21 @@ touchkey_i2c_pins: touchkey-i2c-state {
+>  		bias-disable;
+>  	};
+>  
+> +	haptics_pwr_en: haptics-pwr-en-state {
+> +		pins = "gpio47";
+> +		function = "gpio";
+> +		drive-strength = <2>;
+> +		bias-disable;
+> +		output-low;
+
+Drop output-low, the driver should take care of setting the state
+
+Konrad
 
