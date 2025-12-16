@@ -1,135 +1,323 @@
-Return-Path: <devicetree+bounces-247137-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247138-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21C16CC4B85
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 18:36:47 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5577CC4BEB
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 18:47:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 18F543009261
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 17:36:46 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BFE9430402E4
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 17:47:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA1DD335558;
-	Tue, 16 Dec 2025 17:36:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KT27MiOq"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CC2833C195;
+	Tue, 16 Dec 2025 17:47:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 939792C21FC;
-	Tue, 16 Dec 2025 17:36:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F13AF4207A;
+	Tue, 16 Dec 2025 17:47:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765906603; cv=none; b=AUJ6SoOWgAd4r2NLNTG6yE+PuOrc+MU12JfpCV4fMm/n9PZVhgEAeQ/xpK/K4bvnmLDrXbH7YMSm3Hl3XR02lmjzESTq73tsHUtGdY4K8mYGaB9bbwdfxc1+/1/TZ7gND+KatSfo8TUXXem6NoiDuKVgMNU5hgRzYq2B1sZszxQ=
+	t=1765907226; cv=none; b=fNdI8g4N3YtLUnLzP4maAN22vcMeZUoHAyfIZ2Tk0WPyrYZ7T4r86ozl7QryMhuSEF7GN1I2Ob2hLUh2ownwXqmxFswfV+AD6XDlaKo3chpHkUAOpE7sDjXxnSE4HwNNpzMMlMJMuHJeI4kUKOXyBXOlIxCUa9G5aG34jhjU3l0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765906603; c=relaxed/simple;
-	bh=zOFcVEtlCCznFZ/0DXCrBRMUQm0xlBq4aQ4km3Nl4FU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YzO+6LEIdzzJkrDD8hGcsWOR+GYUqSc+x7eRN+mdOY3gJh3QOHkED4Q+4I9yuK2VnHHm1vZiVjnPZkusBjxTlxSfU2T2HrTZAQtrN3aqVY+HLVTmGsg7yRX0xUupN97DnZtgc9RPtU/WOv+tSvcrZBJYOZfw2QvPaLj2uPI01vw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KT27MiOq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AFE09C4CEFB;
-	Tue, 16 Dec 2025 17:36:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765906603;
-	bh=zOFcVEtlCCznFZ/0DXCrBRMUQm0xlBq4aQ4km3Nl4FU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KT27MiOqvS2CiNhpmgDh3jdyqT6cTHnyoJQ9nk5BIRxvboSECw/Z1ijC7RKKgoXAm
-	 w1M8h9XfXLjn6ebs6He+wB7e5+kN1P3jGhybEp4qcYU2DkQwncORg4OS5VKfc7+Osq
-	 W+a+m2b299ff7kVJbC87sjRLT4tTHPx0q3hqfGqOSiRTzIK8cy+kLwpC4b+BWMbhKF
-	 ZfYvsHs4KczXTSEYfukbzklKQU3C9adSoQbyeYUhk4rxbBt2W/c9qVQZT1cq3+Y1xt
-	 xFF4jO1G7ztVd+m9yugNtQoJY7KMYpsoidm4p7jdqIEktCuQpPAf1wKHw7XzFIJqH2
-	 OSCSv8skG94zg==
-Date: Tue, 16 Dec 2025 17:36:31 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Robert Marko <robert.marko@sartura.hr>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
-	claudiu.beznea@tuxon.dev, Steen.Hegelund@microchip.com,
-	daniel.machon@microchip.com, UNGLinuxDriver@microchip.com,
-	herbert@gondor.apana.org.au, davem@davemloft.net, vkoul@kernel.org,
-	linux@roeck-us.net, andi.shyti@kernel.org, lee@kernel.org,
-	andrew+netdev@lunn.ch, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, linusw@kernel.org, olivia@selenic.com,
-	radu_nicolae.pirea@upb.ro, richard.genoud@bootlin.com,
-	gregkh@linuxfoundation.org, jirislaby@kernel.org,
-	mturquette@baylibre.com, sboyd@kernel.org, richardcochran@gmail.com,
-	wsa+renesas@sang-engineering.com, romain.sioen@microchip.com,
-	Ryan.Wanner@microchip.com, lars.povlsen@microchip.com,
-	tudor.ambarus@linaro.org, charan.pedumuru@microchip.com,
-	kavyasree.kotagiri@microchip.com, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-crypto@vger.kernel.org, dmaengine@vger.kernel.org,
-	linux-hwmon@vger.kernel.org, linux-i2c@vger.kernel.org,
-	netdev@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-spi@vger.kernel.org, linux-serial@vger.kernel.org,
-	linux-usb@vger.kernel.org, linux-clk@vger.kernel.org,
-	mwalle@kernel.org, luka.perkov@sartura.hr
-Subject: Re: [PATCH v2 13/19] dt-bindings: dma: atmel: add
- microchip,lan9691-dma
-Message-ID: <20251216-cassette-skid-cc209a9c3ded@spud>
-References: <20251215163820.1584926-1-robert.marko@sartura.hr>
- <20251215163820.1584926-13-robert.marko@sartura.hr>
+	s=arc-20240116; t=1765907226; c=relaxed/simple;
+	bh=c+cBKJmVu7oBbhQydlZg7M9CTJBuqnL3b9p4ACs67Pg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=upDSkE8A2FKKUonCc4XKPvaclNhSq+THKDNtCbBQEeOiFQYVdezDP1ffjhB0oQTTMyWf3/kwWp0YoawX7S5fU1qjYHNOCdim4FCwa/kp1ka22OvwySmMCMBapFUYtCS4Cngwt4x2a4DfBUt7IXVlIsSvVp24rnfyWXpsyQuJdcg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1DBEAFEC;
+	Tue, 16 Dec 2025 09:46:56 -0800 (PST)
+Received: from [10.57.91.77] (unknown [10.57.91.77])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B66F33F73B;
+	Tue, 16 Dec 2025 09:46:59 -0800 (PST)
+Message-ID: <7b6a203f-a141-45f7-8a09-a2266e125d22@arm.com>
+Date: Tue, 16 Dec 2025 17:46:57 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="Pqck0FjEcpen1/ot"
-Content-Disposition: inline
-In-Reply-To: <20251215163820.1584926-13-robert.marko@sartura.hr>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 08/22] mm: Allow page table accessors to be
+ non-idempotent
+Content-Language: en-GB
+To: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
+Cc: Samuel Holland <samuel.holland@sifive.com>,
+ "David Hildenbrand (Red Hat)" <david@kernel.org>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <pjw@kernel.org>,
+ linux-riscv@lists.infradead.org, Andrew Morton <akpm@linux-foundation.org>,
+ linux-mm@kvack.org, devicetree@vger.kernel.org,
+ Suren Baghdasaryan <surenb@google.com>, linux-kernel@vger.kernel.org,
+ Mike Rapoport <rppt@kernel.org>, Michal Hocko <mhocko@suse.com>,
+ Conor Dooley <conor@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Alexandre Ghiti <alex@ghiti.fr>, Emil Renner Berthing <kernel@esmil.dk>,
+ Rob Herring <robh+dt@kernel.org>, Vlastimil Babka <vbabka@suse.cz>,
+ "Liam R . Howlett" <Liam.Howlett@oracle.com>
+References: <20251113014656.2605447-1-samuel.holland@sifive.com>
+ <20251113014656.2605447-9-samuel.holland@sifive.com>
+ <fbfef7fc-4030-462b-b514-498eea6620aa@arm.com>
+ <c2597d43-d909-4259-bb5b-9294e4069385@kernel.org>
+ <af8fd275-a34d-4b2f-8834-9c85dab2bbae@sifive.com>
+ <a063f6c5-2785-4a9f-8079-25edb3e54cef@arm.com>
+ <9eda3825-64bf-47d9-ab4a-0a536b2d6474@lucifer.local>
+From: Ryan Roberts <ryan.roberts@arm.com>
+In-Reply-To: <9eda3825-64bf-47d9-ab4a-0a536b2d6474@lucifer.local>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
+On 16/12/2025 10:29, Lorenzo Stoakes wrote:
+> On Thu, Dec 11, 2025 at 01:59:53PM +0000, Ryan Roberts wrote:
+>> On 11/12/2025 00:33, Samuel Holland wrote:
+>>> On 2025-11-28 2:47 AM, David Hildenbrand (Red Hat) wrote:
+>>>> On 11/27/25 17:57, Ryan Roberts wrote:
+>>>>> On 13/11/2025 01:45, Samuel Holland wrote:
+>>>>>> Currently, some functions such as pte_offset_map() are passed both
+>>>>>> pointers to hardware page tables, and pointers to previously-read PMD
+>>>>>> entries on the stack. To ensure correctness in the first case, these
+>>>>>> functions must use the page table accessor function (pmdp_get()) to
+>>>>>> dereference the supplied pointer. However, this means pmdp_get() is
+>>>>>> called twice in the second case. This double call must be avoided if
+>>>>>> pmdp_get() applies some non-idempotent transformation to the value.
+>>>>>>
+>>>>>> Avoid the double transformation by calling set_pmd() on the stack
+>>>>>> variables where necessary to keep set_pmd()/pmdp_get() calls balanced.
+>>>>>
+>>>>> I don't think this is a good solution.
+>>>>
+>>>> Agreed,
+>>>>
+>>>>     set_pmd(&pmd, pmd);
+>>>>
+>>>> is rather horrible.
+>>> I agree that this patch is ugly. The only way I see to avoid code like this is
+>>> to refactor (or duplicate) the functions so no function takes pointers to both
+>>> hardware page tables and on-stack page table entries. Is that sort of
+>>> refactoring the right direction to go for v4?
+>>
+>> From a quick look at the code, I think that some cases are solvable by
+>> refactoring to pass the value instead of the pointer, and leave it to the higher
+>> level decide how to read the value from the pointer - it knows if it is pointing
+>> to HW pgtable or if it's a (e.g) stack value.
+>>
+>> But the more I look at the code, the more instances I find where pointers to
+>> stack variables are being passed to arch pgtable helpers as if they are HW
+>> pgtable entry pointers. (Mainly pmd level).
+> 
+> Ugh. We do need to nip this in the bud I think!
+> 
+>>
+>> I wonder if we need to bite the bullet and explicitly separate the types? At
+>> each level, we have:
+>>
+>>  1. page table entry value
+>>  2. pointer to page table entry _value_ (e.g. pointer to pXX_t on stack)
+>>  3. pointer to page table entry in HW pgtable
+>>
+>> Today, 1 is represented by pte_t, pmd_t, etc. 2 and 3 are represented by the
+>> same type; pte_t*, pmd_t*, etc.
+>>
+>> If we create a new type for 3, it will both document and enforce when type 2 or
+>> type 3 is required.
+>>
+>> e.g:
+>>
+>> // pte_t: defined by arch.
+>> typedef unsigned long pte_t;
+>>
+>> // ptep_t: new opaque type that can't be dereferenced.
+>> struct __ptep_t;
+>> typedef struct __ptep_t *ptep_t;
+>>
+>> // getter/setter responsible for cast & deref as appropriate.
+>> pte_t ptep_get(ptep_t ptep)
+>> {
+>> 	return READ_ONCE(*(pte_t *)ptep);
+>> }
+> 
+> I think we've got ourselves in a jumble with pte vs ptep vs pteval
+> vs. etc. etc. and we aren't always consistent with it.
+> 
+> So I think we ought to put 'hw' somewhere in the name.
 
---Pqck0FjEcpen1/ot
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Yeah that would probably give the best end result. I was thinking that ptep/pXdp
+might reduce churn since we already use it in function names. Stack pointers are
+definitely a small minority so easier to change their convention.
 
-On Mon, Dec 15, 2025 at 05:35:30PM +0100, Robert Marko wrote:
-> Document Microchip LAN969x DMA compatible which is compatible to SAMA7G5.
->=20
-> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
-> ---
->  Documentation/devicetree/bindings/dma/atmel,sama5d4-dma.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/dma/atmel,sama5d4-dma.yaml=
- b/Documentation/devicetree/bindings/dma/atmel,sama5d4-dma.yaml
-> index 73fc13b902b3..b0802265cb55 100644
-> --- a/Documentation/devicetree/bindings/dma/atmel,sama5d4-dma.yaml
-> +++ b/Documentation/devicetree/bindings/dma/atmel,sama5d4-dma.yaml
-> @@ -32,6 +32,10 @@ properties:
->                - microchip,sam9x60-dma
->                - microchip,sam9x7-dma
->            - const: atmel,sama5d4-dma
+But having an explicit "hw" would probably be best.
 
-> +      - items:
-> +          - enum:
-> +              - microchip,lan9691-dma
-> +          - const: microchip,sama7g5-dma
->        - items:
->            - const: microchip,sama7d65-dma
+> 
+> And we can also now get away from the overly abbreviated names given we have the
+> chance :)
+> 
+> So something like 'pte_hw_t' perhaps?
 
-These two should be merged into an enum, they're both single-item falling
-back to sama7g5.
-pw-bot: changes-requested
+sounds good. Or hw_pte_t? Then "pte_t" is still greppable and it better matches
+the hw_pte_get() that you have below.
 
->            - const: microchip,sama7g5-dma
-> --=20
-> 2.52.0
->=20
+> 
+> I like the general concept, though I think it's kinda gross to hide the fact
+> that it's a pointer in the typedef _that_ directly.
 
---Pqck0FjEcpen1/ot
-Content-Type: application/pgp-signature; name="signature.asc"
+My aim was to have a type that you can't dereference, can't accidentally pass as
+a pte_t* and also can't increment/decrement/index.
 
------BEGIN PGP SIGNATURE-----
+This gives us a framework where the architecture can completely virtualize the
+pgtable if it likes; and the compiler can enforce that higher level code can't
+accidentally work around it.
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaUGYnwAKCRB4tDGHoIJi
-0nYCAQDU3J3Krob2l2qR5EC8gEeegRo58LGtAuvkNFTuEuSWCQEAqYzGWdeC6tir
-6LKDQv0205TRThhsWgO61ffssMlQAAU=
-=iMhx
------END PGP SIGNATURE-----
+I have a couple of use cases where these properties will come in handy; arm64
+now defines 128-bit pgtables. We have a prototype adding it to the kernel, but
+at the moment it has to be a compile time descision so that all the generic code
+knows the size of the entries. It would be preferable to make it a boot time
+decision, based on the HW capabilities (or cmdline, ...). But for that, we need
+to better insulate the physical pgtables from the core-mm. This concept solves that.
 
---Pqck0FjEcpen1/ot--
+> 
+> So perhaps be less horrid if it was something like:
+> 
+> typedef struct {
+> 	pte_t *ptr;
+> } pte_hw_t;
+> 
+> Perhaps?
+
+I _think_ that works for the above, and it is certainly nicer.
+
+pte_hw_t pte_table = pte_alloc(...);
+for (i = 0; i < PTRS_PER_PTE; i++)
+	hw_pte_get(pte_table[i]);
+
+I think that would fail to compile, right? Which is what we want. Instead we
+need something like:
+
+pte_hw_t hwpte = pte_alloc(...);
+for (i = 0; i < PTRS_PER_PTE; i++, hwpte = hw_pte_next(hwpte))
+	hw_pte_get(hwpte);
+
+> 
+> Then could have:
+> 
+> pte_t hw_pte_get(pte_hw_t pte_hw)
+> {
+> 	return READ_ONCE(*pte_hw.ptr);
+> }
+> 
+>>
+>> int do_stuff(void)
+>> {
+>> 	// value on stack: ok
+>> 	pte_t mypte;
+>>
+>> 	// pointer to value on stack: ok
+>> 	pte_t *pmypte = &mypte;
+>>
+>> 	// handle to entry on stack: not allowed by compiler!
+>> 	ptep_t myptep = &mypte;
+>>
+>> 	// handle to entry in pgtable: ok
+>> 	ptep_t myptep = pte_offset_kernel(...);
+>>
+>> 	// read value of pgtable entry: ok
+>> 	pte_t val = ptep_get(myptep);
+>>
+>> 	// attempt to pass pointer to stack variable: not allowed by compiler!
+>> 	pte_t val = ptep_get(&mypte);
+>>
+>> 	// attempt to directly dereference ptep: not allowed by compiler!
+>> 	pte_t val = *myptep;
+>> }
+>>
+>>
+>> We could do this incrementally by initially typedefing ptep_t to be:
+>> typedef pte_t *ptep_t;
+> 
+> Hm yeah still hate the idea of typedef'ing this as a ptr so directly.
+
+What's the problem with it?
+
+> 
+> Obviously this would make an incremental thing a little harder, but could have
+> this stuff on top of existing logic and make it incremental by changing logic
+> bit-by-bit?
+
+I'm not sure... sounds to me like we would need to convert absolutely everything
+including arches that are difficult for most people to test. With the "typedef
+pte_t *hw_pte_t;" approach, you can go bit-by-bit and leave those unloved arches
+alone entirely.
+
+> 
+>>
+>> Then we could flip the switch arch-by-arch to enable the stronger checking. We
+>> likely wouldn't need to convert arches that don't care.
+>>
+>> I think by doing this, it will expose all the current issues and force us to fix
+>> them properly.
+> 
+> Yeah this is nice.
+> 
+>>
+>> On the related subject of conversion to pXXp_get(); I've been looking into this
+>> and personally, I think we should have 2 helper flavours at each level:
+>>
+>>  - pXXd_get()      optimizable by compiler; defaults to C dereference
+>>  - pXXd_get_once() single-copy-atomic and unmovable by compiler
+> 
+> Yes!
+> 
+> There is some _real_ confusion about when and when we don't need to do this.
+
+I think the requirements are basically this:
+
+"_ONCE" gives 2 properties; single-copy-atomicity and compiler can't move/remove
+instructions.
+
+SCA is important to prevent tearing if the HW can update the PTE concurrently
+with SW reading it (i.e. HW access/dirty) or if SW is reading without holding
+the PTL. But there are times when it doesn't matter if the PTE gets torn because
+you are only comparing the result using pte_none() or pte_same().
+
+The "compiler can't move/remove" property (I'm sure there is a formal name for
+this?) is important for lockless walkers. Probably you could achieve similar
+results by using barrier()?
+
+> 
+> Though wouldn't having a typdef separating out a hw entry imply that hw entry ->
+> get once, sw entry -> get?
+
+No; you should never use the accessor methods for sw entries - they are just
+variables - read them normally. If all HW accesses use "once", then the compiler
+can't optimize away the accesses for the folded pgtable case.
+
+> 
+>>
+>> It simplifies the converstion process, and reduces the risk of bugs
+>> significantly (go read about the arm32 issues discussed in Anshuman's series if
+>> you haven't done already).
+> 
+> Though I haven't read this series so can't remember actually if there were cases
+> where even with hw entries we wanted to sometimes READ_ONCE() and sometimes not?
+
+Yes exactly that.
+
+> 
+>>
+>> I appreciate this is all probably a lot more work than you would prefer to sign
+>> up for, I'd be happy to collaborate if we get concensus that this approach makes
+>> sense. What do you think?
+>>
+>> Thanks,
+>> Ryan
+>>
+> 
+> Thanks for this concept, overall very much in agreement!
+
+I think it would work but it's going to be a lot of churn. But if you think it's
+worth it and we'll be able to get it in, then I'm up for working on it in the
+background.
+
+> 
+> Cheers, Lorenzo
+
 
