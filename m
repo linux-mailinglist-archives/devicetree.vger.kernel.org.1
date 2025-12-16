@@ -1,53 +1,54 @@
-Return-Path: <devicetree+bounces-247140-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247141-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 093F8CC4C39
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 18:59:36 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8607CC4CA5
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 19:01:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3DC1D304C2BE
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 17:59:26 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 6D5C73036DB8
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 18:01:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF57033C524;
-	Tue, 16 Dec 2025 17:59:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4ACE33C52D;
+	Tue, 16 Dec 2025 18:00:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZMlFCyv3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K5n3i8kS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7BAD33C50A;
-	Tue, 16 Dec 2025 17:59:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D9B133343F;
+	Tue, 16 Dec 2025 18:00:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765907965; cv=none; b=k5eBfyoqE2Vv3B7wHEdkWpqw0VWOpmJLMxsYipWvwOamHPVrH37l8LG4rSQ5S9k6JJafsBA+Yut1JXbKA0q8QnD0tqk5tDSteE/ORemYIzZawKta5ti9Z2m4ZDv65rzh4ECL8ltkNr1++rMUXl2Ut5oh+yi0PeQuSyDaIF79X9M=
+	t=1765908024; cv=none; b=bIaTRlaD565SYyFAer6StLdoSJeQHDAyOhXv5Wzla9t7/opwc+QwSH7JAHCMw2InyYtroAgdFRGK3oar1EYd2OJHJRlasVI2flLZkCXImGimlCL5MVnd1OK7SuNjaQh0hhA9Zpzkwjm1xrUmqo9jQH4X6luwvTiXErlmhpokQbk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765907965; c=relaxed/simple;
-	bh=TIgqwdHAusKqb6Pr4Pt95gvNZkar7d/zsw7q3oG2Xo4=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=CUEVckr2WlI9tG1//X7qrCNH5XdB04YmvURq03Uqp+/eFb9XKxo9aYve9m40+MVa7Z31ojt8KfJBUMtN3P3IwvSHvSSDFNNi01j5C2G5BJ0ZP6+0/UtuBiawVKJ5WWit2E3foH6WyaSBtGdQ3PFz2lWu9Ey9WeJntsLcqTMaI6k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZMlFCyv3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D7DEC2BC87;
-	Tue, 16 Dec 2025 17:59:25 +0000 (UTC)
+	s=arc-20240116; t=1765908024; c=relaxed/simple;
+	bh=748kh0FainH3OLOBiond62jRSgjjoQL1Ejt+d9CgPLU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=bByFY2LrJXIXvJoHHnK8eI0xqVf4v8sstmluIETktcXEra6+IAcb/8zVTJwpUc+THApXyQ5zZIJyKPgROv3wf6dgaj8PW3Lpdqdhklsj+nC1T5PFjIpAc2ASq8+V18G6Z0/Lj03AblFUUU7pirJDBFDczgaQXtsqPcRSCdu1yuA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K5n3i8kS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14EF9C4CEF1;
+	Tue, 16 Dec 2025 18:00:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765907965;
-	bh=TIgqwdHAusKqb6Pr4Pt95gvNZkar7d/zsw7q3oG2Xo4=;
+	s=k20201202; t=1765908024;
+	bh=748kh0FainH3OLOBiond62jRSgjjoQL1Ejt+d9CgPLU=;
 	h=From:To:Cc:Subject:Date:From;
-	b=ZMlFCyv3BDj6luflKEHj1GArdq2KGur9v2jKniD16lg6x/F3R9vBpAFDEJHl/9pEm
-	 ZiSKcH7edyFFUF4BbvlHKTKL+QX0Ox0yH1WIPG1UrKiAlFw9GSpOYQy87w9zbhExi6
-	 Eq9mLCZtcaBwVe2F5UIa7eew9vGskn3N1MSJm5BbUa4m8nw9Zf9pbHebl7S/w/BmbN
-	 SBBLokUutMeZHvfuA+uufUxwKaquBLquD00xE5F13NUQwYu+bKvvu25JSteLekI9W1
-	 evWJczk7TPL1sW3r2caVNVIbaV9kxvID+7cQdZafTOjO29rDAAY9nEYxP0Zc31INBi
-	 HX86toooUD0xg==
+	b=K5n3i8kS7LpDLhjkx+ywQZJCPGYrgxknj1jhWtrWuaSKGO0MhT4TXZ1G3/61XB84X
+	 j2IVNIchKzDOp/tWhaWr+kCJ2yW448iZLdiqgfETLNjDFD8zr3BXzuoO1QLC2xGm7j
+	 TXOdewX47vrnDjtePQLekkzI85FSG1PZhiSdeROPlU20o7sJYfvk6p+ECMB8RrHFDt
+	 XqTw7Kxm6PK2q4usf2zL2DzD/CXMAWqOGveL9wbqMXkp7Yj6kcYDFnPcMDBI7QrQhU
+	 Fkl0iOOANakXxfaAQlNgs5H/ob4pyiU1GwkTypqteqifdGSFpjrKq50sTSV4MzrVSe
+	 ubo6oUMtf1Iyg==
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Michal Simek <michal.simek@amd.com>
-Cc: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
+To: soc@kernel.org,
+	Chanho Min <chanho.min@lge.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: xilinx: Drop "label" property on dlg,slg7xl45106
-Date: Tue, 16 Dec 2025 11:59:13 -0600
-Message-ID: <20251216175914.2791200-1-robh@kernel.org>
+Subject: [PATCH] arm64: dts: lg: Use recommended simple-bus node name
+Date: Tue, 16 Dec 2025 11:59:52 -0600
+Message-ID: <20251216175951.2791921-2-robh@kernel.org>
 X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -57,52 +58,30 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The "label" property is not documented for the dlg,slg7xl45106. Nor is
-it common to use for GPIO controllers. So drop it.
+Update LG LG131x 'amba' bus node name to 'amba-bus' following the
+standard names for simple-bus nodes. Generally, node names and paths
+aren't considered ABI, so it is safe to change them.
 
 Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 ---
- arch/arm64/boot/dts/xilinx/zynqmp-sck-kd-g-revA.dtso | 1 -
- arch/arm64/boot/dts/xilinx/zynqmp-sck-kr-g-revA.dtso | 1 -
- arch/arm64/boot/dts/xilinx/zynqmp-sck-kr-g-revB.dtso | 1 -
- 3 files changed, 3 deletions(-)
+SoC maintainers, Please take this directly.
 
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kd-g-revA.dtso b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kd-g-revA.dtso
-index 02be5e1e8686..d0230da47068 100644
---- a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kd-g-revA.dtso
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kd-g-revA.dtso
-@@ -75,7 +75,6 @@ u3: ina260@40 { /* u3 */
- 	slg7xl45106: gpio@11 { /* u13 - reset logic */
- 		compatible = "dlg,slg7xl45106";
- 		reg = <0x11>;
--		label = "resetchip";
- 		gpio-controller;
- 		#gpio-cells = <2>;
- 		gpio-line-names = "USB0_PHY_RESET_B", "",
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kr-g-revA.dtso b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kr-g-revA.dtso
-index b92dcb86e87e..5d1f031bbd89 100644
---- a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kr-g-revA.dtso
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kr-g-revA.dtso
-@@ -103,7 +103,6 @@ u14: ina260@40 { /* u14 */
- 	slg7xl45106: gpio@11 { /* u19 - reset logic */
- 		compatible = "dlg,slg7xl45106";
- 		reg = <0x11>;
--		label = "resetchip";
- 		gpio-controller;
- 		#gpio-cells = <2>;
- 		gpio-line-names = "USB0_PHY_RESET_B", "USB1_PHY_RESET_B",
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kr-g-revB.dtso b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kr-g-revB.dtso
-index 99ad220d13d6..1d5c95bd6073 100644
---- a/arch/arm64/boot/dts/xilinx/zynqmp-sck-kr-g-revB.dtso
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp-sck-kr-g-revB.dtso
-@@ -104,7 +104,6 @@ u14: ina260@40 { /* u14 */
- 	slg7xl45106: gpio@11 { /* u19 - reset logic */
- 		compatible = "dlg,slg7xl45106";
- 		reg = <0x11>;
--		label = "resetchip";
- 		gpio-controller;
- 		#gpio-cells = <2>;
- 		gpio-line-names = "USB0_PHY_RESET_B", "USB1_PHY_RESET_B",
+ arch/arm64/boot/dts/lg/lg131x.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/lg/lg131x.dtsi b/arch/arm64/boot/dts/lg/lg131x.dtsi
+index 4cb1e4510897..90988770cb5c 100644
+--- a/arch/arm64/boot/dts/lg/lg131x.dtsi
++++ b/arch/arm64/boot/dts/lg/lg131x.dtsi
+@@ -102,7 +102,7 @@ clk_bus: clk_bus {
+ 		clock-output-names = "BUSCLK";
+ 	};
+ 
+-	amba {
++	amba-bus {
+ 		#address-cells = <2>;
+ 		#size-cells = <1>;
+ 
 -- 
 2.51.0
 
