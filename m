@@ -1,150 +1,128 @@
-Return-Path: <devicetree+bounces-247032-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247034-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87C60CC3884
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 15:23:35 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C0E2CC3205
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 14:17:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7A49030BF233
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 14:18:53 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 8EBDC302EB1C
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 13:17:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B1FF35971D;
-	Tue, 16 Dec 2025 13:11:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 034403BDA90;
+	Tue, 16 Dec 2025 13:17:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X8z9QTrV"
+	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="KxiUSz4Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx-relay21-hz1.antispameurope.com (mx-relay21-hz1.antispameurope.com [94.100.132.221])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF47E3596EE;
-	Tue, 16 Dec 2025 13:11:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765890714; cv=none; b=ZVF9ivcLAGz+2sQUhdEKT2aVJJaq6tTFf8wbDwc2AxzHSqZ/L0HNePrRbmba1PDul1gWr54hz+Gr/MXqhGu5JbP2w+Hayh90lkwn9euiPYSq2tepnlFaN4VjclTTIXRvc6vJq0zM3T1twaUIA/W6kFXmjx7qQX60pR61PUgotlY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765890714; c=relaxed/simple;
-	bh=42Q51V+DJ8mxB4c2XkCdjem/RxmNhxIK1HpVUzeDmMI=;
-	h=From:Date:Content-Type:MIME-Version:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=aBTnh3PZ1ID93t7FlyX18ornZUSNmWM2vDfnCG8rZcNykwKIb6MdfHuaIJiM02SX/F1/nlSlrH4c7wHj3KJnEURpszLPKgeGWR79jzxzehiPJjJW+Rwo0jbqWJqgjFdP0VP2Or1hlwGn4vNfFxa64jii0yCrcy3gTJRa665Q6hY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X8z9QTrV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 548DCC4CEF1;
-	Tue, 16 Dec 2025 13:11:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765890712;
-	bh=42Q51V+DJ8mxB4c2XkCdjem/RxmNhxIK1HpVUzeDmMI=;
-	h=From:Date:Cc:To:In-Reply-To:References:Subject:From;
-	b=X8z9QTrVJZUmlEAkWh4GWVBCWEvZsvMHxe3nkMdV1ZElRVXL5LBWGe4+1hK7zLDmk
-	 4Ck6h1FHwlQoHvxdNl3iV/6x+v86yZ6GQC4yKTAxL8WaYFROFWjSIF/kWkWk9ebvJM
-	 htyimtyCz/C+MhyD1zH5Ga6jOIm57OanH5HZny9ThNlosjvXvg3BeBCJEO/6tgnh7a
-	 YqFrWDwF2kUusXGpKk7pTW+Y5Vuc6qVKfjzBpf5/IKC/dMTulDs2JxCnhIlMQnhfPZ
-	 Mu9HY+rLnpjU7gz/9GpLnz3Q7bG+XmpoIjBWs95x09OD9XTs99ZhfXCfYtdUND/c5b
-	 VBXGvlpJcWh9Q==
-From: Rob Herring <robh@kernel.org>
-Date: Tue, 16 Dec 2025 07:11:51 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AFD239A119
+	for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 13:17:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=94.100.132.221
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1765891032; cv=pass; b=gOTtaORHZjoof9R3IsvSi/0dCdL+EPlIEsp2Owk9lTxyWI+IL6W3VMuu+PzgBrjFgfmB3hPb5Ei4Hi91VLm9U2qYsUh+y3l7z43bPQ5SiFe4A/iDT/V6lmMLOnqkt9zOk5BOLW0NhpMNwzE0O3C9fw6SH5YRtf+W2xEKzkkQEOw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1765891032; c=relaxed/simple;
+	bh=zxxZrwSMySnJ+NOEKeTKxWL2NpOTHlJHW6Jdr7nLoak=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=B47ZdbwxPxJZ6TT7u+JcbAbhVf10IhBI6cUwK0xvMzbldfl/YPPmE9Ja0nfxBZIS4ue2G22Agu/e3Yfp/IZJ1uFYRp4jdkQPQSDfr2GSAkaWLCMpgbfhDVacNMokZW0/1ZSew3cLkXvLSssfJ+/ouemyf+7J+mkA5DZDj9pssSY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=KxiUSz4Z; arc=pass smtp.client-ip=94.100.132.221
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+ARC-Authentication-Results: i=1; mx-gate21-hz1.hornetsecurity.com 1; spf=pass
+ reason=mailfrom (ip=94.100.132.6, headerfrom=ew.tq-group.com)
+ smtp.mailfrom=ew.tq-group.com
+ smtp.helo=hmail-p-smtp01-out03-hz1.hornetsecurity.com; dmarc=pass
+ header.from=ew.tq-group.com orig.disposition=pass
+ARC-Message-Signature: a=rsa-sha256;
+ bh=J+XQ7ergPVCzcXY29psvIoBrucP9oMPTCH1A1rkDzxM=; c=relaxed/relaxed;
+ d=hornetsecurity.com; h=from:to:date:subject:mime-version:; i=1; s=hse1;
+ t=1765890940;
+ b=WtX2kC1g+whhfGHoyihNrm4q3KZQA2HUtgXao+dnqC0jZIUq6jNwCUQDi3suN2iFm0hg1fkj
+ zs4K2/0F+i6+bjJiyCOi5V4XJmveMoc2qtiFcW+aI2HSXN89F3OFwMM2VSpy1ada4Sm5RBzIAOr
+ neRTeaKY/8E6NEVpNpznt7J+f8p6gwWpb/+K5YipyWdUG1ZrVEONpudK7HujNTJuCG3cJvii6s4
+ LQPByurTh1Y2UI3t0ZRcmen+RAUbpbp4I1niMECEiEx8okq6rBUzAhN5/EXl9IexLC/iDQ3V+pz
+ 1N82NpMUE+kYgebsMZsN47fjwLlhXuj/faGtiDOnF1KAA==
+ARC-Seal: a=rsa-sha256; cv=none; d=hornetsecurity.com; i=1; s=hse1;
+ t=1765890940;
+ b=gav36Dyc/cLzhLDcvWcoxDyYbR1J2kJO3kmnEVVX8QEO3xlPE3vGsRhIO2v0WcudS7findme
+ pU7Fk2rv6aTN5aDvyiA+6v/rtoQY0SCJXy1Ma0EW3qdKHwu+ZKnk5mECyBinZi8kXPRdHrDC53E
+ UYm9/pkABCc3Mj1ROUs+gDCgd4X6z1RH8ymwAhLFVELpPqb9fQ5VYb4vsGxztc5HKMu1r/M66LE
+ 68Z4uX0yNMeC1wQDb02pp+bxEplw28P1BmIoLlhsr0zi3I327SNghHOX9juk/SvBV1RrCR2KcOV
+ PoTKOmYIQQq7H8/rxyW0AeCRL9OsXLsN3xDPmQ293fGyg==
+Received: from he-nlb01-hz1.hornetsecurity.com ([94.100.132.6]) by mx-relay21-hz1.antispameurope.com;
+ Tue, 16 Dec 2025 14:15:40 +0100
+Received: from steina-w.tq-net.de (host-82-135-125-110.customer.m-online.net [82.135.125.110])
+	(Authenticated sender: alexander.stein@ew.tq-group.com)
+	by hmail-p-smtp01-out03-hz1.hornetsecurity.com (Postfix) with ESMTPSA id 8B5FFCC0E8C;
+	Tue, 16 Dec 2025 14:15:33 +0100 (CET)
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
+	linux@ew.tq-group.com,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 1/1] arm64: dts: mba8mx: Fix Ethernet PHY IRQ support
+Date: Tue, 16 Dec 2025 14:15:28 +0100
+Message-ID: <20251216131529.886546-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Cc: Russell King <linux@armlinux.org.uk>, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, phone-devel@vger.kernel.org, 
- Alim Akhtar <alim.akhtar@samsung.com>, Conor Dooley <conor+dt@kernel.org>, 
- Alexandre Marquet <tb@a-marquet.fr>, linux-samsung-soc@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, Krzysztof Kozlowski <krzk@kernel.org>
-To: Lukas Timmermann <linux@timmermann.space>
-In-Reply-To: <20251215-lat3st-staging-v3-0-2e4914b64dd8@timmermann.space>
-References: <20251215-lat3st-staging-v3-0-2e4914b64dd8@timmermann.space>
-Message-Id: <176589052399.1815190.7793235081822033570.robh@kernel.org>
-Subject: Re: [PATCH v3 0/3] Add support for exynos5250-manta (Google Nexus
- 10)
+Content-Transfer-Encoding: 8bit
+X-cloud-security-sender:alexander.stein@ew.tq-group.com
+X-cloud-security-recipient:devicetree@vger.kernel.org
+X-cloud-security-crypt: load encryption module
+X-cloud-security-Mailarchiv: E-Mail archived for: alexander.stein@ew.tq-group.com
+X-cloud-security-Mailarchivtype:outbound
+X-cloud-security-Virusscan:CLEAN
+X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on mx-relay21-hz1.antispameurope.com with 4dVy921b72z41r9H
+X-cloud-security-connect: he-nlb01-hz1.hornetsecurity.com[94.100.132.6], TLS=1, IP=94.100.132.6
+X-cloud-security-Digest:0fe9136366c4b6928e5776230e78d4b0
+X-cloud-security:scantime:1.648
+DKIM-Signature: a=rsa-sha256;
+ bh=J+XQ7ergPVCzcXY29psvIoBrucP9oMPTCH1A1rkDzxM=; c=relaxed/relaxed;
+ d=ew.tq-group.com;
+ h=content-type:mime-version:subject:from:to:message-id:date; s=hse1;
+ t=1765890939; v=1;
+ b=KxiUSz4Z0Ise0USMcWC4DWjnLPt8G+f8C4a/GOP3F3yPzK/UZvcs7EYC375BkNRgh04Tzx4V
+ q3IHZcK7qULJ/0Q21qpocTjuYkj05Uix5dEQGsVfdt3fjRYvJLP0WvNJXphO/JpuVI6YPgU5BkT
+ uU13tZGVP1Ia/fQgMhRhBhm1uJ5nKtj6Kb1HQf0z6bixxn1jhgmQDCrvEh6AytNW2zawjULxCw/
+ /ZIRLpRFuGTL2ROfU9Krr7ayspQYuUpR+eE13gDhVHen9TVm7eJeNbK6XpdImhdODWnciQimPDf
+ mPSXfe6KtaKxxqem1w+hYDdIImBlxooyFwfOjdMtf+18A==
 
+Ethernet PHY interrupt mode is level triggered. Adjust the mode
+accordingly.
 
-On Mon, 15 Dec 2025 16:05:21 +0100, Lukas Timmermann wrote:
-> This patch series adds initial support for the google-manta board, known
-> as Google Nexus 10 to users. The device is powered by
-> the Exynos 5250 SoC. The bindings for the notification led are already
-> in the kernel mailing list, got recently applied and can be found here:
-> https://lore.kernel.org/linux-leds/20251125114015.355487-1-linux@timmermann.space/
-> 
-> The first two patches add the necessary device tree files and
-> bindings, while the last patch makes a small modification to
-> allow CPU1 to boot, as it requires a call to it's underlying firmware.
-> 
-> This first iteration only provides basic support to get the board
-> up and running and usable via UART and with WiFi support. We will upstream additional
-> features in future patches. All patches have been tested on real hardware.
-> 
-> Changes in v3:
->  - Added a better patch description for firmware patch. (@krzk)
->  - Reorganized nodes in DT. (@krzk)
->  - Fixed memory node to use separate entries. (@krzk)
->  - Renamed pwrseq node. (@krzk)
->  - Fixed firmware checking for old dt compatible string. (@pavel)
->  - Link to v2: https://lore.kernel.org/all/20251125-google-manta-v2-0-0f097cfff39c@timmermann.space/
-> Changes in v2:
->  - Renamed to google-manta (@krzk)
->  - Link to v1: https://lore.kernel.org/all/20251120144018.961604-2-linux@timmermann.space/
-> 
-> Signed-off-by: Lukas Timmermann <linux@timmermann.space>
-> ---
-> Alexandre Marquet (3):
->       dt-bindings: ARM: samsung: Add Google Manta (Nexus 10)
->       ARM: dts: exynos: Add Google Manta (Nexus 10)
->       ARM: samsung: exynos5250: Allow CPU1 to boot
-> 
->  .../bindings/arm/samsung/samsung-boards.yaml       |   1 +
->  arch/arm/boot/dts/samsung/Makefile                 |   1 +
->  arch/arm/boot/dts/samsung/exynos5250-manta.dts     | 511 +++++++++++++++++++++
->  arch/arm/mach-exynos/firmware.c                    |   4 +-
->  4 files changed, 515 insertions(+), 2 deletions(-)
-> ---
-> base-commit: d5f0e9098499869354aacb5b080f602f0399d396
-> change-id: 20251215-lat3st-staging-d9c926d8a75f
-> 
-> Best regards,
-> --
-> Lukas Timmermann <linux@timmermann.space>
-> 
-> 
-> 
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+---
+ arch/arm64/boot/dts/freescale/mba8mx.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
-
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
-
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-This patch series was applied (using b4) to base:
- Base: base-commit d5f0e9098499869354aacb5b080f602f0399d396 not known, ignoring
- Base: attempting to guess base-commit...
- Base: tags/next-20251215 (exact match)
- Base: tags/next-20251215 (use --merge-base to override)
-
-If this is not the correct base, please add 'base-commit' tag
-(or use b4 which does this automatically)
-
-New warnings running 'make CHECK_DTBS=y for arch/arm/boot/dts/samsung/' for 20251215-lat3st-staging-v3-0-2e4914b64dd8@timmermann.space:
-
-arch/arm/boot/dts/samsung/exynos5250-manta.dtb: /soc/i2c@12c70000/led-controller@42: failed to match any schema with compatible: ['ams,as3668']
-arch/arm/boot/dts/samsung/exynos5250-manta.dtb: rtc@101e0000 (samsung,s3c6410-rtc): clock-names: ['rtc'] is too short
-	from schema $id: http://devicetree.org/schemas/rtc/s3c-rtc.yaml
-arch/arm/boot/dts/samsung/exynos5250-manta.dtb: rtc@101e0000 (samsung,s3c6410-rtc): clocks: [[2, 337]] is too short
-	from schema $id: http://devicetree.org/schemas/rtc/s3c-rtc.yaml
-
-
-
-
+diff --git a/arch/arm64/boot/dts/freescale/mba8mx.dtsi b/arch/arm64/boot/dts/freescale/mba8mx.dtsi
+index 225cd2f1220bf..10d5c211b1c9b 100644
+--- a/arch/arm64/boot/dts/freescale/mba8mx.dtsi
++++ b/arch/arm64/boot/dts/freescale/mba8mx.dtsi
+@@ -192,7 +192,7 @@ ethphy0: ethernet-phy@e {
+ 			reset-assert-us = <500000>;
+ 			reset-deassert-us = <500>;
+ 			interrupt-parent = <&expander2>;
+-			interrupts = <6 IRQ_TYPE_EDGE_FALLING>;
++			interrupts = <6 IRQ_TYPE_LEVEL_LOW>;
+ 		};
+ 	};
+ };
+-- 
+2.43.0
 
 
