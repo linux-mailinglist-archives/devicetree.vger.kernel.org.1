@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-247031-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247032-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94731CC33B1
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 14:30:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 87C60CC3884
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 15:23:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id F291F30343C6
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 13:24:42 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7A49030BF233
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 14:18:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA0AF350A24;
-	Tue, 16 Dec 2025 13:11:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B1FF35971D;
+	Tue, 16 Dec 2025 13:11:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fFwjwqyl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X8z9QTrV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89538354AF1;
-	Tue, 16 Dec 2025 13:11:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF47E3596EE;
+	Tue, 16 Dec 2025 13:11:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765890711; cv=none; b=JJqjVcrzVs6ePmYLduXmlxXfnRcZNuN0e89qpUznwgkDPFJjFeqn3DZV3e2pdY4I/B+RgMHli6ReqCEZZkb0za/mqCIUgP38fP/PQzSYY7TkWxFRn3XytXs9fllG6I7M+3pEXFGU6q457V8W8/fOATc9Mp1YGcxGL4ropPps7rE=
+	t=1765890714; cv=none; b=ZVF9ivcLAGz+2sQUhdEKT2aVJJaq6tTFf8wbDwc2AxzHSqZ/L0HNePrRbmba1PDul1gWr54hz+Gr/MXqhGu5JbP2w+Hayh90lkwn9euiPYSq2tepnlFaN4VjclTTIXRvc6vJq0zM3T1twaUIA/W6kFXmjx7qQX60pR61PUgotlY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765890711; c=relaxed/simple;
-	bh=uK7rtQd0fuH8HIq2iyTTKTpcKJsEkMoXU53XE1O8rzg=;
+	s=arc-20240116; t=1765890714; c=relaxed/simple;
+	bh=42Q51V+DJ8mxB4c2XkCdjem/RxmNhxIK1HpVUzeDmMI=;
 	h=From:Date:Content-Type:MIME-Version:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=WjqNvnPVSnnLYiNDt9GKiqMAKsWDOG/gLl3KPDJ8QB7RZCSLCzVw1Z6uGsIVJrJKVreTbmuj7Kx7qRtlcKRDF6le3uEkRXGbxKKR7iHhCIHBTZ7EQqDQ9Jn1go3aD7Zm0KsRDqI/fv5sK2ufufz8docbp0UhoOQH0To2SvwJUOw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fFwjwqyl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB05BC19423;
-	Tue, 16 Dec 2025 13:11:50 +0000 (UTC)
+	 Message-Id:Subject; b=aBTnh3PZ1ID93t7FlyX18ornZUSNmWM2vDfnCG8rZcNykwKIb6MdfHuaIJiM02SX/F1/nlSlrH4c7wHj3KJnEURpszLPKgeGWR79jzxzehiPJjJW+Rwo0jbqWJqgjFdP0VP2Or1hlwGn4vNfFxa64jii0yCrcy3gTJRa665Q6hY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X8z9QTrV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 548DCC4CEF1;
+	Tue, 16 Dec 2025 13:11:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765890711;
-	bh=uK7rtQd0fuH8HIq2iyTTKTpcKJsEkMoXU53XE1O8rzg=;
+	s=k20201202; t=1765890712;
+	bh=42Q51V+DJ8mxB4c2XkCdjem/RxmNhxIK1HpVUzeDmMI=;
 	h=From:Date:Cc:To:In-Reply-To:References:Subject:From;
-	b=fFwjwqyl4XciRQVPx8XogJowdRcsdYKb/ioKdv1BlYgi1o+jrg3aT4TAjJOxcokcI
-	 QsSoL7E/aTwp0Xx89fUuxiHPnEWOL+3YP75h9bjRELSdSMWlSEQ92eq4Dd4ceSznxM
-	 FA0++iF6bDiu+t9pjncqus1HTUPK3svYbIJYzU9lKuMSr/WEguQljrDJAZRNzhNg42
-	 v7hCHoWhSvks4wsNhavYOp/zj1CynIbu8P4b+tzQRYE66RX9T0NwB8sBSiXWwnDEBo
-	 MIlWjd8LzSrypRzNesJoMN6k5blOrxuig+/T5bgwizw08Jd3RqQ5mQlMx9Ug7dba8M
-	 js45kMZa3qkiw==
+	b=X8z9QTrVJZUmlEAkWh4GWVBCWEvZsvMHxe3nkMdV1ZElRVXL5LBWGe4+1hK7zLDmk
+	 4Ck6h1FHwlQoHvxdNl3iV/6x+v86yZ6GQC4yKTAxL8WaYFROFWjSIF/kWkWk9ebvJM
+	 htyimtyCz/C+MhyD1zH5Ga6jOIm57OanH5HZny9ThNlosjvXvg3BeBCJEO/6tgnh7a
+	 YqFrWDwF2kUusXGpKk7pTW+Y5Vuc6qVKfjzBpf5/IKC/dMTulDs2JxCnhIlMQnhfPZ
+	 Mu9HY+rLnpjU7gz/9GpLnz3Q7bG+XmpoIjBWs95x09OD9XTs99ZhfXCfYtdUND/c5b
+	 VBXGvlpJcWh9Q==
 From: Rob Herring <robh@kernel.org>
-Date: Tue, 16 Dec 2025 07:11:49 -0600
+Date: Tue, 16 Dec 2025 07:11:51 -0600
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -49,46 +49,66 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Cc: netdev@vger.kernel.org, linusw@kernel.org, vkoul@kernel.org, 
- pabeni@redhat.com, jirislaby@kernel.org, lars.povlsen@microchip.com, 
- linux-arm-kernel@lists.infradead.org, claudiu.beznea@tuxon.dev, 
- kuba@kernel.org, mturquette@baylibre.com, Steen.Hegelund@microchip.com, 
- mwalle@kernel.org, tudor.ambarus@linaro.org, devicetree@vger.kernel.org, 
- UNGLinuxDriver@microchip.com, edumazet@google.com, 
- linux-clk@vger.kernel.org, andi.shyti@kernel.org, olivia@selenic.com, 
- conor+dt@kernel.org, luka.perkov@sartura.hr, richard.genoud@bootlin.com, 
- linux-hwmon@vger.kernel.org, krzk+dt@kernel.org, 
- wsa+renesas@sang-engineering.com, Ryan.Wanner@microchip.com, 
- linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, 
- alexandre.belloni@bootlin.com, lee@kernel.org, linux@roeck-us.net, 
- davem@davemloft.net, gregkh@linuxfoundation.org, 
- kavyasree.kotagiri@microchip.com, nicolas.ferre@microchip.com, 
- andrew+netdev@lunn.ch, romain.sioen@microchip.com, sboyd@kernel.org, 
- linux-gpio@vger.kernel.org, linux-spi@vger.kernel.org, 
- linux-serial@vger.kernel.org, daniel.machon@microchip.com, 
- dmaengine@vger.kernel.org, richardcochran@gmail.com, 
- herbert@gondor.apana.org.au, charan.pedumuru@microchip.com, 
- linux-crypto@vger.kernel.org, linux-i2c@vger.kernel.org, 
- radu_nicolae.pirea@upb.ro
-To: Robert Marko <robert.marko@sartura.hr>
-In-Reply-To: <20251215163820.1584926-1-robert.marko@sartura.hr>
-References: <20251215163820.1584926-1-robert.marko@sartura.hr>
-Message-Id: <176589052274.1815136.7513475493879599819.robh@kernel.org>
-Subject: Re: [PATCH v2 01/19] include: dt-bindings: add LAN969x clock
- bindings
+Cc: Russell King <linux@armlinux.org.uk>, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, phone-devel@vger.kernel.org, 
+ Alim Akhtar <alim.akhtar@samsung.com>, Conor Dooley <conor+dt@kernel.org>, 
+ Alexandre Marquet <tb@a-marquet.fr>, linux-samsung-soc@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, Krzysztof Kozlowski <krzk@kernel.org>
+To: Lukas Timmermann <linux@timmermann.space>
+In-Reply-To: <20251215-lat3st-staging-v3-0-2e4914b64dd8@timmermann.space>
+References: <20251215-lat3st-staging-v3-0-2e4914b64dd8@timmermann.space>
+Message-Id: <176589052399.1815190.7793235081822033570.robh@kernel.org>
+Subject: Re: [PATCH v3 0/3] Add support for exynos5250-manta (Google Nexus
+ 10)
 
 
-On Mon, 15 Dec 2025 17:35:18 +0100, Robert Marko wrote:
-> Add the required LAN969x clock bindings.
+On Mon, 15 Dec 2025 16:05:21 +0100, Lukas Timmermann wrote:
+> This patch series adds initial support for the google-manta board, known
+> as Google Nexus 10 to users. The device is powered by
+> the Exynos 5250 SoC. The bindings for the notification led are already
+> in the kernel mailing list, got recently applied and can be found here:
+> https://lore.kernel.org/linux-leds/20251125114015.355487-1-linux@timmermann.space/
 > 
-> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
-> ---
+> The first two patches add the necessary device tree files and
+> bindings, while the last patch makes a small modification to
+> allow CPU1 to boot, as it requires a call to it's underlying firmware.
+> 
+> This first iteration only provides basic support to get the board
+> up and running and usable via UART and with WiFi support. We will upstream additional
+> features in future patches. All patches have been tested on real hardware.
+> 
+> Changes in v3:
+>  - Added a better patch description for firmware patch. (@krzk)
+>  - Reorganized nodes in DT. (@krzk)
+>  - Fixed memory node to use separate entries. (@krzk)
+>  - Renamed pwrseq node. (@krzk)
+>  - Fixed firmware checking for old dt compatible string. (@pavel)
+>  - Link to v2: https://lore.kernel.org/all/20251125-google-manta-v2-0-0f097cfff39c@timmermann.space/
 > Changes in v2:
-> * Rename file to microchip,lan9691.h
+>  - Renamed to google-manta (@krzk)
+>  - Link to v1: https://lore.kernel.org/all/20251120144018.961604-2-linux@timmermann.space/
 > 
->  include/dt-bindings/clock/microchip,lan9691.h | 24 +++++++++++++++++++
->  1 file changed, 24 insertions(+)
->  create mode 100644 include/dt-bindings/clock/microchip,lan9691.h
+> Signed-off-by: Lukas Timmermann <linux@timmermann.space>
+> ---
+> Alexandre Marquet (3):
+>       dt-bindings: ARM: samsung: Add Google Manta (Nexus 10)
+>       ARM: dts: exynos: Add Google Manta (Nexus 10)
+>       ARM: samsung: exynos5250: Allow CPU1 to boot
+> 
+>  .../bindings/arm/samsung/samsung-boards.yaml       |   1 +
+>  arch/arm/boot/dts/samsung/Makefile                 |   1 +
+>  arch/arm/boot/dts/samsung/exynos5250-manta.dts     | 511 +++++++++++++++++++++
+>  arch/arm/mach-exynos/firmware.c                    |   4 +-
+>  4 files changed, 515 insertions(+), 2 deletions(-)
+> ---
+> base-commit: d5f0e9098499869354aacb5b080f602f0399d396
+> change-id: 20251215-lat3st-staging-d9c926d8a75f
+> 
+> Best regards,
+> --
+> Lukas Timmermann <linux@timmermann.space>
+> 
+> 
 > 
 
 
@@ -107,25 +127,21 @@ make sure dt-schema is up to date:
 
 
 This patch series was applied (using b4) to base:
+ Base: base-commit d5f0e9098499869354aacb5b080f602f0399d396 not known, ignoring
  Base: attempting to guess base-commit...
- Base: tags/next-20251215 (best guess, 14/15 blobs matched)
+ Base: tags/next-20251215 (exact match)
  Base: tags/next-20251215 (use --merge-base to override)
 
 If this is not the correct base, please add 'base-commit' tag
 (or use b4 which does this automatically)
 
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/microchip/' for 20251215163820.1584926-1-robert.marko@sartura.hr:
+New warnings running 'make CHECK_DTBS=y for arch/arm/boot/dts/samsung/' for 20251215-lat3st-staging-v3-0-2e4914b64dd8@timmermann.space:
 
-arch/arm64/boot/dts/microchip/sparx5_pcb135_emmc.dtb: / (microchip,sparx5-pcb135): compatible: ['microchip,sparx5-pcb135', 'microchip,sparx5'] is valid under each of {'items': [{'const': 'microchip,sparx5-pcb135'}, {'const': 'microchip,sparx5'}], 'maxItems': 2, 'minItems': 2, 'type': 'array'}, {}
-	from schema $id: http://devicetree.org/schemas/arm/microchip.yaml
-arch/arm64/boot/dts/microchip/sparx5_pcb135.dtb: / (microchip,sparx5-pcb135): compatible: ['microchip,sparx5-pcb135', 'microchip,sparx5'] is valid under each of {'items': [{'const': 'microchip,sparx5-pcb135'}, {'const': 'microchip,sparx5'}], 'maxItems': 2, 'minItems': 2, 'type': 'array'}, {}
-	from schema $id: http://devicetree.org/schemas/arm/microchip.yaml
-arch/arm64/boot/dts/microchip/sparx5_pcb134.dtb: / (microchip,sparx5-pcb134): compatible: ['microchip,sparx5-pcb134', 'microchip,sparx5'] is valid under each of {'items': [{'const': 'microchip,sparx5-pcb134'}, {'const': 'microchip,sparx5'}], 'maxItems': 2, 'minItems': 2, 'type': 'array'}, {}
-	from schema $id: http://devicetree.org/schemas/arm/microchip.yaml
-arch/arm64/boot/dts/microchip/sparx5_pcb134_emmc.dtb: / (microchip,sparx5-pcb134): compatible: ['microchip,sparx5-pcb134', 'microchip,sparx5'] is valid under each of {'items': [{'const': 'microchip,sparx5-pcb134'}, {'const': 'microchip,sparx5'}], 'maxItems': 2, 'minItems': 2, 'type': 'array'}, {}
-	from schema $id: http://devicetree.org/schemas/arm/microchip.yaml
-arch/arm64/boot/dts/microchip/sparx5_pcb125.dtb: / (microchip,sparx5-pcb125): compatible: ['microchip,sparx5-pcb125', 'microchip,sparx5'] is valid under each of {'items': [{'const': 'microchip,sparx5-pcb125'}, {'const': 'microchip,sparx5'}], 'maxItems': 2, 'minItems': 2, 'type': 'array'}, {}
-	from schema $id: http://devicetree.org/schemas/arm/microchip.yaml
+arch/arm/boot/dts/samsung/exynos5250-manta.dtb: /soc/i2c@12c70000/led-controller@42: failed to match any schema with compatible: ['ams,as3668']
+arch/arm/boot/dts/samsung/exynos5250-manta.dtb: rtc@101e0000 (samsung,s3c6410-rtc): clock-names: ['rtc'] is too short
+	from schema $id: http://devicetree.org/schemas/rtc/s3c-rtc.yaml
+arch/arm/boot/dts/samsung/exynos5250-manta.dtb: rtc@101e0000 (samsung,s3c6410-rtc): clocks: [[2, 337]] is too short
+	from schema $id: http://devicetree.org/schemas/rtc/s3c-rtc.yaml
 
 
 
