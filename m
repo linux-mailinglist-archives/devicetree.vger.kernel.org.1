@@ -1,123 +1,117 @@
-Return-Path: <devicetree+bounces-247157-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247158-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F30FDCC4F4B
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 19:53:19 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D93CCC4FD0
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 20:13:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 76D9F3030FD0
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 18:53:06 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D1B46302D90B
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 19:12:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B01BB33D6DF;
-	Tue, 16 Dec 2025 18:53:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DA84334C2D;
+	Tue, 16 Dec 2025 19:12:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TzAUPjSW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M5obNDte"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62E552652B7;
-	Tue, 16 Dec 2025 18:53:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D890B272E54;
+	Tue, 16 Dec 2025 19:12:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765911184; cv=none; b=jzmQDeV1eV0FjRaEsLd1TIE5L/2Nw8Nm2ZjN4UNEn3zG77m8+PwGHRRwQULfDxzTSxqTpDOoGfB4ptXtewT1dkv4/5BRU1xMQDL7cJG/eNURxdnh0Cvq8vr2J24XqDdP4e67DeR7krrk5uGfPJ9gHsp4+kHZBM+GG4libll/e28=
+	t=1765912369; cv=none; b=KoeZVKIYDAJgWgb+msfSj1+26gqow+78zDupT9mGNrIT9GUp2MNm550Qprv/7fzc46rB7vHSJCWz05UlFSccKd5n7z038PhyvVOhtZoGidRw5YHBIUKsaWOc77IZpSVFtdFzv0Xf9BTpGOzcWwizP0RiVfHGVckosSv6kutRXRM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765911184; c=relaxed/simple;
-	bh=V72KZIkvRJxTqzRbnLjRwswTaHH6wcpmi2d+xQOkaQ8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HA7ibdS6HPJu9AxTvEHlIsj2JoSYYRGtRJJ8r2Ju9+6scQdq+ZgiOD6wv64As4KHfog5dj+Ub3sW3wB5G2SrxReZgjFFMHvyczbESkXF767d5oxW8SAFFzP3oO6zVI6TJSxha3rTrkbbEqhFQLxFyUriM7sJJc+xozhzTG5FTPY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TzAUPjSW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE011C4CEF1;
-	Tue, 16 Dec 2025 18:52:54 +0000 (UTC)
+	s=arc-20240116; t=1765912369; c=relaxed/simple;
+	bh=lZ1L36MMIvqC3ItTAU11Z5ZidG2aFDbgBmoFw5G5xis=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=kihes6y8w/j3OBq5nRMn1CtDsk7vvDE+f5t8PafcGO3PfTOfb3gj9G0UE/8YFuTS8hoU4aoG6zGq675xlNN+vbU8csvZsGCHZ/rLYaHdeaqeln7NBWLoeEYsMRZJaaTiUkZ4n3dzRHUIsn4XbSfiWO7gEXK5MqkXBkaONlRoP58=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M5obNDte; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 353A2C4CEF1;
+	Tue, 16 Dec 2025 19:12:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765911183;
-	bh=V72KZIkvRJxTqzRbnLjRwswTaHH6wcpmi2d+xQOkaQ8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TzAUPjSW1CSsiObqjSMX67ja4VWZr2wKq1Z78pd+ElLow0iLJhg0Y/a6hFpwoaKsP
-	 /p4DtUPm6jT2ZzSWQmF6hnJz7joEO+l5Caauglhhe/LcV341yHqgxkRRq6/JhwhNwG
-	 8JGLMJJghiOG/uZUOlinlzwYMyH5OKdW1H3El0MiKvEZ5VglXADnsTj0gy+sRjdbi0
-	 7Xryg/W26d8Mt/1Re/0iFMOpqXKyMyFwC1Pz7cu9urLqrCBnRep63sORbUvWNyIi4W
-	 TdLORrw6IC9obpGp+VjFh5X4Fv4j/ecLEuxrDd1/hP9lwp/EmsJhbvrEmz5hXTBGKD
-	 pRawtF4SfVH1g==
-Date: Tue, 16 Dec 2025 18:52:52 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Robert Marko <robert.marko@sartura.hr>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org,
-	nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
-	claudiu.beznea@tuxon.dev, Steen.Hegelund@microchip.com,
-	daniel.machon@microchip.com, UNGLinuxDriver@microchip.com,
-	herbert@gondor.apana.org.au, davem@davemloft.net, vkoul@kernel.org,
-	linux@roeck-us.net, andi.shyti@kernel.org, lee@kernel.org,
-	andrew+netdev@lunn.ch, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, linusw@kernel.org, olivia@selenic.com,
-	radu_nicolae.pirea@upb.ro, richard.genoud@bootlin.com,
-	gregkh@linuxfoundation.org, jirislaby@kernel.org,
-	mturquette@baylibre.com, sboyd@kernel.org, richardcochran@gmail.com,
-	wsa+renesas@sang-engineering.com, romain.sioen@microchip.com,
-	Ryan.Wanner@microchip.com, lars.povlsen@microchip.com,
-	tudor.ambarus@linaro.org, charan.pedumuru@microchip.com,
-	kavyasree.kotagiri@microchip.com, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-crypto@vger.kernel.org, dmaengine@vger.kernel.org,
-	linux-hwmon@vger.kernel.org, linux-i2c@vger.kernel.org,
-	netdev@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-spi@vger.kernel.org, linux-serial@vger.kernel.org,
-	linux-usb@vger.kernel.org, linux-clk@vger.kernel.org,
-	mwalle@kernel.org, luka.perkov@sartura.hr
-Subject: Re: [PATCH v2 03/19] dt-bindings: arm: AT91: relicense to dual
- GPL-2.0/BSD-2-Clause
-Message-ID: <20251216-dictation-flatbed-adb40e164970@spud>
-References: <20251215163820.1584926-1-robert.marko@sartura.hr>
- <20251215163820.1584926-3-robert.marko@sartura.hr>
- <d9665340-5a96-4105-88e9-ec14a715df5a@kernel.org>
- <CA+HBbNF2EeP=miC9GpEm2HpPTmZAefV2fwxKjm0vHB6tj_1usQ@mail.gmail.com>
+	s=k20201202; t=1765912369;
+	bh=lZ1L36MMIvqC3ItTAU11Z5ZidG2aFDbgBmoFw5G5xis=;
+	h=From:To:Cc:Subject:Date:From;
+	b=M5obNDteU4o4mV8OFBa77Oiq9OosbnLYuPXvNuf/t2eZ5LnDMYbp0k/NA+X1Nd1uZ
+	 4jQ6S60XdmhsZAfHWvJrcol4iA51yqLNhcgEV6CjfWmnt148IxJhYMf88n+JB02GUG
+	 w7Z0kgXNKmBkT5/pFpd+MUL2H6VDFex0veX4kmPAi+GTM7h2xNvDU6GDBAD8fAV46G
+	 +z64gtwrmsaGqf+rSBHLeaAvV2VP153wzq0deDtxs50FtccrqXnq1z3ngsYZcQubyC
+	 G0mtPXAC7Sihk4D2nBjXBHLwCsrrNc2jkrLC23r1cyimf0cAgjVfQEwoFwmaYPFNhU
+	 Ct9a3Pp2ib5sQ==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: soc@kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liviu Dudau <liviu.dudau@arm.com>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>
+Cc: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] ARM: dts: vexpress/v2m-rs1: Use documented arm,vexpress,config-bus child node names
+Date: Tue, 16 Dec 2025 13:12:12 -0600
+Message-ID: <20251216191212.2879226-2-robh@kernel.org>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="HEeirbPNqgZXqmm8"
-Content-Disposition: inline
-In-Reply-To: <CA+HBbNF2EeP=miC9GpEm2HpPTmZAefV2fwxKjm0vHB6tj_1usQ@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
 
+Update the arm,vexpress,config-bus child node names to use the
+documented ones. Most of these were updated a while back, but I missed
+these.
 
---HEeirbPNqgZXqmm8
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+---
+SoC maintainers may want to take this directly?
 
-On Tue, Dec 16, 2025 at 06:02:57PM +0100, Robert Marko wrote:
-> On Tue, Dec 16, 2025 at 4:55=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.=
-org> wrote:
-> >
-> > On 15/12/2025 17:35, Robert Marko wrote:
-> > > As it is preferred to have bindings dual licensed, lets relicense the=
- AT91
-> > > bindings from GPL-2.0 only to GPL-2.0/BSD-2 Clause.
-> > >
-> > > Signed-off-by: Robert Marko <robert.marko@sartura.hr>
-> >
-> > You need all contributors to ack this...
->=20
-> I understand, all of the contributors were CC-ed.
+ arch/arm/boot/dts/arm/vexpress-v2m-rs1.dtsi | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-I pointed it out last time, but for Krzysztof's sake there's only two
-(Wolfram and Michael) that I am not aware of having stated that their
-binding contributions can be converted to dual license.
+diff --git a/arch/arm/boot/dts/arm/vexpress-v2m-rs1.dtsi b/arch/arm/boot/dts/arm/vexpress-v2m-rs1.dtsi
+index 158b3923eae3..248b8e492d43 100644
+--- a/arch/arm/boot/dts/arm/vexpress-v2m-rs1.dtsi
++++ b/arch/arm/boot/dts/arm/vexpress-v2m-rs1.dtsi
+@@ -420,7 +420,7 @@ mcc {
+ 					compatible = "arm,vexpress,config-bus";
+ 					arm,vexpress,config-bridge = <&v2m_sysreg>;
+ 
+-					oscclk0 {
++					clock-controller-0 {
+ 						/* MCC static memory clock */
+ 						compatible = "arm,vexpress-osc";
+ 						arm,vexpress-sysreg,func = <1 0>;
+@@ -429,7 +429,7 @@ oscclk0 {
+ 						clock-output-names = "v2m:oscclk0";
+ 					};
+ 
+-					v2m_oscclk1: oscclk1 {
++					v2m_oscclk1: clock-controller-1 {
+ 						/* CLCD clock */
+ 						compatible = "arm,vexpress-osc";
+ 						arm,vexpress-sysreg,func = <1 1>;
+@@ -438,7 +438,7 @@ v2m_oscclk1: oscclk1 {
+ 						clock-output-names = "v2m:oscclk1";
+ 					};
+ 
+-					v2m_oscclk2: oscclk2 {
++					v2m_oscclk2: clock-controller-2 {
+ 						/* IO FPGA peripheral clock */
+ 						compatible = "arm,vexpress-osc";
+ 						arm,vexpress-sysreg,func = <1 2>;
+@@ -447,7 +447,7 @@ v2m_oscclk2: oscclk2 {
+ 						clock-output-names = "v2m:oscclk2";
+ 					};
+ 
+-					volt-vio {
++					regulator-vio {
+ 						/* Logic level voltage */
+ 						compatible = "arm,vexpress-volt";
+ 						arm,vexpress-sysreg,func = <2 0>;
+-- 
+2.51.0
 
---HEeirbPNqgZXqmm8
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaUGqhAAKCRB4tDGHoIJi
-0jwWAQCZik4ZGOhimmWnpw0y4lz1SWuwmfJxq6ZgMB0P8RvK6gD8CE4M0v/QTsRw
-ssYPM7Vn9Y7M6VvaNEs2U68pR1Fp4Q8=
-=NxNo
------END PGP SIGNATURE-----
-
---HEeirbPNqgZXqmm8--
 
