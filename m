@@ -1,206 +1,333 @@
-Return-Path: <devicetree+bounces-247088-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247089-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD860CC415E
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 16:58:06 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id AEC88CC4101
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 16:52:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D6C6930A5133
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 15:50:44 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 5F0D73005F11
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 15:52:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18B7A325487;
-	Tue, 16 Dec 2025 15:50:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE3D92F1FFA;
+	Tue, 16 Dec 2025 15:52:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b="hPhGTx9F"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ADm1V8T6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [208.88.110.44])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ADAD325701;
-	Tue, 16 Dec 2025 15:50:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=208.88.110.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DF0723FC5A;
+	Tue, 16 Dec 2025 15:52:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765900206; cv=none; b=gc3zGJMQ48zZMaO+el38j1aNm1TN3Ze632uwGZ01v2jYwL+dBH8yNy26uHLH4qozuAq7VPhhXJdOjd+G466v5wGWwznGr5ztlANSVLT8szO5oHTM2w0zbybffYgarnZn7Dt8t3O7RrjQNcGxEGMplTt/4qTYIvCIcHyYbq2lWac=
+	t=1765900333; cv=none; b=S3WTIsj3nlUBDmRBbr6xZxsu/wSjFVOTAWw20UGS1OtGJ8q/g64oJnlLw5J43t8vZmS0jFnSfXybLK7zX+SrhVXUcgpPhUaDUgG8s+gxKq+wfKOmzk8OrXlZKXI/LiRl9NlH4Gt5n2MLU7bicquYlpMqd/hClWofgXGoPeEiPno=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765900206; c=relaxed/simple;
-	bh=1IpInUbDNJx8nZem6F0+q1Ev+HyMJkkagkl5ZTSg3EM=;
-	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
-	 MIME-Version:Content-Type; b=jmJbj4j+QTwd/6NAhW6BKEVfKDsuKNpr0ZeCJXJyz6n1m8f5aD7FjOZhgayrA6MoFtuhWnbEeELEqe3c/j1MJex+lZwkKVFc1nWzdzpfKVYyJ3NMX4fWs6nRRiMMRCDQZmFZhS3w/7h/WzgYQmxIHLkH37ZClJlOw1L6APKFb8g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com; spf=pass smtp.mailfrom=savoirfairelinux.com; dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b=hPhGTx9F; arc=none smtp.client-ip=208.88.110.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=savoirfairelinux.com
-Received: from localhost (localhost [127.0.0.1])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id 9B9113D8537E;
-	Tue, 16 Dec 2025 10:50:02 -0500 (EST)
-Received: from mail.savoirfairelinux.com ([127.0.0.1])
- by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10032)
- with ESMTP id q2q0nCE-1inL; Tue, 16 Dec 2025 10:50:01 -0500 (EST)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id 41FB53D85148;
-	Tue, 16 Dec 2025 10:50:01 -0500 (EST)
-DKIM-Filter: OpenDKIM Filter v2.10.3 mail.savoirfairelinux.com 41FB53D85148
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=savoirfairelinux.com; s=DFC430D2-D198-11EC-948E-34200CB392D2;
-	t=1765900201; bh=1fDN+55XoAP+Yu3gl4HXDedXtkgRxsC8J7LSRYb/rLA=;
-	h=Date:From:To:Message-ID:MIME-Version;
-	b=hPhGTx9Fb6hb5s0iC5L43SEVv0m9TYmMpTwfCA90jESGT9t3lVg/zQVzXOND/waJt
-	 O647w7mIHgUXWd+BlzqaIRqaQGZ3QwrPJjuGiF+2shh8g3BI9j39T8hPuMJqtnuUbe
-	 N+aGvDztZLyUpjkwi3umsVY3iQl5uTmTD7cUa3bWbtPVNe2HRhh46KDia6NFxFf7h3
-	 QLWYW4rNMfwFO8q75FczXp3RtjyzAJprXmkIRAby7obreKeiQz1oCcb60K+bx/oi7O
-	 DoPl/0oN3ZZKAmckcvCegQ4GOwYcp8/gd+lx5dB2iKNhNdFItdOnW2fZMDQ4QjJ+9f
-	 m1clbUNQk/AtA==
-X-Virus-Scanned: amavis at mail.savoirfairelinux.com
-Received: from mail.savoirfairelinux.com ([127.0.0.1])
- by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10026)
- with ESMTP id XjzIYE5vKPso; Tue, 16 Dec 2025 10:50:01 -0500 (EST)
-Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [192.168.48.237])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id E93243D8482F;
-	Tue, 16 Dec 2025 10:50:00 -0500 (EST)
-Date: Tue, 16 Dec 2025 10:50:00 -0500 (EST)
-From: Osose Itua <osose.itua@savoirfairelinux.com>
-To: netdev <netdev@vger.kernel.org>
-Cc: devicetree <devicetree@vger.kernel.org>, 
-	linux-kernel <linux-kernel@vger.kernel.org>, 
-	Michael Hennerich <michael.hennerich@analog.com>, 
-	=?utf-8?Q?J=C3=A9rome?= Oufella <jerome.oufella@savoirfairelinux.com>
-Message-ID: <933810763.1512847.1765900200898.JavaMail.zimbra@savoirfairelinux.com>
-In-Reply-To: <1695319092.1512780.1765900119201.JavaMail.zimbra@savoirfairelinux.com>
-References: <1695319092.1512780.1765900119201.JavaMail.zimbra@savoirfairelinux.com>
-Subject: Re: [PATCH 2/2] dt-bindings: net: adi,adin: document LP termination
-  property
+	s=arc-20240116; t=1765900333; c=relaxed/simple;
+	bh=K8pZtvebClu3B/cJuAfF0UnhnnGQopgoSPsXHN/hcN8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=riU+vxEs1eRLlG60ZFzCrKWBgkNTF2Rw+LnsjgnjhxWSP0zH6pcPJRNsczc3moZvt/QOE6jmnWV1FHXiP7yadJw/XBK3ZxGOmDJDmbXy5QnGunWp7ilcf7kJKf4YG8+Krl0G6Yeua6+KDpl3fiBDJKbsiCSLmXcI/8BQl0+1CUY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ADm1V8T6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64FD6C4CEF1;
+	Tue, 16 Dec 2025 15:52:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1765900333;
+	bh=K8pZtvebClu3B/cJuAfF0UnhnnGQopgoSPsXHN/hcN8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ADm1V8T6S680/QK1LgaeuPNCbzu+pEz9pr6PGcj1DSxaCmr6RYUW+b03qAR10f/FR
+	 mu2p/7qoL3HDi+ioNVeF6d3WhM2nHoAc5cWPcIOjkOLQ1WIq5Nofzn7jh50onjzB4/
+	 Pv70wePghtuP3vjMYzYJeV6ifIoRHoB3E4khxht++oiAFhGymRYAOGnnyz7IVbw/TN
+	 T3nVumGYv9GT3QKOoHS9tGx3kfEQEdVpKsCgbN9BQwTi01cUH78pVxHekZaPHOUDS/
+	 DN0AOUad+zb2cyqHNzK9UbtOj4RJkiF+S10m8wfhwjS5KZ6YVUkfTMIDg8eYP68I8a
+	 hiy56zaTCAdTQ==
+Message-ID: <5154ca76-0f23-4b52-8e6d-07005c52ac6d@kernel.org>
+Date: Tue, 16 Dec 2025 16:52:08 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Zimbra 10.1.6_GA_0225 (ZimbraWebClient - GC141 (Linux)/10.1.6_GA_0225)
-Thread-Topic: dt-bindings: net: adi,adin: document LP termination property
-Thread-Index: hGdGaIZ/TEW52TQsSs5ZKvo3NMSZH0RrUopj
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 6/7] dt-bindings: pinctrl: rockchip: Add RMIO
+ controller binding
+To: Ye Zhang <ye.zhang@rock-chips.com>,
+ Linus Walleij <linus.walleij@linaro.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ tao.huang@rock-chips.com
+References: <20251216112053.1927852-1-ye.zhang@rock-chips.com>
+ <20251216112053.1927852-7-ye.zhang@rock-chips.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20251216112053.1927852-7-ye.zhang@rock-chips.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From 4b4409504fd41c81c7150ae1d88bc0ca755e6ace Mon Sep 17 00:00:00 2001
-From: Osose Itua <osose.itua@savoirfairelinux.com>
-Date: Mon, 15 Dec 2025 17:59:38 -0500
-Subject: [PATCH 2/2] dt-bindings: net: adi,adin: document LP termination
- property
+On 16/12/2025 12:20, Ye Zhang wrote:
+> 1. Add header file with constants for RMIO function IDs for the Rockchip
+> RK3506 SoC.
+> 2. Add device tree binding for the RMIO (Rockchip Matrix I/O) controller
+> which is a sub-device of the main pinctrl on some Rockchip SoCs.
+> 
+> Signed-off-by: Ye Zhang <ye.zhang@rock-chips.com>
+> ---
+>  .../bindings/pinctrl/rockchip,pinctrl.yaml    |   9 ++
+>  .../bindings/pinctrl/rockchip,rmio.yaml       | 106 +++++++++++++++++
+>  .../pinctrl/rockchip,rk3506-rmio.h            | 109 ++++++++++++++++++
+>  3 files changed, 224 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/rockchip,rmio.yaml
+>  create mode 100644 include/dt-bindings/pinctrl/rockchip,rk3506-rmio.h
+> 
+> diff --git a/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml
+> index 97960245676d..9a27eaf7942b 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml
+> @@ -82,6 +82,15 @@ required:
+>    - rockchip,grf
+>  
+>  patternProperties:
+> +  "rmio[0-9]*$":
+> +    type: object
+> +
+> +    $ref: "/schemas/pinctrl/rockchip,rmio.yaml#"
+> +
+> +    description:
+> +      The RMIO (Rockchip Matrix I/O) controller node which functions as a
+> +      sub-device of the main pinctrl to handle flexible function routing.
 
-Add "adi,low-cmode-impedance" boolean property which, when present,
-configures the PHY for the lowest common-mode impedance on the receive
-pair for 100BASE-TX operation.
+No. Your child has no resources, so it's not proper hardware
+representation. Don't use Linux driver model in the bindings.
 
-Signed-off-by: Osose Itua <osose.itua@savoirfairelinux.com>
----
- Documentation/devicetree/bindings/net/adi,adin.yaml | 6 ++++++
- 1 file changed, 6 insertions(+)
+That's a NAK. Don't send the same AGAIN without addressing comments like
+you did here.
 
-diff --git a/Documentation/devicetree/bindings/net/adi,adin.yaml b/Document=
-ation/devicetree/bindings/net/adi,adin.yaml
-index c425a9f1886d..d3c8c5cc4bb1 100644
---- a/Documentation/devicetree/bindings/net/adi,adin.yaml
-+++ b/Documentation/devicetree/bindings/net/adi,adin.yaml
-@@ -52,6 +52,12 @@ properties:
-     description: Enable 25MHz reference clock output on CLK25_REF pin.
-     type: boolean
-=20
-+  adi,low-cmode-impedance:
-+    description: |
-+      Ability to configure for the lowest common-mode impedance on the
-+      receive pair for 100BASE-TX.
-+    type: boolean
-+
- unevaluatedProperties: false
-=20
- examples:
+> +
+>    "gpio@[0-9a-f]+$":
+>      type: object
+>  
+> diff --git a/Documentation/devicetree/bindings/pinctrl/rockchip,rmio.yaml b/Documentation/devicetree/bindings/pinctrl/rockchip,rmio.yaml
+> new file mode 100644
+> index 000000000000..af0b34512fb9
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pinctrl/rockchip,rmio.yaml
+> @@ -0,0 +1,106 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pinctrl/rockchip,rmio.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: RMIO (Rockchip Matrix I/O) Controller
+> +
+> +maintainers:
+> +  - Heiko Stuebner <heiko@sntech.de>
+> +
+> +description: |
+> +  The RMIO controller provides a flexible routing matrix that allows mapping
+> +  various internal peripheral functions (UART, SPI, PWM, etc.) to specific
+> +  physical pins. This block is typically a sub-block of the GRF
+> +  (General Register Files) or PMU (Power Management Unit).
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - rockchip,rk3506-rmio
+> +      - const: rockchip,rmio
+
+I don't see how pinctrl deserves generic compatible. I already commented
+on this.
 
 
------ Message original -----
-De: "Osose Itua" <osose.itua@savoirfairelinux.com>
-=C3=80: "netdev" <netdev@vger.kernel.org>
-Cc: "devicetree" <devicetree@vger.kernel.org>, "linux-kernel" <linux-kernel=
-@vger.kernel.org>, "Michael Hennerich" <michael.hennerich@analog.com>, "J=
-=C3=A9rome Oufella" <jerome.oufella@savoirfairelinux.com>
-Envoy=C3=A9: Mardi 16 D=C3=A9cembre 2025 10:48:39
-Objet: [PATCH 1/2] net: phy: adin: enable configuration of the LP  Terminat=
-ion Register
+> +
+> +  rockchip,rmio-grf:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      The phandle of the syscon node (GRF or PMU) containing the RMIO registers.
+> +      This property is required if the RMIO registers are located in a different
+> +      syscon than the parent pinctrl node.
 
-From 9c68d9082a9c0550891f24c5902c1f0de15de949 Mon Sep 17 00:00:00 2001
-From: Osose Itua <osose.itua@savoirfairelinux.com>
-Date: Fri, 14 Nov 2025 17:00:14 -0500
-Subject: [PATCH 1/2] net: phy: adin: enable configuration of the LP
- Termination Register
+Why "if"? How this can be flexible?
 
-The ADIN1200/ADIN1300 provide a control bit that selects between normal
-receive termination and the lowest common mode impedance for 100BASE-TX
-operation. This behavior is controlled through the Low Power Termination
-register (B_100_ZPTM_EN_DIMRX).
+Anyway, you did not address my previous comment at all.
 
-Bit 0 of this register enables normal termination when set (this is the
-default), and selects the lowest common mode impedance when cleared.
+NAK
 
-Signed-off-by: Osose Itua <osose.itua@savoirfairelinux.com>
----
- drivers/net/phy/adin.c | 32 ++++++++++++++++++++++++++++++++
- 1 file changed, 32 insertions(+)
+> +
+> +  rockchip,offset:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      The offset of the RMIO configuration registers within the GRF.
 
-diff --git a/drivers/net/phy/adin.c b/drivers/net/phy/adin.c
-index 7fa713ca8d45..2969480a7be3 100644
---- a/drivers/net/phy/adin.c
-+++ b/drivers/net/phy/adin.c
-@@ -89,6 +89,9 @@
- #define ADIN1300_CLOCK_STOP_REG=09=09=090x9400
- #define ADIN1300_LPI_WAKE_ERR_CNT_REG=09=090xa000
-=20
-+#define ADIN1300_B_100_ZPTM_DIMRX=09=090xB685
-+#define ADIN1300_B_100_ZPTM_EN_DIMRX=09=09BIT(0)
-+
- #define ADIN1300_CDIAG_RUN=09=09=090xba1b
- #define   ADIN1300_CDIAG_RUN_EN=09=09=09BIT(0)
-=20
-@@ -522,6 +525,31 @@ static int adin_config_clk_out(struct phy_device *phyd=
-ev)
- =09=09=09      ADIN1300_GE_CLK_CFG_MASK, sel);
- }
-=20
-+static int adin_config_zptm100(struct phy_device *phydev)
-+{
-+=09struct device *dev =3D &phydev->mdio.dev;
-+=09u8 reg;
-+=09int rc;
-+
-+=09if (!(device_property_read_bool(dev, "adi,low-cmode-impedance")))
-+=09=09return 0;
-+
-+=09/* set to 0 to configure for lowest common-mode impedance */
-+=09rc =3D phy_write_mmd(phydev, MDIO_MMD_VEND1, ADIN1300_B_100_ZPTM_DIMRX,=
- 0x0);
-+=09if (rc < 0)
-+=09=09return rc;
-+
-+=09reg =3D phy_read_mmd(phydev, MDIO_MMD_VEND1, ADIN1300_B_100_ZPTM_DIMRX)=
-;
-+=09if (reg < 0)
-+=09=09return reg;
-+
-+=09if (reg !=3D 0x0)
-+=09=09phydev_err(phydev,
-+=09=09=09   "Lowest common-mode impedance configuration failed\n");
-+
-+=09return 0;
-+}
-+
- static int adin_config_init(struct phy_device *phydev)
- {
- =09int rc;
-@@ -548,6 +576,10 @@ static int adin_config_init(struct phy_device *phydev)
- =09if (rc < 0)
- =09=09return rc;
-=20
-+=09rc =3D adin_config_zptm100(phydev);
-+=09if (rc < 0)
-+=09=09return rc;
-+
- =09phydev_dbg(phydev, "PHY is using mode '%s'\n",
- =09=09   phy_modes(phydev->interface));
+No, this belongs to the phandle.
+
+Look how this is already described and do not come with other style.
+
+> +
+> +  rockchip,pins-num:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      The number of physical pins supported by this RMIO instance.
+> +      Used for boundary checking and driver initialization.
+> +
+> +patternProperties:
+> +  "^[a-z0-9-]+$":
+
+No, use a prefix or suffix. See other pinctrl bindings.
+
+> +    type: object
+> +    description:
+> +      Function node grouping multiple groups.
+> +
+> +    patternProperties:
+> +      "^[a-z0-9-]+$":
+
+Same ocmment
+
+> +        type: object
+> +        description:
+> +          Group node containing the pinmux configuration.
+> +
+> +        properties:
+> +          rockchip,rmio:
+> +            $ref: /schemas/types.yaml#/definitions/uint32-matrix
+> +            description:
+> +              A list of pin-function pairs. The format is <pin_id function_id>.
+> +            minItems: 1
+> +            items:
+> +              items:
+> +                - description: RMIO Pin ID (0 to pins-num - 1)
+> +                  minimum: 0
+> +                  maximum: 31
+> +                - description: Function ID
+> +                  minimum: 0
+> +                  maximum: 98
+> +
+> +        required:
+> +          - rockchip,rmio
+
+Why aren't you using standard pinctrl bindings?
+
+> +
+> +        additionalProperties: false
+> +
+> +    additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - rockchip,rmio-grf
+> +  - rockchip,offset
+> +  - rockchip,pins-num
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/pinctrl/rockchip,rk3506-rmio.h>
+> +
+> +    pinctrl: pinctrl {
+
+What's this?
+
+> +        rmio: rmio {
+> +            compatible = "rockchip,rk3506-rmio", "rockchip,rmio";
+> +            rockchip,rmio-grf = <&grf_pmu>;
+> +            rockchip,offset = <0x80>;
+> +            rockchip,pins-num = <32>;
+> +
+> +            rmio-uart {
+> +                rmio_pin27_uart1_tx: rmio-pin27-uart1-tx {
+> +                    rockchip,rmio = <27 RMIO_UART1_TX>;
+> +                };
+> +
+> +                rmio_pin28_uart1_rx: rmio-pin28-uart1-rx {
+> +                    rockchip,rmio = <28 RMIO_UART1_RX>;
+> +                };
+> +            };
+> +        };
+> +    };
+> diff --git a/include/dt-bindings/pinctrl/rockchip,rk3506-rmio.h b/include/dt-bindings/pinctrl/rockchip,rk3506-rmio.h
+> new file mode 100644
+> index 000000000000..b129e9a8c287
+> --- /dev/null
+> +++ b/include/dt-bindings/pinctrl/rockchip,rk3506-rmio.h
+> @@ -0,0 +1,109 @@
+> +/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
+> +/*
+> + * Copyright (c) 2025 Rockchip Electronics Co., Ltd.
+> + */
+> +
+> +#ifndef __DT_BINDINGS_PINCTRL_ROCKCHIP_RK3506_RMIO_H
+> +#define __DT_BINDINGS_PINCTRL_ROCKCHIP_RK3506_RMIO_H
+> +
+> +/* RMIO function definition */
+> +#define RMIO_UART1_TX			1
+> +#define RMIO_UART1_RX			2
+> +#define RMIO_UART2_TX			3
+> +#define RMIO_UART2_RX			4
+> +#define RMIO_UART3_TX			5
+> +#define RMIO_UART3_RX			6
+> +#define RMIO_UART3_CTSN			7
+> +#define RMIO_UART3_RTSN			8
+> +#define RMIO_UART4_TX			9
+> +#define RMIO_UART4_RX			10
+> +#define RMIO_UART4_CTSN			11
+> +#define RMIO_UART4_RTSN			12
+> +#define RMIO_MIPITE			13
+> +#define RMIO_CLK_32K			14
+> +#define RMIO_I2C0_SCL			15
+> +#define RMIO_I2C0_SDA			16
+
+
+I do not see how this is a binding. Please point me to the patch using
+this in the driver.
+
+Best regards,
+Krzysztof
 
