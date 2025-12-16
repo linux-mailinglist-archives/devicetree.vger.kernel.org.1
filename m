@@ -1,94 +1,100 @@
-Return-Path: <devicetree+bounces-247069-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247070-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDFFBCC39D1
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 15:34:13 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D82FCCC3C86
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 15:58:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 5F024300776F
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 14:34:10 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 84EA630C44F3
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 14:44:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92ADF3451C7;
-	Tue, 16 Dec 2025 14:33:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1409E17B50F;
+	Tue, 16 Dec 2025 14:41:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (4096-bit key) header.d=canonical.com header.i=@canonical.com header.b="MtXXTKiT"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="eyoNzVim";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Wp/+LsUv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1742288502
-	for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 14:33:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 796282BD5A2
+	for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 14:41:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765895619; cv=none; b=tlLQHfPQtXV9VFYmRNJjlKYGYFRgVJlZW0BdxA0ZnHRAnlhbOkNYqR6oPLR0ApTxzUE82qvjpbj3109t7+PWZlLoxODKOTWS4h2WALEqrp/x96SyzTICmvFW6A0uMXEPA8AHGIEdNdxZx4nGzRHtwl2lzRddGR5a2XLLAsPgJX0=
+	t=1765896103; cv=none; b=I2YNXa4m04bu7onaq4Natlr45axkXKYIfd8BF9veLxQnePs7D8ZHRc7AEEtfmXjhFuCKooswKI7rCmKqSEHWUZtKQpdruTqmD0MARb4+2tBWcsONa0qVzQfgBW9pwP4qpTCa4Th5mtZvglE2jiX566PRc8dvA5UXfW2zI75PB+s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765895619; c=relaxed/simple;
-	bh=QvQ962qcK05T0lZnvQI2FDYuFJBixe8oMpEBfbroE10=;
+	s=arc-20240116; t=1765896103; c=relaxed/simple;
+	bh=8xgsdnB88ZWTSc4x3ntMzFBc90fHhlMKzzsemfV6qxs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gvjjjMNoC/9Io0eI/NCpkmCwG4Mz1Xz3sCE4izWHWLnfSMjbH7Fu4fO4ZxRyLvulSz0SZXL1rvDvjnlu5MuyYqOrowJFmLbbHQjTjEWBGTTlT3Vug8h5vRnx6xKRHW9iI6arcbee/h1reBx19nSh4ltquhfVz1GQhby+ysXADNk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (4096-bit key) header.d=canonical.com header.i=@canonical.com header.b=MtXXTKiT; arc=none smtp.client-ip=185.125.188.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=canonical.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
-Received: from mail-ej1-f69.google.com (mail-ej1-f69.google.com [209.85.218.69])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 1A1F73F7BB
-	for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 14:33:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20251003; t=1765895614;
-	bh=9ouNQ2G+BbmqznnUeDUFFC3dk1Z2drfKLGm7ohEM5u0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type;
-	b=MtXXTKiTqtvZULHi/b3/U/EV0wDDL8wxO4aVzzAbufg7BOk7Sr6yZX5LlTHbW6dPm
-	 dUC2+e/Bpciii9S3s0o6pGlpxY5eKo0jgYEDBdIZfatwpcxG7OqRnBY17zVNxds0ua
-	 yqWxRRAWTH0o9NGbKQLn98v8vbY0AtbPK/GE2YQJqt7VD9DTSTIewHD7Z0C3GZz0ei
-	 stf+0G3fTvTNpnjqMaj6okumvU7nTUC0mV2E3g9qcLn3P9rRiZqOU5Eu4AZvMGsR0M
-	 zlr9Yc1nFCITHLCUN9LVzJDtJYxrWgiuH6TzJDUdvCFurF7Xk+lgg/meTzd5wTM/xx
-	 6HH4mErXoM8tNx+R/HX4Ot1+mhYWDjNSZcztJuLHs0EiZS9/MNKNgLvoqPokD0TquS
-	 WGWvulD3PTP66yi1iKFYUd8PhdbStzklnfWGcPALhuIjFvY/6JWxn/IC+6SykJLu5L
-	 U9OV2nepo9dPEX6E8kXnlxRqDmNwXipTzy4xDJdbYSM+ZYEaCCesy1bOIRjY9HB6AQ
-	 tGxY/e8AkkjdhrfwLUed5XxN3XwsYMOhQ3NrQd3N77+jKiH1+7xy/HXkY24vo728xP
-	 uzm5+69CsnhlYMqnyLjg3mDpYf97iZeR8FrOXuxYMFgUL04uO8cp2jTsOH1M1tNVai
-	 fhXLArWNCd5okQpSs9rEj77o=
-Received: by mail-ej1-f69.google.com with SMTP id a640c23a62f3a-b79e98a23c5so511409666b.3
-        for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 06:33:34 -0800 (PST)
+	 In-Reply-To:Content-Type; b=XF7Jt1r+b7d0r2S7essEvGFnvXzCD6QNdfZsNGfmOKkjYkHhHBlzGi4sywKSjyskMF9OTSvinef5rNaeXTV7CYBTNhjW838uAI1IpjJbJ2Udz6AxX/3vGUIJ5Y4Foogi4tSvlFRMn6VltKQxiAeiplGl8VbiQ4I0xTCYokC3/cY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=eyoNzVim; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Wp/+LsUv; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BGBOGlp3390970
+	for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 14:41:40 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	iuK3BpfIIav92AqguNV6tcGNJeDIYEQRiH95uW3RKuY=; b=eyoNzVimCfdxsiRu
+	H98oQo/0QdctC03R34alN2NAAD1WX0rO7/wYYqz92pNbN9yvB+xddWNEVmiqrtTP
+	UGkOG+NzwtIpD/f8EbSJW+6Fc9En/FUAIgbXcBc+Cjk2NbXVDmQcgfFVV4gFoL3g
+	3EfKcnjkAGwWNFFxwSJkPIK68laPHbrogS93WXfa+QqHOKTGTfjc2k0R181ojKtm
+	/rYdeIcMawqRIGH0bBn7z4uXzyWUZtxMzHTUqFeJkXBKclyMVN1O/p6Wi14I30zp
+	/+cYUQ4e5e4fzgibQUjnCEQIe6XRbtIewd1YGNZsa8sPlEZaFYpegwYlUIxwghm1
+	vOuf+Q==
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b36h38qmm-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 14:41:40 +0000 (GMT)
+Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4ed83a05863so14769531cf.2
+        for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 06:41:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1765896098; x=1766500898; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=iuK3BpfIIav92AqguNV6tcGNJeDIYEQRiH95uW3RKuY=;
+        b=Wp/+LsUvAPj6zFo1bf69Ow+dbcntTQghVtlk0ZMW31W1q48t5rhePIrKrxXlQ0/P4U
+         itpmQ8vO7+dfdpSGfESQaaaW9b/Tx4heGVUzTrdJp0or843pm3L5nmRqxtfwXVMm0564
+         Ooyn0E4e2OuhksBeYJPzdDdJOBhhLudXRqSVt1ZSsxmYnBUvlhVzxd+sCwPxDGm+wRlG
+         hQgXr4DvAJQuF9Rjqv3PCzupThp2oW30TGeWkw0r0vDempuHgTFxYRzpNqVxzaLn6Jus
+         u3D3Tgqz4hQgeH6+oGkvGSzwjtMsoS6YyK2/yYD1iUA1VTOElZDxWRVZTJstnjkOULf7
+         7MPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765895613; x=1766500413;
+        d=1e100.net; s=20230601; t=1765896098; x=1766500898;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=9ouNQ2G+BbmqznnUeDUFFC3dk1Z2drfKLGm7ohEM5u0=;
-        b=wJoqQhaMT8vPC5Ag/gpkV+95p+IqasSjIAGkTbUvflfCqWiYgeYavmD35WGtdD69M0
-         fEfO7FZKGP9nCrHdaXjWYuu8UkFxSLK4Aeytxmk8qI7MFgwKsobvIT56SEG3XMiyLF08
-         /FikbBwYG5Mytl8iHB3OQuwM/to/AiA2NfCfGW5PiM1V+Ro1Voc5D4GQtENoNsxJqVJy
-         pY17biCQ9XBWrTkhaB7wPvPJEpgBsbCFeGMIzETgG8UOFxe/bEe9EhglLmEs846aaDhd
-         biF/77V3plGKgH6sskEeLAm8z77Ctv1AfoIP/EixvTylezDtFWZ9+NgAP2x/NKHt/ZlQ
-         igxQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWYf6QFJiDuVtUOsxodU/Uw6Y3SxMlcshC9tFTEdIXytXdmE8Y8qRkQ8AhyBNt2ELYgTXUDpuZn4QTM@vger.kernel.org
-X-Gm-Message-State: AOJu0YzI+gin04s0l2Ao2cQuA5RKoGfbyN3NEW6CFzKCCbHTLWatBIzZ
-	0lnoZpFCa6YOLOPu1k4FWt8CPj6bOzpwekrm/WodHz0hi4UIwbJzkvqF4nNfTtC4rkeRSeJ+vFz
-	9YNjQXsyF8oPiyaK68FyHl2E5KbwSuyfYBLqP/x+yOmL23jSUYKelPSYAXNdPBGnhEozUicnHD5
-	qYVIs=
-X-Gm-Gg: AY/fxX6iR6oEqCmrFF1OE9GRQk2mcdbPw4YevwFqLN9AjSpoP2vbgDIy2Qvqdpdy8hw
-	077Ag/FJDzpQmJUEnrvQJplr9P8T3sluMV8ICOFv74z7XhbL+spJjLKAlJYSwRolIX6XK3r/CP4
-	+cwoihreZAJR+/BgAoWMsGtyZRywtOuc0E41INklHlzJxLi6wlPFLpEsbwKnb+tCI1EOMf3p+q0
-	PmDPpu6pVgMn3+4BpTxs8Tp9swwYaAHIDItqIHkkDINk3xgR9NNXk6Cy8b053RmEL8ogsJrGuTU
-	vN7O6gtgDa+Bb1OWvGGfLkp5SRelfhmkViJo0OtJA0/vzuGn6b6mJ+AS6fLJDyopTY7rMWZjhGI
-	iRpmzOx9oFzAw7Q1bWq58A0vu1pd9k4v3gARYskSwJM/VODLCq54PHoH/ZxRQd1klLW8URH+aec
-	OTp++TY2E=
-X-Received: by 2002:a17:907:96a6:b0:b7c:fe7c:e380 with SMTP id a640c23a62f3a-b7d236f7860mr1528081666b.13.1765895613037;
-        Tue, 16 Dec 2025 06:33:33 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEHFzNsGwKARkXS4ZtDItuBhnrQn1fUzZeAB6AToGes9YgJGJs29bqvEiQXmenKj6k0dHe4vw==
-X-Received: by 2002:a17:907:96a6:b0:b7c:fe7c:e380 with SMTP id a640c23a62f3a-b7d236f7860mr1528076966b.13.1765895612514;
-        Tue, 16 Dec 2025 06:33:32 -0800 (PST)
-Received: from [192.168.103.125] (ip-005-147-080-091.um06.pools.vodafone-ip.de. [5.147.80.91])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b7ff725efd8sm171981166b.27.2025.12.16.06.33.31
+        bh=iuK3BpfIIav92AqguNV6tcGNJeDIYEQRiH95uW3RKuY=;
+        b=ZTiIF3JrfPobdANxZiJmu7o7a8J+gUOzMBZpQrWrTuYWwP4CXFihy4exW/WmDliEqb
+         jvoW06vJTxghfbQLd3Bd7k0FVAYTYnLmUWkD34BBREl6n9PWIRVm1Odsefk7Jg11JrSH
+         EIe9EXDcSMkkWbQX4qqRi4KzL14qFFgGc7G7fRCyV2nsa2wdmCRjJnIVmouenccAxnnl
+         NhTVjC0WcK1C25DCeNR/ErQAdnBSKDcZi93b16+DpkdK/Qp/jylgCEDMJ5GIuZqPNlft
+         tIcFNg1CLJOh3oU4TvrWwSbF4l91cgmVVJX/KpWmYhjeJ/GQm705sEdlDMbS7al0vMEI
+         0VQQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWMA8m3zAJN31UWxh6j70e2bmOp3NDws3sP0D5XP1mQKi0uv6C/oxAXXmbmcsSE4i4whpODJII9NTrN@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw4U290FfeEfWWvRvklZB1C1ufoT5jAzJ+3kUDp/WFhDEchjCOE
+	1wG2KutFKKEN60YWl4IfsInT9vcFoHuWY1X7Ta4wlsy8il847OnjQqnIisheHLGzYZQso5n3XXB
+	V68T+ED45V25t19JR5y7uOPXqu0wF3esa3diGQXFvbUoq7UdOl/pMmOO1xNDqh6UG
+X-Gm-Gg: AY/fxX6nSbXrbnGbhDemLd1rMnvsh7KEYMo8Ju5A5MgfS72v/NGYgCGB61jKzNBBZ0L
+	LyxuNAZdF4+lsymze28wszE3BfJL3lTaXSxZm3xDmrRDbu7NXcrRGADiK0FvOdmvqtixH5pPVgT
+	+wEC894Hfpt8RonDRRpEUVfzCyDiJtU1/i/lxBYBKoHPCMMdU+LPXHvTBd48GlACw995e3ncHlT
+	GuLFE3JeG4QQgpN25Y+lLJEnm+nSoFI5avVVUWxruh/4IbJ9m4xhZLinaEl8nYci7lJT93Y8BWp
+	FOiQTR5xC0WmscR8dcPrKHzoPqM3xwZV7RF9WrbYmMUPSUoD7M29CMdJ0FYBbiqJQOY0vD5xHFg
+	HAc2sfGNxqTPe6bbG8gJFqd4JQeNx1QYCLyJK23KpWgX5D05dBWjz/jjDwhmvJpoeyA==
+X-Received: by 2002:a05:622a:409:b0:4f1:aab9:851b with SMTP id d75a77b69052e-4f1d062f452mr157071271cf.9.1765896098258;
+        Tue, 16 Dec 2025 06:41:38 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHMkEOsjFbsS7Ipg//dvpT2pnJNXxgT18opV1fRQfxanda7KKQTXBdq0OYru1u7bNLe7KYy3g==
+X-Received: by 2002:a05:622a:409:b0:4f1:aab9:851b with SMTP id d75a77b69052e-4f1d062f452mr157070661cf.9.1765896097332;
+        Tue, 16 Dec 2025 06:41:37 -0800 (PST)
+Received: from [192.168.119.72] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b7ffbeab76fsm134909166b.41.2025.12.16.06.41.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 Dec 2025 06:33:32 -0800 (PST)
-Message-ID: <3c38ce9c-4259-4149-bf2c-a54e74c00a34@canonical.com>
-Date: Tue, 16 Dec 2025 15:33:30 +0100
+        Tue, 16 Dec 2025 06:41:35 -0800 (PST)
+Message-ID: <4c4e8e5b-66b1-4227-86ee-756eca945972@oss.qualcomm.com>
+Date: Tue, 16 Dec 2025 15:41:33 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -96,98 +102,149 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 8/8] riscv: dts: spacemit: add SpacemiT K3 Pico-ITX board
- device tree
-To: Guodong Xu <guodong@riscstar.com>
-Cc: Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@sifive.com>, Conor Dooley <conor@kernel.org>,
- Heinrich Schuchardt <xypron.glpk@gmx.de>,
- Kevin Meng Zhang <zhangmeng.kevin@linux.spacemit.com>,
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
- linux-kernel@vger.kernel.org, spacemit@lists.linux.dev,
- linux-serial@vger.kernel.org, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>, Yixun Lan <dlan@gentoo.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>,
- Thomas Gleixner <tglx@linutronix.de>,
- Samuel Holland <samuel.holland@sifive.com>, Anup Patel
- <anup@brainfault.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>,
- Yangyu Chen <cyy@cyyself.name>
-References: <20251216-k3-basic-dt-v1-0-a0d256c9dc92@riscstar.com>
- <20251216-k3-basic-dt-v1-8-a0d256c9dc92@riscstar.com>
+Subject: Re: [PATCH v4 5/5] arm64: dts: qcom: sdm670-google-sargo: add imx355
+ front camera
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Richard Acayan <mailingradian@gmail.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Tianshu Qiu <tian.shu.qiu@intel.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-media@vger.kernel.org, Robert Mader <robert.mader@collabora.com>
+References: <20251211014846.16602-1-mailingradian@gmail.com>
+ <20251211014846.16602-6-mailingradian@gmail.com>
+ <wwpqaecvz42jopgaboasbh353ieelctpvgo3yj6y5tnxoem5oz@j5sbx3yxntot>
+ <aTtkwQb2gOeWAFuv@rdacayan>
+ <d7jcawzugobqern6zlo5jwcnximtsroxywix53v2yp2isvzo5r@ymxicmgfjmzq>
+ <341012f3-18bd-4f96-98c1-f964d1fedb8f@oss.qualcomm.com>
+ <1d830282-a778-44aa-918b-5ab3e1516c0d@linaro.org>
 Content-Language: en-US
-From: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
-In-Reply-To: <20251216-k3-basic-dt-v1-8-a0d256c9dc92@riscstar.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <1d830282-a778-44aa-918b-5ab3e1516c0d@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjE2MDEyNiBTYWx0ZWRfX3chAHk5TOl5n
+ M9m/0jf0YqCJpz+VsZxWIZfyuTX+Oe7nLwWQ8fBOWYzQ8YUz77dYblIw5D3acWqFo8gaE+dJbZ+
+ XPOIdVf3cEoccab6S4lGNZ2lnXW6emQKCCoYRg+lEBJzDLOHDyFJiE6IyOMNLHrjbEZqioZDeqw
+ DTQWoKzX71m8cmKSjp5uJOPDqUCBxmFrimktsWypXAsfHErNxniysN+b1oejfgWZRsmJMC4gDR/
+ 8eHEIhPRM3kSaHDGKiV0EXcs7ZZbFIGKiawSrpbNVy4cTHKIpfkZQ82cq28KcL1I/m+tB+XVaSh
+ bYiRBbvtP9unog5kmEem/r2qacp6h6/9PagC9UdjxMU3tbx5ooZGidXPZu7VhgpcsUrX+MsDz2i
+ DyricTCUHQ8bCOG40JVqhgQfRKjgTA==
+X-Proofpoint-GUID: wg0bLGUoBCP2cdIRercCE0GuFTBvR6Z3
+X-Authority-Analysis: v=2.4 cv=QeRrf8bv c=1 sm=1 tr=0 ts=69416fa4 cx=c_pps
+ a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=QX4gbG5DAAAA:8 a=pGLkceISAAAA:8
+ a=POKBKsRifFHOQ751TUoA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=dawVfQjAaf238kedN5IG:22 a=AbAUZ8qAyYyZVLSsDulk:22
+X-Proofpoint-ORIG-GUID: wg0bLGUoBCP2cdIRercCE0GuFTBvR6Z3
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-16_02,2025-12-16_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 malwarescore=0 adultscore=0 clxscore=1015 suspectscore=0
+ bulkscore=0 lowpriorityscore=0 phishscore=0 spamscore=0 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512160126
 
-On 12/16/25 14:32, Guodong Xu wrote:
-> K3 Pico-ITX is a 2.5-inch single-board computer equipted with a SpacemiT
-> K3 SoC.
+On 12/16/25 3:31 PM, Vladimir Zapolskiy wrote:
+> On 12/16/25 15:56, Konrad Dybcio wrote:
+>> On 12/12/25 8:22 PM, Dmitry Baryshkov wrote:
+>>> On Thu, Dec 11, 2025 at 07:41:37PM -0500, Richard Acayan wrote:
+>>>> On Thu, Dec 11, 2025 at 07:16:30AM +0200, Dmitry Baryshkov wrote:
+>>>>> On Wed, Dec 10, 2025 at 08:48:46PM -0500, Richard Acayan wrote:
+>>>>>> The Sony IMX355 is the front camera on the Pixel 3a, mounted in portrait
+>>>>>> mode. It is connected to CSIPHY1 and CCI I2C1, and uses MCLK2. Add
+>>>>>> support for it.
+>>>>>>
+>>>>>> Co-developed-by: Robert Mader <robert.mader@collabora.com>
+>>>>>> Signed-off-by: Robert Mader <robert.mader@collabora.com>
+>>>>>> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
+>>>>>> ---
+>>>>>>   .../boot/dts/qcom/sdm670-google-sargo.dts     | 107 ++++++++++++++++++
+>>>>>>   1 file changed, 107 insertions(+)
+>>>>>>
+>>>>>> @@ -392,6 +420,64 @@ vreg_bob: bob {
+>>>>>>       };
+>>>>>>   };
+>>>>>>   +&camss {
+>>>>>> +    vdda-phy-supply = <&vreg_l1a_1p225>;
+>>>>>> +    vdda-pll-supply = <&vreg_s6a_0p87>;
+>>>>>> +
+>>>>>> +    status = "okay";
+>>>>>> +
+>>>>>> +    ports {
+>>>>>> +        port@1 {
+>>>>>> +            camss_endpoint1: endpoint {
+>>>>>> +                clock-lanes = <7>;
+>>>>>> +                data-lanes = <0 1 2 3>;
+>>>>>> +                remote-endpoint = <&cam_front_endpoint>;
+>>>>>> +            };
+>>>>>> +        };
+>>>>>> +    };
+>>>>>
+>>>>> This would be much better:
+>>>>>
+>>>>>    &camss_endpoint1: {
+>>>>>        clock-lanes, data-lanes, remote-endpoint here
+>>>>>    };
+>>>>
+>>>> I'm not sure what you mean, there might be some typo.
+>>>
+>>> My point is that you are duplicating `ports { port@1 {.... }; };` from
+>>> the base DTSI here.  We usually try to avoid this kind of path
+>>> duplication. If you can't have an empty endpoint in the base DTSI, I
+>>> suggest adding necessary labels to port@N nodes and then extending those
+>>> nodes in the board DTSI.
+>>>
+>>>> If this is about using the commonly-defined endpoints, Vladimir broke it
+>>>> in commit dcf6fb89e6f7 ("media: qcom: camss: remove a check for
+>>>> unavailable CAMSS endpoint"). If I do this again and go full circle, I'm
+>>>> afraid this could break a second time before even making it to
+>>>> linux-next.
+>>
+>> Quite frankly I don't think that commit was valid, given it's conceivable
+>> that an endpoint could be unconnected..
+>>
 > 
-> This minimal device tree enables booting into a serial console with UART
-> output.
+> Endpoint is not a device, status property is the property of devices and
+> not a property of anything else as the Devicetree Specification v0.4 and
+> earlier ones define. Dangling endpoints are fine, there is no need to
+> add another property to determine, if an endpoint is connected or not.
 > 
-> Signed-off-by: Guodong Xu <guodong@riscstar.com>
-> ---
->   arch/riscv/boot/dts/spacemit/Makefile        |  1 +
->   arch/riscv/boot/dts/spacemit/k3-pico-itx.dts | 25 +++++++++++++++++++++++++
->   2 files changed, 26 insertions(+)
-> 
-> diff --git a/arch/riscv/boot/dts/spacemit/Makefile b/arch/riscv/boot/dts/spacemit/Makefile
-> index 95889e7269d1bae679b28cd053e1b0a23ae6de68..7e2b877025718113a0e31917eadf7562f488d825 100644
-> --- a/arch/riscv/boot/dts/spacemit/Makefile
-> +++ b/arch/riscv/boot/dts/spacemit/Makefile
-> @@ -4,3 +4,4 @@ dtb-$(CONFIG_ARCH_SPACEMIT) += k1-milkv-jupiter.dtb
->   dtb-$(CONFIG_ARCH_SPACEMIT) += k1-musepi-pro.dtb
->   dtb-$(CONFIG_ARCH_SPACEMIT) += k1-orangepi-r2s.dtb
->   dtb-$(CONFIG_ARCH_SPACEMIT) += k1-orangepi-rv2.dtb
-> +dtb-$(CONFIG_ARCH_SPACEMIT) += k3-pico-itx.dtb
-> diff --git a/arch/riscv/boot/dts/spacemit/k3-pico-itx.dts b/arch/riscv/boot/dts/spacemit/k3-pico-itx.dts
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..0f9d04dd352f5331e82599285113b86af5b09ebe
-> --- /dev/null
-> +++ b/arch/riscv/boot/dts/spacemit/k3-pico-itx.dts
-> @@ -0,0 +1,25 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> +/*
-> + * Copyright (c) 2025 SpacemiT (Hangzhou) Technology Co. Ltd
-> + * Copyright (c) 2025 Guodong Xu <guodong@riscstar.com>
-> + */
-> +
-> +#include "k3.dtsi"
-> +
-> +/ {
-> +	model = "SpacemiT K3 Pico-ITX";
-> +	compatible = "spacemit,k3-pico-itx", "spacemit,k3";
-> +
-> +	chosen {
-> +		stdout-path = "serial0";
-> +	};
-> +
-> +	memory@100200000 {
-> +		device_type = "memory";
-> +		reg = <0x1 0x00200000 0x3 0xffe00000>;
+> There should be no status properties inside endpoint device tree nodes.
 
-Shouldn't the reserved memory be described as no-map /reserved-memory 
-nodes instead?
+The spec doesn't actually define what a "device" is. Funnily enough, it refers
+to "endpoint" as a device:
 
-I would assume that 0x1,0000,0000 is the location of OpenSBI.
-What is at 0x3,ffe0,0000?
+2.2.2 Generic Names Recommendation
+The name of a node should be somewhat generic, reflecting the function of the
+_device_ and not its precise programming model. If appropriate, the name should
+be one of the following choices:
 
-Best regards
+[...]
 
-Heinrich
+* endpoint
 
-> +	};
-> +};
-> +
-> +&uart0 {
-> +	status = "okay";
-> +};
-> 
 
+Plus an OF node is opaque in its purpose.. The top node, a firmware node, a
+node representing a physical IP block and a config.ini-style blurb are all
+"device nodes"
+
+
+But coming back to the real world, the ports/endpoints represent the physical
+connections to CAMSS and it makes sense to have them defined in one place,
+especially since there's a predictable number of them that should not be left
+up to each board to define.. That quite obviously implies that not all boards
+are going to utilize all interfaces and the commit of yours that was mentioned
+above seems to only be valid on the basis of semantics, which I above mentioned
+are not *really* a valid point..
+
+Konrad
 
