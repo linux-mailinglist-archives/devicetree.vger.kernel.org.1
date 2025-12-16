@@ -1,242 +1,237 @@
-Return-Path: <devicetree+bounces-247180-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247181-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A629CC5433
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 22:49:35 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B23CCC553C
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 23:17:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id A92093001E19
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 21:49:32 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0401C300452A
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 22:16:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0718133EAFD;
-	Tue, 16 Dec 2025 21:49:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AA592E2DF4;
+	Tue, 16 Dec 2025 22:16:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b="Ok+VH11p"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Mq5kqh3B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3785A339B4E
-	for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 21:49:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A9702765C3;
+	Tue, 16 Dec 2025 22:16:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765921769; cv=none; b=RCoSkixs6UOLBRE7sYwNExyE2s29A4kt0yP9MTDyFH3c3zfoWLIJxNdJoHCHFphmP+YlxfPG8FNzBhBKNhB8zYeXvTFNBy8qd4p2fSYsUrn3P8evWiDPI1SiPm+ufJ3zn5NF96YU9uyJ8WRTrvDDjBxC1TTYp3bj5TZTJi0C29E=
+	t=1765923395; cv=none; b=Xh7+NlARJXgqhaicPtBcbhwyJAgjtK0XVtubxS79KbgkGTsvTnIR3MdxwRDXg+Oiwpqlg0zNM8qS+EvCREB8f33TCI5RSen4eM+4YqkAvQkWoX02v7D2toNe800XQ0Jepu2URc+y/p2LIrpytJLisWBN9wTieSvb8k3k48+ni6w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765921769; c=relaxed/simple;
-	bh=0cUnh1ytMEJ3rhuOOXREEv1h4is++HjDibXCnmqcCfI=;
-	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=eevJ2fA/jG78Vbyic+exIPGmTmnbBeYQmwyn24E7mvBSTiLV0fvH8w0PE2j1aBJhUuXemWXSen1RREi6MqCDuBJl86Vdkvn7+6F7RbfJ17ZOIRB3l/Utv0Mwi2evyImEBXNo/vsepbRZkMvd3dbvyHXjGNXubHPgXJyDqWKVVl4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca; spf=pass smtp.mailfrom=ndufresne.ca; dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b=Ok+VH11p; arc=none smtp.client-ip=209.85.160.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ndufresne.ca
-Received: by mail-qt1-f176.google.com with SMTP id d75a77b69052e-4ee1879e6d9so60263461cf.1
-        for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 13:49:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20230601.gappssmtp.com; s=20230601; t=1765921754; x=1766526554; darn=vger.kernel.org;
-        h=mime-version:user-agent:autocrypt:references:in-reply-to:date:to
-         :from:subject:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=bdCldys7nQSDy6vXu7JlMpmSPr3k8VWJix7kbyw58m8=;
-        b=Ok+VH11p0NeMP9kW4E3Hg++N+hDUDPSPfSHmSJzT+znoAlyaboyveqaL19gCjyHa7N
-         MCX+17a5w0TXPcrUsXUoG3mrUuJJHJ2LA07Uz0M9Z9Nm+09XRKNSem+RDoxQb0f87wIf
-         YHWdcFHmkRCWGBWStLPry4xlKPW+GcecOdh6HswIuxIZkWLECm2S5QY1F6EPZxdfc97C
-         Vds/TzX7DZiwEZHjzZfG1JJnNyYW0inrA8ZXZDY4zJ9avQLTGPtgm0jo4CY3/nGt9/zf
-         7ktVSc3vB6zqx23HbRkp7NIV0liEhPkAgVdj0B0VvjD1OhWtFmgTI8wfFxrl9/FJo9xU
-         pqng==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765921754; x=1766526554;
-        h=mime-version:user-agent:autocrypt:references:in-reply-to:date:to
-         :from:subject:message-id:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=bdCldys7nQSDy6vXu7JlMpmSPr3k8VWJix7kbyw58m8=;
-        b=qT5gN2JTGnS5isgakngUVBQzCWCzLhz8YQ95WEH7WBVg1dxz/XJ9v0uUFHNJJgUP3D
-         WiVTjjiHkPZMRA3XurQTHfbS+6shk9HpAkNE7af2AiJBGIHC2yhaRLKDsy5SPsvqbSJj
-         VHyNNsYZXMXC+uz/OWhBEK3QkPXRvPQjydkpuOnH1PUh3sgCEGUUo79gtjfQJjEePd9E
-         SrpNqjNwDZsqeYv9kx/g14jTLq5rFyz5jj/cLToviQjezcax4Bzc9ZRmLk8VjNAM8naV
-         cakaqy9uaEaX1PC57GuP/YeCBYmjgvWDrh5P4eMj0YP+yNHB7N1EJ30/CYJS30PKli1B
-         Cbfg==
-X-Forwarded-Encrypted: i=1; AJvYcCXVfa5jx5yD5Tc6mtNFYglNN9bXYYhsGAOUGfyamC9ktkHLA1SdxqQWuR3Tx5NOugSJ3MXhnOpE9W6I@vger.kernel.org
-X-Gm-Message-State: AOJu0YxppnFHPPmtsGjtYJvQP8W20RCoQQHR3m3w8gIhESvTTXCCsct1
-	4c2iMaL11GWt/1JgGTJq+62Cq9AfVgJggA8gAgskxyhregJVmzOQu3JhLbGRZBQ5Iso=
-X-Gm-Gg: AY/fxX6u4e7lX+rr90ijcAVujw/ooRKQ28WrhE6cptmprqAWdBviaL5E7f+9wKJP0/S
-	4bidKKRS4JrkC/fxMs5PnD3pkWYLiJ3zDPfjameE2ksu6ejEUUhwkVFuvQfBsRsZ4UjDKOD6RoK
-	TSpmshDnF9XFh1KX437AMI9vdevzaZAgUeaXZZ1SBZKhNOS+UNxycY7gooCv5LsuhwzwfX9km5I
-	px3URBQvhWlLacPTg/ScKLAKUtOhxc5VSVhXtNoDPnV2XmWm7eoncy0u4+qsiXg8TIHkC0W/csM
-	k471yzVqGRLrdqKyju4Zwj2RtsD5I8tzZcF1bqPhkCMihpHTIXeI15cI/eLNHqmfQdr/4qdtETs
-	fnSXbzYpEjgndKT7uGb8fCDET+hK0QuCtYiZpEoz4+t8f4cGRIDEdnsWuaMznGxc+wHPnoqcUZf
-	aEy8jeBXaum3F8djGq
-X-Google-Smtp-Source: AGHT+IH+V/Mr5+CqGLcI3EzYLOmPSV6tSlboBRvR5DbANVmIdH9NhazPVg8f1thYKYgGBLLqtCy2dA==
-X-Received: by 2002:a05:622a:1b88:b0:4ec:f073:4239 with SMTP id d75a77b69052e-4f1d04787c8mr198004211cf.6.1765921754277;
-        Tue, 16 Dec 2025 13:49:14 -0800 (PST)
-Received: from ?IPv6:2606:6d00:17:7b4b::c41? ([2606:6d00:17:7b4b::c41])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-4f345c7dfbfsm21515751cf.31.2025.12.16.13.49.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Dec 2025 13:49:13 -0800 (PST)
-Message-ID: <3dd2c364f84725a68823f13a9f2b1f0499abaed5.camel@ndufresne.ca>
-Subject: Re: [PATCH v11 11/12] media: mediatek: jpeg: add jpeg compatible
-From: Nicolas Dufresne <nicolas@ndufresne.ca>
-To: Kyrie Wu <kyrie.wu@mediatek.com>, Hans Verkuil
- <hverkuil-cisco@xs4all.nl>,  Mauro Carvalho Chehab	 <mchehab@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski	 <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger	
- <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno	
- <angelogioacchino.delregno@collabora.com>, linux-media@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-Date: Tue, 16 Dec 2025 16:49:12 -0500
-In-Reply-To: <20251202094800.6140-12-kyrie.wu@mediatek.com>
-References: <20251202094800.6140-1-kyrie.wu@mediatek.com>
-	 <20251202094800.6140-12-kyrie.wu@mediatek.com>
-Autocrypt: addr=nicolas@ndufresne.ca; prefer-encrypt=mutual;
- keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
- /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
- cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
- CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
- abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
- nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
- AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
- smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
- AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
- iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
- ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
- bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-YBjB4a/FKYc454GerwhG"
-User-Agent: Evolution 3.58.2 (3.58.2-1.fc43) 
+	s=arc-20240116; t=1765923395; c=relaxed/simple;
+	bh=RVv6U8vNQOFBzIPO5hHvHCI19OQVuc9YoOmPnXLDOQE=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Xm+h9dkdZRNhddESRF+gttXAllPjZWfmNT3vwO2l/AsXtQLGiIx+hI6WGzk5uRHNybTK0kS3XvS1dOD2F2vYr9VzibH0dLOpRjMKhoglzosnuZcOICbjBBH/dq8sZe7F+Xfh1epRQRjfX8cYsUwqJknE2liIfIn85TEwV97jT7o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Mq5kqh3B; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E547C4CEF1;
+	Tue, 16 Dec 2025 22:16:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1765923394;
+	bh=RVv6U8vNQOFBzIPO5hHvHCI19OQVuc9YoOmPnXLDOQE=;
+	h=From:Date:To:Cc:Subject:References:In-Reply-To:From;
+	b=Mq5kqh3BpmknEekWUGcwqTVlPjbgK45L+YGUn2woq60DUxDH785keSwAQVJ5xqVDY
+	 +8c4ZA4bQv6vVDtC8v/2mBYuBVLctkJLjua5yg7yijIIumK3FJ0FYpVoYXzG/QIujd
+	 mibLqEc/inkaELbvzyVC+v778pShpq71mKffoUKKVJAiA60d8hfFjBG0vpKDyNTKOg
+	 ENN2Eb3qCN8opCh2N+WJbzU+KXq68PjKjrNmNh1CRDCzYoDLaJUpxDmvMtHRNMtByi
+	 xOwM30wNuSQkEEuDL+R7qc0Mvo7TH+1y9m1X2EZselLV8HEuobMkywRNNZBN6jHeRC
+	 VYmhgpew4FXYw==
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 16 Dec 2025 16:16:31 -0600
+To: Conor Dooley <conor@kernel.org>
+Cc: linus.walleij@linaro.org, Conor Dooley <conor.dooley@microchip.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, Valentina.FernandezAlanis@microchip.com
+Subject: Re: [RFC v2 1/5] dt-bindings: pinctrl: document polarfire soc mssio
+ pin controller
+Message-ID: <20251216220624.GA3114300-robh@kernel.org>
+References: <20251127-bogged-gauze-74aed9fdac0e@spud>
+ <20251127-spousal-bless-199b36f89c80@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251127-spousal-bless-199b36f89c80@spud>
 
-
---=-YBjB4a/FKYc454GerwhG
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Le mardi 02 d=C3=A9cembre 2025 =C3=A0 17:47 +0800, Kyrie Wu a =C3=A9crit=C2=
-=A0:
-> Add jpeg dec and enc compatible for mt8196
->=20
-> Signed-off-by: Kyrie Wu <kyrie.wu@mediatek.com>
-
-Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-
+On Thu, Nov 27, 2025 at 10:57:57AM +0000, Conor Dooley wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
+> 
+> On Polarfire SoC, the Bank 2 and Bank 4 IOs connected to the
+> Multiprocessor Subsystem (MSS) are controlled by IOMUX_CRs 1 through 6,
+> which determine what function in routed to them, and
+> MSSIO_BANK#_IO_CFG_CRs, which determine the configuration of each pin.
+> 
+> Document it, including several custom configuration options that stem
+> from MSS Configurator options (the MSS Configurator is part of the FPGA
+> tooling for this device). "ibufmd" unfortunately is not a 1:1 mapping
+> with an MSS Configurator option, unlike clamp-diode or lockdown, and I
+> do not know the effect of any bits in the field. I have no been able to
+> find an explanation for these bits in documentation.
+> 
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 > ---
-> =C2=A0.../platform/mediatek/jpeg/mtk_jpeg_core.c=C2=A0=C2=A0=C2=A0 | 34 +=
-++++++++++++++++++
-> =C2=A0.../platform/mediatek/jpeg/mtk_jpeg_dec_hw.c=C2=A0 |=C2=A0 3 ++
-> =C2=A0.../platform/mediatek/jpeg/mtk_jpeg_enc_hw.c=C2=A0 |=C2=A0 3 ++
-> =C2=A03 files changed, 40 insertions(+)
->=20
-> diff --git a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
-> b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
-> index da1ca494ed4b..10a588b92e76 100644
-> --- a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
-> +++ b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
-> @@ -1932,6 +1932,19 @@ static struct mtk_jpeg_variant mtk8195_jpegenc_drv=
-data
-> =3D {
-> =C2=A0	.jpeg_worker =3D mtk_jpegenc_worker,
-> =C2=A0};
-> =C2=A0
-> +static struct mtk_jpeg_variant mtk8196_jpegenc_drvdata =3D {
-> +	.formats =3D mtk_jpeg_enc_formats,
-> +	.num_formats =3D MTK_JPEG_ENC_NUM_FORMATS,
-> +	.qops =3D &mtk_jpeg_enc_qops,
-> +	.m2m_ops =3D &mtk_jpeg_multicore_enc_m2m_ops,
-> +	.dev_name =3D "mtk-jpeg-enc",
-> +	.ioctl_ops =3D &mtk_jpeg_enc_ioctl_ops,
-> +	.out_q_default_fourcc =3D V4L2_PIX_FMT_YUYV,
-> +	.cap_q_default_fourcc =3D V4L2_PIX_FMT_JPEG,
-> +	.multi_core =3D true,
-> +	.jpeg_worker =3D mtk_jpegenc_worker,
-> +};
+>  .../pinctrl/microchip,mpfs-pinctrl-mssio.yaml | 119 ++++++++++++++++++
+>  .../microchip,mpfs-mss-top-sysreg.yaml        |   4 +
+>  2 files changed, 123 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/microchip,mpfs-pinctrl-mssio.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/pinctrl/microchip,mpfs-pinctrl-mssio.yaml b/Documentation/devicetree/bindings/pinctrl/microchip,mpfs-pinctrl-mssio.yaml
+> new file mode 100644
+> index 000000000000..c8e509ba2f51
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pinctrl/microchip,mpfs-pinctrl-mssio.yaml
+> @@ -0,0 +1,119 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pinctrl/microchip,mpfs-pinctrl-mssio.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> =C2=A0static const struct mtk_jpeg_variant mtk8195_jpegdec_drvdata =3D {
-> =C2=A0	.formats =3D mtk_jpeg_dec_formats,
-> =C2=A0	.num_formats =3D MTK_JPEG_DEC_NUM_FORMATS,
-> @@ -1945,6 +1958,19 @@ static const struct mtk_jpeg_variant
-> mtk8195_jpegdec_drvdata =3D {
-> =C2=A0	.jpeg_worker =3D mtk_jpegdec_worker,
-> =C2=A0};
-> =C2=A0
-> +static const struct mtk_jpeg_variant mtk8196_jpegdec_drvdata =3D {
-> +	.formats =3D mtk_jpeg_dec_formats,
-> +	.num_formats =3D MTK_JPEG_DEC_NUM_FORMATS,
-> +	.qops =3D &mtk_jpeg_dec_qops,
-> +	.m2m_ops =3D &mtk_jpeg_multicore_dec_m2m_ops,
-> +	.dev_name =3D "mtk-jpeg-dec",
-> +	.ioctl_ops =3D &mtk_jpeg_dec_ioctl_ops,
-> +	.out_q_default_fourcc =3D V4L2_PIX_FMT_JPEG,
-> +	.cap_q_default_fourcc =3D V4L2_PIX_FMT_YUV420M,
-> +	.multi_core =3D true,
-> +	.jpeg_worker =3D mtk_jpegdec_worker,
-> +};
+> +title: Microchip Polarfire SoC MSSIO pinctrl
 > +
-> =C2=A0static const struct of_device_id mtk_jpeg_match[] =3D {
-> =C2=A0	{
-> =C2=A0		.compatible =3D "mediatek,mt8173-jpgdec",
-> @@ -1966,6 +1992,14 @@ static const struct of_device_id mtk_jpeg_match[] =
-=3D {
-> =C2=A0		.compatible =3D "mediatek,mt8195-jpgdec",
-> =C2=A0		.data =3D &mtk8195_jpegdec_drvdata,
-> =C2=A0	},
-> +	{
-> +		.compatible =3D "mediatek,mt8196-jpgenc",
-> +		.data =3D &mtk8196_jpegenc_drvdata,
-> +	},
-> +	{
-> +		.compatible =3D "mediatek,mt8196-jpgdec",
-> +		.data =3D &mtk8196_jpegdec_drvdata,
-> +	},
-> =C2=A0	{},
-> =C2=A0};
-> =C2=A0
-> diff --git a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_dec_hw.c
-> b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_dec_hw.c
-> index b3142dc9be85..e453a1634f33 100644
-> --- a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_dec_hw.c
-> +++ b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_dec_hw.c
-> @@ -45,6 +45,9 @@ static const struct of_device_id mtk_jpegdec_hw_ids[] =
-=3D {
-> =C2=A0	{
-> =C2=A0		.compatible =3D "mediatek,mt8195-jpgdec-hw",
-> =C2=A0	},
-> +	{
-> +		.compatible =3D "mediatek,mt8196-jpgdec-hw",
-> +	},
-> =C2=A0	{},
-> =C2=A0};
-> =C2=A0MODULE_DEVICE_TABLE(of, mtk_jpegdec_hw_ids);
-> diff --git a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_enc_hw.c
-> b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_enc_hw.c
-> index 82c971936c4d..b30c728c3712 100644
-> --- a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_enc_hw.c
-> +++ b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_enc_hw.c
-> @@ -52,6 +52,9 @@ static const struct of_device_id mtk_jpegenc_drv_ids[] =
-=3D {
-> =C2=A0	{
-> =C2=A0		.compatible =3D "mediatek,mt8195-jpgenc-hw",
-> =C2=A0	},
-> +	{
-> +		.compatible =3D "mediatek,mt8196-jpgenc-hw",
-> +	},
-> =C2=A0	{},
-> =C2=A0};
-> =C2=A0MODULE_DEVICE_TABLE(of, mtk_jpegenc_drv_ids);
+> +maintainers:
+> +  - Conor Dooley <conor.dooley@microchip.com>
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - const: microchip,mpfs-pinctrl-mssio
+> +      - items:
+> +          - const: microchip,pic64gx-pinctrl-mssio
+> +          - const: microchip,mpfs-pinctrl-mssio
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  pinctrl-use-default: true
+> +
+> +patternProperties:
+> +  '-cfg$':
+> +    type: object
+> +    additionalProperties: false
+> +
+> +    patternProperties:
+> +      '-pins$':
+> +        type: object
+> +        additionalProperties: false
+> +
+> +        allOf:
+> +          - $ref: pincfg-node.yaml#
+> +          - $ref: pinmux-node.yaml#
+> +
+> +        properties:
+> +          pins:
+> +            description:
+> +              The list of IOs that properties in the pincfg node apply to.
 
---=-YBjB4a/FKYc454GerwhG
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
+pins can be int or string. You need to define which one here.
 
------BEGIN PGP SIGNATURE-----
+> +
+> +          function:
+> +            description:
+> +              A string containing the name of the function to mux for these
+> +              pins. The "reserved" function tristates a pin.
+> +            enum: [ sd, emmc, qspi, spi, usb, uart, i2c, can, mdio, misc
+> +                    reserved, gpio, fabric-test, tied-low, tied-high, tristate ]
+> +
+> +          bias-bus-hold: true
+> +          bias-disable: true
+> +          bias-pull-down: true
+> +          bias-pull-up: true
+> +          input-schmitt-enable: true
+> +          low-power-enable: true
+> +
+> +          drive-strength:
+> +            enum: [ 2, 4, 6, 8, 10, 12, 16, 20 ]
+> +
+> +          microchip,bank-voltage-microvolt:
+> +            description:
+> +              Which bank voltage to use. This cannot differ for pins in a
+> +              given bank, the whole bank uses the same voltage.
+> +            enum: [ 1200000, 1500000, 1800000, 2500000, 3300000 ]
 
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaUHT2AAKCRDZQZRRKWBy
-9IZqAPkBoSLa+bFdlDtR1FQo5Uc5A2dt+rMGU51H/CGtt205EAEAqnmGw/ine3cr
-vP6MeovY8uQj7THLju96VbvCAKmDCQY=
-=jQmg
------END PGP SIGNATURE-----
+"power-source" serves this purpose. It's not well defined as sometimes 
+it's a register value and sometimes a voltage (in various units).
 
---=-YBjB4a/FKYc454GerwhG--
+> +
+> +          microchip,clamp-diode:
+> +            $ref: /schemas/types.yaml#/definitions/flag
+> +            description:
+> +              Reflects the "Clamp Diode" setting in the MSS Configurator for
+> +              this pin. This setting controls whether or not input voltage
+> +              clamping should be enabled.
+> +
+> +          microchip,ibufmd:
+> +            $ref: /schemas/types.yaml#/definitions/uint32
+> +            default: 0
+> +            description:
+> +              Reflects the "IBUFMD" bits in the MSS Configurator output files
+> +              for this pin.
+> +
+> +        required:
+> +          - pins
+> +          - function
+> +          - microchip,bank-voltage-microvolt
+> +
+> +        if:
+> +          properties:
+> +            microchip,bank-voltage-microvolt:
+> +              contains:
+> +                enum: [ 1200000, 1500000, 1800000 ]
+> +        then:
+> +          required:
+> +            - input-schmitt-enable
+> +
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    pinctrl@204 {
+> +      compatible = "microchip,mpfs-pinctrl-mssio";
+> +      reg = <0x204 0x7c>;
+> +
+> +      ikrd-spi1-cfg {
+> +        spi1-pins {
+> +          pins = <30>, <31>, <32>, <33>;
+> +          function = "spi";
+> +          bias-pull-up;
+> +          drive-strength = <8>;
+> +          microchip,bank-voltage-microvolt = <3300000>;
+> +          microchip,ibufmd = <0x1>;
+> +        };
+> +      };
+> +    };
+> +...
+> diff --git a/Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-mss-top-sysreg.yaml b/Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-mss-top-sysreg.yaml
+> index 39987f722411..44e4a50c3155 100644
+> --- a/Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-mss-top-sysreg.yaml
+> +++ b/Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-mss-top-sysreg.yaml
+> @@ -42,6 +42,10 @@ properties:
+>      type: object
+>      $ref: /schemas/pinctrl/microchip,mpfs-pinctrl-iomux0.yaml
+>  
+> +  pinctrl@204:
+> +    type: object
+> +    $ref: /schemas/pinctrl/microchip,mpfs-pinctrl-mssio.yaml
+> +
+>  required:
+>    - compatible
+>    - reg
+> -- 
+> 2.51.0
+> 
+
 
