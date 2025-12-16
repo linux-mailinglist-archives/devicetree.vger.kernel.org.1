@@ -1,128 +1,192 @@
-Return-Path: <devicetree+bounces-247034-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247033-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C0E2CC3205
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 14:17:19 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7703CC3210
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 14:17:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 8EBDC302EB1C
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 13:17:16 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 5D9643012CDC
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 13:16:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 034403BDA90;
-	Tue, 16 Dec 2025 13:17:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C28263BCC53;
+	Tue, 16 Dec 2025 13:16:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="KxiUSz4Z"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cQH7mhPy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx-relay21-hz1.antispameurope.com (mx-relay21-hz1.antispameurope.com [94.100.132.221])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AFD239A119
-	for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 13:17:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=94.100.132.221
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765891032; cv=pass; b=gOTtaORHZjoof9R3IsvSi/0dCdL+EPlIEsp2Owk9lTxyWI+IL6W3VMuu+PzgBrjFgfmB3hPb5Ei4Hi91VLm9U2qYsUh+y3l7z43bPQ5SiFe4A/iDT/V6lmMLOnqkt9zOk5BOLW0NhpMNwzE0O3C9fw6SH5YRtf+W2xEKzkkQEOw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765891032; c=relaxed/simple;
-	bh=zxxZrwSMySnJ+NOEKeTKxWL2NpOTHlJHW6Jdr7nLoak=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=B47ZdbwxPxJZ6TT7u+JcbAbhVf10IhBI6cUwK0xvMzbldfl/YPPmE9Ja0nfxBZIS4ue2G22Agu/e3Yfp/IZJ1uFYRp4jdkQPQSDfr2GSAkaWLCMpgbfhDVacNMokZW0/1ZSew3cLkXvLSssfJ+/ouemyf+7J+mkA5DZDj9pssSY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=KxiUSz4Z; arc=pass smtp.client-ip=94.100.132.221
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-ARC-Authentication-Results: i=1; mx-gate21-hz1.hornetsecurity.com 1; spf=pass
- reason=mailfrom (ip=94.100.132.6, headerfrom=ew.tq-group.com)
- smtp.mailfrom=ew.tq-group.com
- smtp.helo=hmail-p-smtp01-out03-hz1.hornetsecurity.com; dmarc=pass
- header.from=ew.tq-group.com orig.disposition=pass
-ARC-Message-Signature: a=rsa-sha256;
- bh=J+XQ7ergPVCzcXY29psvIoBrucP9oMPTCH1A1rkDzxM=; c=relaxed/relaxed;
- d=hornetsecurity.com; h=from:to:date:subject:mime-version:; i=1; s=hse1;
- t=1765890940;
- b=WtX2kC1g+whhfGHoyihNrm4q3KZQA2HUtgXao+dnqC0jZIUq6jNwCUQDi3suN2iFm0hg1fkj
- zs4K2/0F+i6+bjJiyCOi5V4XJmveMoc2qtiFcW+aI2HSXN89F3OFwMM2VSpy1ada4Sm5RBzIAOr
- neRTeaKY/8E6NEVpNpznt7J+f8p6gwWpb/+K5YipyWdUG1ZrVEONpudK7HujNTJuCG3cJvii6s4
- LQPByurTh1Y2UI3t0ZRcmen+RAUbpbp4I1niMECEiEx8okq6rBUzAhN5/EXl9IexLC/iDQ3V+pz
- 1N82NpMUE+kYgebsMZsN47fjwLlhXuj/faGtiDOnF1KAA==
-ARC-Seal: a=rsa-sha256; cv=none; d=hornetsecurity.com; i=1; s=hse1;
- t=1765890940;
- b=gav36Dyc/cLzhLDcvWcoxDyYbR1J2kJO3kmnEVVX8QEO3xlPE3vGsRhIO2v0WcudS7findme
- pU7Fk2rv6aTN5aDvyiA+6v/rtoQY0SCJXy1Ma0EW3qdKHwu+ZKnk5mECyBinZi8kXPRdHrDC53E
- UYm9/pkABCc3Mj1ROUs+gDCgd4X6z1RH8ymwAhLFVELpPqb9fQ5VYb4vsGxztc5HKMu1r/M66LE
- 68Z4uX0yNMeC1wQDb02pp+bxEplw28P1BmIoLlhsr0zi3I327SNghHOX9juk/SvBV1RrCR2KcOV
- PoTKOmYIQQq7H8/rxyW0AeCRL9OsXLsN3xDPmQ293fGyg==
-Received: from he-nlb01-hz1.hornetsecurity.com ([94.100.132.6]) by mx-relay21-hz1.antispameurope.com;
- Tue, 16 Dec 2025 14:15:40 +0100
-Received: from steina-w.tq-net.de (host-82-135-125-110.customer.m-online.net [82.135.125.110])
-	(Authenticated sender: alexander.stein@ew.tq-group.com)
-	by hmail-p-smtp01-out03-hz1.hornetsecurity.com (Postfix) with ESMTPSA id 8B5FFCC0E8C;
-	Tue, 16 Dec 2025 14:15:33 +0100 (CET)
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
-	linux@ew.tq-group.com,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 1/1] arm64: dts: mba8mx: Fix Ethernet PHY IRQ support
-Date: Tue, 16 Dec 2025 14:15:28 +0100
-Message-ID: <20251216131529.886546-1-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.43.0
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5532D343215
+	for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 13:16:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1765891004; cv=none; b=h8K9DsoxUXDvmoHX8yWWNfl452kNWcMME8CU1VnOomr2Rmk5pqJJnq/sNx4p9aFur7KOPe8xJauDaz8U1dGIWVAk2SGL2PAf8fWK2ebDVUolAO/Q7hsCzEcOJ3CsNRoUcCNGZT4IG+/CyCeIkoETmpp24Zz4efRyLUuOEH1ze1g=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1765891004; c=relaxed/simple;
+	bh=ie+AJbWUF5jtAMvd+Vk2sYgjyzBsY+yVmjQ8OwD7xm4=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=fgyeXzW5/AF3WT1vvV+eDFZb1R3U3uWDHMkGdJrz6m2io7DWg7iFejofTiS5W/WQA7YlYWnG7Q3vFeSYun897RT+JCIAW00QjF3iwHA6KhHsLI77s1/VhAwNlOfWbeLjO02qNad+1mP2WrNddD6FnnHaVPlmGw7aet5BgMC/+EM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cQH7mhPy; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-477ba2c1ca2so51122835e9.2
+        for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 05:16:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1765890997; x=1766495797; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=9wEQyxMelFUxIKkKjwpqNdvXFJKNGJ/TVkTqrb2W9yo=;
+        b=cQH7mhPyhODzTUmWb7AP/SnvcqSZ5JMfmdA4afCm/ROKeT3lGClRoS0+cl1yaZCpxx
+         CTyXx0njdamGeS1tnUawkfAYin1ifKRgRi+7OynH0fS3CJpqBfmxzT+zo7Het1J15BWX
+         ytsDp8nqbEU2UqE+iCN1wZvsgnYw+wlgircupK3NlZe1iBUmtmvgQu7dJAde8fXegKaP
+         CoBv+u5RrgAwbho+dEApk4Z9wDzEeP61FYKMzfKud38xmco0HqXfVWsycu5+wkqt3gzu
+         f2KLe+FPCjlU2ycNjJ47lWsDh95mrGJUgbqYKmKCQiCqV6JLP5HAv7Tm19TeH9dmUGw6
+         CcNg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765890997; x=1766495797;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=9wEQyxMelFUxIKkKjwpqNdvXFJKNGJ/TVkTqrb2W9yo=;
+        b=fBNYlUY0C9Ev5Dkiesg7CQhUYeCtmmsaxm9tYNRSMgRZwiu3uXFCSJLvPwpaEjpVJY
+         5sFyO8v00xesfWe6qyIAF8RbIm/C+cRuJRqh7broFwdoZRQs9YcC6Rjy8K57YPY5KibS
+         cWgK6ebga5YwQvTMa76Q5J747cAiMjxWrh2lmKxO9Oeap7A/u7JfYDGln5mBDqRsnu+A
+         kZjBJiXIRcH4kGryMtEe19Sx3VZo1oXsFBqn7aKnd1ScnGP0VD4MtZ6NWfHeewNKo9HU
+         yUfaMSKm2ajQID983gz6tipujJB75RPv99/niHyNpdIcf77I681qbPIkopiLOZzs3vZZ
+         0Frg==
+X-Forwarded-Encrypted: i=1; AJvYcCVRPnyX58JYS2J0xW2Wf6fczpEVOaG7V5+YI7GK6Xym9kWEZsZ0SJ4DbpRVNYxWnt/q+OO9RUoGpoZn@vger.kernel.org
+X-Gm-Message-State: AOJu0YxGHvFfyWvOFU01yvpkWTPWaDVjljBiCbDWZtnXZc7HC7m0Buy8
+	NVHaO0bLG/YV7Quehn4Vus5scx8Z4v+5XJliZre616Y52wtWpWTQdJyh
+X-Gm-Gg: AY/fxX69QsPPQhf7YDz1cmfh32VF6+yuAoJIuK1zbryR451u35CBN+faPYVFkg3gNo6
+	6QAJx32490X1nda3SDcHL6h6Ia1LQi6xy7WePQ/MnvkYEgTHPI/1/z2zQmdXRb9kNb2b2AtZSxC
+	4eZygyxiKuI2NuDEelZjZUpABx4f/e59cJx/jDX488rXbWG5khZf6nsnPQ7xH5RT7wfl6rhK78O
+	p3jnGdTChE7X3e5pkzEhdx4W7MlABFSHUYSZTnpSivlSGBenJ+ZZotAwd59yCuYat4SvkT3pc9e
+	BErNPy7vOXGUCEcV8njKcxAZ7OCTHVJB7CKZxc4djP6wjLNtsQ/oWDmMLFlts1sBagKpOQLorlo
+	BoEoisjk2JJAYs/xlcKGImm/5d4h1xgvDFZmoHG7vqIyXg+3B7Q/mEq3uiPlpVfoY//g4GOHFDK
+	a/MQteiCLSIOV6YY0gAP0=
+X-Google-Smtp-Source: AGHT+IFBWulMuxuU7oloQiW42dIOzblQOJkSMSYM3mkR4FEHTZuiqpMj0PdGHiwFPjZwBQ0pemM/Ww==
+X-Received: by 2002:a05:600c:4f4a:b0:477:28c1:26ce with SMTP id 5b1f17b1804b1-47a8f8a717dmr161923995e9.7.1765890996571;
+        Tue, 16 Dec 2025 05:16:36 -0800 (PST)
+Received: from [192.168.1.187] ([161.230.67.253])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47a8f6e5baasm257873965e9.13.2025.12.16.05.16.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Dec 2025 05:16:36 -0800 (PST)
+Message-ID: <50bea4bef338490cae92f61a8cc9a555db4529c2.camel@gmail.com>
+Subject: Re: [PATCH v4 2/3] hwmon: ltc4283: Add support for the LTC4283 Swap
+ Controller
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Guenter Roeck <linux@roeck-us.net>, nuno.sa@analog.com, 
+	linux-hwmon@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-doc@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>,  Jean Delvare <jdelvare@suse.com>, Jonathan Corbet
+ <corbet@lwn.net>, Linus Walleij <linus.walleij@linaro.org>,  Bartosz
+ Golaszewski	 <brgl@bgdev.pl>
+Date: Tue, 16 Dec 2025 13:17:17 +0000
+In-Reply-To: <ca659699-e5f8-436f-bfdb-d0d250d34fca@roeck-us.net>
+References: <20251204-ltc4283-support-v4-0-db0197fd7984@analog.com>
+	 <20251204-ltc4283-support-v4-2-db0197fd7984@analog.com>
+	 <c9cb3a2b-da6b-42a6-87b0-7a2b780f5ad8@roeck-us.net>
+	 <56a6c6a1b800090522a61eea5141aa8c986faea1.camel@gmail.com>
+	 <ca659699-e5f8-436f-bfdb-d0d250d34fca@roeck-us.net>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-cloud-security-sender:alexander.stein@ew.tq-group.com
-X-cloud-security-recipient:devicetree@vger.kernel.org
-X-cloud-security-crypt: load encryption module
-X-cloud-security-Mailarchiv: E-Mail archived for: alexander.stein@ew.tq-group.com
-X-cloud-security-Mailarchivtype:outbound
-X-cloud-security-Virusscan:CLEAN
-X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on mx-relay21-hz1.antispameurope.com with 4dVy921b72z41r9H
-X-cloud-security-connect: he-nlb01-hz1.hornetsecurity.com[94.100.132.6], TLS=1, IP=94.100.132.6
-X-cloud-security-Digest:0fe9136366c4b6928e5776230e78d4b0
-X-cloud-security:scantime:1.648
-DKIM-Signature: a=rsa-sha256;
- bh=J+XQ7ergPVCzcXY29psvIoBrucP9oMPTCH1A1rkDzxM=; c=relaxed/relaxed;
- d=ew.tq-group.com;
- h=content-type:mime-version:subject:from:to:message-id:date; s=hse1;
- t=1765890939; v=1;
- b=KxiUSz4Z0Ise0USMcWC4DWjnLPt8G+f8C4a/GOP3F3yPzK/UZvcs7EYC375BkNRgh04Tzx4V
- q3IHZcK7qULJ/0Q21qpocTjuYkj05Uix5dEQGsVfdt3fjRYvJLP0WvNJXphO/JpuVI6YPgU5BkT
- uU13tZGVP1Ia/fQgMhRhBhm1uJ5nKtj6Kb1HQf0z6bixxn1jhgmQDCrvEh6AytNW2zawjULxCw/
- /ZIRLpRFuGTL2ROfU9Krr7ayspQYuUpR+eE13gDhVHen9TVm7eJeNbK6XpdImhdODWnciQimPDf
- mPSXfe6KtaKxxqem1w+hYDdIImBlxooyFwfOjdMtf+18A==
 
-Ethernet PHY interrupt mode is level triggered. Adjust the mode
-accordingly.
+On Fri, 2025-12-12 at 09:07 -0800, Guenter Roeck wrote:
+> On 12/12/25 08:50, Nuno S=C3=A1 wrote:
+> > On Thu, 2025-12-11 at 09:56 -0800, Guenter Roeck wrote:
+> > > On 12/4/25 08:15, Nuno S=C3=A1 via B4 Relay wrote:
+> > > > From: Nuno S=C3=A1 <nuno.sa@analog.com>
+> > > >=20
+> > > > Support the LTC4283 How Swap Controller. The device features progra=
+mmable
+> > > > current limit with foldback and independently adjustable inrush cur=
+rent to
+> > > > optimize the MOSFET safe operating area (SOA). The SOA timer limits=
+ MOSFET
+> > > > temperature rise for reliable protection against overstresses.
+> > > >=20
+> > > > An I2C interface and onboard ADC allow monitoring of board current,
+> > > > voltage, power, energy, and fault status.
+> > > >=20
+> > > > Signed-off-by: Nuno S=C3=A1 <nuno.sa@analog.com>
+> > > > ---
+> > > ...
+> > > > diff --git a/drivers/hwmon/ltc4283.c b/drivers/hwmon/ltc4283.c
+> > > > new file mode 100644
+> > > > index 000000000000..d79432678b84
+> > > > --- /dev/null
+> > > > +++ b/drivers/hwmon/ltc4283.c
+> > > ...
+> > > > +
+> > > > +static int ltc4283_read_voltage_word(const struct ltc4283_hwmon *s=
+t,
+> > > > +				=C2=A0=C2=A0=C2=A0=C2=A0 u32 reg, u32 fs, long *val)
+> > > > +{
+> > > > +	__be16 in;
+> > > > +	int ret;
+> > > > +
+> > > > +	ret =3D regmap_bulk_read(st->map, reg, &in, sizeof(in));
+> > >=20
+> > > I had a look into the regmap code. In its current implementation,
+> > > that will work as long as
+> > > 1) regmap is configured to not cache anything
+> > > 2) the I2C controller supports I2C_FUNC_SMBUS_I2C_BLOCK
+> > >=20
+> >=20
+> > Possibly dumb question... what would be the issue about doing multiple
+> > regmap reads if we can't do the bulk?=C2=A0That would be my naive appro=
+ach in
+> > the driver if I'm not going to use the bulk API.
+> >=20
+>=20
+> You mean on the same address ? I don't have the chip to check, but I am q=
+uite
+> sure that it would return the 1st byte again.
+>=20
+> FWIW, in the lm92 driver I used a regmap_bus to solve pretty much the sam=
+e
+> problem.
+>=20
+>=20
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
- arch/arm64/boot/dts/freescale/mba8mx.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Ok, I know understand the issue. We do have real word registers (though the=
+ energy
+spans 6 registers IIRC) in which case the regmap bulk fallback would fail. =
+So I do
+agree with you that relying on regmap implementation details is questionabl=
+e so
+I'll add my own bus.
 
-diff --git a/arch/arm64/boot/dts/freescale/mba8mx.dtsi b/arch/arm64/boot/dts/freescale/mba8mx.dtsi
-index 225cd2f1220bf..10d5c211b1c9b 100644
---- a/arch/arm64/boot/dts/freescale/mba8mx.dtsi
-+++ b/arch/arm64/boot/dts/freescale/mba8mx.dtsi
-@@ -192,7 +192,7 @@ ethphy0: ethernet-phy@e {
- 			reset-assert-us = <500000>;
- 			reset-deassert-us = <500>;
- 			interrupt-parent = <&expander2>;
--			interrupts = <6 IRQ_TYPE_EDGE_FALLING>;
-+			interrupts = <6 IRQ_TYPE_LEVEL_LOW>;
- 		};
- 	};
- };
--- 
-2.43.0
+But the above made me start thinking about how we should handle
+i2c_check_functionality()? For this device, I2C_FUNC_SMBUS_WORD_DATA and
+I2C_FUNC_SMBUS_BYTE_DATA (can we have word without byte??) are the minimum =
+the
+controller needs to support. So I could add the below:
 
+if (!i2c_check_functionality(adapter, I2C_FUNC_SMBUS_BYTE_DATA
+				    | I2C_FUNC_SMBUS_WORD_DATA))
+		return -ENODEV;
+
+But can't we have I2C_FUNC_I2C (or even I2C_FUNC_SMBUS_I2C_BLOCK) without
+supporting SMBUS?
+
+I mean, I can so something similar to what's being done in regmap-i2c but m=
+aybe
+that's too much? I'm leaning in that direction though...
+
+
+This made me wonder, again, about ltc4282 but in there word registers are i=
+n
+fact reg and reg + 1.
+
+- Nuno S=C3=A1
 
