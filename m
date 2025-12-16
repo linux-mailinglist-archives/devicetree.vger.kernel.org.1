@@ -1,165 +1,329 @@
-Return-Path: <devicetree+bounces-247166-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247167-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 987F2CC51B2
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 21:34:16 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBF54CC51C7
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 21:39:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 33C78302AAE4
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 20:34:15 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id B398930024B8
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 20:39:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB69C28030E;
-	Tue, 16 Dec 2025 20:34:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6F342E7F27;
+	Tue, 16 Dec 2025 20:39:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ejwgbbhE"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UeyIyLMV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B98291A3172;
-	Tue, 16 Dec 2025 20:34:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CCA52C21D4
+	for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 20:39:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765917253; cv=none; b=WMaBN4bsCSh7JftNQi0RV17/Jkhitx2OYM8E/fOz1sGihW7wyBen99zrxRMgR4iPHTfFbGZ36Frun+TDCJCiEXwiGygiaDHLXnJWdTk68aSNvXsbnrBRjt6RPq33m1Ogy8hMrl+sQ+0+oap2C4SeaUKg/vASZXpQ7saJz/dzeKQ=
+	t=1765917585; cv=none; b=W4Hg8FplxPtBfJCl+a2mV713f2qPNECICuRTrWMmA+2BMZFIK+p6A+Fa9hb75E6iy7+Hov5wAZA4uWQvHQnG2FHbYoJF66yff3oiwsF/121e4qgCPkDDCRkvbmFNyCowXEmkkjfVHSMk+OKTIlIieNAykp7ulTSllFWtwDH+9Yk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765917253; c=relaxed/simple;
-	bh=gbs4MTBB/3mazzLZycEOEMLJRyBSAc2efhxppbIrQME=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=EKBv8saEwBCOzi0VAn6S4EZkyynJ5U5YRUvDMDwqRxQR5rvxt7Z9okDc/YhSFWLsWYwbgeoFABh4KKwy7S0RowGc78oqfReTSHw+H5rCBEZJXQybCXMhcYAAuM8O0rVfTzjIH8Ejjn4aQdZ4wH1ZtZBMz3nv4HIrDpVHM+iqfQ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ejwgbbhE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 32F58C4CEF1;
-	Tue, 16 Dec 2025 20:34:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765917253;
-	bh=gbs4MTBB/3mazzLZycEOEMLJRyBSAc2efhxppbIrQME=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=ejwgbbhE1VKoPElXQTJdSzP0MqnWz2PUxWlRnBZb4N9Cp6cKn0n+zf6U4nK22RVkQ
-	 f1pwGdvbm6Rj703objVU0wimqgNh29ln88OTwU79OyjhM4XZEBu5tagGfG4sA4Ksbg
-	 KgV0jfx6y2Jx69JwuwhzIysbRRpTkJwn+Cwfcqv3/VV4sCEbaPErg6V2+/bIXbgH7T
-	 ND8CABNcqREln/WpjnsnoVF+nnLZEBclj+aRKlBaah8m+lJ4e6QRnA9o7Geyzn8QEd
-	 ODJt7pLqS+6lzaJmbTwNdH7sMG8RCrSdEk6nuGkYekmvOIQOvArB9KRTXLaHlJ167K
-	 v1MmsH+LGx6IA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 288B4D5E127;
-	Tue, 16 Dec 2025 20:34:13 +0000 (UTC)
-From: David Heidelberg via B4 Relay <devnull+david.ixit.cz@kernel.org>
-Date: Tue, 16 Dec 2025 21:34:08 +0100
-Subject: [PATCH] arm64: dts: qcom: sdm845-oneplus: Enable known blocks and
- add placeholders
+	s=arc-20240116; t=1765917585; c=relaxed/simple;
+	bh=tv0em6rnzXZKHXeiwFp0GKmFEA3N4Nijb9juCHcmjOg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BdaUV9WlSqEmXao6NbVRd5vGZgo7gso9fr7PX/RGy8J6EiF22aDntYPUtv6LAjeS6i60ITBz2qZPchjcluMPDO73Fj4JxPq6ajgWOGxhabdVwL6nwVucxzfLSUtSZpyKG66jSjC6BM4YfZs1JfX9QD+eN2iI/RSSm7RhMg6193g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UeyIyLMV; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-47928022b93so11494715e9.0
+        for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 12:39:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1765917581; x=1766522381; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=s73//T/y6AREQsTtlkjpQxBqm/eC/foq+66hNL6Ts/s=;
+        b=UeyIyLMVS3dAAgMP3mjMgX7uO5LBNVu5Xc75DpKfVdAzock0kvIicykisbgaFm3sPF
+         ypwhSbRAKOq2KWI0+HJS4kkELDVeCeg0EjG0Fpz7M1iraVKKXWe2ZJkKqJ5LGSZrutrV
+         YAigIjiN13F0Xl3ZOJ1Q07u8L4Tg8+ujf3LNQ6QjVl8N+7KVjEEgqBjZAM485f/O26Tb
+         qT3ChHiQWLzRK1kflD/uns08VDbV0MfjvK3vaIgbv5XMmQdPKc5EVyYndWUPYsrLZf4k
+         rYYnHPJgbHs61UyCDzGJGyFuu4Atf41e3dnrNPJc9uYp9apZXHlElO/ovJDvZTNTd6qf
+         ewEA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765917581; x=1766522381;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=s73//T/y6AREQsTtlkjpQxBqm/eC/foq+66hNL6Ts/s=;
+        b=HV5kWVFQ5ifMWUclDxpL7nsLjpeFVAEr+GGhJhgayC8dFKyotoChsZDAeQwfvf4nuj
+         vKJ0jZFjMksNSXZbT0lVyMIVTn2/FlCR8wbKFDcAJfvV9l3irN6g6JCqFqt0xcWwjErk
+         mb0rqMP0MzQ7heQ3awjeeT/6BVljp3uizNnGkF9ExJPx6/jgK35cO2jniI90ilu/Ob1M
+         /ZM5VKh743U256xhycjtlxQN5ypGuJyXq3GLaHW+HS+Q0wEN1vKXUOmHKTADnFLPT93/
+         8Zy6G0Ao4xgWQx/y9NVGPTaybyQHE3bdOuig3bLWMfN9ehUvPnv5oafyLvp/+7aw42SE
+         xOQA==
+X-Forwarded-Encrypted: i=1; AJvYcCWQDW5bUXErwrNLkzL2h6omrBkCevUnB8VXXEiEaBA+IE1PLxXUg9JBg7n3qqB29Za9WQm9yl4IiTQG@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz1ep+OqCGiCA3GzBipt4IoQXWFJfwT8m3aWqLRoO94S/UEo9B0
+	78lBSvGo0bFTlJy76v59CA19snB9zRFYt9uj6sLYTCrM9Vma2UcnaXNj
+X-Gm-Gg: AY/fxX4iWvcFntG+8r2InNd3nq1EjAnaFkfCYsJJNFk1XOtriLRhO/SX6t0ENnz6oXR
+	eLyf1Gl6MW28MW59dSn2bZddDFpoD8kCtlLvKZPdwuzgeOrNujiZB9WKrvki5WdPYyEb27iX8IA
+	FZecG8T9QFolZzktx5+8RNhX+NZ/iVS8OdMCrdH3uGg8rGePhxZ+p0pRY/MDcxLXP50RYrAQjBd
+	WIRheSP05rNRC1JIGEkJOlUYnO7enaFr68ptqn+r5VP+MYygfBWAAycxWtZi7sTLx+BUa6khDfJ
+	IRmclmCnexVzAZi+hD/PhdpIfXQ1oxHlVzE1m2g6b2lw6T+Zofc7UoF1cHJfOlOIoIWSZjPy2gb
+	cGeHn6twQ/Hq8i3AvEPI43Z27Lc92D/orlH9s4A8EoFDz1Yzf1gX6rmQpEmx2xsyHGKaZsBeF0o
+	oR
+X-Google-Smtp-Source: AGHT+IFWFbVcT/008WsXnHLoEvlmXoyoS0p30djhl0qQueCdCg1nk8K6Tv48MEYeNKDgA8N3ze5LTA==
+X-Received: by 2002:a05:600c:4f84:b0:477:a6f1:499d with SMTP id 5b1f17b1804b1-47a8f9187c7mr108090035e9.3.1765917580897;
+        Tue, 16 Dec 2025 12:39:40 -0800 (PST)
+Received: from skbuf ([2a02:2f04:d106:d600:c18:aa1:b847:17e5])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47bdc1cb6b3sm6938755e9.3.2025.12.16.12.39.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Dec 2025 12:39:39 -0800 (PST)
+Date: Tue, 16 Dec 2025 22:39:35 +0200
+From: Vladimir Oltean <olteanv@gmail.com>
+To: Daniel Golle <daniel@makrotopia.org>
+Cc: Andrew Lunn <andrew@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Simon Horman <horms@kernel.org>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Frank Wunderlich <frankwu@gmx.de>, Chad Monroe <chad@monroe.io>,
+	Cezary Wilmanski <cezary.wilmanski@adtran.com>,
+	Avinash Jayaraman <ajayaraman@maxlinear.com>,
+	Bing tao Xu <bxu@maxlinear.com>, Liang Xu <lxu@maxlinear.com>,
+	Juraj Povazanec <jpovazanec@maxlinear.com>,
+	"Fanni (Fang-Yi) Chan" <fchan@maxlinear.com>,
+	"Benny (Ying-Tsan) Weng" <yweng@maxlinear.com>,
+	"Livia M. Rosu" <lrosu@maxlinear.com>,
+	John Crispin <john@phrozen.org>
+Subject: Re: [PATCH RFC net-next v3 2/4] net: dsa: add tag formats for
+ MxL862xx switches
+Message-ID: <20251216203935.z5ss4sxbt6xc2444@skbuf>
+References: <cover.1765757027.git.daniel@makrotopia.org>
+ <de01f08a3c99921d439bc15eeafd94e759688554.1765757027.git.daniel@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251216-placeholders-v1-1-d7d544200e7c@ixit.cz>
-X-B4-Tracking: v=1; b=H4sIAD/CQWkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDI1NDQyNj3YKcxOTUjPyclNSiYl3zFDPTVCNLMxOLRBMloJaCotS0zAqwcdG
- xtbUAMTGuOl4AAAA=
-X-Change-ID: 20251123-placeholders-7d65e29648a4
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org, 
- David Heidelberg <david@ixit.cz>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1668; i=david@ixit.cz;
- h=from:subject:message-id;
- bh=+JZK2ZbxfA/IlfNdhYsiDNwaA0HXucqfuw6KNa0TyXk=;
- b=owEBbQKS/ZANAwAIAWACP8TTSSByAcsmYgBpQcJEA5Crw2AD4nFHdNFPek/RbVbA9LTtw78Hh
- 4W6BMB9wcyJAjMEAAEIAB0WIQTXegnP7twrvVOnBHRgAj/E00kgcgUCaUHCRAAKCRBgAj/E00kg
- coQ4D/wIOrl3U2EPI6EA35fBqsUoauCdeaHMeDEaVT/zFWMxpY4NvPo7wQPEKxGptTrhvi0DS10
- yCn/4/HjDwEb9vmbsnj6dJ7UDoqbW6+PzRYphlSoND/IoHRT0Bh373xKXOmuWAWJtEhA6Cmb7A0
- 9tpUKrJ1jhmNo1iGhUZkqUnigNWKXjAUioHYtXmqoycC/fkuWdS6spHKlciENo0ehlPp0+0q/72
- m1nfuBi+auZdkt7yqiliJ3efTApM4s0kodS0PQZe1PD/oq4CPn52esVEAJFBjO0GCu1EJN3es/x
- rL575oZ/+LuNzQSb0UJcN+PyZo8AN2CAFynPOs/QWA9ielUgjpgJtBM8+MiozHLzWEDvGwhZiyV
- i/pkCbUOfDZubU1DWGg/swawcp529r5fnZcK0uCgZfa+fPVir40FrPDhp8lRRHiUi0KbeJ+nFki
- KeC3+VXUktrf4BrRsAn2wmGxpjYrMBAZTM9Tc0aiEmOnyMPK+OB6Vvy1zpMp/nU7aN5HaItZPVb
- oN5wBPoKfBwmoors9qnzIKdbKGaoarYUt5nRtdOTy/jY9IU6kPyspRou7uCOd5fycjJTzvFm0Ka
- NuY3uesS0hK5H6cz8O44mN2S3vYGvHHBw6Swaw1DqWjBnvdh/6KvD6qI1CCTt1JNK3Ae5OwuwnU
- UGyUMm1NE8YVc7g==
-X-Developer-Key: i=david@ixit.cz; a=openpgp;
- fpr=D77A09CFEEDC2BBD53A7047460023FC4D3492072
-X-Endpoint-Received: by B4 Relay for david@ixit.cz/default with auth_id=355
-X-Original-From: David Heidelberg <david@ixit.cz>
-Reply-To: david@ixit.cz
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <de01f08a3c99921d439bc15eeafd94e759688554.1765757027.git.daniel@makrotopia.org>
 
-From: David Heidelberg <david@ixit.cz>
+On Mon, Dec 15, 2025 at 12:11:43AM +0000, Daniel Golle wrote:
+> Add proprietary special tag format for the MaxLinear MXL862xx family of
+> switches. While using the same Ethertype as MaxLinear's GSW1xx swtiches,
 
-We know these devices are present; most of them are supported by
-downstream and are close to the mainline kernels.
+s/swtiches/switches/
 
-This adds placeholders for:
- - front camera (imx371)
- - rear cameras (imx519, imx376k)
- - actuators
- - NFC node on i2c3
+> the actual tag format differs significantly, hence we need a dedicated
+> tag driver for that.
 
-This is very handy when rebasing the integration tree with
-support for multiple different blocks at the same time.
+Reusing the same EtherType for two different DSA tagging protocols is
+very bad news, possibly with implications also for libpcap. Is the
+EtherType configurable in the MXL862xx family?
 
-Signed-off-by: David Heidelberg <david@ixit.cz>
----
- .../arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi | 28 ++++++++++++++++++++++
- 1 file changed, 28 insertions(+)
+> 
+> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+> ---
+> RFC v3: no changes
+> RFC v2: make sure all tag fields are initialized
+> 
+>  MAINTAINERS            |   1 +
+>  include/net/dsa.h      |   2 +
+>  net/dsa/Kconfig        |   7 +++
+>  net/dsa/Makefile       |   1 +
+>  net/dsa/tag_mxl862xx.c | 113 +++++++++++++++++++++++++++++++++++++++++
+>  5 files changed, 124 insertions(+)
+>  create mode 100644 net/dsa/tag_mxl862xx.c
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index c433a15d9797a..a20498cc8320b 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -15609,6 +15609,7 @@ M:	Daniel Golle <daniel@makrotopia.org>
+>  L:	netdev@vger.kernel.org
+>  S:	Maintained
+>  F:	Documentation/devicetree/bindings/net/dsa/maxlinear,mxl862xx.yaml
+> +F:	net/dsa/tag_mxl862xx.c
+>  
+>  MCAN DEVICE DRIVER
+>  M:	Markus Schneider-Pargmann <msp@baylibre.com>
+> diff --git a/include/net/dsa.h b/include/net/dsa.h
+> index e40cdc12f7f39..e4c2b47a2a46e 100644
+> --- a/include/net/dsa.h
+> +++ b/include/net/dsa.h
+> @@ -57,6 +57,7 @@ struct tc_action;
+>  #define DSA_TAG_PROTO_BRCM_LEGACY_FCS_VALUE	29
+>  #define DSA_TAG_PROTO_YT921X_VALUE		30
+>  #define DSA_TAG_PROTO_MXL_GSW1XX_VALUE		31
+> +#define DSA_TAG_PROTO_MXL862_VALUE		32
+>  
+>  enum dsa_tag_protocol {
+>  	DSA_TAG_PROTO_NONE		= DSA_TAG_PROTO_NONE_VALUE,
+> @@ -91,6 +92,7 @@ enum dsa_tag_protocol {
+>  	DSA_TAG_PROTO_VSC73XX_8021Q	= DSA_TAG_PROTO_VSC73XX_8021Q_VALUE,
+>  	DSA_TAG_PROTO_YT921X		= DSA_TAG_PROTO_YT921X_VALUE,
+>  	DSA_TAG_PROTO_MXL_GSW1XX	= DSA_TAG_PROTO_MXL_GSW1XX_VALUE,
+> +	DSA_TAG_PROTO_MXL862		= DSA_TAG_PROTO_MXL862_VALUE,
+>  };
+>  
+>  struct dsa_switch;
+> diff --git a/net/dsa/Kconfig b/net/dsa/Kconfig
+> index f86b30742122f..c897d62326f5b 100644
+> --- a/net/dsa/Kconfig
+> +++ b/net/dsa/Kconfig
+> @@ -145,6 +145,13 @@ config NET_DSA_TAG_QCA
+>  	  Say Y or M if you want to enable support for tagging frames for
+>  	  the Qualcomm Atheros QCA8K switches.
+>  
+> +config NET_DSA_TAG_MXL862
+> +	tristate "Tag driver for MxL862xx switches"
+> +	help
+> +	  Say Y or M if you want to enable support for tagging frames for the
+> +	  Maxlinear MxL86252 and MxL86282 switches using their native 8-byte
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-index db6dd04c51bb5..3e60565d54c08 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-@@ -352,6 +352,26 @@ vreg_s3c_0p6: smps3 {
- 	};
- };
- 
-+&cci {
-+	status = "okay";
-+};
-+
-+&cci_i2c0 {
-+	/* front sony,imx371 @10 */
-+
-+	/* rear sony,imx519 @1a */
-+
-+	/* rear onnn,lc898217xc @72 */
-+};
-+
-+&cci_i2c1 {
-+	/* sa,sa3103 @0d */
-+
-+	/* rear sony,imx376k @10 */
-+
-+	/* onnn,lc898217xc @74 */
-+};
-+
- &cdsp_pas {
- 	status = "okay";
- 	firmware-name = "qcom/sdm845/oneplus6/cdsp.mbn";
-@@ -373,6 +393,14 @@ &gpu_zap_shader {
- 	firmware-name = "qcom/sdm845/oneplus6/a630_zap.mbn";
- };
- 
-+&i2c3 {
-+	clock-frequency = <400000>;
-+
-+	status = "okay";
-+
-+	/* nxp,nxp-nci-i2c @28 */
-+};
-+
- &i2c10 {
- 	status = "okay";
- 	clock-frequency = <100000>;
+MaxLinear with capital L
 
----
-base-commit: 563c8dd425b59e44470e28519107b1efc99f4c7b
-change-id: 20251123-placeholders-7d65e29648a4
+> +	  tagging protocol.
+> +
+>  config NET_DSA_TAG_RTL4_A
+>  	tristate "Tag driver for Realtek 4 byte protocol A tags"
+>  	help
+> diff --git a/net/dsa/Makefile b/net/dsa/Makefile
+> index 42d173f5a7013..dbe2a742e3322 100644
+> --- a/net/dsa/Makefile
+> +++ b/net/dsa/Makefile
+> @@ -28,6 +28,7 @@ obj-$(CONFIG_NET_DSA_TAG_HELLCREEK) += tag_hellcreek.o
+>  obj-$(CONFIG_NET_DSA_TAG_KSZ) += tag_ksz.o
+>  obj-$(CONFIG_NET_DSA_TAG_LAN9303) += tag_lan9303.o
+>  obj-$(CONFIG_NET_DSA_TAG_MTK) += tag_mtk.o
+> +obj-$(CONFIG_NET_DSA_TAG_MXL862) += tag_mxl862xx.o
+>  obj-$(CONFIG_NET_DSA_TAG_MXL_GSW1XX) += tag_mxl-gsw1xx.o
+>  obj-$(CONFIG_NET_DSA_TAG_NONE) += tag_none.o
+>  obj-$(CONFIG_NET_DSA_TAG_OCELOT) += tag_ocelot.o
+> diff --git a/net/dsa/tag_mxl862xx.c b/net/dsa/tag_mxl862xx.c
+> new file mode 100644
+> index 0000000000000..9c5e5f90dcb63
+> --- /dev/null
+> +++ b/net/dsa/tag_mxl862xx.c
+> @@ -0,0 +1,113 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/*
+> + * DSA Special Tag for MaxLinear 862xx switch chips
+> + *
+> + * Copyright (C) 2025 Daniel Golle <daniel@makrotopia.org>
+> + * Copyright (C) 2024 MaxLinear Inc.
+> + */
+> +
+> +#include <linux/bitops.h>
+> +#include <linux/etherdevice.h>
+> +#include <linux/skbuff.h>
+> +#include <net/dsa.h>
+> +#include "tag.h"
+> +
+> +#define MXL862_NAME	"mxl862xx"
+> +
+> +/* To define the outgoing port and to discover the incoming port a special
+> + * tag is used by the GSW1xx.
+> + *
+> + *       Dest MAC       Src MAC    special TAG        EtherType
+> + * ...| 1 2 3 4 5 6 | 1 2 3 4 5 6 | 1 2 3 4 5 6 7 8 | 1 2 |...
+> + *                                |<--------------->|
+> + */
+> +
+> +#define MXL862_HEADER_LEN 8
+> +
+> +/* Byte 7 */
+> +#define MXL862_IGP_EGP GENMASK(3, 0)
+> +
+> +static struct sk_buff *mxl862_tag_xmit(struct sk_buff *skb,
+> +				       struct net_device *dev)
+> +{
+> +	struct dsa_port *dp = dsa_user_to_port(dev);
+> +	struct dsa_port *cpu_dp = dp->cpu_dp;
+> +	unsigned int cpu_port = cpu_dp->index + 1;
+> +	unsigned int usr_port = dp->index + 1;
+> +	__be16 *mxl862_tag;
+> +
+> +	if (!skb)
+> +		return skb;
+> +
+> +	/* provide additional space 'MXL862_HEADER_LEN' bytes */
+> +	skb_push(skb, MXL862_HEADER_LEN);
+> +
+> +	/* shift MAC address to the beginnig of the enlarged buffer,
+> +	 * releasing the space required for DSA tag (between MAC address and
+> +	 * Ethertype)
+> +	 */
+> +	dsa_alloc_etype_header(skb, MXL862_HEADER_LEN);
+> +
+> +	/* special tag ingress */
+> +	mxl862_tag = dsa_etype_header_pos_tx(skb);
+> +	mxl862_tag[0] = htons(ETH_P_MXLGSW);
+> +	mxl862_tag[1] = 0;
+> +	mxl862_tag[2] = htons(usr_port + 16 - cpu_port);
 
-Best regards,
--- 
-David Heidelberg <david@ixit.cz>
+Can you place a comment on the meaning of these port manipulations
+(cpu_dp->index + 1, dp->index + 1, usr_port + 16 - cpu_port,
+port = port - 1 in rcv())?
 
-
+> +	mxl862_tag[3] = htons(FIELD_PREP(MXL862_IGP_EGP, cpu_port));
+> +
+> +	return skb;
+> +}
+> +
+> +static struct sk_buff *mxl862_tag_rcv(struct sk_buff *skb,
+> +				      struct net_device *dev)
+> +{
+> +	int port;
+> +	__be16 *mxl862_tag;
+> +
+> +	if (unlikely(!pskb_may_pull(skb, MXL862_HEADER_LEN))) {
+> +		dev_warn_ratelimited(&dev->dev, "Cannot pull SKB, packet dropped\n");
+> +		return NULL;
+> +	}
+> +
+> +	mxl862_tag = dsa_etype_header_pos_rx(skb);
+> +
+> +	if (unlikely(mxl862_tag[0] != htons(ETH_P_MXLGSW))) {
+> +		dev_warn_ratelimited(&dev->dev, "Invalid special tag marker, packet dropped\n");
+> +		dev_warn_ratelimited(&dev->dev, "Rx Packet Tag: %8ph\n",
+> +				     mxl862_tag);
+> +		return NULL;
+> +	}
+> +
+> +	/* Get source port information */
+> +	port = FIELD_GET(MXL862_IGP_EGP, ntohs(mxl862_tag[3]));
+> +	port = port - 1;
+> +	skb->dev = dsa_conduit_find_user(dev, 0, port);
+> +	if (!skb->dev) {
+> +		dev_warn_ratelimited(&dev->dev, "Invalid source port, packet dropped\n");
+> +		dev_warn_ratelimited(&dev->dev, "Rx Packet Tag: %8ph\n",
+> +				     mxl862_tag);
+> +		return NULL;
+> +	}
+> +
+> +	/* remove the MxL862xx special tag between the MAC addresses and the
+> +	 * current ethertype field.
+> +	 */
+> +	skb_pull_rcsum(skb, MXL862_HEADER_LEN);
+> +	dsa_strip_etype_header(skb, MXL862_HEADER_LEN);
+> +
+> +	return skb;
+> +}
+> +
+> +static const struct dsa_device_ops mxl862_netdev_ops = {
+> +	.name = "mxl862",
+> +	.proto = DSA_TAG_PROTO_MXL862,
+> +	.xmit = mxl862_tag_xmit,
+> +	.rcv = mxl862_tag_rcv,
+> +	.needed_headroom = MXL862_HEADER_LEN,
+> +};
+> +
+> +MODULE_ALIAS_DSA_TAG_DRIVER(DSA_TAG_PROTO_MXL862, MXL862_NAME);
+> +MODULE_DESCRIPTION("DSA tag driver for MaxLinear MxL862xx switches");
+> +MODULE_LICENSE("GPL");
+> +
+> +module_dsa_tag_driver(mxl862_netdev_ops);
+> -- 
+> 2.52.0
 
