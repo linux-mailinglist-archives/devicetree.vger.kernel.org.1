@@ -1,168 +1,96 @@
-Return-Path: <devicetree+bounces-247160-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247161-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72938CC5061
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 20:36:44 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C063CC5173
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 21:28:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 096E2305308F
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 19:36:13 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2E8CB30274C8
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 20:27:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04C42336EFB;
-	Tue, 16 Dec 2025 19:36:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F32D62EAD1C;
+	Tue, 16 Dec 2025 20:27:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sartura.hr header.i=@sartura.hr header.b="PIdvrWND"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jBaoWK8Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66E1133509C
-	for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 19:36:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C80E429D29E;
+	Tue, 16 Dec 2025 20:27:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765913765; cv=none; b=FIxBK1FqSWulwK9z+NBYl2BR0IbnDjK7iHkSmI01yt65W2KE5V0m8HkmDVKhoOlPfcJxsgPMJO61MuiMxYkmY+WNPm/NMX/Ak1TMpZ3OF3P73jF0GpgdAOhtNHjsQW5UjvhQALY3qVqiMVWjjF6KtVo8kZt7w+F7fGvkOAPbTnU=
+	t=1765916874; cv=none; b=cT9K+7hN51oF4JUzw/38fbj3Cvh7wSOntoRuRKld90UmixY18rAZe9LBG+KmSG98lgXeD1nkl7Z1eYYnM5UP9PWQp1PzFaxN6bFSk/oiPpl5QP/FehziTwl02PM12504L8aWd5TCzp0oYSjXiUXB7imdZbbsbnek44l8Yn0k8rs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765913765; c=relaxed/simple;
-	bh=DyIKB2hJJPGNfOXTwj8MacflXxSMbpI7LrFqsSt1Jpw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=VZl9a5GKjbP32c+70vdbXtVHDXLGHHNoxMDLqU/M2nwxqPwVtk5NNMEe+sAG96ACu8S/j4D1s9jCibOs2riLDznZ5DPuOywkPPxgF//KDhs4wcytcn5Aobsswa8S6j4W8dAGMj9Z1fE85XoPny+f7werMyB1X6Bn7vhqO/9y9ho=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sartura.hr; spf=pass smtp.mailfrom=sartura.hr; dkim=pass (2048-bit key) header.d=sartura.hr header.i=@sartura.hr header.b=PIdvrWND; arc=none smtp.client-ip=209.85.218.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sartura.hr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sartura.hr
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-b79e7112398so990424566b.3
-        for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 11:36:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura.hr; s=sartura; t=1765913760; x=1766518560; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DyIKB2hJJPGNfOXTwj8MacflXxSMbpI7LrFqsSt1Jpw=;
-        b=PIdvrWNDDkXLnkqIgGC29aaQhDxS5xxdJwzQ1Gvo0YMV3PEI80xK6mO1gu11OnOZuv
-         3BLETZeImjGoprIOUDGIYMfTiw9+Dg5wruZ7KlEYpOW0qxKg2h8/Zl840vJXydD2Ubyd
-         xTnarw5j30I9lIp8OYc66k7Meoa1IGPl3DxM5IQyWajo+GU68PnkbIDOB8co1xgvUCvH
-         wbYkynT7pDB4z9GALnUaExA6zSk5k+Uw6Qj+BBCGTlGixU8inglD6zNiJSQR8rzuOfdE
-         jIUbfq1xEm/qbPDVHWByqjleRo/qIpJQJIYdbJwHNEooTlBabuq+0gXf6k8BNpA5uKJp
-         3baA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765913760; x=1766518560;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=DyIKB2hJJPGNfOXTwj8MacflXxSMbpI7LrFqsSt1Jpw=;
-        b=eftc7AxiEi3v9BUYeA5edKnDCzFrqP11TXr9w3lnfMzGp2FKcLxIXmOOFBdX+xzfn9
-         aP8C21nVU48uvnPP0KjFvv5isnwO8pvEYvlWrxzqERKyadfnXf/VOV97cbdmv4mNtc8c
-         y7B5+ypR4pmybbvWyi6kBTxGXheNDThRmbM5z/ZmMEWtWIwSP+tpAO/bi0Vaax1bEAOS
-         DvWYy/6uQOJGyS0k3fcR/92pbtxpRtW7Cl9Y2vX4qt07eLp+n3rgkxItKzxsyyzByNMa
-         6GXvAZFDDlegXFs+aX/AzAkvqGUpQbCha3dLcfneqg8HOMr4MfFsnC4y5CnrLNWpf7yb
-         rn6A==
-X-Forwarded-Encrypted: i=1; AJvYcCXKHfW0FI6gy2a1p+d0oiC08NfPCJKcvr1rBYlUd5ymrwx3Zc+TAAzdumgqjndQieFXOCuzSXkj8fcx@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw1LZLIwHTnoLXYvR1ic7GYwLSAZj9uSsXaa7lRCUEPKzSkVz/8
-	Gb6heek06o5hU457olQPieWSPOBTPFCtwwDfrb5Azw9CaLjjrf2EdvacJPfjciGYsZgBMy8zU5n
-	OPEYxKz0X7UiVFFpg9rVO93HgzXwpZA86RkD2jnLGUg==
-X-Gm-Gg: AY/fxX4HCXuq9QO/KD4E8JS+BtaGLr2w3i2x5JkKvzwXF89NEmunlVRNIL6PbMf9xIo
-	fdyoiGgdxuqM6xxO9QbjbVQy9Bm5j7YC+mXEV2Mpms4XFD5a/40p79460FDIz/igTrJcsHG0JFu
-	Zddv8sS2p3blSemQzzDJaLxPepm+V9UA0e+Utz0d6xrv1uZdpBiTdRzm0Ite4agaoLcLmcQygCc
-	6K0fSd0ncy/H49RzsubeQpnUSwkUm5u9HkgR6vaDke3Mb8H1XNcgole+vcfA6iXcDXa7vAj
-X-Google-Smtp-Source: AGHT+IHNQYfHhSZB51dtsDipQL9/5fDZcPe/Z6WdB1j+IUPGZTp0qnMPAX1NRpIDGnC0FktvfYyl1BhfRBlJ1lJ36qI=
-X-Received: by 2002:a17:907:cd07:b0:b79:f965:1ce1 with SMTP id
- a640c23a62f3a-b7d238ba3e3mr1542684066b.42.1765913760345; Tue, 16 Dec 2025
- 11:36:00 -0800 (PST)
+	s=arc-20240116; t=1765916874; c=relaxed/simple;
+	bh=+1SqpF/XGRA+dpb2sLKshDR1VeFj8O2Uym6zaIH0yME=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=cx9JdEZxDmXROqlc4g0cJ7h1BUOjKUKizXWVeRkQX+SyBHCgxcCSiEiDSqO7yiN5tMw0h1Z+Nh5FSOCf2iTMMJCyL9Yg5dM4ekIkgCyXzXipv4BdiNl5S2eOdAG4BohNRM4+yCJWx4r4xTZ47/1ApyJoYJG/iZLNnK4TfVuPYow=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jBaoWK8Q; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B38EC4CEF1;
+	Tue, 16 Dec 2025 20:27:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1765916874;
+	bh=+1SqpF/XGRA+dpb2sLKshDR1VeFj8O2Uym6zaIH0yME=;
+	h=From:Subject:Date:To:Cc:From;
+	b=jBaoWK8QQYU8T6RjUbs6FM/rRVc6ivlyDZ0dBugUIsy+6FA3dTZ+c2AH3ASfUKa9O
+	 6SRwm7N10R1e1AunhUU6beT4QN7xhUqr0VA0f8J8QEnxrm4NU1irJLlh3536/Sbqh/
+	 rSmERi+HQBH+XmW9s7X3ifI2dkrKpkftJ8QvN7TAkp1jmi9ldTr0cEnGjeChXI4dx2
+	 Fsphpy3lRe4fuwnA3Tc0q0LqeNIuhZBYV/9f0KjglOiz1iS9XKZwMPGNt5SPgFMNiW
+	 fKVraYDEZ8Mz4pmTXMD0bQ95LdYuj17ogEkVMLd+2sJ6jtp+w7hF3nSWjJ5PwcBr7M
+	 kQUSAamCvoOvg==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Subject: [PATCH 0/4] arm64: dts: apm: Fix remaining warnings
+Date: Tue, 16 Dec 2025 14:27:47 -0600
+Message-Id: <20251216-dt-apm-v1-0-0bf2bf8b982c@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251215163820.1584926-1-robert.marko@sartura.hr>
- <20251215163820.1584926-4-robert.marko@sartura.hr> <202512161628415e9896d1@mail.local>
- <CA+HBbNFG+xNokn5VY5G6Cgh41NZ=KteRi0D9c0B15xb77mzv8w@mail.gmail.com>
- <202512161726449fe42d71@mail.local> <20251216-underarm-trapped-626f16d856f5@spud>
-In-Reply-To: <20251216-underarm-trapped-626f16d856f5@spud>
-From: Robert Marko <robert.marko@sartura.hr>
-Date: Tue, 16 Dec 2025 20:35:49 +0100
-X-Gm-Features: AQt7F2ovlD6q1uGr-F_qGhYebApPtJxD_ztM4nzL5Jt_8Qv6aSDXR9OqFn9QCtE
-Message-ID: <CA+HBbNFq=+uWp05YD08EQtaOhrN9FCBAtnOAsOJc4dNfoJRfxA@mail.gmail.com>
-Subject: Re: [PATCH v2 04/19] dt-bindings: arm: move AT91 to generic Microchip binding
-To: Conor Dooley <conor@kernel.org>
-Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, nicolas.ferre@microchip.com, claudiu.beznea@tuxon.dev, 
-	Steen.Hegelund@microchip.com, daniel.machon@microchip.com, 
-	UNGLinuxDriver@microchip.com, herbert@gondor.apana.org.au, 
-	davem@davemloft.net, vkoul@kernel.org, linux@roeck-us.net, 
-	andi.shyti@kernel.org, lee@kernel.org, andrew+netdev@lunn.ch, 
-	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, linusw@kernel.org, 
-	olivia@selenic.com, radu_nicolae.pirea@upb.ro, richard.genoud@bootlin.com, 
-	gregkh@linuxfoundation.org, jirislaby@kernel.org, mturquette@baylibre.com, 
-	sboyd@kernel.org, richardcochran@gmail.com, wsa+renesas@sang-engineering.com, 
-	romain.sioen@microchip.com, Ryan.Wanner@microchip.com, 
-	lars.povlsen@microchip.com, tudor.ambarus@linaro.org, 
-	kavyasree.kotagiri@microchip.com, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-crypto@vger.kernel.org, dmaengine@vger.kernel.org, 
-	linux-hwmon@vger.kernel.org, linux-i2c@vger.kernel.org, 
-	netdev@vger.kernel.org, linux-gpio@vger.kernel.org, linux-spi@vger.kernel.org, 
-	linux-serial@vger.kernel.org, linux-usb@vger.kernel.org, 
-	linux-clk@vger.kernel.org, mwalle@kernel.org, luka.perkov@sartura.hr
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMPAQWkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1NDI0Mz3ZQS3cSCXF1zCwuTNINUS1PDlBQloOKCotS0zAqwQdGxtbUAb7l
+ iiVgAAAA=
+X-Change-ID: 20251216-dt-apm-7884f0e951dd
+To: soc@kernel.org, Khuong Dinh <khuong@os.amperecomputing.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+X-Mailer: b4 0.15-dev
 
-On Tue, Dec 16, 2025 at 8:21=E2=80=AFPM Conor Dooley <conor@kernel.org> wro=
-te:
->
-> On Tue, Dec 16, 2025 at 06:26:44PM +0100, Alexandre Belloni wrote:
-> > On 16/12/2025 17:56:20+0100, Robert Marko wrote:
-> > > On Tue, Dec 16, 2025 at 5:29=E2=80=AFPM Alexandre Belloni
-> > > <alexandre.belloni@bootlin.com> wrote:
-> > > >
-> > > > On 15/12/2025 17:35:21+0100, Robert Marko wrote:
-> > > > > Create a new binding file named microchip.yaml, to which all Micr=
-ochip
-> > > > > based devices will be moved to.
-> > > > >
-> > > > > Start by moving AT91, next will be SparX-5.
-> > > >
-> > > > Both lines of SoCs are designed by different business units and are
-> > > > wildly different and while both business units are currently owned =
-by
-> > > > the same company, there are no guarantees this will stay this way s=
-o I
-> > > > would simply avoid merging both.
-> > >
-> > > Hi Alexandre,
-> > >
-> > > The merge was requested by Conor instead of adding a new binding for =
-LAN969x [1]
-> > >
-> > > [1] https://patchwork.kernel.org/project/linux-arm-kernel/patch/20251=
-203122313.1287950-2-robert.marko@sartura.hr/
-> > >
-> >
-> > I would still keep them separate, SparX-5 is closer to what is
-> > devicetree/bindings/mips/mscc.txt than to any atmel descended SoCs.
->
-> If you don't want the sparx-5 stuff in with the atmel bits, that's fine,
-> but I stand over my comments about this lan969x stuff not getting a file
-> of its own.
-> Probably that means putting it in the atmel file, alongside the lan966x
-> boards that are in there at the moment.
+This series (along with separately sent binding changes) fixes the 
+remaining DT warnings for APM platforms with the exception the 
+non-standard use of the "phy-handle" property having 2 phys. I'm not 
+sure what is the right fix there. It looks like the same phy is defined 
+twice on different MDIO buses though the "apm,xgene-mdio-rgmii" MDIO 
+registers overlap with the "apm,xgene-enet" registers which also defines 
+a MDIO bus...
 
-Hi Conor,
-What do you think about renaming the SparX-5 binding and adding LAN969x to =
-that?
-Cause both are from the current Microchip and from the same UNG
-business unit, with
-probably more generations to follow.
+SoC maintainers, please take this series directly.
 
-LAN969x does not really belong in Atmel bindings to me, but I am flexible.
+Rob
 
-Regards,
-Robert
---=20
-Robert Marko
-Staff Embedded Linux Engineer
-Sartura d.d.
-Lendavska ulica 16a
-10000 Zagreb, Croatia
-Email: robert.marko@sartura.hr
-Web: www.sartura.hr
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+---
+Rob Herring (Arm) (4):
+      arm64: dts: apm/shadowcat: More clock clean-ups
+      arm64: dts: apm: Use recommended i2c node names
+      arm64: dts: apm: Add "reg" to "syscon-reboot" and "syscon-poweroff"
+      arm64: dts: apm: Drop "dma" device_type
+
+ arch/arm64/boot/dts/apm/apm-merlin.dts     |  1 +
+ arch/arm64/boot/dts/apm/apm-mustang.dts    |  1 +
+ arch/arm64/boot/dts/apm/apm-shadowcat.dtsi | 20 ++++++++++----------
+ arch/arm64/boot/dts/apm/apm-storm.dtsi     |  4 ++--
+ 4 files changed, 14 insertions(+), 12 deletions(-)
+---
+base-commit: 563c8dd425b59e44470e28519107b1efc99f4c7b
+change-id: 20251216-dt-apm-7884f0e951dd
+
+Best regards,
+--  
+Rob Herring (Arm) <robh@kernel.org>
+
 
