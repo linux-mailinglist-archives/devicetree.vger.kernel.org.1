@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-247169-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247170-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58621CC522A
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 21:57:50 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40DF6CC52F7
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 22:15:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B6DA43040A45
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 20:57:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AA9563031989
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 21:15:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F9D5328B66;
-	Tue, 16 Dec 2025 20:57:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87E4B2E03E3;
+	Tue, 16 Dec 2025 21:15:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b="vNATYHFh"
+	dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b="ceHAYlbb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f47.google.com (mail-qv1-f47.google.com [209.85.219.47])
+Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9E9E321442
-	for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 20:57:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC668248F69
+	for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 21:15:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765918655; cv=none; b=VbCYAqkfhFA3rNKv031d2GdrpfzkqYgQgcRHVYfWkhY5xoUajZAS+GVxVgmKCH0i7AzaVeG1mJoRF5lamajFJqZzauPiKOxYQZarcMFnegzm0TSN6UWMmb35LKL+ummzebccUQeF9hdKM4UCkKtdD70ooQTcCS93iNQ7ocWSgbQ=
+	t=1765919749; cv=none; b=JyvqtFOx7CxfCG3zm+nfjlZW2pm9l5N7zrBgSPgXSMT2lwXY/KggMpVaipByHP7PECUusfeBQ0g3zei6f1A3W5djsWaVq9AAZ2guQclcUZRfelsLnR+q9gz/wrh2dmuPFNMA1sVhW/FGJ1/pZYbXeLSI/t9UGNptH8sp7I40U2Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765918655; c=relaxed/simple;
-	bh=wSxcZpjZ9Jt15hRjtiUa3UBOvlUrj6TIwKLRLQVdxiM=;
+	s=arc-20240116; t=1765919749; c=relaxed/simple;
+	bh=Bi7IWkacR+PjjweZCQ83AGXPCHhqTROGAWAgPEXtqUQ=;
 	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=PhQvLKihgjPm0li6Cy3gtheEi8MzjqA9E6vh1xUkKTPrcOBeH7utJaCq3n2rn/4l9UDSemjhAYu74yrshgw+G6wUut9oSujiKJN7vdU2mJ7e4HAnYtJ4S/6ZkJ5PnG8DtsApHquKCwJbRXUKVa3Dqfv+BYIN3XeSmNu/0TaTepU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca; spf=pass smtp.mailfrom=ndufresne.ca; dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b=vNATYHFh; arc=none smtp.client-ip=209.85.219.47
+	 Content-Type:MIME-Version; b=BhwlSLPtmDGJWl2mT6Lr9u8cqdbH9Djv7/eXo1lnUzq6uRTHc/jn5xhtIR7B1J3Ga91xrOd3Vu4deYSG1R7K8uU+akjZFWoFi1AFQ14sMiACNL1/5EEaROacNZcNaWUsHv/njZilJOpJH3EulMi2JfAlF6npMJNsSXySP+LsDts=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca; spf=pass smtp.mailfrom=ndufresne.ca; dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b=ceHAYlbb; arc=none smtp.client-ip=209.85.160.176
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ndufresne.ca
-Received: by mail-qv1-f47.google.com with SMTP id 6a1803df08f44-88a37cb5afdso35043236d6.0
-        for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 12:57:31 -0800 (PST)
+Received: by mail-qt1-f176.google.com with SMTP id d75a77b69052e-4eda77e2358so44145831cf.1
+        for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 13:15:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20230601.gappssmtp.com; s=20230601; t=1765918650; x=1766523450; darn=vger.kernel.org;
+        d=ndufresne-ca.20230601.gappssmtp.com; s=20230601; t=1765919746; x=1766524546; darn=vger.kernel.org;
         h=mime-version:user-agent:autocrypt:references:in-reply-to:date:to
          :from:subject:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=NI+fFEGZEuQSR+8e8anlQQzkl/ir4KKuZpATc87A3Nc=;
-        b=vNATYHFhn/llFUpd3TAbw/2avgwtNNreunba5e4FyQ0Ep1RZNChDwgae1+YQS9zZSI
-         obtbJ4mhl5KDTKDLRKO8VDpAJE9fs8brEBDVWptvDbdr+R269+9zmN5FJlqIGMCmWJZJ
-         iQ2zrMGfhsHrMTLlBcy2p3g/3IoFsTkQ5GfHId7XQk2u1AHV+AbU3PbQcO11KDeeS+RF
-         DiPpTHx2RoyIKvyiq1dYBAG9yfZK3Jae+iDKxtZesPB2Xx1Ucmp+EOdbMa2HDlzi7STw
-         YcBEcX2pghfUjJ0gmxLv83ntXCRxzKQksAJlIBOUMt44ALkV3urOfsCruXU/1tSJLQu6
-         rWTg==
+        bh=ebwgGAkNx1wNoLhOAOZ/UY0M0Mpf4583EjnHoCJDQNs=;
+        b=ceHAYlbbz5DXwPkvehSyxz2vMgFKKlzhruU/xfJKJ8y8yX281BmZigQgTvOMTv4Ny4
+         dd+5OWLkn1bXL7Mi1JrrlwpJ3UEosXxPZP5nEnFzk5iOnIymoTBCBS1YTSdA7PXIySyj
+         PJXCaUJxE4/nAoeDYLbvyVcy1BctcFXXg3rcF7sFRhBU9CiHJgSvHoOByJGCLKUTASE4
+         sVS7ad5dJRi6YK31bW9KnsCx2nuJneTxyGrLqSDCPk3+MV2F3f3mk8sqy1CudolaQBOY
+         Txsz7voa1IpepWoViwXPC7Xlx5CWNhXyXeugdps1oJQsADZ0C4Fo+ivyOpTYaWRKXgcT
+         Efxg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765918650; x=1766523450;
+        d=1e100.net; s=20230601; t=1765919746; x=1766524546;
         h=mime-version:user-agent:autocrypt:references:in-reply-to:date:to
          :from:subject:message-id:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=NI+fFEGZEuQSR+8e8anlQQzkl/ir4KKuZpATc87A3Nc=;
-        b=i+BTpkm8egG2Jqv9nRnGkPdy+09K8AEYL245HXAmGcE4KPwtlyOtPxSN5kx7O9zcPA
-         I7adXl2l/TVRxm4lPFmkPJVbd2E6X8Fjb+Vy563AcgMXndGM5g6l/NowmFkrfzHQ1Vk4
-         hwlUKiANiW9rYaGPInNyg+kiZAq3Ov2EJDyP33Lr7VLlW++HNqD0sX6sVzxq1GttlIAn
-         86Fnvb7hfQwQnEbF+Q9vxM68D3BJIa5anQca8LQS1pokW7fkrDiSumjQdQxGux9D8LVh
-         1QDAcucUQ2tjHE9U75EWscEHB/qderH7cgwOdB4AGLG5QdPtie1547W9sNI7/9sfQB1B
-         XPMw==
-X-Forwarded-Encrypted: i=1; AJvYcCUpQHH8mPBPjIMkA9EYOGdOXwlxD++/uFJt27Fj2p/U3NEGYO5DvIMRfBAdyZ1hXQUEq+YCRtQar13p@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy1peOoiReh18Fjx3XJDmAhXuEdFgQG1AwVLNamYjFVlZ9h3LMU
-	5anzmCnmxL7zIJXQb2T4u/qAULD9hSILfahoGESMRfzsTAdUyBtAlrUhVgHucGWFMfA=
-X-Gm-Gg: AY/fxX5CmB3FW9Kw6WmFjFNGyiTUvTY4JEnZuRb3L/HonFYRhTxx0Aw4AHlHoqr9Cpv
-	H/z0TPD7Yk2ZJncJ5WiVWsvQY3lbqzEB0nIh2tOzS/hwFDSPpcjyv8Ewn/JRq3RbwsQ0baT2p95
-	keUTW+Az6FPlVlbJMCDLMQXHqrwWWSkCV8p4+d6n1tTqA28wG42zO6YZs3sBYtwZYLpW9u0xmrg
-	eUlchZQsGJk31gBxG4KsYtyNwoWRRFpoarPlMUMibMYh6eqRE9wpjHS0eZu+exIL+KkN82sLcSA
-	R1xmpqXlDr8VrRyt2xEMKYbWbdB5+Un5S/kygujNx7PmeY8d5oJhrz5N4t3ZVuBnEpxZPuegzvs
-	j1JtOh2VfAFbGpRBc8pkKPrsNgwH5aolDzWlhmnmWWu12x/XMbMWhgnnOYTBMZL99U7h6P6xUNL
-	+nUzJZLbuJN2SbxuQoQh8tw3B2nZc=
-X-Google-Smtp-Source: AGHT+IFebuDiAx1fQCJ1bJ+HCUvcn2MaYOSV8hypD23tenWABYQbV3BpMm8itf3ay4PR1vwFnMW/dA==
-X-Received: by 2002:a05:6214:328c:b0:882:36d6:e5c1 with SMTP id 6a1803df08f44-8887f30ac93mr209640086d6.29.1765918650452;
-        Tue, 16 Dec 2025 12:57:30 -0800 (PST)
+        bh=ebwgGAkNx1wNoLhOAOZ/UY0M0Mpf4583EjnHoCJDQNs=;
+        b=bgmVVry4I1S/w1mCnMBoC9sZmNznto/cghNm0zeIwd5PNK4W/h4C2aqM0mqTdfeugX
+         Ms7RJbURASizYJQ/MxS4UuwdjnXvLhPqs2VbqzNv2dOkx2GVB2Bmv+qtc1Q+qhl0+y6r
+         fWvK4V4shgmSW9MLM2hvVpq39YyxeuqKM9WPMhnCkS1logrdrtiue+hnLBuWTHcyVjpF
+         IELjqLud+q4SZ5obVSVGN1dbPJoSK7ofBU3GiX9PZ17xQOyrNTvkpt0O3+ZfiEOAvQdk
+         0hqL6iK2UzEja6dU76i5v1RqMb3V1kd+1y74GtdYuysF6fELS0mafeXx9MdFRm+YHa1m
+         yihQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUe3Xb1utvBCiij4sPsb0rXLz8G4sMDbCSgFqCtsdBmClPzSA8BhzNhK2R0SSPR4Z940HHQUbxjOfkZ@vger.kernel.org
+X-Gm-Message-State: AOJu0YyLcI7j3t5TEfsDd8z/6YrHM+hIExbfdODBQjBw/X9hExpVh6Pp
+	FrCUywlrXQ21LjqKr7AHaVcteiTKucZoBGDou12QBcc5EVSq2s1PxN77w83+eQQe1Dc=
+X-Gm-Gg: AY/fxX6oRCDG+zivw3qDJGZ2mrjgCdSntmg97R9cotTVC6SkmvNaJgYkJItolmkC6Ku
+	EqBlPfeOSMiO9YZvXDtoWuCV1OZ2BDK7I+VDtiAlKP/9AN2q0p+sJ+heYgyuzTaKMlfYg4Wg+6M
+	pM2G+pP/YdoUWWY9BN20d8KCq5fcoEFy+4zkwBtfSiGD0uW7f06habfyC4WmMyI5mGnC4EwCHjD
+	0vS63gr1uOKhG94xm7IxY3wzkrTN7kSowcphuzjY2p/YzqlRxBbOPBPu8pS2kbY6gXyjO9zW4M8
+	wi9X1EP0U6Hv7f8Yt23eROZhRdvT7XNrDXI0DXvrn4NmBDDGdjtiPjblNFHfrTSPH21qo8hwmiM
+	q33Je5rky/fGnWOYqAgg8VRsZHwJVG6J1FlgLCxa8lr0ZAKGHJhVJ+EVPWH0Iixncl3w2ph62Q5
+	H2yxi8Gt8po26SduCEdJ4eTS7p5OM=
+X-Google-Smtp-Source: AGHT+IH9ieEzITl/25GTBr1twC9xFLUuMn0MCssFBfn2TLe8Le8JQ2UJuWsc+eqTvu1swSD82saAFw==
+X-Received: by 2002:a05:622a:4ac8:b0:4ee:1ed1:43c6 with SMTP id d75a77b69052e-4f1d049f56amr195093861cf.10.1765919746405;
+        Tue, 16 Dec 2025 13:15:46 -0800 (PST)
 Received: from ?IPv6:2606:6d00:17:7b4b::c41? ([2606:6d00:17:7b4b::c41])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-88993b4204asm81707196d6.7.2025.12.16.12.57.28
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-889a860bd0bsm86012026d6.54.2025.12.16.13.15.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Dec 2025 12:57:29 -0800 (PST)
-Message-ID: <cd4c9c6f89d2ad506113745f4273ff6e6b65c75a.camel@ndufresne.ca>
-Subject: Re: [PATCH v11 01/12] media: mediatek: jpeg: fix jpeg hw count
- setting
+        Tue, 16 Dec 2025 13:15:45 -0800 (PST)
+Message-ID: <36268d4980a1cd6d976bdf5de148f1c2668a92e4.camel@ndufresne.ca>
+Subject: Re: [PATCH v11 02/12] media: mediatek: jpeg: fix jpeg buffer
+ payload setting
 From: Nicolas Dufresne <nicolas@ndufresne.ca>
 To: Kyrie Wu <kyrie.wu@mediatek.com>, Hans Verkuil
  <hverkuil-cisco@xs4all.nl>,  Mauro Carvalho Chehab	 <mchehab@kernel.org>,
@@ -83,10 +83,10 @@ To: Kyrie Wu <kyrie.wu@mediatek.com>, Hans Verkuil
  <angelogioacchino.delregno@collabora.com>, linux-media@vger.kernel.org, 
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
 	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-Date: Tue, 16 Dec 2025 15:57:27 -0500
-In-Reply-To: <20251202094800.6140-2-kyrie.wu@mediatek.com>
+Date: Tue, 16 Dec 2025 16:15:43 -0500
+In-Reply-To: <20251202094800.6140-3-kyrie.wu@mediatek.com>
 References: <20251202094800.6140-1-kyrie.wu@mediatek.com>
-	 <20251202094800.6140-2-kyrie.wu@mediatek.com>
+	 <20251202094800.6140-3-kyrie.wu@mediatek.com>
 Autocrypt: addr=nicolas@ndufresne.ca; prefer-encrypt=mutual;
  keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
  /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
@@ -101,7 +101,7 @@ Autocrypt: addr=nicolas@ndufresne.ca; prefer-encrypt=mutual;
  ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
  bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
 Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-aSUcQgXs1+0RJXU1/VOk"
+	protocol="application/pgp-signature"; boundary="=-DXnq4KBLzU3zHo31WhpX"
 User-Agent: Evolution 3.58.2 (3.58.2-1.fc43) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -111,154 +111,135 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 
 
---=-aSUcQgXs1+0RJXU1/VOk
+--=-DXnq4KBLzU3zHo31WhpX
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Hi.
 
 Le mardi 02 d=C3=A9cembre 2025 =C3=A0 17:47 +0800, Kyrie Wu a =C3=A9crit=C2=
 =A0:
-> Different ICs have different amounts of hardware,
-> use a variable to set the amount of hardware.
+> For multi-core jpegdec, if one of hws gets the event of resolution
+> changing, the payload size, representing the size of Y/C data,
 
-Did you mean different amount of cores ? The use of "hardware" is strange i=
-n
-this description.
+-> "gets the resolution change event, ..."
 
+> needed to change. But others hws are decoding at the same time and
+
+needed -> needs,               hws -> cores ?
+
+It this specific to decoders or any type of cores ?
+
+> it can not be changed immediately, which results that the payload
+
+                                                    in the playload
+
+> size is not equal to the real buffer length of the hw's, which occurred
+
+size to not match the real buffer lenght for the ... hw ?
+
+> resolution changing and a warnning call trace will print.
+
+Can't parse. You can probably split that large sentence, and it needs to be
+rework.
+
+> So the setting of payload size must less than the real buffer length
+> to remove the warnning logs.
 >=20
-> Fixes: 934e8bccac95 ("mtk-jpegenc: support jpegenc multi-hardware")
 > Fixes: 0fa49df4222f ("media: mtk-jpegdec: support jpegdec multi-hardware"=
 )
-
-Its not clear from your description if this is in preparation of MT8196 or =
-an
-actual fix. If its in preparation of, drop this, if it fixes some existing =
-SoC,
-please tell use which one. And tell us how it breaks without this fix.
-
-regards,
-Nicolas
-
 >=20
+
+Don't add blank line in tags please.
+
 > Signed-off-by: Kyrie Wu <kyrie.wu@mediatek.com>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collab=
-ora.com>
 > ---
-> =C2=A0drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c=C2=A0=C2=A0 | =
-8 ++++----
-> =C2=A0drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.h=C2=A0=C2=A0 | =
-2 ++
-> =C2=A0drivers/media/platform/mediatek/jpeg/mtk_jpeg_dec_hw.c | 1 +
-> =C2=A0drivers/media/platform/mediatek/jpeg/mtk_jpeg_enc_hw.c | 1 +
-> =C2=A04 files changed, 8 insertions(+), 4 deletions(-)
+> =C2=A0.../platform/mediatek/jpeg/mtk_jpeg_core.c=C2=A0=C2=A0=C2=A0 | 19 +=
++++++++++++++-----
+> =C2=A01 file changed, 14 insertions(+), 5 deletions(-)
 >=20
-> diff --git a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c b/drive=
-rs/media/platform/mediatek/jpeg/mtk_jpeg_core.c
-> index 6268d651bdcf..6a7e01130f1c 100644
+> diff --git a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
+> b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
+> index 6a7e01130f1c..0cf3dc5407e4 100644
 > --- a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
 > +++ b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
-> @@ -1467,7 +1467,7 @@ static int mtk_jpegenc_get_hw(struct mtk_jpeg_ctx *=
-ctx)
-> =C2=A0	int i;
-> =C2=A0
-> =C2=A0	spin_lock_irqsave(&jpeg->hw_lock, flags);
-> -	for (i =3D 0; i < MTK_JPEGENC_HW_MAX; i++) {
-> +	for (i =3D 0; i < jpeg->max_hw_count; i++) {
-> =C2=A0		comp_jpeg =3D jpeg->enc_hw_dev[i];
-> =C2=A0		if (comp_jpeg->hw_state =3D=3D MTK_JPEG_HW_IDLE) {
-> =C2=A0			hw_id =3D i;
-> @@ -1514,7 +1514,7 @@ static int mtk_jpegdec_get_hw(struct mtk_jpeg_ctx *=
-ctx)
-> =C2=A0	int i;
-> =C2=A0
-> =C2=A0	spin_lock_irqsave(&jpeg->hw_lock, flags);
-> -	for (i =3D 0; i < MTK_JPEGDEC_HW_MAX; i++) {
-> +	for (i =3D 0; i < jpeg->max_hw_count; i++) {
-> =C2=A0		comp_jpeg =3D jpeg->dec_hw_dev[i];
-> =C2=A0		if (comp_jpeg->hw_state =3D=3D MTK_JPEG_HW_IDLE) {
-> =C2=A0			hw_id =3D i;
-> @@ -1597,7 +1597,7 @@ static void mtk_jpegenc_worker(struct work_struct *=
-work)
-> =C2=A0		jpeg_work);
-> =C2=A0	struct mtk_jpeg_dev *jpeg =3D ctx->jpeg;
-> =C2=A0
-> -	for (i =3D 0; i < MTK_JPEGENC_HW_MAX; i++)
-> +	for (i =3D 0; i < jpeg->max_hw_count; i++)
-> =C2=A0		comp_jpeg[i] =3D jpeg->enc_hw_dev[i];
-> =C2=A0	i =3D 0;
-> =C2=A0
-> @@ -1692,7 +1692,7 @@ static void mtk_jpegdec_worker(struct work_struct *=
-work)
-> =C2=A0	struct mtk_jpeg_fb fb;
-> =C2=A0	unsigned long flags;
-> =C2=A0
-> -	for (i =3D 0; i < MTK_JPEGDEC_HW_MAX; i++)
-> +	for (i =3D 0; i < jpeg->max_hw_count; i++)
-> =C2=A0		comp_jpeg[i] =3D jpeg->dec_hw_dev[i];
-> =C2=A0	i =3D 0;
-> =C2=A0
-> diff --git a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.h b/drive=
-rs/media/platform/mediatek/jpeg/mtk_jpeg_core.h
-> index 02ed0ed5b736..6be5cf30dea1 100644
-> --- a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.h
-> +++ b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.h
-> @@ -212,6 +212,7 @@ struct mtk_jpegdec_comp_dev {
-> =C2=A0 * @reg_decbase:	jpg decode register base addr
-> =C2=A0 * @dec_hw_dev:	jpg decode hardware device
-> =C2=A0 * @hw_index:		jpg hw index
-> + * @max_hw_count:	jpeg hw-core count
-> =C2=A0 */
-> =C2=A0struct mtk_jpeg_dev {
-> =C2=A0	struct mutex		lock;
-> @@ -234,6 +235,7 @@ struct mtk_jpeg_dev {
-> =C2=A0	void __iomem *reg_decbase[MTK_JPEGDEC_HW_MAX];
-> =C2=A0	struct mtk_jpegdec_comp_dev *dec_hw_dev[MTK_JPEGDEC_HW_MAX];
-> =C2=A0	atomic_t hw_index;
-> +	u32 max_hw_count;
-> =C2=A0};
-> =C2=A0
-> =C2=A0/**
-> diff --git a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_dec_hw.c b/dri=
-vers/media/platform/mediatek/jpeg/mtk_jpeg_dec_hw.c
-> index e78e1d11093c..a1e54715cb7e 100644
-> --- a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_dec_hw.c
-> +++ b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_dec_hw.c
-> @@ -664,6 +664,7 @@ static int mtk_jpegdec_hw_probe(struct platform_devic=
-e *pdev)
-> =C2=A0	master_dev->dec_hw_dev[i] =3D dev;
-> =C2=A0	master_dev->reg_decbase[i] =3D dev->reg_base;
-> =C2=A0	dev->master_dev =3D master_dev;
-> +	master_dev->max_hw_count++;
-> =C2=A0
-> =C2=A0	platform_set_drvdata(pdev, dev);
-> =C2=A0	pm_runtime_enable(&pdev->dev);
-> diff --git a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_enc_hw.c b/dri=
-vers/media/platform/mediatek/jpeg/mtk_jpeg_enc_hw.c
-> index 9ab27aee302a..28d05909c96f 100644
-> --- a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_enc_hw.c
-> +++ b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_enc_hw.c
-> @@ -386,6 +386,7 @@ static int mtk_jpegenc_hw_probe(struct platform_devic=
-e *pdev)
-> =C2=A0	master_dev->enc_hw_dev[i] =3D dev;
-> =C2=A0	master_dev->reg_encbase[i] =3D dev->reg_base;
-> =C2=A0	dev->master_dev =3D master_dev;
-> +	master_dev->max_hw_count++;
-> =C2=A0
-> =C2=A0	platform_set_drvdata(pdev, dev);
-> =C2=A0	pm_runtime_enable(&pdev->dev);
+> @@ -709,6 +709,7 @@ static int mtk_jpeg_buf_prepare(struct vb2_buffer *vb=
+)
+> =C2=A0	struct mtk_jpeg_ctx *ctx =3D vb2_get_drv_priv(vb->vb2_queue);
+> =C2=A0	struct mtk_jpeg_q_data *q_data =3D NULL;
+> =C2=A0	struct v4l2_plane_pix_format plane_fmt =3D {};
+> +	unsigned long max_size;
 
---=-aSUcQgXs1+0RJXU1/VOk
+size_t ?
+
+> =C2=A0	int i;
+> =C2=A0
+> =C2=A0	q_data =3D mtk_jpeg_get_q_data(ctx, vb->vb2_queue->type);
+> @@ -717,12 +718,20 @@ static int mtk_jpeg_buf_prepare(struct vb2_buffer *=
+vb)
+> =C2=A0
+> =C2=A0	for (i =3D 0; i < q_data->fmt->colplanes; i++) {
+> =C2=A0		plane_fmt =3D q_data->pix_mp.plane_fmt[i];
+> +		max_size =3D plane_fmt.sizeimage;
+> +
+> =C2=A0		if (ctx->enable_exif &&
+> -		=C2=A0=C2=A0=C2=A0 q_data->fmt->fourcc =3D=3D V4L2_PIX_FMT_JPEG)
+> -			vb2_set_plane_payload(vb, i, plane_fmt.sizeimage +
+> -					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 MTK_JPEG_MAX_EXIF_SIZE);
+> -		else
+> -			vb2_set_plane_payload(vb, i,=C2=A0 plane_fmt.sizeimage);
+> +			q_data->fmt->fourcc =3D=3D V4L2_PIX_FMT_JPEG) {
+> +			max_size +=3D MTK_JPEG_MAX_EXIF_SIZE;
+> +
+> +			vb2_set_plane_payload(vb, i,
+> +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 MIN(vb->planes[i].length,
+> +						=C2=A0 max_size));
+
+This is still not quite right. sizeimage, straight from s_fmt should alread=
+y
+account for the EXIF headers. If enable_exif is unknown at the moment, then=
+ you
+should just always include that space. This way, the buffer length will onl=
+y be
+bigger if userspace asked for more at allocation time, and wil never be sma=
+ller
+then this.
+
+The point of sizeimage it to allow userspace allocate externally the right =
+size,
+this driver failed at that task it seems.
+
+Stepping back a little, I don't even understand why you set the payload siz=
+e
+like this here. Why isn't the true payload size written once, when the buff=
+er is
+encoded ? Are you using bytesused to tell the HW how much space can be writ=
+ten
+too ? Just give it the full space, wich is the allocated size (length).
+
+Nicolas
+
+
+> +		} else {
+> +			vb2_set_plane_payload(vb, i,
+> +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 MIN(plane_fmt.sizeimage,
+> +						=C2=A0 vb->planes[i].length));
+> +		}
+> =C2=A0	}
+> =C2=A0
+> =C2=A0	return 0;
+
+--=-DXnq4KBLzU3zHo31WhpX
 Content-Type: application/pgp-signature; name="signature.asc"
 Content-Description: This is a digitally signed message part
 
 -----BEGIN PGP SIGNATURE-----
 
-iHQEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaUHHtwAKCRDZQZRRKWBy
-9NdGAP4tOcZwNQQTymlNx94MWUKA4PjZ+mQqLOMHCXr7idoEXAD4zKTg2quujgCl
-TfD03rQO+Y+ho+zj5A3QHmGFpNjmCg==
-=sWoq
+iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaUHMAAAKCRDZQZRRKWBy
+9LqrAQDXLmz8aa7r5neaZh7xka6kqpE8h8U1FhjrhrVnGKv4zAD+NUWeHnhgbVbv
+dhs9VoCxfbieBWTj3WDJe6eQSQhghQk=
+=UJW7
 -----END PGP SIGNATURE-----
 
---=-aSUcQgXs1+0RJXU1/VOk--
+--=-DXnq4KBLzU3zHo31WhpX--
 
