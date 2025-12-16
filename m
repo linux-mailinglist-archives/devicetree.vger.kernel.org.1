@@ -1,182 +1,145 @@
-Return-Path: <devicetree+bounces-247102-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247103-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A1D5CC445C
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 17:27:03 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 209E4CC44BC
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 17:29:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6F65930562F7
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 16:19:15 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 17A90308FC1E
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 16:25:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82837310779;
-	Tue, 16 Dec 2025 16:18:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73FED2D7D41;
+	Tue, 16 Dec 2025 16:24:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nB/187jZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Vi+xRr2i"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E74B310640
-	for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 16:18:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB47A1D63F5;
+	Tue, 16 Dec 2025 16:24:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765901885; cv=none; b=XM51Wd4bnXWPWhySlsDYQKbXpDWQhBIJ+4MyuIRWpjiS7xq88IUCPVD7b4Nr1jK2yOH3UhFqqab3+tTnJS0ZUpRLkGPba7PWnF4Zq1DS95/WC+xZI2wgc95mdciZxYvZ13H6m9GBEhF5dD3JfNEFWFUIfQcmueLs+++9tkhDLrM=
+	t=1765902299; cv=none; b=kBA3d/aVpWFE78DhjZibmMg6AZzx5k1lOJenN2o1TlhFxssr26qhNtHQj2Hc/Uyu1zQPYqNpnYjWnCLxLTVp+vZZXss3w3drN/7dOS5blcJ7Toh5odBuOcUH+oQPHyIX5UG6PWYphhCewLTgUsf1flC1Sx5eGIOZPypAiq/vTnE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765901885; c=relaxed/simple;
-	bh=+MbvRs0CO1Ge/9lwEKhmRbha8wdV2tKHNrNbafa6Ws8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=I5qQ6Rt5Rttb8ZeY93ojzzDP7Lt1C/QBUVZ4UJxJDiiwbxwKVNA6mbLce6h99dg3/ZMPxmD/z2URLIVVzR7LzMByHMHHH67eVU/c+2KMoSc5qt0pLVoFI6haUExQeaxXsi7GrKO16BacZiiVcBZwWQEEi5s6rxhYygyeuGujtzE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nB/187jZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91453C113D0;
-	Tue, 16 Dec 2025 16:18:03 +0000 (UTC)
+	s=arc-20240116; t=1765902299; c=relaxed/simple;
+	bh=3E2x6L/4+g16Enm6XkGQqRFCPqZVrvyy88dmf6wJIQ0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=RJXJYkn3rpRs3SESIqcmjW9jEJ/G/JUk/iv8pZvvR1JbET7GC3EBsICflsCBGu47+/AcSW+SwipvsA0rLWFLCv/YRwywp7AlPyMwBmg5+kd11fbqfML4FEDISDak0zv3WibH8ZzT4LWvZrQhnJm6uMlOyV3rMLBdCubX8eKODpQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Vi+xRr2i; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11487C113D0;
+	Tue, 16 Dec 2025 16:24:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765901883;
-	bh=+MbvRs0CO1Ge/9lwEKhmRbha8wdV2tKHNrNbafa6Ws8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nB/187jZNUSuL+5PL5RkHpvIjOTKY+EhGqk+mE4vi4gnen1/s41qY6LEc3fXhNy1X
-	 Zd8IlSLwGqWyq03uyRuRF4btSZaUkWRTlQBavcYsJwGRZtsQuPNck1EXmYvwOdzOC7
-	 JP+nIkzvAHYFTaXInfNoxvZ7wU0/x2rQ41oJp7QDgObQvbp7rHld23aYmlG0RXSx0w
-	 vMct3nuN0UmkSacvzrRlQaX1MZf7OKlmvktcwfp3cjFPVw+HNnfLR7JkFb1XEyrRpC
-	 Xnk1K2vto2ppBA3hfdPDf8g9U6D42FhjyGwZ+JBTFFUYPF7YPgnoaifpyO2CAAkwVo
-	 o/Ujf/MPHCZVw==
-Date: Tue, 16 Dec 2025 10:18:00 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Linus Walleij <linusw@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH] dt-bindings: Updates Linus Walleij's mail address
-Message-ID: <176590187945.2577071.4097281710505411554.robh@kernel.org>
-References: <20251216-maintainers-dt-v1-1-0b5ab102c9bb@kernel.org>
+	s=k20201202; t=1765902298;
+	bh=3E2x6L/4+g16Enm6XkGQqRFCPqZVrvyy88dmf6wJIQ0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Vi+xRr2iKtvzNHIIukg3+3EPfxkx5B8Cq1Zm8B/4tyW8rUvjZofkdcv+XAiFFd9b8
+	 U5GCjJi12pNn/WslRFb8ytybRPz761qQDuE154t6gRdbb78gewnPsmdXbjggbEepoS
+	 tdXrrPIluSdQnQMkALy2vRYZ8eOvIJipErCGKxbYsSo3j+55zRNMltlEQSz4NYrMVC
+	 hvXY27XJ2oTDE983K/kd2ozWdwMWl6tDhbCwqOebGUau/pm/8U2hyzPtyXDYBsqnIx
+	 foCnZUfurmh8GBjG0rbiJj4sQ0nnlq8xWwDkXCWSqaYVyCRtSisHaoLIAL6XYkNwm0
+	 8kbDxdVyTFotw==
+Message-ID: <5a47b072-70e5-42d2-9774-5637abd00c13@kernel.org>
+Date: Tue, 16 Dec 2025 17:24:54 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251216-maintainers-dt-v1-1-0b5ab102c9bb@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 7/7] LoongArch: dts: loongson-2k1000: Fix i2c-gpio node
+ names
+To: Yao Zi <me@ziyao.cc>, Binbin Zhou <zhoubinbin@loongson.cn>,
+ Binbin Zhou <zhoubb.aaron@gmail.com>, Huacai Chen <chenhuacai@loongson.cn>,
+ Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Huacai Chen <chenhuacai@kernel.org>, Xuerui Wang <kernel@xen0n.name>,
+ loongarch@lists.linux.dev, devicetree@vger.kernel.org
+References: <cover.1765778124.git.zhoubinbin@loongson.cn>
+ <9684ae4e58fd1e9768cccf6e3ae730eff46fb29c.1765778124.git.zhoubinbin@loongson.cn>
+ <aUEp-pEwHk0Ls6CD@pie>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
+ QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
+ +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
+ ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
+ 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
+ hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
+ tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
+ 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
+ naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
+ hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
+ whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
+ qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
+ RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
+ Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
+ H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
+ dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
+ AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
+ jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
+ zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
+ XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
+In-Reply-To: <aUEp-pEwHk0Ls6CD@pie>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-
-On Tue, 16 Dec 2025 10:52:10 +0100, Linus Walleij wrote:
-> My name is stamped into maintainership for a big slew of DT
-> bindings. Now that it is changing, switch it over to my
-> kernel.org mail address, which will hopefully be stable for the
-> rest of my life.
+On 16/12/2025 10:44, Yao Zi wrote:
+> On Tue, Dec 16, 2025 at 03:56:59PM +0800, Binbin Zhou wrote:
+>> From: Binbin Zhou <zhoubb.aaron@gmail.com>
+>>
+>> The binding wants the node to be named "i2c-number", alternatively
+>> "i2c@address", but those are named "i2c-gpio-number" instead.
+>>
+>> Rename those to i2c-0, i2c-1 to adhere to the binding and suppress
+>> dtbs_check warnings.
 > 
-> Signed-off-by: Linus Walleij <linusw@kernel.org>
-> ---
-> DT maintainers: please funnel this as a fix through the DT
-> binding tree.
-> ---
->  Documentation/devicetree/bindings/arm/arm,integrator.yaml               | 2 +-
->  Documentation/devicetree/bindings/arm/arm,realview.yaml                 | 2 +-
->  Documentation/devicetree/bindings/arm/arm,scu.yaml                      | 2 +-
->  Documentation/devicetree/bindings/arm/arm,versatile-sysreg.yaml         | 2 +-
->  Documentation/devicetree/bindings/arm/arm,versatile.yaml                | 2 +-
->  Documentation/devicetree/bindings/arm/arm,vexpress-juno.yaml            | 2 +-
->  Documentation/devicetree/bindings/arm/gemini.yaml                       | 2 +-
->  Documentation/devicetree/bindings/arm/intel-ixp4xx.yaml                 | 2 +-
->  Documentation/devicetree/bindings/arm/ux500.yaml                        | 2 +-
->  Documentation/devicetree/bindings/ata/ata-generic.yaml                  | 2 +-
->  Documentation/devicetree/bindings/ata/cortina,gemini-sata-bridge.yaml   | 2 +-
->  Documentation/devicetree/bindings/ata/faraday,ftide010.yaml             | 2 +-
->  Documentation/devicetree/bindings/ata/intel,ixp4xx-compact-flash.yaml   | 2 +-
->  Documentation/devicetree/bindings/ata/pata-common.yaml                  | 2 +-
->  Documentation/devicetree/bindings/ata/sata-common.yaml                  | 2 +-
->  Documentation/devicetree/bindings/auxdisplay/arm,versatile-lcd.yaml     | 2 +-
->  Documentation/devicetree/bindings/clock/stericsson,u8500-clks.yaml      | 2 +-
->  Documentation/devicetree/bindings/crypto/intel,ixp4xx-crypto.yaml       | 2 +-
->  Documentation/devicetree/bindings/display/dsi-controller.yaml           | 2 +-
->  Documentation/devicetree/bindings/display/faraday,tve200.yaml           | 2 +-
->  Documentation/devicetree/bindings/display/panel/arm,rtsm-display.yaml   | 2 +-
->  .../devicetree/bindings/display/panel/arm,versatile-tft-panel.yaml      | 2 +-
->  Documentation/devicetree/bindings/display/panel/ilitek,ili9322.yaml     | 2 +-
->  Documentation/devicetree/bindings/display/panel/novatek,nt35510.yaml    | 2 +-
->  Documentation/devicetree/bindings/display/panel/samsung,lms380kf01.yaml | 2 +-
->  Documentation/devicetree/bindings/display/panel/samsung,lms397kf04.yaml | 2 +-
->  Documentation/devicetree/bindings/display/panel/samsung,s6d16d0.yaml    | 2 +-
->  Documentation/devicetree/bindings/display/panel/sony,acx424akp.yaml     | 2 +-
->  Documentation/devicetree/bindings/display/panel/ti,nspire.yaml          | 2 +-
->  Documentation/devicetree/bindings/display/panel/tpo,tpg110.yaml         | 2 +-
->  Documentation/devicetree/bindings/display/ste,mcde.yaml                 | 2 +-
->  Documentation/devicetree/bindings/dma/stericsson,dma40.yaml             | 2 +-
->  Documentation/devicetree/bindings/extcon/fcs,fsa880.yaml                | 2 +-
->  .../bindings/firmware/intel,ixp4xx-network-processing-engine.yaml       | 2 +-
->  Documentation/devicetree/bindings/gnss/brcm,bcm4751.yaml                | 2 +-
->  Documentation/devicetree/bindings/gpio/faraday,ftgpio010.yaml           | 2 +-
->  Documentation/devicetree/bindings/gpio/gpio-consumer-common.yaml        | 2 +-
->  Documentation/devicetree/bindings/gpio/gpio-ep9301.yaml                 | 2 +-
->  Documentation/devicetree/bindings/gpio/gpio-mmio.yaml                   | 2 +-
->  Documentation/devicetree/bindings/gpio/intel,ixp4xx-gpio.yaml           | 2 +-
->  Documentation/devicetree/bindings/gpio/mrvl-gpio.yaml                   | 2 +-
->  Documentation/devicetree/bindings/gpio/pl061-gpio.yaml                  | 2 +-
->  Documentation/devicetree/bindings/gpio/st,nomadik-gpio.yaml             | 2 +-
->  Documentation/devicetree/bindings/gpio/st,stmpe-gpio.yaml               | 2 +-
->  Documentation/devicetree/bindings/hwmon/ntc-thermistor.yaml             | 2 +-
->  Documentation/devicetree/bindings/hwmon/winbond,w83781d.yaml            | 2 +-
->  Documentation/devicetree/bindings/i2c/arm,i2c-versatile.yaml            | 2 +-
->  Documentation/devicetree/bindings/i2c/st,nomadik-i2c.yaml               | 2 +-
->  Documentation/devicetree/bindings/iio/accel/bosch,bma255.yaml           | 2 +-
->  Documentation/devicetree/bindings/iio/adc/qcom,pm8018-adc.yaml          | 2 +-
->  Documentation/devicetree/bindings/iio/gyroscope/invensense,mpu3050.yaml | 2 +-
->  Documentation/devicetree/bindings/iio/light/capella,cm3605.yaml         | 2 +-
->  Documentation/devicetree/bindings/iio/light/sharp,gp2ap002.yaml         | 2 +-
->  .../devicetree/bindings/iio/magnetometer/asahi-kasei,ak8974.yaml        | 2 +-
->  Documentation/devicetree/bindings/iio/magnetometer/yamaha,yas530.yaml   | 2 +-
->  Documentation/devicetree/bindings/iio/st,st-sensors.yaml                | 2 +-
->  Documentation/devicetree/bindings/input/atmel,maxtouch.yaml             | 2 +-
->  .../devicetree/bindings/input/touchscreen/cypress,cy8ctma140.yaml       | 2 +-
->  .../devicetree/bindings/input/touchscreen/cypress,cy8ctma340.yaml       | 2 +-
->  Documentation/devicetree/bindings/input/touchscreen/melfas,mms114.yaml  | 2 +-
->  Documentation/devicetree/bindings/input/touchscreen/zinitix,bt400.yaml  | 2 +-
->  .../bindings/interrupt-controller/arm,versatile-fpga-irq.yaml           | 2 +-
->  .../devicetree/bindings/interrupt-controller/faraday,ftintc010.yaml     | 2 +-
->  .../bindings/interrupt-controller/intel,ixp4xx-interrupt.yaml           | 2 +-
->  Documentation/devicetree/bindings/leds/backlight/kinetic,ktd253.yaml    | 2 +-
->  Documentation/devicetree/bindings/leds/register-bit-led.yaml            | 2 +-
->  Documentation/devicetree/bindings/leds/regulator-led.yaml               | 2 +-
->  Documentation/devicetree/bindings/leds/richtek,rt8515.yaml              | 2 +-
->  .../memory-controllers/intel,ixp4xx-expansion-bus-controller.yaml       | 2 +-
->  .../memory-controllers/intel,ixp4xx-expansion-peripheral-props.yaml     | 2 +-
->  Documentation/devicetree/bindings/mfd/arm,dev-platforms-syscon.yaml     | 2 +-
->  Documentation/devicetree/bindings/mfd/st,stmpe.yaml                     | 2 +-
->  Documentation/devicetree/bindings/mfd/stericsson,ab8500.yaml            | 2 +-
->  Documentation/devicetree/bindings/mfd/stericsson,db8500-prcmu.yaml      | 2 +-
->  .../devicetree/bindings/misc/intel,ixp4xx-ahb-queue-manager.yaml        | 2 +-
->  Documentation/devicetree/bindings/mmc/arm,pl18x.yaml                    | 2 +-
->  .../devicetree/bindings/mtd/partitions/arm,arm-firmware-suite.yaml      | 2 +-
->  Documentation/devicetree/bindings/mtd/partitions/redboot-fis.yaml       | 2 +-
->  Documentation/devicetree/bindings/mtd/partitions/seama.yaml             | 2 +-
->  Documentation/devicetree/bindings/net/bluetooth/brcm,bluetooth.yaml     | 2 +-
->  Documentation/devicetree/bindings/net/cortina,gemini-ethernet.yaml      | 2 +-
->  Documentation/devicetree/bindings/net/dsa/micrel,ks8995.yaml            | 2 +-
->  Documentation/devicetree/bindings/net/dsa/realtek.yaml                  | 2 +-
->  Documentation/devicetree/bindings/net/dsa/vitesse,vsc73xx.yaml          | 2 +-
->  Documentation/devicetree/bindings/net/intel,ixp46x-ptp-timer.yaml       | 2 +-
->  Documentation/devicetree/bindings/net/intel,ixp4xx-ethernet.yaml        | 2 +-
->  Documentation/devicetree/bindings/net/intel,ixp4xx-hss.yaml             | 2 +-
->  Documentation/devicetree/bindings/pci/faraday,ftpci100.yaml             | 2 +-
->  Documentation/devicetree/bindings/pci/intel,ixp4xx-pci.yaml             | 2 +-
->  Documentation/devicetree/bindings/pci/v3,v360epc-pci.yaml               | 2 +-
->  Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml              | 2 +-
->  Documentation/devicetree/bindings/pinctrl/pinctrl.yaml                  | 2 +-
->  Documentation/devicetree/bindings/pinctrl/pinmux-node.yaml              | 2 +-
->  Documentation/devicetree/bindings/power/supply/samsung,battery.yaml     | 2 +-
->  Documentation/devicetree/bindings/rng/intel,ixp46x-rng.yaml             | 2 +-
->  Documentation/devicetree/bindings/rtc/faraday,ftrtc010.yaml             | 2 +-
->  Documentation/devicetree/bindings/spi/arm,pl022-peripheral-props.yaml   | 2 +-
->  Documentation/devicetree/bindings/spi/spi-pl022.yaml                    | 2 +-
->  Documentation/devicetree/bindings/timer/faraday,fttmr010.yaml           | 2 +-
->  Documentation/devicetree/bindings/timer/intel,ixp4xx-timer.yaml         | 2 +-
->  Documentation/devicetree/bindings/timer/st,nomadik-mtu.yaml             | 2 +-
->  Documentation/devicetree/bindings/usb/faraday,fotg210.yaml              | 2 +-
->  Documentation/devicetree/bindings/usb/intel,ixp4xx-udc.yaml             | 2 +-
->  Documentation/devicetree/bindings/watchdog/faraday,ftwdt010.yaml        | 2 +-
->  Documentation/devicetree/bindings/watchdog/maxim,max63xx.yaml           | 2 +-
->  105 files changed, 105 insertions(+), 105 deletions(-)
+> I think this is an unintended breakage in dtschema upstream, but not
+> really a violation. As I've mentioned in my original cover-letter,
 > 
+>> which IMHO is a regression caused by dt-schema commit 57138f5b8c92
+>> ("schemas: i2c: Avoid extra characters in i2c nodename pattern"). Commit
+>> 647181a1f8ff ("schemas: i2c: Allow for 'i2c-.*' node names") fails to
+>> fix the case, as it doesn't take nodenames with multiple hyphens in
+>> account. I'll start a separate series for this.
+> 
+> So I think it should probably be fixed in dt-schema instead. i2c-gpio-X
+> provides more information to me, and I don't think it causes any
+> inconsistency or ambiguity.
+> 
+> By the way, we also have dozens of arm dtb targets shipping nodes named
+> like i2c-gpio-*, mostly microchip and st ones, fixing the regex in
+> dtschema upstream will also eliminate warnings for them.
 
-Applied, thanks!
+No. Wolfram posted patches at some point, some parts got applied or at
+least followed up by maintainers who care. Maybe Wolfram never resubmit
+microchip and stm, but that's not the reason to roll back to discouraged
+name.
 
+Best regards,
+Krzysztof
 
