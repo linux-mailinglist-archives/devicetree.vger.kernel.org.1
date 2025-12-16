@@ -1,97 +1,156 @@
-Return-Path: <devicetree+bounces-246840-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246841-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 692B0CC0976
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 03:19:02 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8C33CC097E
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 03:19:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id CA3BA3002FE2
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 02:19:01 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0A2473010FF3
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 02:19:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 586702DEA8E;
-	Tue, 16 Dec 2025 02:19:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NyfGuVAJ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 445A12DAFA2;
+	Tue, 16 Dec 2025 02:19:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from silergymicro.com (unknown [218.94.11.74])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30E632DA757
-	for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 02:18:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D46212D876B;
+	Tue, 16 Dec 2025 02:19:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=218.94.11.74
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765851540; cv=none; b=phlIkc76OPf/+YdTc642PQChWIN3/OJpiavqNs4byvFtUnyDzjgdfyjitCvLpvCuda44KUS+7kHyQFlVlr8T9p/I1dRCvltf3PjBPIWw2Rr1xl+xvnG3LBk5q4p4AX83Kq1T85mvUONLktROvvXorDQrJYVVSXMYOOqFWe3YrFs=
+	t=1765851551; cv=none; b=mpQguSw3FzIxae/lNXMIKBGQ0PhsizVIYAd9X3bB7rJEhyaqny5G1Y9MLO4E2Z6Ham5I6RsqCqoSooWb5eqhvCBkGs80ohilbl02DBZLY48OLxJWs7tEFJQUa8hWPJ2pKzKGlImaGF8KszkVDGaDUYl3ZJOBKd9qXrpd/DWU5U8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765851540; c=relaxed/simple;
-	bh=4JFoCG9If5tB3iqR5NtPiIwHM5+YiLPesQV7/ZikZQ8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=tA4BFb0gFkQarWdqP4wgvQ4lJHOHn9IF44YRGspDeARu7v+86y/tfOIu6WyZz0JC8H4BfwquPebrz5lrLwmnTHWnQ40WZ+jCUkw72Qi83qeVLQhkpiOpYGMNDDNA1OnURsACO0mK1q5IjU9t3cFGcEvP9USowbKtKMPmuRE0Db4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NyfGuVAJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BBFB4C4CEFB
-	for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 02:18:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765851539;
-	bh=4JFoCG9If5tB3iqR5NtPiIwHM5+YiLPesQV7/ZikZQ8=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=NyfGuVAJv/QEY2bcARVonqHNfYA+JuwyB20TWD03IdnYQKPeEcexb8QzTfNbRqK3c
-	 uEKRuVaQXx6K6rwjzn6g2sSHxzCE1/YRCpTbZMMToRULt4s2QRVfSsVt2xXarhyNG3
-	 BIiysGbuekFPN1gDDo6qyKznRTmZFBmR8Bpd6YODehpYTjJ6MSkkGA29u82gVEkWn3
-	 uxBo3WAV1dbmVhKBaUWp5F6lFFVpeNKyl0xbMhsKdura5Mfwca0583uj5PQKow2Ff1
-	 O33fvHCUvZN+21nD2iHeCp/NUtE8E55ddBIcVomK8ncSF0aqLvmoAafXCsXuOTRxEM
-	 1HkJm6sYyfzpQ==
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-b7277324204so665467866b.0
-        for <devicetree@vger.kernel.org>; Mon, 15 Dec 2025 18:18:59 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXKMjyDc+dTsd3GsHxInCE4HhCwlp7HVN56cr7gDc5Ir0THiTf6a2cMYnegmYmG0Mu0EoZ94+W3+Vgi@vger.kernel.org
-X-Gm-Message-State: AOJu0YyOWgcm/qSCsnNCnChnpXQY0KxVeLC3MvFXLxcbFc80In9Ce6qv
-	4xuwFyAn4pb0GrR2iqUqwc7kiq2Qj98gS3xL5bQd2boewqKb6c25vbqndNHOLgiXrM8GApPkMEg
-	bzE0+kVDSHRzZ84fZ1zZGPGXKsMDwEw==
-X-Google-Smtp-Source: AGHT+IF8vGt6ajNelT4B/K7XHFLr9QG4M8S0hXfRfi33LxOzf7V9qsrSQ1r2+OIcRtCUwFMJNU7gNKNpTvCYqLxm6Eo=
-X-Received: by 2002:a17:907:3e10:b0:b3d:200a:bd6e with SMTP id
- a640c23a62f3a-b7d23b84caamr1055488566b.47.1765851538210; Mon, 15 Dec 2025
- 18:18:58 -0800 (PST)
+	s=arc-20240116; t=1765851551; c=relaxed/simple;
+	bh=9H+VDimC5IXUHJH5X0LMUgSNb8desz75tnC1hAYFa9k=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=oY7WhgorwV5KcVQ30aysu5OuCsK5VE5XcbjKXfoCBtYx6T9tPfKYmyFRHByLQI9faYDIig61BSDbBm3d5EFFjunms6l8r2VA5h66wqq2mMuIKkebXx6pAQ8pzR2G79984V9tjfbEul9HQnKr7XW1nQVGshpegp2PrXPvVMoVZPs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=silergymicro.com; spf=none smtp.mailfrom=silergymicro.com; arc=none smtp.client-ip=218.94.11.74
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=silergymicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=silergymicro.com
+Received: from getian-VirtualBox.. (unknown [10.2.25.100])
+ by mail.silergymicro.com (Postfix) with ESMTPA id 6FD37182DA808;
+ Tue, 16 Dec 2025 10:19:03 +0800 (CST)
+From: "tian.ge" <tian.ge@silergymicro.com>
+To: sre@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, lei.zhang@silergycorp.com,
+ frank.fan@silergymicro.com, "tian.ge" <tian.ge@silergymicro.com>
+Subject: [PATCH] dt-bindings: power: supply: Add Silergy SY6974B charger
+Date: Tue, 16 Dec 2025 10:18:51 +0800
+Message-Id: <20251216021851.654957-1-tian.ge@silergymicro.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251215212456.3317558-1-robh@kernel.org> <3f1b7852-1494-4a73-8783-b578f9ad5d40@socionext.com>
-In-Reply-To: <3f1b7852-1494-4a73-8783-b578f9ad5d40@socionext.com>
-From: Rob Herring <robh@kernel.org>
-Date: Mon, 15 Dec 2025 20:18:47 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJKpQRMEac4e1T-s+6HWbR9mOZXRQCHVeTCnHqJYa=TYg@mail.gmail.com>
-X-Gm-Features: AQt7F2rTRnyOQZ6KvlYwXbGLSjJsM7VHzB8YZxXTxLEwIFQhb8L6Y1pd-C5epdY
-Message-ID: <CAL_JsqJKpQRMEac4e1T-s+6HWbR9mOZXRQCHVeTCnHqJYa=TYg@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: PCI: socionext,uniphier-pcie: Fix interrupt
- controller node name
-To: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
-	Manivannan Sadhasivam <mani@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Masami Hiramatsu <mhiramat@kernel.org>, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-TraceID: 1765851543pvM8C
 
-On Mon, Dec 15, 2025 at 7:21=E2=80=AFPM Kunihiko Hayashi
-<hayashi.kunihiko@socionext.com> wrote:
->
-> Hi Rob,
->
-> Thank you for pointing out.
->
-> On 2025/12/16 6:24, Rob Herring (Arm) wrote:
-> > The child node name in use by .dts files and the driver is
-> > "legacy-interrupt-controller", not "interrupt-controller".
-> After your change commit bcd7ec2cd720 were merged, it was a long time
-> before I realized I needed to fix it.
->
-> "interrupt-controller" is included in the list of Generic Names
-> Recommendation. Would it be better to apply (i.e. restore) this,
-> or fix the PCI driver and .dts?
+Add bindings for the Silergy SY6974B I2C controlled charger.
 
-It's an ABI. So we are stuck with it or have to support both names in
-the driver forever (and backport the driver change).
+Signed-off-by: tian.ge <tian.ge@silergymicro.com>
+---
+ .../power/supply/silergy,sy6974b.yaml         | 90 +++++++++++++++++++
+ 1 file changed, 90 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/power/supply/silergy,sy6974b.yaml
 
-Rob
+diff --git a/Documentation/devicetree/bindings/power/supply/silergy,sy6974b.yaml b/Documentation/devicetree/bindings/power/supply/silergy,sy6974b.yaml
+new file mode 100644
+index 000000000000..91ad05939c58
+--- /dev/null
++++ b/Documentation/devicetree/bindings/power/supply/silergy,sy6974b.yaml
+@@ -0,0 +1,90 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright (C) 2025 Silergy Semiconductor Technology Co., Ltd.
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/power/supply/silergy,sy6974b.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Silergy SY6974B 3A Single Cell Switching Battery charger
++
++maintainers:
++  - Tian Ge <tian.ge@silergymicro.com>
++
++allOf:
++  - $ref: power-supply.yaml#
++
++properties:
++  compatible:
++    const: silergy,sy6974b
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  sy,charge-current:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: |
++      maximum charging current (in mA).
++      Range: 0 ~ 3000 mA, step: 60 mA
++
++  sy,precharge-current:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: |
++      maximum charge current during precharge phase (in mA).
++      Range: 60 ~ 780 mA, step: 60 mA
++
++  sy,termination-current:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: |
++      charge will be terminated when current in constant-voltage phase
++      drops below this value (in mA).
++      Range: 60 ~ 960 mA, step: 60 mA
++
++  sy,regulation-voltage:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: |
++      maximum charging voltage (in mV).
++      Range: 3856 ~ 4624 mV, step: 32 mV
++
++  sy,minimum-sys-voltage:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: |
++      when battery is charging and it is below minimum system voltage,
++      the system will be regulated above minimum-sys-voltage setting (in mV).
++      Allowed values: 2600, 2800, 3000, 3200, 3400, 3500, 3600, 3700 mV
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - sy,charge-current
++  - sy,precharge-current
++  - sy,termination-current
++  - sy,regulation-voltage
++  - sy,minimum-sys-voltage
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      charger@6b {
++        compatible = "silergy,sy6974b";
++        reg = <0x6b>;
++
++        interrupt-parent = <&tlmm>;
++        interrupts = <64 IRQ_TYPE_EDGE_FALLING>;
++
++        sy,charge-current = <3000>;		/* 3000 mA */
++        sy,precharge-current = <500>;		/* 500 mA */
++        sy,termination-current = <300>;		/* 300 mA */
++        sy,regulation-voltage = <4480>;		/* 4480 mV */
++        sy,minimum-sys-voltage = <3500>;	/* 3500 mV */
++      };
++    };
+-- 
+2.34.1
 
