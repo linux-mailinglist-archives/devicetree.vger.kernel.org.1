@@ -1,79 +1,103 @@
-Return-Path: <devicetree+bounces-247115-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247117-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8AD7CCC45A3
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 17:41:35 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C6DACC464E
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 17:47:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 4AA0D302C5D7
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 16:41:32 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 68C573039910
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 16:46:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E866330F55B;
-	Tue, 16 Dec 2025 16:41:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95731319603;
+	Tue, 16 Dec 2025 16:46:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UTSV+DLO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aMz7uwpD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B26A2F260E;
-	Tue, 16 Dec 2025 16:41:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69D823195E6;
+	Tue, 16 Dec 2025 16:46:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765903289; cv=none; b=uxPbqH2xYH5F7kMJKVQcTrt8CJ3UyLpcAkpB5B//mB5ZYqcxHchBM1Kf6Ts/hRE3m4RUdhDvBg7dg3VjutyLpkFzi6pfQDgfFI8MDQAF2i+RBU4IPfcS757DZVrlj2YoDsy1K2PfegmFxFV1KSaHa2brmhJ81jzdkDnl7l38BpY=
+	t=1765903597; cv=none; b=h7+27+0V352MmGT4QQIJqIINvLT9nfGAuhiDJ4PchtNdivxIPa2GBjVK4Zy+GxF0DU4UHaqxWnLuxkxRZtEoqOmn4SB8eLLcX4PS4aA4+fYxWhy5PKlaV958Cot/4QbjtEEj6abjaBgojt/CHgqSBoHvyLt0YeOEXe3CMSS9oJo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765903289; c=relaxed/simple;
-	bh=glph62P7/Du4L/3zXD5ZSp61IfKb8z3u5NBivwGvyHc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=W5HPOHNgoF3SKFwtXs7Sgn0UzgbD8zEhdbctAusi3GrXLBw32s2CWY4lPfyhougCmi5E/nrFe0+nxEtgSLXZ8JnGm8M6jXep2fSJ5+yKRGBsae9cMCdvcuOLQ76ZwENyXhCLfQUUuVRzTC1H2keGrdff5ObYI0OJ/IzUJt2vYRI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UTSV+DLO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55EF5C113D0;
-	Tue, 16 Dec 2025 16:41:28 +0000 (UTC)
+	s=arc-20240116; t=1765903597; c=relaxed/simple;
+	bh=UNSRNeBiaj3Rry5J7rpo+9jk7tXOJzVaBHlmdHHL6GQ=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=isADHmsNO6/jKyy8aYWSc+4PiYOk545TK4np6VArjmnzaeIYztZFV18jI2EHRLglHxtFp6YvglnfXMKjJwrKonMt4hpDM/FiaGprbSKmX1BgIQneXNxKliG03rUy+pUzjFItGKXGItFd5Edmlb19aMc6ceuIupLh5lQ6NtL8zF4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aMz7uwpD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A850C4CEF1;
+	Tue, 16 Dec 2025 16:46:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765903288;
-	bh=glph62P7/Du4L/3zXD5ZSp61IfKb8z3u5NBivwGvyHc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UTSV+DLObsuIg8F42cTPdSxFgpaSaHhToXwVdstqF3sHCOidUNUBhS68w184Nhqks
-	 s//HVY2Kzi3RWoTBzOve0RRyfroC5brIzvI3RZfl2bdpRMSYLO9i270EXaSMGHQ+gt
-	 eJI8E66Zo4PjdHlSAEe2NhN9ayKou8oQ0pwEh7SKx62R7czgfBVQ7veUq1jEkTlMDQ
-	 XN0ipskMG/x7vaE3ubud0qTrv7aAkdAWXGbU3p7a8ngdoRef9m8t4sor4EgMmAVqvk
-	 zSQKBvD48JP/LWaUQu6Otnw8jFYX1lBIkwUCZ3rJdpZQKEqchIURbgjKmptRW1smDD
-	 mk0ZPEXtUdlGg==
-Date: Tue, 16 Dec 2025 10:41:25 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Gatien Chevallier <gatien.chevallier@foss.st.com>,
-	devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] dt-bindings: bus: stm32mp25-rifsc: Allow 2 size cells
-Message-ID: <176590328507.2607309.18218209388270739835.robh@kernel.org>
-References: <20251215212700.3320634-1-robh@kernel.org>
+	s=k20201202; t=1765903597;
+	bh=UNSRNeBiaj3Rry5J7rpo+9jk7tXOJzVaBHlmdHHL6GQ=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=aMz7uwpDOS8jcT7ByQo/F0gSxOsvd3ADD8dn4twiU3VojJjZqFs6Cliu1+bbKhuFN
+	 DWT/B4oPIjpJqLuuyVLw+IPFazTOgHJqF627ME1nKW3tk6LU0mcBh2qNgDCmBGWxn6
+	 2HzNigE1thZRsDbMRwI7IIXOtcHa+ZwMZkhTXESFX5x7BpIP3xeqzObs7kDdSvurWh
+	 dU69Kkj0RwfHiV9KVz61JOQjtW58Bg1gLQOTdmHqgX5eJfNUcln8+IDemVDOcn9/h1
+	 4MV0UExndT1dZ9UoLsNGm9VEjELK9LXeaXVt3PgoUzzFYctdxxq6fQRwU4mtIUf4p7
+	 8TAVib8cccv6Q==
+From: Mark Brown <broonie@kernel.org>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ Erwan Leray <erwan.leray@foss.st.com>, 
+ Fabrice Gasnier <fabrice.gasnier@foss.st.com>, 
+ Alain Volmat <alain.volmat@foss.st.com>
+Cc: linux-spi@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-stm32@st-md-mailman.stormreply.com, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20251215-stm32-spi-mp2x-dt-updates-v1-0-464a5fd20f13@foss.st.com>
+References: <20251215-stm32-spi-mp2x-dt-updates-v1-0-464a5fd20f13@foss.st.com>
+Subject: Re: (subset) [PATCH 0/3] spi: st: add power-domains on stm32mp2x
+Message-Id: <176590359301.183097.12758319202580831902.b4-ty@kernel.org>
+Date: Tue, 16 Dec 2025 16:46:33 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251215212700.3320634-1-robh@kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.15-dev-47773
 
-
-On Mon, 15 Dec 2025 15:26:59 -0600, Rob Herring (Arm) wrote:
-> There are users already with 2 size cells, and there's no reason to not
-> support that.
+On Mon, 15 Dec 2025 13:26:19 +0100, Alain Volmat wrote:
+> This series add the possibility to indicate a power-domains for an spi
+> instance and set the related property for all spi instances on
+> stm32mp2x.
 > 
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
->  Documentation/devicetree/bindings/bus/st,stm32mp25-rifsc.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
 
-Applied, thanks!
+Applied to
+
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+
+Thanks!
+
+[1/3] dt-bindings: spi: st,stm32-spi: add 'power-domains' property
+      commit: f4acea9eef704607d1a950909ce3a52a770d6be2
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
 
