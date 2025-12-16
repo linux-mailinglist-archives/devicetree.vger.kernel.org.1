@@ -1,593 +1,206 @@
-Return-Path: <devicetree+bounces-246986-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246978-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E57A8CC27F6
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 12:59:15 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A628CC2319
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 12:26:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id DB2C2300F186
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 11:59:14 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 419EF3019E09
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 11:26:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D7C1350A0C;
-	Tue, 16 Dec 2025 11:56:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36D48342531;
+	Tue, 16 Dec 2025 11:26:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="ENLkM34D"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Dd+NX0Ab"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m15597.qiye.163.com (mail-m15597.qiye.163.com [101.71.155.97])
+Received: from CH4PR04CU002.outbound.protection.outlook.com (mail-northcentralusazon11013052.outbound.protection.outlook.com [40.107.201.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B47043502BF;
-	Tue, 16 Dec 2025 11:56:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.97
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765886194; cv=none; b=KcydxeF1o+pAcP+7rnICUzQ+lGFwbqO8cM4HsfVVJbxy8GCUv0YBk657hiv6VONbUL+0YvvA1AUOZMNpngGqzhSCKmfJGX8lYQ0ZRQgc4fHyA/2lYRZBt4FkTuIaYlB5CAo7H5OaGnZjPTGISM7IKJhQPwbUqnUkM51HzOyt9ug=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765886194; c=relaxed/simple;
-	bh=0yEG9FdE7o9EPp30M3u1vfPwISprP/MKrXWm6roxNm8=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=k953UiSjwi2bdx3QSWDrTiTjIBpMbpr+dPlEbdUqjjva+Os7qyqcYIjHyi33Yg+XJdu55DckhS134ajCSX7Ae3VPbHm7m/4QStHZGt1KdRLJeTAtHIL7WQricEUArEcWQbKtHTozdqwq8PiaLTjKzw5P/G6tqK5wL/+bGmRR1/M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=ENLkM34D; arc=none smtp.client-ip=101.71.155.97
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from rockchip.. (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 2d6ee1fa4;
-	Tue, 16 Dec 2025 19:21:03 +0800 (GMT+08:00)
-From: Ye Zhang <ye.zhang@rock-chips.com>
-To: Ye Zhang <ye.zhang@rock-chips.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Heiko Stuebner <heiko@sntech.de>
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	tao.huang@rock-chips.com
-Subject: [PATCH v3 7/7] pinctrl: rockchip: add rmio support
-Date: Tue, 16 Dec 2025 19:20:53 +0800
-Message-Id: <20251216112053.1927852-8-ye.zhang@rock-chips.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251216112053.1927852-1-ye.zhang@rock-chips.com>
-References: <20251216112053.1927852-1-ye.zhang@rock-chips.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2679A34251D;
+	Tue, 16 Dec 2025 11:26:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.201.52
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1765884387; cv=fail; b=IQ+sNVILnBYoa13wiGB9uaX1/LQaaAHjYHs2eou4OgVJcl5cjQagQiTlawnIkCdopFKDr1h90qKhiWTIFbk9VaZtHTWrCa9rVVviK4GBji9dlnUj0lcjULRkENF0SiHG1rqHW0eQjUl4P0Lwf8FP9Yfn2mMsHAF4l7zWuZUJFUE=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1765884387; c=relaxed/simple;
+	bh=5p/49Jvp5GsPMk74xGbn+NHph01OlXLA5l2nstb0luk=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=NWeolCsVNPE/12rqp/pBeucHNK9zOIOReJUXSRoFtQD8E6MivvDNHDij1waikIIHJMA/nNlfpZMAmAg9Np8WLZ6UDG3mWNqcoiEDvzKpiLgMo2P9WxkXSTqJaQmbiFFFMhT3gpjUsuSq+I2SOixV5qv0z7SHHWDUBg6sSweiygQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Dd+NX0Ab; arc=fail smtp.client-ip=40.107.201.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=dTGJMlAcmKh3TXZrp7rB7UhWzhmZed4yb5zlMVXBnTBmIZSZ/nJXVvaAICAlgq6FEXO5reHSKKLyYTdY7rloIb6BcC7SriKlMBr9+TNrwsR/xuWfyE1uFFo/hJOXukcAOhZcLOu+RA2ZSfSIF0IA5VKn2m2gMJ9TTcpNb0xM1pTYUOef74TrDh5zp8SZe1zK5AYEYYsVSCDePexxxEb+6SroBjsNNb+UyYRttSDaTRVmj5Lf824iAdm0kBEfVjfw90YvmREbVGhqmtSmweZqM5jwYRUrK6sLS7tQNi7RtqLDFK591n/vkFC8CRqdZVmep6KFz7Luwc6HfmXoQ/RLjg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=zy9Z9lOdibBQdx6VOzSwrw7RoXpnwWLzsjjTaGLzJE0=;
+ b=amo9xMQ6JnG9FRPRqD153TaZI2DUrXlJJ68Oz4JaAjpc9b6IHgzUzNZHj+avSjhDOVQvONGcu0MsvZCqvA6G/OG4Vf8xOfTQBtxnjmQuOfUcrp4tZYi86wdVFHWoqpw0CudX7eYFDiGXpFZUsqXOROQEAtyHoLdq/TjDobefkz2DA8+XK3uif1X1WzsMU2xYZ06Wxf75tJa4SCm9MU7QpgT+GWLy5voyzBa2ni/aXCG56UCh1aW/Nj53nP5VbWKjupENCCSbuhRexso5gklll7HEmWASB8Faj2hUakoLuOydntZjUXyIyfSmh01zErmsu17ztSVGg3oFPeQKJxlqKQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.23.195) smtp.rcpttodomain=lists.phytec.de smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zy9Z9lOdibBQdx6VOzSwrw7RoXpnwWLzsjjTaGLzJE0=;
+ b=Dd+NX0AbG/CYbsDWdJH39kXdCXr+8X2EQ584CRV1f992nD8vrQcgZ6ezWyzjhxOvJNG8q/G72mx6FBTH6mcRmnb4hxu0OUCyjqQel9Ci2cttsE5L7oIuJewE/lNALV8EUkMDuIhPPsIX7+PkktNCntJtAWSc2ZGrAMOQBaeKQAc=
+Received: from DS7PR03CA0213.namprd03.prod.outlook.com (2603:10b6:5:3ba::8) by
+ BN0PR10MB5143.namprd10.prod.outlook.com (2603:10b6:408:12c::7) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9434.6; Tue, 16 Dec 2025 11:26:21 +0000
+Received: from DS1PEPF00017099.namprd05.prod.outlook.com
+ (2603:10b6:5:3ba:cafe::4b) by DS7PR03CA0213.outlook.office365.com
+ (2603:10b6:5:3ba::8) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9434.6 via Frontend Transport; Tue,
+ 16 Dec 2025 11:26:21 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
+Received: from lewvzet201.ext.ti.com (198.47.23.195) by
+ DS1PEPF00017099.mail.protection.outlook.com (10.167.18.103) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9434.6 via Frontend Transport; Tue, 16 Dec 2025 11:26:20 +0000
+Received: from DLEE215.ent.ti.com (157.170.170.118) by lewvzet201.ext.ti.com
+ (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 16 Dec
+ 2025 05:26:18 -0600
+Received: from DLEE205.ent.ti.com (157.170.170.85) by DLEE215.ent.ti.com
+ (157.170.170.118) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 16 Dec
+ 2025 05:26:18 -0600
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE205.ent.ti.com
+ (157.170.170.85) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Tue, 16 Dec 2025 05:26:18 -0600
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5BGBQIfP3965706;
+	Tue, 16 Dec 2025 05:26:18 -0600
+From: Nishanth Menon <nm@ti.com>
+To: <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, Daniel Schultz <d.schultz@phytec.de>
+CC: Nishanth Menon <nm@ti.com>, <upstream@lists.phytec.de>
+Subject: Re: [PATCH v2 1/2] arm64: dts: ti: k3-am62-phycore-som: Enable cpsw_mac_syscon in U-Boot
+Date: Tue, 16 Dec 2025 05:26:17 -0600
+Message-ID: <176588434530.55546.1839102927935177683.b4-ty@ti.com>
+X-Mailer: git-send-email 2.47.0
+In-Reply-To: <20251124090842.3377294-1-d.schultz@phytec.de>
+References: <20251124090842.3377294-1-d.schultz@phytec.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9b26e46e3909d8kunm7ab62e1d2a7b435
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQh1JHVZPTB0aGkxMTk1KGkJWFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
-	hVSktLVUpCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=ENLkM34DDZZcIrbJI4xBuZHaYatYVX1t4Bl9Zs8Vccg+farMvQQ9hYqpJpj5aWlCotIm9KL+XWyEOyNZzx5zdosmBrBP8/XsmwPtfJsqQChKX5id3clSfnUQbqfHvUSm3p8xg21OFW08H/m0j3lVyD3LZ5wRJh9KtjpdIP2nKTI=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=JMsY/6xUIYg72FO9i8/WKAtOJS3xupDI20CcO/zF1Uo=;
-	h=date:mime-version:subject:message-id:from;
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS1PEPF00017099:EE_|BN0PR10MB5143:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9849301d-34c8-4082-0f94-08de3c95f02b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|36860700013|82310400026|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?VTdzUnlwaHNtd2M2SjYzblpLWHNmUDVQbjR6NWJ2cXlSVEY3Tk5IMXlSVFFz?=
+ =?utf-8?B?SHdjcVRaeXpWRFFWUkVWVmtJOS8reDJ0YXVLN3lqcFNUU3VTU1NVd1N0MVM2?=
+ =?utf-8?B?NzloRTh5T0M4YlpIZkR2MTJqYTFOR09JSjlVYlJHa2svNURPQm9KMHdlTlRx?=
+ =?utf-8?B?N0R2aTNRbmVTTnV4NFZidUprenlzNDdNUWNJMm9FR2g2ZnE4Y3dtTmpBUXAz?=
+ =?utf-8?B?T0YxUXBpOHQ2Q2ZGeThLQklnSlNvajZjNk50cDlXZmNSVjBhaFhmWTkzYUoy?=
+ =?utf-8?B?bWM1dnl6bmloaWJ0YzVSL3h2RzF4dytHZkV4VHN4SUI5S1M3OE11SytiV1Vx?=
+ =?utf-8?B?Z2JreTJJQlJSdUYrbEFxSEJ1TGdIemQxWGlTNkthK0dDcHo5cW10QUlRWnBF?=
+ =?utf-8?B?Ui9PWEFtQ0NqSWtSTVIvbUwxbG9JZk9Fc1hoSS9nWmthY2UzalhPQW4wcDVx?=
+ =?utf-8?B?ZVlZYXRnbUlPTXd4TlY5MFZxTzc1aW01c3dZRVY4QmhXMHdvMERNSVp0NmZk?=
+ =?utf-8?B?S3JWZ0habTdoSDZnNGV1cVhpL0xWcFUzSDJqOXphWUhnY0xLVjRrcUN4S3ZP?=
+ =?utf-8?B?aUd2OTNUUEVGTW1IVzEyRGh4TkxncEdGTHVIeGdueEh2ZWNRczAvV3VObDRq?=
+ =?utf-8?B?bDhCaE90QmoxZVR5bCtDT1IrU1BuT2V6VVduMXhhektnbnZVcnVGSzdsb3B4?=
+ =?utf-8?B?d1hOOEhKazJvUkwyYWUrSDNqNUIzU2tBUVBUOEMrNWlrL0JrV1lZKzd4S0Jp?=
+ =?utf-8?B?WDF6V0JWN2k0TitxaTNZS0V4a2RoVDJMTHo4enl2bVlZT01DdWlvUi8vYVdN?=
+ =?utf-8?B?bUlxOU9oWSsrdWlndjQ5UERmTDBpakhhcnVPNVMveXlmN3hseWVuZjJObHpV?=
+ =?utf-8?B?cjBPbm54T1JzM1UvcGRYN2xEVGVuSkZGTVNKVnpPWGZEVkVLOG9MbGFLSVpH?=
+ =?utf-8?B?bTJnTDJoY1g3UlgrN2lseTJ0eUloWDRpdk9QY3lLY1IxRXdpSzhGUmhlWHFv?=
+ =?utf-8?B?NUJWRXVocUsrWVNoMlNoeGQxRDB1ZXpuODBRdGNNNVdOeTZia2kzcXc0bVo4?=
+ =?utf-8?B?M1czZCtsSnd4aTlIdHlKK2g4MW01aFRkbC9ETHVYeDBmekZOQXNEbkljYldU?=
+ =?utf-8?B?NmF6c1dmblh3WHQ2WDA3TWVqaFVTQ25EQ1lKWFZFNU9qWkU1bUtIc0Y3UW44?=
+ =?utf-8?B?cnFPMTBjald1ZDNEdTRwSTBicjhuQU90Y3c5eUoyTnQwRjZJS3NzZWVZZzdE?=
+ =?utf-8?B?eGxxWnNoOWM2OWk2MzF0eGxFZ2x2T2FUZDFrU01pcDQ0NnRXVS9EOWFVVUc2?=
+ =?utf-8?B?V3FCS0tCNkwyYlZMVlBQMm51YTJFbE1ydmdwKzArcTMzQzFFUW9Dd2FmTTAv?=
+ =?utf-8?B?c2k2Y25DZVdLczg1UUFDb0Y2eUxtMDByZTloUHdUSlA2c1NTTUZIU3ZwaUEx?=
+ =?utf-8?B?ay9pVFpVTTZubHVWM1hPQUgyckg0Y0tOSGZmZml5M2I1NWpiOWtzNzhxeEtE?=
+ =?utf-8?B?T2Q0MDZMSkUyWlFyWTQrRUZvTTdCR05Wc0F5SG5aV0t5NmZ3R3JiK1ZCRFd6?=
+ =?utf-8?B?eTExSE80SEJOSks3c2MxcDBZVTlHVmJwN0dJalVaQTJOeVFuZUh2K0ozQ3Nm?=
+ =?utf-8?B?MzFkRzRVblJhVENrRTNrYjNuWUg5REFyb2RKNmxPV2d6N2Y1WE1JS3dvOG1E?=
+ =?utf-8?B?VjQ4ZWsva25SeDRJUnpFNGFoOE5jQVNwR2VZeGRXeld0MDB1cXRlRm5GTFVi?=
+ =?utf-8?B?b0hzMkRzSXhhckhUZ1UzMzI0cFVtaEpLRU9TWHVpMGVaQlZ4bWNHU1E1ZzBT?=
+ =?utf-8?B?WnN1Vlc2Rk50VDZvaXQrRHk2VlZ5T3ZhU0NrVDNITkdYSjdNeVNxQmdoQXZ0?=
+ =?utf-8?B?TkprOTV4RHhlNURRRXUvenEyMGxUSVNtZ1hvZGhnQWJaN1N3SlNERjc3S2RF?=
+ =?utf-8?B?Rk1VOHhpSHpPWGpBZ2VrbDdva2xSSjhVZ09UNDdYNXMxUWpQRWg4aUN5bmt6?=
+ =?utf-8?B?V3FRcklDNFhRb3FONEVOQjVSY1lpUlIwSDF4SURseE56NFVPeHBxand4NlUz?=
+ =?utf-8?B?dU9EUmVGcTVDa0o4V0syTy9zemVTWnZ3dGZ5QmxjeUM0UDlEdFo0RG15ZHRm?=
+ =?utf-8?Q?N8d0=3D?=
+X-Forefront-Antispam-Report:
+	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(36860700013)(82310400026)(1800799024);DIR:OUT;SFP:1101;
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Dec 2025 11:26:20.9568
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9849301d-34c8-4082-0f94-08de3c95f02b
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DS1PEPF00017099.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN0PR10MB5143
 
-Support Rockchip Matrix IO(RMIO), which can be configured with registers
-to route arbitrary signals from low-speed IP, such as UART/I2C, to the
-selected IO PAD.
+Hi Daniel Schultz,
 
-Signed-off-by: Ye Zhang <ye.zhang@rock-chips.com>
----
- drivers/pinctrl/pinctrl-rockchip.c | 401 ++++++++++++++++++++++++++++-
- drivers/pinctrl/pinctrl-rockchip.h |  42 +++
- 2 files changed, 442 insertions(+), 1 deletion(-)
+On Mon, 24 Nov 2025 01:08:41 -0800, Daniel Schultz wrote:
+> Add the "bootph-all" property to cpsw_mac_syscon.
+> 
+> This fuse region contains the internal MAC address. Without this
+> syscon node enabled, this interface will get a random MAC during
+> network boot. This is problematic because the AM62x network
+> boot is using BOOTP protocol for some binaries and this protocol
+> does not support dynamic lease expiration. Therefore, the DHCP
+> server can run out of free IP addresses.
+> 
+> [...]
 
-diff --git a/drivers/pinctrl/pinctrl-rockchip.c b/drivers/pinctrl/pinctrl-rockchip.c
-index dc7ef12dfcb0..cfd8117ab460 100644
---- a/drivers/pinctrl/pinctrl-rockchip.c
-+++ b/drivers/pinctrl/pinctrl-rockchip.c
-@@ -3961,6 +3961,11 @@ static const struct of_device_id rockchip_bank_match[] = {
- 	{},
- };
- 
-+static const struct of_device_id rockchip_rmio_dt_match[] = {
-+	{ .compatible = "rockchip,rmio" },
-+	{},
-+};
-+
- static void rockchip_pinctrl_child_count(struct rockchip_pinctrl *info,
- 						struct device_node *np)
- {
-@@ -3969,6 +3974,8 @@ static void rockchip_pinctrl_child_count(struct rockchip_pinctrl *info,
- 	for_each_child_of_node(np, child) {
- 		if (of_match_node(rockchip_bank_match, child))
- 			continue;
-+		if (of_match_node(rockchip_rmio_dt_match, child))
-+			continue;
- 
- 		info->nfunctions++;
- 		info->ngroups += of_get_child_count(child);
-@@ -4101,6 +4108,8 @@ static int rockchip_pinctrl_parse_dt(struct platform_device *pdev,
- 	for_each_child_of_node_scoped(np, child) {
- 		if (of_match_node(rockchip_bank_match, child))
- 			continue;
-+		if (of_match_node(rockchip_rmio_dt_match, child))
-+			continue;
- 
- 		ret = rockchip_pinctrl_parse_functions(child, info, i++);
- 		if (ret) {
-@@ -4431,6 +4440,388 @@ static void rockchip_pinctrl_remove(struct platform_device *pdev)
- 	}
- }
- 
-+static int rockchip_rmio_set_mux(struct rockchip_rmio *info, int id, int func)
-+{
-+	struct device *dev = info->dev;
-+
-+	if (id >= info->nr_pins)
-+		return -EINVAL;
-+
-+	dev_dbg(dev, "setting function of %s%d to %d\n", dev_name(dev), id, func);
-+
-+	return regmap_write(info->regmap, info->offset + id * 4,
-+			    RK_RMIO_WRITE_ENABLE_MASK | func);
-+}
-+
-+static int rockchip_rmio_parse_groups(struct device_node *np,
-+				      struct rockchip_rmio_group *grp,
-+				      struct rockchip_rmio *info,
-+				      u32 index)
-+{
-+	struct device *dev = info->dev;
-+	int count;
-+	u32 *tmp;
-+	int i;
-+
-+	dev_dbg(dev, "group(%d): %pOFn\n", index, np);
-+
-+	/*
-+	 * the binding format is rockchip,rmio = <pin func>,
-+	 * do sanity check and calculate pins number
-+	 */
-+	count = of_property_count_u32_elems(np, "rockchip,rmio");
-+	if (count <= 0 || count % 2 != 0)
-+		return -EINVAL;
-+
-+	tmp = kcalloc(count, sizeof(u32), GFP_KERNEL);
-+	if (!tmp)
-+		return -ENOMEM;
-+
-+	of_property_read_u32_array(np, "rockchip,rmio", tmp, count);
-+
-+	/* Initialise group */
-+	grp->name = np->name;
-+	grp->npins = count / 2;
-+	grp->pins = devm_kcalloc(dev, grp->npins, sizeof(*grp->pins), GFP_KERNEL);
-+	grp->func = devm_kcalloc(dev, grp->npins, sizeof(*grp->func), GFP_KERNEL);
-+	if (!grp->pins || !grp->func) {
-+		kfree(tmp);
-+		return -ENOMEM;
-+	}
-+
-+	for (i = 0; i < grp->npins; i++) {
-+		grp->pins[i] = tmp[2 * i];
-+		grp->func[i] = tmp[2 * i + 1];
-+	}
-+	kfree(tmp);
-+
-+	return 0;
-+}
-+
-+static int rockchip_rmio_parse_functions(struct device_node *np,
-+					 struct rockchip_rmio *info,
-+					 u32 index)
-+{
-+	struct device *dev = info->dev;
-+	struct device_node *child;
-+	struct rockchip_rmio_func *func;
-+	struct rockchip_rmio_group *grp;
-+	int ret;
-+	u32 i, grp_index = 0;
-+
-+	dev_dbg(dev, "parse function(%d): %pOFn\n", index, np);
-+
-+	for (i = 0, func = info->functions; i < index; i++, func++)
-+		grp_index += func->ngroups;
-+
-+	func = &info->functions[index];
-+
-+	/* Initialise function */
-+	func->name = np->name;
-+	func->ngroups = of_get_child_count(np);
-+	if (func->ngroups <= 0)
-+		return 0;
-+
-+	func->groups = devm_kcalloc(dev, func->ngroups, sizeof(*func->groups), GFP_KERNEL);
-+	if (!func->groups)
-+		return -ENOMEM;
-+
-+	i = 0;
-+	for_each_child_of_node(np, child) {
-+		func->groups[i] = child->name;
-+		grp = &info->groups[grp_index + i];
-+		ret = rockchip_rmio_parse_groups(child, grp, info, i++);
-+		if (ret) {
-+			of_node_put(child);
-+			return ret;
-+		}
-+	}
-+
-+	return 0;
-+}
-+
-+static int rockchip_rmio_parse_dt(struct platform_device *pdev,
-+				  struct rockchip_rmio *info)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct device_node *np = dev->of_node;
-+	struct device_node *child;
-+	int ret;
-+	int i = 0;
-+
-+	for_each_child_of_node(np, child) {
-+		info->nfunctions++;
-+		info->ngroups += of_get_child_count(child);
-+	}
-+
-+	dev_dbg(dev, "nfunctions = %d\n", info->nfunctions);
-+	dev_dbg(dev, "ngroups = %d\n", info->ngroups);
-+
-+	info->functions = devm_kcalloc(dev, info->nfunctions, sizeof(*info->functions), GFP_KERNEL);
-+	if (!info->functions)
-+		return -ENOMEM;
-+
-+	info->groups = devm_kcalloc(dev, info->ngroups, sizeof(*info->groups), GFP_KERNEL);
-+	if (!info->groups)
-+		return -ENOMEM;
-+
-+	for_each_child_of_node(np, child) {
-+		ret = rockchip_rmio_parse_functions(child, info, i++);
-+		if (ret) {
-+			dev_err(dev, "failed to parse function, ret = %d\n", ret);
-+			of_node_put(child);
-+			return ret;
-+		}
-+	}
-+
-+	return 0;
-+}
-+
-+static int rockchip_rmio_get_groups_count(struct pinctrl_dev *pctldev)
-+{
-+	struct rockchip_rmio *info = pinctrl_dev_get_drvdata(pctldev);
-+
-+	return info->ngroups;
-+}
-+
-+static const char *rockchip_rmio_get_group_name(struct pinctrl_dev *pctldev,
-+						unsigned int selector)
-+{
-+	struct rockchip_rmio *info = pinctrl_dev_get_drvdata(pctldev);
-+
-+	return info->groups[selector].name;
-+}
-+
-+static int rockchip_rmio_get_group_pins(struct pinctrl_dev *pctldev,
-+					unsigned int selector,
-+					const unsigned int **pins,
-+					unsigned int *npins)
-+{
-+	struct rockchip_rmio *info = pinctrl_dev_get_drvdata(pctldev);
-+
-+	if (selector >= info->ngroups)
-+		return -EINVAL;
-+
-+	*pins = info->groups[selector].pins;
-+	*npins = info->groups[selector].npins;
-+
-+	return 0;
-+}
-+
-+static int rockchip_rmio_dt_node_to_map(struct pinctrl_dev *pctldev,
-+					struct device_node *np,
-+					struct pinctrl_map **map,
-+					unsigned int *num_maps)
-+{
-+	struct rockchip_rmio *info = pinctrl_dev_get_drvdata(pctldev);
-+	struct device *dev = info->dev;
-+	struct pinctrl_map *new_map;
-+	struct device_node *parent;
-+
-+	parent = of_get_parent(np);
-+	if (!parent)
-+		return -EINVAL;
-+
-+	/* the rmio only need to create mux map */
-+	new_map = kzalloc(sizeof(*new_map), GFP_KERNEL);
-+	if (!new_map) {
-+		of_node_put(parent);
-+		return -ENOMEM;
-+	}
-+
-+	*map = new_map;
-+	*num_maps = 1;
-+
-+	/* the rmio only need to create mux map */
-+	new_map->type = PIN_MAP_TYPE_MUX_GROUP;
-+	new_map->data.mux.function = parent->name;
-+	new_map->data.mux.group = np->name;
-+	of_node_put(parent);
-+
-+	dev_dbg(dev, "maps: function %s group %s\n",
-+		(*map)->data.mux.function, (*map)->data.mux.group);
-+
-+	return 0;
-+}
-+
-+static void rockchip_rmio_dt_free_map(struct pinctrl_dev *pctldev,
-+				      struct pinctrl_map *map,
-+				      unsigned int num_maps)
-+{
-+	kfree(map);
-+}
-+
-+static const struct pinctrl_ops rockchip_rmio_pctrl_ops = {
-+	.get_groups_count	= rockchip_rmio_get_groups_count,
-+	.get_group_name		= rockchip_rmio_get_group_name,
-+	.get_group_pins		= rockchip_rmio_get_group_pins,
-+	.dt_node_to_map		= rockchip_rmio_dt_node_to_map,
-+	.dt_free_map		= rockchip_rmio_dt_free_map,
-+};
-+
-+static int rockchip_rmio_get_funcs_count(struct pinctrl_dev *pctldev)
-+{
-+	struct rockchip_rmio *info = pinctrl_dev_get_drvdata(pctldev);
-+
-+	return info->nfunctions;
-+}
-+
-+static const char *rockchip_rmio_get_func_name(struct pinctrl_dev *pctldev,
-+					       unsigned int selector)
-+{
-+	struct rockchip_rmio *info = pinctrl_dev_get_drvdata(pctldev);
-+
-+	return info->functions[selector].name;
-+}
-+
-+static int rockchip_rmio_get_groups(struct pinctrl_dev *pctldev,
-+				    unsigned int selector,
-+				    const char * const **groups,
-+				    unsigned int * const num_groups)
-+{
-+	struct rockchip_rmio *info = pinctrl_dev_get_drvdata(pctldev);
-+
-+	*groups = info->functions[selector].groups;
-+	*num_groups = info->functions[selector].ngroups;
-+
-+	return 0;
-+}
-+
-+static int rockchip_rmio_pmx_set(struct pinctrl_dev *pctldev,
-+				 unsigned int selector,
-+				 unsigned int group)
-+{
-+	struct rockchip_rmio *info = pinctrl_dev_get_drvdata(pctldev);
-+	const unsigned int *pins = info->groups[group].pins;
-+	const unsigned int *func = info->groups[group].func;
-+	struct device *dev = info->dev;
-+	int cnt, ret = 0;
-+
-+	dev_dbg(dev, "enable function %s group %s\n",
-+		info->functions[selector].name, info->groups[group].name);
-+
-+	/*
-+	 * for each pin in the pin group selected, program the corresponding
-+	 * pin function number in the config register.
-+	 */
-+	for (cnt = 0; cnt < info->groups[group].npins; cnt++) {
-+		ret = rockchip_rmio_set_mux(info, pins[cnt], func[cnt]);
-+		if (ret)
-+			break;
-+	}
-+
-+	if (ret && cnt) {
-+		/* revert the already done pin settings */
-+		for (cnt--; cnt >= 0; cnt--)
-+			rockchip_rmio_set_mux(info, pins[cnt], RK_RMIO_NC);
-+
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct pinmux_ops rockchip_rmio_pmx_ops = {
-+	.get_functions_count	= rockchip_rmio_get_funcs_count,
-+	.get_function_name	= rockchip_rmio_get_func_name,
-+	.get_function_groups	= rockchip_rmio_get_groups,
-+	.set_mux		= rockchip_rmio_pmx_set,
-+};
-+
-+static int rockchip_rmio_register(struct platform_device *pdev,
-+				  struct rockchip_rmio *info)
-+{
-+	struct pinctrl_desc *ctrldesc = &info->pctl;
-+	struct pinctrl_pin_desc *pindesc, *pdesc;
-+	struct device *dev = &pdev->dev;
-+	char **pin_names;
-+	int ret;
-+	int i;
-+	int nr_pins = info->nr_pins;
-+
-+	ctrldesc->name = dev_name(dev);
-+	ctrldesc->owner = THIS_MODULE;
-+	ctrldesc->pctlops = &rockchip_rmio_pctrl_ops;
-+	ctrldesc->pmxops = &rockchip_rmio_pmx_ops;
-+
-+	pindesc = devm_kcalloc(dev, nr_pins, sizeof(*pindesc), GFP_KERNEL);
-+	if (!pindesc)
-+		return -ENOMEM;
-+
-+	ctrldesc->pins = pindesc;
-+	ctrldesc->npins = nr_pins;
-+
-+	pdesc = pindesc;
-+	pin_names = devm_kasprintf_strarray(dev, dev_name(dev), nr_pins);
-+	if (IS_ERR(pin_names))
-+		return PTR_ERR(pin_names);
-+	for (i = 0; i < nr_pins; i++) {
-+		pdesc->number = i;
-+		pdesc->name = pin_names[i];
-+		pdesc++;
-+	}
-+
-+	ret = rockchip_rmio_parse_dt(pdev, info);
-+	if (ret)
-+		return ret;
-+
-+	info->pctl_dev = devm_pinctrl_register(dev, ctrldesc, info);
-+	if (IS_ERR(info->pctl_dev))
-+		return dev_err_probe(dev, PTR_ERR(info->pctl_dev),
-+				     "could not register pinctrl driver\n");
-+
-+	return 0;
-+}
-+
-+static int rockchip_rmio_probe(struct platform_device *pdev)
-+{
-+	struct rockchip_rmio *info;
-+	struct device *dev = &pdev->dev;
-+	struct device_node *np = pdev->dev.of_node;
-+	int ret;
-+
-+	info = devm_kzalloc(&pdev->dev, sizeof(*info), GFP_KERNEL);
-+	if (!info)
-+		return -ENOMEM;
-+
-+	info->dev = dev;
-+
-+	info->regmap = syscon_regmap_lookup_by_phandle(np, "rockchip,rmio-grf");
-+	if (IS_ERR(info->regmap)) {
-+		dev_err(&pdev->dev, "missing rockchip,rmio-grf property\n");
-+		return PTR_ERR(info->regmap);
-+	}
-+
-+	ret = of_property_read_u32(np, "rockchip,offset", &info->offset);
-+	if (ret < 0) {
-+		dev_err(&pdev->dev, "missing rockchip,offset property\n");
-+		return ret;
-+	}
-+
-+	ret = of_property_read_u32(np, "rockchip,pins-num", &info->nr_pins);
-+	if (ret < 0) {
-+		dev_err(&pdev->dev, "missing rockchip,pins-num property\n");
-+		return ret;
-+	}
-+
-+	ret = rockchip_rmio_register(pdev, info);
-+	if (ret)
-+		return ret;
-+
-+	platform_set_drvdata(pdev, info);
-+	dev_info(dev, "probed %pfw\n", dev_fwnode(dev));
-+
-+	return 0;
-+}
-+
-+static struct platform_driver rockchip_rmio_driver = {
-+	.probe = rockchip_rmio_probe,
-+	.driver = {
-+		.name = "rockchip-rmio",
-+		.of_match_table = rockchip_rmio_dt_match,
-+	},
-+};
-+
- static struct rockchip_pin_bank px30_pin_banks[] = {
- 	PIN_BANK_IOMUX_FLAGS(0, 32, "gpio0", IOMUX_SOURCE_PMU,
- 					     IOMUX_SOURCE_PMU,
-@@ -5190,12 +5581,19 @@ static struct platform_driver rockchip_pinctrl_driver = {
- 
- static int __init rockchip_pinctrl_drv_register(void)
- {
--	return platform_driver_register(&rockchip_pinctrl_driver);
-+	int ret;
-+
-+	ret = platform_driver_register(&rockchip_pinctrl_driver);
-+	if (ret)
-+		return ret;
-+
-+	return platform_driver_register(&rockchip_rmio_driver);
- }
- postcore_initcall(rockchip_pinctrl_drv_register);
- 
- static void __exit rockchip_pinctrl_drv_unregister(void)
- {
-+	platform_driver_unregister(&rockchip_rmio_driver);
- 	platform_driver_unregister(&rockchip_pinctrl_driver);
- }
- module_exit(rockchip_pinctrl_drv_unregister);
-@@ -5204,3 +5602,4 @@ MODULE_DESCRIPTION("ROCKCHIP Pin Controller Driver");
- MODULE_LICENSE("GPL");
- MODULE_ALIAS("platform:pinctrl-rockchip");
- MODULE_DEVICE_TABLE(of, rockchip_pinctrl_dt_match);
-+MODULE_DEVICE_TABLE(of, rockchip_rmio_dt_match);
-diff --git a/drivers/pinctrl/pinctrl-rockchip.h b/drivers/pinctrl/pinctrl-rockchip.h
-index fe18b62ed994..db875f7a3d2f 100644
---- a/drivers/pinctrl/pinctrl-rockchip.h
-+++ b/drivers/pinctrl/pinctrl-rockchip.h
-@@ -183,6 +183,9 @@
- #define RK_GPIO4_D6	158
- #define RK_GPIO4_D7	159
- 
-+#define RK_RMIO_NC			0
-+#define RK_RMIO_WRITE_ENABLE_MASK	0xFFFF0000
-+
- enum rockchip_pinctrl_type {
- 	PX30,
- 	RV1108,
-@@ -473,4 +476,43 @@ struct rockchip_pinctrl {
- 	unsigned int			nfunctions;
- };
- 
-+/**
-+ * struct rockchip_rmio_group: represent a group of pins in RMIO controller.
-+ * @name: name of the pin group, used to lookup the group.
-+ * @pins: array of pins included in this group.
-+ * @npins: number of pins included in this group.
-+ * @func: local pins function select
-+ */
-+struct rockchip_rmio_group {
-+	const char			*name;
-+	unsigned int			npins;
-+	unsigned int			*pins;
-+	unsigned int			*func;
-+};
-+
-+/**
-+ * struct rockchip_rmio_func: represent a RMIO pin function.
-+ * @name: name of the RMIO function, used to lookup the function.
-+ * @groups: array of group names that can provide this RMIO function.
-+ * @ngroups: number of groups included in @groups.
-+ */
-+struct rockchip_rmio_func {
-+	const char		*name;
-+	const char		**groups;
-+	u8			ngroups;
-+};
-+
-+struct rockchip_rmio {
-+	struct regmap			*regmap;
-+	u32				offset;
-+	struct device			*dev;
-+	struct pinctrl_desc		pctl;
-+	struct pinctrl_dev		*pctl_dev;
-+	unsigned int			nr_pins;
-+	struct rockchip_rmio_group	*groups;
-+	unsigned int			ngroups;
-+	struct rockchip_rmio_func	*functions;
-+	unsigned int			nfunctions;
-+};
-+
- #endif
+I have applied the following to branch ti-k3-dts-next on [1] with cosmetic
+fixups. Thank you!
+
+[1/2] arm64: dts: ti: k3-am62-phycore-som: Enable cpsw_mac_syscon in U-Boot
+      commit: d468b7b8a6fe3d21df5a186d04f9d6124ef66d4d
+[2/2] arm64: dts: ti: k3-am62a-phycore-som: Enable cpsw_mac_syscon in U-Boot
+      commit: a9bd8d35a88e0bf72ebf5a803eb4c7f8e4731e3e
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/ti/linux.git
 -- 
-2.34.1
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+https://ti.com/opensource
 
 
