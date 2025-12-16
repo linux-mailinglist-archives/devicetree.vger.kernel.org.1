@@ -1,52 +1,38 @@
-Return-Path: <devicetree+bounces-247021-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247022-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EE7ACC2FEC
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 13:58:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D3D5CCC494C
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 18:11:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 136D53037E0D
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 12:58:23 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D0523305B4DE
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 17:09:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBED3339B32;
-	Tue, 16 Dec 2025 12:50:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="DWsUadI1"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD50334F27E;
+	Tue, 16 Dec 2025 12:51:09 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from ixit.cz (ip-94-112-25-9.bb.vodafone.cz [94.112.25.9])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05F9B223323;
-	Tue, 16 Dec 2025 12:50:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.112.25.9
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7694F34DCE9;
+	Tue, 16 Dec 2025 12:51:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765889431; cv=none; b=OLMQvhZIwW5uIa+nZqB55JWviqoyP6aa5sgURNHuf+noq46IjkWbT4gpQ0Iix3r+f4TZiNYo3b5LwPJoZcbZol0Fz2lPQzkfI9kzYQbtLtkaA1g2ZAysumnGDyW5WCqVZCL48BP3LNVnQEAuMD7ne7r+rj33k5XYR+0DbbyucLU=
+	t=1765889469; cv=none; b=cplpRDaSkj28+kqHwpIxkKlaiWUN1ZsCM2LR4vgGm6sY4IX5M9Zbc+mnbRt6ujumkavjzhVvZ4U9CAxqNxqgSWx/5GFnZ15EO7eSr/jFjCsO5niwja/J8TCwX/Pb3dqUH5uwATT3YsINmzzr7noWpFTs7Hw0urNJ+IhsLbisafs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765889431; c=relaxed/simple;
-	bh=vfpJWzZXf9kRf+ROAAZn7hF+kk+xxNTRqtMykE3ukgQ=;
+	s=arc-20240116; t=1765889469; c=relaxed/simple;
+	bh=mcmnDlU9X2YImHpKQA7Bd9UBFqiCXpNB6xWvDm3kEO4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NrwJUgMBQldaKSIfK279qIxJMxDLlHoiUBI2F2tbrPFUMsZ81C1e7/FonufuHdr/AL4Vi4BEg+A3PTmGCjJVDqT9waNpFMBkoXfPGqPfloqylk3aKFj9ANVA8yLluG/KGDq2rnfSFzlRK6IRNxXjUbzepXBd33eA2XJe7+tv+is=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=DWsUadI1; arc=none smtp.client-ip=94.112.25.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
-Received: from [192.168.88.180] (ip-94-112-34-59.bb.vodafone.cz [94.112.34.59])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange x25519)
-	(No client certificate requested)
-	by ixit.cz (Postfix) with ESMTPSA id C1AC45340D57;
-	Tue, 16 Dec 2025 13:50:24 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-	t=1765889426;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=DX4pmEhHzMBbUm5aXe9ehR4VlJ6zDNKIE8bWUABOEVQ=;
-	b=DWsUadI1M4ws3La+S9xeSat8KFOgDxTdwHm62Rucbyw9ae6FrnVrBgF11amzoKvk7puvDs
-	5Ai5eKqP3P/tbQToun4FzHddzx1XUCvt1i/s/xYTobi2YYBhVMv8olPYcMuVItswZWpomH
-	/gKYNbxKiixBQnXRykmewkrUsgxpEao=
-Message-ID: <ef8bb835-5749-43ed-9af8-abc9fdd19cbf@ixit.cz>
-Date: Tue, 16 Dec 2025 13:50:23 +0100
+	 In-Reply-To:Content-Type; b=HvBczTUnQDglWhGaz506qb33421YKb4ue5NtJg/hT8RzKm2SlcHYcIh6Zyb73eEr4grSAn1k8k/SSFTb365jgMbKAHhaCsxjsHfyx5JuHRSWl407YlvYf0wbK8sTuY4SIdToBh58Obpvcrw4y9oM8KSL5yXfBijlb1bdGPE2D68=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4B9C0FEC;
+	Tue, 16 Dec 2025 04:50:59 -0800 (PST)
+Received: from [10.57.43.186] (unknown [10.57.43.186])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2B6363F694;
+	Tue, 16 Dec 2025 04:51:04 -0800 (PST)
+Message-ID: <910e3db2-c4ef-4c21-9336-49469234b8e6@arm.com>
+Date: Tue, 16 Dec 2025 12:51:02 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -54,89 +40,246 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/3] ath10k calibration variants for sdm845 phones
-To: Dylan Van Assche <me@dylanvanassche.be>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org
-References: <20251110-sdm845-calibration-variants-v1-0-2c536ada77c2@ixit.cz>
-Content-Language: en-US
-From: David Heidelberg <david@ixit.cz>
-Autocrypt: addr=david@ixit.cz; keydata=
- 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
-In-Reply-To: <20251110-sdm845-calibration-variants-v1-0-2c536ada77c2@ixit.cz>
+Subject: Re: [PATCH v2 2/3] dma: arm-dma350: add support for shared interrupt
+ mode
+To: Jun Guo <jun.guo@cixtech.com>, peter.chen@cixtech.com,
+ fugang.duan@cixtech.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, vkoul@kernel.org, ychuang3@nuvoton.com,
+ schung@nuvoton.com
+Cc: dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, cix-kernel-upstream@cixtech.com,
+ linux-arm-kernel@lists.infradead.org, jelly.jia@cixtech.com
+References: <20251216123026.3519923-1-jun.guo@cixtech.com>
+ <20251216123026.3519923-3-jun.guo@cixtech.com>
+From: Robin Murphy <robin.murphy@arm.com>
+Content-Language: en-GB
+In-Reply-To: <20251216123026.3519923-3-jun.guo@cixtech.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Kind reminder for this series, as all the FW is already long-time in 
-linux-firmware.
-
-David
-
-On 10/11/2025 16:37, David Heidelberg via B4 Relay wrote:
-> Let's leaverage linux-firmware and use calibration from the board-2.bin.
+On 2025-12-16 12:30 pm, Jun Guo wrote:
+> The arm dma350 controller's hardware implementation varies: some
+> designs dedicate a separate interrupt line for each channel, while
+> others have all channels sharing a single interrupt.This patch adds
+> support for the hardware design where all DMA channels share a
+> single interrupt.
 > 
-> Signed-off-by: David Heidelberg <david@ixit.cz>
+> Signed-off-by: Jun Guo <jun.guo@cixtech.com>
 > ---
-> Dylan Van Assche (3):
->        arm64: dts: qcom: sdm845-oneplus: add ath10k calibration variant
->        arm64: dts: qcom: sdm845-xiaomi-beryllium: Add ath10k calibration variant
->        arm64: dts: qcom: sdm845-shift-axolotl: Add ath10k calibration variant
+>   drivers/dma/arm-dma350.c | 124 +++++++++++++++++++++++++++++++++++----
+>   1 file changed, 114 insertions(+), 10 deletions(-)
 > 
->   arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi          | 1 +
->   arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts            | 1 +
->   arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi | 3 +++
->   3 files changed, 5 insertions(+)
-> ---
-> base-commit: ab40c92c74c6b0c611c89516794502b3a3173966
-> change-id: 20251110-sdm845-calibration-variants-66ad31ff88ca
-> 
-> Best regards,
+> diff --git a/drivers/dma/arm-dma350.c b/drivers/dma/arm-dma350.c
+> index 9efe2ca7d5ec..6bea18521edd 100644
+> --- a/drivers/dma/arm-dma350.c
+> +++ b/drivers/dma/arm-dma350.c
+> @@ -14,6 +14,7 @@
+>   #include "virt-dma.h"
+>   
+>   #define DMAINFO			0x0f00
+> +#define DRIVER_NAME		"arm-dma350"
+>   
+>   #define DMA_BUILDCFG0		0xb0
+>   #define DMA_CFG_DATA_WIDTH	GENMASK(18, 16)
+> @@ -142,6 +143,9 @@
+>   #define LINK_LINKADDR		BIT(30)
+>   #define LINK_LINKADDRHI		BIT(31)
+>   
+> +/* DMA NONSECURE CONTROL REGISTER */
+> +#define DMANSECCTRL		0x20c
+> +#define INTREN_ANYCHINTR_EN	BIT(0)
+>   
+>   enum ch_ctrl_donetype {
+>   	CH_CTRL_DONETYPE_NONE = 0,
+> @@ -192,11 +196,16 @@ struct d350_chan {
+>   
+>   struct d350 {
+>   	struct dma_device dma;
+> +	void __iomem *base;
+>   	int nchan;
+>   	int nreq;
+>   	struct d350_chan channels[] __counted_by(nchan);
+>   };
+>   
+> +struct d350_driver_data {
+> +	bool combined_irq;
+> +};
+> +
+>   static inline struct d350_chan *to_d350_chan(struct dma_chan *chan)
+>   {
+>   	return container_of(chan, struct d350_chan, vc.chan);
+> @@ -461,7 +470,61 @@ static void d350_issue_pending(struct dma_chan *chan)
+>   	spin_unlock_irqrestore(&dch->vc.lock, flags);
+>   }
+>   
+> -static irqreturn_t d350_irq(int irq, void *data)
+> +static irqreturn_t d350_global_irq(int irq, void *data)
+> +{
+> +	struct d350 *dmac = (struct d350 *)data;
+> +	struct device *dev = dmac->dma.dev;
+> +	irqreturn_t ret = IRQ_NONE;
+> +	int i;
+> +
+> +	for (i = 0; i < dmac->nchan; i++) {
+> +		struct d350_chan *dch = &dmac->channels[i];
+> +		u32 ch_status;
+> +
+> +		ch_status = readl(dch->base + CH_STATUS);
+> +		if (!ch_status)
+> +			continue;
+> +
+> +		ret = IRQ_HANDLED;
+> +
+> +		if (ch_status & CH_STAT_INTR_ERR) {
+> +			struct virt_dma_desc *vd = &dch->desc->vd;
+> +			u32 errinfo = readl_relaxed(dch->base + CH_ERRINFO);
+> +
+> +			if (errinfo &
+> +			    (CH_ERRINFO_AXIRDPOISERR | CH_ERRINFO_AXIRDRESPERR))
+> +				vd->tx_result.result = DMA_TRANS_READ_FAILED;
+> +			else if (errinfo & CH_ERRINFO_AXIWRRESPERR)
+> +				vd->tx_result.result = DMA_TRANS_WRITE_FAILED;
+> +			else
+> +				vd->tx_result.result = DMA_TRANS_ABORTED;
+> +
+> +			vd->tx_result.residue = d350_get_residue(dch);
+> +		} else if (!(ch_status & CH_STAT_INTR_DONE)) {
+> +			dev_warn(dev, "Channel %d unexpected IRQ: 0x%08x\n", i,
+> +				 ch_status);
+> +		}
+> +
+> +		writel_relaxed(ch_status, dch->base + CH_STATUS);
+> +
+> +		spin_lock(&dch->vc.lock);
+> +		if (ch_status & CH_STAT_INTR_DONE) {
+> +			vchan_cookie_complete(&dch->desc->vd);
+> +			dch->status = DMA_COMPLETE;
+> +			dch->residue = 0;
+> +			d350_start_next(dch);
+> +		} else if (ch_status & CH_STAT_INTR_ERR) {
+> +			vchan_cookie_complete(&dch->desc->vd);
+> +			dch->status = DMA_ERROR;
+> +			dch->residue = dch->desc->vd.tx_result.residue;
+> +		}
+> +		spin_unlock(&dch->vc.lock);
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +static irqreturn_t d350_channel_irq(int irq, void *data)
+>   {
+>   	struct d350_chan *dch = data;
+>   	struct device *dev = dch->vc.chan.device->dev;
+> @@ -506,10 +569,18 @@ static irqreturn_t d350_irq(int irq, void *data)
+>   static int d350_alloc_chan_resources(struct dma_chan *chan)
+>   {
+>   	struct d350_chan *dch = to_d350_chan(chan);
+> -	int ret = request_irq(dch->irq, d350_irq, IRQF_SHARED,
+> -			      dev_name(&dch->vc.chan.dev->device), dch);
+> -	if (!ret)
+> -		writel_relaxed(CH_INTREN_DONE | CH_INTREN_ERR, dch->base + CH_INTREN);
+> +	int ret = 0;
+> +
+> +	if (dch->irq) {
+> +		ret = request_irq(dch->irq, d350_channel_irq, IRQF_SHARED,
+> +				  dev_name(&dch->vc.chan.dev->device), dch);
+> +		if (ret) {
+> +			dev_err(chan->device->dev, "Failed to request IRQ %d\n", dch->irq);
+> +			return ret;
+> +		}
+> +	}
+> +
+> +	writel_relaxed(CH_INTREN_DONE | CH_INTREN_ERR, dch->base + CH_INTREN);
+>   
+>   	return ret;
+>   }
+> @@ -526,7 +597,8 @@ static void d350_free_chan_resources(struct dma_chan *chan)
+>   static int d350_probe(struct platform_device *pdev)
+>   {
+>   	struct device *dev = &pdev->dev;
+> -	struct d350 *dmac;
+> +	struct d350 *dmac = NULL;
+> +	const struct d350_driver_data *data;
+>   	void __iomem *base;
+>   	u32 reg;
+>   	int ret, nchan, dw, aw, r, p;
+> @@ -556,6 +628,7 @@ static int d350_probe(struct platform_device *pdev)
+>   		return -ENOMEM;
+>   
+>   	dmac->nchan = nchan;
+> +	dmac->base = base;
+>   
+>   	reg = readl_relaxed(base + DMAINFO + DMA_BUILDCFG1);
+>   	dmac->nreq = FIELD_GET(DMA_CFG_NUM_TRIGGER_IN, reg);
+> @@ -582,6 +655,27 @@ static int d350_probe(struct platform_device *pdev)
+>   	dmac->dma.device_issue_pending = d350_issue_pending;
+>   	INIT_LIST_HEAD(&dmac->dma.channels);
+>   
+> +	data = device_get_match_data(dev);
+> +	/* Cix Sky1 has a common host IRQ for all its channels. */
+> +	if (data && data->combined_irq) {
+> +		int host_irq = platform_get_irq(pdev, 0);
+> +
+> +		if (host_irq < 0)
+> +			return dev_err_probe(dev, host_irq,
+> +					     "Failed to get IRQ\n");
+> +
+> +		ret = devm_request_irq(&pdev->dev, host_irq, d350_global_irq,
+> +				       IRQF_SHARED, DRIVER_NAME, dmac);
+> +		if (ret)
+> +			return dev_err_probe(
+> +				dev, ret,
+> +				"Failed to request the combined IRQ %d\n",
+> +				host_irq);
+> +	}
+> +
+> +	/* Combined Non-Secure Channel Interrupt Enable */
+> +	writel_relaxed(INTREN_ANYCHINTR_EN, dmac->base + DMANSECCTRL);
 
--- 
-David Heidelberg
+This one line is all that should be needed - all the rest is pointless 
+overcomplication and churn. And either way, copy-pasting the entire IRQ 
+handler is not OK.
+
+Thanks,
+Robin.
+
+> +
+>   	/* Would be nice to have per-channel caps for this... */
+>   	memset = true;
+>   	for (int i = 0; i < nchan; i++) {
+> @@ -595,10 +689,15 @@ static int d350_probe(struct platform_device *pdev)
+>   			dev_warn(dev, "No command link support on channel %d\n", i);
+>   			continue;
+>   		}
+> -		dch->irq = platform_get_irq(pdev, i);
+> -		if (dch->irq < 0)
+> -			return dev_err_probe(dev, dch->irq,
+> -					     "Failed to get IRQ for channel %d\n", i);
+> +
+> +		if (!data) {
+> +			dch->irq = platform_get_irq(pdev, i);
+> +			if (dch->irq < 0)
+> +				return dev_err_probe(
+> +					dev, dch->irq,
+> +					"Failed to get IRQ for channel %d\n",
+> +					i);
+> +		}
+>   
+>   		dch->has_wrap = FIELD_GET(CH_CFG_HAS_WRAP, reg);
+>   		dch->has_trig = FIELD_GET(CH_CFG_HAS_TRIGIN, reg) &
+> @@ -639,7 +738,12 @@ static void d350_remove(struct platform_device *pdev)
+>   	dma_async_device_unregister(&dmac->dma);
+>   }
+>   
+> +static const struct d350_driver_data sky1_dma350_data = {
+> +	.combined_irq = true,
+> +};
+> +
+>   static const struct of_device_id d350_of_match[] __maybe_unused = {
+> +	{ .compatible = "cix,sky1-dma-350", .data = &sky1_dma350_data },
+>   	{ .compatible = "arm,dma-350" },
+>   	{}
+>   };
 
 
