@@ -1,59 +1,52 @@
-Return-Path: <devicetree+bounces-247098-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247102-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4189DCC431F
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 17:17:43 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A1D5CC445C
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 17:27:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 0563C3028FDC
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 16:16:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6F65930562F7
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 16:19:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DEE32C178D;
-	Tue, 16 Dec 2025 16:16:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82837310779;
+	Tue, 16 Dec 2025 16:18:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WjzRiApZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nB/187jZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14873286408;
-	Tue, 16 Dec 2025 16:16:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E74B310640
+	for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 16:18:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765901804; cv=none; b=QjFD2bhXH3MbnVZNXCoNah8pGb6poTPg9sbvuzmg3rnRLQoDsy0hJzaf6M4myU47fKnzF6uzITkaaWCFZqsEB79W8qfoMx4YDrDodHJ+c3p9J8ix1eLu53UzuTGAOGzay9EyhlDc0zAKpY8BJ9bKJWfsYP7jRg10q369XVZqCMs=
+	t=1765901885; cv=none; b=XM51Wd4bnXWPWhySlsDYQKbXpDWQhBIJ+4MyuIRWpjiS7xq88IUCPVD7b4Nr1jK2yOH3UhFqqab3+tTnJS0ZUpRLkGPba7PWnF4Zq1DS95/WC+xZI2wgc95mdciZxYvZ13H6m9GBEhF5dD3JfNEFWFUIfQcmueLs+++9tkhDLrM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765901804; c=relaxed/simple;
-	bh=KbDL6tVsoLJsdlRyLex4ZD597htAV/WJC7lKOAedOWs=;
+	s=arc-20240116; t=1765901885; c=relaxed/simple;
+	bh=+MbvRs0CO1Ge/9lwEKhmRbha8wdV2tKHNrNbafa6Ws8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NlZ+S3CCEoJn+uUaCF9HnTAOMY/nh8K0cDzSz0xNsPWSSQ7yVN8eUpvVHNyi+e015mOJHuehU+U21kjLuE0zzIBQyP40PBQFO7/OwzUvEEWcUcHb7LaoRM8pOj/wGjVLofEa6eIVrYB4FetQiMIO+exMLjPe+S+cSJ8UIovF0dI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WjzRiApZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62911C4CEF1;
-	Tue, 16 Dec 2025 16:16:43 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=I5qQ6Rt5Rttb8ZeY93ojzzDP7Lt1C/QBUVZ4UJxJDiiwbxwKVNA6mbLce6h99dg3/ZMPxmD/z2URLIVVzR7LzMByHMHHH67eVU/c+2KMoSc5qt0pLVoFI6haUExQeaxXsi7GrKO16BacZiiVcBZwWQEEi5s6rxhYygyeuGujtzE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nB/187jZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91453C113D0;
+	Tue, 16 Dec 2025 16:18:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765901803;
-	bh=KbDL6tVsoLJsdlRyLex4ZD597htAV/WJC7lKOAedOWs=;
+	s=k20201202; t=1765901883;
+	bh=+MbvRs0CO1Ge/9lwEKhmRbha8wdV2tKHNrNbafa6Ws8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WjzRiApZ65tyO2cE99IkhqHl6VcKSmvnzJkLMlLdyXbDD2GQrI8tPJcpoTXNmE8c6
-	 1TfqCWkwJp41NCreBv9JdK4B78PKKumyyx3KM1gf+4ZlZQMrbHfJ9RorS04hEtoG5L
-	 J/JjD4eaWEwKL5cp4dd/bAxeMpkHAUSGAPXFjvjG9GtXnjpzNcH/9QQj7DbkT5kiYR
-	 MioSvC58mchfK39CenVTNfi7Wgjash/3FM65A4cm346PoEjbCi3wXWYxYPlHisOYmc
-	 c9xp7P7TaM3hzwMciU0Psq56rkAKZuSUhMgMqIksNmhzxX85c91ul598YDTAW/uDig
-	 cxtf0M+9r7PuQ==
-Date: Tue, 16 Dec 2025 10:16:41 -0600
-From: Rob Herring <robh@kernel.org>
-To: Binbin Zhou <zhoubinbin@loongson.cn>
-Cc: Yao Zi <me@ziyao.cc>, Binbin Zhou <zhoubb.aaron@gmail.com>,
-	Huacai Chen <chenhuacai@loongson.cn>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Huacai Chen <chenhuacai@kernel.org>,
-	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/7] dt-bindings: interrupt-controller: loongson,pch-pic:
- Change to unevaluatedProperties
-Message-ID: <20251216161641.GA2573095-robh@kernel.org>
-References: <cover.1765778124.git.zhoubinbin@loongson.cn>
- <db24b6366bb0d49e9dcc04328ffad7a37f687a89.1765778124.git.zhoubinbin@loongson.cn>
+	b=nB/187jZNUSuL+5PL5RkHpvIjOTKY+EhGqk+mE4vi4gnen1/s41qY6LEc3fXhNy1X
+	 Zd8IlSLwGqWyq03uyRuRF4btSZaUkWRTlQBavcYsJwGRZtsQuPNck1EXmYvwOdzOC7
+	 JP+nIkzvAHYFTaXInfNoxvZ7wU0/x2rQ41oJp7QDgObQvbp7rHld23aYmlG0RXSx0w
+	 vMct3nuN0UmkSacvzrRlQaX1MZf7OKlmvktcwfp3cjFPVw+HNnfLR7JkFb1XEyrRpC
+	 Xnk1K2vto2ppBA3hfdPDf8g9U6D42FhjyGwZ+JBTFFUYPF7YPgnoaifpyO2CAAkwVo
+	 o/Ujf/MPHCZVw==
+Date: Tue, 16 Dec 2025 10:18:00 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Linus Walleij <linusw@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH] dt-bindings: Updates Linus Walleij's mail address
+Message-ID: <176590187945.2577071.4097281710505411554.robh@kernel.org>
+References: <20251216-maintainers-dt-v1-1-0b5ab102c9bb@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,49 +55,128 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <db24b6366bb0d49e9dcc04328ffad7a37f687a89.1765778124.git.zhoubinbin@loongson.cn>
+In-Reply-To: <20251216-maintainers-dt-v1-1-0b5ab102c9bb@kernel.org>
 
-On Tue, Dec 16, 2025 at 03:55:13PM +0800, Binbin Zhou wrote:
-> Change additionalProperties to unevaluatedProperties because it refs to
-> interrupt-controller.yaml.
+
+On Tue, 16 Dec 2025 10:52:10 +0100, Linus Walleij wrote:
+> My name is stamped into maintainership for a big slew of DT
+> bindings. Now that it is changing, switch it over to my
+> kernel.org mail address, which will hopefully be stable for the
+> rest of my life.
 > 
-> Fix below CHECK_DTBS warnings:
-> arch/loongarch/boot/dts/loongson-2k2000-ref.dtb: interrupt-controller@10000000 (loongson,pch-pic-1.0): '#address-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
->         from schema $id: http://devicetree.org/schemas/interrupt-controller/loongson,pch-pic.yaml
-> 
-> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+> Signed-off-by: Linus Walleij <linusw@kernel.org>
 > ---
->  .../bindings/interrupt-controller/loongson,pch-pic.yaml      | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
+> DT maintainers: please funnel this as a fix through the DT
+> binding tree.
+> ---
+>  Documentation/devicetree/bindings/arm/arm,integrator.yaml               | 2 +-
+>  Documentation/devicetree/bindings/arm/arm,realview.yaml                 | 2 +-
+>  Documentation/devicetree/bindings/arm/arm,scu.yaml                      | 2 +-
+>  Documentation/devicetree/bindings/arm/arm,versatile-sysreg.yaml         | 2 +-
+>  Documentation/devicetree/bindings/arm/arm,versatile.yaml                | 2 +-
+>  Documentation/devicetree/bindings/arm/arm,vexpress-juno.yaml            | 2 +-
+>  Documentation/devicetree/bindings/arm/gemini.yaml                       | 2 +-
+>  Documentation/devicetree/bindings/arm/intel-ixp4xx.yaml                 | 2 +-
+>  Documentation/devicetree/bindings/arm/ux500.yaml                        | 2 +-
+>  Documentation/devicetree/bindings/ata/ata-generic.yaml                  | 2 +-
+>  Documentation/devicetree/bindings/ata/cortina,gemini-sata-bridge.yaml   | 2 +-
+>  Documentation/devicetree/bindings/ata/faraday,ftide010.yaml             | 2 +-
+>  Documentation/devicetree/bindings/ata/intel,ixp4xx-compact-flash.yaml   | 2 +-
+>  Documentation/devicetree/bindings/ata/pata-common.yaml                  | 2 +-
+>  Documentation/devicetree/bindings/ata/sata-common.yaml                  | 2 +-
+>  Documentation/devicetree/bindings/auxdisplay/arm,versatile-lcd.yaml     | 2 +-
+>  Documentation/devicetree/bindings/clock/stericsson,u8500-clks.yaml      | 2 +-
+>  Documentation/devicetree/bindings/crypto/intel,ixp4xx-crypto.yaml       | 2 +-
+>  Documentation/devicetree/bindings/display/dsi-controller.yaml           | 2 +-
+>  Documentation/devicetree/bindings/display/faraday,tve200.yaml           | 2 +-
+>  Documentation/devicetree/bindings/display/panel/arm,rtsm-display.yaml   | 2 +-
+>  .../devicetree/bindings/display/panel/arm,versatile-tft-panel.yaml      | 2 +-
+>  Documentation/devicetree/bindings/display/panel/ilitek,ili9322.yaml     | 2 +-
+>  Documentation/devicetree/bindings/display/panel/novatek,nt35510.yaml    | 2 +-
+>  Documentation/devicetree/bindings/display/panel/samsung,lms380kf01.yaml | 2 +-
+>  Documentation/devicetree/bindings/display/panel/samsung,lms397kf04.yaml | 2 +-
+>  Documentation/devicetree/bindings/display/panel/samsung,s6d16d0.yaml    | 2 +-
+>  Documentation/devicetree/bindings/display/panel/sony,acx424akp.yaml     | 2 +-
+>  Documentation/devicetree/bindings/display/panel/ti,nspire.yaml          | 2 +-
+>  Documentation/devicetree/bindings/display/panel/tpo,tpg110.yaml         | 2 +-
+>  Documentation/devicetree/bindings/display/ste,mcde.yaml                 | 2 +-
+>  Documentation/devicetree/bindings/dma/stericsson,dma40.yaml             | 2 +-
+>  Documentation/devicetree/bindings/extcon/fcs,fsa880.yaml                | 2 +-
+>  .../bindings/firmware/intel,ixp4xx-network-processing-engine.yaml       | 2 +-
+>  Documentation/devicetree/bindings/gnss/brcm,bcm4751.yaml                | 2 +-
+>  Documentation/devicetree/bindings/gpio/faraday,ftgpio010.yaml           | 2 +-
+>  Documentation/devicetree/bindings/gpio/gpio-consumer-common.yaml        | 2 +-
+>  Documentation/devicetree/bindings/gpio/gpio-ep9301.yaml                 | 2 +-
+>  Documentation/devicetree/bindings/gpio/gpio-mmio.yaml                   | 2 +-
+>  Documentation/devicetree/bindings/gpio/intel,ixp4xx-gpio.yaml           | 2 +-
+>  Documentation/devicetree/bindings/gpio/mrvl-gpio.yaml                   | 2 +-
+>  Documentation/devicetree/bindings/gpio/pl061-gpio.yaml                  | 2 +-
+>  Documentation/devicetree/bindings/gpio/st,nomadik-gpio.yaml             | 2 +-
+>  Documentation/devicetree/bindings/gpio/st,stmpe-gpio.yaml               | 2 +-
+>  Documentation/devicetree/bindings/hwmon/ntc-thermistor.yaml             | 2 +-
+>  Documentation/devicetree/bindings/hwmon/winbond,w83781d.yaml            | 2 +-
+>  Documentation/devicetree/bindings/i2c/arm,i2c-versatile.yaml            | 2 +-
+>  Documentation/devicetree/bindings/i2c/st,nomadik-i2c.yaml               | 2 +-
+>  Documentation/devicetree/bindings/iio/accel/bosch,bma255.yaml           | 2 +-
+>  Documentation/devicetree/bindings/iio/adc/qcom,pm8018-adc.yaml          | 2 +-
+>  Documentation/devicetree/bindings/iio/gyroscope/invensense,mpu3050.yaml | 2 +-
+>  Documentation/devicetree/bindings/iio/light/capella,cm3605.yaml         | 2 +-
+>  Documentation/devicetree/bindings/iio/light/sharp,gp2ap002.yaml         | 2 +-
+>  .../devicetree/bindings/iio/magnetometer/asahi-kasei,ak8974.yaml        | 2 +-
+>  Documentation/devicetree/bindings/iio/magnetometer/yamaha,yas530.yaml   | 2 +-
+>  Documentation/devicetree/bindings/iio/st,st-sensors.yaml                | 2 +-
+>  Documentation/devicetree/bindings/input/atmel,maxtouch.yaml             | 2 +-
+>  .../devicetree/bindings/input/touchscreen/cypress,cy8ctma140.yaml       | 2 +-
+>  .../devicetree/bindings/input/touchscreen/cypress,cy8ctma340.yaml       | 2 +-
+>  Documentation/devicetree/bindings/input/touchscreen/melfas,mms114.yaml  | 2 +-
+>  Documentation/devicetree/bindings/input/touchscreen/zinitix,bt400.yaml  | 2 +-
+>  .../bindings/interrupt-controller/arm,versatile-fpga-irq.yaml           | 2 +-
+>  .../devicetree/bindings/interrupt-controller/faraday,ftintc010.yaml     | 2 +-
+>  .../bindings/interrupt-controller/intel,ixp4xx-interrupt.yaml           | 2 +-
+>  Documentation/devicetree/bindings/leds/backlight/kinetic,ktd253.yaml    | 2 +-
+>  Documentation/devicetree/bindings/leds/register-bit-led.yaml            | 2 +-
+>  Documentation/devicetree/bindings/leds/regulator-led.yaml               | 2 +-
+>  Documentation/devicetree/bindings/leds/richtek,rt8515.yaml              | 2 +-
+>  .../memory-controllers/intel,ixp4xx-expansion-bus-controller.yaml       | 2 +-
+>  .../memory-controllers/intel,ixp4xx-expansion-peripheral-props.yaml     | 2 +-
+>  Documentation/devicetree/bindings/mfd/arm,dev-platforms-syscon.yaml     | 2 +-
+>  Documentation/devicetree/bindings/mfd/st,stmpe.yaml                     | 2 +-
+>  Documentation/devicetree/bindings/mfd/stericsson,ab8500.yaml            | 2 +-
+>  Documentation/devicetree/bindings/mfd/stericsson,db8500-prcmu.yaml      | 2 +-
+>  .../devicetree/bindings/misc/intel,ixp4xx-ahb-queue-manager.yaml        | 2 +-
+>  Documentation/devicetree/bindings/mmc/arm,pl18x.yaml                    | 2 +-
+>  .../devicetree/bindings/mtd/partitions/arm,arm-firmware-suite.yaml      | 2 +-
+>  Documentation/devicetree/bindings/mtd/partitions/redboot-fis.yaml       | 2 +-
+>  Documentation/devicetree/bindings/mtd/partitions/seama.yaml             | 2 +-
+>  Documentation/devicetree/bindings/net/bluetooth/brcm,bluetooth.yaml     | 2 +-
+>  Documentation/devicetree/bindings/net/cortina,gemini-ethernet.yaml      | 2 +-
+>  Documentation/devicetree/bindings/net/dsa/micrel,ks8995.yaml            | 2 +-
+>  Documentation/devicetree/bindings/net/dsa/realtek.yaml                  | 2 +-
+>  Documentation/devicetree/bindings/net/dsa/vitesse,vsc73xx.yaml          | 2 +-
+>  Documentation/devicetree/bindings/net/intel,ixp46x-ptp-timer.yaml       | 2 +-
+>  Documentation/devicetree/bindings/net/intel,ixp4xx-ethernet.yaml        | 2 +-
+>  Documentation/devicetree/bindings/net/intel,ixp4xx-hss.yaml             | 2 +-
+>  Documentation/devicetree/bindings/pci/faraday,ftpci100.yaml             | 2 +-
+>  Documentation/devicetree/bindings/pci/intel,ixp4xx-pci.yaml             | 2 +-
+>  Documentation/devicetree/bindings/pci/v3,v360epc-pci.yaml               | 2 +-
+>  Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml              | 2 +-
+>  Documentation/devicetree/bindings/pinctrl/pinctrl.yaml                  | 2 +-
+>  Documentation/devicetree/bindings/pinctrl/pinmux-node.yaml              | 2 +-
+>  Documentation/devicetree/bindings/power/supply/samsung,battery.yaml     | 2 +-
+>  Documentation/devicetree/bindings/rng/intel,ixp46x-rng.yaml             | 2 +-
+>  Documentation/devicetree/bindings/rtc/faraday,ftrtc010.yaml             | 2 +-
+>  Documentation/devicetree/bindings/spi/arm,pl022-peripheral-props.yaml   | 2 +-
+>  Documentation/devicetree/bindings/spi/spi-pl022.yaml                    | 2 +-
+>  Documentation/devicetree/bindings/timer/faraday,fttmr010.yaml           | 2 +-
+>  Documentation/devicetree/bindings/timer/intel,ixp4xx-timer.yaml         | 2 +-
+>  Documentation/devicetree/bindings/timer/st,nomadik-mtu.yaml             | 2 +-
+>  Documentation/devicetree/bindings/usb/faraday,fotg210.yaml              | 2 +-
+>  Documentation/devicetree/bindings/usb/intel,ixp4xx-udc.yaml             | 2 +-
+>  Documentation/devicetree/bindings/watchdog/faraday,ftwdt010.yaml        | 2 +-
+>  Documentation/devicetree/bindings/watchdog/maxim,max63xx.yaml           | 2 +-
+>  105 files changed, 105 insertions(+), 105 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/loongson,pch-pic.yaml b/Documentation/devicetree/bindings/interrupt-controller/loongson,pch-pic.yaml
-> index b7bc5cb1dff2..1f818316082e 100644
-> --- a/Documentation/devicetree/bindings/interrupt-controller/loongson,pch-pic.yaml
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/loongson,pch-pic.yaml
-> @@ -14,6 +14,9 @@ description:
->    transforming interrupts from on-chip devices into HyperTransport vectorized
->    interrupts.
->  
-> +allOf:
-> +  - $ref: /schemas/interrupt-controller.yaml#
 
-Adding this does not define the value(s) #address-cells must be. I'd 
-assume it is 0 in this case.
+Applied, thanks!
 
-> +
->  properties:
->    compatible:
->      const: loongson,pch-pic-1.0
-> @@ -41,7 +44,7 @@ required:
->    - interrupt-controller
->    - '#interrupt-cells'
->  
-> -additionalProperties: false
-> +unevaluatedProperties: false
->  
->  examples:
->    - |
-> -- 
-> 2.47.3
-> 
 
