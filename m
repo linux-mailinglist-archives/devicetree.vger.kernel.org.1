@@ -1,143 +1,194 @@
-Return-Path: <devicetree+bounces-246985-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-246987-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD6DDCC2A80
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 13:21:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 66358CC2A98
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 13:22:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8958731CF768
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 12:02:04 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 59E6E3070F2C
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 12:04:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9984B35293B;
-	Tue, 16 Dec 2025 11:49:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C67B35772F;
+	Tue, 16 Dec 2025 12:03:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Dgtd9fOE"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="WTuuKQx8";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="brUftz0u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1831D352937
-	for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 11:49:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8B59357727
+	for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 12:03:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765885766; cv=none; b=GrflRZtMXk3L6oFMdVnPfIMT8ZYCZu0dgOLpAanZ727Jpj/gi5zggoja53G4aPq4Oo9tne41Dwuns8cTM74WIcDIcELIniQG0QFEdPhUjmy7ATpL8cjQfFMBz8P8iXulciQV9xfHFlDdGFsk0oBWE0Yp9f0gwYIdcxxDRP+8EUA=
+	t=1765886585; cv=none; b=StSHNbxVbyP4OgK838upglaVbRYhYpeoSvCd3kPVnwV4RWEXIuD4WFa6sEawwRy5CW/wH/ycIpD6qdTTL8gumCf97oJlWHqwj7kPkQEd+37PoFcFpYJNLyocVZOYFLd6jDZTkHr+9vEWJNcj4RhVfJUNJ52X4FZWEItIdxj+cTU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765885766; c=relaxed/simple;
-	bh=P3r5nPJCwq57O4gAEF8RXUKtm9lIBx2Lzztq/sylt38=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Fn16MPWxwMvQ4bFZct3bZDpYM3vCci25UgdchmJAQsyDesy+/gbd1yWRB68+t4hbhSASxfRkyBvT7Pb4jHw/81NuJbp6a3oTH0UeKRLbUIWpQngBe/e7DNab3SJuMPGjYOAo39c2DvvM9AD4DMILsAnq/aiXzG0pcIr/AP9rozs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Dgtd9fOE; arc=none smtp.client-ip=209.85.210.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-7e1651ae0d5so3658069b3a.1
-        for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 03:49:24 -0800 (PST)
+	s=arc-20240116; t=1765886585; c=relaxed/simple;
+	bh=1fqkqkNEzTSWAwW3B+qpzd2aY6yMg5j1xLcgYYtCn9M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=I2LZCiE4pNpR7xogFQhodAhocUZsMH8VVOvE3lCjpESPYgjIq2YP3FU9Yo03OcwcDnTseKsGlc2AQwEpZRSU3uB7nn6xXEefBxJf0z8JJUFDQ5Day6cF0mhjp/lKj0P5TNtZH4/x2PYZdVQuINuB5YrDnKJihPf5urrZvtmLVaw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=WTuuKQx8; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=brUftz0u; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BG8JLTK2573201
+	for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 12:03:03 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	S1bUZC3wQ09/vUi2Wz/LwL1M7PS4s9jI4u+ipA1NkPU=; b=WTuuKQx8zjT7yA9n
+	RcbkvqABZwczl032YJYNNIyEMQQ0tM+vIYIzu5g3Dn6Vu8y9nSVDA/pHjGy0I+DO
+	kf15TiqGU4+zNGPYK06xCKaXZJ7qclWs1jao4YkvXbKIZ+pyozusvyzYCINi6/br
+	lzPLi01djXZzGrCWTp/xAGD0biZWoAwBN3OsG6oF/2MURjRalhKBPSMz+q37jOOJ
+	ZGEoNU9XbiyPLo0IR26nMlkTduTn/0lQvy11X/NvYy+zjberHj69u4tyOk1aPwTS
+	9jI8WWAUDGCRH2jNuU0sknu4VMLaz4s2VrnNfRIrO6wuKogI4/A5TufHPHXhPrLf
+	BdTovQ==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b33thrwn1-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 12:03:01 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-8b9fb4c55f0so81376285a.3
+        for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 04:03:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1765885764; x=1766490564; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=AHWMHf/Niwek5OLfXdmD1/NkgvAHjqsNRHIl2ImUeLk=;
-        b=Dgtd9fOEnyuvvfu34Ax/bMvZOkxkmM/850v4lVMVLGEhF2ITsgg89/3KEnwNNQMgcA
-         EOFjYYeNoaOpkrbCgsx5oi+ytLKkF9ysQaRBTOL2EnPR6uYHL8UbpHAHK0PzILyAUzSz
-         5XtAvkF01aI1hYIHyPB5H3amu16hyDJAHvv3LRIYjxnT53TLNeXtHmzi4WRrmIi/Pto1
-         X8+Ih2YJxm8wrKLRkgorT+ODeOnmXjePxtDNDamBA5oYCLzPo9WFYd1TG/yBPRgdVxN/
-         LDW8RJ45MoyLV8oT9mxFoF/hec5FagdZdI8TBY/CSHzK07tvKphF2lR1QgLYgbZCR2Sh
-         TRDw==
+        d=oss.qualcomm.com; s=google; t=1765886580; x=1766491380; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=S1bUZC3wQ09/vUi2Wz/LwL1M7PS4s9jI4u+ipA1NkPU=;
+        b=brUftz0u9slhPLGiWz/UOVN+I2nfhpd3OK9UEFORSoD5YK6CInrMQz0rD0sItRzt+U
+         itk4Sk1NmOqqRh2nPrMUbyQVs4a4nTzM0XUxxw7tgjDGA072nhi/rBJpXvXsNPmO4qbj
+         bYN5rgewjYB8esFh+CWnKkK1POpp19QSpbohWOTdb0H7PsMx5zY64XzkQ/rt2lNbTxIW
+         NPT1ldNGLqmf5E0dfpMGWYKcLa952UNe7IOlrKLulfi9W5UVsItBB8AYe2FJ77HjL/0k
+         34/GbNTaLt/pEcjW00kii+95cFMOUVgsnjUx3sBPJ185n+tBUMrkhixlr3k3EasjSW1g
+         dhaA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765885764; x=1766490564;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=AHWMHf/Niwek5OLfXdmD1/NkgvAHjqsNRHIl2ImUeLk=;
-        b=lhab0shSHcWFFjg6Z6z+CcAwfaHzSneBaftr56oU3/KX7bywImnUJqMyKKwgn5Hd57
-         pmvifYPJEUECDGMfFb9lh5D5Iy2oxLjsZ6ShYHTu6d8faKZFnxXiv18ylvBlCZ7FEa31
-         +cB2S5Cjarf2BYgODAQHoehHboZVNJ0ViiaISNi8sk2/Yxc3SsP+u+Fdj6ccAZY/4TRH
-         mp3VuKAebmLO8eJuRx2VEWI8I1R/XZIjZpea13bs1jASbCAlSKTTW4ixR0p5y6wfB3Hn
-         XmTBkymr+aEj2DGJfp5lvyTEr1esDvjLMG190fdcFs2yoy3sCX4iHx6kst8rBWP4NISV
-         Gq1g==
-X-Forwarded-Encrypted: i=1; AJvYcCUbf09S+miA2KXKK6RNrCgEZPyFVtxAM/MvbTjYqOuuj42LPJLoLNpwJO7mu4de1+FFVGku0zabQNvm@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz2rxC9VF/008FpUBO3y5fhiNCS8s8mIl3RLVxz4PTtdhK1YCBR
-	UX95mdLwNtOwEmbZ9wAx1i1wapsNvPE+LouWrZwhcI/SZ/94fg/SbMq8HNb0idaVi5E5FLtFSDi
-	8DDiaAcAitVHDRhMEYG+TFPw5GqG4KlE=
-X-Gm-Gg: AY/fxX4O5HPzCmZMFnoTS+5EjSV6RRvT1Jc96PDiTRG6eQGAdLTYi3Mebv9BZgdN56Q
-	Awrhw2qWxXA+fe01Oqcgd7mqH/JLxd8uQ6N+1DfVGZIJcrskvFXs//LdFA4LnwNZ+piuqAZjXT/
-	f2OTV1H52F/coj18P+QOEQCdjr0fculDEo+x/xpWmXOrzvgS+sMCPd7lfPXIwxyXWo9V+IPNUyN
-	xuYBvYKdFc/y73NAdnnVPiY8SpSF2X0YTguJH71ht/+OMfAM2BELUAPStaYzYjtGsoDXnKv9WKh
-	7xIHTVWpIc3n7xi4l0LVWNWba9jwynuRTRdfNdzg7Q/VAkcP9EfWSka6SakGGtTGeOaVvlS1bw+
-	guCPVoAXOrw==
-X-Google-Smtp-Source: AGHT+IHPEep5dtYauknDb8YyMm1kDWolPZTnV2HvftVKII1DWWjGIN4YN/9xsVgqVLYIfLemujNO/0Bup29BPcFhFqI=
-X-Received: by 2002:a05:701b:2415:b0:119:e56b:98a4 with SMTP id
- a92af1059eb24-11f349c583amr8528888c88.11.1765885764035; Tue, 16 Dec 2025
- 03:49:24 -0800 (PST)
+        d=1e100.net; s=20230601; t=1765886580; x=1766491380;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=S1bUZC3wQ09/vUi2Wz/LwL1M7PS4s9jI4u+ipA1NkPU=;
+        b=N6kqmzqSW1R4ZZoB3JLm8UV82PHAqNLMoueVkvQBKnkzX89ZuSbryEFRo1jZ1ytTgo
+         qykcM3iGjfob0IU63jq8cMTdHcZRwjawv03pRkaRS/hbn9G5Nsr/SSVDAAKoEnN4CEsX
+         6AzvxdvoStyubyezJ9jiteXfWijiPQRcsjNU9wvf1ygvQEN7F+AQveoCfK5zOpwvucHh
+         k+jgewQ2mny3LKJSBXBI6gN+4TtiuMm9XJVWrA8WBaW2gR42cLzTMWPmq9iY+e2zehCS
+         3NJqIpE0e8oQrtcFRsXoOoUGqAkEbwKmXNDvUpvXkKRVpJBIKW9xrJvuMUT4+rdM9m7T
+         eZcQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXxGv3ibBkIRDQGZpIa1sjLu8yfQ5cloKJ/1uDL03QjWhS+vHZMSz9euGtsf8XHvxuWL2C090uEE0ta@vger.kernel.org
+X-Gm-Message-State: AOJu0YwdWODJXYRIklgBKxF9h7XejH1W9QPD+0nXGHdwERtY5jRzEg78
+	A7p6ruytPnsovq/6e+iPBXLeR+LmBP9j9puTbYwC38kWk3/YUE6mLxJXvXc6Fj7qakDBVbcwLgc
+	eUoVOCHY3uBRWGG962JjSur6Rf+g71ZoBXK2uCTcjb94qwkBEu3DZpoMNG2Lyar3l
+X-Gm-Gg: AY/fxX7mo2kPQEzGsdnNioqOnP0eJ+34eEj47Nw9TfXUNOIH1gHmHzcXoJRsnd+uvsX
+	VOxiYKsxEjQA/VE81iGM4Mhi3EW96d3zh2rIf7SSFFMOgMGytmDFauORiLY0TNYne1rzgHbhtvI
+	uIrPX7eQ3qerYn9BZ7XNIe8T3id0zrsltS3+Ij/V0ws00LaxIyV5mUeTnCQuxRyPSrk8aeY/jbl
+	LqW0jeTGE4l0VeFZM6a02BKmA1lQZTAkJbODisUKElMOScVyqV4Yn5dBJELdiWZi2XKura8ETW6
+	6xZWH3wafDXKhhAFG4KGc/qcW45RggUGoG6EaSwHm3nyd5ZsfbiwqFdJpoItoxN+sWIVP5DaArB
+	V+JK5T7Z5y4doEgJy6yGpEc0F3snLzX7HdttM6//4Z9uAbZiiP5KMLW0GyApKHudLmw==
+X-Received: by 2002:a05:620a:468f:b0:8b1:fa2a:702f with SMTP id af79cd13be357-8bb3a0b7e5amr1437505585a.3.1765886579621;
+        Tue, 16 Dec 2025 04:02:59 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IH+LwGQhgX+HV6xSu98Kp8PBKIcLhjvja7byx1nEf8nekydl7DDS37zTtoZtPzNHvCnZUEeTw==
+X-Received: by 2002:a05:620a:468f:b0:8b1:fa2a:702f with SMTP id af79cd13be357-8bb3a0b7e5amr1437499185a.3.1765886578963;
+        Tue, 16 Dec 2025 04:02:58 -0800 (PST)
+Received: from [192.168.119.72] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-649820f77e3sm16041066a12.18.2025.12.16.04.02.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 16 Dec 2025 04:02:57 -0800 (PST)
+Message-ID: <695ca5d2-b713-4838-8427-a9d31751c0cf@oss.qualcomm.com>
+Date: Tue, 16 Dec 2025 13:02:52 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251216-imx95-rproc-2025-12-15-v4-0-bf1064ea8daf@nxp.com> <20251216-imx95-rproc-2025-12-15-v4-4-bf1064ea8daf@nxp.com>
-In-Reply-To: <20251216-imx95-rproc-2025-12-15-v4-4-bf1064ea8daf@nxp.com>
-From: Daniel Baluta <daniel.baluta@gmail.com>
-Date: Tue, 16 Dec 2025 13:51:55 +0200
-X-Gm-Features: AQt7F2r5R94-pfKGDYvFfrkyngEDJyIru0ByBqDzhFtMH5nZZaARnweMqygnu0M
-Message-ID: <CAEnQRZBS7zzc9AmTymCGVKwExeZ-JNFiG9MamWOZmk=gXdBY7w@mail.gmail.com>
-Subject: Re: [PATCH v4 4/5] remoteproc: imx_rproc: Add support for System
- Manager API
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Mathieu Poirier <mathieu.poirier@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>, 
-	Daniel Baluta <daniel.baluta@nxp.com>, linux-remoteproc@vger.kernel.org, 
-	devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	Peng Fan <peng.fan@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: Remove unused includes
+To: Jonathan Cameron <jic23@kernel.org>, "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Michal Simek <michal.simek@amd.com>, Vinod Koul <vkoul@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+        David Lechner <dlechner@baylibre.com>,
+        =?UTF-8?Q?Nuno_S=C3=A1?=
+ <nuno.sa@analog.com>,
+        Andy Shevchenko <andy@kernel.org>, Yong Wu <yong.wu@mediatek.com>,
+        Peter Rosin <peda@axentia.se>, Linus Walleij <linusw@kernel.org>,
+        Chen-Yu Tsai <wens@kernel.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Philipp Zabel
+ <p.zabel@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, dmaengine@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, linux-iio@vger.kernel.org,
+        iommu@lists.linux.dev, linux-gpio@vger.kernel.org,
+        linux-sunxi@lists.linux.dev, imx@lists.linux.dev,
+        linux-sound@vger.kernel.org
+References: <20251212231203.727227-1-robh@kernel.org>
+ <20251213165949.4b51f7cb@jic23-huawei>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20251213165949.4b51f7cb@jic23-huawei>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=ZIPaWH7b c=1 sm=1 tr=0 ts=69414a76 cx=c_pps
+ a=HLyN3IcIa5EE8TELMZ618Q==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=i0EeH86SAAAA:8
+ a=UbNXja__m5_aMge2JzcA:9 a=QEXdDO2ut3YA:10 a=bTQJ7kPSJx9SKPbeHEYW:22
+X-Proofpoint-GUID: m1zWaY-18SmOwLBKAuINH4NKMZsr-uAR
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjE2MDEwMiBTYWx0ZWRfX3ZEBZbiOqKXn
+ KmqF3vTHUwW5MdOz5Vq3uzubKv8mwGMojlB64m7PlV/sGEueJL4juDy+RFiCiO1yuVfMRbcENCu
+ d2HApMkmOn3X/1tK/FRom5eaU0zeYwqP/m+KxZq+I47x5sv2SAyfAH1lwAXae7mSKuFPh2RfAKp
+ +f/dkLs+j1dDRqXK0NF4wX9n2XO56lZ1eB2CRgezJWGgh7yvlAbWshjBCZBwCV+xS+GNjQoK2Ki
+ wcTmBzBqmX/sR1SLx0QgVMj4udJ/KBIUkxt54aqheCmpJTjsGOmumoZwGowNnSYzMSJWM3xUF/9
+ fBwYkK9CVkM9R3W8a8t4meazwh8aJNWBXLBbn+IjFZ+71BIp+kWuDC91i44xG2675FYoYiIUg05
+ hEPu5Dj+02EMTrKriSQxmN2o1hQLiw==
+X-Proofpoint-ORIG-GUID: m1zWaY-18SmOwLBKAuINH4NKMZsr-uAR
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-16_02,2025-12-15_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 bulkscore=0 malwarescore=0 lowpriorityscore=0 phishscore=0
+ spamscore=0 priorityscore=1501 adultscore=0 clxscore=1015 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512160102
 
-On Tue, Dec 16, 2025 at 3:53=E2=80=AFAM Peng Fan (OSS) <peng.fan@oss.nxp.co=
-m> wrote:
->
-> From: Peng Fan <peng.fan@nxp.com>
->
-> i.MX95 features a Cortex-M33 core, six Cortex-A55 cores, and
-> one Cortex-M7 core. The System Control Management Interface(SCMI)
-> firmware runs on the M33 core. The i.MX95 SCMI firmware named System
-> Manager(SM) includes vendor extension protocols, Logical Machine
-> Management(LMM) protocol and CPU protocol and etc.
->
-> Depending on SM configuration, M7 can be used as follows:
->  (1) M7 in a separate Logical Machine (LM) from A55 cores, that Linux
->      can't control
->  (2) M7 in a separate LM from A55 cores that Linux can control using LMM
->      protocol.
->  (3) M7 runs in same Logical Machine as A55 cores, so Linux can control i=
-t
->      using CPU protocol
->
-> So extend the driver to using LMM and CPU protocol to manage the M7 core.
->  - Compare linux LM ID(got using scmi_imx_lmm_info) and M7 LM ID(the ID
->    is fixed as 1 in SM firmware if M7 is in a separate LM),
->    if Linux LM ID equals M7 LM ID(linux and M7 in same LM), use CPU
->    protocol to start/stop. Otherwise, use LMM protocol to start/stop.
->    Whether using CPU or LMM protocol to start/stop, the M7 status
->    detection could use CPU protocol to detect started or not. So
->    in imx_rproc_detect_mode, use scmi_imx_cpu_started to check the
->    status of M7.
->  - For above case (1) and (2), Use SCMI_IMX_LMM_POWER_ON to detect whethe=
-r
->    the M7 LM is under control of A55 LM.
->  - For above case , after using SCMI_IMX_LMM_POWER_ON to check
->    permission, SCMI_IMX_LMM_SHUTDOWN API should be called to shutdown
->    the M7 LM to save power only when M7 LM is going to be started by
->    remoteproc framework. Otherwise bypass SCMI_IMX_LMM_SHUTDOWN API if
->    M7 LM is started before booting Linux.
->
-> Current setup relies on pre-Linux software(U-Boot) to do M7 TCM ECC
-> initialization. In future, we could add the support in Linux to decouple
-> U-Boot and Linux.
->
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+On 12/13/25 5:59 PM, Jonathan Cameron wrote:
+> On Fri, 12 Dec 2025 17:11:52 -0600
+> "Rob Herring (Arm)" <robh@kernel.org> wrote:
+> 
+>> Remove includes which are not referenced by either DTS files or drivers.
+>>
+>> There's a few more which are new, so they are excluded for now.
+>>
+>> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> 
+> Acked-by: Jonathan Cameron <jonathan.cameron@huawei.com> #for-iio
+> 
+> Ideally we'll get a QC ack on those as well.
+> 
+> Jonathan
+>>  .../dt-bindings/iio/qcom,spmi-adc7-pmr735b.h  |  30 --
+>>  .../dt-bindings/iio/qcom,spmi-adc7-smb139x.h  |  19 --
 
-Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
+Those are being moved to dts/qcom:
+
+https://lore.kernel.org/linux-arm-msm/20251127133903.208760-1-jishnu.prakash@oss.qualcomm.com/
+
+and will hopefully be in use later in this cycle.
+
+Krzysztof and the submitter agreed on that outcome since they represent
+hw constants and aren't "real" bindings (connecting sw to sw)
+
+Konrad 
 
