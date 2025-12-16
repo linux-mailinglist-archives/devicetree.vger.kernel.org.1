@@ -1,109 +1,156 @@
-Return-Path: <devicetree+bounces-247086-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247087-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7ED19CC40A4
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 16:47:54 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FFE2CC40E9
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 16:50:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id DD28B301E38B
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 15:46:13 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 894CE30202D3
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 15:50:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80A0B1F5820;
-	Tue, 16 Dec 2025 15:44:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA9E629ACC5;
+	Tue, 16 Dec 2025 15:48:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tEpMjfb9"
+	dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b="DFsfglev"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [208.88.110.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 544A73BB40;
-	Tue, 16 Dec 2025 15:44:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9650472602;
+	Tue, 16 Dec 2025 15:48:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=208.88.110.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765899857; cv=none; b=mVqmc2o8lTS3hZ3gQu0mV44mSZpusKHpmWxCshaSHE66EGy/QC3nYV0LmnybZkQq5JGlmVrYSkw90pyvadPZkvV2n+KmJbrapdAiTSqHBDn2TYPNByq9+BFgq6ooJ22lxt/z08q7FvI0hnOgDJWmA4khmm5T3B973KSAvym5qco=
+	t=1765900124; cv=none; b=YLmeQqxiqHIFaI8c0Pi773PMd6ZNzzgCsH0e13/17xKZJKndXlaKdJJSQKls/x4HTgYF7v5I0rp95hupSnz2laYaCCE2mY0ifjembpZQGiMuzyuWKnEZoYTWowp4iZxdf3n3frrtoi9AQDTlraB3UKjIw3twoUYI8hJRVKaReOc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765899857; c=relaxed/simple;
-	bh=5FCtWKu4gSPyAonL0m0zznCMC+guvfyTLTTvXhmL8WA=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=DzETxUse4AjaH/YYTwaMt2a332tJzPxsyV+0G0bEYBCIShTES85RKyRUYZGoWlW3Hs1vqQvVUOLK23/voJ7ygpdgZVXqw5IeBepJ0I/9ZNaUJ4KvRuDQ+OnV/V5iBWnP/wWvHG+PkjljiUvCAERyqqVyL1XqA++AZpzE5e0iyhs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tEpMjfb9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04171C4CEF1;
-	Tue, 16 Dec 2025 15:44:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765899857;
-	bh=5FCtWKu4gSPyAonL0m0zznCMC+guvfyTLTTvXhmL8WA=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=tEpMjfb9GWfRRhPdxOIJMXHcRFAHwmC7zhL96Uu8qx+M2D5EHDd2u+y/zwoW74rGe
-	 a+SfB0xzOdAeadMTQS8OpzypNzOht01ZAYy32TC/Iz6Zaggmb+SoUuUmjCoEb+V5GT
-	 ujjHqPWYedSwPL8BzcEI5ld5JWY6+fNI5QudhFaFFaOeOlWkXWRJCUKtVR7ppwKjCa
-	 4HFpl7pukWPYaakGCP1dm7fFBWJm0S/4IhrOlpi+5wRXoihqlmP57YKVLNI6EaFG8Z
-	 7hRKt/L6PHHmmeGK04QfhfvKpJHt0vFmQlggIhNJRM0/pP7eofupAaJ5aJlXcsMih7
-	 8f5OwD87pRvCg==
-Date: Tue, 16 Dec 2025 09:44:14 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1765900124; c=relaxed/simple;
+	bh=TwUV9C0BYn+5xXzesc+3z3QkcwKSCf2WRRwWvz1YIRw=;
+	h=Date:From:To:Cc:Message-ID:Subject:MIME-Version:Content-Type; b=K04w9AsBcr40wm1XmTyOE5CblCw2czshGsaaeW1rCT1apJv46UK9OPcdBJ038JgLs5vQWkDpLrqgVjXKUZkYlpaP0Ra6KioKILkYgzHQ4tK94cQGfWrkAJfPjjaGoikSrwstuvCaz6YRL8kDWPvl/DxkXZuFdOof/Njkjb67/dk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com; spf=pass smtp.mailfrom=savoirfairelinux.com; dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b=DFsfglev; arc=none smtp.client-ip=208.88.110.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=savoirfairelinux.com
+Received: from localhost (localhost [127.0.0.1])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id 80E0C3D8537E;
+	Tue, 16 Dec 2025 10:48:40 -0500 (EST)
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+ by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id pslP6wxY4uq9; Tue, 16 Dec 2025 10:48:39 -0500 (EST)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id 93CD23D85148;
+	Tue, 16 Dec 2025 10:48:39 -0500 (EST)
+DKIM-Filter: OpenDKIM Filter v2.10.3 mail.savoirfairelinux.com 93CD23D85148
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=savoirfairelinux.com; s=DFC430D2-D198-11EC-948E-34200CB392D2;
+	t=1765900119; bh=LugX9z8CtHbe5+evOl5uhx+CgSBUC9nIVhygVadcZQo=;
+	h=Date:From:To:Message-ID:MIME-Version;
+	b=DFsfglevfG+5yp/Jsl3ehb3G0cspCCq3/lE2+38E2s0/FKF8tJXqJbIGlo2tm07jY
+	 /y/5Cmlrwa12nPfR13I8r5liPVTOxZwWxZrUpdZj+4ed8PUTuPZssRkB2wB99q1XXb
+	 mbKJmTQy5WlrUMS05XFCOlx/TRNOJUH+6N4KdaFlpwYbQadZtsuDIoXNM/lZOnJ/Ak
+	 tlUPEETXQmPDiq3FpiEvuyYboMHyYt94WnHjqimgt9SxIfH0M/saCB6edl3YbPQyIZ
+	 e18svHijBAxzu0sI3I25q3/l6+d5ZZhCCn/YTCnJLDNBJWEG9svROZ99f4PTASzR0T
+	 LR9R8AS2l4smg==
+X-Virus-Scanned: amavis at mail.savoirfairelinux.com
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+ by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id WCvCEcJkDwTZ; Tue, 16 Dec 2025 10:48:39 -0500 (EST)
+Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [192.168.48.237])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id 3AA6B3D8482F;
+	Tue, 16 Dec 2025 10:48:39 -0500 (EST)
+Date: Tue, 16 Dec 2025 10:48:39 -0500 (EST)
+From: Osose Itua <osose.itua@savoirfairelinux.com>
+To: netdev <netdev@vger.kernel.org>
+Cc: devicetree <devicetree@vger.kernel.org>, 
+	linux-kernel <linux-kernel@vger.kernel.org>, 
+	Michael Hennerich <michael.hennerich@analog.com>, 
+	=?utf-8?B?SsOpcsO0bWU=?= Oufella <jerome.oufella@savoirfairelinux.com>
+Message-ID: <1695319092.1512780.1765900119201.JavaMail.zimbra@savoirfairelinux.com>
+Subject: [PATCH 1/2] net: phy: adin: enable configuration of the LP
+  Termination Register
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Bartosz Golaszewski <brgl@bgdev.pl>, devicetree@vger.kernel.org, 
- tao.huang@rock-chips.com, Linus Walleij <linus.walleij@linaro.org>, 
- linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
- Heiko Stuebner <heiko@sntech.de>, linux-gpio@vger.kernel.org, 
- Conor Dooley <conor+dt@kernel.org>
-To: Ye Zhang <ye.zhang@rock-chips.com>
-In-Reply-To: <20251216112053.1927852-7-ye.zhang@rock-chips.com>
-References: <20251216112053.1927852-1-ye.zhang@rock-chips.com>
- <20251216112053.1927852-7-ye.zhang@rock-chips.com>
-Message-Id: <176589985437.2528677.5118158763336562885.robh@kernel.org>
-Subject: Re: [PATCH v3 6/7] dt-bindings: pinctrl: rockchip: Add RMIO
- controller binding
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+X-Mailer: Zimbra 10.1.6_GA_0225 (ZimbraWebClient - GC141 (Linux)/10.1.6_GA_0225)
+Thread-Index: hGdGaIZ/TEW52TQsSs5ZKvo3NMSZHw==
+Thread-Topic: adin: enable configuration of the LP Termination Register
 
+From 9c68d9082a9c0550891f24c5902c1f0de15de949 Mon Sep 17 00:00:00 2001
+From: Osose Itua <osose.itua@savoirfairelinux.com>
+Date: Fri, 14 Nov 2025 17:00:14 -0500
+Subject: [PATCH 1/2] net: phy: adin: enable configuration of the LP
+ Termination Register
 
-On Tue, 16 Dec 2025 19:20:52 +0800, Ye Zhang wrote:
-> 1. Add header file with constants for RMIO function IDs for the Rockchip
-> RK3506 SoC.
-> 2. Add device tree binding for the RMIO (Rockchip Matrix I/O) controller
-> which is a sub-device of the main pinctrl on some Rockchip SoCs.
-> 
-> Signed-off-by: Ye Zhang <ye.zhang@rock-chips.com>
-> ---
->  .../bindings/pinctrl/rockchip,pinctrl.yaml    |   9 ++
->  .../bindings/pinctrl/rockchip,rmio.yaml       | 106 +++++++++++++++++
->  .../pinctrl/rockchip,rk3506-rmio.h            | 109 ++++++++++++++++++
->  3 files changed, 224 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/rockchip,rmio.yaml
->  create mode 100644 include/dt-bindings/pinctrl/rockchip,rk3506-rmio.h
-> 
+The ADIN1200/ADIN1300 provide a control bit that selects between normal
+receive termination and the lowest common mode impedance for 100BASE-TX
+operation. This behavior is controlled through the Low Power Termination
+register (B_100_ZPTM_EN_DIMRX).
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Bit 0 of this register enables normal termination when set (this is the
+default), and selects the lowest common mode impedance when cleared.
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml:88:11: [error] string value is redundantly quoted with any quotes (quoted-strings)
+Signed-off-by: Osose Itua <osose.itua@savoirfairelinux.com>
+---
+ drivers/net/phy/adin.c | 32 ++++++++++++++++++++++++++++++++
+ 1 file changed, 32 insertions(+)
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/rockchip,rmio.example.dtb: rmio (rockchip,rk3506-rmio): compatible: ['rockchip,rk3506-rmio', 'rockchip,rmio'] is not of type 'object'
-	from schema $id: http://devicetree.org/schemas/pinctrl/rockchip,rmio.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.kernel.org/project/devicetree/patch/20251216112053.1927852-7-ye.zhang@rock-chips.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+diff --git a/drivers/net/phy/adin.c b/drivers/net/phy/adin.c
+index 7fa713ca8d45..2969480a7be3 100644
+--- a/drivers/net/phy/adin.c
++++ b/drivers/net/phy/adin.c
+@@ -89,6 +89,9 @@
+ #define ADIN1300_CLOCK_STOP_REG			0x9400
+ #define ADIN1300_LPI_WAKE_ERR_CNT_REG		0xa000
+ 
++#define ADIN1300_B_100_ZPTM_DIMRX		0xB685
++#define ADIN1300_B_100_ZPTM_EN_DIMRX		BIT(0)
++
+ #define ADIN1300_CDIAG_RUN			0xba1b
+ #define   ADIN1300_CDIAG_RUN_EN			BIT(0)
+ 
+@@ -522,6 +525,31 @@ static int adin_config_clk_out(struct phy_device *phydev)
+ 			      ADIN1300_GE_CLK_CFG_MASK, sel);
+ }
+ 
++static int adin_config_zptm100(struct phy_device *phydev)
++{
++	struct device *dev = &phydev->mdio.dev;
++	u8 reg;
++	int rc;
++
++	if (!(device_property_read_bool(dev, "adi,low-cmode-impedance")))
++		return 0;
++
++	/* set to 0 to configure for lowest common-mode impedance */
++	rc = phy_write_mmd(phydev, MDIO_MMD_VEND1, ADIN1300_B_100_ZPTM_DIMRX, 0x0);
++	if (rc < 0)
++		return rc;
++
++	reg = phy_read_mmd(phydev, MDIO_MMD_VEND1, ADIN1300_B_100_ZPTM_DIMRX);
++	if (reg < 0)
++		return reg;
++
++	if (reg != 0x0)
++		phydev_err(phydev,
++			   "Lowest common-mode impedance configuration failed\n");
++
++	return 0;
++}
++
+ static int adin_config_init(struct phy_device *phydev)
+ {
+ 	int rc;
+@@ -548,6 +576,10 @@ static int adin_config_init(struct phy_device *phydev)
+ 	if (rc < 0)
+ 		return rc;
+ 
++	rc = adin_config_zptm100(phydev);
++	if (rc < 0)
++		return rc;
++
+ 	phydev_dbg(phydev, "PHY is using mode '%s'\n",
+ 		   phy_modes(phydev->interface));
+ 
 
