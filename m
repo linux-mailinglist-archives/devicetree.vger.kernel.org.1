@@ -1,100 +1,77 @@
-Return-Path: <devicetree+bounces-247113-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247112-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4561ECC461B
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 17:45:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E147DCC4615
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 17:45:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DF720303FA52
-	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 16:41:04 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AF35F3030FDB
+	for <lists+devicetree@lfdr.de>; Tue, 16 Dec 2025 16:41:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F02B7313520;
-	Tue, 16 Dec 2025 16:41:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1061311C30;
+	Tue, 16 Dec 2025 16:41:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JhazTWPd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pIGZeJtM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3C8F30B52C;
-	Tue, 16 Dec 2025 16:41:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B61233115BC;
+	Tue, 16 Dec 2025 16:41:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765903263; cv=none; b=rIFCT3XtwVtALUqaKaacakcHp6bLxc4ZagEVKPvRRfScvkHDEW6PvajUMzSHuUZLnEW91GvokuUUXtwtNhEf4iHX3Dmn7aNfYKxwa9qtgVkhMeTpgQ6Jwv9BUeTelIUmUCPvPgFKh2ooonTfkkQugivrqYDBQJDiayAHGnWssjg=
+	t=1765903260; cv=none; b=iyM3HtDBc8KHGzt//4u7wEFvE/rzyuzqtEQtEjx3cSM9+SrDPMg0+LJijATg+/xp/+JNemzBp2A1Zhl72eZaTS1iDkDu60/Kq7RSu/yTOJMPuRhGL+R9747PSW0jXo5weOOzW5NWcBCeuv+3PwWh6BxYTkPDtZ9hLTo3+X7Dfu0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765903263; c=relaxed/simple;
-	bh=gLWf9IOQkDnImM+DlGc+esOKlGsP0FIXh/V7uRJefKQ=;
+	s=arc-20240116; t=1765903260; c=relaxed/simple;
+	bh=pp+yt9qeGh7y3VYMD8TwdryBjrQUjciKcpXyKjP+FNM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Qn+Bh/KKd/5ixcyIg6H0gptYyC6OE3hlO7d/40h7i1PyRROBvn9fIbi2eQ14qFPHJXpHzt0XLj+fWz6KzQ56nPNNZDkjsaxXMc6sqm1m9kuwEioxWX2lS7QoAGdxT8qQSm3gW5V3WuOhYvA9U8R7VrbpU4kPu7G3suqYSlu+Vb4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JhazTWPd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AAF88C4CEF1;
-	Tue, 16 Dec 2025 16:40:58 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=LVbUlQbH1fRdsp9Zwfl1Z3eGWHMOCPRwtcp6Gy1wLg3/5GPx0u09qxcR3+iitV+9Mthn+lbEDMYbf7c5VjLnUgE7r+Qy2S+qO2Y5qO3pjr5STds8FBWoudhUwoJ9ZyhgF56Ge8HpyfeD3+ssaoqhJdOmsltwEkcxb1WGU0feQao=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pIGZeJtM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69D4DC113D0;
+	Tue, 16 Dec 2025 16:40:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765903263;
-	bh=gLWf9IOQkDnImM+DlGc+esOKlGsP0FIXh/V7uRJefKQ=;
+	s=k20201202; t=1765903259;
+	bh=pp+yt9qeGh7y3VYMD8TwdryBjrQUjciKcpXyKjP+FNM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JhazTWPdLbi3i9qJUTN2ZC43I/OyNoykyVQ0xg6mHucOwLfANYHpJX3FvMkWYufcV
-	 o1RLSXsuF/lOQg+3/VSHMkKPppBRH/y73XBRjFmP8ixqdymFVjTIGYz4P6QfrQA/oP
-	 Mxq9VZXUYBrQ4XX4M/I2MFVEeBsXbut4pn5xDBj2B4znltfNhrqgsOAoAfuuXCF2cV
-	 apKdfLFJWpf6JHn3XhwjMJQfYDlASZCciMeyLQcPlRFlh3ReVnoJgWSOdsTRNYQNYF
-	 0nNRGg3RULKZ+u9oqvEdIIUbIaf1yJ1t2dxIe8c6w4IlD0MgPzNfW49klSwZg609BB
-	 Roeq9iRc82hxg==
-Date: Tue, 16 Dec 2025 16:40:56 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Guodong Xu <guodong@riscstar.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Yixun Lan <dlan@gentoo.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Anup Patel <anup@brainfault.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>,
-	Yangyu Chen <cyy@cyyself.name>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@sifive.com>,
-	Heinrich Schuchardt <xypron.glpk@gmx.de>,
-	Kevin Meng Zhang <zhangmeng.kevin@linux.spacemit.com>,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org, spacemit@lists.linux.dev,
-	linux-serial@vger.kernel.org
-Subject: Re: [PATCH 3/8] dt-bindings: interrupt-controller: add SpacemiT K3
- APLIC
-Message-ID: <20251216-aching-feed-1d27e71a0c63@spud>
-References: <20251216-k3-basic-dt-v1-0-a0d256c9dc92@riscstar.com>
- <20251216-k3-basic-dt-v1-3-a0d256c9dc92@riscstar.com>
+	b=pIGZeJtM9paVONDldO+pOxX3txewXE45X5zvHvp+bvc8tGSTrn73jUmUJ903/YQtC
+	 Oqcuwbw5n+wHtraqLgsmxim5qCBfpgnvQT0Cw9V9qfWkWZCVBKXYqNnI2JBnsmKdZa
+	 OBpEKaIh2PY7eMe/Om3s9SRGY5LZ1e/htivLlCGCnEkoT6gQl4WiQdT3l3oAMGJ7Er
+	 QO6xiGuYHoM2YDB8k9qQQpqJn9aJB0FBieFzpNfKUypLNyC0+60MDhlaW+n9mw1sLO
+	 8ziRzv01MNdNDXbCSfHCyHN574WZxrF8QvYujLE8EN9Qq0xvHcUm5q64BRexLTJhY7
+	 Rkax3Sw3YkZzg==
+Date: Tue, 16 Dec 2025 10:40:56 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Linus Walleij <linus.walleij@linaro.org>, linux-kernel@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	Linus Walleij <linusw@kernel.org>
+Subject: Re: [PATCH] dt-bindings: arm,vexpress-juno: Allow interrupt-map
+ properties in bus node
+Message-ID: <176590325593.2606466.6619016689348303654.robh@kernel.org>
+References: <20251215212932.3324144-1-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="JhmyKJ6DVv3RyAWJ"
-Content-Disposition: inline
-In-Reply-To: <20251216-k3-basic-dt-v1-3-a0d256c9dc92@riscstar.com>
-
-
---JhmyKJ6DVv3RyAWJ
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <20251215212932.3324144-1-robh@kernel.org>
 
-pw-bot: not-applicable
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
---JhmyKJ6DVv3RyAWJ
-Content-Type: application/pgp-signature; name="signature.asc"
+On Mon, 15 Dec 2025 15:29:32 -0600, Rob Herring (Arm) wrote:
+> Allow interrupt-map properties which are already used in the bus node.
+> 
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> ---
+>  .../devicetree/bindings/arm/arm,vexpress-juno.yaml          | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
 
------BEGIN PGP SIGNATURE-----
+Applied, thanks!
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaUGLmAAKCRB4tDGHoIJi
-0pcqAQDpB+Dg1i3rnP/xTAl/Jw8jDSstTyZ2dBxoRyt/wHK9CgEApR/0s8e6AF1M
-cF49Ot1LSkgE66g/pqgEEP0wGxzizg4=
-=JI5p
------END PGP SIGNATURE-----
-
---JhmyKJ6DVv3RyAWJ--
 
