@@ -1,183 +1,143 @@
-Return-Path: <devicetree+bounces-247389-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247390-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29F5CCC774D
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 12:58:37 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08B44CC7743
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 12:56:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3EEB4305E212
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 11:54:59 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id DA45D300AFF3
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 11:56:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BAC233554E;
-	Wed, 17 Dec 2025 11:54:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F377633554E;
+	Wed, 17 Dec 2025 11:56:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="Ob+xZdqa"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xFX8OLs0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C58B3126DD
-	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 11:54:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF050327BE6
+	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 11:56:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765972498; cv=none; b=Nl6kc8CnHorvIARdci/nF0yt+//YbEhB1MS5/pc+gaDU8nefeWHIJN3/AczPfGQ6UHDwaG73xURGCmv5/qJO3+cdsLUGSlaxUK+/XWEj7ibX3BYvxjXM8egRQDA4JNwNqr0UQ/uoKi3uWTPJYbYH0z6bcN+t/a5XbZFNJUdlkbk=
+	t=1765972600; cv=none; b=pbqZwCpDq6vUDpLMmpi6xNfkEyeJPpk7pxyPKEiC4c4rMYBoPBKFlrDYRD1FSRaectJnukgf5uQXbjYKS8ZQrNBQ4UvrsU8mGTOdoxz4iWdaY0UpYybngyZEheQ1VGfKQyVwdIPIanQJBulg5hfrTCr0aA9CZmSyGZnbzxblAnU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765972498; c=relaxed/simple;
-	bh=70F01enocztNAr3xVFOrgGWn+2IKyhD+BDtjzDjx4nY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ZguiLBZwQHPBV/+OAhVrcxyNIlaU9GMd2NJG4MBuD0eTSgtEB5KcxcXJ1UlNuCvvu+odHBf9s7tUVAMd3ppDvGbpH47LYMrDqKop9ERURg8Sx4oyLlI0Rj8I6RIamiSSlpqyjIiNx+z+p/p6zspQ8sRoTb3yT9sUJAuCyp0NSBw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=Ob+xZdqa; arc=none smtp.client-ip=209.85.128.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raspberrypi.com
-Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-78e765f9997so31309327b3.1
-        for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 03:54:55 -0800 (PST)
+	s=arc-20240116; t=1765972600; c=relaxed/simple;
+	bh=LCsPsMthhRhWdpniYOj1raGpGSTOo0RdpLYwMzUCIwc=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=hzqtDxaoYTOJxajVYDcv6GuK7gDm3nod2mzHUeXwZcJWEvltDFZNOleS61FW+Bqw/GsvnG0Ud2y8R9nOCyiO9Vzqe/9/gqCvfhs99QZ22MIHsL3Pmow1BF/oSf4trs3bxuFb/85CC0KEiYXdO1PWxo78aBdxblWH3adIonxV2g4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xFX8OLs0; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-477b91680f8so55691915e9.0
+        for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 03:56:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google; t=1765972494; x=1766577294; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=W3dwWg2D+m7WGcXWn772LPt2UQYpGANryW0nj84dguM=;
-        b=Ob+xZdqapCD8YHYlr9dKwAPBUkcKvui13tbk0dJJGRcxJaw+3TCqgzxCsNfDKHM49z
-         EYUsmKjjHCr8kXHOhaUp5SRQ0pIwScew80hXCC/qHFte3kjh/aNa37wllVGwGtna5H86
-         kfiw3WMBANdXKxSuvON19ZeWOd/FQ/TN/szaUg3qS0TTVanBJIn2bduRFARfRQARomPK
-         FgRgBFaowUCOp7nV5Ssa4Rnl2CWUMdma/xauBvhWqBqio2XnAgwZKwAZuECxmxdIH6cO
-         qzCmZuoCOiZq0k3SEpjE5ygtkCrX6m2Cq0D3l9clcbJU18Ju96GpEplCb2/7fsrK+PeO
-         zptQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765972494; x=1766577294;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=linaro.org; s=google; t=1765972595; x=1766577395; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=W3dwWg2D+m7WGcXWn772LPt2UQYpGANryW0nj84dguM=;
-        b=Bq5YIA+aWhFOrOvGAkNO+tcAiCrjQFNIsi52NuF3LI7jbOpaWJR9wLcpwzjjU7UljY
-         qBQo//jbtFNAvg37JX4hMgEpkkRsKyA8PYtzBYjPTWZu0NnTMEY+WZZHGMaMLzkBGvK+
-         jn9nYhR0VfyGwbbqdVXI2CIKMyaK9kH6OsohUY5KDXTclDY+QlUnM5N5NrMn/ziUIsO5
-         bcvetajdwh03fuBVAT30R0bKKtwqqJatkafJmEoHxXcVCNhWCMZfYSa0LYqT8SQQYXkb
-         UUfWOXx2J2AoxoFKHPWTW69ewMWHtjQ8sDfo3lWT+I4JD6+pKmT6IZkOQInaR/hbnbT4
-         AqPg==
-X-Forwarded-Encrypted: i=1; AJvYcCVdRtXiRUzi+Nra0vdChPR5ym97dcZaAcx5dXCBtBuXYSoTtd7KYAik+lcMPIOWSFlhRQJKB9Ky1Hfk@vger.kernel.org
-X-Gm-Message-State: AOJu0YxL7t6R3Ti5wf04J5FGoGMhjzmnTvOuDSGXBK4AmAOMhrps1cCw
-	MBc73Qri4yn2ACc767WqFSeXAUvV5vvffVNtK9DL0CafDUX6WiMzEdSkMz1KUGezYGJTMLOnGEP
-	TE4JaME3EiN3SxyI0nzC6PC+YWO6YXh01OkxRSJIp1tI51qjeTloz
-X-Gm-Gg: AY/fxX7AD39O1nI05ceWqDTDFPi5KAhlbnW/gZu7Ri7/KjSx1xCxhDwrW7/b9JApnP9
-	AoOv5EgVkp78Vc1qvaCFU8BmqVg0BD3QGYPNKGuVeplsBFNoOZY013unPWMRbMqdRIXN6dyCqXQ
-	0e9KAdcYWQdDbxCqt9mb39dsUqELFI7dUFtpBXw2Fnr8x1HaRFwPiQGzhiPtRNkjxecaRGyWc2K
-	PhK10GSXOC52osVDcWT8p07pyLhOikQpjuQZ+/Zb561iOQ0GXE5IagySYnzj2CQw7x7/0pHNomr
-	meyfi05DjqnErsMkWf895GPbEWA=
-X-Google-Smtp-Source: AGHT+IGckuHShVbvxc6ufAHIWbsIO8u+LmaiNiqNwEMgNBziJtkEBwHWsEgys1TxSWooCVKNgi5iOcDUjluVG6gxmfs=
-X-Received: by 2002:a05:690c:e3ee:b0:78f:916e:b583 with SMTP id
- 00721157ae682-78f916ebbb7mr29455967b3.37.1765972494619; Wed, 17 Dec 2025
- 03:54:54 -0800 (PST)
+        bh=c8twQrn9oWP06T/YrQb7aZd3MfFftG78xy47TZzvNgo=;
+        b=xFX8OLs0nli5+HbQh+Yw+T4GxLaCJbra21I4Xg7mXV0ME1ESq0oRTaLYdVz1vy/h6X
+         lyvkZMUlqPSfrd0UOe6sHBtBrg1BuvfuC8Lu+wAdTUhjfUOZDZ9EfZsBq48mUhby/q7V
+         mfBjzzRERMcucUDmxFN4ZTOH+e/PffyVxuFriMjTOKaPpjN/u4XVI/4/DAbLqWj31SKR
+         NiaEEJAypztdYV+KYZlKc+yvHJpVk/Savo4mnp58VbVquW4xib/d/s+y1z8GQhFqncm3
+         Ghjlhc0GJH73dnc7P5eOh5Gg73FCkgv38PJS6Y53hrA2SGUU7JpYKIJdOvfI1f8iiQvL
+         f6Jg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765972595; x=1766577395;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-gg:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=c8twQrn9oWP06T/YrQb7aZd3MfFftG78xy47TZzvNgo=;
+        b=YdF3C5X6A64Xyipt/Hi/t4t/+8hrONNEbK51zIfHLWDWVx5nx+uzDgI7tU85OOcce/
+         eqTyf4+lqFK1opzVZgPmvql0qLpcUNuMRGJnp5syxc+l/UYsLhsyzY+omy7uzxa/clRw
+         75fTNIdeAyEOQ32sdc6K/fkh1vSMrjUZaHpNb8MtAbY+BXanWkH9ISIEeGXI5kEFanT+
+         BaoxljrEUGamlIKZn0PKkfGXHACxT7Ue7yYsRCU6HhWZEYsWfUBfhFkdHxL7ZMwrIR5D
+         LEZLlSTcyFXUGhWkrkcQDjXbhweoJbn6b4WJlwcLd2ccBuOjao3tPOql7DGgFBcJ2999
+         8vvw==
+X-Forwarded-Encrypted: i=1; AJvYcCWqUy0BSmJGQ0Z+y3tCdLFBsSM+dU1h3mlGSzReqiukhCACMR+uLf5H6iR0loOSpbnd/C9qMpbBj22Q@vger.kernel.org
+X-Gm-Message-State: AOJu0YwbTtoc3loTivGnYCl2/oTLl930uzpEss0RBikuaooBC1wVCQ3w
+	QbQBMIitIMEBcEx1Zza3/CYWAaXDrWvk5Ag+PYSUaBPWUMX5FFge7XTq25cm/1kTGEg=
+X-Gm-Gg: AY/fxX59+va9y4ICDCieKU6Q+gyj5Gj/N7afco4S/qSLazx66pXvCGGzHA4EJNn6/+i
+	o1GU5pB1mKtRgKsK3BJd+MW6l+424SW2NIiyMAzIbRzfOeiQTpJHclwpmJTWwB4+iKf7r234tib
+	6FCFbfuJy18TIxIdoNYeAFaAVc26so1tlSgk88HplDPwWWtAVoCQmGM8YWfWwj+0kh0rMah2EsL
+	5xFYTUGaLv233mO+HkUiOCTk5ZsT/mcD3GRNvgk6huXIyY6EmaBokAsH1NgVTwWNhH9vdDsGUJL
+	uOBAIh3vI9n2L+PYdRzynrtK/qRmhTv1nF53qsna7W2doqlhDIxWjX67WmvwOhMmRc6oIMWIL+Z
+	We2tz3M5Go4+UVznwc3Yq/HsOXGzRAJGSdSpie01/V3YWuvkRz5FUqnkSMD6bDLAlAFJgXPJ3UV
+	fHp/yV/9sP7l6dtDIoElOzoDhueJI=
+X-Google-Smtp-Source: AGHT+IFX1xK5g0aYAzZgLBSaGqkKv/wF08JTgmfJ7rKpn2/gRhVTWMpfVN3s96F1hmGc0zqqANlL3Q==
+X-Received: by 2002:a05:600c:c0d1:20b0:47a:9560:5944 with SMTP id 5b1f17b1804b1-47a95605a79mr101572855e9.34.1765972595622;
+        Wed, 17 Dec 2025 03:56:35 -0800 (PST)
+Received: from localhost ([2a02:c7c:5e34:8000:95b6:94a5:9a2e:e813])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4310ade8063sm4395318f8f.23.2025.12.17.03.56.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 17 Dec 2025 03:56:35 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20251217-imx283-ext-v1-0-906a762f592d@emfend.at> <20251217-imx283-ext-v1-3-906a762f592d@emfend.at>
-In-Reply-To: <20251217-imx283-ext-v1-3-906a762f592d@emfend.at>
-From: Dave Stevenson <dave.stevenson@raspberrypi.com>
-Date: Wed, 17 Dec 2025 11:54:38 +0000
-X-Gm-Features: AQt7F2rWc2bY9eE8ucf14QiONAUNLJF3tcPeIUUR4B-rKXrFZUPkuBh_s7N1C0E
-Message-ID: <CAPY8ntCiOJb9iyFDYS_wxhteoHL7vMFpEF8gVwrf2qeFd-Fssw@mail.gmail.com>
-Subject: Re: [PATCH 3/3] media: i2c: imx283: implement {g,s}_register
-To: Matthias Fend <matthias.fend@emfend.at>
-Cc: Kieran Bingham <kieran.bingham@ideasonboard.com>, Umang Jain <uajain@igalia.com>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Sakari Ailus <sakari.ailus@linux.intel.com>, linux-media@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 17 Dec 2025 11:56:34 +0000
+Message-Id: <DF0H1E4RAH0K.16WZ8A8TJF9WV@linaro.org>
+Cc: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, "Bjorn Andersson" <andersson@kernel.org>,
+ "Konrad Dybcio" <konradybcio@kernel.org>, "Rob Herring" <robh@kernel.org>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
+ <conor+dt@kernel.org>
+Subject: Re: [RFT PATCH v3 0/2] Adsp fastrpc support for sm8750
+From: "Alexey Klimov" <alexey.klimov@linaro.org>
+To: "Konrad Dybcio" <konrad.dybcio@oss.qualcomm.com>, "Srinivas Kandagatla"
+ <srini@kernel.org>, "Ekansh Gupta" <quic_ekangupt@quicinc.com>,
+ <vkatoch@qti.qualcomm.com>, <ekansh.gupta@oss.qualcomm.com>,
+ <chennak@qti.qualcomm.com>, <srinivas.kandagatla@oss.qualcomm.com>
+X-Mailer: aerc 0.20.0
+References: <20251209-sm8750-fastrpc-adsp-v3-0-ccfff49a8af9@linaro.org>
+ <DEWCVSWNA1MN.10IT82HICKO8K@linaro.org>
+ <be83a344-4345-4417-aabd-39565f76dc00@oss.qualcomm.com>
+In-Reply-To: <be83a344-4345-4417-aabd-39565f76dc00@oss.qualcomm.com>
 
-Hi Matthias
-
-On Wed, 17 Dec 2025 at 07:41, Matthias Fend <matthias.fend@emfend.at> wrote:
+On Tue Dec 16, 2025 at 12:51 PM GMT, Konrad Dybcio wrote:
+> On 12/12/25 4:50 PM, Alexey Klimov wrote:
+>> (adding more Qcom folks to To: header, who asked to send this as soon
+>> as possible)
+>>=20
+>> On Tue Dec 9, 2025 at 7:37 AM GMT, Alexey Klimov wrote:
+>>> Please test these changes therefore RFT tag. The fastrpc testing
+>>> application under linux doesn't work for me but I was told there
+>>> is a setup available somewhere in Qualcomm where this can be tested
+>>> (perhaps android?).
 >
-> Implement {g,s}_register to support advanced V4L2 debug functionality.
-
-Is there any real benefit to providing access via {g,s}_register
-rather than using i2ctransfer -f ? The I2C framework ensures that each
-transfer is atomic as long as it is formed into one transaction
-request.
-
-IMHO The only place these are really needed is with devices such as
-the adv7180 family which have a bank and page addressing scheme, and
-the driver is caching the last accessed bank.
-
-> Signed-off-by: Matthias Fend <matthias.fend@emfend.at>
-> ---
->  drivers/media/i2c/imx283.c | 44 ++++++++++++++++++++++++++++++++++++++++++++
->  1 file changed, 44 insertions(+)
+> [...]
 >
-> diff --git a/drivers/media/i2c/imx283.c b/drivers/media/i2c/imx283.c
-> index 7a6ab2941ea985401b21d60163b58e980cf31ddc..d8ccde0a1587259f39a10984c517cc57d323b6bc 100644
-> --- a/drivers/media/i2c/imx283.c
-> +++ b/drivers/media/i2c/imx283.c
-> @@ -1295,7 +1295,51 @@ static const struct v4l2_subdev_internal_ops imx283_internal_ops = {
->         .init_state = imx283_init_state,
->  };
+>> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>> Test Summary:
+>>   Total tests run:    3
+>>   Passed:             2
+>>   Failed:             1
+>>   Skipped:            0
+>> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>>=20
+>> RESULT: 1 test(s) FAILED
+>>=20
+>> But the result is the same for CDSP (was it tested prior merging?).
+>> The same results are for v75.
+>>=20
+>> Adsprpcd works with audio_pd though. Maybe Qualcomm can help with this?
+>> I don't think I will have enough time to debug this and narrow it down,
+>> also very soon I will lose access to the device.
 >
-> +#ifdef CONFIG_VIDEO_ADV_DEBUG
-> +static int imx283_g_register(struct v4l2_subdev *sd,
-> +                            struct v4l2_dbg_register *reg)
-> +{
-> +       struct imx283 *imx283 = to_imx283(sd);
-> +       u64 val;
-> +       int ret;
-> +
-> +       if (!pm_runtime_get_if_active(imx283->dev))
-> +               return 0;
-
-Returning no error if the device is powered down feels wrong. How is
-the caller meant to differentiate between powered down and the
-register actually containing 0?
-
-> +
-> +       ret = cci_read(imx283->cci, CCI_REG8(reg->reg), &val, NULL);
-> +       reg->val = val;
-> +
-> +       pm_runtime_put(imx283->dev);
-> +
-> +       return ret;
-> +}
-> +
-> +static int imx283_s_register(struct v4l2_subdev *sd,
-> +                            const struct v4l2_dbg_register *reg)
-> +{
-> +       struct imx283 *imx283 = to_imx283(sd);
-> +       int ret;
-> +
-> +       if (!pm_runtime_get_if_active(imx283->dev))
-> +               return 0;
-
-Ditto here. The caller is told the value was written, but it wasn't.
-
-Thanks.
-  Dave
-
-> +
-> +       ret = cci_write(imx283->cci, CCI_REG8(reg->reg), reg->val, NULL);
-> +
-> +       pm_runtime_put(imx283->dev);
-> +
-> +       return ret;
-> +}
-> +#endif
-> +
-> +static const struct v4l2_subdev_core_ops imx283_core_ops = {
-> +#ifdef CONFIG_VIDEO_ADV_DEBUG
-> +       .g_register = imx283_g_register,
-> +       .s_register = imx283_s_register,
-> +#endif
-> +};
-> +
->  static const struct v4l2_subdev_ops imx283_subdev_ops = {
-> +       .core = &imx283_core_ops,
->         .video = &imx283_video_ops,
->         .pad = &imx283_pad_ops,
->  };
+> Please open an issue in the repo with the above details so the FastRPC
+> folks can hopefully help sort this out
 >
-> --
-> 2.34.1
->
->
+> https://github.com/qualcomm/fastrpc/issues
+
+Good idea. Thanks. Done.
+
+Best regards,
+Alexey
 
