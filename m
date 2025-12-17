@@ -1,106 +1,106 @@
-Return-Path: <devicetree+bounces-247498-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247499-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D496CC826A
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 15:21:55 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58F87CC8240
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 15:20:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 3C82C305FF0C
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 14:14:48 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3CD2830B6712
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 14:15:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53E7C34FF5A;
-	Wed, 17 Dec 2025 14:13:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A3XE7ijk"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEEA63559E6;
+	Wed, 17 Dec 2025 14:15:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx3.molgen.mpg.de (mx3.molgen.mpg.de [141.14.17.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E7BD29CE9;
-	Wed, 17 Dec 2025 14:13:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9E4F354AF9;
+	Wed, 17 Dec 2025 14:15:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=141.14.17.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765980806; cv=none; b=ic2IjHuUsW+unCEf7wXeMAC2u6LRSArQWTqwP7iX+/gh1nITr9DCQKgW8SQ5KhtMoLEQbKD1TBdwcMb5Kej+bnFGTQ5okq9oTijj0X0lqz4WQ25ZCZvN9X083PIrHNb1v2lRZmLmxaQPh990fMzmX5tX4LmMMmBwmabyX7CGLF8=
+	t=1765980906; cv=none; b=Yy86bbuHUPDzhWCmh0DcZbwze3wMb9OTZsUQvdDVIQ0G7Le4PkhZDmZcD4GLj3L7Y5mhG6PT/zQYRqLU24fQ7K1nHUzsiBhZJt6SxS6l1deu/4qKwhS1kSOriAlDdYDaNGaXVKFXczj4TWzyaXn5XQppl3Dz6IazZuqBPQoBIHw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765980806; c=relaxed/simple;
-	bh=DOQltobG24SgRnUHNr9M0mUhUbL6yajzrJXvZBi/4f0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=g4A0PTq1FelMMUoz5FEeeq4y3+ae7KhMief6GxMxKleseuxjyG67DNAk+tBf75pyTIAe5Sqng3fQQa7weI2WAXCp4pNcvy3hMBukuUR5nkOu/if9gHpuB4agbXFVT8IULkHQLZvmdX6E/phjfvN1sSbK+gTtdDUdNXEIie+pEfU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A3XE7ijk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34878C4CEF5;
-	Wed, 17 Dec 2025 14:13:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765980805;
-	bh=DOQltobG24SgRnUHNr9M0mUhUbL6yajzrJXvZBi/4f0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=A3XE7ijktFnuiVk39Bexd0NNryeuFqk+toXzMB/4wW7Kfus9CMZQQjcBgNzlhjvyg
-	 A5comP4sgenefmWze2OpQJxp/zocApm6QYlhtMt5PhUvDwwCCL0pHPKi3xOE9htRzI
-	 OCfNKM78hx7IhvPyPhjIYNKp3JyKMt+DO0G8U2Lv1Xedv/Ms20/xMhPzqoPl1JOpfl
-	 vdaV+o5bSI0UMuOB/L6E5MGE/4TLMNwXYLJCmS2iHRn3gL+bfFHJpQvu4q3K/AC2Ps
-	 fjRoefCRWcCfSvF3OaB555KyjSTmasLNbQaREZ8R9My98VRVjwQbCLey/876gV45aK
-	 yAXC+4U3AAsWQ==
-Date: Wed, 17 Dec 2025 14:13:18 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Shenghao Ding <shenghao-ding@ti.com>, Kevin Lu <kevin-lu@ti.com>,
-	Baojun Xu <baojun.xu@ti.com>, Liam Girdwood <lgirdwood@gmail.com>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
-	Clark Williams <clrkwllms@kernel.org>,
-	Steven Rostedt <rostedt@goodmis.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>,
-	Dan Murphy <dmurphy@ti.com>, linux-sound@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Kevin Lu <luminlong@139.com>,
-	linux-rt-devel@lists.linux.dev, devicetree@vger.kernel.org,
-	Andreas Sloth <anps@bang-olufsen.dk>,
-	Andreas Pehn Sloth <anps@bang-olufsen.com>
-Subject: Re: [PATCH 09/11] ASoC: tlv320adcx140: Add kcontrols for TDM Slot
- assignment
-Message-ID: <4fd3114a-6073-4067-8767-d8b0c46b6f4a@sirena.org.uk>
-References: <20251217-sound-soc-codecs-tvl320adcx140-v1-0-293dea149d7b@pengutronix.de>
- <20251217-sound-soc-codecs-tvl320adcx140-v1-9-293dea149d7b@pengutronix.de>
+	s=arc-20240116; t=1765980906; c=relaxed/simple;
+	bh=MEQ2EbCrYHXrNgo/n0tyR4WzPAtMaQBZltY3EmDm+4A=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CGauQOM3JdCRrbOlAGwnymSkRGKM8uF6Hkg3IdaTMUgSmSNnTUDQHLI5s1qw06xW12PlYkSBWolocer5AiZiyT41pGg/QeSogpQpLgoCCGD5UC7FyFG8ZFc923WkxIM/YfEoNIMEMOqT1gv8iTUY5wUaZi+khaRr7oXyOfjsNxI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=molgen.mpg.de; spf=pass smtp.mailfrom=molgen.mpg.de; arc=none smtp.client-ip=141.14.17.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=molgen.mpg.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=molgen.mpg.de
+Received: from [192.168.0.192] (ip5f5af75b.dynamic.kabel-deutschland.de [95.90.247.91])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: pmenzel)
+	by mx.molgen.mpg.de (Postfix) with ESMTPSA id 4795661CC3FDB;
+	Wed, 17 Dec 2025 15:14:42 +0100 (CET)
+Message-ID: <d180711b-7957-4252-b34b-81312705555b@molgen.mpg.de>
+Date: Wed, 17 Dec 2025 15:14:40 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="0YHIsgwqsZxM36Tv"
-Content-Disposition: inline
-In-Reply-To: <20251217-sound-soc-codecs-tvl320adcx140-v1-9-293dea149d7b@pengutronix.de>
-X-Cookie: Big book, big bore.
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] DT: add bindings for QCC2072 Add DT compatible string
+ "qcom,qcc2072-bt" to yaml file.
+To: Vivek Kumar Sahu <vivesahu@qti.qualcomm.com>
+Cc: Marcel Holtmann <marcel@holtmann.org>,
+ Luiz Augusto von Dentz <luiz.dentz@gmail.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
+ Balakrishna Godavarthi <quic_bgodavar@quicinc.com>,
+ Rocky Liao <quic_rjliao@quicinc.com>, quic_mohamull@quicinc.com,
+ quic_hbandi@quicinc.com, linux-bluetooth@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org
+References: <20251217112850.520572-1-vivesahu@qti.qualcomm.com>
+Content-Language: en-US
+From: Paul Menzel <pmenzel@molgen.mpg.de>
+In-Reply-To: <20251217112850.520572-1-vivesahu@qti.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Dear Vivek,
 
 
---0YHIsgwqsZxM36Tv
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Thank you for your patch. The formatting is off, and the summary/title 
+(subject) has two statements – look yourself in the archive [1]. Also 
+the prefix seems wrong.
 
-On Wed, Dec 17, 2025 at 02:54:59PM +0100, Sascha Hauer wrote:
-> From: Andreas Sloth <anps@bang-olufsen.dk>
->=20
-> Signed-off-by: Andreas Pehn Sloth <anps@bang-olufsen.com>
-> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+Am 17.12.25 um 12:28 schrieb Vivek Kumar Sahu:
+> Signed-off-by: Vivek Kumar Sahu <vivesahu@qti.qualcomm.com>
+
+Please elaborate by giving more context, why it is compatible, and I’d 
+like to see how you tested this.
+
 > ---
+>   .../devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml    | 1 +
+>   1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml b/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml
+> index 6353a336f382..197248d6f7b8 100644
+> --- a/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml
+> +++ b/Documentation/devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml
+> @@ -28,6 +28,7 @@ properties:
+>         - qcom,wcn6750-bt
+>         - qcom,wcn6855-bt
+>         - qcom,wcn7850-bt
+> +      - qcom,qcc2072-bt
 
-This is obviously bogus, we have an API for controlling TDM.
+Lacking more lines, I am not certain, but I maybe this should be sorted.
 
---0YHIsgwqsZxM36Tv
-Content-Type: application/pgp-signature; name="signature.asc"
+>   
+>     enable-gpios:
+>       maxItems: 1
 
------BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmlCun0ACgkQJNaLcl1U
-h9DE7Qf+PRG32p6QVVZo8eLx3Kf5ZmJDsB6PG/t9A8o2GlbM20OTrLUwZohd7RNA
-aRGtIwgZL+FZvBLfnGC+/aR4ulMvyq2L+KGTV2zePpWQVa84fcFiDzlk69jYvZs4
-EQPi5PtG1wjNUYthzCYa1p46e25ECXJIB0St0l31zeV7yqTe5xJeQ9TjBlr0gu21
-e9LVokL3XheCUP0kaxMIVlwS6Jr91eWuaHlfEXHumr7kmog679kTGfpwTqFWezYV
-J11/8pGO+Vp4bvNGDCRiPExcRKFEM/T7pcyX4f5LtGbX+Nh8WBgN3EC3r3oqrL0S
-wfbA+p9WwVJDP8LsIxT/NRkDsWp9pg==
-=wJAA
------END PGP SIGNATURE-----
+Kind regards,
 
---0YHIsgwqsZxM36Tv--
+Paul
+
+
+[1]: 
+https://lore.kernel.org/all/20251217112850.520572-1-vivesahu@qti.qualcomm.com/
 
