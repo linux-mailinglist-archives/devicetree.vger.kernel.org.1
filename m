@@ -1,117 +1,118 @@
-Return-Path: <devicetree+bounces-247503-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247505-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50152CC84C0
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 15:53:43 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9757DCC8336
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 15:32:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 2E5283050908
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 14:45:53 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id CF75F30787A4
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 14:23:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D79C633556A;
-	Wed, 17 Dec 2025 14:21:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="uo/EpFVW"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3540F1D5CF2;
+	Wed, 17 Dec 2025 14:22:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CFDB30E0CC
-	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 14:20:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 463FA15ADB4
+	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 14:22:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765981260; cv=none; b=EvHC4Fh2Em1xWqFCCom5DZ3T6+Q7NXEWU5ZseMgdnvT55SCTGwAEbFfeoOZS8moe629UDjgrErkny6pay//q05JsuHTkTIoYRX2Sbr8G8UPYEom9uFncscZsiQwC4BfAm1nc3qlWeES9DaVIEMNVB++H+N6MYfFPXGEQ4iq+dn4=
+	t=1765981373; cv=none; b=bn1+bZKNQPXS6hcPwqDPwm0Ib5/HX+x0lAZfJyBfrYIkW3sVANgPl18NpMFpxp60mtfqtDgiZJZhXUeQHDtG4aJWP7QNnaSm5ajTwUpYIMMVkR1gfAq1TGeLaQftb8NOxf0WWSNtSA7HJqSmF9BCa+AtcFkvyMWwbySH/pBUNLU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765981260; c=relaxed/simple;
-	bh=fzuwhM6lbndckRqp5riuGOoINfb0fnQbjhJBQ4T2P2Y=;
-	h=Mime-Version:Content-Type:Date:Message-Id:From:Subject:Cc:To:
-	 References:In-Reply-To; b=AwVIsAjlKUZ3sire+lmMO0tXlkaJfKXQv6GmI6AJHO07dGFCmDfNpYtEc4zfXLguFlRDR9tZ4cXbjcV0uNrgVUCqRgx5e2Cg+wEv1oqix/o/kisCm/LnP+crk4XBPMQrMSyTiYjPkLjmJwHRF6Dsp4h2mtmF4x2HCl+iimmcSRk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=uo/EpFVW; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id A6ACD1A2271;
-	Wed, 17 Dec 2025 14:20:57 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 7856B6072F;
-	Wed, 17 Dec 2025 14:20:57 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 2AD0C102F0AE7;
-	Wed, 17 Dec 2025 15:20:50 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1765981256; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=fzuwhM6lbndckRqp5riuGOoINfb0fnQbjhJBQ4T2P2Y=;
-	b=uo/EpFVW114mOVRPBJ6qYD906sPlDPXN6KS04EyTCQk5y1TX+kbG/JzkDeugkXJ2ezYT8I
-	oxd6n6GjqVr7w5osstXPY1iHWlwu9tdSbCRbaQI9oU54oVAsYQD8nOzUchcVzDMn3q/O36
-	3iWM9AGXAJELmC0B3cYuHKVKoIfTVAs3ZPby1bZ4lLuvsxnOgNhGbzgChpU7CV2x1wrP6+
-	rkufEsTngy2GmQKMyl2Ea7odZkZqV8Eyrzn8PCApU94zRhA2LhHiGg1Rhahcp/YOWZu1Rh
-	DyaVdBflWfKg9JDLDyhcnxQgGy63jUuATOVpWltDbPwZXWFNXSZfuvojxc5LyA==
+	s=arc-20240116; t=1765981373; c=relaxed/simple;
+	bh=3Xlxjs02BTpUT/TrRq4wzpBEx6B0aMFuPsPW5tSNCaM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=U+kACaCgcpBoJ9Vtb5kj4FrRC+XRTHFXp3esw+fb85xF4IfyK+joL7d0SuznV9FSou5TLBj52WVL3FmuXv538NwxX800fvQC913BvhT9hNvU84dpjgXT+M91OHvo+LEiOa79iD0iGg4Oe7YlWbg7ZMOv9TRJbr2nAPOlaOsihuA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4717614BF
+	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 06:22:42 -0800 (PST)
+Received: from [192.168.0.1] (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 2F9A33F73B
+	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 06:22:49 -0800 (PST)
+Date: Wed, 17 Dec 2025 14:21:58 +0000
+From: Liviu Dudau <liviu.dudau@arm.com>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: soc@kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: vexpress/v2m-rs1: Use documented
+ arm,vexpress,config-bus child node names
+Message-ID: <aUK8hkoz0LmsIZXA@e142607>
+References: <20251216191212.2879226-2-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 17 Dec 2025 15:20:49 +0100
-Message-Id: <DF0K3U9DB08N.2LEUCUUQ7FN0L@bootlin.com>
-From: "Luca Ceresoli" <luca.ceresoli@bootlin.com>
-Subject: Re: [PATCH v2 04/20] drm/tilcdc: Add support for DRM bus flags and
- simplify panel config
-Cc: "Markus Schneider-Pargmann" <msp@baylibre.com>, "Bajjuri Praneeth"
- <praneeth@ti.com>, "Louis Chauvet" <louis.chauvet@bootlin.com>, "Thomas
- Petazzoni" <thomas.petazzoni@bootlin.com>, "Miguel Gazquez"
- <miguel.gazquez@bootlin.com>, <dri-devel@lists.freedesktop.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-arm-kernel@lists.infradead.org>, <linux-omap@vger.kernel.org>
-To: "Kory Maincent (TI.com)" <kory.maincent@bootlin.com>, "Jyri Sarha"
- <jyri.sarha@iki.fi>, "Tomi Valkeinen" <tomi.valkeinen@ideasonboard.com>,
- "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>, "Maxime Ripard"
- <mripard@kernel.org>, "Thomas Zimmermann" <tzimmermann@suse.de>, "David
- Airlie" <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Rob
- Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>, "Russell King"
- <linux@armlinux.org.uk>, "Bartosz Golaszewski" <brgl@bgdev.pl>, "Tony
- Lindgren" <tony@atomide.com>, "Andrzej Hajda" <andrzej.hajda@intel.com>,
- "Neil Armstrong" <neil.armstrong@linaro.org>, "Robert Foss"
- <rfoss@kernel.org>, "Laurent Pinchart" <Laurent.pinchart@ideasonboard.com>,
- "Jonas Karlman" <jonas@kwiboo.se>, "Jernej Skrabec"
- <jernej.skrabec@gmail.com>
-X-Mailer: aerc 0.20.1
-References: <20251211-feature_tilcdc-v2-0-f48bac3cd33e@bootlin.com>
- <20251211-feature_tilcdc-v2-4-f48bac3cd33e@bootlin.com>
-In-Reply-To: <20251211-feature_tilcdc-v2-4-f48bac3cd33e@bootlin.com>
-X-Last-TLS-Session-Version: TLSv1.3
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20251216191212.2879226-2-robh@kernel.org>
 
-On Thu Dec 11, 2025 at 5:38 PM CET, Kory Maincent (TI.com) wrote:
-> Migrate CRTC mode configuration to use standard DRM bus flags in
-> preparation for removing the tilcdc_panel driver and its custom
-> tilcdc_panel_info structure.
->
-> Add support for DRM_BUS_FLAG_PIXDATA_DRIVE_NEGEDGE and
-> DRM_BUS_FLAG_SYNC_DRIVE_NEGEDGE flags to control pixel clock and sync
-> signal edge polarity, while maintaining backward compatibility with the
-> existing tilcdc panel info structure.
->
-> Simplify several hardware parameters by setting them to fixed defaults
-> based on common usage across existing device trees:
-> - DMA burst size: 16 (previously configurable via switch statement)
-> - AC bias frequency: 255 (previously panel-specific)
-> - FIFO DMA request delay: 128 (previously panel-specific)
->
-> These parameters show no variation in real-world usage, so hardcoding
-> them simplifies the driver without losing functionality.
->
-> Preserve FIFO threshold configurability by detecting the SoC type, as
-> this parameter varies between AM33xx (8) and DA850 (16) platforms.
->
-> Signed-off-by: Kory Maincent (TI.com) <kory.maincent@bootlin.com>
+On Tue, Dec 16, 2025 at 01:12:12PM -0600, Rob Herring (Arm) wrote:
+> Update the arm,vexpress,config-bus child node names to use the
+> documented ones. Most of these were updated a while back, but I missed
+> these.
+> 
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 
-Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+Reviewed-by: Liviu Dudau <liviu.dudau@arm.com>
 
---
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Best regards,
+Liviu
+
+> ---
+> SoC maintainers may want to take this directly?
+> 
+>  arch/arm/boot/dts/arm/vexpress-v2m-rs1.dtsi | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/arm/vexpress-v2m-rs1.dtsi b/arch/arm/boot/dts/arm/vexpress-v2m-rs1.dtsi
+> index 158b3923eae3..248b8e492d43 100644
+> --- a/arch/arm/boot/dts/arm/vexpress-v2m-rs1.dtsi
+> +++ b/arch/arm/boot/dts/arm/vexpress-v2m-rs1.dtsi
+> @@ -420,7 +420,7 @@ mcc {
+>  					compatible = "arm,vexpress,config-bus";
+>  					arm,vexpress,config-bridge = <&v2m_sysreg>;
+>  
+> -					oscclk0 {
+> +					clock-controller-0 {
+>  						/* MCC static memory clock */
+>  						compatible = "arm,vexpress-osc";
+>  						arm,vexpress-sysreg,func = <1 0>;
+> @@ -429,7 +429,7 @@ oscclk0 {
+>  						clock-output-names = "v2m:oscclk0";
+>  					};
+>  
+> -					v2m_oscclk1: oscclk1 {
+> +					v2m_oscclk1: clock-controller-1 {
+>  						/* CLCD clock */
+>  						compatible = "arm,vexpress-osc";
+>  						arm,vexpress-sysreg,func = <1 1>;
+> @@ -438,7 +438,7 @@ v2m_oscclk1: oscclk1 {
+>  						clock-output-names = "v2m:oscclk1";
+>  					};
+>  
+> -					v2m_oscclk2: oscclk2 {
+> +					v2m_oscclk2: clock-controller-2 {
+>  						/* IO FPGA peripheral clock */
+>  						compatible = "arm,vexpress-osc";
+>  						arm,vexpress-sysreg,func = <1 2>;
+> @@ -447,7 +447,7 @@ v2m_oscclk2: oscclk2 {
+>  						clock-output-names = "v2m:oscclk2";
+>  					};
+>  
+> -					volt-vio {
+> +					regulator-vio {
+>  						/* Logic level voltage */
+>  						compatible = "arm,vexpress-volt";
+>  						arm,vexpress-sysreg,func = <2 0>;
+> -- 
+> 2.51.0
+> 
 
