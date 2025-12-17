@@ -1,189 +1,161 @@
-Return-Path: <devicetree+bounces-247336-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247337-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id F26CBCC7354
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 12:00:32 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51ABDCC7A91
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 13:40:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 45D33300A859
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 10:55:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 617E830CBE85
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 12:35:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BACFE35F8A8;
-	Wed, 17 Dec 2025 10:16:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2B6636BCC5;
+	Wed, 17 Dec 2025 10:19:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="QGXHAJ4z";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="fpm5EIM7"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="THOEb6ES"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1458835E55F
-	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 10:16:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0F8D36B07F;
+	Wed, 17 Dec 2025 10:19:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765966576; cv=none; b=lmxlzI6T3kgwXK7QaZe9tzKDda/s4Df6ypPYvHp8hd7laNlEl3+oBimyFHA3MHMHZ6elOGLhMVclxGCT0oWoc9UzE7nOmkoXEV9LM5lxXXZzQxfRrmGjB75Qg9YyIxmESD2/pJMvwYimTyR8Y7AG2ucYRf0WbwABqGYNouJm3cY=
+	t=1765966781; cv=none; b=HX2fgEfRZYb4MO0X8klkm+WTCZ83Nsnbx1i0uC9UxilD9wFnIe11QyvzBHgLDCaPWPmWs8xJPffC0Ggm8JWJZXZUmfItCaZGXB38S1XzPFKZbx7PwHkiZXQNCOH3DFlXGwcClrgolniIAV/7EzhFoKdLVsRLJOOYzBkOqb+GG64=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765966576; c=relaxed/simple;
-	bh=mH8nn9jjAfvWECfRjZaqUGZyvvJ0DKbDcSf4oOO1t94=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uQZSDVJslVI31QmUVqJFcvXN50p9xHThgu/Eqa5r0MqOsaLi+W3ncif/yhMXdGZN21OrtqYeNEgKSjbpFL+dXO34HMUIDjBhnmWjaGnqVzp9uH2r/jGSAQdatE+P0xvP/nNxLmvenvjEcFBH0ZsZG9EtuGtxePbmDFIe/OxWWPY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=QGXHAJ4z; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=fpm5EIM7; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BH3F0KD1871531
-	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 10:16:14 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=l/xZDnUeUO35b3I3C5M4BMwZ
-	n2jSVlNaPM2ESIW56t4=; b=QGXHAJ4zmJfmr31JVYuN8ZEdUH5TD53Qx9hl6phf
-	3UnD2jRX/I7QPZUcCu7y+UYCc+Gwr1+8aZJ91omayjDVpDMZLgcRIIq+x/8HktQ7
-	gvIUEibdjxSzpXYrH/HXkec2e4M/Yu4aNCXc4wyEh+Ifm4wgUigVY/Mu3vsubQPd
-	YoANU/ucqydFTBiwQ77iKeVbG961Eah9Lh/QHmvg0Dk4b5RD1pegATAXijEeBzDh
-	M4JR1FUgvW+Rh89wfMgLN3lXeADNhpDa8Zw+vzmnCk9y6Wm8ZuwSRW9eNTrtWApU
-	aPCdO509beOikV+XoiD/3Cvtsy6FVbL2acR78MBajuwwsQ==
-Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com [209.85.216.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b3jgq9jma-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 10:16:13 +0000 (GMT)
-Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-34c5d6193daso8017961a91.1
-        for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 02:16:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1765966573; x=1766571373; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=l/xZDnUeUO35b3I3C5M4BMwZn2jSVlNaPM2ESIW56t4=;
-        b=fpm5EIM7pzSZ4iUdxvVNJX/X16/BxgisCVal91x+mD+R+/6ODAT+/kQktQ8f5fRoOx
-         P0GO918M+2s51UEaQ0xaetKpjTjrKD2nmvMfmMYBAMyEL+JOBsudAiSh8obgzbgV/Fqc
-         Ww12/Gb4+EUipsGDE2Q9iD5vLUP1gXxUU1b3Zc++xyNjM64kAlfKWbRvfo4UUEvzVATA
-         12CpMHwrsmgfkJL5vXuZ+21gkYMzktgiJK8YqcA+wPSTpcd2GdG30ThqXgz5F8J7CI5W
-         Monx04iWP/BnBlaSLY1zMgwudWPGbNTeJTnPQtoa1DlW/SDjJk3l8RXSq5HO/ETPBN/o
-         NHmw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765966573; x=1766571373;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=l/xZDnUeUO35b3I3C5M4BMwZn2jSVlNaPM2ESIW56t4=;
-        b=rZSz4ZXeFGpFzdAPU+N/VLMwLKa2kX5BchnGzKTC2NxHlq2NE84x7KbQ3RzQfP09Tc
-         IFWxIzX0OY5K8CX2RlG0tlyULEl0UdI9wuZfGp4NBy1Rj8NS2AfNPvf4BEGHpkYIrP+H
-         AQ8agbnOpwtZYghDnSDw5uj+mKymIA3N6hi+4Fhvks+El111lT5iyciYOMtL0PyR4qWD
-         h1tmzfWJDutJc0z1xWDTCB+fK0/Y/YGF++/HNUy5S5RKUBlGiLihW45a39hmtHMztjvu
-         wne3vfoU60a4QkCnCIYAptgJ8yspxC1DSzpOREJU4yJifQnSCQg70uVgdbMbLnDioToG
-         jC4w==
-X-Forwarded-Encrypted: i=1; AJvYcCWIOELvbZR/ar5Gzrs5l15H6xjutPYQysq1ZjzxgsdyjVzbqhZ6RX9ajk2CMoLytgucXpkr54qBTmk7@vger.kernel.org
-X-Gm-Message-State: AOJu0YzGktBe2g/ihkeaXi/4StQyXMmjVk6+QbraifQohT7NJYoDsmho
-	5XmN7eXkkc1dqMK7bE9l3Arb1L6rc42uG7hVqv26pcLqx0jZd1sQlMdFgbeMaiO+miX7uB+OIi5
-	fIC9JToZYEXzM7QquiaynvJOxJTAstW6Hrci66cEnho/9pWFY4bna3j/eVNcQorht
-X-Gm-Gg: AY/fxX5opX6bteAH8fBOd4Mto8lGKNqhauT6kfMCQa+A+UcboVcCNy2D5wwLn//7j4w
-	SxbXzcjoGb4NyfmwRTJ4KhvRxkJdWgDK/oTSxytypuEIgxxtR1rlt1ZnxNX5vW5GBWzt/vWfosL
-	D7PuJCNdIDd/Hh7+HDpEjdQtBUhwUqwyHg6ibEhdV0ToSMsDmHZb1+0qts+ouitdgr4ndTxgx8O
-	WuVMtWLyvaPBvrzY1cvVBYOVr4CjT7OyvSDdbRJcUbL12Fu2GTJ/HP5ioTdoaz7FJNVKyYPtNWY
-	sRS9//GWMgGgP3GXStiXKu0oc+2GYqmZZ3qcbVnEAkeMbndUcJphZjs0HRlkuRAiudgVAuztymk
-	WoV9HNRq6H4o2oIdoykgAoV3yFn2KHegwexOX4YvxpmnipvZPoGu5V7fj9p7np6WFp5z/RxwkU3
-	jBgSrj2dT2HjdkoBYq0h9twiZDhHL+pbSg3SP+f2c=
-X-Received: by 2002:a05:6a21:6d96:b0:340:e2dc:95ae with SMTP id adf61e73a8af0-369afa081c2mr17186925637.42.1765966572869;
-        Wed, 17 Dec 2025 02:16:12 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IG28gYFW6jNzdH4o3+cp1m/WrdWI4UPCJQ4X5h2LS2EVukJ3JufUALexn+c50+Um2VFcin/4w==
-X-Received: by 2002:a05:6a21:6d96:b0:340:e2dc:95ae with SMTP id adf61e73a8af0-369afa081c2mr17186887637.42.1765966572360;
-        Wed, 17 Dec 2025 02:16:12 -0800 (PST)
-Received: from hu-varada-blr.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com. [103.229.18.19])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c0c2599228dsm18247772a12.1.2025.12.17.02.16.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Dec 2025 02:16:11 -0800 (PST)
-Date: Wed, 17 Dec 2025 15:46:04 +0530
-From: Varadarajan Narayanan <varadarajan.narayanan@oss.qualcomm.com>
-To: george.moussalem@outlook.com
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Manikanta Mylavarapu <quic_mmanikan@quicinc.com>,
-        Jassi Brar <jassisinghbrar@gmail.com>, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Gokul Sriram Palanisamy <gokul.sriram.p@oss.qualcomm.com>,
-        Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>,
-        Vignesh Viswanathan <vignesh.viswanathan@oss.qualcomm.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Subject: Re: [PATCH v7 0/8] Add new driver for WCSS secure PIL loading
-Message-ID: <aUKC5EuWRzsyrHnz@hu-varada-blr.qualcomm.com>
-References: <20251215-ipq5018-wifi-v7-0-ec4adba941b5@outlook.com>
+	s=arc-20240116; t=1765966781; c=relaxed/simple;
+	bh=2uCsiJL3FhY3PhVtUNXzBlzS29fMOK47hX+kAU0prvM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=QuzSbLSc93Qzg1S6EWQiRWJsFbMgpaCGyD0o90saknhyZwdXuLA4fwvbgJInQ04cucdkRvSG87FXOmuirz6yeAcq3Y+EPw5m52X+sIUzWLK90JCY/kYv4heMbxH71Bsm+PSJBdO9bGA7F080S1f2gwe9yJqjdpXp6VVOEY82cg8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=THOEb6ES; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1765966776;
+	bh=2uCsiJL3FhY3PhVtUNXzBlzS29fMOK47hX+kAU0prvM=;
+	h=From:Subject:Date:To:Cc:From;
+	b=THOEb6ESP5uwi6VGoS1PsKosEkj0i7ulYgOgyc7NgTxwpzFbyJjWiRyVERbgBgDSQ
+	 ofpGA/1oeAIwD/Pgz6hp/omZJKieqW1yx8HY0H6fcQx1dv2ufqKUNwRbGOOXOj/RtG
+	 5v7dYh2XuLBH+d+3gnkvzqXvNlUwo6zOdmW6TvGuO9tMATnK57FLpWbZiexUWfy/cV
+	 6BdUNOn7XamtBqd6E90wbHczSSDl4UvIAkEZHPDuV8vBduCOVUOb6WmIQ83p3HXZzT
+	 JSOfnEcf/cT5Ny6XtZMH1iLbC7TBEJFJapXOc41qgtRADjiX3s8m9EGilpaxGDj+rc
+	 AL8kOac3LS8Kw==
+Received: from yukiji.home (amontpellier-657-1-116-247.w83-113.abo.wanadoo.fr [83.113.51.247])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: laeyraud)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id E38FF17E0506;
+	Wed, 17 Dec 2025 11:19:35 +0100 (CET)
+From: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+Subject: [PATCH v2 00/12] Add HDMI support for Mediatek Genio
+ 510/700/1200-EVK and Radxa NIO-12L boards
+Date: Wed, 17 Dec 2025 11:18:59 +0100
+Message-Id: <20251217-mtk-genio-evk-hdmi-support-v2-0-a994976bb39a@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251215-ipq5018-wifi-v7-0-ec4adba941b5@outlook.com>
-X-Authority-Analysis: v=2.4 cv=VLjQXtPX c=1 sm=1 tr=0 ts=694282ed cx=c_pps
- a=UNFcQwm+pnOIJct1K4W+Mw==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
- a=kj9zAlcOel0A:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=LpQP-O61AAAA:8
- a=EUspDBNiAAAA:8 a=TL2kJGixJNIIMCu0d0IA:9 a=CjuIK1q_8ugA:10
- a=uKXjsCUrEbL0IQVhDsJ9:22 a=TjNXssC_j7lpFel5tvFf:22 a=pioyyrs4ZptJ924tMmac:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjE3MDA4MiBTYWx0ZWRfXw9/Aw5TlpGMw
- 9SQSlVuPMsKF/e97FlQLn0IV8M/m/+pnDMtNIrvRyiQUCa0aE1J4SV84EAXL/4DgrY57WMpFZIX
- DqDMV1xZ52VGA0+iYa7ccnCAIFfoxrwk7YSYxaOBY6xDvBTll8IZLnIoLnU1MpmLPvhjZb5K5N+
- haKpmF0qmMGvvubJe1cDX58sYrnn2pxOwRamBudyBmRwj9g/CavnhWafVfE1tLLNmZRcWpJl10l
- ORSMWEkbfdRwx7PDBOwQujhSzaKNwErxnr3GmNVPpg8fB3PN0WaXGUw6o+qgOosvOb+ONTaoJdg
- lNpsd8Gv7enauYrzEP816MSRtWFEUZuGGVo4kd2hGg5yLkijJX1KBixfjBfhfaFZ+dCE4FKs8KA
- e94Uh6FMdLSKID0DUrRDiRRVpp6aFw==
-X-Proofpoint-ORIG-GUID: Ub9Dht5nuKNcuNywdGty4VrmgynhZLUk
-X-Proofpoint-GUID: Ub9Dht5nuKNcuNywdGty4VrmgynhZLUk
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-17_01,2025-12-16_05,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 adultscore=0 suspectscore=0 bulkscore=0 malwarescore=0
- priorityscore=1501 impostorscore=0 clxscore=1015 lowpriorityscore=0
- phishscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
- definitions=main-2512170082
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/32OzQ6CMBCEX4Xs2TW0BhBOvofhUGCBDT/FthAM4
+ d2t4NnjN8nMNxtYMkwWsmADQwtb1qMHeQmgbNXYEHLlGWQoIyHDGw6uw4ZG1khLh201MNp5mrR
+ xKJJKRSIWd5ko8AOToZrXY/yZn2zoNXuHO0MolCUs9TCwy4KRVoenRyTwLbRsnTbv49wijsbvR
+ /rvxyIwxFTFIoyprgsVP0rd96rQRl29DPJ93z8v28wF+QAAAA==
+X-Change-ID: 20251203-mtk-genio-evk-hdmi-support-17da5161827a
+To: Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Chun-Kuang Hu <chunkuang.hu@kernel.org>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, 
+ Guillaume Ranquet <granquet@baylibre.com>
+Cc: kernel@collabora.com, Krzysztof Kozlowski <krzk@kernel.org>, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>, 
+ =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1765966775; l=3341;
+ i=louisalexis.eyraud@collabora.com; s=20250113; h=from:subject:message-id;
+ bh=2uCsiJL3FhY3PhVtUNXzBlzS29fMOK47hX+kAU0prvM=;
+ b=DwHgGu3ADpVy9HJNoeg+SuijtIeOfDFwK7PZZIkmgREDdVTFJjHnuHBSl7+F9kKH/iEvKf+Ah
+ oi8yKWg/3y9ApQSePYtEgl9XuwoXwTfSU1xD3VYKXNqcoBbT/xZgRbg
+X-Developer-Key: i=louisalexis.eyraud@collabora.com; a=ed25519;
+ pk=CHFBDB2Kqh4EHc6JIqFn69GhxJJAzc0Zr4e8QxtumuM=
 
-Dmitry/George,
+This patch series adds and enables the HDMI output support for the
+following boards:
+- Mediatek Genio 510-EVK (MT8370)
+- Mediatek Genio 700-EVK (MT8390)
+- Mediatek Genio 1200-EVK (MT8395)
+- Radxa NIO-12L (MT8395)
 
-> Imported from f20250417061245.497803-1-gokul.sriram.p@oss.qualcomm.com
-> I've resumed Gokul's work as the last submission dates back April 2025.
+Patch 1 is a 'mediatek,hdmi-phy' dt-binding fix for MT8195 SoC and a
+revised version of [1], that addresses previous feedback from mailing
+list ([2]).
+Patch 2 was split from [1] into a separate patch and adds a MT8188 SoC
+compatible in 'mediatek,hdmi-phy' dt-binding.
+Patch 3 documents in 'mediatek,hdmi-phy' dt-binding extra clocks for
+MT8195 SoC.
+Patch 4 adds all of the nodes that are required to enable HDMI output
+for MT8195 SoC and its variant (MT8395).
+Patch 5 adds the same but for MT8188 SoC and its variants (MT8370,
+MT8390).
+Patches 6 to 11 enable HDMI output and sound support for each board.
+Patch 12 enables the Mediatek HDMIv2 driver as module in defconfig.
 
-Thanks for following up on this.
+The series is based on linux-next (tag: next-20251217).
 
-> This series depends on Sricharan's tmel-qmp mailbox driver series v4 [1].
+[1] https://lore.kernel.org/linux-mediatek/20250724083914.61351-16-angelogioacchino.delregno@collabora.com/
+[2] https://lore.kernel.org/linux-mediatek/ee525312-bde1-4724-b32f-83be32c87696@kernel.org/
 
-Since Sricharan's tmel-qmp driver is stuck, this patch series will not
-get merged. Shall I drop the ipq5424 related patches and portions of
-code in the driver and post a new version so that other SoCs are
-unblocked. Please let me know.
+Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+---
+Changes in v2: 
+- Rebased over next-20151217 tag
+- Updated patch 3 to take into account Rob Herring remarks and simplify
+  patch
+- Updated patch 4 to align HDMI phy clock name changes done in patch 3. 
+- Add reviewed-by trailer in patch 1
+- Link to v1: https://lore.kernel.org/r/20251209-mtk-genio-evk-hdmi-support-v1-0-9a6106effba6@collabora.com
 
-Thanks
-Varada
+---
+AngeloGioacchino Del Regno (5):
+      dt-bindings: phy: mediatek,hdmi-phy: Fix clock output names for MT8195
+      arm64: dts: mediatek: mt8195: Add DPI1, HDMI, HDMI PHY/DDC nodes
+      arm64: dts: mediatek: mt8188: Add DPI1, HDMI, HDMI PHY/DDC nodes
+      arm64: dts: mediatek: mt8390-genio-common: Enable HDMI output
+      arm64: dts: mediatek: mt8395-radxa-nio-12l: Enable HDMI output
 
-> - Secure PIL is signed, split firmware images which only TrustZone (TZ)
->   can authenticate and load. Linux kernel will send a request to TZ to
->   authenticate and load the PIL images.
->
-> - When secure PIL support was added to the existing wcss PIL driver
->   earlier in [2], Bjorn suggested not to overload the existing WCSS
->   rproc driver, instead post a new driver for PAS based IPQ WCSS driver.
->   This series adds a new secure PIL driver for the same.
->
-> - Also adds changes to scm to pass metadata size as required for IPQ5332,
->   reposted from [3].
->
-> [1]
-> https://patchwork.kernel.org/project/linux-arm-msm/cover/20250327181750.3733881-1-quic_srichara@quicinc.com/
->
-> [2]
-> https://patchwork.kernel.org/project/linux-arm-msm/patch/1611984013-10201-3-git-send-email-gokulsri@codeaurora.org/
->
-> [3]
-> https://patchwork.kernel.org/project/linux-arm-msm/patch/20240820055618.267554-6-quic_gokulsri@quicinc.com/
+Louis-Alexis Eyraud (6):
+      dt-bindings: phy: mediatek,hdmi-phy: Add support for MT8188 SoC
+      arm64: dts: mediatek: mt8390-genio-common: Add HDMI sound output support
+      arm64: dts: mediatek: mt8395-radxa-nio-12l: Add HDMI sound output support
+      arm64: dts: mediatek: mt8395-genio-common: Enable HDMI output
+      arm64: dts: mediatek: mt8395-genio-common: Add HDMI sound output support
+      arm64: defconfig: Enable Mediatek HDMIv2 driver
 
-[ . . . ]
+Nícolas F. R. A. Prado (1):
+      dt-bindings: phy: mediatek,hdmi-phy: Document extra clocks for MT8195
+
+ .../devicetree/bindings/phy/mediatek,hdmi-phy.yaml |  29 +++-
+ arch/arm64/boot/dts/mediatek/mt8188.dtsi           |  82 +++++++++++
+ arch/arm64/boot/dts/mediatek/mt8195.dtsi           |  85 ++++++++++++
+ .../boot/dts/mediatek/mt8390-genio-common.dtsi     | 150 +++++++++++++++++++++
+ .../boot/dts/mediatek/mt8395-genio-common.dtsi     | 150 +++++++++++++++++++++
+ .../boot/dts/mediatek/mt8395-radxa-nio-12l.dts     | 150 +++++++++++++++++++++
+ arch/arm64/configs/defconfig                       |   1 +
+ 7 files changed, 645 insertions(+), 2 deletions(-)
+---
+base-commit: a512be9e8838afec6baa83767e291dfca8657410
+change-id: 20251203-mtk-genio-evk-hdmi-support-17da5161827a
+
+Best regards,
+-- 
+Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+
 
