@@ -1,46 +1,100 @@
-Return-Path: <devicetree+bounces-247386-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247387-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8D02CC761D
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 12:41:36 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 419C8CC767D
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 12:45:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 68BAA300462F
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 11:41:34 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A4233305132D
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 11:43:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB5B6281368;
-	Wed, 17 Dec 2025 11:41:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FF67326937;
+	Wed, 17 Dec 2025 11:43:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rgkJUJJe"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="KWjXZXOX";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="M+pmSA2r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 521E0259CAF;
-	Wed, 17 Dec 2025 11:41:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4416313E2F
+	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 11:43:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765971690; cv=none; b=gGVykpvF/AdSwbHoxE/a47/bFcs4lkSBdyD7n3wx6RfRxzxyKGzxBMDfrHYLWY8+AlMjiG+J8x1bVO9USNG30TvwKHhfdhT1pcHDU91lQgbo2fg12OyqhSU8a9VTSPInvETxV3+Xo9eX+TWFdt/loKN+DBxdOswKrsqOvYq8nUk=
+	t=1765971803; cv=none; b=Kfgr/tLvuJln0PEVNXM22vJr7OO7v9dFxR5B6dOHFMPzrvgT9gzFUACw995BozwEFchB1q2Ya+Rc7pvLWANIKF3dQnakBPu4wLUGPc8aqvQ+eiaP7h2VT8O9i4tRM3NRgdxESkCBu8nOiVBPTv7wq5FvyHxg/hD/e61PSejZb8E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765971690; c=relaxed/simple;
-	bh=QureFGhz+Rjaa7+iRO0a7okZDgRSIaqdEUA2PUeZ2+8=;
+	s=arc-20240116; t=1765971803; c=relaxed/simple;
+	bh=3EnvTxY0/bfuIeNDRDiGlF/1dOg95S8RcBq4z93kXFQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VhyscdyKiolCJYaXJuuIWlNaAuUu+00x4y/CoI4yJpvHxXMdmHD9fIE6/VuC+u9OMNRo8vBMy30tWd6SrJDG5R7+/Cinou0izkJJQE0o0zPScEQ3w7SLAUza1db8ACILM3qGuy19FQXGhk4G+kGJSqqA5BCbazMHPQv/djZQSTw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rgkJUJJe; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E161C4CEF5;
-	Wed, 17 Dec 2025 11:41:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765971689;
-	bh=QureFGhz+Rjaa7+iRO0a7okZDgRSIaqdEUA2PUeZ2+8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=rgkJUJJeavzzA6Zd4VIHKmnMsfK5r/NGqBnqhpFApPQXqcWT3yMqr8Cj3AIz6ge1Z
-	 0KSN1tj76FCMnrybq+qoTCQEbD9zLHhchKTW0qtyhfrN9plYZLACOBkVHIG6A0Agxg
-	 26bbp9klTjMvQq+88v+OfOMjeCqYCp5DrzbkrCovU2CV5Zlej+QFoRzgldbNYS0onp
-	 doDQpcDEmhmlN2StpdeGS+woTTldhTQjDKofpcibeATt/nP8Gfy/fiFWCTtHgAFp6t
-	 f3kujRaryd48v6qxdJxaWWuki1JRhcGoAsYbMUcz7OsGwAnLLvp8yyFQP0qX2SmUYl
-	 TIxsgbUX96jGg==
-Message-ID: <cd04e23a-9523-4d25-8240-29a0dffa0e75@kernel.org>
-Date: Wed, 17 Dec 2025 12:41:23 +0100
+	 In-Reply-To:Content-Type; b=HtHRYsyk0m+DpQgly5YWwJdbzYgoCylVEERnu9AOz3NEdMIssOH9KE4bp4fZ5dR8kxyrSAqUYu9ewB6acTNEZjFdjBQZnq34bHp9MTBgU7/acJNt1+oTiExuYBnaOKfulWie229om+S2M7AJNp3Nlp3LhMvXARBCMFOyW4PqtbM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=KWjXZXOX; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=M+pmSA2r; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BH9pLZx008982
+	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 11:43:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Uc8r4ogfZe3Nfe8rm/DbzqbRnN7GoD19BnhRvcrJm6s=; b=KWjXZXOX8V/XajIs
+	dv+x3rVmMcP3G/RFoEAbmHBI8QKT9Es6ZSbcA+kSr+II3wFXJYIe+DFj0ubQZNEc
+	q/niq4jd6tmb/mXx6GWfIFdZh5sH/HKv6GVos8q1hykwec7aJRBxTcyxRcRyLtiA
+	UhEC+oUGYNRYXJMaHg/H0Uz5N6Ih8nLmZ59GniY0GSl7sroz4/oLo7cKdaXwmEoF
+	qasCxppR8EaCDL2QLUhmQZyqrSK+746V+4hQbxC0toUTB1RH2BuJ7M/X8fV05ZjW
+	7rJCA/mv77xlHhH7O0BrSAx4OULV4ZXg8kCVdI/xu0Vy/0HwapmuZ55xpNGT1ULj
+	fcMSJw==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b3t8e0a7e-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 11:43:20 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4f34c24e2cbso3706291cf.3
+        for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 03:43:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1765971800; x=1766576600; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Uc8r4ogfZe3Nfe8rm/DbzqbRnN7GoD19BnhRvcrJm6s=;
+        b=M+pmSA2rRflhVHilb2At9muUc+Odx4mezkfLC1FWMIpT6G3Ywc27NTy+3qGK40lpPb
+         aJ813Do0TJDZuAUl13crWods8fWP1DQClvotSB7eCSMHmxHY8dH7VQ+vJt0DhAJLqt+c
+         aDsIk9YyP9njEulsGkA51tM55wYYjmY2c9iQXPRbJdXSXYgCEbbWr0o1XNe+C+f8GzfC
+         QHU2UQ61Q5km0XeUbOFuc5XVpWs1yF+/VlTfqmWAUD1yHmSA/8U7gmtxFKhfWvVv+lst
+         IpNhzGCyXSK9cX6JStoKIW1dhexDwpko3oFNYgMejtdZbh69zIDmGv/Y5U20Vf0RkUwk
+         HTjQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765971800; x=1766576600;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Uc8r4ogfZe3Nfe8rm/DbzqbRnN7GoD19BnhRvcrJm6s=;
+        b=jY9dIAWlMxTAgkrSpn8rD8REeYqFMnOtU5dUcCnbN/ifyNmRCjR6zJzF+LN/Y6lH9m
+         lqgFVqjhxmECbLufnOBKTImUamSuC0Qsx5bumlY9NUONRoEVLA0mjtFiWA4a4F89+wnM
+         TlNRByXX18qXTfT7eiLfptqsPTBjG2aZa0//kWjhsNAIaSDAD2SKaSaO4NJIdkbuiE2Z
+         YdLc8yXrX3O+4lSfwZeUX3WyEfIRc3CUA65rxHKDeJlregmBZ0fjnQ9kbQGirxJDzCN+
+         R3NLjA7I/LqVq4X5Ipjyq6eMRtp1KDjmtpBkhSiZ+naAD0lUkpHa8GwaCAS9m9linkU8
+         V+Cw==
+X-Forwarded-Encrypted: i=1; AJvYcCXmh9GeTXw0rWT4+5AGOlhiQkNfbvxkgMbFTfXyqB/8SfA++3VZhGcFYiPKY2q+XJXCJjB/BhlWoVAj@vger.kernel.org
+X-Gm-Message-State: AOJu0Yya9X9V8RpIeM5YHkfbZdUTqF1cj83CSKGI98JS2p/6jTeQynEo
+	3INpPS637h1mD2jfg0BFmJ1ffvPaNtYmGurMwQvsLgxO0mjFrG2tv7QbAZL5kiY53orIDJbic5a
+	HcBx9CkZ3bridFYsQckTYH53OIkSqngdrkQ50kI892n0diqc0WeiM2Zd9rEvX7IxT
+X-Gm-Gg: AY/fxX58iOjRsop3RT0iHXfAirkJApcT3FyhqVAFoIwY6oqPlFDWtRkO5c+tjr7vPLJ
+	b7l40FcSY2TgmyyexeW9NgeUeMAzDmz/H3OYWMvZmbQOLUkdxQBuWCEuuuUr0D/30jmploQjti9
+	WxDL6N8jiVrGe1fXDQtDWQvw2fkp9BzqWhjDo133TA6lDsgyoAVOF4tMBRRY7ZCP+fF54CK0I1M
+	SmkxktShtVcvtzZnZrLmAdSK+Vv7V1IQnnpFsiBVUCBOWsMeD8xSaEB0PTHFtnyzmD+iWczPAdD
+	n+OtILx1C+Uia+szGj4ViwC4xzcXpkkMR3N0nRij3fTZPqtJxJf8T4bJAl3sKm0B61oGPfBOa8C
+	/UAjrH0Hvktn0k2iXXeA/Mg8/uazFgITJI0uNCznK0gtY4lPA/0ITXK+l8kJ4ihv39A==
+X-Received: by 2002:ac8:5e09:0:b0:4ec:f9c2:c1ec with SMTP id d75a77b69052e-4f1d06772cemr182329441cf.9.1765971799794;
+        Wed, 17 Dec 2025 03:43:19 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGPGUpg1VEdJQV0I0ezVEgDQeWCJmbibhBI34HanVShebTFaB9WoF8Il/29YJ8qGQzBrQH8pw==
+X-Received: by 2002:ac8:5e09:0:b0:4ec:f9c2:c1ec with SMTP id d75a77b69052e-4f1d06772cemr182329231cf.9.1765971799255;
+        Wed, 17 Dec 2025 03:43:19 -0800 (PST)
+Received: from [192.168.119.72] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b7fc04f6015sm1023112366b.50.2025.12.17.03.43.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 17 Dec 2025 03:43:18 -0800 (PST)
+Message-ID: <28207f1f-31f0-4007-bab5-e073ddf2d262@oss.qualcomm.com>
+Date: Wed, 17 Dec 2025 12:43:16 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,220 +102,145 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 10/12] dt-bindings: ras: document estatus provider
-To: Ahmed Tiba <ahmed.tiba@arm.com>, linux-acpi@vger.kernel.org,
- devicetree@vger.kernel.org
-Cc: tony.luck@intel.com, bp@alien8.de, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, catalin.marinas@arm.com, will@kernel.org,
- linux-arm-kernel@lists.infradead.org, rafael@kernel.org,
- linux-doc@vger.kernel.org, Dmitry.Lamerov@arm.com, Michael.Zhao2@arm.com
-References: <20251217112845.1814119-1-ahmed.tiba@arm.com>
- <20251217112845.1814119-11-ahmed.tiba@arm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v8 00/14] Peripheral Image Loader support for Qualcomm
+ SoCs running Linux host at EL2
+To: Vikash Garodia <vikash.garodia@oss.qualcomm.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
+        Bryan O'Donoghue
+ <bod@kernel.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20251121-kvm_rproc_v8-v8-0-8e8e9fb0eca0@oss.qualcomm.com>
+ <0156c327-b867-481e-af24-679f037bfa56@linaro.org>
+ <Ux4KioDAyhqgZYleT-eeeFKzuT_qadCIpP3RgyB40apZPX4I9_JwcfY9mebop4gmFcyh4LPw0KQvFzL4zzysJQ==@protonmail.internalid>
+ <20251121113751.tnqw5abm5sd2rgr7@hu-mojha-hyd.qualcomm.com>
+ <9dfe5343-824d-42c2-aab8-8389602601e9@kernel.org>
+ <20251202083650.luk2jpcquq2pcf2r@hu-mojha-hyd.qualcomm.com>
+ <623225c2-166a-49a1-9856-d02ed55f1e47@oss.qualcomm.com>
+ <bds552pvggsf6jgfyghyigp2fb6zb6hucwqirwye5puctnrhdi@tqw4b2nc3mkg>
+ <64dbe824-a94c-4394-8cbe-ebdb7a3c42fd@oss.qualcomm.com>
+ <qnpgm5zmiqvwwmwc4z64uqssodrkcjaai4ro5tt36wua2jljlv@y3dx5s2sxrlp>
+ <55f68c6f-9b7e-4393-9ca2-b94551cd81b8@oss.qualcomm.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251217112845.1814119-11-ahmed.tiba@arm.com>
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <55f68c6f-9b7e-4393-9ca2-b94551cd81b8@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjE3MDA5MiBTYWx0ZWRfX+fg4wY9lZ3tF
+ UX1gOvYQBM06BiedQTPHZFN2LfPWMESJBPU2mqMce8bWVsS66sffHg24F8dLNvMrM1mADZvg3Ay
+ NtTYo7HdZpwx6pTHzNeyszqWUnCqwDQRUAMlXy/RF2Zpsi2kb/Kfu1ThjvtNTVGgxRCMGAJGC0/
+ 4SszKALeGGnRBZeLcSqSqWEJsStDksXCeurm4gBbTQZPvgCi7ewHtiQv8SMDutLpuOolouQh4D5
+ skp57u+FsXGLe7wCexFLUG05gVIaRbdUM6aXUFxejnvYMVUQP4Pr3CR3qlxxkpvq3mNFIruLRXr
+ Lo088jwg3A8SvgK6Xq8r04hwANSQfc1bETL/vNOAms9I9YieKKBrTPCeWzN7IqxPyMnVIDa95uK
+ QaZGiVafJ+Oo/dNLM4WZ1/DVPw5mZA==
+X-Proofpoint-GUID: SXPmVFMUvKtS96PZbRsFYbmtTTRm3AEE
+X-Proofpoint-ORIG-GUID: SXPmVFMUvKtS96PZbRsFYbmtTTRm3AEE
+X-Authority-Analysis: v=2.4 cv=EsHfbCcA c=1 sm=1 tr=0 ts=69429758 cx=c_pps
+ a=WeENfcodrlLV9YRTxbY/uA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=QbrqHIRdYo9yJpEGGWUA:9 a=AxdYRY707WvbTN9U:21 a=3ZKOabzyN94A:10
+ a=QEXdDO2ut3YA:10 a=kacYvNCVWA4VmyqE58fU:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-17_01,2025-12-16_05,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 bulkscore=0 priorityscore=1501 suspectscore=0 impostorscore=0
+ clxscore=1015 lowpriorityscore=0 phishscore=0 spamscore=0 adultscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512170092
 
-On 17/12/2025 12:28, Ahmed Tiba wrote:
-> Add a binding for firmware-first CPER providers described via
-> DeviceTree. It covers the shared status block, optional acknowledgment
-> registers, interrupt versus polling modes and the SEA notification
-> flag so non-ACPI platforms can describe their error sources.
+On 12/17/25 11:08 AM, Vikash Garodia wrote:
 > 
-> Signed-off-by: Ahmed Tiba <ahmed.tiba@arm.com>
-> ---
->  .../devicetree/bindings/ras/arm,ras-ffh.yaml  | 95 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 96 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/ras/arm,ras-ffh.yaml
+> On 12/6/2025 2:48 AM, Dmitry Baryshkov wrote:
+>> On Wed, Dec 03, 2025 at 10:48:14AM +0530, Vikash Garodia wrote:
+>>>
+>>> On 12/3/2025 2:54 AM, Bjorn Andersson wrote:
+>>>> On Tue, Dec 02, 2025 at 03:43:17PM +0530, Vikash Garodia wrote:
+>>>>>
+>>>>> On 12/2/2025 2:06 PM, Mukesh Ojha wrote:
+>>>>>> On Thu, Nov 27, 2025 at 10:25:23AM +0000, Bryan O'Donoghue wrote:
+>>>>>>> On 21/11/2025 11:37, Mukesh Ojha wrote:
+>>>>>>>>> Sorry.
+>>>>>>>>>
+>>>>>>>>> Did we actually come up with a cogent reason to omit the video firmware
+>>>>>>>>> loading here ?
+>>>>>>>>>
+>>>>>>>>> AFAIU it is required for Lemans and Glymur - leaving it out is blocking
+>>>>>>>>> getting video stuff done and storing up trouble.
+>>>>>>>>>
+>>>>>>>>> What exactly is the blockage - is it something you want help with ?
+>>>>>>>> I replied to you here[1] and given my reason..till something concluded on
+>>>>>>>> "multi-cell IOMMU[2]", I can not add video and block what is working
+>>>>>>>> already.
+>>>>>>>>
+>>>>>>>> [1]
+>>>>>>>> https://lore.kernel.org/lkml/20251105081421.f6j7ks5bd4dfgr67@hu-mojha-
+>>>>>>>> hyd.qualcomm.com/
+>>>>>>>
+>>>>>>> Why though ?
+>>>>>>>
+>>>>>>> You are mixing together the issue of multiple SIDs and the original loading
+>>>>>>> of firmware which could easily reuse the venus method of
+>>>>>>>
+>>>>>>> &iris {
+>>>>>>>     video-firmware {
+>>>>>>>         iommus = <&apss_smmu hex>;
+>>>>>>>     };
+>>>>>>> };
+>>>>>>
+>>>>>> I completely understand what you are saying, and it would be very easy
+>>>>>> for me to do that if it gets accepted. However, I doubt that the people
+>>>>>> who raised this concern would agree with the approach.
+>>>>>>
+>>>>>> I’m not sure if the video team would like to pursue pixel/non-pixel/firmware context
+>>>>>> banks separately. I’ll leave this to @Vikas to answer.
+>>>>>
+>>>>> Not exactly as a separate sub-node, but i do like the idea of introducing a
+>>>>> simple iommu property, something like this, which Stephan proposed earlier
+>>>>> in the discussion [1]
+>>>>>
+>>>>> firmware-iommus = <&apps_smmu ...>;
+>>>>>
+>>>>> I understand that we are doing the iommu-map thing, but a property
+>>>>> exclusively for firmware like above look much simpler to me.
+>>>>>
+>>>>
+>>>> "We know we need to find a generic solution to this very problem, but
+>>>> while we work on that let's add this quick hack to the ABI"?
+>>>
+>>> I would not call that as hack, rather a simpler solution instead of packing
+>>> everything into the generic iommu-map.
+>>>
+>>> "firmware-iommus" is much more readable to interpret something running in
+>>> el2 mode, than digging into function ids inside iommu-map and then matching
+>>> it up with specific SIDs to confirm.
+>>
+>> If you want it formally, NAK from my side for firmware-iommus. Either
+>> reuse an existing approach (at least it makese sense from the historical
+>> point of view) or introduce a generic approach, which is iommu-maps. The
+>> proposed firmware-iommus is definitely a hack around the IOMMU
+>> properties.
+>>
+>> But it's really off-topic here.
 > 
-> diff --git a/Documentation/devicetree/bindings/ras/arm,ras-ffh.yaml b/Documentation/devicetree/bindings/ras/arm,ras-ffh.yaml
-> new file mode 100644
-> index 000000000000..0d2acbf8e8a8
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/ras/arm,ras-ffh.yaml
+> Infact i see a concern with the iommu-map approach for firmware SIDs. Let say the hardware generates 10 SIDs, including firmware. So video binding should describe those 10 SIDs and the DTS should have all those 10 SIDs as well, including firmware SID.
+> Given above, video driver cannot distinguish if the SOC is running in EL2 (KVM) mode or Gunyah mode.
 
-What is ras? There is no such directory so some description would be
-useful. Usually you do not get your own directory per binding.
+EL2 vs Gunyah is not hard (something like is_hyp_mode_available()), but
+again, this should all be calling some sort of is_gunyah() which would
+come from the gunyah hyp drivers, which have seen no activity on lkml
+for over a year..
 
-> @@ -0,0 +1,95 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/ras/arm,ras-ffh.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Arm Firmware-First Handler (FFH) CPER provider
-> +
-> +maintainers:
-> +  - Ahmed Tiba <ahmed.tiba@arm.com>
-> +
-> +description: |
-> +  Some Arm platforms describe a firmware-first error handler that exposes a
-> +  Common Platform Error Record (CPER) buffer directly via DeviceTree. The OS
-> +  maps the buffer to consume the error records, and firmware signals that a new
-> +  record is ready either by asserting an interrupt or by relying on a periodic
-> +  poll. This binding describes the buffer and the associated notification
-
-Do not describe what the binding does. Describe the hardware or firmware.
-
-> +  signal. If firmware delivers the error via Synchronous External Abort (SEA),
-> +  the optional sea-notify flag marks the source accordingly.
-> +
-> +properties:
-> +  compatible:
-> +    const: arm,ras-ffh
-
-Again ras - what's that? Your patch or binding must explain that.
-
-> +
-> +  reg:
-> +    minItems: 1
-
-Why is this flexible?
-
-> +    items:
-> +      - description: CPER status block exposed by firmware
-> +      - description:
-> +          Optional 32- or 64-bit acknowledgment register. Firmware watches this
-> +          register and expects bit 0 to be written to 1 once the OS consumes the
-> +          status buffer so it can reuse the record.
-> +
-> +  reg-names:
-> +    items:
-> +      - const: status
-> +      - const: ack
-
-Does not match reg.
-
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +    description:
-> +      Optional interrupt used to signal that a new status record is ready. If
-> +      omitted, the OS relies on the polling interval property.
-
-What OS is doing should not really matter. Either you have the interrupt
-or not.
-
-
-> +
-> +  poll-interval:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 1
-> +    description:
-> +      Optional polling interval, in milliseconds, for platforms that cannot
-> +      route an interrupt.
-
-That's OS policy, not suitable for binding.
-
-> +
-> +  arm,sea-notify:
-> +    type: boolean
-> +    description:
-> +      Set if the platform delivers these errors as Synchronous External Aborts.
-
-This is implied by the compatible, no?
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        poll-interval: false
-> +    then:
-> +      required:
-> +        - interrupts
-> +  - if:
-> +      properties:
-> +        interrupts: false
-> +    then:
-> +      required:
-> +        - poll-interval
-> +  - if:
-> +      properties:
-> +        reg:
-> +          minItems: 2
-> +    then:
-> +      required:
-> +        - reg-names
-
-Drop all this.
-
-> +
-> +unevaluatedProperties: false
-
-I do not see any schema referenced.
-
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    ras-ffh@fe800000 {
-
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-If you cannot find a name matching your device, please check in kernel
-sources for similar cases or you can grow the spec (via pull request to
-DT spec repo).
-
-> +        compatible = "arm,ras-ffh";
-> +        reg = <0xfe800000 0x1000>,
-> +              <0xfe810000 0x4>;
-> +        reg-names = "status", "ack";
-> +        interrupts = <0 32 IRQ_TYPE_LEVEL_HIGH>;
-
-Use proper defines.
-
-Best regards,
-Krzysztof
+Konrad
 
