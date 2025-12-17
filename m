@@ -1,157 +1,413 @@
-Return-Path: <devicetree+bounces-247451-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247452-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1B6BCC7DC5
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 14:37:34 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8CD3CC7DF2
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 14:38:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A91FD30625A1
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 13:33:07 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 53969308CBF6
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 13:33:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07B1A3659FA;
-	Wed, 17 Dec 2025 13:33:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA5CF3659EB;
+	Wed, 17 Dec 2025 13:33:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sartura.hr header.i=@sartura.hr header.b="G3TZwRs8"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="CJD3XkNO";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="hJnN+Txb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF8643659E7
-	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 13:33:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EA473659E5
+	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 13:33:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765978385; cv=none; b=BTvHVupAiw9M/FjwKlazW3NZ2U81ZfsQ5wea0g5f48DqPGTRJwyCW8ehjONrSsGHQu1ogttclsAAil/gmyCRn/QnwlGVw5NAXEiAaFfayFHtQNXWnnvkc9x6ycdjsKpB9rULde82iPm27XJkV0joZHd30t1HohEoJujq2XCtXHk=
+	t=1765978400; cv=none; b=LDFZk4dEL2yrAmVgtovOO+eegvxIITqRU7zfYC1up93wuIQo3FLVWPOXdslosXSAX6Rl+jccwjBeyVIZjcPn7YoGvyKFI2ska9v7S0VwqsSXXUbgEnJ88UgcGW8vz0YtCjVfDnPHNNYC3McpmnEyJilI/o3/28bqSALjCkeFiDc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765978385; c=relaxed/simple;
-	bh=3NxV/sdr2BZyW6Fp6jeGvfWxTA5ctLtFaPPYKmOmWzs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=avk0kFGVr0ql1ByUghaZUXnseRhqB9r60DtEiGc97LOkoAzNalSHHMz7T61gRdsBwzmnYQ6em70pnqWLme25Ce8xLobe/2ebczX3A/TjyU3qI6IaNDhFQfbLGVXHXUp+LNB1BFhE8g4YMbdghoAKBTNIHa+5c3u71QheTK/JKiE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sartura.hr; spf=pass smtp.mailfrom=sartura.hr; dkim=pass (2048-bit key) header.d=sartura.hr header.i=@sartura.hr header.b=G3TZwRs8; arc=none smtp.client-ip=209.85.208.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sartura.hr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sartura.hr
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-64981b544a1so7797355a12.1
-        for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 05:33:03 -0800 (PST)
+	s=arc-20240116; t=1765978400; c=relaxed/simple;
+	bh=LDbCHflosL0ko8Od/F+AII6jXWfSoY/3+Zli7nI+CIU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WBMwz2lVbJdsJiC96Oyzj4b9s/tSFKY5F9r9D9Xm6fPrM4zo3SjinqgvJgQdQbcTfyiOYy2HWCLFdjqWnm6gaONuIntwWNHItLGnI9QfGr2Ol2YcaMks5p7e7x/gLl6zP8+yl/57UlqqHZpQ7Cx7Yp17CJmEEB98530t8FjSIJs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=CJD3XkNO; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=hJnN+Txb; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BHCKoff2465113
+	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 13:33:17 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	670vN864gC3iB2bSJ0zYYlz3U0Y8dJI6J9VlkkC8Zf8=; b=CJD3XkNOMmVDiPgN
+	8HzvggxK+Pm08SDgncNA8FVI8TFgsrSJf6VFzL8do7egYQ8OlTTGo9jlEFH5lRn6
+	EN1EG+QibXsrRPFU2JjwdY6fKm8LpwU0aI8x1YBPWnU1aoJ9HG20+DmE+Xcuus/N
+	KkcKO9Nkefj6By1qtv55Kp2Q7Y7O5FTTlNelCWDcRVU48EcH6mkX6fGHWzrD3SUz
+	TLQqkFn485zSvMgPZCg4wDE/ENOysyf621lASP+8quCwzZIygShCSUWzjvU7BOY9
+	6GNnv0n+MUBIivaEvGpSSvLuUIvBH4t6C0UlNrT7Ul/e3ucpcDMSpV//5AesEwQ/
+	3rO7Xg==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b3fe2ahfq-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 13:33:17 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4ede0bd2154so19370681cf.1
+        for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 05:33:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura.hr; s=sartura; t=1765978382; x=1766583182; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3NxV/sdr2BZyW6Fp6jeGvfWxTA5ctLtFaPPYKmOmWzs=;
-        b=G3TZwRs8slika+uM8zA2b/tbxbmR9UD4zQjKjHTYFdQgFKQIvb5WcOE963ZZ02V0Mc
-         qP0y3gHvcLeM0uzdbqcjgz/OUiak06hFqxxk2bqy9JyIuV+hWAOR+yfQT3/puygEdmcZ
-         mSOwl2czqg7bWviUHQvoqfL2VNr6lSNSEKluYXqSdbSaAHT1yuKd6fpzL1rD93FYSdgq
-         nGfR/UWTLwfs3EF6NQKalofoEucjD9bsNEEN4J8bADznJikY/0q8pziBBNcl66wb0YW6
-         VefrjPLW58syX/GbFPK5ltyANGRw4PSWy3W4rvQNgVF5nVe6Cj7L6F0oCvRlAt9PVq8m
-         SAHw==
+        d=oss.qualcomm.com; s=google; t=1765978396; x=1766583196; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=670vN864gC3iB2bSJ0zYYlz3U0Y8dJI6J9VlkkC8Zf8=;
+        b=hJnN+TxbQ6vnYrNOSQjUgfOjbnHPaU8i9xWGqacGZasm+64M/Ao0fl/uy2csH1Gbc1
+         l7LpYm33B67EktZv0OIIWll8OXPUrlDi/Tv3bAQz1sJMZGlXo7zFf4DKGmIy7gBMoN2p
+         L3otL0MGjZn2LXbIMAh+qKLQRKFy4AKc+BB0XyIei2jt6C8a4TG3L7/vwrGTUU0WMUHJ
+         VcB6WOz4iDKxyIpAsGtqKLYSzKg1RzjOTgske3ZFA0WdFDTt32+pLS83JUciDUR8Ws1S
+         2yemQZEtmE7/4SV5suiSVTutZUX//ErZzqQ2R4R+enH0/UzKq7KLjxoFWC1Wpb+4Gp6A
+         9IMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765978382; x=1766583182;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=3NxV/sdr2BZyW6Fp6jeGvfWxTA5ctLtFaPPYKmOmWzs=;
-        b=abgHorhfd0NGMneHvh7SoQlW84Y6tNhcezi/jY5TCDT7rCEOU0VABXevtMDC/RyjpD
-         /Sax55gt6kAoqsXR7OnTydAVKn/qK9AbwyoVHpolc8u7iG2T3KbvTkT+qqy+E95yr3sx
-         kmKEtUpS0vafGBfTu8d0TKdDCnNy1kk/cJrU+BP0EuOAixOn0HNJn/F3/fnqMpAlKKnu
-         rUo1c5+M5RCbxWUDj+ilRbCvsahZhC2awLRjfrvRkXbovlk/BCTEWAxC9QKttTlWHu3A
-         nRFZXQngTAcZEMfNB3iAiU4s2l853FD639MJXorLDLyq9R2DCRYyrhfyoHDUuiWTIV4P
-         MC2Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVXnC2DEZujVSLAx2Y9+1R6pkKLuN7AiVK6uMsvl1kBJRG2ANKT1kQTUKSyRUGXUSpGF/QhoL1aLOx2@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw07RrvgUqPL/NgyEoUfRsuS6jaavMGwt+qYkhmJ6DZMlaPkEkG
-	zP6uyOv6tJLBHgevhNO679KUpt2OFp+XeOrwwW+1BqPcH+dVsWEyYBaxHDNic9UdxEywOQ2oH/0
-	hiXoJYxXpgAwCX/cC7I5CotjLYIBF4OcPwp6TLETsNQ==
-X-Gm-Gg: AY/fxX7piHzCDXW/BFtJDn4CcCqRZj5L1Gm4aYK95C7QVaUQaLMABcT45GLGJ7J1dYv
-	FZShkgkOFxIqXtX1ulmXo20c3P4Skzg9uMWh69BQN+ZCaPy6dY9wSsM4+y1W0NQgGClpJXj4baJ
-	6fj7U+YX8tb0zQSFxCHg5oFoiCoWd9f275F6Qs0nARl6K0ie9pNmHQ3ee6dM0LTOmFhML6NVSIJ
-	KU3z9OmV2ThFkPi3297bqyVONpbEPb6iGVbkfxJnFzEteZhlD0IizJDv3Rv9qaDwByAKzb7qz32
-	RwX0dzZCUSXnDz0ZJymO6Xcfb5z/URf0GxqhxW3roSEOS0cgkkD6
-X-Google-Smtp-Source: AGHT+IHQBmS2mrQa3fgyiBBuz2kWHV24zlBwa/1NFFHKPKgWTqO46GlqIXXFCMupFuoXyMzVWH1kl/6iZAAmZg0kVsk=
-X-Received: by 2002:a17:906:c39e:b0:b7f:e709:d447 with SMTP id
- a640c23a62f3a-b7fe709d458mr591500066b.33.1765978382116; Wed, 17 Dec 2025
- 05:33:02 -0800 (PST)
+        d=1e100.net; s=20230601; t=1765978396; x=1766583196;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=670vN864gC3iB2bSJ0zYYlz3U0Y8dJI6J9VlkkC8Zf8=;
+        b=WXh8lfmVY5ri7iGPzKPfjtDLmGVYm7Q6yYNHhbJUagD+y+jQKsRjD+1PiIGx3JTOoJ
+         GNwZ4LBZNKJogGt1/VWAuhEQx51dfQFpB8mwLUeAkq/zIKhhaJtrDFfZtxtUBol0MajG
+         nacTV/43RtJT/9OUbYMgMsZ/pQP0NCy62Dv6Q6stB5hbv6vKUfQ0p7fdUaa1gkUWkSB4
+         BIERe+SQwyygrtx965XjpSk9oGBHI7zU4UddxjqkULKj9YxmV5kTvNBTqVmbjhhfmEZT
+         XHgclX2KxsXHNLnthGzV0IXApKpgzEcIuHLZwdmmtYML2ysLLAkkH23FRAzFx3tdvFby
+         dJ2w==
+X-Forwarded-Encrypted: i=1; AJvYcCWWjqoJRZ8nszUla1OmK+MlfaHBSAtWNny2WyXnP+1d5/EoiiA13Tta8ZrG+9s3fvO/TWRnr0H3zgEn@vger.kernel.org
+X-Gm-Message-State: AOJu0YyDJ4MyWC6S3G2Zq1DCSDBw1y8IOLkKJHtSeQCzm5tJN8NeLjlP
+	Fle22YU+0q7H3kFw4gvTNK7ti8pEZhvyM6Dzj4xIU7Shf1CSUEBPKpGvQNx8E5jzcDqIgB4vvSb
+	ZHyJQP7pZY0WONmNn4eLLVUuB2SJuDSQbnw5y19cD26OkvZ9n2ve/JMq+5MoCaOBQ
+X-Gm-Gg: AY/fxX6q3oBAGooNLuHwWfx08orVe+cYnL6Hd0R7puQhbbDeKxkWFOgpwXeKsre/RH6
+	6QtYLJ7TXYcWfQYpodGy6l088bU65yrUKbWa9nlFan8brNOGSVt/bPn1l0pegdPfwU4Vp6msdxi
+	rqi0I0JFezgbGC1dCHqIo9ItsV0Illdbw1VRVg/z62G68JN3L/orSXZmwtaoR5lsMY2MM2jXKU6
+	NnXmH/SyKU5P8Gl4xyoZA0sjSxvzIGPixGPlXo4v7fVm1BfQ3Jlvz8XadOamxAs3xoyQpE1xpr/
+	nCO0Xtrsf6JfIyfVJYTwPvd6Tcevvbvr+Ss++pcrWzT7QxD/XD/ZZbhcEt4ZumhzsHUFHKFWWiI
+	7VDEziL7v42pIo5Xn3cr7E4KPMwoAnOMHDAIsP42MlZl6kuMS8N69d7n9oapMXPwLqg==
+X-Received: by 2002:a05:622a:341:b0:4ee:2580:9bc5 with SMTP id d75a77b69052e-4f1d04ab2d9mr182525731cf.2.1765978396178;
+        Wed, 17 Dec 2025 05:33:16 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEV2GtJC2y4ocuXNUmv6DgExU4nq3+bWwZFAeKoHPEqx7LXt6gOi+fSveFCQU5Wg71/SuWM7Q==
+X-Received: by 2002:a05:622a:341:b0:4ee:2580:9bc5 with SMTP id d75a77b69052e-4f1d04ab2d9mr182525391cf.2.1765978395754;
+        Wed, 17 Dec 2025 05:33:15 -0800 (PST)
+Received: from [192.168.119.72] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b7cfa5c9d22sm1999658466b.61.2025.12.17.05.33.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 17 Dec 2025 05:33:15 -0800 (PST)
+Message-ID: <6d93c8ac-4d56-4a4a-94d6-08dbfd9d4a9f@oss.qualcomm.com>
+Date: Wed, 17 Dec 2025 14:33:12 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251215163820.1584926-1-robert.marko@sartura.hr>
- <20251215163820.1584926-5-robert.marko@sartura.hr> <fe15fcce-865a-4969-9b6f-95920fcaa5c7@kernel.org>
- <CA+HBbNGNMGRL11kdg14LwkiTazXJYXOZeVCKsmW6-XF6k5+sVA@mail.gmail.com> <3d6f254c-d53f-47d9-8081-8506d202bf9d@kernel.org>
-In-Reply-To: <3d6f254c-d53f-47d9-8081-8506d202bf9d@kernel.org>
-From: Robert Marko <robert.marko@sartura.hr>
-Date: Wed, 17 Dec 2025 14:32:49 +0100
-X-Gm-Features: AQt7F2p7AtghDvAyv4NK8Ascs8BHBx___HwB1JF-DX23awYiIEMyiUo7jk7sWyI
-Message-ID: <CA+HBbNEKJ2qG4s51Gq9dh0uGuSwyPDfsq+mb5w6Kry6e9N0VSg@mail.gmail.com>
-Subject: Re: [PATCH v2 05/19] dt-bindings: arm: microchip: move SparX-5 to
- generic Microchip binding
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com, 
-	claudiu.beznea@tuxon.dev, Steen.Hegelund@microchip.com, 
-	daniel.machon@microchip.com, UNGLinuxDriver@microchip.com, 
-	herbert@gondor.apana.org.au, davem@davemloft.net, vkoul@kernel.org, 
-	linux@roeck-us.net, andi.shyti@kernel.org, lee@kernel.org, 
-	andrew+netdev@lunn.ch, edumazet@google.com, kuba@kernel.org, 
-	pabeni@redhat.com, linusw@kernel.org, olivia@selenic.com, 
-	radu_nicolae.pirea@upb.ro, richard.genoud@bootlin.com, 
-	gregkh@linuxfoundation.org, jirislaby@kernel.org, mturquette@baylibre.com, 
-	sboyd@kernel.org, richardcochran@gmail.com, wsa+renesas@sang-engineering.com, 
-	romain.sioen@microchip.com, Ryan.Wanner@microchip.com, 
-	lars.povlsen@microchip.com, tudor.ambarus@linaro.org, 
-	kavyasree.kotagiri@microchip.com, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-crypto@vger.kernel.org, dmaengine@vger.kernel.org, 
-	linux-hwmon@vger.kernel.org, linux-i2c@vger.kernel.org, 
-	netdev@vger.kernel.org, linux-gpio@vger.kernel.org, linux-spi@vger.kernel.org, 
-	linux-serial@vger.kernel.org, linux-usb@vger.kernel.org, 
-	linux-clk@vger.kernel.org, mwalle@kernel.org, luka.perkov@sartura.hr
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/3] arm64: dts: qcom: sdm630/660: Add CDSP-related
+ nodes
+To: Nickolay Goppen <setotau@mainlining.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Ekansh Gupta <ekansh.gupta@oss.qualcomm.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        linux@mainlining.org
+References: <20251023-qcom-sdm660-cdsp-adsp-dts-v2-0-895ffe50ab5f@mainlining.org>
+ <20251023-qcom-sdm660-cdsp-adsp-dts-v2-1-895ffe50ab5f@mainlining.org>
+ <9009eb8b-309d-4ddc-bb3f-081b974b1fa0@mainlining.org>
+ <c778f58c-0075-41a5-b230-db6df1f98329@mainlining.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <c778f58c-0075-41a5-b230-db6df1f98329@mainlining.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: duLh91-fVfqqRAEeA7sian6it-7Py-0s
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjE3MDEwNSBTYWx0ZWRfXxFBObTarMPcR
+ a7DBytvOeQOecX3AUB6SevDCHBiE4M9TN6fwgVpNGBFV09SOduZxw6YL0suzscNomR5xHs28q28
+ CgTSRnUD6L/KWjj0t8KLR6BD52YnozL/K3OZFMklNLtF+vCfqTYwz4JGiVgzLoiUOX9B+yYfMH0
+ Wg6mSNJIqBStr9BuNkjQbedYy4YFLLuJJlU0aC9CPd2uGOLlSP/GHgPlA/MCpbtC6JOLZOgteaX
+ +NjwyYqUM7aS+v689tkflHdaKQoPTUO/y6dWbk5oF2DDbIW93ivE6j9cd1FZYxVEXPxyAjjbKy2
+ 4H4OxFfdnxBpc7gAhq2MeKIvcWYxjssp4iyKThmv5SRutGLC9vy0ZsN2FvKejxsghdLEcT0aOqr
+ jatN/jpGJ2OZSujW6eP4DPeG6cN0nQ==
+X-Proofpoint-ORIG-GUID: duLh91-fVfqqRAEeA7sian6it-7Py-0s
+X-Authority-Analysis: v=2.4 cv=HpN72kTS c=1 sm=1 tr=0 ts=6942b11d cx=c_pps
+ a=JbAStetqSzwMeJznSMzCyw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=NEAV23lmAAAA:8 a=OuZLqq7tAAAA:8
+ a=c7Ujzj7b83SAP-xecCUA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=uxP6HrT_eTzRwkO_Te1X:22 a=AKGiAy9iJ-JzxKVHQNES:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-17_01,2025-12-16_05,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 bulkscore=0 clxscore=1015 priorityscore=1501 phishscore=0
+ suspectscore=0 lowpriorityscore=0 adultscore=0 impostorscore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512170105
 
-On Wed, Dec 17, 2025 at 2:23=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
->
-> On 16/12/2025 18:01, Robert Marko wrote:
-> > On Tue, Dec 16, 2025 at 4:58=E2=80=AFPM Krzysztof Kozlowski <krzk@kerne=
-l.org> wrote:
-> >>
-> >> On 15/12/2025 17:35, Robert Marko wrote:
-> >>> Now that we have a generic Microchip binding, lets move SparX-5 as we=
-ll as
-> >>> there is no reason to have specific binding file for each SoC series.
-> >>>
-> >>> The check for AXI node was dropped.
-> >>
-> >> Why?
-> >
-> > According to Conor, it is pointless [1]
->
-> You have entire commit msg to explain this. It's basically my third
-> question where reasoning behind changes is not explained.
->
-> When you send v3, you will get the same questions...
+On 12/11/25 3:30 PM, Nickolay Goppen wrote:
+> 
+> 11.12.2025 15:24, Nickolay Goppen пишет:
+>>
+>> 23.10.2025 22:51, Nickolay Goppen пишет:
+>>> In order to enable CDSP support for SDM660 SoC:
+>>>   * add shared memory p2p nodes for CDSP
+>>>   * add CDSP-specific smmu node
+>>>   * add CDSP peripheral image loader node
+>>>
+>>> Memory region for CDSP in SDM660 occupies the same spot as
+>>> TZ buffer mem defined in sdm630.dtsi (which does not have CDSP).
+>>> In sdm660.dtsi replace buffer_mem inherited from SDM630 with
+>>> cdsp_region, which is also larger in size.
+>>>
+>>> SDM636 also doesn't have CDSP, so remove inherited from sdm660.dtsi
+>>> related nodes and add buffer_mem back.
+>>>
+>>> Signed-off-by: Nickolay Goppen <setotau@mainlining.org>
+>>> ---
+>>>   arch/arm64/boot/dts/qcom/sdm630.dtsi |   2 +-
+>>>   arch/arm64/boot/dts/qcom/sdm636.dtsi |  23 +++--
+>>>   arch/arm64/boot/dts/qcom/sdm660.dtsi | 162 +++++++++++++++++++++++++++++++++++
+>>>   3 files changed, 177 insertions(+), 10 deletions(-)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+>>> index 8b1a45a4e56e..a6a1933229b9 100644
+>>> --- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
+>>> +++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+>>> @@ -563,7 +563,7 @@ modem_smp2p_in: slave-kernel {
+>>>           };
+>>>       };
+>>>   -    soc@0 {
+>>> +    soc: soc@0 {
+>>>           #address-cells = <1>;
+>>>           #size-cells = <1>;
+>>>           ranges = <0 0 0 0xffffffff>;
+>>> diff --git a/arch/arm64/boot/dts/qcom/sdm636.dtsi b/arch/arm64/boot/dts/qcom/sdm636.dtsi
+>>> index ae15d81fa3f9..38e6e3bfc3ce 100644
+>>> --- a/arch/arm64/boot/dts/qcom/sdm636.dtsi
+>>> +++ b/arch/arm64/boot/dts/qcom/sdm636.dtsi
+>>> @@ -7,15 +7,20 @@
+>>>     #include "sdm660.dtsi"
+>>>   -/*
+>>> - * According to the downstream DTS,
+>>> - * 636 is basically a 660 except for
+>>> - * different CPU frequencies, Adreno
+>>> - * 509 instead of 512 and lack of
+>>> - * turing IP. These differences will
+>>> - * be addressed when the aforementioned
+>>> - * peripherals will be enabled upstream.
+>>> - */
+>>> +/delete-node/ &remoteproc_cdsp;
+>>> +/delete-node/ &cdsp_smmu;
+>>> +/delete-node/ &cdsp_region;
+>>> +
+>>> +/ {
+>>> +    /delete-node/ smp2p-cdsp;
+>>> +
+>>> +    reserved-memory {
+>>> +        buffer_mem: tzbuffer@94a00000 {
+>>> +            reg = <0x0 0x94a00000 0x00 0x100000>;
+>>> +            no-map;
+>>> +        };
+>>> +    };
+>>> +};
+>>>     &adreno_gpu {
+>>>       compatible = "qcom,adreno-509.0", "qcom,adreno";
+>>> diff --git a/arch/arm64/boot/dts/qcom/sdm660.dtsi b/arch/arm64/boot/dts/qcom/sdm660.dtsi
+>>> index ef4a563c0feb..d50cce25ccbe 100644
+>>> --- a/arch/arm64/boot/dts/qcom/sdm660.dtsi
+>>> +++ b/arch/arm64/boot/dts/qcom/sdm660.dtsi
+>>> @@ -9,6 +9,37 @@
+>>>     #include "sdm630.dtsi"
+>>>   +/delete-node/ &buffer_mem;
+>>> +
+>>> +/ {
+>>> +    smp2p-cdsp {
+>>> +        compatible = "qcom,smp2p";
+>>> +        qcom,smem = <94>, <432>;
+>>> +        interrupts = <GIC_SPI 514 IRQ_TYPE_EDGE_RISING>;
+>>> +        mboxes = <&apcs_glb 30>;
+>>> +        qcom,local-pid = <0>;
+>>> +        qcom,remote-pid = <5>;
+>>> +
+>>> +        cdsp_smp2p_out: master-kernel {
+>>> +            qcom,entry-name = "master-kernel";
+>>> +            #qcom,smem-state-cells = <1>;
+>>> +        };
+>>> +
+>>> +        cdsp_smp2p_in: slave-kernel {
+>>> +            qcom,entry-name = "slave-kernel";
+>>> +            interrupt-controller;
+>>> +            #interrupt-cells = <2>;
+>>> +        };
+>>> +    };
+>>> +
+>>> +    reserved-memory {
+>>> +        cdsp_region: cdsp@94a00000 {
+>>> +            reg = <0x0 0x94a00000 0x00 0x600000>;
+>>> +            no-map;
+>>> +        };
+>>> +    };
+>>> +};
+>>> +
+>>>   &adreno_gpu {
+>>>       compatible = "qcom,adreno-512.0", "qcom,adreno";
+>>>       operating-points-v2 = <&gpu_sdm660_opp_table>;
+>>> @@ -247,6 +278,137 @@ &mmcc {
+>>>               <0>;
+>>>   };
+>>>   +&soc {
+>>> +    cdsp_smmu: iommu@5180000 {
+>>> +        compatible = "qcom,sdm630-smmu-v2", "qcom,smmu-v2";
+>>> +        reg = <0x5180000 0x40000>;
+>>> +        #iommu-cells = <1>;
+>>> +
+>>> +        #global-interrupts = <2>;
+>>> +        interrupts = <GIC_SPI 229 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                 <GIC_SPI 231 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                 <GIC_SPI 533 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                 <GIC_SPI 534 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                 <GIC_SPI 535 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                 <GIC_SPI 536 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                 <GIC_SPI 537 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                 <GIC_SPI 538 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                 <GIC_SPI 539 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                 <GIC_SPI 540 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                 <GIC_SPI 541 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                 <GIC_SPI 542 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                 <GIC_SPI 543 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                 <GIC_SPI 544 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                 <GIC_SPI 545 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                 <GIC_SPI 546 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                 <GIC_SPI 547 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                 <GIC_SPI 548 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                 <GIC_SPI 549 IRQ_TYPE_LEVEL_HIGH>;
+>>> +
+>>> +        clocks = <&gcc GCC_HLOS1_VOTE_TURING_ADSP_SMMU_CLK>;
+>>> +        clock-names = "bus";
+>>> +
+>>> +        power-domains = <&gcc HLOS1_VOTE_TURING_ADSP_GDSC>;
+>>> +
+>>> +    };
+>>> +
+>>> +    remoteproc_cdsp: remoteproc@1a300000 {
+>>> +        compatible = "qcom,sdm660-cdsp-pas";
+>>> +        reg = <0x1a300000 0x00100>;
+>>> +        interrupts-extended = <&intc GIC_SPI 518 IRQ_TYPE_EDGE_RISING>,
+>>> +                      <&cdsp_smp2p_in 0 IRQ_TYPE_EDGE_RISING>,
+>>> +                      <&cdsp_smp2p_in 1 IRQ_TYPE_EDGE_RISING>,
+>>> +                      <&cdsp_smp2p_in 2 IRQ_TYPE_EDGE_RISING>,
+>>> +                      <&cdsp_smp2p_in 3 IRQ_TYPE_EDGE_RISING>;
+>>> +        interrupt-names = "wdog",
+>>> +                  "fatal",
+>>> +                  "ready",
+>>> +                  "handover",
+>>> +                  "stop-ack";
+>>> +
+>>> +        clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>;
+>>> +        clock-names = "xo";
+>>> +
+>>> +        memory-region = <&cdsp_region>;
+>>> +        power-domains = <&rpmpd SDM660_VDDCX>;
+>>> +        power-domain-names = "cx";
+>>> +
+>>> +        qcom,smem-states = <&cdsp_smp2p_out 0>;
+>>> +        qcom,smem-state-names = "stop";
+>>> +
+>>> +        glink-edge {
+>>> +            interrupts = <GIC_SPI 513 IRQ_TYPE_EDGE_RISING>;
+>>> +
+>>> +            label = "turing";
+>>> +            mboxes = <&apcs_glb 29>;
+>>> +            qcom,remote-pid = <5>;
+>>> +
+>>> +            fastrpc {
+>>> +                compatible = "qcom,fastrpc";
+>>> +                qcom,glink-channels = "fastrpcglink-apps-dsp";
+>>> +                label = "cdsp";
+>>> +                qcom,non-secure-domain;
+>>> +                #address-cells = <1>;
+>>> +                #size-cells = <0>;
+>>> +
+>>> +                compute-cb@5 {
+>>> +                    compatible = "qcom,fastrpc-compute-cb";
+>>> +                    reg = <5>;
+>>> +                    iommus = <&cdsp_smmu 3>;
+>>> +                };
+>>> +
+>>> +                compute-cb@6 {
+>>> +                    compatible = "qcom,fastrpc-compute-cb";
+>>> +                    reg = <6>;
+>>> +                    iommus = <&cdsp_smmu 4>;
+>>> +                };
+>>> +
+>>> +                compute-cb@7 {
+>>> +                    compatible = "qcom,fastrpc-compute-cb";
+>>> +                    reg = <7>;
+>>> +                    iommus = <&cdsp_smmu 5>;
+>>> +                };
+>>> +
+>>> +                compute-cb@8 {
+>>> +                    compatible = "qcom,fastrpc-compute-cb";
+>>> +                    reg = <8>;
+>>> +                    iommus = <&cdsp_smmu 6>;
+>>> +                };
+>>> +
+>>> +                compute-cb@9 {
+>>> +                    compatible = "qcom,fastrpc-compute-cb";
+>>> +                    reg = <9>;
+>>> +                    iommus = <&cdsp_smmu 7>;
+>>> +                };
+>>> +
+>>> +                compute-cb@10 {
+>>> +                    compatible = "qcom,fastrpc-compute-cb";
+>>> +                    reg = <10>;
+>>> +                    iommus = <&cdsp_smmu 8>;
+>>> +                };
+>>> +
+>>> +                compute-cb@11 {
+>>> +                    compatible = "qcom,fastrpc-compute-cb";
+>>> +                    reg = <11>;
+>>> +                    iommus = <&cdsp_smmu 9>;
+>>> +                };
+>>> +
+>>> +                compute-cb@12 {
+>>> +                    compatible = "qcom,fastrpc-compute-cb";
+>>> +                    reg = <12>;
+>>> +                    iommus = <&cdsp_smmu 10>;
+>>> +                };
+>>> +
+>>> +                compute-cb@13 {
+>>> +                    compatible = "qcom,fastrpc-compute-cb";
+>>> +                    reg = <13>;
+>>> +                    iommus = <&cdsp_smmu 11>;
+>>> +                };
+>>> +            };
+>>> +        };
+>>> +    };
+>>> +};
+>>> +
+>>>   &tlmm {
+>>>       compatible = "qcom,sdm660-pinctrl";
+>>>   };
+>>>
+>> I've found out that all (both ADSP's and CDSP's) fastrpc-compute-cb's in downstream are defined under the one node [1], and all of them are handled by one adsprpc driver. There's a node [2], where a memory-region is assigned to this driver.
+>>
+>> Does this mean that both DSP's are using this one region for FastRPC?
+>>
+>> [1] https://github.com/pix106/android_kernel_xiaomi_southwest-4.19/blob/main/arch/arm64/boot/dts/vendor/qcom/sdm660.dtsi#L1349
+>>
+>> [2] https://github.com/pix106/android_kernel_xiaomi_southwest-4.19/blob/main/arch/arm64/boot/dts/vendor/qcom/sdm660.dtsi#L1342
+>>
+> I've also noticed that both DSP's are connected to the mas_crypto_c0 bus [1].
+> 
+> Is this bus neccessary for DSP's to use the FastRPC?
 
-Hi Krzysztof,
-Considering that instead of merging the bindings LAN969x will be added
-to Atmel instead,
-this will be dropped in v3.
-Sorry for the inconvenience.
+No, that's covered by the SCM device
 
-Regards,
-Robert
->
->
-> Best regards,
-> Krzysztof
-
-
-
---=20
-Robert Marko
-Staff Embedded Linux Engineer
-Sartura d.d.
-Lendavska ulica 16a
-10000 Zagreb, Croatia
-Email: robert.marko@sartura.hr
-Web: www.sartura.hr
+Konrad
 
