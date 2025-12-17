@@ -1,80 +1,80 @@
-Return-Path: <devicetree+bounces-247588-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247589-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6770CC8DB3
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 17:47:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 279F1CC8E8E
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 17:57:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1007D31804FF
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 16:37:19 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 433A8306FDBC
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 16:51:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFAF1352924;
-	Wed, 17 Dec 2025 16:25:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 845CB352940;
+	Wed, 17 Dec 2025 16:25:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ISMG2lk7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WyApYakX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C720350D5D
-	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 16:25:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9248D34D916
+	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 16:25:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765988739; cv=none; b=JPrWEUjc8uKyfsSsJ/1WMwftOlyrgW0X74YqNiSBdQYjPrd63nJXToxL+pFEYv2GbFoTxkCLgXUvnyVTAvLfxaQ8+2Q2wHbux7eek8lmEZ7ehP4+M9W4Z3T85EalqVP7wO3lUbP21HARul06F7fhtd6HZqzO0tDhcaBa1GMpsLM=
+	t=1765988742; cv=none; b=KxorGM6sPVj3rml3Db+Y5eEnJ5QZzWhrHiAKNihQlalFuENGKNB+HVySETbN1qPi9BZHJUKbL6Q0HLqbMJm8881yYAsbW/pTPZqXJXxpgGknphSfoTxZxFnE0E7Kazit+390NhabdZrlU0QwyQ+7ZCW+z8PPstrAcbljeJ/SLeY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765988739; c=relaxed/simple;
-	bh=+Y0a0WIcF+OvRh+wENdR2K0SnXmQmB8D5lWAyKi2wlE=;
+	s=arc-20240116; t=1765988742; c=relaxed/simple;
+	bh=OX5KL+MG6sfpo1KjHjEhXoAalFtdpPr6gBFVJvOaFLI=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Tlr5nT2tkK2bWvkPsL1X4E3jJvtHzbMZnMwEiKG0MLgHHdFiXHYIEI6+W96w35ghagoekKFJSZt4lq64QPANX2RCfeipDme1ojJ/Z6zUlKmAic/NuZTCDmqgZKyK/PT3oiohrrAtSBcXBhKyW0/yMhyjQ20rRFu/mbu6hrZ7ua0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ISMG2lk7; arc=none smtp.client-ip=209.85.214.182
+	 In-Reply-To:To:Cc; b=odAy81mw1qlmSIR5/0GuwIGNQJYdZVRxSblEYsYwinVRtQqckaPBv/gjBOy5YNr4yYn0++o3inWoLd/q4Yu4l7KBQWuBAXk/hjferhZXfzEq6SAJ3Ruw92OO4mU0mJ6nePgjshhvU+cYkYdfD135CMIt+CFtZ73+SsCPrgNL5Qg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WyApYakX; arc=none smtp.client-ip=209.85.214.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-2a137692691so25995415ad.0
-        for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 08:25:37 -0800 (PST)
+Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-29f0f875bc5so78960395ad.3
+        for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 08:25:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1765988737; x=1766593537; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1765988740; x=1766593540; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=JJ2g7x+wr2VIeqIG6aJACDKejjD/eomNYXl10MONUeA=;
-        b=ISMG2lk7idbPYbmN2jAsii5dl+YFu5p1sYKqDDxjOJ5ZXOU01Cfm62VdFpmiVLiKYH
-         WnPuubB+Cun0ruvknY9eU88DvJG3mIgUzC3Gb8cbmLVrm69ySQRtGL98L7Dnjqd5n4sm
-         pcZLaiODckgPmatlitjYbGmuocBl/jQ9Gu096KKZBjZFm/5dOLCPUmd6Ag4uWxi9xyGH
-         f6r7K/vBn2/pMj5arHagY867PkQT2iodqjjIHLrnpqI1kFpk+PMgKx/JO8F0EzRrKkQy
-         iyJ8HWTWA9yN/3niX+hwq4CzUj/kTSBQpv1QFhXu5Y8s4KblwZzz2YvVU2ZWQKMVApQo
-         TL1g==
+        bh=NS7rXNvu/k+fb0x7YdnIE3Agpb80vBTRZvlvmIIsndw=;
+        b=WyApYakXQSeE+NNVMF9Rxunkch1VGU9imBLQVFh2LLbKlfr8c4vL9llRySePzNS9pt
+         kTpEpBG4IIg/sSYIm6fkF3Nh/6Z+InXTK6jwZvwqa2ONQDmgEiRZGMiTftn2bg9ycXdT
+         4G9RKNFWaDF/TMBpIV/RkZEri7KwMSzzGSLeSX8P/TAFEL1zkRIMbXt+o452erw6md6h
+         Sf5hGga5YETkLHFRDqt14RL2xThMDTkVWNAXr6+b7TxvoKx7Odg4F2/bWqZhZf0Xna0i
+         /zg9m/eJ3ajbUPhh84VWgRp/glOgie/LSr5+UD73OZqOwtNGaul9LAKU9RcyYpTv9X7K
+         RKDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765988737; x=1766593537;
+        d=1e100.net; s=20230601; t=1765988740; x=1766593540;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=JJ2g7x+wr2VIeqIG6aJACDKejjD/eomNYXl10MONUeA=;
-        b=UtfJKUmMYe/G20dFPKW7XablLokGTAGkjpAe+O9XK+bgqhBMLOlXvQRT4s6o7QJiWS
-         IWZzeUAwBnFsFe2Fh1xTNf9pkFOdj824ArgtxeZgwfgPnJtgIcu37UEvUepzcRdY+LQW
-         pubmAmJdAvMPENbGJ3M5Jop6zEKszMrwU6MDjloUEvDTmB3LfYnmiBmswGDQAf6tKsFv
-         yj8ZS3pZtvw5Ovwgvzry1Wt0Uku6sfmHmfFRTD9a+9JBQCcx3ovE3mVDY89Ft6YoNarY
-         FYv1HvQP8mf+iwoKOJB+hxbv9oj2ia1695qQEVTUJ49NY8RIyWw06YSDTaNc9Zz7J6xa
-         iMvA==
-X-Forwarded-Encrypted: i=1; AJvYcCUC+Hjt4rlsfEqSRsNHuIEO8p3ZFEu7HvS8Q06csPsGGls34fbenBuSytW5VnqRofODm6jbGQdj5DnM@vger.kernel.org
-X-Gm-Message-State: AOJu0YzAzoB2ISpCwPHgdq7e7XW/83tAZPZdOAbC7k6zBJ1F3PG7yvKW
-	ba5DII49Qa+/QMxQXe+ByRgLCegZEUmO24oQevID2H4qW4nK8tQ1iaOZ
-X-Gm-Gg: AY/fxX6+zSWJ8SzGjR13F7xv9JtogsXBCoZ4PaDm3nJy0qDikwijxVzsWZdq7H8o/Rj
-	w91OFSDcEpn/8CsOTGd093I/u1z1CuQTKIvRP59ES/MjVQrYckdbHolAuPZYXltcOktmrPXEI9/
-	ZtuaO7zwLQWIZoRQHrGvlD5D4Wz1/2DlmLrLYdHiH/gEXA4ZGOxf6UMrfWDzp2kFp48+q/vtziI
-	0z698Q+jN2qzUTCRpt/PHyWikXKUbLh8eALBVJrmfjfwqqw6R6LXSM1xEVM4c4fL2KcjHcfqgMr
-	lyOqW9qpnFzVG3QCGEieCbpOUicyeDulM36ywXLtLeeAo2w0ZE4EC4Yyw1H0YrpXFAOUPXx478c
-	UJxg7cqf/x8q8cV7hnpkrhDsU+Dh4bzDcCJVdpGjHgfXqqCINcHGcrvOaEGL5/J1s7tBjx3Mg42
-	7SmjanlIbfwv2WuOGEd4aCNHU=
-X-Google-Smtp-Source: AGHT+IFkx8/ULLaclRWeXQnp3FknE4nFeL1wYOatsRa4nxVopZsYO4Ep0g1d9Nf6orRKrMY5yv7hDA==
-X-Received: by 2002:a17:902:ef44:b0:2a0:a9f8:48f7 with SMTP id d9443c01a7336-2a0a9f849f9mr145464645ad.55.1765988736603;
-        Wed, 17 Dec 2025 08:25:36 -0800 (PST)
+        bh=NS7rXNvu/k+fb0x7YdnIE3Agpb80vBTRZvlvmIIsndw=;
+        b=aqSzVx+Hw/Wnzke5ca2mHE510lGxVKGfIL9OEPrGC0wgCE0cFWgKOuuY4/BPOhM4Bq
+         4xVZxciWrJWDhFy1zG9CDNlP5cbKYZJS6dtLSlFz2cn90LsrMPXLASdDjM/L29qZSixo
+         w7tPgSknHHWqYj69FxQdr0meJFpXiD8Q/Rt1IBp5GGLuyrJ/2N2DlV75Z67CsUUccGdH
+         AeY2PN0+pCvzc5pemKZ6WRD2fsq4RNz5yMVDmw0bMf9aOCR/xxuHPyHSzYijcjvsdH8Y
+         xphbZHyXfcAWkJlVv/Bl3lMnW0NtGpFFb9xAx6P54jvdSXLOz0ouUn1KvowI4veLOanT
+         3Rkg==
+X-Forwarded-Encrypted: i=1; AJvYcCWpqT6hYvXIi8U/8sVTt0+qWazWpvPbS3zARCaEbLP2C7MTlQPuJr3VmikZhEeIq10knAC9CR0t0Am/@vger.kernel.org
+X-Gm-Message-State: AOJu0YwPKk7CkZwIYgCqMPJxlXqBEJ2CIuBfy+NWja3QoU0R2mdAMIRe
+	syfjGdZCtiKj//Au+gSjkcxL1aLaINbSo1O85gl8Ny7GL6FTOr0s6lh9
+X-Gm-Gg: AY/fxX6Ei2E2A3vdJ9ku5Dr1xo3vzKpMd95+R2AgHqw1qQIUA0LhJDaexOsnHDOktPz
+	upwau+UOJOTw322DXif3wNzz701ieQm71cUT4WWOXjps7cNoirW0WQg8vSfMp6Cd3mmO5x1PXgC
+	nY7znHFE9R/wg6gzI0RPX02pZpV0I32+gja9TFCWDk4dfSVwBLU62rg4GMc9hIHiACD+JAq6o4P
+	d1KWqC4QL+vn+DC3BkoovQ5hTC8ZTDY7d6bj4KeO56i/5Tee4MzsnlSWBCgiF07yW8xiRUaEYZI
+	6eiaMjxM5N05B1ec7IgOaalmOecxCYaYXLFejdZMXnkJwZD4Q5gaCKBJs/goXWwPDYIDiTs/Xaw
+	CYEKIZBn2H3fDHfirQtFLRJgNKNyHZ1WPbPG9NCMR7RxlpfV3osAZLben+nY+JtljSxRvqPyrsT
+	6s1TyUVbO/uZXK
+X-Google-Smtp-Source: AGHT+IGQGMr0AmGgbN4xg0sghCxcRIAwjDwaNdSGUd1h1vpKA5x1f2e8ppoipUpn3JG6UhCjVxeliw==
+X-Received: by 2002:a17:903:244f:b0:29d:9755:9bd8 with SMTP id d9443c01a7336-29f23e6fa91mr197349105ad.22.1765988739788;
+        Wed, 17 Dec 2025 08:25:39 -0800 (PST)
 Received: from [127.0.1.1] ([59.188.211.98])
-        by smtp.googlemail.com with ESMTPSA id d9443c01a7336-2a0b0687c62sm122980415ad.88.2025.12.17.08.25.33
+        by smtp.googlemail.com with ESMTPSA id d9443c01a7336-2a0b0687c62sm122980415ad.88.2025.12.17.08.25.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Dec 2025 08:25:36 -0800 (PST)
+        Wed, 17 Dec 2025 08:25:39 -0800 (PST)
 From: Nick Chan <towinchenmi@gmail.com>
-Date: Thu, 18 Dec 2025 00:23:31 +0800
-Subject: [PATCH v9 18/21] arm64: dts: apple: t8010: Add CPU PMU nodes
+Date: Thu, 18 Dec 2025 00:23:32 +0800
+Subject: [PATCH v9 19/21] arm64: dts: apple: t8011: Add CPU PMU nodes
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,7 +83,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251218-apple-cpmu-v9-18-4deadbe65d03@gmail.com>
+Message-Id: <20251218-apple-cpmu-v9-19-4deadbe65d03@gmail.com>
 References: <20251218-apple-cpmu-v9-0-4deadbe65d03@gmail.com>
 In-Reply-To: <20251218-apple-cpmu-v9-0-4deadbe65d03@gmail.com>
 To: Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
@@ -96,35 +96,35 @@ Cc: Marc Zyngier <maz@kernel.org>, linux-arm-kernel@lists.infradead.org,
  asahi@lists.linux.dev, linux-kernel@vger.kernel.org, 
  Nick Chan <towinchenmi@gmail.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=894; i=towinchenmi@gmail.com;
- h=from:subject:message-id; bh=+Y0a0WIcF+OvRh+wENdR2K0SnXmQmB8D5lWAyKi2wlE=;
- b=owEBbQKS/ZANAwAKAQHKCLemxQgkAcsmYgBpQtlC/iLREqKTBWyiQSUcAXdch2o0njKG9Al08
- TcC+2X5MZWJAjMEAAEKAB0WIQRLUnh4XJes95w8aIMBygi3psUIJAUCaULZQgAKCRABygi3psUI
- JD0eD/4pVaQ23XX6B+Fz65fzVa5a1N7gDangt8BRGmtK4RbXJQcwK12ed/KSO6i6t7r6RkeZH5G
- b3V3+h15nme7HrfFyIbxJ+TklHl4e2rZA28BBmLoVn6dOFV/x3ZtPYuwHVdWNSp2/7DhZzH1Q37
- 6BTuOSseNtCcLPe8n/KEvx5CFEr5gREp+EQY4NUDqtceqA/zFJg/jHS4jNQBfu0se39Pn4Jxcx/
- QzXxUucO0/dVcYGKQ79a6BpnThLu6Fy4hwh1wfT8y0N1XgV1bSw6QeFDkvYuXmWGbwOutGhAm/X
- /Wb765ZpIaT/vgi69kbmCXgqur0RsDyAR7uy5L6+4knysMmxnosG8ZuXpCwzdESChCoXncYfGxD
- p1cyWUPC20AQftH6PJwuWyS8ph1DIs91Q4pvllAVhpmYq8NPMUxJy62vOy6GTRHb4yxAfHvGLoe
- 4SWngvxXBl70SPMghL99HRz6vDi7jXn6SY4e31zSKlV2sHEk1tUzXO4LjzyLuhj+3Jc74qx5Sik
- e7791dK35Hiz/iCy2gD/eMqNwUUIioKkZQe02O4n4ccQNxK74tRwvxuUdf5b3Mz0sI4hSuusTXu
- +VvyfdhXT3MVurzPfyigziyJNrpjAK+nMzdaNMgdJwGrekEMjGwD7J6cGpf3UCYzwX4MxKkv95z
- ahy8p7F0lBtPoGA==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=946; i=towinchenmi@gmail.com;
+ h=from:subject:message-id; bh=OX5KL+MG6sfpo1KjHjEhXoAalFtdpPr6gBFVJvOaFLI=;
+ b=owEBbQKS/ZANAwAKAQHKCLemxQgkAcsmYgBpQtlCu5cj/TLrZWC6mrH7YYJbkqAiAC7pEfyDd
+ Hj0f2vlWA6JAjMEAAEKAB0WIQRLUnh4XJes95w8aIMBygi3psUIJAUCaULZQgAKCRABygi3psUI
+ JM2jD/49XIhE+QSFJovMK9EioD8JZ2370zRmv2bettLyrYyNn0ozJMj8eqHpFbPUdAOJzworI53
+ 0pQpcWVYu1W21pzI01Ux5JtTxTozyJicMOWFMyQQNnKGK6bCr4id9v8mlTDLjOJgBXuVbxW28Qq
+ eucnSDjLgwQqC6aMe3lftGDTSYaA0cz9o1BeAA1/vhrJjqUMYWxf19ZeQRqLOjn5lXaZT08K27p
+ t1JB9P3kXgPlz5x0RX6Pkc3aVeS5XW42v9j4CEl+j70kYzdPLRBHarrvMSXua7Pi9sBkjzHtjhz
+ 3aCG0hVdDnKh+g9dhIZBiMptatnjb/1RQPFabtZgG34GtKUhbJQD2XiuoZx7IEwAokW6/KOhu7/
+ ewMCbVe+Nk+mzlerzFzB3hktV7zUZfFaQXkFgtqAVpMgC4MQMyOATSP3K+/NyMIZ+prHnwJZyA6
+ 3VGKjR91dL3QVEjh4vDPbt2QUz1skKsPyR5NqhWCUf+USPuTNoIuDXzF31INwSNpEaX9ee4eXON
+ hyK60T8cN+1zlC2BrwYKZYlGjiwQcut0Z5T0Le1NFCnxqGbTOTxWvl+QbtppK00jOHhIIl5D6Ts
+ 1pfTwx1wjiBZYCxLiEtmy9byA/NiDYMToyRt6eHVxMGwI2rfrw+Ki9SmrQxqYzQ7EDqYo+fc9y0
+ s5uk4hc5IzzYy+w==
 X-Developer-Key: i=towinchenmi@gmail.com; a=openpgp;
  fpr=4B5278785C97ACF79C3C688301CA08B7A6C50824
 
-Add CPU PMU nodes for Apple A10 SoC.
+Add CPU PMU nodse for Apple A10X SoC.
 
 Signed-off-by: Nick Chan <towinchenmi@gmail.com>
 ---
- arch/arm64/boot/dts/apple/t8010.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ arch/arm64/boot/dts/apple/t8011.dtsi | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/apple/t8010.dtsi b/arch/arm64/boot/dts/apple/t8010.dtsi
-index 522b3896aa87eb290dc831cbbf2cc8e593844097..3cf1eef5cc261fa1dc699e8b5c9991e2215a6010 100644
---- a/arch/arm64/boot/dts/apple/t8010.dtsi
-+++ b/arch/arm64/boot/dts/apple/t8010.dtsi
-@@ -332,6 +332,14 @@ timer {
+diff --git a/arch/arm64/boot/dts/apple/t8011.dtsi b/arch/arm64/boot/dts/apple/t8011.dtsi
+index 039aa4d1e887625e7b6ad789bfd9aa032dc58d01..7f7b0230cd648eba2533f860622f683771197bff 100644
+--- a/arch/arm64/boot/dts/apple/t8011.dtsi
++++ b/arch/arm64/boot/dts/apple/t8011.dtsi
+@@ -329,6 +329,15 @@ timer {
  		interrupts = <AIC_FIQ AIC_TMR_GUEST_PHYS IRQ_TYPE_LEVEL_HIGH>,
  			     <AIC_FIQ AIC_TMR_GUEST_VIRT IRQ_TYPE_LEVEL_HIGH>;
  	};
@@ -133,12 +133,13 @@ index 522b3896aa87eb290dc831cbbf2cc8e593844097..3cf1eef5cc261fa1dc699e8b5c9991e2
 +		compatible = "apple,fusion-pmu";
 +		interrupt-parent = <&aic>;
 +		interrupts = <AIC_IRQ 83 IRQ_TYPE_LEVEL_HIGH>,
-+			     <AIC_IRQ 86 IRQ_TYPE_LEVEL_HIGH>;
-+		interrupt-affinity = <&cpu0 &cpu1>;
++			     <AIC_IRQ 86 IRQ_TYPE_LEVEL_HIGH>,
++			     <AIC_IRQ 89 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-affinity = <&cpu0 &cpu1 &cpu2>;
 +	};
  };
  
- #include "t8010-pmgr.dtsi"
+ #include "t8011-pmgr.dtsi"
 
 -- 
 2.52.0
