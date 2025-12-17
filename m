@@ -1,29 +1,29 @@
-Return-Path: <devicetree+bounces-247489-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247485-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D6AECC80C2
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 15:02:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 06F0FCC809B
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 15:00:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 424C3304015E
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 13:59:31 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id F063A305798F
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 13:58:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 543F634CFDB;
-	Wed, 17 Dec 2025 13:55:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9309D339B3D;
+	Wed, 17 Dec 2025 13:55:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63C3F34574B
-	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 13:55:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6C5C258CE7
+	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 13:55:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765979735; cv=none; b=NyxXdE64W0Nqtg4P9SAmiLu3rW+21Hu+TDTtwWRnOKpInqFTOM104DM+TQ0cDn+GzRKxyDBGnV5qOkNhfJUi7M8EbSTmf5p3J0Sxcr325rd/t7BZghgPQhTDJBt3Qu0ZUDqEvJ4jhetk7v+50K4zWHV4EPjrSFm2HX8UQ5kTdb8=
+	t=1765979729; cv=none; b=TDPU7YFmc5wk7/xy5ImUXy0CobTkB76XtpXjTRTG9NnhGJ6ThfrdIy0cLpCEOgd8NBBsEmaDGXspbN502jcweXLiVAXavh3d6otkfcgZEDDz5Z7625CRv9OExxtd4wYM7ucu7LKBbmqp4TIiLSvp8sSXYj6HMLqcbeGmckcATyA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765979735; c=relaxed/simple;
-	bh=uI48RSG+a+nSuEyywiQ6swM+axk120OhOUA8CnTh+yk=;
+	s=arc-20240116; t=1765979729; c=relaxed/simple;
+	bh=zPpdXJh32fTl/pow4D5Akokivv3EhcAmHbMnAg6Y7mk=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=rQAAwtPEsavsMgRGnXj7TF9DRMarW6qzGZ5Lo0la217+InEybeWNnvFB4h6EuXoKE4P4dDB0wa3nsfLnt7kapJz6LWEpbPnAARemwc0LUDncqU9vCuPH8fyQemT5H/SMIzKKOvcMV35OAS7ifHYjBD7hB6qD3zRMxWCTWq48Kzg=
+	 In-Reply-To:To:Cc; b=mr0nS4HU33vZFjnrRwicMpFeQ6AdRVnTgJuya3Y7CjICBMBeVDDQ08KCZksuqHmhTY2weK4sqNdEzS2/eC3+Yb9qQwYpUOsnzL2UiYINgL6Y56ePleZeZEMWyt4a7s+/wftcsporNV8kTjF8SA/jSYl0pLm/CXS4gtuHHr2oGsI=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
@@ -31,21 +31,21 @@ Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
 	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
 	(Exim 4.92)
 	(envelope-from <s.hauer@pengutronix.de>)
-	id 1vVrzW-00019B-Ae; Wed, 17 Dec 2025 14:54:58 +0100
+	id 1vVrzW-00019A-Ag; Wed, 17 Dec 2025 14:54:58 +0100
 Received: from dude02.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::28])
 	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.96)
 	(envelope-from <s.hauer@pengutronix.de>)
-	id 1vVrzQ-0067Ys-3C;
-	Wed, 17 Dec 2025 14:54:53 +0100
+	id 1vVrzQ-0067Yr-3B;
+	Wed, 17 Dec 2025 14:54:52 +0100
 Received: from localhost ([::1] helo=dude02.red.stw.pengutronix.de)
 	by dude02.red.stw.pengutronix.de with esmtp (Exim 4.98.2)
 	(envelope-from <s.hauer@pengutronix.de>)
-	id 1vVrzQ-00000004tQv-3SLS;
+	id 1vVrzQ-00000004tQv-3TDr;
 	Wed, 17 Dec 2025 14:54:52 +0100
 From: Sascha Hauer <s.hauer@pengutronix.de>
-Date: Wed, 17 Dec 2025 14:54:51 +0100
-Subject: [PATCH 01/11] ASoC: tlv320adcx140: invert DRE_ENABLE
+Date: Wed, 17 Dec 2025 14:54:52 +0100
+Subject: [PATCH 02/11] ASoC: tlv320adcx140: fix null pointer
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -54,7 +54,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251217-sound-soc-codecs-tvl320adcx140-v1-1-293dea149d7b@pengutronix.de>
+Message-Id: <20251217-sound-soc-codecs-tvl320adcx140-v1-2-293dea149d7b@pengutronix.de>
 References: <20251217-sound-soc-codecs-tvl320adcx140-v1-0-293dea149d7b@pengutronix.de>
 In-Reply-To: <20251217-sound-soc-codecs-tvl320adcx140-v1-0-293dea149d7b@pengutronix.de>
 To: Shenghao Ding <shenghao-ding@ti.com>, Kevin Lu <kevin-lu@ti.com>, 
@@ -71,11 +71,11 @@ Cc: linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org,
  devicetree@vger.kernel.org, Sascha Hauer <s.hauer@pengutronix.de>, 
  Emil Svendsen <emas@bang-olufsen.dk>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1765979692; l=1278;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1765979692; l=4599;
  i=s.hauer@pengutronix.de; s=20230412; h=from:subject:message-id;
- bh=WfOW2anrTgz/4XEyF51/kruoQkV8SVMulwmjlAzpc1c=;
- b=zTHm9wxvJRLhtaNf0abu1LNu43/5a0JNp7Pm6qDd5kPiMdJin2EnoYHuwtr1EvUBi3loEk5y0
- lMuFBz2/hZnCX5OnSg1x3g//i8r2IjtUYJzIQK6YwMevAFeWWAsabBV
+ bh=kXe/dgFdcFD3wr8yI0ZYTPwUBzycKle01oM0utMLno0=;
+ b=mASLkyf2r4+++Rji8xl9SELvcrjt8wYwKM5P3eBVoJKP573Oi2rfJ7L93sx8WOKy4GJPQ/XI3
+ H0MAG8C6UDjCtJjRyKSXxVo11cLg2HXr/Oarmzs0GT9VLuVv7ejdyD3
 X-Developer-Key: i=s.hauer@pengutronix.de; a=ed25519;
  pk=4kuc9ocmECiBJKWxYgqyhtZOHj5AWi7+d0n/UjhkwTg=
 X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
@@ -85,37 +85,94 @@ X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
 From: Emil Svendsen <emas@bang-olufsen.dk>
 
-Looking at section 8.6.1.1.69 in datasheets for both 5140 and 6140 (3140
-doesn't support DRE). REG ADCX140_DSP_CFG1 BIT 3 field "DRE_AGC_SEL" it
-select either DRE or AGC.
-It states:
- * 0 = DRE
- * 1 = AGC
+The "snd_soc_component" in "adcx140_priv" was only used once but never
+set. It was only used for reaching "dev" which is already present in
+"adcx140_priv".
 
-The control is called "DRE_ENABLE" and for it to be true it has to be
-active low.
+Kernel OOPS:
+[  438.223704] Unable to handle kernel read from unreadable memory at virtual address 0000000000000018
+[  438.232776] Mem abort info:
+[  438.235569]   ESR = 0x0000000096000004
+[  438.239326]   EC = 0x25: DABT (current EL), IL = 32 bits
+[  438.244646]   SET = 0, FnV = 0
+[  438.247764]   EA = 0, S1PTW = 0
+[  438.250906]   FSC = 0x04: level 0 translation fault
+[  438.255788] Data abort info:
+[  438.258669]   ISV = 0, ISS = 0x00000004
+[  438.262509]   CM = 0, WnR = 0
+[  438.265482] user pgtable: 4k pages, 48-bit VAs, pgdp=0000000046d3d000
+[  438.271929] [0000000000000018] pgd=0000000000000000, p4d=0000000000000000
+[  438.278731] Internal error: Oops: 0000000096000004 [#1] PREEMPT_RT SMP
+[  438.278739] Modules linked in: veth md4 btnxpuart crc8 moal mlan iio_rescale fsl_imx8_ddr_perf snd_soc_wisa_rx cfg80211 imx8m_ddrc ads7828 snd_soc_tlv320adcx140 sr1xxDriver tsf ts5usba224 snd_soc_audio_graphs
+[  438.278798] CPU: 1 PID: 64 Comm: kworker/u8:3 Not tainted 6.1.7-20231014-1-rt5 #1
+[  438.278804] Hardware name: B&O mozart2 Seoul Rev c (UNKNOWN) (DT)
+[  438.278809] Workqueue: events_unbound async_run_entry_fn
+[  438.278823] pstate: 60400005 (nZCv daif +PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+[  438.278829] pc : adcx140_pwr_ctrl+0x90/0xb0 [snd_soc_tlv320adcx140]
+[  438.278845] lr : adcx140_pwr_ctrl+0x58/0xb0 [snd_soc_tlv320adcx140]
+[  438.278861] sp : ffff800009b7bcd0
+[  438.278863] x29: ffff800009b7bcd0 x28: 0000000000000000 x27: ffff800009731c58
+[  438.278870] x26: ffff000002365b74 x25: ffff000000102205 x24: ffff00000995dba8
+[  438.278879] x23: 0000000000000000 x22: ffff000006d52080 x21: 0000000000000000
+[  438.278890] x20: 0000000000000060 x19: ffff000006c97480 x18: 0000000000000000
+[  438.278899] x17: 0000000000000000 x16: 0000000000000000 x15: 0000000000000034
+[  438.278906] x14: 0000000000000000 x13: 0000000000000000 x12: 0000000000000001
+[  438.278914] x11: 0000000000000000 x10: 0000000000000a50 x9 : ffff800008655f04
+[  438.278925] x8 : 0000c63716b3149c x7 : 0000000000001980 x6 : 0000000000000000
+[  438.278934] x5 : ffff800009014c60 x4 : 0000000000000000 x3 : 00000000ffffff92
+[  438.278940] x2 : 0000000000000000 x1 : 0000000000000000 x0 : 00000000ffffff92
+[  438.278952] Call trace:
+[  438.278954]  adcx140_pwr_ctrl+0x90/0xb0 [snd_soc_tlv320adcx140]
+[  438.278969]  adcx140_set_bias_level+0x30/0x50 [snd_soc_tlv320adcx140]
+[  438.278985]  snd_soc_component_set_bias_level+0x2c/0x80
+[  438.278995]  snd_soc_dapm_set_bias_level+0x60/0x1b0
+[  438.279000]  dapm_pre_sequence_async+0x84/0xc0
+[  438.279005]  async_run_entry_fn+0x38/0x150
+[  438.279010]  process_one_work+0x1e4/0x490
+[  438.279016]  worker_thread+0x64/0x410
+[  438.279021]  kthread+0x128/0x130
+[  438.279032]  ret_from_fork+0x10/0x20
+[  438.279041] Code: 95e38c64 a94153f3 a8c37bfd d65f03c0 (f9400ea0)
+[  438.327685] read channel() error: -110
+[  438.327694] thermal thermal_zone4: failed to read out thermal zone (-110)
+[  438.497842] ---[ end trace 0000000000000000 ]---
 
-This commit will invert the control so "DRE_ENABLE" is active low.
-
+Fixes: 4e82971f7b55 ("ASoC: tlv320adcx140: Add a new kcontrol")
 Signed-off-by: Emil Svendsen <emas@bang-olufsen.dk>
 Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
 ---
- sound/soc/codecs/tlv320adcx140.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ sound/soc/codecs/tlv320adcx140.c | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
 
 diff --git a/sound/soc/codecs/tlv320adcx140.c b/sound/soc/codecs/tlv320adcx140.c
-index 443cf59cb71ab3e70f47c4395159752a0331b1ef..75e1007012a48a569586bc2896400e79ddce1c71 100644
+index 75e1007012a48a569586bc2896400e79ddce1c71..3fb1b6251e6f8b361e8f82ce6381a7e8cfcd1935 100644
 --- a/sound/soc/codecs/tlv320adcx140.c
 +++ b/sound/soc/codecs/tlv320adcx140.c
-@@ -338,7 +338,7 @@ static const struct snd_kcontrol_new adcx140_dapm_ch4_dre_en_switch =
- 	SOC_DAPM_SINGLE("Switch", ADCX140_CH4_CFG0, 0, 1, 0);
+@@ -23,7 +23,6 @@
+ #include "tlv320adcx140.h"
  
- static const struct snd_kcontrol_new adcx140_dapm_dre_en_switch =
--	SOC_DAPM_SINGLE("Switch", ADCX140_DSP_CFG1, 3, 1, 0);
-+	SOC_DAPM_SINGLE("Switch", ADCX140_DSP_CFG1, 3, 1, 1);
+ struct adcx140_priv {
+-	struct snd_soc_component *component;
+ 	struct regulator *supply_areg;
+ 	struct gpio_desc *gpio_reset;
+ 	struct regmap *regmap;
+@@ -699,7 +698,6 @@ static void adcx140_pwr_ctrl(struct adcx140_priv *adcx140, bool power_state)
+ {
+ 	int pwr_ctrl = 0;
+ 	int ret = 0;
+-	struct snd_soc_component *component = adcx140->component;
  
- /* Output Mixer */
- static const struct snd_kcontrol_new adcx140_output_mixer_controls[] = {
+ 	if (power_state)
+ 		pwr_ctrl = ADCX140_PWR_CFG_ADC_PDZ | ADCX140_PWR_CFG_PLL_PDZ;
+@@ -711,7 +709,7 @@ static void adcx140_pwr_ctrl(struct adcx140_priv *adcx140, bool power_state)
+ 		ret = regmap_write(adcx140->regmap, ADCX140_PHASE_CALIB,
+ 			adcx140->phase_calib_on ? 0x00 : 0x40);
+ 		if (ret)
+-			dev_err(component->dev, "%s: register write error %d\n",
++			dev_err(adcx140->dev, "%s: register write error %d\n",
+ 				__func__, ret);
+ 	}
+ 
 
 -- 
 2.47.3
