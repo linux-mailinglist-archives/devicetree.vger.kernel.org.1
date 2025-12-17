@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-247344-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247345-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 717BCCC73ED
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 12:09:45 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4862CCC7345
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 12:00:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C7A08313C02A
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 10:59:02 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id F3EE83009085
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 11:00:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0D4636CDE5;
-	Wed, 17 Dec 2025 10:19:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F204236CE1B;
+	Wed, 17 Dec 2025 10:19:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="OntNhfF7"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="fzMFOEWh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CF6936C0CD;
-	Wed, 17 Dec 2025 10:19:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2FFC36C598;
+	Wed, 17 Dec 2025 10:19:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765966786; cv=none; b=EVDFhEo0H2ZwDLRE35gtkbdlAgVfHFhaYKNzio2puPX38/TfPHblXhoIXvJ22C2Q4T7Rj8P7k1m740T5cUqtjuKUPX5+osXpiCj4lU4V0jKetkoKEIEUenlPDlO9oLaQoT2z+LEicHcwsMyBfuOr6vX+meUByU63oORrEAYoQGg=
+	t=1765966787; cv=none; b=KKpFUldA69lYfnaG81z1kNEEaV77b9+lmuSSejinLenrVqfxNIhbVlkd1oksuwFVumMn5o7ULueVPLKPndpno8uZaa9RxgHIEDoZUuPJ+5mjdh/0KdWxwyo4rvh2Yiiyxrp6AN0F+KW7uh4yZAQI8rCaNCupXcZklHiP7ddDFWc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765966786; c=relaxed/simple;
-	bh=2xZJiA/e2yEWce3nDQEQ2ahixaohi3k6n/fEjJnLDVQ=;
+	s=arc-20240116; t=1765966787; c=relaxed/simple;
+	bh=v2QuPDw9K0n6FNZS6s1RdjJ61am2N+d7TzADHlSeuNI=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ullLB7lrJiJBLbiLLYXkvzCjbmCHECwnHDf5GuI+WP0fNLveAz7hZFF4CMvDbEN66fM0PBZfmKMpe/0ul2oeOrcpfHBqfAz9bj1QxDoNzc0BM7XnrgqjbzQf34cSFZ1VmQy5/6I2OR6rX6elQ0APt1TZzpzx+SHPgbdIypfY6Z0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=OntNhfF7; arc=none smtp.client-ip=148.251.105.195
+	 In-Reply-To:To:Cc; b=FGArARel6cFKBi7oqduupYkstjkaGQVOFkuz9kFi13AOF6CiMMwc8mD+FDPUR2bRzKLi+EnngxC7HSeCLRadw84ZC3zsZG6g5VpdFpDO8axuFFZfOXu0n/d89zntv5sHNEgczHvkjFiO9T3ni1bKxEfCviSL3F1NpJUzgqInvEs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=fzMFOEWh; arc=none smtp.client-ip=148.251.105.195
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1765966782;
-	bh=2xZJiA/e2yEWce3nDQEQ2ahixaohi3k6n/fEjJnLDVQ=;
+	s=mail; t=1765966783;
+	bh=v2QuPDw9K0n6FNZS6s1RdjJ61am2N+d7TzADHlSeuNI=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=OntNhfF7d9lV2N8GLUJ/sKPfqS18zk1FNNbdcsr3NaP4B/eskj4Zg/Hizy617XaGK
-	 cjdiFqWj8euh3B2en13vjdHrYf6u2HazSNAhuUs9aGjgNkYz4ScxsTlWpvVcRRnJ5Q
-	 aK+nwrcXdHPHCUAUG1H3Jv/WrIi8VtZ9F4SmSrYGdQuKACZj0ZkYKeJeIZ21fm0Ujz
-	 IifuSDv+j5ghFc+1P0adzxZRPxYhHEXa2NlCRFo9Q1g3tZWAbJIFmrEeT83jd9HFdv
-	 t2WYmpHXWO8cN4SlZ/OO31QbMN1fxzo76MQsvUu9iujHBpi0WwHJqV8sVwZdfCKMLA
-	 TzjXL9FomjBHg==
+	b=fzMFOEWhTb0m3jQ5CdwtnpRBbMiWzwap3ho9Ip9Pt0iu82StoUJ+S+sJd/XRr5foH
+	 lwt8+gMsnIfF27PKU1oh9rHQrRt7HI3UWVTNaVLQMXnVC9WOLSQATonwIw9kZwGKQw
+	 /m010ho4is+AXnd6dr0TifJpdArztcpLYcNzyoOX6K2/5GbwrU4x2pfZYdVD+y9q3m
+	 06V7CqolCkDqQu80IreTyoYJ9UuA7ITjlT8HxpgyIhxB9hGLS+w+yntAjDYd+JWw8U
+	 cwd9PS0UVf/FG9Qm2r0nBQybkw9F8vKzWbm5P9Yq+/tsRlCqQ7v/MthU+UyN3P1a9g
+	 2TvgPuoiJI1kg==
 Received: from yukiji.home (amontpellier-657-1-116-247.w83-113.abo.wanadoo.fr [83.113.51.247])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: laeyraud)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 207F517E1520;
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 0009817E0C87;
 	Wed, 17 Dec 2025 11:19:42 +0100 (CET)
 From: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-Date: Wed, 17 Dec 2025 11:19:06 +0100
-Subject: [PATCH v2 07/12] arm64: dts: mediatek: mt8390-genio-common: Add
- HDMI sound output support
+Date: Wed, 17 Dec 2025 11:19:07 +0100
+Subject: [PATCH v2 08/12] arm64: dts: mediatek: mt8395-radxa-nio-12l:
+ Enable HDMI output
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,7 +58,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251217-mtk-genio-evk-hdmi-support-v2-7-a994976bb39a@collabora.com>
+Message-Id: <20251217-mtk-genio-evk-hdmi-support-v2-8-a994976bb39a@collabora.com>
 References: <20251217-mtk-genio-evk-hdmi-support-v2-0-a994976bb39a@collabora.com>
 In-Reply-To: <20251217-mtk-genio-evk-hdmi-support-v2-0-a994976bb39a@collabora.com>
 To: Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>, 
@@ -76,42 +76,219 @@ Cc: kernel@collabora.com, Krzysztof Kozlowski <krzk@kernel.org>,
  linux-kernel@vger.kernel.org, 
  Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1765966775; l=863;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1765966775; l=3996;
  i=louisalexis.eyraud@collabora.com; s=20250113; h=from:subject:message-id;
- bh=2xZJiA/e2yEWce3nDQEQ2ahixaohi3k6n/fEjJnLDVQ=;
- b=5oLNUsgnudzEFOCOy/+7qSe/udDuBy0OSLq5nT64aFW/Rov1ttaxPA8DSnJ3n1tZC05S5cNnh
- 2eruY8CsG8zB2GStAjB7GtX516pwXIA7N2h6kGUgbxkFKIAdEERXZet
+ bh=2k32lAvL+oS+oCDLIGRUdNxvio3a5abaLFyOgFe4WZE=;
+ b=xt81f0QLLt9CcQxuZjWpo3nPRk59XynaBD/T0hg815CpvTkWyQ2hS3uzgOzy7yyNUiA3LKW5P
+ CipyTTevDZ1AtN3l6ENmKVjK7xQMNiiP6TlH1fJYkIKYDON2tAe6n7C
 X-Developer-Key: i=louisalexis.eyraud@collabora.com; a=ed25519;
  pk=CHFBDB2Kqh4EHc6JIqFn69GhxJJAzc0Zr4e8QxtumuM=
 
-Add in the sound node a new dai-link for ETDM3_OUT_BE to add the sound
-output support through the HDMI connector.
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
+Add a definition for the on-board HDMI connector, enable and add
+the relevant configuration for the HDMI PHY and controller, and
+define the pins used by those.
+
+Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
 ---
- arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ .../boot/dts/mediatek/mt8395-radxa-nio-12l.dts     | 142 +++++++++++++++++++++
+ 1 file changed, 142 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi b/arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi
-index 5fa1f5fbad18f2bf9b153ae9a029829641e43023..2062506f6cc523d7797adc8b7e74732be9320201 100644
---- a/arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8390-genio-common.dtsi
-@@ -1344,6 +1344,15 @@ codec {
- 			sound-dai = <&dmic_codec>;
- 		};
+diff --git a/arch/arm64/boot/dts/mediatek/mt8395-radxa-nio-12l.dts b/arch/arm64/boot/dts/mediatek/mt8395-radxa-nio-12l.dts
+index d32f973f5e0528bc3233ff01f029006dbe6ef894..b0e18876bd5d2341c6f17f47e9f11433be807ccd 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8395-radxa-nio-12l.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8395-radxa-nio-12l.dts
+@@ -37,6 +37,20 @@ chosen {
+ 		stdout-path = "serial0:921600n8";
  	};
+ 
++	connector {
++		compatible = "hdmi-connector";
++		label = "hdmi";
++		type = "a";
++		ddc-i2c-bus = <&hdmitx_ddc>;
++		hdmi-pwr-supply = <&hdmi_phy>;
 +
-+	dai-link-2 {
-+		link-name = "ETDM3_OUT_BE";
-+
-+		codec {
-+			sound-dai = <&hdmi 0>;
++		port {
++			hdmi_connector_in: endpoint {
++				remote-endpoint = <&hdmi0_out>;
++			};
 +		};
 +	};
 +
+ 	firmware {
+ 		optee {
+ 			compatible = "linaro,optee-tz";
+@@ -245,6 +259,18 @@ port@1 {
+ 	};
  };
  
- &spi2 {
++&dpi1 {
++	status = "okay";
++};
++
++&dpi1_in {
++	remote-endpoint = <&merge5_out>;
++};
++
++&dpi1_out {
++	remote-endpoint = <&hdmi0_in>;
++};
++
+ &eth {
+ 	phy-mode = "rgmii-rxid";
+ 	phy-handle = <&rgmii_phy>;
+@@ -265,11 +291,61 @@ rgmii_phy: ethernet-phy@1 {
+ 	};
+ };
+ 
++&ethdr0 {
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		port@0 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <0>;
++
++			ethdr0_in: endpoint@1 {
++				reg = <1>;
++				remote-endpoint = <&vdosys1_ep_ext>;
++			};
++		};
++
++		port@1 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <1>;
++
++			ethdr0_out: endpoint@1 {
++				reg = <1>;
++				remote-endpoint = <&merge5_in>;
++			};
++		};
++	};
++};
++
+ &gpu {
+ 	mali-supply = <&mt6315_7_vbuck1>;
+ 	status = "okay";
+ };
+ 
++&hdmi {
++	pinctrl-names = "default";
++	pinctrl-0 = <&hdmi_pins>;
++	status = "okay";
++};
++
++&hdmi0_in {
++	remote-endpoint = <&dpi1_out>;
++};
++
++&hdmi0_out {
++	remote-endpoint = <&hdmi_connector_in>;
++};
++
++&hdmi_phy {
++	pinctrl-names = "default";
++	pinctrl-0 = <&hdmi_vreg_pins>;
++
++	status = "okay";
++};
++
+ &i2c2 {
+ 	clock-frequency = <400000>;
+ 	pinctrl-0 = <&i2c2_pins>;
+@@ -448,6 +524,35 @@ typec_con_mux: endpoint {
+ 	};
+ };
+ 
++&merge5 {
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		port@0 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <0>;
++
++			merge5_in: endpoint@1 {
++				reg = <1>;
++				remote-endpoint = <&ethdr0_out>;
++			};
++		};
++
++		port@1 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <1>;
++
++			merge5_out: endpoint@1 {
++				reg = <1>;
++				remote-endpoint = <&dpi1_in>;
++			};
++		};
++	};
++};
++
+ &mfg0 {
+ 	domain-supply = <&mt6315_7_vbuck1>;
+ };
+@@ -647,6 +752,31 @@ pins {
+ 		};
+ 	};
+ 
++	hdmi_vreg_pins: hdmi-vreg-pins {
++		pins-pwr {
++			pinmux = <PINMUX_GPIO31__FUNC_HDMITX20_PWR5V>;
++			bias-disable;
++		};
++	};
++
++	hdmi_pins: hdmi-pins {
++		pins-hotplug {
++			pinmux = <PINMUX_GPIO32__FUNC_HDMITX20_HTPLG>;
++			bias-pull-down;
++		};
++
++		pins-ddc {
++			pinmux = <PINMUX_GPIO34__FUNC_HDMITX20_SCL>,
++				 <PINMUX_GPIO35__FUNC_HDMITX20_SDA>;
++			drive-strength = <10>;
++		};
++
++		pins-cec {
++			pinmux = <PINMUX_GPIO33__FUNC_HDMITX20_CEC>;
++			bias-disable;
++		};
++	};
++
+ 	i2c2_pins: i2c2-pins {
+ 		pins-bus {
+ 			pinmux = <PINMUX_GPIO12__FUNC_SDA2>,
+@@ -1058,6 +1188,18 @@ &ssusb2 {
+ 	status = "okay";
+ };
+ 
++&vdosys1 {
++	port {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		vdosys1_ep_ext: endpoint@1 {
++			reg = <1>;
++			remote-endpoint = <&ethdr0_in>;
++		};
++	};
++};
++
+ &xhci0 {
+ 	vbus-supply = <&otg_vbus_regulator>;
+ 	status = "okay";
 
 -- 
 2.52.0
