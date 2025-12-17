@@ -1,326 +1,176 @@
-Return-Path: <devicetree+bounces-247627-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247622-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80515CC9879
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 21:56:10 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12F31CC976B
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 21:14:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0CCC9300DC83
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 20:56:07 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B9E32302EF47
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 20:14:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BB992F9D9A;
-	Wed, 17 Dec 2025 20:56:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69ED83016E5;
+	Wed, 17 Dec 2025 20:14:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="eFAWShri"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="aKTEqYOn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11011015.outbound.protection.outlook.com [52.101.65.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 897D926C385;
-	Wed, 17 Dec 2025 20:56:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.15
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766004966; cv=fail; b=ASwHC6HiSTLBS1LFUtcBPY4kTFbqQBxiTb1SmlZhYkLNN6FHcRDZrY/aMiHYugBNN1g11FrHzoUJguS/kmLPoxN1TkLPZz4gtaN5jidygBQzZCb69auLB6GwQtT1+qhJf/iiq0xm4fmrvdOE9vfltds+h8tX4j/0c59sr1Ju/ig=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766004966; c=relaxed/simple;
-	bh=aZUtHP8KQc74V1Yj5hdNOFN3devmsICHrxFym4h6LJE=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=Ls3pwXhH7pOIlwAijDsfPQ3tmRAjanXCfiV1yxMxR+P83n2lRlKU9DdSaWuyk5t2hwHb3c0xNToIDjR859xEGk6EopIHjit0jkbLX9/Pvfkj4Jd1IIWlnRN17aOZqXOhL1hU4NpAabGmQyFtI/HQ/FDyXJ+01fNLMf9d4oseB18=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=eFAWShri; arc=fail smtp.client-ip=52.101.65.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-Received: from VE1PR04MB7344.eurprd04.prod.outlook.com (2603:10a6:800:1a1::10)
- by AMDPR04MB11608.eurprd04.prod.outlook.com (2603:10a6:20b:717::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9434.6; Wed, 17 Dec
- 2025 20:22:24 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=aJYbeeu841DC8frGe+YvhdJ0xAnOMfsPYaGWyX6R0FuKbmnZbyKQbtOIIsAUPp4b1OLmKJFZgie5tDpFNqllBVor+JY5NY6i1P99UlSZ5szhwrI0aPJyF2xVS6JPYZ1W2JE9g7fEi5MkmM09c2ix4flLR6PORLbXUZGMfirMxTGwpj++wKoYnwR3NUziYxfGyJyUWPPcAOxedyUu0db5u5OrH90B0Kqw1vyzlAUfhokLlDJNieDWbWXJmD0h1QkCxODWOomjKj+U4PNaQFs2v5WJIupeNl6J12K4yoSBpEEIXxnjtD1LULF9R1aJGtdCoaGq3Oh1Gfe9tqaLUXPueA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=sfACWLHp3df4sJIZvQAd9/UNu9AkArwbM4B04f0+SxI=;
- b=sF720XE4f/L7CYStIlCszjjhVyskaqdoDMkyy1DhcSipnWroUK1mY0xjnDR0PVXvZ2kx3vTBtuVkFMvyejMDbiuN64QQqtOsXi3CtCSzUrcD7JJH4OOfyww1hEZXOP0+gfP7OOXT1+SdBSuYx/WME1ETmx8QndGdmYZOIvP3BIJ2GDfdesU/9jdBrWkK3ZLdj81sV3cHmsD/xPY5Df4enP2FWSkIU04tsENNbNm22Uf6tnKVTTo0AkQYx1+s5w19Ao5anGt8dAqyZlXWpqnayS/2h8DxQLeAKk133IJQ9U+Wz8bQxFEpBEAp/EuxcB8vtSR+2aVMr5crtj4Uyj1flQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sfACWLHp3df4sJIZvQAd9/UNu9AkArwbM4B04f0+SxI=;
- b=eFAWShriqgmMYLa20gAHZ4i60xMVLN3iWgiFaxANBceDL912XE6p+2N4OiQrQ3l7YAhHMR9VGM9Wgvn2HYmzJT52vmIJqWS2+ChIoQC4cjJJS2dY3k+0SPQ04tKsKWAegSQHX6W1Vg9JKvUbuixSa8GyXjjJV1NubkobpPMGfPJvJ8HcSnmXh0bBr3YHKXDsyAYzH+ud8iAvPWhZJLoQVVHI+/U/tpjrclyZoDk380N0jMqSFmaFqpgtlAwRTxPwCrcY1EfAQs16QJJKIq+bqwPBe8xyqHi78Ragv+yh3ef8DuPAUMCsySC1jJgavmbV615hRaSj+NkeyzSyrAnW+A==
-Received: from PAXPR04MB9185.eurprd04.prod.outlook.com (2603:10a6:102:231::11)
- by VE1PR04MB7344.eurprd04.prod.outlook.com (2603:10a6:800:1a1::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9412.7; Wed, 17 Dec
- 2025 19:45:11 +0000
-Received: from PAXPR04MB9185.eurprd04.prod.outlook.com
- ([fe80::21bf:975e:f24d:1612]) by PAXPR04MB9185.eurprd04.prod.outlook.com
- ([fe80::21bf:975e:f24d:1612%5]) with mapi id 15.20.9434.001; Wed, 17 Dec 2025
- 19:45:10 +0000
-From: Shenwei Wang <shenwei.wang@nxp.com>
-To: Rob Herring <robh@kernel.org>
-CC: Linus Walleij <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>, Mathieu Poirier
-	<mathieu.poirier@linaro.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
-	<s.hauer@pengutronix.de>, Jonathan Corbet <corbet@lwn.net>, Pengutronix
- Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Peng
- Fan <peng.fan@nxp.com>, "linux-gpio@vger.kernel.org"
-	<linux-gpio@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "linux-remoteproc@vger.kernel.org"
-	<linux-remoteproc@vger.kernel.org>, "imx@lists.linux.dev"
-	<imx@lists.linux.dev>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-doc@vger.kernel.org"
-	<linux-doc@vger.kernel.org>, dl-linux-imx <linux-imx@nxp.com>
-Subject: Re: [PATCH v6 1/5] dt-bindings: remoteproc: imx_rproc: Add "rpmsg"
- subnode support
-Thread-Topic: [PATCH v6 1/5] dt-bindings: remoteproc: imx_rproc: Add "rpmsg"
- subnode support
-Thread-Index: AQHcb42nD0vV/FZ/cEahrrMlv9mXGw==
-Date: Wed, 17 Dec 2025 19:45:10 +0000
-Message-ID:
- <PAXPR04MB9185E86CB81C111DAB5B329D89ABA@PAXPR04MB9185.eurprd04.prod.outlook.com>
-References: <20251212194341.966387-1-shenwei.wang@nxp.com>
- <20251212194341.966387-2-shenwei.wang@nxp.com>
- <20251217005758.GA3452672-robh@kernel.org>
-In-Reply-To: <20251217005758.GA3452672-robh@kernel.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic:
-	PAXPR04MB9185:EE_|VE1PR04MB7344:EE_|AMDPR04MB11608:EE_
-x-ms-office365-filtering-correlation-id: c10af08c-1e1d-44a1-90b7-08de3da4ca1e
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|366016|19092799006|376014|7416014|1800799024|38070700021;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?ASk2nHi1s63vFuGMc7ka9p+JaT+euGcfSH7YKkL3p44ALDawwX4+2quemlQd?=
- =?us-ascii?Q?QApxCDWVr8r8bhgEO5jTkdNCBTGIp+/Rh2a4SsM6ojXmpnvPy7ylCGGU3cL2?=
- =?us-ascii?Q?Y+GUYzZJT/FIElBtJKxbo4v2qGnvkFZgDBW1TTcdQLXqLhrn3qSyNhqep2kO?=
- =?us-ascii?Q?fspNxmPh8KzC6YxdW5KRfsEKvNMMoDMrUE8BWmaa5+w9r/Oih7NcwJW+id5n?=
- =?us-ascii?Q?r4botM7SuzmLwz9rBZ8k158jVjYvJD26ow+ysGz+hFr4M8D2WwFW/NsFdRUE?=
- =?us-ascii?Q?ATMFXOWMhNHKHfh5jW7LgWbXTebvgPBO73nWC6bQs/505IVje7kaN3BrwVg/?=
- =?us-ascii?Q?r9HsmZ163tT2/aJyt4FjcmCXTyQoagFtbz218M0rr7aBoMgjN44V5dXQ8ewT?=
- =?us-ascii?Q?jnW+nNZ0Ze5iSIJl5Tl3k0d9o2jPP3viEBjHo+EF0itoQHLdRUINswAFXfB/?=
- =?us-ascii?Q?oP8AtnKbdfvEpyLEnEQEQD9f1Zrb4TKOt5YGEDs7BLV8hw++45Z/Y64eT44M?=
- =?us-ascii?Q?eVMoEmcl5Pg8YQ6LIO2QoM/VNBqAeDrU2EaX0vD+4N3H9sIlnk1e+2LPmRH1?=
- =?us-ascii?Q?VTVTux3eEhfdoa6EkCw09OhpigRtib76Je2QZopa+2UgDHY/VOuMgacWR0Kz?=
- =?us-ascii?Q?6dpuQ98CWie04TorJ3ncuQ5iebMQS8/Nc+ZY/VknkfGNxSwRzlvzP131sm+Y?=
- =?us-ascii?Q?x9+U7WGlB+6C1spteYd/BY9e7BXLbmI9d8kIERIpy0aE8CZ5/SLxN74NN7R9?=
- =?us-ascii?Q?I4wXgmDwRkyWoocnmL4byccN6IYJTJpmAu3bEwQBeiy68tGUrMMXRUVKWPhz?=
- =?us-ascii?Q?+EalXGhy/UFbizQjrkNn7dN69n4uKDtSlQC8kihNpBizF9EHflcWVyFsikfy?=
- =?us-ascii?Q?Q7CrA3BJnHiNirzRs+Q/94cIzCulDFvtwTAaSzWNv5yU1K2Y7HcM9+iq2k3o?=
- =?us-ascii?Q?pGg4Sxgl5tNTcGDo5Xw1QA3Am8ECfWTCPLJ6fnz3aLgQG5sQ3MxxWsYjq1vz?=
- =?us-ascii?Q?Q9Bkl+Mrx/5a1+0TkQGuvUyT29muZ7CLlzBMzrEWKGwZkhLhmu8yQGAVNMQN?=
- =?us-ascii?Q?pM/2ucknebT2VlhNSeJ7VRAatqzLGN2pJ9b8MhC8V2gEqmDxIKfYAoAxlC6b?=
- =?us-ascii?Q?2+T/eZofWRNzN6Uxmi+jJIaq9+U4+x6GERBHDYTYTf3iSeW+j3MBwkKlNhJa?=
- =?us-ascii?Q?Q4AKc/UVlpyW58mXXIa/TX3f7i7UJYE9BoXo2CaPXDLuJ/fiTv6STe/vi689?=
- =?us-ascii?Q?GpjvozFKP0XLYKyOVinE1vpbr9zohkp0in7l+nkzy8foOgKuv6Xm1/oj8ikT?=
- =?us-ascii?Q?zDHN4v9+xb7jkH2CfJJVkyJNbiw6jKHiz+omuoB4MGmCMV1UxdKeOx2C9yEz?=
- =?us-ascii?Q?ZnIKHeonTPL5p3xC418HvQXsbE48gNrNYPTyh+0Y2Y3t94I4iG2IL12jEDiM?=
- =?us-ascii?Q?n/5EJm2qNSnpbwt+uSwddqOhGZkjtyOq0tr7Q8a3Lqm30nnSKQm4UKJObbR8?=
- =?us-ascii?Q?gaI1eKSXKC+ud1vdt3dXWOk01rybZmSLDlo6?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9185.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(19092799006)(376014)(7416014)(1800799024)(38070700021);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?rrLsLs+Qi1OCwP7DhBAWjKnBJMXbbSvytitYsGzC8PjymB5qZ50J2NfDhSec?=
- =?us-ascii?Q?wZb4HsGu4rmqbdFL1j4k8zKdBA+gvefUDM7VltgLlJgCeiatOvVdo8F9E1UK?=
- =?us-ascii?Q?HBuJUzuzNsjyzj2ucXcHd9O+XesUE6Hlz8eTjKFAfhL+A9q0Wt7qK+lPAZSO?=
- =?us-ascii?Q?nr5GDHkSn6o9p/OSK77D6LTEKp8f6sSsgIar1f0VghalqmBoyViMxvUO+wNJ?=
- =?us-ascii?Q?hQ6Ok9lLWmak9Yn+nmruvbEhkP7p3Cmuc8/s8XHIQTjtzeassP+2q7mtNUVF?=
- =?us-ascii?Q?gejNsLA89Qy6nztzRzEnQ9pVC9YhYXx99p94vS19Yx80YisVMimEuctSSPnA?=
- =?us-ascii?Q?1An56UTNkk0zZ53tGr6A6dQ3x2O1UPeCXpfvzz6avA0Ha9XHuMgWQ3Jr+KDT?=
- =?us-ascii?Q?DgUpqyaVnu6VBuhR6o95kiNNMelPtuoATcif1rHxb0tuS6R3YT73oas3bJaW?=
- =?us-ascii?Q?TFyvsTTCV7zOUyGNHwkswbGmnZD9kDTXZL+DsezCIV5E/OXLvr41pUIXOucj?=
- =?us-ascii?Q?52wvl3D0CU7vCtto2cIe3fsxqmr3lF9iVz+1Zxya9QCDPLjybeHUdKUG/BAY?=
- =?us-ascii?Q?oPflazdwq4O8fcM03vn0qaen2hq3Zy5szMFpgmpdGqb7j2cULyWe1HqxXeNl?=
- =?us-ascii?Q?o2g4gwxhWAKbK8FSwDmjcxwTtLwu4DaJQ/3AsWZ4Br+gMKReW0qwEBVpvQ3J?=
- =?us-ascii?Q?Cvzu2XCS6+yx+TX0igWkmIE/cWuRhAIewFlO3ANR7i3VLb0CASg3kOSWm5Ip?=
- =?us-ascii?Q?X5155fkl3HIGrOfDiRvd2l002xWdq2uMUJOqqDPlgcA5L0O2kfNHlGDAarC6?=
- =?us-ascii?Q?mclW0/2HDp8Ra771FIuzx7D4QGsqTbC0ho6nzROyoJ0aQobWly06HT1qr65C?=
- =?us-ascii?Q?YWNgRCRRIeSOb2Eaj56rDKJLPoFTDSRr3sV19Ta67Fr66Lg4NFj9BUtF0ECE?=
- =?us-ascii?Q?4/zf6xEQETb4P+Eu4sqG/jNpr9lHu4su5COJjfTLEszSThZ0fwqM0Z6UZ+AQ?=
- =?us-ascii?Q?RLiG6gQWLiKIZav3yGTp/hNVK3UTo4uvPWQzgFpnaOgaAkRcWpU6bbVth7Yg?=
- =?us-ascii?Q?u2t9LIHQZuLl1aWjgehHrdvsN55OCrVY76qlVJMy9c7laPJ14CG0azLP4Ytq?=
- =?us-ascii?Q?BpBTG19zXdTCEIsKgJ1eFDyGHLp8weAyzza33Js0PrS1HcfTN9HEpWYAjuBf?=
- =?us-ascii?Q?OnrSSWxzstFF68H/5hYkC0rXNNLVZSf3u2mcxiUqUvjlYfXoAEfdo8rFljeL?=
- =?us-ascii?Q?aeKrCePvO1ED5Wop6wewUDalGWTa60KZ9G4jLHEXfNnt1dYcjPWc7thL1XU0?=
- =?us-ascii?Q?7VdHwcM7WPBnCWAkjAYsDTy8tf9rhppcaPldn5r22oAIyKj8KAsFMufH6EFE?=
- =?us-ascii?Q?JqNqJk/qfSQhGMCcRwkbeA5/LgNce7bGEM7GPUMQ5TKz2Q6AEoE+fCiAo7Sd?=
- =?us-ascii?Q?AompyvA33FgA/OUt1iAvpxc3EUc6aAiFQQPBPNgVpTenGmbiON0JuQYiKAVw?=
- =?us-ascii?Q?01umVFQUw3jozLh/+t9sVwNslYcA5xlA52EbfVQ0AQC0Suin50gT6OOMyx7c?=
- =?us-ascii?Q?6Xq8RBt71d8SzJdQtgA=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 992F22FFF81
+	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 20:14:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1766002482; cv=none; b=l9+dzdGTCJx6j+cC9Sxzu+hSJ2HnmaUnLAR5YsOsWVL3xAA24xIHTPiSayC8+a69paMghzUftkmq0c5SYfTfKJKNPYpf/NtlOBhUKSH0Ru/RxAz85Lfv7dYDKBhqnAhWrEeMIiVGSBHhj9euVQY7o70iRo/QRCjS4NY3mNOVNQc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1766002482; c=relaxed/simple;
+	bh=3ptYz/wLgIC9dYQ1kM92VS/MK6iPLAxyt07DMgLnkfY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=UfCyiMc4GeIcgLYQAhCY/J9pGEtIB7y9McGiszOvKB8z10H9JAxmsASNXhqBgUhekp1zwsWpIy89UBu++w1dub4H98zZTErKQicDzzK6ovfVnJm1wKl86/4/hcASYeuI44h45AAmgmgb32XqwgiLqZYN4CWsz4cDJvfyYptXMx0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=aKTEqYOn; arc=none smtp.client-ip=209.85.208.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-644f90587e5so10514095a12.0
+        for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 12:14:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1766002479; x=1766607279; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=tM/V/k/fSUtW462XR6FXOM+8RdQaX18bynBaXcytSDg=;
+        b=aKTEqYOn16v1yXOtEhRQyp9zfAxw8+EeFMR87bJq4GJH3bkSi9gAzg9fl/XKpBpxXZ
+         3hknlu6XFsmigt4MyCHKYzUfxTuoKORxHdCUxr2cHrWHV+AhyV7Dm1qwPa9JEbVqO3mn
+         MV9G2ynpci1CYr2RFhftofUeYj55t+zUKBqqbkAN1RsrJBCkZrruxOpXTgQEv8uqaUmI
+         k198pEKyN6h+/xNIcxwOjt6Dk8p+oZqmanvhChtkg/QPNuwlLjgQmIDK3Ja1pyloZf30
+         RL6HHwi/CzHlI8cvpprXfyFwxxEzvow0YL8ZoaYrdGN7/+ev1MckCKuJPFn9D1lgRPBV
+         Px0g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1766002479; x=1766607279;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=tM/V/k/fSUtW462XR6FXOM+8RdQaX18bynBaXcytSDg=;
+        b=cuT9jWrdS+7BfBO2mxkns7/SYyP2RDf7yGlbpUmjQYSFGXCoWzJdteOc/hBpDyjd1+
+         yqo74PArNfQROxW7Wsyb6TmJoOqu65ierIWrOXuWOpCrbOGvBX40IzI2DTkD/04EdGAo
+         Yj2R8HaAva8zC1OJDbAIjRYeaESUGU//jLmGnbWzDQH5MhPe4hx3dOVrAQq8QjAi/7nP
+         Tam+gYUpp9nmlLp8fJ/7+muOLSl2drvVJnjNxZexrViucsHysffnXZcOKf79J+HiPs0M
+         X35OmgfO6E5Yc2cctw7SJUoYJ0G1cBylFLquJUxLLLcCyME9nWYCMAMxm2Yx58yybL0f
+         DABQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXf1jJksvJhmvNYiYKy3ZSDk1JeJ8v3p9Ob+uCSmxs71jb3xewGloMcERp3M6RV3+nKugd7BYig5DOM@vger.kernel.org
+X-Gm-Message-State: AOJu0YwZtGB2gQuqphEpc9M6smNYuxgoFLvOX8wwoKsxKC8LgfU82lJ6
+	ZyJa+YL8nPW6MzdKmeen3Q59JWrpJOLU3HXKaaQB3ZQPDDSw+QOyUROFaREOYlnkRdMs9x1GLJ6
+	FvNSxIItk/EZaozNgxATL4K+nK5dMBYB7x6wNcHAl
+X-Gm-Gg: AY/fxX6AMG2+7mwDjwBgy4hEF6AZ+15UezLPbKxAV2/wUiClRFdMHx5CEUW3MhzgCKQ
+	/wHNkyXpD8R+XmvowBgI0VySQ4+7Ico5FUi98RowQXhrDYOZkRhO2iHcrj4K0Gzlo1ebqEtX0kH
+	3q6Hil6RmI1zYM5QKt4f5wKOTnlc0md0BrGPs0UyDgGgfhszqu+f+/rr2JZRw3XZDlfPKNPGPpD
+	R/9ZsAKk5Esk6pVsuY21nheewwSUABi9uIBU0H8ZP7h34c1Gv0OITtP81cZBoR1rMhbURNRDl4D
+	ipq34/psCKE5bnxBlb28sXV41g==
+X-Google-Smtp-Source: AGHT+IG4PFt6/xl6TY17qdZDo/fSC5jvUriMDmtoPhK6WjCwoIZvzT7uFwVBMWf3+gIeet+IH6pEPp4HA0evjsAE9aQ=
+X-Received: by 2002:a17:907:96a6:b0:b79:d152:566a with SMTP id
+ a640c23a62f3a-b7d236ca22emr1906214666b.28.1766002478506; Wed, 17 Dec 2025
+ 12:14:38 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9185.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c10af08c-1e1d-44a1-90b7-08de3da4ca1e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Dec 2025 19:45:10.7995
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: keBMDMAVJ6m9P82fUO9jGGdoUMiih5PhnT59MTvQoq4EVDfTBseiir7F9WNTg8ickAbww24+Nf+7/mIudjTtgA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB7344
-X-OriginatorOrg: nxp.com
+References: <20251205-controller-v9-0-9f158b18f979@google.com>
+ <20251205-controller-v9-2-9f158b18f979@google.com> <2025120553-suffrage-divisive-5890@gregkh>
+ <CA+zupgzL7v5MZDpxKDQQCqAZaqTdHbiG9-xTr+8RnigMFZJ_7Q@mail.gmail.com>
+ <2025121728-reliably-crabgrass-2601@gregkh> <CA+zupgxZCyNonfNPbGnFymGGOQuaWR1TsL+hujTbH4DEcfEt9Q@mail.gmail.com>
+In-Reply-To: <CA+zupgxZCyNonfNPbGnFymGGOQuaWR1TsL+hujTbH4DEcfEt9Q@mail.gmail.com>
+From: Doug Anderson <dianders@google.com>
+Date: Wed, 17 Dec 2025 12:14:25 -0800
+X-Gm-Features: AQt7F2r-ws7J5EyDz0pvtMEQpxK_o2RQbdVkWKJTgzdUasSvuVkdkxrUDLQsMMI
+Message-ID: <CAD=FV=U63F-wxwKDo9be6_X2P2zp6aTBjNghZRbXX1rn4jFNyg@mail.gmail.com>
+Subject: Re: [PATCH v9 2/2] usb: dwc3: Add Google Tensor SoC DWC3 glue driver
+To: Roy Luo <royluo@google.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Peter Griffin <peter.griffin@linaro.org>, =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+	Tudor Ambarus <tudor.ambarus@linaro.org>, Thinh Nguyen <Thinh.Nguyen@synopsys.com>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Badhri Jagan Sridharan <badhri@google.com>, linux-usb@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+	Joy Chakraborty <joychakr@google.com>, Naveen Kumar <mnkumar@google.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi,
 
-
-> -----Original Message-----
-> Subject: [EXT] Re: [PATCH v6 1/5] dt-bindings: remoteproc: imx_rproc: Add
-> "rpmsg" subnode support
-> On Fri, Dec 12, 2025 at 01:43:37PM -0600, Shenwei Wang wrote:
-> > Remote processors may announce multiple devices (e.g., I2C, GPIO) over
-> > an RPMSG channel.
->=20
-> Which channel does that happen on?
-
-It runs on the RPMSG  Control channel.
-
->=20
-> > These devices may require corresponding device tree nodes, especially
-> > when acting as providers, to supply phandles for their consumers.
+On Wed, Dec 17, 2025 at 11:18=E2=80=AFAM Roy Luo <royluo@google.com> wrote:
+>
+> On Wed, Dec 17, 2025 at 5:24=E2=80=AFAM Greg Kroah-Hartman
+> <gregkh@linuxfoundation.org> wrote:
 > >
-> > Define an RPMSG node to work as a container for a group of RPMSG
-> > channels under the imx_rproc node.
+> > On Thu, Dec 04, 2025 at 11:14:39PM -0800, Roy Luo wrote:
+> > > On Thu, Dec 4, 2025 at 10:05=E2=80=AFPM Greg Kroah-Hartman
+> > > <gregkh@linuxfoundation.org> wrote:
+> > > >
+> > > > On Fri, Dec 05, 2025 at 02:26:38AM +0000, Roy Luo wrote:
+> > > > > +config USB_DWC3_GOOGLE
+> > > > > +     tristate "Google Platform"
+> > > > > +     depends on ARCH_GOOGLE || COMPILE_TEST
+> > > >
+> > > > There is no ARCH_GOOGLE in the tree now, so how is this supposed to
+> > > > work?  Shouldn't tools that check for "invalid config options" trig=
+ger
+> > > > on this?
+> > > >
+> > > > thanks,
+> > > >
+> > > > greg k-h
+> > >
+> > > Hi Greg,
+> > >
+> > > The menuconfig looks like the following and it doesn't complain:
+> > > | Symbol: ARCH_GOOGLE [=3DARCH_GOOGLE]
+> > > | Type  : unknown
+> > > |
+> > > | Symbol: PHY_GOOGLE_USB [=3Dy]
+> > > | Type  : tristate
+> > > | Defined at drivers/phy/Kconfig:104
+> > > |     Prompt: Google Tensor SoC USB PHY driver
+> > > |     Depends on: ARCH_GOOGLE || COMPILE_TEST [=3Dy]
+> > >
+> > > According to Kconfig documentation [1], the unknown symbol
+> > > would simply be evaluated as an "n", which is what we want.
+> > > "Convert the symbol into an expression. Boolean and tristate
+> > > symbols are simply converted into the respective expression
+> > > values. All other symbol types result in =E2=80=98n=E2=80=99."
+> > >
+> > > In a different Kconfig documentation, an environment variable
+> > > "KCONFIG_WARN_UNKNOWN_SYMBOLS" is there to detect
+> > > undefined symbols in the "config input", but I can't find one that
+> > > catches undefined symbols in the Kconfig tree itself.
+> > >
+> > > That is, the tool seems to allow this.
+> > > However, if this turns out to be a major problem. I think we
+> > > can either:
+> > > - Remove ARCH_GOOGLE and leave COMPILE_TEST as
+> > >   the only dependency. Then add ARCH_GOOGLE back
+> > >   later once it's in the tree.
 > >
-> > Each subnode within "rpmsg" represents an individual RPMSG channel.
-> > The name of each subnode corresponds to the channel name as defined by
-> > the remote processor.
+> > Please do this.  I do not want to take patches that purposfully add
+> > dependencies on config options that might, or might not, appear in the
+> > future.  Please just remove all of the dependancies for now, as they ar=
+e
+> > not needed, right?
 > >
-> > All remote devices associated with a given channel are defined as
-> > child nodes under the corresponding channel node.
+> > thanks,
 > >
-> > Signed-off-by: Shenwei Wang <shenwei.wang@nxp.com>
-> > ---
-> >  .../devicetree/bindings/gpio/gpio-rpmsg.yaml  | 49 +++++++++++++++++
-> >  .../bindings/remoteproc/fsl,imx-rproc.yaml    | 54 +++++++++++++++++++
-> >  2 files changed, 103 insertions(+)
-> >  create mode 100644
-> > Documentation/devicetree/bindings/gpio/gpio-rpmsg.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/gpio/gpio-rpmsg.yaml
-> > b/Documentation/devicetree/bindings/gpio/gpio-rpmsg.yaml
-> > new file mode 100644
-> > index 000000000000..b3e1a5dbf731
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/gpio/gpio-rpmsg.yaml
-> > @@ -0,0 +1,49 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
-> > +---
-> > +
-> > +title: Generic GPIO driver over RPMSG
->=20
-> The driver doesn't go over RPMSG. It's a GPIO provider or protocol.
->=20
+> > greg k-h
+>
+> Greg,
+>
+> Yes, we can remove ARCH_GOOGLE for now.
+> To clarify, we're not removing all of the dependencies, we still want
+> to keep COMPILE_TEST for build tests, right?
+> Please let me know if you think otherwise.
 
-Yes, it might be clearer to phrase it as 'Generic RPMSG GPIO Controller,' s=
-ince this is=20
-a GPIO controller driver that operates over the RPMsg bus.
+I think you'd just remove all of them. Normally COMPILE_TEST just
+allows folks to compile stuff even when they don't want the ARCH. We
+can can add ARCH_GOOGLE back in later once the config exists.
 
-> > +
-> > +maintainers:
-> > +  - Shenwei Wang <shenwei.wang@nxp.com>
-> > +
-> > +description:
-> > +  On an AMP platform, some GPIO controllers are exposed by the remote
-> > +processor
-> > +  through the RPMSG bus. The RPMSG GPIO transport protocol defines
-> > +the packet
-> > +  structure and communication flow between Linux and the remote
-> > +firmware. Those
-> > +  controllers are managed via this transport protocol.
->=20
-> Got a reference to where any of this is defined?
-
-Will add a ref to the gpio-rpmsg.rst doc.
-
->=20
-> > +
-> > +properties:
-> > +  compatible:
-> > +    oneOf:
-> > +      - items:
-> > +          - enum:
-> > +              - fsl,rpmsg-gpio
-> > +          - const: rpmsg-gpio
-> > +      - const: rpmsg-gpio
-> > +
-> > +  reg:
-> > +    maxItems: 1
->=20
-> I still don't understand how 'reg' is determined. You may have explained =
-it
-> previously, but *this* patch needs to make me understand.
->=20
-
-I see. Will add a description for this item.
-
-> > +
-> > +  "#gpio-cells":
-> > +    const: 2
-> > +
-> > +  gpio-controller: true
-> >        memory-region =3D <&vdev0buffer>, <&vdev0vring0>, <&vdev0vring1>=
-,
-> <&rsc_table>;
-> >        syscon =3D <&src>;
-> > +
-> > +      rpmsg {
->=20
-> What's the purpose of this node? Is it going to contain things other than=
- "rpmsg io
-> channels"?
-
-It represents the RPMSG bus between Linux and the remote processor, and wil=
-l eventually=20
-host additional channels such as rpmsg-i2c-channel and rpmsg-pwm-channel.
-
-Thanks,
-Shenwei
-
->=20
-> > +        rpmsg-io-channel {
-> > +          #address-cells =3D <1>;
-> > +          #size-cells =3D <0>;
-> > +
-> > +          gpio@0 {
-> > +            compatible =3D "rpmsg-gpio";
-> > +            reg =3D <0>;
-> > +            gpio-controller;
-> > +            #gpio-cells =3D <2>;
-> > +            #interrupt-cells =3D <2>;
-> > +            interrupt-controller;
-> > +            interrupt-parent =3D <&rpmsg_gpioa>;
-> > +          };
-> > +
-> > +          gpio@1 {
-> > +            compatible =3D "rpmsg-gpio";
-> > +            reg =3D <1>;
-> > +            gpio-controller;
-> > +            #gpio-cells =3D <2>;
-> > +            #interrupt-cells =3D <2>;
-> > +            interrupt-controller;
-> > +            interrupt-parent =3D <&rpmsg_gpiob>;
-> > +          };
-> > +        };
-> > +      };
-> >      };
-> >  ...
-> > --
-> > 2.43.0
-> >
+-Doug
 
