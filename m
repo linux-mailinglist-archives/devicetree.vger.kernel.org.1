@@ -1,90 +1,107 @@
-Return-Path: <devicetree+bounces-247494-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247497-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A1D8CC8515
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 15:59:57 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1E4CCC825E
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 15:20:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A9C33307B0A8
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 14:55:29 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id BD825300C52E
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 14:20:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA07739379E;
-	Wed, 17 Dec 2025 14:07:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50FFE327202;
+	Wed, 17 Dec 2025 14:11:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="COj/Z3nK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rrkvJohN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96CAA393797;
-	Wed, 17 Dec 2025 14:07:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D7633A1E62;
+	Wed, 17 Dec 2025 14:11:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765980434; cv=none; b=DzMChH4IMZ7N3v/z4OR7E4Yrp8qg3PrDKT5gZvSLXqTcrEZkVfckE1ZrDs854bxOb4myz20agav8MEuVKq6btQIgTjmShfwj8LZlUgVQJvEKElnIimxEF6P6Adi8TfPx93AlcLe1ldr3ZcjQ3pX9A3Bjl9Oj4J21xCZOpKKS35k=
+	t=1765980691; cv=none; b=F6v8uNrWCjMpJkcx5wlxgPxipRur2ymt2WUSznGbSMXlyoY0zO7ik6YDJTkXkdom/IIzb95DLJRrS4DKk01YqBMT6DHhp7aXKxDw6zvyPEHPjPyFFSTWXdRJNMh+grK8Gj3aQFTnaKMsiMAcPPsHiV50EfpqpPEQbmH9iAdxw5U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765980434; c=relaxed/simple;
-	bh=BBej7b2TZcIfv26VO07aVWI/nJSmjhBy+pY5L+9zcb8=;
+	s=arc-20240116; t=1765980691; c=relaxed/simple;
+	bh=a1X23O2Ea/uTr4dYufyBnlbvAwj7YoNS1KKFnGey3Zs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FvW7cOP4Lj16eITkAdUzFWZf/AFk8L5uV5c6wnpQbpICBhcETCwxZHc4tR44+2Jq1BG7q+3W0vd6R2xS3hjvcE6kvMZo3n3NEp9qNlQQ0LT3PxUAteaYvzZbTrc7d/MnTPoohu5jK1G/Kcd2GXxg2R5O8B7UDSsGH8dRszNn2kc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=COj/Z3nK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7828C4CEF5;
-	Wed, 17 Dec 2025 14:07:13 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=grhOJA/EktcE4h1BP1IDFhBw+LjuIgrGzLoTBCFYEwdeXtlYdVPky6WI7rIVlfow/X1ZtxeMziMWFrbQOZzMijhivtHIJlcHh46rDCQinVrvW5l7nZQb6bz2CivtazUU2VCSoDLXW/EBSnfcwFcE1cg1N4YgpDIw2Gk/jmAygBs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rrkvJohN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9EE98C4CEF5;
+	Wed, 17 Dec 2025 14:11:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765980434;
-	bh=BBej7b2TZcIfv26VO07aVWI/nJSmjhBy+pY5L+9zcb8=;
+	s=k20201202; t=1765980690;
+	bh=a1X23O2Ea/uTr4dYufyBnlbvAwj7YoNS1KKFnGey3Zs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=COj/Z3nKklzgE1lymvXRLZGmg/6UR6V78uX8ycnn0SpbWOJFD//Tg/lKvkrv+zzpt
-	 KJmm3fOvLHd4j4ZFg+6/uGG4WACNgTs/vdylLOhGT5TANFGTJK2lPvQN4/Z1QG26CY
-	 Jj2buSSzuYkRB41d1MQmoOV6hGIL2FdNUHCgu0Uoo0WNYpPU2XS3yp5nwVsioshvWP
-	 cGUceKKnL2caC3UC1OAflD7JMCoqIWXwNe8O5eaiMPqs7HJ2EMcAhYjt8I+IFQtxQs
-	 3HlkLx7Kss0Kh/B/ENnxkaAwJxYiJzpVokdyTv6qtVRgPJfTodJSPLHuxzcH2dOQwj
-	 Rwr2agbdZ/hXQ==
-Date: Wed, 17 Dec 2025 08:07:09 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Jacky Chou <jacky_chou@aspeedtech.com>
-Cc: Andrew Jeffery <andrew@aj.id.au>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	openbmc@lists.ozlabs.org, Vinod Koul <vkoul@kernel.org>,
+	b=rrkvJohN73JXpWWiAq4U3djyYe9zjMLxWQGOkk4DIGq0aY0ToQRNC1s1i7PnKKG1j
+	 ccMXoCCqlKVLArYtwg1zLuDYLVImyB42sySfN6hUGq34tAphYNgCaLj5+WlWW01NST
+	 aD6Ss8BqQ4sAcM4UxAwX+LkPGZLGTJBRrou/CnOY5JAGjYChkZPL5GTMOB21B/57IF
+	 SNiOYNAAX+8mwHkGX+rxfF2hrNOCxNp6bzj6fGrdhMjeMWyreYKzlzu6GB3sJ4SqE8
+	 /2C/BHrSJfaREiIdwXpR7WD7H6sFhUVKKGlGBNNPBWd4S4/imapZVY7m18orV0gITk
+	 5c/F/YYh84ueA==
+Date: Wed, 17 Dec 2025 14:11:23 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Shenghao Ding <shenghao-ding@ti.com>, Kevin Lu <kevin-lu@ti.com>,
+	Baojun Xu <baojun.xu@ti.com>, Liam Girdwood <lgirdwood@gmail.com>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+	Clark Williams <clrkwllms@kernel.org>,
+	Steven Rostedt <rostedt@goodmis.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-	Philipp Zabel <p.zabel@pengutronix.de>, linux-gpio@vger.kernel.org,
-	linux-aspeed@lists.ozlabs.org,
-	Linus Walleij <linus.walleij@linaro.org>, linux-pci@vger.kernel.org,
-	Joel Stanley <joel@jms.id.au>, Bjorn Helgaas <bhelgaas@google.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>
-Subject: Re: [PATCH v7 2/7] dt-bindings: PCI: Add ASPEED PCIe RC support
-Message-ID: <176598042865.925447.819427829703405501.robh@kernel.org>
-References: <20251216-upstream_pcie_rc-v7-0-4aeb0f53c4ce@aspeedtech.com>
- <20251216-upstream_pcie_rc-v7-2-4aeb0f53c4ce@aspeedtech.com>
+	Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>,
+	Dan Murphy <dmurphy@ti.com>, linux-sound@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Kevin Lu <luminlong@139.com>,
+	linux-rt-devel@lists.linux.dev, devicetree@vger.kernel.org,
+	Emil-Juhl <emdj@bang-olufsen.dk>
+Subject: Re: [PATCH 05/11] ASoC: tlv320adcx140: implement register caching
+Message-ID: <8fe80735-dc06-4629-acc3-d6529e61d959@sirena.org.uk>
+References: <20251217-sound-soc-codecs-tvl320adcx140-v1-0-293dea149d7b@pengutronix.de>
+ <20251217-sound-soc-codecs-tvl320adcx140-v1-5-293dea149d7b@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="jH04PJFKinfLyZh3"
+Content-Disposition: inline
+In-Reply-To: <20251217-sound-soc-codecs-tvl320adcx140-v1-5-293dea149d7b@pengutronix.de>
+X-Cookie: Big book, big bore.
+
+
+--jH04PJFKinfLyZh3
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251216-upstream_pcie_rc-v7-2-4aeb0f53c4ce@aspeedtech.com>
 
+On Wed, Dec 17, 2025 at 02:54:55PM +0100, Sascha Hauer wrote:
 
-On Tue, 16 Dec 2025 09:50:01 +0800, Jacky Chou wrote:
-> ASPEED AST2600 provides one PCIe RC for Gen2 and AST2700 provides three
-> PCIe RC for two Gen4 and one Gen2. All of these RCs have just one root
-> port to connect to PCIe device. And also have Mem, I/O access, legacy
-> interrupt and MSI.
-> 
-> Signed-off-by: Jacky Chou <jacky_chou@aspeedtech.com>
-> ---
->  .../bindings/pci/aspeed,ast2600-pcie.yaml          | 182 +++++++++++++++++++++
->  1 file changed, 182 insertions(+)
-> 
+> The tlv320adcx140 can be connected to controllable AVDD/IOVDD regulators
+> which when disabled will reset the registers to their default.  In
+> preparation for adding support for them implement register caching.
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+This patch doesn't actually enable register caching, there's no cache
+type specified.  Indeed, the driver already has a register cache which
+for some reason is REGCACHE_FLAT (which seems rather bogus and will have
+defaulted most of the registers to 0 which may or may not be a good
+idea).  This looks like it's a substantial improvement but the change
+doesn't correspond to the changelog.
 
+--jH04PJFKinfLyZh3
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmlCugsACgkQJNaLcl1U
+h9AjIwf/X5qlWU0vYPRGkmI1ca9ohgGzS8WJUThDAZ6tFqHl/Xne3bG2Rtp2eftp
+51QiepBePgX+0bo3IiMzz10WVw/vGi7NULLEiVvh4Vw4mGoVdIqdb+zf06my7Yhr
+EbAiBC/Hjn8xK+w5gRN3vGzvs4ULfEn+BpLJiYcBJO+FiqLrGJ84chNcLG1z3t/v
+FWsKnDGQoa5LlWUETwghJm7fw30x+uEuuiBsQ2k5413u8wLH8s8D3J7DjR9dweOI
+cBYrSIzMYVMA5xIk8mW4mKNjtby55Q085udpCdzZp/4jGRuSvGfYMTRdas/FZHp0
+6MVVOXMMfE2JQ6hw2zwmTnb50Z137g==
+=hBIM
+-----END PGP SIGNATURE-----
+
+--jH04PJFKinfLyZh3--
 
