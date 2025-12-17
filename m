@@ -1,67 +1,65 @@
-Return-Path: <devicetree+bounces-247204-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247205-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4894ACC5A67
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 01:58:06 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8028CC5A73
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 01:59:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 759EC3002D1C
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 00:58:03 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 81D57300314E
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 00:59:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EF36225A35;
-	Wed, 17 Dec 2025 00:58:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE99E225A3B;
+	Wed, 17 Dec 2025 00:59:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Uanko9eP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fFt/DX9T"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB16F224244;
-	Wed, 17 Dec 2025 00:58:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBB541C3BFC;
+	Wed, 17 Dec 2025 00:59:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765933081; cv=none; b=KGV2izLfVKWpZ2hzr0H2todF9vfy+5Infy2zVkohbUhFVkQZCk4L5xORI+aL/dGHehEQ3vN6MJK/546uJff20W4Y1S61YZgEyyHLo1Nsvsjc4fNz67l8xajpntQ4PQLn6/QHfRinhogfSwUiro/+ev3+Q3jKZyxhnf+Q9Q3nnTg=
+	t=1765933149; cv=none; b=h4fdsgCxUlPQxckhC4YBQtHdCRPiMWCkzhzt73ug51zMONtQZTgXVa4pG5ea+UYSqJSYXULefbiKZF83TRG+DPlq2dqlLWDYGd0BeZQ0i0YLTNdG0R41VIlnW/WFRfQxCy/GsfDdJmIjjIkDhH6gFC0bNivx1S7ud2TMHhCheOI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765933081; c=relaxed/simple;
-	bh=ge5M9dXkRVBvU1InmOXnDkbI+F3eJwMWHPZtLxTMIXQ=;
+	s=arc-20240116; t=1765933149; c=relaxed/simple;
+	bh=y5XEBEIWWUyh9WzcFuiZ67dQvSpLSbsih6QYJAlLzNY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZaOBvkll2fMOptSEDgH8weklYS1BIXBridx0xl9yDQ6jTannJ0nhihXqtY7y3O0W1pN97ZqGVbPEFWKKLXj76btS8py7zpylulNye04jzhhF3uowHjDrUdbbXznJq3ZEZmWPIrRbeNzAdNQ/hMYKtTwtL2Cq85Z2DaEGagEqgBc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Uanko9eP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 929E2C4CEF1;
-	Wed, 17 Dec 2025 00:58:00 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=IZW81mnBlf1Qd1y8AHMDeOaeFjhZH7y0qDIPTPkG6UQtlZ1mF6xHMfX9VDypoG0YQBG2hu1wmhnxGL5o8VpFakYt5wMI3hpRgHK3IUnye155hE52zUXl+cvhA85iA6tYNwJZU5JEEc75KJPVGHev+BeZCERMVZLP7quO5+UC8GU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fFt/DX9T; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F311BC4CEF1;
+	Wed, 17 Dec 2025 00:59:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765933080;
-	bh=ge5M9dXkRVBvU1InmOXnDkbI+F3eJwMWHPZtLxTMIXQ=;
+	s=k20201202; t=1765933149;
+	bh=y5XEBEIWWUyh9WzcFuiZ67dQvSpLSbsih6QYJAlLzNY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Uanko9ePj9E4OUmrNqv5kvF3VaANSVX3Cw84s8Gy3MK3u8iC6aSmyD5qenIzayqMj
-	 4FTsJbk2C/eFMuSK0JzuE/JwU6S0FztzkScVllh8sLAqpwp0bL8QdqTaBrWIlzSXh3
-	 PWHANg36DB9SKco/lWdIfjaMOkkaAcS3rBAtbQP2j06mhtv36rJtjO5yqe8osKtcHy
-	 YcX0OQKyo7AKxcfC03LZatIjLRk7kzOiM+Hf2PAo/yDsHDkmJT4bhSYy97BQabQKN5
-	 tE3Bm7nohTtlMrOF6EEWuVG/hwgcSWG4E4s1CQ3kVJdQxZB38P/yC84LX0R32RyiEW
-	 zAt6EBLCJYltw==
-Date: Tue, 16 Dec 2025 18:57:58 -0600
-From: Rob Herring <robh@kernel.org>
-To: Shenwei Wang <shenwei.wang@nxp.com>
-Cc: Linus Walleij <linusw@kernel.org>,
-	Bartosz Golaszewski <brgl@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	b=fFt/DX9TopVxQer2We3yj8k7eBy2Y0JnIFbxed4PSUd+rmMYZ+vm7NmpHjeK//hWd
+	 LXoaToRfWad3r0u7V+f0O+Ve4K7jkNQA9NIeyPgVuAGZ0mAohfr19m62T7wVGbnrgh
+	 IyxZbC3gf7rRKsB/PYQ7L58x+WKcN40JoEfXGM224M94uAXakq9XkkXb4yUJriABER
+	 I8rP3dVqtwMVpJROCYLNjWZ368Q2i9NJbaQuXYbGOI+rvDXH5oAYyPXnaF1DQupi07
+	 m7J/u6O9dMQyBLuOIsyiyrt3+E0TCtkYAmSbi9KQgCWfxH4Xnqmd28zJekYel0jfEv
+	 x5Sp881d2Cd6A==
+Date: Tue, 16 Dec 2025 18:59:06 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: David Heidelberg <david@ixit.cz>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Todor Tomov <todor.too@gmail.com>,
+	Kapatrala Syed <akapatra@quicinc.com>, phone-devel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	Hans Verkuil <hverkuil@kernel.org>, Robert Foss <rfoss@kernel.org>,
+	Bryan O'Donoghue <bod@kernel.org>, linux-kernel@vger.kernel.org,
 	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>,
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-doc@vger.kernel.org, linux-imx@nxp.com
-Subject: Re: [PATCH v6 1/5] dt-bindings: remoteproc: imx_rproc: Add "rpmsg"
- subnode support
-Message-ID: <20251217005758.GA3452672-robh@kernel.org>
-References: <20251212194341.966387-1-shenwei.wang@nxp.com>
- <20251212194341.966387-2-shenwei.wang@nxp.com>
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Hariram Purushothaman <hariramp@quicinc.com>,
+	Vikram Sharma <quic_vikramsa@quicinc.com>,
+	Richard Acayan <mailingradian@gmail.com>,
+	linux-media@vger.kernel.org,
+	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Subject: Re: [PATCH v2] media: dt-bindings: Correct camss VDDA PLL supply
+ description
+Message-ID: <176593314599.3464227.16503792061137156291.robh@kernel.org>
+References: <20251213-docs-camss-fixes-v2-1-a8a4d4d51c6c@ixit.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,176 +68,32 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251212194341.966387-2-shenwei.wang@nxp.com>
+In-Reply-To: <20251213-docs-camss-fixes-v2-1-a8a4d4d51c6c@ixit.cz>
 
-On Fri, Dec 12, 2025 at 01:43:37PM -0600, Shenwei Wang wrote:
-> Remote processors may announce multiple devices (e.g., I2C, GPIO) over
-> an RPMSG channel. 
 
-Which channel does that happen on?
-
-> These devices may require corresponding device tree
-> nodes, especially when acting as providers, to supply phandles for their
-> consumers.
+On Sat, 13 Dec 2025 10:19:31 +0100, David Heidelberg wrote:
+> Usually, the supply is around 1.2 V, not 1.8 V. Rather remove mention of
+> voltage from the description.
 > 
-> Define an RPMSG node to work as a container for a group of RPMSG channels
-> under the imx_rproc node.
-> 
-> Each subnode within "rpmsg" represents an individual RPMSG channel. The
-> name of each subnode corresponds to the channel name as defined by the
-> remote processor.
-> 
-> All remote devices associated with a given channel are defined as child
-> nodes under the corresponding channel node.
-> 
-> Signed-off-by: Shenwei Wang <shenwei.wang@nxp.com>
+> Fixes: 849139d46d09 ("media: dt-bindings: media: camss: Fixup vdda regulator descriptions sdm845")
+> Signed-off-by: David Heidelberg <david@ixit.cz>
 > ---
->  .../devicetree/bindings/gpio/gpio-rpmsg.yaml  | 49 +++++++++++++++++
->  .../bindings/remoteproc/fsl,imx-rproc.yaml    | 54 +++++++++++++++++++
->  2 files changed, 103 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-rpmsg.yaml
+> Added only Fixes tag for the initial commit, not all the copy-paste
+> propagated ones.
+> ---
+> Changes in v2:
+> - Applied suggestion to clarify the description. (Krzysztof)
+> - Link to v1: https://lore.kernel.org/r/20251212-docs-camss-fixes-v1-1-5c011505ff59@ixit.cz
+> ---
+>  Documentation/devicetree/bindings/media/qcom,sa8775p-camss.yaml  | 2 +-
+>  Documentation/devicetree/bindings/media/qcom,sc7280-camss.yaml   | 2 +-
+>  Documentation/devicetree/bindings/media/qcom,sc8280xp-camss.yaml | 2 +-
+>  Documentation/devicetree/bindings/media/qcom,sdm670-camss.yaml   | 2 +-
+>  Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml   | 2 +-
+>  Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml   | 2 +-
+>  6 files changed, 6 insertions(+), 6 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/gpio/gpio-rpmsg.yaml b/Documentation/devicetree/bindings/gpio/gpio-rpmsg.yaml
-> new file mode 100644
-> index 000000000000..b3e1a5dbf731
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/gpio/gpio-rpmsg.yaml
-> @@ -0,0 +1,49 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/gpio/gpio-rpmsg.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Generic GPIO driver over RPMSG
 
-The driver doesn't go over RPMSG. It's a GPIO provider or protocol.
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-> +
-> +maintainers:
-> +  - Shenwei Wang <shenwei.wang@nxp.com>
-> +
-> +description:
-> +  On an AMP platform, some GPIO controllers are exposed by the remote processor
-> +  through the RPMSG bus. The RPMSG GPIO transport protocol defines the packet
-> +  structure and communication flow between Linux and the remote firmware. Those
-> +  controllers are managed via this transport protocol.
-
-Got a reference to where any of this is defined?
-
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - fsl,rpmsg-gpio
-> +          - const: rpmsg-gpio
-> +      - const: rpmsg-gpio
-> +
-> +  reg:
-> +    maxItems: 1
-
-I still don't understand how 'reg' is determined. You may have explained 
-it previously, but *this* patch needs to make me understand.
-
-> +
-> +  "#gpio-cells":
-> +    const: 2
-> +
-> +  gpio-controller: true
-> +
-> +  interrupt-controller: true
-> +
-> +  "#interrupt-cells":
-> +    const: 2
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#gpio-cells"
-> +  - "#interrupt-cells"
-> +
-> +allOf:
-> +  - $ref: /schemas/gpio/gpio.yaml#
-> +
-> +unevaluatedProperties: false
-> diff --git a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
-> index 57d75acb0b5e..fd8e5a61a459 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
-> @@ -84,6 +84,33 @@ properties:
->        This property is to specify the resource id of the remote processor in SoC
->        which supports SCFW
->  
-> +  rpmsg:
-> +    type: object
-> +    additionalProperties: false
-> +    description:
-> +      Present a group of RPMSG channel devices.
-> +
-> +    properties:
-> +      rpmsg-io-channel:
-> +        type: object
-> +        additionalProperties: false
-> +        properties:
-> +          '#address-cells':
-> +            const: 1
-> +
-> +          '#size-cells':
-> +            const: 0
-> +
-> +        patternProperties:
-> +          "gpio@[0-9a-f]+$":
-> +            type: object
-> +            $ref: /schemas/gpio/gpio-rpmsg.yaml#
-> +            unevaluatedProperties: false
-> +
-> +        required:
-> +          - '#address-cells'
-> +          - '#size-cells'
-> +
->  required:
->    - compatible
->  
-> @@ -146,5 +173,32 @@ examples:
->                  &mu 3 1>;
->        memory-region = <&vdev0buffer>, <&vdev0vring0>, <&vdev0vring1>, <&rsc_table>;
->        syscon = <&src>;
-> +
-> +      rpmsg {
-
-What's the purpose of this node? Is it going to contain things other 
-than "rpmsg io channels"?
-
-> +        rpmsg-io-channel {
-> +          #address-cells = <1>;
-> +          #size-cells = <0>;
-> +
-> +          gpio@0 {
-> +            compatible = "rpmsg-gpio";
-> +            reg = <0>;
-> +            gpio-controller;
-> +            #gpio-cells = <2>;
-> +            #interrupt-cells = <2>;
-> +            interrupt-controller;
-> +            interrupt-parent = <&rpmsg_gpioa>;
-> +          };
-> +
-> +          gpio@1 {
-> +            compatible = "rpmsg-gpio";
-> +            reg = <1>;
-> +            gpio-controller;
-> +            #gpio-cells = <2>;
-> +            #interrupt-cells = <2>;
-> +            interrupt-controller;
-> +            interrupt-parent = <&rpmsg_gpiob>;
-> +          };
-> +        };
-> +      };
->      };
->  ...
-> -- 
-> 2.43.0
-> 
 
