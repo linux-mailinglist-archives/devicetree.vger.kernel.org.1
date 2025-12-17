@@ -1,89 +1,207 @@
-Return-Path: <devicetree+bounces-247612-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247614-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF11BCC9016
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 18:17:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B1FBACC90BE
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 18:26:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 81AC73010FFA
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 17:05:13 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9A0AA306C174
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 17:21:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA6EB347FEC;
-	Wed, 17 Dec 2025 17:05:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1399D1A23B6;
+	Wed, 17 Dec 2025 17:20:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="KEMDSHKt"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="epK3AyeX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01E5933EB01;
-	Wed, 17 Dec 2025 17:05:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FA2972612;
+	Wed, 17 Dec 2025 17:20:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765991112; cv=none; b=T/uCbCCWVD66SB7z5jXaUubV+ZYzz/K8xUNcG7oxonSG117KTsv3p+q5pnPeU/OqF+D13G/ebIR6vdZyTPI6qSuwx82h5p6yfTsmRXTWnd0HeKuJLddrlYxXREpFiYKcTr2wE5itSsrtQKxYd+6InuuolOm3LXvbJMMbm8+i8qI=
+	t=1765992051; cv=none; b=f9yz5PihaqpECRKi7tynwumG0bVFKSXuH1spfxwwCC59yXE4ym7sTS+nwHSZmg6F8s1WyqgRmU9MeIT8w3hCkik5Mwv+GzVt4ezRR9ab+F3zS7Rm7iWyV2NHVhTXlMp0KpBwThJrDndgdBgOT/Y6Un2yNxLl+dKKdnyq1SCjF7g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765991112; c=relaxed/simple;
-	bh=hQUiowIqnPYoumnsju6v2Rby74tKXjQbS/1VFaVx75A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cKE9ynqDxlM6c92yGObXx7n3jOvh1gMdT+X50QiWy12/smFR+ktC/Cwysw6Rmmi8DvVez2619xGHqRlD5VUoDM2wfRGLfC9CuY4Xm1k4VHeTYoxzh8F8Hs9XaP6MJQHkWyAvYfUQaPXwUKv9gCUmMVd2LrzOBSCxltbQRhNiAVY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=KEMDSHKt; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=JC/OAnrwflrdD+697YshlNQb8A1fVQJOhNEeBZnuY4o=; b=KEMDSHKtY0k0H+lZ6204QXDLnP
-	IYEaaMGQRmp17Vfxs3oERU9L65fhet7KbBQv7w/QQr2RfEnW6xjnQD7HJmAkkiUx4ffBxrV0xZ31X
-	gklJ2KmN8k/og0ipZ0Qbj3IuJ6MPuQEM6PrmEsODbiTRODjllsiDmLhsLxlyQq8Uu0k4=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1vVuxM-00HEmV-Az; Wed, 17 Dec 2025 18:04:56 +0100
-Date: Wed, 17 Dec 2025 18:04:56 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Stefan Eichenberger <eichest@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, andrew+netdev@lunn.ch,
-	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, krzk+dt@kernel.org, conor+dt@kernel.org,
-	hkallweit1@gmail.com, linux@armlinux.org.uk,
-	geert+renesas@glider.be, ben.dooks@codethink.co.uk,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, francesco.dolcini@toradex.com,
-	rafael.beims@toradex.com,
-	Stefan Eichenberger <stefan.eichenberger@toradex.com>
-Subject: Re: [PATCH net-next v1 2/3] dt-bindings: net: micrel: Add
- keep-preamble-before-sfd
-Message-ID: <49385cb4-6ce9-4120-9dd6-c08d763f0564@lunn.ch>
-References: <20251212084657.29239-1-eichest@gmail.com>
- <20251212084657.29239-3-eichest@gmail.com>
- <20251215140330.GA2360845-robh@kernel.org>
- <aUJ-3v-OO0YYbEtu@eichest-laptop>
- <aUKgP4Hi-8tP9eaK@eichest-laptop>
- <20251217135519.GA767145-robh@kernel.org>
- <aUK-h6jDsng0Awjm@eichest-laptop>
+	s=arc-20240116; t=1765992051; c=relaxed/simple;
+	bh=Y9YEMqCOaRn9nWISRWIOagoTl21UEQ/DY+m2rBZ6YSk=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=GUTCeibU3YVZEo+2/2CARhNeBybD8vLMixid2ovHB8ibJA8EGHJR5tU7X1FFQd4hvsalWPF5WBSM8MzdqLb4PpntWGbnn6p9ZasKF3xLwJwBmqxsyZu0iPretrdacMSlWllbz3slRYHcsumyHtNk5BHpGtqVPMg77RFPOFxddyg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=epK3AyeX; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1765992045;
+	bh=Y9YEMqCOaRn9nWISRWIOagoTl21UEQ/DY+m2rBZ6YSk=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=epK3AyeXUp2FZABNF07bFT7e0KVu4mytFWGi74liuJj6pEM7CDfl6PUxpMrnOZ9u6
+	 AcN2YFicfI9kWfplIYbc2wDrzsMcX9XxAhMOlc+w7D8dNz8fhd7GmorSzsPCK52Pp+
+	 Fis8zi+LW9j6qj/lQYZ8lJGVFXK2fCWd6zqxNyUCmO0JXHmBfdqsRI6ALj6N0s4jJM
+	 lujKnpd7ojXxxE8q45cadWjnpWk92Bw5hUn3Iaqz13e2oEjIUT7R0iFDCMuaaMkuVA
+	 ONrOae+/kZatf1hCJD9JV+YFAL1nbV5G/J1y2bkSdKZFxswpEAoEClyoQPKt2wAwRY
+	 2/HXroMnpXX2g==
+Received: from fedora (unknown [IPv6:2a01:e0a:2c:6930:d919:a6e:5ea1:8a9f])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: bbrezillon)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 4C7FA17E127F;
+	Wed, 17 Dec 2025 18:20:44 +0100 (CET)
+Date: Wed, 17 Dec 2025 18:20:38 +0100
+From: Boris Brezillon <boris.brezillon@collabora.com>
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Cc: Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
+ <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Ulf
+ Hansson <ulf.hansson@linaro.org>, Chen-Yu Tsai <wenst@chromium.org>, Chia-I
+ Wu <olvaffe@gmail.com>, kernel@collabora.com,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH 3/4] drm/panthor: Implement reading shader_present from
+ nvmem
+Message-ID: <20251217182038.6779a191@fedora>
+In-Reply-To: <20251217-mt8196-shader-present-v1-3-f6f8f3aa1e93@collabora.com>
+References: <20251217-mt8196-shader-present-v1-0-f6f8f3aa1e93@collabora.com>
+	<20251217-mt8196-shader-present-v1-3-f6f8f3aa1e93@collabora.com>
+Organization: Collabora
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aUK-h6jDsng0Awjm@eichest-laptop>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-> > I think the ideal implementation would be the MAC driver calling some 
-> > phy API to apply the quirk, and then that gets passed on to the phy 
-> > driver. Surely this isn't the first case of a MAC-PHY combination 
-> > needing to go fiddle with some special setting.
+On Wed, 17 Dec 2025 18:03:29 +0100
+Nicolas Frattaroli <nicolas.frattaroli@collabora.com> wrote:
+
+> On some platforms, notably MediaTek MT8196, the shader_present bitmask
+> in the Mali GPU register for it has cores enabled that may be faulty.
+> The true shader_present bitmask is found in an efuse instead.
 > 
-> I was also hoping to find something like that, but I couldn't really
-> find it. However, I will try looking in that direction. At least we can
-> identify the broken MAC via the compatible string of the MAC driver, as
-> they use two different compatibles: 'fsl,imx8mp-fec' (fine) and
-> 'nxp,imx8mp-dwmac-eqos' (affected by the errata).
+> Implement reading shader_present from an nvmem cell if one is present,
+> falling back to the Mali register if it's absent. The error codes are
+> trickled up through to the probe function so that probe deferral works.
+> 
+> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 
-Maybe see if you can use phy_register_fixup_for_id().
+Reviewed-by: Boris Brezillon <boris.brezillon@collabora.com>
 
-	Andrew
+> ---
+>  drivers/gpu/drm/panthor/panthor_hw.c | 63 ++++++++++++++++++++++++++++++++----
+>  1 file changed, 57 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/panthor/panthor_hw.c b/drivers/gpu/drm/panthor/panthor_hw.c
+> index 87ebb7ae42c4..eb44c8b108aa 100644
+> --- a/drivers/gpu/drm/panthor/panthor_hw.c
+> +++ b/drivers/gpu/drm/panthor/panthor_hw.c
+> @@ -1,6 +1,7 @@
+>  // SPDX-License-Identifier: GPL-2.0 or MIT
+>  /* Copyright 2025 ARM Limited. All rights reserved. */
+>  
+> +#include <linux/nvmem-consumer.h>
+>  #include <drm/drm_print.h>
+>  
+>  #include "panthor_device.h"
+> @@ -109,7 +110,52 @@ static char *get_gpu_model_name(struct panthor_device *ptdev)
+>  	return "(Unknown Mali GPU)";
+>  }
+>  
+> -static void panthor_gpu_info_init(struct panthor_device *ptdev)
+> +static int overload_shader_present(struct panthor_device *ptdev)
+> +{
+> +	struct device *dev = ptdev->base.dev;
+> +	struct nvmem_cell *cell = nvmem_cell_get(dev, "shader-present");
+> +	ssize_t len;
+> +	void *buf;
+> +	int ret;
+> +
+> +	if (IS_ERR(cell)) {
+> +		/* On platforms without this cell, use the Mali register */
+> +		if (PTR_ERR(cell) == -ENOENT)
+> +			return 0;
+> +
+> +		return dev_err_probe(dev, PTR_ERR(cell),
+> +				     "Failed to get shader-present nvmem cell\n");
+> +	}
+> +
+> +	buf = nvmem_cell_read(cell, &len);
+> +	if (IS_ERR(buf)) {
+> +		ret = dev_err_probe(dev, PTR_ERR(buf),
+> +				    "Failed to read shader-present nvmem cell\n");
+> +		goto err_put_cell;
+> +	}
+> +
+> +	if (!len || len > 8) {
+> +		ret = dev_err_probe(dev, -EINVAL, "shader-present cell can't be length %ld\n",
+> +				    len);
+> +		goto err_free;
+> +	}
+> +
+> +	memcpy(&ptdev->gpu_info.shader_present, buf, len);
+> +
+> +	kfree(buf);
+> +	nvmem_cell_put(cell);
+> +
+> +	return 0;
+> +
+> +err_free:
+> +	kfree(buf);
+> +err_put_cell:
+> +	nvmem_cell_put(cell);
+> +
+> +	return ret;
+> +}
+> +
+> +static int panthor_gpu_info_init(struct panthor_device *ptdev)
+>  {
+>  	unsigned int i;
+>  
+> @@ -143,13 +189,18 @@ static void panthor_gpu_info_init(struct panthor_device *ptdev)
+>  		ptdev->gpu_info.tiler_present = gpu_read64(ptdev, GPU_TILER_PRESENT);
+>  		ptdev->gpu_info.l2_present = gpu_read64(ptdev, GPU_L2_PRESENT);
+>  	}
+> +
+> +	return overload_shader_present(ptdev);
+>  }
+>  
+> -static void panthor_hw_info_init(struct panthor_device *ptdev)
+> +static int panthor_hw_info_init(struct panthor_device *ptdev)
+>  {
+>  	u32 major, minor, status;
+> +	int ret;
+>  
+> -	panthor_gpu_info_init(ptdev);
+> +	ret = panthor_gpu_info_init(ptdev);
+> +	if (ret)
+> +		return ret;
+>  
+>  	major = GPU_VER_MAJOR(ptdev->gpu_info.gpu_id);
+>  	minor = GPU_VER_MINOR(ptdev->gpu_info.gpu_id);
+> @@ -172,6 +223,8 @@ static void panthor_hw_info_init(struct panthor_device *ptdev)
+>  		 "shader_present=0x%0llx l2_present=0x%0llx tiler_present=0x%0llx",
+>  		 ptdev->gpu_info.shader_present, ptdev->gpu_info.l2_present,
+>  		 ptdev->gpu_info.tiler_present);
+> +
+> +	return 0;
+>  }
+>  
+>  static int panthor_hw_bind_device(struct panthor_device *ptdev)
+> @@ -218,7 +271,5 @@ int panthor_hw_init(struct panthor_device *ptdev)
+>  	if (ret)
+>  		return ret;
+>  
+> -	panthor_hw_info_init(ptdev);
+> -
+> -	return 0;
+> +	return panthor_hw_info_init(ptdev);
+>  }
+> 
+
 
