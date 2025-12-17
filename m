@@ -1,205 +1,158 @@
-Return-Path: <devicetree+bounces-247435-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247437-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23C44CC7EEE
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 14:45:57 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80F7CCC7C12
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 14:06:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 9659A301E3ED
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 13:45:41 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BC1F1304ACBF
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 13:00:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F96D3242BA;
-	Wed, 17 Dec 2025 12:57:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 107AE359710;
+	Wed, 17 Dec 2025 13:00:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NChF4twP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fJIGqA+R"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAE5C1A01C6;
-	Wed, 17 Dec 2025 12:57:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFADE2E8DEA;
+	Wed, 17 Dec 2025 13:00:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765976271; cv=none; b=tlAM3U2IuARtOMfubI2tAXqk4WiLgWQRuQrNWeo3JZShVCfbneWSkeBSqrnbmp5CpyMCX3CcPrFgB/gUYgLHetDK8kA70IG+8ghQfbrl44wyFrX/pj/hIm811mTEhh8FQU6caanvtJFYfbQwa8nyclSOYS1iI3QYvZhcfjgtOt0=
+	t=1765976410; cv=none; b=F30C9FJA33+Xr+L4NqagrQIGYeyWu01dnJMjMfc823OieyIfQE4CX3js+6Pu8qYrni1QiHCd5LlUwn/8FiVc/lvH8SK3oqBHv7QA3DVjCp3zUstp+p/Tw9ZGe4x0JVGBIemdCKlcdpo79CuyY0cp9BEdX2l4tw6rTunvIPzhtCE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765976271; c=relaxed/simple;
-	bh=0GWSqBewhyyuHqjxSx7mEobdDpCUaq4D2Ofg1L0eEOg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ER+ZpLLIrdRYCr4d4B5HexI16Qp9wzGkW40IGwcnpToM9q2GXf63UKEwFXm45a9GgSVTgY5V5elRaqH+v3ykDizO78CWHzQNieMMNJWU9JtjzY6kKp1tioao/217c8QfPI66xc0LPdEUMznR1g4e8nHrhD0kBP3qChEikOCxOaE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NChF4twP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2FCE5C4CEF5;
-	Wed, 17 Dec 2025 12:57:50 +0000 (UTC)
+	s=arc-20240116; t=1765976410; c=relaxed/simple;
+	bh=4v5l1tGAudJ17ilEiB5Tnt2dA8Rvzn0+0PSeZxP/OwE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=VW+PHckA8I2niXWBqibxbKQPpPABZXWUW19FEdkF+FQue79lvtFisoX1KuW4ahVFLM9ALcS0NPgERfAujiIpau6DjjW0ebLRDyHu1MVSH3BNJwonlOajEqE9m/iA94uuHUObxTfrKqvVbdLFQS5NfBdvGTGJDQJOkFHGiPc7SoE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fJIGqA+R; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E7C5CC4CEF5;
+	Wed, 17 Dec 2025 13:00:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765976270;
-	bh=0GWSqBewhyyuHqjxSx7mEobdDpCUaq4D2Ofg1L0eEOg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NChF4twPixIMjvFN3bzM0j/aTM2OTezt3o6R9cDltERyapZnTlcVmw6OurSzWNfNj
-	 93NFCULHMxoN7QZiiY9KGLWdPGDf6fCUnPrTAXH17/c+EWF6F8DbqEc3j9L5/8KY5o
-	 eI2xuDcThpwA4JY6zK88hY4zb/tp7SS3NplFQoV93I9loMXTbUVRWnhLk/lb+0B2tA
-	 OhtYjBBWzSLRCGJD8iwjXAQ9qrfnPKd9p4+7u08xMRCOuETU0bDWwNSgSGVt72Juub
-	 KDfgBHMx9Dnm98o7AvOExHIwDTu/QX5NBT+XXSjK1DV1vmimyKOlGIdJCksyovaxkM
-	 l20lpHHG8EyBA==
-Date: Wed, 17 Dec 2025 06:57:47 -0600
-From: Rob Herring <robh@kernel.org>
-To: Nishanth Menon <nm@ti.com>
-Cc: Anshul Dalal <anshuld@ti.com>, Tero Kristo <kristo@kernel.org>,
-	Santosh Shilimkar <ssantosh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Vignesh Raghavendra <vigneshr@ti.com>
-Subject: Re: [PATCH v5] dt-bindings: arm: keystone: add boot_* mboxes to
- ti,sci
-Message-ID: <20251217125747.GA689283-robh@kernel.org>
-References: <20251215-k3_syscon_add_boot_mailboxes-v5-1-5a8fe567fd31@ti.com>
- <20251215135708.ij5e7jr3binzmlbf@panda>
+	s=k20201202; t=1765976409;
+	bh=4v5l1tGAudJ17ilEiB5Tnt2dA8Rvzn0+0PSeZxP/OwE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=fJIGqA+R3B5COEV94SP/2zVlO6eb19WZkpiqKKRpm+STTz9XP4PXh673XLZBI4Pso
+	 ba9O9Tqg8kXE+Y3PquWdjVJ9N1j5Dp7HbwMYUcEj/4OFWCjvh6yFhGEWHXgyfP7Y0E
+	 BZmzJeCrpY1YAJJUNT5mJBmiNG5InnMHbvpvP0NhjsABsf/LzbLjr20TqEm+s52z/p
+	 5AcxmeM3hMxBPHCMidmrwvMSfvz9N4tIm4EqFQtXsclyO7lZIV1N0gd7ZM0ji+rBLp
+	 rHFb0QyyrAUezhzE0mv2xHAV5P2D8f3yOm/IIPnYLvgVzmsdVDh82W6fivz/3sWSNg
+	 tQIQZETGuySQg==
+Message-ID: <487ff592-e67c-41c8-a398-f79aa6e5f69c@kernel.org>
+Date: Wed, 17 Dec 2025 14:00:05 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251215135708.ij5e7jr3binzmlbf@panda>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: x1e78100-t14s: Add audio
+ playback over DisplayPort
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: Abel Vesa <abel.vesa@linaro.org>
+References: <20251217120051.98198-3-krzysztof.kozlowski@oss.qualcomm.com>
+ <20251217120051.98198-4-krzysztof.kozlowski@oss.qualcomm.com>
+ <2d4953c6-184d-423b-80e9-871c6e00da35@oss.qualcomm.com>
+ <564732e7-2c86-417d-8568-69f40ea7d4da@kernel.org>
+ <47758ce9-5ec6-4ed6-9f84-13cbdd444d75@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <47758ce9-5ec6-4ed6-9f84-13cbdd444d75@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, Dec 15, 2025 at 07:57:08AM -0600, Nishanth Menon wrote:
-> On 11:38-20251215, Anshul Dalal wrote:
-> > The bootloader on K3 devices makes use of mailboxes as per the ROM spec
-> > which might be different than one's available to the kernel (firmware
-> > spec).
-> > 
-> > Therefore, this patch adds the missing mailbox entries to the DT binding
-> > if the matching compatible is ti,am654-sci to represent the mailboxes
-> > exposed by the hardware during boot for the purpose of loading the
-> > firmware. The newly added mboxes are made optional by keeping minItems
-> > as 2 to remain compliant with existing device-trees.
-> > 
-> > Signed-off-by: Anshul Dalal <anshuld@ti.com>
-> > ---
-> > Changes in v5:
-> > - Added commit description for the optional mailboxes
-> > - Link to v4: https://lore.kernel.org/r/20251205-k3_syscon_add_boot_mailboxes-v4-1-8e216fb88941@ti.com
-> > 
-> > Changes in v4:
-> > - Make new boot_* mboxes conditional on ti,am654-sci compatible
-> > - Link to v3: https://lore.kernel.org/r/20251112-k3_syscon_add_boot_mailboxes-v3-1-66155a4236dc@ti.com
-> > 
-> > Changes in v3:
-> > - Drop [1/2] of the last patch series
-> > - Update existing example with boot_* mailboxes instead of adding a new one
-> > - Link to v2: https://lore.kernel.org/r/20251112-k3_syscon_add_boot_mailboxes-v2-0-aebc1e47b391@ti.com
-> > 
-> > Changes in v2:
-> > - Remove maxItems entry
-> > - Remove RFC tag from patch (added by mistake in v1)
-> > - Document the new mailboxes in mboxes instead of mbox-names
-> > - Provide example with all the mailboxes set
-> > - Update commit title to have "ti,sci"
-> > - Split into two patches
-> > - Link to v1: https://lore.kernel.org/r/20251111-k3_syscon_add_boot_mailboxes-v1-1-529a27f21076@ti.com
-> > ---
-> >  .../devicetree/bindings/arm/keystone/ti,sci.yaml   | 50 +++++++++++++++++++---
-> >  1 file changed, 43 insertions(+), 7 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml b/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml
-> > index 25a2b42105e5..d9eb2a81e539 100644
-> > --- a/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml
-> > @@ -51,15 +51,15 @@ properties:
-> >      minItems: 1
-> >  
-> >    mbox-names:
-> > +    minItems: 2
-> > +    maxItems: 6
-> >      description: |
-> >        Specifies the mailboxes used to communicate with TI-SCI Controller
-> >        made available from TI-SCI controller.
-> > -    items:
-> > -      - const: rx
-> > -      - const: tx
-> >  
-> >    mboxes:
-> >      minItems: 2
-> > +    maxItems: 6
-> >  
-> >    ti,host-id:
-> >      $ref: /schemas/types.yaml#/definitions/uint32
-> > @@ -79,6 +79,42 @@ properties:
-> >      type: object
-> >      $ref: /schemas/reset/ti,sci-reset.yaml#
-> >  
-> > +if:
-> > +  properties:
-> > +    compatible:
-> > +      contains:
-> > +        const: ti,am654-sci
-> > +then:
-> > +  properties:
-> > +    mbox-names:
-> > +      minItems: 2
-> > +      items:
-> > +        - const: rx
-> > +        - const: tx
-> > +        - const: notify
-> > +        - const: boot_rx
-> > +        - const: boot_tx
-> > +        - const: boot_notify
-> > +    mboxes:
-> > +      minItems: 2
-> > +      items:
-> > +        - description: RX thread
-> > +        - description: TX thread
-> > +        - description: Notify thread
-> > +        - description: boot stage RX thread
-> > +        - description: boot stage TX thread
-> > +        - description: boot stage Notify thread
-> > +else:
-> > +  properties:
-> > +    mbox-names:
-> > +      items:
-> > +        - const: rx
-> > +        - const: tx
-> > +    mboxes:
-> > +      items:
-> > +        - description: RX thread
-> > +        - description: TX thread
-> > +
-> >  required:
-> >    - compatible
-> >    - mbox-names
-> > @@ -99,11 +135,11 @@ examples:
-> >  
-> >    - |
-> >      dmsc: system-controller@44083000 {
-> > -      compatible = "ti,k2g-sci";
-> > +      compatible = "ti,am654-sci";
-> >        ti,host-id = <12>;
-> > -      mbox-names = "rx", "tx";
-> > -      mboxes = <&secure_proxy_main 11>,
-> > -               <&secure_proxy_main 13>;
-> > +      mbox-names = "rx", "tx", "notify", "boot_rx", "boot_tx";
-> > +      mboxes= <&secure_proxy_mcu 6>, <&secure_proxy_mcu 8>,
-> > +        <&secure_proxy_mcu 5>, <&secure_proxy_mcu 5>, <&secure_proxy_mcu 4>;
-> >        reg-names = "debug_messages";
-> >        reg = <0x44083000 0x1000>;
+On 17/12/2025 13:51, Konrad Dybcio wrote:
+> On 12/17/25 1:38 PM, Krzysztof Kozlowski wrote:
+>> On 17/12/2025 13:33, Konrad Dybcio wrote:
+>>> On 12/17/25 1:00 PM, Krzysztof Kozlowski wrote:
+>>>> Add necessary DAI links and DAI name prefixes to enable audio playback
+>>>> over USB/DisplayPort and HDMI.  The HDMI port is not yet enabled, but it
+>>>> should carry respective DAI name prefix regardless.
+>>>>
+>>>> Reviewed-by: Abel Vesa <abel.vesa@linaro.org>
+>>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+>>>>
+>>>> ---
+>>>
+>>> (something's inserting a \n before --- in your latest patches but I
+>>
+>> No, it is not. It was always like that and only recently git started
+>> dropping it, but it is irrelevant.
+>>
+>>> don't know if this is a problem)
+>>>
+>>> [...]
+>>>
+>>>> +		displayport-2-dai-link {
+>>>> +			link-name = "DisplayPort2 Playback";
+>>>> +
+>>>> +			codec {
+>>>> +				sound-dai = <&mdss_dp2>;
+>>>
+>>> How does this work out with fw_devlink?
+>>
+>> How is this related to this patchset? Please stop nit-picking irrelevant
+>> things.
 > 
-> Please add a different example for am654, i want to make sure k2g still
-> continues to be checked.
-> 
-> That said, AM62 series of devices do not use notification pipe for
-> standard communication. So, the schema will break for those.
-> 
-> in summary:
-> k2g: rx, tx
-> am654, j721e, j721s2, j7200, j784s4, .. : rx, tx, notify, boot_rx,
-> boot_tx, boot_notify
-> am625, am62p ..: rx, tx, boot_rx, boot_tx, boot_notify
-> 
-> we will need three examples, and will need to add am62x series as one
-> additional compatible.
+> I'm asking whether this is going to break sync_state because you're not
+> enabling mdss_dp2 - I believe that's a fair question..
 
-Do we really? We have a whole tree of examples in .dts files.
+DTS description is independent of driver, thus this is correct code
+regardless whether there is interconnect involved anywhere or not. I
+don't have the answer how this affects interconnect, but I see no reason
+anyone would create such ICC path - between hardware and fake SW construct.
 
-Rob
+Best regards,
+Krzysztof
 
