@@ -1,180 +1,89 @@
-Return-Path: <devicetree+bounces-247611-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247612-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1398CC9244
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 18:54:04 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF11BCC9016
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 18:17:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8DC2432EBB32
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 17:33:08 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 81AC73010FFA
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 17:05:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1003346A06;
-	Wed, 17 Dec 2025 17:04:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA6EB347FEC;
+	Wed, 17 Dec 2025 17:05:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="T96gd2Kp"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="KEMDSHKt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC670346771;
-	Wed, 17 Dec 2025 17:04:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765991080; cv=pass; b=PgiygFKEdhuJXupRX2CngA32srIQUyJO5VcpTuvuuY1tsw6eONqWlMN9oV5V17V+HXJu1ljoCBjxlC13gu+Ad9r93nebWfWoD4+V2ACtFhKHBmOdnhfQQydTOFVfD5aR66qqEgkF3dRMfxvYuiO6c5Li7dX6EqdEhF6ZDkfq/Cc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765991080; c=relaxed/simple;
-	bh=YmNwI7MxpnWlCVEo4v/8Kc9GMZMZ23l1F/XShcssJs8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=kbvn/6vZAsahe5XfkroNP4E8P7tfbLgxzE+XtB5jaEAnSdCSdgfV7lxRLcgW5rRTWfgYC7GjGvIXGmjmQrdf8uzdkNDO+lVhXkSECELli1W1X5Gc2ndCMrmVaJbrp7NKAVJbM5ySyQLGv7m0XYvDSaRf7o+F3HE4WjPlYiAXJco=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=T96gd2Kp; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1765991062; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=iNXV+LkqWbKyThRNyuMA7DBnA3Sg2x5ojhtfEQ3UXMd9BNoYAlS+zultvL2QIZFfjcPW0CisPXDH4CnA6skFYfqXa5YFJawtQE/Z+w6UvEE/hmHlxylIZTWT+BsMKNeNIIbAfmFkNymjN8tQ5Sg6p7U6hb85myq5gQ4mfxcGOyI=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1765991062; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=Cn+wN94dsn6CdLIbCexrwAhvW7xHuDrjgU73wpCpToc=; 
-	b=jMx5zQkMA6CDwleDqdP9EtRqmruILMNRfJnFFE1NEvzuNeWaRb3MQVmHZOjTzZi2zmIboLnvB1WgMuSUJH3Ll/OHIZ2/+Twk+87td9Ji8SveQvk0FA0C6ppg5i67KxJpksKtyZEa70UmnDAf9ZrouZiPbsjQNy6DP+YF2obl/Hs=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
-	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1765991062;
-	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
-	h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:References:In-Reply-To:To:To:Cc:Cc:Reply-To;
-	bh=Cn+wN94dsn6CdLIbCexrwAhvW7xHuDrjgU73wpCpToc=;
-	b=T96gd2KpGXUegdL47pBQjjHHEC1I1xbohrmvj5VPMcTsQwJDmoqRJkph4QxvPssg
-	vihjm/SjXUFHSje5VH3KrKs2ubg5S/m+ywWm1c54bLMhdWdAWfgfrZ/uJl/rIxk6UAC
-	RcQTz79rSYxSWuqZf+HkGbbQVh1dRDluYQVLzVqs=
-Received: by mx.zohomail.com with SMTPS id 1765991061155339.44972850183456;
-	Wed, 17 Dec 2025 09:04:21 -0800 (PST)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Date: Wed, 17 Dec 2025 18:03:30 +0100
-Subject: [PATCH 4/4] pmdomain: mediatek: mtk-mfg: Expose shader_present as
- nvmem cell
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01E5933EB01;
+	Wed, 17 Dec 2025 17:05:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1765991112; cv=none; b=T/uCbCCWVD66SB7z5jXaUubV+ZYzz/K8xUNcG7oxonSG117KTsv3p+q5pnPeU/OqF+D13G/ebIR6vdZyTPI6qSuwx82h5p6yfTsmRXTWnd0HeKuJLddrlYxXREpFiYKcTr2wE5itSsrtQKxYd+6InuuolOm3LXvbJMMbm8+i8qI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1765991112; c=relaxed/simple;
+	bh=hQUiowIqnPYoumnsju6v2Rby74tKXjQbS/1VFaVx75A=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cKE9ynqDxlM6c92yGObXx7n3jOvh1gMdT+X50QiWy12/smFR+ktC/Cwysw6Rmmi8DvVez2619xGHqRlD5VUoDM2wfRGLfC9CuY4Xm1k4VHeTYoxzh8F8Hs9XaP6MJQHkWyAvYfUQaPXwUKv9gCUmMVd2LrzOBSCxltbQRhNiAVY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=KEMDSHKt; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=JC/OAnrwflrdD+697YshlNQb8A1fVQJOhNEeBZnuY4o=; b=KEMDSHKtY0k0H+lZ6204QXDLnP
+	IYEaaMGQRmp17Vfxs3oERU9L65fhet7KbBQv7w/QQr2RfEnW6xjnQD7HJmAkkiUx4ffBxrV0xZ31X
+	gklJ2KmN8k/og0ipZ0Qbj3IuJ6MPuQEM6PrmEsODbiTRODjllsiDmLhsLxlyQq8Uu0k4=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1vVuxM-00HEmV-Az; Wed, 17 Dec 2025 18:04:56 +0100
+Date: Wed, 17 Dec 2025 18:04:56 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Stefan Eichenberger <eichest@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, andrew+netdev@lunn.ch,
+	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, krzk+dt@kernel.org, conor+dt@kernel.org,
+	hkallweit1@gmail.com, linux@armlinux.org.uk,
+	geert+renesas@glider.be, ben.dooks@codethink.co.uk,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, francesco.dolcini@toradex.com,
+	rafael.beims@toradex.com,
+	Stefan Eichenberger <stefan.eichenberger@toradex.com>
+Subject: Re: [PATCH net-next v1 2/3] dt-bindings: net: micrel: Add
+ keep-preamble-before-sfd
+Message-ID: <49385cb4-6ce9-4120-9dd6-c08d763f0564@lunn.ch>
+References: <20251212084657.29239-1-eichest@gmail.com>
+ <20251212084657.29239-3-eichest@gmail.com>
+ <20251215140330.GA2360845-robh@kernel.org>
+ <aUJ-3v-OO0YYbEtu@eichest-laptop>
+ <aUKgP4Hi-8tP9eaK@eichest-laptop>
+ <20251217135519.GA767145-robh@kernel.org>
+ <aUK-h6jDsng0Awjm@eichest-laptop>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251217-mt8196-shader-present-v1-4-f6f8f3aa1e93@collabora.com>
-References: <20251217-mt8196-shader-present-v1-0-f6f8f3aa1e93@collabora.com>
-In-Reply-To: <20251217-mt8196-shader-present-v1-0-f6f8f3aa1e93@collabora.com>
-To: Boris Brezillon <boris.brezillon@collabora.com>, 
- Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Ulf Hansson <ulf.hansson@linaro.org>
-Cc: Chen-Yu Tsai <wenst@chromium.org>, Chia-I Wu <olvaffe@gmail.com>, 
- kernel@collabora.com, dri-devel@lists.freedesktop.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- linux-pm@vger.kernel.org, 
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-X-Mailer: b4 0.14.3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aUK-h6jDsng0Awjm@eichest-laptop>
 
-Implement nvmem-provider functionality in mtk-mfg-pmdomain, such that it
-can expose its GF_REG_SHADER_PRESENT value in the shared memory as an
-nvmem cell for panthor.
+> > I think the ideal implementation would be the MAC driver calling some 
+> > phy API to apply the quirk, and then that gets passed on to the phy 
+> > driver. Surely this isn't the first case of a MAC-PHY combination 
+> > needing to go fiddle with some special setting.
+> 
+> I was also hoping to find something like that, but I couldn't really
+> find it. However, I will try looking in that direction. At least we can
+> identify the broken MAC via the compatible string of the MAC driver, as
+> they use two different compatibles: 'fsl,imx8mp-fec' (fine) and
+> 'nxp,imx8mp-dwmac-eqos' (affected by the errata).
 
-Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
----
- drivers/pmdomain/mediatek/mtk-mfg-pmdomain.c | 57 ++++++++++++++++++++++++++++
- 1 file changed, 57 insertions(+)
+Maybe see if you can use phy_register_fixup_for_id().
 
-diff --git a/drivers/pmdomain/mediatek/mtk-mfg-pmdomain.c b/drivers/pmdomain/mediatek/mtk-mfg-pmdomain.c
-index 9bad577b3ae4..725ebc678f1b 100644
---- a/drivers/pmdomain/mediatek/mtk-mfg-pmdomain.c
-+++ b/drivers/pmdomain/mediatek/mtk-mfg-pmdomain.c
-@@ -10,6 +10,7 @@
- #include <linux/clk-provider.h>
- #include <linux/container_of.h>
- #include <linux/iopoll.h>
-+#include <linux/nvmem-provider.h>
- #include <linux/mailbox_client.h>
- #include <linux/module.h>
- #include <linux/of.h>
-@@ -872,6 +873,58 @@ static int mtk_mfg_init_clk_provider(struct mtk_mfg *mfg)
- 	return 0;
- }
- 
-+static int mtk_mfg_read_nvmem(void *priv, unsigned int offset, void *val, size_t bytes)
-+{
-+	struct mtk_mfg *mfg = priv;
-+	u32 *buf = val;
-+
-+	if (bytes != 4)
-+		return -EINVAL;
-+
-+	if (!mfg->shared_mem)
-+		return -ENODEV;
-+
-+	if (offset + bytes >= mfg->shared_mem_size)
-+		return -EINVAL;
-+
-+	*buf = readl(mfg->shared_mem + offset);
-+
-+	return 0;
-+}
-+
-+static int mtk_mfg_init_nvmem_provider(struct mtk_mfg *mfg)
-+{
-+	struct device *dev = &mfg->pdev->dev;
-+	struct nvmem_cell_info cell = {};
-+	struct nvmem_config config = {};
-+	struct nvmem_device *nvdev;
-+	int ret;
-+
-+	config.reg_read = mtk_mfg_read_nvmem;
-+	config.dev = dev;
-+	config.read_only = true;
-+	config.priv = mfg;
-+	config.size = 4;
-+	config.word_size = 4;
-+
-+	nvdev = devm_nvmem_register(dev, &config);
-+	of_node_put(config.of_node);
-+	if (IS_ERR(nvdev))
-+		return dev_err_probe(dev, PTR_ERR(nvdev), "Couldn't register nvmem provider\n");
-+
-+	cell.name = "shader-present";
-+	cell.offset = GF_REG_SHADER_PRESENT;
-+	cell.bytes = 4;
-+	cell.np = of_get_child_by_name(dev->of_node, cell.name);
-+
-+	ret = nvmem_add_one_cell(nvdev, &cell);
-+	/* cell.np purposefully not put as nvmem_add_one_cell does not increase refcount */
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Couldn't add cell %s\n", cell.name);
-+
-+	return 0;
-+}
-+
- static int mtk_mfg_probe(struct platform_device *pdev)
- {
- 	struct mtk_mfg *mfg;
-@@ -984,6 +1037,10 @@ static int mtk_mfg_probe(struct platform_device *pdev)
- 	if (ret)
- 		goto err_power_off;
- 
-+	ret = mtk_mfg_init_nvmem_provider(mfg);
-+	if (ret)
-+		goto err_power_off;
-+
- 	ret = of_genpd_add_provider_simple(dev->of_node, &mfg->pd);
- 	if (ret) {
- 		dev_err_probe(dev, ret, "Failed to add pmdomain provider\n");
-
--- 
-2.52.0
-
+	Andrew
 
