@@ -1,144 +1,148 @@
-Return-Path: <devicetree+bounces-247647-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247649-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F313CC9CDD
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 00:31:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E5CDCC9D6D
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 00:57:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D1EED302DB40
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 23:31:43 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7B657304E547
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 23:57:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 677C118BC3D;
-	Wed, 17 Dec 2025 23:31:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E1332FB997;
+	Wed, 17 Dec 2025 23:56:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=probably.group header.i=@probably.group header.b="aH9uNQNk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uESTHdcw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from m1-out-mua-15.websupport.sk (m1-out-mua-15.websupport.sk [45.13.137.24])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4675288AD;
-	Wed, 17 Dec 2025 23:31:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.13.137.24
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C83BA26E173;
+	Wed, 17 Dec 2025 23:56:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766014302; cv=none; b=bD/nzq0gSXEVyRtwU1r1H4kAo35C0WUnW30PimIS7lcm4x5TRjEhUDwAo2fV92Rf3qRpmGAd80+4ebyQU6BRFSHvQUpwJth4UrMNrvcAkyP+LsNn22BTHJpTRwRJwKVt0VSPUuzptWv1n4U2y5UtypQN4o4BW28NRzOJ6sIKF6Q=
+	t=1766015817; cv=none; b=BW03i7B7RDceGa1P9y7PbCCbxTq66vu3CyCQjoOJx94g+RZThP2wGOCMrTI+JO6rOj2CB9jchwSR7kVsAVrDDTO4QwSmcpwM4bY7HigpKjnEhSkd20wDNdh5h7n0E41G6WJatCCmaj9KvyyLY91yZZm8nb3NM8PhxwCxxH5J8mc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766014302; c=relaxed/simple;
-	bh=bo+dyNjiHmVDqcv1a3rC7/baqK4g5oX2u9VbWLgFJfk=;
-	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
-	 Message-Id:References:To; b=NXtq49Zw2mWIVg71uqcRjS0PJ6hCEqgXZGTsFcCaMJ8+5deaP1lQB/BB62zwzo78c8v7B2oBqwcfuONrFrhReRcOXqcQIgNfM9u08BYIG2MqNsuhseo76vlK0pRmr3/5KF9f4s58bz+InDyTjmEiUu4Gvi47cYsJePtWf2CUgjA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=probably.group; spf=pass smtp.mailfrom=probably.group; dkim=pass (2048-bit key) header.d=probably.group header.i=@probably.group header.b=aH9uNQNk; arc=none smtp.client-ip=45.13.137.24
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=probably.group
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=probably.group
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=probably.group;
-	s=mail; t=1766014290;
-	bh=N2mq0Gx7GZeTynP2HqywdZDBMJbkGwWK5LlhAShzLmQ=;
-	h=Subject:From:In-Reply-To:Date:Cc:References:To:From;
-	b=aH9uNQNkP+QzUUguji0xI1K+VchucuyeSDKy/54IGGTCPJC2kPIDnxalJ+VxlrCDy
-	 1UR5LDchY6sRTknWwHKo9UKeCM8BSqkV5doFIsRvsd0Zqp9UeV3eOkUv2bR67bQrim
-	 cv5+ObQZntiuEtbW4yeGhw3Lax1q6VADwJp1LxDuX5P/NnhJsrLyp4d7HYAwd+pdp7
-	 I0mM8VOsOLFD5HivqkwVN8fKz1D3Ivp9qvnfdsSh2pxKtKXHh83splYpjoZpfN0mcG
-	 bymuITuTmDGwXf/PdwTU8MqAtdIrFgQ3ElS5bth7/+g4FSGrPf0DLSeFhwaqs40c/u
-	 OB0I/7mjG4UuQ==
-Received: from m1-u6-ing.websupport.sk (unknown [10.30.6.2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	by m1-out-mua-15.websupport.sk (Postfix) with ESMTPS id 4dWqnG2CSGz1Md5;
-	Thu, 18 Dec 2025 00:31:30 +0100 (CET)
-X-Authenticated-Sender: mh@probably.group
-Authentication-Results: m1-u6-ing.websupport.sk;
-	auth=pass smtp.auth=mh@probably.group smtp.mailfrom=mh@probably.group
-Received: from smtpclient.apple (unknown [109.164.127.134])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	(Authenticated sender: mh@probably.group)
-	by m1-u6-ing.websupport.sk (Postfix) with ESMTPSA id 4dWqnF0STBzdMvK;
-	Thu, 18 Dec 2025 00:31:28 +0100 (CET)
-Content-Type: text/plain;
-	charset=utf-8
+	s=arc-20240116; t=1766015817; c=relaxed/simple;
+	bh=HR4qrmI9rceCWt7faPX8zYQtAYw4yuTbacR2hZ8jKj8=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=nns9oYqa/nDjvrvAi7QqHJLDMXIZvE5w/e4evMAQZtdVdtPAz3/skdr4U3/hCnQocMccrXD5rU9NNPKPZHlknKvJ2/ucwDDvSp59I2VsqpY+0/YwCypIXvz7JKW4TQnzjE3BpGtQOO1yeJqsksdSem6fFqJASeYjiW7K5n/JdPU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uESTHdcw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 627DEC4CEF5;
+	Wed, 17 Dec 2025 23:56:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1766015817;
+	bh=HR4qrmI9rceCWt7faPX8zYQtAYw4yuTbacR2hZ8jKj8=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=uESTHdcwFrTGhtuhgh2hLadO1b7dyJ3t5WtA2vwIW3da4rDQFVPqB3LMD0v/7XwrK
+	 bPXPKH+430cMfrdkbzdVwXNWohgfNi1vSIGpSooy2BsxB5L3q8s8wBgKWlQka2i2wC
+	 L6PIfizKciS19/QTZkDOZwSXNL8ve/thr20NrXQBgVG7cn4OGEbdCWuG1sqpwqFW5f
+	 ljfwYXfLoYZVU4s8kVcWENINkdaAq9oyDMsk5L/6992+OdcKKOWwWsY5D3YfHfk59K
+	 UcXzOsC0K5wAOCYsLOjKT0+ZKK0y3K57YjLbP3Z0zafhJhdWSir9QQTvARRpUnijZy
+	 X8/eZfoqCAJSg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 505F8D65C7F;
+	Wed, 17 Dec 2025 23:56:57 +0000 (UTC)
+From: =?utf-8?q?J=C3=A9r=C3=B4me_de_Bretagne_via_B4_Relay?= <devnull+jerome.debretagne.gmail.com@kernel.org>
+Subject: [PATCH v3 0/6] Microsoft Surface Pro 11 support
+Date: Thu, 18 Dec 2025 00:56:36 +0100
+Message-Id: <20251218-surface-sp11-for-next-v3-0-875afc7bd3b7@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3864.300.41.1.7\))
-Subject: Re: [PATCH] arm64: dts: rockchip: enable dual 2.5GbE on Rock 5T
-From: =?utf-8?B?Ik1hcnRpbiBIb2xvdnNrw70gKFByb2JhYmx5IE5vdGhpbmcgcy5yLm8u?=
- =?utf-8?B?KSI=?= <mh@probably.group>
-In-Reply-To: <176580661874.1441131.12947657582985645446.b4-ty@sntech.de>
-Date: Thu, 18 Dec 2025 00:31:18 +0100
-Cc: Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <7A2ADADA-3FD8-4AAE-B7D8-9137399FBE6E@probably.group>
-References: <96516D1F-9787-47FE-A67E-4745D11D9207@probably.group>
- <176580661874.1441131.12947657582985645446.b4-ty@sntech.de>
-To: Heiko Stuebner <heiko@sntech.de>
-X-Mailer: Apple Mail (2.3864.300.41.1.7)
-X-Out-Spamd-Result: default: False [0.40 / 1000.00];
-	MV_CASE(0.50)[];
-	MIME_GOOD(-0.10)[text/plain];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[dt];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:44489, ipnet:109.164.0.0/17, country:CZ];
-	ARC_NA(0.00)[];
-	RCVD_COUNT_ZERO(0.00)[0];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	HAS_X_AS(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FROM_EQ_ENVFROM(0.00)[];
-	TO_MATCH_ENVRCPT_ALL(0.00)[];
-	MIME_TRACE(0.00)[0:+]
-X-Out-Rspamd-Queue-Id: 4dWqnF0STBzdMvK
-X-Rspamd-Action: no action
-X-Out-Rspamd-Server: m1-rspamd-out-5
-X-purgate-type: clean
-X-purgate-Ad: Categorized by eleven eXpurgate (R) https://www.eleven.de
-X-purgate: This mail is considered clean (visit https://www.eleven.de for further information)
-X-purgate: clean
-X-purgate-size: 1109
-X-purgate-ID: 155908::1766014290-C0FE6043-56D75A65/0/0
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIADRDQ2kC/x3MOQqAQAxA0atIagNOBhe8ili4ZDTNKImKIN7dw
+ fIV/z9grMIGbfaA8iUmW0zweQbTOsSFUeZkoIJKR65BOzUME6PtzmHYFCPfB1ZUsac61KP3kNp
+ dOcj9f7v+fT8DnBloZwAAAA==
+X-Change-ID: 20251218-surface-sp11-for-next-626e327f7b33
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Johannes Berg <johannes@sipsolutions.net>, 
+ Lorenzo Bianconi <lorenzo@kernel.org>, 
+ Maximilian Luz <luzmaximilian@gmail.com>, Hans de Goede <hansg@kernel.org>, 
+ =?utf-8?q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
+ Jeff Johnson <jjohnson@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org, 
+ platform-driver-x86@vger.kernel.org, ath12k@lists.infradead.org, 
+ Dale Whinham <daleyo@gmail.com>, 
+ =?utf-8?q?J=C3=A9r=C3=B4me_de_Bretagne?= <jerome.debretagne@gmail.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1766015815; l=3060;
+ i=jerome.debretagne@gmail.com; s=20251217; h=from:subject:message-id;
+ bh=HR4qrmI9rceCWt7faPX8zYQtAYw4yuTbacR2hZ8jKj8=;
+ b=t3BXpsJPHxSIlZjyA76+9GhmhP27qDDVarnKi/muuVipdCyPhGDLIzBzk4DJgGDFXkbCTKtLn
+ vi5tRO1d+2BAlPqAqU/Gr8ilzjdiSp01/l7J36E32dkICd8KlD/Ss11
+X-Developer-Key: i=jerome.debretagne@gmail.com; a=ed25519;
+ pk=DcPD9n3oDMsPkt+12tU96swmGb5H86cxt+yiEVcUEGk=
+X-Endpoint-Received: by B4 Relay for jerome.debretagne@gmail.com/20251217
+ with auth_id=580
+X-Original-From: =?utf-8?q?J=C3=A9r=C3=B4me_de_Bretagne?= <jerome.debretagne@gmail.com>
+Reply-To: jerome.debretagne@gmail.com
 
-Perfect, thanks a lot!
+This series brings support for the Qualcomm-based Microsoft Surface
+Pro 11 covering both the OLED and LCD variants.
 
-> On 15. 12. 2025, at 14:51, Heiko Stuebner <heiko@sntech.de> wrote:
->=20
->=20
-> On Fri, 12 Dec 2025 17:23:35 +0100, "Martin Holovsk=C3=BD (Probably =
-Nothing s.r.o. )" wrote:
->> The Radxa Rock 5T board features two RTL8125B 2.5GbE Ethernet =
-controllers
->> connected via PCIe lanes pcie2x1l0 (fe170000) and pcie2x1l2 =
-(fe190000).
->> Currently only one interface is functional because the PCIe =
-controller
->> nodes lack the necessary reset GPIO configuration.
->>=20
->> Without the reset-gpios property, the RTL8125B PHYs remain in reset =
-state
->> and are not enumerated by the PCIe bus. This results in only one =
-Ethernet
->> interface being detected, or none at all depending on U-Boot =
-initialization.
->>=20
->> [...]
->=20
-> Applied, thanks!
->=20
-> [1/1] arm64: dts: rockchip: enable dual 2.5GbE on Rock 5T
->      commit: 96029ffeccf677b1e4baa98f30909a83a485b6d7
->=20
-> I've resorted both the pcie phandles as well as the pinctrl entries
-> pcie2-0 comes before pcie2-1 etc :-) .
->=20
-> Best regards,
-> --=20
-> Heiko Stuebner <heiko@sntech.de>
+Signed-off-by: Dale Whinham <daleyo@gmail.com>
+Signed-off-by: Jérôme de Bretagne <jerome.debretagne@gmail.com>
+---
+Changes in v3:
+- Update the compatible strings to document both the OLED and LCD variants
+- Move the disable-rfkill property into ieee80211.yaml [Rob,Krzysztof]
+- Reference commit c6a7c0b09d5f and detail the disable-rfkill patch description [Rob,Krzysztof]
+- Switch to the renamed hamoa.dtsi and hamoa-pmics.dtsi [Dale]
+- Improve the comments describing the 2 USB Type-C port location
+- Update the speaker definition to describe only 2-speakers [Konrad]
+- Drop output-low from the speaker definition [Konrad]
+- Enable i2c0 to make it accessible through i2c-tools [Konrad]
+- Delete a non-applicable comment about removable WLAN card [Konrad]
+- Re-order a few nodes and fix indentation issues [Konrad]
+- Squash one of the patches as suggested [Krzysztof]
+- Drop the NAKed patch patch about a dpcd link rate quirk [Dmitry]
+- Include the Reviewed-by: tags
+- Link to v2: https://lore.kernel.org/all/20251201011457.17422-1-daleyo@gmail.com/
+
+Changes in v2:
+  - Dropped ATNA30DW01 patch as it was merged.
+  - Split device tree into x1e (OLED)/x1p (LCD) specific *.dts files and move common code into x1-microsoft-denali.dtsi (patch 4).
+  - Device tree now enables higher external monitor refresh rates/resolutions (patch 4).
+  - Device tree now enables partially working audio output; requires alsa-ucm-conf and audioreach-topology definitions in userspace (patch 4).
+  - Replaced 'Work around bogus maximum link rate' with a quirk-based approach (patch 5).
+  - Improve the commit message about the disable-rfkill property in response to feedback (patch 6).
+
+---
+Dale Whinham (4):
+      firmware: qcom: scm: allow QSEECOM on Surface Pro 11
+      platform/surface: aggregator_registry: Add Surface Pro 11
+      arm64: dts: qcom: Add support for Surface Pro 11
+      wifi: ath12k: Add support for disabling rfkill via devicetree
+
+Jérôme de Bretagne (2):
+      dt-bindings: arm: qcom: Document Microsoft Surface Pro 11
+      dt-bindings: wireless: ieee80211: Add disable-rfkill property
+
+ Documentation/devicetree/bindings/arm/qcom.yaml    |    8 +
+ .../bindings/net/wireless/ieee80211.yaml           |    6 +
+ arch/arm64/boot/dts/qcom/Makefile                  |    4 +
+ arch/arm64/boot/dts/qcom/x1-microsoft-denali.dtsi  | 1326 ++++++++++++++++++++
+ .../dts/qcom/x1e80100-microsoft-denali-oled.dts    |   20 +
+ .../boot/dts/qcom/x1p64100-microsoft-denali.dts    |   16 +
+ drivers/firmware/qcom/qcom_scm.c                   |    1 +
+ drivers/net/wireless/ath/ath12k/core.c             |    3 +
+ .../platform/surface/surface_aggregator_registry.c |   18 +
+ 9 files changed, 1402 insertions(+)
+---
+base-commit: 8f0b4cce4481fb22653697cced8d0d04027cb1e8
+change-id: 20251218-surface-sp11-for-next-626e327f7b33
+
+Best regards,
+-- 
+Jérôme de Bretagne <jerome.debretagne@gmail.com>
+
 
 
