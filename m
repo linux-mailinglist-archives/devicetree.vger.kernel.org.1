@@ -1,60 +1,71 @@
-Return-Path: <devicetree+bounces-247207-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247208-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4429DCC5A91
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 02:01:54 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 897C9CC5A9A
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 02:04:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 058253009576
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 01:01:37 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id B2790300F305
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 01:04:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92A622309AA;
-	Wed, 17 Dec 2025 01:01:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 002C7225397;
+	Wed, 17 Dec 2025 01:04:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y65tX+y8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z+kvoubX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 622D81FC0ED;
-	Wed, 17 Dec 2025 01:01:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6C2819E839;
+	Wed, 17 Dec 2025 01:04:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765933295; cv=none; b=iHLojJjazmjasGZI1bDl0hSqFHF/EGvCE3m8DmZnPP71wI4WebdfE0faacLVPuGu+WatGIlbWoumh6Mfw4hDvtnlnnFF1QxFQin7yCaG/wW6xt9u0bSXQNU2UC6qaf+L3XQx/mGQgsTVRcaeC0k534WUpf8eag7M2pePkQaEQ18=
+	t=1765933448; cv=none; b=YbwJuuykq5QmGlZPI9pwawqt3IYjBPzid6S2HOC4Au6007Oy4jeFifwKxDLg7tI3keIv3m9BiHUnZuEL3RF/ll5y5vkJ5nIVwyqjLIy0SRx4zBbi18zQIIjNn0EsYDSATf1BNHMoMRab/XKqEZH9yj92iPFfUvMMvPzI0uapxGo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765933295; c=relaxed/simple;
-	bh=8ogmzsaaZydM9HtC9hg4iWRJ3PUwmjx5C7NXv5+fNAU=;
+	s=arc-20240116; t=1765933448; c=relaxed/simple;
+	bh=rA8m553sjOXTqrA/1tm7Zp2jR5sngGgp7J+kIfy6AU8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jz8COIoXu5lxinYktna9+I5Fm8kZ1/1ylxI/VXy7KFkcfSCjOHpzpsBoaEp7PX7D9FtqXyHey5R/GGkIX8syldj+0IsoFLLxJxbIICJnNfui4yuFCldCNka/d0qo3YHL4R0L5/FbZhysJ6pUKlN7E/VcopScZb2YjTutgGN91xA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y65tX+y8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1893BC4CEF1;
-	Wed, 17 Dec 2025 01:01:35 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=m/S3sZ2NaiiwUKMnKWvUs9NWIl2lnz6tVBaN/hHZ9wSesOAWFcKFHGOOGOODHyg9VJMbMt9CmxPblYZOQZhtd/lscDhvvNsMbGGA0h09IT/qhkvRYKlAJHCmQhuVCLGM/xcf60Q4YrqxCuV+c6dl/WjRUp6bQCYUt93JDsxIixg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z+kvoubX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF9FBC4CEF1;
+	Wed, 17 Dec 2025 01:04:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765933295;
-	bh=8ogmzsaaZydM9HtC9hg4iWRJ3PUwmjx5C7NXv5+fNAU=;
+	s=k20201202; t=1765933445;
+	bh=rA8m553sjOXTqrA/1tm7Zp2jR5sngGgp7J+kIfy6AU8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Y65tX+y8QnKlf4UvXKVtfa00DlOrBh2wdVZ5NqA/WLp2/cHfMKSwBvleFkvZzP0z9
-	 fX5zOjlNONaLjgu9tJIf4CEC+rgHsrKKFqIacMW4H/xVujADoeMpMW4Wj2M8f1Wxnu
-	 G8bM8Of2tzW3SZtKzkqu48RG5tFUz/aGP3r47IV0tUp6a/muur5fentRBEOM4+0uEr
-	 bwM/UU2Z84uaXRCDu8u2nlgC3A3AKig69TCSWLaXbvDaxGerz0+Qc7APhfNhRwD3Dj
-	 7YPaoDaFmaRQNQ5E9UdTp5Fp9iY4A8WldQQuRhRwDa784PaENhb01Hbb/qjcfhLk3N
-	 C89k1XSkfJXTg==
-Date: Tue, 16 Dec 2025 19:01:33 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Abel Vesa <abel.vesa@oss.qualcomm.com>
-Cc: Guenter Roeck <linux@roeck-us.net>,
-	Rajendra Nayak <quic_rjendra@quicinc.com>,
-	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Konrad Dybcio <konradybcio@kernel.org>,
+	b=Z+kvoubX/6VRDqapcXGj2PwFwd+FSL67UFm4+Ggr1OE94ngwM1CVSa1lS7lKbFQqQ
+	 0UysnBIa5ApyGsgEkVbdrOQBF5WXU6Zxd96dnPS4IwrcBGB7EfO9EfoEILYm7Bnvz7
+	 OfC5QGchnkQ+tjeh1a1mASK9NbKtb3+eNpKFjLuASzJt+5JeeopG/9MMgMk9FKrDWi
+	 knYDYDGCRDTu9PaPsfQlQM3IltvJom4mxtBFlTzu8rzo35CIyu85qGN+yq1H/3XuyA
+	 pBmUPMVlyWm9NJdz/s4N2V5mOto9IN90qwuBOzEdmJbHjX/nkyHtD6+NjTMbRRagch
+	 Zxl5ej9Usz5Tw==
+Date: Tue, 16 Dec 2025 19:04:03 -0600
+From: Rob Herring <robh@kernel.org>
+To: Daniel Golle <daniel@makrotopia.org>
+Cc: Andrew Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	linux-watchdog@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: watchdog: Document X1E80100 compatible
-Message-ID: <176593329281.3467675.3866097981063853204.robh@kernel.org>
-References: <20251214-arm64-dts-qcom-x1e80100-el2-add-apss-wdt-v1-0-94ee80b8cbe7@oss.qualcomm.com>
- <20251214-arm64-dts-qcom-x1e80100-el2-add-apss-wdt-v1-1-94ee80b8cbe7@oss.qualcomm.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Simon Horman <horms@kernel.org>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Frank Wunderlich <frankwu@gmx.de>, Chad Monroe <chad@monroe.io>,
+	Cezary Wilmanski <cezary.wilmanski@adtran.com>,
+	Avinash Jayaraman <ajayaraman@maxlinear.com>,
+	Bing tao Xu <bxu@maxlinear.com>, Liang Xu <lxu@maxlinear.com>,
+	Juraj Povazanec <jpovazanec@maxlinear.com>,
+	"Fanni (Fang-Yi) Chan" <fchan@maxlinear.com>,
+	"Benny (Ying-Tsan) Weng" <yweng@maxlinear.com>,
+	"Livia M. Rosu" <lrosu@maxlinear.com>,
+	John Crispin <john@phrozen.org>
+Subject: Re: [PATCH RFC net-next v3 1/4] dt-bindings: net: dsa: add bindings
+ for MaxLinear MxL862xx
+Message-ID: <20251217010403.GA3467893-robh@kernel.org>
+References: <cover.1765757027.git.daniel@makrotopia.org>
+ <cf190e3a4192f38eecba260cd2775b660874746e.1765757027.git.daniel@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,19 +74,24 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251214-arm64-dts-qcom-x1e80100-el2-add-apss-wdt-v1-1-94ee80b8cbe7@oss.qualcomm.com>
+In-Reply-To: <cf190e3a4192f38eecba260cd2775b660874746e.1765757027.git.daniel@makrotopia.org>
 
+On Mon, Dec 15, 2025 at 12:11:22AM +0000, Daniel Golle wrote:
+> Add documentation and an example for MaxLinear MxL86282 and MxL86252
+> switches.
 
-On Sun, 14 Dec 2025 22:49:58 +0200, Abel Vesa wrote:
-> Document the compatible for the X1E80100 platform to the Qualcomm watchdog
-> binding. The HW implementation is compatible with the KPSS WDT.
+Since you have to resend, drop 'bindings for' in the subject.
+
 > 
-> Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
+> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
 > ---
->  Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> RFC v3: no changes
+> RFC v2: better description in dt-bindings doc
 > 
+>  .../bindings/net/dsa/maxlinear,mxl862xx.yaml  | 162 ++++++++++++++++++
+>  MAINTAINERS                                   |   6 +
+>  2 files changed, 168 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/dsa/maxlinear,mxl862xx.yaml
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
-
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
