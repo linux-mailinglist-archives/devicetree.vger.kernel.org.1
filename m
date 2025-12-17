@@ -1,185 +1,182 @@
-Return-Path: <devicetree+bounces-247199-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247200-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E906CC58A9
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 01:02:12 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26A06CC598B
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 01:26:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 1341D302C73F
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 00:02:11 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DB02F300F5AA
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 00:26:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 818EB8F7D;
-	Wed, 17 Dec 2025 00:02:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E22E1C84BB;
+	Wed, 17 Dec 2025 00:26:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PRESunnf"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="elYhHcuE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
+Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com [209.85.215.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 847BB224D6
-	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 00:02:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D21F21C3BFC
+	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 00:25:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765929729; cv=none; b=fe9s+zbntgFCe2fqQZhZlgTaYFpHPj7nPUpEUglian7oAjSCKUbL0URvBnloJ0+wvJfBSZR2PJ5VIzcRshVfFrsQE6n81A92BRjF9B/2H6mnyE0hkjTN+RZIGTBmwpoU1QFMwVyL/bboknyS6kPmTOuF0MbNXWFDM0gJSR0Jb2s=
+	t=1765931161; cv=none; b=UgswfOda18+j7aYxMTW2z+7X7weXOqwpRQah2kM2ZEsdSCm/bZQRlU8ulB2275XpzpM0vl5hwvHDw4nvwKAWJnD25NbX6BKeG18l72cylCHMbZMnkOd3un5O+We3r3O661NM0S7dDWABy1aO+kuy3P8IIbJkXK54IUrkSy9MSZg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765929729; c=relaxed/simple;
-	bh=4fX+V0YnP016/orDpEqU5FVPZMbBz2SoqmDB72xWnxo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fD/Wm0KavgDciPnTNlvedqKTmarWulRluzNM2vZOZIAnaSung/IQmlprMA4+/3IPXKhRtDy+a4TXn6UYlWx95CsMAFN/FSP7iEYdW1KOXhiul6SE70cEo5kvHiv+XRZvlBSafiqDsivXuYYul9fkyxF9rzx1i9o23g9imfBHJP4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PRESunnf; arc=none smtp.client-ip=209.85.167.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-5942708701dso443676e87.3
-        for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 16:02:07 -0800 (PST)
+	s=arc-20240116; t=1765931161; c=relaxed/simple;
+	bh=9QZkPyxxxv0XvNVPkvBCDLdyp8ZhJIeiVto9GvIKdqE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=dIrsv1aR1I7t8Ho6x7GxJ+YKO+OJrBP/VEsNOENqyfPUbGTnAYW9k1I+TGInImXKAgW0gR1xl5PNrbqdlUV7nnM89PtSsL3P10jS44XceYE/ao4gwRsApRMHIkbBwi4M3ktu4bwIjsctH96rgo+rlfJ8T1raSMwguyAEEr7a94c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=elYhHcuE; arc=none smtp.client-ip=209.85.215.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-pg1-f181.google.com with SMTP id 41be03b00d2f7-bf5ac50827dso3307796a12.2
+        for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 16:25:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1765929725; x=1766534525; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+        d=google.com; s=20230601; t=1765931159; x=1766535959; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=IESsZe/W5RT7xiwRsUhKBankOTgyA4GaQytGF+x9/ao=;
-        b=PRESunnfy0Y4ZNiGwe53/eeaSy5yUJVJqkDakXGiRmMu25eT7vzfKnBAX5odfvmAcB
-         7ZO/wPbN8DjQqX062y++qlz+SHqVdWkIXqxJgi3jRFSjfoTYmEvRgKBvtKple3toUcmm
-         fj2cjRa18bF365MvODRt/VoYmDtZBDXS7HTL21Fp9C1g3pyLaQHN/glrLenhGfJB0TJp
-         /8LKcepHiQSjNTqeZ49YLpTZNWUVXs5FloXRUz/HLZYWaqtXyfmzP/QjDnat6uuYZXWP
-         +e0s6lkH6o0Z/Q4ZBYX/zTRoEl5yaZeyyo33iIKMjX6qJWGJ9uDVA9tByVHznqLVQVLH
-         Xk9Q==
+        bh=nStCldhYeJbsakQb9GL71otPBPnGKef27diqrwm9pSQ=;
+        b=elYhHcuEis90cotJkLhvVkSvTEGlv24MJuRH51JIvNxByNiIKS1m72XZcLqebgzoNC
+         Qmls4KA6phCM2T4hJG9jG3tXGPrUH2JEBXnu8ldbdPkQst+n9Iepg+cQVPn2PPjgav2m
+         xvBaS4l40VGc7HIpPUOGWlFSQQjRw/8a8Sm9MaHMTx10PZeaSp4Xm3hrKp2hlIdJ5tKL
+         WDmN9CqaR1qwCuOOcxP+a+j1wtSbWjstxgr4eqqrbXfNVx4CO3PvYwwuHbqoaN07q2o3
+         q4ee+PK5O7Nu2wcED6bBAr0zY7ZHo2gGIQNo48BZl4VgCS+D2k+Smygte3FJwXAYIJn1
+         5UMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765929725; x=1766534525;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-gg:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=IESsZe/W5RT7xiwRsUhKBankOTgyA4GaQytGF+x9/ao=;
-        b=kjVSUHMnIF3V4jC1FFAjQkTtC2aRHfF3A375a5PNzfmTXiomNSpZKrEeSBgSXEqRPU
-         q7u90S/OlK06sJ9LTKqH4KSKqltrkw7QST/nBGhBBSaYIphxD1YKI+ouOj/kamwsSng3
-         91Ahvq+Qwz13JhzDVjKCWx2jgd8Mveb9MWFlCTPlA3MRpqbm49v+1PGj/qwcoZqsG4oi
-         jp7lP0bdCWA9Fi2qBgrAQ+glbZgVrGl7BZEhMyXmEZJXhsDPb0RcWSoMYYEgdb6pL8NC
-         S3QfKTalpvb7aI/hWWAGi16wbtIJ9UfmO/6PqCzNphSi8rckyCQQudMtcRANGestqNIp
-         sYqQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWzmmP94QoY0xeI0OM21y8gc8hDJUL93OS01fsEtM3p4DHzapKNBSBdYbAZyGE736/8Sl2g0BCTPcWG@vger.kernel.org
-X-Gm-Message-State: AOJu0YzA/wY8d9TWf6nhJr32qwTsP93B27BrKSFDW3zPhuebya+l4PMH
-	XIk1U9XEQGlYCjHQfuKmpL045xe0560hAh80dtRyvyvahMvGToP7I4rBRws/jMNUxEI=
-X-Gm-Gg: AY/fxX4SrffWh+SLDsNp1fvJSIGUgW67pOTrndcPB53rDE+4YAl/+TJzyejaXBy7nUP
-	euaTbZ5asw5uLiGsLsj5xDvrx79f2MOYTPuBt/FOKyT0lN5OgY43WKPqTGB2zMXBVzj0J+9YBwK
-	l92dMTL1erK8MUQwdNxNPBmofDBypZaBdct6mqf76nGV2AkURn1+Z8fdwkC3if7NclJIOqcHiI/
-	Ctw02CXZS6c6qvXHxWvgMstU+6ymzFjGyxVlIWyNo87PP452z6PbL2qUc9uPYzvCru+6tj8DreP
-	sQpz0gx2FAtmiyOvpimsG8evxRoGy5hmuwXlTdC/e/Xo9szN6rosSKaHSN5KMZECt9wQmswS6UK
-	GR4B7J2PSVLgCqcp98HfjbtLbXVEsQ4FKIJfx6I907sIdeb1BNEH0+QLXsYPorX1418UYE0VUsS
-	3G19bOjNbyNxY83vVASnonw5Ga3BKx450RXNbImO1RBwdX46JnM2xlTDj/kARMx9DwwQ==
-X-Google-Smtp-Source: AGHT+IFrCa4ZjN33CIw4ShWO7Hf+XIWaZzk0eJOF4MY7Y25K8sz5SXR5eCMOVJwo9hvvGRP1v96ung==
-X-Received: by 2002:a05:6512:3f1a:b0:594:4c87:a8f9 with SMTP id 2adb3069b0e04-598faa62e77mr3237266e87.4.1765929725412;
-        Tue, 16 Dec 2025 16:02:05 -0800 (PST)
-Received: from [192.168.1.100] (91-159-24-186.elisa-laajakaista.fi. [91.159.24.186])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5990da1aa2dsm1454881e87.42.2025.12.16.16.02.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 Dec 2025 16:02:03 -0800 (PST)
-Message-ID: <eff759a7-06ee-42f5-a3a6-860956d7ae84@linaro.org>
-Date: Wed, 17 Dec 2025 02:02:01 +0200
+        d=1e100.net; s=20230601; t=1765931159; x=1766535959;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=nStCldhYeJbsakQb9GL71otPBPnGKef27diqrwm9pSQ=;
+        b=Ib6+Ny2vqz4jxNhXmiqW39c0ouX2UvJgL5IY/A0KQBJ8d05DRE3+cFF/DuJgViWvh9
+         VqsGo6Cd3L/WwOOSp93tc0ii1/lhdLcu4BmXhditw8vPFVApRpOoezM2nL24aB2TKp6i
+         cQS9clBvuvhRG7B+7cMQ18iDLb3MAhbXELX1JopZXfusY0rEDgBDgmd/6SmnxelDBOK0
+         xAu1FqKD7LLsIhe+vinyz+BVq44dIEFIT2OUVZ9RF6huz9kO7CCfw5orSBRafnT2AMXa
+         LXY+zi3MRuLcGVevCIOidIejX3B6NH0c8E2UP5OY/y1ZZY43B6W8GVRh5A4w2ZIfJhvT
+         wj4A==
+X-Forwarded-Encrypted: i=1; AJvYcCVLGcyNHhCAHimJzSi1xa8Xolx5JtZFo4E043xyUSbVmhsw073YAH27762TdWM8qSGZXOF+sOvGmjck@vger.kernel.org
+X-Gm-Message-State: AOJu0YwjFHUuKVaRadE9VEjrdXaPghs+HpLH+7w5YVuTAs0Du8gYBq0+
+	3nFTe2UQd/Q/SKzDhd2Uhp/bRKol9g1PMZJk2/eMrfjw49Mp8+0pYzCXfWlQThj0XJEx4xAz31P
+	QWPYzCHt4s0cwiKr+ApyLpfR8mmr8u7lCgQw0YKx83s1tsprth3xHS6fh
+X-Gm-Gg: AY/fxX7geD3QJJ+U/t7gx4TWHnZpdiwqAZW+HcwffwPNx6DYf8+A3DZc0K53vc+d9Wh
+	ISs4EXgme9oDQRHFbFu2aHmHepqz4t3bkLFsiODkdH0PD/Q5TFOVF/WIL3eRUYojEtU3RyWr1G+
+	VD6kKRdgQid2bVpUl1fayAppZhNmNokIjIWtVtVs/W5rHtAL7nDYMreICIjL85kRqCcakyu3CMF
+	idjSFCtrWlBBKyNZzOAPI2AVQOzzUyKC2g3TX5rE06AGF65I5zaEb1kKohlnPxLtBlVZQnNn9u9
+	1ZgnMUssXbQptJ+5V/FJNuZzk6uzmrZRlrkF
+X-Google-Smtp-Source: AGHT+IE72YZLvmMskEnRrYKXqAR/Z4B1+w1UCRGWDCS1wBfVqFBXKeWBfxxKkJ6DLO7fN/x56A6EPSj52vq8pdguqrA=
+X-Received: by 2002:a05:7301:7015:b0:2a7:1232:f3a2 with SMTP id
+ 5a478bee46e88-2ac2f92967fmr10246834eec.0.1765931158534; Tue, 16 Dec 2025
+ 16:25:58 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/5] media: dt-bindings: Add CAMSS device for Kaanapali
-To: Vijay Kumar Tumati <vijay.tumati@oss.qualcomm.com>,
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>,
- Loic Poulain <loic.poulain@oss.qualcomm.com>, Robert Foss
- <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Todor Tomov <todor.too@gmail.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
- aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
- trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com,
- Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
- Atiya Kailany <atiya.kailany@oss.qualcomm.com>
-References: <20251113-add-support-for-camss-on-kaanapali-v6-0-1e6038785a8e@oss.qualcomm.com>
- <20251113-add-support-for-camss-on-kaanapali-v6-1-1e6038785a8e@oss.qualcomm.com>
- <bd899586-f714-4d2e-95e3-6abf124e75a4@linaro.org>
- <37d0f89f-69be-45a7-90fa-347d6a3800bf@oss.qualcomm.com>
- <2d7ac7e8-ab69-44a6-b732-3657abf3a5a6@oss.qualcomm.com>
- <ceeee542-a319-4ad9-ada8-3dc769599dec@mleia.com>
- <d1fb4d8a-608e-44f5-834f-fa92d487c75b@oss.qualcomm.com>
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <d1fb4d8a-608e-44f5-834f-fa92d487c75b@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20251205-controller-v9-0-9f158b18f979@google.com>
+ <20251205-controller-v9-2-9f158b18f979@google.com> <2025120553-suffrage-divisive-5890@gregkh>
+ <CA+zupgzL7v5MZDpxKDQQCqAZaqTdHbiG9-xTr+8RnigMFZJ_7Q@mail.gmail.com> <20251216233439.vqigcx2zs6taergz@synopsys.com>
+In-Reply-To: <20251216233439.vqigcx2zs6taergz@synopsys.com>
+From: Roy Luo <royluo@google.com>
+Date: Tue, 16 Dec 2025 16:25:21 -0800
+X-Gm-Features: AQt7F2r_jcpuKgHpjELMuIOr3JbsyWh8DSH9IaZ5PBx8OH-Ix2ElNBkBRfsI7ik
+Message-ID: <CA+zupgxV0aHEXqmmHbe6cKSQUvYg1iFXjiDfG7wKdF7KKTo6iA@mail.gmail.com>
+Subject: Re: [PATCH v9 2/2] usb: dwc3: Add Google Tensor SoC DWC3 glue driver
+To: Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Peter Griffin <peter.griffin@linaro.org>, =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+	Tudor Ambarus <tudor.ambarus@linaro.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Badhri Jagan Sridharan <badhri@google.com>, Doug Anderson <dianders@google.com>, 
+	"linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
+	"linux-samsung-soc@vger.kernel.org" <linux-samsung-soc@vger.kernel.org>, Joy Chakraborty <joychakr@google.com>, 
+	Naveen Kumar <mnkumar@google.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Vijay.
+On Tue, Dec 16, 2025 at 3:34=E2=80=AFPM Thinh Nguyen <Thinh.Nguyen@synopsys=
+.com> wrote:
+>
+> On Thu, Dec 04, 2025, Roy Luo wrote:
+> > On Thu, Dec 4, 2025 at 10:05=E2=80=AFPM Greg Kroah-Hartman
+> > <gregkh@linuxfoundation.org> wrote:
+> > >
+> > > On Fri, Dec 05, 2025 at 02:26:38AM +0000, Roy Luo wrote:
+> > > > +config USB_DWC3_GOOGLE
+> > > > +     tristate "Google Platform"
+> > > > +     depends on ARCH_GOOGLE || COMPILE_TEST
+> > >
+> > > There is no ARCH_GOOGLE in the tree now, so how is this supposed to
+> > > work?  Shouldn't tools that check for "invalid config options" trigge=
+r
+> > > on this?
+> > >
+> > > thanks,
+> > >
+> > > greg k-h
+> >
+> > Hi Greg,
+> >
+> > The menuconfig looks like the following and it doesn't complain:
+> > | Symbol: ARCH_GOOGLE [=3DARCH_GOOGLE]
+> > | Type  : unknown
+> > |
+> > | Symbol: PHY_GOOGLE_USB [=3Dy]
+> > | Type  : tristate
+> > | Defined at drivers/phy/Kconfig:104
+> > |     Prompt: Google Tensor SoC USB PHY driver
+> > |     Depends on: ARCH_GOOGLE || COMPILE_TEST [=3Dy]
+> >
+> > According to Kconfig documentation [1], the unknown symbol
+> > would simply be evaluated as an "n", which is what we want.
+> > "Convert the symbol into an expression. Boolean and tristate
+> > symbols are simply converted into the respective expression
+> > values. All other symbol types result in =E2=80=98n=E2=80=99."
+> >
+> > In a different Kconfig documentation, an environment variable
+> > "KCONFIG_WARN_UNKNOWN_SYMBOLS" is there to detect
+> > undefined symbols in the "config input", but I can't find one that
+> > catches undefined symbols in the Kconfig tree itself.
+> >
+> > That is, the tool seems to allow this.
+> > However, if this turns out to be a major problem. I think we
+> > can either:
+> > - Remove ARCH_GOOGLE and leave COMPILE_TEST as
+> >   the only dependency. Then add ARCH_GOOGLE back
+> >   later once it's in the tree.
+> > - Defer the whole patch series until ARCH_GOOGLE is
+> >   present (I hope not).
+> >
+> > [1] https://urldefense.com/v3/__https://docs.kernel.org/kbuild/kconfig-=
+language.html*menu-dependencies__;Iw!!A4F2R9G_pg!e-y2_BsSNhXF1v5K6tBJX-Oabg=
+KJM9WVdvwyKoB6tg9ooCLVg8WiQ4UrStOF2YZQ_Zs6tC6HVh7wCpqkEfU$
+> > [2] https://urldefense.com/v3/__https://www.kernel.org/doc/Documentatio=
+n/kbuild/kconfig.rst__;!!A4F2R9G_pg!e-y2_BsSNhXF1v5K6tBJX-OabgKJM9WVdvwyKoB=
+6tg9ooCLVg8WiQ4UrStOF2YZQ_Zs6tC6HVh7wHpoUlhY$
+> >
+>
+> Hi Greg, Roy,
+>
+> Just checking, are we aligned here?
+>
+> BR,
+> Thinh
 
-On 12/16/25 19:55, Vijay Kumar Tumati wrote:
-> 
-> On 12/12/2025 4:49 AM, Vladimir Zapolskiy wrote:
->> On 11/18/25 20:44, Konrad Dybcio wrote:
->>> On 11/18/25 7:25 PM, Vijay Kumar Tumati wrote:
->>>>
->>>> On 11/18/2025 7:00 AM, Bryan O'Donoghue wrote:
->>>>> On 14/11/2025 03:29, Hangxiang Ma wrote:
->>>>>> +                  <0x0 0x0900e000 0x0 0x1000>,
->>>>>
->>>>> Why aren't you starting @ 0x0900e000 ? seems to be omitting some of
->>>>> the registers in the ICP block. Should start at +0xd000 not +0xe000 ?
->>>>>
->>>>>> +                  <0x0 0x0902e000 0x0 0x1000>,
->>>>>
->>>>> Same here.
->>>> Hi Bryan, HLOS does not have access to those registers. They are
->>>> configured by the Hyp.
->>>
->>> If that's hyp, please add them. We already have platforms without
->>> Gunyah. Remember, bindings are defined once and for good and I wouldn't
->>> call it impossible that someone would want to run that configuration on
->>> Kaanapali some day
->>>
->>
->> If the ICP register block is added now, then it will practically exclude
->> an option to run hardware demosaic on Kaanapali. There were notorious
->> and still unresolved problems with CSIPHY blocks, which shall be split
->> from CSID/VFE CAMSS on device tree level also, for similar reasons the
->> same should be done with ICP or other blocks. It makes exactly zero
->> sense to pile everything into a monolythic device tree node, and doing
->> so undermines any future advances in CAMSS support in the upstream
->> Linux, the hardware description in downstream is done thoughtfully
->> better,
->> and not for no reason.
->>
-> Hi Vladimir, yes, this has been discussed in the past and the general
-> consensus from everyone is for not blocking KNP series on this. But yes,
-> there is an ongoing effort to modularize the bindings for future
-> chipsets and when it's ready, we can review, discuss and take it
+Thinh,
 
-My concern is that it makes very little sense to throw any not clearly
-defined hardware properties and interconnections into an unorganized and
-unmanageable pile of everything, because this closes the door to ever update
-the upstream CAMSS driver by adding better CAMSS IP support for any already
-manufactured and sold Qualcomm SoC powered board with done CAMSS support.
+Thanks for checking in. I'm still waiting on Greg's reply
+regarding the Kconfig question.
 
-If some user already holds a phone, a laptop and expects to offload CPU to
-CAMSS IP one happy day, it's pretty unsatisfactory to say that it will never
-happen on legacy hardware, because there was done an unrecoverable mistake
-by adding never tested properties into CAMSS DT bindings, and the remained
-option is to "wait for future chipsets". Each added unsupported and unused
-property boards up the window of better CAMSS support on manufactured boards.
+BTW, I silently dropped your Ack-by tag in v8 due to the
+changes in Kconfig and MAINTAINERS files, which I
+should've noted in the changelog but I didn't. Sorry for
+the inconvenience. Could you please review the current
+version again and provide your tag if it looks good?
 
-I don't understand a reason why to do worse for the upstream, when there is
-a clear and feasible alternative not to do worse, thus my misunderstanding
-and my grief for upstream CAMSS are my concerns.
-
-> forward. As for your ICP concern, if you are referring to the Demosaic
-> in OFE, I believe we might still be able to do it either with direct OFE
-> config from CPU or using the firmware (preferred), given that we
-> properly establish the shared memory and SID IOVA ranges for ICP,
-> assuming that the load and authenticate will be taken care by Hyp or TZ.
-> Please share your thoughts if I missed something.
-> 
-> Hi Bryan, please feel free to add your thoughts.
-> 
-
--- 
-Best wishes,
-Vladimir
+Regards,
+Roy
 
