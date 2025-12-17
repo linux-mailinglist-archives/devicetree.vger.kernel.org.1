@@ -1,43 +1,43 @@
-Return-Path: <devicetree+bounces-247254-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247253-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03706CC6452
+	by mail.lfdr.de (Postfix) with ESMTPS id 89861CC6457
 	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 07:35:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C6450303996D
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 06:35:02 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 0448F3039FD0
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 06:35:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2039315D3C;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A407B315D3F;
 	Wed, 17 Dec 2025 06:35:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="YPyJXAW/"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="Ly4FPhxG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29609313545;
-	Wed, 17 Dec 2025 06:34:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB19F314A7F;
+	Wed, 17 Dec 2025 06:34:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765953298; cv=none; b=t71POvEAF2VYu3oDoupWLz2olfQM9/JREQdaClT1/EY0q2Z+VzeQcjYkCetNX13s113mZywJyAwcC5f8j3dM3BIcgmP0Nt847ps9lwln5PFMwfQmVHuZsqFFH3K6teTCQ4hBN9sq3+yQDC6JvT6VBRgLf6ESir/qxfytdZqyxfY=
+	t=1765953297; cv=none; b=eSopcEbk6IXiKZ2M8sHxH356819Q9Dt/UjYoamnJTR378Tve+H3+qbcIogkVbt5aSWW+1kkKHEVsCZOwgnpyMjZDi3sJj3DX/RMyPSf8/fQr7tg+EaiVn7ZBhybruBEV1nXPfQItmfdtHoSkPdPlC6vHq/Yj+xFH/WaJHtS5ZNU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765953298; c=relaxed/simple;
-	bh=Zhq+hf1n0iuomTfYP5MRMLtfw78DDdWKcLXDOuHG9QI=;
+	s=arc-20240116; t=1765953297; c=relaxed/simple;
+	bh=I60O0gXMPyR9kAZBitzz3X4RdYftgEhOU2VjbxfzZbc=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=FMe83TNhuolMkaBdzQELUqzf7LownpK8ncWcwQiUaDuUgPa4vWxJbAxRVTgz8sQkHqVkLy1G5b+HllfFVDqbO4UkiTiMzoJdSYbxT6Gty192UzMfwLuJYpEuzjsxTH04cSIwOPbo5vazIPOWuJBJo2PAFaVeHoM/R6tuvjUeCMY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=reject dis=none) header.from=mediatek.corp-partner.google.com; spf=fail smtp.mailfrom=mediatek.corp-partner.google.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=YPyJXAW/; arc=none smtp.client-ip=60.244.123.138
+	 MIME-Version:Content-Type; b=bvgNSst462cLHhqHSRSyEfizMoQD3u4sUE/2B6tmYusqXnRO3+xGWbYEeWFO0hgGcZ8cOFz7X+4UwTuUZFCFJqBDfZeg7d4iU/pVDcaXbLUH7VN5TMaZtR6mRgvAIpvO5qS5kN92JKMOxUKa99N0iWzI9lPMr3rmNoIFscSg6hM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=reject dis=none) header.from=mediatek.corp-partner.google.com; spf=fail smtp.mailfrom=mediatek.corp-partner.google.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=Ly4FPhxG; arc=none smtp.client-ip=60.244.123.138
 Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=reject dis=none) header.from=mediatek.corp-partner.google.com
 Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=mediatek.corp-partner.google.com
-X-UUID: 76f7e2cedb1211f0b2bf0b349165d6e0-20251217
+X-UUID: 777ca824db1211f0b2bf0b349165d6e0-20251217
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=W7qCkDiJi277CRsbGMDpiTs3LY7mUx0Vc/wlc2oMoAk=;
-	b=YPyJXAW/C96FKJcyHedPPFGMHNqlxq4tbrOgzTwO2JUJnNk5s63x0DleU0zO+myeoMJwn75FKl/jeQo8IPaSKhbsqtBqPyZYj0pVYnhcvv6gffuLTdls0Zvc02MFECW9rwaJoM6LgG2/Lzf3nbiVtuEHmYqMKVbOsIJznkyccg4=;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=U26zkVH5d+38dGjc9TpfhT1XgnH0NEu83IWC3L9CNRg=;
+	b=Ly4FPhxGFVkV7/oLlmXX5lTQRZjLKr1XIP7GK8LrChOUWPqw1vKf4BoO7ewMvEUtoThtHaRbAFdquuenUJZa6ff+WZyo7wlQgPowTu+yqZmnBd5z6uvh7xusItKPCANC3vEY3ktRA9Q4SRlsC+mX3iXGzhz+WclJNB1PYLB3q2Q=;
 X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.6,REQID:cbbd70c9-e2c7-406c-a7d4-2c571c11ff6e,IP:0,UR
+X-CID-O-INFO: VERSION:1.3.6,REQID:22e063e4-85b1-4bf1-a664-a1a3facdc503,IP:0,UR
 	L:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
 	elease,TS:0
-X-CID-META: VersionHash:a9d874c,CLOUDID:1ab348aa-6421-45b1-b8b8-e73e3dc9a90f,B
+X-CID-META: VersionHash:a9d874c,CLOUDID:b93288c6-8a73-4871-aac2-7b886d064f36,B
 	ulkID:nil,BulkQuantity:0,Recheck:0,SF:81|82|102|888|898,TC:-5,Content:0|15
 	|50,EDM:-3,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,
 	OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
@@ -45,18 +45,18 @@ X-CID-BVR: 2,SSN|SDN
 X-CID-BAS: 2,SSN|SDN,0,_
 X-CID-FACTOR: TF_CID_SPAM_SNR
 X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: 76f7e2cedb1211f0b2bf0b349165d6e0-20251217
-Received: from mtkmbs13n2.mediatek.inc [(172.21.101.108)] by mailgw01.mediatek.com
+X-UUID: 777ca824db1211f0b2bf0b349165d6e0-20251217
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
 	(envelope-from <xiaoshun.xu@mediatek.corp-partner.google.com>)
 	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 530067056; Wed, 17 Dec 2025 14:34:40 +0800
+	with ESMTP id 2129783388; Wed, 17 Dec 2025 14:34:40 +0800
 Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Wed, 17 Dec 2025 14:34:38 +0800
+ 15.2.2562.29; Wed, 17 Dec 2025 14:34:39 +0800
 Received: from mtksitap99.mediatek.inc (10.233.130.16) by
  mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.2562.29 via Frontend Transport; Wed, 17 Dec 2025 14:34:38 +0800
+ 15.2.2562.29 via Frontend Transport; Wed, 17 Dec 2025 14:34:39 +0800
 From: Xiaoshun Xu <xiaoshun.xu@mediatek.corp-partner.google.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
@@ -68,9 +68,9 @@ CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
 	Sirius Wang <sirius.wang@mediatek.com>, Vince-wl Liu
 	<vince-wl.liu@mediatek.com>,
 	<Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH v2 3/4] soc: mediatek: mtk-devapc: refine devapc clock control
-Date: Wed, 17 Dec 2025 14:34:12 +0800
-Message-ID: <20251217063429.1157084-4-xiaoshun.xu@mediatek.corp-partner.google.com>
+Subject: [PATCH v2 4/4] soc: mediatek: mtk-devapc: refine devapc interrupt handler
+Date: Wed, 17 Dec 2025 14:34:13 +0800
+Message-ID: <20251217063429.1157084-5-xiaoshun.xu@mediatek.corp-partner.google.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20251217063429.1157084-1-xiaoshun.xu@mediatek.corp-partner.google.com>
 References: <20251217063429.1157084-1-xiaoshun.xu@mediatek.corp-partner.google.com>
@@ -90,67 +90,49 @@ ve verified the sender or the content.
 
 From: Xiaoshun Xu <xiaoshun.xu@mediatek.com>
 
-Because the new devapc design, devapc clock is controlled by
-HW power domains, the control flow of devapc clock is not
-necessary, but to maintain compatibility with legacy ICs,
-keep this part of code.
+Because the violation IRQ uses a while loop, it might cause the
+system to remain in the interrupt handler indefinitely. We are
+currently optimizing this part of the process to handle only 20
+violations for debug violation issues, and then exit the loop
 
 Signed-off-by: Xiaoshun Xu <xiaoshun.xu@mediatek.com>
 ---
- drivers/soc/mediatek/mtk-devapc.c | 23 ++++++++++++++++++-----
- 1 file changed, 18 insertions(+), 5 deletions(-)
+ drivers/soc/mediatek/mtk-devapc.c | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/soc/mediatek/mtk-devapc.c b/drivers/soc/mediatek/mtk-d=
 evapc.c
-index b91df4cf7a61..61628b941d92 100644
+index 61628b941d92..ea38086c5554 100644
 --- a/drivers/soc/mediatek/mtk-devapc.c
 +++ b/drivers/soc/mediatek/mtk-devapc.c
-@@ -373,16 +373,27 @@ static int mtk_devapc_probe(struct platform_device *p=
-dev)
-                goto err;
-        }
+@@ -12,6 +12,7 @@
+ #include <linux/of_irq.h>
+ #include <linux/of_address.h>
 
--       ctx->infra_clk =3D devm_clk_get_enabled(&pdev->dev, "devapc-infra-c=
-lock");
-+       /*
-+        * The new design of DAPC clock is controlled by HW power domains,
-+        * making it unnecessary to provide the clock control driver.
-+        */
-+       ctx->infra_clk =3D devm_clk_get_optional(&pdev->dev, "devapc-infra-=
-clock");
-        if (IS_ERR(ctx->infra_clk)) {
--               ret =3D -EINVAL;
--               goto err;
-+               dev_err(ctx->dev, "Cannot get devapc clock from CCF\n");
-+               ctx->infra_clk =3D NULL;
-+       } else {
-+               if (clk_prepare_enable(ctx->infra_clk)) {
-+                       ret =3D -EINVAL;
-+                       goto err;
-+               }
-        }
++#define MAX_VIO_NUM 20
+ #define VIO_MOD_TO_REG_IND(m)  ((m) / 32)
+ #define VIO_MOD_TO_REG_OFF(m)  ((m) % 32)
 
-        ret =3D devm_request_irq(&pdev->dev, devapc_irq, devapc_violation_i=
-rq,
--                              IRQF_TRIGGER_NONE, "devapc", ctx);
--       if (ret)
-+                              IRQF_TRIGGER_NONE | IRQF_SHARED, "devapc", c=
-tx);
-+       if (ret) {
-+               clk_disable_unprepare(ctx->infra_clk);
-                goto err;
-+       }
+@@ -234,13 +235,18 @@ static void devapc_extract_vio_dbg(struct mtk_devapc_=
+context *ctx)
+  */
+ static irqreturn_t devapc_violation_irq(int irq_number, void *data)
+ {
++       u32 vio_num =3D 0;
+        struct mtk_devapc_context *ctx =3D data;
 
-        platform_set_drvdata(pdev, ctx);
-
-@@ -401,6 +412,8 @@ static void mtk_devapc_remove(struct platform_device *p=
-dev)
-
-        stop_devapc(ctx);
-
-+       clk_disable_unprepare(ctx->infra_clk);
+-       while (devapc_sync_vio_dbg(ctx))
++       mask_module_irq(ctx, true);
 +
-        iounmap(ctx->base);
++       for (vio_num =3D 0; (vio_num < MAX_VIO_NUM) && (devapc_sync_vio_dbg=
+(ctx)); ++vio_num)
+                devapc_extract_vio_dbg(ctx);
+
+        clear_vio_status(ctx);
+
++       mask_module_irq(ctx, false);
++
+        return IRQ_HANDLED;
  }
 
 --
