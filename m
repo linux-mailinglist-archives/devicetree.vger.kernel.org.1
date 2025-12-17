@@ -1,207 +1,137 @@
-Return-Path: <devicetree+bounces-247614-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247615-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1FBACC90BE
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 18:26:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D2DA8CC92BF
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 19:01:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9A0AA306C174
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 17:21:06 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B5D473096AAE
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 17:49:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1399D1A23B6;
-	Wed, 17 Dec 2025 17:20:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="epK3AyeX"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AB4835CB67;
+	Wed, 17 Dec 2025 17:49:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FA2972612;
-	Wed, 17 Dec 2025 17:20:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F02B35C1A9;
+	Wed, 17 Dec 2025 17:49:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765992051; cv=none; b=f9yz5PihaqpECRKi7tynwumG0bVFKSXuH1spfxwwCC59yXE4ym7sTS+nwHSZmg6F8s1WyqgRmU9MeIT8w3hCkik5Mwv+GzVt4ezRR9ab+F3zS7Rm7iWyV2NHVhTXlMp0KpBwThJrDndgdBgOT/Y6Un2yNxLl+dKKdnyq1SCjF7g=
+	t=1765993783; cv=none; b=TtuIKAUIF7wFK80X+tKmFEX8tWHfMY25q2rjhkanaT+K4gljed9E4PR9nVqN0Byn86atlbiyx86sww+ZtynolBLhV+sQI9YvGeblWGtqkzKMFfVHywt9f4YZ6p2ifpmBjXGIX3wzL9x6nTLALwmKqkMJ3HE7MSfnKv9ImjC6A0A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765992051; c=relaxed/simple;
-	bh=Y9YEMqCOaRn9nWISRWIOagoTl21UEQ/DY+m2rBZ6YSk=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=GUTCeibU3YVZEo+2/2CARhNeBybD8vLMixid2ovHB8ibJA8EGHJR5tU7X1FFQd4hvsalWPF5WBSM8MzdqLb4PpntWGbnn6p9ZasKF3xLwJwBmqxsyZu0iPretrdacMSlWllbz3slRYHcsumyHtNk5BHpGtqVPMg77RFPOFxddyg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=epK3AyeX; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1765992045;
-	bh=Y9YEMqCOaRn9nWISRWIOagoTl21UEQ/DY+m2rBZ6YSk=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=epK3AyeXUp2FZABNF07bFT7e0KVu4mytFWGi74liuJj6pEM7CDfl6PUxpMrnOZ9u6
-	 AcN2YFicfI9kWfplIYbc2wDrzsMcX9XxAhMOlc+w7D8dNz8fhd7GmorSzsPCK52Pp+
-	 Fis8zi+LW9j6qj/lQYZ8lJGVFXK2fCWd6zqxNyUCmO0JXHmBfdqsRI6ALj6N0s4jJM
-	 lujKnpd7ojXxxE8q45cadWjnpWk92Bw5hUn3Iaqz13e2oEjIUT7R0iFDCMuaaMkuVA
-	 ONrOae+/kZatf1hCJD9JV+YFAL1nbV5G/J1y2bkSdKZFxswpEAoEClyoQPKt2wAwRY
-	 2/HXroMnpXX2g==
-Received: from fedora (unknown [IPv6:2a01:e0a:2c:6930:d919:a6e:5ea1:8a9f])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: bbrezillon)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 4C7FA17E127F;
-	Wed, 17 Dec 2025 18:20:44 +0100 (CET)
-Date: Wed, 17 Dec 2025 18:20:38 +0100
-From: Boris Brezillon <boris.brezillon@collabora.com>
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Cc: Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
- <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Ulf
- Hansson <ulf.hansson@linaro.org>, Chen-Yu Tsai <wenst@chromium.org>, Chia-I
- Wu <olvaffe@gmail.com>, kernel@collabora.com,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, linux-pm@vger.kernel.org
-Subject: Re: [PATCH 3/4] drm/panthor: Implement reading shader_present from
- nvmem
-Message-ID: <20251217182038.6779a191@fedora>
-In-Reply-To: <20251217-mt8196-shader-present-v1-3-f6f8f3aa1e93@collabora.com>
-References: <20251217-mt8196-shader-present-v1-0-f6f8f3aa1e93@collabora.com>
-	<20251217-mt8196-shader-present-v1-3-f6f8f3aa1e93@collabora.com>
-Organization: Collabora
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1765993783; c=relaxed/simple;
+	bh=pe1xhCfBGTHof4k+PvXrA2skCjTZw9Qyy+YRETzkeG4=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=QT5t5KVl8zyqDS4MTGAvfBvWgOoPbWM7z6JoYglb/3oQNqYxaXzwwhLyErS7N4gVEqN1HBbcLI9WmcvDCwtjcAefWg/8whvT0pKA5r/+XMk9yafFY81f3uykAkpaEJRYlbVJdGZsThPHpfHTOWneLWP1H0OEu/zFNXtxdfjVAiY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B156F339;
+	Wed, 17 Dec 2025 09:49:31 -0800 (PST)
+Received: from e134710.manchester.arm.com (e134710.arm.com [10.33.10.82])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BC7783F73F;
+	Wed, 17 Dec 2025 09:49:36 -0800 (PST)
+From: Ahmed Tiba <ahmed.tiba@arm.com>
+To: krzk@kernel.org,
+	linux-acpi@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: tony.luck@intel.com,
+	bp@alien8.de,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	catalin.marinas@arm.com,
+	will@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	rafael@kernel.org,
+	linux-doc@vger.kernel.org,
+	Dmitry.Lamerov@arm.com,
+	Michael.Zhao2@arm.com,
+	ahmed.tiba@arm.com
+Subject: Re: [PATCH 10/12] dt-bindings: ras: document estatus provider
+Date: Wed, 17 Dec 2025 17:49:27 +0000
+Message-ID: <20251217174933.1938909-1-ahmed.tiba@arm.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <cd04e23a-9523-4d25-8240-29a0dffa0e75@kernel.org>
+References: <cd04e23a-9523-4d25-8240-29a0dffa0e75@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Wed, 17 Dec 2025 18:03:29 +0100
-Nicolas Frattaroli <nicolas.frattaroli@collabora.com> wrote:
+On 17/12/2025 12:41, Krzysztof Kozlowski wrote:
+> What is ras? There is no such directory so some description would be
+> useful. Usually you do not get your own directory per binding.
 
-> On some platforms, notably MediaTek MT8196, the shader_present bitmask
-> in the Mali GPU register for it has cores enabled that may be faulty.
-> The true shader_present bitmask is found in an efuse instead.
-> 
-> Implement reading shader_present from an nvmem cell if one is present,
-> falling back to the Mali register if it's absent. The error codes are
-> trickled up through to the probe function so that probe deferral works.
-> 
-> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Would it make sense to move it under `Documentation/devicetree/bindings/firmware`
+and expand the description so it spells out that
+Arm RAS refers to reliability, availability and serviceability firmware.
 
-Reviewed-by: Boris Brezillon <boris.brezillon@collabora.com>
+> Do not describe what the binding does. Describe the hardware or firmware.
 
-> ---
->  drivers/gpu/drm/panthor/panthor_hw.c | 63 ++++++++++++++++++++++++++++++++----
->  1 file changed, 57 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/panthor/panthor_hw.c b/drivers/gpu/drm/panthor/panthor_hw.c
-> index 87ebb7ae42c4..eb44c8b108aa 100644
-> --- a/drivers/gpu/drm/panthor/panthor_hw.c
-> +++ b/drivers/gpu/drm/panthor/panthor_hw.c
-> @@ -1,6 +1,7 @@
->  // SPDX-License-Identifier: GPL-2.0 or MIT
->  /* Copyright 2025 ARM Limited. All rights reserved. */
->  
-> +#include <linux/nvmem-consumer.h>
->  #include <drm/drm_print.h>
->  
->  #include "panthor_device.h"
-> @@ -109,7 +110,52 @@ static char *get_gpu_model_name(struct panthor_device *ptdev)
->  	return "(Unknown Mali GPU)";
->  }
->  
-> -static void panthor_gpu_info_init(struct panthor_device *ptdev)
-> +static int overload_shader_present(struct panthor_device *ptdev)
-> +{
-> +	struct device *dev = ptdev->base.dev;
-> +	struct nvmem_cell *cell = nvmem_cell_get(dev, "shader-present");
-> +	ssize_t len;
-> +	void *buf;
-> +	int ret;
-> +
-> +	if (IS_ERR(cell)) {
-> +		/* On platforms without this cell, use the Mali register */
-> +		if (PTR_ERR(cell) == -ENOENT)
-> +			return 0;
-> +
-> +		return dev_err_probe(dev, PTR_ERR(cell),
-> +				     "Failed to get shader-present nvmem cell\n");
-> +	}
-> +
-> +	buf = nvmem_cell_read(cell, &len);
-> +	if (IS_ERR(buf)) {
-> +		ret = dev_err_probe(dev, PTR_ERR(buf),
-> +				    "Failed to read shader-present nvmem cell\n");
-> +		goto err_put_cell;
-> +	}
-> +
-> +	if (!len || len > 8) {
-> +		ret = dev_err_probe(dev, -EINVAL, "shader-present cell can't be length %ld\n",
-> +				    len);
-> +		goto err_free;
-> +	}
-> +
-> +	memcpy(&ptdev->gpu_info.shader_present, buf, len);
-> +
-> +	kfree(buf);
-> +	nvmem_cell_put(cell);
-> +
-> +	return 0;
-> +
-> +err_free:
-> +	kfree(buf);
-> +err_put_cell:
-> +	nvmem_cell_put(cell);
-> +
-> +	return ret;
-> +}
-> +
-> +static int panthor_gpu_info_init(struct panthor_device *ptdev)
->  {
->  	unsigned int i;
->  
-> @@ -143,13 +189,18 @@ static void panthor_gpu_info_init(struct panthor_device *ptdev)
->  		ptdev->gpu_info.tiler_present = gpu_read64(ptdev, GPU_TILER_PRESENT);
->  		ptdev->gpu_info.l2_present = gpu_read64(ptdev, GPU_L2_PRESENT);
->  	}
-> +
-> +	return overload_shader_present(ptdev);
->  }
->  
-> -static void panthor_hw_info_init(struct panthor_device *ptdev)
-> +static int panthor_hw_info_init(struct panthor_device *ptdev)
->  {
->  	u32 major, minor, status;
-> +	int ret;
->  
-> -	panthor_gpu_info_init(ptdev);
-> +	ret = panthor_gpu_info_init(ptdev);
-> +	if (ret)
-> +		return ret;
->  
->  	major = GPU_VER_MAJOR(ptdev->gpu_info.gpu_id);
->  	minor = GPU_VER_MINOR(ptdev->gpu_info.gpu_id);
-> @@ -172,6 +223,8 @@ static void panthor_hw_info_init(struct panthor_device *ptdev)
->  		 "shader_present=0x%0llx l2_present=0x%0llx tiler_present=0x%0llx",
->  		 ptdev->gpu_info.shader_present, ptdev->gpu_info.l2_present,
->  		 ptdev->gpu_info.tiler_present);
-> +
-> +	return 0;
->  }
->  
->  static int panthor_hw_bind_device(struct panthor_device *ptdev)
-> @@ -218,7 +271,5 @@ int panthor_hw_init(struct panthor_device *ptdev)
->  	if (ret)
->  		return ret;
->  
-> -	panthor_hw_info_init(ptdev);
-> -
-> -	return 0;
-> +	return panthor_hw_info_init(ptdev);
->  }
-> 
+I'll reword that section.
 
+> Again ras - what's that? Your patch or binding must explain that.
+
+I'll add that explanation to the description.
+
+> Why is this flexible?
+
+Some platforms only expose the CPER status buffer, while others also expose a
+doorbell that firmware expects to toggle before writing the next record.
+I'll keep `reg` at 1-2 entries but make the description clear about which
+region is optional.
+
+> Does not match reg.
+
+`reg-names` will only be allowed when both regions are present,
+and in that case it must list `"status", "ack"`
+so the entries line up with `reg`.
+If only the status buffer exists, the property stays omitted.
+
+
+> What OS is doing should not really matter. Either you have the interrupt
+> or not.
+
+I’ll trim the wording so it just states that firmware
+may assert an interrupt when a new record is ready.
+
+
+> That's OS policy, not suitable for binding.
+
+I’ll drop `poll-interval` from the binding and let the driver fall back
+to a fixed polling interval when no interrupt is wired.
+
+> This is implied by the compatible, no?
+
+I’ll drop `arm,sea-notify` so the compatible alone defines the behaviour.
+
+> Drop all this.
+
+I’ll delete the `allOf` clauses once the policy properties are gone.
+
+> I do not see any schema referenced.
+
+I’ll switch from `unevaluatedProperties` to `additionalProperties: false`.
+
+> Node names should be generic. See also an explanation and list of
+> examples (not exhaustive) in DT specification:
+> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+> If you cannot find a name matching your device, please check in kernel
+> sources for similar cases or you can grow the spec (via pull request to
+> DT spec repo).
+
+I’ll rename the example node to `estatus@fe800000`
+so it describes the firmware error-status block rather than using the driver name.
+
+> Use proper defines.
+
+I’ll update the example to use `GIC_SPI` and the `IRQ_TYPE_*` macros for the interrupt specifier.
+
+Best regards,
+Ahmed
 
