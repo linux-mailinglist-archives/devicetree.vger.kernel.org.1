@@ -1,156 +1,112 @@
-Return-Path: <devicetree+bounces-247366-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247367-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5005CC7521
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 12:24:53 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A36ACC77BE
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 13:05:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 5BF77304380D
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 11:24:31 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 52EBC3010E62
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 12:05:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 248D133B968;
-	Wed, 17 Dec 2025 11:23:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ceOhw4I9";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="dF1CU8BA"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C6C334D906;
+	Wed, 17 Dec 2025 11:28:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0514324714
-	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 11:23:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C468F34D4E4;
+	Wed, 17 Dec 2025 11:28:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765970601; cv=none; b=NQu0C1Toum8n1zXHDoL2CtD7QAJ4iwzYSbiA/kXY7xUtTN3Remu0uLL9+UsXzeBUDnwfNICGCxiNtKPSRJCR1Bzqw2T23IypXjJHDMzu3ULGtv2zViOnsSssR8UNAteEVMp+axBUpinwvguGSVxnuxFwj6N7pFAC20Q1Tyn7ASc=
+	t=1765970937; cv=none; b=VQmpmnqgL8jQhydWqUvQvai9S2sol1z4uzjUotSNkk1eHzI9LkY4Nng94PVxhgcu0IXdN26tCIivKlv3ARqkm/bx2egGKPnGGcGMuvTk+Pp3y+Uyfok76K7SHf6sqtR/B6+9XOrUrysGZEqEQv9dGsBTAMbHyUp3pbh7X4l4eig=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765970601; c=relaxed/simple;
-	bh=huR+GWIirjOdOMYg3mVBFAkB4KRuUGNGpg6QM5adZUU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=c1Sn2q18/lNldrZCXV5DH2TU5YAqlwTvb2PdeMXtrnlDPDbcpvsd9RN/yApkMJcdenrbTJpuQJdXMQPib5lCGo91EcMf1NSdRfKV4N4GFA+O+Q7UCEPsZxrHgMH4fYCJXpwmptpOzYdtSqXnriucm0Z4E8VADfLVOYbzrCXzp/U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ceOhw4I9; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=dF1CU8BA; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BHA7uOi2024928
-	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 11:23:16 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	mhwWA1wEAAxOR9ob++f3Td1XwWbr/zxBGj1xkgKoml0=; b=ceOhw4I9YvfR1LmR
-	PcejJ+3TqyMu4hMf+K3sKaedpTaQpueTOcdRxmr4q9GM9PsZs3QgBDN+1vBxUJpQ
-	JE7/dnhVsD4QbUwArXPZcurstSG4qEc4jV07uVGBtI/LEK0zgVuWJFVjq3zev6YZ
-	Iw6PqHzhL1tWLqOX5AEIXt1Jr/5BroS4JVU5aJ0RmMYgGzmQ/6Cpg5GuzOdh3u9E
-	LjBqjq6LDpFAl/l4OSTggUpmJBoaQqrOoJBn44OLfjrCOdBtob1ctME9IkaK8MK5
-	MLoXj21Gb4/eBQiCVERfcXN3yiiOw4aDRy+PEqZ+Dc6BygK2YF6tbmgICuVyzym6
-	BgSteg==
-Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b3j39htqx-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 11:23:15 +0000 (GMT)
-Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-8888ae5976aso16240346d6.2
-        for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 03:23:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1765970595; x=1766575395; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=mhwWA1wEAAxOR9ob++f3Td1XwWbr/zxBGj1xkgKoml0=;
-        b=dF1CU8BACmEOPFsUeuDl48mJOER5qYajE4BW34Pu8dOw2nSmwIV3spuqkY+8ZCtIbt
-         RaiPa2LhC/1GSowtaNrMSR1BP1lR0m9g/QZNv4AfDJPFS4jnBW5LK7+ZeE4kTyQeB/MC
-         d+tlXhBX3TiAOj2J3XPKpRfDkNixwaNA6VQSkT9R6XicVpL38XIoFJkA8GeQ/IP5RCJK
-         MLaDulnmqo5AR6dV67QCfIP8R/ZAhpvBEjiTAu2OOZCsD3GYt0oDxlGBlm80fNWm2hWi
-         cS2TZHHhcj9LwWi+qGe3vb8fqonRAxgptP6LgLJABs8klrOpVUO4CZdWiBuuvSlsD6A8
-         TNuw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765970595; x=1766575395;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=mhwWA1wEAAxOR9ob++f3Td1XwWbr/zxBGj1xkgKoml0=;
-        b=ijRVuvH6tKkeCPMiSxemthymtHnxH7+DZspewGlmHJC737H4h90nN4QWfwarl8b8+j
-         bdZZ1oWos34ULqaJHZ0Au0Pa+6mspzKxePacbRT1e7FFaXCYuozFt9Xhih7UNyjeCtob
-         Ns/8nr+sknkRYIX+XiSn1oIjUYs0sOU510uqqtZ+Uo7Gn31SH+tdqWfDGxuLfsqYFvVc
-         4wgVF8xPsKbTaIinHRc73tWUroveij5g0zZJQ2c+ZOa+U2LDnULTEHieIrtUMdvyAjwY
-         f8X6BAty98kxd+GTBPavweOdQDDvlFHKEVR3DRFglAocdgZczGdjTgWWKHHiF/tZlxBZ
-         fo/g==
-X-Forwarded-Encrypted: i=1; AJvYcCUwLIHO38QvqEtCgcxM93KoBJHhkFOhIRMz4vAVL6DHYn+P1TaRDNmUX7/bngKKWsgKmpEwo1wogI5m@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxasaub4+bXwo1zp+WP2FlrSYuUSRbZHYdhEqjS6LyO1+xufVmH
-	eoND/lBHzlfnBALS4YMuXqvvbozTShDCVLkqtS71PPLksCGcTqdjmMemw/0mKTuwQZIDuk0cD3k
-	9+i8rXVZw5lLheIRxQ5bixwpgViTtiaL9nwsH2+uRgVX0cj6HrcAXHDSCVjBVMfcz
-X-Gm-Gg: AY/fxX6nnrNr4l0RkXgixDuQPOUk2SkZYFxe9P1X7k8bCZTjZHNdH+dQmMXhaUqLSm6
-	VY1YscDxt2ulnRbyvnjKwoMxgK9rdb0mQrnHwXrnlG0WLUEx06giXF9tveEgszeFzf+aXdumE5p
-	WTDxXQKydmYVaP3NCHrceFDeH5EHrPtFLtQYzs1wwksB4NIExWusi38aDDq5145CA94XuTzE40y
-	GInnFjasmZ8J0iGAsEr5+yX3rim63/mEhRJyeMiXJQlOey142Qdeko3bW9j7VYJwvkSFRpvvr/8
-	uvdAjeWH5Fi0phyCQT4aQykWpJBs8hrz75+4/DrP61UI+QVF9jeU2RWBNuYGF+f+Zo/1/+FBU0I
-	ru0r6LmjBIBfNwk0Tkat4msqzafKr1qr3qPVBU6knv640Sc+Q1okKdDfrqnq07Onbqw==
-X-Received: by 2002:a05:620a:4091:b0:89d:4a69:1502 with SMTP id af79cd13be357-8bb398d9d6cmr1833093985a.3.1765970595328;
-        Wed, 17 Dec 2025 03:23:15 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFIPAsKI6WuJq1oqaqsh5Z8B+BthTkvS08uASi5ghcWxLWkI4BWbb0w6Lv8FYMEJKWggwpv8Q==
-X-Received: by 2002:a05:620a:4091:b0:89d:4a69:1502 with SMTP id af79cd13be357-8bb398d9d6cmr1833091885a.3.1765970594814;
-        Wed, 17 Dec 2025 03:23:14 -0800 (PST)
-Received: from [192.168.119.72] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-64b3f584800sm2172569a12.30.2025.12.17.03.23.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 Dec 2025 03:23:14 -0800 (PST)
-Message-ID: <494447ca-126b-439e-b150-7481f6d5ee45@oss.qualcomm.com>
-Date: Wed, 17 Dec 2025 12:23:12 +0100
+	s=arc-20240116; t=1765970937; c=relaxed/simple;
+	bh=a7kpjgX+R64zDwghcI5SJingJevntasZlpZAFDn2lf0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=fiMd9A1Raogc8heotcSZwMqpcRGEAlOAtTGW8qg+E1INeU60R1d3G+CELdrs1KfekIP94lf2ZYIo4cXlIAlNB0pILfb5CM6eYF9mAP1hkVr+T695aq6UVtQFcrVOMUHO6XD+3klubFBadED4KpQJhglCNLPPDeVfNFh3GqThhqU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9033114BF;
+	Wed, 17 Dec 2025 03:28:46 -0800 (PST)
+Received: from e134710.manchester.arm.com (e134710.arm.com [10.33.10.82])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D8F0A3F73B;
+	Wed, 17 Dec 2025 03:28:51 -0800 (PST)
+From: Ahmed Tiba <ahmed.tiba@arm.com>
+To: linux-acpi@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: tony.luck@intel.com,
+	bp@alien8.de,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	catalin.marinas@arm.com,
+	will@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	rafael@kernel.org,
+	linux-doc@vger.kernel.org,
+	Dmitry.Lamerov@arm.com,
+	Michael.Zhao2@arm.com,
+	ahmed.tiba@arm.com
+Subject: [PATCH 00/12] ras: share firmware-first estatus handling
+Date: Wed, 17 Dec 2025 11:28:33 +0000
+Message-ID: <20251217112845.1814119-1-ahmed.tiba@arm.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 4/4] arm64: dts: qcom: sm8750-mtp: Enable DisplayPort
- over USB
-To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Neil Armstrong <neil.armstrong@linaro.org>
-References: <20251216-sm8750-display-dts-v3-0-3889ace2ff0b@oss.qualcomm.com>
- <20251216-sm8750-display-dts-v3-4-3889ace2ff0b@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20251216-sm8750-display-dts-v3-4-3889ace2ff0b@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjE3MDA4OSBTYWx0ZWRfXwVnGZREhgjpw
- ma5WBNx8Be40RG+cvPADg6n/qORnEalzYwiuUT+lKhg7lhA2J5Td5+B/SbcfPsNz7mOMhipCHk1
- q+WC1ibXQohGs7easnWS5rLsoGA4bMoN230w352at52p2L+A+xi6So+ARAPg4/7kFG3WInTli0k
- +4nKxu/sF5oUxYYS0/lEaKC/IsNI1Y5KZbAuIxgjha+Fvq66JczsiuJVdNBu45M1NF5viQ/ZkHX
- 8ymtLhZhNkWFH2v6vMOZhPYp2bx3+trhdTKLnM8TLESxT8geUa/9sf3D+a9XAbAR1lOXUgyqGAL
- AU5cMHfdbLqc96+m64Ew+7i9TDeF3cXN/JKmO7cd2I02uxYhN9j6IYtAutWrHjqJ6KaE6ulfH8Z
- E/t547ZgqyTVpfQU3ygoJRNCmQhYgg==
-X-Proofpoint-ORIG-GUID: kmhi-LHzG6R1gQ9vlCuuY3TMPyVfe7Ul
-X-Proofpoint-GUID: kmhi-LHzG6R1gQ9vlCuuY3TMPyVfe7Ul
-X-Authority-Analysis: v=2.4 cv=ToXrRTXh c=1 sm=1 tr=0 ts=694292a3 cx=c_pps
- a=oc9J++0uMp73DTRD5QyR2A==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8
- a=xgWhb89BDjTtD9WMArQA:9 a=QEXdDO2ut3YA:10 a=iYH6xdkBrDN1Jqds4HTS:22
- a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-17_01,2025-12-16_05,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 priorityscore=1501 impostorscore=0 bulkscore=0 clxscore=1015
- spamscore=0 phishscore=0 suspectscore=0 adultscore=0 lowpriorityscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512170089
+Content-Transfer-Encoding: 8bit
 
-On 12/16/25 5:47 PM, Krzysztof Kozlowski wrote:
-> Hook up DisplayPort parts over Type-C USB on MTP8750.
-> 
-> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-> ---
+Platforms that rely on firmware-first RAS today only get the full Linux
+handling pipeline when the records arrive through ACPI/APEI GHES. This
+series lifts the generic parts of GHES into a reusable estatus core, wires
+GHES up to that core, and adds a DeviceTree-facing provider so non-ACPI
+systems can route CPER records through the same logic. The final patches
+document the binding and the admin-guide flow.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+The end result is a single estatus implementation that covers vendor record
+notifier support, memory error queueing, IRQ/NMI handling and the CXL/PCIe.
+GHES and DT users now simply provide transport-specific ops.
 
-Konrad
+This is based on v6.19-rc1
+
+Ahmed Tiba (12):
+  ras: add estatus core interfaces
+  ras: add estatus core implementation
+  ras: add estatus vendor handling and processing
+  ras: add estatus queuing and IRQ/NMI handling
+  ras: flesh out estatus processing core
+  efi/cper: adopt estatus iteration helpers
+  ghes: prepare estatus hooks for shared handling
+  ghes: add estatus provider ops
+  ghes: route error handling through shared estatus core
+  dt-bindings: ras: document estatus provider
+  ras: add DeviceTree estatus provider driver
+  doc: ras: describe firmware-first estatus flow
+
+ Documentation/admin-guide/RAS/main.rst        |   24 +
+ .../devicetree/bindings/ras/arm,ras-ffh.yaml  |   95 ++
+ MAINTAINERS                                   |    8 +
+ arch/arm64/include/asm/fixmap.h               |    5 +
+ drivers/acpi/apei/Kconfig                     |    1 +
+ drivers/acpi/apei/ghes.c                      | 1292 +++--------------
+ drivers/firmware/efi/Kconfig                  |   11 +
+ drivers/firmware/efi/Makefile                 |    1 +
+ drivers/firmware/efi/cper.c                   |   29 +-
+ drivers/firmware/efi/estatus.c                | 1056 ++++++++++++++
+ drivers/ras/Kconfig                           |   14 +
+ drivers/ras/Makefile                          |    1 +
+ drivers/ras/estatus-dt.c                      |  318 ++++
+ include/acpi/ghes.h                           |   58 +-
+ include/linux/estatus.h                       |  267 ++++
+ 15 files changed, 2001 insertions(+), 1179 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/ras/arm,ras-ffh.yaml
+ create mode 100644 drivers/firmware/efi/estatus.c
+ create mode 100644 drivers/ras/estatus-dt.c
+ create mode 100644 include/linux/estatus.h
+
+-- 
+2.43.0
+
 
