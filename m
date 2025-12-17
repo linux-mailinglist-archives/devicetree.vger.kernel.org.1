@@ -1,683 +1,222 @@
-Return-Path: <devicetree+bounces-247352-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247504-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBD15CC7342
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 12:00:01 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id A90C3CC830C
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 15:29:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 56B31300CA07
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 11:00:00 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CC29B30EBE16
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 14:23:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7962F33C526;
-	Wed, 17 Dec 2025 10:46:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EB461EA7CC;
+	Wed, 17 Dec 2025 14:22:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="OBxsvmDa"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="lavulXAg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+Received: from PH0PR06CU001.outbound.protection.outlook.com (mail-westus3azon11011051.outbound.protection.outlook.com [40.107.208.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A6372E06EF;
-	Wed, 17 Dec 2025 10:46:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=192.198.163.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEDE730DEDD;
+	Wed, 17 Dec 2025 14:22:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.208.51
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765968372; cv=fail; b=c3llGqyaYCd7aTYRn8odHafaudJN6ebBycLuyeh+X7G86wnqk1f/bV0w0xWmmRiij9+RjTsvFabunnJVE6nDsn4nVRKvf6ncHKfd1hjPvPeabhQNtwHUTWm11QzB1OSdjl5skvBM4BCRXsorYci05U5Y13QiC9M08C1M2eQy2y0=
+	t=1765981341; cv=fail; b=rfv7Oj7A3PewqqSD9H2AWk2yu+AWF8Fc0wGEk7kukFPr4Nz8xK7dqF7SASXb9z5ql46VEseJ/hsHeP+MqLffsTjTHX/Z/XAe77qJQ18IQdsdSWab9x7D2s9ddqQshvbc3RhJmF2ucf2YToZEKCp98IhvXly2/AK45Ni4uuuZOSA=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765968372; c=relaxed/simple;
-	bh=yHYukKqHlU91es5S9xF4418RECWXbtNbtMLlQVCvMoc=;
-	h=Message-ID:Date:Subject:To:CC:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=JUgLAOO7Ky8A71GBHqdkGZn8uKc/myp+OljvCkWHAIHkSFV5ikctzhf/utuSsBJmbMOTsWoC0DtLg+k/7GkxgQ9D9HYw34RlVLlLmR74rk8vzg+wlnlRcMP3FbfYH72o50QlXNVEGc0O+ouJO/Zs2wnYTTDtXzV8kLFfp1vzo7I=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=fail smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=OBxsvmDa; arc=fail smtp.client-ip=192.198.163.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1765968369; x=1797504369;
-  h=message-id:date:subject:to:cc:references:from:
-   in-reply-to:content-transfer-encoding:mime-version;
-  bh=yHYukKqHlU91es5S9xF4418RECWXbtNbtMLlQVCvMoc=;
-  b=OBxsvmDa6bgtDoV8Cb5XUAw4V1pVO9swbV/XGFi9wUgYya6pQuiG+wuX
-   Rx8gkop7f9JkXOddmV0vHb6b0pMNC+wEuiJ4k1OylHX1Zjbkm9VYJqRsE
-   49q/RDABDHdG+BeB/u0UMKy9cIUyuKJLS28yRpwiZDAbaeEegNB69vY59
-   pYL4fJ79PdjG7eicCBlAVtfsuJIFgM/7G33nTjRTfmHNShi9No511Prq8
-   PMtCSBBi9yjemN7x9tepiPOBnbRNvUT6dBhOsuD3VowxLvJu62vmCfQsn
-   EYLYKehhs2LCKxwC38mlRfFDRc6BXDezCAoBG8sHEY4XI00fA9stD8xTu
-   Q==;
-X-CSE-ConnectionGUID: NdegNOfKSjW1/sTiE0b9cQ==
-X-CSE-MsgGUID: hQfhneBhTJCSWIGnviN5vg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11644"; a="78541509"
-X-IronPort-AV: E=Sophos;i="6.21,155,1763452800"; 
-   d="scan'208";a="78541509"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Dec 2025 02:46:06 -0800
-X-CSE-ConnectionGUID: xAfJPDsSQUyNjGK1Gaphkw==
-X-CSE-MsgGUID: rlhYScnrQQSuk3wqqqA5jQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,155,1763452800"; 
-   d="scan'208";a="197366779"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
-  by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Dec 2025 02:46:07 -0800
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Wed, 17 Dec 2025 02:46:05 -0800
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29 via Frontend Transport; Wed, 17 Dec 2025 02:46:05 -0800
-Received: from PH7PR06CU001.outbound.protection.outlook.com (52.101.201.66) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Wed, 17 Dec 2025 02:46:05 -0800
+	s=arc-20240116; t=1765981341; c=relaxed/simple;
+	bh=W8WfvtsfaVTWFrS/M+cYg8ZD6jQ7vcuMuaOU2kv7QXs=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=gBS846xyZRchHOp8QqX1xZpDUsXOUzlyqRRLSodEyrVUTvas3eNp/Jrdc/YXmS6FfMDT47h4QBwc0wAdbSyKSVSiinRJAPosIIP4v7H4BwUJTPMTBGsH8sl3+BcpPhCGSrFhYvOIsXO19EmpU1LQdcFsgJ8bimeBSBMRNUGKd/Q=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=lavulXAg; arc=fail smtp.client-ip=40.107.208.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Tt1oGYKezQWrFiOtWMyVL/DFRxZTUNuvN3e6/cFabSq4OAIqe6zB+5cgUJPR4Z2Zgsp4uPgV5gJLx6myJUc9NSzYHMx+tJyyRNeVOgzmmjRZecNyMSXVjMX5KtGJQ80vSvXOHl4fnYc9Ilr/ZFIGL3sml1zdiyOoLICd/2fxkwDQ4pqxChg56FYeEkUcAEG6wybrwTOSUaUcyIYgo+r8MUoYQps6csqLmOj+UI0gdhj50au94XS9gyLxmiUOEFB0NKlmd3UQyXm3KiDv+lTtLSZE2H4Ur/mvCTxN5HVS3IIypqi3+X5orC4tTH9z8DW3jiyk17HWXSZ6KvtuWMiuZw==
+ b=wlk3oh+PeOopCRmEy5xXT1X+Afiet/DeIFlPhImq6i6uBO8LG9dxjWuwdqYH212f6bGXqiV7NQIxWXnBn15tDY/ynStGI8n/E01urNRpO0UstNJQCOY69OGVJEud2TR9UyQBaS1R5HK5wk47s4lmsKHHND3C/SAe1WWdSDKy13JnwQlXKaKYSeG/6SkzccFYvJqOFRzuLRF4MllGK5gGfcTPubJ37umQtjjn7FD8dbai9TbmigZ4/2hWPu7rlyU7WNx2l2JDqL0BgZplia4uQaDrdf7WATbY7RcBkExwp/vUFl9Mj+8+tDXUhmkZk91TvSWQVH+NkAt9N1n95R5IaA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5C+4r5WZcIwTSNkRjvjPSbvev9rhCJuu9ya1hJqVq0A=;
- b=hOt7Yr0bbPSSmjOfz2P29RpLvy/NuRxF6c6QGnkCROPlC4jVoAqqo48yDU9IWVjWQ3tdNyHa4hrG/LSyrwJaFIbSzQKNlGnZdowOrwLBbEY+E9N77p2t2zO/VOn62V3xp7eQGreM4pMnDuBLC1Ou8xYXFxoMTEeTc+ziXcjXqrQ9NYuyr6wgkIul4GsrYrKPbJXwGfrsaNeZ0Pa1BVKkGXF039QMYTROBcF9axLWDQbGdlJDjDSeYwPtheB7cErsC46gGcTxFGm+DV1EdhyPOW6vGz4O/Dw+5d7gd8aSPQ3wa21A1GR+/zLnK5fHzGm6Y6i6C8TmOQkRpAGT2WLU9A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from SN7PR11MB8283.namprd11.prod.outlook.com (2603:10b6:806:26c::16)
- by PH7PR11MB7429.namprd11.prod.outlook.com (2603:10b6:510:270::7) with
+ bh=K9rq47q0+agoRnLbslKqAupkQGiU8MLacFAGR5ft9ik=;
+ b=xC0+/rRlI0BwCHBMDB0Vox7LDPtWqKzQAq0wwbbDIyQZYTPcvPQqbcuw9Job0VMiMRZWevGNF4ZtVAEORInc3CtErjBVZUBcMxFDcwmfQLmzyQjzNhcNOTrp12lSfn+sGKdnnlg9yjndCyCKvJwWpNBIWINNj3cvs+SFeR6lKfkQnB9ndWIIzgb4Ww+hkcWFcwxYN3yuFb6oICmAUZjbrxKYG53+AvS7Ey7JOjXRGi+j7/OUSSlqWjc4r+f9LzxgAiWt4U0gRp5PD/K1EmACjCYxbhl5YwXuN4C1cPwttAd6IBCEJ/68QDAzPKlgYjogKOT+HqvfjQt+CFH+2cHzrw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.161) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=K9rq47q0+agoRnLbslKqAupkQGiU8MLacFAGR5ft9ik=;
+ b=lavulXAgTxKqMW+5cfHwztk5NP4aiwXvATZaHJxt2sS7e8qwwnvtCKxO8pSy42E19w1mZLt8kMWn65OOTaF8mBqi+n9znxubmZC/3uEDYz1C9TVGOIz7Nn8Wxt/a6pTYBnAdV5ZzvW1l1q3R1HCKzO33ipgwwscE1Ua0gN+9Mc7lY48jkR9WTm4KW0CbCNFDITkR0euJYZa9A8uqoeTukRbhbnNTnXcQudMn09sgcr2mAmd5iJpT16o79aMSo5lwOuG0Sy6t3/VmMdE/qY/tAbu5uIT0nSCNL3bViVNDEMVmHcYYsyi2Q/XfdPpkX1D9odzLoL6pkER+jpsPMamcEg==
+Received: from PH7PR17CA0047.namprd17.prod.outlook.com (2603:10b6:510:323::29)
+ by DS4PR12MB9612.namprd12.prod.outlook.com (2603:10b6:8:278::5) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9434.6; Wed, 17 Dec
- 2025 10:46:03 +0000
-Received: from SN7PR11MB8283.namprd11.prod.outlook.com
- ([fe80::3:e0a:87af:d4b6]) by SN7PR11MB8283.namprd11.prod.outlook.com
- ([fe80::3:e0a:87af:d4b6%6]) with mapi id 15.20.9412.011; Wed, 17 Dec 2025
- 10:46:03 +0000
-Message-ID: <81510775-c277-4dfc-bbe1-d3b75debc140@intel.com>
-Date: Wed, 17 Dec 2025 11:45:54 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 3/3] ASoC: rt5575: Add the codec driver for the
- ALC5575
-To: Oder Chiou <oder_chiou@realtek.com>
-CC: <linux-spi@vger.kernel.org>, <perex@perex.cz>,
-	<linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<alsa-devel@alsa-project.org>, <flove@realtek.com>, <shumingf@realtek.com>,
-	<jack.yu@realtek.com>, <derek.fang@realtek.com>, <broonie@kernel.org>,
-	<lgirdwood@gmail.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>
-References: <20251216071853.3929135-1-oder_chiou@realtek.com>
- <20251216071853.3929135-4-oder_chiou@realtek.com>
-Content-Language: en-US
-From: Cezary Rojewski <cezary.rojewski@intel.com>
-In-Reply-To: <20251216071853.3929135-4-oder_chiou@realtek.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: VI1PR03CA0049.eurprd03.prod.outlook.com
- (2603:10a6:803:50::20) To SN7PR11MB8283.namprd11.prod.outlook.com
- (2603:10b6:806:26c::16)
+ 2025 10:48:01 +0000
+Received: from CY4PEPF0000E9DA.namprd05.prod.outlook.com
+ (2603:10b6:510:323:cafe::41) by PH7PR17CA0047.outlook.office365.com
+ (2603:10b6:510:323::29) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9434.6 via Frontend Transport; Wed,
+ 17 Dec 2025 10:48:00 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.161) by
+ CY4PEPF0000E9DA.mail.protection.outlook.com (10.167.241.73) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9434.6 via Frontend Transport; Wed, 17 Dec 2025 10:48:00 +0000
+Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
+ (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 17 Dec
+ 2025 02:47:49 -0800
+Received: from rnnvmail205.nvidia.com (10.129.68.10) by rnnvmail201.nvidia.com
+ (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 17 Dec
+ 2025 02:47:49 -0800
+Received: from moonraker.home (10.127.8.14) by mail.nvidia.com (10.129.68.10)
+ with Microsoft SMTP Server id 15.2.2562.20 via Frontend Transport; Wed, 17
+ Dec 2025 02:47:47 -0800
+From: Jon Hunter <jonathanh@nvidia.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Thierry Reding
+	<thierry.reding@gmail.com>, Aaron Kling <webgeek1234@gmail.com>
+CC: <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>, Jon Hunter
+	<jonathanh@nvidia.com>
+Subject: [PATCH] Revert "arm64: tegra: Add interconnect properties for Tegra210"
+Date: Wed, 17 Dec 2025 10:47:44 +0000
+Message-ID: <20251217104744.184153-1-jonathanh@nvidia.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+X-NVConfidentiality: public
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-NV-OnPremToCloud: ExternallySecured
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN7PR11MB8283:EE_|PH7PR11MB7429:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8c5b5cf3-0613-4f1d-459b-08de3d597947
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000E9DA:EE_|DS4PR12MB9612:EE_
+X-MS-Office365-Filtering-Correlation-Id: 238a7b46-173d-4504-526e-08de3d59bf5f
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014|7416014|7053199007;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?cml6V1dPdHRkdCsxTTE4VHlQYVhwM1BYc2MwZm9mbFBITTNSM1VKelUvZ0Qr?=
- =?utf-8?B?YlhDQ0JwbStFOHlYLzFXOFlGQ1lqOW5jS0kzamFKQlZ1NGlHeHN4dkg1b0dO?=
- =?utf-8?B?dHBJRFM2bW5sSTFRSWl3TmxDQnplKzRZZG9JSVJiOUw1RnlZYS9yODFGSmE0?=
- =?utf-8?B?TzRrNmlLMVlvbEdadytJZVFyZExKeldkd1hrQ0wwSmdPTHB0eGpDK214K2RC?=
- =?utf-8?B?WWgvRFpRVDYweVArQkUzWEZKbHFMdEUvVlVDWmNGSDIrbkVtTjY5dUJOMXZw?=
- =?utf-8?B?VUtrVzgybHRmRUdnVzd1RktWTnl2OWpMUWhFclExRk1lcUd5RmZuZTc3SU1W?=
- =?utf-8?B?cWVNeWJsNnBLRVI1OXBPZlN5QXRGczhJamIweUx5ZVpibnpYWTZZckNpcitZ?=
- =?utf-8?B?djBod2Q5R0d2aEl6SGtmRmpOQldaQyt1K0NDYkNvWUVvaldZMmVBblg3YzJM?=
- =?utf-8?B?MmJCT1NLS2VFcnRzU0F4Wlc2ZmNOSmE5RlVOTTRPcWloUG0rT3VXL1EzVFFw?=
- =?utf-8?B?anBkZ3gzcWpGcU1qcGJQTlpCclFTYUNtcDNXZDB2cW1lc1laZTZtMHdpbmkr?=
- =?utf-8?B?SFVpanlCZTBLbmZUNmc4WndwN1V0a1JwQnpiSE9UYlVwQ3dFVkdhM2FkOHlp?=
- =?utf-8?B?VG9GQmg0UUZTUFR5VDQrNXh5TG1oamFrcWR0VDllMVlIN3VaSHN0bkpudnM5?=
- =?utf-8?B?cmsrYjdIalYrMWxhUnBadmFFTXpDQmdYOTZ6RmgrT2lqajluSllpT0tFTFVB?=
- =?utf-8?B?ejBJc2Y1OGhoSjhpWHEyZi8rdGxXelV6UW1SRFlBN015SUMrNm1LU2UzQzUv?=
- =?utf-8?B?WVpLakFKSnNGeStXREYvMzE2V0JBWkJBUlFnOWV4dlBlM1ZXQXFOTlZJa3ZP?=
- =?utf-8?B?dnpXU0dpTThQbzBHY1dFK091TnVrMXVsUnJvYnBTcjUvUnRTYTAzdVR1OTAw?=
- =?utf-8?B?UEFWOVN6ZGtBall0Mjdkc0o0Vzc1VHluekdxL2xLeFJpMXlmczh0VTNCL1Uy?=
- =?utf-8?B?dTR5Wit4ZjY3bGVnNWZQTDVwWHdFNXlSei8vRzNUWlNqVTVTYlhsVWZ4bFND?=
- =?utf-8?B?WnV1dlFvWXIyTDM0eFRsVDRyUHgzdE1vaGlWNEZUdTJ3OUxKbmhOd1NvVS9D?=
- =?utf-8?B?OFVpYytTNDc1bFpIKzZIYjJSRWRxOFBFWEV4c3Frd01pYzJVN1J4bXhBRU9i?=
- =?utf-8?B?N3UvOFpnQ283Y2xPL29pWE9OL1FHVGFBcnNZMTZPZXFwZE13ZDJNSUEvVUxw?=
- =?utf-8?B?WWlJbk12cnF3azFzN1dBTkc3dmJuNHk4VmFoa0tMZis4QUNON3lIcHMrTk9D?=
- =?utf-8?B?UUJhNDBUenpTYXF4UGJNUlJwWkQ4SU5lTEczOHNKMlBOV3NFMHNMWnYxS3RC?=
- =?utf-8?B?OW4zYUtDV3BUOTR0WmwvSlByb2x0c2pBREd5Uk5XZGtxaXRnMlNPdTVtUUVi?=
- =?utf-8?B?OTVpbW9LNGdmRkVFWE1hbFZ4RkpmSDZVWGFTdjZiMzJxZXdTZ1FLeTczSU91?=
- =?utf-8?B?dTl1SVBVSjcrVk9VV3lySlRWRC9CY0Q2WHVsZExDOUFWa1pHbFNYbTJYVnJX?=
- =?utf-8?B?cTczZlVqWGp0Y3B4ZlUxTmVqdEI4SStRQk1GWk80M3FMUmgyTGpLSzdSajMz?=
- =?utf-8?B?UjlJdTJMUTVmQ1pqZ2F6RE1ybzdlOXVPaDNpa3l3Q3lWSjY3blczSUlYajIr?=
- =?utf-8?B?VDR6ZUduNVZUTVlrMnpjZHVPOFFtNTRTZE1EcUNlUDU3TnVqbkRKNGVVU3py?=
- =?utf-8?B?OFJoZDZTbTg5SEFJcmpDc0VnNHZsWDNQaDhUalFoS0hHTzBwSXVzZjFlWXVp?=
- =?utf-8?B?a3ZaUDY3emcxMkxySjJrZk9EbURHYXFlTzI1U1hYeDh4NVZtbE94eHBxWGhP?=
- =?utf-8?B?T3QrV25tUU1IaUpmQWsrb1YzVWw4OFM5WmxqRXE0dW1JQUhCS3JTbm45TWRC?=
- =?utf-8?Q?VQaqWIS14F7bvwWIPWruji1q7NFte5g7?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN7PR11MB8283.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014)(7053199007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YnJwS3VKOHQySk52aVJEWG80VzMrQ0I4VWRKQUtXcG8yeVlFUkhDSkQyMjBQ?=
- =?utf-8?B?b0xaMU01UDlvbStVdElacVdlbVIxbzdzbFNTcVNHbmpGa3pkU0ZmSnFuRFRU?=
- =?utf-8?B?bTJYNEpxMGNnTkVBN3JuM0lITHZVS0plMThtRTlTTzJmVzl0WkNQMGtxNXBq?=
- =?utf-8?B?NklVL0M0ZUZoeGxCSk5pOHpJSURnZDlJTnc0L3Mzdkt6U1Fjd1ZzallaRXNN?=
- =?utf-8?B?MGxBdHJsNTF5MTFiRnhDV1BSUDYxM3REOE8wV1JNMFFXaEZwZWFrSUxzNHFi?=
- =?utf-8?B?MUhkWFhoN24wL0FubHdIb29NenFYNnNQU3FxaEIxaFV5cERqcmZJdEFZQmVJ?=
- =?utf-8?B?UUxGcHFGVzN1dVlrd3RJT1dYVGVERjA3czZVQTdhQUk3S05mYmpCK2IvbEw0?=
- =?utf-8?B?R2ovckdCaVpoS3IrNUR5V1VINE5mazZmemc1K1JhQ2R6Ynh1TVJla3pTWStZ?=
- =?utf-8?B?Z2NSSlVHbnFZbk4ySGlJLzhrd0hkMFphTTZQaGhRd0MyWk1QdEZZTW95Z2o4?=
- =?utf-8?B?V045emh1V0lZb3d4MmIwUUFSTENESXN3aGw0elo4QzZJTWlkZzdMOGRzNnpa?=
- =?utf-8?B?QVRNUnhadDFUZEw3ZGpwdUNSUHdqZmY3VjZNeHdyZm8vNmF2UUtINm9LY2tJ?=
- =?utf-8?B?SmVMVEU4Vmg2OFAxMHAzUnRCQWJjOFFWMHozRkhFOTN3Wk1sM1lpMGxJbEp1?=
- =?utf-8?B?MTgxZGxrVVBxSERlZG80YzdxZFZ3eXhXQ3Y3RkJHMHV3RlBlVitQZUpZQXdO?=
- =?utf-8?B?YkZsaGtVTmNYQjhZc1ZzREhkbWZWemd1bGM5ZDVlOGJiM0NGZHE0ODB6WElE?=
- =?utf-8?B?NHA3MTc2RkFZYTFXQWpnNWcwOHRqYVVqM1krVkxPMTJHcmRmTXZGQ3hsTlpZ?=
- =?utf-8?B?Zm9DeVBGZEV4dTZNSWVsQ21ReHZFUEdmM1lGejNvZENKQnFCOW9FbzZnQWxm?=
- =?utf-8?B?RHJtZE8yNHpZRkcycjQ2bGNnQng4UUMxRWdwWDd5WDZtK09CVXkxUEFENWRj?=
- =?utf-8?B?SElscXBvdFpFOG53d1dYT3FZeXhNZWp2aTlFZldsWDlxdWdYL0EwZVoyUFJm?=
- =?utf-8?B?b0JDVFgyczhqOENwc09kU3FRL01JZnAxUEdRaUk3OExOZUlLS1orem9CQVpR?=
- =?utf-8?B?c083cUtRdUxTVU9xSDk2R3VzVkhIOE8wemY2UW9lbWc3SnQ0TUx5T2o3SWhJ?=
- =?utf-8?B?akRkU0d2Nytua0pSRnhSWWRxaFFQUUliU1JpdnpjMms4OU5wSmRTcmlCSE50?=
- =?utf-8?B?a3VBZTNwQy9KNFRlL3orV256OGdkb3gyK3M5T0JBVFlsVjNWeVB2VnZpdkRZ?=
- =?utf-8?B?NHFhTjc5Wm5xNEo1U3pLM0o4bGNUMzIyZzFqVE41VHE0UUVwT1h4SDNBTHBQ?=
- =?utf-8?B?a1U0S0x0dXc4dEcwRThqUHpYSmZoMVNmM252bUhRME0vZzE2byt4UzVXekxR?=
- =?utf-8?B?bVp0ckdBaGtiQ0xsUHRUa3dmUmFpNkVrYm5DMFdRVlF0V3crTk1rRWQ3VEd2?=
- =?utf-8?B?emo5bnpQcXpkYktvTXhSZHF3eVU2WnZXQmI1RzhtM1hKZDVIcC8yZDE2OHZH?=
- =?utf-8?B?eGp1V2dKYlBnYllpVUJjS3FqenMxbDFFWnZ5Z0g0ZEZiOXZVUVE1NXJEeG5W?=
- =?utf-8?B?TFBnVkt4TTZzSEV4YzZCTUt1SEQxSFBLenVCUHBOWlFyR2NPcGpNZ2wrK2Yz?=
- =?utf-8?B?WDgreWVEMjVBTDI1STFicjdKdklFaE5BL1lzN29hZ0dqc2lxaVYvaUZJVXc0?=
- =?utf-8?B?SlI5ekJ4OHJMQzVWZmM1OHo5VVl6Uml0QWl5dFcrRGU4dEhQc3k0NG9tSWh4?=
- =?utf-8?B?dXZpT3RSd3hXVlRlbGRxcnpCTW8waE5TY0svRHRNTS9MbGRQbGJzZ0EvbldD?=
- =?utf-8?B?TndrSGZnekNoc0hubllqVzZaOHI5bmxHcU0rYi9LYjg5RjRpcXcyTXErZThy?=
- =?utf-8?B?bkVhZzBKS1ZpMXlhSVBudnNnYWdhMTlpc0I4bnIrM3hCY291K2ErZ3M0Z09o?=
- =?utf-8?B?SnE1S1dORmkxS0V1eHA2V1NaaERiWnZIZFVCZXU2SUNNUUR6bnV2eGJLMDRo?=
- =?utf-8?B?ZXgwR24rMWY4UEVMMFZTNlliaFJYOXZKY2ZVT1lRci9ScUNaOVdncTgzWlZE?=
- =?utf-8?B?a2hkMDFtK3Z6YVFPb1cvVDJYdTZxNERBVmk5N1d1MDBaejlvRlA5ZFY0VWN5?=
- =?utf-8?B?NHc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8c5b5cf3-0613-4f1d-459b-08de3d597947
-X-MS-Exchange-CrossTenant-AuthSource: SN7PR11MB8283.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Dec 2025 10:46:03.0268
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|36860700013|82310400026|1800799024|376014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?EdxZqRNprXkt98M3vKDE3Yu0/vTuHfMALITh0ZyKa45OeOAbTtzsMsG56II/?=
+ =?us-ascii?Q?O8z9xppnLY33dhply4zgND0Mae9V0XvzUILvQQpyyJS8pO94ZIYfXFeSJhdd?=
+ =?us-ascii?Q?uNg9JVT7wCJ+TdXAYDSmvWhz5gC3BV7WIPAYYMWW5Ael2e94ACAL6ekfG7b2?=
+ =?us-ascii?Q?J+cV1DV1MgZvYKURt1iFZF8YpTzVHFtapAeVYKQmgBJDQHVBjkxRhfhdSlu2?=
+ =?us-ascii?Q?o2Jkg44rov/mfKPuHnsf+8U8e2wBlrRlRQ/68lLspJYcr58WEIbnHOlUnXfl?=
+ =?us-ascii?Q?iRNwGRlSzRxgZIbqsHBAuL4WI7zmNSshAJ7AZ7NNH6dpK5KBVnOJm4iH3JKj?=
+ =?us-ascii?Q?GQRWo7VxEG8GlSRtnSYAbVsoNaknlUvn8BISVyXIVHFO3BTWLOsSZS15Q02v?=
+ =?us-ascii?Q?WTJv6y1/A0hr/gUNcOUytfgMISUgMvZ2CFFhpU4FJOa6RtQKlFGnfhnk6ONZ?=
+ =?us-ascii?Q?E8FvWh77Wi12V3XioMEaBRYD9L2veHF159t/u9SU+0aWSTnqfMpT7lk5y/jc?=
+ =?us-ascii?Q?CUL74q9wTxrA5kaQEsMEizj0yiRqfyqtEGiatDprcRzhDLH47Yl34Fdpwd1i?=
+ =?us-ascii?Q?hNUU5arMeO1x4EaL9UgI1uxdVJvGTAlChEGO3EKqVb4lFL0n0874gbZgCT2l?=
+ =?us-ascii?Q?/yfgXrsBeT/I+Q66DE5zhCLTFCWE+vcgMnlktgrX0RipTCp3GCUvXLTY79IW?=
+ =?us-ascii?Q?5ndH3hCp0sGboDS4fW+6jKzvz4EvrlXuE2pTDelZXOHepXey2gGvL9Ai2oLD?=
+ =?us-ascii?Q?RB0JENmlYDkpOFBacRNUDUQfvDn8rewbvrUU+C6++2+p4061I8PRExiamkUV?=
+ =?us-ascii?Q?jdH4ZCfdRGfxnJ3oKL/j3DIjJcuTBgM5r/oR9cYS7vDrjgmnMRAxO97rliQF?=
+ =?us-ascii?Q?asHwQ+iLv8frreBnykZGt7rL2gmoQohJfnJlizES6PojRz18cclI8nhm6512?=
+ =?us-ascii?Q?fbbC48hJz1s/7mwdHXiRfpCzvSoS8a7wwb32IIBRcDQepEivS75VfNrUKHnk?=
+ =?us-ascii?Q?KYhBnbwfbZD7TEwxqN2oFLsmhtyE/3QuHyj7KItMxc0WnhF9vN9MFxy0HaPI?=
+ =?us-ascii?Q?sXIj7Q3T1SXVhvibs4TFQFNj6NuA5OY0UzxGhmuIH/P4OfllRMIThpE0obmD?=
+ =?us-ascii?Q?AwKQCIauGEs4u2pOzj2akEAt3VJdI3KqhSbobpJ3Y+nnEWw88oI1iwMhfk9C?=
+ =?us-ascii?Q?pqOPjcrlTnol3J3znxCtBMC9BXFiv7oTqOV8H6cX3roNHenS298nn38OFJi1?=
+ =?us-ascii?Q?bx5eLfU4Be5nH3Rb0UU2bW+iMuNZ6AiJ2ObEm8zqxul25tgWriWUSVRe/qmy?=
+ =?us-ascii?Q?Gt+noTO69ysDl5FqzRJ8P1lLYfquozoEs9zvVx/2RFmFN1DBmsKe6DX7xsFW?=
+ =?us-ascii?Q?14Sy4kI4m1eGKYkPUkf5N5S7Dr6LBLxA2fF0qavgA+9Z7muqEB204eYHs0YT?=
+ =?us-ascii?Q?3VaFy/Fu76F871fgbcv+gtscPL7YTEU9wGG0WFcMPT17ngoxc/ZsjW6RerFq?=
+ =?us-ascii?Q?55aCgL9z/lzABRPHBVfFnKzypU2zGR9NYNeVokEO+gLB6Vpx4zZJjI9A3DoF?=
+ =?us-ascii?Q?bpjUdvl7s2LjMTJEXS4=3D?=
+X-Forefront-Antispam-Report:
+	CIP:216.228.117.161;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge2.nvidia.com;CAT:NONE;SFS:(13230040)(36860700013)(82310400026)(1800799024)(376014);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Dec 2025 10:48:00.3918
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ZwZSuTC1sa4kFu8GWrxjSkPAsOebMIRjF1kmIqikhP9Cj+RO5kJZ5RanPnLmReq0m2DCUzG5S5kulFeIjapl1IFUPrTrD4kgUIBwbnPGgVk=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB7429
-X-OriginatorOrg: intel.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 238a7b46-173d-4504-526e-08de3d59bf5f
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.161];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	CY4PEPF0000E9DA.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS4PR12MB9612
 
-On 2025-12-16 8:18 AM, Oder Chiou wrote:
-> The ALC5575 integrates an audio DSP that typically loads its firmware
-> from an external flash via its own SPI host interface. In certain
-> hardware configurations, the firmware can alternatively be loaded
-> through the SPI client interface. The driver provides basic mute and
-> volume control functions. When the SPI client interface is enabled,
-> firmware loading is handled by the SPI driver.
-> 
-> Signed-off-by: Oder Chiou <oder_chiou@realtek.com>
-> ---
->   sound/soc/codecs/Kconfig      |  10 +
->   sound/soc/codecs/Makefile     |   3 +
->   sound/soc/codecs/rt5575-spi.c | 119 +++++++++++
->   sound/soc/codecs/rt5575-spi.h |  26 +++
->   sound/soc/codecs/rt5575.c     | 359 ++++++++++++++++++++++++++++++++++
->   sound/soc/codecs/rt5575.h     |  54 +++++
->   6 files changed, 571 insertions(+)
->   create mode 100644 sound/soc/codecs/rt5575-spi.c
->   create mode 100644 sound/soc/codecs/rt5575-spi.h
->   create mode 100644 sound/soc/codecs/rt5575.c
->   create mode 100644 sound/soc/codecs/rt5575.h
-> 
-> diff --git a/sound/soc/codecs/Kconfig b/sound/soc/codecs/Kconfig
-> index 061791e61907..14f3d09e7117 100644
-> --- a/sound/soc/codecs/Kconfig
-> +++ b/sound/soc/codecs/Kconfig
-> @@ -212,6 +212,7 @@ config SND_SOC_ALL_CODECS
->   	imply SND_SOC_RT1305
->   	imply SND_SOC_RT1308
->   	imply SND_SOC_RT5514
-> +	imply SND_SOC_RT5575
->   	imply SND_SOC_RT5616
->   	imply SND_SOC_RT5631
->   	imply SND_SOC_RT5640
-> @@ -1783,6 +1784,15 @@ config SND_SOC_RT5514_SPI_BUILTIN
->   	bool # force RT5514_SPI to be built-in to avoid link errors
->   	default SND_SOC_RT5514=y && SND_SOC_RT5514_SPI=m
->   
-> +config SND_SOC_RT5575
-> +	tristate "Realtek ALC5575 Codec - I2C"
-> +	depends on I2C
-> +
-> +config SND_SOC_RT5575_SPI
-> +	tristate "Realtek ALC5575 Codec - SPI"
-> +	depends on SPI_MASTER && I2C
-> +	depends on SND_SOC_RT5575
-> +
->   config SND_SOC_RT5616
->   	tristate "Realtek RT5616 CODEC"
->   	depends on I2C
-> diff --git a/sound/soc/codecs/Makefile b/sound/soc/codecs/Makefile
-> index d687d4f74363..a6406bc907a9 100644
-> --- a/sound/soc/codecs/Makefile
-> +++ b/sound/soc/codecs/Makefile
-> @@ -253,6 +253,8 @@ snd-soc-rt286-y := rt286.o
->   snd-soc-rt298-y := rt298.o
->   snd-soc-rt5514-y := rt5514.o
->   snd-soc-rt5514-spi-y := rt5514-spi.o
-> +snd-soc-rt5575-y := rt5575.o
-> +snd-soc-rt5575-$(CONFIG_SND_SOC_RT5575_SPI) += rt5575-spi.o
->   snd-soc-rt5616-y := rt5616.o
->   snd-soc-rt5631-y := rt5631.o
->   snd-soc-rt5640-y := rt5640.o
-> @@ -686,6 +688,7 @@ obj-$(CONFIG_SND_SOC_RT298)	+= snd-soc-rt298.o
->   obj-$(CONFIG_SND_SOC_RT5514)	+= snd-soc-rt5514.o
->   obj-$(CONFIG_SND_SOC_RT5514_SPI)	+= snd-soc-rt5514-spi.o
->   obj-$(CONFIG_SND_SOC_RT5514_SPI_BUILTIN)	+= snd-soc-rt5514-spi.o
-> +obj-$(CONFIG_SND_SOC_RT5575)	+= snd-soc-rt5575.o
->   obj-$(CONFIG_SND_SOC_RT5616)	+= snd-soc-rt5616.o
->   obj-$(CONFIG_SND_SOC_RT5631)	+= snd-soc-rt5631.o
->   obj-$(CONFIG_SND_SOC_RT5640)	+= snd-soc-rt5640.o
-> diff --git a/sound/soc/codecs/rt5575-spi.c b/sound/soc/codecs/rt5575-spi.c
-> new file mode 100644
-> index 000000000000..c8eadb2f59a6
-> --- /dev/null
-> +++ b/sound/soc/codecs/rt5575-spi.c
-> @@ -0,0 +1,119 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * rt5575-spi.c  --  ALC5575 SPI driver
-> + *
-> + * Copyright(c) 2025 Realtek Semiconductor Corp.
-> + *
-> + */
-> +
-> +#include <linux/firmware.h>
-> +#include <linux/of.h>
-> +#include <linux/spi/spi.h>
-> +
-> +#include "rt5575-spi.h"
-> +
-> +#define RT5575_SPI_CMD_BURST_WRITE	5
-> +#define RT5575_SPI_BUF_LEN		240
-> +
-> +struct rt5575_spi_burst_write {
-> +	u8 cmd;
-> +	u32 addr;
-> +	u8 data[RT5575_SPI_BUF_LEN];
-> +	u8 dummy;
-> +} __packed;
-> +
-> +struct spi_device *rt5575_spi_get_device(struct device *dev)
-> +{
-> +	struct device_node *spi_np;
-> +	struct spi_controller *ctlr;
+Commit 59a42707a094 ("arm64: tegra: Add interconnect properties for
+Tegra210") populated interconnect properties for Tegra210 and this is
+preventing the Tegra DRM driver from probing successfully. The following
+error is observed on boot ...
 
-Reorder to achieve reverse-christmas-tree notation. Waterfall to a 
-number of functions found in this patch.
+ drm drm: failed to initialize 54240000.dc: -517
 
-> +	struct spi_device *spi;
-> +	u32 cs;
-> +
-> +	spi_np = of_parse_phandle(dev->of_node, "spi-parent", 0);
-> +	if (!spi_np) {
-> +		dev_err(dev, "Failed to get spi-parent phandle\n");
-> +		return NULL;
-> +	}
-> +
-> +	if (of_property_read_u32_index(dev->of_node, "spi-parent", 1, &cs))
-> +		cs = 0;
-> +
-> +	if (cs >= ctlr->num_chipselect) {
-> +		dev_err(dev, "Chip select has wrong number %d\n", cs);
-> +		of_node_put(spi_np);
-> +		return NULL;
-> +	}
-> +
-> +	ctlr = of_find_spi_controller_by_node(spi_np);
-> +	of_node_put(spi_np);
-> +	if (!ctlr)
-> +		return NULL;
-> +
-> +	spi = spi_new_device(ctlr, &(struct spi_board_info){
-> +		.modalias = "rt5575",
-> +		.chip_select = cs,
-> +		.max_speed_hz = 10000000,
-> +	});
-> +
-> +	spi_controller_put(ctlr);
-> +	return spi;
-> +}
-> +
-> +/**
-> + * rt5575_spi_burst_write - Write data to SPI by rt5575 address.
-> + * @spi: SPI device.
-> + * @addr: Start address.
-> + * @txbuf: Data buffer for writing.
-> + * @len: Data length.
-> + *
-> + */
-> +static int rt5575_spi_burst_write(struct spi_device *spi, u32 addr, const u8 *txbuf,
-> +						size_t len)
+For now revert this change, until a fix is available.
 
-Alignment or, just make it one-liner. It fits the limit.
+Fixes: 59a42707a094 ("arm64: tegra: Add interconnect properties for Tegra210")
+Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+---
+ arch/arm64/boot/dts/nvidia/tegra210.dtsi | 24 ------------------------
+ 1 file changed, 24 deletions(-)
 
-> +{
-> +	struct rt5575_spi_burst_write buf = {
-> +		.cmd = RT5575_SPI_CMD_BURST_WRITE
+diff --git a/arch/arm64/boot/dts/nvidia/tegra210.dtsi b/arch/arm64/boot/dts/nvidia/tegra210.dtsi
+index 709da31d5785..137aa8375257 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra210.dtsi
++++ b/arch/arm64/boot/dts/nvidia/tegra210.dtsi
+@@ -202,19 +202,6 @@ dc@54200000 {
+ 
+ 			nvidia,outputs = <&dsia &dsib &sor0 &sor1>;
+ 			nvidia,head = <0>;
+-
+-			interconnects = <&mc TEGRA210_MC_DISPLAY0A &emc>,
+-					<&mc TEGRA210_MC_DISPLAY0B &emc>,
+-					<&mc TEGRA210_MC_DISPLAY0C &emc>,
+-					<&mc TEGRA210_MC_DISPLAYHC &emc>,
+-					<&mc TEGRA210_MC_DISPLAYD &emc>,
+-					<&mc TEGRA210_MC_DISPLAYT &emc>;
+-			interconnect-names = "wina",
+-					     "winb",
+-					     "winc",
+-					     "cursor",
+-					     "wind",
+-					     "wint";
+ 		};
+ 
+ 		dc@54240000 {
+@@ -230,15 +217,6 @@ dc@54240000 {
+ 
+ 			nvidia,outputs = <&dsia &dsib &sor0 &sor1>;
+ 			nvidia,head = <1>;
+-
+-			interconnects = <&mc TEGRA210_MC_DISPLAY0AB &emc>,
+-					<&mc TEGRA210_MC_DISPLAY0BB &emc>,
+-					<&mc TEGRA210_MC_DISPLAY0CB &emc>,
+-					<&mc TEGRA210_MC_DISPLAYHCB &emc>;
+-			interconnect-names = "wina",
+-					     "winb",
+-					     "winc",
+-					     "cursor";
+ 		};
+ 
+ 		dsia: dsi@54300000 {
+@@ -1052,7 +1030,6 @@ mc: memory-controller@70019000 {
+ 
+ 		#iommu-cells = <1>;
+ 		#reset-cells = <1>;
+-		#interconnect-cells = <1>;
+ 	};
+ 
+ 	emc: external-memory-controller@7001b000 {
+@@ -1066,7 +1043,6 @@ emc: external-memory-controller@7001b000 {
+ 		nvidia,memory-controller = <&mc>;
+ 		operating-points-v2 = <&emc_icc_dvfs_opp_table>;
+ 
+-		#interconnect-cells = <0>;
+ 		#cooling-cells = <2>;
+ 	};
+ 
+-- 
+2.43.0
 
-Missing comma at the end.
-
-> +	};
-> +	unsigned int end, offset = 0;
-> +
-> +	while (offset < len) {
-> +		if (offset + RT5575_SPI_BUF_LEN <= len)
-> +			end = RT5575_SPI_BUF_LEN;
-> +		else
-> +			end = len % RT5575_SPI_BUF_LEN;
-> +
-> +		buf.addr = cpu_to_le32(addr + offset);
-> +		memcpy(&buf.data, &txbuf[offset], end);
-> +		spi_write(spi, &buf, sizeof(buf));
-> +
-> +		offset += RT5575_SPI_BUF_LEN;
-> +	}
-> +
-> +	return 0;
-
-If you intend on ignoring result of spi_write()s, then I see no reason 
-why rt5575_spi_burst_write() shouldn't be a void function.
-
-> +}
-> +
-> +int rt5575_spi_fw_load(struct spi_device *spi)
-> +{
-> +	const struct firmware *firmware;
-> +	struct device *dev = &spi->dev;
-> +	static const char * const fw_path[] = {
-> +		"realtek/rt5575/rt5575_fw1.bin",
-> +		"realtek/rt5575/rt5575_fw2.bin",
-> +		"realtek/rt5575/rt5575_fw3.bin",
-> +		"realtek/rt5575/rt5575_fw4.bin"
-> +	};
-> +	static const u32 fw_addr[] = { 0x5f400000, 0x5f600000, 0x5f7fe000, 0x5f7ff000 };
-> +	int i, ret;
-> +
-> +	for (i = 0; i < ARRAY_SIZE(fw_addr); i++) {
-> +		ret = request_firmware(&firmware, fw_path[i], dev);
-
-So, in v8 or earlier the ordering of operations was different:
-
-	request_firmware(fw1);
-
-	regmap_write();
-	regmap_write();
-	regmap_write();
-
-	rt5575_spi_burst_write();
-	release_firmware(fw1);
-
-	/* Proceed with loop for the remaining fw2, fw3, fw4. */
-
-What changed that suddenly the ordering could be simplified?
-
-> +		if (!ret) {
-> +			rt5575_spi_burst_write(spi, fw_addr[i], firmware->data, firmware->size);
-> +			release_firmware(firmware);
-> +		} else {
-> +			dev_err(dev, "Request firmware failure: %d\n", ret);
-> +			return ret;
-> +		}
-
-Please refactor this construct. When facing else-return, favour 
-returning early to reduce indentation and make it easier to read the code.
-
-	if (ret) {
-		dev_err();
-		return ret;
-	}
-
-	rt5575_spi_burst_write();
-	release_firmware();
-
-Much better, isn't it?
-
-> +	}
-> +
-> +	return 0;
-> +}
-> diff --git a/sound/soc/codecs/rt5575-spi.h b/sound/soc/codecs/rt5575-spi.h
-> new file mode 100644
-> index 000000000000..3b296bcac9a6
-> --- /dev/null
-> +++ b/sound/soc/codecs/rt5575-spi.h
-> @@ -0,0 +1,26 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/*
-> + * rt5575-spi.h  --  ALC5575 SPI driver
-> + *
-> + * Copyright(c) 2025 Realtek Semiconductor Corp.
-> + *
-> + */
-> +
-> +#ifndef __RT5575_SPI_H__
-> +#define __RT5575_SPI_H__
-> +
-> +#if IS_ENABLED(CONFIG_SND_SOC_RT5575_SPI)
-> +struct spi_device *rt5575_spi_get_device(struct device *dev);
-> +int rt5575_spi_fw_load(struct spi_device *spi);
-> +#else
-> +static inline struct spi_device *rt5575_spi_get_device(struct device *dev)
-> +{
-> +	return NULL;
-> +}
-
-Missing newline.
-
-> +static inline int rt5575_spi_fw_load(struct spi_device *spi)
-> +{
-> +	return -EINVAL;
-> +}
-> +#endif
-> +
-> +#endif /* __RT5575_SPI_H__ */
-> diff --git a/sound/soc/codecs/rt5575.c b/sound/soc/codecs/rt5575.c
-> new file mode 100644
-> index 000000000000..c3a9ba22a90d
-> --- /dev/null
-> +++ b/sound/soc/codecs/rt5575.c
-> @@ -0,0 +1,359 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * rt5575.c  --  ALC5575 ALSA SoC audio component driver
-> + *
-> + * Copyright(c) 2025 Realtek Semiconductor Corp.
-> + *
-> + */
-> +
-> +#include <linux/i2c.h>
-> +#include <sound/soc.h>
-> +#include <sound/tlv.h>
-> +
-> +#include "rt5575.h"
-> +#include "rt5575-spi.h"
-
-(...)
-
-> +static int rt5575_i2c_read(void *context, unsigned int reg, unsigned int *val)
-> +{
-> +	struct i2c_client *client = context;
-> +	struct rt5575_priv *rt5575 = i2c_get_clientdata(client);
-> +
-> +	regmap_read(rt5575->dsp_regmap, reg | RT5575_DSP_MAPPING, val);
-> +
-> +	return 0;
-> +}
-> +
-> +static int rt5575_i2c_write(void *context, unsigned int reg, unsigned int val)
-> +{
-> +	struct i2c_client *client = context;
-> +	struct rt5575_priv *rt5575 = i2c_get_clientdata(client);
-> +
-> +	regmap_write(rt5575->dsp_regmap, reg | RT5575_DSP_MAPPING, val);
-> +
-> +	return 0;
-
-Not an expect in regmap, but I'd leave decision to the caller whether to 
-squelch an error or not.
-
-For both, rt5575_i2c_read()/write() I'd just return the corresponding 
-regmap_xxx() operation rather then '0'.
-
-> +}
-> +
-> +static const struct regmap_config rt5575_regmap = {
-> +	.reg_bits = 16,
-> +	.val_bits = 32,
-> +	.reg_stride = 4,
-> +	.max_register = 0xfffc,
-> +	.readable_reg = rt5575_readable_register,
-> +	.reg_read = rt5575_i2c_read,
-> +	.reg_write = rt5575_i2c_write,
-> +	.use_single_read = true,
-> +	.use_single_write = true,
-> +};
-> +
-> +static int rt5575_fw_load_by_spi(struct rt5575_priv *rt5575)
-> +{
-> +	struct i2c_client *i2c = rt5575->i2c;
-> +	struct spi_device *spi;
-> +	struct device *dev = &i2c->dev;
-> +	int ret;
-> +
-> +	spi = rt5575_spi_get_device(dev);
-> +	if (!spi) {
-> +		dev_warn(dev, "The spi-parent not described in the DTS\n"
-> +			      "The hardware configuration should be with built-in flash\n");
-> +
-> +		if (!IS_ENABLED(CONFIG_SND_SOC_RT5575_SPI))
-> +			dev_warn(dev, "If the spi-parent is set in the DTS and it is without built-in flash\n"
-> +				      "Please enable CONFIG_SND_SOC_RT5575_SPI\n");
-
-Does this mean we always get a warning, even in case when we're dealing 
-with non-SPI variant?
-
-> +
-> +		return -ENXIO;
-> +	}
-> +
-> +	regmap_write(rt5575->dsp_regmap, 0xfafafafa, 0x00000004);
-> +	regmap_write(rt5575->dsp_regmap, 0x18008064, 0x00000000);
-> +	regmap_write(rt5575->dsp_regmap, 0x18008068, 0x0002ffff);
-> +
-> +	ret = rt5575_spi_fw_load(spi);
-> +	if (ret) {
-> +		dev_err(dev, "Load firmware failure: %d\n", ret);
-> +		return -ENODEV;
-> +	}
-> +
-> +	regmap_write(rt5575->dsp_regmap, 0x18000000, 0x00000000);
-> +	regmap_update_bits(rt5575->regmap, RT5575_SW_INT, 1, 1);
-> +
-> +	regmap_read_poll_timeout(rt5575->regmap, RT5575_SW_INT, ret, !ret, 100000, 10000000);
-> +	if (ret) {
-> +		dev_err(dev, "Run firmware failure: %d\n", ret);
-> +		return -ENODEV;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int rt5575_i2c_probe(struct i2c_client *i2c)
-> +{
-> +	struct rt5575_priv *rt5575;
-> +	struct device *dev = &i2c->dev;
-> +	int ret, val;
-> +
-> +	rt5575 = devm_kzalloc(dev, sizeof(struct rt5575_priv), GFP_KERNEL);
-> +	if (!rt5575)
-> +		return -ENOMEM;
-> +
-> +	i2c_set_clientdata(i2c, rt5575);
-> +
-> +	rt5575->i2c = i2c;
-> +
-> +	rt5575->dsp_regmap = devm_regmap_init_i2c(i2c, &rt5575_dsp_regmap);
-> +	if (IS_ERR(rt5575->dsp_regmap)) {
-> +		ret = PTR_ERR(rt5575->dsp_regmap);
-> +		dev_err(dev, "Failed to allocate DSP register map: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	rt5575->regmap = devm_regmap_init(dev, NULL, i2c, &rt5575_regmap);
-> +	if (IS_ERR(rt5575->regmap)) {
-> +		ret = PTR_ERR(rt5575->regmap);
-> +		dev_err(dev, "Failed to allocate register map: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	regmap_read(rt5575->regmap, RT5575_ID, &val);
-> +	if (val != RT5575_DEVICE_ID) {
-> +		dev_err(dev, "Device with ID register %08x is not rt5575\n", val);
-> +		return -ENODEV;
-> +	}
-> +
-> +	regmap_read(rt5575->regmap, RT5575_ID_1, &val);
-> +	if (!val) {
-
-1. The 'RT5575_DEVICE_ID' check above fails, 'val' equals 
-RT5575_DEVICE_ID, non-zero.
-2. regmap_read(RT5575_ID_1) fails, let's skip the reasoning for now. 
-'val' remains unchanged.
-3. The '!val' check fails though nothing has been actually read, 'val' 
-could be simply invalid.
-
-What's the goal of this check? Shouldn't we be more precise when 
-checking the 'formal version'?
-
-> +		dev_err(dev, "This is not formal version\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	if (rt5575_fw_load_by_spi(rt5575) == -ENODEV)
-> +		return -ENODEV;
-
-Looks like a hack, not a real solution. Also, I'm surprised it's called 
-unconditionally - even when dealing with device with no SPI component.
-
-> +
-> +	return devm_snd_soc_register_component(dev, &rt5575_soc_component_dev, rt5575_dai,
-> +						ARRAY_SIZE(rt5575_dai));
-
-Alignment.
-
-> +}
-> +
-> +static const struct i2c_device_id rt5575_i2c_id[] = {
-> +	{ "rt5575" },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(i2c, rt5575_i2c_id);
-> +
-> +static const struct of_device_id rt5575_of_match[] = {
-> +	{ .compatible = "realtek,rt5575" },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, rt5575_of_match);
-> +
-> +static struct i2c_driver rt5575_i2c_driver = {
-> +	.driver = {
-> +		.name = "rt5575",
-> +		.owner = THIS_MODULE,
-> +		.of_match_table = rt5575_of_match,
-> +	},
-> +	.probe = rt5575_i2c_probe,
-> +	.id_table = rt5575_i2c_id,
-> +};
-> +module_i2c_driver(rt5575_i2c_driver);
-> +
-> +MODULE_DESCRIPTION("ASoC ALC5575 driver");
-> +MODULE_AUTHOR("Oder Chiou <oder_chiou@realtek.com>");
-> +MODULE_LICENSE("GPL");
 
