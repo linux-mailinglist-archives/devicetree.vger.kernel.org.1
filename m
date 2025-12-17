@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-247338-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247339-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44F0ECC7628
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 12:42:25 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B19ACC7A55
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 13:38:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 032AA3092F0D
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 11:40:28 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 3182B30681A6
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 12:35:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB92236BCF5;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D21D236BCFD;
 	Wed, 17 Dec 2025 10:19:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Ex1cl9zt"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="cAk8INtJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 104AC36BCDB;
-	Wed, 17 Dec 2025 10:19:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7109436BCCA;
+	Wed, 17 Dec 2025 10:19:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765966782; cv=none; b=ADm6T2hKaxvR5h0L2NBKNmQ7SbVqUvBB9MK4/AezEP/PgExaOk520gNQEGBwR0cN85GULJiG7uyITE9tbB5BPmqu2vyD6mbZrEDNZO6ELFNGxiMjkV2yiJnQekW0JIC8AqmTnBcz+k5HICOXZS7ovJ43Ina4pwmVOwyBMaT1vEY=
+	t=1765966782; cv=none; b=KedzviFyNcPwiFYYFXYH0R5/lQJgOSU6QMvn6AiHxiT0Pem1OQysrHtAc3G8a2W3siht2ajOPsP769TW/dog6vgUVSIMF+q+Rkp6dC8CnuWDV6S57dzCp4S8pPBrwgdLuxfDeLDML6zHrz16bkT7mzT47O7I7hxKUhJwmAx977E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1765966782; c=relaxed/simple;
-	bh=jC5+KdoqdVFQgOtEPuJi4tXUBsXqvexvaZVlr3SvnWo=;
+	bh=gqLoSDWv4cr26CDJ+gJOR8MLYYb12/Sg3eKXidGaIU0=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=mmSyPo3YKYZxsb6anV1eLMbi1yUsLCvvxWES8pvC7CZf7N1b1Yf2nW/wJggbnklJPY0IJhrDdixp9ysgQZOT3d6jJK6H2X4M1Zfdh9eP6Wl9rZk8OY+34nx8PRIzYtNN/v13YAXaM5KSYWuE1ioWVTMMrc9NuQ4V2vMV8JShZg4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Ex1cl9zt; arc=none smtp.client-ip=148.251.105.195
+	 In-Reply-To:To:Cc; b=p5NY4eLMxzNbFQe9n1MnCUWTnVy7KlTIXIs+H/jHmjVQ0m93guKsj31U9iRabHfjEqXZojhk09E9SjEvUIfjRHrm0CLA/9O1pL8/3ESg2ors35Fn/GC/r3EyRXWBaLk1DXxTZ9CP9aOB21zXaFPNwyuqnsCJac9/ZqH0LeLAx1k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=cAk8INtJ; arc=none smtp.client-ip=148.251.105.195
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1765966777;
-	bh=jC5+KdoqdVFQgOtEPuJi4tXUBsXqvexvaZVlr3SvnWo=;
+	s=mail; t=1765966778;
+	bh=gqLoSDWv4cr26CDJ+gJOR8MLYYb12/Sg3eKXidGaIU0=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=Ex1cl9zt4oNB1mZRj71tqKXBm5P6l4YZBNlQFq++F5h+dSdYv64BisGlDZdUgfrg4
-	 lmqEKxzzT3jtuS+eCr3GMJ8aqzmIp2N/l6HkmfmFUVtRC7D56j7hCyxUZM3nQrKXu/
-	 KUopx29a8BN9IP5awepcrcINOar/XLveipnVP1YdToMjuA78a3Uida0nDe4tgH3jrl
-	 a78ANREO9FuU7c7X/X76SZz2ct5UntR4PGr5yjzbNeOFTl/HEipzrnWuymbEHmCrbX
-	 dimDKyfYRVQRmg9CCVNL261tfNB4X6XMxlHnRUmlxyBKZweL/4uQ8POqzxMoxBgRZm
-	 Yb3SsifrLu71g==
+	b=cAk8INtJ10fE97TZGFrql0Q0hZPMTk7ue0iGSZvxa89bDF1dDNFQtN/LR2D0Zhk8y
+	 HoCTUewfVkyXKd29lIAt8+kCZ35L/9m57cLmF1zhk/CyazUqPSX8VnBmXUMIW5Hgis
+	 XCynkCw/FnHmIMuIp+TE9SwFyYbvTjGrkeshaiLHfgLF/IponcAaZI/6fgJgCYo0FP
+	 W3XKLfVGiuYeD/3OUMSdPZULM3+AZR5o2+S+P3zUNIMMuA4Q8UDfGQJkUIAs9PZXd7
+	 JlbkFXZa31THkABNFJhQHeHy9yhbg+RHVXJG8jnBY6PKbwZLLBlpJZJTouSmO9A7I7
+	 svRNcCg40sGYw==
 Received: from yukiji.home (amontpellier-657-1-116-247.w83-113.abo.wanadoo.fr [83.113.51.247])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: laeyraud)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id D081617E0C87;
-	Wed, 17 Dec 2025 11:19:36 +0100 (CET)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id B13E317E1146;
+	Wed, 17 Dec 2025 11:19:37 +0100 (CET)
 From: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-Date: Wed, 17 Dec 2025 11:19:00 +0100
-Subject: [PATCH v2 01/12] dt-bindings: phy: mediatek,hdmi-phy: Fix clock
- output names for MT8195
+Date: Wed, 17 Dec 2025 11:19:01 +0100
+Subject: [PATCH v2 02/12] dt-bindings: phy: mediatek,hdmi-phy: Add support
+ for MT8188 SoC
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,7 +58,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251217-mtk-genio-evk-hdmi-support-v2-1-a994976bb39a@collabora.com>
+Message-Id: <20251217-mtk-genio-evk-hdmi-support-v2-2-a994976bb39a@collabora.com>
 References: <20251217-mtk-genio-evk-hdmi-support-v2-0-a994976bb39a@collabora.com>
 In-Reply-To: <20251217-mtk-genio-evk-hdmi-support-v2-0-a994976bb39a@collabora.com>
 To: Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>, 
@@ -76,50 +76,37 @@ Cc: kernel@collabora.com, Krzysztof Kozlowski <krzk@kernel.org>,
  linux-kernel@vger.kernel.org, 
  Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1765966775; l=1504;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1765966775; l=1077;
  i=louisalexis.eyraud@collabora.com; s=20250113; h=from:subject:message-id;
- bh=5dxyFZEQPilPUnhA9Vm4qAcH//F/AqE/9KWYhCVl0Bk=;
- b=wS0uVYdevYYtQ8TODoFfPoPGRP5o7SOOEkQHWpg1mS2iAd6rda4UuotYnJ4+CwPRRIcfZVGJX
- ZFM2kG2w3tJCKjYEgxxibCz1gfseUEqSqQE/fT5/r5uo1sqeryX/plD
+ bh=gqLoSDWv4cr26CDJ+gJOR8MLYYb12/Sg3eKXidGaIU0=;
+ b=dkjnWJXAfZcZC1z74WVh6/Lub5XXCFeWY01+Hrw1baZdaesZ+NuS8nHD8Kj2wq9Gb9IvzbMp4
+ 9fIBi+a/2tGCyy33u0jnukUSN7m3WEHEPW+IwQgXQ+P8FHjARn5jvqM
 X-Developer-Key: i=louisalexis.eyraud@collabora.com; a=ed25519;
  pk=CHFBDB2Kqh4EHc6JIqFn69GhxJJAzc0Zr4e8QxtumuM=
 
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Add compatible string for the HDMI PHY IP on MT8188 SoC, that is
+compatible with the one found on MT8195 SoC.
 
-For all of the HDMI PHYs compatible with the one found on MT8195
-the output clock has a different datasheet name and specifically
-it is called "hdmi_txpll", differently from the older HDMI PHYs
-which output block is called "hdmitx_dig_cts".
-
-Replace clock output name string check by max item number one to allow
-the new name on all of the HDMI PHY IPs that are perfectly compatible
-with MT8195.
-
-[Louis-Alexis Eyraud: split patch, addressed previous feedback from
-mailing list, and reworded description]
-
-Fixes: c78fe548b062 ("dt-bindings: phy: mediatek: hdmi-phy: Add mt8195 compatible")
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
 ---
- Documentation/devicetree/bindings/phy/mediatek,hdmi-phy.yaml | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ Documentation/devicetree/bindings/phy/mediatek,hdmi-phy.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
 diff --git a/Documentation/devicetree/bindings/phy/mediatek,hdmi-phy.yaml b/Documentation/devicetree/bindings/phy/mediatek,hdmi-phy.yaml
-index f3a8b0b745d13ffc55d391570bff20830d925ed3..10f1d9326f18dba85b92b4c88f4c0f6cdddc4c25 100644
+index 10f1d9326f18dba85b92b4c88f4c0f6cdddc4c25..cd4ac42ee45e4648ed512f68f6f28d1f3f2e1116 100644
 --- a/Documentation/devicetree/bindings/phy/mediatek,hdmi-phy.yaml
 +++ b/Documentation/devicetree/bindings/phy/mediatek,hdmi-phy.yaml
-@@ -42,8 +42,7 @@ properties:
-       - const: pll_ref
- 
-   clock-output-names:
--    items:
--      - const: hdmitx_dig_cts
-+    maxItems: 1
- 
-   "#phy-cells":
-     const: 0
+@@ -26,6 +26,10 @@ properties:
+           - enum:
+               - mediatek,mt7623-hdmi-phy
+           - const: mediatek,mt2701-hdmi-phy
++      - items:
++          - enum:
++              - mediatek,mt8188-hdmi-phy
++          - const: mediatek,mt8195-hdmi-phy
+       - const: mediatek,mt2701-hdmi-phy
+       - const: mediatek,mt8173-hdmi-phy
+       - const: mediatek,mt8195-hdmi-phy
 
 -- 
 2.52.0
