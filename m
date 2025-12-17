@@ -1,175 +1,199 @@
-Return-Path: <devicetree+bounces-247303-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247304-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2227DCC6ABC
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 09:58:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D4BFCC6A8F
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 09:53:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8B04C30996CF
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 08:55:41 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C4290303D9C0
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 08:52:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E095342513;
-	Wed, 17 Dec 2025 08:49:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA3EE34A774;
+	Wed, 17 Dec 2025 08:52:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="G+uWYf/W"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="BoE1QrtK";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="LshYq+z8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx-relay96-hz2.antispameurope.com (mx-relay96-hz2.antispameurope.com [94.100.136.196])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2901A329E7A
-	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 08:49:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=94.100.136.196
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765961347; cv=pass; b=s+hyyP72rsvafjQq80U7EeADXIhZn82O2JV8EUkRP58DJscebMb3qyW/rC0DL9d1vTZYWZ+w6XVc+hX9SbYtTluPGL99AbbtRrwDge/NoYNO66MUAj6pNOF+4iyoUJ9VsINPsAv2du89s4XWGp79skYCaN+aVKkzQWW/Fn/LTV0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765961347; c=relaxed/simple;
-	bh=h1Ja/rSQIq1TWvNF38IFvW9sEAqOWuoSLE1OhJQnWqA=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=rZ7XQFRmJkYwJeDVQk5DOrDTl3kBi/WHcAh+NxfAkHeRKWiHe+xa0ZL62DxGwm8XpS2IcZvYi83L7Fr12qAodZKy7DqYiqvWnsEMnVh1JZGCH3e/B7p16Aw4fIvDhyCF0tKUcyDIsm/48xMg4rC4W/IOUKuVIkyvtjUOZFxOoy4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=G+uWYf/W; arc=pass smtp.client-ip=94.100.136.196
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-ARC-Authentication-Results: i=1; mx-gate96-hz2.hornetsecurity.com 1; spf=pass
- reason=mailfrom (ip=94.100.132.6, headerfrom=ew.tq-group.com)
- smtp.mailfrom=ew.tq-group.com
- smtp.helo=hmail-p-smtp01-out04-hz1.hornetsecurity.com; dmarc=pass
- header.from=ew.tq-group.com orig.disposition=pass
-ARC-Message-Signature: a=rsa-sha256;
- bh=e8+/cZk0H8N2WAzWr4PEnz6SuI6lU+scC72gDf6sJvg=; c=relaxed/relaxed;
- d=hornetsecurity.com; h=from:to:date:subject:mime-version:; i=1; s=hse1;
- t=1765961297;
- b=N+1kDsUyGby2zYRln6Z5bsUE6bLnYN161jPhYUEFWbFWk6j56VQRgrVmcR/P31fcFu4yEX0H
- 5l0DhfyEM5V+aNChU58Xz4e6ah6LeoIfKDPpViHJG6rtVSc5cGHpU1ZRPL0CPl6E5+B8yRgw3oc
- 4Jr08BMkZU4XRrQuHLvIxdvww+s4hQGu581Dch5VSmRXXdncs+dQrJ9GdWUbMrw2w7F95DBcPcV
- lXTCwbMW4gGT41Q8et1+NwNl6elRHBYjlkFXVAEBJGDznoYYiyqw0tQ3SEj6iGxeUmqBGDaEqQA
- q22FIbI3dHz83EwAnjW8waVyQFyEAkFIGuaZlmpyYyn0g==
-ARC-Seal: a=rsa-sha256; cv=none; d=hornetsecurity.com; i=1; s=hse1;
- t=1765961297;
- b=nscygIH30d9Ab//NirLn6Ut2JvXz2XVPHVUqPXfBkL95vEBPKWaJPWtjOnna9zsdUHe+jNP/
- Zrd3GpaCQ9Ku2PZkf0yOHjL2+NEn2Lq6TFuYZCc29SCLpAH/CRD1wYu3n76NbWdQ61HSLz1vD+y
- FSVt3wmLpxqqCIoWJB6QMYqTWY6KJae6U0xZccqRjvqWEYIU1TH+BcNCUd2jnLkNEeNhpF3CfXm
- oUdw6ldygMp6u5wv/mY+5fywCFkC/dPaIrJEwfPVLO1xhl2r17FdMSLb2Ew9wFgtKxvamFsnkYr
- ZM/ZiogCIIpFCeDu8+u+TFJrBldrKprzNem5wLM2zt0bA==
-Received: from he-nlb01-hz1.hornetsecurity.com ([94.100.132.6]) by mx-relay96-hz2.antispameurope.com;
- Wed, 17 Dec 2025 09:48:17 +0100
-Received: from steina-w.tq-net.de (host-82-135-125-110.customer.m-online.net [82.135.125.110])
-	(Authenticated sender: alexander.stein@ew.tq-group.com)
-	by hmail-p-smtp01-out04-hz1.hornetsecurity.com (Postfix) with ESMTPSA id 5FB5A220CD8;
-	Wed, 17 Dec 2025 09:48:09 +0100 (CET)
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
-	linux@ew.tq-group.com,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 1/1] arm64: dts: mb-smarc-2: Add PCIe support
-Date: Wed, 17 Dec 2025 09:48:04 +0100
-Message-ID: <20251217084806.41853-1-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.43.0
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64668328B5B
+	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 08:52:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1765961554; cv=none; b=juXWjob27CHbdlB6WEjxcQ+POgutMaMtGHcey2uF4dKeuwZvn32QD/K3AZdZFE+iVFApUhpbG23ZpEUgDY5m97km4VDZwGGKbQoQtNWXtlf3LIenWRwVmZjTzOl4QALsbos2mvdBX1gm+BfPlIcmrPqizgZWlEBMrx9WEKP158s=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1765961554; c=relaxed/simple;
+	bh=zG31ZDDK3P3Y+9nGe+SlkTBlHBz+s+y443iDZhxPtI8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=cZxvTvOlHGEXwRCjvyyupVrIgysK1X2/eF2ZUDabPW4rpU+ChrNdCkMFyUqV4w5YbphU79ygwwCJ3rD4PE+o42H4DJesO6PUjuaoTNSyB0pUcP2zAwH+Daq4L+iAjecL4c/wxFkK9uug7HF3BljuWMomDPfzaRiPV1TrhtPxTj8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=BoE1QrtK; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=LshYq+z8; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BH3FKX71215350
+	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 08:52:31 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	0lZHu0zP8AY39KyBo9sp8qu30vPSnqw8T8jcXq8Wpr0=; b=BoE1QrtK+5SjbELs
+	GPBrC448NlVtSFhugS7AiO74IccNYDDsC4PcMcaUWmJzWaBFbpJiIwVVJ6SSoXEi
+	f4BPVF/7C8IW0YGWiR+X7XMQ+XtMNgwsykU1pwraOaqlof8/T9Pe6Cx3aAmxHdbA
+	vel2sB3sjZxYtumyFBWZF/JGEBJAnQ+dvFe06zcPv1neOcj9PmmuClEEvfI4vmWQ
+	9Rt5LZxbpM6CvCFTOAf5rPq820HS7qlj56yFHc/t97BsKVSBrJY+EQ7GbnaGfIep
+	l2ZYEfovDZQ/HXyZXXU1cgl7p44rd75F02JuIHG3BMZ1ovvF8vw+7jvkJIpWUJll
+	7BJTNg==
+Received: from mail-oo1-f69.google.com (mail-oo1-f69.google.com [209.85.161.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b3b7g2jxx-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 08:52:30 +0000 (GMT)
+Received: by mail-oo1-f69.google.com with SMTP id 006d021491bc7-65b86bd5db6so1272747eaf.2
+        for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 00:52:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1765961550; x=1766566350; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0lZHu0zP8AY39KyBo9sp8qu30vPSnqw8T8jcXq8Wpr0=;
+        b=LshYq+z8bwjnhtdqP/0WlYt6XYEm0jRnJjFTqi5iEo4CNdq74JN//5G/YR1f9qj/xl
+         uBetjaAFrOhm8QyAZFXP6bNob1nZtVgkgj1/lBxbhRMguIE6HFv1GgXpVWH2J9KUrS5w
+         5K6XlaD29YeioqVkGBRKpt59lgeGmP/uEf3F2HhbNa0rl/pLUegMqT4k+ciQMKEMxS+T
+         rETr910MN464ZkUBgJyi0MBlwb38ENRUy6xyW7iqb+fF1NcvpVZ9QUWtqT4AOufcJ0MM
+         ebg0hvKfnWSa0iTTA/FAaNKe160eio5vGNhi1sqYf572O0L7VVEh9sAfOL9r2/3hXXh0
+         3iow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765961550; x=1766566350;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=0lZHu0zP8AY39KyBo9sp8qu30vPSnqw8T8jcXq8Wpr0=;
+        b=kTT9UCJoTHaCzGl1I3afTLVPaIx1YjZ8FExHFqZcfwBVutFLYMpzbv7mnFB9ekrwov
+         L/a939KhAd8gtMUet0yAhLvJiq8ok2kznp8nQB3IDs08cjXJHiIJGGP7Q6+EZSQ6LuqI
+         Qt/wnuQ1MCtXbjdwhPTNkkCJRQU09xSU9WmhrvSlo4h6Cla7jnl62WoE8a3oycryZdDn
+         IRY7N8sz3k/jLos3J8BbGoiPEL5OiGeHQi2zRkFgaRZP8DXRBQtqByc/OIOtvD/hfM0S
+         VJJqLbKUvl8/oReLoo0rG2N6oCHPI/iCZnwWc3BD5G69d1xz861LtDwY1AG0tfJa7Req
+         atgw==
+X-Forwarded-Encrypted: i=1; AJvYcCWhLhFNSmPC8LbsZ/gQHtVJIyIlSyR6SN4dAXMjZgYWlGTzp4bfcZW7z35D1HymHiigWDwNjvIbpHkY@vger.kernel.org
+X-Gm-Message-State: AOJu0YzvoOA8kqJHCXSxO+c6OIB03x1TXCE3gjtFFtEiyNTaxXpEI9Ff
+	1scabVtAonUiu6uZt6C5kdTrTkoXc/6CP7GSrv1E2KYvlw4zHJ3AG/RCrzB93RYlFtZ/Vg1ov1R
+	RVvTjAuJRHHMefoRYDfqR+LA/wlO88uegC3IRxlPcZdcoe4axR2ilLfYYpkU7bI3vd1Fk7Vdik5
+	a4sI5qnG0gmNbGzuXmSVLOGr1uKNfO3NEqFgPTR2o=
+X-Gm-Gg: AY/fxX61PfLYsNMVgPH1ZbgD6PcjWc+Cnwzcor/cwAVLb61/uNSvFn54j0hV11p+VJL
+	OD9PtuU8JkHH8C5QJQrI3dIrhzb0ywYwpfSBnXYa+E2rNh+JsDUw0uZzs2VuMMHhhuNJUBxOCuL
+	BckDZXmuzoAejsOapWqmMkewMy138Bq1T/50iHMOyVbaam7/DDC9oAlgltvLIEhv0b5CM=
+X-Received: by 2002:a05:6820:1987:b0:659:9a49:90c0 with SMTP id 006d021491bc7-65b451ee568mr7568574eaf.63.1765961550284;
+        Wed, 17 Dec 2025 00:52:30 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHtnLL3IuK8y7pqftlVXJ4xn5wbP+GPsuHHu7bSkjSTPXumGhvAiUyKkzFMIAYqgHnz64D4MjwSKhWE2LCDOKc=
+X-Received: by 2002:a05:6820:1987:b0:659:9a49:90c0 with SMTP id
+ 006d021491bc7-65b451ee568mr7568550eaf.63.1765961549888; Wed, 17 Dec 2025
+ 00:52:29 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-cloud-security-sender:alexander.stein@ew.tq-group.com
-X-cloud-security-recipient:devicetree@vger.kernel.org
-X-cloud-security-crypt: load encryption module
-X-cloud-security-Mailarchiv: E-Mail archived for: alexander.stein@ew.tq-group.com
-X-cloud-security-Mailarchivtype:outbound
-X-cloud-security-Virusscan:CLEAN
-X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on mx-relay96-hz2.antispameurope.com with 4dWSB20czCz1TMgh
-X-cloud-security-connect: he-nlb01-hz1.hornetsecurity.com[94.100.132.6], TLS=1, IP=94.100.132.6
-X-cloud-security-Digest:1eff63407a427bebdc6c421623ea4ad2
-X-cloud-security:scantime:2.164
-DKIM-Signature: a=rsa-sha256;
- bh=e8+/cZk0H8N2WAzWr4PEnz6SuI6lU+scC72gDf6sJvg=; c=relaxed/relaxed;
- d=ew.tq-group.com;
- h=content-type:mime-version:subject:from:to:message-id:date; s=hse1;
- t=1765961296; v=1;
- b=G+uWYf/WbEMzDmo4NrXd7Jruj2WMCblL80yOelBmhrYHJN+1IH7gx/ODI/OQW6vDtUaQy8NH
- o8z1s7zs/ihILZ1kIWJWEdX9oQLRFmgGnJyDdAGdKuVcHMeGK9bYuRwprJGgeM0nl2wVhrI79J3
- 0Z2keJcSZFY7svX3pgKG4IDkIB4oIo6sITZnU92WRsP57kyO5FgEjl61fbxBSaSRh6iNP7x5f6O
- d3+rlnhMrkD0IkL9GGjdXd+8K3dLgxzpAl/W4yQsS41nI3WcckojRCl7WYxLO0Sfgur8j5QU0yT
- 08p6RZvTaRgtBo6oFYsmBIIPY/mblzLebZmVKLfZi5zNQ==
+References: <20251216-firmware_managed_ep-v2-0-7a731327307f@oss.qualcomm.com>
+ <20251216-firmware_managed_ep-v2-1-7a731327307f@oss.qualcomm.com> <176589894648.2511603.9461849499751093485.robh@kernel.org>
+In-Reply-To: <176589894648.2511603.9461849499751093485.robh@kernel.org>
+From: Mrinmay Sarkar <mrinmay.sarkar@oss.qualcomm.com>
+Date: Wed, 17 Dec 2025 14:22:19 +0530
+X-Gm-Features: AQt7F2rECtOrhS1bZFzhQl40G4gW_mCmIgD8HnISW_4IDdXYwYsXpZifcb6GWwo
+Message-ID: <CAMyL0qNwZxysUGJu7YowPn2CpmdPrUwnCOeVjm_2M-ik4s+kgQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: PCI: qcom,pcie-ep-sa8255p: Document
+ firmware managed PCIe endpoint
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-pci@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        konrad.dybcio@oss.qualcomm.com, linux-arm-msm@vger.kernel.org,
+        quic_shazhuss@quicinc.com, Bjorn Helgaas <bhelgaas@google.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>,
+        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+        Rama Krishna <quic_ramkri@quicinc.com>, quic_vbadigan@quicinc.com,
+        Nitesh Gupta <quic_nitegupt@quicinc.com>,
+        Ayiluri Naga Rashmi <quic_nayiluri@quicinc.com>,
+        Bjorn Andersson <andersson@kernel.org>, devicetree@vger.kernel.org,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Proofpoint-ORIG-GUID: 4QCQ3Uzl5b7s8DnfY-RsX-EGHjcyaAaz
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjE3MDA2OSBTYWx0ZWRfX+/XVtqBMEWaW
+ 3X45pK72kKOTH8Hij8xmGitW1/cF6/dcS+N3L3y3e4va1c581tyVC6w+xceO3NXyXWqsyeQGGuQ
+ gKYA1hu3vF3htXMbRk14YxBV4oXBlZEt0R3Bt9b+i0UzQasVwVXnmYUoLLfJ/FNeyaonlh4XZe7
+ ZaSXUgnO6S7SO9RNNyEuC+ZGtXEAVZe2txKlueYftAqp6/0TlPJ0nQbrXUYMr0gncFY9GrrKF/d
+ P3DEvgC0oECtfOWVMMMRmZSYWPqdGs5zn+QXCB0Sv0/k4W3OV7IwbN4M8Lu7yXUoqlGhHU2c2C+
+ xuXV3TQus4IDVmigUonfhg0c6yR3p9aQPfMfCh+hF192IBnIgrBVwtwfYRJ4vBWAZonqJlTpwel
+ BpAigkkmtLm7hMs3fN/8FlJ8U1iEOQ==
+X-Proofpoint-GUID: 4QCQ3Uzl5b7s8DnfY-RsX-EGHjcyaAaz
+X-Authority-Analysis: v=2.4 cv=PbLyRyhd c=1 sm=1 tr=0 ts=69426f4e cx=c_pps
+ a=lVi5GcDxkcJcfCmEjVJoaw==:117 a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10
+ a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=QcnDgq45NsFIHwn4wVcA:9 a=QEXdDO2ut3YA:10 a=rBiNkAWo9uy_4UTK5NWh:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-17_01,2025-12-16_05,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 priorityscore=1501 spamscore=0 suspectscore=0 bulkscore=0
+ malwarescore=0 clxscore=1015 adultscore=0 lowpriorityscore=0 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512170069
 
-TQMa8XxS on MB-SMARC-2 supports mPCIe on X44.
+On Tue, Dec 16, 2025 at 8:59=E2=80=AFPM Rob Herring (Arm) <robh@kernel.org>=
+ wrote:
+>
+>
+> On Tue, 16 Dec 2025 19:19:17 +0530, Mrinmay Sarkar wrote:
+> > Document the required configuration to enable the PCIe Endpoint control=
+ler
+> > on SA8255p which is managed by firmware using power-domain based handli=
+ng.
+> >
+> > Signed-off-by: Mrinmay Sarkar <mrinmay.sarkar@oss.qualcomm.com>
+> > ---
+> >  .../bindings/pci/qcom,pcie-ep-sa8255p.yaml         | 110 +++++++++++++=
+++++++++
+> >  1 file changed, 110 insertions(+)
+> >
+>
+> My bot found errors running 'make dt_binding_check' on your patch:
+>
+> yamllint warnings/errors:
+>
+> dtschema/dtc warnings/errors:
+> Documentation/devicetree/bindings/pci/qcom,pcie-ep-sa8255p.example.dtb: /=
+example-0/soc/pcie-ep@1c10000: failed to match any schema with compatible: =
+['qcom,sa8255p-pcie-ep']
+>
+> doc reference errors (make refcheckdocs):
+>
+> See https://patchwork.kernel.org/project/devicetree/patch/20251216-firmwa=
+re_managed_ep-v2-1-7a731327307f@oss.qualcomm.com
+>
+> The base for the series is generally the latest rc1. A different dependen=
+cy
+> should be noted in *this* patch.
+>
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+>
+> pip3 install dtschema --upgrade
+>
+> Please check and re-submit after running the above command yourself. Note
+> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+> your schema. However, it must be unset to test all examples with your sch=
+ema.
+>
+Thanks Rob for sharing this.
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
- .../boot/dts/freescale/tqma8xxs-mb-smarc-2.dtsi    | 10 ++++++++++
- arch/arm64/boot/dts/freescale/tqma8xxs.dtsi        | 14 +++++++++++---
- 2 files changed, 21 insertions(+), 3 deletions(-)
+I already ran 'make dt_binding_check' but somehow I didn't see this error.
+Maybe I need to upgrade all the tools ..
 
-diff --git a/arch/arm64/boot/dts/freescale/tqma8xxs-mb-smarc-2.dtsi b/arch/arm64/boot/dts/freescale/tqma8xxs-mb-smarc-2.dtsi
-index 8bfe77113d64b..050ae23c4dc1e 100644
---- a/arch/arm64/boot/dts/freescale/tqma8xxs-mb-smarc-2.dtsi
-+++ b/arch/arm64/boot/dts/freescale/tqma8xxs-mb-smarc-2.dtsi
-@@ -126,6 +126,12 @@ &flexcan3 {
- 	status = "okay";
- };
- 
-+&hsio_phy {
-+	fsl,hsio-cfg = "pciea-x2-pcieb";
-+	fsl,refclk-pad-mode = "input";
-+	status = "okay";
-+};
-+
- &i2c0 {
- 	tlv320aic3x04: audio-codec@18 {
- 		compatible = "ti,tlv320aic32x4";
-@@ -156,6 +162,10 @@ &lpuart3 {
- 	status = "okay";
- };
- 
-+&pcieb {
-+	status = "okay";
-+};
-+
- &reg_sdvmmc {
- 	off-on-delay-us = <200000>;
- 	status = "okay";
-diff --git a/arch/arm64/boot/dts/freescale/tqma8xxs.dtsi b/arch/arm64/boot/dts/freescale/tqma8xxs.dtsi
-index ebf20d5b5df9c..bfc918f18d011 100644
---- a/arch/arm64/boot/dts/freescale/tqma8xxs.dtsi
-+++ b/arch/arm64/boot/dts/freescale/tqma8xxs.dtsi
-@@ -402,6 +402,14 @@ &mu1_m0 {
- 	status = "okay";
- };
- 
-+&pcieb {
-+	phys = <&hsio_phy 0 PHY_TYPE_PCIE 0>;
-+	phy-names = "pcie-phy";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_pcieb>;
-+	reset-gpio = <&lsio_gpio4 0 GPIO_ACTIVE_LOW>;
-+};
-+
- &sai1 {
- 	assigned-clocks = <&clk IMX_SC_R_AUDIO_PLL_0 IMX_SC_PM_CLK_PLL>,
- 			  <&clk IMX_SC_R_AUDIO_PLL_0 IMX_SC_PM_CLK_SLV_BUS>,
-@@ -646,9 +654,9 @@ pinctrl_i2c0_gpio_mipi_lvds0: mipi-lvds0-i2c0-gpiogrp {
- 	};
- 
- 	pinctrl_pcieb: pcieagrp {
--		fsl,pins = <IMX8QXP_PCIE_CTRL0_PERST_B_LSIO_GPIO4_IO00	0x06000041>,
--			   <IMX8QXP_PCIE_CTRL0_CLKREQ_B_LSIO_GPIO4_IO01	0x06000041>,
--			   <IMX8QXP_PCIE_CTRL0_WAKE_B_LSIO_GPIO4_IO02	0x04000041>;
-+		fsl,pins = <IMX8QXP_PCIE_CTRL0_PERST_B_LSIO_GPIO4_IO00		0x06000041>,
-+			   <IMX8QXP_PCIE_CTRL0_CLKREQ_B_HSIO_PCIE0_CLKREQ_B	0x06000041>,
-+			   <IMX8QXP_PCIE_CTRL0_WAKE_B_LSIO_GPIO4_IO02		0x04000041>;
- 	};
- 
- 	pinctrl_pwm_mipi_lvds0: mipi-lvds0-pwmgrp {
--- 
-2.43.0
+I will resolve this and submit again.
 
+Thanks,
+Mrinmay
 
