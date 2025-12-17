@@ -1,166 +1,184 @@
-Return-Path: <devicetree+bounces-247471-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247472-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 195AFCC82CA
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 15:26:29 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id F207DCC814C
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 15:09:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7A04B311C815
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 14:21:03 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 641893090DED
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 14:02:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DB0F34FF68;
-	Wed, 17 Dec 2025 13:43:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 779C336BCD1;
+	Wed, 17 Dec 2025 13:43:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="p3Rlr0+T"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="KcjPAu3n";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="c9v6XuD7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5DF234EF01
-	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 13:43:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46096366DB7
+	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 13:43:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765978983; cv=none; b=UvtA54HF3pWGEmvLDPQHp2bZ+bZBYZBrt63lqebsHXXM6+MkNyIh0U+C7KjI+gCQbShy0rQJqwMbXUKw9YGciKKM3276XpmhAzl6paHk5V5c6CYQm5svlfQpXTQnaeZokEAnicpH/rPWxuOPdhvZ5bWh/9kea2sfRTDQa+bjUSY=
+	t=1765978997; cv=none; b=O/f7xpXSqXvjI7A8BQuj5u3UssOJwyHqwgJJt7kTUIj5Q2/wyrPshuhJAFdLUL/oduuRY3CiuHdvih6Vadtyyfr1cEXbWUdWmAXTZO7ial/Y7V5v5F+Dx0q3YJxZAzuHInUfuW/Itj9iInGxYBQGr8ChpXJpJLilUIr8Q6WETDI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765978983; c=relaxed/simple;
-	bh=nre4+f/1qweJxFoeeHsRIflrATunEW5LWrhj6Pv/YRQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Ki9zisAFByHynU1EgFSbBT5NJ8fyhW3loLWzPsenL8oQkzP3CKWokdMfDg4HJ4Xzte750IY1VEL4MLjw1TpHiTilrerkoal9F8TH1qlI3p6a0dFhGYRNWTtlSsylDBMKWhXBLBhXcON9Ft+syCLPs9ytEUihuNNJb+XJIgtVwCk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=p3Rlr0+T; arc=none smtp.client-ip=209.85.167.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-5942bac322dso6223347e87.0
-        for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 05:43:00 -0800 (PST)
+	s=arc-20240116; t=1765978997; c=relaxed/simple;
+	bh=xzcy3HjWUqXX71bMT9BpZUGsDULODmY5SAKDf2KyML4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=kSCY0poFXwTWKso/ECMxlrOH3NFbN04fPzL9MAXq+JZZcpl/ZAlrPmq38xabrfh44tYYhXJ253Pp4mQuVLBMQekQSScgpF/Cu5AmkWEEbUaJty0jkbSigTceONaPT7HfDeFTi/8CSrb4QGIw/NCe1Ra+xUVapOCaOFpZInPZM+A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=KcjPAu3n; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=c9v6XuD7; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BHCKolu3048732
+	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 13:43:13 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=cdziwOSusQZFFmsDftNk4xkwlCTEsElfD6j
+	qGnoVzgs=; b=KcjPAu3nTvTGPBI5IuCIKSh7FcQSxEJXF0KRDkX3+15Zznlkya1
+	PyY62sD2NeNmTV3ly246H/yP2S4PTo6qkTuVHLyj17py67hnPMiGdGDs0K9cVxde
+	Rl52Lrf92W/7W/QrYofN9uQZr251ZitYVeBqWmoTBwok2zuywrah4EBk3JRKhV0y
+	XiJ+JekgnEByFL79rA1S52UjXf9bS3hC4cqEiTFOHS6M4jqWookQCFbb5f68RLHh
+	nIeJjdwO54QZS6sI/198V2pDICci1QHBJ1un4Yz7JdabCRH78JUrAdbIcP5ieBaR
+	vnvDdPjJ8X7J1WxJeCXvsz+lVYAUVdJmrSw==
+Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b3jgqa3rb-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 13:43:13 +0000 (GMT)
+Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-88a344b86f7so113958896d6.0
+        for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 05:43:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1765978979; x=1766583779; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=i+2rCMNUHkZI89lP4N4BumifdRKTsaBf6MC8t3850FA=;
-        b=p3Rlr0+T95LKZQayrzXYTvbUvv6N3iakcHQxpWx65eUd8+lUCwS9f/6Vq8MUTJdvlz
-         7HBLv9cPHp0cj23HbmJUS2Dh4U+l0qYdvF3aaPSH5JhrZ7YwOrobUVipOLHpwW7ccrIf
-         zJ+8xK/8D5t6y3s2jCWDJHgv/e+jJdAWR8rd3sUGUxoNuroOChb1flv7wxO4rM6o3+YN
-         9bffZEShBR52yarjv9mW5IuaDnM93Nl2nAyIZVXA1W7zJbGNr+KOAczd0O2ufav4PF0J
-         Zz8oMvmmVmyPwHwvBQtuaBJquDvPpGmglAzCfZ8Kc7HPVa437NOe0NjK+mIGVYzE6vk0
-         B10Q==
+        d=oss.qualcomm.com; s=google; t=1765978992; x=1766583792; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=cdziwOSusQZFFmsDftNk4xkwlCTEsElfD6jqGnoVzgs=;
+        b=c9v6XuD7xZHe+NpMrR1di8i6DqnGI+sbAt0wzjNHe9u1cmxQgkuU9Oq4KYeCzVPIUR
+         KD2tp0pkS5F1YgIaxy4/rXq/s6WKimiJ7FCkpaYDst8OFvvb0ci2UrIPPrcvOj6Hj+/g
+         n58an6ljsEUrxrkiRrlt01yxrpZgaixmr4c96JzN3GYrZXOuagVU6diWcT/AtPzTA6y/
+         HoJ0WlCPvCjXeVyyassO1UEVKFJtqHR0l6p+JIhCmqOWG61T0kB/sjIaNMXIZWrKLUbu
+         UGhFm3tS02Ew/aV3+V82554Qv7IbyTUthcQDCytZzXVBiFLIjA7E6FI78JxFq488Ustm
+         xrEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765978979; x=1766583779;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20230601; t=1765978992; x=1766583792;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=i+2rCMNUHkZI89lP4N4BumifdRKTsaBf6MC8t3850FA=;
-        b=uFNm3seEKSrqFyBbuXmplXY7qCbNoyX4EtdMb9ukk8CNIGTKxn+NpbjuSjtenb1Cqy
-         Rt+3dU0fp7UV5ofqX9gdZedk7uhZXTqygoUv5tNatJ1AzI2/wYDEZMI6yOQNBoiwsEMd
-         GL7lCV9Bv2hA+jSIs8c8sNgc9+K6SrUrrKnsY28xef7/CgcNBUDZUCiUOAYWnKmFU3qC
-         DlwDY3VzhnAZZkBh6BMLHNH4p5b2y6FwPvOAtXAbUYHZUW/6GyMbumIS5m8n5aVtP/Oh
-         XZTesCGr8fDt0dKk7uzgAPb4D3L0I+J21r4G6BC/xi2v1JXJWvF6CHmqx0NZ4lEB8XiJ
-         Qnpw==
-X-Forwarded-Encrypted: i=1; AJvYcCUIw92k/FMU2E7piarNoI6vEMfHmTKQIdyB3Vq+aZ06DvnLXAWthoFWZMEfu05R7RijZncf0VFTB8Vl@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyy7AxTvAjiy7FRzAA5qvwGVuaPxP0eFDP9neeCBzwUHP/DckfX
-	0L8MCMezoUJ9RJIDi2/VDD5D57CAcAPlXVR09gFULWA1BBj3JltlwTFHwBybL9T1O8JgEwy1p9m
-	ieyEBbFfDxROdK6Di/12JKYKDeTK9tRZ3i0HIrC8pMA==
-X-Gm-Gg: AY/fxX7SRVp5JEM3o7+SICKfx/fiqoVE6LkFvI9FbZ00kz/uJkeDCH1H9cpJjseA4xc
-	Gc0z4iGOdlDC9j288uYh6iOX11HCDNCwi6XB2ttxGMAQx28Ey1ETNOmCwKO8neE5Yr73/9EvJYi
-	wKoNU+aCeQN+fgKVUMeLKr1H4TeatT+IqvYWpjBwKQLGZmwFr/IQHunF2jGU2KLziXn/CJBFWry
-	SQJDA5727tokDjOBk/HYcYk61m24vJZPw0F3h0KjQXdL7rr54oasQLgrlNvrSBWFkcE/L4=
-X-Google-Smtp-Source: AGHT+IFQ7RFU2XYjhNpz4zPlGBfxB8IQy25jb9NHzoC5kJ0seGo5jh0pCCbvJquopiBKgSSVm6gg0z6EMwvFTEugGus=
-X-Received: by 2002:a05:6512:3a89:b0:598:f262:15c7 with SMTP id
- 2adb3069b0e04-598faa4d4c4mr4998838e87.25.1765978978821; Wed, 17 Dec 2025
- 05:42:58 -0800 (PST)
+        bh=cdziwOSusQZFFmsDftNk4xkwlCTEsElfD6jqGnoVzgs=;
+        b=MIyS37gOgh4GhKBFbDS+rvOTUU0AHxz0F1VDfbxUxfzIwQ+2PC/b+TF1NgazEjPRsT
+         Zmv+PXL55Hv2xmsH5a/B9QyduVC8rOR4Z3Lw/eaBawpNV/Pc0m3t6ZSZJKhw1qa6Ok+o
+         FP7YRj97ddKdITPxRqBMVHnxrsUfWKHqASo0J6U17NQivKNcyWOd5WRqQ8doWT3CJ3CY
+         wwOG/lh0aYJPEqFrt0BGPzEC7xEZsf8RQP1OX1q+3E1P02/o6ZZW2LuhmtI6HJTVFRqR
+         gexuuY3x7cabjw/tX6TuGObcI3bhmudbkoSCvDmnkWzlYrP2+56DA10bXhKcl9/KvqTf
+         tTUQ==
+X-Gm-Message-State: AOJu0YxmR3Ka4vOOL6HtDDqBXcKHxpnbBY9GK/bHKO6s9ZiWHTHK5nh1
+	W10DVOFbPFNbLfhqnNHOIsGLQeAMOYIEgTVdPbZG8im+ZS+7O5ASJJS/tLCX2zqzxgVEvx1yGnt
+	1ovnGsumH6rZjesDcpkA3NoLNCV9sONvIIvsCzd0H+03LFw2LW2Ie2nOeB7rhZ0fB
+X-Gm-Gg: AY/fxX7gcREcYqmq07sAhKN2D7FOQqe/TIWC4dOl0j7KwjrSPBCdohd+dsyic+aT70G
+	UrObIb/YAQ3dugxYVzHaBIMqk+xCmhPIWHwivEwL+tBZDLj2aSvBp6Pwc4YCTNPYumS4mSDnk7t
+	DuZh61WSzbaMc1PtsYb+oeeaASQgQAoLWSK+7EQM3BcqSgFWGYvWLKQ70JzICM01MdtHkcNy9+8
+	iIqstkIPLCOWkTD3qA4mQlka6lC08tZCHDoUZzcEnlquTYgLKBEVn/gHTotPzvsgEv7K0TTNvDk
+	/bYhoirJbP2ET6XU3rtmKzxie26L63mk4yv/rqu+wSMg0iyVbdEGHa+Rs5LgcG/gO9sESEm/kaV
+	4/P2sL2YegMn0WPFwxMw9RUJTCVAeQa0KL/XP
+X-Received: by 2002:a05:622a:1791:b0:4e6:ebe3:9403 with SMTP id d75a77b69052e-4f1d059d261mr218026671cf.41.1765978992314;
+        Wed, 17 Dec 2025 05:43:12 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGs5UKb7XzshQZgu3oZhlbIG5d/CYa5SbbpOYCX3AHnIMwcfk4nwbnQU4m5au02CHMdtcpjXQ==
+X-Received: by 2002:a05:622a:1791:b0:4e6:ebe3:9403 with SMTP id d75a77b69052e-4f1d059d261mr218026361cf.41.1765978991819;
+        Wed, 17 Dec 2025 05:43:11 -0800 (PST)
+Received: from brgl-qcom.home ([2a01:cb1d:dc:7e00:772b:e322:5e20:58e])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47bdc23c2b0sm38598635e9.15.2025.12.17.05.43.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 17 Dec 2025 05:43:11 -0800 (PST)
+From: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+To: Rob Herring <robh@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+Subject: [PATCH v2] of: replace strcmp_suffix() with strends()
+Date: Wed, 17 Dec 2025 14:43:08 +0100
+Message-ID: <20251217134308.33839-1-bartosz.golaszewski@oss.qualcomm.com>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251210-rz-sdio-mux-v3-0-ca628db56d60@solid-run.com>
-In-Reply-To: <20251210-rz-sdio-mux-v3-0-ca628db56d60@solid-run.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Wed, 17 Dec 2025 14:42:21 +0100
-X-Gm-Features: AQt7F2rn4fUAIJmNzeBvaDU3HopJ0wrtd_f0H7TRKpgHGGrU8bW-ugZfTBQ1TVc
-Message-ID: <CAPDyKFr7DCRs_E4VfrY9-NY8-bStT9oAZaYhUZDg_y3KEW9DWQ@mail.gmail.com>
-Subject: Re: [PATCH v3 0/6] mmc: host: renesas_sdhi_core: support configuring
- an optional sdio mux
-To: Josua Mayer <josua@solid-run.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Magnus Damm <magnus.damm@gmail.com>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
-	Marc Kleine-Budde <mkl@pengutronix.de>, Vincent Mailhol <mailhol@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, Peter Rosin <peda@axentia.se>, 
-	Aaro Koskinen <aaro.koskinen@iki.fi>, Andreas Kemnade <andreas@kemnade.info>, 
-	Kevin Hilman <khilman@baylibre.com>, Roger Quadros <rogerq@kernel.org>, 
-	Tony Lindgren <tony@atomide.com>, Vignesh R <vigneshr@ti.com>, 
-	Janusz Krzysztofik <jmkrzyszt@gmail.com>, Andi Shyti <andi.shyti@kernel.org>, 
-	Mikhail Anikin <mikhail.anikin@solid-run.com>, Yazan Shhady <yazan.shhady@solid-run.com>, 
-	Jon Nettleton <jon@solid-run.com>, linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	linux-can@vger.kernel.org, linux-phy@lists.infradead.org, 
-	linux-omap@vger.kernel.org, linux-i2c@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Authority-Analysis: v=2.4 cv=VLjQXtPX c=1 sm=1 tr=0 ts=6942b371 cx=c_pps
+ a=7E5Bxpl4vBhpaufnMqZlrw==:117 a=xqWC_Br6kY4A:10 a=wP3pNCr1ah4A:10
+ a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8
+ a=u7-1JQUhpAEVokYvez4A:9 a=pJ04lnu7RYOZP9TFuWaZ:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjE3MDEwNiBTYWx0ZWRfXznuxb1IQVjSJ
+ vFbYDK1ezK4MvBD8+1fepZjJgUkCuSazhcDACDINkWiSdhVGxo2hwh5l+iKMfABCo9gn7JHmbVC
+ 3DUGfk6MpqEBnpBbTCts8dZV99ffO1WB5UJhRxwvXv2KELm9/u+VOHV6rvnIKpoMD+fVy1y8x4s
+ Yu9FfXOFYcpdLrtvtCdbO0qxr/QywDPvzh73vMeDN1XZoKxsBRpl2DblRA3D/Rtj0kdKgpU26Ay
+ r94cHoEdz2IzbFnL82ti1cZVifF2Xe851WBO+asZ1irzi2t+tVlx4q7wbqb9r0fHtsc7GX65Bl5
+ YknyFfyO6jGWoyNFHHphHJrDzBJFvnArbFqeZLpdrF6xn/ItOcpr8lt0fIdKfhvNSqXW/h3ij+h
+ 5cC75ppxSmb6OwNLL9wf6H4H0Wg47g==
+X-Proofpoint-ORIG-GUID: v8lhDoG618xATDsxzDcWBZ0J1bVKKRZj
+X-Proofpoint-GUID: v8lhDoG618xATDsxzDcWBZ0J1bVKKRZj
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-17_01,2025-12-16_05,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 adultscore=0 suspectscore=0 bulkscore=0 malwarescore=0
+ priorityscore=1501 impostorscore=0 clxscore=1015 lowpriorityscore=0
+ phishscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
+ definitions=main-2512170106
 
-On Wed, 10 Dec 2025 at 18:39, Josua Mayer <josua@solid-run.com> wrote:
->
-> Some Renesas SoC based boards mux SD and eMMC on a single sdio
-> controller, exposing user control by dip switch and software control by
-> gpio.
->
-> Purpose is to simplify development and provisioning by selecting boot
-> media at power-on, and again before starting linux.
->
-> Add binding and driver support for linking a (gpio) mux to renesas sdio
-> controller.
->
-> Introduce generic helper functions for getting managed and selected
-> mux-state objects, and switch i2c-omap and phy-can-transceiver drivers.
->
-> Signed-off-by: Josua Mayer <josua@solid-run.com>
-> ---
-> Changes in v3:
-> - updated omap-i2c and phy-can-transceiver to use new helpers.
-> - created generic helper functions for getting managed optional mux-state.
->   (Reported-by: Rob Herring <robh@kernel.org>)
-> - picked up binding ack by Rob Herring.
-> - replaced use of "SDIO" with "SD/SDIO/eMMC" in binding document and
->   commit descriptions.
->   (Reported-by: Ulf Hansson <ulf.hansson@linaro.org>)
-> - Link to v2: https://lore.kernel.org/r/20251201-rz-sdio-mux-v2-0-bcb581b88dd7@solid-run.com
->
-> Changes in v2:
-> - dropped mux-controller node from dt binding example
->   (Reported-by: Conor Dooley <conor@kernel.org>
->    Reported-by: Krzysztof Kozlowski <krzk@kernel.org>)
-> - Link to v1: https://lore.kernel.org/r/20251128-rz-sdio-mux-v1-0-1ede318d160f@solid-run.com
->
-> ---
-> Josua Mayer (6):
->       phy: can-transceiver: rename temporary helper function to avoid conflict
->       mux: Add helper functions for getting optional and selected mux-state
->       phy: can-transceiver: drop temporary helper getting optional mux-state
->       i2c: omap: switch to new generic helper for getting selected mux-state
->       dt-bindings: mmc: renesas,sdhi: Add mux-states property
->       mmc: host: renesas_sdhi_core: support selecting an optional mux
->
->  .../devicetree/bindings/mmc/renesas,sdhi.yaml      |  6 ++
->  drivers/i2c/busses/i2c-omap.c                      | 19 ++----
->  drivers/mmc/host/Kconfig                           |  1 +
->  drivers/mmc/host/renesas_sdhi.h                    |  1 +
->  drivers/mmc/host/renesas_sdhi_core.c               | 16 +++++-
->  drivers/mux/core.c                                 | 67 +++++++++++++++++++---
->  drivers/phy/phy-can-transceiver.c                  | 10 ----
->  include/linux/mux/consumer.h                       |  4 ++
->  8 files changed, 89 insertions(+), 35 deletions(-)
-> ---
-> base-commit: 3a8660878839faadb4f1a6dd72c3179c1df56787
-> change-id: 20251128-rz-sdio-mux-acc5137f1618
->
-> Best regards,
-> --
-> Josua Mayer <josua@solid-run.com>
+string.h now provides strends() which fulfills the same role as the
+locally implemented strcmp_suffix(). Use it in of/property.c.
 
-Looks like this needs to go together or if someone can host the common
-parts via an immutable branch.
+Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+---
+Changes since v1:
+- strends() actually has inverted return value logic from
+  strcmp_suffix()
 
-Anyway, I am expecting some discussion or update for patch2 first.
+ drivers/of/property.c | 15 ++-------------
+ 1 file changed, 2 insertions(+), 13 deletions(-)
 
-Kind regards
-Uffe
+diff --git a/drivers/of/property.c b/drivers/of/property.c
+index 4e3524227720..ce5ada040d7e 100644
+--- a/drivers/of/property.c
++++ b/drivers/of/property.c
+@@ -1294,17 +1294,6 @@ static struct device_node *parse_##fname(struct device_node *np,	  \
+ 	return parse_prop_cells(np, prop_name, index, name, cells);	  \
+ }
+ 
+-static int strcmp_suffix(const char *str, const char *suffix)
+-{
+-	unsigned int len, suffix_len;
+-
+-	len = strlen(str);
+-	suffix_len = strlen(suffix);
+-	if (len <= suffix_len)
+-		return -1;
+-	return strcmp(str + len - suffix_len, suffix);
+-}
+-
+ /**
+  * parse_suffix_prop_cells - Suffix property parsing function for suppliers
+  *
+@@ -1331,7 +1320,7 @@ static struct device_node *parse_suffix_prop_cells(struct device_node *np,
+ {
+ 	struct of_phandle_args sup_args;
+ 
+-	if (strcmp_suffix(prop_name, suffix))
++	if (!strends(prop_name, suffix))
+ 		return NULL;
+ 
+ 	if (of_parse_phandle_with_args(np, prop_name, cells_name, index,
+@@ -1416,7 +1405,7 @@ DEFINE_SUFFIX_PROP(gpio, "-gpio", "#gpio-cells")
+ static struct device_node *parse_gpios(struct device_node *np,
+ 				       const char *prop_name, int index)
+ {
+-	if (!strcmp_suffix(prop_name, ",nr-gpios"))
++	if (strends(prop_name, ",nr-gpios"))
+ 		return NULL;
+ 
+ 	return parse_suffix_prop_cells(np, prop_name, index, "-gpios",
+-- 
+2.47.3
+
 
