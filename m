@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-247508-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247509-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A74E5CC85A7
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 16:12:04 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFBFACC845F
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 15:47:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 44386310B7D5
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 15:01:06 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8F39F30DA928
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 14:40:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AE5B341666;
-	Wed, 17 Dec 2025 14:24:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 147362D3755;
+	Wed, 17 Dec 2025 14:25:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="TdYjOgdF"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="tLykfCc8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A74E633C189
-	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 14:24:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C95F274659
+	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 14:25:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765981478; cv=none; b=pu3ol+/HT2s1RNvxbay1sYoZc6r0F0C+SSkI0Zsinuc3xqlDTsq0ST3jQZjuq9sG990bQL5VEydGdtxhVmW8fFn5CO86crkjyV451la+s3kW27T/AMtJTkUEb9QqsOmLov/mVuw1s4E8GGiWgDBdihYSg8sEoTnq9zHH1hlA42s=
+	t=1765981536; cv=none; b=h1rcugbJhPcjQxX4O9MisDLuuV7M4FZNVNf9T6nDMP2IQ0TM3n3VxG3YwbFzQAtOYJiHsberN6W/rwSPBMqWWprv8Yy0GOrhzwsBj4J7AfjpW2fmR03yTjpJp35guHiHCLns6//FsLj0EzSdU5cYeNt2mr3bARmb/0FVemO5Mbc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765981478; c=relaxed/simple;
-	bh=Y9vaXTtfZWhCmAnVWT3pAQnl6RRXrnexVJDFKBJ9Zl4=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:To:From:Subject:
-	 References:In-Reply-To; b=VEObhNKSYTwdYrHlHz5aTkM9KOJKlwmTobr1cnujyapipbchEgbf+v4khCx/0hho6OUrF1NINQSOo9wN9m0NkoMVBui0QgwBGgWr2ATpX5PmoJFPOVFzQ3jU5qwasZ/DS0o7/LttGKlagIqeOWEFlhM5C00F7adpb2Yciqe0Bn0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=TdYjOgdF; arc=none smtp.client-ip=185.246.85.4
+	s=arc-20240116; t=1765981536; c=relaxed/simple;
+	bh=UpSjMPZloR2vJxQ/a5NnnBEQ9wDc1ampwVJvFK8CxC0=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
+	 References:In-Reply-To; b=SjHs3EDc3vPD/x+9Kau5VqxLqu3IdJu1qpLqrz908HntbZAdYGRsHcBKM7E+gM5wlruFOQBknDYWkzPMUtRZgH8es4Hqs+YybImvcHcu/cne898K9Rnz+eDju/Y7ObkzX0d+bije4ZN50MLYiV9FbQALyQpVDCGa4jWbP8Af+kg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=tLykfCc8; arc=none smtp.client-ip=185.246.84.56
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 4876E4E41C63;
-	Wed, 17 Dec 2025 14:24:35 +0000 (UTC)
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 376321A2281;
+	Wed, 17 Dec 2025 14:25:32 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 16C2E6072F;
-	Wed, 17 Dec 2025 14:24:35 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 342EC102F0AD6;
-	Wed, 17 Dec 2025 15:24:29 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 0B0F86072F;
+	Wed, 17 Dec 2025 14:25:32 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 43D28102F0AD5;
+	Wed, 17 Dec 2025 15:25:22 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1765981473; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1765981526; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=Y9vaXTtfZWhCmAnVWT3pAQnl6RRXrnexVJDFKBJ9Zl4=;
-	b=TdYjOgdF+J0RWnB/UEFIn0wb78E0kXH4QwLsm5RlQBHVcgPxM2dQVTn6S7dZ2+KDaBRF96
-	IeaJvpZUBe5eNZO4S0fFdGHg3bSkB6Az9U9d7VNPPvzsoxDeOyNCeYMvDbSlWcxpud6wOF
-	HLAuFdf325iHVG2F2U3vohVsxVVNe5jNeMBVPo89/+WCjlhmk3hgTPYwXn9Zb2ho4yFumX
-	cf9TE8St6DF5TffhkOBbF8mH9mDfyEC7YBL/eJtjZA+PhSr53x++tRvT9NQXsiZivnNn5A
-	FPx8t2Z0g33+B6qrAsNPC7FRejf/GKnVFUDV5tW93Ks2F7AqQxDBePsUgT6nMA==
+	bh=pkkntko0/l/7BPDpuF0pf6izzdbRjFWASUNfjk/Qw38=;
+	b=tLykfCc8D14QMzo5lHXkB55+u0S5BekWKurrrTQ12TaKTXYK8xZuAYGpbBVu7BKd7zpYHW
+	tXQLY+2YvW43cq//zGcStslA6/n71lkD7YpA0n95OD0wogCaI3biW9gRcx7pLcIrrHoELh
+	9LFFGYw2ChnQ5bLoWJ7Wloc1qjihJ8Z9d1Giyn5ZbuaPI3y2C4JeA+6xqMxXeQQq9tumtY
+	HM5AMvd0UY0nevNYM4RQKMqUen6y5okHEsX33EBuk341kiXn1Glb2cErAZE4wvcSTNztFY
+	7Jtp3iBrD5XcHc6nFWZVZPvKLpJa93SnHfuoHAxry4c3uNuRmowK9ASxCFAvCA==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -54,8 +54,10 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Date: Wed, 17 Dec 2025 15:24:28 +0100
-Message-Id: <DF0K6MSS1DFB.N65T1V2RLN05@bootlin.com>
+Date: Wed, 17 Dec 2025 15:25:21 +0100
+Message-Id: <DF0K7B1PN30B.272AQ4V3PA162@bootlin.com>
+Subject: Re: [PATCH v2 11/20] drm/tilcdc: Rename external_encoder and
+ external_connector to encoder and connector
 Cc: "Markus Schneider-Pargmann" <msp@baylibre.com>, "Bajjuri Praneeth"
  <praneeth@ti.com>, "Louis Chauvet" <louis.chauvet@bootlin.com>, "Thomas
  Petazzoni" <thomas.petazzoni@bootlin.com>, "Miguel Gazquez"
@@ -76,19 +78,40 @@ To: "Kory Maincent (TI.com)" <kory.maincent@bootlin.com>, "Jyri Sarha"
  "Jonas Karlman" <jonas@kwiboo.se>, "Jernej Skrabec"
  <jernej.skrabec@gmail.com>
 From: "Luca Ceresoli" <luca.ceresoli@bootlin.com>
-Subject: Re: [PATCH v2 10/20] drm/tilcdc: Remove unused encoder and
- connector tracking arrays
 X-Mailer: aerc 0.20.1
 References: <20251211-feature_tilcdc-v2-0-f48bac3cd33e@bootlin.com>
- <20251211-feature_tilcdc-v2-10-f48bac3cd33e@bootlin.com>
-In-Reply-To: <20251211-feature_tilcdc-v2-10-f48bac3cd33e@bootlin.com>
+ <20251211-feature_tilcdc-v2-11-f48bac3cd33e@bootlin.com>
+In-Reply-To: <20251211-feature_tilcdc-v2-11-f48bac3cd33e@bootlin.com>
 X-Last-TLS-Session-Version: TLSv1.3
 
 On Thu Dec 11, 2025 at 5:38 PM CET, Kory Maincent (TI.com) wrote:
-> The num_encoders/encoders and num_connectors/connectors arrays in
-> tilcdc_drm_private are never populated or used by the driver.
+> Remove the "external_" prefix from encoder and connector members in the
+> tilcdc driver. These are internal driver structures and the "external"
+> naming is misleading. The simpler names better reflect that these are
+> the primary encoder and connector managed by this driver.
+>
+> Also rename tilcdc_attach_external_device() to tilcdc_encoder_create()
+> for consistency and to better describe the function's purpose.
 >
 > Signed-off-by: Kory Maincent (TI.com) <kory.maincent@bootlin.com>
+
+[...]
+
+> @@ -65,13 +65,13 @@ int tilcdc_attach_external_device(struct drm_device *=
+ddev)
+>  	else if (ret)
+>  		return ret;
+>
+> -	priv->external_encoder =3D devm_kzalloc(ddev->dev,
+> -					      sizeof(*priv->external_encoder),
+> -					      GFP_KERNEL);
+> -	if (!priv->external_encoder)
+> +	priv->encoder =3D devm_kzalloc(ddev->dev,
+> +				     sizeof(*priv->encoder),
+> +				     GFP_KERNEL);
+
+It would be nice to rewrap this and other lines that would now probably fit
+in 100 chars. But not that important, so with or without that:
 
 Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
 
