@@ -1,141 +1,94 @@
-Return-Path: <devicetree+bounces-247253-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247260-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89861CC6457
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 07:35:16 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41735CC6648
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 08:44:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 0448F3039FD0
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 06:35:03 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id F38CE30DB487
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 07:40:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A407B315D3F;
-	Wed, 17 Dec 2025 06:35:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E232133EAFE;
+	Wed, 17 Dec 2025 07:33:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="Ly4FPhxG"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=emfend.at header.i=@emfend.at header.b="JzcildxI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+Received: from lx20.hoststar.hosting (lx20.hoststar.hosting [168.119.41.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB19F314A7F;
-	Wed, 17 Dec 2025 06:34:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E60333E371;
+	Wed, 17 Dec 2025 07:33:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=168.119.41.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765953297; cv=none; b=eSopcEbk6IXiKZ2M8sHxH356819Q9Dt/UjYoamnJTR378Tve+H3+qbcIogkVbt5aSWW+1kkKHEVsCZOwgnpyMjZDi3sJj3DX/RMyPSf8/fQr7tg+EaiVn7ZBhybruBEV1nXPfQItmfdtHoSkPdPlC6vHq/Yj+xFH/WaJHtS5ZNU=
+	t=1765956785; cv=none; b=ZYeJzgJgvaVygPzhjJKdrLYwbFcB+5jqWaayzHDebQZgBQNDE4GGp4C/mcasX1qkwxMsobk5bl7AQH4Fxu1kROJGRIyv2CSzneuR3N9Mq7eU6nJ0bzsm3mW4ztsrVyaCl7Ji+7nPtfjmQ3LOz3J31fDCIMtySdmMMdd8Es2xPXU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765953297; c=relaxed/simple;
-	bh=I60O0gXMPyR9kAZBitzz3X4RdYftgEhOU2VjbxfzZbc=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=bvgNSst462cLHhqHSRSyEfizMoQD3u4sUE/2B6tmYusqXnRO3+xGWbYEeWFO0hgGcZ8cOFz7X+4UwTuUZFCFJqBDfZeg7d4iU/pVDcaXbLUH7VN5TMaZtR6mRgvAIpvO5qS5kN92JKMOxUKa99N0iWzI9lPMr3rmNoIFscSg6hM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=reject dis=none) header.from=mediatek.corp-partner.google.com; spf=fail smtp.mailfrom=mediatek.corp-partner.google.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=Ly4FPhxG; arc=none smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=reject dis=none) header.from=mediatek.corp-partner.google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=mediatek.corp-partner.google.com
-X-UUID: 777ca824db1211f0b2bf0b349165d6e0-20251217
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=U26zkVH5d+38dGjc9TpfhT1XgnH0NEu83IWC3L9CNRg=;
-	b=Ly4FPhxGFVkV7/oLlmXX5lTQRZjLKr1XIP7GK8LrChOUWPqw1vKf4BoO7ewMvEUtoThtHaRbAFdquuenUJZa6ff+WZyo7wlQgPowTu+yqZmnBd5z6uvh7xusItKPCANC3vEY3ktRA9Q4SRlsC+mX3iXGzhz+WclJNB1PYLB3q2Q=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.6,REQID:22e063e4-85b1-4bf1-a664-a1a3facdc503,IP:0,UR
-	L:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
-	elease,TS:0
-X-CID-META: VersionHash:a9d874c,CLOUDID:b93288c6-8a73-4871-aac2-7b886d064f36,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:81|82|102|888|898,TC:-5,Content:0|15
-	|50,EDM:-3,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,
-	OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 2,SSN|SDN
-X-CID-BAS: 2,SSN|SDN,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: 777ca824db1211f0b2bf0b349165d6e0-20251217
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
-	(envelope-from <xiaoshun.xu@mediatek.corp-partner.google.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 2129783388; Wed, 17 Dec 2025 14:34:40 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Wed, 17 Dec 2025 14:34:39 +0800
-Received: from mtksitap99.mediatek.inc (10.233.130.16) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.2562.29 via Frontend Transport; Wed, 17 Dec 2025 14:34:39 +0800
-From: Xiaoshun Xu <xiaoshun.xu@mediatek.corp-partner.google.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
-	<matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, Xiaoshun Xu
-	<xiaoshun.xu@mediatek.com>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
-	Sirius Wang <sirius.wang@mediatek.com>, Vince-wl Liu
-	<vince-wl.liu@mediatek.com>,
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH v2 4/4] soc: mediatek: mtk-devapc: refine devapc interrupt handler
-Date: Wed, 17 Dec 2025 14:34:13 +0800
-Message-ID: <20251217063429.1157084-5-xiaoshun.xu@mediatek.corp-partner.google.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20251217063429.1157084-1-xiaoshun.xu@mediatek.corp-partner.google.com>
-References: <20251217063429.1157084-1-xiaoshun.xu@mediatek.corp-partner.google.com>
+	s=arc-20240116; t=1765956785; c=relaxed/simple;
+	bh=ULVZe8rtj/kVw6eMiuJ3+YF2+r9T6slmKP8Ml5Gjqr8=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Z2Tes0CAowRMrtY/jXJOApB4W/q2wjk5frQFV9D+h4XaqeNuh7wtHbTZmQgk2BUGurtJr4E43l1j4+i1L2s1jaMpMdmPs9HIo8tFFVR6626qE8JoKReszZ/Ol3HdRG60YAWXdOTaFlFi26l2ZltDfQLYPR8NZfff8enXJ+y3Wok=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=emfend.at; spf=pass smtp.mailfrom=emfend.at; dkim=pass (1024-bit key) header.d=emfend.at header.i=@emfend.at header.b=JzcildxI; arc=none smtp.client-ip=168.119.41.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=emfend.at
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=emfend.at
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=emfend.at;
+	 s=mail; h=Cc:To:Content-Transfer-Encoding:Content-Type:MIME-Version:
+	Message-Id:Date:Subject:From:Sender:Reply-To:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=uYag+waXNsN5EZQZZINBQSyGkMb9oF8+wzlxHMer1pE=; b=JzcildxIelPPE9DOkfgJS4NTmf
+	n0kErtLimHWvTssFmGkLoTtYBZbCbzYy4HOl53ihfawt97FK1vQ99q1r57lMYarhS2nT/5ITouxy/
+	HeKoOk8ICExjrqSzW50qXJYxZhycpB0q1ldj4GCKw1xivauwZD6mmo4b9jhSIm6fKgHU=;
+Received: from 194-208-208-245.tele.net ([194.208.208.245]:58335 helo=[127.0.1.1])
+	by lx20.hoststar.hosting with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.93)
+	(envelope-from <matthias.fend@emfend.at>)
+	id 1vVlbl-00DjfJ-Di; Wed, 17 Dec 2025 08:06:01 +0100
+From: Matthias Fend <matthias.fend@emfend.at>
+Subject: [PATCH 0/3] drivers: media: imx283 extensions
+Date: Wed, 17 Dec 2025 08:05:59 +0100
+Message-Id: <20251217-imx283-ext-v1-0-906a762f592d@emfend.at>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFdWQmkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1NDI0Mz3czcCiMLY93UihJdU0szi0QzU4uUpFQzJaCGgqLUtMwKsGHRsbW
+ 1AKv0tzhcAAAA
+X-Change-ID: 20251216-imx283-ext-5968a658dbe6
+To: Kieran Bingham <kieran.bingham@ideasonboard.com>, 
+ Umang Jain <uajain@igalia.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Matthias Fend <matthias.fend@emfend.at>
+X-Mailer: b4 0.14.2
+X-Spam-Score: 
+X-Spam-Bar: 
+X-Spam-Report: 
 
+Add support for selecting the MIPI clock mode (continuous, non-continuous)
+and general register debugging.
 
-External email : Please do not click links or open attachments until you ha=
-ve verified the sender or the content.
-
-
-From: Xiaoshun Xu <xiaoshun.xu@mediatek.com>
-
-Because the violation IRQ uses a while loop, it might cause the
-system to remain in the interrupt handler indefinitely. We are
-currently optimizing this part of the process to handle only 20
-violations for debug violation issues, and then exit the loop
-
-Signed-off-by: Xiaoshun Xu <xiaoshun.xu@mediatek.com>
+Signed-off-by: Matthias Fend <matthias.fend@emfend.at>
 ---
- drivers/soc/mediatek/mtk-devapc.c | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+Matthias Fend (3):
+      media: dt-bindings: imx283: add clock-noncontinuous
+      media: i2c: imx283: add support for non-continuous MIPI clock mode
+      media: i2c: imx283: implement {g,s}_register
 
-diff --git a/drivers/soc/mediatek/mtk-devapc.c b/drivers/soc/mediatek/mtk-d=
-evapc.c
-index 61628b941d92..ea38086c5554 100644
---- a/drivers/soc/mediatek/mtk-devapc.c
-+++ b/drivers/soc/mediatek/mtk-devapc.c
-@@ -12,6 +12,7 @@
- #include <linux/of_irq.h>
- #include <linux/of_address.h>
+ .../devicetree/bindings/media/i2c/sony,imx283.yaml |  2 +
+ drivers/media/i2c/imx283.c                         | 56 ++++++++++++++++++++++
+ 2 files changed, 58 insertions(+)
+---
+base-commit: f7231cff1f3ff8259bef02dc4999bc132abf29cf
+change-id: 20251216-imx283-ext-5968a658dbe6
 
-+#define MAX_VIO_NUM 20
- #define VIO_MOD_TO_REG_IND(m)  ((m) / 32)
- #define VIO_MOD_TO_REG_OFF(m)  ((m) % 32)
-
-@@ -234,13 +235,18 @@ static void devapc_extract_vio_dbg(struct mtk_devapc_=
-context *ctx)
-  */
- static irqreturn_t devapc_violation_irq(int irq_number, void *data)
- {
-+       u32 vio_num =3D 0;
-        struct mtk_devapc_context *ctx =3D data;
-
--       while (devapc_sync_vio_dbg(ctx))
-+       mask_module_irq(ctx, true);
-+
-+       for (vio_num =3D 0; (vio_num < MAX_VIO_NUM) && (devapc_sync_vio_dbg=
-(ctx)); ++vio_num)
-                devapc_extract_vio_dbg(ctx);
-
-        clear_vio_status(ctx);
-
-+       mask_module_irq(ctx, false);
-+
-        return IRQ_HANDLED;
- }
-
---
-2.45.2
+Best regards,
+-- 
+Matthias Fend <matthias.fend@emfend.at>
 
 
