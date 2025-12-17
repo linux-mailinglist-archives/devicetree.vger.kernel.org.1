@@ -1,82 +1,77 @@
-Return-Path: <devicetree+bounces-247293-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247292-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1746CC69B1
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 09:36:38 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10189CC6963
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 09:31:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DABC8304AC8F
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 08:31:26 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E426E3009487
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 08:31:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 312E025C80D;
-	Wed, 17 Dec 2025 08:31:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87E9B25B1FC;
+	Wed, 17 Dec 2025 08:31:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="X2Kg35ig"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YATqAVZQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF4B12765D3;
-	Wed, 17 Dec 2025 08:31:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C79D1F19A;
+	Wed, 17 Dec 2025 08:31:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765960286; cv=none; b=o/XXpBUACGZAwPVuje1l7/gazrpvxKaPwl9e2aFnCOUR+chBCA2S1ZAmyMVIrYbfmUMxFlLXCFq4GZ8osRFMymr7AEApSSkP0+h9IXmtFeMdhVFggTGiAkNmTmLJYn0bDhkyqd0J7d0xZM1oTtSzFOi5fyWEPg28w5b+VjhNK/k=
+	t=1765960278; cv=none; b=OCPx55etzHXUbdfegW+0DvbUQP5/9EGOwLR7HOCb9taROfcSKLn7yLl5zS4E9E8Vq0eS/CJML0sDssADoWPh3LA0gMzka2PPBmhVuHm7IP3BiWCP+uf3FD38QHuSOhnT8WuscDrW+ngEmYbePYOgta269oZQpYtbN4BHlybnRzU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765960286; c=relaxed/simple;
-	bh=bKrtFr1RQGqQzcKndzltvJM4/uk1G6pXlyCk922Cg2w=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=XY5oS2ZkETw4+jKKRJaxv1ORdRMprXPSQsyGRyC3dC2pKj4bC6LRQCQYT3ggVOD9aYfOaMyLX7d0dxKVK7C91t7NK1kOzcuRn+4Bl+whjKrsVrPGyXkH2yFPlS1AbjHVd5h7Ln0+uvH329EFU0G8C2ql73Sme9levsEujSJy1gw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=X2Kg35ig; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1765960275;
-	bh=1wYrbfZXZh7/scKLy3xbaCZxrm00VHqIIzOcEqNZUpE=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date;
-	b=X2Kg35igSxKpsjL8aK8/Htu0f0qjfdhWw8i6M6+waNxAEC2djTGcmXwTZvwbPB72N
-	 Tr9HGIuY9zdCTpouj4IMDAiYBToAFU6N48x9o77txNHsdsb7gtFUPOEglcL2FjLDDF
-	 U4afLnP6sr1oNFg4g5Y+xqg7SnXNSpbOLcyd76DSSSZBIx2NQV5CebAH3rgg6tz0D4
-	 93uuyUDsGowxvqPVaAveI5knAey1SaG/ni6LQa//yuhbn8aSqT0zoG/c+gm6Z9ekI7
-	 4lVSgVtpLxHaBkDhyzPd3+6KwmhUZAg+JepV6tEFt1kduAaVIigUm6icz1w+sv/acz
-	 ReR/yJ0lHlj/Q==
-Received: from [127.0.1.1] (unknown [180.150.112.216])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 6C1337DEAD;
-	Wed, 17 Dec 2025 16:31:15 +0800 (AWST)
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
- joel@jms.id.au, Cosmo Chou <chou.cosmo@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
- cosmo.chou@quantatw.com
-In-Reply-To: <20251217023938.445721-1-chou.cosmo@gmail.com>
-References: <20251217023938.445721-1-chou.cosmo@gmail.com>
-Subject: Re: [PATCH v2 0/5] ARM: dts: aspeed: bletchley: Fix dt-schema
- warnings
-Message-Id: <176596027534.2875246.12913980516498879452.b4-ty@codeconstruct.com.au>
-Date: Wed, 17 Dec 2025 19:01:15 +1030
+	s=arc-20240116; t=1765960278; c=relaxed/simple;
+	bh=ryoAGCrbNL6MiCN+uo1T2w6mNoskaai3T4G0+EvUCEQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NwSqUseTwlg3Y1oLNrkX0t5PmnT11I7cAXdSvfRX7Ise7n4rQc1/ykb/E/g04hFy+sZhopnzaDnrSIjtXN3aIilOMe0M3LafrCYBehxHTSSCvn5zbNRYfKKjR/X7PxyeSWRaGIF7L/3FangHt8k4rhxf9UI0Ee2v1sY7Qy0yQ+8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YATqAVZQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B8A4C4CEF5;
+	Wed, 17 Dec 2025 08:31:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1765960277;
+	bh=ryoAGCrbNL6MiCN+uo1T2w6mNoskaai3T4G0+EvUCEQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=YATqAVZQRwof4ZvZmVY5lQYranH3I3lQayPyfpORo8kXGYqD+e1+aTdlqvGmjpxjO
+	 5FWcL7dHALOF9Zr16+VTZraexeUuIc6fkykhZC6RSx1p8J3JUU0/acah1lkUyj+O50
+	 eyNnZLW4fPhaZ3urptadO9ndOsIGqGqNpeGwtyO6XqZHRWguCeDXXf5Jzok/rVFW2c
+	 luPrjAiq7ByNNDzVZjOKBIzlNijqnEnPUbX8J5DSZy9tqRL9OeibyU6C0E5dk727qS
+	 /xwy8zFBkZu5KTn69PDgT5RSAzY0bzMUmbQ74BosQRJsLLl4OWPxjfYSyQVIENFYsz
+	 P9TedzWILIafw==
+Date: Wed, 17 Dec 2025 09:31:15 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+	Heiko Stuebner <heiko@sntech.de>, kernel@collabora.com, linux-input@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v2 1/4] dt-bindings: input: adc-keys: allow
+ linux,input-type property
+Message-ID: <20251217-tough-ultra-junglefowl-f1a9ae@quoll>
+References: <20251215-rock4d-audio-v2-0-82a61de39b4c@collabora.com>
+ <20251215-rock4d-audio-v2-1-82a61de39b4c@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.3
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20251215-rock4d-audio-v2-1-82a61de39b4c@collabora.com>
 
-On Wed, 17 Dec 2025 10:39:33 +0800, Cosmo Chou wrote:
-> This series fixes dt-schema validation warnings by using generic node
-> names, correcting GPIO property suffixes, and removing unsupported
-> properties. No functional changes.
-> 
-> Changes in v2:
-> - Split single patch into 5 separate patches by change type
-> 
-> [...]
+On Mon, Dec 15, 2025 at 01:29:29PM +0100, Nicolas Frattaroli wrote:
+> adc-keys, unlike gpio-keys, does not allow linux,input-type as a valid
+> property. This makes it impossible to model devices that have ADC inputs
+> that should generate switch events.
 
-Thanks, I've applied this to the BMC tree.
+The solution is to use unevaluatedProps instead, which also allows
+dropping other properties.
 
--- 
-Andrew Jeffery <andrew@codeconstruct.com.au>
+Best regards,
+Krzysztof
 
 
