@@ -1,160 +1,156 @@
-Return-Path: <devicetree+bounces-247439-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247441-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DD9ECC7C6A
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 14:15:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E645ACC80F8
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 15:04:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4966B31678BA
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 13:05:04 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8C48B310BC63
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 13:57:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9480D3491C2;
-	Wed, 17 Dec 2025 13:01:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D97621ABA2;
+	Wed, 17 Dec 2025 13:07:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="g+Qp6wO0";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="T7dvgoAS"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b="wHgMmUg2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from server.couthit.com (server.couthit.com [162.240.164.96])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C02F346A06
-	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 13:01:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FFB3359FB8;
+	Wed, 17 Dec 2025 13:07:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.240.164.96
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765976488; cv=none; b=utAx7GA0WYHjsRJWe9X/yeHpis2OrG5FoKl3KDovqrtcswW3Vt597hPsvhJVzAuf02lNks6RUzpbs7p5SJvzaK8toB7qHLJnKHT3AZT75nsq5lA4cswZsAoiXJSR0lfG1CRpCT4Woc8yymqlvm7/RAQRhmljmECRJIwvL9gZ64s=
+	t=1765976879; cv=none; b=FKohPsrYw+pDl+0V9RhuxFRtaOayo60O0GXKsSrQdn95yuR5OxfnUAK4l/xmNV3aGym2c1lGJAI2pJ7lma3vqtjdFXgjHjkz6XXliCwwtFCUZb071ukJSqQoOBXxCujtjHVf+rgCyLKpQaldM1DfBal+hKhVEXrvUtZ0MXvNSa8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765976488; c=relaxed/simple;
-	bh=A1C1DVw2kYKq12/0q2dzzBwvYL0KxPDN6q1KBWi9EjQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=s1Xbs7qPP2unLv5xoohimbposCZopQt7UsXV+IqRUc4pzS52fprZZedjFVIVGhuT53KpoGUqGq+FBA7GGmsRE5Xl+pnhyVuMxg1CGbbNUr33iAnrNE4Cmw60McrhZoya149wmVkd9D2cyBZpgez0dNjV8YnBDjWGGiB7sYG9oUk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=g+Qp6wO0; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=T7dvgoAS; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BHCKpgN3000646
-	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 13:01:26 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	uLspVCdAk3EWHEmP/9FH9J41h2/QBcWk/TBEt+Di6/w=; b=g+Qp6wO0RzGOqaUg
-	hAeFK1pwCExQq6JSF+9lJJqwnWhaATJIWJOQcrXtGzf19c/xenrWfjS5GMoFmNXR
-	MzWCGMzr+jNWpGDPCSiZspoopyuRCWHm8qk9EAibULqLYkRKfnDkBPnvVz5PcCUA
-	AGWbeR0EUnEuIBTnUP9YEJlEgvm8kA2bEHTuDKQFY000GoImLn1J/bIJAABXaEwg
-	+Rtdue1qz9b44cSEgFekfbHltJzvaxLoBC0hYunaLnejh37DyiMbwaAsNAmYHED3
-	V43kbGhQX82mSogSk83wy2ffTvqSliv0yC3DkPTJr6d1+OVDDjvDrm+1pBiBXhja
-	hHFE8g==
-Received: from mail-oa1-f71.google.com (mail-oa1-f71.google.com [209.85.160.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b3n331mk9-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 13:01:25 +0000 (GMT)
-Received: by mail-oa1-f71.google.com with SMTP id 586e51a60fabf-3f578b2a975so1072941fac.3
-        for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 05:01:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1765976485; x=1766581285; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=uLspVCdAk3EWHEmP/9FH9J41h2/QBcWk/TBEt+Di6/w=;
-        b=T7dvgoASnTyQF6U1GXKuknUYG3PUp24E5VBUMQpGHd/vDVQQ9OJHTigK37AmKTb6E9
-         7kNsA9W3eoh9P8LDkvE6fofP/QAeqMocJPoIfPKcAFc3vPprZ22w9ApYXGV8pHtD1Msd
-         gsQcDrfN689mAkanGmBpShDv/Q+CkjTjruCd/luR+iSfEw6MwgxovHWOcqzyZInwP1w7
-         OcYV/teKGptb87s6joecydgLwGeNDL1hnKtQlJiVq9wYgewA1rv+OW3tBHbZ0vkO6ZyR
-         s26YdfgBJeuZFXXwHhC6MT98tUkjXI8yrKDzDo95fXf5WXdDCMIUqZ4LiCU1ZW3BFtkN
-         cQPg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765976485; x=1766581285;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=uLspVCdAk3EWHEmP/9FH9J41h2/QBcWk/TBEt+Di6/w=;
-        b=nq1RKLkkNa8veFzzdeIdKixAFaYRWonTDu7PHTVSyzeD1zpFzjgriLjSoz+MhoZTfq
-         9PiWtsdQrwzXG42kD17HN4o0JuacnABSgV4RsQUnhh9O5GN2uIs4h3KzwUTn1Y1KGuN/
-         up1i14aI6S7fxai3R/LmQXZju3SbmyB37qHWwXSUgal8aZbWu3grglVN955UV0YlTdXo
-         TzBlkc7xlMY3KxnOTUIGTCkoTYt9hXgmu2ZhMbs2rcV621Q0/Jui85wzKqfXp64XZBmF
-         6z90dtPPdcQ9+QESlB0lizCAXyrFTAQXqw2i9ZpBs3rBDjBIn0leg4mt2de3Mxg6A6ck
-         DUkg==
-X-Forwarded-Encrypted: i=1; AJvYcCU9yHRGzLdDrT8XERIFcs7fGdtEWU4Ql5K9JNEE8oWRnt7wv6Ms6eGPCGa74qNO33gGVVYV3/GW3Ah+@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz94r3sLr3lfUeLAm5ESqRbALP1vLv/7un1MnL/fDKCbVBXZavr
-	aIEZat79vkZjfxB79hWLHJ8UTlbk2MlOl3QczhgpzCUs2bkEcSyl19t1yNquwhdat5+MllLDBBU
-	pCrCX9pyJYI7IUqsWqpQMo2TRv7m+OLHD/HtXBpqZkpEk7qES+b3FY9SBmmVfsHWY
-X-Gm-Gg: AY/fxX78zst+GXy2M4oXezuGKUjU9D/46n3BoyuWRKxSMTFp3eZc7leow9xcio5CIUY
-	1Y+HfXSPbY8WBrPU2xo2yWLcrUQdbzAwQ0hRpeR3pRP5cKRrXLnU6CR0l0HCiE2h866+jsNYChl
-	rhfSdUMwT7+fhX62wnhxtvLuN3/nXcJmeIap4Q6HnG/x9nwHyMLenL0/F2EmDtZCnDSJA2vKiKs
-	9MRr8Xr4uxOz37WEWAnObpVu8agkV/BvtTXa5zWVH9U4R7HQBY9/GzRHrEXV/WB3D7IDWF2LjfY
-	cVwBVn81kz0FoUYbUrlZPzIkq2YQ68I4dB6JHM+HeFqcUSfuCk39sx+RKZRw7ji4B2W7hBd5FzC
-	tzO/JLvu2oOp6EWHzoeyI46c03RIwXASGLJ2V+/cf+1a44SuJS+EnmzIXfu2d9Y37nA==
-X-Received: by 2002:a4a:be83:0:b0:65c:f660:57c0 with SMTP id 006d021491bc7-65cf6605d27mr246378eaf.1.1765976484824;
-        Wed, 17 Dec 2025 05:01:24 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFfXurB2tcNJ3nbjzskhO5vlvJezsbyatg1yvX7UfLKzmMg1RdCpvpJB188Epc3uzojFyltZw==
-X-Received: by 2002:a4a:be83:0:b0:65c:f660:57c0 with SMTP id 006d021491bc7-65cf6605d27mr246337eaf.1.1765976484138;
-        Wed, 17 Dec 2025 05:01:24 -0800 (PST)
-Received: from [192.168.119.72] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-64b3f56b6a0sm2386349a12.29.2025.12.17.05.01.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 Dec 2025 05:01:22 -0800 (PST)
-Message-ID: <1bdf4195-f344-42c0-9ee0-042291fa6f26@oss.qualcomm.com>
-Date: Wed, 17 Dec 2025 14:01:19 +0100
+	s=arc-20240116; t=1765976879; c=relaxed/simple;
+	bh=lP4PhQCxCm6BBgsF/P7b1oNE6B09HGWn+J/scX2pYVA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=fi+FnbPTVWd2yqPPORBPr02pwaSDslARU93o7XCmnPirLEZohUKBgdcA+rmJPPoFSzGkNV46hnNZ47lrpyJRS74dVnvWpzEZX7xqmovVjkQgeCFRQG2Tfdh2hjoR0aEZEkOKAtpVMhqlyMTjV7RTnPQ3XTQGBqQnhw5KAh6U1Gw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=couthit.com; spf=pass smtp.mailfrom=couthit.com; dkim=pass (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b=wHgMmUg2; arc=none smtp.client-ip=162.240.164.96
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=couthit.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=couthit.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=couthit.com
+	; s=default; h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject
+	:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=hrA26kJxYisBVzZPyZptSjyhMEOXDeL2AaDHESx8+qw=; b=wHgMmUg2/vORK81JwuoyhzjOEZ
+	bx7IEfQy4kElFdCWLfY87m85atAtQluQSanj3fLodg5dZbhLhc+jI4b+RbyKXUlULvzPMc8IONZbm
+	IJESalaZun0iXmt220jwIfKgCMK1SL6NmvIp8pmxo9KcQt1GReRn5f9J7Y55tiTiRWCk5V6uqIBul
+	dpv/QF1mWZPogKNiddx7kTdq7kcjP/WA66hJhpq2LkK7gKvw3GbfoD7CAroFQDMhUiVrGO1R99lEy
+	te6bhguRhYgMKLHAXEMbdjXGzIRH6nCNwNJ6diR+DDPK2gBxdiY6rmc/3T6RnCcVeTQgZsloiv06i
+	Gzq/E5jQ==;
+Received: from [122.175.9.182] (port=62422 helo=cypher.couthit.local)
+	by server.couthit.com with esmtpa (Exim 4.98.1)
+	(envelope-from <parvathi@couthit.com>)
+	id 1vVrFx-0000000FG2C-0TAi;
+	Wed, 17 Dec 2025 08:07:53 -0500
+From: Parvathi Pudi <parvathi@couthit.com>
+To: nm@ti.com,
+	vigneshr@ti.com,
+	afd@ti.com,
+	khilman@baylibre.com,
+	rogerq@kernel.org,
+	tony@atomide.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	richardcochran@gmail.com,
+	aaro.koskinen@iki.fi,
+	andreas@kemnade.info
+Cc: andrew@lunn.ch,
+	linux-omap@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org,
+	danishanwar@ti.com,
+	pratheesh@ti.com,
+	j-rameshbabu@ti.com,
+	praneeth@ti.com,
+	srk@ti.com,
+	rogerq@ti.com,
+	krishna@couthit.com,
+	mohan@couthit.com,
+	pmohan@couthit.com,
+	basharath@couthit.com,
+	parvathi@couthit.com
+Subject: [RESEND PATCH v3 0/2] Add support for ICSSM Ethernet on AM57x, AM437x, and AM335x
+Date: Wed, 17 Dec 2025 18:34:37 +0530
+Message-ID: <20251217130715.1327138-1-parvathi@couthit.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 5/5] arm64: dts: qcom: kaanapali: Add base QRD board
-To: Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
-        trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-References: <20251215-knp-dts-v4-0-1541bebeb89f@oss.qualcomm.com>
- <20251215-knp-dts-v4-5-1541bebeb89f@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20251215-knp-dts-v4-5-1541bebeb89f@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjE3MDEwMSBTYWx0ZWRfX7o6oHHq0pcRb
- nr0I9KVtTf/O6UJZ28+nmXlZrUI5YHmkuDjTdGRiR5ghfAfCBrWhJ+ZBH2aMVkbgzmV5oKqjL9q
- F6kbw0deAzJJEhWjowhDBeXuBp3n38mefU6k5AliOR/ld+J4h4L9xktVOnhrCEslex3dLA91wzd
- PigrE/WH9i8SBKkuPuvKqYSbmspUR8eKxzeOHdURmykR8oTdgMMY7f0V7L7u8JcFByYCsUevo6Q
- Tqqk40IjD7FmGeiaOLWNoAmQjRUyChtfbSHgFf5eeNIklGvRCTivqratz87VUiQeDWwOn1a3WAy
- 7NmjldNZ5lNuZn/4VdsuPRk1z71f+PotBq2IeWUpgV24xsc43qrUYgVIWRjd6gRrnqi2qdXzODC
- L0ta3Avkpw6pllTAT3+y709eWGhuiw==
-X-Proofpoint-GUID: Tlspk9Q43Jlyo03lGxbN9UsGmgI_wY6d
-X-Proofpoint-ORIG-GUID: Tlspk9Q43Jlyo03lGxbN9UsGmgI_wY6d
-X-Authority-Analysis: v=2.4 cv=U82fzOru c=1 sm=1 tr=0 ts=6942a9a5 cx=c_pps
- a=CWtnpBpaoqyeOyNyJ5EW7Q==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=Ii0bGMNOlrnFhgTP-T8A:9
- a=QEXdDO2ut3YA:10 a=zgiPjhLxNE0A:10 a=vh23qwtRXIYOdz9xvnmn:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-17_01,2025-12-16_05,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 bulkscore=0 impostorscore=0 malwarescore=0 priorityscore=1501
- adultscore=0 clxscore=1015 spamscore=0 lowpriorityscore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512170101
+Content-Transfer-Encoding: 8bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - server.couthit.com
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - couthit.com
+X-Get-Message-Sender-Via: server.couthit.com: authenticated_id: parvathi@couthit.com
+X-Authenticated-Sender: server.couthit.com: parvathi@couthit.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 
-On 12/15/25 10:07 AM, Jingyi Wang wrote:
-> Add initial support for Qualcomm Kaanapali QRD board which enables
-> SD Card, UFS and booting to shell with UART console.
-> 
-> Written with help from Jishnu Prakash (added RPMhPD nodes), Nitin Rawat
-> (added ufs) and Manish Pandey (added SD Card).
-> 
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-> ---
+Hi,
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+This series adds support for ICSSM Ethernet on Texas Instruments AM57x,
+AM437x and AM335x platforms.
 
-Konrad
+The AM57x and AM437x IDKs support two PRU-ICSS instances, each consisting
+of two PRU cores, with each PRU-ICSS instance capable of handling two
+Ethernet ports. For the AM57x platforms, the PRU-ICSS2 node has been added
+to the am57xx-idk-common.dtsi, while for the AM437x platform, the PRU-ICSS1
+node has been added to the am437x-idk-evm.dts.
+
+The AM335x ICE features a single PRU-ICSS instance. A new device tree overlay
+source file, am335x-icev2-prueth-overlay.dtso, has been introduced to define the
+PRU-ICSS node for the AM335x platform.
+
+This is v3 of the patch series [v1]. It addresses comments made on [v2].
+This series is based on the latest next-20251217 linux-next.
+
+Changes from v2 to v3 :
+
+*) Addressed Andrew Davis's comment by placing PRUETH nodes in a new overlay file
+am335x-icev2-prueth-overlay.dtso.
+*) Rebased the series on latest linux-next.
+
+Changes from v1 to v2 :
+
+*) Addressed Andrew Lunn's comment on patch 1 of the series.
+*) Addressed MD Danish Anwar comment on patch 1 of the series.
+*) Rebased the series on latest linux-next.
+
+[v1] https://lore.kernel.org/all/20251013125401.1435486-1-parvathi@couthit.com/
+[v2] https://lore.kernel.org/all/20251103124820.1679167-1-parvathi@couthit.com/
+
+Thanks and Regards,
+Parvathi.
+
+Roger Quadros (2):
+  arm: dts: ti: Adds device tree nodes for PRU Cores, IEP and eCAP
+    modules of PRU-ICSS2 Instance.
+  arm: dts: ti: Adds support for AM335x and AM437x
+
+ arch/arm/boot/dts/ti/omap/Makefile            |   5 +
+ .../ti/omap/am335x-icev2-prueth-overlay.dtso  | 190 ++++++++++++++++++
+ arch/arm/boot/dts/ti/omap/am33xx-l4.dtsi      |  11 +
+ arch/arm/boot/dts/ti/omap/am4372.dtsi         |  11 +
+ arch/arm/boot/dts/ti/omap/am437x-idk-evm.dts  | 137 ++++++++++++-
+ arch/arm/boot/dts/ti/omap/am57-pruss.dtsi     |  11 +
+ arch/arm/boot/dts/ti/omap/am571x-idk.dts      |   8 +-
+ arch/arm/boot/dts/ti/omap/am572x-idk.dts      |  10 +-
+ arch/arm/boot/dts/ti/omap/am574x-idk.dts      |  10 +-
+ .../boot/dts/ti/omap/am57xx-idk-common.dtsi   |  61 ++++++
+ 10 files changed, 444 insertions(+), 10 deletions(-)
+ create mode 100644 arch/arm/boot/dts/ti/omap/am335x-icev2-prueth-overlay.dtso
+
+-- 
+2.43.0
+
 
