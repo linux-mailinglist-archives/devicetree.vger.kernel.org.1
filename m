@@ -1,304 +1,286 @@
-Return-Path: <devicetree+bounces-247233-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247223-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84CCBCC5E13
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 04:16:39 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC116CC5C97
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 03:38:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 67503303A180
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 03:16:14 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 91369300E155
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 02:38:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0932C263F38;
-	Wed, 17 Dec 2025 03:16:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA11226F293;
+	Wed, 17 Dec 2025 02:38:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mail.toshiba header.i=nobuhiro.iwamatsu.x90@mail.toshiba header.b="L1oqNXeG"
+	dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b="m/8hhH9/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mo-csw-fb.securemx.jp (mo-csw-fb1120.securemx.jp [210.130.202.128])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from TYDPR03CU002.outbound.protection.outlook.com (mail-japaneastazon11023109.outbound.protection.outlook.com [52.101.127.109])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34E158F7D;
-	Wed, 17 Dec 2025 03:16:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=210.130.202.128
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 960812417D1;
+	Wed, 17 Dec 2025 02:38:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.127.109
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765941373; cv=fail; b=c4ryKjxB/UuFhHThUYNtPLGhVNUmMRwYUuvEbFCK97JylkgXBYwVHkmkh8pss81X5QAV8hxV/xg2eTQzYij0G4EMYbmiIMy+gvbhEXcfzE1EKCME6E1tzs1aEfKSO86CE66eaw3EWvks7CWUiYFdZGLdA79CxQ6FxXci/oN6qog=
+	t=1765939122; cv=fail; b=hUAKJEknwMu6KCMszANWyR8DR9guMnRslCzf3u2chE8TwWPDG/a3vANAS/Jgox4fFhoQB/LyLqOljP0CIJQOIWg3AyoHPw6dSGkaNyUBsYxoh30aXp3quyXkuAdPHO3jPQu+ga83lnslGDBKeTWaePVtky+GuNdMDDZ4MershpI=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765941373; c=relaxed/simple;
-	bh=VFmXqTSeUNSdIscNWy/JxVan+IE0NT4SNT3O2enTIx8=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=tpJ4FIxpES2T2AO0RjouZXnQcR6JOoSpBPU2cs8WkvEQX0aDcXuDFznB5Ac4RdKTiQ0LOQjawnx2QJV/0jbZuZ7clsGP7emXy56FR0DWMBsoQ68+s3LSjBX8fybNF9h7ua31lTi70zCmPvtueCVtjB/ROqa+ImHh5Wy2k6onfrY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mail.toshiba; spf=pass smtp.mailfrom=mail.toshiba; dkim=pass (2048-bit key) header.d=mail.toshiba header.i=nobuhiro.iwamatsu.x90@mail.toshiba header.b=L1oqNXeG; arc=fail smtp.client-ip=210.130.202.128
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mail.toshiba
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mail.toshiba
-Received: by mo-csw-fb.securemx.jp (mx-mo-csw-fb1120) id 5BH2DeMF3637322; Wed, 17 Dec 2025 11:13:40 +0900
-DKIM-Signature: v=1;a=rsa-sha256;c=relaxed/simple;d=mail.toshiba;h=From:To:CC:
-	Subject:Date:Message-ID:References:In-Reply-To:Content-Type:
-	Content-Transfer-Encoding:MIME-Version;i=nobuhiro.iwamatsu.x90@mail.toshiba;
-	s=key1.smx;t=1765937586;x=1767147186;bh=VFmXqTSeUNSdIscNWy/JxVan+IE0NT4SNT3O2
-	enTIx8=;b=L1oqNXeG/66601K67WhUHB8IAixYpxI13DsrfmeXILaIeX7o2hNy5J6xDSuB1K9oK8G
-	ru+WGr6VuBycHuIA3ZLUDpju4QUj1Pz4JJfEHqYBdYlVCdNHyicJNKTe0jk26RZc7BQyyTPt9rXxM
-	TiAsUwPAcSBVbXasDZNyeO2y9dKsMpuGgUo+Fqmt1vorKEaMojcoXk50VCq6S6pOtgFc7/ShuED1Q
-	9uT9zs85Y70lLPmE+k++g7QXoAwHXwOkO1ETsnNANPuPf/MzRzqjpx+NS4kB9rvcc0U36KSpvPa4T
-	m/ih2QhfPFN8SfScWIxUaFrXk3eQ9hoR58EP5x9Pe9Jg==;
-Received: by mo-csw.securemx.jp (mx-mo-csw1121) id 5BH2D57h1067468; Wed, 17 Dec 2025 11:13:05 +0900
-X-Iguazu-Qid: 2rWgRWki9ldvmgDsgE
-X-Iguazu-QSIG: v=2; s=0; t=1765937584; q=2rWgRWki9ldvmgDsgE; m=1luXCkQYDzlh0JL4E+xOMG4BrGiklTOT6BP7VSeUYvw=
-Received: from imx12-a.toshiba.co.jp (unknown [38.106.60.135])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	 id 4dWHQ74nj0z1xnc; Wed, 17 Dec 2025 11:13:03 +0900 (JST)
+	s=arc-20240116; t=1765939122; c=relaxed/simple;
+	bh=KAyrsJvuv52tKn9nbNOnnTTGUHy8jgBNuIwtGpMZ9ns=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=e5D2CoTlZ/2+QULzgBh1Gu5pS6Tq90rt+HcKMOhe9FJvtiSgmCgrn8iOWXBkxdTeZnERiLT0fVe1YwSW5Xr2VSdGJujqExKx5UJszZFesy8gaelf18xudNGv+SOSpHncOArdY46RF4Xy7lTUzJUdrSvoQA481Y9ZpkmpT4fRnko=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amlogic.com; spf=pass smtp.mailfrom=amlogic.com; dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b=m/8hhH9/; arc=fail smtp.client-ip=52.101.127.109
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amlogic.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amlogic.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=v/qQretvXpL5lqlL1StVbf3jkvjMNE8+wVMXtezGglfMy0LdYRRJDHDoLeytDWDh+e915cabfECMBRJZ74AZAKZ+rJLh9/1zVQuo2AllbIz5/mRriZcayIAwtvQrPKaYT1qRKBN3AuG8Mos6cBD5iTrgUDFB9YrUXso++vEKJZeuAxYEP1friMMuvCrmb+10hnuQiyf/HEHAp9BEv4NT51rN/NZI2P2JJE9BCqhtHuu5QQ3sqhgMu5WwYmtALh0FHhpieRis8O6HXscu3VsdW0VI3Uz49qE2G6y04yU16oYQm9OU8LPFDCIHU5QgoavC1mY7IoMqOOTHslkyckSR7g==
+ b=VvThZGkV9ELQPsglAudxOWWSUfvXlKB53WQyxo+/eSLhusrmf3+nV9MPT8whM5+BOUp/2GFEZThxstTcfGRmOFLM8fmEdONexjbptZtBPnWxshkczF0iF62kpNSsVvuruHJCZcgzO1kHa8gDzQQBnbRor3LiDsIK8pPrN53kZlvZbqwD8QrmAkNiCMrKlQD2TAoAohi8l8rdeskN8u8+3x1kXnrVCOGjdv0Ht2gaRc6N22JggjGCk5FrLeqRv44W5v5s/5CsN7fO7ZEUgNKgQZWcHJB9CCqUGUK5y7gWyGrkI0NlU/YKZfagR7U9KbODqcyxhcWdeMQ0HQt4eDNRAA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Wa0xxFfQ3t8zO1ggW0WedCe90akKSAxQWKQ32p443kA=;
- b=aexeu6iMHhtw486fhOK1Ovt3HmIA/FiVW/PO189E8oLwhy2TSl2AkylDv9JtcymS+2YJ5a2+uEvoxTlvO4tjaBXBvsAOWS9vILRQU6K1OQWtgRu1pD8TT1Eqa56Qdwh7KePm61Lh9Dutxh+rhXLd/RuFGu5e3b0pIIX8HiLf2GXLjAyAU8YTe3KW+oNNm+7yFOumuYJxPBZiPJMqxhUI/bL8zXZWLv2Qh99xomDPgqAtcHLYuKP1O13uaDZAYAh65u2MVPuZx6/RYyUAIfFd6UzDMoRIDcBeXKsByNSa8x1vgM3/5hVD749P6UeNJAzJ0h9oz7qbkBDm/rJcyLtJOg==
+ bh=DPQcLvgIPm0srHMtdp6yEblasdjsKuWxgUFKZ13WL2k=;
+ b=g2AOw0sHEJwVv2ZbzQC8g2Nk1B2qjGIlj2FwFsXCW0qDU9FKOwWaMrVw2jLfo04vBdYKU2Un2cKWxh+BOosF693N2ZNGLZv3xCHvL7b7BhX2t0ofmY0CYfIl+psFHyZXxIo/48aV60+rtYGcRZO3zdaRUyJLCc/q1IkNBYzMLgioFR+cS6l86kb4BYaYqU8u49MPgc9m52pTLvkJxKiotp5YUbeLXk46Vpvh57RGsdgQtRnrPNWMr2p+85HPfOPzsrdqAD1wk6t9g7OqIsGcZqia6tigMrL6rDe6atkmRx41XZMIcODJL9RbVAWjNRLynTzOqgrO7Yb2uzsISIa6PA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=mail.toshiba; dmarc=pass action=none header.from=mail.toshiba;
- dkim=pass header.d=mail.toshiba; arc=none
-From: <nobuhiro.iwamatsu.x90@mail.toshiba>
-To: <robh@kernel.org>, <soc@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH] arm64: dts: toshiba: Use recommended node names
-Thread-Topic: [PATCH] arm64: dts: toshiba: Use recommended node names
-Thread-Index: AQHcbrYCCg0+xgdFxEqx6sSVCjAVubUlF4mA
-Date: Wed, 17 Dec 2025 02:13:00 +0000
-X-TSB-HOP2: ON
-Message-ID: 
- <TY7PR01MB148187A7304501EA9EB3B2DFCCDABA@TY7PR01MB14818.jpnprd01.prod.outlook.com>
-References: <20251216180055.2793215-2-robh@kernel.org>
-In-Reply-To: <20251216180055.2793215-2-robh@kernel.org>
-Accept-Language: ja-JP, en-US
-Content-Language: ja-JP
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=mail.toshiba;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TY7PR01MB14818:EE_|TY4PR01MB17375:EE_
-x-ms-office365-filtering-correlation-id: a728cc93-7368-48a7-2470-08de3d11cddb
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|366016|376014|1800799024|38070700021;
-x-microsoft-antispam-message-info: 
- =?iso-2022-jp?B?ZlcrSUxXd25hcWFXdFB5YlRBRG56ZDNsS0lHTzVzaWFNLzh5YkFTeXZq?=
- =?iso-2022-jp?B?TjhQa1QzWWI0S1FUMjNlN3NDNUpuWE1wemYyVi9WY1doaEc4TWlIOGNx?=
- =?iso-2022-jp?B?ODJQZnJTdjdsdFpMc3ZhQjVFOEpIbTNWa1FQVk9nNDZGaytkbXdlWUR4?=
- =?iso-2022-jp?B?U0RIaGUrbXhEcExzTTBpU0ZCMXRXdTVIZkh3VWJRMC9RTEF4SDZNZS9a?=
- =?iso-2022-jp?B?OVFTU01vdzBUc3JSSE5CaWp1RGdZbzBPamJuYUhGaVdITk45bytXRnhW?=
- =?iso-2022-jp?B?di9ZWk8yUk9venI1U3RyUGlQdDdlZGRtMGE0dzByU2VVajQ3VWVmU0gw?=
- =?iso-2022-jp?B?MWV0S3A2c3o1RklQNFVjOWRrN0JsWkJYaW96SkRnYUhrK21qclhNVzNV?=
- =?iso-2022-jp?B?MTk2aWRPa2gzb0NScEJ4QldKVWthOU4zVGIvNGpwNmVMbUlxR1p4S2Yz?=
- =?iso-2022-jp?B?a0x1d3JqV3BhWDlVWU9UdFRPODlwbVQ4ZDh3ZnhwT2FYems0STlTcndq?=
- =?iso-2022-jp?B?K25UcFUzZHhqbkcySWhhYlRhcGgyQVFXenlUWmE5b3J5ei8zVlRzaDlq?=
- =?iso-2022-jp?B?K01OYUlBdEZHRUVBeUZaY09KcXFscGRrM1k4b3AwZGMyeUV2RCtOc05o?=
- =?iso-2022-jp?B?UkJTQ1VXUlRHK0d5NUdZUUhGUWtQWGFKc2V3VE9aRnV1b1N1alQ5YW1z?=
- =?iso-2022-jp?B?ZjQrV3dpS0tubWx2VXUwcG9CM0RvVHdBK3hwOXNxaUhHT0M3WTh4alVC?=
- =?iso-2022-jp?B?ZGpLOHhmLzVpZFIydUJqSjFnL2g4d2NEU1dKU25xdlNiUHk4ZzI1OVl4?=
- =?iso-2022-jp?B?YWUrbFN4RUJDK2d0ZFRNdXN3dXh6UmRPZEk0Vm15YW5YaDlUQlFKcStk?=
- =?iso-2022-jp?B?YTBCU1N4c2lBSDRrenUxZFZjWFA2czlKWDB6MHZuNEhKd1NoWS9CVFM0?=
- =?iso-2022-jp?B?OXBKelJWbG4xSm5QM0xjUWVkd1Rtc1g1N2tIUGFUSmVKaktPVExjT3lj?=
- =?iso-2022-jp?B?MHZDcVpDSER4MEFaSDBRUzhGVGhsRytwYTZRQjNSekU5ZCtnNUhLK1A5?=
- =?iso-2022-jp?B?bWhBcUYvL3FIZkNJUC9LSytHamU2anQxQlZsUUFiUDlPSExySDU2eUt3?=
- =?iso-2022-jp?B?VThrbHM3dlBDVjZDSUtYZ2lFT3ZvQ01XbVd0Mis4OHBNQ1FGM1hxMFpy?=
- =?iso-2022-jp?B?ZnZqVUh1Rk0rbWhtVUp3aU41NmQwY2FKZUFXMklCczFOM0FGZzJCeDdV?=
- =?iso-2022-jp?B?UU4yMGoyalFjYWxXdkVpZGxlTnQ2TEcydFVhMGlkdkIzSVZUTE0ybXhG?=
- =?iso-2022-jp?B?STBGam5nZkF6MjlvVkRmVmhCeU9BS1ZZbjRSTzVweFdMS0tHRURsNFBK?=
- =?iso-2022-jp?B?SGkrLzJ5cjV4RndsZjdiZ2hGc2NDdUFtNk9NQmtyRmdJYWZFVWdQWFJ1?=
- =?iso-2022-jp?B?TjdZNThLVUZFdGV1d2RCdGNRQmhXaWgxRHA1SWs2ZG1kZXpVK2JrREZN?=
- =?iso-2022-jp?B?WlNITXRldENSajVjOVpra09zREtOcGNvSVpSYlc4anoyZ1Y4emtKUHV6?=
- =?iso-2022-jp?B?VjdyVkNpbGVXc09WRGlJaXZqTXpBdUwxdVQwbmhYNDdtR2dNS0RWaFA1?=
- =?iso-2022-jp?B?dDNyUTZ0RE9ZUTU3SzNieEpIaXNUZ1drQWZMczRoVlZVbklGYit3NDlO?=
- =?iso-2022-jp?B?V3dnSURQc2dtMlJTZ09WbVV3RENSc3lqaWllTStKek53R2ZDanB1WVdI?=
- =?iso-2022-jp?B?alUxOEc2UXdEZGZyY2swTW1KSHZDcFpINzRGZ3VHV0xxbE1KNmxJNEdL?=
- =?iso-2022-jp?B?YXRHUkc2K2U5ZE5nQzlEVnpwTzlwWXIzejhCbkF3SlZUSC8xK29pVmdI?=
- =?iso-2022-jp?B?R0c1WDZadFVkVWkydXBpZ0lhdkovRjd1R25uSTNQcm1WVGljZXRUb0g1?=
- =?iso-2022-jp?B?UTBQMUFJTTNOUEtsT2QrdFREeXl5MXVlMm52ZldlUWMrT0V3b3E2Ulk4?=
- =?iso-2022-jp?B?UDJ0OEdra0xFcExxa082Q29aekl1T1RadFU2dXRadkxZSWJvTUUwZkdX?=
- =?iso-2022-jp?B?a2Y1aHpOeXNaZHd2RUFzdTFsbUVSV1BRYXRwRHBDdlJuVnUxU0NCUDk3?=
- =?iso-2022-jp?B?KzVMR2RWd0owb1pRYnlyendCTlhMM2pGeE04MmpxZnpnekhKUWYwdFYx?=
- =?iso-2022-jp?B?N0Vid0dwdkgwdGN2R21kWk93YnEvNmtI?=
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:ja;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY7PR01MB14818.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(1800799024)(38070700021);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?iso-2022-jp?B?MW90bnZVZkRTUmJBNi9VK29PSzRVdTdRbzM2bEs5R2wwVXJGckJzaVVv?=
- =?iso-2022-jp?B?UEYyVXgzYUdNSjl0RktDa3JWbzFOcllKeDFJSXhTTjN3VXdORExiS0sv?=
- =?iso-2022-jp?B?K3ZGOVIrRjR0WFR2ZVQyeWp3L05rSXVIN2N1N3lySm1CMGl5L2tjeUFk?=
- =?iso-2022-jp?B?OFRVZTBXTjA2MGRBc3JXL2lLaVdGOFhDcFFjNTd2LzJBbnVCTUJBNTE5?=
- =?iso-2022-jp?B?VnY5MlgvRmg4M1VUOGFBc3lFTi9nMUNvZExKSnVEQVo0RE9mdWFiNGxv?=
- =?iso-2022-jp?B?K2VKd3daRzB5RG9QdTVOU3kvOHhMd3ZvVm9ZZFhiUTR3Wk5jakNZUm4x?=
- =?iso-2022-jp?B?cDJSQWpVYTZBZUJkVWJrbnpVQTQvbVVia0RUR0svN0Z4RWsyUWtnUkpz?=
- =?iso-2022-jp?B?cXNLZTV1YU5OckdZTm0yUTNtUmVmVFhKUlAySnVtckc0Tkc5Y3paNDNI?=
- =?iso-2022-jp?B?L1JWVWloRHRZWEdRZldWRW1ZS3JWNkVsMkxMMFdxaEpIYnYxMGMzcDFX?=
- =?iso-2022-jp?B?QzhPSFpEUzlzTWZkZmlYRlBDaVgwR3c2NzN5d1ArK3hpK2YzUmkyTDZy?=
- =?iso-2022-jp?B?NlljUzY1M09CTDJuNlJXMWhJQ1RDMVk2ODFRY0h0Mmx6MW0xcUVIZFQ5?=
- =?iso-2022-jp?B?S2RkUWNKWTk5VmxBbzN2RDJ0VkR0R3FDRm5rWnNvSmRjeDVhRTg5WEtu?=
- =?iso-2022-jp?B?Qmo5QTJKc1oyemNWQWZjUUVCdmRqMzEzZ01FdGkxNzd0ajZIZ1h3YXVH?=
- =?iso-2022-jp?B?TUNkeDVnOVVxd24zMUQvcnRiRnNlMG1DdGNuenRNL3M2bG1rZnlhblRS?=
- =?iso-2022-jp?B?N2ExNGFVMHYraVdMaERETG5lVk93SzdlK05aQXJnYU4yZ1gyVENYdFZZ?=
- =?iso-2022-jp?B?K0tTcEpDOGd1KzJVajhuY0VPeEYwaVlpVjVtbUxtQUVjanhuSlVteWNa?=
- =?iso-2022-jp?B?UUdWMEpJWWlxTjlFb3RFZ0RmTlhRL2JHenFLd29SWFcyVmtLWUZlKy9D?=
- =?iso-2022-jp?B?dEN5NXlraENkN2ZiYjF4Z3p5ajg1NzVPYlRCQlBZQm1TMTR1NFBvWVBL?=
- =?iso-2022-jp?B?Z2dXU0RoZXhxZkNQUWdsUjR2NU1DL1lsUlpDV09RZmRucW5WSTdFLytJ?=
- =?iso-2022-jp?B?OWRPWThob1ZDUXAwcGxnWFlBOWE2OWZEUWRhcTk1NnpXcEVQNWQxUFhJ?=
- =?iso-2022-jp?B?SmVCNHc3Lzd4NitscXhvSGczR1J1NHFBSDBQK1pxdjZrbVFUTzFxM3k5?=
- =?iso-2022-jp?B?MlJMdzdKS3NUazhGL1pWZ2tDZXRlY0ZSWm5FQnQ1YkRaWWUxT2tMcVAy?=
- =?iso-2022-jp?B?dk1zVUtYbU5tUjZpdUp1KzJIUU5nV0xXU09HcjloMkJ6WEVLYVJRUE1x?=
- =?iso-2022-jp?B?aEZaaVFhZGxtR0pIeFMweTUyUGk2L0xGd1BkL0tHUFMwZlFUREFmOHNa?=
- =?iso-2022-jp?B?ZGdudXo2aTJDSzlIK2YreldwdDR6YmtINHlua0MxVTZ4OG1oODJTK1U4?=
- =?iso-2022-jp?B?OW1lOGlXd1dlQjYvNnhHVFEyR2wwSXRFRFVKZEpRYjZnWEZwRTdhd2VI?=
- =?iso-2022-jp?B?NGNPaFpYaG1wWjcralBXR0d0dUlVaVhPdDR0TXVZMDNaS05tK0ZRcUpx?=
- =?iso-2022-jp?B?R1NkY1BDSDhTQWNuTTRPdjZqNFVPdDBOZnBzWThyQzJ5QmxacmExUUdT?=
- =?iso-2022-jp?B?c1M0Q1h2SHdZekNiRUtrbHYwMFVRWXNnaUx3UzA0M1dBYXUzRnlGcm50?=
- =?iso-2022-jp?B?VWp0UDBIbjFqd2hoWnFqb2Y5M2ZrNEVFQ29aL2UrakI1UENvQVlOS3p4?=
- =?iso-2022-jp?B?MFZGQkF2aWR3WVo2NmZVYm5LVllVWHlsWDJIVVkyTUFSRFdNMFpzOVVL?=
- =?iso-2022-jp?B?L3pHUVdMNGpldXI2NjRLN0tudWY2M1Y0OWJNb0pvbGM4bW1rYUY3OFFm?=
- =?iso-2022-jp?B?ZENmNG1VL2tEOGhUSnNCSlQwOTRjWmlsMVduVDBBL0hDenVLeHZUZEp4?=
- =?iso-2022-jp?B?RnY1MlJGQlFvNHZRbmRTWmZhY2ladGxQTkNmVUh4a0JUSHl2Tk5DZ1c2?=
- =?iso-2022-jp?B?V05lQXNmUlUyMDI5ekk0NExKRVQrdk1iSlRpVGVCQWVIMmZqZzNnVURS?=
- =?iso-2022-jp?B?VHV3YWR5QWxhVnZHQUp6NHpNczNjS0hCVkNTK0pnUTUxRmU0Y3RieE1D?=
- =?iso-2022-jp?B?aStvcXQzSW5mNjBKMmFsQjd2QS9HOHorZmNRSmlCZUw4WTZZY2lRVlZv?=
- =?iso-2022-jp?B?eFE1Rmd4bS9GNktiM2xWd21uTHhhY2I1U3dyMmdzMWMxSVJ0bmdkYkl0?=
- =?iso-2022-jp?B?SGwxWnZuMng3YkZZaytqTUpFVlZqSDhyQ2c9PQ==?=
-Content-Type: text/plain; charset="iso-2022-jp"
-Content-Transfer-Encoding: quoted-printable
+ smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
+ dkim=pass header.d=amlogic.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=DPQcLvgIPm0srHMtdp6yEblasdjsKuWxgUFKZ13WL2k=;
+ b=m/8hhH9/+P6MBilLeILdR2MY73TsSkRM1KZ9QFmntYJua8J71kIoU276w0H5/mv94Olf0/tiLwPs7I0VLOFOIAIENPMVvfJLh2dUnkzglrEjbp8cjZ+LUDO0yKyfBCgDVdPAsX5EhUS6xTbi2GjRlrEqwfrHpChFXfU+cpz7iUMQvbuk+nj7sUqg3qd0OJlXxCD81UaooDmrRVubAsw+6fC3TXj4wqa8ofx4FcieHmJWZSYq9/jm61ezRBHABo0VFfKICp7zdWfh5vDFmAbPDDZhgJxzMhVzJ2hj6w4ABMSBSNWrdxexkWfq/8cw1D5jA1YucO8MkK2M3Z+bg4+vvA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amlogic.com;
+Received: from KL1PR03MB5521.apcprd03.prod.outlook.com (2603:1096:820:51::12)
+ by JH0PR03MB7324.apcprd03.prod.outlook.com (2603:1096:990:17::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9434.6; Wed, 17 Dec
+ 2025 02:38:36 +0000
+Received: from KL1PR03MB5521.apcprd03.prod.outlook.com
+ ([fe80::f12b:85e:f95c:191e]) by KL1PR03MB5521.apcprd03.prod.outlook.com
+ ([fe80::f12b:85e:f95c:191e%4]) with mapi id 15.20.9434.001; Wed, 17 Dec 2025
+ 02:38:35 +0000
+Message-ID: <7ea65b00-a2d9-471c-bc3d-cc340ee1046d@amlogic.com>
+Date: Wed, 17 Dec 2025 10:38:33 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC v2 1/3] media: dt-bindings: Add Amlogic V4L2 video
+ decoder
+To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org
+References: <20251124-b4-s4-vdec-upstream-v2-0-bdbbce3f11a6@amlogic.com>
+ <20251124-b4-s4-vdec-upstream-v2-1-bdbbce3f11a6@amlogic.com>
+ <CAFBinCDO5UWVEtbOOdMn9vy=0H2Q1hJDKhH+X7i0nMsSsw=wbg@mail.gmail.com>
+From: Zhentao Guo <zhentao.guo@amlogic.com>
+In-Reply-To: <CAFBinCDO5UWVEtbOOdMn9vy=0H2Q1hJDKhH+X7i0nMsSsw=wbg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SI2PR04CA0018.apcprd04.prod.outlook.com
+ (2603:1096:4:197::9) To KL1PR03MB5521.apcprd03.prod.outlook.com
+ (2603:1096:820:51::12)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: mail.toshiba
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: KL1PR03MB5521:EE_|JH0PR03MB7324:EE_
+X-MS-Office365-Filtering-Correlation-Id: 35d8e456-cf37-47f6-2ba6-08de3d156060
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?UGxvc056aXhTNzlKREFGaDRYUXNkaGQyamI0eGNxU3gwVVFON2tmQ0JKOFpU?=
+ =?utf-8?B?a0pDb1ZKVjUzY0JwdTVyZGJobG5XYzAzcmc4MzFCbmdHYVRCdW9UZHdQRGpG?=
+ =?utf-8?B?WHNwRWY0b09tWnBXY1BDOEZlNnF0NXNwTVh5K1lGMXlocGhTTU9CZHlvRDBy?=
+ =?utf-8?B?aWFmSEZQb2QrS2EzNFdONnNaeGovZ29KY1VWbGNZd0NCd3JCUWRQZkk5bmpZ?=
+ =?utf-8?B?Z0F3VHhOT21pMGJwKzlBYWl2WHJnWkIxWlRuU2gwaG5jbnpjdmtjWVlwZWlp?=
+ =?utf-8?B?bk4zYkNHMW1vWGdXUDMwUjZ6YXFuMU1yaFk0RjFpVjFSaWxScmp0QTUraXdw?=
+ =?utf-8?B?Nkw3TDBlWFBQZHRpRm82ZndKMklrNFFscGJ0S3BudjNLYVVuUDZsQ2w4dkxI?=
+ =?utf-8?B?K25yUGc1YnlZZGVha2EyVEpqYmkxZHB2NDNrbGF0U2Z1ZWJ1VE5yU242bUJC?=
+ =?utf-8?B?SDEvVDcyamIrTjM5T1lTRXJHbFJoeTdSUkoxTXFnVW5BcU9kUk5HTUZTZ00w?=
+ =?utf-8?B?LzNib2Z5MHRONitwb0k2SU5tSDZVU3JZNVBSdm4wYUVtRTMxbFkwOVJnSndp?=
+ =?utf-8?B?Ky94SDBqeWc4UXZnV3QyOUhHajY3K3JFT0E0RFFLaTU0TmZEVG9yTklINEpl?=
+ =?utf-8?B?cWE2ZWMvaWRVYVhsYWJSWDlKc3BJL3c3bmlKd1o2a3ZBZkM2SXlCV2hOVWVj?=
+ =?utf-8?B?dlA2SU5ZMzRpZG0xUUIxVHhwOVlrc2I5NkRJYy9jc1o1bjIzdDdCS3NjV3ox?=
+ =?utf-8?B?MGo2OFFaQUQwdytuMDBTN1EwSGVHbFdsVjMrUTJ2N3hjRi8rYVYrNktCZWUy?=
+ =?utf-8?B?TkllYjB0TFJ1VGpyQThOazBYY3llYmY3bVp1aWZUWDlQd1pDS3ZVbXdmeVZ3?=
+ =?utf-8?B?YU84OVVaaCtjTkFkRXZOVGVRL2JBbXljejZ4THZGc2c0Um9CSGtzS3p5cERB?=
+ =?utf-8?B?bGI0TVl5VDBDZmNKejFsdTJSN3NuR1JzMGQ5bStTY0JRcFdiNVFuSWFZYkhF?=
+ =?utf-8?B?clhUVUNmbHV0bjdQWHBPWENCMkM3cHBiY2RNNm9WR0RLcDQzOGhqSTRRMW8x?=
+ =?utf-8?B?OVRjQ0kvbHg3cWZzZUtIOWtVTHQxbStBTjYyMEtDODBOZUEwWE0zL1lzd05G?=
+ =?utf-8?B?eDNpV3FGYjMydHpuNDFVczRoZzZQaXlmTnNPTWJsWDlzZnNpcUQyNnB1Wmo5?=
+ =?utf-8?B?ZnBqc0RVczRXUTRGNTc3UFl5NEtWMHlMUlFyS0VnZitiK0lPM1lWbndyS2VT?=
+ =?utf-8?B?YTl3N1RVNTNONkJVTDZMSGRYRFh6Mi9taDFxdkIvMTM5a3VXMFBKUHh4dVZC?=
+ =?utf-8?B?dCtMVlA4RFpuK1Nrek5idWUrdDBDNDhSS3hLQVBhcFBiWTNVR3YrdHV6UDlj?=
+ =?utf-8?B?ZE1ZbGNCM0NIRjE0bTNrNlRMU3dwSWwxOFc4bGwwVjVhVitGdTRmd241MjRt?=
+ =?utf-8?B?QVdyR3hJRzNoMWNYNEljMUVLdHdKZDl1aGJhdW9qaUtjNUJ3SURaU09lOGVk?=
+ =?utf-8?B?MFYzMm16bGxsSFovWmljNW9RblN5Vm90SHMyUTZkdmtrdWxNNWVkc2xqTVVQ?=
+ =?utf-8?B?b1JCaHlZVzZrQ0dEdTh1bzNwS3AwQ3R2TWY2SHNWZXRyRVBOcG9KZldzKzAw?=
+ =?utf-8?B?RU1qd3FCcmdSYVhYTWhDa1dpcEl0Snkxd3QyZTF3QncxSHdJUXlPblJZaFp3?=
+ =?utf-8?B?aXhnMVZqVjY4WVJtbS8zVzErcmswYVdFeFk0THVPdndoeXNqZ3dMTFNmejFZ?=
+ =?utf-8?B?bmhTczhMbjV5MTJPeGh3L0g5RlhONXZRT3ZTSjZNeVFkOWNCRnpEV3pDTjhQ?=
+ =?utf-8?B?emFBM2xmZXVwcEk0ZzVJWUMrU3JBTVUxaUIzQ0xnRHJ1YlhJOGlnM2YxKzg5?=
+ =?utf-8?B?d1VPRTB5SVNocFZsSXdMVzZhdDh6SmkvU0lCNXRBK1ZNekE9PQ==?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:KL1PR03MB5521.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(366016);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?ell4dm1iclluV01MdXlxR0hXZmJsRVZ3akxkZS9YOFdONU0wckxDUVR6VW1K?=
+ =?utf-8?B?cGZZbjVpek1HTGluWFVGa1hJcm1WY0hLVHgzMXlDNVBOZ2FLWm4zRVRDNTB0?=
+ =?utf-8?B?T05iS255Z1JxdFRlajMvSCtlVXJzU3dVVzEyMUpKQmJhQTI0bTg5dDFvVmhZ?=
+ =?utf-8?B?ZWhveEEvZ2w3NkovbW41RGRaQUw5c0doTG1xRkNNUmR6QXJtTVQrYkozT2lS?=
+ =?utf-8?B?UjlieHVQNHdoR09adlpGVDhpbllLNjAwM21ZM2I0U0N0S3BJZWdqSTBOWUZR?=
+ =?utf-8?B?dUp2bk9MdGhnSHJPSGxtM3RrRDFkVkRLeCs1dG1nUE80YmFWUzdNeWFNTExV?=
+ =?utf-8?B?bW4wUGhnWU56U0cxWVJPVStWc21lQUFwVGJ5Sm5EMzNIeXFNaXFEU3F1eU55?=
+ =?utf-8?B?WlM2bXVKVUJudEVNNVBVK091THFaMEMvb3dnUlFxVnJua0NOUEFDZkVjZjBP?=
+ =?utf-8?B?WEdjcER2aXFwNExSVENKYU1mQ05XNnp1K0ZaRWFpTVE1bkp4QWQ0d0QvWlJQ?=
+ =?utf-8?B?d3BPbFl4MEFlbXc5RFFvYzRLd1FpN1pBSE1ydHliVlVRWmVUdFQwVDRCSUht?=
+ =?utf-8?B?NTRtOVRFamRXZVZFSkxhamdCTUpzSHR0aXhpa2RpeXk2aUpWWnBzRkNUdGZy?=
+ =?utf-8?B?WGw2KzRRMUhDODJld3hGNlY1UkRmS21taE1PQklDTk5UL2R1Mm9xd0xlVWpz?=
+ =?utf-8?B?RXZ5TXovcjBteWRSZkxsMWJTVDlkZ1NoQjhZQS94ZE45OHBJcVdFOE1uUDZi?=
+ =?utf-8?B?MzJ0RFJsSXF5TTVsNUR2a25vMHJPODBSOGlLdGU0bXdrTTRkU1N3S1VKYUdE?=
+ =?utf-8?B?SG1ReEVXd3RBN3k4RkJlcjM2dGEzaEhBNHYxOUN6bDY5VTVlY0JyWWtxT04r?=
+ =?utf-8?B?VVNUVEIrUVBYci9VTFI1em51TGE4cm5HUjRaUGl2OWFNbWh0NVJsVjVTVjRj?=
+ =?utf-8?B?UnRYVTMxN2g0dkZEQVlFeXhZZnFLb3BvTHY5NFNWaDlDNXl3RXA4ZFBJMzJY?=
+ =?utf-8?B?ZTNzV2NBaGQ4VEdZQ2RRVjhDMFlWbHJrdXlYK1IrSzRsS081ZmFlQ2hoRVFx?=
+ =?utf-8?B?SFZCZ2sxZVl2OUZkZXlrNDhrZWgyMWFsZjVOaEI0RnI1ZDIxdkhlNlk3WkE3?=
+ =?utf-8?B?bkFVcHE3K2hYdHFjWWNsL0FvUElMaGRTYVRuUXZwbnhPMmw1VGJ1cW9pMTdz?=
+ =?utf-8?B?cW42a1VZb01NWUR0cVQ2UDZZNFRiMTNmT29hMWVDZ1krMTZGbHZ3SkJFaTBi?=
+ =?utf-8?B?QlRkRExRamlsVGFIanNFd3EycjQyNGhRQmZIYUpxRVJ3RDUzUlFvQWtYZGFC?=
+ =?utf-8?B?U2NneFZWSTJqOUxUZWZHODV3WXJTNWRMdW1GREhtaklQZWxJVlVDWUxyTjJw?=
+ =?utf-8?B?SGk5TzdDdXRidXhCSDMvQ1lOSGtEaFBDdWxCWkhtL01tYThPKzdaZkNxNCta?=
+ =?utf-8?B?VWNld2dLMkczM2FvdUFnMXJIRXpaYjJkK3NORFJSWUtLb0FGeGRDZjY3b3ZZ?=
+ =?utf-8?B?L0ptTzJJWStyMWxRcmVpSWd6UXBLdWxaUUZROGJLNEtDT1FaRXpPLzlyVzZs?=
+ =?utf-8?B?Zm92Y3R1V1NEVGUwMXdlVjRoL2N0K2U1RmM3VWdqbEpVUlkveURuamZYSGNn?=
+ =?utf-8?B?ZUZ4Ky82WTlyWVpFMUNuWG5QUzVJQTYxUko5eDh1dVBIMVVRSSt5aG5YTEd6?=
+ =?utf-8?B?WVFUYmRBOW1xLytoTlh6WnhoZUJ2R3QxcHNHS0dNSDU4RlRQNHpXZ1ZSb2N4?=
+ =?utf-8?B?ZTZ1Skg4Ung5TXlZbEZ2K1FQa3NSNlU0ZUFuM0MvQWFwa2hvbzhBaEtnYjRw?=
+ =?utf-8?B?blloVUdNelNKV0tEVnhabjdYVFRvL0E5Y29TUGxtWkcrZW1mVUV4VDNKODNt?=
+ =?utf-8?B?VEFHSWs3eUo4MzJTb2hqMVhVTVhielhyK1VIOFJMellRNVJEVFB2NnpwZnN5?=
+ =?utf-8?B?RWhMcnpaWWFsK3RiNFJPeVIzb1N2MjVta1RFZFdqa0FOQ3lMRG1oRnNGeUtS?=
+ =?utf-8?B?cXNyVGIrSGYxZ1dwU0s3eGhIVjMySW85QWc0Z0JaZjhqK3BCOGhtYlVzQ0ZD?=
+ =?utf-8?B?Z2o2b2JFOTlscW1DVW91ZEJTVzZXdUpmblBoTC9GVWFrV0szYklxR3lMbEFl?=
+ =?utf-8?Q?PdTHf4h/+XOQn5FTKqDG1ZVJo?=
+X-OriginatorOrg: amlogic.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 35d8e456-cf37-47f6-2ba6-08de3d156060
+X-MS-Exchange-CrossTenant-AuthSource: KL1PR03MB5521.apcprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TY7PR01MB14818.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a728cc93-7368-48a7-2470-08de3d11cddb
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Dec 2025 02:13:01.0213
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Dec 2025 02:38:35.6416
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: f109924e-fb71-4ba0-b2cc-65dcdf6fbe4f
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: LV0LrsC2WwPN69PA6loQ+LwD4y3zFRtYugHtlveN7kFx80C8OGhGSKARCRrM6ultTc834AUMYr0PM6K4lLEjzv5zOJdxTE7cpJ6lsL8YejUbDRg7QAFxv8S4Wu09BH4/
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY4PR01MB17375
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: nerSsSIHLPOJ5JgSjI1dqCzXmAXePa79aYliUT01CJVFr490ps7mC6eLoixSC0PLvSVEJwoWDPS3wwb8gG6ilw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: JH0PR03MB7324
 
-Hi Rob,
+Hi Martain,
 
-> -----Original Message-----
-> From: Rob Herring (Arm) <robh@kernel.org>
-> Sent: Wednesday, December 17, 2025 3:01 AM
-> To: soc@kernel.org; iwamatsu nobuhiro(=1B$B4d>>=1B(B =1B$B?.MN=1B(B =1B$B=
-""#D#I#T#C!{#C#P#T=1B(B)
-> <nobuhiro.iwamatsu.x90@mail.toshiba>; Krzysztof Kozlowski
-> <krzk+dt@kernel.org>; Conor Dooley <conor+dt@kernel.org>
-> Cc: linux-arm-kernel@lists.infradead.org; devicetree@vger.kernel.org;
-> linux-kernel@vger.kernel.org
-> Subject: [PATCH] arm64: dts: toshiba: Use recommended node names
->=20
-> Update Toshiba TMPV7708 node name to the recommended standard node
-> names. Generally, node names and paths aren't considered ABI, so it is sa=
-fe to
-> change them.
->=20
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+在 2025/12/17 7:43, Martin Blumenstingl 写道:
+> [ EXTERNAL EMAIL ]
+>
+> Hi,
+>
+> On Mon, Nov 24, 2025 at 4:32 AM Zhentao Guo via B4 Relay
+> <devnull+zhentao.guo.amlogic.com@kernel.org> wrote:
+>> From: Zhentao Guo <zhentao.guo@amlogic.com>
+>>
+>> Describe the initial support for the V4L2 stateless video decoder
+>> driver used with the Amlogic S4 (S805X2) platform.
+>>
+>> Signed-off-by: Zhentao Guo <zhentao.guo@amlogic.com>
+>> ---
+>>   .../bindings/media/amlogic,s4-vcodec-dec.yaml      | 87 ++++++++++++++++++++++
+>>   1 file changed, 87 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/media/amlogic,s4-vcodec-dec.yaml b/Documentation/devicetree/bindings/media/amlogic,s4-vcodec-dec.yaml
+>> new file mode 100644
+>> index 000000000000..401a5a32902e
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/media/amlogic,s4-vcodec-dec.yaml
+>> @@ -0,0 +1,87 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +# Copyright (C) 2025 Amlogic, Inc. All rights reserved
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/media/amlogic,vcodec-dec.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Amlogic Video Decode Accelerator
+>> +
+>> +maintainers:
+>> +  - Zhentao Guo <zhentao.guo@amlogic.com>
+>> +
+>> +description:
+>> +  The Video Decoder Accelerator present on Amlogic SOCs.
+>> +  It supports stateless h264 decoding.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: amlogic,s4-vcodec-dec
+>> +
+>> +  reg:
+>> +    maxItems: 2
+>> +
+>> +  reg-names:
+>> +    items:
+>> +      - const: dos
+>> +      - const: dmc
+> Neil has commented on the driver patch (in v1) to use the existing
+> canvas driver.
+> The same applies to the binding: you can replace the whole "dmc"
+> registers with an "amlogic,canvas" property (see
+> Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml for
+> an example).
 
-Reviewed-by: Nobuhiro Iwamatsu <nobuhiro.iwamatsu.x90@mail.toshiba>
+Indeed, only a section of the dmc registers is for canvas. For the reset 
+part of the registers, canvas driver should not access them directely.
 
-Best regards,
-  Nobuhiro
-> ---
-> SoC maintainers, Please take this directly.
->=20
->  arch/arm64/boot/dts/toshiba/tmpv7708-rm-mbrc.dts      | 2 +-
->  arch/arm64/boot/dts/toshiba/tmpv7708-visrobo-vrb.dts  | 2 +-
-> arch/arm64/boot/dts/toshiba/tmpv7708-visrobo-vrc.dtsi | 2 +-
->  arch/arm64/boot/dts/toshiba/tmpv7708.dtsi             | 4 ++--
->  arch/arm64/boot/dts/toshiba/tmpv7708_pins.dtsi        | 2 +-
->  5 files changed, 6 insertions(+), 6 deletions(-)
->=20
-> diff --git a/arch/arm64/boot/dts/toshiba/tmpv7708-rm-mbrc.dts
-> b/arch/arm64/boot/dts/toshiba/tmpv7708-rm-mbrc.dts
-> index d209fdc98597..8d099b237025 100644
-> --- a/arch/arm64/boot/dts/toshiba/tmpv7708-rm-mbrc.dts
-> +++ b/arch/arm64/boot/dts/toshiba/tmpv7708-rm-mbrc.dts
-> @@ -43,7 +43,7 @@ &piether {
->  	phy-handle =3D <&phy0>;
->  	phy-mode =3D "rgmii-id";
->=20
-> -	mdio0 {
-> +	mdio {
->  		#address-cells =3D <1>;
->  		#size-cells =3D <0>;
->  		compatible =3D "snps,dwmac-mdio";
-> diff --git a/arch/arm64/boot/dts/toshiba/tmpv7708-visrobo-vrb.dts
-> b/arch/arm64/boot/dts/toshiba/tmpv7708-visrobo-vrb.dts
-> index ed7aa7e457b1..4439b3e8acbb 100644
-> --- a/arch/arm64/boot/dts/toshiba/tmpv7708-visrobo-vrb.dts
-> +++ b/arch/arm64/boot/dts/toshiba/tmpv7708-visrobo-vrb.dts
-> @@ -43,7 +43,7 @@ &piether {
->  	phy-handle =3D <&phy0>;
->  	phy-mode =3D "rgmii-id";
->=20
-> -	mdio0 {
-> +	mdio {
->  		#address-cells =3D <1>;
->  		#size-cells =3D <0>;
->  		compatible =3D "snps,dwmac-mdio";
-> diff --git a/arch/arm64/boot/dts/toshiba/tmpv7708-visrobo-vrc.dtsi
-> b/arch/arm64/boot/dts/toshiba/tmpv7708-visrobo-vrc.dtsi
-> index 0c8321022a73..af406f7285c4 100644
-> --- a/arch/arm64/boot/dts/toshiba/tmpv7708-visrobo-vrc.dtsi
-> +++ b/arch/arm64/boot/dts/toshiba/tmpv7708-visrobo-vrc.dtsi
-> @@ -26,7 +26,7 @@ &spi0_pins {
->  &spi0 {
->  	status =3D "okay";
->=20
-> -	mmc-slot@0 {
-> +	mmc@0 {
->  		compatible =3D "mmc-spi-slot";
->  		reg =3D <0>;
->  		gpios =3D <&gpio 15 GPIO_ACTIVE_LOW>;
-> diff --git a/arch/arm64/boot/dts/toshiba/tmpv7708.dtsi
-> b/arch/arm64/boot/dts/toshiba/tmpv7708.dtsi
-> index 9aa7b1872bd6..88e38d6efcaa 100644
-> --- a/arch/arm64/boot/dts/toshiba/tmpv7708.dtsi
-> +++ b/arch/arm64/boot/dts/toshiba/tmpv7708.dtsi
-> @@ -161,7 +161,7 @@ gic: interrupt-controller@24001000 {
->  			      <0 0x24006000 0 0x2000>;
->  		};
->=20
-> -		pmux: pmux@24190000 {
-> +		pmux: pinctrl@24190000 {
->  			compatible =3D "toshiba,tmpv7708-pinctrl";
->  			reg =3D <0 0x24190000 0 0x10000>;
->  		};
-> @@ -463,7 +463,7 @@ piether: ethernet@28000000 {
->  			status =3D "disabled";
->  		};
->=20
-> -		wdt: wdt@28330000 {
-> +		wdt: watchdog@28330000 {
->  			compatible =3D "toshiba,visconti-wdt";
->  			reg =3D <0 0x28330000 0 0x1000>;
->  			clocks =3D <&pismu TMPV770X_CLK_WDTCLK>; diff
-> --git a/arch/arm64/boot/dts/toshiba/tmpv7708_pins.dtsi
-> b/arch/arm64/boot/dts/toshiba/tmpv7708_pins.dtsi
-> index a480c6ba5f5d..5ea835fe08a8 100644
-> --- a/arch/arm64/boot/dts/toshiba/tmpv7708_pins.dtsi
-> +++ b/arch/arm64/boot/dts/toshiba/tmpv7708_pins.dtsi
-> @@ -91,7 +91,7 @@ i2c8_pins: i2c8-pins {
->  		bias-pull-up;
->  	};
->=20
-> -	pwm_mux: pwm_mux {
-> +	pwm_mux: pwm-pins {
->  		function =3D "pwm";
->  	};
->=20
-> --
-> 2.51.0
+For example, on S805X2 platform, the DMC registers range from 0xfe036000 
+to 0xfe038000. The canvas registers only range from 0xfe036048 
+to 0xfe03605c.
 
+The decoder driver also need to access the register 0xfe036000, which is 
+not contained in the range of canvas registers, so we still need to 
+remap this register in the decoder driver. Therefore, the property 'dmc' 
+is still needed.
 
+>
+> [...]
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - reg-names
+>> +  - interrupts
+>> +  - clocks
+>> +  - clock-names
+>> +  - power-domains
+>> +  - power-domain-names
+> I did a quick:
+> $ git grep RESET_DOS
+> {include/dt-bindings/reset/amlogic,arch/arm64/boot/dts/amlogic/}*.h
+> -> that lists DOS reset lines for most (all?) SoCs that were supported
+> by the old vdec driver as well as DOS reset lines for the S4 SoC (for
+> which you're adding support here).
+> If some of those reset lines are wired in hardware to the DOS region
+> then you should include them in the binding.
+> For reference in case you are not already familiar with it: [0] "[...]
+> make bindings complete even if a driver doesn’t support some features.
+> For example, if a device has an interrupt, then include the
+> ‘interrupts’ property even if the driver is only polled mode".
+> (the same also applies to any additional clocks or power-domains that
+> are wired as inputs into the hardware which you have not listed yet as
+> they are not needed for the initially supported codecs)
+Yes, I also noticed this issue. The DOS reset line should be added. We 
+will fix this in the next patch version. Thanks for your suggestions!
+> Best regards,
+> Martin
+>
+BRs
+
+Zhentao
+
+> [0] https://docs.kernel.org/devicetree/bindings/writing-bindings.html
 
