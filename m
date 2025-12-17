@@ -1,80 +1,80 @@
-Return-Path: <devicetree+bounces-247236-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247237-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9D97CC5E53
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 04:23:00 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E1BACC5E71
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 04:29:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B7537300C0E6
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 03:22:59 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 67BFD30122C1
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 03:29:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 336012BD022;
-	Wed, 17 Dec 2025 03:22:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6C5E2C375E;
+	Wed, 17 Dec 2025 03:29:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Kox+jFKx"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="E4W6ua6a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84771237163
-	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 03:22:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 038E72C0287
+	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 03:29:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765941779; cv=none; b=PvD9eMZ02pfEuvli4PpsI5jCYPVM3oBscVhp5SWriEkhvKKAR6l/MPT35ahLlyTM3/FlIXEOW+2xwSEZJGk2p32sm4ZFWyrIq3jFxFeEwaqLIzluRNoozifaKUGRKOV7hhsmT4kjF04ZSvJCHf6ABz/WI5AqNrF16fAlVp7x9eY=
+	t=1765942144; cv=none; b=M1brq2wCOuvORU59adjGLPY0ByVUMJNAJpM/Ch4L2of0CjIWNlOcJ7JaVHArW3FRkAQACjSdfLbM3y9Y7kSs3kGSmt9wImydtFhER2cn4Dsx6C7PJ4vLKm3D88BSZla9UoT1Xx1dWSjS53nUayRJTxX3K6mODc+ghzO+JiUkSPM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765941779; c=relaxed/simple;
-	bh=bsdkX0PBndxh3GIVlYbnxprKKDaEFfFM9KmZt8UOBLg=;
+	s=arc-20240116; t=1765942144; c=relaxed/simple;
+	bh=V3kmA2E9ohZVX3m+GKcNpy8+AR6Kqr7yMcKgMsOJbAU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fTLGc+vPhANN+xsgr8bEkCo6QndE3/1t1I1bLdTNf5EPqETeOd7U7Wooo7SoPz+UiEWjHLFETqWax1QgBbVZNqQ8WzfKlpLh/qzRfc2eoPAx/vJs/CejLB0DV94p8cpt2uVoJYXvl9k99KacZU+WgP4krSKNexmIGGmV5Ic3zxo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Kox+jFKx; arc=none smtp.client-ip=209.85.128.54
+	 In-Reply-To:Content-Type; b=hkPSPd9ux01mxaFkcLWZyObkPPoeMOOLBIakI3qUgEug+pH/RybztJIY9NbqBBBgRXHG7kXfkv5TPZRzAzykyzgLOpN88mXd7v5VQXsAP+uefSb4D2Et+UsVg8XEfJpTppbm9GaK8y9SmRIBRR2it5hQGGdXM613Enjegw0iJBM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=E4W6ua6a; arc=none smtp.client-ip=209.85.128.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-4775ae5684fso22930265e9.1
-        for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 19:22:57 -0800 (PST)
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-477ba2c1ca2so58113745e9.2
+        for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 19:29:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1765941776; x=1766546576; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1765942141; x=1766546941; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:content-language:from
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=coYB7nuMknCPFUDXjLCeAFqddfJIRf4URBuM0pBdh9U=;
-        b=Kox+jFKxtCa8ujP5FuzO7eOqwLm1gN+Kk4MpTCZcxHOE7xbGyyUY8OpsVbA34H89TC
-         Rukng0HUNz2xdqYTyUKl0D941vsmWWhAwdmakIWRUd2AzSyc7NI/OEKf643iFMAWiktU
-         EdmzVpCUJ3ViUGID1u1ig0APNYjhSNWjBe8VrqqPV1qUZGruvncIj0/zrzgz06vdC1wD
-         LI0c76MgG4cbCY4mNmB0YRoENeiLb8EdvHiM5vCHpMr8tZoRjtiNNO+WdGgVgUTAkylE
-         vOmDbLpdR5+SmO4YG6EgJGHtcAgPa0+IDL0h91TnqlV1DmvGn5v46f/BPMKOW5VgsV1S
-         oggQ==
+        bh=8f8X3JIRm3Pu78dQiBeWf0yThxM9A+ZJVpoSaOPU8dI=;
+        b=E4W6ua6aDA4BtJpJ6OBL6gwj2MvsT8Ci7RLLq0AiJwXyFJEdkLUQzkqhTcBsaEN8rp
+         +TNJVwAz8TkMRMz7e77R5YrBlqMCO3MwZa8jS+R5DcNte/T4LznH8hOkrK/DzacF/BWu
+         X9cjj9RY29JGbjaMHZnyQ8nBokSe+z+UD2Xco7XUnWZ9blYHEprWF0WphhYxfy92YrPM
+         eCIlHr2FgoSAB0NZqlXP8tzoWmkYWNYFeHtzDsPzBthto533xZxzRWwWsyS56MkCAeNC
+         HOU3IuFD66aL6/DWdkadR/OiBZ5AA/cQaVvr4AxHJIF5+Dc52OxMEwK4cugfHBSa/VbJ
+         1x0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765941776; x=1766546576;
+        d=1e100.net; s=20230601; t=1765942141; x=1766546941;
         h=content-transfer-encoding:in-reply-to:content-language:from
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=coYB7nuMknCPFUDXjLCeAFqddfJIRf4URBuM0pBdh9U=;
-        b=nLu8V4z91LgSIcUnj06FVv6PZ2qoukCDfxuDbCEwJrtHTQygcB+bTUjHbuLXnUjrtZ
-         550WxMEkWj2HPqbQi4HnAYgqTx0YfRxI1fyB/HBSTTQWymTURf2kSu2TNj1Gw+Pg48XR
-         0nqf0/Qgf2I7CanAzLOgn9e9ifz4WcGagd7m32FJprsoqH5+VdUjbIyznJzcxPMZCzJR
-         6CthEzi0f+zzLkgkYvDVpXUmy49FPMA3JwTE+9Pzuow0ZEUnC6GhgOOHpdJMgDoDqOB2
-         poroFKT5FGAgbl4OVyAiD9I/wd2K4HZLG/HcQ080vhA4SpRArfbcoKSiVRcWf5bCcsrm
-         0mlA==
-X-Forwarded-Encrypted: i=1; AJvYcCUWlxBtWdawGsqpPkUdls8bEH0W3Nn63vC/gSdbBbQncyy0jWfq/m9z0xj7GK+rlMVazhrxCckfOUc7@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy+z1sOIQXc6/X2HguPbxjrpV2Mmb0p91lWcEHy9kX5dVzcmuqd
-	Wbnh7TdffEyGcLuWU1hMTtL5HYCq0in+A1jce98U/EfjBKYdFJ4q5+6Q0vlVBtH9bhU=
-X-Gm-Gg: AY/fxX6chEYXSp6DQK+kn5Q1DzmZ9AYcqXvT/+cz31osAvHDocQ0SEaXrGOnvUhTzUD
-	pFT+mUrmeknOzJs9y9rPp9LNs9PdKOh3bF7OUB/p/AOFMXyJLmUBwojj2Pd1P9TpHcL2s1nzDh3
-	I8utuJ15dsE6+Jp+t1FQW1HEjlYAi1MAmqlbCUUCm+CFIIhnKiyEHmH5c2yU09y94h3FtsmGm3R
-	GZVScG9sTu+2vuqrovX1BwrXvNjChCxkf7Pg8yhmWpi1mrTdi7VAm84OfPgAzXvYH2yYjltt7+a
-	CZ4HGac4YQtfGnOEBfXHub7w3MTDlBzVMUmaYL35RAnmq/tpXrqfTqeGuFFG1XuOHEVLaVBWNBz
-	zGxGU+MoWCfSO3gIkj9DP87KXUzv2rKmFFNlLslSfSjlR7L8bObDtfz6QJh99XRxjfGkAC53RH+
-	NswshVC1HvEIDFP8K61uabpn/bdfgWckbzdFjSVsQ6KKIbF0LCBr+W
-X-Google-Smtp-Source: AGHT+IGKzYIQHH56Wfgqk3sgtUblvN3f3xNfZ4d0w5Te3dTerDrm37WC8DhCLtrjaYPiuQ095zpJPQ==
-X-Received: by 2002:a5d:5f87:0:b0:430:fc63:8c8 with SMTP id ffacd0b85a97d-430fc630e5amr10101546f8f.35.1765941775811;
-        Tue, 16 Dec 2025 19:22:55 -0800 (PST)
+        bh=8f8X3JIRm3Pu78dQiBeWf0yThxM9A+ZJVpoSaOPU8dI=;
+        b=qLho7FRlwzL6gIFebJofYEsY4VbFEk+ZwY+Sr478/j2IzX2YXBHxFhS4PmY+HBmLdo
+         JuQTEC+WaYO7S0Vv+5McvZt9Taq7FOmbPwl+CQ+25XXwLb0XHvvZKKEDefQQBVisoDKx
+         g5qwB1bqI5mC51rdGbvfSexnycsSix32JtGS+ES1N765pXv6Bmmu2x4wWx/l9J4UENQ2
+         /Fv2wGxQGADMJaMkLid+WhnkfqzAWLnOAif69JpWMu8Ozc+VoOeGwL4M09Yv7WrQtQV7
+         XzDfUAT/baMtlzex4C7VxiDZfPLIc49oEKzo3ra3rYBU/KA/EtJzv3Y0JGPa3/48kxS7
+         WJnw==
+X-Forwarded-Encrypted: i=1; AJvYcCXka8DE05HMzImK8h5BEGr7DJEfPxZ+loO3TkOresVxgyKonPmytiy6UgNfFWSsPLbDpBgivpHJCmkc@vger.kernel.org
+X-Gm-Message-State: AOJu0YzuE81hX9D91VwkqDeq1PL6HWQWtWRN8lkVXzpcl3rFtTVKR4EW
+	oEZVIwyG+O+nIZ1ANhpWjqrn9N/dDokedBcGoWhyYhC8WxmL0lpFXikwlNgTwzXv1MU=
+X-Gm-Gg: AY/fxX5xXD8hqY5L/B9DVyxfqnGwqWP6nodEIV8YvjOy0sgr1Pc0FhMFaB58hEFkLES
+	/lSdm1KtavbPzeEc3lfIDfOXXFrM2YjAYLtLncQ8YagSZljZY6ID5FcYPqZOS832nvKhxxCGIlW
+	gpRy+r4uxW1P7kyQXhb4O5UmGcc4qQaQ9xyDJ9hYrvJsM1HTluOrScS9KRms8avum+AVxC1DYok
+	uD9IXxuDv04NcbgVBFZ9oJykbFdbQihKZ5mE/Z95ZCIndluLdCBzhoEy5aoGIOPgcKCQ2igzFOP
+	09Dna8tO4RE8vF0VDe4pM5GFl5XCqvgdi/G/s6qlqZlpfGmktxz9hIIEEiRSCFjW+7CsijqrhEX
+	oFnoOrIo0crpw9m3sY5erBB8keo6LA/Flja+IGXhn5Sqv/dbnf9psW+11nP0JKrb0yCnQ0PuEI7
+	voLKffK2eFEnRUNQRxRAsov0oxxRXHEs0N2OPe39vf6AdvGeA/ZJHA
+X-Google-Smtp-Source: AGHT+IGvo+/r8DGxAk+Qp2jL/mIEcx7HGJlSXwVwowUCWWlLWmWtzRam145/XnamXOC9odGtDbhRnA==
+X-Received: by 2002:a05:600c:828d:b0:45b:7d77:b592 with SMTP id 5b1f17b1804b1-47a8f8c05e7mr190963935e9.12.1765942141400;
+        Tue, 16 Dec 2025 19:29:01 -0800 (PST)
 Received: from [192.168.0.40] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4310ada82d5sm2461243f8f.4.2025.12.16.19.22.54
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4310adf6eabsm2191990f8f.38.2025.12.16.19.29.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 Dec 2025 19:22:55 -0800 (PST)
-Message-ID: <4b6ccfc5-9d05-42c6-bb70-32500646c46f@linaro.org>
-Date: Wed, 17 Dec 2025 03:22:54 +0000
+        Tue, 16 Dec 2025 19:29:00 -0800 (PST)
+Message-ID: <2ce4e296-701a-4354-8988-87525769ccac@linaro.org>
+Date: Wed, 17 Dec 2025 03:29:00 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,8 +83,8 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v6 1/5] media: dt-bindings: Add CAMSS device for Kaanapali
-To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Vijay Kumar Tumati <vijay.tumati@oss.qualcomm.com>,
+To: Vijay Kumar Tumati <vijay.tumati@oss.qualcomm.com>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
  Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
  Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>,
  Loic Poulain <loic.poulain@oss.qualcomm.com>, Robert Foss
@@ -106,37 +106,39 @@ References: <20251113-add-support-for-camss-on-kaanapali-v6-0-1e6038785a8e@oss.q
  <ceeee542-a319-4ad9-ada8-3dc769599dec@mleia.com>
  <d1fb4d8a-608e-44f5-834f-fa92d487c75b@oss.qualcomm.com>
  <eff759a7-06ee-42f5-a3a6-860956d7ae84@linaro.org>
+ <c2125dbf-bbef-426e-adf9-7767ad822ae1@oss.qualcomm.com>
 From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 Content-Language: en-US
-In-Reply-To: <eff759a7-06ee-42f5-a3a6-860956d7ae84@linaro.org>
+In-Reply-To: <c2125dbf-bbef-426e-adf9-7767ad822ae1@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 17/12/2025 00:02, Vladimir Zapolskiy wrote:
-> My concern is that it makes very little sense to throw any not clearly
-> defined hardware properties and interconnections into an unorganized and
-> unmanageable pile of everything, because this closes the door to ever 
-> update
-> the upstream CAMSS driver by adding better CAMSS IP support for any already
-> manufactured and sold Qualcomm SoC powered board with done CAMSS support.
-> 
-> If some user already holds a phone, a laptop and expects to offload CPU to
-> CAMSS IP one happy day, it's pretty unsatisfactory to say that it will 
-> never
-> happen on legacy hardware, because there was done an unrecoverable mistake
-> by adding never tested properties into CAMSS DT bindings, and the remained
-> option is to "wait for future chipsets". Each added unsupported and unused
-> property boards up the window of better CAMSS support on manufactured 
-> boards.
-> 
-> I don't understand a reason why to do worse for the upstream, when there is
-> a clear and feasible alternative not to do worse, thus my misunderstanding
-> and my grief for upstream CAMSS are my concerns.
+On 17/12/2025 00:46, Vijay Kumar Tumati wrote:
+>> I don't understand a reason why to do worse for the upstream, when 
+>> there is
+>> a clear and feasible alternative not to do worse, thus my 
+>> misunderstanding
+>> and my grief for upstream CAMSS are my concerns.
+>>
+> Thanks for the comments, Vladimir. Bryan's and Krzysztof's argument was 
+> that the bindings are required to describe the full hardware regardless 
+> of the driver support and either way not modifiable in the future, so 
+> they preferred having the HW properties of the key functional blocks in 
+> the bindings. And we were specifically asked to add the properties into 
+> this node in this patch series. Having said that, my knowledge on how 
+> the bindings are handled upstream in the long run as the requirements 
+> evolve, is limited. So I will look for some expert advise from Bryan 
+> here as he strongly advised for these. Thanks again.
 
-I don't think this answers the question on how describing all of the 
-CAMSS hardware precludes switching on demosiac.
+I see no technical reason why describing the whole hardware block 
+precludes any further work. How could it ?
 
-To be frank, I don't see any specific arguments here at all.
+Anyway, I'll repeat my ask to describe:
+
+- The full register set
+- The interconnects
+- The clocks and resets
+- The SIDs
 
 ---
 bod
