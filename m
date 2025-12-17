@@ -1,150 +1,131 @@
-Return-Path: <devicetree+bounces-247478-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247486-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65AF1CC8020
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 14:56:05 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2F9ECC810A
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 15:05:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DAF2B3067D21
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 13:53:49 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5EDDE30BBFF9
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 13:58:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2335B382BC8;
-	Wed, 17 Dec 2025 13:53:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dcRH1ze9"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE20423182D;
+	Wed, 17 Dec 2025 13:55:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E55E3382BC5;
-	Wed, 17 Dec 2025 13:53:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 230FD2D73A2
+	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 13:55:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765979626; cv=none; b=r4c5XVlcyevSLf1y4pJ8hdZZ1Ba7MO8E9azwzMgFUBNIyPU9ddzxwSnYdaovZaVet0UKS0jRZhBspJ6DughxIkEpzEQePzuW51+O9b8YvUrBItaor0ZdmDN2htCwuqCSAOu819D/TB87tNHxCVriyE9w8IalOVbcZXsngxG6h44=
+	t=1765979729; cv=none; b=gVHxGRXcmri9aGfvsUIhSgsqvNs2xBtM9APuFlzGhrBpPQ8gm9qDacREiRG4VYrVanAMd23oPIQuw6VhqBfsxlK/Q4dZusiWKkB0ba5nkyHDyculZ2M8jtLAWPBlN+6KOFVaRlB0AnYtdObkrGn8rs6UgfB9FSVVsRmNbEgy4jQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765979626; c=relaxed/simple;
-	bh=LSAatRuwlKsmUa0I3zhBm612tklOcdKIV1w+WRG7oIY=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=iDXd7qkvXTuDXtn8aUKe8Y4pu9yk8vMflXBrTz2I3T/KMdh3NrXm79KR6GeAYuKaVsxNzTKHitqEzx4KFOnKur2Tsghi9aqhRxfpXG26dfdyBxp7iwytvFJHOrBWT3rojNYfc2Xk/wgbya4BO0S8WICgB2qguAGtYWd8wZduCtQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dcRH1ze9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0BDEDC4CEF5;
-	Wed, 17 Dec 2025 13:53:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765979625;
-	bh=LSAatRuwlKsmUa0I3zhBm612tklOcdKIV1w+WRG7oIY=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=dcRH1ze9S1D3iqndHfTKJtT0OA34/fesm3EqmDhudyqM6/ZItEg6C8GNubNp4ZX9r
-	 +Drrs2aODL29D0YfTp9w4FJBJe0RjbicX3/klfrdU7kp9miIlIV5Z5+G8JCpqwhqKU
-	 JmJAh/bq6rY7yiHakdah+e51XtERLkLr5V4iTA4ojCTpvqGQauMLnJUwkmsMvVJdaF
-	 edEbyeHtcrWjWU3hDo3DMom3+xdmzbuq3a8QQdmUM3BDySAp6aiYYPVCj0+dL5N1U2
-	 QZEIFagv/so5cz17HcedvL1SxVNZTQ0kUtv3bHa/qo7G5Gc91ehKf9jkS8RDAgOjMZ
-	 XPacs951/YT3Q==
-Message-ID: <62930036-f817-4051-9657-46c1786287c5@kernel.org>
-Date: Wed, 17 Dec 2025 14:53:40 +0100
+	s=arc-20240116; t=1765979729; c=relaxed/simple;
+	bh=pZIFlRIVLpcCvJfJFXahTVH85kCg+833Wa7DyItgKlk=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=g75tLrYGgM0Vshc1rhAIXlRuDy3deMuFu9Ed9zr+HsURsskkbMIerVUZ4x9n+5RlbrOKUXGKWXs7dmA2buCDveNEnnEivSSp2p5OuQ344jm8SmzRc0OQQ+WRJ4h/xgq4VbKXRNbOf14XhAp+06047sj3R6V/up2fJZ9pyjwQdCM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <s.hauer@pengutronix.de>)
+	id 1vVrzW-00019I-Aw; Wed, 17 Dec 2025 14:54:58 +0100
+Received: from dude02.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::28])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <s.hauer@pengutronix.de>)
+	id 1vVrzR-0067Yt-09;
+	Wed, 17 Dec 2025 14:54:53 +0100
+Received: from localhost ([::1] helo=dude02.red.stw.pengutronix.de)
+	by dude02.red.stw.pengutronix.de with esmtp (Exim 4.98.2)
+	(envelope-from <s.hauer@pengutronix.de>)
+	id 1vVrzQ-00000004tQv-3RD4;
+	Wed, 17 Dec 2025 14:54:52 +0100
+From: Sascha Hauer <s.hauer@pengutronix.de>
+Subject: [PATCH 00/11] sound: codecs: tlv320adcx140: assorted patches
+Date: Wed, 17 Dec 2025 14:54:50 +0100
+Message-Id: <20251217-sound-soc-codecs-tvl320adcx140-v1-0-293dea149d7b@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6] arm64: dts: qcom: x1e80100: Add crypto engine
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Harshal Dev <harshal.dev@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Val Packett <val@packett.cool>,
- Stephan Gerhold <stephan.gerhold@linaro.org>,
- Abel Vesa <abel.vesa@oss.qualcomm.com>,
- Udit Tiwari <quic_utiwari@quicinc.com>,
- Neeraj Soni <quic_neersoni@quicinc.com>,
- Wenjia Zhang <wenjia.zhang@oss.qualcomm.com>,
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-References: <20251211-crypto_dt_node_x1e80100-v6-1-03830ed53352@oss.qualcomm.com>
- <15276b31-8189-43e7-b619-76b2f85380dd@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <15276b31-8189-43e7-b619-76b2f85380dd@kernel.org>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACq2QmkC/x2NQQrCQAwAv1JyNrAbq61+RTysSaoB2ZVNLYXSv
+ 7t4GZjLzAau1dTh2m1QdTG3kpvEQwf8SvmpaNIcKNApUhzQyzdLIyMXUXacl/eRQhJeYx8wjUJ
+ 67i+PaRihRT5VJ1v/g9t933/XKrmZcAAAAA==
+X-Change-ID: 20251217-sound-soc-codecs-tvl320adcx140-a8d2e649bf78
+To: Shenghao Ding <shenghao-ding@ti.com>, Kevin Lu <kevin-lu@ti.com>, 
+ Baojun Xu <baojun.xu@ti.com>, Liam Girdwood <lgirdwood@gmail.com>, 
+ Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>, 
+ Takashi Iwai <tiwai@suse.com>, 
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>, 
+ Clark Williams <clrkwllms@kernel.org>, Steven Rostedt <rostedt@goodmis.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>, 
+ Dan Murphy <dmurphy@ti.com>
+Cc: linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Kevin Lu <luminlong@139.com>, linux-rt-devel@lists.linux.dev, 
+ devicetree@vger.kernel.org, Sascha Hauer <s.hauer@pengutronix.de>, 
+ Emil Svendsen <emas@bang-olufsen.dk>, 
+ Dimitrios Katsaros <patcherwork@gmail.com>, 
+ Emil-Juhl <emdj@bang-olufsen.dk>, Andreas Sloth <anps@bang-olufsen.dk>, 
+ Andreas Pehn Sloth <anps@bang-olufsen.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1765979692; l=1417;
+ i=s.hauer@pengutronix.de; s=20230412; h=from:subject:message-id;
+ bh=pZIFlRIVLpcCvJfJFXahTVH85kCg+833Wa7DyItgKlk=;
+ b=qiwrU1S12h5L0krGzhFGQZgF3qeR6m5ZXlrNhHpUUBv7xDMBqsbCtXcwhISryj3AzmFAaFj1I
+ hHkbJD4zDuFAXdgJzUI7y7KTCb9jLGUi3Ihoal3anJxwIM66XavaQmU
+X-Developer-Key: i=s.hauer@pengutronix.de; a=ed25519;
+ pk=4kuc9ocmECiBJKWxYgqyhtZOHj5AWi7+d0n/UjhkwTg=
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: s.hauer@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On 17/12/2025 14:53, Krzysztof Kozlowski wrote:
-> On 11/12/2025 09:49, Harshal Dev wrote:
->> On X Elite, there is a crypto engine IP block similar to ones found on
->> SM8x50 platforms.
->>
->> Describe the crypto engine and its BAM.
->>
->> Tested-by: Wenjia Zhang <wenjia.zhang@oss.qualcomm.com>
->> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
->> Reviewed-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
->> Signed-off-by: Harshal Dev <harshal.dev@oss.qualcomm.com>
->> ---
->> The dt-binding schema update for the x1e80100 compatible is here
->> (already merged):
->>     
->> https://lore.kernel.org/all/20250213-dt-bindings-qcom-qce-x1e80100-v1-1-d17ef73a1c12@linaro.org/
->> ---
->> Changes in v6:
->> - Added Reviewed-by tag from Abel.
->> - Link to v5: https://lore.kernel.org/r/20251210-crypto_dt_node_x1e80100-v5-1-5ad22a869a56@oss.qualcomm.com
-> 
-> You just sent it 7 days ago! Why new version? Please relax, and help out
+These are some patches for the tlv320adcx140 codec we are carrying
+around for a while, time to upstream them.
 
-s/7/1 day ago/
+First four patches are fixes. The following four add regulator support
+for AVDD and IOVDD. The remaining three patches add more controls to the
+driver.
 
-> by reviewing other patches on the mailing lists in order to relieve the
-> burden of maintainers and move your patches higher up the list.
-> 
-> 
-> Best regards,
-> Krzysztof
+Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+---
+Andreas Sloth (1):
+      ASoC: tlv320adcx140: Add kcontrols for TDM Slot assignment
 
+Dimitrios Katsaros (1):
+      ASoC: tlv320adcx140: Propagate error codes during probe
+
+Emil Svendsen (4):
+      ASoC: tlv320adcx140: invert DRE_ENABLE
+      ASoC: tlv320adcx140: fix null pointer
+      ASoC: tlv320adcx140: fix word length
+      ASoC: tlv320adcx140: add channel sum control
+
+Emil-Juhl (4):
+      ASoC: tlv320adcx140: implement register caching
+      ASoC: tlv320adcx140: add avdd and iovdd supply
+      ASoC: dt-bindings: clarify areg-supply documentation
+      ASoC: tlv320adcx140: add kcontrol for num biquads
+
+Sascha Hauer (1):
+      ASoC: dt-bindings: add avdd and iovdd supply
+
+ .../bindings/sound/ti,tlv320adcx140.yaml           |  14 +-
+ sound/soc/codecs/tlv320adcx140.c                   | 159 +++++++++++++++++++--
+ 2 files changed, 163 insertions(+), 10 deletions(-)
+---
+base-commit: 8f0b4cce4481fb22653697cced8d0d04027cb1e8
+change-id: 20251217-sound-soc-codecs-tvl320adcx140-a8d2e649bf78
 
 Best regards,
-Krzysztof
+-- 
+Sascha Hauer <s.hauer@pengutronix.de>
+
 
