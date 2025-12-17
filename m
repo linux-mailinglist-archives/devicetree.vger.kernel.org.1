@@ -1,556 +1,315 @@
-Return-Path: <devicetree+bounces-247267-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247268-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70C32CC66AE
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 08:50:43 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18BE8CC6770
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 09:00:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 2141130161F4
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 07:50:41 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A0A69303F282
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 07:55:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03C3333B6CE;
-	Wed, 17 Dec 2025 07:50:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D35332825E;
+	Wed, 17 Dec 2025 07:55:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nbHxNbPt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oqQM4kRL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4006E2C2366
-	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 07:50:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8ECB319875;
+	Wed, 17 Dec 2025 07:55:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765957825; cv=none; b=jGS23tnr/ut18uM2wY+Qd874MaeiY1S1STW9eWAD/MxlKxj0C26WKlark8aR1flFPRh5dCL/1JzCgADqMkcpQJg2sUYjIPduTlwp2vmUnjbUvr7WMvofgT8pb4+Ye9H+a5KaV7fjb+9LzmGvsFePrvHLe4Igm75LLz0Jrlspbe4=
+	t=1765958152; cv=none; b=FAO9kZ6AZrImgqpsLQuiQrK+CQf80vUsGwgjSdmp61Ot076iXtQ+RiUYpS782Yb/HLczFRNQd30uDoohtFlHnNdawZtmAlLfNM/Nvulay52AbKBPGQuV03y8OHTlwH37wUlYkKACnj3mPFdDAeAn4r66GOdAl4FJiTHhXBIBDzM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765957825; c=relaxed/simple;
-	bh=Fqv9y7a9HPIIUX574t6eHC7roCbUyY72GmQtdqF+kd0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=bhdyYNDsOpWhVuL/EqmZyL/DLp8QbSrpcLWpYirGOfdaZYaRkQc/MM+HPH4x5NvaDmStXlEqPwnuhFFa7HoP7hm69D54l2wdq0Hq3mynkFGITBUmU7GtuH9gfKY4AF3kkp0CcGz/A6lvs9amxzYljDUDn1Gn/KvFiTmv+K9TowY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nbHxNbPt; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-4779aa4f928so65618705e9.1
-        for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 23:50:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1765957821; x=1766562621; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3mEDspWRxu8ev/Lf8BHmK/EnPiZCfkr2HvPb/NoKe5Q=;
-        b=nbHxNbPtHc6WfYDXuz+gvj46AdVEV8XlNX8yDBOSmIatwLQT1GQyRRMs5KcfLCXiGx
-         /BrCOutYPIG3dly7QB2s9dnyNSSQEPg1/XrYuu89iEn2r43You7xQ82D4HhBsfFSQalm
-         SoX7rZt2GjEG5kXx9yKr1cs3uct8oS8ZyITg9akyunKTBkpQd3iIAbhM1YiCj9/y4DSF
-         VEWVvHlg5ENl10i27S+AhnacUOopk6CFZx5J3iARioiSwloS4/dDNg4SjZ1j9+MbnoTC
-         j1TpgKPZyUV2VWBC+AJrvikbLpGgdMWfKC8qnT7nLBSWLZ6ZOQLypeQWfBJ32gv2w/sT
-         U2bQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765957821; x=1766562621;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=3mEDspWRxu8ev/Lf8BHmK/EnPiZCfkr2HvPb/NoKe5Q=;
-        b=nXj/bM3azRjK86yh+u9Wbg6V6mrmuwoCNWJvVL6ZopFryPsQ3yQ0ntRqLNtk7Qrkr4
-         agU7OAbVNtElTe2xC3LbQjmPlrcltVB0EHoze9TkaWEEO0ZxaHGaZ5GEQf7V1Z5kbhta
-         iM8I+TW7q/xJtCRPyrLu992TKasaBIyeUHELBvuSV3bKGq6ZJyusf1PVhUFvc4iX4kJX
-         Cpm2NHc5mxq7RGShjXIDADnfl1vRIhnZpRLbklA7NLhj0V3xsEPoJKz5ANKc239w6/mt
-         J5iESDUljEkYk50ibNza70SKpFJq/KSN3qy9trTFOS/dedk0uMx0EldQjnoDxkQyaXRs
-         TYbA==
-X-Forwarded-Encrypted: i=1; AJvYcCXlxkI0SCgioXOc/5KOdRQCij/FfXoWlYwdkV8uFQOCklQfbheUvwtCVgVvVCC9kyZhgNpfLzurAsKR@vger.kernel.org
-X-Gm-Message-State: AOJu0YyxHK2tY7TmPaEpUSeNGK2I8bX+Y7/nZLui+53b/1hP6gIY4PL8
-	9bWv0vpmnw8VbdJWl7hzIybyWx/TQUea6omOQQlV04Qv4c90ICLKM20c+aX3pE7SYfg=
-X-Gm-Gg: AY/fxX7QSNyabFnd4TkXx+qhfGQIozFBJgRiifkWSerK/4RWA6K4u+Kw7URCzyXAa8O
-	4govKOWg94u/ctukfueSRcq8nRIDz+YuzMLdr8JwXensvkpeIGOh0tEaFc5LCZHAoTaAdFGSddF
-	LK7XbHlXwvQBWsdVhGd5K92zNjN4bu/UkbqEnM8RNb6YWR3BedjkscHhM1vGyl6a3v2qljOVwcw
-	6vUCfxIkv+rfhx4+0p9yYcgATXxm2/7p4QdQptoY2QRRVNLZxzUtfawcAikEPghxUPoun8k+2o7
-	0948yKfcs4K5DSlP5769cbPnGlPFn89MGl0Ej5Y8kDj7vHCeqq32vT68W4jpjLgrzuFY8aj/1Vd
-	Tu2AVunYiAuu0HAmQmmzZMN7mumY1n9Yr0mK5PNxMBzGp1abxEA0HbgYgruvcL/FtdJ4Us6bMlP
-	R5JignLaxKAZOPrmiB2y7WbbG3HczOsjQ=
-X-Google-Smtp-Source: AGHT+IE5wiDfaK/vzIGieNFAGeN1n7bTb5hWPHvlVtjJbKESFVmmsC3/l1Mw+mozuxMdTSpQ8GYC6A==
-X-Received: by 2002:a05:600c:4e54:b0:477:9eb8:97d2 with SMTP id 5b1f17b1804b1-47a8f8a7092mr197954635e9.8.1765957821327;
-        Tue, 16 Dec 2025 23:50:21 -0800 (PST)
-Received: from mai.box.freepro.com ([2a05:6e02:1041:c10:37e6:ed62:3c8b:2621])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47bdc1edff5sm26094315e9.14.2025.12.16.23.50.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Dec 2025 23:50:20 -0800 (PST)
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-To: wbg@kernel.org,
-	robh@kernel.org,
-	conor+dt@kernel.org,
-	krzk+dt@kernel.org
-Cc: s32@nxp.com,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	linux-stm32@st-md-mailman.stormreply.com (moderated list:ARM/STM32 ARCHITECTURE),
-	linux-arm-kernel@lists.infradead.org (moderated list:ARM/STM32 ARCHITECTURE)
-Subject: [PATCH v3 3/3] counter: Add STM based counter
-Date: Wed, 17 Dec 2025 08:49:57 +0100
-Message-ID: <20251217075000.2592966-4-daniel.lezcano@linaro.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251217075000.2592966-1-daniel.lezcano@linaro.org>
-References: <20251217075000.2592966-1-daniel.lezcano@linaro.org>
+	s=arc-20240116; t=1765958152; c=relaxed/simple;
+	bh=ew1qpWkFBmwjFCEwQhZJW8KB/TpfiurnB2GhFeqTvrI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=TWp5X8/TaFPmVrrqpSX6uQyCZDBgOIz3QJYbyQgtLSupswdZNq+ZcnJgSml7GofXxi/zVPCu1jxN6xUzh9afYh4VEdAullsMj6KJ5tKjjwvI4y/yG1/k/zOz++PFddqWKglmuLcdOChJ6D/FrThm6XHIEesmMvCD3yKiaJpBEB4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oqQM4kRL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ECDB2C4CEFB;
+	Wed, 17 Dec 2025 07:55:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1765958151;
+	bh=ew1qpWkFBmwjFCEwQhZJW8KB/TpfiurnB2GhFeqTvrI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=oqQM4kRLweMj3YY5cGK5J5KkZy+9qYJoV+xO3ZtssRFspto2X8F7uKR9LGgCevV2w
+	 dDOFpQFC8nYmDvvhDB+4Q9HtCJQn8Rax63CovRpmsXuDG2Qscpp1DfCvNtR9xJ5iL4
+	 MYnZc/Y1R8GE4loaZM3Vj7HKRxfUw3qWW2YG1IIi1Tyveequbgs6PLM7UE17+keJY1
+	 c4Yu8Ud31hLkfTi7Q/WgL05wH3IY8+5AIfMk7DFrQVao8gotPSyoOW3wR+A5FUHXWk
+	 8gE1Xb7Vh0Al98N9Jf+UZ3+tt6vaUEgxCVKqyz9roB+10sxBBhyDxFrL5Adb8p311T
+	 8yNnThA3xZ/oQ==
+Message-ID: <a4e0bc9b-1482-49ac-8454-39edeaf3b676@kernel.org>
+Date: Wed, 17 Dec 2025 08:55:47 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC 1/3] dt-bindings: remoteproc: qcom,ipq8074-wcss-pil:
+ convert to DT schema
+To: "Alex G." <mr.nuke.me@gmail.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>, konradybcio@kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20251210003729.3909663-1-mr.nuke.me@gmail.com>
+ <20251210003729.3909663-2-mr.nuke.me@gmail.com>
+ <20251216-notorious-omniscient-frog-caceaf@quoll>
+ <f38764d7-9d7d-47f4-a099-b6ac6b12be6e@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <f38764d7-9d7d-47f4-a099-b6ac6b12be6e@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-The NXP S32G2 automotive platform integrates four Cortex-A53 cores and
-three Cortex-M7 cores, along with a large number of timers and
-counters. These hardware blocks can be used as clocksources or
-clockevents, or as timestamp counters shared across the various
-subsystems running alongside the Linux kernel, such as firmware
-components. Their actual usage depends on the overall platform
-software design.
+On 17/12/2025 06:01, Alex G. wrote:
+>> Filename based on the compatible, so for example:
+>> qcom,ipq8074-wcss-pil.yaml
+> Okay.
+>>> @@ -0,0 +1,167 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/remoteproc/qcom,ipq9574-wcss-pil.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Qualcomm IPQ WCSS Peripheral Image Loader
+>>> +
+>>> +maintainers:
+>>> +  - Placeholder Maintainer <placeholder@kernel.org>
+>>
+>> This must be a real person. Fallback is your SoC maintainer.
+> 
+> I can't find an official maintainer for IPQ8074 or IPQ9574. I could list 
 
-In a Linux-based system, the kernel controls the counter, which is a
-read-only shared resource for the other subsystems. One of its primary
-purposes is to act as a common timestamp source for messages or
-traces, allowing correlation of events occurring in different
-operating system contexts.
+I don't think you looked then. get_maintainers gives you clear answer.
 
-These changes introduce a basic counter driver that can start, stop,
-and reset the counter. It also handles overflow accounting and
-configures the prescaler value.
+> myself, but you know a lot about these bindings. Is it okay if I list 
+> you as the maintainer of this binding, Krzysztof?
 
-Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
----
- drivers/counter/Kconfig       |  10 +
- drivers/counter/Makefile      |   1 +
- drivers/counter/nxp-stm-cnt.c | 386 ++++++++++++++++++++++++++++++++++
- 3 files changed, 397 insertions(+)
- create mode 100644 drivers/counter/nxp-stm-cnt.c
+No. I am not the maintainer of this SoC.
 
-diff --git a/drivers/counter/Kconfig b/drivers/counter/Kconfig
-index d30d22dfe577..bf5b281f194c 100644
---- a/drivers/counter/Kconfig
-+++ b/drivers/counter/Kconfig
-@@ -90,6 +90,16 @@ config MICROCHIP_TCB_CAPTURE
- 	  To compile this driver as a module, choose M here: the
- 	  module will be called microchip-tcb-capture.
- 
-+config NXP_STM_CNT
-+	tristate "NXP System Timer Module Counter driver"
-+	depends on ARCH_S32 || COMPILE_TEST
-+	help
-+	  Select this option to enable the NXP System Timer Module
-+	  Counter driver.
-+
-+	  To compile this driver as a module, choose M here: the
-+	  module will be called nxp_stm_cnt.
-+
- config RZ_MTU3_CNT
- 	tristate "Renesas RZ/G2L MTU3a counter driver"
- 	depends on RZ_MTU3
-diff --git a/drivers/counter/Makefile b/drivers/counter/Makefile
-index 40e644948e7a..196b3c216875 100644
---- a/drivers/counter/Makefile
-+++ b/drivers/counter/Makefile
-@@ -12,6 +12,7 @@ obj-$(CONFIG_I8254)			+= i8254.o
- obj-$(CONFIG_INTEL_QEP)			+= intel-qep.o
- obj-$(CONFIG_INTERRUPT_CNT)		+= interrupt-cnt.o
- obj-$(CONFIG_MICROCHIP_TCB_CAPTURE)	+= microchip-tcb-capture.o
-+obj-$(CONFIG_NXP_STM_CNT)		+= nxp-stm-cnt.o
- obj-$(CONFIG_RZ_MTU3_CNT)		+= rz-mtu3-cnt.o
- obj-$(CONFIG_STM32_TIMER_CNT)		+= stm32-timer-cnt.o
- obj-$(CONFIG_STM32_LPTIMER_CNT)		+= stm32-lptimer-cnt.o
-diff --git a/drivers/counter/nxp-stm-cnt.c b/drivers/counter/nxp-stm-cnt.c
-new file mode 100644
-index 000000000000..36463fcbc9df
---- /dev/null
-+++ b/drivers/counter/nxp-stm-cnt.c
-@@ -0,0 +1,386 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright 2018,2021-2025 NXP
-+ * Copyright 2025 Linaro Limited
-+ *
-+ * Author: Daniel Lezcano <daniel.lezcano@linaro.org>
-+ *
-+ * NXP S32G System Timer Module counters:
-+ *
-+ *  STM supports commonly required system and application software
-+ *  timing functions. STM includes a 32-bit count-up timer and four
-+ *  32-bit compare channels with a separate interrupt source for each
-+ *  channel. The timer is driven by the STM module clock divided by an
-+ *  8-bit prescale value (1 to 256). It has ability to stop the timer
-+ *  in Debug mode
-+ *
-+ */
-+#include <linux/bitfield.h>
-+#include <linux/clk.h>
-+#include <linux/counter.h>
-+#include <linux/interrupt.h>
-+#include <linux/io.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/of_device.h>
-+#include <linux/platform_device.h>
-+#include <linux/pm.h>
-+#include <linux/slab.h>
-+#include <linux/spinlock.h>
-+
-+#define STM_CR(__base)		(__base)
-+#define STM_CR_TEN		BIT(0)
-+#define STM_CR_FRZ		BIT(1)
-+#define STM_CR_CPS_MASK         GENMASK(15, 8)
-+
-+#define STM_CCR0(__base)	((__base) + 0x10)
-+#define STM_CCR_CEN		BIT(0)
-+
-+#define STM_CIR0(__base)	((__base) + 0x14)
-+#define STM_CIR_CIF		BIT(0)
-+
-+#define STM_CMP0(__base)	((__base) + 0x18)
-+
-+#define STM_CNT(__base)		((__base) + 0x04)
-+
-+#define STM_ENABLE_MASK	(STM_CR_FRZ | STM_CR_TEN)
-+
-+struct nxp_stm_cnt {
-+	spinlock_t lock;
-+	void __iomem *base;
-+	u64 overflow;
-+	u32 counter;
-+	u8 prescaler;
-+	bool is_started;
-+};
-+
-+static void nxp_stm_cnt_enable(struct nxp_stm_cnt *stm_cnt)
-+{
-+	u32 reg;
-+
-+	reg = readl(STM_CR(stm_cnt->base));
-+
-+	reg |= STM_ENABLE_MASK;
-+
-+	writel(reg, STM_CR(stm_cnt->base));
-+}
-+
-+static void nxp_stm_cnt_disable(struct nxp_stm_cnt *stm_cnt)
-+{
-+	u32 reg;
-+
-+	reg = readl(STM_CR(stm_cnt->base));
-+
-+	reg &= ~STM_ENABLE_MASK;
-+
-+	writel(reg, STM_CR(stm_cnt->base));
-+}
-+
-+static void nxp_stm_cnt_ccr_disable(struct nxp_stm_cnt *stm_cnt)
-+{
-+	writel(0, STM_CCR0(stm_cnt->base));
-+}
-+
-+static void nxp_stm_cnt_ccr_enable(struct nxp_stm_cnt *stm_cnt)
-+{
-+	writel(STM_CCR_CEN, STM_CCR0(stm_cnt->base));
-+}
-+
-+static void nxp_stm_cnt_set_overflow(struct nxp_stm_cnt *stm_cnt)
-+{
-+	writel(UINT_MAX, STM_CMP0(stm_cnt->base));
-+}
-+
-+static u32 nxp_stm_cnt_get_counter(struct nxp_stm_cnt *stm_cnt)
-+{
-+	return readl(STM_CNT(stm_cnt->base));
-+}
-+
-+static void nxp_stm_cnt_set_counter(struct nxp_stm_cnt *stm_cnt, u32 counter)
-+{
-+	writel(counter, STM_CNT(stm_cnt->base));
-+}
-+
-+static void nxp_stm_cnt_set_prescaler(struct nxp_stm_cnt *stm_cnt, u8 prescaler)
-+{
-+	u32 reg;
-+
-+	reg = readl(STM_CR(stm_cnt->base));
-+
-+	FIELD_MODIFY(STM_CR_CPS_MASK, &reg, prescaler);
-+
-+	writel(reg, STM_CR(stm_cnt->base));
-+}
-+
-+static u8 nxp_stm_cnt_get_prescaler(struct nxp_stm_cnt *stm_cnt)
-+{
-+	u32 reg = readl(STM_CR(stm_cnt->base));
-+
-+	return FIELD_GET(STM_CR_CPS_MASK, reg);
-+}
-+
-+static bool nxp_stm_cnt_is_started(struct nxp_stm_cnt *stm_cnt)
-+{
-+	u32 reg;
-+
-+	reg = readl(STM_CR(stm_cnt->base));
-+
-+	return !!FIELD_GET(STM_CR_TEN, reg);
-+}
-+
-+static void nxp_stm_cnt_irq_ack(struct nxp_stm_cnt *stm_cnt)
-+{
-+	writel(STM_CIR_CIF, STM_CIR0(stm_cnt->base));
-+}
-+
-+static irqreturn_t nxp_stm_cnt_irq(int irq, void *dev_id)
-+{
-+	struct nxp_stm_cnt *stm_cnt = dev_id;
-+
-+	nxp_stm_cnt_irq_ack(stm_cnt);
-+
-+	spin_lock(&stm_cnt->lock);
-+	stm_cnt->overflow++;
-+	spin_unlock(&stm_cnt->lock);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static void nxp_stm_cnt_start(struct nxp_stm_cnt *stm_cnt)
-+{
-+	nxp_stm_cnt_ccr_enable(stm_cnt);
-+	nxp_stm_cnt_set_overflow(stm_cnt);
-+	nxp_stm_cnt_enable(stm_cnt);
-+}
-+
-+static void nxp_stm_cnt_stop(struct nxp_stm_cnt *stm_cnt)
-+{
-+	nxp_stm_cnt_disable(stm_cnt);
-+	nxp_stm_cnt_irq_ack(stm_cnt);
-+	nxp_stm_cnt_ccr_disable(stm_cnt);
-+}
-+
-+static int nxp_stm_cnt_overflow_read(struct counter_device *counter,
-+				     struct counter_count *count, u64 *val)
-+{
-+	struct nxp_stm_cnt *stm_cnt = counter_priv(counter);
-+	unsigned long irqflags;
-+
-+	spin_lock_irqsave(&stm_cnt->lock, irqflags);
-+	*val = stm_cnt->overflow;
-+	spin_unlock_irqrestore(&stm_cnt->lock, irqflags);
-+
-+	return 0;
-+}
-+
-+static int nxp_stm_cnt_overflow_write(struct counter_device *counter,
-+				      struct counter_count *count, u64 val)
-+{
-+	struct nxp_stm_cnt *stm_cnt = counter_priv(counter);
-+	unsigned long irqflags;
-+
-+	spin_lock_irqsave(&stm_cnt->lock, irqflags);
-+	stm_cnt->overflow = val;
-+	spin_unlock_irqrestore(&stm_cnt->lock, irqflags);
-+
-+	return 0;
-+}
-+
-+static int nxp_stm_cnt_reset_write(struct counter_device *counter,
-+				   struct counter_count *count, u8 val)
-+{
-+	struct nxp_stm_cnt *stm_cnt = counter_priv(counter);
-+
-+	nxp_stm_cnt_set_counter(stm_cnt, 0);
-+	spin_lock(&stm_cnt->lock);
-+	stm_cnt->overflow = 0;
-+	spin_unlock(&stm_cnt->lock);
-+
-+	return 0;
-+}
-+
-+static int nxp_stm_cnt_prescaler_read(struct counter_device *counter,
-+				      struct counter_count *count, u8 *val)
-+{
-+	struct nxp_stm_cnt *stm_cnt = counter_priv(counter);
-+
-+	*val = nxp_stm_cnt_get_prescaler(stm_cnt);
-+
-+	return 0;
-+}
-+
-+static int nxp_stm_cnt_prescaler_write(struct counter_device *counter,
-+				       struct counter_count *count, u8 val)
-+{
-+	struct nxp_stm_cnt *stm_cnt = counter_priv(counter);
-+
-+	nxp_stm_cnt_set_prescaler(stm_cnt, val);
-+
-+	return 0;
-+}
-+
-+static int nxp_stm_cnt_count_enable_write(struct counter_device *counter,
-+					  struct counter_count *count, u8 enable)
-+{
-+	struct nxp_stm_cnt *stm_cnt = counter_priv(counter);
-+
-+	if (enable)
-+		nxp_stm_cnt_start(stm_cnt);
-+	else
-+		nxp_stm_cnt_stop(stm_cnt);
-+
-+	return 0;
-+}
-+
-+static int nxp_stm_cnt_count_enable_read(struct counter_device *counter,
-+					 struct counter_count *count, u8 *enable)
-+{
-+	struct nxp_stm_cnt *stm_cnt = counter_priv(counter);
-+
-+	*enable = nxp_stm_cnt_is_started(stm_cnt);
-+
-+	return 0;
-+}
-+
-+static struct counter_comp stm_cnt_count_ext[] = {
-+	COUNTER_COMP_COUNT_BOOL("reset",  NULL, nxp_stm_cnt_reset_write),
-+	COUNTER_COMP_COUNT_U8("prescaler", nxp_stm_cnt_prescaler_read, nxp_stm_cnt_prescaler_write),
-+	COUNTER_COMP_COUNT_U64("overflows", nxp_stm_cnt_overflow_read, nxp_stm_cnt_overflow_write),
-+	COUNTER_COMP_ENABLE(nxp_stm_cnt_count_enable_read, nxp_stm_cnt_count_enable_write),
-+};
-+
-+static int nxp_stm_cnt_count_read(struct counter_device *dev,
-+				  struct counter_count *count, u64 *val)
-+{
-+	struct nxp_stm_cnt *stm_cnt = counter_priv(dev);
-+
-+	*val = nxp_stm_cnt_get_counter(stm_cnt);
-+
-+	return 0;
-+}
-+
-+static const struct counter_ops nxp_stm_cnt_counter_ops = {
-+	.count_read  = nxp_stm_cnt_count_read,
-+};
-+
-+static struct counter_count nxp_stm_cnt_counts[] = {
-+	{
-+		.id = 0,
-+		.name = "stm_cnt",
-+		.ext = stm_cnt_count_ext,
-+		.num_ext = ARRAY_SIZE(stm_cnt_count_ext),
-+	},
-+};
-+
-+static int nxp_stm_cnt_suspend(struct device *dev)
-+{
-+	struct nxp_stm_cnt *stm_cnt = dev_get_drvdata(dev);
-+
-+	stm_cnt->is_started = nxp_stm_cnt_is_started(stm_cnt);
-+
-+	if (stm_cnt->is_started) {
-+		nxp_stm_cnt_stop(stm_cnt);
-+		stm_cnt->prescaler = nxp_stm_cnt_get_prescaler(stm_cnt);
-+		stm_cnt->counter = nxp_stm_cnt_get_counter(stm_cnt);
-+	}
-+
-+	return 0;
-+}
-+
-+static int nxp_stm_cnt_resume(struct device *dev)
-+{
-+	struct nxp_stm_cnt *stm_cnt = dev_get_drvdata(dev);
-+
-+	if (stm_cnt->is_started) {
-+		nxp_stm_cnt_set_counter(stm_cnt, stm_cnt->counter);
-+		nxp_stm_cnt_set_prescaler(stm_cnt, stm_cnt->prescaler);
-+		nxp_stm_cnt_start(stm_cnt);
-+	}
-+
-+	return 0;
-+}
-+
-+static DEFINE_SIMPLE_DEV_PM_OPS(nxp_stm_cnt_pm_ops, nxp_stm_cnt_suspend,
-+				nxp_stm_cnt_resume);
-+
-+static int nxp_stm_cnt_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct device_node *np = dev->of_node;
-+	struct counter_device *counter;
-+	struct nxp_stm_cnt *stm_cnt;
-+	struct clk *clk;
-+	void __iomem *base;
-+	int irq, ret;
-+
-+	base = devm_of_iomap(dev, np, 0, NULL);
-+	if (IS_ERR(base))
-+		return dev_err_probe(dev, PTR_ERR(base), "Failed to iomap %pOFn\n", np);
-+
-+	irq = platform_get_irq(pdev, 0);
-+	if (irq < 0)
-+		return dev_err_probe(dev, irq, "Failed to get IRQ\n");
-+
-+	clk = devm_clk_get_enabled(dev, NULL);
-+	if (IS_ERR(clk))
-+		return dev_err_probe(dev, PTR_ERR(clk), "Clock not found\n");
-+
-+	counter = devm_counter_alloc(dev, sizeof(*stm_cnt));
-+	if (!counter)
-+		return -ENOMEM;
-+
-+	stm_cnt = counter_priv(counter);
-+
-+	stm_cnt->base = base;
-+	stm_cnt->overflow = 0;
-+	spin_lock_init(&stm_cnt->lock);
-+
-+	counter->name       = "stm_counter";
-+	counter->parent     = &pdev->dev;
-+	counter->ops        = &nxp_stm_cnt_counter_ops;
-+	counter->counts     = nxp_stm_cnt_counts;
-+	counter->num_counts = ARRAY_SIZE(nxp_stm_cnt_counts);
-+
-+	ret = devm_request_irq(dev, irq, nxp_stm_cnt_irq, IRQF_TIMER | IRQF_NOBALANCING,
-+			       dev_name(&counter->dev), stm_cnt);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Unable to allocate interrupt line\n");
-+
-+	ret = devm_counter_add(dev, counter);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to register counter\n");
-+
-+	platform_set_drvdata(pdev, stm_cnt);
-+
-+	return 0;
-+}
-+
-+static void nxp_stm_cnt_remove(struct platform_device *pdev)
-+{
-+	struct nxp_stm_cnt *stm_cnt = platform_get_drvdata(pdev);
-+
-+	if (nxp_stm_cnt_is_started(stm_cnt))
-+		nxp_stm_cnt_stop(stm_cnt);
-+}
-+
-+static const struct of_device_id nxp_stm_cnt_of_match[] = {
-+	{ .compatible = "nxp,s32g2-stm-cnt", },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, nxp_stm_cnt_of_match);
-+
-+static struct platform_driver nxp_stm_cnt_driver = {
-+	.probe  = nxp_stm_cnt_probe,
-+	.remove = nxp_stm_cnt_remove,
-+	.driver = {
-+		.name           = "nxp-stm-cnt",
-+		.pm		= pm_sleep_ptr(&nxp_stm_cnt_pm_ops),
-+		.of_match_table = nxp_stm_cnt_of_match,
-+	},
-+};
-+module_platform_driver(nxp_stm_cnt_driver);
-+
-+MODULE_LICENSE("GPL");
-+MODULE_AUTHOR("Daniel Lezcano");
-+MODULE_DESCRIPTION("NXP System Timer Module counter driver");
-+MODULE_IMPORT_NS("COUNTER");
--- 
-2.43.0
+> 
+>>> +
+>>> +  reg-names:
+>>> +    items:
+>>> +      - const: qdsp6
+>>> +      - const: rmb
+>>> +
+>>> +  interrupts-extended:
+>>
+>> No, you only need interrupts. Please look at other bindings - how they
+>> write this.
+> 
+> I thought I needed interrupts-extended if the interrupts use more than 
+> one interrupt controller. Is that not the case?
 
+Instead of asking the same question again, which would give you the same
+answer "No, you only need interrupts" please rather think on the rest of
+the answer - look at other bindings.
+
+
+..
+
+
+>>> +  qcom,smem-states:
+>>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+>>
+>> That's incomplete - missing constraints. Are you sure you wrote this
+>> code the same way we already did for other devices?
+> 
+> I am not sure. It seems to match qcom,qcs404-cdsp-pil.yaml or 
+
+No, it does not.
+
+Look at these files even - they have maxItems. Where do you see maxItems
+here? So how this can be done the same way ("match")?
+
+> qcom,wcnss.yaml. What constraints are you expecting here?
+
+So you take the latest binding, e.g. pas-common for all new platforms.
+Or qcom,qcs404-cdsp-pil.yaml. You need maxItems here and list of items
+for the names.
+
+
+
+> 
+>>> +    description: States used by the AP to signal the remote processor
+>>> +
+>>> +  qcom,smem-state-names:
+>>> +    description:
+>>> +      Names of the states used by the AP to signal the remote processor
+>>> +
+>>> +  glink-edge:
+>>> +    $ref: /schemas/remoteproc/qcom,glink-edge.yaml#
+>>> +    description:
+>>> +      Qualcomm G-Link subnode which represents communication edge, channels
+>>> +      and devices related to the Modem.
+>>> +
+>>> +required:
+>>> +  - compatible
+>>> +  - reg
+>>> +  - reg-names
+>>> +  - interrupts-extended
+>>> +  - interrupt-names
+>>> +  - memory-region
+>>> +  - qcom,halt-regs
+>>> +  - qcom,smem-states
+>>> +  - qcom,smem-state-names
+>>> +
+>>> +allOf:
+>>
+>> Seems you do not reference other schemas. I am going to repeat myself
+>> for 10th time: are you sure you followed other devices?
+> 
+> It's the sixth time, but I see your point. Comparing to 
+> qcom,qcs404-cdsp-pil.yaml or qcom,wcnss.yaml, I can't see what's 
+> missing. What do I need here?
+
+In previous cases you did not look at other binding, so I am questioning
+now everything.
+
+> 
+>>
+>>> +  - if:
+>>> +      properties:
+>>> +        compatible:
+>>> +          contains:
+>>> +            enum:
+>>> +              - qcom,ipq8074-wcss-pil
+>>> +    then:
+>>> +      properties:
+>>> +        qcom,smem-states:
+>>> +          items:
+>>> +            - description: Shutdown Q6
+>>> +            - description: Stop Q6
+>>> +        qcom,smem-state-names:
+>>> +          items:
+>>> +            - const: shutdown
+>>> +            - const: stop
+>>
+>> Missing clocks
+> 
+> The text binding that this replaces implies no clocks for IPQ8074. What 
+> would you like me to add instead?
+
+Disallow the clocks. See example-schema.
+
+> 
+>> Missing blank line
+>>
+>>> +  - if:
+>>> +      properties:
+>>> +        compatible:
+>>> +          contains:
+>>> +            enum:
+>>> +              - qcom,qcs404-wcss-pil
+>>> +    then:
+>>> +      properties:
+>>> +        qcom,smem-states:
+>>> +          maxItems: 1
+>>> +        qcom,smem-state-names:
+>>> +          items:
+>>> +            - const: stop
+>>
+>>> +
+>>> +  - if:
+>>> +      properties:
+>>> +        compatible:
+>>> +          contains:
+>>> +            enum:
+>>> +              - qcom,qcs404-wcss-pil
+>>> +    then:
+>>> +      properties:
+>>> +        clocks:
+>>> +          minItems: 10
+>>> +          maxItems: 10
+>>> +        clock-names:
+>>> +          items:
+>>> +            - const: xo
+>>> +            - const: gcc_abhs_cbcr
+>>> +            - const: gcc_axim_cbcr
+>>> +            - const: lcc_ahbfabric_cbc
+>>> +            - const: tcsr_lcc_cbc
+>>> +            - const: lcc_abhs_cbc
+>>> +            - const: lcc_tcm_slave_cbc
+>>> +            - const: lcc_abhm_cbc
+>>> +            - const: lcc_axim_cbc
+>>> +            - const: lcc_bcr_sleep
+>>
+>> All this goes to previous if.
+> 
+> Okay
+> 
+>>> +      required:
+>>> +        - clocks
+>>> +        - clock-names
+>>> +        - cx-supply
+>>> +
+>>> +additionalProperties: false
+>>
+>> Missing example.
+> 
+> I plan to add the example in the next patch in the series that adds 
+> IPQ9547 binding. I don't have the resources to test IPQ8074 or QCS404, 
+> and I want to be sure that the example I add is tested.
+
+I don't understand what example has anything to do with testing. We
+speak here ONLY about this binding. I do not review other code. This
+patch should have the example, but if you cannot come with one, because
+it does not exist in any existing sources, then you should just say
+that. You have entire commit msg to explain every unusual thing. And
+testing something on a device is not a reason, because you do not test
+the binding on a device.
+
+
+Best regards,
+Krzysztof
 
