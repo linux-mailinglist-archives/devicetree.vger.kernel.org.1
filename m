@@ -1,184 +1,120 @@
-Return-Path: <devicetree+bounces-247240-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247241-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6726CC5F14
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 05:07:00 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3CF3CC5FA9
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 05:49:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 89E783003F60
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 04:06:59 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 0FE543002539
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 04:49:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE480244675;
-	Wed, 17 Dec 2025 04:06:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA9701DB551;
+	Wed, 17 Dec 2025 04:49:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="QR7Y/VDX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dVdo1Eu3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7C73238C16;
-	Wed, 17 Dec 2025 04:06:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8509719CC28
+	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 04:49:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765944417; cv=none; b=ujGi/0072sDs1TBYJEQqY9nEaH8vQIqYv2q6S2CqExS90X29Dx9EeuffmLNvEGUr0FcoU5nWhzvleDtirwvxgoA+Iz5Lt4E9/qGp6aStxD3DXsZzIj077SvwtH6BFJHG2MbEocRYCxVtVmAFrtss2IvFk7p26JgWuqK4s03BvuM=
+	t=1765946946; cv=none; b=pjV7KVse4iUQJya42VOO1OFHyNzI9njU0zyuOkgBKP00vJDW39HoKna56u6Z+76wG8Iww273mU3wCAqavZNAFxmERCS3VRJpcejP/waSudAe2Osl/Ysrww2W8r7RzEvXOG4wc4S80+lKfW7pxZdTTJVV3G9/xtQ13gdF/MNAX2A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765944417; c=relaxed/simple;
-	bh=OjAwINyKQ1MUxnEaRrjG70fGlGQQE/ByQWcqTj43Ghs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JsuhnVfT8Rnh9DNF9uCqt+F91HQ2LdTVQj2LXQVKksw3LD5NbzAREOZ+0uUMvaQkxVaF4aGO/j9JrD/usYJZsGdG+cedNoL5AM6T3Yjopl57D1CT2caRN53RdtwUFoDBZPjXbchdG5/n+wB+95LjQnY37tqDp/6Qy/R1t14n5uQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=QR7Y/VDX; arc=none smtp.client-ip=192.198.163.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1765944416; x=1797480416;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=OjAwINyKQ1MUxnEaRrjG70fGlGQQE/ByQWcqTj43Ghs=;
-  b=QR7Y/VDXUeob0WAxBVfg+iYi9wnUpqZENBPCYslAk4J4rhA+tq7Vvn26
-   VcMHRZ+KNCwZJdA4mKNPkGyK+jwJKON4Kfw9nagGLgTsWgotI1cC8R23c
-   Ly55JbIRuqj9gqI0aArk3ITAq3fA196ObO1r79LWe92WK7MJMBs9UmvCz
-   0NZABNel7AMIdMgpMXlHVutXiq20DKGUCYieEN9pZZGXzUysspdQZdurC
-   +URM1IAt5lZ+SYAakedj2jKf6GFddn3jwg5T49xjo/UK6RYqx4CYpd97l
-   IHNvXH/mm3TUhNRePz6F1aDRZQaEO5IaBMZL5tM4Fsg7bY649PEcqW7+W
-   w==;
-X-CSE-ConnectionGUID: llqnxI+LQcCGRQQmWKToLQ==
-X-CSE-MsgGUID: uNjwlglQQHqNZajALb+euw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11644"; a="67944587"
-X-IronPort-AV: E=Sophos;i="6.21,154,1763452800"; 
-   d="scan'208";a="67944587"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Dec 2025 20:06:55 -0800
-X-CSE-ConnectionGUID: nmWCp0OqQQOWgJLaINxs2g==
-X-CSE-MsgGUID: qhgqTwwSQ8qMcQ1q2oSf7w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,154,1763452800"; 
-   d="scan'208";a="203112031"
-Received: from lkp-server02.sh.intel.com (HELO 034c7e8e53c3) ([10.239.97.151])
-  by fmviesa004.fm.intel.com with ESMTP; 16 Dec 2025 20:06:50 -0800
-Received: from kbuild by 034c7e8e53c3 with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vVioK-0000000049k-1tgD;
-	Wed, 17 Dec 2025 04:06:48 +0000
-Date: Wed, 17 Dec 2025 12:06:40 +0800
-From: kernel test robot <lkp@intel.com>
-To: Ram Prakash Gupta <quic_rampraka@quicinc.com>,
-	Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Adrian Hunter <adrian.hunter@intel.com>
-Cc: oe-kbuild-all@lists.linux.dev, linux-mmc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, dmitry.baryshkov@oss.qualcomm.com,
-	quic_rampraka@quicinc.com, quic_pragalla@quicinc.com,
-	quic_sayalil@quicinc.com, quic_nitirawa@quicinc.com,
-	quic_bhaskarv@quicinc.com, kernel@oss.qualcomm.com,
-	Sachin Gupta <quic_sachgupt@quicinc.com>
-Subject: Re: [PATCH v6 5/5] mmc: sdhci-msm: Rectify DLL programming sequence
- for SDCC
-Message-ID: <202512171135.hzSvlDE9-lkp@intel.com>
-References: <20251215120009.3877889-6-quic_rampraka@quicinc.com>
+	s=arc-20240116; t=1765946946; c=relaxed/simple;
+	bh=DXiwutBlmL9LPij/j31IV4rTeagKy3s9gSqvJ5avzDI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ZTXgnUvCdg0s/HBOBuIdPL19BM//AY9fTKw/G2+5AV+0T47Kuc39N8m5KO8945xfYamvN+/R3uAhXeiSGk8vkBwKRc6oI27P1btbVE0FUUBfZsLeRoutTtWKu03yWDm5ZWmDRbFqYPsM+uJrr4KzKKGXkISYkaHDfU+/Qm995RE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dVdo1Eu3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64460C2BC87
+	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 04:49:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1765946946;
+	bh=DXiwutBlmL9LPij/j31IV4rTeagKy3s9gSqvJ5avzDI=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=dVdo1Eu3kyiA1ohXn/6bnqFp0DAaMF8mjrqPnPqexvAQPyjYylzjswt7Ux84ylcp/
+	 nGCWLkWPwnf9uWXZ1OC4Ggis9XGmhQbxjc216CpcL1LAPE7+QdAisLdjIpb9iqnqh5
+	 Xk4PtDuoKHTwLEMYsPjSD0ELrkfsn/QKuApMT66A9x0vMGL2wPknzSTWoMWCjix349
+	 lCtVW8ifOleJhZpXjOTfyPsKw/hkHV8jZDj5S5FVQEuP6lTTcQL+Axna8HVDOiLNNb
+	 DsNEArS5DcoJQ+p/u9gKIaEr7D6w2aHUwBr+OSpMriP0n8Scto+ggSw5wM9RPlwCj4
+	 E5LlQL6eg4nCQ==
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-b76b5afdf04so890833066b.1
+        for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 20:49:06 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVhn+XuBMskFCGYdxqLz0mjhFB3VsvoeuTzxq4Xb9CrhtEkBWRqbKbHaWF0juuxuPxOzWi0Cp1vg2aL@vger.kernel.org
+X-Gm-Message-State: AOJu0YwmylnJkvpTKebfsmB4FZzUJ/DAdPCsDc3TLi2hqvDZzW5SiJtp
+	0bg00PYwckEQm4tLDMjVu5MPtMi/cFPRY+AL/Polc42JMhq0J92qpO2Em5Or1B5d8wNPlgJkhpu
+	R97ExnIyAi1UIzm7sM8Y/nezXeHhLN94=
+X-Google-Smtp-Source: AGHT+IEtm3jr7IIZEeexP+eQ8VNddB7s2khVWpB3Kl1wLasQQ7s6l+I0zvECeUKVsyCTd6ylyTKQVcyQPOiUF08PVU0=
+X-Received: by 2002:a17:907:3f8a:b0:b7f:f812:d8dc with SMTP id
+ a640c23a62f3a-b7ff812e591mr349300866b.1.1765946944939; Tue, 16 Dec 2025
+ 20:49:04 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251215120009.3877889-6-quic_rampraka@quicinc.com>
+References: <cover.1765778124.git.zhoubinbin@loongson.cn> <a8dd24fe5e2a28c5b5f121be5cc48f6289b0d603.1765778124.git.zhoubinbin@loongson.cn>
+In-Reply-To: <a8dd24fe5e2a28c5b5f121be5cc48f6289b0d603.1765778124.git.zhoubinbin@loongson.cn>
+From: Huacai Chen <chenhuacai@kernel.org>
+Date: Wed, 17 Dec 2025 12:49:18 +0800
+X-Gmail-Original-Message-ID: <CAAhV-H7XH-F8u1VFYtnULvT7AjL5u7XOB4dpbTxm-J9hvMZbJQ@mail.gmail.com>
+X-Gm-Features: AQt7F2ruO1Ahpt-ei-Zlj8hxWuAjibVPLuN56pHvIWc6Yb9TPu7mTk9jaIOAxFs
+Message-ID: <CAAhV-H7XH-F8u1VFYtnULvT7AjL5u7XOB4dpbTxm-J9hvMZbJQ@mail.gmail.com>
+Subject: Re: [PATCH 5/7] LoongArch: dts: loongson-2k1000: Add default Local
+ I/O Interrupt controller address cells
+To: Binbin Zhou <zhoubinbin@loongson.cn>
+Cc: Yao Zi <me@ziyao.cc>, Binbin Zhou <zhoubb.aaron@gmail.com>, 
+	Huacai Chen <chenhuacai@loongson.cn>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Ram,
+Hi, Binbin,
 
-kernel test robot noticed the following build warnings:
+On Tue, Dec 16, 2025 at 3:56=E2=80=AFPM Binbin Zhou <zhoubinbin@loongson.cn=
+> wrote:
+>
+> Add missing address-cells 0 to the local I/O interrupt controller node
+> to silence W=3D1 warning:
+>
+>   loongson-2k1000.dtsi:498.5-55: Warning (interrupt_map): /bus@10000000/p=
+cie@1a000000/pcie@9,0:interrupt-map:
+>     Missing property '#address-cells' in node /bus@10000000/interrupt-con=
+troller@1fe01440, using 0 as fallback
+>
+> Value '0' is correct because:
+> 1. The local I/O interrupt controller does not have children,
+> 2. interrupt-map property (in PCI node) consists of five components and
+>    the fourth component "parent unit address", which size is defined by
+>    '#address-cells' of the node pointed to by the interrupt-parent
+>    component, is not used (=3D0)
+>
+> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+> ---
+>  arch/loongarch/boot/dts/loongson-2k1000.dtsi | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/arch/loongarch/boot/dts/loongson-2k1000.dtsi b/arch/loongarc=
+h/boot/dts/loongson-2k1000.dtsi
+> index eee06b84951c..fa1c000fd3e0 100644
+> --- a/arch/loongarch/boot/dts/loongson-2k1000.dtsi
+> +++ b/arch/loongarch/boot/dts/loongson-2k1000.dtsi
+> @@ -131,6 +131,7 @@ liointc1: interrupt-controller@1fe01440 {
+>                               <0x0 0x1fe01148 0x0 0x8>;
+>                         reg-names =3D "main", "isr0", "isr1";
+>                         interrupt-controller;
+> +                       #address-cells =3D <0>;
+I think liointc0 also need address-cells, no?
 
-[auto build test WARNING on linus/master]
-[also build test WARNING on krzk-dt/for-next v6.19-rc1]
-[cannot apply to robh/for-next krzk/for-next ulf-hansson-mmc-mirror/next next-20251216]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Huacai
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Ram-Prakash-Gupta/dt-bindings-mmc-Add-dll-presets-values-for-HS400-and-HS200-modes/20251215-200814
-base:   linus/master
-patch link:    https://lore.kernel.org/r/20251215120009.3877889-6-quic_rampraka%40quicinc.com
-patch subject: [PATCH v6 5/5] mmc: sdhci-msm: Rectify DLL programming sequence for SDCC
-config: i386-allmodconfig (https://download.01.org/0day-ci/archive/20251217/202512171135.hzSvlDE9-lkp@intel.com/config)
-compiler: gcc-14 (Debian 14.2.0-19) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251217/202512171135.hzSvlDE9-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202512171135.hzSvlDE9-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   In file included from include/asm-generic/bug.h:31,
-                    from arch/x86/include/asm/bug.h:193,
-                    from arch/x86/include/asm/alternative.h:9,
-                    from arch/x86/include/asm/barrier.h:5,
-                    from include/linux/list.h:11,
-                    from include/linux/module.h:12,
-                    from drivers/mmc/host/sdhci-msm.c:8:
-   drivers/mmc/host/sdhci-msm.c: In function 'sdhci_msm_configure_dll':
->> include/linux/kern_levels.h:5:25: warning: format '%u' expects argument of type 'unsigned int', but argument 4 has type 'long unsigned int' [-Wformat=]
-       5 | #define KERN_SOH        "\001"          /* ASCII Start Of Header */
-         |                         ^~~~~~
-   include/linux/printk.h:484:25: note: in definition of macro 'printk_index_wrap'
-     484 |                 _p_func(_fmt, ##__VA_ARGS__);                           \
-         |                         ^~~~
-   include/linux/printk.h:555:9: note: in expansion of macro 'printk'
-     555 |         printk(KERN_ERR pr_fmt(fmt), ##__VA_ARGS__)
-         |         ^~~~~~
-   include/linux/kern_levels.h:11:25: note: in expansion of macro 'KERN_SOH'
-      11 | #define KERN_ERR        KERN_SOH "3"    /* error conditions */
-         |                         ^~~~~~~~
-   include/linux/printk.h:555:16: note: in expansion of macro 'KERN_ERR'
-     555 |         printk(KERN_ERR pr_fmt(fmt), ##__VA_ARGS__)
-         |                ^~~~~~~~
-   drivers/mmc/host/sdhci-msm.c:930:33: note: in expansion of macro 'pr_err'
-     930 |                                 pr_err("%s: %s: Non standard clk freq =%u\n",
-         |                                 ^~~~~~
---
-   In file included from include/asm-generic/bug.h:31,
-                    from arch/x86/include/asm/bug.h:193,
-                    from arch/x86/include/asm/alternative.h:9,
-                    from arch/x86/include/asm/barrier.h:5,
-                    from include/linux/list.h:11,
-                    from include/linux/module.h:12,
-                    from sdhci-msm.c:8:
-   sdhci-msm.c: In function 'sdhci_msm_configure_dll':
->> include/linux/kern_levels.h:5:25: warning: format '%u' expects argument of type 'unsigned int', but argument 4 has type 'long unsigned int' [-Wformat=]
-       5 | #define KERN_SOH        "\001"          /* ASCII Start Of Header */
-         |                         ^~~~~~
-   include/linux/printk.h:484:25: note: in definition of macro 'printk_index_wrap'
-     484 |                 _p_func(_fmt, ##__VA_ARGS__);                           \
-         |                         ^~~~
-   include/linux/printk.h:555:9: note: in expansion of macro 'printk'
-     555 |         printk(KERN_ERR pr_fmt(fmt), ##__VA_ARGS__)
-         |         ^~~~~~
-   include/linux/kern_levels.h:11:25: note: in expansion of macro 'KERN_SOH'
-      11 | #define KERN_ERR        KERN_SOH "3"    /* error conditions */
-         |                         ^~~~~~~~
-   include/linux/printk.h:555:16: note: in expansion of macro 'KERN_ERR'
-     555 |         printk(KERN_ERR pr_fmt(fmt), ##__VA_ARGS__)
-         |                ^~~~~~~~
-   sdhci-msm.c:930:33: note: in expansion of macro 'pr_err'
-     930 |                                 pr_err("%s: %s: Non standard clk freq =%u\n",
-         |                                 ^~~~~~
-
-
-vim +5 include/linux/kern_levels.h
-
-314ba3520e513a Joe Perches 2012-07-30  4  
-04d2c8c83d0e3a Joe Perches 2012-07-30 @5  #define KERN_SOH	"\001"		/* ASCII Start Of Header */
-04d2c8c83d0e3a Joe Perches 2012-07-30  6  #define KERN_SOH_ASCII	'\001'
-04d2c8c83d0e3a Joe Perches 2012-07-30  7  
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+>                         #interrupt-cells =3D <2>;
+>                         interrupt-parent =3D <&cpuintc>;
+>                         interrupts =3D <3>;
+> --
+> 2.47.3
+>
 
