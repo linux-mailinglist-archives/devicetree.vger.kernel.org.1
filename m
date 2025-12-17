@@ -1,317 +1,174 @@
-Return-Path: <devicetree+bounces-247406-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247407-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6C4BCC7923
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 13:22:14 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87FE9CC792F
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 13:22:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D13BF3117A43
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 12:15:00 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A190D311A4DF
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 12:16:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A2BF345CB5;
-	Wed, 17 Dec 2025 12:14:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1D1A342177;
+	Wed, 17 Dec 2025 12:14:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="sgeD5y49"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ZFrSypy5";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="DzNcqd9w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF7593446C0;
-	Wed, 17 Dec 2025 12:14:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B54C733FE35
+	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 12:14:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765973666; cv=none; b=FjnFOLA++RpjMDDOPcmht0Yyx3mLhgI5C7COG9Rl0PJlRhhKBxeBYDO7wUjiqWX5y5I6jItc75coo4bl+xBkdib0Uh5K0xT1EHK/1ZmgzDKfn6z7I+/afLmLLK2cdLzUkCKbCLlGzv+557641iVe2BHHtDhp7LPBGjMRITERrq4=
+	t=1765973680; cv=none; b=mj7Y0vN6RAQ4THXR8AhEykCN4x3siN4J3bvWUd4TqdiShZZMB6WOMB57/HGCYOgYllp5DDuaf1qMPc+tQViA07g9k0PXnmzLqIJEZLWWPD47bqVGSxpwNX1HpfW3udFLc/Ln7Q1/R95lpxXRE6A85BrCGcvZJRfgTPidRlYIJIQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765973666; c=relaxed/simple;
-	bh=rWhz1qhXX5cZm+GWRaQ9ciBLBk8IoCqoYZlI/GtAfiU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=lljBBkP4ko5LLJL/1Q+9XdeixaOgSh4vBSG4LQWsrrHVGazAhFDBILgB16X9HhwGJeVHcqcsdujaK8wtpDmu7uEDAjyFXxvcBO/04co3pnDQ0ZtJzlYMq+yGAaoEp7e/SFAez0WLzWGvBKzAeUmGe1XUtKjnwRxw2m4xlytmN4I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=sgeD5y49; arc=none smtp.client-ip=148.163.135.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-	by mx0a-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BHC7Tx23978997;
-	Wed, 17 Dec 2025 07:14:07 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=DKIM; bh=KHwHt
-	qQuusmzdK7NM7ocl1bh8RRVDH4lMJb8lzPokRI=; b=sgeD5y490ivnBlHVayFX6
-	NxU5z7mRE39VNGYf1AVEE2q2y7ZHQTQrBy+usEJTmkyy+iLiM12J4NKNU/0a0dbk
-	OlLUDHDMnKkjg1gUYNWGLcFzXbWyurXUHNNZrNutRnJPiH7JxWIwYb176seDP2x6
-	w4DOPBhVWHwUWfVEfMIHeZgR/CInXW9vUatvb4u8XSJePFY2TGEiyrvJltGr5MXI
-	GAEcmi2hkuy3R/AR9l86+lZN02pLwtj7ZONlANTGATNNN7wCK/YF+dHduQWnozKq
-	WQX9d2FLLgxS2p7yK5KORlQoKcXs0lLvSyPZlN6f/U8pBGaYVrft2iEAuBuDAWES
-	Q==
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 4b3bbevk6u-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 17 Dec 2025 07:14:07 -0500 (EST)
-Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
-	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 5BHCE6FF041126
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 17 Dec 2025 07:14:06 -0500
-Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.37; Wed, 17 Dec
- 2025 07:14:06 -0500
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
- Transport; Wed, 17 Dec 2025 07:14:06 -0500
-Received: from HYB-DlYm71t3hSl.ad.analog.com (HYB-DlYm71t3hSl.ad.analog.com [10.44.3.73])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 5BHCDUvF014815;
-	Wed, 17 Dec 2025 07:13:57 -0500
-From: Jorge Marques <jorge.marques@analog.com>
-Date: Wed, 17 Dec 2025 13:13:32 +0100
-Subject: [PATCH v4 9/9] iio: adc: ad4062: Add GPIO Controller support
+	s=arc-20240116; t=1765973680; c=relaxed/simple;
+	bh=FOhOqH7toKWDzEVlR9pUeDZO7isCrYW9YHhCfh7mb4I=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=favbOTzTHLICiI1Rh9g1pJQFwPG4Z4mvteoECWWX9RT57yZi4xqnwA+Dwoel5Rh6aPxWwFPHiKbHbYa1OppSrYv5KHqbjNduLVj5qjRClRycXhWL+gNHfaXQfq2xEnELpaLgPyd63MU52kRTFrj5E0rItr+At8x1j9Eb64nThUQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ZFrSypy5; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=DzNcqd9w; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BHCCkdX2981314
+	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 12:14:37 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	TiIbU7CAhhv+5oiifZDjVX1Qm9RbZdgxoYbJ4QOuiwo=; b=ZFrSypy5utuA2YbI
+	hI8cL76CIrAck3oThQeoP95f1+GFPSx7sQFPCz3grsZ/eH91tuvM0GyS+Wk+ANJs
+	74NsKs1oenO2QQtHFUvYJuEW3/gyAt00nQnwYoSKip3Hw/dCkREL2hs+CBFHh4+l
+	Uv5oyCqzcWOB6rLSfOxpF0aI514PvPGy5QnZl62UJmumw8zZbPOLhAmVdQG6Vxx6
+	GNa2JUE6llKuxKckHwVDRBUnimC+CNsD5HquA56ZqKzcz0sMFV4DTxs0bc3NKmJ1
+	1rjtN/CyTXi+yIBveOlLhaCbiZJGReais+zPbBPh8nN72tIcExM1htXrOb5C5/yo
+	XkcCjw==
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b3n331ghx-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 12:14:37 +0000 (GMT)
+Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4ed83a05863so17634521cf.2
+        for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 04:14:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1765973677; x=1766578477; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=TiIbU7CAhhv+5oiifZDjVX1Qm9RbZdgxoYbJ4QOuiwo=;
+        b=DzNcqd9wdgg91+8wciqJ6aareK7wxNv10+40Afrcnrjou/bR6VvbcHEX2V4QivL/nY
+         Azf4Sl/DcLhMIAkBMk9CMaL+UgvuQezeQfND+fGgId4S4X6j4XXsKNLhz+JGxyDr9N2Y
+         V3fmoWG/AE/6bKp/YJ075YMLPVRmi9cggXDtoIkmSACeBHPF7L8UZd5GI68MaK5dyHEs
+         ryBDIOVPoeswan38pxfwpRHadyRcdHvpKFs0SI/4vz9nGMwOBxjpSB0TDZ1cJEjUR9jE
+         qbi9I0VwTwwjnEPQ4tPRhstU+gWNBh8kx/aTR65n9g9wGJmCO5fgNizoI6BHexlZXoRI
+         fKsQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1765973677; x=1766578477;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TiIbU7CAhhv+5oiifZDjVX1Qm9RbZdgxoYbJ4QOuiwo=;
+        b=tzvGJA0F6ZbIkVAWNavUBJJ5r4JFo1ASpskemswT8mPABsHdXXZfyIEMFol/QVQsq4
+         JgPtwLH9mt/ohS0bsyDM3uCcWmGl3palwn94v1LYrBH0ky0S1ZRFoVjjuYPc0vB+PFWq
+         1D05s2KXinhhOuCMw/xEkqoJr3vvJNSiJfVUUxKAXUkbjJKZqtOKL1m+EFHu+6hmqe79
+         j9L6pvxYjGUfOaxjB1hrFLmIkTOdiWYB3Q5EDTBDb1yo03cWUF3K8MhYgel3oTsnVcxq
+         nhpGJqcRQCkHIE1mWGunoHw9OYqKJ15TwW1K5q9t1LwB6zuHkhNPczWhUBkLlS6Sgdqf
+         HZog==
+X-Forwarded-Encrypted: i=1; AJvYcCWGRHT3YoIwKTQM9NiLiNYTIUVZisdnD5FooGA1CQ9KvX4dl1t5Nt86zMPyPUSWSVZw/41F0psBOYcj@vger.kernel.org
+X-Gm-Message-State: AOJu0YyLoU0ukvwMo3URgitnpLrwZ1xVAmQSc2D1tmKERmeCagVCRWiQ
+	q6gpV7CFbg1WtbWbxtXeZMHEoOXXjeLjYlniwovl7YOjkqk1VZIy05dPu7Wih6oUF8Gc3IUheBM
+	wrvdaqexbxSh5xGSONFcFtQe9/zc51olbkTDViY/t/F5zJIWgbfLxlEJC9o/Zg3Yq
+X-Gm-Gg: AY/fxX5jW8ZUOcZY3zQLQa9KXgsguqNhHsmPNUAy6aY/zEWCwXG+ZMv9Dm2IKBcFqZ9
+	F67g/2mpUAUpvx3K8ZyScFuwPHlOuFdJaTw0X5attJUVst51IPYNheWYpY8Ri9ZfPb4J/eMvR8K
+	hC1Z8Ikg9qPmXNr64sDBK6uyni1K0s7N8PlCBPJdSFcErUlmSNIypmr/tYSu/KHG//w6gZomruA
+	dfe7J7dbicZoPfAT9Bu2/lAAgY2vvXnd//sX2Tkt055a5hPncqqFLitifuPKwQs6PA2xHajN5h2
+	NxZ4p9MljzXMBYRVj64gFgMmj/jcBj2TvBbu1ISSO8T5odxNICkwMOiM7DVHMfea8waIn5XsMwa
+	B61Gk8ZcEu/94EnT6fQqPJMTfQ/52boi+7rTH0+yuD3Mep4M4yZKAkXqio6c9QttuIQ==
+X-Received: by 2002:a05:622a:610:b0:4ec:f9c2:c200 with SMTP id d75a77b69052e-4f1d0655504mr188695401cf.11.1765973677026;
+        Wed, 17 Dec 2025 04:14:37 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEXVGpRhIxu3Mf8+ixHHNkLitg1sBzNFn+khIqfYf9Z5J9ROjGkK+V2r9lo/OeYRDeOI3YbBw==
+X-Received: by 2002:a05:622a:610:b0:4ec:f9c2:c200 with SMTP id d75a77b69052e-4f1d0655504mr188695061cf.11.1765973676600;
+        Wed, 17 Dec 2025 04:14:36 -0800 (PST)
+Received: from [192.168.119.72] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b7cfa2ed80dsm1945925566b.16.2025.12.17.04.14.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 17 Dec 2025 04:14:36 -0800 (PST)
+Message-ID: <8466d783-faf4-4b33-8822-1477cbdec288@oss.qualcomm.com>
+Date: Wed, 17 Dec 2025 13:14:33 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20251217-staging-ad4062-v4-9-7890a2951a8f@analog.com>
-References: <20251217-staging-ad4062-v4-0-7890a2951a8f@analog.com>
-In-Reply-To: <20251217-staging-ad4062-v4-0-7890a2951a8f@analog.com>
-To: Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich
-	<Michael.Hennerich@analog.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        David
- Lechner <dlechner@baylibre.com>,
-        =?utf-8?q?Nuno_S=C3=A1?=
-	<nuno.sa@analog.com>,
-        Andy Shevchenko <andy@kernel.org>, Rob Herring
-	<robh@kernel.org>,
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 9/9] arm64: dts: qcom: Add The Fairphone (Gen. 6)
+To: Luca Weiss <luca.weiss@fairphone.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>, Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
         Conor Dooley
-	<conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
-        Linus Walleij
-	<linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>
-CC: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>, Jorge Marques <jorge.marques@analog.com>,
-        Linus
- Walleij <linusw@kernel.org>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1765973610; l=5630;
- i=jorge.marques@analog.com; s=20250303; h=from:subject:message-id;
- bh=rWhz1qhXX5cZm+GWRaQ9ciBLBk8IoCqoYZlI/GtAfiU=;
- b=h16QtNehE13q2APVGRNCeEMKpMfldJrbGJvTDRVuABLEbYt7oxYkLRAKNQmg8+ALzaizen8Ym
- oTUbxYvehAQAfOzzKGbEuTXlBrnsFx/opjcwaZoxHAsuIZrsrWNLFup
-X-Developer-Key: i=jorge.marques@analog.com; a=ed25519;
- pk=NUR1IZZMH0Da3QbJ2tBSznSPVfRpuoWdhBzKGSpAdbg=
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-ORIG-GUID: ckUSgF4LPP59bHdYNifnVx-5YPN-zhUu
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjE3MDA5NSBTYWx0ZWRfX6dHUfdknNgPL
- 9FVSstJkgNDxfckZxjcWQB2/JmskCToaAi252B97jS86QmiMPPZOOZUUO7pLeJnELJTFScuMOBQ
- gt5ZGmYRyIUsq/hlrSzIXyWwCko4hl9gxChnxYKNeCm2EC/t5P6ApxQbtkMP9ZF1wzdrR7Vz9Rg
- OmSiLmbGzLujoio7rGtGkzsqQ7AZKD9Ts5RlRDcjgeGHFSo1bTjMMdQ/YVIQsZWjmoLJbnDmemq
- iDcNQgvbw/IlYgB9Xj9xzhVqOKee2zw9fbptimU5YqNWcbQ+ZGmAMDV/Fsgzv3ktlpmhhkjMyO7
- 0y6T4xArldYx3tBAetS4ADcVeZ/4/mp3i1/S9kd0I2+HEBoWE68w6C6PJ2mSeSm4VS2nee2dY5q
- ASsFPXI1zFvjycYpCs5DSh0VzMHs2A==
-X-Authority-Analysis: v=2.4 cv=YqsChoYX c=1 sm=1 tr=0 ts=69429e8f cx=c_pps
- a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
- a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=VkNPw1HP01LnGYTKEx00:22
- a=gAnH3GRIAAAA:8 a=VwQbUJbxAAAA:8 a=xMyuZJbwAj7bCYiyej4A:9 a=QEXdDO2ut3YA:10
-X-Proofpoint-GUID: ckUSgF4LPP59bHdYNifnVx-5YPN-zhUu
+ <conor+dt@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>, Vinod Koul <vkoul@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Bjorn Andersson
+ <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-crypto@vger.kernel.org
+References: <20251210-sm7635-fp6-initial-v4-0-b05fddd8b45c@fairphone.com>
+ <20251210-sm7635-fp6-initial-v4-9-b05fddd8b45c@fairphone.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20251210-sm7635-fp6-initial-v4-9-b05fddd8b45c@fairphone.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjE3MDA5NSBTYWx0ZWRfXxMX0YBDmZjE7
+ RgPH3zbeTJhsCQ9RKxEbpBCoQajPHrUhHk83j+Yln2XkZh/X9IUvrI4rDz/nvsLQrqzvyKSOf2M
+ /tV5HTjaXDtKhvJ94mS0JMHWlzqitBTZWN0c8N1NGhjPzmeL5kWwEDEe0LBF6EDSgQAU7WwjJPf
+ v+R5ZOrm+H5miztb3Cy9uezuezw8kXY+8tRBvg/Q0xc2taCtZH1Ry6kY9arU28/a5NvQNGsXQzB
+ 5o/i5FvKYOjczW3pDmYIvB2MZsCDKC5692rrICPUIKpddZGROi+gvojuAWBcwniiUJdmHM3PO7+
+ Cc1yDttDyZ+jqv8VMCCpJscdXtum59rEQ595ZrDd3zBGOR750zyUuJyOAh3war8Gu44uy5xFhGr
+ SNDxr/cVyd/bz0PMuklUF7CCUoFmRA==
+X-Proofpoint-GUID: Pb2DPeUS-zsqj96HGFrYAZp0fzaNqmyH
+X-Proofpoint-ORIG-GUID: Pb2DPeUS-zsqj96HGFrYAZp0fzaNqmyH
+X-Authority-Analysis: v=2.4 cv=U82fzOru c=1 sm=1 tr=0 ts=69429ead cx=c_pps
+ a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=6H0WHjuAAAAA:8 a=EUspDBNiAAAA:8
+ a=deFlHvtSqnmsrBg3ijIA:9 a=QEXdDO2ut3YA:10 a=zgiPjhLxNE0A:10
+ a=dawVfQjAaf238kedN5IG:22 a=Soq9LBFxuPC4vsCAQt-j:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
  definitions=2025-12-17_01,2025-12-16_05,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 malwarescore=0 bulkscore=0 suspectscore=0 lowpriorityscore=0
- phishscore=0 impostorscore=0 clxscore=1011 adultscore=0 priorityscore=1501
+ phishscore=0 bulkscore=0 impostorscore=0 malwarescore=0 priorityscore=1501
+ adultscore=0 clxscore=1015 spamscore=0 lowpriorityscore=0 suspectscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512170095
 
-When gp0 or gp1 is not taken as an interrupt, expose them as GPO if
-gpio-contoller is set in the devicetree. gpio-regmap is not used
-because the GPO static low is 'b101 and static high is 0b110; low state
-requires setting bit 0, not fitting the abstraction of low=0 and
-high=mask.
+On 12/10/25 2:43 AM, Luca Weiss wrote:
+> Add a devicetree for The Fairphone (Gen. 6) smartphone, which is based
+> on the Milos/SM7635 SoC.
+> 
+> Supported functionality as of this initial submission:
+> * Debug UART
+> * Regulators (PM7550, PM8550VS, PMR735B, PM8008)
+> * Remoteprocs (ADSP, CDSP, MPSS, WPSS)
+> * Power Button, Volume Keys, Switch
+> * PMIC-GLINK (Charger, Fuel gauge, USB-C mode switching)
+> * Camera flash/torch LED
+> * SD card
+> * USB
+> 
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> ---
 
-Signed-off-by: Jorge Marques <jorge.marques@analog.com>
-Reviewed-by: Linus Walleij <linusw@kernel.org>
----
- drivers/iio/adc/ad4062.c | 125 +++++++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 125 insertions(+)
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-diff --git a/drivers/iio/adc/ad4062.c b/drivers/iio/adc/ad4062.c
-index 2084f0058627d..a6b3ccc98acfc 100644
---- a/drivers/iio/adc/ad4062.c
-+++ b/drivers/iio/adc/ad4062.c
-@@ -11,6 +11,7 @@
- #include <linux/delay.h>
- #include <linux/devm-helpers.h>
- #include <linux/err.h>
-+#include <linux/gpio/driver.h>
- #include <linux/i3c/device.h>
- #include <linux/i3c/master.h>
- #include <linux/iio/buffer.h>
-@@ -88,8 +89,11 @@
- #define AD4060_PROD_ID		0x7A
- #define AD4062_PROD_ID		0x7C
- 
-+#define AD4062_GP_DISABLED	0x0
- #define AD4062_GP_INTR		0x1
- #define AD4062_GP_DRDY		0x2
-+#define AD4062_GP_STATIC_LOW	0x5
-+#define AD4062_GP_STATIC_HIGH	0x6
- 
- #define AD4062_LIMIT_BITS	12
- 
-@@ -687,12 +691,14 @@ static int ad4062_request_irq(struct iio_dev *indio_dev)
- 		return ret;
- 
- 	if (ret < 0) {
-+		st->gpo_irq[0] = false;
- 		ret = regmap_update_bits(st->regmap, AD4062_REG_ADC_IBI_EN,
- 					 AD4062_REG_ADC_IBI_EN_MAX | AD4062_REG_ADC_IBI_EN_MIN,
- 					 AD4062_REG_ADC_IBI_EN_MAX | AD4062_REG_ADC_IBI_EN_MIN);
- 		if (ret)
- 			return ret;
- 	} else {
-+		st->gpo_irq[0] = true;
- 		ret = devm_request_threaded_irq(dev, ret, NULL,
- 						ad4062_irq_handler_thresh,
- 						IRQF_ONESHOT, indio_dev->name,
-@@ -1347,6 +1353,121 @@ static int ad4062_regulators_get(struct ad4062_state *st, bool *ref_sel)
- 	return 0;
- }
- 
-+static int ad4062_gpio_get_direction(struct gpio_chip *gc, unsigned int offset)
-+{
-+	return GPIO_LINE_DIRECTION_OUT;
-+}
-+
-+static int ad4062_gpio_set(struct gpio_chip *gc, unsigned int offset, int value)
-+{
-+	struct ad4062_state *st = gpiochip_get_data(gc);
-+	unsigned int reg_val = value ? AD4062_GP_STATIC_HIGH : AD4062_GP_STATIC_LOW;
-+
-+	if (offset)
-+		return regmap_update_bits(st->regmap, AD4062_REG_GP_CONF,
-+					  AD4062_REG_GP_CONF_MODE_MSK_1,
-+					  FIELD_PREP(AD4062_REG_GP_CONF_MODE_MSK_1, reg_val));
-+	else
-+		return regmap_update_bits(st->regmap, AD4062_REG_GP_CONF,
-+					  AD4062_REG_GP_CONF_MODE_MSK_0,
-+					  FIELD_PREP(AD4062_REG_GP_CONF_MODE_MSK_0, reg_val));
-+}
-+
-+static int ad4062_gpio_get(struct gpio_chip *gc, unsigned int offset)
-+{
-+	struct ad4062_state *st = gpiochip_get_data(gc);
-+	unsigned int reg_val;
-+	int ret;
-+
-+	ret = regmap_read(st->regmap, AD4062_REG_GP_CONF, &reg_val);
-+	if (ret)
-+		return ret;
-+
-+	if (offset)
-+		reg_val = FIELD_GET(AD4062_REG_GP_CONF_MODE_MSK_1, reg_val);
-+	else
-+		reg_val = FIELD_GET(AD4062_REG_GP_CONF_MODE_MSK_0, reg_val);
-+
-+	return reg_val == AD4062_GP_STATIC_HIGH;
-+}
-+
-+static void ad4062_gpio_disable(void *data)
-+{
-+	struct ad4062_state *st = data;
-+	u8 val = FIELD_PREP(AD4062_REG_GP_CONF_MODE_MSK_0, AD4062_GP_DISABLED) |
-+		 FIELD_PREP(AD4062_REG_GP_CONF_MODE_MSK_1, AD4062_GP_DISABLED);
-+
-+	regmap_update_bits(st->regmap, AD4062_REG_GP_CONF,
-+			   AD4062_REG_GP_CONF_MODE_MSK_1 | AD4062_REG_GP_CONF_MODE_MSK_0,
-+			   val);
-+}
-+
-+static int ad4062_gpio_init_valid_mask(struct gpio_chip *gc,
-+				       unsigned long *valid_mask,
-+				       unsigned int ngpios)
-+{
-+	struct ad4062_state *st = gpiochip_get_data(gc);
-+
-+	bitmap_zero(valid_mask, ngpios);
-+
-+	for (unsigned int i = 0; i < ARRAY_SIZE(st->gpo_irq); i++)
-+		__assign_bit(i, valid_mask, !st->gpo_irq[i]);
-+
-+	return 0;
-+}
-+
-+static int ad4062_gpio_init(struct ad4062_state *st)
-+{
-+	struct device *dev = &st->i3cdev->dev;
-+	struct gpio_chip *gc;
-+	u8 val, mask;
-+	int ret;
-+
-+	if (!device_property_read_bool(dev, "gpio-controller"))
-+		return 0;
-+
-+	gc = devm_kzalloc(dev, sizeof(*gc), GFP_KERNEL);
-+	if (!gc)
-+		return -ENOMEM;
-+
-+	val = 0;
-+	mask = 0;
-+	if (!st->gpo_irq[0]) {
-+		mask |= AD4062_REG_GP_CONF_MODE_MSK_0;
-+		val |= FIELD_PREP(AD4062_REG_GP_CONF_MODE_MSK_0, AD4062_GP_STATIC_LOW);
-+	}
-+	if (!st->gpo_irq[1]) {
-+		mask |= AD4062_REG_GP_CONF_MODE_MSK_1;
-+		val |= FIELD_PREP(AD4062_REG_GP_CONF_MODE_MSK_1, AD4062_GP_STATIC_LOW);
-+	}
-+
-+	ret = regmap_update_bits(st->regmap, AD4062_REG_GP_CONF,
-+				 mask, val);
-+	if (ret)
-+		return ret;
-+
-+	ret = devm_add_action_or_reset(dev, ad4062_gpio_disable, st);
-+	if (ret)
-+		return ret;
-+
-+	gc->parent = dev;
-+	gc->label = st->chip->name;
-+	gc->owner = THIS_MODULE;
-+	gc->base = -1;
-+	gc->ngpio = 2;
-+	gc->init_valid_mask = ad4062_gpio_init_valid_mask;
-+	gc->get_direction = ad4062_gpio_get_direction;
-+	gc->set = ad4062_gpio_set;
-+	gc->get = ad4062_gpio_get;
-+	gc->can_sleep = true;
-+
-+	ret = devm_gpiochip_add_data(dev, gc, st);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Unable to register GPIO chip\n");
-+
-+	return 0;
-+}
-+
- static const struct i3c_device_id ad4062_id_table[] = {
- 	I3C_DEVICE(AD4062_I3C_VENDOR, AD4060_PROD_ID, &ad4060_chip_info),
- 	I3C_DEVICE(AD4062_I3C_VENDOR, AD4062_PROD_ID, &ad4062_chip_info),
-@@ -1435,6 +1556,10 @@ static int ad4062_probe(struct i3c_device *i3cdev)
- 	if (ret)
- 		return dev_err_probe(dev, ret, "Failed to request i3c ibi\n");
- 
-+	ret = ad4062_gpio_init(st);
-+	if (ret)
-+		return ret;
-+
- 	ret = devm_work_autocancel(dev, &st->trig_conv, ad4062_trigger_work);
- 	if (ret)
- 		return ret;
-
--- 
-2.51.1
-
+Konrad
 
