@@ -1,59 +1,57 @@
-Return-Path: <devicetree+bounces-247295-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247296-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7CD1CC69B7
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 09:37:07 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16041CC69C6
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 09:38:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A86A13009F38
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 08:37:06 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 24530300A342
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 08:38:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF5F32EB872;
-	Wed, 17 Dec 2025 08:37:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A4E8336ED9;
+	Wed, 17 Dec 2025 08:38:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W47vCtRc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZGnkKpV2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7ACE0288D6;
-	Wed, 17 Dec 2025 08:37:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24816335BD5;
+	Wed, 17 Dec 2025 08:38:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765960625; cv=none; b=LxzLr9RufuZZsiL/uMCzDzH/wGc1yAd67fEcW4mia2nfW+W/cmHSZKWua6n20q0DHr97MhdTrYIdVhNiO6VMTpPzQwpNmv6UNYj7r93FEuJHQASlgqu0Vd5y9FXtQmZt2aeC7SC/CU1mK7OVUmxQc2oPQ2s1hufPw9fgCBeNaD8=
+	t=1765960714; cv=none; b=dMURNE8C4TTfaECaKY+FZavC69oTlAeYt4+RsF+XKs4o5VAyCEo3HHaIDo6BsjuizZnamVd1WjtZzK7MvbyEewlYGTKj+FKLjmASBTV1/PrcMnHwvbX9peISeyCadrZ15vule84cgapK1+qmBkTjmy6hHYTcMJzB7tYzmn/VF9E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765960625; c=relaxed/simple;
-	bh=KAQs8LiC0Yfd4rW28C195gtmvQ2iLTjhXonSSp4r1+c=;
+	s=arc-20240116; t=1765960714; c=relaxed/simple;
+	bh=SEK/Xv/Xpl1SB8LM/NKk5Oox72KsTiMyeOEPmpwl2Jg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Y2WYlIIjKDoPcnRi70xQ7j9rqanSrFX3dlILdozpvIjcLpcD/AkGNECB6q1V0rFiQav5inAlE2d43am/ZFMPJmasuhHLNXjzyn1pmPLTq0dg4gkLI6QeqKcettx2EcQSzRKFiXMchX0Daa6Sf91/V4NqtYiXrNpQoPI5Epk65Cs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W47vCtRc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6569BC4CEF5;
-	Wed, 17 Dec 2025 08:37:04 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=teUmjGjZyOEhTBcYj64f1X9lIJftXvQSTHyCCOjGsQ+9bdOZl1ueR/K1w8nfk13xCjklMvkv+rTV+pYEL9X/P9WoI6sw7xu5AId7NJ6tPXWkK9rrtehipmqrZ29iFMXVZrNwc7QNzE5DZwRTNSq6mZIDmOZIoHy1xlFUq2zUcXY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZGnkKpV2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F371C4CEF5;
+	Wed, 17 Dec 2025 08:38:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765960625;
-	bh=KAQs8LiC0Yfd4rW28C195gtmvQ2iLTjhXonSSp4r1+c=;
+	s=k20201202; t=1765960714;
+	bh=SEK/Xv/Xpl1SB8LM/NKk5Oox72KsTiMyeOEPmpwl2Jg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=W47vCtRc2fjZpQe/DRm+pPSRqT8FgIjIIRf2fcHiNzSfRwfN9FSNmNhfSNsomcwSZ
-	 shUz34HPQQt6QsrC72mdmgJ2kAOKPXTU5yvT2bf9EzQAoeKTAwi+8Z9q4l5/IyaHJE
-	 w0dIZZ61skCOa1af9EcoK4jlfs4frthhbXwFQbcpYbmYBzCiUmU+0V7dpZFs2FhzY6
-	 Ilw2aNq9h0FBq/T2glswF071hRUoOSkhuY6XwfXZcgpqHZYa1NLC9lrxsvdjf+MbsY
-	 NZ7Hm3zKDEO1+/DWE3pz6PmJZOwopgc3zT/AoM7n9Uo3WbCAQBW0TGMgCLrxbFD0xn
-	 VWQhHJVoQolrA==
-Date: Wed, 17 Dec 2025 09:37:02 +0100
+	b=ZGnkKpV2D3o8VjP+EFMXDZJCBrR4/A1B7x+1gZzdquyGkCynph7xWWEcSoois7nEL
+	 N/Fpz80eBfX63qEt881a4/ji2jVta/Z1riZFlgfrsP8DXi9NwiXAYKS5VesBcLqzrU
+	 1Dg4eXua9UczMKDOqVOx/HBA35vs/uocPrDye3XcqyWPS87W4el6XmX9d2Sg8stedu
+	 NoAkDOSnMhz4RlEs/CdQsOtgo9UPdbdMI2hVCJJ3+JPgAc2frvMBEQWhHOVbR1lzfy
+	 1eqf+AhUjXpWJJeWttIYzGJVvzaRzF/zpNXsUltVP6QI1ShPtspIBj+4WjV2o4tiIJ
+	 aSf0kpmmtmRAQ==
+Date: Wed, 17 Dec 2025 09:38:31 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Dan Carpenter <dan.carpenter@linaro.org>
-Cc: Jan Petrous <jan.petrous@oss.nxp.com>, s32@nxp.com, 
-	Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
-	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
-	linaro-s32@linaro.org
-Subject: Re: [PATCH v2 3/4] dt-bindings: net: nxp,s32-dwmac: Use the GPR
- syscon
-Message-ID: <20251217-elated-vicugna-of-whirlwind-23d6bc@quoll>
-References: <cover.1765806521.git.dan.carpenter@linaro.org>
- <1ecafee4bd7dc3577adfc4ada8bcc50b5eb3e863.1765806521.git.dan.carpenter@linaro.org>
+To: Manikandan Muralidharan <manikandan.m@microchip.com>
+Cc: lee@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com, 
+	claudiu.beznea@tuxon.dev, dharma.b@microchip.com, maarten.lankhorst@linux.intel.com, 
+	mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH 1/2] dt-bindings: mfd: atmel,hlcdc: Add sama7d65
+ compatible string
+Message-ID: <20251217-secret-beluga-of-patience-3ba530@quoll>
+References: <20251215090639.346288-1-manikandan.m@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,45 +60,17 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <1ecafee4bd7dc3577adfc4ada8bcc50b5eb3e863.1765806521.git.dan.carpenter@linaro.org>
+In-Reply-To: <20251215090639.346288-1-manikandan.m@microchip.com>
 
-On Mon, Dec 15, 2025 at 05:41:57PM +0300, Dan Carpenter wrote:
-> The S32 chipsets have a GPR region which has a miscellaneous registers
-> including the GMAC_0_CTRL_STS register.  Originally, this code accessed
-> that register in a sort of ad-hoc way, but it's cleaner to use a
-> syscon interface to access these registers.
+On Mon, Dec 15, 2025 at 02:36:38PM +0530, Manikandan Muralidharan wrote:
+> Add LCD compatible string for sama7d65.
 > 
-> We still need to maintain the old method of accessing the GMAC register
-> but using a syscon will let us access other registers more cleanly.
-> 
-> Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
+> Signed-off-by: Manikandan Muralidharan <manikandan.m@microchip.com>
 > ---
-> v2: Add the vendor prefix to the phandle
->     Fix the documentation
-> 
->  .../devicetree/bindings/net/nxp,s32-dwmac.yaml         | 10 ++++++++++
->  1 file changed, 10 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml b/Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml
-> index 2b8b74c5feec..a65036806d60 100644
-> --- a/Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml
-> +++ b/Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml
-> @@ -32,6 +32,15 @@ properties:
->        - description: Main GMAC registers
->        - description: GMAC PHY mode control register
->  
-> +  nxp,phy-sel:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    items:
-> +      - description: phandle to the GPR syscon node
-> +      - description: offset of PHY selection register
-> +    description:
-> +      This is a phandle/offset pair.  The phandle points to the
-> +      GPR region and the offset is the GMAC_0_CTRL_STS register.
+>  Documentation/devicetree/bindings/mfd/atmel,hlcdc.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
-Do not repeat description twice. The GMAC_0_CTRL_STS should be explained
-in description of individual item. This description should only say what
-is the purpose of it, why the hardware needs to poke in other devices.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
