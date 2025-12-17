@@ -1,159 +1,183 @@
-Return-Path: <devicetree+bounces-247388-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247389-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C90CCC7686
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 12:45:57 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29F5CCC774D
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 12:58:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 41FDC30821F5
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 11:43:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3EEB4305E212
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 11:54:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C5D1328B6C;
-	Wed, 17 Dec 2025 11:43:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BAC233554E;
+	Wed, 17 Dec 2025 11:54:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Vdhf1FWP";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="I0fVkXwd"
+	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="Ob+xZdqa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BF39326937
-	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 11:43:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C58B3126DD
+	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 11:54:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765971834; cv=none; b=rqiC2dQh/7I26x5vzK+39/21aWfwzYuwx+0F3ea2quf/26l2X7r2Yg6GwYh23F/9/y2ylsddJrUuigHI18KW0rokWgsy0TJDswmOUsS74rK0oucA3Q8wubY6cGAmVZBids4ylnQvpjvGrKrLXYN9tVec2TF9+I2Idq5PPDWZamc=
+	t=1765972498; cv=none; b=Nl6kc8CnHorvIARdci/nF0yt+//YbEhB1MS5/pc+gaDU8nefeWHIJN3/AczPfGQ6UHDwaG73xURGCmv5/qJO3+cdsLUGSlaxUK+/XWEj7ibX3BYvxjXM8egRQDA4JNwNqr0UQ/uoKi3uWTPJYbYH0z6bcN+t/a5XbZFNJUdlkbk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765971834; c=relaxed/simple;
-	bh=AOLk/fdBiFe7VPddTQoahAL+GlZhzF/mifTE/7Ua7fk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HIoMB3GUTlRyBTotnpRD4lfE5wRxpAnWg9HMrLVk/SmM7k3VfbtRCH8HAGF1b1fPD2h3Scero9JigbYEU3RsUua2O2lxME2QFp2ocQ1zvSLexrU8jT3c75OntLsnOL2sIa3B65oEuf4GDMY9ih94OqqXadBmt++0Na7YTmKq6vM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Vdhf1FWP; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=I0fVkXwd; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BHALSL61872023
-	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 11:43:51 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ihQcqrukQ/c9+YuZ0oNpyvOSwvxDJPxiaGKm80UrkQU=; b=Vdhf1FWP88mUbqhF
-	2X9T/LZgXIcTZrNqQAkOQgRgVNCMyTyyvPUG8dCmdFui3rrh890TGEOBSlLUQp1e
-	TW2gLy3R0xEpLtZQlBZ0QCxPmrYreFWT5f1gk+p2cu4mFwK419AWEt5TI/r/D/2Q
-	EaDFLpgIyk6JgIs5IcpBbq4aMEaq4qb6qgVgJP5G3w4ZsovZUsqzxfk4DYfYFpk9
-	hmFSIv5FgUMEZySIYfCiSiNUk2zUJxySfiSKMQgzSDQgE7boQs2RrvtZXINo+W1A
-	ME0sNCAHizLfz1BeiMA/C7FJ7vm/R0f29B85rrJdlStZ3svwzMetIYHiQJlmJhsx
-	NTbVIQ==
-Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b3jgq9t4q-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 11:43:51 +0000 (GMT)
-Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-88882c9b4d0so22586366d6.0
-        for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 03:43:51 -0800 (PST)
+	s=arc-20240116; t=1765972498; c=relaxed/simple;
+	bh=70F01enocztNAr3xVFOrgGWn+2IKyhD+BDtjzDjx4nY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ZguiLBZwQHPBV/+OAhVrcxyNIlaU9GMd2NJG4MBuD0eTSgtEB5KcxcXJ1UlNuCvvu+odHBf9s7tUVAMd3ppDvGbpH47LYMrDqKop9ERURg8Sx4oyLlI0Rj8I6RIamiSSlpqyjIiNx+z+p/p6zspQ8sRoTb3yT9sUJAuCyp0NSBw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=Ob+xZdqa; arc=none smtp.client-ip=209.85.128.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raspberrypi.com
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-78e765f9997so31309327b3.1
+        for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 03:54:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1765971831; x=1766576631; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ihQcqrukQ/c9+YuZ0oNpyvOSwvxDJPxiaGKm80UrkQU=;
-        b=I0fVkXwdYwp+lgctL0pG6JgL8rEIGIO+YmEG+3zaMiar3gvxCBVm/y4uMDQRUG2olH
-         e/SYWCPJBg339JtgbXXFqndXT2osa06njU2u+lxSjAakRYOZbVRksUhwdhqKryvV+ny7
-         0PNEhVrn1mQ7cZPrPr5M1JgN0NZELfZFMNUiW30ZIb05UISl5NFydeZdZUqdbNIjwq+j
-         8dFaBcRJwUQMIW2+FiYu4o2F7Qi5EkJqz4EpEzRQLpgGQM9m/OxSKFBzAgmkIAUvRym3
-         X0jSo9Qs8qTkQsmQj2//7OswwICmwaLHHQ3yazyiN/eYrrk0+wH3u9I0tQ9OgmOIVIL9
-         RJYA==
+        d=raspberrypi.com; s=google; t=1765972494; x=1766577294; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=W3dwWg2D+m7WGcXWn772LPt2UQYpGANryW0nj84dguM=;
+        b=Ob+xZdqapCD8YHYlr9dKwAPBUkcKvui13tbk0dJJGRcxJaw+3TCqgzxCsNfDKHM49z
+         EYUsmKjjHCr8kXHOhaUp5SRQ0pIwScew80hXCC/qHFte3kjh/aNa37wllVGwGtna5H86
+         kfiw3WMBANdXKxSuvON19ZeWOd/FQ/TN/szaUg3qS0TTVanBJIn2bduRFARfRQARomPK
+         FgRgBFaowUCOp7nV5Ssa4Rnl2CWUMdma/xauBvhWqBqio2XnAgwZKwAZuECxmxdIH6cO
+         qzCmZuoCOiZq0k3SEpjE5ygtkCrX6m2Cq0D3l9clcbJU18Ju96GpEplCb2/7fsrK+PeO
+         zptQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765971831; x=1766576631;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ihQcqrukQ/c9+YuZ0oNpyvOSwvxDJPxiaGKm80UrkQU=;
-        b=knScQZ38YT0GMIg5TvLhu90hb5pCh5sAn3uZ9j/9oYC6/QqvyKb056zpmMigAdpFGj
-         6dNdw5NHmmyVkz4JioJhLgkfvT7RzK7OwxOxxucrDAILrd9h4u7aB3Q1TRYV358+sft/
-         Vp9HQILzkcwwvAO9bNxb8anWokPOV5lcigCN8BbaUdJQDJmvuTUgburhDtz2t5ApFoLK
-         1acbCSW0Roo9zboLXx4LeEZ1K24NtGtIaT4QJEbontI5apX0LBWdtzHRmYBbQSELO4Ux
-         HtMcconRdI/n27Vwiy4+MVQ6OmclRPKmgZGC2QhCylMAPnoGjz9m12wFgz7IBrTLCvGy
-         AaSQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX+CtLnGMXR4sTHaFm12UC1zmoQRQUd83DOs4vxXWep14Vv4q9Y/3XohSwB1hU2lY4z6qzDPY8N0I7c@vger.kernel.org
-X-Gm-Message-State: AOJu0YxmwarEzf95ggzUAJZgIDhlE9LoK79Cnexp8bbm0oaDV3ljg7DQ
-	M4zH+D6Y2KiKiO5i4TEMs0d1azF94Bg7IxpfQBtnzvOLgSeq/mblQxRMbJZ9yZrTlxoqRp3JWR2
-	jd+OY1czpVNLDhtoiRH7iBeRqOiGITHere6rucL0WwPwCLaMHGg6oiFPZIMSqERVp6Zd6l7Py
-X-Gm-Gg: AY/fxX6FTbMW7osZuI8DOcp9cQ+k2ZOOlEXpUMutn6uUUzDNfOH8GkDRRGmgFDGZ8B/
-	VGUjYrWjlk4tWRianFYbxU4GOFbMsA4hVkcRGhLZd0CDCx8PkXMx48APR+0l6cFtF/EVIZusVGk
-	E2FwW4gFwuFs012Zr6l3NEvUx6tzoXL8LV/6d/tpiEdYkpzAvuFgxeHIzq9cInM0kIqcG+bf548
-	yU9mh70jPXfMqiokRQaJ0wLihOCBXyZFyueG0xey2RYVKqPe7CWifGauVoyR0XV9/TpvpF82OXZ
-	xs9wLrd8/55K+fEJY4iUlbn5R7UYRQgqm5EdbxyoQaoMraj1hiff82Qd+fcx/WQOA6whVGbf6Wf
-	DKsqhoVeE5IAjFLDyTXlphquR++91Kf3JF22GMmL1QpSaS5cS8AkFvypiGlW5J+o8hw==
-X-Received: by 2002:ac8:73d9:0:b0:4ef:be12:7b28 with SMTP id d75a77b69052e-4f1d0672490mr128131661cf.9.1765971830717;
-        Wed, 17 Dec 2025 03:43:50 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHAgKwfKGGZDctaZIOos+XWywvYp44BmYdAOut+z3apzNeFOakzV6Yya5sv5OGB2G0AmUYl3g==
-X-Received: by 2002:ac8:73d9:0:b0:4ef:be12:7b28 with SMTP id d75a77b69052e-4f1d0672490mr128131511cf.9.1765971830268;
-        Wed, 17 Dec 2025 03:43:50 -0800 (PST)
-Received: from [192.168.119.72] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b7cfa2e817csm1939729866b.19.2025.12.17.03.43.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 Dec 2025 03:43:49 -0800 (PST)
-Message-ID: <c3e6664e-5de3-4423-9953-fd0a5cbc45e8@oss.qualcomm.com>
-Date: Wed, 17 Dec 2025 12:43:47 +0100
+        d=1e100.net; s=20230601; t=1765972494; x=1766577294;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=W3dwWg2D+m7WGcXWn772LPt2UQYpGANryW0nj84dguM=;
+        b=Bq5YIA+aWhFOrOvGAkNO+tcAiCrjQFNIsi52NuF3LI7jbOpaWJR9wLcpwzjjU7UljY
+         qBQo//jbtFNAvg37JX4hMgEpkkRsKyA8PYtzBYjPTWZu0NnTMEY+WZZHGMaMLzkBGvK+
+         jn9nYhR0VfyGwbbqdVXI2CIKMyaK9kH6OsohUY5KDXTclDY+QlUnM5N5NrMn/ziUIsO5
+         bcvetajdwh03fuBVAT30R0bKKtwqqJatkafJmEoHxXcVCNhWCMZfYSa0LYqT8SQQYXkb
+         UUfWOXx2J2AoxoFKHPWTW69ewMWHtjQ8sDfo3lWT+I4JD6+pKmT6IZkOQInaR/hbnbT4
+         AqPg==
+X-Forwarded-Encrypted: i=1; AJvYcCVdRtXiRUzi+Nra0vdChPR5ym97dcZaAcx5dXCBtBuXYSoTtd7KYAik+lcMPIOWSFlhRQJKB9Ky1Hfk@vger.kernel.org
+X-Gm-Message-State: AOJu0YxL7t6R3Ti5wf04J5FGoGMhjzmnTvOuDSGXBK4AmAOMhrps1cCw
+	MBc73Qri4yn2ACc767WqFSeXAUvV5vvffVNtK9DL0CafDUX6WiMzEdSkMz1KUGezYGJTMLOnGEP
+	TE4JaME3EiN3SxyI0nzC6PC+YWO6YXh01OkxRSJIp1tI51qjeTloz
+X-Gm-Gg: AY/fxX7AD39O1nI05ceWqDTDFPi5KAhlbnW/gZu7Ri7/KjSx1xCxhDwrW7/b9JApnP9
+	AoOv5EgVkp78Vc1qvaCFU8BmqVg0BD3QGYPNKGuVeplsBFNoOZY013unPWMRbMqdRIXN6dyCqXQ
+	0e9KAdcYWQdDbxCqt9mb39dsUqELFI7dUFtpBXw2Fnr8x1HaRFwPiQGzhiPtRNkjxecaRGyWc2K
+	PhK10GSXOC52osVDcWT8p07pyLhOikQpjuQZ+/Zb561iOQ0GXE5IagySYnzj2CQw7x7/0pHNomr
+	meyfi05DjqnErsMkWf895GPbEWA=
+X-Google-Smtp-Source: AGHT+IGckuHShVbvxc6ufAHIWbsIO8u+LmaiNiqNwEMgNBziJtkEBwHWsEgys1TxSWooCVKNgi5iOcDUjluVG6gxmfs=
+X-Received: by 2002:a05:690c:e3ee:b0:78f:916e:b583 with SMTP id
+ 00721157ae682-78f916ebbb7mr29455967b3.37.1765972494619; Wed, 17 Dec 2025
+ 03:54:54 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] arm64: dts: qcom: sdm845: Introduce camera master
- clock pinctrl
-To: david@ixit.cz, Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org
-References: <20251217-sdm845-mclk-v2-0-7028c2d09145@ixit.cz>
- <20251217-sdm845-mclk-v2-1-7028c2d09145@ixit.cz>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20251217-sdm845-mclk-v2-1-7028c2d09145@ixit.cz>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=VLjQXtPX c=1 sm=1 tr=0 ts=69429777 cx=c_pps
- a=oc9J++0uMp73DTRD5QyR2A==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8
- a=Xu5O6cxXq1gntZcgiy0A:9 a=QEXdDO2ut3YA:10 a=iYH6xdkBrDN1Jqds4HTS:22
- a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjE3MDA5MiBTYWx0ZWRfX32IXULt5foHh
- VcvnJ3jbR64SU+Zs2AX+nl3HjbcqzqJ5GZS7Py0znVkc3szC1UTaLMMOaHCEXZMh2KB6jYrU7+g
- X+1fYcw2wPXZ+diNeZv/OTqKMTXUFy2wNMLl/9gHmaj91Xes4+ph5DgB5XE9oXISy09VJa038Lg
- VYPPn9n5nhdJ8oC15rZAqU29+FLKkTx7P2/mOXWKtp71nBt9wh8gvyJL+xnZO9DkhsS+AKjdjmV
- 00fR53zPvxLUM3NDxI/YyeDAVUX97NMxaMkcxt7kMmgXQ9d58TzAJxQ+qcCj0mf3k/XLWiVoM28
- CfhKfRVDcSUfi/dEfjIIIWojXS6QNYj/qyrUs0MQYPrvvnAwiDBn9F3LMAF9wNLdayVHq0w5f3P
- JkF+Pr1ATJ38XHs1CDRssxpXTvfcDw==
-X-Proofpoint-ORIG-GUID: NCdRJs4f-ZBw8P29vgbG5fVRgErCgJdT
-X-Proofpoint-GUID: NCdRJs4f-ZBw8P29vgbG5fVRgErCgJdT
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-17_01,2025-12-16_05,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 adultscore=0 suspectscore=0 bulkscore=0 malwarescore=0
- priorityscore=1501 impostorscore=0 clxscore=1015 lowpriorityscore=0
- phishscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
- definitions=main-2512170092
+References: <20251217-imx283-ext-v1-0-906a762f592d@emfend.at> <20251217-imx283-ext-v1-3-906a762f592d@emfend.at>
+In-Reply-To: <20251217-imx283-ext-v1-3-906a762f592d@emfend.at>
+From: Dave Stevenson <dave.stevenson@raspberrypi.com>
+Date: Wed, 17 Dec 2025 11:54:38 +0000
+X-Gm-Features: AQt7F2rWc2bY9eE8ucf14QiONAUNLJF3tcPeIUUR4B-rKXrFZUPkuBh_s7N1C0E
+Message-ID: <CAPY8ntCiOJb9iyFDYS_wxhteoHL7vMFpEF8gVwrf2qeFd-Fssw@mail.gmail.com>
+Subject: Re: [PATCH 3/3] media: i2c: imx283: implement {g,s}_register
+To: Matthias Fend <matthias.fend@emfend.at>
+Cc: Kieran Bingham <kieran.bingham@ideasonboard.com>, Umang Jain <uajain@igalia.com>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Sakari Ailus <sakari.ailus@linux.intel.com>, linux-media@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On 12/17/25 12:39 PM, David Heidelberg via B4 Relay wrote:
-> From: David Heidelberg <david@ixit.cz>
-> 
-> Put clock pins configuration for camera master clock into the dtsi.
-> 
-> Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-> Signed-off-by: David Heidelberg <david@ixit.cz>
+Hi Matthias
+
+On Wed, 17 Dec 2025 at 07:41, Matthias Fend <matthias.fend@emfend.at> wrote:
+>
+> Implement {g,s}_register to support advanced V4L2 debug functionality.
+
+Is there any real benefit to providing access via {g,s}_register
+rather than using i2ctransfer -f ? The I2C framework ensures that each
+transfer is atomic as long as it is formed into one transaction
+request.
+
+IMHO The only place these are really needed is with devices such as
+the adv7180 family which have a bank and page addressing scheme, and
+the driver is caching the last accessed bank.
+
+> Signed-off-by: Matthias Fend <matthias.fend@emfend.at>
 > ---
+>  drivers/media/i2c/imx283.c | 44 ++++++++++++++++++++++++++++++++++++++++++++
+>  1 file changed, 44 insertions(+)
+>
+> diff --git a/drivers/media/i2c/imx283.c b/drivers/media/i2c/imx283.c
+> index 7a6ab2941ea985401b21d60163b58e980cf31ddc..d8ccde0a1587259f39a10984c517cc57d323b6bc 100644
+> --- a/drivers/media/i2c/imx283.c
+> +++ b/drivers/media/i2c/imx283.c
+> @@ -1295,7 +1295,51 @@ static const struct v4l2_subdev_internal_ops imx283_internal_ops = {
+>         .init_state = imx283_init_state,
+>  };
+>
+> +#ifdef CONFIG_VIDEO_ADV_DEBUG
+> +static int imx283_g_register(struct v4l2_subdev *sd,
+> +                            struct v4l2_dbg_register *reg)
+> +{
+> +       struct imx283 *imx283 = to_imx283(sd);
+> +       u64 val;
+> +       int ret;
+> +
+> +       if (!pm_runtime_get_if_active(imx283->dev))
+> +               return 0;
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Returning no error if the device is powered down feels wrong. How is
+the caller meant to differentiate between powered down and the
+register actually containing 0?
 
-Konrad
+> +
+> +       ret = cci_read(imx283->cci, CCI_REG8(reg->reg), &val, NULL);
+> +       reg->val = val;
+> +
+> +       pm_runtime_put(imx283->dev);
+> +
+> +       return ret;
+> +}
+> +
+> +static int imx283_s_register(struct v4l2_subdev *sd,
+> +                            const struct v4l2_dbg_register *reg)
+> +{
+> +       struct imx283 *imx283 = to_imx283(sd);
+> +       int ret;
+> +
+> +       if (!pm_runtime_get_if_active(imx283->dev))
+> +               return 0;
+
+Ditto here. The caller is told the value was written, but it wasn't.
+
+Thanks.
+  Dave
+
+> +
+> +       ret = cci_write(imx283->cci, CCI_REG8(reg->reg), reg->val, NULL);
+> +
+> +       pm_runtime_put(imx283->dev);
+> +
+> +       return ret;
+> +}
+> +#endif
+> +
+> +static const struct v4l2_subdev_core_ops imx283_core_ops = {
+> +#ifdef CONFIG_VIDEO_ADV_DEBUG
+> +       .g_register = imx283_g_register,
+> +       .s_register = imx283_s_register,
+> +#endif
+> +};
+> +
+>  static const struct v4l2_subdev_ops imx283_subdev_ops = {
+> +       .core = &imx283_core_ops,
+>         .video = &imx283_video_ops,
+>         .pad = &imx283_pad_ops,
+>  };
+>
+> --
+> 2.34.1
+>
+>
 
