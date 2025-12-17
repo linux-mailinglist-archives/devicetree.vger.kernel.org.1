@@ -1,140 +1,159 @@
-Return-Path: <devicetree+bounces-247555-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247556-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id F106FCC8B1E
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 17:11:35 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38291CC8B5D
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 17:14:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 494DB3037E9E
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 16:10:58 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 890A53076E01
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 16:04:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C65433F8BD;
-	Wed, 17 Dec 2025 16:00:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59CBD36403F;
+	Wed, 17 Dec 2025 16:04:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mJQ3SvGu"
+	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="Ts/GXl0K";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="p7NtHNQv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fout-b6-smtp.messagingengine.com (fout-b6-smtp.messagingengine.com [202.12.124.149])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0ABDC33BBD0;
-	Wed, 17 Dec 2025 16:00:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2377363C6E;
+	Wed, 17 Dec 2025 16:04:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.149
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765987226; cv=none; b=seTBzlqI/Vm9Vnt5LZmOemJQxua71fqhf1ZaaZ4lT1FCSnsB/ZpKUH5aQVXiM3UwmiKd5LyMyGO/22KADyhN+o3eC/cfcmW5dfpYVLkVmshCHXoDGmXcXyj9kDzk/L7Mujj7VttKb2rjREZiOoadZ7XHWE+slHOvQnbkAaoBiYA=
+	t=1765987470; cv=none; b=B3J4ELnh/HYeg/UUSX96axMSb2w6+iJohkFTmKG+JrJK8ISxR42O+6XQ2zVs112YPhq6XBzGQZYXeCyBJJnD+P4nG+2PDt6V+xUaVeaWkG3nUQoon8GrEUIQ7kvZdUyD1NHKrDj8o/2Li5DtyH0+W5QRbHl9Zi2ITz0KpxV5XtU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765987226; c=relaxed/simple;
-	bh=DHOfVMuEIeml+D4bFjkUEOu0EPfKRIvup+yg4sES+PE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=nKBPMWH8Ji67CrornHbbo+eh5Lb9Zvf/6S3XK3+oIaV7liMgphKJr9r7kzzLBofqKl35JEegDBj80OXGh/gPL6oYJSzdeQn/lyNfGEnmqDOTGVzfTmYNL3L0NGllmZG46viN7YOqCAkwaBMa38wlC5DT48gN9IZxYjUds+vma3M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mJQ3SvGu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5378C4CEF5;
-	Wed, 17 Dec 2025 16:00:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765987225;
-	bh=DHOfVMuEIeml+D4bFjkUEOu0EPfKRIvup+yg4sES+PE=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=mJQ3SvGuKCZT7LnQAFR49RdDJMDX7elVlGpihT0zA20f/DwfLPYh5R32l39rU4bz4
-	 /h9duBv994yLKJBNB1iM5wMN2z5h9EJn/5QDrI164kETelxnBMktLMPw7+u1ITXBKW
-	 88BIYSNymOeBePbKXDH1NpWeykyqoy3lYRWY5GjEM0I5mYygamO8fEgy6ZkqX1Jhfc
-	 +MacbN55zhrMv1OYWllb8rYj9DKdSTQJ8fCwLHA3ZAv6VLQ20LTu2JCpiJHz4hnUck
-	 jSG68Kcb/S3vJTPCtZ4tkP33/ThLY91kaNM4WxGq0fpzje9HNoAs6xxVBcyDdtQbl7
-	 Tuih6DOPO12ww==
-Message-ID: <730230b1-d753-4c64-9c38-0e86a184c0fa@kernel.org>
-Date: Wed, 17 Dec 2025 17:00:20 +0100
+	s=arc-20240116; t=1765987470; c=relaxed/simple;
+	bh=KlO+a0NpFnpuOBjnO4rZ3Husgmd207wZNAdZTNyfo2U=;
+	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
+	 Subject:Content-Type; b=Zn6Ewq5yuGfjO/3N33tDrhtHN4RjbPa3peZNvc4ICDO8IkBRuXFyIcAGpiP6uSXjvvfvtwZ7s40o27a5iFXMsB+fge7+IlXZwZ9LOHttckyTMghh3UpLso/qb7+bbReuayHdEng+Z+dtyQ4UdOtaFx8KJLFzvOEH6wyDCl62A8U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=Ts/GXl0K; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=p7NtHNQv; arc=none smtp.client-ip=202.12.124.149
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
+Received: from phl-compute-04.internal (phl-compute-04.internal [10.202.2.44])
+	by mailfout.stl.internal (Postfix) with ESMTP id CB0381D0012D;
+	Wed, 17 Dec 2025 11:04:26 -0500 (EST)
+Received: from phl-imap-17 ([10.202.2.105])
+  by phl-compute-04.internal (MEProxy); Wed, 17 Dec 2025 11:04:27 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm3; t=1765987466;
+	 x=1766073866; bh=ygVvmQCwoW+bq9xU8k+4m3IDod5LVEM/rzQsvomDzl0=; b=
+	Ts/GXl0KtvsDupfb6dX3RMDr2P8txjNqGc6MipR0QbXSFqCe9lDXuY6rBWw5/mJG
+	3XFnyG5J36KmW3EjyGf/9HlBenBRsGgBhYcrXKgavkLEMzk++bsNEjSaj7h5hRKf
+	rVTt+9Lq6pCh6xAYgL6eyEcg+I3RhjEvjt7LMFLTTFhI1kduUV92jxrO1tFTd7WC
+	A+zX9RBTAV+rtrVKXAmbPoUcX2dWWfGpH672+lAhTDJSc3XuY4++OjN1jkkoBV2c
+	zLiLK9xcKd0AjdXSNwW3NCCPwW7wQ8HUSiBUaSZYoUkcWRH5HMrb2Rjyn27/yHns
+	UJWd0VWG3V1+hIg9BklG3Q==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1765987466; x=
+	1766073866; bh=ygVvmQCwoW+bq9xU8k+4m3IDod5LVEM/rzQsvomDzl0=; b=p
+	7NtHNQvl37GD1xiT+x1bUn1Q41zdU2ia/UO2hmQo8cTguVZBg7cEqaRsNxJcnC1l
+	aSjhAftOQe54SSzBu0awknfZY/h4stYSgkJ7wYQjqvoFMbndtgivnDo15VoXLP7x
+	aG3iqVXFyodmVNPTbr1Cqqjk8ru+YRsMOcbxGoF8+QiwdB3u4IK/+2vRtdZRxyGh
+	DA/isDfdL7untEGvjYqltJK8XTT8GI1fT0np9xDWc5Msqn6rp/zDGfjb9KFKGoOE
+	qLgUco5MtpoTUQuL91SUr6olGxohtVvtnpWvByZpK0ZpijRkXyqW5KLNrya0/uYO
+	R0NwAEIZ6d5tqOZpFG7lg==
+X-ME-Sender: <xms:itRCaRn0C6BhSz77dtVqAX0erOmL3RcXvwQQN9rZISQOtii91NM0JA>
+    <xme:itRCaXo4AHOvlzGrSH9zQ71UL57iE6FgrRA4r50XzAADSmaKN0wI2xEuhcD1NVUpN
+    qa4ThCkgU3osCdkMpmawy3Tek1PjElUhq57BVcj1PjqQhduqDg_hXZ_>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgdegvdellecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
+    ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
+    hrpefoggffhffvvefkjghfufgtgfesthejredtredttdenucfhrhhomhepfdetrhhnugcu
+    uegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtthgvrh
+    hnpefhtdfhvddtfeehudekteeggffghfejgeegteefgffgvedugeduveelvdekhfdvieen
+    ucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrhhnug
+    esrghrnhgusgdruggvpdhnsggprhgtphhtthhopeduhedpmhhouggvpehsmhhtphhouhht
+    pdhrtghpthhtohepghhrvghgohhrhidrtghlvghmvghnthessghoohhtlhhinhdrtghomh
+    dprhgtphhtthhopehrohgsvghrthdrjhgrrhiimhhikhesfhhrvggvrdhfrhdprhgtphht
+    thhopehgvggvrhhtodhrvghnvghsrghssehglhhiuggvrhdrsggvpdhrtghpthhtohephh
+    grohhjihgrnhdriihhuhgrnhhgsehgmhgrihhlrdgtohhmpdhrtghpthhtohepmhgrghhn
+    uhhsrdgurghmmhesghhmrghilhdrtghomhdprhgtphhtthhopehsvggsrghsthhirghnrd
+    hhvghsshgvlhgsrghrthhhsehgmhgrihhlrdgtohhmpdhrtghpthhtoheptghonhhorhdo
+    ughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlh
+    drohhrghdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhg
+X-ME-Proxy: <xmx:itRCaWf1Yyrm1HtXtcgIsDH2I6V6sgnAyJlab6eD3Ym5uEsFmamVZQ>
+    <xmx:itRCaXzWj75fr4DDHg0NMOfc_CITydfsMlXllPehDoM0YE1x9rajGw>
+    <xmx:itRCaXLF7LpR_uInOIhCBM9Aptr9c4Zrpzq2n9lJL0KJVihdcdhW-w>
+    <xmx:itRCaQvd_-R8Mx63miwGtEMxIlpzL78nf73lofA6ZQ5WNZ5kZD0Y_w>
+    <xmx:itRCaYI4XZ0VZKqracHiuy3P3n06L5sIexKJOi-IE7jBJwytH3M7O101>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.phl.internal (Postfix, from userid 501)
+	id 05A20C4006B; Wed, 17 Dec 2025 11:04:26 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] media: dt-bindings: qcom,x1e80100-camss: Fix typo in
- CSIPHY supply description
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Bryan O'Donoghue <bod@kernel.org>, Robert Foss <rfoss@kernel.org>,
- Todor Tomov <todor.too@gmail.com>,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20251028111115.46261-2-krzysztof.kozlowski@linaro.org>
- <3f6f62f3-67be-4d3a-89ab-747e6acae29c@kernel.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <3f6f62f3-67be-4d3a-89ab-747e6acae29c@kernel.org>
-Content-Type: text/plain; charset=UTF-8
+X-ThreadId: AXfFZUabNlQ-
+Date: Wed, 17 Dec 2025 17:04:05 +0100
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "Robert Jarzmik" <robert.jarzmik@free.fr>, "Rob Herring" <robh@kernel.org>
+Cc: "Geert Uytterhoeven" <geert+renesas@glider.be>,
+ "Magnus Damm" <magnus.damm@gmail.com>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>, "Daniel Mack" <daniel@zonque.org>,
+ "Haojian Zhuang" <haojian.zhuang@gmail.com>, "Andrew Lunn" <andrew@lunn.ch>,
+ "Gregory Clement" <gregory.clement@bootlin.com>,
+ "Sebastian Hesselbarth" <sebastian.hesselbarth@gmail.com>,
+ Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+Message-Id: <35405ed3-1319-4d3a-84a5-ad67f4c823ad@app.fastmail.com>
+In-Reply-To: <m2345fmkg7.fsf@free.fr>
+References: <20251212203226.458694-4-robh@kernel.org> <m2345fmkg7.fsf@free.fr>
+Subject: Re: [PATCH] ARM: dts: intel: Drop pxa2xx
+Content-Type: text/plain
 Content-Transfer-Encoding: 7bit
 
-On 17/12/2025 16:41, Krzysztof Kozlowski wrote:
-> On 28/10/2025 12:11, Krzysztof Kozlowski wrote:
->> Correct description of the CSIPHY 1.2 V supply
->> ("vdd-csiphy-1p2-supply"), because it supplies 1.2 V, confirmed with DTS
->> on the mailing lists.
+On Fri, Dec 12, 2025, at 22:58, Robert Jarzmik wrote:
+> "Rob Herring (Arm)" <robh@kernel.org> writes:
+>
+>> These .dtsi files are not included anywhere in the tree and 
+>> can't be tested. They have not been touched since 2018 other than 
+>> clean-ups.
 >>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
->>  .../devicetree/bindings/media/qcom,x1e80100-camss.yaml          | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> 
-> Ping! It has been 1.5 months already. This also got other DT ack - TWO
-> DAYS after the posting - so why is this still not addressed by camss
-> maintainers?
-> 
+> And yet, there are used by people using pxa2xx board with an DT 
+> support (like the mioa701 for which a board file was never merged).
+>
+> If you remove pxa25x.dtsi and pxa27x.dtsi, you might as well 
+> remove all support for this architecture from the kernel, as
+> these are the building blocks needed to make it work.
+>
+> That might be what should be done, I'll let Arnd and Daniel 
+> comment on the future of PXA in the kernel.
 
-Huh, my bad, this was applied. There is just no trace for it here, so I
-missed that. Apologies for the noise.
+I agree with Rob that at the very minimum, any dtsi files in the
+kernel should be build-tested along with the rest, so either
+we add some dts files using them soon, or we can remove pxa2xx
+(and maybe pxa3xx) completely.
 
-There is awesome tool, btw, called b4, and with one-command setup you
-can then later generate nice thank you letters (and with few more
-commands setup they can be nicely customized)...
+I already plan to remove the remaining board files for both
+sa1100 and pxa soon, as nobody has picked up the task to do
+any further DT conversion after we removed the majority of
+the files back in 2022 and left only the ones that someone
+said they'd be interested in keeping.
 
-Best regards,
-Krzysztof
+Robert, let me know if you or someone else is able to spend
+some time on sending (warning-free) dts files for pxa2xx
+machines soon. If not, I'd plan to remove whatever is there
+along with the board files and drivers.
 
+I also checked the pxa3xx Raumfeld devicetree support that
+Daniel added in linux-3.7. The manufacturer's firmware
+download page contains kernel images based on this work,
+using a 4.19 kernel but built in 2022. If we remove pxa2xx
+DT support, it would be good to find out if anyone still
+plans to use something newer on that hardware, which may
+happen because of CRA requirements.
+
+    Arnd
 
