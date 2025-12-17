@@ -1,101 +1,101 @@
-Return-Path: <devicetree+bounces-247563-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247564-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2D43CC8C6C
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 17:30:49 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 420FBCC8C8D
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 17:32:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 91B7830BA8B4
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 16:20:20 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 137E630D3C61
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 16:21:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A810534BA5B;
-	Wed, 17 Dec 2025 16:19:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 063D434D393;
+	Wed, 17 Dec 2025 16:19:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="fnAUHClV";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="NuWTZbZB"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="lw9AhNNA";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="g65iuSDo"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D1E034B18A
-	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 16:19:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E677B263C8A
+	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 16:19:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765988377; cv=none; b=pcg3ArVnlhU3mltRXu6OJnZkiUkKgW9qj8Dt1+tcnzhH6g22olv9F6RtfV4Ihurv1jAdGU8oKDU/m+AT58QyK5VlirAfKGYEZ//pvSvpl/1wnI8MZ8qlIUTg41leyKg6s+sNSmM8QMnLsCUoyM9wTBQh41vcgfh4wNYR5eZm6lo=
+	t=1765988381; cv=none; b=SNUAfLEhMOhmwq/LbegCweTRtH62BesfYvAbMVreeuqgjw33YbS3h0yZzxGZb53gqwASU0fsCHSKAmGsQHa1yS2CSduEhI9ceqvM5iMbjU6AItWIQfm0Bdfgc0lC5uC3GLD6lfzAYAn4DQOExCINZHsURYX4SzgCx5jLP0jREm4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765988377; c=relaxed/simple;
-	bh=hghuRyv+qT1MrjB2/JML4BsNG+rafMrXyz+UmrUiKwE=;
+	s=arc-20240116; t=1765988381; c=relaxed/simple;
+	bh=24lMzxCr9aUhET7WAIp3X/uFZFDJp3XdSSyMZd7Klr0=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ZsZnHvy7o5HdWDHvvzNilpAV/xPjjtjXr+RUUyeD2W6+IiSibHNuYLmW3F8ZWF32WTqxgvzd4iqRO6/oVhfh6hEON1iDXA4BxK9awCyeGrHLz8uvGMLiAypIqx8NWM06NmX37fp+WC+sm62RJcqa/j66sNWP0/3PqNSOXyb/VQk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=fnAUHClV; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=NuWTZbZB; arc=none smtp.client-ip=205.220.168.131
+	 In-Reply-To:To:Cc; b=CEctYJC4uk6CLOftQxhqnEskQI1fJoOujMUM4xyO3Pr/+e8x2m3QqcVyH6l9UVvFrUxfyPLeYln2h9qCTsrnLY9/3Yn40GZtmTKMiE8rBVwpN7B9ZlgYy+UDsgdzXP7Wt+/R4mnbPHbFp5kkVvkpjaUr9Qc+aajSoCZq3SEYq4M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=lw9AhNNA; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=g65iuSDo; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BHCKxS62042763
-	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 16:19:34 GMT
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BHCL24h330845
+	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 16:19:39 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	se+gkmISsGZ11af5o3V+1DJwv7Z9tZaY7bPpyFED+k0=; b=fnAUHClVhxmCrrxo
-	z7F0CB9WM1UrJfznus+m1ftVHM1tZOX/dfg7KFKPz16Pz0sTMbqmF8om8IDU5Hd0
-	fENag+YOOG997ed9RnRTk8CRRAaeWMZiZCemKB9UBhJ2V4xS5pv7XDAkU/+uVRX5
-	On5Rig77SgmFiUHcuYO7RsYRmZYl6eNzP206a3v+BAMyCm+/8nRyeHe7VsrKX7//
-	Cg4sX7Qsc2Nk0fB//5q0DvNyPTj5D9RgIHWp34zGrK8egmu6+i59qDtZbsRjXlhT
-	Ku0si6R5VGxfznfqMUv0xD1Bl8YgBJe/60j6dg/Pv5R6bWVa6lOLyEcUUar6zl0G
-	iFTD/g==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b3fj1u6dh-1
+	WR/dfYC00x/AcEZxRcVeNHh3CdklEyCy5ODJfsssD0M=; b=lw9AhNNA22TSuys5
+	RYe4G6lUa8Wdkyl5Lw3U+vYCQYtOjEYLve+ziJmXgWFPK9vs3r21hK3iQxy7CLuk
+	AexhFNpoxZVsVSP4KBJUw/3TXzWOU4EhZwmMWA2c9VGnvgj2SKw8rIS0uAnGU/BK
+	VS3oD8VNdfl4EBjQ1JQ6QCkMd3GZ6/VFBYtLPw8wTGr3S112h7JIZjdrKWlNsYlt
+	oj39tamEKE+6BpzB+FPA8SYINeEkaIuZSaSV9DdZ9MmXxhp812uwvKn7BV8uP7IB
+	vQhLpUKxJWA8lV6HrYGSnxcRlb8hSadVY1A1kh5sTN1XHnL0wSmQvL7SodMfDiMf
+	cIOE+w==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b3t8e17bb-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 16:19:34 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-8b286006ffaso1566508785a.2
-        for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 08:19:34 -0800 (PST)
+	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 16:19:38 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4edb6a94873so108834041cf.0
+        for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 08:19:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1765988373; x=1766593173; darn=vger.kernel.org;
+        d=oss.qualcomm.com; s=google; t=1765988378; x=1766593178; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=se+gkmISsGZ11af5o3V+1DJwv7Z9tZaY7bPpyFED+k0=;
-        b=NuWTZbZB+gXbBPYg4WnV/rmc2PLlZjVpJW4Ktregfe/qS08eOP1BemJw69rwdF4dNh
-         ZdJQol4cYI9XWKD6GTGHEjWpIzdWaczTIUkGoY2ny+RxyWORrYsifOJOl+16YFX/kFsj
-         R4WBenM2fPGuY+bCCzdM9+Zu5zNCRe0IDhWiBdlTewZlTQ7kuTkFZP2DbSp79YwG3myH
-         vdS9Ol7eT27LOfi662C41b3gQbuqDHCErRAZpGIqTf4zFqyndI54d7XEQIslNmei42iP
-         pXyS3cjUS0f/MowHXNOg2WSe+2d3yd1FJ3NP3frkC3AkO0F2lqSPhfq+BDP5Iq/3aHeQ
-         GWOw==
+        bh=WR/dfYC00x/AcEZxRcVeNHh3CdklEyCy5ODJfsssD0M=;
+        b=g65iuSDo9OI5igu5agQ6Qeh031va+tw19vaVZ38rTDI1MtvoDWI39o58qq8CQemiAd
+         EZK6I6Voh65PRmGI4Md0RxYPTDQwQ1tVktaLqiMlBt7ttZVfwxc2cYRjcxoAsbYZffgv
+         tp0bnCpwVClxVOzbDeWDoZcA6rvhJQ1dT6A4DtAIQv2MdDTSmMEkAntEgYZWtU7Evnmu
+         Yy47P0cSkPLkyp+YbEmEn+fLWeom0dZBHDs6t3uIqO6DeQpPV3k0lLRtXlZqKWehECEK
+         b8vWNCYGgsEZkq4p7mpPn+nY9Hgb1AEVK239gk2n/IX9NUgdzThSUqjZ5f9XL0hV8E8h
+         6Azg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765988373; x=1766593173;
+        d=1e100.net; s=20230601; t=1765988378; x=1766593178;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=se+gkmISsGZ11af5o3V+1DJwv7Z9tZaY7bPpyFED+k0=;
-        b=MmSWRZcln8XQghWDYuf7JSoWwSOPzcySfVZ7+FpFa8NJPqk0qByLokorZ9UCkZcjyJ
-         0DG6DuHfFkqQZM4BYASKFDbmbqUqgeCs4QJD24EMQg9bHWXrBKnDFTO+GonbhxhvtkHI
-         ZSmvimNTPtfLE0gXq2QW/24XPfKGce8/0pCOIBNE+kaMf54oSxmEbDiHaimdUop4qRXy
-         6rZQyIqs+AfssYmKDp89U3t+iQ1A8RbwLNhg7I1LMiEnpaYC2RTO/qBC91UB+IJ+MfNZ
-         92yCi9MKheFZbktH9bIVMeweceRmWIg0ljBF1jpqi3yrEq0Ihd4O43w31u6gw7+q3Rlj
-         Mb3g==
-X-Forwarded-Encrypted: i=1; AJvYcCXveKLSK/oC616KTgWS/Dat3Rw9KGiGNsEjGqbjGee1Z1y7FZm3HwZvjxUG3+dA9zSUqHgA041wu/A0@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx/ABhHYlzv3JAzFwVdxaPr2popEA0Tlym3hbUawnsvh5T7mVTl
-	ZM5Vg4teNcLEITmCdkkJh5yt3dbyCtHdXvq/TvDAZqNNx5qlzDlvE4IXda3JkSpdTu62XgDGMk9
-	B5zwvGiuH7uQISIZpFKIPTAD+TliyJSjz301V1k4m13efV/37YcKB3HQjqD4kHYmn
-X-Gm-Gg: AY/fxX5K9E6Y/b+xn5TpbbjDtPsEkuf6ehjSe0sMurJgGEFFzrXZor0r1Zgm0520K6w
-	ZybIRsSSFczXMuJYMTyAkFAA09xS2LahIpyN9AWMZtWDEoECRDOKh984cyZgp91uLzUaXBtHjHM
-	DkuZ2gZB+z/5VM20/iKnIAAQjuasinmk5ZiCoB9WI+fiBpnE1BMGKswD4VkQRuGMAqEqa+N9dYS
-	/waxaOlJsCDPvhdSt30vP7wuU24NibwSW29cWEHKMh5qDJGvh5vGENTdC3+mKKN96JgfqTZBzX5
-	/xITtM2jHAUUbpyUCXw+POVpzMtnDCvPMsIJNOrTSFdhanfFTUGuNsTAGAk1oBh+rDSjyTRkLhL
-	o6gonQb7cQPv25EsXz3+gePE6GPN0p7dw
-X-Received: by 2002:a05:622a:2c1:b0:4ee:18e7:c4de with SMTP id d75a77b69052e-4f1d0622d74mr277258821cf.78.1765988373140;
-        Wed, 17 Dec 2025 08:19:33 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGqNBqhvHkitHOSmA3vyIySleqco3hAkeYNgLczvWTVUlpVzofrDwaP9pkh8WovSqvYE2kbLg==
-X-Received: by 2002:a05:622a:2c1:b0:4ee:18e7:c4de with SMTP id d75a77b69052e-4f1d0622d74mr277258141cf.78.1765988372569;
-        Wed, 17 Dec 2025 08:19:32 -0800 (PST)
+        bh=WR/dfYC00x/AcEZxRcVeNHh3CdklEyCy5ODJfsssD0M=;
+        b=ZJad2+rHl6iC5roI7Ht3nYj9irldIQr6JaoGTl7trIj/o1WW+OtxZPVEw/RA37fo6p
+         /GryoRMdkMchz8EnmIZQ+r8F7N6aEzRKFqsOjzgewoIyHdT7uUUrFWpXARIN3XceNyIT
+         0BtOH9JNJNWWZlW7cYb/Gwg2l0M4X0FGfwAhGOsHhfxlMKf2349t8NYwVCS4jjIWcWJw
+         9UmSkENlhkRsM4RaJoVlbEnxkDQOqVcLMexp1JHd0VVWCD74sHvqnoORIIVpEqPvD3gb
+         t0XjmkmSX0QKZ5b9+MIdMSNxNAr0NVIsDAC+cSaczvmlKShLSUcHu1jlKu+J8CLJkF6s
+         1ZzA==
+X-Forwarded-Encrypted: i=1; AJvYcCXYLnIRJaFW2pGGyf5GfKXa/Q90V/2vyU8bDOU0CzAokIphHaKTDGhOCer84CjTofRL+ZEVDfEeIG4+@vger.kernel.org
+X-Gm-Message-State: AOJu0YyqgzXPlpTVx5utgm5kMtIhrt2U4LeZkDVdf5MQtajw7x6ShVp9
+	FLO/ZkpB0Wv12BAgj8zaOBnTb1Q8D4JWXjd/a/MTN73o4k4aG7z4V35BH7IiMa7krrav+f9f7Fx
+	v8wsoT+hMymja2NuK2L36nzsFigj6Jmks6CLhB+xFl763prWHxy+AMoankdIIfjT1
+X-Gm-Gg: AY/fxX7OONNCZXfelEhc7eUOFHPf4Bd2SftGmsEzJwFsArLeT52/vEHRcv1CitgiCDR
+	WU2J30FuRpuEvUwrhQJZ5lnThYxTSo73FWXHN3En0cPX+f3gr1hiGV9AsThCyRxGt+O7Z0EdcnW
+	mdqkyoan/b40Q+0o+lYcNN12N0WSo7cZoTuam4e9Bv1PAwNVJyhe5+C6cImB/MDgC6FSAYgWC7a
+	asNWiCI/SZF6uIFa2cl07y5RgpHzAAfCA3Be3VbRNwqdQQVnAXcKi7OjqKqdQUS2ufggru+NLdn
+	SC3uekietGeaaESyi3xhoJqxN9RELNeVBS7HHj+2MrQgw6PqP1S9yzjcldqo+st87GNNtbdp6Or
+	G4mFstMBWPiVRkPwYTU6Ob2kbuGGSHShk
+X-Received: by 2002:a05:622a:5c9b:b0:4ed:b5d8:a192 with SMTP id d75a77b69052e-4f1d059b587mr264415501cf.38.1765988377856;
+        Wed, 17 Dec 2025 08:19:37 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEoNfHevQSWsz1Y923eorWUuNbmdgR3RbxNNgtAyDznRQt0soUwRocHLxSWWFBliLJQfHnmVA==
+X-Received: by 2002:a05:622a:5c9b:b0:4ed:b5d8:a192 with SMTP id d75a77b69052e-4f1d059b587mr264411671cf.38.1765988374404;
+        Wed, 17 Dec 2025 08:19:34 -0800 (PST)
 Received: from [127.0.1.1] ([178.197.218.51])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b7cfa29be92sm1987868666b.10.2025.12.17.08.19.31
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b7cfa29be92sm1987868666b.10.2025.12.17.08.19.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Dec 2025 08:19:31 -0800 (PST)
+        Wed, 17 Dec 2025 08:19:33 -0800 (PST)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Date: Wed, 17 Dec 2025 17:19:12 +0100
-Subject: [PATCH v2 06/12] dt-bindings: PCI: qcom,pcie-ipq6018: Move IPQ6018
- and IPQ8074 Gen3 to dedicated schema
+Date: Wed, 17 Dec 2025 17:19:13 +0100
+Subject: [PATCH v2 07/12] dt-bindings: PCI: qcom,pcie-ipq8074: Move IPQ8074
+ to dedicated schema
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -104,7 +104,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251217-dt-bindings-pci-qcom-v2-6-873721599754@oss.qualcomm.com>
+Message-Id: <20251217-dt-bindings-pci-qcom-v2-7-873721599754@oss.qualcomm.com>
 References: <20251217-dt-bindings-pci-qcom-v2-0-873721599754@oss.qualcomm.com>
 In-Reply-To: <20251217-dt-bindings-pci-qcom-v2-0-873721599754@oss.qualcomm.com>
 To: Bjorn Helgaas <bhelgaas@google.com>,
@@ -118,80 +118,76 @@ Cc: linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=9759;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=8405;
  i=krzysztof.kozlowski@oss.qualcomm.com; h=from:subject:message-id;
- bh=hghuRyv+qT1MrjB2/JML4BsNG+rafMrXyz+UmrUiKwE=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBpQtgBdu/bnYTRjILG4ha/+TQy6OQktxt0ptldU
- igePnh3Hq2JAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaULYAQAKCRDBN2bmhouD
- 17uJD/4pvyYNBOcwpu5cSHTMoHxrruquBdA1Nv/ZquBWdEQjQwpTNi0vgWHnTsptSmOZMlWhcQ6
- wJhoDqytsc9A4diimkHVq7IQbvrW6vfux7MVStjoIhpKRakNtk+8ap/2hkYDdXv/nQlBgrVQsRN
- S4I18UGkaBC/eF9E/dkSeim3WfHwhzqt5H1fv8nLCz/xzM+Mdq3T0Itwl0YORvWa98RC83m1f+q
- N2wOPe6FhsCD6k/FWd0UGc4sIPYBFd22BGg5xXYR70mdsXO4PhP4wYH/vzVh5ZkuW47xvVivO5P
- v9Y7dVeNrTXiUhY/lpVg8oURmLGbxATnkwWVaK7nI8VfrvInKbQPUbYPZMvuW+Eyf25xxU++L+w
- jhuc8P5fEdGsy6N2kE9vVccJ5ybyK05Lx/eiO04T0Ii8JNjrhzBTt+EQURLpI3YmmKhSdrGL20O
- iwShhnZ8kvh+Pny48iaQLeF6Ss+dthI2YkQfVK5zaHKerQ7oC8TviK9+e8UNhC5fjxW46fhcFxm
- K7Xl1a+AKzRUqpm+vi9Zk5cQRrfBaoZKCdnYFrx2+FD/U8LgGYdC8lUCWHRa5hYZPwDqYeRyLZA
- +Tg8r1wCZHPUOiwjnpKUhBbDeFRVzY+f3cvGZshK5hGZYIKUD9n+5jNBMnIa6xaTNup1n4Adain
- 6QHT81USf1XTnlg==
+ bh=24lMzxCr9aUhET7WAIp3X/uFZFDJp3XdSSyMZd7Klr0=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBpQtgCK2GLdaGJA03qWdN4yo57JREPBt5t98/XT
+ gqPOGUUb6uJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaULYAgAKCRDBN2bmhouD
+ 14XhD/4vIYccUZjmHT3kOojid8Y0H1FL3Qpk9VGFnAmIWc6ZS7hEeL7ciA9gWEq6JLDpK4ErSD1
+ yaaJXf7wfN8CSQd3YT8X4/SNl/jDWBcBqulqU0Fx+BwexrC5wNSgXmr8iOpmPVAXuUYU3zscTxg
+ lHSE/izrXmfpeUzXIT6G89UVZgZe3AiOK3GBjEarbk6rL4DAjQ5oZyRWnQnlJu26U43Np/8vGhG
+ +cX2CUsTzMeeVNp1ILDI621QjIr0QwhJsiGy8Pv+YVdXSYpnioqvZ2Grvmvuv/bhOpXUJJszHBK
+ /L2LwueR20PHjkLi2Vg46dIhZgD4YpyghVspwM1gTOYybF4u1phaPNAQuMFN6SNWjLXiTG9wuWj
+ +2tRrRjKih3A+MkvuL0aR01aFmm9w+J3o1Nws+cLFbNuwIv3TtWZWWq85GjMSYMTDxGRyjTemBA
+ 5HQ3OB/3rr1ySnY+mBErQ7wa99vCB+w2nWMwBqgiBUlCzfTXfOqAc8RzKQUWcAdq0c30pLYpYGj
+ JUw1zPzMJ+ukIlJOxGoIbZf/T27604wWdOf6WoAiOz1eYROLqaGixMcuaVvvvbE2tYR6X0enA4e
+ PEqUc/w/nVgHIJQ+mDFQcPpdsSKB5LC1TNOfJMwmWE22c8rCpVPP1mldRfEyTWJHx82JYEravNX
+ HzmwOWQUxI7wLcA==
 X-Developer-Key: i=krzysztof.kozlowski@oss.qualcomm.com; a=openpgp;
  fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjE3MDEyOCBTYWx0ZWRfX808BApi9Cuaw
- igFKqv0JPp+ZlNYeXTDOtpJTH86DRgpXWeve+JxAcWaXI318IGuxIN4LGCrDJ/usgpIgf1AAbFM
- qXb6XJVtSCnnreEw2vaTEuqXpohpqP2SyuCPPluHmj4afM6VK6zvMcQEUcwTJZ29BYAX7h/GVoc
- q0AcBFs5WzYt4BUD9ss+eJLdPDNffrwHkQh1gLeObCeW2ND2CCZyqLPa42k2JzOZJLCrSdjtrRa
- pisaGr4G4ZtkikQHCTO/LPBNG22aEcT5hYyaJaRCMDM5pwfhdpDDX+K6VbpwTotLysLTWTCjmUj
- L8aN33+2So7M/mGaRVRQaxZh9Dr4Y1mZjhOvOZeMpjk4wGvRv9EdIlKipf0rJbJIlNzUnDoSUjA
- QEfLwjxaI2wCveUKKK3igvFXef2nWg==
-X-Proofpoint-ORIG-GUID: kfTNxUEyh7BLAyvb_UcAwMf7MAtYVF8g
-X-Proofpoint-GUID: kfTNxUEyh7BLAyvb_UcAwMf7MAtYVF8g
-X-Authority-Analysis: v=2.4 cv=edgwvrEH c=1 sm=1 tr=0 ts=6942d816 cx=c_pps
- a=HLyN3IcIa5EE8TELMZ618Q==:117 a=hmARNUlj3OVxZ3RlbIsQyw==:17
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjE3MDEyOCBTYWx0ZWRfX0Y1QgdcmcNMF
+ HXK5GrJiQoazRFs2QV3fgQt9NCMI0a6m/xajEIKPTQdkGWuodKsw6g4uZCdNJfIYHPtYiTmyTAH
+ 5XKVX/rvOKx1F8ZVLLS/1s1VnAZq+AvgoNB1uU7aiqSKYIRlE/o1HINeMD8r5EWWS1249IyAzWe
+ jBlOyBOQ4G7rYHkkd9Muz/jNVB8379OSrBYJ/EVj1ik1kJdLiMYomZHFoFVgmSRuqEUok4NhI5M
+ B3a2BZjwH+OqmrKMBcQj4tpAwBfEUTShXTw8wGP1Ys22NDkfL2GzMGC1CzY6lK1Kw5mqaBb7vnR
+ 6KHzgIcS9RCfHPIzh0/ZmaFvCdpa7026tLJZfu8nMXN/NYRamfjK5dyevBDzLYMcU+i3+cfWK1H
+ 66KZ9O4F56AEKKtEZZBLCBW6+kWVNQ==
+X-Proofpoint-GUID: AmU-ySjbBjYA2mDZiNTz36SyrzKeUzja
+X-Proofpoint-ORIG-GUID: AmU-ySjbBjYA2mDZiNTz36SyrzKeUzja
+X-Authority-Analysis: v=2.4 cv=EsHfbCcA c=1 sm=1 tr=0 ts=6942d81a cx=c_pps
+ a=WeENfcodrlLV9YRTxbY/uA==:117 a=hmARNUlj3OVxZ3RlbIsQyw==:17
  a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
  a=VkNPw1HP01LnGYTKEx00:22 a=gEfo2CItAAAA:8 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
- a=d0cN-5R3_aeRheYbsGEA:9 a=QEXdDO2ut3YA:10 a=bTQJ7kPSJx9SKPbeHEYW:22
+ a=IKDxjynl_XDzIR9_nSAA:9 a=QEXdDO2ut3YA:10 a=kacYvNCVWA4VmyqE58fU:22
  a=sptkURWiP4Gy88Gu7hUp:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
  definitions=2025-12-17_03,2025-12-16_05,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 spamscore=0 lowpriorityscore=0 clxscore=1015 impostorscore=0
- adultscore=0 priorityscore=1501 phishscore=0 bulkscore=0 malwarescore=0
+ malwarescore=0 bulkscore=0 priorityscore=1501 suspectscore=0 impostorscore=0
+ clxscore=1015 lowpriorityscore=0 phishscore=0 spamscore=0 adultscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512170128
 
-Move IPQ6018 and IPQ8074 Gen3 (which is the same as in IPQ6018) PCIe
-devices from qcom,pcie.yaml binding to a dedicated file to make
-reviewing and maintenance easier.
+Move IPQ8074 PCIe devices from qcom,pcie.yaml binding to a dedicated
+file to make reviewing and maintenance easier.
 
 New schema is equivalent to the old one with few changes:
  - Adding a required compatible, which is actually redundant.
  - Drop the really obvious comments next to clock/reg/reset-names items.
- - Disallow legacy/incomplete description with only one interrupt and
-   expect exactly nine of them.
- - Do not require power domains on IPQ6018, because old binding already
-   does not require them for IPQ8074 Gen3, devices are the same and
-   in-tree DTS lacks power domains.
+ - Expecting eight MSI interrupts and one global, instead of only one,
+   which was incomplete hardware description.
 
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 ---
- .../devicetree/bindings/pci/qcom,pcie-ipq6018.yaml | 179 +++++++++++++++++++++
- .../devicetree/bindings/pci/qcom,pcie.yaml         |  40 -----
- 2 files changed, 179 insertions(+), 40 deletions(-)
+ .../devicetree/bindings/pci/qcom,pcie-ipq8074.yaml | 165 +++++++++++++++++++++
+ .../devicetree/bindings/pci/qcom,pcie.yaml         |  35 -----
+ 2 files changed, 165 insertions(+), 35 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-ipq6018.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-ipq6018.yaml
+diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-ipq8074.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-ipq8074.yaml
 new file mode 100644
-index 000000000000..6843570eb051
+index 000000000000..da975f943a7b
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/pci/qcom,pcie-ipq6018.yaml
-@@ -0,0 +1,179 @@
++++ b/Documentation/devicetree/bindings/pci/qcom,pcie-ipq8074.yaml
+@@ -0,0 +1,165 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/pci/qcom,pcie-ipq6018.yaml#
++$id: http://devicetree.org/schemas/pci/qcom,pcie-ipq8074.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Qualcomm IPQ6018 PCI Express Root Complex
++title: Qualcomm IPQ8074 PCI Express Root Complex
 +
 +maintainers:
 +  - Bjorn Andersson <andersson@kernel.org>
@@ -200,22 +196,17 @@ index 000000000000..6843570eb051
 +properties:
 +  compatible:
 +    enum:
-+      - qcom,pcie-ipq6018
-+      - qcom,pcie-ipq8074-gen3
++      - qcom,pcie-ipq8074
 +
 +  reg:
-+    minItems: 5
-+    maxItems: 6
++    maxItems: 4
 +
 +  reg-names:
-+    minItems: 5
 +    items:
 +      - const: dbi
 +      - const: elbi
-+      - const: atu
 +      - const: parf
 +      - const: config
-+      - const: mhi
 +
 +  clocks:
 +    maxItems: 5
@@ -225,8 +216,8 @@ index 000000000000..6843570eb051
 +      - const: iface # PCIe to SysNOC BIU clock
 +      - const: axi_m # AXI Master clock
 +      - const: axi_s # AXI Slave clock
-+      - const: axi_bridge
-+      - const: rchng
++      - const: ahb
++      - const: aux
 +
 +  interrupts:
 +    maxItems: 9
@@ -244,7 +235,7 @@ index 000000000000..6843570eb051
 +      - const: global
 +
 +  resets:
-+    maxItems: 8
++    maxItems: 7
 +
 +  reset-names:
 +    items:
@@ -255,7 +246,6 @@ index 000000000000..6843570eb051
 +      - const: axi_s # AXI slave reset
 +      - const: ahb
 +      - const: axi_m_sticky # AXI master sticky reset
-+      - const: axi_s_sticky # AXI slave sticky reset
 +
 +required:
 +  - resets
@@ -268,138 +258,124 @@ index 000000000000..6843570eb051
 +
 +examples:
 +  - |
-+    #include <dt-bindings/clock/qcom,gcc-ipq6018.h>
++    #include <dt-bindings/clock/qcom,gcc-ipq8074.h>
 +    #include <dt-bindings/gpio/gpio.h>
 +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/reset/qcom,gcc-ipq6018.h>
 +
-+    soc {
-+        #address-cells = <2>;
++    pcie@10000000 {
++        compatible = "qcom,pcie-ipq8074";
++        reg = <0x10000000 0xf1d>,
++              <0x10000f20 0xa8>,
++              <0x00088000 0x2000>,
++              <0x10100000 0x1000>;
++        reg-names = "dbi", "elbi", "parf", "config";
++        ranges = <0x81000000 0x0 0x00000000 0x10200000 0x0 0x10000>,   /* I/O */
++                 <0x82000000 0x0 0x10220000 0x10220000 0x0 0xfde0000>; /* MEM */
++
++        device_type = "pci";
++        linux,pci-domain = <1>;
++        bus-range = <0x00 0xff>;
++        num-lanes = <1>;
++        max-link-speed = <2>;
++        #address-cells = <3>;
 +        #size-cells = <2>;
 +
-+        pcie@20000000 {
-+            compatible = "qcom,pcie-ipq6018";
-+            reg = <0x0 0x20000000 0x0 0xf1d>,
-+                  <0x0 0x20000f20 0x0 0xa8>,
-+                  <0x0 0x20001000 0x0 0x1000>,
-+                  <0x0 0x80000 0x0 0x4000>,
-+                  <0x0 0x20100000 0x0 0x1000>;
-+            reg-names = "dbi", "elbi", "atu", "parf", "config";
-+            ranges = <0x81000000 0x0 0x00000000 0x0 0x20200000 0x0 0x10000>,
-+                     <0x82000000 0x0 0x20220000 0x0 0x20220000 0x0 0xfde0000>;
++        clocks = <&gcc GCC_SYS_NOC_PCIE1_AXI_CLK>,
++                 <&gcc GCC_PCIE1_AXI_M_CLK>,
++                 <&gcc GCC_PCIE1_AXI_S_CLK>,
++                 <&gcc GCC_PCIE1_AHB_CLK>,
++                 <&gcc GCC_PCIE1_AUX_CLK>;
++        clock-names = "iface",
++                      "axi_m",
++                      "axi_s",
++                      "ahb",
++                      "aux";
 +
++        interrupts = <GIC_SPI 85 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 137 IRQ_TYPE_LEVEL_HIGH>,
++                     <GIC_SPI 84 IRQ_TYPE_LEVEL_HIGH>;
++        interrupt-names = "msi0",
++                          "msi1",
++                          "msi2",
++                          "msi3",
++                          "msi4",
++                          "msi5",
++                          "msi6",
++                          "msi7",
++                          "global";
++        #interrupt-cells = <1>;
++        interrupt-map-mask = <0 0 0 0x7>;
++        interrupt-map = <0 0 0 1 &intc 0 GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>, /* int_a */
++                        <0 0 0 2 &intc 0 GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH>, /* int_b */
++                        <0 0 0 3 &intc 0 GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>, /* int_c */
++                        <0 0 0 4 &intc 0 GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>; /* int_d */
++
++        phys = <&pcie_qmp1>;
++        phy-names = "pciephy";
++
++        resets = <&gcc GCC_PCIE1_PIPE_ARES>,
++                 <&gcc GCC_PCIE1_SLEEP_ARES>,
++                 <&gcc GCC_PCIE1_CORE_STICKY_ARES>,
++                 <&gcc GCC_PCIE1_AXI_MASTER_ARES>,
++                 <&gcc GCC_PCIE1_AXI_SLAVE_ARES>,
++                 <&gcc GCC_PCIE1_AHB_ARES>,
++                 <&gcc GCC_PCIE1_AXI_MASTER_STICKY_ARES>;
++        reset-names = "pipe",
++                      "sleep",
++                      "sticky",
++                      "axi_m",
++                      "axi_s",
++                      "ahb",
++                      "axi_m_sticky";
++
++        perst-gpios = <&tlmm 58 GPIO_ACTIVE_LOW>;
++
++        pcie@0 {
 +            device_type = "pci";
-+            linux,pci-domain = <0>;
-+            bus-range = <0x00 0xff>;
-+            num-lanes = <1>;
-+            max-link-speed = <3>;
++            reg = <0x0 0x0 0x0 0x0 0x0>;
++            bus-range = <0x01 0xff>;
++
 +            #address-cells = <3>;
 +            #size-cells = <2>;
-+
-+            clocks = <&gcc GCC_SYS_NOC_PCIE0_AXI_CLK>,
-+                     <&gcc GCC_PCIE0_AXI_M_CLK>,
-+                     <&gcc GCC_PCIE0_AXI_S_CLK>,
-+                     <&gcc GCC_PCIE0_AXI_S_BRIDGE_CLK>,
-+                     <&gcc PCIE0_RCHNG_CLK>;
-+            clock-names = "iface",
-+                          "axi_m",
-+                          "axi_s",
-+                          "axi_bridge",
-+                          "rchng";
-+
-+            interrupts = <GIC_SPI 52 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 55 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 56 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 59 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 63 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 68 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 51 IRQ_TYPE_LEVEL_HIGH>;
-+            interrupt-names = "msi0",
-+                              "msi1",
-+                              "msi2",
-+                              "msi3",
-+                              "msi4",
-+                              "msi5",
-+                              "msi6",
-+                              "msi7",
-+                              "global";
-+
-+            #interrupt-cells = <1>;
-+            interrupt-map-mask = <0 0 0 0x7>;
-+            interrupt-map = <0 0 0 1 &intc 0 0 GIC_SPI 75 IRQ_TYPE_LEVEL_HIGH>, /* int_a */
-+                            <0 0 0 2 &intc 0 0 GIC_SPI 78 IRQ_TYPE_LEVEL_HIGH>, /* int_b */
-+                            <0 0 0 3 &intc 0 0 GIC_SPI 79 IRQ_TYPE_LEVEL_HIGH>, /* int_c */
-+                            <0 0 0 4 &intc 0 0 GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>; /* int_d */
-+
-+            phys = <&pcie_phy>;
-+            phy-names = "pciephy";
-+
-+            resets = <&gcc GCC_PCIE0_PIPE_ARES>,
-+                     <&gcc GCC_PCIE0_SLEEP_ARES>,
-+                     <&gcc GCC_PCIE0_CORE_STICKY_ARES>,
-+                     <&gcc GCC_PCIE0_AXI_MASTER_ARES>,
-+                     <&gcc GCC_PCIE0_AXI_SLAVE_ARES>,
-+                     <&gcc GCC_PCIE0_AHB_ARES>,
-+                     <&gcc GCC_PCIE0_AXI_MASTER_STICKY_ARES>,
-+                     <&gcc GCC_PCIE0_AXI_SLAVE_STICKY_ARES>;
-+            reset-names = "pipe",
-+                          "sleep",
-+                          "sticky",
-+                          "axi_m",
-+                          "axi_s",
-+                          "ahb",
-+                          "axi_m_sticky",
-+                          "axi_s_sticky";
-+
-+            pcie@0 {
-+                device_type = "pci";
-+                reg = <0x0 0x0 0x0 0x0 0x0>;
-+                bus-range = <0x01 0xff>;
-+
-+                #address-cells = <3>;
-+                #size-cells = <2>;
-+                ranges;
-+            };
++            ranges;
 +        };
 +    };
 diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-index b448b8f07f55..780a77f35b34 100644
+index 780a77f35b34..8ff4c16b31c8 100644
 --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
 +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-@@ -21,11 +21,9 @@ properties:
-           - qcom,pcie-apq8064
-           - qcom,pcie-apq8084
+@@ -23,7 +23,6 @@ properties:
            - qcom,pcie-ipq4019
--          - qcom,pcie-ipq6018
            - qcom,pcie-ipq8064
            - qcom,pcie-ipq8064-v2
-           - qcom,pcie-ipq8074
--          - qcom,pcie-ipq8074-gen3
+-          - qcom,pcie-ipq8074
            - qcom,pcie-ipq9574
            - qcom,pcie-msm8996
        - items:
-@@ -164,8 +162,6 @@ allOf:
-         compatible:
-           contains:
-             enum:
--              - qcom,pcie-ipq6018
--              - qcom,pcie-ipq8074-gen3
-               - qcom,pcie-ipq9574
+@@ -144,7 +143,6 @@ allOf:
+               - qcom,pcie-ipq4019
+               - qcom,pcie-ipq8064
+               - qcom,pcie-ipq8064v2
+-              - qcom,pcie-ipq8074
      then:
        properties:
-@@ -350,39 +346,6 @@ allOf:
-             - const: ahb # AHB Reset
-             - const: axi_m_sticky # AXI Master Sticky reset
+         reg:
+@@ -315,37 +313,6 @@ allOf:
+         resets: false
+         reset-names: false
  
 -  - if:
 -      properties:
 -        compatible:
 -          contains:
 -            enum:
--              - qcom,pcie-ipq6018
--              - qcom,pcie-ipq8074-gen3
+-              - qcom,pcie-ipq8074
 -    then:
 -      properties:
 -        clocks:
@@ -410,11 +386,11 @@ index b448b8f07f55..780a77f35b34 100644
 -            - const: iface # PCIe to SysNOC BIU clock
 -            - const: axi_m # AXI Master clock
 -            - const: axi_s # AXI Slave clock
--            - const: axi_bridge # AXI bridge clock
--            - const: rchng
+-            - const: ahb # AHB clock
+-            - const: aux # Auxiliary clock
 -        resets:
--          minItems: 8
--          maxItems: 8
+-          minItems: 7
+-          maxItems: 7
 -        reset-names:
 -          items:
 -            - const: pipe # PIPE reset
@@ -424,26 +400,23 @@ index b448b8f07f55..780a77f35b34 100644
 -            - const: axi_s # AXI Slave reset
 -            - const: ahb # AHB Reset
 -            - const: axi_m_sticky # AXI Master Sticky reset
--            - const: axi_s_sticky # AXI Slave Sticky reset
 -
    - if:
        properties:
          compatible:
-@@ -443,7 +406,6 @@ allOf:
+@@ -405,7 +372,6 @@ allOf:
+                 - qcom,pcie-ipq4019
                  - qcom,pcie-ipq8064
                  - qcom,pcie-ipq8064v2
-                 - qcom,pcie-ipq8074
--                - qcom,pcie-ipq8074-gen3
+-                - qcom,pcie-ipq8074
                  - qcom,pcie-ipq9574
      then:
        required:
-@@ -466,9 +428,7 @@ allOf:
+@@ -428,7 +394,6 @@ allOf:
          compatible:
            contains:
              enum:
--              - qcom,pcie-ipq6018
-               - qcom,pcie-ipq8074
--              - qcom,pcie-ipq8074-gen3
+-              - qcom,pcie-ipq8074
                - qcom,pcie-msm8996
                - qcom,pcie-msm8998
      then:
