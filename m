@@ -1,158 +1,150 @@
-Return-Path: <devicetree+bounces-247308-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247309-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42F42CC6B5A
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 10:08:22 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48EF8CC6BAB
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 10:12:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id B2F7330167B5
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 09:08:21 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id BE0BE3015ADF
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 09:12:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFCF1341040;
-	Wed, 17 Dec 2025 09:08:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08DB41D5CF2;
+	Wed, 17 Dec 2025 09:12:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="bLuHeggl"
+	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="RxAOpEEt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ixit.cz (ip-94-112-25-9.bb.vodafone.cz [94.112.25.9])
+Received: from mx-relay36-hz1.antispameurope.com (mx-relay36-hz1.antispameurope.com [94.100.133.212])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47037341048;
-	Wed, 17 Dec 2025 09:08:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.112.25.9
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765962500; cv=none; b=d/T0Su9a7GdtP+v3NuOghasv65k2dSAx3gIurUrUtHfZhIIEclBcigD2nhyuAxsgRHaduIj9LAlUTpc7twEwQ3KT8fvt2IKz/gOLD3UrBkA6S9XDOKnuFFBdoqlfrCxRZ8pfbTT8FyiNIuEPAOCJAirDLDle4TkF1BAZt6ntkm4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765962500; c=relaxed/simple;
-	bh=YOF79mhwziXu7dBdX0/bYUroSiDGOGIaIJv/SMx2s5Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qjsgymGK3vp+8HaRIaaUR8xHR/8twxxlCaP/OTXVwtGJubMJUm5YYWImkhsGDm+4S+jNX1ut2DLT+FqvZfyDY/5IZ8IF/Fj3bJSrnNF/7CXl9MdvQWVBr/ER1oRpxzLKpf/0Y0hV6fk3VFKiqQLi/mdb7leNbcZf9//ZJinxt6U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=bLuHeggl; arc=none smtp.client-ip=94.112.25.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
-Received: from [10.0.0.200] (unknown [10.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by ixit.cz (Postfix) with ESMTPSA id 344D653412E7;
-	Wed, 17 Dec 2025 10:08:07 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-	t=1765962487;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=RCVxQI6jnPgUkHW5I61l2VJzl2Oo5ZmCM7Vqd6Nd0QM=;
-	b=bLuHegglW6bb1/AvR/9cKFL8SDkssWn+1Ny56LP+/oeA/8XEXTbA97UIwbOGjDo/cLKPji
-	l93S2GR1LQMomAUkA7oLHWmAhKc0Y9h8KskIAh6ImmlI9FoME62TtnWnGpzcIEzWjRplqu
-	EammlccM9LT1V+HwwU2IJ/0SpxYKbn4=
-Message-ID: <e41a2d91-2d78-45a3-bbde-ddacdec28f54@ixit.cz>
-Date: Wed, 17 Dec 2025 10:08:07 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 338CF33A9C0
+	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 09:12:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=94.100.133.212
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1765962729; cv=pass; b=cccXkTPcOifdTPY+OIgF2koiEoTLmqhHDN11KGwrz0MpC4ydFpon41UE40DQua8+avuPv3Qu5GdX27q3y5Q8aHc3p9rMHgn0ZIitZCzJ4Yk6xA8pd+nfnLB6m4m6CS+hh9tchazS82IbyJsSDfXNNi1BLEJ1mMD1ImDnZfuGR9E=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1765962729; c=relaxed/simple;
+	bh=xfujg8/O0zWHhjIR9pfaJn5dYWdiKI7tk4dkgx8mmsU=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=CJY136FsifTpJukY8p1ik2RWeTWN6SQhDSRe//26pIhzmqyc2Esshx0C4H8/CDeLjY6enGIzqwjEsM2lSV6C4m9f4JTDwCtC9S8rB6SIiyWYQ6QFTPWO35VlMS2Ru883U+iVw0T8oCVvfpNO9heTSWMPgDtam+z2tHL825HKxSk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=RxAOpEEt; arc=pass smtp.client-ip=94.100.133.212
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+ARC-Authentication-Results: i=1; mx-gate36-hz1.hornetsecurity.com 1; spf=pass
+ reason=mailfrom (ip=94.100.132.6, headerfrom=ew.tq-group.com)
+ smtp.mailfrom=ew.tq-group.com smtp.helo=smtp-out02-hz1.hornetsecurity.com;
+ dmarc=pass header.from=ew.tq-group.com orig.disposition=pass
+ARC-Message-Signature: a=rsa-sha256;
+ bh=xfujg8/O0zWHhjIR9pfaJn5dYWdiKI7tk4dkgx8mmsU=; c=relaxed/relaxed;
+ d=hornetsecurity.com; h=from:to:date:subject:mime-version:; i=1; s=hse1;
+ t=1765962628;
+ b=F+KlDUBwoB1r3Zs4Hp1Q1spWckNPTUgjvVXENeL1j1BEzHzM+pd8JxFGJ77DhBn09VXe5JOg
+ p2pz8eaAENzYVlSC/ecI/uSZpSrvsmyH5rh20OkBBclE1NXzJBGwOs05odivk2uSkao8ow4yyFO
+ vcLxpCEVe/l2eiEFssdKSsD5GXCa/Kqq0i/DPYnxm+IVBuOoueFACC/A56kLnn5LtmlmcWM7a35
+ ic4TFEja/R2z1TRjoqnBRPtMAa3G7dFa7InTgaNX8wTNxSoz1Oxm5XFUKMShVSqj+n9aVpAAFfA
+ 7EhMftSQNa2WGMt8/ICQOpJawmJqJGpilxWfyGUR4Z62w==
+ARC-Seal: a=rsa-sha256; cv=none; d=hornetsecurity.com; i=1; s=hse1;
+ t=1765962628;
+ b=TNMyDblwKfE49qEzvYhaGWNnT9j/cfnkbJIREZuqrYQPJGPje4PSPYJr+aAq4MVMiB8LW4nr
+ 5oHn447hivw/+sV4WAWNceS734fuDMS7ucisqe8maX3lEHBLpz+pUZh4c1L0KzNLla27/G1nMPS
+ 6w34m8uE8l+rV8DOgNzJXIvkV7H2FCyFdZ5PQhPgm8C3+cuyRdZBiVeI3SxvOCCUiIue5MjgWdM
+ C9vEj4vP9ItQA/dLgtMY5jpVN8r5tCYWPLEZq9cEJ/rrCc8jf1EZUx8FFq601KLY2fA/q/WUc9R
+ xDuQZjKH+vXk6PHfowLo3AaR6FBv7g3mGcNoiWf0HKLsg==
+Received: from he-nlb01-hz1.hornetsecurity.com ([94.100.132.6]) by mx-relay36-hz1.antispameurope.com;
+ Wed, 17 Dec 2025 10:10:28 +0100
+Received: from [192.168.153.128] (host-82-135-125-110.customer.m-online.net [82.135.125.110])
+	(Authenticated sender: matthias.schiffer@ew.tq-group.com)
+	by smtp-out02-hz1.hornetsecurity.com (Postfix) with ESMTPSA id 90E2E5A0FA5;
+	Wed, 17 Dec 2025 10:10:16 +0100 (CET)
+Message-ID: <637f14d1c77c2a1d19f7ea221addbbea51392bd9.camel@ew.tq-group.com>
+Subject: Re: [PATCH v4 2/2] arm64: dts: ti: Add TQ-Systems TQMa62xx SoM and
+ MBa62xx carrier board Device Trees
+From: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+To: Vignesh Raghavendra <vigneshr@ti.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+  Conor Dooley <conor+dt@kernel.org>, Kees Cook <kees@kernel.org>, Tony Luck
+ <tony.luck@intel.com>,  "Guilherme G. Piccoli" <gpiccoli@igalia.com>,
+ Andrew Lunn <andrew@lunn.ch>,  linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org,
+ linux-hardening@vger.kernel.org,  linux@ew.tq-group.com, Nishanth Menon
+ <nm@ti.com>, Tero Kristo <kristo@kernel.org>
+Date: Wed, 17 Dec 2025 10:10:16 +0100
+In-Reply-To: <671625aa-f5da-4e34-9c8c-7a1da282aa5e@ti.com>
+References: <cover.1762775119.git.matthias.schiffer@ew.tq-group.com>
+	 <0079cc291c78b94068f3d8c59df103e951247acc.1762775119.git.matthias.schiffer@ew.tq-group.com>
+	 <d13a95659bdd1c840dfaa46afd6d8583f1b7c88f.camel@ew.tq-group.com>
+	 <671625aa-f5da-4e34-9c8c-7a1da282aa5e@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.3-0ubuntu1.1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] media: dt-bindings: Correct camss VDDA PLL supply
- description
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
- Todor Tomov <todor.too@gmail.com>, Kapatrala Syed <akapatra@quicinc.com>,
- phone-devel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, Hans Verkuil <hverkuil@kernel.org>,
- Robert Foss <rfoss@kernel.org>, Bryan O'Donoghue <bod@kernel.org>,
- linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Hariram Purushothaman <hariramp@quicinc.com>,
- Vikram Sharma <quic_vikramsa@quicinc.com>,
- Richard Acayan <mailingradian@gmail.com>, linux-media@vger.kernel.org,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-References: <20251213-docs-camss-fixes-v2-1-a8a4d4d51c6c@ixit.cz>
- <176593314599.3464227.16503792061137156291.robh@kernel.org>
-Content-Language: en-US
-From: David Heidelberg <david@ixit.cz>
-Autocrypt: addr=david@ixit.cz; keydata=
- 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
-In-Reply-To: <176593314599.3464227.16503792061137156291.robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-cloud-security-sender:matthias.schiffer@ew.tq-group.com
+X-cloud-security-recipient:devicetree@vger.kernel.org
+X-cloud-security-crypt: load encryption module
+X-cloud-security-Mailarchiv: E-Mail archived for: matthias.schiffer@ew.tq-group.com
+X-cloud-security-Mailarchivtype:outbound
+X-cloud-security-Virusscan:CLEAN
+X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on mx-relay36-hz1.antispameurope.com with 4dWSgY2fCdz2HYqw
+X-cloud-security-connect: he-nlb01-hz1.hornetsecurity.com[94.100.132.6], TLS=1, IP=94.100.132.6
+X-cloud-security-Digest:3ce335cbe13af60b1b355940102977ec
+X-cloud-security:scantime:2.793
+DKIM-Signature: a=rsa-sha256;
+ bh=xfujg8/O0zWHhjIR9pfaJn5dYWdiKI7tk4dkgx8mmsU=; c=relaxed/relaxed;
+ d=ew.tq-group.com;
+ h=content-type:mime-version:subject:from:to:message-id:date; s=hse1;
+ t=1765962627; v=1;
+ b=RxAOpEEtsvrSX6kca7I/FBiPqJ5St2AhNaQ4gV0e6hbxqkMpItikZAAX4gq4GTLBPAs2cnf1
+ XJ0xunV7fNE8aCD4I/YzPJUeLKLYR/FIiRlUQbrQI+XKbBIdvAuGy5H0zFHZqFX0iHQPMVziVmo
+ QcHzc+eAAbmBz215J1NfYJtgzl1zrjzSCDfDUWip0IOe4TLqjb0QAo4dA5wO5ykwOSrCMwaI/iP
+ 4Skb8eI5Br78rit1PIvMKWeVhFAK8H3oBi+1avfqMscVAEHGnzyrZKPfcuxcd3EUUajZez61MpP
+ SZd48JjZOi33yebUtSSSaJ2WOuJTHJZ/KCYxSsxqlFLkA==
 
-On 17/12/2025 01:59, Rob Herring (Arm) wrote:
-> 
-> On Sat, 13 Dec 2025 10:19:31 +0100, David Heidelberg wrote:
->> Usually, the supply is around 1.2 V, not 1.8 V. Rather remove mention of
->> voltage from the description.
->>
->> Fixes: 849139d46d09 ("media: dt-bindings: media: camss: Fixup vdda regulator descriptions sdm845")
->> Signed-off-by: David Heidelberg <david@ixit.cz>
->> ---
->> Added only Fixes tag for the initial commit, not all the copy-paste
->> propagated ones.
->> ---
->> Changes in v2:
->> - Applied suggestion to clarify the description. (Krzysztof)
->> - Link to v1: https://lore.kernel.org/r/20251212-docs-camss-fixes-v1-1-5c011505ff59@ixit.cz
->> ---
->>   Documentation/devicetree/bindings/media/qcom,sa8775p-camss.yaml  | 2 +-
->>   Documentation/devicetree/bindings/media/qcom,sc7280-camss.yaml   | 2 +-
->>   Documentation/devicetree/bindings/media/qcom,sc8280xp-camss.yaml | 2 +-
->>   Documentation/devicetree/bindings/media/qcom,sdm670-camss.yaml   | 2 +-
->>   Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml   | 2 +-
->>   Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml   | 2 +-
->>   6 files changed, 6 insertions(+), 6 deletions(-)
->>
-> 
-> Acked-by: Rob Herring (Arm) <robh@kernel.org>
+On Wed, 2025-11-26 at 10:47 +0530, Vignesh Raghavendra wrote:
+> Hi Matthias,
+>=20
+> On 25/11/25 15:32, Matthias Schiffer wrote:
+> > On Mon, 2025-11-10 at 12:49 +0100, Matthias Schiffer wrote:
+> > > The TQMa62xx is a SoM family with a pluggable board connector based o=
+n the
+> > > TI AM62x SoCs. Add DTS(I) for the AM625 (2x Cortex-A53) variant and i=
+ts
+> > > combination with our MBa62xx carrier board.
+> >=20
+> > Hi Vignesh,
+> >=20
+> > do you have any further comments? Can we get this in for 6.19?
+> >=20
+>=20
+> Oops, this somehow fell through the crack, my apologies!
+>=20
+> I have already sent out the PRs for v6.19. Sorry, this would need to
+> wait for v6.20 cycle.
+>=20
+> [...]
+>=20
+>=20
 
-Thanks Rob,
+Hi Vignesh,
 
-meanwhile I sent v3 with 2 commits narrowing both supplies (just as I 
-noticed with old commit msg..), it's here:
+will these patches by applied for v6.20 (if there aren't any more review
+comments)? Should I resend them?
 
-https://lore.kernel.org/all/20251216-docs-camss-fixes-v3-0-c238b6810771@ixit.cz/
+Best,
+Matthias
 
-David
+
+
+
+
+--=20
+TQ-Systems GmbH | M=C3=BChlstra=C3=9Fe 2, Gut Delling | 82229 Seefeld, Germ=
+any
+Amtsgericht M=C3=BCnchen, HRB 105018
+Gesch=C3=A4ftsf=C3=BChrer: Detlef Schneider, R=C3=BCdiger Stahl, Stefan Sch=
+neider
+https://www.tq-group.com/
 
