@@ -1,77 +1,77 @@
-Return-Path: <devicetree+bounces-247227-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247228-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 956D8CC5CBC
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 03:42:52 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC854CC5CE8
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 03:44:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 6224B3004616
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 02:42:32 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 84F6F306EDAB
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 02:42:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D74FA2853F3;
-	Wed, 17 Dec 2025 02:42:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D68EE288C3D;
+	Wed, 17 Dec 2025 02:42:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Nr8mJnI8"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hUrqL6aw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
+Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0030D281368
-	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 02:42:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD87428D82F
+	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 02:42:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765939346; cv=none; b=FazznZo1xWPKRxxPn8r6Ka4jBmhZ8eGHq5hDKmTTR2iQhsG4xPG/SRWn5PeR3m/PDnUBaNCAvGwQIPZ1zaNLw6UKvFUjGNExTEC/oG6hXuZPNn6fRsSX4+T8ox6Zp2hFyALE5hkQ+/I9jS+e7ASF0gnJaHXUBB4RJLes6lLzGKg=
+	t=1765939348; cv=none; b=k0+nfZWLn4KE6ltcaHKF1FVYBTTsFotV1KIlZE6vGvlEOUUw9RiF0xfLSGUiORD0JvYUG6cU2POz2Bk2GrQCQOplFnYvhSHrRLVMdff7+qJpz2+JfeGBO9ju+coynDwS7bD+OLjCaACRjboH5z+JiH3cYV3dByht8oT3hSOWAZI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765939346; c=relaxed/simple;
-	bh=V1uDN//6fwAfIJdBPWewZAkwCmuDrSueZYlOp5BDIy0=;
+	s=arc-20240116; t=1765939348; c=relaxed/simple;
+	bh=SxHuyIjADYP1U2icNo/1tBOqaXsA3cfJ/igEM368h4w=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Uem8AYyDqg7yLuUM6E2+Y5RC4v9u1j5LbgHbYO4ZnBjF+Iwe/AiBrNhtJsZMosS9gRP9X2jp8sh9tJD8Q4pGOpVYfE1m/KkrYG/jKGjTy10gi6E0aG9vxeH8i4lMwU1DkXq44ziPhfczcCp3CkGjL+of1ivchJSMAgu53jqfDN8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Nr8mJnI8; arc=none smtp.client-ip=209.85.210.179
+	 MIME-Version; b=b6Gy4Vp4LUoZDSdVNSV0ai6uVQAuAY356Q7LCIL5/7Ds+8UDSyHaBveVp2IL/lrgXpg7KWxxarWJEh4i7P6nMeMOI5iiCgYnOfvBnZFIkE0j37MJZYfeXzBOxKN8aOIP8pTbNezKRRTTYIQhePI+ms5dPtEstbeoZbUGlQKDibU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hUrqL6aw; arc=none smtp.client-ip=209.85.210.175
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-7b89c1ce9easo6150222b3a.2
-        for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 18:42:24 -0800 (PST)
+Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-7fc0c1d45a4so1105826b3a.0
+        for <devicetree@vger.kernel.org>; Tue, 16 Dec 2025 18:42:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1765939344; x=1766544144; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1765939346; x=1766544146; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=RAvaRpzOSVNKUVUd3z7yZ4rULdWPUD/lWxZmIty2N/Y=;
-        b=Nr8mJnI89AEzark6ukoOFIFcfWFFCW9zIOGCFKFKIJbL0CHod7820NSclMLKanRAjy
-         efP96yVbeLCUrCUrc5j5f6tTiU0KoqysfXRcb7rIA1cSUTHjve9o7davjclAZZGaDzi2
-         ro5ccUhpD/UppTAsXIkZhekdemSxKrcDCBWYA2aYzbIGLGex2NX794Fuhrv+9QHFDsQT
-         nd6oyn4NZLuSQRQXTa40IG2tg+/+So8qy/jV1HDzynGKj70hN/HHCBaWk0BLUGpXEAWN
-         cxqBmusjmDmwnZId9I9JtM8XSspLjQlNZkbYUttBgTzsYZWME0psIE+XjQrlr+ZxQ7W4
-         wOvw==
+        bh=5KMCfTLhRPCYocCD5Sa4l3D1sRENu2ZmKQ37zZUrHyM=;
+        b=hUrqL6awPaOC18rli1JbKauJ7bBtUHXyl60AZLHxht388Tj/nyAxTD+2T+PfVgu/vb
+         S9U2qkRbDnFrvO2fxG9pLHRSeK0/q/L1E01GGZI9EwRZCT/kF3D/GzaxmLLXeoAK6KGr
+         IobmMI0PJanRBSiPjA9SmIiNvb9SSE8+SAIWmYfHKWi4fppJwhXNI+Q3LkPDdj0+nHqB
+         aPmKyclBTZRdBEE9NNHNqM4HnzaX5iy3cz0yofYkdNzDErwAZuLRC9Ab2L1szdd1QjYc
+         VFXa8wHW1JrmFl9o0X/4RjGiLdlphtZBUk3U3Vbj8zs+rhVg4buF/n7FAijYq8OkDDWQ
+         nfBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765939344; x=1766544144;
+        d=1e100.net; s=20230601; t=1765939346; x=1766544146;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=RAvaRpzOSVNKUVUd3z7yZ4rULdWPUD/lWxZmIty2N/Y=;
-        b=RmXOWvcteYUU+Gaku9kO6MWTOUmaQn7sWt4iheLO1s94oht6/OLgKpgwhXxf4StaWN
-         OYzZAPL50dNqOYzqmHjXS6u6nEkjkzfKSn8KmtqQyELJVQKex5Lx/n8ssSnAgyPlE3HM
-         nc/l6vW5g8kEQ8WrwpwJ3VYbCKkdoi8j2EnZh8FJIjtiAw9OQt8NiCupWfOA0SsXSnzB
-         3Up8/hZAyYjEtcv3yr/zl4zJp8xoPtXOJb8Ootch11a3Yq7XyXjZ30ABc+j4e0yB0rfk
-         VW36xQKBHXohV3ErJVsdrzCjzq2u3+0zusLLrWgP/ByTZcc8ENWDWdvU+qfQdx1VfRom
-         +gbA==
-X-Gm-Message-State: AOJu0Yzzxla7KlDksZUT8bKSzxwTBDDXbRPnvAPN2bUBpeRjBpVk7WVJ
-	8UkHZWds1l0nq4FxlynxTSe20bt7mbv4zm9yjH1XMk4W0A48aBQtGq9i
-X-Gm-Gg: AY/fxX69pxul/hKlt3RMJHa0fWqYBvpa6kiPYbhaqBcFEDsNi20VDg4UaHGqMzpEhee
-	BgbSdv3zepsflWf8nNKs1z9+aAjzUGApTK5kERRpkg6tonnrmg8qoQgmyq5ZwY0GCXqKazAhTnp
-	WpzOANiMLKIWLiEb/uRzQOsVMWIX5Fvvs1xCX+rvVmRDETrXfycwrztXdRYXh/HzCzRNLfyTflX
-	cxW0JxE6vE5QK53pC9w1sOVwWilw7gYqquvBAaICDU7F0LU8jgN/YFGE0SNEg7lFEfTyK6TLPXG
-	y9UGv2zgChBiAua/qzzOO4tf8QV+DL+2LcQhl7E5a8zOp58G7BxPjoOJ1NNXMpGXTyptAagKbeg
-	PTIe0Dfl7hEUMl4dpQKCvL+BK/GC3PS5etQRnd5DnKQJH8b+p66nt6iECjwYf3BjSecNUd31gky
-	dpY1G/ooPEjFJcainj3F3MEorU8xASigwYQhSPnbDvNlZkwUFRWvIs/k6htopXAGbIbJKkrJyGR
-	ETV8d45eKJHkyk=
-X-Google-Smtp-Source: AGHT+IEdo+oIswqNvPYTC0alUaHeiWR1/K/Mfky4uyf2799xeagzkReyHg/WBV9BGT3F3fHpH3VwIQ==
-X-Received: by 2002:a05:6a00:a118:b0:7ef:3f4e:9182 with SMTP id d2e1a72fcca58-7f669a8b0c3mr14790222b3a.47.1765939344119;
-        Tue, 16 Dec 2025 18:42:24 -0800 (PST)
+        bh=5KMCfTLhRPCYocCD5Sa4l3D1sRENu2ZmKQ37zZUrHyM=;
+        b=MmoP1XKRZchxcwRA8B2iFyXcyEBdI/DjihFk/eQdQ/2tr745TxlYkPszie8HDdPi0c
+         WB+6BXTQTYBztGDtlwzBMFhORoEmcGF93KVjfCrDb826//tOCTqMjMT+XewPjZm/b6gm
+         hHHvYemHAQ8yY+P8DiiLzdHQ+xGD8qsvmmsXy08TuSqQAeDGHj65QRbtA7MzrgZJB8ls
+         6uN40uhBunHC4M1z+Zbtki6OIU/HRJGPfKgqKKcFbb1AdJzDoU/woIl1GvsXCGSZjHVm
+         NY6HxkjE1zd5MkukTPbKJowuhcivlSFGClztnYuOlxz1FFRBCvQdTtUctzkdByWAGmWc
+         wztQ==
+X-Gm-Message-State: AOJu0Yxe0gstfrS3qNySkBC0NU6lYx8RBd3gk17OBMJqRfiqIXYD+pyQ
+	qde09zzhFK5xkQZojI4RfMb97mmOgg9QXH6zMwcsQJZWbTOksd4XCgMn
+X-Gm-Gg: AY/fxX7kawMwidXjZAK7v4yhgjFkwIe9DauOUPHHhbVMTRH1klnhe0R6sHEEy6tI1dN
+	ErmH5lKn/Eo9mK6p+Hg+ijA+qtKDRrXpsJT3hQH+yFhv6nux5BIZWY8Dtw/ygbKCxp9yr2VUz0/
+	4FNKySFFgN7B18M4XRUJbIC2s5qkFIy4TyqkbYGJat2C+xCcK6icgZH4IaUXjHQgvpOKKbyKA5Q
+	R9Zq4fJtzRdRbOdgkMI6t7xxEhhJ2/jWNSmH1qBLe8XzQHCGRaPpYX/7ZmwvgktqRn7X7YHM8OX
+	SfQ34dWFanjNJgdro/fnanvsE2Tpw0gr9iC1QrwESaylcbgJqCq23CCOS6cWOq27x96z+BUyS3Y
+	zXYrjj30IV4t7E0W4Y/UyutDOkHLDrpfMocCNs8vZarMmWNNYt0JsNd8VasPfPRlIXDvmfeUkHH
+	aX+iwq8X0BQtO/82aHeW459teqMl7dEoS29OxuGx4xUJ6HRSJuHW7wNn3LEITF3g08RobViGRbj
+	I7FwXQiJbfNQUs=
+X-Google-Smtp-Source: AGHT+IFxLVoztRFrvzcQi+RXpwRMMUWexU05bJJDnAS8n7MfeA0BGia80wGlDQVbtEkO9IYQg3sFkA==
+X-Received: by 2002:a05:6a00:b904:b0:7b8:87e1:a62c with SMTP id d2e1a72fcca58-7f6702be6e7mr13723830b3a.31.1765939346329;
+        Tue, 16 Dec 2025 18:42:26 -0800 (PST)
 Received: from cosmo-ubuntu-2404.dhcpserver.bu9bmc.local (61-220-246-151.hinet-ip.hinet.net. [61.220.246.151])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7fcb8c29738sm941342b3a.17.2025.12.16.18.42.22
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7fcb8c29738sm941342b3a.17.2025.12.16.18.42.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Dec 2025 18:42:23 -0800 (PST)
+        Tue, 16 Dec 2025 18:42:26 -0800 (PST)
 From: Cosmo Chou <chou.cosmo@gmail.com>
 To: robh@kernel.org,
 	krzk+dt@kernel.org,
@@ -84,9 +84,9 @@ Cc: devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	cosmo.chou@quantatw.com,
 	Cosmo Chou <chou.cosmo@gmail.com>
-Subject: [PATCH v2 3/5] ARM: dts: aspeed: bletchley: Remove unused pca9539 properties
-Date: Wed, 17 Dec 2025 10:39:36 +0800
-Message-ID: <20251217023938.445721-4-chou.cosmo@gmail.com>
+Subject: [PATCH v2 4/5] ARM: dts: aspeed: bletchley: Remove unused i2c13 property
+Date: Wed, 17 Dec 2025 10:39:37 +0800
+Message-ID: <20251217023938.445721-5-chou.cosmo@gmail.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251217023938.445721-1-chou.cosmo@gmail.com>
 References: <20251217023938.445721-1-chou.cosmo@gmail.com>
@@ -98,72 +98,26 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Remove unused #address-cells and #size-cells properties from
-pca9539 nodes to fix dt-schema warnings.
+Remove 'aspeed,hw-timeout-ms' property which is not supported by
+the driver and causes dt-schema warnings.
 
 Signed-off-by: Cosmo Chou <chou.cosmo@gmail.com>
 ---
- .../dts/aspeed/aspeed-bmc-facebook-bletchley.dts     | 12 ------------
- 1 file changed, 12 deletions(-)
+ arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-bletchley.dts | 1 -
+ 1 file changed, 1 deletion(-)
 
 diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-bletchley.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-bletchley.dts
-index 5919a5046078..8df145d2bcfd 100644
+index 8df145d2bcfd..123e2d1891f6 100644
 --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-bletchley.dts
 +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-bletchley.dts
-@@ -373,8 +373,6 @@ sled1_ioexp41: pca9536@41 {
- 	sled1_ioexp: pca9539@76 {
- 		compatible = "nxp,pca9539";
- 		reg = <0x76>;
--		#address-cells = <1>;
--		#size-cells = <0>;
- 		gpio-controller;
- 		#gpio-cells = <2>;
+@@ -962,7 +962,6 @@ fan_leds: pca9552@67 {
  
-@@ -462,8 +460,6 @@ sled2_ioexp41: pca9536@41 {
- 	sled2_ioexp: pca9539@76 {
- 		compatible = "nxp,pca9539";
- 		reg = <0x76>;
--		#address-cells = <1>;
--		#size-cells = <0>;
- 		gpio-controller;
- 		#gpio-cells = <2>;
+ &i2c13 {
+ 	multi-master;
+-	aspeed,hw-timeout-ms = <1000>;
+ 	status = "okay";
  
-@@ -551,8 +547,6 @@ sled3_ioexp41: pca9536@41 {
- 	sled3_ioexp: pca9539@76 {
- 		compatible = "nxp,pca9539";
- 		reg = <0x76>;
--		#address-cells = <1>;
--		#size-cells = <0>;
- 		gpio-controller;
- 		#gpio-cells = <2>;
- 
-@@ -640,8 +634,6 @@ sled4_ioexp41: pca9536@41 {
- 	sled4_ioexp: pca9539@76 {
- 		compatible = "nxp,pca9539";
- 		reg = <0x76>;
--		#address-cells = <1>;
--		#size-cells = <0>;
- 		gpio-controller;
- 		#gpio-cells = <2>;
- 
-@@ -729,8 +721,6 @@ sled5_ioexp41: pca9536@41 {
- 	sled5_ioexp: pca9539@76 {
- 		compatible = "nxp,pca9539";
- 		reg = <0x76>;
--		#address-cells = <1>;
--		#size-cells = <0>;
- 		gpio-controller;
- 		#gpio-cells = <2>;
- 
-@@ -818,8 +808,6 @@ sled6_ioexp41: pca9536@41 {
- 	sled6_ioexp: pca9539@76 {
- 		compatible = "nxp,pca9539";
- 		reg = <0x76>;
--		#address-cells = <1>;
--		#size-cells = <0>;
- 		gpio-controller;
- 		#gpio-cells = <2>;
- 
+ 	//USB Debug Connector
 -- 
 2.43.0
 
