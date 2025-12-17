@@ -1,176 +1,165 @@
-Return-Path: <devicetree+bounces-247622-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247623-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12F31CC976B
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 21:14:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 66467CC97D6
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 21:29:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B9E32302EF47
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 20:14:43 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2CCA6302C22B
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 20:29:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69ED83016E5;
-	Wed, 17 Dec 2025 20:14:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C3893090FF;
+	Wed, 17 Dec 2025 20:29:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="aKTEqYOn"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hFiZQQmU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 992F22FFF81
-	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 20:14:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 787C730594E
+	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 20:29:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766002482; cv=none; b=l9+dzdGTCJx6j+cC9Sxzu+hSJ2HnmaUnLAR5YsOsWVL3xAA24xIHTPiSayC8+a69paMghzUftkmq0c5SYfTfKJKNPYpf/NtlOBhUKSH0Ru/RxAz85Lfv7dYDKBhqnAhWrEeMIiVGSBHhj9euVQY7o70iRo/QRCjS4NY3mNOVNQc=
+	t=1766003394; cv=none; b=rgY1kts8ZUWc9L9IMXBYV+WU7h/of18CFwaAU/m04772ShPgXfozdsG0uO50x+XAPER96KbIdSzb2pDNn7L+G1A9L/EQJ/5XZnStbvaryCTdpJyFRoJD6L72VLehLITZ9ohWouhrsOeJouA0sj8saDE+2HylF280fOe3365NmZA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766002482; c=relaxed/simple;
-	bh=3ptYz/wLgIC9dYQ1kM92VS/MK6iPLAxyt07DMgLnkfY=;
+	s=arc-20240116; t=1766003394; c=relaxed/simple;
+	bh=I0QaxssPlYkK2KN89dk3oT/A0G5pLDJj6HbpOMyxDgE=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=UfCyiMc4GeIcgLYQAhCY/J9pGEtIB7y9McGiszOvKB8z10H9JAxmsASNXhqBgUhekp1zwsWpIy89UBu++w1dub4H98zZTErKQicDzzK6ovfVnJm1wKl86/4/hcASYeuI44h45AAmgmgb32XqwgiLqZYN4CWsz4cDJvfyYptXMx0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=aKTEqYOn; arc=none smtp.client-ip=209.85.208.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-644f90587e5so10514095a12.0
-        for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 12:14:40 -0800 (PST)
+	 To:Cc:Content-Type; b=WNHtKTQuBUwcv9h58ElbLSilJ/XhAEOaU7dTQcLoTRLOSH+av/sBopKP2S+7AJAI1L4kCl7+pB/DcDqcPTxV2dEyYusfOKSCimA81qAXEbfyogsHH+zUa4tqWIGe/X7AvijM3JjbkHO5OZs7520EWVIpiD1zYc19CkdDFoYJTVQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hFiZQQmU; arc=none smtp.client-ip=209.85.167.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-5942bac322dso6714840e87.0
+        for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 12:29:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1766002479; x=1766607279; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1766003391; x=1766608191; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=tM/V/k/fSUtW462XR6FXOM+8RdQaX18bynBaXcytSDg=;
-        b=aKTEqYOn16v1yXOtEhRQyp9zfAxw8+EeFMR87bJq4GJH3bkSi9gAzg9fl/XKpBpxXZ
-         3hknlu6XFsmigt4MyCHKYzUfxTuoKORxHdCUxr2cHrWHV+AhyV7Dm1qwPa9JEbVqO3mn
-         MV9G2ynpci1CYr2RFhftofUeYj55t+zUKBqqbkAN1RsrJBCkZrruxOpXTgQEv8uqaUmI
-         k198pEKyN6h+/xNIcxwOjt6Dk8p+oZqmanvhChtkg/QPNuwlLjgQmIDK3Ja1pyloZf30
-         RL6HHwi/CzHlI8cvpprXfyFwxxEzvow0YL8ZoaYrdGN7/+ev1MckCKuJPFn9D1lgRPBV
-         Px0g==
+        bh=I0QaxssPlYkK2KN89dk3oT/A0G5pLDJj6HbpOMyxDgE=;
+        b=hFiZQQmUKBMln/NzHSEgkboO0EMFAXqS9FmErovCq7gULjQmGezJv/j3sGTUB8VPQX
+         6TE7HC0WL3mlHU0xgLCPklL8ONZKvCsYes65JAD7P6IaXGRJFCSzi6iIMTkHeMceN+0v
+         R/wCXSIEDOZSjsrfUvrtx3F7oyuugKsx6ZXpSLFKlmfT0TMJXBifvSHKFyOy3VqtA606
+         GXIABU/h8tUXRgoA3msrQuwTIc34YQgRRhSrktH5EEHVX/I9pMQ6qUblX4KGYs+R76uD
+         k5l6VE3GR0eCiyVvRUwnSZUVcV+BZw64i25o8brwZGx1Gj1l7gZgW0sWxNy0OxSvCYlC
+         UHXA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766002479; x=1766607279;
+        d=1e100.net; s=20230601; t=1766003391; x=1766608191;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=tM/V/k/fSUtW462XR6FXOM+8RdQaX18bynBaXcytSDg=;
-        b=cuT9jWrdS+7BfBO2mxkns7/SYyP2RDf7yGlbpUmjQYSFGXCoWzJdteOc/hBpDyjd1+
-         yqo74PArNfQROxW7Wsyb6TmJoOqu65ierIWrOXuWOpCrbOGvBX40IzI2DTkD/04EdGAo
-         Yj2R8HaAva8zC1OJDbAIjRYeaESUGU//jLmGnbWzDQH5MhPe4hx3dOVrAQq8QjAi/7nP
-         Tam+gYUpp9nmlLp8fJ/7+muOLSl2drvVJnjNxZexrViucsHysffnXZcOKf79J+HiPs0M
-         X35OmgfO6E5Yc2cctw7SJUoYJ0G1cBylFLquJUxLLLcCyME9nWYCMAMxm2Yx58yybL0f
-         DABQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXf1jJksvJhmvNYiYKy3ZSDk1JeJ8v3p9Ob+uCSmxs71jb3xewGloMcERp3M6RV3+nKugd7BYig5DOM@vger.kernel.org
-X-Gm-Message-State: AOJu0YwZtGB2gQuqphEpc9M6smNYuxgoFLvOX8wwoKsxKC8LgfU82lJ6
-	ZyJa+YL8nPW6MzdKmeen3Q59JWrpJOLU3HXKaaQB3ZQPDDSw+QOyUROFaREOYlnkRdMs9x1GLJ6
-	FvNSxIItk/EZaozNgxATL4K+nK5dMBYB7x6wNcHAl
-X-Gm-Gg: AY/fxX6AMG2+7mwDjwBgy4hEF6AZ+15UezLPbKxAV2/wUiClRFdMHx5CEUW3MhzgCKQ
-	/wHNkyXpD8R+XmvowBgI0VySQ4+7Ico5FUi98RowQXhrDYOZkRhO2iHcrj4K0Gzlo1ebqEtX0kH
-	3q6Hil6RmI1zYM5QKt4f5wKOTnlc0md0BrGPs0UyDgGgfhszqu+f+/rr2JZRw3XZDlfPKNPGPpD
-	R/9ZsAKk5Esk6pVsuY21nheewwSUABi9uIBU0H8ZP7h34c1Gv0OITtP81cZBoR1rMhbURNRDl4D
-	ipq34/psCKE5bnxBlb28sXV41g==
-X-Google-Smtp-Source: AGHT+IG4PFt6/xl6TY17qdZDo/fSC5jvUriMDmtoPhK6WjCwoIZvzT7uFwVBMWf3+gIeet+IH6pEPp4HA0evjsAE9aQ=
-X-Received: by 2002:a17:907:96a6:b0:b79:d152:566a with SMTP id
- a640c23a62f3a-b7d236ca22emr1906214666b.28.1766002478506; Wed, 17 Dec 2025
- 12:14:38 -0800 (PST)
+        bh=I0QaxssPlYkK2KN89dk3oT/A0G5pLDJj6HbpOMyxDgE=;
+        b=DRAS9ZALI7QaJoutwSKXc9JCZfZhL6CV5MRRVZnImBkd++tXqkJ4J1bPvKNkPK3MKm
+         3OTHvSWFzQDUt3goIzJ0UsN6HPLsjmcIvvZZZo5I290v97prtGNhSVfJ5ZZjHAL8/iI2
+         tk3BnCyhpgjeBgrp3pRvR2vD09HpoxStl27SD4Y5RY2JoJD8Xr7R4SEMIhivAvpxZG6J
+         Y/tB2U54pJxNzujEb5PwWZoxk+kxu6FQQLVbYjT5ZKAkYcPx2aarBlOYNMbTQIkZcayl
+         h/ESbtNRopu9CVt2/oE4iAews5gZx0+jrqh5XzAJqFTPGIJkqS/zdEuXObCOdb+YBx18
+         qCHg==
+X-Forwarded-Encrypted: i=1; AJvYcCUtX+NSa8i12dJhTdlZheQ0TgAQlzjzpl/LzaP3r0CcBoQp+0O9kr+D1Jull3iI1An02nWDA0kXotep@vger.kernel.org
+X-Gm-Message-State: AOJu0YxpOUq7oTk7YydMjYbiF+SAF+lKjfQn35t7gwjeOSviz+LbezgE
+	V6kT7dqu+BOyXSmlNOyH8dWgs0wGIc8QzOrM2q9F2a9ox9Q/K06FYvYdhKSEI/iHUHb4NZn90Tr
+	LPxivM1UXwlI1yDPCEMTT9lBbSddhiBs=
+X-Gm-Gg: AY/fxX74Z/JYI9pV9p0SE1gZ06Tig8fwJZ2atXjZMNeP/DOs8GCl8apAUGhUrNnEBlp
+	L5knED1ZDi4lveo3Gk+dZgbamMh7pITrKY8BbbRRxLC6h0K1jvRCPJ05O+Yu4HcYFcj2D8giCFD
+	GfD5slhJQwHHyGnJ/HS5A1iTnzt6Y51Ofvw8Gv/8G531hoP4WJ9f0jZMDFppO0UerkCS5ZbSSa+
+	PvUqRqg1gZEO24ZkUh0U/iIUBOtWPyhtXm/P3GK/CTyH7OPsoY7767lt5rCIcflSkeYAAw=
+X-Google-Smtp-Source: AGHT+IGSaILNaRarC8+vvU7EuRNihpCY/48ShEUWRbAX71tFMzIu4uKSf0sutUNzSYeLLOsL226XJuVMSmT/b4fSoUk=
+X-Received: by 2002:a05:6512:1156:b0:59a:11a4:4c29 with SMTP id
+ 2adb3069b0e04-59a11a44c45mr435224e87.41.1766003390355; Wed, 17 Dec 2025
+ 12:29:50 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251205-controller-v9-0-9f158b18f979@google.com>
- <20251205-controller-v9-2-9f158b18f979@google.com> <2025120553-suffrage-divisive-5890@gregkh>
- <CA+zupgzL7v5MZDpxKDQQCqAZaqTdHbiG9-xTr+8RnigMFZJ_7Q@mail.gmail.com>
- <2025121728-reliably-crabgrass-2601@gregkh> <CA+zupgxZCyNonfNPbGnFymGGOQuaWR1TsL+hujTbH4DEcfEt9Q@mail.gmail.com>
-In-Reply-To: <CA+zupgxZCyNonfNPbGnFymGGOQuaWR1TsL+hujTbH4DEcfEt9Q@mail.gmail.com>
-From: Doug Anderson <dianders@google.com>
-Date: Wed, 17 Dec 2025 12:14:25 -0800
-X-Gm-Features: AQt7F2r-ws7J5EyDz0pvtMEQpxK_o2RQbdVkWKJTgzdUasSvuVkdkxrUDLQsMMI
-Message-ID: <CAD=FV=U63F-wxwKDo9be6_X2P2zp6aTBjNghZRbXX1rn4jFNyg@mail.gmail.com>
-Subject: Re: [PATCH v9 2/2] usb: dwc3: Add Google Tensor SoC DWC3 glue driver
-To: Roy Luo <royluo@google.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Peter Griffin <peter.griffin@linaro.org>, =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
-	Tudor Ambarus <tudor.ambarus@linaro.org>, Thinh Nguyen <Thinh.Nguyen@synopsys.com>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Badhri Jagan Sridharan <badhri@google.com>, linux-usb@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
-	Joy Chakraborty <joychakr@google.com>, Naveen Kumar <mnkumar@google.com>
+References: <20251027-tegra186-icc-p2-v4-0-e4e4f57e2103@gmail.com>
+ <249bbe7e-e2da-4493-bdd5-8f4b17aff8fe@nvidia.com> <CALHNRZ8uPaKqSpFWkmYZn==Xw=rxh95Xm0_6LPN1HDj20zofqw@mail.gmail.com>
+ <d16803e5-7b6d-4472-b50c-aa324cf52736@nvidia.com> <CALHNRZ83Q2Ha8VYoWAnqoCZQ=Fd9rtVRVLwRFxAY68ePQ29GHw@mail.gmail.com>
+ <29cf2c16-3a0e-42c5-a083-16f77ae5d09a@nvidia.com> <CALHNRZ9KAv-hL6+6Uiaz2O2odm1rqMnjNxNVPsbCOdqX15KTuw@mail.gmail.com>
+ <856447ae-4338-471d-a71f-a34aed749ac7@nvidia.com> <CALHNRZ9y0n6JNfeDUQgZoECkxo+We0_G8TP0H4advcSqrX86kg@mail.gmail.com>
+ <f906f85f-b110-4328-b177-02fcdf7ffe53@nvidia.com> <CALHNRZ8go4ATHgJ4SE=7pkAMgRP_0tj5z4pDXjxicV9o7F13Ng@mail.gmail.com>
+ <1b9f0b14-876c-4c6e-90eb-b04d016f88e8@nvidia.com> <CALHNRZ_GGAg_VP8gSdtw_1CA2A0netrOeA2+guZfxyG7POhHoA@mail.gmail.com>
+ <adc7ca5c-69d8-4164-bd89-3381b101576a@nvidia.com> <CALHNRZ-SU_kyak_u6mfUZBHJ9Cph6=-edhL+yhRizu8DDy=Big@mail.gmail.com>
+ <CALHNRZ9mfO_DQR-RuH_QH=18R8zTt9VqbPaVCdnDKUWzx1pm3Q@mail.gmail.com> <45057c95-1dba-4302-94fa-f63941ee2b20@nvidia.com>
+In-Reply-To: <45057c95-1dba-4302-94fa-f63941ee2b20@nvidia.com>
+From: Aaron Kling <webgeek1234@gmail.com>
+Date: Wed, 17 Dec 2025 14:29:39 -0600
+X-Gm-Features: AQt7F2qVN5yX_6cKGG72rCEm9mQVm3ZGjk67T6z4GHpE9_yirrlYFXKGMXzv3LQ
+Message-ID: <CALHNRZ8gJbyuD+0yFQwCJ+g7OcffjkXopRSJKoDnr5WMmUVGwQ@mail.gmail.com>
+Subject: Re: [PATCH v4 3/5] memory: tegra186-emc: Support non-bpmp icc scaling
+To: Jon Hunter <jonathanh@nvidia.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Thierry Reding <thierry.reding@gmail.com>, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
-
-On Wed, Dec 17, 2025 at 11:18=E2=80=AFAM Roy Luo <royluo@google.com> wrote:
+On Wed, Dec 17, 2025 at 12:59=E2=80=AFPM Jon Hunter <jonathanh@nvidia.com> =
+wrote:
 >
-> On Wed, Dec 17, 2025 at 5:24=E2=80=AFAM Greg Kroah-Hartman
-> <gregkh@linuxfoundation.org> wrote:
-> >
-> > On Thu, Dec 04, 2025 at 11:14:39PM -0800, Roy Luo wrote:
-> > > On Thu, Dec 4, 2025 at 10:05=E2=80=AFPM Greg Kroah-Hartman
-> > > <gregkh@linuxfoundation.org> wrote:
-> > > >
-> > > > On Fri, Dec 05, 2025 at 02:26:38AM +0000, Roy Luo wrote:
-> > > > > +config USB_DWC3_GOOGLE
-> > > > > +     tristate "Google Platform"
-> > > > > +     depends on ARCH_GOOGLE || COMPILE_TEST
-> > > >
-> > > > There is no ARCH_GOOGLE in the tree now, so how is this supposed to
-> > > > work?  Shouldn't tools that check for "invalid config options" trig=
-ger
-> > > > on this?
-> > > >
-> > > > thanks,
-> > > >
-> > > > greg k-h
-> > >
-> > > Hi Greg,
-> > >
-> > > The menuconfig looks like the following and it doesn't complain:
-> > > | Symbol: ARCH_GOOGLE [=3DARCH_GOOGLE]
-> > > | Type  : unknown
-> > > |
-> > > | Symbol: PHY_GOOGLE_USB [=3Dy]
-> > > | Type  : tristate
-> > > | Defined at drivers/phy/Kconfig:104
-> > > |     Prompt: Google Tensor SoC USB PHY driver
-> > > |     Depends on: ARCH_GOOGLE || COMPILE_TEST [=3Dy]
-> > >
-> > > According to Kconfig documentation [1], the unknown symbol
-> > > would simply be evaluated as an "n", which is what we want.
-> > > "Convert the symbol into an expression. Boolean and tristate
-> > > symbols are simply converted into the respective expression
-> > > values. All other symbol types result in =E2=80=98n=E2=80=99."
-> > >
-> > > In a different Kconfig documentation, an environment variable
-> > > "KCONFIG_WARN_UNKNOWN_SYMBOLS" is there to detect
-> > > undefined symbols in the "config input", but I can't find one that
-> > > catches undefined symbols in the Kconfig tree itself.
-> > >
-> > > That is, the tool seems to allow this.
-> > > However, if this turns out to be a major problem. I think we
-> > > can either:
-> > > - Remove ARCH_GOOGLE and leave COMPILE_TEST as
-> > >   the only dependency. Then add ARCH_GOOGLE back
-> > >   later once it's in the tree.
-> >
-> > Please do this.  I do not want to take patches that purposfully add
-> > dependencies on config options that might, or might not, appear in the
-> > future.  Please just remove all of the dependancies for now, as they ar=
-e
-> > not needed, right?
-> >
-> > thanks,
-> >
-> > greg k-h
 >
-> Greg,
+> On 17/12/2025 18:39, Aaron Kling wrote:
 >
-> Yes, we can remove ARCH_GOOGLE for now.
-> To clarify, we're not removing all of the dependencies, we still want
-> to keep COMPILE_TEST for build tests, right?
-> Please let me know if you think otherwise.
+> ...
+>
+> > To try to move a resolution along, let me try to enumerate the issues
+> > again. Again, please clarify should I have something incorrect or
+> > incomplete.
+> >
+> > 1) The primary issue is when an old dtb is used with this commit and
+> > the pcie driver is loaded. I can reproduce this issue on t186 and
+> > t194. If this becomes the sole remaining blocking issue, I would like
+> > for an exception to the normal rule be considered and this merged
+> > anyways. Since it does not cause a boot failure and distros package a
+> > new dt normally anyways. And to my knowledge, working around this
+> > would involve redoing part off the icc subsystem itself, a major task
+> > in comparison.
+> >
+> > 2) T194 is reported to have low clocks even with a new dt on the
+> > Nvidia regression bench. I cannot reproduce this, even with the pcie
+> > driver loaded. Can this be re-verified, please? And if it still
+> > happens, can logs from the failure be made available and/or more
+> > information provided as to the state of the unit? Like changes to the
+> > default defconfig, modules that get loaded, etc.
+>
+> Can you list all the patches that need to be applied on top of the
+> current -next and I will run it through our testing to make sure I have
+> this correct.
 
-I think you'd just remove all of them. Normally COMPILE_TEST just
-allows folks to compile stuff even when they don't want the ARCH. We
-can can add ARCH_GOOGLE back in later once the config exists.
+This series, message id:
+20251027-tegra186-icc-p2-v4-0-e4e4f57e2103@gmail.com. And the dt
+series, message id:
+20251021-tegra186-icc-p3-v3-0-68184ee8a89c@gmail.com. So, my build
+sequence is:
 
--Doug
+git checkout next-20251217
+b4 shazam 20251027-tegra186-icc-p2-v4-0-e4e4f57e2103@gmail.com
+b4 shazam 20251021-tegra186-icc-p3-v3-0-68184ee8a89c@gmail.com
+LLVM=3D1 ARCH=3Darm64 make defconfig
+*edit .config to set CONFIG_PCIE_TEGRA194, CONFIG_PCIE_TEGRA194_HOST,
+and CONFIG_PCIE_TEGRA194_EP to =3Dy*
+LLVM=3D1 ARCH=3Darm64 make olddefconfig
+LLVM=3D1 ARCH=3Darm64 make -j33 Image nvidia/tegra194-p2972-0000.dtb
+
+I then flash those with no modules, packaged with the simple ramdisk,
+and I get a shell at 11.2 seconds and emc rate is 800 MHz at idle.
+
+> > 3) Setting the max clock via debugfs fails when icc has pushed the
+> > current clock higher than the requested rate. This is a logic issue
+> > with all tegra emc drivers that implement dfs via icc. The suggested
+> > resolutions are to leave this as is to keep consistency with the
+> > existing drivers, perhaps updating all later, or to update the
+> > existing implementations in a separate series, then send a new
+> > revision here to match. I am personally unable to verify anything
+> > older than tegra124, however.
+>
+> Thierry and I chatted about this last week and we feel that debugfs
+> should be able to override the current configuration. So this will need
+> to be addressed as well.
+
+Alright. I will start looking at getting that logic straight, then
+upload a new series for the older archs and a new revision of this.
+
+Aaron
 
