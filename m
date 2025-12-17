@@ -1,176 +1,81 @@
-Return-Path: <devicetree+bounces-247279-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247278-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 719F5CC6821
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 09:16:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 852B6CC6812
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 09:15:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 046D4304EB46
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 08:15:24 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 60A7D3026512
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 08:15:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F00C349B0B;
-	Wed, 17 Dec 2025 08:15:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11278349B04;
+	Wed, 17 Dec 2025 08:15:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bamswvsf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f67.google.com (mail-ua1-f67.google.com [209.85.222.67])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32EE624C692
-	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 08:15:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.67
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4AD6349AFE;
+	Wed, 17 Dec 2025 08:15:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765959323; cv=none; b=V66KHyrWqJwM7RtE+La/Z3JKiYXyhv+ROXMkZWopTN870/RLFWqnyaJclBtQ97hf9Eer3NaYk6Jcplq5CcNCxrQwUMuHXnVUL7ZtuSO2gS1FVyda/zW4w9IBQcQvYkEGBaQpafyw3qiAEuNV08GQSdVMS8WdeKYS5CFKWvmDyJ0=
+	t=1765959314; cv=none; b=m7Rca9P8qiAQ58sOnhKFysAHVQIQu2W81kC9mRWrrbHnYb4DWvIghn54woHtWpn1I5JelbnjGC49kQQYuD/Hrz+Nwxre25WLVEX3AXqgpiCSRN4TkK7myhc2vSpdRQnAVG/z/YcHyU3I8CBYFkagTRH1ZdlvpdC2mSVcYoPiwoA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765959323; c=relaxed/simple;
-	bh=XjGbtOPnxn5ziPdpc7g6S6MqyGKvLokVPCWE3c8w+yQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=M9R3xq9U0T3mfBta9mcgmViIqlg59KCWRsC7t17mztwot6LNiWzgQlXVBlc8nqh+Udzj7qrNW8igElw+1hxcIqcm41vK54rrBlXeM0vipZloZaQDaF3BarfjxPivGBXf5iPkSX7N6jdfq8JnVPyRm7iBwrUrXVEx7rRB94mnNoY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.67
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f67.google.com with SMTP id a1e0cc1a2514c-93f5729f159so3205597241.0
-        for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 00:15:20 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765959320; x=1766564120;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rym4p+SQ3MsVDrU2KotDsjjR/+PnxDtYr8m/dR/i6BU=;
-        b=cW7ysWeKf/k0gdRnwxnAqgZpKu1yMbWFUdBdK8wlIrVbkCh6YUTo18DkkiJMnizlPo
-         InHGpepMrACQb2eMX7D7mE3ENVOWMNFZrk2yODq5KczwSgR1sFJRakL07p21b3RlAeBe
-         ussDP8Wx+ymYJCeTOi3kvPqnqFZ2jrQl3cbUl+yMWkpH0cdFd30taE/IZt5/F0RnkyZ8
-         70btvSuV8GejL8+m5g9IWaKweAQXlnglOwcVFPoY6Sfi8HwLUgt6b4K6sIJjWBlltXrK
-         HchzH8zUwlnRYG937rShlL9a3tKLv9m/2RVX8TZDwl7yiRk0dcttWD8ZQLIGisX512gN
-         KcaA==
-X-Forwarded-Encrypted: i=1; AJvYcCWT+adost91IlC8sCSmVCcxWKN7++vYWV99OfKarU0eDgh5T7C3ma3qRWKOiEbI8QyWyFVosHl26PqZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxnDZCX/vZOfxyBUcI86RrPdMI98BMMfX7pSRcq0Ucdw2v++F+v
-	nhO4dHTb9UdSsVFqEDU0ESz4wCIJbE9U+r8w2BLa5n0fC1+MlvcQ/C4GwjfLmj8Lg38=
-X-Gm-Gg: AY/fxX5rCen/IUqizVML7jJ90Sicbvq++AoAGP3UbNsG0aDfBN4S+w4otA6aXymzlcP
-	FMqYB+xjpMrAiDhu7EhKBguD5nWvoJUMdyt4cGdJNB7Kc/RsttuMUlnSWLVLXHD0hRuqldqEC7d
-	EUXDFBPzD+Ds5IGyFGx5bBakzSBd7AeQ1RCdmWNIdV2DoVhOTrExMwQF/+x9auUmLWdR0j4ioUD
-	QiWPl722mIM4Tny7vDhkfMshNMJ01xI2/8l7wZc4H1VoyClKioY/d4udZFoW7K39IoAZXiM7iYZ
-	w80Ce7UQj4JJBfKqhWgWoeqiUQ2AnipPqY+6yA1VHy22HRIFjyrEh3Rdbi4pmPLqmievW2ycuzn
-	a/F9m2qCiW/bohmyrw5RmenQgYyIP1R1Y5+3i+r7kgiH34fKvEJ1Uq1kJHr95ctmfSi+2NIraVs
-	kp3tQKM7XUzP0PMJoXHmmylW1i3Nb3PINUbAt4FQzCgReSoDrC
-X-Google-Smtp-Source: AGHT+IFx1Q3qjYhLOZJK1QuX0hFvQw/49ZfqeirqinqRy4kVQcLemmLypEA/RWDORv7AvGkYyh8xdA==
-X-Received: by 2002:a05:6102:32d6:b0:5de:31b1:1ffe with SMTP id ada2fe7eead31-5e8277e5dfbmr6577124137.32.1765959320046;
-        Wed, 17 Dec 2025 00:15:20 -0800 (PST)
-Received: from mail-ua1-f52.google.com (mail-ua1-f52.google.com. [209.85.222.52])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-5e7d0e7680asm7869352137.3.2025.12.17.00.15.18
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 Dec 2025 00:15:19 -0800 (PST)
-Received: by mail-ua1-f52.google.com with SMTP id a1e0cc1a2514c-93f5729f159so3205586241.0
-        for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 00:15:18 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWYsOGmxzWhG+7d2/aDZIqdQI+ceAou4R+fwGni4YVu9LxyLOlLzGin3ftCx8XWtaCXEHyep3kUQeqP@vger.kernel.org
-X-Received: by 2002:a05:6102:1611:b0:5e1:866c:4f7c with SMTP id
- ada2fe7eead31-5e82781ea47mr5731108137.39.1765959318483; Wed, 17 Dec 2025
- 00:15:18 -0800 (PST)
+	s=arc-20240116; t=1765959314; c=relaxed/simple;
+	bh=2OafIiysh5+/QTm0bhByzlnf9H06b6KUh52r+eioDGs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JpWqdouofQG0NKzd3fSJSQLB7PdhZj1tkLFwdynVWA3omHX/cCppsnjrAGelTtzWejiXy8SCvYYRzwqs2LJ67NycVLQ2XkRXECyJdFwVSxgbgwwtRr2O1MNs8PItb19fGhaBGWvmdUGX5B6Uf6gbv65S5WnzNhzYAJSVJ2jexVk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bamswvsf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82EABC4CEF5;
+	Wed, 17 Dec 2025 08:15:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1765959313;
+	bh=2OafIiysh5+/QTm0bhByzlnf9H06b6KUh52r+eioDGs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=bamswvsfdqnM6YpVQVosEwPZ325jREx8HXJ8dr3eW+sDlEpX9BoirDR27o5lXgMBh
+	 ECu00Tdl1L1RyZ9IDyzDjxC8fHeM/pHnnvDgJeEBEGDAHLEmivyWyILu5g4zVzLvD+
+	 kfGY7loxA1I5tpRCRYavBLWACvVBrqR0yxKqOnhmRulv1KRtcwSi5qQvWn41uZ/QYA
+	 kbouGPqGpUJeed8MQUHUu0Y7ckXuvo26fg1FMxdKqW5UcoBLGCcRmgZCrO0btlZ/nr
+	 fVZ5qSB5Oo/VHkWtBRRlZqfiD9uRun5okB9YaM6hrqVft7cTWz9b5esDstYjqvneJ4
+	 R2KCQvYpHRTng==
+Date: Wed, 17 Dec 2025 09:15:10 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
+Cc: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Fenglin Wu <quic_fenglinw@quicinc.com>, linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, aiqun.yu@oss.qualcomm.com, 
+	kamal.wadhwa@oss.qualcomm.com, yijie.yang@oss.qualcomm.com, jingyi.wang@oss.qualcomm.com
+Subject: Re: [PATCH v3 1/2] dt-bindings: leds: leds-qcom-lpg: Add support for
+ PMH0101 PWM
+Message-ID: <20251217-quiet-wandering-gaur-c9c6fe@quoll>
+References: <20251215-knp-pmic-leds-v3-0-5e583f68b0e5@oss.qualcomm.com>
+ <20251215-knp-pmic-leds-v3-1-5e583f68b0e5@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251209162119.2038313-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20251210-mauve-cow-of-hurricane-0f969d-mkl@pengutronix.de>
- <20251210-persuaded-rewire-8ac93b0cc039@spud> <20251211-wonderful-singing-eel-4e2293-mkl@pengutronix.de>
-In-Reply-To: <20251211-wonderful-singing-eel-4e2293-mkl@pengutronix.de>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 17 Dec 2025 09:15:07 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXW2iFQO3vTzMg_ydqZ5YC1EPqyNzkpLRfTAkLhmC+K5g@mail.gmail.com>
-X-Gm-Features: AQt7F2oD50PxDosHDFQJjqw3YErV6WFAJtpUaCLTAZeWlqwHnCeiK6ic6sDkf3A
-Message-ID: <CAMuHMdXW2iFQO3vTzMg_ydqZ5YC1EPqyNzkpLRfTAkLhmC+K5g@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: phy: ti,tcan104x-can: Document TI TCAN1046
-To: Marc Kleine-Budde <mkl@pengutronix.de>
-Cc: Conor Dooley <conor@kernel.org>, Prabhakar <prabhakar.csengg@gmail.com>, 
-	Vincent Mailhol <mailhol@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Aswath Govindraju <a-govindraju@ti.com>, Frank Li <Frank.li@nxp.com>, linux-can@vger.kernel.org, 
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20251215-knp-pmic-leds-v3-1-5e583f68b0e5@oss.qualcomm.com>
 
-On Fri, 12 Dec 2025 at 12:22, Marc Kleine-Budde <mkl@pengutronix.de> wrote:
-> On 10.12.2025 18:21:34, Conor Dooley wrote:
-> > On Wed, Dec 10, 2025 at 08:52:58AM +0100, Marc Kleine-Budde wrote:
-> > > On 09.12.2025 16:21:19, Prabhakar wrote:
-> > > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > >
-> > > > Document the TI TCAN1046 automotive CAN transceiver. The TCAN1046 is a
-> > > > dual high-speed CAN transceiver with sleep-mode support and no EN pin,
-> > > > mirroring the behaviour of the NXP TJA1048, which also provides dual
-> > > > channels and STB1/2 sleep-control lines.
-> > > >
-> > > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > > ---
-> > > > TCAN 1046, https://www.ti.com/lit/ds/symlink/tcan1046v-q1.pdf?ts=1765297159307&ref_url=https%253A%252F%252Fwww.ti.com%252Fproduct%252FTCAN1046V-Q1
-> > > > NXP TJA1048, https://www.nxp.com/docs/en/data-sheet/TJA1048.pdf
-> > >
-> > > The polarity of the standby line of the chips is different.
-> > >
-> > > You must set the correct active high/low property for the GPIO, as the
-> > > driver uses logical levels.
-> > >
-> > > Reviewed-by: Marc Kleine-Budde <mkl@pengutronix.de>
-> >
-> > What you're saying seems to contradict the tag you've given, is a
-> > fallback really suitable if the standby polarity is not the same?
->
-> The driver uses _logical_ levels to switch the GPIOs. For example to
-> power on the PHY, it disables the standby GPIO by setting the value to
-> "0".
->
-> | static int can_transceiver_phy_power_on(struct phy *phy)
-> | {
-> [...]
-> |         gpiod_set_value_cansleep(can_transceiver_phy->standby_gpio, 0);
-> [...]
-> | }
->
-> You have to use GPIO_ACTIVE_HIGH/GPIO_ACTIVE_LOW in the DT to configure
-> the actual level of the GPIO.
->
-> If you connect the PHY's standby input directly to the SoC's GPIO....
->
-> | TJA1048: HIGH = Normal mode, LOW = Standby mode
-> | TCAN1046: High = Standby mode, Low = Normal Mode
->
-> ...for the TJA1048 you would use GPIO_ACTIVE_LOW, while for the
-> TCAN1046 you would use GPIO_ACTIVE_HIGH.
+On Mon, Dec 15, 2025 at 04:41:04PM +0530, Jishnu Prakash wrote:
+> Add support for PMH0101 PWM modules which are compatible with the PM8350c
+> PWM modules.
+> 
+> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+> Signed-off-by: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
+> ---
+>  Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
-Exactly.  For most of these CAN transceivers, there are typically two
-almost identical parts (usually differing in the last digit of the part
-number), one with active-high standby, another with active-low standby.
-These differences can be handled perfectly fine using the GPIO_ACTIVE_*
-lags.
+So how many nvmem entries it has? You need to define it in schema.
 
-Note that there can be other differences: the RZ/V2H board Prabhakar
-works on actually has TCAN1046V.  The "V" variant differs from TCAN1046
-(and TJA1048) in configuration of the two power supply pins:
-  - TCAN1046 has independent supplies for the two channels,
-  - TCAN1046V has separate logic and I/O supplies for the combined
-    channels.
-Since this difference can be handled through *-supply properties
-(when the need arises, and the driver gains regulator support),
-I don't think separate compatible values are needed for "V" variants.
+Best regards,
+Krzysztof
 
-BTW, how do I know? Because I had started working on adding support
-for TCAN1046V myself, but Prabhakar beat me to sending out patches ;-)
-
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
