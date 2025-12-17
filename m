@@ -1,134 +1,172 @@
-Return-Path: <devicetree+bounces-247409-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247412-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88CFDCC796E
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 13:25:13 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C921DCC79CE
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 13:30:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 35CF43063D28
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 12:21:27 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 2B42E301E3ED
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 12:30:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29DA82F49F8;
-	Wed, 17 Dec 2025 12:21:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SNMV+RRd"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F9A634214C;
+	Wed, 17 Dec 2025 12:30:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from rmisp-mx-out2.tele.net (rmisp-mx-out2.tele.net [194.208.23.37])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E8672E8B87
-	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 12:21:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD5C633FE2E;
+	Wed, 17 Dec 2025 12:30:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.208.23.37
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765974086; cv=none; b=ZgG/sEMYEbX3QGoUDWvcxmhe+Up6AmNpr3abiCABxQPECaF3wx15EzLT/+GMXVcOj3FFCmVLYayH7gODZijyIUkzwDHtwQgNsBC2E7En3CncrJ9sSpLpnDUBc+vR97qsA/vJ1I4J7ghO5OKGQCK437/S2DdLQ27w4ktfPcRTf5Y=
+	t=1765974605; cv=none; b=M7KtI52rLD3wFIlq5ySEoBf88a3XkHNLVwjoSVwtIGPb/fka5P9cqJCSADJXNjlUQhfdM02NBl4NheqUUTXDDtZrbzJWPSGu/AIlcbXeIQ6iH+hJ17Z5sDTqcVgBUk2jZz1GlCn9/r5L3Ny0OJNGTyXLB26P3k/kKkDhnsK8a0o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765974086; c=relaxed/simple;
-	bh=fny9SFTxturF7015JakyAPXxKQIp2Ma/cwO/hVKlOlQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HoSVPLuqWKp4fAJPinWCVJ67kurtc32HzGgO1DTKtqUhZOaJPI54Z1EBHGEizDyOeYAyg6kA9LCUDte+gx/MRj8TqfwYPwjeLqVm1EnsohlwxPmvglZgeIqpiuhjoS3GgZADmcbjmchnKKIjUZsong6hR1H6TGYF7K48H4T0NnI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SNMV+RRd; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-4775ae5684fso25014125e9.1
-        for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 04:21:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1765974082; x=1766578882; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=DYXq2m6KIBeaHm0Y860B+iQgDTaW343HwilrkCCxiCU=;
-        b=SNMV+RRd6noDNpXs2aKVhos/B28mz0h992v9tw4Rb2eWuEIE8FaQlpeELC4w85+Xgx
-         3Syxrufaeu+7L2zMEvd0V4ByRSFlmltdrPjyM4UUQKKbyuFXiYvYP6egaqyLaNDaCjYN
-         3vt0ZX4VECLqxLzgC95/J8cea2rj9JC/RolhB7sqpY/DSwSm8nvAWtnIGZK1a9i6uMGX
-         wZqVwbsmAtEVaGDEr5hdm8ee1cEpi1UXEtJ9TZvF+QveAHcuZziMzxFN0dRb1iwssIlf
-         WzUAPnXxbpn1ff7JO+xrDmukXlsfYjjGv2GwQAeDyPEEZ9brEWzmIitMaxTa7BXkdKeS
-         NfLQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765974082; x=1766578882;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=DYXq2m6KIBeaHm0Y860B+iQgDTaW343HwilrkCCxiCU=;
-        b=P7JfsyPXiqTRflqSPQVwMj2hVv/TkTc6CWnHbC5Gpxxm+EVQWBjPphQy1h+HD4Rnq0
-         bhd/rsgiC6asxnCzvSMgUudwvCFvObXdc3rTG0tUul46ervDLWGbQ6DUqW30mcLBBXkG
-         jqHi0alIbanYuUI2up0BXdix9QhK5/RlOetf2Pg1CpaQMq38M1ytuzl0BpztqJN6SnMA
-         BAhSU9ksHXhZHT2nNa4Le2GVfw60lloocMbLD6Y9mhwSNRJ2G6qOy+F2VarDXOcq+6uP
-         QwVXc3AKZHxsyGtfO4dFuSe4OWJVOSn91hBGqJa20PE8dkSIZtMJL49wjxeOX4KGwqck
-         O8IA==
-X-Forwarded-Encrypted: i=1; AJvYcCXKLwbPmwYPGbBWdblbnpks3jKvwOurEf52nyjTF8YdmBZRPphmxBxDQhMJVZu4NMEf/3v9C+aO3FZe@vger.kernel.org
-X-Gm-Message-State: AOJu0Yze8PGY6cGGLzMrRMfzrbphTKNgh2U0PcAfIWwMuD0n4nZQvCHb
-	Mw34lXIH+zrw0Ptf04a4aSe+yd3DEZbkmRBR0w+86SDo70BDc4Xxl8MF
-X-Gm-Gg: AY/fxX47GrIvWahYRFR+3BqJlxnSX9r/dgHXGaz+O8nnvWjWyQqODH5jl4W9ILVJTAj
-	PEmQAgmZ5AG0RDTjfCnAAFbV4bPr5NEHGXGWUZvw6Qtm7pYJ52mWZoCPoAAa2M+QNa1Q2ONfDuL
-	5376iJqGZRMOMHjj5HJkippAO8bFwzANfMU2UiENsOCwF6NdqUH7ry4bT/2rD27OceIQe1/E3E2
-	y/T/HIJnx0JB4rdJsXfv6fJ0Utz6bDFddm9m4LFQks6HWi2cuj0ATcg7j8L2SibWNALXHClZ9qN
-	127LU9Sh/WWa6MxF7Ldp/AXB297SvzOj8QkGscBSJotF30bSON2eWsxlcIRp1rVxue+lqhl8tcs
-	iHeukMhjy+3hsTTMBPrqE4gZHsDUmTBRnK7S0dRYVAl2JWIQEAS/nt748L179suQTwB5C0qM9fJ
-	jMK0VXb49tzAE=
-X-Google-Smtp-Source: AGHT+IEHnifimtj7VdGfz6MjbhY2lEOpq0xdu6/7cpFkjgiXCk7n3y9Quh4Rc68+jvf5AZydr2IWWA==
-X-Received: by 2002:a05:600c:3486:b0:477:561f:6fc8 with SMTP id 5b1f17b1804b1-47a8f8a79e4mr188945585e9.5.1765974082138;
-        Wed, 17 Dec 2025 04:21:22 -0800 (PST)
-Received: from eichest-laptop ([2a02:168:af72:0:b288:1a0e:e6f7:d63a])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47bdc1d991fsm37975775e9.5.2025.12.17.04.21.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Dec 2025 04:21:21 -0800 (PST)
-Date: Wed, 17 Dec 2025 13:21:19 +0100
-From: Stefan Eichenberger <eichest@gmail.com>
-To: Rob Herring <robh@kernel.org>
-Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
-	kuba@kernel.org, pabeni@redhat.com, krzk+dt@kernel.org,
-	conor+dt@kernel.org, hkallweit1@gmail.com, linux@armlinux.org.uk,
-	geert+renesas@glider.be, ben.dooks@codethink.co.uk,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, francesco.dolcini@toradex.com,
-	rafael.beims@toradex.com,
-	Stefan Eichenberger <stefan.eichenberger@toradex.com>
-Subject: Re: [PATCH net-next v1 2/3] dt-bindings: net: micrel: Add
- keep-preamble-before-sfd
-Message-ID: <aUKgP4Hi-8tP9eaK@eichest-laptop>
-References: <20251212084657.29239-1-eichest@gmail.com>
- <20251212084657.29239-3-eichest@gmail.com>
- <20251215140330.GA2360845-robh@kernel.org>
- <aUJ-3v-OO0YYbEtu@eichest-laptop>
+	s=arc-20240116; t=1765974605; c=relaxed/simple;
+	bh=9efI+J8C0Yy9SBoVco3ChlmDPBkmh937NX/bhxYLWkk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=AJfEDjIDTInlkvb3AZup2tDECngdYgJttqcrXgRUz1DCnS4AKE0NkwdysK4hwt0yCoQrN3GSLIRArjr40yGwfjcUD5WZlaMr7JEuLaRlDTDisVLm359w2Wir5yz9ZZaftNngC5zNkArC4gitHUU3H3jruxtQwh+N6gq0qbsaaUI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=emfend.at; spf=fail smtp.mailfrom=emfend.at; arc=none smtp.client-ip=194.208.23.37
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=emfend.at
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=emfend.at
+Received: from [192.168.0.207] (194-208-208-245.tele.net [194.208.208.245])
+	by rmisp-mx-out2.tele.net (Postfix) with ESMTPA id A8E711052E61;
+	Wed, 17 Dec 2025 13:21:28 +0100 (CET)
+Message-ID: <2f93eda4-483e-4fa2-a765-73e8df4eeaea@emfend.at>
+Date: Wed, 17 Dec 2025 13:21:28 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aUJ-3v-OO0YYbEtu@eichest-laptop>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] media: i2c: imx283: implement {g,s}_register
+To: Dave Stevenson <dave.stevenson@raspberrypi.com>
+Cc: Kieran Bingham <kieran.bingham@ideasonboard.com>,
+ Umang Jain <uajain@igalia.com>, Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20251217-imx283-ext-v1-0-906a762f592d@emfend.at>
+ <20251217-imx283-ext-v1-3-906a762f592d@emfend.at>
+ <CAPY8ntCiOJb9iyFDYS_wxhteoHL7vMFpEF8gVwrf2qeFd-Fssw@mail.gmail.com>
+Content-Language: de-DE
+From: Matthias Fend <matthias.fend@emfend.at>
+In-Reply-To: <CAPY8ntCiOJb9iyFDYS_wxhteoHL7vMFpEF8gVwrf2qeFd-Fssw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, Dec 17, 2025 at 10:58:54AM +0100, Stefan Eichenberger wrote:
-> On Mon, Dec 15, 2025 at 08:03:30AM -0600, Rob Herring wrote:
-> > On Fri, Dec 12, 2025 at 09:46:17AM +0100, Stefan Eichenberger wrote:
-> > > From: Stefan Eichenberger <stefan.eichenberger@toradex.com>
-> > > 
-> > > Add a property to activate a Micrel PHY feature that keeps the preamble
-> > > enabled before the SFD (Start Frame Delimiter) is transmitted.
-> > > 
-> > > This allows to workaround broken Ethernet controllers as found on the
-> > > NXP i.MX8MP. Specifically, errata ERR050694 that states:
-> > > ENET_QOS: MAC incorrectly discards the received packets when Preamble
-> > > Byte does not precede SFD or SMD.
-> > 
-> > It doesn't really work right if you have to change the DT to work-around 
-> > a quirk in the kernel. You should have all the information needed 
-> > already in the DT. The compatible string for the i.MX8MP ethernet 
-> > controller is not sufficient? 
-> 
-> Is doing something like this acceptable in a phy driver?
-> if (of_machine_is_compatible("fsl,imx8mp")) {
-> ...
-> }
-> 
-> That would be a different option, rather than having to add a new DT
-> property. Unfortunately, the workaround affects the PHY rather than the
-> MAC driver. This is why we considered adding a DT property.
+Hi Dave,
 
-Francesco made a good point about this. The i.MX8MP has two MACs, but
-only one of them is affected. Therefore, checking the machine's
-compatible string would not be correct. As far as I know, checking the
-MAC's compatible string from within the PHY driver is also not good
-practice, is it?
+thanks for your comment.
+
+Am 17.12.2025 um 12:54 schrieb Dave Stevenson:
+> Hi Matthias
+> 
+> On Wed, 17 Dec 2025 at 07:41, Matthias Fend <matthias.fend@emfend.at> wrote:
+>>
+>> Implement {g,s}_register to support advanced V4L2 debug functionality.
+> 
+> Is there any real benefit to providing access via {g,s}_register
+> rather than using i2ctransfer -f ? The I2C framework ensures that each
+> transfer is atomic as long as it is formed into one transaction
+> request.
+
+This allows, for example, the registers to be changed when the image 
+sensor is actually used in streaming mode.
+
+IMHO, this cannot be covered by i2ctransfer, as the device is used 
+exclusively by the driver.
+
+> 
+> IMHO The only place these are really needed is with devices such as
+> the adv7180 family which have a bank and page addressing scheme, and
+> the driver is caching the last accessed bank.
+> 
+>> Signed-off-by: Matthias Fend <matthias.fend@emfend.at>
+>> ---
+>>   drivers/media/i2c/imx283.c | 44 ++++++++++++++++++++++++++++++++++++++++++++
+>>   1 file changed, 44 insertions(+)
+>>
+>> diff --git a/drivers/media/i2c/imx283.c b/drivers/media/i2c/imx283.c
+>> index 7a6ab2941ea985401b21d60163b58e980cf31ddc..d8ccde0a1587259f39a10984c517cc57d323b6bc 100644
+>> --- a/drivers/media/i2c/imx283.c
+>> +++ b/drivers/media/i2c/imx283.c
+>> @@ -1295,7 +1295,51 @@ static const struct v4l2_subdev_internal_ops imx283_internal_ops = {
+>>          .init_state = imx283_init_state,
+>>   };
+>>
+>> +#ifdef CONFIG_VIDEO_ADV_DEBUG
+>> +static int imx283_g_register(struct v4l2_subdev *sd,
+>> +                            struct v4l2_dbg_register *reg)
+>> +{
+>> +       struct imx283 *imx283 = to_imx283(sd);
+>> +       u64 val;
+>> +       int ret;
+>> +
+>> +       if (!pm_runtime_get_if_active(imx283->dev))
+>> +               return 0;
+> 
+> Returning no error if the device is powered down feels wrong. How is
+> the caller meant to differentiate between powered down and the
+> register actually containing 0?
+
+The only other I2C drivers that use pm* in {g,s}_register seem to be 
+imx283 and tc358746. Since both return 0 when the device is inactive, I 
+figured there must be a reason for this and implemented it that way as well.
+
+Thanks
+  ~Matthias
+
+> 
+>> +
+>> +       ret = cci_read(imx283->cci, CCI_REG8(reg->reg), &val, NULL);
+>> +       reg->val = val;
+>> +
+>> +       pm_runtime_put(imx283->dev);
+>> +
+>> +       return ret;
+>> +}
+>> +
+>> +static int imx283_s_register(struct v4l2_subdev *sd,
+>> +                            const struct v4l2_dbg_register *reg)
+>> +{
+>> +       struct imx283 *imx283 = to_imx283(sd);
+>> +       int ret;
+>> +
+>> +       if (!pm_runtime_get_if_active(imx283->dev))
+>> +               return 0;
+> 
+> Ditto here. The caller is told the value was written, but it wasn't.
+> 
+> Thanks.
+>    Dave
+> 
+>> +
+>> +       ret = cci_write(imx283->cci, CCI_REG8(reg->reg), reg->val, NULL);
+>> +
+>> +       pm_runtime_put(imx283->dev);
+>> +
+>> +       return ret;
+>> +}
+>> +#endif
+>> +
+>> +static const struct v4l2_subdev_core_ops imx283_core_ops = {
+>> +#ifdef CONFIG_VIDEO_ADV_DEBUG
+>> +       .g_register = imx283_g_register,
+>> +       .s_register = imx283_s_register,
+>> +#endif
+>> +};
+>> +
+>>   static const struct v4l2_subdev_ops imx283_subdev_ops = {
+>> +       .core = &imx283_core_ops,
+>>          .video = &imx283_video_ops,
+>>          .pad = &imx283_pad_ops,
+>>   };
+>>
+>> --
+>> 2.34.1
+>>
+>>
+
 
