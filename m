@@ -1,101 +1,80 @@
-Return-Path: <devicetree+bounces-247569-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247570-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49071CC8CC0
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 17:34:32 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80B96CC8BE2
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 17:24:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 30C53316AA8A
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 16:22:54 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id E7E5B3023297
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 16:24:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F6B634DCE4;
-	Wed, 17 Dec 2025 16:19:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3847134B1A7;
+	Wed, 17 Dec 2025 16:24:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="oPLC2t7w";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="BBRwSa3e"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="J+XSh+iq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CF7134DB48
-	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 16:19:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B38B34A796
+	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 16:24:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765988391; cv=none; b=dXnbZypnnFgvT7LhOao5pM4l8VUT7so35wBDi4yUj6mp/xjASu2FiPoYEVjulu7+NtCpHFXUZu16xMzLZVv5/uAKXBVXHZnWGlPmOSvUW2tk+oHAaACmU7e9oePoKLBbk25N2x/Tnzs/zOWJTnsmDVVbgMOtNGKvrD5iwxijlqI=
+	t=1765988681; cv=none; b=HOSdmXvgHJVkmgCqvqe7vBVD3btSWqVNy8Y8h0c3vGasEoqu8CrO5hwk8Z7ehhLa32f2b6WA7AeDk/0bT7AzUHgfcY6KHWkc/l/0stmQ5x3UAwWr66pGg8n3a1vbhiuFjvCp9jgFMzwQo1qPbIGyrjoYdpSq6ZBd1WCPuuBv4oY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765988391; c=relaxed/simple;
-	bh=NnZyOyFe4FnWrR22Z6ZQaG8VqxTtc1lzACMmhkeCFlY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=pakKvnxmkchZ8LW0gu88+Dky5PvAyljmHNbS0orqolFeajmTstMDB/6CrDVLQVWr7TtWznHkHQjqyG5wLkEDRS2zqCjhVlhlbauSKGIGkZ4YoXwgzHXydLAqbuEb3JrhPePy74l54gTjGX57Wblsnlx1cyrRSVgdpZl6yb027Ko=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=oPLC2t7w; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=BBRwSa3e; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BHCKmLu3048617
-	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 16:19:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	CjvZPydUOKQsxJNULi3PTLu6MGnbp11iV7Wnr2pvt1I=; b=oPLC2t7wlMDrHLqr
-	vh28mrx26QO3vdGykbebiTJ5w7hTj4JFeJG7+jNGFgiv8b/4q7TpjpKP1RMtEv8K
-	HwkoKbpoyANYWOfaXvpTu0ooZNGhsM/ml4LzYV+63vJBKm83p5RRlpxuOCSy/U3G
-	QRzpDYUhOrgHJ4ki+kkqNSLBCqzhIr6V7Em0ODG7zRshVJN+yXYMsWppSaGsJBfd
-	JJ+8gRNfxy49Tlxc4lOAtOiY1sumal0kt1mSvJkIfClGzRZU730rdTuyqAv7780o
-	5y9pJonuqGNd9EiubmkvJQgHndC2Cq90areQ/OG2s56DQNS3buwcGdCgvXajqqKY
-	Y1CrJw==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b3jgqaprs-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 16:19:47 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4ed7591799eso128146011cf.0
-        for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 08:19:47 -0800 (PST)
+	s=arc-20240116; t=1765988681; c=relaxed/simple;
+	bh=PgTQRT+gLvYaLCi8qjd1aU/cyiFqcrVhwIPj3U+4edM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=JWe3m0xWSgzBBBcqPJqYVkIwTKxW+mwgkAA03kAkaCiiWEq90A+BdfdT4UQiepYmZxAoarNcDkf6alkfbpFL4VMQtgYLz0seHsslWOTpKvny4d1jIiCSKAIy/yft0PY7Jp1wjXrIlf8xhiBsUqoYGAeI+yoTNQSmKYnoITMlSo8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=J+XSh+iq; arc=none smtp.client-ip=209.85.214.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-2a09d981507so6450535ad.1
+        for <devicetree@vger.kernel.org>; Wed, 17 Dec 2025 08:24:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1765988387; x=1766593187; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=CjvZPydUOKQsxJNULi3PTLu6MGnbp11iV7Wnr2pvt1I=;
-        b=BBRwSa3euaYs/9L7j3RrhT7wWGZLat0YSjJ8l+cGUbWvP0sC/xOdUTyQzn5Rw7g+dG
-         852a9sEs1CVFxMV21DfiPmVHu7GIzVICeJUarYKAtFrc5kLGVvHwnPp7JtbWfXDf4tq9
-         JFzN14EOA7qo1g+w8ySOhYtW/TP4FPI9vi+CACg4ey7jBv5+EVvJc01g2Z5H0pHOL6T1
-         7kF3JzonM98rg/UWBvGnV1P5gZz+iM5AY3cDdmk/oMVI8VhcrJjLOjZq6zLsZvxrZi/a
-         wqP80SbmWpH3uZXt88MBzDHK2foG8nNDfPqUckBl9lfNxL/YiK4lArH+3VCRQF0l4Ut/
-         xDFw==
+        d=gmail.com; s=20230601; t=1765988679; x=1766593479; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=JsPcnAXX0HxXZqnB4n6Iu8u5L4r6zw595gJ+705EC+s=;
+        b=J+XSh+iq4QG9YC6DnfCSS01xt6pHXOSaEyO9VCO0BTjZtFw242zM+H2UIuDm6MFjPO
+         /WwPhirabcTibA6ACDQqrr9tdluRYHiSQSvBZpZPKHdCDilnnZL0oTuXVkSQPkjzVNbj
+         v2jEEkpdxOM5wDOwcBsAeL9Q24ER0vjPmnrIlZkAFnyPM1YVAmSSNB96k459hTvru7Ru
+         29Exv9lGhflV50zro0jFc4ZYGQZLqQTJxFFdMJr0rCXHLkzpJgg45U6/NcPQiEEX7N7o
+         hAFBiBhK7X7otB9ze16aw08OI/T8SZ7krnOsbZayOQ8n1aALAHfBH+vCsNrL2GJy5PUU
+         Nc7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765988387; x=1766593187;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=CjvZPydUOKQsxJNULi3PTLu6MGnbp11iV7Wnr2pvt1I=;
-        b=JuOGJdhJHAjjicssgBwAMM0hZJqOo6wonpR3i2vN65L9n5+c2rYrg6sgdypCm2fHyA
-         DrpcDYz7t/53iBEfsm2rYkxZLfzPTED26MApn9MbObUWV1QfwEWTpYYoYgvgC0nfFg+d
-         25wnH2Kt/RKG75pR/gdMOEB6f28UFsULErcnDKguCmU8FvsbHYlLJtfwSt4HduYX031M
-         GnCb9Av0gKKpBFH4ouzn+oGQ0mGyWi5YnOEOUut4aeGb75tH2NotkwtouTdEvzSSw9hS
-         l74bPeCyPpK4jjOmTGbnW4xiaReIdIN7bdiuX6Iay7LqSKc5ZHQzfjlhlrBKoySwRLyt
-         lokg==
-X-Forwarded-Encrypted: i=1; AJvYcCVEk+K1nMB80/Fjme2OjMr7/N0ql7QiIgBudpZzt+gSq8OX9tSJdrd8O3QuKKvIcS7SeN43STONYNz1@vger.kernel.org
-X-Gm-Message-State: AOJu0YyPRrVGn1ncEN34CCNW6vXFnxiBeftHzvmjwReCVjqme2GRadf6
-	/TGckSent8jcWVHknkx+m3+llcQl9nkmClIM5zHp9PWnjfU9exAMGTPjfugD8oF9ddmI7m3B7Lg
-	egeucbEVh5H/MY0j65f+74fJXpBv8uSuplFZ6tu+KsIvpSbt77LnYzNx/gpSMoWQF9d7XVaqU
-X-Gm-Gg: AY/fxX5zf0Cd6zds+Sjwu3Ojm+q3RNu327O5k6A6j2S/PhVyYniUoqzh2fwwg5MB7ub
-	KpS0DuDW3zeQVMI/oXBgdQegzKl1qdeKcyu8ZDUBCh5g2AaDXnHv2qduMMDQDsvlstuXX21JuxL
-	hFxauXlS7ZWPf7IazxHWW6vB16ruUgyv+5wVORuMlOGBfLfA6IIcGn2HR2ru75KdtG5zWx8FulY
-	Rya43J1UA6hIQwr8JRtaOGGZxH0kgGftUKJZAmlzpN+krPl5EiPw1/H/v/P17sXqBBDYDnrOQQH
-	vIXhezT58f+ScSQd+PYgD5q4IXwwYBiserYSRvc5Q2ujFqbzBbsdnJ2S8dScaT4jp16DXUXzdqO
-	tJE6hxEOhRtInYQNfU4M2SxSZ01YZiRh2
-X-Received: by 2002:a05:622a:180f:b0:4ee:24b8:2275 with SMTP id d75a77b69052e-4f1d0463687mr220494181cf.1.1765988386859;
-        Wed, 17 Dec 2025 08:19:46 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IG0UIdj3bhiwSCVd9ZUniHbV6/8OzytUWixPUgdG/R3jP7Qiis3SqdbyCkNR+uFz8EjSIVlNQ==
-X-Received: by 2002:a05:622a:180f:b0:4ee:24b8:2275 with SMTP id d75a77b69052e-4f1d0463687mr220493751cf.1.1765988386348;
-        Wed, 17 Dec 2025 08:19:46 -0800 (PST)
-Received: from [127.0.1.1] ([178.197.218.51])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b7cfa29be92sm1987868666b.10.2025.12.17.08.19.45
+        d=1e100.net; s=20230601; t=1765988679; x=1766593479;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JsPcnAXX0HxXZqnB4n6Iu8u5L4r6zw595gJ+705EC+s=;
+        b=on/HAd/EsWFpsztmNe2EFq4sParSxal/uNe2OvU8lrcDE2RPWubmtuRs2FPEyNhAcs
+         fGw14xH1IqAf8oIEc8dL29XbKIZiYEJiQj0D1SYZFV57mfCu2whSiy1i3JkoJfRxzRbU
+         uPAgIY3auQ1YUzbUno2YL6aQs4nUYqw/XxxT5m0JHofrAzUcQXfDP9Lyu6F3jJ4Xkg6/
+         r+c745zDTOq9OmPpI4rSs/cosBuzq3FT7pu92eIutTHxtPHyq3eA/V4q5cVlDm4rbZ32
+         9y6f0zL0dPv4LQxx6qzqgsIOjBjSDYCgtDUnC0Uvaahm1PjrCZNc5kAXY4gp8WdR3K3l
+         vTtA==
+X-Forwarded-Encrypted: i=1; AJvYcCUCp5fmD6OgHd05VpJ/S3k+LixPzjK8Ou/I1NAmmDvlvcHHndtL+oITslicNj3tFcoaLsa525KTPr2A@vger.kernel.org
+X-Gm-Message-State: AOJu0YzVfkw+8K3TMaC5AILQE+BbYQyPHn33In/QjnKGX8kdhXfssf1j
+	IhlXNRxL9VEWZFt5AiBKPfTD+u9l7h7HmuuPLstdqrrHSM48FzP+3EoM
+X-Gm-Gg: AY/fxX6amVK05otgin3EiNARKTww4ymjeMjZU8nY5d9pP6q95x+MsT5HeIJPB2Xkdnv
+	4osNaJza58sjjfyCIKlc9+hWtfaqEeNi2IjVyIVuXdqpQrlfcv9Vt+SSzmhgZgDKDN2zt6CZm9K
+	af2G8O/eEBSu8vlJA2OGKOxuQUaBDDaufUdiMOI1wcQcSIUe2uyKJ2C0Y9WZwiGEegzCocsUhdG
+	I98IesaFtEGLZfuOr3b9dgEVP6g7J2VU0ohSMSXsTeo/rIWIoK0GlrHceWiwGJw5CDQdGtINGLf
+	v5oVVLDRltoMF+np6IrKFhrE+C2mjxPtjT3xTj5ZSHAR9+aSM2hJWImkcYd7VhY6xq/n1JvvN65
+	gpAyLHvOW1wg7QAdospKJM6zOtqq3LJSCRhgoFC9rHcGHhd4nLNe0qJSmd2BDjrZtyD6nqpwHFL
+	Oe3wUoq1z41Jwg
+X-Google-Smtp-Source: AGHT+IHAwxj6DzdDy4Ktf3Hya1n9fwX45F2bVkRoYmLdBMFbognAoioKTp23w8/kQbJXYMZiXIS1HA==
+X-Received: by 2002:a17:903:1a0e:b0:2a0:c92e:a378 with SMTP id d9443c01a7336-2a0c92ea624mr148009915ad.7.1765988678823;
+        Wed, 17 Dec 2025 08:24:38 -0800 (PST)
+Received: from [127.0.1.1] ([59.188.211.98])
+        by smtp.googlemail.com with ESMTPSA id d9443c01a7336-2a0b0687c62sm122980415ad.88.2025.12.17.08.24.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Dec 2025 08:19:45 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Date: Wed, 17 Dec 2025 17:19:18 +0100
-Subject: [PATCH v2 12/12] dt-bindings: PCI: qcom,pcie-apq8084: Move APQ8084
- to dedicated schema
+        Wed, 17 Dec 2025 08:24:38 -0800 (PST)
+From: Nick Chan <towinchenmi@gmail.com>
+Subject: [PATCH v9 00/21] drivers/perf: apple_m1: Add Apple A7-A11, T2 SoC
+ support
+Date: Thu, 18 Dec 2025 00:23:13 +0800
+Message-Id: <20251218-apple-cpmu-v9-0-4deadbe65d03@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -104,429 +83,142 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251217-dt-bindings-pci-qcom-v2-12-873721599754@oss.qualcomm.com>
-References: <20251217-dt-bindings-pci-qcom-v2-0-873721599754@oss.qualcomm.com>
-In-Reply-To: <20251217-dt-bindings-pci-qcom-v2-0-873721599754@oss.qualcomm.com>
-To: Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=9690;
- i=krzysztof.kozlowski@oss.qualcomm.com; h=from:subject:message-id;
- bh=NnZyOyFe4FnWrR22Z6ZQaG8VqxTtc1lzACMmhkeCFlY=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBpQtgGGmH7Vf9cEL7vLe8i382DU4vNF3YU/4eul
- S53gtblGHyJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaULYBgAKCRDBN2bmhouD
- 1zguEACLbarrFplIOVoJMOleMAjkKWo3ji26Kl3m5SewnOLsV058qiJw7ZCuvRv6P4Wv1mOJdWH
- la9SkR5f7vveVEr2zOCM89p1uGRa7vodej1XRTek02GFl/AJet4HvumH/F93oZMopyJ+xKCgswY
- /2pYBzNu039phHifF7ZTvZKOxNR0nOlGF6wNPd+UlTXxmlW043aagGdwQBzekiG/vXOfhK423pe
- FgimePO2l1x24uyCwXT6PuxmYa+5kXz7Ygw/bKi76d3q4Igwpj1Iv3XYF7zQTxklsnz8sIINXsG
- NAIkb7S1L0gklg2mwIZj5Ado6OlpWGbawABp5MLAAKCb9754LxCNGrTOJPsuMZKoLyCL7Z8jkKB
- fP3ki2WrV0jEVfv3yGHujuN2zDYrfG3cIY308Fo23EXjB2ec2dN6KP50zK6/47mmWxRXPksD74P
- LO7dpsIPoSTA63dk5ypsckQ6KAS0tqnNmj8YXj3JYnluGhebN6PvIGqcmZdQxVHgzKPhYcJ8FIT
- YuryIjKIcN0t+65N5WoXPUDvYn/N5myq+ty8IRwl/a74K6T7VgF1f/I3Xn7twLZAj/nRk0qrvKe
- gRIyYlyx+Qa2nECiYVwk8ttselb6f12j+wPdVdaITfKQT8O+BcAa5Pi0spEuatSu2Y3iq0QIcvb
- u4VtUYUyxtz67SQ==
-X-Developer-Key: i=krzysztof.kozlowski@oss.qualcomm.com; a=openpgp;
- fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
-X-Authority-Analysis: v=2.4 cv=VLjQXtPX c=1 sm=1 tr=0 ts=6942d823 cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=hmARNUlj3OVxZ3RlbIsQyw==:17
- a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=gEfo2CItAAAA:8 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
- a=KKAkSRfTAAAA:8 a=d0cN-5R3_aeRheYbsGEA:9 a=QEXdDO2ut3YA:10
- a=kacYvNCVWA4VmyqE58fU:22 a=sptkURWiP4Gy88Gu7hUp:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjE3MDEyOCBTYWx0ZWRfX+spg8P/YtbGN
- x8eBttHAe4X+N1RUh+rR6APFJioEQM/5cJXm9H+QAFNBsz9ajhlXYE5OSE2v7oiRber9Rp4iNAR
- ZcHyKwy3QQ4U56Gv/OK+g55yy+4DEOkUcUZebpt7bLf8+t1gAgE4Cg4jH7bFfJB0mwrjQN1TbyQ
- AhY9Y8Jd7uFcM/QuGdY8su/nD2UYn+yx4f4Omf1jeoN/x8Y7c4WnRrxhgKUQ4j7G+AKTMCxl5hm
- qt5EJ2bdNPBVWVE59S4rGAj1GDRe2aPCZFjo+6mkOrS7qHy4koIfJMB0UPfjBG122AwojVBgp0n
- 2snxX+qyVHQOIi+zOgRXn1EfMlp1Y2j+qFozWfUBnjceJsaj0FnNKEa3gMR2qEYgsWb7Li/wX9/
- mjwgFyj2clrtcCPOXuu4I2DfvSYqPA==
-X-Proofpoint-ORIG-GUID: K3Vl4g2V7akwr_4uli6t35Tggj0TX0De
-X-Proofpoint-GUID: K3Vl4g2V7akwr_4uli6t35Tggj0TX0De
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-17_03,2025-12-16_05,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 adultscore=0 suspectscore=0 bulkscore=0 malwarescore=0
- priorityscore=1501 impostorscore=0 clxscore=1015 lowpriorityscore=0
- phishscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
- definitions=main-2512170128
+X-B4-Tracking: v=1; b=H4sIAPLYQmkC/3XRy2rEMAwF0F8ZvG6KLb+UrvofpQtHlmcMk0lI2
+ tAy5N/rDJQ8SpdXcC4SuouRh8yjeDndxcBTHnN3K6F+Ogm6hNuZqxxLFiDBSlCqCn1/5Yr69rO
+ ywQYdg64NalFAP3DKX4+yt/eSL3n86IbvR/eklulvDWxrJlXJKiH5BIGUN/r13IZ8faauFUvNB
+ FuqdxQKRd9op2oNjHik+n+qC23YJwyRI6p0pGZLzY6aZeFEQbKxyng+UruhgDtqC61ZgaEIyNE
+ cqVupkX5HXaGBkSABWPq7sF+pVXJH/XJrLHNqHFmQR4orxf2PJyyUrJPcxJqCcVs6z/MPeEsny
+ 0ECAAA=
+X-Change-ID: 20250211-apple-cpmu-5a5a3da39483
+To: Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Catalin Marinas <catalin.marinas@arm.com>, Janne Grunau <j@jannau.net>, 
+ Neal Gompa <neal@gompa.dev>, Sven Peter <sven@kernel.org>
+Cc: Marc Zyngier <maz@kernel.org>, linux-arm-kernel@lists.infradead.org, 
+ linux-perf-users@vger.kernel.org, devicetree@vger.kernel.org, 
+ asahi@lists.linux.dev, linux-kernel@vger.kernel.org, 
+ Nick Chan <towinchenmi@gmail.com>, 
+ Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>, 
+ Krzysztof Kozlowski <krzk@kernel.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4650; i=towinchenmi@gmail.com;
+ h=from:subject:message-id; bh=PgTQRT+gLvYaLCi8qjd1aU/cyiFqcrVhwIPj3U+4edM=;
+ b=owEBbQKS/ZANAwAKAQHKCLemxQgkAcsmYgBpQtk73F6rEAOyEA3wyqqf8KFEkTZ/0x9ysNapI
+ uazbrtOdV+JAjMEAAEKAB0WIQRLUnh4XJes95w8aIMBygi3psUIJAUCaULZOwAKCRABygi3psUI
+ JFh1D/9eIav9eVp8eoDrGgQhSCtAnDqdHRYJkeC0ulHs3A/Ks3x+GmU7fFqCBmnZOeZv91UPI+m
+ VVsJT7Z/8aNJzCsG8/l+rr0any70TKr3Ke+tV409k8s95gKkNHJ2OyH+6hP10VJQ4YnPl3ou32o
+ OxHQk2kh9AWH9gfUR1HnfvJP/p5Hd40lrcyw4HQFBPecPTOTv/moettZMyl4VbnyIduhXMKJq9+
+ gmYMDKZACjN3yYmSrvUbmy4Y8uOMGzCKr77HTQe69jicpoXwY+D0jbvzuvBqw616pWXKPty6QIx
+ W4tEsIb8gOZN1pb5AtMect3T4CxZF6rJV6DFBLKu6kyqtcqxjnx+7i/hLAQrCMkPuw+NihqverH
+ jKLffRvah01OZSuS5LB6FaFa4a5KUz8kV79XKvmjgakp4g3IF4fMCX794es24VQ3a718dyvqXTp
+ 68bI9Yot8ZFD78UDUfzzSH/J8KkNDIVBrZMU7hSpEa1T3rEhjcDQxQFeqDdPuDBT7SbsSJj28yQ
+ RUKnhIQwHj+WsDLQtqM+mqFEpAU7kyturFvrOne4wmb/LraaucJVyNCAtYA0WZxBVdYI8CTBO5U
+ qpLqAQU3+t87Nvro4etxRgvx2+YPFhf8CNaPzL/VBUtDFqeQXo4PQfBQ3dhJgfWWe/y1UtcXsTv
+ wjPHAiSQW7yLVGQ==
+X-Developer-Key: i=towinchenmi@gmail.com; a=openpgp;
+ fpr=4B5278785C97ACF79C3C688301CA08B7A6C50824
 
-Move APQ8084 PCIe devices from qcom,pcie.yaml binding to a dedicated
-file to make reviewing and maintenance easier.
+This series adds support for the CPU PMU in the older Apple A7-A11, T2
+SoCs. These PMUs may have a different event layout, less counters, or
+deliver their interrupts via IRQ instead of a FIQ. Since some of those
+older SoCs support 32-bit EL0, counting for 32-bit EL0 also need to
+be enabled by the driver where applicable.
 
-New schema is equivalent to the old one with few changes:
- - Adding a required compatible, which is actually redundant.
- - Drop the really obvious comments next to clock/reg/reset-names items.
+Patch 1 adds the DT bindings.
+Patch 2-7 prepares the driver to allow adding support for those
+older SoCs.
+Patch 8-12 adds support for the older SoCs.
+Patch 13-21 are the DT changes.
 
-After moving the qcom,pcie.yaml becames empty thus can be entirely
-removed.
-
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Signed-off-by: Nick Chan <towinchenmi@gmail.com>
 ---
- .../devicetree/bindings/pci/qcom,pcie-apq8084.yaml | 109 ++++++++++
- .../devicetree/bindings/pci/qcom,pcie.yaml         | 227 ---------------------
- 2 files changed, 109 insertions(+), 227 deletions(-)
+Changes in v9:
+- Rebased on top of v6.19-rc1
+- Removed non-existent "INST_A32" and "INST_T32" events from Apple A11
+- Added "INST_A32" and "INST_T32" event affinities for A9 and A10
+- Link to v8: https://lore.kernel.org/r/20250811-apple-cpmu-v8-0-c560ebd9ca46@gmail.com
 
-diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-apq8084.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-apq8084.yaml
-new file mode 100644
-index 000000000000..a6403a3de076
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pci/qcom,pcie-apq8084.yaml
-@@ -0,0 +1,109 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pci/qcom,pcie-apq8084.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Qualcomm APQ8084 PCI Express Root Complex
-+
-+maintainers:
-+  - Bjorn Andersson <andersson@kernel.org>
-+  - Manivannan Sadhasivam <mani@kernel.org>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - qcom,pcie-apq8084
-+
-+  reg:
-+    minItems: 4
-+    maxItems: 5
-+
-+  reg-names:
-+    minItems: 4
-+    items:
-+      - const: parf
-+      - const: dbi
-+      - const: elbi
-+      - const: config
-+      - const: mhi
-+
-+  clocks:
-+    maxItems: 4
-+
-+  clock-names:
-+    items:
-+      - const: iface # Configuration AHB clock
-+      - const: master_bus # Master AXI clock
-+      - const: slave_bus # Slave AXI clock
-+      - const: aux
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  interrupt-names:
-+    items:
-+      - const: msi
-+
-+  resets:
-+    maxItems: 1
-+
-+  reset-names:
-+    items:
-+      - const: core
-+
-+  vdda-supply:
-+    description: A phandle to the core analog power supply
-+
-+required:
-+  - power-domains
-+  - resets
-+  - reset-names
-+
-+allOf:
-+  - $ref: qcom,pcie-common.yaml#
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/gpio/gpio.h>
-+    pcie@fc520000 {
-+      compatible = "qcom,pcie-apq8084";
-+      reg = <0xfc520000 0x2000>,
-+            <0xff000000 0x1000>,
-+            <0xff001000 0x1000>,
-+            <0xff002000 0x2000>;
-+      reg-names = "parf", "dbi", "elbi", "config";
-+      device_type = "pci";
-+      linux,pci-domain = <0>;
-+      bus-range = <0x00 0xff>;
-+      num-lanes = <1>;
-+      #address-cells = <3>;
-+      #size-cells = <2>;
-+      ranges = <0x81000000 0 0          0xff200000 0 0x00100000>,
-+               <0x82000000 0 0x00300000 0xff300000 0 0x00d00000>;
-+      interrupts = <GIC_SPI 243 IRQ_TYPE_LEVEL_HIGH>;
-+      interrupt-names = "msi";
-+      #interrupt-cells = <1>;
-+      interrupt-map-mask = <0 0 0 0x7>;
-+      interrupt-map = <0 0 0 1 &intc 0 244 IRQ_TYPE_LEVEL_HIGH>,
-+                      <0 0 0 2 &intc 0 245 IRQ_TYPE_LEVEL_HIGH>,
-+                      <0 0 0 3 &intc 0 247 IRQ_TYPE_LEVEL_HIGH>,
-+                      <0 0 0 4 &intc 0 248 IRQ_TYPE_LEVEL_HIGH>;
-+      clocks = <&gcc 324>,
-+               <&gcc 325>,
-+               <&gcc 327>,
-+               <&gcc 323>;
-+      clock-names = "iface", "master_bus", "slave_bus", "aux";
-+      resets = <&gcc 81>;
-+      reset-names = "core";
-+      power-domains = <&gcc 1>;
-+      vdda-supply = <&pma8084_l3>;
-+      phys = <&pciephy0>;
-+      phy-names = "pciephy";
-+      perst-gpios = <&tlmm 70 GPIO_ACTIVE_LOW>;
-+      pinctrl-0 = <&pcie0_pins_default>;
-+      pinctrl-names = "default";
-+    };
-diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-deleted file mode 100644
-index 0d3b49485505..000000000000
---- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-+++ /dev/null
-@@ -1,227 +0,0 @@
--# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
--%YAML 1.2
-----
--$id: http://devicetree.org/schemas/pci/qcom,pcie.yaml#
--$schema: http://devicetree.org/meta-schemas/core.yaml#
--
--title: Qualcomm PCI express root complex
--
--maintainers:
--  - Bjorn Andersson <bjorn.andersson@linaro.org>
--  - Manivannan Sadhasivam <mani@kernel.org>
--
--description: |
--  Qualcomm PCIe root complex controller is based on the Synopsys DesignWare
--  PCIe IP.
--
--properties:
--  compatible:
--    oneOf:
--      - enum:
--          - qcom,pcie-apq8084
--
--  reg:
--    minItems: 4
--    maxItems: 6
--
--  reg-names:
--    minItems: 4
--    maxItems: 6
--
--  interrupts:
--    minItems: 1
--    maxItems: 9
--
--  interrupt-names:
--    minItems: 1
--    maxItems: 9
--
--  iommu-map:
--    minItems: 1
--    maxItems: 16
--
--  # Common definitions for clocks, clock-names and reset.
--  # Platform constraints are described later.
--  clocks:
--    minItems: 3
--    maxItems: 13
--
--  clock-names:
--    minItems: 3
--    maxItems: 13
--
--  dma-coherent: true
--
--  interconnects:
--    maxItems: 2
--
--  interconnect-names:
--    items:
--      - const: pcie-mem
--      - const: cpu-pcie
--
--  resets:
--    minItems: 1
--    maxItems: 12
--
--  reset-names:
--    minItems: 1
--    maxItems: 12
--
--  vdda-supply:
--    description: A phandle to the core analog power supply
--
--  phys:
--    maxItems: 1
--
--  phy-names:
--    items:
--      - const: pciephy
--
--  power-domains:
--    maxItems: 1
--
--  perst-gpios:
--    description: GPIO controlled connection to PERST# signal
--    maxItems: 1
--
--  required-opps:
--    maxItems: 1
--
--  wake-gpios:
--    description: GPIO controlled connection to WAKE# signal
--    maxItems: 1
--
--required:
--  - compatible
--  - reg
--  - reg-names
--  - interrupt-map-mask
--  - interrupt-map
--  - clocks
--  - clock-names
--
--anyOf:
--  - required:
--      - interrupts
--      - interrupt-names
--      - "#interrupt-cells"
--  - required:
--      - msi-map
--
--allOf:
--  - $ref: /schemas/pci/pci-host-bridge.yaml#
--  - if:
--      properties:
--        compatible:
--          contains:
--            enum:
--              - qcom,pcie-apq8084
--    then:
--      properties:
--        reg:
--          minItems: 4
--          maxItems: 5
--        reg-names:
--          minItems: 4
--          items:
--            - const: parf # Qualcomm specific registers
--            - const: dbi # DesignWare PCIe registers
--            - const: elbi # External local bus interface registers
--            - const: config # PCIe configuration space
--            - const: mhi # MHI registers
--
--  - if:
--      properties:
--        compatible:
--          contains:
--            enum:
--              - qcom,pcie-apq8084
--    then:
--      properties:
--        clocks:
--          minItems: 4
--          maxItems: 4
--        clock-names:
--          items:
--            - const: iface # Configuration AHB clock
--            - const: master_bus # Master AXI clock
--            - const: slave_bus # Slave AXI clock
--            - const: aux # Auxiliary (AUX) clock
--        resets:
--          maxItems: 1
--        reset-names:
--          items:
--            - const: core # Core reset
--
--  - if:
--      not:
--        properties:
--          compatible:
--            contains:
--              enum:
--                - qcom,pcie-msm8996
--    then:
--      required:
--        - resets
--        - reset-names
--
--  - if:
--      properties:
--        compatible:
--          contains:
--            enum:
--              - qcom,pcie-apq8084
--    then:
--      properties:
--        interrupts:
--          maxItems: 1
--        interrupt-names:
--          items:
--            - const: msi
--
--unevaluatedProperties: false
--
--examples:
--  - |
--    #include <dt-bindings/interrupt-controller/arm-gic.h>
--    #include <dt-bindings/gpio/gpio.h>
--    pcie@fc520000 {
--      compatible = "qcom,pcie-apq8084";
--      reg = <0xfc520000 0x2000>,
--            <0xff000000 0x1000>,
--            <0xff001000 0x1000>,
--            <0xff002000 0x2000>;
--      reg-names = "parf", "dbi", "elbi", "config";
--      device_type = "pci";
--      linux,pci-domain = <0>;
--      bus-range = <0x00 0xff>;
--      num-lanes = <1>;
--      #address-cells = <3>;
--      #size-cells = <2>;
--      ranges = <0x81000000 0 0          0xff200000 0 0x00100000>,
--               <0x82000000 0 0x00300000 0xff300000 0 0x00d00000>;
--      interrupts = <GIC_SPI 243 IRQ_TYPE_LEVEL_HIGH>;
--      interrupt-names = "msi";
--      #interrupt-cells = <1>;
--      interrupt-map-mask = <0 0 0 0x7>;
--      interrupt-map = <0 0 0 1 &intc 0 244 IRQ_TYPE_LEVEL_HIGH>,
--                      <0 0 0 2 &intc 0 245 IRQ_TYPE_LEVEL_HIGH>,
--                      <0 0 0 3 &intc 0 247 IRQ_TYPE_LEVEL_HIGH>,
--                      <0 0 0 4 &intc 0 248 IRQ_TYPE_LEVEL_HIGH>;
--      clocks = <&gcc 324>,
--               <&gcc 325>,
--               <&gcc 327>,
--               <&gcc 323>;
--      clock-names = "iface", "master_bus", "slave_bus", "aux";
--      resets = <&gcc 81>;
--      reset-names = "core";
--      power-domains = <&gcc 1>;
--      vdda-supply = <&pma8084_l3>;
--      phys = <&pciephy0>;
--      phy-names = "pciephy";
--      perst-gpios = <&tlmm 70 GPIO_ACTIVE_LOW>;
--      pinctrl-0 = <&pcie0_pins_default>;
--      pinctrl-names = "default";
--    };
--...
+Changes in v8:
+- Rebased on top of v6.17-rc1
+- Collect Ivaylo's Tested-by
+- Drop #define PMCR1_COUNT_A64_EL3_0_7
+- Reword reason to not initialize PMUv3 remap in EL1
+- Link to v7: https://lore.kernel.org/r/20250510-apple-cpmu-v7-0-bd505cb6c520@gmail.com
 
+Changes in v7:
+- Fix a W=1 compile warning in apple_pmu_get_event_idx() as appearently using GENMASK()
+in a function prototype causes a warning in GCC.
+- Link to v6: https://lore.kernel.org/r/20250407-apple-cpmu-v6-0-ae8c2f225c1f@gmail.com
+
+Changes in v6:
+- Rebased on top of v6.15-rc1 (Conflict with FEAT_PMUv3 support for KVM on Apple Hardware)
+- Add patch to skip initialization of PMUv3 remap in EL1 even though not strictly needed
+- Include DT patches
+- Link to v5: https://lore.kernel.org/r/20250228-apple-cpmu-v5-0-9e124cd28ed4@gmail.com
+
+Changes in v5:
+- Slightly change "drivers/perf: apple_m1: Add Apple A11 Support", to keep things in
+chronological order.
+- Link to v4: https://lore.kernel.org/r/20250214-apple-cpmu-v4-0-ffca0e45147e@gmail.com
+
+Changes in v4:
+- Support per-implementation event attr group
+- Fix Apple A7 event attr groups
+- Link to v3: https://lore.kernel.org/r/20250213-apple-cpmu-v3-0-be7f8aded81f@gmail.com
+
+Changes in v3:
+- Configure PMC8 and PMC9 for 32-bit EL0
+- Remove redundant _common suffix from shared functions
+- Link to v2: https://lore.kernel.org/r/20250213-apple-cpmu-v2-0-87b361932e88@gmail.com
+
+Changes in v2:
+- Remove unused flags parameter from apple_pmu_init_common()
+- Link to v1: https://lore.kernel.org/r/20250212-apple-cpmu-v1-0-f8c7f2ac1743@gmail.com
+
+---
+Nick Chan (21):
+      dt-bindings: arm: pmu: Add Apple A7-A11 SoC CPU PMU compatibles
+      drivers/perf: apple_m1: Only init PMUv3 remap when EL2 is available
+      drivers/perf: apple_m1: Support per-implementation event tables
+      drivers/perf: apple_m1: Support a per-implementation number of counters
+      drivers/perf: apple_m1: Support configuring counters for 32-bit EL0
+      drivers/perf: apple_m1: Support per-implementation PMU startup
+      drivers/perf: apple_m1: Support per-implementation event attr group
+      drivers/perf: apple_m1: Add Apple A7 support
+      drivers/perf: apple_m1: Add Apple A8/A8X support
+      drivers/perf: apple_m1: Add A9/A9X support
+      drivers/perf: apple_m1: Add Apple A10/A10X/T2 Support
+      drivers/perf: apple_m1: Add Apple A11 Support
+      arm64: dts: apple: s5l8960x: Add CPU PMU nodes
+      arm64: dts: apple: t7000: Add CPU PMU nodes
+      arm64: dts: apple: t7001: Add CPU PMU nodes
+      arm64: dts: apple: s800-0-3: Add CPU PMU nodes
+      arm64: dts: apple: s8001: Add CPU PMU nodes
+      arm64: dts: apple: t8010: Add CPU PMU nodes
+      arm64: dts: apple: t8011: Add CPU PMU nodes
+      arm64: dts: apple: t8012: Add CPU PMU nodes
+      arm64: dts: apple: t8015: Add CPU PMU nodes
+
+ Documentation/devicetree/bindings/arm/pmu.yaml |   6 +
+ arch/arm64/boot/dts/apple/s5l8960x.dtsi        |   8 +
+ arch/arm64/boot/dts/apple/s800-0-3.dtsi        |   8 +
+ arch/arm64/boot/dts/apple/s8001.dtsi           |   8 +
+ arch/arm64/boot/dts/apple/t7000.dtsi           |   8 +
+ arch/arm64/boot/dts/apple/t7001.dtsi           |   9 +
+ arch/arm64/boot/dts/apple/t8010.dtsi           |   8 +
+ arch/arm64/boot/dts/apple/t8011.dtsi           |   9 +
+ arch/arm64/boot/dts/apple/t8012.dtsi           |   8 +
+ arch/arm64/boot/dts/apple/t8015.dtsi           |  24 +
+ arch/arm64/include/asm/apple_m1_pmu.h          |   2 +
+ drivers/perf/apple_m1_cpu_pmu.c                | 813 +++++++++++++++++++++++--
+ 12 files changed, 876 insertions(+), 35 deletions(-)
+---
+base-commit: 8f0b4cce4481fb22653697cced8d0d04027cb1e8
+change-id: 20250211-apple-cpmu-5a5a3da39483
+
+Best regards,
 -- 
-2.51.0
+Nick Chan <towinchenmi@gmail.com>
 
 
