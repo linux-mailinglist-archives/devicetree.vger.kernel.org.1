@@ -1,123 +1,130 @@
-Return-Path: <devicetree+bounces-247381-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247385-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 629DBCC7665
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 12:44:01 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD88DCC75ED
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 12:40:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5AC5E30C6B18
-	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 11:40:39 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3307C3020CEB
+	for <lists+devicetree@lfdr.de>; Wed, 17 Dec 2025 11:39:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7270033F366;
-	Wed, 17 Dec 2025 11:32:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A20735295A;
+	Wed, 17 Dec 2025 11:39:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QsLd3koP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OKQXNZC+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D25432ABF6;
-	Wed, 17 Dec 2025 11:32:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54F74338930;
+	Wed, 17 Dec 2025 11:39:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1765971122; cv=none; b=JouwqBPaQERzpbYfcqtY+QbV/0Cw4tsH5ePfyJyo0mHv3OfK+uz0a0+LCfolRrERfNLNR41mO83HDY6nU0j4gqafMyhGRHAqXsDExsy0LSsh2fG9WWrvrAcAnypeScXdR4wnRiajUpJFdhqWL9x1gdwVrnrWskZ+HT2zz4BiTwY=
+	t=1765971565; cv=none; b=KeWIs946ALuLdmHcYTkOfeoCmN8VxU+dEncknCruQjmtIPZyVPDcleTNYoR+jbzkgzJDSCFa/q64aQE0EeWYmgEasBpa4NeT34A+uRvIGBJbAdkLL8nhD594rVsFnc4Yqf51pjW8xds7NxPezkUCLjzkJRhB0fK78SOMKuhQSCU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1765971122; c=relaxed/simple;
-	bh=3dqfqIyIPLev54CZ6uE58tgsfI2/7I7WNdCX5laUzmQ=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=tuhZwKw5xQcmjrAAw+nxlbx4DEFoPdjGfSc1gFV4XoaeIG3m56F+o/ZVdfNOL5FmGOTw/hSYiloLbQ3RtXkG2U1RxFf9aTXjFo7Wm2EnWBO/EugR6POaCs/9eN8qRRtMfOJTi1JlvpFBloywW02+wLecfLk+PEklpyFavmT1L+I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QsLd3koP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D5CDFC113D0;
-	Wed, 17 Dec 2025 11:32:00 +0000 (UTC)
+	s=arc-20240116; t=1765971565; c=relaxed/simple;
+	bh=p1WldwTrpRxChl17GG81aXsQPP0VK+RjvLUrIAeadkI=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=VH+0QdkyhCGA2G3l88J299pSXFSzh5MRYrf4tm2YxoEf4vvwPq/G5yUeo/nzERLwk9pbh7xNeJbOC0859LEaWegAqiyJ5c5eX6gN7ba/UT7QMZZodNhrRDGHsofsuCDiUhvj7RsNsx5YU6wm0cZ3qsP3MIIZCpbk/6sD0nAgLb0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OKQXNZC+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id D5739C4CEF5;
+	Wed, 17 Dec 2025 11:39:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765971121;
-	bh=3dqfqIyIPLev54CZ6uE58tgsfI2/7I7WNdCX5laUzmQ=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=QsLd3koPmVP+cLQxVZfeWNiT94p7LMqhdDJunz0ylkw7vLoznd7bXzcJV/d6QdVzY
-	 oiXLzW1gY04d0uztqIRIef3/v/iSBuADsT/d3F9zvUXRzQ3SJBufeUNG8ABpsedbHC
-	 rqfS7XK2qQx9Wz+FjtDRtEheYj98KRXjvxfgtrPha3D2JtI8k3p9oEYz1XBeUtqTa7
-	 5Yg7AzBfhZiSG1P2E9FloxClEUdORqjumcD7Xah0qPmxJJ70ytm0slzoSTpInPlmzi
-	 tFdGP6i/6aPW2NnZVVjdRgAOP2jl51cTDs+8/zDvirYP7bCtTSKM9BgvTpu/ixXru6
-	 pLrIdNrqXSAZQ==
-Date: Wed, 17 Dec 2025 05:31:58 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1765971564;
+	bh=p1WldwTrpRxChl17GG81aXsQPP0VK+RjvLUrIAeadkI=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=OKQXNZC+8/zAsUSEAs4IDX89qptX90XDb0NUyFW3Ngil7JGlDWLWbOdZ5KhMhRFoj
+	 o8HeMHMW5QBMcw7qc9zi7WbjPiaSZTx8ryd/PKc12CTixb7a8r2UD8a+zJGT8Imfvk
+	 /o5oTWsL3wOFwn8IqH+Zx1IZ6sRA9ezNQNNrLCIx+GSI8XRbz1vraUMC6Punv3g0HP
+	 YP/ohWgOZUr7XkrOD8W9T9I0VXYQ7p3iXUxHOXfZZpCeFBYoD1TbF9CwAYoa6OcOfL
+	 rsjg8T7BN/wYaVmIJDSNEGm5ARUgG4dwj/ctpiydpLshH5O3TeC6YFXNqSjp2QTJBV
+	 8ncbehnqEO5mQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C4E07D6408B;
+	Wed, 17 Dec 2025 11:39:24 +0000 (UTC)
+From: David Heidelberg via B4 Relay <devnull+david.ixit.cz@kernel.org>
+Subject: [PATCH v2 0/2] Commonize pinctrl for camera master clock on
+ Qualcomm SDM845
+Date: Wed, 17 Dec 2025 12:39:22 +0100
+Message-Id: <20251217-sdm845-mclk-v2-0-7028c2d09145@ixit.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Rama Krishna <quic_ramkri@quicinc.com>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Lorenzo Pieralisi <lpieralisi@kernel.org>, linux-arm-msm@vger.kernel.org, 
- devicetree@vger.kernel.org, Ayiluri Naga Rashmi <quic_nayiluri@quicinc.com>, 
- Conor Dooley <conor+dt@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
- Manivannan Sadhasivam <mani@kernel.org>, 
- Philipp Zabel <p.zabel@pengutronix.de>, linux-kernel@vger.kernel.org, 
- quic_shazhuss@quicinc.com, 
- Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>, 
- linux-pci@vger.kernel.org, konrad.dybcio@oss.qualcomm.com, 
- Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>, 
- Nitesh Gupta <quic_nitegupt@quicinc.com>, 
- =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
- quic_vbadigan@quicinc.com
-To: Mrinmay Sarkar <mrinmay.sarkar@oss.qualcomm.com>
-In-Reply-To: <20251217-firmware_managed_ep-v3-1-ff871ba688fb@oss.qualcomm.com>
-References: <20251217-firmware_managed_ep-v3-0-ff871ba688fb@oss.qualcomm.com>
- <20251217-firmware_managed_ep-v3-1-ff871ba688fb@oss.qualcomm.com>
-Message-Id: <176597111816.570337.1780092644304118894.robh@kernel.org>
-Subject: Re: [PATCH v3 1/2] dt-bindings: PCI: qcom,pcie-ep-sa8255p:
- Document firmware managed PCIe endpoint
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGqWQmkC/23MQQ6CMBCF4auQWTumU1oRVt7DsMC2yEQB05IGJ
+ b27lbXL/yXv2yA4zy5AU2zgXeTA85RDHgowQzfdHbLNDVJITZJKDHY8K42jeT5QKOplV2vpSoL
+ 8eHnX87pr1zb3wGGZ/XvHI/3W/04kFEh1dTO1qqwypwuvvBzNB9qU0hetZ2r0pAAAAA==
+X-Change-ID: 20251213-sdm845-mclk-041f2a952e31
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org, 
+ David Heidelberg <david@ixit.cz>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1242; i=david@ixit.cz;
+ h=from:subject:message-id;
+ bh=p1WldwTrpRxChl17GG81aXsQPP0VK+RjvLUrIAeadkI=;
+ b=owEBbQKS/ZANAwAIAWACP8TTSSByAcsmYgBpQpZrq8sqGhUVWb/Yjh31dFIK16GVY0rutCj+y
+ k6v1XfgPQuJAjMEAAEIAB0WIQTXegnP7twrvVOnBHRgAj/E00kgcgUCaUKWawAKCRBgAj/E00kg
+ cj++D/9CpnmSUr7ktdd0/7Rh7A6Db/IizlbNaQ//PCqlQskWX6ZpNASkia5n2IIuI1fP4YRux1A
+ 0upzKZ5oFl32RIEy5iz3oH9/c5iU3Ucco4imprJ3m36WfSADiDgOqT+cTZryLBu8QVMSxU/V/6i
+ D7deIEDUEuchYiuyDxjxWdk2A/0B6+CrLj32VX9XoJLgiU8mJo0eCS/TlRhzacWDIATIFJWKA5J
+ 1PScJc9To8jxS6q6aal+OCgKIySeRvu2/J9v5pJI/Jx8LYwZd9GuJggWTiZEal16Bh4jJSEbxF4
+ rYk6c2eb65+vv1rs/FtZtbFR1pZ/IGE2VFOPBAbgYUtdoiaGI7KGqd3rRDLTqw3+jUZ5v0Ql0GX
+ i8G73fQGiuoYg506vREmfP/QPKzshV3Yiq3KfmwwWT6ORmMSALyv6F1Ff3CiEtpG43SntEgpmUH
+ kRh41C8Ztk9UJg0NJSptstjY4CGy40pnsFeBYKpn3k9Q/XxT/muawj5dwSsfCh4wNl28kM0a9Gh
+ F+l/wZXMh8lurAEji+cMm3gBa4MaXrcqP4gkuw4ajyEcUYUuXm98XOUtlCuzoiffk9EzygTcp8B
+ tuaD3aUh7Y9VuKnfWtqdqe51QqJWDQv4i5RALJjXXlfHJfylw5ZEVJMHmNL4H/XcehbJYXCggXj
+ c0DvTyMg41lQzPw==
+X-Developer-Key: i=david@ixit.cz; a=openpgp;
+ fpr=D77A09CFEEDC2BBD53A7047460023FC4D3492072
+X-Endpoint-Received: by B4 Relay for david@ixit.cz/default with auth_id=355
+X-Original-From: David Heidelberg <david@ixit.cz>
+Reply-To: david@ixit.cz
 
+Inspired by Richard's patch set for SDM670, I noticed that SDM845
+follows the same pattern. This change prepares for enabling
+additional cameras.
 
-On Wed, 17 Dec 2025 15:42:45 +0530, Mrinmay Sarkar wrote:
-> Document the required configuration to enable the PCIe Endpoint controller
-> on SA8255p which is managed by firmware using power-domain based handling.
-> 
-> Signed-off-by: Mrinmay Sarkar <mrinmay.sarkar@oss.qualcomm.com>
-> ---
->  .../bindings/pci/qcom,pcie-ep-sa8255p.yaml         | 110 +++++++++++++++++++++
->  1 file changed, 110 insertions(+)
-> 
+These pinctrl settings have been verified against the downstream
+SDM845 kernel.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Since most of these are not yet used in mainline, testing was done
+on sdm845-next using OnePlus 6 cameras with downstream drivers.
 
-yamllint warnings/errors:
+Thank you
+David
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/qcom,pcie-ep-sa8255p.example.dtb: pcie-ep@1c10000 (qcom,pcie-ep-sa8255p): compatible: 'oneOf' conditional failed, one must be fixed:
-	'qcom,pcie-ep-sa8255p' does not match '^qcom,(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm|x1[ep])[0-9]+(pro)?-.*$'
-	'qcom,pcie-ep-sa8255p' does not match '^qcom,sar[0-9]+[a-z]?-.*$'
-	'qcom,pcie-ep-sa8255p' does not match '^qcom,(sa|sc)8[0-9]+[a-z][a-z]?-.*$'
-	'qcom,pcie-ep-sa8255p' does not match '^qcom,(glymur|milos)-.*$'
-	'qcom,pcie-ep-sa8255p' does not match '^qcom,[ak]pss-wdt-(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm)[0-9]+.*$'
-	'qcom,pcie-ep-sa8255p' does not match '^qcom,gcc-(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm)[0-9]+.*$'
-	'qcom,pcie-ep-sa8255p' does not match '^qcom,mmcc-(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm)[0-9]+.*$'
-	'qcom,pcie-ep-sa8255p' does not match '^qcom,pcie-(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm|x1[ep])[0-9]+.*$'
-	'qcom,pcie-ep-sa8255p' does not match '^qcom,rpm-(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm)[0-9]+.*$'
-	'qcom,pcie-ep-sa8255p' does not match '^qcom,scm-(apq|ipq|mdm|msm|qcm|qcs|q[dr]u|sa|sc|sd[amx]|sm|x1[ep])[0-9]+.*$'
-	'qcom,pcie-ep-sa8255p' is not one of ['qcom,dsi-ctrl-6g-qcm2290', 'qcom,gpucc-sdm630', 'qcom,gpucc-sdm660', 'qcom,lcc-apq8064', 'qcom,lcc-ipq8064', 'qcom,lcc-mdm9615', 'qcom,lcc-msm8960', 'qcom,lpass-cpu-apq8016', 'qcom,usb-ss-ipq4019-phy', 'qcom,usb-hs-ipq4019-phy', 'qcom,vqmmc-ipq4019-regulator']
-	'qcom,pcie-ep-sa8255p' is not one of ['qcom,ipq806x-gmac', 'qcom,ipq806x-nand', 'qcom,ipq806x-sata-phy', 'qcom,ipq806x-usb-phy-ss', 'qcom,ipq806x-usb-phy-hs']
-	from schema $id: http://devicetree.org/schemas/arm/qcom-soc.yaml
+Signed-off-by: David Heidelberg <david@ixit.cz>
+---
+Changes in v2:
+- Added mclk3. (Vladimir)
+- Reword commit messages.
+- Corrected commit msg name. (Konrad)
+- Link to v1: https://lore.kernel.org/r/20251213-sdm845-mclk-v1-0-197bc947d4c6@ixit.cz
 
-doc reference errors (make refcheckdocs):
+---
+David Heidelberg (2):
+      arm64: dts: qcom: sdm845: Introduce camera master clock pinctrl
+      arm64: dts: qcom: sdm845-db845c: Use pad fn instead of defining own
 
-See https://patchwork.kernel.org/project/devicetree/patch/20251217-firmware_managed_ep-v3-1-ff871ba688fb@oss.qualcomm.com
+ .../qcom/sdm845-db845c-navigation-mezzanine.dtso   |  2 +-
+ arch/arm64/boot/dts/qcom/sdm845-db845c.dts         | 16 -------
+ arch/arm64/boot/dts/qcom/sdm845.dtsi               | 56 ++++++++++++++++++++++
+ 3 files changed, 57 insertions(+), 17 deletions(-)
+---
+base-commit: 12b95d29eb979e5c4f4f31bb05817bc935c52050
+change-id: 20251213-sdm845-mclk-041f2a952e31
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+Best regards,
+-- 
+David Heidelberg <david@ixit.cz>
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
 
 
