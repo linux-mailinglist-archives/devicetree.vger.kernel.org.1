@@ -1,101 +1,101 @@
-Return-Path: <devicetree+bounces-247726-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247727-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CF04CCACD9
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 09:12:28 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id F4015CCACDF
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 09:12:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D5BE93054F5B
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 08:11:21 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id AD9C630568AD
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 08:11:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E14E832E6A6;
-	Thu, 18 Dec 2025 08:10:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73B3932E732;
+	Thu, 18 Dec 2025 08:10:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="XY+3b7aG";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="XvLu28z1"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="fi2Ewbik";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="enqHYcgb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B0D02EC0A4
-	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 08:10:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 463D9329C7B
+	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 08:10:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766045455; cv=none; b=UP62Dlq0FNMreotiWQC9c3GVcxird0NV4INd8+JmHoUbjowoF39WR7IpMv0Y8s082EYx7JvsebpnlbVth9eaCliinSByKbS+SqXiRjTKw8Y8fbdDSXw6DFogwfzMHnpVNrznkkOuMn/gRkk9puP3uvSJyGn0yOi/uhjoReehp3w=
+	t=1766045455; cv=none; b=o7ahIcrka+h8hj4f6v3ZXG/Cv/XE0yoKrsB2v5GiR1OKedDOAJjoAdWzr2EIUdLbxeLTD261IEuaSM34y1nzvaEKxnygyHFB2q30qJnBfUSW2Jt9uo+7lQdAfIddugyWFoLHN3Uk1BnxbIGeSIzkmKxDxtJ0j58E8XROZ6FHC7w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1766045455; c=relaxed/simple;
-	bh=VBlkATc/lcj6oh/+7N99ClnqOVJCbTvJk8ZfbtYCMaA=;
+	bh=1g8pF946hN6QW1p+2Y+2RyrV1bnSaFCc0AvdfQQfoFE=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=WY6rK4CgWFtKXeyQsykOIZ4xGAZhAoco0Zpt1F6Dv08vXG4dJWLc0Oz9MENpFJjPbImL1Pvo/yaPK7AA0jJL9igxvAUtA15F9K3IvLl3dldy8IakxXkFZC7u+5BAxt3w4//Xr49iaxdnQ1IokDhjBjNqP5fOB2kRs0kJjbgiVIU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=XY+3b7aG; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=XvLu28z1; arc=none smtp.client-ip=205.220.180.131
+	 In-Reply-To:To:Cc; b=aJIr5psGj6aBOxJ5IuvwkkL+fdQEO6DiQJcLksWPOr3aT7ZE4u9swYxyw5TSWf540y3C1flP0ucpLErbJAGAlbjwg1XowJ9tjqHEuPiq+62xdKoLF/MGhuSgkKZ53glMdSU0uxeUt8obHNFVn9yk1W1Fmy+CSO2n0i0cDfslyN4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=fi2Ewbik; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=enqHYcgb; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
 Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BI1YddX813864
-	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 08:10:51 GMT
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BI1YeLc813882
+	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 08:10:52 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	+bTnCXrZF7MRxf6WPpQ7TGUDn2ihAMOaEliTUQcOUv8=; b=XY+3b7aG56wq6J8B
-	8qiPpnwIWjJ/cVr+NdLa/eye5DDK6ZK2/PzsAr/QaXvyAX7QA8/jgQvTb5Py5siA
-	kryFPKWJw1touYZyr/vz7tRNbJe5Q7fqicEkAXWbkNQEcI3f0gUvzHrn+9mP041w
-	4vaPrEeFEL+1nRvNZfkPJPBjYtKsJEEiIxRuDTLB5PthcXDJ3YXQUeXncLLIcFbs
-	LeLD94FrOfp5arxPaYEbMpJdfD8Fb3VRNng8ua2xQclJIlSn0QCGBcvJRVfEY70U
-	KwW+leZHMHBsHl5zOAW2CKnr0715DYPDS57XpNqCF9eNNvsBkgX+fJl1wOQHNueb
-	FF1IOA==
-Received: from mail-pg1-f199.google.com (mail-pg1-f199.google.com [209.85.215.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b40v7a5us-1
+	obNSaSTOOTPVE2brVhtt4blNBM8SFy3K9RGAeqq87XA=; b=fi2Ewbikq3/Mbbl0
+	DKmXEo9g4DTUc/lsviEfjQRXOHLJbavYYNECF+gsgjdTVzqjYeDmUlTzMfuW3To3
+	X1ALz/LJ3QaQiaKkxZN1p9z8opMuQgoG88b7yxOTK8GJH/bzm6UWn3JwJtwc4Jv2
+	MOLpPqAoiuOIOhZFEiCCrzhW62OANxQDSN86Yedo3f/w7oRrCHdEDjITMG4xb3B9
+	C19W+kQCvcqbKezSWrRCjtgPDiOsaiYHEfLOF3uFR3aPMVCLAx49zT+9kCeq3gcr
+	eJ63SMcOYR7advV9rQOmilgs8uPyqWyU/Qx6KrTzoAQNfCkaCrrrxcU7F0Y8F2kX
+	WseAtw==
+Received: from mail-pg1-f198.google.com (mail-pg1-f198.google.com [209.85.215.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b40v7a5uw-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
 	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 08:10:51 +0000 (GMT)
-Received: by mail-pg1-f199.google.com with SMTP id 41be03b00d2f7-b630b4d8d52so464402a12.3
-        for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 00:10:50 -0800 (PST)
+Received: by mail-pg1-f198.google.com with SMTP id 41be03b00d2f7-bdced916ad0so714892a12.0
+        for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 00:10:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1766045450; x=1766650250; darn=vger.kernel.org;
+        d=oss.qualcomm.com; s=google; t=1766045451; x=1766650251; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=+bTnCXrZF7MRxf6WPpQ7TGUDn2ihAMOaEliTUQcOUv8=;
-        b=XvLu28z1nNfl8nt+3yFZtOJ65Bwu6nI/0M1v6TfYXG+QIeg7nnDb42N16xwMPA7+K7
-         Ic1yk5tHgHoS1RztcxQLa3Z7ga6OD/kDdvTKjKp8wWUO4AGHI05ACyXos6Bv0abstuR2
-         z/oqfc85v7PKn0cV/JqzoW7jbuDTMaCegjbhgzw+383yEnWw6VUb+jaRwtKcjfUXr5HH
-         UgKkmTEbXfkFAmhGcxPMcwPqOJU5jN8bat/nBF0U34Dun7+gBuw2KTXSZzz0ubV2NzTu
-         DJ3lJHN9jH9LmbBSWVDbYNzLmOpTPibRpZ0O0hMNZEeHYpGT1HRt8fZlFKQviVxl/4VS
-         UrWQ==
+        bh=obNSaSTOOTPVE2brVhtt4blNBM8SFy3K9RGAeqq87XA=;
+        b=enqHYcgbpePDrKCSOkBw6n/shItGK+UBXIhSoCFBGp6tP9tQ/sM/sXsZKNsE7C15Pl
+         pd1UzAmty6iNs84lnsloyqMrz1CoI2UKb2eu2Kfu5ZlieofR+qPCv/cCjC2fYl1asDAR
+         k2uQh/QaVKhMJ6UBV46L2EMlrYWbEkkXjCF+lwlmasV+oU+HONc/AhLyP2rit0NjCCJj
+         P/knm4/FKXEw4/6IRQ/jRrb2UnQU9c6+V+QLQT4niR5c2uO1i5NCm0CocEbEov2b1a4p
+         QfKQOnNUa0mlYUbAvRv4JXDOYeYO0b3RUX0DrmRS2zuq7ColIAUee6kKymTiFPxLz+u5
+         XJpQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766045450; x=1766650250;
+        d=1e100.net; s=20230601; t=1766045451; x=1766650251;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=+bTnCXrZF7MRxf6WPpQ7TGUDn2ihAMOaEliTUQcOUv8=;
-        b=aWY+JK4sfT7JILwd0/CELPig42yNisiSIC9GdgQNbb89sbqvO/bUQswyvC8nHljIj0
-         V6g464DeA2rjF875Vy3+uAYrBkz4ZbJNoEt3jGYZYilHBaPfkxQ1TuAQD/7mYT7tBesr
-         lq1tJmTpWLferabLOsugqa625xi8nKfbBpGrFF69tarma99YnBfJHMeYker/zBizlzDi
-         Iy+KIOl50WL+F0QVIfN5dYSSZ/VZLo8oVLPruczpLu8PjofcxFXerVgCW/Fq3ebfPpxG
-         EqD05TCDPQzqq5oOHsqF5gSlycVcrgVO9d9jpdA9+vDCgBwjtlQ1XRvCsZQpzyUU3m4w
-         WpSQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWSBtymQwBPp0WDjqZySMgB+1cH5C4Grmg1L4Hg/6qvZjkhhma8DgpMzDh+w7jgv+cniP2348Y2FCMk@vger.kernel.org
-X-Gm-Message-State: AOJu0YxQtLxBFqnPZZ9J9fa0RjTlTXHONBegz2kHdUBg+ZRc7ykwEeeK
-	Zd21velJGllJixfuNduzWv94v+7Ra7nJaTUMuSI0IAchbj5eYw67wBG18mHsoiYD4PPjlIQZ7TE
-	j9WloKT/wIsCZUKDv6F+yme9jgk2UFd9NokAk/aBlxCvwqPmWCKl27EQgUhsq8rfP
-X-Gm-Gg: AY/fxX5T+6RL2OprfdJRu9irNyOpRoyTtAF4jBSNP769LyFkCVRDPgEiipFq7T2aGqS
-	CLhyVKLbnFMChK4fmzlHWqg6QL+iMB5KgbN/QqdXMObGybsn/1wB+l+aH/M7a5oNIK29qFmdUdM
-	8d+LyAeghAFHIASjCSh5sLvUNMkL5POJqNH6zf1kj2tmcYJC279whQYwG+oVaovUm0K1rg0gSq2
-	7hX5COpP3bqG4Cgr6TY5fJpPCVFGHrXDintJrq5LUwwx1jG8eOGAIod1oJ7MRguYnm7a6Ye35Mh
-	ZdT8QuRN4vQWcTdyeYfeIW6LjFO2s694k2xyULHE/6Vm4Ucnf3ratfP+zdETZJfh19aA8k6oZ4C
-	9+0qDGFeACDpDZspik/jtrHJiYNdT9f3fjTuq204aEuBoRzb8HQTek5iPKtEP4R+OP3I=
-X-Received: by 2002:a05:7300:2aa4:b0:2ae:6024:7a49 with SMTP id 5a478bee46e88-2ae60247d40mr3081175eec.30.1766045449889;
-        Thu, 18 Dec 2025 00:10:49 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFO2m/fdcicBAoP4bK1C8K/V7fbv60Y9OFGS5ftQKn46N/HidNKcP8n5iWDeiFhQFJRnyoyew==
-X-Received: by 2002:a05:7300:2aa4:b0:2ae:6024:7a49 with SMTP id 5a478bee46e88-2ae60247d40mr3081135eec.30.1766045449227;
-        Thu, 18 Dec 2025 00:10:49 -0800 (PST)
+        bh=obNSaSTOOTPVE2brVhtt4blNBM8SFy3K9RGAeqq87XA=;
+        b=oPENBqCZJfSUnirpKu+LyXK08SZRhivxb0m0T1PVWTGWNZp2J+m1Azak0Z0LA6qoYF
+         FSvqhtMmOHuSC+ter/TedRzUdIGLh4xqv7vs609ZlcU7/seFn2XI0AjUZ6FrcInjn356
+         iStpcvrws6j4c8sqweOVdFwriebgCWtxQKr1RkZoFtgkmOqKRv+5pKTL3gkZ8SiPIVs8
+         Smu8pNvI2WeviOySsAQS52YcCj6gjalbPl+prSB//p6BDNnyEcgK7TIrdd5CFISuA3tb
+         h8PntWubFdznM1haONN1soNLTsN/5eJM1zDIV/EWlbl7SESa7TxJVIJGI6Nzur4yr+UK
+         SNRA==
+X-Forwarded-Encrypted: i=1; AJvYcCVVyfPYlUl6BCOCz+VNTod6qwa5d52ue7PBxctJdGjQq5tClIWZHHC5k+jUYf3+Cxi2OWyluphvIth2@vger.kernel.org
+X-Gm-Message-State: AOJu0YyThfod15HhYBR0FhkgySE5M5BYCtsNFhZ+/8LEqrR9FR/q+XSh
+	jDFihLpqOvsrg4DQSWvcFO9inQ9gCuaRqXv5/wMJ/pYMn3AZA+R30YszyMiGCoXctKQcDXET5Rb
+	OwaCH0DQCgkumIG+KCMGcGskD0teUmD5UZ2D9LhB7LAnCysht2bPqN37gMypYWwxc
+X-Gm-Gg: AY/fxX60dlxSRjOsf1boZNQ3IDPefiWm/7mkN2dUokw5iJxpmrqfgrgO7KbuWce0szD
+	VP8GxSmYjyUEdCpAm2+tkgKNX+BBcoblxUHfRUbSZ0mDYBLswTJYQ8u0t7C/K5D4Mnb9JzteD4r
+	qKLxaDGeYoaTDxNyrRueeipS0y2VuAbJINh9QbMWbMj2eew1Xtusw7v48Jz4sIBEBp5vSmNEobZ
+	dvw07vzo6/7O/1LeRfgMaAX25yK1lj984PNxot9MuCxyUMIUI3sEK9nyLU5D/Kg/TXMfGUetu78
+	RCsTeI8wC3CcQX3t3RyVI1V0l2gD/4/1U3mQhlKQ1ryuwtLJumpXo6Ss4adMsl7LkvbxAME2TPH
+	tutN9Os4OjLIgAsRxvN6ipM/pKLwzw+KmJOKadT1OpJ5rKKC3MIq8ja0oThzQL+sNWV8=
+X-Received: by 2002:a05:7301:470f:b0:2ae:598e:abe8 with SMTP id 5a478bee46e88-2ae598eaf3cmr4491215eec.24.1766045450735;
+        Thu, 18 Dec 2025 00:10:50 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IG//Ua7KzwxbW7K7yQH3IjKB6SQcK/rZ6YvZkRgVKeAv1W0+e6EfSeQeXBeDYpI+5c+wNI0NQ==
+X-Received: by 2002:a05:7301:470f:b0:2ae:598e:abe8 with SMTP id 5a478bee46e88-2ae598eaf3cmr4491181eec.24.1766045450152;
+        Thu, 18 Dec 2025 00:10:50 -0800 (PST)
 Received: from hu-yuanfang-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b04e58d423sm2564824eec.6.2025.12.18.00.10.48
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b04e58d423sm2564824eec.6.2025.12.18.00.10.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 Dec 2025 00:10:48 -0800 (PST)
+        Thu, 18 Dec 2025 00:10:49 -0800 (PST)
 From: Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>
-Date: Thu, 18 Dec 2025 00:09:47 -0800
-Subject: [PATCH v2 07/12] coresight-tmc: Support probe and initialization
- for CPU cluster TMCs
+Date: Thu, 18 Dec 2025 00:09:48 -0800
+Subject: [PATCH v2 08/12] coresight-tmc-etf: Refactor enable function for
+ CPU cluster ETF support
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -104,7 +104,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251218-cpu_cluster_component_pm-v2-7-2335a6ae62a0@oss.qualcomm.com>
+Message-Id: <20251218-cpu_cluster_component_pm-v2-8-2335a6ae62a0@oss.qualcomm.com>
 References: <20251218-cpu_cluster_component_pm-v2-0-2335a6ae62a0@oss.qualcomm.com>
 In-Reply-To: <20251218-cpu_cluster_component_pm-v2-0-2335a6ae62a0@oss.qualcomm.com>
 To: Suzuki K Poulose <suzuki.poulose@arm.com>,
@@ -123,27 +123,27 @@ Cc: kernel@oss.qualcomm.com, coresight@lists.linaro.org,
         Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>,
         maulik.shah@oss.qualcomm.com
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1766045439; l=10021;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1766045439; l=5305;
  i=yuanfang.zhang@oss.qualcomm.com; s=20250814; h=from:subject:message-id;
- bh=VBlkATc/lcj6oh/+7N99ClnqOVJCbTvJk8ZfbtYCMaA=;
- b=jPtCN8o60f4IkWzznTnCyUC6rslRS9R4ZDA/TzyqRs8sWyR9Yt8N50nKiAJy8EX9fQoI6jH3U
- XSqF9/R2s1CA6VXJXu1DlV28z856e2Q1l3xIErAGKWsTiEJ9ABM+3rh
+ bh=1g8pF946hN6QW1p+2Y+2RyrV1bnSaFCc0AvdfQQfoFE=;
+ b=WalzKq5mo+m1DDBa+j4hcG65FGQtoJ3y4iK+EaoBGFEl1Vw118qcQjkGDdZHOm1k6i33ttt5x
+ 1kKC8wGvW7OBjHIQk7Fy4CY0PWitDwlSVzZ8QiZKiX/Izb0Z5cmPHwy
 X-Developer-Key: i=yuanfang.zhang@oss.qualcomm.com; a=ed25519;
  pk=9oS/FoPW5k0CsqSDDrPlnV+kVIOUaAe0O5pr4M1wHgY=
-X-Proofpoint-ORIG-GUID: 1zdR47cW5XCEf3Gq1UdmfD1yBMobvwYi
-X-Proofpoint-GUID: 1zdR47cW5XCEf3Gq1UdmfD1yBMobvwYi
+X-Proofpoint-ORIG-GUID: eOBgnibs_Fizb4ZKbnoICYCzhe8tmSuG
+X-Proofpoint-GUID: eOBgnibs_Fizb4ZKbnoICYCzhe8tmSuG
 X-Authority-Analysis: v=2.4 cv=f8JFxeyM c=1 sm=1 tr=0 ts=6943b70b cx=c_pps
- a=Oh5Dbbf/trHjhBongsHeRQ==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=Qgeoaf8Lrialg5Z894R3/Q==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
  a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=AsHEykryqctiG1ll_fEA:9
- a=QEXdDO2ut3YA:10 a=_Vgx9l1VpLgwpw_dHYaR:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjE4MDA2NiBTYWx0ZWRfX7MQjI3lIRzKI
- ra9FsAZBnEODS/5LDUXBG29OW0QI+wjV6mHDnmLx9iJLnavQj2Dm2V/as1pRB41kAcss5OqCRUv
- vsa+E9Ql3fqtETTxj0Dm2a0d/0lOPyFwBSUjpFj4nC/0lZl780AN2ZNduME5J93IhDNQxMgN2iw
- KP+tIUKWX3Minm49HIIYoAS63l1KMfbAs/ACPc7fsc1nq+PSLfXS7zDT7ngEyXV14HVnoCglQZU
- I4jos7DNdMi3z6sq4BLhjJDzWWV2XwCMuot5TXXJ6DgILizHvXauAuSmWuGG0b6hSg8UYlGdzPd
- hxkK8HVAwYtVVl6TBVoLD8KB/Eu1WHAfJpdAonSQM5BOEkkcjNZRju5F8UfHhCbqQivCG8TM2Lg
- NT2GSeexFXDCqVzOJmDEsGErEKyZPg==
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=ArRTHoG_oAt2a2GmjD0A:9
+ a=QEXdDO2ut3YA:10 a=x9snwWr2DeNwDh03kgHS:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjE4MDA2NiBTYWx0ZWRfX2bIJSj9SF1Xl
+ 8cvucV63ALPIBSdQIT8IYPgw7y5Y70zglHeQvoEbZGNDMwKTAkrXmDyL/PxZtHXotsduatiTvab
+ sqIB46iLuTuAvcHsOducFNJkzlG5fbge0jb7+mfL0PWKHLsown8yLxi69PbouNmzOX10qJpMafk
+ dx3NrHCAAjbZalSU39ow0HqN1EWxpt+wZI5rez3hjg0/ZqqKNoeFo5sq7Ng0pRVXgdrtz4KSKaC
+ R735b18gHNKQDNVTbkkHQB0WPV02UdbCdcut6iiREDZX8yC4ZDGtRc6yuIu0wdX6Qy14g3FiCZo
+ Dtygg2JncE/LSV78Plfdybb1mVEStR3JkvejMO+7NzTJ6i/aYjsqrotHUy7WsDMVJ/Qdi8EmnOZ
+ CTNLiVNJRdJ3wA+0OlCxvQgB5/RtRQ==
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
  definitions=2025-12-18_01,2025-12-17_02,2025-10-01_01
@@ -153,325 +153,179 @@ X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512180066
 
-TMC instances associated with CPU clusters reside in the cluster's power
-domain. Unlike system-level TMCs, their registers are only accessible
-when the cluster is powered on. Standard runtime PM may not suffice to
-wake up a cluster from low-power states during probe, making direct
-register access unreliable.
+TMC-ETF devices associated with specific CPU clusters share the cluster's
+power domain. Accessing their registers requires the cluster to be powered
+on, which can only be guaranteed by running code on a CPU within that
+cluster.
 
-Refactor the probe sequence to handle these per-cluster devices safely:
+Refactor the enablement logic to support this requirement:
+1. Split `tmc_etf_enable_hw` and `tmc_etb_enable_hw` into local and
+   SMP-aware variants:
+   - `*_local`: Performs the actual register access.
+   - `*_smp_call`: Wrapper for `smp_call_function_single`.
+   - The main entry point now detects if the device is CPU-bound and uses
+     `smp_call_function_single` to execute the local variant on an
+     appropriate CPU if necessary.
 
-1. Identify per-cluster TMCs using the "qcom,cpu-bound-components"
-   property.
-2. For such devices, use `smp_call_function_single()` to perform
-   hardware initialization (`tmc_init_hw_config`) on a CPU within the
-   cluster. This ensures the domain is powered during access.
-3. Factor out the device registration logic into `tmc_add_coresight_dev()`.
-   This allows common registration code to be shared between the standard
-   probe path and the deferred probe path (used when the associated CPUs
-   are initially offline).
-
-This change ensures reliable initialization for per-cluster TMCs while
-maintaining backward compatibility for standard system-level TMCs.
+2. Adjust locking in `tmc_enable_etf_sink_sysfs` and `tmc_enable_etf_link`:
+   - Drop the spinlock before calling `tmc_etf_enable_hw`. This is
+     necessary because `smp_call_function_single` (used for cross-CPU
+     calls) may require interrupts enabled or might sleep/wait, which is
+     unsafe under a spinlock.
+   - Re-acquire the lock afterwards to update driver state.
 
 Signed-off-by: Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>
 ---
- drivers/hwtracing/coresight/coresight-tmc-core.c | 195 +++++++++++++++--------
- drivers/hwtracing/coresight/coresight-tmc.h      |   6 +
- 2 files changed, 132 insertions(+), 69 deletions(-)
+ drivers/hwtracing/coresight/coresight-tmc-etf.c | 87 ++++++++++++++++++++++---
+ 1 file changed, 77 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/hwtracing/coresight/coresight-tmc-core.c b/drivers/hwtracing/coresight/coresight-tmc-core.c
-index 36599c431be6203e871fdcb8de569cc6701c52bb..0e1b5956398d3cefdd938a8a8404076eb4850b44 100644
---- a/drivers/hwtracing/coresight/coresight-tmc-core.c
-+++ b/drivers/hwtracing/coresight/coresight-tmc-core.c
-@@ -21,6 +21,7 @@
- #include <linux/slab.h>
- #include <linux/dma-mapping.h>
- #include <linux/spinlock.h>
-+#include <linux/pm_domain.h>
- #include <linux/pm_runtime.h>
- #include <linux/of.h>
- #include <linux/of_address.h>
-@@ -769,56 +770,14 @@ static void register_crash_dev_interface(struct tmc_drvdata *drvdata,
- 			"Valid crash tracedata found\n");
+diff --git a/drivers/hwtracing/coresight/coresight-tmc-etf.c b/drivers/hwtracing/coresight/coresight-tmc-etf.c
+index 8882b1c4cdc05353fb2efd6a9ba862943048f0ff..11357788e9d93c53980e99e0ef78450e393f4059 100644
+--- a/drivers/hwtracing/coresight/coresight-tmc-etf.c
++++ b/drivers/hwtracing/coresight/coresight-tmc-etf.c
+@@ -47,7 +47,7 @@ static int __tmc_etb_enable_hw(struct tmc_drvdata *drvdata)
+ 	return rc;
  }
  
--static int __tmc_probe(struct device *dev, struct resource *res)
-+static int tmc_add_coresight_dev(struct device *dev)
+-static int tmc_etb_enable_hw(struct tmc_drvdata *drvdata)
++static int tmc_etb_enable_hw_local(struct tmc_drvdata *drvdata)
  {
--	int ret = 0;
--	u32 devid;
--	void __iomem *base;
--	struct coresight_platform_data *pdata = NULL;
--	struct tmc_drvdata *drvdata;
-+	struct tmc_drvdata *drvdata = dev_get_drvdata(dev);
- 	struct coresight_desc desc = { 0 };
- 	struct coresight_dev_list *dev_list = NULL;
-+	int ret = 0;
+ 	int rc = coresight_claim_device(drvdata->csdev);
  
--	drvdata = devm_kzalloc(dev, sizeof(*drvdata), GFP_KERNEL);
--	if (!drvdata)
--		return -ENOMEM;
--
--	dev_set_drvdata(dev, drvdata);
--
--	ret = coresight_get_enable_clocks(dev, &drvdata->pclk, &drvdata->atclk);
--	if (ret)
--		return ret;
--
--	ret = -ENOMEM;
--
--	/* Validity for the resource is already checked by the AMBA core */
--	base = devm_ioremap_resource(dev, res);
--	if (IS_ERR(base)) {
--		ret = PTR_ERR(base);
--		goto out;
--	}
--
--	drvdata->base = base;
--	desc.access = CSDEV_ACCESS_IOMEM(base);
--
--	raw_spin_lock_init(&drvdata->spinlock);
--
--	devid = readl_relaxed(drvdata->base + CORESIGHT_DEVID);
--	drvdata->config_type = BMVAL(devid, 6, 7);
--	drvdata->memwidth = tmc_get_memwidth(devid);
--	/* This device is not associated with a session */
--	drvdata->pid = -1;
--	drvdata->etr_mode = ETR_MODE_AUTO;
--
--	if (drvdata->config_type == TMC_CONFIG_TYPE_ETR) {
--		drvdata->size = tmc_etr_get_default_buffer_size(dev);
--		drvdata->max_burst_size = tmc_etr_get_max_burst_size(dev);
--	} else {
--		drvdata->size = readl_relaxed(drvdata->base + TMC_RSZ) * 4;
--	}
--
--	tmc_get_reserved_region(dev);
--
-+	desc.access = CSDEV_ACCESS_IOMEM(drvdata->base);
- 	desc.dev = dev;
+@@ -60,6 +60,36 @@ static int tmc_etb_enable_hw(struct tmc_drvdata *drvdata)
+ 	return rc;
+ }
  
- 	switch (drvdata->config_type) {
-@@ -834,9 +793,9 @@ static int __tmc_probe(struct device *dev, struct resource *res)
- 		desc.type = CORESIGHT_DEV_TYPE_SINK;
- 		desc.subtype.sink_subtype = CORESIGHT_DEV_SUBTYPE_SINK_SYSMEM;
- 		desc.ops = &tmc_etr_cs_ops;
--		ret = tmc_etr_setup_caps(dev, devid, &desc.access);
-+		ret = tmc_etr_setup_caps(dev, drvdata->devid, &desc.access);
- 		if (ret)
--			goto out;
-+			return ret;
- 		idr_init(&drvdata->idr);
- 		mutex_init(&drvdata->idr_mutex);
- 		dev_list = &etr_devs;
-@@ -851,44 +810,141 @@ static int __tmc_probe(struct device *dev, struct resource *res)
- 		break;
- 	default:
- 		pr_err("%s: Unsupported TMC config\n", desc.name);
--		ret = -EINVAL;
--		goto out;
-+		return -EINVAL;
- 	}
- 
- 	desc.name = coresight_alloc_device_name(dev_list, dev);
--	if (!desc.name) {
--		ret = -ENOMEM;
-+	if (!desc.name)
-+		return -ENOMEM;
++struct tmc_smp_arg {
++	struct tmc_drvdata *drvdata;
++	int rc;
++};
 +
-+	drvdata->desc_name = desc.name;
++static void tmc_etb_enable_hw_smp_call(void *info)
++{
++	struct tmc_smp_arg *arg = info;
 +
-+	desc.pdata = dev->platform_data;
++	arg->rc = tmc_etb_enable_hw_local(arg->drvdata);
++}
 +
-+	drvdata->csdev = coresight_register(&desc);
-+	if (IS_ERR(drvdata->csdev))
-+		return PTR_ERR(drvdata->csdev);
++static int tmc_etb_enable_hw(struct tmc_drvdata *drvdata)
++{
++	int cpu, ret;
++	struct tmc_smp_arg arg = { 0 };
 +
-+	drvdata->miscdev.name = desc.name;
-+	drvdata->miscdev.minor = MISC_DYNAMIC_MINOR;
-+	drvdata->miscdev.fops = &tmc_fops;
-+	ret = misc_register(&drvdata->miscdev);
-+	if (ret)
-+		coresight_unregister(drvdata->csdev);
++	if (!drvdata->supported_cpus)
++		return tmc_etb_enable_hw_local(drvdata);
 +
++	arg.drvdata = drvdata;
++	for_each_cpu(cpu, drvdata->supported_cpus) {
++		ret = smp_call_function_single(cpu,
++					       tmc_etb_enable_hw_smp_call, &arg, 1);
++		if (!ret)
++			return arg.rc;
++	}
 +	return ret;
 +}
 +
-+static void tmc_clear_self_claim_tag(struct tmc_drvdata *drvdata)
+ static void tmc_etb_dump_hw(struct tmc_drvdata *drvdata)
+ {
+ 	char *bufp;
+@@ -130,7 +160,7 @@ static int __tmc_etf_enable_hw(struct tmc_drvdata *drvdata)
+ 	return rc;
+ }
+ 
+-static int tmc_etf_enable_hw(struct tmc_drvdata *drvdata)
++static int tmc_etf_enable_hw_local(struct tmc_drvdata *drvdata)
+ {
+ 	int rc = coresight_claim_device(drvdata->csdev);
+ 
+@@ -143,6 +173,32 @@ static int tmc_etf_enable_hw(struct tmc_drvdata *drvdata)
+ 	return rc;
+ }
+ 
++static void tmc_etf_enable_hw_smp_call(void *info)
 +{
-+	struct csdev_access access = CSDEV_ACCESS_IOMEM(drvdata->base);
++	struct tmc_smp_arg *arg = info;
 +
-+	coresight_clear_self_claim_tag(&access);
++	arg->rc = tmc_etf_enable_hw_local(arg->drvdata);
 +}
 +
-+static void tmc_init_hw_config(struct tmc_drvdata *drvdata)
++static int tmc_etf_enable_hw(struct tmc_drvdata *drvdata)
 +{
-+	u32 devid;
++	int cpu, ret;
++	struct tmc_smp_arg arg = { 0 };
 +
-+	devid = readl_relaxed(drvdata->base + CORESIGHT_DEVID);
-+	drvdata->config_type = BMVAL(devid, 6, 7);
-+	drvdata->memwidth = tmc_get_memwidth(devid);
-+	drvdata->devid = devid;
-+	drvdata->size = readl_relaxed(drvdata->base + TMC_RSZ) * 4;
-+	tmc_clear_self_claim_tag(drvdata);
++	if (!drvdata->supported_cpus)
++		return tmc_etf_enable_hw_local(drvdata);
++
++	arg.drvdata = drvdata;
++
++	for_each_cpu(cpu, drvdata->supported_cpus) {
++		ret = smp_call_function_single(cpu,
++					       tmc_etf_enable_hw_smp_call, &arg, 1);
++		if (!ret)
++			return arg.rc;
++	}
++	return ret;
 +}
 +
-+static void tmc_init_on_cpu(void *info)
-+{
-+	struct tmc_drvdata *drvdata = info;
+ static void tmc_etf_disable_hw(struct tmc_drvdata *drvdata)
+ {
+ 	struct coresight_device *csdev = drvdata->csdev;
+@@ -228,7 +284,11 @@ static int tmc_enable_etf_sink_sysfs(struct coresight_device *csdev)
+ 		used = true;
+ 		drvdata->buf = buf;
+ 	}
++	raw_spin_unlock_irqrestore(&drvdata->spinlock, flags);
 +
-+	tmc_init_hw_config(drvdata);
-+}
+ 	ret = tmc_etb_enable_hw(drvdata);
 +
-+static struct cpumask *tmc_get_supported_cpus(struct device *dev)
-+{
-+	struct generic_pm_domain *pd;
++	raw_spin_lock_irqsave(&drvdata->spinlock, flags);
+ 	if (!ret) {
+ 		coresight_set_mode(csdev, CS_MODE_SYSFS);
+ 		csdev->refcnt++;
+@@ -291,7 +351,11 @@ static int tmc_enable_etf_sink_perf(struct coresight_device *csdev,
+ 			break;
+ 		}
+ 
+-		ret  = tmc_etb_enable_hw(drvdata);
++		if (drvdata->supported_cpus &&
++		    !cpumask_test_cpu(smp_processor_id(), drvdata->supported_cpus))
++			break;
 +
-+	pd = pd_to_genpd(dev->pm_domain);
-+	if (pd)
-+		return pd->cpus;
-+
-+	return NULL;
-+}
-+
-+static int __tmc_probe(struct device *dev, struct resource *res)
-+{
-+	int cpu, ret = 0;
-+	void __iomem *base;
-+	struct coresight_platform_data *pdata = NULL;
-+	struct tmc_drvdata *drvdata;
-+
-+	drvdata = devm_kzalloc(dev, sizeof(*drvdata), GFP_KERNEL);
-+	if (!drvdata)
-+		return -ENOMEM;
-+
-+	dev_set_drvdata(dev, drvdata);
-+
-+	ret = coresight_get_enable_clocks(dev, &drvdata->pclk, &drvdata->atclk);
-+	if (ret)
-+		return ret;
-+
-+	ret = -ENOMEM;
-+
-+	/* Validity for the resource is already checked by the AMBA core */
-+	base = devm_ioremap_resource(dev, res);
-+	if (IS_ERR(base)) {
-+		ret = PTR_ERR(base);
- 		goto out;
++		ret  = tmc_etb_enable_hw_local(drvdata);
+ 		if (!ret) {
+ 			/* Associate with monitored process. */
+ 			drvdata->pid = pid;
+@@ -376,19 +440,22 @@ static int tmc_enable_etf_link(struct coresight_device *csdev,
+ 		return -EBUSY;
  	}
  
-+	drvdata->base = base;
+-	if (csdev->refcnt == 0) {
++	if (csdev->refcnt == 0)
++		first_enable = true;
 +
-+	raw_spin_lock_init(&drvdata->spinlock);
-+	/* This device is not associated with a session */
-+	drvdata->pid = -1;
-+	drvdata->etr_mode = ETR_MODE_AUTO;
-+	tmc_get_reserved_region(dev);
++	if (!first_enable)
++		csdev->refcnt++;
 +
- 	pdata = coresight_get_platform_data(dev);
- 	if (IS_ERR(pdata)) {
- 		ret = PTR_ERR(pdata);
- 		goto out;
++	raw_spin_unlock_irqrestore(&drvdata->spinlock, flags);
++	if (first_enable) {
+ 		ret = tmc_etf_enable_hw(drvdata);
+ 		if (!ret) {
+ 			coresight_set_mode(csdev, CS_MODE_SYSFS);
+-			first_enable = true;
++			csdev->refcnt++;
++			dev_dbg(&csdev->dev, "TMC-ETF enabled\n");
+ 		}
  	}
- 	dev->platform_data = pdata;
--	desc.pdata = pdata;
+-	if (!ret)
+-		csdev->refcnt++;
+-	raw_spin_unlock_irqrestore(&drvdata->spinlock, flags);
  
--	coresight_clear_self_claim_tag(&desc.access);
--	drvdata->csdev = coresight_register(&desc);
--	if (IS_ERR(drvdata->csdev)) {
--		ret = PTR_ERR(drvdata->csdev);
--		goto out;
-+	if (fwnode_property_present(dev_fwnode(dev), "qcom,cpu-bound-components")) {
-+		drvdata->supported_cpus = tmc_get_supported_cpus(dev);
-+		if (!drvdata->supported_cpus)
-+			return -EINVAL;
-+
-+		cpus_read_lock();
-+		for_each_cpu(cpu, drvdata->supported_cpus) {
-+			ret = smp_call_function_single(cpu,
-+						       tmc_init_on_cpu, drvdata, 1);
-+			if (!ret)
-+				break;
-+		}
-+		cpus_read_unlock();
-+		if (ret) {
-+			ret = 0;
-+			goto out;
-+		}
-+	} else {
-+		tmc_init_hw_config(drvdata);
- 	}
- 
--	drvdata->miscdev.name = desc.name;
--	drvdata->miscdev.minor = MISC_DYNAMIC_MINOR;
--	drvdata->miscdev.fops = &tmc_fops;
--	ret = misc_register(&drvdata->miscdev);
--	if (ret) {
--		coresight_unregister(drvdata->csdev);
--		goto out;
-+	if (drvdata->config_type == TMC_CONFIG_TYPE_ETR) {
-+		drvdata->size = tmc_etr_get_default_buffer_size(dev);
-+		drvdata->max_burst_size = tmc_etr_get_max_burst_size(dev);
- 	}
- 
-+	ret = tmc_add_coresight_dev(dev);
-+
- out:
- 	if (is_tmc_crashdata_valid(drvdata) &&
- 	    !tmc_prepare_crashdata(drvdata))
--		register_crash_dev_interface(drvdata, desc.name);
-+		register_crash_dev_interface(drvdata, drvdata->desc_name);
+-	if (first_enable)
+-		dev_dbg(&csdev->dev, "TMC-ETF enabled\n");
  	return ret;
  }
  
-@@ -934,10 +990,12 @@ static void __tmc_remove(struct device *dev)
- 	 * etb fops in this case, device is there until last file
- 	 * handler to this device is closed.
- 	 */
--	misc_deregister(&drvdata->miscdev);
-+	if (!drvdata->supported_cpus)
-+		misc_deregister(&drvdata->miscdev);
- 	if (drvdata->crashdev.fops)
- 		misc_deregister(&drvdata->crashdev);
--	coresight_unregister(drvdata->csdev);
-+	if (drvdata->csdev)
-+		coresight_unregister(drvdata->csdev);
- }
- 
- static void tmc_remove(struct amba_device *adev)
-@@ -992,7 +1050,6 @@ static void tmc_platform_remove(struct platform_device *pdev)
- 
- 	if (WARN_ON(!drvdata))
- 		return;
--
- 	__tmc_remove(&pdev->dev);
- 	pm_runtime_disable(&pdev->dev);
- }
-diff --git a/drivers/hwtracing/coresight/coresight-tmc.h b/drivers/hwtracing/coresight/coresight-tmc.h
-index 95473d1310323425b7d136cbd46f118faa7256be..b104b7bf82d2a7a99382636e41d3718cf258d820 100644
---- a/drivers/hwtracing/coresight/coresight-tmc.h
-+++ b/drivers/hwtracing/coresight/coresight-tmc.h
-@@ -243,6 +243,9 @@ struct tmc_resrv_buf {
-  *		(after crash) by default.
-  * @crash_mdata: Reserved memory for storing tmc crash metadata.
-  *		 Used by ETR/ETF.
-+ * @supported_cpus:	Represent the CPUs related to this TMC.
-+ * @devid:	TMC variant ID inferred from the device configuration register.
-+ * @desc_name:	Name to be used while creating crash interface.
-  */
- struct tmc_drvdata {
- 	struct clk		*atclk;
-@@ -273,6 +276,9 @@ struct tmc_drvdata {
- 	struct etr_buf		*perf_buf;
- 	struct tmc_resrv_buf	resrv_buf;
- 	struct tmc_resrv_buf	crash_mdata;
-+	struct cpumask		*supported_cpus;
-+	u32			devid;
-+	const char		*desc_name;
- };
- 
- struct etr_buf_operations {
 
 -- 
 2.34.1
