@@ -1,127 +1,158 @@
-Return-Path: <devicetree+bounces-247758-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247759-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2687DCCB416
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 10:50:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E059CCB43D
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 10:52:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 12CE230057C7
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 09:47:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E0EB030954AE
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 09:49:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C6FD19CC28;
-	Thu, 18 Dec 2025 09:47:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AECE32ABC3;
+	Thu, 18 Dec 2025 09:49:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="iudcplOS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i+zreEJo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail1.manjaro.org (mail1.manjaro.org [142.132.176.110])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FF222E8E16;
-	Thu, 18 Dec 2025 09:47:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=142.132.176.110
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 638682C21DD;
+	Thu, 18 Dec 2025 09:49:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766051245; cv=none; b=B40iEjp8HhKkad7GLQ8YtR2Ikj0jtKMgJcse5UPDdqyePJM/UmzVWnYLd4P7W3DB/k5YJYFL1EUAIOdAMcfHHeoNCBO/AABxITzm60TA26+s3Q+kVHq8d2GdyvOpxXc8x7Z8K8Hbvk2urSk0S7/zithiRe3M0IodCD2Qn8ogvN0=
+	t=1766051373; cv=none; b=Lfg9XJ9gdgHcL2zzyFL/i9Osrx4zuBTwbenatTjfSpVfg0FneHoUmrEWin4KcKS6/hrbOBT2mrgPX09+05vMpFmGAR7k6BZgAVqUOVAdy1UMvdCXVZDHqhJm8I3sr05QM7BaSh17ct70W5PAhT1OHfXQ/bnkpg9BZkffhiAdIKA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766051245; c=relaxed/simple;
-	bh=YvH8cV9KWu9fc7lto/DT0l1LISJx70vkPllw2lmgz6k=;
-	h=From:In-Reply-To:Content-Type:References:Date:Cc:To:MIME-Version:
-	 Message-ID:Subject; b=aiuwD0H1GbZhE6GNFEX8C2xZmNbCBvUqZlNqkxjwBjmJuv/YFJ5DYkpKGLfiY/T7oETJ1Fap5AWHeISIh1+vvfktkGqWAJuMqrVPEW1oAkHnYyZuT+DIXVLOpn5I+g8e1L1G3opXdL3VCxQQ/EMSB2VQ9iscneXhUqkkVBcFdPA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=iudcplOS; arc=none smtp.client-ip=142.132.176.110
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPA id 5F6C441852;
-	Thu, 18 Dec 2025 10:47:06 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=dkim;
-	t=1766051230; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=1UqjWK7oBLcZrh20BDC54sz2OeZlyVX9cKtnx5NbnNE=;
-	b=iudcplOSX3AtnLLvOh3Jnas+BrNMsdrg50pEojgEtg7XMX9/Olz7HsTSiuBwem+B3/CFsB
-	Ci4d3PX2umna6Un0JpVwclWwNGuzUyqDveFPX+GOVmqlv5WBebcjn0gI3NtBqtc4lswvCK
-	N7pYjQbcyYnsWY8Udj4/eQxW5ubp9X5eEhxH9iXagp6NHQFVqRvV32ELPkeoMGDIz0HSVq
-	1tl01uBJHxKTuHykI8k3E4izLUNdPkRzQEgS7RgLuBdJvnH10cuL9kCRBPe4kvdzFfDVDI
-	MtnjnNUqZoWw0o1MUo7gj2c7aKN9GgBH2RoQdKYB/Ku6kSK183dfzjRHjLpHLw==
-From: "Dragan Simic" <dsimic@manjaro.org>
-In-Reply-To: <qncj72c3owrw7rvnj6jit2sbn4ojyr3kztcjailfxtdboan6sy@ddh5g7v4fcvt>
-Content-Type: text/plain; charset="utf-8"
-References: <cover.1763415705.git.geraldogabriel@gmail.com>
- <eaa9c75ca02a53f8bcc293b8bc73d013e26ec253.1763415706.git.geraldogabriel@gmail.com> <qncj72c3owrw7rvnj6jit2sbn4ojyr3kztcjailfxtdboan6sy@ddh5g7v4fcvt>
-Date: Thu, 18 Dec 2025 10:47:06 +0100
-Cc: "Geraldo Nascimento" <geraldogabriel@gmail.com>, "Shawn Lin" <shawn.lin@rock-chips.com>, "Lorenzo Pieralisi" <lpieralisi@kernel.org>, =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, "Rob Herring" <robh@kernel.org>, "Bjorn Helgaas" <bhelgaas@google.com>, "Heiko Stuebner" <heiko@sntech.de>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Johan Jonker" <jbx6244@gmail.com>, linux-rockchip@lists.infradead.org, linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-To: "Manivannan Sadhasivam" <mani@kernel.org>
+	s=arc-20240116; t=1766051373; c=relaxed/simple;
+	bh=jpct4wgiQvvz63Cwe2t0WKmpu8qE8JWTj+D4fEqN3KU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=lZGq+AacwAn/X64H5NUy05grkPr+3YVQEU0cgS/mgw+VLgYwSMsxaZZF+Zucze20MeZbpJkG0d6FDzJQRpQAtF6gp9FGslx6GAuPWqz+Wi1LK55Nx0Nzpn8BzPJu38H4Ug+5rP7JKPAfNRsbGn/zx+o7yqEfn18dWlSMfebGywo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i+zreEJo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76F25C4CEFB;
+	Thu, 18 Dec 2025 09:49:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1766051372;
+	bh=jpct4wgiQvvz63Cwe2t0WKmpu8qE8JWTj+D4fEqN3KU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=i+zreEJolTQBByW8JlPjfJ3Z1VMPes2Pd7PeJAb/lYS9S+kjePXS6fxK/1oiCfHLA
+	 SApDHO3FssA1sTS4F0w9Fy38cvl6WxkWVC0byQPuPQVMzC/aSU38p7T3YrTzKe/lEq
+	 +t3yiGig3MducPpc0NbGREP5v9YB9iZndsqe1W4uJCR6ayBC+wFjG6VFCOs/Ruqnwr
+	 /aqNqVbKxX2atQFftfDEC4z1dyMeo2hNdSyY1J2kx4C/dxYP0m2u9xYNOYoJOhOi8v
+	 V67YJYBgk8qBspVZuXfk+ga0SVCqlyGMbpJhXfGQGXvZ8Lw12uC/zGimGfkUK+YzIy
+	 Z5I+jzlJ5xCgg==
+Message-ID: <cbea0364-b8e3-4e3b-852f-b16436b60de1@kernel.org>
+Date: Thu, 18 Dec 2025 10:49:26 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <3ea8ac20-6332-0c0c-645b-36ca4231c109@manjaro.org>
-Subject: =?utf-8?q?Re=3A?= [PATCH v2 1/4] =?utf-8?q?PCI=3A?==?utf-8?q?_rockchip=3A?= 
- limit RK3399 to =?utf-8?q?2=2E5?= GT/s to prevent damage
-User-Agent: SOGoMail 5.12.3
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: None
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 08/22] mm: Allow page table accessors to be
+ non-idempotent
+To: Ryan Roberts <ryan.roberts@arm.com>,
+ Samuel Holland <samuel.holland@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <pjw@kernel.org>,
+ linux-riscv@lists.infradead.org, Andrew Morton <akpm@linux-foundation.org>,
+ linux-mm@kvack.org
+Cc: devicetree@vger.kernel.org, Suren Baghdasaryan <surenb@google.com>,
+ linux-kernel@vger.kernel.org, Mike Rapoport <rppt@kernel.org>,
+ Michal Hocko <mhocko@suse.com>, Conor Dooley <conor@kernel.org>,
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Alexandre Ghiti <alex@ghiti.fr>,
+ Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh+dt@kernel.org>,
+ Vlastimil Babka <vbabka@suse.cz>, "Liam R . Howlett"
+ <Liam.Howlett@oracle.com>
+References: <20251113014656.2605447-1-samuel.holland@sifive.com>
+ <20251113014656.2605447-9-samuel.holland@sifive.com>
+ <fbfef7fc-4030-462b-b514-498eea6620aa@arm.com>
+ <c2597d43-d909-4259-bb5b-9294e4069385@kernel.org>
+ <af8fd275-a34d-4b2f-8834-9c85dab2bbae@sifive.com>
+ <a063f6c5-2785-4a9f-8079-25edb3e54cef@arm.com>
+From: "David Hildenbrand (Red Hat)" <david@kernel.org>
+Content-Language: en-US
+In-Reply-To: <a063f6c5-2785-4a9f-8079-25edb3e54cef@arm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Heello Manivannan and Geraldo,
+On 12/11/25 14:59, Ryan Roberts wrote:
+> On 11/12/2025 00:33, Samuel Holland wrote:
+>> On 2025-11-28 2:47 AM, David Hildenbrand (Red Hat) wrote:
+>>> On 11/27/25 17:57, Ryan Roberts wrote:
+>>>> On 13/11/2025 01:45, Samuel Holland wrote:
+>>>>> Currently, some functions such as pte_offset_map() are passed both
+>>>>> pointers to hardware page tables, and pointers to previously-read PMD
+>>>>> entries on the stack. To ensure correctness in the first case, these
+>>>>> functions must use the page table accessor function (pmdp_get()) to
+>>>>> dereference the supplied pointer. However, this means pmdp_get() is
+>>>>> called twice in the second case. This double call must be avoided if
+>>>>> pmdp_get() applies some non-idempotent transformation to the value.
+>>>>>
+>>>>> Avoid the double transformation by calling set_pmd() on the stack
+>>>>> variables where necessary to keep set_pmd()/pmdp_get() calls balanced.
+>>>>
+>>>> I don't think this is a good solution.
+>>>
+>>> Agreed,
+>>>
+>>>      set_pmd(&pmd, pmd);
+>>>
+>>> is rather horrible.
+>> I agree that this patch is ugly. The only way I see to avoid code like this is
+>> to refactor (or duplicate) the functions so no function takes pointers to both
+>> hardware page tables and on-stack page table entries. Is that sort of
+>> refactoring the right direction to go for v4?
+> 
+>  From a quick look at the code, I think that some cases are solvable by
+> refactoring to pass the value instead of the pointer, and leave it to the higher
+> level decide how to read the value from the pointer - it knows if it is pointing
+> to HW pgtable or if it's a (e.g) stack value.
+> 
+> But the more I look at the code, the more instances I find where pointers to
+> stack variables are being passed to arch pgtable helpers as if they are HW
+> pgtable entry pointers. (Mainly pmd level).
+> 
+> I wonder if we need to bite the bullet and explicitly separate the types? At
+> each level, we have:
+> 
+>   1. page table entry value
+>   2. pointer to page table entry _value_ (e.g. pointer to pXX_t on stack)
+>   3. pointer to page table entry in HW pgtable
+> 
+> Today, 1 is represented by pte_t, pmd_t, etc. 2 and 3 are represented by the
+> same type; pte_t*, pmd_t*, etc.
+> 
+> If we create a new type for 3, it will both document and enforce when type 2 or
+> type 3 is required.
+> 
+> e.g:
+> 
+> // pte_t: defined by arch.
+> typedef unsigned long pte_t;
+> 
+> // ptep_t: new opaque type that can't be dereferenced.
+> struct __ptep_t;
+> typedef struct __ptep_t *ptep_t;
 
-On Thursday, December 18, 2025 09:05 CET, Manivannan Sadhasivam <mani@k=
-ernel.org> wrote:
-> On Mon, Nov 17, 2025 at 06:47:05PM -0300, Geraldo Nascimento wrote:
-> > Shawn Lin from Rockchip has reiterated that there may be danger in =
-using
-> > their PCIe with 5.0 GT/s speeds. Warn the user if they make a DT ch=
-ange
-> > from the default and drive at 2.5 GT/s only, even if the DT
-> > max-link-speed property is invalid or inexistent.
-> >=20
-> > This change is corroborated by RK3399 official datasheet [1], which
-> > says maximum link speed for this platform is 2.5 GT/s.
-> >=20
-> > [1] https://opensource.rock-chips.com/images/d/d7/Rockchip=5FRK3399=
-=5FDatasheet=5FV2.1-20200323.pdf
-> >=20
-> > Fixes: 956cd99b35a8 ("PCI: rockchip: Separate common code from RC d=
-river")
-> > Link: https://lore.kernel.org/all/ffd05070-9879-4468-94e3-b88968b4c=
-21b@rock-chips.com/
-> > Cc: stable@vger.kernel.org
-> > Reported-by: Dragan Simic <dsimic@manjaro.org>
-> > Reported-by: Shawn Lin <shawn.lin@rock-chips.com>
-> > Reviewed-by: Dragan Simic <dsimic@manjaro.org>
-> > Signed-off-by: Geraldo Nascimento <geraldogabriel@gmail.com>
-> > ---
-> >  drivers/pci/controller/pcie-rockchip.c | 10 ++++++++--
-> >  1 file changed, 8 insertions(+), 2 deletions(-)
-> >=20
-> > diff --git a/drivers/pci/controller/pcie-rockchip.c b/drivers/pci/c=
-ontroller/pcie-rockchip.c
-> > index 0f88da378805..992ccf4b139e 100644
-> > --- a/drivers/pci/controller/pcie-rockchip.c
-> > +++ b/drivers/pci/controller/pcie-rockchip.c
-> > @@ -66,8 +66,14 @@ int rockchip=5Fpcie=5Fparse=5Fdt(struct rockchip=
-=5Fpcie *rockchip)
-> >  	}
-> > =20
-> >  	rockchip->link=5Fgen =3D of=5Fpci=5Fget=5Fmax=5Flink=5Fspeed(node=
-);
-> > -	if (rockchip->link=5Fgen < 0 || rockchip->link=5Fgen > 2)
-> > -		rockchip->link=5Fgen =3D 2;
-> > +	if (rockchip->link=5Fgen < 0 || rockchip->link=5Fgen > 2) {
-> > +		rockchip->link=5Fgen =3D 1;
-> > +		dev=5Fwarn(dev, "invalid max-link-speed, set to 2.5 GT/s\n");
-> > +	}
-> > +	else if (rockchip->link=5Fgen =3D=3D 2) {
-> > +		rockchip->link=5Fgen =3D 1;
-> > +		dev=5Fwarn(dev, "5.0 GT/s is dangerous, set to 2.5 GT/s\n");
->=20
-> What does 'danger' really mean here? Link instability or something el=
-se?
-> Error messages should be precise and not fearmongering.
+This is what I had in mind when we last discussed this topic and I 
+suggested a way forward to not play whack-a-mole with new users that do 
+*ptep showing up.
 
-I agree that the original wording is a bit suboptimal, and I'd suggest
-to Geraldo that the produced warning message is changed to
+Agreed that we ideally indicate that this is a HW PTE pointer that must 
+be de-referenced through ptep_get() or similar. (maybe we'd find a new 
+name for this set of functions).
 
-  "5.0 GT/s may cause data corruption, limited to to 2.5 GT/s\n"
+I talked to Samuel at LPC, pointing him at the way XEN-pv implemented 
+support for changing PFNs in ptes. We might not need all of that rework 
+to move forward with the risc-v change.
 
-or something similar, to better reflect the actual underlying issue.
+Having that said, I also agree that this would be a cleanup worth having 
+(which will result in quite a bit of churn :) ).
 
+So if someone wants to bump up the patch count, speak now.
+
+-- 
+Cheers
+
+David
 
