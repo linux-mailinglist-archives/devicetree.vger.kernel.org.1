@@ -1,166 +1,121 @@
-Return-Path: <devicetree+bounces-247852-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247853-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0F56CCC1F7
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 14:55:28 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id B12E0CCC2A6
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 15:05:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 94FFF3005FEC
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 13:53:18 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 8577F30133E8
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 14:05:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 994C23451C6;
-	Thu, 18 Dec 2025 13:53:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC13534B42F;
+	Thu, 18 Dec 2025 14:05:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="h/qIxMC2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com [209.85.160.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68A0D3451BB
-	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 13:53:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D7FC34BA21
+	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 14:05:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766065996; cv=none; b=WyXEy96L0h5WFHcdoTziXcTK1H7227OmbR0gCIV/2ZCEHtybw3vGFt/IjFtBq0kG5gTHNwny7RuvwbpBLEJ3DQWkUz+X9wCOWaRTe3xUQwgyrmd90ySOJedgLx+ymYfLX+eUjkJ9z0r8c04kHiXv9V/EYr2gHTwE/GhOVXw4hhA=
+	t=1766066754; cv=none; b=DJnHYlQZIVJEGY7EPO6KGbqg48xBRGTLaSWzByITp9NBhq0DXKenYN+Ox+8y2DGh950nS2c7tabJG/MkSow0CR9oiOsvLA0io4qzJOgAH0Bmlhh8UbTTprTlO+nBq6m56cV7i1I+SpciYzQrWEZgUOhtNggqI+oS3cSueChG5gc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766065996; c=relaxed/simple;
-	bh=k1wtDYSaiiLWFrRrGcwn90MyWbfJ68/tBsZWk8VszJ0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UkThx2v1WZHf6SbyG1+l+I8BhXoLlcoPDQK1iVfUXYnmqDfUzI7NddDu+cse7ML0HVSV0QzVzvruAe+y5SKCHKzp79/CYlq1OKFG2SL0sT1J7xyHCDUqmluJzdQmHKOlYgWODTVC9S1v+qOmEwoLZMxjHRQjruupDG/2EtglAX4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <a.fatoum@pengutronix.de>)
-	id 1vWERE-0008Rc-F2; Thu, 18 Dec 2025 14:53:04 +0100
-Message-ID: <5925c749-1288-4d61-b17f-ac2e1c6c463d@pengutronix.de>
-Date: Thu, 18 Dec 2025 14:53:02 +0100
+	s=arc-20240116; t=1766066754; c=relaxed/simple;
+	bh=oe8k3SKrzfjiRl4HNxM0G0cKAJDNwwM7iKwrLxI73QI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Yg6DTtXFTC+sAALOUGPJYWmdIqYjMmsPU6EUPiQinAfUFuFZ19DW70TMKlHrfZPqXWEKncbLQgPYB+M14dVkGwjqucpove440A2UMbsfh63P0XZvZEhMNWRfuof2y3A0Uw/8a+fnfspTe/+5nPgwOieo4fXUOpYd/gA3Tufhn4I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=h/qIxMC2; arc=none smtp.client-ip=209.85.160.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qt1-f172.google.com with SMTP id d75a77b69052e-4edb6e678ddso8829581cf.2
+        for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 06:05:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1766066752; x=1766671552; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ltmK9xpXSaIRz3pvhRTJSdN7AZMXyRyfcfKgFOhGZkg=;
+        b=h/qIxMC24f1X9+jjvOeTgQuM2vV3SnzNTjEFUJlphDXU4wU4JRzSrPgaT91oEN/LsT
+         JjYSDELUUWp7EDY2XqgSzVMzu/symHpmNdt+vQFi5h8RhVrS/dBNWYz6cQSAw81qflDS
+         EDKzoXx72RNj6DwPiD3L5P27oUoA1ShkblCnFikcinattQLNdHeyWmlD/HgR4BY4M+nD
+         sSrM3PHX1LgPGbwPvwc0ofI6JS0lPOUV3qoOkM8/Bt+VJy9jRuihiv9i1SJah0HtZwwf
+         CR8RgeUdza7QStlRCgn0LspfoaQG756fxolpf6GxSeK4IhDLdGixKiVspP232ul0exgX
+         s+uQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1766066752; x=1766671552;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=ltmK9xpXSaIRz3pvhRTJSdN7AZMXyRyfcfKgFOhGZkg=;
+        b=WQNOmv4IY8BnGf0s6UBl59ZEiGqtFkVJsbySqNpQpiHfZ/eV/yqLQ5lfioQde3YwTJ
+         QQhfTAtXp7fIeiv1GOoIYbn1pptvWDaXPmCBm30KHdvPLted1vM3rqUNgR9aY7GrRi8F
+         YbeOpqhVR/PHyLH7tv7qmMOslSj8hha1AnwWoO8Y7SIDq9IbPnosdvN3FY3fcZj2wea1
+         rMRldg6eTzT6O7d/uGMwN5ACkGFrWtPS46EpZVxR0xxfHsZQRQ8VTn/JFflaJ92ZOBGZ
+         aT7gJkd8xbzoQCVirLmqUGM22Zp/aSe6sGMRZGOnZdvj77e9x0Lernitm+dtcS3MulW9
+         Fzfg==
+X-Gm-Message-State: AOJu0Yzqn3JV8910La7bRMj1pkcfUoVSFTUT3Q4D+iPwE2CAqLTN6Yzm
+	bo4daW5/zqnTYdhOY/abnZKDKpztxC6XOLfnqOlw4WgIjzm5QbeJx00siZofChqCV/fUulit66j
+	bCaKZvN5kOj9t2FRsIJ2dNOxhot0bZ5A=
+X-Gm-Gg: AY/fxX5gBpkd2x8z2hIJR9ea/leT3ksNHBJlqENJfRozZ6mPjkR0bjJywWkl2voewGT
+	17XqbmP0vXJl6Y1i5R0+00USmX5H7rOfxlAhv2J6g8BCQ3uwObCeG/QN6KnS3wMdIFSAcH+yIwC
+	rgmrSQ9YExM9uhOIC0rcaF0dCZuZSLhL6ASfzrmctRoPEsaczv3pushvj3nNVhbHSzkccPowpWz
+	VXKOpdPY/MpySG3lvlZpQLANhiyG4fAVKrnqcb8w2usXizM2DhuT8+GIE4zcr+eWvLZ8hVNt+jH
+	JM05kI9OMH/KeUuIUYRCS4F17s4=
+X-Google-Smtp-Source: AGHT+IEHaG4sTwzH22c/ZckVsDWqoLw43GJHfQ60VdybglqFIrU9y64fZ28TTU627IQMx5MWOzC0Peqta/5kUNVhrBM=
+X-Received: by 2002:a05:622a:24e:b0:4f3:565b:c52c with SMTP id
+ d75a77b69052e-4f4a68998f7mr11781131cf.39.1766066751883; Thu, 18 Dec 2025
+ 06:05:51 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 0/2] Add devicetree for NXP i.MX93 FRDM board
-To: Fabian Pflug <f.pflug@pengutronix.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, Lei Xu <lei.xu@nxp.com>,
- linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>,
- Haidong Zheng <haidong.zheng@nxp.com>, Daniel Baluta
- <daniel.baluta@nxp.com>, Danwei Luo <danwei.luo@nxp.com>,
- linux-arm-kernel@lists.infradead.org
-References: <20251218-fpg-nxp-imx93-frdm-v4-0-cd3a9f6ac89a@pengutronix.de>
- <9a96f664-00ba-4589-b3b8-a04355c0ad0b@pengutronix.de>
- <e15437918fc2e162eec92985e8f11f8e0de91246.camel@pengutronix.de>
-From: Ahmad Fatoum <a.fatoum@pengutronix.de>
-Content-Language: en-US, de-DE, de-BE
-In-Reply-To: <e15437918fc2e162eec92985e8f11f8e0de91246.camel@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20251201-nanopi-m5-ufs-v2-1-ece9c0ee17c4@gmail.com>
+In-Reply-To: <20251201-nanopi-m5-ufs-v2-1-ece9c0ee17c4@gmail.com>
+From: Alexey Charkov <alchark@gmail.com>
+Date: Thu, 18 Dec 2025 18:05:39 +0400
+X-Gm-Features: AQt7F2qXR-Ldb2gzOSYhMd9ao4yiFrifIbHOf6R3C3iyK7IWZa4Dc1eeoJgW3oo
+Message-ID: <CABjd4Ywc-L0jvXwk253MDZwgN3srY6WQ5EhoKZ6wb+Hae376_A@mail.gmail.com>
+Subject: Re: [PATCH v2] arm64: dts: rockchip: enable UFS controller on
+ FriendlyElec NanoPi M5
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Hi Heiko,
 
-On 12/18/25 2:11 PM, Fabian Pflug wrote:
-> Hello Ahmad,
-> 
-> On Thu, 2025-12-18 at 13:52 +0100, Ahmad Fatoum wrote:
->> Hello Fabian,
->>
->> On 12/18/25 12:39 PM, Fabian Pflug wrote:
->>> Signed-off-by: Fabian Pflug <f.pflug@pengutronix.de>
->>> ---
->>> Changes in v4:
->>> - remove it6263 block in i2c1, since it is not finished
->>> - remove usdhc3 pwrsequence, since WLAN is not tested on my board
->>> - remove eee-broken-1000t on phy2, since it is not broken
->>> - update min/max-microvlt on buck converters
->>
->> I know you changed this due to reviewer feedback, but it was wrong
->> advice. The Linux driver already has information about the minimum and
->> maximum range support for the PMIC, what you need to write here is the
->> actual board-level constraints.
-> 
-> Yeah, I know, that why I only updated the other two rails and changed to minimum for CPU 0.64 to 0.61V for core.
-> And 1.06 to 1.14V for DRAM, as it is the settings allowed by the CPU.
-> 
-> VCC3.3 and VCC1.8 were not changed, due to them being connected to multiple devices and I did not want to make them
-> flexible, as it would be a hassle in the drivers.
+On Mon, Dec 1, 2025 at 3:35=E2=80=AFPM Alexey Charkov <alchark@gmail.com> w=
+rote:
+>
+> The NanoPi M5 board supports pluggable UFS modules using the UFSHC
+> inside its Rockchip RK3576 SoC.
+>
+> Enable the respective devicetree node and add its supply regulators.
+>
+> Link: https://wiki.friendlyelec.com/wiki/images/9/97/NanoPi_M5_LP5_2411_S=
+CH.pdf
+> Signed-off-by: Alexey Charkov <alchark@gmail.com>
+> ---
+> Changes in v2:
+> - Describe UFS supply regulators
+> - Add link to schematic
+> - Link to v1: https://lore.kernel.org/r/20251127-nanopi-m5-ufs-v1-1-0d28d=
+157712c@gmail.com
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3576-nanopi-m5.dts | 27 +++++++++++++++++=
+++++++
+>  1 file changed, 27 insertions(+)
 
-Ah, good. I read this change log here, checked v3 and then saw you
-applied the feedback on the first regulator and assumed you did so for
-the others mentioned there as well...
+Would you mind pulling this one, or do you have any reservations?
+There hasn't been any discussion, but it looks like a pretty simple
+change, runtime tested and schema-tested.
 
-0.61 is the minimum in suspend for VDD_SOC, so that's ok.
-For DRAM, that's minimum/maximum operating range so ok too.
-
-Thanks for the clarification,
-Ahmad
-
-> 
-> Kind regards
-> Fabian
-> 
->>
->> I don't think the board will like VDD_3V3 at 1.62V or VDD_1V8 at 3.4V.
->> For the fixed voltage rails just set min = max = fixed voltage.
->>
->> Thanks,
->> Ahmad
->>
->>> - Link to v3: https://lore.kernel.org/r/20251022-fpg-nxp-imx93-frdm-v3-0-03ec40a1ccc0@pengutronix.de
->>>
->>> Changes in v3:
->>> - Add Signed-off for original NXP contributors.
->>> - Fixed whitespace errors (Thanks Francesco Valla)
->>> - Added mu1 with status okay (Thanks Francesco Valla)
->>> - Removed address cells from lpi2c3 (Thanks Frank Li)
->>> - Configure pin for watchdog (Thanks Peng Fan)
->>> - Updated regulator config
->>> - Configure i2c0
->>> - Link to v2: https://lore.kernel.org/r/20250526-fpg-nxp-imx93-frdm-v2-0-e5ad0efaec33@pengutronix.de
->>>
->>> Changes in v2:
->>> - 1/2: remove CAN node, as it has not been tested.
->>> - 1/2: ran dt-format (Thanks Frank Li)
->>> 	But also reordered some nodes afterwards again to have
->>> 	regulator-min before regulator-max, have the pinmux at the end
->>> 	of the file, and have the regulator-name as the first node
->>> 	inside the regulators.
->>> 	Re-added comments, that were deleted.
->>> - 1/2: changes subjet to ar64:dts (Thanks Fabio Estevan)
->>> - 1/2: removed reg_vdd_12v (Tanks Fabio Estevan)
->>> - 1/2: added aliases for rtc, emmc, serial (Thanks Fabio Estevan)
->>> - reordered the series to have documentation before dts. (Thanks
->>>   Krzystof Kozlowski)
->>> - Link to v1: https://lore.kernel.org/r/20250523-fpg-nxp-imx93-frdm-v1-0-546b2d342855@pengutronix.de
->>>
->>> ---
->>> Fabian Pflug (2):
->>>       dt-bindings: arm: fsl: add i.MX93 11x11 FRDM board
->>>       arm64: dts: freescale: add support for NXP i.MX93 FRDM
->>>
->>>  Documentation/devicetree/bindings/arm/fsl.yaml     |   1 +
->>>  arch/arm64/boot/dts/freescale/Makefile             |   1 +
->>>  arch/arm64/boot/dts/freescale/imx93-11x11-frdm.dts | 620 +++++++++++++++++++++
->>>  3 files changed, 622 insertions(+)
->>> ---
->>> base-commit: ea1013c1539270e372fc99854bc6e4d94eaeff66
->>> change-id: 20250523-fpg-nxp-imx93-frdm-5cc180a1fda9
->>>
->>> Best regards,
-> 
-
--- 
-Pengutronix e.K.                  |                             |
-Steuerwalder Str. 21              | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany         | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686  | Fax:   +49-5121-206917-5555 |
-
+Best regards,
+Alexey
 
