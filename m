@@ -1,186 +1,269 @@
-Return-Path: <devicetree+bounces-247804-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247805-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFA15CCBB3C
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 13:00:41 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id BAC6ECCBB42
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 13:00:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3783A301F262
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 12:00:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7A03230221A3
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 12:00:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A237332C925;
-	Thu, 18 Dec 2025 12:00:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFAEB32C945;
+	Thu, 18 Dec 2025 12:00:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b="ihxtlvUr"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eap71J94"
 X-Original-To: devicetree@vger.kernel.org
-Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11023100.outbound.protection.outlook.com [40.107.162.100])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64C9032C309
-	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 12:00:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.100
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766059225; cv=fail; b=aYYlvvWBk7MjcJbTg5e+0UmbahrSBxhiJWy64uJAhq07fptjLgK97C2K2s6qy3AuGgObrekJVw79wFBeEAdHEb8EOBBwq83M4dvDBpSDu18LGwGGvNQzUIMoGrOf4XcYy+ihvYOW74b5/ag5kzSLaEXGIR7LXVOTWpUywyU88as=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766059225; c=relaxed/simple;
-	bh=WxEQ+NBxLnPcsBCHBfBlQVBHIOX1PFiBFfhJrdCFnHs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=snvNTqvfGO6vNWqKPXPkvZ+UQIqjIlqBo6y0HHDB06DCAWxdqR0Cs2V1zkGWDkZ8ZRbfDJJ1JgXWzsc09+a9MzNcECl/PWCjdxTgjIaTXQMyLpN7xjo46PJOjYCGwupeaiNQBCoJvbD4z2GEWTwsOWe1YEM9smah6Q5ZIhx0BVA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b=ihxtlvUr; arc=fail smtp.client-ip=40.107.162.100
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=y2nFFWk5EECAgWnI1mQE/mKO8loQotfe26QBuAQ4Z4BEUAi1rNow09tQ3hTlSg6wEz4im1TBhkiowiY3NhCSjP6sAQ4u8os1UM4GFMaSU2wLua1kRCRcEIBBTgaL8TK2i/ivA+i/r5jnlPC68w3Zp0+8jwpD0w/UgQ5ngD9lgHmQ/fAQM0zjpyJT1yGbp/p8KosmE9Bzl8cXINmYJDQ6j3tV7ZuhoCmpa1k4cq3TSEax+afq9NRs6RRcW+KEurPq9tsopQAfIHkMPr6iXiNIpTABp33Yg5tdzF36Wz3dDvKVZb6wki0QVznd5ge1D8UUHnZo5sFm4FWeWELX1OXJUQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3yKSUTlHV1yaetigpa+fiZ1M0pwYY4OnxdEtF0RSNBk=;
- b=HU0DfpkwSOvmSpU1fwKbF0X3/q/IvLgqjjyAvYORX4pPInhmmHpt1kKjdZUK0E7SJku+Vz4/wXAQGea2TQ1qjGRtbXIiN/TcprOuDFZniY7yZ3/gM/6K6hC8tEgvVVJH7/yJzdlCzOjkSl/bw6WhYxGPIN/yMuLm10t63Nr5nZVH76WjJQCL1vvPXSuPJoTUdXcYso8f/6l5n/YY504/hq3/D8wDbCUdOjPCipsJxgr21xJ7rLRbMtp3usqffz/o6TyyKWw4NZe0oAFNHLBovJgJW+gLVXbXQXzr+YJ4/d+Wr1WZcwK1sJYPYAybYcKxHjooEALkobYjfG5sYN/pDg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
- is 91.26.50.189) smtp.rcpttodomain=kernel.org smtp.mailfrom=phytec.de;
- dmarc=fail (p=quarantine sp=quarantine pct=100) action=quarantine
- header.from=phytec.de; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=phytec.de;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3yKSUTlHV1yaetigpa+fiZ1M0pwYY4OnxdEtF0RSNBk=;
- b=ihxtlvUrHzo1cfcfBLUvyFnnkxpDOeLvvf4o8QQEMT2YgbaFwmqSrqBYuZ0IvOB+ZW3f+WHf77qqSa8DM41MpIwTYu2/0WPDepNW2OgRTZQh9SvkC6nTy2cpkKjhrifBMce067PcyX2PW4CfYmbqp6sslJ4MlhrT9gkWrAzjmXeydi3TlT2L7wtflZcroVnuynePNpTlPP3ujIXS73wtnB8TVrUKIn5ZIv9ATS+NS4pkl5pDBk+qOiJMa4AFjEKIAp3EWODrPc5TULvwIXFcjtckwJKXGUbyZj1jhOpjwd/Fzsysr9zrHrs8Ys7apRqAWA9hmzSRVSSP4iPD67YN+A==
-Received: from AM8P189CA0024.EURP189.PROD.OUTLOOK.COM (2603:10a6:20b:218::29)
- by DU0P195MB1957.EURP195.PROD.OUTLOOK.COM (2603:10a6:10:3e2::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9434.6; Thu, 18 Dec
- 2025 12:00:16 +0000
-Received: from AM4PEPF00027A67.eurprd04.prod.outlook.com
- (2603:10a6:20b:218:cafe::e5) by AM8P189CA0024.outlook.office365.com
- (2603:10a6:20b:218::29) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9434.8 via Frontend Transport; Thu,
- 18 Dec 2025 12:00:15 +0000
-X-MS-Exchange-Authentication-Results: spf=softfail (sender IP is 91.26.50.189)
- smtp.mailfrom=phytec.de; dkim=none (message not signed)
- header.d=none;dmarc=fail action=quarantine header.from=phytec.de;
-Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
- phytec.de discourages use of 91.26.50.189 as permitted sender)
-Received: from Postix.phytec.de (91.26.50.189) by
- AM4PEPF00027A67.mail.protection.outlook.com (10.167.16.84) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9434.6 via Frontend Transport; Thu, 18 Dec 2025 12:00:15 +0000
-Received: from llp-tremmet2.phytec.de (172.25.39.70) by Postix.phytec.de
- (172.25.0.11) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.29; Thu, 18 Dec
- 2025 13:00:15 +0100
-From: Teresa Remmet <t.remmet@phytec.de>
-Date: Thu, 18 Dec 2025 13:00:06 +0100
-Subject: [PATCH] arm64: boot: dts: imx8mm-phycore-som: Update eth phy
- impedance
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 611272F49EC
+	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 12:00:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1766059249; cv=none; b=XUDA1XcJEA+rbDO2P0LrNLc078pilXWKNMrVFpFYo7pgiKY8Os6h1y8KZQNrSpnjrkrV9HJGZ/qRlahkOp9LOKWFPRl+JHWjyf2nxEUB8XFOIaYJd+SSadoo5My7yzOD8WUYXZ40mjGITI7K9KqyKsGxKyOdfIEnisy7nu8CNAs=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1766059249; c=relaxed/simple;
+	bh=mUEp/B5G3RS+Gy2qoIOov6C4swK+1+u6ataDU59bCZQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gpdJoBYrhp52+YP0IuipqBAYMCGVrtYMeBWohFNfu6AWir8Jd8OVEeCB7c+fyGMnQwYvJyPoCAs52377bj6qIwLlJC0fCfrVQ5HJC4quhCOP8jF8Un+XG49wfwPGzn06UiXbv82SSdYCHtsWoLb5u9qdqApuUMGmFw2LItUgv0M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eap71J94; arc=none smtp.client-ip=209.85.221.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-430ff148844so687859f8f.1
+        for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 04:00:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1766059245; x=1766664045; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Qo8UWl7Nb4OmN2ce/tkCHVKwnG2c1ZxIa3VYc8DeX0o=;
+        b=eap71J94/KaWkEAbCXZDcSLBG7R7gxEsloMPqZtY+tsdWlEqX8Jxj3bMQcSXitfi+z
+         uX4Rwrn30EmWL0ER2Rw8nLKYuG0MQZEjvRloVqajDaiVGpRJWZcpWzZgA1Gx0t1PN46w
+         +PNvgKGJ4ov0/5CsCY9IXnqsZ+/PcHYejlnn5/O09Hu2KEuB42FgazZnwG9LSnE8O7ev
+         I+YOvlf1Rb9ZDEGeWx3kfYrKk9atOJTy/KatpLEj1NvsXyvrJq7tOVH4+YmCYOhVCj2q
+         39c0E8VQjoT/EfpiCL15nf2DZYIMdUQieZrOAfdUVSP57o+lJKFNkwir59GjS+donzKM
+         E1bQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1766059245; x=1766664045;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Qo8UWl7Nb4OmN2ce/tkCHVKwnG2c1ZxIa3VYc8DeX0o=;
+        b=soUzh0stpKm8RSpgjTl+ftipNnaVc8ZROq9atrSv9Um8/Ai8jFQ9btiA9+sWCtTnzK
+         eJc7P7fS1IxMqs8iL5EBT+dWRmx1veyGiqjJWO/FqKngtgs0MzTG1HMD5B/8WCiyXO/x
+         M14vA0FqFsxKz5TqYgpbmhp3eFt5IDq/2v3PQCIz53CdlivcFJFahiISLlpAsyvDsJe2
+         gHlZ1utwEny7H992Q+gi/u6O5ubqq8hM32v75gkuJnG8yjjiVVA+ZayoEaa+BsXyu/fn
+         J3TvI9nppjn9+RRzNiIZqVRs3tb7lg1yxDaMuW/CSb/Q0ShLG8soCORnHSZ9H5jR4oe1
+         YhTQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXJTtBVgdIpFfixdc814ny1r29tAr7XFKC4QyhUUmQauwWsz5EXwcPWjqUOvZIBTyzt6yeg+dld7opH@vger.kernel.org
+X-Gm-Message-State: AOJu0YxSIoSlKtzeeWjMRyB4ydDEGTLb8YJOh+4efTZaipmCR27kpESl
+	0AViK2NJEVMYqTFrNnaQGIKrfzlRvkBsTObS1f25rm2GpRRBPXs0Qxt/
+X-Gm-Gg: AY/fxX7Ez/OniUFtRq25q7pwIN7IlnxR76X0o37ruyNMTbixYjwnAQn63HkDzl5VGDP
+	MwI55GAdxdokrSNt9d+aUrMooVwSzzHkfpwOiltsZBnrn6tAiObwHg9G41pCrVWW24SWkMsvAQM
+	p9WRO+awX1xXL2Q0V2Yuj2KokEgckT8ECgTeG+MT7d5U5xLiMnmSuAOhu+MBYT8VWYRPV3QBDYv
+	BchAvzxpuFxPe92yc8cZ3MEYlAb1q87+bNoI4tTTSJ4W1PKpd6xPRSBvCD8jxQQVlOfhBCGb0xM
+	srthK7OFFawTM67XcecII4QgnhqWaSJMsDDgKgpbXahov04H3hcAa9IpD6/QZbrIwSwolKIREL9
+	X4aYKjrBxHr05Alga2E9ul5gMb6uOFxgb/kjy8MNuPLirMLujm5FiAaDobLz4Xfmw2v3aUYs4bV
+	u+9nZWGmkRMHfSvthsKPwfus1c6hoS5ecft29fJNE6w1kvqDsfFDCBEwT8nY3pjaugTykb+2mSf
+	g==
+X-Google-Smtp-Source: AGHT+IE5M6ZuZzi1ubk7F7STia1y5L8LT6foat09zhyW64XZ39JP9w6RdvA+9FLun2Nwu/VBkpIYQw==
+X-Received: by 2002:a5d:5f96:0:b0:430:fca5:7353 with SMTP id ffacd0b85a97d-432447a3dc1mr2689635f8f.8.1766059244348;
+        Thu, 18 Dec 2025 04:00:44 -0800 (PST)
+Received: from orome (p200300e41f07e000f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f07:e000:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43244934c29sm4674641f8f.2.2025.12.18.04.00.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 18 Dec 2025 04:00:43 -0800 (PST)
+Date: Thu, 18 Dec 2025 13:00:41 +0100
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Aaron Kling <webgeek1234@gmail.com>
+Cc: Jon Hunter <jonathanh@nvidia.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	linux-tegra@vger.kernel.org
+Subject: Re: [PATCH] Revert "arm64: tegra: Add interconnect properties for
+ Tegra210"
+Message-ID: <aUPsDeFmxAJ09Tk7@orome>
+References: <20251217104744.184153-1-jonathanh@nvidia.com>
+ <CALHNRZ8syS6F9W1ovw2Y-jkspQafCnLy0ynocn0sMLurShHnbA@mail.gmail.com>
+ <CALHNRZ_vkw6Ns=PMa+x0SY64+Ov0FeA5tMKJr+-tY9_OasKUog@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20251218-wip-t-remmet-phytec-de-bspimx8m-3841_upstream-v1-1-2ea15181aaf2@phytec.de>
-X-B4-Tracking: v=1; b=H4sIAMXsQ2kC/x3NQQ6CMBBG4auQWTsJLajFqxhDSvmRWRSbtgqGc
- Hcbl9/mvZ0SoiDRrdop4iNJXkuBOlXkZrs8wTIWk671WWlleJXAmSO8R+YwfzMcj+AhBfGb8dy
- YVvXvkHKE9TxcGnetp862Hag0Q8Qk2/93fxzHDxjfbdN/AAAA
-X-Change-ID: 20251218-wip-t-remmet-phytec-de-bspimx8m-3841_upstream-b63c70f9a49e
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, "Sascha
- Hauer" <s.hauer@pengutronix.de>, Pengutronix Kernel Team
-	<kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>
-CC: Jan Remmet <j.remmet@phytec.de>, <devicetree@vger.kernel.org>,
-	<imx@lists.linux.dev>, <linux-arm-kernel@lists.infradead.org>,
-	<upstream@lists.phytec.de>, Yannic Moog <y.moog@phytec.de>, Benjamin Hahn
-	<b.hahn@phytec.de>, Yashwanth Varakala <y.varakala@phytec.de>
-X-Mailer: b4 0.14.3
-X-ClientProxiedBy: Postix.phytec.de (172.25.0.11) To Postix.phytec.de
- (172.25.0.11)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM4PEPF00027A67:EE_|DU0P195MB1957:EE_
-X-MS-Office365-Filtering-Correlation-Id: feaaf520-1fbb-4871-8dfe-08de3e2d01d9
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|376014|7416014|1800799024|36860700013;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?WDd1cGhoOG1BTEVjeGo2M2ExNTZCUWxmaUtnRmJQMndCYnViSjhrZVVkUGlH?=
- =?utf-8?B?aDFKZjNPSnhzQjYzUFBCeTI3c0hXVFNvWTdhYXlYSFg5aGl4VEp5eVhnNzlL?=
- =?utf-8?B?OVF4bWpXWU9LNjMxMzIzZmNmQmU4YmhtbzhKL0d4TEN4RUZwMFRGRlhGSnZQ?=
- =?utf-8?B?ejJWUHFrZ2puTFBFcytlN0d6TVhJN0Z2Rk9tdE9QOGluQXQxZVkrQ2pSK2dB?=
- =?utf-8?B?Qmh6RGZuTlliUnl4ZytTUEdYK1VqOXdVYXFmZGZuNXJYYjExTUVTS1lZZEZz?=
- =?utf-8?B?ZmhiZ3B0NWc5QzBDdkNIdm9ESGFjK2hZdXdqNU82Y0d3ZWdxRk9YckFsV3RL?=
- =?utf-8?B?QVYrR0JINHloT2RSdDNCenlpZCtWU0d6WDg5Z2JoTmVCYmpEaUJKSTg5Vmdr?=
- =?utf-8?B?NkRkcEFxd2cxdjJGc1dLQ045Ym5tbEZHMVA2MVRwWG1UYlMwYjIrMG9LT1Bz?=
- =?utf-8?B?YzVQUzFvNDVndkN5dUpkRE84dGFHV1BObHE2QTB0Z2FrMWhVWm5YKzNSb0VY?=
- =?utf-8?B?V1E5VUJBaUhSTDBTbjVqVXg1eGxia1hWREgzWFN1M0paQjdZN1lYdmNhMFZy?=
- =?utf-8?B?T2Q2dkZmU1UzMWtzcVVqMGIwVnN1UTZjOFRsYUFqZWVISTRRQnNSbGdHWEhG?=
- =?utf-8?B?NWZXblRMYStWMERLMVloaU1wRGVENTlaMVJOK25NUHcvR1pIUkd1b09zZUVP?=
- =?utf-8?B?dlNrRDRBYld3N0hwRzNxbVZUcXgwS3ZSWXN3Q2lsT0FHRWhQQ25iY1k0TnA3?=
- =?utf-8?B?VjdtRVVGbDcyV3lwS3JnWDhjOCs5amFMaWlMZjNnaUh4YmRVMEJMN2x3QlZ2?=
- =?utf-8?B?OTkrcHk0YnZYbm9NR21VUzFCME1IdGIxcG4zYVpQUVhRUmh4cHRpOWJ5T1dQ?=
- =?utf-8?B?YVdVczhUTE1hZXJYVzFtMDlGKzRZU3ZHK3FvTGdRTWhvR0taZlRQTnVmYlp5?=
- =?utf-8?B?OE5nd0lnd0xjY1dCNjhEUTI3MkNham43UXBQUEFhYU9vYkdzaVpBR0JSWnJ4?=
- =?utf-8?B?cUt6Yk5qKzd2YnNZaExURzQ3YUZha29rb2FxL3BPcEQ3L0dxenV4NmRVOUhC?=
- =?utf-8?B?ck9YTC9xWnZURnhVcFlaWlFIblpBMnZvTUdXQUs0NE41c2pEZUlDNE8yQUJV?=
- =?utf-8?B?L3RrY3p6dzB4TEJ6WitiSmZzVkphVjBoRmFNc0pnbXAySkNRZ2Y2MVRpd2tp?=
- =?utf-8?B?V3Bpdi9JQ2gwaHo4eHExNHNDS1YxaHA3OHhVb3hqVXJYb3dwQ3NrMmRnY2Ri?=
- =?utf-8?B?aXdqcU9MZXB2eElRRzVtK3VKbzdJcVc3UDhSazZqaC9oVVU2K1JNbHJxU092?=
- =?utf-8?B?VVFXVUwwbVZQeCtPOS9FOGdGUGtKZmJ0WjJSNUpCaGtiMG5QZ1Y2NFJSb0N4?=
- =?utf-8?B?RCtYUFR1Q2RnN3ViQUVmaFJ2TFJZNnlqalp5d2VSUnF3S0h5UDc2VUZmTk4y?=
- =?utf-8?B?Y08yTEFRSXB4ZkhHYVdsa0haUjlpamlSaW44RHBQM2RybHBZWkNDbU9QcUZP?=
- =?utf-8?B?TkdydW1NaWdycDhaU0x0cVZIU05oRUFiaXBOUVpQQjRwVGZ6VUpqa05LWjBj?=
- =?utf-8?B?S0NaYkMzbmNkWnhsMkpYTGoveEdlMzcwSzg5MFZ0c3NBeGpRRXlOSENWbnYw?=
- =?utf-8?B?dTdiczFWNXBQOUFrdmRXZ3diblZ3WGtMbXBOWHpvOVNIcW8xNzd1Q0JydEtp?=
- =?utf-8?B?S0Yvc2J4L1lRaUdadmtaRE5VbWVpUTFTbE10K2RnZ1RPTHkydGJPVUxnVlZP?=
- =?utf-8?B?UEc0eHc5ZytHeGZxYStIRVZ2OGREY2xNY3J0enNkODNoaWRVcmVsVkQrMnpy?=
- =?utf-8?B?cHlWTElPN1gzUTczV1NZY2ZMeVRuRGt4LzNyQzB1ZUpTdVE1UWt1SnE5bzNU?=
- =?utf-8?B?Ymg4bzVaU3FVZG5Sb1dDRHBGbElGcEE0NDl0K1g4dXFPZXlmMkFXZEFTaVIw?=
- =?utf-8?B?dWtSZFFhZklRWGpOUUQra0h0RGU2KzhhejIzYWhXRzJncGdBNEtEemFyL3B2?=
- =?utf-8?B?WTVIUVg2NDZlNHZmaElJNlpkM3dLL2R5SzNWZ2V4SFhUTTNrVTc5bFRnc3NU?=
- =?utf-8?B?ZzdLZ0JHODNJQXM5QWplQXFjR1lhUFI4SXpTWWxrdDlVMFlPUDVaT3lVUVpa?=
- =?utf-8?Q?ltTU=3D?=
-X-Forefront-Antispam-Report:
-	CIP:91.26.50.189;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:Postix.phytec.de;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(376014)(7416014)(1800799024)(36860700013);DIR:OUT;SFP:1102;
-X-OriginatorOrg: phytec.de
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Dec 2025 12:00:15.8246
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: feaaf520-1fbb-4871-8dfe-08de3e2d01d9
-X-MS-Exchange-CrossTenant-Id: e609157c-80e2-446d-9be3-9c99c2399d29
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e609157c-80e2-446d-9be3-9c99c2399d29;Ip=[91.26.50.189];Helo=[Postix.phytec.de]
-X-MS-Exchange-CrossTenant-AuthSource:
-	AM4PEPF00027A67.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0P195MB1957
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="tp7y7od5f2vxm4kw"
+Content-Disposition: inline
+In-Reply-To: <CALHNRZ_vkw6Ns=PMa+x0SY64+Ov0FeA5tMKJr+-tY9_OasKUog@mail.gmail.com>
 
-Update the DP83867 ethernet phy impedance settings to
-to optimize signal quality and reduce potential signal integrity issues.
 
-Signed-off-by: Teresa Remmet <t.remmet@phytec.de>
----
- arch/arm64/boot/dts/freescale/imx8mm-phycore-som.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+--tp7y7od5f2vxm4kw
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH] Revert "arm64: tegra: Add interconnect properties for
+ Tegra210"
+MIME-Version: 1.0
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-phycore-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-phycore-som.dtsi
-index 3d66c6701342..b764f7734868 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-phycore-som.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-phycore-som.dtsi
-@@ -83,6 +83,7 @@ ethphy0: ethernet-phy@0 {
- 			enet-phy-lane-no-swap;
- 			ti,clk-output-sel = <DP83867_CLK_O_SEL_OFF>;
- 			ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
-+			ti,min-output-impedance;
- 			ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
- 			ti,tx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
- 			reg = <0>;
+On Wed, Dec 17, 2025 at 02:42:58PM -0600, Aaron Kling wrote:
+> On Wed, Dec 17, 2025 at 12:20=E2=80=AFPM Aaron Kling <webgeek1234@gmail.c=
+om> wrote:
+> >
+> > On Wed, Dec 17, 2025 at 4:48=E2=80=AFAM Jon Hunter <jonathanh@nvidia.co=
+m> wrote:
+> > >
+> > > Commit 59a42707a094 ("arm64: tegra: Add interconnect properties for
+> > > Tegra210") populated interconnect properties for Tegra210 and this is
+> > > preventing the Tegra DRM driver from probing successfully. The follow=
+ing
+> > > error is observed on boot ...
+> > >
+> > >  drm drm: failed to initialize 54240000.dc: -517
+> > >
+> > > For now revert this change, until a fix is available.
+> > >
+> > > Fixes: 59a42707a094 ("arm64: tegra: Add interconnect properties for T=
+egra210")
+> > > Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+> > > ---
+> > >  arch/arm64/boot/dts/nvidia/tegra210.dtsi | 24 ----------------------=
+--
+> > >  1 file changed, 24 deletions(-)
+> > >
+> > > diff --git a/arch/arm64/boot/dts/nvidia/tegra210.dtsi b/arch/arm64/bo=
+ot/dts/nvidia/tegra210.dtsi
+> > > index 709da31d5785..137aa8375257 100644
+> > > --- a/arch/arm64/boot/dts/nvidia/tegra210.dtsi
+> > > +++ b/arch/arm64/boot/dts/nvidia/tegra210.dtsi
+> > > @@ -202,19 +202,6 @@ dc@54200000 {
+> > >
+> > >                         nvidia,outputs =3D <&dsia &dsib &sor0 &sor1>;
+> > >                         nvidia,head =3D <0>;
+> > > -
+> > > -                       interconnects =3D <&mc TEGRA210_MC_DISPLAY0A =
+&emc>,
+> > > -                                       <&mc TEGRA210_MC_DISPLAY0B &e=
+mc>,
+> > > -                                       <&mc TEGRA210_MC_DISPLAY0C &e=
+mc>,
+> > > -                                       <&mc TEGRA210_MC_DISPLAYHC &e=
+mc>,
+> > > -                                       <&mc TEGRA210_MC_DISPLAYD &em=
+c>,
+> > > -                                       <&mc TEGRA210_MC_DISPLAYT &em=
+c>;
+> > > -                       interconnect-names =3D "wina",
+> > > -                                            "winb",
+> > > -                                            "winc",
+> > > -                                            "cursor",
+> > > -                                            "wind",
+> > > -                                            "wint";
+> > >                 };
+> > >
+> > >                 dc@54240000 {
+> > > @@ -230,15 +217,6 @@ dc@54240000 {
+> > >
+> > >                         nvidia,outputs =3D <&dsia &dsib &sor0 &sor1>;
+> > >                         nvidia,head =3D <1>;
+> > > -
+> > > -                       interconnects =3D <&mc TEGRA210_MC_DISPLAY0AB=
+ &emc>,
+> > > -                                       <&mc TEGRA210_MC_DISPLAY0BB &=
+emc>,
+> > > -                                       <&mc TEGRA210_MC_DISPLAY0CB &=
+emc>,
+> > > -                                       <&mc TEGRA210_MC_DISPLAYHCB &=
+emc>;
+> > > -                       interconnect-names =3D "wina",
+> > > -                                            "winb",
+> > > -                                            "winc",
+> > > -                                            "cursor";
+> > >                 };
+> > >
+> > >                 dsia: dsi@54300000 {
+> > > @@ -1052,7 +1030,6 @@ mc: memory-controller@70019000 {
+> > >
+> > >                 #iommu-cells =3D <1>;
+> > >                 #reset-cells =3D <1>;
+> > > -               #interconnect-cells =3D <1>;
+> > >         };
+> > >
+> > >         emc: external-memory-controller@7001b000 {
+> > > @@ -1066,7 +1043,6 @@ emc: external-memory-controller@7001b000 {
+> > >                 nvidia,memory-controller =3D <&mc>;
+> > >                 operating-points-v2 =3D <&emc_icc_dvfs_opp_table>;
+> > >
+> > > -               #interconnect-cells =3D <0>;
+> > >                 #cooling-cells =3D <2>;
+> > >         };
+> > >
+> > > --
+> > > 2.43.0
+> > >
+> >
+> > A little bit of documentation on this, should someone read the list to
+> > see what happened. The original report of the failure is here [0] and
+> > only occurred when the tegra210-emc driver fails to probe. After this
+> > report, the related code change [1] to tegra210-emc which registers
+> > the driver to icc was silently dropped from -next, but these dt
+> > changes remained. So now these interconnect routes do cause tegra-drm
+> > to universally fail on tegra210.
+> >
+> > Aaron
+> >
+> > [0] https://lore.kernel.org/all/56aed0ec-b104-4612-8901-3f6f95e0afab@nv=
+idia.com/
+> > [1] https://lore.kernel.org/all/20251027-t210-actmon-p2-v6-1-1c4bd227d6=
+76@gmail.com/
+>=20
+> There may be another option here. I'm beginning to think there will
+> not be any way to set the icc routes for the dc's while the emc driver
+> can fail to probe. The next best thing looks to be just dropping the
+> interconnect nodes from the dc nodes and leaving the rest of the
+> original commit in place. Then reland the tegra210-emc driver change.
+> This should put the no-emc case back to where it was, while allowing
+> actmon to do its scaling when emc is available. And I will move to the
+> dc icc routes to downstream dt's, where I tightly control that emc is
+> available.
+>=20
+> Does this sound reasonable? If so, I will go stage the changes and
+> verify that it works as intended.
 
----
-base-commit: ea1013c1539270e372fc99854bc6e4d94eaeff66
-change-id: 20251218-wip-t-remmet-phytec-de-bspimx8m-3841_upstream-b63c70f9a49e
+Let's go with the revert for now, since that clearly documents where
+things go wrong and it can be easily reapplied once the root cause has
+been resolved.
 
-Best regards,
--- 
-Teresa Remmet <t.remmet@phytec.de>
+It's a bit unfortunate that we don't have a way of making these
+interconnect properties optional. If EMC fails to probe for whatever
+reason, I think the assumption should be that it doesn't do any dynamic
+scaling of the EMC frequency and hence the entire ICC stuff isn't needed
+and should just be no-ops.
 
+On the other hand, other than the patches getting reverted, there's
+really no good reason for the EMC driver to fail to provide them, hence
+I think once that's been restored we can apply this again and then that
+should be the end of it.
+
+Thierry
+
+--tp7y7od5f2vxm4kw
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmlD7OkACgkQ3SOs138+
+s6HxMQ//Xx7wnIEgJAk2Fk23Tg5mlEcRapx+MxmvhRHR1wOeStLCpPuZiJRBmICd
+J0KJJC5Fi4FFqQSaSh+03BGfQ96dg9M/rX7xO7ca5QDED2jR9hnrZosixfcN8y9r
+Cqs/cX7PLBcp+owBevlS9Pq8MZUtEIbVHiS75qITisqstpLDhUeoNMZQbatnV22T
+r72nXwgFxeuRYdwyWajcQ5wteyY+B9krvlsgreIDDRqRnee8olfqZhNJULlRHmpc
+ItNGoiXPpXIIJkusYbxrWR1V8LZUIlSXu+OA7Wj3nEJFk8Je08zLsd0JkkBFKFXX
+O37qb3UcSU0pnOJXfGNkkVwR8q8iBMeFkSPMONgVboLNtH/3t4d+YdNTVonhLmPg
+C2g++XMSKhD6vnCsRRXnXs4maYbTFF8/wWE/T6DUfq/SdN72Jeuf6iK03SSWiLlP
+uPCv3DmanAdBBrBLODzvNgx153yKpWj104J+zzV285QxdKiKRk2+pCM4g7z+OTa3
+W8UQmk+MKWgMx8XwF56+Pg8MGdNKck7/HrcUSu4hDSmoNokHdhQkueQICnRt4Kpr
+Gq3MGlkAV8ihkvPNY2zu5v/K/vZQXgHq5siBGtSk1J3zwitCLI6S/7gbzcDmypVQ
+piHsiTBAVZ8HbHrYXi7F87dY86quNJ5gjLfAv8daIKAl4SLUXVY=
+=Fiyk
+-----END PGP SIGNATURE-----
+
+--tp7y7od5f2vxm4kw--
 
