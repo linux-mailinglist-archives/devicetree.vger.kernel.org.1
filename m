@@ -1,185 +1,142 @@
-Return-Path: <devicetree+bounces-247769-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247770-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03634CCB503
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 11:13:08 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id ACFB4CCB50C
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 11:13:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D5B2E301394F
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 10:12:45 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id AE08D300FA2C
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 10:13:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A66F33CE9D;
-	Thu, 18 Dec 2025 10:12:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 537E933CE9D;
+	Thu, 18 Dec 2025 10:13:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ee45dr8W"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="pIsna1Jw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail1.manjaro.org (mail1.manjaro.org [142.132.176.110])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E61533CE8F;
-	Thu, 18 Dec 2025 10:12:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59A662F3621;
+	Thu, 18 Dec 2025 10:13:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=142.132.176.110
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766052765; cv=none; b=RcvR4MPkOzfiVz1SWGWRUr7LMDTrfXckcbWz2H9BmD7vH4cb/EMg6bQi9cvybgpqZEbUafKrNooVmTKmB9LAxfxflgIZ3FRGE1EVbAwWSBE/SabStfPtQ8kbzE8g0DqoC93dMPc3PYMu2EiFiehrQU7loVOhjuGAjRlknZ61WNU=
+	t=1766052802; cv=none; b=Y74WDuhMRlO100CzgaQEdbNjnORxDLNvXOpadn7RlCOoIWD5C4TTGhs7hkb8XKLEUlfbNrWQHSU56dMbTEX+gUD9o+H10KPWy28wrLvQOS5ZENEnFecJXKNz7zSDPcKd3dR/ot5S2RaYKJnhSr83akF51ut6yQMLqN9nlPktgRo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766052765; c=relaxed/simple;
-	bh=6dOHEO/ATrDkn+942USvFxLXBlcYFHToHWASbSwab/c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=aeIsugzOMUKqM4Ho3CCV4T7OoxI2BxXSnzhcWgW75RhoXHke4olfjFpfbLVha5L41SJSGkciHVqMdfHltQPqOsvlJJpGzewpSSFgNH2kdhrlo2BBCd1UaI/z2wew2EMr+ZY6nj9gUpAWTyN5fAP7N88wsJ+kCH04V72jW8zSaN8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ee45dr8W; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57461C4CEFB;
-	Thu, 18 Dec 2025 10:12:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766052764;
-	bh=6dOHEO/ATrDkn+942USvFxLXBlcYFHToHWASbSwab/c=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Ee45dr8WWCZPfh7q/vH11+3IHZH4UbFXSiCss5Y/a45Q22Fy1RjBmpMAxrDRDBfjM
-	 WOyWJmCu90cTRaElaHvfv6EzTwWosJHYCBZjk+rMwOTQxl3cVcIe5+vUZE89sw45v9
-	 u8sACM0BsAHj8NlYxHehm1DiOyKbBBVi5RGgNET/eEsAvks2P2gr1oGnUDZmTDLA7+
-	 bUnVRfSLJLhrv7pr8CapTQc8FLdQ+TSGtQE1YDkh3tPkBmLRAIwDyPUeGiVNbjlIuk
-	 /7rN1Up4Y34iHCQUfNiRJQXQjleO9y+MHOsf99d9F9bW8h5RdDe3VwKpmONllYG5/6
-	 Pa7jOXlzyFfdA==
-Message-ID: <b7fdd6d7-fd56-4e3a-84da-191411f9edd6@kernel.org>
-Date: Thu, 18 Dec 2025 11:12:40 +0100
+	s=arc-20240116; t=1766052802; c=relaxed/simple;
+	bh=AluQXahrkuxDalkkn365wmM3+k/GQwCu4bWiiV3a2Ww=;
+	h=From:In-Reply-To:Content-Type:References:Date:Cc:To:MIME-Version:
+	 Message-ID:Subject; b=lJsnL/WdhfqQFImkPGE6rbxtcvJ4jDAx6U/zGDF/ft5TakGRgwvhVrB3NzxvnVOCwsDI+K4yVZvB6jxZNrTg7OkDWIX2RJER3Ufv4wb5C4GiaHfFl/b338eunr0aDK0SYzAYqvpG8t5vzn8b3u1zztArP33YxPvImTfbj4ddeik=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=pIsna1Jw; arc=none smtp.client-ip=142.132.176.110
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPA id A7CEF417D6;
+	Thu, 18 Dec 2025 11:13:10 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=dkim;
+	t=1766052793; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=qem8ZP+yDudSM4rWioIewZLF1OHQf2ievkUplCtY2mM=;
+	b=pIsna1JwNg8vU0xABStqy6mAATplVrqC1O7JmOuFKXA0z/Oy/TC5FMsv4ynfcA0uVNw0K/
+	VY6H1SPK/uguUuDIGU88wgsm3tVsjd4J31+G7RDI90yaeALyO6HeMPC3zkn3hqMhyt6/Wc
+	zgev/YylCGFOg64bEg/b1h5lgvFMzgdWlQYvJq15Xh1KEwtykuc4kvPsDz2QJk1/+5+q85
+	UBG26lGzzWmk//X0BNCQK/k2ytYZwR9DPwFen6tgleqnyPHZJ2wiuTKgDDAUeRzt9bBhYD
+	KUFXU6MZg7OuSejxmT/UQrflxq1U36sKWnHgbAzrYjxLGZ8eB+2bNEt0psbvng==
+From: "Dragan Simic" <dsimic@manjaro.org>
+In-Reply-To: <DF197NIRHLIJ.3LIG9GJGJQLQX@cknow-tech.com>
+Content-Type: text/plain; charset="utf-8"
+References: <cover.1763415705.git.geraldogabriel@gmail.com>
+ <eaa9c75ca02a53f8bcc293b8bc73d013e26ec253.1763415706.git.geraldogabriel@gmail.com> <qncj72c3owrw7rvnj6jit2sbn4ojyr3kztcjailfxtdboan6sy@ddh5g7v4fcvt> <3ea8ac20-6332-0c0c-645b-36ca4231c109@manjaro.org> <DF197NIRHLIJ.3LIG9GJGJQLQX@cknow-tech.com>
+Date: Thu, 18 Dec 2025 11:13:10 +0100
+Cc: "Manivannan Sadhasivam" <mani@kernel.org>, "Geraldo Nascimento" <geraldogabriel@gmail.com>, "Shawn Lin" <shawn.lin@rock-chips.com>, "Lorenzo Pieralisi" <lpieralisi@kernel.org>, =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, "Rob Herring" <robh@kernel.org>, "Bjorn Helgaas" <bhelgaas@google.com>, "Heiko Stuebner" <heiko@sntech.de>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Johan Jonker" <jbx6244@gmail.com>, linux-rockchip@lists.infradead.org, linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+To: "Diederik de Haas" <diederik@cknow-tech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 02/10] dt-bindings: net: can: grcan: Convert GRCAN CAN
- controllers binding from txt to YAML
-To: Arun Muthusamy <arun.muthusamy@gaisler.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- mkl@pengutronix.de, mailhol@kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-can@vger.kernel.org
-References: <20251118092115.3455-1-arun.muthusamy@gaisler.com>
- <20251118092115.3455-3-arun.muthusamy@gaisler.com>
- <c80ff180-b7f1-4f39-b39d-2953ef75a7ad@kernel.org>
- <13d562aa-3425-4753-a78f-dd268dd78794@gaisler.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <13d562aa-3425-4753-a78f-dd268dd78794@gaisler.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Message-ID: <656e9b4e-c350-f808-701e-e49e8dad7062@manjaro.org>
+Subject: =?utf-8?q?Re=3A?= [PATCH v2 1/4] =?utf-8?q?PCI=3A?==?utf-8?q?_rockchip=3A?= 
+ limit RK3399 to =?utf-8?q?2=2E5?= GT/s to prevent damage
+User-Agent: SOGoMail 5.12.3
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: None
 
-On 11/12/2025 11:11, Arun Muthusamy wrote:
-> Hi Krzysztof,
-> 
-> Thank you for your thorough review. I’d like to clarify a few points 
-> regarding the DT binding and get your guidance.
-> 
-> On 11/18/25 12:01, Krzysztof Kozlowski wrote:
->> On 18/11/2025 10:21, Arun Muthusamy wrote:
->>> +      Fallback on node name matching for systems that don't provide compatible.
->>> +    enum:
->>> +      - GAISLER_GRCAN
->>> +      - 01_03d
->>> +      - GAISLER_GRHCAN
->>> +      - "01_034"
->> This does not really work. Are you really defining here "name" property?
-> 
-> The driver supports two of the platforms which are LEON and NOEL 
+Hello Diederik,
 
-I don't care much about driver. Please describe here hardware.
+On Thursday, December 18, 2025 11:01 CET, "Diederik de Haas" <diederik@=
+cknow-tech.com> wrote:
+> On Thu Dec 18, 2025 at 10:47 AM CET, Dragan Simic wrote:
+> > On Thursday, December 18, 2025 09:05 CET, Manivannan Sadhasivam <ma=
+ni@kernel.org> wrote:
+> >> On Mon, Nov 17, 2025 at 06:47:05PM -0300, Geraldo Nascimento wrote=
+:
+> >> > Shawn Lin from Rockchip has reiterated that there may be danger =
+in using
+> >> > their PCIe with 5.0 GT/s speeds. Warn the user if they make a DT=
+ change
+> >> > from the default and drive at 2.5 GT/s only, even if the DT
+> >> > max-link-speed property is invalid or inexistent.
+> >> >=20
+> >> > This change is corroborated by RK3399 official datasheet [1], wh=
+ich
+> >> > says maximum link speed for this platform is 2.5 GT/s.
+> >> >=20
+> >> > [1] https://opensource.rock-chips.com/images/d/d7/Rockchip=5FRK3=
+399=5FDatasheet=5FV2.1-20200323.pdf
+> >> >=20
+> >> > Fixes: 956cd99b35a8 ("PCI: rockchip: Separate common code from R=
+C driver")
+> >> > Link: https://lore.kernel.org/all/ffd05070-9879-4468-94e3-b88968=
+b4c21b@rock-chips.com/
+> >> > Cc: stable@vger.kernel.org
+> >> > Reported-by: Dragan Simic <dsimic@manjaro.org>
+> >> > Reported-by: Shawn Lin <shawn.lin@rock-chips.com>
+> >> > Reviewed-by: Dragan Simic <dsimic@manjaro.org>
+> >> > Signed-off-by: Geraldo Nascimento <geraldogabriel@gmail.com>
+> >> > ---
+> >> >  drivers/pci/controller/pcie-rockchip.c | 10 ++++++++--
+> >> >  1 file changed, 8 insertions(+), 2 deletions(-)
+> >> >=20
+> >> > diff --git a/drivers/pci/controller/pcie-rockchip.c b/drivers/pc=
+i/controller/pcie-rockchip.c
+> >> > index 0f88da378805..992ccf4b139e 100644
+> >> > --- a/drivers/pci/controller/pcie-rockchip.c
+> >> > +++ b/drivers/pci/controller/pcie-rockchip.c
+> >> > @@ -66,8 +66,14 @@ int rockchip=5Fpcie=5Fparse=5Fdt(struct rockc=
+hip=5Fpcie *rockchip)
+> >> >  	}
+> >> > =20
+> >> >  	rockchip->link=5Fgen =3D of=5Fpci=5Fget=5Fmax=5Flink=5Fspeed(n=
+ode);
+> >> > -	if (rockchip->link=5Fgen < 0 || rockchip->link=5Fgen > 2)
+> >> > -		rockchip->link=5Fgen =3D 2;
+> >> > +	if (rockchip->link=5Fgen < 0 || rockchip->link=5Fgen > 2) {
+> >> > +		rockchip->link=5Fgen =3D 1;
+> >> > +		dev=5Fwarn(dev, "invalid max-link-speed, set to 2.5 GT/s\n");
+> >> > +	}
+> >> > +	else if (rockchip->link=5Fgen =3D=3D 2) {
+> >> > +		rockchip->link=5Fgen =3D 1;
+> >> > +		dev=5Fwarn(dev, "5.0 GT/s is dangerous, set to 2.5 GT/s\n");
+> >>=20
+> >> What does 'danger' really mean here? Link instability or something=
+ else?
+> >> Error messages should be precise and not fearmongering.
+> >
+> > I agree that the original wording is a bit suboptimal, and I'd sugg=
+est
+> > to Geraldo that the produced warning message is changed to
+> >
+> >   "5.0 GT/s may cause data corruption, limited to to 2.5 GT/s\n"
+> >
+> > or something similar, to better reflect the actual underlying issue=
+.
+>=20
+> s/limited to to/therefore limit speed to/ ?
 
-> platforms. PROM-based *LEON* systems identify uses the "node name" 
-> property, while DTS based *NOEL* systems use proper "|compatible"|strings. On LEON (SPARC32), AMBA Plug & Play information creates the DT 
-> properties, and drivers historically match devices based on node names.
-> To reflect this, I updated the $nodename pattern to support LEON-style 
-> node names: properties:
->    $nodename:
->      pattern: "^(GAISLER_GRCAN|01_03d|GAISLER_GRHCAN|01_034)$" I’d 
-> appreciate any suggestions on the preferred way to describe this node 
-> name for PROM-based LEON.
-> 
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  interrupts:
->>> +    maxItems: 1
->>> +
->>> +  clocks:
->>> +    maxItems: 1
->>> +
->>> +  freq:
->>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>> +    description: |
->>> +      Frequency of the external oscillator clock in Hz (the frequency of the
->>> +      amba bus in the ordinary case).
->>> +      This property should be used by systems that utilize the common clock
->>> +      framework is not supported.
->> Missing systemid. Your commit msg must explain any changes done to the
->> binding during conversion.
-> 
-> The driver now reads systemid directly from /ambapp0, so the property no 
-> longer needs to be defined in the DTS. The previous documentation was 
-> outdated and should have been updated after commit:
-> 1e93ed26acf0 ("can: grcan: grcan_probe(): fix broken system id check for 
-> errata workaround needs").
+That would work well in a book or an article, while slightly terse
+wording is usually preferred in the messages produced by the kernel,
+or in log messages in general.  Such an approach compacts as much
+information as possible in as few words as possible, while still
+remaining (mostly) grammatically correct.
 
-Read again what I wrote.
-
-> 
->>> +  - reg
->>> +  - interrupts
->> Where is freq? It was required in the old binding. Again, you need to
->> explain the changes.
-> 
-> LEON: relies on the freq property
-> NOEL: uses a standard clocks binding
-> Because of this dual approach, the freq property is no longer required 
-> in the DTS binding itself as theAMBA Plug & Play creates the DT properties.
-
-
-Please read my comment carefully: you need to explain the changes. But
-not to me, to everyone in the commit msg.
-
-Best regards,
-Krzysztof
 
