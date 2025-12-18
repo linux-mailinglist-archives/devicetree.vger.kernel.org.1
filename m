@@ -1,46 +1,41 @@
-Return-Path: <devicetree+bounces-247759-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247760-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E059CCB43D
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 10:52:45 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DE04CCB455
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 10:54:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E0EB030954AE
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 09:49:34 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8BF183026AD8
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 09:52:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AECE32ABC3;
-	Thu, 18 Dec 2025 09:49:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i+zreEJo"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC41E3328EC;
+	Thu, 18 Dec 2025 09:52:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 638682C21DD;
-	Thu, 18 Dec 2025 09:49:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from mx.socionext.com (mx.socionext.com [202.248.49.38])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7280E1F9F70;
+	Thu, 18 Dec 2025 09:52:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.248.49.38
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766051373; cv=none; b=Lfg9XJ9gdgHcL2zzyFL/i9Osrx4zuBTwbenatTjfSpVfg0FneHoUmrEWin4KcKS6/hrbOBT2mrgPX09+05vMpFmGAR7k6BZgAVqUOVAdy1UMvdCXVZDHqhJm8I3sr05QM7BaSh17ct70W5PAhT1OHfXQ/bnkpg9BZkffhiAdIKA=
+	t=1766051568; cv=none; b=mouvUXBR5HppC6cly0ozaH8v9+w+UOTFLMJTItSbStiAi540Rz1P/9DJO1fVc3wQMzvcpACF4ZNQ9NJyyThl8m+R1jJi4/rfZCK8UV4jNEKYJbPinZ2TRh1Ay3NyMcmYQIgXZRwCFysL8XbGlSO77gBMjWm4DdXeJNY/mHHutOM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766051373; c=relaxed/simple;
-	bh=jpct4wgiQvvz63Cwe2t0WKmpu8qE8JWTj+D4fEqN3KU=;
+	s=arc-20240116; t=1766051568; c=relaxed/simple;
+	bh=ZAg+Vxb7Yy4hbcKu3h+/HwRKNvvS+LmAMjg1tpUKHnE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lZGq+AacwAn/X64H5NUy05grkPr+3YVQEU0cgS/mgw+VLgYwSMsxaZZF+Zucze20MeZbpJkG0d6FDzJQRpQAtF6gp9FGslx6GAuPWqz+Wi1LK55Nx0Nzpn8BzPJu38H4Ug+5rP7JKPAfNRsbGn/zx+o7yqEfn18dWlSMfebGywo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i+zreEJo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76F25C4CEFB;
-	Thu, 18 Dec 2025 09:49:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766051372;
-	bh=jpct4wgiQvvz63Cwe2t0WKmpu8qE8JWTj+D4fEqN3KU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=i+zreEJolTQBByW8JlPjfJ3Z1VMPes2Pd7PeJAb/lYS9S+kjePXS6fxK/1oiCfHLA
-	 SApDHO3FssA1sTS4F0w9Fy38cvl6WxkWVC0byQPuPQVMzC/aSU38p7T3YrTzKe/lEq
-	 +t3yiGig3MducPpc0NbGREP5v9YB9iZndsqe1W4uJCR6ayBC+wFjG6VFCOs/Ruqnwr
-	 /aqNqVbKxX2atQFftfDEC4z1dyMeo2hNdSyY1J2kx4C/dxYP0m2u9xYNOYoJOhOi8v
-	 V67YJYBgk8qBspVZuXfk+ga0SVCqlyGMbpJhXfGQGXvZ8Lw12uC/zGimGfkUK+YzIy
-	 Z5I+jzlJ5xCgg==
-Message-ID: <cbea0364-b8e3-4e3b-852f-b16436b60de1@kernel.org>
-Date: Thu, 18 Dec 2025 10:49:26 +0100
+	 In-Reply-To:Content-Type; b=eu376FWvEzmmdYz3v3MtmaibWnW2YPgS8OPcWEtgGnOcQhSBi2aGbCBHmB27cWPBCITd91eioEje5/c1J0HlKTVKF9NaQkST2Qkmn+CQcLx5IifRLthPaSHOBvq8vpffnaFTZG9+Iqq/Ub2qK1u72Hlv6uOBMER2LePgyNlZyCA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=socionext.com; spf=pass smtp.mailfrom=socionext.com; arc=none smtp.client-ip=202.248.49.38
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=socionext.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=socionext.com
+Received: from unknown (HELO iyokan3-ex.css.socionext.com) ([172.31.9.54])
+  by mx.socionext.com with ESMTP; 18 Dec 2025 18:52:34 +0900
+Received: from mail.mfilter.local (mail-arc02.css.socionext.com [10.213.46.40])
+	by iyokan3-ex.css.socionext.com (Postfix) with ESMTP id ACA992091484;
+	Thu, 18 Dec 2025 18:52:34 +0900 (JST)
+Received: from iyokan3.css.socionext.com ([172.31.9.53]) by m-FILTER with ESMTP; Thu, 18 Dec 2025 18:52:34 +0900
+Received: from [10.212.247.110] (unknown [10.212.247.110])
+	by iyokan3.css.socionext.com (Postfix) with ESMTP id AC36E10A01F;
+	Thu, 18 Dec 2025 18:52:33 +0900 (JST)
+Message-ID: <e773f4ef-1772-47d5-bce8-9b97979391a5@socionext.com>
+Date: Thu, 18 Dec 2025 18:52:36 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,111 +43,142 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 08/22] mm: Allow page table accessors to be
- non-idempotent
-To: Ryan Roberts <ryan.roberts@arm.com>,
- Samuel Holland <samuel.holland@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <pjw@kernel.org>,
- linux-riscv@lists.infradead.org, Andrew Morton <akpm@linux-foundation.org>,
- linux-mm@kvack.org
-Cc: devicetree@vger.kernel.org, Suren Baghdasaryan <surenb@google.com>,
- linux-kernel@vger.kernel.org, Mike Rapoport <rppt@kernel.org>,
- Michal Hocko <mhocko@suse.com>, Conor Dooley <conor@kernel.org>,
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Alexandre Ghiti <alex@ghiti.fr>,
- Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh+dt@kernel.org>,
- Vlastimil Babka <vbabka@suse.cz>, "Liam R . Howlett"
- <Liam.Howlett@oracle.com>
-References: <20251113014656.2605447-1-samuel.holland@sifive.com>
- <20251113014656.2605447-9-samuel.holland@sifive.com>
- <fbfef7fc-4030-462b-b514-498eea6620aa@arm.com>
- <c2597d43-d909-4259-bb5b-9294e4069385@kernel.org>
- <af8fd275-a34d-4b2f-8834-9c85dab2bbae@sifive.com>
- <a063f6c5-2785-4a9f-8079-25edb3e54cef@arm.com>
-From: "David Hildenbrand (Red Hat)" <david@kernel.org>
+Subject: Re: [PATCH] dt-bindings: usb: Add Socionext Uniphier DWC3 controller
+To: Rob Herring <robh@kernel.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Masami Hiramatsu <mhiramat@kernel.org>,
+ linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20251215212507.3317805-1-robh@kernel.org>
+ <0775e913-e531-44b5-b191-7ce0cf4d1e3a@socionext.com>
+ <CAL_Jsq+sXky33rD1-DkLvWdNcUEBNAty8t2NzvHFx-2ZK1cCSQ@mail.gmail.com>
 Content-Language: en-US
-In-Reply-To: <a063f6c5-2785-4a9f-8079-25edb3e54cef@arm.com>
+From: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+In-Reply-To: <CAL_Jsq+sXky33rD1-DkLvWdNcUEBNAty8t2NzvHFx-2ZK1cCSQ@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-On 12/11/25 14:59, Ryan Roberts wrote:
-> On 11/12/2025 00:33, Samuel Holland wrote:
->> On 2025-11-28 2:47 AM, David Hildenbrand (Red Hat) wrote:
->>> On 11/27/25 17:57, Ryan Roberts wrote:
->>>> On 13/11/2025 01:45, Samuel Holland wrote:
->>>>> Currently, some functions such as pte_offset_map() are passed both
->>>>> pointers to hardware page tables, and pointers to previously-read PMD
->>>>> entries on the stack. To ensure correctness in the first case, these
->>>>> functions must use the page table accessor function (pmdp_get()) to
->>>>> dereference the supplied pointer. However, this means pmdp_get() is
->>>>> called twice in the second case. This double call must be avoided if
->>>>> pmdp_get() applies some non-idempotent transformation to the value.
->>>>>
->>>>> Avoid the double transformation by calling set_pmd() on the stack
->>>>> variables where necessary to keep set_pmd()/pmdp_get() calls balanced.
->>>>
->>>> I don't think this is a good solution.
+On 2025/12/17 1:38, Rob Herring wrote:
+> On Mon, Dec 15, 2025 at 7:22 PM Kunihiko Hayashi
+> <hayashi.kunihiko@socionext.com> wrote:
+>>
+>> Hi Rob,
+>>
+>> On 2025/12/16 6:25, Rob Herring (Arm) wrote:
+>>> The Socionext Uniphier DWC3 controller binding is already in use, but
+>>> undocumented. It's a straight-forward binding similar to other DWC3
+>>> bindings.
+>>
+>> After being pointed out by Krzysztof at OSSJapan, I've checked the
+>> bindings
+>> and was preparing some additions or fixes to resolve the warning.
+>>
+>> It's almost the same as my proposal, however, I add a little.
+>>
 >>>
->>> Agreed,
+>>> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+>>> ---
+>>>    .../bindings/usb/socionext,uniphier-dwc3.yaml | 89 +++++++++++++++++++
+>>>    1 file changed, 89 insertions(+)
+>>>    create mode 100644
+>>> Documentation/devicetree/bindings/usb/socionext,uniphier-dwc3.yaml
 >>>
->>>      set_pmd(&pmd, pmd);
->>>
->>> is rather horrible.
->> I agree that this patch is ugly. The only way I see to avoid code like this is
->> to refactor (or duplicate) the functions so no function takes pointers to both
->> hardware page tables and on-stack page table entries. Is that sort of
->> refactoring the right direction to go for v4?
+>>> diff --git
+>>> a/Documentation/devicetree/bindings/usb/socionext,uniphier-dwc3.yaml
+>>> b/Documentation/devicetree/bindings/usb/socionext,uniphier-dwc3.yaml
+>>> new file mode 100644
+>>> index 000000000000..892ae3458c1b
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/usb/socionext,uniphier-dwc3.yaml
+>>> @@ -0,0 +1,89 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/usb/socionext,uniphier-dwc3.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Socionext Uniphier SuperSpeed DWC3 USB SoC controller
+>>> +
+>>> +maintainers:
+>>> +  - Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+>>> +  - Masami Hiramatsu <mhiramat@kernel.org>
+>>> +
+>>> +select:
+>>> +  properties:
+>>> +    compatible:
+>>> +      contains:
+>>> +        const: socionext,uniphier-dwc3
+>>> +  required:
+>>> +    - compatible
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    items:
+>>> +      - const: socionext,uniphier-dwc3
+>>> +      - const: snps,dwc3
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +  interrupts:
+>>> +    minItems: 1
+>>> +    items:
+>>> +      - description: Host or single combined interrupt
+>>> +      - description: Peripheral interrupt
+>>> +
+>>> +  interrupt-names:
+>>> +    minItems: 1
+>>> +    items:
+>>> +      - enum:
+>>> +          - dwc_usb3
+>>> +          - host
+>>> +      - const: peripheral
+>> There's no problem, but how about the following description
+>> following snps,dwc3.yaml?
+>>
+>>     interrupt-names:
+>>       oneOf:
+>>         - const: dwc_usb3
+>>         - items:
+>>             enum: [host, peripheral]
 > 
->  From a quick look at the code, I think that some cases are solvable by
-> refactoring to pass the value instead of the pointer, and leave it to the higher
-> level decide how to read the value from the pointer - it knows if it is pointing
-> to HW pgtable or if it's a (e.g) stack value.
-> 
-> But the more I look at the code, the more instances I find where pointers to
-> stack variables are being passed to arch pgtable helpers as if they are HW
-> pgtable entry pointers. (Mainly pmd level).
-> 
-> I wonder if we need to bite the bullet and explicitly separate the types? At
-> each level, we have:
-> 
->   1. page table entry value
->   2. pointer to page table entry _value_ (e.g. pointer to pXX_t on stack)
->   3. pointer to page table entry in HW pgtable
-> 
-> Today, 1 is represented by pte_t, pmd_t, etc. 2 and 3 are represented by the
-> same type; pte_t*, pmd_t*, etc.
-> 
-> If we create a new type for 3, it will both document and enforce when type 2 or
-> type 3 is required.
-> 
-> e.g:
-> 
-> // pte_t: defined by arch.
-> typedef unsigned long pte_t;
-> 
-> // ptep_t: new opaque type that can't be dereferenced.
-> struct __ptep_t;
-> typedef struct __ptep_t *ptep_t;
+> That allows for 'peripheral, host' or just 'peripheral'. Mine would
+> seemingly allow 'dwc_usb3, host', but snps,dwc3.yaml will prevent
+> that.
 
-This is what I had in mind when we last discussed this topic and I 
-suggested a way forward to not play whack-a-mole with new users that do 
-*ptep showing up.
+I see. The property combinations are complex, so
+I'll follow your suggestion from the currnet .dts files.
+  
+>>
+>>> +
+>>> +  clocks:
+>>> +    maxItems: 3
+>>> +
+>>> +  clock-names:
+>>> +    items:
+>>> +      - const: ref
+>>> +      - const: bus_early
+>>> +      - const: suspend
+>>> +
+>>> +  phys:
+>>> +    description: 1 to 4 HighSpeed PHYs followed by 1 or 2 SuperSpeed
+>>> PHYs
+>>> +    minItems: 2
+>>> +    maxItems: 6
+>>
+>> Since Pro4 only has one PHY, so:
+>>       minItems: 1
+> 
+> Ah, I only checked arm64. Will fix> 
+> If there's other arm32 warnings, I'm not looking at those. So fixes
+> appreciated there.
 
-Agreed that we ideally indicate that this is a HW PTE pointer that must 
-be de-referenced through ptep_get() or similar. (maybe we'd find a new 
-name for this set of functions).
+Yes, I'll address the arm32 warnings.
 
-I talked to Samuel at LPC, pointing him at the way XEN-pv implemented 
-support for changing PFNs in ptes. We might not need all of that rework 
-to move forward with the risc-v change.
+Thank you,
 
-Having that said, I also agree that this would be a cleanup worth having 
-(which will result in quite a bit of churn :) ).
-
-So if someone wants to bump up the patch count, speak now.
-
--- 
-Cheers
-
-David
+---
+Best Regards
+Kunihiko Hayashi
 
