@@ -1,39 +1,39 @@
-Return-Path: <devicetree+bounces-247801-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247799-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73D05CCBA5E
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 12:39:58 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id BEB35CCBA70
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 12:41:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 517453015D0C
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 11:39:57 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AF40A301E5A6
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 11:39:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11A47327202;
-	Thu, 18 Dec 2025 11:39:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC00B327BE7;
+	Thu, 18 Dec 2025 11:39:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE6483128DC
-	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 11:39:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A55C324B3E
+	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 11:39:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766057996; cv=none; b=poDwZPgPeOHTBemgvn19s73+5ywIIYD4dd5D6fMb7wzp0ObwsSDuDpplrwwm4vmj/SQaM9wskp2L4jXp1XOZvi77hv2T8LxmWLr0I39O7cvA0jcQY0Cnhy3jKRCcmgqtCS2oRY24lSm4mTufKQpk5WJfOLpsU7QcbLTBHMGSonk=
+	t=1766057994; cv=none; b=uKwFw5Fa1on7apONFYfBz4x5ndlX4PHTBTof+yG3bnK0mSKGUgrGRQFoYm03kWZaSIRmHLMgOnBnZhymWqswr6YzSYIcE+CqDG9xMdAePRLDafoVOFmEmSA2m8a3rUidwj45y76k93kIRtpzTL/CUXCKsYBaEkSMo3c129OWVOQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766057996; c=relaxed/simple;
-	bh=fJ1fvQq/79fHL/YVzpN+0ygNx8dqRXfOpvgHvtDp4Nc=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=hS7C8pmgzO8wsQ8ENbbbghvwdALePFHiz4YlsCEyxCagCY8i08Va9ZCFgPtJOa238g+7C3bEvlr+j2+hJm0APV7GckcziJZVP+Dt0tczKq/fmVSD8JsTsy4+qAydmxP3AX4JmFFugRlxHjckXh1yoS2jUnZv6rt7sPn/ay6Yr0Q=
+	s=arc-20240116; t=1766057994; c=relaxed/simple;
+	bh=P3W/nYa416JRQb/FrNf77RdefDEHVchQPWDoMF3Ijng=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=XpbqSCf4+6x0Ohbp1+64XKorwKJeISE3XcbF0uVqMbsvuPlxETIp2KEXb/tB/GXONKSDFy9zpz1OuNY4e/g6vqAFMZFb8/lp3Vd5zDpUD9sHnMrzPoNMve9zDHfRfAdHTqApM03g9+NI/NkwrzwvAkcTH3FGWUy1mdkzIm09V7E=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
 Received: from dude06.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::5c])
 	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
 	(envelope-from <f.pflug@pengutronix.de>)
-	id 1vWCMB-0001vK-1v; Thu, 18 Dec 2025 12:39:43 +0100
+	id 1vWCMB-0001vK-3X; Thu, 18 Dec 2025 12:39:43 +0100
 From: Fabian Pflug <f.pflug@pengutronix.de>
-Subject: [PATCH v4 0/2] Add devicetree for NXP i.MX93 FRDM board
-Date: Thu, 18 Dec 2025 12:39:20 +0100
-Message-Id: <20251218-fpg-nxp-imx93-frdm-v4-0-cd3a9f6ac89a@pengutronix.de>
+Date: Thu, 18 Dec 2025 12:39:21 +0100
+Subject: [PATCH v4 1/2] dt-bindings: arm: fsl: add i.MX93 11x11 FRDM board
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -42,11 +42,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAOjnQ2kC/33PwQ6DIAyA4VcxnMcCBYzutPdYdmBQlINowBkX4
- 7sPPSxLZnb8m/RrupCE0WMil2IhESeffB9yyFNBTKtDg9Tb3AQYKKZAUDc0NMwD9d1c54q2o8o
- YXjHNndU1yYtDROfnHb3dc7c+jX187Tcmvk3/chOnjCpZPsAKCZVS1wFD8xxjH/x8tkg2c4Jvp
- zx0IDuotGXoNBohDh3xcTgDOHREdphAI/OPxhj246zr+gYOCYz6SQEAAA==
-X-Change-ID: 20250523-fpg-nxp-imx93-frdm-5cc180a1fda9
+Message-Id: <20251218-fpg-nxp-imx93-frdm-v4-1-cd3a9f6ac89a@pengutronix.de>
+References: <20251218-fpg-nxp-imx93-frdm-v4-0-cd3a9f6ac89a@pengutronix.de>
+In-Reply-To: <20251218-fpg-nxp-imx93-frdm-v4-0-cd3a9f6ac89a@pengutronix.de>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
  Sascha Hauer <s.hauer@pengutronix.de>, 
@@ -56,82 +54,36 @@ Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
  Fabian Pflug <f.pflug@pengutronix.de>, 
  Daniel Baluta <daniel.baluta@nxp.com>, 
- Haidong Zheng <haidong.zheng@nxp.com>, Danwei Luo <danwei.luo@nxp.com>, 
- Lei Xu <lei.xu@nxp.com>, Krzysztof Kozlowski <krzk@kernel.org>
+ Krzysztof Kozlowski <krzk@kernel.org>
 X-Mailer: b4 0.14.3
 X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::5c
 X-SA-Exim-Mail-From: f.pflug@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
 X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-I could not test all features of the board, therefore a lot of stuff is
-omitted from the devicetree. but this is enough to have the board boot
-via eMMC or SD-Card, debug via debug USB connector and have a network
-connection.
+Add DT compatible string for NXP i.MX93 11x11 FRDM board.
 
-The FRDM i.MX 93 development board is a low-cost and compact development
-board featuring the i.MX93 applications processor.
-
-It features:
-- Dual Cortex-A55
-- 2 GB LPDDR4X / LPDDR4
-- 32 GB eMMC5.1
-- MicroSD slot
-- GbE RJ45 x 2
-- USB2.0 1x Type C, 1x Type A
-
-This file is based upon the one provided by nxp in their own kernel and
-yocto meta layer for the device, but adapted for mainline.
-
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
 Signed-off-by: Fabian Pflug <f.pflug@pengutronix.de>
 ---
-Changes in v4:
-- remove it6263 block in i2c1, since it is not finished
-- remove usdhc3 pwrsequence, since WLAN is not tested on my board
-- remove eee-broken-1000t on phy2, since it is not broken
-- update min/max-microvlt on buck converters
-- Link to v3: https://lore.kernel.org/r/20251022-fpg-nxp-imx93-frdm-v3-0-03ec40a1ccc0@pengutronix.de
+ Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Changes in v3:
-- Add Signed-off for original NXP contributors.
-- Fixed whitespace errors (Thanks Francesco Valla)
-- Added mu1 with status okay (Thanks Francesco Valla)
-- Removed address cells from lpi2c3 (Thanks Frank Li)
-- Configure pin for watchdog (Thanks Peng Fan)
-- Updated regulator config
-- Configure i2c0
-- Link to v2: https://lore.kernel.org/r/20250526-fpg-nxp-imx93-frdm-v2-0-e5ad0efaec33@pengutronix.de
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 68a2d5fecc43b..eab81799b0793 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -1419,6 +1419,7 @@ properties:
+           - enum:
+               - fsl,imx93-9x9-qsb         # i.MX93 9x9 QSB Board
+               - fsl,imx93-11x11-evk       # i.MX93 11x11 EVK Board
++              - fsl,imx93-11x11-frdm      # i.MX93 11x11 FRDM Board
+               - fsl,imx93-14x14-evk       # i.MX93 14x14 EVK Board
+           - const: fsl,imx93
+ 
 
-Changes in v2:
-- 1/2: remove CAN node, as it has not been tested.
-- 1/2: ran dt-format (Thanks Frank Li)
-	But also reordered some nodes afterwards again to have
-	regulator-min before regulator-max, have the pinmux at the end
-	of the file, and have the regulator-name as the first node
-	inside the regulators.
-	Re-added comments, that were deleted.
-- 1/2: changes subjet to ar64:dts (Thanks Fabio Estevan)
-- 1/2: removed reg_vdd_12v (Tanks Fabio Estevan)
-- 1/2: added aliases for rtc, emmc, serial (Thanks Fabio Estevan)
-- reordered the series to have documentation before dts. (Thanks
-  Krzystof Kozlowski)
-- Link to v1: https://lore.kernel.org/r/20250523-fpg-nxp-imx93-frdm-v1-0-546b2d342855@pengutronix.de
-
----
-Fabian Pflug (2):
-      dt-bindings: arm: fsl: add i.MX93 11x11 FRDM board
-      arm64: dts: freescale: add support for NXP i.MX93 FRDM
-
- Documentation/devicetree/bindings/arm/fsl.yaml     |   1 +
- arch/arm64/boot/dts/freescale/Makefile             |   1 +
- arch/arm64/boot/dts/freescale/imx93-11x11-frdm.dts | 620 +++++++++++++++++++++
- 3 files changed, 622 insertions(+)
----
-base-commit: ea1013c1539270e372fc99854bc6e4d94eaeff66
-change-id: 20250523-fpg-nxp-imx93-frdm-5cc180a1fda9
-
-Best regards,
 -- 
-Fabian Pflug <f.pflug@pengutronix.de>
+2.47.3
 
 
