@@ -1,101 +1,100 @@
-Return-Path: <devicetree+bounces-247748-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247750-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28B6ACCB10A
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 10:06:47 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D96C4CCB137
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 10:09:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 9A250302BBAD
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 09:06:46 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4D743301F27D
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 09:08:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3236A2F12BF;
-	Thu, 18 Dec 2025 09:06:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 528052F28FB;
+	Thu, 18 Dec 2025 09:08:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="2M0D7f9A"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="R0/13jt+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DD80246BBA;
-	Thu, 18 Dec 2025 09:06:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 831732ECD32;
+	Thu, 18 Dec 2025 09:07:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766048805; cv=none; b=noHCVAT5wUlt8K2Mbjw/mXi/aoaV/HqwPfzpy4/FLut36/AbKd1OqiwnGECdXRWBRqbF/7Ri8LNy+gfIR36pk6tLuhpyWyM6Cvp/P33VbV7R1MouDcI4aJv8AU+3dxV3/JPlnaaUIPO2Cj81mhSlTEQkLSX2tBF6cjpFWv2Hjy0=
+	t=1766048881; cv=none; b=jjL/3NueUCN43L6dZmPs490AHPy7PS53u2Ixx15cQThbB5nWKdGDHIfzLAoRxXgDCM16gnjfQkm5z8rnHd97bFXyhHE88DW6RnrRbBEusSCWp6IDD8zQhsL+dz3h0xnT0/OGZOqw7f+Us7ObKtYSGYEmW6Os3ZHF5YKWTcQSnMY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766048805; c=relaxed/simple;
-	bh=2FxCS2v8ys6Z9v1YP9ReHVNMpOtfhfAq24bTG/5GKBY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=pKuuTvl+WtOHmAzWYhCokxrqNBpQ9Xu8R+75iXZHyTpn5lYSi6oPNfJYUsmqResghFECKrJxk+F6LAwmHxIXetKdcxx5ICyPsjTqrvxYCOrcFE4wrbYhLaL9B8O+lU05Z7XOHgOTibOmijlqLR/ni7AiaT/AIhR8KpEysiHPLnY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=2M0D7f9A; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1766048803; x=1797584803;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=2FxCS2v8ys6Z9v1YP9ReHVNMpOtfhfAq24bTG/5GKBY=;
-  b=2M0D7f9AQ6dyUx9i5iNhBIrsOPsg5NQpzsy0r5eEU0cQF4YezcEVRKuu
-   hfaJzQLmqa4ovO6xSp4fKvLDeJlLqYOwNd+/afJUb3Q6b0ysAAjtj2WEj
-   NGiBiFV8QiWgcrl3Os5P/nfHXef5kn1rmm2PhqAshdYGDxIYEqhtfFoRT
-   HBP00KINTZGIo81wRd3yPeAVyFV8VBQZK+kdUPvFni0YbHQ+mueomFsWr
-   N18kjasnSbBBYxAz158zP2pYCVFyLxyirdCivD9UwS4DwJblHLBIw4ED8
-   mtlFtmO6A8WK3deZyJ5yj+SLfa58ZikDCb0k4kSPJKrQ4ap8QLxUKr/VL
-   Q==;
-X-CSE-ConnectionGUID: 3TswuhhSR4iw3eoTfkehJA==
-X-CSE-MsgGUID: ypYW0R9OQBqxqqnx5ZMI6w==
-X-IronPort-AV: E=Sophos;i="6.21,158,1763449200"; 
-   d="scan'208";a="218042574"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Dec 2025 02:06:42 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
- chn-vm-ex4.mchp-main.com (10.10.87.33) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.2.2562.29; Thu, 18 Dec 2025 02:06:18 -0700
-Received: from [10.171.248.75] (10.10.85.11) by chn-vm-ex02.mchp-main.com
- (10.10.85.144) with Microsoft SMTP Server id 15.1.2507.58 via Frontend
- Transport; Thu, 18 Dec 2025 02:06:14 -0700
-Message-ID: <83faf871-0e54-4ea1-9490-e27026211eac@microchip.com>
-Date: Thu, 18 Dec 2025 10:06:13 +0100
+	s=arc-20240116; t=1766048881; c=relaxed/simple;
+	bh=S4xxlSlkjywJL1VhdwtjTgNc/0wkfC7aMTwlvwAa/J0=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=qCsjg2oXVPvW1jnRmYJvFgmrH/5o7trXV0BtBRfS5pP6yCxf/9+L1OeFUdasQYbxy/QubhuipQaY4CT/nkewDg85nzIVPbaIexARohjj5jlPPs4AUB5E2N3WR1uTIQtF+KfuMsLJ5gi3UIMCsCIqAZ4YSnj4/+yrleyH1CeqMx4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=R0/13jt+; arc=none smtp.client-ip=220.197.31.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=From:To:Subject:Date:Message-Id; bh=ISUhT8CVNB0W9nR
+	91e4U6Z46MDIuYLNi5JE8yekOZPw=; b=R0/13jt+8+kuAygRNb0ZAcxt5OouMHi
+	t9Y1LjiXZbCIYisNzrOglIOy+vMCgevPTZgaaIufPDwu+dTQO3gOA67ei9uCAjqs
+	ZyiH5egw9d7fj9xf0Z1xPSrNiJr1kSlEnf0smjX3GPyvT6GOCoHAhk889PJYHYZI
+	vtpjhCjP0l0g=
+Received: from localhost.localdomain (unknown [])
+	by gzga-smtp-mtada-g1-4 (Coremail) with SMTP id _____wBXPaw5xENpP8BcBA--.40S2;
+	Thu, 18 Dec 2025 17:07:08 +0800 (CST)
+From: Wenliang Yan <wenliang202407@163.com>
+To: linux@roeck-us.net,
+	Jean Delvare <jdelvare@suse.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Wenliang Yan <wenliang202407@163.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v4 0/8] hwmon: (ina3221) Various improvement and add support for SQ52210
+Date: Thu, 18 Dec 2025 04:06:51 -0500
+Message-Id: <20251218090659.66991-1-wenliang202407@163.com>
+X-Mailer: git-send-email 2.17.1
+X-CM-TRANSID:_____wBXPaw5xENpP8BcBA--.40S2
+X-Coremail-Antispam: 1Uf129KBjvJXoW7Ww17WrykArWxXr43uFyDJrb_yoW8JFykpa
+	92kw45Gr98Jr1xXa9Ikw48u34Yqr1fAF429r97Jay0vF4jy3WIvrWvgwn0ywnrGr9xKFyD
+	Ja4fuFn7KasrArDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0JU-4SOUUUUU=
+X-CM-SenderInfo: xzhqzxhdqjjiisuqlqqrwthudrp/xtbCvx1rP2lDxD1YMQAA3M
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] drm: atmel-hlcdc: add LCD controller layer
- definition for sama7d65
-To: Manikandan Muralidharan <manikandan.m@microchip.com>, <lee@kernel.org>,
-	<robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-	<alexandre.belloni@bootlin.com>, <claudiu.beznea@tuxon.dev>,
-	<dharma.b@microchip.com>, <maarten.lankhorst@linux.intel.com>,
-	<mripard@kernel.org>, <tzimmermann@suse.de>, <airlied@gmail.com>,
-	<simona@ffwll.ch>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<dri-devel@lists.freedesktop.org>
-CC: Ryan Wanner <Ryan.Wanner@microchip.com>
-References: <20251218040521.463937-1-manikandan.m@microchip.com>
- <20251218040521.463937-3-manikandan.m@microchip.com>
-From: Nicolas Ferre <nicolas.ferre@microchip.com>
-Content-Language: en-US, fr
-Organization: microchip
-In-Reply-To: <20251218040521.463937-3-manikandan.m@microchip.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
 
-On 18/12/2025 at 05:05, Manikandan Muralidharan wrote:
-> From: Ryan Wanner <Ryan.Wanner@microchip.com>
-> 
-> Add the LCD controller layer definition and atmel_hlcdc_of_match
-> entry for sama7d65.
-> 
-> Signed-off-by: Ryan Wanner <Ryan.Wanner@microchip.com>
-> Signed-off-by: Manikandan Muralidharan <manikandan.m@microchip.com>
+1.Add review information for the binding(PATCH 1).
 
-Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
-Thanks Ryan and Manikandan! Best regards,
-   Nicolas
+2.Modify the description of the patch(PATCH 2).
+
+3.Add initialization for 'alert_type_select'(PATCH 4).
+
+4.Add out-of-bounds checks for the array(PATCH 8).
+
+---
+v3: https://lore.kernel.org/linux-hwmon/20251120081921.39412-1-wenliang202407@163.com/
+v2: https://lore.kernel.org/linux-hwmon/20251118125148.95603-1-wenliang202407@163.com/
+v1: https://lore.kernel.org/linux-hwmon/20251111080546.32421-1-wenliang202407@163.com/
+
+Wenliang Yan (8):
+  dt-bindings: hwmon: ti,ina3221: Add SQ52210
+  hwmon: (ina3221) Add support for SQ52210
+  hwmon: (ina3221) Pre-calculate current and power LSB
+  hwmon: (ina3221) Support alert configuration
+  hwmon: (ina3221) Introduce power attribute and alert characteristics
+  hwmon: (ina3221) Support for writing alert limit values and modify the
+    'ina3221_read_value' function
+  hwmon: (ina3221) Support write/read functions for 'power' attribute
+  hwmon: (ina3221) Modify write/read functions for 'in' and 'curr'
+    attribute
+
+ .../devicetree/bindings/hwmon/ti,ina3221.yaml |  15 +-
+ Documentation/hwmon/ina3221.rst               |  24 +
+ drivers/hwmon/ina3221.c                       | 536 +++++++++++++++++-
+ 3 files changed, 561 insertions(+), 14 deletions(-)
+
+-- 
+2.17.1
 
 
