@@ -1,52 +1,38 @@
-Return-Path: <devicetree+bounces-247932-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247933-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D0B2CCCDA8
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 17:47:57 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54CF6CCCF05
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 18:13:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 429B130414C5
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 16:44:33 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 57F31300EE55
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 17:13:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DDAB27AC45;
-	Thu, 18 Dec 2025 16:44:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=hetzner.com header.i=@hetzner.com header.b="TIvIl8Vy"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 265A3347FEE;
+	Thu, 18 Dec 2025 17:04:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.hetzner.company (mail.hetzner.company [213.133.106.242])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF7231F7098;
-	Thu, 18 Dec 2025 16:44:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.133.106.242
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAB2434AB07;
+	Thu, 18 Dec 2025 17:04:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766076270; cv=none; b=jasJ8dp2NDfi7cxNVvUU+GLfZLWmErldZmoKXCScvogoal762/Nf36t8p36T89hRYHObI6TVxhmsNd8boBrX1V5uyGrfyjFfwz+c8jY98+euM7MtbdHYBkrjHLbgBhB0p1ufPMJXkhajF1rG8kKQmmjd1Ru9rQlbSbtvp1c4VNY=
+	t=1766077458; cv=none; b=LNrmXkQHmI7/TlQyMBCGNblrf0GtawAjo8G9upES+dxJB9KQfPbRbYKMe+mHedfRwT9DOTrDSyMloIu3DgutUBeOEc72OUA1D2R/W3jPXAW4c+qZgKNb8IHVlicOz0W8CkNji6zbL030mAgjsFU98saun9PXi0Qo/kmOTl1nr/4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766076270; c=relaxed/simple;
-	bh=YN/xxX0/Ixo3qL+LA06j9UvKExNb8vlw58qcG5Z9WtE=;
+	s=arc-20240116; t=1766077458; c=relaxed/simple;
+	bh=0qfzhWIRN/LX5OBVH0cKx+HcEmq870kWDLXVUz8oZH8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JBPX2hRjkiDvwLn+nX0potvhpLke4oG8Sf/hwz2VxekSDRFhKzIIhtK4fYAOSbGqxbqs1QgosndW1xFiaiStxdSGJyT0X4P8mNfWcn97hWA2fRH2jWOyEEaO6ReIhnhM2yZQqwRBwyKhU/KXbrnrqx6yod19LtM6CLg/XEaxsEM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hetzner.com; spf=pass smtp.mailfrom=hetzner.com; dkim=pass (2048-bit key) header.d=hetzner.com header.i=@hetzner.com header.b=TIvIl8Vy; arc=none smtp.client-ip=213.133.106.242
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hetzner.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hetzner.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hetzner.com
-	; s=lms2212; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-	References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=Fpfs5Yw14x8Q64EiuaznPYbDXviY+y9LVMU8kmcpM2o=; b=TIvIl8Vye4if2Ep+wXRRuhl8gR
-	WLUGm3b4XGDOiVIJAzNDQ36RYVc0PIMcGtm+vUMYeU/BLo7ux1uEnpR+QYNgxOjqyMZi9k/2ie+X5
-	6Wt2xx4S3KLgbhHU053QLxSOXsaLXm2yEdk8tuLoY1ptfkmIfvoA3QHTPKbjyC8JQYKYHl6o7WuWN
-	9H1uH3ptIGkM3VAbbKwZs/rcmoXTxUFdvVt5/1V+niTaVwGxrAnMeXyC9vA2KT4AH6vbKZkXXsUQJ
-	tLcgexQZwbXIJFwEft0vqfXUfjUNfZEdWmTJWiuvfM73Jce7kZHmM1UCW/4kj/a07g/KAncJeNHzx
-	aZtKwvpw==;
-Received: from nbg1-vpn1-entry1.hetzner.company ([78.47.119.212] helo=[10.1.220.249])
-	by mail.hetzner.company with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-	(Exim 4.94.2)
-	(envelope-from <tan.siewert@hetzner.com>)
-	id 1vWH6o-00FlwY-9i; Thu, 18 Dec 2025 17:44:09 +0100
-Message-ID: <b10a233e-02c3-4b02-8f11-098f6fb8197c@hetzner.com>
-Date: Thu, 18 Dec 2025 17:44:05 +0100
+	 In-Reply-To:Content-Type; b=iVDiYP6RBf1UAh9GdnIT5zrjTHLqCOuBnegsCLgIsJ+YIDFdj3dsYL/F1xqhaTRceSd/LPbxVSUjlZ0WO28HUKOaG2PtnU19cdiGZwzHj8dr4t81yFQJA2fQmOrS0LQdfjEkgme5wBwgs37EDLifzNz87UnmE7Aymo1mPGUHyXU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 42A4AFEC;
+	Thu, 18 Dec 2025 09:04:06 -0800 (PST)
+Received: from [10.57.74.203] (unknown [10.57.74.203])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 94D973F73F;
+	Thu, 18 Dec 2025 09:04:09 -0800 (PST)
+Message-ID: <3d4dd3d0-fca0-45ac-a833-e8f7f5d1aa95@arm.com>
+Date: Thu, 18 Dec 2025 17:04:07 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -54,91 +40,195 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/2] dt-bindings: arm: aspeed: add ASRock Rack ALTRAD8
- board
+Subject: Re: [PATCH v2 00/12] coresight: Add CPU cluster funnel/replicator/tmc
+ support
 Content-Language: en-GB
-To: Krzysztof Kozlowski <krzk@kernel.org>, Rebecca Cran <rebecca@bsdio.com>,
+To: yuanfang zhang <yuanfang.zhang@oss.qualcomm.com>,
+ Mike Leach <mike.leach@linaro.org>, James Clark <james.clark@linaro.org>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
- Andrew Jeffery <andrew@codeconstruct.com.au>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
- linux-kernel@vger.kernel.org
-Cc: Billy Tsai <billy_tsai@aspeedtech.com>,
- Conor Dooley <conor.dooley@microchip.com>
-References: <20251218161816.38155-1-rebecca@bsdio.com>
- <20251218161816.38155-2-rebecca@bsdio.com>
- <5aa36c56-798a-40cc-b0b8-be3f7c92136f@kernel.org>
-From: Tan Siewert <tan.siewert@hetzner.com>
-Autocrypt: addr=tan.siewert@hetzner.com; keydata=
- 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
-Organization: Hetzner Cloud GmbH
-In-Reply-To: <5aa36c56-798a-40cc-b0b8-be3f7c92136f@kernel.org>
+ Conor Dooley <conor+dt@kernel.org>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>, Leo Yan <leo.yan@linux.dev>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Sudeep Holla <sudeep.holla@arm.com>
+Cc: kernel@oss.qualcomm.com, coresight@lists.linaro.org,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ maulik.shah@oss.qualcomm.com, Jie Gan <jie.gan@oss.qualcomm.com>
+References: <20251218-cpu_cluster_component_pm-v2-0-2335a6ae62a0@oss.qualcomm.com>
+ <47191600-260a-46aa-9af8-dff2b08dc2e8@arm.com>
+ <8cb8fad9-c54e-43a3-a769-5452119cc2a1@oss.qualcomm.com>
+From: Suzuki K Poulose <suzuki.poulose@arm.com>
+In-Reply-To: <8cb8fad9-c54e-43a3-a769-5452119cc2a1@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Authenticated-Sender: tan.siewert@hetzner.com
+Content-Transfer-Encoding: 8bit
 
-On 18.12.25 17:21, Krzysztof Kozlowski wrote:
-> On 18/12/2025 17:18, Rebecca Cran wrote:
->> Document ASRock Rack ALTRAD8 (ALTRAD8UD-1L2T and ALTRAD8UD2-1L2Q)
->> compatibles.
+On 18/12/2025 16:18, yuanfang zhang wrote:
+> 
+> 
+> On 12/18/2025 5:32 PM, Suzuki K Poulose wrote:
+>> Cc: Sudeep
 >>
->> Signed-off-by: Rebecca Cran <rebecca@bsdio.com>
->> Acked-by: Conor Dooley <conor.dooley@microchip.com>
->> Tested-by: Tan Siewert <tan.siewert@hetzner.com>
+>> On 18/12/2025 08:09, Yuanfang Zhang wrote:
+>>> This patch series adds support for CoreSight components local to CPU clusters,
+>>> including funnel, replicator, and TMC, which reside within CPU cluster power
+>>> domains. These components require special handling due to power domain
+>>> constraints.
+>>>
+>>> Unlike system-level CoreSight devices, these components share the CPU cluster's
+>>> power domain. When the cluster enters low-power mode (LPM), their registers
+>>> become inaccessible. Notably, `pm_runtime_get` alone cannot bring the cluster
+>>> out of LPM, making standard register access unreliable.
+>>
+>> Why ? AFAIU, we have ways to tie the power-domain to that of the cluster
+>> and that can auto-magically keep the cluster power ON as long as you
+>> want to use them.
+>>
+>> Suzuki
+>>
+> Hi Suzuki
 > 
-> How was the binding tested?
+> Runtime PM for CPU devices works little different, it is mostly used to manage hierarchical
+> CPU topology (PSCI OSI mode) to talk with genpd framework to manage the last CPU handling in
+> cluster.
+> It doesn’t really send IPI to wakeup CPU device (It don’t have .power_on/.power_off) callback
+> implemented which gets invoked from .runtime_resume callback. This behavior is aligned with
+> the upstream Kernel.
 
-My bad for sending the wrong trailing header in v4. Tested-by should've 
-been only on the dts instead of the dt-bindings+dts. Either way, `make 
-dt_binding_check` was what I did to check if there are any errors 
-produced for `asrock,altrad8-bmc`.
+Why does it need to wake up the CPU ? The firmware can power up the
+cluster right? Anyways, to me this all looks like working around a
+firmware issue. I will let you sort this out with Sudeep's response
+, as I am not an expert on the cluster powermanagement and standards.
 
--- Tan
+Suzuki
+
+
 
 > 
+> Yuanfang
 > 
-> Best regards,
-> Krzysztof
+>>
+>>>
+>>> To address this, the series introduces:
+>>> - Identifying cluster-bound devices via a new `qcom,cpu-bound-components`
+>>>     device tree property.
+>>> - Implementing deferred probing: if associated CPUs are offline during
+>>>     probe, initialization is deferred until a CPU hotplug notifier detects
+>>>     the CPU coming online.
+>>> - Utilizing `smp_call_function_single()` to ensure register accesses
+>>>     (initialization, enablement, sysfs reads) are always executed on a
+>>>     powered CPU within the target cluster.
+>>> - Extending the CoreSight link `enable` callback to pass the `cs_mode`.
+>>>     This allows drivers to distinguish between SysFS and Perf modes and
+>>>     apply mode-specific logic.
+>>>
+>>> Jie Gan (1):
+>>>     arm64: dts: qcom: hamoa: add Coresight nodes for APSS debug block
+>>>
+>>> Yuanfang Zhang (11):
+>>>     dt-bindings: arm: coresight: Add 'qcom,cpu-bound-components' property
+>>>     coresight: Pass trace mode to link enable callback
+>>>     coresight-funnel: Support CPU cluster funnel initialization
+>>>     coresight-funnel: Defer probe when associated CPUs are offline
+>>>     coresight-replicator: Support CPU cluster replicator initialization
+>>>     coresight-replicator: Defer probe when associated CPUs are offline
+>>>     coresight-replicator: Update management interface for CPU-bound devices
+>>>     coresight-tmc: Support probe and initialization for CPU cluster TMCs
+>>>     coresight-tmc-etf: Refactor enable function for CPU cluster ETF support
+>>>     coresight-tmc: Update management interface for CPU-bound TMCs
+>>>     coresight-tmc: Defer probe when associated CPUs are offline
+>>>
+>>> Verification:
+>>>
+>>> This series has been verified on sm8750.
+>>>
+>>> Test steps for delay probe:
+>>>
+>>> 1. limit the system to enable at most 6 CPU cores during boot.
+>>> 2. echo 1 >/sys/bus/cpu/devices/cpu6/online.
+>>> 3. check whether ETM6 and ETM7 have been probed.
+>>>
+>>> Test steps for sysfs mode:
+>>>
+>>> echo 1 >/sys/bus/coresight/devices/tmc_etf0/enable_sink
+>>> echo 1 >/sys/bus/coresight/devices/etm0/enable_source
+>>> echo 1 >/sys/bus/coresight/devices/etm6/enable_source
+>>> echo 0 >/sys/bus/coresight/devices/etm0/enable_source
+>>> echo 0 >/sys/bus/coresight/devicse/etm6/enable_source
+>>> echo 0 >/sys/bus/coresight/devices/tmc_etf0/enable_sink
+>>>
+>>> echo 1 >/sys/bus/coresight/devices/tmc_etf1/enable_sink
+>>> echo 1 >/sys/bus/coresight/devcies/etm0/enable_source
+>>> cat /dev/tmc_etf1 >/tmp/etf1.bin
+>>> echo 0 >/sys/bus/coresight/devices/etm0/enable_source
+>>> echo 0 >/sys/bus/coresight/devices/tmc_etf1/enable_sink
+>>>
+>>> echo 1 >/sys/bus/coresight/devices/tmc_etf2/enable_sink
+>>> echo 1 >/sys/bus/coresight/devices/etm6/enable_source
+>>> cat /dev/tmc_etf2 >/tmp/etf2.bin
+>>> echo 0 >/sys/bus/coresight/devices/etm6/enable_source
+>>> echo 0 >/sys/bus/coresight/devices/tmc_etf2/enable_sink
+>>>
+>>> Test steps for sysfs node:
+>>>
+>>> cat /sys/bus/coresight/devices/tmc_etf*/mgmt/*
+>>>
+>>> cat /sys/bus/coresight/devices/funnel*/funnel_ctrl
+>>>
+>>> cat /sys/bus/coresight/devices/replicator*/mgmt/*
+>>>
+>>> Test steps for perf mode:
+>>>
+>>> perf record -a -e cs_etm//k -- sleep 5
+>>>
+>>> Signed-off-by: Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>
+>>> ---
+>>> Changes in v2:
+>>> - Use the qcom,cpu-bound-components device tree property to identify devices
+>>>     bound to a cluster.
+>>> - Refactor commit message.
+>>> - Introduce a supported_cpus field in the drvdata structure to record the CPUs
+>>>     that belong to the cluster where the local component resides.
+>>> - Link to v1: https://lore.kernel.org/r/20251027-cpu_cluster_component_pm-v1-0-31355ac588c2@oss.qualcomm.com
+>>>
+>>> ---
+>>> Jie Gan (1):
+>>>         arm64: dts: qcom: hamoa: Add CoreSight nodes for APSS debug block
+>>>
+>>> Yuanfang Zhang (11):
+>>>         dt-bindings: arm: coresight: Add 'qcom,cpu-bound-components' property
+>>>         coresight-funnel: Support CPU cluster funnel initialization
+>>>         coresight-funnel: Defer probe when associated CPUs are offline
+>>>         coresight-replicator: Support CPU cluster replicator initialization
+>>>         coresight-replicator: Defer probe when associated CPUs are offline
+>>>         coresight-replicator: Update management interface for CPU-bound devices
+>>>         coresight-tmc: Support probe and initialization for CPU cluster TMCs
+>>>         coresight-tmc-etf: Refactor enable function for CPU cluster ETF support
+>>>         coresight-tmc: Update management interface for CPU-bound TMCs
+>>>         coresight-tmc: Defer probe when associated CPUs are offline
+>>>         coresight: Pass trace mode to link enable callback
+>>>
+>>>    .../bindings/arm/arm,coresight-dynamic-funnel.yaml |   5 +
+>>>    .../arm/arm,coresight-dynamic-replicator.yaml      |   5 +
+>>>    .../devicetree/bindings/arm/arm,coresight-tmc.yaml |   5 +
+>>>    arch/arm64/boot/dts/qcom/hamoa.dtsi                | 926 +++++++++++++++++++++
+>>>    arch/arm64/boot/dts/qcom/purwa.dtsi                |  12 +
+>>>    drivers/hwtracing/coresight/coresight-core.c       |   7 +-
+>>>    drivers/hwtracing/coresight/coresight-funnel.c     | 258 +++++-
+>>>    drivers/hwtracing/coresight/coresight-replicator.c | 341 +++++++-
+>>>    drivers/hwtracing/coresight/coresight-tmc-core.c   | 387 +++++++--
+>>>    drivers/hwtracing/coresight/coresight-tmc-etf.c    | 106 ++-
+>>>    drivers/hwtracing/coresight/coresight-tmc.h        |  10 +
+>>>    drivers/hwtracing/coresight/coresight-tnoc.c       |   3 +-
+>>>    drivers/hwtracing/coresight/coresight-tpda.c       |   3 +-
+>>>    include/linux/coresight.h                          |   3 +-
+>>>    14 files changed, 1902 insertions(+), 169 deletions(-)
+>>> ---
+>>> base-commit: 008d3547aae5bc86fac3eda317489169c3fda112
+>>> change-id: 20251016-cpu_cluster_component_pm-ce518f510433
+>>>
+>>> Best regards,
+>>
 > 
+
 
