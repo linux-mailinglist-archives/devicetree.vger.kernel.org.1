@@ -1,177 +1,116 @@
-Return-Path: <devicetree+bounces-247715-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247716-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 112B3CCAC6A
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 09:07:20 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D631CCAC73
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 09:08:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DA20E302218A
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 08:05:01 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E5B58300EA14
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 08:05:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D3E72EC0B4;
-	Thu, 18 Dec 2025 08:04:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B0EB2E9ED6;
+	Thu, 18 Dec 2025 08:05:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="guQfAe+x"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dhcrn/0v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com [209.85.222.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADBB02E8DFC
-	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 08:04:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D34312459ED;
+	Thu, 18 Dec 2025 08:05:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766045090; cv=none; b=XWv0ahcnfTab/C7o6fLY3d6zRpX7M3KBJm3NASAe+wb49gE6U4ziLXPF0u9J840zpheOWvd10I3nsyj2hjZY4VSDYe3Vi1Wm83lRk42NbnCmrgZZOksqqo43Ff6txmaZcyYra0n4gcFNG+Vonn6jGeY10RsVKZbOT0mGt+afglI=
+	t=1766045152; cv=none; b=SBRLtgHLX4iKQgNZt+qXrr5Wxm+P7ee73+Ywx/PzJqPhbxgqYrrGNrj6C3jXrgyXmAJzJ+2gP+tzT+MdomM9jTVTqxs3tmnuhyqSVH0bPAscypy1KPLzlc908C88i725D/r/XrJFE/OCFXRA0boU7Fwc1dAwYV5GBYQXwESod/8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766045090; c=relaxed/simple;
-	bh=EUWA9vBS/8Bj7ML6MIoqvCIK0kHU15G6PnmKBfCoYhk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ZLMFhQmcZ/Em1CdeQY21/5+2PYI7ou1OfAJ216NtYR/v+DWYKeEMCKqnRCsokNWg9j4jhi2OpxLATALcZXmvdsMvVbHN7SjCSnXEBIiwPU7gz7NhzcFZ0oGcy9LYXCYETWO0y+QD4BZPg1MEGK460OMsSV+CHZUwkPdlugHBHoc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=guQfAe+x; arc=none smtp.client-ip=209.85.222.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f179.google.com with SMTP id af79cd13be357-8b602811a01so43668985a.2
-        for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 00:04:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1766045085; x=1766649885; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ZFatZ2cHC57MPqYi+kElcilUE7e6ABilLQQM4w6mW4c=;
-        b=guQfAe+xdwIYVfnbl2P7NeYl3RvgnZekq458I5TSmauxRj5I+LyEX55C/jdUJ5oWam
-         G+MVsWqfq0pBytYwhNN4JP8C2wcMHedfZWuzrxrbbXaM79o/8XK/aFCpk1F9Sag+iOpx
-         PYlgzDONeJ4y6ME8qfcl1lln+VevTT+bBe7w+Ei/WAEa36ZrRpSeLJHmeyACAbs2jVJi
-         fcnTiLyxZ3k3cC4/pdjhHooxB4S+ZXHre+u8oqtXlWB3JmT4S/mzgP6W2Ra4BIP0b8C/
-         pKfiqvsfsBRJ+6BleZ4f4WwL4spYglq9PqfOWqiv08YFkh2sMKdGz+p3jCNSyDKqV7HF
-         7zkA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766045085; x=1766649885;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=ZFatZ2cHC57MPqYi+kElcilUE7e6ABilLQQM4w6mW4c=;
-        b=In6ZUhDJaF0BPWRE/Uz5IksH/1pqhTleghneWI64yMzU4EhWail8Omu32hbk6Sn8B9
-         rNGhIyobaa6ja+qG5X3vaa5n/VT90Fz6NMbdjgUinH4gX+PUkrbm76gN9ygTw32yFw1Y
-         1BBw4c0J0aHTRn3tqJrkNJlxdbnzlTkH781FDhcT2fng0s7zOG7bNTgrC2eBqrFESe7f
-         uIHakaadPkkwzRZGuCjZMOiuDMXFY3C/f64Az7YarXab37f/io3gVL+Y6/423RHzwjI2
-         eIQzeKHfX6J+ADsiW0Jg6dxzbT06gmdm0dphtHr5MV0Axu0l7YsWLKt4JTVycpvK1ZQo
-         coDQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV4EQcW2J6oWvXq6bjs41cs90fxoYuoRSkciinvOjKORKTNVDxYC048SvZdWanHMg3d0MIUAQLH77NZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YythwGTeKJm5WxdPMO4OO/c+6dEqAHh3ZRPT5EaSKMOV6h1rQjX
-	ukpclVmy27ucWtCkJ3e8hi2C6tdDPWY4SS0fzoaONknSPiYyWqjZUmj/SFryXFhb7bBfskkN/AJ
-	2OEpueM5hYv/HXoCoRrioVOgfmkzeww==
-X-Gm-Gg: AY/fxX5w9jURkcfTWNq1YGseVFxb12TCoGn/T58fWC45rzoNIhCxKM4P0lZOL2ElbJH
-	t1MIGRr1YQvZ+qvl7HWTg5iIUjLkjoAaBsY+iaeFERsfGkYPtQndBC3xJ44pkGIqSlSuxWneapp
-	8qtXpXSR/p1qqhN/yK/vMTnYQtCaMtzEI4H1JgDsY9a1l9cVZjmMHmnyCUQRqVZSfnQwwisQ+bp
-	eI9LKn39oSJSxC66ClikuZrWLl2fIiuAn+ozxVeao/IWK8Zse2EyrhoVT1GfWl3o7U+gec5EUr7
-	jHTpduWfvfvmsK7YXdY3RnxE/zTShR71
-X-Google-Smtp-Source: AGHT+IGeR69NlMrzzWAKf9Swns5oCRSmbi6pAM+ySzcMfeKthzzgVomUQBx8U3ObrUEQapivifkUsz3RXTHr8lctfyo=
-X-Received: by 2002:a05:620a:460a:b0:8b2:e179:feb7 with SMTP id
- af79cd13be357-8bb3a36d2c1mr2973617185a.49.1766045085533; Thu, 18 Dec 2025
- 00:04:45 -0800 (PST)
+	s=arc-20240116; t=1766045152; c=relaxed/simple;
+	bh=vELv4ehStK9743Z/oJRveuR6s774Sgk9sYDjlKQxYHw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WuFYsA2nTaqvz2suG7muwqtswWbnd4gyqoPN0qAD/Y7JZZPMH2vPHtJxwEVLPx7uCHRZMuDQ9869SpMeycP0rUMqW//AdXxgQ7+hmc+HyFd/21S0A/WGzkDgMQBrhhqdxe5h6zNFZ81RLE6CbahO2FGmSAAPUfh5tws8qfgFXpY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dhcrn/0v; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5E393C4CEFB;
+	Thu, 18 Dec 2025 08:05:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1766045152;
+	bh=vELv4ehStK9743Z/oJRveuR6s774Sgk9sYDjlKQxYHw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=dhcrn/0v8iolfLj1jxR1g5oRubuNyBWt96mwHJuW+kMJiY/qBzLvc86ldzkuiXcmm
+	 x7jz5j8FIP3qVNfyczt+6/44EuK/H8UF3AIcHQFc/cm/5C5oyqN3yOtZTe6I3KxGpQ
+	 yhdejaMoESOBd3WpOZIcd0qFj+pF9d7aAvclak0iQWTeG8i03Fbvfn1fs0TvPxWwaH
+	 maePQ1k2KE2UTYaNbtbzfE5BRVynKnAbGLm44r15PkBh9a8gzr/wmqS9dc0L2ATLjc
+	 JT4jkX2Eee1DRPEFhPiQqv6yYq/QU08kAAtfYMXVAD/4NmVdILXSU5kR5YrttQkEg7
+	 N3p54RER5gAgg==
+Date: Thu, 18 Dec 2025 13:35:37 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Geraldo Nascimento <geraldogabriel@gmail.com>
+Cc: Shawn Lin <shawn.lin@rock-chips.com>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Heiko Stuebner <heiko@sntech.de>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Johan Jonker <jbx6244@gmail.com>, 
+	Dragan Simic <dsimic@manjaro.org>, linux-rockchip@lists.infradead.org, linux-pci@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/4] PCI: rockchip: limit RK3399 to 2.5 GT/s to
+ prevent damage
+Message-ID: <qncj72c3owrw7rvnj6jit2sbn4ojyr3kztcjailfxtdboan6sy@ddh5g7v4fcvt>
+References: <cover.1763415705.git.geraldogabriel@gmail.com>
+ <eaa9c75ca02a53f8bcc293b8bc73d013e26ec253.1763415706.git.geraldogabriel@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251218-surface-sp11-for-next-v3-0-875afc7bd3b7@gmail.com>
- <20251218-surface-sp11-for-next-v3-4-875afc7bd3b7@gmail.com> <s45ki2ckgw7fu25h5wd6mb3mc4kzs6qq5eitv56asqf2suxh6l@s5tbqce7gz3f>
-In-Reply-To: <s45ki2ckgw7fu25h5wd6mb3mc4kzs6qq5eitv56asqf2suxh6l@s5tbqce7gz3f>
-From: =?UTF-8?B?SsOpcsO0bWUgZGUgQnJldGFnbmU=?= <jerome.debretagne@gmail.com>
-Date: Thu, 18 Dec 2025 09:04:09 +0100
-X-Gm-Features: AQt7F2rxXLkRo1KdQwBVcMP3Fy3-pCbHAovHIvjCqXVawC_ZHWulzabv7lnj8zk
-Message-ID: <CA+kEDGFTh5bG98dtok66A+hC+-QcfSubdr64M7+JZ0nLeqm_tw@mail.gmail.com>
-Subject: Re: [PATCH v3 4/6] platform/surface: aggregator_registry: Add Surface
- Pro 11
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Johannes Berg <johannes@sipsolutions.net>, Lorenzo Bianconi <lorenzo@kernel.org>, 
-	Maximilian Luz <luzmaximilian@gmail.com>, Hans de Goede <hansg@kernel.org>, 
-	=?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
-	Jeff Johnson <jjohnson@kernel.org>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-wireless@vger.kernel.org, platform-driver-x86@vger.kernel.org, 
-	ath12k@lists.infradead.org, Dale Whinham <daleyo@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <eaa9c75ca02a53f8bcc293b8bc73d013e26ec253.1763415706.git.geraldogabriel@gmail.com>
 
-Le jeu. 18 d=C3=A9c. 2025 =C3=A0 01:07, Dmitry Baryshkov
-<dmitry.baryshkov@oss.qualcomm.com> a =C3=A9crit :
->
-> On Thu, Dec 18, 2025 at 12:56:40AM +0100, J=C3=A9r=C3=B4me de Bretagne vi=
-a B4 Relay wrote:
-> > From: Dale Whinham <daleyo@gmail.com>
-> >
-> > This enables support for the X1-based Surface Pro 11.
-> >
-> > Signed-off-by: Dale Whinham <daleyo@gmail.com>
-> > Signed-off-by: J=C3=A9r=C3=B4me de Bretagne <jerome.debretagne@gmail.co=
-m>
-> > Reviewed-by: Maximilian Luz <luzmaximilian@gmail.com>
-> > ---
-> >  drivers/platform/surface/surface_aggregator_registry.c | 18 ++++++++++=
-++++++++
-> >  1 file changed, 18 insertions(+)
-> >
-> > diff --git a/drivers/platform/surface/surface_aggregator_registry.c b/d=
-rivers/platform/surface/surface_aggregator_registry.c
-> > index 78ac3a8fbb736384f7e50f1888a71297a892a7c3..c18d991afc8b0a0bbb26966=
-351b75b8ea01097a4 100644
-> > --- a/drivers/platform/surface/surface_aggregator_registry.c
-> > +++ b/drivers/platform/surface/surface_aggregator_registry.c
-> > @@ -406,6 +406,22 @@ static const struct software_node *ssam_node_group=
-_sp9_5g[] =3D {
-> >       NULL,
-> >  };
-> >
-> > +/* Devices for Surface Pro 11 (ARM/QCOM) */
-> > +static const struct software_node *ssam_node_group_sp11[] =3D {
-> > +     &ssam_node_root,
-> > +     &ssam_node_hub_kip,
-> > +     &ssam_node_bat_ac,
-> > +     &ssam_node_bat_main,
-> > +     &ssam_node_tmp_sensors,
-> > +     &ssam_node_hid_kip_keyboard,
-> > +     &ssam_node_hid_kip_penstash,
-> > +     &ssam_node_hid_kip_touchpad,
-> > +     &ssam_node_hid_kip_fwupd,
-> > +     &ssam_node_hid_sam_sensors,
-> > +     &ssam_node_kip_tablet_switch,
-> > +     NULL,
-> > +};
-> > +
-> >  /* -- SSAM platform/meta-hub driver. ---------------------------------=
-------- */
-> >
-> >  static const struct acpi_device_id ssam_platform_hub_acpi_match[] =3D =
-{
-> > @@ -485,6 +501,8 @@ static const struct of_device_id ssam_platform_hub_=
-of_match[] __maybe_unused =3D {
-> >       /* Surface Laptop 7 */
-> >       { .compatible =3D "microsoft,romulus13", (void *)ssam_node_group_=
-sl7 },
-> >       { .compatible =3D "microsoft,romulus15", (void *)ssam_node_group_=
-sl7 },
-> > +     /* Surface Pro 11 */
-> > +     { .compatible =3D "microsoft,denali", (void *)ssam_node_group_sp1=
-1 },
->
-> Please keep it sorted. arcata < denali < romulus
+On Mon, Nov 17, 2025 at 06:47:05PM -0300, Geraldo Nascimento wrote:
+> Shawn Lin from Rockchip has reiterated that there may be danger in using
+> their PCIe with 5.0 GT/s speeds. Warn the user if they make a DT change
+> from the default and drive at 2.5 GT/s only, even if the DT
+> max-link-speed property is invalid or inexistent.
+> 
+> This change is corroborated by RK3399 official datasheet [1], which
+> says maximum link speed for this platform is 2.5 GT/s.
+> 
+> [1] https://opensource.rock-chips.com/images/d/d7/Rockchip_RK3399_Datasheet_V2.1-20200323.pdf
+> 
+> Fixes: 956cd99b35a8 ("PCI: rockchip: Separate common code from RC driver")
+> Link: https://lore.kernel.org/all/ffd05070-9879-4468-94e3-b88968b4c21b@rock-chips.com/
+> Cc: stable@vger.kernel.org
+> Reported-by: Dragan Simic <dsimic@manjaro.org>
+> Reported-by: Shawn Lin <shawn.lin@rock-chips.com>
+> Reviewed-by: Dragan Simic <dsimic@manjaro.org>
+> Signed-off-by: Geraldo Nascimento <geraldogabriel@gmail.com>
+> ---
+>  drivers/pci/controller/pcie-rockchip.c | 10 ++++++++--
+>  1 file changed, 8 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/pcie-rockchip.c b/drivers/pci/controller/pcie-rockchip.c
+> index 0f88da378805..992ccf4b139e 100644
+> --- a/drivers/pci/controller/pcie-rockchip.c
+> +++ b/drivers/pci/controller/pcie-rockchip.c
+> @@ -66,8 +66,14 @@ int rockchip_pcie_parse_dt(struct rockchip_pcie *rockchip)
+>  	}
+>  
+>  	rockchip->link_gen = of_pci_get_max_link_speed(node);
+> -	if (rockchip->link_gen < 0 || rockchip->link_gen > 2)
+> -		rockchip->link_gen = 2;
+> +	if (rockchip->link_gen < 0 || rockchip->link_gen > 2) {
+> +		rockchip->link_gen = 1;
+> +		dev_warn(dev, "invalid max-link-speed, set to 2.5 GT/s\n");
+> +	}
+> +	else if (rockchip->link_gen == 2) {
+> +		rockchip->link_gen = 1;
+> +		dev_warn(dev, "5.0 GT/s is dangerous, set to 2.5 GT/s\n");
 
-Thank you, I will fix this in v4.
+What does 'danger' really mean here? Link instability or something else?
 
+Error messages should be precise and not fearmongering.
 
-> >       { },
-> >  };
-> >
-> >
-> > --
-> > 2.47.3
-> >
-> >
->
-> --
-> With best wishes
-> Dmitry
+- Mani
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
