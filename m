@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-247771-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247772-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2B9ACCB54C
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 11:18:05 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A1E2CCB612
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 11:30:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id F234E30C68C8
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 10:15:17 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id F05B23061C52
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 10:29:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4B6F33D6C3;
-	Thu, 18 Dec 2025 10:15:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A847B342531;
+	Thu, 18 Dec 2025 10:18:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q1hzCPvO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jc1gq3br"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 662C133D4ED;
-	Thu, 18 Dec 2025 10:15:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78A5D341ACB;
+	Thu, 18 Dec 2025 10:18:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766052913; cv=none; b=Ovk8g+8whfoa8QrxgkBhSmqCYWXI7ffaIjAZllz+VNI7MtCvNwAZeD7P6BI71u6nSebQxooVUoJiKHJ0oGVEqniggFe2NZzk6FZnAfpk1OdEKIyVszWVV1S6gCQ1QYWWegY6p4BjJdylfujJ5TDiXi0lAh+YE9fKgOt1E0Yl2wE=
+	t=1766053084; cv=none; b=lGHyt6B1o6NcGpOKjxAXbGqw5SAN2ZJrTO3nyv6dKpSoPOLkO2fQRquVLWbqJgiag8R8oLnR4TtSVdHk/FKu04Sw56LyqKhJXtyx19iQWCxREfm0SRyeP+9thDkSwOUFMUVZEi6IqeQUoTJLdo9zmn7zXVJCjlYCTKBMlm0dtCU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766052913; c=relaxed/simple;
-	bh=GUUJ30i3JwUhfceDwglY5J0mtXVUNH7zt2IKD6MAiMw=;
+	s=arc-20240116; t=1766053084; c=relaxed/simple;
+	bh=bxrqB9iSN80kbhnaAWO3v0ub+BG8cV05W//Bp9WiPh0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=edmprZu/DDM5nwaW5RqoB44st3OLxR8Vl/1Iv4yUMUfJZUrVMFlDvOID6oOeAG/iRBxAw2iokvBkN9XDALsW2JnkL8DkSviR9XH/95aiNq0PD3B8B0h06o6Squvc6WhsbKDEP78YsC9RXKVB+JF1r7hWz18GwWrHc4p0X0oVvdc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q1hzCPvO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49552C116C6;
-	Thu, 18 Dec 2025 10:15:09 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=YvVUo0k0sFDTFbR2X2kIYHoNqlRkrGKWlRm+jR/Xofhhb6yEwiHydO1WmGveZ1Xbi5OgByj9VCBi8/GKuBbzysP9pzIA3C5B5QRFx0CjWF6pSPpOInKlPSPcwYla1A6viF5yq6nX/+ZVlSS9+6Eo1kXqMRu0LkRI+bRAytry/QQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jc1gq3br; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15B25C4CEFB;
+	Thu, 18 Dec 2025 10:17:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766052912;
-	bh=GUUJ30i3JwUhfceDwglY5J0mtXVUNH7zt2IKD6MAiMw=;
+	s=k20201202; t=1766053082;
+	bh=bxrqB9iSN80kbhnaAWO3v0ub+BG8cV05W//Bp9WiPh0=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Q1hzCPvOj71T0+uqmb0fley4PROyNoXrx/ZWap//cpV30kictEW6qprexc2oTpH5i
-	 rMJkUGxAiVkkSiTruA49QsHPgapgZlRCvL5pgZhIBG6PJ6OD2KNH5IiZnbrc+HNwLn
-	 ZSXyDwPh+nVsQbGV1zhFLIVkOpCzsiockrtjcWjydaDJAkwrMQcgP61rh7giO0YGjK
-	 PjO45JQ6qpaOcSwq3m59BKUj5FZUPLSToOXFbJFeCY7f3OM8n+jREThOK7HmxTfvb0
-	 dcKiC0cfyCa4jtBAp3nFd4LilK52FF6AyVOEgez/TM3D9aZvKdjSUyESdH/zdVpMcO
-	 WXR0lAy75aguQ==
-Message-ID: <52ac76fc-4362-4b5a-ae28-29b874f78399@kernel.org>
-Date: Thu, 18 Dec 2025 11:15:06 +0100
+	b=jc1gq3brsBpzaQ7E4X3Ecd7VjX24JIW1WvIk1E0wQV2wYhF8nyJVte9F2SBYWDQJh
+	 A2ofSAaYE6Gf5VTYW0L60wcEg/z0f0RgNHKMpoN77FcZXFKLLlv2ql42kYbDd6fFSV
+	 Siz6bNPNjoIdKSTbms8QjpH6pVcyVhN7q5S1OpQt8aw1SQzVoky+Qwu23w/WWgq9DU
+	 72sSy6AYocZEJpDZEYG5ehzoA3oUiTPG/MFdaCirlhU/+ZPqz93EM2/KhR56ir6x4Z
+	 OhvUKtWu4N9LYealnEyH+nWEjvXQaBkWRp7GrBUgWXIY6dzHwIbLs95Kujo85Q3B+p
+	 fr5CxSedtIsmg==
+Message-ID: <a9537dc9-c767-4909-8b1c-6e939ce4f3fc@kernel.org>
+Date: Thu, 18 Dec 2025 11:17:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,20 +48,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/4] dt-bindings: pwm: allwinner: add h616 pwm
- compatible
-To: Richard Genoud <richard.genoud@bootlin.com>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>, Philipp Zabel <p.zabel@pengutronix.de>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- linux-kernel@vger.kernel.org
-References: <20251217082504.80226-1-richard.genoud@bootlin.com>
- <20251217082504.80226-2-richard.genoud@bootlin.com>
+Subject: Re: [PATCH v8 5/8] dt-bindings: arm: add an interrupt property for
+ Coresight CTCU
+To: Jie Gan <jie.gan@oss.qualcomm.com>, Rob Herring <robh@kernel.org>
+Cc: Suzuki K Poulose <suzuki.poulose@arm.com>,
+ Mike Leach <mike.leach@linaro.org>, James Clark <james.clark@linaro.org>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Tingwei Zhang <tingwei.zhang@oss.qualcomm.com>,
+ Mao Jinlong <jinlong.mao@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, coresight@lists.linaro.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+References: <20251211-enable-byte-cntr-for-ctcu-v8-0-3e12ff313191@oss.qualcomm.com>
+ <20251211-enable-byte-cntr-for-ctcu-v8-5-3e12ff313191@oss.qualcomm.com>
+ <20251211133723.GA859302-robh@kernel.org>
+ <dfa43a63-ca14-4dd7-a7ab-acd95748a8b9@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,21 +110,73 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251217082504.80226-2-richard.genoud@bootlin.com>
+In-Reply-To: <dfa43a63-ca14-4dd7-a7ab-acd95748a8b9@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 17/12/2025 09:25, Richard Genoud wrote:
-> Allwinner H616 PWM block is quite different from the A10 or H6, but at
-> the end, it uses the same clocks as the H6; so the sun4i pwm binding can
-> be used.
-> It has 6 channels than can generate PWM waveforms or clocks if bypass is
-> enabled.
+On 12/12/2025 02:12, Jie Gan wrote:
 > 
-> Suggested-by: Krzysztof Kozlowski <krzk@kernel.org>
+> 
+> On 12/11/2025 9:37 PM, Rob Herring wrote:
+>> On Thu, Dec 11, 2025 at 02:10:44PM +0800, Jie Gan wrote:
+>>> Add an interrupt property to CTCU device. The interrupt will be triggered
+>>> when the data size in the ETR buffer exceeds the threshold of the
+>>> BYTECNTRVAL register. Programming a threshold in the BYTECNTRVAL register
+>>> of CTCU device will enable the interrupt.
+>>>
+>>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>> Reviewed-by: Mike Leach <mike.leach@linaro.org>
+>>> Signed-off-by: Jie Gan <jie.gan@oss.qualcomm.com>
+>>> ---
+>>>   .../devicetree/bindings/arm/qcom,coresight-ctcu.yaml    | 17 +++++++++++++++++
+>>>   1 file changed, 17 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight-ctcu.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight-ctcu.yaml
+>>> index c969c16c21ef..90f88cc6cd3e 100644
+>>> --- a/Documentation/devicetree/bindings/arm/qcom,coresight-ctcu.yaml
+>>> +++ b/Documentation/devicetree/bindings/arm/qcom,coresight-ctcu.yaml
+>>> @@ -39,6 +39,16 @@ properties:
+>>>       items:
+>>>         - const: apb
+>>>   
+>>> +  interrupts:
+>>> +    items:
+>>> +      - description: Byte cntr interrupt for the first etr device
+>>> +      - description: Byte cntr interrupt for the second etr device
+>>> +
+>>> +  interrupt-names:
+>>> +    items:
+>>> +      - const: etrirq0
+>>> +      - const: etrirq1
+>>
+>> Names are kind of pointless when it is just foo<index>.
+> 
+> Hi Rob,
+> 
+> I was naming them as etr0/etr1. Are these names acceptable?
 
-Hm? Where did I suggest anything about adding clock cells or documenting
-this allwinner device?
+Obviously irq is redundant, but how does etr0 solves the problem of
+calling it foo0?
+
+I don't think you really read Rob's comment.
+
+> The interrupts are assigned exclusively to a specific ETR device.
+> 
+> But Suzuki is concerned that this might cause confusion because the ETR 
+> device is named randomly in the driver. Suzuki suggested using ‘port-0’ 
+> and ‘port-1’ and would also like to hear your feedback on these names.
+
+There is no confusion here. Writing bindings luckily clarifies this what
+the indices in the array mean.
+
+> 
+> Usually, the probe sequence follows the order of the addresses. In our 
+> specification, ‘ETR0’ is always probed before ‘ETR1’ because its address 
+> is lower.
+
+How is this even relevant? You are answering to something completely
+different, so I don't think you really tried to understand review.
+
 
 
 Best regards,
