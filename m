@@ -1,91 +1,59 @@
-Return-Path: <devicetree+bounces-247841-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247842-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22394CCC07A
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 14:36:40 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D36D9CCC08F
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 14:37:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D2C773058328
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 13:31:59 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A6D04306D8C8
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 13:32:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09436338925;
-	Thu, 18 Dec 2025 13:23:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA7D0333752;
+	Thu, 18 Dec 2025 13:32:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="RW+q1c3V"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="buUGKk0Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA310224891
-	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 13:23:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A97A831ED91;
+	Thu, 18 Dec 2025 13:32:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766064207; cv=none; b=ehmbbn6J9I0974454MVMV7XvPOkora40OR2Vbyprik0GQ9/9vtqOpWVrS8RQz50IIdsHH5StaHqekwi/aTBb3gC5MgiDFmDOkvqmbId0BiKjkK4YzWyYNI1wkRbG1LGZoWrmuIBM0pfRkyXfYpaMdXLUdqdxhxDfgVtgP/P/lEs=
+	t=1766064762; cv=none; b=XS1HYjGIbYnWLtR3I9OoTibV7FD7UpEXvjcA7spgGja3T5x/mqs0Cr8F7rKFiyMpPa1Il+XgvHlYP2SpMCO/tyuZq0KN7FTxsfH9ACv13hhlIvCWe1eGAD8PXqL12CckChQthnLWcnCSghHKh17mcFlQuPVCJA6BU474BLiZ1Ig=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766064207; c=relaxed/simple;
-	bh=AePUaCKR4z314F+q761RLyHuglpBexbgdEh3FT/9sLY=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CE5K3J5CHrXM4fy2gS7VKOl9Zvo+EQ7fRz2XyNSU22d79g6dzHsBPRNvTWXQ4w3szpIv7z3EAgy7tGLF47nfJl/PYvxRQpYfG33puKe6/VMycxQ8olMEirBmztDU7KOQ00YFJ3UrVFThZApFINUzDb/KvXHsp5yKy9s1DkT2DMg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=RW+q1c3V; arc=none smtp.client-ip=209.85.218.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-b79ea617f55so127699366b.3
-        for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 05:23:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1766064204; x=1766669004; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=oCudBcw5akO4madupDYz73GUtrdMHgyCBVg+ab8JlvI=;
-        b=RW+q1c3VfOs1F2BAFOBH69WJVcq2HQXC7SEi6KEf9k0L+ZM0gW57A5mSiGjsaICJx2
-         JZpbfgRlDZ5L27ZKQtB9oYJvSCJUo0IEcSQwXcJacovY9lKy1zglXKqMkENbvMpchNds
-         t+9TgGPymUVeqpKccfaSe432Zs6Zbz/fR0qmI1tOaGqx8hlXD7OI6kgU/f5KGTV8Lf/k
-         Qrp1WCsO7WrAXAeiGc2UdPCW7ny9AU2VuPXZfjaBX3aqRVqntF7higfSicn9Hnk4G7hU
-         XEICBRJ8L8TgJm694NsYmGBWPzKSv9wHgWNIDXUhfn6rOoRNA8S24Ea/vNh3puediJF1
-         KlZg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766064204; x=1766669004;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=oCudBcw5akO4madupDYz73GUtrdMHgyCBVg+ab8JlvI=;
-        b=C3+bF+mE32s9mmSQ7X4VYtjXoWsfajX+uSFwZJrmmEV8GTYvYhVHJ4SGpF8Ns/hMSo
-         CEyvo642L2gtfA6jd6eKAzM7/0edSd/S60dFUmxKNhTQxxIaINv9OO7W628ImCsqHRMr
-         zjdJNZjmJObk3RavesYElxoQahhyggELKXqDr1AA5mS8Rwq6+/uznUioQBl6oJ/jEIR4
-         0OsO5nlbX4TYGiL4VSRg2vctrfG3g97KPD/c+IHlqqzruZgWwuUjvYRQIHB5M/LVy43V
-         3wD5QwfAHQ3KWwTD1fNkr48Q6pWDXQpDA+6zSvGvTijReU/9dmwIpUb+RU93Ce6+8qwn
-         Kbpg==
-X-Forwarded-Encrypted: i=1; AJvYcCUhA3k+TC66ZgtqzwfU6JYSK41p4qrj9D7221vu5LCNvebcfzVYhA0x9uWQ4dfLiXS7z1WZcHgyoVCW@vger.kernel.org
-X-Gm-Message-State: AOJu0YxSerE/KctkbBcbxrB/ACCgleF3/3lfI6+cmlchKndH3uT45UUV
-	uOi+uGG8WXbp5u2790cVmmyOe3SZW8/8u2N303KtMOBGUoH79hsT+QFMoBVZw1qZbYFV+oo2Cw/
-	D/BtJ
-X-Gm-Gg: AY/fxX6xrvgRBqJ+sjg+BNERlqJ+kmGjIUu1O7S9vkMVP5XPZCLfwLT+yHewnN1kB4s
-	/U+7kWUk+VKo03OV+Aj6ViEmD3reyd3Wagq7ld67tyGEa3njBapFE+E21QRIwwtGgZG1NT0ic79
-	aHRnfzpF3EQ0s8OYrKgH8oRLX90lP/u373LhN+VHaraAcXz2XOZxpIhiQlTIoLmUL/zT2q33hUF
-	A/H6rWbG6DB37IEU9mCK5Q7zQBWNvnN2eQNxJuWqdwn/zhpjsHUtklt+K3hQzA1b5VsdY16KCh3
-	SomPux8mNG08chYOquGc+lPQ9vx4l6leu//L6BuwPziYUlVrhFIpwu1vFfdKw5taiwfRtL887rg
-	LEhu9hleh9ZIE2jp8m6oB9ofyBG3PX49UtM8vlnXrVnZ0P75dZy9LlX2anV8kwPRLrz/+/rxjrg
-	RWgCIkH5ghPTxJNZjC6Yug8gcDrIxEpP4PNnZIgjmQmiwxFLiqbJ9WfQ==
-X-Google-Smtp-Source: AGHT+IGEffrc7V99LBQekNjWi+jayFMaj4hzdwzei25erTP3Kr8QQXDpgbnbFwV3ifqZ4Xi+QZCiww==
-X-Received: by 2002:a17:907:d15:b0:b75:8b9f:de3a with SMTP id a640c23a62f3a-b7d23b4d6cdmr2285321666b.59.1766064204083;
-        Thu, 18 Dec 2025 05:23:24 -0800 (PST)
-Received: from localhost (host-79-37-15-246.retail.telecomitalia.it. [79.37.15.246])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b80234a2786sm232719666b.49.2025.12.18.05.23.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 Dec 2025 05:23:23 -0800 (PST)
-From: Andrea della Porta <andrea.porta@suse.com>
-X-Google-Original-From: Andrea della Porta <aporta@suse.de>
-Date: Thu, 18 Dec 2025 14:25:56 +0100
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Florian Fainelli <florian.fainelli@broadcom.com>,
-	bcm-kernel-feedback-list@broadcom.com,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, andrea.porta@suse.com
-Subject: Re: [PATCH v2] arm64: broadcom: bcm2712: Drop rp1 overlay
-Message-ID: <aUQA5IKqqsrElzKP@apocalypse>
-References: <20251211193854.1778221-1-robh@kernel.org>
+	s=arc-20240116; t=1766064762; c=relaxed/simple;
+	bh=L27ZwyIV0Tt+36bJmnSMXHEQzTdo+CiOZytPC3LDc4M=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BydTYV6VYCxza7Lt/O/Q1HevdqLzg0iz1+nMCpS0LMBGJj7IJSDDzyjPPednfDbswoquQfljct9CBFSrRyi6rOldpLwdfJ4kX90uI/jo9qwI+dGHLWfUjh8cb+RQGEpG1AcHK/Z5/CBjC8XsGcKGAO1jVWk5Uccr2tChvt0vFmk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=buUGKk0Z; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1000CC4CEFB;
+	Thu, 18 Dec 2025 13:32:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1766064762;
+	bh=L27ZwyIV0Tt+36bJmnSMXHEQzTdo+CiOZytPC3LDc4M=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=buUGKk0ZCijDnpFU9DU6y7DrDJb4E/93HvA0OIKNtODCvwaIUgFQ0/cKb18hNPxSh
+	 TnxIRvEAxwQWbMPVXZ4yMb2zGxLnNQrpqDMqULVwMOg2Zjw7JLVbI5ER/LR79iIiW3
+	 OgRac0/pAWelDQ4yREvpUSLijKkrhORnoehZv1zMAVIqqYfuB1OfmocpQYkUt9KBPd
+	 Z/y2moVvmW7EJbvzSISdiP+YHd1+6FiiCrrNJJkpm8q4Bm8AMZGXsHrUVcD3G0YxAN
+	 eU6GHgi7DQWJtci1hJZ+hn6QJA/+uxGgNtn/FEd9W4S/VZGvafmcSTVU1m+bHVWmfq
+	 hk+P2ZQIF6PQA==
+Date: Thu, 18 Dec 2025 07:32:39 -0600
+From: Bjorn Andersson <andersson@kernel.org>
+To: Ram Prakash Gupta <quic_rampraka@quicinc.com>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Adrian Hunter <adrian.hunter@intel.com>, 
+	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, dmitry.baryshkov@oss.qualcomm.com, quic_pragalla@quicinc.com, 
+	quic_sayalil@quicinc.com, quic_nitirawa@quicinc.com, quic_bhaskarv@quicinc.com, 
+	kernel@oss.qualcomm.com, Sachin Gupta <quic_sachgupt@quicinc.com>
+Subject: Re: [PATCH v6 4/5] mmc: sdhci-msm: Add Device tree parsing logic for
+ DLL settings
+Message-ID: <fkb4iietzzmhvatmvjn6s6dpdibmnhj5g4xjcsrvzfwkipgwwz@wde3bcrqxrhw>
+References: <20251215120009.3877889-1-quic_rampraka@quicinc.com>
+ <20251215120009.3877889-5-quic_rampraka@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -94,60 +62,121 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251211193854.1778221-1-robh@kernel.org>
+In-Reply-To: <20251215120009.3877889-5-quic_rampraka@quicinc.com>
 
-Hi Rob,
+On Mon, Dec 15, 2025 at 05:30:08PM +0530, Ram Prakash Gupta wrote:
+> From: Sachin Gupta <quic_sachgupt@quicinc.com>
+> 
+> This update introduces the capability to configure HS200
+> and HS400 DLL settings via the device tree and parsing it.
 
-On 13:38 Thu 11 Dec     , Rob Herring (Arm) wrote:
-> It's a requirement that DT overlays be applied at build time in order to
-> validate them as overlays are not validated on their own, but the
-> rp1.dtbo is not applied to anything. The rp1.dtso overlay doesn't work
-> on its own as there are additional settings needed as seen in
-> bcm2712-rpi-5-b.dts. In addition, the 'rp1_nexus' node is applied to the
-> wrong place in the DT as it should be under a PCIe root port rather than
-> the host bridge. There's also a duplicate overlay in drivers/misc/rp1/.
+No it doesn't, it merely reads a bunch of integers from DeviceTree and
+does nothing with them.
+
+Please write your commit message in imperative mood (avoid "This
+update") and please include a reasoning for why this commit exists, or
+as
+https://docs.kernel.org/process/submitting-patches.html#describe-your-changes
+says "Describe your problem.".
+
 > 
-> For these reasons, just drop the overlay to fix the warning until all
-> these issues can be fixed.
-> 
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> Signed-off-by: Sachin Gupta <quic_sachgupt@quicinc.com>
+> Signed-off-by: Ram Prakash Gupta <quic_rampraka@quicinc.com>
 > ---
-> The missing applying of rp1.dtbo is now a warning in v6.19-rc1. This
-> should be sent to Linus ASAP.
+>  drivers/mmc/host/sdhci-msm.c | 41 ++++++++++++++++++++++++++++++++++++
+>  1 file changed, 41 insertions(+)
 > 
-> v2:
->  - Drop the overlay instead of trying to rework. The addition of
->    ethernet0 alias complicates that.
-> ---
->  arch/arm64/boot/dts/broadcom/Makefile | 3 +--
->  1 file changed, 1 insertion(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/broadcom/Makefile b/arch/arm64/boot/dts/broadcom/Makefile
-> index 83d45afc6588..031875a277d7 100644
-> --- a/arch/arm64/boot/dts/broadcom/Makefile
-> +++ b/arch/arm64/boot/dts/broadcom/Makefile
-> @@ -14,8 +14,7 @@ dtb-$(CONFIG_ARCH_BCM2835) += bcm2711-rpi-400.dtb \
->  			      bcm2837-rpi-3-b.dtb \
->  			      bcm2837-rpi-3-b-plus.dtb \
->  			      bcm2837-rpi-cm3-io3.dtb \
-> -			      bcm2837-rpi-zero-2-w.dtb \
-> -			      rp1.dtbo
-> +			      bcm2837-rpi-zero-2-w.dtb
-
-I'm preparing a rework patch that drops the overlay too, it will fix this warning
-and the other concerns about RP1 DT hierarchy. Anyway, since this warning seems
-to annoy a lot of people, feel free to apply it in the meantime and I'll adapt
-accordingly, hence:
-
-Reviewed-by: Andrea della Porta <andrea.porta@suse.com>
-
-Thanks,
-Andrea
-
+> diff --git a/drivers/mmc/host/sdhci-msm.c b/drivers/mmc/host/sdhci-msm.c
+> index dc79f828522b..1fcd92158bee 100644
+> --- a/drivers/mmc/host/sdhci-msm.c
+> +++ b/drivers/mmc/host/sdhci-msm.c
+> @@ -266,6 +266,19 @@ struct sdhci_msm_variant_info {
+>  	const struct sdhci_msm_offset *offset;
+>  };
 >  
->  subdir-y	+= bcmbca
->  subdir-y	+= northstar2
+> +/*
+> + * DLL registers which needs be programmed with HSR settings.
+> + * Add any new register only at the end and don't change the
+> + * sequence.
+
+/* You have to only add entries at the end, but I'm not going to tell you why... */
+
+> + */
+> +struct sdhci_msm_dll {
+> +	u32 dll_config;
+> +	u32 dll_config_2;
+> +	u32 dll_config_3;
+> +	u32 dll_usr_ctl;
+> +	u32 ddr_config;
+> +};
+> +
+>  struct sdhci_msm_host {
+>  	struct platform_device *pdev;
+>  	void __iomem *core_mem;	/* MSM SDCC mapped address */
+> @@ -274,6 +287,7 @@ struct sdhci_msm_host {
+>  	struct clk *xo_clk;	/* TCXO clk needed for FLL feature of cm_dll*/
+>  	/* core, iface, cal and sleep clocks */
+>  	struct clk_bulk_data bulk_clks[4];
+> +	struct sdhci_msm_dll dll[2];
+>  #ifdef CONFIG_MMC_CRYPTO
+>  	struct qcom_ice *ice;
+>  #endif
+> @@ -302,6 +316,7 @@ struct sdhci_msm_host {
+>  	u32 dll_config;
+>  	u32 ddr_config;
+
+So this dll_config/ddr_config pair is no longer supposed to be used? Or
+are there now two sets of dll and ddr configurations to be provided?
+
+Regards,
+Bjorn
+
+>  	bool vqmmc_enabled;
+> +	bool artanis_dll;
+>  };
+>  
+>  static const struct sdhci_msm_offset *sdhci_priv_msm_offset(struct sdhci_host *host)
+> @@ -2534,6 +2549,23 @@ static int sdhci_msm_gcc_reset(struct device *dev, struct sdhci_host *host)
+>  	return ret;
+>  }
+>  
+> +#define DLL_SIZE 10
+> +static int sdhci_msm_dt_parse_dll_info(struct device *dev, struct sdhci_msm_host *msm_host)
+> +{
+> +	u32 *dll_table = &msm_host->dll[0].dll_config;
+> +	int ret;
+> +
+> +	msm_host->artanis_dll = false;
+> +
+> +	ret = of_property_read_variable_u32_array(dev->of_node,
+> +						  "qcom,dll-presets",
+> +						  dll_table, DLL_SIZE, DLL_SIZE);
+> +	if (ret == DLL_SIZE)
+> +		msm_host->artanis_dll = true;
+> +
+> +	return ret;
+> +}
+> +
+>  static int sdhci_msm_probe(struct platform_device *pdev)
+>  {
+>  	struct sdhci_host *host;
+> @@ -2580,6 +2612,15 @@ static int sdhci_msm_probe(struct platform_device *pdev)
+>  
+>  	msm_host->saved_tuning_phase = INVALID_TUNING_PHASE;
+>  
+> +	/*
+> +	 * Parse HSR dll only when property is present in DT.
+> +	 */
+> +	ret = sdhci_msm_dt_parse_dll_info(&pdev->dev, msm_host);
+> +	if (ret == -ENODATA || ret == -EOVERFLOW) {
+> +		dev_err(&pdev->dev, "Bad DLL in dt (%d)\n", ret);
+> +		return ret;
+> +	}
+> +
+>  	ret = sdhci_msm_gcc_reset(&pdev->dev, host);
+>  	if (ret)
+>  		return ret;
 > -- 
-> 2.51.0
+> 2.34.1
 > 
 
