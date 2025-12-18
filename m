@@ -1,284 +1,231 @@
-Return-Path: <devicetree+bounces-247870-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247871-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61626CCC64B
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 16:06:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CA16CCC535
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 15:46:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 55B8130E09D9
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 15:02:02 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1EA383021E7F
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 14:45:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A16A92E7F00;
-	Thu, 18 Dec 2025 14:43:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C75412F83B7;
+	Thu, 18 Dec 2025 14:45:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ZhmfQyw/";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="EAudjjoA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tr9Qqbpu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A878C2E6CD2
-	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 14:43:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96E40221DB0;
+	Thu, 18 Dec 2025 14:45:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766069013; cv=none; b=IZlozyP2hEhN5zsV4cRo9ySz/ggJmZZ4eUUs4+C+XnQnNzKCc5UsW8zj4iBs8kzk6lhP+x2Qhj9uPAgsUuEMRTZFnc3fVAoczA9kNasOYtG3Ul138zOJDCsmeoLsBJL0FDCfCxLvxKTxlx9CWM57PbYWypZiUt1cvDRHqUhoEJk=
+	t=1766069137; cv=none; b=uKdxszhRrBlFaJyiUcyh9VrF1G1DB191dISE1FIBzy38KnpkLW7ixz7OyePU537plrP0FCMwOWddwhbWhKMWTPeQgX39k+LF/fc1WXktVVmfL63prT1BqgbNvStyq2E6+NzxBrPFBjrmC5DkMENfV4u2ZfRqUWJdF9jjN2LPXnI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766069013; c=relaxed/simple;
-	bh=u1Vvamo0fP1X1uQgT6kmBj5ORx0m7TZCiIN2eI4q1Rk=;
+	s=arc-20240116; t=1766069137; c=relaxed/simple;
+	bh=z7SJyQzBRbDXrqDrcBOkwVMgnQZHWuw6t82eKLUPUDQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KqcWNopo+wWwBPQfECkSin89dDvqfGMb0Bmk0OWFdW9g8KD2q+9QBNhxK+IMN6TLUJn2CkdUK6168xEJ5cpDiXCURBliCZwx9WI/At1kIML9m4EdXMEnq/88fvParIwhfI1vIiLLkFBqjvlcSKcWmqUZ515ofKwejExxgCGY0Gs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ZhmfQyw/; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=EAudjjoA; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BI933f3680787
-	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 14:43:29 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=cl4v0oEPk0Fzc67kkLwDXNvT
-	S+8R7nFDTHzGx6wYMJ8=; b=ZhmfQyw/JXNNvoQLaqIzCtrDzdR00aSVZ9TKxagW
-	t5m9yzpBTyOi1hTIVW/SjpjPuEwN27otyVRDbUJXzAUVIUGHT4htGIUX96XJ6osK
-	dFBuiRxUaLdtZQlsKjFyMB/urMXZrBx252zF9jQ7l2P7GLLt1HFcZVPrUABYQCYp
-	bcIL2PORFygZUQWYIbKn7DAvCWaqU+ELhzVli16CMePq6VlfnQzRcPzYaglFhBka
-	FSn1dtBccjS5NmUBMBIreURLDMToKgmeiLAukeW9w6MPj7w/0eFF9DVAT3s7bTNe
-	AvrO9ntkJdBAm/nOPP1JJhKEeC/SEVgvL50AmiYlwiHkcA==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b45bhjmdm-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 14:43:29 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4f1d26abbd8so16776581cf.1
-        for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 06:43:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1766069009; x=1766673809; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=cl4v0oEPk0Fzc67kkLwDXNvTS+8R7nFDTHzGx6wYMJ8=;
-        b=EAudjjoANxlhME/mZrpu4EX7p2eBWJzZV80FdMwkqXh/0B+XG47cYqanw5TX9a8HMH
-         m3ITBzS8gwK+vYr3C5GVuiCcpaM7BnpnrT7Vo4zztSwZQzsV6CDJXH9UlC/fKmgDsowH
-         ZqGlADP+Wj6t1U8Q3XEZGEHqiulNGDdiqB+PUmYyFf0hUryqe1e8UlySH5X+DP4JQ2YP
-         xqGvmcjhaITrYen2dqMfiSYQQ3aGdQUntd6hNpbGeTlMj13OpsbA2FtxnYLIydDIjt0y
-         k8cSzqprhbGkDhmofO3/0yOq8N4bL+3wzdotF0k95c17h6IcwPhfccMI8XH3YeA+ICs0
-         ZzRw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766069009; x=1766673809;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=cl4v0oEPk0Fzc67kkLwDXNvTS+8R7nFDTHzGx6wYMJ8=;
-        b=AqN/+e2LMr3lmcDOnhxx3QRxlQNwaAyEz4tqWn09Aii9tl7KLFRMqwNfe/wpUOi7Ba
-         pb34ST1uTIOkqYvBFbl22WPKvbkSejGRdb5hcPlKTJPWvSG8adpCT6qTWGBQRAHWMr3U
-         3zPTwO9BikRD2sDfgkdls8UrIcswg4mKziYZlFE8waNy737ZGH1ys7APHd1z3kOhKpGN
-         4uK0YMu25r/9ndBG4FiQKOdjuqCDMuFE06kFgPqawuuE0sUkCDzMnB5WYHcHyJI3SUtI
-         QXzN+VjrlDe5mcMCnrF5U0E7zoVajMHqzuLxmCMVDY0FTN7AZ1CpzLJMcSDgVAndwnBo
-         DZHg==
-X-Forwarded-Encrypted: i=1; AJvYcCVnYHjncCo5wPc9jILBD/GgUaEc/YrEElMIqvl7EPu3TWVvGUe7Qx5R7VhDVnnVf8JPM1ys/HegIwNZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YzaxwQ0sXBT7DyI7cNO8QFAFQlsp4LtGRsi3pX96Uy+EzVr7Mtw
-	lYNbu/JkGxpLDD12DIvYh+/6cO0OfLAu+GkaZz/T9WsgnDEcY5YD5LLDShPPKQaI+C1TWSBzvPg
-	hUdlghWidsDKg/V542uhLMIHYk9yDsoW0kJFx5Td3HsAqf64iKhdaVJwSjm+6qw/F
-X-Gm-Gg: AY/fxX6g0VHYoApQxcd5plNuLDW715PL0Xrmz2F/lUJBEMtvMgoqD3SGje6DIaONfDw
-	w8wsG1TJi/ANeTAwVnBURG30dyvYnxrfvsR0OP9SNeRzQos7vv0A4XQPDX4I2qvhM+27fbSYEDT
-	VIep+9gGbItZaQl+bRppvsgJVcM6kxsM4pDt4XmeXyfZew4Jybb9YH226AElo0O9jL9Po+ru+9O
-	EryHK4+uOehRTwEHcOoayemevpTHVNRPra+Cfg7KOAlFHb7GfjyYuDqHR1myllHXRHsEKREqa14
-	gFNn0FYFBnvXv3Mw9bEoxO4Z3hgzLbqSpyKrh0V3b6i1PgRF7dH09DPjqEluRn7XYhd2ht6KQXp
-	1I9Pz0k03duN5yRS8RdLI9ctkoDc+T43gIBrnhqlJxVfFe4Jior5/hUfagzU7NWSyBcTG6471GK
-	/TLhWyE20c1dPCgTuCDj4aMPY=
-X-Received: by 2002:a05:622a:4acb:b0:4ee:13d0:d02b with SMTP id d75a77b69052e-4f1d059e61cmr284139771cf.50.1766069008852;
-        Thu, 18 Dec 2025 06:43:28 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHL6dB+1hj86WlzrKc5tiatChh9pmm+26BpKCuaMLqUN4WCKyyEtSQwL9D+XULfFU0r7F5lig==
-X-Received: by 2002:a05:622a:4acb:b0:4ee:13d0:d02b with SMTP id d75a77b69052e-4f1d059e61cmr284139561cf.50.1766069008428;
-        Thu, 18 Dec 2025 06:43:28 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-381134f39aesm10852521fa.14.2025.12.18.06.43.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 Dec 2025 06:43:27 -0800 (PST)
-Date: Thu, 18 Dec 2025 16:43:25 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Qiang Yu <qiang.yu@oss.qualcomm.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
-        Abel Vesa <abel.vesa@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v4 5/5] phy: qcom: qmp-pcie: add QMP PCIe PHY tables for
- Kaanapali
-Message-ID: <e2lg4eanhotbvauhfaq6z6d22ptwn5g5rfpvblpuegobdybtv2@f4qfelzzrymq>
-References: <20251124-kaanapali-pcie-phy-v4-0-d04ee9cca83b@oss.qualcomm.com>
- <20251124-kaanapali-pcie-phy-v4-5-d04ee9cca83b@oss.qualcomm.com>
- <mudq7gmqs62osuarvflmemt2a2gnuloywabtr4w5oyyddp4b7v@eynaurtfrnyt>
- <aUDywpWf+gpEH4Uw@hu-qianyu-lv.qualcomm.com>
- <ulsst7k4meqq5psv577pqapnsrehvvpk3oijp5usxtxdwoxunb@6mxjmpigkwk7>
- <aUPYk6VuFUFrtUDI@hu-qianyu-lv.qualcomm.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=WIS92etSKJPKniIjIwA7KiEBKOo2BxQNrKnReuHhZxKLM2r7uIOvVXrn1VIGTYpmw10Q/86dE8oncfNDw086suG+hUuHLOToqOCWf84AjiHTa/k8bYpBGFv4Ylh0GjGu86N7dzOuTotDumc/7lfcC44GDQ6Lx7+tfhFHBpOuXyo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tr9Qqbpu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 254E1C4CEFB;
+	Thu, 18 Dec 2025 14:45:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1766069137;
+	bh=z7SJyQzBRbDXrqDrcBOkwVMgnQZHWuw6t82eKLUPUDQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=tr9Qqbpubm1lhSExy8YSEKgrzB7bmnR9Grr1SSQhFbF8VDtbjTww++ACaIJWd/xJ4
+	 I2zoE9osXI+dY+Dqfi+331zfrl7viLh2hbzsHFdCz1CZIMFQXCv/4COw2IJgQ3NgHG
+	 of9gG+FR8xi5N7wS4yigyI83MIE7G4gvfV77UEMtX+iCBe+HinJsKK2PG4i9nqJ79i
+	 uwavyRgf99SQkn3NmrbtcRMmGrRnZzzb2DOvNvgDk3E//hpHAegxHQjnjvsRJ1kaM5
+	 UluRcAEppn5XAUsF9y+8d6WIeBL5zW2Y1vl/BVGbxUxIC3AavbGA7drgQlGeCoUpGJ
+	 1E10nzJvvWa9A==
+Date: Thu, 18 Dec 2025 08:45:34 -0600
+From: Bjorn Andersson <andersson@kernel.org>
+To: Bryan O'Donoghue <bod@kernel.org>
+Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+	Vikash Garodia <vikash.garodia@oss.qualcomm.com>, Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+	Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>, Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
+	Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Manivannan Sadhasivam <mani@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v8 00/14] Peripheral Image Loader support for Qualcomm
+ SoCs running Linux host at EL2
+Message-ID: <mb2bv5oipbu2ibvxywgmjw3szzk2vulqxocgasxaxhgsxpblgy@mt55znew76ps>
+References: <9dfe5343-824d-42c2-aab8-8389602601e9@kernel.org>
+ <20251202083650.luk2jpcquq2pcf2r@hu-mojha-hyd.qualcomm.com>
+ <623225c2-166a-49a1-9856-d02ed55f1e47@oss.qualcomm.com>
+ <bds552pvggsf6jgfyghyigp2fb6zb6hucwqirwye5puctnrhdi@tqw4b2nc3mkg>
+ <64dbe824-a94c-4394-8cbe-ebdb7a3c42fd@oss.qualcomm.com>
+ <qnpgm5zmiqvwwmwc4z64uqssodrkcjaai4ro5tt36wua2jljlv@y3dx5s2sxrlp>
+ <55f68c6f-9b7e-4393-9ca2-b94551cd81b8@oss.qualcomm.com>
+ <jX9Ifmjba1jKjv7wLdH0BnDY-4Zo91ibfsoeCCOFvKhD_a8NWM8ONnJtbO_Cr5v6tttjEI8b-l0O7na3iXSL9Q==@protonmail.internalid>
+ <28207f1f-31f0-4007-bab5-e073ddf2d262@oss.qualcomm.com>
+ <24aa56bf-b03f-4b4b-9ac6-89fc91762179@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <aUPYk6VuFUFrtUDI@hu-qianyu-lv.qualcomm.com>
-X-Proofpoint-GUID: yHedyWN0KbMTV7TRRTfjLrfA7egDbZdF
-X-Proofpoint-ORIG-GUID: yHedyWN0KbMTV7TRRTfjLrfA7egDbZdF
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjE4MDEyMiBTYWx0ZWRfX1MKhg2DwH0Dl
- gn3+tIBbh+XfnAwggeQok0q/N0k6AYcP2fbpM1JyPF6Ngl43R9i9oNEAVRwO6VmUHwcF9GsMgnH
- R3Q+ccW1ymmfYrIFXF2TBRbftHROUV6WPdYqbxRYdgeCda6TsXeaUdp3CAzgEXUWLZkeeAgUraq
- Cd8iJEwta8k0BuBM2wvPNhum6bGmQJXtv1It9hWyVTu+GthzJVjfoLKbWMtIjjENzf6aTgfzoWA
- OK7wfmpkZjiVr6pdE98CS8r6GhX9xAOoDRtScZEKwwmZo5KvGKSKZwkumPyfxLPWuV2cB+ckcrD
- HvAk52lY2RpkyCWdB2g+ketuuVPnmG5b6Q+6xDFMx9wMwUs0QGRfpdj8tgfR+WXZWILwHYJR5KJ
- Rd2rrY9yeupuUIuztWGm9Owln/veaA==
-X-Authority-Analysis: v=2.4 cv=SZr6t/Ru c=1 sm=1 tr=0 ts=69441311 cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=JfrnYn6hAAAA:8 a=EUspDBNiAAAA:8 a=KKAkSRfTAAAA:8 a=Zsci5tvq42nDwCYANM4A:9
- a=CjuIK1q_8ugA:10 a=kacYvNCVWA4VmyqE58fU:22 a=1CNFftbPRP8L7MoqJWF3:22
- a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-18_02,2025-12-17_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 malwarescore=0 suspectscore=0 spamscore=0 phishscore=0
- clxscore=1015 adultscore=0 priorityscore=1501 impostorscore=0
- lowpriorityscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
- definitions=main-2512180122
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <24aa56bf-b03f-4b4b-9ac6-89fc91762179@kernel.org>
 
-On Thu, Dec 18, 2025 at 02:33:55AM -0800, Qiang Yu wrote:
-> On Thu, Dec 18, 2025 at 03:26:26AM +0200, Dmitry Baryshkov wrote:
-> > On Mon, Dec 15, 2025 at 09:48:50PM -0800, Qiang Yu wrote:
-> > > On Wed, Dec 10, 2025 at 03:51:15AM +0200, Dmitry Baryshkov wrote:
-> > > > On Mon, Nov 24, 2025 at 02:24:38AM -0800, Qiang Yu wrote:
-> > > > > Add QMP PCIe PHY support for the Kaanapali platform.
-> > > > > 
-> > > > > Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-> > > > > Reviewed-by: Abel Vesa <abel.vesa@linaro.org>
-> > > > > Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-> > > > > Signed-off-by: Qiang Yu <qiang.yu@oss.qualcomm.com>
-> > > > > ---
-> > > > >  drivers/phy/qualcomm/phy-qcom-qmp-pcie.c | 194 +++++++++++++++++++++++++++++++
-> > > > >  1 file changed, 194 insertions(+)
-> > > > > 
-> > > > > @@ -3363,6 +3516,16 @@ static const struct qmp_pcie_offsets qmp_pcie_offsets_v6_30 = {
-> > > > >  	.ln_shrd	= 0x8000,
-> > > > >  };
-> > > > >  
-> > > > > +static const struct qmp_pcie_offsets qmp_pcie_offsets_v8_0 = {
-> > > > 
-> > > > Is it really 8.0 or 8.20?
+On Thu, Dec 18, 2025 at 04:32:01AM +0000, Bryan O'Donoghue wrote:
+> On 17/12/2025 11:43, Konrad Dybcio wrote:
+> > On 12/17/25 11:08 AM, Vikash Garodia wrote:
 > > > 
-> > > I double confirmed the version, it is really 8.0.
-> > 
-> > This is really strange. The SERDES offset not equal to 0, te
-> > PHYSTATUS_4_20 bit instead of PHYSTATUS -- all of that has always been a
-> > characteristic of N.20 PHYs.
-> 
-> Yeah, seems your theroy is correct on previous target such as sm8550 and
-> sm8450. But for kaanapali, the fact is the version is 8.0, SERDES offset
-> is 0x1000 and the status bit is bit 7.
-> 
-> We can also cross check the status bit with downstream devicetree:
-> 93 		qcom,phy-status-bit = <7>;
-
-
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-
-
-
-> 
-> - Qiang Yu
-> > 
-> > > 
-> > > - Qiang Yu
+> > > On 12/6/2025 2:48 AM, Dmitry Baryshkov wrote:
+> > > > On Wed, Dec 03, 2025 at 10:48:14AM +0530, Vikash Garodia wrote:
+> > > > > 
+> > > > > On 12/3/2025 2:54 AM, Bjorn Andersson wrote:
+> > > > > > On Tue, Dec 02, 2025 at 03:43:17PM +0530, Vikash Garodia wrote:
+> > > > > > > 
+> > > > > > > On 12/2/2025 2:06 PM, Mukesh Ojha wrote:
+> > > > > > > > On Thu, Nov 27, 2025 at 10:25:23AM +0000, Bryan O'Donoghue wrote:
+> > > > > > > > > On 21/11/2025 11:37, Mukesh Ojha wrote:
+> > > > > > > > > > > Sorry.
+> > > > > > > > > > > 
+> > > > > > > > > > > Did we actually come up with a cogent reason to omit the video firmware
+> > > > > > > > > > > loading here ?
+> > > > > > > > > > > 
+> > > > > > > > > > > AFAIU it is required for Lemans and Glymur - leaving it out is blocking
+> > > > > > > > > > > getting video stuff done and storing up trouble.
+> > > > > > > > > > > 
+> > > > > > > > > > > What exactly is the blockage - is it something you want help with ?
+> > > > > > > > > > I replied to you here[1] and given my reason..till something concluded on
+> > > > > > > > > > "multi-cell IOMMU[2]", I can not add video and block what is working
+> > > > > > > > > > already.
+> > > > > > > > > > 
+> > > > > > > > > > [1]
+> > > > > > > > > > https://lore.kernel.org/lkml/20251105081421.f6j7ks5bd4dfgr67@hu-mojha-
+> > > > > > > > > > hyd.qualcomm.com/
+> > > > > > > > > 
+> > > > > > > > > Why though ?
+> > > > > > > > > 
+> > > > > > > > > You are mixing together the issue of multiple SIDs and the original loading
+> > > > > > > > > of firmware which could easily reuse the venus method of
+> > > > > > > > > 
+> > > > > > > > > &iris {
+> > > > > > > > >      video-firmware {
+> > > > > > > > >          iommus = <&apss_smmu hex>;
+> > > > > > > > >      };
+> > > > > > > > > };
+> > > > > > > > 
+> > > > > > > > I completely understand what you are saying, and it would be very easy
+> > > > > > > > for me to do that if it gets accepted. However, I doubt that the people
+> > > > > > > > who raised this concern would agree with the approach.
+> > > > > > > > 
+> > > > > > > > I’m not sure if the video team would like to pursue pixel/non-pixel/firmware context
+> > > > > > > > banks separately. I’ll leave this to @Vikas to answer.
+> > > > > > > 
+> > > > > > > Not exactly as a separate sub-node, but i do like the idea of introducing a
+> > > > > > > simple iommu property, something like this, which Stephan proposed earlier
+> > > > > > > in the discussion [1]
+> > > > > > > 
+> > > > > > > firmware-iommus = <&apps_smmu ...>;
+> > > > > > > 
+> > > > > > > I understand that we are doing the iommu-map thing, but a property
+> > > > > > > exclusively for firmware like above look much simpler to me.
+> > > > > > > 
+> > > > > > 
+> > > > > > "We know we need to find a generic solution to this very problem, but
+> > > > > > while we work on that let's add this quick hack to the ABI"?
+> > > > > 
+> > > > > I would not call that as hack, rather a simpler solution instead of packing
+> > > > > everything into the generic iommu-map.
+> > > > > 
+> > > > > "firmware-iommus" is much more readable to interpret something running in
+> > > > > el2 mode, than digging into function ids inside iommu-map and then matching
+> > > > > it up with specific SIDs to confirm.
 > > > > 
-> > > > > +	.serdes		= 0x1000,
-> > > > > +	.pcs		= 0x1400,
-> > > > > +	.pcs_misc	= 0x1800,
-> > > > > +	.tx		= 0x0000,
-> > > > > +	.rx		= 0x0200,
-> > > > > +	.tx2		= 0x0800,
-> > > > > +	.rx2		= 0x0a00,
-> > > > > +};
-> > > > > +
-> > > > >  static const struct qmp_pcie_offsets qmp_pcie_offsets_v8_50 = {
-> > > > >  	.serdes     = 0x8000,
-> > > > >  	.pcs        = 0x9000,
-> > > > > @@ -4425,6 +4588,34 @@ static const struct qmp_phy_cfg qmp_v6_gen4x4_pciephy_cfg = {
-> > > > >  	.phy_status             = PHYSTATUS_4_20,
-> > > > >  };
-> > > > >  
-> > > > > +static const struct qmp_phy_cfg qmp_v8_gen3x2_pciephy_cfg = {
-> > > > > +	.lanes = 2,
-> > > > > +
-> > > > > +	.offsets		= &qmp_pcie_offsets_v8_0,
-> > > > > +
-> > > > > +	.tbls = {
-> > > > > +		.serdes			= kaanapali_qmp_gen3x2_pcie_serdes_tbl,
-> > > > > +		.serdes_num		= ARRAY_SIZE(kaanapali_qmp_gen3x2_pcie_serdes_tbl),
-> > > > > +		.tx			= kaanapali_qmp_gen3x2_pcie_tx_tbl,
-> > > > > +		.tx_num			= ARRAY_SIZE(kaanapali_qmp_gen3x2_pcie_tx_tbl),
-> > > > > +		.rx			= kaanapali_qmp_gen3x2_pcie_rx_tbl,
-> > > > > +		.rx_num			= ARRAY_SIZE(kaanapali_qmp_gen3x2_pcie_rx_tbl),
-> > > > > +		.pcs			= kaanapali_qmp_gen3x2_pcie_pcs_tbl,
-> > > > > +		.pcs_num		= ARRAY_SIZE(kaanapali_qmp_gen3x2_pcie_pcs_tbl),
-> > > > > +		.pcs_misc		= kaanapali_qmp_gen3x2_pcie_pcs_misc_tbl,
-> > > > > +		.pcs_misc_num		= ARRAY_SIZE(kaanapali_qmp_gen3x2_pcie_pcs_misc_tbl),
-> > > > > +	},
-> > > > > +
-> > > > > +	.reset_list		= sdm845_pciephy_reset_l,
-> > > > > +	.num_resets		= ARRAY_SIZE(sdm845_pciephy_reset_l),
-> > > > > +	.vreg_list		= qmp_phy_vreg_l,
-> > > > > +	.num_vregs		= ARRAY_SIZE(qmp_phy_vreg_l),
-> > > > > +	.regs			= pciephy_v8_regs_layout,
-> > > > > +
-> > > > > +	.pwrdn_ctrl		= SW_PWRDN | REFCLK_DRV_DSBL,
-> > > > > +	.phy_status		= PHYSTATUS_4_20,
-> > > > > +};
-> > > > > +
-> > > > >  static const struct qmp_phy_cfg glymur_qmp_gen5x4_pciephy_cfg = {
-> > > > >  	.lanes = 4,
-> > > > >  
-> > > > > @@ -5209,6 +5400,9 @@ static const struct of_device_id qmp_pcie_of_match_table[] = {
-> > > > >  	}, {
-> > > > >  		.compatible = "qcom,ipq9574-qmp-gen3x2-pcie-phy",
-> > > > >  		.data = &ipq9574_gen3x2_pciephy_cfg,
-> > > > > +	}, {
-> > > > > +		.compatible = "qcom,kaanapali-qmp-gen3x2-pcie-phy",
-> > > > > +		.data = &qmp_v8_gen3x2_pciephy_cfg,
-> > > > >  	}, {
-> > > > >  		.compatible = "qcom,msm8998-qmp-pcie-phy",
-> > > > >  		.data = &msm8998_pciephy_cfg,
-> > > > > 
-> > > > > -- 
-> > > > > 2.34.1
-> > > > > 
-> > > > > 
-> > > > > -- 
-> > > > > linux-phy mailing list
-> > > > > linux-phy@lists.infradead.org
-> > > > > https://lists.infradead.org/mailman/listinfo/linux-phy
+> > > > If you want it formally, NAK from my side for firmware-iommus. Either
+> > > > reuse an existing approach (at least it makese sense from the historical
+> > > > point of view) or introduce a generic approach, which is iommu-maps. The
+> > > > proposed firmware-iommus is definitely a hack around the IOMMU
+> > > > properties.
 > > > > 
-> > > > -- 
-> > > > With best wishes
-> > > > Dmitry
+> > > > But it's really off-topic here.
 > > > 
-> > > -- 
-> > > linux-phy mailing list
-> > > linux-phy@lists.infradead.org
-> > > https://lists.infradead.org/mailman/listinfo/linux-phy
+> > > Infact i see a concern with the iommu-map approach for firmware SIDs. Let say the hardware generates 10 SIDs, including firmware. So video binding should describe those 10 SIDs and the DTS should have all those 10 SIDs as well, including firmware SID.
+> > > Given above, video driver cannot distinguish if the SOC is running in EL2 (KVM) mode or Gunyah mode.
 > > 
-> > -- 
-> > With best wishes
-> > Dmitry
+> > EL2 vs Gunyah is not hard (something like is_hyp_mode_available()), but
+> > again, this should all be calling some sort of is_gunyah() which would
+> > come from the gunyah hyp drivers, which have seen no activity on lkml
+> > for over a year..
+> > 
+> > Konrad
 > 
-> -- 
-> linux-phy mailing list
-> linux-phy@lists.infradead.org
-> https://lists.infradead.org/mailman/listinfo/linux-phy
+> What exactly is the status of the iommu-map stuff and when is it likely to
+> land ?
+> 
+> We _already_ have thanks to chromeos a way to define this stuff in venus.
+> 
 
--- 
-With best wishes
-Dmitry
+And we already know that the way we do iommu definitions for both venus
+and iris is broken (the non-firmware part).
+
+> My €0.02 is 100% fine with iommu-map as a solution for VPU but then,
+> actually want to see it as part of the series solving the problem.
+> 
+> Else, we should reuse the venus approach.
+> 
+> Right now we have the worst of both worlds. Iris is blocked waiting on
+> iommu-map but the iommu-map series has dropped Iris support because -
+> reasons.
+> 
+> The very definition of being stuck between a rock and a hard place.
+> 
+> @Mukesh - can you add Iris support back into the series ? If so then is it
+> perfectly reasonable to proceed with iommu-map for Iris.
+
+Please no, this series adds remoteproc support and I think we're ready
+to merge the next iteration thereof. There's no reason to conflate the
+two topics and delay the introduction of the remoteprocs.
+
+> 
+> If not then we should just reuse the approach we have.
+> 
+> Either way I regard this series as broken right now, as it applies a
+> solution that excludes one of the primary users of that solution with no
+> view as to when that user gets enabled, worse still it requires adaptation
+> to the new solution but the proposer won't do that work...
+
+Yes, it requires adaptation, but that's not because of this series, but
+because the world has changed.
+
+> 
+> It places Iris in a very invidious position.
+> 
+> So again I think if we can agree to add Iris support back into this series
+> then we should go ahead with implementing in Iris.
+
+No, we can merge this series and then turn around and decide to do
+exactly what you suggest without further delays - if that's what we
+want.
+
+> 
+> If not then the conclusion is Iris _won't_ use that solution and we go with
+> the previous venus solution.
+> 
+> Either way, the proposed series as is, is an effective blocker for Iris so
+> I'd like a commitment either to re-add or we agree it won't be added at all.
+> 
+
+Perhaps I'm misunderstanding what you're saying. How is this blocking
+iris support? It adds the support pieces and doesn't touch iris, afaict
+the thing blocking iris support is the agreement on how to model the
+iommu for iris.
+
+Regards,
+Bjorn
+
+> Either way Iris gets unblocked.
+> 
+> ---
+> bod
 
