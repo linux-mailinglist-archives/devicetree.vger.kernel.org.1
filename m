@@ -1,29 +1,29 @@
-Return-Path: <devicetree+bounces-247876-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247885-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 417F3CCC629
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 16:04:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F0A23CCC6B0
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 16:14:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 79A8A3035D3D
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 15:04:31 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id A14A030BD091
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 15:06:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F127B2D7DEF;
-	Thu, 18 Dec 2025 15:04:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42F002EC0B2;
+	Thu, 18 Dec 2025 15:05:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A97AD2D12EA
-	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 15:04:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A50022E22B5
+	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 15:05:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766070268; cv=none; b=h1gNjiKj6vz4duIRj4nO63v5sgsqnlY8n9LbDtTcscY3v3BBEreiNsgaLQEZpSh54/KZxUHOrdEbVKjp8IwcTMx04vHY/AwzBz9zHwrtzHTa7fFgB0Q3yY7KW3XHdneJCivBYZ/VPABM0x03udLCmdZLegv7R9juYcfnhUWuoyE=
+	t=1766070349; cv=none; b=s8Ui1IC8wVB8IXI0zdWly3AVbHGjCibpBk05qTgEDCRBXynSZAw7Kje/S0D+/+s2NVMucXWexgInjYpeN/ya4e5tePD/JRW096gwNjrcosMrdogEPc+HRlLXVWmtzGGIX5rc7qaIAlIJKmg6drQr4HEbZ0Ns0r6ZINdPLYP0Rgk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766070268; c=relaxed/simple;
-	bh=BftEMXNe9b9u5qp4tnrpwQrsP8OnPjgSNlWWBG1pYyE=;
+	s=arc-20240116; t=1766070349; c=relaxed/simple;
+	bh=zIzI+RWN8I+PPp7gM10QfdwWfky+ttRAA/4WGgQBPSs=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=GyAAdRtrpyAJT8zx1+NwrxOK4fJfwykpObbmtcSl/PjQg4LUMWNayJdBW70w3O1Ek+MJOun1Cn3YqJPYuAArKioCZCnGu5HyZgpcF3IMhct3ddFXxB+6ZLcUBH9G5yy+fbyaScPz4L2qY3DVT15lOoOgOriuJiXk4Mkt/qegBLg=
+	 In-Reply-To:To:Cc; b=OeutQtBzTcuu+q87HxOA2cd2gWby3TJ+Jg4v1/mitljyvDv2V2fBQD8ETj58ff6SRReTKexAU98I7etuM3F4tok64aBT5q4cxhN8yI4Zm16xIGIn3NU8jLEu/LPT20kF/nPxmvcQyPNMiLYzHM8piXwlqmgGWBGYYYsQyLrruwM=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
@@ -31,21 +31,21 @@ Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
 	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
 	(Exim 4.92)
 	(envelope-from <s.hauer@pengutronix.de>)
-	id 1vWFY4-0007j8-OY; Thu, 18 Dec 2025 16:04:12 +0100
+	id 1vWFZS-00080k-Oi; Thu, 18 Dec 2025 16:05:38 +0100
 Received: from dude02.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::28])
 	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.96)
 	(envelope-from <s.hauer@pengutronix.de>)
-	id 1vWFY1-006IfQ-2J;
-	Thu, 18 Dec 2025 16:04:09 +0100
+	id 1vWFZR-006IkO-2Q;
+	Thu, 18 Dec 2025 16:05:37 +0100
 Received: from localhost ([::1] helo=dude02.red.stw.pengutronix.de)
 	by dude02.red.stw.pengutronix.de with esmtp (Exim 4.98.2)
 	(envelope-from <s.hauer@pengutronix.de>)
-	id 1vWFY1-00000002kPh-1zsF;
+	id 1vWFY1-00000002kPh-224q;
 	Thu, 18 Dec 2025 16:04:09 +0100
 From: Sascha Hauer <s.hauer@pengutronix.de>
-Date: Thu, 18 Dec 2025 16:04:15 +0100
-Subject: [PATCH v2 09/10] ASoC: tlv320adcx140: add kcontrol for num biquads
+Date: Thu, 18 Dec 2025 16:04:16 +0100
+Subject: [PATCH v2 10/10] ASoC: tlv320adcx140: add channel sum control
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -54,7 +54,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251218-sound-soc-codecs-tvl320adcx140-v2-9-3c2270c34bac@pengutronix.de>
+Message-Id: <20251218-sound-soc-codecs-tvl320adcx140-v2-10-3c2270c34bac@pengutronix.de>
 References: <20251218-sound-soc-codecs-tvl320adcx140-v2-0-3c2270c34bac@pengutronix.de>
 In-Reply-To: <20251218-sound-soc-codecs-tvl320adcx140-v2-0-3c2270c34bac@pengutronix.de>
 To: Shenghao Ding <shenghao-ding@ti.com>, Kevin Lu <kevin-lu@ti.com>, 
@@ -69,13 +69,13 @@ To: Shenghao Ding <shenghao-ding@ti.com>, Kevin Lu <kevin-lu@ti.com>,
 Cc: linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org, 
  Kevin Lu <luminlong@139.com>, linux-rt-devel@lists.linux.dev, 
  devicetree@vger.kernel.org, Sascha Hauer <s.hauer@pengutronix.de>, 
- Emil-Juhl <emdj@bang-olufsen.dk>
+ Emil Svendsen <emas@bang-olufsen.dk>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1766070249; l=1189;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1766070249; l=1805;
  i=s.hauer@pengutronix.de; s=20230412; h=from:subject:message-id;
- bh=qc2dQpr272s/at2Ej519T5bc2Pd27yFq5qfLTQIbZ5w=;
- b=k3j1lAsnKy8JJbxs9OEGZyC/a8foLGiD/KZDlTrkeg4oEcqoYeCyVLtTHIu1kpCMuQVI0hcIx
- jd81geFfQMbAxGEf7+RvxeTfuOIDW6xFK1e6BeE0RFiJofe64JiOpwP
+ bh=0KnIM+Y4QBq/N0NnDfRAKNRfpAubDFVWi/5K2Fijr9k=;
+ b=DyJ5K/YS/KOBuHz5cwQlYzcr0nvB/FdzrWmoR44Zs8aFCe7Sk41MiXXjEHNgiXZLlUfHPNc9G
+ 6NklkWiv0bxBTpIa0UV9MLLlthEnECv1LBoi0AZVS3CvQfH8VJaRqY5
 X-Developer-Key: i=s.hauer@pengutronix.de; a=ed25519;
  pk=4kuc9ocmECiBJKWxYgqyhtZOHj5AWi7+d0n/UjhkwTg=
 X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
@@ -83,32 +83,58 @@ X-SA-Exim-Mail-From: s.hauer@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
 X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-From: Emil-Juhl <emdj@bang-olufsen.dk>
+From: Emil Svendsen <emas@bang-olufsen.dk>
 
-The tlv320adcx140 chips have a configurable amount of biquad filters
-enabled per input channel. Currently this number is always left at the
-default value of 2 biquads per channel.
-This commit adds a kcontrol to allow runtime configuration of the amount
-of biquads per channel.
+Add control for channel summation.
 
-The configuration is controlled by bits [5-6] in the DSP_CFG1 register.
+3 modes are supported:
 
-Signed-off-by: Emil-Juhl <emdj@bang-olufsen.dk>
+1. "Disabled": Normal operation
+
+2. "2 Channel": Every two channels are summed and divided by 2
+
+  Out 1 <- (CH1 + CH2) / 2
+  Out 2 <- (CH1 + CH2) / 2
+  Out 3 <- (CH3 + CH4) / 2
+  Out 4 <- (CH3 + CH4) / 2
+
+3. "4 Channel": Every four channels are summed and divided by 4
+
+  Out 1 <- (CH1 + CH2 + CH3 + CH4) / 4
+  Out 2 <- (CH1 + CH2 + CH3 + CH4) / 4
+  Out 3 <- (CH1 + CH2 + CH3 + CH4) / 4
+  Out 4 <- (CH1 + CH2 + CH3 + CH4) / 4
+
+Signed-off-by: Emil Svendsen <emas@bang-olufsen.dk>
 Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
 ---
- sound/soc/codecs/tlv320adcx140.c | 2 ++
- 1 file changed, 2 insertions(+)
+ sound/soc/codecs/tlv320adcx140.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
 diff --git a/sound/soc/codecs/tlv320adcx140.c b/sound/soc/codecs/tlv320adcx140.c
-index a7200e149e5f40ddd61e3c0455b796c81f55e2e8..e7c607af642f43b2b783597f3cba3a8cbb31de4a 100644
+index e7c607af642f43b2b783597f3cba3a8cbb31de4a..ac6aab8d722409b2c47b4e1df2a23760bebe795b 100644
 --- a/sound/soc/codecs/tlv320adcx140.c
 +++ b/sound/soc/codecs/tlv320adcx140.c
-@@ -709,6 +709,8 @@ static const struct snd_kcontrol_new adcx140_snd_controls[] = {
- 	SOC_SINGLE_TLV("Digital CH8 Out Volume", ADCX140_CH8_CFG2,
- 			0, 0xff, 0, dig_vol_tlv),
- 	ADCX140_PHASE_CALIB_SWITCH("Phase Calibration Switch"),
+@@ -222,6 +222,13 @@ static const struct snd_kcontrol_new decimation_filter_controls[] = {
+ 	SOC_DAPM_ENUM("Decimation Filter", decimation_filter_enum),
+ };
+ 
++static const char * const channel_summation_text[] = {
++	"Disabled", "2 Channel", "4 Channel"
++};
 +
-+	SOC_SINGLE("Biquads Per Channel", ADCX140_DSP_CFG1, 5, 3, 0),
++static SOC_ENUM_SINGLE_DECL(channel_summation_enum, ADCX140_DSP_CFG0, 2,
++			    channel_summation_text);
++
+ static const char * const pdmclk_text[] = {
+ 	"2.8224 MHz", "1.4112 MHz", "705.6 kHz", "5.6448 MHz"
+ };
+@@ -711,6 +718,8 @@ static const struct snd_kcontrol_new adcx140_snd_controls[] = {
+ 	ADCX140_PHASE_CALIB_SWITCH("Phase Calibration Switch"),
+ 
+ 	SOC_SINGLE("Biquads Per Channel", ADCX140_DSP_CFG1, 5, 3, 0),
++
++	SOC_ENUM("Channel Summation", channel_summation_enum),
  };
  
  static int adcx140_reset(struct adcx140_priv *adcx140)
