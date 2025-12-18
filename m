@@ -1,109 +1,106 @@
-Return-Path: <devicetree+bounces-247783-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247784-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26B42CCB73E
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 11:44:32 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E954CCB71D
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 11:43:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DB0E330542C9
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 10:40:36 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 136113046BA5
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 10:41:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C0C5332EB0;
-	Thu, 18 Dec 2025 10:40:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77B043112D2;
+	Thu, 18 Dec 2025 10:41:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="YUCSxJdQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BECC32F755;
-	Thu, 18 Dec 2025 10:40:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A94F2D876A
+	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 10:41:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766054434; cv=none; b=DFGFgrIOzIDWpO+3elzX2fbiOiv+ytjcmHYRnYVoTKk8Bh3W05mzuOs4wgLmLV1C5zhXOImbRrMowPI/yNAE85g21jPwzG48Qp7KFmaupIq8zeT+3Xdn2DCc4MFL1Xyk31nqPMbInUkEUSFuLOXVF1htOmoRERdQMgYk/JSTqGA=
+	t=1766054496; cv=none; b=piQdhNXzdHz4tnDky7FTI7sH+1N8TGp4Me8m3lmV3hpxabaxd6+dI6R+uLKVqPPB99tYG66r5h/rlxP6TXtmI5eG7xsqbfoEq9JvXriqD67RMk+rzfmtOtW/biqZZLqSPd9inQgwAB2QcNfjK5w627cpdC6UHPYcfdNOIJIO1ZM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766054434; c=relaxed/simple;
-	bh=ShR/4WJQwz/x8TvenQiL57KaayFm16gNh3rFme1Re+I=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ci0BxL3+i2qpUsNd+f993l3pqF9cMaw/qr3OLp/5Nd0si+9wXZ1+im3jNNW2eTnOVO+jVTYSgM7CqxL4Kqu6kpxwZAwYUJJQwhYJT7ZxaBVwR2r6KyMRhI3kIh+JYB1YmcolH4+T4U8AfReo6yC9Qwq96D7YY3pa1EMCr/aijgw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D1BBCFEC;
-	Thu, 18 Dec 2025 02:40:22 -0800 (PST)
-Received: from localhost (e132581.arm.com [10.1.196.87])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 99EC63F73F;
-	Thu, 18 Dec 2025 02:40:29 -0800 (PST)
-Date: Thu, 18 Dec 2025 10:40:27 +0000
-From: Leo Yan <leo.yan@arm.com>
-To: Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>
-Cc: Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Mike Leach <mike.leach@linaro.org>,
-	James Clark <james.clark@linaro.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
-	Leo Yan <leo.yan@linux.dev>,
-	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>, kernel@oss.qualcomm.com,
-	coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, maulik.shah@oss.qualcomm.com,
-	Jie Gan <jie.gan@oss.qualcomm.com>
-Subject: Re: [PATCH v2 00/12] coresight: Add CPU cluster
- funnel/replicator/tmc support
-Message-ID: <20251218104027.GA1790402@e132581.arm.com>
-References: <20251218-cpu_cluster_component_pm-v2-0-2335a6ae62a0@oss.qualcomm.com>
+	s=arc-20240116; t=1766054496; c=relaxed/simple;
+	bh=kl9BmRKC/ETlO27pKtDOmO8nxjHIQw8kVe3A5sElFgA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Gqpgq6UWAHrzxy+hnEfyQTyhvIdSu/8/WC2GIUTMBGX6nl8aEOEorKoDQYEgG9/iYtqXkY8WO9HhTPzrcoN6tNhsTXYLnTvlayCW8BxXw/GHfGhj4vKtLQQ4b5gP8Ic/uMlOTKBpcCrMi3Uqegixkrpo3uhaJycGCf1moRV9kog=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=YUCSxJdQ; arc=none smtp.client-ip=185.246.85.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 9DB9B4E41C84;
+	Thu, 18 Dec 2025 10:41:31 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 70034606B6;
+	Thu, 18 Dec 2025 10:41:31 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id CEC92102F0B4B;
+	Thu, 18 Dec 2025 11:41:23 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1766054488; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=xAfqh3tryZsL7bk4EO/IchLBlHkI/yv2iAw4kjviLco=;
+	b=YUCSxJdQfdTcB0M4Q9Hv6tJl6AQ1ImSO1TotM5jebpSsyOmRI2hKSuoTBpv+XERXFCat9P
+	n1ZC4D6kAiDsuwP+sSU4iL0N/PBYQ2W74Hcjw8C5wHYazjxsz431nDHeqWKpiLyv6JfoDp
+	uTy8LbrFnw+KMg0mWXzaZ8p4DF4dTcm5PAAFTNM+6aVQaIjgkPROu1N18Au7yqiwBX9GxY
+	TSe+HFDYkx+U5WuFvUisV+ob2uM0tds5w50w6SvmmJo5uKu/Iyu9JXIAb7binHgpYhC8CG
+	SkPc2TIJlSRohX2eDt9Mv7Zno5ODadXcXCNQl8rCd4YAVvG/E2qfoG4bARvung==
+Message-ID: <2a0f82e9-0a8b-45ec-9d8f-d4842ce120ad@bootlin.com>
+Date: Thu, 18 Dec 2025 11:41:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251218-cpu_cluster_component_pm-v2-0-2335a6ae62a0@oss.qualcomm.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/4] dt-bindings: pwm: allwinner: add h616 pwm
+ compatible
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>, Philipp Zabel <p.zabel@pengutronix.de>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org
+References: <20251217082504.80226-1-richard.genoud@bootlin.com>
+ <20251217082504.80226-2-richard.genoud@bootlin.com>
+ <52ac76fc-4362-4b5a-ae28-29b874f78399@kernel.org>
+From: Richard GENOUD <richard.genoud@bootlin.com>
+Content-Language: en-US, fr
+Organization: Bootlin
+In-Reply-To: <52ac76fc-4362-4b5a-ae28-29b874f78399@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-Hi,
+Le 18/12/2025 à 11:15, Krzysztof Kozlowski a écrit :
+> On 17/12/2025 09:25, Richard Genoud wrote:
+>> Allwinner H616 PWM block is quite different from the A10 or H6, but at
+>> the end, it uses the same clocks as the H6; so the sun4i pwm binding can
+>> be used.
+>> It has 6 channels than can generate PWM waveforms or clocks if bypass is
+>> enabled.
+>>
+>> Suggested-by: Krzysztof Kozlowski <krzk@kernel.org>
+> 
+> Hm? Where did I suggest anything about adding clock cells or documenting
+> this allwinner device?
+Hum, indeed.
+The suggestion, as I understood it, was to re-use the sun4i PWM binding, 
+which is why this patch exists now. But I agree, the suggestion wasn't 
+on the content itself.
+Sorry if it's misleading.
 
-On Thu, Dec 18, 2025 at 12:09:40AM -0800, Coresight ML wrote:
+> 
+> 
+> Best regards,
+> Krzysztof
 
-[...]
-
-> - Utilizing `smp_call_function_single()` to ensure register accesses
->   (initialization, enablement, sysfs reads) are always executed on a
->   powered CPU within the target cluster.
-
-This is concerned as Mike suggested earlier.
-
-Let me convert to a common question: how does the Linux kernel manage
-a power domain shared by multiple hardware modules?
-
-A general solution is to bind a power domain (let's say PD1) to both
-module A (MOD_A) and module B (MOD_B).  Each time before accessing MOD_A
-or MOD_B, PD1 must be powered on first via the pm_runtime APIs, with
-its refcount increased accordingly.
-
-My understanding is the problem in your case is that the driver fails to
-create a relationship between the funnel/replicator modules and the
-cluster power domain.  Instead, you are trying to use the CPUs in the
-same cluster as a delegate for power operations - when you want to
-access MOD_B, your wake up MOD_A which sharing the same power domain,
-only to turn on the PD_A in order to access MOD_B.
-
-Have you discussed with the firmware and hardware engineers whether it
-is feasible to provide explicit power and clock control interfaces for
-the funnel and replicator modules?  I can imagine the cluster power
-domain's design might differ from other device power domains, but
-should not the hardware provide a sane design that allows software to
-control power for the access logic within it?
-
-General speaking, using smp_call_function_single() makes sense if only
-when accessing logics within the CPU boundary.
-
-P.s., currently you can use "taskset" as a temporary solution without
-any code change, something like:
-
-  taskset -c 0 echo 1 > /sys/bus/coresight/devices/etm0/enable_source
-
-Thanks,
-Leo
+Regards,
+Richard
 
