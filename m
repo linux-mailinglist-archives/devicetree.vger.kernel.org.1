@@ -1,122 +1,125 @@
-Return-Path: <devicetree+bounces-247734-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247738-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0A9DCCAD24
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 09:14:54 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9EF7CCAE42
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 09:31:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id F2A553005AB7
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 08:14:49 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 38E76300D430
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 08:27:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACB48336ED4;
-	Thu, 18 Dec 2025 08:14:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56BC8330667;
+	Thu, 18 Dec 2025 08:27:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YqkD4ufu"
+	dkim=pass (1024-bit key) header.d=zonque.org header.i=@zonque.org header.b="LUsKvlne"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F044335BC1;
-	Thu, 18 Dec 2025 08:14:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from mailkram.bugwerft.de (mailkram.bugwerft.de [95.216.200.101])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 153112FF662
+	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 08:27:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.216.200.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766045684; cv=none; b=KF51EeTGe3UBAaKyltf5Fx/HjX8E+6OBjRMSMYu29Nlv1yh8iaMr1fv08YCpGyPKCyqUbmGJO1prMidUTulE65znFlFhKy506DwTV7ZqitSbTtIpQsIAV64SsXRePUzyriAXRcNGzRBL2r8RphN2i159Q7I1psDQv7EfG2C5B44=
+	t=1766046466; cv=none; b=i28AIdwK0Rm30q9GczTn9GA0gi3orERnneNwBvD3sWUuUelQ54tQZxCMWhJkwqVSE49nPD/OCT7AspOv8RlHzEKG9mEwXFeXK5l+Oh1427SRL3xVOac/RP7/4KwMpk0zn5GfmmKyFTSuYDP2jRSwt04HqV3Oa0oMYQZk3iB9AiU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766045684; c=relaxed/simple;
-	bh=y7TtX8+iLOnaZvRGv4vOgDBVzMPtjU08gAuozivb/eM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IwDm8BuHXKjlrMvy5QG4yOGBAr0HWoDP7udxW99rSBUcp0nkwiXnwVj6cTifFVnhijH4GUSbLzIB3GOT0mmIFy2HZVsGm6XlAF9uOkHphiiF+TUWA1rV82tjeDxiIXa8QvCuDZSXbrRCN+jEuLtKEQPzjRn7XxncSLMmpVbymxw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YqkD4ufu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80F2CC4CEFB;
-	Thu, 18 Dec 2025 08:14:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766045684;
-	bh=y7TtX8+iLOnaZvRGv4vOgDBVzMPtjU08gAuozivb/eM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YqkD4ufulbLCET4gYmTzcEh4Aj8WoamMUS19qmiC+KY5q84cOm9derASQRQSw3GEm
-	 YPdPKXr2WNgsZi+jvgVconDppJLCIkxwTRVNak/B1svlD9WTOLcMv06A7x4/6Q0G+b
-	 vPIYK5mQNfBkluTtf2ytyYoBWGAwtJrp7aevwAFr/Gc3IZCIqhqGUfwQG6vgI8KbqB
-	 9gHVpPDeQXYUJLlHDwoPsZ8tUw/ACOotR4+Q7UDAJc0caCPbopDKp2Etckr08i5ZLa
-	 dR/PrhFgVPMFm7egU5g2M1+NEVr8/vX8NTQkK2Itx3aUpkQtocU6A/nWk8RJoBRloa
-	 Aj3immWtyNVnA==
-Date: Thu, 18 Dec 2025 09:14:41 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Swati Agarwal <swati.agarwal@oss.qualcomm.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Icenowy Zheng <uwu@icenowy.me>, 
-	J =?utf-8?Q?=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>, Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
-	Jens Glathe <jens.glathe@oldschoolsolutions.biz>, Mike Looijmans <mike.looijmans@topic.nl>, 
-	Pin-yen Lin <treapking@chromium.org>, Catalin Popescu <catalin.popescu@leica-geosystems.com>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 4/4] arm64: dts: qcom: lemans-evk: Enable USB1
- controller for host mode
-Message-ID: <20251218-winged-hypnotic-jellyfish-370cda@quoll>
-References: <20251216120749.94007-1-swati.agarwal@oss.qualcomm.com>
- <20251216120749.94007-5-swati.agarwal@oss.qualcomm.com>
+	s=arc-20240116; t=1766046466; c=relaxed/simple;
+	bh=n41lyNSoQuYpdPqcvETyvQJamEbAi8/jglp1oEC2UoQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=UDXwOOAhcTMmU7xROm/0QGa1JNXpLJml+4N/ZsnVPORpSTZ/NLUSRDGBsJp44VCB2lTEqY8rX66XWGgNzTmXAcE4Df+yGpjzKQHzDTF6eTLPKMfkcBRbQrCGCMrHXOyJ52r5OOZ0I5DhwTCWKVcbjIz7MyXTPre1JxrNunvYzX4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=zonque.org; spf=pass smtp.mailfrom=zonque.org; dkim=pass (1024-bit key) header.d=zonque.org header.i=@zonque.org header.b=LUsKvlne; arc=none smtp.client-ip=95.216.200.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=zonque.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=zonque.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=zonque.org; s=mail;
+	t=1766046096; bh=n41lyNSoQuYpdPqcvETyvQJamEbAi8/jglp1oEC2UoQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=LUsKvlneD1aEiZdlieFQ2we1bSEAq4rzRKwu1L+ljZIDhSuR3ua7gBOrbVXcNbyms
+	 JILQcubDuvtfgJHBBirMMIQHp7QYpu7Alcv1catZTk2u6Lm6TqrMqV0J6dy9ZpJJEH
+	 x6QMFcWQOizJXVVZ/GfCCjamnKXWDLvHMWcAuC/8=
+Received: from [10.10.3.104] (unknown [62.214.9.170])
+	by mailkram.bugwerft.de (Postfix) with ESMTPSA id 81A0B4168D;
+	Thu, 18 Dec 2025 08:21:35 +0000 (UTC)
+Message-ID: <700e5050-aebe-4ca4-b02d-8ffacccf7045@zonque.org>
+Date: Thu, 18 Dec 2025 09:21:29 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20251216120749.94007-5-swati.agarwal@oss.qualcomm.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] ARM: dts: intel: Drop pxa2xx
+To: Arnd Bergmann <arnd@arndb.de>, Robert Jarzmik <robert.jarzmik@free.fr>,
+ Rob Herring <robh@kernel.org>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
+ Magnus Damm <magnus.damm@gmail.com>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Haojian Zhuang <haojian.zhuang@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
+ Gregory Clement <gregory.clement@bootlin.com>,
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+ Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20251212203226.458694-4-robh@kernel.org> <m2345fmkg7.fsf@free.fr>
+ <35405ed3-1319-4d3a-84a5-ad67f4c823ad@app.fastmail.com>
+Content-Language: en-US
+From: Daniel <daniel@zonque.org>
+In-Reply-To: <35405ed3-1319-4d3a-84a5-ad67f4c823ad@app.fastmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, Dec 16, 2025 at 05:37:49PM +0530, Swati Agarwal wrote:
-> Enable USB1 controller for host mode on EVK Platform.
+Hi,
+
+On 12/17/25 17:04, Arnd Bergmann wrote:
+> On Fri, Dec 12, 2025, at 22:58, Robert Jarzmik wrote:
+>> "Rob Herring (Arm)" <robh@kernel.org> writes:
+>>
+>>> These .dtsi files are not included anywhere in the tree and 
+>>> can't be tested. They have not been touched since 2018 other than 
+>>> clean-ups.
+>>>
+>> And yet, there are used by people using pxa2xx board with an DT 
+>> support (like the mioa701 for which a board file was never merged).
+>>
+>> If you remove pxa25x.dtsi and pxa27x.dtsi, you might as well 
+>> remove all support for this architecture from the kernel, as
+>> these are the building blocks needed to make it work.
+>>
+>> That might be what should be done, I'll let Arnd and Daniel 
+>> comment on the future of PXA in the kernel.
 > 
-> For secondary USB Typec port, there is a genesys USB HUB GL3590 having 4
-> ports sitting in between SOC and HD3SS3220 Type-C port controller and SS
-> lines run from the SoC through the hub to the Port controller. Mark the
-> second USB controller as host only capable.
+> I agree with Rob that at the very minimum, any dtsi files in the
+> kernel should be build-tested along with the rest, so either
+> we add some dts files using them soon, or we can remove pxa2xx
+> (and maybe pxa3xx) completely.
+
+PXA3xx is in use by the Raumfeld boards, and I would really like to keep
+them around.
+
+For PXA2xx I'm torn. I don't have the capacity and hardware to work on
+those, but I don't know how many users are out there with out-of-tree
+dts files.
+
+> I already plan to remove the remaining board files for both
+> sa1100 and pxa soon, as nobody has picked up the task to do
+> any further DT conversion after we removed the majority of
+> the files back in 2022 and left only the ones that someone
+> said they'd be interested in keeping.
+>
+> Robert, let me know if you or someone else is able to spend
+> some time on sending (warning-free) dts files for pxa2xx
+> machines soon. If not, I'd plan to remove whatever is there
+> along with the board files and drivers.
 > 
-> Added HD3SS3220 Type-C port controller along with Type-c connector for
+> I also checked the pxa3xx Raumfeld devicetree support that
+> Daniel added in linux-3.7. The manufacturer's firmware
+> download page contains kernel images based on this work,
+> using a 4.19 kernel but built in 2022. If we remove pxa2xx
+> DT support, it would be good to find out if anyone still
+> plans to use something newer on that hardware, which may
+> happen because of CRA requirements.
+
+As I said, I would like to not close the door on this one if possible.
 
 
-"Add". Write consistent messages.
-
-> controlling vbus supply.
-
-...
-
-> +			port@1 {
-> +				reg = <1>;
-> +
-> +				usb1_hs_in: endpoint {
-> +					remote-endpoint = <&usb_hub_2_1>;
-> +				};
-> +
-> +			};
-> +
-> +			port@2 {
-> +				reg = <2>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +
-> +				usb1_ss_in: endpoint {
-> +					remote-endpoint = <&usb_hub_3_1>;
-> +				};
-> +
-> +			};
-> +		};
-> +	};
-> +
->  	edp0-connector {
->  		compatible = "dp-connector";
->  		label = "EDP0";
-> @@ -140,6 +182,16 @@ vbus_supply_regulator_0: regulator-vbus-supply-0 {
->  		enable-active-high;
->  	};
->  
-> +	vbus_supply_regulator_1: vbus-supply-regulator-1 {
-
-No, do not introduce your own style. Read the code here - how such
-nodes are called?
-
-Best regards,
-Krzysztof
+Thanks,
+Daniel
 
 
