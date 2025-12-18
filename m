@@ -1,186 +1,165 @@
-Return-Path: <devicetree+bounces-248025-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248026-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32C35CCDE34
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 23:56:22 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id A52CACCDEB5
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 00:19:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BF73130248BC
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 22:56:19 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 1C630300EF2F
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 23:19:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E303320A06;
-	Thu, 18 Dec 2025 22:56:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="YGPk2gTd"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E70472192FA;
+	Thu, 18 Dec 2025 23:19:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 230823101AE
-	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 22:56:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 251821FF1C4;
+	Thu, 18 Dec 2025 23:19:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766098578; cv=none; b=dJZbt9dMH8SBAOpHDgZeeMrTIF+L+2zaU5sjW0JRZ1uN4hej4nxWGIox8msTVtLoT49bZh8EhOcugTQlVhXSV154QtJazCHTm4J3AfgbJYFlwIHP+4T5wvRbKUXaRYQ3JCX2raN+T4SxndZYBpOsqDKXgQkuYBF1/efnaHyI0t8=
+	t=1766099993; cv=none; b=dE4l4VJlyzPLYaNiGtNnI/xGhafeMhnYzd05h+6JPLgQz3/1+wNyW0UwNG6W0b/oxnwfOeF/4VjixBNpHpX/zKmAabDebIPeiVWWMnFdK6N3UqKXmziNu6OiXKl/laUnpMR5JpHkKwK301c0wwtGXYF+eTn/Yi32Uegl3mXqrDU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766098578; c=relaxed/simple;
-	bh=ytefce9GoabytodYzfx2Y2KHZCazU28BdXPoQRkGF0Y=;
-	h=MIME-Version:From:Date:Message-ID:Subject:To:Cc:Content-Type; b=DFAlIhP2MLs0mC1so1LF4v1C3j4frBKS+EQo8MgHFmJW8WYvnOh11iEwMkbdwlqZRmZ+UwOHvP2/LnqeMW5ddFy4zOA+QDcDIsiZNJfmb//5rDpvhLVHCZ3xww06PK3y/fHfw33QZwFNcSAP3PO9BhbLaWEr1C9gf85WGFCAIc8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=YGPk2gTd; arc=none smtp.client-ip=209.85.221.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-42fbbc3df8fso546826f8f.2
-        for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 14:56:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1766098575; x=1766703375; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=ytefce9GoabytodYzfx2Y2KHZCazU28BdXPoQRkGF0Y=;
-        b=YGPk2gTdkZsQk2LeOIP3qFwRqtAgDgenvscnDSsGIxgGvV9wS8urXjRJrqEMo4MHrB
-         CTtRvM9u12ZYHeJVr81Vtn5WZY3EbwbH71FF/4uG9GlSLVOI6tBCPuhD4eXqzBezWS26
-         SC0WDwlpJtklrnddQ6lqxLE2WMVihDa5p34hOxd6Ml+Gc+WFaX4nUUKNig12vMpchseJ
-         e3A0dCPEuATfSZUXfnZkgyXQxrJvJqB3QWdTutUsqVRfc1wxn/9jil9OEDVS+Ctxe79n
-         0Svy8LO9+7N9xsgRpjDCM0kXgNS9iCwqhVkFwZcMd6IE7I0O448tkVXpY1IJGzYJduJg
-         L7LQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766098575; x=1766703375;
-        h=cc:to:subject:message-id:date:from:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ytefce9GoabytodYzfx2Y2KHZCazU28BdXPoQRkGF0Y=;
-        b=LXFziLRE9uI1cIhaV6sKdpQ2Sbc+xzV2PPs/qGBq2bVfXt4xC40JjrxRP6y6KUcnqx
-         FZidiMSb7iLf2mfqz7axZkR9BFL2FZNj5IvXGfOIpLal4A6GGX9nuQV+650eFzFMI9zE
-         w29ZbPF6KwFHmRG31upEDIqWeXhkiW9mCb65dKSP79LVY5ckDeTczoNRp2555RPMCBq9
-         uJrY3QR3I35QJhgwynfor7DvoCMCjlxdbk8iRICV3Qmw7Zg4jnivP4rIJ7VeGfQo+mzR
-         xW+PuIL1VuGkuVp0cSt4PpPaT5+Xt1+ycnr3kMynifqgJVJgCCftTovmsXwGEJuzlHGI
-         4n5A==
-X-Forwarded-Encrypted: i=1; AJvYcCWs+EZABC8Mzcg1dxeFGMb+oJwOpJOH0/QY/mKfy7UcxPIQNi1S1jTX/KmAeapy7ZFpycmWqBB1OeWA@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywm9BBZhvbbbXKqKtsRLljny5qkgABZQe3qpNwtOVml44DQqmHS
-	NaV7bUhJzz0qyO1TrmXktP+YLqDtgpY14tyO7nOlzcHvz9EbCmNEVNMbmPzyxfXBSLQGABqG6wc
-	buX4ixP2djqeeq7rDBmaumxXpxD+vrvzS2ny0REfV
-X-Gm-Gg: AY/fxX41m0EjpNg5oYWhsAYpFelHtqrvv0Ycw7vOY+gk8PfJFFOWOcYlBpyUsxHKCJ4
-	ELXm7Hmbcwa2xB624IRtGWA1TdAR5e/sG0vbsSZ27cGcB5Mi1dN6x72EXpcRYN11Yo6guFx4Xct
-	+oSCBdOoUz8ccOTTRQEh40GqAY/a6U1qHDVPQTLI1+Ik5ctAmZ3P9GnnmW0LVFFH4jERI3qgVJ8
-	lTcLp0gq91Fc4mcvjSn5MqAvi7XL24YEy/JfaWVY18l8fX196KhbCibLhGQ+ivS3Bv90cpdpwSH
-	9s+68VbunzEUAKzQuzljddh8TA==
-X-Google-Smtp-Source: AGHT+IHyAglAUV7SanEVQr9reVdR9Xpy0j/wGwvdQqLYH7/hlHdm3sZfq7rYW7MYuyFNmavyzcXiN9znw1kvfWJlf7I=
-X-Received: by 2002:a5d:5f87:0:b0:431:35a:4a97 with SMTP id
- ffacd0b85a97d-4324e70b294mr862685f8f.59.1766098575073; Thu, 18 Dec 2025
- 14:56:15 -0800 (PST)
+	s=arc-20240116; t=1766099993; c=relaxed/simple;
+	bh=0vLRMM7En8km6VApfO++vh0HWCVI8UGkTtiJWFcXaS4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=E+LrKpwb6ag+nO3buWnZ6SC3A7aEXmxw2zO/NbdaUior9UZL0zZ+e9ghlxcPhfHXSPbJRKL0OGZNTs7w8rWw2cNKVKCsEe4klH2K0UXL/YQXbTii2UgW0U9h4a0UnqK5CVE3S60QWhGUPJzGan54Kd/zs7KwscMtosrKK/UjU+Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id F10FFFEC;
+	Thu, 18 Dec 2025 15:19:42 -0800 (PST)
+Received: from [10.57.74.203] (unknown [10.57.74.203])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1D3113F73F;
+	Thu, 18 Dec 2025 15:19:46 -0800 (PST)
+Message-ID: <2db74a3e-4aeb-4e87-9fe8-5c9693bfb67c@arm.com>
+Date: Thu, 18 Dec 2025 23:19:45 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Doug Anderson <dianders@google.com>
-Date: Thu, 18 Dec 2025 14:56:03 -0800
-X-Gm-Features: AQt7F2qybuXbfLLar7UKfoOwfXGPNdCNJ6JMqPj6-D2vmiGqYTNo3Bkg9Tksous
-Message-ID: <CAD=FV=W+jE_L_LLgAhD8K_4+CtivSD9-9t7Xe63XuKrKjfyfeQ@mail.gmail.com>
-Subject: Proposal: document where SoC info belongs
-To: devicetree-spec@vger.kernel.org
-Cc: "Russell King (Oracle)" <linux@armlinux.org.uk>, boot-architecture@lists.linaro.org, 
-	Chen-Yu Tsai <wenst@chromium.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>, 
-	Linux ARM <linux-arm-kernel@lists.infradead.org>, 
-	William McVicker <willmcvicker@google.com>, Julius Werner <jwerner@chromium.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Peter Griffin <peter.griffin@linaro.org>, 
-	Tudor Ambarus <tudor.ambarus@linaro.org>, =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
-	Geert Uytterhoeven <geert@linux-m68k.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Simon Glass <sjg@chromium.org>, Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>, 
-	Linus Walleij <linusw@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 5/8] dt-bindings: arm: add an interrupt property for
+ Coresight CTCU
+Content-Language: en-GB
+To: Krzysztof Kozlowski <krzk@kernel.org>, Jie Gan
+ <jie.gan@oss.qualcomm.com>, Rob Herring <robh@kernel.org>
+Cc: Mike Leach <mike.leach@linaro.org>, James Clark <james.clark@linaro.org>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Tingwei Zhang <tingwei.zhang@oss.qualcomm.com>,
+ Mao Jinlong <jinlong.mao@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, coresight@lists.linaro.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+References: <20251211-enable-byte-cntr-for-ctcu-v8-0-3e12ff313191@oss.qualcomm.com>
+ <20251211-enable-byte-cntr-for-ctcu-v8-5-3e12ff313191@oss.qualcomm.com>
+ <20251211133723.GA859302-robh@kernel.org>
+ <dfa43a63-ca14-4dd7-a7ab-acd95748a8b9@oss.qualcomm.com>
+ <a9537dc9-c767-4909-8b1c-6e939ce4f3fc@kernel.org>
+From: Suzuki K Poulose <suzuki.poulose@arm.com>
+In-Reply-To: <a9537dc9-c767-4909-8b1c-6e939ce4f3fc@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi,
+On 18/12/2025 10:17, Krzysztof Kozlowski wrote:
+> On 12/12/2025 02:12, Jie Gan wrote:
+>>
+>>
+>> On 12/11/2025 9:37 PM, Rob Herring wrote:
+>>> On Thu, Dec 11, 2025 at 02:10:44PM +0800, Jie Gan wrote:
+>>>> Add an interrupt property to CTCU device. The interrupt will be triggered
+>>>> when the data size in the ETR buffer exceeds the threshold of the
+>>>> BYTECNTRVAL register. Programming a threshold in the BYTECNTRVAL register
+>>>> of CTCU device will enable the interrupt.
+>>>>
+>>>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>> Reviewed-by: Mike Leach <mike.leach@linaro.org>
+>>>> Signed-off-by: Jie Gan <jie.gan@oss.qualcomm.com>
+>>>> ---
+>>>>    .../devicetree/bindings/arm/qcom,coresight-ctcu.yaml    | 17 +++++++++++++++++
+>>>>    1 file changed, 17 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight-ctcu.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight-ctcu.yaml
+>>>> index c969c16c21ef..90f88cc6cd3e 100644
+>>>> --- a/Documentation/devicetree/bindings/arm/qcom,coresight-ctcu.yaml
+>>>> +++ b/Documentation/devicetree/bindings/arm/qcom,coresight-ctcu.yaml
+>>>> @@ -39,6 +39,16 @@ properties:
+>>>>        items:
+>>>>          - const: apb
+>>>>    
+>>>> +  interrupts:
+>>>> +    items:
+>>>> +      - description: Byte cntr interrupt for the first etr device
+>>>> +      - description: Byte cntr interrupt for the second etr device
 
-To try to move things along, I'm picking a small piece out of my
-previous discussion [1] to see if we can make some progress.
+This is really vague. How do you define first vs second ? Probe order ?
+No way. This must be the "port" number to which the ETR is connected
+to the CTCU. IIUC, there is a config area for each ETR (e.g., trace id
+filter) connected to the CTCU. I was under the assumption that they
+are identified as "ports" (input ports). I don't really understand how
+this interrupt mapping works now. Please explain it clearly.
 
-Right now, the top-level "compatible" string in a dts file usually
-contains one or more strings to represent the SoC. Examples chosen
-semi-randomly:
+>>>> +
+>>>> +  interrupt-names:
+>>>> +    items:
+>>>> +      - const: etrirq0
+>>>> +      - const: etrirq1
+>>>
+>>> Names are kind of pointless when it is just foo<index>.
+>>
+>> Hi Rob,
+>>
+>> I was naming them as etr0/etr1. Are these names acceptable?
+> 
+> Obviously irq is redundant, but how does etr0 solves the problem of
+> calling it foo0?
+> 
+> I don't think you really read Rob's comment.
+> 
+>> The interrupts are assigned exclusively to a specific ETR device.
+>>
+>> But Suzuki is concerned that this might cause confusion because the ETR
+>> device is named randomly in the driver. Suzuki suggested using ‘port-0’
+>> and ‘port-1’ and would also like to hear your feedback on these names.
+> 
+> There is no confusion here. Writing bindings luckily clarifies this what
+> the indices in the array mean.
 
-exynos5250-snow.dts:
-- compatible: "google,snow-rev4", "google,snow", "samsung,exynos5250",
-"samsung,exynos5"
-- SoC: "samsung,exynos5250", "samsung,exynos5"
+The point is there are "n" interrupts. Question is, could there be more
+devices(ETRs) connected to the CTCU than "n".
 
-sun20i-d1-clockworkpi-v3.14.dts:
-- compatible: "clockwork,r-01-clockworkpi-v3.14", "allwinner,sun20i-d1"
-- SoC: "allwinner,sun20i-d1"
+e.g., Lets CTCU can control upto 4 ETRs and on a particular system, the
 
-sdm845-db845c.dts:
-- compatible: "thundercomm,db845c", "qcom,sdm845"
-- SoC: "qcom,sdm845"
+TMC-ETR0 -> CTCU-Port0
 
-I propose that we DEPRECATE including SoC information in the top-level
-compatible string and move it elsewhere. I propose these top-level
-properties that should be used instead:
+TMC-ETR1 -> CTCU-Port2
+TMC-ETR2 -> CTCU-Port3
 
-soc-family-compatible = "vendor,family";
-soc-product-id = <0x1234>;
-soc-product-variant = <0x1234>;
-soc-product-description = "Something";
-soc-major-rev = <0x1234>;
-soc-minor-rev = <0x1234>;
-soc-sub-rev = <0x1234>;
+Now, how many interrupts are described in the DT ? How do we map which
+interrupts correspond to the CTCU-Portn. (Finding the TMC-ETRx back
+from the port is possible, with the topology).
 
-The family-compatible would be VERY high-level and is not intended to
-be a marketing name. It would be something like "samsung,exynos",
-"nvidia,tegra" or "google,google-silicon". The ONLY goal for this
-string is that within a family, the other properties uniquely identify
-a given SoC. This is a SINGLE string, NOT a list of strings. There is
-no concept of being part of multiple families.
+This is what I raised in the previous version. Again, happy to hear
+if there is a standard way to describe the interrupts.
 
-All the other numbers are hopefully self-explanatory. These values
-could be absent (assumed 0) if they don't make sense for a given SoC.
-
-The soc-product-description is designed to be some nice name that
-represents the family, product-id, and product-variant but _not_ the
-rev (since that's easy for anyone who cares to represent it as "rev
-X.Y.Z")
-
-
-The goals here are:
-* Stop trying to jam so much into the top-level "compatible".
-* Make it one step easier for bootloaders (or code packaging device
-trees for bootloaders) to differentiate device trees / overlays. This
-isn't _enough_ since this proposal doesn't include board info, but
-it's a place to start.
-* Make it easier to deal with "socketed" boards where the SoC can be replaced.
-
-NOTE: if a set of devicetrees is provided to a bootloader, it could
-not just look at these properties to help it pick a devicetree but it
-could also change the properties to be more detailed (it could fill in
-some of the minor/sub-revs, for instance).
-
-
-I think this is a positive change for everyone and a cleaner way to
-represent things even if you aren't dealing with the above problems.
-
-What I'm looking for from people is some responses. Folks could choose:
-
-A) Yes, this is great. We already have something like this and we'd
-switch to your properties if it became a standard.
-
-B) I like the idea, but I need an extra property to represent my SoC
-and then I'd use it.
-
-C) I like the idea and I'd use it, but with some changes.
-
-D) We don't have anything like this today, but it sounds useful.
-
-E) Why are you wasting my time? This isn't a useful problem. The SoC
-belongs in the top-level compatible string, period.
-
-F) Other (please specify)
-
-
-FWIW, from chatting with Rob Herring offline, my understanding is:
-* He doesn't think that using the "soc@0" is the right place for these
-properties.
-* He didn't seem enthusiastic about adding a new node and was more
-amenable to adding properties, which is why I added a pile of
-top-level properties.
+Suzuki
 
 
-[1] https://lore.kernel.org/r/CAD=FV=Ux7nGFnYEyX0cUL-9__BKnTYc+kAJjkF458ZnFS7zoJA@mail.gmail.com
+> 
+>>
+>> Usually, the probe sequence follows the order of the addresses. In our
+>> specification, ‘ETR0’ is always probed before ‘ETR1’ because its address
+>> is lower.
+> 
+> How is this even relevant? You are answering to something completely
+> different, so I don't think you really tried to understand review.
+> 
+> 
+> 
+> Best regards,
+> Krzysztof
+
 
