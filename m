@@ -1,184 +1,121 @@
-Return-Path: <devicetree+bounces-247760-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247761-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DE04CCB455
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 10:54:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DF5F7CCB464
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 10:55:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8BF183026AD8
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 09:52:50 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A04B730046E8
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 09:55:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC41E3328EC;
-	Thu, 18 Dec 2025 09:52:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5190332908;
+	Thu, 18 Dec 2025 09:55:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="vf+N+HZy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.socionext.com (mx.socionext.com [202.248.49.38])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7280E1F9F70;
-	Thu, 18 Dec 2025 09:52:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.248.49.38
+Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51F283328ED
+	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 09:55:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766051568; cv=none; b=mouvUXBR5HppC6cly0ozaH8v9+w+UOTFLMJTItSbStiAi540Rz1P/9DJO1fVc3wQMzvcpACF4ZNQ9NJyyThl8m+R1jJi4/rfZCK8UV4jNEKYJbPinZ2TRh1Ay3NyMcmYQIgXZRwCFysL8XbGlSO77gBMjWm4DdXeJNY/mHHutOM=
+	t=1766051745; cv=none; b=S4ar8Wbl4i7zriUYSJsB73rjin5oX+2ZjEM6BBIJtFd7YLJrpiF7EB/FYqCEH/w3MKnOfTJbmI+Srt53W2ha32v1l1m0LuYli6JuNliY4gw87IX3st/RiiylI0Jwbh/9bFVzRuRa9gpqDeC3NNlL79C6kMSRxw+Tp306VaeX708=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766051568; c=relaxed/simple;
-	bh=ZAg+Vxb7Yy4hbcKu3h+/HwRKNvvS+LmAMjg1tpUKHnE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=eu376FWvEzmmdYz3v3MtmaibWnW2YPgS8OPcWEtgGnOcQhSBi2aGbCBHmB27cWPBCITd91eioEje5/c1J0HlKTVKF9NaQkST2Qkmn+CQcLx5IifRLthPaSHOBvq8vpffnaFTZG9+Iqq/Ub2qK1u72Hlv6uOBMER2LePgyNlZyCA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=socionext.com; spf=pass smtp.mailfrom=socionext.com; arc=none smtp.client-ip=202.248.49.38
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=socionext.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=socionext.com
-Received: from unknown (HELO iyokan3-ex.css.socionext.com) ([172.31.9.54])
-  by mx.socionext.com with ESMTP; 18 Dec 2025 18:52:34 +0900
-Received: from mail.mfilter.local (mail-arc02.css.socionext.com [10.213.46.40])
-	by iyokan3-ex.css.socionext.com (Postfix) with ESMTP id ACA992091484;
-	Thu, 18 Dec 2025 18:52:34 +0900 (JST)
-Received: from iyokan3.css.socionext.com ([172.31.9.53]) by m-FILTER with ESMTP; Thu, 18 Dec 2025 18:52:34 +0900
-Received: from [10.212.247.110] (unknown [10.212.247.110])
-	by iyokan3.css.socionext.com (Postfix) with ESMTP id AC36E10A01F;
-	Thu, 18 Dec 2025 18:52:33 +0900 (JST)
-Message-ID: <e773f4ef-1772-47d5-bce8-9b97979391a5@socionext.com>
-Date: Thu, 18 Dec 2025 18:52:36 +0900
+	s=arc-20240116; t=1766051745; c=relaxed/simple;
+	bh=O/EDAEC7PTsvd+iT1GULzhYfUKmQ+wrOGzrHzgoRFz0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
+	 Content-Type:References; b=PNO2kN0bj+IVcdnhpWnaECFO6ipOuujlst4AL1e86lQDj83r4WTErusG4UgeK10Wq2SAq+5CKoIJZpAbavNYdfVGxNeYgCL+ERQSOTVUhVEKMI1kLB+9qgfAkxzeGaY6nB3pVsSA3ba0Y82nraKp3DwZR06Khtdzs5ysFHesvFs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=vf+N+HZy; arc=none smtp.client-ip=210.118.77.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20251218095541euoutp0294c222be9f4f9be376c07e69bcf4f117~CRrPEAtJG1675716757euoutp021
+	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 09:55:41 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20251218095541euoutp0294c222be9f4f9be376c07e69bcf4f117~CRrPEAtJG1675716757euoutp021
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1766051741;
+	bh=d+zvG+8e11n24pJutZahktO9rCuNJt6S0wGRGf9V6C8=;
+	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+	b=vf+N+HZyDAEGEWfu9J9gaf5Bj8YdEQ0Eo1YJM42hBxIqalmnJHaFk4r1miBih2b6+
+	 oDDzqFXu90kFDpGbSMxXRpc3yf7AffyTPEtVfr4nWdX/3QKLoVd3nB+ElIsJzFI2Qi
+	 pnFdGYVUHE4/VxIMhM3iPyAEwMMs/7bUgrHkze/k=
+Received: from eusmtip2.samsung.com (unknown [203.254.199.222]) by
+	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+	20251218095541eucas1p158c5660f096a107393085fe89f5bdd6d~CRrOeW8ch1259512595eucas1p16;
+	Thu, 18 Dec 2025 09:55:41 +0000 (GMT)
+Received: from [106.210.134.192] (unknown [106.210.134.192]) by
+	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20251218095539eusmtip2689dadc5b8a592c5508b1a1b9a94aaf1~CRrMzcUAy0481204812eusmtip2N;
+	Thu, 18 Dec 2025 09:55:39 +0000 (GMT)
+Message-ID: <99dc91c9-59fd-47c5-b1d9-157bda86ad59@samsung.com>
+Date: Thu, 18 Dec 2025 10:55:38 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: usb: Add Socionext Uniphier DWC3 controller
-To: Rob Herring <robh@kernel.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Masami Hiramatsu <mhiramat@kernel.org>,
- linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20251215212507.3317805-1-robh@kernel.org>
- <0775e913-e531-44b5-b191-7ce0cf4d1e3a@socionext.com>
- <CAL_Jsq+sXky33rD1-DkLvWdNcUEBNAty8t2NzvHFx-2ZK1cCSQ@mail.gmail.com>
+User-Agent: Betterbird (Windows)
+Subject: Re: [PATCH] of: reserved_mem: Allow reserved_mem framework detect
+ "cma=" kernel param
+To: Rob Herring <robh@kernel.org>, Oreoluwa Babatunde
+	<oreoluwa.babatunde@oss.qualcomm.com>
+Cc: ye.li@oss.nxp.com, kernel@oss.qualcomm.com, saravanak@google.com,
+	akpm@linux-foundation.org, david@redhat.com, lorenzo.stoakes@oracle.com,
+	Liam.Howlett@oracle.com, vbabka@suse.cz, rppt@kernel.org, surenb@google.com,
+	mhocko@suse.com, robin.murphy@arm.com, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-mm@kvack.org, iommu@lists.linux.dev,
+	quic_c_gdjako@quicinc.com
 Content-Language: en-US
-From: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-In-Reply-To: <CAL_Jsq+sXky33rD1-DkLvWdNcUEBNAty8t2NzvHFx-2ZK1cCSQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: Marek Szyprowski <m.szyprowski@samsung.com>
+In-Reply-To: <X-TH#1.CAL_JsqL6VVQ7K_ZAbHJ8Gb7ei_jusLx6wRn=AdOVgV50dX0ejQ@mail.gmail.com>
 Content-Transfer-Encoding: 8bit
+X-CMS-MailID: 20251218095541eucas1p158c5660f096a107393085fe89f5bdd6d
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20251210002053eucas1p1d1408ad0fb49a49bf4371687f8df7395
+X-EPHeader: CA
+X-CMS-RootMailID: 20251210002053eucas1p1d1408ad0fb49a49bf4371687f8df7395
+References: <CGME20251210002053eucas1p1d1408ad0fb49a49bf4371687f8df7395@eucas1p1.samsung.com>
+	<20251210002027.1171519-1-oreoluwa.babatunde@oss.qualcomm.com>
+	<X-TH#1.CAL_JsqL6VVQ7K_ZAbHJ8Gb7ei_jusLx6wRn=AdOVgV50dX0ejQ@mail.gmail.com>
 
-On 2025/12/17 1:38, Rob Herring wrote:
-> On Mon, Dec 15, 2025 at 7:22 PM Kunihiko Hayashi
-> <hayashi.kunihiko@socionext.com> wrote:
->>
->> Hi Rob,
->>
->> On 2025/12/16 6:25, Rob Herring (Arm) wrote:
->>> The Socionext Uniphier DWC3 controller binding is already in use, but
->>> undocumented. It's a straight-forward binding similar to other DWC3
->>> bindings.
->>
->> After being pointed out by Krzysztof at OSSJapan, I've checked the
->> bindings
->> and was preparing some additions or fixes to resolve the warning.
->>
->> It's almost the same as my proposal, however, I add a little.
->>
->>>
->>> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
->>> ---
->>>    .../bindings/usb/socionext,uniphier-dwc3.yaml | 89 +++++++++++++++++++
->>>    1 file changed, 89 insertions(+)
->>>    create mode 100644
->>> Documentation/devicetree/bindings/usb/socionext,uniphier-dwc3.yaml
->>>
->>> diff --git
->>> a/Documentation/devicetree/bindings/usb/socionext,uniphier-dwc3.yaml
->>> b/Documentation/devicetree/bindings/usb/socionext,uniphier-dwc3.yaml
->>> new file mode 100644
->>> index 000000000000..892ae3458c1b
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/usb/socionext,uniphier-dwc3.yaml
->>> @@ -0,0 +1,89 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/usb/socionext,uniphier-dwc3.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Socionext Uniphier SuperSpeed DWC3 USB SoC controller
->>> +
->>> +maintainers:
->>> +  - Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
->>> +  - Masami Hiramatsu <mhiramat@kernel.org>
->>> +
->>> +select:
->>> +  properties:
->>> +    compatible:
->>> +      contains:
->>> +        const: socionext,uniphier-dwc3
->>> +  required:
->>> +    - compatible
->>> +
->>> +properties:
->>> +  compatible:
->>> +    items:
->>> +      - const: socionext,uniphier-dwc3
->>> +      - const: snps,dwc3
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  interrupts:
->>> +    minItems: 1
->>> +    items:
->>> +      - description: Host or single combined interrupt
->>> +      - description: Peripheral interrupt
->>> +
->>> +  interrupt-names:
->>> +    minItems: 1
->>> +    items:
->>> +      - enum:
->>> +          - dwc_usb3
->>> +          - host
->>> +      - const: peripheral
->> There's no problem, but how about the following description
->> following snps,dwc3.yaml?
->>
->>     interrupt-names:
->>       oneOf:
->>         - const: dwc_usb3
->>         - items:
->>             enum: [host, peripheral]
-> 
-> That allows for 'peripheral, host' or just 'peripheral'. Mine would
-> seemingly allow 'dwc_usb3, host', but snps,dwc3.yaml will prevent
-> that.
+On 10.12.2025 15:07, Rob Herring wrote:
+> On Tue, Dec 9, 2025 at 6:20 PM Oreoluwa Babatunde
+> <oreoluwa.babatunde@oss.qualcomm.com> wrote:
+>> When initializing the default cma region, the "cma=" kernel parameter
+>> takes priority over a DT defined linux,cma-default region. Hence, give
+>> the reserved_mem framework the ability to detect this so that the DT
+>> defined cma region can skip initialization accordingly.
+> Please explain here why this is a new problem. Presumably the
+> RESERVEDMEM_OF_DECLARE hook after commit xxxx gets called before the
+> early_param hook. And why is it now earlier?
+>
+> I don't really like the state/ordering having to be worried about in 2 places.
 
-I see. The property combinations are complex, so
-I'll follow your suggestion from the currnet .dts files.
-  
->>
->>> +
->>> +  clocks:
->>> +    maxItems: 3
->>> +
->>> +  clock-names:
->>> +    items:
->>> +      - const: ref
->>> +      - const: bus_early
->>> +      - const: suspend
->>> +
->>> +  phys:
->>> +    description: 1 to 4 HighSpeed PHYs followed by 1 or 2 SuperSpeed
->>> PHYs
->>> +    minItems: 2
->>> +    maxItems: 6
->>
->> Since Pro4 only has one PHY, so:
->>       minItems: 1
-> 
-> Ah, I only checked arm64. Will fix> 
-> If there's other arm32 warnings, I'm not looking at those. So fixes
-> appreciated there.
+I also don't like this spaghetti, but it originates from 
+commit 8a6e02d0c00e ("of: reserved_mem: Restructure how the reserved 
+memory regions are processed") and the first fixup for it: 2c223f7239f3 
+("of: reserved_mem: Restructure call site for 
+dma_contiguous_early_fixup()").
 
-Yes, I'll address the arm32 warnings.
+It looks that it is really hard to make reserved memory 
+initialization fully dynamic assuming that the cma related fixups have 
+to be known before populating kernel memory pages tables. I also advised 
+in 
+https://lore.kernel.org/all/be70bdc4-bddd-4afe-8574-7e0889fd381c@samsung.com/ 
+to simply increase the size of the static table to make it large enough for the sane use cases, but 
+it turned out that this approach was already discussed and rejected:
+https://lore.kernel.org/all/1650488954-26662-1-git-send-email-quic_pdaly@quicinc.com/
 
-Thank you,
+Maybe it would make sense to revert the mentioned changes and get back 
+to such simple approach - to make the size of the static table 
+configurable in the Kconfig?
 
----
-Best Regards
-Kunihiko Hayashi
+Best regards
+-- 
+Marek Szyprowski, PhD
+Samsung R&D Institute Poland
+
 
