@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-247708-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247709-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A55B4CCAB11
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 08:37:28 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC95ECCAB1A
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 08:37:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 5340430287DD
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 07:36:42 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C48473036DAD
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 07:36:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2DCF2FFFA5;
-	Thu, 18 Dec 2025 07:36:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4943E2F9C32;
+	Thu, 18 Dec 2025 07:36:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BeNltBhF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YPoRO7nL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB5FF20311;
-	Thu, 18 Dec 2025 07:36:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C0062DE1E0;
+	Thu, 18 Dec 2025 07:36:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766043398; cv=none; b=feQsBloScpnFh/ABoZ/hceTQ1MiKrloJpxVvew78bquD35iGN44lAWhYV1gWrTaFaioiuUd05u/MLO1mpx5k/S6YfrGr/4qP1Bx05mMznuqiPe7QeSVz2mQcpjtz4EoRgV8DpuRo8jCfAAXAxFYrGEw2gSpPYY06t84IAyWudAQ=
+	t=1766043410; cv=none; b=LIUe5wcNZoTjiL4sbANcnKuMagMxYt3Ac69sTc3LTHrZCBseVoNj39M9OP2cIGjtufW8Q0ZBGc6qLFtvrIZqdG0D4CmA+LvcqFywcZ8P3vBsuVLC1BZVd/dQgmKpQ4oYnP+VbzDryej2xp/VYhbAQkhy4WXAcqDJl9PQj6p61cQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766043398; c=relaxed/simple;
-	bh=eHPSATtSo9pCkzht8qfZCWdLaoBUH6EX+lUcwfUNWhA=;
+	s=arc-20240116; t=1766043410; c=relaxed/simple;
+	bh=egccrtVw3HByxVzw/WWhOtHIeoGo73qZkdhJjEVMPes=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=p/nyDblJstYknRIFGWnjOTP9XPowPA8uqVJWOFFj2mEq3Q8/uYUf6jAonGT1dRovRKmzTg8U1JFJ00d3W0eptnfa1kcN0JTc8IGT2ppbj6sW7s0KuOx49e+XGDgAgi3ev+VoKrTr2pYcFEhMo+mM487kp9jv0Nddg3vQrPrLA24=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BeNltBhF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C40CDC4CEFB;
-	Thu, 18 Dec 2025 07:36:36 +0000 (UTC)
+	 MIME-Version:Content-Type; b=cgsjsVxkd0l1HC4Avh9qaHg07Gk/SWKSCa4NzvnkK1Mzr31vc02E0DufgxLTQ9B2yBI3XY3KcX+e2zXUiGGBatEpTvS7qkBMoGtxrHpvCpbTelYi9iBIcxMwYFoONrhxIhYCsq6jhMkUDCh0NYDuImsAKlfjUqzdVwh03Iq+15o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YPoRO7nL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78696C113D0;
+	Thu, 18 Dec 2025 07:36:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766043398;
-	bh=eHPSATtSo9pCkzht8qfZCWdLaoBUH6EX+lUcwfUNWhA=;
+	s=k20201202; t=1766043409;
+	bh=egccrtVw3HByxVzw/WWhOtHIeoGo73qZkdhJjEVMPes=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=BeNltBhFjhdDLKI4LeBC76owqcvdlq1r0wiBDs58H8csQTZj4k+b2pNZE/CuwU4Fs
-	 tIXFXCZdZwUeq8ddgKvOdUqzu4g3ppYPDVe/7VIf9EMJgZ3Y2MVMKUN/LRYxuoqNSU
-	 gEvWMYT0R3+iXNYdWGxmtwAraOdZ6+JL4KwFaXB8XsmablbHnyhYbA1aEy1Zy7U6wC
-	 ixht2Xs4tuuOwoQlckrIU200DYAXJe36a2MS2xOLH/wCTA7U2JDo090z4ERj7lfi3s
-	 bA4q5v+z1Zp3DFWOC+P0vCmhZKqbVlptWMO5g2ol56xHfVt6O/qCK7RVQPAOsvmLJF
-	 xpAZONw/0M0NQ==
+	b=YPoRO7nL8KtC7XENet1FB3jMpsrHXh/99ASmhbmhIOqDBMLXMS/qHfnJOuOWdem+f
+	 DJrTgNV+g3ed9wccq5wZri68klvtTU14f/LjrCevpcMcFyMaAqpdfGQnb4Vw72UxJW
+	 LYoRSI0b4hcS5lefkIh3wSiFOK6n0RdNgsHN/D0XgcDM6rGpOWWNkmeik9KSR59Edj
+	 kD1COGYXFPk8CweCtLMWAlVoC6mHGnC1T8tO2rQSymUSHnjeNUN0DNLsM+ENqQb4aP
+	 OZhm+XuQiLon1+6jZCyvnnN9l7u2UPsSxek6brKOEHoJ8AkaSxgcj+7KLKSZdIrJgZ
+	 HXyoTn11iAP+g==
 From: Mark Brown <broonie@kernel.org>
-To: Liam Girdwood <lgirdwood@gmail.com>, 
- Joan-Na-adi <joan.na.devcode@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, Joan Na <joan.na@analog.com>
-In-Reply-To: <20251021050830.185626-1-joan.na@analog.com>
-References: <20251021050830.185626-1-joan.na@analog.com>
-Subject: Re: [PATCH v4 0/2] Add support for MAX77675 device
-Message-Id: <176604339651.24885.14511905200223848345.b4-ty@kernel.org>
-Date: Thu, 18 Dec 2025 07:36:36 +0000
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-spi@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org
+In-Reply-To: <20251215230323.3634112-1-robh@kernel.org>
+References: <20251215230323.3634112-1-robh@kernel.org>
+Subject: Re: [PATCH] spi: dt-bindings: snps,dw-abp-ssi: Allow up to 16
+ chip-selects
+Message-Id: <176604340821.24947.4105982029008973557.b4-ty@kernel.org>
+Date: Thu, 18 Dec 2025 07:36:48 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,20 +60,22 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.15-dev-47773
 
-On Tue, 21 Oct 2025 14:08:28 +0900, Joan-Na-adi wrote:
-> MAX77675 regulator driver and device tree bindings
+On Mon, 15 Dec 2025 17:03:22 -0600, Rob Herring (Arm) wrote:
+> At least the Microchip Sparx5 supports up to 16 chip-selects, so
+> increase the maximum. The pattern for the child unit-address was
+> unconstrained, so update it to match the maximum number of
+> chip-selects.
+> 
 > 
 
 Applied to
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
 
 Thanks!
 
-[1/2] dt-bindings: regulator: Add MAX77675 regulator binding
-      (no commit info)
-[2/2] regulator: max77675: Add MAX77675 regulator driver
-      commit: 9e92c559d49d6fb903af17a31a469aac51b1766d
+[1/1] spi: dt-bindings: snps,dw-abp-ssi: Allow up to 16 chip-selects
+      commit: 1d24636a9c87c32ec626a56593c98544e6c49fef
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
