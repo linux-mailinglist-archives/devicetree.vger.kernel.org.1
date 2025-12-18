@@ -1,289 +1,183 @@
-Return-Path: <devicetree+bounces-247987-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247981-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D56EFCCD598
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 20:12:06 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id B64B8CCD536
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 20:06:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 71CDE3061A43
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 19:09:16 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B5FC7300FA1E
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 19:06:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF4BD32D7EC;
-	Thu, 18 Dec 2025 19:09:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF9F632ED51;
+	Thu, 18 Dec 2025 19:06:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="aCYegLYt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD9C530F532
-	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 19:09:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72D4A2EACEE
+	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 19:06:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766084955; cv=none; b=TLmNzxBxdj7lSrYZdJp3fuuM5/sw6+1+8ZwqYcj4HiqDSeSE4ieEZHmpOizuwTi9lnyRt/5UsRk7rG+J9wFrbi3zibCdVAfUROR0KlsPUoHNaurvivG3w0M4XHonD80JEAc8iAoN2WARBVO/K9Y4+eYhDESFfPrUuVFR8HpuXH0=
+	t=1766084803; cv=none; b=WyFl3fFPShyLOs7P8/eSxO99mfVffXBs4FLG5VEpE2L3bUCGp/C/fbIje7ezrbUk2hecRBplmBcdrmKXAS65GmQb82NlStu4rUdrh4454cEq2plHJnVl6VCsy7qVWIyMkVuWqKPtltCRke92/BALoE2XGjhsgutNt2TMIo1DuZ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766084955; c=relaxed/simple;
-	bh=T/AVfBNOlZjcbus+d9oxAQbVNWAQa1gw028PWj+zHKw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Lf/rEdaHscOAJo7uEzx3yshP7XOgKf6iXGourpd+CxCtH5Wy/wYfkAnw1fVYv2wI6mubOxfr4Qi0V7TphsHqtoN1rHedctivGN5MQDFq+I+mDTCkhsIl32RD0LPXJoN80iQNiNp8KE805WrUsYTNO2hZfmjYZ/s6ZTEHMDjuee8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1vWJMh-0008WQ-7c; Thu, 18 Dec 2025 20:08:43 +0100
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1vWJMf-006Kvz-12;
-	Thu, 18 Dec 2025 20:08:41 +0100
-Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1vWJMf-00Ee3k-0T;
-	Thu, 18 Dec 2025 20:08:41 +0100
-Date: Thu, 18 Dec 2025 20:08:41 +0100
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: Liu Ying <victor.liu@nxp.com>, dri-devel@lists.freedesktop.org,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1766084803; c=relaxed/simple;
+	bh=WEloQA/XIFfWLUJFGSkNRutlWTf+KyY3iz9RK9E79CE=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=NaY3wvS+ttmUT6AYaTX/RColzDYFE9mivdcdgtWlMoIApapmQlzzSUd+bBbo/8peswzPbBvfEFQymX77/givgVs0mDaFrTea8zYI0FY0unkgyxC53qIkzsSX1PAIGVteUHdi0ISR4wuCKCaJ7sAwuUWb81bqHDaRVZxaVHBg6mQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=aCYegLYt; arc=none smtp.client-ip=209.85.208.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-64b8123c333so782041a12.3
+        for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 11:06:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=suse.com; s=google; t=1766084800; x=1766689600; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=KZxHqu3SzujmiotRlzxJm3UYnzflG11IekQhIfmml9I=;
+        b=aCYegLYtCmwXL40Pw0dEPugE96PaXeazjb2KtaeX1BAhH8nOkAZTXzhMQl9JAx2aAw
+         ivZTG8wqS7FPxoi0ncYqtEhkkAqU6HBJGCdhbNUPcsMNcSMNDed3/hPlfuSmeLyw6pSQ
+         4i7D+FUjpcCBMEeDe7ymVHXy+3Fdoqo6zLlIKWd2Xr4Uemqy08/MQTYqGBUke1IjDiYR
+         jeGIdVEIGdudU/fooatKCZGdzH7Zbyff8NSEjHCsTKiJI/KY3HAVAdz5TH6OveJVin9Q
+         yeej9yfpuP9FvtBk0kpbBxYXRMdBe5C7RvU9vZzfwVzPacBspYfzWqTu6vS8sBtybWLA
+         JqBQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1766084800; x=1766689600;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=KZxHqu3SzujmiotRlzxJm3UYnzflG11IekQhIfmml9I=;
+        b=MVTu+wBscInjMg1EGKnQxt4deKK2WUpzpaO6Ed0G0oxgx7Rrn/cppgc20XmtSYoFCC
+         j0hTVhG2pgQaAf8TNpjH4Aijd03rxuWYSH4VEpFjYEhGfazkvP1PAJYj76LNuiJhkaUG
+         Pp0tRh5sxVXYrlt12ai3DwWx/No1KEvFZ6j8BoA61fTVXvRMJShJl/w7fPXckzwokz0Z
+         4dn4zlrYgJ72glaQAJ4rDo/ib0BlX6H/KkWe09ysAyOh8LOOzN/5unVo2aJEea5ha/7G
+         RAvxodnxQ1HWy3J6HJoGRQlyQI5xZ+zzweKu5E0Vu9VzVsb9gFP4haXfp1cmmZA0JjQ5
+         LwDA==
+X-Forwarded-Encrypted: i=1; AJvYcCUOrYOtTUNni6+6G417crMgXweWO3UMIZ+hhW8Unv63cEAu+VqlTHZdrSyolKIekqhO49mEee7oc7bw@vger.kernel.org
+X-Gm-Message-State: AOJu0YyKg8pUtqovvjoAsosT1HBRXBip/InnSwzvHKZ+hGH5oyqVZRKP
+	kG37u4QyX5MKV/pEGvzBfiu+DgaSYgnjQfVk9r8nekwS7N6UvRzlc5oY3fUpanBUUro=
+X-Gm-Gg: AY/fxX7DEBYDKsVnOIV4xrwccqYs964s7eLYWfm5WpHooJODjHN9y61GDJo6Oq/MrGH
+	qYke9bDiowYVpavmTD3UA4ReikBPJPM2tNmXuUmp6Xxr2ChlenpktjLeBjQnhO+H7vdsaO/xBwI
+	urceUclZ/fIqgN4mGcCy8p5X+Uac96eUp2EmNVrFEujqPn3MUeuIOfVnPW0DPAVLd25raIAI3Sk
+	FbNTwPJ0qh6PJt7hiCQ4lQf6zhUUk0UV44ijGPBYzCGzyoQGRcGMkrEZHLcdm7GNWslMCpEQos4
+	YqgN0xsZ+jdt7BM1LGsNberI4LhEGCCOqaZqy95Tyu82Q3nlGi+resaoElXf4MA6EZzJV8yBQHp
+	2SZ0xxXZwaZlLDKZ3QM82SG0q4545weKvBucLIAAcSpbRxbo9xLXeJE5QNpg7twnKmBQFQ4BeiE
+	M0MALEavpMlztuiHtmHsdv7p7OKIUY/Ipgqg4UZV7fVcVrJVDG3lgJNg==
+X-Google-Smtp-Source: AGHT+IHWG4LHoKaiiruOEBctdxAHnsbItZY+jg4X40WE9oC/dX/aDtGLSsf4UY9Cm0B4WQZVSPvMPw==
+X-Received: by 2002:a05:6402:40c9:b0:649:8be7:eda with SMTP id 4fb4d7f45d1cf-64b8e94d0demr435503a12.8.1766084799432;
+        Thu, 18 Dec 2025 11:06:39 -0800 (PST)
+Received: from localhost (host-79-37-15-246.retail.telecomitalia.it. [79.37.15.246])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-64b91056731sm173599a12.8.2025.12.18.11.06.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 18 Dec 2025 11:06:38 -0800 (PST)
+From: Andrea della Porta <andrea.porta@suse.com>
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 1/3] dt-bindings: soc: imx93-media-blk-ctrl: Add PDFC
- subnode to schema and example
-Message-ID: <20251218190841.pmn3kwghq6lxsfl4@pengutronix.de>
-References: <20251202-v6-18-topic-imx93-parallel-display-v7-0-2cce31d64608@pengutronix.de>
- <705773fc-5aba-4bff-b05e-272e1cd0262c@nxp.com>
- <20251215175436.wwlgzxionq55zu27@pengutronix.de>
- <3210190.mvXUDI8C0e@steina-w>
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Andrea della Porta <andrea.porta@suse.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-pci@vger.kernel.org,
+	iivanov@suse.de,
+	svarbanov@suse.de,
+	mbrugger@suse.com,
+	Phil Elwell <phil@raspberrypi.com>
+Subject: [PATCH 0/4] Fix RP1 DeviceTree hierarchy and drop overlay support
+Date: Thu, 18 Dec 2025 20:09:05 +0100
+Message-ID: <cover.1766077285.git.andrea.porta@suse.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <3210190.mvXUDI8C0e@steina-w>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Hi Alexander,
+The current RP1 implementation is plagued by several issues, as follows:
 
-On 25-12-16, Alexander Stein wrote:
-> Hi,
-> 
-> Am Montag, 15. Dezember 2025, 18:54:36 CET schrieb Marco Felsch:
-> > Hi Liu,
-> > 
-> > sorry I didn't fully answer you please see below.
-> > 
-> > On 25-12-08, Liu Ying wrote:
-> > > Hi Marco,
-> > > 
-> > > On 12/02/2025, Marco Felsch wrote:
-> > > > From: Liu Ying <victor.liu@nxp.com>
-> > > > 
-> > > > i.MX93 SoC mediamix blk-ctrl contains one DISPLAY_MUX register which
-> > > > configures parallel display format by using the "PARALLEL_DISP_FORMAT"
-> > > > field. Document the Parallel Display Format Configuration(PDFC) subnode
-> > > > and add the subnode to example.
-> > > > 
-> > > > Signed-off-by: Liu Ying <victor.liu@nxp.com>
-> > > > [m.felsch@pengutronix.de: port to v6.18-rc1]
-> > > > [m.felsch@pengutronix.de: add bus-width]
-> > > > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> > > > ---
-> > > >  .../bindings/soc/imx/fsl,imx93-media-blk-ctrl.yaml | 92 ++++++++++++++++++++++
-> > > >  1 file changed, 92 insertions(+)
-> > > > 
-> > > > diff --git a/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctrl.yaml b/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctrl.yaml
-> > > > index 34aea58094e55365a2f9c86092f637e533f954ff..6e2d86d9341c75108b492bcbabc8a560d8e707cd 100644
-> > > > --- a/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctrl.yaml
-> > > > +++ b/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctrl.yaml
-> > > > @@ -26,6 +26,12 @@ properties:
-> > > >    reg:
-> > > >      maxItems: 1
-> > 
-> > ...
-> > 
-> > > > +            properties:
-> > > > +              endpoint:
-> > > > +                $ref: /schemas/graph.yaml#/$defs/endpoint-base
-> > > > +                unevaluatedProperties: false
-> > > > +
-> > > > +                properties:
-> > > > +                  bus-width:
-> > > 
-> > > In v1-v5, I thought the output bus format can be determined by the sink
-> > > device(a panel or a bridge) hence properties like bus-width were not needed.
-> > > But, if this property is really needed, then reference video-interfaces.yaml
-> > > since bus-width is documented there.  Should we reference bus-type defined
-> > > in video-interfaces.yaml too?
-> > 
-> > You're right, the bus-width should be determined by the connected panel.
-> > But there are cases where a 24-bit panel is connected but only the lower
-> > 18-bits are muxed. I added the bus-width property to handle this case.
-> > In the end most users don't have to specify this since the correct
-> > bus-width is coming from the panel bus-fmt.
-> > 
-> > > > +                    enum: [ 16, 18, 24 ]
-> > > 
-> > > The PARALLEL_DISP_FORMAT field of DISPLAY_MUX register says this IP supports
-> > > below formats.  It seems that the enum here may tell RGB888, RGB666 and RGB565.
-> > > How can we tell RGB555, YCbCr 24 bits and YUV444 then?
-> > > 
-> > > 000b RGB888 -> RGB888
-> > > 001b RGB888 -> RGB666
-> > > 010b RGB565 -> RGB565
-> > > 011b RGB555 -> RGB555
-> > > 100b YUV -> YCbCr 24 bits
-> > > 101b YUV -> YUV444
-> > 
-> > This enum is about the physical bus width. RGB565 == 16-bit, YUV ==
-> > 24-bit.
-> > 
-> > That said, I don't think that you need to specify the bus-fmt since this
-> > is coming from the panel. As said above, my itension with the bus-width
-> > property is to provide integrators (dts-writers) a possibility to limit
-> > the physical available bus width.
-> 
-> Mh, isn't [1] exactly about this? Not sure about the outcome at that time.
+- the node name for RP1 is too specific and should be generic instead
+  (see [1]).
 
-Thanks for the pointer, I wasn't aware of this discussion. I skimmed
-through the dt-bindings thread and I agree with Rob and Maxime.
+- the fully defined DTS has its PCI hierarchy wrongly described. There
+  should be a PCI root port between the root complex and the endpoint
+  (see [1]).
 
-We do have the bus-width endpoint property already. This property is
-alredy used by media and drm bridge drivers. Why not making use of for
-this simple bridge driver too?
+- since CONFIG_PCI_DYNAMIC_OF_NODES can be dropped in the future
+  becoming an automatically enabled feature, it would be wise to not
+  depend on it (see [2]).
 
-Furthermore I doubt, that a simple drm-bridge MEDIA_BUS_FMT_* convert
-driver solves all the problem in a generic way for all platforms, all
-connectors, all routing options.
+- overlay support has led to a lot of confusion. It's not really usable 
+  right now and users are not even used to it (see [3]).
 
-If the i.MX93 NXP-EVKs in [1] would have connected the upper LCD_DAT*
-pads instead of the lower ones, there would be no conversion needed by
-the PDFC bridge driver, albeit the physical bus is cut to 18-bit width
-due to the RPi ext. header limit, which is expanded to 24-bit again later on
-via the Adafruit board panel FPC connector.
+This patch aims at solving the aforementioned problems by amending the
+PCI topology as follows:
 
-In such scenario the output width of the PDFC has to be 24-bit else
-you would lose not only the two LSBs but also the two MSBs for each
-channel. I tried to visualize what I meant for the blue channel:
+  ...
+  pcie@1000120000 {
+    ...
 
-                 24-bit PDFC bridge
-		 ------------------
-        +----+----+----+----+----+----+----+----+
- LCDIF  | B0 | B1 | B2 | B3 | B4 | B5 | B6 | B7 |
-        +----+----+----+----+----+----+----+----+
-          |    |    |    |    |    |    |    |
-        +----+----+----+----+----+----+----+----+
- PDFC   | B0 | B1 | B2 | B3 | B4 | B5 | B6 | B7 |
-        +----+----+----+----+----+----+----+----+
-                    |    |    |    |    |    |
-        +----+----+----+----+----+----+----+----+
-SOC_PAD | xx | xx | D2 | D3 | D4 | D5 | D6 | D7 |
-        +----+----+----+----+----+----+----+----+
-                    |    |    |    |    |    |
-        +----+----+----+----+----+----+----+----+
- ext.   | xx | xx | B2 | B3 | B4 | B5 | B6 | B7 |
- HDR    +----+----+----+----+----+----+----+----+
-                    |    |    |    |    |    |
-                    |    |    |    |    |    |
-                    |    |    |    |    |    |
-          +-----------------------------+    |
-          |    +-----------------------------+
-          |    |    |    |    |    |    |    |
-        +----+----+----+----+----+----+----+----+
- Ada.   | B0 | B1 | B2 | B3 | B4 | B5 | B6 | B7 |
- FPC    +----+----+----+----+----+----+----+----+
+    pci@0,0 {
+      device_type = "pci";
+      reg = <0x00 0x00 0x00 0x00 0x00>;
+      ...
 
-                 18-bit PDFC bridge
-		 ------------------
-        +----+----+----+----+----+----+----+----+
- LCDIF  | B0 | B1 | B2 | B3 | B4 | B5 | B6 | B7 |
-        +----+----+----+----+----+----+----+----+
-          |    |    |    |    |    |    |    |
-        +----+----+----+----+----+----+----+----+
- PDFC   | B0 | B1 | B2 | B3 | B4 | B5 | B6 | B7 |
-        +----+----+----+----+----+----+----+----+
-                    |    |    |    |    |    |
-          +---------+    |    |    |    |    |
-          |    +---------+    |    |    |    |
-          |    |    +---------+    |    |    |
-          |    |    |    +---------+    |    |
-          |    |    |    |    +---------+    |
-          |    |    |    |    |    +---------+
-          |    |    |    |    |    |
-        +----+----+----+----+----+----+----+----+
-SOC_PAD | xx | xx | D2 | D3 | D4 | D5 | D6 | D7 |
-        +----+----+----+----+----+----+----+----+
-                    |    |    |    |    |    |
-        +----+----+----+----+----+----+----+----+
- ext.   | xx | xx | B2 | B3 | B4 | B5 | B6 | B7 |
- HDR    +----+----+----+----+----+----+----+----+
-                    |    |    |    |    |    |
-                    |    |    |    |    |    |
-                    |    |    |    |    |    |
-          +-----------------------------+    |
-          |    +-----------------------------+
-          |    |    |    |    |    |    |    |
-        +----+----+----+----+----+----+----+----+
- Ada.   | B0 | B1 | B2 | B3 | B4 | B5 | B6 | B7 |
- FPC    +----+----+----+----+----+----+----+----+
+      dev@0,0 {
+        compatible = "pci1de4,1";
+        reg = <0x10000 0x00 0x00 0x00 0x00>;
+        ...
 
+        pci-ep-bus@1 {
+          compatible = "simple-bus";
+          ...
 
-The mapping can get quite difficult for a single SoC already, just by
-using a slighlty different HW routing (the upper D[ata] pads).
+          /* peripherals child nodes */
+        }; 
+      }; 
+    }; 
+  }; 
 
-Therefore I would keep it simple and device/ip specific (in this case
-PDFC specific) by making use of the bus-width. Specifying the bus-width
-property could be also wrong albeit it's the case physically, as you can
-see in my above example.
+The reg property is important since it permits the binding the OF
+device_node structure to the pci_dev, encoding the BDF in the upper
+portion of the address.
 
-Therefore the bus-width property must have a good description.
+This patch also drops the overlay support in favor of the fully
+described DT while streamlining it as a result.
 
-Regards,
-  Marco
+Links:
+[1] - https://lore.kernel.org/all/aTvz_OeVnciiqATz@apocalypse/
+[2] - https://lore.kernel.org/all/CAL_JsqJUzB71QdMcxJtNZ7raoPcK+SfTh7EVzGmk=syo8xLKQw@mail.gmail.com/
+[3] - https://lore.kernel.org/all/CAL_JsqJUzB71QdMcxJtNZ7raoPcK+SfTh7EVzGmk=syo8xLKQw@mail.gmail.com/
 
-> Best regards,
-> Alexander
-> 
-> [1] https://lore.kernel.org/all/20250304101530.969920-1-victor.liu@nxp.com/
-> 
-> > [snip]
-> -- 
-> TQ-Systems GmbH | Mühlstraße 2, Gut Delling | 82229 Seefeld, Germany
-> Amtsgericht München, HRB 105018
-> Geschäftsführer: Detlef Schneider, Rüdiger Stahl, Stefan Schneider
-> http://www.tq-group.com/
+Andrea della Porta (4):
+  dt-bindings: misc: pci1de4,1: add required reg property for endpoint
+  misc: rp1: drop overlay support
+  arm64: dts: broadcom: bcm2712: fix RP1 endpoint PCI topology
+  arm64: dts: broadcom: rp1: drop RP1 overlay
 
-
+ .../devicetree/bindings/misc/pci1de4,1.yaml   |  8 +++-
+ arch/arm64/boot/dts/broadcom/Makefile         |  4 +-
+ ...-ovl-rp1.dts => bcm2712-rpi-5-b-base.dtsi} |  0
+ .../boot/dts/broadcom/bcm2712-rpi-5-b.dts     | 39 ++++++++++++-------
+ arch/arm64/boot/dts/broadcom/rp1-nexus.dtsi   | 14 -------
+ arch/arm64/boot/dts/broadcom/rp1.dtso         | 11 ------
+ drivers/misc/rp1/Kconfig                      |  6 +--
+ drivers/misc/rp1/Makefile                     |  3 +-
+ drivers/misc/rp1/rp1-pci.dtso                 | 25 ------------
+ drivers/misc/rp1/rp1_pci.c                    | 37 ++----------------
+ drivers/pci/quirks.c                          |  1 -
+ 11 files changed, 40 insertions(+), 108 deletions(-)
+ rename arch/arm64/boot/dts/broadcom/{bcm2712-rpi-5-b-ovl-rp1.dts => bcm2712-rpi-5-b-base.dtsi} (100%)
+ delete mode 100644 arch/arm64/boot/dts/broadcom/rp1-nexus.dtsi
+ delete mode 100644 arch/arm64/boot/dts/broadcom/rp1.dtso
+ delete mode 100644 drivers/misc/rp1/rp1-pci.dtso
 
 -- 
-#gernperDu 
-#CallMeByMyFirstName
+2.35.3
 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | https://www.pengutronix.de/ |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-9    |
 
