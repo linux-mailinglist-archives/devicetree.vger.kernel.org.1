@@ -1,29 +1,29 @@
-Return-Path: <devicetree+bounces-247883-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247877-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 125C5CCC677
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 16:08:11 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21AF6CCC62F
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 16:04:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 6D58630757BB
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 15:05:12 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E5A4B303BDCC
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 15:04:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAC962F12BE;
-	Thu, 18 Dec 2025 15:04:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5F112D12EA;
+	Thu, 18 Dec 2025 15:04:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37FE82D4801
-	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 15:04:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 010BD2D5416
+	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 15:04:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766070282; cv=none; b=JEoOLuKvaGUajrLANqSmZEEfFuECPpdKmM0kmQv1mnOPe3HHxMWDh29p72Mllw1s/KaFJxM7aL4wofIBEVhBPLFDWwk9JWnSck3k2Y8r5xwerwae7rkKw+JZSrAIoUQ9wDX5SEsAD6e3gXai5XlHb312k4EgMpmxw5jBRB5IQk4=
+	t=1766070269; cv=none; b=RvSFZ1yAwF9raux7kULIdW8nbc7eE0GuMywIfSikYTPPrEal7BZUt7RMH7naQyw0+dAX0cpJtKw/gPJHxz++gcwkjGJ46EVRIcjqClG70uQRXh3v+QaSoPIqKXMKeMML9Z4O9GC9Yt8bTh+1Q6/4AdU6X1dCSbhzN90nfWysgrQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766070282; c=relaxed/simple;
-	bh=I+OiwRe1Qyqt09aUmluGs1uW9nAJj7S2sqKV4dEwxxI=;
+	s=arc-20240116; t=1766070269; c=relaxed/simple;
+	bh=XLqH3l6PU4VmqJ4ZW7Obnr3k+/J5JRnsXv0iCi8V8Z8=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=cjRbj+1/k2c9T9upAsVcfROjF60h+MiOOkN1ovp/8hzLspGRRWuFoptHFBfZ4nxj/+DVX63QBHKxSTu/kordxTEVbDAu4H9QoJLg0J37HUttgKW58LhjPnRswoRYKWCZaLv7Gk1kko3ae6Rb2URxwcmnE22dhtjBblfz57Hr/pg=
+	 In-Reply-To:To:Cc; b=UyXiMHQgmxm2o7kNiInpqC5m3D2fV0hHNHuDZEbLv1PBs1dsWO7SvpKiCUfvVAz9NyuD8+ujyGgxpiFMKzySWsTrIARrC6qB3RggSbhV23jsNxCxk0ln4DkbbBuB8aZPy6Je5RxiWiSDpSzm4AufZM/UQPF6tYLm5a3vWlwXqwo=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
@@ -31,21 +31,22 @@ Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
 	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
 	(Exim 4.92)
 	(envelope-from <s.hauer@pengutronix.de>)
-	id 1vWFY4-0007jA-OY; Thu, 18 Dec 2025 16:04:12 +0100
+	id 1vWFY4-0007jB-Og; Thu, 18 Dec 2025 16:04:12 +0100
 Received: from dude02.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::28])
 	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.96)
 	(envelope-from <s.hauer@pengutronix.de>)
-	id 1vWFY1-006IfN-2L;
+	id 1vWFY1-006IfO-2F;
 	Thu, 18 Dec 2025 16:04:09 +0100
 Received: from localhost ([::1] helo=dude02.red.stw.pengutronix.de)
 	by dude02.red.stw.pengutronix.de with esmtp (Exim 4.98.2)
 	(envelope-from <s.hauer@pengutronix.de>)
-	id 1vWFY1-00000002kPh-1w5J;
+	id 1vWFY1-00000002kPh-1xMe;
 	Thu, 18 Dec 2025 16:04:09 +0100
 From: Sascha Hauer <s.hauer@pengutronix.de>
-Date: Thu, 18 Dec 2025 16:04:12 +0100
-Subject: [PATCH v2 06/10] ASoC: tlv320adcx140: add avdd and iovdd supply
+Date: Thu, 18 Dec 2025 16:04:13 +0100
+Subject: [PATCH v2 07/10] ASoC: dt-bindings: clarify areg-supply
+ documentation
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -54,7 +55,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251218-sound-soc-codecs-tvl320adcx140-v2-6-3c2270c34bac@pengutronix.de>
+Message-Id: <20251218-sound-soc-codecs-tvl320adcx140-v2-7-3c2270c34bac@pengutronix.de>
 References: <20251218-sound-soc-codecs-tvl320adcx140-v2-0-3c2270c34bac@pengutronix.de>
 In-Reply-To: <20251218-sound-soc-codecs-tvl320adcx140-v2-0-3c2270c34bac@pengutronix.de>
 To: Shenghao Ding <shenghao-ding@ti.com>, Kevin Lu <kevin-lu@ti.com>, 
@@ -69,13 +70,13 @@ To: Shenghao Ding <shenghao-ding@ti.com>, Kevin Lu <kevin-lu@ti.com>,
 Cc: linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org, 
  Kevin Lu <luminlong@139.com>, linux-rt-devel@lists.linux.dev, 
  devicetree@vger.kernel.org, Sascha Hauer <s.hauer@pengutronix.de>, 
- Emil-Juhl <emdj@bang-olufsen.dk>
+ Emil-Juhl <emdj@bang-olufsen.dk>, Emil-Juhl <juhl.emildahl@gmail.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1766070249; l=3059;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1766070249; l=1285;
  i=s.hauer@pengutronix.de; s=20230412; h=from:subject:message-id;
- bh=84HiVGIj2AW9qbDeHDmfc8VFd7pOspkpmSN018Mo9VI=;
- b=MZ2qt5y97ZnWu2eybya+DnrKLaxRStwg1kTMqvTTy6NBz9LZRp04nzU9yyKbEEnfXYVi0dWf6
- gv5BLMWezXbDNhwoqig1O2dYlilRPEqsmDQ00XTZjj2HcM3KMzy17cB
+ bh=7RfFbFyTNGaSY6avmnHjxprtJDzNzxIoQg0ZhbFwspg=;
+ b=1mUtQux9IUp/C2Fr5xEUCc3AmeEZcwTCd5FbHWQfP328NyumtfBaycIo8vAKweZx6/Ys5DYIP
+ G6kq5Kn/LRVDwLSga4w8cGuV8Vz9s0ROaCmzOdlfN7QNeMdAqBp+l98
 X-Developer-Key: i=s.hauer@pengutronix.de; a=ed25519;
  pk=4kuc9ocmECiBJKWxYgqyhtZOHj5AWi7+d0n/UjhkwTg=
 X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
@@ -85,99 +86,36 @@ X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
 From: Emil-Juhl <emdj@bang-olufsen.dk>
 
-The datasheet, under "10 Power Supply Recommendations" section,
-specifies that both the AVDD and IOVDD supplies must be up and stable
-for at least 100us before the SHDNZ can be released. After that, the
-chip is ready to receive commands after another 2ms.
-Currently the driver doesn't contain any options to bind AVDD and IOVDD
-supplies to the tlv320adcx140.
+The documentation for areg-supply could cause confusion mainly in terms
+of the relationship between AREG and AVDD.
+According to the datasheet[1] the AREG can be one of two cases:
 
-This commit adds bindings for AVDD and IOVDD supplies which the driver
-will enable when used.
+1) an external 1.8V supply
+2) generated by an internal regulator (hence a 1.8V output)
 
-Signed-off-by: Emil-Juhl <emdj@bang-olufsen.dk>
+[1] https://www.ti.com/lit/ds/symlink/tlv320adc5140.pdf
+
+Signed-off-by: Emil-Juhl <juhl.emildahl@gmail.com>
 Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
 ---
- sound/soc/codecs/tlv320adcx140.c | 36 ++++++++++++++++++++++++++++++++++++
- 1 file changed, 36 insertions(+)
+ Documentation/devicetree/bindings/sound/ti,tlv320adcx140.yaml | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/sound/soc/codecs/tlv320adcx140.c b/sound/soc/codecs/tlv320adcx140.c
-index 444c0e80f0907de201ed1818b5612164a48b0fca..a7200e149e5f40ddd61e3c0455b796c81f55e2e8 100644
---- a/sound/soc/codecs/tlv320adcx140.c
-+++ b/sound/soc/codecs/tlv320adcx140.c
-@@ -22,8 +22,16 @@
+diff --git a/Documentation/devicetree/bindings/sound/ti,tlv320adcx140.yaml b/Documentation/devicetree/bindings/sound/ti,tlv320adcx140.yaml
+index 876fa97bfbcdd3b9450aa6ff57de42f1faed350d..b34ea7824360310434d8b826392864dbfa5fc369 100644
+--- a/Documentation/devicetree/bindings/sound/ti,tlv320adcx140.yaml
++++ b/Documentation/devicetree/bindings/sound/ti,tlv320adcx140.yaml
+@@ -41,8 +41,8 @@ properties:
  
- #include "tlv320adcx140.h"
+   areg-supply:
+     description: |
+-      Regulator with AVDD at 3.3V.  If not defined then the internal regulator
+-      is enabled.
++      External supply of 1.8V. If not defined then the internal regulator is
++      enabled instead.
  
-+static const char *const adcx140_supply_names[] = {
-+	"avdd",
-+	"iovdd",
-+};
-+
-+#define ADCX140_NUM_SUPPLIES ARRAY_SIZE(adcx140_supply_names)
-+
- struct adcx140_priv {
- 	struct regulator *supply_areg;
-+	struct regulator_bulk_data supplies[ADCX140_NUM_SUPPLIES];
- 	struct gpio_desc *gpio_reset;
- 	struct regmap *regmap;
- 	struct device *dev;
-@@ -1104,6 +1112,8 @@ static int adcx140_codec_probe(struct snd_soc_component *component)
- 
- static int adcx140_pwr_off(struct adcx140_priv *adcx140)
- {
-+	int ret;
-+
- 	regcache_cache_only(adcx140->regmap, true);
- 	regcache_mark_dirty(adcx140->regmap);
- 
-@@ -1117,6 +1127,14 @@ static int adcx140_pwr_off(struct adcx140_priv *adcx140)
- 	 */
- 	usleep_range(30000, 100000);
- 
-+	/* Power off the regulators, `avdd` and `iovdd` */
-+	ret = regulator_bulk_disable(ARRAY_SIZE(adcx140->supplies),
-+				     adcx140->supplies);
-+	if (ret) {
-+		dev_err(adcx140->dev, "Failed to disable supplies: %d\n", ret);
-+		return ret;
-+	}
-+
- 	return 0;
- }
- 
-@@ -1124,6 +1142,14 @@ static int adcx140_pwr_on(struct adcx140_priv *adcx140)
- {
- 	int ret;
- 
-+	/* Power on the regulators, `avdd` and `iovdd` */
-+	ret = regulator_bulk_enable(ARRAY_SIZE(adcx140->supplies),
-+					adcx140->supplies);
-+	if (ret) {
-+		dev_err(adcx140->dev, "Failed to enable supplies: %d\n", ret);
-+		return ret;
-+	}
-+
- 	/* De-assert the reset GPIO */
- 	gpiod_set_value_cansleep(adcx140->gpio_reset, 1);
- 
-@@ -1234,6 +1260,16 @@ static int adcx140_i2c_probe(struct i2c_client *i2c)
- 	adcx140->phase_calib_on = false;
- 	adcx140->dev = &i2c->dev;
- 
-+	for (int i = 0; i < ADCX140_NUM_SUPPLIES; i++)
-+		adcx140->supplies[i].supply = adcx140_supply_names[i];
-+
-+	ret = devm_regulator_bulk_get(&i2c->dev, ADCX140_NUM_SUPPLIES,
-+				 adcx140->supplies);
-+	if (ret) {
-+		dev_err_probe(&i2c->dev, ret, "Failed to request supplies\n");
-+		return ret;
-+	}
-+
- 	adcx140->gpio_reset = devm_gpiod_get_optional(adcx140->dev,
- 						      "reset", GPIOD_OUT_LOW);
- 	if (IS_ERR(adcx140->gpio_reset))
+   ti,mic-bias-source:
+     description: |
 
 -- 
 2.47.3
