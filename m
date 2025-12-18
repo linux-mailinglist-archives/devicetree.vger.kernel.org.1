@@ -1,121 +1,300 @@
-Return-Path: <devicetree+bounces-247853-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247854-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id B12E0CCC2A6
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 15:05:58 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14DDACCC3DC
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 15:20:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 8577F30133E8
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 14:05:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A0AA530A897F
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 14:16:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC13534B42F;
-	Thu, 18 Dec 2025 14:05:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 055643376BC;
+	Thu, 18 Dec 2025 14:08:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="h/qIxMC2"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="mXfppaV7";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="TExsO59Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com [209.85.160.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D7FC34BA21
-	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 14:05:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BA223370ED
+	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 14:07:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766066754; cv=none; b=DJnHYlQZIVJEGY7EPO6KGbqg48xBRGTLaSWzByITp9NBhq0DXKenYN+Ox+8y2DGh950nS2c7tabJG/MkSow0CR9oiOsvLA0io4qzJOgAH0Bmlhh8UbTTprTlO+nBq6m56cV7i1I+SpciYzQrWEZgUOhtNggqI+oS3cSueChG5gc=
+	t=1766066881; cv=none; b=g+ZjNPRY2wvBr3hU8s0SvFoW83JoLS9hL4XASWd6PwlQM4rSUr4+xcFfMDRxa02d/FCdY29iu3ezl7oHJW/H41FG8W3uzcLDr9oXp5vQ1CtkjrBIlFG/CFHUqMRn9fyC6HI4R1B90JqiIQgMESGamYYO4gWO246TSp09rhvMAgo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766066754; c=relaxed/simple;
-	bh=oe8k3SKrzfjiRl4HNxM0G0cKAJDNwwM7iKwrLxI73QI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Yg6DTtXFTC+sAALOUGPJYWmdIqYjMmsPU6EUPiQinAfUFuFZ19DW70TMKlHrfZPqXWEKncbLQgPYB+M14dVkGwjqucpove440A2UMbsfh63P0XZvZEhMNWRfuof2y3A0Uw/8a+fnfspTe/+5nPgwOieo4fXUOpYd/gA3Tufhn4I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=h/qIxMC2; arc=none smtp.client-ip=209.85.160.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f172.google.com with SMTP id d75a77b69052e-4edb6e678ddso8829581cf.2
-        for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 06:05:53 -0800 (PST)
+	s=arc-20240116; t=1766066881; c=relaxed/simple;
+	bh=sdoaS3aVPnS8mlbKoSr87lcUSDSkDh/AS/lPTgP6tjw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=XngVW9DT9f07DF8/RgAIehM46/lykFGxIw3DwtTCVFkTe7TZgYgiU3rcDMrjX9Um+Wbjj/zRmV9axxjvOCAL1/mZo6V2DD18wnfGjFy6f573NTueyq7/MUpNIOb775tzOxlQBI7k+ZAZfksI9+ZOn9VLqdvdoIyzUGwXIaOyZl8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=mXfppaV7; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=TExsO59Y; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BI8pl8K813882
+	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 14:07:59 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	o87SlVtSMSkrOoLeMNWzmv5vpvWXLBuQJpH68X8QlW4=; b=mXfppaV7X9Dxt9Vf
+	LA9opNIPxTOI69qUfqof8ArhXpia6iOvBIRyoGfltkS657FQ2MgEjUpUidMD2CwJ
+	YUfjaouirQTR+mjmQfdmymOqD4j1TjDPw5ND8LSm2xnP9oarl4A2zCXMy4uPYTMI
+	yZywaCaSyLu9ewRabwpS0LF/3cTwlLZzd1ldSUgoPojojWKX3taHAmiP9oWcZ1NY
+	1L/uexS7d8Jnw6KISu11wrQMcUH5+xder+j9GLl17ifLq8LHqpha7dL3rTyd/ouS
+	idmFTqe3n9FR1UAdlheZCqlmzMfxNagenGAfdV4T82s1yvWWUQ/or7KuMWIUHOAs
+	A6TRaA==
+Received: from mail-yw1-f198.google.com (mail-yw1-f198.google.com [209.85.128.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b40v7b9vf-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 14:07:58 +0000 (GMT)
+Received: by mail-yw1-f198.google.com with SMTP id 00721157ae682-78f8bb5d9e7so232247b3.2
+        for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 06:07:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1766066752; x=1766671552; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ltmK9xpXSaIRz3pvhRTJSdN7AZMXyRyfcfKgFOhGZkg=;
-        b=h/qIxMC24f1X9+jjvOeTgQuM2vV3SnzNTjEFUJlphDXU4wU4JRzSrPgaT91oEN/LsT
-         JjYSDELUUWp7EDY2XqgSzVMzu/symHpmNdt+vQFi5h8RhVrS/dBNWYz6cQSAw81qflDS
-         EDKzoXx72RNj6DwPiD3L5P27oUoA1ShkblCnFikcinattQLNdHeyWmlD/HgR4BY4M+nD
-         sSrM3PHX1LgPGbwPvwc0ofI6JS0lPOUV3qoOkM8/Bt+VJy9jRuihiv9i1SJah0HtZwwf
-         CR8RgeUdza7QStlRCgn0LspfoaQG756fxolpf6GxSeK4IhDLdGixKiVspP232ul0exgX
-         s+uQ==
+        d=oss.qualcomm.com; s=google; t=1766066878; x=1766671678; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=o87SlVtSMSkrOoLeMNWzmv5vpvWXLBuQJpH68X8QlW4=;
+        b=TExsO59YlJqePpCNxibTsiJr66WtU0RmS8u/UGfiGw7+ZWhEyv8SqM3D9yJlocyA1V
+         051NUdN8HG3+OGb5/2x5z6P8jm31GSByoRg4i+r0s0Cjz/y9fJCipqEHv8FavAV5tBvg
+         FP2Vgs4eK8SlW1PtO2LXvOnqjxFw5tEOw0eWBr1polhhZgTq9zQMflgEXP0AAPK4Dhet
+         0GWgFUimBPCA0sMhHwdD045RnuKE9cGDqrgdzTX4cmevykucyk5eXYcjYm8XpqEo5CHU
+         4+q408bo/FwuoGpwKyHPUu/pTDUPDlzfrSW1PymUais+4tttXXJ48WJDZbo97VTTp06z
+         z/SQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766066752; x=1766671552;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=ltmK9xpXSaIRz3pvhRTJSdN7AZMXyRyfcfKgFOhGZkg=;
-        b=WQNOmv4IY8BnGf0s6UBl59ZEiGqtFkVJsbySqNpQpiHfZ/eV/yqLQ5lfioQde3YwTJ
-         QQhfTAtXp7fIeiv1GOoIYbn1pptvWDaXPmCBm30KHdvPLted1vM3rqUNgR9aY7GrRi8F
-         YbeOpqhVR/PHyLH7tv7qmMOslSj8hha1AnwWoO8Y7SIDq9IbPnosdvN3FY3fcZj2wea1
-         rMRldg6eTzT6O7d/uGMwN5ACkGFrWtPS46EpZVxR0xxfHsZQRQ8VTn/JFflaJ92ZOBGZ
-         aT7gJkd8xbzoQCVirLmqUGM22Zp/aSe6sGMRZGOnZdvj77e9x0Lernitm+dtcS3MulW9
-         Fzfg==
-X-Gm-Message-State: AOJu0Yzqn3JV8910La7bRMj1pkcfUoVSFTUT3Q4D+iPwE2CAqLTN6Yzm
-	bo4daW5/zqnTYdhOY/abnZKDKpztxC6XOLfnqOlw4WgIjzm5QbeJx00siZofChqCV/fUulit66j
-	bCaKZvN5kOj9t2FRsIJ2dNOxhot0bZ5A=
-X-Gm-Gg: AY/fxX5gBpkd2x8z2hIJR9ea/leT3ksNHBJlqENJfRozZ6mPjkR0bjJywWkl2voewGT
-	17XqbmP0vXJl6Y1i5R0+00USmX5H7rOfxlAhv2J6g8BCQ3uwObCeG/QN6KnS3wMdIFSAcH+yIwC
-	rgmrSQ9YExM9uhOIC0rcaF0dCZuZSLhL6ASfzrmctRoPEsaczv3pushvj3nNVhbHSzkccPowpWz
-	VXKOpdPY/MpySG3lvlZpQLANhiyG4fAVKrnqcb8w2usXizM2DhuT8+GIE4zcr+eWvLZ8hVNt+jH
-	JM05kI9OMH/KeUuIUYRCS4F17s4=
-X-Google-Smtp-Source: AGHT+IEHaG4sTwzH22c/ZckVsDWqoLw43GJHfQ60VdybglqFIrU9y64fZ28TTU627IQMx5MWOzC0Peqta/5kUNVhrBM=
-X-Received: by 2002:a05:622a:24e:b0:4f3:565b:c52c with SMTP id
- d75a77b69052e-4f4a68998f7mr11781131cf.39.1766066751883; Thu, 18 Dec 2025
- 06:05:51 -0800 (PST)
+        d=1e100.net; s=20230601; t=1766066878; x=1766671678;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=o87SlVtSMSkrOoLeMNWzmv5vpvWXLBuQJpH68X8QlW4=;
+        b=KEPP9dyRjWsqRaSmENwibXOD71J69F5SqBRhGl5x8X+WY25xkOO06mJ9P3yOPWNtVl
+         qKPEt7gRTCI8TDhvpDjfBFG6zb1blc9/JaaNZ3fQxzFXpYf3JhAExlYmWQTMKc3J8ehi
+         46avykooncTk8iG7dGyg3dCGz446WFjO3x5nY/FoPjaF+VyY3haoPRJU6IwprhYYAUbe
+         3mg/zSiqZCXSP6azWDsMJLUO3LbMIeefvY1Yy581rvOosPnfTA75XopT7J5py+NobTW/
+         5w1Lc/iaVaHW6GDGhIsKzMvYikwJ+bw3HgWFjawVU00YGMYVh/vx985MV5XAY6lGgJfF
+         rQ+Q==
+X-Forwarded-Encrypted: i=1; AJvYcCU96SrWzsRYY398p+LgcX6HoWqoKfGRJ5ELbI2s3ksyQ/9B0PaedVYZplGgr9iRq5C0thtR8309jzeH@vger.kernel.org
+X-Gm-Message-State: AOJu0YxA/FHINsoOrBdO68yKuQIYZBNu2GiD9NwZZ2uG/bEZ0jRRiVDm
+	TPqBWyhHBCv6uh22p64wcQVpmkxVFT4/an2Eu/TvoUngsZqgUl0czkQD/qfa1dLnr/vhN7DINcA
+	AYbgY5lpscxTjlqDAwujmFIfKhFqQSkrncFqauqyVe+ffxz6ij7xumHxljm0OEafX
+X-Gm-Gg: AY/fxX74c2F3NuN7nNw/pi01aZhe/moOuFMt6i0yIfPs7AlFNM0WdUp9WjM3m4mMAix
+	/z2Yo1DhP0crgpUjyM0/FALIBbUSRFkujW6px33o6dczdHgGs5RNZrV20rrWNftZAUmV7yChacO
+	oODf4lqKdRd9ruihHua/NiMUqx2b0E1jKBoSu6RHi03vMX4Xo5Iw3il4eKQyXmy0zTLXBKepDea
+	ODO2aMZbUtVwn8WzRtpGfRWT238qRj0+XYa3PolWuGbBW96ofLqee+8HhkHe+7FwBXYKnkgNH0O
+	ZQZBAQOZSiGPYwcxx+gadUNChl0knoiNzF/MRUQ1zAq94PwWQqsMrmw/jXTXiwg5AWPjOL2sqJX
+	+R3WkpVOd53aEaAZgfs5LuvXbPtXFK9lYN6KbplEJ3sGk1mF72Yorl8kdTo3JXyWYXQ==
+X-Received: by 2002:a05:690c:398:b0:78f:9d17:aff2 with SMTP id 00721157ae682-78fa7fb0c7amr17541657b3.5.1766066878047;
+        Thu, 18 Dec 2025 06:07:58 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHgUVF2ZvoMUW7DMha9Kz/azXqDs9FfldE8kOJJ1DVHmIj4XY8q/Ljmvx8z/7Vv2VwzZXA3Ug==
+X-Received: by 2002:a05:690c:398:b0:78f:9d17:aff2 with SMTP id 00721157ae682-78fa7fb0c7amr17541447b3.5.1766066877595;
+        Thu, 18 Dec 2025 06:07:57 -0800 (PST)
+Received: from [192.168.119.72] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b80234a2d9bsm249294866b.48.2025.12.18.06.07.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 18 Dec 2025 06:07:56 -0800 (PST)
+Message-ID: <80cb1b5f-7950-4014-913f-838d35fb64bd@oss.qualcomm.com>
+Date: Thu, 18 Dec 2025 15:07:53 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251201-nanopi-m5-ufs-v2-1-ece9c0ee17c4@gmail.com>
-In-Reply-To: <20251201-nanopi-m5-ufs-v2-1-ece9c0ee17c4@gmail.com>
-From: Alexey Charkov <alchark@gmail.com>
-Date: Thu, 18 Dec 2025 18:05:39 +0400
-X-Gm-Features: AQt7F2qXR-Ldb2gzOSYhMd9ao4yiFrifIbHOf6R3C3iyK7IWZa4Dc1eeoJgW3oo
-Message-ID: <CABjd4Ywc-L0jvXwk253MDZwgN3srY6WQ5EhoKZ6wb+Hae376_A@mail.gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: rockchip: enable UFS controller on
- FriendlyElec NanoPi M5
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 00/14] Peripheral Image Loader support for Qualcomm
+ SoCs running Linux host at EL2
+To: Bryan O'Donoghue <bod@kernel.org>,
+        Vikash Garodia <vikash.garodia@oss.qualcomm.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20251121-kvm_rproc_v8-v8-0-8e8e9fb0eca0@oss.qualcomm.com>
+ <0156c327-b867-481e-af24-679f037bfa56@linaro.org>
+ <Ux4KioDAyhqgZYleT-eeeFKzuT_qadCIpP3RgyB40apZPX4I9_JwcfY9mebop4gmFcyh4LPw0KQvFzL4zzysJQ==@protonmail.internalid>
+ <20251121113751.tnqw5abm5sd2rgr7@hu-mojha-hyd.qualcomm.com>
+ <9dfe5343-824d-42c2-aab8-8389602601e9@kernel.org>
+ <20251202083650.luk2jpcquq2pcf2r@hu-mojha-hyd.qualcomm.com>
+ <623225c2-166a-49a1-9856-d02ed55f1e47@oss.qualcomm.com>
+ <bds552pvggsf6jgfyghyigp2fb6zb6hucwqirwye5puctnrhdi@tqw4b2nc3mkg>
+ <64dbe824-a94c-4394-8cbe-ebdb7a3c42fd@oss.qualcomm.com>
+ <qnpgm5zmiqvwwmwc4z64uqssodrkcjaai4ro5tt36wua2jljlv@y3dx5s2sxrlp>
+ <55f68c6f-9b7e-4393-9ca2-b94551cd81b8@oss.qualcomm.com>
+ <jX9Ifmjba1jKjv7wLdH0BnDY-4Zo91ibfsoeCCOFvKhD_a8NWM8ONnJtbO_Cr5v6tttjEI8b-l0O7na3iXSL9Q==@protonmail.internalid>
+ <28207f1f-31f0-4007-bab5-e073ddf2d262@oss.qualcomm.com>
+ <24aa56bf-b03f-4b4b-9ac6-89fc91762179@kernel.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <24aa56bf-b03f-4b4b-9ac6-89fc91762179@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-ORIG-GUID: g2E_9fXLxMc3AysuBH6EbEhL5GNMyxf7
+X-Proofpoint-GUID: g2E_9fXLxMc3AysuBH6EbEhL5GNMyxf7
+X-Authority-Analysis: v=2.4 cv=f8JFxeyM c=1 sm=1 tr=0 ts=69440abe cx=c_pps
+ a=g1v0Z557R90hA0UpD/5Yag==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=inLNWrLPvn9skOYvWnUA:9 a=uiejn4RyafnNK9Kq:21 a=3ZKOabzyN94A:10
+ a=QEXdDO2ut3YA:10 a=MFSWADHSvvjO3QEy5MdX:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjE4MDExNyBTYWx0ZWRfXwmXWrsEU+aSh
+ ocmDB37YY5hyka2TEXLo7T2Vzu8b1pOnAGVZ+MBjaC2AEj1XL/DmjkEwvvTvTuBTD3RkJ0KbCRL
+ umwoLcfmkO/YYpSGoOEwZUCeH/+IEKRRkm9FT+JwgbEzdrenb6NzCs0zlRC6Q3E2TNaVYoFF5ra
+ aNfqC3BA3fmKgrR8go+A/FACY45WAzjY5Ghs/nFSc1Qp3hEQIC4DVrl5yF7Ziqmv1A6J52MqbGx
+ KO1EZfbsr7lVWXDT1cPXpwIDZyIF1vLLihrFFdKARkPFpsBouM8i01tgAVv8cQdnOPHaZXxgCpA
+ LwL9jZ2rzp6JlEtita4M18OGV9r3ICvnMeRDGo4bDmDBH+NBCxpEk+tGUsRPf8nkT9BSDCsZQ/v
+ MEnIRvaemVk9xcIKDUVo8c7G/JtLMA==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-18_02,2025-12-17_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 adultscore=0 clxscore=1015 suspectscore=0 phishscore=0
+ impostorscore=0 bulkscore=0 malwarescore=0 priorityscore=1501 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512180117
 
-Hi Heiko,
+On 12/18/25 5:32 AM, Bryan O'Donoghue wrote:
+> On 17/12/2025 11:43, Konrad Dybcio wrote:
+>> On 12/17/25 11:08 AM, Vikash Garodia wrote:
+>>>
+>>> On 12/6/2025 2:48 AM, Dmitry Baryshkov wrote:
+>>>> On Wed, Dec 03, 2025 at 10:48:14AM +0530, Vikash Garodia wrote:
+>>>>>
+>>>>> On 12/3/2025 2:54 AM, Bjorn Andersson wrote:
+>>>>>> On Tue, Dec 02, 2025 at 03:43:17PM +0530, Vikash Garodia wrote:
+>>>>>>>
+>>>>>>> On 12/2/2025 2:06 PM, Mukesh Ojha wrote:
+>>>>>>>> On Thu, Nov 27, 2025 at 10:25:23AM +0000, Bryan O'Donoghue wrote:
+>>>>>>>>> On 21/11/2025 11:37, Mukesh Ojha wrote:
+>>>>>>>>>>> Sorry.
+>>>>>>>>>>>
+>>>>>>>>>>> Did we actually come up with a cogent reason to omit the video firmware
+>>>>>>>>>>> loading here ?
+>>>>>>>>>>>
+>>>>>>>>>>> AFAIU it is required for Lemans and Glymur - leaving it out is blocking
+>>>>>>>>>>> getting video stuff done and storing up trouble.
+>>>>>>>>>>>
+>>>>>>>>>>> What exactly is the blockage - is it something you want help with ?
+>>>>>>>>>> I replied to you here[1] and given my reason..till something concluded on
+>>>>>>>>>> "multi-cell IOMMU[2]", I can not add video and block what is working
+>>>>>>>>>> already.
+>>>>>>>>>>
+>>>>>>>>>> [1]
+>>>>>>>>>> https://lore.kernel.org/lkml/20251105081421.f6j7ks5bd4dfgr67@hu-mojha-
+>>>>>>>>>> hyd.qualcomm.com/
+>>>>>>>>>
+>>>>>>>>> Why though ?
+>>>>>>>>>
+>>>>>>>>> You are mixing together the issue of multiple SIDs and the original loading
+>>>>>>>>> of firmware which could easily reuse the venus method of
+>>>>>>>>>
+>>>>>>>>> &iris {
+>>>>>>>>>      video-firmware {
+>>>>>>>>>          iommus = <&apss_smmu hex>;
+>>>>>>>>>      };
+>>>>>>>>> };
+>>>>>>>>
+>>>>>>>> I completely understand what you are saying, and it would be very easy
+>>>>>>>> for me to do that if it gets accepted. However, I doubt that the people
+>>>>>>>> who raised this concern would agree with the approach.
+>>>>>>>>
+>>>>>>>> I’m not sure if the video team would like to pursue pixel/non-pixel/firmware context
+>>>>>>>> banks separately. I’ll leave this to @Vikas to answer.
+>>>>>>>
+>>>>>>> Not exactly as a separate sub-node, but i do like the idea of introducing a
+>>>>>>> simple iommu property, something like this, which Stephan proposed earlier
+>>>>>>> in the discussion [1]
+>>>>>>>
+>>>>>>> firmware-iommus = <&apps_smmu ...>;
+>>>>>>>
+>>>>>>> I understand that we are doing the iommu-map thing, but a property
+>>>>>>> exclusively for firmware like above look much simpler to me.
+>>>>>>>
+>>>>>>
+>>>>>> "We know we need to find a generic solution to this very problem, but
+>>>>>> while we work on that let's add this quick hack to the ABI"?
+>>>>>
+>>>>> I would not call that as hack, rather a simpler solution instead of packing
+>>>>> everything into the generic iommu-map.
+>>>>>
+>>>>> "firmware-iommus" is much more readable to interpret something running in
+>>>>> el2 mode, than digging into function ids inside iommu-map and then matching
+>>>>> it up with specific SIDs to confirm.
+>>>>
+>>>> If you want it formally, NAK from my side for firmware-iommus. Either
+>>>> reuse an existing approach (at least it makese sense from the historical
+>>>> point of view) or introduce a generic approach, which is iommu-maps. The
+>>>> proposed firmware-iommus is definitely a hack around the IOMMU
+>>>> properties.
+>>>>
+>>>> But it's really off-topic here.
+>>>
+>>> Infact i see a concern with the iommu-map approach for firmware SIDs. Let say the hardware generates 10 SIDs, including firmware. So video binding should describe those 10 SIDs and the DTS should have all those 10 SIDs as well, including firmware SID.
+>>> Given above, video driver cannot distinguish if the SOC is running in EL2 (KVM) mode or Gunyah mode.
+>>
+>> EL2 vs Gunyah is not hard (something like is_hyp_mode_available()), but
+>> again, this should all be calling some sort of is_gunyah() which would
+>> come from the gunyah hyp drivers, which have seen no activity on lkml
+>> for over a year..
+>>
+>> Konrad
+> 
+> What exactly is the status of the iommu-map stuff and when is it likely to land ?
 
-On Mon, Dec 1, 2025 at 3:35=E2=80=AFPM Alexey Charkov <alchark@gmail.com> w=
-rote:
->
-> The NanoPi M5 board supports pluggable UFS modules using the UFSHC
-> inside its Rockchip RK3576 SoC.
->
-> Enable the respective devicetree node and add its supply regulators.
->
-> Link: https://wiki.friendlyelec.com/wiki/images/9/97/NanoPi_M5_LP5_2411_S=
-CH.pdf
-> Signed-off-by: Alexey Charkov <alchark@gmail.com>
+I don't know. This is unrelated to the issue this patchset is solving.
+
+> We _already_ have thanks to chromeos a way to define this stuff in venus.
+
+Which was.. heavily debated, let's call it, after Krzysztof noticed it exists
+and you agreed it should not spread by leaving your r-b on:
+
+6d3926a237b6 ("dt-bindings: media: qcom,sm8550-iris: Do not reference legacy venus properties")
+
+> My €0.02 is 100% fine with iommu-map as a solution for VPU but then, actually want to see it as part of the series solving the problem.
+> 
+> Else, we should reuse the venus approach.
+> 
+> Right now we have the worst of both worlds. Iris is blocked waiting on iommu-map but the iommu-map series has dropped Iris support because - reasons.
+
+I think you're replying to the wrong series.
+
+> The very definition of being stuck between a rock and a hard place.
+> 
+> @Mukesh - can you add Iris support back into the series ? If so then is it perfectly reasonable to proceed with iommu-map for Iris.
+> 
+> If not then we should just reuse the approach we have.
+> 
+> Either way I regard this series as broken right now, as it applies a solution that excludes one of the primary users of that solution with no view as to when that user gets enabled, worse still it requires adaptation to the new solution but the proposer won't do that work...
+
+Why should Mukesh be required to carry your burden?
+
+You (as the Iris maintainer) are a consumer of this new set of APIs provided in
+this series, so one would expect that you can help test it by creating a
+downstream patch (that would be nice to share), rebased on new revisions as
+necessary and sharing feedback based on the drawbacks you notice.
+> It places Iris in a very invidious position.
+> 
+> So again I think if we can agree to add Iris support back into this series then we should go ahead with implementing in Iris.
+> 
+> If not then the conclusion is Iris _won't_ use that solution and we go with the previous venus solution.
+
+Because that surely won't get any pushback.. 
+
+Konrad
+
+> Either way, the proposed series as is, is an effective blocker for Iris so I'd like a commitment either to re-add or we agree it won't be added at all.
+> 
+> Either way Iris gets unblocked.
+> 
 > ---
-> Changes in v2:
-> - Describe UFS supply regulators
-> - Add link to schematic
-> - Link to v1: https://lore.kernel.org/r/20251127-nanopi-m5-ufs-v1-1-0d28d=
-157712c@gmail.com
-> ---
->  arch/arm64/boot/dts/rockchip/rk3576-nanopi-m5.dts | 27 +++++++++++++++++=
-++++++
->  1 file changed, 27 insertions(+)
-
-Would you mind pulling this one, or do you have any reservations?
-There hasn't been any discussion, but it looks like a pretty simple
-change, runtime tested and schema-tested.
-
-Best regards,
-Alexey
+> bod
 
