@@ -1,155 +1,186 @@
-Return-Path: <devicetree+bounces-247802-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247804-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2813BCCBB0C
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 12:56:25 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFA15CCBB3C
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 13:00:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 25DDD3007C68
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 11:56:22 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3783A301F262
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 12:00:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 455BA311C05;
-	Thu, 18 Dec 2025 11:56:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A237332C925;
+	Thu, 18 Dec 2025 12:00:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="e2pKReqU"
+	dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b="ihxtlvUr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11023100.outbound.protection.outlook.com [40.107.162.100])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 862C41F3FEC
-	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 11:56:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766058980; cv=none; b=Que5zBXSL5DQarIpP8Le/kTEwfm79zt3WNQ3IZ4p4pfPvVMxiSjZGya9K9i+5K7OVikbbdkVLCUjyo+QCMw1WJUc0Tx6883okH2xmo2+nTNs3U5DwpPpFodj13EZyqqJKFEba+jYAcjQLjosajWM5XD6kgoy7Ypmyumz79klIso=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766058980; c=relaxed/simple;
-	bh=o/f5qG0fB8BBMiDPrl1dIu9DCRfziVECUeUUdt0apcg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=g9vHJaXbBDMzIE8U+iKm/K68kytBNw5yOhJrEQ0ZFjcm3MAERKs/1nFV1oAcTO9DVAiSI7NMnw0mlDTY+AX84Lm/JRDAMxacqnhWnYjdpPEOg7PRAipV7VMFqkBnqimIphv8wWd7/MQYlbetTiduNga9hMIkar4o1m8aSedcqZQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=e2pKReqU; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-4779cb0a33fso5972905e9.0
-        for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 03:56:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1766058977; x=1766663777; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Sirw8Y7pkirUUd1z1lvj9vBpxM3O2QyNtSUkQSCiIMY=;
-        b=e2pKReqUfM5et8d/G9umCXaoM7nKouKp9D42ZTm7JQPBbfkP8A7SIOlGAcObX9Llhe
-         4r2VMDFZ+LjnDjgM4nIiIX5Mjf88zMU3SggSPW4NxesB5NHcIzNq5tDwJfhzDw09iVBg
-         K7YZMd/FthNrxMJdDq1zDD4EFTlbfZ42kp9D0B3812AbHKFg1rYhjwtpNMC5zcmEDJp5
-         corPXxvZwRXIYmPbNJq2bX3u9WawUV+be3CO3i2xgxcLWE6QHScWGWFWdxylBRKLbiTn
-         lZYNYyjMzcMaEKMg86KWVR3Pqe5iYpTwVlmnXbhusFATMTRbbjwfGArY9qgJLqpqpGAw
-         Pu5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766058977; x=1766663777;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Sirw8Y7pkirUUd1z1lvj9vBpxM3O2QyNtSUkQSCiIMY=;
-        b=B8/Bdl8ntccROZTOJXKxBeec+oKiENl2+8AfsWE/ykjuGVv8YS5h6g6VC+6KZNbP67
-         E1o8V8FpYP4r5ENiH71cvV8vI9v1PeFEmXbidFl3NyT+zk/0o7Gx/b3vWJZcXOCq6z6o
-         5H9NNyxEIVBh4/i+zg5V0B1z0szLa9A/3TLdsUvxEjKf3xGHdGKXAJHxH4LujjPSYO2F
-         87Ig0aNcXDio9wfwL4rslCIwWo6W/yD6TOHyaQDMyjVJ5SDw9uJwDx5tUbU/oajEtoNF
-         psB8Fw6xXpS36djacCWIpzoRlSqVYjEwxoeFNWpyp9c9hplG5Vc/druivKNpFBzYVQ/Z
-         Hi2A==
-X-Forwarded-Encrypted: i=1; AJvYcCXFiIOZtrR/Tzu8nO3XsupvUR39aN15GLt0Dbmpg9AJH15y4KP2A8cs0fOkxOVvgMLEQyurKAp6bSnE@vger.kernel.org
-X-Gm-Message-State: AOJu0YwWPx7DzF0JKs8adgU5/bZBglih/LyZRh/paC9KT7Ja6vYZNv7n
-	J2u3S3qoLYIDMW+PhprLXTm2bg2Mu2nz1p2MpwialdoNJ8Hbt3tLxMPH
-X-Gm-Gg: AY/fxX66cD1sDAcKhuhQIOqgYwFTTTjKdMwIQT6JVeiCwLlMQZoankmAjtr9UV2Hj3V
-	yz7UyJYfP+fo5jom2RRkGo4QJozZ8iSEWV+5YHjOAFoIemeoY2r4vjzosO5jn/2jhFDUV2j80vE
-	Xlun8fPiT3C+7TlwjAIEcaDx+3/kEPEb4Ymc3/I82u5WfWR/nK9I2T3kz5R7lt0yiqntbSFuNmW
-	9DwRgqAy9iRl1saZQpmx04n0fwUy8wEv0VQUwaJOlAPhgUfkwjn0syVdty9pvnVgq71+npsZ2/Z
-	+uF8I9N7Kg8LTcmAxOEfEW8V5qINjdAjVH7PuAnHzLTkPhHApEV28QfNJ1fujeDIII7yoHg/Un6
-	SzTm1CJsym99elMT64WS7H8p4bp8QO6CDJlOt2a3Ct8mjwrlsf+UmS3h3FWz7350PAvDb0maYi7
-	IP+DPqta94YdmkuBnLrtUhIHtV4d1YAn2tNxFD1OCB+qhksrX9XjwtK9FC68G1K2xT2oPkdw5tZ
-	w==
-X-Google-Smtp-Source: AGHT+IHRcSZ29A+PddLskNnFZhBchA0KUCvXevXJCVDr0syq4PFng4cIKjNObk2K4UBPbK++koXBXA==
-X-Received: by 2002:a05:600c:6994:b0:477:a54a:acba with SMTP id 5b1f17b1804b1-47a8f904080mr201336975e9.17.1766058976598;
-        Thu, 18 Dec 2025 03:56:16 -0800 (PST)
-Received: from orome (p200300e41f07e000f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f07:e000:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47be3029f37sm38329635e9.7.2025.12.18.03.56.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 Dec 2025 03:56:14 -0800 (PST)
-Date: Thu, 18 Dec 2025 12:56:12 +0100
-From: Thierry Reding <thierry.reding@gmail.com>
-To: arm@kernel.org, soc@kernel.org
-Cc: Jon Hunter <jonathanh@nvidia.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Aaron Kling <webgeek1234@gmail.com>, devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
-Subject: Re: [PATCH] Revert "arm64: tegra: Add interconnect properties for
- Tegra210"
-Message-ID: <aUPrVFWKfFYmuwhB@orome>
-References: <20251217104744.184153-1-jonathanh@nvidia.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64C9032C309
+	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 12:00:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.100
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1766059225; cv=fail; b=aYYlvvWBk7MjcJbTg5e+0UmbahrSBxhiJWy64uJAhq07fptjLgK97C2K2s6qy3AuGgObrekJVw79wFBeEAdHEb8EOBBwq83M4dvDBpSDu18LGwGGvNQzUIMoGrOf4XcYy+ihvYOW74b5/ag5kzSLaEXGIR7LXVOTWpUywyU88as=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1766059225; c=relaxed/simple;
+	bh=WxEQ+NBxLnPcsBCHBfBlQVBHIOX1PFiBFfhJrdCFnHs=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=snvNTqvfGO6vNWqKPXPkvZ+UQIqjIlqBo6y0HHDB06DCAWxdqR0Cs2V1zkGWDkZ8ZRbfDJJ1JgXWzsc09+a9MzNcECl/PWCjdxTgjIaTXQMyLpN7xjo46PJOjYCGwupeaiNQBCoJvbD4z2GEWTwsOWe1YEM9smah6Q5ZIhx0BVA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b=ihxtlvUr; arc=fail smtp.client-ip=40.107.162.100
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=y2nFFWk5EECAgWnI1mQE/mKO8loQotfe26QBuAQ4Z4BEUAi1rNow09tQ3hTlSg6wEz4im1TBhkiowiY3NhCSjP6sAQ4u8os1UM4GFMaSU2wLua1kRCRcEIBBTgaL8TK2i/ivA+i/r5jnlPC68w3Zp0+8jwpD0w/UgQ5ngD9lgHmQ/fAQM0zjpyJT1yGbp/p8KosmE9Bzl8cXINmYJDQ6j3tV7ZuhoCmpa1k4cq3TSEax+afq9NRs6RRcW+KEurPq9tsopQAfIHkMPr6iXiNIpTABp33Yg5tdzF36Wz3dDvKVZb6wki0QVznd5ge1D8UUHnZo5sFm4FWeWELX1OXJUQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=3yKSUTlHV1yaetigpa+fiZ1M0pwYY4OnxdEtF0RSNBk=;
+ b=HU0DfpkwSOvmSpU1fwKbF0X3/q/IvLgqjjyAvYORX4pPInhmmHpt1kKjdZUK0E7SJku+Vz4/wXAQGea2TQ1qjGRtbXIiN/TcprOuDFZniY7yZ3/gM/6K6hC8tEgvVVJH7/yJzdlCzOjkSl/bw6WhYxGPIN/yMuLm10t63Nr5nZVH76WjJQCL1vvPXSuPJoTUdXcYso8f/6l5n/YY504/hq3/D8wDbCUdOjPCipsJxgr21xJ7rLRbMtp3usqffz/o6TyyKWw4NZe0oAFNHLBovJgJW+gLVXbXQXzr+YJ4/d+Wr1WZcwK1sJYPYAybYcKxHjooEALkobYjfG5sYN/pDg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
+ is 91.26.50.189) smtp.rcpttodomain=kernel.org smtp.mailfrom=phytec.de;
+ dmarc=fail (p=quarantine sp=quarantine pct=100) action=quarantine
+ header.from=phytec.de; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=phytec.de;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=3yKSUTlHV1yaetigpa+fiZ1M0pwYY4OnxdEtF0RSNBk=;
+ b=ihxtlvUrHzo1cfcfBLUvyFnnkxpDOeLvvf4o8QQEMT2YgbaFwmqSrqBYuZ0IvOB+ZW3f+WHf77qqSa8DM41MpIwTYu2/0WPDepNW2OgRTZQh9SvkC6nTy2cpkKjhrifBMce067PcyX2PW4CfYmbqp6sslJ4MlhrT9gkWrAzjmXeydi3TlT2L7wtflZcroVnuynePNpTlPP3ujIXS73wtnB8TVrUKIn5ZIv9ATS+NS4pkl5pDBk+qOiJMa4AFjEKIAp3EWODrPc5TULvwIXFcjtckwJKXGUbyZj1jhOpjwd/Fzsysr9zrHrs8Ys7apRqAWA9hmzSRVSSP4iPD67YN+A==
+Received: from AM8P189CA0024.EURP189.PROD.OUTLOOK.COM (2603:10a6:20b:218::29)
+ by DU0P195MB1957.EURP195.PROD.OUTLOOK.COM (2603:10a6:10:3e2::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9434.6; Thu, 18 Dec
+ 2025 12:00:16 +0000
+Received: from AM4PEPF00027A67.eurprd04.prod.outlook.com
+ (2603:10a6:20b:218:cafe::e5) by AM8P189CA0024.outlook.office365.com
+ (2603:10a6:20b:218::29) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9434.8 via Frontend Transport; Thu,
+ 18 Dec 2025 12:00:15 +0000
+X-MS-Exchange-Authentication-Results: spf=softfail (sender IP is 91.26.50.189)
+ smtp.mailfrom=phytec.de; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=quarantine header.from=phytec.de;
+Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
+ phytec.de discourages use of 91.26.50.189 as permitted sender)
+Received: from Postix.phytec.de (91.26.50.189) by
+ AM4PEPF00027A67.mail.protection.outlook.com (10.167.16.84) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9434.6 via Frontend Transport; Thu, 18 Dec 2025 12:00:15 +0000
+Received: from llp-tremmet2.phytec.de (172.25.39.70) by Postix.phytec.de
+ (172.25.0.11) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.29; Thu, 18 Dec
+ 2025 13:00:15 +0100
+From: Teresa Remmet <t.remmet@phytec.de>
+Date: Thu, 18 Dec 2025 13:00:06 +0100
+Subject: [PATCH] arm64: boot: dts: imx8mm-phycore-som: Update eth phy
+ impedance
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="wl6sai33pii6l6ws"
-Content-Disposition: inline
-In-Reply-To: <20251217104744.184153-1-jonathanh@nvidia.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-ID: <20251218-wip-t-remmet-phytec-de-bspimx8m-3841_upstream-v1-1-2ea15181aaf2@phytec.de>
+X-B4-Tracking: v=1; b=H4sIAMXsQ2kC/x3NQQ6CMBBG4auQWTsJLajFqxhDSvmRWRSbtgqGc
+ Hcbl9/mvZ0SoiDRrdop4iNJXkuBOlXkZrs8wTIWk671WWlleJXAmSO8R+YwfzMcj+AhBfGb8dy
+ YVvXvkHKE9TxcGnetp862Hag0Q8Qk2/93fxzHDxjfbdN/AAAA
+X-Change-ID: 20251218-wip-t-remmet-phytec-de-bspimx8m-3841_upstream-b63c70f9a49e
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, "Sascha
+ Hauer" <s.hauer@pengutronix.de>, Pengutronix Kernel Team
+	<kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>
+CC: Jan Remmet <j.remmet@phytec.de>, <devicetree@vger.kernel.org>,
+	<imx@lists.linux.dev>, <linux-arm-kernel@lists.infradead.org>,
+	<upstream@lists.phytec.de>, Yannic Moog <y.moog@phytec.de>, Benjamin Hahn
+	<b.hahn@phytec.de>, Yashwanth Varakala <y.varakala@phytec.de>
+X-Mailer: b4 0.14.3
+X-ClientProxiedBy: Postix.phytec.de (172.25.0.11) To Postix.phytec.de
+ (172.25.0.11)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM4PEPF00027A67:EE_|DU0P195MB1957:EE_
+X-MS-Office365-Filtering-Correlation-Id: feaaf520-1fbb-4871-8dfe-08de3e2d01d9
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|376014|7416014|1800799024|36860700013;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?WDd1cGhoOG1BTEVjeGo2M2ExNTZCUWxmaUtnRmJQMndCYnViSjhrZVVkUGlH?=
+ =?utf-8?B?aDFKZjNPSnhzQjYzUFBCeTI3c0hXVFNvWTdhYXlYSFg5aGl4VEp5eVhnNzlL?=
+ =?utf-8?B?OVF4bWpXWU9LNjMxMzIzZmNmQmU4YmhtbzhKL0d4TEN4RUZwMFRGRlhGSnZQ?=
+ =?utf-8?B?ejJWUHFrZ2puTFBFcytlN0d6TVhJN0Z2Rk9tdE9QOGluQXQxZVkrQ2pSK2dB?=
+ =?utf-8?B?Qmh6RGZuTlliUnl4ZytTUEdYK1VqOXdVYXFmZGZuNXJYYjExTUVTS1lZZEZz?=
+ =?utf-8?B?ZmhiZ3B0NWc5QzBDdkNIdm9ESGFjK2hZdXdqNU82Y0d3ZWdxRk9YckFsV3RL?=
+ =?utf-8?B?QVYrR0JINHloT2RSdDNCenlpZCtWU0d6WDg5Z2JoTmVCYmpEaUJKSTg5Vmdr?=
+ =?utf-8?B?NkRkcEFxd2cxdjJGc1dLQ045Ym5tbEZHMVA2MVRwWG1UYlMwYjIrMG9LT1Bz?=
+ =?utf-8?B?YzVQUzFvNDVndkN5dUpkRE84dGFHV1BObHE2QTB0Z2FrMWhVWm5YKzNSb0VY?=
+ =?utf-8?B?V1E5VUJBaUhSTDBTbjVqVXg1eGxia1hWREgzWFN1M0paQjdZN1lYdmNhMFZy?=
+ =?utf-8?B?T2Q2dkZmU1UzMWtzcVVqMGIwVnN1UTZjOFRsYUFqZWVISTRRQnNSbGdHWEhG?=
+ =?utf-8?B?NWZXblRMYStWMERLMVloaU1wRGVENTlaMVJOK25NUHcvR1pIUkd1b09zZUVP?=
+ =?utf-8?B?dlNrRDRBYld3N0hwRzNxbVZUcXgwS3ZSWXN3Q2lsT0FHRWhQQ25iY1k0TnA3?=
+ =?utf-8?B?VjdtRVVGbDcyV3lwS3JnWDhjOCs5amFMaWlMZjNnaUh4YmRVMEJMN2x3QlZ2?=
+ =?utf-8?B?OTkrcHk0YnZYbm9NR21VUzFCME1IdGIxcG4zYVpQUVhRUmh4cHRpOWJ5T1dQ?=
+ =?utf-8?B?YVdVczhUTE1hZXJYVzFtMDlGKzRZU3ZHK3FvTGdRTWhvR0taZlRQTnVmYlp5?=
+ =?utf-8?B?OE5nd0lnd0xjY1dCNjhEUTI3MkNham43UXBQUEFhYU9vYkdzaVpBR0JSWnJ4?=
+ =?utf-8?B?cUt6Yk5qKzd2YnNZaExURzQ3YUZha29rb2FxL3BPcEQ3L0dxenV4NmRVOUhC?=
+ =?utf-8?B?ck9YTC9xWnZURnhVcFlaWlFIblpBMnZvTUdXQUs0NE41c2pEZUlDNE8yQUJV?=
+ =?utf-8?B?L3RrY3p6dzB4TEJ6WitiSmZzVkphVjBoRmFNc0pnbXAySkNRZ2Y2MVRpd2tp?=
+ =?utf-8?B?V3Bpdi9JQ2gwaHo4eHExNHNDS1YxaHA3OHhVb3hqVXJYb3dwQ3NrMmRnY2Ri?=
+ =?utf-8?B?aXdqcU9MZXB2eElRRzVtK3VKbzdJcVc3UDhSazZqaC9oVVU2K1JNbHJxU092?=
+ =?utf-8?B?VVFXVUwwbVZQeCtPOS9FOGdGUGtKZmJ0WjJSNUpCaGtiMG5QZ1Y2NFJSb0N4?=
+ =?utf-8?B?RCtYUFR1Q2RnN3ViQUVmaFJ2TFJZNnlqalp5d2VSUnF3S0h5UDc2VUZmTk4y?=
+ =?utf-8?B?Y08yTEFRSXB4ZkhHYVdsa0haUjlpamlSaW44RHBQM2RybHBZWkNDbU9QcUZP?=
+ =?utf-8?B?TkdydW1NaWdycDhaU0x0cVZIU05oRUFiaXBOUVpQQjRwVGZ6VUpqa05LWjBj?=
+ =?utf-8?B?S0NaYkMzbmNkWnhsMkpYTGoveEdlMzcwSzg5MFZ0c3NBeGpRRXlOSENWbnYw?=
+ =?utf-8?B?dTdiczFWNXBQOUFrdmRXZ3diblZ3WGtMbXBOWHpvOVNIcW8xNzd1Q0JydEtp?=
+ =?utf-8?B?S0Yvc2J4L1lRaUdadmtaRE5VbWVpUTFTbE10K2RnZ1RPTHkydGJPVUxnVlZP?=
+ =?utf-8?B?UEc0eHc5ZytHeGZxYStIRVZ2OGREY2xNY3J0enNkODNoaWRVcmVsVkQrMnpy?=
+ =?utf-8?B?cHlWTElPN1gzUTczV1NZY2ZMeVRuRGt4LzNyQzB1ZUpTdVE1UWt1SnE5bzNU?=
+ =?utf-8?B?Ymg4bzVaU3FVZG5Sb1dDRHBGbElGcEE0NDl0K1g4dXFPZXlmMkFXZEFTaVIw?=
+ =?utf-8?B?dWtSZFFhZklRWGpOUUQra0h0RGU2KzhhejIzYWhXRzJncGdBNEtEemFyL3B2?=
+ =?utf-8?B?WTVIUVg2NDZlNHZmaElJNlpkM3dLL2R5SzNWZ2V4SFhUTTNrVTc5bFRnc3NU?=
+ =?utf-8?B?ZzdLZ0JHODNJQXM5QWplQXFjR1lhUFI4SXpTWWxrdDlVMFlPUDVaT3lVUVpa?=
+ =?utf-8?Q?ltTU=3D?=
+X-Forefront-Antispam-Report:
+	CIP:91.26.50.189;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:Postix.phytec.de;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(376014)(7416014)(1800799024)(36860700013);DIR:OUT;SFP:1102;
+X-OriginatorOrg: phytec.de
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Dec 2025 12:00:15.8246
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: feaaf520-1fbb-4871-8dfe-08de3e2d01d9
+X-MS-Exchange-CrossTenant-Id: e609157c-80e2-446d-9be3-9c99c2399d29
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e609157c-80e2-446d-9be3-9c99c2399d29;Ip=[91.26.50.189];Helo=[Postix.phytec.de]
+X-MS-Exchange-CrossTenant-AuthSource:
+	AM4PEPF00027A67.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0P195MB1957
 
+Update the DP83867 ethernet phy impedance settings to
+to optimize signal quality and reduce potential signal integrity issues.
 
---wl6sai33pii6l6ws
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH] Revert "arm64: tegra: Add interconnect properties for
- Tegra210"
-MIME-Version: 1.0
+Signed-off-by: Teresa Remmet <t.remmet@phytec.de>
+---
+ arch/arm64/boot/dts/freescale/imx8mm-phycore-som.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-On Wed, Dec 17, 2025 at 10:47:44AM +0000, Jon Hunter wrote:
-> Commit 59a42707a094 ("arm64: tegra: Add interconnect properties for
-> Tegra210") populated interconnect properties for Tegra210 and this is
-> preventing the Tegra DRM driver from probing successfully. The following
-> error is observed on boot ...
->=20
->  drm drm: failed to initialize 54240000.dc: -517
->=20
-> For now revert this change, until a fix is available.
->=20
-> Fixes: 59a42707a094 ("arm64: tegra: Add interconnect properties for Tegra=
-210")
-> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
-> ---
->  arch/arm64/boot/dts/nvidia/tegra210.dtsi | 24 ------------------------
->  1 file changed, 24 deletions(-)
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-phycore-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-phycore-som.dtsi
+index 3d66c6701342..b764f7734868 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-phycore-som.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm-phycore-som.dtsi
+@@ -83,6 +83,7 @@ ethphy0: ethernet-phy@0 {
+ 			enet-phy-lane-no-swap;
+ 			ti,clk-output-sel = <DP83867_CLK_O_SEL_OFF>;
+ 			ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
++			ti,min-output-impedance;
+ 			ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
+ 			ti,tx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
+ 			reg = <0>;
 
-Hi Arnd,
+---
+base-commit: ea1013c1539270e372fc99854bc6e4d94eaeff66
+change-id: 20251218-wip-t-remmet-phytec-de-bspimx8m-3841_upstream-b63c70f9a49e
 
-this is the only patch that I think we need in v6.19 for now, so do you
-want me to send a PR or would you rather pick this up directly?
+Best regards,
+-- 
+Teresa Remmet <t.remmet@phytec.de>
 
-Here's a link to the patchwork for this, for convenience:
-
-	https://patchwork.ozlabs.org/project/linux-tegra/patch/20251217104744.1841=
-53-1-jonathanh@nvidia.com/
-
-Acked-by: Thierry Reding <treding@nvidia.com>
-
---wl6sai33pii6l6ws
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmlD69wACgkQ3SOs138+
-s6GOsg/8CjcraGpbQ/5+n8XTP/H5o3bObJEbJDalfjw48fO1XUKkjmY2KDYNk3tH
-jP8JMNYSIhkntLFTr+0Z9JjK8IUZYbvg2QjOgjS5NQt2WEcoVY5ZjZH11a+pBA4h
-IyPYbq3dXxYZvj2AMMYRAQvsKB0/ltokxbfaXvqNzluXV6oOsCwVle0k6TV8jUWH
-v3i1b3U+Iyu8MoTvH88RIMPspYmmzNMN1nfJ5+XX9mvNvS5NrvujTe4zsYmtoSVa
-HyKe8l8NvtCNW8HNBLPP95FgV1wxHhLHUbuaYLadpIS0yaHRiDgbn+EQXNLM/OBl
-qwK5Go8ji7Id5FVtno1JQvsnDKYcTId5IBBcKPAdL9PUk818h3IeLnJBQXELPAvT
-HV2FnMfB5LFZt7t5f+BdCmxf9TxptRocLaVsAF6VJCHgWerUNnnEx6OuDKk7Uvyy
-RdzP6ttDMk4hnDKGzVNjmaIXjBy7qW2/j1QLOPFZxMepAWVgJHehyR5yYl2ekeOZ
-P9vsebHQeabpXVQFJFO0UI9Cgh788xQb1boXgfuric9IXQrG1OJb+R4NsfznsvJ6
-vc1WUfxGAepFo8cH/K3vCPpbyujO5+n5jRDvn3IuT9W0HNTHJ82p35ciVJ+araQN
-8Xstha0OfmhcMPM/Rg8/nmT0mex/y6IvE+MSULZY3eSLX9EcA8k=
-=w6w4
------END PGP SIGNATURE-----
-
---wl6sai33pii6l6ws--
 
