@@ -1,60 +1,74 @@
-Return-Path: <devicetree+bounces-247659-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247660-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E243CC9EE3
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 01:55:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EE784CC9EEC
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 01:56:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DF8E93026AC7
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 00:55:14 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id ADC483026529
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 00:56:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B650B224B05;
-	Thu, 18 Dec 2025 00:55:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAB26235045;
+	Thu, 18 Dec 2025 00:56:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dFlBAcyK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LwdgXbee"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B8A918B0A;
-	Thu, 18 Dec 2025 00:55:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BD4B3A1E8A;
+	Thu, 18 Dec 2025 00:56:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766019313; cv=none; b=L+YjclPLq8ntIddX9hqIRmAkjRacTYcw1AmIf5M7IbGfPesLGfBFWWTdsdHyL4bMlR/6hRU+hLt9PXRlWxoqAzOLJyPMLE4buYewfNvIEzfpvKG+DadAPyunIVFBj4oOztINCOTXgfhOMMouXBKxHWJL7oxdk4Sx2k/J6G7lIeE=
+	t=1766019407; cv=none; b=XKkk7+uOtyunNh2rXU2GgluIxLyPlR4rrvNQenwDbAd6KzrKjwwFRZvzMnontW/U5xcf1MoY4wBILy5pDJWYyn7X6hc28fZagDHNQ5L8hRYmEj8F3+IWJwIjaMZArbSsEVk28jcJX8eT/fGOrxHgNi313wZvxkRxQHwxlo3iRGM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766019313; c=relaxed/simple;
-	bh=c7r3XGYdnbH0YLqKseoZnmXUFq4OpyTH4YhApLZ6gPY=;
+	s=arc-20240116; t=1766019407; c=relaxed/simple;
+	bh=czY9Sg+ZSc2N2YE8/B4cFKlElc2FQdkFTzwudxE1otI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OJkhUyfRQet6JGS0UVsKXcIQzzs1S4zRsKiL4SEhFaspwT1FlZ0R2fw9wWejruNljzyzWAUIGyO+l9XtYKwE5cvAwN/XafUEHsLtf4kVdUr62FbIc95iTfsrq4CMcVIpoWtYurUSsLSsp+CLNlmpoacZZI0V4DcfEoGFEdFyq+k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dFlBAcyK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4E43C4CEF5;
-	Thu, 18 Dec 2025 00:55:09 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=HSCSH7WEanZOVVfCK8LGQLuwoqkGn4uF4BrlI45RImMhT8w40/mQayY4YYvxNsM91Q6+0+NQYw/KmENF46GZyaSYcZc2wxUjWyWvWrNEwx1AF1pMmujudvOLnZNcwzEDff0r82OLfZJ/oklpMdwq/7WJB/aIewi6hYKyh3FK0AY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LwdgXbee; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82BDBC4CEF5;
+	Thu, 18 Dec 2025 00:56:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766019311;
-	bh=c7r3XGYdnbH0YLqKseoZnmXUFq4OpyTH4YhApLZ6gPY=;
+	s=k20201202; t=1766019407;
+	bh=czY9Sg+ZSc2N2YE8/B4cFKlElc2FQdkFTzwudxE1otI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dFlBAcyKoCWi4H9AsPL9e2b8gD77ZSZzlYR7srmV+SG7JVlnwAGg/oR3MYlPfF074
-	 g/zuJDke+ZPwjw1JWKvsOnvgyVFkDds7dPwD7l6xbwIH8DIwMjPv4692ISfE/y3WO0
-	 NdEhjcIkTTwD8KzuCl5wGAldkhcliIKDrKIUUefPRQj4lvMI8NBKhoooCvkE6CrRXy
-	 FCIR6dR2FpAQJuHGzkDvcESNEeSEd2qRyhGIGxWkP234TIGPmGEANY1SSbiMF7RErD
-	 FlYcWo+6KF0QJGctBZqdNUaNtLGI8QSvULHlNwsQd4R0atSv2bQSzLtX17lUruUPqh
-	 x/GupUHvQL0Yg==
-Date: Thu, 18 Dec 2025 00:55:07 +0000
+	b=LwdgXbeepYIRgtYqXKfF8dOGLwjuiOW/GhDBYtui5LtESSDqgSyxnOc5Ye1R2lDF/
+	 o35uXTvJDjvNrg9t+gl1w8jQqzHdWu4EJ86aqem8AxI8vNFaB408hkAA+APshO9xS5
+	 noBGt6iaR4KrK800Z22nZrKCdaz1bighCM6ZT1mCKXmQl0HhW9sz+YVBzJXtNKs6DY
+	 Ym8UTx+fjZBVfyqqrE40Cggk8gb12R9VeuRTXsiCisLZXzoAsDPpihNd37g5nSGuiq
+	 X2sq1v7a1GsH8C6Lzpba4R2Rppm+S7uqN4qYs06eT7KSP3pNyh2oCGGJxa911LrnUd
+	 9163xbnjQ6SDw==
+Date: Thu, 18 Dec 2025 00:56:40 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Stafford Horne <shorne@gmail.com>
-Cc: LKML <linux-kernel@vger.kernel.org>,
-	Linux OpenRISC <linux-openrisc@vger.kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+To: Heinrich Schuchardt <heinrich.schuchardt@canonical.com>
+Cc: Guodong Xu <guodong@riscstar.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@sifive.com>,
+	Kevin Meng Zhang <zhangmeng.kevin@linux.spacemit.com>,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org, spacemit@lists.linux.dev,
+	linux-serial@vger.kernel.org, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/5] dt-bindings: Add compatible string opencores,gpio
- to gpio-mmio
-Message-ID: <20251218-muzzle-diploma-25832f4af271@spud>
-References: <20251217080843.70621-1-shorne@gmail.com>
- <20251217080843.70621-2-shorne@gmail.com>
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Yixun Lan <dlan@gentoo.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Anup Patel <anup@brainfault.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>,
+	Yangyu Chen <cyy@cyyself.name>
+Subject: Re: [PATCH 7/8] riscv: dts: spacemit: add initial device tree of
+ SpacemiT K3 SoC
+Message-ID: <20251218-basil-quantum-225ce16e4699@spud>
+References: <20251216-k3-basic-dt-v1-0-a0d256c9dc92@riscstar.com>
+ <20251216-k3-basic-dt-v1-7-a0d256c9dc92@riscstar.com>
+ <60948ca2-ed3d-485b-9b11-15df7ef8791d@canonical.com>
+ <CAH1PCMb=+TvB1w+G6a2ANDp05HUwC4r6CFBDHXFwSmoP3Mm8xw@mail.gmail.com>
+ <f9b6b5e2-ec9e-4208-8267-77020e0a9411@canonical.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,28 +76,46 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="8ioU3Q3GhU7zpU6g"
+	protocol="application/pgp-signature"; boundary="YFkdgQHnjYXqwI/e"
 Content-Disposition: inline
-In-Reply-To: <20251217080843.70621-2-shorne@gmail.com>
+In-Reply-To: <f9b6b5e2-ec9e-4208-8267-77020e0a9411@canonical.com>
 
 
---8ioU3Q3GhU7zpU6g
+--YFkdgQHnjYXqwI/e
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-pw-bot: not-applicable
+On Wed, Dec 17, 2025 at 09:07:14AM +0100, Heinrich Schuchardt wrote:
+> On 12/17/25 08:11, Guodong Xu wrote:
 
---8ioU3Q3GhU7zpU6g
+> > Specifically, I must adhere to
+> > Documentation/devicetree/bindings/riscv/extensions.yaml (and cpus.yaml =
+for
+> > properties like 'riscv,sv39' which stands for the extension Sv39). If I
+> > add extension strings that are not yet defined in these schemas, such as
+> > supm, running 'make dtbs_check W=3D3' fails with: 'supm' is not one of
+> > ['i', 'm', 'a', ...], followed by "Unevaluated properties are not allow=
+ed."
+>=20
+> If Documentation/devicetree/bindings/riscv/extensions.yaml is incomplete
+> with respect to ratified extensions, I guess the right approach is to ame=
+nd
+> it and not to curtail the CPU description.
+
+Absolutely. If the cpu supports something that is not documented, then
+please document it rather than omit from the devicetree.
+
+--YFkdgQHnjYXqwI/e
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaUNQ6AAKCRB4tDGHoIJi
-0gLOAQDHC7gBoaQ+OeVHePJmsGTXbCnVXSGhKsO6Ad0j9zQlhQD9FXgwSD4W2j49
-IBZJIupmlSajED9iTcFF2KsTwRJOSQ8=
-=Qjhp
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaUNRRwAKCRB4tDGHoIJi
+0gf2AP9Ah7Huy/7R/LqU1VTWwMbhQ8V/6Rgj7cDeXHtSYrlVewD7BBA6UzEp4aPh
+lCEBxyTGjP6CciQj2IG9BLkKRj66nwk=
+=HlHn
 -----END PGP SIGNATURE-----
 
---8ioU3Q3GhU7zpU6g--
+--YFkdgQHnjYXqwI/e--
 
