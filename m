@@ -1,110 +1,112 @@
-Return-Path: <devicetree+bounces-247806-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247807-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6A36CCBB9C
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 13:08:11 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37288CCBC0F
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 13:16:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AFC6830084C2
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 12:06:47 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4C8523000344
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 12:13:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29DF832E125;
-	Thu, 18 Dec 2025 12:06:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 988CA32E6B5;
+	Thu, 18 Dec 2025 12:13:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sN/GdjDv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FqTCY3LZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F23D132D435;
-	Thu, 18 Dec 2025 12:06:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A1E532E14F;
+	Thu, 18 Dec 2025 12:13:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766059606; cv=none; b=AlKns5Kz9+AuV8XtanoaHbyRKMw9RFWTG486xAOmhdozJ3dSJM5t1dGYx4pgF5DiFaj1U2rwz/2JqDaH4ws+68qXF6veKG3Q3cRp7Kgc+d7Zn4ke9LDMlAFMLM0z7+G27rBMO6IDhonjYQfzFlwhcY5A5FJcApeUHQXA8d/mBgQ=
+	t=1766060011; cv=none; b=FYFf3JCwufksYiLrxti5re7guJS55fVkYo91YUh+/CB0d2eUZxoRdXGrrYlfxpsOhFyllJjRhJDmHl0MNFtUMOhd3e6NyzphWxnKpPWSQipN81sYgwp/zDYEnahmPSh4ZqULX+9H2guU4Ag9gVFWDHQli0Pi6xde+ftg1ZpXdrw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766059606; c=relaxed/simple;
-	bh=bIS8SgthP2KA0pEwsz7+MUMLc906fScIDQ3gYS+ROsQ=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=ZF+gSceBhNadJCTgOspzggx/lGPU57m6qIYD4dKnv9a6MDxE5jdxfcD+NVEYc8KqCV8qSzLkCemzwO6PanTwV5HuBd53qVxJFv4ZaZQy7sKRrtU2455RfDp2UDb46uLwH3abxEr60f2lIFWKuDI+Io6dMcSoyiKnT9yCuhbCs54=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sN/GdjDv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D444C4CEFB;
-	Thu, 18 Dec 2025 12:06:43 +0000 (UTC)
+	s=arc-20240116; t=1766060011; c=relaxed/simple;
+	bh=QjcyqYgAAiCVwktzssjIvKksa8RRHKln7unjqaGozug=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ulH4+7QMT33w3339ksYEAGDAdALIoWO7Ds1EckQuzt+xYALBDV0LzLmGjcWDEp/5Ttspf/xr/ipzLIIyBWlDq+rtuOuRaO6WAdGSkNJ3mpJRcASyJqkzZ4xveSLsi1F1/CAscmdt/xhrmzWNwbBgTqvFdU8Ct0jeAjFtZlYdvIs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FqTCY3LZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8CB30C4CEFB;
+	Thu, 18 Dec 2025 12:13:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766059605;
-	bh=bIS8SgthP2KA0pEwsz7+MUMLc906fScIDQ3gYS+ROsQ=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=sN/GdjDvlaPokF5izBJKze2G1TyB1DPDpMHb2gHgtOS4qVsLoE/uzU/pi5YPG60gY
-	 jzaTJNT+TIhTKVimemhcsC62P8IYj7sTMVtwye4/6i32a4B4s/iIudtWwamMygRXxL
-	 V+KEXUte5php9VbN64JuVfjoNW1wGfJ2gY0GPSz1hLrwIHkDB5zkdNXWzDPPi6x+iE
-	 HcErBMZtx0iztpnJOdx0+b96Q45jFJbSO2z4vJxNbjccK2ofUfGmoJPsQqCiEakfgF
-	 +fSUezMhSKGTSUq1XD3CHsD3gxa0XKaULaBn/w7eXZ8+4gDYNGRrflAhEDsz91pkWf
-	 /8c3JyYHA/89A==
-From: Mark Brown <broonie@kernel.org>
-To: linux-spi@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
- conor+dt@kernel.org, CL Wang <cl634@andestech.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- tim609@andestech.com
-In-Reply-To: <20251215132349.513843-1-cl634@andestech.com>
-References: <20251215132349.513843-1-cl634@andestech.com>
-Subject: Re: [PATCH V3 0/3] spi: atcspi200: Add support for Andes ATCSPI200
- SPI controller
-Message-Id: <176605960378.141857.4623173953165594324.b4-ty@kernel.org>
-Date: Thu, 18 Dec 2025 12:06:43 +0000
+	s=k20201202; t=1766060011;
+	bh=QjcyqYgAAiCVwktzssjIvKksa8RRHKln7unjqaGozug=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=FqTCY3LZvoQPHjGcorl9DXffWz6ePn53FCjtqjWN+Lk3rtHtrsab4QLd2aT+Tygv7
+	 UZHbk8n4YTGjKfSaiN+Sk6tDk3Rr5Z4amciKYFjyj0vf9FO8o8ZMpZJwiVTr5xPJK/
+	 iXhqbj82swpKH+BwHcMtpl9MoZpOapQu822X4DvBynPxv75i9eCiaAEyZkQXyJ1KjB
+	 lh4BbbWNQGFcXUyxFS0Lq/fgY8gBENJ7fdLqIrIo8HrFEgfNUnz8h8ci5ty8B60W75
+	 arKbFNHHlyfpLosVXe6kUxPRFwSoHeTVPtaVohyLzY4ek7B6h5wt4depCLldeyIjks
+	 8OGMl3sx8v09w==
+Date: Thu, 18 Dec 2025 12:13:25 +0000
+From: Will Deacon <will@kernel.org>
+To: Ahmed Tiba <ahmed.tiba@arm.com>
+Cc: linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
+	tony.luck@intel.com, bp@alien8.de, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, catalin.marinas@arm.com,
+	linux-arm-kernel@lists.infradead.org, rafael@kernel.org,
+	linux-doc@vger.kernel.org, Dmitry.Lamerov@arm.com,
+	Michael.Zhao2@arm.com
+Subject: Re: [PATCH 11/12] ras: add DeviceTree estatus provider driver
+Message-ID: <aUPv5UfBByVoLbRV@willie-the-truck>
+References: <20251217112845.1814119-1-ahmed.tiba@arm.com>
+ <20251217112845.1814119-12-ahmed.tiba@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-47773
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251217112845.1814119-12-ahmed.tiba@arm.com>
 
-On Mon, 15 Dec 2025 21:23:46 +0800, CL Wang wrote:
-> This series adds support for the Andes ATCSPI200 SPI controller.
+On Wed, Dec 17, 2025 at 11:28:44AM +0000, Ahmed Tiba wrote:
+> Introduce a platform driver that maps the CPER status block described
+> in DeviceTree, feeds it into the estatus core and handles either IRQ- or
+> poll-driven notifications. Arm64 gains a FIX_ESTATUS_IRQ slot so the
+> driver can safely map the shared buffer while copying records.
 > 
-> Changes in v3:
->   - Reworked the DT binding to properly describe the compatible fallback
->     relationship, defining "andestech,qilai-spi" as a platform-specific
->     compatible that falls back to the generic "andestech,ae350-spi".
->   - Renamed the DT binding file from 'andestech,qilai-spi.yaml' to
->     'andestech,ae350-spi.yaml' to match the generic fallback compatible.
->   - Updated the 'compatible' property to use a 'oneOf' schema, enforcing
->     the fallback requirement for the specific compatible string.
->   - Updated the MAINTAINERS entry to reflect the renamed DT binding file.
+> Signed-off-by: Ahmed Tiba <ahmed.tiba@arm.com>
+> ---
+>  MAINTAINERS                     |   1 +
+>  arch/arm64/include/asm/fixmap.h |   5 +
+>  drivers/ras/Kconfig             |  14 ++
+>  drivers/ras/Makefile            |   1 +
+>  drivers/ras/estatus-dt.c        | 318 ++++++++++++++++++++++++++++++++
+>  include/linux/estatus.h         |   3 +-
+>  6 files changed, 341 insertions(+), 1 deletion(-)
+>  create mode 100644 drivers/ras/estatus-dt.c
 > 
-> [...]
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 6b2ef2ddc0c7..5567d5e82053 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -21761,6 +21761,7 @@ RAS ERROR STATUS
+>  M:	Ahmed Tiba <ahmed.tiba@arm.com>
+>  S:	Maintained
+>  F:	Documentation/devicetree/bindings/ras/arm,ras-ffh.yaml
+> +F:	drivers/ras/estatus-dt.c
+>  F:	drivers/firmware/efi/estatus.c
+>  F:	include/linux/estatus.h
+>  
+> diff --git a/arch/arm64/include/asm/fixmap.h b/arch/arm64/include/asm/fixmap.h
+> index 65555284446e..85ffba87bab9 100644
+> --- a/arch/arm64/include/asm/fixmap.h
+> +++ b/arch/arm64/include/asm/fixmap.h
+> @@ -64,6 +64,11 @@ enum fixed_addresses {
+>  #endif
+>  #endif /* CONFIG_ACPI_APEI_GHES */
+>  
+> +#ifdef CONFIG_RAS_ESTATUS_DT
+> +	/* Used for ESTATUS mapping from assorted contexts */
+> +	FIX_ESTATUS_IRQ,
+> +#endif /* CONFIG_RAS_ESTATUS_DT */
 
-Applied to
+Why do we need this in addition to the four existing GHES slots? The DT
+code doesn't use it and I was assuming that the ACPI code would continue
+to use the existing irq; is that not the case?
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
-
-Thanks!
-
-[1/3] dt-bindings: spi: Add support for ATCSPI200 SPI controller
-      commit: b2f06783081859b200a853f9682d831b6fc9982d
-[2/3] spi: atcspi200: Add ATCSPI200 SPI controller driver
-      commit: 34e3815ea4597131d4324a4aa243d2201e672005
-[3/3] MAINTAINERS: Add MAINTAINERS entry for the ATCSPI200 SPI controller driver
-      commit: 1303c2903889b01d581083ed92e439e7544dd3e5
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+Will
 
