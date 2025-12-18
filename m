@@ -1,29 +1,29 @@
-Return-Path: <devicetree+bounces-247884-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247882-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16B4DCCC680
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 16:11:42 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C180CCC671
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 16:07:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id CEEF73059DBE
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 15:06:33 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 0145330719ED
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 15:05:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C853D311C19;
-	Thu, 18 Dec 2025 15:04:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B7532EFDA1;
+	Thu, 18 Dec 2025 15:04:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 127472D877A
-	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 15:04:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 918862E7650
+	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 15:04:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766070286; cv=none; b=fOIH3H7Xk1eLL0m3HVZ8f146eAvTR4MyoM6Cao1+ZcdNOZfRdp92GTrkjMg+cO39RNHyJzMoLEOLdhbTToTnSyCLtCVBA0roRMWxMDWlWK4VDQ2hi8P6SDoGpEKFxaVVxk8EcxOdaCMvQ8P6VXoni/+uEs5pvisGGfvEfTxXMM4=
+	t=1766070282; cv=none; b=V471OVTecF9U97zq554vJU++zyoNEgzOk2qvPIZdtmfaJ2GDGMksK74IuthOSfpUT9riaWmHNJGys8dNt8vHNDQ6MIQSgw/AGCYf2rsvJV9p9/v0yTODDYntN4k5F5+0RKNKgxODGJlE9Xauafds+RmC7OKIZj033CaL7zaBpzc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766070286; c=relaxed/simple;
-	bh=KIVZf9eQsEe24xzKqF2imdi5YUmFlNEbdV3+FMOkKwE=;
+	s=arc-20240116; t=1766070282; c=relaxed/simple;
+	bh=VZx0u1LV4OE/RGQRohcWYqHEcQkYI+lNdynE0cp27ZQ=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=g0PLftX21gqCpNpRNm9is96jXzSabqXMMYwYsbyK6LFJ7072e/GrrPzMVExlqX3oCId6W+csirCi5BXHLYA8CdJhnaeXQfYuthubdU132AFVohVme3zZ4QRawfnGAobqKXezKtPQyYo9elaPL3DwXYSBvxdtolKf3Ha2l9T9svQ=
+	 In-Reply-To:To:Cc; b=PuJ34YgbWfqVDwHy3mHm84lefd3G+NmzxTd/nmut37O7MYgGaKd18rDBFU8qYCHZX8BMfjfRKBoA76QdivujNKIP9zJy2LVda2MtyCvG+qRD9DqD2BKBkm4YNTsuSLte+xHZLyLQK+B1e5iQlE4yA8koCsyy4h00BT2P8Ww24u8=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
@@ -31,22 +31,21 @@ Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
 	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
 	(Exim 4.92)
 	(envelope-from <s.hauer@pengutronix.de>)
-	id 1vWFY4-0007j5-Oc; Thu, 18 Dec 2025 16:04:12 +0100
+	id 1vWFY4-0007j9-Oc; Thu, 18 Dec 2025 16:04:12 +0100
 Received: from dude02.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::28])
 	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.96)
 	(envelope-from <s.hauer@pengutronix.de>)
-	id 1vWFY1-006IfK-24;
+	id 1vWFY1-006IfL-2H;
 	Thu, 18 Dec 2025 16:04:09 +0100
 Received: from localhost ([::1] helo=dude02.red.stw.pengutronix.de)
 	by dude02.red.stw.pengutronix.de with esmtp (Exim 4.98.2)
 	(envelope-from <s.hauer@pengutronix.de>)
-	id 1vWFY1-00000002kPh-1rUt;
+	id 1vWFY1-00000002kPh-1t8Q;
 	Thu, 18 Dec 2025 16:04:09 +0100
 From: Sascha Hauer <s.hauer@pengutronix.de>
-Date: Thu, 18 Dec 2025 16:04:09 +0100
-Subject: [PATCH v2 03/10] ASoC: tlv320adcx140: Propagate error codes during
- probe
+Date: Thu, 18 Dec 2025 16:04:10 +0100
+Subject: [PATCH v2 04/10] ASoC: tlv320adcx140: fix word length
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -55,7 +54,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251218-sound-soc-codecs-tvl320adcx140-v2-3-3c2270c34bac@pengutronix.de>
+Message-Id: <20251218-sound-soc-codecs-tvl320adcx140-v2-4-3c2270c34bac@pengutronix.de>
 References: <20251218-sound-soc-codecs-tvl320adcx140-v2-0-3c2270c34bac@pengutronix.de>
 In-Reply-To: <20251218-sound-soc-codecs-tvl320adcx140-v2-0-3c2270c34bac@pengutronix.de>
 To: Shenghao Ding <shenghao-ding@ti.com>, Kevin Lu <kevin-lu@ti.com>, 
@@ -70,13 +69,13 @@ To: Shenghao Ding <shenghao-ding@ti.com>, Kevin Lu <kevin-lu@ti.com>,
 Cc: linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org, 
  Kevin Lu <luminlong@139.com>, linux-rt-devel@lists.linux.dev, 
  devicetree@vger.kernel.org, Sascha Hauer <s.hauer@pengutronix.de>, 
- Dimitrios Katsaros <patcherwork@gmail.com>
+ Emil Svendsen <emas@bang-olufsen.dk>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1766070249; l=1285;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1766070249; l=1458;
  i=s.hauer@pengutronix.de; s=20230412; h=from:subject:message-id;
- bh=PpAmR8wKqRTX1YV1R8fVM7vj/FkNO/cKPTJr6ncyO00=;
- b=vMcrHYK9mVO+dwSeKWY9gMBoscUUpIhqK78dQkhSx2RUvJia+V5GCzvhOcjTx/jitAghTkAeP
- v7ha4gFIGYSCnJpJGhBuSZXjIquRvIdxyalK+AM9LinM2vjPkzYSIrO
+ bh=v43nJHLbOeXsx5JJSDE5Vevx6RwD4qkqiA+EJyAWPpo=;
+ b=Weg9/LbT39wBSbizPqoNS2Y16FGGoTzScLMtk6vb6FOX5BlDITb1jbL5myNLI/eyP+AhjfFey
+ qlirMQgDenADpKaiuIsJJoP1c/5+FP0CU2CAmojtHAbquaBhpnv8x9m
 X-Developer-Key: i=s.hauer@pengutronix.de; a=ed25519;
  pk=4kuc9ocmECiBJKWxYgqyhtZOHj5AWi7+d0n/UjhkwTg=
 X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
@@ -84,36 +83,43 @@ X-SA-Exim-Mail-From: s.hauer@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
 X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-From: Dimitrios Katsaros <patcherwork@gmail.com>
+From: Emil Svendsen <emas@bang-olufsen.dk>
 
-When scanning for the reset pin, we could get an -EPROBE_DEFER.
-The driver would assume that no reset pin had been defined,
-which would mean that the chip would never be powered.
+The word length is the physical width of the channel slots. So the
+hw_params would misconfigure when format width and physical width
+doesn't match. Like S24_LE which has data width of 24 bits but physical
+width of 32 bits. So if using asymmetric formats you will get a lot of
+noise.
 
-Now we both respect any error we get from devm_gpiod_get_optional.
-We also now properly report the missing GPIO definition when
-'gpio_reset' is NULL.
-
-Signed-off-by: Dimitrios Katsaros <patcherwork@gmail.com>
+Fixes: 689c7655b50c5 ("ASoC: tlv320adcx140: Add the tlv320adcx140 codec driver family")
+Signed-off-by: Emil Svendsen <emas@bang-olufsen.dk>
 Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
 ---
- sound/soc/codecs/tlv320adcx140.c | 3 +++
- 1 file changed, 3 insertions(+)
+ sound/soc/codecs/tlv320adcx140.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/sound/soc/codecs/tlv320adcx140.c b/sound/soc/codecs/tlv320adcx140.c
-index 3fb1b6251e6f8b361e8f82ce6381a7e8cfcd1935..58a6dfa228cc326d18b3c3f126732033749c8e49 100644
+index 58a6dfa228cc326d18b3c3f126732033749c8e49..fdf4a9add852deb5e879dba5c8a09458fc6e709d 100644
 --- a/sound/soc/codecs/tlv320adcx140.c
 +++ b/sound/soc/codecs/tlv320adcx140.c
-@@ -1154,6 +1154,9 @@ static int adcx140_i2c_probe(struct i2c_client *i2c)
- 	adcx140->gpio_reset = devm_gpiod_get_optional(adcx140->dev,
- 						      "reset", GPIOD_OUT_LOW);
- 	if (IS_ERR(adcx140->gpio_reset))
-+		return dev_err_probe(&i2c->dev, PTR_ERR(adcx140->gpio_reset),
-+				     "Failed to get Reset GPIO\n");
-+	if (!adcx140->gpio_reset)
- 		dev_info(&i2c->dev, "Reset GPIO not defined\n");
+@@ -725,7 +725,7 @@ static int adcx140_hw_params(struct snd_pcm_substream *substream,
+ 	struct adcx140_priv *adcx140 = snd_soc_component_get_drvdata(component);
+ 	u8 data = 0;
  
- 	adcx140->supply_areg = devm_regulator_get_optional(adcx140->dev,
+-	switch (params_width(params)) {
++	switch (params_physical_width(params)) {
+ 	case 16:
+ 		data = ADCX140_16_BIT_WORD;
+ 		break;
+@@ -740,7 +740,7 @@ static int adcx140_hw_params(struct snd_pcm_substream *substream,
+ 		break;
+ 	default:
+ 		dev_err(component->dev, "%s: Unsupported width %d\n",
+-			__func__, params_width(params));
++			__func__, params_physical_width(params));
+ 		return -EINVAL;
+ 	}
+ 
 
 -- 
 2.47.3
