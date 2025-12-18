@@ -1,97 +1,77 @@
-Return-Path: <devicetree+bounces-248005-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248006-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E7B7CCDB08
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 22:30:04 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D147CCDB8F
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 22:41:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 097A6300E816
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 21:30:03 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id DB118301B820
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 21:41:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BD8B301468;
-	Thu, 18 Dec 2025 21:30:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=antispam.mailspamprotection.com header.i=@antispam.mailspamprotection.com header.b="ys7iCUtU";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=valla.it header.i=@valla.it header.b="NbLdgIkC"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F298331A62;
+	Thu, 18 Dec 2025 21:41:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from delivery.antispam.mailspamprotection.com (delivery.antispam.mailspamprotection.com [185.56.87.11])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51A972D8798;
-	Thu, 18 Dec 2025 21:29:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=185.56.87.11
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766093400; cv=pass; b=lFcd/ahpDOX9I+ffTIqGg0XeSz8Ah7uRQrrda8vK5b5TcE5hRpaSZFodrbCGvW4BP3xrn3dTRISFIDz3dqkx2tOnj1MxASuQIWjNB7s4gTyQtC/JEKmkO8X5vkVZiIMPrm2LzJOdveZO7Wu8/ALN3r1UzF+3iiB1HzDSTuAwXbI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766093400; c=relaxed/simple;
-	bh=ZzvEed4sEkcv3SWvfOHQgv/2cRbBc1HpGi2Alr+EpL0=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4915F33A9C2
+	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 21:41:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1766094103; cv=none; b=J55DUsYLqG1Z2aYGPKJdsByt2Zh0xOhGqUNKBI2zxmo6+HiZDyU7G1eKogWqTct/k++xJ5m+lRa/zvhEluO1vFc2t0eLn08xIR9JpWjWgC86zdOW2iM9BU+TLuVQ3O8zfkC0WR9srQXvsFMUC2hEC3jxSCg1Vs+kcLbT7wdV8EY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1766094103; c=relaxed/simple;
+	bh=eTd+DHW7TSu5DSPfgcZrJDkmN3gweMJpuY2+Qfiy3IQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=k+3d9RVAq4UIGc7nRdFyCmqfdQkOQNSOSpX7aSwHmEnv5MNay2VS6icUGPaQUJsh4xw9JN4+94fXEm0jwd+31mImEr7PYppar4UvwuSIqMrI4GHzjVAGG49rNAPQNzpaF41GIjue7/K/CHsVejgl9Ub6H07LrgaHzNVZg0kDKJk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=valla.it; spf=pass smtp.mailfrom=valla.it; dkim=pass (1024-bit key) header.d=antispam.mailspamprotection.com header.i=@antispam.mailspamprotection.com header.b=ys7iCUtU; dkim=pass (1024-bit key) header.d=valla.it header.i=@valla.it header.b=NbLdgIkC; arc=pass smtp.client-ip=185.56.87.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=valla.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=valla.it
-ARC-Seal: i=1; cv=none; a=rsa-sha256; d=outgoing.instance-europe-west4-1fw8.prod.antispam.mailspamprotection.com; s=arckey; t=1766093398;
-	 b=tnxmOTZ+R49twV59elmaKC1vScav+oxGzQRBo/qNFWxweVmlN8wp5sSk9J5jsvrrOWX7vdlbV1
-	  ee10A9uM47B4KfexuHpYiDD1+CqSafBZ+Y/Btht1w4i4b5b6VE9FmvxqHyIGqwoTf6zL/Nqqya
-	  +kRpd5P1CnB2LjGs8Gn9rlwomzGG2dwa1Jp61ZzrQffXIZGJBKozG2ZFiYd1cZxHXJE8v+/ucl
-	  N04DJj2tjQFsoOIJmupOs6EWdArbwCV1DytUyZG+gRAtfRidCKsTFWMmYhNykYHYeM4QJ1OhmQ
-	  09+R1fIlxqe1w7s6lOWCwR8vHp9fk6niNmbSF/Qd+sFPjg==;
-ARC-Authentication-Results: i=1; outgoing.instance-europe-west4-1fw8.prod.antispam.mailspamprotection.com; smtp.remote-ip=35.214.173.214;
-	iprev=pass (214.173.214.35.bc.googleusercontent.com) smtp.remote-ip=35.214.173.214;
-	auth=pass (LOGIN) smtp.auth=esm19.siteground.biz;
-	dkim=pass header.d=valla.it header.s=default header.a=rsa-sha256;
-	arc=none
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed; d=outgoing.instance-europe-west4-1fw8.prod.antispam.mailspamprotection.com; s=arckey; t=1766093398;
-	bh=ZzvEed4sEkcv3SWvfOHQgv/2cRbBc1HpGi2Alr+EpL0=;
-	h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:
-	  From:Date:DKIM-Signature:DKIM-Signature;
-	b=nk6DctSUZAlwWJ2VfoJoKZ08sk3RBcpsu1Y7wrhGW7p0BcuClvC8x7h0zkTU+z1w0xDhbi+tcz
-	  r11qVuxfgrH2QCN8by/olTD78Gf5qBh4oUXwGU8Dc+lH5HIrRC8y+xzAPDIMbsBoGf29jrAj1M
-	  HgRnBnEDt2l5A5MzvrZeHE/Sus/c547YOpgyjhVA8NPzNvMqye6bFiQ5GziI2pb6jQZ2UDxMRy
-	  irRg2gllXD10phGoRgr0Lw0sZccVfytIpcyi0IFStU+yQVlqq9jqUawDOvwoNMtxrdN0rNRHd0
-	  BWemfoDDPcVa1qjzu/zs2Co5MN3vaBobPWyu2bg6Um3fgQ==;
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=antispam.mailspamprotection.com; s=default; h=CFBL-Feedback-ID:CFBL-Address
-	:Content-Type:MIME-Version:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	List-Unsubscribe:Content-Transfer-Encoding;
-	bh=tpKlTYeTCs6R8eO95vUUpCyeGtT/lX8I/YjZJmafD90=; b=ys7iCUtUUfjcVWC8qDiYRzHp+L
-	lRKGTzFzM/1z1w23zsPehmw1gkwFiwN0yETgM4Vgxi22ciMRMCxf76hrFPGFnlSkIzK+XKxs/e7hV
-	C9/8ajaNqTC3e2QlMENz160uz1y+xaZiu2r9CVD4RZc9QIpgDzRTU0FBE4sJPiD9/PbU=;
-Received: from 214.173.214.35.bc.googleusercontent.com ([35.214.173.214] helo=esm19.siteground.biz)
-	by instance-europe-west4-1fw8.prod.antispam.mailspamprotection.com with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.98.1)
-	(envelope-from <francesco@valla.it>)
-	id 1vWLZC-00000003fgS-2u2n;
-	Thu, 18 Dec 2025 21:29:49 +0000
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=valla.it;
-	s=default; h=Subject:Cc:To:From:Date:list-help:list-unsubscribe:
-	list-subscribe:list-post:list-owner:list-archive;
-	bh=tpKlTYeTCs6R8eO95vUUpCyeGtT/lX8I/YjZJmafD90=; b=NbLdgIkCc+yH/GfSisI0WY9P43
-	XnSIPYXmJf7kWE7vt8ZvjTnyLV9VgjFCywQfzLqCDigWle5tQll4SFHXwFfZQopdyB2NvDhZYZaHg
-	tBE0VeTFYoAD9uVxdZrSOqaRYhNmohIIjo7/Ywb+isipUJz5OngCp3HQXRRi7VRl8zUw=;
-Received: from [95.248.141.113] (port=61650 helo=bywater)
-	by esm19.siteground.biz with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.98.1)
-	(envelope-from <francesco@valla.it>)
-	id 1vWLZ5-00000000FX5-3itd;
-	Thu, 18 Dec 2025 21:29:39 +0000
-Date: Thu, 18 Dec 2025 22:29:38 +0100
-From: Francesco Valla <francesco@valla.it>
-To: Fabian Pflug <f.pflug@pengutronix.de>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=NRuEFdIz10J/JmBGjr4KXtMtcpha+P0eu+bmsFpAwkqUI9QpRcJ55qhQbQIiuaXnoNdIX1bZPhuwMOtURpzKsz+HDl7dZDicjEp6YsxUyDGF0C5J/wZkywulnwE3E43L5qkYt6wQucDEFxgrvnTuVX4x6ZCRE5hha7/yiKVFvSo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1vWLk8-0004dr-Cf; Thu, 18 Dec 2025 22:41:04 +0100
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1vWLk6-006Lsm-1S;
+	Thu, 18 Dec 2025 22:41:02 +0100
+Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1vWLk6-00EfK3-0v;
+	Thu, 18 Dec 2025 22:41:02 +0100
+Date: Thu, 18 Dec 2025 22:41:02 +0100
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Liu Ying <victor.liu@nxp.com>, krzk+dt@kernel.org,
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
 	Sascha Hauer <s.hauer@pengutronix.de>,
 	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	Haidong Zheng <haidong.zheng@nxp.com>,
-	Danwei Luo <danwei.luo@nxp.com>, Lei Xu <lei.xu@nxp.com>
-Subject: Re: [PATCH v4 2/2] arm64: dts: freescale: add support for NXP i.MX93
- FRDM
-Message-ID: <aURyQsjf7AY09n41@bywater>
-References: <20251218-fpg-nxp-imx93-frdm-v4-0-cd3a9f6ac89a@pengutronix.de>
- <20251218-fpg-nxp-imx93-frdm-v4-2-cd3a9f6ac89a@pengutronix.de>
+	Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v7 1/3] dt-bindings: soc: imx93-media-blk-ctrl: Add PDFC
+ subnode to schema and example
+Message-ID: <20251218214102.zfv35d2fryz333gl@pengutronix.de>
+References: <20251202-v6-18-topic-imx93-parallel-display-v7-0-2cce31d64608@pengutronix.de>
+ <20251202-v6-18-topic-imx93-parallel-display-v7-1-2cce31d64608@pengutronix.de>
+ <705773fc-5aba-4bff-b05e-272e1cd0262c@nxp.com>
+ <20251215161706.2ea3wtu3xlwcxxar@pengutronix.de>
+ <7127040f-55ab-4bfa-8795-1df76085470c@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -100,60 +80,129 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251218-fpg-nxp-imx93-frdm-v4-2-cd3a9f6ac89a@pengutronix.de>
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - esm19.siteground.biz
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - valla.it
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-SGantispam-id: 70fb00a543c5269d586b1a5fc9164f80
-AntiSpam-DLS: false
-AntiSpam-DLSP: 
-AntiSpam-DLSRS: 
-AntiSpam-TS: 1.0
-CFBL-Address: feedback@antispam.mailspamprotection.com; report=arf
-CFBL-Feedback-ID: 1vWLZC-00000003fgS-2u2n-feedback@antispam.mailspamprotection.com
-Authentication-Results: outgoing.instance-europe-west4-1fw8.prod.antispam.mailspamprotection.com;
-	iprev=pass (214.173.214.35.bc.googleusercontent.com) smtp.remote-ip=35.214.173.214;
-	auth=pass (LOGIN) smtp.auth=esm19.siteground.biz;
-	dkim=pass header.d=valla.it header.s=default header.a=rsa-sha256;
-	arc=none
+In-Reply-To: <7127040f-55ab-4bfa-8795-1df76085470c@kernel.org>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Thu, Dec 18, 2025 at 12:39:22PM +0100, Fabian Pflug wrote:
-> The FRDM i.MX 93 development board is a low-cost and compact development
-> board featuring the i.MX93 applications processor.
+On 25-12-18, Krzysztof Kozlowski wrote:
+> On 15/12/2025 17:17, Marco Felsch wrote:
+> > Hi Liu,
+> > 
+> > On 25-12-08, Liu Ying wrote:
+> >> Hi Marco,
+> >>
+> >> On 12/02/2025, Marco Felsch wrote:
+> >>> From: Liu Ying <victor.liu@nxp.com>
+> >>>
+> >>> i.MX93 SoC mediamix blk-ctrl contains one DISPLAY_MUX register which
+> >>> configures parallel display format by using the "PARALLEL_DISP_FORMAT"
+> >>> field. Document the Parallel Display Format Configuration(PDFC) subnode
+> >>> and add the subnode to example.
+> >>>
+> >>> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> >>> [m.felsch@pengutronix.de: port to v6.18-rc1]
+> >>> [m.felsch@pengutronix.de: add bus-width]
+> >>> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> >>> ---
+> >>>  .../bindings/soc/imx/fsl,imx93-media-blk-ctrl.yaml | 92 ++++++++++++++++++++++
+> >>>  1 file changed, 92 insertions(+)
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctrl.yaml b/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctrl.yaml
+> >>> index 34aea58094e55365a2f9c86092f637e533f954ff..6e2d86d9341c75108b492bcbabc8a560d8e707cd 100644
+> >>> --- a/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctrl.yaml
+> >>> +++ b/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctrl.yaml
+> >>> @@ -26,6 +26,12 @@ properties:
+> >>>    reg:
+> >>>      maxItems: 1
+> >>>  
+> >>> +  '#address-cells':
+> >>> +    const: 1
+> >>> +
+> >>> +  '#size-cells':
+> >>> +    const: 1
+> >>> +
+> >>>    '#power-domain-cells':
+> >>>      const: 1
+> >>>  
+> >>> @@ -40,6 +46,60 @@ properties:
+> >>>      minItems: 8
+> >>>      maxItems: 10
+> >>>  
+> >>> +  bridge@60:
+> >>
+> >> The dependency patch series mentioned in cover letter has two links in it's
+> >> cover letter.  Reading the patch sets pointed by the two links, we may find
+> >> Krzysztof's comments - the child nodes of the blk-ctrl should be completely
+> >> documented.
+> > 
+> > Thanks for pointing this out.
+> > 
+> > @Krzysztof
+> > Requesting to add everything seems not feasible if everything added
+> > should be tested too.
+> > I don't see why everything should be added in one step, since the base
+> > .dtsi isn't added in one step too.
 > 
-> It features:
-> - Dual Cortex-A55
-> - 2 GB LPDDR4X / LPDDR4
-> - 32 GB eMMC5.1
-> - MicroSD slot
-> - GbE RJ45 x 2
-> - USB2.0 1x Type C, 1x Type A
-> 
-> This file is based upon the one provided by nxp in their own kernel and
-> yocto meta layer for the device, but adapted for mainline.
-> 
-> Signed-off-by: Haidong Zheng <haidong.zheng@nxp.com>
-> Signed-off-by: Danwei Luo <danwei.luo@nxp.com>
-> Signed-off-by: Lei Xu <lei.xu@nxp.com>
-> Signed-off-by: Fabian Pflug <f.pflug@pengutronix.de>
-> ---
->  arch/arm64/boot/dts/freescale/Makefile             |   1 +
->  arch/arm64/boot/dts/freescale/imx93-11x11-frdm.dts | 620 +++++++++++++++++++++
->  2 files changed, 621 insertions(+)
->
+> Because otherwise we do not see entire picture and people post incorrect
+> bindings, claiming they are complete picture, like messing nodes with
+> addressing and nodes without. So sure, if you do not want to post
+> complete picture, we cannot review that complete picture, therefore YOU
+> MUST POST CORRECT CODE.
 
-Reviewed-by: Francesco Valla <francesco@valla.it>
-Tested-by: Francesco Valla <francesco@valla.it>
+It's not that we don't want to post the complete code, it's rather that
+we don't have the projects to cover the complete MEDIA_MIX blk-ctrl.
+Albeit it's a very simple IP with just a few (25) registers, all of them
+do have a complete different purpose:
 
+- control the AXI QoS and IP Cache
+- control the bus NIC settings
+- control the camera parallel-input setup
+- control the LVDS bridge (LDB) setup
+- control the parallel-output (DPI) setup + the MIPI DSI input setup
+- control the MIPI DSI PLL Setup
 
-Thank you!
+> I will not be taking excuses later "we did not know that such code is
+> not allowed". You must know all rules.
+
+I get your point and there are only two options IMHO:
+ 1st) Step-by-step
+ 2nd) Big-Bang
+
+Step-by-step:
+------------
++ Mainline support as fast as possible for each component
++/- Contributors must be trusted that everything is communicated openly
+- Unforeseen issues which may require DT adaptions
+
+Big-Bang
+--------
++ Everything bindings + code can be checked by the maintainers
++/- Less trust required, since everything is added but still min. trust
+    required
+- Unforeseen issues which may require DT adaptions
+- No mainline support at all or very late
+
+I can only speak for myself, I don't want to hide anything from you or
+other maintainers. But I can't guarantee that everything is 100% correct
+and bug-free. I'm quite sure that no one can make such promises.
+E.g. I didn't test the simultaneous DPI + DSI + LVDS output. It would be
+part of this patchset, if I would have tested this.
 
 Regards,
-Francesco
+  Marco
 
+> Best regards,
+> Krzysztof
+> 
+
+-- 
+#gernperDu 
+#CallMeByMyFirstName
+
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | https://www.pengutronix.de/ |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-9    |
 
