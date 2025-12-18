@@ -1,101 +1,101 @@
-Return-Path: <devicetree+bounces-247721-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247724-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4B6ECCACAF
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 09:10:57 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id A00E9CCAD2D
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 09:15:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 5E01D3018430
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 08:10:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E7DAE30C3809
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 08:11:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 107362F1FEE;
-	Thu, 18 Dec 2025 08:10:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16E7F320CAA;
+	Thu, 18 Dec 2025 08:10:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ofbVwGUO";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Bs/5Q7zj"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="WBO0apXq";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="K34tZOgS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E7A62ED161
-	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 08:10:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCDC92EC561
+	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 08:10:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766045447; cv=none; b=kCkFaCcXAkkDsYKpAiOuStnd6dgnxUkBs1KgnPvYKYKYSNsKjsiIwgGYqik+ZZhlT+r4DAYatiDvBYumK9MyWE+l8I9hMGHacB7hp0CCMtWQMDW7MArDitOs4vx1L0seGcqxxpIgoBlphn1FBiQINucyxwX4qz8wj2h8wPIDXVE=
+	t=1766045451; cv=none; b=LnXnoqxsSctlTkwDXhy60DTO/INpttcniJ4/nnT81c+JUtr4Yum4YvEZuCN8I7la1RUBe12JN37s+351GA/ZooIxCIuL3z4DkBfrMqwZ/3Xcet6kmxnUkTyeQpVnhHfMqW97EDM2y4t8RF/71fOEPUZMyILSYRNpaIpqq8XwYEU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766045447; c=relaxed/simple;
-	bh=WwWv1dVaZYPvnR6R1Ei7R4iTlI2WTlIv5BffkfyWev4=;
+	s=arc-20240116; t=1766045451; c=relaxed/simple;
+	bh=zad/+HKvgqcPRsu64plFTKJAgpaj4lRh7Ypv4wC8mi4=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=KuhvNvPRwq/qHw4XqbzIg27A/5wGmNU8+mvPvA7kIscoFBEdXvfTZMXv6RcuOmOfFAXWu5vjHjXKxgKmvvIj/DxYwGVTHh1pllieuROdnbvS/7sigzQ5AOyPL46ull4jUGVRay4P6xo3Uu8+awEWQLwF+D7UGccRQRMIv/in4Lk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ofbVwGUO; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Bs/5Q7zj; arc=none smtp.client-ip=205.220.180.131
+	 In-Reply-To:To:Cc; b=dXxW1wfcsEwz9bQcYmm0zEtZTK7NInPDo+Y4992S7GMLsZw2wYVOGKe8pZ9F1zZ0rpIFMP+VaBdcW1PjM9IpFXgEdCJZhWME1QxHp0S5piiThS8tOT3FmYZghvz9OZddhYj3+z5X6QWbhEMsLGkFpcYkhO7ymkdmXKCY3vqTz4Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=WBO0apXq; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=K34tZOgS; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
 Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BI1YoVj237745
-	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 08:10:45 GMT
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BI1YNth237284
+	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 08:10:47 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	E0rpWnjGI2g5XgXoHJyDOCm/wAcv0BxAgcw2UhKMGfg=; b=ofbVwGUO9nTOpxwN
-	7uP+aAPoHd/t3uRqfaIktbM9vU9yIvgAoUIBzOiV8JsrACbW19WV1LpCapZu7kTe
-	T2gcCJcDWePIWK8fluC8NtLggWL7OcqcTZ5ZAf9ZGAIZrMkfNECwLm2Vaq6GW8HE
-	7iQH3sfSL7vR0HRzqJxnoabTYZpGrShIyJe2OLAH2icA1nFuzzZO8hoZb66G4Iw4
-	NqloKRKLxQ8iAVqco3PcRpDJBYiaXWAl0/AlQWHExFZwDZcdxYoK0DRO8HxEUU+3
-	qRN4dud5f/45nYZygEmyO+7S6H7tmaPYVLjLicYoys31a/1xmJ/lTYZwM+UG2cSC
-	/mJtjw==
-Received: from mail-pg1-f198.google.com (mail-pg1-f198.google.com [209.85.215.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b44x3hfyw-1
+	QV9iwLUqvGNnwQ/I9B9ocDyfNDL63IncM7/Y+J+tBFE=; b=WBO0apXqgp0Ut8th
+	zQWOTvTP1qFCvly9yEVHkOSzPj1VSdx38xQawInH8q3HOdcyq31XdiseoJXrKC/s
+	6npe/C17kTqx4mN/NcpHy1GMF9XvCxyVi9ZGJE2dqH1B5YhSXu2szd/A9rXqzZp8
+	qbELxHkE3VM2hYCbai7JVqjx1BV6lnjqjq1POBzPqNeWXDbOJnuVUY1FanODFsJ6
+	wMuLzqPgaQ+efTO1Yt4DPexter4TV+Th2gJ4ODXCIV8soeOmdjbnCrTXlt1xmSl/
+	K+jXZI58yyh5JwkVKyEdNqZaRFoLC5HkbMn1G+etMuCDCFSbQG2M/vAKhYGa9PgI
+	fMbXuQ==
+Received: from mail-pg1-f199.google.com (mail-pg1-f199.google.com [209.85.215.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b44x3hg06-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 08:10:44 +0000 (GMT)
-Received: by mail-pg1-f198.google.com with SMTP id 41be03b00d2f7-c0c7e0a8ac1so539948a12.0
-        for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 00:10:44 -0800 (PST)
+	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 08:10:47 +0000 (GMT)
+Received: by mail-pg1-f199.google.com with SMTP id 41be03b00d2f7-b62da7602a0so464450a12.2
+        for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 00:10:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1766045444; x=1766650244; darn=vger.kernel.org;
+        d=oss.qualcomm.com; s=google; t=1766045445; x=1766650245; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=E0rpWnjGI2g5XgXoHJyDOCm/wAcv0BxAgcw2UhKMGfg=;
-        b=Bs/5Q7zje6W76bF/ufIh4HiT+a9fittoeshCjbCC12wU+CL/vSRrUOReN7bQUpKA1G
-         iiNSGU+yvNBwXcHnyLClLsd4MIY9KxVdhrMu+njoBjoB3ke4ngwJv775DxAOmsQGACTz
-         N61k5vjtnaN/Pagj0/3F44KjqwypUYCC2pKewo/wY/U+Qg1RUL1QUNzdA58tanOs2/8B
-         WvIW9/wwpeLiSPa06q51HibTufDq5cN0kkQDgldUD/nI+5/OXN/LMrLe8tHhuhRgHwud
-         i3h8c1tA2Yh8x5trsET8XVWZBgQR7wUzzQgOaDkDn5Hu28LKCN8csrUVwWK4soyF5Xb4
-         yHlA==
+        bh=QV9iwLUqvGNnwQ/I9B9ocDyfNDL63IncM7/Y+J+tBFE=;
+        b=K34tZOgS/oJrk9k1KpShCHix5v0nUPHFVq868Tre6g733q6VKNDodW9lGiXVy6t0jc
+         xdmP+mnenX556R3ln4SL4udgvq/DIGAFa36rNlCWiuvfb7SquEfgiIw0kp83ci2TKLER
+         VDYo3R9nXN84PiVURTRGO7Vg1qeDFcxFt87DC6/n4a22GANaV23ac9x/R44/7l9uS159
+         ZUe39ndJl/O5oK2O3UH0zmkp3vTV+ZxIsYGLvvzNcZrX2zrWPSm8C9O+5yfLEAxE3N9N
+         65bJ01pM9/rAOIckrDtcGdS0jXb8B3vP4WfgIIJ0PKRkI2IDxZOgc3VE8RYJWJwtL9SZ
+         VeoA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766045444; x=1766650244;
+        d=1e100.net; s=20230601; t=1766045445; x=1766650245;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=E0rpWnjGI2g5XgXoHJyDOCm/wAcv0BxAgcw2UhKMGfg=;
-        b=llcLQjGyWCr4ggr0fs9DBy0/Mh0/IAv3WMW2tB0b/2vCuZ3wS09++lrb0vix6mYPqB
-         ZzIEQdL9+a7SoFRJThz/66SjdB2z0ASICTl3P8rTgJI38j0H8hYoulq1CHTM0z4/cJZQ
-         fE9X28PxLZbKA/jznir38eoD1+MiTT9cruvfoJ9UAB4sRrWKcZMsCTg2rvezO6yJufu7
-         QQV+hF48Dhebt+1BbD6PSRclARbhsm526sSR2P2M0avgz/Y2hpfiiDQIJQm3Q/oMdaOS
-         RmX6bi5A9pdHvF+AYviSe/GKEr7o21VRENLT81uYNVJ/f0cLVDocN0+FUuPJ9Jy9cRTV
-         xVJA==
-X-Forwarded-Encrypted: i=1; AJvYcCUmW7XJDUEWYQrfeYwLryeSdsFcv6JCFVUltZvqbFzffn7E2cVbpnv1swdeW4Kv4LSC3Y/6+jWYIXKs@vger.kernel.org
-X-Gm-Message-State: AOJu0YyojqSKWih56xkH/r4+micZt5FWnzJnF7aHdWeBwnskg/DOTuxb
-	UcUGqaAKBtfU5nGZF2+QWnp1mHi26oLr+qRQiqGeVbPwbPbaSLAQKHu/0FCRm/u7FHPLGAk5+HB
-	zy7zLf0T42L4oNslpNLT35xWrwi+cGUWa327aDviVQ/R3E9w/NiAMJ6MTwD4LQi3x
-X-Gm-Gg: AY/fxX4ZlhJHPRlUHkeBka49ndCxvCK0CWyqQnTPrWWONyvOhOtQxG3t18nS+vK2kGA
-	J6QoqskTaJP6zyNZFDVgB00wfU+EHmST2u50UiHqbEQm7I+yYdbEwl4pQLgrpElm5SDzKYfYBMN
-	zikLMDmkDBvLHLHUgxhd56Gk9Ouk0cUqpMsTohxOebEEqCZty4o27vFLWPExNgiTkyQCljukjvr
-	KzCwbyXHCtgy1WqOfvdoit73nyDoAfOT6n8lSzUvted5vkSwIILpGzVOYpwyEFko1uLLzdjDAgS
-	HOHNF4vm0O/cy/kuT9tf5npciqXnFgzqLR6NJORQjad5UshHpZE5K7bX879YVZe9aaQYIEtohcz
-	7huV7ON4tMqRLzPq4W/47HkHWxQ76ohg/0Ec9nQAmrKg7Ntf5L62dBFupcSLVb1Qqb/Y=
-X-Received: by 2002:a05:7300:caa:b0:2ae:5e28:743a with SMTP id 5a478bee46e88-2ae5e2877e1mr4014758eec.17.1766045443713;
-        Thu, 18 Dec 2025 00:10:43 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IF1MYiKs0jzjHaQd3gre2/5Vrpx+T+zfC2QTWa4K7GVpXVStAyAVFf+CtDYWGahuOPpcss37A==
-X-Received: by 2002:a05:7300:caa:b0:2ae:5e28:743a with SMTP id 5a478bee46e88-2ae5e2877e1mr4014716eec.17.1766045443152;
-        Thu, 18 Dec 2025 00:10:43 -0800 (PST)
+        bh=QV9iwLUqvGNnwQ/I9B9ocDyfNDL63IncM7/Y+J+tBFE=;
+        b=VvclMkd9oaxdYHGkOBdcTIVzTqJyTngwpSJTUwosG+rd7XkfFIlZ7wQrhRg5fQbv90
+         OPb0YwxoIMqJgNnOiPiymrjfGpgqs71+3OMUPVGnncm/DZTWbld3F4Ophovm16J8C4Au
+         G76GcYc8vtfS37E4EKUyKY1PKwKdiP6KI5CvbmLYEyLlrAPPLSaytDtd5D2Ca5LM+VRv
+         8lRsnMCMqs4ZsGbLBmSabHiKSHz9gqwG0WWAtKsWnhV4iLE79CLoddiZg2iNCRvO0B2h
+         NqTuSd5IHg+JK5vXp+if1N4shXrUt4sONpZfaa/jkfqee6eXFVY9fXEDen4GCcf9oFMh
+         dIOw==
+X-Forwarded-Encrypted: i=1; AJvYcCXPQQItkEZ3h9NDShERZsBF2KV9iwUJkMd9CbNnfX0K7mTz835YiIRue1T+tSxv/J+8EVi3XSdW98LB@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy/cafD/tNq+uA2As14ExLeM46d+g2LZ0KmEBgwg98zLrIYVho/
+	62jZ0166K6wccf7g2+M6cB/3+n+IPMQ1FEtDEHgvKJ7fMVydW9R6sUopuiQobgk3UQthShddJN3
+	DlNAw1/hkRXXYObxydb3L4NAxF5mzkgYn+3NL0m2x8bspbu0VdKw8WkPHPHm98Rjt
+X-Gm-Gg: AY/fxX7gmKr28ckkVS3TQx5jFNI5GwYscMgsOR6waghQaF8JmbMDb5nGjZisF0C10g2
+	rEiGyTOACNR+HIDVmNEwsL4XJKMEY6Vpr6n+nkPveVC3l2RxWqGwQE3x1+CNlxiCcOMYNcFODbt
+	dCemD8YdMgS6G0SZz4y70qhCRLDr9zs7+l2JJxdA5/ilYtKyy/vVyKutOef9Ic8OyuMHIpfMcbj
+	2ewtCYJ3QuH4OtTWq86oK5O1sz1NMlttS0t+e3NmDh5gRqn4WrbmpcQseqHs+vPCni4KnH8UHhQ
+	IlWbEv/CC1pzBcYPBXyOO4JKT/jBhUa95uABLjAsfXOX8U2Itq5ccESyHG+9g69d3/Z5VpEp5dE
+	ieodrPA6k5gPWubedvcnxpR5cUCuE0vxhUb3jkepXfDOPJ71jgaiZXIHmOaorUlaAO2o=
+X-Received: by 2002:a05:7301:905:b0:2a9:9aed:bb78 with SMTP id 5a478bee46e88-2ac2f870696mr14035039eec.7.1766045444759;
+        Thu, 18 Dec 2025 00:10:44 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFh/eDqun5Dk+YDMbUnAnpbT8FADg5NH/ZyAZ/4PHmvghvGhT5S9NEAwXImAIKhHJzZvSD0Rg==
+X-Received: by 2002:a05:7301:905:b0:2a9:9aed:bb78 with SMTP id 5a478bee46e88-2ac2f870696mr14034994eec.7.1766045444085;
+        Thu, 18 Dec 2025 00:10:44 -0800 (PST)
 Received: from hu-yuanfang-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b04e58d423sm2564824eec.6.2025.12.18.00.10.42
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b04e58d423sm2564824eec.6.2025.12.18.00.10.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 Dec 2025 00:10:42 -0800 (PST)
+        Thu, 18 Dec 2025 00:10:43 -0800 (PST)
 From: Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>
-Date: Thu, 18 Dec 2025 00:09:43 -0800
-Subject: [PATCH v2 03/12] coresight-funnel: Defer probe when associated
- CPUs are offline
+Date: Thu, 18 Dec 2025 00:09:44 -0800
+Subject: [PATCH v2 04/12] coresight-replicator: Support CPU cluster
+ replicator initialization
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -104,7 +104,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251218-cpu_cluster_component_pm-v2-3-2335a6ae62a0@oss.qualcomm.com>
+Message-Id: <20251218-cpu_cluster_component_pm-v2-4-2335a6ae62a0@oss.qualcomm.com>
 References: <20251218-cpu_cluster_component_pm-v2-0-2335a6ae62a0@oss.qualcomm.com>
 In-Reply-To: <20251218-cpu_cluster_component_pm-v2-0-2335a6ae62a0@oss.qualcomm.com>
 To: Suzuki K Poulose <suzuki.poulose@arm.com>,
@@ -123,27 +123,27 @@ Cc: kernel@oss.qualcomm.com, coresight@lists.linaro.org,
         Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>,
         maulik.shah@oss.qualcomm.com
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1766045439; l=4434;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1766045439; l=9933;
  i=yuanfang.zhang@oss.qualcomm.com; s=20250814; h=from:subject:message-id;
- bh=WwWv1dVaZYPvnR6R1Ei7R4iTlI2WTlIv5BffkfyWev4=;
- b=dQbvHI/2v1JuiMMRpKrCwOIQtDDEOZwHfzA72YQzaiRyUwGSbgCOeeOfPl3bFQ0Jul2DlNY4K
- ht2uOJpJoqdDwGuOsdrhbjOl8X4rA+yM6MB/IqMkHYK5eN8/KFdZPt5
+ bh=zad/+HKvgqcPRsu64plFTKJAgpaj4lRh7Ypv4wC8mi4=;
+ b=OxEMcFDqCRURYR2alE9C+qytbvWhgSWbsRUFrDfHwwuMaF1z3EtogAhvMR2S9BtRQMmz0t2Hd
+ JGRF9VSAJPVAGqkrNLKWa2i3wDL6eSSDWffrwWGD1JSmqtVJS3Igms8
 X-Developer-Key: i=yuanfang.zhang@oss.qualcomm.com; a=ed25519;
  pk=9oS/FoPW5k0CsqSDDrPlnV+kVIOUaAe0O5pr4M1wHgY=
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjE4MDA2NiBTYWx0ZWRfX9cUeEvhU7fsp
- 1LEb3crMzpnkjiJA1ZdrF1Xy7aZetqyD4n2DB9voj4UGdHsyyXXbGLSAstFPhZdoEvld6BQ54W+
- mbSpkG1jP9/5m+lSQNxx9Vkm5kV1dTx+OzByACjcyhEZmXOLAq/1wT1V2p7tG3jjyAugW25bt2o
- qr6HP0ghv/KV8TBehDPH/4EtffNQbY+aqZB6vYzOEAOyfJiztTw0aIhxE/63TCCqIgzsmw7IM0E
- OAowr9P/WCdILEsx7veYKPndieNWYu+h0AdsHhknRxwXE5j234NClqJEilhxFEw7PZ1ZGT+BYeZ
- cTe+flAzQfRVbyszTb8P9VyD6ct4Zz/c0gXkjTTxnNcHoCthxlOITcBxQRQH9rjIflyqU2JEoYy
- 6/8HfHvM4QEzKmipe9JyB9BGKi3iXQ==
-X-Proofpoint-GUID: yemtom8fw8w5HcqBANgXA9CfnWESVuQ9
-X-Proofpoint-ORIG-GUID: yemtom8fw8w5HcqBANgXA9CfnWESVuQ9
-X-Authority-Analysis: v=2.4 cv=Zpjg6t7G c=1 sm=1 tr=0 ts=6943b705 cx=c_pps
- a=Qgeoaf8Lrialg5Z894R3/Q==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjE4MDA2NiBTYWx0ZWRfX3Cj5y32sSlBM
+ /JfGTrO3zg2PQ9ytD5x6C+YWHv43V3ikDe5KHTT4gNI+XpD1VpU37aEw0AFKs6HzBUPkIQqAqhw
+ siB/EuikOHrx+vQaNbgLcXDMT06ffde2UFP+xOqX0G8pzgox3zc5lOxrNaUN+IktHa0V6D55Kma
+ 97A4pm6LDQGHe2ZhJiICFk8q/lOY5DNutdoJkVftJoYS1o6kVdbQp3ZBZb+fu8FuRpZHs6DaMA6
+ L3wxxH/uJqX56E9PZPL2I4IyH7IDj3bjSauEdCp3fhtsc7+MzK5ZJXgqn+ExvrQvnBst9kA74lf
+ DuJkuw3niyb13hm5glM+ulLLqbZX/XsBdIht1UOqncK0gQVas/QdQ77/c7RfhPZiQxmZPxXlnlN
+ FRetFW32pEXTnvQp+OU415X9FxhZ9Q==
+X-Proofpoint-GUID: 0SmruD5fWTNg-tEU_XHezPfvomonOG6Z
+X-Proofpoint-ORIG-GUID: 0SmruD5fWTNg-tEU_XHezPfvomonOG6Z
+X-Authority-Analysis: v=2.4 cv=Zpjg6t7G c=1 sm=1 tr=0 ts=6943b707 cx=c_pps
+ a=Oh5Dbbf/trHjhBongsHeRQ==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
  a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=B8lwgTuz66jIMM7eRW8A:9
- a=QEXdDO2ut3YA:10 a=x9snwWr2DeNwDh03kgHS:22
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=iEGaxejzB682sgr3lzYA:9
+ a=QEXdDO2ut3YA:10 a=_Vgx9l1VpLgwpw_dHYaR:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
  definitions=2025-12-18_01,2025-12-17_02,2025-10-01_01
@@ -153,151 +153,329 @@ X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512180066
 
-Per-cluster funnels rely on the associated CPU cluster being online to
-securely access registers during initialization. If all CPUs in the
-cluster are offline during probe, these operations fail.
+Replicators associated with CPU clusters reside in the cluster's power
+domain. Unlike system-wide replicators, their registers are only
+accessible when the cluster is powered on. Standard runtime PM may not
+suffice to wake up a cluster from low-power states, making direct
+register access unreliable during initialization or operation.
 
-Support deferred initialization for these devices:
+Enhance the replicator driver to support these per-cluster devices:
 
-1. Track funnels that fail to probe due to offline CPUs in a global
-   list.
-2. Register a CPU hotplug notifier (funnel_online_cpu) to detect when
-   a relevant CPU comes online.
-3. Upon CPU online, retry the hardware initialization and registration
-   with the CoreSight framework.
+1. Safe Initialization:
+   - Identify per-cluster replicators via device properties.
+   - Use smp_call_function_single() to perform hardware initialization
+     (reset and claim tag clearing) on a CPU within the cluster.
+   - Refactor the probe flow to encapsulate device registration in
+     replicator_add_coresight_dev().
+
+2. Cross-CPU Enablement:
+   - Update replicator_enable() to use smp_call_function_single()
+     when enabling the hardware on a cluster-bound replicator.
+
+3. Claim/Disclaim Handling:
+   - Introduce replicator_claim/disclaim_device_unlocked() to manage
+     device access safely before full framework registration.
+
+This ensures that replicator operations remain robust even when the
+associated CPU cluster is in low-power states, while maintaining
+compatibility with existing system-level replicators.
 
 Signed-off-by: Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>
 ---
- drivers/hwtracing/coresight/coresight-funnel.c | 62 +++++++++++++++++++++++---
- 1 file changed, 57 insertions(+), 5 deletions(-)
+ drivers/hwtracing/coresight/coresight-replicator.c | 200 +++++++++++++++++----
+ 1 file changed, 167 insertions(+), 33 deletions(-)
 
-diff --git a/drivers/hwtracing/coresight/coresight-funnel.c b/drivers/hwtracing/coresight/coresight-funnel.c
-index a1264df84ab4c625c63dfbb9b7710b983a10c6b4..5d114ce1109f4f9a8b108110bdae258f216881d8 100644
---- a/drivers/hwtracing/coresight/coresight-funnel.c
-+++ b/drivers/hwtracing/coresight/coresight-funnel.c
-@@ -32,6 +32,9 @@
- #define FUNNEL_ENSx_MASK	0xff
- 
- DEFINE_CORESIGHT_DEVLIST(funnel_devs, "funnel");
-+static LIST_HEAD(funnel_delay_probe);
-+static enum cpuhp_state hp_online;
-+static DEFINE_SPINLOCK(delay_lock);
- 
- /**
-  * struct funnel_drvdata - specifics associated to a funnel component
-@@ -42,6 +45,8 @@ DEFINE_CORESIGHT_DEVLIST(funnel_devs, "funnel");
-  * @priority:	port selection order.
+diff --git a/drivers/hwtracing/coresight/coresight-replicator.c b/drivers/hwtracing/coresight/coresight-replicator.c
+index e6472658235dc479cec91ac18f3737f76f8c74f0..c11da452559c73af6709b39d03b646cb4779736f 100644
+--- a/drivers/hwtracing/coresight/coresight-replicator.c
++++ b/drivers/hwtracing/coresight/coresight-replicator.c
+@@ -13,6 +13,7 @@
+ #include <linux/io.h>
+ #include <linux/err.h>
+ #include <linux/slab.h>
++#include <linux/pm_domain.h>
+ #include <linux/pm_runtime.h>
+ #include <linux/property.h>
+ #include <linux/clk.h>
+@@ -35,6 +36,7 @@ DEFINE_CORESIGHT_DEVLIST(replicator_devs, "replicator");
+  * @csdev:	component vitals needed by the framework
   * @spinlock:	serialize enable/disable operations.
-  * @supported_cpus:	Represent the CPUs related to this funnel.
-+ * @dev:	pointer to the device associated with this funnel.
-+ * @link:	list node for adding this funnel to the delayed probe list.
+  * @check_idfilter_val: check if the context is lost upon clock removal.
++ * @supported_cpus:	Represent the CPUs related to this funnel.
   */
- struct funnel_drvdata {
+ struct replicator_drvdata {
  	void __iomem		*base;
-@@ -51,6 +56,8 @@ struct funnel_drvdata {
- 	unsigned long		priority;
+@@ -43,18 +45,61 @@ struct replicator_drvdata {
+ 	struct coresight_device	*csdev;
  	raw_spinlock_t		spinlock;
- 	struct cpumask		*supported_cpus;
-+	struct device		*dev;
-+	struct list_head	link;
+ 	bool			check_idfilter_val;
++	struct cpumask		*supported_cpus;
  };
  
- struct funnel_smp_arg {
-@@ -371,7 +378,7 @@ static int funnel_probe(struct device *dev, struct resource *res)
- 		drvdata->supported_cpus = funnel_get_supported_cpus(dev);
- 		if (!drvdata->supported_cpus)
- 			return -EINVAL;
--
-+		drvdata->dev = dev;
- 		cpus_read_lock();
- 		for_each_cpu(cpu, drvdata->supported_cpus) {
- 			ret = smp_call_function_single(cpu,
-@@ -379,10 +386,15 @@ static int funnel_probe(struct device *dev, struct resource *res)
- 			if (!ret)
- 				break;
- 		}
--		cpus_read_unlock();
- 
--		if (ret)
-+		if (ret) {
-+			scoped_guard(spinlock,  &delay_lock)
-+				list_add(&drvdata->link, &funnel_delay_probe);
-+			cpus_read_unlock();
- 			return 0;
-+		}
+-static void dynamic_replicator_reset(struct replicator_drvdata *drvdata)
++struct replicator_smp_arg {
++	struct replicator_drvdata *drvdata;
++	int outport;
++	int rc;
++};
 +
-+		cpus_read_unlock();
- 	} else if (res) {
- 		funnel_clear_self_claim_tag(drvdata);
- 	}
-@@ -394,9 +406,12 @@ static int funnel_remove(struct device *dev)
- {
- 	struct funnel_drvdata *drvdata = dev_get_drvdata(dev);
- 
--	if (drvdata->csdev)
-+	if (drvdata->csdev) {
- 		coresight_unregister(drvdata->csdev);
--
-+	} else {
-+		scoped_guard(spinlock,  &delay_lock)
-+			list_del(&drvdata->link);
-+	}
- 	return 0;
- }
- 
-@@ -533,8 +548,41 @@ static struct amba_driver dynamic_funnel_driver = {
- 	.id_table	= dynamic_funnel_ids,
- };
- 
-+static int funnel_online_cpu(unsigned int cpu)
++static void replicator_clear_self_claim_tag(struct replicator_drvdata *drvdata)
 +{
-+	struct funnel_drvdata *drvdata, *tmp;
-+	int ret;
++	struct csdev_access access = CSDEV_ACCESS_IOMEM(drvdata->base);
 +
-+	list_for_each_entry_safe(drvdata, tmp, &funnel_delay_probe, link) {
-+		if (cpumask_test_cpu(cpu, drvdata->supported_cpus)) {
-+			scoped_guard(spinlock,  &delay_lock)
-+				list_del(&drvdata->link);
++	coresight_clear_self_claim_tag(&access);
++}
 +
-+			ret = pm_runtime_resume_and_get(drvdata->dev);
-+			if (ret < 0)
-+				return 0;
++static int replicator_claim_device_unlocked(struct replicator_drvdata *drvdata)
++{
++	struct coresight_device *csdev = drvdata->csdev;
++	struct csdev_access access = CSDEV_ACCESS_IOMEM(drvdata->base);
++	u32 claim_tag;
 +
-+			funnel_clear_self_claim_tag(drvdata);
-+			funnel_add_coresight_dev(drvdata->dev);
-+			pm_runtime_put(drvdata->dev);
-+		}
++	if (csdev)
++		return coresight_claim_device_unlocked(csdev);
++
++	writel_relaxed(CORESIGHT_CLAIM_SELF_HOSTED, drvdata->base + CORESIGHT_CLAIMSET);
++
++	claim_tag = readl_relaxed(drvdata->base + CORESIGHT_CLAIMCLR);
++	if (claim_tag != CORESIGHT_CLAIM_SELF_HOSTED) {
++		coresight_clear_self_claim_tag_unlocked(&access);
++		return -EBUSY;
 +	}
++
 +	return 0;
 +}
 +
- static int __init funnel_init(void)
++static void replicator_disclaim_device_unlocked(struct replicator_drvdata *drvdata)
  {
-+	int ret;
+ 	struct coresight_device *csdev = drvdata->csdev;
++	struct csdev_access access = CSDEV_ACCESS_IOMEM(drvdata->base);
 +
-+	ret = cpuhp_setup_state_nocalls(CPUHP_AP_ONLINE_DYN,
-+					"arm/coresight-funnel:online",
-+					funnel_online_cpu, NULL);
++	if (csdev)
++		return coresight_disclaim_device_unlocked(csdev);
+ 
++	coresight_clear_self_claim_tag_unlocked(&access);
++}
 +
-+	if (ret > 0)
-+		hp_online = ret;
-+	else
-+		return ret;
-+
- 	return coresight_init_driver("funnel", &dynamic_funnel_driver, &funnel_driver,
- 				     THIS_MODULE);
- }
-@@ -542,6 +590,10 @@ static int __init funnel_init(void)
- static void __exit funnel_exit(void)
- {
- 	coresight_remove_driver(&dynamic_funnel_driver, &funnel_driver);
-+	if (hp_online) {
-+		cpuhp_remove_state_nocalls(hp_online);
-+		hp_online = 0;
-+	}
++static void dynamic_replicator_reset(struct replicator_drvdata *drvdata)
++{
+ 	CS_UNLOCK(drvdata->base);
+ 
+-	if (!coresight_claim_device_unlocked(csdev)) {
++	if (!replicator_claim_device_unlocked(drvdata)) {
+ 		writel_relaxed(0xff, drvdata->base + REPLICATOR_IDFILTER0);
+ 		writel_relaxed(0xff, drvdata->base + REPLICATOR_IDFILTER1);
+-		coresight_disclaim_device_unlocked(csdev);
++		replicator_disclaim_device_unlocked(drvdata);
+ 	}
+ 
+ 	CS_LOCK(drvdata->base);
+@@ -116,6 +161,34 @@ static int dynamic_replicator_enable(struct replicator_drvdata *drvdata,
+ 	return rc;
  }
  
- module_init(funnel_init);
++static void replicator_enable_hw_smp_call(void *info)
++{
++	struct replicator_smp_arg *arg = info;
++
++	arg->rc = dynamic_replicator_enable(arg->drvdata, 0, arg->outport);
++}
++
++static int replicator_enable_hw(struct replicator_drvdata *drvdata,
++				int inport, int outport)
++{
++	int cpu, ret;
++	struct replicator_smp_arg arg = { 0 };
++
++	if (!drvdata->supported_cpus)
++		return dynamic_replicator_enable(drvdata, 0, outport);
++
++	arg.drvdata = drvdata;
++	arg.outport = outport;
++
++	for_each_cpu(cpu, drvdata->supported_cpus) {
++		ret = smp_call_function_single(cpu, replicator_enable_hw_smp_call, &arg, 1);
++		if (!ret)
++			return arg.rc;
++	}
++
++	return ret;
++}
++
+ static int replicator_enable(struct coresight_device *csdev,
+ 			     struct coresight_connection *in,
+ 			     struct coresight_connection *out)
+@@ -126,19 +199,24 @@ static int replicator_enable(struct coresight_device *csdev,
+ 	bool first_enable = false;
+ 
+ 	raw_spin_lock_irqsave(&drvdata->spinlock, flags);
+-	if (out->src_refcnt == 0) {
+-		if (drvdata->base)
+-			rc = dynamic_replicator_enable(drvdata, in->dest_port,
+-						       out->src_port);
+-		if (!rc)
+-			first_enable = true;
+-	}
+-	if (!rc)
++
++	if (out->src_refcnt == 0)
++		first_enable = true;
++	else
+ 		out->src_refcnt++;
+ 	raw_spin_unlock_irqrestore(&drvdata->spinlock, flags);
+ 
+-	if (first_enable)
+-		dev_dbg(&csdev->dev, "REPLICATOR enabled\n");
++	if (first_enable) {
++		if (drvdata->base)
++			rc = replicator_enable_hw(drvdata, in->dest_port,
++						  out->src_port);
++		if (!rc) {
++			out->src_refcnt++;
++			dev_dbg(&csdev->dev, "REPLICATOR enabled\n");
++			return rc;
++		}
++	}
++
+ 	return rc;
+ }
+ 
+@@ -217,23 +295,69 @@ static const struct attribute_group *replicator_groups[] = {
+ 	NULL,
+ };
+ 
++static int replicator_add_coresight_dev(struct device *dev)
++{
++	struct coresight_desc desc = { 0 };
++	struct replicator_drvdata *drvdata = dev_get_drvdata(dev);
++
++	if (drvdata->base) {
++		desc.groups = replicator_groups;
++		desc.access = CSDEV_ACCESS_IOMEM(drvdata->base);
++	}
++
++	desc.name = coresight_alloc_device_name(&replicator_devs, dev);
++	if (!desc.name)
++		return -ENOMEM;
++
++	desc.type = CORESIGHT_DEV_TYPE_LINK;
++	desc.subtype.link_subtype = CORESIGHT_DEV_SUBTYPE_LINK_SPLIT;
++	desc.ops = &replicator_cs_ops;
++	desc.pdata = dev->platform_data;
++	desc.dev = dev;
++
++	drvdata->csdev = coresight_register(&desc);
++	if (IS_ERR(drvdata->csdev))
++		return PTR_ERR(drvdata->csdev);
++
++	return 0;
++}
++
++static void replicator_init_hw(struct replicator_drvdata *drvdata)
++{
++	replicator_clear_self_claim_tag(drvdata);
++	replicator_reset(drvdata);
++}
++
++static void replicator_init_on_cpu(void *info)
++{
++	struct replicator_drvdata *drvdata = info;
++
++	replicator_init_hw(drvdata);
++}
++
++static struct cpumask *replicator_get_supported_cpus(struct device *dev)
++{
++	struct generic_pm_domain *pd;
++
++	pd = pd_to_genpd(dev->pm_domain);
++	if (pd)
++		return pd->cpus;
++
++	return NULL;
++}
++
+ static int replicator_probe(struct device *dev, struct resource *res)
+ {
+ 	struct coresight_platform_data *pdata = NULL;
+ 	struct replicator_drvdata *drvdata;
+-	struct coresight_desc desc = { 0 };
+ 	void __iomem *base;
+-	int ret;
++	int cpu, ret;
+ 
+ 	if (is_of_node(dev_fwnode(dev)) &&
+ 	    of_device_is_compatible(dev->of_node, "arm,coresight-replicator"))
+ 		dev_warn_once(dev,
+ 			      "Uses OBSOLETE CoreSight replicator binding\n");
+ 
+-	desc.name = coresight_alloc_device_name(&replicator_devs, dev);
+-	if (!desc.name)
+-		return -ENOMEM;
+-
+ 	drvdata = devm_kzalloc(dev, sizeof(*drvdata), GFP_KERNEL);
+ 	if (!drvdata)
+ 		return -ENOMEM;
+@@ -251,9 +375,6 @@ static int replicator_probe(struct device *dev, struct resource *res)
+ 		if (IS_ERR(base))
+ 			return PTR_ERR(base);
+ 		drvdata->base = base;
+-		desc.groups = replicator_groups;
+-		desc.access = CSDEV_ACCESS_IOMEM(base);
+-		coresight_clear_self_claim_tag(&desc.access);
+ 	}
+ 
+ 	if (fwnode_property_present(dev_fwnode(dev),
+@@ -268,25 +389,38 @@ static int replicator_probe(struct device *dev, struct resource *res)
+ 	dev->platform_data = pdata;
+ 
+ 	raw_spin_lock_init(&drvdata->spinlock);
+-	desc.type = CORESIGHT_DEV_TYPE_LINK;
+-	desc.subtype.link_subtype = CORESIGHT_DEV_SUBTYPE_LINK_SPLIT;
+-	desc.ops = &replicator_cs_ops;
+-	desc.pdata = dev->platform_data;
+-	desc.dev = dev;
+ 
+-	drvdata->csdev = coresight_register(&desc);
+-	if (IS_ERR(drvdata->csdev))
+-		return PTR_ERR(drvdata->csdev);
++	if (fwnode_property_present(dev_fwnode(dev), "qcom,cpu-bound-components")) {
++		drvdata->supported_cpus = replicator_get_supported_cpus(dev);
++		if (!drvdata->supported_cpus)
++			return -EINVAL;
++
++		cpus_read_lock();
++		for_each_cpu(cpu, drvdata->supported_cpus) {
++			ret = smp_call_function_single(cpu,
++						       replicator_init_on_cpu, drvdata, 1);
++			if (!ret)
++				break;
++		}
++		cpus_read_unlock();
+ 
+-	replicator_reset(drvdata);
+-	return 0;
++		if (ret)
++			return 0;
++	} else if (res) {
++		replicator_init_hw(drvdata);
++	}
++
++	ret = replicator_add_coresight_dev(dev);
++
++	return ret;
+ }
+ 
+ static int replicator_remove(struct device *dev)
+ {
+ 	struct replicator_drvdata *drvdata = dev_get_drvdata(dev);
+ 
+-	coresight_unregister(drvdata->csdev);
++	if (drvdata->csdev)
++		coresight_unregister(drvdata->csdev);
+ 	return 0;
+ }
+ 
 
 -- 
 2.34.1
