@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-247997-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247998-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id C807FCCD650
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 20:31:43 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id E849ACCD65F
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 20:32:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 3D9F63050F79
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 19:31:43 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E5C24300AC6D
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 19:32:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE7F9337B8D;
-	Thu, 18 Dec 2025 19:31:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41E7A306B3B;
+	Thu, 18 Dec 2025 19:32:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J3SJEGC7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DoSKR5QO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 112DC33032E;
-	Thu, 18 Dec 2025 19:31:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1797F2E88B0;
+	Thu, 18 Dec 2025 19:32:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766086300; cv=none; b=SaVHIPDDQ7eskbIjV+KneVtdQsbXL8kgrT3Sf6Amkk+ODOpHNFS+rqtZhr5o/yZ85epFb8iiUF0ENs6CQgq+7PwLvtR13EkMv381ofI7pm8pJmiQYjQvexjikd+zZb5xgBV2C0FTCBI1+wj+1VQ8fWbpXHgrQVHWEUrznWeRzus=
+	t=1766086364; cv=none; b=uh68/dmvhkPPGYDCqzq2G45wB7xn2QWjvxAuGb+zflWYd126YsYtudcrZCyV03IToIryekRlUyR3XnouMVGr3HEbj2aJGMBF+Jsp1usXSnCJO8XYKuYMptxoUnZGaX5DE0hke0lrgrl6Gh6K1rzJ3RMHrHYF/yp/d4VuOWmHVZU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766086300; c=relaxed/simple;
-	bh=QQuW2NMPKvO1lAvnMHe2NLJWr5l1I0xjIzysFFQlGNU=;
+	s=arc-20240116; t=1766086364; c=relaxed/simple;
+	bh=QTIvfgfNH8fNbeFqqyGQZweOXbmsPpkBY0B7Od463HA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YQ76/8QbBzJW+U07psRAdch5Cosn0lH+lWnMdkqS5QsLWRDSBgeUYDuOp/7TnWFZnScyAj6elGyhX3JWu9Z3D3ucenRyD5XbvCGyARPJNxeU0crWUlCTlaaCJTr/u5u+sJNinwgEN2Z22XTgStWZNVcd2L09s67otKy6IlrEdrg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J3SJEGC7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76A0DC116D0;
-	Thu, 18 Dec 2025 19:31:34 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Fzz4UUgN5V31HrLSDVrlFSNReJWJSPfUf1BuAjjYuqWQYPs6q1Z2/ZmlO6Tgxbpa1Lz8MiUK0KbHpn/Cnif9OrS9E5HwKHPo+JkxlMWl/s5xlFQvDoadczbh2Ey8474UAJcvBFgujGmZ10kgylpHOGnRfcgxAPNWx6s8RPnWq1Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DoSKR5QO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66EE9C4CEFB;
+	Thu, 18 Dec 2025 19:32:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766086299;
-	bh=QQuW2NMPKvO1lAvnMHe2NLJWr5l1I0xjIzysFFQlGNU=;
+	s=k20201202; t=1766086363;
+	bh=QTIvfgfNH8fNbeFqqyGQZweOXbmsPpkBY0B7Od463HA=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=J3SJEGC7ccXV5DO4hAeyFNUD/AK/bOxOyoN82Umg48Nubb4mi54diBuiMHzLs7Nkm
-	 gqxQo92EkLrP/KNVK6nHK3a7hjDXDk0JOAxm2RwZaR5EAkNXVUufGV2acXDcb4we0v
-	 4LOAVU2YZK438vSz8ZGxoCY/2Xr0kIXJpePzQ/CglREcrrQZy9YaOAKW33WhGJJdBq
-	 2LHzegIoeZHtpjz+whqwV+d5Q3WRNCUxesMrSfix6mnwvV5/1/JWAaGYwswMUpUUuU
-	 fiUdeIulenx7h/MvIR6yxkSQrQcBhz3B5yLj4uiILawogEO07H7nFQknnYgyJrJ3c4
-	 MYxBUgFjclniA==
-Message-ID: <d215c5dd-b402-4cd2-b4c6-48358b5b2491@kernel.org>
-Date: Thu, 18 Dec 2025 20:31:31 +0100
+	b=DoSKR5QOawIWhGkEGLUXeyzKVnlzro8Mo2TckhJoQ9lfzH5cFIcj5cLKDBGdpFpYA
+	 P+fKsgU9Z930bLlOYjQsz6bV7h1y70cRnQWgZlRJGRWtC50wpu05r8crti+SrPITyL
+	 YObHL1MYdW5/0n/1MSlmu6l+Jwuc3fpAEkNaRmePcHANW3z7x+Cq1Vitbrnzhjsq/t
+	 QgehTfJu0AWtJH69B64RDTy8e1RtfLY1qyJkGesbrDdy5ICuXKQEUjxbNY7Is6QN35
+	 7A3oJuY8ui4G2Rk6uE3ExRv2DV6v2Iy9u3bOAN0mYFhX/RyfWZhPb0t4mpAeS8tQ4T
+	 yCGjMZ9MLf6wg==
+Message-ID: <4ca60f87-39dd-44d1-bce5-c6071f226210@kernel.org>
+Date: Thu, 18 Dec 2025 20:32:37 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,11 +50,10 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v6 1/2] dt-bindings: arm: aspeed: add ASRock Rack ALTRAD8
  board
-To: Rebecca Cran <rebecca@bsdio.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
- Andrew Jeffery <andrew@codeconstruct.com.au>,
- Tan Siewert <tan.siewert@hetzner.com>, devicetree@vger.kernel.org,
+To: Tan Siewert <tan.siewert@hetzner.com>, Rebecca Cran <rebecca@bsdio.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+ Andrew Jeffery <andrew@codeconstruct.com.au>, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
  linux-kernel@vger.kernel.org
 Cc: Billy Tsai <billy_tsai@aspeedtech.com>,
@@ -62,7 +61,7 @@ Cc: Billy Tsai <billy_tsai@aspeedtech.com>,
 References: <20251218161816.38155-1-rebecca@bsdio.com>
  <20251218161816.38155-2-rebecca@bsdio.com>
  <5aa36c56-798a-40cc-b0b8-be3f7c92136f@kernel.org>
- <4eff8506-8049-46e9-997e-a41edff32bbc@bsdio.com>
+ <b10a233e-02c3-4b02-8f11-098f6fb8197c@hetzner.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,12 +107,12 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <4eff8506-8049-46e9-997e-a41edff32bbc@bsdio.com>
+In-Reply-To: <b10a233e-02c3-4b02-8f11-098f6fb8197c@hetzner.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 18/12/2025 19:34, Rebecca Cran wrote:
-> On 12/18/25 09:21, Krzysztof Kozlowski wrote:
+On 18/12/2025 17:44, Tan Siewert wrote:
+> On 18.12.25 17:21, Krzysztof Kozlowski wrote:
 >> On 18/12/2025 17:18, Rebecca Cran wrote:
 >>> Document ASRock Rack ALTRAD8 (ALTRAD8UD-1L2T and ALTRAD8UD2-1L2Q)
 >>> compatibles.
@@ -121,21 +120,16 @@ On 18/12/2025 19:34, Rebecca Cran wrote:
 >>> Signed-off-by: Rebecca Cran <rebecca@bsdio.com>
 >>> Acked-by: Conor Dooley <conor.dooley@microchip.com>
 >>> Tested-by: Tan Siewert <tan.siewert@hetzner.com>
+>>
 >> How was the binding tested?
 > 
-> I ran "make ARCH=arm CHECK_DTBS=y aspeed/aspeed-bmc-asrock-altrad8.dtb"
-> to check for errors
+> My bad for sending the wrong trailing header in v4. Tested-by should've 
+> been only on the dts instead of the dt-bindings+dts. Either way, `make 
+> dt_binding_check` was what I did to check if there are any errors 
+> produced for `asrock,altrad8-bmc`.
 
-That's a build check for DTS, not binding. I compiled this code - so it
-is also Tested-by?
-
-> 
-> and have used the dts file in an ASRock Rack ALTRAD8UD-1L2T system with
-> Linux 6.12.61 running OpenBMC.
-
-This does not test anything from the binding.
-
-Please don't add fake tests... Building instructions are not testing.
+Yeah, that's not testing. It's a build command and running build process
+is not a test. Otherwise why there is no Tested-by for Rob...
 
 Best regards,
 Krzysztof
