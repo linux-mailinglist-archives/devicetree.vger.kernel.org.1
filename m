@@ -1,75 +1,77 @@
-Return-Path: <devicetree+bounces-247981-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247982-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id B64B8CCD536
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 20:06:45 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31C6ECCD556
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 20:08:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id B5FC7300FA1E
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 19:06:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A3C093063C04
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 19:06:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF9F632ED51;
-	Thu, 18 Dec 2025 19:06:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1C062DEA9B;
+	Thu, 18 Dec 2025 19:06:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="aCYegLYt"
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="aeHzHM0X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72D4A2EACEE
-	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 19:06:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45C94312825
+	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 19:06:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766084803; cv=none; b=WyFl3fFPShyLOs7P8/eSxO99mfVffXBs4FLG5VEpE2L3bUCGp/C/fbIje7ezrbUk2hecRBplmBcdrmKXAS65GmQb82NlStu4rUdrh4454cEq2plHJnVl6VCsy7qVWIyMkVuWqKPtltCRke92/BALoE2XGjhsgutNt2TMIo1DuZ4=
+	t=1766084805; cv=none; b=L4+5XztH9Q4leChlfAHTkU+iwXJXbNETHY5EZVi2SnmZEBhQbvCxUZA3TVXElshYfKOyR6/IlLd34nJZQkocmQg2EtQCO82rKCsVaI3AtoplV8PoCCx4m/huBeLPyqA4kH1dvJ/UHOgUEnaOhgViw5IQdjWScqRRKc6Ad4Cus8Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766084803; c=relaxed/simple;
-	bh=WEloQA/XIFfWLUJFGSkNRutlWTf+KyY3iz9RK9E79CE=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version; b=NaY3wvS+ttmUT6AYaTX/RColzDYFE9mivdcdgtWlMoIApapmQlzzSUd+bBbo/8peswzPbBvfEFQymX77/givgVs0mDaFrTea8zYI0FY0unkgyxC53qIkzsSX1PAIGVteUHdi0ISR4wuCKCaJ7sAwuUWb81bqHDaRVZxaVHBg6mQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=aCYegLYt; arc=none smtp.client-ip=209.85.208.45
+	s=arc-20240116; t=1766084805; c=relaxed/simple;
+	bh=6hWxr3YWtKXnIObjWNRmQ/1q6+pnF+M8PoYECdphDaw=;
+	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=G4tpes0h6ujX+O6zqkk9wL4n0jkDpj9wvHESgHbh8+SAa6KWtnlk+I2LGFhZXatu5xFvLY1mQfrzDg2urIEorsut9TLtdTy0SgaFkxwFiTYrLeoiBOyNomBocXEJ6m9Jz46XpXVjBQHjvTLTadvXZvRubhyZPShq3s0hbYvQG+w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=aeHzHM0X; arc=none smtp.client-ip=209.85.218.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-64b8123c333so782041a12.3
-        for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 11:06:41 -0800 (PST)
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-b7633027cb2so166566966b.1
+        for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 11:06:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1766084800; x=1766689600; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=KZxHqu3SzujmiotRlzxJm3UYnzflG11IekQhIfmml9I=;
-        b=aCYegLYtCmwXL40Pw0dEPugE96PaXeazjb2KtaeX1BAhH8nOkAZTXzhMQl9JAx2aAw
-         ivZTG8wqS7FPxoi0ncYqtEhkkAqU6HBJGCdhbNUPcsMNcSMNDed3/hPlfuSmeLyw6pSQ
-         4i7D+FUjpcCBMEeDe7ymVHXy+3Fdoqo6zLlIKWd2Xr4Uemqy08/MQTYqGBUke1IjDiYR
-         jeGIdVEIGdudU/fooatKCZGdzH7Zbyff8NSEjHCsTKiJI/KY3HAVAdz5TH6OveJVin9Q
-         yeej9yfpuP9FvtBk0kpbBxYXRMdBe5C7RvU9vZzfwVzPacBspYfzWqTu6vS8sBtybWLA
-         JqBQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766084800; x=1766689600;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=suse.com; s=google; t=1766084801; x=1766689601; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=KZxHqu3SzujmiotRlzxJm3UYnzflG11IekQhIfmml9I=;
-        b=MVTu+wBscInjMg1EGKnQxt4deKK2WUpzpaO6Ed0G0oxgx7Rrn/cppgc20XmtSYoFCC
-         j0hTVhG2pgQaAf8TNpjH4Aijd03rxuWYSH4VEpFjYEhGfazkvP1PAJYj76LNuiJhkaUG
-         Pp0tRh5sxVXYrlt12ai3DwWx/No1KEvFZ6j8BoA61fTVXvRMJShJl/w7fPXckzwokz0Z
-         4dn4zlrYgJ72glaQAJ4rDo/ib0BlX6H/KkWe09ysAyOh8LOOzN/5unVo2aJEea5ha/7G
-         RAvxodnxQ1HWy3J6HJoGRQlyQI5xZ+zzweKu5E0Vu9VzVsb9gFP4haXfp1cmmZA0JjQ5
-         LwDA==
-X-Forwarded-Encrypted: i=1; AJvYcCUOrYOtTUNni6+6G417crMgXweWO3UMIZ+hhW8Unv63cEAu+VqlTHZdrSyolKIekqhO49mEee7oc7bw@vger.kernel.org
-X-Gm-Message-State: AOJu0YyKg8pUtqovvjoAsosT1HBRXBip/InnSwzvHKZ+hGH5oyqVZRKP
-	kG37u4QyX5MKV/pEGvzBfiu+DgaSYgnjQfVk9r8nekwS7N6UvRzlc5oY3fUpanBUUro=
-X-Gm-Gg: AY/fxX7DEBYDKsVnOIV4xrwccqYs964s7eLYWfm5WpHooJODjHN9y61GDJo6Oq/MrGH
-	qYke9bDiowYVpavmTD3UA4ReikBPJPM2tNmXuUmp6Xxr2ChlenpktjLeBjQnhO+H7vdsaO/xBwI
-	urceUclZ/fIqgN4mGcCy8p5X+Uac96eUp2EmNVrFEujqPn3MUeuIOfVnPW0DPAVLd25raIAI3Sk
-	FbNTwPJ0qh6PJt7hiCQ4lQf6zhUUk0UV44ijGPBYzCGzyoQGRcGMkrEZHLcdm7GNWslMCpEQos4
-	YqgN0xsZ+jdt7BM1LGsNberI4LhEGCCOqaZqy95Tyu82Q3nlGi+resaoElXf4MA6EZzJV8yBQHp
-	2SZ0xxXZwaZlLDKZ3QM82SG0q4545weKvBucLIAAcSpbRxbo9xLXeJE5QNpg7twnKmBQFQ4BeiE
-	M0MALEavpMlztuiHtmHsdv7p7OKIUY/Ipgqg4UZV7fVcVrJVDG3lgJNg==
-X-Google-Smtp-Source: AGHT+IHWG4LHoKaiiruOEBctdxAHnsbItZY+jg4X40WE9oC/dX/aDtGLSsf4UY9Cm0B4WQZVSPvMPw==
-X-Received: by 2002:a05:6402:40c9:b0:649:8be7:eda with SMTP id 4fb4d7f45d1cf-64b8e94d0demr435503a12.8.1766084799432;
-        Thu, 18 Dec 2025 11:06:39 -0800 (PST)
+        bh=chaucy1e8lWQfwVdexQ24C/rG8+K3TB71NB1amH2+HE=;
+        b=aeHzHM0XRImPe8X324y5qMGjSP2yYIlmfm1Vu0MHer3vUXQ8U3rTIjI9vi/0DqueOv
+         e4l6XHy9lqevEIM8ZmCzaJTvZdGbQiBs35uK973qboJdCm4gzBRIv+nOJBxgLst6FxxB
+         yTdRm1ceETlaa2bUWGeWIVAMVWTVMUYcW0ScIhmc2lBvyg7j3Rv1emoZdSwMXv/pVp+I
+         S3DhoUSjPK/9zFy4qwz76kVwQZJPSZPE8JVI8MR5sC2LG4hfntAbbAG8QdglEMrti+M6
+         RQ9gMu2e+fu/IweNoxmrv9hpGKyVSepabkHJFa6fotq4dhtN+7N+SwbRB4NBotog2BKH
+         A1wA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1766084801; x=1766689601;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=chaucy1e8lWQfwVdexQ24C/rG8+K3TB71NB1amH2+HE=;
+        b=OCZ+PqYb8qa4PkidVD0Xo3AuOwdHqPvvLNoY6VJQXlHt/AlnwTQ11iXVgqefigNMWY
+         GNRbKq6nTgbM7Nu6BjaV43OvJiOlPe30DhRiHc+cAzEeN9y3OomTZK5AguY3R3H9HVTA
+         UXuMnXsLtxNOqWCmlMiHEnMHn9YwmMVaW9Y3flaMW/7LeHAegFhIY37oHO0KSmeyIZM/
+         zX1KPM6lvKHFI2NunO6SZWSPufJSOSqfGVw6Jr3JfZX3FiDM/1efv7ua5fWD9E6JvskS
+         0lE+rWmuKEdr+8OK9t/vrqKxED5gtYl96hAdfE9DTVSe3EqhMmgJnesPfNzlre3MM9S/
+         x0SA==
+X-Forwarded-Encrypted: i=1; AJvYcCWA9bQmpovlFlXiDKmC3r3LwVqf9K8EVBik4xu8PVbSTWUjpmYsjNpPJP0J5FGm7TgD4UcZCI8/LV0W@vger.kernel.org
+X-Gm-Message-State: AOJu0YzgIe0xQLQ1EY5+1/oO+D7wCRtZYSPk+RtD7p2w0CLBnqtVRYHR
+	ebqbE9phy/Fa42NZ5Plh36xEz+puMrtFvIex3jTYSpbWVgE3JoRidKyzHZ/HLdWaqw0=
+X-Gm-Gg: AY/fxX5KxijVrEJpn8wY1u4/osCEOfmjibN1KF1hghKsSsemHJeKXDqVfDFlxcfENWg
+	QjDeNRwhrgW30elGlLszJv+DUSoh8qBs+hNr8GkBtBNur/qH8Af9jTfEzaaS/BFY5KhybEcEmeb
+	KoiM/LNlwzKEpQiCEp8mc20xjd/Dz9XNd02LvkSPCYlLHAhD5rgpKvZDIVThwZh/lKPuHG2FMM7
+	foHWRv6KBQR0rketVimYHq1K7j6lGNnmki+I4CfJLf+j1dy/j2IroOmpRBILVl101dz4yaWLiNT
+	ezLBH4Pi8T2wWQq3MtfWzaK8aMY7AxZ7VP4SaFlirljoZcowgD0u4R7aO4zD1GUfA4A15tey1yV
+	pAe8lpI5AbFqW1vZVULR1Kg9Hfpq1GnTth1KM2+UchaTIwrUNHrs/cpU7BkiPIgQ788V/5lL+pn
+	6Mu5JBQ/cWx9vuZ9qusJJgyOd2+qpLVA9cvQvZFTlCYMTBL+xTRhlmG+LBcXQHwSg1
+X-Google-Smtp-Source: AGHT+IGJ7OubBdUcx7Liyf+zesKkie0GYHAOmU4YtaOMc800CNMruH3bkATR+xrHJMNRK5MvnKCc8Q==
+X-Received: by 2002:a17:907:72c8:b0:b73:6d56:7459 with SMTP id a640c23a62f3a-b803717a112mr37909566b.38.1766084800505;
+        Thu, 18 Dec 2025 11:06:40 -0800 (PST)
 Received: from localhost (host-79-37-15-246.retail.telecomitalia.it. [79.37.15.246])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-64b91056731sm173599a12.8.2025.12.18.11.06.38
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8037a5bdf3sm18392666b.12.2025.12.18.11.06.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 Dec 2025 11:06:38 -0800 (PST)
+        Thu, 18 Dec 2025 11:06:40 -0800 (PST)
 From: Andrea della Porta <andrea.porta@suse.com>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -87,10 +89,12 @@ To: Rob Herring <robh@kernel.org>,
 	svarbanov@suse.de,
 	mbrugger@suse.com,
 	Phil Elwell <phil@raspberrypi.com>
-Subject: [PATCH 0/4] Fix RP1 DeviceTree hierarchy and drop overlay support
-Date: Thu, 18 Dec 2025 20:09:05 +0100
-Message-ID: <cover.1766077285.git.andrea.porta@suse.com>
+Subject: [PATCH 1/4] dt-bindings: misc: pci1de4,1: add required reg property for endpoint
+Date: Thu, 18 Dec 2025 20:09:06 +0100
+Message-ID: <b58bfcd957b2270fcf932d463f2db534b2ae1a6d.1766077285.git.andrea.porta@suse.com>
 X-Mailer: git-send-email 2.51.0
+In-Reply-To: <cover.1766077285.git.andrea.porta@suse.com>
+References: <cover.1766077285.git.andrea.porta@suse.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -99,84 +103,54 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The current RP1 implementation is plagued by several issues, as follows:
+The PCI subsystem links an endpoint Device Tree node to its corresponding
+pci_dev structure only if the Bus/Device/Function (BDF) encoded in the
+'reg' property matches the actual hardware topology.
 
-- the node name for RP1 is too specific and should be generic instead
-  (see [1]).
+Add the 'reg' property and mark it as required to ensure proper binding
+between the device_node and the pci_dev.
 
-- the fully defined DTS has its PCI hierarchy wrongly described. There
-  should be a PCI root port between the root complex and the endpoint
-  (see [1]).
+Update the example to reflect this requirement.
 
-- since CONFIG_PCI_DYNAMIC_OF_NODES can be dropped in the future
-  becoming an automatically enabled feature, it would be wise to not
-  depend on it (see [2]).
+Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
+---
+ Documentation/devicetree/bindings/misc/pci1de4,1.yaml | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
 
-- overlay support has led to a lot of confusion. It's not really usable 
-  right now and users are not even used to it (see [3]).
-
-This patch aims at solving the aforementioned problems by amending the
-PCI topology as follows:
-
-  ...
-  pcie@1000120000 {
-    ...
-
-    pci@0,0 {
-      device_type = "pci";
-      reg = <0x00 0x00 0x00 0x00 0x00>;
-      ...
-
-      dev@0,0 {
-        compatible = "pci1de4,1";
-        reg = <0x10000 0x00 0x00 0x00 0x00>;
-        ...
-
-        pci-ep-bus@1 {
-          compatible = "simple-bus";
-          ...
-
-          /* peripherals child nodes */
-        }; 
-      }; 
-    }; 
-  }; 
-
-The reg property is important since it permits the binding the OF
-device_node structure to the pci_dev, encoding the BDF in the upper
-portion of the address.
-
-This patch also drops the overlay support in favor of the fully
-described DT while streamlining it as a result.
-
-Links:
-[1] - https://lore.kernel.org/all/aTvz_OeVnciiqATz@apocalypse/
-[2] - https://lore.kernel.org/all/CAL_JsqJUzB71QdMcxJtNZ7raoPcK+SfTh7EVzGmk=syo8xLKQw@mail.gmail.com/
-[3] - https://lore.kernel.org/all/CAL_JsqJUzB71QdMcxJtNZ7raoPcK+SfTh7EVzGmk=syo8xLKQw@mail.gmail.com/
-
-Andrea della Porta (4):
-  dt-bindings: misc: pci1de4,1: add required reg property for endpoint
-  misc: rp1: drop overlay support
-  arm64: dts: broadcom: bcm2712: fix RP1 endpoint PCI topology
-  arm64: dts: broadcom: rp1: drop RP1 overlay
-
- .../devicetree/bindings/misc/pci1de4,1.yaml   |  8 +++-
- arch/arm64/boot/dts/broadcom/Makefile         |  4 +-
- ...-ovl-rp1.dts => bcm2712-rpi-5-b-base.dtsi} |  0
- .../boot/dts/broadcom/bcm2712-rpi-5-b.dts     | 39 ++++++++++++-------
- arch/arm64/boot/dts/broadcom/rp1-nexus.dtsi   | 14 -------
- arch/arm64/boot/dts/broadcom/rp1.dtso         | 11 ------
- drivers/misc/rp1/Kconfig                      |  6 +--
- drivers/misc/rp1/Makefile                     |  3 +-
- drivers/misc/rp1/rp1-pci.dtso                 | 25 ------------
- drivers/misc/rp1/rp1_pci.c                    | 37 ++----------------
- drivers/pci/quirks.c                          |  1 -
- 11 files changed, 40 insertions(+), 108 deletions(-)
- rename arch/arm64/boot/dts/broadcom/{bcm2712-rpi-5-b-ovl-rp1.dts => bcm2712-rpi-5-b-base.dtsi} (100%)
- delete mode 100644 arch/arm64/boot/dts/broadcom/rp1-nexus.dtsi
- delete mode 100644 arch/arm64/boot/dts/broadcom/rp1.dtso
- delete mode 100644 drivers/misc/rp1/rp1-pci.dtso
-
+diff --git a/Documentation/devicetree/bindings/misc/pci1de4,1.yaml b/Documentation/devicetree/bindings/misc/pci1de4,1.yaml
+index 2f9a7a554ed8a..17a8c19af8cc2 100644
+--- a/Documentation/devicetree/bindings/misc/pci1de4,1.yaml
++++ b/Documentation/devicetree/bindings/misc/pci1de4,1.yaml
+@@ -25,6 +25,10 @@ properties:
+     items:
+       - const: pci1de4,1
+ 
++  reg:
++    maxItems: 1
++    description: The PCI Bus-Device-Function address.
++
+   '#interrupt-cells':
+     const: 2
+     description: |
+@@ -101,6 +105,7 @@ unevaluatedProperties: false
+ 
+ required:
+   - compatible
++  - reg
+   - '#interrupt-cells'
+   - interrupt-controller
+   - pci-ep-bus@1
+@@ -111,8 +116,9 @@ examples:
+         #address-cells = <3>;
+         #size-cells = <2>;
+ 
+-        rp1@0,0 {
++        dev@0,0 {
+             compatible = "pci1de4,1";
++            reg = <0x10000 0x0 0x0 0x0 0x0>;
+             ranges = <0x01 0x00 0x00000000  0x82010000 0x00 0x00  0x00 0x400000>;
+             #address-cells = <3>;
+             #size-cells = <2>;
 -- 
 2.35.3
 
