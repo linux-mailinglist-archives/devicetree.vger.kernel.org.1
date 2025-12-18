@@ -1,554 +1,184 @@
-Return-Path: <devicetree+bounces-247859-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247860-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98926CCC3CD
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 15:18:33 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04DC2CCC446
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 15:24:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 26626301EF22
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 14:18:31 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 04D113022BF5
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 14:24:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3558D27FD74;
-	Thu, 18 Dec 2025 14:18:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66D482877D6;
+	Thu, 18 Dec 2025 14:24:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eshfKoEk"
+	dkim=pass (2048-bit key) header.d=amazon.es header.i=@amazon.es header.b="HJjIk01v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fra-out-006.esa.eu-central-1.outbound.mail-perimeter.amazon.com (fra-out-006.esa.eu-central-1.outbound.mail-perimeter.amazon.com [18.197.217.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32BC026D4DF;
-	Thu, 18 Dec 2025 14:18:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE3642877F4;
+	Thu, 18 Dec 2025 14:24:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=18.197.217.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766067508; cv=none; b=lhuOsVxwzryKFYdRwHykn207Q9GWj4ZbMwkpMyb57HyaYx83D07bHSaeF43QWA8D0bKxe6zxlpc9qQfFirM+r3RFj8XusEV2sJyDETCQ5wZQ8MkFoplTMEMCrH9QWHyyfj/FVYq2VHG8BPOzBxGqVtelXW+1/Ig5pytox2I84Eo=
+	t=1766067872; cv=none; b=RWBTP+r69xkW+34cXrjFAheurRlG7ruc5FsD0bkIlYYqhmA9pby/o89jUta/Avf/K1vl3RoZBQcoedS/B/I3nyNAneCh/ZLHLk+KJxNkBO4m7w/UHcP/Y7y1q4VBEmm3XZ0SL4CoWhWdY/DtUYKjXwvtYpFWsUeExYzDi5NeyFg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766067508; c=relaxed/simple;
-	bh=MmQdy2pEvcDC5QpilT7rZ/uithlpJEsLXMZMQ7R+iFs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GrAPadUGK+2rNQAwY+yHjAlnBWHzarax+bgRmdj31FDjjG/+EXPl5ZyLVQX1HPD4NW8M/u4LmnpWsECCmTG+vJwnu/vKRUYA/hrVPaOoxDQSifvCtdXQFMyMly3mTcWgdrOFBZ8X2H4I759UCbyD7n5AArPNEZIslPMq7kIuDHM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eshfKoEk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 75B96C116B1;
-	Thu, 18 Dec 2025 14:18:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766067506;
-	bh=MmQdy2pEvcDC5QpilT7rZ/uithlpJEsLXMZMQ7R+iFs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=eshfKoEk+avn/wjWnLjnl2OeSf5tGd6NLwxbJQl7hnQjoFU5FywCbtuts6e0W5l9N
-	 71bbOpcZVB8Knh1xma5tGJYvNTCrG2Q6RMFdq+V+h5y8OI9IvOCpLcQm8klN+UlWda
-	 wJFUo/y2UB7NMYW4BWeo1Hm4adO/my9MrqME30QWXT1apbWXQSJFwVA4H3qWu9QFql
-	 jDRqyTHc9ctxQfJEOG3IQCTg//bn6p+mCOS5Qc+MTPmWpKXXh8v9wd6MX8Wr8zuwfj
-	 EoYt4Y1vrQG+w7S2pttSJuZXT3N7EYGwku7FhcPEKA3NSHW/DbxtvJfnBF0nkZ+KdJ
-	 S+EdHghfFkn9w==
-Date: Thu, 18 Dec 2025 08:18:23 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: Ram Prakash Gupta <quic_rampraka@quicinc.com>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Adrian Hunter <adrian.hunter@intel.com>, 
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, dmitry.baryshkov@oss.qualcomm.com, quic_pragalla@quicinc.com, 
-	quic_sayalil@quicinc.com, quic_nitirawa@quicinc.com, quic_bhaskarv@quicinc.com, 
-	kernel@oss.qualcomm.com, Sachin Gupta <quic_sachgupt@quicinc.com>
-Subject: Re: [PATCH v6 5/5] mmc: sdhci-msm: Rectify DLL programming sequence
- for SDCC
-Message-ID: <vlikwopeugo43v72tu7u6rdf2ervm3gcvvwe66dycyfqf22572@wgcretfpawme>
-References: <20251215120009.3877889-1-quic_rampraka@quicinc.com>
- <20251215120009.3877889-6-quic_rampraka@quicinc.com>
+	s=arc-20240116; t=1766067872; c=relaxed/simple;
+	bh=0cipM977IhZ/FD+5hZHsbMFZHzQRGANFOZF4DEZm+Q8=;
+	h=From:To:CC:Subject:Date:Message-ID:Content-Type:MIME-Version; b=FjkszvOM+rMGt+fdBaPH8SjhXQhCnKGXMkaQ0z6dBjqSkvNmsMXj+rJV5M1rQlIdU5DidpoJ4FfU6G3Usf+XBvZT8bOxsp+SfBJPdYxrhOWORdiMa63s85aoqqR/zqemNiki6orpxHC2al67jGr+ELzoGW6Sf/x2WYvKP7EBc04=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.es; spf=pass smtp.mailfrom=amazon.es; dkim=pass (2048-bit key) header.d=amazon.es header.i=@amazon.es header.b=HJjIk01v; arc=none smtp.client-ip=18.197.217.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.es
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amazon.es
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=amazon.es; i=@amazon.es; q=dns/txt; s=amazoncorp2;
+  t=1766067870; x=1797603870;
+  h=from:to:cc:subject:date:message-id:
+   content-transfer-encoding:mime-version;
+  bh=HGfacwEIr6P9UImYxcnM50Ppjowi/9glt+UsaySx1z4=;
+  b=HJjIk01vChjZSSH99soGfHrL+KjX3az/GylFWutmBp9WqVDNpNiGxwki
+   m/CJz/SkAuEYkJjJ76Ad618JT1AiUEMfUSSL5wrzBm0xIayv4TuyJ4f+r
+   RMcD6W2YjUbjaKTeZst6oZecvmu5r6Kx1wt1PIUhHnBs9MwAYCH536Bff
+   ytux0iPhH0QDTFCFQSSN+BEWsNMUU7Dp1dC6xXpzkO68gVpakDSkY/cYE
+   0nFIFQkDtulMlxtVTTl8h4CHNfSLEpnT96FYctdEQoUckOO6doB+rpBCk
+   SqMDhYz3s0QyZTyObN2RQEK0bie6UcMlrtmn7O1aNrVD+WrwS/zTAUAfF
+   w==;
+X-CSE-ConnectionGUID: 29wV36AVRZOp8t8uldGV2A==
+X-CSE-MsgGUID: ycdphhv5QhaS0U6OxDCxmA==
+X-IronPort-AV: E=Sophos;i="6.21,158,1763424000"; 
+   d="scan'208";a="6890821"
+Received: from ip-10-6-6-97.eu-central-1.compute.internal (HELO smtpout.naws.eu-central-1.prod.farcaster.email.amazon.dev) ([10.6.6.97])
+  by internal-fra-out-006.esa.eu-central-1.outbound.mail-perimeter.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Dec 2025 14:24:11 +0000
+Received: from EX19MTAEUC002.ant.amazon.com [54.240.197.228:8693]
+ by smtpin.naws.eu-central-1.prod.farcaster.email.amazon.dev [10.0.26.54:2525] with esmtp (Farcaster)
+ id 596c40f2-bde7-4c01-8fe7-a884d9139314; Thu, 18 Dec 2025 14:24:11 +0000 (UTC)
+X-Farcaster-Flow-ID: 596c40f2-bde7-4c01-8fe7-a884d9139314
+Received: from EX19D012EUA002.ant.amazon.com (10.252.50.32) by
+ EX19MTAEUC002.ant.amazon.com (10.252.51.245) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.2562.29;
+ Thu, 18 Dec 2025 14:24:10 +0000
+Received: from EX19D012EUA001.ant.amazon.com (10.252.50.122) by
+ EX19D012EUA002.ant.amazon.com (10.252.50.32) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.2562.35;
+ Thu, 18 Dec 2025 14:24:10 +0000
+Received: from EX19D012EUA001.ant.amazon.com ([fe80::b7ea:84f7:2c4b:2719]) by
+ EX19D012EUA001.ant.amazon.com ([fe80::b7ea:84f7:2c4b:2719%3]) with mapi id
+ 15.02.2562.035; Thu, 18 Dec 2025 14:24:10 +0000
+From: "Chalios, Babis" <bchalios@amazon.es>
+To: "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"richardcochran@gmail.com" <richardcochran@gmail.com>, "dwmw2@infradead.org"
+	<dwmw2@infradead.org>, "andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>,
+	"davem@davemloft.net" <davem@davemloft.net>, "edumazet@google.com"
+	<edumazet@google.com>, "kuba@kernel.org" <kuba@kernel.org>,
+	"pabeni@redhat.com" <pabeni@redhat.com>
+CC: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "Chalios,
+ Babis" <bchalios@amazon.es>, "Graf (AWS), Alexander" <graf@amazon.de>,
+	"mzxreary@0pointer.de" <mzxreary@0pointer.de>, "Cali, Marco"
+	<xmarcalx@amazon.co.uk>
+Subject: [PATCH v4 0/7] ptp: vmclock: Add VM generation counter and ACPI
+ notification
+Thread-Topic: [PATCH v4 0/7] ptp: vmclock: Add VM generation counter and ACPI
+ notification
+Thread-Index: AQHccCn5Zg1upPC190WbOW1Ajeq1DQ==
+Date: Thu, 18 Dec 2025 14:24:10 +0000
+Message-ID: <20251218142408.8395-1-bchalios@amazon.es>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251215120009.3877889-6-quic_rampraka@quicinc.com>
 
-On Mon, Dec 15, 2025 at 05:30:09PM +0530, Ram Prakash Gupta wrote:
-> From: Sachin Gupta <quic_sachgupt@quicinc.com>
-> 
-> With the current DLL sequence stability issues for data
-> transfer seen in HS400 and HS200 modes.
-> 
-> "mmc0: cqhci: error IRQ status: 0x00000000 cmd error -84
-> data error 0"
-> 
-> Rectify the DLL programming sequence as per latest hardware
-> programming guide
-
-You're talking about how things are unstable, but what the commit
-message completely fails to mention is that all this new spaghetti is
-conditional on msm_host->artanis_dll, so I believe this statement
-only applies to a single supported SoC?
-
-No where in this series do you mention that this only (?) applies to
-QDU1000. 
-
-> 
-> Signed-off-by: Sachin Gupta <quic_sachgupt@quicinc.com>
-> Signed-off-by: Ram Prakash Gupta <quic_rampraka@quicinc.com>
-> ---
->  drivers/mmc/host/sdhci-msm.c | 277 ++++++++++++++++++++++++++++++++---
->  1 file changed, 260 insertions(+), 17 deletions(-)
-> 
-> diff --git a/drivers/mmc/host/sdhci-msm.c b/drivers/mmc/host/sdhci-msm.c
-> index 1fcd92158bee..f459b40db41c 100644
-> --- a/drivers/mmc/host/sdhci-msm.c
-> +++ b/drivers/mmc/host/sdhci-msm.c
-> @@ -28,6 +28,7 @@
->  #define CORE_VERSION_MAJOR_SHIFT	28
->  #define CORE_VERSION_MAJOR_MASK		(0xf << CORE_VERSION_MAJOR_SHIFT)
->  #define CORE_VERSION_MINOR_MASK		0xff
-> +#define SDHCI_MSM_MIN_V_7FF		0x6e
->  
->  #define CORE_MCI_GENERICS		0x70
->  #define SWITCHABLE_SIGNALING_VOLTAGE	BIT(29)
-> @@ -119,7 +120,8 @@
->  #define CORE_PWRSAVE_DLL	BIT(3)
->  
->  #define DDR_CONFIG_POR_VAL	0x80040873
-> -
-> +#define DLL_CONFIG_3_POR_VAL	0x10
-> +#define TCXO_FREQ               19200000
-
-If you read the current implementation of msm_init_cm_dll() you'll see
-that we don't hard code the XO clock...
-
->  
->  #define INVALID_TUNING_PHASE	-1
->  #define SDHCI_MSM_MIN_CLOCK	400000
-> @@ -319,6 +321,15 @@ struct sdhci_msm_host {
->  	bool artanis_dll;
->  };
->  
-> +enum dll_init_context {
-> +	DLL_INIT_NORMAL,
-
-What is the purpose of a single-entry enum to capture the value 0?
-
-> +};
-> +
-> +enum mode {
-> +	HS400, // equivalent to SDR104 mode for DLL.
-> +	HS200, // equivalent to SDR50 mode for DLL.
-
-This is effectively a bool, with a terribly generic name.
-
-> +};
-> +
->  static const struct sdhci_msm_offset *sdhci_priv_msm_offset(struct sdhci_host *host)
->  {
->  	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-> @@ -805,6 +816,207 @@ static int msm_init_cm_dll(struct sdhci_host *host)
->  	return 0;
->  }
->  
-> +static unsigned int sdhci_msm_get_min_clock(struct sdhci_host *host)
-> +{
-> +	return SDHCI_MSM_MIN_CLOCK;
-> +}
-> +
-> +static unsigned int sdhci_msm_get_clk_rate(struct sdhci_host *host, u32 req_clk)
-> +{
-> +	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-> +	struct sdhci_msm_host *msm_host = sdhci_pltfm_priv(pltfm_host);
-> +	struct clk *core_clk = msm_host->bulk_clks[0].clk;
-> +	struct mmc_ios ios = host->mmc->ios;
-> +	unsigned int sup_clk;
-> +
-> +	if (req_clk < sdhci_msm_get_min_clock(host))
-> +		return sdhci_msm_get_min_clock(host);
-> +
-> +	sup_clk = clk_get_rate(core_clk);
-> +
-> +	if (ios.timing == MMC_TIMING_MMC_HS400 ||
-> +	    host->flags & SDHCI_HS400_TUNING)
-> +		sup_clk = sup_clk / 2;
-> +
-> +	return sup_clk;
-
-Isn't sup_clk the same as host->mmc->actual_clock? Isn't this already
-calculated for you?
-
-> +}
-> +
-> +/* Initialize the DLL (Programmable Delay Line) */
-
-So now we're going to have two functions that are named pretty much the
-same and look pretty similar?
-
-With the main difference that the slightly more generically named
-sdhci_msm_configure_dll() is only called if we have a artanis_dll,
-otherwise msm_init_cm_dll() is used?
-
-> +static int sdhci_msm_configure_dll(struct sdhci_host *host, enum dll_init_context
-> +				 init_context, enum mode index)
-> +{
-
-Large parts of this function is duplicated from msm_init_cm_dll(). This
-isn't okay.
-
-> +	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-> +	struct sdhci_msm_host *msm_host = sdhci_pltfm_priv(pltfm_host);
-> +	const struct sdhci_msm_offset *msm_offset = msm_host->offset;
-> +	struct mmc_host *mmc = host->mmc;
-> +	u32 ddr_cfg_offset, core_vendor_spec, config;
-> +	void __iomem *ioaddr = host->ioaddr;
-> +	unsigned long flags, dll_clock;
-> +	int rc = 0;
-> +	u32 dll_lock;
-> +
-> +	dll_clock = sdhci_msm_get_clk_rate(host, host->clock);
-> +	spin_lock_irqsave(&host->lock, flags);
-> +
-> +	core_vendor_spec = readl_relaxed(ioaddr + msm_offset->core_vendor_spec);
-> +
-> +	/*
-> +	 * Always disable PWRSAVE during the DLL power
-> +	 * up regardless of its current setting.
-> +	 */
-> +	core_vendor_spec &= ~CORE_CLK_PWRSAVE;
-> +	writel_relaxed(core_vendor_spec, ioaddr + msm_offset->core_vendor_spec);
-> +
-> +	if (msm_host->use_14lpp_dll_reset) {
-> +		/* Disable CK_OUT */
-> +		config = readl_relaxed(ioaddr + msm_offset->core_dll_config);
-> +		config &= ~CORE_CK_OUT_EN;
-> +		writel_relaxed(config, ioaddr + msm_offset->core_dll_config);
-> +
-> +		/* Disable the DLL clock */
-> +		config = readl_relaxed(ioaddr + msm_offset->core_dll_config_2);
-> +		config |= CORE_DLL_CLOCK_DISABLE;
-> +		writel_relaxed(config, ioaddr + msm_offset->core_dll_config_2);
-> +	}
-> +
-> +	/*
-> +	 * Write 1 to DLL_RST bit of DLL_CONFIG register
-> +	 * and Write 1 to DLL_PDN bit of DLL_CONFIG register.
-> +	 */
-> +	config = readl_relaxed(ioaddr + msm_offset->core_dll_config);
-> +	config |= (CORE_DLL_RST | CORE_DLL_PDN);
-> +	writel_relaxed(config, ioaddr + msm_offset->core_dll_config);
-> +
-> +	/*
-> +	 * Configure DLL_CONFIG_3 and USER_CTRL
-> +	 * (Only applicable for 7FF projects).
-
-What is a 7FF project?
-
-> +	 */
-> +	if (msm_host->core_minor >= SDHCI_MSM_MIN_V_7FF) {
-> +		writel_relaxed(msm_host->dll[index].dll_config_3,
-> +			       ioaddr + msm_offset->core_dll_config_3);
-> +		writel_relaxed(msm_host->dll[index].dll_usr_ctl,
-> +			       ioaddr + msm_offset->core_dll_usr_ctl);
-> +	}
-> +
-> +	/*
-> +	 * Set DDR_CONFIG since step 7 is setting TEST_CTRL that can be skipped.
-> +	 */
-> +	ddr_cfg_offset = msm_host->updated_ddr_cfg ? msm_offset->core_ddr_config
-> +					: msm_offset->core_ddr_config_old;
-> +
-> +	config = msm_host->dll[index].ddr_config;
-> +	writel_relaxed(config, ioaddr + ddr_cfg_offset);
-> +
-> +	/* Set DLL_CONFIG_2 */
-> +	if (msm_host->use_14lpp_dll_reset) {
-> +		u32 mclk_freq;
-> +		int cycle_cnt;
-> +
-> +		/*
-> +		 * Only configure the mclk_freq in normal DLL init
-> +		 * context. If the DLL init is coming from
-> +		 * CX Collapse Exit context, the host->clock may be zero.
-> +		 * The DLL_CONFIG_2 register has already been restored to
-> +		 * proper value prior to getting here.
-> +		 */
-> +		if (init_context == DLL_INIT_NORMAL) {
-
-Guess what...enum mode only has a single possible value, so init_context
-is DLL_INIT_NORMAL...
-
-> +			cycle_cnt = readl_relaxed(ioaddr +
-> +					msm_offset->core_dll_config_2)
-> +					& CORE_FLL_CYCLE_CNT ? 8 : 4;
-> +
-> +			mclk_freq = DIV_ROUND_CLOSEST_ULL(dll_clock * cycle_cnt, TCXO_FREQ);
-> +
-> +			if (dll_clock < 100000000) {
-> +				pr_err("%s: %s: Non standard clk freq =%u\n",
-> +				       mmc_hostname(mmc), __func__, dll_clock);
-> +				rc = -EINVAL;
-> +				goto out;
-> +			}
-> +
-> +			config = readl_relaxed(ioaddr + msm_offset->core_dll_config_2);
-> +			config = (config & ~GENMASK(17, 10)) |
-> +					FIELD_PREP(GENMASK(17, 10), mclk_freq);
-> +			writel_relaxed(config, ioaddr + msm_offset->core_dll_config_2);
-> +		}
-> +		/* wait for 5us before enabling DLL clock */
-> +		udelay(5);
-> +	}
-> +
-> +	config = msm_host->dll[index].dll_config;
-> +	writel_relaxed(config, ioaddr + msm_offset->core_dll_config);
-> +
-> +	/* Wait for 52us */
-> +	spin_unlock_irqrestore(&host->lock, flags);
-
-How come this isn't racy? What is the purpose of holding this spinlock
-throughout this method and are you certain that whatever concurrent
-execution might happen doesn't happen here?
-
-> +	usleep_range(60, 70);
-> +	spin_lock_irqsave(&host->lock, flags);
-> +
-> +	/*
-> +	 * Write 0 to DLL_RST bit of DLL_CONFIG register
-> +	 * and Write 0 to DLL_PDN bit of DLL_CONFIG register.
-> +	 */
-> +	config &= ~CORE_DLL_RST;
-> +	writel_relaxed(config, ioaddr + msm_offset->core_dll_config);
-> +
-> +	config &= ~CORE_DLL_PDN;
-> +	writel_relaxed(config, ioaddr + msm_offset->core_dll_config);
-> +	/* Write 1 to DLL_RST bit of DLL_CONFIG register */
-> +	config |= CORE_DLL_RST;
-> +	writel_relaxed(config, ioaddr + msm_offset->core_dll_config);
-> +
-> +	/* Write 0 to DLL_RST bit of DLL_CONFIG register */
-> +	config &= ~CORE_DLL_RST;
-> +	writel_relaxed(config, ioaddr + msm_offset->core_dll_config);
-> +
-> +	/* Set CORE_DLL_CLOCK_DISABLE to 0 */
-> +	if (msm_host->use_14lpp_dll_reset) {
-> +		config = readl_relaxed(ioaddr + msm_offset->core_dll_config_2);
-> +		config &= ~CORE_DLL_CLOCK_DISABLE;
-> +		writel_relaxed(config, ioaddr + msm_offset->core_dll_config_2);
-> +	}
-> +
-> +	/* Set DLL_EN bit to 1. */
-> +	config = readl_relaxed(ioaddr + msm_offset->core_dll_config);
-> +	config |= CORE_DLL_EN;
-> +	writel_relaxed(config, ioaddr + msm_offset->core_dll_config);
-> +
-> +	/*
-> +	 * Wait for 8000 input clock. Here we calculate the
-> +	 * delay from fixed clock freq 192MHz, which turns out 42us.
-> +	 */
-> +	spin_unlock_irqrestore(&host->lock, flags);
-
-As above, how do we know that this isn't racy?
-
-> +	usleep_range(50, 60);
-> +	spin_lock_irqsave(&host->lock, flags);
-> +
-> +	/* Set CK_OUT_EN bit to 1. */
-> +	config |= CORE_CK_OUT_EN;
-> +	writel_relaxed(config, ioaddr + msm_offset->core_dll_config);
-> +
-> +	/*
-> +	 * Wait until DLL_LOCK bit of DLL_STATUS register
-> +	 * becomes '1'.
-> +	 */
-> +	rc = readl_relaxed_poll_timeout(ioaddr +
-> +					msm_offset->core_dll_status,
-> +					dll_lock,
-> +					dll_lock & CORE_DLL_LOCK,
-> +					10,
-> +					100);
-> +	if (rc == -ETIMEDOUT)
-> +		pr_err("%s: Unable to get DLL_LOCK, dll_status: 0x%08x\n",
-
-Don't pr_err() when you have a struct device.
-
-> +		       mmc_hostname(host->mmc), dll_lock);
-> +
-> +out:
-> +	if (core_vendor_spec & CORE_CLK_PWRSAVE) {
-> +		/* Reenable PWRSAVE as needed */
-> +		config = readl_relaxed(ioaddr + msm_offset->core_vendor_spec);
-> +		config |= CORE_CLK_PWRSAVE;
-> +		writel_relaxed(config, ioaddr + msm_offset->core_vendor_spec);
-> +	}
-> +
-> +	spin_unlock_irqrestore(&host->lock, flags);
-> +	return rc;
-> +}
-> +
->  static void msm_hc_select_default(struct sdhci_host *host)
->  {
->  	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-> @@ -927,6 +1139,24 @@ static void sdhci_msm_hc_select_mode(struct sdhci_host *host)
->  		msm_hc_select_default(host);
->  }
->  
-> +static int sdhci_msm_init_dll(struct sdhci_host *host, enum dll_init_context init_context)
-> +{
-> +	if (host->mmc->ios.timing == MMC_TIMING_UHS_SDR104 ||
-> +	    host->mmc->ios.timing == MMC_TIMING_MMC_HS400)
-> +		return sdhci_msm_configure_dll(host, init_context, HS400);
-> +
-> +	return sdhci_msm_configure_dll(host, init_context, HS200);
-> +}
-> +
-> +static int sdhci_msm_dll_config(struct sdhci_host *host, enum dll_init_context init_context)
-> +{
-> +	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-> +	struct sdhci_msm_host *msm_host = sdhci_pltfm_priv(pltfm_host);
-> +
-> +	return msm_host->artanis_dll ? sdhci_msm_init_dll(host, init_context) :
-> +		msm_init_cm_dll(host);
-
-So dll_config() calls init_dll() or init_cm_dll() which then might call
-configure_dll(). Is it init or config?!
-
-> +}
-> +
->  static int sdhci_msm_cdclp533_calibration(struct sdhci_host *host)
->  {
->  	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-> @@ -942,7 +1172,7 @@ static int sdhci_msm_cdclp533_calibration(struct sdhci_host *host)
->  	 * Retuning in HS400 (DDR mode) will fail, just reset the
->  	 * tuning block and restore the saved tuning phase.
->  	 */
-> -	ret = msm_init_cm_dll(host);
-> +	ret = sdhci_msm_dll_config(host, DLL_INIT_NORMAL);
->  	if (ret)
->  		goto out;
->  
-> @@ -1030,7 +1260,7 @@ static int sdhci_msm_cdclp533_calibration(struct sdhci_host *host)
->  	return ret;
->  }
->  
-> -static int sdhci_msm_cm_dll_sdc4_calibration(struct sdhci_host *host)
-> +static int sdhci_msm_cm_dll_sdc4_calibration(struct sdhci_host *host, enum mode index)
->  {
->  	struct mmc_host *mmc = host->mmc;
->  	u32 dll_status, config, ddr_cfg_offset;
-> @@ -1053,7 +1283,11 @@ static int sdhci_msm_cm_dll_sdc4_calibration(struct sdhci_host *host)
->  		ddr_cfg_offset = msm_offset->core_ddr_config;
->  	else
->  		ddr_cfg_offset = msm_offset->core_ddr_config_old;
-> -	writel_relaxed(msm_host->ddr_config, host->ioaddr + ddr_cfg_offset);
-> +
-> +	if (msm_host->artanis_dll)
-> +		writel_relaxed(msm_host->dll[index].ddr_config, host->ioaddr + ddr_cfg_offset);
-> +	else
-> +		writel_relaxed(msm_host->ddr_config, host->ioaddr + ddr_cfg_offset);
->  
->  	if (mmc->ios.enhanced_strobe) {
->  		config = readl_relaxed(host->ioaddr +
-> @@ -1122,7 +1356,8 @@ static int sdhci_msm_hs400_dll_calibration(struct sdhci_host *host)
->  	 * Retuning in HS400 (DDR mode) will fail, just reset the
->  	 * tuning block and restore the saved tuning phase.
->  	 */
-> -	ret = msm_init_cm_dll(host);
-> +	ret = sdhci_msm_dll_config(host, DLL_INIT_NORMAL);
-> +
->  	if (ret)
->  		goto out;
->  
-> @@ -1142,7 +1377,7 @@ static int sdhci_msm_hs400_dll_calibration(struct sdhci_host *host)
->  	if (msm_host->use_cdclp533)
->  		ret = sdhci_msm_cdclp533_calibration(host);
->  	else
-> -		ret = sdhci_msm_cm_dll_sdc4_calibration(host);
-> +		ret = sdhci_msm_cm_dll_sdc4_calibration(host, HS400);
->  out:
->  	pr_debug("%s: %s: Exit, ret %d\n", mmc_hostname(host->mmc),
->  		 __func__, ret);
-> @@ -1185,7 +1420,8 @@ static int sdhci_msm_restore_sdr_dll_config(struct sdhci_host *host)
->  		return 0;
->  
->  	/* Reset the tuning block */
-> -	ret = msm_init_cm_dll(host);
-> +	ret = sdhci_msm_dll_config(host, DLL_INIT_NORMAL);
-> +
->  	if (ret)
->  		return ret;
->  
-> @@ -1227,6 +1463,7 @@ static int sdhci_msm_execute_tuning(struct mmc_host *mmc, u32 opcode)
->  	struct sdhci_msm_host *msm_host = sdhci_pltfm_priv(pltfm_host);
->  	const struct sdhci_msm_offset *msm_offset = msm_host->offset;
->  	u32 config;
-> +	bool hs400_tuning;
->  
->  	if (!sdhci_msm_is_tuning_needed(host)) {
->  		msm_host->use_cdr = false;
-> @@ -1256,17 +1493,23 @@ static int sdhci_msm_execute_tuning(struct mmc_host *mmc, u32 opcode)
->  	 * - select MCLK/2 in VENDOR_SPEC
->  	 * - program MCLK to 400MHz (or nearest supported) in GCC
->  	 */
-> -	if (host->flags & SDHCI_HS400_TUNING) {
-> +	hs400_tuning = !!(host->flags & SDHCI_HS400_TUNING);
-
-I don't see the reason for this change. If it actually impact the
-behavior of the init/config dll, did you ensure that it doesn't impact
-all currently supported targets?
-
-Regards,
-Bjorn
-
-> +	if (hs400_tuning) {
->  		sdhci_msm_hc_select_mode(host);
->  		msm_set_clock_rate_for_bus_mode(host, ios.clock, ios.timing);
-> -		host->flags &= ~SDHCI_HS400_TUNING;
->  	}
->  
->  retry:
->  	/* First of all reset the tuning block */
-> -	rc = msm_init_cm_dll(host);
-> -	if (rc)
-> +	rc = sdhci_msm_dll_config(host, DLL_INIT_NORMAL);
-> +	if (rc) {
-> +		if (hs400_tuning)
-> +			host->flags &= ~SDHCI_HS400_TUNING;
->  		return rc;
-> +	}
-> +
-> +	if (hs400_tuning)
-> +		host->flags &= ~SDHCI_HS400_TUNING;
->  
->  	phase = 0;
->  	do {
-> @@ -1297,6 +1540,8 @@ static int sdhci_msm_execute_tuning(struct mmc_host *mmc, u32 opcode)
->  				mmc_hostname(mmc));
->  			if (--tuning_seq_cnt) {
->  				tuned_phase_cnt = 0;
-> +				if (hs400_tuning)
-> +					host->flags |= SDHCI_HS400_TUNING;
->  				goto retry;
->  			}
->  		}
-> @@ -1319,8 +1564,11 @@ static int sdhci_msm_execute_tuning(struct mmc_host *mmc, u32 opcode)
->  		dev_dbg(mmc_dev(mmc), "%s: Setting the tuning phase to %d\n",
->  			 mmc_hostname(mmc), phase);
->  	} else {
-> -		if (--tuning_seq_cnt)
-> +		if (--tuning_seq_cnt) {
-> +			if (hs400_tuning)
-> +				host->flags |= SDHCI_HS400_TUNING;
->  			goto retry;
-> +		}
->  		/* Tuning failed */
->  		dev_dbg(mmc_dev(mmc), "%s: No tuning point found\n",
->  		       mmc_hostname(mmc));
-> @@ -1847,11 +2095,6 @@ static unsigned int sdhci_msm_get_max_clock(struct sdhci_host *host)
->  	return clk_round_rate(core_clk, ULONG_MAX);
->  }
->  
-> -static unsigned int sdhci_msm_get_min_clock(struct sdhci_host *host)
-> -{
-> -	return SDHCI_MSM_MIN_CLOCK;
-> -}
-> -
->  /*
->   * __sdhci_msm_set_clock - sdhci_msm clock control.
->   *
-> -- 
-> 2.34.1
-> 
+Similarly to live migration, starting a VM from some serialized state=0A=
+(aka snapshot) is an event which calls for adjusting guest clocks, hence=0A=
+a hypervisor should increase the disruption_marker before resuming the=0A=
+VM vCPUs, letting the guest know.=0A=
+=0A=
+However, loading a snapshot, is slightly different than live migration,=0A=
+especially since we can start multiple VMs from the same serialized=0A=
+state. Apart from adjusting clocks, the guest needs to take additional=0A=
+action during such events, e.g. recreate UUIDs, reset network=0A=
+adapters/connections, reseed entropy pools, etc. These actions are not=0A=
+necessary during live migration. This calls for a differentiation=0A=
+between the two triggering events.=0A=
+=0A=
+We differentiate between the two events via an extra field in the=0A=
+vmclock_abi, called vm_generation_counter. Whereas hypervisors should=0A=
+increase the disruption marker in both cases, they should only increase=0A=
+vm_generation_counter when a snapshot is loaded in a VM (not during live=0A=
+migration).=0A=
+=0A=
+Additionally, we attach an ACPI notification to VMClock. Implementing=0A=
+the notification is optional for the device. VMClock device will declare=0A=
+that it implements the notification by setting=0A=
+VMCLOCK_FLAG_NOTIFICATION_PRESENT bit in vmclock_abi flags. Hypervisors=0A=
+that implement the notification must send an ACPI notification every=0A=
+time seq_count changes to an even number. The driver will propagate=0A=
+these notifications to userspace via the poll() interface.=0A=
+=0A=
+Changes:=0A=
+=0A=
+* RFC -> v1:=0A=
+  - Made the notification support optional. Hypervisor needs to=0A=
+    advertise support for the notification via a flag in vmclock_abi.=0A=
+    Subsequently, poll() will return POLLHUP when the feature is not=0A=
+    supported, to avoid having userspace blocking indefinitely waiting=0A=
+    for events that won't arrive=0A=
+  - Reworded the comment around vm_generation_counter field to avoid=0A=
+    speaking about "jumping forward in time".=0A=
+* v1 -> v2:=0A=
+  - Correctly handle failures when calling vmclock_setup_notification to=0A=
+    setup notifications.=0A=
+  - Use atomic_t for fst->seq and handle the case of concurrent=0A=
+    read()/poll() accesses.=0A=
+  - Initialize fst->seq to 0 rather than what is currently stored in the=0A=
+    shared page. This is to avoid reading odd numbers.=0A=
+  - Add DT bindings similar to existing VMGenID ones.=0A=
+* v2 -> v3:=0A=
+  - Include missing header file and drop unused variables in PATH 2/4.=0A=
+  - Include missing Reviewed-by in PATCH 1/4.=0A=
+  - Fix DT node name to be generic (s/vmclock/ptp).=0A=
+  - Include missing maintainers.=0A=
+* v3 -> v4:=0A=
+  - Added bindings file as maintained by David as part for PTP VMCLOCK=0A=
+    SUPPORT.=0A=
+  - Use le64_to_cpu() to access clk->flags.=0A=
+  - Reference public specification.=0A=
+  - Pass struct vmclock_state * in the of IRQ handler=0A=
+  - Included three new patches from David:=0A=
+    * Making ACPI optional for the driver.=0A=
+    * Adding "VMCLOCK" to ACPI match.=0A=
+    * Return TAI instead of UTC.=0A=
+=0A=
+=0A=
+Babis Chalios (2):=0A=
+  ptp: vmclock: add vm generation counter=0A=
+  ptp: vmclock: support device notifications=0A=
+=0A=
+David Woodhouse (5):=0A=
+  dt-bindings: ptp: Add amazon,vmclock=0A=
+  ptp: ptp_vmclock: Add device tree support=0A=
+  ptp: ptp_vmclock: add 'VMCLOCK' to ACPI device match=0A=
+  ptp: ptp_vmclock: remove dependency on CONFIG_ACPI=0A=
+  ptp: ptp_vmclock: return TAI not UTC=0A=
+=0A=
+ .../bindings/ptp/amazon,vmclock.yaml          |  46 ++++=0A=
+ MAINTAINERS                                   |   1 +=0A=
+ drivers/ptp/Kconfig                           |   2 +-=0A=
+ drivers/ptp/ptp_vmclock.c                     | 197 ++++++++++++++++--=0A=
+ include/uapi/linux/vmclock-abi.h              |  20 ++=0A=
+ 5 files changed, 252 insertions(+), 14 deletions(-)=0A=
+ create mode 100644 Documentation/devicetree/bindings/ptp/amazon,vmclock.ya=
+ml=0A=
+=0A=
+-- =0A=
+2.34.1=0A=
+=0A=
 
