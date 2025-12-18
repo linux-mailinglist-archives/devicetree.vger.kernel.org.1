@@ -1,182 +1,212 @@
-Return-Path: <devicetree+bounces-247842-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247843-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D36D9CCC08F
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 14:37:42 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id F01A6CCC0C8
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 14:39:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A6D04306D8C8
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 13:32:43 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 953AB30F9D62
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 13:34:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA7D0333752;
-	Thu, 18 Dec 2025 13:32:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F0FA335BCF;
+	Thu, 18 Dec 2025 13:34:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="buUGKk0Z"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="KOU1dt8b";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="dElsRk3h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A97A831ED91;
-	Thu, 18 Dec 2025 13:32:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E88431B114
+	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 13:34:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766064762; cv=none; b=XS1HYjGIbYnWLtR3I9OoTibV7FD7UpEXvjcA7spgGja3T5x/mqs0Cr8F7rKFiyMpPa1Il+XgvHlYP2SpMCO/tyuZq0KN7FTxsfH9ACv13hhlIvCWe1eGAD8PXqL12CckChQthnLWcnCSghHKh17mcFlQuPVCJA6BU474BLiZ1Ig=
+	t=1766064874; cv=none; b=aWdCbGpojnncbvRRtwnS7t/LNjn+eTpgyWKe2D15bWs8J8EH0Z9OK+2PPk0/GICkNMWeghPReh04Srg/JjXW5xANvEYEAF2aDu1pBn8Kkxl/de8EXBdSoFLDK0N0p4ZCrHW3Mi0L5YsSGfFdwMBXs1u22HPLjOaEIjlv93apuB4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766064762; c=relaxed/simple;
-	bh=L27ZwyIV0Tt+36bJmnSMXHEQzTdo+CiOZytPC3LDc4M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BydTYV6VYCxza7Lt/O/Q1HevdqLzg0iz1+nMCpS0LMBGJj7IJSDDzyjPPednfDbswoquQfljct9CBFSrRyi6rOldpLwdfJ4kX90uI/jo9qwI+dGHLWfUjh8cb+RQGEpG1AcHK/Z5/CBjC8XsGcKGAO1jVWk5Uccr2tChvt0vFmk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=buUGKk0Z; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1000CC4CEFB;
-	Thu, 18 Dec 2025 13:32:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766064762;
-	bh=L27ZwyIV0Tt+36bJmnSMXHEQzTdo+CiOZytPC3LDc4M=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=buUGKk0ZCijDnpFU9DU6y7DrDJb4E/93HvA0OIKNtODCvwaIUgFQ0/cKb18hNPxSh
-	 TnxIRvEAxwQWbMPVXZ4yMb2zGxLnNQrpqDMqULVwMOg2Zjw7JLVbI5ER/LR79iIiW3
-	 OgRac0/pAWelDQ4yREvpUSLijKkrhORnoehZv1zMAVIqqYfuB1OfmocpQYkUt9KBPd
-	 Z/y2moVvmW7EJbvzSISdiP+YHd1+6FiiCrrNJJkpm8q4Bm8AMZGXsHrUVcD3G0YxAN
-	 eU6GHgi7DQWJtci1hJZ+hn6QJA/+uxGgNtn/FEd9W4S/VZGvafmcSTVU1m+bHVWmfq
-	 hk+P2ZQIF6PQA==
-Date: Thu, 18 Dec 2025 07:32:39 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: Ram Prakash Gupta <quic_rampraka@quicinc.com>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Adrian Hunter <adrian.hunter@intel.com>, 
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, dmitry.baryshkov@oss.qualcomm.com, quic_pragalla@quicinc.com, 
-	quic_sayalil@quicinc.com, quic_nitirawa@quicinc.com, quic_bhaskarv@quicinc.com, 
-	kernel@oss.qualcomm.com, Sachin Gupta <quic_sachgupt@quicinc.com>
-Subject: Re: [PATCH v6 4/5] mmc: sdhci-msm: Add Device tree parsing logic for
- DLL settings
-Message-ID: <fkb4iietzzmhvatmvjn6s6dpdibmnhj5g4xjcsrvzfwkipgwwz@wde3bcrqxrhw>
-References: <20251215120009.3877889-1-quic_rampraka@quicinc.com>
- <20251215120009.3877889-5-quic_rampraka@quicinc.com>
+	s=arc-20240116; t=1766064874; c=relaxed/simple;
+	bh=A3vrSvKefbgiLFcF/6u30jKGL0AIghCF3/WhaEZ8mrY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=FinIrcZS5zADN+JsvTv8x5BhHgv9Eme/crCUW3/7bmGHUoSfZubqyMetxAzsfuidxWIVYLhwzSLxylLQbKjxZqB5QkZS1EdPEW8tEJe1/f7uAcrcA9u7dsWwjU0v/woclneW2eFiptr0VAscEPw83dDWTb36qY1sclHgSxxDTeA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=KOU1dt8b; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=dElsRk3h; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BI93pb94057299
+	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 13:34:31 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	VCAcKgTvkRu/yiuKK53q7ETXk2sn8Yq4Cdf45ThYPF0=; b=KOU1dt8b7lkKQw4x
+	mYELBseBcOISwhFK1onrKsNDoV4tYb6Mh1wsVKasvs5/0rq5f1xouyE1XmomVSYR
+	/xfSWU4loktiw0J54cwxV/vFrIZs6gxaS5nJCK4ekW3CPXsBvIS4zz0edkNUW3OT
+	Ev6E7FdeOnO+qvjQDcznsxbB6zL6iuS5Rf7lM1GbsXqwegwWRyJC3vN0zzKJFf+c
+	3NoJ9xc8ERub/p6U2du4uOvXbtVrOUAKSvL+Qgf5g//ng9X5NLV6aInNVoj03K8+
+	rxujRSzWM7oIvujW03Afj4NFSrT6dbXJySwVdrBgmLFWVnSMi0um4MEhy/4V3ghC
+	gu3XqA==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b3xr5brpa-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 13:34:31 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4f3564e2321so404861cf.3
+        for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 05:34:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1766064870; x=1766669670; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=VCAcKgTvkRu/yiuKK53q7ETXk2sn8Yq4Cdf45ThYPF0=;
+        b=dElsRk3hqxdAOh7aJgRNoXkI/rOQt3myUKFQls+zOLQuWPqIS72EQandyrrXPIvQjN
+         uw/6Yf9GiS+sUZ8D8aNvW6nCiuVzX2aF3vS6Ii2Rf4i+bS3/myQmqMftBGLwKGwPngW/
+         kDJbfNZW4fD7HoNntS6G83Dk58Tn4xt33Mc+AQ9OL8G3cGYo0pGIWWoXMQUdsMV0ZAQn
+         TtezaKY/GT5pjx6R4hkITIQAvbhiNCDA4/8mB4uIHhCSdvdM+Tdm/knNf/ZOYex/FuWN
+         fnekKDMRVOM5Q0EHB66iz3E9Fx9MeAugSAdlCx5jQJMAu3fbD8EWzusg/Io4vYvii6YQ
+         c5rQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1766064870; x=1766669670;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=VCAcKgTvkRu/yiuKK53q7ETXk2sn8Yq4Cdf45ThYPF0=;
+        b=R9cOG+7uYUTxTXLyQfu11FJnrGs072UcD+G2dPYYwy9okrt3LkvHKJJn7B42qGsPpb
+         SWuevVvngcP0UuuBaN3daEzwybo6Y9N+aXuOZZCvhg0c3NWOHok01ZlHG/vwhJr5/6ru
+         N6/N5TNuc6QMmtKphgv0z4M4a7Kih7h/4Ts9915iMEHRJHZwad6B1s8IcbJsuc2GxSkG
+         sFItbZ1gpDjlX5HkROYaH66zhv3WvZFQ2tvk6uia6Ha5Rac1pviYOqcFTSXSCIUcS6gc
+         MrTuV7cmxU51lyZbA8UKMbirewVeaosciApCHcaLarKocygR5LKjK5Q1Ky8DdZM/uqFz
+         g7zg==
+X-Forwarded-Encrypted: i=1; AJvYcCVWIc3IQCOT+FjwFuhg3TPXnaGtY5G8v469kbfcEsKL6526JYgeZ57XpdOSreGRl+qyQOTdqKJoWUeq@vger.kernel.org
+X-Gm-Message-State: AOJu0YxP9eisL01Ms+RXNzHJagNBJyIqs0TT6PcukrSYvgdhPYatArBh
+	wOCL1cJ0nOV6xD/EoV3JilTiN65GQPJQDkXhPDIMnbZMkyjOKN3yZh5cI64cXxgxBfkz8UaUxSB
+	1/i34qZl9lx9N/Qo0vO+bN6HDuNAA79xyIFk7yJoLbOkmZCMip6PVxIcR1rD3jOc5
+X-Gm-Gg: AY/fxX45e+Q2XbmXLz1IvHDohB+avEvvMeSpttAmfRe2Qal6wJxLYdYV3LA+kVOxwcL
+	3X4CVJUar1XbjLZ6PdP24VESu22KapFKh6pdCtb498Bf2H6TWQxLJ1cd1aGoiujGAiVatfa4AKJ
+	YtbwqXOpcZXg3rlgnvrhT90H6mvptI94z/GTx4KsWRGckZNn8UJOCjlyjmBQMUjyoiAWpAjeMFj
+	JaXEWyDRmi7bMTyhU3bZ8oK1n2lSTYsDs5ID2t897hXKqUtt2MfIF9gieNrmlqGxPz3VCCI1/r9
+	xdPgqOPdUXp/u2h4COh1B8476OtPoxOowD2uavG2BJiV6lxM1LKEVmCi28W4+ipZ7hyyA6it3Jd
+	FnI9/eS8W1oXf18tCi5EqllFsT3/gM2QM75W3xpoPnpvtkbqZ37aL2LbgDpB0lavjSw==
+X-Received: by 2002:ac8:5209:0:b0:4f3:616c:dbed with SMTP id d75a77b69052e-4f3616cdd1dmr13073661cf.0.1766064870437;
+        Thu, 18 Dec 2025 05:34:30 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFJm0Fcb4ntQziPMSv3Gzr92tFWG9TfR7vofTfYc2c+pUGKsA4Dt10/gneQgXVmIVAsFlTkXA==
+X-Received: by 2002:ac8:5209:0:b0:4f3:616c:dbed with SMTP id d75a77b69052e-4f3616cdd1dmr13073501cf.0.1766064869974;
+        Thu, 18 Dec 2025 05:34:29 -0800 (PST)
+Received: from [192.168.119.72] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8023118af4sm234500666b.29.2025.12.18.05.34.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 18 Dec 2025 05:34:29 -0800 (PST)
+Message-ID: <646c0f6a-9d84-490b-a55c-7ff92e2b26f5@oss.qualcomm.com>
+Date: Thu, 18 Dec 2025 14:34:27 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251215120009.3877889-5-quic_rampraka@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v9 11/14] firmware: qcom_scm: Add
+ qcom_scm_pas_get_rsc_table() to get resource table
+To: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20251217-kvm_rproc_v9-v9-0-ab7ac03e0ff1@oss.qualcomm.com>
+ <20251217-kvm_rproc_v9-v9-11-ab7ac03e0ff1@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20251217-kvm_rproc_v9-v9-11-ab7ac03e0ff1@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: XpvxNqsdXlvTACYD_2CaS4d692qYaBEn
+X-Authority-Analysis: v=2.4 cv=DsBbOW/+ c=1 sm=1 tr=0 ts=694402e7 cx=c_pps
+ a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=DAnVZNvwvk2Db0QD4v8A:9
+ a=QEXdDO2ut3YA:10 a=a_PwQJl-kcHnX1M80qC6:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjE4MDExMiBTYWx0ZWRfX3+0Rh+hH5mN5
+ 2CPsm3YDlgkoTJyPOdZjXlxw20uw5vM3OvqjCQdWgQ2P11cNMbCeG7tU8hy8NyDaSljN66RSw4J
+ 2QHSh5hxLErbszr3+Ig9NNRgXuJItpM/hIRIIDpoiz6klJ4eI+frSaHMTronDSQfRkheYHygdwd
+ sKw647RWYYLYJvhn/SqcZe0qx/Qp1tPLy//+j8ITlZAuRBlCVEWR+yB0BbRBRFH+8wTgJ4+5BKn
+ KNz1aiI2KQknPB4YytOkgsmb+4w1/9XYsfbGsvbvQKFkXpmSSZE9BqmxSC1bxb1fGx6JHdI/KOU
+ y2BUWBHttoXEIG2YdA+jscGVKarZpqjpgEaDx5XLcG8Luj7tZunMOgQuxM+fNyi1G0J2LNegbXD
+ 7oBDKCHdWpLkxK/2Wdw/6vNVevQk2w==
+X-Proofpoint-ORIG-GUID: XpvxNqsdXlvTACYD_2CaS4d692qYaBEn
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-18_02,2025-12-17_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 priorityscore=1501 impostorscore=0 spamscore=0 adultscore=0
+ clxscore=1015 bulkscore=0 malwarescore=0 phishscore=0 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512180112
 
-On Mon, Dec 15, 2025 at 05:30:08PM +0530, Ram Prakash Gupta wrote:
-> From: Sachin Gupta <quic_sachgupt@quicinc.com>
+On 12/17/25 5:34 PM, Mukesh Ojha wrote:
+> Qualcomm remote processor may rely on Static and Dynamic resources for
+> it to be functional. Static resources are fixed like for example,
+> memory-mapped addresses required by the subsystem and dynamic
+> resources, such as shared memory in DDR etc., are determined at
+> runtime during the boot process.
 > 
-> This update introduces the capability to configure HS200
-> and HS400 DLL settings via the device tree and parsing it.
-
-No it doesn't, it merely reads a bunch of integers from DeviceTree and
-does nothing with them.
-
-Please write your commit message in imperative mood (avoid "This
-update") and please include a reasoning for why this commit exists, or
-as
-https://docs.kernel.org/process/submitting-patches.html#describe-your-changes
-says "Describe your problem.".
-
+> For most of the Qualcomm SoCs, when run with Gunyah or older QHEE
+> hypervisor, all the resources whether it is static or dynamic, is
+> managed by the hypervisor. Dynamic resources if it is present for a
+> remote processor will always be coming from secure world via SMC call
+> while static resources may be present in remote processor firmware
+> binary or it may be coming qcom_scm_pas_get_rsc_table() SMC call along
+> with dynamic resources.
 > 
-> Signed-off-by: Sachin Gupta <quic_sachgupt@quicinc.com>
-> Signed-off-by: Ram Prakash Gupta <quic_rampraka@quicinc.com>
+> Some of the remote processor drivers, such as video, GPU, IPA, etc., do
+> not check whether resources are present in their remote processor
+> firmware binary. In such cases, the caller of this function should set
+> input_rt and input_rt_size as NULL and zero respectively. Remoteproc
+> framework has method to check whether firmware binary contain resources
+> or not and they should be pass resource table pointer to input_rt and
+> resource table size to input_rt_size and this will be forwarded to
+> TrustZone for authentication. TrustZone will then append the dynamic
+> resources and return the complete resource table in output_rt
+> 
+> More about documentation on resource table format can be found in
+> include/linux/remoteproc.h
+> 
+> Signed-off-by: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
 > ---
->  drivers/mmc/host/sdhci-msm.c | 41 ++++++++++++++++++++++++++++++++++++
->  1 file changed, 41 insertions(+)
-> 
-> diff --git a/drivers/mmc/host/sdhci-msm.c b/drivers/mmc/host/sdhci-msm.c
-> index dc79f828522b..1fcd92158bee 100644
-> --- a/drivers/mmc/host/sdhci-msm.c
-> +++ b/drivers/mmc/host/sdhci-msm.c
-> @@ -266,6 +266,19 @@ struct sdhci_msm_variant_info {
->  	const struct sdhci_msm_offset *offset;
->  };
->  
-> +/*
-> + * DLL registers which needs be programmed with HSR settings.
-> + * Add any new register only at the end and don't change the
-> + * sequence.
 
-/* You have to only add entries at the end, but I'm not going to tell you why... */
+[...]
 
-> + */
-> +struct sdhci_msm_dll {
-> +	u32 dll_config;
-> +	u32 dll_config_2;
-> +	u32 dll_config_3;
-> +	u32 dll_usr_ctl;
-> +	u32 ddr_config;
-> +};
+> +	memcpy(input_rt_tzm, input_rt, input_rt_size);
 > +
->  struct sdhci_msm_host {
->  	struct platform_device *pdev;
->  	void __iomem *core_mem;	/* MSM SDCC mapped address */
-> @@ -274,6 +287,7 @@ struct sdhci_msm_host {
->  	struct clk *xo_clk;	/* TCXO clk needed for FLL feature of cm_dll*/
->  	/* core, iface, cal and sleep clocks */
->  	struct clk_bulk_data bulk_clks[4];
-> +	struct sdhci_msm_dll dll[2];
->  #ifdef CONFIG_MMC_CRYPTO
->  	struct qcom_ice *ice;
->  #endif
-> @@ -302,6 +316,7 @@ struct sdhci_msm_host {
->  	u32 dll_config;
->  	u32 ddr_config;
+> +	do {
+> +		output_rt_tzm = qcom_tzmem_alloc(__scm->mempool, size, GFP_KERNEL);
+> +		if (!output_rt_tzm) {
+> +			ret = -ENOMEM;
+> +			goto free_input_rt;
+> +		}
+> +
+> +		ret = __qcom_scm_pas_get_rsc_table(ctx->pas_id, input_rt_tzm,
+> +						   input_rt_size, output_rt_tzm,
+> +						   &size);
+> +		if (ret)
+> +			qcom_tzmem_free(output_rt_tzm);
+> +
+> +	} while (ret == -EOVERFLOW);
 
-So this dll_config/ddr_config pair is no longer supposed to be used? Or
-are there now two sets of dll and ddr configurations to be provided?
+This still looks shaky (do-while is convenient for calling this twice, but perhaps
+the allocation could be moved to __qcom_scm_pas_get_rsc_table() since it's static
+anyway, and then we can just do:
 
-Regards,
-Bjorn
+ret = __qcom_scm_pas_get_rsc_table(...)
+if (ret == -EOVERFLOW) {
+	/* Try again with the size requested by the TZ */
+	ret = __qcom_scm_pas_get_rsc_table(...)
+}
 
->  	bool vqmmc_enabled;
-> +	bool artanis_dll;
->  };
->  
->  static const struct sdhci_msm_offset *sdhci_priv_msm_offset(struct sdhci_host *host)
-> @@ -2534,6 +2549,23 @@ static int sdhci_msm_gcc_reset(struct device *dev, struct sdhci_host *host)
->  	return ret;
->  }
->  
-> +#define DLL_SIZE 10
-> +static int sdhci_msm_dt_parse_dll_info(struct device *dev, struct sdhci_msm_host *msm_host)
-> +{
-> +	u32 *dll_table = &msm_host->dll[0].dll_config;
-> +	int ret;
-> +
-> +	msm_host->artanis_dll = false;
-> +
-> +	ret = of_property_read_variable_u32_array(dev->of_node,
-> +						  "qcom,dll-presets",
-> +						  dll_table, DLL_SIZE, DLL_SIZE);
-> +	if (ret == DLL_SIZE)
-> +		msm_host->artanis_dll = true;
-> +
-> +	return ret;
-> +}
-> +
->  static int sdhci_msm_probe(struct platform_device *pdev)
->  {
->  	struct sdhci_host *host;
-> @@ -2580,6 +2612,15 @@ static int sdhci_msm_probe(struct platform_device *pdev)
->  
->  	msm_host->saved_tuning_phase = INVALID_TUNING_PHASE;
->  
-> +	/*
-> +	 * Parse HSR dll only when property is present in DT.
-> +	 */
-> +	ret = sdhci_msm_dt_parse_dll_info(&pdev->dev, msm_host);
-> +	if (ret == -ENODATA || ret == -EOVERFLOW) {
-> +		dev_err(&pdev->dev, "Bad DLL in dt (%d)\n", ret);
-> +		return ret;
-> +	}
-> +
->  	ret = sdhci_msm_gcc_reset(&pdev->dev, host);
->  	if (ret)
->  		return ret;
-> -- 
-> 2.34.1
-> 
+Other than that, it looks good (although there's still a lot of boilerplate
+that we can't really get rid of with C)
+
+Konrad
 
