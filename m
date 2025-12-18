@@ -1,94 +1,52 @@
-Return-Path: <devicetree+bounces-248015-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248016-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A1A3CCDD14
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 23:33:40 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id ACF4BCCDCF3
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 23:30:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DB41430433CA
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 22:31:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7A519300E781
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 22:30:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1D2D33F377;
-	Thu, 18 Dec 2025 22:26:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED15E2D4811;
+	Thu, 18 Dec 2025 22:30:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bsdio.com header.i=@bsdio.com header.b="LAfWwuNp";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="D8KpQmX8"
+	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="ACu60Q17"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh-a2-smtp.messagingengine.com (fhigh-a2-smtp.messagingengine.com [103.168.172.153])
+Received: from ixit.cz (ip-94-112-25-9.bb.vodafone.cz [94.112.25.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCED433EB09;
-	Thu, 18 Dec 2025 22:26:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.153
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FFDC175D53;
+	Thu, 18 Dec 2025 22:30:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.112.25.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766096780; cv=none; b=QZ+S1DK3e28b5Z+VGZurj1wAm5OKsw/d9n4b6Ci7oYsHf2e6oCBz21vx8ClfJfq9ZZy+H32wZtZwqI1dFIKqzX0A4dQbXWFK7xcfPwkApDm7gZFo0aohUY39UXSIzgOKBx+AL+K/X9u+yr4M06Nyn/fVIIBCLHiHqfrK8Zoshk4=
+	t=1766097039; cv=none; b=byeL2saQit1JVMqfgI4EFcE2a9VPMM0V5FyJMfaDztBeDZ7J389OG06UtnWYit3b5dBaCFHft35Gkfttuje8oxKSst/fxsBZ2FCBHUWIFbITmswO4UIdHAXUov7B5z30U7j8cUwybJ89RhXYYR0RcRSgu48imzI2troDJgb7hgM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766096780; c=relaxed/simple;
-	bh=5vuIwrlfsuMjA+ArT+sGvLRH4JONxdjqmumQ0lvasns=;
+	s=arc-20240116; t=1766097039; c=relaxed/simple;
+	bh=BB2f4XkNMwjpJCA7d7Gu5BIs3lQEQRZ+3RTXqtz0yBw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kETmPI+0gLji4R+/fqiItC6aU9mMp4+sHHy3pF52OdRKNz+wVMCffVDBxue3wUsoc3MsauSDoyDpu8szCcsoj1x+cOAUOmXTcl8gMPR5bajsTbN4mWOTcrFk/nAvFLPlj4rhVFDfMomtYRXVsMRbtQPtQf28sd8QBn4F3EfxCAM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bsdio.com; spf=fail smtp.mailfrom=bsdio.com; dkim=pass (2048-bit key) header.d=bsdio.com header.i=@bsdio.com header.b=LAfWwuNp; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=D8KpQmX8; arc=none smtp.client-ip=103.168.172.153
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bsdio.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=bsdio.com
-Received: from phl-compute-05.internal (phl-compute-05.internal [10.202.2.45])
-	by mailfhigh.phl.internal (Postfix) with ESMTP id ED39C1400083;
-	Thu, 18 Dec 2025 17:26:17 -0500 (EST)
-Received: from phl-frontend-03 ([10.202.2.162])
-  by phl-compute-05.internal (MEProxy); Thu, 18 Dec 2025 17:26:17 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bsdio.com; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm2; t=1766096777;
-	 x=1766183177; bh=5vuIwrlfsuMjA+ArT+sGvLRH4JONxdjqmumQ0lvasns=; b=
-	LAfWwuNpXY3C5lzzlrGbl+u+MB0r9A9UD+m29IOxHs910+C3Nh9wJU8fRDvsO1s4
-	hqYKq6vuuQCQV8fgWkXesEc+NyI6kzABjVINw3UTFCN/AAouNhbhyp0t4a1EobZd
-	msK4ZJeUHfexvH6F5CidgntcKvffabFJ7CmuX6Sir4xegDP6NIb7xSFokhQ9lo0U
-	PjWMUfSE8wZbXUM2ay204FU4BTOQWOI99PxxsCzLc13lEtjcukPCtNgNr4gZtM11
-	1F/xaGqW18L+kH3w9jOG4snRE8V+hRTnvfJATLwMXLDSEXHknav2FGqGaLfkoB1J
-	LkQXY4ua/awAClhWisWQsw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1766096777; x=
-	1766183177; bh=5vuIwrlfsuMjA+ArT+sGvLRH4JONxdjqmumQ0lvasns=; b=D
-	8KpQmX8+LJrvAvmBhY0vlBY0U4DUNws4f60fN4KTq5E0JA4edmz6lJmg8vlvLrZY
-	dGkCm/mRXmGG4CEdTBzh7HFcaIw24zc2jNinZhjTNOmc6EWSIVn/6K4e4CVLVmXZ
-	ZwT/Pii77NxRs3AGtEvd2vJJQlmCPbTIp+E0752ZMT4Esua2es7z4OUVODzYTVqH
-	CvrBGX8nM0cAVlUMq4C1njLvPJYyGy8Pjn4i9Ae9SeuXTjYLFcz67n+797rOvBVm
-	KVif7FiZ/Q9AO/4EAFpWY98ni/H+qvkGCWM6HtZxL9Y/U8PRpMXAZEJrDXm1wIAF
-	Vsk8Ak584PJpylJQgbc0Q==
-X-ME-Sender: <xms:iH9EaSjs0r_Hr6QzNZ5XtYZveLLRtqOpwY69EDLkAbdpfzaQE2CNvQ>
-    <xme:iH9EaSm8-C_QZCVcdQL5y1--oLM5Zs1ABboYTd5T-RofZRgLCqYvwizcKsnsJABLo
-    BsvXUjTc03PjdhQEF6f8FqTc8xEsb1pbAnAnT2ybrQVmf0mFORh6cSC>
-X-ME-Received: <xmr:iH9EaeaGPMzFfvOx6oddACuNs1lmN7F-EX-mw8zRgocK9D8mBuDpQfzTxnu7LsZankJj9aI>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgdegieeivdcutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
-    ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
-    hrpefkffggfgfuvfevfhfhjggtgfesthekredttddvjeenucfhrhhomheptfgvsggvtggt
-    rgcuvehrrghnuceorhgvsggvtggtrgessghsughiohdrtghomheqnecuggftrfgrthhtvg
-    hrnheplefhgeevleehieeuveduudfguedtieetteevhffgfffhhffhveffueegtdegkeek
-    necuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprhgvsg
-    gvtggtrgessghsughiohdrtghomhdpnhgspghrtghpthhtohepudefpdhmohguvgepshhm
-    thhpohhuthdprhgtphhtthhopehkrhiikheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoh
-    eprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghr
-    nhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpd
-    hrtghpthhtohepjhhovghlsehjmhhsrdhiugdrrghupdhrtghpthhtoheprghnughrvgif
-    segtohguvggtohhnshhtrhhutghtrdgtohhmrdgruhdprhgtphhtthhopehtrghnrdhsih
-    gvfigvrhhtsehhvghtiihnvghrrdgtohhmpdhrtghpthhtohepuggvvhhitggvthhrvggv
-    sehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqrghrmhdqkh
-    gvrhhnvghlsehlihhsthhsrdhinhhfrhgruggvrggurdhorhhg
-X-ME-Proxy: <xmx:iH9EadyT4GekbfEVwMCEa95li0Wv9vjD610Hw1NmWL5vj3vGqL6NiA>
-    <xmx:iH9EadYtAlmM4kujKL0fOfXNfCk6jTqKvf8kRLlmfsY6MIlRYfhyuQ>
-    <xmx:iH9EaezcmDfqJ2xKGgV5BRzzgJ2BfRVygoLcHpGUgeh-rnk6kJ4Jlg>
-    <xmx:iH9EaWG46ABbTf4u40GaWM4XINTHk1J7Do6B2_1ls00nXRK9joclfw>
-    <xmx:iX9EaaSf-ARUTKFu2UbbNeAfwMNb_2yH0GUkE-PVxhlMsJawuuprZahw>
-Feedback-ID: i5b994698:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 18 Dec 2025 17:26:15 -0500 (EST)
-Message-ID: <b28d5c56-59ee-4723-b953-cca6629ef63f@bsdio.com>
-Date: Thu, 18 Dec 2025 15:26:14 -0700
+	 In-Reply-To:Content-Type; b=kr6BOjrKQZ6G749umVIrqVltVbZAyGxyxTWJ/Sf4cxDijtmZpD6PFOxXI00bKqKim50aL9FEC4U20DHZez+JLlQEEfEuHY2PC1b8c8YZooIvQ4GClcnEyu+0PlLczcdtoTtZJ0z8N012fxpcRefnUzYPLRgYmFdj6bhnv2JqspQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=ACu60Q17; arc=none smtp.client-ip=94.112.25.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
+Received: from [10.0.0.200] (unknown [10.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by ixit.cz (Postfix) with ESMTPSA id 8C02753414F7;
+	Thu, 18 Dec 2025 23:30:31 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+	t=1766097031;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=GHQdiHQsHalBFeqmlr5i652A4/pcc9GfzKPk6Cela7E=;
+	b=ACu60Q17bPRNQDJ+oHX9AHNZeLIHntd6idTfWwBu9QpOx/WMv2U+h110f7tjv4TZW/TUYk
+	sE3s1Y6C2rRnBsoBYkLOcJXSU5GdLcQxyXiRbUi/TZ42biNVMcRKIgYVeqVOyYVAnMMgyK
+	5jojQFuNGSr4iQjXwXvMRr6YpH8acO0=
+Message-ID: <eafdfb36-8c9d-4240-b476-f5e835df04b6@ixit.cz>
+Date: Thu, 18 Dec 2025 23:30:31 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -96,38 +54,248 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/2] dt-bindings: arm: aspeed: add ASRock Rack ALTRAD8
- board
-To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
- Andrew Jeffery <andrew@codeconstruct.com.au>,
- Tan Siewert <tan.siewert@hetzner.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
- linux-kernel@vger.kernel.org
-Cc: Billy Tsai <billy_tsai@aspeedtech.com>,
- Conor Dooley <conor.dooley@microchip.com>
-References: <20251218161816.38155-1-rebecca@bsdio.com>
- <20251218161816.38155-2-rebecca@bsdio.com>
- <5aa36c56-798a-40cc-b0b8-be3f7c92136f@kernel.org>
- <4eff8506-8049-46e9-997e-a41edff32bbc@bsdio.com>
- <d215c5dd-b402-4cd2-b4c6-48358b5b2491@kernel.org>
-From: Rebecca Cran <rebecca@bsdio.com>
+Subject: Re: [PATCH] arm64: dts: qcom: sdm845-oneplus: Enable known blocks and
+ add placeholders
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org
+References: <20251216-placeholders-v1-1-d7d544200e7c@ixit.cz>
+ <f3ad33e4-1924-4a8e-8fe0-56487ea2c872@oss.qualcomm.com>
+ <5199fe6a-550a-4366-bee2-d4ab08ed248b@ixit.cz>
+ <5f1282b2-2447-4ce8-a943-90c88e7f5835@oss.qualcomm.com>
 Content-Language: en-US
-In-Reply-To: <d215c5dd-b402-4cd2-b4c6-48358b5b2491@kernel.org>
-Content-Type: text/plain; charset=UTF-8
+From: David Heidelberg <david@ixit.cz>
+Autocrypt: addr=david@ixit.cz; keydata=
+ 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
+In-Reply-To: <5f1282b2-2447-4ce8-a943-90c88e7f5835@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-On 12/18/25 12:31, Krzysztof Kozlowski wrote:
-> This does not test anything from the binding.
->
-> Please don't add fake tests... Building instructions are not testing.
+On 17/12/2025 16:28, Konrad Dybcio wrote:
+> On 12/17/25 4:00 PM, David Heidelberg wrote:
+>> On 17/12/2025 13:04, Konrad Dybcio wrote:
+>>> On 12/16/25 9:34 PM, David Heidelberg via B4 Relay wrote:
+>>>> From: David Heidelberg <david@ixit.cz>
+>>>>
+>>>> We know these devices are present; most of them are supported by
+>>>> downstream and are close to the mainline kernels.
+>>>>
+>>>> This adds placeholders for:
+>>>>    - front camera (imx371)
+>>>>    - rear cameras (imx519, imx376k)
+>>>>    - actuators
+>>>>    - NFC node on i2c3
+>>>>
+>>>> This is very handy when rebasing the integration tree with
+>>>> support for multiple different blocks at the same time.
+>>>>
+>>>> Signed-off-by: David Heidelberg <david@ixit.cz>
+>>>> ---
+>>>
+>>> [...]
+>>>
+>>>> +&i2c3 {
+>>>> +    clock-frequency = <400000>;
+>>>> +
+>>>> +    status = "okay";
+>>>> +
+>>>> +    /* nxp,nxp-nci-i2c @28 */
+>>>
+>>> This seems fairly straightforward to enable - could you just
+>>> do that instead?
+>>
+>> I have patch for it in-tree, but most likely not correct. See notes in:
+>>
+>> https://gitlab.com/sdm845/sdm845-next/-/commit/eeb765bb1166e020a771ed712fec76b56da229ee
+>>
+>> For now, I can only confirm the device is on the i2c address.
+> 
+> Taking a look at just the names of the sdm845-qrd.dtsi/sony modifications for
+> their sdm845 phones in downstream which I presume have the exact same chip anyway:
+> 
+> notes based on observation and driver (drivers/nfc/nq-nci.c)
+> 
+>          nq@28 {
+>                  compatible = "qcom,nq-nci";
+>                  reg = <0x28>;
+>                  qcom,nq-irq = <&tlmm 63 0x00>; // interrupt, duplicated below
+>                  qcom,nq-ven = <&tlmm 12 0x00>; // voltage enable, ACTIVE_HIGH
+>                  qcom,nq-firm = <&tlmm 62 0x00>; // firmware download, ACTIVE_HIGH
+>                  qcom,nq-clkreq = <&pm8998_gpios 21 0x00>; // clock enable, INPUT
+>                  qcom,nq-esepwr = <&tlmm 116 0x00>; // eSE power enable, ACTIVE_HIGH
+>                  interrupt-parent = <&tlmm>;
+>                  interrupts = <63 0>;
+> 		[... blurb ...]
+>          };
+> 
+> 
+>     pm8998_gpio_21: pm8998_gpio_21 {
+>                  pins = "gpio21";
+>                  function = "normal";
+>                  input-enable;
+>                  bias-pull-down;
+>                  power-source = <1>;
+>          };
+> 
+> 
+>          /* GPIO_62: NFC_DWLD_EN */
+>          sdm_gpio_62: sdm_gpio_62 {
+>                  mux {
+>                          pins = "gpio62";
+>                          function = "gpio";
+>                  };
+> 
+>                  config {
+>                          pins = "gpio62";
+>                          drive-strength = <2>;
+>                          bias-disable;
+>                          output-low;
+>                  };
+>          };
+> 
+> 
+>          /* GPIO_63: NFC_IRQ */
+>          sdm_gpio_63: sdm_gpio_63 {
+>                  mux {
+>                          pins = "gpio63";
+>                          function = "gpio";
+>                  };
+> 
+>                  config {
+>                          pins = "gpio63";
+>                          drive-strength = <2>;
+>                          bias-pull-down;
+>                          input-enable;
+>                  };
+>          };
+> 
+> 
+>          /* GPIO_12 : NFC_VEN */
+>          sdm_gpio_12: sdm_gpio_12 {
+>                  mux {
+>                          pins = "gpio12";
+>                          function = "gpio";
+>                  };
+> 
+>                  config {
+>                          pins = "gpio12";
+>                          drive-strength = <2>;
+>                          bias-disable;
+>                          output-low;
+>                  };
+>          };
+> 
+> Konrad
 
-Sorry. In that case I don't know how to test the bindings.
+we have something similar, just different strengths (see below), but I 
+would leave this into the point, when someone can properly verify the 
+configuration and test it.
+
+David
+
+---
+
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi 
+b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+index f424ab6706cda..9218b622a0b3e 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+@@ -670,7 +670,19 @@ &i2c3 {
+
+         status = "okay";
+
+-       /* nxp,nxp-nci-i2c @28 */
++       nfc@28 {
++               compatible = "nxp,nxp-nci-i2c";
++               reg = <0x28>;
++
++               interrupt-parent = <&tlmm>;
++               interrupts = <63 IRQ_TYPE_LEVEL_HIGH>;
++
++               enable-gpios = <&tlmm 12 GPIO_ACTIVE_HIGH>;
++               firmware-gpios = <&tlmm 62 GPIO_ACTIVE_HIGH>;
++
++               pinctrl-0 = <&nfc_default>;
++               pinctrl-names = "default";
++       };
+  };
+
+  &i2c10 {
+@@ -884,6 +896,11 @@ &qupv3_id_0 {
+         status = "okay";
+  };
+
++&qup_i2c3_default {
++       drive-strength = <2>;
++       bias-disable;
++};
++
+  &qup_i2c10_default {
+         drive-strength = <2>;
+         bias-disable;
+@@ -1389,6 +1406,13 @@ speaker_default: speaker-default-state {
+                 bias-pull-up;
+                 output-high;
+         };
++
++       nfc_default: nfc-default-state {
++               pins = "gpio12", "gpio62", "gpio63";
++               function = "gpio";
++               drive-strength = <6>;
++               bias-pull-up;
++       };
+  };
+
+  &venus {
 
 
--- 
-Rebecca Cran
 
+
+-- 
+David Heidelberg
 
 
