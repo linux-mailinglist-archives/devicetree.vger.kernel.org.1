@@ -1,202 +1,252 @@
-Return-Path: <devicetree+bounces-247980-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247986-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A293CCD533
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 20:06:44 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72523CCD589
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 20:11:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 68C5C3011A88
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 19:06:43 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 432D430111B8
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 19:08:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35D0430E83F;
-	Thu, 18 Dec 2025 19:06:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C083320CCD;
+	Thu, 18 Dec 2025 19:08:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="rW1NzNKD"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XjleOM4r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from SA9PR02CU001.outbound.protection.outlook.com (mail-southcentralusazon11013023.outbound.protection.outlook.com [40.93.196.23])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA2EE239594;
-	Thu, 18 Dec 2025 19:06:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.93.196.23
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766084802; cv=fail; b=lIDxevqYCN9TguhSKKEgA1rGCrwtK//7M+EELwz2FZfIHkhY9xY9a/Y2xaPFL+l2901qjnnNEAGnCVg13aSoDyocQv1u0xmkjFU0kukSiJoU1cyRjxTYAiIVMUwZ+GzJRrZEy0txgttkN3nLceiY8H9+Gqaxip80cW80i9mm+Dc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766084802; c=relaxed/simple;
-	bh=ok5sGxDZ/Lotlm6giwAsuLyRsQj5z/mAPu6qsSULFkU=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oGuwKt8+DRHIHvdNFGDpsMmVuGEMpFidnaEExAnmajncf/yC8ReVLStjt6a+FhYKPrmt94DbmNPIF/TgNV5OvPLW0KA6o9g+E7ajxbh8yT3W3w/xRh0S59bHv5+Hm0S/CXSPTD48/xS4pKwXlwBkJoLIhfCIggQ6C+pS10YKesQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=rW1NzNKD; arc=fail smtp.client-ip=40.93.196.23
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Zgl4X1XUS77ZiFAThMu9FD6tenU0Ou/oPNoKpaWaLIns6kRqk7H2ymKWj4kM6xQ7xMrZVFq+Cb2nbPv7WcxCHorZCZOpKnF8sRv5ow/y8k//R0UaKXxJYfBbcjI1/4qu2b1GeaQHgQHsiHfOWW1OGFX/55ws2K4/BGzOru6aXTSSzuNTv9eQlEpjTmlL91K9ED/3sscAv5Uiv9DdSPSt0y9Fu4lPCngRwlSuzdEGcxIreu+Ya08yKgg/4ljTAVNQcFZKMjmcQ73K/CAZH9TEJRGs4A9z5MUS1pBOlC1kiaKoTpU6ce6bjhHN3hyMhaj7RJ2/0VrJEWx3QZGIJxeLCA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Y4ZWrplrKjhn1wiOYK1o6hkrsh+RZtZMd0Vjrhy0H+U=;
- b=FK6KPl4njxjpRP4DG3Mf5K/ubTd5sDNr2Fwy6Nn4Br9WzMtwgGGZ57HmvwSTsk/7NZ3ft8f2D+APiD8j1Ws4kMNv34IRA6kHRx95fi/BjreNz3QG3rouYBFae//vxzsmnnmwEXZv8yeD+/mJukw3xJpzQWVfEDwuRtib25ye0gfwFVXUsa7uHlYxiwR3i5kKUH/R0Im/qUq3OSAhwXxdAhUDkKFBqnQGE75fusDDM2YsGSWAwJ1d/ILZUHbWZCbfZvKvhgrstTMAuXVwpG+ZPzzLmxpngF0p8ArUJllmaqRAlFpF5tQoJ/mDMePEWywAbY5/C7pfqPkxCF+AFxCk5w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.194) smtp.rcpttodomain=kernel.org smtp.mailfrom=ti.com; dmarc=pass
- (p=quarantine sp=none pct=100) action=none header.from=ti.com; dkim=none
- (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Y4ZWrplrKjhn1wiOYK1o6hkrsh+RZtZMd0Vjrhy0H+U=;
- b=rW1NzNKD3/gHU2Mxx3e/uEej1hpFloCrxP00T2ATUzQTmMSS0tTErF/3YTZRGoBrqdYyCdxzKbRJFncvuZIQXGslG92T2VptoPmiZgIVo/KfA4jTXvYnzk1KJHawL4CKnk4u2jPtfOrEqh2OZaVIIEQBRzvAEYY2Pt9sEOhfG20=
-Received: from BN0PR02CA0057.namprd02.prod.outlook.com (2603:10b6:408:e5::32)
- by DS0PR10MB7512.namprd10.prod.outlook.com (2603:10b6:8:165::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9434.8; Thu, 18 Dec
- 2025 19:06:33 +0000
-Received: from BN1PEPF00006003.namprd05.prod.outlook.com
- (2603:10b6:408:e5:cafe::ab) by BN0PR02CA0057.outlook.office365.com
- (2603:10b6:408:e5::32) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9434.8 via Frontend Transport; Thu,
- 18 Dec 2025 19:06:27 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
-Received: from flwvzet200.ext.ti.com (198.47.21.194) by
- BN1PEPF00006003.mail.protection.outlook.com (10.167.243.235) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9434.6 via Frontend Transport; Thu, 18 Dec 2025 19:06:32 +0000
-Received: from DFLE202.ent.ti.com (10.64.6.60) by flwvzet200.ext.ti.com
- (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 18 Dec
- 2025 13:06:27 -0600
-Received: from DFLE212.ent.ti.com (10.64.6.70) by DFLE202.ent.ti.com
- (10.64.6.60) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 18 Dec
- 2025 13:06:27 -0600
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE212.ent.ti.com
- (10.64.6.70) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Thu, 18 Dec 2025 13:06:27 -0600
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5BIJ6RIw3861637;
-	Thu, 18 Dec 2025 13:06:27 -0600
-Date: Thu, 18 Dec 2025 13:06:27 -0600
-From: Nishanth Menon <nm@ti.com>
-To: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
-CC: Vignesh Raghavendra <vigneshr@ti.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Kees Cook <kees@kernel.org>, Tony Luck <tony.luck@intel.com>, "Guilherme G.
- Piccoli" <gpiccoli@igalia.com>, Andrew Lunn <andrew@lunn.ch>,
-	<linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-hardening@vger.kernel.org>,
-	<linux@ew.tq-group.com>, Tero Kristo <kristo@kernel.org>
-Subject: Re: [PATCH v4 2/2] arm64: dts: ti: Add TQ-Systems TQMa62xx SoM and
- MBa62xx carrier board Device Trees
-Message-ID: <20251218190627.4nun3fduu6z6yyl3@tingly>
-References: <cover.1762775119.git.matthias.schiffer@ew.tq-group.com>
- <0079cc291c78b94068f3d8c59df103e951247acc.1762775119.git.matthias.schiffer@ew.tq-group.com>
- <d13a95659bdd1c840dfaa46afd6d8583f1b7c88f.camel@ew.tq-group.com>
- <671625aa-f5da-4e34-9c8c-7a1da282aa5e@ti.com>
- <637f14d1c77c2a1d19f7ea221addbbea51392bd9.camel@ew.tq-group.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10AF630B527
+	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 19:08:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1766084889; cv=none; b=B6W9q/D812eIgIXjnH2F3PHDCgytgnqeK27ZsHKZpupjyFzgVA0aDAif3vl/pmQDb2uWmM2KgZiHVE8ucm/YWFsQAb2W7tkqoteeNJM7Pkk9LHodbDfgfiKGx5pRUeetJq0N/A2h6B6Ljs+XFhZ2HKX0ISRVunUrKovdBUYZaRs=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1766084889; c=relaxed/simple;
+	bh=IrPgklRGL2IRoMECvOwkqFaG3C+ScQfQVzGtrc8fmM0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=REWTY4qyl+j2+QxUTsJNRzw9hD4uumhUQjg6Rn5r0chjyABaTCWdpe4IshL4nt5NhEI/ilUDEX4jt2saF+erOpbPKRXP024Ysa2jmD4LqqY/LRnF2+SONkMNmpnYNwz6HDKXAsZSZtB6lH6FzaCYcjPztxfA4snj/igoFoqXifw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XjleOM4r; arc=none smtp.client-ip=209.85.167.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-5958931c9c7so1135918e87.2
+        for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 11:08:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1766084884; x=1766689684; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=bZ6EMtZaY8/x7+h2gpyLYnuALUZdOTDKUPE8xbGL5wY=;
+        b=XjleOM4rUnzfy7Tt3cwbx4Y72znCmOfmSnv5jZbU7lT2c7/4fopHVQqkGZiTP7xtJV
+         6NimnAr1jzSHf30t3wMj9Vxl8xLzFrC6YCs9B8rjc47vx3R6nAJYKDRCzOQlYBuGa9cq
+         3MSBUyXdkCIf2zzRTe2l8CQjE65ybHIc4IyWZkN3iXv3ktYIBdtTIOGgLzrAV7HtbSiS
+         NzcHvjyLDY+6L2lcSKubR4GgXyR6KQPk3ld62GXXectQxEx67TNceu5Fr+O/uj0VUI6t
+         XKtIEY+C0L1QcHByygL3vkL6RaammF4t6FTTtDkK7823egb2vev5f9dbqmwyqlNZapSh
+         CtbQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1766084884; x=1766689684;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=bZ6EMtZaY8/x7+h2gpyLYnuALUZdOTDKUPE8xbGL5wY=;
+        b=clLkzgKdTO1G0oUzrC9ctW2StZvSAld3MQ11banacHWq4gDLT7MOhIXa5h5rM3glXk
+         8m2W7DDpXjehnbC2JPfHOzTCoMed7l7jKxXtquDIs0ek79u3R956zn7Z370t6xnEVQ3e
+         h34g5J3BzkS2n1pVkI5b1A/CSuu1gQIrXiNk3pwMS0QmuwPdIYq/SqgIMp+pnezpAEzG
+         rQJkKenjek2Yk6rCv8NcoFFrrBdQIvTpNVETdMExbpFDHbSDMigi9e1Maa7xtcALyUlr
+         j+9hlxH1BBF/2O9rBXjTspxpOHC1+CDsDpSsl0RIo6/ipHRqXFixfmLtWcy9zXfrOMO4
+         zqtQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUbPVoSOVILYlPjLAxEkDJRzWSEIiHJxGc2mAhVjAmdHbdYVRjuO4sb5FbnoWaIqwE/KGSnk2MA2pLR@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz8HQZZWo81kBCzR0g1ZWXzyNQiyyln0EaEuIGzARNf+OvOmKze
+	ygl5VBTV7LozRQ165lPFj5a6pZsoG8Ocg2EYS64XAE+2Xjth6YZT07S6jFw4XINzECrV6ZwLAhM
+	JJIQ5aHUjnJfNRTEj03f0v7TlDfwJiV0=
+X-Gm-Gg: AY/fxX7/YBciIOzL/uPKsBpGITKrC6OQ6Yp7Ox1L5qd2m6cnOlJWF6sWyCt9hdGbFYr
+	W2CIzFStIWMO2/c0v171H/CP//9DxDD+KpfuxBszVh2NuPMSgDaVIyCij8Av+6DbeoQx+rpCjaf
+	KXGUcpNES3FxWuNZ53EHTNBrUA5MYxEKFRsnWWf9F+VL6z2gBzG0aMPuDZpkNIydzsQo+/b9zvx
+	e74pqbpdt5bzH1ZU7T2763hh73Rh84rSQEl1u26C3UnWvnBfZVOq9Zb7z+1Cux0R9dlyCE=
+X-Google-Smtp-Source: AGHT+IFmaVqU6xZDCbAEgfw++4K0heVS5xvvcusXRu6LwjW7KJkGjeP/JAbdmiH60qGFAMGnyPP46AalH/wiQ40XrOY=
+X-Received: by 2002:a05:6512:e88:b0:598:fb09:5360 with SMTP id
+ 2adb3069b0e04-59a17df5ec2mr165727e87.53.1766084883768; Thu, 18 Dec 2025
+ 11:08:03 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <637f14d1c77c2a1d19f7ea221addbbea51392bd9.camel@ew.tq-group.com>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN1PEPF00006003:EE_|DS0PR10MB7512:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4efbd111-8d0f-4345-2b09-08de3e688e84
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|376014|7416014|82310400026|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?ygfnB3FR0ekFDbCrMFZrI46Q/AvEgqcUGEKQWurVcGqRFDa12lqfeUt1C+ru?=
- =?us-ascii?Q?oZdH0ngxtDQ1EXjeCjN74oK49Cg8xTdVIt4s42Q0J+hxH21FqH36F44xTFFF?=
- =?us-ascii?Q?sgrVBwOXRqxMdW8eHm/2GFZKOf6MLNg1u/4JqnhGvzGFsZHCgB5OTbZFlbD/?=
- =?us-ascii?Q?3rv4P0F6v0paCb1tYF/QWA7dHYG/JFy/hPC+GFeWwmRDyAYx+OoMQTIJ3SEr?=
- =?us-ascii?Q?KeHNz3r16POPBmkkFpkmgba3yM1hF3cV18flHyie6+gzyyOYMgLPqWd5cY10?=
- =?us-ascii?Q?5ocJpfScy3O24J9V4jAOfM0RuCSDyLxXNFTUAjuEV6hgOXKfTuK9DJ1gVWcM?=
- =?us-ascii?Q?DSx6kdiC6Ojn7ydCHJr73uAMDmTJ6Ak6WykRIo/8ZCaeobnpyqnhEOSY0gOu?=
- =?us-ascii?Q?9TH2zGmEbr4fOiS/9F04rIxG9vpZZ7OVoPFIxoAYUOJA0eHe//7PvM4VDUep?=
- =?us-ascii?Q?rZN9owEZKchL2oNN58WFuYUKmP4eWgGG9bWU3/kIx0s254xVcXnwuUxK15pz?=
- =?us-ascii?Q?v5zU5zjng/VPL2mA12D/JZXUR4U/dmU1XnLjlKp5OrS/ETWuWfz726Eqnbfd?=
- =?us-ascii?Q?l0j+b9cHtSCWnV3zT6h7U09bHyWKwPtSwuT+7hUDa70sAgdc09s/dokGy8ft?=
- =?us-ascii?Q?PmqMV1kpOOt7iKRVOb+t2H7EKRuKgSR8zfGBa6mu+0vCdbS+aLiu+m/9gWsm?=
- =?us-ascii?Q?yvYOaRyHsCfIy7/+XTufwRPy0llW/dcZd8RE2CrOB1jFOnubelQ+nwuh76Jc?=
- =?us-ascii?Q?tbp67+jt0Oy6TER7nBV4SeoUWZluZAyvHNnFUwXVkUjALqX8dtcHXkPAAM2w?=
- =?us-ascii?Q?djkFsJVX+fATcfo3aMRWByrqpu1037MB5xEfpWaihh/Y5shLJOQ3uuy5Bo17?=
- =?us-ascii?Q?vIEiAMCcF5zSMH6aCQZ8hTCyc0+Grwh3b0R8R+AkENLjJQEVZ5J3WOGyx+vN?=
- =?us-ascii?Q?DCBMnQnqX9Tt1k5UWZd3mi/FfGaKfki4rj40N6QI8SwMGI+/0J5U+KYgoN1s?=
- =?us-ascii?Q?9Cjgr6xIHU/qhvUqqaKQAvYw+4oTIKT/FCawjDh0SvBPV5Z2vLNYoWgqfCnu?=
- =?us-ascii?Q?V+0D7FOzew/mZvomE7kg4CV/Jb6s7kajERmbktiahaS5M35PskKkZZWV+hWh?=
- =?us-ascii?Q?ZptN/eBrCYxuEBR6+LsRLzQfo4exLQskk9gtAtMeL5ObrDLW6VRD39Wy9jGU?=
- =?us-ascii?Q?U2Ne+AcZId5iafJ5Dy0FjqVEaPzhtZyIlkvrOzIcXG1pEwGojb6cdwEsMtWC?=
- =?us-ascii?Q?WeqifYD/yBIzJQXx/rQObheDTrdhwiqgnWJFhmht7sBRO0Rb94kwI1hQRUpb?=
- =?us-ascii?Q?jlVk5XKYDnZgMcqeBrLI7IxbrSe84IWGarM1BiU1wV+7+AwA94BycyK+M9Wv?=
- =?us-ascii?Q?OCmyvLoR4AOOr4ClFGsmqCoUn5nbHXMz5A3qc9Jd1aUnn78dsY7s0rJRzh1r?=
- =?us-ascii?Q?gvThkHFgtjwuzIqrte2AnSMGHLK1XExmU6d14wJ0K95mIAp9IhrfNbwQ2fC8?=
- =?us-ascii?Q?zyLhVHaZe8Cct1awMyA5HCt2UX+mUTnFeiVmsPFRcGtzlq00K2z4XLpV4IGo?=
- =?us-ascii?Q?JypOrBNbaRQIM7miuMg=3D?=
-X-Forefront-Antispam-Report:
-	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(36860700013)(376014)(7416014)(82310400026)(1800799024);DIR:OUT;SFP:1101;
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Dec 2025 19:06:32.0625
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4efbd111-8d0f-4345-2b09-08de3e688e84
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	BN1PEPF00006003.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR10MB7512
+References: <20251217104744.184153-1-jonathanh@nvidia.com> <CALHNRZ8syS6F9W1ovw2Y-jkspQafCnLy0ynocn0sMLurShHnbA@mail.gmail.com>
+ <CALHNRZ_vkw6Ns=PMa+x0SY64+Ov0FeA5tMKJr+-tY9_OasKUog@mail.gmail.com> <aUPsDeFmxAJ09Tk7@orome>
+In-Reply-To: <aUPsDeFmxAJ09Tk7@orome>
+From: Aaron Kling <webgeek1234@gmail.com>
+Date: Thu, 18 Dec 2025 13:07:52 -0600
+X-Gm-Features: AQt7F2rZaDEJQjyHAZZ0JkWaV3knLbFsUugTOOxQYIF1v4JX1I2zY4UaQHv-uF0
+Message-ID: <CALHNRZ_vjSy+A8ZW7E1A4B5yQJ=GgvbNmafU7gjtGv-xjdfhPg@mail.gmail.com>
+Subject: Re: [PATCH] Revert "arm64: tegra: Add interconnect properties for Tegra210"
+To: Thierry Reding <thierry.reding@gmail.com>
+Cc: Jon Hunter <jonathanh@nvidia.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	linux-tegra@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 10:10-20251217, Matthias Schiffer wrote:
-> On Wed, 2025-11-26 at 10:47 +0530, Vignesh Raghavendra wrote:
-> > Hi Matthias,
-> > 
-> > On 25/11/25 15:32, Matthias Schiffer wrote:
-> > > On Mon, 2025-11-10 at 12:49 +0100, Matthias Schiffer wrote:
-> > > > The TQMa62xx is a SoM family with a pluggable board connector based on the
-> > > > TI AM62x SoCs. Add DTS(I) for the AM625 (2x Cortex-A53) variant and its
-> > > > combination with our MBa62xx carrier board.
-> > > 
-> > > Hi Vignesh,
-> > > 
-> > > do you have any further comments? Can we get this in for 6.19?
-> > > 
-> > 
-> > Oops, this somehow fell through the crack, my apologies!
-> > 
-> > I have already sent out the PRs for v6.19. Sorry, this would need to
-> > wait for v6.20 cycle.
-> > 
-> > [...]
-> > 
-> > 
-> 
-> Hi Vignesh,
-> 
-> will these patches by applied for v6.20 (if there aren't any more review
-> comments)? Should I resend them?
+On Thu, Dec 18, 2025 at 6:00=E2=80=AFAM Thierry Reding <thierry.reding@gmai=
+l.com> wrote:
+>
+> On Wed, Dec 17, 2025 at 02:42:58PM -0600, Aaron Kling wrote:
+> > On Wed, Dec 17, 2025 at 12:20=E2=80=AFPM Aaron Kling <webgeek1234@gmail=
+.com> wrote:
+> > >
+> > > On Wed, Dec 17, 2025 at 4:48=E2=80=AFAM Jon Hunter <jonathanh@nvidia.=
+com> wrote:
+> > > >
+> > > > Commit 59a42707a094 ("arm64: tegra: Add interconnect properties for
+> > > > Tegra210") populated interconnect properties for Tegra210 and this =
+is
+> > > > preventing the Tegra DRM driver from probing successfully. The foll=
+owing
+> > > > error is observed on boot ...
+> > > >
+> > > >  drm drm: failed to initialize 54240000.dc: -517
+> > > >
+> > > > For now revert this change, until a fix is available.
+> > > >
+> > > > Fixes: 59a42707a094 ("arm64: tegra: Add interconnect properties for=
+ Tegra210")
+> > > > Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+> > > > ---
+> > > >  arch/arm64/boot/dts/nvidia/tegra210.dtsi | 24 --------------------=
+----
+> > > >  1 file changed, 24 deletions(-)
+> > > >
+> > > > diff --git a/arch/arm64/boot/dts/nvidia/tegra210.dtsi b/arch/arm64/=
+boot/dts/nvidia/tegra210.dtsi
+> > > > index 709da31d5785..137aa8375257 100644
+> > > > --- a/arch/arm64/boot/dts/nvidia/tegra210.dtsi
+> > > > +++ b/arch/arm64/boot/dts/nvidia/tegra210.dtsi
+> > > > @@ -202,19 +202,6 @@ dc@54200000 {
+> > > >
+> > > >                         nvidia,outputs =3D <&dsia &dsib &sor0 &sor1=
+>;
+> > > >                         nvidia,head =3D <0>;
+> > > > -
+> > > > -                       interconnects =3D <&mc TEGRA210_MC_DISPLAY0=
+A &emc>,
+> > > > -                                       <&mc TEGRA210_MC_DISPLAY0B =
+&emc>,
+> > > > -                                       <&mc TEGRA210_MC_DISPLAY0C =
+&emc>,
+> > > > -                                       <&mc TEGRA210_MC_DISPLAYHC =
+&emc>,
+> > > > -                                       <&mc TEGRA210_MC_DISPLAYD &=
+emc>,
+> > > > -                                       <&mc TEGRA210_MC_DISPLAYT &=
+emc>;
+> > > > -                       interconnect-names =3D "wina",
+> > > > -                                            "winb",
+> > > > -                                            "winc",
+> > > > -                                            "cursor",
+> > > > -                                            "wind",
+> > > > -                                            "wint";
+> > > >                 };
+> > > >
+> > > >                 dc@54240000 {
+> > > > @@ -230,15 +217,6 @@ dc@54240000 {
+> > > >
+> > > >                         nvidia,outputs =3D <&dsia &dsib &sor0 &sor1=
+>;
+> > > >                         nvidia,head =3D <1>;
+> > > > -
+> > > > -                       interconnects =3D <&mc TEGRA210_MC_DISPLAY0=
+AB &emc>,
+> > > > -                                       <&mc TEGRA210_MC_DISPLAY0BB=
+ &emc>,
+> > > > -                                       <&mc TEGRA210_MC_DISPLAY0CB=
+ &emc>,
+> > > > -                                       <&mc TEGRA210_MC_DISPLAYHCB=
+ &emc>;
+> > > > -                       interconnect-names =3D "wina",
+> > > > -                                            "winb",
+> > > > -                                            "winc",
+> > > > -                                            "cursor";
+> > > >                 };
+> > > >
+> > > >                 dsia: dsi@54300000 {
+> > > > @@ -1052,7 +1030,6 @@ mc: memory-controller@70019000 {
+> > > >
+> > > >                 #iommu-cells =3D <1>;
+> > > >                 #reset-cells =3D <1>;
+> > > > -               #interconnect-cells =3D <1>;
+> > > >         };
+> > > >
+> > > >         emc: external-memory-controller@7001b000 {
+> > > > @@ -1066,7 +1043,6 @@ emc: external-memory-controller@7001b000 {
+> > > >                 nvidia,memory-controller =3D <&mc>;
+> > > >                 operating-points-v2 =3D <&emc_icc_dvfs_opp_table>;
+> > > >
+> > > > -               #interconnect-cells =3D <0>;
+> > > >                 #cooling-cells =3D <2>;
+> > > >         };
+> > > >
+> > > > --
+> > > > 2.43.0
+> > > >
+> > >
+> > > A little bit of documentation on this, should someone read the list t=
+o
+> > > see what happened. The original report of the failure is here [0] and
+> > > only occurred when the tegra210-emc driver fails to probe. After this
+> > > report, the related code change [1] to tegra210-emc which registers
+> > > the driver to icc was silently dropped from -next, but these dt
+> > > changes remained. So now these interconnect routes do cause tegra-drm
+> > > to universally fail on tegra210.
+> > >
+> > > Aaron
+> > >
+> > > [0] https://lore.kernel.org/all/56aed0ec-b104-4612-8901-3f6f95e0afab@=
+nvidia.com/
+> > > [1] https://lore.kernel.org/all/20251027-t210-actmon-p2-v6-1-1c4bd227=
+d676@gmail.com/
+> >
+> > There may be another option here. I'm beginning to think there will
+> > not be any way to set the icc routes for the dc's while the emc driver
+> > can fail to probe. The next best thing looks to be just dropping the
+> > interconnect nodes from the dc nodes and leaving the rest of the
+> > original commit in place. Then reland the tegra210-emc driver change.
+> > This should put the no-emc case back to where it was, while allowing
+> > actmon to do its scaling when emc is available. And I will move to the
+> > dc icc routes to downstream dt's, where I tightly control that emc is
+> > available.
+> >
+> > Does this sound reasonable? If so, I will go stage the changes and
+> > verify that it works as intended.
+>
+> Let's go with the revert for now, since that clearly documents where
+> things go wrong and it can be easily reapplied once the root cause has
+> been resolved.
+>
+> It's a bit unfortunate that we don't have a way of making these
+> interconnect properties optional. If EMC fails to probe for whatever
+> reason, I think the assumption should be that it doesn't do any dynamic
+> scaling of the EMC frequency and hence the entire ICC stuff isn't needed
+> and should just be no-ops.
+>
+> On the other hand, other than the patches getting reverted, there's
+> really no good reason for the EMC driver to fail to provide them, hence
+> I think once that's been restored we can apply this again and then that
+> should be the end of it.
 
-Yes please, Please resend after rebasing to latest next. Vignesh and I
-switch picking patches, so the v6.20 window, i am picking them up, will
-be good  to repost them so they appear in my private patchworks for me
-to track.
+Except that the tegra210-emc driver fails to probe at all if the
+bootloader does not copy reserved-memory table node? Which per Jon,
+the Nvidia regression bench does not do. And neither will a normal L4T
+install using a mainline kernel and dt via extlinux or u-boot. I have
+to put the mainline kernel on DTB and use a kernel in an android boot
+image, which causes nvtboot-cpu to set the dt table reserved memory
+node directly. Which is perfectly fine for my android use case, but
+not so much for anyone just trying to boot a Linux distro.
 
-Please note that there are additional checks in place so, will be good
-to rerun dtbs_check prior to posting.
+I have wondered how the reserved memory dt tables were verified when
+that support was initially added. And if the regression bench can be
+set up like that. Because right now, emc fails to probe there, meaning
+there's no test coverage for the driver.
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
-https://ti.com/opensource
+Aaron
 
