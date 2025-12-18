@@ -1,342 +1,138 @@
-Return-Path: <devicetree+bounces-247868-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247869-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80E20CCC523
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 15:43:08 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id CAFF9CCC651
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 16:06:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0306D3058310
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 14:37:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EA07530E48C1
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 15:02:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 636F828750B;
-	Thu, 18 Dec 2025 14:37:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F122C2DECBD;
+	Thu, 18 Dec 2025 14:42:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="npRJQJ+n"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U6ZVfUie"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A1E42773DE;
-	Thu, 18 Dec 2025 14:37:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBDE72D94BF
+	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 14:42:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766068624; cv=none; b=LVgp5WgFE1LsHQrKDbHYk2HQkbg0ocmFkU/x2zIC9FrDJkEmTHy79LpMuNCZs3t1tf9VIsC9TbF7Lyljfl9T9fudpwcLjcYh000W5neieoV2S1o9vRZmXGun49cOjAsJWLvX6Z4mBQiTdfzOFux9jiAAvKmVfUT2XpiNC86Nm4E=
+	t=1766068976; cv=none; b=DLczALJiNinMduRjkSroRC4HNOaSDNl6oc3LAbPScyXB11vMOAj/NcA2f7ZfhJT7li3r2beNzmavc3wEgkO20ROchoqQkCaRO31LXEVRImBkFrVvXfU2ntLA3eu5QY1KxWz9yJT03RCANKf4Kq9LpUx8Cx98wXmaPSx/eW3JbeE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766068624; c=relaxed/simple;
-	bh=C4aVgHKLH2zwboXazAOmsuS2KMJ4bZLNfRZH48TA7KE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PvZ4X2eDN1oZg9+0iF89WM5aX1ACj5U02SkATrq2rH5nhoiZOHM5LBz+XXerOictbIaSB951risZYyaTyO/YXFmofqgCH+xFvMa0SDcby72uBub5X76YOhRBBIqK37FBsCBgqVdNOuibKUyWPUs7Ovuu/+QMkzyqnK3pRvIMfI4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=npRJQJ+n; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4F5EC4CEFB;
-	Thu, 18 Dec 2025 14:37:01 +0000 (UTC)
+	s=arc-20240116; t=1766068976; c=relaxed/simple;
+	bh=slw+BosK1PsNPJpyi2TmKbuGD4RpEMMPJVH/OAf+NQM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ROgegSudK8ifH/j+IlIjBELZ2bD911qAU9/TO5gBIk88HrpApfvhZALfX6DlHLBjimcHKFBptXty76fynyfvkTFwTCC1Qs2vO1+JSjZc10yhQb/SwzOWxpORnE+zgztcsWerLnhSodt/Vk3k+0U3eOCVryWaNf7YbO3uiVtAh2Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U6ZVfUie; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2A8FC19425
+	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 14:42:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766068622;
-	bh=C4aVgHKLH2zwboXazAOmsuS2KMJ4bZLNfRZH48TA7KE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=npRJQJ+n2T/y2apPKRagp7AdUodJQ+cnhwXusv0lE9gGgbwlz0954GPVGSKPAHWd9
-	 LVy1zbS+vOC6cwzkMiFLj7DTzuYmfw1bvM4cxa/0YKs+qjdPXEWUJ28QRCnCKSvoAn
-	 x0hSws9giSplsSa1/mYO6XmU2YFo7g+xGqIRwrNR8KJZvQBoepGEGVcoMkt8AEvHvp
-	 SsQkxMeqq/do0L9W5gu61tDSApWdwHnQt43I/1P4xq/M1dQXgrisx4q5V2taXjDz+c
-	 Rm2m8PDJvfSffQSCfuYdEvinoawcZRRncf50vHTjUTjgN13U8l7LFPhJHzLBwd83Gr
-	 VoqJUQ0qXZAbA==
-Date: Thu, 18 Dec 2025 08:37:00 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
-Cc: Mathieu Poirier <mathieu.poirier@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v8 11/14] firmware: qcom_scm: Add
- qcom_scm_pas_get_rsc_table() to get resource table
-Message-ID: <2332azku3gvlm7vwuu6xvhdtr3nhbbjsnpgclh3m4mk6gvotjs@h4cizwnu6dkl>
-References: <20251121-kvm_rproc_v8-v8-0-8e8e9fb0eca0@oss.qualcomm.com>
- <20251121-kvm_rproc_v8-v8-11-8e8e9fb0eca0@oss.qualcomm.com>
- <igedl65pnenmeiybzktsw7toeqtb5mhbk7ks5dkavevko6e5yq@2tyakacovx7f>
- <20251208164926.cwe7arncr6tnan5f@hu-mojha-hyd.qualcomm.com>
- <20251209104525.wtevrvyxqomh63hg@hu-mojha-hyd.qualcomm.com>
+	s=k20201202; t=1766068976;
+	bh=slw+BosK1PsNPJpyi2TmKbuGD4RpEMMPJVH/OAf+NQM=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=U6ZVfUieX3cwLufZBD02xIoNZ17rXxDRXramTk93AHyzo1NPQg7z6Q0hLw8P/gi6Z
+	 FCVrFTH+pOVUHA8Wo2PrWamlh3y+Y5X61fJUqZfH7ViE1errdTruUqz+Z54R+GWf5b
+	 tePNBLtUMVvTHtn0YMyY0XIjdO+mxqBINTyVbq3rpxMeMw1pL2dfPqDHWXS2c8QaY4
+	 zfrviEkK2w/qsVmMrcx5aGKnbdcgkh+ItpnwUsJJhkR8H4HSe2bTr2sNZIEZM7ywYk
+	 vpMIrNG/Ek+/kdlcv6gLxyqY79tv23Qx4R46sdFB89clfYcw9QBUoSgWw6lbBtCUCh
+	 pR+06ue4QX9+g==
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-64312565c10so1191377a12.2
+        for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 06:42:56 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXiRZCCEk5vH4rJIX+GCkdQDzljp/HtVqSyvkxalWiZ9i2iLvu23gRFUk6WioDRuHSEZoDGi5je40Ix@vger.kernel.org
+X-Gm-Message-State: AOJu0YxioeBpgDETHqLbbefewv3p42qAqB+VwYpzynPOI5b0BiCr9suu
+	DEhG0+/Z4B3dhd6yWNdzKkXK+adpMsFdgY0+/UFMgV9zqp9XrN9UZAp2mhZMji8akSt+ux2jBAF
+	p5yV3x7S1K7EzdSYmxH8ICxfD+V+kPw==
+X-Google-Smtp-Source: AGHT+IFdmyojuTTgaWiolIibwsAa/0a3X7FzgZ+D2f7PWKjB9jlhVbGo9VOiZ0gBgTNEAMMazdnjwp3dHTDr86SBEs4=
+X-Received: by 2002:a17:907:2da0:b0:b4f:e12e:aa24 with SMTP id
+ a640c23a62f3a-b7d23667b5bmr2457256466b.22.1766068974880; Thu, 18 Dec 2025
+ 06:42:54 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251209104525.wtevrvyxqomh63hg@hu-mojha-hyd.qualcomm.com>
+References: <CGME20251210002053eucas1p1d1408ad0fb49a49bf4371687f8df7395@eucas1p1.samsung.com>
+ <20251210002027.1171519-1-oreoluwa.babatunde@oss.qualcomm.com>
+ <X-TH#1.CAL_JsqL6VVQ7K_ZAbHJ8Gb7ei_jusLx6wRn=AdOVgV50dX0ejQ@mail.gmail.com> <99dc91c9-59fd-47c5-b1d9-157bda86ad59@samsung.com>
+In-Reply-To: <99dc91c9-59fd-47c5-b1d9-157bda86ad59@samsung.com>
+From: Rob Herring <robh@kernel.org>
+Date: Thu, 18 Dec 2025 08:42:43 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqK5QEZfyRTDY4z88mX_eYENibea1ZM8H_bEfCCsOOwY4A@mail.gmail.com>
+X-Gm-Features: AQt7F2oHd8w0_YjnIgYXfiCaa1Lm7dC6NF9JlmrJ9TE4Ra2le7vZL1e4sdVufPM
+Message-ID: <CAL_JsqK5QEZfyRTDY4z88mX_eYENibea1ZM8H_bEfCCsOOwY4A@mail.gmail.com>
+Subject: Re: [PATCH] of: reserved_mem: Allow reserved_mem framework detect
+ "cma=" kernel param
+To: Marek Szyprowski <m.szyprowski@samsung.com>
+Cc: Oreoluwa Babatunde <oreoluwa.babatunde@oss.qualcomm.com>, ye.li@oss.nxp.com, 
+	kernel@oss.qualcomm.com, saravanak@google.com, akpm@linux-foundation.org, 
+	david@redhat.com, lorenzo.stoakes@oracle.com, Liam.Howlett@oracle.com, 
+	vbabka@suse.cz, rppt@kernel.org, surenb@google.com, mhocko@suse.com, 
+	robin.murphy@arm.com, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-mm@kvack.org, iommu@lists.linux.dev, 
+	quic_c_gdjako@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Dec 09, 2025 at 04:15:25PM +0530, Mukesh Ojha wrote:
-> On Mon, Dec 08, 2025 at 10:19:26PM +0530, Mukesh Ojha wrote:
-> > On Fri, Dec 05, 2025 at 04:40:51PM -0600, Bjorn Andersson wrote:
-> > > On Fri, Nov 21, 2025 at 04:31:13PM +0530, Mukesh Ojha wrote:
-[..]
-> > > 
-> > > Wouldn't be unreasonable to return an ERR_PTR() with the allocated
-> > > buffer, instead of returning through the reference.
-> > 
-> > We anyway have to return the size through reference, why not do the same for 
-> > allocated buffer as well..
-> 
-> 
-> Tried to take care most of the comments apart from above one., let me know if
-> below is fine..
+On Thu, Dec 18, 2025 at 3:55=E2=80=AFAM Marek Szyprowski
+<m.szyprowski@samsung.com> wrote:
+>
+> On 10.12.2025 15:07, Rob Herring wrote:
+> > On Tue, Dec 9, 2025 at 6:20=E2=80=AFPM Oreoluwa Babatunde
+> > <oreoluwa.babatunde@oss.qualcomm.com> wrote:
+> >> When initializing the default cma region, the "cma=3D" kernel paramete=
+r
+> >> takes priority over a DT defined linux,cma-default region. Hence, give
+> >> the reserved_mem framework the ability to detect this so that the DT
+> >> defined cma region can skip initialization accordingly.
+> > Please explain here why this is a new problem. Presumably the
+> > RESERVEDMEM_OF_DECLARE hook after commit xxxx gets called before the
+> > early_param hook. And why is it now earlier?
+> >
+> > I don't really like the state/ordering having to be worried about in 2 =
+places.
+>
+> I also don't like this spaghetti, but it originates from
+> commit 8a6e02d0c00e ("of: reserved_mem: Restructure how the reserved
+> memory regions are processed") and the first fixup for it: 2c223f7239f3
+> ("of: reserved_mem: Restructure call site for
+> dma_contiguous_early_fixup()").
 
-It's indeed fine, much better. Thank you.
+Honestly, this code wasn't great before. Every time it is touched it
+breaks someone.
 
-> 
-> ---------------------------------------o<---------------------------------------
-> 
-> diff --git a/drivers/firmware/qcom/qcom_scm.c b/drivers/firmware/qcom/qcom_scm.c
-> index 4ce892d8fb25..a589961f8225 100644
-> --- a/drivers/firmware/qcom/qcom_scm.c
-> +++ b/drivers/firmware/qcom/qcom_scm.c
-> @@ -27,6 +27,7 @@
->  #include <linux/of_reserved_mem.h>
->  #include <linux/platform_device.h>
->  #include <linux/reset-controller.h>
-> +#include <linux/remoteproc.h>
->  #include <linux/sizes.h>
->  #include <linux/types.h>
->  
-> @@ -111,6 +112,10 @@ enum qcom_scm_qseecom_tz_cmd_info {
->  	QSEECOM_TZ_CMD_INFO_VERSION		= 3,
->  };
->  
-> +enum qcom_scm_rsctable_resp_type {
-> +	RSCTABLE_BUFFER_NOT_SUFFICIENT		= 20,
+> It looks that it is really hard to make reserved memory
+> initialization fully dynamic assuming that the cma related fixups have
+> to be known before populating kernel memory pages tables. I also advised
+> in
+> https://lore.kernel.org/all/be70bdc4-bddd-4afe-8574-7e0889fd381c@samsung.=
+com/
+> to simply increase the size of the static table to make it large enough f=
+or the sane use cases, but
+> it turned out that this approach was already discussed and rejected:
+> https://lore.kernel.org/all/1650488954-26662-1-git-send-email-quic_pdaly@=
+quicinc.com/
 
-This isn't an enumeration, it's the constant 20. So #define would be
-more suitable...
+I guess the question is what's a sane limit? After 128, are we going
+to accept 256? I really suspect we are just enabling some further
+abuse of /reserved-memory downstream. For example, I could imagine
+there's micromanaging the location of media/graphics buffers so they
+end up in specific DRAM banks to optimize accesses. No one ever wants
+to detail why they want/need more regions.
 
-> +};
-> +
->  #define QSEECOM_MAX_APP_NAME_SIZE		64
->  #define SHMBRIDGE_RESULT_NOTSUPP		4
->  
-> @@ -766,6 +771,171 @@ int qcom_scm_pas_mem_setup(u32 pas_id, phys_addr_t addr, phys_addr_t size)
->  }
->  EXPORT_SYMBOL_GPL(qcom_scm_pas_mem_setup);
->  
-> +static int __qcom_scm_pas_get_rsc_table(u32 pas_id, void *input_rt,
-> +					size_t input_rt_size, void *output_rt,
-> +					size_t *output_rt_size)
-> +{
-> +	struct qcom_scm_desc desc = {
-> +		.svc = QCOM_SCM_SVC_PIL,
-> +		.cmd = QCOM_SCM_PIL_PAS_GET_RSCTABLE,
-> +		.arginfo = QCOM_SCM_ARGS(5, QCOM_SCM_VAL, QCOM_SCM_RO, QCOM_SCM_VAL,
-> +					 QCOM_SCM_RW, QCOM_SCM_VAL),
-> +		.args[0] = pas_id,
-> +		.owner = ARM_SMCCC_OWNER_SIP,
-> +	};
-> +	struct qcom_scm_res res;
-> +	int ret;
-> +
-> +	desc.args[1] = qcom_tzmem_to_phys(input_rt);
-> +	desc.args[2] = input_rt_size;
-> +	desc.args[3] = qcom_tzmem_to_phys(output_rt);
-> +	desc.args[4] = *output_rt_size;
-> +
-> +	/*
-> +	 * Whether SMC fail or pass, res.result[2] will hold actual resource table
-> +	 * size.
-> +	 *
-> +	 * If passed 'output_rt_size' buffer size is not sufficient to hold the
-> +	 * resource table TrustZone sends, response code in res.result[1] as
-> +	 * RSCTABLE_BUFFER_NOT_SUFFICIENT so that caller can retry this SMC call
-> +	 * with output_rt buffer with res.result[2] size however, It should not
-> +	 * be of unresonable size.
-> +	 */
-> +	ret = qcom_scm_call(__scm->dev, &desc, &res);
-> +	if (res.result[2] > SZ_1G) {
-> +		ret = -E2BIG;
-> +		return ret;
-> +	}
-> +
-> +	*output_rt_size = res.result[2];
-> +	if (ret && res.result[1] == RSCTABLE_BUFFER_NOT_SUFFICIENT)
-> +		ret = -EOVERFLOW;
-> +
-> +	return ret ? : res.result[0];
-> +}
-> +
-> +/**
-> + * qcom_scm_pas_get_rsc_table() - Retrieve the resource table in passed output buffer
-> + *				  for a given peripheral.
-> + *
-> + * Qualcomm remote processor may rely on both static and dynamic resources for
-> + * its functionality. Static resources typically refer to memory-mapped addresses
-> + * required by the subsystem and are often embedded within the firmware binary
-> + * and dynamic resources, such as shared memory in DDR etc., are determined at
-> + * runtime during the boot process.
-> + *
-> + * On Qualcomm Technologies devices, it's possible that static resources are not
-> + * embedded in the firmware binary and instead are provided by TrustZone However,
-> + * dynamic resources are always expected to come from TrustZone. This indicates
-> + * that for Qualcomm devices, all resources (static and dynamic) will be provided
-> + * by TrustZone via the SMC call.
-> + *
-> + * If the remote processor firmware binary does contain static resources, they
-> + * should be passed in input_rt. These will be forwarded to TrustZone for
-> + * authentication. TrustZone will then append the dynamic resources and return
-> + * the complete resource table in output_rt.
-> + *
-> + * If the remote processor firmware binary does not include a resource table,
-> + * the caller of this function should set input_rt as NULL and input_rt_size
-> + * as zero respectively.
-> + *
-> + * More about documentation on resource table data structures can be found in
-> + * include/linux/remoteproc.h
-> + *
-> + * @ctx:	    PAS context
-> + * @pas_id:	    peripheral authentication service id
-> + * @input_rt:       resource table buffer which is present in firmware binary
-> + * @input_rt_size:  size of the resource table present in firmware binary
-> + * @output_rt:	    buffer to which the both static and dynamic resources will
-> + *		    be returned.
-> + * @output_rt_size: TrustZone expects caller should pass worst case size for
-> + *		    the output_rt.
-> + *
-> + * Return: 0 on success and nonzero on failure.
-> + *
-> + * Upon successful return, output_rt will have the resource table and output_rt_size
-> + * will have actual resource table size,
-> + */
-> +int qcom_scm_pas_get_rsc_table(struct qcom_scm_pas_context *ctx, void *input_rt,
-> +			       size_t input_rt_size, void **output_rt,
-> +			       size_t *output_rt_size)
-> +{
-> +	struct resource_table empty_rsc = {};
-> +	size_t size = SZ_16K;
-> +	void *output_rt_tzm;
-> +	void *input_rt_tzm;
-> +	int ret;
-> +
-> +	ret = qcom_scm_clk_enable();
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = qcom_scm_bw_enable();
-> +	if (ret)
-> +		goto disable_clk;
-> +
-> +	/*
-> +	 * TrustZone can not accept buffer as NULL value as argument Hence,
+> Maybe it would make sense to revert the mentioned changes and get back
+> to such simple approach - to make the size of the static table
+> configurable in the Kconfig?
 
-Lowercase 'h' in Hence, please.
+I'd rather not resort to a kconfig option.
 
-> +	 * we need to pass a input buffer indicating that subsystem firmware
-> +	 * does not have resource table by filling resource table structure.
-> +	 */
-> +	if (!input_rt) {
-> +		input_rt = &empty_rsc;
-> +		input_rt_size = sizeof(empty_rsc);
-> +	}
-> +
-> +	input_rt_tzm = qcom_tzmem_alloc(__scm->mempool, input_rt_size, GFP_KERNEL);
-> +	if (!input_rt_tzm) {
-> +		ret = -ENOMEM;
-> +		goto disable_scm_bw;
-> +	}
-> +
-> +	memcpy(input_rt_tzm, input_rt, input_rt_size);
-> +
-> +	do {
-> +		output_rt_tzm = qcom_tzmem_alloc(__scm->mempool, size, GFP_KERNEL);
-> +		if (!output_rt_tzm) {
-> +			ret = -ENOMEM;
-> +			goto free_input_rt;
-> +		}
-> +
-> +		ret = __qcom_scm_pas_get_rsc_table(ctx->pas_id, input_rt_tzm,
-> +						   input_rt_size, output_rt_tzm,
-> +						   &size);
-> +		if (ret)
-> +			qcom_tzmem_free(output_rt_tzm);
-> +
-> +	} while (ret == -EOVERFLOW);
-> +
-> +	if (!ret) {
-> +		void *tbl_ptr;
-> +
-> +		tbl_ptr = kzalloc(size, GFP_KERNEL);
-> +		if (!tbl_ptr)
-> +			goto free_output_rt;
-> +
-> +		memcpy(tbl_ptr, output_rt_tzm, size);
-> +		*output_rt = tbl_ptr;
-> +		*output_rt_size = size;
-> +	}
-> +
-> +free_output_rt:
-> +	if (!ret)
-> +		qcom_tzmem_free(output_rt_tzm);
-> +
-> +free_input_rt:
-> +	qcom_tzmem_free(input_rt_tzm);
-> +
-> +disable_scm_bw:
-> +	qcom_scm_bw_disable();
-> +
-> +disable_clk:
-> +	qcom_scm_clk_disable();
-> +
-> +	return ret;
+We could go back to processing all the regions at the beginning
+(growing the static size), and then just shrinking allocation. Or
+maybe it could just be freed entirely. I don't think we really need to
+keep the state around forever.
 
-I still think it would be nice to match the prototype of
-rproc_find_loaded_rsc_table() and return the pointer our resource table.
-
-Effectively:
-  return ret ? ERR_PTR(ret) : tbl_ptr;
-
-(although return tbl_ptr; after making sure it's either the allocated
-memory or ERR_PTR() would be nicer)
-
-Should be able to make the return type struct resource_table * (even
-though struct resource_table is a opaque type here).
-
-But, my concrete concerns have been addressed, so I'm happy either way.
-
-Regards,
-Bjorn
-
-> +}
-> +EXPORT_SYMBOL_GPL(qcom_scm_pas_get_rsc_table);
-> +
->  /**
->   * qcom_scm_pas_auth_and_reset() - Authenticate the given peripheral firmware
->   *				   and reset the remote processor
-> diff --git a/drivers/firmware/qcom/qcom_scm.h b/drivers/firmware/qcom/qcom_scm.h
-> index a56c8212cc0c..50d87c628d78 100644
-> --- a/drivers/firmware/qcom/qcom_scm.h
-> +++ b/drivers/firmware/qcom/qcom_scm.h
-> @@ -105,6 +105,7 @@ int qcom_scm_shm_bridge_enable(struct device *scm_dev);
->  #define QCOM_SCM_PIL_PAS_SHUTDOWN	0x06
->  #define QCOM_SCM_PIL_PAS_IS_SUPPORTED	0x07
->  #define QCOM_SCM_PIL_PAS_MSS_RESET	0x0a
-> +#define QCOM_SCM_PIL_PAS_GET_RSCTABLE	0x21
->  
->  #define QCOM_SCM_SVC_IO			0x05
->  #define QCOM_SCM_IO_READ		0x01
-> diff --git a/include/linux/firmware/qcom/qcom_scm.h b/include/linux/firmware/qcom/qcom_scm.h
-> index d6d83888bb75..7c331598ea15 100644
-> --- a/include/linux/firmware/qcom/qcom_scm.h
-> +++ b/include/linux/firmware/qcom/qcom_scm.h
-> @@ -88,6 +88,10 @@ int qcom_scm_pas_mem_setup(u32 pas_id, phys_addr_t addr, phys_addr_t size);
->  int qcom_scm_pas_auth_and_reset(u32 pas_id);
->  int qcom_scm_pas_shutdown(u32 pas_id);
->  bool qcom_scm_pas_supported(u32 pas_id);
-> +int qcom_scm_pas_get_rsc_table(struct qcom_scm_pas_context *ctx, void *input_rt,
-> +			       size_t input_rt_size, void **output_rt,
-> +			       size_t *output_rt_size);
-> +
->  
-> 
-> > 
-> > 
-> > -- 
-> > -Mukesh Ojha
-> 
-> -- 
-> -Mukesh Ojha
+Rob
 
