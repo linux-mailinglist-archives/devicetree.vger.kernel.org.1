@@ -1,112 +1,106 @@
-Return-Path: <devicetree+bounces-247925-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247910-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B8E0CCCC85
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 17:33:17 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EA8DCCCDB7
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 17:49:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 00514300A35A
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 16:32:11 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 96C383016CF3
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 16:42:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D56035F8B0;
-	Thu, 18 Dec 2025 16:25:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71F3934F488;
+	Thu, 18 Dec 2025 15:47:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="mboMVR0c"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BggJZifg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B8B935E54A;
-	Thu, 18 Dec 2025 16:25:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 538D334E767
+	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 15:47:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766075159; cv=none; b=tJDbJ8zsbyFtdEwCwaONHpvZ/0R86b33b79+y3anvUvHwzRvprho0q8wj5k0wD7UP3+wK4A5XaPir3BQvs2RqtP1nkXaY/IzbCaD5ctj0fGjKt6jPt42l8YXevMPnbX7BAxH301hS/HwgO9GNq23B+Jv1cZaIi3PnKJKN+UIhN0=
+	t=1766072869; cv=none; b=R7ANkT5ciixjy0yPBASvJYU4IabA6CJY9vNDa0rytY+q+0aHdVRD0+zaId8UiJpgJiM4pRcM7du53dVqmxSlqKnjoJfEh1cKRpC1MZxAsoaWPiq4/y60QPGPEAm0zoer3Ts3RrIgkRfUzcRLgpmny9e45YZ/GMY42rIehBX/rJM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766075159; c=relaxed/simple;
-	bh=qwJypU9bIYmExoXtAh4Yr+ZWfamC1DWgN5kEoxbDEvo=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=G2OGvPxMBdElJUq/xh2NlkZKxuuZLRA4vHMdCvwrcbQFABZnhU9a8P6oJNIoZmCr3T4SOjqCo3BKCK4zY1BImc/8jLyYocVppMnTHU7590U2S82Ce5Pkk6aARRvN/9a4/T6q6qw7avjGdzq3OWDFav1yAvgghUmAbRGVdxtTEFk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=mboMVR0c; arc=none smtp.client-ip=178.238.236.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=p6SJYnp842vCkHQu4i1e9JURGgkIZOc40Ucg7D58Umw=; b=mboMVR0clmVwmOkik7DJ/d1LVk
-	GKJTXr137XbyxnXLQy/exMN+xbuxmyL0eErPsCBvcU1/yNaZm8yuJXMN2TnBUjXU692kIrag3X5HN
-	dOoxnwA2JdeDW3ZYbUD7ln7d0b764ixHN+w11j8NrtY+sfOEZsVS8DOgcLuu6iyF81By+Nwk3oSMW
-	jXOHvbHZHtu66FqVsDPCKCQbQ4g5dEI0K+1rASggpmwLd4u+qWD7BYWQrPsYiS52kUkv1TFv6FgAC
-	QRhkKNcK1sUAAb7oO7PoXDCDU+KJiCVRGvIHO3foOFZmvUQZ/aIS2nTvPbmJ29hqkVyquVhreRqSI
-	xlLsk5mw==;
-Date: Thu, 18 Dec 2025 16:46:20 +0100
-From: Andreas Kemnade <andreas@kemnade.info>
-To: "Luca Ceresoli" <luca.ceresoli@bootlin.com>
-Cc: "Kory Maincent (TI.com)" <kory.maincent@bootlin.com>, "Jyri Sarha"
- <jyri.sarha@iki.fi>, "Tomi Valkeinen" <tomi.valkeinen@ideasonboard.com>,
- "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>, "Maxime Ripard"
- <mripard@kernel.org>, "Thomas Zimmermann" <tzimmermann@suse.de>, "David
- Airlie" <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Rob
- Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>, "Russell King"
- <linux@armlinux.org.uk>, "Bartosz Golaszewski" <brgl@bgdev.pl>, "Tony
- Lindgren" <tony@atomide.com>, "Andrzej Hajda" <andrzej.hajda@intel.com>,
- "Neil Armstrong" <neil.armstrong@linaro.org>, "Robert Foss"
- <rfoss@kernel.org>, "Laurent Pinchart" <Laurent.pinchart@ideasonboard.com>,
- "Jonas Karlman" <jonas@kwiboo.se>, "Jernej Skrabec"
- <jernej.skrabec@gmail.com>, "Markus Schneider-Pargmann" <msp@baylibre.com>,
- "Bajjuri Praneeth" <praneeth@ti.com>, "Louis Chauvet"
- <louis.chauvet@bootlin.com>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>, "Miguel Gazquez"
- <miguel.gazquez@bootlin.com>, <dri-devel@lists.freedesktop.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-arm-kernel@lists.infradead.org>, <linux-omap@vger.kernel.org>
-Subject: Re: [PATCH v2 03/20] drm/tilcdc: Remove simulate_vesa_sync flag
-Message-ID: <20251218164620.40c0599d@kemnade.info>
-In-Reply-To: <DF0K3BRQKOSI.10X5SMXI1YM60@bootlin.com>
-References: <20251211-feature_tilcdc-v2-0-f48bac3cd33e@bootlin.com>
-	<20251211-feature_tilcdc-v2-3-f48bac3cd33e@bootlin.com>
-	<DF0K3BRQKOSI.10X5SMXI1YM60@bootlin.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; aarch64-unknown-linux-gnu)
+	s=arc-20240116; t=1766072869; c=relaxed/simple;
+	bh=LzxNzF7MpItYcU3pEGmTXATHal65pD7N5vjHukp5bDE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=dSotArwkmVHcer6tpf5P2lSqjsYpBhypNuvTzkw9G8T/l9pG4gKV9mphZmnOU+TDoB1OJDLnD1BDBf1QRHLAasRGrLGAVm8CFiAO4htJMVQOTLbjKVskUKcTBPkFqIQKTO//UpQoD04JyiL9mjqvQjz/V9QWowrgoZ0dSl5MjQ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BggJZifg; arc=none smtp.client-ip=209.85.167.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-59431f57bf6so840384e87.3
+        for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 07:47:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1766072864; x=1766677664; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=LzxNzF7MpItYcU3pEGmTXATHal65pD7N5vjHukp5bDE=;
+        b=BggJZifgjvx24PLzSYnjQCRW8lcVGi8OQ3JZYKH1fJf+W1Yphj6PpOXaY/v+7/K3Wq
+         svn7fUsuVdAD8JmSROt9ZGzmbTXjYttt2FcrmgoL0MMQc5OGRIf2ubxQfS9ZRLXP1poC
+         ljDz/txTjHP5Sg82DWwHJHrkU8aPNTpnkAsintYGBGw1KwwG74ZAxbJ5/21OQAjIrT9g
+         Zg4M2Xk8tsIh9wGMDbpVgX6TqPuZb1kmeYVaoYa7NNhxa5eKwL3ZW+KBSNKNbsam59hC
+         Tf9/JyaokJRpw5kT9rU1gJaIl4QPPQaWLx56+SBJPNIZl8SkOVFdUvA3EUTrqZkJn6e6
+         QQ5Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1766072864; x=1766677664;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=LzxNzF7MpItYcU3pEGmTXATHal65pD7N5vjHukp5bDE=;
+        b=LQveIRDdL1t/wEuY8q3lN9rCEruJnQS5h6pu6mR2/HbTGMle5XcGXY+TXXNqkFnbVg
+         lGmxU6uRDHD0jEZYqRFTRKzwcYqkYrKgBDM2ThpqhkDIn+OfBP0UBklG9YcsZ7EaHfdI
+         mXXWdhHpE9UqhpTKM344CF4yFxutMcgPhWvepmupRPYbHmVk8Gsr5wzlnDhh/+vzGYC7
+         Ccjig44UG6ttQeQltck2Ne1+Y6HCgrJZV/9Cpba6y4hX1wOkZUamZYGRXEMXxD4qWABx
+         wb1edtsd+V3wGDL/zsqjVVc/t3/qVvEuFM6Gd05jU0sTMaSoVUklbMkD4nbV10ZcEghr
+         ebCA==
+X-Forwarded-Encrypted: i=1; AJvYcCXQRTAst6RUpnIPYXZVwb6MZ1oNbXO0mV5R1ZEGkpjVBtA0LmQG19btksjflLZJAhm1RVAJcX/ZbF13@vger.kernel.org
+X-Gm-Message-State: AOJu0YwkK9uAiQnjU+8w+yzJe7SlFOxOG/R1cemZse4Iv8o9vyakl1zP
+	3jChuvqMEyoJsEUvWy7Lh2oruaE57iX5dq7DbGltvwKnnbx5qp50pV7P7AWvn5VvC8bbqlISJBl
+	OLrr5qq84w2xtBIqV68UhsrM/mdbHK5s=
+X-Gm-Gg: AY/fxX5Vf3qYApC3eccAdFgzmx3YSvbE67l5HrYeFw4hpjtsto51EmvgQOA/cQGMYoD
+	CXnLTYC/A7yp4zSuumbRpI9nP3aqUGOx4tO4IUaV9JqAqtWYgff2GPb8eUt+rzLjDQYscbxonw2
+	jgoFiaeOPqlhgd894UpB4lXy6MUAoEcaVDS3TF/YqcdwP7gg4HSvKD2IgEqjmYw5SnGGckjcQnM
+	GI0kpI1sG0ozgLu11iKOSjXL0Qp0in/dy/FwLyEERl0TVhH8YO5pwYlMdPJZWPz82X9jenkEnDP
+	fCBJt9vCR8M84Qz3bgQKf0VE/0E=
+X-Google-Smtp-Source: AGHT+IGrYbGUckFbA0uI/Uak1RoxWaGizxcWDMRvFWxpw/hL/+bdMgS3hQvghW4USBbg4LCsrOKENWVewsmE9VZ7WWY=
+X-Received: by 2002:a05:6512:128c:b0:598:eaf8:8f5a with SMTP id
+ 2adb3069b0e04-59a17d573afmr14623e87.38.1766072864074; Thu, 18 Dec 2025
+ 07:47:44 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <20251218152058.1521806-1-alexander.stein@ew.tq-group.com> <20251218154412.1524249-1-alexander.stein@ew.tq-group.com>
+In-Reply-To: <20251218154412.1524249-1-alexander.stein@ew.tq-group.com>
+From: Fabio Estevam <festevam@gmail.com>
+Date: Thu, 18 Dec 2025 12:47:33 -0300
+X-Gm-Features: AQt7F2qc4TJ7gyArwoED7PIRPB0eAsifB8ZnC9eeMqM3yyZByNJJ_XOF-WESW6g
+Message-ID: <CAOMZO5CmP_rdFA=PqGSmKDU+ObzifHFDjwYMD3J67bjs0h_sfw@mail.gmail.com>
+Subject: Re: [PATCH 5/6] arm64: dts: Add TQ imx8qm based board
+To: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Peter Chen <peter.chen@kernel.org>, Pawel Laszczak <pawell@cadence.com>, 
+	Roger Quadros <rogerq@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Magnus Damm <magnus.damm@gmail.com>, 
+	Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+	linux-usb@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux@ew.tq-group.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, 17 Dec 2025 15:20:09 +0100
-"Luca Ceresoli" <luca.ceresoli@bootlin.com> wrote:
+On Thu, Dec 18, 2025 at 12:45=E2=80=AFPM Alexander Stein
+<alexander.stein@ew.tq-group.com> wrote:
+>
+> * TQMa8QM on MBa8x
 
-[...]
-> > Signed-off-by: Kory Maincent (TI.com) <kory.maincent@bootlin.com>  
-> 
-> Code looks good. Based on your testing, which covered both boards currently
-> setting simulate_vesa_sync and boards not setting it:
-> 
-> Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-> 
-> Still it would be good to have this series, and especially this patch,
-> tested by someone having access to other TI boards.
-> 
-Just that I do not mix up anything:
-
-grep tilcdc only gives:
-
-am335x-base0033.dts:		compatible = "ti,tilcdc,slave";
-am335x-guardian.dts:		compatible = "ti,tilcdc,panel";
-am335x-pdu001.dts:		compatible = "ti,tilcdc,panel";
-am335x-pepper.dts:		compatible = "ti,tilcdc,panel";
-am335x-sbc-t335.dts:		compatible = "ti,tilcdc,panel";
-am335x-sl50.dts:		compatible = "ti,tilcdc,panel";
-am33xx-l4.dtsi:				compatible = "ti,am33xx-tilcdc";
-
-so only am33xx affected? And no omap3/4/5. So apparently nothing
-I can test.
-@Roger: I suspect you have more of these boards than me.
-
-Regards,
-Andreas
+This commit log should be improved by explaining the SoM and base
+board in more detail, providing a URL, etc.
 
