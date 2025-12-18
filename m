@@ -1,271 +1,457 @@
-Return-Path: <devicetree+bounces-247682-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247678-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2D33CCA5E9
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 06:54:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 88742CCA58C
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 06:36:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 553143005FD6
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 05:54:17 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4FB0F302629A
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 05:36:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 960F53126AF;
-	Thu, 18 Dec 2025 05:54:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B21C3112DA;
+	Thu, 18 Dec 2025 05:36:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="kRuOuvaj"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="I/p2AmxM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010024.outbound.protection.outlook.com [52.101.69.24])
+Received: from CY3PR05CU001.outbound.protection.outlook.com (mail-westcentralusazon11013030.outbound.protection.outlook.com [40.93.201.30])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EB0F26A09B;
-	Thu, 18 Dec 2025 05:54:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.24
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D82572522B6;
+	Thu, 18 Dec 2025 05:36:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.93.201.30
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766037256; cv=fail; b=tyNdW+LXUNUxYZYKJNtMpWGTd1cuW/zAIEqSIavKTxqmGhWvDLKStq3WJ5TWr0zOJFstSBvKY24d4R+U7TnETEhfEbLPw2WxHPcbw7Qdz8WQkhtnYDH6T4YZDmMBKh0ezCaCqc/jMmW5PQcraIAWL+1MaWh4+HCGNd9fTYSNgE0=
+	t=1766036173; cv=fail; b=L0IZfgImePi2fmTOS2oFJnp9K5U7l3SU88dme8x911yKkgIU6GxLh6Qk4vlWfiHdbz/d2nZ8UeQ2mA/qzeEB3lj4mS4ty3Cu3hNtAqwWrYqrnGbzJ4hw9lV78gfn93BPeYJNxe+WACVlYr4JRKh+2u4aFxIZfEQ7qeV0doFnFIU=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766037256; c=relaxed/simple;
-	bh=2Z1gnl2jrWRhUly3+oLfH4rOnXo1Utc5QWsXubs/c5U=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=f12qFFuPsscWSe7qRtbOFuHf7XbHyyxHe5FhaKWCBAzXG7XCoQmvgAUlpDAEXPPI/GVRWsT0DtMsFGwYNjibt8gVFoz2zPap6euBvNGcON+rvnZ9AoLvGW6rkg0AgjF2WV1oP42IA+CGdsErucJz2hR+yrVTzy7XOAsAKtZDaSY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=kRuOuvaj; arc=fail smtp.client-ip=52.101.69.24
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
+	s=arc-20240116; t=1766036173; c=relaxed/simple;
+	bh=FamlEKFsW9bEqoI1+XfrqcBsvDKKE16uRgQZin/kNT4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Gq9VVGGkK1PMCn1OMYM+8uO8DU8+h78DeeW+nyuQuxsqO3WijZwEto5Tz9n2dNBUgwukCqnTXqIt6SWSgvj+7UVOO4BvMDo8qwMHliYC8h8s3mN86OkIImlC61l1FddUKiON2Jc35D+ZE27COeIe9kKXdeLeGO817JTs3xH762E=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=I/p2AmxM; arc=fail smtp.client-ip=40.93.201.30
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=vHgNK6jLUcy6X5MpBHQeYbPx0b7Yp1SPRhJLeX2rBWLMamfvJRyHIzOq3qa8bniLhxsfxGxWovWfxQOSW8Xc8qntjlz7LwHcq++tBgWUyVzJMC73I5AGlKagozlQOUTcjnJd/3CokVmZJWf8GgmnxiHuMuuXA+SWZuydXtKf11+GgpW5tT5/TjWbB5mkeu5644hgwV8qg1GhZueaR/s5M5Dh/VkPNCYBvpaxKOFTSYLJqGpT2TiRUJA2/oJmsrameR/nzuLFz8YWud+fOTdmZNwI83mLe9rsA6Um/Xdy8O3B5q/0LMprr+BmMdEvhEcJSv5zG8a5B3TbqxYN/5Dfqw==
+ b=btia3k9yj2W5Ap3A5oDbiyhxqjHSwwXoIVJfPwgEQU0p/Tfx5q6J5MyRyTuyBjYJoxy9uTIGhfRJrqlchDBB1v+rpBJYwCvGrwHPFtnVwAm1SYMN024CTfWhzJ+5Q7xjd0eFXJXCKRMU8FgEn6B3kyfwbLdkx6cmhlASNqNWTVpWfft3g5eelxlFI2n4tMxhBaA9AIGlb4pQRbBcyNK3AvHq9fs7rkTLzb/OVxZ1f/xL0cGjuk800QXH+CcdFMSwqbS1lvoD6c7DQVwAuU8Gc3CINDuTys9HECC2NuHMzexeOLjOXiPYpj3KBuhrm7oZmi4VxWsUDnW0VJMalkFLkA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wRWADJtCIPH8e8R0y8BiIR9UAWXtqPnRf4l6ZOK1pSo=;
- b=vupy5HnMaorYnQVYfUTj2TBK4rIjD/6eEE0b5g1ovgbvKRJxOhgN+W2RUsU/MRyKEPmVuJivECnjQzGJF7Yjj7s56kIoh7PXhr5cMj7VtYYYVV3O8ZZtucKHaWi63ID8+iuqcv2ceYtOEaEG0pDlPnSRnIkACcYsqNx6TDljhKcmTaTiBYwuhnmwLBcbioJr4f87Hbxu5ZShb3JC7JnoAvLw6FnR6NJpZYBqb4W769au951TswfUB4KQcO7ycoqd+hBLQUJD7gzInXGOCXe0z1o0a5IMIbIiuNyU1F40OV58g35o0158o0GC6C3pUtJKx+iFEYCPu+/REUvOowc/Pw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
+ bh=OYzzFpTq0fHTJhzt9ByLfRSZBLbXVmxw5d2Nrmx8SDM=;
+ b=xIzmKU078sBPhdETJORZaRhVs4uPGxFXnOe9Kne2ixAr2QBr5rf582lmjF/Kfw1Ot9MgG1JL+yGdEaYFwCd5d67lMeUkI9aJekCcr4hYvUd75S+Q3RVg7fTSK7hv2VEZ/iaAOFqPGR2RYl26Ys4rfEcJRaEBE+mJuG+tvpilrjRs48M5Ig3KMfbiuqzkMZdez7dLbWODVCAWAr2I0mpWi8N5FNRXCt0di6YCDIZ7kTHitEdwE+7KLkAoVlF+ssUULzm89fDW+Q76P/OffHD23WYehqAYwOpovNgKs9oVD50QbNXtaCBZRzflmDAS5A60Q93k4ySWbfLTxOpwHbQaRw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.21.194) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wRWADJtCIPH8e8R0y8BiIR9UAWXtqPnRf4l6ZOK1pSo=;
- b=kRuOuvaj8sHoLaA3kB0GF755dmP8llhSSS73qNgDyidSgStY9TrOHrT2gKU7sMMZGcpxRClFr+aQVx94pQ2ADG+glCD9Lb0qiPylmHWCQ6UJwwDPdbdOAVCXgZJTZrE2SZumpT8lCqi4TLETa1LVbYJzxJbkDCFuWaQ0VrHgsy2+07rr9zSDY9Wk7Z/6kn1fnWQuEdcG+sG7ES5OfM4k69sdu5E2TwzsFwJE1RE4VlSE2r/s8w1cQtGFJjUj/1YFfVexE13Cpu9Af/JHvxK+Kwo3T0tChL7xiY2CfDfl2k503SlTO+fJlChNlLecvpj6mtEMp5aKiHBIZfLiKXnUQg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from DB9PR04MB8461.eurprd04.prod.outlook.com (2603:10a6:10:2cf::20)
- by PAXPR04MB8320.eurprd04.prod.outlook.com (2603:10a6:102:1cf::12) with
+ bh=OYzzFpTq0fHTJhzt9ByLfRSZBLbXVmxw5d2Nrmx8SDM=;
+ b=I/p2AmxMV0IpjiGgH3fH+vXs6DIRN0u2JEiZNbjz6fCRWzY1/H82qtSdQM3xGWHIyW1mOn4f8WtYPdi2+d/fXB1b217GBXyvPQFGJ9U9vC/aUNmCJcZUy/fqzOvW5vliTrEi10K2XDfeDMZvf1vFAfnP30FBx6rrKJ/0LmsyQc4=
+Received: from SJ0PR05CA0096.namprd05.prod.outlook.com (2603:10b6:a03:334::11)
+ by PH3PPF079E800A3.namprd10.prod.outlook.com (2603:10b6:518:1::786) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9434.6; Thu, 18 Dec
- 2025 05:21:19 +0000
-Received: from DB9PR04MB8461.eurprd04.prod.outlook.com
- ([fe80::b1b9:faa9:901b:c197]) by DB9PR04MB8461.eurprd04.prod.outlook.com
- ([fe80::b1b9:faa9:901b:c197%4]) with mapi id 15.20.9434.001; Thu, 18 Dec 2025
- 05:21:19 +0000
-Date: Thu, 18 Dec 2025 13:22:30 +0800
-From: Peng Fan <peng.fan@oss.nxp.com>
-To: Mathieu Poirier <mathieu.poirier@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>,
-	Daniel Baluta <daniel.baluta@nxp.com>,
-	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH v4 4/5] remoteproc: imx_rproc: Add support for System
- Manager API
-Message-ID: <aUOPloYtbZHCV6iw@shlinux89>
-References: <20251216-imx95-rproc-2025-12-15-v4-0-bf1064ea8daf@nxp.com>
- <20251216-imx95-rproc-2025-12-15-v4-4-bf1064ea8daf@nxp.com>
- <aUM6aGbSH9ICOL5f@p14s>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aUM6aGbSH9ICOL5f@p14s>
-X-ClientProxiedBy: SI2P153CA0036.APCP153.PROD.OUTLOOK.COM
- (2603:1096:4:190::11) To DB9PR04MB8461.eurprd04.prod.outlook.com
- (2603:10a6:10:2cf::20)
+ 2025 05:36:05 +0000
+Received: from SJ1PEPF00001CE1.namprd05.prod.outlook.com
+ (2603:10b6:a03:334:cafe::5e) by SJ0PR05CA0096.outlook.office365.com
+ (2603:10b6:a03:334::11) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9434.6 via Frontend Transport; Thu,
+ 18 Dec 2025 05:36:05 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
+Received: from flwvzet200.ext.ti.com (198.47.21.194) by
+ SJ1PEPF00001CE1.mail.protection.outlook.com (10.167.242.9) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9434.6 via Frontend Transport; Thu, 18 Dec 2025 05:36:03 +0000
+Received: from DFLE205.ent.ti.com (10.64.6.63) by flwvzet200.ext.ti.com
+ (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 17 Dec
+ 2025 23:36:02 -0600
+Received: from DFLE206.ent.ti.com (10.64.6.64) by DFLE205.ent.ti.com
+ (10.64.6.63) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 17 Dec
+ 2025 23:36:01 -0600
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE206.ent.ti.com
+ (10.64.6.64) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Wed, 17 Dec 2025 23:36:01 -0600
+Received: from [172.24.233.149] (ws.dhcp.ti.com [172.24.233.149])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5BI5ZtEe2835016;
+	Wed, 17 Dec 2025 23:35:56 -0600
+Message-ID: <9111c947-ef0f-4c4a-a09f-6da0901a8510@ti.com>
+Date: Thu, 18 Dec 2025 11:05:55 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 16/18] media: cadence: csi2rx: Support runtime PM
+To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, <jai.luthra@linux.dev>,
+	<laurent.pinchart@ideasonboard.com>, <mripard@kernel.org>
+CC: <y-abhilashchandra@ti.com>, <devarsht@ti.com>, <s-jain1@ti.com>,
+	<vigneshr@ti.com>, <mchehab@kernel.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <p.zabel@pengutronix.de>, <conor+dt@kernel.org>,
+	<sakari.ailus@linux.intel.com>, <hverkuil-cisco@xs4all.nl>,
+	<jai.luthra@ideasonboard.com>, <changhuang.liang@starfivetech.com>,
+	<jack.zhu@starfivetech.com>, <sjoerd@collabora.com>,
+	<dan.carpenter@linaro.org>, <hverkuil+cisco@kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-media@vger.kernel.org>,
+	<devicetree@vger.kernel.org>
+References: <20251112115459.2479225-1-r-donadkar@ti.com>
+ <20251112115459.2479225-17-r-donadkar@ti.com>
+ <a4bba302-8be2-4bbd-96c8-3a20472e0c12@ideasonboard.com>
+Content-Language: en-US
+From: Rishikesh Donadkar <r-donadkar@ti.com>
+In-Reply-To: <a4bba302-8be2-4bbd-96c8-3a20472e0c12@ideasonboard.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB9PR04MB8461:EE_|PAXPR04MB8320:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7f2d426f-7f62-4600-507a-08de3df5465c
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-TrafficTypeDiagnostic: SJ1PEPF00001CE1:EE_|PH3PPF079E800A3:EE_
+X-MS-Office365-Filtering-Correlation-Id: 93df2319-1f28-4932-72a8-08de3df755b9
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|52116014|19092799006|7416014|376014|366016|1800799024|38350700014;
+	BCL:0;ARA:13230040|7416014|376014|82310400026|1800799024|36860700013;
 X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?BwGWqc64wJ/cNfhhlOaj6ILZvKk8BTZb16IEvrdDZuiiYGQMD1KvWHhb8MRz?=
- =?us-ascii?Q?6E7Qi2Y54WQxGAfbmz0UT6TOQ95AlvrawrbR8m5udsXIi6URgH1Ap1U0JaEB?=
- =?us-ascii?Q?zqomZ/jfCQJxnKEAMHgbIc2MtpQbApBRwy3TgjrOC/GF1ssS7zclSpEqqd+A?=
- =?us-ascii?Q?wfuq9FaHB+GruBPgQJHaSghDxbGDlmFKOcymVGSOBIClwXSyy4zmOgwp7Pf5?=
- =?us-ascii?Q?5QffhRQudVvtskylsvrM+V7ZqhmTO8BBakrEHFlnuTtB7a6H/26yzarqX86I?=
- =?us-ascii?Q?y2DrH0IEDR1lLypx5K2VJbdrprXaWkBVONx47X4/idleuyR3Cgo/DeI/2HXX?=
- =?us-ascii?Q?w03JED8N5HjhG/5i1MAG3sIcMDuSHHDVclkQ9sP9x9J4qAmJGt35thH1kX7x?=
- =?us-ascii?Q?ZX8I3HiF7NtiPrn305Id98IKmFh14NaxnTThfjhrK9ljkC16yJT1lQGOsIgI?=
- =?us-ascii?Q?3ZHEnzZYBm/mOHApv/ZI0yQfSxdbfe48xpMc+KXLhshH5aXJJMzhp9QqZsgS?=
- =?us-ascii?Q?7IdGMRbk3JDP1S+/EOuSJjwuEps/BJzJUljX4VFCdivVvn1vHtdYl3khr2EC?=
- =?us-ascii?Q?QU+d02H6V+D5DVeqH1qYFpgx52Oo0vuxZGMlX5/O2MvcPZ+ItY11LEnkwbjL?=
- =?us-ascii?Q?hZ8vcLVHE49Sf+Y9w3vOZLhu9YKvazVT/xmqZCIhtjQE2OPtx6Nl/W7+LqSu?=
- =?us-ascii?Q?KI7EfkFDWK0Xa4UNj61PP2/TsqwAUWI8zeaf9OG8HNQ0OnoZXhlr8nfOmd1p?=
- =?us-ascii?Q?b6nOoLuPyL6fAOshB+lNkDbxLl9UxppF9OvAl/6v+1YaFfCM8g09ymJwcsga?=
- =?us-ascii?Q?jQd8qqcSn0eEJ8IkyiDS7MsCOPKiqMVqr0lttQ4jD44NUHrxphfnFPz98NXB?=
- =?us-ascii?Q?LIKtDHeTcSerojDlNPnpMLh+JyJS4L2U24U+pM1k3266diRqv9Am5jxtnVOU?=
- =?us-ascii?Q?XcTAvpYMRkHh5uTTKPjHvN/ka2tjif6h6VBFqGiyAD2z8gdTRI6hJgxLrvGu?=
- =?us-ascii?Q?dmAowUaGS7I5cZnVP9niI0EMi2v/udPmcrypz4aEK6Bfc1uta81RfOs5lW9Q?=
- =?us-ascii?Q?6wfZ4JguCrxurPlA0u7vGgmMr8kfS1ZHo1u0MHUDpRhAKZtD4cXqRxdzSga7?=
- =?us-ascii?Q?p9tXc9UAUciSQo1FAMMnTcWWAq7zH2Fa9ZvxV2avvdwaW6Fv+oa9tPOR3ZtP?=
- =?us-ascii?Q?p+BdZ6LuSSrJLydY7nFviwsJy0XYwgEKrRer1keBSrgA0XMN8n7MO1G5bMzI?=
- =?us-ascii?Q?tK6GIMfmJVE/V9eMndxfOOa99+6KNZdQ2qNIIi+zowmWqDE3K3MOwNDDvJx1?=
- =?us-ascii?Q?I5Xn0ZQG+I0o8taD0MrYPMySaqdp9UpkG/lbJ85RvM9FQg/QCbV0Vx9qjcpq?=
- =?us-ascii?Q?lzd/nyQ4/Pk9nQ/b9xTqoI5uH2DqihkQ//TdJQymthw9xJTpUgk9vUFHCpJK?=
- =?us-ascii?Q?TiCh33i6APrgxW8WWFPtW+Gi5YwCYA2ZhjszapB4pwUfWAp6V0wsGoI6Nwn7?=
- =?us-ascii?Q?MTLL52LiPEaPiFUr8zdJIVzYhBCZRQX20YSw?=
+	=?utf-8?B?MVdpMVoxL1RPc0FpN0YwUFhDRkJNYWNxU1VRMEp6NXNvYzNQRHYzMDBmKy9z?=
+ =?utf-8?B?c043dFNqTFFhUUhDRmU4NGpQVllxSGlnclZ3ZXpnVW5uWGRxM0VLdkhZOWlp?=
+ =?utf-8?B?U3VoV1dScCtsVUtvTHM3aTZnYSs3dWt1ZFpORnp6TFUvOUxDajZIa0dJelNL?=
+ =?utf-8?B?TXVIdjhyNGFaUXVxRXZzemJWWUtXTlRXdGNEZWhXcG5acHVuditwamsvL2Vs?=
+ =?utf-8?B?UTQ3d1BSbVVBQVBZU05CQ3hjVjMxT1NFQ0tSekxjNEtDY1lMaFpvajJCblMv?=
+ =?utf-8?B?Zk1Cekc3UWFCbDJaT3A0YmxaQk9IVzJiZGpvWjZOeVM4bk4xMVpMWVNxOEti?=
+ =?utf-8?B?aXRqSUlCcEdHL3lHNHUwMkdvZ3R0clRZWk9vTlNRVDI3YWZ6cVgzUlNidHNI?=
+ =?utf-8?B?ZkRBMStPdVltUzgydmJZRS9uVUIrTHlvWGNkMTBKWUJpUmdEUyt2VE9hZ0hR?=
+ =?utf-8?B?Q3E2TTR6R3pzOWh5Zkl3TGlSRWx4N0cyZlEySXVPendGei9BY2tSaU0wWnlt?=
+ =?utf-8?B?M3E4cmR4dGpWQ3RLUHRybXRGODhiazI0UFkyVUtlNU1LV0pLQ1ZEZWtmMVdN?=
+ =?utf-8?B?SW5ibmtUYkNKNWhFYUVWMXQ4S2ZiUWtYdW9NWXVZK2p2cWtLakFRK2JUSVRu?=
+ =?utf-8?B?YUR2VUxncjFlUmt5UzRveEdLbUNiVkw4R0pVL0d1MHQ3WWlxSDJ4c3p1b1Zo?=
+ =?utf-8?B?czNaSENPajltNW5OamxORndpc1N0Ym1ZaVE1Tmljait6cytBZk1zZFdvT0Yy?=
+ =?utf-8?B?SVRWcVNlWXlibS84Ym5pWHVsR3MrbUtJQWJ4bHU3bWNaSDZ1aFFzejVnWXNn?=
+ =?utf-8?B?TFFkem0rQ1NYeTNmbTVKcjlnYUluMUlpWVE0TGl3T05IRS9KdG1wOUVBdklk?=
+ =?utf-8?B?NS82b3p4bmJIT1VNU3N6Rm00SGVPbFRTeVlobWExTGlxQ200a2RLSE5BdDN2?=
+ =?utf-8?B?UmpnNnRIVktWRlRvMjlqdXFDUURZaUJwak9ZdGd3SkdvR3FPU1o2VDl2S0th?=
+ =?utf-8?B?NHVMNlh0MHd5TlRXUjAxMi9WVEx5WkJwWFB3UjdGcGZkbTJLM0E1WW96LzU5?=
+ =?utf-8?B?SEgvUWxrNjExU2JXNXlkTEtQZHpqVVRrOVRDa3ZPTHgxWWJ3d0tBOGY1b2NO?=
+ =?utf-8?B?VW9tYTJnUlk3S1dqTk4xdysyZDRzVUNHM0RYa0NIWEJWa2J1bHZCR0d4Y2tk?=
+ =?utf-8?B?dHhla0VpT0RTa3VVNnpud1ZTVkt1QmUyZFZIMXk5ZmZEUnYzL2k4VTlVeUFE?=
+ =?utf-8?B?YlA5aTZrbjM2TW9uRnBvWHZhbnc1ekRpY3dhbUxSWjVOMXdHRWk3bS9vZ1cw?=
+ =?utf-8?B?RmlaZDBkYlM0UEdJOTFHVE9iV1praHBhL1ArSkR5MVl4K2NLdkNrVmlZL1hq?=
+ =?utf-8?B?L3lFUEJCUXBiV1VlSFhXbmo3a0h2SXNJV2p1QzRCZ2tZbDZtSFVkY1gzbkQ0?=
+ =?utf-8?B?UjUwdnlQSFhEWU9YeHArdThGZTM3MjlDSFhsaFIzOHljcXpsc2tyWE1xZGJF?=
+ =?utf-8?B?aWUzZGI4bGJsZ0Y1eWw2ajFXZ3BjeEtFRFNZa1krY25DMXMwVVlXWnNPbXVG?=
+ =?utf-8?B?TW8wTHg2Qm8xRTY5NVlGdVAzN0V2UEt2Q0hlS01pTHVsU3lNYjZWam4veEFo?=
+ =?utf-8?B?cm5lbDhjZU83WUtiNEFQRS9xTkdaVTlqV0FOejlHYVJqaXUvbWwwWlRHWStX?=
+ =?utf-8?B?WVd5dmRZWmQwU3RrTUxpUmZmMExwQUhQTjJzVExVRUN4SmQrN3Q3ejNXcGJF?=
+ =?utf-8?B?cTJrT0REMnhoMU9vZDJLa3BjQk8zcHIvaEtJSVRpbmdUYTJHdlFEZU9JMWVU?=
+ =?utf-8?B?dFZtdnM4UXk1Y0xqVlFrekxrN3VhbGMwNVowa2NGYWxwellPMjJhWDJSd3do?=
+ =?utf-8?B?OGtKQ1QrNzNJL0pTaUF3MlZBU0pmOUZmNGg0SEg5bU5nNXpNVUlTU0dsZVRR?=
+ =?utf-8?B?Sm9tZlE4OEhZQ1ltRUtvR0lQdjdkeE9ZUzVPZmVzM3hYWlh1Qld0dFA0aWxT?=
+ =?utf-8?B?dElFYWFvMElBbXZDaVJuUjNaM0VmMGhFbW1IQU1kVzV4VkpJc1htTVgyUmk0?=
+ =?utf-8?B?VFlGQXp5ais0S0VWU3ZHVkJyVjdERW1WUFZZbW5ZYmNXaHdnSU9VUDZ5c0FY?=
+ =?utf-8?Q?I3eo=3D?=
 X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB8461.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(19092799006)(7416014)(376014)(366016)(1800799024)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?odHBEefipvPE24H/zC5m3UPSkFx27Yssy/CduNVAYB6TAQm0Fq8qAfCbFjEv?=
- =?us-ascii?Q?lC/zymGIHihqcuRlMbM/+M9jnm3I6I7fCazjxQQB4KYur95qQyBzY9hbPFZS?=
- =?us-ascii?Q?MeG8naJKuwa2ed64uMk73eRdw3/LQNONHu01ZgzPfZhNdStcO9zJeEKLJmy9?=
- =?us-ascii?Q?KE1n4ucV8Mx4LIpteYQOCkEp9iFhQjfQGJIy+lsfZP7PsD8Cka8LrRPTZ3MJ?=
- =?us-ascii?Q?ViVuDl803scJY3wf0tQ0CioTdNydRSIuvnTRyI8IMvQCI4PViLy72o/6dxWk?=
- =?us-ascii?Q?O6V4oa6POPfvFjzlYjU24cnRnJF8gtliIH8Ty+26mvlL9yA1X4NX7d8AsqgL?=
- =?us-ascii?Q?ay3b8KZPaGbUcd26PK9rIp1BUtCsl6zpDM3JnOSM4V/Cu+3AyddfJCkkweDh?=
- =?us-ascii?Q?hT2BrlGlZ1l01dn5OMlI9jlfxYWQiqCxFpNUNEsZiVVXE094UyhOfxjZJ1Oi?=
- =?us-ascii?Q?Vq6gw9cn0oA5tH/LhYPK4/HbDSgqg9kfaxnepk1GuWN/AmlEf50u2bWs5IFp?=
- =?us-ascii?Q?pE/NZnD2KHFgFnXI05/mgOMqIuBh7Z0dLb3NJ+t+1ovZ7fk1uLwLQXGXHEJ2?=
- =?us-ascii?Q?ykCA0DQv8IlPXZ4eKKad+inEY9D9j9br/WbEVg+ucsZwfD1BqSXL7qBVbzOn?=
- =?us-ascii?Q?WP8cP1D8YmD0Yo/lWV/vCtFFe8wLGu4aUa8P0vpYfSQ7VFCuMqFCd4SKnBtp?=
- =?us-ascii?Q?1Ga3Ghfrhsfj+Wu5QKBn9ikGu703uHagdd/0aje3jZDx5S48l0asqEu8MW+L?=
- =?us-ascii?Q?iRNrI+JxU4VkVz5L+3w+7HSqzHZuAsM0CfHFk5hreZcuRrN7KrqleZgSDCJK?=
- =?us-ascii?Q?5ZSlODZS3V1AMSZAH5apGmgURca3USUDYcdDUqCrJu4NPULU3gH7Y+0+wmDi?=
- =?us-ascii?Q?Z4DPHiSRxfGETPyuBWI4k/33yTr8xQSgDPx7iI54j+tZHjDqmpwXbJX2rOdB?=
- =?us-ascii?Q?q2gt6daBCFc3hoD/CY7waNk9mQBpUF/PfRkMJpMMri7eJx3eGvvNfrByAWiR?=
- =?us-ascii?Q?WYqB7hwtUk1K9zIBdmNI+Sxtt9BiBMMsIVwNPFWeekrRYoLSELMe3bPBbsxW?=
- =?us-ascii?Q?pOBXFpZfwwZLM+0wXJ7gvnk3mCiz3TeM5eGTWd3VTyna/sLjUoy9gRSgCEXB?=
- =?us-ascii?Q?w0ec4WJndUX8DelNVwf8WnCtxyurB5Uy/A1Jo2//5awQY78DnRONwxqDao1z?=
- =?us-ascii?Q?vYZSdIgfQKK5BieIQoD1AIlX9T1HhnMYo0brjl8aLgAkABo+Qg96xw99EFy9?=
- =?us-ascii?Q?mbdwlyqjERV5pk+H+GXmjv2Twg6r4eEjwWpBLd63MfD1ay/af+Y9g8vv1PBR?=
- =?us-ascii?Q?c96bfuf/RSi/g9JF1DGB4qqye9ybe0ja+pNGVJkhISvyyrLpDJH9GuZJ+JmJ?=
- =?us-ascii?Q?3VbCA0YTcChyrtad0M3njBx7LYS9kJ/fPgugT1GXsDLJ0c++KlPYzvjpEGLT?=
- =?us-ascii?Q?OfKxNq/xVcrrf6G9Hl2BfzNXaIbP0VqIsgC9K+yCYSTGbkRthpjOcn8DLN/P?=
- =?us-ascii?Q?30ZZeGsAyE8noq6buTSUaO7rOY6Rlms3MiJrY0kcLaSp0YzbZuOrfDCd+lDu?=
- =?us-ascii?Q?Z6u6kRxjZfJa+ExvvmMahXnClomR7gRCP1Ar8W3L?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7f2d426f-7f62-4600-507a-08de3df5465c
-X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB8461.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Dec 2025 05:21:19.3455
+	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(7416014)(376014)(82310400026)(1800799024)(36860700013);DIR:OUT;SFP:1101;
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Dec 2025 05:36:03.6810
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 2yMyyeKVe/wlxAfvJ6twSLkWfnpplWX3YNQlZdH82ZFkLiLHCBE9XVVX/oM5l4jW9lJZdWo7yiYjttzjM1RQLg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8320
+X-MS-Exchange-CrossTenant-Network-Message-Id: 93df2319-1f28-4932-72a8-08de3df755b9
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SJ1PEPF00001CE1.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH3PPF079E800A3
 
-Hi Mathieu,
-On Wed, Dec 17, 2025 at 04:19:04PM -0700, Mathieu Poirier wrote:
->On Tue, Dec 16, 2025 at 09:51:02AM +0800, Peng Fan (OSS) wrote:
+
+On 01/12/25 18:41, Tomi Valkeinen wrote:
+> Hi,
+
+
+Hi Tomi,
+
+Thank you for the review !
+
 >
->Why are these not at the bottom of the file with the rest of the
->imx_rproc_plat_ops?  That way you wouldn't have to declare
->imx_rproc_sm_detect_mode() at the top of the file...
->
+> On 12/11/2025 13:54, Rishikesh Donadkar wrote:
+>> From: Changhuang Liang <changhuang.liang@starfivetech.com>
+>>
+>> Use runtime power management hooks to save power when CSI-RX is not in
+>> use.
+>>
+>> Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
+>> Tested-by: Rishikesh Donadkar <r-donadkar@ti.com>
+>> Reviewed-by: Rishikesh Donadkar <r-donadkar@ti.com>
+>> Signed-off-by: Jai Luthra <jai.luthra@ideasonboard.com>
+>> Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
+>> ---
+>>   drivers/media/platform/cadence/Kconfig       |   1 +
+>>   drivers/media/platform/cadence/cdns-csi2rx.c | 129 ++++++++++++-------
+>>   2 files changed, 83 insertions(+), 47 deletions(-)
+>>
+>> diff --git a/drivers/media/platform/cadence/Kconfig b/drivers/media/platform/cadence/Kconfig
+>> index 1aa608c00dbce..ea85ef82760e6 100644
+>> --- a/drivers/media/platform/cadence/Kconfig
+>> +++ b/drivers/media/platform/cadence/Kconfig
+>> @@ -5,6 +5,7 @@ comment "Cadence media platform drivers"
+>>   config VIDEO_CADENCE_CSI2RX
+>>   	tristate "Cadence MIPI-CSI2 RX Controller"
+>>   	depends on VIDEO_DEV
+>> +	depends on PM
+>>   	select MEDIA_CONTROLLER
+>>   	select VIDEO_V4L2_SUBDEV_API
+>>   	select V4L2_FWNODE
+>> diff --git a/drivers/media/platform/cadence/cdns-csi2rx.c b/drivers/media/platform/cadence/cdns-csi2rx.c
+>> index 833bc134f17cb..6447c225ba354 100644
+>> --- a/drivers/media/platform/cadence/cdns-csi2rx.c
+>> +++ b/drivers/media/platform/cadence/cdns-csi2rx.c
+>> @@ -337,11 +337,6 @@ static int csi2rx_start(struct csi2rx_priv *csi2rx)
+>>   	u32 reg;
+>>   	int ret;
+>>   
+>> -	ret = clk_prepare_enable(csi2rx->p_clk);
+>> -	if (ret)
+>> -		return ret;
+>> -
+>> -	reset_control_deassert(csi2rx->p_rst);
+>>   	csi2rx_reset(csi2rx);
+>>   
+>>   	if (csi2rx->error_irq >= 0)
+>> @@ -382,7 +377,7 @@ static int csi2rx_start(struct csi2rx_priv *csi2rx)
+>>   		if (ret) {
+>>   			dev_err(csi2rx->dev,
+>>   				"Failed to configure external DPHY: %d\n", ret);
+>> -			goto err_disable_pclk;
+>> +			return ret;
+>>   		}
+>>   	}
+>>   
+>> @@ -397,12 +392,6 @@ static int csi2rx_start(struct csi2rx_priv *csi2rx)
+>>   	 * hence the reference counting.
+>>   	 */
+>>   	for (i = 0; i < csi2rx->max_streams; i++) {
+>> -		ret = clk_prepare_enable(csi2rx->pixel_clk[i]);
+>> -		if (ret)
+>> -			goto err_disable_pixclk;
+>> -
+>> -		reset_control_deassert(csi2rx->pixel_rst[i]);
+>> -
+>>   		writel(CSI2RX_STREAM_CFG_FIFO_MODE_LARGE_BUF |
+>>   			       FIELD_PREP(CSI2RX_STREAM_CFG_NUM_PIXELS_MASK,
+>>   					  csi2rx->num_pixels[i]),
+>> @@ -415,30 +404,8 @@ static int csi2rx_start(struct csi2rx_priv *csi2rx)
+>>   		       csi2rx->base + CSI2RX_STREAM_CTRL_REG(i));
+>>   	}
+>>   
+>> -	ret = clk_prepare_enable(csi2rx->sys_clk);
+>> -	if (ret)
+>> -		goto err_disable_pixclk;
+>> -
+>> -	reset_control_deassert(csi2rx->sys_rst);
+>> -
+>> -	clk_disable_unprepare(csi2rx->p_clk);
+>>   
+>>   	return 0;
+>> -
+>> -err_disable_pixclk:
+>> -	for (; i > 0; i--) {
+>> -		reset_control_assert(csi2rx->pixel_rst[i - 1]);
+>> -		clk_disable_unprepare(csi2rx->pixel_clk[i - 1]);
+>> -	}
+>> -
+>> -	if (csi2rx->dphy) {
+>> -		writel(0, csi2rx->base + CSI2RX_DPHY_LANE_CTRL_REG);
+>> -		phy_power_off(csi2rx->dphy);
+>> -	}
+>> -err_disable_pclk:
+>> -	clk_disable_unprepare(csi2rx->p_clk);
+>> -
+>> -	return ret;
+>>   }
+>>   
+>>   static void csi2rx_stop(struct csi2rx_priv *csi2rx)
+>> @@ -447,10 +414,6 @@ static void csi2rx_stop(struct csi2rx_priv *csi2rx)
+>>   	u32 val;
+>>   	int ret;
+>>   
+>> -	clk_prepare_enable(csi2rx->p_clk);
+>> -	reset_control_assert(csi2rx->sys_rst);
+>> -	clk_disable_unprepare(csi2rx->sys_clk);
+>> -
+>>   	writel(0, csi2rx->base + CSI2RX_ERROR_IRQS_MASK_REG);
+>>   
+>>   	for (i = 0; i < csi2rx->max_streams; i++) {
+>> @@ -465,14 +428,8 @@ static void csi2rx_stop(struct csi2rx_priv *csi2rx)
+>>   		if (ret)
+>>   			dev_warn(csi2rx->dev,
+>>   				 "Failed to stop streaming on pad%u\n", i);
+>> -
+>> -		reset_control_assert(csi2rx->pixel_rst[i]);
+>> -		clk_disable_unprepare(csi2rx->pixel_clk[i]);
+>>   	}
+>>   
+>> -	reset_control_assert(csi2rx->p_rst);
+>> -	clk_disable_unprepare(csi2rx->p_clk);
+>> -
+>>   	if (csi2rx->dphy) {
+>>   		writel(0, csi2rx->base + CSI2RX_DPHY_LANE_CTRL_REG);
+>>   
+>> @@ -548,10 +505,17 @@ static int csi2rx_enable_streams(struct v4l2_subdev *subdev,
+>>   	 * enable the whole controller.
+>>   	 */
+>>   	if (!csi2rx->count) {
+>> +		ret = pm_runtime_resume_and_get(csi2rx->dev);
+>> +		if (ret < 0)
+>> +			return ret;
 >> +
->> +static int imx_rproc_sm_lmm_check(struct rproc *rproc, bool started)
->> +	if (ret) {
->> +		priv->flags &= ~IMX_RPROC_FLAGS_SM_LMM_AVAIL;
->> +		dev_err(dev, "shutdown lmm(%d) failed: %d\n", dcfg->lmid, ret);
->> +		return ret;
+>>   		csi2rx_update_vc_select(csi2rx, state);
+>> +
+>>   		ret = csi2rx_start(csi2rx);
+>> -		if (ret)
+>> +		if (ret) {
+>> +			pm_runtime_put(csi2rx->dev);
+>>   			return ret;
+>> +		}
+>>   	}
+>>   
+>>   	/* Start streaming on the source */
+>> @@ -561,8 +525,10 @@ static int csi2rx_enable_streams(struct v4l2_subdev *subdev,
+>>   		dev_err(csi2rx->dev,
+>>   			"Failed to start streams %#llx on subdev\n",
+>>   			sink_streams);
+>> -		if (!csi2rx->count)
+>> +		if (!csi2rx->count) {
+>>   			csi2rx_stop(csi2rx);
+>> +			pm_runtime_put(csi2rx->dev);
+> Probably time to add 'goto' based error handling to this func... Maybe
+> in this patch, maybe as a separate patch before this.
+
+
+Okay, I will do it in this patch itself.
+
+
+Rishikesh
+
+>
+>   Tomi
+>
+>> +		}
+>>   		return ret;
+>>   	}
+>>   
+>> @@ -589,8 +555,10 @@ static int csi2rx_disable_streams(struct v4l2_subdev *subdev,
+>>   	csi2rx->count--;
+>>   
+>>   	/* Let the last user turn off the lights. */
+>> -	if (!csi2rx->count)
+>> +	if (!csi2rx->count) {
+>>   		csi2rx_stop(csi2rx);
+>> +		pm_runtime_put(csi2rx->dev);
 >> +	}
->
->If you move this call to scmi_imx_lmm_operation() (and the error check) before
->setting priv->flags, you won't have to reset it in the error path.
->
->Let's see how the next revision goes...
-
-Thanks for the review.
-
-V5 has been sent out just now with both comments addressed:
-- Moved the SM LMM functions to the bottom of the file with the
-  rest of imx_rproc_plat_ops
-- Moved the scmi_imx_lmm_operation() call before setting priv->flags
-  to simplify error handling
-
-Thanks,
-Peng
-
->
->Thanks,
->Mathieu
->
+>>   
+>>   	return 0;
+>>   }
+>> @@ -1092,6 +1060,7 @@ static int csi2rx_probe(struct platform_device *pdev)
+>>   	if (ret)
+>>   		goto err_cleanup;
+>>   
+>> +	pm_runtime_enable(csi2rx->dev);
+>>   	ret = v4l2_async_register_subdev(&csi2rx->subdev);
+>>   	if (ret < 0)
+>>   		goto err_free_state;
+>> @@ -1106,6 +1075,7 @@ static int csi2rx_probe(struct platform_device *pdev)
+>>   
+>>   err_free_state:
+>>   	v4l2_subdev_cleanup(&csi2rx->subdev);
+>> +	pm_runtime_disable(csi2rx->dev);
+>>   err_cleanup:
+>>   	v4l2_async_nf_unregister(&csi2rx->notifier);
+>>   	v4l2_async_nf_cleanup(&csi2rx->notifier);
+>> @@ -1124,9 +1094,73 @@ static void csi2rx_remove(struct platform_device *pdev)
+>>   	v4l2_async_unregister_subdev(&csi2rx->subdev);
+>>   	v4l2_subdev_cleanup(&csi2rx->subdev);
+>>   	media_entity_cleanup(&csi2rx->subdev.entity);
+>> +	pm_runtime_disable(csi2rx->dev);
+>>   	kfree(csi2rx);
+>>   }
+>>   
+>> +static int csi2rx_runtime_suspend(struct device *dev)
+>> +{
+>> +	struct csi2rx_priv *csi2rx = dev_get_drvdata(dev);
+>> +	unsigned int i;
+>> +
+>> +	reset_control_assert(csi2rx->sys_rst);
+>> +	clk_disable_unprepare(csi2rx->sys_clk);
+>> +
+>> +	for (i = 0; i < csi2rx->max_streams; i++) {
+>> +		reset_control_assert(csi2rx->pixel_rst[i]);
+>> +		clk_disable_unprepare(csi2rx->pixel_clk[i]);
+>> +	}
+>> +
+>> +	reset_control_assert(csi2rx->p_rst);
+>> +	clk_disable_unprepare(csi2rx->p_clk);
 >> +
 >> +	return 0;
 >> +}
 >> +
->> +static int imx_rproc_sm_detect_mode(struct rproc *rproc)
+>> +static int csi2rx_runtime_resume(struct device *dev)
 >> +{
->> +	struct imx_rproc *priv = rproc->priv;
->> +	const struct imx_rproc_dcfg *dcfg = priv->dcfg;
->> +	struct device *dev = priv->dev;
->> +	struct scmi_imx_lmm_info info;
->> +	bool started = false;
+>> +	struct csi2rx_priv *csi2rx = dev_get_drvdata(dev);
+>> +	unsigned int i;
 >> +	int ret;
 >> +
->> +	ret = scmi_imx_cpu_started(dcfg->cpuid, &started);
->> +	if (ret) {
->> +		dev_err(dev, "Failed to detect cpu(%d) status: %d\n", dcfg->cpuid, ret);
+>> +	ret = clk_prepare_enable(csi2rx->p_clk);
+>> +	if (ret)
 >> +		return ret;
+>> +
+>> +	reset_control_deassert(csi2rx->p_rst);
+>> +
+>> +	for (i = 0; i < csi2rx->max_streams; i++) {
+>> +		ret = clk_prepare_enable(csi2rx->pixel_clk[i]);
+>> +		if (ret)
+>> +			goto err_disable_pixclk;
+>> +
+>> +		reset_control_deassert(csi2rx->pixel_rst[i]);
 >> +	}
 >> +
->> +	if (started)
->> +		priv->rproc->state = RPROC_DETACHED;
+>> +	ret = clk_prepare_enable(csi2rx->sys_clk);
+>> +	if (ret)
+>> +		goto err_disable_pixclk;
 >> +
->> +	/* Get current Linux Logical Machine ID */
->> +	ret = scmi_imx_lmm_info(LMM_ID_DISCOVER, &info);
->> +	if (ret) {
->> +		dev_err(dev, "Failed to get current LMM ID err: %d\n", ret);
->> +		return ret;
+>> +	reset_control_deassert(csi2rx->sys_rst);
+>> +
+>> +	return 0;
+>> +
+>> +err_disable_pixclk:
+>> +	for (; i > 0; i--) {
+>> +		reset_control_assert(csi2rx->pixel_rst[i - 1]);
+>> +		clk_disable_unprepare(csi2rx->pixel_clk[i - 1]);
 >> +	}
 >> +
->> +	/*
->> +	 * Check whether rproc is in the same LM as host core(running Linux)
->> +	 * If yes, use CPU protocol API to manage rproc.
->> +	 * If no, use Logical Machine API to manage rproc.
->> +	 */
->> +	if (dcfg->lmid == info.lmid) {
->> +		priv->ops = &imx_rproc_ops_sm_cpu;
->> +		dev_info(dev, "Using CPU Protocol OPS\n");
->> +		return 0;
->> +	}
+>> +	reset_control_assert(csi2rx->p_rst);
+>> +	clk_disable_unprepare(csi2rx->p_clk);
 >> +
->> +	priv->ops = &imx_rproc_ops_sm_lmm;
->> +	dev_info(dev, "Using LMM Protocol OPS\n");
->> +
->> +	return imx_rproc_sm_lmm_check(rproc, started);
+>> +	return ret;
 >> +}
 >> +
->>  static int imx_rproc_detect_mode(struct imx_rproc *priv)
->>  {
->>  	/*
->> diff --git a/drivers/remoteproc/imx_rproc.h b/drivers/remoteproc/imx_rproc.h
->> index 37417568a0ade2ae4d6a4e3d0f139ea52b185254..d37e6f90548cec727b4aeb874680b42af85bdbb4 100644
->> --- a/drivers/remoteproc/imx_rproc.h
->> +++ b/drivers/remoteproc/imx_rproc.h
->> @@ -38,6 +38,9 @@ struct imx_rproc_dcfg {
->>  	size_t				att_size;
->>  	u32				flags;
->>  	const struct imx_rproc_plat_ops	*ops;
->> +	/* For System Manager(SM) based SoCs */
->> +	u32				cpuid; /* ID of the remote core */
->> +	u32				lmid;  /* ID of the Logcial Machine */
->>  };
->>  
->>  #endif /* _IMX_RPROC_H */
->> 
->> -- 
->> 2.37.1
->> 
+>> +static const struct dev_pm_ops csi2rx_pm_ops = {
+>> +	RUNTIME_PM_OPS(csi2rx_runtime_suspend, csi2rx_runtime_resume, NULL)
+>> +};
+>> +
+>>   static const struct of_device_id csi2rx_of_table[] = {
+>>   	{ .compatible = "starfive,jh7110-csi2rx" },
+>>   	{ .compatible = "cdns,csi2rx" },
+>> @@ -1141,6 +1175,7 @@ static struct platform_driver csi2rx_driver = {
+>>   	.driver	= {
+>>   		.name		= "cdns-csi2rx",
+>>   		.of_match_table	= csi2rx_of_table,
+>> +		.pm		= &csi2rx_pm_ops,
+>>   	},
+>>   };
+>>   module_platform_driver(csi2rx_driver);
 
