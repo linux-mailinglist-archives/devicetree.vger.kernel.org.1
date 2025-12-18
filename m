@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-247996-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247997-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2635DCCD629
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 20:26:49 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id C807FCCD650
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 20:31:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id C7DA1301D085
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 19:26:46 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 3D9F63050F79
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 19:31:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6229A33554E;
-	Thu, 18 Dec 2025 19:26:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE7F9337B8D;
+	Thu, 18 Dec 2025 19:31:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uTapCRAE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J3SJEGC7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3404A313E08;
-	Thu, 18 Dec 2025 19:26:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 112DC33032E;
+	Thu, 18 Dec 2025 19:31:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766086006; cv=none; b=DWeL9/LbFEolVGRxpYpX+3Nucu4DdjXO49XuxLgJovVodGLjfFUQ3zIclkvJxMRtWkrGKu9RB7roL0TU4imMiI4YYSAlAQDweWZBAFCGAN0bySlztqqv8pyUgsmm9WD7WE23DgI9IWJyr7myb325caMZD104zUwsA4wDfk2DGKw=
+	t=1766086300; cv=none; b=SaVHIPDDQ7eskbIjV+KneVtdQsbXL8kgrT3Sf6Amkk+ODOpHNFS+rqtZhr5o/yZ85epFb8iiUF0ENs6CQgq+7PwLvtR13EkMv381ofI7pm8pJmiQYjQvexjikd+zZb5xgBV2C0FTCBI1+wj+1VQ8fWbpXHgrQVHWEUrznWeRzus=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766086006; c=relaxed/simple;
-	bh=8ougrI2F0o6tZCTw9ybr+PvkeZpYBrHjnd8HgfDiNkE=;
+	s=arc-20240116; t=1766086300; c=relaxed/simple;
+	bh=QQuW2NMPKvO1lAvnMHe2NLJWr5l1I0xjIzysFFQlGNU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bOv+PapPYr9TNytRZhOFHWeQc+mVLhPf61ejGol/Ty8V/QxF/yUAL0perStFt1W/+dbo/mP/NGqKI0gqIsJg04k9GFnV8dUWla+CUdvn1z7IEbmroqhxsiCrfmPnUH5H5g57WW1ETJSe77Qf+oJBICqf0e4SPXn6MNkz4JxtLgw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uTapCRAE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90DE2C116D0;
-	Thu, 18 Dec 2025 19:26:37 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=YQ76/8QbBzJW+U07psRAdch5Cosn0lH+lWnMdkqS5QsLWRDSBgeUYDuOp/7TnWFZnScyAj6elGyhX3JWu9Z3D3ucenRyD5XbvCGyARPJNxeU0crWUlCTlaaCJTr/u5u+sJNinwgEN2Z22XTgStWZNVcd2L09s67otKy6IlrEdrg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J3SJEGC7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76A0DC116D0;
+	Thu, 18 Dec 2025 19:31:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766086005;
-	bh=8ougrI2F0o6tZCTw9ybr+PvkeZpYBrHjnd8HgfDiNkE=;
+	s=k20201202; t=1766086299;
+	bh=QQuW2NMPKvO1lAvnMHe2NLJWr5l1I0xjIzysFFQlGNU=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=uTapCRAELi9WA5wcbSRhHNKgOTwYApwQOZnW+kab86opSG+800gSNesmWBJ7cngW6
-	 roMgUOp1Wtk6giYTh0cyLo6GvFm/apnGGMG/JTDwVhw9ZS+eYvQLmU2SZan8fu0oJo
-	 mJtdMe8GwYSXPfBaoN/sa/44o6rCWZ9koR6f6SG2NKXE+VhyJrrGxTkLrTdmdtoGOr
-	 GHQWZO4OmYlQGngMGtXfXvVm2+N8pKqeRhhhtnqOPJfQLMDl0HvYJiQRUjni3rGG00
-	 6CJD9JwZLxMBqha5fiM5fKEIIje/1aKleeFnKiQPnqK5GZWAHQrjqFYzusF6kSvnCl
-	 +cT7i34KoL2Ug==
-Message-ID: <7127040f-55ab-4bfa-8795-1df76085470c@kernel.org>
-Date: Thu, 18 Dec 2025 20:26:35 +0100
+	b=J3SJEGC7ccXV5DO4hAeyFNUD/AK/bOxOyoN82Umg48Nubb4mi54diBuiMHzLs7Nkm
+	 gqxQo92EkLrP/KNVK6nHK3a7hjDXDk0JOAxm2RwZaR5EAkNXVUufGV2acXDcb4we0v
+	 4LOAVU2YZK438vSz8ZGxoCY/2Xr0kIXJpePzQ/CglREcrrQZy9YaOAKW33WhGJJdBq
+	 2LHzegIoeZHtpjz+whqwV+d5Q3WRNCUxesMrSfix6mnwvV5/1/JWAaGYwswMUpUUuU
+	 fiUdeIulenx7h/MvIR6yxkSQrQcBhz3B5yLj4uiILawogEO07H7nFQknnYgyJrJ3c4
+	 MYxBUgFjclniA==
+Message-ID: <d215c5dd-b402-4cd2-b4c6-48358b5b2491@kernel.org>
+Date: Thu, 18 Dec 2025 20:31:31 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,28 +48,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 1/3] dt-bindings: soc: imx93-media-blk-ctrl: Add PDFC
- subnode to schema and example
-To: Marco Felsch <m.felsch@pengutronix.de>, Liu Ying <victor.liu@nxp.com>,
- krzk+dt@kernel.org
-Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org
-References: <20251202-v6-18-topic-imx93-parallel-display-v7-0-2cce31d64608@pengutronix.de>
- <20251202-v6-18-topic-imx93-parallel-display-v7-1-2cce31d64608@pengutronix.de>
- <705773fc-5aba-4bff-b05e-272e1cd0262c@nxp.com>
- <20251215161706.2ea3wtu3xlwcxxar@pengutronix.de>
+Subject: Re: [PATCH v6 1/2] dt-bindings: arm: aspeed: add ASRock Rack ALTRAD8
+ board
+To: Rebecca Cran <rebecca@bsdio.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+ Andrew Jeffery <andrew@codeconstruct.com.au>,
+ Tan Siewert <tan.siewert@hetzner.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+ linux-kernel@vger.kernel.org
+Cc: Billy Tsai <billy_tsai@aspeedtech.com>,
+ Conor Dooley <conor.dooley@microchip.com>
+References: <20251218161816.38155-1-rebecca@bsdio.com>
+ <20251218161816.38155-2-rebecca@bsdio.com>
+ <5aa36c56-798a-40cc-b0b8-be3f7c92136f@kernel.org>
+ <4eff8506-8049-46e9-997e-a41edff32bbc@bsdio.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -115,77 +108,34 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251215161706.2ea3wtu3xlwcxxar@pengutronix.de>
+In-Reply-To: <4eff8506-8049-46e9-997e-a41edff32bbc@bsdio.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 15/12/2025 17:17, Marco Felsch wrote:
-> Hi Liu,
-> 
-> On 25-12-08, Liu Ying wrote:
->> Hi Marco,
->>
->> On 12/02/2025, Marco Felsch wrote:
->>> From: Liu Ying <victor.liu@nxp.com>
+On 18/12/2025 19:34, Rebecca Cran wrote:
+> On 12/18/25 09:21, Krzysztof Kozlowski wrote:
+>> On 18/12/2025 17:18, Rebecca Cran wrote:
+>>> Document ASRock Rack ALTRAD8 (ALTRAD8UD-1L2T and ALTRAD8UD2-1L2Q)
+>>> compatibles.
 >>>
->>> i.MX93 SoC mediamix blk-ctrl contains one DISPLAY_MUX register which
->>> configures parallel display format by using the "PARALLEL_DISP_FORMAT"
->>> field. Document the Parallel Display Format Configuration(PDFC) subnode
->>> and add the subnode to example.
->>>
->>> Signed-off-by: Liu Ying <victor.liu@nxp.com>
->>> [m.felsch@pengutronix.de: port to v6.18-rc1]
->>> [m.felsch@pengutronix.de: add bus-width]
->>> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
->>> ---
->>>  .../bindings/soc/imx/fsl,imx93-media-blk-ctrl.yaml | 92 ++++++++++++++++++++++
->>>  1 file changed, 92 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctrl.yaml b/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctrl.yaml
->>> index 34aea58094e55365a2f9c86092f637e533f954ff..6e2d86d9341c75108b492bcbabc8a560d8e707cd 100644
->>> --- a/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctrl.yaml
->>> +++ b/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctrl.yaml
->>> @@ -26,6 +26,12 @@ properties:
->>>    reg:
->>>      maxItems: 1
->>>  
->>> +  '#address-cells':
->>> +    const: 1
->>> +
->>> +  '#size-cells':
->>> +    const: 1
->>> +
->>>    '#power-domain-cells':
->>>      const: 1
->>>  
->>> @@ -40,6 +46,60 @@ properties:
->>>      minItems: 8
->>>      maxItems: 10
->>>  
->>> +  bridge@60:
->>
->> The dependency patch series mentioned in cover letter has two links in it's
->> cover letter.  Reading the patch sets pointed by the two links, we may find
->> Krzysztof's comments - the child nodes of the blk-ctrl should be completely
->> documented.
+>>> Signed-off-by: Rebecca Cran <rebecca@bsdio.com>
+>>> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+>>> Tested-by: Tan Siewert <tan.siewert@hetzner.com>
+>> How was the binding tested?
 > 
-> Thanks for pointing this out.
+> I ran "make ARCH=arm CHECK_DTBS=y aspeed/aspeed-bmc-asrock-altrad8.dtb"
+> to check for errors
+
+That's a build check for DTS, not binding. I compiled this code - so it
+is also Tested-by?
+
 > 
-> @Krzysztof
-> Requesting to add everything seems not feasible if everything added
-> should be tested too.
-> I don't see why everything should be added in one step, since the base
-> .dtsi isn't added in one step too.
+> and have used the dts file in an ASRock Rack ALTRAD8UD-1L2T system with
+> Linux 6.12.61 running OpenBMC.
 
-Because otherwise we do not see entire picture and people post incorrect
-bindings, claiming they are complete picture, like messing nodes with
-addressing and nodes without. So sure, if you do not want to post
-complete picture, we cannot review that complete picture, therefore YOU
-MUST POST CORRECT CODE.
+This does not test anything from the binding.
 
-I will not be taking excuses later "we did not know that such code is
-not allowed". You must know all rules.
-
+Please don't add fake tests... Building instructions are not testing.
 
 Best regards,
 Krzysztof
