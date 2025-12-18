@@ -1,124 +1,133 @@
-Return-Path: <devicetree+bounces-248013-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248015-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A994CCDC75
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 23:22:31 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A1A3CCDD14
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 23:33:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 65A9130551D5
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 22:22:21 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DB41430433CA
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 22:31:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA29C31ED80;
-	Thu, 18 Dec 2025 22:22:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1D2D33F377;
+	Thu, 18 Dec 2025 22:26:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KTRj7JIp"
+	dkim=pass (2048-bit key) header.d=bsdio.com header.i=@bsdio.com header.b="LAfWwuNp";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="D8KpQmX8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fhigh-a2-smtp.messagingengine.com (fhigh-a2-smtp.messagingengine.com [103.168.172.153])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CD152F9D85;
-	Thu, 18 Dec 2025 22:22:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCED433EB09;
+	Thu, 18 Dec 2025 22:26:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.153
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766096534; cv=none; b=ckUCK+1ebjaO2FAje2yNDmQNolSkjsDlWANaSSjJ9RQbCWibmfcicwndvJZoNzylzvhLwpG2l9e/tEnMHnjxb/l+fQAAo8KESxhVVlbTatvqzJG/qXsBO/nSVLf77vqICdrbb68jT/mbdINTpoVEW71vTk7RSd5p5QP2MTNVdlg=
+	t=1766096780; cv=none; b=QZ+S1DK3e28b5Z+VGZurj1wAm5OKsw/d9n4b6Ci7oYsHf2e6oCBz21vx8ClfJfq9ZZy+H32wZtZwqI1dFIKqzX0A4dQbXWFK7xcfPwkApDm7gZFo0aohUY39UXSIzgOKBx+AL+K/X9u+yr4M06Nyn/fVIIBCLHiHqfrK8Zoshk4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766096534; c=relaxed/simple;
-	bh=C/ueUWFjCyD/VD4TdJXJVaQRqT2VnOEHgebnD6XjxSI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=qZwnkoQlfBB79JYA85pwk6QN9lMnGaT1OVsIqQLaBnHtHcXt303m66/5Qc2Mpypf+mJ0X4raCVBB7LiATMcRrC1gwGQ/57QZwIr/FNmsi6BQgmBEHJ+1FtieOnKjpkFHmInQ/okYutOTEAVhV71Qatm59USfMnoR8qKEuGqzZjc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KTRj7JIp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 01625C2BCB1;
-	Thu, 18 Dec 2025 22:22:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766096534;
-	bh=C/ueUWFjCyD/VD4TdJXJVaQRqT2VnOEHgebnD6XjxSI=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=KTRj7JIpKmE1PPDUUHXPOPSMVHucq1I9S79x1nSEY6RP8VzTez7yHmgQ1/5HzUuqQ
-	 FMnkSmosCbPi2Cq14zuZBETeXjzKV1PjSqpLxIBFtwPpb2AvTE5Vzgz1tUwdQHkMwf
-	 uRohtnw6MB9lVixxc/JEFtrcIw6nNsowoR/6a/31BOGcoqrG2LVLoJKRKLa3fo4cfX
-	 ZPL9DMD0bXmISjryX46ktSVHjxEcL+VibuaG1UxfTKl8dNdHb9eJBXp20mw8ij1Lan
-	 B+zunLaS6Xj9vdlNC+GGXH8bGQkZGMrpi1n9Yl3AEi7/Gt/hblWuNINexgxuxZ/YoV
-	 GuvYFYM40r/+A==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EDCAAD711C8;
-	Thu, 18 Dec 2025 22:22:13 +0000 (UTC)
-From: =?utf-8?q?J=C3=A9r=C3=B4me_de_Bretagne_via_B4_Relay?= <devnull+jerome.debretagne.gmail.com@kernel.org>
-Date: Thu, 18 Dec 2025 23:22:12 +0100
-Subject: [PATCH v4 6/6] wifi: ath12k: Add support for disabling rfkill via
- devicetree
+	s=arc-20240116; t=1766096780; c=relaxed/simple;
+	bh=5vuIwrlfsuMjA+ArT+sGvLRH4JONxdjqmumQ0lvasns=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kETmPI+0gLji4R+/fqiItC6aU9mMp4+sHHy3pF52OdRKNz+wVMCffVDBxue3wUsoc3MsauSDoyDpu8szCcsoj1x+cOAUOmXTcl8gMPR5bajsTbN4mWOTcrFk/nAvFLPlj4rhVFDfMomtYRXVsMRbtQPtQf28sd8QBn4F3EfxCAM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bsdio.com; spf=fail smtp.mailfrom=bsdio.com; dkim=pass (2048-bit key) header.d=bsdio.com header.i=@bsdio.com header.b=LAfWwuNp; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=D8KpQmX8; arc=none smtp.client-ip=103.168.172.153
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bsdio.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=bsdio.com
+Received: from phl-compute-05.internal (phl-compute-05.internal [10.202.2.45])
+	by mailfhigh.phl.internal (Postfix) with ESMTP id ED39C1400083;
+	Thu, 18 Dec 2025 17:26:17 -0500 (EST)
+Received: from phl-frontend-03 ([10.202.2.162])
+  by phl-compute-05.internal (MEProxy); Thu, 18 Dec 2025 17:26:17 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bsdio.com; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm2; t=1766096777;
+	 x=1766183177; bh=5vuIwrlfsuMjA+ArT+sGvLRH4JONxdjqmumQ0lvasns=; b=
+	LAfWwuNpXY3C5lzzlrGbl+u+MB0r9A9UD+m29IOxHs910+C3Nh9wJU8fRDvsO1s4
+	hqYKq6vuuQCQV8fgWkXesEc+NyI6kzABjVINw3UTFCN/AAouNhbhyp0t4a1EobZd
+	msK4ZJeUHfexvH6F5CidgntcKvffabFJ7CmuX6Sir4xegDP6NIb7xSFokhQ9lo0U
+	PjWMUfSE8wZbXUM2ay204FU4BTOQWOI99PxxsCzLc13lEtjcukPCtNgNr4gZtM11
+	1F/xaGqW18L+kH3w9jOG4snRE8V+hRTnvfJATLwMXLDSEXHknav2FGqGaLfkoB1J
+	LkQXY4ua/awAClhWisWQsw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1766096777; x=
+	1766183177; bh=5vuIwrlfsuMjA+ArT+sGvLRH4JONxdjqmumQ0lvasns=; b=D
+	8KpQmX8+LJrvAvmBhY0vlBY0U4DUNws4f60fN4KTq5E0JA4edmz6lJmg8vlvLrZY
+	dGkCm/mRXmGG4CEdTBzh7HFcaIw24zc2jNinZhjTNOmc6EWSIVn/6K4e4CVLVmXZ
+	ZwT/Pii77NxRs3AGtEvd2vJJQlmCPbTIp+E0752ZMT4Esua2es7z4OUVODzYTVqH
+	CvrBGX8nM0cAVlUMq4C1njLvPJYyGy8Pjn4i9Ae9SeuXTjYLFcz67n+797rOvBVm
+	KVif7FiZ/Q9AO/4EAFpWY98ni/H+qvkGCWM6HtZxL9Y/U8PRpMXAZEJrDXm1wIAF
+	Vsk8Ak584PJpylJQgbc0Q==
+X-ME-Sender: <xms:iH9EaSjs0r_Hr6QzNZ5XtYZveLLRtqOpwY69EDLkAbdpfzaQE2CNvQ>
+    <xme:iH9EaSm8-C_QZCVcdQL5y1--oLM5Zs1ABboYTd5T-RofZRgLCqYvwizcKsnsJABLo
+    BsvXUjTc03PjdhQEF6f8FqTc8xEsb1pbAnAnT2ybrQVmf0mFORh6cSC>
+X-ME-Received: <xmr:iH9EaeaGPMzFfvOx6oddACuNs1lmN7F-EX-mw8zRgocK9D8mBuDpQfzTxnu7LsZankJj9aI>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgdegieeivdcutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
+    ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
+    hrpefkffggfgfuvfevfhfhjggtgfesthekredttddvjeenucfhrhhomheptfgvsggvtggt
+    rgcuvehrrghnuceorhgvsggvtggtrgessghsughiohdrtghomheqnecuggftrfgrthhtvg
+    hrnheplefhgeevleehieeuveduudfguedtieetteevhffgfffhhffhveffueegtdegkeek
+    necuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprhgvsg
+    gvtggtrgessghsughiohdrtghomhdpnhgspghrtghpthhtohepudefpdhmohguvgepshhm
+    thhpohhuthdprhgtphhtthhopehkrhiikheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoh
+    eprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghr
+    nhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpd
+    hrtghpthhtohepjhhovghlsehjmhhsrdhiugdrrghupdhrtghpthhtoheprghnughrvgif
+    segtohguvggtohhnshhtrhhutghtrdgtohhmrdgruhdprhgtphhtthhopehtrghnrdhsih
+    gvfigvrhhtsehhvghtiihnvghrrdgtohhmpdhrtghpthhtohepuggvvhhitggvthhrvggv
+    sehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqrghrmhdqkh
+    gvrhhnvghlsehlihhsthhsrdhinhhfrhgruggvrggurdhorhhg
+X-ME-Proxy: <xmx:iH9EadyT4GekbfEVwMCEa95li0Wv9vjD610Hw1NmWL5vj3vGqL6NiA>
+    <xmx:iH9EadYtAlmM4kujKL0fOfXNfCk6jTqKvf8kRLlmfsY6MIlRYfhyuQ>
+    <xmx:iH9EaezcmDfqJ2xKGgV5BRzzgJ2BfRVygoLcHpGUgeh-rnk6kJ4Jlg>
+    <xmx:iH9EaWG46ABbTf4u40GaWM4XINTHk1J7Do6B2_1ls00nXRK9joclfw>
+    <xmx:iX9EaaSf-ARUTKFu2UbbNeAfwMNb_2yH0GUkE-PVxhlMsJawuuprZahw>
+Feedback-ID: i5b994698:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 18 Dec 2025 17:26:15 -0500 (EST)
+Message-ID: <b28d5c56-59ee-4723-b953-cca6629ef63f@bsdio.com>
+Date: Thu, 18 Dec 2025 15:26:14 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 1/2] dt-bindings: arm: aspeed: add ASRock Rack ALTRAD8
+ board
+To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+ Andrew Jeffery <andrew@codeconstruct.com.au>,
+ Tan Siewert <tan.siewert@hetzner.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+ linux-kernel@vger.kernel.org
+Cc: Billy Tsai <billy_tsai@aspeedtech.com>,
+ Conor Dooley <conor.dooley@microchip.com>
+References: <20251218161816.38155-1-rebecca@bsdio.com>
+ <20251218161816.38155-2-rebecca@bsdio.com>
+ <5aa36c56-798a-40cc-b0b8-be3f7c92136f@kernel.org>
+ <4eff8506-8049-46e9-997e-a41edff32bbc@bsdio.com>
+ <d215c5dd-b402-4cd2-b4c6-48358b5b2491@kernel.org>
+From: Rebecca Cran <rebecca@bsdio.com>
+Content-Language: en-US
+In-Reply-To: <d215c5dd-b402-4cd2-b4c6-48358b5b2491@kernel.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Message-Id: <20251218-surface-sp11-for-next-v4-6-7bcf83c1504a@gmail.com>
-References: <20251218-surface-sp11-for-next-v4-0-7bcf83c1504a@gmail.com>
-In-Reply-To: <20251218-surface-sp11-for-next-v4-0-7bcf83c1504a@gmail.com>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Johannes Berg <johannes@sipsolutions.net>, 
- Lorenzo Bianconi <lorenzo@kernel.org>, 
- Maximilian Luz <luzmaximilian@gmail.com>, Hans de Goede <hansg@kernel.org>, 
- =?utf-8?q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
- Jeff Johnson <jjohnson@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org, 
- platform-driver-x86@vger.kernel.org, ath12k@lists.infradead.org, 
- Dale Whinham <daleyo@gmail.com>, 
- =?utf-8?q?J=C3=A9r=C3=B4me_de_Bretagne?= <jerome.debretagne@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1766096532; l=1265;
- i=jerome.debretagne@gmail.com; s=20251217; h=from:subject:message-id;
- bh=mcMjGRXAT6QkIO3PWrqFYRB9BASEzAi+bYp6SS6IoLc=;
- b=RvVTMjLt69VKME0qck0aSGBZHhTiJB7g5TGhGTiFfRV1Zn3JKB+k59xK71oilLW17JqRP2nS9
- GCFTHv10WNTBsGRyxaoG6hYwUDYgJbLXd3qhZL5/WIDKtTeFprXBY0t
-X-Developer-Key: i=jerome.debretagne@gmail.com; a=ed25519;
- pk=DcPD9n3oDMsPkt+12tU96swmGb5H86cxt+yiEVcUEGk=
-X-Endpoint-Received: by B4 Relay for jerome.debretagne@gmail.com/20251217
- with auth_id=580
-X-Original-From: =?utf-8?q?J=C3=A9r=C3=B4me_de_Bretagne?= <jerome.debretagne@gmail.com>
-Reply-To: jerome.debretagne@gmail.com
 
-From: Dale Whinham <daleyo@gmail.com>
+On 12/18/25 12:31, Krzysztof Kozlowski wrote:
+> This does not test anything from the binding.
+>
+> Please don't add fake tests... Building instructions are not testing.
 
-Some devices (e.g. Microsoft Surface Pro 11) indicate that the rfkill
-feature should be disabled by means of an ACPI bitflag.
+Sorry. In that case I don't know how to test the bindings.
 
-If ACPI is not being used (i.e. booting using a devicetree) then this
-property will not be read and therefore rfkill may be enabled and
-the ath12k will be hard-blocked with no way to disable it.
 
-Add a devicetree property that allows us to disable the rfkill feature.
-
-Signed-off-by: Dale Whinham <daleyo@gmail.com>
-Tested-by: Jérôme de Bretagne <jerome.debretagne@gmail.com>
-Signed-off-by: Jérôme de Bretagne <jerome.debretagne@gmail.com>
----
- drivers/net/wireless/ath/ath12k/core.c | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/drivers/net/wireless/ath/ath12k/core.c b/drivers/net/wireless/ath/ath12k/core.c
-index cc352eef1939937ce902bee2fbd9737ca3ab5993..e10073bb975cfd2e9ee418edcc49d0d51cf93de1 100644
---- a/drivers/net/wireless/ath/ath12k/core.c
-+++ b/drivers/net/wireless/ath/ath12k/core.c
-@@ -77,6 +77,9 @@ static int ath12k_core_rfkill_config(struct ath12k_base *ab)
- 	if (ath12k_acpi_get_disable_rfkill(ab))
- 		return 0;
- 
-+	if (of_property_read_bool(ab->dev->of_node, "disable-rfkill"))
-+		return 0;
-+
- 	for (i = 0; i < ab->num_radios; i++) {
- 		ar = ab->pdevs[i].ar;
- 
-
--- 
-2.47.3
+-- 
+Rebecca Cran
 
 
 
