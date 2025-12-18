@@ -1,266 +1,235 @@
-Return-Path: <devicetree+bounces-248003-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248004-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1FFBCCD794
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 21:07:40 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79149CCDA9F
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 22:20:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AE4E330652FD
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 20:05:27 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4419B30062ED
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 21:20:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AD3B2C0F7F;
-	Thu, 18 Dec 2025 20:05:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 281732DFA2F;
+	Thu, 18 Dec 2025 21:20:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Qc372uuT"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mSlLydC0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DB5581ACA;
-	Thu, 18 Dec 2025 20:05:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46A0C2BDC0F
+	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 21:20:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766088326; cv=none; b=LzeD4V6+bKQru00jlhH4DZZMMEmmSqI/U9zSQ9Erx+is8U8OfBFjhNtJOhQ4pkc8euJzthA5ahr9+H8whrtDWaxEhzpgOzjE/77XmYIp39vRZgxAZx3zRxc6H4xXrmCnSwSUGRPaAnqkqPZGsWZTxpTcBVequl5SdhvSQ4472m4=
+	t=1766092846; cv=none; b=c00owTDFrSvmX89uwV4qKIBWjWA7p3H09tDJGM55xaDyAW7eyOBqpyjeP7OTSxNJN9bFeJnwtKqGLgAm6GimOfJxwNG0ojow/L9I4rA0UzvgfxHthyuhFGR58Ypawhs6rVODsFkM0jFWHluD7SPzSbpeUe3ae6cpuPI4iyif93E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766088326; c=relaxed/simple;
-	bh=qOmoSsMcnU+05ZsbSJqzF/ObB42pZyhLPpPwYZBwSYM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZBBAeyJPrsV2PqtwEfkeT7NwchtrlLMeb/8PFDEzGOrumbS0TyNwv14ptkcDFzuCEUW7oyHqXF38Tf9X6Qvm2FK7jt4xVNFBvqrGT+FU7cQNKcn/Sm8hlPMqEsItjkCZKbF6mntB/aiMb4c2EfX4DskIzEJYYMBcHA6qF77GMiM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Qc372uuT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC5B4C16AAE;
-	Thu, 18 Dec 2025 20:05:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766088325;
-	bh=qOmoSsMcnU+05ZsbSJqzF/ObB42pZyhLPpPwYZBwSYM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Qc372uuTC+u61AUF4nkxEjBIq9G+iwfzUotlVnrS9xpA1HPojaU+Ic+v5hIZgEkyE
-	 YTBZYXvW1xMGZPmzQmhQPG/7ICaqfGZ5H5yV1iQuj53Iaz0Ty6gMWfEBmoVV8uMaEo
-	 eYCJmuLK+G8e1iYAUpx2p9rMdONYbZ7b4mAaM5VVjGJqax7MqY+KCc0jOSgoK664UE
-	 8UUUuXdHDjgrryKWb7AQzJ/tPZxqwDO+hCNAgatNgxe0qSx1HofXBYSQSCLc+YiV7F
-	 SS6pXFREDco1v6lbY3v27kNMf/v22tKkgVNfCmeVmnzNygHZxqsIxNTIRGOWrvJK74
-	 Wca5ZIkDDXROQ==
-Message-ID: <2846f26f-57cc-4fa1-b316-63f94991cd62@kernel.org>
-Date: Thu, 18 Dec 2025 21:05:19 +0100
+	s=arc-20240116; t=1766092846; c=relaxed/simple;
+	bh=ieq0ZjcZ6Em7AjJxXDPnmdbM7ndI9q9WnvRDMXFpCtE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=oSz6IlERzOwM56yTcsxPtWieUFGlu09YWRXBgo31gAQeMAPaF4GyWig9d0JFEdYVHHbav2QG58jSW1BMhtIumL6LZ6RpMYszPKrWDTj0Vo/giRBTfuOqVxB0qENE4/QZZgPyQ1o5qudjR/hCqqlYvt+caL7mWPPxjy16iiK0DUE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mSlLydC0; arc=none smtp.client-ip=209.85.208.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-37e6dd536b0so10680111fa.2
+        for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 13:20:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1766092842; x=1766697642; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=tkYlQnzcC6iwQIlh0mYCygHeE7SPIbVoP6P3AZkPwEA=;
+        b=mSlLydC0Tw2PqB+jgKDkg7LwSBrrDpMko6AVXN81zTXpQRHNBHgTVTgtH8HhRa548N
+         PiYIISErOlf/7O4db4xLO1JRV2a5WkY/OO4vQK7QvzN/O6PK8Xh+QaFmM7xtTnFqYUTi
+         sB+Ohr5OufUPLTDgYMBefdAsxGuiaoMKSwEa3fYxTJQnZawCnTmS63Vm2ZzLIVDCLbcu
+         1BPF6DNNHyhKeAgfQa5Ey2Ohew/9f+BLidD+qiokWNwxhc1B7LdWUfIlzAl96+wbN3/u
+         +H6vslT/7qD25fDD7uCqNmP4Hgk6gIqMq2xOQsB+y315J2Pdn3262GRjyTjsUragFfE5
+         8xag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1766092842; x=1766697642;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=tkYlQnzcC6iwQIlh0mYCygHeE7SPIbVoP6P3AZkPwEA=;
+        b=DzhNXI6wDmWWEX3gvuWOkbR/2jCJO0TbQ4Rkbx4WjhCPPY3mlKwW649Zk0lOIR+CYj
+         GW9yfAeVuAEnJ+leTxa9Yj18kevt12FuDkbSVDfilnzJkZxNGICT5QH3Xsq8y8AYh3OD
+         tH94aW8HKTcWebla+xAtOZvehGF0pgfj5s/jRECDkcNzjpVjOIdbSc79ICDCXTAyRbeT
+         0S/NwgllLlmfdCXpJTCZjx77ZoqVM5no/O/bP1h89SwYQ4T4yOhJKHGk3aoRN2xaT9Z7
+         meicGnmNlzFh0OIDVxOcIsOYBNaXhFommturOeFQsUYAISmseD66hzHzRLvFAbW88hAR
+         hLFA==
+X-Forwarded-Encrypted: i=1; AJvYcCUr3UU+8RTSb1louO71nfg2d530LFkV1mq8+7rv4fKTB9nrb9CP7ypwjnx/Dxt3itoiybINeF/jzqv9@vger.kernel.org
+X-Gm-Message-State: AOJu0YyB2bgr+0Df9JbzjwICZdncUwxBdqjKtDM1IdH0DT43O/PpZi7Q
+	qdVJVuCEP9ZQN0JUP5RG1F3MyTDu5smKnogAw6z0OLlP6Hx4pUbrEsFJZ2rWv2FNpWqkPjxfxRE
+	5yJAbUn1GeikcU41GfBogzIDximzpDZ4=
+X-Gm-Gg: AY/fxX5Ee+Uj56QsgGv0v+Cb5H66ii2sN7NGu/6bLkbrk33WFB/140zmPPjVlDiIeLB
+	U/m6Is5sn96m/iDJ2xEZNLzgO46YvwE5nEoFq7XPv4fuMjdtqdR779pV/5DQJvt6jdImZF2hqre
+	sqJPfmpLbLPT2Ppe04LxAzmjQvKfl6hWbR0PRXGw8AbrSyoQIyvwYhyko6gKXtLOQtTYyXtpYg2
+	cQg83eXgG1m1fq2vVWTo48ZTdPa1vcTMpjXgURcEAoIIxAa2Vd0t2A6s065oXCq+SqLzR6x9wi0
+	TV62HUEwbEmlMDWMooV5z0AoREifzb/USZP/LRBEGVvaWRiFLLWQkxmC
+X-Google-Smtp-Source: AGHT+IEf1RMbiiLCCcOIP+//YLej1QuB+5BL7QbemlT3vMg3qeNAx3dtjkRmU/mTxIVuHubVDbuhUefeDwYCZVCtwHA=
+X-Received: by 2002:a2e:a908:0:b0:37b:8f05:13bf with SMTP id
+ 38308e7fff4ca-3812169e048mr2179951fa.43.1766092842097; Thu, 18 Dec 2025
+ 13:20:42 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] media: i2c: Add ov2732 image sensor driver
-To: Walter Werner Schneider <contact@schnwalter.eu>,
- linux-media@vger.kernel.org, Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20251218-ov2732-driver-v2-0-fb763644d62c@schnwalter.eu>
- <20251218-ov2732-driver-v2-2-fb763644d62c@schnwalter.eu>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251218-ov2732-driver-v2-2-fb763644d62c@schnwalter.eu>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20251027-tegra186-icc-p2-v4-0-e4e4f57e2103@gmail.com>
+ <29cf2c16-3a0e-42c5-a083-16f77ae5d09a@nvidia.com> <CALHNRZ9KAv-hL6+6Uiaz2O2odm1rqMnjNxNVPsbCOdqX15KTuw@mail.gmail.com>
+ <856447ae-4338-471d-a71f-a34aed749ac7@nvidia.com> <CALHNRZ9y0n6JNfeDUQgZoECkxo+We0_G8TP0H4advcSqrX86kg@mail.gmail.com>
+ <f906f85f-b110-4328-b177-02fcdf7ffe53@nvidia.com> <CALHNRZ8go4ATHgJ4SE=7pkAMgRP_0tj5z4pDXjxicV9o7F13Ng@mail.gmail.com>
+ <1b9f0b14-876c-4c6e-90eb-b04d016f88e8@nvidia.com> <CALHNRZ_GGAg_VP8gSdtw_1CA2A0netrOeA2+guZfxyG7POhHoA@mail.gmail.com>
+ <adc7ca5c-69d8-4164-bd89-3381b101576a@nvidia.com> <CALHNRZ-SU_kyak_u6mfUZBHJ9Cph6=-edhL+yhRizu8DDy=Big@mail.gmail.com>
+ <CALHNRZ9mfO_DQR-RuH_QH=18R8zTt9VqbPaVCdnDKUWzx1pm3Q@mail.gmail.com>
+ <45057c95-1dba-4302-94fa-f63941ee2b20@nvidia.com> <CALHNRZ8gJbyuD+0yFQwCJ+g7OcffjkXopRSJKoDnr5WMmUVGwQ@mail.gmail.com>
+ <0c5eddc0-8b37-4199-a8b8-f235ac3aa476@nvidia.com> <CALHNRZ_zhZ3a7h8nSWkpGv6+unKn6DkSA9tKQ6cmb5TXjGcC9w@mail.gmail.com>
+ <4900cf8f-9ec8-48d6-8187-126e111cd048@nvidia.com> <CALHNRZ_vZm7n-fZSVA1YzUPz0=znX_D6aBZ0nwUyjKdwcrO1=w@mail.gmail.com>
+In-Reply-To: <CALHNRZ_vZm7n-fZSVA1YzUPz0=znX_D6aBZ0nwUyjKdwcrO1=w@mail.gmail.com>
+From: Aaron Kling <webgeek1234@gmail.com>
+Date: Thu, 18 Dec 2025 15:20:30 -0600
+X-Gm-Features: AQt7F2rOKFnv0j_h2KhWjuTmfPNT0BjejXKaEal9deW7fZy_bxD2iDyMjOwaTVY
+Message-ID: <CALHNRZ-PGV9OcuB4aGsqw+aj5xUpRTEd4_+v7=j9=oMo9rk0oQ@mail.gmail.com>
+Subject: Re: [PATCH v4 3/5] memory: tegra186-emc: Support non-bpmp icc scaling
+To: Jon Hunter <jonathanh@nvidia.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Thierry Reding <thierry.reding@gmail.com>, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 18/12/2025 19:15, Walter Werner Schneider wrote:
-> +static int ov2732_probe(struct i2c_client *client)
-> +{
-> +	struct ov2732 *ov2732;
-> +	int ret;
-> +
-> +	ov2732 = devm_kzalloc(&client->dev, sizeof(*ov2732), GFP_KERNEL);
-> +	if (!ov2732)
-> +		return -ENOMEM;
-> +
-> +	ov2732->dev = &client->dev;
-> +
-> +	ret = ov2632_probe_dt(ov2732);
-> +	if (ret)
-> +		return dev_err_probe(ov2732->dev, ret,
-> +				     "failed to probe device tree\n");
-> +
-> +	ov2732->xvclk = devm_v4l2_sensor_clk_get(ov2732->dev, "xvclk");
-> +	if (IS_ERR(ov2732->xvclk))
-> +		return dev_err_probe(ov2732->dev, PTR_ERR(ov2732->xvclk),
-> +				     "failed to get xvclk\n");
-> +
-> +	ov2732->xvclk_freq = clk_get_rate(ov2732->xvclk);
-> +	if (ov2732->xvclk_freq != OV2732_XVCLK_FREQ)
-> +		return dev_err_probe(ov2732->dev, -EINVAL,
-> +				     "xvclk frequency not supported: %dHz\n",
-> +				      ov2732->xvclk_freq);
-> +
-> +	ov2732->pwdn_gpio = devm_gpiod_get_optional(ov2732->dev, "pwdn",
-> +						    GPIOD_OUT_HIGH);
-> +	gpiod_set_value_cansleep(ov2732->pwdn_gpio, 1);
+On Thu, Dec 18, 2025 at 1:25=E2=80=AFPM Aaron Kling <webgeek1234@gmail.com>=
+ wrote:
+>
+> On Thu, Dec 18, 2025 at 5:12=E2=80=AFAM Jon Hunter <jonathanh@nvidia.com>=
+ wrote:
+> >
+> >
+> > On 17/12/2025 22:44, Aaron Kling wrote:
+> >
+> > ...
+> >
+> > >> Thanks I added all these on top of next-20251216 (as that is the lat=
+est
+> > >> I have tested) and Tegra194 fails to boot. We always include all the
+> > >> modules in the rootfs that is being tested. You can see the boot log
+> > >> here [0]. We are using an NFS rootfs for testing and I see a message
+> > >> related to the NFS server not responding. I am guessing something is
+> > >> running too slow again because the only thing I changed was adding y=
+our
+> > >> patches. The test harness reports it is timing out ...
+> > >>
+> > >> FAILED: Linux Boot Test 1
+> > >>          Test Owner(s): N/A
+> > >>          Execution Time 219.31 sec
+> > >>          Test TIMEOUT reached. Test did not report results in 120 se=
+cs
+> > >>          Percent passed so far: 0.0
+> > >
+> > > Okay, so. Modules are in the rootfs, none get copied to the initramfs=
+?
+> > > And the rootfs is on nfs? And for this failure, nfs never gets
+> > > mounted. So... for this case, no modules get loaded, implying that
+> > > whatever is happening is happening with the built-in drivers. Which
+> > > means this case isn't pcie related. Are there any modifications to th=
+e
+> > > defconfig? It appears that there must be, to have dwc-eth-dwmac
+> > > available. I will see if I can trigger anything when using ethernet.
+> >
+> > If you look at the boot log you will see ...
+> >
+> > [    7.839012] Root device found: nfs
+> > [    7.908307] Ethernet interface: eth0
+> > [    7.929765] IP Address: 192.168.99.2
+> > [    8.173978] Rootfs mounted over nfs
+> > [    8.306291] Switching from initrd to actual rootfs
+> >
+> > So it does mount the rootfs and so the modules would be loaded. I
+>
+> But the bottom of the log says:
+> [ 188.360095] nfs: server 192.168.99.1 not responding, still trying
+>
+> So does it mount nfs and load modules, and *then* fail to talk to the
+> nfs server? That doesn't make any sense. And I don't see any logs from
+> driver probes after the rootfs line. And there's sync_state lines
+> stating that pcie among others isn't available.
+>
+> > believe that PCIe is definitely loaded because that is what I observed
+> > before. And yes there are a few modifications to the defconfig that we
+> > make on top (that have been added over the years for various reasons) .=
+..
+> >
+> > CONFIG_ARM64_PMEM=3Dy
+> > CONFIG_BROADCOM_PHY=3Dy
+> > CONFIG_DWMAC_DWC_QOS_ETH=3Dy
+> > CONFIG_EEPROM_AT24=3Dm
+> > CONFIG_EXTRA_FIRMWARE=3D"nvidia/tegra210/xusb.bin nvidia/tegra186/xusb.=
+bin
+> > nvidia/tegra194/xusb.bin rtl_nic/rtl8153a-3.fw rtl_nic/rtl8168h-2.fw"
+> > CONFIG_EXTRA_FIRMWARE_DIR=3D"${KERNEL_FW_DIR}"
+> > CONFIG_MARVELL_PHY=3Dy
+> > CONFIG_R8169=3Dy
+> > CONFIG_RANDOMIZE_BASE=3Dn
+> > CONFIG_SERIAL_TEGRA_TCU=3Dy
+> > CONFIG_SERIAL_TEGRA_TCU_CONSOLE=3Dy
+> > CONFIG_STAGING=3Dy
+> > CONFIG_STAGING_MEDIA=3Dy
+> > CONFIG_STMMAC_ETH=3Dy
+> > CONFIG_STMMAC_PLATFORM=3Dy
+> > CONFIG_USB_RTL8152=3Dy
+> > CONFIG_VIDEO_TEGRA=3Dm
+> > CONFIG_VIDEO_TEGRA_TPG=3Dy
+> > CONFIG_DWMAC_TEGRA=3Dy
+>
+> I will incorporate these to a build and see if I get any different result=
+s.
+>
+> > Looking at the boot log I see ...
+> >
+> > [    3.854658] cpu cpu0: cpufreq_init: failed to get clk: -2
+> > [    3.854927] cpu cpu0: cpufreq_init: failed to get clk: -2
+> > [    3.855218] cpu cpu2: cpufreq_init: failed to get clk: -2
+> > [    3.858438] cpu cpu2: cpufreq_init: failed to get clk: -2
+> > [    3.863987] cpu cpu4: cpufreq_init: failed to get clk: -2
+> > [    3.869741] cpu cpu4: cpufreq_init: failed to get clk: -2
+> > [    3.875006] cpu cpu6: cpufreq_init: failed to get clk: -2
+> > [    3.880725] cpu cpu6: cpufreq_init: failed to get clk: -2
+> > [    3.886018] cpufreq-dt cpufreq-dt: failed register driver: -19
+> >
+> > So actually, I am now wondering if this is the problem?
+>
+> These lines are from cpufreq-dt trying to manage the cpu's directly,
+> which it's not supposed to do. tegra194-cpufreq is supposed to manage
+> them. I see these lines as well, when things are operating as
+> expected. The real driver doesn't log anything, but the policies are
+> visible in sysfs. I did a little bit of digging previously to see if I
+> could remove the log churn, but was unable to do so. I would have to
+> double check to be completely sure, but I am fairly certain I saw
+> these lines before my changes as well. It's something that would be
+> good to get fixed, but I don't think it's operable here.
 
-No need to set the same value twice. It's already 1.
+Turns out, this is actually semi-operable. There's a blocklist in the
+cpufreq-dt driver that includes all tegra archs <=3D t234 except for
+t186 and t194. If I add t194 to that list, then the log lines go away.
+However, it does not fix the nfs boot issue. I was finally able to
+replicate it by setting up my own nfs rootfs. This series does not
+affect it though, fwiw, it's the dt series that triggers this. Before
+it, nfsroot boots as expected. After it, the reported issue happens.
+After adding t194 to the cpufreq-dt blocklist, the issue still
+happens. But... if I add "blacklist=3Dcpufreq-dt" to the kernel
+bootargs, nfs works again. I don't get this.
 
-> +
-> +	ov2732->reset_gpio = devm_gpiod_get_optional(ov2732->dev, "reset",
-> +						     GPIOD_OUT_HIGH);
-> +	gpiod_set_value_cansleep(ov2732->reset_gpio, 1);
+So, summary:
+* Adding opp tables to the cpu nodes causes cpufreq-dt to try to
+handle cpufreq for the soc
+* Adding tegra194 to the cpufreq-dt-platdev blocklist stops log
+messages about the attempt
+* However, it still affects the ethernet driver, causing watchdog
+timeouts and adapter resets
+* Blacklisting the cpufreq-dt driver entirely prevents the issue
 
-Same here
+I'm not sure what to make of this. Anyone have thoughts? I will send a
+patch separately to add t186 and t194 to the cpufreq-dt-platdev block
+list as this needs to happen in any case.
 
-> +
-> +	ov2732->regmap = devm_cci_regmap_init_i2c(client, 16);
-> +	if (IS_ERR(ov2732->regmap))
-> +		return dev_err_probe(ov2732->dev, PTR_ERR(ov2732->regmap),
-> +				     "failed to init CCI\n");
-> +
-> +	ret = ov2732_get_regulators(ov2732);
-> +	if (ret)
-> +		return dev_err_probe(ov2732->dev, ret,
-> +				     "failed to get regulators\n");
-> +
-> +	v4l2_i2c_subdev_init(&ov2732->sd, client, &ov2732_subdev_ops);
-> +
-> +	/* Device must be powered on for ov2732_identify_chip(). */
-> +	ret = ov2732_power_on(ov2732->dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	pm_runtime_set_active(ov2732->dev);
-> +	pm_runtime_enable(ov2732->dev);
-> +
-> +	/* Wait 1ms to avoid intermittent communication errors at startup. */
-> +	fsleep(USEC_PER_MSEC);
-> +
-> +	ret = ov2732_identify_chip(ov2732);
-> +	if (ret)
-> +		goto err_power_off;
-> +
-> +	ret = ov2732_init_controls(ov2732);
-> +	if (ret)
-> +		goto err_power_off;
-> +
-> +	/* Initialize subdev */
-> +	ov2732->sd.internal_ops = &ov2732_internal_ops;
-> +	ov2732->sd.flags |= V4L2_SUBDEV_FL_HAS_DEVNODE;
-> +	ov2732->sd.entity.function = MEDIA_ENT_F_CAM_SENSOR;
-> +
-> +	/* Initialize source pad */
-> +	ov2732->pad.flags = MEDIA_PAD_FL_SOURCE;
-> +
-> +	ret = media_entity_pads_init(&ov2732->sd.entity, 1, &ov2732->pad);
-> +	if (ret) {
-> +		dev_err_probe(ov2732->dev, ret, "failed to init entity pads\n");
-> +		goto error_handler_free;
-> +	}
-> +
-> +	ov2732->sd.state_lock = ov2732->ctrl_handler.lock;
-> +	ret = v4l2_subdev_init_finalize(&ov2732->sd);
-> +	if (ret < 0) {
-> +		dev_err_probe(ov2732->dev, ret, "subdev init error\n");
-> +		goto err_media_entity;
-> +	}
-> +
-> +	ret = v4l2_async_register_subdev_sensor(&ov2732->sd);
-> +	if (ret < 0) {
-> +		dev_err_probe(ov2732->dev, ret,
-> +			      "failed to register sensor sub-device\n");
-
-So you print errors twice? Once here and second time at the end. Why?
-> +		goto err_subdev_cleanup;
-> +	}
-> +
-> +	pm_runtime_set_autosuspend_delay(ov2732->dev, 1000);
-> +	pm_runtime_use_autosuspend(ov2732->dev);
-> +	pm_runtime_idle(ov2732->dev);
-> +
-> +	return 0;
-> +
-> +err_subdev_cleanup:
-> +	v4l2_subdev_cleanup(&ov2732->sd);
-> +
-> +err_media_entity:
-> +	media_entity_cleanup(&ov2732->sd.entity);
-> +
-> +error_handler_free:
-> +	v4l2_ctrl_handler_free(&ov2732->ctrl_handler);
-> +
-> +err_power_off:
-> +	pm_runtime_disable(ov2732->dev);
-> +	pm_runtime_put_noidle(ov2732->dev);
-> +	ov2732_power_off(ov2732->dev);
-> +
-> +	return dev_err_probe(ov2732->dev, ret, "probing failed\n");
-
-This is useless message. Print informative messages for specific errors
-or do not print at all.
-
-> +}
-> +
-
-...
-
-> +
-> +static const struct of_device_id ov2732_of_match[] = {
-> +	{ .compatible = "ovti,ov2732", },
-> +	{ },
-> +};
-> +MODULE_DEVICE_TABLE(of, ov2732_of_match);
-> +
-> +static DEFINE_RUNTIME_DEV_PM_OPS(ov2732_pm_ops, ov2732_power_off,
-> +				 ov2732_power_on, NULL);
-> +
-> +static struct i2c_driver ov2732_i2c_driver = {
-> +	.driver = {
-> +		.name = "ov2732",
-> +		.of_match_table = of_match_ptr(ov2732_of_match),
-
-Drop of_match_ptr, you have here warning.
-
-> +		.pm = pm_sleep_ptr(&ov2732_pm_ops),
-> +	},
-> +	.probe = ov2732_probe,
-> +	.remove = ov2732_remove,
-> +};
-Best regards,
-Krzysztof
+Aaron
 
