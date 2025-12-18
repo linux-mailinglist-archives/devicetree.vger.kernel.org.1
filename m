@@ -1,787 +1,311 @@
-Return-Path: <devicetree+bounces-247920-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247918-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF5D5CCCB38
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 17:19:07 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 720B9CCCB32
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 17:18:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id CF3CA30069AF
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 16:18:53 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D3A4C3016CCB
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 16:18:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D74F438259C;
-	Thu, 18 Dec 2025 16:18:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B12C1382588;
+	Thu, 18 Dec 2025 16:18:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bsdio.com header.i=@bsdio.com header.b="Ssp9LQH2";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="Ujn5cMhc"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ELNv28mx";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="WUpnggb1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh-b4-smtp.messagingengine.com (fhigh-b4-smtp.messagingengine.com [202.12.124.155])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85842382BD0;
-	Thu, 18 Dec 2025 16:18:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.155
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0741F2E040D
+	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 16:18:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766074727; cv=none; b=TGdkuMLDQZsXgrwlBLYtMY/O5DT5RsIQppNbQQk+cj9Mbh5enwquKok2byf2oCQhPKMU5sDzVkcRbC3NzkP3Ahn508ASSTf46t6V3t5yWJPF5zTCSoZxuJXDNqjmXj12pbVLsgUbe4bWP+i2nzSvWisijJIur5hx1Zsh8EBse3M=
+	t=1766074723; cv=none; b=B6cmbDRTr9YSiTZd0/7M4U5cmjbwmLBb0O1TtJZXCiBDrsBb5qWjJ7j2+NGu3atymDLZr4T54GUrwpT3rCFjAlW0am16tALAe+XEy00n5Y67bjtwsvcsw6wjQ/+UAByxPCFMmI6IRTk8MvzKmt7NMrNYa5Q4RWUP+YYayY2gQb4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766074727; c=relaxed/simple;
-	bh=uEi4T5rb2gD9AsEzgnR2GX8duG2bFR+mhtIrEGcEj58=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=F5vG0PIxsGmoUKtYda3l3Taz6hqrzxgY8vK9X0IYs4h+W/Qo7rrU5kWd4ctr8lrrv2Hin5cETLYt3x8qkdIn8GRSEZ8xPxCU9ZuAzgJKf1JV3+6sNeA97F96VBujxqns6kArXaJp4XnEd0HT3tYhX75zE1H4PV+z5NvUDVTUHO0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bsdio.com; spf=fail smtp.mailfrom=bsdio.com; dkim=pass (2048-bit key) header.d=bsdio.com header.i=@bsdio.com header.b=Ssp9LQH2; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=Ujn5cMhc; arc=none smtp.client-ip=202.12.124.155
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bsdio.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=bsdio.com
-Received: from phl-compute-05.internal (phl-compute-05.internal [10.202.2.45])
-	by mailfhigh.stl.internal (Postfix) with ESMTP id 57FC17A024B;
-	Thu, 18 Dec 2025 11:18:44 -0500 (EST)
-Received: from phl-frontend-03 ([10.202.2.162])
-  by phl-compute-05.internal (MEProxy); Thu, 18 Dec 2025 11:18:44 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bsdio.com; h=cc
-	:cc:content-transfer-encoding:content-type:date:date:from:from
-	:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to; s=fm2; t=1766074724; x=
-	1766161124; bh=iMI+l5Y+ihO/OxHjpBiqFzu8itgi78zAuEqBzuhz28c=; b=S
-	sp9LQH2yalH2l5rHdMaRv2F7HUEExn2pwMXbExJK+29u3IMHbgZjWpC/s8ip8VeN
-	bx0blmOoaGcAu5yLRHfIwqzWDkUQS/mv51da3+M5UvSWoGuMa1zjYeqfGKw1gTGR
-	Hcc/mVPqjMiiHL0L7ATknWHB1bGkGS7K+8VjBdDF+nPd0hRk9itgpo6gwTUsHFhe
-	/giUZHv3lNZNAtAj44ZfPUj3CoiVXE5OOfJOvPUvVidK2TB36oqa+Em7zT+8NXxH
-	cUqe2YTSV6F8ndedHeLY3kLW34AVZx4+p+H97v3dZPthoYLVlAEvs7W1cHGS19xz
-	WV+SsRcWnkyfDI+/82+ww==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:date:date:feedback-id:feedback-id:from:from
-	:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to:x-me-proxy:x-me-sender
-	:x-me-sender:x-sasl-enc; s=fm1; t=1766074724; x=1766161124; bh=i
-	MI+l5Y+ihO/OxHjpBiqFzu8itgi78zAuEqBzuhz28c=; b=Ujn5cMhc7WazUyc9l
-	IwvGxdGjtT+32panU1F1ZaJwaOUsN19iwvUPlSb3vP2kWjj9QFlkrNOV1FJzLgQO
-	9tULVTO4qb8Zb5wog4LFKmbOZWC647/0fvjKIn/UfX38QQNLRs8os+Qj+RLR3W0q
-	b7VXyKDDfdw0FNfCXbLOWbCcdiVdFCUTKXC77bxo+JL25sFyeLc+ni0qE7y1MyYp
-	RGOyqaIHU/myQfwfPWa6SztrAQOxoA3QO5H9MpKX85UhHNKF+Tc92l0/jWSG/DId
-	g8oAHBj8DD5bm5ZJrin1YqE/ETvSM80X0Vpf9TT+YybjAgQhm8EjVchidzuit7TV
-	/huuw==
-X-ME-Sender: <xms:ZClEadQkx7lt8Tte6XrWh6M0UDmyW3aZnT3IifM7BQ1TsHE10oNhFg>
-    <xme:ZClEaTdy-90oB7oKtJvQ-zpsy2oZDQXMqsc-L3bCCLN5ieKv2irmkzu-HO63rQQ-v
-    84GGV9GxxzOUrh_fHlWuPHxBxT44dwQLg79Z8KLoxzrzh7BZ7VQLfY>
-X-ME-Received: <xmr:ZClEaWvuTuMY6FscWwWSadW8OLwfbazPwMV003AVT2J9b2FLzJDj1Ki11D99HoLaCjt0Q8czV6Ta3U8j>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgdegheekkecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
-    ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
-    hrpefhvfevufffkffojghfggfgsedtkeertdertddtnecuhfhrohhmpeftvggsvggttggr
-    ucevrhgrnhcuoehrvggsvggttggrsegsshguihhordgtohhmqeenucggtffrrghtthgvrh
-    hnpeegffeuueelvdeggfdvvdfgtedvudfhfeekudekieektddukeefteetieefvdelfeen
-    ucevlhhushhtvghrufhiiigvpedunecurfgrrhgrmhepmhgrihhlfhhrohhmpehrvggsvg
-    gttggrsegsshguihhordgtohhmpdhnsggprhgtphhtthhopeduvddpmhhouggvpehsmhht
-    phhouhhtpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhope
-    hkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodguthes
-    khgvrhhnvghlrdhorhhgpdhrtghpthhtohepjhhovghlsehjmhhsrdhiugdrrghupdhrtg
-    hpthhtoheprghnughrvgifsegtohguvggtohhnshhtrhhutghtrdgtohhmrdgruhdprhgt
-    phhtthhopehtrghnrdhsihgvfigvrhhtsehhvghtiihnvghrrdgtohhmpdhrtghpthhtoh
-    epuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohep
-    lhhinhhugidqrghrmhdqkhgvrhhnvghlsehlihhsthhsrdhinhhfrhgruggvrggurdhorh
-    hgpdhrtghpthhtoheplhhinhhugidqrghsphgvvggusehlihhsthhsrdhoiihlrggsshdr
-    ohhrgh
-X-ME-Proxy: <xmx:ZClEafKYOeWY9JSVJDtn-t1qvkLMVf_E0CFwbA_wnN0qKUUtkZq82A>
-    <xmx:ZClEaabYfvvoEPHhFqrFeUUe5smuYlN8E66TcyyL4VB0Z7XPhRSdqA>
-    <xmx:ZClEaSmqL-l3Jd8rOgeR0d05Hw143VAKTBMOnUzIxRVqgKLSD2oKlw>
-    <xmx:ZClEaYXRYqeCIY5RGQDLwWzLUnx_9JNjHAEUoI41g0F7j9zeXpUaLA>
-    <xmx:ZClEaXynR4k9X94G0r8MCEe6z9ELM5uM5jw1ST-3eoO8sivAcLL6GTXJ>
-Feedback-ID: i5b994698:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 18 Dec 2025 11:18:43 -0500 (EST)
-From: Rebecca Cran <rebecca@bsdio.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	Tan Siewert <tan.siewert@hetzner.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org
-Cc: Rebecca Cran <rebecca@bsdio.com>,
-	Billy Tsai <billy_tsai@aspeedtech.com>
-Subject: [PATCH v6 2/2] ARM: dts: aspeed: add device tree for ASRock Rack ALTRAD8 BMC
-Date: Thu, 18 Dec 2025 09:18:14 -0700
-Message-ID: <20251218161816.38155-3-rebecca@bsdio.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20251218161816.38155-1-rebecca@bsdio.com>
-References: <20251218161816.38155-1-rebecca@bsdio.com>
+	s=arc-20240116; t=1766074723; c=relaxed/simple;
+	bh=9lwfQyGh9ICw26cZ+V5SaVhdjP6beNcTg0m82HeChCA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Kd3m/4v7xR9djO5oWRXe5m/0SCcy5ltTQLYYHRIfdbM0s+3Rnhzl9sMrZh5/dieNR4O0jtfra+qacK9FKc8U/SIEnJW+QfG7ytjzSwH0EhFvfVLCSB97Jm+naYWEjo8LIkGszI8TQ9Sh+uSpVkbNsEcgqeSw9L2zQDBAEeSeuDE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ELNv28mx; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=WUpnggb1; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BIFtL8b3447060
+	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 16:18:41 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	49mhJQ/jrHbQv1dJMnM4FUPeTJrtrySwftZmt2C54xQ=; b=ELNv28mxwbt59oVf
+	g2vH9JQvwMnss0etRZW6ftQap4CpS4Dx0MfkLJYGSxRZRu6wzmFFLRtiu0vWL+mf
+	dPeumAfMu/Zo0JX9Q+atBtR43Zd3uuSgjFpkWpL8R0fXb7vgAZF8l0/65KW++73e
+	jRiM0znuYjpqAlSu0ffmtBQGnayMVURY37VBq7Jkz1DumOfBiov0xdL8oNHugmGk
+	RU4nYbH7J44LdW5UZz2S34DW91O8o4HQ0/Zd3ozb6peiu2wi+sg6sOWKuA/1eRiq
+	FjRGYhxVxxv6derc+9XDA54OqQudLndGfugrxpVBDSkgqtnEZ+WoLIAgX5VJd2Xa
+	nINu8A==
+Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b4egb9g1g-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 16:18:41 +0000 (GMT)
+Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-2a089575ab3so11086925ad.0
+        for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 08:18:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1766074720; x=1766679520; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=49mhJQ/jrHbQv1dJMnM4FUPeTJrtrySwftZmt2C54xQ=;
+        b=WUpnggb1Kxpoj5p7+tgeNCvCVEcQIT0+hR8We1fLD+xnmUfMyDwPdkqDirLbzV3Ob9
+         +u7Di3a8M24NiP6sK6RbzsHNbJaDYWse8QhzKdgVnRojGRCv1trS81uiYchlGuhAIOpf
+         Hvb6P2HPk/Xyxg23+rx7mulMlSHyRNjaPzXAZSwF7SqcE4IIjYdtPX2+oMFASpvSZN/t
+         LzbRYTUzKC5zwRPwK09qRv2ehMT+IkBXaAnZKk4wGLGkHjHVBMdXbw/KM1nKRk5L1Pok
+         CRDaYHcWogg1g9y0EnIjKpiIwEjapNHfHpuUkQAdU1jbBrWlrtBgsdvDjOJ6fJiEeXaZ
+         J2TA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1766074720; x=1766679520;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=49mhJQ/jrHbQv1dJMnM4FUPeTJrtrySwftZmt2C54xQ=;
+        b=DcwbIH6Y9OcVvPylc66dKYbEaB0FlL7WTkSZW6p+7lqcORqF/B8EzzBDRp56+hBaq7
+         /DXILtYxsaMVpYEMsDO1gNg412CM5JpoDX6Sx7uggMpC+Gcdxu+ikAbxJ/lXvnylKlq9
+         mtrny16kjA6XwGyzUAk61tD0MLuTcXqUYW0oYIafidGa8UFVsxc6Fiw0FrCrNa/P42vS
+         +AzhBf65WyawP0WJbBv+0kR7OlmFY5RijkINVTId+MDWbUhkFFEs4u8iMHc2ctIGolvN
+         mK5YVIbrRwUH1B7VwWMMa7NWkzAJGBg9V8crDLl/q9I3JORwUJBSUmNBbAOGQR9L++Ee
+         69bA==
+X-Forwarded-Encrypted: i=1; AJvYcCUVcpDor29pWtzR1ahU8KZLZzgvJXlwvwYLLMm/I9iSZag30n8c6DJwMupn54Gk9J2rIuoTluEzw3pH@vger.kernel.org
+X-Gm-Message-State: AOJu0YzuSvBbyVfJxJ0pT7X1qYO3MYUUVyLY1jCR6P9nICIGT/tZ6RGK
+	5R+jpxgDVkAkMH2yhhRUfVxpulQf00HsK6UWtv+hPyEoCt9cId6vo3Wun7it0rkwFLTKvEIl3CZ
+	ICdZPsl/4Z1SRikkqbTgxdb+Dj2gjlmn1/jQKHHUOLaTLEw8g01UZAyb7nkQMvzaK
+X-Gm-Gg: AY/fxX7PCtUWpQ3sSl1ZUpa6buT+f0XPUp6ym/iQUH+4/Msf7B9CQ9Ebcwf/7leS2Ub
+	6kfyYPZg3MhQjr1m0JnvbLH7bi1O6Ym+mbZhcPtRadGVjcHaXVzoP6AZ0C1mZzZ4fnCmGPp8DXK
+	FlKGUh9V4eA8yuwXHeuPhqgLQpXzrJ2yS2yB1aJqO7DwCWBZXIUBn1XFiYkcMHNSSkP8LgmuDgm
+	+7vJbDz/fKRXaLH8rgl9tM5QppnCMyJrmae5Bpey2sRFRpYY1J7ZUwxuNpVdz3KAB7VqUMI9VIC
+	momPgTM6+Xb0Ha6K9mcLRgJlRurq18rIO3/qkcJ4/P4nwX/0vQA7z8sOTaGjPpUjkhaZbQaIQBo
+	MXe/HKCvFRHWh/CjqdRBRAKs/MQGLxsD41RQQT2dq8RM92AfiDDtIg0SAsLFEWjIBPnDg2N24IX
+	t9Abn41g/7
+X-Received: by 2002:a17:902:e804:b0:29d:975a:2123 with SMTP id d9443c01a7336-29f23d26f90mr168085865ad.60.1766074720108;
+        Thu, 18 Dec 2025 08:18:40 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHh5u7nqq5MOGjpt/BJtl//yyvyTmIozQTr8L7eklbEPOpymsqTOe2aOb1H/oKVEEJWLJfxLA==
+X-Received: by 2002:a17:902:e804:b0:29d:975a:2123 with SMTP id d9443c01a7336-29f23d26f90mr168085475ad.60.1766074719461;
+        Thu, 18 Dec 2025 08:18:39 -0800 (PST)
+Received: from [10.133.33.101] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a2d1926d0csm29852265ad.71.2025.12.18.08.18.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 18 Dec 2025 08:18:38 -0800 (PST)
+Message-ID: <8cb8fad9-c54e-43a3-a769-5452119cc2a1@oss.qualcomm.com>
+Date: Fri, 19 Dec 2025 00:18:31 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 00/12] coresight: Add CPU cluster funnel/replicator/tmc
+ support
+To: Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mike Leach <mike.leach@linaro.org>,
+        James Clark <james.clark@linaro.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Leo Yan <leo.yan@linux.dev>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>
+Cc: kernel@oss.qualcomm.com, coresight@lists.linaro.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        maulik.shah@oss.qualcomm.com, Jie Gan <jie.gan@oss.qualcomm.com>
+References: <20251218-cpu_cluster_component_pm-v2-0-2335a6ae62a0@oss.qualcomm.com>
+ <47191600-260a-46aa-9af8-dff2b08dc2e8@arm.com>
+Content-Language: en-US
+From: yuanfang zhang <yuanfang.zhang@oss.qualcomm.com>
+In-Reply-To: <47191600-260a-46aa-9af8-dff2b08dc2e8@arm.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjE4MDEzNSBTYWx0ZWRfXxtGmK7mEhsD4
+ +kgxwzqU4L69XSOQLJRhiGwq0ZJpVB3xsiE0uQlWd0B50xz40u7D2GTvctCOG2u0+s6SFRLq0at
+ 2wexaV3h96Uq3j0jMQITbEKRu5DTHF1N8GSEyMtmjhTLIBBXaNJUDng0TnyoFk4XrtzgJjGO6JY
+ xjtVYhrDz+R/mt5CwUxrzJw0vcIRPvWhVCz5ycfgK8R8FYlq4jwzaxyJg1KO26N0688bgjx52go
+ zXrV5fOAVNtcnxKOa0hjpg2z0sDPPilEnnI0YOdPI10onPuHFIbpzDstp8g+BifwX4WjiHYcfai
+ C70VL9OrOVMHYHjJPA9eABiZv4Y+uO5Exk1+jk1Ct9cMCTapM4jHFabBBcJ/drlasEF1JpSgCq1
+ QM6WyK/EU3x58qFz4x4ogeKCOMEWTw==
+X-Authority-Analysis: v=2.4 cv=M9tA6iws c=1 sm=1 tr=0 ts=69442961 cx=c_pps
+ a=JL+w9abYAAE89/QcEU+0QA==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=CQXatAnIE5CuAcsigYkA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=324X-CrmTo6CU4MGRt3R:22
+X-Proofpoint-GUID: zQQBd1LH-WoN2FAugiQMdOVGJMnCLSZ0
+X-Proofpoint-ORIG-GUID: zQQBd1LH-WoN2FAugiQMdOVGJMnCLSZ0
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-18_02,2025-12-17_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 priorityscore=1501 impostorscore=0 lowpriorityscore=0
+ malwarescore=0 phishscore=0 clxscore=1015 suspectscore=0 bulkscore=0
+ spamscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
+ definitions=main-2512180135
 
-The ALTRAD8 BMC is an Aspeed AST2500-based BMC for the ASRock Rack
-ALTRAD8UD-1L2T and ALTRAD8UD2-1L2Q boards.
 
-Signed-off-by: Rebecca Cran <rebecca@bsdio.com>
-Tested-by: Tan Siewert <tan.siewert@hetzner.com>
-Reviewed-by: Tan Siewert <tan.siewert@hetzner.com>
----
- arch/arm/boot/dts/aspeed/Makefile                      |   1 +
- arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-altrad8.dts | 637 ++++++++++++++++++++
- 2 files changed, 638 insertions(+)
 
-diff --git a/arch/arm/boot/dts/aspeed/Makefile b/arch/arm/boot/dts/aspeed/Makefile
-index 9adf9278dc94..f073f126ddac 100644
---- a/arch/arm/boot/dts/aspeed/Makefile
-+++ b/arch/arm/boot/dts/aspeed/Makefile
-@@ -9,6 +9,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
- 	aspeed-bmc-ampere-mtjefferson.dtb \
- 	aspeed-bmc-ampere-mtmitchell.dtb \
- 	aspeed-bmc-arm-stardragon4800-rep2.dtb \
-+	aspeed-bmc-asrock-altrad8.dtb \
- 	aspeed-bmc-asrock-e3c246d4i.dtb \
- 	aspeed-bmc-asrock-e3c256d4i.dtb \
- 	aspeed-bmc-asrock-romed8hm3.dtb \
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-altrad8.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-altrad8.dts
-new file mode 100644
-index 000000000000..d4028312bdf2
---- /dev/null
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-altrad8.dts
-@@ -0,0 +1,637 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/dts-v1/;
-+
-+#include "aspeed-g5.dtsi"
-+#include <dt-bindings/gpio/aspeed-gpio.h>
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/i2c/i2c.h>
-+
-+/ {
-+	model = "ASRock ALTRAD8 BMC";
-+	compatible = "asrock,altrad8-bmc", "aspeed,ast2500";
-+
-+	aliases {
-+		serial4 = &uart5;
-+		i2c50 = &nvme1;
-+		i2c51 = &pcie4;
-+		i2c52 = &pcie5;
-+		i2c53 = &pcie6;
-+		i2c54 = &pcie7;
-+		i2c55 = &nvme3;
-+		i2c56 = &nvme2;
-+		i2c57 = &nvme0;
-+		i2c58 = &nvme4;
-+		i2c59 = &nvme5;
-+		i2c60 = &nvme6;
-+		i2c61 = &nvme7;
-+		i2c62 = &nvme8;
-+		i2c63 = &nvme9;
-+		i2c64 = &nvme10;
-+		i2c65 = &nvme11;
-+	};
-+
-+	chosen {
-+		stdout-path = "uart5:115200n8";
-+	};
-+
-+	iio-hwmon {
-+		compatible = "iio-hwmon";
-+		io-channels =	<&adc 0>, <&adc 1>, <&adc 2>, <&adc 3>,
-+				<&adc 4> ,<&adc 5>, <&adc 6>, <&adc 7>,
-+				<&adc 8>, <&adc 9>, <&adc 10>, <&adc 11>,
-+				<&adc 12>, <&adc 13>, <&adc 14>, <&adc 15>;
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-system-fault {
-+			gpios = <&gpio ASPEED_GPIO(G,3) GPIO_ACTIVE_LOW>;
-+			label = "platform:red:fault";
-+			color = <LED_COLOR_ID_RED>;
-+			function = LED_FUNCTION_FAULT;
-+		};
-+
-+		led-heartbeat {
-+			gpios = <&gpio ASPEED_GPIO(G,0) GPIO_ACTIVE_LOW>;
-+			label = "platform:green:heartbeat";
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_INDICATOR;
-+			linux,default-trigger = "timer";
-+		};
-+
-+		led-fan1-fault {
-+			retain-state-shutdown;
-+			default-state = "off";
-+			gpios = <&io_expander0 0 GPIO_ACTIVE_LOW>;
-+			label = "fan1:red:fault";
-+			color = <LED_COLOR_ID_RED>;
-+			function = LED_FUNCTION_FAULT;
-+		};
-+
-+		led-fan2-fault {
-+			retain-state-shutdown;
-+			default-state = "off";
-+			gpios = <&io_expander0 1 GPIO_ACTIVE_LOW>;
-+			label = "fan2:red:fault";
-+			color = <LED_COLOR_ID_RED>;
-+			function = LED_FUNCTION_FAULT;
-+		};
-+
-+		led-fan3-fault {
-+			retain-state-shutdown;
-+			default-state = "off";
-+			gpios = <&io_expander0 2 GPIO_ACTIVE_LOW>;
-+			label = "fan3:red:fault";
-+			color = <LED_COLOR_ID_RED>;
-+			function = LED_FUNCTION_FAULT;
-+		};
-+
-+		led-fan4-fault {
-+			retain-state-shutdown;
-+			default-state = "off";
-+			gpios = <&io_expander0 3 GPIO_ACTIVE_LOW>;
-+			label = "fan4:red:fault";
-+			color = <LED_COLOR_ID_RED>;
-+			function = LED_FUNCTION_FAULT;
-+		};
-+
-+		led-fan5-fault {
-+			retain-state-shutdown;
-+			default-state = "off";
-+			gpios = <&io_expander0 4 GPIO_ACTIVE_LOW>;
-+			label = "fan5:red:fault";
-+			color = <LED_COLOR_ID_RED>;
-+			function = LED_FUNCTION_FAULT;
-+		};
-+	};
-+
-+	memory@80000000 {
-+		reg = <0x80000000 0x20000000>;
-+	};
-+
-+	reserved-memory {
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges;
-+
-+		gfx_memory: framebuffer {
-+			compatible = "shared-dma-pool";
-+			size = <0x01000000>;
-+			alignment = <0x01000000>;
-+			reusable;
-+		};
-+
-+		vga_memory: framebuffer@9f000000 {
-+			no-map;
-+			reg = <0x9f000000 0x01000000>; /* 16M */
-+		};
-+
-+		video_engine_memory: jpegbuffer {
-+			compatible = "shared-dma-pool";
-+			size = <0x02000000>;	/* 32M */
-+			alignment = <0x01000000>;
-+			reusable;
-+		};
-+	};
-+};
-+
-+&adc {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_adc0_default
-+		&pinctrl_adc1_default
-+		&pinctrl_adc2_default
-+		&pinctrl_adc3_default
-+		&pinctrl_adc4_default
-+		&pinctrl_adc5_default
-+		&pinctrl_adc6_default
-+		&pinctrl_adc7_default
-+		&pinctrl_adc8_default
-+		&pinctrl_adc9_default
-+		&pinctrl_adc10_default
-+		&pinctrl_adc11_default
-+		&pinctrl_adc12_default
-+		&pinctrl_adc13_default
-+		&pinctrl_adc14_default
-+		&pinctrl_adc15_default>;
-+};
-+
-+&fmc {
-+	status = "okay";
-+
-+	flash@0 {
-+		label = "bmc";
-+		m25p,fast-read;
-+		spi-max-frequency = <50000000>;
-+		status = "okay";
-+#include "openbmc-flash-layout-64.dtsi"
-+	};
-+};
-+
-+&gfx {
-+	memory-region = <&gfx_memory>;
-+	status = "okay";
-+};
-+
-+&gpio {
-+	gpio-line-names =
-+	/*A0-A7*/	"","","","bmc-ready","","","","",
-+	/*B0-B7*/	"i2c-backup-sel","","","","","","","host0-shd-ack-n",
-+	/*C0-C7*/	"","","","","","","","",
-+	/*D0-D7*/	"button-power-n","control-power-n","button-reset-n",
-+			"host0-sysreset-n","","","power-chassis-good","",
-+	/*E0-E7*/	"","s0-vrd1-vddq0123-fault-n",
-+			"s0-vrd1-vddq4567-fault-n","s0-vrd0-vddc-fault-n",
-+			"s0-vrd3-p0v75-fault-n","","","",
-+	/*F0-F7*/	"","","ps-atx-on-n","","","","","",
-+	/*G0-G7*/	"led-bmc-heartbeat-n","button-identify-n","",
-+			"led-system-fault-n","uboot-ready","bmc-salt2-n","","",
-+	/*H0-H7*/	"ps-pwr-ok","","","","","","","",
-+	/*I0-I7*/	"","","","","","","","",
-+	/*J0-J7*/	"s0-hightemp-n","","","","","","","",
-+	/*K0-K7*/	"","","","","","","","",
-+	/*L0-L7*/	"","","","","","","","",
-+	/*M0-M7*/	"cpld-disable-bmc-n","","","","","s0-spi-auth-fail-n","","",
-+	/*N0-N7*/	"","","","","","","","",
-+	/*O0-O7*/	"","","","","","","","",
-+	/*P0-P7*/	"","","","","","","","",
-+	/*Q0-Q7*/	"","","","","","","led-identify-n",
-+			"chassis-intrusion-n",
-+	/*R0-R7*/	"","","ext-hightemp-n","spi0-program-sel","",
-+			"output-hwm-bat-en","","",
-+	/*S0-S7*/	"s0-vr-hot-n","","input-salt2-n","bmc-sysreset-n","","","","",
-+	/*T0-T7*/	"","","","","","","","",
-+	/*U0-U7*/	"","","","","","","","",
-+	/*V0-V7*/	"","","","","","","","",
-+	/*W0-W7*/	"","","","","","","","",
-+	/*X0-X7*/	"","","","","","","","",
-+	/*Y0-Y7*/	"","","","","","","","",
-+	/*Z0-Z7*/	"","","","s0-rtc-lock","","","","",
-+	/*AA0-AA7*/	"s0-rtc-int-n","","","","","pmbus-sel-n","","",
-+	/*AB0-AB7*/	"host0-reboot-ack-n","s0-sys-auth-failure-n",
-+			"","","","","","",
-+	/*AC0-AC7*/	"s0-fault-alert","host0-ready","s0-overtemp-n",
-+			"","bmc-ok","host0-special-boot","presence-cpu0",
-+			"host0-shd-req-n";
-+
-+	status = "okay";
-+};
-+
-+&i2c0 {
-+	status = "okay";
-+
-+	ipmb@10 {
-+		compatible = "ipmb-dev";
-+		reg = <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
-+		i2c-protocol;
-+	};
-+
-+};
-+
-+&i2c1 {
-+	status = "okay";
-+
-+	i2c-mux1@73 {
-+		compatible = "nxp,pca9548";
-+		reg = <0x73>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		i2c-mux-idle-disconnect;
-+
-+		nvme1: i2c@0 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0>;
-+		};
-+
-+		pcie4: i2c@1 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <1>;
-+		};
-+
-+		pcie5: i2c@2 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <2>;
-+		};
-+
-+		pcie6: i2c@3 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <3>;
-+		};
-+
-+		pcie7: i2c@4 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <4>;
-+		};
-+
-+		nvme3: i2c@5 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <5>;
-+		};
-+
-+		nvme2: i2c@6 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <6>;
-+		};
-+
-+		nvme0: i2c@7 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <7>;
-+		};
-+	};
-+
-+	i2c-mux2@75 {
-+		compatible = "nxp,pca9548";
-+		reg = <0x75>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		i2c-mux-idle-disconnect;
-+
-+		nvme4: i2c@0 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0>;
-+		};
-+
-+		nvme5: i2c@1 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <1>;
-+		};
-+
-+		nvme6: i2c@2 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <2>;
-+		};
-+
-+		nvme7: i2c@3 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <3>;
-+		};
-+
-+		nvme8: i2c@4 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <4>;
-+		};
-+
-+		nvme9: i2c@5 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <5>;
-+		};
-+
-+		nvme10: i2c@6 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <6>;
-+		};
-+
-+		nvme11: i2c@7 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <7>;
-+		};
-+	};
-+};
-+
-+&i2c2 {
-+	status = "okay";
-+
-+	smpro@4f {
-+		compatible = "ampere,smpro";
-+		reg = <0x4f>;
-+	};
-+};
-+
-+&i2c3 {
-+	status = "okay";
-+
-+	// PSU FRU
-+	eeprom@38 {
-+		compatible = "atmel,24c02";
-+		reg = <0x38>;
-+	};
-+};
-+
-+&i2c4 {
-+	status = "okay";
-+
-+	temperature-sensor@29 {
-+		compatible = "nuvoton,nct7802";
-+		reg = <0x29>;
-+
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		channel@0 { /* LTD */
-+			reg = <0>;
-+			status = "okay";
-+		};
-+
-+		channel@1 { /* RTD1 */
-+			reg = <1>;
-+			sensor-type = "temperature";
-+			temperature-mode = "thermistor";
-+		};
-+
-+		channel@2 { /* RTD2 */
-+			reg = <2>;
-+			sensor-type = "temperature";
-+			temperature-mode = "thermal-diode";
-+		};
-+	};
-+
-+	temperature-sensor@4c {
-+		compatible = "nuvoton,w83773g";
-+		reg = <0x4c>;
-+	};
-+};
-+
-+&i2c5 {
-+	status = "okay";
-+};
-+
-+&i2c6 {
-+	status = "okay";
-+
-+	rtc@6f {
-+		compatible = "isil,isl1208";
-+		reg = <0x6f>;
-+	};
-+};
-+
-+&i2c7 {
-+	status = "okay";
-+
-+	// BMC FRU
-+	eeprom@57 {
-+		compatible = "atmel,24c128";
-+		reg = <0x57>;
-+
-+		nvmem-layout {
-+			compatible = "fixed-layout";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			eth1_macaddress: macaddress@3f80 {
-+				reg = <0x3f80 6>;
-+			};
-+
-+			// The offset for eth0 really is at 0x3f88.
-+			// eth0 and eth1 are swapped from what might be
-+			// expected.
-+			eth0_macaddress: macaddress@3f88 {
-+				reg = <0x3f88 6>;
-+			};
-+		};
-+	};
-+};
-+
-+&i2c8 {
-+	status = "okay";
-+
-+	io_expander0: gpio@1c {
-+		compatible = "nxp,pca9557";
-+		reg = <0x1c>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+	};
-+};
-+
-+&i2c9 {
-+	status = "okay";
-+};
-+
-+&i2c10 {
-+	status = "okay";
-+};
-+
-+&i2c11 {
-+	status = "okay";
-+};
-+
-+// Bus for accessing the SCP EEPROM
-+&i2c12 {
-+	status = "okay";
-+};
-+
-+&i2c13 {
-+	status = "okay";
-+
-+	ssif-bmc@10 {
-+		compatible = "ssif-bmc";
-+		reg = <0x10>;
-+	};
-+};
-+
-+// Connected to host Intel X550 (ALTRAD8UD-1L2T) or
-+// Broadcom BCM57414 (ALTRAD8UD2-1L2Q) interface.
-+// Unconnected on ALTRAD8UD-1L
-+&mac0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_rmii1_default>;
-+	clocks = <&syscon ASPEED_CLK_GATE_MAC1CLK>,
-+		 <&syscon ASPEED_CLK_MAC1RCLK>;
-+	clock-names = "MACCLK", "RCLK";
-+	use-ncsi;
-+	nvmem-cells = <&eth0_macaddress>;
-+	nvmem-cell-names = "mac-address";
-+
-+	status = "okay";
-+};
-+
-+// Connected to Realtek RTL8211E
-+&mac1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_rgmii2_default &pinctrl_mdio2_default>;
-+
-+	nvmem-cells = <&eth1_macaddress>;
-+	nvmem-cell-names = "mac-address";
-+
-+	status = "okay";
-+};
-+
-+&pwm_tacho {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_pwm0_default
-+			&pinctrl_pwm1_default
-+			&pinctrl_pwm2_default
-+			&pinctrl_pwm3_default
-+			&pinctrl_pwm4_default
-+			&pinctrl_pwm5_default
-+			&pinctrl_pwm6_default
-+			&pinctrl_pwm7_default>;
-+
-+	status = "okay";
-+
-+	fan@0 {
-+		reg = <0x00>;
-+		aspeed,fan-tach-ch = /bits/ 8 <0x00 0x08>;
-+	};
-+
-+	fan@1 {
-+		reg = <0x01>;
-+		aspeed,fan-tach-ch = /bits/ 8 <0x01 0x09>;
-+	};
-+
-+	fan@2 {
-+		reg = <0x02>;
-+		aspeed,fan-tach-ch = /bits/ 8 <0x02 0x0a>;
-+	};
-+
-+	fan@3 {
-+		reg = <0x03>;
-+		aspeed,fan-tach-ch = /bits/ 8 <0x03 0x0b>;
-+	};
-+
-+	fan@4 {
-+		reg = <0x04>;
-+		aspeed,fan-tach-ch = /bits/ 8 <0x04 0x0c>;
-+	};
-+
-+	fan@5 {
-+		reg = <0x05>;
-+		aspeed,fan-tach-ch = /bits/ 8 <0x05 0x0d>;
-+	};
-+
-+	fan@6 {
-+		reg = <0x06>;
-+		aspeed,fan-tach-ch = /bits/ 8 <0x06 0x0e>;
-+	};
-+
-+	fan@7 {
-+		reg = <0x07>;
-+		aspeed,fan-tach-ch = /bits/ 8 <0x07 0x0f>;
-+	};
-+};
-+
-+&spi1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_spi1_default>;
-+
-+	status = "okay";
-+
-+	// Host BIOS/UEFI EEPROM
-+	flash@0 {
-+		m25p,fast-read;
-+		label = "pnor";
-+		spi-max-frequency = <100000000>;
-+		status = "okay";
-+
-+		partitions {
-+			compatible = "fixed-partitions";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			tfa@400000 {
-+				reg = <0x400000 0x200000>;
-+				label = "pnor-tfa";
-+			};
-+
-+			uefi@600000 {
-+				reg = <0x600000 0x1A00000>;
-+				label = "pnor-uefi";
-+			};
-+		};
-+	};
-+};
-+
-+&uart1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_txd1_default
-+			 &pinctrl_rxd1_default
-+			 &pinctrl_ncts1_default
-+			 &pinctrl_nrts1_default>;
-+
-+	status = "okay";
-+};
-+
-+&uart2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_txd2_default
-+			&pinctrl_rxd2_default>;
-+
-+	status = "okay";
-+};
-+
-+&uart3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_txd3_default
-+			&pinctrl_rxd3_default>;
-+
-+	status = "okay";
-+};
-+
-+&uart4 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_txd4_default
-+			&pinctrl_rxd4_default>;
-+
-+	status = "okay";
-+};
-+
-+// The BMC's uart
-+&uart5 {
-+	status = "okay";
-+};
-+
-+&vhub {
-+	status = "okay";
-+};
-+
-+&video {
-+	memory-region = <&video_engine_memory>;
-+
-+	status = "okay";
-+};
--- 
-2.47.3
+On 12/18/2025 5:32 PM, Suzuki K Poulose wrote:
+> Cc: Sudeep
+> 
+> On 18/12/2025 08:09, Yuanfang Zhang wrote:
+>> This patch series adds support for CoreSight components local to CPU clusters,
+>> including funnel, replicator, and TMC, which reside within CPU cluster power
+>> domains. These components require special handling due to power domain
+>> constraints.
+>>
+>> Unlike system-level CoreSight devices, these components share the CPU cluster's
+>> power domain. When the cluster enters low-power mode (LPM), their registers
+>> become inaccessible. Notably, `pm_runtime_get` alone cannot bring the cluster
+>> out of LPM, making standard register access unreliable.
+> 
+> Why ? AFAIU, we have ways to tie the power-domain to that of the cluster
+> and that can auto-magically keep the cluster power ON as long as you
+> want to use them.
+> 
+> Suzuki
+> 
+Hi Suzuki
+
+Runtime PM for CPU devices works little different, it is mostly used to manage hierarchical
+CPU topology (PSCI OSI mode) to talk with genpd framework to manage the last CPU handling in
+cluster.
+It doesn’t really send IPI to wakeup CPU device (It don’t have .power_on/.power_off) callback
+implemented which gets invoked from .runtime_resume callback. This behavior is aligned with
+the upstream Kernel.
+
+Yuanfang
+
+> 
+>>
+>> To address this, the series introduces:
+>> - Identifying cluster-bound devices via a new `qcom,cpu-bound-components`
+>>    device tree property.
+>> - Implementing deferred probing: if associated CPUs are offline during
+>>    probe, initialization is deferred until a CPU hotplug notifier detects
+>>    the CPU coming online.
+>> - Utilizing `smp_call_function_single()` to ensure register accesses
+>>    (initialization, enablement, sysfs reads) are always executed on a
+>>    powered CPU within the target cluster.
+>> - Extending the CoreSight link `enable` callback to pass the `cs_mode`.
+>>    This allows drivers to distinguish between SysFS and Perf modes and
+>>    apply mode-specific logic.
+>>
+>> Jie Gan (1):
+>>    arm64: dts: qcom: hamoa: add Coresight nodes for APSS debug block
+>>
+>> Yuanfang Zhang (11):
+>>    dt-bindings: arm: coresight: Add 'qcom,cpu-bound-components' property
+>>    coresight: Pass trace mode to link enable callback
+>>    coresight-funnel: Support CPU cluster funnel initialization
+>>    coresight-funnel: Defer probe when associated CPUs are offline
+>>    coresight-replicator: Support CPU cluster replicator initialization
+>>    coresight-replicator: Defer probe when associated CPUs are offline
+>>    coresight-replicator: Update management interface for CPU-bound devices
+>>    coresight-tmc: Support probe and initialization for CPU cluster TMCs
+>>    coresight-tmc-etf: Refactor enable function for CPU cluster ETF support
+>>    coresight-tmc: Update management interface for CPU-bound TMCs
+>>    coresight-tmc: Defer probe when associated CPUs are offline
+>>
+>> Verification:
+>>
+>> This series has been verified on sm8750.
+>>
+>> Test steps for delay probe:
+>>
+>> 1. limit the system to enable at most 6 CPU cores during boot.
+>> 2. echo 1 >/sys/bus/cpu/devices/cpu6/online.
+>> 3. check whether ETM6 and ETM7 have been probed.
+>>
+>> Test steps for sysfs mode:
+>>
+>> echo 1 >/sys/bus/coresight/devices/tmc_etf0/enable_sink
+>> echo 1 >/sys/bus/coresight/devices/etm0/enable_source
+>> echo 1 >/sys/bus/coresight/devices/etm6/enable_source
+>> echo 0 >/sys/bus/coresight/devices/etm0/enable_source
+>> echo 0 >/sys/bus/coresight/devicse/etm6/enable_source
+>> echo 0 >/sys/bus/coresight/devices/tmc_etf0/enable_sink
+>>
+>> echo 1 >/sys/bus/coresight/devices/tmc_etf1/enable_sink
+>> echo 1 >/sys/bus/coresight/devcies/etm0/enable_source
+>> cat /dev/tmc_etf1 >/tmp/etf1.bin
+>> echo 0 >/sys/bus/coresight/devices/etm0/enable_source
+>> echo 0 >/sys/bus/coresight/devices/tmc_etf1/enable_sink
+>>
+>> echo 1 >/sys/bus/coresight/devices/tmc_etf2/enable_sink
+>> echo 1 >/sys/bus/coresight/devices/etm6/enable_source
+>> cat /dev/tmc_etf2 >/tmp/etf2.bin
+>> echo 0 >/sys/bus/coresight/devices/etm6/enable_source
+>> echo 0 >/sys/bus/coresight/devices/tmc_etf2/enable_sink
+>>
+>> Test steps for sysfs node:
+>>
+>> cat /sys/bus/coresight/devices/tmc_etf*/mgmt/*
+>>
+>> cat /sys/bus/coresight/devices/funnel*/funnel_ctrl
+>>
+>> cat /sys/bus/coresight/devices/replicator*/mgmt/*
+>>
+>> Test steps for perf mode:
+>>
+>> perf record -a -e cs_etm//k -- sleep 5
+>>
+>> Signed-off-by: Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>
+>> ---
+>> Changes in v2:
+>> - Use the qcom,cpu-bound-components device tree property to identify devices
+>>    bound to a cluster.
+>> - Refactor commit message.
+>> - Introduce a supported_cpus field in the drvdata structure to record the CPUs
+>>    that belong to the cluster where the local component resides.
+>> - Link to v1: https://lore.kernel.org/r/20251027-cpu_cluster_component_pm-v1-0-31355ac588c2@oss.qualcomm.com
+>>
+>> ---
+>> Jie Gan (1):
+>>        arm64: dts: qcom: hamoa: Add CoreSight nodes for APSS debug block
+>>
+>> Yuanfang Zhang (11):
+>>        dt-bindings: arm: coresight: Add 'qcom,cpu-bound-components' property
+>>        coresight-funnel: Support CPU cluster funnel initialization
+>>        coresight-funnel: Defer probe when associated CPUs are offline
+>>        coresight-replicator: Support CPU cluster replicator initialization
+>>        coresight-replicator: Defer probe when associated CPUs are offline
+>>        coresight-replicator: Update management interface for CPU-bound devices
+>>        coresight-tmc: Support probe and initialization for CPU cluster TMCs
+>>        coresight-tmc-etf: Refactor enable function for CPU cluster ETF support
+>>        coresight-tmc: Update management interface for CPU-bound TMCs
+>>        coresight-tmc: Defer probe when associated CPUs are offline
+>>        coresight: Pass trace mode to link enable callback
+>>
+>>   .../bindings/arm/arm,coresight-dynamic-funnel.yaml |   5 +
+>>   .../arm/arm,coresight-dynamic-replicator.yaml      |   5 +
+>>   .../devicetree/bindings/arm/arm,coresight-tmc.yaml |   5 +
+>>   arch/arm64/boot/dts/qcom/hamoa.dtsi                | 926 +++++++++++++++++++++
+>>   arch/arm64/boot/dts/qcom/purwa.dtsi                |  12 +
+>>   drivers/hwtracing/coresight/coresight-core.c       |   7 +-
+>>   drivers/hwtracing/coresight/coresight-funnel.c     | 258 +++++-
+>>   drivers/hwtracing/coresight/coresight-replicator.c | 341 +++++++-
+>>   drivers/hwtracing/coresight/coresight-tmc-core.c   | 387 +++++++--
+>>   drivers/hwtracing/coresight/coresight-tmc-etf.c    | 106 ++-
+>>   drivers/hwtracing/coresight/coresight-tmc.h        |  10 +
+>>   drivers/hwtracing/coresight/coresight-tnoc.c       |   3 +-
+>>   drivers/hwtracing/coresight/coresight-tpda.c       |   3 +-
+>>   include/linux/coresight.h                          |   3 +-
+>>   14 files changed, 1902 insertions(+), 169 deletions(-)
+>> ---
+>> base-commit: 008d3547aae5bc86fac3eda317489169c3fda112
+>> change-id: 20251016-cpu_cluster_component_pm-ce518f510433
+>>
+>> Best regards,
+> 
 
 
