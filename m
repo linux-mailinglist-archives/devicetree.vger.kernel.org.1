@@ -1,171 +1,912 @@
-Return-Path: <devicetree+bounces-247810-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247811-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F051CCBCE5
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 13:36:56 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56B71CCBD8A
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 13:51:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id BD4E430398F4
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 12:36:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D4D2F302B744
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 12:51:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FC193328E2;
-	Thu, 18 Dec 2025 12:36:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67422334361;
+	Thu, 18 Dec 2025 12:51:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="i5WubbSa";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="TvmLKRR1"
+	dkim=pass (2048-bit key) header.d=proton.me header.i=@proton.me header.b="mmA7E97m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mail-106101.protonmail.ch (mail-106101.protonmail.ch [79.135.106.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E72E633030D
-	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 12:36:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0FE233375D
+	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 12:51:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=79.135.106.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766061414; cv=none; b=aYixoO13m9nQ+WOFwZ9cOE3hr9ChmACJJEkZ4XXTI54UPT6bk+ZwrulkH9oUwgDjCaR9dsORnO9PMsD4PxoufKxjeSV+LqBQcU3sxKhYBXy6YgaIJZ2S2gf9wpR3Q0Tyggot64UsdGm9bLkIlWIb1yNNrh9HiMkqk80DK1D2PzY=
+	t=1766062276; cv=none; b=b3YrxpEJG1T0SzSjvH7Rmf/W6yFhplFEpouvTPWWTzwKO+ihI9u6hVOBMPamTnOOPt3zZY7mXv/bnVSLBZ+q4ZxUMBXY34uQoR3lfq9yxYbJd3ibDs8i9yOUKqQKIWJyXn+OPdr4BCwWyWmzSqzDLl14u/y9VL3snpymR23TmPk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766061414; c=relaxed/simple;
-	bh=QnSNkHZMqSocCnOOSd2hbilQvo79VjEjtlT9JqsJZxc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=e2X529F2ZBqSvrHwKpgCJ457Kp6GLiZUjVZqhMlGu9vcJHfTuTuZB3yMQ4JVmMzrejNQTBMuEDlGO9e51+v7Ob97zkhh4VnTraSS3n4X5aev6v7s1wDU2CalbIRcMVZ1jPrZ6D+qLB4EivfRR6Ywg9211LlfcZ70ZW71qQRRUeA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=i5WubbSa; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=TvmLKRR1; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BI9KYsB680346
-	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 12:36:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	CeX7zdkTKzUgYrUHEXvo1kAjNi9I0TyGt1y+5V+nf5A=; b=i5WubbSa44riyiyl
-	9Cr7zftRPg0APa58lJPGyB3kZhakWN8hPhnLrAfeAtESdi12ku0Im9fs5tSHGAcw
-	mlypYhdThrD++/Rwkd78eUMroJrwudGs4C3oxvHmJ3urkhwpRDWiVu5Nh98c48/6
-	hf9IX2GAGhBClL1nbnmLzTvfjNJE6EvKtHC93nkSwtYikMFH9iILehx+tntQhGRa
-	pJHCZ/yxV9Tv0ithUDFwqoPbLGWOz0jM2ChKFP/Pc4noli3JpzrjRmeefdM+hqQn
-	EizDmsCzK4RpeRnTxS6JfCmWSXHJ2JLLNRDcyOu6xUCebviJUSpRH+BJYraqR+tU
-	6ycJNQ==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b45bhj8us-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 12:36:50 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4ede0bd2154so1327681cf.1
-        for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 04:36:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1766061410; x=1766666210; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=CeX7zdkTKzUgYrUHEXvo1kAjNi9I0TyGt1y+5V+nf5A=;
-        b=TvmLKRR1IBwYbVC5KJ2iEPPEKstu66d/3Jpt6jqDQ2MGHOZu3jEZJgYjAgqTYdrh4p
-         WiDJQyMdtiOtwvR+7WZFHDAWKFB9uy73NoBaaoq/m0nWRTfELQSAD+d7IJ9aidnFOPP2
-         hik2pwjs2LCv52KV911rJovbyx/qTG8g7ny8Q5oUiTEw87/+UVf0OKXL9COIaao8LF7v
-         wB1FTWb3Fagkvu7Skovb4kgT4gZrMZqh8FnKqv7NA/HV8vxmwtThF3NPjjgqqa9OV1Q5
-         3+M0Vpq8I1TtK7iceIlyRpcuKIJXNHmUCWXEkXF1nU1Hw1NC4hYl5lMP67Z75MxjBAe0
-         jTiQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766061410; x=1766666210;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=CeX7zdkTKzUgYrUHEXvo1kAjNi9I0TyGt1y+5V+nf5A=;
-        b=a/XvDppoPYYzVYLA/9kN+jYNVtPhBg7eXfh+6fVEUyq5buRFx56Uh1FHT7sPSaMR1w
-         TqGdH4g48VMq8PpnPpodS5NKxM4IIh8IoecU1/+M78Lpr0FnA4duEZVZPMv0oguZLx6D
-         gHu8x6rX8idzVm39Y0+nMvqU+mkHQrXwez404COAbMPkTOJjD8nJ1qdZaQpYefYs9AsE
-         xK+RG7QwrglOXggbbuxZj/xbsSUpIkl+Pk2445yxpk8DXRQsmbELKJFrI0xNsZQ3WAHN
-         8KtphO17M4gTGBPcB9ifxwTOuv6HkuAeYaes64pKB8Zl648aP9C+axROymQ3O+mOs6wj
-         CcUw==
-X-Forwarded-Encrypted: i=1; AJvYcCXOtN7KOD6wJgSnFwHMHjLt22YXlv/uoobU3Hcgop5cAP9cfkfaRCDEyiCv648r2Y16r/dQy7g3VtmS@vger.kernel.org
-X-Gm-Message-State: AOJu0YxIAMjoMooitM6pqC6XTazpfHOc9tb5QSv0UaO2MEr2ix7N36Md
-	CGnch4GbG5N4HQIP8UZy2exQI3JUrh4qUuu0LjyPa3nrxWeXlGX8Hc04gqqh7cX6b+xXfSxYlNX
-	fya43aomh7sgQ/6o8vAkv35D2YBNiW7dZjPMRPTUfo8dihRuDAXQ2xP1OrwMnczGQ
-X-Gm-Gg: AY/fxX6Js5kQFLuW6jzhSIJuDRKKBvnF0ERwtzGrFXocTo+/A3820wt83KOt/nf8+4H
-	LYJTPOT1UiDfgrPsbIHM7Ol6IJdWEluvPfa2WGHUViFqXJVkxx58E+axmzdACjY0YmwDV4psyBi
-	SmeO7BZl/BAoaeNJ2LzXpcpVAWeKHq/7mP7iXz7cvHUiXZ1doxkHRxaK6jXpNWK+hMvqsbcKKxW
-	/hQb2SPhIkuyQvfYtjQRwQ+hcPs1fbBhKN/nKmMLcEDl8Cw0Ta21RWi/nj01Oit6yViuUYLPtGt
-	n4Y8Sxdf9QCct41libATARO6WtE1/7kihLY9RzWQn7bxkOv8ySYU+w8nYuk9SjFcqHd2rHHLVc1
-	iEbbMiI9NAMfROA7Nn/aL8NZJ80P1wDzbjWKhcfNCJXjV4ZBsS6ATx6JSmO4VHTxlyQ==
-X-Received: by 2002:a05:622a:178f:b0:4ee:1e33:bc45 with SMTP id d75a77b69052e-4f36108c9a5mr17884671cf.5.1766061410139;
-        Thu, 18 Dec 2025 04:36:50 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEQu2nnxqGUnQynFrRXz+BuL+HJmQqJQwR9k3URYcUz1hnRgEtf2TKddA/5Dpw/OBBUzx5W4w==
-X-Received: by 2002:a05:622a:178f:b0:4ee:1e33:bc45 with SMTP id d75a77b69052e-4f36108c9a5mr17884531cf.5.1766061409643;
-        Thu, 18 Dec 2025 04:36:49 -0800 (PST)
-Received: from [192.168.119.72] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8022f9530fsm223265666b.12.2025.12.18.04.36.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 Dec 2025 04:36:48 -0800 (PST)
-Message-ID: <69ac0e2b-82d5-43d2-816d-d3ac31963077@oss.qualcomm.com>
-Date: Thu, 18 Dec 2025 13:36:44 +0100
+	s=arc-20240116; t=1766062276; c=relaxed/simple;
+	bh=2unAczFgewhH/DGzr3EGi0zHvECmu/75jp68KYYDnjg=;
+	h=Date:To:From:Cc:Subject:Message-ID:MIME-Version:Content-Type; b=j+iBfjTZuQ4IwQdm5lWDfxb+xrvbEE8bGuxmwSh7becBRL+cjHWGcpL6GK0Imjk4yeTf3CbpjvSO63bfarT8p9PFbAPC4rQZPWOAeMNYx0avDxfL1CsPKfru+0gCHh4sIjD7wG2pYheIADhF3BmrTlniKj3tdZU9Ldmjghf5qXw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=proton.me; spf=pass smtp.mailfrom=proton.me; dkim=pass (2048-bit key) header.d=proton.me header.i=@proton.me header.b=mmA7E97m; arc=none smtp.client-ip=79.135.106.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=proton.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=proton.me
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=proton.me;
+	s=protonmail; t=1766062263; x=1766321463;
+	bh=9u+b5oxy+O8eC7sLz1TvF1PyeX6YXz+aaD5TEQIkM48=;
+	h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
+	 Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
+	b=mmA7E97mRfWYyL7KLB7fpx3GJxfyGMku2OFaxKI7az2Xt0m/O0ttv9F5ZcOY9yxJr
+	 bAF2E5/vckfZbb+ffYexnDtKJNyFQliGVtwS/FUC8Rs/Ld7s/ELwtayF7Cn4lcuZOq
+	 MLdfFOquhGsVpTlnMumXz8MwqOG69f+qV1/JcLz+QZs9Rn3yETzEApfr+dvEqkWcNG
+	 vpt8VxZpadzwibYq3Kru9SmiAbw6erB6euDqDhGafVqZnVTahC/yhgOby5cyNH3hWj
+	 qxCLgCuZ+FsFQouITKLx8RNs3fMjbcXqUdvX6UyUa1W7N74cyA5LV/ONP3PjGFLAWW
+	 B20iFeVciyN1Q==
+Date: Thu, 18 Dec 2025 12:51:01 +0000
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+From: kylebonnici <kylebonnici@proton.me>
+Cc: Michal Simek <michal.simek@amd.com>, Sai Krishna Potthuri <lakshmi.sai.krishna.potthuri@xilinx.com>, Peter Korsgaard <peter@korsgaard.com>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, Kyle Bonnici <kylebonnici@hotmail.com>, Kyle Bonnici <kylebonnici@proton.me>
+Subject: [PATCH] Coding Style: Format arch/arm/boot/dts/xilinx
+Message-ID: <20251218125034.248-1-kylebonnici@proton.me>
+Feedback-ID: 172426429:user:proton
+X-Pm-Message-ID: c8e3e794c7ded659612ababc1bd036969f14a971
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] clk: qcom: camcc: Add camera clock controller driver
- for SM8750 SoC
-To: Taniya Das <taniya.das@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        Jagadeesh Kona <quic_jkona@quicinc.com>
-Cc: Ajit Pandey <ajit.pandey@oss.qualcomm.com>,
-        Imran Shaik <imran.shaik@oss.qualcomm.com>,
-        Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org
-References: <20251202-sm8750_camcc-v1-0-b3f7ef6723f1@oss.qualcomm.com>
- <20251202-sm8750_camcc-v1-3-b3f7ef6723f1@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20251202-sm8750_camcc-v1-3-b3f7ef6723f1@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: gvx7c9WwZc7NrkrMpDAA0liWkppAl-Jd
-X-Proofpoint-ORIG-GUID: gvx7c9WwZc7NrkrMpDAA0liWkppAl-Jd
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjE4MDEwNCBTYWx0ZWRfXzLuRROaL9jBU
- wl8ouFSRuc+E7jM1UmHgk7GYYYj72bYZqo4dEKNqZSDKQwjOnJo2QFlKmYklbeCC/dHagiOT+xN
- QuBmqQZW93QxqJNpkN+qCi7RwsBKPSh/AuJK2tmt2J0/6J6+ca35DezB44H2UzaeGu3dzPqK3oq
- QAy6nR2I8sgKMlFB/70wAT3nR6J5ZWOgCB8oT0CqJ/k5XzQP7V3OkV7msNVm4L/4kmHAThOq3wQ
- VOmDKLGsLGbSQaz+p5g+eWsRyA455yKCJSXZoPc+lyVMAyGoqeAOs/FDDv1d8ITQwPIGmzTTgti
- PEWobDXNgxKebbVkuQQUlUPnf73CFWM+hVuwLds5wQzIPEeuF6VuscHMKWuVhcLB8nvjF3gF1VU
- pSMTAYMhD1v4j9MPx/OX3pNfImJE8w==
-X-Authority-Analysis: v=2.4 cv=SZr6t/Ru c=1 sm=1 tr=0 ts=6943f562 cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=_j3VNrtD_Kzz85i8SO4A:9
- a=QEXdDO2ut3YA:10 a=kacYvNCVWA4VmyqE58fU:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-18_01,2025-12-17_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 malwarescore=0 suspectscore=0 spamscore=0 phishscore=0
- clxscore=1015 adultscore=0 priorityscore=1501 impostorscore=0
- lowpriorityscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2510240001
- definitions=main-2512180104
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-On 12/2/25 11:26 AM, Taniya Das wrote:
-> Add support for the Camera Clock Controller (CAMCC) on the SM8750
-> platform.
-> 
-> The CAMCC block on SM8750 includes both the primary camera clock
-> controller and the Camera BIST clock controller, which provides the
-> functional MCLK required for camera operations.
-> 
-> Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
-> ---
+From: Kyle Bonnici <kylebonnici@hotmail.com>
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+- Convert hex value to lowercase
+- align property values to ' =3D '
+- clean up whitespaces
+- fix indentation
+- add new line between nodes
 
-Konrad
+The changes are generated using the dts-linter.
+
+This is just a sample of what the above tool can fix and this change is
+intended to start the conversation on how I should suggest fixes to this re=
+po
+Without sending one big PR.
+
+Also, this is my first attempt at such a submission. Hopefully I did not mi=
+ss
+Anything fundamental in the submission process.
+
+Signed-off-by: Kyle Bonnici <kylebonnici@proton.me>
+---
+ arch/arm/boot/dts/xilinx/zynq-7000.dtsi       | 72 +++++++++++--------
+ arch/arm/boot/dts/xilinx/zynq-cc108.dts       | 11 ++-
+ arch/arm/boot/dts/xilinx/zynq-ebaz4205.dts    |  1 +
+ arch/arm/boot/dts/xilinx/zynq-parallella.dts  |  7 +-
+ arch/arm/boot/dts/xilinx/zynq-zc702.dts       | 17 +++++
+ arch/arm/boot/dts/xilinx/zynq-zc706.dts       | 13 ++++
+ arch/arm/boot/dts/xilinx/zynq-zc770-xm010.dts | 10 +++
+ arch/arm/boot/dts/xilinx/zynq-zc770-xm011.dts |  5 ++
+ arch/arm/boot/dts/xilinx/zynq-zc770-xm012.dts |  6 ++
+ arch/arm/boot/dts/xilinx/zynq-zc770-xm013.dts |  8 +++
+ arch/arm/boot/dts/xilinx/zynq-zed.dts         |  7 ++
+ .../boot/dts/xilinx/zynq-zturn-common.dtsi    |  5 +-
+ 12 files changed, 126 insertions(+), 36 deletions(-)
+
+diff --git a/arch/arm/boot/dts/xilinx/zynq-7000.dtsi b/arch/arm/boot/dts/xi=
+linx/zynq-7000.dtsi
+index 153b8d93cbee..dd8a6528e8a7 100644
+--- a/arch/arm/boot/dts/xilinx/zynq-7000.dtsi
++++ b/arch/arm/boot/dts/xilinx/zynq-7000.dtsi
+@@ -27,10 +27,9 @@ cpu0: cpu@0 {
+ =09=09=09clock-latency =3D <1000>;
+ =09=09=09cpu0-supply =3D <&regulator_vccpint>;
+ =09=09=09operating-points =3D <
+-=09=09=09=09/* kHz    uV */
+-=09=09=09=09666667  1000000
+-=09=09=09=09333334  1000000
+-=09=09=09>;
++=09=09=09=09=09    /* kHz    uV */
++=09=09=09=09=09    666667 1000000
++=09=09=09=09=09    333334 1000000>;
+ =09=09};
+=20
+ =09=09cpu1: cpu@1 {
+@@ -78,17 +77,21 @@ out-ports {
+ =09=09=09/* replicator output ports */
+ =09=09=09port@0 {
+ =09=09=09=09reg =3D <0>;
++
+ =09=09=09=09replicator_out_port0: endpoint {
+ =09=09=09=09=09remote-endpoint =3D <&tpiu_in_port>;
+ =09=09=09=09};
+ =09=09=09};
++
+ =09=09=09port@1 {
+ =09=09=09=09reg =3D <1>;
++
+ =09=09=09=09replicator_out_port1: endpoint {
+ =09=09=09=09=09remote-endpoint =3D <&etb_in_port>;
+ =09=09=09=09};
+ =09=09=09};
+ =09=09};
++
+ =09=09in-ports {
+ =09=09=09/* replicator input port */
+ =09=09=09port {
+@@ -179,13 +182,13 @@ intc: interrupt-controller@f8f01000 {
+ =09=09=09compatible =3D "arm,cortex-a9-gic";
+ =09=09=09#interrupt-cells =3D <3>;
+ =09=09=09interrupt-controller;
+-=09=09=09reg =3D <0xF8F01000 0x1000>,
+-=09=09=09      <0xF8F00100 0x100>;
++=09=09=09reg =3D <0xf8f01000 0x1000>,
++=09=09=09      <0xf8f00100 0x100>;
+ =09=09};
+=20
+ =09=09L2: cache-controller@f8f02000 {
+ =09=09=09compatible =3D "arm,pl310-cache";
+-=09=09=09reg =3D <0xF8F02000 0x1000>;
++=09=09=09reg =3D <0xf8f02000 0x1000>;
+ =09=09=09interrupts =3D <0 2 4>;
+ =09=09=09arm,data-latency =3D <3 2 2>;
+ =09=09=09arm,tag-latency =3D <2 2 2>;
+@@ -204,6 +207,7 @@ ocm: sram@fffc0000 {
+ =09=09=09#address-cells =3D <1>;
+ =09=09=09#size-cells =3D <1>;
+ =09=09=09ranges =3D <0 0xfffc0000 0x10000>;
++
+ =09=09=09ocm-sram@0 {
+ =09=09=09=09reg =3D <0x0 0x10000>;
+ =09=09=09};
+@@ -214,7 +218,7 @@ uart0: serial@e0000000 {
+ =09=09=09status =3D "disabled";
+ =09=09=09clocks =3D <&clkc 23>, <&clkc 40>;
+ =09=09=09clock-names =3D "uart_clk", "pclk";
+-=09=09=09reg =3D <0xE0000000 0x1000>;
++=09=09=09reg =3D <0xe0000000 0x1000>;
+ =09=09=09interrupts =3D <0 27 4>;
+ =09=09};
+=20
+@@ -223,7 +227,7 @@ uart1: serial@e0001000 {
+ =09=09=09status =3D "disabled";
+ =09=09=09clocks =3D <&clkc 24>, <&clkc 41>;
+ =09=09=09clock-names =3D "uart_clk", "pclk";
+-=09=09=09reg =3D <0xE0001000 0x1000>;
++=09=09=09reg =3D <0xe0001000 0x1000>;
+ =09=09=09interrupts =3D <0 50 4>;
+ =09=09};
+=20
+@@ -304,6 +308,7 @@ nfc0: nand-controller@0,0 {
+ =09=09=09=09reg =3D <0 0 0x1000000>;
+ =09=09=09=09status =3D "disabled";
+ =09=09=09};
++
+ =09=09=09nor0: flash@1,0 {
+ =09=09=09=09status =3D "disabled";
+ =09=09=09=09compatible =3D "cfi-flash";
+@@ -336,24 +341,26 @@ slcr: slcr@f8000000 {
+ =09=09=09#address-cells =3D <1>;
+ =09=09=09#size-cells =3D <1>;
+ =09=09=09compatible =3D "xlnx,zynq-slcr", "syscon", "simple-mfd";
+-=09=09=09reg =3D <0xF8000000 0x1000>;
++=09=09=09reg =3D <0xf8000000 0x1000>;
+ =09=09=09ranges;
++
+ =09=09=09clkc: clkc@100 {
+ =09=09=09=09bootph-all;
+ =09=09=09=09#clock-cells =3D <1>;
+ =09=09=09=09compatible =3D "xlnx,ps7-clkc";
+ =09=09=09=09fclk-enable =3D <0>;
+ =09=09=09=09clock-output-names =3D "armpll", "ddrpll", "iopll", "cpu_6or4x=
+",
+-=09=09=09=09=09=09"cpu_3or2x", "cpu_2x", "cpu_1x", "ddr2x", "ddr3x",
+-=09=09=09=09=09=09"dci", "lqspi", "smc", "pcap", "gem0", "gem1",
+-=09=09=09=09=09=09"fclk0", "fclk1", "fclk2", "fclk3", "can0", "can1",
+-=09=09=09=09=09=09"sdio0", "sdio1", "uart0", "uart1", "spi0", "spi1",
+-=09=09=09=09=09=09"dma", "usb0_aper", "usb1_aper", "gem0_aper",
+-=09=09=09=09=09=09"gem1_aper", "sdio0_aper", "sdio1_aper",
+-=09=09=09=09=09=09"spi0_aper", "spi1_aper", "can0_aper", "can1_aper",
+-=09=09=09=09=09=09"i2c0_aper", "i2c1_aper", "uart0_aper", "uart1_aper",
+-=09=09=09=09=09=09"gpio_aper", "lqspi_aper", "smc_aper", "swdt",
+-=09=09=09=09=09=09"dbg_trc", "dbg_apb";
++=09=09=09=09=09=09     "cpu_3or2x", "cpu_2x", "cpu_1x", "ddr2x",
++=09=09=09=09=09=09     "ddr3x", "dci", "lqspi", "smc", "pcap", "gem0",
++=09=09=09=09=09=09     "gem1", "fclk0", "fclk1", "fclk2", "fclk3",
++=09=09=09=09=09=09     "can0", "can1", "sdio0", "sdio1", "uart0",
++=09=09=09=09=09=09     "uart1", "spi0", "spi1", "dma", "usb0_aper",
++=09=09=09=09=09=09     "usb1_aper", "gem0_aper", "gem1_aper",
++=09=09=09=09=09=09     "sdio0_aper", "sdio1_aper", "spi0_aper",
++=09=09=09=09=09=09     "spi1_aper", "can0_aper", "can1_aper",
++=09=09=09=09=09=09     "i2c0_aper", "i2c1_aper", "uart0_aper",
++=09=09=09=09=09=09     "uart1_aper", "gpio_aper", "lqspi_aper",
++=09=09=09=09=09=09     "smc_aper", "swdt", "dbg_trc", "dbg_apb";
+ =09=09=09=09reg =3D <0x100 0x100>;
+ =09=09=09};
+=20
+@@ -380,10 +387,10 @@ dmac_s: dma-controller@f8003000 {
+ =09=09=09 * "dma4", "dma5", "dma6", "dma7";
+ =09=09=09 */
+ =09=09=09interrupts =3D <0 13 4>,
+-=09=09=09             <0 14 4>, <0 15 4>,
+-=09=09=09             <0 16 4>, <0 17 4>,
+-=09=09=09             <0 40 4>, <0 41 4>,
+-=09=09=09             <0 42 4>, <0 43 4>;
++=09=09=09=09     <0 14 4>, <0 15 4>,
++=09=09=09=09     <0 16 4>, <0 17 4>,
++=09=09=09=09     <0 40 4>, <0 41 4>,
++=09=09=09=09     <0 42 4>, <0 43 4>;
+ =09=09=09#dma-cells =3D <1>;
+ =09=09=09clocks =3D <&clkc 27>;
+ =09=09=09clock-names =3D "apb_pclk";
+@@ -412,7 +419,7 @@ ttc0: timer@f8001000 {
+ =09=09=09interrupts =3D <0 10 4>, <0 11 4>, <0 12 4>;
+ =09=09=09compatible =3D "cdns,ttc";
+ =09=09=09clocks =3D <&clkc 6>;
+-=09=09=09reg =3D <0xF8001000 0x1000>;
++=09=09=09reg =3D <0xf8001000 0x1000>;
+ =09=09};
+=20
+ =09=09ttc1: timer@f8002000 {
+@@ -420,7 +427,7 @@ ttc1: timer@f8002000 {
+ =09=09=09interrupts =3D <0 37 4>, <0 38 4>, <0 39 4>;
+ =09=09=09compatible =3D "cdns,ttc";
+ =09=09=09clocks =3D <&clkc 6>;
+-=09=09=09reg =3D <0xF8002000 0x1000>;
++=09=09=09reg =3D <0xf8002000 0x1000>;
+ =09=09};
+=20
+ =09=09scutimer: timer@f8f00600 {
+@@ -466,6 +473,7 @@ etb@f8801000 {
+ =09=09=09reg =3D <0xf8801000 0x1000>;
+ =09=09=09clocks =3D <&clkc 27>, <&clkc 46>, <&clkc 47>;
+ =09=09=09clock-names =3D "apb_pclk", "dbg_trc", "dbg_apb";
++
+ =09=09=09in-ports {
+ =09=09=09=09port {
+ =09=09=09=09=09etb_in_port: endpoint {
+@@ -480,6 +488,7 @@ tpiu@f8803000 {
+ =09=09=09reg =3D <0xf8803000 0x1000>;
+ =09=09=09clocks =3D <&clkc 27>, <&clkc 46>, <&clkc 47>;
+ =09=09=09clock-names =3D "apb_pclk", "dbg_trc", "dbg_apb";
++
+ =09=09=09in-ports {
+ =09=09=09=09port {
+ =09=09=09=09=09tpiu_in_port: endpoint {
+@@ -499,8 +508,7 @@ funnel@f8804000 {
+ =09=09=09out-ports {
+ =09=09=09=09port {
+ =09=09=09=09=09funnel_out_port: endpoint {
+-=09=09=09=09=09=09remote-endpoint =3D
+-=09=09=09=09=09=09=09<&replicator_in_port0>;
++=09=09=09=09=09=09remote-endpoint =3D <&replicator_in_port0>;
+ =09=09=09=09=09};
+ =09=09=09=09};
+ =09=09=09};
+@@ -512,6 +520,7 @@ in-ports {
+ =09=09=09=09/* funnel input ports */
+ =09=09=09=09port@0 {
+ =09=09=09=09=09reg =3D <0>;
++
+ =09=09=09=09=09funnel0_in_port0: endpoint {
+ =09=09=09=09=09=09remote-endpoint =3D <&ptm0_out_port>;
+ =09=09=09=09=09};
+@@ -519,6 +528,7 @@ funnel0_in_port0: endpoint {
+=20
+ =09=09=09=09port@1 {
+ =09=09=09=09=09reg =3D <1>;
++
+ =09=09=09=09=09funnel0_in_port1: endpoint {
+ =09=09=09=09=09=09remote-endpoint =3D <&ptm1_out_port>;
+ =09=09=09=09=09};
+@@ -526,8 +536,8 @@ funnel0_in_port1: endpoint {
+=20
+ =09=09=09=09port@2 {
+ =09=09=09=09=09reg =3D <2>;
+-=09=09=09=09=09funnel0_in_port2: endpoint {
+-=09=09=09=09=09};
++
++=09=09=09=09=09funnel0_in_port2: endpoint {};
+ =09=09=09=09};
+ =09=09=09=09/* The other input ports are not connect to anything */
+ =09=09=09};
+@@ -539,6 +549,7 @@ ptm@f889c000 {
+ =09=09=09clocks =3D <&clkc 27>, <&clkc 46>, <&clkc 47>;
+ =09=09=09clock-names =3D "apb_pclk", "dbg_trc", "dbg_apb";
+ =09=09=09cpu =3D <&cpu0>;
++
+ =09=09=09out-ports {
+ =09=09=09=09port {
+ =09=09=09=09=09ptm0_out_port: endpoint {
+@@ -554,6 +565,7 @@ ptm@f889d000 {
+ =09=09=09clocks =3D <&clkc 27>, <&clkc 46>, <&clkc 47>;
+ =09=09=09clock-names =3D "apb_pclk", "dbg_trc", "dbg_apb";
+ =09=09=09cpu =3D <&cpu1>;
++
+ =09=09=09out-ports {
+ =09=09=09=09port {
+ =09=09=09=09=09ptm1_out_port: endpoint {
+diff --git a/arch/arm/boot/dts/xilinx/zynq-cc108.dts b/arch/arm/boot/dts/xi=
+linx/zynq-cc108.dts
+index f5525c048426..25828ba9fa16 100644
+--- a/arch/arm/boot/dts/xilinx/zynq-cc108.dts
++++ b/arch/arm/boot/dts/xilinx/zynq-cc108.dts
+@@ -55,6 +55,7 @@ ethernet_phy: ethernet-phy@1 {
+ &qspi {
+ =09status =3D "okay";
+ =09num-cs =3D <1>;
++
+ =09flash@0 { /* 16 MB */
+ =09=09compatible =3D "jedec,spi-nor";
+ =09=09reg =3D <0x0>;
+@@ -63,26 +64,32 @@ flash@0 { /* 16 MB */
+ =09=09spi-rx-bus-width =3D <4>;
+ =09=09#address-cells =3D <1>;
+ =09=09#size-cells =3D <1>;
++
+ =09=09partition@0 {
+ =09=09=09label =3D "qspi-fsbl-uboot-bs";
+ =09=09=09reg =3D <0x0 0x400000>; /* 4MB */
+ =09=09};
++
+ =09=09partition@400000 {
+ =09=09=09label =3D "qspi-linux";
+ =09=09=09reg =3D <0x400000 0x400000>; /* 4MB */
+ =09=09};
++
+ =09=09partition@800000 {
+ =09=09=09label =3D "qspi-rootfs";
+ =09=09=09reg =3D <0x800000 0x400000>; /* 4MB */
+ =09=09};
++
+ =09=09partition@c00000 {
+ =09=09=09label =3D "qspi-devicetree";
+ =09=09=09reg =3D <0xc00000 0x100000>; /* 1MB */
+ =09=09};
++
+ =09=09partition@d00000 {
+ =09=09=09label =3D "qspi-scratch";
+ =09=09=09reg =3D <0xd00000 0x200000>; /* 2MB */
+ =09=09};
++
+ =09=09partition@f00000 {
+ =09=09=09label =3D "qspi-uboot-env";
+ =09=09=09reg =3D <0xf00000 0x100000>; /* 1MB */
+@@ -92,8 +99,8 @@ partition@f00000 {
+=20
+ &sdhci1 {
+ =09status =3D "okay";
+-=09broken-cd ;
+-=09wp-inverted ;
++=09broken-cd;
++=09wp-inverted;
+ };
+=20
+ &uart0 {
+diff --git a/arch/arm/boot/dts/xilinx/zynq-ebaz4205.dts b/arch/arm/boot/dts=
+/xilinx/zynq-ebaz4205.dts
+index 14f644156a6f..d4c07d28ec25 100644
+--- a/arch/arm/boot/dts/xilinx/zynq-ebaz4205.dts
++++ b/arch/arm/boot/dts/xilinx/zynq-ebaz4205.dts
+@@ -53,6 +53,7 @@ &nfc0 {
+=20
+ =09#address-cells =3D <1>;
+ =09#size-cells =3D <0>;
++
+ =09nand@0 {
+ =09=09reg =3D <0>;
+ =09};
+diff --git a/arch/arm/boot/dts/xilinx/zynq-parallella.dts b/arch/arm/boot/d=
+ts/xilinx/zynq-parallella.dts
+index 366af4fcf8d9..e498feaa7ca4 100644
+--- a/arch/arm/boot/dts/xilinx/zynq-parallella.dts
++++ b/arch/arm/boot/dts/xilinx/zynq-parallella.dts
+@@ -44,10 +44,10 @@ &gem0 {
+ =09ethernet_phy: ethernet-phy@0 {
+ =09=09/* Marvell 88E1318 */
+ =09=09compatible =3D "ethernet-phy-id0141.0e90",
+-=09=09             "ethernet-phy-ieee802.3-c22";
++=09=09=09     "ethernet-phy-ieee802.3-c22";
+ =09=09reg =3D <0>;
+ =09=09marvell,reg-init =3D <0x3 0x10 0xff00 0x1e>,
+-=09=09                   <0x3 0x11 0xfff0 0xa>;
++=09=09=09=09   <0x3 0x11 0xfff0 0xa>;
+ =09};
+ };
+=20
+@@ -63,13 +63,16 @@ dcd1 {
+ =09=09=09=09regulator-name =3D "VDD_DSP";
+ =09=09=09=09regulator-always-on;
+ =09=09=09};
++
+ =09=09=09dcd2 {
+ =09=09=09=09regulator-name =3D "1P35V";
+ =09=09=09=09regulator-always-on;
+ =09=09=09};
++
+ =09=09=09ldo1 {
+ =09=09=09=09regulator-name =3D "VDD_ADJ";
+ =09=09=09};
++
+ =09=09=09ldo2 {
+ =09=09=09=09regulator-name =3D "VDD_GPIO";
+ =09=09=09=09regulator-always-on;
+diff --git a/arch/arm/boot/dts/xilinx/zynq-zc702.dts b/arch/arm/boot/dts/xi=
+linx/zynq-zc702.dts
+index 6955637c5b1a..63eded827b37 100644
+--- a/arch/arm/boot/dts/xilinx/zynq-zc702.dts
++++ b/arch/arm/boot/dts/xilinx/zynq-zc702.dts
+@@ -34,6 +34,7 @@ chosen {
+ =09gpio-keys {
+ =09=09compatible =3D "gpio-keys";
+ =09=09autorepeat;
++
+ =09=09switch-14 {
+ =09=09=09label =3D "sw14";
+ =09=09=09gpios =3D <&gpio0 12 0>;
+@@ -41,6 +42,7 @@ switch-14 {
+ =09=09=09wakeup-source;
+ =09=09=09autorepeat;
+ =09=09};
++
+ =09=09switch-13 {
+ =09=09=09label =3D "sw13";
+ =09=09=09gpios =3D <&gpio0 14 0>;
+@@ -112,6 +114,7 @@ i2c@0 {
+ =09=09=09#address-cells =3D <1>;
+ =09=09=09#size-cells =3D <0>;
+ =09=09=09reg =3D <0>;
++
+ =09=09=09si570: clock-generator@5d {
+ =09=09=09=09#clock-cells =3D <0>;
+ =09=09=09=09compatible =3D "silabs,si570";
+@@ -126,6 +129,7 @@ i2c@1 {
+ =09=09=09#address-cells =3D <1>;
+ =09=09=09#size-cells =3D <0>;
+ =09=09=09reg =3D <1>;
++
+ =09=09=09adv7511: hdmi-tx@39 {
+ =09=09=09=09compatible =3D "adi,adv7511";
+ =09=09=09=09reg =3D <0x39>;
+@@ -141,6 +145,7 @@ i2c@2 {
+ =09=09=09#address-cells =3D <1>;
+ =09=09=09#size-cells =3D <0>;
+ =09=09=09reg =3D <2>;
++
+ =09=09=09eeprom: eeprom@54 {
+ =09=09=09=09compatible =3D "atmel,24c08";
+ =09=09=09=09reg =3D <0x54>;
+@@ -151,6 +156,7 @@ i2c@3 {
+ =09=09=09#address-cells =3D <1>;
+ =09=09=09#size-cells =3D <0>;
+ =09=09=09reg =3D <3>;
++
+ =09=09=09gpio@21 {
+ =09=09=09=09compatible =3D "ti,tca6416";
+ =09=09=09=09reg =3D <0x21>;
+@@ -163,6 +169,7 @@ i2c@4 {
+ =09=09=09#address-cells =3D <1>;
+ =09=09=09#size-cells =3D <0>;
+ =09=09=09reg =3D <4>;
++
+ =09=09=09rtc: rtc@51 {
+ =09=09=09=09compatible =3D "nxp,pcf8563";
+ =09=09=09=09reg =3D <0x51>;
+@@ -173,14 +180,17 @@ i2c@7 {
+ =09=09=09#address-cells =3D <1>;
+ =09=09=09#size-cells =3D <0>;
+ =09=09=09reg =3D <7>;
++
+ =09=09=09hwmon@34 {
+ =09=09=09=09compatible =3D "ti,ucd9248";
+ =09=09=09=09reg =3D <0x34>;
+ =09=09=09};
++
+ =09=09=09hwmon@35 {
+ =09=09=09=09compatible =3D "ti,ucd9248";
+ =09=09=09=09reg =3D <0x35>;
+ =09=09=09};
++
+ =09=09=09hwmon@36 {
+ =09=09=09=09compatible =3D "ti,ucd9248";
+ =09=09=09=09reg =3D <0x36>;
+@@ -396,32 +406,39 @@ &qspi {
+ =09bootph-all;
+ =09status =3D "okay";
+ =09num-cs =3D <1>;
++
+ =09flash@0 {
+ =09=09compatible =3D "jedec,spi-nor";
+ =09=09reg =3D <0x0>;
+ =09=09spi-tx-bus-width =3D <1>;
+ =09=09spi-rx-bus-width =3D <4>;
+ =09=09spi-max-frequency =3D <50000000>;
++
+ =09=09partitions {
+ =09=09=09compatible =3D "fixed-partitions";
+ =09=09=09#address-cells =3D <1>;
+ =09=09=09#size-cells =3D <1>;
++
+ =09=09=09partition@0 {
+ =09=09=09=09label =3D "qspi-fsbl-uboot";
+ =09=09=09=09reg =3D <0x0 0x100000>;
+ =09=09=09};
++
+ =09=09=09partition@100000 {
+ =09=09=09=09label =3D "qspi-linux";
+ =09=09=09=09reg =3D <0x100000 0x500000>;
+ =09=09=09};
++
+ =09=09=09partition@600000 {
+ =09=09=09=09label =3D "qspi-device-tree";
+ =09=09=09=09reg =3D <0x600000 0x20000>;
+ =09=09=09};
++
+ =09=09=09partition@620000 {
+ =09=09=09=09label =3D "qspi-rootfs";
+ =09=09=09=09reg =3D <0x620000 0x5e0000>;
+ =09=09=09};
++
+ =09=09=09partition@c00000 {
+ =09=09=09=09label =3D "qspi-bitstream";
+ =09=09=09=09reg =3D <0xc00000 0x400000>;
+diff --git a/arch/arm/boot/dts/xilinx/zynq-zc706.dts b/arch/arm/boot/dts/xi=
+linx/zynq-zc706.dts
+index 3b803c698473..d6447e544d8f 100644
+--- a/arch/arm/boot/dts/xilinx/zynq-zc706.dts
++++ b/arch/arm/boot/dts/xilinx/zynq-zc706.dts
+@@ -73,6 +73,7 @@ i2c@0 {
+ =09=09=09#address-cells =3D <1>;
+ =09=09=09#size-cells =3D <0>;
+ =09=09=09reg =3D <0>;
++
+ =09=09=09si570: clock-generator@5d {
+ =09=09=09=09#clock-cells =3D <0>;
+ =09=09=09=09compatible =3D "silabs,si570";
+@@ -87,6 +88,7 @@ i2c@1 {
+ =09=09=09#address-cells =3D <1>;
+ =09=09=09#size-cells =3D <0>;
+ =09=09=09reg =3D <1>;
++
+ =09=09=09adv7511: hdmi-tx@39 {
+ =09=09=09=09compatible =3D "adi,adv7511";
+ =09=09=09=09reg =3D <0x39>;
+@@ -102,6 +104,7 @@ i2c@2 {
+ =09=09=09#address-cells =3D <1>;
+ =09=09=09#size-cells =3D <0>;
+ =09=09=09reg =3D <2>;
++
+ =09=09=09eeprom: eeprom@54 {
+ =09=09=09=09compatible =3D "atmel,24c08";
+ =09=09=09=09reg =3D <0x54>;
+@@ -112,6 +115,7 @@ i2c@3 {
+ =09=09=09#address-cells =3D <1>;
+ =09=09=09#size-cells =3D <0>;
+ =09=09=09reg =3D <3>;
++
+ =09=09=09gpio@21 {
+ =09=09=09=09compatible =3D "ti,tca6416";
+ =09=09=09=09reg =3D <0x21>;
+@@ -124,6 +128,7 @@ i2c@4 {
+ =09=09=09#address-cells =3D <1>;
+ =09=09=09#size-cells =3D <0>;
+ =09=09=09reg =3D <4>;
++
+ =09=09=09rtc: rtc@51 {
+ =09=09=09=09compatible =3D "nxp,pcf8563";
+ =09=09=09=09reg =3D <0x51>;
+@@ -134,6 +139,7 @@ i2c@7 {
+ =09=09=09#address-cells =3D <1>;
+ =09=09=09#size-cells =3D <0>;
+ =09=09=09reg =3D <7>;
++
+ =09=09=09ucd90120@65 {
+ =09=09=09=09compatible =3D "ti,ucd90120";
+ =09=09=09=09reg =3D <0x65>;
+@@ -309,6 +315,7 @@ &qspi {
+ =09bootph-all;
+ =09status =3D "okay";
+ =09num-cs =3D <2>;
++
+ =09flash@0 {
+ =09=09compatible =3D "jedec,spi-nor";
+ =09=09reg =3D <0>, <1>;
+@@ -316,26 +323,32 @@ flash@0 {
+ =09=09spi-tx-bus-width =3D <1>;
+ =09=09spi-rx-bus-width =3D <4>;
+ =09=09spi-max-frequency =3D <50000000>;
++
+ =09=09partitions {
+ =09=09=09compatible =3D "fixed-partitions";
+ =09=09=09#address-cells =3D <1>;
+ =09=09=09#size-cells =3D <1>;
++
+ =09=09=09partition@0 {
+ =09=09=09=09label =3D "qspi-fsbl-uboot";
+ =09=09=09=09reg =3D <0x0 0x100000>;
+ =09=09=09};
++
+ =09=09=09partition@100000 {
+ =09=09=09=09label =3D "qspi-linux";
+ =09=09=09=09reg =3D <0x100000 0x500000>;
+ =09=09=09};
++
+ =09=09=09partition@600000 {
+ =09=09=09=09label =3D "qspi-device-tree";
+ =09=09=09=09reg =3D <0x600000 0x20000>;
+ =09=09=09};
++
+ =09=09=09partition@620000 {
+ =09=09=09=09label =3D "qspi-rootfs";
+ =09=09=09=09reg =3D <0x620000 0x5e0000>;
+ =09=09=09};
++
+ =09=09=09partition@c00000 {
+ =09=09=09=09label =3D "qspi-bitstream";
+ =09=09=09=09reg =3D <0xc00000 0x400000>;
+diff --git a/arch/arm/boot/dts/xilinx/zynq-zc770-xm010.dts b/arch/arm/boot/=
+dts/xilinx/zynq-zc770-xm010.dts
+index 5fe799c3c7cf..4929a5aa1678 100644
+--- a/arch/arm/boot/dts/xilinx/zynq-zc770-xm010.dts
++++ b/arch/arm/boot/dts/xilinx/zynq-zc770-xm010.dts
+@@ -62,32 +62,39 @@ eeprom: eeprom@52 {
+ &qspi {
+ =09status =3D "okay";
+ =09num-cs =3D <1>;
++
+ =09flash@0 {
+ =09=09compatible =3D "jedec,spi-nor";
+ =09=09reg =3D <0x0>;
+ =09=09spi-tx-bus-width =3D <1>;
+ =09=09spi-rx-bus-width =3D <4>;
+ =09=09spi-max-frequency =3D <50000000>;
++
+ =09=09partitions {
+ =09=09=09compatible =3D "fixed-partitions";
+ =09=09=09#address-cells =3D <1>;
+ =09=09=09#size-cells =3D <1>;
++
+ =09=09=09partition@0 {
+ =09=09=09=09label =3D "qspi-fsbl-uboot";
+ =09=09=09=09reg =3D <0x0 0x100000>;
+ =09=09=09};
++
+ =09=09=09partition@100000 {
+ =09=09=09=09label =3D "qspi-linux";
+ =09=09=09=09reg =3D <0x100000 0x500000>;
+ =09=09=09};
++
+ =09=09=09partition@600000 {
+ =09=09=09=09label =3D "qspi-device-tree";
+ =09=09=09=09reg =3D <0x600000 0x20000>;
+ =09=09=09};
++
+ =09=09=09partition@620000 {
+ =09=09=09=09label =3D "qspi-rootfs";
+ =09=09=09=09reg =3D <0x620000 0x5e0000>;
+ =09=09=09};
++
+ =09=09=09partition@c00000 {
+ =09=09=09=09label =3D "qspi-bitstream";
+ =09=09=09=09reg =3D <0xc00000 0x400000>;
+@@ -104,14 +111,17 @@ &spi1 {
+ =09status =3D "okay";
+ =09num-cs =3D <4>;
+ =09is-decoded-cs =3D <0>;
++
+ =09flash@1 {
+ =09=09compatible =3D "sst25wf080", "jedec,spi-nor";
+ =09=09reg =3D <1>;
+ =09=09spi-max-frequency =3D <1000000>;
++
+ =09=09partitions {
+ =09=09=09compatible =3D "fixed-partitions";
+ =09=09=09#address-cells =3D <1>;
+ =09=09=09#size-cells =3D <1>;
++
+ =09=09=09partition@0 {
+ =09=09=09=09label =3D "data";
+ =09=09=09=09reg =3D <0x0 0x100000>;
+diff --git a/arch/arm/boot/dts/xilinx/zynq-zc770-xm011.dts b/arch/arm/boot/=
+dts/xilinx/zynq-zc770-xm011.dts
+index f9a086fe66d3..d4e739772d7b 100644
+--- a/arch/arm/boot/dts/xilinx/zynq-zc770-xm011.dts
++++ b/arch/arm/boot/dts/xilinx/zynq-zc770-xm011.dts
+@@ -51,20 +51,25 @@ &nfc0 {
+ =09status =3D "okay";
+ =09#address-cells =3D <1>;
+ =09#size-cells =3D <0>;
++
+ =09nand@0 {
+ =09=09reg =3D <0>;
++
+ =09=09partitions {
+ =09=09=09compatible =3D "fixed-partitions";
+ =09=09=09#address-cells =3D <1>;
+ =09=09=09#size-cells =3D <1>;
++
+ =09=09=09partition@0 {
+ =09=09=09=09label =3D "nand-fsbl-uboot";
+ =09=09=09=09reg =3D <0x0 0x1000000>;
+ =09=09=09};
++
+ =09=09=09partition@1000000 {
+ =09=09=09=09label =3D "nand-linux";
+ =09=09=09=09reg =3D <0x1000000 0x2000000>;
+ =09=09=09};
++
+ =09=09=09partition@3000000 {
+ =09=09=09=09label =3D "nand-rootfs";
+ =09=09=09=09reg =3D <0x3000000 0x200000>;
+diff --git a/arch/arm/boot/dts/xilinx/zynq-zc770-xm012.dts b/arch/arm/boot/=
+dts/xilinx/zynq-zc770-xm012.dts
+index 24520e7d3965..32422aed77a3 100644
+--- a/arch/arm/boot/dts/xilinx/zynq-zc770-xm012.dts
++++ b/arch/arm/boot/dts/xilinx/zynq-zc770-xm012.dts
+@@ -56,26 +56,32 @@ eeprom1: eeprom@52 {
+ &nor0 {
+ =09status =3D "okay";
+ =09bank-width =3D <1>;
++
+ =09partitions {
+ =09=09compatible =3D "fixed-partitions";
+ =09=09#address-cells =3D <1>;
+ =09=09#size-cells =3D <1>;
++
+ =09=09partition@0 {
+ =09=09=09label =3D "nor-fsbl-uboot";
+ =09=09=09reg =3D <0x0 0x100000>;
+ =09=09};
++
+ =09=09partition@100000 {
+ =09=09=09label =3D "nor-linux";
+ =09=09=09reg =3D <0x100000 0x500000>;
+ =09=09};
++
+ =09=09partition@600000 {
+ =09=09=09label =3D "nor-device-tree";
+ =09=09=09reg =3D <0x600000 0x20000>;
+ =09=09};
++
+ =09=09partition@620000 {
+ =09=09=09label =3D "nor-rootfs";
+ =09=09=09reg =3D <0x620000 0x5e0000>;
+ =09=09};
++
+ =09=09partition@c00000 {
+ =09=09=09label =3D "nor-bitstream";
+ =09=09=09reg =3D <0xc00000 0x400000>;
+diff --git a/arch/arm/boot/dts/xilinx/zynq-zc770-xm013.dts b/arch/arm/boot/=
+dts/xilinx/zynq-zc770-xm013.dts
+index 103e87ea7253..9c94421bf650 100644
+--- a/arch/arm/boot/dts/xilinx/zynq-zc770-xm013.dts
++++ b/arch/arm/boot/dts/xilinx/zynq-zc770-xm013.dts
+@@ -61,6 +61,7 @@ si570: clock-generator@55 {
+ &qspi {
+ =09status =3D "okay";
+ =09num-cs =3D <2>;
++
+ =09flash@0 {
+ =09=09compatible =3D "jedec,spi-nor";
+ =09=09reg =3D <0>, <1>;
+@@ -68,26 +69,32 @@ flash@0 {
+ =09=09spi-tx-bus-width =3D <1>;
+ =09=09spi-rx-bus-width =3D <4>;
+ =09=09spi-max-frequency =3D <50000000>;
++
+ =09=09partitions {
+ =09=09=09compatible =3D "fixed-partitions";
+ =09=09=09#address-cells =3D <1>;
+ =09=09=09#size-cells =3D <1>;
++
+ =09=09=09partition@0 {
+ =09=09=09=09label =3D "qspi-fsbl-uboot";
+ =09=09=09=09reg =3D <0x0 0x100000>;
+ =09=09=09};
++
+ =09=09=09partition@100000 {
+ =09=09=09=09label =3D "qspi-linux";
+ =09=09=09=09reg =3D <0x100000 0x500000>;
+ =09=09=09};
++
+ =09=09=09partition@600000 {
+ =09=09=09=09label =3D "qspi-device-tree";
+ =09=09=09=09reg =3D <0x600000 0x20000>;
+ =09=09=09};
++
+ =09=09=09partition@620000 {
+ =09=09=09=09label =3D "qspi-rootfs";
+ =09=09=09=09reg =3D <0x620000 0x5e0000>;
+ =09=09=09};
++
+ =09=09=09partition@c00000 {
+ =09=09=09=09label =3D "qspi-bitstream";
+ =09=09=09=09reg =3D <0xc00000 0x400000>;
+@@ -100,6 +107,7 @@ &spi0 {
+ =09status =3D "okay";
+ =09num-cs =3D <4>;
+ =09is-decoded-cs =3D <0>;
++
+ =09eeprom: eeprom@2 {
+ =09=09compatible =3D "atmel,at25";
+ =09=09reg =3D <2>;
+diff --git a/arch/arm/boot/dts/xilinx/zynq-zed.dts b/arch/arm/boot/dts/xili=
+nx/zynq-zed.dts
+index 52ba569b2b9f..dd46d71e3f36 100644
+--- a/arch/arm/boot/dts/xilinx/zynq-zed.dts
++++ b/arch/arm/boot/dts/xilinx/zynq-zed.dts
+@@ -51,6 +51,7 @@ &qspi {
+ =09bootph-all;
+ =09status =3D "okay";
+ =09num-cs =3D <1>;
++
+ =09flash@0 {
+ =09=09compatible =3D "jedec,spi-nor";
+ =09=09reg =3D <0>;
+@@ -58,26 +59,32 @@ flash@0 {
+ =09=09spi-rx-bus-width =3D <4>;
+ =09=09spi-max-frequency =3D <50000000>;
+ =09=09m25p,fast-read;
++
+ =09=09partitions {
+ =09=09=09compatible =3D "fixed-partitions";
+ =09=09=09#address-cells =3D <1>;
+ =09=09=09#size-cells =3D <1>;
++
+ =09=09=09partition@0 {
+ =09=09=09=09label =3D "qspi-fsbl-uboot";
+ =09=09=09=09reg =3D <0x0 0x100000>;
+ =09=09=09};
++
+ =09=09=09partition@100000 {
+ =09=09=09=09label =3D "qspi-linux";
+ =09=09=09=09reg =3D <0x100000 0x500000>;
+ =09=09=09};
++
+ =09=09=09partition@600000 {
+ =09=09=09=09label =3D "qspi-device-tree";
+ =09=09=09=09reg =3D <0x600000 0x20000>;
+ =09=09=09};
++
+ =09=09=09partition@620000 {
+ =09=09=09=09label =3D "qspi-rootfs";
+ =09=09=09=09reg =3D <0x620000 0x5e0000>;
+ =09=09=09};
++
+ =09=09=09partition@c00000 {
+ =09=09=09=09label =3D "qspi-bitstream";
+ =09=09=09=09reg =3D <0xc00000 0x400000>;
+diff --git a/arch/arm/boot/dts/xilinx/zynq-zturn-common.dtsi b/arch/arm/boo=
+t/dts/xilinx/zynq-zturn-common.dtsi
+index defef9c8da13..57e6cda1a798 100644
+--- a/arch/arm/boot/dts/xilinx/zynq-zturn-common.dtsi
++++ b/arch/arm/boot/dts/xilinx/zynq-zturn-common.dtsi
+@@ -33,6 +33,7 @@ chosen {
+=20
+ =09gpio-leds {
+ =09=09compatible =3D "gpio-leds";
++
+ =09=09usr-led1 {
+ =09=09=09label =3D "usr-led1";
+ =09=09=09gpios =3D <&gpio0 0x0 0x1>;
+@@ -49,6 +50,7 @@ usr-led2 {
+ =09gpio-keys {
+ =09=09compatible =3D "gpio-keys";
+ =09=09autorepeat;
++
+ =09=09key {
+ =09=09=09label =3D "K1";
+ =09=09=09gpios =3D <&gpio0 0x32 0x1>;
+@@ -73,8 +75,7 @@ &gem0 {
+ =09phy-mode =3D "rgmii-id";
+ =09phy-handle =3D <&ethernet_phy>;
+=20
+-=09ethernet_phy: ethernet-phy@0 {
+-=09};
++=09ethernet_phy: ethernet-phy@0 {};
+ };
+=20
+ &sdhci0 {
+--=20
+2.50.1 (Apple Git-155)
+
+
 
