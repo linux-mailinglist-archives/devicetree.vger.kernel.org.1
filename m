@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-248002-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248003-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70FCBCCD752
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 21:03:34 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1FFBCCD794
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 21:07:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 575A93064789
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 20:02:32 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AE4E330652FD
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 20:05:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 672D02BDC0F;
-	Thu, 18 Dec 2025 20:02:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AD3B2C0F7F;
+	Thu, 18 Dec 2025 20:05:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RXhsdN/k"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Qc372uuT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B316284888;
-	Thu, 18 Dec 2025 20:02:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DB5581ACA;
+	Thu, 18 Dec 2025 20:05:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766088151; cv=none; b=nWZJ8qhWfjK19mKrK3LEe9Puhn9KCgz4yt7V8VzqG6PoD5kdBh/rHmiNWoxvlkwqzLqGKcYAwvOypz071PiwK8zr/mmN9mr+ecj3gkwZeFTse6A10eyFCu3CAYq7kFWtg/OxAIPbd/1Q4eHsWt3SIG/JDFcwH1hpbMYSicdIKYI=
+	t=1766088326; cv=none; b=LzeD4V6+bKQru00jlhH4DZZMMEmmSqI/U9zSQ9Erx+is8U8OfBFjhNtJOhQ4pkc8euJzthA5ahr9+H8whrtDWaxEhzpgOzjE/77XmYIp39vRZgxAZx3zRxc6H4xXrmCnSwSUGRPaAnqkqPZGsWZTxpTcBVequl5SdhvSQ4472m4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766088151; c=relaxed/simple;
-	bh=Qc95/mmzO/K9oo1wW2mTbHcYyb7FbbfLgsLwkpOTNkE=;
+	s=arc-20240116; t=1766088326; c=relaxed/simple;
+	bh=qOmoSsMcnU+05ZsbSJqzF/ObB42pZyhLPpPwYZBwSYM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=A7f3epw1rNFxULFv/WYCopujrHwvsDK3AOY6D8/Df3LzrpXqBDuPXaEmoYG+orOIrQRhXDQURmXKf6K7W5qLXLRn3eXuxuTcEAf1YH2UdAKx3CuClEUlNJLjVEctXPezRKjHQ4Kgn4qskYnUoXto71vxlyOuuuvuD6xcZDU9org=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RXhsdN/k; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81656C113D0;
-	Thu, 18 Dec 2025 20:02:22 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=ZBBAeyJPrsV2PqtwEfkeT7NwchtrlLMeb/8PFDEzGOrumbS0TyNwv14ptkcDFzuCEUW7oyHqXF38Tf9X6Qvm2FK7jt4xVNFBvqrGT+FU7cQNKcn/Sm8hlPMqEsItjkCZKbF6mntB/aiMb4c2EfX4DskIzEJYYMBcHA6qF77GMiM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Qc372uuT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC5B4C16AAE;
+	Thu, 18 Dec 2025 20:05:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766088150;
-	bh=Qc95/mmzO/K9oo1wW2mTbHcYyb7FbbfLgsLwkpOTNkE=;
+	s=k20201202; t=1766088325;
+	bh=qOmoSsMcnU+05ZsbSJqzF/ObB42pZyhLPpPwYZBwSYM=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=RXhsdN/kRYhfoPqhwRxkFLzScKII8O9Q6d/kWD43bW8tz27LHLT5X432JWB2ZQJze
-	 0ZkNp1tXMMGZAHv4/JTfJwUFezVLB8f9TEMR0QbMSHWk4h6pVoGyDG2Who+hPPXAXs
-	 0BAIEB9tec3qplOqrHKlZJwdRaowZN8Rscb9fMRJTwlvEpcllpiGR1nQbOuTdq654P
-	 QSWyW3ixhoiENF+REeW1M4HdqgoeKAHpn87JB7h2WTxTHtOu+qsIFa6rRN2qzgq6nG
-	 7IS56wLku4NQL7TWQLah8p3IQxNpp3bfoe8cfZplXA8yxHW+pKyCWInkLnjF9GmxmK
-	 STrq+RavH1OTQ==
-Message-ID: <749e8633-1742-4e03-b1fd-2a601f218a0a@kernel.org>
-Date: Thu, 18 Dec 2025 21:02:20 +0100
+	b=Qc372uuTC+u61AUF4nkxEjBIq9G+iwfzUotlVnrS9xpA1HPojaU+Ic+v5hIZgEkyE
+	 YTBZYXvW1xMGZPmzQmhQPG/7ICaqfGZ5H5yV1iQuj53Iaz0Ty6gMWfEBmoVV8uMaEo
+	 eYCJmuLK+G8e1iYAUpx2p9rMdONYbZ7b4mAaM5VVjGJqax7MqY+KCc0jOSgoK664UE
+	 8UUUuXdHDjgrryKWb7AQzJ/tPZxqwDO+hCNAgatNgxe0qSx1HofXBYSQSCLc+YiV7F
+	 SS6pXFREDco1v6lbY3v27kNMf/v22tKkgVNfCmeVmnzNygHZxqsIxNTIRGOWrvJK74
+	 Wca5ZIkDDXROQ==
+Message-ID: <2846f26f-57cc-4fa1-b316-63f94991cd62@kernel.org>
+Date: Thu, 18 Dec 2025 21:05:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,7 +48,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: media: i2c: Add ov2732 image sensor
+Subject: Re: [PATCH v2 2/2] media: i2c: Add ov2732 image sensor driver
 To: Walter Werner Schneider <contact@schnwalter.eu>,
  linux-media@vger.kernel.org, Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
  Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
@@ -56,7 +56,7 @@ To: Walter Werner Schneider <contact@schnwalter.eu>,
  <conor+dt@kernel.org>, Sakari Ailus <sakari.ailus@linux.intel.com>
 Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20251218-ov2732-driver-v2-0-fb763644d62c@schnwalter.eu>
- <20251218-ov2732-driver-v2-1-fb763644d62c@schnwalter.eu>
+ <20251218-ov2732-driver-v2-2-fb763644d62c@schnwalter.eu>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -102,106 +102,165 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251218-ov2732-driver-v2-1-fb763644d62c@schnwalter.eu>
+In-Reply-To: <20251218-ov2732-driver-v2-2-fb763644d62c@schnwalter.eu>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 18/12/2025 19:15, Walter Werner Schneider wrote:
-> +  avdd-supply:
-> +    description: Analog Domain Power Supply
+> +static int ov2732_probe(struct i2c_client *client)
+> +{
+> +	struct ov2732 *ov2732;
+> +	int ret;
 > +
-> +  dovdd-supply:
-> +    description: I/O Domain Power Supply
+> +	ov2732 = devm_kzalloc(&client->dev, sizeof(*ov2732), GFP_KERNEL);
+> +	if (!ov2732)
+> +		return -ENOMEM;
 > +
-> +  dvdd-supply:
-> +    description: Digital Domain Power Supply
+> +	ov2732->dev = &client->dev;
 > +
-> +  pwdn-gpios:
-
-Use name from gpio-consumer-common, so "powerdown-gpios".
-
-> +    maxItems: 1
-> +    description: Reference to the GPIO connected to the pwdn pin. Active high.
-
-high?
-
+> +	ret = ov2632_probe_dt(ov2732);
+> +	if (ret)
+> +		return dev_err_probe(ov2732->dev, ret,
+> +				     "failed to probe device tree\n");
 > +
-> +  reset-gpios:
-> +    maxItems: 1
-> +    description: Reference to the GPIO connected to the reset pin. Active high.
-
-Are you sure this is active high?
-
+> +	ov2732->xvclk = devm_v4l2_sensor_clk_get(ov2732->dev, "xvclk");
+> +	if (IS_ERR(ov2732->xvclk))
+> +		return dev_err_probe(ov2732->dev, PTR_ERR(ov2732->xvclk),
+> +				     "failed to get xvclk\n");
 > +
-> +  port:
-> +    description: MIPI CSI-2 transmitter port
-> +    $ref: /schemas/graph.yaml#/$defs/port-base
-> +    additionalProperties: false
+> +	ov2732->xvclk_freq = clk_get_rate(ov2732->xvclk);
+> +	if (ov2732->xvclk_freq != OV2732_XVCLK_FREQ)
+> +		return dev_err_probe(ov2732->dev, -EINVAL,
+> +				     "xvclk frequency not supported: %dHz\n",
+> +				      ov2732->xvclk_freq);
 > +
-> +    properties:
-> +      endpoint:
-> +        $ref: /schemas/media/video-interfaces.yaml#
-> +        unevaluatedProperties: false
-> +
-> +        properties:
-> +          data-lanes:
-> +            items:
-> +              - const: 1
-> +              - const: 2
-> +          link-frequencies: true
+> +	ov2732->pwdn_gpio = devm_gpiod_get_optional(ov2732->dev, "pwdn",
+> +						    GPIOD_OUT_HIGH);
+> +	gpiod_set_value_cansleep(ov2732->pwdn_gpio, 1);
 
-Drop
-
-> +          remote-endpoint: true
-
-Drop
+No need to set the same value twice. It's already 1.
 
 > +
-> +        required:
-> +          - data-lanes
-> +          - link-frequencies
-> +          - remote-endpoint
+> +	ov2732->reset_gpio = devm_gpiod_get_optional(ov2732->dev, "reset",
+> +						     GPIOD_OUT_HIGH);
+> +	gpiod_set_value_cansleep(ov2732->reset_gpio, 1);
 
-Drop remote endpoint
+Same here
 
 > +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - avdd-supply
-> +  - dovdd-supply
-> +  - dvdd-supply
-> +  - port
+> +	ov2732->regmap = devm_cci_regmap_init_i2c(client, 16);
+> +	if (IS_ERR(ov2732->regmap))
+> +		return dev_err_probe(ov2732->dev, PTR_ERR(ov2732->regmap),
+> +				     "failed to init CCI\n");
 > +
-> +additionalProperties: false
+> +	ret = ov2732_get_regulators(ov2732);
+> +	if (ret)
+> +		return dev_err_probe(ov2732->dev, ret,
+> +				     "failed to get regulators\n");
 > +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
+> +	v4l2_i2c_subdev_init(&ov2732->sd, client, &ov2732_subdev_ops);
 > +
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
+> +	/* Device must be powered on for ov2732_identify_chip(). */
+> +	ret = ov2732_power_on(ov2732->dev);
+> +	if (ret)
+> +		return ret;
 > +
-> +        ov2732: camera@36 {
-> +            compatible = "ovti,ov2732";
-> +            reg = <0x36>;
-> +            clocks = <&ov2732_clk>;
-> +            clock-names = "xvclk";
+> +	pm_runtime_set_active(ov2732->dev);
+> +	pm_runtime_enable(ov2732->dev);
 > +
-> +            avdd-supply = <&ov2732_avdd>;
-> +            dovdd-supply = <&ov2732_dovdd>;
-> +            dvdd-supply = <&ov2732_dvdd>;
+> +	/* Wait 1ms to avoid intermittent communication errors at startup. */
+> +	fsleep(USEC_PER_MSEC);
 > +
-> +            pwdn-gpios = <&gpio0 13 GPIO_ACTIVE_LOW>;
-> +            reset-gpios = <&gpio0 8 GPIO_ACTIVE_LOW>;
+> +	ret = ov2732_identify_chip(ov2732);
+> +	if (ret)
+> +		goto err_power_off;
+> +
+> +	ret = ov2732_init_controls(ov2732);
+> +	if (ret)
+> +		goto err_power_off;
+> +
+> +	/* Initialize subdev */
+> +	ov2732->sd.internal_ops = &ov2732_internal_ops;
+> +	ov2732->sd.flags |= V4L2_SUBDEV_FL_HAS_DEVNODE;
+> +	ov2732->sd.entity.function = MEDIA_ENT_F_CAM_SENSOR;
+> +
+> +	/* Initialize source pad */
+> +	ov2732->pad.flags = MEDIA_PAD_FL_SOURCE;
+> +
+> +	ret = media_entity_pads_init(&ov2732->sd.entity, 1, &ov2732->pad);
+> +	if (ret) {
+> +		dev_err_probe(ov2732->dev, ret, "failed to init entity pads\n");
+> +		goto error_handler_free;
+> +	}
+> +
+> +	ov2732->sd.state_lock = ov2732->ctrl_handler.lock;
+> +	ret = v4l2_subdev_init_finalize(&ov2732->sd);
+> +	if (ret < 0) {
+> +		dev_err_probe(ov2732->dev, ret, "subdev init error\n");
+> +		goto err_media_entity;
+> +	}
+> +
+> +	ret = v4l2_async_register_subdev_sensor(&ov2732->sd);
+> +	if (ret < 0) {
+> +		dev_err_probe(ov2732->dev, ret,
+> +			      "failed to register sensor sub-device\n");
 
-And here (probably correct) active low?
+So you print errors twice? Once here and second time at the end. Why?
+> +		goto err_subdev_cleanup;
+> +	}
+> +
+> +	pm_runtime_set_autosuspend_delay(ov2732->dev, 1000);
+> +	pm_runtime_use_autosuspend(ov2732->dev);
+> +	pm_runtime_idle(ov2732->dev);
+> +
+> +	return 0;
+> +
+> +err_subdev_cleanup:
+> +	v4l2_subdev_cleanup(&ov2732->sd);
+> +
+> +err_media_entity:
+> +	media_entity_cleanup(&ov2732->sd.entity);
+> +
+> +error_handler_free:
+> +	v4l2_ctrl_handler_free(&ov2732->ctrl_handler);
+> +
+> +err_power_off:
+> +	pm_runtime_disable(ov2732->dev);
+> +	pm_runtime_put_noidle(ov2732->dev);
+> +	ov2732_power_off(ov2732->dev);
+> +
+> +	return dev_err_probe(ov2732->dev, ret, "probing failed\n");
 
+This is useless message. Print informative messages for specific errors
+or do not print at all.
 
+> +}
+> +
 
+...
+
+> +
+> +static const struct of_device_id ov2732_of_match[] = {
+> +	{ .compatible = "ovti,ov2732", },
+> +	{ },
+> +};
+> +MODULE_DEVICE_TABLE(of, ov2732_of_match);
+> +
+> +static DEFINE_RUNTIME_DEV_PM_OPS(ov2732_pm_ops, ov2732_power_off,
+> +				 ov2732_power_on, NULL);
+> +
+> +static struct i2c_driver ov2732_i2c_driver = {
+> +	.driver = {
+> +		.name = "ov2732",
+> +		.of_match_table = of_match_ptr(ov2732_of_match),
+
+Drop of_match_ptr, you have here warning.
+
+> +		.pm = pm_sleep_ptr(&ov2732_pm_ops),
+> +	},
+> +	.probe = ov2732_probe,
+> +	.remove = ov2732_remove,
+> +};
 Best regards,
 Krzysztof
 
