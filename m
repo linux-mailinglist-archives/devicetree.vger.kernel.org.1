@@ -1,128 +1,163 @@
-Return-Path: <devicetree+bounces-247895-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247900-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59B04CCC753
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 16:28:42 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29D62CCC7E0
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 16:34:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 388E4303CF70
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 15:26:55 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 2AAAC3009FF2
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 15:32:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7C0D350A1A;
-	Thu, 18 Dec 2025 15:19:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E31353559EF;
+	Thu, 18 Dec 2025 15:22:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Mh9vl8cO"
+	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="URZ+pN4n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx-relay10-hz2.antispameurope.com (mx-relay10-hz2.antispameurope.com [83.246.65.96])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C8C034FF7E;
-	Thu, 18 Dec 2025 15:19:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766071163; cv=none; b=n/f8qcKCL/8N4CNwK5WsZr8FQfPF8xgw3QU4TeIutuErNfoqgTy/ABamhCj0JoZCH6IM+tyTMbiXmhkWQ+2s+QDqNOu5lwjLnxZxzivywqy5hBQ9rAPfy7GRnEFH8hK0sKbRLb9uu6LOMlEY+FUzmirIAPAMmSjlIhrYxjnb+TI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766071163; c=relaxed/simple;
-	bh=lNs6h/Tn6npet126alMraOzQWAdHEXctBs9xqAtaI9M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=s+a/lgjDJysMn/VQch1pPb9fnlYGqFrvgERtjbotp3iczuPQwCQRM9xuhK2e57JvmjkT7SUjlVIwZfRLw6Z75oF+dYXop2x6mKGl8uXDqorL9ceNUTsXDtvjbFFSbonI6gYe6R819bWvZLPCd+lJgHeLHq9psi6qTuCtgxau0jw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Mh9vl8cO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7037CC4CEFB;
-	Thu, 18 Dec 2025 15:19:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766071163;
-	bh=lNs6h/Tn6npet126alMraOzQWAdHEXctBs9xqAtaI9M=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Mh9vl8cO8g3zNkwI0qQEywi4S51l7RjjDFD+/NdoNaLkGqyRx/m6rMMWhNUAe/f7p
-	 ayNsqjF0dga4H1hM0eBbT33xWsC3nBBDkCMb7NkPrqoSg4v74duc9/Q2XD17wHljdm
-	 yojfvvwp03tfkXiwRvLb2udPhmZpeXD5MFNHzWHzDxSj0GvUIms23wcwgZC2ISjAcM
-	 k1paKBb6BaFYcG4p5jQMYoICzy5HtZwhZLJ07d6szQNEo9aHjh1dO3uVvrc+DZy+9Z
-	 SPQMmbht7uYv8YsFigMu2U/9a4X5PAY02AWgZ98AhbxtK9EMCcOShNkr0uzeJPImFd
-	 MlBo/i78fGf2Q==
-Date: Thu, 18 Dec 2025 15:19:17 +0000
-From: Will Deacon <will@kernel.org>
-To: Ahmed Tiba <ahmed.tiba@arm.com>
-Cc: linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
-	tony.luck@intel.com, bp@alien8.de, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, catalin.marinas@arm.com,
-	linux-arm-kernel@lists.infradead.org, rafael@kernel.org,
-	linux-doc@vger.kernel.org, Dmitry.Lamerov@arm.com,
-	Michael.Zhao2@arm.com
-Subject: Re: [PATCH 11/12] ras: add DeviceTree estatus provider driver
-Message-ID: <aUQbdZHkzumTnwVP@willie-the-truck>
-References: <aUPv5UfBByVoLbRV@willie-the-truck>
- <20251218134311.2309421-1-ahmed.tiba@arm.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F5C33559CA
+	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 15:22:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=83.246.65.96
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1766071337; cv=pass; b=npNDh+SniohVbTPEB6quTnSpxYEYpoo6+KHzxqb5FQQRLwwycLqh6gC7cchQ52th5aevwXOS3wJUQ0GoiVS6yEOqNZHtFLjctIN38Tn8JQj+q0d4JS/v/nMsu2vb2y6tH8PAedD2LDJBtlODk9StCTWMKzCncYZkUalGkwgq38o=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1766071337; c=relaxed/simple;
+	bh=XQ46J/0Q/s1txq+6yOGv2tGq9CYnPBG5axSq5J5swGE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ZJKHnV/hp7nFj3rl4kV/85Pyl81URbarRtqRo2CMzdC9uE3OF8CJaXcu0O+++zUhd1GZ5pcwa32wEvJ0Wb/TDsdx/tIC44bGO/c0ErSms1Z3PCHTH4xRptsyBnWj+FXVLvboqjFCXs2iTigRNQkuYO71SKr56h9c7p6GSLs5HlQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=URZ+pN4n; arc=pass smtp.client-ip=83.246.65.96
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+ARC-Authentication-Results: i=1; mx-gate10-hz2.hornetsecurity.com 1; spf=pass
+ reason=mailfrom (ip=94.100.132.6, headerfrom=ew.tq-group.com)
+ smtp.mailfrom=ew.tq-group.com
+ smtp.helo=hmail-p-smtp01-out03-hz1.hornetsecurity.com; dmarc=pass
+ header.from=ew.tq-group.com orig.disposition=pass
+ARC-Message-Signature: a=rsa-sha256;
+ bh=7AMuBMEfhIQw9FVyiKx57RUqUljgR4wYmPvn8hqi5T4=; c=relaxed/relaxed;
+ d=hornetsecurity.com; h=from:to:date:subject:mime-version:; i=1; s=hse1;
+ t=1766071278;
+ b=s26yBTvOTJqmLcZIfXHVf/PnxgkN6/DfJKwC83/UZM2UmpC2DvLnatOREg36pOp6yMR7EWhI
+ W28ysgrwM2f7A+wjw4EejZGTIlWVn3fuyqM4VGWglStbQXPWxvkGognO3I1j+KXt5cxNT1wL6dQ
+ wONyffl6hhkPoKHbe31fzDX9/Vftfrho0tneVAb4KWN9LYh375f4ppqPAe1YoqkyaNtSAvxOq2v
+ Ns5iebwbrTFYc64RDmAJId7NIELN3sMEcYBFN9wPNHF4ovHZFNx43okWH53Nb5QfZKFmACbUs0j
+ AnoniPBMcsvU8Yr7UQWTQIt7m7UuAAn8YE3RMzBtRPwsg==
+ARC-Seal: a=rsa-sha256; cv=none; d=hornetsecurity.com; i=1; s=hse1;
+ t=1766071278;
+ b=Xpam9JzCF7BEsehrtv0uWBOIGe/nzMMBrLzJ02KCtUtcFR3oktknylaWyR8eK+y0JuGokw1e
+ X3C/VVEtTAJ6cSD26fEZAvEfd37hmUI/P+zOv4YhM8252ab7vZPQ8ZjHP6NqLoRm/rbqds3CWsT
+ w2qU6ei5V8raTQ28oMAoU/y9HRJO5GPt/sxBfkKphcneArvIXDpgdEXRraXDmpTeePSz7bW4zbd
+ C8xuihjr8wlBd8vGqv1/WMDns3RJUG+Pg119dwJzdE3Mztr6g8V1yY103uC2SQPA7vP6TueRVyI
+ sNsK5wqDw5A8DcB9+J5F8KdLP5+7xBEV1rbpHuvUHc3tA==
+Received: from he-nlb01-hz1.hornetsecurity.com ([94.100.132.6]) by mx-relay10-hz2.antispameurope.com;
+ Thu, 18 Dec 2025 16:21:18 +0100
+Received: from steina-w.tq-net.de (host-82-135-125-110.customer.m-online.net [82.135.125.110])
+	(Authenticated sender: alexander.stein@ew.tq-group.com)
+	by hmail-p-smtp01-out03-hz1.hornetsecurity.com (Postfix) with ESMTPSA id 16D9ACC0D31;
+	Thu, 18 Dec 2025 16:21:04 +0100 (CET)
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Peter Chen <peter.chen@kernel.org>,
+	Pawel Laszczak <pawell@cadence.com>,
+	Roger Quadros <rogerq@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Marek Vasut <marex@denx.de>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	linux-usb@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux@ew.tq-group.com
+Subject: [PATCH 0/6] Support TQMa8QM
+Date: Thu, 18 Dec 2025 16:20:47 +0100
+Message-ID: <20251218152058.1521806-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251218134311.2309421-1-ahmed.tiba@arm.com>
+Content-Transfer-Encoding: 8bit
+X-cloud-security-sender:alexander.stein@ew.tq-group.com
+X-cloud-security-recipient:devicetree@vger.kernel.org
+X-cloud-security-crypt: load encryption module
+X-cloud-security-Mailarchiv: E-Mail archived for: alexander.stein@ew.tq-group.com
+X-cloud-security-Mailarchivtype:outbound
+X-cloud-security-Virusscan:CLEAN
+X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on mx-relay10-hz2.antispameurope.com with 4dXDrx4SHSz4F929
+X-cloud-security-connect: he-nlb01-hz1.hornetsecurity.com[94.100.132.6], TLS=1, IP=94.100.132.6
+X-cloud-security-Digest:836eb70413c5acce62e457440dd9da8d
+X-cloud-security:scantime:4.420
+DKIM-Signature: a=rsa-sha256;
+ bh=7AMuBMEfhIQw9FVyiKx57RUqUljgR4wYmPvn8hqi5T4=; c=relaxed/relaxed;
+ d=ew.tq-group.com;
+ h=content-type:mime-version:subject:from:to:message-id:date; s=hse1;
+ t=1766071278; v=1;
+ b=URZ+pN4nR3nITwR3J4qgidVxdLI3Eeo5mOmyTwtMaBdjTRl2yxugb1RIjj5uNSLVNe+Fsm9G
+ n4cZiAYzFIQRNwIwAsD/nRXTA6IreZsdzTWRWxsT1d1xSvOuzrByDDqzx7EYuzPdurBGFbb0kbT
+ hkxtPU55kkTvl79KzX90zMx3yzFHTA35jLSTUboNbzlynl0GUi3cbTfK2FaSCnKe1pj/NbCgbSZ
+ 18a1lrOho6rLJgEO5u1/E9jSENqEKK6tMei/36aFH6AdswnKxdxbXnRFkgqjCko+Du6vzlgxd7S
+ /aHx5v7rg2xXU8ScoZ3XOwpeN3T281fhqxkPpdQzpSGLg==
 
-On Thu, Dec 18, 2025 at 01:42:47PM +0000, Ahmed Tiba wrote:
-> On Thu, 18 Dec 2025 12:13:25PM +0000, Will Deacon wrote:
-> >> Introduce a platform driver that maps the CPER status block described
-> >> in DeviceTree, feeds it into the estatus core and handles either IRQ- or
-> >> poll-driven notifications. Arm64 gains a FIX_ESTATUS_IRQ slot so the
-> >> driver can safely map the shared buffer while copying records.
-> >>
-> >> Signed-off-by: Ahmed Tiba <ahmed.tiba@arm.com>
-> >> ---
-> >>  MAINTAINERS                     |   1 +
-> >>  arch/arm64/include/asm/fixmap.h |   5 +
-> >>  drivers/ras/Kconfig             |  14 ++
-> >>  drivers/ras/Makefile            |   1 +
-> >>  drivers/ras/estatus-dt.c        | 318 ++++++++++++++++++++++++++++++++
-> >>  include/linux/estatus.h         |   3 +-
-> >>  6 files changed, 341 insertions(+), 1 deletion(-)
-> >>  create mode 100644 drivers/ras/estatus-dt.c
-> >>
-> >> diff --git a/MAINTAINERS b/MAINTAINERS
-> >> index 6b2ef2ddc0c7..5567d5e82053 100644
-> >> --- a/MAINTAINERS
-> >> +++ b/MAINTAINERS
-> >> @@ -21761,6 +21761,7 @@ RAS ERROR STATUS
-> >>  M:   Ahmed Tiba <ahmed.tiba@arm.com>
-> >>  S:   Maintained
-> >>  F:   Documentation/devicetree/bindings/ras/arm,ras-ffh.yaml
-> >> +F:   drivers/ras/estatus-dt.c
-> >>  F:   drivers/firmware/efi/estatus.c
-> >>  F:   include/linux/estatus.h
-> >> 
-> >> diff --git a/arch/arm64/include/asm/fixmap.h b/arch/arm64/include/asm/fixmap.h
-> >> index 65555284446e..85ffba87bab9 100644
-> >> --- a/arch/arm64/include/asm/fixmap.h
-> >> +++ b/arch/arm64/include/asm/fixmap.h
-> >> @@ -64,6 +64,11 @@ enum fixed_addresses {
-> >>  #endif
-> >>  #endif /* CONFIG_ACPI_APEI_GHES */
-> >> 
-> >> +#ifdef CONFIG_RAS_ESTATUS_DT
-> >> +     /* Used for ESTATUS mapping from assorted contexts */
-> >> +     FIX_ESTATUS_IRQ,
-> >> +#endif /* CONFIG_RAS_ESTATUS_DT */
-> >
-> > Why do we need this in addition to the four existing GHES slots? The DT
-> > code doesn't use it and I was assuming that the ACPI code would continue
-> > to use the existing irq; is that not the case?
-> 
-> 
-> We still need a dedicated slot when only the DT provider is built.
-> All four GHES slots are defined as part of the ACPI implementation,
-> so they are not present in a DT-only configuration.
-> 
-> The estatus core always requests a fixmap index from each provider
-> before copying a CPER record. As a result, the DT driver must supply
-> its own slot to return a valid enum value to satisfy the common code.
+Hi,
 
-Sorry, but I still don't follow this. The DT code doesn't use the fixmap,
-does it? It looks like it maps the buffer ahead of time using
-devm_ioremap_resource() and then the accessors don't use the fixmap
-index at all, hence the horrible '(void)fixmap_idx;' cast which presumably
-stops the compiler from complaining about an unused variable.
+this series adds support for TQ's TQMa8QM. The first 3 patches are prepatory:
+1. Add support for clock-output-names for clk-renesas-pcie. This is necessary
+as clk-imx8qxp-lpcg.c (driver for phyx1 phyx2 clock gating) reqiures that
+property on the parent clock.
 
-Will
+2. Add support for USB devices in cdns USB3 host controller, namely
+onboard-devices as USB hubs. Implemented similarily to snps,dwc3-common.yaml.
+
+3. Add DMA IRQ for PCIe controller. Similar to commit 0b4c46f9ad79c
+("arm64: dts: imx8qm-ss-hsio: Wire up DMA IRQ for PCIe") which was only tested
+on imx8qxp which just has one PCIe controller.
+
+4 & 5. Device bindings and platform DT
+
+6. Workaround for missing "ERR050104: Arm/A53: Cache coherency issue"
+workaround. See [1] for details. Split into separate commit for easy revert
+once an errata workaround has been integrated.
+
+Best regards,
+Alexander
+
+[1] https://lore.kernel.org/all/20230420112952.28340-1-iivanov@suse.de/
+
+Alexander Stein (6):
+  dt-bindings: clk: rs9: add clock-output-names property
+  dt-bindings: usb: cdns,usb3: support USB devices in DT
+  arm64: dts: imx8qm-ss-hsio: Wire up DMA IRQ for PCIe
+  dt-bindings: arm: fsl: add bindings for TQMa8x
+  arm64: dts: Add TQ imx8qm based board
+  arm64: dts: imx8qm-tqma8qm-mba8x: Disable Cortex-A72 cluster
+
+ .../devicetree/bindings/arm/fsl.yaml          |  10 +
+ .../bindings/clock/renesas,9series.yaml       |  37 +
+ .../devicetree/bindings/usb/cdns,usb3.yaml    |  11 +
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ .../boot/dts/freescale/imx8qm-ss-hsio.dtsi    |   5 +-
+ .../dts/freescale/imx8qm-tqma8qm-mba8x.dts    | 869 ++++++++++++++++++
+ .../boot/dts/freescale/imx8qm-tqma8qm.dtsi    | 322 +++++++
+ 7 files changed, 1253 insertions(+), 2 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8qm-tqma8qm-mba8x.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8qm-tqma8qm.dtsi
+
+-- 
+2.43.0
+
 
