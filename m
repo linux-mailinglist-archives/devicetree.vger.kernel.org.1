@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-247701-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247702-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE11FCCA8BA
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 07:55:51 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C6F2CCA933
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 08:05:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C0677303D25F
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 06:55:32 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1F605300C0E8
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 07:02:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FD7932E68B;
-	Thu, 18 Dec 2025 06:48:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 712C11F0E25;
+	Thu, 18 Dec 2025 07:02:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KUi+MWJ1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z8HbJjgL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03E7E329C6E;
-	Thu, 18 Dec 2025 06:48:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 457811C8611;
+	Thu, 18 Dec 2025 07:02:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766040513; cv=none; b=m9h/ZFnh5GuVZUbQFJA0YcKK5nQRjCyPG7P+UAMcQvRpwyq2bmxLtqUSbC05rkifWa1PVS4e1pFEPYuKEdxqB5jtOhCVf+yauSD2YjbJpUqO+ezRq/kbzPZPOqO5h80lqXtiTspYYP24oR6rSloB2+ewOEWapCSB71LcKKuAxsU=
+	t=1766041335; cv=none; b=JTRFx3obBkzEWrzmlXtnbFng01hSWZQGgLLH/+KhINE2v+Jn4sjwqTgxm0X8Ek07E1TYn8D1Ty5kSNVEKKNHhmiC0NBsFVGIvtnCVbHbH2TPDDICFMs167JGWXgRxCHzJhXIUeEUCwIsUJG0uLjtOqnT4wPo9/vb5zTUfAHrRNQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766040513; c=relaxed/simple;
-	bh=LP52q0y4w97pKIkgFw09eC7QgAi5ZrZf9nSc0NpqLYI=;
+	s=arc-20240116; t=1766041335; c=relaxed/simple;
+	bh=k708/MAtiXBvCg4a/FuJ7cr8q/WTNuECOmSVx9hOJ8s=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RtCdcxy+v/fEHmqFqI7AsWZXiKRMlEbe2/J+g/lcHMerHamCSBumSkqJzkXtEAxKidRqi/MsQc8JA467nxvy3iGexhiI5dL+TVYiMU4rwfkN8IVYV90+WgsLipo11+AVV6vljAsM6yIPqN4iZrJQDxANZsw2ahuQFSYXB1ZA4J4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KUi+MWJ1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82D00C19422;
-	Thu, 18 Dec 2025 06:48:28 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=nx37S/sHrYt6XUGptT2cuAaU9fK5BexL95elb7W0cvfJ2Qqzy5zJIhp6EUmVcK1f+i6QPrEiVyTXbbsAlkvFZNXSF8LT7altO1ym1VN7I6hIEx2pjCx7E9eYlaKFDSw8JoLOSYy71qEhRPznUCDbx+qrqFfAxaA3UgSNhM9mRiw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z8HbJjgL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2609DC4CEFB;
+	Thu, 18 Dec 2025 07:02:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766040511;
-	bh=LP52q0y4w97pKIkgFw09eC7QgAi5ZrZf9nSc0NpqLYI=;
+	s=k20201202; t=1766041333;
+	bh=k708/MAtiXBvCg4a/FuJ7cr8q/WTNuECOmSVx9hOJ8s=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=KUi+MWJ1coE0AofShTJxbnhYwnkpNsHcxDjhFbAMIUxfj43LSocc4Ft34dIHOI+mS
-	 jqUfAF0aAXyefgMhnWdn0ZIN3xg4yyb9qZScvmgHABeDbmPhmzrw/qWg2wzYt38AqS
-	 QOoRuKpFGl9i8QfkgQD5dSEwGnwLVNY6B4nwFTUdSy0e0JH6aJH+NSfGhQZUfFzY2u
-	 fvT+tOddJpmpMM9cU3VphuHC9boWM390916gQtR0r+XbbXu9mezjsXzt4ap4sJbeWY
-	 PTJ5ei8JLkgvOm6pObeBChJA1jAHjFbmVxeswwtH/Z0t7LoFfml8eYlAb6W2klVytO
-	 jhiXjH/Rp0rpA==
-Message-ID: <2a2baef6-c294-4c31-bec2-10fbaa3f7941@kernel.org>
-Date: Thu, 18 Dec 2025 07:48:26 +0100
+	b=Z8HbJjgLbPfqch8cLyKOw4kuzq4QgpifBqEpNi8SaAtGygdKdUVDpKvpe8kGoH9FL
+	 m2Nt4jfzOVURjfpyj7dXVYX+bNVToLdNKu1jnm2Q7duyn+X80GbEGLIVmh78vwqGVM
+	 z+o7KI0zgMCNi5NuAwJdbqyUmoZn4tAG/sieVSebnzYZkC64uth2jGFPThyp0wRw7Y
+	 13x4DgKmcVoAi76cKLLMknBFNdxmXqmK9OoK+bcy9kIrSP+Bt6W366sNaLExPH5nNR
+	 4k1UuPwY30CyRKruC8HKQCHaoFP4NxFahsf3ReO5xOawtMFWh6M3bTdSqlbS66sdaS
+	 QMSazUoH+LOmw==
+Message-ID: <8c7024ed-fe78-4413-97d4-8fc1305ea365@kernel.org>
+Date: Thu, 18 Dec 2025 08:02:07 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,15 +48,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 10/12] dt-bindings: ras: document estatus provider
-To: Ahmed Tiba <ahmed.tiba@arm.com>, linux-acpi@vger.kernel.org,
- devicetree@vger.kernel.org
-Cc: tony.luck@intel.com, bp@alien8.de, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, catalin.marinas@arm.com, will@kernel.org,
- linux-arm-kernel@lists.infradead.org, rafael@kernel.org,
- linux-doc@vger.kernel.org, Dmitry.Lamerov@arm.com, Michael.Zhao2@arm.com
-References: <cd04e23a-9523-4d25-8240-29a0dffa0e75@kernel.org>
- <20251217174933.1938909-1-ahmed.tiba@arm.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: bridge: lt9211c: Add bindings
+To: Venkata Gopi Nagaraju Botlagunta <venkata.botlagunta@oss.qualcomm.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Marek Vasut <marex@denx.de>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Nilesh Laad <nilesh.laad@oss.qualcomm.com>,
+ venkata.valluru@oss.qualcomm.com, jessica.zhang@oss.qualcomm.com,
+ Yi Zhang <zhanyi@qti.qualcomm.com>
+References: <20251218-add-lt9211c-bridge-v3-0-1ee0670a0db2@oss.qualcomm.com>
+ <20251218-add-lt9211c-bridge-v3-1-1ee0670a0db2@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -102,30 +110,28 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251217174933.1938909-1-ahmed.tiba@arm.com>
+In-Reply-To: <20251218-add-lt9211c-bridge-v3-1-1ee0670a0db2@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 17/12/2025 18:49, Ahmed Tiba wrote:
-> On 17/12/2025 12:41, Krzysztof Kozlowski wrote:
->> What is ras? There is no such directory so some description would be
->> useful. Usually you do not get your own directory per binding.
+On 18/12/2025 07:24, Venkata Gopi Nagaraju Botlagunta wrote:
+> From: Yi Zhang <zhanyi@qti.qualcomm.com>
 > 
-> Would it make sense to move it under `Documentation/devicetree/bindings/firmware`
-> and expand the description so it spells out that
-> Arm RAS refers to reliability, availability and serviceability firmware.
+> Add bindings for lt9211c.
 > 
->> Do not describe what the binding does. Describe the hardware or firmware.
+> Signed-off-by: Yi Zhang <zhanyi@qti.qualcomm.com>
+> Signed-off-by: Nilesh Laad <nilesh.laad@oss.qualcomm.com>
+> Signed-off-by: Gopi Botlagunta <venkata.botlagunta@oss.qualcomm.com>
+> ---
+>  .../bindings/display/bridge/lontium,lt9211c.yaml   | 113 +++++++++++++++++++++
+>  1 file changed, 113 insertions(+)
 > 
-> I'll reword that section.
-> 
->> Again ras - what's that? Your patch or binding must explain that.
 
-You cut almost entire context, so I don't know what these parts are
-referring to.
 
-Please follow standard mailing list reply style. I am not reading the
-rest and I still expect to implement my feedback fully.
+You just ignored entire review and sent the same. So why do we even care
+responding here?
+
+NAK
 
 Best regards,
 Krzysztof
