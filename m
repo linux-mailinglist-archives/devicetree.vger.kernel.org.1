@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-248001-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248002-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D1C7CCD728
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 20:58:03 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70FCBCCD752
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 21:03:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3B9B3301FF56
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 19:57:50 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 575A93064789
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 20:02:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE71F29B204;
-	Thu, 18 Dec 2025 19:57:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 672D02BDC0F;
+	Thu, 18 Dec 2025 20:02:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F4s56GAH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RXhsdN/k"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 787F64A35;
-	Thu, 18 Dec 2025 19:57:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B316284888;
+	Thu, 18 Dec 2025 20:02:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766087867; cv=none; b=cB7S/6bwh3T2GJ7jtuw8H691FgCMxYryXln2KJn8CXYg+L1hJBVBQS23JkN5s6PIezse1BehslCHeLqfuVkujyk4CBeyMIYO8zlVdRxRCPWcUKRr7OL4knPazLTrQU+7aWvlBTrrrBc62PD0goJqFJg3YFHEt7H7BLMqavsjWCA=
+	t=1766088151; cv=none; b=nWZJ8qhWfjK19mKrK3LEe9Puhn9KCgz4yt7V8VzqG6PoD5kdBh/rHmiNWoxvlkwqzLqGKcYAwvOypz071PiwK8zr/mmN9mr+ecj3gkwZeFTse6A10eyFCu3CAYq7kFWtg/OxAIPbd/1Q4eHsWt3SIG/JDFcwH1hpbMYSicdIKYI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766087867; c=relaxed/simple;
-	bh=CmsidYXqMa8/ln9zbaosy9fBcdYBUtovvgDkymAAWiI=;
+	s=arc-20240116; t=1766088151; c=relaxed/simple;
+	bh=Qc95/mmzO/K9oo1wW2mTbHcYyb7FbbfLgsLwkpOTNkE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=q3xHGwXvLxLSUrftzqQZh4zaKmCw8VZoWqVL241pgkLkLeTfmFlne2lAddp7a1QwFILsxJocn5u0hjeAXWeMEnGDtWFrA3yoaSAj2Du3SvoU8ulUe0g7JecmMmUB5zyd/w5YyrUB8VdLq7yQ4/2Ig/dinjQy/lsDj026/zX4uVw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F4s56GAH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 75F53C4AF09;
-	Thu, 18 Dec 2025 19:57:39 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=A7f3epw1rNFxULFv/WYCopujrHwvsDK3AOY6D8/Df3LzrpXqBDuPXaEmoYG+orOIrQRhXDQURmXKf6K7W5qLXLRn3eXuxuTcEAf1YH2UdAKx3CuClEUlNJLjVEctXPezRKjHQ4Kgn4qskYnUoXto71vxlyOuuuvuD6xcZDU9org=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RXhsdN/k; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81656C113D0;
+	Thu, 18 Dec 2025 20:02:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766087867;
-	bh=CmsidYXqMa8/ln9zbaosy9fBcdYBUtovvgDkymAAWiI=;
+	s=k20201202; t=1766088150;
+	bh=Qc95/mmzO/K9oo1wW2mTbHcYyb7FbbfLgsLwkpOTNkE=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=F4s56GAHy4b6Qwi692dMPWt1rcD+vBeJ+V+Y8miwumOdpximHT/qK+QHCOvbUrm+5
-	 qZ4IQkrEEQ1fjYtczkotOv6/QpqUGx4RsQoDbOjoeMXe9Tre1tmHCJ5RGQzBMRKxCU
-	 V9L4z+1Ig2BWnsoQdqwTXMxmHxC2RhGeC/l3dHEjz2gCu+jMJ1Hj5j52wJd3Dptag7
-	 YuNSe4hjad3npv2uta/rm4KE28UX+52vXCmn1kAawybke1jrYWZbb3cThsToMTPe+g
-	 DPwbnCVNmrXhRrYoQi5G8+XuxridH4WgjQzG65r+Q5FahXYUZdk1R1kZeLC+xY63hT
-	 24s3hxGh5XHqw==
-Message-ID: <fde09f12-9f23-4303-85c3-80c18c3b3508@kernel.org>
-Date: Thu, 18 Dec 2025 20:57:38 +0100
+	b=RXhsdN/kRYhfoPqhwRxkFLzScKII8O9Q6d/kWD43bW8tz27LHLT5X432JWB2ZQJze
+	 0ZkNp1tXMMGZAHv4/JTfJwUFezVLB8f9TEMR0QbMSHWk4h6pVoGyDG2Who+hPPXAXs
+	 0BAIEB9tec3qplOqrHKlZJwdRaowZN8Rscb9fMRJTwlvEpcllpiGR1nQbOuTdq654P
+	 QSWyW3ixhoiENF+REeW1M4HdqgoeKAHpn87JB7h2WTxTHtOu+qsIFa6rRN2qzgq6nG
+	 7IS56wLku4NQL7TWQLah8p3IQxNpp3bfoe8cfZplXA8yxHW+pKyCWInkLnjF9GmxmK
+	 STrq+RavH1OTQ==
+Message-ID: <749e8633-1742-4e03-b1fd-2a601f218a0a@kernel.org>
+Date: Thu, 18 Dec 2025 21:02:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -48,22 +48,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 08/10] ASoC: dt-bindings: add avdd and iovdd supply
-To: Sascha Hauer <s.hauer@pengutronix.de>,
- Shenghao Ding <shenghao-ding@ti.com>, Kevin Lu <kevin-lu@ti.com>,
- Baojun Xu <baojun.xu@ti.com>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>,
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- Clark Williams <clrkwllms@kernel.org>, Steven Rostedt <rostedt@goodmis.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>,
- Dan Murphy <dmurphy@ti.com>
-Cc: linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org,
- Kevin Lu <luminlong@139.com>, linux-rt-devel@lists.linux.dev,
- devicetree@vger.kernel.org
-References: <20251218-sound-soc-codecs-tvl320adcx140-v3-0-70ff66e5b93f@pengutronix.de>
- <20251218-sound-soc-codecs-tvl320adcx140-v3-8-70ff66e5b93f@pengutronix.de>
+Subject: Re: [PATCH v2 1/2] dt-bindings: media: i2c: Add ov2732 image sensor
+To: Walter Werner Schneider <contact@schnwalter.eu>,
+ linux-media@vger.kernel.org, Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20251218-ov2732-driver-v2-0-fb763644d62c@schnwalter.eu>
+ <20251218-ov2732-driver-v2-1-fb763644d62c@schnwalter.eu>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,21 +102,105 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251218-sound-soc-codecs-tvl320adcx140-v3-8-70ff66e5b93f@pengutronix.de>
+In-Reply-To: <20251218-ov2732-driver-v2-1-fb763644d62c@schnwalter.eu>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 18/12/2025 19:22, Sascha Hauer wrote:
-> Add bindings for the avdd-supply and iovdd-supply which are named after
-> the corresponding pins on the tlv320adcx140 chips.
-> 
-> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-> ---
->  Documentation/devicetree/bindings/sound/ti,tlv320adcx140.yaml | 3 +++
->  1 file changed, 3 insertions(+)
+On 18/12/2025 19:15, Walter Werner Schneider wrote:
+> +  avdd-supply:
+> +    description: Analog Domain Power Supply
+> +
+> +  dovdd-supply:
+> +    description: I/O Domain Power Supply
+> +
+> +  dvdd-supply:
+> +    description: Digital Domain Power Supply
+> +
+> +  pwdn-gpios:
+
+Use name from gpio-consumer-common, so "powerdown-gpios".
+
+> +    maxItems: 1
+> +    description: Reference to the GPIO connected to the pwdn pin. Active high.
+
+high?
+
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +    description: Reference to the GPIO connected to the reset pin. Active high.
+
+Are you sure this is active high?
+
+> +
+> +  port:
+> +    description: MIPI CSI-2 transmitter port
+> +    $ref: /schemas/graph.yaml#/$defs/port-base
+> +    additionalProperties: false
+> +
+> +    properties:
+> +      endpoint:
+> +        $ref: /schemas/media/video-interfaces.yaml#
+> +        unevaluatedProperties: false
+> +
+> +        properties:
+> +          data-lanes:
+> +            items:
+> +              - const: 1
+> +              - const: 2
+> +          link-frequencies: true
+
+Drop
+
+> +          remote-endpoint: true
+
+Drop
+
+> +
+> +        required:
+> +          - data-lanes
+> +          - link-frequencies
+> +          - remote-endpoint
+
+Drop remote endpoint
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - avdd-supply
+> +  - dovdd-supply
+> +  - dvdd-supply
+> +  - port
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        ov2732: camera@36 {
+> +            compatible = "ovti,ov2732";
+> +            reg = <0x36>;
+> +            clocks = <&ov2732_clk>;
+> +            clock-names = "xvclk";
+> +
+> +            avdd-supply = <&ov2732_avdd>;
+> +            dovdd-supply = <&ov2732_dovdd>;
+> +            dvdd-supply = <&ov2732_dvdd>;
+> +
+> +            pwdn-gpios = <&gpio0 13 GPIO_ACTIVE_LOW>;
+> +            reset-gpios = <&gpio0 8 GPIO_ACTIVE_LOW>;
+
+And here (probably correct) active low?
 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
