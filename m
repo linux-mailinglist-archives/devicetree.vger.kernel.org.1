@@ -1,314 +1,483 @@
-Return-Path: <devicetree+bounces-247940-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247941-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D909CCCFE1
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 18:38:03 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54B8FCCD040
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 18:49:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 34566301A983
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 17:37:56 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id C217C30206F7
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 17:49:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2BE5313E13;
-	Thu, 18 Dec 2025 17:37:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4709277C9A;
+	Thu, 18 Dec 2025 17:49:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="vDgQwhoI";
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="H0Q4xzxA"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jBZ3chiM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD66E313520;
-	Thu, 18 Dec 2025 17:37:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 990E23A1E61
+	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 17:49:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766079474; cv=none; b=Jimx22BMyhpQRjZtgcUOm8bAkw3yq1Q1sVQhDWwjgHGGlD0uGen3zTv5ov75+ZR60PSwB8kmJapVxscnEuBC8ReQ8p4o9QfF7SqNHyBX0iSBrFTmJB73HIUOWcYCtTv3JpgJnDft7FjoC0hIOytDKQBRrgqmLpgwfE8gJOzdAZA=
+	t=1766080194; cv=none; b=rptEjFig9V2cEiSem9P4JP8cDXlvT+2riV05zWkSe+GWD7JkNtpG6164IZn3hvKwDrl252T3llRb1YT0KFJl8OsfBDsyqdSVC8/H7zo0wNOE48ohCN1DGzLzHKybPiKnIgxPQw05y4/1ebpyMkO0T7ZEypqQZ6WjNTqVszHTu70=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766079474; c=relaxed/simple;
-	bh=v6Xm4PS53pUiB9setquq1/S3Ilo9lNKv7mpN5jBrr/k=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=mZJMVPjpC8nJPDnBMEpcUNLHBRlU+dW1qcgR3JnLxv8wBPWg2ZtSkvZuNRrXx1cnkNerWZxWw/v2kU5f8bxYcCeKPzqWcqo177P14q2kv5oY56nDpTAADWJHAkpKWoqddfRhCFgn1Ue1c5OK5RzpNGhViPKYPjSKjW8r8Z4oZwA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=vDgQwhoI; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=H0Q4xzxA; arc=none smtp.client-ip=80.241.56.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4dXHtk487dz9tKy;
-	Thu, 18 Dec 2025 18:37:50 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1766079470;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=/GESOPhLoPY5H8Y4GPrFSfh6RpDq26pJaRGI/HTOijc=;
-	b=vDgQwhoIvoat1/fivX5AVt+mldXme4ob/pphlDm4JMITvCeyOlLelBDWBpArhW3Rtt+BDz
-	VSDZ/NCvEiG1S2jBiJs2CmVzysPhN9/uVIU7LTswjgnnp0KZXlBMY9n9A4wPKB976cQhKu
-	FgNOxqSjv43A07KrkrmmyuMql05Gs+IeEv09hTQSSQmNkfRmw468I0oFn/Koyg8CeakVUz
-	hl5QWZH5OsXO0r15cvGF2N9OH1jy/Em8n91fU3psVyJbD0OQiLa3jrRdkoIgP1SmCmTiVE
-	Zd3O8LSOOWRqTymlqfroSO/hoc6yI25LELaxB1ad4Y/R+2hxvGJjrh64NhKP2g==
-From: Marek Vasut <marek.vasut@mailbox.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1766079468;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=/GESOPhLoPY5H8Y4GPrFSfh6RpDq26pJaRGI/HTOijc=;
-	b=H0Q4xzxAkMXKTXPijpNWsFTWX/b3bWA/bdZbRgjRGfaXq5L58VuYo5/o/ppXFbvxYTFwfE
-	fxVHZowL9J0/s576NqSDmU71Pri0xlCaWb/TXZl6QmMh9atMR0B4eD7vAZe511RE4BwFxx
-	93Qa2rV1KtLsv17Vl374CPnnzJK7cn4O5W8vttA9y9TwBq8bo2ce6hIJ+xD163Su5oTvNv
-	vwcoAcxpguCJDCyH2Ow2exJV94H921VCf+GBZpZKrTq/z1x5Qv1dewcCrjHpgFP450HCxJ
-	me50Bnvhh3xi9iixtnecR0l6fRY7jnqkT3ojRLOlsqKY1D5uk1IwTLrA25gAOg==
-To: netdev@vger.kernel.org
-Cc: Marek Vasut <marek.vasut@mailbox.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Aleksander Jan Bajkowski <olek2@wp.pl>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Eric Dumazet <edumazet@google.com>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Ivan Galkin <ivan.galkin@axis.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Michael Klein <michael@fossekall.de>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Russell King <linux@armlinux.org.uk>,
-	Vladimir Oltean <vladimir.oltean@nxp.com>,
-	devicetree@vger.kernel.org
-Subject: [net-next,PATCH v3 3/3] net: phy: realtek: Add property to enable SSC
-Date: Thu, 18 Dec 2025 18:36:14 +0100
-Message-ID: <20251218173718.12878-3-marek.vasut@mailbox.org>
-In-Reply-To: <20251218173718.12878-1-marek.vasut@mailbox.org>
-References: <20251218173718.12878-1-marek.vasut@mailbox.org>
+	s=arc-20240116; t=1766080194; c=relaxed/simple;
+	bh=JvUyJ0b5t+AisHwmv9HabomTFZm9mbbvR2kLyM+8ChY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IEuU98oh67J5edXz7cI4ShoNUaSM2gkngKezJrflTySDXTUmicfXOix90rJqpSPCXi7UhjUNFxw4HsbP8rFN3/V3LsgON2J0h0zMESV7munpy/aYBr+h0CJZ1FglAKkM4rDDLwKB9bfmRm9/8L+40elIPJwGx84LLzk4latzHdc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jBZ3chiM; arc=none smtp.client-ip=209.85.210.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-7b8bbf16b71so984920b3a.2
+        for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 09:49:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1766080192; x=1766684992; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=b86URYmboRpfsL7oipfrdl2zfszQJi0IR++a0s4t4W0=;
+        b=jBZ3chiMhLEKbua0MDQxq1r27Et9I5YLhhwC7hY1MVcU8eHukOdxlnxZ7mwl1f84Rg
+         QVgkfoJwKWyHwptTCSAqY+lg4mI9XhOCXWT5GpNSSUXn0l50U8i3XwSXpwNLzeu53MYT
+         QsptrW33qOtnQ4NwnM0ZxjZtud1jewVACAWXrbQzoAbFqoOzGis9WZ1kUmZ+r/dKVxm4
+         4+yBQ505R6nJE+KB5N8m3yY35094zsn6Deu+UhYF/tuXxnmtPc+A3vVg9B1Ir5Nydujt
+         zyKgxjgoHnx7xLJmZtECW6M+vJoEwpU9Nys2PS4pSfLESfEyEDQA50y3MdEQ4TfqAgW/
+         pXNg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1766080192; x=1766684992;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=b86URYmboRpfsL7oipfrdl2zfszQJi0IR++a0s4t4W0=;
+        b=GCvNWxt67a77bDQhHdm2RkuyAKscdZpovdXV0ux+t7W+2t3UUH0irEwI/d8LA8IEdg
+         cYRj/lN5YYje7BFNcFRKQAXTX5uFQ1GQnKF/TsQXo3nGM7kqnMQVIXAsMfVNh4hP6c6d
+         ckC2naFGSk2PYsXjh5YTL+HtrIvVxs0fguO7xDLc7GaS2vbFyZ9dphe+eEp5a+PNTyar
+         3wV6uv4zM8bEehLurRx0cVIrrbDl+gg7yTUqvKn/BW46HTwcKMAy8dAnTweGm+/0Lksc
+         5jYXAfZGsXWnDYaRg3DdDGd/EYiRGcDdl8W1fwnVFXnLb1r6gpHkHgrPGXaamWonDLKw
+         ZAfg==
+X-Forwarded-Encrypted: i=1; AJvYcCUoW7Y3EEQfEZsMvAQ9rApEen2W056LRw8tNZqTD1EpUglcWU2mf0vHJBSivGER2eFioaiim7MFdGjh@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy+4h4vV3ooVwY1wEzPlZAPH/nNPbaWH1Zkc9jmIVbK1FTpOjhK
+	yC1TGqX5meUKHZlGutHIG1YJSGN/XBvY6Lpnz1THbyONi0rmjg7nnehP2izj6A==
+X-Gm-Gg: AY/fxX6v/LeyzanlHkOD7kZ5aJfkpfjWsKghJ4u7q7eALnbcbVF+lbiDXgvWhEMEobA
+	AJwfkOvj0tBWZ68U/0yD89OX8VeJTjHk5Tt8qvkL8txCMrm1qe+CMxhN1SmzSrfHkXb2scrbo69
+	W9vuRvpReqhrRkKw/Fm22nJh3pj4e8OhrNpWx+dkC3XP1TgMq6vgIbsq1xkV1P57kNlgyHOC1Gs
+	qqyJe6gNbEmjsFQvhdrUG1JWHHcXymvKPZh7ftJr/+HX9qpTMUu1QFDw/WWsN9kpkvB+/zOxVEe
+	8rSNiFT43sfgVYO3/iP0yXRtygKSRgF4k785C+Ka5BuEdGCyzlONEYrbaoNCOLzSX7u46ZkoXkE
+	sndJOE1b3hacEdowUeqOXCRIWfVNxH3eELzSw847WFhTeURe4sI+OHb+z1LNmA/adp4IOuZJQY5
+	lnTmuHiqpw5czAi3CXVcHzPmgS
+X-Google-Smtp-Source: AGHT+IEiDYf2/RGrQySGE3lIY1IHIWZorTe9AS53lFG91U22GQ/ieAamdz6WdDzGgZ7xb9qDBGjQcg==
+X-Received: by 2002:a05:7023:905:b0:11d:fd26:234e with SMTP id a92af1059eb24-121722b821amr98330c88.16.1766080191665;
+        Thu, 18 Dec 2025 09:49:51 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-12061f473acsm9347205c88.3.2025.12.18.09.49.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 18 Dec 2025 09:49:51 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Thu, 18 Dec 2025 09:49:49 -0800
+From: Guenter Roeck <linux@roeck-us.net>
+To: Yuxi Wang <Yuxi.Wang@monolithicpower.com>
+Cc: corbet@lwn.net, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, wyx137120466@gmail.com,
+	linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 RESEND 2/2] hwmon: add mp5926 driver
+Message-ID: <48471efc-8ea2-41f6-9fd7-0d4c33806ab3@roeck-us.net>
+References: <20251215022505.1602-1-Yuxi.Wang@monolithicpower.com>
+ <20251215022505.1602-3-Yuxi.Wang@monolithicpower.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-MBO-RS-ID: f7f77bd255d112aec40
-X-MBO-RS-META: 3tymohztdo55oqojh8dau6qohsc41i54
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251215022505.1602-3-Yuxi.Wang@monolithicpower.com>
 
-Add support for spread spectrum clocking (SSC) on RTL8211F(D)(I)-CG,
-RTL8211FS(I)(-VS)-CG, RTL8211FG(I)(-VS)-CG PHYs. The implementation
-follows EMI improvement application note Rev. 1.2 for these PHYs.
+On Mon, Dec 15, 2025 at 10:25:05AM +0800, Yuxi Wang wrote:
+> Add support for mps mp5926.
+> 
+> Signed-off-by: Yuxi Wang <Yuxi.Wang@monolithicpower.com>
+> ---
+>  Documentation/hwmon/index.rst  |   1 +
+>  Documentation/hwmon/mp5926.rst |  92 ++++++++++++++++
+>  MAINTAINERS                    |   7 ++
+>  drivers/hwmon/pmbus/Kconfig    |   9 ++
+>  drivers/hwmon/pmbus/Makefile   |   1 +
+>  drivers/hwmon/pmbus/mp5926.c   | 190 +++++++++++++++++++++++++++++++++
+>  6 files changed, 300 insertions(+)
+>  create mode 100644 Documentation/hwmon/mp5926.rst
+>  create mode 100644 drivers/hwmon/pmbus/mp5926.c
+> 
+> diff --git a/Documentation/hwmon/index.rst b/Documentation/hwmon/index.rst
+> index 85d7a686883e..6181c3f62177 100644
+> --- a/Documentation/hwmon/index.rst
+> +++ b/Documentation/hwmon/index.rst
+> @@ -185,6 +185,7 @@ Hardware Monitoring Kernel Drivers
+>     mp2993
+>     mp5023
+>     mp5920
+> +   mp5926
+>     mp5990
+>     mp9941
+>     mp9945
+> diff --git a/Documentation/hwmon/mp5926.rst b/Documentation/hwmon/mp5926.rst
+> new file mode 100644
+> index 000000000000..4b64a7e24ae6
+> --- /dev/null
+> +++ b/Documentation/hwmon/mp5926.rst
+> @@ -0,0 +1,92 @@
+> +.. SPDX-License-Identifier: GPL-2.0
+> +
+> +Kernel driver mp5926
+> +====================
+> +
+> +Supported chips:
+> +
+> +  * MPS mp5926
+> +
+> +    Prefix: 'mp5926'
+> +
+> +  * Datasheet
+> +    https://www.monolithicpower.com/en/
+> +
+> +Author:
+> +
+> +	Yuxi Wang <Yuxi.Wang@monolithicpower.com>
+> +
+> +Description
+> +-----------
+> +
+> +This driver implements support for Monolithic Power Systems, Inc. (MPS)
+> +MP5926 Hot-Swap Controller.
+> +
+> +Device compliant with:
+> +
+> +- PMBus rev 1.3 interface.
+> +
+> +The driver exports the following attributes via the 'sysfs' files
+> +for input voltage:
+> +
+> +**in1_input**
+> +
+> +**in1_label**
+> +
+> +**in1_crit**
+> +
+> +**in1_crit_alarm**
+> +
+> +The driver provides the following attributes for output voltage:
+> +
+> +**in2_input**
+> +
+> +**in2_label**
+> +
+> +**in2_lcrit**
+> +
+> +**in2_lcrit_alarm**
+> +
+> +**in2_rated_max**
+> +
+> +**in2_rated_min**
+> +
+> +The driver provides the following attributes for input current:
+> +
+> +**curr1_input**
+> +
+> +**curr1_label**
+> +
+> +**curr1_max**
+> +
+> +**curr1_max_alarm**
+> +
+> +The driver provides the following attributes for output current:
+> +
+> +**curr2_input**
+> +
+> +**curr2_label**
+> +
+> +The driver provides the following attributes for input power:
+> +
+> +**power1_input**
+> +
+> +**power1_label**
+> +
+> +The driver provides the following attributes for output power:
+> +
+> +**power2_input**
+> +
+> +**power2_label**
+> +
+> +The driver provides the following attributes for temperature:
+> +
+> +**temp1_input**
+> +
+> +**temp1_crit**
+> +
+> +**temp1_crit_alarm**
+> +
+> +**temp1_max**
+> +
+> +**temp1_max_alarm**
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index d701a4d5b00e..fea710aab535 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -17708,6 +17708,13 @@ S:	Maintained
+>  F:	Documentation/hwmon/mp2993.rst
+>  F:	drivers/hwmon/pmbus/mp2993.c
+>  
+> +MPS MP5926 DRIVER
+> +M:	Yuxi Wang <Yuxi.Wang@monolithicpower.com>
+> +L:	linux-hwmon@vger.kernel.org
+> +S:	Maintained
+> +F:	Documentation/hwmon/mp5926.rst
+> +F:	drivers/hwmon/pmbus/mp5926.c
+> +
+>  MPS MP9941 DRIVER
+>  M:	Noah Wang <noahwang.wang@outlook.com>
+>  L:	linux-hwmon@vger.kernel.org
+> diff --git a/drivers/hwmon/pmbus/Kconfig b/drivers/hwmon/pmbus/Kconfig
+> index f3fb94cebf1a..d0aa460abdc9 100644
+> --- a/drivers/hwmon/pmbus/Kconfig
+> +++ b/drivers/hwmon/pmbus/Kconfig
+> @@ -472,6 +472,15 @@ config SENSORS_MP5920
+>  	  This driver can also be built as a module. If so, the module will
+>  	  be called mp5920.
+>  
+> +config SENSORS_MP5926
+> +	tristate "MPS MP5926"
+> +	help
+> +	  If you say yes here you get hardware monitoring support for Monolithic
+> +	  MP5926.
+> +
+> +	  This driver can also be built as a module. If so, the module will
+> +	  be called mp5926.
+> +
+>  config SENSORS_MP5990
+>  	tristate "MPS MP5990"
+>  	help
+> diff --git a/drivers/hwmon/pmbus/Makefile b/drivers/hwmon/pmbus/Makefile
+> index 349a89b6d92e..75ec4956ca8d 100644
+> --- a/drivers/hwmon/pmbus/Makefile
+> +++ b/drivers/hwmon/pmbus/Makefile
+> @@ -47,6 +47,7 @@ obj-$(CONFIG_SENSORS_MP2975)	+= mp2975.o
+>  obj-$(CONFIG_SENSORS_MP2993)	+= mp2993.o
+>  obj-$(CONFIG_SENSORS_MP5023)	+= mp5023.o
+>  obj-$(CONFIG_SENSORS_MP5920)	+= mp5920.o
+> +obj-$(CONFIG_SENSORS_MP5926)	+= mp5926.o
+>  obj-$(CONFIG_SENSORS_MP5990)	+= mp5990.o
+>  obj-$(CONFIG_SENSORS_MP9941)	+= mp9941.o
+>  obj-$(CONFIG_SENSORS_MP9945)	+= mp9945.o
+> diff --git a/drivers/hwmon/pmbus/mp5926.c b/drivers/hwmon/pmbus/mp5926.c
+> new file mode 100644
+> index 000000000000..3122854b07f8
+> --- /dev/null
+> +++ b/drivers/hwmon/pmbus/mp5926.c
+> @@ -0,0 +1,190 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +//
+> +// mp5926.c  - pmbus driver for mps mp5926
+> +//
+> +// Copyright 2025 Monolithic Power Systems, Inc
+> +//
+> +// Author: Yuxi Wang <Yuxi.Wang@monolithicpower.com>
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/bits.h>
+> +#include <linux/i2c.h>
+> +#include <linux/module.h>
+> +#include <linux/of_device.h>
+> +#include <linux/pmbus.h>
+> +#include "pmbus.h"
+> +
+> +#define PAGE	0x01
+> +#define EFUSE_CFG	0xCF
+> +#define I_SCALE_SEL	0xC6
+> +#define MP5926_FUNC	(PMBUS_HAVE_VIN | PMBUS_HAVE_VOUT | \
+> +			PMBUS_HAVE_IIN | PMBUS_HAVE_PIN | \
+> +			PMBUS_HAVE_TEMP | PMBUS_HAVE_STATUS_INPUT | \
+> +			PMBUS_HAVE_STATUS_TEMP | PMBUS_HAVE_STATUS_VOUT)
+> +
+> +struct mp5926_data {
+> +	struct pmbus_driver_info info;
+> +	u8 vout_mode;
+> +	u8 vout_linear_exponent;
+> +};
+> +
+> +#define to_mp5926_data(x)  container_of(x, struct mp5926_data, info)
+> +
+> +static int mp5926_read_byte_data(struct i2c_client *client, int page,
+> +				 int reg)
+> +{
+> +	const struct pmbus_driver_info *info = pmbus_get_driver_info(client);
+> +	struct mp5926_data *data = to_mp5926_data(info);
+> +	int ret;
+> +
+> +	switch (reg) {
+> +	case PMBUS_VOUT_MODE:
+> +		if (data->vout_mode == linear) {
+> +			/*
+> +			 * The VOUT format used by the chip is linear11,
+> +			 * not linear16. Report that VOUT is in linear mode
+> +			 * and return exponent value extracted while probing
+> +			 * the chip.
+> +			 */
+> +			return data->vout_linear_exponent;
+> +		} else {
 
-The current implementation enables SSC for both RXC and SYSCLK clock
-signals. Introduce DT properties 'realtek,clkout-ssc-enable',
-'realtek,rxc-ssc-enable' and 'realtek,sysclk-ssc-enable' which control
-CLKOUT, RXC and SYSCLK SSC spread spectrum clocking enablement on these
-signals.
+else after return is not needed.
 
-Signed-off-by: Marek Vasut <marek.vasut@mailbox.org>
----
-Cc: "David S. Miller" <davem@davemloft.net>
-Cc: Aleksander Jan Bajkowski <olek2@wp.pl>
-Cc: Andrew Lunn <andrew@lunn.ch>
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Eric Dumazet <edumazet@google.com>
-Cc: Florian Fainelli <f.fainelli@gmail.com>
-Cc: Heiner Kallweit <hkallweit1@gmail.com>
-Cc: Ivan Galkin <ivan.galkin@axis.com>
-Cc: Jakub Kicinski <kuba@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Michael Klein <michael@fossekall.de>
-Cc: Paolo Abeni <pabeni@redhat.com>
-Cc: Rob Herring <robh@kernel.org>
-Cc: Russell King <linux@armlinux.org.uk>
-Cc: Vladimir Oltean <vladimir.oltean@nxp.com>
-Cc: devicetree@vger.kernel.org
-Cc: netdev@vger.kernel.org
----
-V2: Split SSC clock control for each CLKOUT, RXC, SYSCLK signal
-V3: Update RTL8211FVD PHYCR2 comment to state this PHY has PHYCR2 register,
-    but SSC configuration is not supported due to different layout.
----
- drivers/net/phy/realtek/realtek_main.c | 133 +++++++++++++++++++++++++
- 1 file changed, 133 insertions(+)
+> +			return PB_VOUT_MODE_DIRECT;
+> +		}
 
-diff --git a/drivers/net/phy/realtek/realtek_main.c b/drivers/net/phy/realtek/realtek_main.c
-index 67ecf3d4af2b1..15d1de1339845 100644
---- a/drivers/net/phy/realtek/realtek_main.c
-+++ b/drivers/net/phy/realtek/realtek_main.c
-@@ -74,11 +74,19 @@
- 
- #define RTL8211F_PHYCR2				0x19
- #define RTL8211F_CLKOUT_EN			BIT(0)
-+#define RTL8211F_SYSCLK_SSC_EN			BIT(3)
- #define RTL8211F_PHYCR2_PHY_EEE_ENABLE		BIT(5)
-+#define RTL8211F_CLKOUT_SSC_EN			BIT(7)
- 
- #define RTL8211F_INSR_PAGE			0xa43
- #define RTL8211F_INSR				0x1d
- 
-+/* RTL8211F SSC settings */
-+#define RTL8211F_SSC_PAGE			0xc44
-+#define RTL8211F_SSC_RXC			0x13
-+#define RTL8211F_SSC_SYSCLK			0x17
-+#define RTL8211F_SSC_CLKOUT			0x19
-+
- /* RTL8211F LED configuration */
- #define RTL8211F_LEDCR_PAGE			0xd04
- #define RTL8211F_LEDCR				0x10
-@@ -203,6 +211,9 @@ MODULE_LICENSE("GPL");
- struct rtl821x_priv {
- 	bool enable_aldps;
- 	bool disable_clk_out;
-+	bool enable_clkout_ssc;
-+	bool enable_rxc_ssc;
-+	bool enable_sysclk_ssc;
- 	struct clk *clk;
- 	/* rtl8211f */
- 	u16 iner;
-@@ -266,6 +277,12 @@ static int rtl821x_probe(struct phy_device *phydev)
- 						   "realtek,aldps-enable");
- 	priv->disable_clk_out = of_property_read_bool(dev->of_node,
- 						      "realtek,clkout-disable");
-+	priv->enable_clkout_ssc = of_property_read_bool(dev->of_node,
-+							"realtek,clkout-ssc-enable");
-+	priv->enable_rxc_ssc = of_property_read_bool(dev->of_node,
-+						     "realtek,rxc-ssc-enable");
-+	priv->enable_sysclk_ssc = of_property_read_bool(dev->of_node,
-+							"realtek,sysclk-ssc-enable");
- 
- 	phydev->priv = priv;
- 
-@@ -700,6 +717,110 @@ static int rtl8211f_config_phy_eee(struct phy_device *phydev)
- 				RTL8211F_PHYCR2_PHY_EEE_ENABLE, 0);
- }
- 
-+static int rtl8211f_config_clkout_ssc(struct phy_device *phydev)
-+{
-+	struct rtl821x_priv *priv = phydev->priv;
-+	struct device *dev = &phydev->mdio.dev;
-+	int ret;
-+
-+	/* The value is preserved if the device tree property is absent */
-+	if (!priv->enable_clkout_ssc)
-+		return 0;
-+
-+	/* RTL8211FVD has PHYCR2 register, but configuration of CLKOUT SSC
-+	 * is not currently supported by this driver due to different bit
-+	 * layout.
-+	 */
-+	if (phydev->drv->phy_id == RTL_8211FVD_PHYID)
-+		return 0;
-+
-+	/* Unnamed registers from EMI improvement parameters application note 1.2 */
-+	ret = phy_write_paged(phydev, 0xd09, 0x10, 0xcf00);
-+	if (ret < 0) {
-+		dev_err(dev, "CLKOUT SCC initialization failed: %pe\n", ERR_PTR(ret));
-+		return ret;
-+	}
-+
-+	ret = phy_write_paged(phydev, RTL8211F_SSC_PAGE, RTL8211F_SSC_CLKOUT, 0x38c3);
-+	if (ret < 0) {
-+		dev_err(dev, "CLKOUT SCC configuration failed: %pe\n", ERR_PTR(ret));
-+		return ret;
-+	}
-+
-+	/*
-+	 * Enable CLKOUT SSC using PHYCR2 bit 7 , this step is missing from the
-+	 * EMI improvement parameters application note 1.2 section 2.3
-+	 */
-+	ret = phy_modify_paged(phydev, RTL8211F_PHYCR_PAGE, RTL8211F_PHYCR2,
-+			       RTL8211F_CLKOUT_SSC_EN, RTL8211F_CLKOUT_SSC_EN);
-+	if (ret < 0) {
-+		dev_err(dev, "CLKOUT SCC enable failed: %pe\n", ERR_PTR(ret));
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static int rtl8211f_config_rxc_ssc(struct phy_device *phydev)
-+{
-+	struct rtl821x_priv *priv = phydev->priv;
-+	struct device *dev = &phydev->mdio.dev;
-+	int ret;
-+
-+	/* The value is preserved if the device tree property is absent */
-+	if (!priv->enable_rxc_ssc)
-+		return 0;
-+
-+	/* RTL8211FVD has PHYCR2 register, but configuration of RXC SSC
-+	 * is not currently supported by this driver due to different bit
-+	 * layout.
-+	 */
-+	if (phydev->drv->phy_id == RTL_8211FVD_PHYID)
-+		return 0;
-+
-+	ret = phy_write_paged(phydev, RTL8211F_SSC_PAGE, RTL8211F_SSC_RXC, 0x5f00);
-+	if (ret < 0) {
-+		dev_err(dev, "RXC SCC configuration failed: %pe\n", ERR_PTR(ret));
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static int rtl8211f_config_sysclk_ssc(struct phy_device *phydev)
-+{
-+	struct rtl821x_priv *priv = phydev->priv;
-+	struct device *dev = &phydev->mdio.dev;
-+	int ret;
-+
-+	/* The value is preserved if the device tree property is absent */
-+	if (!priv->enable_sysclk_ssc)
-+		return 0;
-+
-+	/* RTL8211FVD has PHYCR2 register, but configuration of SYSCLK SSC
-+	 * is not currently supported by this driver due to different bit
-+	 * layout.
-+	 */
-+	if (phydev->drv->phy_id == RTL_8211FVD_PHYID)
-+		return 0;
-+
-+	ret = phy_write_paged(phydev, RTL8211F_SSC_PAGE, RTL8211F_SSC_SYSCLK, 0x4f00);
-+	if (ret < 0) {
-+		dev_err(dev, "SYSCLK SCC configuration failed: %pe\n", ERR_PTR(ret));
-+		return ret;
-+	}
-+
-+	/* Enable SSC */
-+	ret = phy_modify_paged(phydev, RTL8211F_PHYCR_PAGE, RTL8211F_PHYCR2,
-+			       RTL8211F_SYSCLK_SSC_EN, RTL8211F_SYSCLK_SSC_EN);
-+	if (ret < 0) {
-+		dev_err(dev, "SYSCLK SCC enable failed: %pe\n", ERR_PTR(ret));
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
- static int rtl8211f_config_init(struct phy_device *phydev)
- {
- 	struct device *dev = &phydev->mdio.dev;
-@@ -723,6 +844,18 @@ static int rtl8211f_config_init(struct phy_device *phydev)
- 		return ret;
- 	}
- 
-+	ret = rtl8211f_config_clkout_ssc(phydev);
-+	if (ret)
-+		return ret;
-+
-+	ret = rtl8211f_config_rxc_ssc(phydev);
-+	if (ret)
-+		return ret;
-+
-+	ret = rtl8211f_config_sysclk_ssc(phydev);
-+	if (ret)
-+		return ret;
-+
- 	return rtl8211f_config_phy_eee(phydev);
- }
- 
--- 
-2.51.0
+> +		break;
 
+and neither is a break after unconditional return.
+
+> +	default:
+> +		ret = -ENODATA;
+> +		break;
+> +	}
+> +	return ret;
+> +}
+> +
+> +static int mp5926_read_word_data(struct i2c_client *client, int page, int phase,
+> +				 int reg)
+> +{
+> +	const struct pmbus_driver_info *info = pmbus_get_driver_info(client);
+> +	struct mp5926_data *data = to_mp5926_data(info);
+> +	int ret;
+> +	s32 mantissa;
+> +
+> +	switch (reg) {
+> +	case PMBUS_READ_VOUT:
+> +		ret = pmbus_read_word_data(client, page, phase, reg);
+> +		if (ret < 0)
+> +			return ret;
+> +		/*
+> +		 * Because the VOUT format used by the chip is linear11 and not
+> +		 * linear16, we disregard bits[15:11]. The exponent is reported
+> +		 * as part of the VOUT_MODE command.
+> +		 */
+> +		if (data->vout_mode == linear) {
+> +			mantissa = ((s16)((ret & 0x7ff) << 5)) >> 5;
+> +			ret = mantissa;
+
+The extra 'mantissa' variable is really unnecessary.
+			ret = ((s16)((ret & 0x7ff) << 5)) >> 5;
+or even better sign_extend32() would be sufficient.
+
+> +		}
+> +		break;
+> +	default:
+> +		ret = -ENODATA;
+> +		break;
+> +	}
+> +	return ret;
+> +}
+> +
+> +static struct pmbus_driver_info mp5926_info = {
+> +	.pages = PAGE,
+> +	.format[PSC_VOLTAGE_IN] = direct,
+> +	.format[PSC_CURRENT_IN] = direct,
+> +	.format[PSC_VOLTAGE_OUT] = direct,
+> +	.format[PSC_TEMPERATURE] = direct,
+> +	.format[PSC_POWER] = direct,
+> +
+> +	.m[PSC_VOLTAGE_IN] = 16,
+> +	.b[PSC_VOLTAGE_IN] = 0,
+> +	.R[PSC_VOLTAGE_IN] = 0,
+> +
+> +	.m[PSC_CURRENT_IN] = 16,
+> +	.b[PSC_CURRENT_IN] = 0,
+> +	.R[PSC_CURRENT_IN] = 0,
+> +
+> +	.m[PSC_VOLTAGE_OUT] = 16,
+> +	.b[PSC_VOLTAGE_OUT] = 0,
+> +	.R[PSC_VOLTAGE_OUT] = 0,
+> +
+> +	.m[PSC_TEMPERATURE] = 4,
+> +	.b[PSC_TEMPERATURE] = 0,
+> +	.R[PSC_TEMPERATURE] = 0,
+> +
+> +	.m[PSC_POWER] = 25,
+> +	.b[PSC_POWER] = 0,
+> +	.R[PSC_POWER] = -2,
+> +
+> +	.read_word_data = mp5926_read_word_data,
+> +	.read_byte_data = mp5926_read_byte_data,
+> +	.func[0] = MP5926_FUNC,
+> +};
+> +
+> +static int mp5926_probe(struct i2c_client *client)
+> +{
+> +	struct mp5926_data *data;
+> +	struct pmbus_driver_info *info;
+> +	int ret;
+> +
+> +	data = devm_kzalloc(&client->dev, sizeof(struct mp5926_data),
+> +			    GFP_KERNEL);
+> +	if (!data)
+> +		return -ENOMEM;
+> +
+> +	memcpy(&data->info, &mp5926_info, sizeof(*info));
+> +	info = &data->info;
+> +	ret = i2c_smbus_read_word_data(client, EFUSE_CFG);
+> +	if (ret < 0)
+> +		return ret;
+> +	if (ret & BIT(12)) {
+> +		data->vout_mode = linear;
+> +		data->info.format[PSC_VOLTAGE_IN] = linear;
+> +		data->info.format[PSC_CURRENT_IN] = linear;
+> +		data->info.format[PSC_VOLTAGE_OUT] = linear;
+> +		data->info.format[PSC_TEMPERATURE] = linear;
+> +		data->info.format[PSC_POWER] = linear;
+> +		ret = i2c_smbus_read_word_data(client, PMBUS_READ_VOUT);
+> +		if (ret < 0) {
+> +			dev_err(&client->dev, "Can't get vout exponent.");
+> +			return ret;
+
+dev_err_probe() would be useful here.
+
+> +		}
+> +		data->vout_linear_exponent = (u8)((ret >> 11) & 0x1f);
+> +	} else {
+> +		data->vout_mode = direct;
+> +		ret = i2c_smbus_read_word_data(client, I_SCALE_SEL);
+> +		if (ret < 0)
+> +			return ret;
+> +		if (ret & BIT(6))
+> +			data->info.m[PSC_CURRENT_IN] = 4;
+> +	}
+> +
+> +	return pmbus_do_probe(client, info);
+> +}
+> +
+> +static const struct i2c_device_id mp5926_id[] = {
+> +	{ "mp5926", 0 },
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(i2c, mp5926_id);
+> +
+> +static const struct of_device_id mp5926_of_match[] = {
+> +	{ .compatible = "mps,mp5926" },
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(of, mp5926_of_match);
+> +
+> +static struct i2c_driver mp5926_driver = {
+> +	.probe = mp5926_probe,
+> +	.driver = {
+> +			.name = "mp5926",
+> +			.of_match_table = mp5926_of_match,
+> +		   },
+> +	.id_table = mp5926_id,
+> +};
+> +
+> +module_i2c_driver(mp5926_driver);
+> +MODULE_AUTHOR("Yuxi Wang <Yuxi.Wang@monolithicpower.com>");
+> +MODULE_DESCRIPTION("MPS MP5926 pmbus driver");
+> +MODULE_LICENSE("GPL");
+> +MODULE_IMPORT_NS("PMBUS");
 
