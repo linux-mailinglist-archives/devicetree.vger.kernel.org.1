@@ -1,51 +1,67 @@
-Return-Path: <devicetree+bounces-247885-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247874-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0A23CCC6B0
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 16:14:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 77C8ACCC620
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 16:04:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A14A030BD091
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 15:06:56 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 752ED301C647
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 15:04:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42F002EC0B2;
-	Thu, 18 Dec 2025 15:05:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64AC02D662D;
+	Thu, 18 Dec 2025 15:04:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="or0nf8VU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A50022E22B5
-	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 15:05:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA95D28D8DA;
+	Thu, 18 Dec 2025 15:04:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766070349; cv=none; b=s8Ui1IC8wVB8IXI0zdWly3AVbHGjCibpBk05qTgEDCRBXynSZAw7Kje/S0D+/+s2NVMucXWexgInjYpeN/ya4e5tePD/JRW096gwNjrcosMrdogEPc+HRlLXVWmtzGGIX5rc7qaIAlIJKmg6drQr4HEbZ0Ns0r6ZINdPLYP0Rgk=
+	t=1766070265; cv=none; b=EPDOupEiFgeVkqLC05Axj7h87zfXqlFUSwXqNnfzYJIgdpAwmXBIzWutixBc3l+ZH8TWm8G8al+gPTbJNrZoxDAT2mFaDw10aVcwMsowTjxcLp/QSAJNBSVs4RWsXXXkLO95XVnURdENn3yYRixXbyIJLZGUTHvUzLCQFrODZh8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766070349; c=relaxed/simple;
-	bh=zIzI+RWN8I+PPp7gM10QfdwWfky+ttRAA/4WGgQBPSs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=OeutQtBzTcuu+q87HxOA2cd2gWby3TJ+Jg4v1/mitljyvDv2V2fBQD8ETj58ff6SRReTKexAU98I7etuM3F4tok64aBT5q4cxhN8yI4Zm16xIGIn3NU8jLEu/LPT20kF/nPxmvcQyPNMiLYzHM8piXwlqmgGWBGYYYsQyLrruwM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <s.hauer@pengutronix.de>)
-	id 1vWFZS-00080k-Oi; Thu, 18 Dec 2025 16:05:38 +0100
-Received: from dude02.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::28])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <s.hauer@pengutronix.de>)
-	id 1vWFZR-006IkO-2Q;
-	Thu, 18 Dec 2025 16:05:37 +0100
-Received: from localhost ([::1] helo=dude02.red.stw.pengutronix.de)
-	by dude02.red.stw.pengutronix.de with esmtp (Exim 4.98.2)
-	(envelope-from <s.hauer@pengutronix.de>)
-	id 1vWFY1-00000002kPh-224q;
-	Thu, 18 Dec 2025 16:04:09 +0100
-From: Sascha Hauer <s.hauer@pengutronix.de>
-Date: Thu, 18 Dec 2025 16:04:16 +0100
-Subject: [PATCH v2 10/10] ASoC: tlv320adcx140: add channel sum control
+	s=arc-20240116; t=1766070265; c=relaxed/simple;
+	bh=TZc9Hlw0J1rsEXQ0S3cg/4mmQeIULdQ8BsiItCa/0nA=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=hqzilOScAaDoYpUmbctEJgAwohQYjXvllMBfnyfxHWxi6dWY/75gmhINRHQ/SE8/VqbbFsq43yarshweGJIy8PtaJ99gu1SF+6w8EVkB5GMTUXj1WGncXv9pQrF43hDOkeGIq6O1q6hlVShiVlobG9nLKg1UAYYrrajcZBhOIvo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=or0nf8VU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 191D4C4CEFB;
+	Thu, 18 Dec 2025 15:04:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1766070265;
+	bh=TZc9Hlw0J1rsEXQ0S3cg/4mmQeIULdQ8BsiItCa/0nA=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=or0nf8VUHQUtT3hN+QIH+SD1Wc1VA8wcJbvDGXZWaZcXFg3zv3BZRf//deLGRlaim
+	 ARFCW5RU3zVDBFANug05lEnQ/AUchMNl7jKOgB1w8w6A8JuWvpYOzPMcbW2Cd+WIeg
+	 xq+v1OtlKPkFufoRcGENo51C2qqIdoinAmghuVbdaZNfbN+WnKtXirXBnc0l3TKQfq
+	 3mH6aiIUstI7F4oO7pBuDlfrNTPLWZGWB3NOPQ3Gvz/NgR/wV1WilA50BPNRLwSnXZ
+	 zAw5NRmiGdkj1TxevR0h05Nxu3AgDeEC4202aHuOTfWpZadpQ5TDBHjSF31TVMobtI
+	 VXtrQA5BhsKjg==
+From: Bjorn Andersson <andersson@kernel.org>
+To: Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+Cc: aiqun.yu@oss.qualcomm.com,
+	tingwei.zhang@oss.qualcomm.com,
+	trilok.soni@oss.qualcomm.com,
+	yijie.yang@oss.qualcomm.com,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	phone-devel@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+	Tengfei Fan <tengfei.fan@oss.qualcomm.com>
+Subject: Re: (subset) [PATCH v4 0/5] arm64: dts: qcom: Introduce Kaanapali platform device tree
+Date: Thu, 18 Dec 2025 09:04:21 -0600
+Message-ID: <176607025911.302413.14359032773299957927.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.52.0
+In-Reply-To: <20251215-knp-dts-v4-0-1541bebeb89f@oss.qualcomm.com>
+References: <20251215-knp-dts-v4-0-1541bebeb89f@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,93 +69,30 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251218-sound-soc-codecs-tvl320adcx140-v2-10-3c2270c34bac@pengutronix.de>
-References: <20251218-sound-soc-codecs-tvl320adcx140-v2-0-3c2270c34bac@pengutronix.de>
-In-Reply-To: <20251218-sound-soc-codecs-tvl320adcx140-v2-0-3c2270c34bac@pengutronix.de>
-To: Shenghao Ding <shenghao-ding@ti.com>, Kevin Lu <kevin-lu@ti.com>, 
- Baojun Xu <baojun.xu@ti.com>, Liam Girdwood <lgirdwood@gmail.com>, 
- Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>, 
- Takashi Iwai <tiwai@suse.com>, 
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>, 
- Clark Williams <clrkwllms@kernel.org>, Steven Rostedt <rostedt@goodmis.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>, 
- Dan Murphy <dmurphy@ti.com>
-Cc: linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Kevin Lu <luminlong@139.com>, linux-rt-devel@lists.linux.dev, 
- devicetree@vger.kernel.org, Sascha Hauer <s.hauer@pengutronix.de>, 
- Emil Svendsen <emas@bang-olufsen.dk>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1766070249; l=1805;
- i=s.hauer@pengutronix.de; s=20230412; h=from:subject:message-id;
- bh=0KnIM+Y4QBq/N0NnDfRAKNRfpAubDFVWi/5K2Fijr9k=;
- b=DyJ5K/YS/KOBuHz5cwQlYzcr0nvB/FdzrWmoR44Zs8aFCe7Sk41MiXXjEHNgiXZLlUfHPNc9G
- 6NklkWiv0bxBTpIa0UV9MLLlthEnECv1LBoi0AZVS3CvQfH8VJaRqY5
-X-Developer-Key: i=s.hauer@pengutronix.de; a=ed25519;
- pk=4kuc9ocmECiBJKWxYgqyhtZOHj5AWi7+d0n/UjhkwTg=
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: s.hauer@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
 
-From: Emil Svendsen <emas@bang-olufsen.dk>
 
-Add control for channel summation.
+On Mon, 15 Dec 2025 01:07:20 -0800, Jingyi Wang wrote:
+> Introduce the Device Tree for the recently announced Snapdragon SoC from Qualcomm:
+> https://www.qualcomm.com/products/mobile/snapdragon/smartphones/snapdragon-8-series-mobile-platforms/snapdragon-8-elite-gen-5
+> 
+> Add device trees for the Kaanapali SoC, MTP (Mobile Test Platform) and
+> QRD (Qualcomm Reference Device), along with the corresponding defconfig
+> and binding, providing initial support to boot to UART shell with UFS
+> enabled.
+> 
+> [...]
 
-3 modes are supported:
+Applied, thanks!
 
-1. "Disabled": Normal operation
+[3/5] arm64: dts: qcom: Introduce Kaanapali SoC
+      commit: 2eeb5767d53f457913d2b378a3bd9e2269a4098d
+[4/5] arm64: dts: qcom: kaanapali: Add base MTP board
+      commit: 1cc3a0a0210697a25e96783cf21f93d28a09ebf7
+[5/5] arm64: dts: qcom: kaanapali: Add base QRD board
+      commit: 0e31dcfefd21ed76ff1b2d05647cd34336ab9772
 
-2. "2 Channel": Every two channels are summed and divided by 2
-
-  Out 1 <- (CH1 + CH2) / 2
-  Out 2 <- (CH1 + CH2) / 2
-  Out 3 <- (CH3 + CH4) / 2
-  Out 4 <- (CH3 + CH4) / 2
-
-3. "4 Channel": Every four channels are summed and divided by 4
-
-  Out 1 <- (CH1 + CH2 + CH3 + CH4) / 4
-  Out 2 <- (CH1 + CH2 + CH3 + CH4) / 4
-  Out 3 <- (CH1 + CH2 + CH3 + CH4) / 4
-  Out 4 <- (CH1 + CH2 + CH3 + CH4) / 4
-
-Signed-off-by: Emil Svendsen <emas@bang-olufsen.dk>
-Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
----
- sound/soc/codecs/tlv320adcx140.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
-
-diff --git a/sound/soc/codecs/tlv320adcx140.c b/sound/soc/codecs/tlv320adcx140.c
-index e7c607af642f43b2b783597f3cba3a8cbb31de4a..ac6aab8d722409b2c47b4e1df2a23760bebe795b 100644
---- a/sound/soc/codecs/tlv320adcx140.c
-+++ b/sound/soc/codecs/tlv320adcx140.c
-@@ -222,6 +222,13 @@ static const struct snd_kcontrol_new decimation_filter_controls[] = {
- 	SOC_DAPM_ENUM("Decimation Filter", decimation_filter_enum),
- };
- 
-+static const char * const channel_summation_text[] = {
-+	"Disabled", "2 Channel", "4 Channel"
-+};
-+
-+static SOC_ENUM_SINGLE_DECL(channel_summation_enum, ADCX140_DSP_CFG0, 2,
-+			    channel_summation_text);
-+
- static const char * const pdmclk_text[] = {
- 	"2.8224 MHz", "1.4112 MHz", "705.6 kHz", "5.6448 MHz"
- };
-@@ -711,6 +718,8 @@ static const struct snd_kcontrol_new adcx140_snd_controls[] = {
- 	ADCX140_PHASE_CALIB_SWITCH("Phase Calibration Switch"),
- 
- 	SOC_SINGLE("Biquads Per Channel", ADCX140_DSP_CFG1, 5, 3, 0),
-+
-+	SOC_ENUM("Channel Summation", channel_summation_enum),
- };
- 
- static int adcx140_reset(struct adcx140_priv *adcx140)
-
+Best regards,
 -- 
-2.47.3
-
+Bjorn Andersson <andersson@kernel.org>
 
