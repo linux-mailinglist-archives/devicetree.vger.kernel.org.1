@@ -1,101 +1,101 @@
-Return-Path: <devicetree+bounces-247722-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247721-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB844CCACB2
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 09:11:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A4B6ECCACAF
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 09:10:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id B9CDB30210DC
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 08:11:01 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 5E01D3018430
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 08:10:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E09D42F39CD;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 107362F1FEE;
 	Thu, 18 Dec 2025 08:10:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="R0LckyiQ";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="W+UNYLut"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ofbVwGUO";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Bs/5Q7zj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FFCE2EF66E
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E7A62ED161
 	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 08:10:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766045448; cv=none; b=tGO+0mibeF/p8ZIQMCaQOJc9CgsFvPd6spN6dTJlfSDr+xNxAPHZCB93aHp3b/upAYt+41vWiZlx6/ImOK3jQg/SoJGIzWXzgZ8I0dLjFrRctZzgNpPdrEsKFkBY4sdPvVVXR5AgCee2e7RKvicqn0JbynlCClQH8v/pWN3hTds=
+	t=1766045447; cv=none; b=kCkFaCcXAkkDsYKpAiOuStnd6dgnxUkBs1KgnPvYKYKYSNsKjsiIwgGYqik+ZZhlT+r4DAYatiDvBYumK9MyWE+l8I9hMGHacB7hp0CCMtWQMDW7MArDitOs4vx1L0seGcqxxpIgoBlphn1FBiQINucyxwX4qz8wj2h8wPIDXVE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766045448; c=relaxed/simple;
-	bh=Fpp/5eQxMyG5rpvoNvxSYiDKJ7rnTCbi3mj2igPMxLU=;
+	s=arc-20240116; t=1766045447; c=relaxed/simple;
+	bh=WwWv1dVaZYPvnR6R1Ei7R4iTlI2WTlIv5BffkfyWev4=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=aZ3ZqUrGsQHNpL6Nsl3YEc12gzZTFXnWwH3xO5itwf5OjKQKrOq5ETB2KjQDIJoAFyh2yaxlZGd8y4Y4ml12FXztiHjIyY3CbswyoB+corQYul2mPmQA9PUg4URGTxk11SoueUEeDQA9H/82xoCL9PZ+4bYmE28en/OaX6JJSic=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=R0LckyiQ; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=W+UNYLut; arc=none smtp.client-ip=205.220.180.131
+	 In-Reply-To:To:Cc; b=KuhvNvPRwq/qHw4XqbzIg27A/5wGmNU8+mvPvA7kIscoFBEdXvfTZMXv6RcuOmOfFAXWu5vjHjXKxgKmvvIj/DxYwGVTHh1pllieuROdnbvS/7sigzQ5AOyPL46ull4jUGVRay4P6xo3Uu8+awEWQLwF+D7UGccRQRMIv/in4Lk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ofbVwGUO; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Bs/5Q7zj; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BI3agNm754700
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BI1YoVj237745
 	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 08:10:45 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	cNH63exyhTmIcemy4/YjTfy8jDYpUWUjpvcUJrfWdgU=; b=R0LckyiQx7Vz5Glw
-	JUHIvlCeO86pmxbCF3yddwHW4f2haJktLClGqNcYiXVxUeBuvkaFCdrYbveMMhed
-	Ox7aXp8aVx8UQWbazOMGOQgLZucJiMoGI9YtOZw7J/EwrlWhIORdezkvIOPG6cRp
-	edBqAeAeNxAo+KQ0P3iqtA1Us/xY2ZMKuZIDt++/DxSNCiyY1k9onhICdZGbzRAT
-	NDa6huCwKOU5TVjPyxtDOqoegf67GcZ+9gdx8SR+RmzlYeYnAe9DPxckoXTATaPM
-	RBzk6XmgYs1OGzIRkNLGkP1gCnut8q0mDAk/J80kihZSAttr+H8PApI3TTEWEbjX
-	d+VbCQ==
-Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b49v0rpnb-1
+	E0rpWnjGI2g5XgXoHJyDOCm/wAcv0BxAgcw2UhKMGfg=; b=ofbVwGUO9nTOpxwN
+	7uP+aAPoHd/t3uRqfaIktbM9vU9yIvgAoUIBzOiV8JsrACbW19WV1LpCapZu7kTe
+	T2gcCJcDWePIWK8fluC8NtLggWL7OcqcTZ5ZAf9ZGAIZrMkfNECwLm2Vaq6GW8HE
+	7iQH3sfSL7vR0HRzqJxnoabTYZpGrShIyJe2OLAH2icA1nFuzzZO8hoZb66G4Iw4
+	NqloKRKLxQ8iAVqco3PcRpDJBYiaXWAl0/AlQWHExFZwDZcdxYoK0DRO8HxEUU+3
+	qRN4dud5f/45nYZygEmyO+7S6H7tmaPYVLjLicYoys31a/1xmJ/lTYZwM+UG2cSC
+	/mJtjw==
+Received: from mail-pg1-f198.google.com (mail-pg1-f198.google.com [209.85.215.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b44x3hfyw-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 08:10:43 +0000 (GMT)
-Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-2a0f0c7a06eso7833345ad.2
-        for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 00:10:43 -0800 (PST)
+	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 08:10:44 +0000 (GMT)
+Received: by mail-pg1-f198.google.com with SMTP id 41be03b00d2f7-c0c7e0a8ac1so539948a12.0
+        for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 00:10:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1766045443; x=1766650243; darn=vger.kernel.org;
+        d=oss.qualcomm.com; s=google; t=1766045444; x=1766650244; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=cNH63exyhTmIcemy4/YjTfy8jDYpUWUjpvcUJrfWdgU=;
-        b=W+UNYLutP14j7XkV2GN6NbPi1k67nzj81bRD1GUR5VCeeATOu0UKpJrkcbffy+hVhD
-         T4TequGYksT7AapnR/rFwN8Ft3huEFCbhL0lnZYSbUncy8ZZUyExAE2q791AP3zLqp6q
-         lH/p2poOOaIMpHjWZXlKWR13vTHM2xnrI4O9+nPH6lXZ5tixBvPmSBWSs5ZpdOvjxeC0
-         uCNf5tB+7rvAmcnhZJ0KbWCRXTKIHWnjppC0RQCny4KK0J/r/0kG687iIuhSp9O4nUeC
-         LGgOgDwlEz/cuODOs8va0NDaW5Dx4IKnQDvgQRoFPO7/wWmjHxhjfxjX62aj+8S72hEL
-         gSkg==
+        bh=E0rpWnjGI2g5XgXoHJyDOCm/wAcv0BxAgcw2UhKMGfg=;
+        b=Bs/5Q7zje6W76bF/ufIh4HiT+a9fittoeshCjbCC12wU+CL/vSRrUOReN7bQUpKA1G
+         iiNSGU+yvNBwXcHnyLClLsd4MIY9KxVdhrMu+njoBjoB3ke4ngwJv775DxAOmsQGACTz
+         N61k5vjtnaN/Pagj0/3F44KjqwypUYCC2pKewo/wY/U+Qg1RUL1QUNzdA58tanOs2/8B
+         WvIW9/wwpeLiSPa06q51HibTufDq5cN0kkQDgldUD/nI+5/OXN/LMrLe8tHhuhRgHwud
+         i3h8c1tA2Yh8x5trsET8XVWZBgQR7wUzzQgOaDkDn5Hu28LKCN8csrUVwWK4soyF5Xb4
+         yHlA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766045443; x=1766650243;
+        d=1e100.net; s=20230601; t=1766045444; x=1766650244;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=cNH63exyhTmIcemy4/YjTfy8jDYpUWUjpvcUJrfWdgU=;
-        b=OTIVEgDDQpASl23jUyk5zIHa3016jmg+Omw14fOZ0gZbNHfhMNpnutanBTL9/ZSlb4
-         LMhi+WHFpI94hw+IKpG47YyayVf3axfFHWc7cePIR/GkKbIUlzokcJeEuGM9W5E9zqhw
-         wvmn+ApOVtRI+TQX5T7H82FLBOaZSsIVVvn2AfLOGD8Fh3FKOlUWKC8lg2HBoelRQWQ3
-         3k1cMfIJgfdivsi0yDWuJpjkVTbOrDzGa4zYg8l10NZhEgWFjHsa4aLXdFZ6yT0xmf2f
-         NuDz6aX09cWfMBhpBg0y7vBALXa4dgS/rv18eNaXPwvCrcelvxoeGHqvwRlObrfu07CT
-         qEgg==
-X-Forwarded-Encrypted: i=1; AJvYcCWiU7GdFDtN/aV0V2gkz5egOCcpMcMe040oCjU2t8FSXFoVAjOwmmcXiLbbLjhVgpTP+7j5D3JGfZuw@vger.kernel.org
-X-Gm-Message-State: AOJu0YxquB2br/+R+c2dapf44t24T+sf4EXWWKzkt8HtjGQK+FgsZAPn
-	nCAjS8ZBevWegjg8K666olM7S+EjONq7RuY0D9qkWiqj9tSz3VmIKCqIYdromptsMCzo45Kdj1e
-	MWhJtfD3JHxX/MW90q1RHSM+pOig7haULyZiANXyKZHBrjZKklU0h7IDw5regJ/4S
-X-Gm-Gg: AY/fxX4P4WGtBGSwJO3ypb0ScMDOZyvNA2aA6RzkoxRbGoXXD+8Lq7B3m4AHteyEL/6
-	fnU8muXonq4Kyyc8T24piZBEKP50yyZ3RmiVoTVrG0kNfpJoP/1Z6EdLLxVp6FpixQ8S//VTBKB
-	n6UoJt5oB+5TKtNENKFF/XDrQKek79WPt45UbDR1q6YFRwCiXoRBBmz1/kAuQPwxoBg1Y/er+t9
-	XNgfS4TR2eScwUANL9+Vbvce2WnBKX/M09eXfg8FObSoFqtTAn1Q84SIl7fIMTxI1CKEIwMl/3/
-	Z6kJUbPXinWDGXrm28ou+FFGlB59AaDX2QK+J6qMWMM4maj9iKb3JAYq8N9zxOGpbbDvX5ZVc+p
-	GSqz2g9Z+nDNs2cGsq9bugIu/ARES9WewEWv+vGJpKlssk3AHH75c91ejwBFzCmFZq1w=
-X-Received: by 2002:a05:7022:f686:b0:119:e569:fba9 with SMTP id a92af1059eb24-11f354cc907mr18256787c88.24.1766045442785;
-        Thu, 18 Dec 2025 00:10:42 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IF3Pquf355K3Y1FFskaQnCkkuyO/O4usAru27v+VGDNITq7dta4Vgx4zQjMo851Kc2edI937w==
-X-Received: by 2002:a05:7022:f686:b0:119:e569:fba9 with SMTP id a92af1059eb24-11f354cc907mr18256751c88.24.1766045442231;
-        Thu, 18 Dec 2025 00:10:42 -0800 (PST)
+        bh=E0rpWnjGI2g5XgXoHJyDOCm/wAcv0BxAgcw2UhKMGfg=;
+        b=llcLQjGyWCr4ggr0fs9DBy0/Mh0/IAv3WMW2tB0b/2vCuZ3wS09++lrb0vix6mYPqB
+         ZzIEQdL9+a7SoFRJThz/66SjdB2z0ASICTl3P8rTgJI38j0H8hYoulq1CHTM0z4/cJZQ
+         fE9X28PxLZbKA/jznir38eoD1+MiTT9cruvfoJ9UAB4sRrWKcZMsCTg2rvezO6yJufu7
+         QQV+hF48Dhebt+1BbD6PSRclARbhsm526sSR2P2M0avgz/Y2hpfiiDQIJQm3Q/oMdaOS
+         RmX6bi5A9pdHvF+AYviSe/GKEr7o21VRENLT81uYNVJ/f0cLVDocN0+FUuPJ9Jy9cRTV
+         xVJA==
+X-Forwarded-Encrypted: i=1; AJvYcCUmW7XJDUEWYQrfeYwLryeSdsFcv6JCFVUltZvqbFzffn7E2cVbpnv1swdeW4Kv4LSC3Y/6+jWYIXKs@vger.kernel.org
+X-Gm-Message-State: AOJu0YyojqSKWih56xkH/r4+micZt5FWnzJnF7aHdWeBwnskg/DOTuxb
+	UcUGqaAKBtfU5nGZF2+QWnp1mHi26oLr+qRQiqGeVbPwbPbaSLAQKHu/0FCRm/u7FHPLGAk5+HB
+	zy7zLf0T42L4oNslpNLT35xWrwi+cGUWa327aDviVQ/R3E9w/NiAMJ6MTwD4LQi3x
+X-Gm-Gg: AY/fxX4ZlhJHPRlUHkeBka49ndCxvCK0CWyqQnTPrWWONyvOhOtQxG3t18nS+vK2kGA
+	J6QoqskTaJP6zyNZFDVgB00wfU+EHmST2u50UiHqbEQm7I+yYdbEwl4pQLgrpElm5SDzKYfYBMN
+	zikLMDmkDBvLHLHUgxhd56Gk9Ouk0cUqpMsTohxOebEEqCZty4o27vFLWPExNgiTkyQCljukjvr
+	KzCwbyXHCtgy1WqOfvdoit73nyDoAfOT6n8lSzUvted5vkSwIILpGzVOYpwyEFko1uLLzdjDAgS
+	HOHNF4vm0O/cy/kuT9tf5npciqXnFgzqLR6NJORQjad5UshHpZE5K7bX879YVZe9aaQYIEtohcz
+	7huV7ON4tMqRLzPq4W/47HkHWxQ76ohg/0Ec9nQAmrKg7Ntf5L62dBFupcSLVb1Qqb/Y=
+X-Received: by 2002:a05:7300:caa:b0:2ae:5e28:743a with SMTP id 5a478bee46e88-2ae5e2877e1mr4014758eec.17.1766045443713;
+        Thu, 18 Dec 2025 00:10:43 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IF1MYiKs0jzjHaQd3gre2/5Vrpx+T+zfC2QTWa4K7GVpXVStAyAVFf+CtDYWGahuOPpcss37A==
+X-Received: by 2002:a05:7300:caa:b0:2ae:5e28:743a with SMTP id 5a478bee46e88-2ae5e2877e1mr4014716eec.17.1766045443152;
+        Thu, 18 Dec 2025 00:10:43 -0800 (PST)
 Received: from hu-yuanfang-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b04e58d423sm2564824eec.6.2025.12.18.00.10.41
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2b04e58d423sm2564824eec.6.2025.12.18.00.10.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 Dec 2025 00:10:41 -0800 (PST)
+        Thu, 18 Dec 2025 00:10:42 -0800 (PST)
 From: Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>
-Date: Thu, 18 Dec 2025 00:09:42 -0800
-Subject: [PATCH v2 02/12] coresight-funnel: Support CPU cluster funnel
- initialization
+Date: Thu, 18 Dec 2025 00:09:43 -0800
+Subject: [PATCH v2 03/12] coresight-funnel: Defer probe when associated
+ CPUs are offline
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -104,7 +104,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251218-cpu_cluster_component_pm-v2-2-2335a6ae62a0@oss.qualcomm.com>
+Message-Id: <20251218-cpu_cluster_component_pm-v2-3-2335a6ae62a0@oss.qualcomm.com>
 References: <20251218-cpu_cluster_component_pm-v2-0-2335a6ae62a0@oss.qualcomm.com>
 In-Reply-To: <20251218-cpu_cluster_component_pm-v2-0-2335a6ae62a0@oss.qualcomm.com>
 To: Suzuki K Poulose <suzuki.poulose@arm.com>,
@@ -123,344 +123,181 @@ Cc: kernel@oss.qualcomm.com, coresight@lists.linaro.org,
         Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>,
         maulik.shah@oss.qualcomm.com
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1766045439; l=9011;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1766045439; l=4434;
  i=yuanfang.zhang@oss.qualcomm.com; s=20250814; h=from:subject:message-id;
- bh=Fpp/5eQxMyG5rpvoNvxSYiDKJ7rnTCbi3mj2igPMxLU=;
- b=BavpAy9r7xKAgf/EbkDhLS/jCe/ZLPOLxE+sU7ckt40H3lLyYD/fFw77y3H7DyHloXrCfJK9C
- K6Bc7EKVjfMD71KSm5dlRQXRyjiuhr6czi4m3WboiAsLxZvj4T1Jz6e
+ bh=WwWv1dVaZYPvnR6R1Ei7R4iTlI2WTlIv5BffkfyWev4=;
+ b=dQbvHI/2v1JuiMMRpKrCwOIQtDDEOZwHfzA72YQzaiRyUwGSbgCOeeOfPl3bFQ0Jul2DlNY4K
+ ht2uOJpJoqdDwGuOsdrhbjOl8X4rA+yM6MB/IqMkHYK5eN8/KFdZPt5
 X-Developer-Key: i=yuanfang.zhang@oss.qualcomm.com; a=ed25519;
  pk=9oS/FoPW5k0CsqSDDrPlnV+kVIOUaAe0O5pr4M1wHgY=
-X-Proofpoint-ORIG-GUID: DbtNn8fbI9oTLHST12SNksTM-CywzbDP
-X-Authority-Analysis: v=2.4 cv=Q/HfIo2a c=1 sm=1 tr=0 ts=6943b704 cx=c_pps
- a=cmESyDAEBpBGqyK7t0alAg==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjE4MDA2NiBTYWx0ZWRfX9cUeEvhU7fsp
+ 1LEb3crMzpnkjiJA1ZdrF1Xy7aZetqyD4n2DB9voj4UGdHsyyXXbGLSAstFPhZdoEvld6BQ54W+
+ mbSpkG1jP9/5m+lSQNxx9Vkm5kV1dTx+OzByACjcyhEZmXOLAq/1wT1V2p7tG3jjyAugW25bt2o
+ qr6HP0ghv/KV8TBehDPH/4EtffNQbY+aqZB6vYzOEAOyfJiztTw0aIhxE/63TCCqIgzsmw7IM0E
+ OAowr9P/WCdILEsx7veYKPndieNWYu+h0AdsHhknRxwXE5j234NClqJEilhxFEw7PZ1ZGT+BYeZ
+ cTe+flAzQfRVbyszTb8P9VyD6ct4Zz/c0gXkjTTxnNcHoCthxlOITcBxQRQH9rjIflyqU2JEoYy
+ 6/8HfHvM4QEzKmipe9JyB9BGKi3iXQ==
+X-Proofpoint-GUID: yemtom8fw8w5HcqBANgXA9CfnWESVuQ9
+X-Proofpoint-ORIG-GUID: yemtom8fw8w5HcqBANgXA9CfnWESVuQ9
+X-Authority-Analysis: v=2.4 cv=Zpjg6t7G c=1 sm=1 tr=0 ts=6943b705 cx=c_pps
+ a=Qgeoaf8Lrialg5Z894R3/Q==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
  a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=ntKk2pyKPOpeOXeRekoA:9
- a=QEXdDO2ut3YA:10 a=1OuFwYUASf3TG4hYMiVC:22
-X-Proofpoint-GUID: DbtNn8fbI9oTLHST12SNksTM-CywzbDP
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjE4MDA2NiBTYWx0ZWRfX+WVxKUkfVESk
- hrc6Pqr5KwJyvPGqSmJ2+y5Ke7NTlCEJv830ni+omQHc3mChqfACdjyntg07rh6a1cBqkiuVSSQ
- 0qpG0EndtheuAzwN47TNDkbD2rPlQzSYTiA9rN6jEpN00tzHje8oR9QA6e8RCEyKAIxti/nOMW+
- jkC08Kua+mTxZH9XVGrnlboSSClOdbmWK28ximI6h05eWE7f0/IBMslQZ3Yd8Dss16WNfZ6zVCH
- QwVjW5skbNk0C1rUjnb+9KAfZ3BOXNcBFr0Rj2pSHBkKVxX8GwXmlxzpwuwVspyNcDamOKPSg7T
- h25NHtlszrJ60Np44UgnIeA7NVpIWxmc7HWxQBgjErwisexA7bI7SBzv3JDpQjStCW5rk4IUwQv
- jqLHBbeFME6P0gTKlyUSvNHjLBfs5w==
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=B8lwgTuz66jIMM7eRW8A:9
+ a=QEXdDO2ut3YA:10 a=x9snwWr2DeNwDh03kgHS:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
  definitions=2025-12-18_01,2025-12-17_02,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 priorityscore=1501 impostorscore=0 bulkscore=0 malwarescore=0
- lowpriorityscore=0 adultscore=0 suspectscore=0 clxscore=1015 spamscore=0
+ priorityscore=1501 bulkscore=0 suspectscore=0 spamscore=0 lowpriorityscore=0
+ phishscore=0 malwarescore=0 clxscore=1015 impostorscore=0 adultscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512180066
 
-Funnels associated with CPU clusters reside in the cluster's power domain.
-Unlike dynamic funnels (which are typically system-wide), these per-cluster
-funnels are only accessible when the cluster is powered on. Standard
-runtime PM may not suffice to wake up a cluster from low-power states,
-making direct register access unreliable.
+Per-cluster funnels rely on the associated CPU cluster being online to
+securely access registers during initialization. If all CPUs in the
+cluster are offline during probe, these operations fail.
 
-Enhance the funnel driver to support these per-cluster devices:
+Support deferred initialization for these devices:
 
-1. Safe Initialization:
-   - Identify CPU cluster funnels via "qcom,cpu-bound-components".
-   - Use smp_call_function_single() to perform hardware initialization
-     (claim tag clearing) on a CPU within the cluster.
-   - Refactor the probe flow to encapsulate device registration in
-     funnel_add_coresight_dev().
-
-2. Cross-CPU Enablement:
-   - Update funnel_enable() to use smp_call_function_single() when
-     enabling the hardware on a cluster-bound funnel.
-
-3. Debug Interface Support:
-   - Update funnel_ctrl_show() to safely read the control register via
-     cross-CPU calls when necessary.
-
-This ensures that funnel operations remain safe and functional even when
-the associated CPU cluster is in aggressive low-power states.
+1. Track funnels that fail to probe due to offline CPUs in a global
+   list.
+2. Register a CPU hotplug notifier (funnel_online_cpu) to detect when
+   a relevant CPU comes online.
+3. Upon CPU online, retry the hardware initialization and registration
+   with the CoreSight framework.
 
 Signed-off-by: Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>
 ---
- drivers/hwtracing/coresight/coresight-funnel.c | 183 ++++++++++++++++++++-----
- 1 file changed, 152 insertions(+), 31 deletions(-)
+ drivers/hwtracing/coresight/coresight-funnel.c | 62 +++++++++++++++++++++++---
+ 1 file changed, 57 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/hwtracing/coresight/coresight-funnel.c b/drivers/hwtracing/coresight/coresight-funnel.c
-index 3b248e54471a38f501777fe162fea850d1c851b3..a1264df84ab4c625c63dfbb9b7710b983a10c6b4 100644
+index a1264df84ab4c625c63dfbb9b7710b983a10c6b4..5d114ce1109f4f9a8b108110bdae258f216881d8 100644
 --- a/drivers/hwtracing/coresight/coresight-funnel.c
 +++ b/drivers/hwtracing/coresight/coresight-funnel.c
-@@ -15,6 +15,7 @@
- #include <linux/slab.h>
- #include <linux/of.h>
- #include <linux/platform_device.h>
-+#include <linux/pm_domain.h>
- #include <linux/pm_runtime.h>
- #include <linux/coresight.h>
- #include <linux/amba/bus.h>
-@@ -40,6 +41,7 @@ DEFINE_CORESIGHT_DEVLIST(funnel_devs, "funnel");
-  * @csdev:	component vitals needed by the framework.
+@@ -32,6 +32,9 @@
+ #define FUNNEL_ENSx_MASK	0xff
+ 
+ DEFINE_CORESIGHT_DEVLIST(funnel_devs, "funnel");
++static LIST_HEAD(funnel_delay_probe);
++static enum cpuhp_state hp_online;
++static DEFINE_SPINLOCK(delay_lock);
+ 
+ /**
+  * struct funnel_drvdata - specifics associated to a funnel component
+@@ -42,6 +45,8 @@ DEFINE_CORESIGHT_DEVLIST(funnel_devs, "funnel");
   * @priority:	port selection order.
   * @spinlock:	serialize enable/disable operations.
-+ * @supported_cpus:	Represent the CPUs related to this funnel.
+  * @supported_cpus:	Represent the CPUs related to this funnel.
++ * @dev:	pointer to the device associated with this funnel.
++ * @link:	list node for adding this funnel to the delayed probe list.
   */
  struct funnel_drvdata {
  	void __iomem		*base;
-@@ -48,6 +50,13 @@ struct funnel_drvdata {
- 	struct coresight_device	*csdev;
+@@ -51,6 +56,8 @@ struct funnel_drvdata {
  	unsigned long		priority;
  	raw_spinlock_t		spinlock;
-+	struct cpumask		*supported_cpus;
-+};
-+
-+struct funnel_smp_arg {
-+	struct funnel_drvdata *drvdata;
-+	int port;
-+	int rc;
+ 	struct cpumask		*supported_cpus;
++	struct device		*dev;
++	struct list_head	link;
  };
  
- static int dynamic_funnel_enable_hw(struct funnel_drvdata *drvdata, int port)
-@@ -76,6 +85,33 @@ static int dynamic_funnel_enable_hw(struct funnel_drvdata *drvdata, int port)
- 	return rc;
- }
- 
-+static void funnel_enable_hw_smp_call(void *info)
-+{
-+	struct funnel_smp_arg *arg = info;
-+
-+	arg->rc = dynamic_funnel_enable_hw(arg->drvdata, arg->port);
-+}
-+
-+static int funnel_enable_hw(struct funnel_drvdata *drvdata, int port)
-+{
-+	int cpu, ret;
-+	struct funnel_smp_arg arg = { 0 };
-+
-+	if (!drvdata->supported_cpus)
-+		return dynamic_funnel_enable_hw(drvdata, port);
-+
-+	arg.drvdata = drvdata;
-+	arg.port = port;
-+
-+	for_each_cpu(cpu, drvdata->supported_cpus) {
-+		ret = smp_call_function_single(cpu,
-+					       funnel_enable_hw_smp_call, &arg, 1);
-+		if (!ret)
-+			return arg.rc;
-+	}
-+	return ret;
-+}
-+
- static int funnel_enable(struct coresight_device *csdev,
- 			 struct coresight_connection *in,
- 			 struct coresight_connection *out)
-@@ -86,19 +122,24 @@ static int funnel_enable(struct coresight_device *csdev,
- 	bool first_enable = false;
- 
- 	raw_spin_lock_irqsave(&drvdata->spinlock, flags);
--	if (in->dest_refcnt == 0) {
--		if (drvdata->base)
--			rc = dynamic_funnel_enable_hw(drvdata, in->dest_port);
--		if (!rc)
--			first_enable = true;
--	}
--	if (!rc)
-+
-+	if (in->dest_refcnt == 0)
-+		first_enable = true;
-+	else
- 		in->dest_refcnt++;
-+
- 	raw_spin_unlock_irqrestore(&drvdata->spinlock, flags);
- 
--	if (first_enable)
--		dev_dbg(&csdev->dev, "FUNNEL inport %d enabled\n",
--			in->dest_port);
-+	if (first_enable) {
-+		if (drvdata->base)
-+			rc = funnel_enable_hw(drvdata, in->dest_port);
-+		if (!rc) {
-+			in->dest_refcnt++;
-+			dev_dbg(&csdev->dev, "FUNNEL inport %d enabled\n",
-+				in->dest_port);
-+		}
-+	}
-+
- 	return rc;
- }
- 
-@@ -188,15 +229,39 @@ static u32 get_funnel_ctrl_hw(struct funnel_drvdata *drvdata)
- 	return functl;
- }
- 
-+static void get_funnel_ctrl_smp_call(void *info)
-+{
-+	struct funnel_smp_arg *arg = info;
-+
-+	arg->rc = get_funnel_ctrl_hw(arg->drvdata);
-+}
-+
- static ssize_t funnel_ctrl_show(struct device *dev,
- 			     struct device_attribute *attr, char *buf)
- {
- 	u32 val;
-+	int cpu, ret;
- 	struct funnel_drvdata *drvdata = dev_get_drvdata(dev->parent);
-+	struct funnel_smp_arg arg = { 0 };
- 
- 	pm_runtime_get_sync(dev->parent);
+ struct funnel_smp_arg {
+@@ -371,7 +378,7 @@ static int funnel_probe(struct device *dev, struct resource *res)
+ 		drvdata->supported_cpus = funnel_get_supported_cpus(dev);
+ 		if (!drvdata->supported_cpus)
+ 			return -EINVAL;
 -
--	val = get_funnel_ctrl_hw(drvdata);
-+	if (!drvdata->supported_cpus) {
-+		val = get_funnel_ctrl_hw(drvdata);
-+	} else {
-+		arg.drvdata = drvdata;
-+		for_each_cpu(cpu, drvdata->supported_cpus) {
-+			ret = smp_call_function_single(cpu,
-+						       get_funnel_ctrl_smp_call, &arg, 1);
-+			if (!ret)
-+				break;
++		drvdata->dev = dev;
+ 		cpus_read_lock();
+ 		for_each_cpu(cpu, drvdata->supported_cpus) {
+ 			ret = smp_call_function_single(cpu,
+@@ -379,10 +386,15 @@ static int funnel_probe(struct device *dev, struct resource *res)
+ 			if (!ret)
+ 				break;
+ 		}
+-		cpus_read_unlock();
+ 
+-		if (ret)
++		if (ret) {
++			scoped_guard(spinlock,  &delay_lock)
++				list_add(&drvdata->link, &funnel_delay_probe);
++			cpus_read_unlock();
+ 			return 0;
 +		}
-+		if (!ret) {
-+			val =  arg.rc;
-+		} else {
-+			pm_runtime_put(dev->parent);
-+			return ret;
-+		}
-+	}
- 
- 	pm_runtime_put(dev->parent);
- 
-@@ -211,22 +276,68 @@ static struct attribute *coresight_funnel_attrs[] = {
- };
- ATTRIBUTE_GROUPS(coresight_funnel);
- 
-+static void funnel_clear_self_claim_tag(struct funnel_drvdata *drvdata)
-+{
-+	struct csdev_access access = CSDEV_ACCESS_IOMEM(drvdata->base);
 +
-+	coresight_clear_self_claim_tag(&access);
-+}
-+
-+static void funnel_init_on_cpu(void *info)
-+{
-+	struct funnel_drvdata *drvdata = info;
-+
-+	funnel_clear_self_claim_tag(drvdata);
-+}
-+
-+static int funnel_add_coresight_dev(struct device *dev)
-+{
-+	struct coresight_desc desc = { 0 };
-+	struct funnel_drvdata *drvdata = dev_get_drvdata(dev);
-+
-+	if (drvdata->base) {
-+		desc.groups = coresight_funnel_groups;
-+		desc.access = CSDEV_ACCESS_IOMEM(drvdata->base);
-+	}
-+
-+	desc.name = coresight_alloc_device_name(&funnel_devs, dev);
-+	if (!desc.name)
-+		return -ENOMEM;
-+
-+	desc.type = CORESIGHT_DEV_TYPE_LINK;
-+	desc.subtype.link_subtype = CORESIGHT_DEV_SUBTYPE_LINK_MERG;
-+	desc.ops = &funnel_cs_ops;
-+	desc.pdata = dev->platform_data;
-+	desc.dev = dev;
-+
-+	drvdata->csdev = coresight_register(&desc);
-+	if (IS_ERR(drvdata->csdev))
-+		return PTR_ERR(drvdata->csdev);
-+	return 0;
-+}
-+
-+static struct cpumask *funnel_get_supported_cpus(struct device *dev)
-+{
-+	struct generic_pm_domain *pd;
-+
-+	pd = pd_to_genpd(dev->pm_domain);
-+	if (pd)
-+		return pd->cpus;
-+
-+	return NULL;
-+}
-+
- static int funnel_probe(struct device *dev, struct resource *res)
- {
- 	void __iomem *base;
- 	struct coresight_platform_data *pdata = NULL;
- 	struct funnel_drvdata *drvdata;
--	struct coresight_desc desc = { 0 };
--	int ret;
-+	int cpu, ret;
- 
- 	if (is_of_node(dev_fwnode(dev)) &&
- 	    of_device_is_compatible(dev->of_node, "arm,coresight-funnel"))
- 		dev_warn_once(dev, "Uses OBSOLETE CoreSight funnel binding\n");
- 
--	desc.name = coresight_alloc_device_name(&funnel_devs, dev);
--	if (!desc.name)
--		return -ENOMEM;
--
- 	drvdata = devm_kzalloc(dev, sizeof(*drvdata), GFP_KERNEL);
- 	if (!drvdata)
- 		return -ENOMEM;
-@@ -244,9 +355,6 @@ static int funnel_probe(struct device *dev, struct resource *res)
- 		if (IS_ERR(base))
- 			return PTR_ERR(base);
- 		drvdata->base = base;
--		desc.groups = coresight_funnel_groups;
--		desc.access = CSDEV_ACCESS_IOMEM(base);
--		coresight_clear_self_claim_tag(&desc.access);
- 	}
- 
- 	dev_set_drvdata(dev, drvdata);
-@@ -258,23 +366,36 @@ static int funnel_probe(struct device *dev, struct resource *res)
- 	dev->platform_data = pdata;
- 
- 	raw_spin_lock_init(&drvdata->spinlock);
--	desc.type = CORESIGHT_DEV_TYPE_LINK;
--	desc.subtype.link_subtype = CORESIGHT_DEV_SUBTYPE_LINK_MERG;
--	desc.ops = &funnel_cs_ops;
--	desc.pdata = pdata;
--	desc.dev = dev;
--	drvdata->csdev = coresight_register(&desc);
--	if (IS_ERR(drvdata->csdev))
--		return PTR_ERR(drvdata->csdev);
- 
--	return 0;
-+	if (fwnode_property_present(dev_fwnode(dev), "qcom,cpu-bound-components")) {
-+		drvdata->supported_cpus = funnel_get_supported_cpus(dev);
-+		if (!drvdata->supported_cpus)
-+			return -EINVAL;
-+
-+		cpus_read_lock();
-+		for_each_cpu(cpu, drvdata->supported_cpus) {
-+			ret = smp_call_function_single(cpu,
-+						       funnel_init_on_cpu, drvdata, 1);
-+			if (!ret)
-+				break;
-+		}
 +		cpus_read_unlock();
-+
-+		if (ret)
-+			return 0;
-+	} else if (res) {
-+		funnel_clear_self_claim_tag(drvdata);
-+	}
-+
-+	return funnel_add_coresight_dev(dev);
- }
- 
- static int funnel_remove(struct device *dev)
+ 	} else if (res) {
+ 		funnel_clear_self_claim_tag(drvdata);
+ 	}
+@@ -394,9 +406,12 @@ static int funnel_remove(struct device *dev)
  {
  	struct funnel_drvdata *drvdata = dev_get_drvdata(dev);
  
--	coresight_unregister(drvdata->csdev);
-+	if (drvdata->csdev)
-+		coresight_unregister(drvdata->csdev);
- 
+-	if (drvdata->csdev)
++	if (drvdata->csdev) {
+ 		coresight_unregister(drvdata->csdev);
+-
++	} else {
++		scoped_guard(spinlock,  &delay_lock)
++			list_del(&drvdata->link);
++	}
  	return 0;
  }
+ 
+@@ -533,8 +548,41 @@ static struct amba_driver dynamic_funnel_driver = {
+ 	.id_table	= dynamic_funnel_ids,
+ };
+ 
++static int funnel_online_cpu(unsigned int cpu)
++{
++	struct funnel_drvdata *drvdata, *tmp;
++	int ret;
++
++	list_for_each_entry_safe(drvdata, tmp, &funnel_delay_probe, link) {
++		if (cpumask_test_cpu(cpu, drvdata->supported_cpus)) {
++			scoped_guard(spinlock,  &delay_lock)
++				list_del(&drvdata->link);
++
++			ret = pm_runtime_resume_and_get(drvdata->dev);
++			if (ret < 0)
++				return 0;
++
++			funnel_clear_self_claim_tag(drvdata);
++			funnel_add_coresight_dev(drvdata->dev);
++			pm_runtime_put(drvdata->dev);
++		}
++	}
++	return 0;
++}
++
+ static int __init funnel_init(void)
+ {
++	int ret;
++
++	ret = cpuhp_setup_state_nocalls(CPUHP_AP_ONLINE_DYN,
++					"arm/coresight-funnel:online",
++					funnel_online_cpu, NULL);
++
++	if (ret > 0)
++		hp_online = ret;
++	else
++		return ret;
++
+ 	return coresight_init_driver("funnel", &dynamic_funnel_driver, &funnel_driver,
+ 				     THIS_MODULE);
+ }
+@@ -542,6 +590,10 @@ static int __init funnel_init(void)
+ static void __exit funnel_exit(void)
+ {
+ 	coresight_remove_driver(&dynamic_funnel_driver, &funnel_driver);
++	if (hp_online) {
++		cpuhp_remove_state_nocalls(hp_online);
++		hp_online = 0;
++	}
+ }
+ 
+ module_init(funnel_init);
 
 -- 
 2.34.1
