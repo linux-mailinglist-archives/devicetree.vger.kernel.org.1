@@ -1,226 +1,196 @@
-Return-Path: <devicetree+bounces-247978-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247979-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0263CCD51B
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 20:04:07 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FF4ACCD524
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 20:05:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 526BC300FF97
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 19:03:10 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0A8E1300B918
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 19:05:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10F7D30FC31;
-	Thu, 18 Dec 2025 19:03:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93456313E1E;
+	Thu, 18 Dec 2025 19:05:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="e3NMCRnA"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="IygKVGCv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from BL2PR02CU003.outbound.protection.outlook.com (mail-eastusazon11011021.outbound.protection.outlook.com [52.101.52.21])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D045329C73
-	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 19:03:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766084589; cv=none; b=iO2O1Owunu0WcWHbJeMq6Sb2Oo5CkUma4srublaq2xd0KykCebvA3nxSI+0TzXFC+u9j5V8h6qkPDmuYasASr4N3cNMi98h4nSkwnmLnspFJJyS3RCs6tkbcsTa8acaGOK8sUjmpsE+Kt4zmi3EFsdEdqT3Juz3zbMCtrZnHTm4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766084589; c=relaxed/simple;
-	bh=ZIqvP7iL1pnOGTT3mHNvxEK6HapIGS532C02nV8uGts=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=bPSRlnHMGfFUmWEhkKG11ykV7acgBSefKDBWWmY5j0SaNrCf6uMRdXsTlJWjRtKDYvUjtzLffEKeiKTDqXe8MecxQJm6qvfLNl7c7aBCfmbS+GHfnZ4sH2hCTjoKOQVqia86XntLg1ECZRxXLCU+Xre9o2iGfjddYDtQs6O0UGU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=e3NMCRnA; arc=none smtp.client-ip=209.85.214.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-29f1bc40b35so17917635ad.2
-        for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 11:03:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1766084585; x=1766689385; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UZURydBRs6THPGEYtxtuXyqkrMfiNHxW6djvEvJyle0=;
-        b=e3NMCRnAvfYuH093iQMCYioAIC78Xp3yhoqjVsoU48QsKoezqh/U3FjaUHADJvE5Nv
-         MWhLoG6Ee+uSsHcjOmeOtJIFf/yI8UBH/WQTd1BJr0NESXbXhpIs5kBD/dEE7rUJYUTs
-         DGelPFm5izTwcsft78qKb4MaagKby1SPgdwqy0sGX2RRsS9X664UjorIHUo+pIxCdLce
-         br5YfjVR4bHrshVAuUjJVBOYRhUUtLDNX/B2aUUbRTiR8MunYrBfIgwmLxjWr1Sio3wy
-         JlFFJsP2+/9vPfkCilQnhBkzBXDXmcFfDu7ByEJZGgiKb78rHa2LKKq49u1Q16umbaap
-         S2sg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766084585; x=1766689385;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=UZURydBRs6THPGEYtxtuXyqkrMfiNHxW6djvEvJyle0=;
-        b=CD5fF1CmC7LbMluVso8nRFZVdRumNyKHH57MqR+L+0HDy6WIdU6V93OXZBB/UOQ9ha
-         trB3A/8XU7ofpx2OFoEql4ETVYOoQaUjT+ahI0sD+clLOw20rA9m2CbMFv5QNxAyX5Is
-         Wdo5e7WTaJILEsgg7vyCCJTuR/e1gtYzc8b2V092zrHiur6V6FnpEAYVxaq65VUGdrGG
-         qAYDu2XDSWUWQSkjP+2/StjX2gaCplroc+WsxXdhAaBQjULMzYnuzPWl9ewX/yNZZpT8
-         dxYp/+Ag+0Gnks+jut70cOuiNeok6ZcZ9WFUINFXnts5qow0MQCFb9nPXp11PyhaTRYf
-         +Wzg==
-X-Forwarded-Encrypted: i=1; AJvYcCX2/lkzTu+mIGOc4XUiSu7cOlF/9Vr85TNzccLQ5zX0QDHvSTDMfvDoFhlN9lAsbhuAfd+fORSs8Nxm@vger.kernel.org
-X-Gm-Message-State: AOJu0YwrxR4D6hbV/VkbkJzWsBvpCtR5nz3MBKDYh1PX8kous8ZbHS+j
-	lFU3WrzY4wp0tBAcgyHf3NMkrPol6iwhNipncgoH7ryLeafPoG4klYYX2zXAy4EIibCuzQIBRfY
-	SxFMKzPkADBLjLhgFNWgQ1eoPIM4DyLqwd+4FIyhy
-X-Gm-Gg: AY/fxX4PDt+1+Fsw7O9j8a9bLKIjeY6sQu7BjI/Ds3ULjQFyoj+QJpruC2BA3hFPiGP
-	cChin3GPRX/Yp4bfrm3ES7HIm9fBMoxixeZ3wpare8QerUwfAfScDABhfhYGmqt3GxaiYxILe5i
-	l7TYM5nlG0/7mntpIiQo2J5n/ViI5L+GdUQgAHvCqYC3tE0tWqtqXiaf0rU4JiLtSD6WNi0g6It
-	30J65NIj58GMAwEI93h+JDbkMMnB1RK8YmthJW4FI9A478Rnf08D/3s34nPIt9JAXHKyv4PZGmT
-	4c5q6clw9ZbifeKa6VVLlLF8Wv4TyCUdYZiM
-X-Google-Smtp-Source: AGHT+IHjlHQlXH87LizBV98xCNNrE/r6NnWxVA8MyqbsxcZpdW5xdnwO9aFCs2usLY1INPEf7TlgBEyb3iR7vLbl1rw=
-X-Received: by 2002:a05:7022:2586:b0:11b:8278:9f3a with SMTP id
- a92af1059eb24-121722a760fmr302395c88.8.1766084584998; Thu, 18 Dec 2025
- 11:03:04 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79435226CF6;
+	Thu, 18 Dec 2025 19:04:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.52.21
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1766084700; cv=fail; b=FxOEqLfu+zcX8IabeO0dMDvT6VoHfDJBfFvpuMTYkZenLJsW7FSuqmRsSWhKvBRvR8DvcT7li4tQl14i/ZwC4h0zZi+pf+c8460oFrVq+JEXFReCiwZLrCBLO40topFjVD8Cm70gx8COf6QBPTuLMaO105MwDqwVYRCGQKPfXQs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1766084700; c=relaxed/simple;
+	bh=V7nbjHSB+7puHR9QNe8yT50hk6oQq3VzsSDKEQUWC6Q=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iQ6tg3h8RU4n2oGVBz2KeuHikQXwQCUvSaZWPVzJtevq2Cg2NznCu8PDrx625b8AUqEaSCYZSYS4ePUv8R+0/NO26t3xNqEct6wqnRlAOAKUmftbjvm2VDlqzVRArLiiDImuff1+eKxejDoJZUrC5p/ZdyU5IhV2NNVtMKetIbo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=IygKVGCv; arc=fail smtp.client-ip=52.101.52.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=A4bI1fTbAMahL8nxWIKJAv1Pf28uqHxur4KTcgPLIwuu3UCWVMwZqUGP/vhReUx7e3RsCiTRZCt6pw3cmUXMfpwe2GEjoV1pG71FOhu/IUkgU1K9Fpx8ce5Z507Yl+qHjdUdWYH8PJn8ScJpW9eg8tokoKBUDzqV+IjHZT1hGtZSZepZ3zplBPxnAPYyFamtqHe5oa69dcDAQVGz2pLeBHfU1mmCLHOJ9as2PwvZVG+2uAxQajsVHeDk4c6M5sUL0iuXWUQ+h136VqlxBJflYGU57pj5N1cetaQFVNwoTI8kCfIntioQW+26SYGVwMulKG4aSGiqHtztEZkrZt895Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=eAphim/8lNJpWq8YT85qZozcvip6tRTa4pz+GNjLxJQ=;
+ b=A9Cyb17bcrfK/SThIaWlVfv6AnQkP++nHSZD/wXgEqSN0leaiwxM6t3x5nBcjw0VfosTP9YNx5jEjOXmBKtRNpzoHi26Aqa/fjsUoY6ZP8O/xSCBhNOXCNW9+7X3VS1estE9Ezr6uaTcgtj66C8CLdPIbsQH/0G8JQaSxcTTUWlUcxUGO1OPbFmKf6QpkIM8Po30m1ut2CfHf8xkiv2Fl9jpZAOyKLaOFtWzvLqLUPw3O0dvr2ty5fAjDm3gROXcyk6Yh0hC8KR8lzEvKlqP7w969lT30YA/0QFsjn9bmSv089cOkP/Uxp3BdIGs/y/ScFNm7BzU0jYpIMOqmUDn8g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.23.195) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=eAphim/8lNJpWq8YT85qZozcvip6tRTa4pz+GNjLxJQ=;
+ b=IygKVGCvY2G0H7SCPK0Liut40tn1KWQuBB6Xi9fhyHAfgD0mUCUXqfVEoJARLPwCvo2tWTcl0KrCqQhV6/rqNk0LRhTgQQ8AsHdnOY6cwR7Ntnx/hjawtcVl97JhG8VMJAf49PaDMdgrHcxTVRBHa807/6OyPP64OMz3XAFEdMQ=
+Received: from SJ0PR13CA0078.namprd13.prod.outlook.com (2603:10b6:a03:2c4::23)
+ by LV8PR10MB7774.namprd10.prod.outlook.com (2603:10b6:408:1e8::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9434.6; Thu, 18 Dec
+ 2025 19:04:53 +0000
+Received: from SJ1PEPF00002319.namprd03.prod.outlook.com
+ (2603:10b6:a03:2c4:cafe::24) by SJ0PR13CA0078.outlook.office365.com
+ (2603:10b6:a03:2c4::23) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9456.5 via Frontend Transport; Thu,
+ 18 Dec 2025 19:04:51 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
+Received: from lewvzet201.ext.ti.com (198.47.23.195) by
+ SJ1PEPF00002319.mail.protection.outlook.com (10.167.242.229) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9434.6 via Frontend Transport; Thu, 18 Dec 2025 19:04:52 +0000
+Received: from DLEE212.ent.ti.com (157.170.170.114) by lewvzet201.ext.ti.com
+ (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 18 Dec
+ 2025 13:04:50 -0600
+Received: from DLEE200.ent.ti.com (157.170.170.75) by DLEE212.ent.ti.com
+ (157.170.170.114) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 18 Dec
+ 2025 13:04:49 -0600
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE200.ent.ti.com
+ (157.170.170.75) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Thu, 18 Dec 2025 13:04:49 -0600
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5BIJ4nIT3789119;
+	Thu, 18 Dec 2025 13:04:49 -0600
+Date: Thu, 18 Dec 2025 13:04:49 -0600
+From: Nishanth Menon <nm@ti.com>
+To: Rob Herring <robh@kernel.org>
+CC: Anshul Dalal <anshuld@ti.com>, Tero Kristo <kristo@kernel.org>, "Santosh
+ Shilimkar" <ssantosh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>,
+	<linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, Vignesh Raghavendra <vigneshr@ti.com>
+Subject: Re: [PATCH v5] dt-bindings: arm: keystone: add boot_* mboxes to
+ ti,sci
+Message-ID: <20251218190449.cnp46cf6hikt6cqa@freebie>
+References: <20251215-k3_syscon_add_boot_mailboxes-v5-1-5a8fe567fd31@ti.com>
+ <20251215135708.ij5e7jr3binzmlbf@panda>
+ <20251217125747.GA689283-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251205-controller-v9-0-9f158b18f979@google.com>
- <20251205-controller-v9-2-9f158b18f979@google.com> <2025120553-suffrage-divisive-5890@gregkh>
- <CA+zupgzL7v5MZDpxKDQQCqAZaqTdHbiG9-xTr+8RnigMFZJ_7Q@mail.gmail.com>
- <2025121728-reliably-crabgrass-2601@gregkh> <CA+zupgxZCyNonfNPbGnFymGGOQuaWR1TsL+hujTbH4DEcfEt9Q@mail.gmail.com>
- <CAD=FV=U63F-wxwKDo9be6_X2P2zp6aTBjNghZRbXX1rn4jFNyg@mail.gmail.com>
- <CA+zupgyG4Nov0=jihSApp_3_0hy6YNZMkfOp6Q4-zmERFm10Ag@mail.gmail.com> <067e0b1f-ffb6-4f38-b4ac-8abdf46518ea@kernel.org>
-In-Reply-To: <067e0b1f-ffb6-4f38-b4ac-8abdf46518ea@kernel.org>
-From: Roy Luo <royluo@google.com>
-Date: Thu, 18 Dec 2025 11:02:28 -0800
-X-Gm-Features: AQt7F2rN06AK2QuvXUYDJOc3cWSY2JUStjC0ZUUhHBMZr4GDA95FFHyZwdmt4so
-Message-ID: <CA+zupgwgfKwPYqj8G2tNf4pEXNEWA+vL2WYJPhJ16xExgko7Dw@mail.gmail.com>
-Subject: Re: [PATCH v9 2/2] usb: dwc3: Add Google Tensor SoC DWC3 glue driver
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Doug Anderson <dianders@google.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Peter Griffin <peter.griffin@linaro.org>, =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
-	Tudor Ambarus <tudor.ambarus@linaro.org>, Thinh Nguyen <Thinh.Nguyen@synopsys.com>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Badhri Jagan Sridharan <badhri@google.com>, linux-usb@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
-	Joy Chakraborty <joychakr@google.com>, Naveen Kumar <mnkumar@google.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20251217125747.GA689283-robh@kernel.org>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ1PEPF00002319:EE_|LV8PR10MB7774:EE_
+X-MS-Office365-Filtering-Correlation-Id: 94ab8923-1b9f-4396-b673-08de3e685347
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|36860700013|1800799024|82310400026;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?aoTleKRAs7LpPmpp1coOQCPgdHT0fk9ciWEM+462N0CGWoHupXzK1zNX7efg?=
+ =?us-ascii?Q?+XTUx1E+Yy9omC33QamFD1nCpPnVXhojacchdWVBgpGQA5Z1KOYjuPCxUUJd?=
+ =?us-ascii?Q?IG6AWRMA9+Dqc5PQY8KkAOp4SQ3b752FhZ6WNWCpj1FZjANIQnnjk//eDfet?=
+ =?us-ascii?Q?Ro/TixOLLTknLwa18rkxag9nJcLu8XOnizkeSs3YrPdj3sU5YHAK3OcY9viM?=
+ =?us-ascii?Q?k0kXwB/p1mb1FMC0n3wglbUDdngCZlswKOUnc+0OrLYNBQA8Zx6JbJ1VmuT5?=
+ =?us-ascii?Q?j6sPSvKPdtgeHuXXmenE+BTW/2jgpzWxrblbVb/RirwZpVnc3QCdsl5ELVyM?=
+ =?us-ascii?Q?ALi2qSkSL/4e7AuaN5I7eWgVc521UQbEVW8wRENMsCvaNpNEl9EoMTrUAAQN?=
+ =?us-ascii?Q?mqjWL53GPT1RbcIVi3Gx7T6YFP/9JXltgI6woFurqspAGjEtFWDNRfmt9ief?=
+ =?us-ascii?Q?f5g6yB2lihPJ3R9sFd8wtavOPZp7QXbUrfjRFiGORWpmu7uW9OSVAYYqG89k?=
+ =?us-ascii?Q?nvKkyr3mZNBesqqKRxiid2aCtgRzk+TlKr37K2pjaRu0wH2RFpgXLkON6kxZ?=
+ =?us-ascii?Q?Dn1YQcKKpQW0MV4pmX0Dt3Uka4wGBSlUKMk4V7JQf8DC0ohatUrUIwNkOUhj?=
+ =?us-ascii?Q?CazX1MNpJYPifiLoxZBTVHcXRaBZ3n4Q4WsP6UR3HIi+WY0H25xM3jkG5DTL?=
+ =?us-ascii?Q?HwTxFJPOYubw5b989NqZQcfSZXz6yQ0wZuUyUYOlRSD8T12mAnlL84ZuOkiu?=
+ =?us-ascii?Q?NvxRRjZq7pEQpk44MdQR4WTUF7fb75imYrgl0vz6dD00K+VSDpOo+cToN5kA?=
+ =?us-ascii?Q?Ow4qsFFOHRV94YKqDmWd2oEtlvJM5P4UQl8ejKNI89IvkpTFDH0CxeO53oE/?=
+ =?us-ascii?Q?sIdsj0H55rqFRDD7NVSsJY78lSUoHgvBtfUgO9keIGPbnlyfTTOC5KOfnFlx?=
+ =?us-ascii?Q?2/lOzveE8lKJDbeR7+6ZYIgQAwZ8vhAt96tvjwbNcu8HJyn7AXyB+C+Wpw03?=
+ =?us-ascii?Q?CKw+t2i7YXoqoFe45th1Ft6tr3jHT55mMw3J3PJYqbv8Xz5E/+hQghqzNvAA?=
+ =?us-ascii?Q?VM9t6L46aGD1UB2MatjnSz2FJD4QH3ubDfxnlvxkB01O3mJS4vdikECZ7jBr?=
+ =?us-ascii?Q?pvfYLNxqVBEsW1RsI0LrLe7I4RJ2H4QtcMO+QYlvQNM/xxagZmGHRrpeqIyj?=
+ =?us-ascii?Q?IdYHwnDMVZZ7/CgT5wJCUvVZCa3eeBtpZt6Lnytxw7jTpmZ8ywqYE3fP15d4?=
+ =?us-ascii?Q?tq+PYawxDIHqI1t5rbqO/y/qUiGJaW7uwGf94uDLzJI9RkEAmO51G9UoxQiD?=
+ =?us-ascii?Q?AHJ51cGv4cdG/IVmDL8pPFSH6SX1bbaHQq2vp8Lfw6cfA5ejWieron+UQyCF?=
+ =?us-ascii?Q?LmTycv2VW8tBnKU62UfJddV5zYw70F1KXJ3JDu2PBwCD1f1H4uxUBA/rZvHo?=
+ =?us-ascii?Q?A5ZNC8aE9XCOe1JQm43p12xf5Us/bZ9txRm5Fm+zn2XIcp6q6tbEJCue8Hcf?=
+ =?us-ascii?Q?B4LN0rxjTPGYnCGIHqrUa2OPpDnhJLOE+ObClm6q0Pb1Z9/QQtsVGzlc3v3S?=
+ =?us-ascii?Q?5k5YxhvL0FoIMHGDzt8=3D?=
+X-Forefront-Antispam-Report:
+	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(36860700013)(1800799024)(82310400026);DIR:OUT;SFP:1101;
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Dec 2025 19:04:52.7120
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 94ab8923-1b9f-4396-b673-08de3e685347
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SJ1PEPF00002319.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR10MB7774
 
-On Wed, Dec 17, 2025 at 11:06=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.o=
-rg> wrote:
->
-> On 18/12/2025 02:34, Roy Luo wrote:
-> > On Wed, Dec 17, 2025 at 12:14=E2=80=AFPM Doug Anderson <dianders@google=
-.com> wrote:
-> >>
-> >> Hi,
-> >>
-> >> On Wed, Dec 17, 2025 at 11:18=E2=80=AFAM Roy Luo <royluo@google.com> w=
-rote:
-> >>>
-> >>> On Wed, Dec 17, 2025 at 5:24=E2=80=AFAM Greg Kroah-Hartman
-> >>> <gregkh@linuxfoundation.org> wrote:
-> >>>>
-> >>>> On Thu, Dec 04, 2025 at 11:14:39PM -0800, Roy Luo wrote:
-> >>>>> On Thu, Dec 4, 2025 at 10:05=E2=80=AFPM Greg Kroah-Hartman
-> >>>>> <gregkh@linuxfoundation.org> wrote:
-> >>>>>>
-> >>>>>> On Fri, Dec 05, 2025 at 02:26:38AM +0000, Roy Luo wrote:
-> >>>>>>> +config USB_DWC3_GOOGLE
-> >>>>>>> +     tristate "Google Platform"
-> >>>>>>> +     depends on ARCH_GOOGLE || COMPILE_TEST
-> >>>>>>
-> >>>>>> There is no ARCH_GOOGLE in the tree now, so how is this supposed t=
-o
-> >>>>>> work?  Shouldn't tools that check for "invalid config options" tri=
-gger
-> >>>>>> on this?
-> >>>>>>
-> >>>>>> thanks,
-> >>>>>>
-> >>>>>> greg k-h
-> >>>>>
-> >>>>> Hi Greg,
-> >>>>>
-> >>>>> The menuconfig looks like the following and it doesn't complain:
-> >>>>> | Symbol: ARCH_GOOGLE [=3DARCH_GOOGLE]
-> >>>>> | Type  : unknown
-> >>>>> |
-> >>>>> | Symbol: PHY_GOOGLE_USB [=3Dy]
-> >>>>> | Type  : tristate
-> >>>>> | Defined at drivers/phy/Kconfig:104
-> >>>>> |     Prompt: Google Tensor SoC USB PHY driver
-> >>>>> |     Depends on: ARCH_GOOGLE || COMPILE_TEST [=3Dy]
-> >>>>>
-> >>>>> According to Kconfig documentation [1], the unknown symbol
-> >>>>> would simply be evaluated as an "n", which is what we want.
-> >>>>> "Convert the symbol into an expression. Boolean and tristate
-> >>>>> symbols are simply converted into the respective expression
-> >>>>> values. All other symbol types result in =E2=80=98n=E2=80=99."
-> >>>>>
-> >>>>> In a different Kconfig documentation, an environment variable
-> >>>>> "KCONFIG_WARN_UNKNOWN_SYMBOLS" is there to detect
-> >>>>> undefined symbols in the "config input", but I can't find one that
-> >>>>> catches undefined symbols in the Kconfig tree itself.
-> >>>>>
-> >>>>> That is, the tool seems to allow this.
-> >>>>> However, if this turns out to be a major problem. I think we
-> >>>>> can either:
-> >>>>> - Remove ARCH_GOOGLE and leave COMPILE_TEST as
-> >>>>>   the only dependency. Then add ARCH_GOOGLE back
-> >>>>>   later once it's in the tree.
-> >>>>
-> >>>> Please do this.  I do not want to take patches that purposfully add
-> >>>> dependencies on config options that might, or might not, appear in t=
-he
-> >>>> future.  Please just remove all of the dependancies for now, as they=
- are
-> >>>> not needed, right?
-> >>>>
-> >>>> thanks,
-> >>>>
-> >>>> greg k-h
-> >>>
-> >>> Greg,
-> >>>
-> >>> Yes, we can remove ARCH_GOOGLE for now.
-> >>> To clarify, we're not removing all of the dependencies, we still want
-> >>> to keep COMPILE_TEST for build tests, right?
-> >>> Please let me know if you think otherwise.
-> >>
-> >> I think you'd just remove all of them. Normally COMPILE_TEST just
-> >> allows folks to compile stuff even when they don't want the ARCH. We
-> >> can can add ARCH_GOOGLE back in later once the config exists.
-> >>
-> >> -Doug
-> >
-> > Doug,
-> >
-> > Thanks for chiming in. I'm hesitant to remove COMPILE_TEST
-> > because Greg specifically requested its inclusion in v7 [1].
->
->
-> What? No, that's not what Greg requested. Your COMPILE_TEST in current
-> form helps nothing in build testing. It makes absolutely no sense at all.
->
-> > Also it seems beneficial to get some build coverage before
-> > ARCH_GOOGLE is officially added to the tree.
->
-> And COMPILE_TEST like you wrote it does not give you that. Please first
-> read how this function works.
->
-> > Greg, could you clarify?
->
-> Can you first look at Linux kernel sources to see how this is properly
-> written?
->
-> >
-> > [1] https://lore.kernel.org/linux-usb/2025112144-claw-recolor-49c3@greg=
-kh/
-> >
-> > Thanks,
-> > Roy
->
->
-> Best regards,
-> Krzysztof
+On 06:57-20251217, Rob Herring wrote:
+> > >    - |
+> > >      dmsc: system-controller@44083000 {
+> > > -      compatible = "ti,k2g-sci";
+> > > +      compatible = "ti,am654-sci";
+> > >        ti,host-id = <12>;
+> > > -      mbox-names = "rx", "tx";
+> > > -      mboxes = <&secure_proxy_main 11>,
+> > > -               <&secure_proxy_main 13>;
+> > > +      mbox-names = "rx", "tx", "notify", "boot_rx", "boot_tx";
+> > > +      mboxes= <&secure_proxy_mcu 6>, <&secure_proxy_mcu 8>,
+> > > +        <&secure_proxy_mcu 5>, <&secure_proxy_mcu 5>, <&secure_proxy_mcu 4>;
+> > >        reg-names = "debug_messages";
+> > >        reg = <0x44083000 0x1000>;
+> > 
+> > Please add a different example for am654, i want to make sure k2g still
+> > continues to be checked.
+> > 
+> > That said, AM62 series of devices do not use notification pipe for
+> > standard communication. So, the schema will break for those.
+> > 
+> > in summary:
+> > k2g: rx, tx
+> > am654, j721e, j721s2, j7200, j784s4, .. : rx, tx, notify, boot_rx,
+> > boot_tx, boot_notify
+> > am625, am62p ..: rx, tx, boot_rx, boot_tx, boot_notify
+> > 
+> > we will need three examples, and will need to add am62x series as one
+> > additional compatible.
+> 
+> Do we really? We have a whole tree of examples in .dts files.
 
-Greg and Krzysztof,
+We do not. But, I would rather leave existing valid example as is rather
+than modifying it for a new compatible that was just added.
 
-Thanks for the clarification.
-
+-- 
 Regards,
-Roy
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+https://ti.com/opensource
 
