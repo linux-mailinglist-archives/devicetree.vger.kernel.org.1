@@ -1,203 +1,144 @@
-Return-Path: <devicetree+bounces-247931-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247932-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89057CCCDD8
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 17:51:07 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D0B2CCCDA8
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 17:47:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A6E4A30FF0CB
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 16:43:50 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 429B130414C5
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 16:44:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2F142853EE;
-	Thu, 18 Dec 2025 16:42:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DDAB27AC45;
+	Thu, 18 Dec 2025 16:44:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=hetzner.com header.i=@hetzner.com header.b="TIvIl8Vy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from mail.hetzner.company (mail.hetzner.company [213.133.106.242])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBFDD257830
-	for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 16:42:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF7231F7098;
+	Thu, 18 Dec 2025 16:44:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.133.106.242
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766076141; cv=none; b=tFoxGgO8/Tihhiks7Tf5amqwrmjLEWQBFfoOnExMEzXeFbQEZ7xQ3vNdamOkgA5KV9yh3HAza014Nc8x9bgLngl0GcVmTQx4Gs6iPJrSlh/Hv7JqBXiajYXJrdD1OYgEHiWCjEd+YKUriCZLt8fj7F4YjSrUQGBiYOhJA1pPYZg=
+	t=1766076270; cv=none; b=jasJ8dp2NDfi7cxNVvUU+GLfZLWmErldZmoKXCScvogoal762/Nf36t8p36T89hRYHObI6TVxhmsNd8boBrX1V5uyGrfyjFfwz+c8jY98+euM7MtbdHYBkrjHLbgBhB0p1ufPMJXkhajF1rG8kKQmmjd1Ru9rQlbSbtvp1c4VNY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766076141; c=relaxed/simple;
-	bh=Pb5kooSMTZIvB5WH4r6zk15HZdb1lsTVhsHr7rhwmeg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JyJgD1dv/TzByg3UpWt5hhvTE02sfAv0uGMv2YAozGQL0aDvBxoo8G4z8uNEy5XZfOS65TNR3+6e9NzFt0nBII4yMnbaTSiNdvy8pi0bRI8FVsI2JSFgmWA1cph8Rb8NKOTh62mlEx2fDekmTLIuxUoh87TU728F5eY2clZSyMI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1vWH4s-00029z-19; Thu, 18 Dec 2025 17:42:10 +0100
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1vWH4r-006Jmi-1h;
-	Thu, 18 Dec 2025 17:42:09 +0100
-Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1vWH4r-00EcKV-1D;
-	Thu, 18 Dec 2025 17:42:09 +0100
-Date: Thu, 18 Dec 2025 17:42:09 +0100
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: Rob Herring <robh@kernel.org>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	imx@lists.linux.dev, barebox@lists.infradead.org,
-	frieder.schrempf@kontron.de, annette.kobou@kontron.de,
-	oualid.derouiche@kontron.de, eberhard.stoll@kontron.de
-Subject: Re: [PATCH] ARM: dts: nxp/imx6: Drop unused .dtsi
-Message-ID: <20251218164209.6ombc6g4gy7tuwcz@pengutronix.de>
-References: <20251212203226.458694-5-robh@kernel.org>
- <20251213181324.u32ztfblkknfpz44@pengutronix.de>
- <CAL_JsqK9OREenZjBHrDh7AqsyUXYOzTOhY4e0qHGzYkX8tacWQ@mail.gmail.com>
- <20251214185750.tzt6jf4zg5gtex63@pengutronix.de>
- <CAL_JsqLfVemq9k3x5J1pTz--Z+VYLeEQrFdbtdS7Pc-HkRui=w@mail.gmail.com>
+	s=arc-20240116; t=1766076270; c=relaxed/simple;
+	bh=YN/xxX0/Ixo3qL+LA06j9UvKExNb8vlw58qcG5Z9WtE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=JBPX2hRjkiDvwLn+nX0potvhpLke4oG8Sf/hwz2VxekSDRFhKzIIhtK4fYAOSbGqxbqs1QgosndW1xFiaiStxdSGJyT0X4P8mNfWcn97hWA2fRH2jWOyEEaO6ReIhnhM2yZQqwRBwyKhU/KXbrnrqx6yod19LtM6CLg/XEaxsEM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hetzner.com; spf=pass smtp.mailfrom=hetzner.com; dkim=pass (2048-bit key) header.d=hetzner.com header.i=@hetzner.com header.b=TIvIl8Vy; arc=none smtp.client-ip=213.133.106.242
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=hetzner.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hetzner.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hetzner.com
+	; s=lms2212; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+	References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=Fpfs5Yw14x8Q64EiuaznPYbDXviY+y9LVMU8kmcpM2o=; b=TIvIl8Vye4if2Ep+wXRRuhl8gR
+	WLUGm3b4XGDOiVIJAzNDQ36RYVc0PIMcGtm+vUMYeU/BLo7ux1uEnpR+QYNgxOjqyMZi9k/2ie+X5
+	6Wt2xx4S3KLgbhHU053QLxSOXsaLXm2yEdk8tuLoY1ptfkmIfvoA3QHTPKbjyC8JQYKYHl6o7WuWN
+	9H1uH3ptIGkM3VAbbKwZs/rcmoXTxUFdvVt5/1V+niTaVwGxrAnMeXyC9vA2KT4AH6vbKZkXXsUQJ
+	tLcgexQZwbXIJFwEft0vqfXUfjUNfZEdWmTJWiuvfM73Jce7kZHmM1UCW/4kj/a07g/KAncJeNHzx
+	aZtKwvpw==;
+Received: from nbg1-vpn1-entry1.hetzner.company ([78.47.119.212] helo=[10.1.220.249])
+	by mail.hetzner.company with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	(Exim 4.94.2)
+	(envelope-from <tan.siewert@hetzner.com>)
+	id 1vWH6o-00FlwY-9i; Thu, 18 Dec 2025 17:44:09 +0100
+Message-ID: <b10a233e-02c3-4b02-8f11-098f6fb8197c@hetzner.com>
+Date: Thu, 18 Dec 2025 17:44:05 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAL_JsqLfVemq9k3x5J1pTz--Z+VYLeEQrFdbtdS7Pc-HkRui=w@mail.gmail.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 1/2] dt-bindings: arm: aspeed: add ASRock Rack ALTRAD8
+ board
+Content-Language: en-GB
+To: Krzysztof Kozlowski <krzk@kernel.org>, Rebecca Cran <rebecca@bsdio.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+ Andrew Jeffery <andrew@codeconstruct.com.au>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+ linux-kernel@vger.kernel.org
+Cc: Billy Tsai <billy_tsai@aspeedtech.com>,
+ Conor Dooley <conor.dooley@microchip.com>
+References: <20251218161816.38155-1-rebecca@bsdio.com>
+ <20251218161816.38155-2-rebecca@bsdio.com>
+ <5aa36c56-798a-40cc-b0b8-be3f7c92136f@kernel.org>
+From: Tan Siewert <tan.siewert@hetzner.com>
+Autocrypt: addr=tan.siewert@hetzner.com; keydata=
+ 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
+Organization: Hetzner Cloud GmbH
+In-Reply-To: <5aa36c56-798a-40cc-b0b8-be3f7c92136f@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Authenticated-Sender: tan.siewert@hetzner.com
 
-On 25-12-15, Rob Herring wrote:
-> On Sun, Dec 14, 2025 at 12:58 PM Marco Felsch <m.felsch@pengutronix.de> wrote:
-> >
-> > On 25-12-14, Rob Herring wrote:
-> > > On Sat, Dec 13, 2025 at 12:13 PM Marco Felsch <m.felsch@pengutronix.de> wrote:
-> > > >
-> > > > Hi Rob,
-> > > >
-> > > > On 25-12-12, Rob Herring (Arm) wrote:
-> > > > > These .dtsi files are not included anywhere in the tree and can't be
-> > > > > tested.
-> > > >
-> > > > not in the tree but by other projects, please see below.
-> > > >
-> > > > > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> > > > > ---
-> > > > >  .../dts/nxp/imx/imx6dl-kontron-samx6i.dtsi    | 12 -----
-> > > > >  .../dts/nxp/imx/imx6q-kontron-samx6i.dtsi     | 12 -----
-> > > > >  .../boot/dts/nxp/imx/imx6qdl-pico-dwarf.dtsi  | 45 ----------------
-> > > > >  .../boot/dts/nxp/imx/imx6qdl-pico-nymph.dtsi  | 54 -------------------
-> > > > >  4 files changed, 123 deletions(-)
-> > > > >  delete mode 100644 arch/arm/boot/dts/nxp/imx/imx6dl-kontron-samx6i.dtsi
-> > > > >  delete mode 100644 arch/arm/boot/dts/nxp/imx/imx6q-kontron-samx6i.dtsi
-> > > > >  delete mode 100644 arch/arm/boot/dts/nxp/imx/imx6qdl-pico-dwarf.dtsi
-> > > > >  delete mode 100644 arch/arm/boot/dts/nxp/imx/imx6qdl-pico-nymph.dtsi
-> > > > >
-> > > > > diff --git a/arch/arm/boot/dts/nxp/imx/imx6dl-kontron-samx6i.dtsi b/arch/arm/boot/dts/nxp/imx/imx6dl-kontron-samx6i.dtsi
-> > > > > deleted file mode 100644
-> > > > > index 5a9b819d7ee8..000000000000
-> > > > > --- a/arch/arm/boot/dts/nxp/imx/imx6dl-kontron-samx6i.dtsi
-> > > > > +++ /dev/null
-> > > > > @@ -1,12 +0,0 @@
-> > > > > -// SPDX-License-Identifier: GPL-2.0 OR X11
-> > > > > -/*
-> > > > > - * Copyright 2019 (C) Pengutronix, Marco Felsch <kernel@pengutronix.de>
-> > > > > - */
-> > > > > -
-> > > > > -#include "imx6dl.dtsi"
-> > > > > -#include "imx6qdl-kontron-samx6i.dtsi"
-> > > > > -
-> > > > > -/ {
-> > > > > -     model = "Kontron SMARC-sAMX6i Dual-Lite/Solo";
-> > > > > -     compatible = "kontron,imx6dl-samx6i", "fsl,imx6dl";
-> > > > > -};
-> > > > > diff --git a/arch/arm/boot/dts/nxp/imx/imx6q-kontron-samx6i.dtsi b/arch/arm/boot/dts/nxp/imx/imx6q-kontron-samx6i.dtsi
-> > > > > deleted file mode 100644
-> > > > > index e76963436079..000000000000
-> > > > > --- a/arch/arm/boot/dts/nxp/imx/imx6q-kontron-samx6i.dtsi
-> > > > > +++ /dev/null
-> > > > > @@ -1,12 +0,0 @@
-> > > > > -// SPDX-License-Identifier: GPL-2.0 OR X11
-> > > > > -/*
-> > > > > - * Copyright 2019 (C) Pengutronix, Marco Felsch <kernel@pengutronix.de>
-> > > > > - */
-> > > > > -
-> > > > > -#include "imx6q.dtsi"
-> > > > > -#include "imx6qdl-kontron-samx6i.dtsi"
-> > > > > -
-> > > > > -/ {
-> > > > > -     model = "Kontron SMARC-sAMX6i Quad/Dual";
-> > > > > -     compatible = "kontron,imx6q-samx6i", "fsl,imx6q";
-> > > > > -};
-> > > >
-> > > > I can't speak for the other two .dtsi files but both kontron .dtsi files
-> > > > are used by barebox:
-> > > >
-> > > >  - https://elixir.bootlin.com/barebox/v2025.11.0/source/arch/arm/dts/imx6dl-samx6i.dts#L8
-> > > >  - https://elixir.bootlin.com/barebox/v2025.11.0/source/arch/arm/dts/imx6q-samx6i.dts#L8
-> > > >
-> > > > Removing them here will cause a regression for barebox.
-> > >
-> > > Please upstream something that uses the .dtsi. Other than the
-> > > undocumented barebox property, no reason these can't be.
-> >
-> > My intention wasn't to point to the barebox-only
-> > "barebox,disable-deep-probe" property. I was refering to the include
-> > line.
-> >
-> > The two .dtsi files we're talking about are SoM .dtsi files. We don't
-> > have access to the Kontron EVK baseboard which uses this SoM.
-> >
-> > I've added a few Kontron devs which may can add the missing baseboard
-> > support.
-> >
-> > +Cc: frieder.schrempf@kontron.de
-> > +Cc: annette.kobou@kontron.de
-> > +Cc: oualid.derouiche@kontron.de
-> > +Cc: eberhard.stoll@kontron.de
-> >
-> > I could also add the imx6dl-samx6i.dts and imx6q-samx6i.dts like we do
-> > in barebox. But as said, this would be a devicetree for a SoM which
-> > makes sense for the bootloader but not for the kernel.
+On 18.12.25 17:21, Krzysztof Kozlowski wrote:
+> On 18/12/2025 17:18, Rebecca Cran wrote:
+>> Document ASRock Rack ALTRAD8 (ALTRAD8UD-1L2T and ALTRAD8UD2-1L2Q)
+>> compatibles.
+>>
+>> Signed-off-by: Rebecca Cran <rebecca@bsdio.com>
+>> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+>> Tested-by: Tan Siewert <tan.siewert@hetzner.com>
 > 
-> Why not? People use the kernel as a bootloader. There's also some
+> How was the binding tested?
 
-Using the kernel as bootloader is a good point, which I didn't had in my
-mind!
+My bad for sending the wrong trailing header in v4. Tested-by should've 
+been only on the dts instead of the dt-bindings+dts. Either way, `make 
+dt_binding_check` was what I did to check if there are any errors 
+produced for `asrock,altrad8-bmc`.
 
-I will add the som.dts, please don't remove the kontron dtsi files yet.
-
-> discussions about splitting SoMs and baseboards into overlays for
-> baseboards (and also even into SoC base DT plus overlay for boards).
-
-Do you have pointers?
-
-Regards,
-  Marco
-
+-- Tan
 
 > 
-> Rob
 > 
-
--- 
-#gernperDu 
-#CallMeByMyFirstName
-
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | https://www.pengutronix.de/ |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-9    |
+> Best regards,
+> Krzysztof
+> 
 
