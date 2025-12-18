@@ -1,99 +1,109 @@
-Return-Path: <devicetree+bounces-247709-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-247711-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC95ECCAB1A
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 08:37:56 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F2ACCCAB41
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 08:41:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C48473036DAD
-	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 07:36:51 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 09C923006F68
+	for <lists+devicetree@lfdr.de>; Thu, 18 Dec 2025 07:41:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4943E2F9C32;
-	Thu, 18 Dec 2025 07:36:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YPoRO7nL"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6836F298CC0;
+	Thu, 18 Dec 2025 07:41:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C0062DE1E0;
-	Thu, 18 Dec 2025 07:36:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0590C21771B;
+	Thu, 18 Dec 2025 07:41:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766043410; cv=none; b=LIUe5wcNZoTjiL4sbANcnKuMagMxYt3Ac69sTc3LTHrZCBseVoNj39M9OP2cIGjtufW8Q0ZBGc6qLFtvrIZqdG0D4CmA+LvcqFywcZ8P3vBsuVLC1BZVd/dQgmKpQ4oYnP+VbzDryej2xp/VYhbAQkhy4WXAcqDJl9PQj6p61cQ=
+	t=1766043677; cv=none; b=Kjv2gtfTyaX1ZXzOT3jRZW67xKa//0YdaKgED6CcziL6SZI6fUb+I8u9EgG4jP2+kRAezneUGe9/PI9x2LzzWq3FkUgMRSKJbkkBnKKSPwqQ9I1tn2N5u9qfUdy80QSL98hLARFPAZeckqI1QawtQKc1p/7I8jQ3yfqkoVhkxns=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766043410; c=relaxed/simple;
-	bh=egccrtVw3HByxVzw/WWhOtHIeoGo73qZkdhJjEVMPes=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=cgsjsVxkd0l1HC4Avh9qaHg07Gk/SWKSCa4NzvnkK1Mzr31vc02E0DufgxLTQ9B2yBI3XY3KcX+e2zXUiGGBatEpTvS7qkBMoGtxrHpvCpbTelYi9iBIcxMwYFoONrhxIhYCsq6jhMkUDCh0NYDuImsAKlfjUqzdVwh03Iq+15o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YPoRO7nL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78696C113D0;
-	Thu, 18 Dec 2025 07:36:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766043409;
-	bh=egccrtVw3HByxVzw/WWhOtHIeoGo73qZkdhJjEVMPes=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=YPoRO7nL8KtC7XENet1FB3jMpsrHXh/99ASmhbmhIOqDBMLXMS/qHfnJOuOWdem+f
-	 DJrTgNV+g3ed9wccq5wZri68klvtTU14f/LjrCevpcMcFyMaAqpdfGQnb4Vw72UxJW
-	 LYoRSI0b4hcS5lefkIh3wSiFOK6n0RdNgsHN/D0XgcDM6rGpOWWNkmeik9KSR59Edj
-	 kD1COGYXFPk8CweCtLMWAlVoC6mHGnC1T8tO2rQSymUSHnjeNUN0DNLsM+ENqQb4aP
-	 OZhm+XuQiLon1+6jZCyvnnN9l7u2UPsSxek6brKOEHoJ8AkaSxgcj+7KLKSZdIrJgZ
-	 HXyoTn11iAP+g==
-From: Mark Brown <broonie@kernel.org>
-To: Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-spi@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20251215230323.3634112-1-robh@kernel.org>
-References: <20251215230323.3634112-1-robh@kernel.org>
-Subject: Re: [PATCH] spi: dt-bindings: snps,dw-abp-ssi: Allow up to 16
- chip-selects
-Message-Id: <176604340821.24947.4105982029008973557.b4-ty@kernel.org>
-Date: Thu, 18 Dec 2025 07:36:48 +0000
+	s=arc-20240116; t=1766043677; c=relaxed/simple;
+	bh=E6NfvmDQW8kWtFOIWt2JoT3mLvN6Nh9u2h+9fP8T38E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NAvfsA8OV4uWJONJMGQ4cNGaNKuUF/8AAzQMjPRDRo0GMtPXUa+C+shRBNE42zDJzttV2e6tDLG07WStx/9hS+wLrBUCPofOqbzdhcSWDl6lJLJ4NpOuILAAX29qWZi8qAN7wp+fsvAFsja+925A3gCkt6NKV1CaNHUks6ZZvRY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from localhost (unknown [116.232.18.222])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id 15BB7340F3B;
+	Thu, 18 Dec 2025 07:41:14 +0000 (UTC)
+Date: Thu, 18 Dec 2025 15:41:10 +0800
+From: Yixun Lan <dlan@gentoo.org>
+To: Yao Zi <me@ziyao.cc>
+Cc: Stephen Boyd <sboyd@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Haylen Chu <heylenay@4d2.org>,
+	Inochi Amaoto <inochiama@gmail.com>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RFC 4/4] clk: spacemit: k3: add the clock tree
+Message-ID: <20251218074110-GYB1943598@gentoo.org>
+References: <20251211-k3-clk-v1-0-8ee47c70c5bc@gentoo.org>
+ <20251211-k3-clk-v1-4-8ee47c70c5bc@gentoo.org>
+ <aTo8sCPpVM1o9PKX@pie>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-47773
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aTo8sCPpVM1o9PKX@pie>
 
-On Mon, 15 Dec 2025 17:03:22 -0600, Rob Herring (Arm) wrote:
-> At least the Microchip Sparx5 supports up to 16 chip-selects, so
-> increase the maximum. The pattern for the child unit-address was
-> unconstrained, so update it to match the maximum number of
-> chip-selects.
+Hi Yao,
+
+On 03:38 Thu 11 Dec     , Yao Zi wrote:
+> On Thu, Dec 11, 2025 at 09:19:44AM +0800, Yixun Lan wrote:
+> > Add clock support to SpacemiT K3 SoC, the clock tree consist of several
+> > blocks which are APBC, APBS, APMU, DCIU, MPUM.
+> > 
+> > Signed-off-by: Yixun Lan <dlan@gentoo.org>
+> > ---
+> >  drivers/clk/spacemit/Kconfig     |    6 +
+> >  drivers/clk/spacemit/Makefile    |   11 +-
+> >  drivers/clk/spacemit/ccu-k3.c    | 1641 ++++++++++++++++++++++++++++++++++++++
+> >  include/soc/spacemit/ccu.h       |   18 +
+> >  include/soc/spacemit/k1-syscon.h |   12 +-
+> >  include/soc/spacemit/k3-syscon.h |  273 +++++++
+> >  6 files changed, 1947 insertions(+), 14 deletions(-)
 > 
+...
+> > +
+> > +	return devm_add_action_or_reset(dev, spacemit_adev_unregister, adev);
+> > +}
 > 
+> This piece of code looks quiet similar to types/functions with the same
+> names in ccu-k1.c. If I'm correct, could we separate the logic into a
+> new file and avoid duplication?
+> 
+make sense, will do
 
-Applied to
+> 
+> k3_ccu_probe looks quote similar to k1_ccu_probe, too. The only
+> difference is that k3_ccu_probe checks for spacemit,k3-pll instead of
+> spacemit,k1-pll.
+> 
+> We could share most of the probe code by writing a SoC-independent probe
+> function,
+> 
+> 	int spacemit_ccu_probe(struct platform_dev *pdev,
+> 			       const char *pll_compatible);
+> 
+> and calling it in ccu-k1.c and ccu-k3.c with different pll_compatible.
+> 
+ditto
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
-
-Thanks!
-
-[1/1] spi: dt-bindings: snps,dw-abp-ssi: Allow up to 16 chip-selects
-      commit: 1d24636a9c87c32ec626a56593c98544e6c49fef
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+thanks
+-- 
+Yixun Lan (dlan)
 
