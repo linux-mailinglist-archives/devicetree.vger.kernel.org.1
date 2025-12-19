@@ -1,472 +1,328 @@
-Return-Path: <devicetree+bounces-248332-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248313-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4796CD1767
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 19:52:01 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2258CD1077
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 18:02:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 35B6B301DD78
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 18:51:59 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 80BD83003F65
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 17:00:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E4492E973F;
-	Fri, 19 Dec 2025 18:41:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9600E322B83;
+	Fri, 19 Dec 2025 17:00:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="grOeqGzy"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="rQxX6MvU";
+	dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b="qRpMxyl4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB362168BD
-	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 18:41:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.173
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766169709; cv=none; b=PYy82ClNXe3kgowMUFsq5E2ej/lfR3NUguVlNauVNFUegCc9eReLpFJ0l6w/8EQtG20Vp0wm/xX+/CUp3nd3P9Js/p0gRSkYq61aShdXrsSTXFiXFVe5RKjE71LPtJfvhxr0PG2uqPcjEYtzLdiA7eng8Ia3GujLLdR7EwUJM+s=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766169709; c=relaxed/simple;
-	bh=vmmlyERkT3AjRqpZk/y1yFDkCVu7HL5/z99/+aWZxrI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NHnavX4qd27S+idRUN8sZ1oIqhPUWebTdfk8jWCTMPY5tbg99jaj25rJHFShWzC5n1ZN/RmcreikpxHtXe9EN3OWrnrLKqMkIuDyFNBDmO8K+KXi6pJ8Y76hjj0G3szLfPn3MSzKdiM7krQSyoTSnKXA8IjaY0L4sNbnDqnl++M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=grOeqGzy; arc=none smtp.client-ip=209.85.160.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f173.google.com with SMTP id d75a77b69052e-4edb6e678ddso27421751cf.2
-        for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 10:41:45 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2099A257423;
+	Fri, 19 Dec 2025 17:00:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=210.61.82.184
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1766163642; cv=fail; b=Z50F/yU4PSoGOQ3jAqHK35weYddUu4IXc49/L83p2j0abYKjVGZcWA8sm06Ba4ZzeoqZPXFROBGLmjZOJ9PWwSiROCLPL8owxHj+X6Pus5rHofWcz9j3bLYVw7H/0fcDqVnXBkkbWoWU7TO22JKY9Tgsqtgjlu8ZFA6QeoxTtQw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1766163642; c=relaxed/simple;
+	bh=UVuhF6lGp84tVTJZCL+QDfDP6haVKUY17yN4YRLiQJA=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=HBJRkFo2QWQVG5Q2hj1uxzXJnYtoOu2eOnTc4UG1kag3RRrQMHHVww8Pd5wGNBbSVCZch1aW/9Hzcg6YI7lNevHeIA5jfdHUvsI82/V0LKzQ9jqFaiTjUu04HqgXjzG+BNaHhML+t5g0/nxye1Kl3apyFZIWSOFaC/myhIMQaTk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=rQxX6MvU; dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b=qRpMxyl4; arc=fail smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 3909a4acdcfc11f0b33aeb1e7f16c2b6-20251220
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=UVuhF6lGp84tVTJZCL+QDfDP6haVKUY17yN4YRLiQJA=;
+	b=rQxX6MvUJkJpYTT7xjfR/McVMPyn9nu2cDPUSvB3QhPBlHCuU2EPv1KRVGcg4RXdH5qNPbbZbhz9gLyUQGlZ5FXc133e+HA2+Cnik573Orj2PFQPPV64bhvw9F8wpykEdjyoAQ6KUOUp8QsMeNmoNim6UI8TfxEMST3j425lFak=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.6,REQID:976a96e4-3d81-4d40-a4df-129942111cbb,IP:0,UR
+	L:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
+	elease,TS:0
+X-CID-META: VersionHash:a9d874c,CLOUDID:762ab728-e3a2-4f78-a442-8c73c4eb9e9d,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:80|81|82|83|102|110|111|836|888|898,
+	TC:-5,Content:0|15|51,EDM:-3,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:nil,BE
+	C:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: 3909a4acdcfc11f0b33aeb1e7f16c2b6-20251220
+Received: from mtkmbs13n2.mediatek.inc [(172.21.101.108)] by mailgw02.mediatek.com
+	(envelope-from <paul-pl.chen@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 562836976; Sat, 20 Dec 2025 01:00:29 +0800
+Received: from mtkmbs10n2.mediatek.inc (172.21.101.183) by
+ mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Sat, 20 Dec 2025 01:00:28 +0800
+Received: from SI4PR04CU001.outbound.protection.outlook.com (172.21.101.237)
+ by mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server id
+ 15.2.2562.29 via Frontend Transport; Sat, 20 Dec 2025 01:00:28 +0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=pZM3CwAQCcJvE2YsYZ/NVFpgIeCDaMjQvRbagAruPfnfroadl6OaAO7bEZYhMFfW2m76qNQCJ7unc5imjBdgexCb9YKKEdBJ7tZ0RPE0EHTO70IL/y/f+wFhXTVhfj/PMj2NtNE658anko9MP1PQCuYXWJL2aQBC3jx+RBsgAWx5I3rlss9r2dfMCN0udsUhCQO35VZfoCbZRYHz6xyare7th89TW3CvqIt6KRgUcEkmH2CMsL/xsHDRfyuhXTLvxWyHu5iEH7U9oCO1X/W38TwSMA12H2kKG8x/w1iMbwdkE/UBjZm8Yp9pVn9fgyZwZsV79u6Iioj2qvWD0aBaVQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=UVuhF6lGp84tVTJZCL+QDfDP6haVKUY17yN4YRLiQJA=;
+ b=f0eLiRGrrbEp3SeRNgw3UN7T1uY7P3290kpZi7HxqgTEH++1lk0ofCd0UoYOFU2HanRTJ23QBapxgXFbTuyodU7mkdzduaad57/xGxPEsZYZlf6Bxo2Enrhg2vlPt13Rh22hBd6lVogGQfO1yh2MEV0kt9Wp2YXiDTWe+UvBGHm8A4O/MFb5fHJwR9VecsMZd5E46QkcvFBDXaYviDZgHH/Dc7CKItTEPFNDCSyN5ZtXZSI5FFu9u8VHUpNLkFQRDpgaSC/xs/aj6N79/HvGTWxwBgh9Pdeo89TFVl0yanI7jkif3pLXC8dIs8KzN/DeG8M/sxNYbizDeqMDPmI1OA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
+ dkim=pass header.d=mediatek.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1766169705; x=1766774505; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=vuCZ+fHIJQF3Nuz7eOBOWcO6aa8yeNtMpL8cd+du1T4=;
-        b=grOeqGzyzBkynd9kGDB6XMbZc8S2N5BizHTjOrolNR8HrFh+75hOkCBf6iv3U541GZ
-         6Xr8Cs3spvZ4N7sLnXF/35WyCQGU+5gMmMO+8beuTqgvcf3G/WjIRdE3Lxo8DdF/VKJb
-         3W26jbrLsPHHGdN9LyYT/wopLtY/ygjibu9XKqSXa5pBwlySAiZjNRA/NZNb+tL1iDrR
-         OrSReCYSzO0XAOueYLanWK6Sa44fyBslOpNA8NGtgWBNJifBRRTCnTBXC97a0rMo8ch4
-         FNodHVXTDlJYBSqgZTcEml4kGCrNA1TmOtAmlKvJ9o/MB8wyNwKzxKWHOuObL2Zu6o0A
-         esZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766169705; x=1766774505;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=vuCZ+fHIJQF3Nuz7eOBOWcO6aa8yeNtMpL8cd+du1T4=;
-        b=Zl0J+hZaXaISmiB8dh3lOX+cxYqV9olKClmrF2PYNWCCPS65MonLpPKaqCXQZja0HT
-         5KKHAbivJI4HjiDLRLSCLJ2kOsv0x/cAxR9CkY2b5PPgsGZPNFGiHKvZaRx16ld//xv2
-         uTEquWi4kmo41Ta56AFPOahmmgafqSWQCKazwDAdWtavqZt7RfdwPB0p6zuDB+kNm1NR
-         IcTs/gEz6/4nBzbQQ+EKCrDNEY2A8uVJhqot//MI+2QhjzGmx6oSv8FtTrvekgoA/8Xs
-         dnXZQEJc9oYOnjXu/o80eKpfXJyjfXnAi49DyUY4UGoXGPSRFb+gYlHgC5JNVBHvp+aH
-         oNsA==
-X-Forwarded-Encrypted: i=1; AJvYcCVTakFP6CS8xso+dVk4Nx4HsN3Tz/M7fFVdXpuqAqfZ8r43mk19OnbUeP8fNEITFWWZGryGB7GUTDzT@vger.kernel.org
-X-Gm-Message-State: AOJu0YxFQwfUUGO7yBLFAPcxHkKxK1LV1CwPsfvsIJwVfxnCdDvOY3SA
-	o1wBvoglOzo1rlixF6fEq+uR5hBBhpsVcxMv6VxQr2i46rNqwujluk3kMfe1Og==
-X-Gm-Gg: AY/fxX5qXdLCDaiaiFD3Hv55nr9/Lclz849qEBqBUsQKKS6aH5AHp7UVOQvAyCj2GMS
-	/MDtln/vkYr/w0v6Jj28JFZ8ZjezWjHsJZauYalxq8wDKThNZswZtc2+L5vNqOf5YpXoPqC79t7
-	IF14/PyFobyUBlF9+f0AZB+bFc+LCEplZOZ74GpJKHFNdONMY6SoW2cmQE3jSa8b9qUMZlf/jqP
-	4v/MAcmxqBU+sSULKfvmXL3Mc8u1kJHoW1/Ekl2/K339A8aNJ4vnPLts/wPQxBNjZ+brtzd3mhM
-	lvteuVnMQGMpVXwguIk3VorlL8GJ8O3tzOCy5n/JLbkDGbyBj2hcOMQ+wfZmaDKSVg7OqOKFz8T
-	s+rkOXN2k1muJP1IZaaBGs6FEfqTPXk5QlTsWNLgsoa9NR3m1/ansAsYbPU1RHxDL7IVWCyFtxJ
-	MF++OKcZpj82iZ9kTrvdCJuUKdeRY2KnQp0w0=
-X-Google-Smtp-Source: AGHT+IHOKSC+KI1Nyc4OKONZJ3szj4wUL6LNTRbQr8apuim/UbhzwDmhASs87IoUPE1cdNRRnYXwYA==
-X-Received: by 2002:a05:7022:248a:b0:11b:9152:b3ad with SMTP id a92af1059eb24-121722dff70mr3707810c88.31.1766163143581;
-        Fri, 19 Dec 2025 08:52:23 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1217253c23csm9673327c88.9.2025.12.19.08.52.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 19 Dec 2025 08:52:22 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Fri, 19 Dec 2025 08:52:22 -0800
-From: Guenter Roeck <linux@roeck-us.net>
-To: Yuxi Wang <Yuxi.Wang@monolithicpower.com>
-Cc: corbet@lwn.net, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, wyx137120466@gmail.com,
-	linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] hwmon: add mp5926 driver
-Message-ID: <7fbb2eb5-5257-4461-96d8-264a1ac243a6@roeck-us.net>
-References: <20251219055413.1661-1-Yuxi.Wang@monolithicpower.com>
- <20251219055413.1661-3-Yuxi.Wang@monolithicpower.com>
+ d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=UVuhF6lGp84tVTJZCL+QDfDP6haVKUY17yN4YRLiQJA=;
+ b=qRpMxyl47JVJDJDs0cFIgJ6ErzjD+JBrD4S6tc5GmOaMJkVLLbb89sRGKMHzYYQOJtLoOfSgzrAuse0g8XTunx6U3EjiuPuzsGcUOjLaQjZxUEW8ViDCUldFXUsGrfaMBSEyy6f9CEu0SiA12zT5fGEPRVIK8TWTwWrRluyPleE=
+Received: from SEYPR03MB7759.apcprd03.prod.outlook.com (2603:1096:101:142::9)
+ by KL1PR03MB8164.apcprd03.prod.outlook.com (2603:1096:820:ff::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9434.8; Fri, 19 Dec
+ 2025 17:00:25 +0000
+Received: from SEYPR03MB7759.apcprd03.prod.outlook.com
+ ([fe80::cfde:8bcf:25af:873f]) by SEYPR03MB7759.apcprd03.prod.outlook.com
+ ([fe80::cfde:8bcf:25af:873f%3]) with mapi id 15.20.9434.001; Fri, 19 Dec 2025
+ 17:00:24 +0000
+From: =?utf-8?B?UGF1bC1wbCBDaGVuICjpmbPmn4/pnJYp?= <Paul-pl.Chen@mediatek.com>
+To: =?utf-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>,
+	"robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>, "AngeloGioacchino Del
+ Regno" <angelogioacchino.delregno@collabora.com>
+CC: =?utf-8?B?U3VubnkgU2hlbiAo5rKI5aeN5aeNKQ==?= <Sunny.Shen@mediatek.com>,
+	=?utf-8?B?U2lyaXVzIFdhbmcgKOeOi+eak+aYsSk=?= <Sirius.Wang@mediatek.com>,
+	=?utf-8?B?TmFuY3kgTGluICjmnpfmrKPonqIp?= <Nancy.Lin@mediatek.com>,
+	=?utf-8?B?WGlhbmRvbmcgV2FuZyAo546L5YWI5YasKQ==?=
+	<Xiandong.Wang@mediatek.com>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, Project_Global_Chrome_Upstream_Group
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>,
+	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+	=?utf-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= <Jason-JH.Lin@mediatek.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"fshao@chromium.org" <fshao@chromium.org>, "p.zabel@pengutronix.de"
+	<p.zabel@pengutronix.de>, =?utf-8?B?U2luZ28gQ2hhbmcgKOW8teiIiOWciyk=?=
+	<Singo.Chang@mediatek.com>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "matthias.bgg@gmail.com"
+	<matthias.bgg@gmail.com>, "treapking@chromium.org" <treapking@chromium.org>
+Subject: Re: [PATCH v4 13/19] drm/mediatek: Export OVL Blend function
+Thread-Topic: [PATCH v4 13/19] drm/mediatek: Export OVL Blend function
+Thread-Index: AQHcF/M2xPUL1czaaEi2QK4OcEP7IbSMN74AgJ2qSYA=
+Date: Fri, 19 Dec 2025 17:00:24 +0000
+Message-ID: <7d5a8d4e8648540b7d644c1614b169ddd7ceaab5.camel@mediatek.com>
+References: <20250828080855.3502514-1-paul-pl.chen@mediatek.com>
+	 <20250828080855.3502514-14-paul-pl.chen@mediatek.com>
+	 <a13a968227214194b7033795a07ad554bfacfc8a.camel@mediatek.com>
+In-Reply-To: <a13a968227214194b7033795a07ad554bfacfc8a.camel@mediatek.com>
+Accept-Language: zh-TW, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=mediatek.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SEYPR03MB7759:EE_|KL1PR03MB8164:EE_
+x-ms-office365-filtering-correlation-id: 2652a04c-2887-40bf-4888-08de3f201a22
+x-ld-processed: a7687ede-7a6b-4ef6-bace-642f677fbe31,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|366016|7416014|376014|1800799024|38070700021;
+x-microsoft-antispam-message-info: =?utf-8?B?RVZqajRQYkVzbWVCWjdyZitrRGo0SDVNR0ZEQ3JSWWtsVnpYQzZPZTlaMU9H?=
+ =?utf-8?B?TnRFazE0WllhdVplWHluaVFDQ1lsZDZCcUNDNkZoTHdQdGZrRk8yRlg0V2d6?=
+ =?utf-8?B?VkYvNUdEL2tGMHhaTTZtL2l3WXNjYW1TVUpPMG5ENTJKZThmcGV5bGsyV1Za?=
+ =?utf-8?B?OEpnZ1QycUlwelU2RzYreG9GN0dPWU5vZDVUVTFLci8wZWc4dXB3cjZURmk5?=
+ =?utf-8?B?L25zckVpdjJzU0hLWWpITHF2ZnRXdERpaHdPZ0JuUzNubVMzUjYwMGpCckJ6?=
+ =?utf-8?B?eDRaVVZXYUVjeHhnZ05xdVNvOXgzdGtObUVQY0ttQVNIUUI2eEd1dytMMG5Z?=
+ =?utf-8?B?cnVMTXZCbEhZemdMWWdSRTIvd1BaWU01TWFra29ZekJIMGJZaFFmMzE2T2Mx?=
+ =?utf-8?B?T1N1UzA1RnhCU3NxUm5KNEU2VlIwZUFhaDJVVUFsMTFjQ2ppTGE4ekNLRlJ2?=
+ =?utf-8?B?bDVyS0dXSjBXRk5obFNQc25tdDU0Zmw4bFY0L0lMOVdaNVZxV0I3Z1NYQ0Iw?=
+ =?utf-8?B?K3BDd0w3N1dQUFZpc1JxUkZ5YmpYZTBZd2wrTGFyOTdSUnlTclZ0bWxCcWtv?=
+ =?utf-8?B?dUMzWUo1Qkc1MXFiRVBVSzZoc3VVSCtSKzdETjNZM2xxVTVrd1NWU1JCc3R0?=
+ =?utf-8?B?MHZtY291Z216Yk1UcEZtdXZidzdhVmk4WjBoZ0dJTGRlcGlQWm55ZVpTMXc3?=
+ =?utf-8?B?YWpQcW5DRUhrcmF5UjZOK2V5Vk5HMmVVYmhBclZiQ29QTFZjbHBhQTV0UG8w?=
+ =?utf-8?B?Q2d6ZVFwTWdmVTkwbUYyWm5NYkxQUFNWeXFkcXZKbSsrS0t4NStvSW1ORk8y?=
+ =?utf-8?B?VktKelozUEQ5Q2NWYUpPRmJkMkJPUGErVlU3eStYc1liS1dsV3RkcGt5SFVu?=
+ =?utf-8?B?ZzBkSjBZdUxmOFJ0c2E3MXFVVjByZU1pUU11aDA0UVJVa1FqNGFKYjh6QnA4?=
+ =?utf-8?B?QVMvYVl2SVdXM3habTdKUTJ2aTVYNlVqdjIzNUIwZlRyeWZFSjJMUEo0MDZY?=
+ =?utf-8?B?VjA4WjlDbkFiakVORWNWQVVkK1dYejhIMVZIR0F3QzNvby93bmovdGpselVx?=
+ =?utf-8?B?NHgxOVk0ZFd5S0d1Ly9qNzhySFQzamttanhBMU1ya0N2MG5NL2s0V005aVBI?=
+ =?utf-8?B?aXlaeHFOdmVGbGFjY0pZZzJYaTlJL0xoYXh0SWV2Nkh0aDMrYXdad0h6ZHIw?=
+ =?utf-8?B?em81Q1Y0ajlCTExqdk5adzU3a0VrMEdldERHRHg3Z1VQZHh0cjd0RksrUXFE?=
+ =?utf-8?B?ODRPRU1KR01HU1Nzb2JybXJQRjBzVFJ0WDJiUWJ2ZGtCeE9TbktzYnRNV1lV?=
+ =?utf-8?B?NHlhYU1PMGNFSmUrcjdGb0c2d0Q0dDFTcitVV1lDa2lXNmw4Z3JmZEhlNUNn?=
+ =?utf-8?B?WCtWQmFnMFEvRFFtc2kyeXZDOXNPd1VoV0g4VzlOdW8wblljTDNpdnFSOUIx?=
+ =?utf-8?B?ZGxHYVZWN2I0RHo1ZzNCdHZXeXRDUHMrTGRxUFBRbXRXV3cvUXJQb2wvTzl5?=
+ =?utf-8?B?a0kzWkhvd0MvVzdNcjFJYitRMm8wN1J6b3hBS2VQRDQvcWpRamJtZFAzL1o2?=
+ =?utf-8?B?aWNIMGs3cElpL2VaaWxuK3djcU5UVHFjaHlGS2o4ZG95VVFWdCt6dllGbFpO?=
+ =?utf-8?B?WXhSVnpTbmFXL25JMDcrQ1NLMzYyaWtkWFlHM2VoRnNhWnY1RVBuemhGSDVF?=
+ =?utf-8?B?eElKSjEwYzNvemFDYXRMRlI4Tno5SUFncUNQV2g2NHBMRDhVMEUwdEdPUUls?=
+ =?utf-8?B?c1J1SGJhK3VSSis3NGp4bVhsVjBPOUU4MFlwZHdlaUh6dElzdHNoZEtxM29k?=
+ =?utf-8?B?cGhtM0R1dFB6aXhjSE1VeU1RMUg4Z1JFNDNJbzJtdjE4TUNxSE5XOEVXRFpi?=
+ =?utf-8?B?OXJpWFVPbXFNMTA3SHVTaUhQVDFVUVkyUDgvbDd0RDNDMkJLV0pGeFpzc1VC?=
+ =?utf-8?B?Ry81RWpxRVdtSnV2d3NxekxyeTZqMzg5SDdTMXlEZTNweDlzZkNoOGYrdU5Y?=
+ =?utf-8?B?NFRYVmlxSExpd0RXWXJNNVJhU1ovOSt4Y3FzaG5WVGlrZWpqZVpVNUgwUWpI?=
+ =?utf-8?Q?9ZY+fr?=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SEYPR03MB7759.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(376014)(1800799024)(38070700021);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?aExuajdRM3loa0hxanlreGh5bEtFbVdaZFFzM1NpSEZEc0lPS1BJY3o1R0VR?=
+ =?utf-8?B?d2ZFWWhrTG05RVM5clRURnVTK0JDczBkRjVTamtPYTU1ZE8xaFRnekMyTWRL?=
+ =?utf-8?B?SEJta2l2aDEvUU00RWkwNW90UzVER1I4NlRhZFBTQUFpMHhpaFkvUmhXMlo1?=
+ =?utf-8?B?ampONjBSR3d1YTNsYXIraDFDbU52MkZLckdrVnJRSUkzU29SVytibXFiNVNj?=
+ =?utf-8?B?L3JHdmQvR0dHOWVhaUw5M2NjSldnUi8vU2lGVTdyZ0NtTmQ1Yk9yM2pNTkJM?=
+ =?utf-8?B?T0dhaEtpN1R3YVpNK2Rjc3BBVXp2QStYUUt6VUxZOCsxNXBxTUdvVXFkZDlD?=
+ =?utf-8?B?TStzNUU0Sjk0eGhhZ29nSDhoMXY2bFdJRWdveWc5andvSjZJWGxBMHF5Zndq?=
+ =?utf-8?B?eEVoSVlzcWpKeUpvV2I4QjJTaWlNR1ZRNEVWWHhQMEcwR2xJME1xblE5bkhP?=
+ =?utf-8?B?RTc0VTZOcHlOL3ZNV1EyMC9BMEJYbG5PQXIvcUFtZXZqcWR2K2NSR1FqZ3FW?=
+ =?utf-8?B?dm0rTzdoRi84SHB2Y254MzcwWUhmdFBXanlGRFRwalBreDBQMTMwWmVvS1E5?=
+ =?utf-8?B?c0x0YldrWHN2N3lweW1sbXRjTFBHSEJtd0xhNkQ5UlZRanN1Uy9INjF3NE40?=
+ =?utf-8?B?QzMyL2dpU0hPQmY0ZmtTWUo5dm53TVdmd1hkTGMrNSt0VytmQS9XWnRqV1BM?=
+ =?utf-8?B?bnpWWUMvcTg3TENENytKWFZEb3ZZcGtTVTNoa0FXMWIvbDBoT2phZkZyR2or?=
+ =?utf-8?B?bjBmRlJ0cDlpcVl5RU1OODJTelBMb2JjVjluOUZnYk5ibUUwbHhJQnZnaURG?=
+ =?utf-8?B?TWVuenhrVTF2WUdJN0VnTnlQL0lsRlNxVkp1SzNzRDFvbE1MMkNCa3EyNFdk?=
+ =?utf-8?B?djNUcUlNRHg5eEQ4M1I2bkE0cE1DUm9FS0k5Q1J4d0syT040L3BaQURJQWtD?=
+ =?utf-8?B?L1FWb3VOVStGQmowdWFrdTV2ZmZPQ2o4WTVtOEFoNi9wOVptek5IMkVNbC9V?=
+ =?utf-8?B?dzNrUEZNczhsSzJRRHpSeTd2blVHOHE1aU8vZ1FVMjZPaENhM2Z4QXpMYTk4?=
+ =?utf-8?B?ajY1czIwdFNFbm5USlBxY2VtdVpQQVNUZll3K1haRWdzbTc5UVpFcTVtNkNS?=
+ =?utf-8?B?OVJxWk1YY3Y2bE43VjBORnJUNkNEUGFGemFkek5pdHZSSG1PbzR2bndnY2hC?=
+ =?utf-8?B?WE9zakRYenUvRnRsRm9QRFc0T3g1d3RFbmxBYzVGTUh3OHpMTjh1YjR2dU5Z?=
+ =?utf-8?B?WlRlYnJFSXJKazVRS2pDVndLbGkwczd2M2hJS3NrSzgwUW5GcjFmZUU5aGpE?=
+ =?utf-8?B?SzIxbHJqcWlDdWFzMFRBMTdReHdCR2JwYkh1dGNsRmt3TzNyUkRpUU5GVEJu?=
+ =?utf-8?B?M3FTQ0JHQ2RsTkRRZVlnZmI5SHRtQTJQeHA2cE5ocXhjVFVFb1crWndSMFY5?=
+ =?utf-8?B?ZVJMVkZyWFpBQVRISEFJRHFNalN1bFpKd3YzUVZvOENJMUh4V1VDOWxMRzJs?=
+ =?utf-8?B?UjBUS1lSa21Sd3ZTUnVPZmZPY2FMaTVSS1lFSTI0UWJWOTl5ZzFoL3lIcjhZ?=
+ =?utf-8?B?M1kxSUttUnJUVE9OY3lMSmVNVEMyQXFWSk5KL2ZUcTBUVnp6QU80eGorS2hZ?=
+ =?utf-8?B?RE9jQVgvQVNMMUJ5QVlQNGh3YjdReEZuY2FBZFAzdFhCUEM4dzY0MXlTaHI5?=
+ =?utf-8?B?ZGMrQW83TlJXYzd3TnVaSTVKL2xPclVNZGhJOFV3ckl1bnF1Sjd0YThiZ2lh?=
+ =?utf-8?B?K1JLbUMrc3F6K2V5aUk1SDM1Yk92VkplYXlrWmxuSk95Vm5qQk1IK1Vpd2s1?=
+ =?utf-8?B?VlF3NXRtMlJWRWlxYitTbzhaaWc5TU51eWllQkp0eG5ZYmJZMzlGZjBHZm5u?=
+ =?utf-8?B?NFJhdVhsYXZNQ1p2ZGsxTHZMTEgxZ0Q5NXpEZndWYjQzcG1kWDFlOG42SXlh?=
+ =?utf-8?B?U0RDaVJlYUFTRHVKYlBncHl2bDZSaVNjR1QrblZ5RUtEb2wvQXNTc2tqb2FR?=
+ =?utf-8?B?NmRUdTlXQjJVUDJCdUNJNWZzU3hES3pYL0hielRCVVY2L1IvUzVSZURXdnVV?=
+ =?utf-8?B?MVFzTkdGOWU2L1dPQzdSS0NrKzh1YndoNEQrZklhV0xzZkh4dkFhVm1RUXlE?=
+ =?utf-8?B?aXB6SmNibTM4T1B4SkpTQ09tOWRtWlk2RzVwY0hwUW1tY0FaVUNENjREeDFX?=
+ =?utf-8?B?R3RKWDRHNXlTUVdpY01CRFc5YS9HdHVwZmRVaHpaUGFPUjAzK1pHMnM3QU91?=
+ =?utf-8?B?VWJaT2pwVUROQnBPNGtlSTR3eXBRWUhBZWhseDBlck5JNklCeGU3VWdTODgx?=
+ =?utf-8?B?N1lMRXJsejN1SlluejJSY2ZxUk4raHdlbXJXM0NZUmlRUU1nT2VWWEIzTWFv?=
+ =?utf-8?Q?Pl0DupPyxC8OxtPQ=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <27660CD879F0A440A9951DBF98413321@apcprd03.prod.outlook.com>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251219055413.1661-3-Yuxi.Wang@monolithicpower.com>
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SEYPR03MB7759.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2652a04c-2887-40bf-4888-08de3f201a22
+X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Dec 2025 17:00:24.3049
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 8VrkISpQpsG1oRLanSkiSjagzpmC6SzK4VyLXQ2HaVd9YO+V2lQxK0eP/hTrYxhAZpG4jDwW6okBwTJ/xyD08pbhGIERYnBfYk6r2qP2BdU=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR03MB8164
 
-On Fri, Dec 19, 2025 at 01:54:13PM +0800, Yuxi Wang wrote:
-> Add support for mps mp5926.
-> 
-> Signed-off-by: Yuxi Wang <Yuxi.Wang@monolithicpower.com>
-
-Applied, with a minor fix. See below.
-
-Thanks,
-Guenter
-
-> ---
->  Documentation/hwmon/index.rst  |   1 +
->  Documentation/hwmon/mp5926.rst |  92 ++++++++++++++++
->  MAINTAINERS                    |   7 ++
->  drivers/hwmon/pmbus/Kconfig    |   9 ++
->  drivers/hwmon/pmbus/Makefile   |   1 +
->  drivers/hwmon/pmbus/mp5926.c   | 185 +++++++++++++++++++++++++++++++++
->  6 files changed, 295 insertions(+)
->  create mode 100644 Documentation/hwmon/mp5926.rst
->  create mode 100644 drivers/hwmon/pmbus/mp5926.c
-> 
-> diff --git a/Documentation/hwmon/index.rst b/Documentation/hwmon/index.rst
-> index 85d7a686883e..6181c3f62177 100644
-> --- a/Documentation/hwmon/index.rst
-> +++ b/Documentation/hwmon/index.rst
-> @@ -185,6 +185,7 @@ Hardware Monitoring Kernel Drivers
->     mp2993
->     mp5023
->     mp5920
-> +   mp5926
->     mp5990
->     mp9941
->     mp9945
-> diff --git a/Documentation/hwmon/mp5926.rst b/Documentation/hwmon/mp5926.rst
-> new file mode 100644
-> index 000000000000..4b64a7e24ae6
-> --- /dev/null
-> +++ b/Documentation/hwmon/mp5926.rst
-> @@ -0,0 +1,92 @@
-> +.. SPDX-License-Identifier: GPL-2.0
-> +
-> +Kernel driver mp5926
-> +====================
-> +
-> +Supported chips:
-> +
-> +  * MPS mp5926
-> +
-> +    Prefix: 'mp5926'
-> +
-> +  * Datasheet
-> +    https://www.monolithicpower.com/en/
-> +
-> +Author:
-> +
-> +	Yuxi Wang <Yuxi.Wang@monolithicpower.com>
-> +
-> +Description
-> +-----------
-> +
-> +This driver implements support for Monolithic Power Systems, Inc. (MPS)
-> +MP5926 Hot-Swap Controller.
-> +
-> +Device compliant with:
-> +
-> +- PMBus rev 1.3 interface.
-> +
-> +The driver exports the following attributes via the 'sysfs' files
-> +for input voltage:
-> +
-> +**in1_input**
-> +
-> +**in1_label**
-> +
-> +**in1_crit**
-> +
-> +**in1_crit_alarm**
-> +
-> +The driver provides the following attributes for output voltage:
-> +
-> +**in2_input**
-> +
-> +**in2_label**
-> +
-> +**in2_lcrit**
-> +
-> +**in2_lcrit_alarm**
-> +
-> +**in2_rated_max**
-> +
-> +**in2_rated_min**
-> +
-> +The driver provides the following attributes for input current:
-> +
-> +**curr1_input**
-> +
-> +**curr1_label**
-> +
-> +**curr1_max**
-> +
-> +**curr1_max_alarm**
-> +
-> +The driver provides the following attributes for output current:
-> +
-> +**curr2_input**
-> +
-> +**curr2_label**
-> +
-> +The driver provides the following attributes for input power:
-> +
-> +**power1_input**
-> +
-> +**power1_label**
-> +
-> +The driver provides the following attributes for output power:
-> +
-> +**power2_input**
-> +
-> +**power2_label**
-> +
-> +The driver provides the following attributes for temperature:
-> +
-> +**temp1_input**
-> +
-> +**temp1_crit**
-> +
-> +**temp1_crit_alarm**
-> +
-> +**temp1_max**
-> +
-> +**temp1_max_alarm**
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index d701a4d5b00e..fea710aab535 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -17708,6 +17708,13 @@ S:	Maintained
->  F:	Documentation/hwmon/mp2993.rst
->  F:	drivers/hwmon/pmbus/mp2993.c
->  
-> +MPS MP5926 DRIVER
-> +M:	Yuxi Wang <Yuxi.Wang@monolithicpower.com>
-> +L:	linux-hwmon@vger.kernel.org
-> +S:	Maintained
-> +F:	Documentation/hwmon/mp5926.rst
-> +F:	drivers/hwmon/pmbus/mp5926.c
-> +
->  MPS MP9941 DRIVER
->  M:	Noah Wang <noahwang.wang@outlook.com>
->  L:	linux-hwmon@vger.kernel.org
-> diff --git a/drivers/hwmon/pmbus/Kconfig b/drivers/hwmon/pmbus/Kconfig
-> index f3fb94cebf1a..d0aa460abdc9 100644
-> --- a/drivers/hwmon/pmbus/Kconfig
-> +++ b/drivers/hwmon/pmbus/Kconfig
-> @@ -472,6 +472,15 @@ config SENSORS_MP5920
->  	  This driver can also be built as a module. If so, the module will
->  	  be called mp5920.
->  
-> +config SENSORS_MP5926
-> +	tristate "MPS MP5926"
-> +	help
-> +	  If you say yes here you get hardware monitoring support for Monolithic
-> +	  MP5926.
-> +
-> +	  This driver can also be built as a module. If so, the module will
-> +	  be called mp5926.
-> +
->  config SENSORS_MP5990
->  	tristate "MPS MP5990"
->  	help
-> diff --git a/drivers/hwmon/pmbus/Makefile b/drivers/hwmon/pmbus/Makefile
-> index 349a89b6d92e..75ec4956ca8d 100644
-> --- a/drivers/hwmon/pmbus/Makefile
-> +++ b/drivers/hwmon/pmbus/Makefile
-> @@ -47,6 +47,7 @@ obj-$(CONFIG_SENSORS_MP2975)	+= mp2975.o
->  obj-$(CONFIG_SENSORS_MP2993)	+= mp2993.o
->  obj-$(CONFIG_SENSORS_MP5023)	+= mp5023.o
->  obj-$(CONFIG_SENSORS_MP5920)	+= mp5920.o
-> +obj-$(CONFIG_SENSORS_MP5926)	+= mp5926.o
->  obj-$(CONFIG_SENSORS_MP5990)	+= mp5990.o
->  obj-$(CONFIG_SENSORS_MP9941)	+= mp9941.o
->  obj-$(CONFIG_SENSORS_MP9945)	+= mp9945.o
-> diff --git a/drivers/hwmon/pmbus/mp5926.c b/drivers/hwmon/pmbus/mp5926.c
-> new file mode 100644
-> index 000000000000..234a3e58f7e7
-> --- /dev/null
-> +++ b/drivers/hwmon/pmbus/mp5926.c
-> @@ -0,0 +1,185 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +//
-> +// mp5926.c  - pmbus driver for mps mp5926
-> +//
-> +// Copyright 2025 Monolithic Power Systems, Inc
-> +//
-> +// Author: Yuxi Wang <Yuxi.Wang@monolithicpower.com>
-> +
-> +#include <linux/bitfield.h>
-> +#include <linux/bits.h>
-> +#include <linux/i2c.h>
-> +#include <linux/module.h>
-> +#include <linux/of_device.h>
-> +#include <linux/pmbus.h>
-> +#include "pmbus.h"
-> +
-> +#define PAGE	0x01
-> +#define EFUSE_CFG	0xCF
-> +#define I_SCALE_SEL	0xC6
-> +#define MP5926_FUNC	(PMBUS_HAVE_VIN | PMBUS_HAVE_VOUT | \
-> +			PMBUS_HAVE_IIN | PMBUS_HAVE_PIN | \
-> +			PMBUS_HAVE_TEMP | PMBUS_HAVE_STATUS_INPUT | \
-> +			PMBUS_HAVE_STATUS_TEMP | PMBUS_HAVE_STATUS_VOUT)
-> +
-> +struct mp5926_data {
-> +	struct pmbus_driver_info info;
-> +	u8 vout_mode;
-> +	u8 vout_linear_exponent;
-> +};
-> +
-> +#define to_mp5926_data(x)  container_of(x, struct mp5926_data, info)
-> +
-> +static int mp5926_read_byte_data(struct i2c_client *client, int page,
-> +				 int reg)
-> +{
-> +	const struct pmbus_driver_info *info = pmbus_get_driver_info(client);
-> +	struct mp5926_data *data = to_mp5926_data(info);
-> +	int ret;
-> +
-> +	switch (reg) {
-> +	case PMBUS_VOUT_MODE:
-> +		if (data->vout_mode == linear) {
-> +			/*
-> +			 * The VOUT format used by the chip is linear11,
-> +			 * not linear16. Report that VOUT is in linear mode
-> +			 * and return exponent value extracted while probing
-> +			 * the chip.
-> +			 */
-> +			return data->vout_linear_exponent;
-> +		}
-> +		return PB_VOUT_MODE_DIRECT;
-> +	default:
-> +		ret = -ENODATA;
-> +		break;
-> +	}
-> +	return ret;
-> +}
-> +
-> +static int mp5926_read_word_data(struct i2c_client *client, int page, int phase,
-> +				 int reg)
-> +{
-> +	const struct pmbus_driver_info *info = pmbus_get_driver_info(client);
-> +	struct mp5926_data *data = to_mp5926_data(info);
-> +	int ret;
-> +
-> +	switch (reg) {
-> +	case PMBUS_READ_VOUT:
-> +		ret = pmbus_read_word_data(client, page, phase, reg);
-> +		if (ret < 0)
-> +			return ret;
-> +		/*
-> +		 * Because the VOUT format used by the chip is linear11 and not
-> +		 * linear16, we disregard bits[15:11]. The exponent is reported
-> +		 * as part of the VOUT_MODE command.
-> +		 */
-> +		if (data->vout_mode == linear)
-> +			ret = ((s16)((ret & 0x7ff) << 5)) >> 5;
-> +		break;
-> +	default:
-> +		ret = -ENODATA;
-> +		break;
-> +	}
-> +	return ret;
-> +}
-> +
-> +static struct pmbus_driver_info mp5926_info = {
-> +	.pages = PAGE,
-> +	.format[PSC_VOLTAGE_IN] = direct,
-> +	.format[PSC_CURRENT_IN] = direct,
-> +	.format[PSC_VOLTAGE_OUT] = direct,
-> +	.format[PSC_TEMPERATURE] = direct,
-> +	.format[PSC_POWER] = direct,
-> +
-> +	.m[PSC_VOLTAGE_IN] = 16,
-> +	.b[PSC_VOLTAGE_IN] = 0,
-> +	.R[PSC_VOLTAGE_IN] = 0,
-> +
-> +	.m[PSC_CURRENT_IN] = 16,
-> +	.b[PSC_CURRENT_IN] = 0,
-> +	.R[PSC_CURRENT_IN] = 0,
-> +
-> +	.m[PSC_VOLTAGE_OUT] = 16,
-> +	.b[PSC_VOLTAGE_OUT] = 0,
-> +	.R[PSC_VOLTAGE_OUT] = 0,
-> +
-> +	.m[PSC_TEMPERATURE] = 4,
-> +	.b[PSC_TEMPERATURE] = 0,
-> +	.R[PSC_TEMPERATURE] = 0,
-> +
-> +	.m[PSC_POWER] = 25,
-> +	.b[PSC_POWER] = 0,
-> +	.R[PSC_POWER] = -2,
-> +
-> +	.read_word_data = mp5926_read_word_data,
-> +	.read_byte_data = mp5926_read_byte_data,
-> +	.func[0] = MP5926_FUNC,
-> +};
-> +
-> +static int mp5926_probe(struct i2c_client *client)
-> +{
-> +	struct mp5926_data *data;
-> +	struct pmbus_driver_info *info;
-> +	int ret;
-> +
-> +	data = devm_kzalloc(&client->dev, sizeof(struct mp5926_data),
-> +			    GFP_KERNEL);
-> +	if (!data)
-> +		return -ENOMEM;
-> +
-> +	memcpy(&data->info, &mp5926_info, sizeof(*info));
-> +	info = &data->info;
-> +	ret = i2c_smbus_read_word_data(client, EFUSE_CFG);
-> +	if (ret < 0)
-> +		return ret;
-> +	if (ret & BIT(12)) {
-> +		data->vout_mode = linear;
-> +		data->info.format[PSC_VOLTAGE_IN] = linear;
-> +		data->info.format[PSC_CURRENT_IN] = linear;
-> +		data->info.format[PSC_VOLTAGE_OUT] = linear;
-> +		data->info.format[PSC_TEMPERATURE] = linear;
-> +		data->info.format[PSC_POWER] = linear;
-> +		ret = i2c_smbus_read_word_data(client, PMBUS_READ_VOUT);
-> +		if (ret < 0) {
-> +			dev_err_probe(&client->dev, ret, "Can't get vout exponent.");
-> +			return ret;
-
-			return dev_err_probe(&client->dev, ret, "Can't get vout exponent.");
-
-> +		}
-> +		data->vout_linear_exponent = (u8)((ret >> 11) & 0x1f);
-> +	} else {
-> +		data->vout_mode = direct;
-> +		ret = i2c_smbus_read_word_data(client, I_SCALE_SEL);
-> +		if (ret < 0)
-> +			return ret;
-> +		if (ret & BIT(6))
-> +			data->info.m[PSC_CURRENT_IN] = 4;
-> +	}
-> +
-> +	return pmbus_do_probe(client, info);
-> +}
-> +
-> +static const struct i2c_device_id mp5926_id[] = {
-> +	{ "mp5926", 0 },
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(i2c, mp5926_id);
-> +
-> +static const struct of_device_id mp5926_of_match[] = {
-> +	{ .compatible = "mps,mp5926" },
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(of, mp5926_of_match);
-> +
-> +static struct i2c_driver mp5926_driver = {
-> +	.probe = mp5926_probe,
-> +	.driver = {
-> +			.name = "mp5926",
-> +			.of_match_table = mp5926_of_match,
-> +		   },
-> +	.id_table = mp5926_id,
-> +};
-> +
-> +module_i2c_driver(mp5926_driver);
-> +MODULE_AUTHOR("Yuxi Wang <Yuxi.Wang@monolithicpower.com>");
-> +MODULE_DESCRIPTION("MPS MP5926 pmbus driver");
-> +MODULE_LICENSE("GPL");
-> +MODULE_IMPORT_NS("PMBUS");
+T24gV2VkLCAyMDI1LTA5LTEwIGF0IDA5OjE4ICswMDAwLCBDSyBIdSAo6IOh5L+K5YWJKSB3cm90
+ZToNCj4gT24gVGh1LCAyMDI1LTA4LTI4IGF0IDE2OjA3ICswODAwLCBQYXVsIENoZW4gd3JvdGU6
+DQo+ID4gRnJvbTogUGF1bC1wbCBDaGVuIDxwYXVsLXBsLmNoZW5AbWVkaWF0ZWsuY29tPg0KPiA+
+IA0KPiA+IEZvciB0aGUgbmV3IEJMRU5ERVIgY29tcG9uZW50LCB0aGUgT1ZMIGlnbm9yZSBwaXhl
+bCBhbHBoYSBsb2dpYw0KPiA+IHNob3VsZCBiZSBleHBvcnRlZCBhcyBhIGZ1bmN0aW9uIGFuZCBy
+ZXVzZWQgaXQuDQo+ID4gDQo+ID4gU2lnbmVkLW9mZi1ieTogTmFuY3kgTGluIDxuYW5jeS5saW5A
+bWVkaWF0ZWsuY29tPg0KPiA+IFNpZ25lZC1vZmYtYnk6IFBhdWwtcGwgQ2hlbiA8cGF1bC1wbC5j
+aGVuQG1lZGlhdGVrLmNvbT4NCj4gPiAtLS0NCj4gPiDCoGRyaXZlcnMvZ3B1L2RybS9tZWRpYXRl
+ay9tdGtfZGlzcF9vdmwuYyB8IDY4ICsrKysrKysrKysrKysrKysrLS0tLQ0KPiA+IC0tLS0NCj4g
+PiDCoGRyaXZlcnMvZ3B1L2RybS9tZWRpYXRlay9tdGtfZGlzcF9vdmwuaCB8wqAgOCArKysNCj4g
+PiDCoDIgZmlsZXMgY2hhbmdlZCwgNTYgaW5zZXJ0aW9ucygrKSwgMjAgZGVsZXRpb25zKC0pDQo+
+ID4gDQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9tZWRpYXRlay9tdGtfZGlzcF9v
+dmwuYw0KPiA+IGIvZHJpdmVycy9ncHUvZHJtL21lZGlhdGVrL210a19kaXNwX292bC5jDQo+ID4g
+aW5kZXggZTNlZTNmNjBmNGJhLi43Y2QzOTc4YmViOTggMTAwNjQ0DQo+ID4gLS0tIGEvZHJpdmVy
+cy9ncHUvZHJtL21lZGlhdGVrL210a19kaXNwX292bC5jDQo+ID4gKysrIGIvZHJpdmVycy9ncHUv
+ZHJtL21lZGlhdGVrL210a19kaXNwX292bC5jDQo+ID4gQEAgLTIyOCw2ICsyMjgsMjMgQEAgdm9p
+ZCBtdGtfb3ZsX2Rpc2FibGVfdmJsYW5rKHN0cnVjdCBkZXZpY2UNCj4gPiAqZGV2KQ0KPiA+IMKg
+CXdyaXRlbF9yZWxheGVkKDB4MCwgb3ZsLT5yZWdzICsgRElTUF9SRUdfT1ZMX0lOVEVOKTsNCj4g
+PiDCoH0NCj4gPiDCoA0KPiA+ICtib29sIG10a19vdmxfaXNfaWdub3JlX3BpeGVsX2FscGhhKHN0
+cnVjdCBtdGtfcGxhbmVfc3RhdGUgKnN0YXRlLA0KPiA+IHVuc2lnbmVkIGludCBibGVuZF9tb2Rl
+KQ0KPiA+ICt7DQo+ID4gKwlpZiAoIXN0YXRlLT5iYXNlLmZiKQ0KPiA+ICsJCXJldHVybiBmYWxz
+ZTsNCj4gPiArDQo+ID4gKwkvKg0KPiA+ICsJICogQWx0aG91Z2ggdGhlIGFscGhhIGNoYW5uZWwg
+Y2FuIGJlIGlnbm9yZWQsIENPTlNUX0JMRA0KPiA+IG11c3QgYmUgZW5hYmxlZA0KPiA+ICsJICog
+Zm9yIFhSR0IgZm9ybWF0LCBvdGhlcndpc2UgT1ZMIHdpbGwgc3RpbGwgcmVhZCB0aGUNCj4gPiB2
+YWx1ZSBmcm9tIG1lbW9yeS4NCj4gPiArCSAqIEZvciBSR0I4ODggcmVsYXRlZCBmb3JtYXRzLCB3
+aGV0aGVyIENPTlNUX0JMRCBpcw0KPiA+IGVuYWJsZWQgb3Igbm90IHdvbid0DQo+ID4gKwkgKiBh
+ZmZlY3QgdGhlIHJlc3VsdC4gVGhlcmVmb3JlIHdlIHVzZSAhaGFzX2FscGhhIGFzIHRoZQ0KPiA+
+IGNvbmRpdGlvbi4NCj4gPiArCSAqLw0KPiA+ICsJaWYgKGJsZW5kX21vZGUgPT0gRFJNX01PREVf
+QkxFTkRfUElYRUxfTk9ORSB8fCAhc3RhdGUtDQo+ID4gPmJhc2UuZmItPmZvcm1hdC0+aGFzX2Fs
+cGhhKQ0KPiA+ICsJCXJldHVybiB0cnVlOw0KPiA+ICsNCj4gPiArCXJldHVybiBmYWxzZTsNCj4g
+PiArfQ0KPiA+ICsNCj4gPiDCoHUzMiBtdGtfb3ZsX2dldF9ibGVuZF9tb2RlcyhzdHJ1Y3QgZGV2
+aWNlICpkZXYpDQo+ID4gwqB7DQo+ID4gwqAJc3RydWN0IG10a19kaXNwX292bCAqb3ZsID0gZGV2
+X2dldF9kcnZkYXRhKGRldik7DQo+ID4gQEAgLTQxNCw2ICs0MzEsMjkgQEAgdm9pZCBtdGtfb3Zs
+X2xheWVyX29mZihzdHJ1Y3QgZGV2aWNlICpkZXYsDQo+ID4gdW5zaWduZWQgaW50IGlkeCwNCj4g
+PiDCoAkJwqDCoMKgwqDCoCBESVNQX1JFR19PVkxfUkRNQV9DVFJMKGlkeCkpOw0KPiA+IMKgfQ0K
+PiA+IMKgDQo+ID4gK3Vuc2lnbmVkIGludCBtdGtfb3ZsX2dldF9ibGVuZF9tb2RlKHN0cnVjdCBt
+dGtfcGxhbmVfc3RhdGUgKnN0YXRlLA0KPiA+IHVuc2lnbmVkIGludCBibGVuZF9tb2RlcykNCj4g
+PiArew0KPiA+ICsJdW5zaWduZWQgaW50IGJsZW5kX21vZGUgPSBEUk1fTU9ERV9CTEVORF9DT1ZF
+UkFHRTsNCj4gPiArDQo+ID4gKwkvKg0KPiA+ICsJICogRm9yIHRoZSBwbGF0Zm9ybXMgd2hlcmUg
+T1ZMX0NPTl9DTFJGTVRfTUFOIGlzIGRlZmluZWQNCj4gPiBpbiB0aGUgaGFyZHdhcmUgZGF0YSBz
+aGVldA0KPiA+ICsJICogYW5kIHN1cHBvcnRzIHByZW11bHRpcGxpZWQgY29sb3IgZm9ybWF0cywg
+c3VjaCBhcw0KPiA+IE9WTF9DT05fQ0xSRk1UX1BBUkdCODg4DQo+ID4gKwkgKiBhbmQgc3VwcG9y
+dHMgcHJlbXVsdGlwbGllZCBjb2xvciBmb3JtYXRzLCBzdWNoIGFzDQo+ID4gT1ZMX0NPTl9DTFJG
+TVRfUEFSR0I4ODg4Lg0KPiA+ICsJICoNCj4gPiArCSAqIENoZWNrIGJsZW5kX21vZGVzIGluIHRo
+ZSBkcml2ZXIgZGF0YSB0byBzZWUgaWYNCj4gPiBwcmVtdWx0aXBsaWVkIG1vZGUgaXMgc3VwcG9y
+dGVkLg0KPiA+ICsJICogSWYgbm90LCB1c2UgY292ZXJhZ2UgbW9kZSBpbnN0ZWFkIHRvIHNldCBp
+dCB0byB0aGUNCj4gPiBzdXBwb3J0ZWQgY29sb3IgZm9ybWF0cy4NCj4gPiArCSAqDQo+ID4gKwkg
+KiBDdXJyZW50IERSTSBhc3N1bXB0aW9uIGlzIHRoYXQgYWxwaGEgaXMgZGVmYXVsdA0KPiA+IHBy
+ZW11bHRpcGxpZWQsIHNvIHRoZSBiaXRtYXNrIG9mDQo+ID4gKwkgKiBibGVuZF9tb2RlcyBtdXN0
+IGluY2x1ZGUgQklUKERSTV9NT0RFX0JMRU5EX1BSRU1VTFRJKS4NCj4gPiBPdGhlcndpc2UsIG10
+a19wbGFuZV9pbml0KCkNCj4gPiArCSAqIHdpbGwgZ2V0IGFuIGVycm9yIHJldHVybiBmcm9tDQo+
+ID4gZHJtX3BsYW5lX2NyZWF0ZV9ibGVuZF9tb2RlX3Byb3BlcnR5KCkgYW5kDQo+ID4gKwkgKiBz
+dGF0ZS0+YmFzZS5waXhlbF9ibGVuZF9tb2RlIHNob3VsZCBub3QgYmUgdXNlZC4NCj4gPiArCSAq
+Lw0KPiA+ICsJaWYgKGJsZW5kX21vZGVzICYgQklUKERSTV9NT0RFX0JMRU5EX1BSRU1VTFRJKSkN
+Cj4gPiArCQlibGVuZF9tb2RlID0gc3RhdGUtPmJhc2UucGl4ZWxfYmxlbmRfbW9kZTsNCj4gPiAr
+DQo+ID4gKwlyZXR1cm4gYmxlbmRfbW9kZTsNCj4gPiArfQ0KPiA+ICsNCj4gPiDCoHVuc2lnbmVk
+IGludCBtdGtfb3ZsX2ZtdF9jb252ZXJ0KHVuc2lnbmVkIGludCBmbXQsIHVuc2lnbmVkIGludA0K
+PiA+IGJsZW5kX21vZGUsDQo+ID4gwqAJCQkJIGJvb2wgZm10X3JnYjU2NV9pc18wLCBib29sDQo+
+ID4gY29sb3JfY29udmVydCwNCj4gPiDCoAkJCQkgdTggY2xyZm10X3NoaWZ0LCB1MzIgY2xyZm10
+X21hbiwNCj4gPiB1MzIgYnl0ZV9zd2FwLCB1MzIgcmdiX3N3YXApDQo+ID4gQEAgLTU0MSw3ICs1
+ODEsNyBAQCB2b2lkIG10a19vdmxfbGF5ZXJfY29uZmlnKHN0cnVjdCBkZXZpY2UgKmRldiwNCj4g
+PiB1bnNpZ25lZCBpbnQgaWR4LA0KPiA+IMKgCXVuc2lnbmVkIGludCByb3RhdGlvbiA9IHBlbmRp
+bmctPnJvdGF0aW9uOw0KPiA+IMKgCXVuc2lnbmVkIGludCBvZmZzZXQgPSAocGVuZGluZy0+eSA8
+PCAxNikgfCBwZW5kaW5nLT54Ow0KPiA+IMKgCXVuc2lnbmVkIGludCBzcmNfc2l6ZSA9IChwZW5k
+aW5nLT5oZWlnaHQgPDwgMTYpIHwgcGVuZGluZy0NCj4gPiA+d2lkdGg7DQo+ID4gLQl1bnNpZ25l
+ZCBpbnQgYmxlbmRfbW9kZSA9IHN0YXRlLT5iYXNlLnBpeGVsX2JsZW5kX21vZGU7DQo+ID4gKwl1
+bnNpZ25lZCBpbnQgYmxlbmRfbW9kZSA9IG10a19vdmxfZ2V0X2JsZW5kX21vZGUoc3RhdGUsDQo+
+ID4gb3ZsLT5kYXRhLT5ibGVuZF9tb2Rlcyk7DQo+IA0KPiBXaHkgeW91IGNoYW5nZSBiZWhhdmlv
+ciBoZXJlPw0KPiBPcmlnaW5hbGx5LCAnYmxlbmRfbW9kZSA9IHN0YXRlLT5iYXNlLnBpeGVsX2Js
+ZW5kX21vZGUnIGRpcmVjdGx5Lg0KPiBCdXQgdGhpcyBwYXRjaCBhZGQgYSBjaGVjayBhbmQgYmxl
+bmRfbW9kZSBtYXkgYmUNCj4gRFJNX01PREVfQkxFTkRfQ09WRVJBR0UuDQo+IFRoZSBiZWhhdmlv
+ciBjaGFuZ2VzLiBXaHkgY2hhbmdlIHRoaXMgYmVoYXZpb3I/DQo+IA0KSXQncyBmb3IgY29udmVu
+aWVudCB0byBvcHRpbWl6ZSB0aGUgbG9naWMgZGVzaWduLiANCj4gPiDCoAl1bnNpZ25lZCBpbnQg
+aWdub3JlX3BpeGVsX2FscGhhID0gMDsNCj4gPiDCoAl1bnNpZ25lZCBpbnQgY29uOw0KPiA+IMKg
+DQo+ID4gQEAgLTU2NiwxNyArNjA2LDggQEAgdm9pZCBtdGtfb3ZsX2xheWVyX2NvbmZpZyhzdHJ1
+Y3QgZGV2aWNlICpkZXYsDQo+ID4gdW5zaWduZWQgaW50IGlkeCwNCj4gPiDCoAkJICogRm9yIGJs
+ZW5kX21vZGVzIHN1cHBvcnRlZCBTb0NzLCBhbHdheXMgZW5hYmxlDQo+ID4gYWxwaGEgYmxlbmRp
+bmcuDQo+ID4gwqAJCSAqIEZvciBibGVuZF9tb2RlcyB1bnN1cHBvcnRlZCBTb0NzLCBlbmFibGUg
+YWxwaGENCj4gPiBibGVuZGluZyB3aGVuIGhhc19hbHBoYSBpcyBzZXQuDQo+ID4gwqAJCSAqLw0K
+PiA+IC0JCWlmIChibGVuZF9tb2RlIHx8IHN0YXRlLT5iYXNlLmZiLT5mb3JtYXQtDQo+ID4gPmhh
+c19hbHBoYSkNCj4gPiArCQlpZiAoc3RhdGUtPmJhc2UucGl4ZWxfYmxlbmRfbW9kZSB8fCBzdGF0
+ZS0NCj4gPiA+YmFzZS5mYi0+Zm9ybWF0LT5oYXNfYWxwaGEpDQo+ID4gwqAJCQljb24gfD0gT1ZM
+X0NPTl9BRU47DQo+ID4gLQ0KPiA+IC0JCS8qDQo+ID4gLQkJICogQWx0aG91Z2ggdGhlIGFscGhh
+IGNoYW5uZWwgY2FuIGJlIGlnbm9yZWQsDQo+ID4gQ09OU1RfQkxEIG11c3QgYmUgZW5hYmxlZA0K
+PiA+IC0JCSAqIGZvciBYUkdCIGZvcm1hdCwgb3RoZXJ3aXNlIE9WTCB3aWxsIHN0aWxsIHJlYWQN
+Cj4gPiB0aGUgdmFsdWUgZnJvbSBtZW1vcnkuDQo+ID4gLQkJICogRm9yIFJHQjg4OCByZWxhdGVk
+IGZvcm1hdHMsIHdoZXRoZXIgQ09OU1RfQkxEDQo+ID4gaXMgZW5hYmxlZCBvciBub3Qgd29uJ3QN
+Cj4gPiAtCQkgKiBhZmZlY3QgdGhlIHJlc3VsdC4gVGhlcmVmb3JlIHdlIHVzZSAhaGFzX2FscGhh
+DQo+ID4gYXMgdGhlIGNvbmRpdGlvbi4NCj4gPiAtCQkgKi8NCj4gPiAtCQlpZiAoYmxlbmRfbW9k
+ZSA9PSBEUk1fTU9ERV9CTEVORF9QSVhFTF9OT05FIHx8DQo+ID4gIXN0YXRlLT5iYXNlLmZiLT5m
+b3JtYXQtPmhhc19hbHBoYSkNCj4gPiAtCQkJaWdub3JlX3BpeGVsX2FscGhhID0gT1ZMX0NPTlNU
+X0JMRU5EOw0KPiA+IMKgCX0NCj4gPiDCoA0KPiA+IMKgCS8qDQo+ID4gQEAgLTYwMiw2ICs2MzMs
+OSBAQCB2b2lkIG10a19vdmxfbGF5ZXJfY29uZmlnKHN0cnVjdCBkZXZpY2UgKmRldiwNCj4gPiB1
+bnNpZ25lZCBpbnQgaWR4LA0KPiA+IMKgDQo+ID4gwqAJbXRrX2RkcF93cml0ZV9yZWxheGVkKGNt
+ZHFfcGt0LCBjb24sICZvdmwtPmNtZHFfcmVnLCBvdmwtDQo+ID4gPnJlZ3MsDQo+ID4gwqAJCQnC
+oMKgwqDCoMKgIERJU1BfUkVHX09WTF9DT04oaWR4KSk7DQo+ID4gKw0KPiA+ICsJaWYgKG10a19v
+dmxfaXNfaWdub3JlX3BpeGVsX2FscGhhKHN0YXRlLCBibGVuZF9tb2RlKSkNCj4gPiArCQlpZ25v
+cmVfcGl4ZWxfYWxwaGEgPSBPVkxfQ09OU1RfQkxFTkQ7DQo+ID4gwqAJbXRrX2RkcF93cml0ZV9y
+ZWxheGVkKGNtZHFfcGt0LCBwaXRjaF9sc2IgfA0KPiA+IGlnbm9yZV9waXhlbF9hbHBoYSwNCj4g
+PiDCoAkJCcKgwqDCoMKgwqAgJm92bC0+Y21kcV9yZWcsIG92bC0+cmVncywNCj4gPiBESVNQX1JF
+R19PVkxfUElUQ0goaWR4KSk7DQo+ID4gwqAJbXRrX2RkcF93cml0ZV9yZWxheGVkKGNtZHFfcGt0
+LCBzcmNfc2l6ZSwgJm92bC0+Y21kcV9yZWcsDQo+ID4gb3ZsLT5yZWdzLA0KPiANCg0K
 
