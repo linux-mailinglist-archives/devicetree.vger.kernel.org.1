@@ -1,38 +1,46 @@
-Return-Path: <devicetree+bounces-248152-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248153-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7830DCCF3B0
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 10:55:30 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15DB3CCF3B9
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 10:56:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4556D305D410
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 09:54:25 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 2C66E300C850
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 09:56:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A38002ED84A;
-	Fri, 19 Dec 2025 09:54:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDD9E2DAFDE;
+	Fri, 19 Dec 2025 09:56:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Jv0yRFOH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 156E72ED16B;
-	Fri, 19 Dec 2025 09:54:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C697D296BD6;
+	Fri, 19 Dec 2025 09:56:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766138061; cv=none; b=raOuQXxgFgTHBuhp0w5r+BcBjkmidQXMJC8doCpZuSEzdV1Z+fLA2Xi4lv5Gu3hzeO6KRbS3jB6jU41WaRXYfwMEBMqVXVYTIUi0r28D3s3qFtHR6VxK3AtLpp3ZmKSSEmq7FE75CvKoX6Zs+yMpNyrfxiK/Ltl/d4w8qgHigxY=
+	t=1766138183; cv=none; b=tiK9OCzeRcM+AD6TiJEmg26J091U/8jTLni7dymtzcfI9S6dcOwoUWFGqVmJzfKPuy91Y1zBGFtGIC1Jp+ataqqsAb7mNEg2WchWMb97Foj3Bmw7hWGvkkZr0kKry3KQrkFn4VnpLAt6seX8XmsyU56wQxka3PzLYzRGMTQPlbc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766138061; c=relaxed/simple;
-	bh=oBDrMniGgr/u13j0I1Ae+D6FlHX8Ra/VhPHHp5KsWFM=;
+	s=arc-20240116; t=1766138183; c=relaxed/simple;
+	bh=i0NTZxd+UQIUcdGygNsRJLwiYUjySuhsZdtovFsiQog=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=a7SxvdmZNTCDrVo3jt0Y97U821PQCK6hLV9cQeRxL32EWDqggjUO2k0SCFVoQpixszJGtQF6GYhO1KmyYxcwhYSWK5TfbfITU2cmmdvD+MwXl7z/aFECv52KAvea0V8i3c12Vd26fjRzr79GL2cQZZ8WX0yeP1vQi6hqcx3PyfE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 149E4FEC;
-	Fri, 19 Dec 2025 01:54:11 -0800 (PST)
-Received: from [10.1.197.1] (ewhatever.cambridge.arm.com [10.1.197.1])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3A7443F5CA;
-	Fri, 19 Dec 2025 01:54:16 -0800 (PST)
-Message-ID: <95ac571a-1c8f-45d9-9874-648d4123ce18@arm.com>
-Date: Fri, 19 Dec 2025 09:54:14 +0000
+	 In-Reply-To:Content-Type; b=dY3BCJW1skwjfRMLggw5p2Jz03pT4KbhGmp+LKRM9d4A79EbqE9PtzOJQH4GmCnUHVN1xSYVqBCeSBO7F8NvC+l21pTp1RJSTFvY0bDjOSgWy9x4Ogge60M8hXOJ2iCQ8ZjYSEo4L26uaSF+1SWHZO6+Gw31qVHS+Y0K0o63CFI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Jv0yRFOH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1AE26C4CEF1;
+	Fri, 19 Dec 2025 09:56:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1766138183;
+	bh=i0NTZxd+UQIUcdGygNsRJLwiYUjySuhsZdtovFsiQog=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Jv0yRFOHZJVb8qcfh8w3MuPxnmfvzhRSCiUQySKFy6Pp6lYPqwVgzYTPi5c6NWgbU
+	 n2xYTyasWxmCXY37GFMaOx0xcLKizWBmEJo1Ek8MHGUGkOI++Fcwu3mkDVG60e8aLn
+	 ECQ/G8EKT4pFy8A8ELG9MT1DxqmUwOgqcymNGK6w99mu1251CcDZZWG529QsxJg8Q7
+	 W7hECX6ulz8uhtjRszMC33wRgoAlQ9dV860uGsnU6BEDF/Wj9UEy5xLdfOpchvKJ4a
+	 KzcXLVRLLSYbMVa5qaE3ZW5SoIi+NuliN61j4CJ0E3rFtqAK/fHgbn0TR5XmvpsIyh
+	 j513z4BlLEuPA==
+Message-ID: <b83d45c4-eeea-4c0f-9395-6d6483c278f7@kernel.org>
+Date: Fri, 19 Dec 2025 10:56:17 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -40,189 +48,101 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 5/8] dt-bindings: arm: add an interrupt property for
- Coresight CTCU
-To: Jie Gan <jie.gan@oss.qualcomm.com>, Krzysztof Kozlowski
- <krzk@kernel.org>, Rob Herring <robh@kernel.org>
-Cc: Mike Leach <mike.leach@linaro.org>, James Clark <james.clark@linaro.org>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Tingwei Zhang <tingwei.zhang@oss.qualcomm.com>,
- Mao Jinlong <jinlong.mao@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, coresight@lists.linaro.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20251211-enable-byte-cntr-for-ctcu-v8-0-3e12ff313191@oss.qualcomm.com>
- <20251211-enable-byte-cntr-for-ctcu-v8-5-3e12ff313191@oss.qualcomm.com>
- <20251211133723.GA859302-robh@kernel.org>
- <dfa43a63-ca14-4dd7-a7ab-acd95748a8b9@oss.qualcomm.com>
- <a9537dc9-c767-4909-8b1c-6e939ce4f3fc@kernel.org>
- <2db74a3e-4aeb-4e87-9fe8-5c9693bfb67c@arm.com>
- <46afd4f6-f287-4d19-bc68-f2f6eac36e6a@oss.qualcomm.com>
+Subject: Re: [PATCH v1 1/2] dt-bindings: arm: cix: add OrangePi 6 Plus board
+To: Gary Yang <gary.yang@cixtech.com>, peter.chen@cixtech.com,
+ fugang.duan@cixtech.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org
+Cc: linux-cix-kernel-upstream@cixtech.com,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20251219095409.1395587-1-gary.yang@cixtech.com>
+ <20251219095409.1395587-2-gary.yang@cixtech.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <46afd4f6-f287-4d19-bc68-f2f6eac36e6a@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20251219095409.1395587-2-gary.yang@cixtech.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 19/12/2025 02:05, Jie Gan wrote:
+On 19/12/2025 10:54, Gary Yang wrote:
+> OrangePi 6 Plus adopts CIX CD8180/CD8160 SoC,
+> built-in 12-core 64-bit processor + NPU processor,
+> integrated graphics processor, equipped with 16GB/32GB/64GB
+> LPDDR5, and provides two M.2 KEY-M interfaces 2280 for NVMe SSD,
+> as well as SPI FLASH and TF slots to meet the needs of fast
+> read/write and high-capacity storage;
 > 
+> Signed-off-by: Gary Yang <gary.yang@cixtech.com>
+> ---
+>  Documentation/devicetree/bindings/arm/cix.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
-> On 12/19/2025 7:19 AM, Suzuki K Poulose wrote:
->> On 18/12/2025 10:17, Krzysztof Kozlowski wrote:
->>> On 12/12/2025 02:12, Jie Gan wrote:
->>>>
->>>>
->>>> On 12/11/2025 9:37 PM, Rob Herring wrote:
->>>>> On Thu, Dec 11, 2025 at 02:10:44PM +0800, Jie Gan wrote:
->>>>>> Add an interrupt property to CTCU device. The interrupt will be 
->>>>>> triggered
->>>>>> when the data size in the ETR buffer exceeds the threshold of the
->>>>>> BYTECNTRVAL register. Programming a threshold in the BYTECNTRVAL 
->>>>>> register
->>>>>> of CTCU device will enable the interrupt.
->>>>>>
->>>>>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>>>> Reviewed-by: Mike Leach <mike.leach@linaro.org>
->>>>>> Signed-off-by: Jie Gan <jie.gan@oss.qualcomm.com>
->>>>>> ---
->>>>>>    .../devicetree/bindings/arm/qcom,coresight-ctcu.yaml    | 17 ++ 
->>>>>> + ++++++++++++++
->>>>>>    1 file changed, 17 insertions(+)
->>>>>>
->>>>>> diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight- 
->>>>>> ctcu.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight- 
->>>>>> ctcu.yaml
->>>>>> index c969c16c21ef..90f88cc6cd3e 100644
->>>>>> --- a/Documentation/devicetree/bindings/arm/qcom,coresight-ctcu.yaml
->>>>>> +++ b/Documentation/devicetree/bindings/arm/qcom,coresight-ctcu.yaml
->>>>>> @@ -39,6 +39,16 @@ properties:
->>>>>>        items:
->>>>>>          - const: apb
->>>>>> +  interrupts:
->>>>>> +    items:
->>>>>> +      - description: Byte cntr interrupt for the first etr device
->>>>>> +      - description: Byte cntr interrupt for the second etr device
->>
->> This is really vague. How do you define first vs second ? Probe order ?
->> No way. This must be the "port" number to which the ETR is connected
->> to the CTCU. IIUC, there is a config area for each ETR (e.g., trace id
->> filter) connected to the CTCU. I was under the assumption that they
->> are identified as "ports" (input ports). I don't really understand how
->> this interrupt mapping works now. Please explain it clearly.
->>
-> 
-> Sorry for the misunderstanding.
-> 
-> Each ETR device should have its own interrupt line and an IRQ register 
-> within the CTCU device, as defined by the specification. In existing 
-> projects, the maximum supported number of ETR devices is 2.
-> 
-> Each interrupt is directly mapped to a specific ETR device, for example:
-> tmc@1000 → interrupt line 0
-> tmc@1001 → interrupt line 1
-> 
-> The suggestion to identify devices by ‘ports’ is much clearer than my 
-> previous explanation, as it explicitly shows which device is connected 
-> to which port.
+> diff --git a/Documentation/devicetree/bindings/arm/cix.yaml b/Documentation/devicetree/bindings/arm/cix.yaml
+> index 114dab4bc4d2..92fb4ad7b5d8 100644
+> --- a/Documentation/devicetree/bindings/arm/cix.yaml
+> +++ b/Documentation/devicetree/bindings/arm/cix.yaml
+> @@ -21,6 +21,11 @@ properties:
+>            - const: radxa,orion-o6
+>            - const: cix,sky1
+>  
+> +      - description: OrangePi 6 Plus
+> +        items:
+> +          - const: OrangePi,6p
 
-Thanks for confirming.
+That's not a valid prefix. Where is it documented and how it looks there?
 
-> 
->>>>>> +
->>>>>> +  interrupt-names:
->>>>>> +    items:
->>>>>> +      - const: etrirq0
->>>>>> +      - const: etrirq1
->>>>>
->>>>> Names are kind of pointless when it is just foo<index>.
->>>>
->>>> Hi Rob,
->>>>
->>>> I was naming them as etr0/etr1. Are these names acceptable?
->>>
->>> Obviously irq is redundant, but how does etr0 solves the problem of
->>> calling it foo0?
->>>
->>> I don't think you really read Rob's comment.
->>>
->>>> The interrupts are assigned exclusively to a specific ETR device.
->>>>
->>>> But Suzuki is concerned that this might cause confusion because the ETR
->>>> device is named randomly in the driver. Suzuki suggested using ‘port-0’
->>>> and ‘port-1’ and would also like to hear your feedback on these names.
->>>
->>> There is no confusion here. Writing bindings luckily clarifies this what
->>> the indices in the array mean.
->>
->> The point is there are "n" interrupts. Question is, could there be more
->> devices(ETRs) connected to the CTCU than "n".
->>
->> e.g., Lets CTCU can control upto 4 ETRs and on a particular system, the
->>
->> TMC-ETR0 -> CTCU-Port0
->>
->> TMC-ETR1 -> CTCU-Port2
->> TMC-ETR2 -> CTCU-Port3
->>
->> Now, how many interrupts are described in the DT ? How do we map which
->> interrupts correspond to the CTCU-Portn. (Finding the TMC-ETRx back
->> from the port is possible, with the topology).
->>
-> 
-> Got your point and it's much clearer.
-> 
->> This is what I raised in the previous version. Again, happy to hear
->> if there is a standard way to describe the interrupts.
->>
->> Suzuki
->>
->>
->>>
->>>>
->>>> Usually, the probe sequence follows the order of the addresses. In our
->>>> specification, ‘ETR0’ is always probed before ‘ETR1’ because its 
->>>> address
->>>> is lower.
->>>
->>> How is this even relevant? You are answering to something completely
->>> different, so I don't think you really tried to understand review.
->>>
-> 
-> My previous explanation was definitely unclear. As Suzuki suggested, 
-> mapping the interrupt to the port number (to identify the relevant 
-> device based on topology) makes sense and provides a much easier way to 
-> understand the relationship between the interrupt and the ETR device.
-> 
-> So with the suggestion, here is the new description about the interrupts:
-> 
->    interrupts:
->      items:
->        - description: Interrupt for the ETR device connected to in-port0.
->        - description: Interrupt for the ETR device connected to in-port1.
-> 
->   interrupt-names:
->      items:
->       - const: port0
->       - const: port1
+Why this cannot be part of enum with the first device? Creating a list
+per device scales poorly.
 
-Which brings us back to the question I posted in the previous version. 
-Do we really need a "name" or are there other ways to define, a sparse
-list of interrupts ?
-
-Suzuki
+> +          - const: cix,sky1
+> +
+>  additionalProperties: true
+>  
+>  ...
 
 
-> 
-> Thanks,
-> Jie
-> 
->>>
->>>
->>> Best regards,
->>> Krzysztof
->>
-> 
-
+Best regards,
+Krzysztof
 
