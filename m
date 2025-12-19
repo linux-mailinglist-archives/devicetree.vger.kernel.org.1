@@ -1,84 +1,84 @@
-Return-Path: <devicetree+bounces-248368-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248369-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33F70CD1EF8
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 22:11:08 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B461DCD1F01
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 22:12:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 936BA3083FD8
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 21:10:36 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 2DD713002163
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 21:12:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00456341ADF;
-	Fri, 19 Dec 2025 21:10:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DEB03242B1;
+	Fri, 19 Dec 2025 21:12:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sZDRnS75"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hLUnDZiv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C300634107D;
-	Fri, 19 Dec 2025 21:10:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60C8B194C96;
+	Fri, 19 Dec 2025 21:12:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766178634; cv=none; b=fzzERBFKkM6zbmJUrX22NZVU0b52WvqU0i5D7J9M0rnp6MXAmK6Ach7rtmCQtxwKYX7ipVDhQk2s5nNfJDOOvnx2h2SOe+Dsv6rnyAzQzz2G37ld+ZmG3kTvboHAPuyl2FvE+YTdB72GM5cmN50yItCFgQjf9iLVm5nY/JlptNo=
+	t=1766178737; cv=none; b=WBaA4BTmh0hUQgJ/7tvFRy+t9Dta9zAR+DIqFCxHL/NMmavMDuFcOxxaEA5HTVmieobmtqMcPwwC5yCMzqCKo/GkPOxwUasCrhgWAvGe5RpVYP/WNl4cVVuFtJTZShFHLrr4FtqStR10eWDZZPAOV9Zt7lZeHPKvNgRyAFV5Nxk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766178634; c=relaxed/simple;
-	bh=CWsP0o48cOnDM9vwwFpbePvptnJlvaYDWmV9Z9G5YxU=;
+	s=arc-20240116; t=1766178737; c=relaxed/simple;
+	bh=IiUbZyP5yaT6FmHbdxpDbkxvX0JenMyPi3Qa9YrULgU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nPDZw745F4KDAsUU/fuwlhp7+nObnUBmw5KsTR4jAj/4T8yNSOynOfpW53o6OsvKKx2Yqa8Ll70xlmeh2Zw4VsOseak6YPg74yFA8khJZE5Q8yr7SdTLbiJ0BRQTH2FiRL1skaYHTNPyp8TLx4apEP/dc/moj67urII8fVErqXs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sZDRnS75; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3EAB9C4CEF1;
-	Fri, 19 Dec 2025 21:10:34 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=LhYEMFahM3UmYMwhbhKpsAac8WPMnyRZJ7pBA5Y40E5CIK3IrQVIxq0Mu8EmYwCpMdC82YV8FeydC9mKpS0mj8vrbUL3+hjYfqWu/pgUIMvLhfsTzWC9b9xvSI6W6vmxdJsZmOQp93z9fJ1fIb/Sgqt9yX0QfeElVlboF3Kjk8c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hLUnDZiv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0271C4CEF1;
+	Fri, 19 Dec 2025 21:12:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766178634;
-	bh=CWsP0o48cOnDM9vwwFpbePvptnJlvaYDWmV9Z9G5YxU=;
+	s=k20201202; t=1766178737;
+	bh=IiUbZyP5yaT6FmHbdxpDbkxvX0JenMyPi3Qa9YrULgU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=sZDRnS75xs9haL3HiFftSC+fIcJZW1bb4DxWpBmx916Tcv/K9QAWXHq7Nm9H59wbo
-	 EXp200aLN611YPV5G2KrYOHk+zw4t4lCzHo4QQzuYNnLfWEkK4Dhq79V6RdUtZ3xB5
-	 cH82pEPRDu08N1NGWR06G1JStOsxhAFz3zoVDG3PT8zQUec3uuVADD7QZrTxcWXsfR
-	 yUUD1QcgldlKg2HpCgp+U/mxnYpbusstcOOa2SmYQY0O9dX5sjoyXEbCjUihO0HP34
-	 XKpNDaekfHKUPdbLiwaj93QMvtAb7JrujSHgMvBo1AXL01mTBtEoPR5JN1JGO/o6k4
-	 iR1EXlZy0jnUQ==
-Date: Fri, 19 Dec 2025 15:10:32 -0600
+	b=hLUnDZiv675B+5Q2jSqIid9T21CvlvG3m3TxQY4eb0rrhVjkW66cAjGoXLXs+4TyK
+	 ewX7LDrtBC/wR+AP6OxuRO3LWxbR8JtHbSRjpt+cCwD/D8VdrKdhUw5nhLcEV219G3
+	 uUZfJlfkUMbJCvHQHLHU7k0gsPpYeZCnJ6M9zw2Q9GaR/H8n/nqIVQ5fDVKOvxNJ0y
+	 A0JsKGhsgDCBUp+BwohEeI3n+AEmgx0L/KKoAMcTRKtiJ1a3C8k61lPps6WMI5WBgE
+	 JUd+TMizJLGYKgrf6LV0Iw8zgyrfx3KuC6WNZK5kJi3vOOTmIaZsKOPWpbFEPZG5nA
+	 jt9YjJdLk0qhw==
+Date: Fri, 19 Dec 2025 15:12:14 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: =?iso-8859-1?Q?Beno=EEt?= Monin <benoit.monin@bootlin.com>
-Cc: Stephen Boyd <sboyd@kernel.org>, linux-kernel@vger.kernel.org,
-	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
-	Gregory CLEMENT <gregory.clement@bootlin.com>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	linux-clk@vger.kernel.org, Philipp Zabel <p.zabel@pengutronix.de>,
-	linux-gpio@vger.kernel.org, linux-mips@vger.kernel.org,
-	=?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>,
-	Linus Walleij <linusw@kernel.org>,
-	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>
-Subject: Re: [PATCH 01/13] dt-bindings: mips: Add Mobileye EyeQ6Lplus SoC
-Message-ID: <176617863184.3942408.11623781983608873064.robh@kernel.org>
-References: <20251217-eyeq6lplus-v1-0-e9cdbd3af4c2@bootlin.com>
- <20251217-eyeq6lplus-v1-1-e9cdbd3af4c2@bootlin.com>
+To: Zhaoming Luo <zhml@posteo.com>
+Cc: linux-scsi@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	devicetree@vger.kernel.org, Bart Van Assche <bvanassche@acm.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>, linux-kernel@vger.kernel.org,
+	Avri Altman <avri.altman@wdc.com>,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH v3] dt-bindings: ufs: Fix several grammar errors
+Message-ID: <176617873434.3944803.4539768491338614991.robh@kernel.org>
+References: <20251217-fix-minor-grammar-err-v3-1-9be220cdd56a@posteo.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251217-eyeq6lplus-v1-1-e9cdbd3af4c2@bootlin.com>
+In-Reply-To: <20251217-fix-minor-grammar-err-v3-1-9be220cdd56a@posteo.com>
 
 
-On Wed, 17 Dec 2025 14:35:51 +0100, Benoît Monin wrote:
-> Add an entry to the mobileye bindings for the EyeQ6Lplus
-> which is part of the EyeQ family of system-on-chip.
+On Wed, 17 Dec 2025 22:03:38 +0800, Zhaoming Luo wrote:
+> Fix several grammar errors.
 > 
-> Signed-off-by: Benoît Monin <benoit.monin@bootlin.com>
+> Signed-off-by: Zhaoming Luo <zhml@posteo.com>
 > ---
->  Documentation/devicetree/bindings/mips/mobileye.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
+> Changes in v3:
+> - Further improvement on the grammar as suggested by Rob Herring.
+>   See https://lore.kernel.org/linux-scsi/20251217010112.GA3464453-robh@kernel.org/
+> - Link to v2: https://lore.kernel.org/r/20251213-fix-minor-grammar-err-v2-1-b32be57caa13@posteo.com
+> 
+> Changes in v2:
+> - The subject prefixes match the subsystem as suggested in the
+>   documentation.
+> - The necessary To/Cc entries are included.
+> - Link to v1: https://lore.kernel.org/linux-scsi/20251212131112.5516-1-zhml@posteo.com/
+> ---
+>  Documentation/devicetree/bindings/ufs/ufs-common.yaml | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 > 
 
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
