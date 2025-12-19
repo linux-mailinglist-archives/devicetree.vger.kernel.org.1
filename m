@@ -1,148 +1,137 @@
-Return-Path: <devicetree+bounces-248137-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248138-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF51FCCF11B
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 09:58:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 962C1CCF134
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 10:02:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2EE8130329F7
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 08:58:07 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5DA22300E786
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 09:02:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 542982EC563;
-	Fri, 19 Dec 2025 08:58:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="jPnBwrUf";
-	dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b="Ndkcv2dz"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C55E2EB87E;
+	Fri, 19 Dec 2025 09:02:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01CB523C4FF
-	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 08:58:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A75E620B212;
+	Fri, 19 Dec 2025 09:02:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766134686; cv=none; b=AgsaMjYFGiwAadkv2qQhqFq9sJPPvOLNb82nLZy0RyP/7GUWwepbNLid9LT3p2MNfZVfyPD7fQKu1vdOMkruXlHURK9yTKz+TaPp3EeENSyHBnbI45iAcXhfhVKwBhfX6EGk/b69pWAuGXT+OgMjyeF0/yzsfwwtGb+zXcdX+XE=
+	t=1766134968; cv=none; b=dlE77flt4DBJKH84Pvcotksxoei2ei6MKh1IvkT74Qp4UQsx8hWcFWXK+nKJvPhcyb294KXA1s+UxHJKlY9GVPXuakXfcALmeuxucVPx9WaonbDitTostnqDM8p5QVPBiPrqjTtspsMpqSUhEBNLEKkGqfHrhRlNzwWFaWselwk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766134686; c=relaxed/simple;
-	bh=lqdLSlV/+AAZvMvBSqFuAhhiAAi9gRXTfKrs46fdedc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YRmYha801ZCNsmDeRaq5aTnIohBKfdKwwY0hodV1v82TyPd+VBXgK9arM1ulWVlXN35a7hFx1x00aoLVwVG7P/25GJFtnL8M+gbTGVrP6kSzZcCoGPMLaOAL4gI87C1kNtwYnUVrEDrGli4yuG5LdD117Rci0r3l/xnsd0xziLs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=jPnBwrUf; dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b=Ndkcv2dz; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1766134682;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=AJMoqd1fKO8OEBbwlJWa4SvNhhMZvfEzTXvf7u+dka0=;
-	b=jPnBwrUfa0gqabyyFAf2O2Fdhq0zMtLPiT2pSi3DdYpZIA7tE7KabIwO7jbpCLwTonPYRI
-	YwnR2jkf/tdWW/FjvyvbyDSRb/PothBlKPP7FtgC0kXmP7JJmh80yTS43dUXGzaSQ8QPYV
-	T14jD7T1KHw2fHq8Gs7sbzFqgl0+3UM=
-Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com
- [209.85.221.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-472-Y1PXAWhnN8eXDg79sdYjbA-1; Fri, 19 Dec 2025 03:58:00 -0500
-X-MC-Unique: Y1PXAWhnN8eXDg79sdYjbA-1
-X-Mimecast-MFC-AGG-ID: Y1PXAWhnN8eXDg79sdYjbA_1766134679
-Received: by mail-wr1-f72.google.com with SMTP id ffacd0b85a97d-430f5dcd4cdso707830f8f.2
-        for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 00:58:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=redhat.com; s=google; t=1766134679; x=1766739479; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=AJMoqd1fKO8OEBbwlJWa4SvNhhMZvfEzTXvf7u+dka0=;
-        b=Ndkcv2dzxfjzgHnWSIQr0WMcd4J7T9tBBJIftDaTp8b+RM4+WP/QrXzFcxKJlpTBAG
-         F3HyFDYplKgsEweah0e205/x5Sq/thqHOuiqP1Q3CJFoPy05wC6JwwTRo0tuDGMZ6opD
-         qifTfnMWMO+wW6mTGWxvYMLBXq9ZdYh2w2Uz350zJAdT6n5H7WKxO58UCTnWsMOn5KZj
-         VrxTvzWxENaN2nnfZkSjXq/B7/nl/9kfcWG1GoviyTCPFE08j8qX2xQDGsX78qkQAkN/
-         7SNIsOJRrfvCkyQskvIqLd4QL+Jd8OGoVozLslMF3rggOgOZlxQTQEuzzei4miIemQqh
-         jxxQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766134679; x=1766739479;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=AJMoqd1fKO8OEBbwlJWa4SvNhhMZvfEzTXvf7u+dka0=;
-        b=ZpXdqjsfjD4q9ccaAri1ztERNZpsqTwnuuL4bXBGRsWSFxn/E6kM2t0Fj/iVNW+N6c
-         9OPnubTrnSCPpHHBHcIslg4lzPTzedOjvWdZ/I8CiyhhrEtaUu6mgLp5C76s4jISnfBY
-         /OwgQ98Mp4YRKfMZ+6A8YJsnkT+Vnuisa9qnM7w5CWWRM9O4PXiRfLG5KZ1FJ6GE86mA
-         jiyJ0MVug645QwFdW7boqeVqux5pt21mk80TGum2/xPUQIcvbjtfMA+diNQtcJsqBM/i
-         9ryZIoSwRDgx/s6OXOeyKJJIFScSKWXZPZDla6PkmPMtyPPTF7UPpqzlpvr3Vcr0wl2g
-         Miew==
-X-Forwarded-Encrypted: i=1; AJvYcCWA8gOCnDI+yS4vefoYCKQC8m9v7R/DadZF0ZSysikh3aJFjbNYhkngkdZUZwzSXAGe+GqJtx3E57Ac@vger.kernel.org
-X-Gm-Message-State: AOJu0YzTvq5i0o8qJjtQ/5uhV6ewaYtWQzFm5SdkCN5XzbySCYDw7bO4
-	SQLJFS6qAQikS7MtinT8aFU6pdvghprSWmZSatwRWWKkjoUAx7BzzZkDCpMQWCGV8gDqW93l1Rq
-	pj8pULk03fYlbBxtVf7emWXAmeh8CcPG3vQ5y/+pU1l782yyLPjg/U79ea0qdIUw=
-X-Gm-Gg: AY/fxX5Na4b6Q0icVJTWPzbPWMSSo5qc4SZ3od5Pa9ISBHMOYFGTdOSIuKFuXRm6ofH
-	08LjfJLOptZhgQaA55K0Fphywor/+rRFw79MVlyfz36Da5Zmrz2gKk+3cIXdYJt0Zyp8SXtZv0m
-	tRqDxffEs5HVSDfdTHYBlURK8duEnRIjke11lias39iktP3sTmdAiRlYWv0zIGEplg8SR72V4vZ
-	VyODyrkjAfz/PmqMaAtuXGKgFbCQODK9NfnuxP+G6FAKhyuRGaCiUBUp/AuJNBsfG/NwRLXurpj
-	7GhkxNv06KJB/dAEw4PPshSYMtQpKZnqPQKmoyJG0Kk7MAKu9TkyvO/66U9NvZxgPDDA7NBmddV
-	MqyE6BiE015lt
-X-Received: by 2002:a05:6000:2dc7:b0:430:f449:5f18 with SMTP id ffacd0b85a97d-4324e50b88emr2398210f8f.46.1766134679132;
-        Fri, 19 Dec 2025 00:57:59 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFDZdQNlBKsvc8iTNlAZZskbFNld0WQ7P6WHIzHRIlQXsffoYDVBtRn4k62GVMfIP/FzJevzw==
-X-Received: by 2002:a05:6000:2dc7:b0:430:f449:5f18 with SMTP id ffacd0b85a97d-4324e50b88emr2398183f8f.46.1766134678751;
-        Fri, 19 Dec 2025 00:57:58 -0800 (PST)
-Received: from [192.168.88.32] ([216.128.11.227])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4324ea1af20sm3532794f8f.2.2025.12.19.00.57.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 19 Dec 2025 00:57:58 -0800 (PST)
-Message-ID: <a9bbd491-28fe-4ecf-86db-629ac8a2d187@redhat.com>
-Date: Fri, 19 Dec 2025 09:57:56 +0100
+	s=arc-20240116; t=1766134968; c=relaxed/simple;
+	bh=zhllQ8Zcx/Tc0SP1HXazq5bAp/XnRul0Eb+KeWR/JFA=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=gIwcJFBy/++E2nn78eLfJnAKk/UE/0N7hERDW193Zct3Dte/MI54ijmTcGimUaXW9vIeOO3pK1tds6setMvirbu0cZyQzUk7W89tsWFzBMi/i1RxT9GN0L8uPguYD9Q4Di62FiFc1zUhOFtlJmfOxBUjlxvhG4iKpGP/FI73ZR4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9578EFEC;
+	Fri, 19 Dec 2025 01:02:36 -0800 (PST)
+Received: from e134710.manchester.arm.com (e134710.arm.com [10.33.10.82])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 865ED3F73F;
+	Fri, 19 Dec 2025 01:02:41 -0800 (PST)
+From: Ahmed Tiba <ahmed.tiba@arm.com>
+To: will@kernel.org
+Cc: linux-acpi@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	tony.luck@intel.com,
+	bp@alien8.de,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	catalin.marinas@arm.com,
+	linux-arm-kernel@lists.infradead.org,
+	rafael@kernel.org,
+	linux-doc@vger.kernel.org,
+	Dmitry.Lamerov@arm.com,
+	Michael.Zhao2@arm.com,
+	Ahmed.Tiba@arm.com
+Subject: Re: [PATCH 11/12] ras: add DeviceTree estatus provider driver
+Date: Fri, 19 Dec 2025 09:02:35 +0000
+Message-ID: <20251219090239.2692458-1-ahmed.tiba@arm.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <aUQbdZHkzumTnwVP@willie-the-truck>
+References: <aUQbdZHkzumTnwVP@willie-the-truck>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v2 0/2] dsa: mxl-gsw1xx: Support R(G)MII slew
- rate configuration
-To: "A. Sverdlin" <alexander.sverdlin@siemens.com>, netdev@vger.kernel.org
-Cc: Hauke Mehrtens <hauke@hauke-m.de>, Andrew Lunn <andrew@lunn.ch>,
- Vladimir Oltean <olteanv@gmail.com>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Daniel Golle <daniel@makrotopia.org>
-References: <20251216121705.65156-1-alexander.sverdlin@siemens.com>
-Content-Language: en-US
-From: Paolo Abeni <pabeni@redhat.com>
-In-Reply-To: <20251216121705.65156-1-alexander.sverdlin@siemens.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 12/16/25 1:16 PM, A. Sverdlin wrote:
-> From: Alexander Sverdlin <alexander.sverdlin@siemens.com>
-> 
-> Maxlinear GSW1xx switches offer slew rate configuration bits for R(G)MII
-> interface. The default state of the configuration bits is "normal", while
-> "slow" can be used to reduce the radiated emissions. Add the support for
-> the latter option into the driver as well as the new DT bindings.
-> 
-> Changelog:
-> v2:
-> - do not hijack gsw1xx_phylink_mac_select_pcs() for configuring the port,
->   introduce struct gswip_hw_info::port_setup callback
-> - actively configure "normal" slew rate (if the new DT property is missing)
-> - properly use regmap_set_bits() (v1 had reg and value mixed up)
-> v1:
-> - https://lore.kernel.org/all/20251212204557.2082890-1-alexander.sverdlin@siemens.com/
+On Thu, 18 Dec 2025 03:19:17PM +0000, Will Deacon wrote:
+> On Thu, Dec 18, 2025 at 01:42:47PM +0000, Ahmed Tiba wrote:
+>> On Thu, 18 Dec 2025 12:13:25PM +0000, Will Deacon wrote:
+>> >> Introduce a platform driver that maps the CPER status block described
+>> >> in DeviceTree, feeds it into the estatus core and handles either IRQ- or
+>> >> poll-driven notifications. Arm64 gains a FIX_ESTATUS_IRQ slot so the
+>> >> driver can safely map the shared buffer while copying records.
+>> >>
+>> >> Signed-off-by: Ahmed Tiba <ahmed.tiba@arm.com>
+>> >> ---
+>> >>  MAINTAINERS                     |   1 +
+>> >>  arch/arm64/include/asm/fixmap.h |   5 +
+>> >>  drivers/ras/Kconfig             |  14 ++
+>> >>  drivers/ras/Makefile            |   1 +
+>> >>  drivers/ras/estatus-dt.c        | 318 ++++++++++++++++++++++++++++++++
+>> >>  include/linux/estatus.h         |   3 +-
+>> >>  6 files changed, 341 insertions(+), 1 deletion(-)
+>> >>  create mode 100644 drivers/ras/estatus-dt.c
+>> >>
+>> >> diff --git a/MAINTAINERS b/MAINTAINERS
+>> >> index 6b2ef2ddc0c7..5567d5e82053 100644
+>> >> --- a/MAINTAINERS
+>> >> +++ b/MAINTAINERS
+>> >> @@ -21761,6 +21761,7 @@ RAS ERROR STATUS
+>> >>  M:   Ahmed Tiba <ahmed.tiba@arm.com>
+>> >>  S:   Maintained
+>> >>  F:   Documentation/devicetree/bindings/ras/arm,ras-ffh.yaml
+>> >> +F:   drivers/ras/estatus-dt.c
+>> >>  F:   drivers/firmware/efi/estatus.c
+>> >>  F:   include/linux/estatus.h
+>> >>
+>> >> diff --git a/arch/arm64/include/asm/fixmap.h b/arch/arm64/include/asm/fixmap.h
+>> >> index 65555284446e..85ffba87bab9 100644
+>> >> --- a/arch/arm64/include/asm/fixmap.h
+>> >> +++ b/arch/arm64/include/asm/fixmap.h
+>> >> @@ -64,6 +64,11 @@ enum fixed_addresses {
+>> >>  #endif
+>> >>  #endif /* CONFIG_ACPI_APEI_GHES */
+>> >>
+>> >> +#ifdef CONFIG_RAS_ESTATUS_DT
+>> >> +     /* Used for ESTATUS mapping from assorted contexts */
+>> >> +     FIX_ESTATUS_IRQ,
+>> >> +#endif /* CONFIG_RAS_ESTATUS_DT */
+>> >
+>> > Why do we need this in addition to the four existing GHES slots? The DT
+>> > code doesn't use it and I was assuming that the ACPI code would continue
+>> > to use the existing irq; is that not the case?
+>>
+>>
+>> We still need a dedicated slot when only the DT provider is built.
+>> All four GHES slots are defined as part of the ACPI implementation,
+>> so they are not present in a DT-only configuration.
+>>
+>> The estatus core always requests a fixmap index from each provider
+>> before copying a CPER record. As a result, the DT driver must supply
+>> its own slot to return a valid enum value to satisfy the common code.
+>
+> Sorry, but I still don't follow this. The DT code doesn't use the fixmap,
+> does it? It looks like it maps the buffer ahead of time using
+> devm_ioremap_resource() and then the accessors don't use the fixmap
+> index at all, hence the horrible '(void)fixmap_idx;' cast which presumably
+> stops the compiler from complaining about an unused variable.
 
-## Form letter - net-next-closed
+Correct. The current DT driver keeps the CPER buffer permanently mapped with
+devm_ioremap_resource() and that (void)fixmap_idx; line is just silencing
+the warning. I’ll fix that by dropping the permanent mapping and copying the
+status block via the fixmap entry, so the DT implementation mirrors GHES. That
+gets rid of the cast and makes FIX_ESTATUS_IRQ do real work.
 
-The net-next tree is closed for new drivers, features, code refactoring
-and optimizations due to the merge window and the winter break. We are
-currently accepting bug fixes only.
 
-Please repost when net-next reopens after Jan 2nd.
-
-RFC patches sent for review only are obviously welcome at any time.
-
+Thanks,
+Ahmed
 
