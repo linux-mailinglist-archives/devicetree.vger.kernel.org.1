@@ -1,197 +1,222 @@
-Return-Path: <devicetree+bounces-248041-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248042-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC5C0CCE491
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 03:46:52 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC7BBCCE4BE
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 03:51:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2F59C3016CF4
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 02:46:27 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id CB8E93031D86
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 02:51:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 267291A9FA8;
-	Fri, 19 Dec 2025 02:46:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD1252749C4;
+	Fri, 19 Dec 2025 02:51:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b="sJsQpPzi"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="vvX/772P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TYDPR03CU002.outbound.protection.outlook.com (mail-japaneastazon11023118.outbound.protection.outlook.com [52.101.127.118])
+Received: from out-170.mta0.migadu.com (out-170.mta0.migadu.com [91.218.175.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BD393A1E72;
-	Fri, 19 Dec 2025 02:46:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.127.118
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766112386; cv=fail; b=pTXOsdu1nd6OQzk2kLxXm99jcAcyYU5aHzFPBhwu0ZYeNKiaL4LAqRSHCfEXaEhJ74bHklUgzJenar+NnKxDPND08/0/nB0JpOkP+H5qaJvY2hwPpvQ5CpGXvwFr4WJ5Qmd8AYjdAkVRq+X4311efwiFMhU18KDNIGiGnqej9xk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766112386; c=relaxed/simple;
-	bh=OnRMNzqGAl8n3xecUGXZeLyHrZIRCkGkP4/wS8Hf5fE=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=j69awMWMU7HvyzycdaFroTZWiYltfAg063X2w5ZboG+pD161SRxlNFicP9lxhJtTyGiZYqPdNEm1/VddRxojLWjj1I1/BscgmARNHBK8V9ypXBTVIUiXCylT9G8UXcWFzKKqS18Nv0Q9JGnzmyEijpykkvzXFVSW45qvvSlLhKY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amlogic.com; spf=pass smtp.mailfrom=amlogic.com; dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b=sJsQpPzi; arc=fail smtp.client-ip=52.101.127.118
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amlogic.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amlogic.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=iv4dCIn3bsPYCG9I3GobUJw9eQDKcaNflX7Inf8zen462Rclwf/3JMejVOZ2iebZqHhg0y4YlXgiVsCcRq6XQukeJvqbPB1U26bX0pyNLFtrR8m1kYmVuFNyGbvkrK06BtjGYHCvONuQwfwnnbM0yfm2Wlj5Dl5/7TQmcSY9WCSax9GV/gbzEksSOohnjJJUnns0CrSjcezmx37u3aPl5W7XxJoceZcmz5F0vYf3TnsF/iRh/9o6rtd0fW12KzAfmMdUGkkTxhGc2yF9JE5pNaHOdalQ+R7mXMoOBMXk07RdNVvkGOZssfFLldJeK/2uKHIBEwDOhmD+QuhWGbZkmg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bpln2QNkvWJ5sCp9o6bclgrPsXPl6nuXdWNtqGeUArg=;
- b=cp0JweqAICJyx9gkg7P9IBflL0/2Yp80mmnsLVS/E1U8Dhy0s38ZmPi5jlx22jQQ8M0mkBnTqkxcsEVkhGV3DM/GrYKt927nPLscwvYXroYtQj9LntatvNoSvVJVAmvRJ6Mye1FIU0yBnSFtevdE4Z/71q6Oj8DlEeRCmfiZNfVAuEk0FQV7v/BMULVKJ4aSIWE3ulA4P0jQ3JgBE3Fj2RYjV+0F0XfrdY/0Yg8jQYD7mftFa+42r79lYKPt/Ia5NMsQ0N/NTBSsVePtoXHxy7cwv7Hjf1dJlnJZyAtgOHJUcocOLbboldqlyJlyI9BbAwNL5gkGckbodOeru80ruA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bpln2QNkvWJ5sCp9o6bclgrPsXPl6nuXdWNtqGeUArg=;
- b=sJsQpPziobd8DJ+9i+MN1DrQfk7dItzccKa2c6ElmZSVL+o4UfH+C961fPmeBJe1YUon5zCHz3t34BNVN5gqy45joXSLtVuAoGs3NI/toA5401u3meHC8fj/bkcIPQMULxOtXArWxoCHsvTdB096Hxm41507Ne9xubljp2I/JB6UH3PGRkhDZk5tEQulpDd1Aasy3/8U4q9Kc+w1GM4cTDU9MfyjePL6Gm2gefqYpqOfakZpPMvCunqQHO07e+LnPvXPwNYabfYeHN0EpGyXjsmJvZdi9EIelTX9hVvqtUN+Vi4CJXF4ZsXPF02UG2aFDJ0+PO6LW6NGcUt1oC0Q6A==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amlogic.com;
-Received: from PUZPR03MB6888.apcprd03.prod.outlook.com (2603:1096:301:100::7)
- by TYPPR03MB9419.apcprd03.prod.outlook.com (2603:1096:405:317::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9434.8; Fri, 19 Dec
- 2025 02:46:21 +0000
-Received: from PUZPR03MB6888.apcprd03.prod.outlook.com
- ([fe80::5fc1:b7a:831:340f]) by PUZPR03MB6888.apcprd03.prod.outlook.com
- ([fe80::5fc1:b7a:831:340f%3]) with mapi id 15.20.9434.009; Fri, 19 Dec 2025
- 02:46:21 +0000
-Message-ID: <7d6084d2-3c56-43b8-8337-0b696614e4fb@amlogic.com>
-Date: Fri, 19 Dec 2025 10:46:16 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] arm64: dts: amlogic: Add S6 Reset Controller
-Content-Language: en-US
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20251127-reset-s6-s7-s7d-v1-0-879099ad90d3@amlogic.com>
- <20251127-reset-s6-s7-s7d-v1-2-879099ad90d3@amlogic.com>
- <CAFBinCA19ws1OmfZLh+OSmiEuvY4owOKyzFpaz5KO6E8HaKmmg@mail.gmail.com>
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-In-Reply-To: <CAFBinCA19ws1OmfZLh+OSmiEuvY4owOKyzFpaz5KO6E8HaKmmg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: TPYP295CA0017.TWNP295.PROD.OUTLOOK.COM (2603:1096:7d0:a::9)
- To PUZPR03MB6888.apcprd03.prod.outlook.com (2603:1096:301:100::7)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BC6826B74A
+	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 02:51:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.170
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1766112682; cv=none; b=cCAsST93YuME0L00RH5cYS3Rzuf4nnlZ70KPYwxorMC2jvLKQ7BghxN7y2Hjuo4o6b2Z/QmD2q/+y/E8dLMQIZKSPyRJd0UR1wS5qiaLDg3QEYj8wDP6UQn3rnKt/OSHNGcTBC1+VnStPY27cEEpyu1i84VTI/ZyXfQTaIEH018=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1766112682; c=relaxed/simple;
+	bh=byNlz5pb12vcgNRYGkQCwYfndFV1eWO4Z/7wEk1dE5c=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=drUaXluUe9lxGTZOeiWemlFDKSGUhVtsL83l77KPVx9nbgsM4s5JZgq4Ev8t7LkieXcWPZYHNgLvg+eCuYSlTVdXvvQmgeW2TwHNHxJ7Xpwh0CDUqUvjK8fD2E8zCi8ijhzwy/rdciqU+NdGpKM5cga0lDnH39r6Lq/k17clrPU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=vvX/772P; arc=none smtp.client-ip=91.218.175.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Date: Fri, 19 Dec 2025 10:50:20 +0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1766112673;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=MHHbOuACtVt65M/XvY+Am4aG15ahsyxIVkVopdcC560=;
+	b=vvX/772PnNTxi/t0d7qcKtYhcclwLhCBP/h3L15QVwxrqGTmgOKMi7qyuIOaxGSMN/sIl0
+	UIvvWIE0ee1fAJp/ZnoXf9g0oGC6DebdwBV2T4MbDmT+Ga79Y56X+Y3uYiGFy4E4+G6va0
+	30aMVVfHSJwf5prig5DtbC8z356Cy5w=
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Troy Mitchell <troy.mitchell@linux.dev>
+To: dongxuyang@eswincomputing.com, mturquette@baylibre.com,
+	sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	troy.mitchell@linux.dev, bmasney@redhat.com
+Cc: ningyu@eswincomputing.com, linmin@eswincomputing.com,
+	huangyifeng@eswincomputing.com, pinkesh.vaghela@einfochips.com
+Subject: Re: [PATCH v8 2/3] clock: eswin: Add eic7700 clock driver
+Message-ID: <aUS9bLVLhIPMOcWa@kernel.org>
+References: <20251113013637.1109-1-dongxuyang@eswincomputing.com>
+ <20251113013846.1222-1-dongxuyang@eswincomputing.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PUZPR03MB6888:EE_|TYPPR03MB9419:EE_
-X-MS-Office365-Filtering-Correlation-Id: 70afa902-b5ef-48db-ab51-08de3ea8caa6
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|7416014|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?d1ZBTUE3cWk4TkNJYlo1NWpFMGJuTjVEaXNQOTgxRTJ4TFRZSTUzbmw4V2ND?=
- =?utf-8?B?TU5hMk9DWWYzanNjUmNQejRMM2UyNGNGb2lGd0JWWmlPKzVxeUp0akNvRGI3?=
- =?utf-8?B?UDF1TmFlaTV6aWRHZjF2dGVXSzQwUnRnS0xlRjlxdmJtdGtrSnFHWXlraENB?=
- =?utf-8?B?bmFxditOTVE5SW9uU0FYNzMzTUs0M0xJbWNSTWNlV01acVA1dGhMdGhyQ0Nv?=
- =?utf-8?B?NTB6MUFObmdDTlV0K0I1T2xsbDFNQ2l2SjVvZVFZcFpwcVFycmNxbEgyYVVQ?=
- =?utf-8?B?U3ByRHlJVldkSXF3a1hLamc3a2xWd3R3MmtzUi95L0ZhamdiVHN3UHlvMTA0?=
- =?utf-8?B?QVB0aXZRWkJXalZ0S1YvZE1wQ0VscHFRTWpuczFKbG5UdkNENmYvcmFDOXQ4?=
- =?utf-8?B?ejZBd1VSWVQ0RkljdDlKdVhyZ29IUTFlR2lHZHNtOTRteFdPRjZqK1prYjRX?=
- =?utf-8?B?YktIWGNVTFVIUm1QUEN6ZUo1Q2FOejl0OEhFNzQ5VldJY2V1bW84aWpxakF6?=
- =?utf-8?B?NWoxMEFLMU50R09EY1FFaXdhdU14ZkFONTBldklBMUFIZFVFczNmdjhxY2lr?=
- =?utf-8?B?Y055dDZJTVNPVVNBMjVlNTdTa05GSUwxYit5ZzhmZHFZd01QYWthbkpTQnpl?=
- =?utf-8?B?RnJ5eUxaRmtCWEZPQkRKTzFvOVhQTW9VUFlpdk9ON0V0Nk9WbG1yb01VaXBh?=
- =?utf-8?B?cjlIMjBmdVB2TEFuMk1SSTRBdlZ6WG5oVHd4Q25sMDl0WjJLL0p4MFE0ZHYz?=
- =?utf-8?B?WTB4TjVrYlB5aVpzNCsrTE1yR2FuRStCU2p3Z0RSN3FzMlNtQzVDZHB6Y2Nm?=
- =?utf-8?B?MFZubm4vcUVCcGNldEFmWEpzaXlLOWJHb0daNlJJQ2g5SERJeXdGR2RSTUhm?=
- =?utf-8?B?MXhNNW9LdkZ6WWxSc2k0MWtvS0FJdVNzakFFOHMxWXN3bDV3cHRDTktMcUxI?=
- =?utf-8?B?ZTk3K1dTRHFEWXI2Qk5qRi9mTXZwd3EyMXB4dmljV0h4Nmc3UTBQb1VLNHFh?=
- =?utf-8?B?VmVCVThtZ09CcHRwVzlseFZocUhLZEJaYlFMMFBERmRZYWNPaStBc1k0Z3Ry?=
- =?utf-8?B?ZTVmZ2dqQ3h3MUhYcmRFbDlMQkd0OUtYeTRVUVVyWnE5RjREaklkOTJ4Q2Nv?=
- =?utf-8?B?NU4xVFR6RVlUbG5TSTVuUlJzTklqbW4xQWVBTVFVQjJDZGE3R0Y3TjNzelMz?=
- =?utf-8?B?MHFCSWIySURJbHJpaU1CanpyMnNoVW9yWFlaelVnTWFJSitFT1RWMlhoZzQy?=
- =?utf-8?B?ZGg3M0xhTVBjeGNrL0ZzMG1oQ3JUL2xBdmp2QzNKaGp0M2NsN3VLZlZ6ZlBY?=
- =?utf-8?B?V3VjQ013bTJ5SmNscjJ3R0dpdm5XTFZacWJ3ZFU1ZnYxRnlwWE94NXhRQmpO?=
- =?utf-8?B?MEUyUGFjWnB6dlRCZjFXcnplRXZkdGY5Yll2Q0xXR2QyWEh0eUdxcW5rZW9w?=
- =?utf-8?B?U044QzhtUlZFNFpvdTFXSC9LdmQ0YjNWL21HbHp2VmFablF2ak5YZUw5WllU?=
- =?utf-8?B?azBuaUNRZklzUElzQ2lRckdlRU9EaTZibWFvTHpjY1g5NktnZzRxUld1YjNX?=
- =?utf-8?B?NVR0dURlRXo0ZUQ1RFdjekhSTGZicWE1K2dSNFFyVGVQRThQY1lubzlycVdK?=
- =?utf-8?B?NmpmejQzNi9qSnZ3L3kvaUxrd3dGVmNPWmRtZldCNFIvZGU0bE1FVXpWb0dD?=
- =?utf-8?B?ckFlbXdXL0JFQ21hMUZxNktQTHFzVWhOWmt5Y0lNelVFSm40TVVJSkwva2Fy?=
- =?utf-8?B?b0V0YzJ4bm9tNUg0YzQxQXZnblVhT3NPd2ZLNFp1bHREM0xyT2VqeUt1YjQ3?=
- =?utf-8?B?aThTWi9mK252c1VzRk5Md3lnK2p4TnFpQms5aStKdG1TUE5uUkp1STNRWlAv?=
- =?utf-8?B?SVR0a1V1cWZaVlg1MVlTWFVZV2Y3OVNISDQrZnFKODVucnFVZk93RmRLbUFQ?=
- =?utf-8?Q?2eLp9pk0r+uyXThKfgc5nFkIxT29E4w7?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PUZPR03MB6888.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(1800799024);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?K2xUaUtsNWVHTm84aUtaUmdmbm05YmlDSThzSHdURlkwaTJNL0tzT0lNQjdV?=
- =?utf-8?B?OElUcDZKMkwzU01VcTlRT2dzaGRLc1NKTnhVdG8zZ3E5bTQzSHVZVzY2ZG9H?=
- =?utf-8?B?U1ZMOEhzVit3RW5wUDlabW9sR1g3RUpaMDR5d3lHU3A3MVROaXZLbEJnOTh5?=
- =?utf-8?B?UXdGV29keGNicjJSNmVVK3JSVE5yY2QvbU15eTI3c0IxYUJqQ1Y3VHQrelUr?=
- =?utf-8?B?Z09xUXcva3V5WXY1RmlwdkpkOS9JOFJWalJxcnIyZExOMnVLZDBZaXJvNE9N?=
- =?utf-8?B?RTA4TWMzWHIzL3BxdU4xZVdEUTA2anBrS1dQY1lHTnBGVzlmODhvQTNDQjB4?=
- =?utf-8?B?SlkxMko5Z2p0clIzRlh4ZWt3UGpVUkI0UVFWUzcvdlUzUGsvMkgxT082aSts?=
- =?utf-8?B?ekZFcCsrclo0UjBlZnVWcjlSbUNKbVVBQlByZzNQZFp0TlBaR2g1SmorbTVm?=
- =?utf-8?B?MnpQczhYdENudWlacEU3M0NWNVZnb2VuQ3pibDVIZHBhdlhKNHBqaEhCS2c0?=
- =?utf-8?B?QVEweDBseE9UbFdpcDczcFplRzJwTkQ5ZjJFYTNoYnRDOS8xaHFmYkFRQ3Z6?=
- =?utf-8?B?cW9iS0U4QTdkeFQvNzdLVTNkV3lCeXE4NElqbzdyMUNXL3h1SGEvQnhTYWhY?=
- =?utf-8?B?ejhGc0xYVkNIK1JndWx6MjVHazNseVZYaVJoMU9TUnBacHpjaDhMb2dQVDFv?=
- =?utf-8?B?ZGIrVlFMbTh1TTl0cXcrS0tVOEprTCtFVjRLZHRSY0dkT2NHbVRKSDZ4VHpq?=
- =?utf-8?B?NndvQVk2dDBjY1hJZFp1UzY5cXZvbitDOENSdlZHOXhWYk5BaFN1aE5EenZC?=
- =?utf-8?B?a0FFdGNCWkxtdURjT01rOXpOUFZuWHFDSDBxRFA0QXQ2Y2tEY1hmU3NYaWN5?=
- =?utf-8?B?b1FtMjZRZUxhU0JLYXB1c0V0MEhuZjU0akhJcHduaWhqZ2FnUnMyYlpGUXZ6?=
- =?utf-8?B?RUJKaVFkYkw4di9ZWjQ0Y0hHRVBHd0lWYk01Q2ZjbDFhRTM4NmNqZVBqcjZ1?=
- =?utf-8?B?NG9RZ25Ed1VVSU5TdVZheVJSa3hCTjRqWTFwV1ZrQWdBOVlBMG5BL21VaTlR?=
- =?utf-8?B?L1pUK0ZTZEJhdDRmMHFzZ3BVcVppTEdSU2E4dzk2cFV2NlBjQ3dNV2NJemxI?=
- =?utf-8?B?Yms2SFIzRlNxNXZ3aUl1OElQbVpjK2ZzZ3hLM0krNmFmTmt4TExMMk9mNUZs?=
- =?utf-8?B?RERST0ZuODRUQ2U4VUVNRHl0TXFUbmEvQmtneDFwZEhBQW90WHZZeU9JdEQ4?=
- =?utf-8?B?L0loOFY4UVMvRWxvMnJoVCthT0tOdzJmTWZGM3M2SkpOd1AvNUtCbG1GRkNN?=
- =?utf-8?B?TmdGVzR4Y21vdU9ENGMxUTBmcEdGdzJkSGtzN0l0S3NNc2NuWTdLUi8yemFi?=
- =?utf-8?B?RGs3d3Z4UkJSanB1Q3drL0VXVTR4cXhhSTJQSEdsWWRuWW1tZE10SmtROUtj?=
- =?utf-8?B?K0lTUU5WTElDc1BESURjTjBya05IcUZEaWhub1B4U0MyQi92cGpLK2d6Z2hM?=
- =?utf-8?B?L2VudGhJQnRPcEpoSGxQY1d4MFNjL0cwblpPcFlRa3Q5UGVzYlpERmlObGt1?=
- =?utf-8?B?RDhBR3FLbHVyYXVvR3QzTnc4S1M1VGpJVW5DaXNCTjBYM2pjd3BLWXNuR3Fa?=
- =?utf-8?B?SytHeFpKYVlaai9SY3MvY3B4VE15b05JZlJDdWtjM1lRZ2h5MUlKMm9PaW5W?=
- =?utf-8?B?UE8vbTB5OFd4RUowbExWd3pJUXQyMmdndlJ0UzBKQWo4OWFKSXhiUFZEaGdw?=
- =?utf-8?B?S1AxdWdKSTV0R0RBcDNFVkZsQkRucDBvSlJnc2M3OUI1dk9SYTltY3oyOXFK?=
- =?utf-8?B?K3h4c0htbmNib3NIQk80NDNwb016TUVGU1RWVG9IaStsYmdKM1E2anRveG5z?=
- =?utf-8?B?UGpjL2RsM1EvU3JiRFE3R01TNldCYUE2b3E2VThScitlUjdTbmd3SnZJN214?=
- =?utf-8?B?MDBKK2trV0lHM0x1UTRZTXc5UlhtZDU5TWtDMnF2WWNrMHFYTy8yMnpQcVJB?=
- =?utf-8?B?ME5wdzRvTTBxZ3hnbXJ3SkJGSUhmTTh4OUJ4bUw0WU45NW96cFpqREhDYk1z?=
- =?utf-8?B?dU1VVk5NSlduNkpvZFU1RHNsaFRvMUxTakhHV3NCK2FEV3F3WjlpYnZKRGpi?=
- =?utf-8?B?MGlnV0pLdG1DYldReHBpcWZsZmZFY1NWbGJTOEw4NzJZcWF4YVprQllBVzN0?=
- =?utf-8?B?Z2VQVS9BZ0dmRFhidXcwblkxaHlKV2FjUmh5aFVjK2xQZkRjN1I1bzMvSzI1?=
- =?utf-8?B?cjY3UXdGSjZmYVJUai8zdExNUXBzOG5uQlhaRnVSMjZmVHhmSkNjTWU1VGI5?=
- =?utf-8?B?Zkl5Vm8zckNQYldSdnBkaUNXVEFCeTN4aVJZL1JxNWJLUm1SL21vdz09?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 70afa902-b5ef-48db-ab51-08de3ea8caa6
-X-MS-Exchange-CrossTenant-AuthSource: PUZPR03MB6888.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Dec 2025 02:46:21.0755
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: lePp7u71yXUljzIyJDo26hk9bS4YKrjdMtG2b0bAQogxDqJGHNbXn6kSP36Z9bTvPF8tRXQSDuPAJdPdXRdqsND07OvILyZZR8Vx3ETuGwA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYPPR03MB9419
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251113013846.1222-1-dongxuyang@eswincomputing.com>
+X-Migadu-Flow: FLOW_OUT
 
-Hi Martin,
-    Thanks for your reply.
+Hi Xuyang,
+This is a quick review.
 
-On 2025/12/17 23:51, Martin Blumenstingl wrote:
-> [ EXTERNAL EMAIL ]
+On Thu, Nov 13, 2025 at 09:38:46AM +0800, dongxuyang@eswincomputing.com wrote:
+> From: Xuyang Dong <dongxuyang@eswincomputing.com>
 > 
-> On Thu, Nov 27, 2025 at 8:30 AM Xianwei Zhao via B4 Relay
-> <devnull+xianwei.zhao.amlogic.com@kernel.org> wrote:
-> [...]
->> +#define RESET_BRG_MAIL_DMC_PIPEL       167
-> On the S7 SoC this reset line is called RESET_BRG_MALI_PIPL0:
-> - is MAIL <> MALI a typo (seems like it should be MALI)?
-Yes. I will fix it.
-> - and is PIPEL <> PIPL also a typo (I don't know which one is "correct")?
-PIPEL is PIPE , I will fix it.
+> Add clock drivers for the EIC7700 SoC. The clock controller on the ESWIN
+> EIC7700 provides various clocks to different IP blocks within the SoC.
+> 
+> Signed-off-by: Yifeng Huang <huangyifeng@eswincomputing.com>
+> Signed-off-by: Xuyang Dong <dongxuyang@eswincomputing.com>
+> ---
+>  drivers/clk/Kconfig             |    1 +
+>  drivers/clk/Makefile            |    1 +
+>  drivers/clk/eswin/Kconfig       |   15 +
+>  drivers/clk/eswin/Makefile      |    8 +
+>  drivers/clk/eswin/clk-eic7700.c | 1033 +++++++++++++++++++++++++++++++
+>  drivers/clk/eswin/clk-eic7700.h |  122 ++++
+>  drivers/clk/eswin/clk.c         |  481 ++++++++++++++
+>  drivers/clk/eswin/clk.h         |  256 ++++++++
+>  8 files changed, 1917 insertions(+)
+>  create mode 100644 drivers/clk/eswin/Kconfig
+>  create mode 100644 drivers/clk/eswin/Makefile
+>  create mode 100644 drivers/clk/eswin/clk-eic7700.c
+>  create mode 100644 drivers/clk/eswin/clk-eic7700.h
+>  create mode 100644 drivers/clk/eswin/clk.c
+>  create mode 100644 drivers/clk/eswin/clk.h
+> 
+[...]
+> diff --git a/drivers/clk/eswin/clk-eic7700.c b/drivers/clk/eswin/clk-eic7700.c
+> new file mode 100644
+> index 000000000000..03540db9cb7d
+> --- /dev/null
+> +++ b/drivers/clk/eswin/clk-eic7700.c
+[...]
+> +static int eic7700_clk_probe(struct platform_device *pdev)
+> +{
+> +	struct eswin_clock_data *clk_data;
+> +	struct device *dev = &pdev->dev;
+> +
+> +	clk_data = eswin_clk_init(dev, EIC7700_NR_CLKS);
+> +	if (!clk_data)
+> +		return dev_err_probe(dev, -EAGAIN, "failed to get clk data!\n");
+> +
+> +	eswin_clk_register_fixed_rate(eic7700_fixed_rate_clks,
+> +				      ARRAY_SIZE(eic7700_fixed_rate_clks),
+> +				      clk_data, dev);
+Please check returned value here and check other places.
 
+> +
+> +	eswin_clk_register_pll(eic7700_pll_clks, ARRAY_SIZE(eic7700_pll_clks),
+> +			       clk_data, dev);
+> +
+> +	eswin_clk_register_fixed_factor(eic7700_fixed_factor_clks,
+> +					ARRAY_SIZE(eic7700_fixed_factor_clks),
+> +					clk_data, dev);
+> +
+> +	eswin_clk_register_mux(eic7700_mux_clks, ARRAY_SIZE(eic7700_mux_clks),
+> +			       clk_data, dev);
+> +
+> +	eswin_clk_register_divider(eic7700_div_clks,
+> +				   ARRAY_SIZE(eic7700_div_clks), clk_data, dev);
+> +
+> +	eswin_clk_register_gate(eic7700_gate_clks,
+> +				ARRAY_SIZE(eic7700_gate_clks), clk_data, dev);
+> +
+> +	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
+> +					   &clk_data->clk_data);
+> +}
+> +
+[...]
+> diff --git a/drivers/clk/eswin/clk.c b/drivers/clk/eswin/clk.c
+> new file mode 100644
+> index 000000000000..92998da98009
+> --- /dev/null
+> +++ b/drivers/clk/eswin/clk.c
+[...]
+> +static int eswin_calc_pll(u32 *frac_val, u32 *fbdiv_val, u64 rate,
+> +			  const struct eswin_clk_pll *clk)
+> +{
+> +	u64 rem = 0;
+> +	u32 tmp1 = 0, tmp2 = 0;
+> +
+> +	if (clk->id == EIC7700_CLK_APLL_FOUT1 ||
+> +	    clk->id == EIC7700_CLK_PLL_CPU) {
+clk.c appears to be a generic library for ESWIN SoCs, but it references
+specific IDs (EIC7700_...) from a specific chip.
 
+If you add the chip like EIC77XX later, will you add more if/else here?
+
+Could you ove the algorithmic parameters (like rate * 4) into the
+eswin_clk_pll structure flags or data fields. The calculation logic
+should be generic based on the struct fields, not the ID.
+
+Please check other places.
+> +		rate = rate * 4;
+> +		rem = do_div(rate, 1000);
+> +		if (rem)
+> +			tmp1 = rem;
+> +
+> +		rem = do_div(rate, 1000);
+> +		if (rem)
+> +			tmp2 = rem;
+> +
+> +		rem = do_div(rate, 24);
+> +		/* fbdiv = rate * 4 / 24000000 */
+> +		*fbdiv_val = rate;
+> +		/* frac = rate * 4 % 24000000 * (2 ^ 24) */
+> +		*frac_val = (u64)((1000 * (1000 * rem + tmp2) + tmp1) << 24)
+> +				  / 24 / 1000000;
+> +	} else {
+> +		pr_err("Invalid pll set req, rate %lld, clk id %d\n", rate,
+> +		       clk->id);
+> +		return -EINVAL;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static inline struct eswin_clk_pll *to_pll_clk(struct clk_hw *hw)
+> +{
+> +	return container_of(hw, struct eswin_clk_pll, hw);
+> +}
+> +
+> +static int clk_pll_set_rate(struct clk_hw *hw, unsigned long rate,
+> +			    unsigned long parent_rate)
+> +{
+> +	struct eswin_clk_pll *clk = to_pll_clk(hw);
+> +	struct clk *clk_cpu_lp_pll = NULL;
+> +	struct clk *clk_cpu_mux = NULL;
+> +	struct clk *clk_cpu_pll = NULL;
+> +	u32 postdiv1_val = 0, refdiv_val = 1;
+> +	u32 frac_val, fbdiv_val, val;
+> +	bool lock_flag = false;
+> +	int try_count = 0;
+> +	int ret;
+> +
+> +	ret = eswin_calc_pll(&frac_val,  &fbdiv_val, (u64)rate, clk);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Must switch the CPU to other CLK before we change the CPU PLL. */
+> +	if (clk->id == EIC7700_CLK_PLL_CPU) {
+> +		clk_cpu_mux = __clk_lookup("mux_cpu_root_3mux1_gfree");
+It seems you want to switch to a safe clock source before setting up the
+PLL, right?
+
+I am not sure whether your approach is correct, but the use of
+__clk_lookup() should be avoided whenever possible. 
+Would it be feasible to obtain a proper clock handle somewhere and
+perform the necessary configuration from within a clk_notifier instead?
+> +		if (!clk_cpu_mux) {
+> +			pr_err("failed to get clk: %s\n",
+> +			       "mux_cpu_root_3mux1_gfree");
+> +			return -EINVAL;
+> +		}
 
