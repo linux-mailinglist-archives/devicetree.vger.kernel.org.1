@@ -1,152 +1,201 @@
-Return-Path: <devicetree+bounces-248298-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248299-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C3F3CD0E66
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 17:37:29 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB346CD0F31
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 17:44:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 245F730475C6
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 16:36:53 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9BEF0300B917
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 16:40:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08D1335F8A5;
-	Fri, 19 Dec 2025 16:28:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h7gVypby"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D8DB33B6F9;
+	Fri, 19 Dec 2025 16:40:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6B2A35E54F;
-	Fri, 19 Dec 2025 16:28:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B71317A2EA;
+	Fri, 19 Dec 2025 16:40:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766161714; cv=none; b=u+TUKpw0qvEwIdYzSH3uQZymlT8D84VAc83qp59OZ/rtXkIZY3jAaqAUNBmRqY2+QdoJwtyjib3wt5blDdOT61ApCyY0ALiLrNdLqKa8m5Osd9ECwP3oDqUxZxLH+9YmxMKK/7+qYTABk0baekcSnSZTmMSdZSIHkmOYx9AeCgc=
+	t=1766162417; cv=none; b=IJcFve5M28fLIRo8yhsrNz5Tg7GKDDHwDhmZqiWZsE5cyrbgG6fVYgrYejt53SyY+5/08dXtPBHA4QlzoMLVwqgNVwi+Yce/enrocOzPUftkr/R24BT00YHtvcxojD8UONcCNE7ujsU56/++jHdxFh/ehri5TF3QJhQ7XJc62Y8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766161714; c=relaxed/simple;
-	bh=ild+DLrgI5V24Va0MUQGafSg5/o4v1TqH+Y24bQhHws=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WqBw70KQ2J2W10/RS08JntO7eHYFLExNLWIFuCGGkb35OQ9oOJ3PcZ9TRWUhIbDgSNZRNLKJKrSkaaq2OQ8x5lxTpN45KLB/TFxUI+gxz1iGGpTnfROuPNb2pusSW27VbfIulpt6yq+9dVDmcuCUK4dkxaHeBEp4Tpatp/rmxwA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h7gVypby; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ED114C4CEF1;
-	Fri, 19 Dec 2025 16:28:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766161714;
-	bh=ild+DLrgI5V24Va0MUQGafSg5/o4v1TqH+Y24bQhHws=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=h7gVypbyLjoOQAVUjDvTY4DfixwtTctjjwhfizWul0lZpsuA8m8FFLqJvhu8K5tUP
-	 OzPoqtlIIgaEpJFVbb+PCnHl0Rhnhk0d9ANz0aEmTY2VDn9zlV8Ngg5xr/LTaI+w8L
-	 OKIxEkgU1Qem7dQkJZ41asixowMoJ7qjGeYaMtXm2skiCNzWSp1+I7E/hK65x1aSDd
-	 vsRM9+QF6AcSKCPHpltOPbkyjvRHp1soa4E4BgRZdBIwho4/j45CKjk+Pp4jDKEp5z
-	 sGjV4Hhum7KD2Tf9FurKtC2alVXD/dSBgHkhDN+Jb/aoVMIEyP0mFL4L/GbSsXPSt4
-	 VBHhuFc7GlKgg==
-Message-ID: <031b22d7-bb9f-4b70-a7b0-bc6697f84022@kernel.org>
-Date: Fri, 19 Dec 2025 17:28:25 +0100
+	s=arc-20240116; t=1766162417; c=relaxed/simple;
+	bh=Qnt5Ry3F4wGHOQAR8Zm+Q2n2lWPabtn+cXRIdgbU/j4=;
+	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=lsTNk9v13UbKNRd74uySeEYmZ7SFRmZDKAySLihlvDdARuCN4ga229e+qZf37B/Ea5Yj+tZAx8V7Aqd+LR9K18py+U01us4lVuliNWTjVY8Jo5cPdMXt79UU0FaC1Zu+b0iMPdoO4gO8IxfB8Zc9gG+a3yYJZpXEVJ5c+f85JZI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.224.107])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTPS id 4dXtY01cMbzJ46Bq;
+	Sat, 20 Dec 2025 00:39:32 +0800 (CST)
+Received: from dubpeml100005.china.huawei.com (unknown [7.214.146.113])
+	by mail.maildlp.com (Postfix) with ESMTPS id 1BC9B40570;
+	Sat, 20 Dec 2025 00:40:05 +0800 (CST)
+Received: from localhost (10.203.177.15) by dubpeml100005.china.huawei.com
+ (7.214.146.113) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.36; Fri, 19 Dec
+ 2025 16:40:04 +0000
+Date: Fri, 19 Dec 2025 16:40:02 +0000
+From: Jonathan Cameron <jonathan.cameron@huawei.com>
+To: Janani Sunil <janani.sunil@analog.com>
+CC: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
+	<Michael.Hennerich@analog.com>, Alexandru Ardelean
+	<alexandru.ardelean@analog.com>, Jonathan Cameron <jic23@kernel.org>, "Rob
+ Herring" <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+	<linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>
+Subject: Re: [PATCH 1/3] dt-bindings: iio: dac: Add max22007
+Message-ID: <20251219164002.00004c74@huawei.com>
+In-Reply-To: <20251219-max22007-dev-v1-1-242da2c2b868@analog.com>
+References: <20251219-max22007-dev-v1-0-242da2c2b868@analog.com>
+	<20251219-max22007-dev-v1-1-242da2c2b868@analog.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 11/13] MIPS: Add Mobileye EyeQ6Lplus evaluation board dts
-To: =?UTF-8?Q?Beno=C3=AEt_Monin?= <benoit.monin@bootlin.com>,
- Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
- Gregory CLEMENT <gregory.clement@bootlin.com>,
- =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- Linus Walleij <linusw@kernel.org>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- Tawfik Bayouk <tawfik.bayouk@mobileye.com>, linux-mips@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org
-References: <20251217-eyeq6lplus-v1-0-e9cdbd3af4c2@bootlin.com>
- <20251217-eyeq6lplus-v1-11-e9cdbd3af4c2@bootlin.com>
- <38f097cb-5329-4b91-b1a8-3eb5fed05ad4@kernel.org>
- <fe9e594f-9718-48b5-8208-fb567a54cae9@bootlin.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <fe9e594f-9718-48b5-8208-fb567a54cae9@bootlin.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: lhrpeml500012.china.huawei.com (7.191.174.4) To
+ dubpeml100005.china.huawei.com (7.214.146.113)
 
-On 19/12/2025 16:57, Benoît Monin wrote:
-> Hi Krzysztof,
-> 
-> On 12/18/25 16:30, Krzysztof Kozlowski wrote:
->> On 17/12/2025 14:36, Benoît Monin wrote:
->>> +
->>> +&spi0 {
->>> +	pinctrl-0 = <&spi0_pins>;
->>> +	pinctrl-names = "default";
->>> +	status = "okay";
->>> +	spidev@0 {
->>> +		compatible = "lwn,bk4-spi";
->>
->> NAK, you are not operating an excavator here.
->>
-> Indeed, I do not (and I should have known better...).
-> 
->> Don't invent hardware.
->>
-> In my particular case of a microcontroller acting as an SPI "relay" on the
-> evaluation board, what would be the best way to describe it? It connects
-> the two SPI controllers of the SoC, one is a host and one is a target, so
-> it behave as an SPI target on one side and as an SPI host on the other.
-> 
-> The trivial devices bindings seems to be dedicated to devices, thus not for
-> SPI hosts. Do I need a dedicated binding or did I miss something I could
-> use for a trivial spidev slave?
+On Fri, 19 Dec 2025 16:31:15 +0100
+Janani Sunil <janani.sunil@analog.com> wrote:
 
-In DT you describe only a real device connected here, so in case of your
-evalboard - nothing can be described, because there is no such real device.
+Hi Janani and welcome to IIO.
 
-Best regards,
-Krzysztof
+
+> Devicetree bindings for MAX22007 4-channel
+> 12-bit DAC that drives a voltage or current
+> output on each channel
+
+This is a very short wrap. Aim for 75 characters in patch description lines
+(so slightly shorter than 80 chars standard for everything else).
+
+> 
+> Signed-off-by: Janani Sunil <janani.sunil@analog.com>
+
+> ---
+>  .../devicetree/bindings/iio/dac/adi,max22007.yaml  | 116 +++++++++++++++++++++
+>  MAINTAINERS                                        |   7 ++
+>  2 files changed, 123 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/dac/adi,max22007.yaml b/Documentation/devicetree/bindings/iio/dac/adi,max22007.yaml
+> new file mode 100644
+> index 000000000000..c2f65d9e42d4
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/dac/adi,max22007.yaml
+
+...
+
+> +  vdd-supply:
+> +    description: Low-Voltage Power Supply from +2.7V to +5.5V.
+> +
+> +  hvdd-supply:
+> +    description:
+> +      Positive High-Voltage Power Supply from +8V to (HVSS +24V) for
+> +      the Output Channels.
+> +
+> +  hvss-supply:
+> +    description:
+> +      Negative High-Voltage Power Supply from -2V to 0V for the Output Channels.
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +    description:
+> +      GPIO used for hardware reset of the device.
+> +
+> +patternProperties:
+> +  "^channel@[0-3]$":
+> +    allOf:
+> +      - $ref: /schemas/iio/dac/dac.yaml#
+> +      - type: object
+> +        description:
+> +          Represents the external channels which are connected to the DAC.
+> +          Channels not specified in the device tree will be powered off.
+> +
+> +        properties:
+> +          reg:
+> +            description: Channel number
+> +            maxItems: 1
+
+min / max?
+
+> +
+> +          adi,type:
+> +            description: Channel output type.
+> +            $ref: /schemas/types.yaml#/definitions/string
+> +            enum: [voltage, current]
+This is much more constrained (as only two types of channel) but we do have
+precedence for adi,ch-func in adi,ad74115.yaml and adi,ad74413r.yaml
+
+That's not a particularly pretty binding but we should probably stick to
+it anyway.
+
+adi,type is too vague a name for this property anyway.
+
+> +
+> +        required:
+> +          - reg
+> +          - adi,type
+> +
+> +        unevaluatedProperties: false
+> +
+> +required:
+> +  - compatible
+
+For supplies we document as required any that are needed for the device
+to function, whether or not we happen to need to specify them on
+a given board (given fallbacks that apply on assumption that fixes
+always on supplies are in use).  So I'd expect to see at least some
+of the supplies listed here.
+
+> +  - reg
+> +
+> +anyOf:
+> +  - required: [channel@0]
+> +  - required: [channel@1]
+> +  - required: [channel@2]
+> +  - required: [channel@3]
+
+Interesting. I'm not sure we have never bothered to document this before and there
+are other devices for which some sort of channel config is pretty much needed.
+What is the justification to have this explicitly listed here?
+
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    spi {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        dac@0 {
+> +            compatible = "adi,max22007";
+> +            reg = <0>;
+> +            spi-max-frequency = <500000>;
+> +            reset-gpios = <&gpio 19 GPIO_ACTIVE_LOW>;
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            channel@0 {
+> +                reg = <0>;
+> +                adi,type = "voltage";
+> +            };
+> +
+> +            channel@1 {
+> +                reg = <1>;
+> +                adi,type = "current";
+> +            };
+> +        };
+> +    };
+> +...
+
 
