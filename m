@@ -1,136 +1,139 @@
-Return-Path: <devicetree+bounces-248117-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248118-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C66B7CCEFA5
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 09:29:44 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51469CCEF6E
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 09:26:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2B9CB3089BB3
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 08:26:46 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 8B0B83006C59
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 08:26:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE29830C631;
-	Fri, 19 Dec 2025 08:19:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9876A29D29E;
+	Fri, 19 Dec 2025 08:26:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iisKiilH"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ha6CUx4j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f52.google.com (mail-pj1-f52.google.com [209.85.216.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8B6D1F30A9;
-	Fri, 19 Dec 2025 08:19:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2546A2472A8
+	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 08:26:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766132356; cv=none; b=PHl1mqZJYNnG67/NoS7Zg+PuOIvsfqiZjqz/c5A9AxqcUiVOFYO+azjITzk0dlBuON37k0MQvbgtIAyMddUt34scmjhNwmj+8GGitelJ2P8KZYeRQdmNEMpgahRJCVS896cgjUqkhxjfvlh37qU3noqgIlRn2B/yutn46G6KjCY=
+	t=1766132776; cv=none; b=jXeNYWBrYrUd/+tsg/a8mNXP2hpnLiMZT2uxkPgSEmHqcPUEYeDH57zy0qeU19etpwxcHnr6eLGjuVvWU2U4SFZXkJMkbJsyQBmWJu3vtRSN3RPbK4LPsbkA8Jhb3EV9cSX4f/IAnprnf2sl7suYUxQzhAfEdW9hzgZXKwUZDnc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766132356; c=relaxed/simple;
-	bh=tm6PhD1Tgv4dvgUGUt7t+Wem6rV6UJT3zbZeA09Cmh0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=h/15nXShrLuKBafnDF5vNTcSSL7RPaGdMIHmrscfoFrjFcCOE3kkkIoz3UdvmZtGiS+ircNODECSCGr0XbQc9qkIo/n7i9ah9Gx7Qmune3Ic++H3xKO68DlR/9Siv/9hJjxAJPuDWFIi7hOjN3OlashLdU42oMqZwOiZTRHcgVk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iisKiilH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29C79C4CEF1;
-	Fri, 19 Dec 2025 08:19:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766132356;
-	bh=tm6PhD1Tgv4dvgUGUt7t+Wem6rV6UJT3zbZeA09Cmh0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=iisKiilHuun461TBZX9FlSuK58CW8xbUm7pFDUCKV5EhK4WRFpAZAOkbSENnh494R
-	 StqfwmXQgS+OaCRFTCkEqHs/oOxxt65w4QSHZIMNGL613a9oo7CNa4QfmSo0Q8o/LU
-	 WwEm8nwG4vq1uiRDqwJa7zy4mCSDGELMilx4LNqbSZQQMEpGb25paSxCVWyJ3VQoKw
-	 kc/YeFOQcozwUJz4jm+gCKtbrcdZWcmymAqs+hn5y5d+Jkzc/5yW4ME+NNhrqp5ogZ
-	 sCxw7hRieDhlbbCihW7ox5Nyl4F9tuzTOp8hBgxDjZNYXq6Eq/4uqdeSxl/wUWeSIL
-	 vmPpnx10oRVSQ==
-Message-ID: <90c00d57-3737-4631-a2e9-8ff2e315db14@kernel.org>
-Date: Fri, 19 Dec 2025 09:19:06 +0100
+	s=arc-20240116; t=1766132776; c=relaxed/simple;
+	bh=Mh/uUd9EKBwD/5V81hRSsPxVoQWoJ6MYvBOGFnlcFdI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=i6DEaOlhYRxTT0F+AXLV2br/8ZGYxIXWctu+mL0BSm0yH/CWXIUrtJJLI2Q/mqK5ZH+4k40czFzkBMqFcpDPiugnpEP4FDD0jaZeW92FJgqGm+f1SvT523AJRBslGykf9+deH3qnImxJ7po6/Yy9S2MFfmX1bpB/9FMuLyj+vO4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ha6CUx4j; arc=none smtp.client-ip=209.85.216.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f52.google.com with SMTP id 98e67ed59e1d1-34c565c3673so1221369a91.0
+        for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 00:26:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1766132774; x=1766737574; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=m5VbsO8NOFBu8cM3PiLkWiMooEcKpbjdJrZHI4GhWGY=;
+        b=ha6CUx4jN70gIMCXVIN6RFh0/gXo5SGDCy8+w1ektQ1suxrHTZM/gIsZD9VI2PZTbU
+         NIwVMpRAn9juKzb21Gl9B1ptU8PXnkhCAcek5Lsci4bwhYmSe33E1gTRsjOiM6pP5iWo
+         eYkNcukEXh7+2gR1U7JtNj7Jvr2hngZwuYacrH8m/wIjm5J41fHj2gucf5hC4sIZpaDg
+         0tdeDcAfJbSgwM48KymLnejtiGp4KkoGhqFXOC8ajvhvv3wOFlNmHjjtK1WUN0/TwHQY
+         VA3PWjei+YFyKtkBzx5wxb21EMrB1gS3grPhg4039t9Q+Mz1aswPah/rNEzbQmTirect
+         xClg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1766132774; x=1766737574;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=m5VbsO8NOFBu8cM3PiLkWiMooEcKpbjdJrZHI4GhWGY=;
+        b=Y/LsIm9zeBX0fZsePjP6TMTbcRX4Ipbzd6qjxHWSW/Od1HLlwXV65FMSathJQ3RHGI
+         wATiLX4aYIAvRn9+nrPbJnitBbcdrX0lAurptcdppz9DTmZ9FsfA2V/67GGo8eWDef7B
+         PxxjMsXmhHFaZ/cSudoXTjdx/XNieEGjYXswBT43y3BGBzeIvM9bEup3ade7vj2EVw+m
+         qz7QY7kANy9LY2cJpyNjNmXJNG4RsZzXrp0kQv5w0gfZbsUbFSGwOtGtBBUiJzvJbN/n
+         Rcw9ULjzy2ZNFnvwcomfbh63iJgOOJSxBRLXBBJ/3s7EDmHxroc0SP2p4JpR9LYP4KMf
+         PIbw==
+X-Gm-Message-State: AOJu0Yz6hBXLH+T3Y3ooihhE2QOdFUImWSS0ZJvW2yy1etDMN8I75KEE
+	ePOhmyyjjvOaLS2ZCbLhlvsP9GZKXL3SgPPG1mKG44B+izALHyNXbV3+apD7oHGNbJngL3HOaPe
+	HPc+UGX4bMQID0T04U9Z8C01Ieb70Vp3me/VUKCw=
+X-Gm-Gg: AY/fxX6ISdmR6wM9leqVFy05rODZBWLWPNv1DBBRvMBbTzM4OY9wgdMfJJO7Cj8xCcE
+	gdVUryqG6XIffBP/RYHp4Hzn7JS9QjepL4KsmNcaa2UD4/J1ZNtb132LrwlZeLC4KI3CHC9QJWd
+	x47l2kmduD79YoE208Thpgc9LEQZp5EKyl14NMZVvrsTXoJaGVS2MXIqctb/SXFPKjBp0JHQgl8
+	46EQ5euejPmJMKp7Fg6aheT0C5jgx5HpR1fEdNbS35ERfRFiWUU047PbEvwu46g0E26M4n4
+X-Google-Smtp-Source: AGHT+IGPmADYM3+zkhv22FUUPyuAnnylSRC8nYRgd73Eur0wmU9zUYCJLT1U5U5sFLrEIkHvrknhCBn+vQ2wRGMXl9c=
+X-Received: by 2002:a17:90b:1348:b0:34c:ab9b:837c with SMTP id
+ 98e67ed59e1d1-34e7151d99bmr5127645a91.0.1766132774402; Fri, 19 Dec 2025
+ 00:26:14 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/5] dt-bindings: usb: maxim,max33359: Add supply
- property for vbus
-To: amitsd@google.com, Sebastian Reichel <sre@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, =?UTF-8?Q?Andr=C3=A9_Draszik?=
- <andre.draszik@linaro.org>, Lee Jones <lee@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Badhri Jagan Sridharan <badhri@google.com>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Peter Griffin <peter.griffin@linaro.org>,
- Tudor Ambarus <tudor.ambarus@linaro.org>,
- Alim Akhtar <alim.akhtar@samsung.com>
-Cc: linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- RD Babiera <rdbabiera@google.com>, Kyle Tso <kyletso@google.com>
-References: <20251218-max77759-charger-v2-0-2b259980a686@google.com>
- <20251218-max77759-charger-v2-2-2b259980a686@google.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251218-max77759-charger-v2-2-2b259980a686@google.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20251118-yv5_revise_dts-v1-0-fcd6b44b4497@gmail.com>
+ <20251118-yv5_revise_dts-v1-3-fcd6b44b4497@gmail.com> <74b9c09cebac1de0e6e2e712a1374ab5294f61d8.camel@codeconstruct.com.au>
+In-Reply-To: <74b9c09cebac1de0e6e2e712a1374ab5294f61d8.camel@codeconstruct.com.au>
+From: Kevin Tung <kevin.tung.openbmc@gmail.com>
+Date: Fri, 19 Dec 2025 16:26:02 +0800
+X-Gm-Features: AQt7F2rMlRqPGBwtEiOBW-nH3v4LXxnrzuVjolj7vO7f61ahRRx-VbiavMDcxf8
+Message-ID: <CABh9gBd8Mvpyv5WmFMQ7T4uDirxjprKpnq90+if11UOKZ4CN_Q@mail.gmail.com>
+Subject: Re: [PATCH 3/3] ARM: dts: aspeed: yosemite5: Rename sgpio P0_I3C_APML_ALERT_L
+To: Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
+	Amithash Prasasd <amithash@meta.com>, Kevin Tung <Kevin.Tung@quantatw.com>, 
+	Ken Chen <Ken.Chen@quantatw.com>, Leo Yang <Leo-Yang@quantatw.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Joel Stanley <joel@jms.id.au>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 18/12/2025 23:49, Amit Sunil Dhamne via B4 Relay wrote:
-> From: Amit Sunil Dhamne <amitsd@google.com>
-> 
-> Add a regulator supply property for vbus. This notifies the regulator
-> provider to source vbus when Type-C operates in Source power mode,
-> while turn off sourcing vbus when operating in Sink mode or
-> disconnected.
-> 
-> Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
-> ---
->  Documentation/devicetree/bindings/usb/maxim,max33359.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
+Hi Andrew,
 
+I=E2=80=99ve sent v3 of this series to address these concerns.
+The signal rename has been reverted to avoid breaking any existing
+user space dependencies. In addition, a new patch has been added to
+introduce additional SGPIO line names and a more detailed
+discussion in the commit message.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+BR,
+Kevin
 
-Best regards,
-Krzysztof
+On Mon, Nov 24, 2025 at 12:44=E2=80=AFPM Andrew Jeffery
+<andrew@codeconstruct.com.au> wrote:
+>
+> On Tue, 2025-11-18 at 18:53 +0800, Kevin Tung wrote:
+> > Rename P0_I3C_APML_ALERT_L to FM_APML_CPU_ALERT_N for clarity.
+>
+> Are user space components looking for these names? Will updating the
+> devicetree break older applications? I'd like to see more discussion of
+> these problems in the commit message.
+>
+> Cheers,
+>
+> Andrew
+>
+> >
+> > Signed-off-by: Kevin Tung <kevin.tung.openbmc@gmail.com>
+> > ---
+> >  arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite5.dts | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> >
+> > diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite5.dts=
+ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite5.dts
+> > index 45b8ac2e8c65a4f672e64571631b7f6944f26213..060757b7211a6da777c51d9=
+f0c886796cf2450a4 100644
+> > --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite5.dts
+> > +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite5.dts
+> > @@ -964,7 +964,7 @@ &sgpiom0 {
+> >       "FAULT_P3V3_NIC_N","",
+> >       "FAULT_P12V_NIC_N","",
+> >       "FAULT_P12V_SCM_N","",
+> > -     "P0_I3C_APML_ALERT_L","",
+> > +     "FM_APML_CPU_ALERT_N","",
+> >       "ALERT_INLET_TEMP_N","",
+> >       "FM_CPU_PROCHOT_R_N","",
+> >       "FM_CPU_THERMTRIP_N","",
 
