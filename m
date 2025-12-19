@@ -1,118 +1,164 @@
-Return-Path: <devicetree+bounces-248132-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248133-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A812CCF07D
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 09:48:43 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6CDDCCF0CD
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 09:54:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 3A12B301C08F
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 08:48:42 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 70567303371F
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 08:54:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 380BB2E540C;
-	Fri, 19 Dec 2025 08:48:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 346942EBDCD;
+	Fri, 19 Dec 2025 08:54:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="YoC6Vg47"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59CF62E717B
-	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 08:48:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766134120; cv=none; b=Xsqo4AIG0AG1tcynoYMPm8NBgcI4Uq4KDj+BerVgFZreaJBF29DoqpB8tVBID9wRzBODmuIBJrqzXEgTHaYxECN4JP22F4jOP9daxOIzeu1QvCx6m8KB5I1q4sBavei6XZKJSACUoNfjme15Ije+MnMJvIeETkPrkNntVv6wfzI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766134120; c=relaxed/simple;
-	bh=mexpno8Yf+4bje8pzC5z2n+W6lDrYujUk51e00dqcNU=;
+Received: from mx-relay03-hz2.antispameurope.com (mx-relay03-hz2.antispameurope.com [83.246.65.89])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C55C02EA468
+	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 08:54:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=83.246.65.89
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1766134447; cv=pass; b=qTfPbTWgikZYMGcAj3SZA2lh/7yOt6VEOqWa0ydCor90NKGE0gbwv2Ss3axLUjJh9QKMPNKeQXanHoAM4cr0/oCw7Cvxs94W+OhwcO2PIF0eo3sToOgDazV5bgLmkeYx9uFlccCz0T876y05PKT3r7Qod08gaJ/sasHR0TsVhqE=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1766134447; c=relaxed/simple;
+	bh=7lPH8ZuwqrR0EPFMmGW3KMxzeLFRv6JnjvXAyllK02A=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=rf/z4DYOZpomqusF+Vw2O/4wwwJYRVXFBxxDrfAYLY7r7QQBX34L/+qSrh4B3fPWenvSVaf4qOJh8a5qPSF2RhaZvtwq81mczumzRnYS9uYLh3nBOk3qc7JyA2Xsj5MhyL21CFIwigqRXzk5ds3lXgmHhpEYPzaqldZz6yPsNhA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
-Received: from loongson.cn (unknown [223.64.69.54])
-	by gateway (Coremail) with SMTP id _____8AxisJBEUVpw8cAAA--.2567S3;
-	Fri, 19 Dec 2025 16:48:01 +0800 (CST)
-Received: from localhost.localdomain (unknown [223.64.69.54])
-	by front1 (Coremail) with SMTP id qMiowJCxHOE3EUVpDrQBAA--.6650S5;
-	Fri, 19 Dec 2025 16:48:00 +0800 (CST)
-From: Binbin Zhou <zhoubinbin@loongson.cn>
-To: Yao Zi <me@ziyao.cc>,
-	Binbin Zhou <zhoubb.aaron@gmail.com>,
-	Huacai Chen <chenhuacai@loongson.cn>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Huacai Chen <chenhuacai@kernel.org>,
-	Xuerui Wang <kernel@xen0n.name>,
-	loongarch@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Subject: [PATCH v2 7/7] LoongArch: dts: loongson-2k1000: Fix i2c-gpio node names
-Date: Fri, 19 Dec 2025 16:47:39 +0800
-Message-ID: <67de4ba555842abcace2b3eb5b7295dbab736e27.1766037997.git.zhoubinbin@loongson.cn>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <cover.1766037997.git.zhoubinbin@loongson.cn>
-References: <cover.1766037997.git.zhoubinbin@loongson.cn>
+	 MIME-Version:Content-Type; b=fnWDfuUBTc4uojHoOFECcd2V55maOUFPqTejlcvsXtidASiTX2lMhEEGzyy+5qK1DTsJU9nUPNGcySRthq1NcdFv7I9wAumXg6TLgmW3DHFzugb+PXhde4tK8HgQSNEXjLNdlO0Alm0ZQfztuNSh7iECMqTGM/Sp2Gcz0iAx2UU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=YoC6Vg47; arc=pass smtp.client-ip=83.246.65.89
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+ARC-Authentication-Results: i=1; mx-gate03-hz2.hornetsecurity.com 1; spf=pass
+ reason=mailfrom (ip=94.100.132.6, headerfrom=ew.tq-group.com)
+ smtp.mailfrom=ew.tq-group.com
+ smtp.helo=hmail-p-smtp01-out04-hz1.hornetsecurity.com; dmarc=pass
+ header.from=ew.tq-group.com orig.disposition=pass
+ARC-Message-Signature: a=rsa-sha256;
+ bh=XlXr7igiWKsjjzIb+5AsG+BOhT+y2sXxD6hRFSbAez4=; c=relaxed/relaxed;
+ d=hornetsecurity.com; h=from:to:date:subject:mime-version:; i=1; s=hse1;
+ t=1766134343;
+ b=VUoTccffnIqvhBF00zxfZP7rGrJ1grXaO2fM/0nQ7x0myaVVBgtrgPdoGoD/OnCppk1FCZXC
+ 8j+ahQ/gjcZ7WNAGVG1CK4NKjZPDhkKFFYIe9EZX2SNkQjrK4lCfkjI9YkiaYnkd6IofFeitjzy
+ L3CiNfsbQ6t1abpjT92HprjpCrYX0cNRIXSjeknzhCpxY4/4amSuSJckX1wTBkfBm8KeMPI7qQj
+ HMRv0m2h5fkvinznsJRZ6sdeFMDzER7Vd8LbRSaA5QE7MK0AgyHrKP3Fy2zXPjvApApp25qqnjF
+ k2kmQg4ax3kmjk+SRAwkYmgSpwWDmigc7oTreZ8RbY1aQ==
+ARC-Seal: a=rsa-sha256; cv=none; d=hornetsecurity.com; i=1; s=hse1;
+ t=1766134343;
+ b=aOLBL14nG4xcXgo0ZyJcoCb5d1LqM19oZn2BHO3hqfapkpKCKs87BoN+mG770KuEeg7epbZO
+ JxCpIkPEj558Ha8wGGYORe7bx8F8SYqGVCJOyA6job3+S5KpRMf8HIlFjcl1nDfuHuBEuOSN+sn
+ yIyhvchJ4eTk7SJdLMh7Rr0XUaQRYZHVx4OT9ur6c47f4CUnLjs6aYJi5axq7pmv9+huo//zczh
+ 4s4z9KlZ4Ale1MkDXhX/lsrYbuDt6ebIxgzn5dw4xX8jKvAMwNa4GQo6Y0uXXFgSAGG3/yOlnfO
+ RE7rLhsmT2DDPKY4jkgXEMZINzV/lAwbkU5dJVFYFjIaQ==
+Received: from he-nlb01-hz1.hornetsecurity.com ([94.100.132.6]) by mx-relay03-hz2.antispameurope.com;
+ Fri, 19 Dec 2025 09:52:22 +0100
+Received: from steina-w.localnet (host-82-135-125-110.customer.m-online.net [82.135.125.110])
+	(Authenticated sender: alexander.stein@ew.tq-group.com)
+	by hmail-p-smtp01-out04-hz1.hornetsecurity.com (Postfix) with ESMTPSA id 4751A220D57;
+	Fri, 19 Dec 2025 09:52:16 +0100 (CET)
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
+ Peter Chen <peter.chen@kernel.org>, Pawel Laszczak <pawell@cadence.com>,
+ Roger Quadros <rogerq@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Magnus Damm <magnus.damm@gmail.com>,
+ Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-usb@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux@ew.tq-group.com
+Subject: Re: [PATCH 0/6] Support TQMa8QM
+Date: Fri, 19 Dec 2025 09:52:15 +0100
+Message-ID: <24355727.EfDdHjke4D@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To:
+ <CAMuHMdUkghCNb96J38hbEZ8Jct6m2MPvnPumGp-y_dPfPW9eAg@mail.gmail.com>
+References:
+ <20251218152058.1521806-1-alexander.stein@ew.tq-group.com>
+ <CAMuHMdUkghCNb96J38hbEZ8Jct6m2MPvnPumGp-y_dPfPW9eAg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:qMiowJCxHOE3EUVpDrQBAA--.6650S5
-X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/1tbiAgEBCGlE6RgD4QAAs0
-X-Coremail-Antispam: 1Uk129KBj93XoW7uFW5ZF18ZFy8CFW3Wr1xZwc_yoW8Jw1Upa
-	ya9wn7tFs5Grnagr1qyrya9r48ZFykJr4vgFs5GrW8XwsIqr1jyr1rJrnaqF45W3ySq3yF
-	gryrur9FkF4DAacCm3ZEXasCq-sJn29KB7ZKAUJUUUUr529EdanIXcx71UUUUU7KY7ZEXa
-	sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
-	0xBIdaVrnRJUUUBSb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
-	IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
-	e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Ar0_tr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
-	0_Cr0_Gr1UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIEc7CjxVAF
-	wI0_Gr1j6F4UJwAaw2AFwI0_Jrv_JF1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqjxCEc2
-	xF0cIa020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_
-	Wrv_ZF1lYx0Ex4A2jsIE14v26r4j6F4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvY0x
-	0EwIxGrwCY1x0262kKe7AKxVWUAVWUtwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkE
-	bVWUJVW8JwCFI7km07C267AKxVWUXVWUAwC20s026c02F40E14v26r1j6r18MI8I3I0E74
-	80Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0
-	I7IYx2IY67AKxVW7JVWDJwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Cr0_Gr1UMIIF0xvE42
-	xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVW8JVWxJwCI42IY6I8E87Iv6xkF
-	7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjxU36RRDUUUU
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-cloud-security-sender:alexander.stein@ew.tq-group.com
+X-cloud-security-recipient:devicetree@vger.kernel.org
+X-cloud-security-crypt: load encryption module
+X-cloud-security-Mailarchiv: E-Mail archived for: alexander.stein@ew.tq-group.com
+X-cloud-security-Mailarchivtype:outbound
+X-cloud-security-Virusscan:CLEAN
+X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on mx-relay03-hz2.antispameurope.com with 4dXh9s3M9TzYd7D
+X-cloud-security-connect: he-nlb01-hz1.hornetsecurity.com[94.100.132.6], TLS=1, IP=94.100.132.6
+X-cloud-security-Digest:d9ceb68c40de01de860771274803b5bf
+X-cloud-security:scantime:2.014
+DKIM-Signature: a=rsa-sha256;
+ bh=XlXr7igiWKsjjzIb+5AsG+BOhT+y2sXxD6hRFSbAez4=; c=relaxed/relaxed;
+ d=ew.tq-group.com;
+ h=content-type:mime-version:subject:from:to:message-id:date; s=hse1;
+ t=1766134342; v=1;
+ b=YoC6Vg47r1nR1ena4A1AuL+PV/XYOW39Rfq92EFVnSaMZbF5cP13vtfnrT2SrUBx+zU9Ytru
+ j9fJQTv88xCqdEG61Esm/YE/weRJpmRcVsYIJmLMk/bjretrYduiwMixRVLOsM7dm3YuhZ4TvDl
+ 9l1OIwvzSQzIvf62jTcO1Huo2GAYxq+O2hEhG+7UCobAs/BRiDd4x6DpsnZG+HCr15hQnklmi2l
+ U08u+dLw0g9OvbHG5dNUTCCBb/hlze8KTh+15hg7KR9yB0Kty9psm3Vd/upN/wVbsk9ztosb67I
+ CDbjx0YFugc0YssALMzQhtWBRkDhTqQWFIYwrwjuHcYWA==
 
-From: Binbin Zhou <zhoubb.aaron@gmail.com>
+Am Donnerstag, 18. Dezember 2025, 16:28:39 CET schrieb Geert Uytterhoeven:
+> Hi Alexander,
+>=20
+> On Thu, 18 Dec 2025 at 16:22, Alexander Stein
+> <alexander.stein@ew.tq-group.com> wrote:
+> > this series adds support for TQ's TQMa8QM. The first 3 patches are prep=
+atory:
+> > 1. Add support for clock-output-names for clk-renesas-pcie. This is nec=
+essary
+> > as clk-imx8qxp-lpcg.c (driver for phyx1 phyx2 clock gating) reqiures th=
+at
+> > property on the parent clock.
+>=20
+> Hmm, clock consumers should have no business with the names used by
+> clock providers, even less so whether those names are specified in DT
+> or not.
 
-The binding wants the node to be named "i2c-number", but those are named
-"i2c-gpio-number" instead.
+Well drivers/clk/imx/clk-imx8qxp-lpcg.c does exactly this. AFAIK not just
+the ones references in DT, but also hard codes ones.
 
-Rename those to i2c-0, i2c-1 to adhere to the binding and suppress
-dtbs_check warnings.
+The root cause is that clock-hsio-refa and clock-hsio-refb in
+arch/arm64/boot/dts/freescale/imx8-ss-hsio.dtsi are setting platform-specif=
+ic
+GPIOs in SoC .dtsi...
 
-Signed-off-by: Binbin Zhou <zhoubb.aaron@gmail.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
----
- arch/loongarch/boot/dts/loongson-2k1000.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+My current idea is to use fixed-factor-clock instead:
 
-diff --git a/arch/loongarch/boot/dts/loongson-2k1000.dtsi b/arch/loongarch/boot/dts/loongson-2k1000.dtsi
-index 440a8f3c01f4..be4f7d119660 100644
---- a/arch/loongarch/boot/dts/loongson-2k1000.dtsi
-+++ b/arch/loongarch/boot/dts/loongson-2k1000.dtsi
-@@ -46,7 +46,7 @@ cpuintc: interrupt-controller {
- 	};
- 
- 	/* i2c of the dvi eeprom edid */
--	i2c-gpio-0 {
-+	i2c-0 {
- 		compatible = "i2c-gpio";
- 		scl-gpios = <&gpio0 0 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
- 		sda-gpios = <&gpio0 1 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-@@ -57,7 +57,7 @@ i2c-gpio-0 {
- 	};
- 
- 	/* i2c of the eeprom edid */
--	i2c-gpio-1 {
-+	i2c-1 {
- 		compatible = "i2c-gpio";
- 		scl-gpios = <&gpio0 33 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
- 		sda-gpios = <&gpio0 32 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
--- 
-2.47.3
+> &hsio_refa_clk {
+> 	compatible =3D "fixed-factor-clock";
+> 	clocks =3D <&pcieclk 0>;
+> 	clock-div =3D <1>;
+> 	clock-mult =3D <1>;
+> 	/delete-property/ enable-gpios;
+> };
+>=20
+> &hsio_refb_clk {
+> 	compatible =3D "fixed-factor-clock";
+> 	clocks =3D <&pcieclk 0>;
+> 	clock-div =3D <1>;
+> 	clock-mult =3D <1>;
+> 	/delete-property/ enable-gpios;
+> };
+
+Best regards,
+Alexander
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
 
 
