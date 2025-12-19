@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-248378-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248379-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 873EBCD2005
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 22:35:57 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2383BCD1FB5
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 22:34:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 90FC430C4ED6
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 21:33:59 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 8673230022CA
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 21:34:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B82A234A3C5;
-	Fri, 19 Dec 2025 21:33:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E8DD33D4FF;
+	Fri, 19 Dec 2025 21:33:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="ClUwTzIv"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="kJSpsl9u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com [209.85.210.48])
+Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 289F8346AFD
-	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 21:33:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0827346E7E
+	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 21:33:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766180022; cv=none; b=eLA8Qc8pguO0hM7Yrl3ee6bbxVYSwn5Jhbts0cyNdAB0Qz72v3yFDO67ebK6p5Z4f9HxJyP/pR+SENf/co66UgAXXtCjrz7g+76t7lsZEROGvrqxsLErCSTXD0Cv5cm6nWAsnW+5CKTGLKVBcvXUxW9WC1d9wiR6POEkvwN9G/U=
+	t=1766180022; cv=none; b=HyAv6SuwgdLsDpfoFNhF0ITKfM+aKHmLkx1OBpT3SpiPUT6BXhGvX9C1NKZ/4WcTTYd4+CXccT9xklk7pHMWm+f81Rri0jaNDbJMZCGmDm4+2lG7D6FPxA9loy32CiX9eVbYCfRAjroAkKm6z0HdwIflaMFT7U7aHyySqFxGAdU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1766180022; c=relaxed/simple;
-	bh=VQOPaqQmoNwtfxLbCSXG6BhStJUeMtFzJ0prIuJB4JY=;
+	bh=LH6Vyxalmz1bUck/pw36flu8Rm/aY8DBxOEtRceLBNY=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=o/7N8y9o/F9tqJ/j8v5ZNtEGPrNq28sbz0UCdG4OIbt+Je5+bvJsGUT3DTQBSSmlYQDy1Cr3NKlO0Dcw/UasHmnsNfXvgmWmUH10cIQ+pjT9E8CDEKJ/KiKdHyzqtxQcQB0ReqE2hw75FK3kR6ML/mefXYPEYbLWD7Kt2mh8GGY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=ClUwTzIv; arc=none smtp.client-ip=209.85.210.48
+	 In-Reply-To:To:Cc; b=TTkh3MW8yKb03V0DiTkfVh8412WRfJDnPHuvDF8J0tKuTGN9ITNbDz4UDqzRk15nvqhJLrVZifISdy6YqaW4QV+qVLfRTRP5xjuIQynf1u+JgRaj0KOlCAzaE6MBmsbnmgRNqFHXdffLCUEMxDol+zeaLCtn8jQFJ7QxXfz8AiY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=kJSpsl9u; arc=none smtp.client-ip=209.85.210.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ot1-f48.google.com with SMTP id 46e09a7af769-7c71cca8fc2so1369278a34.1
-        for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 13:33:37 -0800 (PST)
+Received: by mail-ot1-f49.google.com with SMTP id 46e09a7af769-7c7533dbd87so1816594a34.2
+        for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 13:33:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1766180016; x=1766784816; darn=vger.kernel.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1766180017; x=1766784817; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=dQ9bA5wAd5cOLSdkvDwsJ4KZGTUhg22dy+q+3KzYnqw=;
-        b=ClUwTzIv7D5PMbxN5U2hCpoVmQmiheLK+Ejx49ksbUV4lrOdVCjjAKSIT8+IHQyPup
-         DRc/RNMyPy+F7GWPXZp0G27Ln1n8gdnJT2F7mUfmaeUZx7jSG90FIYeyYzGuyptEKiZU
-         xAg3NajpQ1u1NrfvwxoouNCJuxsMyYsn/gCdO20tP5DGSdemiv27clgl6bXv7gPpFbUq
-         qoVPyJunXV88TM6awOyQ5WZUKS22Jt8J3BDVyNcI+gNzR//ihSkHqw76NDWQshYj8HZC
-         xJnee4+DRXmrw93yFkX4VV3+AIxtbLgDZTk/tADKOz3TLOxL2l8lhjcXyqHvjPfeiNwl
-         GPUA==
+        bh=52JuNH3Z2gevqmnqd29jbAXefa/G2nNvDA29ajR6gPU=;
+        b=kJSpsl9usa+RjG8Ev/lR5x2VG/TtK+U3Rr1aiCfE28QMpla1oGn8JG5aVVND5OAwYH
+         IKmLnr7hdebCupBNBOJGeQ8LTvAqdgFazUq0TdUd4t0xSZey95wWoSXekFkUZ7NeaRi2
+         s4pjAMBfb4xYVx7k5GnJrr57GDh02v0jyBXQ7y5wQYzvGzFzvKUJGJDK0iAMKApnWu12
+         wLEhogoUu2kglIXck9h+Ve2k79Lrkv8mpI4w2kUWg4Gaxpd0zAcJ3Z4SDpb/pppdr/kd
+         y+zg9cyseW4Jdx+L6ngV7zGv+q0xa/J29g0fRdvdFV2kUy3ev7sgOcsuNIcOLv5HOB34
+         X8Gg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766180016; x=1766784816;
+        d=1e100.net; s=20230601; t=1766180017; x=1766784817;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=dQ9bA5wAd5cOLSdkvDwsJ4KZGTUhg22dy+q+3KzYnqw=;
-        b=mdChMqv/qkBQvBXgyPyrPVeLHKJuuajLNJPAAynYvRlxmkXeGvtPlS5P83Iub3LDq6
-         T329/QaZr7QQ5DI7vFEuWUKphZPcdpOd42fkVlLb9k60Q9BcvYUtBTPVkbAT4QQ+7inj
-         GP0rLZ+e0eCso6MRmAM8Gv/Ua0piMDH2Pi6/iZDg3nEnXRWuO1WIecBftp/6DkOmFvqs
-         Fhe3jZWSlYYYrxgjz8GPjArT0gQgxDwI7w+b4veKRoouhl/lOt4Q09jhe5AxlGNw+Jv7
-         qpyxS9mZMSC6JJ2/sItwQb1jACbIzkthCiTMglteQRmaORJyxlE1Jsm0wZKH2AOsVf+2
-         nIHA==
-X-Forwarded-Encrypted: i=1; AJvYcCWASwwoWiGDFHb5gfyxch1wmXB4Bx600L5tr5FURkTTZMiIF8a18V6s484+ne3mpG6UIv6bggQMe8s8@vger.kernel.org
-X-Gm-Message-State: AOJu0YxzX+BiOfJYkeyWbxn5T9K9zQ35qDynyGvoLnryBzKcujDkVVnW
-	xDtChAZgK4+7iF7gJb57IjndiN0Ha5R+Cxs9oXvNkj79+AVvtxLxLwuam9vCyW24Chg=
-X-Gm-Gg: AY/fxX55Tw6fFLYmvEJo16CVTVmE7Ccu+cHq7ZUO5c32wx3uhKVrByNbw2h+gFZtEpt
-	qUOne161XuT+0UjC8D7wUKS4ogsMgUWOarjZvmt1aFfFFmYBmowHuSrTaLTR7BvLFVx+rD/uIHM
-	1dQwiurGCmokZhAjpKtpzFUbpyJGnNJXmAoB3mKGjEdBksKGE0KYojJKybBlqKTBXXiX2qTAdxy
-	yNDb3fV1+jbiPU1N7gAocnrpwPSLZ2rjpCYIKIu98qViU75ljuiWjwpO4w4zm72jzOb3cGGt5DS
-	BRTRhcFrQfu6diovWW3iCp2CJqeo3eYhtLfRGJvayQSZBp14bWy0Bat/UAytjq/4CAL042hPPXg
-	E4DRewhZN9gDQ9f0T/gMuhRZrG/mP50CL4FwcrKbvTcdKESfPY/5PCpaD9xb6lK7OkXACbGI1xi
-	hH83ZVYEWCilAaNg==
-X-Google-Smtp-Source: AGHT+IHGyipb98La7XJE4vZ3dHFAmyXLQw9XZJ4q2W59l2gO7JhuowVl43/w0hKUEnQvJoe8SceFQQ==
-X-Received: by 2002:a05:6830:43a4:b0:7c7:6da2:6d67 with SMTP id 46e09a7af769-7cc6689d9a3mr2725997a34.3.1766180016063;
+        bh=52JuNH3Z2gevqmnqd29jbAXefa/G2nNvDA29ajR6gPU=;
+        b=QXebMkUmL04wrP/Hw1TkiVdeHzCi4+VNKH7FK5yVsQ5yrEdwSLxMqBicDHZ2uT8Qmo
+         L3jfWF5I7STEjICxEIRd3MxY2VxrCb/CRIOFGJCPs7jHwg0vlQVKEUryGAAX5672k1+1
+         BAoZ0HJ/xbdQqr2YFGEgFwf5aoWHS8TQT77bVRGNHgQCQtvENsNRD4wtC2mTKNryaZlx
+         Eu3l4byaiqQk3TVfdAMc7F/+0Xsb8nxMMmMJqxsUJpEKPhd23OS0r9EFXnxudiAe84uu
+         jKVqh4y5GiFo2z1fTdgJol9VHDXfqNeGC3YQmaBiHjXE3hU70mkkpbJN+6QuhwKl6O2J
+         6THw==
+X-Forwarded-Encrypted: i=1; AJvYcCXKSCL4rROAXT5xYU03RlixU8s5qiy4Ycnsz1+X1lmBNbhLXNUvAPNPxzNznYSCcBi3en9XVHhY8PH6@vger.kernel.org
+X-Gm-Message-State: AOJu0YxsNBzYv1QxESTNBzMoyzZsw5XbX3TkpPJXeP706T3QwtRG19kV
+	Y7kF1vXUpqo4ZhSRc6e/RabFdv5wG6YrovqYsroy8MKxcu0MvOKrNzKZliXDxhsT92c=
+X-Gm-Gg: AY/fxX6CMpL7t+r9t2BQDUjZicNMpKVbU9kQ2kVMCRWWJ6xy/PPvaY08VZ3FMB1Wlfi
+	edGmADUBSfaiTeV8JLOD+3teXfidetTNPJlNkRcMbiK7PMDPTpytZSU6LeQIP4aVLGm3ViYEMCQ
+	uVP6Lhbtf2YM1Mg/lW8YkC3D9l0gO9Zt4ApUsi2udeNEJeBDKWfosMiLUrGT9JapkycF1Jmidk6
+	ZU4gdhAwxPVdNto3ryUFx12iDkftcUi+8qY3Kxp8Pc+scO201oy6pikppJzlBb3ilRj1B06fTfp
+	sMmYeUp2GVJ23vUbPufqi/IRB9cAd3/zS0aLQSKItgxzzX18wVx145VkTVhmJmZK+m0r96iOHjE
+	Ila538oC/oGdxXwyT9HoH0Gq2fVRFpi62SZtEMX9yW7SyNz1uklOAQRr7iJY0lq8aKc07f4dtWE
+	m+OhMhW712akjSUA==
+X-Google-Smtp-Source: AGHT+IHmMw3pWZZJVDqUr745Dbk0HYxeUkbZl92MLOTQ4m+qaXZzYjtt4smJbqsMgIkjg0Pk0sdgvA==
+X-Received: by 2002:a05:6830:448b:b0:7c7:4bb:dc06 with SMTP id 46e09a7af769-7cc6681931emr2154994a34.0.1766180016976;
         Fri, 19 Dec 2025 13:33:36 -0800 (PST)
 Received: from [127.0.1.1] ([2600:8803:e7e4:500:9b20:bac4:9680:435])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7cc667563ffsm2485045a34.13.2025.12.19.13.33.35
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7cc667563ffsm2485045a34.13.2025.12.19.13.33.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 19 Dec 2025 13:33:35 -0800 (PST)
+        Fri, 19 Dec 2025 13:33:36 -0800 (PST)
 From: David Lechner <dlechner@baylibre.com>
-Date: Fri, 19 Dec 2025 15:32:16 -0600
-Subject: [PATCH v4 8/9] dt-bindings: iio: adc: adi,ad7380: add
- spi-rx-bus-width property
+Date: Fri, 19 Dec 2025 15:32:17 -0600
+Subject: [PATCH v4 9/9] iio: adc: ad7380: add support for multiple SPI
+ lanes
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,8 +83,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251219-spi-add-multi-bus-support-v4-8-145dc5204cd8@baylibre.com>
+Content-Transfer-Encoding: 8bit
+Message-Id: <20251219-spi-add-multi-bus-support-v4-9-145dc5204cd8@baylibre.com>
 References: <20251219-spi-add-multi-bus-support-v4-0-145dc5204cd8@baylibre.com>
 In-Reply-To: <20251219-spi-add-multi-bus-support-v4-0-145dc5204cd8@baylibre.com>
 To: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
@@ -98,81 +98,180 @@ Cc: Sean Anderson <sean.anderson@linux.dev>, linux-spi@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  linux-iio@vger.kernel.org, David Lechner <dlechner@baylibre.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1994; i=dlechner@baylibre.com;
- h=from:subject:message-id; bh=VQOPaqQmoNwtfxLbCSXG6BhStJUeMtFzJ0prIuJB4JY=;
- b=owGbwMvMwMV46IwC43/G/gOMp9WSGDJdj8x4ylQ589TTfacs62zckqz2Ftiw2V77mJYWu/bgq
- w/+tYsyOhmNWRgYuRhkxRRZ3kjcnJfE13xtzo2MGTCDWJlApjBwcQrARJLt2f8nbY/dJ2r7o6ss
- aqLRboWsvRb9e99U77iS53ubY6mUBEOPqVcD02a3roS3N24zbC+ujhMqz5Jh/MkjxiJtcfnHlMk
- zTOdLLM6qrZzkWxf4b/7TiybBBQnTNrrILXS64F8a21++6a3oztkttS/P/PJa9mmt3ZJ7go9YGK
- QVH94TKUhMU21pEvn486BYRmiamG8kC/MrkZNrG34mu8/cmdIjn9nhFxlsvYL3yaz8pgk1N60zY
- ybYTUq7ZKXyVyug/ORLXquoxnCWU45HtvyU9NpcrtZutTmYpzHfwDhxwaWc/KrX8828t6Q+6d7x
- v+xx81Xus4eS252a1PkYrZYU7GRx23vIbk+pn92SNOXlAA==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=6063; i=dlechner@baylibre.com;
+ h=from:subject:message-id; bh=LH6Vyxalmz1bUck/pw36flu8Rm/aY8DBxOEtRceLBNY=;
+ b=owEBbQGS/pANAwAKAcLMIAH/AY/AAcsmYgBpRcSfLJx0CYwXi+3uIOIko0pPqOOcsOg6PiCxZ
+ 0u08pcxhUWJATMEAAEKAB0WIQTsGNmeYg6D1pzYaJjCzCAB/wGPwAUCaUXEnwAKCRDCzCAB/wGP
+ wNA6B/0VO4IDqFUdeHvEoKkOAZ/oM///2K1qeYPoAIWcCcr0cMVnOYjphT8TQK6cOWMmFNCGv4p
+ pu+LrQaelIjhREHhgQRe6PMkXc88qb2/ucOO0+A0xk4j4wyfG8Ow3nLYXPiRN3GcWRQip9y3/Kc
+ qvXTrsoh+jtmpxwMJqOrnBv0/72H50Uwpp7TX5mwuBoUSaMC4iCIBInxP2+39Ne/uqccqVEAzEF
+ /ZU7FOOOBmPHDjkdZqtfSUgDCxtAniQjg9xDyOShilCZgKso7vj4SX5Kg4BMeb9QJMKV/AZFdgC
+ w/szwCWzrS5JE7cIMxKZXOJ5aUu3kvhhtSuNuLkWwIL81taP
 X-Developer-Key: i=dlechner@baylibre.com; a=openpgp;
  fpr=8A73D82A6A1F509907F373881F8AF88C82F77C03
 
-Add spi-rx-bus-width property to describe how many SDO lines are wired
-up on the ADC. These chips are simultaneous sampling ADCs and have one
-SDO line per channel, either 2 or 4 total depending on the part number.
+Add support for multiple SPI lanes to increase throughput. The AD7380
+family of ADCs have multiple SDO lines on the chip that can be used to
+read each channel on a separate SPI lane. If wired up to a SPI
+controller that supports it, the driver will now take advantage of this
+feature. This allows reaching the maximum sample rate advertised in the
+datasheet when combined with SPI offloading.
 
+Reviewed-by: Nuno Sá <nuno.sa@analog.com>
 Signed-off-by: David Lechner <dlechner@baylibre.com>
 ---
 v4 changes:
-* Change to use spi-rx-bus-width property instead of spi-lanes.
+* Update for core SPI API changes.
 
 v3 changes:
 * Renamed "buses" to "lanes" to reflect devicetree property name change.
----
- .../devicetree/bindings/iio/adc/adi,ad7380.yaml    | 23 ++++++++++++++++++++++
- 1 file changed, 23 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7380.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7380.yaml
-index b91bfb16ed6b..396e1a1aa805 100644
---- a/Documentation/devicetree/bindings/iio/adc/adi,ad7380.yaml
-+++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7380.yaml
-@@ -62,6 +62,11 @@ properties:
-   spi-cpol: true
-   spi-cpha: true
+v2 changes:
+* Move st->seq_xfer[3].multi_lane_mode = SPI_MULTI_BUS_MODE_STRIPE;
+  to probe().
+---
+ drivers/iio/adc/ad7380.c | 49 +++++++++++++++++++++++++++++++++++-------------
+ 1 file changed, 36 insertions(+), 13 deletions(-)
+
+diff --git a/drivers/iio/adc/ad7380.c b/drivers/iio/adc/ad7380.c
+index bfd908deefc0..00982b70b316 100644
+--- a/drivers/iio/adc/ad7380.c
++++ b/drivers/iio/adc/ad7380.c
+@@ -77,8 +77,7 @@
+ #define AD7380_CONFIG1_REFSEL		BIT(1)
+ #define AD7380_CONFIG1_PMODE		BIT(0)
  
-+  spi-rx-bus-width:
-+    maxItems: 4
-+    items:
-+      maximum: 1
+-#define AD7380_CONFIG2_SDO2		GENMASK(9, 8)
+-#define AD7380_CONFIG2_SDO		BIT(8)
++#define AD7380_CONFIG2_SDO		GENMASK(9, 8)
+ #define AD7380_CONFIG2_RESET		GENMASK(7, 0)
+ 
+ #define AD7380_CONFIG2_RESET_SOFT	0x3C
+@@ -92,11 +91,6 @@
+ #define T_CONVERT_X_NS 500		/* xth conversion start time (oversampling) */
+ #define T_POWERUP_US 5000		/* Power up */
+ 
+-/*
+- * AD738x support several SDO lines to increase throughput, but driver currently
+- * supports only 1 SDO line (standard SPI transaction)
+- */
+-#define AD7380_NUM_SDO_LINES		1
+ #define AD7380_DEFAULT_GAIN_MILLI	1000
+ 
+ /*
+@@ -888,6 +882,8 @@ struct ad7380_state {
+ 	bool resolution_boost_enabled;
+ 	unsigned int ch;
+ 	bool seq;
++	/* How many SDO lines are wired up. */
++	u8 num_sdo_lines;
+ 	unsigned int vref_mv;
+ 	unsigned int vcm_mv[MAX_NUM_CHANNELS];
+ 	unsigned int gain_milli[MAX_NUM_CHANNELS];
+@@ -1084,7 +1080,7 @@ static int ad7380_set_ch(struct ad7380_state *st, unsigned int ch)
+ 	if (oversampling_ratio > 1)
+ 		xfer.delay.value = T_CONVERT_0_NS +
+ 			T_CONVERT_X_NS * (oversampling_ratio - 1) *
+-			st->chip_info->num_simult_channels / AD7380_NUM_SDO_LINES;
++			st->chip_info->num_simult_channels / st->num_sdo_lines;
+ 
+ 	return spi_sync_transfer(st->spi, &xfer, 1);
+ }
+@@ -1113,7 +1109,7 @@ static int ad7380_update_xfers(struct ad7380_state *st,
+ 	if (oversampling_ratio > 1)
+ 		t_convert = T_CONVERT_0_NS + T_CONVERT_X_NS *
+ 			(oversampling_ratio - 1) *
+-			st->chip_info->num_simult_channels / AD7380_NUM_SDO_LINES;
++			st->chip_info->num_simult_channels / st->num_sdo_lines;
+ 
+ 	if (st->seq) {
+ 		xfer[0].delay.value = xfer[1].delay.value = t_convert;
+@@ -1198,6 +1194,8 @@ static int ad7380_init_offload_msg(struct ad7380_state *st,
+ 	xfer->bits_per_word = scan_type->realbits;
+ 	xfer->offload_flags = SPI_OFFLOAD_XFER_RX_STREAM;
+ 	xfer->len = AD7380_SPI_BYTES(scan_type) * st->chip_info->num_simult_channels;
++	if (st->num_sdo_lines > 1)
++		xfer->multi_lane_mode = SPI_MULTI_LANE_MODE_STRIPE;
+ 
+ 	spi_message_init_with_transfers(&st->offload_msg, xfer, 1);
+ 	st->offload_msg.offload = st->offload;
+@@ -1793,6 +1791,7 @@ static const struct iio_info ad7380_info = {
+ 
+ static int ad7380_init(struct ad7380_state *st, bool external_ref_en)
+ {
++	u32 sdo;
+ 	int ret;
+ 
+ 	/* perform hard reset */
+@@ -1815,11 +1814,24 @@ static int ad7380_init(struct ad7380_state *st, bool external_ref_en)
+ 	st->ch = 0;
+ 	st->seq = false;
+ 
+-	/* SPI 1-wire mode */
++	/* SDO field has an irregular mapping. */
++	switch (st->num_sdo_lines) {
++	case 1:
++		sdo = 1;
++		break;
++	case 2:
++		sdo = 0;
++		break;
++	case 4:
++		sdo = 2;
++		break;
++	default:
++		return -EINVAL;
++	}
 +
-   vcc-supply:
-     description: A 3V to 3.6V supply that powers the chip.
+ 	return regmap_update_bits(st->regmap, AD7380_REG_ADDR_CONFIG2,
+ 				  AD7380_CONFIG2_SDO,
+-				  FIELD_PREP(AD7380_CONFIG2_SDO,
+-					     AD7380_NUM_SDO_LINES));
++				  FIELD_PREP(AD7380_CONFIG2_SDO, sdo));
+ }
  
-@@ -160,6 +165,23 @@ patternProperties:
- unevaluatedProperties: false
+ static int ad7380_probe_spi_offload(struct iio_dev *indio_dev,
+@@ -1842,7 +1854,7 @@ static int ad7380_probe_spi_offload(struct iio_dev *indio_dev,
+ 				     "failed to get offload trigger\n");
  
- allOf:
-+  # 2-channel chips only have two SDO lines
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - adi,ad7380
-+            - adi,ad7381
-+            - adi,ad7383
-+            - adi,ad7384
-+            - adi,ad7386
-+            - adi,ad7387
-+            - adi,ad7388
-+    then:
-+      properties:
-+        spi-rx-bus-width:
-+          maxItems: 2
+ 	sample_rate = st->chip_info->max_conversion_rate_hz *
+-		      AD7380_NUM_SDO_LINES / st->chip_info->num_simult_channels;
++		      st->num_sdo_lines / st->chip_info->num_simult_channels;
+ 
+ 	st->sample_freq_range[0] = 1; /* min */
+ 	st->sample_freq_range[1] = 1; /* step */
+@@ -1887,6 +1899,11 @@ static int ad7380_probe(struct spi_device *spi)
+ 	if (!st->chip_info)
+ 		return dev_err_probe(dev, -EINVAL, "missing match data\n");
+ 
++	st->num_sdo_lines = spi->num_rx_lanes;
 +
-   # pseudo-differential chips require common mode voltage supplies,
-   # true differential chips don't use them
-   - if:
-@@ -284,6 +306,7 @@ examples:
-             spi-cpol;
-             spi-cpha;
-             spi-max-frequency = <80000000>;
-+            spi-rx-bus-width = <1>, <1>, <1>, <1>;
++	if (st->num_sdo_lines < 1 || st->num_sdo_lines > st->chip_info->num_simult_channels)
++		return dev_err_probe(dev, -EINVAL, "invalid number of SDO lines\n");
++
+ 	ret = devm_regulator_bulk_get_enable(dev, st->chip_info->num_supplies,
+ 					     st->chip_info->supplies);
  
-             interrupts = <27 IRQ_TYPE_EDGE_FALLING>;
-             interrupt-parent = <&gpio0>;
+@@ -2010,6 +2027,8 @@ static int ad7380_probe(struct spi_device *spi)
+ 	st->normal_xfer[0].cs_change_delay.value = st->chip_info->timing_specs->t_csh_ns;
+ 	st->normal_xfer[0].cs_change_delay.unit = SPI_DELAY_UNIT_NSECS;
+ 	st->normal_xfer[1].rx_buf = st->scan_data;
++	if (st->num_sdo_lines > 1)
++		st->normal_xfer[1].multi_lane_mode = SPI_MULTI_LANE_MODE_STRIPE;
+ 
+ 	spi_message_init_with_transfers(&st->normal_msg, st->normal_xfer,
+ 					ARRAY_SIZE(st->normal_xfer));
+@@ -2031,6 +2050,10 @@ static int ad7380_probe(struct spi_device *spi)
+ 	st->seq_xfer[2].cs_change = 1;
+ 	st->seq_xfer[2].cs_change_delay.value = st->chip_info->timing_specs->t_csh_ns;
+ 	st->seq_xfer[2].cs_change_delay.unit = SPI_DELAY_UNIT_NSECS;
++	if (st->num_sdo_lines > 1) {
++		st->seq_xfer[2].multi_lane_mode = SPI_MULTI_LANE_MODE_STRIPE;
++		st->seq_xfer[3].multi_lane_mode = SPI_MULTI_LANE_MODE_STRIPE;
++	}
+ 
+ 	spi_message_init_with_transfers(&st->seq_msg, st->seq_xfer,
+ 					ARRAY_SIZE(st->seq_xfer));
 
 -- 
 2.43.0
