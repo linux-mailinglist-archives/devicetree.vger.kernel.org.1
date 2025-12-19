@@ -1,170 +1,113 @@
-Return-Path: <devicetree+bounces-248264-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248265-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2AD4CD071C
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 16:07:12 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DC8ECD06A8
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 15:58:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AD83630F756B
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 15:01:42 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id A5FDF3004D00
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 14:54:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB26F33C1AD;
-	Fri, 19 Dec 2025 14:52:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F320933D500;
+	Fri, 19 Dec 2025 14:54:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AcAWcoEY"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xSUVgFWg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AEB9338935;
-	Fri, 19 Dec 2025 14:52:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6479533A9FF
+	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 14:54:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766155979; cv=none; b=eUaJQQQH3c7ZnEeOxJTfSrLvd20m1zI9Wl4Tp0fGl4W0YFsWQNu+G0JF0AMUponll/ClEAFLx10f8DJhxBFoiXx5ReNy/I56RTLcO1YarWBTMiDX3sBQCjb4WuVCItQBbJVFvKNMcGl8q4iY3yrH8s1JEB1W8jLp4Jm6/WVBDoc=
+	t=1766156045; cv=none; b=LRUd/ByhunsGIjpcw76jZKjgfNWAsmgbv+2HXsa5NzIAHgHYhdcd11Z5YjfbktqPTAReaDAVWUMKDG2iC0jGkPma3G6X0RX6DQU2WD9QA+gN1YGx+Lw4ms11Ak/s+C2jJLFs+GuvTa3i5ti/z4aDSVoNnxlNlPhpNebydNsxP8o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766155979; c=relaxed/simple;
-	bh=YP7lb/tia1LJhyshozaR4x6Net2qdgEZZ3mSCgOVtQQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rGe+31aqjPZ5zcKdq6UK/dneK8Flr3r1gkBSck8D3XOwUFIEW1ui3R7zTmr7ct0lDoQognLKEbaB0rv0ty+Kam2kW+xLAtM88VLlJXHjg1iuBGSmkQFLpxY4fibw949iyy3vfXV+FGHOM+om6vcIEqoWxFyKs+xOmCIjIPprWng=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AcAWcoEY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7DFA5C4CEF1;
-	Fri, 19 Dec 2025 14:52:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766155978;
-	bh=YP7lb/tia1LJhyshozaR4x6Net2qdgEZZ3mSCgOVtQQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=AcAWcoEYH8VwkrrjR1/s+Z/lOG1WofuoErDMOSWrfASq3tesRnmJ9aOQvpe8haO3W
-	 xhrZiE1DmAO1iZCvxUwBC8S/UcnN4j+fX/t2GyXqBpW+OPjgK1HOb8SMkT1Dn4yW4+
-	 OtG84HtOaGbOW5alWaeitHuDaZxRXCyD/V9Dk+frXcBrZ82pmzabtoXU/EQLTJMQGC
-	 xm/aAzY1L13djsnjTJXJ4yZcuUlPNcnbq24B7sQMyeYo2VMU4snslJWTJwgJVmeX/b
-	 Y6ygYNAgoE2oqEZR1iiy2CJ1fo1BM17nf9rWnUyeJUut0lq57Kc/H2eD7YQq2uexhp
-	 iAcFstWLbgfkA==
-Message-ID: <abec3933-279d-4111-8adf-a2e1280ce0b7@kernel.org>
-Date: Fri, 19 Dec 2025 15:52:51 +0100
+	s=arc-20240116; t=1766156045; c=relaxed/simple;
+	bh=2SY5w+tUH8s9MZEweKPOypbqcfjFIujvFs5cE+TaQsk=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=raQGE3rviwCVSWPtixEs7iLEmStIG4I55NTAih28kcJzijcH6BxrYx/birlHMiycXPQLLCGiE304seaOjGbDO/4Nb88hZQPMwrSrZ+UY4uj980+5We4HAXWvjrxn45SbMZdGnbqzVSd4riRayFRmGme3baBfFVTXAnDjW4ehVw8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xSUVgFWg; arc=none smtp.client-ip=209.85.214.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-2a09d981507so13101715ad.1
+        for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 06:54:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1766156044; x=1766760844; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=2SY5w+tUH8s9MZEweKPOypbqcfjFIujvFs5cE+TaQsk=;
+        b=xSUVgFWgtgFSj6LA0if8keTrYc0UGCZbjoOSsblmCIQIEYQyGofoL/FsSdAPzZBWTi
+         /RKPPHp49G7uOIyt1L4Y9GlOUEpvub8RaU7ThLp7mg5Lf40zDKn9UXzLTyFpuBiuF+ua
+         22VYkF8ipNcH5//ARwgwoDF7ccVLfMLoHKR2rVmsXWnjVZBXY6V+UfY4sAAC8IYeDp2t
+         2tj5OiJOZ9YprZjKy1HRWpLTwjAGLN7WtICDApMkkKe98vV79XUO08PxwIz7vekZQw3T
+         uKov3b3OpPZ0iLpfxiObi0/nCtiNBchX8ucdNukY71ltoJqTCneEwXRXNSFfy+XDmcVx
+         S84w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1766156044; x=1766760844;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2SY5w+tUH8s9MZEweKPOypbqcfjFIujvFs5cE+TaQsk=;
+        b=KqH8qfGBeuOvCbdclzjYumjGQ0SY8Oy6Ms4p57jD7dFDRmHnbwoeNM9sd+RhmkkVD8
+         d5KqiBLmf0swwT/ieiWeCamWKo04CP/mJfzXqAnH7AQ1jwj/mbPRkxvlY+SXN6pl5JDS
+         w9vhZdDfxWr9rcsx99jC+Uo8df59sAu5zuPD1tbY4pjqyeFYh5yLze8o459GSSx86VqZ
+         vtdx/uj+mzqAiUyUtO7sEDn2QFwxY6IA77Xd/vwbJCl1Vst2fgL1p9ZrwHZMZAVWK2hZ
+         VkVrz9mnzASvBe8ewoxTlH8V1Em/xkrT7uE1VPID4GhMtHyeBzNbcSg1N0irOlcOb0z/
+         3LpA==
+X-Forwarded-Encrypted: i=1; AJvYcCWyi5a35wB+6F/pzggL00tJFKZb2B706EpJL7cqegORUQt+qRIXfNxUByYxgejRm5RD76hwIfWerypu@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy+izi1PxOkACCqQ7gyYWGQHLt6K7sNGRztfr+GAByoedijAjw9
+	40RdlZ2kwNYcTXwfxnilsUKXdoZsbYAikUmcmPP1h26UpE286kqV8Vn1ORdKbYgSIOE=
+X-Gm-Gg: AY/fxX5XSPn51DEuRmmWzg7gslnrls1gLDqewlurvnRNcJ+cKPkyeWPuUuKyJvsDzxe
+	ajyObmt3/ERTlv1WY3cT3mEpnlmdj23hydbCghqkluMhecbSiem/dC/FyjqGKE7tnZqFfBqdLxk
+	O1V3AVuhMQG+hDeHwPo5IA6iKVmUepc8A9EwYq7w7+P1+fDhv0V4qh82zDXgasxH5SP8kIcPuZO
+	6hSjp1sZB5XOLlEzUQR8qeFTRj3qqP+FZH7OcDdF0uzSmEbfXsH8Ru35wmP0rsKvAmRNb8howL6
+	ascalnPzyrMGS/A1bsSAArDX0fEPCS64xp6ewHf5BVtQP4UTGF9uYz35tuxK164SnyJkwazQJNr
+	VXQo4lfMJsFYCqZHLS93m8PQlYi059lmVsXqYed3Cb7Vc5afSkcKcJI/J2n2pvz5S/+hWXWr9ph
+	OzHnA2JRfazAw3eA3wbhIrGxIBgvGC
+X-Google-Smtp-Source: AGHT+IEfQV9bnP8fsaEkN3KGv8ZqOWPjOs88+7XQncM6ppKvoaKoftTo6/MtRekt02qZ2G9dsu6RDA==
+X-Received: by 2002:a17:903:3508:b0:2a0:9047:a738 with SMTP id d9443c01a7336-2a2cab1635dmr57855615ad.19.1766156043627;
+        Fri, 19 Dec 2025 06:54:03 -0800 (PST)
+Received: from draszik.lan ([212.129.80.126])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2a2f3c66bd3sm25192085ad.1.2025.12.19.06.53.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 19 Dec 2025 06:54:03 -0800 (PST)
+Message-ID: <5b366a0c0d7f4dcb6a3daa793ec503a43ea754b4.camel@linaro.org>
+Subject: Re: [PATCH v3 1/6] soc: samsung: exynos-chipid: use devm action to
+ unregister soc device
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>,
+  Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Alim Akhtar	 <alim.akhtar@samsung.com>, Peter
+ Griffin <peter.griffin@linaro.org>,  Srinivas Kandagatla	 <srini@kernel.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, semen.protsenko@linaro.org, 
+	willmcvicker@google.com, kernel-team@android.com,
+ devicetree@vger.kernel.org, 	linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, 	linux-kernel@vger.kernel.org
+Date: Fri, 19 Dec 2025 14:53:58 +0000
+In-Reply-To: <20251120-gs101-chipid-v3-1-1aeaa8b7fe35@linaro.org>
+References: <20251120-gs101-chipid-v3-0-1aeaa8b7fe35@linaro.org>
+	 <20251120-gs101-chipid-v3-1-1aeaa8b7fe35@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-2+build3 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/9] dt-bindings: remoteproc: qcom,ipq8074-wcss-pil:
- convert to DT schema
-To: Alexandru Gagniuc <mr.nuke.me@gmail.com>, andersson@kernel.org,
- mathieu.poirier@linaro.org, krzk+dt@kernel.org, Rob Herring
- <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20251219043425.888585-1-mr.nuke.me@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251219043425.888585-1-mr.nuke.me@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 
-On 19/12/2025 05:34, Alexandru Gagniuc wrote:
-> Convert the QCS404 and IPQ WCSS Peripheral Image Loader bindings to DT
-> schema. The text bindngs incorrectly implied that IPQ8074 needs only
-> one qcom,smem-states entry. This is only true for QCS404. IPQ8074
-> requires both "stop" and "shutdown".
-> 
-> The example is to be added in a subsequent commit that adds the
-> IPQ9574 binding.
-> 
-> Signed-off-by: Alexandru Gagniuc <mr.nuke.me@gmail.com>
-
-This is not v1, but v2. Look - what is this "dt-bindings: remoteproc:
-qcom,ipq8074-wcss-pil: convert to DT schema" in my inbox?
-
-And what is this:
-
-> 
+On Thu, 2025-11-20 at 11:29 +0000, Tudor Ambarus wrote:
+> Simplify the unwinding of the soc device by using a devm action.
+> Add the action before the exynos_asv_init() to avoid an explicit call
+> to soc_device_unregister().
+>=20
+> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
 > ---
-> Changes since RFC
->  - rename binding from ipq9574 to ipq8074
->  - use a real person instead of placeholder as maintainer
->  - drop redundant minItems and descriptions
->  - merge if: clauses as suggested by Krzysztof
->  - various other fixes suggested by Krzysztof
+> =C2=A0drivers/soc/samsung/exynos-chipid.c | 28 ++++++++++++--------------=
+--
+> =C2=A01 file changed, 12 insertions(+), 16 deletions(-)
 
-So not v1?
-
-And now run b4 diff and find differences.
-
-If this is anyhow weird (although how counting from 0 or -1 or -2 if you
-have 3 RFCs can be natural?), then just use b4 which would solve all
-these problems.
-
-You also miss cover letter, which would be easily solved with b4.
-
-You are not making it easier for reviewers.
-
-> 
-> I used my name as a placeholder for the "maintainer" field. Krzysztof
-> mentioned to get the "SOC maintainer" using get_maintainer. I don't
-> know how to do that, and I don't see anyone listed for QCS404,
-> IPQ8074, or IPQ9574. The bindings apply to any of those SOCs.
-
-So you run get_maintainer.pl script on the soc DTSI file and you got
-zero results? I claim that's impossible... but just in case please post
-here the commands.
-
-Anyway listing yourself is fine.
-
-Trying to see what happened here:
-b4 diff '<20251219043425.888585-4-mr.nuke.me@gmail.com>'
-Grabbing thread from
-lore.kernel.org/all/20251219043425.888585-4-mr.nuke.me@gmail.com/t.mbox.gz
----
-Analyzing 15 messages in the thread
-Could not find lower series to compare against.
-
-so this patch will wait.
-
-
-Best regards,
-Krzysztof
+Reviewed-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
 
