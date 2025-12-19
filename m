@@ -1,153 +1,164 @@
-Return-Path: <devicetree+bounces-248119-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248120-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 228B1CCEFE4
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 09:35:43 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A93CCCF00E
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 09:39:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EE4AF300A1FD
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 08:33:04 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E96D2305A807
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 08:36:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBC412E7185;
-	Fri, 19 Dec 2025 08:33:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED6022E7645;
+	Fri, 19 Dec 2025 08:36:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b="ebTc6WOg"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BL6lMTy0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6010A230270;
-	Fri, 19 Dec 2025 08:32:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766133183; cv=pass; b=iDZ4bdQlddHGuQe63iza7F3/GhDIZl4A+UmBjoQf3G90xnikpFuJ88Axezb90nd7ty0KegXHCFJIhf2Ohnc20DaGWmB1AX781ExKtSK6pL7uEWGry8UzF5u4fIjrgpsAFDjKZyWohGZNOpNzlZngNO3zR5AMk9Kvwy/Ew3ywVm4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766133183; c=relaxed/simple;
-	bh=Elt1/GiM/P0wr/SJI4JI/GxpLyBhoK4QryBrbUI31Ng=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=gU/kczRh8lWexcIesVTuJlVAxgN4Cufo3OhuByytdKkl+nbZu/eHoA/1u+PgR5ifWYqiT5WmAaDTQDPvi/tOkHRdsEX3jerdG8JJpqxdg/QvHpboBXxb8ZHJfGEQh6a2Cmtm7Ox/flJ/FBGOmXehhY10DVPUslvIjTkVZVuFdwc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech; spf=pass smtp.mailfrom=pigmoral.tech; dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b=ebTc6WOg; arc=pass smtp.client-ip=136.143.188.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pigmoral.tech
-ARC-Seal: i=1; a=rsa-sha256; t=1766133150; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=mO3BsCtyHVBRwY0bLlTdjrDimIvWWXM50aUIsz5/QFfeYR0S5kj7KkZu9JThgegwbJNygsyX7MCN1Vv/V0Dnyf9bZ+h0/mHQVTygLzSzG4oe4BE6agn4Q0ZXgWMLFSeRuYuswP9blScoaX5hUdnTtW+M+toawMAs2TGlsFShnco=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1766133150; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=qD8jT2s+CQPUn8ahKa2Vl1fnycgNsJt25eb304sEF90=; 
-	b=MuTetyo/VX0yQ9sSHArt/8K88nHgXZLZxt0fxeyQOYW8FzRy3TC7dbLjlG/jjbIy8nauo/f1MrFkzlFY80DvR8Q9hEQuTwYN1Z9LNLQlbLx/Cv5AkLzB4BIQpLgdqvIyDC8WlfL/9LsOhL/EnzQfhaYS5WKu+hTzHhsg7AMesfQ=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=pigmoral.tech;
-	spf=pass  smtp.mailfrom=junhui.liu@pigmoral.tech;
-	dmarc=pass header.from=<junhui.liu@pigmoral.tech>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1766133150;
-	s=zmail; d=pigmoral.tech; i=junhui.liu@pigmoral.tech;
-	h=Mime-Version:Content-Transfer-Encoding:Content-Type:Date:Date:Message-Id:Message-Id:Cc:Cc:Subject:Subject:From:From:To:To:References:In-Reply-To:Reply-To;
-	bh=qD8jT2s+CQPUn8ahKa2Vl1fnycgNsJt25eb304sEF90=;
-	b=ebTc6WOgLBeiZrhOn/NeZPSoafkCMInRijQ5XavpzJ7B+7Nvzy/36tNv1sBP/Sz6
-	S8/oCxFNa4mMAVCAWoET7ewzsxNhbjJhYD3aMBboBu0l0Qytz1HPbf8FOOhBkSHJOTQ
-	XeOMXbp0CJnvYSHylJNw7+Diq28o+UrwtVxES920=
-Received: by mx.zohomail.com with SMTPS id 1766133148865100.9592386002613;
-	Fri, 19 Dec 2025 00:32:28 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7366D2E2850
+	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 08:36:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1766133381; cv=none; b=esn5MwemPjn3VSft4YAAjieexIYb+djTaTSNMtis3aVZYGd8KlhkT8AGyhnpI81d5W8SZO5ByFqMFlKCHKrxaMGqQa/O0d2MK4neth2wSrBNddB526yxtSguUjYO++9UNFKVIUSqs0dX+G3TjTm6KWGZPGcVyZNh0xhvL19a2yA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1766133381; c=relaxed/simple;
+	bh=D7Kw7hpkMoxQAkeUZaWO/9wmSqvJV1cg49oavuqCWf0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=gw9fO8sYmiBVtYqdEFmUI5BZ1otHgyR0Xetle7jLbFFKkCNp3ehKJLD/itbYrjntN4V5dEjMvWxj9MgWw69sImurTbHtyxFNM+x//BVYwoqoPQYkUGFVBQv6dN9aJGu8nPfghHc4/oDrdH0CeqVIGyCEvWhgYhByq+caxnhVJc8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BL6lMTy0; arc=none smtp.client-ip=209.85.214.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-2a07f8dd9cdso16956515ad.1
+        for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 00:36:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1766133380; x=1766738180; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ZQ15vqIj64VulmTvMX7gKagznPfyt4IeoJrE3JDAELA=;
+        b=BL6lMTy0VKxXRqJ0WHJtm68KJO72TtBnfL9C4S99/MmDwVYBgPdO9MqNQfz61aghO6
+         ulqyIPi3u7+uSLJr7IwAaJ5WyoH+bZnBOpEsU+SJ5UIV7iBibdnicyoC5IFewZY+W3Hn
+         icZB27z/gRuFeCpOt9uviCpJvJwQdctX6AlLYVH4nVwe9VVtTFE9zMfBY3fz8C0uvxc8
+         WQP8hkXUBpd+x1iLoeje6MKyyA9mItfbFNTHHD7rOpYnZWyZ6bSsW+ZqqZIzQc2J/bzS
+         Ls9tBpgLBmQ+YAcKB1fI0bwcC3SxtuNwEJc+HDpv4ZnM2Dx5DsjpdZYQUuiHTQn+STiU
+         OGzg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1766133380; x=1766738180;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=ZQ15vqIj64VulmTvMX7gKagznPfyt4IeoJrE3JDAELA=;
+        b=PiaXrb9C3+H8vlIMvBf+upO2XC6wsfRoDLzHFHt/U5g5YpB2HLV0j3+K2VJ5b+eCzm
+         MCbW/Jx+pRqtRusNl6q6FY+76nhYocNleAmRZd0j7jh28EauatXHXBfT+2jga3mxmnkC
+         CCHKEnGu4+G0QYbLe8tZJq1iQR369bbAZqrhDE6e4J+LJ/C1F14S3v6a6Mc1pRurv1Zb
+         AhwlzVAZE+vcMrE4NsjEfeQ38R+RmVSa/G1z41KqxrdrG1m8jG7G2aa6/V90KYcLsVpr
+         W1frB/ZYw8e/IbDl94EKvj7SYvLLVSpAd7aESXMdM3axpkyuwI57RbsqXRdoSxzknU06
+         l9iw==
+X-Gm-Message-State: AOJu0YyMzz4II7B3fcYV1fCVbykKTycoaXgw5j2xgBUfWVYLL758mHZv
+	cwJs5+ugUisa4ZliOW9thVVz1kWFV3VCp6BGZh0m8PWHXEklypHwkfEA5Kqi6c4MOz7VXZ7Tp9n
+	/8uxxTTdF5OYa+WutOATULnlrNApUZwY=
+X-Gm-Gg: AY/fxX5b55/dwv2gWBs9TcyVbF48l0FO1TuS1zA1yBCZ5M7vRtv0PyWMKlZBJnray68
+	WruHv3ztS3uSXckAL2DgRwzENXWiyhc2KQGuM46JMUeYgAzH9o7KK9OCEYFHBrXqAWMnGGO+E07
+	S2YVqZUGmRvC6D8AJ5tk6raTToMyaVsKVrLF1ReYEyrSwU30KTOwqieCpGDbQyL7pzM/gmU7epm
+	A8rntEzdHDLf8YVKGGHSckQdN15LPMyi7I30eN6SmUyc7dO52xwTmLlz9JiP1q3ALomjIkH
+X-Google-Smtp-Source: AGHT+IHoMetY0jMBrCjdGc88mFfxhQzBRDJteW86k7GC+pHgWJLGWEQWxMUQQCJ4cUxyjd7HhWR7FTDj+6JvEJptRWA=
+X-Received: by 2002:a17:903:2a8b:b0:2a1:3cd8:d2dc with SMTP id
+ d9443c01a7336-2a2f2b53f26mr20958725ad.57.1766133379728; Fri, 19 Dec 2025
+ 00:36:19 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
+MIME-Version: 1.0
+References: <20251118-yv5_revise_dts-v1-0-fcd6b44b4497@gmail.com>
+ <20251118-yv5_revise_dts-v1-2-fcd6b44b4497@gmail.com> <ad11cd30eddc1b7c496cc92eef129eb5c0f2d604.camel@codeconstruct.com.au>
+In-Reply-To: <ad11cd30eddc1b7c496cc92eef129eb5c0f2d604.camel@codeconstruct.com.au>
+From: Kevin Tung <kevin.tung.openbmc@gmail.com>
+Date: Fri, 19 Dec 2025 16:36:08 +0800
+X-Gm-Features: AQt7F2r_PXl3skkkTv3B_wJpuSzrJrIzk8N8zRMoeuWF6kLBddZNyUa8Y0zFtL4
+Message-ID: <CABh9gBeCU7Xr818AL2ud4SxFQ=D=4D9YwiDUu4HttWuOqO+7ag@mail.gmail.com>
+Subject: Re: [PATCH 2/3] ARM: dts: aspeed: yosemite5: Update sensor configuration
+To: Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
+	Amithash Prasasd <amithash@meta.com>, Kevin Tung <Kevin.Tung@quantatw.com>, 
+	Ken Chen <Ken.Chen@quantatw.com>, Leo Yang <Leo-Yang@quantatw.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Joel Stanley <joel@jms.id.au>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 19 Dec 2025 16:32:18 +0800
-Message-Id: <DF21Y2Y8FHSY.148HX8VXOFBHV@pigmoral.tech>
-Cc: "Michael Turquette" <mturquette@baylibre.com>, "Stephen Boyd"
- <sboyd@kernel.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
- <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Philipp Zabel"
- <p.zabel@pengutronix.de>, "Paul Walmsley" <pjw@kernel.org>, "Palmer
- Dabbelt" <palmer@dabbelt.com>, "Albert Ou" <aou@eecs.berkeley.edu>,
- "Alexandre Ghiti" <alex@ghiti.fr>, <linux-clk@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
- <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v3 3/6] clk: anlogic: add cru support for Anlogic DR1V90
- SoC
-From: "Junhui Liu" <junhui.liu@pigmoral.tech>
-To: "Brian Masney" <bmasney@redhat.com>, "Junhui Liu"
- <junhui.liu@pigmoral.tech>
-X-Mailer: aerc 0.21.0-0-g5549850facc2
-References: <20251216-dr1v90-cru-v3-0-52cc938d1db0@pigmoral.tech>
- <20251216-dr1v90-cru-v3-3-52cc938d1db0@pigmoral.tech>
- <aUSQLB1fmYgQe_Fg@redhat.com>
-In-Reply-To: <aUSQLB1fmYgQe_Fg@redhat.com>
-X-ZohoMailClient: External
 
-Hi Brian,
-Thanks for your review.
+Hi Andrew,
 
-On Fri Dec 19, 2025 at 7:37 AM CST, Brian Masney wrote:
-> Hi Junhui,
->
-> On Tue, Dec 16, 2025 at 11:39:43AM +0800, Junhui Liu wrote:
->> +static long cru_div_gate_round_rate(struct clk_hw *hw, unsigned long ra=
-te,
->> +				    unsigned long *prate)
->> +{
->> +	struct clk_divider *divider =3D to_clk_divider(hw);
->> +
->> +	return divider_round_rate(hw, rate, prate, divider->table,
->> +				  divider->width, divider->flags);
->> +}
->
-> The round_rate clk op is deprecated and I'm really close to being able
-> to remove this from the clk core. Please only use determine_rate()
-> below.
+Sure. I=E2=80=99ve added more detail in the v3 patch to clarify the hardwar=
+e
+revisions and the rationale behind this change.
 
-Thanks! I will remove the round_rate() implementation and use
-determine_rate() only.
+Across Yosemite5 board variants, two different power monitor devices
+(using different drivers) reuse the same I2C addresses 0x40 and 0x45
+on bus 10. As the hardware evolved, newer board revisions replaced the
+original devices with different ones at the same addresses.
 
->
->> +static int cru_div_gate_determine_rate(struct clk_hw *hw,
->> +				       struct clk_rate_request *req)
->> +{
->> +	struct cru_div_gate *div_gate =3D hw_to_cru_div_gate(hw);
->> +	struct clk_divider *divider =3D &div_gate->divider;
->> +	unsigned long maxdiv, mindiv;
->> +	int div =3D 0;
->> +
->> +	maxdiv =3D clk_div_mask(divider->width) + 1;
->> +	mindiv =3D div_gate->min + 1;
->> +
->> +	div =3D DIV_ROUND_UP_ULL(req->best_parent_rate, req->rate);
->> +	div =3D div > maxdiv ? maxdiv : div;
->> +	div =3D div < mindiv ? mindiv : div;
->> +
->> +	req->rate =3D DIV_ROUND_UP_ULL(req->best_parent_rate, div);
->> +
->> +	return 0;
->> +}
->
-> [snip]
->
->> +const struct clk_ops dr1_cru_div_gate_ops =3D {
->> +	.enable =3D cru_div_gate_enable,
->> +	.disable =3D cru_div_gate_disable,
->> +	.is_enabled =3D cru_div_gate_is_enabled,
->> +	.recalc_rate =3D cru_div_gate_recalc_rate,
->> +	.round_rate =3D cru_div_gate_round_rate,
->> +	.determine_rate =3D cru_div_gate_determine_rate,
->
-> When round_rate() and determine_rate() are both defined in the provider,
-> only the determine_rate() will be used. Just drop your round_rate()
-> implementation.
+Keeping these devices statically defined in the DTS can therefore
+result in incorrect driver binding when running on newer hardware.
+To avoid this, the 10-0040 and 10-0045 device nodes are removed from
+the DTS, and the probe of the driver is instead handled in user space by
+the OpenBMC Entity Manager based on the detected board configuration.
 
-You're right, it's redundant here. I'll remove it in the next version.
+BR,
+Kevin
 
+On Mon, Nov 24, 2025 at 12:42=E2=80=AFPM Andrew Jeffery
+<andrew@codeconstruct.com.au> wrote:
 >
-> I didn't look into anything else on this patch. This showed up on my
-> search for new implementations.
+> On Tue, 2025-11-18 at 18:53 +0800, Kevin Tung wrote:
+> > Remove sensors 10-0040 and 10-0045 to align with the latest
+> > hardware design changes.
 >
-> Brian
-
---=20
-Best regards,
-Junhui Liu
-
+> Can you please elaborate on this commit message? I'd like this
+> description to be much more specific about revisions of the hardware
+> design, and why you expect all instances of the previous design to
+> suddenly stop existing.
+>
+> I can't imagine this is the only hardware change that occurred. What
+> other changes are lurking?
+>
+> Andrew
+>
+> >
+> > Signed-off-by: Kevin Tung <kevin.tung.openbmc@gmail.com>
+> > ---
+> >  arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite5.dts | 14 ------=
+--------
+> >  1 file changed, 14 deletions(-)
+> >
+> > diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite5.dts=
+ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite5.dts
+> > index 7991e9360847532cff9aad4ad4ed57d4c30668a0..45b8ac2e8c65a4f672e6457=
+1631b7f6944f26213 100644
+> > --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite5.dts
+> > +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite5.dts
+> > @@ -674,20 +674,6 @@ gpio-expander@22 {
+> >                       "PWRGD_P3V3_AUX","ALERT_TEMP";
+> >       };
+> >
+> > -     power-sensor@40 {
+> > -             compatible =3D "ti,ina233";
+> > -             reg =3D <0x40>;
+> > -             shunt-resistor =3D <2000>;
+> > -             ti,maximum-expected-current-microamp =3D <32768000>;
+> > -     };
+> > -
+> > -     power-sensor@45 {
+> > -             compatible =3D "ti,ina233";
+> > -             reg =3D <0x45>;
+> > -             shunt-resistor =3D <2000>;
+> > -             ti,maximum-expected-current-microamp =3D <32768000>;
+> > -     };
+> > -
+> >       adc@48 {
+> >               compatible =3D "ti,ads7830";
+> >               reg =3D <0x48>;
 
