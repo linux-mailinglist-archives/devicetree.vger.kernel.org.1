@@ -1,139 +1,321 @@
-Return-Path: <devicetree+bounces-248146-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248147-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D33D5CCF357
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 10:53:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ECC1ACCF342
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 10:51:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 26704302BD10
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 09:51:45 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B7A993009819
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 09:51:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05E2E2EA172;
-	Fri, 19 Dec 2025 09:36:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="CxQNk7ju";
-	dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b="Pk/t1bgK"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75212241663;
+	Fri, 19 Dec 2025 09:51:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DAD92DF143
-	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 09:36:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1F1317D6
+	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 09:51:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766136979; cv=none; b=NQ6JrLhoIYACwl6/M+vLOejFYqtV4CwAfdX23lILahiC1dAOnaUsfGDgQJ9hWYCeJMUTBIfA6bPkYXoZ4rhEDJVuQE/W0mudJXkzqGV4Pk415eB4CpsFYsmf63HNjfRD/CvLf0pem73G1TzYj7+b/1nwCQ2rTaCNH4cSgjC89R0=
+	t=1766137881; cv=none; b=LqeRg/lgjQe/KUwa8g/UoHaprCAVlbhd2kK5hpkNHU1N3otFMgCiiYOLo7XKTTussrP1nibGhhYiulH66MmQSfjEkmCg1CjQwWyAcZ76fYx+Ro8KRTHj5FpA5Ce2F/TPMtqrkpF0Lg3s4qRFWcTDowIhsCyRUnN3wwzgrZWrVso=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766136979; c=relaxed/simple;
-	bh=GiWcSuhwfhSwNHPv2dhlIDCY1StzMEtdf8zT0B4mPbE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NZVggsrN4724FKhsDjxF4j492EQXt6C177huZLVW78KNwX4KYFGgw91+cg90CcOP+S9QjoXBfHjUEbk6xp21l+3ZRAiZ8Y9Oe/OCWOfCXJtff3wMTuauUpoyOUbRH3VsOXyYNfKr2C+RswkliAzhUQ/80x43YLmCdUQ4InuAC+Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=CxQNk7ju; dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b=Pk/t1bgK; arc=none smtp.client-ip=170.10.129.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1766136977;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=NIYbt7grBQIHzw83Cnuftmwc7pNTj1PBMPieyzGvyRQ=;
-	b=CxQNk7juqCryNkfew3vtia1E2t12ZEOWVm2+nnJoeG0wypH300KegvIEzJZP7MmyQsefry
-	KhQJmTK7k1P+PgT7gTa+f4tGVpWWQLNSY+0MVX8B4jJd4ekCJWzFu/28jHobkLkUmOD318
-	VRIGEkN2MoQOXN0V+R9FvgEwlDMhuPQ=
-Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com
- [209.85.221.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-173-HYkXC0ZZMOi5xGNIU815Xw-1; Fri, 19 Dec 2025 04:36:15 -0500
-X-MC-Unique: HYkXC0ZZMOi5xGNIU815Xw-1
-X-Mimecast-MFC-AGG-ID: HYkXC0ZZMOi5xGNIU815Xw_1766136974
-Received: by mail-wr1-f70.google.com with SMTP id ffacd0b85a97d-430f433419aso1090712f8f.0
-        for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 01:36:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=redhat.com; s=google; t=1766136974; x=1766741774; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=NIYbt7grBQIHzw83Cnuftmwc7pNTj1PBMPieyzGvyRQ=;
-        b=Pk/t1bgKfV65loeCyFK3co3+nzdjKE24sL5r+mT7eu6NIYU2haS3wZCp00cIUfQwFN
-         Bh4pOaQ8QxU2IjUJHy913HOKoSqybRF6hiE7f1AfhXLnoEr442OKM62Z2xJ+69J9Hy9s
-         hCOGEBMhT/d5RpfX4q+Wx0LgDQlTazQtcs6/vDvmeo2tnO7LqJdQ3CqZ758GkSdhd5Ub
-         3TeClgy5QX9QTePfShbWhovXWtfbA0IOxX4+lcHlHIInFqmNuc3YPYnPwDc7Mn1pKRvH
-         xyLo1x4xOtVbwJNF9+xrYvNlSANulZ5Xmsm55czmNDodRU5WUW7J1BYGDyfbSJPsuWUM
-         hiVQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766136974; x=1766741774;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=NIYbt7grBQIHzw83Cnuftmwc7pNTj1PBMPieyzGvyRQ=;
-        b=IoW8bMUs/vU/kWQ+lQI5QH6mIWqxX+7t6PsQPSpN2IXS+ZGmVP9MzFMQvA4ScuieUK
-         MOB9Sxo8hQ+vH7NNCqKVZyOs0NSa71tJQxYGDSgIYW8s5m4iv5QIpkGnzKEXt/qeIrtW
-         ucH8iEcOdDfAyfCkTUekGF7smdOXhU2sAoGundycWhdP8W7xfjId2RTUYaEnrevb5/gj
-         ER4OdiYxwoj+aC+1MuCnfyTEx7Cofn1fiTZhX2kLrWi6Kzni8MiF09FOQoyZLPh8narF
-         IMVwgkzU4cDcLTH1oHj7njwwbKjA0IuoPd8dvIs+N+pYK/TZBX0ZZg8a0BV2Xw9jKhd6
-         8L2w==
-X-Forwarded-Encrypted: i=1; AJvYcCVrBSqFVFHU0ZhB1p69hRuWoXdAovUO6isJd/Z8odrMEI1HFO72NkUGkPCj468o6IBeGFlW5tzqF3Lw@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzxy/H07kDGn02FW6kmP4eA9PY2lVFKk57KdcR5MhQ2FVJW4EUb
-	uNa7spLBd2NRtyRemHCcW5S1fRTzS0yMDcGuxgw7fRaWST5CNHD28qxMhM+BaHYWtChI90c16Sk
-	bfW+DwVnEp6rpJLv5DTTh6WmAR2I4gbdoV14XX8+RwiZ1goq+vLiSk+Sc1ka+GS4=
-X-Gm-Gg: AY/fxX69QTR6TlR6ew7Z4r6dzmtxTOiFpZ+7QzDSVHF0kZkJpi7T+YmHQblZATv13j1
-	DOdvoCtBqN3QYzFmznPNyet3LQMB8TBIaqObZtanvpqxE68/a1u0oMsuZWcLyQYkF/HawPp/AaL
-	xJ1BLxHI4PIt//S0g2L2WMifnahmGpahB2pH6jiEi+SsmGDtOmE9yXBIVu5ufuvTxrBuKbhePUp
-	npT3LAScNpFk2wYFobQUT6/gvz6G+iUgatpGBuNrEVllyq93MIsqQjq/BikARXEbE+tRatcq+0G
-	p2auw368AOlD3A6oQFD0/DUdpYDxIsuhRh2bGd3YlgIcOOEaEeTxzX0DU4J4GvmCJXP5IB+bD5H
-	a7CmUrE93ha6q
-X-Received: by 2002:a05:6000:2907:b0:430:f3fb:35fa with SMTP id ffacd0b85a97d-4324e708c5cmr2718426f8f.57.1766136973997;
-        Fri, 19 Dec 2025 01:36:13 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHCuR3cgSEQwzSvGYDAcne7PBu99GClzJIGuNqcNF5F1N1BF/0rlwj0Jbshv7zUfUIeX2+zeg==
-X-Received: by 2002:a05:6000:2907:b0:430:f3fb:35fa with SMTP id ffacd0b85a97d-4324e708c5cmr2718385f8f.57.1766136973538;
-        Fri, 19 Dec 2025 01:36:13 -0800 (PST)
-Received: from [192.168.88.32] ([216.128.11.227])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4324eaa64cesm4195438f8f.35.2025.12.19.01.36.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 19 Dec 2025 01:36:13 -0800 (PST)
-Message-ID: <5356f427-3966-4d41-b4fd-11dcd1140505@redhat.com>
-Date: Fri, 19 Dec 2025 10:36:11 +0100
+	s=arc-20240116; t=1766137881; c=relaxed/simple;
+	bh=92Iupe/LwJP4z6yXHxtBk2CDTF8Sr7F6H57P7lY8Qd4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LhHKd56/gHe+fbHi/hv3pTMm9K7X2Zms+vgftRMQIW6gPRZFijHQtcBb5sC9aFwDmyIhdRP+secVl4vLO3qnu4yaw6AwpGZq46DEt4WK6kTwDjgdAmGPk8t8JQGQ9sz2EP0aVAjKw6h+T8wwqQhk8oSyuHJqcmNG2IkGhAlQic4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1vWX8K-0007Qo-Sj; Fri, 19 Dec 2025 10:50:48 +0100
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1vWX8J-006R4f-0X;
+	Fri, 19 Dec 2025 10:50:47 +0100
+Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1vWX8J-00GS4G-02;
+	Fri, 19 Dec 2025 10:50:47 +0100
+Date: Fri, 19 Dec 2025 10:50:46 +0100
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Liu Ying <victor.liu@nxp.com>, dri-devel@lists.freedesktop.org,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 1/3] dt-bindings: soc: imx93-media-blk-ctrl: Add PDFC
+ subnode to schema and example
+Message-ID: <20251219095046.dgtaknhnvzjfw6ch@pengutronix.de>
+References: <20251202-v6-18-topic-imx93-parallel-display-v7-0-2cce31d64608@pengutronix.de>
+ <3210190.mvXUDI8C0e@steina-w>
+ <20251218190841.pmn3kwghq6lxsfl4@pengutronix.de>
+ <7637686.lOV4Wx5bFT@steina-w>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [net-next,PATCH v3 1/3] dt-bindings: net: realtek,rtl82xx: Keep
- property list sorted
-To: Marek Vasut <marek.vasut@mailbox.org>, netdev@vger.kernel.org
-Cc: "David S. Miller" <davem@davemloft.net>,
- Aleksander Jan Bajkowski <olek2@wp.pl>, Andrew Lunn <andrew@lunn.ch>,
- Conor Dooley <conor+dt@kernel.org>, Eric Dumazet <edumazet@google.com>,
- Florian Fainelli <f.fainelli@gmail.com>,
- Heiner Kallweit <hkallweit1@gmail.com>, Ivan Galkin <ivan.galkin@axis.com>,
- Jakub Kicinski <kuba@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Michael Klein <michael@fossekall.de>, Rob Herring <robh@kernel.org>,
- Russell King <linux@armlinux.org.uk>,
- Vladimir Oltean <vladimir.oltean@nxp.com>, devicetree@vger.kernel.org
-References: <20251218173718.12878-1-marek.vasut@mailbox.org>
-Content-Language: en-US
-From: Paolo Abeni <pabeni@redhat.com>
-In-Reply-To: <20251218173718.12878-1-marek.vasut@mailbox.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <7637686.lOV4Wx5bFT@steina-w>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On 12/18/25 6:36 PM, Marek Vasut wrote:
-> Sort the documented properties alphabetically, no functional change.
+On 25-12-19, Alexander Stein wrote:
+> Hi Marco,
 > 
-> Signed-off-by: Marek Vasut <marek.vasut@mailbox.org>
+> Am Donnerstag, 18. Dezember 2025, 20:08:41 CET schrieb Marco Felsch:
+> > Hi Alexander,
+> > 
+> > On 25-12-16, Alexander Stein wrote:
+> > > Hi,
+> > > 
+> > > Am Montag, 15. Dezember 2025, 18:54:36 CET schrieb Marco Felsch:
+> > > > Hi Liu,
+> > > > 
+> > > > sorry I didn't fully answer you please see below.
+> > > > 
+> > > > On 25-12-08, Liu Ying wrote:
+> > > > > Hi Marco,
+> > > > > 
+> > > > > On 12/02/2025, Marco Felsch wrote:
+> > > > > > From: Liu Ying <victor.liu@nxp.com>
+> > > > > > 
+> > > > > > i.MX93 SoC mediamix blk-ctrl contains one DISPLAY_MUX register which
+> > > > > > configures parallel display format by using the "PARALLEL_DISP_FORMAT"
+> > > > > > field. Document the Parallel Display Format Configuration(PDFC) subnode
+> > > > > > and add the subnode to example.
+> > > > > > 
+> > > > > > Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> > > > > > [m.felsch@pengutronix.de: port to v6.18-rc1]
+> > > > > > [m.felsch@pengutronix.de: add bus-width]
+> > > > > > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> > > > > > ---
+> > > > > >  .../bindings/soc/imx/fsl,imx93-media-blk-ctrl.yaml | 92 ++++++++++++++++++++++
+> > > > > >  1 file changed, 92 insertions(+)
+> > > > > > 
+> > > > > > diff --git a/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctrl.yaml b/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctrl.yaml
+> > > > > > index 34aea58094e55365a2f9c86092f637e533f954ff..6e2d86d9341c75108b492bcbabc8a560d8e707cd 100644
+> > > > > > --- a/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctrl.yaml
+> > > > > > +++ b/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctrl.yaml
+> > > > > > @@ -26,6 +26,12 @@ properties:
+> > > > > >    reg:
+> > > > > >      maxItems: 1
+> > > > 
+> > > > ...
+> > > > 
+> > > > > > +            properties:
+> > > > > > +              endpoint:
+> > > > > > +                $ref: /schemas/graph.yaml#/$defs/endpoint-base
+> > > > > > +                unevaluatedProperties: false
+> > > > > > +
+> > > > > > +                properties:
+> > > > > > +                  bus-width:
+> > > > > 
+> > > > > In v1-v5, I thought the output bus format can be determined by the sink
+> > > > > device(a panel or a bridge) hence properties like bus-width were not needed.
+> > > > > But, if this property is really needed, then reference video-interfaces.yaml
+> > > > > since bus-width is documented there.  Should we reference bus-type defined
+> > > > > in video-interfaces.yaml too?
+> > > > 
+> > > > You're right, the bus-width should be determined by the connected panel.
+> > > > But there are cases where a 24-bit panel is connected but only the lower
+> > > > 18-bits are muxed. I added the bus-width property to handle this case.
+> > > > In the end most users don't have to specify this since the correct
+> > > > bus-width is coming from the panel bus-fmt.
+> > > > 
+> > > > > > +                    enum: [ 16, 18, 24 ]
+> > > > > 
+> > > > > The PARALLEL_DISP_FORMAT field of DISPLAY_MUX register says this IP supports
+> > > > > below formats.  It seems that the enum here may tell RGB888, RGB666 and RGB565.
+> > > > > How can we tell RGB555, YCbCr 24 bits and YUV444 then?
+> > > > > 
+> > > > > 000b RGB888 -> RGB888
+> > > > > 001b RGB888 -> RGB666
+> > > > > 010b RGB565 -> RGB565
+> > > > > 011b RGB555 -> RGB555
+> > > > > 100b YUV -> YCbCr 24 bits
+> > > > > 101b YUV -> YUV444
+> > > > 
+> > > > This enum is about the physical bus width. RGB565 == 16-bit, YUV ==
+> > > > 24-bit.
+> > > > 
+> > > > That said, I don't think that you need to specify the bus-fmt since this
+> > > > is coming from the panel. As said above, my itension with the bus-width
+> > > > property is to provide integrators (dts-writers) a possibility to limit
+> > > > the physical available bus width.
+> > > 
+> > > Mh, isn't [1] exactly about this? Not sure about the outcome at that time.
+> > 
+> > Thanks for the pointer, I wasn't aware of this discussion. I skimmed
+> > through the dt-bindings thread and I agree with Rob and Maxime.
+> > 
+> > We do have the bus-width endpoint property already. This property is
+> > alredy used by media and drm bridge drivers. Why not making use of for
+> > this simple bridge driver too?
+> > 
+> > Furthermore I doubt, that a simple drm-bridge MEDIA_BUS_FMT_* convert
+> > driver solves all the problem in a generic way for all platforms, all
+> > connectors, all routing options.
+> 
+> Nobody knows what new hardware comes up with ¯\_ (ツ)_/¯
+> Anyway we already have a similar problem on our MBa6ULx mainboard.
+> Current downstream workaround is to clone the display timings but
+> change the bus format. See [1]. Although I would like to get rid of it.
+> This is just the display connector on the mainboard causing the shift.
 
-## Form letter - net-next-closed
+I had something similiar in mind as a quick and dirty hack. However, I
+think that the same abbroach used here for the PDFC bridge could be used
+for the panel endpoint node to enforce a specific bus width. Another
+solution could be to add the bus-fmt support to the panel of desciption,
+so you can describe your panel within the OF.
 
-The net-next tree is closed for new drivers, features, code refactoring
-and optimizations due to the merge window and the winter break. We are
-currently accepting bug fixes only.
-
-Please repost when net-next reopens after Jan 2nd.
-
-RFC patches sent for review only are obviously welcome at any time.
+Regards,
+  Marco
 
 
+> Best regards
+> Alexander
+> 
+> [1] https://github.com/tq-systems/linux-tqmaxx/commit/777c02480182d3054264aaaf80e1dbc40a02cfc1
+> 
+> > If the i.MX93 NXP-EVKs in [1] would have connected the upper LCD_DAT*
+> > pads instead of the lower ones, there would be no conversion needed by
+> > the PDFC bridge driver, albeit the physical bus is cut to 18-bit width
+> > due to the RPi ext. header limit, which is expanded to 24-bit again later on
+> > via the Adafruit board panel FPC connector.
+> > 
+> > In such scenario the output width of the PDFC has to be 24-bit else
+> > you would lose not only the two LSBs but also the two MSBs for each
+> > channel. I tried to visualize what I meant for the blue channel:
+> > 
+> >                  24-bit PDFC bridge
+> > 		 ------------------
+> >         +----+----+----+----+----+----+----+----+
+> >  LCDIF  | B0 | B1 | B2 | B3 | B4 | B5 | B6 | B7 |
+> >         +----+----+----+----+----+----+----+----+
+> >           |    |    |    |    |    |    |    |
+> >         +----+----+----+----+----+----+----+----+
+> >  PDFC   | B0 | B1 | B2 | B3 | B4 | B5 | B6 | B7 |
+> >         +----+----+----+----+----+----+----+----+
+> >                     |    |    |    |    |    |
+> >         +----+----+----+----+----+----+----+----+
+> > SOC_PAD | xx | xx | D2 | D3 | D4 | D5 | D6 | D7 |
+> >         +----+----+----+----+----+----+----+----+
+> >                     |    |    |    |    |    |
+> >         +----+----+----+----+----+----+----+----+
+> >  ext.   | xx | xx | B2 | B3 | B4 | B5 | B6 | B7 |
+> >  HDR    +----+----+----+----+----+----+----+----+
+> >                     |    |    |    |    |    |
+> >                     |    |    |    |    |    |
+> >                     |    |    |    |    |    |
+> >           +-----------------------------+    |
+> >           |    +-----------------------------+
+> >           |    |    |    |    |    |    |    |
+> >         +----+----+----+----+----+----+----+----+
+> >  Ada.   | B0 | B1 | B2 | B3 | B4 | B5 | B6 | B7 |
+> >  FPC    +----+----+----+----+----+----+----+----+
+> > 
+> >                  18-bit PDFC bridge
+> > 		 ------------------
+> >         +----+----+----+----+----+----+----+----+
+> >  LCDIF  | B0 | B1 | B2 | B3 | B4 | B5 | B6 | B7 |
+> >         +----+----+----+----+----+----+----+----+
+> >           |    |    |    |    |    |    |    |
+> >         +----+----+----+----+----+----+----+----+
+> >  PDFC   | B0 | B1 | B2 | B3 | B4 | B5 | B6 | B7 |
+> >         +----+----+----+----+----+----+----+----+
+> >                     |    |    |    |    |    |
+> >           +---------+    |    |    |    |    |
+> >           |    +---------+    |    |    |    |
+> >           |    |    +---------+    |    |    |
+> >           |    |    |    +---------+    |    |
+> >           |    |    |    |    +---------+    |
+> >           |    |    |    |    |    +---------+
+> >           |    |    |    |    |    |
+> >         +----+----+----+----+----+----+----+----+
+> > SOC_PAD | xx | xx | D2 | D3 | D4 | D5 | D6 | D7 |
+> >         +----+----+----+----+----+----+----+----+
+> >                     |    |    |    |    |    |
+> >         +----+----+----+----+----+----+----+----+
+> >  ext.   | xx | xx | B2 | B3 | B4 | B5 | B6 | B7 |
+> >  HDR    +----+----+----+----+----+----+----+----+
+> >                     |    |    |    |    |    |
+> >                     |    |    |    |    |    |
+> >                     |    |    |    |    |    |
+> >           +-----------------------------+    |
+> >           |    +-----------------------------+
+> >           |    |    |    |    |    |    |    |
+> >         +----+----+----+----+----+----+----+----+
+> >  Ada.   | B0 | B1 | B2 | B3 | B4 | B5 | B6 | B7 |
+> >  FPC    +----+----+----+----+----+----+----+----+
+> > 
+> > 
+> > The mapping can get quite difficult for a single SoC already, just by
+> > using a slighlty different HW routing (the upper D[ata] pads).
+> > 
+> > Therefore I would keep it simple and device/ip specific (in this case
+> > PDFC specific) by making use of the bus-width. Specifying the bus-width
+> > property could be also wrong albeit it's the case physically, as you can
+> > see in my above example.
+> > 
+> > Therefore the bus-width property must have a good description.
+> > 
+> > Regards,
+> >   Marco
+> > 
+> > > Best regards,
+> > > Alexander
+> > > 
+> > > [1] https://lore.kernel.org/all/20250304101530.969920-1-victor.liu@nxp.com/
+> > > 
+> > > > [snip]
+> > 
+> > 
+> > 
+> > 
+> 
+> 
+> -- 
+> TQ-Systems GmbH | Mühlstraße 2, Gut Delling | 82229 Seefeld, Germany
+> Amtsgericht München, HRB 105018
+> Geschäftsführer: Detlef Schneider, Rüdiger Stahl, Stefan Schneider
+> http://www.tq-group.com/
+> 
+> 
+> 
+
+-- 
+#gernperDu 
+#CallMeByMyFirstName
+
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | https://www.pengutronix.de/ |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-9    |
 
