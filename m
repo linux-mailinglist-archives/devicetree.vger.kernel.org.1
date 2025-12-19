@@ -1,163 +1,172 @@
-Return-Path: <devicetree+bounces-248224-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248226-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A019CCFFFA
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 14:14:50 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B924CD0020
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 14:16:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5493230B62E0
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 13:12:06 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 54CC030393CA
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 13:12:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3ECEE330B09;
-	Fri, 19 Dec 2025 13:06:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F7052EB5CD;
+	Fri, 19 Dec 2025 13:12:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="U3zPlNJ4"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="oFED5coV";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="j893d/Uk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80E08330B07;
-	Fri, 19 Dec 2025 13:06:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766149598; cv=pass; b=Gtiw1EqIJxwckuEYfLe/iGZokCnjQyOOqZjOvULh/3nLEdCzuoMiq/QN+cA89SGYq6cfHXchKc+fpNgl77q90WPK9T1Dm0OdbbXV5IbV3zYgvstJe4kLlI7oO+UV1OZElx5Ai2CQRlT+BIPJ3eCQE6rqdFkekzllmEPxjjq2tMs=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766149598; c=relaxed/simple;
-	bh=SNcurpJh4cTV/J1pYqyHfmfHAgZfN64mQd3M7/k7Mbw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=CL7vH10w9/QBJwk8ZFoqeCbb5wi2yD8wVtAsFXEVL6VLXukfZxbIlxpr8+nv1qhx5mDO3jcUfq8kUWKI+aajYyWrkuqVGr7Ae3/sIoVXznOOjp4B1DgtAo3kRRI4rHsaglR0n+7JTpK49oXtcsg91WknvJMe27Tk5Y1Xgkx7fhY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=U3zPlNJ4; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1766149581; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=GmOprmdjNaFHk6r6ISU1szVfxMlr/+pLO2C+weD2Rv4jD8wnNcugOy+YO2M3bo2+PZAr4ozOIVPHucvwrdzJRdZ1DfaJ/G0FQFNY8UJ/AjqFiL2LvvUTXpSeA9rIB8kBh31UsPC2Ul+iu/0kDI9bdas0jcbpvcT+gAMGOy2ohO8=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1766149581; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=GqV1TxuZGmM0+l+LbeX4CZHJeCwyepPdOcdQFGFKo1c=; 
-	b=fE7F3kB6LAwNlS7W94d1iezckMYLkR/ngheNSK97dhE8Yjw+yTXOH3PvuBBSyJRks1qc/dDL6ywlOchnClZxGzHxG52t7Yj4f8mvJj1/1/DyAvveh5tefNGxcGDxJovozi3lEt8jPWL7YPPyvOf/L7V2PeC3jiYpuMfi27+4lEw=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
-	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1766149581;
-	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
-	bh=GqV1TxuZGmM0+l+LbeX4CZHJeCwyepPdOcdQFGFKo1c=;
-	b=U3zPlNJ46asIrZunAiVyNdQwQnHLj85spUcDSI7cTRefvUfw/tiU49oiLP4yZYDF
-	jde88XzHjxuGSTqcXYIK5+aMGoz7C6qcgkD33XzT4pv58xgOuioFBIS4C/Unr/a0CLF
-	VI+oPnrIBJdT6uXnpqgmmOBJ8cJZV94NN8mDvZVY=
-Received: by mx.zohomail.com with SMTPS id 1766149579059588.8359306488277;
-	Fri, 19 Dec 2025 05:06:19 -0800 (PST)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-To: Heiko Stuebner <heiko@sntech.de>, linux-rockchip@lists.infradead.org,
- Martin =?UTF-8?B?SG9sb3Zza8O9IChQcm9iYWJseSBOb3RoaW5nIHMuci5vLik=?=
- <mh@probably.group>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Subject:
- Re: [PATCH v2] arm64: dts: rockchip: enable both 2.5GbE ports on Rock 5T
-Date: Fri, 19 Dec 2025 14:06:12 +0100
-Message-ID: <3903009.mvXUDI8C0e@workhorse>
-In-Reply-To: <034BDB37-34FB-441F-B79E-1631CA501576@probably.group>
-References:
- <96516D1F-9787-47FE-A67E-4745D11D9207@probably.group>
- <034BDB37-34FB-441F-B79E-1631CA501576@probably.group>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2861621ABDC
+	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 13:12:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1766149973; cv=none; b=S6XBcFG8subyQ4fKJvCjVl6veRYUbOYnVUTL6qaQbY6Ov8gc5atxr1ziYIoyYGm923+vlEIcK8cDBonVQlFl2VFfAARXdFGNBUMhktudZW+8/jRrLYNBcKaMbUpjUJeLCQ8BT34y2tq62BRapbBpN9jNTp8SUQcJFVe0a5Zl210=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1766149973; c=relaxed/simple;
+	bh=GWy94Vf+wzIukMEl87VxJY8ixIuVBKH8iYhMGLG5GQU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=UreO3wXvRvLacA31lIcvG9y0WLpvkzo3BKxGkfuH28Q56uscs9yVoDeSg7Ahv2AA/V4AmL0kmBA4yUowILE8Or1FbRCRMBdRG//wAXo18GYtI1JH0aDlxJyUGndbx6Gm5dEiJ9cDUJfcvk8r9UnJn7/6odf/zxbnW0/rVfotWpY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=oFED5coV; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=j893d/Uk; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BJBgTXj3991646
+	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 13:12:51 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=K36NBtDXtxR21RNLQDO+6cgR
+	yGPnsAcmZtcmCarY0nQ=; b=oFED5coV8gDXLiaiMsXVcQOpkJQHcR4BXnIxAYdd
+	iXbZFbIjLYP0trBL/pTfsniAqpU8BY5LzMxyPEOsFy+rfjbrLhewOqUUbi1UpbqG
+	a9t4+lg3G505ynNVWUZdmcBDPjAhO9wPBCi/2U7wmqGAWJVbE1Q+BpR5Krwn1eRN
+	TZHzMTnQRDo/3T+k0RQ7/iQqSwAlKAvcc9+nltPBds8kyTKKRybQMa0PRO6KDLSK
+	l7oZsLY22Vwxww5cAWPqzO9SOZHkXVg4WgQ7J1TKP7DulkPSjkdK30ndU9CmYzHk
+	qGZPRKH87pctsblrSPLVFRhBIhi9b9TV3wO15Nc2N4rZdQ==
+Received: from mail-pf1-f198.google.com (mail-pf1-f198.google.com [209.85.210.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b4r2dap62-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 13:12:51 +0000 (GMT)
+Received: by mail-pf1-f198.google.com with SMTP id d2e1a72fcca58-7edad8ccbafso572695b3a.3
+        for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 05:12:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1766149970; x=1766754770; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=K36NBtDXtxR21RNLQDO+6cgRyGPnsAcmZtcmCarY0nQ=;
+        b=j893d/UkOwmspquEGaiLpssy49Ca5rw/LffuCA7FBLg3XPPQ8Jvdt5724EPEvy+42Y
+         Q1n8zw0hYYm5mBsC/FWoH/S01hNqemkTyq9x3444ZNSny2h5ofLcJ4FgfhoQvI63CPV0
+         gVZyHIRUY7yUYTLz6hA9YSjw/xeAGxRetqtMw6Vp9KGiocbZuLeke09CX/IGfZ6PYDwp
+         MPk9J3TXt7/K5CaHp78c0zB7+kT4XxN1158i24Io9ojsdKw6dvqsqvX8ceL1v+Qks8/1
+         WSHaGeeTFwxjDtHddcYEX6wiV2i/75PbvSK791sudFJArticjZFDjpyTuo3IsYLnw7X+
+         DOTw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1766149970; x=1766754770;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=K36NBtDXtxR21RNLQDO+6cgRyGPnsAcmZtcmCarY0nQ=;
+        b=Q1S5Z4hKJ5QLanxNmjsv+/rDYfNB6qUyWXFzF1V9e0CzlkKDRuTL4U8cbZdmFt8knZ
+         jCN1cxL/gEN0cX32UtlE0EofvoX/npnGdzodpRPfkJLROT0WZERF4Ni1+62obvRc65OP
+         wmkR5IAjYsQ6y+K0ZfYN+2nWL+wE4np8MEJiI72H5S+eETGF/tutJZD1qSXmHRLaMTCU
+         X+zEAHufNArwd7flzHtZmQfRVwQW2rNhojLkbY4xZNaj7y+nGbTzGhpZHQhO9Mxf3zn+
+         IYu1jYnICYc2w/fMqvwCqCaZFYKNSrtrn/P7AclM8Drr7tUhBKdgXrzJIiXUXc591ylQ
+         UExQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUAzunvFyNc7BEm5FyULRJT8gkUPD+yByksTsQDOxjRpN6fnFZ3+2lSqsRhfWlhBsKos0ZB85DbJhwX@vger.kernel.org
+X-Gm-Message-State: AOJu0YxPA/TJyorAPInb4CMcG7nEp1adTJn0o2hPBoUHrBEeMXO/lGT4
+	NPSU3pd5NVdyL5HgrmbktuglHxutiqdTYCDTzfU1odjlTVaN1N2B86tZvnwupBVhuEDI2v9TlJ1
+	G4isIhLCH8aqi2mI9m6RqbiABCzGevERPlCf4C/S+MLd7xa4OVvXhkuSxj0PDgv8s
+X-Gm-Gg: AY/fxX44Io+ACJE7jR7HCI26USW591ZJJ/3nQEghf7cVxydL9REWvVqpXiGhoNj+HMu
+	a781ReNjDwK3r7Ddtldwa8ztWjiIeCRUE0wNNGSoZpo+LcoRf3/UaHdHmCR8WUFJKuTCx4Xn62Z
+	eaEq5RUacyDpBvPAZ9W9ph0We+lHRaITJ66QmMDS3vgLEqCyqtxwcbtZjhepBkHmlTfw9VI0o+I
+	AoJaYjzF2KwKh8GwS4k0JRoly0rSeJupMs2LMgJRsjHWR2f/HLf4VwexycL9tIZ9/cQ/oMD9NXJ
+	M6bzC8lEFwaTw2/K0BciwsRLrLt4Yk/UObEdwpgWe75Wfx9fqnzX+tOVZawHvqpWfQNRd9Qsw3H
+	5mDn6YueqhQu6vxsDDLUmPMZ01ssPPOQVJlv7fLVaHORXK+P+0WioE32MDwoDbA3FzeKVr845xW
+	r+s74NpTp7NUXB2AHnWZGl5cwEbxEmVQ==
+X-Received: by 2002:a05:6a00:4b4e:b0:7a2:864b:9c8e with SMTP id d2e1a72fcca58-7ff66484275mr2119840b3a.3.1766149970126;
+        Fri, 19 Dec 2025 05:12:50 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IH+1piXvSsDrzO4it1QCN+OIrZs0rknwUkCTR+8uEjKh6uPPQZfesIuir1im7uRYWrjw8MqQQ==
+X-Received: by 2002:a05:6a00:4b4e:b0:7a2:864b:9c8e with SMTP id d2e1a72fcca58-7ff66484275mr2119813b3a.3.1766149969626;
+        Fri, 19 Dec 2025 05:12:49 -0800 (PST)
+Received: from hu-vishsain-blr.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com. [103.229.18.19])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7ff7dfac29bsm2427868b3a.39.2025.12.19.05.12.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 19 Dec 2025 05:12:48 -0800 (PST)
+Date: Fri, 19 Dec 2025 18:42:43 +0530
+From: Vishnu Saini <vishnu.saini@oss.qualcomm.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        prahlad.valluru@oss.qualcomm.com,
+        Prahlad Valluru <vvalluru@qti.qualcomm.com>
+Subject: Re: [PATCH v2 1/2] arm64: dts: qcom: monaco: add lt8713sx bridge
+ with displayport
+Message-ID: <aUVPSyoDE35eL4iQ@hu-vishsain-blr.qualcomm.com>
+References: <20251219-lt8713sx-bridge-linux-for-next-v2-0-2e53f5490eb9@oss.qualcomm.com>
+ <20251219-lt8713sx-bridge-linux-for-next-v2-1-2e53f5490eb9@oss.qualcomm.com>
+ <a9b29be9-e0d2-4643-a84a-55f565bf08bc@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <a9b29be9-e0d2-4643-a84a-55f565bf08bc@kernel.org>
+X-Authority-Analysis: v=2.4 cv=AcG83nXG c=1 sm=1 tr=0 ts=69454f53 cx=c_pps
+ a=m5Vt/hrsBiPMCU0y4gIsQw==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
+ a=kj9zAlcOel0A:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=X3cKLD2pE83tf_RQVeAA:9 a=CjuIK1q_8ugA:10
+ a=IoOABgeZipijB_acs4fv:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjE5MDExMCBTYWx0ZWRfX6MdsL2tudiWx
+ 9v6vQqGK+eWrPjG3AVtPKdGJU0Bp9osDfen63qBCGRNXnqax9qyFuhApk3TGrJk8daJF1i8IWZK
+ wJPohuHkx4K0OaCay+XprbJYZsqe6kezZZ+GC0qQtcXXG+r8OXmk96ObDn5A6QgsRuVbH3WrxBZ
+ VfqECLVQgVRIULPu6C51BWuhwQfWBqQjI8O31/e7j9xL69JO4WumoWDTHJZkf8Jgn2CWc0/D3I+
+ nT3vvJ8c4WNZ5jeApkeZvVEx/tQIAotRFuC8nQYZLCdtlc+oatMCc9v4a3yKtYO04XG7oWrt1aX
+ +YvicjyDqUi3xBvRXRMCvGZ+dtr2ZyvNG8z+jz8UokeW9EhqYILbpKA3YqdMafrSsEPHecKNEIB
+ vsmmS8jhz2L28/CoUQiCBKYC3a566hs2XYKXVg7W/K5RcDcxoIh2E9W9TtdSx8nkXZvf8MrVxWA
+ hPedfJ/jVD4+pq9TVdg==
+X-Proofpoint-GUID: xCNFxJb1uXIizhCo5AHh9GYJqQHUjg-G
+X-Proofpoint-ORIG-GUID: xCNFxJb1uXIizhCo5AHh9GYJqQHUjg-G
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-19_04,2025-12-17_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 spamscore=0 impostorscore=0 lowpriorityscore=0 clxscore=1015
+ priorityscore=1501 adultscore=0 phishscore=0 bulkscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2512190110
 
-On Thursday, 18 December 2025 07:27:06 Central European Standard Time Marti=
-n Holovsk=C3=BD (Probably Nothing s.r.o.) wrote:
-> The Radxa Rock 5T board features two RTL8125B 2.5GbE Ethernet controllers
-> connected via PCIe lanes pcie2x1l0 (fe170000) and pcie2x1l2 (fe190000).
-> Currently only one interface is functional because the PCIe controller
-> nodes lack the necessary reset GPIO configuration.
->=20
-> Without the reset-gpios property, the RTL8125B PHYs remain in reset state
-> and are not enumerated by the PCIe bus. This results in only one Ethernet
-> interface being detected, or none at all depending on U-Boot initializati=
-on.
->=20
-> This patch adds the missing configuration for both PCIe controllers:
-> - Enables both pcie2x1l0 and pcie2x1l2 nodes (status =3D "okay")
-> - Configures reset GPIOs (GPIO4_PA5 and GPIO3_PB0 respectively)
-> - Adds corresponding pinctrl definitions
->=20
-> With this change, both 2.5GbE interfaces are properly detected and
-> functional on the Rock 5T.
->=20
-> Tested on Radxa Rock 5T v1.2 running Linux 6.12.
->=20
-> Signed-off-by: Martin Holovsky <mh@probably.group>
-> ---
-> Changes in v2:
-> - Sorted pcie nodes alphanumerically
-> - Sorted pinctrl nodes alphanumerically
-> - Added Signed-off-by line
->=20
->  .../boot/dts/rockchip/rk3588-rock-5t.dts      | 28 +++++++++++++++++++
->  1 file changed, 28 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5t.dts b/arch/arm64=
-/boot/dts/rockchip/rk3588-rock-5t.dts
-> index 0dd90c744380..aeb8e0d42f09 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5t.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5t.dts
-> @@ -68,10 +68,24 @@ &pcie2x1l1 {
->  	reset-gpios =3D <&gpio4 RK_PA2 GPIO_ACTIVE_HIGH>;
->  	status =3D "okay";
->  };
-> =20
-> +&pcie2x1l0 {
-> +	pinctrl-names =3D "default";
-> +	pinctrl-0 =3D <&pcie2_0_rst>;
-> +	reset-gpios =3D <&gpio4 RK_PA5 GPIO_ACTIVE_HIGH>;
-> +	status =3D "okay";
-> +};
-> +
-> +&pcie2x1l2 {
-> +	pinctrl-names =3D "default";
-> +	pinctrl-0 =3D <&pcie2_2_rst>;
-> +	reset-gpios =3D <&gpio3 RK_PB0 GPIO_ACTIVE_HIGH>;
-> +	status =3D "okay";
-> +};
-> +
->  &pcie30phy {
->  	data-lanes =3D <1 1 2 2>;
->  };
-> @@ -101,6 +115,14 @@ pcie2 {
-> +		pcie2_0_rst: pcie2-0-rst {
-> +			rockchip,pins =3D <4 RK_PA5 RK_FUNC_GPIO &pcfg_pull_none>;
-> +		};
-> +
->  		pcie2_1_rst: pcie2-1-rst {
->  			rockchip,pins =3D <4 RK_PA2 RK_FUNC_GPIO &pcfg_pull_none>;
->  		};
-> +
-> +		pcie2_2_rst: pcie2-2-rst {
-> +			rockchip,pins =3D <3 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
-> +		};
-> +
->  		pcie2_0_vcc3v3_en: pcie2-0-vcc-en {
->  			rockchip,pins =3D <2 RK_PC0 RK_FUNC_GPIO &pcfg_pull_none>;
->  		};
->=20
+On Fri, Dec 19, 2025 at 01:16:41PM +0100, Krzysztof Kozlowski wrote:
+> On 19/12/2025 12:32, Vishnu Saini wrote:
+> > Monaco-evk has LT8713sx which act as DP to 3 DP output
+> > converter. Edp PHY from monaco soc is connected to lt8713sx
+> > as input and output of lt8713sx is connected to 3 mini DP ports.
+> > 
+> > Two ports are available in mainboard and one port
+> > is available on Mezz board.
+> > 
+> > lt8713sx is connected to soc over i2c0 and with reset gpio
+> > connected to pin6 of ioexpander5.
+> > 
+> > Enable the edp nodes from monaco and enable lontium lt8713sx
+> > bridge node.
+> 
+> 
+> And how much time did you give to maintainers to respond to your
+> comments before sending v2?
+> 
+> You gave yourself 1 month. To the community you give 7 minutes.
+> 
+> That's just unacceptable.
+Apologies again maintainers, i will be more careful next time.
 
-This stuff is already in rk3588-rock-5b-5bp-5t.dtsi. Ergo, this patch
-does nothing at all. What are you actually trying to solve?
-
-Heiko, please don't apply this.
-
-Kind regards,
-Nicolas Frattaroli
-
-
+ 
+> NAK.
+> 
+> Best regards,
+> Krzysztof
 
