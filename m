@@ -1,164 +1,169 @@
-Return-Path: <devicetree+bounces-248133-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248134-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6CDDCCF0CD
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 09:54:18 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E18FCCF0D6
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 09:54:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 70567303371F
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 08:54:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 38E5E3041CE7
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 08:54:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 346942EBDCD;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7912D2EC563;
 	Fri, 19 Dec 2025 08:54:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="YoC6Vg47"
+	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="n549GOLX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx-relay03-hz2.antispameurope.com (mx-relay03-hz2.antispameurope.com [83.246.65.89])
+Received: from mx-relay59-hz1.antispameurope.com (mx-relay59-hz1.antispameurope.com [94.100.132.230])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C55C02EA468
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4DA02E62B5
 	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 08:54:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=83.246.65.89
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=94.100.132.230
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766134447; cv=pass; b=qTfPbTWgikZYMGcAj3SZA2lh/7yOt6VEOqWa0ydCor90NKGE0gbwv2Ss3axLUjJh9QKMPNKeQXanHoAM4cr0/oCw7Cvxs94W+OhwcO2PIF0eo3sToOgDazV5bgLmkeYx9uFlccCz0T876y05PKT3r7Qod08gaJ/sasHR0TsVhqE=
+	t=1766134447; cv=pass; b=bnBFOsCqc1QT6jPcZ3KQdK1vsoKVnROcJSBpSsc9fzl5VSAW5hnvmt5G6/VXrDVwMqyQPvi/MA+hPTYVKTw1A4XB7FqtMF1x/7Qs5qmICP/EkaaiEMeBiLl7toL8vHVS9tebJFyP0W5jTEUASgq2tZTb4f42mIzb79jvHDZ33GM=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1766134447; c=relaxed/simple;
-	bh=7lPH8ZuwqrR0EPFMmGW3KMxzeLFRv6JnjvXAyllK02A=;
+	bh=6oc7It17KeilgegxeNRo1i/RHu/E39oXWX/QlQF0RCQ=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=fnWDfuUBTc4uojHoOFECcd2V55maOUFPqTejlcvsXtidASiTX2lMhEEGzyy+5qK1DTsJU9nUPNGcySRthq1NcdFv7I9wAumXg6TLgmW3DHFzugb+PXhde4tK8HgQSNEXjLNdlO0Alm0ZQfztuNSh7iECMqTGM/Sp2Gcz0iAx2UU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=YoC6Vg47; arc=pass smtp.client-ip=83.246.65.89
+	 MIME-Version:Content-Type; b=Qk63VM7Ua/8o5mn/thNLbhtvRj+Fkn0yjFRDvORx74/WbEjcYPowyPsmuEwKMCjWfe2+fsPFYUXg3NjjCKZHFv8fCNV94CKOGWXbb/BljUIqckdS8btiqI0jrbS981H7cy56a75B6sz8gTZIukAN5pf5HD+hJrExQIJyrzkNbVo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=n549GOLX; arc=pass smtp.client-ip=94.100.132.230
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-ARC-Authentication-Results: i=1; mx-gate03-hz2.hornetsecurity.com 1; spf=pass
+ARC-Authentication-Results: i=1; mx-gate59-hz1.hornetsecurity.com 1; spf=pass
  reason=mailfrom (ip=94.100.132.6, headerfrom=ew.tq-group.com)
  smtp.mailfrom=ew.tq-group.com
- smtp.helo=hmail-p-smtp01-out04-hz1.hornetsecurity.com; dmarc=pass
+ smtp.helo=hmail-p-smtp01-out03-hz1.hornetsecurity.com; dmarc=pass
  header.from=ew.tq-group.com orig.disposition=pass
 ARC-Message-Signature: a=rsa-sha256;
- bh=XlXr7igiWKsjjzIb+5AsG+BOhT+y2sXxD6hRFSbAez4=; c=relaxed/relaxed;
+ bh=6oc7It17KeilgegxeNRo1i/RHu/E39oXWX/QlQF0RCQ=; c=relaxed/relaxed;
  d=hornetsecurity.com; h=from:to:date:subject:mime-version:; i=1; s=hse1;
- t=1766134343;
- b=VUoTccffnIqvhBF00zxfZP7rGrJ1grXaO2fM/0nQ7x0myaVVBgtrgPdoGoD/OnCppk1FCZXC
- 8j+ahQ/gjcZ7WNAGVG1CK4NKjZPDhkKFFYIe9EZX2SNkQjrK4lCfkjI9YkiaYnkd6IofFeitjzy
- L3CiNfsbQ6t1abpjT92HprjpCrYX0cNRIXSjeknzhCpxY4/4amSuSJckX1wTBkfBm8KeMPI7qQj
- HMRv0m2h5fkvinznsJRZ6sdeFMDzER7Vd8LbRSaA5QE7MK0AgyHrKP3Fy2zXPjvApApp25qqnjF
- k2kmQg4ax3kmjk+SRAwkYmgSpwWDmigc7oTreZ8RbY1aQ==
+ t=1766134367;
+ b=scEWDJeehWdNOamsmjtCcB8LQiPOJ6cHjG19Rmws4U2f5Bza3rm/LC/NgnR6rjRrJsbZ5oD4
+ b6dqxfCxvarRCLKp7Z3bkam0Xwwq3qONyi+3AsJujNjYA8Mn3i0BfpEJFE/WI/Er7YNUoZXruMu
+ W2vGcme5DefwVuxc/wDEi6s9QpncTqC8o6n2nW7ucelbxP2JbVYHCmk1fkGfQfR4+g9KyA2g3z5
+ yNp1LfBny2qZNqKgI10adg+rxD/STqdAtIM1870uyhlPHSeYlBLvhkbhLV3CPdBRPynSrt4cJ4w
+ ksXCj9MmbM25poLxJHuDz35WfkevNpx9oCodXcrq1BFdg==
 ARC-Seal: a=rsa-sha256; cv=none; d=hornetsecurity.com; i=1; s=hse1;
- t=1766134343;
- b=aOLBL14nG4xcXgo0ZyJcoCb5d1LqM19oZn2BHO3hqfapkpKCKs87BoN+mG770KuEeg7epbZO
- JxCpIkPEj558Ha8wGGYORe7bx8F8SYqGVCJOyA6job3+S5KpRMf8HIlFjcl1nDfuHuBEuOSN+sn
- yIyhvchJ4eTk7SJdLMh7Rr0XUaQRYZHVx4OT9ur6c47f4CUnLjs6aYJi5axq7pmv9+huo//zczh
- 4s4z9KlZ4Ale1MkDXhX/lsrYbuDt6ebIxgzn5dw4xX8jKvAMwNa4GQo6Y0uXXFgSAGG3/yOlnfO
- RE7rLhsmT2DDPKY4jkgXEMZINzV/lAwbkU5dJVFYFjIaQ==
-Received: from he-nlb01-hz1.hornetsecurity.com ([94.100.132.6]) by mx-relay03-hz2.antispameurope.com;
- Fri, 19 Dec 2025 09:52:22 +0100
+ t=1766134367;
+ b=P8MfYuQSEfq4z7A5unBOr3ioc3tFG4uJNWLkfgMIvymPVRmwA33YnhrcNGnI/t9Y3hN/iILN
+ noDMguFRZ2XDaK/UUGFID/VhsmQ0WqUjuaD/5w8fG0CiMC1W/7Wj7+4rHGIufWb8Uh/taGYOXlN
+ Cr99YILVSqv5KAVhARgf5LGEbp9+Vp7wcMS0sYDo+t1v7PqnvqS8fMMZv7zTk/Ad5nsqIVeYAFb
+ O5vQ0fHGnLpggVIHHoB82Cz1IbBkQTnGJuFxqmlEy++6XXnXZnzuar0l+sboJCalVXwgmAp64Tt
+ x1BItjid0dZNjoskw/c+h08EKQhuKqJmileBDa2RNERyQ==
+Received: from he-nlb01-hz1.hornetsecurity.com ([94.100.132.6]) by mx-relay59-hz1.antispameurope.com;
+ Fri, 19 Dec 2025 09:52:47 +0100
 Received: from steina-w.localnet (host-82-135-125-110.customer.m-online.net [82.135.125.110])
 	(Authenticated sender: alexander.stein@ew.tq-group.com)
-	by hmail-p-smtp01-out04-hz1.hornetsecurity.com (Postfix) with ESMTPSA id 4751A220D57;
-	Fri, 19 Dec 2025 09:52:16 +0100 (CET)
+	by hmail-p-smtp01-out03-hz1.hornetsecurity.com (Postfix) with ESMTPSA id 2A461CC0DFA;
+	Fri, 19 Dec 2025 09:52:41 +0100 (CET)
 From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
+To: Fabio Estevam <festevam@gmail.com>
 Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
  Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
  Peter Chen <peter.chen@kernel.org>, Pawel Laszczak <pawell@cadence.com>,
  Roger Quadros <rogerq@kernel.org>,
  Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
  Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
  Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Magnus Damm <magnus.damm@gmail.com>,
- Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-usb@vger.kernel.org, imx@lists.linux.dev,
+ Magnus Damm <magnus.damm@gmail.com>, Marek Vasut <marex@denx.de>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+ linux-usb@vger.kernel.org, imx@lists.linux.dev,
  linux-arm-kernel@lists.infradead.org, linux@ew.tq-group.com
-Subject: Re: [PATCH 0/6] Support TQMa8QM
-Date: Fri, 19 Dec 2025 09:52:15 +0100
-Message-ID: <24355727.EfDdHjke4D@steina-w>
+Subject: Re: [PATCH 5/6] arm64: dts: Add TQ imx8qm based board
+Date: Fri, 19 Dec 2025 09:52:40 +0100
+Message-ID: <5334958.kQq0lBPeGt@steina-w>
 Organization: TQ-Systems GmbH
 In-Reply-To:
- <CAMuHMdUkghCNb96J38hbEZ8Jct6m2MPvnPumGp-y_dPfPW9eAg@mail.gmail.com>
+ <CAOMZO5CmP_rdFA=PqGSmKDU+ObzifHFDjwYMD3J67bjs0h_sfw@mail.gmail.com>
 References:
  <20251218152058.1521806-1-alexander.stein@ew.tq-group.com>
- <CAMuHMdUkghCNb96J38hbEZ8Jct6m2MPvnPumGp-y_dPfPW9eAg@mail.gmail.com>
+ <20251218154412.1524249-1-alexander.stein@ew.tq-group.com>
+ <CAOMZO5CmP_rdFA=PqGSmKDU+ObzifHFDjwYMD3J67bjs0h_sfw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: multipart/signed; boundary="nextPart5083097.iIbC2pHGDl";
+ micalg="pgp-sha512"; protocol="application/pgp-signature"
 X-cloud-security-sender:alexander.stein@ew.tq-group.com
 X-cloud-security-recipient:devicetree@vger.kernel.org
 X-cloud-security-crypt: load encryption module
 X-cloud-security-Mailarchiv: E-Mail archived for: alexander.stein@ew.tq-group.com
 X-cloud-security-Mailarchivtype:outbound
 X-cloud-security-Virusscan:CLEAN
-X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on mx-relay03-hz2.antispameurope.com with 4dXh9s3M9TzYd7D
+X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on mx-relay59-hz1.antispameurope.com with 4dXhBL1g4tz2H3m
 X-cloud-security-connect: he-nlb01-hz1.hornetsecurity.com[94.100.132.6], TLS=1, IP=94.100.132.6
-X-cloud-security-Digest:d9ceb68c40de01de860771274803b5bf
-X-cloud-security:scantime:2.014
+X-cloud-security-Digest:ec9600c3e752c55b521189496a3b09b6
+X-cloud-security:scantime:2.013
 DKIM-Signature: a=rsa-sha256;
- bh=XlXr7igiWKsjjzIb+5AsG+BOhT+y2sXxD6hRFSbAez4=; c=relaxed/relaxed;
+ bh=6oc7It17KeilgegxeNRo1i/RHu/E39oXWX/QlQF0RCQ=; c=relaxed/relaxed;
  d=ew.tq-group.com;
  h=content-type:mime-version:subject:from:to:message-id:date; s=hse1;
- t=1766134342; v=1;
- b=YoC6Vg47r1nR1ena4A1AuL+PV/XYOW39Rfq92EFVnSaMZbF5cP13vtfnrT2SrUBx+zU9Ytru
- j9fJQTv88xCqdEG61Esm/YE/weRJpmRcVsYIJmLMk/bjretrYduiwMixRVLOsM7dm3YuhZ4TvDl
- 9l1OIwvzSQzIvf62jTcO1Huo2GAYxq+O2hEhG+7UCobAs/BRiDd4x6DpsnZG+HCr15hQnklmi2l
- U08u+dLw0g9OvbHG5dNUTCCBb/hlze8KTh+15hg7KR9yB0Kty9psm3Vd/upN/wVbsk9ztosb67I
- CDbjx0YFugc0YssALMzQhtWBRkDhTqQWFIYwrwjuHcYWA==
+ t=1766134367; v=1;
+ b=n549GOLXmCCkNU19n2P3rnNo84wi9E1DLYz0z0YjvxJOH/Yx1J6JS19yAfAhd9k3aUX0tFn4
+ TlnV/a6blwhnznMlpcfy3dVX1TZmb7n8KDC/27MHSuRt9wZw35Ggi4M56LiGy6BqRVJZ8rtx3Uz
+ YdgprAY6dttIDALHdhQouedmqXKg/avV3LC3UGEASCY8vBDbWv3NvafULloRHG4OMkrXqkXMD4V
+ k0aNdXqF3j0OsbeG938cFgec1+I+bHi061HZomd1+BFWHDC/maImeRQfx7vEG88UcHM6FK7W/In
+ 5p47sfsufnUITWBXpOo7XBC1C9RgLZkAsI9WyNFOWh3iw==
 
-Am Donnerstag, 18. Dezember 2025, 16:28:39 CET schrieb Geert Uytterhoeven:
-> Hi Alexander,
->=20
-> On Thu, 18 Dec 2025 at 16:22, Alexander Stein
+--nextPart5083097.iIbC2pHGDl
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"; protected-headers="v1"
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Fabio Estevam <festevam@gmail.com>
+Subject: Re: [PATCH 5/6] arm64: dts: Add TQ imx8qm based board
+Date: Fri, 19 Dec 2025 09:52:40 +0100
+Message-ID: <5334958.kQq0lBPeGt@steina-w>
+Organization: TQ-Systems GmbH
+MIME-Version: 1.0
+
+Hi Fabio,
+
+Am Donnerstag, 18. Dezember 2025, 16:47:33 CET schrieb Fabio Estevam:
+> On Thu, Dec 18, 2025 at 12:45=E2=80=AFPM Alexander Stein
 > <alexander.stein@ew.tq-group.com> wrote:
-> > this series adds support for TQ's TQMa8QM. The first 3 patches are prep=
-atory:
-> > 1. Add support for clock-output-names for clk-renesas-pcie. This is nec=
-essary
-> > as clk-imx8qxp-lpcg.c (driver for phyx1 phyx2 clock gating) reqiures th=
-at
-> > property on the parent clock.
+> >
+> > * TQMa8QM on MBa8x
 >=20
-> Hmm, clock consumers should have no business with the names used by
-> clock providers, even less so whether those names are specified in DT
-> or not.
-
-Well drivers/clk/imx/clk-imx8qxp-lpcg.c does exactly this. AFAIK not just
-the ones references in DT, but also hard codes ones.
-
-The root cause is that clock-hsio-refa and clock-hsio-refb in
-arch/arm64/boot/dts/freescale/imx8-ss-hsio.dtsi are setting platform-specif=
-ic
-GPIOs in SoC .dtsi...
-
-My current idea is to use fixed-factor-clock instead:
-
-> &hsio_refa_clk {
-> 	compatible =3D "fixed-factor-clock";
-> 	clocks =3D <&pcieclk 0>;
-> 	clock-div =3D <1>;
-> 	clock-mult =3D <1>;
-> 	/delete-property/ enable-gpios;
-> };
+> This commit log should be improved by explaining the SoM and base
+> board in more detail, providing a URL, etc.
 >=20
-> &hsio_refb_clk {
-> 	compatible =3D "fixed-factor-clock";
-> 	clocks =3D <&pcieclk 0>;
-> 	clock-div =3D <1>;
-> 	clock-mult =3D <1>;
-> 	/delete-property/ enable-gpios;
-> };
+
+Will do, thanks.
 
 Best regards,
 Alexander
 =2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+TQ-Systems GmbH | M=C3=BChlstra=C3=9Fe 2, Gut Delling | 82229 Seefeld, Germ=
+any
+Amtsgericht M=C3=BCnchen, HRB 105018
+Gesch=C3=A4ftsf=C3=BChrer: Detlef Schneider, R=C3=BCdiger Stahl, Stefan Sch=
+neider
 http://www.tq-group.com/
+--nextPart5083097.iIbC2pHGDl
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEByESxqszIvkmWRwbaS+g2M0Z/iUFAmlFElgACgkQaS+g2M0Z
+/iUH1Qf+IxHFSR95T2hBQwwM9IgO1Inlb91z7oiYIXySTXPCEjG6Av5RtEuSZl2e
+O+dt4h1CE9XXqLEY2DVjSvlFAWEx/L5EUisdPyJ2tXGliCgeVwF3XZW+C/ovnfdO
+7jhXmGvdD2mFi3CO/wVemv1ppF7bMUby3dnyTDOjXVOfEf3a2hmT31pMqWgYzhCE
+dEriyn7CXcQo1ZnNKjApIPZBVIaIhjkEXeghiUl1rTOzg/UHKF4vDfxXKyPqvDVV
+RadFi1ad3RPyf72KEX3v6++BU5qn0jEjemNtK7XNRqfGZtPVUhT0N0fDiy5hAjIl
+prnxK1jJb+NOc19mnDS82JD0ru0lOA==
+=Q+zr
+-----END PGP SIGNATURE-----
+
+--nextPart5083097.iIbC2pHGDl--
+
 
 
 
