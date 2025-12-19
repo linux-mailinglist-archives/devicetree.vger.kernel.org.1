@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-248091-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248092-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 050ADCCED06
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 08:43:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 11A6ECCED09
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 08:43:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 106DE30542F7
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 07:42:43 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C99433014605
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 07:42:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C073B2D8DDF;
-	Fri, 19 Dec 2025 07:42:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 514002DC77F;
+	Fri, 19 Dec 2025 07:42:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fFXA/nIJ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EOEABHYl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
+Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 019901A267
-	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 07:42:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B90CC2BEC27
+	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 07:42:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766130162; cv=none; b=fwZOAchOvH7CQ1ecEQyOWCsceNs3v9MJR3dJjer99HClOSD28gAOUXeXrg372W7yO6SL8VUZy9XOurPHme6UVy6dt2YBZ45Ed2deWcwMbOycxaIcQRBGbnqH1jZunFRZzYfaDog6LvMs1/RmuGItNnbVoL4YFxaN9gD2bppkfuc=
+	t=1766130167; cv=none; b=iueb1/bI8kNf9LbKUe4SpRKO/EXujPzJvk7kDK2qlqAmKDY0/g0doUmK9I4Y3t51xxm0s4Sm1nTAFgzVhYNevyfvORRD9AIWocSyXkkNYXpyyYrnQXR0M1AQqvWcqdSwgiZdDXDyH9HqtYPelzP3ogHnaRQa2hnBM5SmUHGOqhc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766130162; c=relaxed/simple;
-	bh=/r6f9IRpVGju3Ryu7UDsRNF+0ADreBgeJr9SFE2YWMw=;
+	s=arc-20240116; t=1766130167; c=relaxed/simple;
+	bh=Ynzt5v58obwnhda42H/gajIJVLz4GWJg6Tg2WmflUX4=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=lq/3iI7po89N3/xzNa/HseoMF36K0HcLOjR0ZjTFR4WBPwYFZ3JaaN8wGtaTwn/WrNxaIWJGZuphrxXLZHuJkcmvh1KX78yov3uIy8yAITQz7B9+bgFGr1DjMRRbk1gre99piHr1MYN1cemJnSF5bnfMm3cv0kpADG+Xlo4Guno=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fFXA/nIJ; arc=none smtp.client-ip=209.85.210.179
+	 In-Reply-To:To:Cc; b=cifB9KKJ7AmRdA1zV1dHX+q8ti5q9tQx6Hd6e/QMgf4m2KN0dLkEnfRn2MFDCvVwFAaKSwVc8beQUTENXsZlj6PPxOgUUoflV37N2lPFslIyITGhNRPCEWcJnPSG6BwtZ6CRP9kAYcfLFpzM0lplE/I+lGWg5yzG+f9RiBcg2kM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EOEABHYl; arc=none smtp.client-ip=209.85.210.181
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-7b9215e55e6so991800b3a.2
-        for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 23:42:39 -0800 (PST)
+Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-7d26a7e5639so1814600b3a.1
+        for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 23:42:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1766130159; x=1766734959; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1766130165; x=1766734965; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=A16mIOMQmuaHn2+TKOnGQUAwRDMDtpdj4WXcnB4hmwo=;
-        b=fFXA/nIJNMyDxLN6y76x45iqbwiPnUPtpbX9K5TX4lQb79luW+UrzuEvMCbSC7c9mj
-         /O17ojgRW8Pbmd2nQTR2GFnKoJn2L/aQKZmt+Ob/XqarKATXsfmMxxwypXVzC94riMLE
-         hCVjVAK7Jccqtxctt7HGpKpWNpxEmIg9DHFB8Onb7DqjVlPGzAWbm8lrBJBauuXZUGId
-         LL+q/IYRYFve9Hp18pHM6zm3X0XoWbBYrwC1U0k52kRhFb0AHvLvVXGPrbeVg3WzTzG3
-         zBEopyiBLS+Q1lbp8TD1NhljCqjCZZbjDOpRlGUGrXXzB4ilmg79R8anj5UpToyFkUPg
-         J9Ww==
+        bh=7gskLEpYvfTmHkZ8CaNqOvSk3HkUojmzZhMB2CXBxgs=;
+        b=EOEABHYloNlOdOzdL5QFKJ1w/IsODNn4Vf9pBaUjkJAlHyWa2kfAkvd/TwDxjttfNX
+         g6fN7IYcghL6yS2T/kRLLoauoYTqxD4qC6cysF7ldcMc9TCiygCM4uVuV54OC7sPs/7q
+         cwW7KzahWkKprorYUA3An2zfWeTOyAObUauAkqT5jvjAyxyOg+12eyU9xG1JZdcMpYbb
+         qP9V8b/YPp8Q15LpepuAOx+lr8mPIqnSbJeVB0z7IHKspvsvCX4XXgYwy+K12Ug7Klti
+         PjT0xNdgmMJ9LtOYKPu7colxnegYvHpO9B8YZB2vgSOEDWSBTIxHoPAgo7HXIggLF+nH
+         t4Cw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766130159; x=1766734959;
+        d=1e100.net; s=20230601; t=1766130165; x=1766734965;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=A16mIOMQmuaHn2+TKOnGQUAwRDMDtpdj4WXcnB4hmwo=;
-        b=RHcu1qr/EhxJ78U7FyOWAsRz6IS+HixlrHdyrD3f0/SZOPARpF3h2yjGmNnwpMUNZG
-         g3ckbv4VzmvC3zIR2gSgj8w5sFuzY06lEeDuRjYQjRz7x5RBJtA0ylQn5s50j6gihVqx
-         Bwp05k7SUEZpbGiNe6I7igCzan0IeGbSibVZEPg6WkhP0/g1XoY+JoKbqOGJ5/3xfwRU
-         kFlFUOAcM5NoXYn8MK30jGunl2qTgfa6QniqZg7qjhNMArWcEsMVUQPQISpf/pSkpQCt
-         ZEUbgUdqt7Z8cdBFH58k4H8Y9crbUlqBs1dIQ2KFLIri2Ve1pulnetcyb6tsDBbHDCdM
-         VhLw==
-X-Forwarded-Encrypted: i=1; AJvYcCXVFIFaCyA1RNitXc1sXmWaE1aGSPR89U3vhz7dWczow96cfoH/JtHGyC1hR99kb85D/bnUj8xqxFoj@vger.kernel.org
-X-Gm-Message-State: AOJu0YxiP4o2VAyStGAx/5WdnZRKvH936JnlAqvJUPQioK/sx0mPt98V
-	taMpDMzRdPPtuCxB1eg87s2Mcp6PLgHNJcRmg35VHoi9Tj1ej+5TmSsx
-X-Gm-Gg: AY/fxX57/Bwwet09cfc6kg1IDuhbQ4oPF+hFwXQf3ZatijdiXRd/4dMy7cyxyvMXc1Q
-	iU8+OxykfMa/yE8C1HA9KjOYrmWzSwHML0ueTimlj2Kq8OSG9XaKCo4z/fsRi+n4rtM3xhw4x2t
-	FZ0fzyTLAjgCjIYhvW1RZm7sF1+22ZXWiJxLzC5NTkwgCbEUVFzymCMDZN24Q7hZHK0sGrhSlR+
-	EZX25LC4kJI9J0eEWgm573VkFZxctbaELJz72Jy1YwEIIt/ldU6YTBQh7rl+3gMsmF7vhVkxxLl
-	rbMPpZOPfK0i9yAQB2whYtspprWMl23b8GGUH7iiMR62cRISNk5odg2JR7E87yg0q57XMwsOiDA
-	1lhR7brYazkNvBNDcdhnrZHFFG/uZ9UsyeBZL96pCqg3XFKiqEgnr
-X-Google-Smtp-Source: AGHT+IHMDEZLLOxw+3dAFpieF2QA1Yfe4kaK1QG7vQqgmnkvKYHURHQzbX3y21w9Lj3QQl7AzO8tFw==
-X-Received: by 2002:a05:6a20:914c:b0:366:14b2:30b with SMTP id adf61e73a8af0-376a9cddf9fmr2091296637.62.1766130159109;
-        Thu, 18 Dec 2025 23:42:39 -0800 (PST)
+        bh=7gskLEpYvfTmHkZ8CaNqOvSk3HkUojmzZhMB2CXBxgs=;
+        b=O85qiCNZ6Yai0Ji4EgayElJ3DDeNZBdZSu5XroTU5OpeTsIWnry4QfSvtY20FoWcNm
+         gOXO5mUJzYPAb5PNAO1BcA21f7+tXgbm746s4Wd0FsZ5r3FFn0wz1oGKpoi6UIk7QtS7
+         gPMMjNiaRaBuXti6shugkKh/4wr7JMg0bVDZpOfBg6GUAujelZwq/rWZyE9eEsjKrmuI
+         LpM9UuTwC6Dp9euPbyGUGM4OZnhWXh+RGig6nArKfJf9N699a7PLUF6LsWdFtlU3yml9
+         ozucNUzsQArG00daTakSU7ftTVxTyIphkS1xsHfyQ9BGS/Dlc7a2+CYYc0c54jmtm/Iw
+         DbZw==
+X-Forwarded-Encrypted: i=1; AJvYcCUxCiMY412he5ZYD/9KykauZDx8pK3ZRcw8xjXZFW9L8MWxdQOr5xKUDrETrO/UJt7RXsyl53flgqTj@vger.kernel.org
+X-Gm-Message-State: AOJu0YyFi/x5Ep+MZ2hr3uGQ/TWwVoHlw0PRBEs06KFo+cDA3OvRApVN
+	XM+d3o1R1XBbqAbfMeNXrNcTxEwx9Im/GP/SkBHPHk7aUw6nXXBqaPHM
+X-Gm-Gg: AY/fxX4pj8NxrT0KNN4l5CpW85yzi8UZhAVqrSUnY6gTsdSU0FvXr5jyb4YKuvvAYFa
+	h81svM4ba7vdjSmteKQ1qn/c44PC/3cb3JCGMHFK2ZEq3S8hP+woRhkIRAAgw8HahDwERk0o2BR
+	UusmnsO3iGcrH5k1rEYvlYP+GkJI56Nc2stV1pytsZmTCbzvy+nqS5MGrikN7Ux+KtJiaWJhap7
+	jCAAvfSuDSDyufVKVWVHhxIoXoFBH/ge9cwcGu7Pg9cLHKXlMYl9uPvISfeiPCkxoN8kEtYInYT
+	GOWJo2Utbcwxo1aLjmDLDuKBJ8Pwk7BMy5cACn+zs0B+bDFIndRiF4IdTGEUKHBH2X1z3zibKh2
+	iYxxnFaF6rrGHcVQK01yfNL+CkFqmggfHC0s0g7ZkMxkrK1W2hETJ
+X-Google-Smtp-Source: AGHT+IH8um1u+/F9IR4mQclrwTJCUs1YBwb7PhDmU+FSfhTQhTdwaDaF9aezKXIjOn8tGRCOsfD+xw==
+X-Received: by 2002:a05:6a00:1d27:b0:7e8:450c:61c1 with SMTP id d2e1a72fcca58-7ff66679547mr1708853b3a.49.1766130164675;
+        Thu, 18 Dec 2025 23:42:44 -0800 (PST)
 Received: from localhost ([221.192.179.86])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c1e7bd602desm1335791a12.21.2025.12.18.23.42.37
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7ff7b4234e2sm1512802b3a.27.2025.12.18.23.42.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 Dec 2025 23:42:38 -0800 (PST)
+        Thu, 18 Dec 2025 23:42:44 -0800 (PST)
 From: Encrow Thorne <jyc0019@gmail.com>
-Date: Fri, 19 Dec 2025 15:42:20 +0800
-Subject: [PATCH v2 1/3] dt-bindings: i2c: spacemit: add optional resets
+Date: Fri, 19 Dec 2025 15:42:21 +0800
+Subject: [PATCH v2 2/3] i2c: k1: add reset support
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,7 +82,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251219-i2c-reset-v2-1-ad201a602e74@gmail.com>
+Message-Id: <20251219-i2c-reset-v2-2-ad201a602e74@gmail.com>
 References: <20251219-i2c-reset-v2-0-ad201a602e74@gmail.com>
 In-Reply-To: <20251219-i2c-reset-v2-0-ad201a602e74@gmail.com>
 To: Troy Mitchell <troy.mitchell@linux.spacemit.com>, 
@@ -98,37 +98,57 @@ Cc: Troy Mitchell <troymitchell988@gmail.com>,
  spacemit@lists.linux.dev, linux-kernel@vger.kernel.org, 
  Encrow Thorne <jyc0019@gmail.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1766130147; l=857;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1766130147; l=1515;
  i=jyc0019@gmail.com; s=20251009; h=from:subject:message-id;
- bh=/r6f9IRpVGju3Ryu7UDsRNF+0ADreBgeJr9SFE2YWMw=;
- b=wvV25q8btJ4G30xXAzQfVKnpzsZrDgyjSlGnmi9bOhuNQ9Aeuh6j0rLJZZ2UdmpI8Wk3BNmIX
- Bd8J5IqmhlsD4ZMfSltfVzsoWEpZ9saVGE6AaJqKlfN0k6035M6lSH8
+ bh=Ynzt5v58obwnhda42H/gajIJVLz4GWJg6Tg2WmflUX4=;
+ b=qMfQlZSVzRGvXZdg3oEioN5Cn5Xm2J1x59daHMj1raOdC0lTKCnZqnLoQeM/xYyg7eq3aQSEi
+ yhbHPR9x9ooAJ1+wCoS5U5WsMyorqPVeBT+RjAIOxX0vOoHqgDQp5hl
 X-Developer-Key: i=jyc0019@gmail.com; a=ed25519;
  pk=nnjLv04DUE0FXih6IcJUOjWFTEoo4xYQOu7m5RRHvZ4=
 
-The I2C controller requires a reset to ensure it starts from a clean state.
+The K1 I2C controller provides a reset line that needs to be deasserted
+before the controller can be accessed.
 
-Add the 'resets' property to support this hardware requirement.
+Add reset support to the driver to ensure the controller starts in the
+required state.
 
 Signed-off-by: Encrow Thorne <jyc0019@gmail.com>
 ---
- Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/i2c/busses/i2c-k1.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml b/Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml
-index b7220fff2235..1290106e28e6 100644
---- a/Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml
-+++ b/Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml
-@@ -32,6 +32,9 @@ properties:
-       - const: func
-       - const: bus
+diff --git a/drivers/i2c/busses/i2c-k1.c b/drivers/i2c/busses/i2c-k1.c
+index d42c03ef5db5..23661c7ddb67 100644
+--- a/drivers/i2c/busses/i2c-k1.c
++++ b/drivers/i2c/busses/i2c-k1.c
+@@ -10,6 +10,7 @@
+  #include <linux/module.h>
+  #include <linux/of_address.h>
+  #include <linux/platform_device.h>
++ #include <linux/reset.h>
  
-+  resets:
-+    maxItems: 1
+ /* spacemit i2c registers */
+ #define SPACEMIT_ICR		 0x0		/* Control register */
+@@ -534,6 +535,7 @@ static int spacemit_i2c_probe(struct platform_device *pdev)
+ 	struct device *dev = &pdev->dev;
+ 	struct device_node *of_node = pdev->dev.of_node;
+ 	struct spacemit_i2c_dev *i2c;
++	struct reset_control *rst;
+ 	int ret;
+ 
+ 	i2c = devm_kzalloc(dev, sizeof(*i2c), GFP_KERNEL);
+@@ -578,6 +580,11 @@ static int spacemit_i2c_probe(struct platform_device *pdev)
+ 	if (IS_ERR(clk))
+ 		return dev_err_probe(dev, PTR_ERR(clk), "failed to enable bus clock");
+ 
++	rst = devm_reset_control_get_optional_exclusive_deasserted(dev, NULL);
++	if (IS_ERR(rst))
++		return dev_err_probe(dev, PTR_ERR(rst),
++				     "failed to acquire deasserted reset\n");
 +
-   clock-frequency:
-     description: |
-       K1 support three different modes which running different frequencies
+ 	spacemit_i2c_reset(i2c);
+ 
+ 	i2c_set_adapdata(&i2c->adapt, i2c);
 
 -- 
 2.25.1
