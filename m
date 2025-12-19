@@ -1,80 +1,81 @@
-Return-Path: <devicetree+bounces-248301-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248300-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F4D6CD0EE6
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 17:41:32 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8169ACD0F5D
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 17:46:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 919BE30150E1
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 16:41:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A81D53075C17
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 16:41:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AC663396E0;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C16D34DB43;
 	Fri, 19 Dec 2025 16:41:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="zaDPtlaD"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="EAuzqlZv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f65.google.com (mail-ej1-f65.google.com [209.85.218.65])
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B0FC33DED3
-	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 16:41:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57D9A342538
+	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 16:41:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766162488; cv=none; b=VtXXoUllM3zb4Ej8+Ob2emmiayzH29aLCJbpAdaoLB8ZZOdxxNCk/NlWpyLRrqbJ51X2h+c6PliHAe6q4yzVPRhcMWZIlO8FDo7C2S/uMczyYJAjpfOfMuHsvXGHCN7T7nKfoUpMeG5hTBpjMkUlQ2Sk8HaHL7Iuc+Iesx0ZKXw=
+	t=1766162485; cv=none; b=jUg2yPnT0LaOgEUR9g3Nbgk6Kdk3IjdK3adLP2Xsw31MYdO78N+6ybkYppqepQcXMfyYPmcPmpD7ByI6IivDo4hdXVy4UNEFKVCldsM34D8+nj8wt5o0y4ljHXbwFVsTmD0OLFfRoARcMgbPg/IN0sQqwETjX/S57+5FdMmuUQg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766162488; c=relaxed/simple;
-	bh=ucfG3/xpPbSz5u5wmkm8abE5HIantGt2GhrnIFQVyic=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=AaJekmyZ4e/Z7VfrenAviDL2J9manVxJiWL5hJJvX9ZgxySOUAMJz9xS+TlCwEUGtXzNQ5IVYlc7mN3AxAojQEeQC+aD/LeEfgY6yGB3sJ7NK1r/YzpXFrqOHLDBZJNaJqi+zkkQN2PReAPX9Dvig8hcw/jqqn6xEF2LjFbatSY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=zaDPtlaD; arc=none smtp.client-ip=209.85.218.65
+	s=arc-20240116; t=1766162485; c=relaxed/simple;
+	bh=t5HFnNXhnxSLu0HbcMB5zyaLqy0cPi/BThYL9zb/2sc=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=D6lc5GNvla1N1OSaLy2AuQFz9S2uAdm101RshtKfVLd5OtkW5bTqBbn6pbvMRWqeu96fC3pv+bqIzgIlFXIOEpUDoU9OjrCSQ84alKx/Sd+UgwN0HM5HPCD71g1Eg11Ekd7kd+7Yd7UcDDTUaBvgTn86i664g8B/9MIB1EkEIGo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=EAuzqlZv; arc=none smtp.client-ip=209.85.218.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ej1-f65.google.com with SMTP id a640c23a62f3a-b7a72874af1so352138666b.3
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-b79ea617f55so250823266b.3
         for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 08:41:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=fairphone.com; s=fair; t=1766162479; x=1766767279; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=t2kzU44j8jBSDtGQe926o+4fjeshGhfwHjfNhdVR/KY=;
-        b=zaDPtlaDLE4j+7b8J028SHtCdDwtkYv8/RF8abcK3g9jXsqzNJN0NqRdJ2cZsR1iMn
-         QPRnXN9mlDRIX6o2+vpBPgdt1DrOeEkf8JVN8iFO5HdbXCi6FQCrG03XzrOyc+N629ID
-         LmlDMxyrMd1FOL46g51H5MUtTq65Vo2uZxo4SxpDENqzqs2wgcxhPyES6c1xXNNe0aQ6
-         F7ZbYLaVNy66c2ne9wIOMMfgrcb2uI3gcVzYSXAqNoLtT1gSsdp3GYPNPhUvvsJ3Ec7N
-         rFbG2HQ+blETW/VYRl4HiLIhLWGBrFhMCJY20iax46paOI4s1GVzyHo5mOYZaETqT7E3
-         Bg3w==
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=mFh6b7zgZI1HsA8s8Bqqbi9ow8eV3Aoe737Rsj3OItI=;
+        b=EAuzqlZvGEuA4Dns0/pGJOnoH4TOeuXnSflTgprotvvtjilsboHqjLctUdDyEI6bER
+         d5/+QVzMuzMVzlM0vemey8EHzlC0GeUCD9lTvk9pKqDX0MWkOfg0rM63coyzRRRkt6BL
+         xuDdYy48+oy5ZPbe/eaVQuHdgoSPA83dlETnVz1zTQV0uJQ1xIa9TOgHJh48DK6b36iv
+         ZFQn9JO/QaFq4BjjQI40yTvighVrSsg+x+HVYOIudIOZHdaJzEQS5lFx2XSzaGbfop0P
+         3Sbws0tEZixigMIMtjJokRogT6YH/1aSsjytJxgvMrO1Amf2Ls4EFEIrdOcAP6iohKvM
+         gCXA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20230601; t=1766162479; x=1766767279;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=t2kzU44j8jBSDtGQe926o+4fjeshGhfwHjfNhdVR/KY=;
-        b=VAbOORXf5MarIB4WEfVhRPfjhnUzcnnRcGdnXIqe6ejWOgwU2ZLQM8j9SfLuLBltrr
-         J0woUZVvQcn7QI2UaD3kHKHB1BUOgN494Nt87VwBgH5mOa+RmlewFCZnF4VGMa2wR45A
-         YNwVPjr4vr/D1RbR9astVz1w3DXosZbv86fQ9hEezrKGkwSz90CZ25bZwgApE7D7QRQb
-         4zN5QKr0E6cqWDDbxGXKe35Hpodpal4AK6C4fJiu3ZVjfMUYagX7Q5nOIU/inEwQA5Jq
-         a2iZbfT74fv/aaVFDmLHwiyQTH7UzOqc3DwwvJrozVaqi0Nn3UtWtqCI7mWl1WbaWs+J
-         zBig==
-X-Forwarded-Encrypted: i=1; AJvYcCVIOqIGh48FWYeXrxzMB/N5zmpSr6W0WIyXhWIYzscAZs0F+5PGEyL+Vth8SA6tCk1se1R6EqAJjTZU@vger.kernel.org
-X-Gm-Message-State: AOJu0YyLGfzxcaMkJVlvy7rH1Ej7o0cyppDCe+WyxAhM1nSetE4yzjCg
-	8ltgCtO5yKqwtbj5VhEcK09K0iFTOnF57vqehNgxjgh/3f4ifgpCXZfocfBX/NeUZHI=
-X-Gm-Gg: AY/fxX77Mpyu/ddTzeVgUYbgpR08v6AvbIJgnOtGIDSqo23vKk93okkeXQuTR5ZM6wT
-	E0l1HpLwMkTjhKpffXXnRr7MPB8QQWOy7Ij2x786xR8IPNgQMh9pqbtaZI1UlmwPww/rJPKgM6p
-	2xl2LacMxSTlGrXAWItwogRs/vSgfUyxyLj4B1RyzrgxqRfsIwBwmFX+0UMyes6odTCTzXyrYhO
-	U4F1H6EYfNiFZKkOov2CFUzb6sLZY8JE8OZOJYXIM3/B3H5QvPL5udFDVmP4OczTtaSzzStLOwx
-	axu66GC6oMdsLkt8jxdc8G5le9MyUCu79rfbbvNGhb19hNAPwXaJInYfJ9dusIGDux7T6VKuOe/
-	J0eewAtutxHmnolnH9tXa88Th+/uxvlquz6sM6/yZ0wc+qwP5FoDg0RkLQ3tTHp6n0vwT/CflMN
-	3QK/IrwBy8Yqsi5nK+/012mkGLocLuvWPNIWsJYysYltgp7DZ5J1XKcKYboGt2MNHDGoQ7ejk8D
-	/lEgB2XU+T6Z/TPYx7n3COpJ9BKyGMuC0c=
-X-Google-Smtp-Source: AGHT+IEaFbfo58dESu/7UUTqBgyeHYsfx7xP4W4fAJTOuAdSjlywqklvueTJX6xzQc9E0FRh5v+ocg==
-X-Received: by 2002:a17:906:6a25:b0:b73:9b49:2dc7 with SMTP id a640c23a62f3a-b8037183ebfmr324320966b.52.1766162478678;
-        Fri, 19 Dec 2025 08:41:18 -0800 (PST)
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=mFh6b7zgZI1HsA8s8Bqqbi9ow8eV3Aoe737Rsj3OItI=;
+        b=T/1AcO5lGZ/zP5RGL8cg9ALPlnyt0VrLv+E7xV7lvJS6BHqQ8kd7eLBvr6E1PRt/4C
+         otQ3Ap5O6u0FP8YGF8iZ9EUnNBvYwQEwufWuw+3nWF2fdosLzvDNyTKCfJhBjHKDBlUs
+         LilYjd7t6J8mNmlqpdUs06g8Ej3eMhIXAmqVMdwPWCgFMSuhDR+2qN+X9HEN6wBD7iVi
+         fPK2XZ0EV/s/neciyhkd/akdmRigHIVqmcojULUHJdTUdii3R+DKuRZPYJ4zfswnGblq
+         HGWxHTZdLnzkBVPcvtsB/N78EvQbwE/866czhbpJWyYSYx4EWVhThyzt/h1U592lKG7b
+         D5bA==
+X-Forwarded-Encrypted: i=1; AJvYcCU2/ha4OVNilfpXCfT1Vqqym5xeqVfpXhSpRuy5odnX9DFN1Y2e1d9Q2nHDc+8ABHd2Ipwiyz8/cMow@vger.kernel.org
+X-Gm-Message-State: AOJu0YyXX8MCmrIuezASZnwRPADDCIdjOqIyMzN3LCr9y2rzLx68PHdf
+	8e4mBzWVlUwJFi0+i1ZwzH3ajjM9+MsDmjK9w0ALgJleM4WnsMZyw/coOfw7dvQbpxw=
+X-Gm-Gg: AY/fxX7R6pYXSNAg4zE4z6E55yU2XXkSAm4yS1qnptVDA/NigR3voM2aayE0fl19EfO
+	PUO0/mmxO70cCdU1nC2ihSWFTP+7CxF89y8I/JMkkTGa/7diLSPxbnbtfylCkghNkakRwfpwM3j
+	8+6Dydob48ORddswtlqKhm0Q7Tc7CfTa7BA0uTDJdCprhJigsXcTN41jrpnN58mzlgl3U3EiiSE
+	8PtcyNpPL/vTlsy0mr+f6q+7/6S7YWM9yP3g4UtRbdSeGW16+Ib0IDoqvs4q/52zBhrujXSxTOn
+	TIbzDTLN1qwNEp6RVWPV1ygKLhh/S1+jk085F4ik7qj9z1WTi+AxWStgwpX0ZC9Am6+ffxxN22q
+	C1WdX5hwmO/hFfcIJY8AdQC8e3KE7QW8ES/Db4T12zUT40VyrDyB/IBQ8RKdfv/mP65TZUGhCwg
+	ibjj+Cel7eFwmiT+591N8mcFn4Qr5bg7VkIrTsuAZORnTaN0/dnB5ROaV8J+ICw5fWCUEFq5lec
+	UgGdyUqySb8BqQg+S96gOP/lNFsNLxpqMc=
+X-Google-Smtp-Source: AGHT+IG5xQQDju37djeKp8Zgcj7rgGU7z6CWHlLL/w7AfRHVUi9V/ccXZ3Gb0icbkIvDeWOUnP8NhQ==
+X-Received: by 2002:a17:907:1c1d:b0:b7c:f77c:42e7 with SMTP id a640c23a62f3a-b80371d37b9mr396657766b.43.1766162479431;
+        Fri, 19 Dec 2025 08:41:19 -0800 (PST)
 Received: from [192.168.178.182] (2001-1c00-3b89-c600-71a4-084f-6409-1447.cable.dynamic.v6.ziggo.nl. [2001:1c00:3b89:c600:71a4:84f:6409:1447])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8037f4ef1fsm270073866b.64.2025.12.19.08.41.17
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8037f4ef1fsm270073866b.64.2025.12.19.08.41.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 19 Dec 2025 08:41:18 -0800 (PST)
+        Fri, 19 Dec 2025 08:41:19 -0800 (PST)
 From: Luca Weiss <luca.weiss@fairphone.com>
-Subject: [PATCH RFC 0/6] Attempt to bring up display on Milos SoC
-Date: Fri, 19 Dec 2025 17:41:06 +0100
-Message-Id: <20251219-milos-mdss-v1-0-4537a916bdf9@fairphone.com>
+Date: Fri, 19 Dec 2025 17:41:07 +0100
+Subject: [PATCH RFC 1/6] soc: qcom: ubwc: Add config for Milos
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,10 +84,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIACKARWkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDI1NDI0NL3dzMnPxi3dyU4mLdtEQDczNjM0tjc3NTJaCGgqLUtMwKsGHRSkF
- uzkqxtbUAXpnMk2EAAAA=
-X-Change-ID: 20251219-milos-mdss-fa0763693775
+Message-Id: <20251219-milos-mdss-v1-1-4537a916bdf9@fairphone.com>
+References: <20251219-milos-mdss-v1-0-4537a916bdf9@fairphone.com>
+In-Reply-To: <20251219-milos-mdss-v1-0-4537a916bdf9@fairphone.com>
 To: Bjorn Andersson <andersson@kernel.org>, 
  Konrad Dybcio <konradybcio@kernel.org>, 
  Rob Clark <robin.clark@oss.qualcomm.com>, 
@@ -102,89 +102,54 @@ Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
  dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
  devicetree@vger.kernel.org, Luca Weiss <luca.weiss@fairphone.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1766162477; l=3814;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1766162477; l=1527;
  i=luca.weiss@fairphone.com; s=20250611; h=from:subject:message-id;
- bh=ucfG3/xpPbSz5u5wmkm8abE5HIantGt2GhrnIFQVyic=;
- b=6kFDJkb27+1S/KM6JtihyCmbtRfH48KsMI4CJJ+vZfiHNxUP/S4L+J3+uHLZNu3O/bEmA1LN6
- 5ms4n3cr1YuDx9lAahnXN5ZpgXhIzqSkw4Z5VGf6d3ucTmnay9J+m/s
+ bh=t5HFnNXhnxSLu0HbcMB5zyaLqy0cPi/BThYL9zb/2sc=;
+ b=EoGcG/sMLsZ+n/tQW2JV/CykTnYFk5wscZuExCSdKs6oC1UTb3wWbgCcx7IrWQcQSUcMonII5
+ z2uIyuCf5hSD4AWSUC+TFtP5nwTgjA9IkL9CUto62zfEZhNtEBAZwyD
 X-Developer-Key: i=luca.weiss@fairphone.com; a=ed25519;
  pk=O1aw+AAust5lEmgrNJ1Bs7PTY0fEsJm+mdkjExA69q8=
 
-Hi all,
-
-This is a very WIP RFC series that attempts to add display support for
-Milos, in particular on The Fairphone (Gen. 6) using the SM7635.
-
-I have excluded sending panel driver and dt-bindings to reduce the patch
-count, since they should not be relevant for now.
-
-The data in the patches is mostly derived from the downstream msm-6.1
-kernel for this SoC, named "volcano" downstream.
-
-https://gerrit-public.fairphone.software/plugins/gitiles/platform/vendor/qcom/proprietary/display-devicetree/+/refs/heads/odm/rc/target/15/fp6/display/volcano-sde-common.dtsi
-
-While I'm fairly sure a good chunk of the data is correct (marked "OK"),
-there's still many unknowns (marked "TODO" or similar) that you can
-see in the patches.
-
-Unfortunately it doesn't work yet, with the screen staying dark and
-these errors appearing in dmesg repeatedly.
-
-[    6.541696] [drm:dpu_encoder_frame_done_timeout:2727] [dpu error]enc33 frame done timeout
-[    6.587091] [drm:_dpu_encoder_phys_cmd_wait_for_idle] *ERROR* id:33 pp:2 kickoff timeout 0 cnt 1 koff_cnt 1
-[    6.587387] [drm:dpu_encoder_phys_cmd_prepare_for_kickoff] *ERROR* failed wait_for_idle: id:33 ret:-110 pp:2
-[    6.589509] [drm:dpu_encoder_helper_hw_reset:1763] [dpu error]enc33 ctl 1 reset failure
-[    6.637482] [drm:dpu_encoder_frame_done_timeout:2727] [dpu error]enc33 frame done timeout
-[    6.680077] [drm:dpu_encoder_phys_cmd_wait_for_commit_done] *ERROR* failed wait_for_idle: id:33 ret:-110 intf:1
-[    6.680356] [drm:dpu_kms_wait_for_commit_done:525] [dpu error]wait for commit done returned -110
-[    6.684517] [drm:dpu_encoder_helper_hw_reset:1763] [dpu error]enc33 ctl 1 reset failure
-[    6.729507] [drm:dpu_encoder_frame_done_timeout:2727] [dpu error]enc33 frame done timeout
-
-The panel is the BOE BJ631JHM-T71-D900 with a Novatek NT37705 driver IC,
-running in command mode (not video mode).
-
-The vsync/TE pin should be configured correctly:
-
-~ # cat /sys/kernel/debug/pinctrl/f100000.pinctrl/pinmux-pins | grep GPIO_129
-pin 129 (GPIO_129): device ae94000.dsi.0 function mdp_vsync group gpio129
-
-A full dmesg can be found at https://public.lucaweiss.eu/tmp/milos-mdss-log-2025-12-19.txt
-
-Schematics of the device are also available if somebody wants to take a
-look, starting on page 109:
-https://www.fairphone.com/wp-content/uploads/2025/08/Fairphone-Gen.-6_-Information-on-how-to-repair-dispose-of-and-recycle-EN-NL-FR-DE.pdf
-
-Please let me know if you have any ideas what could be wrong and how to
-fix it. Thanks!
+Describe the Universal Bandwidth Compression (UBWC) configuration
+for the Milos SoC.
 
 Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
 ---
-Luca Weiss (6):
-      soc: qcom: ubwc: Add config for Milos
-      drm/msm/dsi: add support for DSI-PHY on Milos
-      drm/msm: mdss: Add Milos support
-      drm/msm/dpu: Add Milos support
-      arm64: dts: qcom: milos: Add MDSS
-      arm64: dts: qcom: milos-fairphone-fp6: Enable panel
+ drivers/soc/qcom/ubwc_config.c | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
- arch/arm64/boot/dts/qcom/milos-fairphone-fp6.dts   |  71 +++++-
- arch/arm64/boot/dts/qcom/milos.dtsi                | 211 ++++++++++++++-
- .../gpu/drm/msm/disp/dpu1/catalog/dpu_10_2_milos.h | 284 +++++++++++++++++++++
- drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c     |  22 ++
- drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h     |   1 +
- drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c            |   1 +
- drivers/gpu/drm/msm/dsi/phy/dsi_phy.c              |   2 +
- drivers/gpu/drm/msm/dsi/phy/dsi_phy.h              |   1 +
- drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c          |  24 ++
- drivers/gpu/drm/msm/msm_mdss.c                     |   5 +
- drivers/soc/qcom/ubwc_config.c                     |  12 +
- 11 files changed, 627 insertions(+), 7 deletions(-)
----
-base-commit: 167013d059d5c4a09d49068408044c7a65a26cee
-change-id: 20251219-milos-mdss-fa0763693775
+diff --git a/drivers/soc/qcom/ubwc_config.c b/drivers/soc/qcom/ubwc_config.c
+index 15d373bff231..790e67c7db3e 100644
+--- a/drivers/soc/qcom/ubwc_config.c
++++ b/drivers/soc/qcom/ubwc_config.c
+@@ -16,6 +16,17 @@ static const struct qcom_ubwc_cfg_data no_ubwc_data = {
+ 	/* no UBWC, no HBB */
+ };
+ 
++static const struct qcom_ubwc_cfg_data milos_data = {
++	.ubwc_enc_version = UBWC_4_0,
++	.ubwc_dec_version = UBWC_4_0,
++	.ubwc_swizzle = UBWC_SWIZZLE_ENABLE_LVL2 |
++			UBWC_SWIZZLE_ENABLE_LVL3,
++	.ubwc_bank_spread = true,
++	/* TODO: highest_bank_bit = 14 for LP_DDR4 */
++	.highest_bank_bit = 15,
++	.macrotile_mode = true,
++};
++
+ static const struct qcom_ubwc_cfg_data msm8937_data = {
+ 	.ubwc_enc_version = UBWC_1_0,
+ 	.ubwc_dec_version = UBWC_1_0,
+@@ -223,6 +234,7 @@ static const struct of_device_id qcom_ubwc_configs[] __maybe_unused = {
+ 	{ .compatible = "qcom,apq8026", .data = &no_ubwc_data },
+ 	{ .compatible = "qcom,apq8074", .data = &no_ubwc_data },
+ 	{ .compatible = "qcom,apq8096", .data = &msm8998_data },
++	{ .compatible = "qcom,milos", .data = &milos_data },
+ 	{ .compatible = "qcom,msm8226", .data = &no_ubwc_data },
+ 	{ .compatible = "qcom,msm8916", .data = &no_ubwc_data },
+ 	{ .compatible = "qcom,msm8917", .data = &no_ubwc_data },
 
-Best regards,
 -- 
-Luca Weiss <luca.weiss@fairphone.com>
+2.52.0
 
 
