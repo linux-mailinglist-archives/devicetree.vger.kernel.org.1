@@ -1,75 +1,77 @@
-Return-Path: <devicetree+bounces-248220-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248221-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B8FECCFF85
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 14:07:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2851BCCFF9D
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 14:09:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4A5CB30EC2BE
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 13:02:45 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8922330F0161
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 13:03:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98631324B23;
-	Fri, 19 Dec 2025 13:02:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8E45324700;
+	Fri, 19 Dec 2025 13:02:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YKoQLMor"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="doJBWl7h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
+Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A85C72DF140
-	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 13:02:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 647233242CC
+	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 13:02:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766149325; cv=none; b=OFn5PUm+iWjNweCG96OxTB9XSj/la5e5ywGmBQVdZR0M88CcydJYiikxvd57zZ9ikHAdTgtvcWk8Ee6/JEunMljPLbbV1todrnS2OqgnPZPvK6v59B26liDRoth1MHg0LK/V+8JH6YIftnq1gBnMVtvEAtxoig5RMVmXIfoVKc8=
+	t=1766149327; cv=none; b=sL8SC9iE0ypWfq5YIB5jubT/EqaG3Q3/SThwd8g+2n2PShVssN7H+lw0IYLr+9625/KZZH8w2whlNn3N0Wcf3Sr5gLoHJ+IvXVyt9npYD1FKBgg43xEGOVMbQJw0IO6m82YcvX20uzBRGZSSLIp/01T6AjF9aopA65dF40uZIuM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766149325; c=relaxed/simple;
-	bh=f26vqX1MsTCBTlZUhohkUiFdKOZcgzwakoC4ZMDUOYU=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=svY6yfAeugjgsgUPsW0sY2x/oRycy/a9DJo6WMVAeAFfsOeo9lZPBrPEb8KK6JMN/1SVAEiIeDReAho/tUkyKnjIjy/0Ga+d6iN9H/5xJoyxFzfzLGm5/wuCHciQK5ulJmkhBhKAfMypSz/NLiUXHj+2h8HkuY5RVsc6EZxiYAM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YKoQLMor; arc=none smtp.client-ip=209.85.210.179
+	s=arc-20240116; t=1766149327; c=relaxed/simple;
+	bh=iTUKbokLySiAuL/JB1R0e+SK54dkKVZR657P+V2Vwog=;
+	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=IknZwp5BajNSPS0v8hfkcbeSrprQpUB7y1VQrWmYZbOb+gWBSSMNyCuNFaxllvqr6f6dVUry+96KbbkFUyIev0SpDarxMJM/s/newZbHnT73oNK8qvkDhzhWxw7cd5bifaWNWXFy9hCYPR0SlizUAzYoEB9lXFHLpgyNhNbpdvc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=doJBWl7h; arc=none smtp.client-ip=209.85.214.177
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-7aae5f2633dso1715259b3a.3
-        for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 05:02:02 -0800 (PST)
+Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-2a0c20ee83dso21455285ad.2
+        for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 05:02:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1766149321; x=1766754121; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=24yMvMWLE20TGqIKZ+WjeZL7Jsjdd4RyEuPRvODfMUs=;
-        b=YKoQLMorgCWWtcJM3ztn+6LRVZoj9lPS6VGqWVxlPE8pku5yv/7TG2zv2q1LPDu/Ju
-         klb1+eBZUKPdK2q2hihESPl8UY0yup7RJi7Ft9kXeYUsMctXeNE5Zw/QkjzY/P5Z5QV5
-         3ZakhefNB/cVEMtYlNbwCMxroNFWA+OxvS/mZ/+1C3C3ZChP/SDqrVzxtF69gp+NnKGI
-         D4vNMr7pIU6V/bPGKziallTEgwiE2122OH+Uu4SZFdot5nc3R4i1Td3gHJjCWRPswbSV
-         x93J0lGqaQI5IPjm3KDsGRJpZdqOHt/l0wNhNZydy8X/v5tQv2EfQqKhX/PcZ6xaBEjm
-         u5mQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766149321; x=1766754121;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=gmail.com; s=20230601; t=1766149323; x=1766754123; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=24yMvMWLE20TGqIKZ+WjeZL7Jsjdd4RyEuPRvODfMUs=;
-        b=UrhDIXcHNHP/sDaf57Tdp2S0t2uQbrghQav6H1iA8ZtBNiiUDk5dwwO5gBPkL5ACeP
-         umI55pQx9ZbSSmd66WIz+L1g8YMg6fdGxACoV00NQAmYMjpYS9T22VU++T+CkmgMBBIn
-         z1ws0kBg8nToGYTmOXMBw/lyv8/2OTrrE7+j5AbCKuyYr2qTBEM/Ovx1loi6QkAMsivn
-         5GQFGQtPTriXCGGdyhdjsOjemzEGWiPvsZ70MDCOLEK9x1YdLGzDpyoONEOLrqe+KBJI
-         gB4Qdb0tZPcohLRkqAFYGE/Yx9+9BWATcqLgQ/ZOzk+R+45+z2Shkbfzq3Ya2OegB3UJ
-         XaiA==
-X-Forwarded-Encrypted: i=1; AJvYcCXzZxeyU+02Th97vh9XMO95XJpbPuW7UqflRSDaYFON4/BFCRzgVOSXp5rgwmmZeFiWHzMTi6wV5UwL@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyda/3w3fowkTn6EmRdt8xySQZ9RObUFy8e76eQNb8kgOzXVBkH
-	LynVRa5EFwRd3MXyU5x3cm1fwdRY98Ib94EoZ2E5kG+nyIMGVLZapWKe
-X-Gm-Gg: AY/fxX74RCb3KvhN7UcsURelJ6oCkv7Tmlfa06vJ3pzxlG1gYEVUv8IZN0dQHKI71Gp
-	hSvpCSb8EMD1sS0lBEfp+JYvZdiSqcYwVCYXtL5/vsyUQQF5BhDs20IWtVDmKOMl++DB6MPkEjO
-	+WtqTrF8uJKOg9ii58KZhSZWlN/krpFs+DfbdESHZxN1N8BpOZ+pYaMt2pDzxmBN5XVkfC8kZzj
-	QFcOXpBLnWsjP2DcsR7F+bQ0tItVGmotfxFC+jYyp9KeRtd4eIFbG+hOm4WE+fnXPpsHOEthaoY
-	CU2oeMxMPc0eyu5LcjJVk0q0IMPKJXi5FlFvFIXgzM6JVHesSfp0QstLO6ZNnH8bK4rfMnulbHL
-	6b8yyDx10r+vEpzX7ciS05OAtAzbdsPmib3LQ+2Q5Gzez01gfmFjfMiwdu94NsFZXq9m12nNsLC
-	gruqj8GdXf1M/7g4xFT+iihG7XyI4iHHnwCdE=
-X-Google-Smtp-Source: AGHT+IEBqpXOFOWi9FGHEozwoDXLvtpUzvbmhTqq3flj5sLnIKGcxLY/pvvsjMhuIZGpBau79KLMHA==
-X-Received: by 2002:a05:6a00:1d9f:b0:7aa:f791:4ece with SMTP id d2e1a72fcca58-7ff6430ce50mr2560201b3a.11.1766149320567;
-        Fri, 19 Dec 2025 05:02:00 -0800 (PST)
+        bh=qzHX/1+gO7BOmCAtaoxauQ4HekZNBtK84PsIjHOWEXY=;
+        b=doJBWl7h3eOK4w28PVJqzb4BBPDTPVDOvlTk3Z21de0M0wCfNt3YQkhI8S/OhKfSL9
+         Fkslv5K4QX8xDbuC02RuRLHLsYF1rwU1CX6lcxPSST9yx1goPNKaI78/G9QnTYntW7n3
+         sSMgxZ65TMnfEQmqyugyt14P/GFu5xq/XX6rIhHFFw3EwkFr/JWWkLLmX0uJDLxESOyb
+         Ua0YabXjwQDjpg24RH3k9i5vRsn0eqr7A+yE93MLSRos5zuQlgXvdNnrC+W5D6JqhC8N
+         G3gn28Jg8OuSZl0Hm/2A6uxupaqerpW5ehX/oNg7DHGXp2WgEdNwVrcwa+YphcOwNQqZ
+         bKVA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1766149323; x=1766754123;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=qzHX/1+gO7BOmCAtaoxauQ4HekZNBtK84PsIjHOWEXY=;
+        b=O5vAxWqcm6FyddifhGXpqCP1Ha1UsOM2xO1awaJFDR3QDsU+FBMHLA9D+mJwKkoHQE
+         0pvJUdeA7F+N3KOoxIOrOMlzZNdcOcGjzTPfae1jIQ6WtMUaBvpEmA54cyZAasHxrh+a
+         /RHK+bRNr+jUw9bCP4xmoEFGDw0ntWwh8dGiPFBKVW1AmA70IbhS9s4ztICHDt4L0qWX
+         a8Zyh0XlzRieaHX37gvOmvRFJ7sNTXJjbUfRI2RjSH/ZhJMTHWSTo9zuZdp+yqouka26
+         IEDwdM3T2zBh5fHCMYqLZYThpWqvRwQ0Bawd8FFThKEyzWcWXMhBBmnnDBH0jpzQPKJx
+         w+QA==
+X-Forwarded-Encrypted: i=1; AJvYcCXTKm1DQTb2JqhE+cdY6VHCXC8rRacq9AWiTGoP6rRx1bC/RNaM2XWO5t2usaTlhc56AJ/OjG9/gnhz@vger.kernel.org
+X-Gm-Message-State: AOJu0YzhRHMf3qDT4GjzjmwTMARhWEmPFtbt+41NACXDpnUbOzbwsjCu
+	g0v7D9vxK7al69v+umEi7ysodITr6Acgq+VGAoMztCKcrBVxTVgI7vBd
+X-Gm-Gg: AY/fxX6Qp4AJ4Lh9TSbYF/sSfRaolEw6/yjVQua1ORhbVrYpjPvO08U+1JYZCdNK1Zr
+	XVsVjWpLEzrNV+3EGwf/MC9clEAFE5tY3FHsCIcRqRpRT4eocsng9oaZzFf3mc3ZzIzzMuocvSl
+	OC/y8XKBgAWjjgdHMqPMwfK5qZBOuZRJa7mXG1XdpQdB0Au+AhEtkl/SJzLRCclR29/8a/u5Dce
+	pP65Gf/xruemuBxReonSB0adk1ovMEW9GC3Rt2zfuNmaQEGQt0YklP0ONlG+YTxovCHgMWre7E7
+	V7KItGNBRzywUpjL+40OvDYtq6ESBrAxGT3JIvzNCiIH9tP39z+iCTttX5xydGL2LAoeIGpe3td
+	3xkrqMkMh1Y2dMFUvYcAz+pz+trWQ76Bgz7DR38FCwt2U28iObMrSI1vs9TrB4erEWm0PrF5N/J
+	ksiVLrf172Vuff6leGxdyD10OiLJ7BB7QpifQ=
+X-Google-Smtp-Source: AGHT+IH6RnvVFhzYGelO2twosqxpIhPLA2JRk5W/fh3hrpSTiy3VQvGIWh9tA+JJOCWbU57KnYerYg==
+X-Received: by 2002:a17:903:1b04:b0:2a2:acc7:f1ee with SMTP id d9443c01a7336-2a2f2527a64mr26524535ad.21.1766149323416;
+        Fri, 19 Dec 2025 05:02:03 -0800 (PST)
 Received: from localhost.localdomain ([60.51.11.72])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7ff7e797aadsm2401152b3a.61.2025.12.19.05.01.58
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7ff7e797aadsm2401152b3a.61.2025.12.19.05.02.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 19 Dec 2025 05:02:00 -0800 (PST)
+        Fri, 19 Dec 2025 05:02:02 -0800 (PST)
 From: Khairul Anuar Romli <karom.9560@gmail.com>
 To: Dinh Nguyen <dinguyen@kernel.org>,
 	Rob Herring <robh@kernel.org>,
@@ -78,49 +80,50 @@ To: Dinh Nguyen <dinguyen@kernel.org>,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Khairul Anuar Romli <karom.9560@gmail.com>
-Subject: [PATCH 1/2] arm64: dts: socfpga: agilex: fix CHECK_DTBS DTC_FLAGS warning
-Date: Fri, 19 Dec 2025 21:01:54 +0800
-Message-ID: <20251219130155.13727-1-karom.9560@gmail.com>
+Subject: [PATCH 2/2] arm64: dts: socfpga: stratix10: fix CHECK_DTBS DTC_FLAGS warning
+Date: Fri, 19 Dec 2025 21:01:55 +0800
+Message-ID: <20251219130155.13727-2-karom.9560@gmail.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20251219130155.13727-1-karom.9560@gmail.com>
+References: <20251219130155.13727-1-karom.9560@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
 Add start address and ranges to eccmgr. This change corrects the warning:
 
-socfpga_agilex.dtsi:612.10-669.5: Warning (simple_bus_reg): /soc@0/eccmgr:
-missing or empty reg/ranges property
+socfpga_stratix10.dtsi:584.10-642.5: Warning (simple_bus_reg):
+/soc@0/eccmgr: missing or empty reg/ranges property
 
 Refs:
-  Intel® Agilex™ Hard Processor System Address Map and Register
+  Intel Stratix 10 Hard Processor System Address Map and Register
   Definitions
-  https://www.intel.com/content/www/us/en/programmable/hps/agilex/hps.html
+  https://www.intel.com/content/www/us/en/programmable/hps/stratix-10/hps.html
 
 Signed-off-by: Khairul Anuar Romli <karom.9560@gmail.com>
 ---
- arch/arm64/boot/dts/intel/socfpga_agilex.dtsi | 4 ++--
+ arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi b/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
-index 0dfbafde8822..a977402cfd10 100644
---- a/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
-+++ b/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
-@@ -609,7 +609,7 @@ sdr: sdr@f8011100 {
+diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
+index 657e986e5dba..6ce4b8e374d8 100644
+--- a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
++++ b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
+@@ -581,7 +581,7 @@ sdr: sdr@f8011100 {
  			reg = <0xf8011100 0xc0>;
  		};
  
 -		eccmgr {
-+		eccmgr: eccmgr@ff8c0000 {
++		eccmgreccmgr@ff8c0000 {
  			compatible = "altr,socfpga-s10-ecc-manager",
  				     "altr,socfpga-a10-ecc-manager";
  			altr,sysmgr-syscon = <&sysmgr>;
-@@ -618,7 +618,7 @@ eccmgr {
- 			interrupts = <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>;
+@@ -590,7 +590,7 @@ eccmgr {
+ 			interrupts = <0 15 4>;
  			interrupt-controller;
  			#interrupt-cells = <2>;
 -			ranges;
