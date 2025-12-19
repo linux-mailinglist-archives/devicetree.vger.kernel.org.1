@@ -1,269 +1,399 @@
-Return-Path: <devicetree+bounces-248051-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248052-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 342FECCE63B
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 04:53:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F153CCE714
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 05:34:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E447C30181AC
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 03:53:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 21295302AF85
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 04:34:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 364D127A10F;
-	Fri, 19 Dec 2025 03:53:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9492328488F;
+	Fri, 19 Dec 2025 04:34:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="c9utwW75"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aBPi/TdK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F75423AB9D
-	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 03:53:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6681922DFA5
+	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 04:34:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766116417; cv=none; b=TclN1j4+sfxEacjFbe+ayurzY7DISOoq2bWpWO9euvkYhXQzD2p3CSVGDd3gxG4pwrUzIqTqicfUsoKzf8pj5V6/C9nyOGz7sKtWpy3AXHhAqYHkInJT6/eQIcp05mkoYKuqSfeXOOWrbefk0q5c1IWhaEmPWQAKApNtkZ8ehwQ=
+	t=1766118873; cv=none; b=p1evsPfbbkxBN2NnAFzNaopiY8m5SNW/3mfjej9YPoKwDTk4DTfMVk2MD9d1r/wBvUJD6M9Na5sVYBr8gO61Nygc9KA4ATjGcc8z9UHgukkpmp85cH4f1hgH3MixaU4p33gZieWdUYG3bDgWzVx7K9dOvx+hzCgG4/5M0lBz8RA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766116417; c=relaxed/simple;
-	bh=0lUyL1UCQm8GpXarPgPZME+r7IT5Tq9McCg9JzwT0XA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=uoNGdju2Z3jiexq5DmYHOEHNKqsJOni2EBalk7KQysAJYX02p0I1X3UFBFoMj1IEM9rPMaNua8o1jYjD5mW7jzajEdrWOpw5Qgw9iXq3nyR1lDOFEa11DDI1+vWyc7a/kuq60mn66XTgQ+ago4KBoZABWntuKYMIegkgwSErrRM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=c9utwW75; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-4779ce2a624so11396985e9.2
-        for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 19:53:34 -0800 (PST)
+	s=arc-20240116; t=1766118873; c=relaxed/simple;
+	bh=B5Nh6kigFija2HmeT/lh1Fs7EgevojvjLkr3wL2y7jc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Sk61FTng7LAaqn0k3SD+k/4zTkQaQ7c903wLHw5Vinz0usXulJNQd2MU7MV7dpFak23Qdpn3HOzmNWUS6BFJl+JTg5elK+YySVcVRkL206g8DEXIjg1byn+3w+RJrPtDc4RnzLkHnH2Qg2psul7df/pfTM5X2++TxbVC7SNycCQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aBPi/TdK; arc=none smtp.client-ip=209.85.128.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-78f99901ed5so12932107b3.3
+        for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 20:34:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1766116413; x=1766721213; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0lUyL1UCQm8GpXarPgPZME+r7IT5Tq9McCg9JzwT0XA=;
-        b=c9utwW75+gZCU4jpbDiiPMex7ExBPwk+Xgo5EQpOdxYD65qxzzJVTnk9LoNItmAYiw
-         EkiAJ7hu595SaRVpjiBy6XETpdICnKoQAVCYVdZn+9pU4vkLz00p1ts5ZOkPxLeJ7lJm
-         J3X7d+h+iA7gfhSsB0nCqSnZVp4znxDWiwLDyiNx4DenwFzacZPqXzVGUepxCHEkeMn9
-         ufZTLA+y8WTGMbc90w1MDXwg7uI8NkGmSBTkkUgj2T5LF4hfjEqgp2qD3CNl7i7Sd456
-         vYhSOCtKXSopZGmSk4TVo9EabyaR1Wqx76yylXLLijpZRopYHyo6aU0y8d4M72q0qs5n
-         k/HA==
+        d=gmail.com; s=20230601; t=1766118870; x=1766723670; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=OLzZkCyOJoF6qRoHbrdjySEIeNcke908WdXs5RK2jks=;
+        b=aBPi/TdKNA+uLYROYEnhPgXg2YP7HRQOC5gBn6dNFeN5vz0jXaDmxtf8d2m6sfIvQW
+         pbuMdASdcGxcv8tUoYkbUF6SZD3tT8vQHCnGQjRwv+pAvs99jCMmq1wec1tkSzHGXXup
+         lXl4aDjdvb3GXNEqmjhGZ8dFTjqP5FdddMA7NefQeT2fMv+P5e+yhcntojNv5kdWvD27
+         wc+2B4kXKvliGOwQKmC2RVc9jWubUDHIrg1fLy9Y+Z8l2QO7SlZfuxR9Y8YKiTH6zop9
+         0wV1uu2ejxuT1GyZEjweQoB/USrhHEw92kFYkrgcnAm+v+X2uWEByyWpaP0ffmEBuqD/
+         nQSg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766116413; x=1766721213;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=0lUyL1UCQm8GpXarPgPZME+r7IT5Tq9McCg9JzwT0XA=;
-        b=eydboWnqY6TM3spFDqj7/+ZhLyY1YXjglJfbF4zLGclXNqKVjvEI1Dfu/7aX/YED51
-         hqOW+mk4xPNEKLTsCauXkyU/cM4Ksv9OFOhS9WkXoMeV2zNbeEi/l/QGcsS9rDQYdlcC
-         L/dxyT/TQSIgPYj5+QK5Rq9NBMntZIIRS0TGQOv634dKY41WY1hJhyzNTF6CRlORwk2y
-         MapSXYImM+elOUmlO7SnZKJp70My6rNourvZfXqSVsaqm5xLREuKPgPTbKYEcKyWqLaT
-         MboPU+r2vi4QLqCqPfaQNjVjx26kdyWGKtsUtxfoz58GU/cTZ++NzFPV1y0yTmb5Mams
-         s8uw==
-X-Forwarded-Encrypted: i=1; AJvYcCUoRCJn6AVGftN06c9NmEAOgFqyxb7gYwnR5NS/HHJRsxtohLZ61MvfL0xVYBRFz45mBfARnCh0qffI@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw7rfcZpaz1Lo85c/mPo5TkFBuznG3i1+aO82rDDTQoKl2rxg1b
-	TXwGspxP0JWNbz98wpYM756+C1KbekoaO75P6Vv5hPYAjUiUqmq7FWZ4HtZxFMeucqmEygivJiJ
-	VWf3UZKQ0/76V+aR+PAlAF6wVUch5ZaVo0dTjso5g+66nTMo8Lt7qEFtNPc4=
-X-Gm-Gg: AY/fxX4A6t5HJRYtNsk/SfHRlUFX5rr6dV23KWNySbecDPehAdDkF13H9IvARubazlH
-	dGWFtdXKNpQp1Jxgn+OHCq0wkFVCFsHRwTRcRBtJpz2mlJ9Htz2oS3wpB+BHmEapSH7Ku2coCJC
-	28i2tg119KEv+AzMEYB3YHGUw3uMFUMVq9+FIqsJEyobTH7st1Rq6/VJg2ELq/tK0q+7LSNvaUX
-	dD8tpqP9dw3oJJ4JgrqL1BeBPIzzZ03f3snAbsnB85qnFWgz71MjugiSN6QdByLBbmXO4BpfCKQ
-	wekwew1Vv/OCD542iE8c+ELbAw==
-X-Google-Smtp-Source: AGHT+IHIoRhAHsJljmUD61AePjzLVFwj3QhjnhhL+UNfjxtXlU0R+Mcoh6Zz1m9uhNQfkadim1hYkHd1OiRbICHRCl4=
-X-Received: by 2002:a05:6000:1865:b0:430:fd69:9920 with SMTP id
- ffacd0b85a97d-4324e4cb8fcmr1372653f8f.16.1766116413242; Thu, 18 Dec 2025
- 19:53:33 -0800 (PST)
+        d=1e100.net; s=20230601; t=1766118870; x=1766723670;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=OLzZkCyOJoF6qRoHbrdjySEIeNcke908WdXs5RK2jks=;
+        b=hNkD5SAMKeootpuLeO72XsZqHce7fgIGYL9EPZUHjwfPzzjqb5xZwM4hu5uOQjdU5m
+         mFWXwY6cQfdbyY/nBG+u4QwjF9qqhkH2LgiEPY/SvcY64D9xP2wNFAsaOzkXDvAyYBH5
+         vbXXKvkjyWT/FS2g6Dp3/dMvUD9toIR7u+xYD8iXBG+UbcwC0Dx7CQLDgPf6Ou9YYOG0
+         ap7zbzaPzyTdxXrRz3zImDpNVWJbAevGb6iQX7sTYQCxIvvAk1xSeC3jN7fbiF46epww
+         SNKTOxfmfoV8ZXRh2AxOJ3ka49p6TToyAU2HuA5n5s7hfiLujwXG3uTDTWhhrfDte2M3
+         pdbQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVSBWHOSpbXYn0ETjRdPE0RxcPA31MjKzN5XLc/hVu5W9WzQRx+/jiI0TQ7wCVyP28yaPy7sN+f2nZ4@vger.kernel.org
+X-Gm-Message-State: AOJu0YzoJDY2AE1sKjX3UDjj9afI4JB3K3KuFcgQ5vCgh7gTmOQ1a7sR
+	j+r9rTKq5WPFrDIE2u3C2NvKcnmGSIHW0K1C9aWhQaPtepuLjmXq6XmH6kY9RQ==
+X-Gm-Gg: AY/fxX69sx2MOD3/zzJ9OU0MzVfd39dD3DBLAHIoulBRQOxPIl3EOeCr+CyGi/tmZzb
+	y4cn3nNk6ecQmVE2ELfChWFUwIr6twKJcyaqBz84ydf64Vt6/r1ciuOUSzlULkJ2PCOGdlnNrv2
+	/jRzqqPv0drG87k5j1PVu7LqYfUW3L7p1qF6WVBp98smLsuJjuey5o31Br/pVaC2M8hEd6T+Pzw
+	fhoKY9ivbwJr48ym08iW74lj/WNLeJd15c+IGIrmIam7Rermw74ufVQOsGXoJJvQIYdyPEvnuTo
+	EwcpcKENBSP6bYKShHKGkHllUBZaYkClLqn9N2JLE5Abo0/37C6SDbWHpj0eh/zojsrQfxOFqNN
+	RmhNHm64pZ6jNC5Bggd0o3t/clOgcUeRV57i0U93V1QMyXBbNChoMcsHl8Rs9dGcZt4DQ6YWLaQ
+	62mr6bL29chZC9Ukha6cElXM/9ZeNM6EJEZt1K+zgaRvOxifeU7xAVtJY9o86cG2WL08b5HbyJc
+	7b0sDADDWB05oMKcYsz4+08VaC8
+X-Google-Smtp-Source: AGHT+IHwO+bcKdFSJ1MxZa5VAJDaPfkBY6j+bhjGdvTYU52B753PLX9O7ae7X/BJN8TinnoqQ8VWTQ==
+X-Received: by 2002:a05:690c:6f8e:b0:78c:67b5:e7ba with SMTP id 00721157ae682-78fb3f4930fmr15913927b3.24.1766118870387;
+        Thu, 18 Dec 2025 20:34:30 -0800 (PST)
+Received: from nukework.lan (c-98-57-15-22.hsd1.tx.comcast.net. [98.57.15.22])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-78fb452c441sm5610227b3.46.2025.12.18.20.34.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 18 Dec 2025 20:34:28 -0800 (PST)
+From: Alexandru Gagniuc <mr.nuke.me@gmail.com>
+To: andersson@kernel.org,
+	mathieu.poirier@linaro.org,
+	krzk+dt@kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alexandru Gagniuc <mr.nuke.me@gmail.com>
+Cc: linux-arm-msm@vger.kernel.org,
+	linux-remoteproc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 1/9] dt-bindings: remoteproc: qcom,ipq8074-wcss-pil: convert to DT schema
+Date: Thu, 18 Dec 2025 22:34:09 -0600
+Message-ID: <20251219043425.888585-1-mr.nuke.me@gmail.com>
+X-Mailer: git-send-email 2.45.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <CAD=FV=W+jE_L_LLgAhD8K_4+CtivSD9-9t7Xe63XuKrKjfyfeQ@mail.gmail.com>
- <qjpukes4etbgh4ncapec4v6okkiohlcqqdfvjfinyrj6olaryc@l3vspbwze7ri>
-In-Reply-To: <qjpukes4etbgh4ncapec4v6okkiohlcqqdfvjfinyrj6olaryc@l3vspbwze7ri>
-From: Doug Anderson <dianders@google.com>
-Date: Thu, 18 Dec 2025 19:53:21 -0800
-X-Gm-Features: AQt7F2p2onmGGluMChpUPnX2EJ52kg3U4wzxf-6WTNWJ3ZgZKq0PFDzSaO68z8M
-Message-ID: <CAD=FV=VmzcsauPM3WuJhc9=_+qa+Tvmtqdhz0eDXz5TF-fHaKA@mail.gmail.com>
-Subject: Re: Proposal: document where SoC info belongs
-To: Bjorn Andersson <andersson@kernel.org>
-Cc: devicetree-spec@vger.kernel.org, 
-	"Russell King (Oracle)" <linux@armlinux.org.uk>, boot-architecture@lists.linaro.org, 
-	Chen-Yu Tsai <wenst@chromium.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>, 
-	Linux ARM <linux-arm-kernel@lists.infradead.org>, 
-	William McVicker <willmcvicker@google.com>, Julius Werner <jwerner@chromium.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Peter Griffin <peter.griffin@linaro.org>, 
-	Tudor Ambarus <tudor.ambarus@linaro.org>, =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
-	Geert Uytterhoeven <geert@linux-m68k.org>, Simon Glass <sjg@chromium.org>, Rob Herring <robh@kernel.org>, 
-	Stephen Boyd <sboyd@kernel.org>, Linus Walleij <linusw@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-Hi,
+Convert the QCS404 and IPQ WCSS Peripheral Image Loader bindings to DT
+schema. The text bindngs incorrectly implied that IPQ8074 needs only
+one qcom,smem-states entry. This is only true for QCS404. IPQ8074
+requires both "stop" and "shutdown".
 
-On Thu, Dec 18, 2025 at 6:39=E2=80=AFPM Bjorn Andersson <andersson@kernel.o=
-rg> wrote:
->
-> On Thu, Dec 18, 2025 at 02:56:03PM -0800, Doug Anderson wrote:
-> > Hi,
-> >
-> > To try to move things along, I'm picking a small piece out of my
-> > previous discussion [1] to see if we can make some progress.
-> >
-> > Right now, the top-level "compatible" string in a dts file usually
-> > contains one or more strings to represent the SoC. Examples chosen
-> > semi-randomly:
-> >
-> > exynos5250-snow.dts:
-> > - compatible: "google,snow-rev4", "google,snow", "samsung,exynos5250",
-> > "samsung,exynos5"
-> > - SoC: "samsung,exynos5250", "samsung,exynos5"
-> >
-> > sun20i-d1-clockworkpi-v3.14.dts:
-> > - compatible: "clockwork,r-01-clockworkpi-v3.14", "allwinner,sun20i-d1"
-> > - SoC: "allwinner,sun20i-d1"
-> >
-> > sdm845-db845c.dts:
-> > - compatible: "thundercomm,db845c", "qcom,sdm845"
-> > - SoC: "qcom,sdm845"
-> >
-> > I propose that we DEPRECATE including SoC information in the top-level
-> > compatible string and move it elsewhere. I propose these top-level
-> > properties that should be used instead:
-> >
-> > soc-family-compatible =3D "vendor,family";
-> > soc-product-id =3D <0x1234>;
-> > soc-product-variant =3D <0x1234>;
-> > soc-product-description =3D "Something";
-> > soc-major-rev =3D <0x1234>;
-> > soc-minor-rev =3D <0x1234>;
-> > soc-sub-rev =3D <0x1234>;
->
-> So these 6 properties defines the soc itself? And the rules for how a
-> bootloader matches against these 6 properties is defined elsewhere?
+The example is to be added in a subsequent commit that adds the
+IPQ9574 binding.
 
-Right. See below, but I think a bootloader would need to know how
-important a mismatched minor-rev or sub-rev is. I guess we could come
-up with a rule and hope it works for everyone, though...
+Signed-off-by: Alexandru Gagniuc <mr.nuke.me@gmail.com>
 
+---
+Changes since RFC
+ - rename binding from ipq9574 to ipq8074
+ - use a real person instead of placeholder as maintainer
+ - drop redundant minItems and descriptions
+ - merge if: clauses as suggested by Krzysztof
+ - various other fixes suggested by Krzysztof
 
-> What about "PCB" name and version?
->
-> How about the case where my product has 5 different components that
-> might come from a second source?
+I used my name as a placeholder for the "maintainer" field. Krzysztof
+mentioned to get the "SOC maintainer" using get_maintainer. I don't
+know how to do that, and I don't see anyone listed for QCS404,
+IPQ8074, or IPQ9574. The bindings apply to any of those SOCs.
+---
+ .../remoteproc/qcom,ipq8074-wcss-pil.yaml     | 156 ++++++++++++++++++
+ .../bindings/remoteproc/qcom,q6v5.txt         | 102 ------------
+ 2 files changed, 156 insertions(+), 102 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,ipq8074-wcss-pil.yaml
+ delete mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,q6v5.txt
 
-This _only_ covers SoC with the goal of getting the SoC out of the
-top-level compatible string. The SoC tends to be a lot easier to deal
-with. It doesn't try to solve the board problem. I was hoping to bite
-off something small that we could agree upon and I'm worried that if
-we try to tackle the board problem at the same time we'll just get
-deadlocked.
+diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,ipq8074-wcss-pil.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,ipq8074-wcss-pil.yaml
+new file mode 100644
+index 0000000000000..dea46cb9f93fe
+--- /dev/null
++++ b/Documentation/devicetree/bindings/remoteproc/qcom,ipq8074-wcss-pil.yaml
+@@ -0,0 +1,156 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/remoteproc/qcom,ipq8074-wcss-pil.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm IPQ WCSS Peripheral Image Loader
++
++maintainers:
++  - Alexandru Gagniuc <mr.nuke.me@gmail.com>
++
++description:
++  The IPQ WCSS peripheral image loader is used to load firmware on the Qualcomm
++  Q6 processor that exposes WiFi-6 devices to the OS via the AHB bus. It is
++  generally used by ath11k to start up the wireless firmware.
++
++properties:
++  compatible:
++    enum:
++      - qcom,ipq8074-wcss-pil
++      - qcom,qcs404-wcss-pil
++
++  reg:
++    maxItems: 2
++
++  reg-names:
++    items:
++      - const: qdsp6
++      - const: rmb
++
++  interrupts:
++    maxItems: 5
++
++  interrupt-names:
++    items:
++      - const: wdog
++      - const: fatal
++      - const: ready
++      - const: handover
++      - const: stop-ack
++
++  resets:
++    maxItems: 3
++
++  reset-names:
++    items:
++      - const: wcss_aon_reset
++      - const: wcss_reset
++      - const: wcss_q6_reset
++
++  clocks:
++    maxItems: 10
++
++  clock-names:
++    maxItems: 10
++
++  cx-supply:
++    description:
++      reference to the regulators used for the booting of the Hexagon core
++
++  memory-region:
++    maxItems: 1
++
++  qcom,halt-regs:
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++    description:
++      A phandle reference to a syscon representing TCSR followed by the three
++      offsets within syscon for q6, wcss and nc halt registers.
++    items:
++      - items:
++          - description: phandle to TCSR_MUTEX registers
++          - description: offset to the Q6 halt register
++          - description: offset to the wcss halt register
++          - description: offset to the nc halt register
++
++  qcom,smem-states:
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++    maxItems: 2
++    description: States used by the AP to signal the remote processor
++
++  qcom,smem-state-names:
++    maxItems: 2
++    description:
++      Names of the states used by the AP to signal the remote processor
++
++  glink-edge:
++    $ref: /schemas/remoteproc/qcom,glink-edge.yaml#
++    description:
++      Qualcomm G-Link subnode which represents communication edge, channels
++      and devices related to the Modem.
++
++required:
++  - compatible
++  - reg
++  - reg-names
++  - interrupts-extended
++  - interrupt-names
++  - memory-region
++  - qcom,halt-regs
++  - qcom,smem-states
++  - qcom,smem-state-names
++
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - qcom,ipq8074-wcss-pil
++    then:
++      properties:
++        qcom,smem-states:
++          items:
++            - description: Shutdown Q6
++            - description: Stop Q6
++        qcom,smem-state-names:
++          items:
++            - const: shutdown
++            - const: stop
++        clock-names: false
++        clocks: false
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - qcom,qcs404-wcss-pil
++    then:
++      properties:
++        qcom,smem-states:
++          maxItems: 1
++        qcom,smem-state-names:
++          items:
++            - const: stop
++        clocks:
++          minItems: 10
++          maxItems: 10
++        clock-names:
++          items:
++            - const: xo
++            - const: gcc_abhs_cbcr
++            - const: gcc_axim_cbcr
++            - const: lcc_ahbfabric_cbc
++            - const: tcsr_lcc_cbc
++            - const: lcc_abhs_cbc
++            - const: lcc_tcm_slave_cbc
++            - const: lcc_abhm_cbc
++            - const: lcc_axim_cbc
++            - const: lcc_bcr_sleep
++      required:
++        - clocks
++        - clock-names
++        - cx-supply
++
++additionalProperties: false
+diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,q6v5.txt b/Documentation/devicetree/bindings/remoteproc/qcom,q6v5.txt
+deleted file mode 100644
+index 573a88b606773..0000000000000
+--- a/Documentation/devicetree/bindings/remoteproc/qcom,q6v5.txt
++++ /dev/null
+@@ -1,102 +0,0 @@
+-Qualcomm Hexagon Peripheral Image Loader
+-
+-This document defines the binding for a component that loads and boots firmware
+-on the Qualcomm Hexagon core.
+-
+-- compatible:
+-	Usage: required
+-	Value type: <string>
+-	Definition: must be one of:
+-		    "qcom,ipq8074-wcss-pil"
+-		    "qcom,qcs404-wcss-pil"
+-
+-- reg:
+-	Usage: required
+-	Value type: <prop-encoded-array>
+-	Definition: must specify the base address and size of the qdsp6 and
+-		    rmb register blocks
+-
+-- reg-names:
+-	Usage: required
+-	Value type: <stringlist>
+-	Definition: must be "q6dsp" and "rmb"
+-
+-- interrupts-extended:
+-	Usage: required
+-	Value type: <prop-encoded-array>
+-	Definition: reference to the interrupts that match interrupt-names
+-
+-- interrupt-names:
+-	Usage: required
+-	Value type: <stringlist>
+-	Definition: must be "wdog", "fatal", "ready", "handover", "stop-ack"
+-
+-- clocks:
+-	Usage: required
+-	Value type: <phandle>
+-	Definition: reference to the clocks that match clock-names
+-
+-- clock-names:
+-	Usage: required
+-	Value type: <stringlist>
+-	Definition: The clocks needed depend on the compatible string:
+-	qcom,ipq8074-wcss-pil:
+-		    no clock names required
+-	qcom,qcs404-wcss-pil:
+-		    must be "xo", "gcc_abhs_cbcr", "gcc_abhs_cbcr",
+-		    "gcc_axim_cbcr", "lcc_ahbfabric_cbc", "tcsr_lcc_cbc",
+-		    "lcc_abhs_cbc", "lcc_tcm_slave_cbc", "lcc_abhm_cbc",
+-		    "lcc_axim_cbc", "lcc_bcr_sleep"
+-
+-- resets:
+-	Usage: required
+-	Value type: <phandle>
+-	Definition: reference to the list of 3 reset-controllers for the
+-		    wcss sub-system
+-
+-- reset-names:
+-	Usage: required
+-	Value type: <stringlist>
+-	Definition: must be "wcss_aon_reset", "wcss_reset", "wcss_q6_reset"
+-		    for the wcss sub-system
+-
+-- memory-region:
+-	Usage: required
+-	Value type: <phandle>
+-	Definition: reference to wcss reserved-memory region.
+-
+-For the compatible string below the following supplies are required:
+-  "qcom,qcs404-wcss-pil"
+-- cx-supply:
+-	Usage: required
+-	Value type: <phandle>
+-	Definition: reference to the regulators to be held on behalf of the
+-		    booting of the Hexagon core
+-
+-- qcom,smem-states:
+-	Usage: required
+-	Value type: <phandle>
+-	Definition: reference to the smem state for requesting the Hexagon to
+-		    shut down
+-
+-- qcom,smem-state-names:
+-	Usage: required
+-	Value type: <stringlist>
+-	Definition: must be "stop"
+-
+-- qcom,halt-regs:
+-	Usage: required
+-	Value type: <prop-encoded-array>
+-	Definition: a phandle reference to a syscon representing TCSR followed
+-		    by the three offsets within syscon for q6, wcss and nc
+-		    halt registers.
+-
+-- memory-region:
+-	Usage: required
+-	Value type: <phandle>
+-	Definition: reference to the reserved-memory for the region
+-
+-The Hexagon node may also have an subnode named either "smd-edge" or
+-"glink-edge" that describes the communication edge, channels and devices
+-related to the Hexagon.  See ../soc/qcom/qcom,smd.yaml and
+-../soc/qcom/qcom,glink.txt for details on how to describe these.
+-- 
+2.45.1
 
-IMO different families of boards will have different ways of
-identifying different SKUs or boards with different 2nd source
-components. Thus, IMO, for describing that type of thing we need to
-allow different "loaders" to specify different types of properties.
-...but I guess this is controversial and folks would like to identify
-some sort of "universal" system that everyone can agree upon. While
-that seems like it could be doable for SoC, I don't see it working for
-boards. Maybe I'm just wrongheaded.
-
-
-> Are you proposing that we allow adding arbitrary properties matching
-> some pattern in the top-level node to facilitate matching? Presumably
-> defined in some combination of vendor bindings?
->
-> >
-> > The family-compatible would be VERY high-level and is not intended to
-> > be a marketing name. It would be something like "samsung,exynos",
-> > "nvidia,tegra" or "google,google-silicon". The ONLY goal for this
-> > string is that within a family, the other properties uniquely identify
-> > a given SoC. This is a SINGLE string, NOT a list of strings. There is
-> > no concept of being part of multiple families.
-> >
-> > All the other numbers are hopefully self-explanatory. These values
-> > could be absent (assumed 0) if they don't make sense for a given SoC.
-> >
-> > The soc-product-description is designed to be some nice name that
-> > represents the family, product-id, and product-variant but _not_ the
-> > rev (since that's easy for anyone who cares to represent it as "rev
-> > X.Y.Z")
-> >
-> >
-> > The goals here are:
-> > * Stop trying to jam so much into the top-level "compatible".
-> > * Make it one step easier for bootloaders (or code packaging device
-> > trees for bootloaders) to differentiate device trees / overlays. This
-> > isn't _enough_ since this proposal doesn't include board info, but
-> > it's a place to start.
-> > * Make it easier to deal with "socketed" boards where the SoC can be re=
-placed.
-> >
-> > NOTE: if a set of devicetrees is provided to a bootloader, it could
-> > not just look at these properties to help it pick a devicetree but it
-> > could also change the properties to be more detailed (it could fill in
-> > some of the minor/sub-revs, for instance).
-> >
-> >
-> > I think this is a positive change for everyone and a cleaner way to
-> > represent things even if you aren't dealing with the above problems.
-> >
-> > What I'm looking for from people is some responses. Folks could choose:
-> >
-> > A) Yes, this is great. We already have something like this and we'd
-> > switch to your properties if it became a standard.
-> >
->
-> We have qcom,msm-id; qcom,board-id; qcom,pmic-id; these have met the
-> needs of some, but generally it lacks multiple axis.
->
-> > B) I like the idea, but I need an extra property to represent my SoC
-> > and then I'd use it.
-> >
->
-> s/an/several/
-
-Aside from helping to deal with boards / second sources, what is missing?
-
-
-> > C) I like the idea and I'd use it, but with some changes.
-> >
-> > D) We don't have anything like this today, but it sounds useful.
-> >
-> > E) Why are you wasting my time? This isn't a useful problem. The SoC
-> > belongs in the top-level compatible string, period.
-> >
->
-> We do have functionality that relates to the generic soc name,
-> (qcom,sdm845 in your example above). Extracting it into something else
-> would imply that we need to check against soc-family-compatible?
->
-> But when it comes to bootloaders picking the appropriate compatible,
-> I've seen plenty of cases where basing it on compatible would be nasty.
->
-> E.g. how do you write your string matching routine such that it allows
-> all the different axis, where some are optional, some allows fallback to
-> previous minor revisions of the chip etc.
-
-If we're _just_ worrying about the SoC, I think we don't need to do
-any string parsing. In the case of Qualcomm, I'd imagine that you'd
-have _just one_ "soc-family-compatible" for all Qualcomm SoCs. Perhaps
-"qcom,msm". This is because I believe all Qualcomm chips have a global
-"product ID". So for "sdm845", you'd have:
-
-soc-family-compatible =3D "qcom,msm";
-soc-product-id =3D <0xSDM845_PRODUCT_ID>;
-soc-product-variant =3D <0xIF_THERE_ARE_SKUS_OF_SDM845_PUT_HERE>;
-soc-product-description =3D "Qualcomm SDM845";
-soc-major-rev =3D <...>;
-soc-minor-rev =3D <...>;
-soc-sub-rev =3D <...>;
-
-So no string matching. The bootloader would have to have knowledge of
-whether it would pick a device tree where a sub-rev, minor-rev,
-major-rev, or variant doesn't quite match.
-
-With that explanation, does it sound better? ...or maybe it's just not
-useful to you because moving the SoC out of the compatible isn't
-useful to you without also handling the different SKUs and second
-source components?
-
--Doug
 
