@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-248092-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248094-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11A6ECCED09
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 08:43:43 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC8B8CCED00
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 08:43:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C99433014605
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 07:42:49 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 5C9EC30052CC
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 07:43:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 514002DC77F;
-	Fri, 19 Dec 2025 07:42:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 452F62DCF72;
+	Fri, 19 Dec 2025 07:42:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EOEABHYl"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="F9HstaxN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
+Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B90CC2BEC27
-	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 07:42:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5F3F2D6621
+	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 07:42:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766130167; cv=none; b=iueb1/bI8kNf9LbKUe4SpRKO/EXujPzJvk7kDK2qlqAmKDY0/g0doUmK9I4Y3t51xxm0s4Sm1nTAFgzVhYNevyfvORRD9AIWocSyXkkNYXpyyYrnQXR0M1AQqvWcqdSwgiZdDXDyH9HqtYPelzP3ogHnaRQa2hnBM5SmUHGOqhc=
+	t=1766130175; cv=none; b=GIwC1bLCpbbLZMkik+bs6Mph2MerENfi1w+OEU8AN35jbPEukvIJsu3eRPHK9mPhLS1ea2Rfuv0gNg1UpRqAv9K4zKDgMBoR9lFAlepYgd7Ime1dNa7e6vW1ZroH2fyUqt5TqkCsa/tWYUQt+PYzloOcUMo+LWIy4Bhkzo4748g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766130167; c=relaxed/simple;
-	bh=Ynzt5v58obwnhda42H/gajIJVLz4GWJg6Tg2WmflUX4=;
+	s=arc-20240116; t=1766130175; c=relaxed/simple;
+	bh=G72T+WZDY27E2UhxRAm4MPRhTxWqCOs6OHY4x2Qdsqw=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=cifB9KKJ7AmRdA1zV1dHX+q8ti5q9tQx6Hd6e/QMgf4m2KN0dLkEnfRn2MFDCvVwFAaKSwVc8beQUTENXsZlj6PPxOgUUoflV37N2lPFslIyITGhNRPCEWcJnPSG6BwtZ6CRP9kAYcfLFpzM0lplE/I+lGWg5yzG+f9RiBcg2kM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EOEABHYl; arc=none smtp.client-ip=209.85.210.181
+	 In-Reply-To:To:Cc; b=mho6TOSxShTppb37l6bLlUg9SsebpCCZsPbjNtdEv7bwZo2oH1X8xjly/h9TwpmsDlaICcTKfzzGRtVjDpxQUYUCumrNasAZiSpZrKvCeQ5yrHC8+rl4QVOuY16g0QvOtgtpoYKhX2Ho/LX0crrOpqZB9uo2L69D7X4YoIf1dDY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=F9HstaxN; arc=none smtp.client-ip=209.85.210.175
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-7d26a7e5639so1814600b3a.1
-        for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 23:42:45 -0800 (PST)
+Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-7f1243792f2so1039872b3a.1
+        for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 23:42:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1766130165; x=1766734965; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1766130173; x=1766734973; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=7gskLEpYvfTmHkZ8CaNqOvSk3HkUojmzZhMB2CXBxgs=;
-        b=EOEABHYloNlOdOzdL5QFKJ1w/IsODNn4Vf9pBaUjkJAlHyWa2kfAkvd/TwDxjttfNX
-         g6fN7IYcghL6yS2T/kRLLoauoYTqxD4qC6cysF7ldcMc9TCiygCM4uVuV54OC7sPs/7q
-         cwW7KzahWkKprorYUA3An2zfWeTOyAObUauAkqT5jvjAyxyOg+12eyU9xG1JZdcMpYbb
-         qP9V8b/YPp8Q15LpepuAOx+lr8mPIqnSbJeVB0z7IHKspvsvCX4XXgYwy+K12Ug7Klti
-         PjT0xNdgmMJ9LtOYKPu7colxnegYvHpO9B8YZB2vgSOEDWSBTIxHoPAgo7HXIggLF+nH
-         t4Cw==
+        bh=GGEKEdhZlzAvNRxCMFTpppZuD5Cxzoe0sAFMX5gPBGU=;
+        b=F9HstaxNsayJBFVe84kWAqJWyBRcCfMFHPwi6OLyCeWv0YICuYBuMtmmpl+6q9jY7W
+         PzkO9WzJJuV9r3ctKQQfPuhQfDxiGJv3r4PWoKj/mQhbNwSbh7jG+B9Orny9EsQHqURi
+         yfEXpI8R4sEQGkT0waVd4v2HpYmYoRmH6AlClxl9tgNL9YSGx00Hd8kRYaO7uotRBWjY
+         0SNVNU895P13Bm1iU4XsK8PyTfMHwIWoyhx3yNowdCuyMzoSiqDEFij8atvXHl2rlPp1
+         N6cExtSTdaRp24L2aF8qpqhdzmYBpsTX/Xz7HXLlY3lj6/sgGZJllx1XaswFqL2SEgdA
+         oxRg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766130165; x=1766734965;
+        d=1e100.net; s=20230601; t=1766130173; x=1766734973;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=7gskLEpYvfTmHkZ8CaNqOvSk3HkUojmzZhMB2CXBxgs=;
-        b=O85qiCNZ6Yai0Ji4EgayElJ3DDeNZBdZSu5XroTU5OpeTsIWnry4QfSvtY20FoWcNm
-         gOXO5mUJzYPAb5PNAO1BcA21f7+tXgbm746s4Wd0FsZ5r3FFn0wz1oGKpoi6UIk7QtS7
-         gPMMjNiaRaBuXti6shugkKh/4wr7JMg0bVDZpOfBg6GUAujelZwq/rWZyE9eEsjKrmuI
-         LpM9UuTwC6Dp9euPbyGUGM4OZnhWXh+RGig6nArKfJf9N699a7PLUF6LsWdFtlU3yml9
-         ozucNUzsQArG00daTakSU7ftTVxTyIphkS1xsHfyQ9BGS/Dlc7a2+CYYc0c54jmtm/Iw
-         DbZw==
-X-Forwarded-Encrypted: i=1; AJvYcCUxCiMY412he5ZYD/9KykauZDx8pK3ZRcw8xjXZFW9L8MWxdQOr5xKUDrETrO/UJt7RXsyl53flgqTj@vger.kernel.org
-X-Gm-Message-State: AOJu0YyFi/x5Ep+MZ2hr3uGQ/TWwVoHlw0PRBEs06KFo+cDA3OvRApVN
-	XM+d3o1R1XBbqAbfMeNXrNcTxEwx9Im/GP/SkBHPHk7aUw6nXXBqaPHM
-X-Gm-Gg: AY/fxX4pj8NxrT0KNN4l5CpW85yzi8UZhAVqrSUnY6gTsdSU0FvXr5jyb4YKuvvAYFa
-	h81svM4ba7vdjSmteKQ1qn/c44PC/3cb3JCGMHFK2ZEq3S8hP+woRhkIRAAgw8HahDwERk0o2BR
-	UusmnsO3iGcrH5k1rEYvlYP+GkJI56Nc2stV1pytsZmTCbzvy+nqS5MGrikN7Ux+KtJiaWJhap7
-	jCAAvfSuDSDyufVKVWVHhxIoXoFBH/ge9cwcGu7Pg9cLHKXlMYl9uPvISfeiPCkxoN8kEtYInYT
-	GOWJo2Utbcwxo1aLjmDLDuKBJ8Pwk7BMy5cACn+zs0B+bDFIndRiF4IdTGEUKHBH2X1z3zibKh2
-	iYxxnFaF6rrGHcVQK01yfNL+CkFqmggfHC0s0g7ZkMxkrK1W2hETJ
-X-Google-Smtp-Source: AGHT+IH8um1u+/F9IR4mQclrwTJCUs1YBwb7PhDmU+FSfhTQhTdwaDaF9aezKXIjOn8tGRCOsfD+xw==
-X-Received: by 2002:a05:6a00:1d27:b0:7e8:450c:61c1 with SMTP id d2e1a72fcca58-7ff66679547mr1708853b3a.49.1766130164675;
-        Thu, 18 Dec 2025 23:42:44 -0800 (PST)
+        bh=GGEKEdhZlzAvNRxCMFTpppZuD5Cxzoe0sAFMX5gPBGU=;
+        b=Uzib51iMueGXoi+p76k56hm4d1eZdzhNnsUeI6B4OlBuRcsKCnH78qybZMtj4/LKr6
+         u1QyeNOX9PVu7bIrXSYRK/61O3lOwHNrZ3ZXoJuFS4DKuEYzZZ72MccRskR1EDSYZRal
+         /sD5ACiP5agnWnkHx2/d9gByjmpIE18UDZG5nu5MpirttP1r/9+JO6xhLaeCwaVsgla2
+         d2A9ADVN+ms73ZPLfqRP+M3tKwHV8A2I77T4oKrGqlaixMQoOcv8yoVyrQX+z93QmSMo
+         t4Hjeu8NxrTodO/iskLOKs0tbSfWP5k/7h+N8i7UICQfDPtA3gP8XzUNHoBD2DudDg0V
+         q1jA==
+X-Forwarded-Encrypted: i=1; AJvYcCUXwjlvebBzXUrIDmdvJrGN/6gk/3cjzN2bl8TCeMf7I65AN9/R2TjTB3K9e8oy64EDYWQ5Q0tzsNrI@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxh7xqB/ow7+9K+jxfrupMlrwvFSZ7TTPmMAgt+MRkJ9a1L1kLe
+	fV0cJJZIvqYlcjrhC9TWYsMcAT8wyIjlcM2lNb7mVylvKIwuS1i1W8LR
+X-Gm-Gg: AY/fxX5VZwjMYYPdplof002FHVKoS96kezoVoMJiSNkgB/DyUc/6Vu0YbkvKbGu4Fd5
+	T0AltYEDoRHJ9PkeR4JhuMbCS1U5sf5gY6ZD44JywDNOQgmJangGCO/PMDUkS/hR2riRBBkmxp+
+	9afv4DzX3NekTSIS+VFJ7ySabYwiLRn8ml7wHb/CCSqNW0YP6OLUzYVF835UYUsMWt6zGJew2n+
+	7X+iq89O1FNDyuDwsfXXIjxouB5AuF7xSEL7OxcrwXOZQekm6iaPH3VO0IF7EskenWihtFGJAPn
+	15qBd5sGT7bIanxZd4Wnj+k92Latib8Tu9JZi1t8Gde/J6q/Qfg06B6dfbdrjlTpgUdmJdgoPG2
+	qtj7pRmtBPMh2TDgR8Hqiiovd/gDXQJfa4MnwDuoRJe62lNJDoEox
+X-Google-Smtp-Source: AGHT+IEOHBbwLfzOsV5D+3VGSzAKq+pDw6xwaXIZis6jWHwmpPR8IDpm4tyhNORstF0bxJlGHlff0w==
+X-Received: by 2002:a05:6a00:600e:b0:7e8:43f5:bd39 with SMTP id d2e1a72fcca58-7ff66d5fca3mr1889071b3a.37.1766130172539;
+        Thu, 18 Dec 2025 23:42:52 -0800 (PST)
 Received: from localhost ([221.192.179.86])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7ff7b4234e2sm1512802b3a.27.2025.12.18.23.42.43
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7ff7e493123sm1490499b3a.50.2025.12.18.23.42.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 Dec 2025 23:42:44 -0800 (PST)
+        Thu, 18 Dec 2025 23:42:52 -0800 (PST)
 From: Encrow Thorne <jyc0019@gmail.com>
-Date: Fri, 19 Dec 2025 15:42:21 +0800
-Subject: [PATCH v2 2/3] i2c: k1: add reset support
+Date: Fri, 19 Dec 2025 15:42:22 +0800
+Subject: [PATCH v2 3/3] riscv: dts: spacemit: add reset property
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,7 +82,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251219-i2c-reset-v2-2-ad201a602e74@gmail.com>
+Message-Id: <20251219-i2c-reset-v2-3-ad201a602e74@gmail.com>
 References: <20251219-i2c-reset-v2-0-ad201a602e74@gmail.com>
 In-Reply-To: <20251219-i2c-reset-v2-0-ad201a602e74@gmail.com>
 To: Troy Mitchell <troy.mitchell@linux.spacemit.com>, 
@@ -98,57 +98,87 @@ Cc: Troy Mitchell <troymitchell988@gmail.com>,
  spacemit@lists.linux.dev, linux-kernel@vger.kernel.org, 
  Encrow Thorne <jyc0019@gmail.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1766130147; l=1515;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1766130147; l=2324;
  i=jyc0019@gmail.com; s=20251009; h=from:subject:message-id;
- bh=Ynzt5v58obwnhda42H/gajIJVLz4GWJg6Tg2WmflUX4=;
- b=qMfQlZSVzRGvXZdg3oEioN5Cn5Xm2J1x59daHMj1raOdC0lTKCnZqnLoQeM/xYyg7eq3aQSEi
- yhbHPR9x9ooAJ1+wCoS5U5WsMyorqPVeBT+RjAIOxX0vOoHqgDQp5hl
+ bh=G72T+WZDY27E2UhxRAm4MPRhTxWqCOs6OHY4x2Qdsqw=;
+ b=HD0df5Haj/AFbxGbKco41n1PvKa6CLMqswLAGzmIzGdRjAEs0GfnJLJj92IFCCKm3Vernga+E
+ iBGpVisLTtKBV2nM7Bgx3FZe9xadiIx0GzOForjakC0eN69GVHirVw5
 X-Developer-Key: i=jyc0019@gmail.com; a=ed25519;
  pk=nnjLv04DUE0FXih6IcJUOjWFTEoo4xYQOu7m5RRHvZ4=
 
-The K1 I2C controller provides a reset line that needs to be deasserted
-before the controller can be accessed.
-
-Add reset support to the driver to ensure the controller starts in the
-required state.
-
-Signed-off-by: Encrow Thorne <jyc0019@gmail.com>
+Add resets property to K1 I2C node.
 ---
- drivers/i2c/busses/i2c-k1.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+ arch/riscv/boot/dts/spacemit/k1.dtsi | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/drivers/i2c/busses/i2c-k1.c b/drivers/i2c/busses/i2c-k1.c
-index d42c03ef5db5..23661c7ddb67 100644
---- a/drivers/i2c/busses/i2c-k1.c
-+++ b/drivers/i2c/busses/i2c-k1.c
-@@ -10,6 +10,7 @@
-  #include <linux/module.h>
-  #include <linux/of_address.h>
-  #include <linux/platform_device.h>
-+ #include <linux/reset.h>
- 
- /* spacemit i2c registers */
- #define SPACEMIT_ICR		 0x0		/* Control register */
-@@ -534,6 +535,7 @@ static int spacemit_i2c_probe(struct platform_device *pdev)
- 	struct device *dev = &pdev->dev;
- 	struct device_node *of_node = pdev->dev.of_node;
- 	struct spacemit_i2c_dev *i2c;
-+	struct reset_control *rst;
- 	int ret;
- 
- 	i2c = devm_kzalloc(dev, sizeof(*i2c), GFP_KERNEL);
-@@ -578,6 +580,11 @@ static int spacemit_i2c_probe(struct platform_device *pdev)
- 	if (IS_ERR(clk))
- 		return dev_err_probe(dev, PTR_ERR(clk), "failed to enable bus clock");
- 
-+	rst = devm_reset_control_get_optional_exclusive_deasserted(dev, NULL);
-+	if (IS_ERR(rst))
-+		return dev_err_probe(dev, PTR_ERR(rst),
-+				     "failed to acquire deasserted reset\n");
-+
- 	spacemit_i2c_reset(i2c);
- 
- 	i2c_set_adapdata(&i2c->adapt, i2c);
+diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/spacemit/k1.dtsi
+index 7818ca4979b6..085987643638 100644
+--- a/arch/riscv/boot/dts/spacemit/k1.dtsi
++++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
+@@ -367,6 +367,7 @@ i2c0: i2c@d4010800 {
+ 				 <&syscon_apbc CLK_TWSI0_BUS>;
+ 			clock-names = "func", "bus";
+ 			clock-frequency = <400000>;
++			resets = <&syscon_apbc RESET_TWSI0>;
+ 			interrupts = <36>;
+ 			status = "disabled";
+ 		};
+@@ -380,6 +381,7 @@ i2c1: i2c@d4011000 {
+ 				 <&syscon_apbc CLK_TWSI1_BUS>;
+ 			clock-names = "func", "bus";
+ 			clock-frequency = <400000>;
++			resets = <&syscon_apbc RESET_TWSI1>;
+ 			interrupts = <37>;
+ 			status = "disabled";
+ 		};
+@@ -393,6 +395,7 @@ i2c2: i2c@d4012000 {
+ 				 <&syscon_apbc CLK_TWSI2_BUS>;
+ 			clock-names = "func", "bus";
+ 			clock-frequency = <400000>;
++			resets = <&syscon_apbc RESET_TWSI2>;
+ 			interrupts = <38>;
+ 			status = "disabled";
+ 		};
+@@ -406,6 +409,7 @@ i2c4: i2c@d4012800 {
+ 				 <&syscon_apbc CLK_TWSI4_BUS>;
+ 			clock-names = "func", "bus";
+ 			clock-frequency = <400000>;
++			resets = <&syscon_apbc RESET_TWSI4>;
+ 			interrupts = <40>;
+ 			status = "disabled";
+ 		};
+@@ -419,6 +423,7 @@ i2c5: i2c@d4013800 {
+ 				 <&syscon_apbc CLK_TWSI5_BUS>;
+ 			clock-names = "func", "bus";
+ 			clock-frequency = <400000>;
++			resets = <&syscon_apbc RESET_TWSI5>;
+ 			interrupts = <41>;
+ 			status = "disabled";
+ 		};
+@@ -443,6 +448,7 @@ i2c6: i2c@d4018800 {
+ 				 <&syscon_apbc CLK_TWSI6_BUS>;
+ 			clock-names = "func", "bus";
+ 			clock-frequency = <400000>;
++			resets = <&syscon_apbc RESET_TWSI6>;
+ 			interrupts = <70>;
+ 			status = "disabled";
+ 		};
+@@ -546,6 +552,7 @@ i2c7: i2c@d401d000 {
+ 				 <&syscon_apbc CLK_TWSI7_BUS>;
+ 			clock-names = "func", "bus";
+ 			clock-frequency = <400000>;
++			resets = <&syscon_apbc RESET_TWSI7>;
+ 			interrupts = <18>;
+ 			status = "disabled";
+ 		};
+@@ -559,6 +566,7 @@ i2c8: i2c@d401d800 {
+ 				 <&syscon_apbc CLK_TWSI8_BUS>;
+ 			clock-names = "func", "bus";
+ 			clock-frequency = <400000>;
++			resets = <&syscon_apbc RESET_TWSI8>;
+ 			interrupts = <19>;
+ 			status = "disabled";
+ 		};
 
 -- 
 2.25.1
