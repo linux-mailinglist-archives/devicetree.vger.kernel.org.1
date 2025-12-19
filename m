@@ -1,175 +1,132 @@
-Return-Path: <devicetree+bounces-248270-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248271-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBCCDCD0848
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 16:34:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E8C24CD0842
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 16:34:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B3F7430CDF3C
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 15:31:56 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3CF0630BBFCA
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 15:31:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E56B33BBBB;
-	Fri, 19 Dec 2025 15:24:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03DA033CE90;
+	Fri, 19 Dec 2025 15:25:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HVICYD1i"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RXdQBjNe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f193.google.com (mail-pf1-f193.google.com [209.85.210.193])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26A9733BBA3
-	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 15:24:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC2E9316917;
+	Fri, 19 Dec 2025 15:25:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766157872; cv=none; b=rDFfvGMUAWcn5MVvUJDN3inBwElEpyXbZl75ZWAyQf9JK0EClN5r3tD/pz+oCbs0NoSJUMhN8HzwQTqtKJTzRbDgeV73RbaMd2ocCgx2UJw/i6jNahv3DtfmorDC0m6C+ki07Im/onNvB/W6L5kiRn6mYjdC+OKDcrtqs9vVVlY=
+	t=1766157929; cv=none; b=LwsGcTu7+s1v7Qj9I+kxTPss1eELkIaxsmy9Org1Paw8rx1buVoZIum273MsXCPVGI40yBSGf/rhFsjxAizsQjwsziWVac3ofekIeBsIqlNO5oVeLk5y1JuBO4UHoBPHqtmafB8pDB4tlHAJ+OW7Ag63DVZFffPSlOg0YlFGaI0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766157872; c=relaxed/simple;
-	bh=pyaIykGPB70j837ze1Yr0lmYLtFDXAzteGopj7k4P2A=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WstqHcHQtXfIr9c4ov6lTQdpT7sdw1/FVPFdZHQedAcFcgEB0HO1+A6wz952QZBpcV5bpnNyXxd3MKeA/IB9zqpqqre3x2pS4r2pKJ2u3UN3e1FiDagE7oSHwC+Egw1OtzYHCgIORKtHbJKhGCbMJFnwjn2Jm0xlKRsiQeSoTNY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HVICYD1i; arc=none smtp.client-ip=209.85.210.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f193.google.com with SMTP id d2e1a72fcca58-7bc248dc16aso1659560b3a.0
-        for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 07:24:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1766157869; x=1766762669; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=KXMyp0AmN42Z6/oPi4y0Uh3k5P2iSKmKeUWrXrw/OhI=;
-        b=HVICYD1ij2cv4eM4QwRujz5hmSrSMIP3N7AZTBLZrOV3aiISFaDg72wWSJXZaxxj1d
-         11SWWWzqLN9Ihkh6GpeNlSSx6/xE+uXW1smKk+hXYwiKg+zc1kTc0rv83lZBwsBYswyI
-         PUmXGQ4pu4I3zmQ9XAT7E4TlnblQXir61deWR0oWTyOWLtDOdKccZrZ/EZFgB7U9BpAV
-         /ZauCkiMGFha3DryhZgsjPefwtgGrpKqkaFimi9+F109/XQInyNzcUxtMoXXPuolIudp
-         WkD2jrxM7ho6FBSCACQm0vnpr9Rh1vYfLyJITDabF/eP/sORlLOBBJzeQrd6926+H1OZ
-         OBTg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766157869; x=1766762669;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=KXMyp0AmN42Z6/oPi4y0Uh3k5P2iSKmKeUWrXrw/OhI=;
-        b=e+H5Kxziaok/B4GGsR9T42sTQdVHK5xSGpbe9JExhrjwQ3kddUT/razLL8u1dAtKj0
-         Pons7z64O4cyjPo4mL7iQA4buHhemGHjfwA0qB6rmf+7jnCPNFH5hEZfDDW5Nt9K9qvU
-         7qBaTvZthWUEiyLm3dnyQjfDO0PcYucqcXLT/fk3JagAI6tm0LsnYw+AzgUBnHCeZd8S
-         fnMI4unplgs2dZ1kRsvVLAaCPbtI4fjCQdAjiV1EyE46ddFFUXVY5Eme5HnsoNoWf6kN
-         eE1yAotHJNNspjQGRIduQy78aQBDfLrPVi6Ag8FFo7eft50VMFP57WCh35RbVzzLUUV6
-         wbOw==
-X-Forwarded-Encrypted: i=1; AJvYcCV9jLM+gNYaitUIgsYxtrek6H+diNSXZKcvoG7Z6BqfRkyXQOVvbCeNK5pMs2cgMxi8mvyvrQDpGpQG@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz1Wr/S51jyyNxPB2CHBwyrgulEFn2E6xfW8YF67CzHntD5Vp3N
-	2/pr/RElgm1C764KSMJPJG/VPKZdc7MoBbv8UdNlNWtAwo3nXg5WsyHQ
-X-Gm-Gg: AY/fxX7X7vl7YHrBM79c3h0wb8HfLxqByaqroJ7Pm/XARESTMFG4qDMVbfiz1Fa3kMO
-	DxJaEmNQ59DGInGpbGwIJnu0wMqY8AleZp4jz02F4iTITZ3xd8P1JiCyadGLxOOPsNh3X2XXKXH
-	dE4N+4XlY7y2wYk/efMXa4xV2IBo1/q5tuRwiGr2xlL8oQnnnnxCMrYmk5s3FXFI1xhSrfFWqtv
-	ZjMERY08ICSVB7FGKfoLE/bTTXXX/R1FyA5lXruugI2PwNHSH81FPQH6JV7BWVA7KRLu2kJjOfd
-	UOrG4Rvs3Sx82HV4YLz449TSMypP+XQZEx3/DdC6gjzTvUHhGYK2zwmYegHkorsJ1oTRuRn4FS1
-	FivIlIwv3C0dBM/ECm5kKTLcv+dY5/QF7N5WGBKb4Fg0V1WXFPY4+Ga/8Qur2VZUxFXyepFM4RV
-	XzbtFn/W7IyuVlKxpliBfc3s23pJvPtyySF5z9U8/bOdMCwRxHg1f3x06+drP8
-X-Google-Smtp-Source: AGHT+IH3aUgWlSLmmNgeXJUtVuAJkCaCPzHfOPGwYGlINzMZ5QrtjAjTFU7dPdRreuBeByHrfX4TqQ==
-X-Received: by 2002:a05:6a20:7d9b:b0:355:1add:c291 with SMTP id adf61e73a8af0-376a75f5bb2mr3608090637.10.1766157869355;
-        Fri, 19 Dec 2025 07:24:29 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c1e7bc69728sm2495572a12.19.2025.12.19.07.24.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 19 Dec 2025 07:24:28 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <6dcc54b0-7b52-4759-859a-983edb1a8337@roeck-us.net>
-Date: Fri, 19 Dec 2025 07:24:26 -0800
+	s=arc-20240116; t=1766157929; c=relaxed/simple;
+	bh=b7ZQFUmybQOKOhzGs8UkdT5AC/ICY2hLdh/vjkXWyaA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bLNfqNOTEPA8NQgvi/4Qy+Uj44iih+zscgYGlD91FR3+egCGU/qBvfL6tvOmJ0TZMq5XCvoYCW64l8vt/EGvahH8HD08d3ohhaPVTjxEycvfRGmVc/qNhnHt1oEuDUZw+Vy/0MFgZUuG1wHY1T60d1hZjaApmbWbZ4qvMn9uAbU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RXdQBjNe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2CBE9C4CEF1;
+	Fri, 19 Dec 2025 15:25:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1766157929;
+	bh=b7ZQFUmybQOKOhzGs8UkdT5AC/ICY2hLdh/vjkXWyaA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=RXdQBjNeX/Bqk7SOAQ72GTn3XZquDe5oklsreC30NWFztnWgXtzQSwF9jGWbVn/I6
+	 7Hh5EkuMS+vQpFwkPmzBV/PNP+2hu1UlCpDlwGni6IP1a56PJCHV4xFHtj3ahvfIPl
+	 thEwGdmZNBh1oXSr5lMQeVpJy3763/VIA8VtKdQQYSItwyL6JJd0fit0SKrAXZkszI
+	 +i1AuoFPa1FaJ+F0MC/l1g+D3pUXdm6rUK2dpjyBfkbSVaE82+H+ffmY3Gg6Jf7Oev
+	 suyBS6/QJH9dyyTzLZVYVOZ9EKRUdjCiGXTKGj6PKIQja/M15mChjIqq5EYrn79+V/
+	 SL75hkgARsRQg==
+Date: Fri, 19 Dec 2025 09:25:26 -0600
+From: Rob Herring <robh@kernel.org>
+To: Andrea della Porta <andrea.porta@suse.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Bjorn Helgaas <bhelgaas@google.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
+	iivanov@suse.de, svarbanov@suse.de, mbrugger@suse.com,
+	Phil Elwell <phil@raspberrypi.com>
+Subject: Re: [PATCH 0/4] Fix RP1 DeviceTree hierarchy and drop overlay support
+Message-ID: <20251219152526.GA3333129-robh@kernel.org>
+References: <cover.1766077285.git.andrea.porta@suse.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: watchdog: Document X1E80100
- compatible
-To: Abel Vesa <abel.vesa@oss.qualcomm.com>,
- Wim Van Sebroeck <wim@linux-watchdog.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Rajendra Nayak <quic_rjendra@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: Stephan Gerhold <stephan.gerhold@linaro.org>,
- linux-arm-msm@vger.kernel.org, linux-watchdog@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20251219-arm64-dts-qcom-x1e80100-el2-add-apss-wdt-v2-0-fdfc6ba663e6@oss.qualcomm.com>
- <20251219-arm64-dts-qcom-x1e80100-el2-add-apss-wdt-v2-1-fdfc6ba663e6@oss.qualcomm.com>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <20251219-arm64-dts-qcom-x1e80100-el2-add-apss-wdt-v2-1-fdfc6ba663e6@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cover.1766077285.git.andrea.porta@suse.com>
 
-On 12/19/25 02:00, Abel Vesa wrote:
-> Document the compatible for the X1E80100 platform to the Qualcomm watchdog
-> binding. The HW implementation is compatible with the KPSS WDT.
+On Thu, Dec 18, 2025 at 08:09:05PM +0100, Andrea della Porta wrote:
+> The current RP1 implementation is plagued by several issues, as follows:
 > 
-> Acked-by: Rob Herring (Arm) <robh@kernel.org>
-> Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
-
-Reviewed-by: Guenter Roeck <linux@roeck-us.net>
-
-> ---
->   Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml | 1 +
->   1 file changed, 1 insertion(+)
+> - the node name for RP1 is too specific and should be generic instead
+>   (see [1]).
 > 
-> diff --git a/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml b/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
-> index 54f5311ed016..f2c4bc900e5f 100644
-> --- a/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
-> +++ b/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
-> @@ -43,6 +43,7 @@ properties:
->                 - qcom,apss-wdt-sm6350
->                 - qcom,apss-wdt-sm8150
->                 - qcom,apss-wdt-sm8250
-> +              - qcom,apss-wdt-x1e80100
->             - const: qcom,kpss-wdt
->         - const: qcom,kpss-wdt
->           deprecated: true
+> - the fully defined DTS has its PCI hierarchy wrongly described. There
+>   should be a PCI root port between the root complex and the endpoint
+>   (see [1]).
 > 
+> - since CONFIG_PCI_DYNAMIC_OF_NODES can be dropped in the future
+>   becoming an automatically enabled feature, it would be wise to not
+>   depend on it (see [2]).
+> 
+> - overlay support has led to a lot of confusion. It's not really usable 
+>   right now and users are not even used to it (see [3]).
+> 
+> This patch aims at solving the aforementioned problems by amending the
+> PCI topology as follows:
+> 
+>   ...
+>   pcie@1000120000 {
+>     ...
+> 
+>     pci@0,0 {
+>       device_type = "pci";
+>       reg = <0x00 0x00 0x00 0x00 0x00>;
+>       ...
+> 
+>       dev@0,0 {
+>         compatible = "pci1de4,1";
+>         reg = <0x10000 0x00 0x00 0x00 0x00>;
+>         ...
+> 
+>         pci-ep-bus@1 {
+>           compatible = "simple-bus";
+>           ...
+> 
+>           /* peripherals child nodes */
+>         }; 
+>       }; 
+>     }; 
+>   }; 
+> 
+> The reg property is important since it permits the binding the OF
+> device_node structure to the pci_dev, encoding the BDF in the upper
+> portion of the address.
+> 
+> This patch also drops the overlay support in favor of the fully
+> described DT while streamlining it as a result.
+> 
+> Links:
+> [1] - https://lore.kernel.org/all/aTvz_OeVnciiqATz@apocalypse/
+> [2] - https://lore.kernel.org/all/CAL_JsqJUzB71QdMcxJtNZ7raoPcK+SfTh7EVzGmk=syo8xLKQw@mail.gmail.com/
+> [3] - https://lore.kernel.org/all/CAL_JsqJUzB71QdMcxJtNZ7raoPcK+SfTh7EVzGmk=syo8xLKQw@mail.gmail.com/
+> 
+> Andrea della Porta (4):
+>   dt-bindings: misc: pci1de4,1: add required reg property for endpoint
+>   misc: rp1: drop overlay support
+>   arm64: dts: broadcom: bcm2712: fix RP1 endpoint PCI topology
+>   arm64: dts: broadcom: rp1: drop RP1 overlay
 
+Thanks for doing this.
+
+Reviewed-by: Rob Herring <robh@kernel.org>
 
