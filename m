@@ -1,100 +1,100 @@
-Return-Path: <devicetree+bounces-248230-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248231-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8B81CD00DB
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 14:27:04 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1325CD00AE
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 14:24:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AF36230E9F7E
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 13:22:10 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 831EE30115E8
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 13:24:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3881331231;
-	Fri, 19 Dec 2025 13:16:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0AC82F7AD8;
+	Fri, 19 Dec 2025 13:24:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="lLpZAk70";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="LWhvzCls"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="BRjh5YLK";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="QOrPr52M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38D532FFDF2
-	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 13:16:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD3712E229F
+	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 13:24:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766150192; cv=none; b=sYTKB58q9rPEzXhwRapqKy1XGFWhyHM4ymwqgBg+71mOjd4WuJOi93jooWju1odpmJxJC8ve/2KotvYYO/Zs0We6Q+Ol/Oz32qGGU/FtPHT4zMZgwMdoDAWpJ2l/RxMHc3ymdIJ77x1Y8PJF+ayNyi99z78JY/uESO//2HnOK4A=
+	t=1766150663; cv=none; b=HcDgVxwTn1wHk+lyn+PSrPTe+N4TwppXJjhfFje90rNa13xsO6W86BqKTfM/07Iq418qayCkMefNsrFvx0oKvEWGqANxJ7wkWM/nAykoK+MUtZrmhdOY9goIfIujH+bA9BfVs9d0BUBLSs8aypmLJ7R+ZUvFrGbjAs+sg5pOdLg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766150192; c=relaxed/simple;
-	bh=xMYkhdnS/TvFbvD6QwXhNpoUu4u5dDtCKTs0jT+n1vs=;
+	s=arc-20240116; t=1766150663; c=relaxed/simple;
+	bh=O1DBKijpRZkah3PEswHdJSFmYvoIixTUjc+QtdW5NCc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EC7Kk5bxIkbLR+FVIubTMiukQvHlgRADT0M4XnDSD1KHFgCFGjCLMnfUX3U2F2ClJMuY1OtUZqxhyCpqr4+o+Ep5itmpht4L+qZQBoiS6SE+Rnsps/jgUGC/HY50ei4c1AJs/uLE9Gx6LJNP/HAo8fGWCvMFGvyz/4Bqoa51+WU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=lLpZAk70; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=LWhvzCls; arc=none smtp.client-ip=205.220.180.131
+	 In-Reply-To:Content-Type; b=jTuZDC1X5Sy0qTj8VyJdl0IvVQK1KJQVS+83S+wfK9rUi1UKwR4UNS3x9XTYRA3uDVOWHdKnp48tX50/f7FVuPNihVlcdHeJ1Ln3oDmv7z3xe4KACouo27zd2oNbvLKP/wNLm6gkE42C4DO4v6F/6Ey5y7bufH3Yn7Chz00CHF4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=BRjh5YLK; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=QOrPr52M; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BJBk6523320433
-	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 13:16:30 GMT
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BJBTqDQ3939316
+	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 13:24:19 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	v835eW97tWnZvqqqQckseRoL/dPYOC5J2/uWhsWU70U=; b=lLpZAk70qvgv0abG
-	ap4HkKxk4RN6vaHHompmb3mshjihjL48PbhOxO3m40B3wG30s80tSIIp5Lkjz18q
-	KFKCZKJsQQgeBJfuafOMjkEaBSvzA962K+5/sdMWWxm3udhpE7Hbe3UcdTqnO4Ry
-	fiezCim5wILq/EVcSBgeasRNMB7t4CZ09tt6jeQIqxZceuvTirgsatxxtY46q8p4
-	7MLt40KebgKC89rfRMN8TnL4F0p7Y2lxIqZPgzPDodzJil/Pc8MRpuQoiRobH06c
-	yul6Iams4jAWTbSxlr9zpe3Zb1rDm3YyN6CiiAapUDT3pSnuTC3FdRIwvx0vRv0Y
-	/2JFcw==
-Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b4r2etpsd-1
+	PN0S9nUzmphwgXWKwQ35sb6kpRTq1MvBLzlcbxFESVw=; b=BRjh5YLKMdZQPrxM
+	26ZE5uEgDcEq4OjT/Pwo7zXFvhjgkSqjA4eqs3eJRU/E/4nBgrrL+LVcifvKDyR0
+	mKPNfisybKIdkUJ8K9QtJgLQNh9T+iRXjqIo0D7rolKnxfqXCiFTMr3XwtLzwyBj
+	T5OS1IxUb/WilgQYGl1LuKqxHcec8x+7KKayuP2SLAv1oaG2QLArRC9ddjOx7nJ2
+	0ac011bncACHEjLpcLrO4oZPN4SO89gZxgp9W/iDo+W2XmqNl3bGRcUcODUrDLcN
+	AOAUzIriYa0HOpP2zmM1iwUyuiutg3l0eYr2sXDFCz5ScNlT37OtOabRlLE0+YAd
+	qKl1PQ==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b4r2c2s27-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 13:16:30 +0000 (GMT)
-Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-29efd658fadso53833045ad.0
-        for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 05:16:29 -0800 (PST)
+	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 13:24:19 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4f1e17aa706so7700431cf.2
+        for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 05:24:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1766150189; x=1766754989; darn=vger.kernel.org;
+        d=oss.qualcomm.com; s=google; t=1766150658; x=1766755458; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=v835eW97tWnZvqqqQckseRoL/dPYOC5J2/uWhsWU70U=;
-        b=LWhvzClssu38+2CyyEjBtVfee4brW3AuUddxldUzOEUyv7IBCt1fWz8QMc1WDfL7iy
-         vmwiTg9Pz8OYDHAFLKREeeMkx9XDGABzj7OLrMcCO+7VqTztFwtWnzFS2uWLO6R+NQpI
-         P+qU9bJslXzQUbIGvuAHohd1rkFs8m9DarJhHR+0LACKHeYrfwI9M8IZ1EiHnLvH0DSs
-         TuVI0lrLAvK6QIjQ769M5L6mUGKeteKm8nOa04ZHCKFGLwNoPakqROZ/Nm0Hoyna493w
-         2txWxOgpR+aWd7e9txPlVnVBpNhTl03/T9DXIOtJvbVRtpppr/cQP+APMvAmB0mPktwj
-         CcNg==
+        bh=PN0S9nUzmphwgXWKwQ35sb6kpRTq1MvBLzlcbxFESVw=;
+        b=QOrPr52MVAymZ8lY3cCMgROCf20gQXbqsERqXGZ4hFLMojebZI0EGJFeTc/tJPd3OA
+         rU7BthO+CyioLASqgAqGXS/EL1IXPX9xZuF6lUtP/Crg83wkeMTQhJl7YhURcmRFf7+0
+         IN2hDIa2/XUZcYYh0/sYp1+nUKoElgCYaOOM59MKSRhtHOqWQeQ8ZLiQKmVNa7GjdwJy
+         IKuOWTNnHiboSB2wkJTQBzs6jf+Qo1W0vuP2XY1wuOAHdmHz+8osfGpEZW0JHhbBIDxp
+         oV+OOK/35KBeoUIUu0C+Bqf5wtSrP+isiVLWse+5PGGEchpFZAjMzTVBFEBivFiZO4qd
+         nVAA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766150189; x=1766754989;
+        d=1e100.net; s=20230601; t=1766150658; x=1766755458;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=v835eW97tWnZvqqqQckseRoL/dPYOC5J2/uWhsWU70U=;
-        b=RpvqA6IwIVs7aZYdMaytT8JbsWC8i5IS/P8WSZioY+D8QHkD+gc+rSeOdJ+4v841dN
-         u2zbumb7BMfuSm8OVlYujvGGbl99gyVqeDJ75SAtkW1jHK18HNYDXWct2GF70sWossUK
-         UNN6zcr/gj4wmYcaLIU7YzUruMtY1nNYYxy7i1fmC1RkoTY5DIjptiqqGWcyZvtvpJdI
-         2SFRAE0NrpOYI3oW75gkuPhf3ZpueYBW1vdhvRPjBuQJVtSTXzo4w2tYOM+BeID2su8Z
-         Ff/Cv6OCE0NN/LG7ASDwmqL11lq9OaQS39hQEH5TRNxmWRLSFs1b7pbk4OmoomMmxmTM
-         ZUEQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU2WZMjCS340OQsamVyLabMe66zGyKeuGQJij7WqG1bcpPpL1yNfepOrziiQtTymoyjCrZ5HsQP0Vc1@vger.kernel.org
-X-Gm-Message-State: AOJu0YwC2Oqf+hcIielSPFfF2VqIrUia+j0GXV7Ci9pLuIEFdIytbc9d
-	gUWVleQPQCMS/NGum7bLtPVbeqjunfv1nCtdHTRjWt3h4mQPto/shxHEI7cbCMAWR0L3REaASAX
-	vJnRzai/U2RhTxTuMGU08GBkS9bI4Fr5o9TN2jEny9tp7c1pMo0OPv+nLknIB3qNC
-X-Gm-Gg: AY/fxX7RHHhvmiwkB7KmC670dy+WXAOGd3bmnF76lgcve8sarVoLBW8MZT/RyNXf2kl
-	eAR9Rntz12JF3A2K+Z9QLkqjSo6zt/YqoJhwnlivFeyTqr7BlzXa8SatQ/1qAFfPHupF29vrQbq
-	UXZBNU3p6rdLz9qlPw6nriCpNeC+9Fh/5kyRzyDhFqJR/16h/HDn8IStcDIZoPMO9TPSBOa26Is
-	lmenlHmQZGB0W3IOs7mFLfFAXP0HNxcUsA7BYYZoa2qiadam8nP1WZdRbbs2Z6AabISBQfFNLfI
-	04uR5lQbv1E9uEtpeggsOpyowFzMYlOWul7NFF1ZwpE3h0NPBg549K2vLEQZWzrGws3ZOSWoXHZ
-	vbQ3W/Ql9FkX8HFYkGCimRnSt8Zthpdd90r7tADEObg==
-X-Received: by 2002:a17:903:2b0c:b0:298:4718:909f with SMTP id d9443c01a7336-2a2f2a3c12fmr21977785ad.51.1766150188842;
-        Fri, 19 Dec 2025 05:16:28 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHoI0126nI02HWdOYrK7HmwSJwQglIvs3CVhlzhFNNwJeELwYLlPmot25vjNg43QVJ7InExPQ==
-X-Received: by 2002:a17:903:2b0c:b0:298:4718:909f with SMTP id d9443c01a7336-2a2f2a3c12fmr21977325ad.51.1766150188281;
-        Fri, 19 Dec 2025 05:16:28 -0800 (PST)
-Received: from [10.217.217.28] ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7ff7e588a30sm2440572b3a.55.2025.12.19.05.16.20
+        bh=PN0S9nUzmphwgXWKwQ35sb6kpRTq1MvBLzlcbxFESVw=;
+        b=e1LJkzPQb/+0T28FE40w/kNW+hXdZcU+vGDPiqbc7PcqdNMkb/oXY4XjzgGkAMkiuX
+         t4b9LDGMaiBPMQ7GzszeE8Dw0H16hGxTSTdS5F2vZjn50tlhw0nnduRgyelLFwtGhCYr
+         BAQYGrVwOG2KrBAlqxr8Uf6tSX91uTNbDEDawy8/6dAMf2rTz65nVHZ3GP1pPWdVQQkH
+         kX7huKxDfoyErQmIFkQnsJChQgN/qvNO5rcIibeA/wCC+idBF5mHr7Juehv1uy0JZ2bX
+         qTCkEO1WcxRDYhny+kcZnqoBM7gEebqYJ7PBKaZXhzpnZGIBBfVm5l9TipvIVruNgYF+
+         1f0g==
+X-Forwarded-Encrypted: i=1; AJvYcCW4g53e6ShGP/KBnskXUbRgdrqFj5gdsGn1tiOA42gYo8FrKjIZUyVQuUj0UhgFOgd620EVOUN7duPl@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz1udmA4EXtXWAOf6Eh3SAuqITUxg4p2rngeC+i6CNIk7wna2xU
+	U/aseGB4QkwQfXlDcVW++WmMh9rfrxCMIc8X6wVOICK41vHPhCK6EaUQ3OhVOY9xsyJrUdAr7Hk
+	7G7QCUhrWXgV15dLrr6rvRJaH4ZY7UjH8Guc8rEIWJxZxNAiPQSVAPOXUxPZWc3tH
+X-Gm-Gg: AY/fxX6MVP4eFb9DBoD/s7bNVY0m2hF/PRm2m8CNPxOld+OrSMMkM5/ej2cOb58drbM
+	ptdgGndO4ZQ8usHAcBk0jltbj9CVMFZbwh9+QgziI7QIjaifm9WlFECEJmkzYtw6ft6Hm/jENjL
+	8k8frQdngqtaqZKqgDJDKm6ILu6BxfZ/aQFmaf0OMK4PG1+DBexR++uDOxPGcFx8ZVLkUch3JEF
+	gyQ5H+NBFCyMWzRvEpWWSOtOMLovEG+ZW0De6GZXiqYH8MBHN9tPLHSTsUqaf/eqAgoOUha4QtL
+	9J4lXR72bL15Ry3VGthtuuYzVLkvmSYzfkKjqYDx9h4vqcuFwGdFKQAPnzERwTjnoEYAxhVF8ZG
+	E2LLTaqmw9ZrIdkjeb8aLRyeTDbq4S7fQTsnzniNZ+JwbTdqLTp12YCS3OO7fWjg8NQ==
+X-Received: by 2002:a05:622a:1922:b0:4f1:b3c0:2ae7 with SMTP id d75a77b69052e-4f4b43e3a80mr8304411cf.6.1766150658015;
+        Fri, 19 Dec 2025 05:24:18 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFAQTZER8k3jrnoeKYAUlmetrYif4/iAWP+Fg9AbI7ouvR5IbKvEBKFu7XRTnkrJk4vkJn3sQ==
+X-Received: by 2002:a05:622a:1922:b0:4f1:b3c0:2ae7 with SMTP id d75a77b69052e-4f4b43e3a80mr8303891cf.6.1766150657483;
+        Fri, 19 Dec 2025 05:24:17 -0800 (PST)
+Received: from [192.168.119.72] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b8037f0b12dsm232466866b.48.2025.12.19.05.24.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 19 Dec 2025 05:16:27 -0800 (PST)
-Message-ID: <bb1035cf-f025-4ac8-b22f-ad5a08ac1bfb@oss.qualcomm.com>
-Date: Fri, 19 Dec 2025 18:46:19 +0530
+        Fri, 19 Dec 2025 05:24:16 -0800 (PST)
+Message-ID: <7038f5f7-e5c2-43c3-864c-e7ddd2e8c374@oss.qualcomm.com>
+Date: Fri, 19 Dec 2025 14:24:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -102,214 +102,67 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V8 4/4] thermal: qcom: add support for PMIC5 Gen3 ADC
- thermal monitoring
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-        agross@kernel.org, andersson@kernel.org, lumag@kernel.org,
-        dmitry.baryshkov@oss.qualcomm.com, konradybcio@kernel.org,
-        daniel.lezcano@linaro.org, sboyd@kernel.org, amitk@kernel.org,
-        thara.gopinath@gmail.com, lee@kernel.org, rafael@kernel.org,
-        subbaraman.narayanamurthy@oss.qualcomm.com,
-        david.collins@oss.qualcomm.com, anjelique.melendez@oss.qualcomm.com,
-        kamal.wadhwa@oss.qualcomm.com, rui.zhang@intel.com,
-        lukasz.luba@arm.com, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-iio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        cros-qcom-dts-watchers@chromium.org, quic_kotarake@quicinc.com,
-        neil.armstrong@linaro.org, stephan.gerhold@linaro.org
-References: <20251127134036.209905-1-jishnu.prakash@oss.qualcomm.com>
- <20251127134036.209905-5-jishnu.prakash@oss.qualcomm.com>
- <20251207170401.1143fc22@jic23-huawei>
+Subject: Re: [PATCH v2 08/11] clk: qcom: dispcc: Add support for display clock
+ controller Kaanapali
+To: Taniya Das <taniya.das@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: Ajit Pandey <ajit.pandey@oss.qualcomm.com>,
+        Imran Shaik <imran.shaik@oss.qualcomm.com>,
+        Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org
+References: <20251125-kaanapali-mmcc-v2-v2-0-fb44e78f300b@oss.qualcomm.com>
+ <20251125-kaanapali-mmcc-v2-v2-8-fb44e78f300b@oss.qualcomm.com>
 Content-Language: en-US
-From: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
-In-Reply-To: <20251207170401.1143fc22@jic23-huawei>
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20251125-kaanapali-mmcc-v2-v2-8-fb44e78f300b@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: V5IugNwRXGQ6qTsJ2vq9qDmnFJevF5_I
-X-Proofpoint-ORIG-GUID: V5IugNwRXGQ6qTsJ2vq9qDmnFJevF5_I
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjE5MDExMCBTYWx0ZWRfX493NiVkDJm12
- VFG/Hp4prfdx0tyJAPngTcnepMXp008xt1HVvViWktC8QBX5HMkytURDBbHF7TLtV916nIilQ0A
- Dx+saBzZdZJ9WlJ8LBak3kCgT8VOuGWNI0mP5tPY+oQ2gV/+AJlgKXb1iBU+/l6AaiC5p3xi4VU
- V+c1fbqEvEpkOzvDh8EtXQa4xIOVOjCta0juHkvGzvA9che/utc65NFjOOrhLyNfqnuDiNoRmjo
- PLwm3a/rnzlZ4pFuQuovqBrObEHTmFZ3tQ44X/AFfybxojL9rkFBftuboGTNXjv7v84y4m3ivE4
- 8AfrCu5W9GXEYNuaA+2nEMOenL2EWfa3tmyDNVtdnMedP0nUEgrS2BdeVGvDYYJgukazUtIJWUu
- LpdpWAU+Fydi1S6M46mI1iSZ2RFH5HR2GhdyRQFMJZLcQtwSHUGc2NsbeoWe6R7X0/kLHlkt8zh
- u4P9/jMLfDJAQK6KQrw==
-X-Authority-Analysis: v=2.4 cv=Tp7rRTXh c=1 sm=1 tr=0 ts=6945502e cx=c_pps
- a=cmESyDAEBpBGqyK7t0alAg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+X-Proofpoint-GUID: asUcE9q2KE8HdSKlm9yQeRAkCjSVVvrk
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjE5MDExMSBTYWx0ZWRfXyixn8SX26UCD
+ RudCSHDNlydYsCDrMvUssRIP+UZ4ZW7o7ERo4/AkkXP8ywdtPNewPBRctAYFI/XhR+9bJaMgFAr
+ bHs647Q8WCN9L9feU4RZ1xJauPltS5loV+yC0YDtG8f+EfYOt9EetEN/2WQGks5mARqv2h8JWJc
+ FXh3fUEW35uffojElgI6Mimf1UXaZAXej7Opr0i+CuVlwgxwjmAtBUFVivY5EYsIFodRbVszjrJ
+ qGzJIGGclV1qADwLWeowFfRaSnIMNmvzwR7F+fJqpjwpwl5wzmUfnXjErbX1dh1MPK+kumbGC1v
+ a897ljmoIvAY5rjGXLLRrWJquRDGmaBaAZyrzC/MD3s8ARksRzL75zR/9p2OpZU9d+nrr7xojZv
+ jPf6WFNfGwzLtfKWTfh9hPxBY7MauZv7WOGJq3xWyvGvPJYm01f9gs4UTfbXZ6mYBy3LJPvujnU
+ bvilg9SVg4GuOXS5pgw==
+X-Authority-Analysis: v=2.4 cv=feSgCkQF c=1 sm=1 tr=0 ts=69455203 cx=c_pps
+ a=WeENfcodrlLV9YRTxbY/uA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
  a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=wdI2RCEqRplqVT_zBhgA:9
- a=QEXdDO2ut3YA:10 a=1OuFwYUASf3TG4hYMiVC:22
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=6UiOb558mQ4H2NczljUA:9
+ a=QEXdDO2ut3YA:10 a=kacYvNCVWA4VmyqE58fU:22
+X-Proofpoint-ORIG-GUID: asUcE9q2KE8HdSKlm9yQeRAkCjSVVvrk
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
  definitions=2025-12-19_04,2025-12-17_02,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 clxscore=1015 impostorscore=0 malwarescore=0 spamscore=0
- phishscore=0 priorityscore=1501 lowpriorityscore=0 suspectscore=0
- adultscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2512120000
- definitions=main-2512190110
+ impostorscore=0 phishscore=0 priorityscore=1501 malwarescore=0 suspectscore=0
+ spamscore=0 lowpriorityscore=0 adultscore=0 bulkscore=0 clxscore=1015
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2512190111
 
-Hi Jonathan,
+On 11/25/25 6:45 PM, Taniya Das wrote:
+> Support the clock controller driver for Kaanapali to enable display SW to
+> be able to control the clocks.
+> 
+> Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
+> ---
 
-On 12/7/2025 10:34 PM, Jonathan Cameron wrote:
-> On Thu, 27 Nov 2025 19:10:36 +0530
-> Jishnu Prakash <jishnu.prakash@oss.qualcomm.com> wrote:
-> 
->> Add support for ADC_TM part of PMIC5 Gen3.
->>
->> This is an auxiliary driver under the Gen3 ADC driver, which implements the
->> threshold setting and interrupt generating functionalities of QCOM ADC_TM
->> drivers, used to support thermal trip points.
->>
->> Signed-off-by: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
->> ---
-> Hi Jishnu
-> 
-> Fresh read threw up a few more comments from me.
-> 
-> See inline
-> 
-> Thanks,
-> 
-> Jonathan
-> 
->> diff --git a/drivers/thermal/qcom/qcom-spmi-adc-tm5-gen3.c b/drivers/thermal/qcom/qcom-spmi-adc-tm5-gen3.c
->> new file mode 100644
->> index 000000000000..c6cc8ef76f7e
->> --- /dev/null
->> +++ b/drivers/thermal/qcom/qcom-spmi-adc-tm5-gen3.c
-> 
->> +
->> +static void tm_handler_work(struct work_struct *work)
->> +{
->> +	struct adc_tm5_gen3_chip *adc_tm5 = container_of(work, struct adc_tm5_gen3_chip,
->> +							 tm_handler_work);
->> +	struct adc_tm5_gen3_channel_props *chan_prop;
-> 
-> Why not declare in the reduced scope below?  Then could probably combine
-> declaration and assignment for this, and offset.
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-OK, I'll just keep the following lines here:
-
-    struct adc_tm5_gen3_chip *adc_tm5 = container_of(work, struct adc_tm5_gen3_chip, tm_handler_work);
-    int sdam_index = -1;
-
-and declare the remaining variables in the loop.
-
-
-> 
-> 
->> +	u8 tm_status[2] = { };
->> +	u8 buf[16] = { };
->> +	int sdam_index = -1;
->> +	int i, ret;
->> +
->> +	for (i = 0; i < adc_tm5->nchannels; i++) {
-> It's considered fine in new kernel code to declare the loop variable
-> as
-> 	for (int i = 0;
-> 
->> +		bool upper_set, lower_set;
->> +		int temp, offset;
->> +		u16 code = 0;
->> +
->> +		chan_prop = &adc_tm5->chan_props[i];
->> +		offset = chan_prop->tm_chan_index;
->> +
->> +		adc5_gen3_mutex_lock(adc_tm5->dev);
->> +		if (chan_prop->sdam_index != sdam_index) {
->> +			sdam_index = chan_prop->sdam_index;
->> +			ret = adc5_gen3_tm_status_check(adc_tm5, sdam_index,
->> +							tm_status, buf);
->> +			if (ret) {
->> +				adc5_gen3_mutex_unlock(adc_tm5->dev);
-> 
-> If you had the guard() below, could perhaps use scoped_guard() here
-> to avoid need for unlocking in error paths.
-> That would be at the cost of increased indent however, so may not be worth it
-> or that may suggest factoring out some of this code as a helper.
-
-The mutex is meant to guard register writes, so it might be sufficient to
-have it around adc5_gen3_tm_status_check() alone. I'll make this change.
-
-> 
->> +				break;
->> +			}
->> +		}
->> +
->> +		upper_set = ((tm_status[0] & BIT(offset)) && chan_prop->high_thr_en);
->> +		lower_set = ((tm_status[1] & BIT(offset)) && chan_prop->low_thr_en);
->> +		adc5_gen3_mutex_unlock(adc_tm5->dev);
->> +
->> +		if (!(upper_set || lower_set))
->> +			continue;
->> +
->> +		code = get_unaligned_le16(&buf[2 * offset]);
->> +		pr_debug("ADC_TM threshold code:%#x\n", code);
->> +
->> +		ret = adc5_gen3_therm_code_to_temp(adc_tm5->dev,
->> +						   &chan_prop->common_props,
->> +						   code, &temp);
->> +		if (ret) {
->> +			dev_err(adc_tm5->dev,
->> +				"Invalid temperature reading, ret = %d, code=%#x\n",
->> +				ret, code);
->> +			continue;
->> +		}
->> +
->> +		chan_prop->last_temp = temp;
->> +		chan_prop->last_temp_set = true;
->> +		thermal_zone_device_update(chan_prop->tzd, THERMAL_TRIP_VIOLATED);
->> +	}
->> +}
-> 
->> +static int adc_tm5_gen3_set_trip_temp(struct thermal_zone_device *tz,
->> +				      int low_temp, int high_temp)
->> +{
->> +	struct adc_tm5_gen3_channel_props *prop = thermal_zone_device_priv(tz);
->> +	struct adc_tm5_gen3_chip *adc_tm5;
->> +	int ret;
->> +
->> +	if (!prop || !prop->chip)
->> +		return -EINVAL;
->> +
->> +	adc_tm5 = prop->chip;
->> +
->> +	dev_dbg(adc_tm5->dev, "channel:%s, low_temp(mdegC):%d, high_temp(mdegC):%d\n",
->> +		prop->common_props.label, low_temp, high_temp);
->> +
->> +	adc5_gen3_mutex_lock(adc_tm5->dev);
->> +	if (high_temp == INT_MAX && low_temp <= -INT_MAX)
-> 
-> How is low temp lower than the min value that fits in an integer?
-
-Yes, that check should be (low_temp == -INT_MAX), I'll fix it.
-
-> 
->> +		ret = adc_tm5_gen3_disable_channel(prop);
->> +	else
->> +		ret = adc_tm5_gen3_configure(prop, low_temp, high_temp);
->> +	adc5_gen3_mutex_unlock(adc_tm5->dev);
-> Might be worth a DEFINE_GUARD() so you can do
-> 	guard(adc5_gen3)(adc_tm5->dev);
-> 	if (high_temp = INT_MAX && low_temp <= -INT_MAX)
-> 		return adc_tm5_gen3_disable_channel(prop);
-> 	
-> 	return adc_tm5...
-> 
-> I haven't looked to see if this is useful elsewhere in these drivers.
-> 
-
-I'll add this and address your other comments.
-
-Thanks,
-Jishnu
-
-
->> +
->> +	return ret;
->> +}
-
+Konrad
 
