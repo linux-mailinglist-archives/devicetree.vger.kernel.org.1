@@ -1,101 +1,101 @@
-Return-Path: <devicetree+bounces-248036-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248037-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32FADCCE3C9
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 03:09:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AC54CCE3F4
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 03:14:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C0C0730601A8
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 02:05:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 81A0030336B9
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 02:13:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23EB821E098;
-	Fri, 19 Dec 2025 02:05:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20D4F22F77B;
+	Fri, 19 Dec 2025 02:13:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="L2sWY4AK";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="iBSZ/fN6"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="N3raqkUu";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="QqEacUs/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76AF8224AF1
-	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 02:05:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FFC22AD37
+	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 02:13:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766109916; cv=none; b=DGQ22vWF4EJx2d4/X0EBX7aOwfkMU108RpYLulmAL65uikA9N2iqD4LL1y29AY1XH/kc2yvCQfN8iV6Dd/cDrc6tz51RbFL8xw7YiyXzOiU+/VD3nh37rPv7qFRIzRWWo1lGZDA6A+Cr2iY8ApPDsKiwRNSjbA/6TxBDNHmHAxM=
+	t=1766110404; cv=none; b=lBI3Qc64vNHN1+56JFNcjQjyttdlKEmc4qhOlf3OT8DM2XW/Iu5B9zjjUG59mAKbCjjrj43ylIr0g9oTDI1tqfzvsHkBe6odzHEpe4gLrPiJf8beUi6vrR9FfSlyHL449pzg0EfkMC72HMW49wCbDAanQvyJB7DQL25xSkxmB+Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766109916; c=relaxed/simple;
-	bh=fI+95ZOjKY3yfRQ+VZLRoxX/kKmxmxLpPVnrsV75VaU=;
+	s=arc-20240116; t=1766110404; c=relaxed/simple;
+	bh=mNVwS8VjcbX036J8wm0sy9Bt9cLrAxyp/MxKXuK85RQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DrvSdCObLDANIPqIOGI9tm39ir7BkSs8bQtMuBm1y4WwaSpsnljXW0pcjRXAzwXK1Gyro1LoFZ+UQW0DYg4FDOUeSpSQKbO4B+hGBcY7tTaBD0Vv8qdMXLi5XFqSzBisUuacEli9vI65tNfhDYbvv45OEn+NYY9pGuWPUXeHJYo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=L2sWY4AK; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=iBSZ/fN6; arc=none smtp.client-ip=205.220.180.131
+	 In-Reply-To:Content-Type; b=MXeSzeLou0HBoDZ8Ew4BGVbHAfSO8HWsVVp8kw+54XkS2ShIvdtuIqt8ediHssoPxQCEEc1Z3YOFCUFt7GJF7QwjD4LrtnKhQxR0Ec6ovfzk3HYirGLZ16PVCUx5+rTekrgmjUYvfRj/yILQBlRJRmp6Eo0X5WIa03weE4Vcti4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=N3raqkUu; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=QqEacUs/; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BILl2en3428248
-	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 02:05:13 GMT
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BILleOf3245310
+	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 02:13:21 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	p+KDl2G72vBzBLF/+z3TjDQ4EH3DJQNpwuc62txgdek=; b=L2sWY4AKIxkhFoEQ
-	BXtNdaJ2lVg0sWy6UgMl9pi/9zGZhKa2rARZq66DjSyGKcwXXuy/3HUJRkMCQyxO
-	rfnJIzCm13yDZyQJWZ7jnR9R2pm2K0cDdx+rhxJIoO5DMv1lQ/WL4MbKfg1pNSvV
-	rW3HhcRkOMUB6p2I8XIwCKKFFcEFSH7SzSXKTKHcw8bdf0d7jYoRi0AEhm5n3UDd
-	5wZVq6xEosWKHkZg944LRNQZ549il2KxlVDtdJt/DqXYavwSIwaad6hVEwKqO265
-	l1BC+VOKZBDtoV62nwAxoDou4I2art9MQjSwaci2UW3/gGwqMjB/kUwkw0eycq8S
-	LFL/Eg==
-Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com [209.85.216.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b4r2e8tvy-1
+	16ovI8pMht01ezaAZgV+v2nnSYU+P3k1sfkFnw9Mj3s=; b=N3raqkUumOrBOlJc
+	vb/WQs97857J12OF/bj9uK5pkZ3gvSke+WQZkK+mh0AtHzR+5kxjAcEaW+PHiLrZ
+	ldzPWWYlS34US6qFFLuhupF5EB1qa+bj6a1P+nMLYdh6NzBjd0pACVwUH6oSiJUS
+	W749lWVItShft5/J1eldPagOgoF4Tti5WPgDiTBmZPrrskAIp4AkeK/k4ogk8eGz
+	NJB/3INZBkgbPU3yUm6ZnNQrBz4UsfOOLd2ZMIi+FUzvWcwNE5AP3R3ngXCpzsiL
+	wXCvCuRA2k1ThUipOj7Rhs26MEVQLvXZ4jOhMtwNQ6uXm0Vvy9NbXAnHB0i6EhKO
+	Nxkq1Q==
+Received: from mail-pf1-f198.google.com (mail-pf1-f198.google.com [209.85.210.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b4r2c0v58-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 02:05:12 +0000 (GMT)
-Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-34c5d203988so2530262a91.3
-        for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 18:05:12 -0800 (PST)
+	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 02:13:21 +0000 (GMT)
+Received: by mail-pf1-f198.google.com with SMTP id d2e1a72fcca58-7b89ee2c1a4so2506232b3a.2
+        for <devicetree@vger.kernel.org>; Thu, 18 Dec 2025 18:13:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1766109912; x=1766714712; darn=vger.kernel.org;
+        d=oss.qualcomm.com; s=google; t=1766110401; x=1766715201; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=p+KDl2G72vBzBLF/+z3TjDQ4EH3DJQNpwuc62txgdek=;
-        b=iBSZ/fN6FGfDdHJZDgquKAZ1Eg2Bi1rYb+NqMnwCr3/0YnnpSu9v1yvGtkNWTmHD7Y
-         YQe4V5zfd7MAE2E+9kfxww0hTUMKn0ppwC9ej4iv95E1K7SCGkP9CXqTs7dG5RFHpI01
-         NgGGVk9SbAox5hFZMWBr8oLHhE4sDAgr0dJSqZiy4BvzFn5Sg8o+aT24S3fZ12zsA90j
-         9B1I8x8Ucflf0UaWPzTgQGA3mk2mnx30JZPTtLrJ3711zFpvpVBcEEX3qBp+lwb33j+o
-         Lc5uf5eY7v3V0dX1trOAdRVpSfNvGRYopYSFhmIRGw0UJ+rGBF9BmA5PFrIXqx/DmIHr
-         TK4Q==
+        bh=16ovI8pMht01ezaAZgV+v2nnSYU+P3k1sfkFnw9Mj3s=;
+        b=QqEacUs/kLEWInnSLXKJsGQzJlHykh2DOsWVOLL2DLvnM3u6TU5rzd89dbrogbvv5M
+         4sHLGKOYFaFukq+M/A1HJH09x2B9y5dPca7X17ICzN63OF96Ll/JIdeUBEpdTIp9zAWb
+         yyCDC2bzsJISjhb6TCuUFkEDQEnFdN5HBGuldCinZWEbVRVd/bu77smuHF2NmNAyGeWp
+         qPA1YqG+5TMaSLwgXNad8FkI0xoLp3lrtuc5H8bjOGEPNXHr+BvULAXfndW+rM3hPT7h
+         0b+EY4B0s81W8IIe+5VFq36sSAvkis+/1d9dCbtoQfhlVl5iyPh0s22+7753VEBB7FJh
+         8IGg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766109912; x=1766714712;
+        d=1e100.net; s=20230601; t=1766110401; x=1766715201;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=p+KDl2G72vBzBLF/+z3TjDQ4EH3DJQNpwuc62txgdek=;
-        b=aECxL5cSpyIMfwI1pqXtB9JdwHIA5t/6Ffw/uiUlmQAwLx+wkOhHclsdw2DFP8P/KB
-         EkXQbdGUMdkm4B2x2Bz4fzVMYHdfKD2/aL9/cWdmHIOjLFunClKu12+OqvfMm9kRuiK8
-         qwr2xVhwpmls/ahod1xQq/7wD6LQ1p5ALSkBKGtox1p2ikYHNefSAkDuJNt1zJbkxya5
-         3LADefHkNbgsLFP4mlc7cdZiqxUaGEzdHhWb+3phqPfWtEu/lhaO5TtKn81bD8ps13/j
-         Yo4Ra8e/7eCEs/ob1PzmebvnqjJS62eQ/4FifVNa+LhAO27rhzrHJBoS4fs0xOE4sjZ9
-         bvBw==
-X-Forwarded-Encrypted: i=1; AJvYcCX4YwRq2UUgnzZXRuHSTkpe+ex6eL2sDk3kEXKljSfdUvy5wUMdq+FXDfTl25EZO7Q1LRw0fcZ+oOwy@vger.kernel.org
-X-Gm-Message-State: AOJu0YyMKUf7++ac76r8Yjb3A3fVtvA9GDgUmSqsm7nYrk3RgVCMI75h
-	3bowzHt84Gjynwjd93noivO54sVUN7evFA/I8QGvhiayp2zvLOE15eZBgRlXNDiMg+jI66sHx3u
-	sY4S1v/33dd9bdrwE1i5f4xZYzdJIqGQ+7/a9Z4lHWcIhTUV5D8TlR0+/gB50JVpv
-X-Gm-Gg: AY/fxX7pRFQCoLE55RlEchDjsRya4mt6injQddbj5H4hM8xzmWFCOlIQiw67eD3hpMR
-	RXTERDiI38840MMsEAyB9NQJBeorFxq4u5k+N6ueo0tBs5Qi/VxGUaKIAr7/eopxjTfeVE7hd5n
-	G7q0s++dKWm5Fe7QbKEE/691Meb9sXF1wZ5pQbTtDCmjOODwrC32GoJ5+TN4uXdcInwJOxGvtLq
-	BsYLgQCod6mcgvIEZ14acG0FS6y4ntr4hLAWntKebWF+NOIxV9Vy5au1MijwWiOBDUpCKcZYFl5
-	jmljVHSjgAfI7v2ZkIoVupyC+5LTOTSzmpKcOUKdf2czyEJicZ5PmRwyYCUsziQsdDIYp8yyxCh
-	XSpkINqYo032CGJTWpNhtkeC7wTAme+ocT4WyYS3/ZSOr8uRpRANN0xBqG5R62EYVQow0YegM/6
-	U=
-X-Received: by 2002:a05:6a21:6d9e:b0:35b:b97f:7471 with SMTP id adf61e73a8af0-376a75ef388mr1339441637.4.1766109911835;
-        Thu, 18 Dec 2025 18:05:11 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IENweru9eTuM8/f/hzvfINoPNb14Iccv5nkKoLSJUQfoBqv5hSIXuuu8B1IOuUhk1nYq6XY7Q==
-X-Received: by 2002:a05:6a21:6d9e:b0:35b:b97f:7471 with SMTP id adf61e73a8af0-376a75ef388mr1339414637.4.1766109911303;
-        Thu, 18 Dec 2025 18:05:11 -0800 (PST)
-Received: from [10.133.33.174] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c1e7961b4d0sm516718a12.5.2025.12.18.18.05.06
+        bh=16ovI8pMht01ezaAZgV+v2nnSYU+P3k1sfkFnw9Mj3s=;
+        b=WWMzXxL+HH5HhJZ4fguBsjfN1NwgBKiB27Z8F11lInmm80aLwfDU7aL4R4+n7mrxdk
+         AKnbYeQZlBTNBgvmvTTmzbHknwvJMinC01l1/9FyzDKz4HoY6pnF5sNWUQguDleJyWmR
+         26B9HUneIFTwL6cAARY6EGar4263j3fA66YiUhACq8a9c6nWLG++s2R3lSyj1aE8Ro++
+         FIiOW9oZwZF2Tw0v6L1UC9PHuurbV3DL/JFwaj4E3AQJVtb9GpXGEQtp6tSTi6zxzjSu
+         JJQMtcV9TpdeNg6M4oX+nOIYzCLHa2Es+qWB0Ui/9S7xWtPp4tmpdJUppSRSMsOjYgFp
+         Z6eQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX5ozpGxO5qmgbXI6YF4N/1MY/ejw3GOyfl95nviuZTs9u/fyzZ/c5zuzUjChHpKbaNNuUfZvkAKa1a@vger.kernel.org
+X-Gm-Message-State: AOJu0YwD7zkBCYucSyghinP5Ijqm9FtBmsQ9aXWfG/aQu0XTCflovBEs
+	4cWpN3AtIZngusoQOAM7rCIIh/7aJv1Semuq4IvAM87I9nNhjyOSfCdGmr1HxiU5+mAYWjCo8+S
+	0Qklw+WyLc951ZKzPzo/MKnbocG5TWPFuPQvhyVW9APwBgzV8i0xGeLFV2t+BW8QI
+X-Gm-Gg: AY/fxX4irhYapncn0y0ZC1R2SoPlxS5jlyWRvzk0BcIOx0DlrixTf4KKrjTia38cNQf
+	sAEUSzsdQOlo2Y48sMwS/eKGtTMz24L671mbVOrYWW7LfkqL1VT6BrRlomv/pI0npS0ieKvc+pf
+	6imNo5vPspXpiAD1g/jqOqJ6XeNANLSn9quBu5B3QtfMY6FeYv6O+I6eZJDbtfWER6rjJAIFSqf
+	7whKi/pF9yhC0Tkkhu065twHgsvIQre2lOupw/zhJMduvdrR5sfTEazxeTO0MGe2AJv/VUz0JkD
+	qbNOyamKQkK94XCnA7owStPgtUcz+m+ZtIM00N5fvphmA0PgQjcndTMTuOCDeLUmgiJ5aMPJyx5
+	dmrall+CuLy2MMhs/97bMFB6nfugmoJ8KCKHfz0oCUcvoOvBDMHMFwnFh00QweOcN4dr12Yb9z7
+	OOOTzwD4wW
+X-Received: by 2002:a05:6a00:1d19:b0:7e8:4471:ae6a with SMTP id d2e1a72fcca58-7ff679667e9mr1077685b3a.54.1766110400978;
+        Thu, 18 Dec 2025 18:13:20 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHHj4prRSbH160/aJGzDoFo6VmuuN2fLZoLpUaumhyOLK22Xm1CdCkuX3d0mKzGcORsKkZMfQ==
+X-Received: by 2002:a05:6a00:1d19:b0:7e8:4471:ae6a with SMTP id d2e1a72fcca58-7ff679667e9mr1077661b3a.54.1766110400490;
+        Thu, 18 Dec 2025 18:13:20 -0800 (PST)
+Received: from [10.133.33.101] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7ff7af2b537sm623722b3a.20.2025.12.18.18.13.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 Dec 2025 18:05:10 -0800 (PST)
-Message-ID: <46afd4f6-f287-4d19-bc68-f2f6eac36e6a@oss.qualcomm.com>
-Date: Fri, 19 Dec 2025 10:05:03 +0800
+        Thu, 18 Dec 2025 18:13:20 -0800 (PST)
+Message-ID: <d0ce8306-84e0-4940-98aa-dbc356d87593@oss.qualcomm.com>
+Date: Fri, 19 Dec 2025 10:13:14 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -103,201 +103,106 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 5/8] dt-bindings: arm: add an interrupt property for
- Coresight CTCU
-To: Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>
-Cc: Mike Leach <mike.leach@linaro.org>, James Clark <james.clark@linaro.org>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+Subject: Re: [PATCH v2 00/12] coresight: Add CPU cluster funnel/replicator/tmc
+ support
+To: Sudeep Holla <sudeep.holla@arm.com>
+Cc: Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mike Leach <mike.leach@linaro.org>,
+        James Clark <james.clark@linaro.org>, Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Tingwei Zhang <tingwei.zhang@oss.qualcomm.com>,
-        Mao Jinlong <jinlong.mao@oss.qualcomm.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Leo Yan <leo.yan@linux.dev>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
         Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, coresight@lists.linaro.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20251211-enable-byte-cntr-for-ctcu-v8-0-3e12ff313191@oss.qualcomm.com>
- <20251211-enable-byte-cntr-for-ctcu-v8-5-3e12ff313191@oss.qualcomm.com>
- <20251211133723.GA859302-robh@kernel.org>
- <dfa43a63-ca14-4dd7-a7ab-acd95748a8b9@oss.qualcomm.com>
- <a9537dc9-c767-4909-8b1c-6e939ce4f3fc@kernel.org>
- <2db74a3e-4aeb-4e87-9fe8-5c9693bfb67c@arm.com>
+        Konrad Dybcio <konradybcio@kernel.org>, kernel@oss.qualcomm.com,
+        coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, maulik.shah@oss.qualcomm.com,
+        Jie Gan <jie.gan@oss.qualcomm.com>
+References: <20251218-cpu_cluster_component_pm-v2-0-2335a6ae62a0@oss.qualcomm.com>
+ <20251218-careful-ruby-wildebeest-a8babd@sudeepholla>
 Content-Language: en-US
-From: Jie Gan <jie.gan@oss.qualcomm.com>
-In-Reply-To: <2db74a3e-4aeb-4e87-9fe8-5c9693bfb67c@arm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: yuanfang zhang <yuanfang.zhang@oss.qualcomm.com>
+In-Reply-To: <20251218-careful-ruby-wildebeest-a8babd@sudeepholla>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjE5MDAxNSBTYWx0ZWRfX1+h+oHShCuZ8
- bOEGzfyJ6nG26dv6oLRIW6d1xqK4/RAN0uppuEbPIH0oTnhyByC/Z9J1S7NDms/yNUduNxjReIY
- i6azaMFSL/F7g4/uJe90UMjZVOelCnwSuTXLdHmJg4mGgpre8Gxnewec5DAjuba8Fz9pfQorLTx
- m0UPbw5rzHZP6S1LIySpD9t7j+nXUAbOyE8C5XUDIzF2M4kXIeCoe9C5HAxvwoCG38PNtGN78/n
- BAv2nUL48gwqN9ARC+7POAlEwhd+CQZn62RkcizfFfXL45eu9AYMZbBzmIu0NG1TywUCA5Z1M3k
- EjYjf0icvmowV8tdryGb4ikZ1GzihJD+9YJZbQ8poy560MKWWYFn9146xnQDXQQoxoXIUo8P614
- npBvWBfa+KGxUdYXtQYJH4Q9jwbuAIWoTDFYTroH3eKp/LbHEnBbPGVdTMwH1H2gtUiUUVTSgTt
- UGidTeQTgU0BarIK7/g==
-X-Authority-Analysis: v=2.4 cv=W+c1lBWk c=1 sm=1 tr=0 ts=6944b2d8 cx=c_pps
- a=UNFcQwm+pnOIJct1K4W+Mw==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjE5MDAxNiBTYWx0ZWRfX6hkIDZld4E2m
+ yt3hPRC3TJvFgSmA7v7r49PKRQNECQOjOf0rgDOJjcTiUnZkNFfeTRWWjIC3ZhX55mQJWkoLuXz
+ CVhMIjuBsmokjO/2An430lZgBjl+fRgz7fZ/CFNahWTzGT0eXa4GizHlDuqwha5dQteEqwmtwU5
+ DwipiJaFdoUB48kfiDZV/N0KcomRYV/M1EVqea/US4ZaCA2P8NNTb2yLntERz1Q6O0O2Lq7k1/k
+ B+dzQ8aYarzwVxESg7//tz9ZfqZ1X/tTB46RSxXzGdVKMcIEteanpXDpyWjr/JXB/JiCllk49Uq
+ Iy3p2EklqF2htQMC/ksAVr0n3trhbA5Q9tRhxImCytZLMhRgBOFe6f98Wx5NkO6xi/+i9sv1fwf
+ 1bnKQw7DfaUqVhg3bLWejSPdcDcA+K6LckRwd0qYhtV6H60ePIDSh8EYfR7x0TLS6pxZRisdHKy
+ kibmNmLS4kq2Y8l2ANg==
+X-Authority-Analysis: v=2.4 cv=dOmrWeZb c=1 sm=1 tr=0 ts=6944b4c1 cx=c_pps
+ a=m5Vt/hrsBiPMCU0y4gIsQw==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
  a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8
- a=aQ7FMZSyy468aWolCDYA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=uKXjsCUrEbL0IQVhDsJ9:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-ORIG-GUID: TdWbOPIl4XlDW-61FS4pXar3Z9d1bCjx
-X-Proofpoint-GUID: TdWbOPIl4XlDW-61FS4pXar3Z9d1bCjx
+ a=VkNPw1HP01LnGYTKEx00:22 a=CT3mT5stn3mpJVhV_EcA:9 a=3ZKOabzyN94A:10
+ a=QEXdDO2ut3YA:10 a=IoOABgeZipijB_acs4fv:22
+X-Proofpoint-ORIG-GUID: uUZ2I2z0uAq5sevtgiwO74z79UVQp15l
+X-Proofpoint-GUID: uUZ2I2z0uAq5sevtgiwO74z79UVQp15l
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
  definitions=2025-12-19_01,2025-12-17_02,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 malwarescore=0 lowpriorityscore=0 suspectscore=0
- clxscore=1015 bulkscore=0 impostorscore=0 spamscore=0 adultscore=0
- phishscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ phishscore=0 adultscore=0 impostorscore=0 lowpriorityscore=0
+ priorityscore=1501 suspectscore=0 bulkscore=0 malwarescore=0 spamscore=0
+ clxscore=1015 classifier=typeunknown authscore=0 authtc= authcc=
  route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2512120000
- definitions=main-2512190015
+ definitions=main-2512190016
 
 
 
-On 12/19/2025 7:19 AM, Suzuki K Poulose wrote:
-> On 18/12/2025 10:17, Krzysztof Kozlowski wrote:
->> On 12/12/2025 02:12, Jie Gan wrote:
->>>
->>>
->>> On 12/11/2025 9:37 PM, Rob Herring wrote:
->>>> On Thu, Dec 11, 2025 at 02:10:44PM +0800, Jie Gan wrote:
->>>>> Add an interrupt property to CTCU device. The interrupt will be 
->>>>> triggered
->>>>> when the data size in the ETR buffer exceeds the threshold of the
->>>>> BYTECNTRVAL register. Programming a threshold in the BYTECNTRVAL 
->>>>> register
->>>>> of CTCU device will enable the interrupt.
->>>>>
->>>>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>>> Reviewed-by: Mike Leach <mike.leach@linaro.org>
->>>>> Signed-off-by: Jie Gan <jie.gan@oss.qualcomm.com>
->>>>> ---
->>>>>    .../devicetree/bindings/arm/qcom,coresight-ctcu.yaml    | 17 +++ 
->>>>> ++++++++++++++
->>>>>    1 file changed, 17 insertions(+)
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight- 
->>>>> ctcu.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight- 
->>>>> ctcu.yaml
->>>>> index c969c16c21ef..90f88cc6cd3e 100644
->>>>> --- a/Documentation/devicetree/bindings/arm/qcom,coresight-ctcu.yaml
->>>>> +++ b/Documentation/devicetree/bindings/arm/qcom,coresight-ctcu.yaml
->>>>> @@ -39,6 +39,16 @@ properties:
->>>>>        items:
->>>>>          - const: apb
->>>>> +  interrupts:
->>>>> +    items:
->>>>> +      - description: Byte cntr interrupt for the first etr device
->>>>> +      - description: Byte cntr interrupt for the second etr device
-> 
-> This is really vague. How do you define first vs second ? Probe order ?
-> No way. This must be the "port" number to which the ETR is connected
-> to the CTCU. IIUC, there is a config area for each ETR (e.g., trace id
-> filter) connected to the CTCU. I was under the assumption that they
-> are identified as "ports" (input ports). I don't really understand how
-> this interrupt mapping works now. Please explain it clearly.
-> 
-
-Sorry for the misunderstanding.
-
-Each ETR device should have its own interrupt line and an IRQ register 
-within the CTCU device, as defined by the specification. In existing 
-projects, the maximum supported number of ETR devices is 2.
-
-Each interrupt is directly mapped to a specific ETR device, for example:
-tmc@1000 → interrupt line 0
-tmc@1001 → interrupt line 1
-
-The suggestion to identify devices by ‘ports’ is much clearer than my 
-previous explanation, as it explicitly shows which device is connected 
-to which port.
-
->>>>> +
->>>>> +  interrupt-names:
->>>>> +    items:
->>>>> +      - const: etrirq0
->>>>> +      - const: etrirq1
->>>>
->>>> Names are kind of pointless when it is just foo<index>.
->>>
->>> Hi Rob,
->>>
->>> I was naming them as etr0/etr1. Are these names acceptable?
+On 12/18/2025 7:33 PM, Sudeep Holla wrote:
+> On Thu, Dec 18, 2025 at 12:09:40AM -0800, Yuanfang Zhang wrote:
+>> This patch series adds support for CoreSight components local to CPU clusters,
+>> including funnel, replicator, and TMC, which reside within CPU cluster power
+>> domains. These components require special handling due to power domain
+>> constraints.
 >>
->> Obviously irq is redundant, but how does etr0 solves the problem of
->> calling it foo0?
+> 
+> Could you clarify why PSCI-based power domains associated with clusters in
+> domain-idle-states cannot address these requirements, given that PSCI CPU-idle
+> OSI mode was originally intended to support them? My understanding of this
+> patch series is that OSI mode is unable to do so, which, if accurate, appears
+> to be a flaw that should be corrected.
+
+It is due to the particular characteristics of the CPU cluster power domain.Runtime PM for CPU devices works little different, it is mostly used to manage hierarchical
+CPU topology (PSCI OSI mode) to talk with genpd framework to manage the last CPU handling in
+cluster.
+It doesn’t really send IPI to wakeup CPU device (It don’t have .power_on/.power_off) callback
+implemented which gets invoked from .runtime_resume callback. This behavior is aligned with
+the upstream Kernel.
+
+> 
+>> Unlike system-level CoreSight devices, these components share the CPU cluster's
+>> power domain. When the cluster enters low-power mode (LPM), their registers
+>> become inaccessible. Notably, `pm_runtime_get` alone cannot bring the cluster
+>> out of LPM, making standard register access unreliable.
 >>
->> I don't think you really read Rob's comment.
->>
->>> The interrupts are assigned exclusively to a specific ETR device.
->>>
->>> But Suzuki is concerned that this might cause confusion because the ETR
->>> device is named randomly in the driver. Suzuki suggested using ‘port-0’
->>> and ‘port-1’ and would also like to hear your feedback on these names.
->>
->> There is no confusion here. Writing bindings luckily clarifies this what
->> the indices in the array mean.
 > 
-> The point is there are "n" interrupts. Question is, could there be more
-> devices(ETRs) connected to the CTCU than "n".
-> 
-> e.g., Lets CTCU can control upto 4 ETRs and on a particular system, the
-> 
-> TMC-ETR0 -> CTCU-Port0
-> 
-> TMC-ETR1 -> CTCU-Port2
-> TMC-ETR2 -> CTCU-Port3
-> 
-> Now, how many interrupts are described in the DT ? How do we map which
-> interrupts correspond to the CTCU-Portn. (Finding the TMC-ETRx back
-> from the port is possible, with the topology).
+> Are these devices the only ones on the system that are uniquely bound to
+> cluster-level power domains? If not, what additional devices share this
+> dependency so that we can understand how they are managed in comparison?
 > 
 
-Got your point and it's much clearer.
-
-> This is what I raised in the previous version. Again, happy to hear
-> if there is a standard way to describe the interrupts.
+Yes, devices like ETM and TRBE also share this power domain and access constraint.
+Their drivers naturally handle enablement/disablement on the specific CPU they
+belong to (e.g., via hotplug callbacks or existing smp_call_function paths).
+>> To address this, the series introduces:
+>> - Identifying cluster-bound devices via a new `qcom,cpu-bound-components`
+>>   device tree property.
 > 
-> Suzuki
-> 
-> 
->>
->>>
->>> Usually, the probe sequence follows the order of the addresses. In our
->>> specification, ‘ETR0’ is always probed before ‘ETR1’ because its address
->>> is lower.
->>
->> How is this even relevant? You are answering to something completely
->> different, so I don't think you really tried to understand review.
->>
-
-My previous explanation was definitely unclear. As Suzuki suggested, 
-mapping the interrupt to the port number (to identify the relevant 
-device based on topology) makes sense and provides a much easier way to 
-understand the relationship between the interrupt and the ETR device.
-
-So with the suggestion, here is the new description about the interrupts:
-
-   interrupts:
-     items:
-       - description: Interrupt for the ETR device connected to in-port0.
-       - description: Interrupt for the ETR device connected to in-port1.
-
-  interrupt-names:
-     items:
-      - const: port0
-      - const: port1
-
-Thanks,
-Jie
-
->>
->>
->> Best regards,
->> Krzysztof
+> Really, no please.
 > 
 
+Our objective is to determine which CoreSight components are physically locate
+within the CPU cluster power domain. 
+Would it be acceptable to derive this relationship from the existing power-domains binding?
+For example, if a Funnel or Replicator node is linked to a power-domains entry that specifies a cpumask,
+the driver could recognize this shared dependency and automatically apply the appropriate cluster-aware behavior.
+
+thanks,
+yuanfang.
 
