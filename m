@@ -1,100 +1,100 @@
-Return-Path: <devicetree+bounces-248229-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-248230-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25F8DCD0072
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 14:21:52 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8B81CD00DB
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 14:27:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id F3BB2300DE87
-	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 13:21:47 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AF36230E9F7E
+	for <lists+devicetree@lfdr.de>; Fri, 19 Dec 2025 13:22:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D205032D7F4;
-	Fri, 19 Dec 2025 13:15:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3881331231;
+	Fri, 19 Dec 2025 13:16:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="VwPgOcAa";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="d6wbTPhx"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="lLpZAk70";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="LWhvzCls"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F13353009F1
-	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 13:15:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38D532FFDF2
+	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 13:16:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1766150149; cv=none; b=mcVs3IGqlfrRFbj+APQwxY5eMtnT2xdWKJf98enP2QDu5tW1kbLuhxhzg5ym115VXqixs30hA4ECTXeOfLC2/AHIUY20Dxj9KEs80JtKixHLv0k1Qlk2UqOn1mFpDeQM9AGQ8z98b0mnzyrhPDvOq3YPTv8PFT93TVDE2seynVs=
+	t=1766150192; cv=none; b=sYTKB58q9rPEzXhwRapqKy1XGFWhyHM4ymwqgBg+71mOjd4WuJOi93jooWju1odpmJxJC8ve/2KotvYYO/Zs0We6Q+Ol/Oz32qGGU/FtPHT4zMZgwMdoDAWpJ2l/RxMHc3ymdIJ77x1Y8PJF+ayNyi99z78JY/uESO//2HnOK4A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1766150149; c=relaxed/simple;
-	bh=mtVvIUS/JaJUCoLQVXSOzz/8MiesNRzguGmPjaF5OIg=;
+	s=arc-20240116; t=1766150192; c=relaxed/simple;
+	bh=xMYkhdnS/TvFbvD6QwXhNpoUu4u5dDtCKTs0jT+n1vs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IFiqzJCdDrtanWsGSMDvWCSP5Beldh6xHs9iO0uZPaJ7HgYet3hYkTFSIyBzSynaUvZUPvJ6INDubToaQ2YzpcGQVwLJR57lK2CSWm8XM3UaPPvG/N6XiUbo3j+jU3EncZZSTds63zDOQ3qqhUz9AAiRmr5ryeggI0O4ngejN0g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=VwPgOcAa; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=d6wbTPhx; arc=none smtp.client-ip=205.220.168.131
+	 In-Reply-To:Content-Type; b=EC7Kk5bxIkbLR+FVIubTMiukQvHlgRADT0M4XnDSD1KHFgCFGjCLMnfUX3U2F2ClJMuY1OtUZqxhyCpqr4+o+Ep5itmpht4L+qZQBoiS6SE+Rnsps/jgUGC/HY50ei4c1AJs/uLE9Gx6LJNP/HAo8fGWCvMFGvyz/4Bqoa51+WU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=lLpZAk70; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=LWhvzCls; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BJB96KZ3999438
-	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 13:15:44 GMT
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5BJBk6523320433
+	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 13:16:30 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	UpN1l31PtsvvDzVVzcUO81N4UuEt2F++NIEqhVqZxkU=; b=VwPgOcAaZFwHecay
-	WVwKGTlViyarYjlj0bZgxWoqkOsBLYJ6mdP17LrBMetlkdSGNhIfv+0x0E06zfMl
-	uHuePSmbky9nqHkcEGMBqV+SKZCtNluD/9bF43U3/sAX+44AKSO6drHhJuYNKxyL
-	ikkeJJU8Tt8/g4mR0hj7cjqgz8UTSN3sRa/c3uBkBwdlg27otK0TaaacJL4bZKsb
-	19UdktJ/BXsCsZt+mjN3HHoapKQgXEbPhKo1uT7undUZ01EYr5+yAt9ARXYHjET7
-	Wy40XlvPT4cCKXyFPL6VIXzPrvKFvCWXz3lphEzLjSvL/k8dvBPrDBJYrDr/7nLZ
-	sahnHQ==
-Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b4r29jrvc-1
+	v835eW97tWnZvqqqQckseRoL/dPYOC5J2/uWhsWU70U=; b=lLpZAk70qvgv0abG
+	ap4HkKxk4RN6vaHHompmb3mshjihjL48PbhOxO3m40B3wG30s80tSIIp5Lkjz18q
+	KFKCZKJsQQgeBJfuafOMjkEaBSvzA962K+5/sdMWWxm3udhpE7Hbe3UcdTqnO4Ry
+	fiezCim5wILq/EVcSBgeasRNMB7t4CZ09tt6jeQIqxZceuvTirgsatxxtY46q8p4
+	7MLt40KebgKC89rfRMN8TnL4F0p7Y2lxIqZPgzPDodzJil/Pc8MRpuQoiRobH06c
+	yul6Iams4jAWTbSxlr9zpe3Zb1rDm3YyN6CiiAapUDT3pSnuTC3FdRIwvx0vRv0Y
+	/2JFcw==
+Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4b4r2etpsd-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 13:15:44 +0000 (GMT)
-Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-7b89c1ce9cfso2342056b3a.2
-        for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 05:15:44 -0800 (PST)
+	for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 13:16:30 +0000 (GMT)
+Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-29efd658fadso53833045ad.0
+        for <devicetree@vger.kernel.org>; Fri, 19 Dec 2025 05:16:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1766150143; x=1766754943; darn=vger.kernel.org;
+        d=oss.qualcomm.com; s=google; t=1766150189; x=1766754989; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=UpN1l31PtsvvDzVVzcUO81N4UuEt2F++NIEqhVqZxkU=;
-        b=d6wbTPhxeimSNmfo/zqQTnpJtmnE6Qs0g1lydF2FRvD2eLzDoLPtt4MNOOt58ZRcL0
-         pKZGbQzuroVSk1AxLPefuGZHrrYJ8ZIAHlEChFhariRVpG4PRIifkJIS6TQuIviSyvHU
-         M1mpST/cPEDnP3Q3GDNEyp4WJ3pNTjLLdZOpf0spkYMWJzfKN8xcK47w+qIJeO58EMlS
-         MMRQawOi2N28UkCeosLqqPbmgbf3BWpFpTBSnaMqSoaHQAwzCENALnQo9V5FlXAGvGgh
-         XnBS+cmQQHQtSsdrdSvcgPJJMAh+DEyV/8E8caxee7Nq7GxKVw01SseZtF+fhNYuBScc
-         s2QQ==
+        bh=v835eW97tWnZvqqqQckseRoL/dPYOC5J2/uWhsWU70U=;
+        b=LWhvzClssu38+2CyyEjBtVfee4brW3AuUddxldUzOEUyv7IBCt1fWz8QMc1WDfL7iy
+         vmwiTg9Pz8OYDHAFLKREeeMkx9XDGABzj7OLrMcCO+7VqTztFwtWnzFS2uWLO6R+NQpI
+         P+qU9bJslXzQUbIGvuAHohd1rkFs8m9DarJhHR+0LACKHeYrfwI9M8IZ1EiHnLvH0DSs
+         TuVI0lrLAvK6QIjQ769M5L6mUGKeteKm8nOa04ZHCKFGLwNoPakqROZ/Nm0Hoyna493w
+         2txWxOgpR+aWd7e9txPlVnVBpNhTl03/T9DXIOtJvbVRtpppr/cQP+APMvAmB0mPktwj
+         CcNg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766150143; x=1766754943;
+        d=1e100.net; s=20230601; t=1766150189; x=1766754989;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=UpN1l31PtsvvDzVVzcUO81N4UuEt2F++NIEqhVqZxkU=;
-        b=VDlmuxUNGmwGH/uNdu7IU3A4l/Rp8e3nsHeUVZ34P1OEfDv2kHJByk1+/iP3bRePWs
-         f7bihIf2CuMp8IP1aV/b6le3f+bcQLQn/AZ+Wihn0P2szgyS8EgY/6W+hpzWA3xPb43Z
-         8XnMrgklAjma+J2XWbRET475ZkNGoh9p0NydxAdfwZOBZEIAkX3i0u05hKqNAhpvmHxg
-         HlvQrkAbV4aAVPvRJw5z9j38WTbnBQBt/94Sk5i12sXMiZH/6ZcxKsfeiFF86EGwL7k4
-         cGLWZPFYiilacG5iAeY0XKI8xPKXXthsdqcBMtWiTHkFB68Fcw9ca3Z0PHeClSwVi8A5
-         oIuA==
-X-Forwarded-Encrypted: i=1; AJvYcCWLn0n4Ht3zinaZT5GawoscFvBWv9ZfwXDSXef7CdLi0JOhxE51wqFbDQcUj4APzZxD+ZQWAUDD8UIX@vger.kernel.org
-X-Gm-Message-State: AOJu0YzfpaSd/DxUxKaCl/28hd7IUC8IR4WLxImGWXr26UKg5BdUwG0y
-	QntvpEcidZNJAsGL7lGWCnXR8xuHGte/fz+ToOwaTYVR5hPL6MvXQlxmocgfT8tQSv8Y4ve/p8y
-	b3I42Djo0ZWJ3erEbRQpnfe8DGv91wVasIq9r/sWh4l++frwvH9iSrzC4y61NxlgY
-X-Gm-Gg: AY/fxX7pDHQroelHyolTl0NYyj54ZUXOCkAGW96eHFvj8Lu0SpGsqM2pdlzJwgGT+J8
-	D3C3KXscnrwkPCD/ihauG/MD2M1aRRD7cMLTRGxmFGOz/TiJpGoOIlPsuOwIqmbtW5HVWaWNS7y
-	KivZHoIGBpimbJQMFfHth6/EgjHaIn0Akvld3ZTmYzFNUxIfCt1btVc/8B7hdz87vtK8/O7uAt+
-	cbUxn5cZ6d7nyDEXPHyJP5sfjFPwathSlCTVwrSz7owipejZrGri/4bUdOTxD1wSpa3RgLgYjeE
-	U6acBpjZrHPTJzhGlF5WYijCaL9BDOUui1nBOMVXJTG6ityPSYf0sjp9ou/72nrNA5MtnVPq19V
-	HbTcKgHrTHc+y8z+RoxUzNCsxnd3OCCtl3Dzqsm7Edw==
-X-Received: by 2002:a05:6a21:6d98:b0:364:86a:46b2 with SMTP id adf61e73a8af0-376a9ccbb0bmr3024519637.57.1766150142716;
-        Fri, 19 Dec 2025 05:15:42 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFsxyK5lHLg3u33gOcm5o66CK8suco88/56FRjoiS6lVtwAhOZVk1W29HbjNE5Gu3ZcAxPv+w==
-X-Received: by 2002:a05:6a21:6d98:b0:364:86a:46b2 with SMTP id adf61e73a8af0-376a9ccbb0bmr3024453637.57.1766150142120;
-        Fri, 19 Dec 2025 05:15:42 -0800 (PST)
+        bh=v835eW97tWnZvqqqQckseRoL/dPYOC5J2/uWhsWU70U=;
+        b=RpvqA6IwIVs7aZYdMaytT8JbsWC8i5IS/P8WSZioY+D8QHkD+gc+rSeOdJ+4v841dN
+         u2zbumb7BMfuSm8OVlYujvGGbl99gyVqeDJ75SAtkW1jHK18HNYDXWct2GF70sWossUK
+         UNN6zcr/gj4wmYcaLIU7YzUruMtY1nNYYxy7i1fmC1RkoTY5DIjptiqqGWcyZvtvpJdI
+         2SFRAE0NrpOYI3oW75gkuPhf3ZpueYBW1vdhvRPjBuQJVtSTXzo4w2tYOM+BeID2su8Z
+         Ff/Cv6OCE0NN/LG7ASDwmqL11lq9OaQS39hQEH5TRNxmWRLSFs1b7pbk4OmoomMmxmTM
+         ZUEQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU2WZMjCS340OQsamVyLabMe66zGyKeuGQJij7WqG1bcpPpL1yNfepOrziiQtTymoyjCrZ5HsQP0Vc1@vger.kernel.org
+X-Gm-Message-State: AOJu0YwC2Oqf+hcIielSPFfF2VqIrUia+j0GXV7Ci9pLuIEFdIytbc9d
+	gUWVleQPQCMS/NGum7bLtPVbeqjunfv1nCtdHTRjWt3h4mQPto/shxHEI7cbCMAWR0L3REaASAX
+	vJnRzai/U2RhTxTuMGU08GBkS9bI4Fr5o9TN2jEny9tp7c1pMo0OPv+nLknIB3qNC
+X-Gm-Gg: AY/fxX7RHHhvmiwkB7KmC670dy+WXAOGd3bmnF76lgcve8sarVoLBW8MZT/RyNXf2kl
+	eAR9Rntz12JF3A2K+Z9QLkqjSo6zt/YqoJhwnlivFeyTqr7BlzXa8SatQ/1qAFfPHupF29vrQbq
+	UXZBNU3p6rdLz9qlPw6nriCpNeC+9Fh/5kyRzyDhFqJR/16h/HDn8IStcDIZoPMO9TPSBOa26Is
+	lmenlHmQZGB0W3IOs7mFLfFAXP0HNxcUsA7BYYZoa2qiadam8nP1WZdRbbs2Z6AabISBQfFNLfI
+	04uR5lQbv1E9uEtpeggsOpyowFzMYlOWul7NFF1ZwpE3h0NPBg549K2vLEQZWzrGws3ZOSWoXHZ
+	vbQ3W/Ql9FkX8HFYkGCimRnSt8Zthpdd90r7tADEObg==
+X-Received: by 2002:a17:903:2b0c:b0:298:4718:909f with SMTP id d9443c01a7336-2a2f2a3c12fmr21977785ad.51.1766150188842;
+        Fri, 19 Dec 2025 05:16:28 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHoI0126nI02HWdOYrK7HmwSJwQglIvs3CVhlzhFNNwJeELwYLlPmot25vjNg43QVJ7InExPQ==
+X-Received: by 2002:a17:903:2b0c:b0:298:4718:909f with SMTP id d9443c01a7336-2a2f2a3c12fmr21977325ad.51.1766150188281;
+        Fri, 19 Dec 2025 05:16:28 -0800 (PST)
 Received: from [10.217.217.28] ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-34e772ac06fsm2002400a91.11.2025.12.19.05.15.34
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7ff7e588a30sm2440572b3a.55.2025.12.19.05.16.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 19 Dec 2025 05:15:41 -0800 (PST)
-Message-ID: <6afcb26f-6f6a-41ef-ac45-976e5e2f17ae@oss.qualcomm.com>
-Date: Fri, 19 Dec 2025 18:45:32 +0530
+        Fri, 19 Dec 2025 05:16:27 -0800 (PST)
+Message-ID: <bb1035cf-f025-4ac8-b22f-ad5a08ac1bfb@oss.qualcomm.com>
+Date: Fri, 19 Dec 2025 18:46:19 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -102,7 +102,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V8 3/4] iio: adc: Add support for QCOM PMIC5 Gen3 ADC
+Subject: Re: [PATCH V8 4/4] thermal: qcom: add support for PMIC5 Gen3 ADC
+ thermal monitoring
 To: Jonathan Cameron <jic23@kernel.org>
 Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
         agross@kernel.org, andersson@kernel.org, lumag@kernel.org,
@@ -118,160 +119,197 @@ Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
         cros-qcom-dts-watchers@chromium.org, quic_kotarake@quicinc.com,
         neil.armstrong@linaro.org, stephan.gerhold@linaro.org
 References: <20251127134036.209905-1-jishnu.prakash@oss.qualcomm.com>
- <20251127134036.209905-4-jishnu.prakash@oss.qualcomm.com>
- <20251207165349.72f80659@jic23-huawei>
+ <20251127134036.209905-5-jishnu.prakash@oss.qualcomm.com>
+ <20251207170401.1143fc22@jic23-huawei>
 Content-Language: en-US
 From: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
-In-Reply-To: <20251207165349.72f80659@jic23-huawei>
+In-Reply-To: <20251207170401.1143fc22@jic23-huawei>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=P6c3RyAu c=1 sm=1 tr=0 ts=69455000 cx=c_pps
- a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+X-Proofpoint-GUID: V5IugNwRXGQ6qTsJ2vq9qDmnFJevF5_I
+X-Proofpoint-ORIG-GUID: V5IugNwRXGQ6qTsJ2vq9qDmnFJevF5_I
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjE5MDExMCBTYWx0ZWRfX493NiVkDJm12
+ VFG/Hp4prfdx0tyJAPngTcnepMXp008xt1HVvViWktC8QBX5HMkytURDBbHF7TLtV916nIilQ0A
+ Dx+saBzZdZJ9WlJ8LBak3kCgT8VOuGWNI0mP5tPY+oQ2gV/+AJlgKXb1iBU+/l6AaiC5p3xi4VU
+ V+c1fbqEvEpkOzvDh8EtXQa4xIOVOjCta0juHkvGzvA9che/utc65NFjOOrhLyNfqnuDiNoRmjo
+ PLwm3a/rnzlZ4pFuQuovqBrObEHTmFZ3tQ44X/AFfybxojL9rkFBftuboGTNXjv7v84y4m3ivE4
+ 8AfrCu5W9GXEYNuaA+2nEMOenL2EWfa3tmyDNVtdnMedP0nUEgrS2BdeVGvDYYJgukazUtIJWUu
+ LpdpWAU+Fydi1S6M46mI1iSZ2RFH5HR2GhdyRQFMJZLcQtwSHUGc2NsbeoWe6R7X0/kLHlkt8zh
+ u4P9/jMLfDJAQK6KQrw==
+X-Authority-Analysis: v=2.4 cv=Tp7rRTXh c=1 sm=1 tr=0 ts=6945502e cx=c_pps
+ a=cmESyDAEBpBGqyK7t0alAg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
  a=IkcTkHD0fZMA:10 a=wP3pNCr1ah4A:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=fLtpXVqzqxV2lCxwsoQA:9
- a=QEXdDO2ut3YA:10 a=OpyuDcXvxspvyRM73sMx:22
-X-Proofpoint-ORIG-GUID: FN8G3tN0u1Zq_rATYvdfL0WCcws4fvlM
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjE5MDExMCBTYWx0ZWRfX6OjNKZduE4T7
- BP1Tq23R6HcqLXDrpvAyvS/aLVGHZRJm+c3ajkT7AABRnRz90Oiyy78KeUKG2rSP8HF1M1Nk+Zm
- UMWW2CvQFwHVWeqCNjEXLwKHAEtsu/vWkD+YbNJuZGRlD5BHCcu7tQVLF28TLMfktIM4zZZ63pE
- ia2oNeMXViUkJQ2rkaWw4GpHt0clmRxvyPxWB0JEparm9HNiIGY0DquTDFYt2jmeDFyFSUABP0r
- LM3bS1oP0SyvbSyQctbtckrAg4UBMsqu5mTp/YmEDXSy2UAcRdfRCOc0oypuEgb4z6ftS2/bh83
- NcljMi1d2jWhn3AecKbpOr+A5e2F2gNQ+ffv0iss3IBByHmyc1gDgncVCzNNsXUTDzvllkSVRFW
- 42xDHzNRv2rtOJZxVqJiXxzX+D5VNAzAXU37mgO+FSZNQq2QbCff6y8B9QJ8+WOTyn9OUEJpXXX
- m0kzWZ9OxAqEJAh7PPQ==
-X-Proofpoint-GUID: FN8G3tN0u1Zq_rATYvdfL0WCcws4fvlM
+ a=VkNPw1HP01LnGYTKEx00:22 a=EUspDBNiAAAA:8 a=wdI2RCEqRplqVT_zBhgA:9
+ a=QEXdDO2ut3YA:10 a=1OuFwYUASf3TG4hYMiVC:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
  definitions=2025-12-19_04,2025-12-17_02,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 impostorscore=0 adultscore=0 clxscore=1015 lowpriorityscore=0
- suspectscore=0 phishscore=0 priorityscore=1501 spamscore=0 bulkscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2512120000 definitions=main-2512190110
+ bulkscore=0 clxscore=1015 impostorscore=0 malwarescore=0 spamscore=0
+ phishscore=0 priorityscore=1501 lowpriorityscore=0 suspectscore=0
+ adultscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2512120000
+ definitions=main-2512190110
 
 Hi Jonathan,
 
-On 12/7/2025 10:23 PM, Jonathan Cameron wrote:
-> On Thu, 27 Nov 2025 19:10:35 +0530
+On 12/7/2025 10:34 PM, Jonathan Cameron wrote:
+> On Thu, 27 Nov 2025 19:10:36 +0530
 > Jishnu Prakash <jishnu.prakash@oss.qualcomm.com> wrote:
 > 
->> The ADC architecture on PMIC5 Gen3 is similar to that on PMIC5 Gen2,
->> with all SW communication to ADC going through PMK8550 which
->> communicates with other PMICs through PBS.
+>> Add support for ADC_TM part of PMIC5 Gen3.
 >>
->> One major difference is that the register interface used here is that
->> of an SDAM (Shared Direct Access Memory) peripheral present on PMK8550.
->> There may be more than one SDAM used for ADC5 Gen3 and each has eight
->> channels, which may be used for either immediate reads (same functionality
->> as previous PMIC5 and PMIC5 Gen2 ADC peripherals) or recurring measurements
->> (same as ADC_TM functionality).
->>
->> By convention, we reserve the first channel of the first SDAM for all
->> immediate reads and use the remaining channels across all SDAMs for
->> ADC_TM monitoring functionality.
->>
->> Add support for PMIC5 Gen3 ADC driver for immediate read functionality.
->> ADC_TM is implemented as an auxiliary thermal driver under this ADC
->> driver.
+>> This is an auxiliary driver under the Gen3 ADC driver, which implements the
+>> threshold setting and interrupt generating functionalities of QCOM ADC_TM
+>> drivers, used to support thermal trip points.
 >>
 >> Signed-off-by: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
+>> ---
 > Hi Jishnu
 > 
-> Biggest thing I noticed on a fresh review is that you include
-> very few headers.  This only compiles (I think) because of lots
-> of deeply nested includes.  General principle in kernel code is
-> to follow IWYU approach with a few exceptions.  That makes code
-> much less prone to changes deep in the header hierarchy.
+> Fresh read threw up a few more comments from me.
 > 
-> You can even use the tooling that exists for clang to give you suggestions
-> though search around for config files (I posted one a long time back)
-> that reduce the noise somewhat.
+> See inline
+> 
+> Thanks,
 > 
 > Jonathan
 > 
-> 
->> diff --git a/drivers/iio/adc/qcom-adc5-gen3-common.c b/drivers/iio/adc/qcom-adc5-gen3-common.c
+>> diff --git a/drivers/thermal/qcom/qcom-spmi-adc-tm5-gen3.c b/drivers/thermal/qcom/qcom-spmi-adc-tm5-gen3.c
 >> new file mode 100644
->> index 000000000000..46bb09424f22
+>> index 000000000000..c6cc8ef76f7e
 >> --- /dev/null
->> +++ b/drivers/iio/adc/qcom-adc5-gen3-common.c
->> @@ -0,0 +1,107 @@
->> +// SPDX-License-Identifier: GPL-2.0-only
->> +/*
->> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
->> + *
->> + * Code shared between the main and auxiliary Qualcomm PMIC voltage ADCs
->> + * of type ADC5 Gen3.
->> + */
+>> +++ b/drivers/thermal/qcom/qcom-spmi-adc-tm5-gen3.c
+> 
 >> +
->> +#include <linux/bitfield.h>
->> +#include <linux/delay.h>
->> +#include <linux/iio/adc/qcom-adc5-gen3-common.h>
->> +#include <linux/regmap.h>
-> This seems like very light set of includes.
-> If nothing else should be seeing linux/types.h I think
+>> +static void tm_handler_work(struct work_struct *work)
+>> +{
+>> +	struct adc_tm5_gen3_chip *adc_tm5 = container_of(work, struct adc_tm5_gen3_chip,
+>> +							 tm_handler_work);
+>> +	struct adc_tm5_gen3_channel_props *chan_prop;
 > 
-> In general try to follow include what you use principles (loosely as some
-> conventions exit for not including particular headers). 
+> Why not declare in the reduced scope below?  Then could probably combine
+> declaration and assignment for this, and offset.
+
+OK, I'll just keep the following lines here:
+
+    struct adc_tm5_gen3_chip *adc_tm5 = container_of(work, struct adc_tm5_gen3_chip, tm_handler_work);
+    int sdam_index = -1;
+
+and declare the remaining variables in the loop.
+
+
+> 
+> 
+>> +	u8 tm_status[2] = { };
+>> +	u8 buf[16] = { };
+>> +	int sdam_index = -1;
+>> +	int i, ret;
+>> +
+>> +	for (i = 0; i < adc_tm5->nchannels; i++) {
+> It's considered fine in new kernel code to declare the loop variable
+> as
+> 	for (int i = 0;
+> 
+>> +		bool upper_set, lower_set;
+>> +		int temp, offset;
+>> +		u16 code = 0;
+>> +
+>> +		chan_prop = &adc_tm5->chan_props[i];
+>> +		offset = chan_prop->tm_chan_index;
+>> +
+>> +		adc5_gen3_mutex_lock(adc_tm5->dev);
+>> +		if (chan_prop->sdam_index != sdam_index) {
+>> +			sdam_index = chan_prop->sdam_index;
+>> +			ret = adc5_gen3_tm_status_check(adc_tm5, sdam_index,
+>> +							tm_status, buf);
+>> +			if (ret) {
+>> +				adc5_gen3_mutex_unlock(adc_tm5->dev);
+> 
+> If you had the guard() below, could perhaps use scoped_guard() here
+> to avoid need for unlocking in error paths.
+> That would be at the cost of increased indent however, so may not be worth it
+> or that may suggest factoring out some of this code as a helper.
+
+The mutex is meant to guard register writes, so it might be sufficient to
+have it around adc5_gen3_tm_status_check() alone. I'll make this change.
+
+> 
+>> +				break;
+>> +			}
+>> +		}
+>> +
+>> +		upper_set = ((tm_status[0] & BIT(offset)) && chan_prop->high_thr_en);
+>> +		lower_set = ((tm_status[1] & BIT(offset)) && chan_prop->low_thr_en);
+>> +		adc5_gen3_mutex_unlock(adc_tm5->dev);
+>> +
+>> +		if (!(upper_set || lower_set))
+>> +			continue;
+>> +
+>> +		code = get_unaligned_le16(&buf[2 * offset]);
+>> +		pr_debug("ADC_TM threshold code:%#x\n", code);
+>> +
+>> +		ret = adc5_gen3_therm_code_to_temp(adc_tm5->dev,
+>> +						   &chan_prop->common_props,
+>> +						   code, &temp);
+>> +		if (ret) {
+>> +			dev_err(adc_tm5->dev,
+>> +				"Invalid temperature reading, ret = %d, code=%#x\n",
+>> +				ret, code);
+>> +			continue;
+>> +		}
+>> +
+>> +		chan_prop->last_temp = temp;
+>> +		chan_prop->last_temp_set = true;
+>> +		thermal_zone_device_update(chan_prop->tzd, THERMAL_TRIP_VIOLATED);
+>> +	}
+>> +}
+> 
+>> +static int adc_tm5_gen3_set_trip_temp(struct thermal_zone_device *tz,
+>> +				      int low_temp, int high_temp)
+>> +{
+>> +	struct adc_tm5_gen3_channel_props *prop = thermal_zone_device_priv(tz);
+>> +	struct adc_tm5_gen3_chip *adc_tm5;
+>> +	int ret;
+>> +
+>> +	if (!prop || !prop->chip)
+>> +		return -EINVAL;
+>> +
+>> +	adc_tm5 = prop->chip;
+>> +
+>> +	dev_dbg(adc_tm5->dev, "channel:%s, low_temp(mdegC):%d, high_temp(mdegC):%d\n",
+>> +		prop->common_props.label, low_temp, high_temp);
+>> +
+>> +	adc5_gen3_mutex_lock(adc_tm5->dev);
+>> +	if (high_temp == INT_MAX && low_temp <= -INT_MAX)
+> 
+> How is low temp lower than the min value that fits in an integer?
+
+Yes, that check should be (low_temp == -INT_MAX), I'll fix it.
+
+> 
+>> +		ret = adc_tm5_gen3_disable_channel(prop);
+>> +	else
+>> +		ret = adc_tm5_gen3_configure(prop, low_temp, high_temp);
+>> +	adc5_gen3_mutex_unlock(adc_tm5->dev);
+> Might be worth a DEFINE_GUARD() so you can do
+> 	guard(adc5_gen3)(adc_tm5->dev);
+> 	if (high_temp = INT_MAX && low_temp <= -INT_MAX)
+> 		return adc_tm5_gen3_disable_channel(prop);
+> 	
+> 	return adc_tm5...
+> 
+> I haven't looked to see if this is useful elsewhere in these drivers.
 > 
 
-I have a question about this - I'm including some header files in my
-newly added common header file too (include/linux/iio/adc/qcom-adc5-gen3-common.h).
-Do I need to repeat those in the driver files where this header is already
-included?
-
-> Sorry I didn't notice this in earlier reviews!
-> 
-> 
->> diff --git a/drivers/iio/adc/qcom-spmi-adc5-gen3.c b/drivers/iio/adc/qcom-spmi-adc5-gen3.c
->> new file mode 100644
->> index 000000000000..effd4bd49989
->> --- /dev/null
->> +++ b/drivers/iio/adc/qcom-spmi-adc5-gen3.c
-> 
->> +/**
->> + * struct adc5_chip - ADC private structure.
->> + * @dev: SPMI ADC5 Gen3 device.
->> + * @dev_data: Top-level ADC device data.
->> + * @nchannels: number of ADC channels.
->> + * @chan_props: array of ADC channel properties.
->> + * @iio_chans: array of IIO channels specification.
->> + * @complete: ADC result notification after interrupt is received.
->> + * @lock: ADC lock for access to the peripheral, to prevent concurrent
->> + * requests from multiple clients.
->> + * @data: software configuration data.
->> + * @n_tm_channels: number of ADC channels used for TM measurements.
->> + * @tm_aux: pointer to auxiliary TM device.
->> + */
->> +struct adc5_chip {
->> +	struct device *dev;
->> +	struct adc5_device_data dev_data;
->> +	unsigned int nchannels;
->> +	struct adc5_channel_prop *chan_props;
->> +	struct iio_chan_spec *iio_chans;
->> +	struct completion complete;
->> +	/*
->> +	 * lock for access to the peripheral, to prevent concurrent requests
->> +	 * from multiple clients.
->> +	 */
-> 
-> Whilst checkpatch is dumb on this and complains if you don't have a comment
-> here feel free to drop it as the one in the kernel-doc is enough.
-> 
-
-I'll make this change in the next patch series.
+I'll add this and address your other comments.
 
 Thanks,
 Jishnu
 
 
->> +	struct mutex lock;
->> +	const struct adc5_data *data;
->> +	unsigned int n_tm_channels;
->> +	struct auxiliary_device *tm_aux;
->> +};
-> 
-> 
->>
+>> +
+>> +	return ret;
+>> +}
 
 
